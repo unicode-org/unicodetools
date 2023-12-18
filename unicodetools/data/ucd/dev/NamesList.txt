@@ -1,21 +1,11 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 16.0.0
-@@@+	U16M231103.lst
-	Unicode 16.0.0 names list, third delta.
-	Repertoire synched with UnicodeData-16.0.0d11.txt.
+@@@+	NamesList-16.0.0.txt
+@+	Generation Date: 2023-12-10, 15:43:38 GMT
+	Unicode 16.0.0 names list, seventh delta.
+	Repertoire synched with UnicodeData-16.0.0d12.txt.
 	Pre-alpha rollup of various fixes.
-	Updated annotations for several CJK strokes.
-	Added subhead for A7DA.
-	Added casing annotations for 019B / A7DC.
-	Added subhead and annotation for 18CFF.
-	Updated subheads to account for 7 new emoji.
-	Add annotations for 0620 and 06CD.
-	Removed annotation for 1AC6.
-	Added subhead and annotations for 1F8C0, 1F8C1.
-	Added xref to 2193.
-	Trigger printing of SVS for General Punctuation.
-	Trigger printing of SVS for CJK Symbols and Punctuation.
-	Trigger printing of SVS for Halfwidth and Fullwidth Forms.
+	Merged with updated Unikemet annotations.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -3105,6 +3095,7 @@
 03BA	GREEK SMALL LETTER KAPPA
 03BB	GREEK SMALL LETTER LAMDA
 	= lambda
+	x (latin small letter lambda - A7DB)
 03BC	GREEK SMALL LETTER MU
 	x (micro sign - 00B5)
 03BD	GREEK SMALL LETTER NU
@@ -11039,6 +11030,7 @@
 1BC4	BATAK LETTER MANDAILING HA
 1BC5	BATAK LETTER BA
 1BC6	BATAK LETTER KARO BA
+	* also used in Toba
 1BC7	BATAK LETTER PA
 1BC8	BATAK LETTER SIMALUNGUN PA
 1BC9	BATAK LETTER NA
@@ -25178,6 +25170,7 @@ A7D9	LATIN SMALL LETTER SIGMOID S
 @		Letters used in Wakashan and Salishan languages
 A7DA	LATIN CAPITAL LETTER LAMBDA
 A7DB	LATIN SMALL LETTER LAMBDA
+	x (greek small letter lamda - 03BB)
 A7DC	LATIN CAPITAL LETTER LAMBDA WITH STROKE
 	* lowercase is 019B 
 @		Modifier letters for Chatino (México)
@@ -38050,248 +38043,417 @@ FFFF	<not a character>
 @+		The characters in this block are taken primarily from Alan Gardiner's works on Middle Egyptian.
 @		A. Man and his occupations
 13000	EGYPTIAN HIEROGLYPH A001
+	* classifier human being
 13001	EGYPTIAN HIEROGLYPH A002
+	* classifier eating/drinking/speech/ silence/thoughts/feelings
 13002	EGYPTIAN HIEROGLYPH A003
+	* classifier sitting : ḥmsꞽ
 13003	EGYPTIAN HIEROGLYPH A004
+	* classifier supplication/hiding/rejection
 13004	EGYPTIAN HIEROGLYPH A005
 13005	EGYPTIAN HIEROGLYPH A005A
+	* logogram (to hide) : ꞽmn
 13006	EGYPTIAN HIEROGLYPH A006
+	* logogram (pure, clean) : wꜥb
 13007	EGYPTIAN HIEROGLYPH A006A
+	* classifier to libate : sṯ
 13008	EGYPTIAN HIEROGLYPH A006B
 13009	EGYPTIAN HIEROGLYPH A007
+	* classifier sitting/weak/faint
 1300A	EGYPTIAN HIEROGLYPH A008
+	* classifier joy/veneration
 1300B	EGYPTIAN HIEROGLYPH A009
+	* classifier to lift, to carry : fꜣꞽ
 1300C	EGYPTIAN HIEROGLYPH A010
+	* classifier sailing/rowing : sḳdꞽ
 1300D	EGYPTIAN HIEROGLYPH A011
+	* phonemogram : ḫnms
 1300E	EGYPTIAN HIEROGLYPH A012
+	* logogram (army) : mšꜥ
 1300F	EGYPTIAN HIEROGLYPH A013
+	* classifier rebel/enemy 
 13010	EGYPTIAN HIEROGLYPH A014
+	* classifier rebel, opponent : rḳ
 13011	EGYPTIAN HIEROGLYPH A014A
+	* classifier death : mt
 13012	EGYPTIAN HIEROGLYPH A015
+	* logogram (to fall) : ḫr
 13013	EGYPTIAN HIEROGLYPH A016
+	* classifier bowing
 13014	EGYPTIAN HIEROGLYPH A017
+	* classifier youth/child
 13015	EGYPTIAN HIEROGLYPH A017A
+	* classifier youth/child
 13016	EGYPTIAN HIEROGLYPH A018
+	* classifier child (royal)
 13017	EGYPTIAN HIEROGLYPH A019
+	* logogram (old, old age) : ꞽꜣw
 13018	EGYPTIAN HIEROGLYPH A020
+	* logogram (elder) : smsw
 13019	EGYPTIAN HIEROGLYPH A021
 1301A	EGYPTIAN HIEROGLYPH A022
+	* classifier statue
 1301B	EGYPTIAN HIEROGLYPH A023
+	* classifier sovereign : ꞽt.y
 1301C	EGYPTIAN HIEROGLYPH A024
+	* classifier force/effort
 1301D	EGYPTIAN HIEROGLYPH A025
+	* classifier force/effort
 1301E	EGYPTIAN HIEROGLYPH A026
+	* logogram (vocative interjection) : ꞽ
 1301F	EGYPTIAN HIEROGLYPH A027
+	* phonemogram/classifier messenger : ꞽn
 13020	EGYPTIAN HIEROGLYPH A028
+	* logogram (to be high) : ḳꜣꞽ
 13021	EGYPTIAN HIEROGLYPH A029
+	* classifier upside down : sḫd
 13022	EGYPTIAN HIEROGLYPH A030
+	* classifier adoration
 13023	EGYPTIAN HIEROGLYPH A031
+	* classifier turning away
 13024	EGYPTIAN HIEROGLYPH A032
+	* classifier dancing : ḫbꞽ
 13025	EGYPTIAN HIEROGLYPH A032A
 13026	EGYPTIAN HIEROGLYPH A033
+	* classifier wandering/displaced : rw
 13027	EGYPTIAN HIEROGLYPH A034
+	* logogram (to pound, to build) : ḫwsꞽ
 13028	EGYPTIAN HIEROGLYPH A035
+	* logogram (to build) : ḳd
 13029	EGYPTIAN HIEROGLYPH A036
+	* logogram (brewer) : ꜥf.ty
 1302A	EGYPTIAN HIEROGLYPH A037
+	* logogram (brewer) : ꜥf.ty
 1302B	EGYPTIAN HIEROGLYPH A038
+	* logogram (Cusae) : ḳꞽs
 1302C	EGYPTIAN HIEROGLYPH A039
+	* logogram (Cusae) : ḳꞽs
 1302D	EGYPTIAN HIEROGLYPH A040
+	* classifier divinity
 1302E	EGYPTIAN HIEROGLYPH A040A
+	* classifier divinity
 1302F	EGYPTIAN HIEROGLYPH A041
+	* logogram (first person singular) : ꞽ
 13030	EGYPTIAN HIEROGLYPH A042
+	* classifier king : n(y)-sw.t
 13031	EGYPTIAN HIEROGLYPH A042A
+	* logogram (first person singular) : ꞽ
 13032	EGYPTIAN HIEROGLYPH A043
+	* classifier king
 13033	EGYPTIAN HIEROGLYPH A043A
+	* logogram (king of UE) : n.y-sw.t
 13034	EGYPTIAN HIEROGLYPH A044
+	* classsifier king : n.y-sw.t
 13035	EGYPTIAN HIEROGLYPH A045
+	* classifier king : bꞽ.ty
 13036	EGYPTIAN HIEROGLYPH A045A
+	* classifier king : n.y-sw.t
 13037	EGYPTIAN HIEROGLYPH A046
+	* classifier king : bꞽ.tyw
 13038	EGYPTIAN HIEROGLYPH A047
+	* logogram (to guard) : sꜣw
 13039	EGYPTIAN HIEROGLYPH A048
+	* logogram (relating to; belonging to) : ꞽr.y
 1303A	EGYPTIAN HIEROGLYPH A049
+	* classifier foreigner
 1303B	EGYPTIAN HIEROGLYPH A050
+	* logogram (to be noble) : špsꞽ
 1303C	EGYPTIAN HIEROGLYPH A051
+	* logogram (to be noble) : šps
 1303D	EGYPTIAN HIEROGLYPH A052
+	* classifier name (deceased person)
 1303E	EGYPTIAN HIEROGLYPH A053
+	* classifier image/statue/likeness
 1303F	EGYPTIAN HIEROGLYPH A054
+	* classifier body/corpse/death
 13040	EGYPTIAN HIEROGLYPH A055
+	* logogram (to sleep/to spent the night) : sḏr
 13041	EGYPTIAN HIEROGLYPH A056
+	* classifier enemy : ḫft.y
 13042	EGYPTIAN HIEROGLYPH A057
+	* logogram (an offering that the king gives) : ḥtp-dꞽ-n.y-sw.t
 13043	EGYPTIAN HIEROGLYPH A058
+	* classifier hacking : ḫbs
 13044	EGYPTIAN HIEROGLYPH A059
+	* classifier driving away : sḥrꞽ
 13045	EGYPTIAN HIEROGLYPH A060
+	* logogram (to sprinkle, to scatter) : stꞽ
 13046	EGYPTIAN HIEROGLYPH A061
+	* logogram (to turn back) : ꜥnn
 13047	EGYPTIAN HIEROGLYPH A062
+	* logogram (great one, chief) : wr
 13048	EGYPTIAN HIEROGLYPH A063
 13049	EGYPTIAN HIEROGLYPH A064
+	* classifier to lift, to carry : fꜣꞽ
 1304A	EGYPTIAN HIEROGLYPH A065
+	* logogram (the one who belongs to the god) : ꞽr.y-nṯr
 1304B	EGYPTIAN HIEROGLYPH A066
+	* logogram (the musician/Ihy) : ꞽḥy
 1304C	EGYPTIAN HIEROGLYPH A067
+	* classifier personal name
 1304D	EGYPTIAN HIEROGLYPH A068
+	* logogram (messenger) : wpw.ty
 1304E	EGYPTIAN HIEROGLYPH A069
+	* classifier occupation/relationship
 1304F	EGYPTIAN HIEROGLYPH A070
+	* logogram (million, many) : ḥḥ
 @		B. Woman and her occupations
 13050	EGYPTIAN HIEROGLYPH B001
+	* classifier female
 13051	EGYPTIAN HIEROGLYPH B002
+	* classifier pregnant : ꞽwr
 13052	EGYPTIAN HIEROGLYPH B003
+	* classifier birth : msꞽ
 13053	EGYPTIAN HIEROGLYPH B004
+	* classifier birth : msꞽ
 13054	EGYPTIAN HIEROGLYPH B005
+	* classifier nursing, rearing : rnn
 13055	EGYPTIAN HIEROGLYPH B005A
+	* logogram weaver or  nurse : ? | mnḫ.t
 13056	EGYPTIAN HIEROGLYPH B006
+	* classifier nursing, rearing : rnn
 13057	EGYPTIAN HIEROGLYPH B007
+	* classifier female royalty
 13058	EGYPTIAN HIEROGLYPH B008
+	* classifier human being (together with A1) : ḥr.w-nb
 13059	EGYPTIAN HIEROGLYPH B009
+	* logogram (the musician) : ꞽḥ.yt
 @		C. Anthropomorphic deities
 1305A	EGYPTIAN HIEROGLYPH C001
+	* logogram (Re) : rꜥ
 1305B	EGYPTIAN HIEROGLYPH C002
+	* logogram (Re) : rꜥ
 1305C	EGYPTIAN HIEROGLYPH C002A
+	* logogram (Re) : rꜥ
 1305D	EGYPTIAN HIEROGLYPH C002B
 	* mirrored version of 1305C
 1305E	EGYPTIAN HIEROGLYPH C002C
 	* mirrored version of 1305B
 1305F	EGYPTIAN HIEROGLYPH C003
+	* logogram (Thot) : ḏhwty
 13060	EGYPTIAN HIEROGLYPH C004
+	* classifier Khnum : ẖnm.w
 13061	EGYPTIAN HIEROGLYPH C005
+	* logogram/phonemogram (who joins with life) : ẖnm.t-ꜥnḫ
 13062	EGYPTIAN HIEROGLYPH C006
+	* classifier Anubis/Wepwawet (divinity)
 13063	EGYPTIAN HIEROGLYPH C007
+	* logogram (Seth) : stš/stẖ
 13064	EGYPTIAN HIEROGLYPH C008
+	* classifier Min : gb.tyw
 13065	EGYPTIAN HIEROGLYPH C009
+	* logogram (Hathor) : ḥw.t-ḥr
 13066	EGYPTIAN HIEROGLYPH C010
+	* logogram (Maat) : mꜣꜥ.t
 13067	EGYPTIAN HIEROGLYPH C010A
+	* logogram (Maat) : mꜣꜥ.t
 13068	EGYPTIAN HIEROGLYPH C011
-	* 1,000,000
+	* logogram (million, many) : ḥḥ
 13069	EGYPTIAN HIEROGLYPH C012
+	* logogram (Amon) : ꞽmn
 1306A	EGYPTIAN HIEROGLYPH C013
 	* mirrored version of 13069
 1306B	EGYPTIAN HIEROGLYPH C014
+	* logogram (Amon is his strength (%sA-ra% name Ramses VI)) : ꞽmn-ḥr-ḫpš=f
 1306C	EGYPTIAN HIEROGLYPH C015
 	* mirrored version of 1306B
 1306D	EGYPTIAN HIEROGLYPH C016
+	* logogram (Atum) : ꞽtmw
 1306E	EGYPTIAN HIEROGLYPH C017
+	* classifier Montu (divinity)
 1306F	EGYPTIAN HIEROGLYPH C018
+	* classifier Tatenen : tꜣ-ṯnn
 13070	EGYPTIAN HIEROGLYPH C019
+	* classifier Ptah : ptḥ
 13071	EGYPTIAN HIEROGLYPH C020
+	* logogram (Ptah) : ptḥ
 13072	EGYPTIAN HIEROGLYPH C021
+	* phonemogram : bs
 13073	EGYPTIAN HIEROGLYPH C022
+	* classifier moon : ꞽꜥḥ
 13074	EGYPTIAN HIEROGLYPH C023
+	* logogram (Sekhmet) : sḫm.t
 13075	EGYPTIAN HIEROGLYPH C024
+	* logogram (Neith) : n.t
 @		D. Parts of the human body
 13076	EGYPTIAN HIEROGLYPH D001
+	* logogram (head) : tp
 13077	EGYPTIAN HIEROGLYPH D002
+	* phonemogram : ḥr
 13078	EGYPTIAN HIEROGLYPH D003
+	* classifier hair
 13079	EGYPTIAN HIEROGLYPH D004
+	* phonemogram : ꞽr
 1307A	EGYPTIAN HIEROGLYPH D005
+	* classifier eye related actions : dgꞽ
 1307B	EGYPTIAN HIEROGLYPH D006
+	* classifier eye related actions : dgꞽ
 1307C	EGYPTIAN HIEROGLYPH D007
+	* phonemogram : ꜥntyw
 1307D	EGYPTIAN HIEROGLYPH D008
+	* phonemogram : ꜥn
 1307E	EGYPTIAN HIEROGLYPH D008A
+	* phonemogram : ꜥn
 1307F	EGYPTIAN HIEROGLYPH D009
+	* logogram (to weep) : rmꞽ
 13080	EGYPTIAN HIEROGLYPH D010
+	* logogram (Udjat eye) : wḏꜣ.t
 13081	EGYPTIAN HIEROGLYPH D011
-	* 1/2
+	* logogram 1/2
 13082	EGYPTIAN HIEROGLYPH D012
-	* pupil of the eye
 	* not to be confused with 131F3 or 133F8
 	* 1/4
+	* classifier pupil : ḏfḏ
 13083	EGYPTIAN HIEROGLYPH D013
 	* 1/8
+	* classifier eyebrow : ꞽnḥ
 13084	EGYPTIAN HIEROGLYPH D014
-	* 1/16
+	* logogram 1/16
 13085	EGYPTIAN HIEROGLYPH D015
-	* 1/32
+	* logogram 1/32
 13086	EGYPTIAN HIEROGLYPH D016
-	* 1/64
+	* logogram 1/64
 13087	EGYPTIAN HIEROGLYPH D017
+	* logogram (figure, image) : tꞽ.t
 13088	EGYPTIAN HIEROGLYPH D018
+	* logogram (ear) : msḏr
 13089	EGYPTIAN HIEROGLYPH D019
+	* classifier nose : šr.t
 1308A	EGYPTIAN HIEROGLYPH D020
+	* classifier nose : fnḏ
 1308B	EGYPTIAN HIEROGLYPH D021
 	* mouth
 	* not to be confused with 133AB
-	* transliterated as r
+	* phonemogram : r
 1308C	EGYPTIAN HIEROGLYPH D022
+	* logogram (2/3) : r.wy
 1308D	EGYPTIAN HIEROGLYPH D023
+	* logogram (3/4) : ḫmt-r.w
 1308E	EGYPTIAN HIEROGLYPH D024
+	* classifier lip, border, edge : sp.t
 1308F	EGYPTIAN HIEROGLYPH D025
+	* logogram (lips) : sp.ty
 13090	EGYPTIAN HIEROGLYPH D026
+	* classifier blood : snf
 13091	EGYPTIAN HIEROGLYPH D027
+	* classifier breast : mnḏ
 	~ 13091 FE00 rotated 90 degrees
 13092	EGYPTIAN HIEROGLYPH D027A
 13093	EGYPTIAN HIEROGLYPH D028
+	* logogram (spirit, essence) : kꜣ
 	~ 13093 FE01 rotated 180 degrees
 13094	EGYPTIAN HIEROGLYPH D029
+	* logogram (spirit, essence) : kꜣ
 13095	EGYPTIAN HIEROGLYPH D030
+	* classifier Nehebkau : nḥb-kꜣ.w
 13096	EGYPTIAN HIEROGLYPH D031
+	* logogram (mortuary priest) : ḥm-kꜣ
 13097	EGYPTIAN HIEROGLYPH D031A
+	* logogram (mortuary priest) : ḥm-kꜣ
 13098	EGYPTIAN HIEROGLYPH D032
+	* classifier enveloping, embracing, uniting
 13099	EGYPTIAN HIEROGLYPH D033
+	* phonemogram : ẖn
 1309A	EGYPTIAN HIEROGLYPH D034
+	* logogram (to fight) : ꜥḥꜣ
 1309B	EGYPTIAN HIEROGLYPH D034A
+	* logogram (to fight) : ꜥḥꜣ
 1309C	EGYPTIAN HIEROGLYPH D035
+	* logogram (negative particle) : n
 1309D	EGYPTIAN HIEROGLYPH D036
 	* transliterated as A725
 	x (hebrew letter ayin - 05E2)
 	x (arabic letter ain - 0639)
+	* phonemogram : ꜥ
 1309E	EGYPTIAN HIEROGLYPH D037
+	* phonemogram : ḏꞽ > dꞽ
 1309F	EGYPTIAN HIEROGLYPH D038
+	* phonemogram : m
 130A0	EGYPTIAN HIEROGLYPH D039
+	* logogram (to offer, to present) : ḥnk
 130A1	EGYPTIAN HIEROGLYPH D040
+	* classifier force, effort
 130A2	EGYPTIAN HIEROGLYPH D041
+	* classifier arm related movements or actions
 130A3	EGYPTIAN HIEROGLYPH D042
+	* logogram (cubit) : mḥ
 130A4	EGYPTIAN HIEROGLYPH D043
+	* logogram (to protect) : ḫwꞽ
 130A5	EGYPTIAN HIEROGLYPH D044
+	* classifier governing/controlling : ḫrp
 130A6	EGYPTIAN HIEROGLYPH D045
+	* logogram (to make holy) : ḏsr
 130A7	EGYPTIAN HIEROGLYPH D046
-	* transliterated as d
+	* phonemogram : d
 130A8	EGYPTIAN HIEROGLYPH D046A
+	* logogram (scent, perfume, dew) : ꞽd.t
 130A9	EGYPTIAN HIEROGLYPH D047
+	* classifier hand : ḏr.t
 130AA	EGYPTIAN HIEROGLYPH D048
+	* logogram (palm) : šsp
 130AB	EGYPTIAN HIEROGLYPH D048A
+	* phono-repeater : ḥnt
 130AC	EGYPTIAN HIEROGLYPH D049
+	* classifier grasping/holding : ꜣmm
 130AD	EGYPTIAN HIEROGLYPH D050
-	* classifier 'accurate, finger'
 	* not to be confused with 130B7
-	* 10,000
+	* 10000
+	* logogram (finger) : ḏbꜥ
 130AE	EGYPTIAN HIEROGLYPH D050A
-	* 20,000
+	* \20000
 130AF	EGYPTIAN HIEROGLYPH D050B
-	* 30,000
+	* \30000
 130B0	EGYPTIAN HIEROGLYPH D050C
-	* 40,000
+	* \40000
 130B1	EGYPTIAN HIEROGLYPH D050D
-	* 50,000
+	* \50000
 130B2	EGYPTIAN HIEROGLYPH D050E
-	* 60,000
+	* \60000
 130B3	EGYPTIAN HIEROGLYPH D050F
-	* 70,000
+	* \70000
 130B4	EGYPTIAN HIEROGLYPH D050G
-	* 80,000
+	* \80000
 130B5	EGYPTIAN HIEROGLYPH D050H
-	* 90,000
+	* \90000
 130B6	EGYPTIAN HIEROGLYPH D050I
-	* 50,000
+	* \50000
 130B7	EGYPTIAN HIEROGLYPH D051
-	* classifier 'measure, nail, scratching, taking'
 	* not to be confused with 130AD
+	* classifier taking : ṯꜣꞽ
 130B8	EGYPTIAN HIEROGLYPH D052
+	* phonemogram : bꜣḥ
 130B9	EGYPTIAN HIEROGLYPH D052A
+	* phonemogram : sšm
 130BA	EGYPTIAN HIEROGLYPH D053
+	* phonemogram : bꜣḥ
 130BB	EGYPTIAN HIEROGLYPH D054
-	* (forward) motion
+	* classifier movement
 130BC	EGYPTIAN HIEROGLYPH D054A
+	* logogram (to come) : ꞽwꞽ
 130BD	EGYPTIAN HIEROGLYPH D055
-	* backward motion
+	* classifier reverse movement
 130BE	EGYPTIAN HIEROGLYPH D056
+	* classifier leg/foot : rd
 130BF	EGYPTIAN HIEROGLYPH D057
+	* classifier damage, injury : nkn
 130C0	EGYPTIAN HIEROGLYPH D058
-	* transliterated as b
+	* phonemogram : b
 130C1	EGYPTIAN HIEROGLYPH D059
+	* phonemogram : ꜥb
 130C2	EGYPTIAN HIEROGLYPH D060
+	* logogram (to be pure, to be clean) : wꜥb
 130C3	EGYPTIAN HIEROGLYPH D061
+	* phono-repeater : sꜣḥ
 130C4	EGYPTIAN HIEROGLYPH D062
+	* phonemogram : sꜣḥ
 130C5	EGYPTIAN HIEROGLYPH D063
+	* phonemogram : sꜣḥ
 130C6	EGYPTIAN HIEROGLYPH D064
+	* logogram (hand) : ḏr.t
 130C7	EGYPTIAN HIEROGLYPH D065
+	* logogram (child, son, lad) : šrꞽ
 130C8	EGYPTIAN HIEROGLYPH D066
+	* classifier to engrave : wdꞽ
 130C9	EGYPTIAN HIEROGLYPH D067
 	* 1 heqat measure
 	* not to be confused with 13212
@@ -38313,139 +38475,240 @@ FFFF	<not a character>
 	* 9 heqat measures
 @		E. Mammals
 130D2	EGYPTIAN HIEROGLYPH E001
-	* bull, classifier 'cattle'
 	* not to be confused with 130FD
+	* logogram (bull) : kꜣ
 130D3	EGYPTIAN HIEROGLYPH E002
-	* aggressive bull
+	* classifier rage/aggression : smꜣ
 130D4	EGYPTIAN HIEROGLYPH E003
+	* classifier calf : bḥs
 130D5	EGYPTIAN HIEROGLYPH E004
+	* classifier cow divinity : mḥ.yt
 130D6	EGYPTIAN HIEROGLYPH E005
+	* classifier concern : ꜣms
 130D7	EGYPTIAN HIEROGLYPH E006
+	* logogram (span (of horses)/horse) : ḥtr
 130D8	EGYPTIAN HIEROGLYPH E007
+	* classifier donkey/ass : ꜥꜣ
 130D9	EGYPTIAN HIEROGLYPH E008
+	* logogram (kid) : ꞽb
 130DA	EGYPTIAN HIEROGLYPH E008A
+	* phono-repeater : ꞽb
 130DB	EGYPTIAN HIEROGLYPH E009
+	* phonemogram : ꞽw
 130DC	EGYPTIAN HIEROGLYPH E009A
+	* classifier cow (cow of the sky) : ꞽh.t
 130DD	EGYPTIAN HIEROGLYPH E010
+	* classifier ram : bꜣ
 130DE	EGYPTIAN HIEROGLYPH E011
+	* phonemogram : bꜣ
 130DF	EGYPTIAN HIEROGLYPH E012
+	* classifier pig : ꞽpḥ
 130E0	EGYPTIAN HIEROGLYPH E013
+	* phonemogram : mꞽ
 130E1	EGYPTIAN HIEROGLYPH E014
+	* classifier dog/hound : ṯsm
 130E2	EGYPTIAN HIEROGLYPH E015
+	* logogram (Anubis) : ꞽnp.w
 130E3	EGYPTIAN HIEROGLYPH E016
+	* logogram (privy to the secrets) : ḥr.y-sštꜣ
 130E4	EGYPTIAN HIEROGLYPH E016A
+	* classifier Anubis : ꞽnp.w
 130E5	EGYPTIAN HIEROGLYPH E017
+	* phonemogram : sꜣb
 130E6	EGYPTIAN HIEROGLYPH E017A
+	* phonemogram : sṯꜣ
 130E7	EGYPTIAN HIEROGLYPH E018
+	* logogram (Wepwawet) : wp-wꜣ.wt
 130E8	EGYPTIAN HIEROGLYPH E019
+	* classifier Wepwawet : wp-wꜣ.wt
 130E9	EGYPTIAN HIEROGLYPH E020
+	* logogram (Seth) : stš/stẖ
 130EA	EGYPTIAN HIEROGLYPH E020A
 130EB	EGYPTIAN HIEROGLYPH E021
+	* logogram (Seth) : stš/stẖ
 130EC	EGYPTIAN HIEROGLYPH E022
+	* classifier (lion) : mꜣꞽ
 130ED	EGYPTIAN HIEROGLYPH E023
+	* phonogram : rw
 130EE	EGYPTIAN HIEROGLYPH E024
+	* classifier leopard : ꜣby
 130EF	EGYPTIAN HIEROGLYPH E025
+	* classifier hippopotamus : ḫꜣb
 130F0	EGYPTIAN HIEROGLYPH E026
+	* classifier elephant : ꜣbw
 130F1	EGYPTIAN HIEROGLYPH E027
+	* classifier to fortell : sr
 130F2	EGYPTIAN HIEROGLYPH E028
+	* classifier oryx : mꜣ-ḥḏ
 130F3	EGYPTIAN HIEROGLYPH E028A
+	* logogram (Oryx nome, 16th nome of Upper Egypt) : mꜣ-ḥḏ
 130F4	EGYPTIAN HIEROGLYPH E029
+	* classifier gazelle : gḥs
 130F5	EGYPTIAN HIEROGLYPH E030
+	* classifier ibex : n(ꞽ)ꜣw
 130F6	EGYPTIAN HIEROGLYPH E031
+	* logogram (rank, diginity) : sꜥḥ
 130F7	EGYPTIAN HIEROGLYPH E032
+	* classifier rage, fury  : ḳnd
 130F8	EGYPTIAN HIEROGLYPH E033
+	* classifier monkey : gf
 130F9	EGYPTIAN HIEROGLYPH E034
+	* phonemogram : wn
 130FA	EGYPTIAN HIEROGLYPH E034A
 	* stylistic variant, use of 130F9 is preferred
 130FB	EGYPTIAN HIEROGLYPH E036
+	* classifier monkey (divinity) : wpt
 130FC	EGYPTIAN HIEROGLYPH E037
+	* logogram (symbol of the cycle of time) : wnšb
 130FD	EGYPTIAN HIEROGLYPH E038
 	* cow
 	* not to be confused with 130D2
 @		F. Parts of mammals
 130FE	EGYPTIAN HIEROGLYPH F001
+	* classifier bull, ox, cattle : kꜣ
 130FF	EGYPTIAN HIEROGLYPH F001A
+	* phonemogram : ḫnt
 13100	EGYPTIAN HIEROGLYPH F002
+	* classifier rage/aggression : ḏnd
 13101	EGYPTIAN HIEROGLYPH F003
+	* phonemogram : ꜣt
 13102	EGYPTIAN HIEROGLYPH F004
+	* logogram (beginning, front) : ḥꜣ.t
 13103	EGYPTIAN HIEROGLYPH F005
+	* phonemogram : šsꜣ
 13104	EGYPTIAN HIEROGLYPH F006
+	* phonemogram : šsꜣ
 13105	EGYPTIAN HIEROGLYPH F007
+	* classifier worth, dignity, renown : šfšf.yt
 13106	EGYPTIAN HIEROGLYPH F008
+	* logogram (worth, dignity, renown) : šf.yt
 13107	EGYPTIAN HIEROGLYPH F009
+	* logogram (strength) : pḥ.ty
 13108	EGYPTIAN HIEROGLYPH F010
+	* classifier throat associated action : sꜥm
 13109	EGYPTIAN HIEROGLYPH F011
+	* classifier throat associated action : ꜥm
 1310A	EGYPTIAN HIEROGLYPH F012
+	* phonemogram : wsr
 1310B	EGYPTIAN HIEROGLYPH F013
+	* phonemogram : wp
 1310C	EGYPTIAN HIEROGLYPH F013A
 	* stylistic variant, use of 1310B is preferred
 1310D	EGYPTIAN HIEROGLYPH F014
+	* logogram (new years day) : wp-rnp.t
 1310E	EGYPTIAN HIEROGLYPH F015
+	* logogram (new years day) : wp-rnp.t
 1310F	EGYPTIAN HIEROGLYPH F016
+	* logogram (horn) : ꜥb
 	~ 1310F FE00 rotated 90 degrees
 13110	EGYPTIAN HIEROGLYPH F017
+	* logogram purification : ꜥb.w
 13111	EGYPTIAN HIEROGLYPH F018
+	* phonemogram : ḥ
 13112	EGYPTIAN HIEROGLYPH F019
+	* classifier jaw : ꜥr
 13113	EGYPTIAN HIEROGLYPH F020
+	* logogram (tongue) : ns
 13114	EGYPTIAN HIEROGLYPH F021
+	* logogram (ear) : msḏr
 13115	EGYPTIAN HIEROGLYPH F021A
 	* from hieratic
+	* logogram to hear, to listen
 13116	EGYPTIAN HIEROGLYPH F022
+	* phonemogram : pḥ
 13117	EGYPTIAN HIEROGLYPH F023
+	* classifier foreleg/arm : ḫpš
 	~ 13117 FE02 rotated 270 degrees
 13118	EGYPTIAN HIEROGLYPH F024
 	* mirrored version of 13117
+	* classifier foreleg/arm : ḫpš
 13119	EGYPTIAN HIEROGLYPH F025
+	* phonemogram : wḥm
 1311A	EGYPTIAN HIEROGLYPH F026
+	* phonemogram : ẖn
 1311B	EGYPTIAN HIEROGLYPH F027
+	* classifier animal : ṯsm
 1311C	EGYPTIAN HIEROGLYPH F028
+	* logogram (dappled, many-coloured) : sꜣb
 	~ 1311C FE00 rotated 90 degrees
 1311D	EGYPTIAN HIEROGLYPH F029
+	* phonemogram : st
 1311E	EGYPTIAN HIEROGLYPH F030
+	* phonemogram : šd
 1311F	EGYPTIAN HIEROGLYPH F031
+	* phonemogram : ms
 13120	EGYPTIAN HIEROGLYPH F031A
 	* cursive variant of 1311F
+	* phonemogram : ms
 13121	EGYPTIAN HIEROGLYPH F032
 	* transliterated as 1E96
+	* logogram (belly, body) : ẖ.t
 	~ 13121 FE00 rotated 90 degrees
 13122	EGYPTIAN HIEROGLYPH F033
+	* phonemogram : sd
 13123	EGYPTIAN HIEROGLYPH F034
+	* logogram (heart, mind, wish) : ꞽb
 13124	EGYPTIAN HIEROGLYPH F035
+	* phonemogram : nfr
 13125	EGYPTIAN HIEROGLYPH F036
+	* phonemogram : smꜣ
 13126	EGYPTIAN HIEROGLYPH F037
+	* classifier spine, vertebrae : ꞽꜣ.t
 13127	EGYPTIAN HIEROGLYPH F037A
+	* logogram (to cut) : šꜥd
 	~ 13127 FE00 rotated 90 degrees
 13128	EGYPTIAN HIEROGLYPH F038
+	* classifier back, backbone : psḏ
 13129	EGYPTIAN HIEROGLYPH F038A
 1312A	EGYPTIAN HIEROGLYPH F039
+	* phonemogram : ꞽmꜣḫ
 1312B	EGYPTIAN HIEROGLYPH F040
+	* logogram (to be long, to stretch out) : ꜣwꞽ
 1312C	EGYPTIAN HIEROGLYPH F041
+	* classifier slaughter/evil : šꜥ.t
 1312D	EGYPTIAN HIEROGLYPH F042
+	* classifier rib : spr
 1312E	EGYPTIAN HIEROGLYPH F043
+	* classifier ribs (meat of ribs) : spḥ.t
 1312F	EGYPTIAN HIEROGLYPH F044
+	* phono-repeater : ꞽwꜥ
 13130	EGYPTIAN HIEROGLYPH F045
+	* logogram (uterus, womb) : ꞽd.t
 13131	EGYPTIAN HIEROGLYPH F045A
+	* phonemogram : m
 13132	EGYPTIAN HIEROGLYPH F046
+	* logogram (to go round, to turn round) : pẖr
 13133	EGYPTIAN HIEROGLYPH F046A
 	* rotated version of 13132
+	* logogram (to go round, to turn round) : pẖr
 13134	EGYPTIAN HIEROGLYPH F047
 	* mirrored version of 13132
+	* classifier winding, intestine : ḳ(ꜣ)b
 13135	EGYPTIAN HIEROGLYPH F047A
 	* mirrored version of 13133
+	* logogram (to go round, to turn round) : pẖr
 13136	EGYPTIAN HIEROGLYPH F048
+	* logogram (to go round, to turn round) : pẖr
 13137	EGYPTIAN HIEROGLYPH F049
 	* mirrored version of 13136
+	* phono-repeater : wḏb
 13138	EGYPTIAN HIEROGLYPH F050
+	* phonemogram : spẖr
 13139	EGYPTIAN HIEROGLYPH F051
+	* phonemogram : f
 	~ 13139 FE00 rotated 90 degrees
 	~ 13139 FE02 rotated 270 degrees
 1313A	EGYPTIAN HIEROGLYPH F051A
+	* classifier part of a body : ḥꜥ.w
 1313B	EGYPTIAN HIEROGLYPH F051B
 	* variant of 1313A
+	* logogram (limbs, body) : ḥꜥ.w
 1313C	EGYPTIAN HIEROGLYPH F051C
 	* rotated version of 13139
 1313D	EGYPTIAN HIEROGLYPH F052
+	* classifier excrement : ḥs
 1313E	EGYPTIAN HIEROGLYPH F053
+	* phonemogram : mdw
 @		G. Birds
 1313F	EGYPTIAN HIEROGLYPH G001
 	* Egyptian vulture, Egyptological alef
@@ -38453,384 +38716,626 @@ FFFF	<not a character>
 	* transliterated as A723
 	x (hebrew letter alef - 05D0)
 	x (arabic letter alef with hamza above - 0623)
+	* phonemogram : ꜣ
 13140	EGYPTIAN HIEROGLYPH G002
+	* phonemogram : ꜣꜣ
 13141	EGYPTIAN HIEROGLYPH G003
+	* phonemogram : mꜣ
 13142	EGYPTIAN HIEROGLYPH G004
-	* phonogram 'tw'
 	* not to be confused with 1313F
+	* phonemogram : tyw
 13143	EGYPTIAN HIEROGLYPH G005
+	* logogram (Horus) : ḥr
 13144	EGYPTIAN HIEROGLYPH G006
+	* classifier falcon : bꞽk
 13145	EGYPTIAN HIEROGLYPH G006A
+	* logogram (lord) : nb
 13146	EGYPTIAN HIEROGLYPH G007
+	* classifier divine beings/divine things
 13147	EGYPTIAN HIEROGLYPH G007A
+	* logogram (Nemty (divinity)) : nmty
 13148	EGYPTIAN HIEROGLYPH G007B
+	* logogram nmty (Nemty (divinity))
 13149	EGYPTIAN HIEROGLYPH G008
+	* logogram (golden Horus) : ḥr-nbw
 1314A	EGYPTIAN HIEROGLYPH G009
+	* logogram (Re-Hor (usually in %ra-Hr-Ax.ty%) : rꜥ-ḥr
 1314B	EGYPTIAN HIEROGLYPH G010
+	* classifier bark of Sokar : ḥnw
 1314C	EGYPTIAN HIEROGLYPH G011
+	* classifier cult image : ꜥẖm
 1314D	EGYPTIAN HIEROGLYPH G011A
 1314E	EGYPTIAN HIEROGLYPH G012
+	* classifier cult image : ꜥẖm
 1314F	EGYPTIAN HIEROGLYPH G013
+	* classifier falcon divinity : spd(.w)
 13150	EGYPTIAN HIEROGLYPH G014
+	* logogram (mother) : mw.t
 13151	EGYPTIAN HIEROGLYPH G015
+	* logogram (mother) : mw.t
 13152	EGYPTIAN HIEROGLYPH G016
+	* logogram (the two ladies (i.e. Nekhbet and Wadjet) : nb.ty
 13153	EGYPTIAN HIEROGLYPH G017
-	* transliterated as m
+	* phonemogram : m
 13154	EGYPTIAN HIEROGLYPH G018
+	* phonemogram : mm
 13155	EGYPTIAN HIEROGLYPH G019
 13156	EGYPTIAN HIEROGLYPH G020
+	* phonemogram : m-ꜥ
 13157	EGYPTIAN HIEROGLYPH G020A
+	* phonemogram : mr (ꞽm.y-r)
 13158	EGYPTIAN HIEROGLYPH G021
+	* phonemogram : nḥ
 13159	EGYPTIAN HIEROGLYPH G022
+	* phonemogram : ḏb
 1315A	EGYPTIAN HIEROGLYPH G023
+	* logogram (common folk, subjects, people) : rḫ.yt
 1315B	EGYPTIAN HIEROGLYPH G024
+	* logogram (common folk, subjects, people) : rḫ.yt
 1315C	EGYPTIAN HIEROGLYPH G025
+	* phonemogram : ꜣḫ
 1315D	EGYPTIAN HIEROGLYPH G026
+	* logogram (Thot) : ḏḥwty
 1315E	EGYPTIAN HIEROGLYPH G026A
+	* classifier ibis : hb
 1315F	EGYPTIAN HIEROGLYPH G027
+	* logogram (to be red) : dšr
 13160	EGYPTIAN HIEROGLYPH G028
+	* phonemogram : gm
 13161	EGYPTIAN HIEROGLYPH G029
+	* phonemogram : bꜣ
 13162	EGYPTIAN HIEROGLYPH G030
+	* logogram (souls) : bꜣ.w
 13163	EGYPTIAN HIEROGLYPH G031
+	* classifier heron : bnw
 13164	EGYPTIAN HIEROGLYPH G032
+	* logogram (to inundate) : bꜥḥ
 13165	EGYPTIAN HIEROGLYPH G033
+	* phonemogram : sdꜣ
 13166	EGYPTIAN HIEROGLYPH G034
+	* classifier ostrich : nꞽw
 13167	EGYPTIAN HIEROGLYPH G035
+	* phonemogram : ꜥḳ
 13168	EGYPTIAN HIEROGLYPH G036
+	* phonemogram : wr
 13169	EGYPTIAN HIEROGLYPH G036A
 	* stylistic variant, use of 13168 is preferred
 1316A	EGYPTIAN HIEROGLYPH G037
+	* classifier negative, bad : ꞽsf.t
 1316B	EGYPTIAN HIEROGLYPH G037A
 	* stylistic variant, use of 1316A is preferred
 1316C	EGYPTIAN HIEROGLYPH G038
 	* goose
+	* phonemogram : gb
 1316D	EGYPTIAN HIEROGLYPH G039
 	* duck
+	* logogram (son) : sꜣ 
 1316E	EGYPTIAN HIEROGLYPH G040
+	* phonemogram : pꜣ
 1316F	EGYPTIAN HIEROGLYPH G041
+	* phonemogram : ḫn
 13170	EGYPTIAN HIEROGLYPH G042
+	* phonemogram : ḏfꜣ
 13171	EGYPTIAN HIEROGLYPH G043
-	* transliterated as w
+	* phonemogram : w
 13172	EGYPTIAN HIEROGLYPH G043A
+	* phonemogram : tw
 13173	EGYPTIAN HIEROGLYPH G044
+	* phonemogram : ww
 13174	EGYPTIAN HIEROGLYPH G045
+	* phonemogram : wꜥ
 13175	EGYPTIAN HIEROGLYPH G045A
+	* phonemogram : dꞽw
 13176	EGYPTIAN HIEROGLYPH G046
+	* phonemogram : mꜣw
 13177	EGYPTIAN HIEROGLYPH G047
+	* phonemogram : ṯꜣ
 13178	EGYPTIAN HIEROGLYPH G048
+	* classifier nest : šš
 13179	EGYPTIAN HIEROGLYPH G049
 1317A	EGYPTIAN HIEROGLYPH G050
+	* phonemogram : rḫ.ty
 1317B	EGYPTIAN HIEROGLYPH G051
+	* classifier catching fish : ḥꜣm
 1317C	EGYPTIAN HIEROGLYPH G052
+	* classifier feeding, eating : snm
 1317D	EGYPTIAN HIEROGLYPH G053
+	* logogram (soul) : bꜣ
 1317E	EGYPTIAN HIEROGLYPH G054
+	* phonemogram : snḏ
 @		H. Parts of birds
 1317F	EGYPTIAN HIEROGLYPH H001
+	* logogram (bird, fowl) : ꜣpd
 13180	EGYPTIAN HIEROGLYPH H002
+	* phono-repeater : wšm
 13181	EGYPTIAN HIEROGLYPH H003
+	* phonemogram : pꜣḳ
 13182	EGYPTIAN HIEROGLYPH H004
+	* classifier people : rmṯ
 13183	EGYPTIAN HIEROGLYPH H005
+	* classifier wing : ḏnḥ
 	~ 13183 FE02 rotated 270 degrees
 13184	EGYPTIAN HIEROGLYPH H006
+	* phonemogram : šw
 13185	EGYPTIAN HIEROGLYPH H006A
 	* from hieratic
+	* phonemogram : šw
 13186	EGYPTIAN HIEROGLYPH H007
+	* classifier claw : ꞽꜣf.t
 13187	EGYPTIAN HIEROGLYPH H008
+	* logogram (son) : sꜣ
 	~ 13187 FE01 rotated 180 degrees
 @		I. Amphibious animals, reptiles, etc.
 13188	EGYPTIAN HIEROGLYPH I001
+	* phonemogram : ꜥšꜣ
 13189	EGYPTIAN HIEROGLYPH I002
+	* classifier turtle : štw
 1318A	EGYPTIAN HIEROGLYPH I003
+	* classifier aggression : ꜣd
 1318B	EGYPTIAN HIEROGLYPH I004
+	* classifier Sobek : sbk
 1318C	EGYPTIAN HIEROGLYPH I005
+	* logogram (to gather) : sꜣḳ
 1318D	EGYPTIAN HIEROGLYPH I005A
+	* classifier Sobek : sbk
 1318E	EGYPTIAN HIEROGLYPH I006
+	* phonemogram : km
 1318F	EGYPTIAN HIEROGLYPH I007
+	* classifier divinity : ḥḳ.t
 13190	EGYPTIAN HIEROGLYPH I008
-	* 100,000
+	* logogram (one hundred thousand) : ḥfn
 13191	EGYPTIAN HIEROGLYPH I009
-	* transliterated as f
+	* phonemogram : f
 13192	EGYPTIAN HIEROGLYPH I009A
+	* logogram (to go forth) : prꞽ
 13193	EGYPTIAN HIEROGLYPH I010
 	* transliterated as 1E0F
+	* phonemogram : ḏ
 13194	EGYPTIAN HIEROGLYPH I010A
+	* phonemogram : ḏfꜣ
 13195	EGYPTIAN HIEROGLYPH I011
+	* phonemogram : ḏḏ
 13196	EGYPTIAN HIEROGLYPH I011A
+	* logogram (eternity) : ḏ.t
 13197	EGYPTIAN HIEROGLYPH I012
+	* classifier female divinity : nbw.t
 13198	EGYPTIAN HIEROGLYPH I013
+	* classifier female divinity (Wadjet) : wꜣḏ.t
 13199	EGYPTIAN HIEROGLYPH I014
+	* classifier coiling, winding : ḳꜣb
 1319A	EGYPTIAN HIEROGLYPH I015
+	* classifier snake/uraeus : ꞽꜥr.t
 @		K. Fishes and parts of fishes
 1319B	EGYPTIAN HIEROGLYPH K001
+	* phonemogram : ꞽn
 1319C	EGYPTIAN HIEROGLYPH K002
+	* phono-repeater : bw
 1319D	EGYPTIAN HIEROGLYPH K003
+	* logogram (fish) : rm
 1319E	EGYPTIAN HIEROGLYPH K004
+	* phonemogram : ẖꜣ
 1319F	EGYPTIAN HIEROGLYPH K005
+	* phono-repeater : bs
 131A0	EGYPTIAN HIEROGLYPH K006
+	* logogram (scale) : nšm.t
 	~ 131A0 FE00 rotated 90 degrees
 	~ 131A0 FE02 rotated 270 degrees
 131A1	EGYPTIAN HIEROGLYPH K007
+	* classifier rage, anger : špt
 131A2	EGYPTIAN HIEROGLYPH K008
+	* classifier catfish : nꜥr
 @		L. Invertebrata and lesser animals
 131A3	EGYPTIAN HIEROGLYPH L001
+	* logogram (to become) : ḫpr
 131A4	EGYPTIAN HIEROGLYPH L002
+	* logogram (king of LE) : bꞽ.ty
 131A5	EGYPTIAN HIEROGLYPH L002A
+	* logogram (King of UE and LE) : n(.y)-sw.t-bꞽ.ty
 131A6	EGYPTIAN HIEROGLYPH L003
 131A7	EGYPTIAN HIEROGLYPH L004
+	* classifier locust : snḥm
 131A8	EGYPTIAN HIEROGLYPH L005
+	* classifier centipede : spꜣ
 131A9	EGYPTIAN HIEROGLYPH L006
+	* phonemogram : ḫꜣ
 131AA	EGYPTIAN HIEROGLYPH L006A
 	* mirrored version of 131A9
 131AB	EGYPTIAN HIEROGLYPH L007
+	* classifier scorpion : srḳ.t
 131AC	EGYPTIAN HIEROGLYPH L008
+	* logogram/phonemogram (type of beetle) : ꜥnḫ
 @		M. Trees and plants
 131AD	EGYPTIAN HIEROGLYPH M001
+	* classifier tree, product of a tree : ꜥš
 131AE	EGYPTIAN HIEROGLYPH M001A
+	* classifier product of a tree : hbny
 131AF	EGYPTIAN HIEROGLYPH M001B
+	* phonemogram : ꞽm=f
 131B0	EGYPTIAN HIEROGLYPH M002
+	* phonemogram : ḥn
 131B1	EGYPTIAN HIEROGLYPH M003
+	* phonemogram : ḫt
 	~ 131B1 FE00 rotated 90 degrees
 	~ 131B1 FE01 rotated 180 degrees
 131B2	EGYPTIAN HIEROGLYPH M003A
+	* phonemogram : m-ḫt
 131B3	EGYPTIAN HIEROGLYPH M004
+	* logogram (year) : rnp.t
 131B4	EGYPTIAN HIEROGLYPH M005
+	* logogram (time/season) : tr
 131B5	EGYPTIAN HIEROGLYPH M006
+	* logogram (time/season) : tr
 131B6	EGYPTIAN HIEROGLYPH M007
+	* classifier youth, vigour, fresh : rnp
 131B7	EGYPTIAN HIEROGLYPH M008
+	* phonemogram : šꜣ
 131B8	EGYPTIAN HIEROGLYPH M009
+	* classifier lotus flower : sšn
 	~ 131B8 FE00 rotated 90 degrees
 131B9	EGYPTIAN HIEROGLYPH M010
+	* classifier lotus bud : nḥb.t
 	~ 131B9 FE00 rotated 90 degrees
 131BA	EGYPTIAN HIEROGLYPH M010A
+	* classifier offering : wdn
 	~ 131BA FE02 rotated 270 degrees
 131BB	EGYPTIAN HIEROGLYPH M011
+	* logogram (to offer) : wdn
 131BC	EGYPTIAN HIEROGLYPH M012
-	* 1,000
+	* 1000
+	* phonemogram : ḫꜣ
 131BD	EGYPTIAN HIEROGLYPH M012A
-	* 2,000
+	* \2000
 131BE	EGYPTIAN HIEROGLYPH M012B
-	* 3,000
+	* \3000
 131BF	EGYPTIAN HIEROGLYPH M012C
-	* 4,000
+	* \4000
 131C0	EGYPTIAN HIEROGLYPH M012D
-	* 5,000
+	* \5000
 131C1	EGYPTIAN HIEROGLYPH M012E
-	* 6,000
+	* \6000
 131C2	EGYPTIAN HIEROGLYPH M012F
-	* 7,000
+	* \7000
 131C3	EGYPTIAN HIEROGLYPH M012G
-	* 8,000
+	* \8000
 131C4	EGYPTIAN HIEROGLYPH M012H
-	* 9,000
+	* \9000
 131C5	EGYPTIAN HIEROGLYPH M013
+	* phonemogram : wꜣḏ
 131C6	EGYPTIAN HIEROGLYPH M014
+	* phonemogram : wꜣḏ
 131C7	EGYPTIAN HIEROGLYPH M015
+	* logogram (Lower Egypt) : mḥ.w
 131C8	EGYPTIAN HIEROGLYPH M015A
+	* logogram (Lower Egypt) : mḥ.w
 131C9	EGYPTIAN HIEROGLYPH M016
+	* phonemogram : ḥꜣ
 131CA	EGYPTIAN HIEROGLYPH M016A
+	* logogram (Lower Egypt) : mḥ.w
 131CB	EGYPTIAN HIEROGLYPH M017
 	* egyptological yod
 	* transliterated as A7BD
 	x (hebrew letter yod - 05D9)
 	x (arabic letter yeh - 064A)
+	* phonemogram : ꞽ
 	~ 131CB FE00 rotated 90 degrees
 131CC	EGYPTIAN HIEROGLYPH M017A
-	* phonogram 'y'
 	x (egyptian hieroglyph z004 - 133ED)
+	* phonemogram : y
 131CD	EGYPTIAN HIEROGLYPH M018
+	* phonemogram/logogram (to come) : ꞽy(ꞽ)
 131CE	EGYPTIAN HIEROGLYPH M019
+	* phonemogram  : ꜥꜣb
 131CF	EGYPTIAN HIEROGLYPH M020
+	* logogram (marshland, country) : sḫ.t
 131D0	EGYPTIAN HIEROGLYPH M021
+	* logogram (herb, plant) : sm
 131D1	EGYPTIAN HIEROGLYPH M022
 	* classifier 'bud, lotus bud'
+	* phonemogram : nḫb
 131D2	EGYPTIAN HIEROGLYPH M022A
-	*phonogram 'nn'
+	* phonemogram : nn
 131D3	EGYPTIAN HIEROGLYPH M023
+	* logogram (King of UE) : n(.y)-sw.t
 131D4	EGYPTIAN HIEROGLYPH M024
+	* phonemogram : rsw/rsy
 131D5	EGYPTIAN HIEROGLYPH M024A
+	* logogram (land) : tꜣ
 131D6	EGYPTIAN HIEROGLYPH M025
+	* logogram (Upper Egypt) : šmꜥ.w
 131D7	EGYPTIAN HIEROGLYPH M026
+	* logogram (Upper Egypt) : šmꜥ.w
 131D8	EGYPTIAN HIEROGLYPH M027
+	* logogram (Upper Egypt) : šmꜥ.w
 131D9	EGYPTIAN HIEROGLYPH M028
+	* logogram (the 10 of UE) : mḏ-šmꜥ.w
 131DA	EGYPTIAN HIEROGLYPH M028A
+	* logogram (Upper Egypt) : šmꜥ.w
 131DB	EGYPTIAN HIEROGLYPH M029
+	* logogram (to be sweet) : nḏm
 131DC	EGYPTIAN HIEROGLYPH M030
+	* logogram (to be sweet) : bnr/bnꞽ
 131DD	EGYPTIAN HIEROGLYPH M031
+	* classifier growing : srd
 131DE	EGYPTIAN HIEROGLYPH M031A
+	* classifier growing : srd
 131DF	EGYPTIAN HIEROGLYPH M032
+	* classifier growing : rd
 131E0	EGYPTIAN HIEROGLYPH M033
+	* logogram (grain, barley, corn) : ꞽt
 131E1	EGYPTIAN HIEROGLYPH M033A
 	* variant of 131E0
+	* classifier grain, barley, corn : ꞽt
 131E2	EGYPTIAN HIEROGLYPH M033B
 	* variant of 131E0
+	* classifier grain, barley, corn : tbtb
 131E3	EGYPTIAN HIEROGLYPH M034
+	* logogram (emmer) : bd.t
 131E4	EGYPTIAN HIEROGLYPH M035
+	* classifier heap, quantity : ꜥḥꜥ
 131E5	EGYPTIAN HIEROGLYPH M036
+	* phonemogram : ḏr
 131E6	EGYPTIAN HIEROGLYPH M037
 	* older variant of 131E5
+	* phonemogram : ḏr
 131E7	EGYPTIAN HIEROGLYPH M038
+	* classifier flax : ḥmꜥ
 131E8	EGYPTIAN HIEROGLYPH M039
+	* classifier granular product : snṯr
 131E9	EGYPTIAN HIEROGLYPH M040
-	* phonogram 'js'
 	* not to be confused with 132A7 or 1342A
+	* phonemogram : ꞽs
 131EA	EGYPTIAN HIEROGLYPH M040A
+	* phonemogram : ꞽs
 131EB	EGYPTIAN HIEROGLYPH M041
+	* classifier wood/timber : ꜥš
 131EC	EGYPTIAN HIEROGLYPH M042
+	* phonemogram : wn
 131ED	EGYPTIAN HIEROGLYPH M043
+	* logogram (wine) : ꞽrp
 131EE	EGYPTIAN HIEROGLYPH M044
 	* thorn
 	* not to be confused with 133DA
+	* phonemogram : spd
 	~ 131EE FE01 rotated 180 degrees
 	~ 131EE FE02 rotated 270 degrees
 @		N. Sky, earth, water
 131EF	EGYPTIAN HIEROGLYPH N001
+	* logogram (sky) : p.t
 131F0	EGYPTIAN HIEROGLYPH N002
+	* classifier night : grḥ
 131F1	EGYPTIAN HIEROGLYPH N003
 	* older variant of 131F0
+	* classifier night : grḥ
 131F2	EGYPTIAN HIEROGLYPH N004
+	* classifier storm : sšn
 131F3	EGYPTIAN HIEROGLYPH N005
-	* sun
 	* not to be confused with 13082 or 133F8
+	* logogram (the sun, Re) : rꜥ
 131F4	EGYPTIAN HIEROGLYPH N006
+	* logogram (the sun, Re) : rꜥ
 131F5	EGYPTIAN HIEROGLYPH N007
+	* logogram (course (of the day), daily requirements) : ẖr.t-hrw
 131F6	EGYPTIAN HIEROGLYPH N008
+	* classifier light, shining, rising : psḏ
 131F7	EGYPTIAN HIEROGLYPH N009
 	* variant of 131F8
+	* phonemogram : psḏ
 131F8	EGYPTIAN HIEROGLYPH N010
 	* variant of 131F7
+	* phonemogram : psḏ
 	~ 131F8 FE01 rotated 180 degrees
 131F9	EGYPTIAN HIEROGLYPH N011
+	* logogram (month) : ꜣbd
 	~ 131F9 FE00 rotated 90 degrees
 	~ 131F9 FE01 rotated 180 degrees
 131FA	EGYPTIAN HIEROGLYPH N012
+	* classifier moon : ꞽꜥḥ
 	~ 131FA FE00 rotated 90 degrees
 	~ 131FA FE01 rotated 180 degrees
 131FB	EGYPTIAN HIEROGLYPH N013
+	* logogram (half-month (festival)) : smd.t
 131FC	EGYPTIAN HIEROGLYPH N014
+	* logogram (star) : sbꜣ
 131FD	EGYPTIAN HIEROGLYPH N015
+	* classifier (netherworld) : dwꜣ.t
 131FE	EGYPTIAN HIEROGLYPH N016
+	* logogram (land) : tꜣ
 131FF	EGYPTIAN HIEROGLYPH N017
-	* land
 	* variant of 131FE
+	* logogram (land) : tꜣ
 13200	EGYPTIAN HIEROGLYPH N018
-	* island
 	* not to be confused with 132F0, 133D4, or 133F3
+	* logogram (island) : ꞽw
 13201	EGYPTIAN HIEROGLYPH N018A
+	* phonemogram : ꞽmn
 13202	EGYPTIAN HIEROGLYPH N018B
 13203	EGYPTIAN HIEROGLYPH N019
-	* logogram 'akhti'
+	* logogram (horizon-dweller) : ꜣḫ.ty
 13204	EGYPTIAN HIEROGLYPH N020
+	* classifier riverbank : wḏb
 13205	EGYPTIAN HIEROGLYPH N021
+	* logogram (riverbank) : ꞽdb
 13206	EGYPTIAN HIEROGLYPH N022
+	* logogram (riverbank) : ꞽdb
 13207	EGYPTIAN HIEROGLYPH N023
+	* classifier geographical location : dmꞽ
 13208	EGYPTIAN HIEROGLYPH N024
+	* logogram (nome, district) : spꜣ.t
 13209	EGYPTIAN HIEROGLYPH N025
+	* classifier foreign land, desert : ḫꜣs.t
 1320A	EGYPTIAN HIEROGLYPH N025A
 	* stylistic variant, use of 13209 is preferred
 1320B	EGYPTIAN HIEROGLYPH N026
+	* phonemogram : ḏw
 1320C	EGYPTIAN HIEROGLYPH N027
+	* logogram (horizon) : ꜣḫ.t
 1320D	EGYPTIAN HIEROGLYPH N028
+	* phonemogram : ḫꜥ
 1320E	EGYPTIAN HIEROGLYPH N029
 	* hill
 	* not to be confused with 133D8
 	* transliterated as q or as 1E33
 	x (hebrew letter qof - 05E7)
 	x (arabic letter qaf - 0642)
+	* phonemogram : ḳ
 1320F	EGYPTIAN HIEROGLYPH N030
+	* logogram hill, mound : ꞽꜣ.t
 13210	EGYPTIAN HIEROGLYPH N031
+	* logogram (road) : wꜣ.t
 13211	EGYPTIAN HIEROGLYPH N032
+	* classifier clay : sꞽn
 13212	EGYPTIAN HIEROGLYPH N033
-	* classifier 'granule, grain'
 	* not to be confused with 130C9
+	* classifier medicaments, incense, oil : snṯr
 13213	EGYPTIAN HIEROGLYPH N033A
-	* classifier 'granules, grains'
 	* not to be confused with 133E7
+	* classifier medicaments, incense, oil : ꜥn.tyw
 13214	EGYPTIAN HIEROGLYPH N034
+	* classifier metal objects : ꞽḳḥ.w
 13215	EGYPTIAN HIEROGLYPH N034A
 	* stylistic variant, use of 13214 is preferred
+	* logogram (metal) : bꞽꜣ
 13216	EGYPTIAN HIEROGLYPH N035
-	* transliterated as n
+	* phonemogram : n
 	~ 13216 FE02 rotated 270 degrees
 13217	EGYPTIAN HIEROGLYPH N035A
-	* classifier 'liquid'
+	* logogram (water) : mw
 13218	EGYPTIAN HIEROGLYPH N036
+	* phonemogram : mr
 13219	EGYPTIAN HIEROGLYPH N037
 	* lake
 	* transliterated as 0161
 	* not to be confused with 1328C
+	* phonemogram : š
 1321A	EGYPTIAN HIEROGLYPH N037A
 	* variant of 13219
+	* phonemogram : š
 1321B	EGYPTIAN HIEROGLYPH N038
 	* variant of 13219
+	* phonemogram : š
 1321C	EGYPTIAN HIEROGLYPH N039
 	* variant of 13219
+	* phonemogram : š
 1321D	EGYPTIAN HIEROGLYPH N040
+	* logogram (to go) : šm
 1321E	EGYPTIAN HIEROGLYPH N041
+	* phonemogram : ḥm
 1321F	EGYPTIAN HIEROGLYPH N042
 	* variant of 1321E
+	* phonemogram : ḥm
 @		NL. Nomes of Lower Egypt
 13220	EGYPTIAN HIEROGLYPH NL001
+	* logogram (Memphis (the white wall; first nome of Lower Egypt)) : ꞽnb-ḥḏ
 13221	EGYPTIAN HIEROGLYPH NL002
+	* logogram (2nd nome of Lower Egypt) : ḫm/ḫpš/ꞽwꜥ
 13222	EGYPTIAN HIEROGLYPH NL003
+	* logogram (West, 3rd nome of LE) : ꞽmn.tt
 13223	EGYPTIAN HIEROGLYPH NL004
+	* logogram (Neith-south, 4th nome LE) : n.t-rs.yt
 13224	EGYPTIAN HIEROGLYPH NL005
+	* logogram (Neith-north, 5th nome of LE) : n.t-mḥ.yt
 13225	EGYPTIAN HIEROGLYPH NL005A
+	* logogram (Neith-north, 5th nome of LE) : n.t-mḥ.yt
 13226	EGYPTIAN HIEROGLYPH NL006
+	* logogram (6th nome of LE) : ḫꜣsw.w
 13227	EGYPTIAN HIEROGLYPH NL007
+	* logogram (7th nome of Lower Egypt) : wꜥ-m-ḥww-ꞽmn.ty
 13228	EGYPTIAN HIEROGLYPH NL008
+	* logogram (8th nome of Lower Egypt) : wꜥ-m-ḥww-ꞽꜣb.ty
 13229	EGYPTIAN HIEROGLYPH NL009
+	* logogram (9th nome of UE) : ꜥnḏ.ty 
 1322A	EGYPTIAN HIEROGLYPH NL010
+	* logogram (10th nome of LE) : km-wr
 1322B	EGYPTIAN HIEROGLYPH NL011
+	* logogram (11th nome of LE) : ḥsbw
 1322C	EGYPTIAN HIEROGLYPH NL012
+	* logogram (12th nome of LE) : ṯb-nṯr
 1322D	EGYPTIAN HIEROGLYPH NL013
+	* logogram (13th Lower Egyptian nome) : ḥḳꜣ-ꜥnḏ.w
 1322E	EGYPTIAN HIEROGLYPH NL014
+	* logogram (14th upper Egyptian nome) : ḫnt.y-ꞽꜣb.ty
 1322F	EGYPTIAN HIEROGLYPH NL015
+	* logogram (Thot nome, 15th nome of LE) : ḏhwty
 13230	EGYPTIAN HIEROGLYPH NL016
+	* logogram (First-of-fishes nome (16th nome of LE)) : ḥꜣ.t-mḥ.yt
 13231	EGYPTIAN HIEROGLYPH NL017
+	* logogram (Behdet, 17th Lower Egyptian nome) : bḥd.t
 13232	EGYPTIAN HIEROGLYPH NL017A
+	* logogram (17th Lower Egyptian nome (Diospolis)) : smꜣ-bḥd.t
 13233	EGYPTIAN HIEROGLYPH NL018
 13234	EGYPTIAN HIEROGLYPH NL019
 13235	EGYPTIAN HIEROGLYPH NL020
 @		NU. Nomes of Upper Egypt
 13236	EGYPTIAN HIEROGLYPH NU001
+	* logogram (Nubia, 1st Upper Egyptian nome) : tꜣ-sty
 13237	EGYPTIAN HIEROGLYPH NU002
+	* logogram (Throne of Horus (Edfu, 2nd nome of UE)) : wṯs-ḥr
 13238	EGYPTIAN HIEROGLYPH NU003
+	* logogram (3rd nome of Upper Egypt) : nḫn
 13239	EGYPTIAN HIEROGLYPH NU004
+	* logogram (Thebes) : wꜣs.t
 1323A	EGYPTIAN HIEROGLYPH NU005
+	* logogram (The two gods, 5th nome of UE) : nṯr.wy
 1323B	EGYPTIAN HIEROGLYPH NU006
+	* logogram (Iqer, 6th nome of UE) : ꞽḳr
 1323C	EGYPTIAN HIEROGLYPH NU007
+	* logogram (Bat (7th nome of Upper Egypt)) : bꜣ.t
 1323D	EGYPTIAN HIEROGLYPH NU008
+	* logogram (8th nome of Upper Egypt) : tꜣ-wr
 1323E	EGYPTIAN HIEROGLYPH NU009
+	* logogram (9th nome of Upper Egypt) : mnw
 1323F	EGYPTIAN HIEROGLYPH NU010
+	* logogram (Wadjet, 10th nome of UE) : wꜣḏ.t
 13240	EGYPTIAN HIEROGLYPH NU010A
+	* logogram (Wadjet, 10th nome of UE) : wꜣḏ.t
 13241	EGYPTIAN HIEROGLYPH NU011
+	* logogram (11th nome of Upper Egypt) : šꜣ/stẖ/stš
 13242	EGYPTIAN HIEROGLYPH NU011A
+	* logogram (11th Upper Egyptian nome (commonly under %stX/stS/SA%) : ḥw-n.t
 13243	EGYPTIAN HIEROGLYPH NU012
+	* logogram (12th Upper Egyptian nome) : ꜣtf.t
 13244	EGYPTIAN HIEROGLYPH NU013
+	* logogram (13th Upper Egyptian nome) : nḏf.t-ḫnt.t
 13245	EGYPTIAN HIEROGLYPH NU014
+	* logogram (14th Upper Egyptian nome) : nḏf.t-pḥ.t
 13246	EGYPTIAN HIEROGLYPH NU015
+	* logogram (Hermopolis magna, 15th nome of UE) : wnw.t
 13247	EGYPTIAN HIEROGLYPH NU016
+	* logogram (Oryx nome, 16th nome of Upper Egypt) : mꜣ-ḥḏ
 13248	EGYPTIAN HIEROGLYPH NU017
+	* logogram (Anubis nome (17th nome of Upper Egypt)) : ꞽnpw.t
 13249	EGYPTIAN HIEROGLYPH NU018
+	* logogram (18th nome of UE (known as nmty as well)) : dwn-ꜥn.wy
 1324A	EGYPTIAN HIEROGLYPH NU018A
 1324B	EGYPTIAN HIEROGLYPH NU019
+	* logogram (place of Igai, 19th nome of Upper Egypt) : bw-ꞽgꜣꞽ
 1324C	EGYPTIAN HIEROGLYPH NU020
+	* logogram (20th Upper Egyptian nome) : nꜥr.t-ḫnt.t
 1324D	EGYPTIAN HIEROGLYPH NU021
+	* logogram (21th Upper Egyptian nome) : nꜥr.t-ph.t
 1324E	EGYPTIAN HIEROGLYPH NU022
+	* logogram (22th nome of Upper Egypt) : mdnꞽ.t
 1324F	EGYPTIAN HIEROGLYPH NU022A
+	* logogram (22th nome of Upper Egypt) : mdnꞽ.t
 @		O. Buildings, parts of buildings, etc.
 13250	EGYPTIAN HIEROGLYPH O001
+	* logogram (house, domain) : pr
 13251	EGYPTIAN HIEROGLYPH O001A
+	* logogram (scriptorum, school (house of life)) : pr-ꜥnḫ
 13252	EGYPTIAN HIEROGLYPH O002
+	* logogram (treasury) : pr-ḥḏ
 13253	EGYPTIAN HIEROGLYPH O003
+	* logogram (invocation offering) : pr.t-ḫrw
 13254	EGYPTIAN HIEROGLYPH O004
-	* transliterated as h
 	x (hebrew letter he - 05D4)
 	x (arabic letter heh - 0647)
+	* phonemogram : h
 13255	EGYPTIAN HIEROGLYPH O005
+	* phonemogram : nm
 13256	EGYPTIAN HIEROGLYPH O005A
 	* mirrored version of 13255
 13257	EGYPTIAN HIEROGLYPH O006
+	* logogram (temple, mansion, estate) : ḥw.t
 	~ 13257 FE01 rotated 180 degrees
 13258	EGYPTIAN HIEROGLYPH O006A
 	* beginning of hwt or serekh enclosure
@@ -38846,56 +39351,88 @@ FFFF	<not a character>
 1325D	EGYPTIAN HIEROGLYPH O006F
 	* end of hwt enclosure
 1325E	EGYPTIAN HIEROGLYPH O007
+	* logogram (temple, mansion, estate) : ḥw.t
 1325F	EGYPTIAN HIEROGLYPH O008
+	* logogram (the great domain, temple) : ḥw.t-ꜥꜣ.t
 13260	EGYPTIAN HIEROGLYPH O009
+	* logogram (Nephthys (divinity)) : nb.t-ḥw.t
 13261	EGYPTIAN HIEROGLYPH O010
+	* logogram (Hathor (divinity)) : ḥw.t-ḥr
 13262	EGYPTIAN HIEROGLYPH O010A
+	* logogram (mansion of life) : ḥw.t-ꜥnḫ
 13263	EGYPTIAN HIEROGLYPH O010B
 13264	EGYPTIAN HIEROGLYPH O010C
 13265	EGYPTIAN HIEROGLYPH O011
+	* logogram (palace) : ꜥḥ
 13266	EGYPTIAN HIEROGLYPH O012
+	* logogram (palace) : ꜥḥ
 13267	EGYPTIAN HIEROGLYPH O013
+	* classifier enfolding, enclosing, walling in : sbḫ
 13268	EGYPTIAN HIEROGLYPH O014
+	* classifier gateway : sbḫ.t
 13269	EGYPTIAN HIEROGLYPH O015
+	* logogram (court) : wsḫ.t
 1326A	EGYPTIAN HIEROGLYPH O016
+	* logogram (portal, portico) : sbḫ.t
 1326B	EGYPTIAN HIEROGLYPH O017
+	* phonemogram : tꜣ
 1326C	EGYPTIAN HIEROGLYPH O018
+	* classifier shrine, chapel : kꜣr
 1326D	EGYPTIAN HIEROGLYPH O019
+	* classifier shrine : pr-wr
 1326E	EGYPTIAN HIEROGLYPH O019A
+	* logogram (shrine, row of shrines) : ꞽtr.t
 1326F	EGYPTIAN HIEROGLYPH O020
+	* classifier sanctuary, shrine : ꞽtr.ty
 13270	EGYPTIAN HIEROGLYPH O020A
 13271	EGYPTIAN HIEROGLYPH O021
+	* logogram (pavilion, hall, booth) : sḥ
 13272	EGYPTIAN HIEROGLYPH O022
+	* classifier booth : sḥ
 13273	EGYPTIAN HIEROGLYPH O023
+	* logogram (jubilee, sed-festival) : ḥb-sd
 13274	EGYPTIAN HIEROGLYPH O024
+	* classifier pyramid, tomb : mr
 13275	EGYPTIAN HIEROGLYPH O024A
+	* classifier solar temple : sḫ.t-rꜥ
 13276	EGYPTIAN HIEROGLYPH O025
+	* classifier obelisk : tḫn
 13277	EGYPTIAN HIEROGLYPH O025A
+	* classifier solar temple : nḫn-rꜥ
 13278	EGYPTIAN HIEROGLYPH O026
+	* classifier stela : wḏ
 13279	EGYPTIAN HIEROGLYPH O027
+	* classifier hall, office : ḫꜣ
 1327A	EGYPTIAN HIEROGLYPH O028
+	* phonemogram : ꞽwn
 1327B	EGYPTIAN HIEROGLYPH O029
+	* phonemogram : ꜥꜣ
 	~ 1327B FE02 rotated 270 degrees
 1327C	EGYPTIAN HIEROGLYPH O029A
 	* rotated variant of 1327B
+	* phonemogram : ꜥꜣ
 1327D	EGYPTIAN HIEROGLYPH O030
-	* supporting pole
 	* not to be confused with 13361
+	* logogram (pole, support) : sḫn.t
 1327E	EGYPTIAN HIEROGLYPH O030A
 1327F	EGYPTIAN HIEROGLYPH O031
+	* logogram (gate) : ꜥꜣ
 	~ 1327F FE00 rotated 90 degrees
 	~ 1327F FE01 rotated 180 degrees
 13280	EGYPTIAN HIEROGLYPH O032
+	* classifier doorway : sbꜣ
 13281	EGYPTIAN HIEROGLYPH O033
-	* classifier 'serekh'
+	* classifier palace façade : srḫ
 13282	EGYPTIAN HIEROGLYPH O033A
 	* end of serekh enclosure
 	x (egyptian hieroglyph o006a - 13258)
 13283	EGYPTIAN HIEROGLYPH O034
-	* transliterated as s or as z
 	x (egyptian hieroglyph s029 - 132F4)
+	* phonemogram : s
 13284	EGYPTIAN HIEROGLYPH O035
+	* phonemogram : ꞽs
 13285	EGYPTIAN HIEROGLYPH O036
+	* logogram (wall) : ꞽnb
 	~ 13285 FE00 rotated 90 degrees
 13286	EGYPTIAN HIEROGLYPH O036A
 	* beginning of fortified wall cartouche
@@ -38906,314 +39443,504 @@ FFFF	<not a character>
 13289	EGYPTIAN HIEROGLYPH O036D
 	* end of fortified wall enclosure
 1328A	EGYPTIAN HIEROGLYPH O037
+	* classifier overthrow, demolish : whn
 1328B	EGYPTIAN HIEROGLYPH O038
+	* classifier passage : ꜥrr.yt
 1328C	EGYPTIAN HIEROGLYPH O039
-	* stone, brick
 	* not to be confused with 13219
+	* classifier stone, brick, pebble : mꜣṯ
 	~ 1328C FE00 rotated 90 degrees
 1328D	EGYPTIAN HIEROGLYPH O040
+	* logogram stairway : rwd
 1328E	EGYPTIAN HIEROGLYPH O041
+	* classifier ascending, being high : ḳꜣ.y
 1328F	EGYPTIAN HIEROGLYPH O042
+	* phonemogram : šsp
 13290	EGYPTIAN HIEROGLYPH O043
 	* older variant of 1328F
+	* phonemogram : šsp
 13291	EGYPTIAN HIEROGLYPH O044
+	* logogram (office, rank, function) : ꞽꜣw.t
 13292	EGYPTIAN HIEROGLYPH O045
+	* logogram (harim, inner chamber) : ꞽp.t
 13293	EGYPTIAN HIEROGLYPH O046
+	* logogram (harim, inner chamber) : ꞽp.t
 13294	EGYPTIAN HIEROGLYPH O047
+	* logogram (Hierakonpolis) : nḫn
 13295	EGYPTIAN HIEROGLYPH O048
+	* logogram (time, occasion) : sp
 13296	EGYPTIAN HIEROGLYPH O049
+	* logogram (city, village) : nꞽw.t
 13297	EGYPTIAN HIEROGLYPH O050
+	* classifier treshing floor : sp.t
 13298	EGYPTIAN HIEROGLYPH O050A
 13299	EGYPTIAN HIEROGLYPH O050B
 	* mirrored version of 13298
+	* phono-repeater/classifier (time, occasion) : sp
 1329A	EGYPTIAN HIEROGLYPH O051
+	* logogram (granary) : šnw.t
 @		P. Ships and parts of ships
 1329B	EGYPTIAN HIEROGLYPH P001
-	* classifier 'ship, travel'
+	* classifier movement : ḫnt
 1329C	EGYPTIAN HIEROGLYPH P001A
-	* classifier 'upset, overturn'
+	* classifier to upset, to overturn : pnꜥ
 1329D	EGYPTIAN HIEROGLYPH P002
 1329E	EGYPTIAN HIEROGLYPH P003
-	* sacred ship
+	* classifier bark/boat : (m)skt.t
 1329F	EGYPTIAN HIEROGLYPH P003A
 	* mirrored variant of 1329E
 132A0	EGYPTIAN HIEROGLYPH P004
+	* logogram (to loosen, to explain) : wḥꜥ
 132A1	EGYPTIAN HIEROGLYPH P005
+	* logogram (wind, breath, air) : ṯꜣw
 132A2	EGYPTIAN HIEROGLYPH P006
+	* phonemogram : ꜥḥꜥ
 132A3	EGYPTIAN HIEROGLYPH P007
+	* phonemogram : ꜥḥꜥ
 132A4	EGYPTIAN HIEROGLYPH P008
+	* phonemogram : ḫrw
 	~ 132A4 FE01 rotated 180 degrees
 	~ 132A4 FE02 rotated 270 degrees
 132A5	EGYPTIAN HIEROGLYPH P009
+	* phonemogram : ḫrw=f(y)
 132A6	EGYPTIAN HIEROGLYPH P010
+	* logogram (steering oar) : ḥmw
 132A7	EGYPTIAN HIEROGLYPH P011
-	* mooring post
 	* not to be confused with 131E9 or 1342A
+	* classifier mooring post : mnꞽ.t
 @		Q. Domestic and funerary furniture
 132A8	EGYPTIAN HIEROGLYPH Q001
+	* logogram (seat, throne, place) : s.t
 132A9	EGYPTIAN HIEROGLYPH Q002
+	* phonemogram : ws
 132AA	EGYPTIAN HIEROGLYPH Q003
-	* transliterated as p
+	* phonemogram : p
 	~ 132AA FE00 rotated 90 degrees
 132AB	EGYPTIAN HIEROGLYPH Q004
+	* classifier headrest : wrs
 132AC	EGYPTIAN HIEROGLYPH Q005
+	* classifier box : hn(w)
 132AD	EGYPTIAN HIEROGLYPH Q006
+	* classifier coffin : ḳrs.w
 132AE	EGYPTIAN HIEROGLYPH Q007
+	* classifier fire, flame, heat : sḏ.t
 @		R. Temple furniture and sacred emblems
 132AF	EGYPTIAN HIEROGLYPH R001
+	* classifier altar : ḫꜣ(w).t
 132B0	EGYPTIAN HIEROGLYPH R002
+	* logogram (altar) : ḫꜣw.t
 132B1	EGYPTIAN HIEROGLYPH R002A
+	* logogram (altar) : ḫꜣw.t
 132B2	EGYPTIAN HIEROGLYPH R003
+	* classifier festival : ḥ(ꜣ)b
 132B3	EGYPTIAN HIEROGLYPH R003A
+	* classifier offering table/jar-stand : ḫnt
 132B4	EGYPTIAN HIEROGLYPH R003B
 132B5	EGYPTIAN HIEROGLYPH R004
+	* logogram (offering) : ḥtp
 132B6	EGYPTIAN HIEROGLYPH R005
+	* classifier fumigation/censing : kꜣp
 132B7	EGYPTIAN HIEROGLYPH R006
+	* logogram (to fumigate, to cense) : kꜣp
 132B8	EGYPTIAN HIEROGLYPH R007
+	* logogram (incense) : snṯr
 132B9	EGYPTIAN HIEROGLYPH R008
+	* logogram (god) : nṯr
 132BA	EGYPTIAN HIEROGLYPH R009
+	* classifier natron : ḥsmn
 132BB	EGYPTIAN HIEROGLYPH R010
+	* logogram (necropolis) : ẖr.t-nṯr
 132BC	EGYPTIAN HIEROGLYPH R010A
+	* logogram (necropolis) : ẖr.t-nṯr
 132BD	EGYPTIAN HIEROGLYPH R011
+	* phonemogram : ḏd
 132BE	EGYPTIAN HIEROGLYPH R012
+	* classifier standard : ꞽꜣ.t
 132BF	EGYPTIAN HIEROGLYPH R013
+	* logogram (west, right side) : ꞽmn.t
 132C0	EGYPTIAN HIEROGLYPH R014
+	* logogram (west) : ꞽmn.t
 132C1	EGYPTIAN HIEROGLYPH R015
+	* phonemogram : ꜣb
 132C2	EGYPTIAN HIEROGLYPH R016
+	* classifier fray, battle : sk.w
 132C3	EGYPTIAN HIEROGLYPH R016A
+	* logogram (Nefertem) : nfr-tm
 132C4	EGYPTIAN HIEROGLYPH R017
+	* logogram (8th nome of Upper Egypt) : tꜣ-wr
 132C5	EGYPTIAN HIEROGLYPH R018
+	* logogram (8th nome of Upper Egypt) : tꜣ-wr
 132C6	EGYPTIAN HIEROGLYPH R019
+	* logogram (Thebes) : wꜣs.t
 132C7	EGYPTIAN HIEROGLYPH R020
+	* logogram (Seshat (divinity)) : sšꜣ.t
 132C8	EGYPTIAN HIEROGLYPH R021
+	* logogram (Seshat (divinity)) : sšꜣ.t
 132C9	EGYPTIAN HIEROGLYPH R022
+	* logogram (Letopolis) : ḫm
 132CA	EGYPTIAN HIEROGLYPH R023
+	* logogram (Min (divinity)) : mnw
 132CB	EGYPTIAN HIEROGLYPH R024
+	* logogram (Neith (divinity)) : n.t
 	~ 132CB FE00 rotated 90 degrees
 132CC	EGYPTIAN HIEROGLYPH R025
+	* logogram (Neith (divinity)) : n.t
 132CD	EGYPTIAN HIEROGLYPH R026
+	* phonemogram : smꜣ
 132CE	EGYPTIAN HIEROGLYPH R027
+	* logogram (Neith (divinity)) : n.t
 132CF	EGYPTIAN HIEROGLYPH R028
+	* logogram (Bat (7th nome of Upper Egypt)) : bꜣ.t
 132D0	EGYPTIAN HIEROGLYPH R029
+	* logogram (shrine, row of shrines) : ꞽtr.t
 @		S. Crowns, dress, staves, etc.
 132D1	EGYPTIAN HIEROGLYPH S001
+	* phonemogram : ḥḏ
 132D2	EGYPTIAN HIEROGLYPH S002
+	* classifier crown : wrr.t
 132D3	EGYPTIAN HIEROGLYPH S002A
+	* logogram (Upper Egypt) : šmꜥ.w
 132D4	EGYPTIAN HIEROGLYPH S003
+	* phonemogram : n
 132D5	EGYPTIAN HIEROGLYPH S004
+	* classifier crown : n.t
 132D6	EGYPTIAN HIEROGLYPH S005
+	* classifier double crown : sḫm.ty
 132D7	EGYPTIAN HIEROGLYPH S006
+	* classifier double crown : sḫm.ty
 132D8	EGYPTIAN HIEROGLYPH S006A
+	* logogram (Lower Egypt) : mḥ.w
 132D9	EGYPTIAN HIEROGLYPH S007
+	* classifier crown : ḫprš
 132DA	EGYPTIAN HIEROGLYPH S008
+	* logogram (Atef-crown) : ꜣtf
 132DB	EGYPTIAN HIEROGLYPH S009
+	* logogram (double plumes/two feather crown) : šw.ty
 132DC	EGYPTIAN HIEROGLYPH S010
+	* logogram (strip of cloth, fillet) : mḏḥ
 	~ 132DC FE00 rotated 90 degrees
 132DD	EGYPTIAN HIEROGLYPH S011
+	* logogram (necklace, collar) : wsḫ
 132DE	EGYPTIAN HIEROGLYPH S012
+	* logogram (gold) : nbw
 132DF	EGYPTIAN HIEROGLYPH S013
+	* phonemogram : nb
 132E0	EGYPTIAN HIEROGLYPH S014
+	* logogram (silver) : ḥḏ
 132E1	EGYPTIAN HIEROGLYPH S014A
+	* logogram (white gold, fine gold, electrum) : ḏꜥm
 132E2	EGYPTIAN HIEROGLYPH S014B
 132E3	EGYPTIAN HIEROGLYPH S015
+	* logogram (faience, glass) : ṯḥn.t
 132E4	EGYPTIAN HIEROGLYPH S016
+	* logogram (faience, glass) : ṯḥn.t
 132E5	EGYPTIAN HIEROGLYPH S017
+	* logogram (faience, glass) : ṯḥn.t
 132E6	EGYPTIAN HIEROGLYPH S017A
+	* phonemogram : šsm
 132E7	EGYPTIAN HIEROGLYPH S018
+	* classifier necklace : mnꞽ.t
 	~ 132E7 FE00 rotated 90 degrees
 	~ 132E7 FE02 rotated 270 degrees
 132E8	EGYPTIAN HIEROGLYPH S019
+	* logogram (sealbearer) : ḫtm.w/y
 132E9	EGYPTIAN HIEROGLYPH S020
+	* logogram (seal, lock, sealing) : ḫtm
 	~ 132E9 FE02 rotated 270 degrees
 132EA	EGYPTIAN HIEROGLYPH S021
+	* logogram (necklace, collar) : wsḫ
 132EB	EGYPTIAN HIEROGLYPH S022
+	* phonemogram : sṯ
 132EC	EGYPTIAN HIEROGLYPH S023
+	* logogram (to unite, to assemble) : dmḏ
 132ED	EGYPTIAN HIEROGLYPH S024
+	* classifier to tie, to bind : ṯs
 132EE	EGYPTIAN HIEROGLYPH S025
+	* classifier garment, mantle, kilt : mꜣs.t
 132EF	EGYPTIAN HIEROGLYPH S026
+	* classifier kilt, royal apron : šnḏ.wt
 132F0	EGYPTIAN HIEROGLYPH S026A
-	* loin-cloth
 	* not to be confused with 13200, 133D4, or 133F3
+	* logogram (loincloth, garment) : dꜣꞽ.w
 132F1	EGYPTIAN HIEROGLYPH S026B
 132F2	EGYPTIAN HIEROGLYPH S027
+	* logogram (clothing) : mnḫ.t
 132F3	EGYPTIAN HIEROGLYPH S028
+	* classifier clothing : ḥbs
 132F4	EGYPTIAN HIEROGLYPH S029
-	* transliterated as s or as z
 	x (egyptian hieroglyph o034 - 13283)
+	* phonemogram : s
 132F5	EGYPTIAN HIEROGLYPH S030
+	* phonemogram : sf
 132F6	EGYPTIAN HIEROGLYPH S031
+	* phonemogram : smꜣ
 132F7	EGYPTIAN HIEROGLYPH S032
+	* phonemogram : sꞽꜣ
 132F8	EGYPTIAN HIEROGLYPH S033
+	* classifier sandal : ṯbw.t
 	~ 132F8 FE02 rotated 270 degrees
 132F9	EGYPTIAN HIEROGLYPH S034
+	* logogrm (life) : ꜥnḫ
 132FA	EGYPTIAN HIEROGLYPH S035
+	* classifier shadow, shade : mnḳb
 132FB	EGYPTIAN HIEROGLYPH S035A
 	* variant of 132FA
 132FC	EGYPTIAN HIEROGLYPH S036
 	* older variant of 132FA
+	* logogram (shadow, shade) : šw.t
 132FD	EGYPTIAN HIEROGLYPH S037
+	* logogram (fan) : ḫw
 	~ 132FD FE02 rotated 270 degrees
 132FE	EGYPTIAN HIEROGLYPH S038
+	* phonemogram : ḥḳꜣ
 132FF	EGYPTIAN HIEROGLYPH S039
+	* logogram (shepherd's crook) : ꜥw.t
 13300	EGYPTIAN HIEROGLYPH S040
-	* phonogram 'wꜣs'
+	* phonemogram : wꜣs
 13301	EGYPTIAN HIEROGLYPH S041
-	* phonogram 'ḏꜣm'
+	* classifier sceptre : ḏꜥm
 13302	EGYPTIAN HIEROGLYPH S042
+	* phonemogram : sḫm
 	~ 13302 FE02 rotated 270 degrees
 13303	EGYPTIAN HIEROGLYPH S043
+	* phonemogram : md(w)
 	~ 13303 FE02 rotated 270 degrees
 13304	EGYPTIAN HIEROGLYPH S044
+	* classifier staff, sceptre : ꜣsm
 13305	EGYPTIAN HIEROGLYPH S045
+	* logogram (flagellum) : nḫꜣḫꜣ
 13306	EGYPTIAN HIEROGLYPH S046
+	* phonemogram : k
 @		T. Warfare, hunting, butchery
 13307	EGYPTIAN HIEROGLYPH T001
+	* phonemogram : mn
 	~ 13307 FE00 rotated 90 degrees
 13308	EGYPTIAN HIEROGLYPH T002
-	* classifier 'striking, hitting'
+	* classifier striking, hitting : sḳr
 	~ 13308 FE01 rotated 180 degrees
 13309	EGYPTIAN HIEROGLYPH T003
-	* classifier 'mace'
+	* phonemogram : ḥḏ
 1330A	EGYPTIAN HIEROGLYPH T003A
+	* phonemogram : ḥḏw
 1330B	EGYPTIAN HIEROGLYPH T004
+	* phonemogram : ḥḏ
 1330C	EGYPTIAN HIEROGLYPH T005
+	* phonemogram : ḥḏ
 1330D	EGYPTIAN HIEROGLYPH T006
+	* phonemogram : ḥḏḏ
 1330E	EGYPTIAN HIEROGLYPH T007
+	* logogram (carpenter, shipwright) : mḏḥ.w
 1330F	EGYPTIAN HIEROGLYPH T007A
+	* classifier axe, battle-axe : ꞽḳḥ.w
 13310	EGYPTIAN HIEROGLYPH T008
 	* older variant of 13311
+	* phonemogram : tp
 	~ 13310 FE02 rotated 270 degrees
 13311	EGYPTIAN HIEROGLYPH T008A
+	* phonemogram : tp
 	~ 13311 FE02 rotated 270 degrees
 13312	EGYPTIAN HIEROGLYPH T009
+	* classifier bow, weapon : pḏ.t
 	~ 13312 FE01 rotated 180 degrees
 	~ 13312 FE02 rotated 270 degrees
 13313	EGYPTIAN HIEROGLYPH T009A
 	* older variant of 13312
+	* phonemogram : pḏ
 	~ 13313 FE01 rotated 180 degrees
 	~ 13313 FE02 rotated 270 degrees
 13314	EGYPTIAN HIEROGLYPH T010
+	* logogram (bow) : pḏ.t
 	~ 13314 FE01 rotated 180 degrees
 	~ 13314 FE02 rotated 270 degrees
 13315	EGYPTIAN HIEROGLYPH T011
+	* phonemogram : swn
 13316	EGYPTIAN HIEROGLYPH T011A
 13317	EGYPTIAN HIEROGLYPH T012
+	* phonemogram : rwḏ
 13318	EGYPTIAN HIEROGLYPH T013
+	* phono-repeater : rs
 13319	EGYPTIAN HIEROGLYPH T014
+	* phono-repeater : ḳmꜣ
 1331A	EGYPTIAN HIEROGLYPH T015
 	* older variant of 13319
+	* phonemogram : ṯḥn
 1331B	EGYPTIAN HIEROGLYPH T016
+	* classifier curved blade, scimitar : ḫpš
 	~ 1331B FE00 rotated 90 degrees
 	~ 1331B FE01 rotated 180 degrees
 1331C	EGYPTIAN HIEROGLYPH T016A
+	* classifier strong arm, power, strength : ḫpš
 	~ 1331C FE02 rotated 270 degrees
 1331D	EGYPTIAN HIEROGLYPH T017
+	* logogram (chariot) : wrr.t
 1331E	EGYPTIAN HIEROGLYPH T018
+	* logogram (follower, retainer) : šms.w
 1331F	EGYPTIAN HIEROGLYPH T019
+	* classifier bone : ꜣbw
 13320	EGYPTIAN HIEROGLYPH T020
 	* older variant of 1331F
+	* classifier harpoon : ḳs
 13321	EGYPTIAN HIEROGLYPH T021
+	* logogram (one, sole) : wꜥ
 	~ 13321 FE01 rotated 180 degrees
 	~ 13321 FE02 rotated 270 degrees
 13322	EGYPTIAN HIEROGLYPH T022
+	* phonemogram : sn
 	~ 13322 FE00 rotated 90 degrees
 	~ 13322 FE01 rotated 180 degrees
 13323	EGYPTIAN HIEROGLYPH T023
 	* more recent variant of 13322
+	* phonemogram : sn
 13324	EGYPTIAN HIEROGLYPH T024
+	* classifier catching, netting : ꞽ.ꜥḥ
 13325	EGYPTIAN HIEROGLYPH T025
+	* phonemogram : ḏbꜣ
 13326	EGYPTIAN HIEROGLYPH T026
+	* classifier catching, netting : ꞽbṯ
 13327	EGYPTIAN HIEROGLYPH T027
 	* older variant of 13326
+	* classifier weaving, woven material : sḫt
 13328	EGYPTIAN HIEROGLYPH T028
+	* phonemogram : ẖr
 13329	EGYPTIAN HIEROGLYPH T029
+	* logogram (place of slaughter)
 1332A	EGYPTIAN HIEROGLYPH T030
-	* classifier 'knife, cutting'
+	* classifier cutting, slaughter : ds
 1332B	EGYPTIAN HIEROGLYPH T031
-	* phonogram 'sšm'
+	* phonemogram : sšm
 1332C	EGYPTIAN HIEROGLYPH T032
+	* phonemogram : sšm
 1332D	EGYPTIAN HIEROGLYPH T032A
+	* phonemogram : sšm
 1332E	EGYPTIAN HIEROGLYPH T033
 	* older variant of 13326
+	* logogram (butcher) : sšm
 1332F	EGYPTIAN HIEROGLYPH T033A
 13330	EGYPTIAN HIEROGLYPH T034
+	* classifier knife : nm
 13331	EGYPTIAN HIEROGLYPH T035
 	* variant of 13330
+	* logogram (knife) : nm
 	~ 13331 FE01 rotated 180 degrees
 	~ 13331 FE02 rotated 270 degrees
 13332	EGYPTIAN HIEROGLYPH T036
+	* classifier shield : ꞽkm
 @		U. Agriculture, crafts, and professions
 13333	EGYPTIAN HIEROGLYPH U001
+	* phonemogram : mꜣ
 13334	EGYPTIAN HIEROGLYPH U002
 	* stylistic variant of 13333
+	* phonemogram : mꜣ
 13335	EGYPTIAN HIEROGLYPH U003
+	* phonemogram (in %mAA%, to see) : mꜣ
 13336	EGYPTIAN HIEROGLYPH U004
+	* phonemogram : mꜣꜥ
 13337	EGYPTIAN HIEROGLYPH U005
 	* stylistic variant of 13336
+	* phonemogram : mꜣꜥ
 13338	EGYPTIAN HIEROGLYPH U006
+	* phonemogram : mr
 13339	EGYPTIAN HIEROGLYPH U006A
 	* stylistic variant of 13338
 1333A	EGYPTIAN HIEROGLYPH U006B
 	* mirrored version of 13339
 1333B	EGYPTIAN HIEROGLYPH U007
 	* variant of 13338
+	* phonemogram : mr
 	~ 1333B FE00 rotated 90 degrees
 1333C	EGYPTIAN HIEROGLYPH U008
 	* variant of 1333B
+	* phonemogram : ḥn
 	~ 1333C FE00 rotated 90 degrees
 1333D	EGYPTIAN HIEROGLYPH U009
+	* classifier grain/barley : sšr
 1333E	EGYPTIAN HIEROGLYPH U010
+	* logogram (harvest, crop) : šm.w
 1333F	EGYPTIAN HIEROGLYPH U011
+	* logogram (bushel (a corn measure, 10 hin)) : ḥḳꜣ.t
 13340	EGYPTIAN HIEROGLYPH U012
+	* logogram (bushel (a corn measure, 10 hin)) : ḥḳꜣ.t
 13341	EGYPTIAN HIEROGLYPH U013
+	* classifier plough/plowed material : skꜣ
 13342	EGYPTIAN HIEROGLYPH U014
+	* phono-repeater : šnꜥ
 13343	EGYPTIAN HIEROGLYPH U015
+	* phonemogram : tm
 13344	EGYPTIAN HIEROGLYPH U016
+	* phonemogram : bꞽꜣ
 13345	EGYPTIAN HIEROGLYPH U017
+	* phonemogram : grg
 13346	EGYPTIAN HIEROGLYPH U018
 	* variant of 13345
+	* logogram (to found, to establish, to hunt, to lay (a trap)) : grg
 13347	EGYPTIAN HIEROGLYPH U019
+	* phonemogram : nw
 13348	EGYPTIAN HIEROGLYPH U020
 	* older variant of 13347
+	* phonemogram : nw
 13349	EGYPTIAN HIEROGLYPH U021
+	* phonemogram : stp
 1334A	EGYPTIAN HIEROGLYPH U022
+	* phono-repeater : mnḫ
 	~ 1334A FE02 rotated 270 degrees
 1334B	EGYPTIAN HIEROGLYPH U023
+	* phonemogram : ꜣb/mr
 1334C	EGYPTIAN HIEROGLYPH U023A
 	* stylistic variant of 1334B
+	* phonemogram : mr
 1334D	EGYPTIAN HIEROGLYPH U024
+	* logogram (craftsman) : ḥmw.w
 1334E	EGYPTIAN HIEROGLYPH U025
 	* older variant of 1334D
+	* logogram (craft) : ḥmw.t
 1334F	EGYPTIAN HIEROGLYPH U026
+	* logogram (to open) : wbꜣ
 13350	EGYPTIAN HIEROGLYPH U027
 	* older variant of 1334F
+	* classifier to open : wbꜣ
 13351	EGYPTIAN HIEROGLYPH U028
+	* phonemogram : ḏꜣ
 13352	EGYPTIAN HIEROGLYPH U029
 	* older variant of 13351
+	* phonemogram : ḏꜣ
 13353	EGYPTIAN HIEROGLYPH U029A
+	* phonemogram : wḏꜣ
 13354	EGYPTIAN HIEROGLYPH U030
+	* phonemogram : tꜣ
 13355	EGYPTIAN HIEROGLYPH U031
+	* classifier to restrain : rtḥ
 13356	EGYPTIAN HIEROGLYPH U032
+	* logogram (to pound, to crush) : sḥm
 13357	EGYPTIAN HIEROGLYPH U032A
+	* phono-repeater : smn
 13358	EGYPTIAN HIEROGLYPH U033
+	* phonemogram : tꞽ
 13359	EGYPTIAN HIEROGLYPH U034
+	* phonemogram : ḫsf
 1335A	EGYPTIAN HIEROGLYPH U035
+	* phonemogram  : ḫsf
 1335B	EGYPTIAN HIEROGLYPH U036
+	* phonemogram : ḥm
 1335C	EGYPTIAN HIEROGLYPH U037
+	* logogram (razor) : mẖꜥḳ.t
 1335D	EGYPTIAN HIEROGLYPH U038
+	* logogram (balance) : mḫꜣ.t
 1335E	EGYPTIAN HIEROGLYPH U039
+	* classifier balance, scale : mḫꜣ.t
 1335F	EGYPTIAN HIEROGLYPH U040
 	* cursive variant of 1335E
+	* phonemogram : rs
 13360	EGYPTIAN HIEROGLYPH U041
+	* classifier plummet : tḫ
 13361	EGYPTIAN HIEROGLYPH U042
-	* pitchfork
 	* not to be confused with 1327D
+	* logogram (staff) : ms.t
 	~ 13361 FE02 rotated 270 degrees
 @		V. Rope, fiber, baskets, bags, etc.
 13362	EGYPTIAN HIEROGLYPH V001
-	* 100
 	* classifier 'cord, rope'
 	* not to be confused with 133F2
+	* logogram (100) : šn.t
 13363	EGYPTIAN HIEROGLYPH V001A
 	* 200
 13364	EGYPTIAN HIEROGLYPH V001B
@@ -39233,25 +39960,34 @@ FFFF	<not a character>
 1336B	EGYPTIAN HIEROGLYPH V001I
 	* 500
 1336C	EGYPTIAN HIEROGLYPH V002
+	* logogram (to drag, to pull, to draw) : sṯꜣ
 1336D	EGYPTIAN HIEROGLYPH V002A
+	* phonemogram : stꜣ/sṯꜣ
 1336E	EGYPTIAN HIEROGLYPH V003
+	* phonemogram : sṯꜣ.w
 1336F	EGYPTIAN HIEROGLYPH V004
+	* phonemogram : wꜣ
 13370	EGYPTIAN HIEROGLYPH V005
+	* logogram (foundation) : snṯ
 13371	EGYPTIAN HIEROGLYPH V006
-	* phonogram 'šs'
+	* phonemogram : šs
 13372	EGYPTIAN HIEROGLYPH V007
-	* phonogram 'šn'
+	* phonemogram : šn
 13373	EGYPTIAN HIEROGLYPH V007A
+	* classifier cloth : ꞽꜣḳs
 	~ 13373 FE02 rotated 270 degrees
 13374	EGYPTIAN HIEROGLYPH V007B
+	* phonemogram : šn
 13375	EGYPTIAN HIEROGLYPH V008
+	* phonemogram : šn
 13376	EGYPTIAN HIEROGLYPH V009
+	* logogram (to surround, to encircle) : šnꞽ
 13377	EGYPTIAN HIEROGLYPH V010
-	* logogram 'name'
+	* logogram (name) : rn
 	~ 13377 FE00 rotated 90 degrees
 13378	EGYPTIAN HIEROGLYPH V011
-	* classifier 'restrain, split'
 	x (egyptian hieroglyph v011d - 1342F)
+	* classifier half, part, portion : psš
 	~ 13378 FE00 rotated 90 degrees
 13379	EGYPTIAN HIEROGLYPH V011A
 	* beginning of cartouche
@@ -39260,26 +39996,36 @@ FFFF	<not a character>
 1337B	EGYPTIAN HIEROGLYPH V011C
 	* end of knotless cartouche
 1337C	EGYPTIAN HIEROGLYPH V012
+	* classifier papyrus/book/document : šꜥ.t
 1337D	EGYPTIAN HIEROGLYPH V012A
+	* phonemogram : dḳr
 	~ 1337D FE02 rotated 270 degrees
 1337E	EGYPTIAN HIEROGLYPH V012B
+	* classifier papyrus/book/document : wḏ.w-nṯr.w
 1337F	EGYPTIAN HIEROGLYPH V013
 	* transliterated as 1E6F
+	* phonemogram : ṯ
 13380	EGYPTIAN HIEROGLYPH V014
 	* variant of 1337F
+	* phonemogram : ṯ
 13381	EGYPTIAN HIEROGLYPH V015
+	* phonemogram : ꞽṯ(ꞽ)
 13382	EGYPTIAN HIEROGLYPH V016
+	* phonemogram : sꜣ
 13383	EGYPTIAN HIEROGLYPH V017
+	* logogram (protection) : sꜣ
 13384	EGYPTIAN HIEROGLYPH V018
 	* older variant of 13383
+	* logogram (protection) : sꜣ
 13385	EGYPTIAN HIEROGLYPH V019
+	* logogram (stable) : mḏ.t
 	~ 13385 FE02 rotated 270 degrees
 13386	EGYPTIAN HIEROGLYPH V020
-	* 10
 	* not to be confused with 133AD
+	* logogram (10) : mḏ
 13387	EGYPTIAN HIEROGLYPH V020A
-	* 20
 	* not to be confused with 133AE
+	* 20
 13388	EGYPTIAN HIEROGLYPH V020B
 	* 30
 13389	EGYPTIAN HIEROGLYPH V020C
@@ -39295,302 +40041,409 @@ FFFF	<not a character>
 1338E	EGYPTIAN HIEROGLYPH V020H
 	* 90
 1338F	EGYPTIAN HIEROGLYPH V020I
-	* 20
 	* variant of 13387
+	* 20
 13390	EGYPTIAN HIEROGLYPH V020J
-	* 30
 	* variant of 13388
+	* 30
 13391	EGYPTIAN HIEROGLYPH V020K
-	* 40
 	* variant of 13389
+	* 40
 13392	EGYPTIAN HIEROGLYPH V020L
-	* 50
 	* variant of 1338A
+	* 50
 13393	EGYPTIAN HIEROGLYPH V021
+	* logogram (stable) : mḏ.t
 13394	EGYPTIAN HIEROGLYPH V022
+	* phonemogram : mḥ
 13395	EGYPTIAN HIEROGLYPH V023
 	* older variant of 13394
+	* phonemogram : mḥ
 13396	EGYPTIAN HIEROGLYPH V023A
+	* phonemogram : mḥ
 13397	EGYPTIAN HIEROGLYPH V024
+	* phonemogram : wḏ > wd
 13398	EGYPTIAN HIEROGLYPH V025
 	* more recent variant of 13397
+	* phonemogram : wḏ > wd
 13399	EGYPTIAN HIEROGLYPH V026
+	* phonemogram : ꜥnḏ
 	~ 13399 FE00 rotated 90 degrees
 1339A	EGYPTIAN HIEROGLYPH V027
 	* older variant of 13399
+	* phonemogram : ꜥnḏ
 	~ 1339A FE00 rotated 90 degrees
 1339B	EGYPTIAN HIEROGLYPH V028
 	* transliterated as 1E25
 	x (arabic letter hah - 062D)
+	* phonemogram : ḥ
 1339C	EGYPTIAN HIEROGLYPH V028A
+	* phonemogram : ḥꜥ
 1339D	EGYPTIAN HIEROGLYPH V029
+	* phonemogram : wꜣḥ
 1339E	EGYPTIAN HIEROGLYPH V029A
+	* phonemogram : sk
 1339F	EGYPTIAN HIEROGLYPH V030
+	* phonemogram : nb
 133A0	EGYPTIAN HIEROGLYPH V030A
 	* stylistic variant, use of 1339F is preferred
 133A1	EGYPTIAN HIEROGLYPH V031
-	* transliterated as k
 	x (hebrew letter kaf - 05DB)
 	x (arabic letter kaf - 0643)
+	* phonemogram : k
 133A2	EGYPTIAN HIEROGLYPH V031A
 	* from hieratic
+	* phonemogram : k
 133A3	EGYPTIAN HIEROGLYPH V032
+	* phonemogram : msn
 133A4	EGYPTIAN HIEROGLYPH V033
+	* classifier linen : sšr
 133A5	EGYPTIAN HIEROGLYPH V033A
+	* classifier sack, bundle : ḳꜣr
 133A6	EGYPTIAN HIEROGLYPH V034
 	* more recent variant of 133A4
+	* classifier (perfume) : st
 133A7	EGYPTIAN HIEROGLYPH V035
+	* logogram (linen) : sšr
 133A8	EGYPTIAN HIEROGLYPH V036
+	* phonemogram : ḥn
 133A9	EGYPTIAN HIEROGLYPH V037
+	* phono-repeater : ꞽdr
 133AA	EGYPTIAN HIEROGLYPH V037A
+	* phonemogram : ꞽd
 133AB	EGYPTIAN HIEROGLYPH V038
-	* bandage
 	* not to be confused with 1308B
+	* classifier to bandage, to wrap : wt
 133AC	EGYPTIAN HIEROGLYPH V039
+	* logogram (Tit-amulet) : tꞽ.t
 133AD	EGYPTIAN HIEROGLYPH V040
-	* 10 in dates
 	* not to be confused with 13386
+	* 10
 133AE	EGYPTIAN HIEROGLYPH V040A
-	* 20 in dates
 	* not to be confused with 13387
+	* 20
 @		W. Vessels of stone and earthenware
 133AF	EGYPTIAN HIEROGLYPH W001
+	* classifier oil, unguent : mrḥ.t
 	~ 133AF FE02 rotated 270 degrees
 133B0	EGYPTIAN HIEROGLYPH W002
+	* phonemogram : bꜣs
 	~ 133B0 FE02 rotated 270 degrees
 133B1	EGYPTIAN HIEROGLYPH W003
+	* logogram (festival) : ḥ(ꜣ)b
 133B2	EGYPTIAN HIEROGLYPH W003A
 	* stylistic variant, use of 133B1 is preferred
 133B3	EGYPTIAN HIEROGLYPH W004
+	* logogram (festival) : h(ꜣ)b
 133B4	EGYPTIAN HIEROGLYPH W005
+	* logogram (lector priest) : ẖr.y-ḥ(ꜣ)b.t
 133B5	EGYPTIAN HIEROGLYPH W006
+	* classifier cauldron : ḥw.t
 133B6	EGYPTIAN HIEROGLYPH W007
+	* classifier granite : mꜣṯ
 133B7	EGYPTIAN HIEROGLYPH W008
+	* phono-repeater : ꜣb
 133B8	EGYPTIAN HIEROGLYPH W009
+	* phonemogram : ẖnm
 133B9	EGYPTIAN HIEROGLYPH W009A
 	* mirrored version of 133B8
 133BA	EGYPTIAN HIEROGLYPH W010
+	* phonemogram : ꜥ
 133BB	EGYPTIAN HIEROGLYPH W010A
+	* phonemogram : bꜣ
 133BC	EGYPTIAN HIEROGLYPH W011
-	* transliterated as g
+	* phonogram : g
 133BD	EGYPTIAN HIEROGLYPH W012
 	* older variant of 133BC
+	* phonogram : g
 133BE	EGYPTIAN HIEROGLYPH W013
+	* classifier red (earthenware) vessel : dšr.t
 133BF	EGYPTIAN HIEROGLYPH W014
+	* phonemogram : ḥs
 	~ 133BF FE02 rotated 270 degrees
 133C0	EGYPTIAN HIEROGLYPH W014A
 133C1	EGYPTIAN HIEROGLYPH W015
+	* logogram (to be cool, to cool) : ḳbḥ
 133C2	EGYPTIAN HIEROGLYPH W016
+	* classifier libation water : ḳbḥ
 133C3	EGYPTIAN HIEROGLYPH W017
+	* phonemogram : ḫnt
 133C4	EGYPTIAN HIEROGLYPH W017A
 	* cursive variant of 133C3
+	* phonemogram : ḫnt
 133C5	EGYPTIAN HIEROGLYPH W018
 	* older variant of 133C3
+	* phonemogram : ḫnt
 133C6	EGYPTIAN HIEROGLYPH W018A
 	* cursive variant of 133C5
 133C7	EGYPTIAN HIEROGLYPH W019
+	* phonemogram : mꞽ
 133C8	EGYPTIAN HIEROGLYPH W020
+	* classifier milk : ꞽrṯ.t
 133C9	EGYPTIAN HIEROGLYPH W021
+	* classifier wine : ꞽrp
 133CA	EGYPTIAN HIEROGLYPH W022
+	* logogram (beer) : ḥnḳ.t
 133CB	EGYPTIAN HIEROGLYPH W023
+	* logogram (beer) : ḥnḳ.t
 133CC	EGYPTIAN HIEROGLYPH W024
-	* phonogram 'nw'
+	* phonemogram : nw
 133CD	EGYPTIAN HIEROGLYPH W024A
 	* monogram 'nw(n)' or 'nww'
 133CE	EGYPTIAN HIEROGLYPH W025
+	* phonemogram : ꞽn(ꞽ)
 @		X. Loaves and cakes
 133CF	EGYPTIAN HIEROGLYPH X001
-	* transliterated as t
+	* phonemogram : t
 133D0	EGYPTIAN HIEROGLYPH X002
+	* logogram (bread) : t
 133D1	EGYPTIAN HIEROGLYPH X003
 	* variant of 133D0
+	* classifier bread/food
 133D2	EGYPTIAN HIEROGLYPH X004
+	* classifier Festival
 133D3	EGYPTIAN HIEROGLYPH X004A
 	* variant of 133D2
+	* phonemogram : t
 	~ 133D3 FE00 rotated 90 degrees
 133D4	EGYPTIAN HIEROGLYPH X004B
-	* cake
 	* variant of 133D2
 	* not to be confused with 13200, 132F0, or 133F3
+	* classifier bread, Festival; Phonemogram %t%; Logogram %t% (bread); Phono-repeater: %sn, fqA% : t | sn, fḳꜣ
 133D5	EGYPTIAN HIEROGLYPH X005
 	* hieratic
 	* variant of 133D4
+	* phono-repeater : sn
 133D6	EGYPTIAN HIEROGLYPH X006
+	* classifier offering, cake, loaf : t-ꜣsr
 133D7	EGYPTIAN HIEROGLYPH X006A
 133D8	EGYPTIAN HIEROGLYPH X007
-	* classifier 'food'
 	* not to be confused with 1320E
+	* classifier food : gs
 133D9	EGYPTIAN HIEROGLYPH X008
+	* phonemogram : ḏꞽ > dꞽ
 133DA	EGYPTIAN HIEROGLYPH X008A
-	* bread
 	* variant of 133D9
 	* not to be confused with 131EE
+	* classifier bread : t-ḥḏ
 @		Y. Writings, games, music
 133DB	EGYPTIAN HIEROGLYPH Y001
+	* classifier abstract words : sspd.w
 133DC	EGYPTIAN HIEROGLYPH Y001A
 	* rotated variant of 133DB
+	* logogram (papyrus scroll, book) : mḏꜣ.t
 133DD	EGYPTIAN HIEROGLYPH Y002
 	* older variant of 133DB
+	* classifier writing, things written : mdw
 	~ 133DD FE02 rotated 270 degrees
 133DE	EGYPTIAN HIEROGLYPH Y003
+	* logogram (scribe) : sš
 133DF	EGYPTIAN HIEROGLYPH Y004
 	* mirrored version of 133DE
+	* logogram (scribe) : sš
 133E0	EGYPTIAN HIEROGLYPH Y005
+	* phonemogram : mn
 133E1	EGYPTIAN HIEROGLYPH Y006
+	* classifier game, gamepiece : sn.t
 133E2	EGYPTIAN HIEROGLYPH Y007
+	* classifier harp : bn.t
 133E3	EGYPTIAN HIEROGLYPH Y008
+	* classifier sistrum : sḫm
 @		Z. Strokes, signs derived from Hieratic, geometrical figures
 133E4	EGYPTIAN HIEROGLYPH Z001
-	* semogram index
-	* classifier 'single'
 	* not to be confused with 133FA
+	* classifier semogram
 133E5	EGYPTIAN HIEROGLYPH Z002
-	* classifier 'plural'
 	* not to be confused with 133FC
+	* classifier plural
 133E6	EGYPTIAN HIEROGLYPH Z002A
 	* stylistic variant of 133E5
 133E7	EGYPTIAN HIEROGLYPH Z002B
-	* classifier 'plural'
 	* not to be confused with 13213
 133E8	EGYPTIAN HIEROGLYPH Z002C
 	* variant of 133E6
+	* classifier plural
 133E9	EGYPTIAN HIEROGLYPH Z002D
 	* variant of 133E8
+	* classifier plural
 133EA	EGYPTIAN HIEROGLYPH Z003
 	* variant of 133E5
+	* classifier plural
 133EB	EGYPTIAN HIEROGLYPH Z003A
 	* variant of 133EA
+	* classifier plural
 133EC	EGYPTIAN HIEROGLYPH Z003B
 	* variant of 133E7
 133ED	EGYPTIAN HIEROGLYPH Z004
 	* classifier 'dual'
-	* transliterated as y
 	x (egyptian hieroglyph m017a - 131CC)
+	* phonemogram : y
 133EE	EGYPTIAN HIEROGLYPH Z004A
 	* variant of 133ED
 	* classifier 'dual'
 	* transliterated as y
 	* not to be confused with 133FB
+	* logogram (2) : sn.w
 133EF	EGYPTIAN HIEROGLYPH Z005
+	* substitute for dangerous signs
 133F0	EGYPTIAN HIEROGLYPH Z005A
 	* variant of 133EF
+	* classifier divinity (replacing G7)
 133F1	EGYPTIAN HIEROGLYPH Z006
+	* classifier death : ḫp.t
 133F2	EGYPTIAN HIEROGLYPH Z007
-	* phonogram 'w'
 	* not to be confused with 13362
+	* phonemogrom : w
 	~ 133F2 FE00 rotated 90 degrees
 133F3	EGYPTIAN HIEROGLYPH Z008
-	* oval
 	* not to be confused with 13200, 132F0, or 133D4
+	* classifier round, oval : šn(.w)
 133F4	EGYPTIAN HIEROGLYPH Z009
+	* classifier divide : psš
 133F5	EGYPTIAN HIEROGLYPH Z010
 	* older variant of 133F4
+	* classifier break : ḥbs
 	~ 133F5 FE00 rotated 90 degrees
 133F6	EGYPTIAN HIEROGLYPH Z011
+	* phonemogram : ꞽm
 	~ 133F6 FE00 rotated 90 degrees
 133F7	EGYPTIAN HIEROGLYPH Z012
 	* hieratic
+	* phonemogram : ḥw
 133F8	EGYPTIAN HIEROGLYPH Z013
 	* circle, unmarked round sign
 	* not to be confused with 13082 or 131F3
 133F9	EGYPTIAN HIEROGLYPH Z014
 	* hieratic
+	* classifier semogram
 133FA	EGYPTIAN HIEROGLYPH Z015
-	* 1
 	* not to be confused with 133E4
+	* logogram (one, sole) : wꜥ
 133FB	EGYPTIAN HIEROGLYPH Z015A
-	* 2
 	* not to be confused with 133EE
+	* logogram (two) : sn.w
 133FC	EGYPTIAN HIEROGLYPH Z015B
-	* 3
 	* not to be confused with 133E5
 	x (egyptian hieroglyph z003 - 133EA)
+	* logogram (three) : ḫmt
 133FD	EGYPTIAN HIEROGLYPH Z015C
-	* 4
+	* logogram (four) : fd(.w)
 133FE	EGYPTIAN HIEROGLYPH Z015D
-	* 5
+	* logoram (five) : dꞽw
 133FF	EGYPTIAN HIEROGLYPH Z015E
-	* 6
+	* logogram (six) : sꞽs
 13400	EGYPTIAN HIEROGLYPH Z015F
-	* 7
+	* logogram (seven) : sfḫ
 13401	EGYPTIAN HIEROGLYPH Z015G
-	* 8
+	* logogram (eight) : ḫmn
 13402	EGYPTIAN HIEROGLYPH Z015H
-	* 9
+	* logogram (nine) : psḏ
 13403	EGYPTIAN HIEROGLYPH Z015I
-	* 5
+	* logoram (five) : dꞽw
 13404	EGYPTIAN HIEROGLYPH Z016
-	* 1 in dates
+	* logogram (one, sole) : wꜥ
 13405	EGYPTIAN HIEROGLYPH Z016A
-	* 2 in dates
+	* logogram (two) : sn.w
 13406	EGYPTIAN HIEROGLYPH Z016B
-	* 3 in dates
+	* logogram (three) : ḫmt
 13407	EGYPTIAN HIEROGLYPH Z016C
-	* 4 in dates
+	* logogram (four) : fd(.w)
 13408	EGYPTIAN HIEROGLYPH Z016D
-	* 5 in dates
+	* logoram (five) : dꞽw
 13409	EGYPTIAN HIEROGLYPH Z016E
-	* 6 in dates
+	* logogram (six) : sꞽs
 1340A	EGYPTIAN HIEROGLYPH Z016F
-	* 7 in dates
+	* logogram (seven) : sfḫ
 1340B	EGYPTIAN HIEROGLYPH Z016G
-	* 8 in dates
+	* logogram %xmn% (eight)/Logogram %xmnw% (Hermopolis) : ḫmn & ḫmnw
 1340C	EGYPTIAN HIEROGLYPH Z016H
-	* 9 in dates
+	* logogram (nine) : psḏ
 @		Aa. Unclassified
 1340D	EGYPTIAN HIEROGLYPH AA001
 	* transliterated as 1E2B
 	x (arabic letter khah - 062E)
+	* phonemogram : ḫ
 1340E	EGYPTIAN HIEROGLYPH AA002
+	* classifier bad/evil : nḥꜣ
 1340F	EGYPTIAN HIEROGLYPH AA003
+	* classifier efflux, smell (i.e., excrement) : ḥs
 13410	EGYPTIAN HIEROGLYPH AA004
+	* phonemogram : bꜣ
 13411	EGYPTIAN HIEROGLYPH AA005
+	* classifier oar : ḥpt
 13412	EGYPTIAN HIEROGLYPH AA006
+	* phono-repeater : ṯmꜣ
 13413	EGYPTIAN HIEROGLYPH AA007
+	* classifier to present : sḳ(r)
 13414	EGYPTIAN HIEROGLYPH AA007A
 	* mirrored version of 13413
+	* classifier to present : sḳ(r)
 13415	EGYPTIAN HIEROGLYPH AA007B
 13416	EGYPTIAN HIEROGLYPH AA008
+	* logogram (nome, district) : spꜣ.t
 	~ 13416 FE00 rotated 90 degrees
 13417	EGYPTIAN HIEROGLYPH AA009
+	* classifier suffering : wḫd
 13418	EGYPTIAN HIEROGLYPH AA010
+	* classifier writing : drf
 13419	EGYPTIAN HIEROGLYPH AA011
+	* phonemogram : mꜣꜥ
 	~ 13419 FE00 rotated 90 degrees
 	~ 13419 FE01 rotated 180 degrees
 	~ 13419 FE02 rotated 270 degrees
 1341A	EGYPTIAN HIEROGLYPH AA012
 	* older variant of 13419
+	* phonemogram : mꜣꜥ
 	~ 1341A FE00 rotated 90 degrees
 1341B	EGYPTIAN HIEROGLYPH AA013
+	* phonemogram : gs
 1341C	EGYPTIAN HIEROGLYPH AA014
 	* older variant of 1341B
+	* logogram (side, half) : gs
 1341D	EGYPTIAN HIEROGLYPH AA015
+	* phonemogram : m
 1341E	EGYPTIAN HIEROGLYPH AA016
 	* variant of 1341D
+	* logogram (side, half) : gs
 1341F	EGYPTIAN HIEROGLYPH AA017
+	* phonemogram : sꜣ
 13420	EGYPTIAN HIEROGLYPH AA018
 	* more recent variant of 1341F
+	* phonemogram : s
 13421	EGYPTIAN HIEROGLYPH AA019
+	* classifier shrine, chapel
 13422	EGYPTIAN HIEROGLYPH AA020
+	* phonemogram : ꜥpr
 13423	EGYPTIAN HIEROGLYPH AA021
+	* logogram (to judge, to separate) : wḏꜥ
 	~ 13423 FE00 rotated 90 degrees
 13424	EGYPTIAN HIEROGLYPH AA022
+	* logogram (to judge, to separate) : wḏꜥ
 13425	EGYPTIAN HIEROGLYPH AA023
+	* logogram (to press, to cling (to)) : mḏd
 13426	EGYPTIAN HIEROGLYPH AA024
 	* older variant of 13425
+	* logogram (to press, to cling (to)) : mḏd
 13427	EGYPTIAN HIEROGLYPH AA025
+	* phonemogram : smꜣ
 13428	EGYPTIAN HIEROGLYPH AA026
+	* phonemogram : sbꞽ
 13429	EGYPTIAN HIEROGLYPH AA027
+	* phonemogram : nḏ
 1342A	EGYPTIAN HIEROGLYPH AA028
-	* phonogram 'qd'
 	* not to be confused with 131E9 and 132A7
+	* phonemogram : ḳd
 1342B	EGYPTIAN HIEROGLYPH AA029
 	* older variant of 1342A
+	* phonemogram : ḳd
 1342C	EGYPTIAN HIEROGLYPH AA030
+	* logogram (ornament) : ẖkr
 	~ 1342C FE02 rotated 270 degrees
 1342D	EGYPTIAN HIEROGLYPH AA031
 	* older variant of 1342C
+	* logogram (ornament) : ẖkr
 1342E	EGYPTIAN HIEROGLYPH AA032
+	* logogram (Nubia) : sty
 	~ 1342E FE02 rotated 270 degrees
 @		Addition to group V
 @+		This is part of the cartouche set: 13379, 1337A, 1337B, and 1342F.
@@ -41773,8 +42626,9 @@ FFFF	<not a character>
 16D40	KIRAT RAI SIGN ANUSVARA
 16D41	KIRAT RAI SIGN TONPI
 16D42	KIRAT RAI SIGN VISARGA
-@		Consonants
+@		Independent vowel
 16D43	KIRAT RAI LETTER A
+@		Consonants
 16D44	KIRAT RAI LETTER KA
 16D45	KIRAT RAI LETTER KHA
 16D46	KIRAT RAI LETTER GA
@@ -45495,6 +46349,7 @@ FFFF	<not a character>
 1CDB5	BLOCK OCTANT-2478
 1CDB6	BLOCK OCTANT-12478
 1CDB7	BLOCK OCTANT-3478
+	x (heavy horizontal fill - 1FB97)
 1CDB8	BLOCK OCTANT-13478
 1CDB9	BLOCK OCTANT-23478
 1CDBA	BLOCK OCTANT-123478
@@ -55416,6 +56271,7 @@ FFFF	<not a character>
 1FB97	HEAVY HORIZONTAL FILL
 	* upper middle and lower one quarter block
 	x (geta mark - 3013)
+	x (block octant-3478 - 1CDB7)
 1FB98	UPPER LEFT TO LOWER RIGHT FILL
 	x (square with upper left to lower right fill - 25A7)
 1FB99	UPPER RIGHT TO LOWER LEFT FILL
