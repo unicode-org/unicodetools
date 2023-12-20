@@ -13,5 +13,7 @@ if pipeline_label != "pipeline-" + version:
     print(event)
     draft = event['pull_request']['draft']
     if not draft:
-        print("::error title=PR must be draft::PRs for character additions must be draft unless approved for the upcoming version of Unicode.")
+        print("::error title=PR must be draft::"
+              "PRs for character additions must be draft unless approved for "
+              "the upcoming version of Unicode.")
         exit(1)
