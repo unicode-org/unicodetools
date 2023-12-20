@@ -28,86 +28,60 @@ jobs:
     - name: Compare repertoire
       id: compare-repertoire
       run: |
+        # Look for changes affecting the first two fields of UnicodeData.txt (code point and name).
         sed 's/^\([^;]*;[^;]*\);.*$/\1/' merged/unicodetools/data/ucd/dev/UnicodeData.txt > merged-repertoire.txt
         sed 's/^\([^;]*;[^;]*\);.*$/\1/' base/unicodetools/data/ucd/dev/UnicodeData.txt > base-repertoire.txt
         if diff base-repertoire.txt merged-repertoire.txt
         then echo "repertoire-changed=false" >> "$GITHUB_OUTPUT"
         else echo "repertoire-changed=true" >> "$GITHUB_OUTPUT"
         fi
+    - name: Checkout Python scripts
+      uses: actions/checkout@v3
+      with:
+        sparse-checkout: py/pipeline-workflow
     - name: Check pipeline labels
       id: check-labels
       if: steps.compare-repertoire.outputs.repertoire-changed == 'true'
-      run: |
-        python3 <<EOF
-        import os, json
-        with open(os.environ['GITHUB_EVENT_PATH'], 'r') as f:
-          event = json.load(f)
-        print(event)
-        labels = event['pull_request']['labels']
-        pipeline_labels = [label for label in labels if label['name'].startswith('pipeline-')]
-        if not pipeline_labels:
-          print("::error title=Missing pipeline label::PRs for character additions must have a pipeline label.")
-          exit(1)
-        if len(pipeline_labels) > 1:
-          print("::error title=Multiple pipeline labels::Only one pipeline-* label must be applied.")
-          exit(1)
-        label = pipeline_labels[0]
-        print("Labeled", label)
-        with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
-          print("pipeline-label=" + label['name'], file=f)
-        EOF
+      run: python3 py/pipeline-workflow/compare-repertoire.py
   l2-document:
     needs: labels-for-repertoire-changes
     if: ${{ always() && needs.labels-for-repertoire-changes.outputs.repertoire-changed == 'true' }}
     name: Proposal document
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout Python scripts
+      uses: actions/checkout@v3
+      with:
+        sparse-checkout: py/pipeline-workflow
     - name: Check L2 document
       run: |
-        python3 <<EOF
-        import os, json, re
-        with open(os.environ['GITHUB_EVENT_PATH'], 'r') as f:
-          event = json.load(f)
-        print(event)
-        pr_body = event['pull_request']['body']
-        if not re.search(r"L2/\d\d-\d\d\d", pr_body):
-          print("::error title=Need proposal document::PRs for character additions must include a link to an L2 document in the PR description.")
-          exit(1)
-        EOF
+        python3 py/pipeline-workflow/check-l2-document.py
   utc-decision:
     needs: labels-for-repertoire-changes
-    if: needs.labels-for-repertoire-changes.outputs.pipeline-label != 'pipeline-recommended-to-UTC'
+    if: needs.labels-for-repertoire-changes.outputs.repertoire-changed == 'true' && needs.labels-for-repertoire-changes.outputs.pipeline-label != 'pipeline-recommended-to-UTC'
     name: UTC decision
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout Python scripts
+      uses: actions/checkout@v3
+      with:
+        sparse-checkout: py/pipeline-workflow
     - name: Check UTC decision
-      run: |
-        python3 <<EOF
-        import os, json, re
-        with open(os.environ['GITHUB_EVENT_PATH'], 'r') as f:
-          event = json.load(f)
-        print(event)
-        pr_body = event['pull_request']['body']
-        if not re.search(r"UTC-\d\d\d-[MC]\d", pr_body):
-          print("::error title=Need UTC decision::PRs for approved or provisionally assigned must include a link to a UTC decision.")
-          exit(1)
-        EOF
+      run: python3 py/pipeline-workflow/check-utc-decision.py
   draft-unless-approved:
     needs: labels-for-repertoire-changes
-    if: needs.labels-for-repertoire-changes.outputs.pipeline-label != 'pipeline-16.0'
+    if: needs.labels-for-repertoire-changes.outputs.repertoire-changed == 'true'
     name: Draft unless approved
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout Python scripts and DerivedAge.txt
+      uses: actions/checkout@v3
+      with:
+        sparse-checkout: |
+          py/pipeline-workflow
+          unicodetools/data/ucd/dev/DerivedAge.txt
     - name: Check draft status
-      run: |
-        python3 <<EOF
-        import os, json
-        with open(os.environ['GITHUB_EVENT_PATH'], 'r') as f:
-          event = json.load(f)
-        print(event)
-        draft = event['pull_request']['draft']
-        if not draft:
-          print("::error title=PR must be draft::PRs for character additions must be draft unless approved for the upcoming version of Unicode.")
-          exit(1)
-        EOF
+      env:
+        PIPELINE_LABEL: ${{ needs.labels-for-repertoire-changes.outputs.pipeline-label }}
+      run: python3 py/pipeline-workflow/check-draft-status.py
 
