@@ -122,6 +122,7 @@ Greek_Ext	;	Greek_Extended
 Gujarati	;	Gujarati
 Gunjala_Gondi	;	Gunjala_Gondi
 Gurmukhi	;	Gurmukhi
+Gurung_Khema	;	Gurung_Khema
 Half_And_Full_Forms	;	Halfwidth_And_Fullwidth_Forms
 Compat_Jamo	;	Hangul_Compatibility_Jamo
 Jamo	;	Hangul_Jamo
@@ -316,6 +317,7 @@ Tifinagh	;	Tifinagh
 Tirhuta	;	Tirhuta
 Todhri	;	Todhri
 Toto    ;   Toto
+Tulu_Tigalari   ;   Tulu_Tigalari
 Transport_And_Map	;	Transport_And_Map_Symbols
 Ugaritic	;	Ugaritic
 UCAS	;	Unified_Canadian_Aboriginal_Syllabics

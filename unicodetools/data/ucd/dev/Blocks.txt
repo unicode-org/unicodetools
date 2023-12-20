@@ -260,6 +260,7 @@ FFF0..FFFF; Specials
 11280..112AF; Multani
 112B0..112FF; Khudawadi
 11300..1137F; Grantha
+11380..113FF; Tulu-Tigalari
 11400..1147F; Newa
 11480..114DF; Tirhuta
 11580..115FF; Siddham
@@ -294,6 +295,7 @@ FFF0..FFFF; Specials
 13430..1345F; Egyptian Hieroglyph Format Controls
 13460..143FF; Egyptian Hieroglyphs Extended-A
 14400..1467F; Anatolian Hieroglyphs
+16100..1613F; Gurung Khema
 16800..16A3F; Bamum Supplement
 16A40..16A6F; Mro
 16A70..16ACF; Tangsa
