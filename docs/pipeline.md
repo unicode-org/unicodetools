@@ -62,6 +62,9 @@ PR preparation:
 - [ ] UTC decisions — Cite _in extenso_
 - [ ] data-for-new — Set label
 - [ ] pipeline-* — Set label
+- [ ] PR button — Set to DRAFT pull request
+  - unless approved for the upcoming version
+- [ ] PR button — Press
 
 ## Scripts
 
