@@ -91,8 +91,7 @@ public class MakeUnicodeFiles {
             Path sourceBase = Path.of(Settings.Output.GEN_DIR + "UCD/" + Settings.latestVersion);
             Path targetBase =
                     Settings.UnicodeTools.DataDir.UCD.asPath(Settings.LATEST_VERSION_INFO);
-            // Path.of(Settings.SRC_UCD_DIR + Settings.NEXT_VERSION_FOLDER_NAME);
-            OutputInt fileCount = new OutputInt();
+            OutputInt fileCount = new OutputInt(); // for use in forEach, can't be just int.
             Files.walk(sourceBase)
                     .filter(
                             x ->
@@ -109,10 +108,9 @@ public class MakeUnicodeFiles {
                     .forEach(
                             x -> {
                                 Path targetDir = targetBase.resolve(sourceBase.relativize(x));
-                                System.out.println("Moving:\t" + x + "\tto\t" + targetDir);
+                                System.out.println(++fileCount.value + ") Moving:\t" + x + "\tto\t" + targetDir);
                                 try {
                                     Files.move(x, targetDir, StandardCopyOption.REPLACE_EXISTING);
-                                    fileCount.value++;
                                 } catch (IOException e) {
                                     throw new UncheckedIOException(e);
                                 }
