@@ -60,23 +60,22 @@ public class MakeUnicodeFiles {
 
     public static void main(String[] args) throws IOException {
 
-        boolean clean = Arrays.asList(args).contains("-c");
+        boolean cleanAndCopy =
+                Arrays.asList(args).contains("-c"); // clean Bin & copy changed output
 
-        if (clean) {
+        if (cleanAndCopy) {
 
             // Remove the bin file so that changes to the dev directory aren't ignored
             // The index unicode properties (eg Alphabetic.bin) don't need to be removed
             // because they are rebuilt if the source files change
 
             File binFile =
-                    new File(
-                            Settings.Output.GEN_DIR + "BIN",
-                            "UCD_Data" + Settings.latestVersion + ".bin");
+                    new File(Settings.Output.BIN_DIR, "UCD_Data" + Settings.latestVersion + ".bin");
             binFile.delete();
 
-            // remove the old files in the output directory
+            // Remove the old files in the output directory
 
-            Files.walk(Path.of(Settings.Output.GEN_DIR + "UCD"))
+            Files.walk(Path.of(Settings.Output.GEN_UCD_DIR))
                     .sorted(Comparator.reverseOrder())
                     .map(Path::toFile)
                     .forEach(File::delete);
@@ -84,7 +83,7 @@ public class MakeUnicodeFiles {
 
         generateFile();
 
-        if (clean) {
+        if (cleanAndCopy) {
 
             // Copy the important changed files to dev directory
 
@@ -108,7 +107,12 @@ public class MakeUnicodeFiles {
                     .forEach(
                             x -> {
                                 Path targetDir = targetBase.resolve(sourceBase.relativize(x));
-                                System.out.println(++fileCount.value + ") Moving:\t" + x + "\tto\t" + targetDir);
+                                System.out.println(
+                                        ++fileCount.value
+                                                + ") Moving:\t"
+                                                + x
+                                                + "\tto\t"
+                                                + targetDir);
                                 try {
                                     Files.move(x, targetDir, StandardCopyOption.REPLACE_EXISTING);
                                 } catch (IOException e) {
