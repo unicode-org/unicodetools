@@ -87,7 +87,7 @@ public class MakeUnicodeFiles {
 
             // Copy the important changed files to dev directory
 
-            Path sourceBase = Path.of(Settings.Output.GEN_DIR + "UCD/" + Settings.latestVersion);
+            Path sourceBase = Path.of(Settings.Output.GEN_UCD_DIR + Settings.latestVersion);
             Path targetBase =
                     Settings.UnicodeTools.DataDir.UCD.asPath(Settings.LATEST_VERSION_INFO);
             OutputInt fileCount = new OutputInt(); // for use in forEach, can't be just int.
