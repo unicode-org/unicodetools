@@ -58,7 +58,7 @@ Indic scripts only:
 
 ---
 PR preparation:
-- [ ] If a Proposal document — Cite L2 number in the format XXXX
+- [ ] If a Proposal document — Cite L2 number in the format L2/yy-nnn
 - [ ] If for a UTC decision — Cite in the format UTC-\d\d\d-[MC]\d+
 - [ ] data-for-new — Set label
 - [ ] pipeline-* — Set label to **pipeline-provisionally-assigned** or **pipeline-`<version>`**, depending on whether provisional or not.
