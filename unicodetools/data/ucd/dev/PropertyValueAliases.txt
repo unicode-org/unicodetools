@@ -1,5 +1,5 @@
 # PropertyValueAliases-16.0.0.txt
-# Date: 2023-10-19, 23:02:47 GMT
+# Date: 2023-12-29, 11:25:40 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -258,6 +258,7 @@ blk; Ethiopic_Ext                     ; Ethiopic_Extended
 blk; Ethiopic_Ext_A                   ; Ethiopic_Extended_A
 blk; Ethiopic_Ext_B                   ; Ethiopic_Extended_B
 blk; Ethiopic_Sup                     ; Ethiopic_Supplement
+blk; Garay                            ; Garay
 blk; Geometric_Shapes                 ; Geometric_Shapes
 blk; Geometric_Shapes_Ext             ; Geometric_Shapes_Extended
 blk; Georgian                         ; Georgian
@@ -272,6 +273,7 @@ blk; Greek_Ext                        ; Greek_Extended
 blk; Gujarati                         ; Gujarati
 blk; Gunjala_Gondi                    ; Gunjala_Gondi
 blk; Gurmukhi                         ; Gurmukhi
+blk; Gurung_Khema                     ; Gurung_Khema
 blk; Half_And_Full_Forms              ; Halfwidth_And_Fullwidth_Forms
 blk; Half_Marks                       ; Combining_Half_Marks
 blk; Hangul                           ; Hangul_Syllables
@@ -312,6 +314,7 @@ blk; Khmer                            ; Khmer
 blk; Khmer_Symbols                    ; Khmer_Symbols
 blk; Khojki                           ; Khojki
 blk; Khudawadi                        ; Khudawadi
+blk; Kirat_Rai                        ; Kirat_Rai
 blk; Lao                              ; Lao
 blk; Latin_1_Sup                      ; Latin_1_Supplement               ; Latin_1
 blk; Latin_Ext_A                      ; Latin_Extended_A
@@ -382,6 +385,7 @@ blk; Nyiakeng_Puachue_Hmong           ; Nyiakeng_Puachue_Hmong
 blk; OCR                              ; Optical_Character_Recognition
 blk; Ogham                            ; Ogham
 blk; Ol_Chiki                         ; Ol_Chiki
+blk; Ol_Onal                          ; Ol_Onal
 blk; Old_Hungarian                    ; Old_Hungarian
 blk; Old_Italic                       ; Old_Italic
 blk; Old_North_Arabian                ; Old_North_Arabian
@@ -441,6 +445,7 @@ blk; Sutton_SignWriting               ; Sutton_SignWriting
 blk; Syloti_Nagri                     ; Syloti_Nagri
 blk; Symbols_And_Pictographs_Ext_A    ; Symbols_And_Pictographs_Extended_A
 blk; Symbols_For_Legacy_Computing     ; Symbols_For_Legacy_Computing
+blk; Symbols_For_Legacy_Computing_Sup ; Symbols_For_Legacy_Computing_Supplement
 blk; Syriac                           ; Syriac
 blk; Syriac_Sup                       ; Syriac_Supplement
 blk; Tagalog                          ; Tagalog
@@ -467,6 +472,7 @@ blk; Tirhuta                          ; Tirhuta
 blk; Todhri                           ; Todhri
 blk; Toto                             ; Toto
 blk; Transport_And_Map                ; Transport_And_Map_Symbols
+blk; Tulu_Tigalari                    ; Tulu_Tigalari
 blk; UCAS                             ; Unified_Canadian_Aboriginal_Syllabics; Canadian_Syllabics
 blk; UCAS_Ext                         ; Unified_Canadian_Aboriginal_Syllabics_Extended
 blk; UCAS_Ext_A                       ; Unified_Canadian_Aboriginal_Syllabics_Extended_A
@@ -914,6 +920,7 @@ InSC; Number_Joiner                   ; Number_Joiner
 InSC; Other                           ; Other
 InSC; Pure_Killer                     ; Pure_Killer
 InSC; Register_Shifter                ; Register_Shifter
+InSC; Reordering_Killer               ; Reordering_Killer
 InSC; Syllable_Modifier               ; Syllable_Modifier
 InSC; Tone_Letter                     ; Tone_Letter
 InSC; Tone_Mark                       ; Tone_Mark
@@ -1331,6 +1338,7 @@ sc ; Egyp                             ; Egyptian_Hieroglyphs
 sc ; Elba                             ; Elbasan
 sc ; Elym                             ; Elymaic
 sc ; Ethi                             ; Ethiopic
+sc ; Gara                             ; Garay
 sc ; Geor                             ; Georgian
 sc ; Glag                             ; Glagolitic
 sc ; Gong                             ; Gunjala_Gondi
@@ -1339,6 +1347,7 @@ sc ; Goth                             ; Gothic
 sc ; Gran                             ; Grantha
 sc ; Grek                             ; Greek
 sc ; Gujr                             ; Gujarati
+sc ; Gukh                             ; Gurung_Khema
 sc ; Guru                             ; Gurmukhi
 sc ; Hang                             ; Hangul
 sc ; Hani                             ; Han
@@ -1361,6 +1370,7 @@ sc ; Khmr                             ; Khmer
 sc ; Khoj                             ; Khojki
 sc ; Kits                             ; Khitan_Small_Script
 sc ; Knda                             ; Kannada
+sc ; Krai                             ; Kirat_Rai
 sc ; Kthi                             ; Kaithi
 sc ; Lana                             ; Tai_Tham
 sc ; Laoo                             ; Lao
@@ -1397,6 +1407,7 @@ sc ; Nkoo                             ; Nko
 sc ; Nshu                             ; Nushu
 sc ; Ogam                             ; Ogham
 sc ; Olck                             ; Ol_Chiki
+sc ; Onao                             ; Ol_Onal
 sc ; Orkh                             ; Old_Turkic
 sc ; Orya                             ; Oriya
 sc ; Osge                             ; Osage
@@ -1448,6 +1459,7 @@ sc ; Tirh                             ; Tirhuta
 sc ; Tnsa                             ; Tangsa
 sc ; Todr                             ; Todhri
 sc ; Toto                             ; Toto
+sc ; Tutg                             ; Tulu_Tigalari
 sc ; Ugar                             ; Ugaritic
 sc ; Vaii                             ; Vai
 sc ; Vith                             ; Vithkuqi

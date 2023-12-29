@@ -12,10 +12,12 @@
 mvn -B package -am -pl UnicodeJsps -DskipTests=true
 ```
 
-- make a copy of CLDR - lots of ways to do this
+- make a copy of CLDR - lots of ways to do this. `--reference-if-able ~/src/cldr` is another directory on my disk which has a copy of CLDR, to save copying. The CLDR_REF calculation is to make sure you have the same CLDR version as the build.
 
 ```
-git clone --reference-if-able ~/src/cldr https://github.com/unicode-org/cldr.git
+git clone https://github.com/unicode-org/cldr.git     --reference-if-able ~/src/cldr
+CLDR_REF=$(mvn help:evaluate -Dexpression=cldr.version -q -DforceStdout | cut -d- -f3)
+(cd cldr ; git reset --hard ${CLDR_REF})
 mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git -f UnicodeJsps/target/cldr-unicodetools.tgz ./cldr/ ./unicodetools/
 ```
 
@@ -24,7 +26,7 @@ mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git -f UnicodeJsps/target/cld
 - build it
 
 ```
-docker build -t unicode/unicode-jsps .
+docker build -t unicode/unicode-jsps UnicodeJsps/
 ```
 
 - try it
@@ -45,14 +47,14 @@ docker run --rm -p 8080:8080 unicode/unicode-jsps
 - login to docker
 
 ```
-gcloud auth configure-docker \
-    us-central1-docker.pkg.dev
+gcloud auth configure-docker us-central1-docker.pkg.dev
 ```
 
-- build docker image
+- build docker image and run it
 
 ```
-docker build -t us-central1-docker.pkg.dev/goog-unicode-dev/unicode-jsps/unicode-jsps:latest .
+docker build -t us-central1-docker.pkg.dev/goog-unicode-dev/unicode-jsps/unicode-jsps:latest UnicodeJsps/
+docker run --rm -p 8080:8080 us-central1-docker.pkg.dev/goog-unicode-dev/unicode-jsps/unicode-jsps:latest
 ```
 
 - push docker image
