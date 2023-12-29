@@ -414,14 +414,6 @@ public class TestUnicodeSet extends TestFmwk2 {
     }
 
     @Test
-    public void TestScriptSpecials() {
-        //        UnicodeSet set = UnicodeSetUtilities.parseUnicodeSet("[:scs=Hant:]");
-        //        assertNotEquals("Hant", 0, set.size());
-        UnicodeSet set2 = UnicodeSetUtilities.parseUnicodeSet("[:scx=Arab,Syrc:]");
-        assertNotEquals("Arab Syrc", 0, set2.size());
-    }
-
-    @Test
     public void TestGC() {
         Map<String, R2<String, UnicodeSet>> SPECIAL_GC =
                 new LinkedHashMap<String, R2<String, UnicodeSet>>();

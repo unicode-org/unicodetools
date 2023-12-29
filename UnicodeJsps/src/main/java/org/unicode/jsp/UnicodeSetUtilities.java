@@ -150,6 +150,7 @@ public class UnicodeSetUtilities {
         //      return null;
         //    }
 
+        @Override
         public boolean applyPropertyAlias(
                 String propertyName, String propertyValue, UnicodeSet result) {
             boolean status = false;
@@ -201,9 +202,11 @@ public class UnicodeSetUtilities {
                     }
                     ;
                     if (!status) {
-                        try {
-                            status = applyPropertyAlias0(prop, "No", result, !invert);
-                        } catch (Exception e) {
+                        if (prop.isType(UnicodeProperty.BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
+                            try {
+                                status = applyPropertyAlias0(prop, "No", result, !invert);
+                            } catch (Exception e) {
+                            }
                         }
                         ;
                         if (!status) {
@@ -336,6 +339,7 @@ public class UnicodeSetUtilities {
             this.pattern = pattern;
         }
 
+        @Override
         public boolean test(String value) {
             int comp = comparator.compare(pattern, value.toString());
             switch (relation) {
@@ -352,6 +356,7 @@ public class UnicodeSetUtilities {
             }
         }
 
+        @Override
         public PatternMatcher set(String pattern) {
             this.pattern = pattern;
             return this;
