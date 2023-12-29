@@ -13,9 +13,13 @@ package org.unicode.text.UCD;
 import com.ibm.icu.text.UTF16;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.function.Consumer;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.UnicodeDataFile;
@@ -938,11 +942,69 @@ public class GenerateData implements UCD_Types {
         }
 
         Utility.fixDot();
+
+        System.out.println("Writing Part 4");
+        log.println("#");
+        log.println("@Part4 # Canonical closures");
+        log.println("#");
+
+        final Map<String, String> decompositions = new TreeMap();
+        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+            String c = Character.toString(cp);
+            String decomposition = Default.nfd().normalize(cp);
+            if (!decomposition.equals(c)) {
+                decompositions.put(c, decomposition);
+            }
+        }
+        for (String decomposition : decompositions.values()) {
+            final Set<String> candidateCharacters = new TreeSet<>();
+            decomposition
+                    .codePoints()
+                    .forEach(cp -> candidateCharacters.add(Character.toString(cp)));
+            for (Map.Entry<String, String> candidateEntry : decompositions.entrySet()) {
+                if (candidateEntry
+                        .getValue()
+                        .codePoints()
+                        .allMatch(cp -> decomposition.contains(Character.toString(cp)))) {
+                    candidateCharacters.add(candidateEntry.getKey());
+                }
+            }
+            for (int length = 2; length < decomposition.length(); ++length) {
+                forAllStrings(
+                        candidateCharacters,
+                        "",
+                        length,
+                        s -> {
+                            if (!s.equals(decomposition)
+                                    && Default.nfd().normalize(s).equals(decomposition)) {
+                                writeLine(s, log, true);
+                            }
+                        });
+            }
+        }
+
+        Utility.fixDot();
+
         log.println("#");
         log.println("# EOF");
         fc.close();
         // Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
     }
+
+    static void forAllStrings(
+            Collection<String> alphabet,
+            String prefix,
+            int suffixLength,
+            Consumer<String> consumer) {
+        if (suffixLength == 0) {
+            consumer.accept(prefix);
+        } else {
+            for (String next : alphabet) {
+                forAllStrings(alphabet, prefix + next, suffixLength - 1, consumer);
+            }
+        }
+    }
+
     /*
 
     static void handleIdentical() throws IOException {

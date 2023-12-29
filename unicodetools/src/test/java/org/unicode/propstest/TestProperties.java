@@ -221,16 +221,23 @@ public class TestProperties extends TestFmwkMinusMinus {
         UnicodeMap<String> dt = iup.load(UcdProperty.Decomposition_Type);
         UnicodeMap<String> age = iup.load(UcdProperty.Age);
         for (String codepoint : nfcqc.getSet("Yes")) {
-            if (!dt.getValue(codepoint).equals("Canonical") || age.getValue(codepoint).equals("V16_0")) {
+            if (!dt.getValue(codepoint).equals("Canonical")
+                    || age.getValue(codepoint).equals("V16_0")) {
                 continue;
             }
             String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
             String decompositionFirstNFCQC = nfcqc.getValue(decompositionFirst);
             assertEquals(
-                "Pre-16 U+" + getCodeAndName(codepoint) + "(Age=" + age.getValue(codepoint) + ") has NFC_QC=Yes, but its (canonical) Decomposition_Mapping starts with U+"
-                + getCodeAndName(decompositionFirst) + ", which has NFC_QC=" + decompositionFirstNFCQC,
-                "Yes",
-                decompositionFirstNFCQC);
+                    "Pre-16 U+"
+                            + getCodeAndName(codepoint)
+                            + "(Age="
+                            + age.getValue(codepoint)
+                            + ") has NFC_QC=Yes, but its (canonical) Decomposition_Mapping starts with U+"
+                            + getCodeAndName(decompositionFirst)
+                            + ", which has NFC_QC="
+                            + decompositionFirstNFCQC,
+                    "Yes",
+                    decompositionFirstNFCQC);
         }
         for (String codepoint : nfcqc.getSet("Yes")) {
             if (!dt.getValue(codepoint).equals("Canonical")) {
@@ -239,10 +246,14 @@ public class TestProperties extends TestFmwkMinusMinus {
             String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
             String decompositionFirstNFCQC = nfcqc.getValue(decompositionFirst);
             assertEquals(
-                "U+" + getCodeAndName(codepoint) + " has NFC_QC=Yes, but its (canonical) Decomposition_Mapping starts with U+"
-                + getCodeAndName(decompositionFirst) + ", which has NFC_QC=" + decompositionFirstNFCQC,
-                "Yes",
-                decompositionFirstNFCQC);
+                    "U+"
+                            + getCodeAndName(codepoint)
+                            + " has NFC_QC=Yes, but its (canonical) Decomposition_Mapping starts with U+"
+                            + getCodeAndName(decompositionFirst)
+                            + ", which has NFC_QC="
+                            + decompositionFirstNFCQC,
+                    "Yes",
+                    decompositionFirstNFCQC);
         }
     }
 
@@ -258,19 +269,29 @@ public class TestProperties extends TestFmwkMinusMinus {
             String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
             String decompositionFirstNFKCQC = nfkcqc.getValue(decompositionFirst);
             assertEquals(
-                "Pre-16 U+" + getCodeAndName(codepoint) + "(Age=" + age.getValue(codepoint) + ") has NFKC_QC=Yes, but its Decomposition_Mapping starts with U+"
-                + getCodeAndName(decompositionFirst) + ", which has NFKC_QC=" + decompositionFirstNFKCQC,
-                "Yes",
-                decompositionFirstNFKCQC);
+                    "Pre-16 U+"
+                            + getCodeAndName(codepoint)
+                            + "(Age="
+                            + age.getValue(codepoint)
+                            + ") has NFKC_QC=Yes, but its Decomposition_Mapping starts with U+"
+                            + getCodeAndName(decompositionFirst)
+                            + ", which has NFKC_QC="
+                            + decompositionFirstNFKCQC,
+                    "Yes",
+                    decompositionFirstNFKCQC);
         }
         for (String codepoint : nfkcqc.getSet("Yes")) {
             String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
             String decompositionFirstNFKCQC = nfkcqc.getValue(decompositionFirst);
             assertEquals(
-                "U+" + getCodeAndName(codepoint) + " has NFKC_QC=Yes, but its Decomposition_Mapping starts with U+"
-                + getCodeAndName(decompositionFirst) + ", which has NFKC_QC=" + decompositionFirstNFKCQC,
-                "Yes",
-                decompositionFirstNFKCQC);
+                    "U+"
+                            + getCodeAndName(codepoint)
+                            + " has NFKC_QC=Yes, but its Decomposition_Mapping starts with U+"
+                            + getCodeAndName(decompositionFirst)
+                            + ", which has NFKC_QC="
+                            + decompositionFirstNFKCQC,
+                    "Yes",
+                    decompositionFirstNFKCQC);
         }
     }
 
