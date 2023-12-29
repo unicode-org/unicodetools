@@ -880,6 +880,7 @@ Format: kenFile skipValue=Rotated
 #         Anatolian Hieroglyphs:             U+14400..U+1467F
 #         Ideographic Symbols & Tangut:      U+16FE0..U+18AFF
 #         Khitan Small Script & Tangut Sup:  U+18B00..U+18D7F
+#         Tangut Components Supplement:      U+18D80..U+18DFF
 #         Kana Extended-B:                   U+1AFF0..U+1AFFF
 #         Kana Extended-A & Small Kana Ext:  U+1B100..U+1B16F
 #         Nushu:                             U+1B170..U+1B2FF
