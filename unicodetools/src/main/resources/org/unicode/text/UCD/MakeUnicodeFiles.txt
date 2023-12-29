@@ -884,6 +884,7 @@ Format: kenFile skipValue=Rotated
 #         Kana Extended-A & Small Kana Ext:  U+1B100..U+1B16F
 #         Nushu:                             U+1B170..U+1B2FF
 #         Musical Symbols:                   U+1CF00..U+1CFCF
+#         Miscellaneous Symbols Supplement:  U+1CEC0..U+1CEFF
 #         Musical Symbols:                   U+1D000..U+1D1FF
 #         Mayan Numerals:                    U+1D2E0..U+1D2FF
 #         Symbols & Rods:                    U+1D300..U+1D37F
