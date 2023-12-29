@@ -50,6 +50,7 @@
 #         Kana Extended-A & Small Kana Ext:  U+1B100..U+1B16F
 #         Nushu:                             U+1B170..U+1B2FF
 #         Musical Symbols:                   U+1CF00..U+1CFCF
+#         Miscellaneous Symbols Supplement:  U+1CEC0..U+1CEFF
 #         Musical Symbols:                   U+1D000..U+1D1FF
 #         Mayan Numerals:                    U+1D2E0..U+1D2FF
 #         Symbols & Rods:                    U+1D300..U+1D37F
@@ -2189,7 +2190,7 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1BC9F          ; R  # Po         DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1BCA0..1BCA3   ; R  # Cf     [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
 1CEB0..1CEB3   ; R  # So     [4] HORIZONTAL ZIGZAG LINE..BLACK RIGHT TRIANGLE CARET
-1CEC0..1CED0   ; R  # So    [17] HEBE..LEUKOTHEA
+1CEC0..1CEFF   ; U  # So    [17] HEBE..LEUKOTHEA
 1CF00..1CF2D   ; U  # Mn    [46] ZNAMENNY COMBINING MARK GORAZDO NIZKO S KRYZHEM ON LEFT..ZNAMENNY COMBINING MARK KRYZH ON LEFT
 1CF2E..1CF2F   ; U  # Cn     [2] <reserved-1CF2E>..<reserved-1CF2F>
 1CF30..1CF46   ; U  # Mn    [23] ZNAMENNY COMBINING TONAL RANGE MARK MRACHNO..ZNAMENNY PRIZNAK MODIFIER ROG
