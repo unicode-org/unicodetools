@@ -1,5 +1,5 @@
 # PropertyValueAliases-16.0.0.txt
-# Date: 2023-10-25, 11:28:24 GMT
+# Date: 2023-12-29, 11:08:47 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -273,6 +273,7 @@ blk; Greek_Ext                        ; Greek_Extended
 blk; Gujarati                         ; Gujarati
 blk; Gunjala_Gondi                    ; Gunjala_Gondi
 blk; Gurmukhi                         ; Gurmukhi
+blk; Gurung_Khema                     ; Gurung_Khema
 blk; Half_And_Full_Forms              ; Halfwidth_And_Fullwidth_Forms
 blk; Half_Marks                       ; Combining_Half_Marks
 blk; Hangul                           ; Hangul_Syllables
@@ -313,6 +314,7 @@ blk; Khmer                            ; Khmer
 blk; Khmer_Symbols                    ; Khmer_Symbols
 blk; Khojki                           ; Khojki
 blk; Khudawadi                        ; Khudawadi
+blk; Kirat_Rai                        ; Kirat_Rai
 blk; Lao                              ; Lao
 blk; Latin_1_Sup                      ; Latin_1_Supplement               ; Latin_1
 blk; Latin_Ext_A                      ; Latin_Extended_A
@@ -470,6 +472,7 @@ blk; Tirhuta                          ; Tirhuta
 blk; Todhri                           ; Todhri
 blk; Toto                             ; Toto
 blk; Transport_And_Map                ; Transport_And_Map_Symbols
+blk; Tulu_Tigalari                    ; Tulu_Tigalari
 blk; UCAS                             ; Unified_Canadian_Aboriginal_Syllabics; Canadian_Syllabics
 blk; UCAS_Ext                         ; Unified_Canadian_Aboriginal_Syllabics_Extended
 blk; UCAS_Ext_A                       ; Unified_Canadian_Aboriginal_Syllabics_Extended_A
@@ -917,6 +920,7 @@ InSC; Number_Joiner                   ; Number_Joiner
 InSC; Other                           ; Other
 InSC; Pure_Killer                     ; Pure_Killer
 InSC; Register_Shifter                ; Register_Shifter
+InSC; Reordering_Killer               ; Reordering_Killer
 InSC; Syllable_Modifier               ; Syllable_Modifier
 InSC; Tone_Letter                     ; Tone_Letter
 InSC; Tone_Mark                       ; Tone_Mark
@@ -1343,6 +1347,7 @@ sc ; Goth                             ; Gothic
 sc ; Gran                             ; Grantha
 sc ; Grek                             ; Greek
 sc ; Gujr                             ; Gujarati
+sc ; Gukh                             ; Gurung_Khema
 sc ; Guru                             ; Gurmukhi
 sc ; Hang                             ; Hangul
 sc ; Hani                             ; Han
@@ -1365,6 +1370,7 @@ sc ; Khmr                             ; Khmer
 sc ; Khoj                             ; Khojki
 sc ; Kits                             ; Khitan_Small_Script
 sc ; Knda                             ; Kannada
+sc ; Krai                             ; Kirat_Rai
 sc ; Kthi                             ; Kaithi
 sc ; Lana                             ; Tai_Tham
 sc ; Laoo                             ; Lao
@@ -1453,6 +1459,7 @@ sc ; Tirh                             ; Tirhuta
 sc ; Tnsa                             ; Tangsa
 sc ; Todr                             ; Todhri
 sc ; Toto                             ; Toto
+sc ; Tutg                             ; Tulu_Tigalari
 sc ; Ugar                             ; Ugaritic
 sc ; Vaii                             ; Vai
 sc ; Vith                             ; Vithkuqi

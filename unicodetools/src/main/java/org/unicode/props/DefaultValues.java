@@ -250,6 +250,8 @@ public final class DefaultValues {
                 addRangeValueIfAtLeast(lb, 0x1F000, 0x1FFFD, 0x90000, ID);
                 // Unicode 13+: punch a hole
                 addRangeValueIfAtLeast(lb, 0x1FB00, 0x1FBFF, 0xD0000, XX);
+                // Unicode 16+: Supplemental Arrows-C to XX.
+                addRangeValueIfAtLeast(lb, 0x1F800, 0x1F8FF, 0x100000, XX);
 
                 return lb;
             }
