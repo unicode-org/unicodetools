@@ -1,5 +1,5 @@
 # VerticalOrientation-16.0.0.txt
-# Date: 2023-10-19, 22:42:07 GMT
+# Date: 2023-12-29, 10:46:04 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -46,6 +46,7 @@
 #         Anatolian Hieroglyphs:             U+14400..U+1467F
 #         Ideographic Symbols & Tangut:      U+16FE0..U+18AFF
 #         Khitan Small Script & Tangut Sup:  U+18B00..U+18D7F
+#         Tangut Components Supplement:      U+18D80..U+18DFF
 #         Kana Extended-B:                   U+1AFF0..U+1AFFF
 #         Kana Extended-A & Small Kana Ext:  U+1B100..U+1B16F
 #         Nushu:                             U+1B170..U+1B2FF
@@ -2149,7 +2150,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 18CD6..18CFF   ; U  # Cn    [42] <reserved-18CD6>..<reserved-18CFF>
 18D00..18D1C   ; U  # Lo    [29] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D1C
 18D1D..18D7F   ; U  # Cn    [99] <reserved-18D1D>..<reserved-18D7F>
-18D80..18DFF   ; U  # Meow
+18D80..18D81   ; U  # Lo     [2] TANGUT COMPONENT-769..TANGUT COMPONENT-770
+18D82..18DFF   ; U  # Cn   [126] <reserved-18D82>..<reserved-18DFF>
 1AFF0..1AFF3   ; U  # Lm     [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF4          ; U  # Cn         <reserved-1AFF4>
 1AFF5..1AFFB   ; U  # Lm     [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
