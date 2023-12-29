@@ -7,6 +7,7 @@ import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UnicodeSet;
+import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collection;
 import java.util.Comparator;
@@ -20,6 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import org.unicode.props.UnicodeProperty;
 
 /**
  * Class for testing whether strings have allowed combinations of multiple scripts.
@@ -319,6 +321,7 @@ public class ScriptTester {
         public static final Comparator<BitSet> COMPARATOR =
                 new Comparator<BitSet>() {
 
+                    @Override
                     public int compare(BitSet o1, BitSet o2) {
                         int diff = o1.cardinality() - o2.cardinality();
                         if (diff != 0) return diff;
@@ -344,6 +347,7 @@ public class ScriptTester {
 
             UnicodeMap<BitSet> map = new UnicodeMap<BitSet>();
 
+            @Override
             public boolean handleLine(int start, int end, String[] items) {
                 BitSet bitSet = new BitSet(LIMIT);
                 for (String script : SPACES.split(items[1])) {
@@ -429,21 +433,39 @@ public class ScriptTester {
         return result;
     }
 
-    public static String[][] getScriptSpecialsAlternates() {
+    public static String[][] getScriptSpecialsAlternates(UnicodeProperty scriptProp) {
         Collection<BitSet> availableValues = getScriptSpecials().getAvailableValues();
-        String[][] result = new String[availableValues.size()][];
+        List<String[]> result = new ArrayList<>();
         Set<String> names = new TreeSet<String>(); // to alphabetize
 
-        int i = 0;
         for (BitSet value : availableValues) {
             String baseName =
                     ScriptExtensions.getNames(value, UProperty.NameChoice.LONG, ",", names);
             String altName =
                     ScriptExtensions.getNames(value, UProperty.NameChoice.SHORT, ",", names);
             String[] row = {baseName, altName};
-            result[i++] = row;
+            result.add(row);
         }
-        return result;
+
+        // Get the single values, and build alternate values for the property, for isValidValue
+        // of a single script (eg Arab)
+        List<String> values = scriptProp.getAvailableValues();
+        for (String value : values) {
+            List<String> row = new ArrayList<>();
+            row.add(value);
+            for (String alias : scriptProp.getValueAliases(value)) {
+                if (!alias.equals(value)) {
+                    row.add(alias);
+                }
+            }
+            // duplicate it whenever singular, because the tooling expects at least 2 values (ugg)
+            if (row.size() == 1) {
+                row.add(value);
+            }
+            result.add(row.toArray(new String[row.size()]));
+        }
+
+        return result.toArray(new String[result.size()][]);
     }
 
     private ScriptTester(UnicodeMap<BitSet> character_scripts) {
