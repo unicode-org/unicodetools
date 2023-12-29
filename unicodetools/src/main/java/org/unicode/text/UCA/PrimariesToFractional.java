@@ -609,9 +609,9 @@ public final class PrimariesToFractional {
         // and its sort key length (with or without primary compression).
         // For rare and historic characters, we optimize for minimal storage.
 
-        // "Recommended Scripts" (http://www.unicode.org/reports/tr31/#Table_Recommended_Scripts)
+        // "Recommended Scripts" (https://www.unicode.org/reports/tr31/#Table_Recommended_Scripts)
         // are in "widespread modern customary use" but to widely varying degrees.
-        // http://en.wikipedia.org/wiki/List_of_writing_systems shows scripts by number of users.
+        // https://en.wikipedia.org/wiki/List_of_writing_systems shows scripts by number of users.
         // Neither list ranks by usage in computers or on the internet.
 
         // Mark reserved ranges as not compressible, to avoid confusion,
@@ -692,6 +692,8 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.CANADIAN_ABORIGINAL_SCRIPT).newByte();
         // Limited Use Script, avoid lead byte overflow.
         setOptionsForScript(UCD_Types.Vai).newByte();
+        // Limited Use Script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.Adlam).newByte();
         // Hangul uses one lead byte, with two-byte primaries for conjoining Jamo L/V/T.
         setOptionsForScript(UCD_Types.HANGUL_SCRIPT)
                 .wholeByte()

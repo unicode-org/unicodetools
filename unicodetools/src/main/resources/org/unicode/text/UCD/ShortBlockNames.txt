@@ -121,6 +121,7 @@ Greek_Ext	;	Greek_Extended
 Gujarati	;	Gujarati
 Gunjala_Gondi	;	Gunjala_Gondi
 Gurmukhi	;	Gurmukhi
+Gurung_Khema	;	Gurung_Khema
 Half_And_Full_Forms	;	Halfwidth_And_Fullwidth_Forms
 Compat_Jamo	;	Hangul_Compatibility_Jamo
 Jamo	;	Hangul_Jamo
@@ -160,6 +161,7 @@ Khmer	;	Khmer
 Khmer_Symbols	;	Khmer_Symbols
 Khojki	;	Khojki
 Khudawadi	;	Khudawadi
+Kirat_Rai	;	Kirat_Rai
 Lao	;	Lao
 Latin_1_Sup	;	Latin_1_Supplement
 Latin_Ext_A	;	Latin_Extended_A
@@ -228,6 +230,7 @@ Nushu	;	Nushu
 Nyiakeng_Puachue_Hmong	;	Nyiakeng_Puachue_Hmong
 Ogham	;	Ogham
 Ol_Chiki	;	Ol_Chiki
+Ol_Onal	;	Ol_Onal
 Old_Italic	;	Old_Italic
 Old_Hungarian	;	Old_Hungarian
 Old_North_Arabian	;	Old_North_Arabian
@@ -313,6 +316,7 @@ Tifinagh	;	Tifinagh
 Tirhuta	;	Tirhuta
 Todhri	;	Todhri
 Toto    ;   Toto
+Tulu_Tigalari   ;   Tulu_Tigalari
 Transport_And_Map	;	Transport_And_Map_Symbols
 Ugaritic	;	Ugaritic
 UCAS	;	Unified_Canadian_Aboriginal_Syllabics
