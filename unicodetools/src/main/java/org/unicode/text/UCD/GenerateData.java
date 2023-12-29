@@ -949,11 +949,23 @@ public class GenerateData implements UCD_Types {
         log.println("#");
 
         final Map<String, String> decompositions = new TreeMap();
+        final Map<Integer, Set<String>> decomposablesByFirstCodePoint = new TreeMap();
+        final Map<Integer, Set<String>> decomposablesByLastCodePoint = new TreeMap();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             String c = Character.toString(cp);
             String decomposition = Default.nfd().normalize(cp);
             if (!decomposition.equals(c)) {
                 decompositions.put(c, decomposition);
+                if (decomposition.codePointCount(0, decomposition.length()) > 1) {
+                    int first = decomposition.codePointAt(0);
+                    int last = decomposition.codePointBefore(decomposition.length());
+                    decomposablesByFirstCodePoint
+                            .computeIfAbsent(first, key -> new TreeSet<>())
+                            .add(c);
+                    decomposablesByLastCodePoint
+                            .computeIfAbsent(last, key -> new TreeSet<>())
+                            .add(c);
+                }
             }
         }
         for (String decomposition : decompositions.values()) {
@@ -969,7 +981,9 @@ public class GenerateData implements UCD_Types {
                     candidateCharacters.add(candidateEntry.getKey());
                 }
             }
-            for (int length = 2; length < decomposition.length(); ++length) {
+            for (int length = 2;
+                    length < decomposition.codePointCount(0, decomposition.length());
+                    ++length) {
                 forAllStrings(
                         candidateCharacters,
                         "",
@@ -980,6 +994,73 @@ public class GenerateData implements UCD_Types {
                                 writeLine(s, log, true);
                             }
                         });
+            }
+        }
+
+        for (String linkDecomposition : decompositions.values()) {
+            int first = linkDecomposition.codePointAt(0);
+            if (linkDecomposition.length() == UTF16.getCharCount(first)) {
+                continue;
+            }
+            int second = linkDecomposition.codePointAt(UTF16.getCharCount(first));
+            if (decomposablesByLastCodePoint.containsKey(first)
+                    && decomposablesByFirstCodePoint.containsKey(second)) {
+                System.out.println(
+                        Default.ucd().getName(first) + "+" + Default.ucd().getName(second) + "?");
+                for (String firstCandidate : decomposablesByLastCodePoint.get(first)) {
+                    for (String secondCandidate : decomposablesByFirstCodePoint.get(second)) {
+                        String firstDecomposition = Default.nfd().normalize(firstCandidate);
+                        String secondDecomposition = Default.nfd().normalize(secondCandidate);
+                        String decomposition = firstDecomposition + secondDecomposition;
+                        System.out.println(
+                                Default.ucd().getName(firstCandidate)
+                                        + "+"
+                                        + Default.ucd().getName(secondCandidate));
+                        final Set<String> candidateCharacters = new TreeSet<>();
+                        decomposition
+                                .codePoints()
+                                .forEach(cp -> candidateCharacters.add(Character.toString(cp)));
+                        for (Map.Entry<String, String> candidateEntry : decompositions.entrySet()) {
+                            if (candidateEntry
+                                    .getValue()
+                                    .codePoints()
+                                    .allMatch(
+                                            cp -> decomposition.contains(Character.toString(cp)))) {
+                                candidateCharacters.add(candidateEntry.getKey());
+                            }
+                        }
+                        for (int length = 2;
+                                length < decomposition.codePointCount(0, decomposition.length());
+                                ++length) {
+                            forAllStrings(
+                                    candidateCharacters,
+                                    "",
+                                    length,
+                                    s -> {
+                                        if (!s.equals(decomposition)
+                                                && Default.nfd()
+                                                        .normalize(s)
+                                                        .equals(decomposition)) {
+                                            for (int j = 0; j < s.length(); ++j) {
+                                                if (Default.nfd()
+                                                                .normalize(s.substring(0, j))
+                                                                .equals(firstDecomposition)
+                                                        && Default.nfd()
+                                                                .normalize(s.substring(j))
+                                                                .equals(secondDecomposition)) {
+                                                    return;
+                                                }
+                                            }
+                                            writeLine(s, log, true);
+                                            System.out.println(Default.ucd().getName(s));
+                                        }
+                                    });
+                            System.out.println("Done " + length + "-character strings");
+                        }
+                        System.out.println("Done this pair");
+                    }
+                }
+                System.out.println("Done this link");
             }
         }
 
