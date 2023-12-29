@@ -945,13 +945,16 @@ public class GenerateData implements UCD_Types {
 
         System.out.println("Writing Part 4");
         log.println("#");
-        log.println("@Part4 # Canonical closures");
+        log.println("@Part4 # Canonical closures (excluding Hangul)");
         log.println("#");
 
         final Map<String, String> decompositions = new TreeMap();
         final Map<Integer, Set<String>> decomposablesByFirstCodePoint = new TreeMap();
         final Map<Integer, Set<String>> decomposablesByLastCodePoint = new TreeMap();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+            if (cp >= 0xAC00 && cp <= 0xD7A3) {
+                continue;
+            }
             String c = Character.toString(cp);
             String decomposition = Default.nfd().normalize(cp);
             if (!decomposition.equals(c)) {
@@ -997,12 +1000,24 @@ public class GenerateData implements UCD_Types {
             }
         }
 
-        for (String linkDecomposition : decompositions.values()) {
-            int first = linkDecomposition.codePointAt(0);
-            if (linkDecomposition.length() == UTF16.getCharCount(first)) {
+        Set<String> links = new TreeSet<>();
+        for (String decomposition : decompositions.values()) {
+            int first = decomposition.codePointAt(0);
+            if (decomposition.length() == UTF16.getCharCount(first)) {
                 continue;
             }
-            int second = linkDecomposition.codePointAt(UTF16.getCharCount(first));
+            int second;
+            for (int i = UTF16.getCharCount(first);
+                    i < decomposition.length();
+                    first = second, i += UTF16.getCharCount(first)) {
+                second = decomposition.codePointAt(i);
+                links.add(Character.toString(first) + Character.toString(second));
+            }
+        }
+
+        for (String link : links) {
+            int first = link.codePointAt(0);
+            int second = link.codePointBefore(link.length());
             if (decomposablesByLastCodePoint.containsKey(first)
                     && decomposablesByFirstCodePoint.containsKey(second)) {
                 System.out.println(
