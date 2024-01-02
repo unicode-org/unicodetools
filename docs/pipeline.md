@@ -58,8 +58,8 @@ Indic scripts only:
 
 ---
 PR preparation:
-- [ ] If a Proposal document — Cite L2 number in the format L2/yy-nnn
-- [ ] If for a UTC decision — Cite in the format UTC-\d\d\d-[MC]\d+
+- [ ] When for a UTC decision — Cite in the format UTC-\d\d\d-[MC]\d+
+- [ ] Whenever there is a Proposal document — Cite L2 number in the format L2/yy-nnn
 - [ ] data-for-new — Set label
 - [ ] pipeline-* — Set label to **pipeline-provisionally-assigned** or **pipeline-`<version>`**, depending on whether provisional or not.
 - [ ] PR button — Set to DRAFT pull request
@@ -134,6 +134,13 @@ git add unicodetools/src/main/java/org/unicode/text/UCD/UCD_Types.java
 git add unicodetools/data
 git merge --continue
 ```
+
+macchiati (IDE) 
+```
+sync github
+run MakeUnicodeFiles.java -c
+```
+Cf. https://github.com/unicode-org/unicodetools/pull/636
 
 ### Regenerate UCD
 
