@@ -7,13 +7,19 @@ import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.OutputInt;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.io.UncheckedIOException;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -53,7 +59,68 @@ public class MakeUnicodeFiles {
     static boolean DEBUG = false;
 
     public static void main(String[] args) throws IOException {
+
+        boolean cleanAndCopy =
+                Arrays.asList(args).contains("-c"); // clean Bin & copy changed output
+
+        if (cleanAndCopy) {
+
+            // Remove the bin file so that changes to the dev directory aren't ignored
+            // The index unicode properties (eg Alphabetic.bin) don't need to be removed
+            // because they are rebuilt if the source files change
+
+            File binFile =
+                    new File(Settings.Output.BIN_DIR, "UCD_Data" + Settings.latestVersion + ".bin");
+            binFile.delete();
+
+            // Remove the old files in the output directory
+
+            Files.walk(Path.of(Settings.Output.GEN_UCD_DIR))
+                    .sorted(Comparator.reverseOrder())
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+        }
+
         generateFile();
+
+        if (cleanAndCopy) {
+
+            // Copy the important changed files to dev directory
+
+            Path sourceBase = Path.of(Settings.Output.GEN_UCD_DIR + Settings.latestVersion);
+            Path targetBase =
+                    Settings.UnicodeTools.DataDir.UCD.asPath(Settings.LATEST_VERSION_INFO);
+            OutputInt fileCount = new OutputInt(); // for use in forEach, can't be just int.
+            Files.walk(sourceBase)
+                    .filter(
+                            x ->
+                                    !x.toFile().isDirectory()
+                                            && !x.getFileName().toString().startsWith("ZZZ-")
+                                            && !x.getParent()
+                                                    .getFileName()
+                                                    .toString()
+                                                    .equals("cldr")
+                                            && !x.getParent()
+                                                    .getFileName()
+                                                    .toString()
+                                                    .equals("extra"))
+                    .forEach(
+                            x -> {
+                                Path targetDir = targetBase.resolve(sourceBase.relativize(x));
+                                System.out.println(
+                                        ++fileCount.value
+                                                + ") Moving:\t"
+                                                + x
+                                                + "\tto\t"
+                                                + targetDir);
+                                try {
+                                    Files.move(x, targetDir, StandardCopyOption.REPLACE_EXISTING);
+                                } catch (IOException e) {
+                                    throw new UncheckedIOException(e);
+                                }
+                            });
+            System.out.println(fileCount + " file(s) copied to " + targetBase);
+        }
         System.out.println("DONE");
     }
 
