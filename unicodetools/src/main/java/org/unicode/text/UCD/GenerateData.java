@@ -1024,7 +1024,6 @@ public class GenerateData implements UCD_Types {
             int second = link.codePointBefore(link.length());
             if (composablesByLastCodePoint.containsKey(first)
                     && composablesByFirstCodePoint.containsKey(second)) {
-                log.println("# Linking on " + Default.ucd().getName(first) + "+" + Default.ucd().getName(second));
                 System.out.println(
                         Default.ucd().getName(first) + "+" + Default.ucd().getName(second) + "?");
                 for (String firstCandidate : composablesByLastCodePoint.get(first)) {
@@ -1032,7 +1031,6 @@ public class GenerateData implements UCD_Types {
                         String firstDecomposition = Default.nfd().normalize(firstCandidate);
                         String secondDecomposition = Default.nfd().normalize(secondCandidate);
                         String decomposition = firstDecomposition + secondDecomposition;
-                        log.println("# " + Default.ucd().getName(firstDecomposition) + "+" + Default.ucd().getName(secondDecomposition));
                         System.out.println(
                                 Default.ucd().getName(firstCandidate)
                                         + "+"
@@ -1074,10 +1072,6 @@ public class GenerateData implements UCD_Types {
                                                     return;
                                                 }
                                             }
-                                                            s.codePoints().forEach(cp -> { if (Default.nfd()
-                                                        .normalize(cp).contains(link)) {
-                log.println("# Link in " + Default.ucd().getName(cp));
-                                                        }});
                                             writeLine(s, log, true);
                                             System.out.println(Default.ucd().getName(s));
                                         }
