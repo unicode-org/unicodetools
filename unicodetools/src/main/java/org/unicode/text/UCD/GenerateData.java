@@ -967,9 +967,7 @@ public class GenerateData implements UCD_Types {
                     composablesByFirstCodePoint
                             .computeIfAbsent(first, key -> new TreeSet<>())
                             .add(c);
-                    composablesByLastCodePoint
-                            .computeIfAbsent(last, key -> new TreeSet<>())
-                            .add(c);
+                    composablesByLastCodePoint.computeIfAbsent(last, key -> new TreeSet<>()).add(c);
                 }
             }
         }
@@ -1057,11 +1055,13 @@ public class GenerateData implements UCD_Types {
                                     length,
                                     s -> {
                                         if (!s.equals(decomposition)
-                                                && Default.nfd()
-                                                        .normalize(s)
-                                                        .equals(decomposition)
-                                                && s.codePoints().anyMatch(cp -> Default.nfd()
-                                                        .normalize(cp).contains(link))) {
+                                                && Default.nfd().normalize(s).equals(decomposition)
+                                                && s.codePoints()
+                                                        .anyMatch(
+                                                                cp ->
+                                                                        Default.nfd()
+                                                                                .normalize(cp)
+                                                                                .contains(link))) {
                                             for (int j = 0; j < s.length(); ++j) {
                                                 if (Default.nfd()
                                                                 .normalize(s.substring(0, j))
