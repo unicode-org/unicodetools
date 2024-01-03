@@ -948,9 +948,10 @@ public class GenerateData implements UCD_Types {
         log.println("@Part4 # Canonical closures (excluding Hangul)");
         log.println("#");
 
-        final Map<String, String> decompositions = new TreeMap();
-        final Map<Integer, Set<String>> decomposablesByFirstCodePoint = new TreeMap();
-        final Map<Integer, Set<String>> decomposablesByLastCodePoint = new TreeMap();
+        final Map<String, String> decompositions = new TreeMap<>();
+        final Set<String> compositions = new TreeSet<>();
+        final Map<Integer, Set<String>> composablesByFirstCodePoint = new TreeMap<>();
+        final Map<Integer, Set<String>> composablesByLastCodePoint = new TreeMap<>();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             if (cp >= 0xAC00 && cp <= 0xD7A3) {
                 continue;
@@ -959,13 +960,14 @@ public class GenerateData implements UCD_Types {
             String decomposition = Default.nfd().normalize(cp);
             if (!decomposition.equals(c)) {
                 decompositions.put(c, decomposition);
-                if (decomposition.codePointCount(0, decomposition.length()) > 1) {
+                if (Default.nfc().normalize(c).equals(c)) {
+                    compositions.add(decomposition);
                     int first = decomposition.codePointAt(0);
                     int last = decomposition.codePointBefore(decomposition.length());
-                    decomposablesByFirstCodePoint
+                    composablesByFirstCodePoint
                             .computeIfAbsent(first, key -> new TreeSet<>())
                             .add(c);
-                    decomposablesByLastCodePoint
+                    composablesByLastCodePoint
                             .computeIfAbsent(last, key -> new TreeSet<>())
                             .add(c);
                 }
@@ -1000,12 +1002,14 @@ public class GenerateData implements UCD_Types {
             }
         }
 
+        System.out.println("Writing Part 5");
+        log.println("#");
+        log.println("@Part5 # Chained compositions");
+        log.println("#");
+
         Set<String> links = new TreeSet<>();
-        for (String decomposition : decompositions.values()) {
+        for (String decomposition : compositions) {
             int first = decomposition.codePointAt(0);
-            if (decomposition.length() == UTF16.getCharCount(first)) {
-                continue;
-            }
             int second;
             for (int i = UTF16.getCharCount(first);
                     i < decomposition.length();
@@ -1018,15 +1022,17 @@ public class GenerateData implements UCD_Types {
         for (String link : links) {
             int first = link.codePointAt(0);
             int second = link.codePointBefore(link.length());
-            if (decomposablesByLastCodePoint.containsKey(first)
-                    && decomposablesByFirstCodePoint.containsKey(second)) {
+            if (composablesByLastCodePoint.containsKey(first)
+                    && composablesByFirstCodePoint.containsKey(second)) {
+                log.println("# Linking on " + Default.ucd().getName(first) + "+" + Default.ucd().getName(second));
                 System.out.println(
                         Default.ucd().getName(first) + "+" + Default.ucd().getName(second) + "?");
-                for (String firstCandidate : decomposablesByLastCodePoint.get(first)) {
-                    for (String secondCandidate : decomposablesByFirstCodePoint.get(second)) {
+                for (String firstCandidate : composablesByLastCodePoint.get(first)) {
+                    for (String secondCandidate : composablesByFirstCodePoint.get(second)) {
                         String firstDecomposition = Default.nfd().normalize(firstCandidate);
                         String secondDecomposition = Default.nfd().normalize(secondCandidate);
                         String decomposition = firstDecomposition + secondDecomposition;
+                        log.println("# " + Default.ucd().getName(firstDecomposition) + "+" + Default.ucd().getName(secondDecomposition));
                         System.out.println(
                                 Default.ucd().getName(firstCandidate)
                                         + "+"
@@ -1055,7 +1061,9 @@ public class GenerateData implements UCD_Types {
                                         if (!s.equals(decomposition)
                                                 && Default.nfd()
                                                         .normalize(s)
-                                                        .equals(decomposition)) {
+                                                        .equals(decomposition)
+                                                && s.codePoints().anyMatch(cp -> Default.nfd()
+                                                        .normalize(cp).contains(link))) {
                                             for (int j = 0; j < s.length(); ++j) {
                                                 if (Default.nfd()
                                                                 .normalize(s.substring(0, j))
@@ -1066,6 +1074,10 @@ public class GenerateData implements UCD_Types {
                                                     return;
                                                 }
                                             }
+                                                            s.codePoints().forEach(cp -> { if (Default.nfd()
+                                                        .normalize(cp).contains(link)) {
+                log.println("# Link in " + Default.ucd().getName(cp));
+                                                        }});
                                             writeLine(s, log, true);
                                             System.out.println(Default.ucd().getName(s));
                                         }
