@@ -1,5 +1,5 @@
 # NormalizationTest-16.0.0.txt
-# Date: 2024-01-03, 16:23:25 GMT
+# Date: 2024-01-03, 16:36:01 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -19962,7 +19962,7 @@ FB49 05C1;05E9 05BC 05C1;05E9 05BC 05C1;05E9 05BC 05C1;05E9 05BC 05C1; # (שּ◌
 FB2B 05BC;05E9 05BC 05C2;05E9 05BC 05C2;05E9 05BC 05C2;05E9 05BC 05C2; # (שׂ◌ּ; ש◌ּ◌ׂ; ש◌ּ◌ׂ; ש◌ּ◌ׂ; ש◌ּ◌ׂ; ) HEBREW LETTER SHIN WITH SIN DOT, HEBREW POINT DAGESH OR MAPIQ
 FB49 05C2;05E9 05BC 05C2;05E9 05BC 05C2;05E9 05BC 05C2;05E9 05BC 05C2; # (שּ◌ׂ; ש◌ּ◌ׂ; ש◌ּ◌ׂ; ש◌ּ◌ׂ; ש◌ּ◌ׂ; ) HEBREW LETTER SHIN WITH DAGESH, HEBREW POINT SIN DOT
 #
-@Part5 # Chained compositions
+@Part5 # Chained primary composites
 #
 1138B 113C5 113C2;1138E 113C5;1138B 113C2 113C2 113C2;1138E 113C5;1138B 113C2 113C2 113C2; # (𑎎𑏅; 𑎎𑏅; 𑎎𑏅; 𑎎𑏅; 𑎎𑏅; ) TULU-TIGALARI LETTER EE, TULU-TIGALARI VOWEL SIGN AI, TULU-TIGALARI VOWEL SIGN EE
 1138B 113C5 113B8;1138E 113C7;1138B 113C2 113C2 113B8;1138E 113C7;1138B 113C2 113C2 113B8; # (𑎎𑏇; 𑎎𑏇; 𑎎𑏇; 𑎎𑏇; 𑎎𑏇; ) TULU-TIGALARI LETTER EE, TULU-TIGALARI VOWEL SIGN AI, TULU-TIGALARI VOWEL SIGN AA

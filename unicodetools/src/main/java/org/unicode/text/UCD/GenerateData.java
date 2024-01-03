@@ -1002,9 +1002,11 @@ public class GenerateData implements UCD_Types {
 
         System.out.println("Writing Part 5");
         log.println("#");
-        log.println("@Part5 # Chained compositions");
+        log.println("@Part5 # Chained primary composites");
         log.println("#");
 
+        // The set of all sequences of two code points appearing within the
+        // canonical decomposition of a primary composite.
         Set<String> links = new TreeSet<>();
         for (String decomposition : compositions) {
             int first = decomposition.codePointAt(0);
@@ -1020,6 +1022,9 @@ public class GenerateData implements UCD_Types {
         for (String link : links) {
             int first = link.codePointAt(0);
             int second = link.codePointBefore(link.length());
+            // Look primary composites firstCandidate and secondCandidate such
+            // that the concatenation of their canonical decompositions has
+            // the link at the boundary.
             if (composablesByLastCodePoint.containsKey(first)
                     && composablesByFirstCodePoint.containsKey(second)) {
                 System.out.println(
@@ -1046,6 +1051,10 @@ public class GenerateData implements UCD_Types {
                                 candidateCharacters.add(candidateEntry.getKey());
                             }
                         }
+                        // Within the canonical closure of the concatenation of
+                        // firstCandidate and secondCandidate, look for strings
+                        // that cannot be split between those two characters.
+                        // Those are our test cases for Part 5.
                         for (int length = 2;
                                 length < decomposition.codePointCount(0, decomposition.length());
                                 ++length) {
@@ -1055,13 +1064,9 @@ public class GenerateData implements UCD_Types {
                                     length,
                                     s -> {
                                         if (!s.equals(decomposition)
-                                                && Default.nfd().normalize(s).equals(decomposition)
-                                                && s.codePoints()
-                                                        .anyMatch(
-                                                                cp ->
-                                                                        Default.nfd()
-                                                                                .normalize(cp)
-                                                                                .contains(link))) {
+                                                && Default.nfd()
+                                                        .normalize(s)
+                                                        .equals(decomposition)) {
                                             for (int j = 0; j < s.length(); ++j) {
                                                 if (Default.nfd()
                                                                 .normalize(s.substring(0, j))
