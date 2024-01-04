@@ -1022,15 +1022,39 @@ public class GenerateData implements UCD_Types {
         for (String link : links) {
             int first = link.codePointAt(0);
             int second = link.codePointBefore(link.length());
-            // Look primary composites firstCandidate and secondCandidate such
-            // that the concatenation of their canonical decompositions has
-            // the link at the boundary.
+            // Look for primary composites firstCandidate and secondCandidate
+            // such that the concatenation of their canonical decompositions has
+            // the link at the boundary, e.g., for a link YZ, look for cases
+            // like firstDecomposition = XY, secondDecomposition = ZT.
+            // In addition to primary composites, allow one of the candidates to
+            // be a single canonically non-decomposable starter, thus
+            // firstDecomposition = XY, secondDecomposition = Z with ccc(Z)=0 or
+            // firstDecomposition = Y, secondDecomposition = ZT with ccc(Y)=0.
+            // We do not allow for both to be canonically non-decomposable code
+            // points, i.e.,
+            // firstDecomposition = Y, secondDecomposition = Z, since that is
+            // already covered by the earlier parts of NormalizationTest.txt;
+            // nor do we allow non-starters, since an initial nonstarter cannot
+            // do anything, and a final non-starter only exercises the CRA,
+            // which is not what we are looking for in Part 5.
+            if (Default.ucd().getCombiningClass(first) == 0) {
+                composablesByLastCodePoint
+                        .computeIfAbsent(first, key -> new TreeSet<>())
+                        .add(Character.toString(first));
+            }
+            if (Default.ucd().getCombiningClass(second) == 0) {
+                composablesByFirstCodePoint
+                        .computeIfAbsent(second, key -> new TreeSet<>())
+                        .add(Character.toString(second));
+            }
             if (composablesByLastCodePoint.containsKey(first)
                     && composablesByFirstCodePoint.containsKey(second)) {
-                System.out.println(
-                        Default.ucd().getName(first) + "+" + Default.ucd().getName(second) + "?");
                 for (String firstCandidate : composablesByLastCodePoint.get(first)) {
                     for (String secondCandidate : composablesByFirstCodePoint.get(second)) {
+                        if (firstCandidate.equals(Character.toString(first))
+                                && secondCandidate.equals(Character.toString(second))) {
+                            continue;
+                        }
                         String firstDecomposition = Default.nfd().normalize(firstCandidate);
                         String secondDecomposition = Default.nfd().normalize(secondCandidate);
                         String decomposition = firstDecomposition + secondDecomposition;
