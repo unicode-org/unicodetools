@@ -1058,6 +1058,12 @@ public class GenerateData implements UCD_Types {
                         String firstDecomposition = Default.nfd().normalize(firstCandidate);
                         String secondDecomposition = Default.nfd().normalize(secondCandidate);
                         String decomposition = firstDecomposition + secondDecomposition;
+                        String nfc = Default.nfc().normalize(decomposition);
+                        if (nfc.codePointCount(0, nfc.length()) == 1) {
+                            // Already covered in part 4 (canonical closures of
+                            // single code points).
+                            continue;
+                        }
                         System.out.println(
                                 Default.ucd().getName(firstCandidate)
                                         + "+"
