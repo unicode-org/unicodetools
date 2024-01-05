@@ -1039,15 +1039,11 @@ public class GenerateData implements UCD_Types {
             if (primaryCompositesByLastNFDCodePoint.containsKey(first)
                     && primaryCompositesByFirstNFDCodePoint.containsKey(second)) {
                 for (int firstCandidate : primaryCompositesByLastNFDCodePoint.get(first)) {
-                    for (int secondCandidate :
-                            primaryCompositesByFirstNFDCodePoint.get(second)) {/*
-                        if (firstCandidate == first && secondCandidate == second) {
-                            continue;
-                        }*/
+                    for (int secondCandidate : primaryCompositesByFirstNFDCodePoint.get(second)) {
                         String firstDecomposition = Default.nfd().normalize(firstCandidate);
                         String secondDecomposition = Default.nfd().normalize(secondCandidate);
                         String decomposition = firstDecomposition + secondDecomposition;
-                        if (canonicalDecompositions.contains(decomposition)) {
+                        if (canonicalDecompositionsOfSingleCodepoints.contains(decomposition)) {
                             // Already covered in parts 1 (single code points)
                             // and 4 (canonical closures of single code points).
                             continue;
@@ -1142,7 +1138,7 @@ public class GenerateData implements UCD_Types {
     }
 
     private static final ImmutableMap<Integer, String> canonicalDecompositionsByCodepoint;
-    private static final ImmutableSet<String> canonicalDecompositions;
+    private static final ImmutableSet<String> canonicalDecompositionsOfSingleCodepoints;
 
     static {
         ImmutableMap.Builder<Integer, String> builder = ImmutableMap.builder();
@@ -1153,7 +1149,8 @@ public class GenerateData implements UCD_Types {
             }
         }
         canonicalDecompositionsByCodepoint = builder.build();
-        canonicalDecompositions = ImmutableSet.copyOf(canonicalDecompositionsByCodepoint.values());
+        canonicalDecompositionsOfSingleCodepoints =
+                ImmutableSet.copyOf(canonicalDecompositionsByCodepoint.values());
     }
 
     private static void forAllStringsCanonicallyDecomposingTo(
