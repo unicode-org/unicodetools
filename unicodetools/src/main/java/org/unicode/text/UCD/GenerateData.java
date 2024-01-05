@@ -950,6 +950,27 @@ public class GenerateData implements UCD_Types {
         log.println("#");
         log.println("@Part4 # Canonical closures (excluding Hangul)");
         log.println("#");
+        for (var entry : canonicalDecompositionsByCodepoint.entrySet()) {
+            final int cp = entry.getKey();
+            final String decomposition = entry.getValue();
+            if (cp >= 0xAC00 && cp <= 0xD7A3) {
+                continue;
+            }
+            forAllStringsCanonicallyDecomposingTo(
+                    decomposition,
+                    s -> {
+                        // Skip NFD and single code points (NFC or full
+                        // composition exclusions), already covered in Part 1.
+                        if (!s.equals(decomposition) && s.codePointCount(0, s.length()) != 1) {
+                            writeLine(s, log, true);
+                        }
+                    });
+        }
+
+        System.out.println("Writing Part 5");
+        log.println("#");
+        log.println("@Part5 # Chained primary composites");
+        log.println("#");
 
         // Mutable maps because we end up adding some C↦C mappings for
         // convenience below.
@@ -969,26 +990,6 @@ public class GenerateData implements UCD_Types {
                         .add(cp);
             }
         }
-        for (var entry : canonicalDecompositionsByCodepoint.entrySet()) {
-            final int cp = entry.getKey();
-            final String decomposition = entry.getValue();
-            if (cp >= 0xAC00 && cp <= 0xD7A3) {
-                continue;
-            }
-            forAllStringsCanonicallyDecomposingTo(
-                    decomposition,
-                    s -> {
-                        // Skip NFD and NFC, already covered in Part 1.
-                        if (!s.equals(decomposition) && s.codePointCount(0, s.length()) != 1) {
-                            writeLine(s, log, true);
-                        }
-                    });
-        }
-
-        System.out.println("Writing Part 5");
-        log.println("#");
-        log.println("@Part5 # Chained primary composites");
-        log.println("#");
 
         Collection<String> skippedNFCs = new ArrayList<>();
         Set<String> part5NFCs = new TreeSet<>();
@@ -996,7 +997,7 @@ public class GenerateData implements UCD_Types {
         // The set of all sequences of two code points appearing within a
         // canonical decomposition.
         Set<String> links = new TreeSet<>();
-        for (String decomposition : canonicalDecompositions) {
+        for (String decomposition : canonicalDecompositionsOfSingleCodepoints) {
             int first = decomposition.codePointAt(0);
             int second;
             for (int i = UTF16.getCharCount(first);
@@ -1090,7 +1091,7 @@ public class GenerateData implements UCD_Types {
                                         // Since we give the NFC of all test
                                         // cases and instruct implementers to
                                         // run all normalizations on that
-                                        // column, we can  skip this one.
+                                        // column, we can skip this one.
                                         // But in the spirit of “Beware of bugs
                                         // in the above code; I have only proved
                                         // it correct, not tried it.” (Knuth
