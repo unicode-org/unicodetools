@@ -10,6 +10,8 @@
  */
 package org.unicode.text.UCD;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.text.UTF16;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -949,56 +951,38 @@ public class GenerateData implements UCD_Types {
         log.println("@Part4 # Canonical closures (excluding Hangul)");
         log.println("#");
 
-        final Map<String, String> decompositions = new TreeMap<>();
-        final Set<String> compositions = new TreeSet<>();
-        final Map<Integer, Set<String>> composablesByFirstCodePoint = new TreeMap<>();
-        final Map<Integer, Set<String>> composablesByLastCodePoint = new TreeMap<>();
-        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+        // Mutable maps because we end up adding some C↦C mappings for
+        // convenience below.
+        final Map<Integer, Set<Integer>> primaryCompositesByFirstNFDCodePoint = new TreeMap<>();
+        final Map<Integer, Set<Integer>> primaryCompositesByLastNFDCodePoint = new TreeMap<>();
+        for (var entry : canonicalDecompositionsByCodepoint.entrySet()) {
+            final int cp = entry.getKey();
+            final String decomposition = entry.getValue();
+            if (Default.nfc().normalize(cp).equals(Character.toString(cp))) {
+                int first = decomposition.codePointAt(0);
+                int last = decomposition.codePointBefore(decomposition.length());
+                primaryCompositesByFirstNFDCodePoint
+                        .computeIfAbsent(first, key -> new TreeSet<>())
+                        .add(cp);
+                primaryCompositesByLastNFDCodePoint
+                        .computeIfAbsent(last, key -> new TreeSet<>())
+                        .add(cp);
+            }
+        }
+        for (var entry : canonicalDecompositionsByCodepoint.entrySet()) {
+            final int cp = entry.getKey();
+            final String decomposition = entry.getValue();
             if (cp >= 0xAC00 && cp <= 0xD7A3) {
                 continue;
             }
-            String c = Character.toString(cp);
-            String decomposition = Default.nfd().normalize(cp);
-            if (!decomposition.equals(c)) {
-                decompositions.put(c, decomposition);
-                if (Default.nfc().normalize(c).equals(c)) {
-                    compositions.add(decomposition);
-                    int first = decomposition.codePointAt(0);
-                    int last = decomposition.codePointBefore(decomposition.length());
-                    composablesByFirstCodePoint
-                            .computeIfAbsent(first, key -> new TreeSet<>())
-                            .add(c);
-                    composablesByLastCodePoint.computeIfAbsent(last, key -> new TreeSet<>()).add(c);
-                }
-            }
-        }
-        for (String decomposition : decompositions.values()) {
-            final Set<String> candidateCharacters = new TreeSet<>();
-            decomposition
-                    .codePoints()
-                    .forEach(cp -> candidateCharacters.add(Character.toString(cp)));
-            for (Map.Entry<String, String> candidateEntry : decompositions.entrySet()) {
-                if (candidateEntry
-                        .getValue()
-                        .codePoints()
-                        .allMatch(cp -> decomposition.contains(Character.toString(cp)))) {
-                    candidateCharacters.add(candidateEntry.getKey());
-                }
-            }
-            for (int length = 2;
-                    length < decomposition.codePointCount(0, decomposition.length());
-                    ++length) {
-                forAllStrings(
-                        candidateCharacters,
-                        "",
-                        length,
-                        s -> {
-                            if (!s.equals(decomposition)
-                                    && Default.nfd().normalize(s).equals(decomposition)) {
-                                writeLine(s, log, true);
-                            }
-                        });
-            }
+            forAllStringsCanonicallyDecomposingTo(
+                    decomposition,
+                    s -> {
+                        // Skip NFD and NFC, already covered in Part 1.
+                        if (!s.equals(decomposition) && s.codePointCount(0, s.length()) != 1) {
+                            writeLine(s, log, true);
+                        }
+                    });
         }
 
         System.out.println("Writing Part 5");
@@ -1009,10 +993,10 @@ public class GenerateData implements UCD_Types {
         Collection<String> skippedNFCs = new ArrayList<>();
         Set<String> part5NFCs = new TreeSet<>();
 
-        // The set of all sequences of two code points appearing within the
-        // canonical decomposition of a primary composite.
+        // The set of all sequences of two code points appearing within a
+        // canonical decomposition.
         Set<String> links = new TreeSet<>();
-        for (String decomposition : compositions) {
+        for (String decomposition : canonicalDecompositions) {
             int first = decomposition.codePointAt(0);
             int second;
             for (int i = UTF16.getCharCount(first);
@@ -1030,130 +1014,112 @@ public class GenerateData implements UCD_Types {
             // such that the concatenation of their canonical decompositions has
             // the link at the boundary, e.g., for a link YZ, look for cases
             // like firstDecomposition = XY, secondDecomposition = ZT.
-            // In addition to primary composites, allow one of the candidates to
-            // be a single canonically non-decomposable starter, thus
+            // In addition to primary composites, allow the candidates to
+            // be a single canonically non-decomposable starters, thus
             // firstDecomposition = XY, secondDecomposition = Z with ccc(Z)=0 or
             // firstDecomposition = Y, secondDecomposition = ZT with ccc(Y)=0.
-            // We do not allow for both to be canonically non-decomposable code
-            // points, i.e.,
-            // firstDecomposition = Y, secondDecomposition = Z, since that is
-            // already covered by the earlier parts of NormalizationTest.txt;
-            // nor do we allow non-starters, since an initial nonstarter cannot
+            // We do not allow non-starters, since an initial nonstarter cannot
             // do anything, and a final non-starter only exercises the CRA,
             // which is not what we are looking for in Part 5.
+
+            // Note that if both the first and second candidates are
+            // canonically non-decomposable starters, any linking code point
+            // will cover the whole string, meaning this is already covered
+            // in Parts 1 and 4, so we do not emit any such test cases.
             if (Default.ucd().getCombiningClass(first) == 0) {
-                composablesByLastCodePoint
+                primaryCompositesByLastNFDCodePoint
                         .computeIfAbsent(first, key -> new TreeSet<>())
-                        .add(Character.toString(first));
+                        .add(first);
             }
             if (Default.ucd().getCombiningClass(second) == 0) {
-                composablesByFirstCodePoint
+                primaryCompositesByFirstNFDCodePoint
                         .computeIfAbsent(second, key -> new TreeSet<>())
-                        .add(Character.toString(second));
+                        .add(second);
             }
-            if (composablesByLastCodePoint.containsKey(first)
-                    && composablesByFirstCodePoint.containsKey(second)) {
-                for (String firstCandidate : composablesByLastCodePoint.get(first)) {
-                    for (String secondCandidate : composablesByFirstCodePoint.get(second)) {
-                        if (firstCandidate.equals(Character.toString(first))
-                                && secondCandidate.equals(Character.toString(second))) {
+            if (primaryCompositesByLastNFDCodePoint.containsKey(first)
+                    && primaryCompositesByFirstNFDCodePoint.containsKey(second)) {
+                for (int firstCandidate : primaryCompositesByLastNFDCodePoint.get(first)) {
+                    for (int secondCandidate :
+                            primaryCompositesByFirstNFDCodePoint.get(second)) {/*
+                        if (firstCandidate == first && secondCandidate == second) {
                             continue;
-                        }
+                        }*/
                         String firstDecomposition = Default.nfd().normalize(firstCandidate);
                         String secondDecomposition = Default.nfd().normalize(secondCandidate);
                         String decomposition = firstDecomposition + secondDecomposition;
-                        String nfc = Default.nfc().normalize(decomposition);
-                        if (nfc.codePointCount(0, nfc.length()) == 1) {
-                            // Already covered in part 4 (canonical closures of
-                            // single code points).
+                        if (canonicalDecompositions.contains(decomposition)) {
+                            // Already covered in parts 1 (single code points)
+                            // and 4 (canonical closures of single code points).
                             continue;
                         }
                         System.out.println(
                                 Default.ucd().getName(firstCandidate)
                                         + "+"
                                         + Default.ucd().getName(secondCandidate));
-                        final Set<String> candidateCharacters = new TreeSet<>();
-                        decomposition
-                                .codePoints()
-                                .forEach(cp -> candidateCharacters.add(Character.toString(cp)));
-                        for (Map.Entry<String, String> candidateEntry : decompositions.entrySet()) {
-                            if (candidateEntry
-                                    .getValue()
-                                    .codePoints()
-                                    .allMatch(
-                                            cp -> decomposition.contains(Character.toString(cp)))) {
-                                candidateCharacters.add(candidateEntry.getKey());
-                            }
-                        }
                         // Within the canonical closure of the concatenation of
                         // firstCandidate and secondCandidate, look for strings
                         // that cannot be split between those two characters.
                         // Those are our test cases for Part 5.
-                        for (int length = 2;
-                                length < decomposition.codePointCount(0, decomposition.length());
-                                ++length) {
-                            forAllStrings(
-                                    candidateCharacters,
-                                    "",
-                                    length,
-                                    s -> {
-                                        if (!s.equals(decomposition)
+                        String nfc = Default.nfc().normalize(decomposition);
+                        forAllStringsCanonicallyDecomposingTo(
+                                decomposition,
+                                s -> {
+                                    for (int j = 0; j < s.length(); ++j) {
+                                        if (Default.nfd()
+                                                        .normalize(s.substring(0, j))
+                                                        .equals(firstDecomposition)
                                                 && Default.nfd()
-                                                        .normalize(s)
-                                                        .equals(decomposition)) {
-                                            if (s.equals(nfc)) {
-                                                // If the NFC of first + second includes a link
-                                                // between first and second, thus
-                                                // NFC(first + second) = f′ + l + s′,
-                                                // with f′ a prefix of first and s′ suffix of
-                                                // second, f′ must be empty (otherwise the NFC would
-                                                // start with the longer first), so we should see
-                                                // this canonical equivalence class again for the
-                                                // link between l and s′.
-                                                // Since we give the NFC of all test cases, we can
-                                                // skip this one.
-                                                // But in the spirit of “Beware of bugs in the above
-                                                // code; I have only proved it correct, not tried
-                                                // it.” (Knuth 1977), let us check those statements.
-                                                String linkDecomposition =
-                                                        Default.nfd().normalize(nfc.codePointAt(0));
-                                                if (!linkDecomposition.startsWith(
-                                                        firstDecomposition)) {
-                                                    throw new AssertionError(
-                                                            "The first code point of NFC("
-                                                                    + Default.ucd()
-                                                                            .getName(
-                                                                                    firstDecomposition)
-                                                                    + " + "
-                                                                    + Default.ucd()
-                                                                            .getName(
-                                                                                    secondDecomposition)
-                                                                    + ") does not cover the first part");
-                                                }
-                                                skippedNFCs.add(nfc);
-                                                return;
-                                            }
-                                            for (int j = 0; j < s.length(); ++j) {
-                                                if (Default.nfd()
-                                                                .normalize(s.substring(0, j))
-                                                                .equals(firstDecomposition)
-                                                        && Default.nfd()
-                                                                .normalize(s.substring(j))
-                                                                .equals(secondDecomposition)) {
-                                                    return;
-                                                }
-                                            }
-                                            part5NFCs.add(nfc);
-                                            writeLine(s, log, true);
-                                            System.out.println(Default.ucd().getName(s));
+                                                        .normalize(s.substring(j))
+                                                        .equals(secondDecomposition)) {
+                                            // The string splits into parts
+                                            // equivalent to firstCandidate and
+                                            // secondCandidate, i.e., it has no
+                                            // link.
+                                            return;
                                         }
-                                    });
-                            System.out.println("Done " + length + "-character strings");
-                        }
-                        System.out.println("Done this pair");
+                                    }
+                                    if (s.equals(nfc)) {
+                                        // If the NFC of
+                                        // firstCandidate + secondCandidate has
+                                        // a link, thus
+                                        // NFC(firstCandidate + secondCandidate)
+                                        //                        = f′ + l + s′,
+                                        // with f′ prefix of firstCandidate and
+                                        // s′ suffix of secondCandidate, f′ must
+                                        // be empty (otherwise the NFC would
+                                        // start with the longer first), so we
+                                        // should see this canonical equivalence
+                                        // class again for the link between l
+                                        // and s′.
+                                        // Since we give the NFC of all test
+                                        // cases and instruct implementers to
+                                        // run all normalizations on that
+                                        // column, we can  skip this one.
+                                        // But in the spirit of “Beware of bugs
+                                        // in the above code; I have only proved
+                                        // it correct, not tried it.” (Knuth
+                                        // 1977), let us check those statements.
+                                        String linkDecomposition =
+                                                Default.nfd().normalize(nfc.codePointAt(0));
+                                        if (!linkDecomposition.startsWith(firstDecomposition)) {
+                                            throw new AssertionError(
+                                                    "The first code point of NFC("
+                                                            + Default.ucd()
+                                                                    .getName(firstDecomposition)
+                                                            + " + "
+                                                            + Default.ucd()
+                                                                    .getName(secondDecomposition)
+                                                            + ") does not cover the first part");
+                                        }
+                                        skippedNFCs.add(nfc);
+                                        return;
+                                    }
+                                    part5NFCs.add(nfc);
+                                    writeLine(s, log, true);
+                                    System.out.println(Default.ucd().getName(s));
+                                });
                     }
                 }
-                System.out.println("Done this link");
             }
         }
 
@@ -1175,16 +1141,62 @@ public class GenerateData implements UCD_Types {
         // Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
     }
 
+    private static final ImmutableMap<Integer, String> canonicalDecompositionsByCodepoint;
+    private static final ImmutableSet<String> canonicalDecompositions;
+
+    static {
+        ImmutableMap.Builder<Integer, String> builder = ImmutableMap.builder();
+        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+            String decomposition = Default.nfd().normalize(cp);
+            if (!decomposition.equals(Character.toString(cp))) {
+                builder.put(cp, decomposition);
+            }
+        }
+        canonicalDecompositionsByCodepoint = builder.build();
+        canonicalDecompositions = ImmutableSet.copyOf(canonicalDecompositionsByCodepoint.values());
+    }
+
+    private static void forAllStringsCanonicallyDecomposingTo(
+            String decomposition, Consumer<String> consumer) {
+        final Set<Integer> candidateCharacters = new TreeSet<>();
+        decomposition.codePoints().forEach(cp -> candidateCharacters.add(cp));
+        for (var entry : canonicalDecompositionsByCodepoint.entrySet()) {
+            int cp = entry.getKey();
+            String nfd = entry.getValue();
+            if (nfd.codePoints()
+                    .allMatch(
+                            candidateDecompositionCodePoint ->
+                                    decomposition.contains(
+                                            Character.toString(candidateDecompositionCodePoint)))) {
+                candidateCharacters.add(cp);
+            }
+        }
+        for (int length = 1;
+                length < decomposition.codePointCount(0, decomposition.length());
+                ++length) {
+            forAllStrings(
+                    candidateCharacters,
+                    "",
+                    length,
+                    s -> {
+                        if (Default.nfd().normalize(s).equals(decomposition)) {
+                            consumer.accept(s);
+                        }
+                    });
+        }
+    }
+
     static void forAllStrings(
-            Collection<String> alphabet,
+            Collection<Integer> repertoire,
             String prefix,
             int suffixLength,
             Consumer<String> consumer) {
         if (suffixLength == 0) {
             consumer.accept(prefix);
         } else {
-            for (String next : alphabet) {
-                forAllStrings(alphabet, prefix + next, suffixLength - 1, consumer);
+            for (int next : repertoire) {
+                forAllStrings(
+                        repertoire, prefix + Character.toString(next), suffixLength - 1, consumer);
             }
         }
     }
