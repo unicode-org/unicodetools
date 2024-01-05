@@ -13,6 +13,7 @@ package org.unicode.text.UCD;
 import com.ibm.icu.text.UTF16;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
@@ -1005,6 +1006,9 @@ public class GenerateData implements UCD_Types {
         log.println("@Part5 # Chained primary composites");
         log.println("#");
 
+        Collection<String> skippedNFCs = new ArrayList<>();
+        Set<String> part5NFCs = new TreeSet<>();
+
         // The set of all sequences of two code points appearing within the
         // canonical decomposition of a primary composite.
         Set<String> links = new TreeSet<>();
@@ -1097,6 +1101,38 @@ public class GenerateData implements UCD_Types {
                                                 && Default.nfd()
                                                         .normalize(s)
                                                         .equals(decomposition)) {
+                                            if (s.equals(nfc)) {
+                                                // If the NFC of first + second includes a link
+                                                // between first and second, thus
+                                                // NFC(first + second) = f′ + l + s′,
+                                                // with f′ a prefix of first and s′ suffix of
+                                                // second, f′ must be empty (otherwise the NFC would
+                                                // start with the longer first), so we should see
+                                                // this canonical equivalence class again for the
+                                                // link between l and s′.
+                                                // Since we give the NFC of all test cases, we can
+                                                // skip this one.
+                                                // But in the spirit of “Beware of bugs in the above
+                                                // code; I have only proved it correct, not tried
+                                                // it.” (Knuth 1977), let us check those statements.
+                                                String linkDecomposition =
+                                                        Default.nfd().normalize(nfc.codePointAt(0));
+                                                if (!linkDecomposition.startsWith(
+                                                        firstDecomposition)) {
+                                                    throw new AssertionError(
+                                                            "The first code point of NFC("
+                                                                    + Default.ucd()
+                                                                            .getName(
+                                                                                    firstDecomposition)
+                                                                    + " + "
+                                                                    + Default.ucd()
+                                                                            .getName(
+                                                                                    secondDecomposition)
+                                                                    + ") does not cover the first part");
+                                                }
+                                                skippedNFCs.add(nfc);
+                                                return;
+                                            }
                                             for (int j = 0; j < s.length(); ++j) {
                                                 if (Default.nfd()
                                                                 .normalize(s.substring(0, j))
@@ -1107,6 +1143,7 @@ public class GenerateData implements UCD_Types {
                                                     return;
                                                 }
                                             }
+                                            part5NFCs.add(nfc);
                                             writeLine(s, log, true);
                                             System.out.println(Default.ucd().getName(s));
                                         }
@@ -1117,6 +1154,16 @@ public class GenerateData implements UCD_Types {
                     }
                 }
                 System.out.println("Done this link");
+            }
+        }
+
+        for (String nfc : skippedNFCs) {
+            if (!part5NFCs.contains(nfc)) {
+                throw new AssertionError(
+                        "Candidate Part 5 test case "
+                                + Default.ucd().getName(nfc)
+                                + " was suppressed but did not appear as the NFC of another test"
+                                + " case in Part 5.");
             }
         }
 
