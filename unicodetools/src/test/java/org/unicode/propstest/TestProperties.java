@@ -1,5 +1,7 @@
 package org.unicode.propstest;
 
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
@@ -21,6 +23,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
@@ -37,6 +40,8 @@ import org.unicode.props.UcdPropertyValues.Line_Break_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.ValueCardinality;
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.Normalizer;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
@@ -212,6 +217,84 @@ public class TestProperties extends TestFmwkMinusMinus {
                             + ".."
                             + nameMap.get(it.codepointEnd));
         }
+    }
+
+    @Test
+    public void TestNFCQuickCheck() {
+        UnicodeMap<String> nfcqc = iup.load(UcdProperty.NFC_Quick_Check);
+        String normalizationTest =
+                org.unicode.text.utility.Utility.getMostRecentUnicodeDataFile(
+                        "NormalizationTest", GenerateEnums.ENUM_VERSION, true, false);
+        for (String line : FileUtilities.in("", normalizationTest)) {
+            line = line.trim();
+            if (line.startsWith("#") || line.startsWith("@Part")) {
+                continue;
+            }
+            String[] parts = Arrays.copyOfRange(line.split(";"), 0, 5);
+            for (String part : parts) {
+                checkQuickCheck(
+                        Default.nfc(), nfcqc, org.unicode.text.utility.Utility.fromHex(part));
+            }
+        }
+    }
+
+    @Test
+    public void TestNFKCQuickCheck() {
+        UnicodeMap<String> nfkcqc = iup.load(UcdProperty.NFKC_Quick_Check);
+        String normalizationTest =
+                org.unicode.text.utility.Utility.getMostRecentUnicodeDataFile(
+                        "NormalizationTest", GenerateEnums.ENUM_VERSION, true, false);
+        for (String line : FileUtilities.in("", normalizationTest)) {
+            line = line.trim();
+            if (line.startsWith("#") || line.startsWith("@Part")) {
+                continue;
+            }
+            String[] parts = Arrays.copyOfRange(line.split(";"), 0, 5);
+            for (String part : parts) {
+                checkQuickCheck(
+                        Default.nfkc(), nfkcqc, org.unicode.text.utility.Utility.fromHex(part));
+            }
+        }
+    }
+
+    private void checkQuickCheck(
+            Normalizer normalizer, UnicodeMap<String> isAllowed, String testCase) {
+        if (testCase.equals(normalizer.normalize(testCase))) {
+            assertNotEquals(
+                    normalizer.getName()
+                            + " quickCheck returns NO for normalized string "
+                            + Default.ucd().getName(testCase),
+                    quickCheck(isAllowed, testCase),
+                    NO);
+        } else {
+            assertNotEquals(
+                    normalizer.getName()
+                            + " quickCheck returns YES for non-normalized string "
+                            + Default.ucd().getName(testCase),
+                    quickCheck(isAllowed, testCase),
+                    YES);
+        }
+    }
+
+    private static final int NO = 0, YES = 1, MAYBE = -1;
+
+    // From UAX #15.
+    private static int quickCheck(UnicodeMap<String> isAllowed, String source) {
+        short lastCanonicalClass = 0;
+        int result = YES;
+        for (int i = 0; i < source.length(); ++i) {
+            int ch = source.codePointAt(i);
+            if (Character.isSupplementaryCodePoint(ch)) ++i;
+            short canonicalClass = Default.ucd().getCombiningClass(ch);
+            if (lastCanonicalClass > canonicalClass && canonicalClass != 0) {
+                return NO;
+            }
+            String check = isAllowed.getValue(ch);
+            if (check.toUpperCase().equals("NO")) return NO;
+            if (check.toUpperCase().equals("MAYBE")) result = MAYBE;
+            lastCanonicalClass = canonicalClass;
+        }
+        return result;
     }
 
     @Test

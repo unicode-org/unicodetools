@@ -1233,9 +1233,9 @@ public class GenerateData implements UCD_Types {
         final String dc = Default.nfd().normalize(c);
         final String dkc = Default.nfd().normalize(kc);
         if (!dc.equals(d) || !dkc.equals(kd)) {
-            System.out.println("Danger Will Robinson!");
             Normalizer.SHOW_PROGRESS = true;
             d = Default.nfd().normalize(cc);
+            throw new AssertionError("Danger Will Robinson! " + Default.ucd().getName(cc));
         }
 
         // printout
