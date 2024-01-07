@@ -219,26 +219,16 @@ public class TestProperties extends TestFmwkMinusMinus {
 
     @Test
     public void TestNFCQuickCheck() {
-        UnicodeMap<String> nfcqc = iup.load(UcdProperty.NFC_Quick_Check);
-        String normalizationTest =
-                org.unicode.text.utility.Utility.getMostRecentUnicodeDataFile(
-                        "NormalizationTest", GenerateEnums.ENUM_VERSION, true, false);
-        for (String line : FileUtilities.in("", normalizationTest)) {
-            line = line.trim();
-            if (line.startsWith("#") || line.startsWith("@Part")) {
-                continue;
-            }
-            String[] parts = Arrays.copyOfRange(line.split(";"), 0, 5);
-            for (String part : parts) {
-                checkQuickCheck(
-                        Default.nfc(), nfcqc, org.unicode.text.utility.Utility.fromHex(part));
-            }
-        }
+        checkQuickCheckOnNormalizationTest(Default.nfc(), iup.load(UcdProperty.NFC_Quick_Check));
     }
 
     @Test
     public void TestNFKCQuickCheck() {
-        UnicodeMap<String> nfkcqc = iup.load(UcdProperty.NFKC_Quick_Check);
+        checkQuickCheckOnNormalizationTest(Default.nfkc(), iup.load(UcdProperty.NFKC_Quick_Check));
+    }
+
+    private void checkQuickCheckOnNormalizationTest(
+            Normalizer normalizer, UnicodeMap<String> isAllowed) {
         String normalizationTest =
                 org.unicode.text.utility.Utility.getMostRecentUnicodeDataFile(
                         "NormalizationTest", GenerateEnums.ENUM_VERSION, true, false);
@@ -250,7 +240,7 @@ public class TestProperties extends TestFmwkMinusMinus {
             String[] parts = Arrays.copyOfRange(line.split(";"), 0, 5);
             for (String part : parts) {
                 checkQuickCheck(
-                        Default.nfkc(), nfkcqc, org.unicode.text.utility.Utility.fromHex(part));
+                        normalizer, isAllowed, org.unicode.text.utility.Utility.fromHex(part));
             }
         }
     }
