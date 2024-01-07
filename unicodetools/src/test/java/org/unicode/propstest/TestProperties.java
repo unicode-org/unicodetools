@@ -1,7 +1,5 @@
 package org.unicode.propstest;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
