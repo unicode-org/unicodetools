@@ -232,35 +232,49 @@ public class TestProperties extends TestFmwkMinusMinus {
         String normalizationTest =
                 org.unicode.text.utility.Utility.getMostRecentUnicodeDataFile(
                         "NormalizationTest", GenerateEnums.ENUM_VERSION, true, false);
+        String partLine = null;
         for (String line : FileUtilities.in("", normalizationTest)) {
             line = line.trim();
-            if (line.startsWith("#") || line.startsWith("@Part")) {
+            if (line.startsWith("#")) {
+                continue;
+            }
+            if (line.startsWith("@Part")) {
+                partLine = line;
                 continue;
             }
             String[] parts = Arrays.copyOfRange(line.split(";"), 0, 5);
             for (String part : parts) {
                 checkQuickCheck(
-                        normalizer, isAllowed, org.unicode.text.utility.Utility.fromHex(part));
+                        normalizer,
+                        isAllowed,
+                        org.unicode.text.utility.Utility.fromHex(part),
+                        partLine);
             }
         }
     }
 
     private void checkQuickCheck(
-            Normalizer normalizer, UnicodeMap<String> isAllowed, String testCase) {
+            Normalizer normalizer, UnicodeMap<String> isAllowed, String testCase, String context) {
         if (testCase.equals(normalizer.normalize(testCase))) {
-            assertNotEquals(
-                    normalizer.getName()
-                            + " quickCheck returns NO for normalized string "
-                            + Default.ucd().getName(testCase),
-                    quickCheck(isAllowed, testCase),
-                    NO);
+            if (quickCheck(isAllowed, testCase) == NO) {
+                errln(
+                        normalizer.getName()
+                                + " quickCheck returns NO for normalized string "
+                                + Default.ucd().getName(testCase)
+                                + " ("
+                                + context
+                                + ")");
+            }
         } else {
-            assertNotEquals(
-                    normalizer.getName()
-                            + " quickCheck returns YES for non-normalized string "
-                            + Default.ucd().getName(testCase),
-                    quickCheck(isAllowed, testCase),
-                    YES);
+            if (quickCheck(isAllowed, testCase) == YES) {
+                errln(
+                        normalizer.getName()
+                                + " quickCheck returns YES for non-normalized string "
+                                + Default.ucd().getName(testCase)
+                                + " ("
+                                + context
+                                + ")");
+            }
         }
     }
 
@@ -290,41 +304,21 @@ public class TestProperties extends TestFmwkMinusMinus {
         UnicodeMap<String> nfcqc = iup.load(UcdProperty.NFC_Quick_Check);
         UnicodeMap<String> dm = iup.load(UcdProperty.Decomposition_Mapping);
         UnicodeMap<String> dt = iup.load(UcdProperty.Decomposition_Type);
-        UnicodeMap<String> age = iup.load(UcdProperty.Age);
-        for (String codepoint : nfcqc.getSet("Yes")) {
-            if (!dt.getValue(codepoint).equals("Canonical")
-                    || age.getValue(codepoint).equals("V16_0")) {
-                continue;
-            }
-            String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
-            String decompositionFirstNFCQC = nfcqc.getValue(decompositionFirst);
-            assertEquals(
-                    "Pre-16 U+"
-                            + getCodeAndName(codepoint)
-                            + "(Age="
-                            + age.getValue(codepoint)
-                            + ") has NFC_QC=Yes, but its (canonical) Decomposition_Mapping starts with U+"
-                            + getCodeAndName(decompositionFirst)
-                            + ", which has NFC_QC="
-                            + decompositionFirstNFCQC,
-                    "Yes",
-                    decompositionFirstNFCQC);
-        }
         for (String codepoint : nfcqc.getSet("Yes")) {
             if (!dt.getValue(codepoint).equals("Canonical")) {
                 continue;
             }
             String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
             String decompositionFirstNFCQC = nfcqc.getValue(decompositionFirst);
-            assertEquals(
-                    "U+"
-                            + getCodeAndName(codepoint)
-                            + " has NFC_QC=Yes, but its (canonical) Decomposition_Mapping starts with U+"
-                            + getCodeAndName(decompositionFirst)
-                            + ", which has NFC_QC="
-                            + decompositionFirstNFCQC,
-                    "Yes",
-                    decompositionFirstNFCQC);
+            if (!decompositionFirstNFCQC.equals("Yes")) {
+                errln(
+                        "U+"
+                                + getCodeAndName(codepoint)
+                                + " has NFC_QC=Yes, but its (canonical) Decomposition_Mapping starts with U+"
+                                + getCodeAndName(decompositionFirst)
+                                + ", which has NFC_QC="
+                                + decompositionFirstNFCQC);
+            }
         }
     }
 
@@ -332,37 +326,18 @@ public class TestProperties extends TestFmwkMinusMinus {
     public void TestNFKCQuickCheckConsistency() {
         UnicodeMap<String> nfkcqc = iup.load(UcdProperty.NFKC_Quick_Check);
         UnicodeMap<String> dm = iup.load(UcdProperty.Decomposition_Mapping);
-        UnicodeMap<String> age = iup.load(UcdProperty.Age);
         for (String codepoint : nfkcqc.getSet("Yes")) {
-            if (age.getValue(codepoint).equals("V16_0")) {
-                continue;
+            String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
+            String decompositionFirstNFKCQC = nfkcqc.getValue(decompositionFirst);
+            if (!decompositionFirstNFKCQC.equals("Yes")) {
+                errln(
+                        "U+"
+                                + getCodeAndName(codepoint)
+                                + " has NFKC_QC=Yes, but its Decomposition_Mapping starts with U+"
+                                + getCodeAndName(decompositionFirst)
+                                + ", which has NFKC_QC="
+                                + decompositionFirstNFKCQC);
             }
-            String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
-            String decompositionFirstNFKCQC = nfkcqc.getValue(decompositionFirst);
-            assertEquals(
-                    "Pre-16 U+"
-                            + getCodeAndName(codepoint)
-                            + "(Age="
-                            + age.getValue(codepoint)
-                            + ") has NFKC_QC=Yes, but its Decomposition_Mapping starts with U+"
-                            + getCodeAndName(decompositionFirst)
-                            + ", which has NFKC_QC="
-                            + decompositionFirstNFKCQC,
-                    "Yes",
-                    decompositionFirstNFKCQC);
-        }
-        for (String codepoint : nfkcqc.getSet("Yes")) {
-            String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
-            String decompositionFirstNFKCQC = nfkcqc.getValue(decompositionFirst);
-            assertEquals(
-                    "U+"
-                            + getCodeAndName(codepoint)
-                            + " has NFKC_QC=Yes, but its Decomposition_Mapping starts with U+"
-                            + getCodeAndName(decompositionFirst)
-                            + ", which has NFKC_QC="
-                            + decompositionFirstNFKCQC,
-                    "Yes",
-                    decompositionFirstNFKCQC);
         }
     }
 
