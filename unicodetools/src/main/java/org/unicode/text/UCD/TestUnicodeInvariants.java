@@ -853,7 +853,7 @@ public class TestUnicodeInvariants {
                         + DEFAULT_FILE
                         + ",line="
                         + lineNumber
-                        + "title=Invariant test failure::"
+                        + ",title=Invariant test failure::"
                         + UrlEscapers.urlFragmentEscaper().escape(String.join("\n", errorMessage)));
         if (doHtml) {
             out.println("<table class='e'>");
