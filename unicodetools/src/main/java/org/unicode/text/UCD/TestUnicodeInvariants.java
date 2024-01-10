@@ -47,6 +47,7 @@ public class TestUnicodeInvariants {
     static boolean doHtml = true;
     public static final String DEFAULT_FILE = "UnicodeInvariantTest.txt";
     public static final HTMLTabber htmlTabber = new Tabber.HTMLTabber();
+    public static final boolean EMIT_GITHUB_ERRORS = System.getProperty("EMIT_GITHUB_ERRORS") != null;
 
     private static final int
             // HELP1 = 0,
@@ -850,15 +851,17 @@ public class TestUnicodeInvariants {
         errorLister.setTabber(new Tabber.MonoTabber());
         errorLister.setLineSeparator("\n");
         errorLister.showSetNames(new PrintWriter(monoTable), segment);
-        System.err.println(
-                "::error file=unicodetools/src/main/resources/org/unicode/text/UCD/"
-                        + DEFAULT_FILE
-                        + ",line="
-                        + lineNumber
-                        + ",title=Invariant test failure::"
-                        + (String.join("\n", errorMessage) + "\n" + monoTable.toString())
-                                .replace("%", "%25")
-                                .replace("\n", "%0A"));
+        if (EMIT_GITHUB_ERRORS) {
+            System.err.println(
+                    "::error file=unicodetools/src/main/resources/org/unicode/text/UCD/"
+                            + DEFAULT_FILE
+                            + ",line="
+                            + lineNumber
+                            + ",title=Invariant test failure::"
+                            + (String.join("\n", errorMessage) + "\n" + monoTable.toString())
+                                    .replace("%", "%25")
+                                    .replace("\n", "%0A"));
+        }
         errorLister.setTabber(htmlTabber);
         if (doHtml) {
             out.println("<table class='e'>");
