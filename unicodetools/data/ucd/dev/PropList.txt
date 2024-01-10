@@ -1242,6 +1242,28 @@ FFFFE..FFFFF  ; Noncharacter_Code_Point # Cn   [2] <noncharacter-FFFFE>..<noncha
 # Total code points: 66
 
 # ================================================
+1715;Other_Grapheme_Extend
+1734;Other_Grapheme_Extend
+1B44;Other_Grapheme_Extend
+1BAA;Other_Grapheme_Extend
+1BF2..1BF3;Other_Grapheme_Extend
+A953;Other_Grapheme_Extend
+A9C0;Other_Grapheme_Extend
+111C0;Other_Grapheme_Extend
+11235;Other_Grapheme_Extend
+1134D;Other_Grapheme_Extend
+113CF;Other_Grapheme_Extend
+116B6;Other_Grapheme_Extend
+1193D;Other_Grapheme_Extend
+11F41;Other_Grapheme_Extend
+16FF0..16FF1;Other_Grapheme_Extend
+1D166;Other_Grapheme_Extend
+1D16D;Other_Grapheme_Extend
+
+113B8; Other_Grapheme_Extend
+113C2; Other_Grapheme_Extend
+113C5; Other_Grapheme_Extend
+113C7..113C9; Other_Grapheme_Extend
 
 09BE          ; Other_Grapheme_Extend # Mc       BENGALI VOWEL SIGN AA
 09D7          ; Other_Grapheme_Extend # Mc       BENGALI AU LENGTH MARK
