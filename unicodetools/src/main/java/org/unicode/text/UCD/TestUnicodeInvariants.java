@@ -1,6 +1,5 @@
 package org.unicode.text.UCD;
 
-import com.google.common.net.UrlEscapers;
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
@@ -47,6 +46,7 @@ public class TestUnicodeInvariants {
     private static int showRangeLimit = 20;
     static boolean doHtml = true;
     public static final String DEFAULT_FILE = "UnicodeInvariantTest.txt";
+    public static final HTMLTabber htmlTabber = new Tabber.HTMLTabber();
 
     private static final int
             // HELP1 = 0,
@@ -172,8 +172,6 @@ public class TestUnicodeInvariants {
                     out3.write('\uFEFF'); // BOM
                 }
                 try (final BufferedReader in = getInputReader(inputFile)) {
-                    final HTMLTabber tabber = new Tabber.HTMLTabber();
-
                     errorLister =
                             new BagFormatter()
                                     .setMergeRanges(doRange)
@@ -184,7 +182,7 @@ public class TestUnicodeInvariants {
                                     .setFixName(toHTML);
                     errorLister.setShowTotal(false);
                     if (doHtml) {
-                        errorLister.setTabber(tabber);
+                        errorLister.setTabber(htmlTabber);
                     }
 
                     showLister =
@@ -199,7 +197,7 @@ public class TestUnicodeInvariants {
                         showLister.setValueSource(LATEST_PROPS.getProperty("script"));
                     }
                     if (doHtml) {
-                        showLister.setTabber(tabber);
+                        showLister.setTabber(htmlTabber);
                     }
 
                     // symbolTable = new ChainedSymbolTable();
@@ -845,16 +843,23 @@ public class TestUnicodeInvariants {
                     rightStatus + "\t" + rightSide,
                     leftStatus + "\t" + leftSide
                 };
+        var monoTable = new StringWriter();
         for (String line : errorMessage) {
             println("## " + line);
         }
+        errorLister.setTabber(new Tabber.MonoTabber());
+        errorLister.setLineSeparator("\n");
+        errorLister.showSetNames(new PrintWriter(monoTable), segment);
         System.err.println(
                 "::error file=unicodetools/src/main/resources/org/unicode/text/UCD/"
                         + DEFAULT_FILE
                         + ",line="
                         + lineNumber
                         + ",title=Invariant test failure::"
-                        + UrlEscapers.urlFragmentEscaper().escape(String.join("\n", errorMessage)));
+                        + (String.join("\n", errorMessage) + "\n" + monoTable.toString())
+                                .replace("%", "%25")
+                                .replace("\n", "%0A"));
+        errorLister.setTabber(htmlTabber);
         if (doHtml) {
             out.println("<table class='e'>");
         }
