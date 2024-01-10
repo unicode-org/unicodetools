@@ -487,7 +487,6 @@ public class TestUnicodeInvariants {
         if (failureCount != 0) {
             testFailureCount++;
             printErrorLine("Test Failure", Side.START, testFailureCount);
-            // TODO(egg): ::error etc.
             String errorMessage =
                     "Got unexpected "
                             + (propertyComparison.shouldBeEqual ? "differences" : "equalities")
@@ -1075,6 +1074,10 @@ public class TestUnicodeInvariants {
             println("##" + message);
         }
         e.printStackTrace(out);
+        StringWriter w = new StringWriter().append(message).append('\n');
+        e.printStackTrace(new PrintWriter(w));
+        reportParseError(lineNumber, w.toString());
+
         out.println("</pre>");
         printErrorLine("Parse Error", Side.END, parseErrorCount);
         println();
@@ -1165,6 +1168,10 @@ public class TestUnicodeInvariants {
 
     private static void println() {
         println("");
+    }
+
+    private static void reportParseError(int lineNumber, String message) {
+        reportError(lineNumber, "Parse error", message);
     }
 
     private static void reportTestFailure(int lineNumber, String message) {
