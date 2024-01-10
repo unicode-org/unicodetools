@@ -746,6 +746,32 @@ Let $PostBaseSpacingMarks_Tweak = [\u103B \u1056 \u1057 \u1A57 \u1A6D]
 Let $PostBaseSpacingMarks_Missed = []
 [$PostBaseSpacingMarks_All - $PostBaseSpacingMarks_Tweak - $PostBaseSpacingMarks_Missed] ⊂ [:GCB=XX:]
 
+# Check the consistency of grapheme cluster segmentation (both legacy and
+# extended) with canonical equivalence.
+# Non-starters are GCB=Extend or GCB=SpacingMark, so that GB9 and GB9a keep
+# together any sequences that may be reordered by the Canonical Ordering
+# Algorithm.
+\P{U15.1.0:ccc=0} ⊆ [\p{U15.1.0:GCB=Extend}\p{U15.1.0:GCB=SpacingMark}]
+\P{ccc=0} ⊆ [\p{GCB=Extend}\p{GCB=SpacingMark}]
+# Non-starters are actually GCB=Extend, so that GB9 alone does the job, since
+# there is no GB9a in legacy grapheme clusters.
+# But not before Unicode Version 16.0, oops (see L2/24-009).
+\P{U15.1.0:ccc=0} ⊆ \p{U15.1.0:GCB=Extend}
+\P{ccc=0} ⊆ \p{GCB=Extend}
+
+# Characters that appear in non-initial position in the canonical decomposition
+# of another character are either Extend, V, or T, so that sequences that are
+# equivalent to a canonical composite are kept together by GB6..GB9.
+# We only look at the starters, since we dealt with non-starters above.
+# Characters that appear in non-initial position in the canonical decomposition
+# of a primary composite are NFC_QC=Maybe.  We would need to separately check
+# the characters that appear in non-initial position in the canonical
+# decomposition of a full composition exclusion.
+# We would also need to separately check that the characters are T or V only
+# appear in canonical decompositions where they follow an LV, LVT, V, or T, or
+# an LV or V, respectively.
+[\p{NFC_QC=Maybe}&\p{ccc=0}] ⊆ [\p{GCB=Extend}\p{GCB=T}\p{GCB=V}]
+
 ##########################
 # Emoji
 ##########################
