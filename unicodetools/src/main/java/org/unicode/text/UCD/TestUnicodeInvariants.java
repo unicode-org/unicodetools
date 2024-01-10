@@ -450,13 +450,13 @@ public class TestUnicodeInvariants {
                         "The implication ⇐ is " + rightImpliesLeftCounterexamples.isEmpty() + ".");
             }
         }
-        if (failure) {
-            for (var errorLine : errorMessage) {
-                println(errorLine);
-            }
+        for (var errorLine : errorMessage) {
+            println(errorLine);
         }
         errorMessage.addAll(counterexamples);
-        reportTestFailure(lineNumber, String.join("\n", errorMessage).replace('\t', ' '));
+        if (failure) {
+            reportTestFailure(lineNumber, String.join("\n", errorMessage).replace('\t', ' '));
+        }
         out.println(failure ? "<table class='f'>" : "<table>");
         for (String counterexample : counterexamples) {
             out.println("<tr><td>");
