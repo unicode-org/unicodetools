@@ -279,7 +279,6 @@ public class TestUnicodeInvariants {
 
     private static void equivalencesLine(String line, ParsePosition pp, int lineNumber)
             throws ParseException {
-        // TODO(egg): ::error etc.
         pp.setIndex("EquivalencesOf".length());
         final UnicodeSet domain = new UnicodeSet(line, pp, symbolTable);
         final var leftProperty = CompoundProperty.of(LATEST_PROPS, line, pp);
@@ -438,16 +437,24 @@ public class TestUnicodeInvariants {
             ++testFailureCount;
             printErrorLine("Test Failure", Side.START, testFailureCount);
         }
+        final List<String> errorMessage = new ArrayList<>();
         if (counterexamples.isEmpty()) {
-            println("There are no counterexamples to " + relationOperator + ".");
+            errorMessage.add("There are no counterexamples to " + relationOperator + ".");
         } else {
             if (leftShouldImplyRight) {
-                println("The implication ⇒ is " + leftImpliesRightCounterexamples.isEmpty() + ".");
+                errorMessage.add(
+                        "The implication ⇒ is " + leftImpliesRightCounterexamples.isEmpty() + ".");
             }
             if (rightShouldImplyLeft) {
-                println("The implication ⇐ is " + rightImpliesLeftCounterexamples.isEmpty() + ".");
+                errorMessage.add(
+                        "The implication ⇐ is " + rightImpliesLeftCounterexamples.isEmpty() + ".");
             }
         }
+        for (var errorLine : errorMessage) {
+            println(errorLine);
+        }
+        errorMessage.addAll(counterexamples);
+        reportTestFailure(lineNumber, String.join("\n", errorMessage));
         out.println(failure ? "<table class='f'>" : "<table>");
         for (String counterexample : counterexamples) {
             out.println("<tr><td>");
@@ -481,13 +488,23 @@ public class TestUnicodeInvariants {
             testFailureCount++;
             printErrorLine("Test Failure", Side.START, testFailureCount);
             // TODO(egg): ::error etc.
-            println(
-                    "## Got unexpected "
+            String errorMessage =
+                    "Got unexpected "
                             + (propertyComparison.shouldBeEqual ? "differences" : "equalities")
                             + ": "
-                            + failureCount);
+                            + failureCount;
+            println("## " + errorMessage);
+
             final UnicodeLabel failureProp = new UnicodeProperty.UnicodeMapProperty().set(failures);
             errorLister.setValueSource(failureProp);
+
+            var monoTable = new StringWriter();
+            errorLister.setTabber(new Tabber.MonoTabber());
+            errorLister.setLineSeparator("\n");
+            errorLister.showSetNames(new PrintWriter(monoTable), failureSet);
+            errorLister.setTabber(htmlTabber);
+            reportTestFailure(lineNumber, errorMessage + "\n" + monoTable.toString());
+
             if (doHtml) {
                 out.println("<table class='f'>");
             }
@@ -852,17 +869,8 @@ public class TestUnicodeInvariants {
         errorLister.setTabber(new Tabber.MonoTabber());
         errorLister.setLineSeparator("\n");
         errorLister.showSetNames(new PrintWriter(monoTable), segment);
-        if (EMIT_GITHUB_ERRORS) {
-            System.err.println(
-                    "::error file=unicodetools/src/main/resources/org/unicode/text/UCD/"
-                            + DEFAULT_FILE
-                            + ",line="
-                            + lineNumber
-                            + ",title=Invariant test failure::"
-                            + (String.join("\n", errorMessage) + "\n" + monoTable.toString())
-                                    .replace("%", "%25")
-                                    .replace("\n", "%0A"));
-        }
+        reportTestFailure(
+                lineNumber, String.join("\n", errorMessage) + "\n" + monoTable.toString());
         errorLister.setTabber(htmlTabber);
         if (doHtml) {
             out.println("<table class='e'>");
@@ -1157,6 +1165,24 @@ public class TestUnicodeInvariants {
 
     private static void println() {
         println("");
+    }
+
+    private static void reportTestFailure(int lineNumber, String message) {
+        reportError(lineNumber, "Invariant test failure", message);
+    }
+
+    private static void reportError(int lineNumber, String title, String message) {
+        if (EMIT_GITHUB_ERRORS) {
+            System.err.println(
+                    "::error file=unicodetools/src/main/resources/org/unicode/text/UCD/"
+                            + DEFAULT_FILE
+                            + ",line="
+                            + lineNumber
+                            + ",title="
+                            + title
+                            + "::"
+                            + message.replace("%", "%25").replace("\n", "%0A"));
+        }
     }
 
     /** Should add to UnicodeSet */
