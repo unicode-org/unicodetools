@@ -1,5 +1,6 @@
 package org.unicode.text.UCD;
 
+import com.google.common.net.UrlEscapers;
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
@@ -207,7 +208,7 @@ public class TestUnicodeInvariants {
                     // ToolUnicodePropertySource.make(UCD.lastVersion).getSymbolTable("\u00D7"),
                     //
                     // ToolUnicodePropertySource.make(Default.ucdVersion()).getSymbolTable("")});
-                    while (true) {
+                    for (int lineNumber = 1; ; ++lineNumber) {
                         String line = in.readLine();
                         if (line == null) {
                             break;
@@ -230,24 +231,24 @@ public class TestUnicodeInvariants {
                             } else if (line.startsWith("Let")) {
                                 letLine(pp, line);
                             } else if (line.startsWith("In")) {
-                                inLine(pp, line);
+                                inLine(pp, line, lineNumber);
                             } else if (line.startsWith("ShowScript")) {
                                 showScript = true;
                             } else if (line.startsWith("HideScript")) {
                                 showScript = false;
                             } else if (line.startsWith("Map")) {
-                                testMapLine(line, pp);
+                                testMapLine(line, pp, lineNumber);
                             } else if (line.startsWith("ShowMap")) {
                                 showMapLine(line, pp);
                             } else if (line.startsWith("Show")) {
                                 showLine(line, pp);
                             } else if (line.startsWith("EquivalencesOf")) {
-                                equivalencesLine(line, pp);
+                                equivalencesLine(line, pp, lineNumber);
                             } else {
-                                testLine(line, pp);
+                                testLine(line, pp, lineNumber);
                             }
                         } catch (final Exception e) {
-                            parseErrorCount = parseError(parseErrorCount, line, e);
+                            parseErrorCount = parseError(parseErrorCount, line, e, lineNumber);
                             continue;
                         }
                     }
@@ -276,7 +277,9 @@ public class TestUnicodeInvariants {
         UnicodeProperty property2;
     }
 
-    private static void equivalencesLine(String line, ParsePosition pp) throws ParseException {
+    private static void equivalencesLine(String line, ParsePosition pp, int lineNumber)
+            throws ParseException {
+        // TODO(egg): ::error etc.
         pp.setIndex("EquivalencesOf".length());
         final UnicodeSet domain = new UnicodeSet(line, pp, symbolTable);
         final var leftProperty = CompoundProperty.of(LATEST_PROPS, line, pp);
@@ -457,7 +460,8 @@ public class TestUnicodeInvariants {
         }
     }
 
-    private static void inLine(ParsePosition pp, String line) throws ParseException {
+    private static void inLine(ParsePosition pp, String line, int lineNumber)
+            throws ParseException {
         pp.setIndex(2);
         final PropertyComparison propertyComparison = getPropertyComparison(pp, line);
         final UnicodeMap<String> failures = new UnicodeMap<>();
@@ -476,6 +480,7 @@ public class TestUnicodeInvariants {
         if (failureCount != 0) {
             testFailureCount++;
             printErrorLine("Test Failure", Side.START, testFailureCount);
+            // TODO(egg): ::error etc.
             println(
                     "## Got unexpected "
                             + (propertyComparison.shouldBeEqual ? "differences" : "equalities")
@@ -710,7 +715,8 @@ public class TestUnicodeInvariants {
         showLister.setMergeRanges(doRange);
     }
 
-    private static void testLine(String line, ParsePosition pp) throws ParseException {
+    private static void testLine(String line, ParsePosition pp, int lineNumber)
+            throws ParseException {
         if (line.startsWith("Test")) {
             line = line.substring(4).trim();
         }
@@ -776,21 +782,24 @@ public class TestUnicodeInvariants {
                 "In",
                 rightSide,
                 "But Not In",
-                leftSide);
+                leftSide,
+                lineNumber);
         checkExpected(
                 rightAndLeft,
                 new UnicodeSet(rightSet).retainAll(leftSet),
                 "In",
                 rightSide,
                 "And In",
-                leftSide);
+                leftSide,
+                lineNumber);
         checkExpected(
                 left_right,
                 new UnicodeSet(leftSet).removeAll(rightSet),
                 "In",
                 leftSide,
                 "But Not In",
-                rightSide);
+                rightSide,
+                lineNumber);
     }
 
     public static void checkRelation(ParsePosition pp, char relation) throws ParseException {
@@ -810,7 +819,8 @@ public class TestUnicodeInvariants {
             String rightStatus,
             String rightSide,
             String leftStatus,
-            String leftSide) {
+            String leftSide,
+            int lineNumber) {
         switch (expected) {
             case empty:
                 if (segment.size() == 0) {
@@ -829,9 +839,22 @@ public class TestUnicodeInvariants {
         }
         testFailureCount++;
         printErrorLine("Test Failure", Side.START, testFailureCount);
-        println("## Expected " + expected + ", got: " + segment.size() + "\t" + segment.toString());
-        println("## " + rightStatus + "\t" + rightSide);
-        println("## " + leftStatus + "\t" + leftSide);
+        final var errorMessage =
+                new String[] {
+                    "Expected " + expected + ", got: " + segment.size() + "\t" + segment.toString(),
+                    rightStatus + "\t" + rightSide,
+                    leftStatus + "\t" + leftSide
+                };
+        for (String line : errorMessage) {
+            println("## " + line);
+        }
+        System.err.println(
+                "::error file=unicodetools/src/main/resources/org/unicode/text/UCD/"
+                        + DEFAULT_FILE
+                        + ",line="
+                        + lineNumber
+                        + "title=Invariant test failure::"
+                        + UrlEscapers.urlFragmentEscaper().escape(String.join("\n", errorMessage)));
         if (doHtml) {
             out.println("<table class='e'>");
         }
@@ -853,7 +876,8 @@ public class TestUnicodeInvariants {
                             getProperties(Settings.lastVersion),
                             IndexUnicodeProperties.make(Settings.lastVersion)));
 
-    private static void testMapLine(String line, ParsePosition pp) throws ParseException {
+    private static void testMapLine(String line, ParsePosition pp, int lineNumber)
+            throws ParseException {
         char relation = 0;
         String rightSide = null;
         String leftSide = null;
@@ -915,21 +939,24 @@ public class TestUnicodeInvariants {
                 "In",
                 rightSide,
                 "But Not In",
-                leftSide);
+                leftSide,
+                lineNumber);
         checkExpected(
                 rightAndLeft,
                 UnicodeMapParser.retainAll(new UnicodeMap<String>().putAll(rightSet), leftSet),
                 "In",
                 rightSide,
                 "And In",
-                leftSide);
+                leftSide,
+                lineNumber);
         checkExpected(
                 left_right,
                 UnicodeMapParser.removeAll(new UnicodeMap<String>().putAll(leftSet), rightSet),
                 "In",
                 leftSide,
                 "But Not In",
-                rightSide);
+                rightSide,
+                lineNumber);
     }
 
     private static void checkExpected(
@@ -938,7 +965,8 @@ public class TestUnicodeInvariants {
             String rightStatus,
             String rightSide,
             String leftStatus,
-            String leftSide) {
+            String leftSide,
+            int lineNumber) {
         switch (expected) {
             case empty:
                 if (segment.size() == 0) {
@@ -1015,7 +1043,7 @@ public class TestUnicodeInvariants {
         println();
     }
 
-    private static int parseError(int parseErrorCount, String line, Exception e) {
+    private static int parseError(int parseErrorCount, String line, Exception e, int lineNumber) {
         parseErrorCount++;
         if (e instanceof ParseException) {
             final int index = ((ParseException) e).getErrorOffset();
