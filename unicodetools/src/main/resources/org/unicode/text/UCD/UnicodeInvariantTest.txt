@@ -760,10 +760,11 @@ Let $PostBaseSpacingMarks_Missed = []
 # Unicode Version 4.0 (https://www.unicode.org/reports/tr29/tr29-4.html#Implementation_Notes),
 # oops (see L2/24-009).
 Let $TwoForgottenMusicalSymbols = \p{Name=/^MUSICAL SYMBOL COMBINING (SPRECHGESANG STEM|AUGMENTATION DOT)$/}
-Let $SpacingViramas = [\p{U15.1.0:ccc=9}&\p{U15.1.0:gc=Mc}]
-[\P{U4.0.0:ccc=0}  - \p{U4.0.0:Grapheme_Extend}] = [$TwoForgottenMusicalSymbols \p{Name=/^MUSICAL SYMBOL COMBINING FLAG[3-5]$/}]
+Let $FourteenSpacingViramas = [\p{U15.1.0:ccc=9}&\p{U15.1.0:gc=Mc}]
+Let $TwoVietnameseReadingMarks = [\p{U15.1.0:ccc=6}]
+[\P{U4.0.0:ccc=0}  - \p{U4.0.0:Grapheme_Extend}] = [$TwoForgottenMusicalSymbols \p{Name=/^MUSICAL SYMBOL COMBINING FLAG-[3-5]$/}]
 [\P{U4.1.0:ccc=0}  - \p{U4.1.0:GCB=Extend}]      = $TwoForgottenMusicalSymbols
-[\P{U15.1.0:ccc=0} - \p{U15.1.0:GCB=Extend}]     = [$TwoForgottenMusicalSymbols $SpacingViramas]
+[\P{U15.1.0:ccc=0} - \p{U15.1.0:GCB=Extend}]     = [$TwoForgottenMusicalSymbols $FourteenSpacingViramas $TwoVietnameseReadingMarks]
  \P{        ccc=0} ⊆ \p{        GCB=Extend}
 
 # Characters that appear in non-initial position in the canonical decomposition
