@@ -450,8 +450,10 @@ public class TestUnicodeInvariants {
                         "The implication ⇐ is " + rightImpliesLeftCounterexamples.isEmpty() + ".");
             }
         }
-        for (var errorLine : errorMessage) {
-            println(errorLine);
+        if (failure) {
+            for (var errorLine : errorMessage) {
+                println(errorLine);
+            }
         }
         errorMessage.addAll(counterexamples);
         reportTestFailure(lineNumber, String.join("\n", errorMessage).replace('\t', ' '));
