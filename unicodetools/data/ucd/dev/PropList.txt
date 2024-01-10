@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2023-11-10, 22:06:29 GMT
+# Date: 2024-01-10, 17:59:20 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1242,28 +1242,6 @@ FFFFE..FFFFF  ; Noncharacter_Code_Point # Cn   [2] <noncharacter-FFFFE>..<noncha
 # Total code points: 66
 
 # ================================================
-1715;Other_Grapheme_Extend
-1734;Other_Grapheme_Extend
-1B44;Other_Grapheme_Extend
-1BAA;Other_Grapheme_Extend
-1BF2..1BF3;Other_Grapheme_Extend
-A953;Other_Grapheme_Extend
-A9C0;Other_Grapheme_Extend
-111C0;Other_Grapheme_Extend
-11235;Other_Grapheme_Extend
-1134D;Other_Grapheme_Extend
-113CF;Other_Grapheme_Extend
-116B6;Other_Grapheme_Extend
-1193D;Other_Grapheme_Extend
-11F41;Other_Grapheme_Extend
-16FF0..16FF1;Other_Grapheme_Extend
-1D166;Other_Grapheme_Extend
-1D16D;Other_Grapheme_Extend
-
-113B8; Other_Grapheme_Extend
-113C2; Other_Grapheme_Extend
-113C5; Other_Grapheme_Extend
-113C7..113C9; Other_Grapheme_Extend
 
 09BE          ; Other_Grapheme_Extend # Mc       BENGALI VOWEL SIGN AA
 09D7          ; Other_Grapheme_Extend # Mc       BENGALI AU LENGTH MARK
@@ -1277,21 +1255,40 @@ A9C0;Other_Grapheme_Extend
 0D57          ; Other_Grapheme_Extend # Mc       MALAYALAM AU LENGTH MARK
 0DCF          ; Other_Grapheme_Extend # Mc       SINHALA VOWEL SIGN AELA-PILLA
 0DDF          ; Other_Grapheme_Extend # Mc       SINHALA VOWEL SIGN GAYANUKITTA
+1715          ; Other_Grapheme_Extend # Mc       TAGALOG SIGN PAMUDPOD
+1734          ; Other_Grapheme_Extend # Mc       HANUNOO SIGN PAMUDPOD
 1B35          ; Other_Grapheme_Extend # Mc       BALINESE VOWEL SIGN TEDUNG
+1B44          ; Other_Grapheme_Extend # Mc       BALINESE ADEG ADEG
+1BAA          ; Other_Grapheme_Extend # Mc       SUNDANESE SIGN PAMAAEH
+1BF2..1BF3    ; Other_Grapheme_Extend # Mc   [2] BATAK PANGOLAT..BATAK PANONGONAN
 200C          ; Other_Grapheme_Extend # Cf       ZERO WIDTH NON-JOINER
 302E..302F    ; Other_Grapheme_Extend # Mc   [2] HANGUL SINGLE DOT TONE MARK..HANGUL DOUBLE DOT TONE MARK
+A953          ; Other_Grapheme_Extend # Mc       REJANG VIRAMA
+A9C0          ; Other_Grapheme_Extend # Mc       JAVANESE PANGKON
 FF9E..FF9F    ; Other_Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAKANA SEMI-VOICED SOUND MARK
+111C0         ; Other_Grapheme_Extend # Mc       SHARADA SIGN VIRAMA
+11235         ; Other_Grapheme_Extend # Mc       KHOJKI SIGN VIRAMA
 1133E         ; Other_Grapheme_Extend # Mc       GRANTHA VOWEL SIGN AA
+1134D         ; Other_Grapheme_Extend # Mc       GRANTHA SIGN VIRAMA
 11357         ; Other_Grapheme_Extend # Mc       GRANTHA AU LENGTH MARK
+113B8         ; Other_Grapheme_Extend # Mc       TULU-TIGALARI VOWEL SIGN AA
+113C2         ; Other_Grapheme_Extend # Mc       TULU-TIGALARI VOWEL SIGN EE
+113C5         ; Other_Grapheme_Extend # Mc       TULU-TIGALARI VOWEL SIGN AI
+113C7..113C9  ; Other_Grapheme_Extend # Mc   [3] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI AU LENGTH MARK
+113CF         ; Other_Grapheme_Extend # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
 114B0         ; Other_Grapheme_Extend # Mc       TIRHUTA VOWEL SIGN AA
 114BD         ; Other_Grapheme_Extend # Mc       TIRHUTA VOWEL SIGN SHORT O
 115AF         ; Other_Grapheme_Extend # Mc       SIDDHAM VOWEL SIGN AA
+116B6         ; Other_Grapheme_Extend # Mc       TAKRI SIGN VIRAMA
 11930         ; Other_Grapheme_Extend # Mc       DIVES AKURU VOWEL SIGN AA
-1D165         ; Other_Grapheme_Extend # Mc       MUSICAL SYMBOL COMBINING STEM
-1D16E..1D172  ; Other_Grapheme_Extend # Mc   [5] MUSICAL SYMBOL COMBINING FLAG-1..MUSICAL SYMBOL COMBINING FLAG-5
+1193D         ; Other_Grapheme_Extend # Mc       DIVES AKURU SIGN HALANTA
+11F41         ; Other_Grapheme_Extend # Mc       KAWI SIGN KILLER
+16FF0..16FF1  ; Other_Grapheme_Extend # Mc   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
+1D165..1D166  ; Other_Grapheme_Extend # Mc   [2] MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
+1D16D..1D172  ; Other_Grapheme_Extend # Mc   [6] MUSICAL SYMBOL COMBINING AUGMENTATION DOT..MUSICAL SYMBOL COMBINING FLAG-5
 E0020..E007F  ; Other_Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 127
+# Total code points: 152
 
 # ================================================
 
