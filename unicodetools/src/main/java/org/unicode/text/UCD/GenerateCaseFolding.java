@@ -245,14 +245,14 @@ public class GenerateCaseFolding implements UCD_Types {
         // ΐ → ΐ
         // GREEK SMALL LETTER IOTA WITH DIALYTIKA AND OXIA →
         // GREEK SMALL LETTER IOTA WITH DIALYTIKA AND TONOS
-        // 0x1FD3, 0x0390,
+        0x1FD3, 0x0390,
         // ΰ → ΰ
         // GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND OXIA →
         // GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND TONOS
-        // 0x1FE3, 0x03B0,
+        0x1FE3, 0x03B0,
         // ﬅ → ﬆ
         // LATIN SMALL LIGATURE LONG S T → LATIN SMALL LIGATURE ST
-        // 0xFB05, 0xFB06
+        0xFB05, 0xFB06
     };
 
     private static Map<String, String> getCaseFolding(
