@@ -454,7 +454,7 @@ public class TestUnicodeInvariants {
             println(errorLine);
         }
         errorMessage.addAll(counterexamples);
-        reportTestFailure(lineNumber, String.join("\n", errorMessage));
+        reportTestFailure(lineNumber, String.join("\n", errorMessage).replace('\t', ' '));
         out.println(failure ? "<table class='f'>" : "<table>");
         for (String counterexample : counterexamples) {
             out.println("<tr><td>");
@@ -1073,10 +1073,8 @@ public class TestUnicodeInvariants {
         if (message != null) {
             println("##" + message);
         }
+        reportParseError(lineNumber, message);
         e.printStackTrace(out);
-        StringWriter w = new StringWriter().append(message).append('\n');
-        e.printStackTrace(new PrintWriter(w));
-        reportParseError(lineNumber, w.toString());
 
         out.println("</pre>");
         printErrorLine("Parse Error", Side.END, parseErrorCount);
