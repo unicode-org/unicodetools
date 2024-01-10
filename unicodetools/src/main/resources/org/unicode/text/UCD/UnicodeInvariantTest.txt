@@ -750,12 +750,17 @@ Let $PostBaseSpacingMarks_Missed = []
 # extended) with canonical equivalence.
 # Non-starters are GCB=Extend or GCB=SpacingMark, so that GB9 and GB9a keep
 # together any sequences that may be reordered by the Canonical Ordering
-# Algorithm.
-\P{U15.1.0:ccc=0} ⊆ [\p{U15.1.0:GCB=Extend}\p{U15.1.0:GCB=SpacingMark}]
+# Algorithm.  This has been true ever since Extended Grapheme Clusters were
+# added.
+\P{U5.1.0:ccc=0} ⊆ [\p{U5.1.0:GCB=Extend}\p{U5.1.0:GCB=SpacingMark}]
 \P{ccc=0} ⊆ [\p{GCB=Extend}\p{GCB=SpacingMark}]
 # Non-starters are actually GCB=Extend, so that GB9 alone does the job, since
 # there is no GB9a in legacy grapheme clusters.
-# But not before Unicode Version 16.0, oops (see L2/24-009).
+# But not before Unicode Version 16.0, even though we were saying so since
+# Unicode Version 4.0 (https://www.unicode.org/reports/tr29/tr29-4.html#Implementation_Notes),
+# oops (see L2/24-009).
+\P{U4.0.0:ccc=0} ⊆ \p{U4.0.0:Grapheme_Extend}
+\P{U4.1.0:ccc=0} ⊆ \p{U4.1.0:GCB=Extend}
 \P{U15.1.0:ccc=0} ⊆ \p{U15.1.0:GCB=Extend}
 \P{ccc=0} ⊆ \p{GCB=Extend}
 

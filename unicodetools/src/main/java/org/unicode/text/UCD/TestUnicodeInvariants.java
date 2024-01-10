@@ -47,7 +47,8 @@ public class TestUnicodeInvariants {
     static boolean doHtml = true;
     public static final String DEFAULT_FILE = "UnicodeInvariantTest.txt";
     public static final HTMLTabber htmlTabber = new Tabber.HTMLTabber();
-    public static final boolean EMIT_GITHUB_ERRORS = System.getProperty("EMIT_GITHUB_ERRORS") != null;
+    public static final boolean EMIT_GITHUB_ERRORS =
+            System.getProperty("EMIT_GITHUB_ERRORS") != null;
 
     private static final int
             // HELP1 = 0,
