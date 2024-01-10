@@ -1,5 +1,5 @@
 # VerticalOrientation-16.0.0.txt
-# Date: 2023-11-10, 22:27:08 GMT
+# Date: 2023-12-20, 22:38:25 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -741,6 +741,7 @@
 1AB0..1ABD     ; R  # Mn    [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
 1ABE           ; R  # Me         COMBINING PARENTHESES OVERLAY
 1ABF..1ACE     ; R  # Mn    [16] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER INSULAR T
+1AD0..1AD5     ; R  # Mn     [6] COMBINING VERTICAL-LINE-ACUTE..COMBINING MACRON-VERTICAL-LINE
 1B00..1B03     ; R  # Mn     [4] BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
 1B04           ; R  # Mc         BALINESE SIGN BISAH
 1B05..1B33     ; R  # Lo    [47] BALINESE LETTER AKARA..BALINESE LETTER HA

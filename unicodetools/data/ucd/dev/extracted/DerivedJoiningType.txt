@@ -1,5 +1,5 @@
 # DerivedJoiningType-16.0.0.txt
-# Date: 2023-11-10, 22:25:33 GMT
+# Date: 2023-12-20, 22:21:49 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -350,6 +350,7 @@ A872          ; L # Lo       PHAGS-PA SUPERFIXED LETTER RA
 1AB0..1ABD    ; T # Mn  [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
 1ABE          ; T # Me       COMBINING PARENTHESES OVERLAY
 1ABF..1ACE    ; T # Mn  [16] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER INSULAR T
+1AD0..1AD5    ; T # Mn   [6] COMBINING VERTICAL-LINE-ACUTE..COMBINING MACRON-VERTICAL-LINE
 1B00..1B03    ; T # Mn   [4] BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
 1B34          ; T # Mn       BALINESE SIGN REREKAN
 1B36..1B3A    ; T # Mn   [5] BALINESE VOWEL SIGN ULU..BALINESE VOWEL SIGN RA REPA
@@ -581,6 +582,6 @@ E0001         ; T # Cf       LANGUAGE TAG
 E0020..E007F  ; T # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; T # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2185
+# Total code points: 2191
 
 # EOF

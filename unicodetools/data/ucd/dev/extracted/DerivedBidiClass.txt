@@ -1,5 +1,5 @@
 # DerivedBidiClass-16.0.0.txt
-# Date: 2023-11-10, 22:25:22 GMT
+# Date: 2023-12-20, 22:21:43 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1218,8 +1218,8 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 819344 code points not listed here.
-# Total code points: 1095518
+# The above property value applies to 819338 code points not listed here.
+# Total code points: 1095512
 
 # ================================================
 
@@ -2189,6 +2189,7 @@ FFFFE..FFFFF  ; BN # Cn   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 1AB0..1ABD    ; NSM # Mn  [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
 1ABE          ; NSM # Me       COMBINING PARENTHESES OVERLAY
 1ABF..1ACE    ; NSM # Mn  [16] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER INSULAR T
+1AD0..1AD5    ; NSM # Mn   [6] COMBINING VERTICAL-LINE-ACUTE..COMBINING MACRON-VERTICAL-LINE
 1B00..1B03    ; NSM # Mn   [4] BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
 1B34          ; NSM # Mn       BALINESE SIGN REREKAN
 1B36..1B3A    ; NSM # Mn   [5] BALINESE VOWEL SIGN ULU..BALINESE VOWEL SIGN RA REPA
@@ -2407,7 +2408,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 1E944..1E94A  ; NSM # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; NSM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2028
+# Total code points: 2034
 
 # ================================================
 
