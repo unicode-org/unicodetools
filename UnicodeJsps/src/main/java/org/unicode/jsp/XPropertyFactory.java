@@ -32,6 +32,8 @@ import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;
 import org.unicode.idna.Idna2008;
 import org.unicode.idna.Uts46;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.AliasAddAction;
 import org.unicode.props.UnicodeProperty.BaseProperty;
@@ -67,15 +69,15 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             return add(sp);
         } else {
             System.err.println("Duplicate property:" + sp.getName());
+            new Throwable().printStackTrace();
             return this;
         }
     }
 
     {
-        ICUPropertyFactory base = ICUPropertyFactory.make();
-        for (String propertyAlias :
-                (List<String>) base.getInternalAvailablePropertyAliases(new ArrayList())) {
-            add(base.getProperty(propertyAlias));
+        IndexUnicodeProperties base = IndexUnicodeProperties.make();
+        for (UcdProperty property : base.getAvailableUcdProperties()) {
+            add(base.getProperty(property));
         }
         for (int i = Common.XSTRING_START; i < Common.XSTRING_LIMIT; ++i) {
             XUnicodeProperty property = new XUnicodeProperty(i);
@@ -288,6 +290,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         for (String prop : cp.getAvailable()) {
             add2(cp.getProperty(prop));
         }
+
         UnicodeSet Basic_Emoji =
                 cp.getProperty("Basic_Emoji").getSet("Yes", null); // TODO: was .getTrueSet();
         UnicodeSet Emoji_Keycap_Sequence =
