@@ -46,6 +46,9 @@ public class TestUnicodeInvariants {
     private static int showRangeLimit = 20;
     static boolean doHtml = true;
     public static final String DEFAULT_FILE = "UnicodeInvariantTest.txt";
+    public static final HTMLTabber htmlTabber = new Tabber.HTMLTabber();
+    public static final boolean EMIT_GITHUB_ERRORS =
+            System.getProperty("EMIT_GITHUB_ERRORS") != null;
 
     private static final int
             // HELP1 = 0,
@@ -171,8 +174,6 @@ public class TestUnicodeInvariants {
                     out3.write('\uFEFF'); // BOM
                 }
                 try (final BufferedReader in = getInputReader(inputFile)) {
-                    final HTMLTabber tabber = new Tabber.HTMLTabber();
-
                     errorLister =
                             new BagFormatter()
                                     .setMergeRanges(doRange)
@@ -183,7 +184,7 @@ public class TestUnicodeInvariants {
                                     .setFixName(toHTML);
                     errorLister.setShowTotal(false);
                     if (doHtml) {
-                        errorLister.setTabber(tabber);
+                        errorLister.setTabber(htmlTabber);
                     }
 
                     showLister =
@@ -198,7 +199,7 @@ public class TestUnicodeInvariants {
                         showLister.setValueSource(LATEST_PROPS.getProperty("script"));
                     }
                     if (doHtml) {
-                        showLister.setTabber(tabber);
+                        showLister.setTabber(htmlTabber);
                     }
 
                     // symbolTable = new ChainedSymbolTable();
@@ -207,7 +208,7 @@ public class TestUnicodeInvariants {
                     // ToolUnicodePropertySource.make(UCD.lastVersion).getSymbolTable("\u00D7"),
                     //
                     // ToolUnicodePropertySource.make(Default.ucdVersion()).getSymbolTable("")});
-                    while (true) {
+                    for (int lineNumber = 1; ; ++lineNumber) {
                         String line = in.readLine();
                         if (line == null) {
                             break;
@@ -230,24 +231,24 @@ public class TestUnicodeInvariants {
                             } else if (line.startsWith("Let")) {
                                 letLine(pp, line);
                             } else if (line.startsWith("In")) {
-                                inLine(pp, line);
+                                inLine(pp, line, lineNumber);
                             } else if (line.startsWith("ShowScript")) {
                                 showScript = true;
                             } else if (line.startsWith("HideScript")) {
                                 showScript = false;
                             } else if (line.startsWith("Map")) {
-                                testMapLine(line, pp);
+                                testMapLine(line, pp, lineNumber);
                             } else if (line.startsWith("ShowMap")) {
                                 showMapLine(line, pp);
                             } else if (line.startsWith("Show")) {
                                 showLine(line, pp);
                             } else if (line.startsWith("EquivalencesOf")) {
-                                equivalencesLine(line, pp);
+                                equivalencesLine(line, pp, lineNumber);
                             } else {
-                                testLine(line, pp);
+                                testLine(line, pp, lineNumber);
                             }
                         } catch (final Exception e) {
-                            parseErrorCount = parseError(parseErrorCount, line, e);
+                            parseErrorCount = parseError(parseErrorCount, line, e, lineNumber);
                             continue;
                         }
                     }
@@ -276,7 +277,8 @@ public class TestUnicodeInvariants {
         UnicodeProperty property2;
     }
 
-    private static void equivalencesLine(String line, ParsePosition pp) throws ParseException {
+    private static void equivalencesLine(String line, ParsePosition pp, int lineNumber)
+            throws ParseException {
         pp.setIndex("EquivalencesOf".length());
         final UnicodeSet domain = new UnicodeSet(line, pp, symbolTable);
         final var leftProperty = CompoundProperty.of(LATEST_PROPS, line, pp);
@@ -435,15 +437,25 @@ public class TestUnicodeInvariants {
             ++testFailureCount;
             printErrorLine("Test Failure", Side.START, testFailureCount);
         }
+        final List<String> errorMessageLines = new ArrayList<>();
         if (counterexamples.isEmpty()) {
-            println("There are no counterexamples to " + relationOperator + ".");
+            errorMessageLines.add("There are no counterexamples to " + relationOperator + ".");
         } else {
             if (leftShouldImplyRight) {
-                println("The implication ⇒ is " + leftImpliesRightCounterexamples.isEmpty() + ".");
+                errorMessageLines.add(
+                        "The implication ⇒ is " + leftImpliesRightCounterexamples.isEmpty() + ".");
             }
             if (rightShouldImplyLeft) {
-                println("The implication ⇐ is " + rightImpliesLeftCounterexamples.isEmpty() + ".");
+                errorMessageLines.add(
+                        "The implication ⇐ is " + rightImpliesLeftCounterexamples.isEmpty() + ".");
             }
+        }
+        for (var errorLine : errorMessageLines) {
+            println(errorLine);
+        }
+        errorMessageLines.addAll(counterexamples);
+        if (failure) {
+            reportTestFailure(lineNumber, String.join("\n", errorMessageLines).replace('\t', ' '));
         }
         out.println(failure ? "<table class='f'>" : "<table>");
         for (String counterexample : counterexamples) {
@@ -457,7 +469,8 @@ public class TestUnicodeInvariants {
         }
     }
 
-    private static void inLine(ParsePosition pp, String line) throws ParseException {
+    private static void inLine(ParsePosition pp, String line, int lineNumber)
+            throws ParseException {
         pp.setIndex(2);
         final PropertyComparison propertyComparison = getPropertyComparison(pp, line);
         final UnicodeMap<String> failures = new UnicodeMap<>();
@@ -476,13 +489,23 @@ public class TestUnicodeInvariants {
         if (failureCount != 0) {
             testFailureCount++;
             printErrorLine("Test Failure", Side.START, testFailureCount);
-            println(
-                    "## Got unexpected "
+            String errorMessage =
+                    "Got unexpected "
                             + (propertyComparison.shouldBeEqual ? "differences" : "equalities")
                             + ": "
-                            + failureCount);
+                            + failureCount;
+            println("## " + errorMessage);
+
             final UnicodeLabel failureProp = new UnicodeProperty.UnicodeMapProperty().set(failures);
             errorLister.setValueSource(failureProp);
+
+            var monoTable = new StringWriter();
+            errorLister.setTabber(new Tabber.MonoTabber());
+            errorLister.setLineSeparator("\n");
+            errorLister.showSetNames(new PrintWriter(monoTable), failureSet);
+            errorLister.setTabber(htmlTabber);
+            reportTestFailure(lineNumber, errorMessage + "\n" + monoTable.toString());
+
             if (doHtml) {
                 out.println("<table class='f'>");
             }
@@ -710,7 +733,8 @@ public class TestUnicodeInvariants {
         showLister.setMergeRanges(doRange);
     }
 
-    private static void testLine(String line, ParsePosition pp) throws ParseException {
+    private static void testLine(String line, ParsePosition pp, int lineNumber)
+            throws ParseException {
         if (line.startsWith("Test")) {
             line = line.substring(4).trim();
         }
@@ -776,21 +800,24 @@ public class TestUnicodeInvariants {
                 "In",
                 rightSide,
                 "But Not In",
-                leftSide);
+                leftSide,
+                lineNumber);
         checkExpected(
                 rightAndLeft,
                 new UnicodeSet(rightSet).retainAll(leftSet),
                 "In",
                 rightSide,
                 "And In",
-                leftSide);
+                leftSide,
+                lineNumber);
         checkExpected(
                 left_right,
                 new UnicodeSet(leftSet).removeAll(rightSet),
                 "In",
                 leftSide,
                 "But Not In",
-                rightSide);
+                rightSide,
+                lineNumber);
     }
 
     public static void checkRelation(ParsePosition pp, char relation) throws ParseException {
@@ -810,7 +837,8 @@ public class TestUnicodeInvariants {
             String rightStatus,
             String rightSide,
             String leftStatus,
-            String leftSide) {
+            String leftSide,
+            int lineNumber) {
         switch (expected) {
             case empty:
                 if (segment.size() == 0) {
@@ -829,9 +857,22 @@ public class TestUnicodeInvariants {
         }
         testFailureCount++;
         printErrorLine("Test Failure", Side.START, testFailureCount);
-        println("## Expected " + expected + ", got: " + segment.size() + "\t" + segment.toString());
-        println("## " + rightStatus + "\t" + rightSide);
-        println("## " + leftStatus + "\t" + leftSide);
+        final var errorMessageLines =
+                new String[] {
+                    "Expected " + expected + ", got: " + segment.size() + "\t" + segment.toString(),
+                    rightStatus + "\t" + rightSide,
+                    leftStatus + "\t" + leftSide
+                };
+        var monoTable = new StringWriter();
+        for (String line : errorMessageLines) {
+            println("## " + line);
+        }
+        errorLister.setTabber(new Tabber.MonoTabber());
+        errorLister.setLineSeparator("\n");
+        errorLister.showSetNames(new PrintWriter(monoTable), segment);
+        reportTestFailure(
+                lineNumber, String.join("\n", errorMessageLines) + "\n" + monoTable.toString());
+        errorLister.setTabber(htmlTabber);
         if (doHtml) {
             out.println("<table class='e'>");
         }
@@ -853,7 +894,8 @@ public class TestUnicodeInvariants {
                             getProperties(Settings.lastVersion),
                             IndexUnicodeProperties.make(Settings.lastVersion)));
 
-    private static void testMapLine(String line, ParsePosition pp) throws ParseException {
+    private static void testMapLine(String line, ParsePosition pp, int lineNumber)
+            throws ParseException {
         char relation = 0;
         String rightSide = null;
         String leftSide = null;
@@ -915,21 +957,24 @@ public class TestUnicodeInvariants {
                 "In",
                 rightSide,
                 "But Not In",
-                leftSide);
+                leftSide,
+                lineNumber);
         checkExpected(
                 rightAndLeft,
                 UnicodeMapParser.retainAll(new UnicodeMap<String>().putAll(rightSet), leftSet),
                 "In",
                 rightSide,
                 "And In",
-                leftSide);
+                leftSide,
+                lineNumber);
         checkExpected(
                 left_right,
                 UnicodeMapParser.removeAll(new UnicodeMap<String>().putAll(leftSet), rightSet),
                 "In",
                 leftSide,
                 "But Not In",
-                rightSide);
+                rightSide,
+                lineNumber);
     }
 
     private static void checkExpected(
@@ -938,7 +983,8 @@ public class TestUnicodeInvariants {
             String rightStatus,
             String rightSide,
             String leftStatus,
-            String leftSide) {
+            String leftSide,
+            int lineNumber) {
         switch (expected) {
             case empty:
                 if (segment.size() == 0) {
@@ -1015,7 +1061,7 @@ public class TestUnicodeInvariants {
         println();
     }
 
-    private static int parseError(int parseErrorCount, String line, Exception e) {
+    private static int parseError(int parseErrorCount, String line, Exception e, int lineNumber) {
         parseErrorCount++;
         if (e instanceof ParseException) {
             final int index = ((ParseException) e).getErrorOffset();
@@ -1029,7 +1075,9 @@ public class TestUnicodeInvariants {
         if (message != null) {
             println("##" + message);
         }
+        reportParseError(lineNumber, message);
         e.printStackTrace(out);
+
         out.println("</pre>");
         printErrorLine("Parse Error", Side.END, parseErrorCount);
         println();
@@ -1120,6 +1168,28 @@ public class TestUnicodeInvariants {
 
     private static void println() {
         println("");
+    }
+
+    private static void reportParseError(int lineNumber, String message) {
+        reportError(lineNumber, "Parse error", message);
+    }
+
+    private static void reportTestFailure(int lineNumber, String message) {
+        reportError(lineNumber, "Invariant test failure", message);
+    }
+
+    private static void reportError(int lineNumber, String title, String message) {
+        if (EMIT_GITHUB_ERRORS) {
+            System.err.println(
+                    "::error file=unicodetools/src/main/resources/org/unicode/text/UCD/"
+                            + DEFAULT_FILE
+                            + ",line="
+                            + lineNumber
+                            + ",title="
+                            + title
+                            + "::"
+                            + message.replace("%", "%25").replace("\n", "%0A"));
+        }
     }
 
     /** Should add to UnicodeSet */
