@@ -437,25 +437,25 @@ public class TestUnicodeInvariants {
             ++testFailureCount;
             printErrorLine("Test Failure", Side.START, testFailureCount);
         }
-        final List<String> errorMessage = new ArrayList<>();
+        final List<String> errorMessageLines = new ArrayList<>();
         if (counterexamples.isEmpty()) {
-            errorMessage.add("There are no counterexamples to " + relationOperator + ".");
+            errorMessageLines.add("There are no counterexamples to " + relationOperator + ".");
         } else {
             if (leftShouldImplyRight) {
-                errorMessage.add(
+                errorMessageLines.add(
                         "The implication ⇒ is " + leftImpliesRightCounterexamples.isEmpty() + ".");
             }
             if (rightShouldImplyLeft) {
-                errorMessage.add(
+                errorMessageLines.add(
                         "The implication ⇐ is " + rightImpliesLeftCounterexamples.isEmpty() + ".");
             }
         }
-        for (var errorLine : errorMessage) {
+        for (var errorLine : errorMessageLines) {
             println(errorLine);
         }
-        errorMessage.addAll(counterexamples);
+        errorMessageLines.addAll(counterexamples);
         if (failure) {
-            reportTestFailure(lineNumber, String.join("\n", errorMessage).replace('\t', ' '));
+            reportTestFailure(lineNumber, String.join("\n", errorMessageLines).replace('\t', ' '));
         }
         out.println(failure ? "<table class='f'>" : "<table>");
         for (String counterexample : counterexamples) {
@@ -857,21 +857,21 @@ public class TestUnicodeInvariants {
         }
         testFailureCount++;
         printErrorLine("Test Failure", Side.START, testFailureCount);
-        final var errorMessage =
+        final var errorMessageLines =
                 new String[] {
                     "Expected " + expected + ", got: " + segment.size() + "\t" + segment.toString(),
                     rightStatus + "\t" + rightSide,
                     leftStatus + "\t" + leftSide
                 };
         var monoTable = new StringWriter();
-        for (String line : errorMessage) {
+        for (String line : errorMessageLines) {
             println("## " + line);
         }
         errorLister.setTabber(new Tabber.MonoTabber());
         errorLister.setLineSeparator("\n");
         errorLister.showSetNames(new PrintWriter(monoTable), segment);
         reportTestFailure(
-                lineNumber, String.join("\n", errorMessage) + "\n" + monoTable.toString());
+                lineNumber, String.join("\n", errorMessageLines) + "\n" + monoTable.toString());
         errorLister.setTabber(htmlTabber);
         if (doHtml) {
             out.println("<table class='e'>");
