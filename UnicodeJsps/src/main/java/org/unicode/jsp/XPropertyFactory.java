@@ -39,6 +39,7 @@ import org.unicode.props.UnicodeProperty.AliasAddAction;
 import org.unicode.props.UnicodeProperty.BaseProperty;
 import org.unicode.props.UnicodeProperty.Factory;
 import org.unicode.props.UnicodeProperty.SimpleProperty;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 public class XPropertyFactory extends UnicodeProperty.Factory {
@@ -75,9 +76,9 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     }
 
     {
-        IndexUnicodeProperties base = IndexUnicodeProperties.make();
-        for (UcdProperty property : base.getAvailableUcdProperties()) {
-            add(base.getProperty(property));
+        IndexUnicodeProperties last = IndexUnicodeProperties.make(Settings.lastVersion);
+        for (UcdProperty property : last.getAvailableUcdProperties()) {
+            add(last.getProperty(property));
         }
         for (int i = Common.XSTRING_START; i < Common.XSTRING_LIMIT; ++i) {
             XUnicodeProperty property = new XUnicodeProperty(i);
@@ -270,7 +271,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         addExamplarProperty(LocaleData.ES_PUNCTUATION, "exemp", "exemplar_punct");
 
         // set up the special script property
-        UnicodeProperty scriptProp = base.getProperty("sc");
+        UnicodeProperty scriptProp = last.getProperty("sc");
 
         // Compose the function and add
         UnicodeMap<String> specialMap = new UnicodeMap<String>();
@@ -286,27 +287,16 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                                 AliasAddAction.IGNORE_IF_MISSING)
                         .setMultivalued(true));
 
-        CachedProps cp = CachedProps.CACHED_PROPS;
-        for (String prop : cp.getAvailable()) {
-            add2(cp.getProperty(prop));
-        }
-
-        UnicodeSet Basic_Emoji =
-                cp.getProperty("Basic_Emoji").getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet Emoji_Keycap_Sequence =
-                cp.getProperty("RGI_Emoji_Keycap_Sequence")
+        UnicodeSet Basic_Emoji = getProperty("Basic_Emoji").getSet("Yes", null); // TODO: was .getTrueSet();
+        UnicodeSet Emoji_Keycap_Sequence = getProperty("RGI_Emoji_Keycap_Sequence")
                         .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Modifier_Sequence =
-                cp.getProperty("RGI_Emoji_Modifier_Sequence")
+        UnicodeSet RGI_Emoji_Modifier_Sequence = getProperty("RGI_Emoji_Modifier_Sequence")
                         .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Tag_Sequence =
-                cp.getProperty("RGI_Emoji_Tag_Sequence")
+        UnicodeSet RGI_Emoji_Tag_Sequence = getProperty("RGI_Emoji_Tag_Sequence")
                         .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Flag_Sequence =
-                cp.getProperty("RGI_Emoji_Flag_Sequence")
+        UnicodeSet RGI_Emoji_Flag_Sequence = getProperty("RGI_Emoji_Flag_Sequence")
                         .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Zwj_Sequence =
-                cp.getProperty("RGI_Emoji_Zwj_Sequence")
+        UnicodeSet RGI_Emoji_Zwj_Sequence = getProperty("RGI_Emoji_Zwj_Sequence")
                         .getSet("Yes", null); // TODO: was .getTrueSet();
         UnicodeSet RGI_Emoji =
                 new UnicodeSet()

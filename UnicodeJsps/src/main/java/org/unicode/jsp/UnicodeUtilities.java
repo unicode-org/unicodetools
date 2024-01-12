@@ -68,10 +68,6 @@ public class UnicodeUtilities {
                     .removeAll(new UnicodeSet("[:whitespace:]"))
                     .freeze();
 
-    static {
-        CachedProps cp = CachedProps.CACHED_PROPS; // force load
-    }
-
     private static Subheader subheader = null;
 
     static Transliterator toHTML;
@@ -355,8 +351,7 @@ public class UnicodeUtilities {
     public static String getStringProperties(
             UnicodeProperty prop, String s, String separator, boolean getShortest) {
         // check for single code point, later
-        if (prop instanceof UnicodeMapProperty
-                || prop instanceof CachedProps.DelayedUnicodeProperty) {
+        if (prop instanceof UnicodeMapProperty) {
             Object value = prop.getUnicodeMap().get(s);
             if (value != null) {
                 return (String) value;
@@ -804,7 +799,7 @@ public class UnicodeUtilities {
             if (andCode) {
                 result.append("U+").append(com.ibm.icu.impl.Utility.hex(cp, 4)).append(' ');
             }
-            final String name = CachedProps.NAMES.getValue(cp);
+            final String name = getFactory().getProperty("Name").getValue(cp);
             if (name != null) {
                 result.append(name);
             } else {
@@ -812,7 +807,7 @@ public class UnicodeUtilities {
                 // solve itself as part of https://github.com/unicode-org/unicodetools/issues/432.
                 String alias =
                         getFactory()
-                                .getProperty(CachedProps.IS_BETA ? "Name_Aliasβ" : "Name_Alias")
+                                .getProperty("Name_Alias")
                                 .getValue(cp);
                 if (alias == null) {
                     alias = "no name";

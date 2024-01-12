@@ -26,6 +26,7 @@ import org.unicode.idna.Idna2008;
 import org.unicode.idna.Uts46;
 import org.unicode.jsp.UnicodeUtilities.CodePointShower;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Settings.ReleasePhase;
 
 public class UnicodeJsp {
 
@@ -403,11 +404,11 @@ public class UnicodeJsp {
                     + VersionInfo.ICU_VERSION.getVersionString(2, 2)
                     + "; "
                     + "Unicode/Emoji version: "
-                    + UCharacter.getUnicodeVersion().getVersionString(2, 2)
+                    + Settings.lastVersion
                     + "; "
-                    + (CachedProps.IS_BETA
+                    + (Settings.latestVersionPhase == ReleasePhase.BETA
                             ? "Unicodeβ version: "
-                                    + CachedProps.CACHED_PROPS.version.getVersionString(2, 2)
+                                    + Settings.latestVersion
                                     + "; "
                             : "");
 
@@ -416,14 +417,14 @@ public class UnicodeJsp {
     }
 
     static final String SUBHEAD =
-            !CachedProps.IS_BETA
-                    ? ""
-                    : "<p style='border: 1pt solid red;'>Properties use ICU for Unicode V"
-                            + UCharacter.getUnicodeVersion().getVersionString(2, 2)
-                            + "; the beta properties support Unicode V"
-                            + VersionInfo.getInstance(Settings.latestVersion).getVersionString(2, 2)
-                            + "&beta;. "
-                            + "For more information, see <a target='help' href='https://unicode-org.github.io/unicodetools/help/changes'>Unicode Utilities Beta</a>.</p>";
+            Settings.latestVersionPhase == ReleasePhase.BETA
+                    ? "<p style='border: 1pt solid red;'>Unmarked properties are from Unicode V"
+                            + Settings.lastVersion
+                            + "; the beta properties are from Unicode V"
+                            + Settings.latestVersion
+                            + "β. "
+                            + "For more information, see <a target='help' href='https://unicode-org.github.io/unicodetools/help/changes'>Unicode Utilities Beta</a>.</p>"
+                    : "";
 
     public static String getSubtitle() {
         return SUBHEAD;
