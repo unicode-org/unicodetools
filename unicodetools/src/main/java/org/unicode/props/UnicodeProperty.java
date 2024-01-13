@@ -332,6 +332,17 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     public final String getFirstValueAlias(String value) {
         if (valueToFirstValueAlias == null) _getFirstValueAliasCache();
+        if (isMultivalued) {
+            List<String> result = new ArrayList<>();
+            for (String part : value.split(",")) {
+                String partAlias = valueToFirstValueAlias.get(part);
+                if (partAlias == null) {
+                    throw new IllegalArgumentException(value + " is not a value alias for " + name);
+                }
+                result.add(partAlias);
+            }
+            return String.join(",", result);
+        }
         String result = valueToFirstValueAlias.get(value);
         if (result == null) {
             throw new IllegalArgumentException(value + " is not a value alias for " + name);
@@ -397,6 +408,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (isMultivalued && propertyValue.contains(",")) {
             throw new IllegalArgumentException("Multivalued property values can't contain commas.");
         } else {
+            System.out.println(isType(STRING_OR_MISC_MASK));
             return getSet(
                     new SimpleMatcher(
                             propertyValue,
@@ -423,26 +435,28 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             }
             return addUntested(result, uniformUnassigned);
         }
-        List<String> temp = new ArrayList<>(1); // to avoid reallocating...
+        List<String> valueAliases = new ArrayList<>(1); // to avoid reallocating...
+        List<String> partAliases = new ArrayList<>(1);
         UnicodeMap<String> um = getUnicodeMap_internal();
         Iterator<String> it = um.getAvailableValues(null).iterator();
         main:
         while (it.hasNext()) {
             String value = it.next();
-            temp.clear();
-            final List<String> valueAliases = getValueAliases(value, temp);
-            Iterator<String> it2 = valueAliases.iterator();
-            while (it2.hasNext()) {
-                String value2 = it2.next();
-                // System.out.println("Values:" + value2);
-                if (isMultivalued && value2.contains(",")) {
-                    for (String part : SPLIT_COMMAS.split(value2)) {
-                        if (matcher.test(part) || matcher.test(toSkeleton(part))) {
-                            um.keySet(value, result);
-                            continue main;
+            valueAliases.clear();
+            getValueAliases(value, valueAliases);
+            for (String valueAlias : valueAliases) {
+                if (isMultivalued && valueAlias.contains(",")) {
+                    for (String part : SPLIT_COMMAS.split(valueAlias)) {
+                        partAliases.clear();
+                        getValueAliases(part, partAliases);
+                        for (String partAlias : partAliases) {
+                            if (matcher.test(partAlias) || matcher.test(toSkeleton(partAlias))) {
+                                um.keySet(value, result);
+                                continue main;
+                            }
                         }
                     }
-                } else if (matcher.test(value2) || matcher.test(toSkeleton(value2))) {
+                } else if (matcher.test(valueAlias) || matcher.test(toSkeleton(valueAlias))) {
                     um.keySet(value, result);
                     continue main;
                 }
