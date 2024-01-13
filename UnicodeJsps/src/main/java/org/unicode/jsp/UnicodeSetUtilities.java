@@ -199,7 +199,9 @@ public class UnicodeSetUtilities {
                 ;
                 if (!status) {
                     try {
-                        status = applyPropertyAlias0(scProp, versionlessPropertyName, result, invert);
+                        status =
+                                applyPropertyAlias0(
+                                        scProp, versionlessPropertyName, result, invert);
                     } catch (Exception e) {
                     }
                     if (!status) {
