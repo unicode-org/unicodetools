@@ -161,19 +161,13 @@ public class UnicodeSetUtilities {
                 scProp = factory.getProperty("sc");
             }
             int posNotEqual = propertyName.indexOf('\u2260');
-            int posColon = propertyName.indexOf(':');
-            if (posNotEqual >= 0 || posColon >= 0) {
-                if (posNotEqual < 0) posNotEqual = propertyName.length();
-                if (posColon < 0) posColon = propertyName.length();
-                int opPos = posNotEqual < posColon ? posNotEqual : posColon;
+            if (posNotEqual >= 0) {
                 propertyValue =
                         propertyValue.length() == 0
-                                ? propertyName.substring(opPos + 1)
-                                : propertyName.substring(opPos + 1) + "=" + propertyValue;
-                propertyName = propertyName.substring(0, opPos);
-                if (posNotEqual < posColon) {
-                    invert = true;
-                }
+                                ? propertyName.substring(posNotEqual + 1)
+                                : propertyName.substring(posNotEqual + 1) + "=" + propertyValue;
+                propertyName = propertyName.substring(0, posNotEqual);
+                invert = true;
             }
             if (propertyName.endsWith("!")) {
                 propertyName = propertyName.substring(0, propertyName.length() - 1);

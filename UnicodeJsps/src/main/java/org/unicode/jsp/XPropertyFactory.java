@@ -37,8 +37,8 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.AliasAddAction;
 import org.unicode.props.UnicodeProperty.BaseProperty;
-import org.unicode.props.UnicodeProperty.Factory;
 import org.unicode.props.UnicodeProperty.SimpleProperty;
+import org.unicode.text.UCD.VersionedProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -64,15 +64,12 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         return XPropertyFactoryHelper.INSTANCE.factory;
     }
 
-    public final Factory add2(UnicodeProperty sp) {
-        UnicodeProperty already = getProperty(sp.getName());
-        if (already == null) {
-            return add(sp);
-        } else {
-            System.err.println("Duplicate property:" + sp.getName());
-            new Throwable().printStackTrace();
-            return this;
+    public UnicodeProperty getProperty(String propertyAlias) {
+        var versioned = VersionedProperty.forJSPs().set(propertyAlias);
+        if (versioned != null) {
+            return versioned.getProperty();
         }
+        return super.getProperty(propertyAlias);
     }
 
     {
