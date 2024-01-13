@@ -130,8 +130,6 @@ public class UnicodeSetUtilities {
     private static class MySymbolTable extends UnicodeSet.XSymbolTable {
         UnicodeRegex unicodeRegex;
         XPropertyFactory factory;
-        private UnicodeProperty gcProp;
-        private UnicodeProperty scProp;
 
         public MySymbolTable() {
             unicodeRegex = new UnicodeRegex().setSymbolTable(this);
@@ -155,11 +153,6 @@ public class UnicodeSetUtilities {
                 String propertyName, String propertyValue, UnicodeSet result) {
             boolean status = false;
             boolean invert = false;
-            if (factory == null) {
-                factory = XPropertyFactory.make();
-                gcProp = factory.getProperty("gc");
-                scProp = factory.getProperty("sc");
-            }
             int posNotEqual = propertyName.indexOf('\u2260');
             if (posNotEqual >= 0) {
                 propertyValue =
@@ -173,6 +166,21 @@ public class UnicodeSetUtilities {
                 propertyName = propertyName.substring(0, propertyName.length() - 1);
                 invert = !invert;
             }
+            int posColon = propertyName.indexOf(':');
+            String versionPrefix = "";
+            String versionlessPropertyName = propertyName;
+            if (posColon >= 0) {
+                versionPrefix = propertyName.substring(0, posColon + 1);
+                versionlessPropertyName = propertyName.substring(posColon + 1);
+            }
+
+            if (factory == null) {
+                factory = XPropertyFactory.make();
+            }
+
+            var gcProp = factory.getProperty(versionPrefix + "gc");
+            var scProp = factory.getProperty(versionPrefix + "sc");
+
             UnicodeProperty prop = factory.getProperty(propertyName);
             if (propertyValue.length() != 0) {
                 if (prop == null) {
@@ -185,16 +193,15 @@ public class UnicodeSetUtilities {
                 status = applyPropertyAlias0(prop, propertyValue, result, invert);
             } else {
                 try {
-                    status = applyPropertyAlias0(gcProp, propertyName, result, invert);
+                    status = applyPropertyAlias0(gcProp, versionlessPropertyName, result, invert);
                 } catch (Exception e) {
                 }
                 ;
                 if (!status) {
                     try {
-                        status = applyPropertyAlias0(scProp, propertyName, result, invert);
+                        status = applyPropertyAlias0(scProp, versionlessPropertyName, result, invert);
                     } catch (Exception e) {
                     }
-                    ;
                     if (!status) {
                         if (prop.isType(UnicodeProperty.BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
                             try {
@@ -202,7 +209,6 @@ public class UnicodeSetUtilities {
                             } catch (Exception e) {
                             }
                         }
-                        ;
                         if (!status) {
                             status = applyPropertyAlias0(prop, "", result, invert);
                         }
