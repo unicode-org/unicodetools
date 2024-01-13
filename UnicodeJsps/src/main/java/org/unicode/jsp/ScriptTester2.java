@@ -18,13 +18,11 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map.Entry;
-
-import org.unicode.props.IndexUnicodeProperties;
-
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import org.unicode.props.IndexUnicodeProperties;
 
 public class ScriptTester2 {
     private final UnicodeMap<UnicodeSet> toEquivalents;

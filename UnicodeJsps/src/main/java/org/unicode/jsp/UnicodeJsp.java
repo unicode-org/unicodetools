@@ -407,9 +407,7 @@ public class UnicodeJsp {
                     + Settings.lastVersion
                     + "; "
                     + (Settings.latestVersionPhase == ReleasePhase.BETA
-                            ? "Unicodeβ version: "
-                                    + Settings.latestVersion
-                                    + "; "
+                            ? "Unicodeβ version: " + Settings.latestVersion + "; "
                             : "");
 
     public static String getVersions() {

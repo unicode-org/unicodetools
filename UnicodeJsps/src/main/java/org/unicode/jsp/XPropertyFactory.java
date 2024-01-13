@@ -287,16 +287,22 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                                 AliasAddAction.IGNORE_IF_MISSING)
                         .setMultivalued(true));
 
-        UnicodeSet Basic_Emoji = getProperty("Basic_Emoji").getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet Emoji_Keycap_Sequence = getProperty("RGI_Emoji_Keycap_Sequence")
+        UnicodeSet Basic_Emoji =
+                getProperty("Basic_Emoji").getSet("Yes", null); // TODO: was .getTrueSet();
+        UnicodeSet Emoji_Keycap_Sequence =
+                getProperty("RGI_Emoji_Keycap_Sequence")
                         .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Modifier_Sequence = getProperty("RGI_Emoji_Modifier_Sequence")
+        UnicodeSet RGI_Emoji_Modifier_Sequence =
+                getProperty("RGI_Emoji_Modifier_Sequence")
                         .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Tag_Sequence = getProperty("RGI_Emoji_Tag_Sequence")
+        UnicodeSet RGI_Emoji_Tag_Sequence =
+                getProperty("RGI_Emoji_Tag_Sequence")
                         .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Flag_Sequence = getProperty("RGI_Emoji_Flag_Sequence")
+        UnicodeSet RGI_Emoji_Flag_Sequence =
+                getProperty("RGI_Emoji_Flag_Sequence")
                         .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Zwj_Sequence = getProperty("RGI_Emoji_Zwj_Sequence")
+        UnicodeSet RGI_Emoji_Zwj_Sequence =
+                getProperty("RGI_Emoji_Zwj_Sequence")
                         .getSet("Yes", null); // TODO: was .getTrueSet();
         UnicodeSet RGI_Emoji =
                 new UnicodeSet()
