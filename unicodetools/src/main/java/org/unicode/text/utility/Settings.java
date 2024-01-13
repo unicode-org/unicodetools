@@ -25,9 +25,20 @@ public class Settings {
     public static final String latestVersion = "16.0.0";
 
     public enum ReleasePhase {
-        DEV, // Before α.
-        ALPHA, // α review.
-        BETA // β review.
+        DEV("dev"), // Before α.
+        ALPHA("α"), // α review.
+        BETA("β"); // β review.
+
+        private final String toString;
+
+        ReleasePhase(String s) {
+            toString = s;
+        }
+
+        @Override
+        public String toString() {
+            return toString;
+        }
     };
 
     public static final ReleasePhase latestVersionPhase = ReleasePhase.DEV;
