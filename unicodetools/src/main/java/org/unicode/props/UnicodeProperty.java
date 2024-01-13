@@ -385,6 +385,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return getSet(propertyValue, null);
     }
 
+    public final <T extends Enum<T>> UnicodeSet getSet(Enum<T> propertyValue) {
+        return getSet(propertyValue.toString(), null);
+    }
+
     public final UnicodeSet getSet(PatternMatcher matcher) {
         return getSet(matcher, null);
     }

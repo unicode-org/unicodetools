@@ -2,17 +2,16 @@ package org.unicode.propstest;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Pair;
 import com.ibm.icu.text.UnicodeSet;
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import org.unicode.cldr.util.CodePointEscaper;
 import org.unicode.cldr.util.Counter;
-import org.unicode.cldr.util.Rational;
 import org.unicode.cldr.util.SimpleUnicodeSetFormatter;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.ShimUnicodePropertyFactory;
@@ -22,6 +21,8 @@ import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Utility;
 
 public class CheckIndexVsToolUnicodeProperties {
+    private static final boolean SHOWLIST = false;
+
     final int MAX_USET_ITEMS = 15;
 
     final ShimUnicodePropertyFactory iup =
@@ -32,8 +33,20 @@ public class CheckIndexVsToolUnicodeProperties {
     SimpleUnicodeSetFormatter susetFormatter = new SimpleUnicodeSetFormatter();
 
     // null to skip
-    final Set<String> debugLimited = null;
-    //final Set<String> debugLimited = ImmutableSet.of("Bidi_Paired_Bracket");
+    boolean debugLimited = false;
+    final Set<String> debugProperties =
+            ImmutableSet.of(
+                    "IdnOutput"
+                    //                    "FC_NFKC_Closure",
+                    //                    "ISO_Comment",
+                    //                    "Jamo_Short_Name",
+                    //                    "Joining_Group",
+                    //                    "Joining_Type",
+                    //                    "Name",
+//                    "Name_Alias"
+                    //                    "Numeric_Value",
+                    //                    "Script_Extensions"
+                    );
     final UnicodeSet debugItems = new UnicodeSet("[\\x{0}]");
 
     enum Shim {
@@ -52,27 +65,33 @@ public class CheckIndexVsToolUnicodeProperties {
         warnln("\tComparing values for " + Default.ucdVersion());
         Set<String> iupNames = new LinkedHashSet<>(iup.getAvailableNames());
         Set<String> tupNames = new LinkedHashSet<>(tup.getAvailableNames());
-        Set<String> common = Sets.intersection(iupNames, tupNames);
-        if (debugLimited != null) {
-            common = debugLimited;
+        Set<String> toTest = tupNames;
+        if (debugLimited) {
+            toTest = debugProperties;
         }
 
-        Set<String> iupMissing = Sets.difference(tupNames, iupNames);
-        warnln(
-                "\t*TUP properties missing from IUP:\t"
-                        + iupMissing.size()
-                        + "\t"
-                        + Joiner.on(' ').join(iupMissing));
+        if (SHOWLIST) {
+            Set<String> iupMissing = Sets.difference(tupNames, iupNames);
+            warnln(
+                    "\t*TUP properties missing from IUP:\t"
+                            + iupMissing.size()
+                            + "\t"
+                            + Joiner.on(' ').join(iupMissing));
 
-        Set<String> tupMissing = Sets.difference(iupNames, tupNames);
-        warnln(
-                "\t*IUP properties missing from TUP:\t"
-                        + +tupMissing.size()
-                        + "\t"
-                        + Joiner.on(' ').join(tupMissing));
+            Set<String> tupMissing = Sets.difference(iupNames, tupNames);
+            warnln(
+                    "\t*IUP properties missing from TUP:\t"
+                            + +tupMissing.size()
+                            + "\t"
+                            + Joiner.on(' ').join(tupMissing));
+        }
 
-        for (String propName : common) {
+        for (String propName : toTest) {
             UnicodeProperty iupProp = iup.getProperty(propName);
+            if (iupProp == null) {
+                errln("\t" + propName + "\tMISSING");
+                continue;
+            }
             UnicodeProperty tupProp = tup.getProperty(propName);
             UnicodeSet iupNullTupEmpty = new UnicodeSet();
             UnicodeMap<Pair<String, String>> iupDiffTup = new UnicodeMap<>();
@@ -92,9 +111,6 @@ public class CheckIndexVsToolUnicodeProperties {
                         case equals:
                             break;
                         case diffDefault:
-                            iupNullTupEmpty.add(i);
-                            break;
-                        case diffNumberFormat:
                             iupNullTupEmpty.add(i);
                             break;
                         case different:
@@ -152,23 +168,11 @@ public class CheckIndexVsToolUnicodeProperties {
     private Shim equalsShim(String propName, String iupValue, String tupValue) {
         if (Objects.equal(iupValue, tupValue)) {
             return Shim.equals;
-        } else if (iupValue == null && "".equals(tupValue)
-                || iupValue != null && "NaN".equals(iupValue.toString()) && tupValue == null) {
+        } else if ("".equals(tupValue)) {
             return Shim.diffDefault;
-        } else if (numericValueEquals(propName, iupValue, tupValue)) {
-            return Shim.diffNumberFormat;
         } else {
             return Shim.different;
         }
-    }
-
-    private boolean numericValueEquals(String propName, String iupValue, String tupValue) {
-        if (!propName.equals("Numeric_Value")) {
-            return false;
-        }
-        Rational iupRational = Rational.of(iupValue);
-        Rational tupRational = Rational.of(BigDecimal.valueOf(Double.parseDouble(tupValue)));
-        return iupRational.approximatelyEquals(tupRational);
     }
 
     public String showContents(String iupValue) {
