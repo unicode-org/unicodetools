@@ -23,11 +23,13 @@ public class Settings {
 
     /** Used for the default version. */
     public static final String latestVersion = "16.0.0";
+
     public enum ReleasePhase {
-        DEV,  // Before α.
-        ALPHA,  // α review.
-        BETA  // β review.
+        DEV, // Before α.
+        ALPHA, // α review.
+        BETA // β review.
     };
+
     public static final ReleasePhase latestVersionPhase = ReleasePhase.DEV;
 
     public static final String lastVersion = "15.1.0"; // last released version
