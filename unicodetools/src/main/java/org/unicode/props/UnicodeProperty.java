@@ -22,10 +22,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -1314,12 +1316,17 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         }
 
         public BaseProperty swapFirst2ValueAliases() {
+            Set<List<String>> alreadySwapped = new HashSet<>();
             for (Iterator<String> it = toValueAliases.keySet().iterator(); it.hasNext(); ) {
                 List<String> list = toValueAliases.get(it.next());
+                if (alreadySwapped.contains(list)) {
+                    continue;
+                }
                 if (list.size() < 2) continue;
                 String first = list.get(0);
                 list.set(0, list.get(1));
                 list.set(1, first);
+                alreadySwapped.add(list);
             }
             return this;
         }
@@ -1453,10 +1460,19 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         protected List<String> _getAvailableValues(List<String> result) {
             unicodeMap.getAvailableValues(result);
             if (toValueAliases != null) {
-                for (String s : toValueAliases.keySet()) {
-                    if (!result.contains(s)) {
-                        result.add(s);
+                Set<List<String>> alreadyConsideredValues = new HashSet<>();
+                values:
+                for (List<String> valueAliases : toValueAliases.values()) {
+                    if (alreadyConsideredValues.contains(valueAliases)) {
+                        continue;
                     }
+                    alreadyConsideredValues.add(valueAliases);
+                    for (String valueAlias : valueAliases) {
+                        if (result.contains(valueAlias)) {
+                            continue values;
+                        }
+                    }
+                    result.add(valueAliases.get(0));
                 }
             }
             return result;
