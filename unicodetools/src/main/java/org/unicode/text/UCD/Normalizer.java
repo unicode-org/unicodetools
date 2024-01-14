@@ -15,6 +15,9 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.BitSet;
 import java.util.HashMap;
+import org.unicode.cldr.util.Pair;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.NormalizationDataIUP;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -32,16 +35,51 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
     public static final String copyright =
             "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
 
+    public enum NormalizationFormat {
+        NFD,
+        NFC,
+        NFKD,
+        NFKC;
+        final boolean isCompat;
+        final boolean isCompose;
+        final int index;
+
+        NormalizationFormat() {
+            isCompat = name().contains("K");
+            isCompose = name().contains("C");
+            index = ordinal();
+        }
+
+        static NormalizationFormat fromOrdinal(int index) {
+            return values()[index];
+        }
+    }
+
     static final boolean SHOW_ADJUSTING = false;
 
     public static boolean SHOW_PROGRESS = false;
 
+    private NormalizationFormat format;
+
+    private final String name;
+
     /** Create a normalizer for a given form. */
     public Normalizer(byte form, String unicodeVersion) {
         this.form = form;
+        this.format = null;
+        this.name = UCD_Names.NF_NAME[form];
         composition = (form & NF_COMPOSITION_MASK) != 0;
         compatibility = (form & NF_COMPATIBILITY_MASK) != 0;
         data = getData(unicodeVersion);
+    }
+
+    public Normalizer(NormalizationFormat form, IndexUnicodeProperties factory) {
+        this.form = -1;
+        this.format = form;
+        this.name = form.name();
+        composition = form.isCompose;
+        compatibility = form.isCompose;
+        data = getData(factory);
     }
 
     /** Create a normalizer for a given form. */
@@ -56,7 +94,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
 
     /** Return string name */
     public String getName() {
-        return getName(form);
+        return name;
     }
 
     /** Return string name */
@@ -389,16 +427,38 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
      */
     private final NormalizationData data;
 
-    private static HashMap versionCache = new HashMap();
+    enum Source {
+        old,
+        factory
+    }
+
+    // TODO should replace this by thread-safe cache, but to minimize change, leaving as is for
+    // TUP/IUP transition
+    // Change cache to store both types of Normalizers, for now.
+
+    private static HashMap<Pair<Source, String>, NormalizationData> versionCache = new HashMap<>();
 
     private static NormalizationData getData(String version) {
         if (version.length() == 0) {
             version = Settings.latestVersion;
         }
-        NormalizationData result = (NormalizationData) versionCache.get(version);
+
+        final Pair<Source, String> key = Pair.of(Source.old, version);
+        NormalizationData result = versionCache.get(key);
         if (result == null) {
             result = new NormalizationDataStandard(version);
-            versionCache.put(version, result);
+            versionCache.put(key, result);
+        }
+        return result;
+    }
+
+    private static NormalizationData getData(IndexUnicodeProperties factory) {
+        final Pair<Source, String> key =
+                Pair.of(Source.factory, factory.getUcdVersion().getVersionString(2, 2));
+        NormalizationData result = versionCache.get(key);
+        if (result == null) {
+            result = new NormalizationDataIUP(factory);
+            versionCache.put(key, result);
         }
         return result;
     }

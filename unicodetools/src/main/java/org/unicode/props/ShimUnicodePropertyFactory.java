@@ -7,12 +7,15 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.unicode.cldr.util.Rational;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeProperty.BaseProperty;
+import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.Normalizer.NormalizationFormat;
 import org.unicode.text.utility.Utility;
 
 public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
@@ -26,6 +29,7 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
     private UnicodeSet control; // new UnicodeSet("[:Cc:]");
 
     public ShimUnicodePropertyFactory(IndexUnicodeProperties factory) {
+
         scriptProp = factory.getProperty(UcdProperty.Script);
         UnicodeProperty idnaProp = factory.getProperty(UcdProperty.Idn_Status);
         UnicodeProperty gc = factory.getProperty(UcdProperty.General_Category);
@@ -84,14 +88,14 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
                 case "Unicode_1_Name":
                     prop = replaceValues(prop, oldValue -> oldValue == null ? "" : oldValue);
                     break;
-                // The following are "fake" in ToolUnicodeProperty
-                // I think they are just present for the types and aliases
+                    // The following are "fake" in ToolUnicodeProperty
+                    // I think they are just present for the types and aliases
                 case "ISO_Comment":
                     prop =
-                    copyPropReplacingMap(
-                            prop,
-                            new UnicodeMap<String>().putAll(0, 0x10ffff, "").freeze());
-            break;
+                            copyPropReplacingMap(
+                                    prop,
+                                    new UnicodeMap<String>().putAll(0, 0x10ffff, "").freeze());
+                    break;
 
                 case "Name_Alias":
                 case "kAccountingNumeric":
@@ -112,7 +116,7 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
                 case "kPrimaryNumeric":
                 case "kRSUnicode":
                     prop = replaceValues(prop, oldValue -> "");
-                    //prop = replaceValues(prop, oldValue -> oldValue == null ? "" : oldValue);
+                    // prop = replaceValues(prop, oldValue -> oldValue == null ? "" : oldValue);
                     break;
                 default:
                     add(prop);
@@ -126,34 +130,72 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
             }
         }
 
+        // Add properties that are not UCD
+
         add(
                 new UnicodeProperty.UnicodeSetProperty()
                         .set("[\\u0000-\\u007F]")
                         .setMain("ASCII", "ASCII", UnicodeProperty.EXTENDED_BINARY, ""));
-// TODO
-//SEVERE   Case_Fold_Turkish_I MISSING
-//SEVERE  IdnOutput   MISSING
-//SEVERE  Non_Break   MISSING
-//SEVERE  isNFC   MISSING
-//SEVERE  isNFD   MISSING
-//SEVERE  isNFKC  MISSING
-//SEVERE  isNFKD  MISSING
-//SEVERE  toNFC   MISSING
-//SEVERE  toNFD   MISSING
-//SEVERE  toNFKC  MISSING
-//SEVERE  toNFKD  MISSING
 
-        UnicodeProperty prop = new UnicodeProperty.UnicodeMapProperty()
-                        .set(makeMap(cp -> "valid".equals(idnaProp.getValue(cp)) ? "Yes" : "No"))
-                        .setMain("IdnOutput", "idnOut", UnicodeProperty.EXTENDED_BINARY, "")
-                .setMain("IdnOutput", "idnOut", UnicodeProperty.EXTENDED_BINARY, factory.getUcdVersion().getVersionString(2, 2));
-                add(prop);
+        for (NormalizationFormat nFormat : NormalizationFormat.values()) {
+            UnicodeMap<String> toMap = new UnicodeMap<>();
+            UnicodeSet isSet = new UnicodeSet();
+            Normalizer normalizer = new Normalizer(nFormat, factory);
+            for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+                String result = normalizer.normalize(cp);
+                toMap.put(cp, result);
+                if (singletonEquals(cp, result)) {
+                    isSet.add(cp);
+                }
+            }
+            add(
+                    new UnicodeProperty.UnicodeSetProperty()
+                            .set(isSet)
+                            .setMain(
+                                    "is" + nFormat.name(),
+                                    "is" + nFormat.name(),
+                                    UnicodeProperty.STRING,
+                                    ""));
+            add(
+                    new UnicodeProperty.UnicodeMapProperty()
+                            .set(toMap)
+                            .setMain(
+                                    "to" + nFormat.name(),
+                                    "to" + nFormat.name(),
+                                    UnicodeProperty.STRING,
+                                    ""));
+        }
+
+        // TODO INVESTIGATE these
+        UnicodeMap<String> noMap = makeMap(cp -> "No").freeze();
+
+        for (String propName :
+                Arrays.asList("IdnOutput", "Non_Break")) {
+            BaseProperty prop =
+                    new UnicodeProperty.UnicodeMapProperty()
+                            .set(noMap)
+                            .setMain(propName, propName, UnicodeProperty.EXTENDED_BINARY, "");
+            add(prop);
+        }
+
+        //      UnicodeProperty prop =
+        //      new UnicodeProperty.UnicodeMapProperty()
+        //              .set(makeMap(cp -> "valid".equals(idnaProp.getValue(cp)) ? "Yes" : "No"))
+        //              .setMain("IdnOutput", "idnOut", UnicodeProperty.EXTENDED_BINARY, "")
+        //              .setMain(
+        //                      "IdnOutput",
+        //                      "idnOut",
+        //                      UnicodeProperty.EXTENDED_BINARY,
+        //                      factory.getUcdVersion().getVersionString(2, 2));
+        // add(prop);
+
     }
 
     public String getIdna(int cp) {
         return "Yes"; // ;
     }
-    private UnicodeMap<String> makeMap(Function<Integer, String> setter) {
+
+    private static UnicodeMap<String> makeMap(Function<Integer, String> setter) {
         UnicodeMap<String> newMap = new UnicodeMap<>();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             newMap.put(cp, setter.apply(cp));
@@ -167,7 +209,7 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
      * of strings. These build a copy of a map rather than modifying a map, because it is
      * <b>much</b> faster to set values sequentially in code point order.
      */
-    private UnicodeProperty replaceCpValues(
+    private static UnicodeProperty replaceCpValues(
             UnicodeProperty prop, BiFunction<Integer, String, String> replace) {
         UnicodeMap<String> map = prop.getUnicodeMap().freeze();
         // generally much faster to create a new map than alter an old
@@ -308,12 +350,13 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
     }
 
     /** Very useful. May already be in ICU, but not sure. */
-    boolean singletonEquals(int codepoint, String value) {
+    public boolean singletonEquals(int codepoint, String value) {
         int first = value.codePointAt(0);
         return first == codepoint && value.length() == Character.charCount(codepoint);
     }
 
-    public BaseProperty copyPropReplacingMap(UnicodeProperty prop, UnicodeMap<String> newMap) {
+    public static BaseProperty copyPropReplacingMap(
+            UnicodeProperty prop, UnicodeMap<String> newMap) {
         return new UnicodeProperty.UnicodeMapProperty()
                 .set(newMap.freeze())
                 .setMain(
