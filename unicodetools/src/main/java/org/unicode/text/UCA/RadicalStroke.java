@@ -90,7 +90,7 @@ public final class RadicalStroke {
             // Use only the first radical-stroke value if there are multiple.
             int delim = rs.indexOf(' '); // value separator in Unihan data files
             if (delim < 0) {
-                delim = rs.indexOf('|'); // The new parser rewrites multi-values with a | separator.
+                delim = rs.indexOf(','); // The new parser rewrites multi-values with a , separator.
                 if (delim < 0) {
                     delim = rs.length();
                 }
