@@ -35,7 +35,6 @@ import org.unicode.cldr.util.props.UnicodeLabel;
 
 public abstract class UnicodeProperty extends UnicodeLabel {
 
-    private static final Splitter SPLIT_COMMAS = Splitter.on(",");
     public static final UnicodeSet NONCHARACTERS =
             new UnicodeSet("[:noncharactercodepoint:]").freeze();
     public static final UnicodeSet PRIVATE_USE = new UnicodeSet("[:gc=privateuse:]").freeze();
@@ -157,8 +156,17 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     private boolean isMultivalued = false;
 
+    private String delimiter = ",";
+    private Splitter delimiterSplitter = Splitter.on(delimiter);
+
     public UnicodeProperty setMultivalued(boolean value) {
         isMultivalued = value;
+        return this;
+    }
+
+    public UnicodeProperty setDelimiter(String value) {
+        delimiter = value;
+        delimiterSplitter = Splitter.on(delimiter);
         return this;
     }
 
@@ -336,14 +344,14 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (valueToFirstValueAlias == null) _getFirstValueAliasCache();
         if (isMultivalued) {
             List<String> result = new ArrayList<>();
-            for (String part : value.split(",")) {
+            for (String part : value.split(delimiter)) {
                 String partAlias = valueToFirstValueAlias.get(part);
                 if (partAlias == null) {
                     throw new IllegalArgumentException(value + " is not a value alias for " + name);
                 }
                 result.add(partAlias);
             }
-            return String.join(",", result);
+            return String.join(delimiter, result);
         }
         String result = valueToFirstValueAlias.get(value);
         if (result == null) {
@@ -407,8 +415,8 @@ public abstract class UnicodeProperty extends UnicodeLabel {
      * the original contents.
      */
     public final UnicodeSet getSet(String propertyValue, UnicodeSet result) {
-        if (isMultivalued && propertyValue.contains(",")) {
-            throw new IllegalArgumentException("Multivalued property values can't contain commas.");
+        if (isMultivalued && propertyValue.contains(delimiter)) {
+            throw new IllegalArgumentException("Multivalued property values can't contain the delimiter.");
         } else {
             return getSet(
                     new SimpleMatcher(
@@ -446,8 +454,8 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             valueAliases.clear();
             getValueAliases(value, valueAliases);
             for (String valueAlias : valueAliases) {
-                if (isMultivalued && valueAlias.contains(",")) {
-                    for (String part : SPLIT_COMMAS.split(valueAlias)) {
+                if (isMultivalued && valueAlias.contains(delimiter)) {
+                    for (String part : delimiterSplitter.split(valueAlias)) {
                         partAliases.clear();
                         getValueAliases(part, partAliases);
                         for (String partAlias : partAliases) {

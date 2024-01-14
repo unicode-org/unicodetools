@@ -57,7 +57,7 @@ import org.unicode.text.utility.Utility;
  * @author markdavis
  */
 public class IndexUnicodeProperties extends UnicodeProperty.Factory {
-    static final String SET_SEPARATOR = ",";
+    static final String SET_SEPARATOR = "|";
     /** Control file caching */
     static final boolean GZIP = true;
 
@@ -681,6 +681,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             if (PropertyParsingInfo.property2PropertyInfo.get(item).getMultivalued()
                     != ValueCardinality.Singleton) {
                 setMultivalued(true);
+                setDelimiter(SET_SEPARATOR);
             }
         }
 
