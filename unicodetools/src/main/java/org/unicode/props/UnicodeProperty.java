@@ -416,7 +416,8 @@ public abstract class UnicodeProperty extends UnicodeLabel {
      */
     public final UnicodeSet getSet(String propertyValue, UnicodeSet result) {
         if (isMultivalued && propertyValue.contains(delimiter)) {
-            throw new IllegalArgumentException("Multivalued property values can't contain the delimiter.");
+            throw new IllegalArgumentException(
+                    "Multivalued property values can't contain the delimiter.");
         } else {
             return getSet(
                     new SimpleMatcher(
