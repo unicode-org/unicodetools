@@ -1259,6 +1259,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         }
 
         public void addValueAlias(String value, String valueAlias, AliasAddAction aliasAddAction) {
+            if (valueAlias == null) {
+                valueAlias = value;
+            }
             List<String> result = toValueAliases.get(value);
             if (result == null) {
                 switch (aliasAddAction) {
