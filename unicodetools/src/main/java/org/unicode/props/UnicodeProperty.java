@@ -1272,6 +1272,18 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                         break;
                 }
             }
+            List<String> aliasAliases = toValueAliases.get(valueAlias);
+            if (aliasAliases == null) {
+                toValueAliases.put(valueAlias, result);
+            } else if (aliasAliases != result) {
+                throw new IllegalArgumentException(
+                        getName()
+                                + ": Adding alias "
+                                + valueAlias
+                                + " for "
+                                + value
+                                + " but it already designates a different value");
+            }
             addUnique(value, result);
             addUnique(valueAlias, result);
         }
