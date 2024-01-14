@@ -344,7 +344,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (valueToFirstValueAlias == null) _getFirstValueAliasCache();
         if (isMultivalued) {
             List<String> result = new ArrayList<>();
-            for (String part : value.split(delimiter)) {
+            for (String part : value.split(Pattern.quote(delimiter))) {
                 String partAlias = valueToFirstValueAlias.get(part);
                 if (partAlias == null) {
                     throw new IllegalArgumentException(value + " is not a value alias for " + name);
