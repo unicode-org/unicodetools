@@ -377,8 +377,11 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         }
 
         // put locales into right format
-        String[] localeList = localeSet.toArray(new String[localeSet.size()]);
-        String[][] locales = new String[][] {localeList, localeList}; // abbreviations are the same
+        String[][] locales = new String[localeSet.size()][];
+        int i = 0;
+        for (String locale : localeSet) {
+            locales[i++] = new String[] {locale, locale}; // abbreviations are the same
+        }
 
         add(
                 new UnicodeProperty.UnicodeMapProperty()
