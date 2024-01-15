@@ -267,23 +267,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         addExamplarProperty(LocaleData.ES_AUXILIARY, "exema", "exemplar_aux");
         addExamplarProperty(LocaleData.ES_PUNCTUATION, "exemp", "exemplar_punct");
 
-        // set up the special script property
-        UnicodeProperty scriptProp = last.getProperty("sc");
-
-        // Compose the function and add
-        UnicodeMap<String> specialMap = new UnicodeMap<String>();
-        specialMap.putAll(
-                scriptProp.getUnicodeMap()); // if there is no value, use the script property
-        specialMap.putAll(ScriptTester.getScriptSpecialsNames());
-        add(
-                new UnicodeProperty.UnicodeMapProperty()
-                        .set(specialMap)
-                        .setMain("Script_Extensions", "scx", UnicodeProperty.ENUMERATED, "1.1")
-                        .addValueAliases(
-                                ScriptTester.getScriptSpecialsAlternates(scriptProp),
-                                AliasAddAction.IGNORE_IF_MISSING)
-                        .setMultivalued(true));
-
         UnicodeSet Basic_Emoji =
                 getProperty("Basic_Emoji").getSet("Yes", null); // TODO: was .getTrueSet();
         UnicodeSet Emoji_Keycap_Sequence =
