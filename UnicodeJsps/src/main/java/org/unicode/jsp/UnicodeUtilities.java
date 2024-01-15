@@ -803,8 +803,6 @@ public class UnicodeUtilities {
             if (name != null) {
                 result.append(name);
             } else {
-                // TODO(egg): We only have Name_Aliasβ during β, which is silly.  This will probably
-                // solve itself as part of https://github.com/unicode-org/unicodetools/issues/432.
                 String alias = getFactory().getProperty("Name_Alias").getValue(cp);
                 if (alias == null) {
                     alias = "no name";
