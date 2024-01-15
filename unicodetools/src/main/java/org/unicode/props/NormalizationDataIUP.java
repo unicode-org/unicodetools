@@ -45,6 +45,9 @@ public class NormalizationDataIUP implements NormalizationData {
         ccc = factory.loadInt(UcdProperty.Canonical_Combining_Class);
 
         for (int i = 0; i < 0x10FFFF; ++i) {
+            if (i == 0xA0) {
+                int debug = 0;
+            }
             // if (!ucd.isAssigned(i)) {
             final General_Category_Values gcValue = gc.getValue(i);
             if (gcValue == UcdPropertyValues.General_Category_Values.Unassigned) {
@@ -65,69 +68,72 @@ public class NormalizationDataIUP implements NormalizationData {
             }
             //            final byte dt = ucd.getDecompositionType(i);
             //            if (dt != UCD_Types.CANONICAL) {
-            if (decompType.get(i) == Decomposition_Type_Values.Canonical) {
+            if (decompType.get(i) != Decomposition_Type_Values.Canonical) {
                 continue;
             }
             // if (!ucd.getBinaryProperty(i, UCD_Types.CompositionExclusion)) {
             if (compExclude.contains(i)) {
                 continue;
             }
-                try {
-                    // final String s = ucd.getDecompositionMapping(i);
-                    final String s = decompMap.get(i);
-                    if (s.equals("<code point>")) { // could optimize
-                        continue;
+            try {
+                // final String s = ucd.getDecompositionMapping(i);
+                final String s = decompMap.get(i);
+                if (s.equals("<code point>")) { // could optimize
+                    continue;
+                }
+                final int len = UTF16.countCodePoint(s);
+                if (len != 2) {
+                    //                        if (len > 2) {
+                    //                            if
+                    // (versionInfo.compareTo(VersionInfo.getInstance(3))
+                    //                                    >= 0) { // version >= 3.0.0
+                    //                                throw new IllegalArgumentException("BAD
+                    // LENGTH: " + len + " for " + Utility.hex(s));
+                    //                            }
+                    //                        }
+                    continue;
+                }
+                final int a = UTF16.charAt(s, 0);
+                // if (ucd.getCombiningClass(a) != 0) {
+                if (ccc.get(a) != 0) {
+                    continue;
+                }
+                isFirst.set(a);
+
+                final int b = UTF16.charAt(s, UTF16.getCharCount(a));
+                isSecond.set(b);
+
+                // have a recomposition, so set the bit
+                canonicalRecompose.set(i);
+
+                // set the compatibility recomposition bit
+                // ONLY if the component characters
+                // don't compatibility decompose
+
+                //                    if (ucd.getDecompositionType(a) <= UCD_Types.CANONICAL
+                //                            && ucd.getDecompositionType(b) <=
+                // UCD_Types.CANONICAL) {
+                Decomposition_Type_Values decompA = decompType.get(a);
+                if (decompA == Decomposition_Type_Values.None
+                        || decompA == Decomposition_Type_Values.Canonical) {
+                    Decomposition_Type_Values decompB = decompType.get(b);
+                    if (decompB == Decomposition_Type_Values.None
+                            || decompB == Decomposition_Type_Values.Canonical) {
+                        compatibilityRecompose.set(i);
                     }
-                    final int len = UTF16.countCodePoint(s);
-                    if (len != 2) {
-                        if (len > 2) {
-                            if (versionInfo.compareTo(VersionInfo.getInstance(3))
-                                    >= 0) { // version >= 3.0.0
-                                throw new IllegalArgumentException("BAD LENGTH: " + len + " for " + Utility.hex(s));
-                            }
-                        }
-                        continue;
-                    }
-                    final int a = UTF16.charAt(s, 0);
-                    // if (ucd.getCombiningClass(a) != 0) {
-                    if (ccc.get(a) != 0) {
-                        continue;
-                    }
-                    isFirst.set(a);
-
-                    final int b = UTF16.charAt(s, UTF16.getCharCount(a));
-                    isSecond.set(b);
-
-                    // have a recomposition, so set the bit
-                    canonicalRecompose.set(i);
-
-                    // set the compatibility recomposition bit
-                    // ONLY if the component characters
-                    // don't compatibility decompose
-
-                    //                    if (ucd.getDecompositionType(a) <= UCD_Types.CANONICAL
-                    //                            && ucd.getDecompositionType(b) <=
-                    // UCD_Types.CANONICAL) {
-                    Decomposition_Type_Values decompA = decompType.get(a);
-                    if (decompA == null || decompA == Decomposition_Type_Values.Canonical) {
-                        Decomposition_Type_Values decompB = decompType.get(b);
-                        if (decompB == null || decompB == Decomposition_Type_Values.Canonical) {
-                            compatibilityRecompose.set(i);
-                        }
-                    }
-
-                    final long key = (((long) a) << 32) | b;
-
-                    /*if (i == '\u1E0A' || key == 0x004400000307) {
-                        System.out.println(Utility.hex(s));
-                        System.out.println(Utility.hex(i));
-                        System.out.println(Utility.hex(key));
-                    }*/
-                    compTable.put(new Long(key), new Integer(i));
-                } catch (final Exception e) {
-                    throw new ChainException("Error: {0}", new Object[] {Utility.hex(i)}, e);
                 }
 
+                final long key = (((long) a) << 32) | b;
+
+                /*if (i == '\u1E0A' || key == 0x004400000307) {
+                    System.out.println(Utility.hex(s));
+                    System.out.println(Utility.hex(i));
+                    System.out.println(Utility.hex(key));
+                }*/
+                compTable.put(new Long(key), new Integer(i));
+            } catch (final Exception e) {
+                throw new ChainException("Error: {0}", new Object[] {Utility.hex(i)}, e);
+            }
         }
         // process compatibilityRecompose
         // have to do this afterwards, since we don't know whether the pieces
@@ -196,11 +202,11 @@ public class NormalizationDataIUP implements NormalizationData {
     }
 
     public static boolean isCanonicalOrCompat(final Decomposition_Type_Values dt) {
-        return dt != null;
+        return dt != Decomposition_Type_Values.None;
     }
 
     public static boolean isCompat(final Decomposition_Type_Values dt) {
-        return dt != null && dt != Decomposition_Type_Values.Canonical;
+        return dt != Decomposition_Type_Values.None && dt != Decomposition_Type_Values.Canonical;
     }
 
     /* (non-Javadoc)

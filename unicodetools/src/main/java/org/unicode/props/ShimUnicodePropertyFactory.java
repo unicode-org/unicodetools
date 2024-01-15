@@ -7,11 +7,11 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.unicode.cldr.util.Rational;
+import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeProperty.BaseProperty;
 import org.unicode.text.UCD.Normalizer;
@@ -27,11 +27,12 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
     // Set these from IndexUnicodeProperties to be current
     private UnicodeSet defaultTransparent; // new UnicodeSet("[[:Cf:][:Me:][:Mn:]]");
     private UnicodeSet control; // new UnicodeSet("[:Cc:]");
+    private UnicodeMap<Idn_Status_Values> idnStatus;
 
     public ShimUnicodePropertyFactory(IndexUnicodeProperties factory) {
 
         scriptProp = factory.getProperty(UcdProperty.Script);
-        UnicodeProperty idnaProp = factory.getProperty(UcdProperty.Idn_Status);
+        idnStatus = factory.loadEnum(UcdProperty.Idn_Status, Idn_Status_Values.class);
         UnicodeProperty gc = factory.getProperty(UcdProperty.General_Category);
         control = gc.getSet(UcdPropertyValues.General_Category_Values.Control).freeze();
         defaultTransparent =
@@ -96,7 +97,8 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
                                     prop,
                                     new UnicodeMap<String>().putAll(0, 0x10ffff, "").freeze());
                     break;
-
+                    // The following are not really supported in TUP; values are all "". So just
+                    // match that.
                 case "Name_Alias":
                 case "kAccountingNumeric":
                 case "kCompatibilityVariant":
@@ -144,7 +146,7 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
             for (int cp = 0; cp <= 0x10FFFF; ++cp) {
                 String result = normalizer.normalize(cp);
                 toMap.put(cp, result);
-                if (singletonEquals(cp, result)) {
+                if (equalsString(cp, result)) {
                     isSet.add(cp);
                 }
             }
@@ -154,7 +156,7 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
                             .setMain(
                                     "is" + nFormat.name(),
                                     "is" + nFormat.name(),
-                                    UnicodeProperty.STRING,
+                                    UnicodeProperty.BINARY,
                                     ""));
             add(
                     new UnicodeProperty.UnicodeMapProperty()
@@ -166,42 +168,33 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
                                     ""));
         }
 
-        // TODO INVESTIGATE these
-        UnicodeMap<String> noMap = makeMap(cp -> "No").freeze();
+        // The following two are vacuous, but match TUP
 
-        for (String propName :
-                Arrays.asList("IdnOutput", "Non_Break")) {
-            BaseProperty prop =
-                    new UnicodeProperty.UnicodeMapProperty()
-                            .set(noMap)
-                            .setMain(propName, propName, UnicodeProperty.EXTENDED_BINARY, "");
-            add(prop);
-        }
+        add(
+                new UnicodeProperty.UnicodeMapProperty()
+                        .set(makeMap(cp -> "No"))
+                        .setMain(
+                                "Case_Fold_Turkish_I",
+                                "Case_Fold_Turkish_I",
+                                UnicodeProperty.STRING,
+                                ""));
 
-        //      UnicodeProperty prop =
-        //      new UnicodeProperty.UnicodeMapProperty()
-        //              .set(makeMap(cp -> "valid".equals(idnaProp.getValue(cp)) ? "Yes" : "No"))
-        //              .setMain("IdnOutput", "idnOut", UnicodeProperty.EXTENDED_BINARY, "")
-        //              .setMain(
-        //                      "IdnOutput",
-        //                      "idnOut",
-        //                      UnicodeProperty.EXTENDED_BINARY,
-        //                      factory.getUcdVersion().getVersionString(2, 2));
-        // add(prop);
-
+        add(
+                new UnicodeProperty.UnicodeMapProperty()
+                        .set(makeMap(cp -> "No"))
+                        .setMain("Non_Break", "Non_Break", UnicodeProperty.EXTENDED_BINARY, ""));
     }
 
-    public String getIdna(int cp) {
-        return "Yes"; // ;
-    }
+    // Unused, as far as I can tell
+    //   add(new UnicodeProperty.UnicodeMapProperty()
+    //       .set(makeMap(cp -> idnOutput(cp)))
+    //       .setMain("IdnOutput", "IdnOutput", UnicodeProperty.EXTENDED_BINARY,""));
+    //    String idnOutput(int cp) {
+    //        Idn_Status_Values stat = idnStatus.getValue(cp);
+    //        return stat == Idn_Status_Values.disallowed_STD3_valid
+    //               || stat == Idn_Status_Values.valid ? "Yes" : "No";
+    //    }
 
-    private static UnicodeMap<String> makeMap(Function<Integer, String> setter) {
-        UnicodeMap<String> newMap = new UnicodeMap<>();
-        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-            newMap.put(cp, setter.apply(cp));
-        }
-        return newMap;
-    }
     /**
      * Build a new property from an existing one, with a function that takes a code point and old
      * value. <br>
@@ -212,24 +205,7 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
     private static UnicodeProperty replaceCpValues(
             UnicodeProperty prop, BiFunction<Integer, String, String> replace) {
         UnicodeMap<String> map = prop.getUnicodeMap().freeze();
-        // generally much faster to create a new map than alter an old
-        UnicodeMap<String> newMap = new UnicodeMap<>();
-        // Should add map.entryRangesWithNull() that returns entry ranges with range.value == null
-        int gapCp = 0;
-        for (UnicodeMap.EntryRange<String> range : map.entryRanges()) {
-            // handle null gaps
-            for (; gapCp < range.codepoint; ++gapCp) {
-                newMap.put(gapCp, replace.apply(gapCp, null));
-            }
-            for (int cp = range.codepoint; cp <= range.codepointEnd; ++cp) {
-                newMap.put(cp, replace.apply(cp, range.value));
-            }
-            gapCp = range.codepointEnd + 1;
-        }
-        // handle null gaps
-        for (; gapCp < 0x110000; ++gapCp) {
-            newMap.put(gapCp, replace.apply(gapCp, null));
-        }
+        UnicodeMap<String> newMap = makeModifiedUnicodeMap(map, replace);
         return copyPropReplacingMap(prop, newMap);
     }
 
@@ -240,23 +216,27 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
      * of strings. These build a copy of a map rather than modifying a map, because it is
      * <b>much</b> faster to set values sequentially in code point order.
      */
-    private UnicodeProperty replaceValues(UnicodeProperty prop, Function<String, String> replace) {
+    private static UnicodeProperty replaceValues(
+            UnicodeProperty prop, Function<String, String> replace) {
         if (prop.getName().equals("kOtherNumeric")) {
             int debug = 0;
         }
         UnicodeMap<String> map = prop.getUnicodeMap().freeze();
         // generally much faster to create a new map than alter an old
-        UnicodeMap<String> newMap = new UnicodeMap<>();
-        int gapCp = 0;
-        for (UnicodeMap.EntryRange<String> range : map.entryRanges()) {
-            // handle null gaps
-            newMap.putAll(gapCp, range.codepoint - 1, replace.apply(null));
-            newMap.putAll(range.codepoint, range.codepointEnd, replace.apply(range.value));
-            gapCp = range.codepointEnd + 1;
-        }
-        // handle null gaps
-        newMap.putAll(gapCp, 0x10FFFF, replace.apply(null));
+        UnicodeMap<String> newMap = makeModifiedMap(map, replace);
         return copyPropReplacingMap(prop, newMap);
+    }
+
+    public static BaseProperty copyPropReplacingMap(
+            UnicodeProperty prop, UnicodeMap<String> newMap) {
+        return new UnicodeProperty.UnicodeMapProperty()
+                .set(newMap.freeze())
+                .setMain(
+                        prop.getName(),
+                        prop.getFirstNameAlias(),
+                        prop.getType(),
+                        prop.getVersion());
+        // TODO: add name aliases
     }
 
     public String fixScript_Extensions(int cp, String oldValue) {
@@ -323,7 +303,7 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
     }
 
     private String fixFC_NFKC_Closure(int cp, String oldValue) {
-        if (oldValue.equals("<code point>") || singletonEquals(cp, oldValue)) {
+        if (oldValue.equals("<code point>") || equalsString(cp, oldValue)) {
             return null;
         } else {
             return oldValue;
@@ -350,20 +330,63 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
     }
 
     /** Very useful. May already be in ICU, but not sure. */
-    public boolean singletonEquals(int codepoint, String value) {
-        int first = value.codePointAt(0);
-        return first == codepoint && value.length() == Character.charCount(codepoint);
+    public boolean equalsString(int codepoint, String value) {
+        return codepoint == value.codePointAt(0)
+                && value.length() == Character.charCount(codepoint);
     }
 
-    public static BaseProperty copyPropReplacingMap(
-            UnicodeProperty prop, UnicodeMap<String> newMap) {
-        return new UnicodeProperty.UnicodeMapProperty()
-                .set(newMap.freeze())
-                .setMain(
-                        prop.getName(),
-                        prop.getFirstNameAlias(),
-                        prop.getType(),
-                        prop.getVersion());
-        // TODO: add name aliases
+    // UnicodeMap utilities
+    /**
+     * Make a modified UnicodeMap efficiently, where the new values depend on the codepoint and
+     * source value.
+     */
+    public static <T> UnicodeMap<T> makeModifiedUnicodeMap(
+            UnicodeMap<T> sourceMap, BiFunction<Integer, T, T> replacer) {
+        // generally much faster to create a new map than alter an old
+        UnicodeMap<T> newMap = new UnicodeMap<>();
+        // Should add map.entryRangesWithNull() that returns entry ranges with range.value == null
+        int gapCp = 0;
+        for (UnicodeMap.EntryRange<T> range : sourceMap.entryRanges()) {
+            // handle null gaps
+            for (; gapCp < range.codepoint; ++gapCp) {
+                newMap.put(gapCp, replacer.apply(gapCp, null));
+            }
+            for (int cp = range.codepoint; cp <= range.codepointEnd; ++cp) {
+                newMap.put(cp, replacer.apply(cp, range.value));
+            }
+            gapCp = range.codepointEnd + 1;
+        }
+        // handle null gaps
+        for (; gapCp < 0x110000; ++gapCp) {
+            newMap.put(gapCp, replacer.apply(gapCp, null));
+        }
+        return newMap;
+    }
+
+    /**
+     * Make a modified UnicodeMap efficiently, where the new values depend on just the source value.
+     */
+    public static <T> UnicodeMap<T> makeModifiedMap(
+            UnicodeMap<T> sourceMap, Function<T, T> replacer) {
+        UnicodeMap<T> newMap = new UnicodeMap<>();
+        int gapCp = 0;
+        for (UnicodeMap.EntryRange<T> range : sourceMap.entryRanges()) {
+            // handle null gaps
+            newMap.putAll(gapCp, range.codepoint - 1, replacer.apply(null));
+            newMap.putAll(range.codepoint, range.codepointEnd, replacer.apply(range.value));
+            gapCp = range.codepointEnd + 1;
+        }
+        // handle null gaps
+        newMap.putAll(gapCp, 0x10FFFF, replacer.apply(null));
+        return newMap;
+    }
+
+    /** Make a UnicodeMap, from a function that maps a code point to a value. */
+    public static <T> UnicodeMap<T> makeMap(Function<Integer, T> setter) {
+        UnicodeMap<T> newMap = new UnicodeMap<>();
+        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+            newMap.put(cp, setter.apply(cp));
+        }
+        return newMap;
     }
 }

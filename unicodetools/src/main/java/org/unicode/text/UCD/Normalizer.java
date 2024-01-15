@@ -78,7 +78,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         this.format = form;
         this.name = form.name();
         composition = form.isCompose;
-        compatibility = form.isCompose;
+        compatibility = form.isCompat;
         data = getData(factory);
     }
 

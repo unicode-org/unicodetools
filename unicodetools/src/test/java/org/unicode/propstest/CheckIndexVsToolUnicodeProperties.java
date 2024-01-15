@@ -7,6 +7,7 @@ import com.google.common.collect.Sets;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Pair;
 import com.ibm.icu.text.UnicodeSet;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -23,12 +24,16 @@ import org.unicode.text.utility.Utility;
 public class CheckIndexVsToolUnicodeProperties {
     private static final boolean SHOWLIST = false;
 
+    private static final String UcdVersionToTest = Default.ucdVersion();
+
+    private static final IndexUnicodeProperties rawIUP =
+            IndexUnicodeProperties.make(UcdVersionToTest);
+
     final int MAX_USET_ITEMS = 15;
 
-    final ShimUnicodePropertyFactory iup =
-            new ShimUnicodePropertyFactory(IndexUnicodeProperties.make(Default.ucdVersion()));
+    final ShimUnicodePropertyFactory iup = new ShimUnicodePropertyFactory(rawIUP);
 
-    final ToolUnicodePropertySource tup = ToolUnicodePropertySource.make(Default.ucdVersion());
+    final ToolUnicodePropertySource tup = ToolUnicodePropertySource.make(UcdVersionToTest);
 
     SimpleUnicodeSetFormatter susetFormatter = new SimpleUnicodeSetFormatter();
 
@@ -36,14 +41,14 @@ public class CheckIndexVsToolUnicodeProperties {
     boolean debugLimited = false;
     final Set<String> debugProperties =
             ImmutableSet.of(
-                    "IdnOutput"
+                    "isNFD"
                     //                    "FC_NFKC_Closure",
                     //                    "ISO_Comment",
                     //                    "Jamo_Short_Name",
                     //                    "Joining_Group",
                     //                    "Joining_Type",
                     //                    "Name",
-//                    "Name_Alias"
+                    //                    "Name_Alias"
                     //                    "Numeric_Value",
                     //                    "Script_Extensions"
                     );
@@ -57,17 +62,25 @@ public class CheckIndexVsToolUnicodeProperties {
     }
 
     public static void main(String[] args) {
-        new CheckIndexVsToolUnicodeProperties().TestProperties();
+        final CheckIndexVsToolUnicodeProperties main = new CheckIndexVsToolUnicodeProperties();
+        main.TestProperties();
     }
 
     public void TestProperties() {
 
-        warnln("\tComparing values for " + Default.ucdVersion());
+        warnln("\tComparing values for " + UcdVersionToTest);
         Set<String> iupNames = new LinkedHashSet<>(iup.getAvailableNames());
         Set<String> tupNames = new LinkedHashSet<>(tup.getAvailableNames());
-        Set<String> toTest = tupNames;
+        Set<String> toTest;
         if (debugLimited) {
             toTest = debugProperties;
+        } else {
+            toTest = new LinkedHashSet<>(tupNames);
+            toTest.removeAll(
+                    Arrays.asList(
+                            "IdnOutput",
+                            "Case_Fold_Turkish_I")); // unused as far as I can tell; no obvious
+            // derivation
         }
 
         if (SHOWLIST) {
@@ -98,7 +111,7 @@ public class CheckIndexVsToolUnicodeProperties {
             Counter<Shim> shims = new Counter<>();
 
             for (int i = 0x0; i <= 0x10ffff; ++i) {
-                if (debugItems.contains(i)) {
+                if (debugLimited && debugItems.contains(i)) {
                     int debug = 0; // stop if debugging
                 }
                 String iupValue = iupProp.getValue(i);
