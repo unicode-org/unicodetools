@@ -908,3 +908,7 @@ Let $ideohack = [〆 〇 〡-〩]
 [\P{InPC=NA}&\P{InPC=/(Left|Right)/}] ⊆ [\p{gc=Mn}\p{gc=Lo}]
 \p{gc=Mn} ⊆ \P{InPC=/(Left|Right)/}
 [\p{gc=Lo}&\P{InPC=NA}&\P{InPC=/(Left|Right)/}] ⊆ [\p{InSC=Consonant_Preceding_Repha}\p{InSC=Consonant_Prefixed}]
+
+# Script Extensions (mostly testing the proper handling of multivalued properties).
+\p{sc=Deva} ⊂ \p{scx=Deva}
+[\p{scx=Deva} & \p{scx=Beng}] ⊃ []
