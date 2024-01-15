@@ -435,9 +435,13 @@ public class IdentifierInfo {
                 }
                 final String codelist = pieces[0].trim();
                 if (UnicodeSet.resemblesPattern(pieces[0], 0)) {
+                    // TODO(macchiati): Weird dependency on ChainedSymbolTable which we probably
+                    // do not need.
                     sources =
-                            TestUnicodeInvariants.parseUnicodeSet(
-                                    codelist); // .retainAll(allocated);
+                            VersionedProperty.parseUnicodeSet(
+                                    codelist,
+                                    new TestUnicodeInvariants
+                                            .ChainedSymbolTable()); // .retainAll(allocated);
                     if (sources.contains("ᢰ")) {
                         int x = 0;
                     }
