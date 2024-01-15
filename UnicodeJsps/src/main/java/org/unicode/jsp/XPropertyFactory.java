@@ -102,11 +102,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                         .setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
 
         add(
-                new StringTransformProperty(Common.NFKC_CF, false)
-                        .setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, "1.1")
-                        .addName("toNFKC_CF"));
-
-        add(
                 new CodepointTransformProperty(
                                 new Transform<Integer, String>() {
                                     @Override
@@ -187,21 +182,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                                 },
                                 false)
                         .setMain("toTitlecase", "toTC", UnicodeProperty.STRING, "1.1"));
-
-        add(
-                new StringTransformProperty(
-                                new StringTransform() {
-                                    @Override
-                                    public String transform(String source) {
-                                        StringBuilder b = new StringBuilder();
-                                        for (int cp : CharSequences.codePoints(source)) {
-                                            b.appendCodePoint(UCharacter.getBidiPairedBracket(cp));
-                                        }
-                                        return b.toString();
-                                    }
-                                },
-                                false)
-                        .setMain("Bidi_Paired_Bracket", "bpb", UnicodeProperty.STRING, "7.0"));
 
         add(
                 new StringTransformProperty(
