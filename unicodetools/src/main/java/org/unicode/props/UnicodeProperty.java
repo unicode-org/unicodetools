@@ -22,10 +22,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -33,7 +35,6 @@ import org.unicode.cldr.util.props.UnicodeLabel;
 
 public abstract class UnicodeProperty extends UnicodeLabel {
 
-    private static final Splitter SPLIT_COMMAS = Splitter.on(",");
     public static final UnicodeSet NONCHARACTERS =
             new UnicodeSet("[:noncharactercodepoint:]").freeze();
     public static final UnicodeSet PRIVATE_USE = new UnicodeSet("[:gc=privateuse:]").freeze();
@@ -155,8 +156,17 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     private boolean isMultivalued = false;
 
+    private String delimiter = ",";
+    private Splitter delimiterSplitter = Splitter.on(delimiter);
+
     public UnicodeProperty setMultivalued(boolean value) {
         isMultivalued = value;
+        return this;
+    }
+
+    public UnicodeProperty setDelimiter(String value) {
+        delimiter = value;
+        delimiterSplitter = Splitter.on(delimiter);
         return this;
     }
 
@@ -332,6 +342,17 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     public final String getFirstValueAlias(String value) {
         if (valueToFirstValueAlias == null) _getFirstValueAliasCache();
+        if (isMultivalued) {
+            List<String> result = new ArrayList<>();
+            for (String part : value.split(Pattern.quote(delimiter))) {
+                String partAlias = valueToFirstValueAlias.get(part);
+                if (partAlias == null) {
+                    throw new IllegalArgumentException(value + " is not a value alias for " + name);
+                }
+                result.add(partAlias);
+            }
+            return String.join(delimiter, result);
+        }
         String result = valueToFirstValueAlias.get(value);
         if (result == null) {
             throw new IllegalArgumentException(value + " is not a value alias for " + name);
@@ -394,8 +415,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
      * the original contents.
      */
     public final UnicodeSet getSet(String propertyValue, UnicodeSet result) {
-        if (isMultivalued && propertyValue.contains(",")) {
-            throw new IllegalArgumentException("Multivalued property values can't contain commas.");
+        if (isMultivalued && propertyValue.contains(delimiter)) {
+            throw new IllegalArgumentException(
+                    "Multivalued property values can't contain the delimiter.");
         } else {
             return getSet(
                     new SimpleMatcher(
@@ -423,26 +445,28 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             }
             return addUntested(result, uniformUnassigned);
         }
-        List<String> temp = new ArrayList<>(1); // to avoid reallocating...
+        List<String> valueAliases = new ArrayList<>(1); // to avoid reallocating...
+        List<String> partAliases = new ArrayList<>(1);
         UnicodeMap<String> um = getUnicodeMap_internal();
         Iterator<String> it = um.getAvailableValues(null).iterator();
         main:
         while (it.hasNext()) {
             String value = it.next();
-            temp.clear();
-            final List<String> valueAliases = getValueAliases(value, temp);
-            Iterator<String> it2 = valueAliases.iterator();
-            while (it2.hasNext()) {
-                String value2 = it2.next();
-                // System.out.println("Values:" + value2);
-                if (isMultivalued && value2.contains(",")) {
-                    for (String part : SPLIT_COMMAS.split(value2)) {
-                        if (matcher.test(part) || matcher.test(toSkeleton(part))) {
-                            um.keySet(value, result);
-                            continue main;
+            valueAliases.clear();
+            getValueAliases(value, valueAliases);
+            for (String valueAlias : valueAliases) {
+                if (isMultivalued && valueAlias.contains(delimiter)) {
+                    for (String part : delimiterSplitter.split(valueAlias)) {
+                        partAliases.clear();
+                        getValueAliases(part, partAliases);
+                        for (String partAlias : partAliases) {
+                            if (matcher.test(partAlias) || matcher.test(toSkeleton(partAlias))) {
+                                um.keySet(value, result);
+                                continue main;
+                            }
                         }
                     }
-                } else if (matcher.test(value2) || matcher.test(toSkeleton(value2))) {
+                } else if (matcher.test(valueAlias) || matcher.test(toSkeleton(valueAlias))) {
                     um.keySet(value, result);
                     continue main;
                 }
@@ -1246,6 +1270,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         }
 
         public void addValueAlias(String value, String valueAlias, AliasAddAction aliasAddAction) {
+            if (valueAlias == null) {
+                valueAlias = value;
+            }
             List<String> result = toValueAliases.get(value);
             if (result == null) {
                 switch (aliasAddAction) {
@@ -1258,6 +1285,18 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                         toValueAliases.put(value, result = new ArrayList<>(0));
                         break;
                 }
+            }
+            List<String> aliasAliases = toValueAliases.get(valueAlias);
+            if (aliasAliases == null) {
+                toValueAliases.put(valueAlias, result);
+            } else if (aliasAliases != result) {
+                throw new IllegalArgumentException(
+                        getName()
+                                + ": Adding alias "
+                                + valueAlias
+                                + " for "
+                                + value
+                                + " but it already designates a different value");
             }
             addUnique(value, result);
             addUnique(valueAlias, result);
@@ -1286,12 +1325,17 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         }
 
         public BaseProperty swapFirst2ValueAliases() {
+            Set<List<String>> alreadySwapped = new HashSet<>();
             for (Iterator<String> it = toValueAliases.keySet().iterator(); it.hasNext(); ) {
                 List<String> list = toValueAliases.get(it.next());
+                if (alreadySwapped.contains(list)) {
+                    continue;
+                }
                 if (list.size() < 2) continue;
                 String first = list.get(0);
                 list.set(0, list.get(1));
                 list.set(1, first);
+                alreadySwapped.add(list);
             }
             return this;
         }
@@ -1425,10 +1469,19 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         protected List<String> _getAvailableValues(List<String> result) {
             unicodeMap.getAvailableValues(result);
             if (toValueAliases != null) {
-                for (String s : toValueAliases.keySet()) {
-                    if (!result.contains(s)) {
-                        result.add(s);
+                Set<List<String>> alreadyConsideredValues = new HashSet<>();
+                values:
+                for (List<String> valueAliases : toValueAliases.values()) {
+                    if (alreadyConsideredValues.contains(valueAliases)) {
+                        continue;
                     }
+                    alreadyConsideredValues.add(valueAliases);
+                    for (String valueAlias : valueAliases) {
+                        if (result.contains(valueAlias)) {
+                            continue values;
+                        }
+                    }
+                    result.add(valueAliases.get(0));
                 }
             }
             return result;

@@ -57,7 +57,7 @@ public class TestMultivalued extends TestFmwkMinusMinus {
         }
         assertEquals(
                 "Expected exception",
-                "Multivalued property values can't contain commas.",
+                "Multivalued property values can't contain the delimiter.",
                 exceptionMessage);
     }
 
