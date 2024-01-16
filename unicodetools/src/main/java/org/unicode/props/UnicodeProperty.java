@@ -285,12 +285,12 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     public List<String> getValueAliases(String valueAlias, List<String> result) {
         if (result == null) result = new ArrayList<>(1);
         result = _getValueAliases(valueAlias, result);
-        if (!result.contains(valueAlias)) { // FIX && type < NUMERIC
+        if (!result.contains(valueAlias) && type != MISC) { // FIX && type < NUMERIC
             result = _getValueAliases(valueAlias, result); // for debugging
             throw new IllegalArgumentException(
                     "Internal error: "
-                            + getName()
-                            + " doesn't contain "
+                            + getName() + " (" + getTypeName()
+                            + ") doesn't contain "
                             + valueAlias
                             + ": "
                             + new BagFormatter().join(result));

@@ -17,6 +17,7 @@ import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedReader;
@@ -50,7 +51,9 @@ import org.unicode.idna.IdnaTypes;
 import org.unicode.idna.Punycode;
 import org.unicode.idna.Uts46;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.text.utility.Settings;
 
 // For dependency management, it might be useful to split this omnibus class into
 // pieces by topic, such as collation utilities vs. IDNA utilities etc.
@@ -1374,8 +1377,7 @@ public class UnicodeUtilities {
 
             boolean isDefault = prop.isDefault(cp);
             if (isDefault) continue;
-            String propValue = prop.getValue(cp);
-            showPropertyValue(propName, propValue, isDefault, out);
+            showPropertyValue(propName, cp, isDefault, out);
         }
         out.append("</table>\n");
 
@@ -1388,8 +1390,7 @@ public class UnicodeUtilities {
 
             boolean isDefault = prop.isDefault(cp);
             if (!isDefault) continue;
-            String propValue = prop.getValue(cp);
-            showPropertyValue(propName, propValue, isDefault, out);
+            showPropertyValue(propName, cp, isDefault, out);
         }
         out.append("</table>\n");
 
@@ -1517,32 +1518,36 @@ public class UnicodeUtilities {
     }
 
     private static void showPropertyValue(
-            String propName, String propValue, boolean isDefault, Appendable out)
+            String propName, int codePoint, boolean isDefault, Appendable out)
             throws IOException {
+        System.out.println("History of " + propName + " for U+" + org.unicode.text.utility.Utility.hex(codePoint));
         String defaultClass = isDefault ? " class='default'" : "";
-        if (propValue == null) {
-            out.append(
-                    "<tr><th><a target='c' href='properties.jsp?a="
-                            + propName
-                            + "#"
-                            + propName
-                            + "'>"
-                            + propName
-                            + "</a></th><td"
-                            + defaultClass
-                            + "><i>null</i></td></tr>\n");
-            return;
-        }
-        String hValue = toHTML.transliterate(propValue);
-        hValue =
-                "<a target='u' href='list-unicodeset.jsp?a=[:"
-                        + propName
-                        + "="
-                        + propValue
-                        + ":]'>"
-                        + hValue
-                        + "</a>";
+        String previousValue = null;
+        String currentValue = null;
+        Map<VersionInfo, String> propertyChanges = new TreeMap<>();
 
+        for (var age : Age_Values.values()) {
+            if (age == Age_Values.Unassigned) {
+                break;
+            }
+            var version = VersionInfo.getInstance(age.getShortName());
+            String versionPrefix = version == Settings.LATEST_VERSION_INFO ? "dev" : version.getVersionString(3, 3);
+            UnicodeProperty property = null;
+            try {
+                 property = getFactory().getProperty("U" + versionPrefix + ":" + propName);
+            } catch (ICUException e) {}
+            if (property == null) {
+                continue;
+            }
+            String value = property.getValue(codePoint);
+            if (value != null && !value.equals(previousValue)) {
+                propertyChanges.put(version, value);
+                previousValue = value;
+            }
+            if (version == Settings.LAST_VERSION_INFO) {
+                currentValue = value;
+            }
+        }
         out.append(
                 "<tr><th><a target='c' href='properties.jsp?a="
                         + propName
@@ -1550,11 +1555,26 @@ public class UnicodeUtilities {
                         + propName
                         + "'>"
                         + propName
-                        + "</a></th><td"
+                        + "</a></th>");
+        for (var entry : propertyChanges.entrySet()) {
+            String version = entry.getKey().getVersionString(2, 4);
+            String suffix = entry.getKey() == Settings.LATEST_VERSION_INFO ? Settings.latestVersionPhase.toString() : "";
+            String hValue = entry.getValue() == null ? "<i>null</i>" : toHTML.transliterate(entry.getValue());
+            out.append(
+                "<td"
                         + defaultClass
-                        + ">"
+                        + "><a target='u' href='list-unicodeset.jsp?a=[:"
+                        + propName
+                        + "="
                         + hValue
-                        + "</td></tr>\n");
+                        + ":]'>"
+                        + version.toString() + suffix
+                        + ":"
+                        + hValue
+                        + "</a></td>");
+            
+        }
+        out.append("</tr>");
     }
 
     /*jsp*/
