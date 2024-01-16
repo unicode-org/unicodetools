@@ -54,6 +54,7 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Settings.ReleasePhase;
 
 // For dependency management, it might be useful to split this omnibus class into
 // pieces by topic, such as collation utilities vs. IDNA utilities etc.
@@ -1309,7 +1310,8 @@ public class UnicodeUtilities {
     //        ((RuleBasedCollator) col).setNumericCollation(true);
     //    }
 
-    public static void showProperties(int cp, Appendable out) throws IOException {
+    public static void showProperties(
+            int cp, String history, boolean showDevProperties, Appendable out) throws IOException {
         String text = UTF16.valueOf(cp);
 
         String name = getFactory().getProperty("Name").getValue(cp);
@@ -1362,7 +1364,6 @@ public class UnicodeUtilities {
         TreeSet<String> sortedProps =
                 Builder.with(new TreeSet<String>(col)).addAll(availableNames).remove("Name").get();
 
-
         String kRSUnicode = getFactory().getProperty("kRSUnicode").getValue(cp);
         boolean isUnihan = kRSUnicode != null;
 
@@ -1378,6 +1379,16 @@ public class UnicodeUtilities {
 
         List<String> unihanProperties = new ArrayList<>();
         Age_Values age = Age_Values.forName(getFactory().getProperty("Age").getValue(cp));
+        VersionInfo minVersion =
+                history.equals("assigned") && age != Age_Values.Unassigned
+                        ? VersionInfo.getInstance(age.getShortName())
+                        : history.equals("full")
+                                ? VersionInfo.getInstance(Age_Values.V1_1.getShortName())
+                                : Settings.LAST_VERSION_INFO;
+        VersionInfo maxVersion =
+                Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties
+                        ? Settings.LATEST_VERSION_INFO
+                        : Settings.LAST_VERSION_INFO;
         for (String propName : sortedProps) {
             UnicodeProperty prop = getFactory().getProperty(propName);
             if (prop.getName().equals("confusable")) continue;
@@ -1388,7 +1399,7 @@ public class UnicodeUtilities {
 
             boolean isDefault = prop.isDefault(cp);
             if (isDefault) continue;
-            showPropertyValue(propName, cp, age, isDefault, out);
+            showPropertyValue(propName, cp, minVersion, maxVersion, isDefault, out);
         }
         out.append("</table>\n");
 
@@ -1404,7 +1415,7 @@ public class UnicodeUtilities {
 
             boolean isDefault = prop.isDefault(cp);
             if (!isDefault) continue;
-            showPropertyValue(propName, cp, age, isDefault, out);
+            showPropertyValue(propName, cp, minVersion, maxVersion, isDefault, out);
         }
         out.append("</table>\n");
 
@@ -1419,13 +1430,13 @@ public class UnicodeUtilities {
                             + "<tr><td width='50%'>\n");
             out.append("<table width='100%'>\n");
             for (int i = 0; i < unihanProperties.size() / 2; ++i) {
-                showPropertyValue(unihanProperties.get(i), cp, age, false, out);
+                showPropertyValue(unihanProperties.get(i), cp, minVersion, maxVersion, false, out);
             }
             out.append("</table>\n");
             out.append("</td><td width='50%'>\n");
             out.append("<table width='100%'>\n");
             for (int i = unihanProperties.size() / 2; i < unihanProperties.size(); ++i) {
-                showPropertyValue(unihanProperties.get(i), cp, age, false, out);
+                showPropertyValue(unihanProperties.get(i), cp, minVersion, maxVersion, false, out);
             }
             out.append("</table>\n");
             out.append("</td></tr></table>\n");
@@ -1553,16 +1564,13 @@ public class UnicodeUtilities {
     }
 
     private static void showPropertyValue(
-            String propName, int codePoint, Age_Values age,
-            boolean isDefault, Appendable out) throws IOException {
-        if (propName.startsWith("to")) {
-            return;  // TODO(egg): Handle that properly.
-        }
-        System.out.println(
-                "History of "
-                        + propName
-                        + " for U+"
-                        + org.unicode.text.utility.Utility.hex(codePoint));
+            String propName,
+            int codePoint,
+            VersionInfo minVersion,
+            VersionInfo maxVersion,
+            boolean isDefault,
+            Appendable out)
+            throws IOException {
         String defaultClass = isDefault ? " class='default'" : "";
         class PropertyAssignment {
             VersionInfo first;
@@ -1570,41 +1578,60 @@ public class UnicodeUtilities {
             String value;
         }
         List<PropertyAssignment> history = new ArrayList<>();
+        // TODO(eggrobin): TUP normalization chokes on sufficiently old versions, but this is not
+        // worth debugging as we want to get rid of it.
+        if (!propName.startsWith("toNF")) {
+            System.out.println(
+                    "History of "
+                            + propName
+                            + " for U+"
+                            + org.unicode.text.utility.Utility.hex(codePoint));
 
-        for (var a : Age_Values.values()) {
-            if (a.compareTo(age) < 0) {
-                continue;
+            for (var a : Age_Values.values()) {
+                if (a == Age_Values.Unassigned) {
+                    break;
+                }
+                var version = VersionInfo.getInstance(a.getShortName());
+                if (version.compareTo(minVersion) < 0) {
+                    continue;
+                }
+                if (version.compareTo(maxVersion) > 0) {
+                    break;
+                }
+                String versionPrefix =
+                        version == Settings.LATEST_VERSION_INFO
+                                ? "dev"
+                                : version.getVersionString(3, 3);
+                UnicodeProperty property = null;
+                try {
+                    property = getFactory().getProperty("U" + versionPrefix + ":" + propName);
+                } catch (ICUException e) {
+                }
+                if (property == null) {
+                    continue;
+                }
+                String value = property.getValue(codePoint);
+                PropertyAssignment lastAssignment =
+                        history.isEmpty() ? null : history.get(history.size() - 1);
+                if (lastAssignment == null
+                        || (value != null && !value.equals(lastAssignment.value))
+                        || (value == null && lastAssignment.value != null)) {
+                    PropertyAssignment assignment = new PropertyAssignment();
+                    assignment.first = version;
+                    assignment.last = version;
+                    assignment.value = value;
+                    history.add(assignment);
+                } else {
+                    lastAssignment.last = version;
+                }
             }
-            if (a == Age_Values.Unassigned) {
-                break;
-            }
-            var version = VersionInfo.getInstance(a.getShortName());
-            String versionPrefix =
-                    version == Settings.LATEST_VERSION_INFO
-                            ? "dev"
-                            : version.getVersionString(3, 3);
-            UnicodeProperty property = null;
-            try {
-                property = getFactory().getProperty("U" + versionPrefix + ":" + propName);
-            } catch (ICUException e) {
-            }
-            if (property == null) {
-                continue;
-            }
-            String value = property.getValue(codePoint);
-            PropertyAssignment lastAssignment =
-                    history.isEmpty() ? null : history.get(history.size() - 1);
-            if (lastAssignment == null
-                    || (value != null && !value.equals(lastAssignment.value))
-                    || (value == null && lastAssignment.value != null)) {
-                PropertyAssignment assignment = new PropertyAssignment();
-                assignment.first = version;
-                assignment.last = version;
-                assignment.value = value;
-                history.add(assignment);
-            } else {
-                lastAssignment.last = version;
-            }
+        }
+        if (history.isEmpty()) {
+            var current = new PropertyAssignment();
+            current.first = Settings.LAST_VERSION_INFO;
+            current.last = Settings.LAST_VERSION_INFO;
+            current.value = getFactory().getProperty(propName).getValue(codePoint);
+            history.add(current);
         }
         out.append(
                 "<tr><th><a target='c' href='properties.jsp?a="
@@ -1628,10 +1655,20 @@ public class UnicodeUtilities {
             boolean isCurrent =
                     assignment.first.compareTo(Settings.LAST_VERSION_INFO) <= 0
                             && Settings.LAST_VERSION_INFO.compareTo(assignment.last) <= 0;
+            boolean showVersion = !isCurrent || history.size() != 1;
             boolean isSingleVersion = assignment.first == assignment.last;
             boolean isNew = assignment.first == Settings.LATEST_VERSION_INFO;
+            String versionRange = 
+            (showVersion
+                    ? (isSingleVersion ? first : first + ".." + last) + ": "
+                    : "");
             if (assignment.value == null) {
-                out.append("<td" + defaultClass + ">" + first + ".." + last + ":<i>null</i></td>");
+                out.append(
+                        "<td"
+                                + defaultClass
+                                + ">"
+                                + versionRange
+                                + "<i>null</i></td>");
             } else {
                 String hValue = toHTML.transliterate(assignment.value);
                 out.append(
@@ -1645,10 +1682,7 @@ public class UnicodeUtilities {
                                 + "="
                                 + hValue
                                 + ":]'>"
-                                + (isSingleVersion ? first : first
-                                + ".."
-                                + last)
-                                + ":"
+                                + versionRange
                                 + hValue
                                 + "</a></td>");
             }

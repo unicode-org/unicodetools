@@ -848,7 +848,7 @@ public class TestJsp extends TestFmwkMinusMinus {
     @Test
     public void TestShowProperties() throws IOException {
         StringWriter out = new StringWriter();
-        UnicodeJsp.showProperties(0x00C5, out);
+        UnicodeJsp.showProperties(0x00C5, "", false, out);
         assertTrue("props for character", out.toString().contains("Line_Break"));
         logln(out.toString());
         // logln(out);

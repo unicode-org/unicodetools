@@ -129,8 +129,9 @@ public class UnicodeJsp {
         return result.toString();
     }
 
-    public static void showProperties(int cp, Appendable out) throws IOException {
-        UnicodeUtilities.showProperties(cp, out);
+    public static void showProperties(
+            int cp, String history, boolean showDevProperties, Appendable out) throws IOException {
+        UnicodeUtilities.showProperties(cp, history, showDevProperties, out);
     }
 
     static String defaultIdnaInput =

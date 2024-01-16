@@ -22,7 +22,9 @@ th           { text-align: left }
         String queryString = request.getQueryString();
 
         UtfParameters utfParameters = new UtfParameters(queryString);
-		String text = utfParameters.getParameter("a", "\u2615", "\u2615");
+        String text = utfParameters.getParameter("a", "\u2615", "\u2615");
+        String history = utfParameters.getParameter("history", "", "");
+        boolean showDevProperties = utfParameters.getParameter("showDevProperties", "", "").equals("1");
 
 		int[] codePoints = UnicodeJsp.parseCode(text,null,null);
 		int cp = codePoints[0];
@@ -67,7 +69,7 @@ th           { text-align: left }
   </p>
 </form>
 <%
-	UnicodeJsp.showProperties(cp, out);
+	UnicodeJsp.showProperties(cp, history, showDevProperties, out);
 %>
 </div>
 <p>The list includes both Unicode Character Properties and some additions (like idna2003 or subhead)</p>
