@@ -892,14 +892,13 @@ Let $ideohack = [〆 〇 〡-〩]
 # 10.0 added Nushu
 # 13.0 added Khitan_Small_Script
 
-# Following don't work yet. Tested independently in TestInvariants
-# \p{Unified_Ideograph} ⊇ \P{kRSUnicode=∅}
+\p{Unified_Ideograph} ⊂ \p{kRSUnicode=/./}
+\p{kRSUnicode=/./} = [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
+\p{kRSUnicode=/./} = \p{kTotalStrokes=/./}
 
-# \p{Unified_Ideograph} = \P{kRSUnicode=∅}
-
-# \P{kRSUnicode=∅} = \P{kTotalStrokes=∅}
-
-# \P{kHanyuPinyin=∅} ⊇ \P{kMandarin=∅}
+# TODO(eggrobin): Should those two have a kMandarin, or this not actually an invariant?
+# TODO(macchiati): The kHanyuPinyin UnicodeSet is excruciatingly slow.
+# \p{kHanyuPinyin=/./} - \p{kMandarin=/./} = [\{228F5}\x{2574C}]
 
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
