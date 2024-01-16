@@ -1377,6 +1377,7 @@ public class UnicodeUtilities {
         out.append("<table width='100%'>\n");
 
         List<String> unihanProperties = new ArrayList<>();
+        Age_Values age = Age_Values.forName(getFactory().getProperty("Age").getValue(cp));
         for (String propName : sortedProps) {
             UnicodeProperty prop = getFactory().getProperty(propName);
             if (prop.getName().equals("confusable")) continue;
@@ -1387,7 +1388,7 @@ public class UnicodeUtilities {
 
             boolean isDefault = prop.isDefault(cp);
             if (isDefault) continue;
-            showPropertyValue(propName, cp, isDefault, out);
+            showPropertyValue(propName, cp, age, isDefault, out);
         }
         out.append("</table>\n");
 
@@ -1403,7 +1404,7 @@ public class UnicodeUtilities {
 
             boolean isDefault = prop.isDefault(cp);
             if (!isDefault) continue;
-            showPropertyValue(propName, cp, isDefault, out);
+            showPropertyValue(propName, cp, age, isDefault, out);
         }
         out.append("</table>\n");
 
@@ -1418,13 +1419,13 @@ public class UnicodeUtilities {
                             + "<tr><td width='50%'>\n");
             out.append("<table width='100%'>\n");
             for (int i = 0; i < unihanProperties.size() / 2; ++i) {
-                showPropertyValue(unihanProperties.get(i), cp, false, out);
+                showPropertyValue(unihanProperties.get(i), cp, age, false, out);
             }
             out.append("</table>\n");
             out.append("</td><td width='50%'>\n");
             out.append("<table width='100%'>\n");
             for (int i = unihanProperties.size() / 2; i < unihanProperties.size(); ++i) {
-                showPropertyValue(unihanProperties.get(i), cp, false, out);
+                showPropertyValue(unihanProperties.get(i), cp, age, false, out);
             }
             out.append("</table>\n");
             out.append("</td></tr></table>\n");
@@ -1552,7 +1553,8 @@ public class UnicodeUtilities {
     }
 
     private static void showPropertyValue(
-            String propName, int codePoint, boolean isDefault, Appendable out) throws IOException {
+            String propName, int codePoint, Age_Values age,
+            boolean isDefault, Appendable out) throws IOException {
         if (propName.startsWith("to")) {
             return;  // TODO(egg): Handle that properly.
         }
@@ -1569,11 +1571,14 @@ public class UnicodeUtilities {
         }
         List<PropertyAssignment> history = new ArrayList<>();
 
-        for (var age : Age_Values.values()) {
-            if (age == Age_Values.Unassigned) {
+        for (var a : Age_Values.values()) {
+            if (a.compareTo(age) < 0) {
+                continue;
+            }
+            if (a == Age_Values.Unassigned) {
                 break;
             }
-            var version = VersionInfo.getInstance(age.getShortName());
+            var version = VersionInfo.getInstance(a.getShortName());
             String versionPrefix =
                     version == Settings.LATEST_VERSION_INFO
                             ? "dev"
