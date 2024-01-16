@@ -291,15 +291,15 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                 result.add(valueAlias);
             } else {
                 result = _getValueAliases(valueAlias, result); // for debugging
-                    throw new IllegalArgumentException(
-                            "Internal error: "
-                                    + getName()
-                                    + " ("
-                                    + getTypeName()
-                                    + ") doesn't contain "
-                                    + valueAlias
-                                    + ": "
-                                    + new BagFormatter().join(result));
+                throw new IllegalArgumentException(
+                        "Internal error: "
+                                + getName()
+                                + " ("
+                                + getTypeName()
+                                + ") doesn't contain "
+                                + valueAlias
+                                + ": "
+                                + new BagFormatter().join(result));
             }
         }
         return result;
