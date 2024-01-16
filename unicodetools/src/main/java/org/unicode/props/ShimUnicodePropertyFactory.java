@@ -15,9 +15,15 @@ import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeProperty.BaseProperty;
 import org.unicode.text.UCD.Normalizer;
-import org.unicode.text.UCD.Normalizer.NormalizationFormat;
+import org.unicode.text.UCD.Normalizer.NormalizationForm;
 import org.unicode.text.utility.Utility;
 
+/**
+ * ShimUnicodePropertyFactory is designed to assist with deprecating UCD.java and the parsing code
+ * that it uses, and changing ToolUnicodePropertySource.java to just depend on
+ * IndexUnicodeProperies.java. <br>
+ * This file is expected to be removed once the deprecation is complete.
+ */
 public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
 
     private static final Splitter BAR_SPLITTER = Splitter.on('|').trimResults();
@@ -139,7 +145,7 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
                         .set("[\\u0000-\\u007F]")
                         .setMain("ASCII", "ASCII", UnicodeProperty.EXTENDED_BINARY, ""));
 
-        for (NormalizationFormat nFormat : NormalizationFormat.values()) {
+        for (NormalizationForm nFormat : NormalizationForm.values()) {
             UnicodeMap<String> toMap = new UnicodeMap<>();
             UnicodeSet isSet = new UnicodeSet();
             Normalizer normalizer = new Normalizer(nFormat, factory);

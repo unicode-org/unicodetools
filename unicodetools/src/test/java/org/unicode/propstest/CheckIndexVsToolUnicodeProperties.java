@@ -21,6 +21,12 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Utility;
 
+/**
+ * CheckIndexVsToolUnicodeProperties is designed to assist with deprecating UCD.java and the parsing
+ * code that it uses, and changing ToolUnicodePropertySource.java to just depend on
+ * IndexUnicodeProperies.java. <br>
+ * This file is expected to be removed once the deprecation is complete.
+ */
 public class CheckIndexVsToolUnicodeProperties {
     private static final boolean SHOWLIST = false;
 

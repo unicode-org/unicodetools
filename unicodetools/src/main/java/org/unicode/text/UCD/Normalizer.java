@@ -35,7 +35,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
     public static final String copyright =
             "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
 
-    public enum NormalizationFormat {
+    public enum NormalizationForm {
         NFD,
         NFC,
         NFKD,
@@ -44,13 +44,13 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         final boolean isCompose;
         final int index;
 
-        NormalizationFormat() {
+        NormalizationForm() {
             isCompat = name().contains("K");
             isCompose = name().contains("C");
             index = ordinal();
         }
 
-        static NormalizationFormat fromOrdinal(int index) {
+        static NormalizationForm fromOrdinal(int index) {
             return values()[index];
         }
     }
@@ -59,7 +59,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
 
     public static boolean SHOW_PROGRESS = false;
 
-    private NormalizationFormat format;
+    private NormalizationForm format;
 
     private final String name;
 
@@ -73,7 +73,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         data = getData(unicodeVersion);
     }
 
-    public Normalizer(NormalizationFormat form, IndexUnicodeProperties factory) {
+    public Normalizer(NormalizationForm form, IndexUnicodeProperties factory) {
         this.form = -1;
         this.format = form;
         this.name = form.name();
