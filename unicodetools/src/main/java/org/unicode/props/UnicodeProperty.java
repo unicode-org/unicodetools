@@ -289,7 +289,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             result = _getValueAliases(valueAlias, result); // for debugging
             throw new IllegalArgumentException(
                     "Internal error: "
-                            + getName() + " (" + getTypeName()
+                            + getName()
+                            + " ("
+                            + getTypeName()
                             + ") doesn't contain "
                             + valueAlias
                             + ": "
