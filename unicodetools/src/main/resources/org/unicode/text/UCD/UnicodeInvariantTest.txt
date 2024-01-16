@@ -897,7 +897,8 @@ Let $ideohack = [〆 〇 〡-〩]
 \p{kRSUnicode=/./} = \p{kTotalStrokes=/./}
 
 # TODO(eggrobin): Should those two have a kMandarin, or this not actually an invariant?
-\p{kHanyuPinyin=/./} - \p{kMandarin=/./} = [\{228F5}\x{2574C}]
+# TODO(macchiati): The kHanyuPinyin UnicodeSet is excruciatingly slow.
+# \p{kHanyuPinyin=/./} - \p{kMandarin=/./} = [\{228F5}\x{2574C}]
 
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
