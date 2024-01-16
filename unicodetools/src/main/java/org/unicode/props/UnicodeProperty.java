@@ -285,17 +285,22 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     public List<String> getValueAliases(String valueAlias, List<String> result) {
         if (result == null) result = new ArrayList<>(1);
         result = _getValueAliases(valueAlias, result);
-        if (!result.contains(valueAlias) && type != MISC) { // FIX && type < NUMERIC
-            result = _getValueAliases(valueAlias, result); // for debugging
-            throw new IllegalArgumentException(
-                    "Internal error: "
-                            + getName()
-                            + " ("
-                            + getTypeName()
-                            + ") doesn't contain "
-                            + valueAlias
-                            + ": "
-                            + new BagFormatter().join(result));
+        if (!result.contains(valueAlias)) { // FIX && type < NUMERIC
+            if (type == MISC) {
+                // Unihan has multivalued properties but does not use aliases.
+                result.add(valueAlias);
+            } else {
+                result = _getValueAliases(valueAlias, result); // for debugging
+                    throw new IllegalArgumentException(
+                            "Internal error: "
+                                    + getName()
+                                    + " ("
+                                    + getTypeName()
+                                    + ") doesn't contain "
+                                    + valueAlias
+                                    + ": "
+                                    + new BagFormatter().join(result));
+            }
         }
         return result;
     }
