@@ -798,7 +798,14 @@ public class TestJsp extends TestFmwkMinusMinus {
                     printWriter);
 
             UnicodeJsp.showSet(
-                    "", "", new UnicodeSet("[\\u0080\\U0010FFFF]"), false, true, true, true, printWriter);
+                    "",
+                    "",
+                    new UnicodeSet("[\\u0080\\U0010FFFF]"),
+                    false,
+                    true,
+                    true,
+                    true,
+                    printWriter);
             UnicodeJsp.showSet(
                     "",
                     "",

@@ -187,7 +187,8 @@ public class UnicodeJsp {
             throws IOException {
         showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
         CodePointShower codePointShower =
-                new CodePointShower(grouping, info, showDevProperties, abbreviate, ucdFormat, collate);
+                new CodePointShower(
+                        grouping, info, showDevProperties, abbreviate, ucdFormat, collate);
         UnicodeUtilities.showSetMain(a, showDevProperties, codePointShower, out);
     }
 

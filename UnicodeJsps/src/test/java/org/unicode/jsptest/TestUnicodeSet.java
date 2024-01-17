@@ -90,7 +90,8 @@ public class TestUnicodeSet extends TestFmwk2 {
     @Test
     public void TestEmoji() throws IOException {
         StringBuilder b = new StringBuilder();
-        UnicodeJsp.showSet("scx", "", UnicodeSetUtilities.TAKES_EMOJI_VS, false, false, false, false, b);
+        UnicodeJsp.showSet(
+                "scx", "", UnicodeSetUtilities.TAKES_EMOJI_VS, false, false, false, false, b);
         String bs = UnicodeUtilities.getPrettySet(UnicodeSetUtilities.FACE, false, false);
         if (bs.contains(" \uFE0F") || bs.contains(" \u200D")) {
             errln("Fails extra-space insert" + bs);

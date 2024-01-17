@@ -35,7 +35,12 @@ public class VersionedProperty {
         result.throwOnUnknownProperty = true;
         result.defaultVersion = Settings.latestVersion;
         result.versionAliases.put("-1", Settings.lastVersion);
-        result.versionAliases.put(Settings.lastVersion, Settings.lastVersion);
+        for (String last = Settings.lastVersion; ; last = last.substring(0, last.length() - 2)) {
+            result.versionAliases.put(last, Settings.lastVersion);
+            if (!last.endsWith(".0")) {
+                break;
+            }
+        }
         return result;
     }
 
@@ -44,9 +49,13 @@ public class VersionedProperty {
         result.throwOnUnknownProperty = false;
         result.defaultVersion = Settings.lastVersion;
         result.versionAliases.put("dev", Settings.latestVersion);
-        if (Settings.latestVersionPhase != Settings.ReleasePhase.DEV) {
-            result.versionAliases.put(
-                    Settings.latestVersion + Settings.latestVersionPhase, Settings.latestVersion);
+        for (String latest = Settings.latestVersion;
+                ;
+                latest = latest.substring(0, latest.length() - 2)) {
+            result.versionAliases.put(latest + Settings.latestVersionPhase, Settings.latestVersion);
+            if (!latest.endsWith(".0")) {
+                break;
+            }
         }
         return result;
     }

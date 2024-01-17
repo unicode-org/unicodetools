@@ -54,7 +54,6 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.Settings.ReleasePhase;
 
 // For dependency management, it might be useful to split this omnibus class into
 // pieces by topic, such as collation utilities vs. IDNA utilities etc.
@@ -283,7 +282,11 @@ public class UnicodeUtilities {
         numberFormat.setGroupingUsed(true);
     }
 
-    public static void showSetMain(UnicodeSet a, boolean showDevProperties, CodePointShower codePointShower, Appendable out)
+    public static void showSetMain(
+            UnicodeSet a,
+            boolean showDevProperties,
+            CodePointShower codePointShower,
+            Appendable out)
             throws IOException {
         if (codePointShower.groupingProps.isEmpty()) {
             showSet(a, showDevProperties, codePointShower, out);
@@ -379,7 +382,10 @@ public class UnicodeUtilities {
 
     /*jsp*/
     public static void showSet(
-            UnicodeSet inputSetRaw, boolean showDevProperties, CodePointShower codePointShower, Appendable out)
+            UnicodeSet inputSetRaw,
+            boolean showDevProperties,
+            CodePointShower codePointShower,
+            Appendable out)
             throws IOException {
         if (codePointShower.doTable) {
             out.append("<table width='100%'>");
@@ -415,27 +421,24 @@ public class UnicodeUtilities {
                     if (set == null) items.put(newBlock, set = new UnicodeSet());
                     set.add(it.string);
                 } else {
-                    String devBlock = 
-                    getFactory().getProperty("Udev:Block").getValue(s)
-                                    .replace('_', ' ');
-                    String block =
-                    getFactory().getProperty("Block").getValue(s)
-                                    .replace('_', ' ');
+                    String devBlock =
+                            getFactory().getProperty("Udev:Block").getValue(s).replace('_', ' ');
+                    String block = getFactory().getProperty("Block").getValue(s).replace('_', ' ');
                     String newBlock =
-                    showDevProperties && !devBlock.equals(block) ?
-                    "<a class='changed' href='list-unicodeset.jsp?a=\\p{U"
-                    + Settings.latestVersion + Settings.latestVersionPhase +
-                    ":Block="
-                                    + devBlock
-                                    + "}'>"
-                                    + devBlock
-                                    + "</a>"
-                    :
-                            "<a href='list-unicodeset.jsp?a=\\p{Block="
-                                    + block
-                                    + "}'>"
-                                    + block
-                                    + "</a>";
+                            showDevProperties && !devBlock.equals(block)
+                                    ? "<a class='changed' href='list-unicodeset.jsp?a=\\p{U"
+                                            + Settings.latestVersion
+                                            + Settings.latestVersionPhase
+                                            + ":Block="
+                                            + devBlock
+                                            + "}'>"
+                                            + devBlock
+                                            + "</a>"
+                                    : "<a href='list-unicodeset.jsp?a=\\p{Block="
+                                            + block
+                                            + "}'>"
+                                            + block
+                                            + "</a>";
                     String newSubhead = getSubheader().getSubheader(s);
                     if (newSubhead == null) {
                         newSubhead = "<u>no subhead</u>";
@@ -537,7 +540,11 @@ public class UnicodeUtilities {
             if (allowed.size() == 0) {
                 result.append("<i>none</i>");
             } else {
-                showSet(allowed, showDevProperties, new CodePointShower("", "", showDevProperties, true, false, false), result);
+                showSet(
+                        allowed,
+                        showDevProperties,
+                        new CodePointShower("", "", showDevProperties, true, false, false),
+                        result);
             }
 
             if (restricted.size() == 0) {
@@ -554,8 +561,10 @@ public class UnicodeUtilities {
                                         + reason
                                         + "</span></h2>");
                         showSet(
-                                items, showDevProperties,
-                                new CodePointShower("", "", showDevProperties, true, false, false).setRestricted(true),
+                                items,
+                                showDevProperties,
+                                new CodePointShower("", "", showDevProperties, true, false, false)
+                                        .setRestricted(true),
                                 result);
                     }
                 }
@@ -648,7 +657,8 @@ public class UnicodeUtilities {
             if (UnicodeUtilities.RTL.containsSome(literal)) {
                 literal = '\u200E' + literal + '\u200E';
             }
-            String name = UnicodeUtilities.getName(string, separator, showDevProperties, false, false);
+            String name =
+                    UnicodeUtilities.getName(string, separator, showDevProperties, false, false);
             literal = UnicodeSetUtilities.addEmojiVariation(literal);
             if (doTable) {
                 out.append(
@@ -804,7 +814,11 @@ public class UnicodeUtilities {
     }
 
     private static String getName(
-            String string, String separator, boolean showDevProperties, boolean andCode, boolean plainText) {
+            String string,
+            String separator,
+            boolean showDevProperties,
+            boolean andCode,
+            boolean plainText) {
         StringBuilder result = new StringBuilder();
         int cp;
         for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
@@ -815,7 +829,8 @@ public class UnicodeUtilities {
             if (andCode) {
                 result.append("U+").append(com.ibm.icu.impl.Utility.hex(cp, 4)).append(' ');
             }
-            final String devName = showDevProperties ? getFactory().getProperty("Udev:Name").getValue(cp) : null;
+            final String devName =
+                    showDevProperties ? getFactory().getProperty("Udev:Name").getValue(cp) : null;
             final String name = getFactory().getProperty("Name").getValue(cp);
             if (name != null) {
                 result.append(name);
@@ -1407,9 +1422,7 @@ public class UnicodeUtilities {
                                 ? VersionInfo.getInstance(Age_Values.V1_1.getShortName())
                                 : Settings.LAST_VERSION_INFO;
         VersionInfo maxVersion =
-                showDevProperties
-                        ? Settings.LATEST_VERSION_INFO
-                        : Settings.LAST_VERSION_INFO;
+                showDevProperties ? Settings.LATEST_VERSION_INFO : Settings.LAST_VERSION_INFO;
         for (String propName : sortedProps) {
             UnicodeProperty prop = getFactory().getProperty(propName);
             if (prop.getName().equals("confusable")) continue;
@@ -1679,17 +1692,10 @@ public class UnicodeUtilities {
             boolean showVersion = !isCurrent || history.size() != 1;
             boolean isSingleVersion = assignment.first == assignment.last;
             boolean isNew = assignment.first == Settings.LATEST_VERSION_INFO;
-            String versionRange = 
-            (showVersion
-                    ? (isSingleVersion ? first : first + ".." + last) + ": "
-                    : "");
+            String versionRange =
+                    (showVersion ? (isSingleVersion ? first : first + ".." + last) + ": " : "");
             if (assignment.value == null) {
-                out.append(
-                        "<td"
-                                + defaultClass
-                                + ">"
-                                + versionRange
-                                + "<i>null</i></td>");
+                out.append("<td" + defaultClass + ">" + versionRange + "<i>null</i></td>");
             } else {
                 String hValue = toHTML.transliterate(assignment.value);
                 out.append(
