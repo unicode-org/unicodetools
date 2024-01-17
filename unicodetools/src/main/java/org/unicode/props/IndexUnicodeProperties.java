@@ -685,6 +685,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
         }
 
+        @Override
         protected UnicodeMap<String> _getUnicodeMap() {
             return load(prop);
         }

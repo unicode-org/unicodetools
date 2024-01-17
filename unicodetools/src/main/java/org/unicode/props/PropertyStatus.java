@@ -290,6 +290,7 @@ public enum PropertyStatus {
                     UcdProperty.kIRG_TSource,
                     UcdProperty.kIRG_USource,
                     UcdProperty.kIRG_VSource);
+
     private static final EnumSet<UcdProperty> IMMUTABLE_PROPERTY =
             EnumSet.of(
                     UcdProperty.Name,
@@ -314,7 +315,7 @@ public enum PropertyStatus {
         } else if (STABLIZED_PROPERTY.contains(prop)) {
             return Stabilized;
         } else if (INTERNAL_PROPERTY.contains(prop)) {
-            return Stabilized;
+            return Internal;
         } else if (DEPRECATED_PROPERTY.contains(prop)) {
             return Deprecated;
         } else if (CONTRIBUTORY_PROPERTY.contains(prop)) {

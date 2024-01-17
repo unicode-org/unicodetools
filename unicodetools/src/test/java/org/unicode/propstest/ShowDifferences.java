@@ -1,6 +1,9 @@
 package org.unicode.propstest;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableSortedSet;
+import com.google.common.collect.Sets;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.text.UnicodeSet;
@@ -9,11 +12,22 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.unicode.cldr.tool.Option;
+import org.unicode.cldr.tool.Option.Options;
+import org.unicode.cldr.tool.Option.Params;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.PropertyStatus;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Settings;
 
 public class ShowDifferences {
+
+    private static final int NEW_VALUES_LENGTH = 100;
 
     static class DPair<T, U> {
         final T first;
@@ -43,98 +57,225 @@ public class ShowDifferences {
         }
     }
 
-    /**
-     * Computes differences between two versions. The args should either be [old] [new] or empty
-     * (for the most recent two versions).
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        final String OLD_VERSION = args.length > 0 ? args[0] : Settings.lastVersion;
-        final String NEW_VERSION = args.length > 1 ? args[1] : Settings.latestVersion;
+    static boolean verbose;
+    static UnicodeSet oldChars;
+    static UnicodeSet newChars;
+    static final UnicodeMap<String> empty = new UnicodeMap<String>().freeze();
 
-        final IndexUnicodeProperties latestVersion = IndexUnicodeProperties.make(NEW_VERSION);
+    private enum MyOptions {
+        startVersion(
+                new Params()
+                        .setHelp("First version to compare")
+                        .setMatch(".*")
+                        .setDefault(Settings.lastVersion)),
+        endVersion(
+                new Params()
+                        .setHelp("Second (later) version to compare")
+                        .setMatch(".*")
+                        .setDefault(Settings.latestVersion)),
+        propertyNameRegex(new Params().setHelp("Regex for match property").setMatch(".*")),
+        verbose(new Params().setHelp("verbose debugging messages")),
+        ;
+
+        // BOILERPLATE TO COPY
+        final Option option;
+
+        private MyOptions(Params params) {
+            option = new Option(this, params);
+        }
+
+        private static Options myOptions = new Options();
+
+        static {
+            for (MyOptions option : MyOptions.values()) {
+                myOptions.add(option, option.option);
+            }
+        }
+
+        private static Set<String> parse(String[] args) {
+            return myOptions.parse(MyOptions.values()[0], args, true);
+        }
+    }
+
+    /** Computes differences between two versions. */
+    public static void main(String[] args) {
+        MyOptions.parse(args);
+        final String OLD_VERSION = MyOptions.startVersion.option.getValue();
+        final String NEW_VERSION = MyOptions.endVersion.option.getValue();
+        final Matcher propMatcher =
+                !MyOptions.propertyNameRegex.option.doesOccur()
+                        ? null
+                        : Pattern.compile(MyOptions.propertyNameRegex.option.getValue())
+                                .matcher("");
+        verbose = MyOptions.verbose.option.doesOccur();
+
         final IndexUnicodeProperties lastVersion = IndexUnicodeProperties.make(OLD_VERSION);
+        final IndexUnicodeProperties latestVersion = IndexUnicodeProperties.make(NEW_VERSION);
 
         int changeCount = 0;
         System.out.println(
-                "№\tProperty\tValue in "
-                        + OLD_VERSION
-                        + "\t⇒\tValue in "
-                        + NEW_VERSION
-                        + "\tCharacters affected\tLink");
-        UnicodeSet oldChars = lastVersion.getSet("gc=Cn").complement().freeze();
-        UnicodeSet newChars = latestVersion.getSet("gc=Cn").complement().freeze();
+                "Property\tNew Property Values\tChanged Property Values\tStatus\tAdded Property Value Count\tSamples");
+        oldChars = lastVersion.getSet("gc=Cn").complement().freeze();
+        newChars = latestVersion.getSet("gc=Cn").complement().freeze();
+
         int count = 0;
+        final SortedSet<PropertyStatus> skipStatus =
+                ImmutableSortedSet.of(
+                        PropertyStatus.Contributory,
+                        PropertyStatus.Contributory,
+                        PropertyStatus.Deprecated,
+                        PropertyStatus.Internal,
+                        PropertyStatus.Provisional);
         List<UcdProperty> noDiff = new ArrayList<>();
         Map<UcdProperty, UnicodeMap<DPair<String, String>>> newDiffs = new LinkedHashMap<>();
-        final UnicodeMap<String> empty = new UnicodeMap<String>().freeze();
         for (UcdProperty prop : UcdProperty.values()) {
-            if (!prop.name().startsWith("k")) {
+            if (propMatcher != null && !propMatcher.reset(prop.toString()).matches()) {
+                continue;
+            }
+            PropertyStatus status = PropertyStatus.getPropertyStatus(prop);
+            if (status == null) {
+                throw new IllegalArgumentException();
+            }
+            if (skipStatus.contains(status)) {
                 continue;
             }
             UnicodeMap<String> lastMap = empty;
             UnicodeMap<String> latestMap = empty;
+            boolean lastExisted = true;
             try {
                 lastMap = lastVersion.load(prop);
             } catch (Exception e) {
+                lastExisted = false;
             }
             try {
                 latestMap = latestVersion.load(prop);
             } catch (Exception e) {
             }
 
-            UnicodeMap<DPair<String, String>> diff = new UnicodeMap<>();
-            UnicodeMap<DPair<String, String>> newDiff = new UnicodeMap<>();
+            Differences differences = new Differences(lastMap, latestMap);
 
-            for (EntryRange<String> entry : lastMap.entryRanges()) {
-                String lastValue = entry.value;
-
-                if (entry.codepoint == -1) {
-                    String latestValue = latestMap.get(entry.string);
-                    if (!Objects.equal(latestValue, lastValue)) {
-                        if (oldChars.containsAll(entry.string)) {
-                            diff.put(entry.string, new DPair<>(lastValue, latestValue));
-                        } else {
-                            newDiff.put(entry.string, new DPair<>(lastValue, latestValue));
-                        }
-                    }
-                    continue;
-                }
-                if (newChars.containsNone(entry.codepoint, entry.codepointEnd)) {
-                    continue;
-                }
-                for (int i = entry.codepoint; i <= entry.codepointEnd; ++i) {
-                    String latestValue = latestMap.get(i);
-                    if (!Objects.equal(latestValue, lastValue)) {
-                        if (oldChars.contains(i)) {
-                            diff.put(i, new DPair<>(lastValue, latestValue));
-                        } else {
-                            newDiff.put(i, new DPair<>(lastValue, latestValue));
-                        }
-                    }
-                }
-            }
-            if (diff.isEmpty()) {
+            System.out.println(
+                    prop
+                            + "\t"
+                            + differences.newDiffCount
+                            + "\t"
+                            + differences.diffCount
+                            + "\t"
+                            + PropertyStatus.getPropertyStatus(prop)
+                            + (lastExisted ? "" : "🆕")
+                            + "\t"
+                            + differences.newValues.size()
+                            + "\t"
+                            + differences.newValuesString);
+            if (differences.diffCount + differences.newDiffCount == 0) {
                 noDiff.add(prop);
             } else {
                 changeCount++;
-                count = displayDiff(count, prop, diff);
+                if (verbose) {
+                    count = displayDiff(count, prop, differences.diff);
+                }
             }
-            if (!newDiff.isEmpty()) {
-                newDiffs.put(prop, newDiff);
+            if (!differences.newDiff.isEmpty()) {
+                newDiffs.put(prop, differences.newDiff);
             }
         }
 
-        for (UcdProperty prop : noDiff) {
-            System.out.println(++count + "\t" + prop + "\tNo Differences");
+        System.out.println("#TOTAL Properties with No Differences:\t" + noDiff.size());
+        System.out.println("#TOTAL Properties with Differences:\t" + changeCount);
+        if (verbose) {
+            System.out.println("\nNewDiffs");
+            count = 0;
+            for (Entry<UcdProperty, UnicodeMap<DPair<String, String>>> newDiff :
+                    newDiffs.entrySet()) {
+                count = displayDiff(count, newDiff.getKey(), newDiff.getValue());
+            }
         }
-        System.out.println("\tTOTAL Properties with No Differences: " + noDiff.size());
-        System.out.println("\tTOTAL Properties with Differences: " + changeCount);
-        System.out.println("\nNewDiffs");
-        count = 0;
-        for (Entry<UcdProperty, UnicodeMap<DPair<String, String>>> newDiff : newDiffs.entrySet()) {
-            count = displayDiff(count, newDiff.getKey(), newDiff.getValue());
+    }
+
+    static final class Differences {
+        String newValuesString;
+        List<String> newValues;
+        int diffCount;
+        int newDiffCount;
+        UnicodeMap<DPair<String, String>> diff = new UnicodeMap<>();
+        UnicodeMap<DPair<String, String>> newDiff = new UnicodeMap<>();
+
+        Differences(UnicodeMap<String> lastMap, UnicodeMap<String> latestMap) {
+            // does everything have the same value?
+            boolean lastExisted = true;
+            if ((lastExisted && lastMap.equals(empty))
+                    || (lastMap.getRangeCount() == 1
+                            && lastMap.getRangeStart(0) == 0
+                            && lastMap.getRangeEnd(0) == 0x10ffff
+                            && (lastMap.stringKeys() == null || lastMap.stringKeys().isEmpty()))) {
+                lastExisted = false;
+            }
+
+            Set<String> lastValues = new TreeSet<>();
+            Set<String> latestValues = new TreeSet<>();
+
+            diffCount = 0;
+            newDiffCount = 0;
+
+            for (EntryRange<String> entry : latestMap.entryRanges()) {
+                String latestValue = entry.value;
+                if (latestValue != null) {
+                    latestValues.add(latestValue);
+                }
+
+                if (entry.codepoint == -1) { // string
+                    String lastValue = lastMap.get(entry.string);
+                    if (lastValue != null) {
+                        lastValues.add(lastValue);
+                    }
+                    if (!Objects.equal(latestValue, lastValue)) {
+                        if (oldChars.containsAll(
+                                entry.string)) { // if all characters are defined in the last
+                            // version
+                            diffCount++;
+                            if (verbose) {
+                                diff.put(entry.string, new DPair<>(lastValue, latestValue));
+                            }
+                        } else {
+                            newDiffCount++;
+                            if (verbose) {
+                                newDiff.put(entry.string, new DPair<>(lastValue, latestValue));
+                            }
+                        }
+                    }
+                    continue;
+                }
+                for (int i = entry.codepoint; i <= entry.codepointEnd; ++i) {
+                    if (!newChars.contains(i)) {
+                        continue;
+                    }
+                    String lastValue = lastMap.get(i);
+                    if (lastValue != null) {
+                        lastValues.add(lastValue);
+                    }
+
+                    if (!Objects.equal(latestValue, lastValue)) {
+                        if (oldChars.contains(
+                                i)) { // if the character is defined in the last version
+                            diffCount++;
+                            if (verbose) {
+                                diff.put(i, new DPair<>(lastValue, latestValue));
+                            }
+                        } else {
+                            newDiffCount++;
+                            if (verbose) {
+                                newDiff.put(i, new DPair<>(lastValue, latestValue));
+                            }
+                        }
+                    }
+                }
+            }
+            newValues = new ArrayList<>(Sets.difference(latestValues, lastValues));
+            newValuesString = Joiner.on(", ").join(newValues);
+            if (newValuesString.length() > NEW_VALUES_LENGTH) {
+                newValuesString = newValuesString.substring(0, NEW_VALUES_LENGTH) + "…";
+            }
+            newValuesString = newValuesString.replace("\t", "\\t");
         }
     }
 
