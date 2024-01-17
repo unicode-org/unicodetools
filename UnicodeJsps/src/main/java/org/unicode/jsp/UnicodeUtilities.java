@@ -425,7 +425,7 @@ public class UnicodeUtilities {
                     showDevProperties && !devBlock.equals(block) ?
                     "<a class='changed' href='list-unicodeset.jsp?a=\\p{U"
                     + Settings.latestVersion + Settings.latestVersionPhase +
-                    "Block="
+                    ":Block="
                                     + devBlock
                                     + "}'>"
                                     + devBlock
