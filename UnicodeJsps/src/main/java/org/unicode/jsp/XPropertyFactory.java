@@ -72,6 +72,9 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     }
 
     {
+        IndexUnicodeProperties latest = IndexUnicodeProperties.make(Settings.latestVersion);
+        // Contract the unassigned set as much as possible (based on latest rather than last), so that dev/α/β property lookups are correct.
+        UnicodeProperty.contractUNASSIGNED(latest.getProperty("General_Category").getSet("Unassigned"));
         IndexUnicodeProperties last = IndexUnicodeProperties.make(Settings.lastVersion);
         for (UcdProperty property : last.getAvailableUcdProperties()) {
             add(last.getProperty(property));

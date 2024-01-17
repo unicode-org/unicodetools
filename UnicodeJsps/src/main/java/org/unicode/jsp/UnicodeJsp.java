@@ -131,6 +131,7 @@ public class UnicodeJsp {
 
     public static void showProperties(
             int cp, String history, boolean showDevProperties, Appendable out) throws IOException {
+        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
         UnicodeUtilities.showProperties(cp, history, showDevProperties, out);
     }
 
@@ -178,14 +179,16 @@ public class UnicodeJsp {
             String grouping,
             String info,
             UnicodeSet a,
+            boolean showDevProperties,
             boolean abbreviate,
             boolean ucdFormat,
             boolean collate,
             Appendable out)
             throws IOException {
+        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
         CodePointShower codePointShower =
-                new CodePointShower(grouping, info, abbreviate, ucdFormat, collate);
-        UnicodeUtilities.showSetMain(a, codePointShower, out);
+                new CodePointShower(grouping, info, showDevProperties, abbreviate, ucdFormat, collate);
+        UnicodeUtilities.showSetMain(a, showDevProperties, codePointShower, out);
     }
 
     public static void showPropsTable(Appendable out, String propForValues, String myLink)
@@ -395,8 +398,9 @@ public class UnicodeJsp {
         return UnicodeUtilities.testIdnaLines(lines, filter);
     }
 
-    public static String getIdentifier(String script) {
-        return UnicodeUtilities.getIdentifier(script);
+    public static String getIdentifier(String script, boolean showDevProperties) {
+        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
+        return UnicodeUtilities.getIdentifier(script, showDevProperties);
     }
 
     static final String VERSIONS =

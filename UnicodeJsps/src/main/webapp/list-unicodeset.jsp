@@ -21,6 +21,8 @@
         boolean ucdFormat = request.getParameter("ucd") != null;
         boolean escape = request.getParameter("esc") != null;
 
+    boolean showDevProperties = utfParameters.getParameter("showDevProperties", "", "").equals("1");
+
 		UnicodeSet a = new UnicodeSet();
 		String a_out = UnicodeJsp.getSimpleSet(setA, a, abbreviate, escape);
 
@@ -57,7 +59,7 @@
   <hr>
   <p><%=a_out%></p>
   <hr>
-  <% UnicodeJsp.showSet(group, info, a, abbreviate, ucdFormat, collate, out); %>
+  <% UnicodeJsp.showSet(group, info, a, showDevProperties, abbreviate, ucdFormat, collate, out); %>
 </form>
 <%@ include file="footer.jsp" %>
 </body>

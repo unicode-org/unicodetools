@@ -272,8 +272,6 @@ public class UnicodeUtilities {
         return true;
     }
 
-    static final int BLOCK_ENUM = UCharacter.getPropertyEnum("block");
-
     static XPropertyFactory getFactory() {
         return XPropertyFactory.make();
     }
@@ -285,10 +283,10 @@ public class UnicodeUtilities {
         numberFormat.setGroupingUsed(true);
     }
 
-    public static void showSetMain(UnicodeSet a, CodePointShower codePointShower, Appendable out)
+    public static void showSetMain(UnicodeSet a, boolean showDevProperties, CodePointShower codePointShower, Appendable out)
             throws IOException {
         if (codePointShower.groupingProps.isEmpty()) {
-            showSet(a, codePointShower, out);
+            showSet(a, showDevProperties, codePointShower, out);
             return;
         }
 
@@ -329,7 +327,7 @@ public class UnicodeUtilities {
                                         : "</div>")
                                 + "</h2><blockquote>\n");
             }
-            showSet(items, codePointShower, out);
+            showSet(items, showDevProperties, codePointShower, out);
             for (int i = 0; i < propsOld.length; ++i) {
                 propsOld[i] = props2[i];
             }
@@ -381,7 +379,7 @@ public class UnicodeUtilities {
 
     /*jsp*/
     public static void showSet(
-            UnicodeSet inputSetRaw, CodePointShower codePointShower, Appendable out)
+            UnicodeSet inputSetRaw, boolean showDevProperties, CodePointShower codePointShower, Appendable out)
             throws IOException {
         if (codePointShower.doTable) {
             out.append("<table width='100%'>");
@@ -417,11 +415,22 @@ public class UnicodeUtilities {
                     if (set == null) items.put(newBlock, set = new UnicodeSet());
                     set.add(it.string);
                 } else {
+                    String devBlock = 
+                    getFactory().getProperty("Udev:Block").getValue(s)
+                                    .replace('_', ' ');
                     String block =
-                            UCharacter.getStringPropertyValue(
-                                            BLOCK_ENUM, s, UProperty.NameChoice.LONG)
+                    getFactory().getProperty("Block").getValue(s)
                                     .replace('_', ' ');
                     String newBlock =
+                    showDevProperties && !devBlock.equals(block) ?
+                    "<a class='changed' href='list-unicodeset.jsp?a=\\p{U"
+                    + Settings.latestVersion + Settings.latestVersionPhase +
+                    "Block="
+                                    + devBlock
+                                    + "}'>"
+                                    + devBlock
+                                    + "</a>"
+                    :
                             "<a href='list-unicodeset.jsp?a=\\p{Block="
                                     + block
                                     + "}'>"
@@ -485,7 +494,7 @@ public class UnicodeUtilities {
         }
     }
 
-    public static String getIdentifier(String script) {
+    public static String getIdentifier(String script, boolean showDevProperties) {
         StringBuilder result = new StringBuilder();
         UnicodeProperty scriptProp = getFactory().getProperty("sc");
         UnicodeSet scriptSet;
@@ -528,7 +537,7 @@ public class UnicodeUtilities {
             if (allowed.size() == 0) {
                 result.append("<i>none</i>");
             } else {
-                showSet(allowed, new CodePointShower("", "", true, false, false), result);
+                showSet(allowed, showDevProperties, new CodePointShower("", "", showDevProperties, true, false, false), result);
             }
 
             if (restricted.size() == 0) {
@@ -545,8 +554,8 @@ public class UnicodeUtilities {
                                         + reason
                                         + "</span></h2>");
                         showSet(
-                                items,
-                                new CodePointShower("", "", true, false, false).setRestricted(true),
+                                items, showDevProperties,
+                                new CodePointShower("", "", showDevProperties, true, false, false).setRestricted(true),
                                 result);
                     }
                 }
@@ -587,6 +596,7 @@ public class UnicodeUtilities {
     static class CodePointShower {
 
         public final boolean doTable;
+        public final boolean showDevProperties;
         public final boolean abbreviate;
         public final boolean ucdFormat;
         public final boolean collate;
@@ -603,12 +613,14 @@ public class UnicodeUtilities {
         public CodePointShower(
                 String grouping,
                 String info,
+                boolean showDevProperties,
                 boolean abbreviate,
                 boolean ucdFormat,
                 boolean collate) {
             this.groupingProps = getProps(grouping);
             this.infoProps = getProps(info);
             this.doTable = true; // !infoProps.isEmpty();
+            this.showDevProperties = showDevProperties;
             this.abbreviate = abbreviate;
             this.ucdFormat = ucdFormat;
             this.collate = collate;
@@ -636,7 +648,7 @@ public class UnicodeUtilities {
             if (UnicodeUtilities.RTL.containsSome(literal)) {
                 literal = '\u200E' + literal + '\u200E';
             }
-            String name = UnicodeUtilities.getName(string, separator, false, false);
+            String name = UnicodeUtilities.getName(string, separator, showDevProperties, false, false);
             literal = UnicodeSetUtilities.addEmojiVariation(literal);
             if (doTable) {
                 out.append(
@@ -792,7 +804,7 @@ public class UnicodeUtilities {
     }
 
     private static String getName(
-            String string, String separator, boolean andCode, boolean plainText) {
+            String string, String separator, boolean showDevProperties, boolean andCode, boolean plainText) {
         StringBuilder result = new StringBuilder();
         int cp;
         for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
@@ -803,18 +815,27 @@ public class UnicodeUtilities {
             if (andCode) {
                 result.append("U+").append(com.ibm.icu.impl.Utility.hex(cp, 4)).append(' ');
             }
+            final String devName = showDevProperties ? getFactory().getProperty("Udev:Name").getValue(cp) : null;
             final String name = getFactory().getProperty("Name").getValue(cp);
             if (name != null) {
                 result.append(name);
             } else {
-                String alias = getFactory().getProperty("Name_Alias").getValue(cp);
-                if (alias == null) {
-                    alias = "no name";
-                }
-                if (plainText) {
-                    result.append("(" + alias + ")");
+                if (devName != null) {
+                    if (plainText) {
+                        result.append("{" + devName + "}");
+                    } else {
+                        result.append("<span class='changed'>" + devName + "</span>");
+                    }
                 } else {
-                    result.append("<i>" + alias + "</i>");
+                    String alias = getFactory().getProperty("Name_Alias").getValue(cp);
+                    if (alias == null) {
+                        alias = "no name";
+                    }
+                    if (plainText) {
+                        result.append("(" + alias + ")");
+                    } else {
+                        result.append("<i>" + alias + "</i>");
+                    }
                 }
             }
         }
@@ -1386,7 +1407,7 @@ public class UnicodeUtilities {
                                 ? VersionInfo.getInstance(Age_Values.V1_1.getShortName())
                                 : Settings.LAST_VERSION_INFO;
         VersionInfo maxVersion =
-                Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties
+                showDevProperties
                         ? Settings.LATEST_VERSION_INFO
                         : Settings.LAST_VERSION_INFO;
         for (String propName : sortedProps) {
@@ -2064,7 +2085,7 @@ public class UnicodeUtilities {
         writer.println("</tr><tr><th>Character</th>");
         for (int i = 0; i < str.length(); ++i) {
             final String s = str.substring(i, i + 1);
-            String title = toHTML.transform(getName(s, "", true, true));
+            String title = toHTML.transform(getName(s, "", false, true, true));
             writer.println(
                     "<td class='bccell' title='"
                             + title
@@ -2115,7 +2136,7 @@ public class UnicodeUtilities {
             String title =
                     bidiChar.length() == 0
                             ? "deleted"
-                            : toHTML.transform(getName(bidiChar, "", true, true));
+                            : toHTML.transform(getName(bidiChar, "", false, true, true));
             String td = bidiChar.length() == 0 ? "bxcell" : "bccell";
             writer.println(
                     "<td class='"
