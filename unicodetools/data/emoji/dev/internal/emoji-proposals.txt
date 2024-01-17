@@ -1196,6 +1196,27 @@
 # L2/21-216
 1FAF7..1FAF8; L2/21-216 # 2022..2022 (🫷..🫸) leftwards pushing hand..rightwards pushing hand
 
+# L2/23-256
+1FA89; L2/23-256 # 2024 (🪉) harp
+
+# L2/23-259
+1FA8F; L2/23-259 # 2024 (🪏) shovel
+
+# L2/23-255
+1FABE; L2/23-255 # 2024 (🪾) leafless tree
+
+# L2/23-258
+1FAC6; L2/23-258 # 2024 (🫆) fingerprint
+
+# L2/23-257
+1FADC; L2/23-257 # 2024 (🫜) root vegetable
+
+# L2/23-261
+1FADF; L2/23-261 # 2024 (🫟) splatter
+
+# L2/23-260
+1FAE9; L2/23-260 # 2024 (🫩) face with bags under eyes
+
 # L2/07-257, L2/09-026, L2/14-173
 261D 1F3FF; L2/07-257, L2/09-026, L2/14-173 # 2015 (☝🏿) index pointing up: dark skin tone
 270A 1F3FF; L2/07-257, L2/09-026, L2/14-173 # 2015 (✊🏿) raised fist: dark skin tone
@@ -1582,9 +1603,6 @@
 1F1FF 1F1E6; L2/09-379 # 2015 (🇿🇦) flag: South Africa
 1F1FF 1F1F2; L2/09-379 # 2015 (🇿🇲) flag: Zambia
 1F1FF 1F1FC; L2/09-379 # 2015 (🇿🇼) flag: Zimbabwe
-
-# L2/23-162
-1F1E8 1F1F6; L2/23-162 # 2024 (🇨🇶) flag: Sark
 
 # L2/23-032
 1F344 200D 1F7EB; L2/23-032 # 2023 (🍄‍🟫) brown mushroom
@@ -2146,6 +2164,9 @@
 1FAF1 1F3FF 200D 1FAF2 1F3FC; MISSING # 2021 (🫱🏿‍🫲🏼) handshake: dark skin tone, medium-light skin tone
 1FAF1 1F3FF 200D 1FAF2 1F3FD; MISSING # 2021 (🫱🏿‍🫲🏽) handshake: dark skin tone, medium skin tone
 1FAF1 1F3FF 200D 1FAF2 1F3FE; MISSING # 2021 (🫱🏿‍🫲🏾) handshake: dark skin tone, medium-dark skin tone
+
+# MISSING-2024
+1F1E8 1F1F6; MISSING # 2024 (🇨🇶) flag: Sark
 
 #EOF
 

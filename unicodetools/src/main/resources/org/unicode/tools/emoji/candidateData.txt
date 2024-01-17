@@ -47,7 +47,7 @@ U+1FA89
 Name=harp
 Keywords=music | instrument | love | cupid | orchestra
 
-Proposal=L2/23-255
+Proposal=L2/23-259
 After=🪜
 U+1FA8F
 Name=shovel

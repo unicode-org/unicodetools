@@ -1870,7 +1870,16 @@
 1F9D1 1F3FF 200D 1F9BC 200D 27A1; L2/23-030; person in motorized wheelchair facing right: light skin tone
 1F9D1 1F3FF 200D 1F9BD 200D 27A1; L2/23-030; person in manual wheelchair facing right: light skin tone
 
-1F1E8 1F1F6; L2/23-162; Sark
+1FA89; L2/23-256; harp
+1FA8F; L2/23-259; shovel
+1FABE; L2/23-255; leafless tree
+1FAC6; L2/23-258; fingerprint
+1FADC; L2/23-257; root vegetable
+1FADF; L2/23-261; splatter
+1FAE9; L2/23-260; face with bags under eyes
+
+# https://www.unicode.org/L2/L2023/23157.htm#176-A6
+1F1E8 1F1F6; MISSING; Sark
 
 # MISSING-2015
 1F441 FE0F 200D 1F5E8 FE0F; MISSING # 2015 (👁️‍🗨️) eye in speech bubble
