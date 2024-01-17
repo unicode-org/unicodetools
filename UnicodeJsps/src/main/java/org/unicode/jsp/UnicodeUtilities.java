@@ -404,12 +404,21 @@ public class UnicodeUtilities {
             LinkedHashMap<String, UnicodeSet> items = new LinkedHashMap<String, UnicodeSet>();
             String specials = "Unassigned, Private use, or Surrogates";
 
-            UnicodeSet specialSet =
-                    new UnicodeSet(inputSetRaw).retainAll(UnicodeProperty.getSPECIALS());
+            var specialsForDisplay = UnicodeProperty.getSPECIALS();
+            if (!showDevProperties) {
+                // UnicodeProperty uses the freshest (smallest) set of unassigned code points; if we
+                // are not showing the corresponding block and character names, put the
+                // newly-assigned characters in the unassigned pile for display.
+                specialsForDisplay = specialsForDisplay.cloneAsThawed();
+                getFactory()
+                        .getProperty("General_Category")
+                        .getSet("Unassigned", specialsForDisplay);
+            }
+            UnicodeSet specialSet = new UnicodeSet(inputSetRaw).retainAll(specialsForDisplay);
             UnicodeSet inputSet =
                     specialSet.size() == 0
                             ? inputSetRaw
-                            : new UnicodeSet(inputSetRaw).removeAll(UnicodeProperty.getSPECIALS());
+                            : new UnicodeSet(inputSetRaw).removeAll(specialsForDisplay);
             if (specialSet.size() != 0) {
                 items.put(specials, specialSet);
             }
