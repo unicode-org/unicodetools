@@ -34,6 +34,10 @@ th           { text-align: left }
       nextHex += "&history=" + history;
       prevHex += "&history=" + history;
     }
+    if (showDevProperties) {
+      nextHex += "&showDevProperties=1";
+      prevHex += "&showDevProperties=1";
+    }
     if (codePoints.length > 1) {
       %>
         <p class="error">
@@ -74,6 +78,11 @@ th           { text-align: left }
   if (!history.isEmpty()) {
     %>
     <input name="history" type="hidden" value="<%=history%>">
+    <%
+  }
+  if (showDevProperties) {
+    %>
+    <input name="showDevProperties" type="hidden" value="1">
     <%
   }
   %>

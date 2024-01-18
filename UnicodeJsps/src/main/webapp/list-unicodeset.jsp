@@ -52,6 +52,13 @@
       <input type="text" <%=escape ? "checked" : ""%> name="g" size="25" value="<%=Encode.forHtmlAttribute(group)%>">
       <label for="i">Info:</label>
       <input type="text" <%=escape ? "checked" : ""%> name="i" size="25" value="<%=Encode.forHtmlAttribute(info)%>">
+      <%
+      if (showDevProperties) {
+        %>
+        <input name="showDevProperties" type="hidden" value="1">
+        <%
+      }
+      %>
       </td>
     </tr>
 </table>
