@@ -122,7 +122,7 @@ public class ProposalData {
 
     public String formatProposalsForHtml(Collection<String> proposals) {
         if (proposals == null || proposals.isEmpty()) {
-            return "MISSING";
+            return "&mdash;";
         }
         StringBuilder result = new StringBuilder();
         if (proposals.isEmpty()) {

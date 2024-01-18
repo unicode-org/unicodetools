@@ -403,6 +403,7 @@ public class Emoji {
                 ImmutableSet.<Emoji.Source>builder()
                         .add(Source.SAMPLE_SOURCE)
                         .add(Source.proposed)
+                        .add(Source.ref) // B&W reference images
                         .build();
 
         private final String shortName;

@@ -630,9 +630,6 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                         if (!ucd.isRepresented(cp)) {
                             return null;
                         }
-                        if (cp == '\u1E9E') {
-                            System.out.println("@#$ debug");
-                        }
                         final String b =
                                 nfkc.normalize(ucd.getCase(cp, UCD_Types.FULL, UCD_Types.FOLD));
                         final String c =
@@ -675,7 +672,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                     "is" + nf.getName(),
                                     version,
                                     getProperty("to" + nf.getName()),
-                                    false)
+                                    true)
                             .setExtended());
         }
 
