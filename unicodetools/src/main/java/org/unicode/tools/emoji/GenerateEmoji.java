@@ -576,6 +576,10 @@ public class GenerateEmoji {
         if (chars.codePointAt(0) == 0x1FA72) {
             int debug = 0;
         }
+        if (type == Source.ref && !Emoji.REGIONAL_INDICATORS.containsAll(chars)) {
+            // Only use reference source for country flags.
+            return null;
+        }
         String filename = Emoji.getImageFilenameFromChars(type, charsForFile);
         if (filename != null && new File(type.getImageDirectory(), filename).exists()) {
             String className = type.getClassAttribute(chars);
@@ -4072,7 +4076,7 @@ public class GenerateEmoji {
                     + " This form may have changed since earlier proposals were submitted.</li>\n"
                     + "<li>The UTC may accept a proposal for reasons other than those stated in the proposal, and does not necessarily endorse or consider relevant all of the proposed reasons.</li></ol>\n";
 
-    public static Set<Emoji.Source> getPlatforms(UnicodeSet set, int minCount) {
+    public static Set<Emoji.Source> getPlatforms(UnicodeSet set, int maxCount) {
         Output<Boolean> isFound = new Output<>();
         Set<Emoji.Source> found = EnumSet.noneOf(Emoji.Source.class);
 
@@ -4091,8 +4095,8 @@ public class GenerateEmoji {
                                     + Utility.hex(item, " ")
                                     + "\t"
                                     + EmojiData.EMOJI_DATA.getName(item));
-                    if (++count >= minCount) {
-                        found.add(s);
+                    found.add(s);
+                    if (maxCount > 0 && ++count >= maxCount) {
                         break;
                     }
                 }
