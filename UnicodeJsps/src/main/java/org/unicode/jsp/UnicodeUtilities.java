@@ -1412,6 +1412,21 @@ public class UnicodeUtilities {
         String kRSUnicode = getFactory().getProperty("kRSUnicode").getValue(cp);
         boolean isUnihan = kRSUnicode != null;
 
+        Age_Values age = Age_Values.forName(getFactory().getProperty("Age").getValue(cp));
+        VersionInfo minVersion =
+                history.equals("assigned") && age != Age_Values.Unassigned
+                        ? VersionInfo.getInstance(age.getShortName())
+                        : history.equals("full")
+                                ? VersionInfo.getInstance(Age_Values.V1_1.getShortName())
+                                : Settings.LAST_VERSION_INFO;
+        if (minVersion.compareTo(UcdLoader.getOldestLoadedUcd()) < 0) {
+            minVersion = UcdLoader.getOldestLoadedUcd();
+            out.append(
+                    "<p class='changed'>Still loading UCD versions before "
+                            + minVersion.getVersionString(2, 4)
+                            + "</p>");
+        }
+
         out.append(
                 "<table class='propTable'>"
                         + "<caption>"
@@ -1423,13 +1438,6 @@ public class UnicodeUtilities {
         out.append("<table width='100%'>\n");
 
         List<String> unihanProperties = new ArrayList<>();
-        Age_Values age = Age_Values.forName(getFactory().getProperty("Age").getValue(cp));
-        VersionInfo minVersion =
-                history.equals("assigned") && age != Age_Values.Unassigned
-                        ? VersionInfo.getInstance(age.getShortName())
-                        : history.equals("full")
-                                ? VersionInfo.getInstance(Age_Values.V1_1.getShortName())
-                                : Settings.LAST_VERSION_INFO;
         VersionInfo maxVersion =
                 showDevProperties ? Settings.LATEST_VERSION_INFO : Settings.LAST_VERSION_INFO;
         for (String propName : sortedProps) {
@@ -1624,12 +1632,6 @@ public class UnicodeUtilities {
         // TODO(eggrobin): TUP normalization chokes on sufficiently old versions, but this is not
         // worth debugging as we want to get rid of it.
         if (!propName.startsWith("toNF")) {
-            System.out.println(
-                    "History of "
-                            + propName
-                            + " for U+"
-                            + org.unicode.text.utility.Utility.hex(codePoint));
-
             for (var a : Age_Values.values()) {
                 if (a == Age_Values.Unassigned) {
                     break;
