@@ -220,6 +220,18 @@ public class UnicodeSetUtilities {
             return status;
         }
 
+        private static String[][] COARSE_GENERAL_CATEGORIES = {
+            {"Other", "C", "Cc", "Cf", "Cn", "Co", "Cs"},
+            {"Letter", "L", "Ll", "Lm", "Lo", "Lt", "Lu"},
+            {"Cased_Letter", "LC", "Ll", "Lt", "Lu"},
+            {"Mark", "M", "Mc", "Me", "Mn"},
+            {"Number", "N", "Nd", "Nl", "No"},
+            {"Punctuation", "P", "Pc", "Pd", "Pe", "Pf", "Pi", "Po", "Ps"},
+            {"Symbol", "S", "Sc", "Sk", "Sm", "So"},
+            {"Separator", "Z", "Zl", "Zp", "Zs"},
+        };
+
+        // TODO(eggrobin): I think this function only ever returns true; might as well make it void.
         private boolean applyPropertyAlias0(
                 UnicodeProperty prop, String propertyValue, UnicodeSet result, boolean invert) {
             result.clear();
@@ -282,6 +294,19 @@ public class UnicodeSetUtilities {
                     if (isAge) {
                         set = prop.getSet(new ComparisonMatcher(propertyValue, Relation.geq));
                     } else {
+                        if (prop.getName().equals("General_Category")) {
+                            for (String[] coarseValue : COARSE_GENERAL_CATEGORIES) {
+                                final String longName = coarseValue[0];
+                                final String shortName = coarseValue[1];
+                                if (UnicodeProperty.equalNames(propertyValue, longName)
+                                        || UnicodeProperty.equalNames(propertyValue, shortName)) {
+                                    for (int i = 2; i < coarseValue.length; ++i) {
+                                        prop.getSet(coarseValue[i], result);
+                                    }
+                                    return true;
+                                }
+                            }
+                        }
                         set = prop.getSet(propertyValue);
                     }
                 } else if (isAge) {
