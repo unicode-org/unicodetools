@@ -1355,23 +1355,42 @@ public class UnicodeUtilities {
     //        ((RuleBasedCollator) col).setNumericCollation(true);
     //    }
 
+    private static String getScriptCat(String versionPrefix, int cp) {
+        String scriptCat = getFactory().getProperty(versionPrefix + "script").getValue(cp).replace("_", " ");
+        if (scriptCat.equals("Common") || scriptCat.equals("Inherited")) {
+            scriptCat = getFactory().getProperty(versionPrefix + "gc").getValue(cp).replace("_", " ");
+        } else {
+            scriptCat += " Script";
+        }
+        return scriptCat;
+    }
+
     public static void showProperties(
             int cp, String history, boolean showDevProperties, Appendable out) throws IOException {
         String text = UTF16.valueOf(cp);
 
         String name = getFactory().getProperty("Name").getValue(cp);
-        if (name != null) {
-            name = toHTML.transliterate(name);
+        final String devName =
+                showDevProperties ? getFactory().getProperty("Udev:Name").getValue(cp) : null;
+        if (name == null) {
+            if (devName != null) {
+                name = "<span class='changed'>" + toHTML.transliterate(devName) + "</span>";
+            } else {
+                name = "<i>Unknown</i>";
+            }
         } else {
-            name = "<i>Unknown</i>";
+            name = toHTML.transliterate(name);
         }
         boolean allowed = XIDModifications.isAllowed(cp);
 
-        String scriptCat = getFactory().getProperty("script").getValue(cp).replace("_", " ");
-        if (scriptCat.equals("Common") || scriptCat.equals("Inherited")) {
-            scriptCat = getFactory().getProperty("gc").getValue(cp).replace("_", " ");
-        } else {
-            scriptCat += " Script";
+        String scriptCat = getScriptCat("", cp);
+        if (showDevProperties) {
+            String devScriptCat = getScriptCat("Udev:", cp);
+            if (!devScriptCat.equals(scriptCat)) {
+                // The old and new script and GC will be given below; only show the new one here,
+                // but highlighted.
+                scriptCat = "<span class='changed'>" + devScriptCat + "</span>";
+            }
         }
 
         String hex = com.ibm.icu.impl.Utility.hex(cp, 4);
