@@ -359,7 +359,7 @@ public class TestUnicodeSet extends TestFmwk2 {
         gc ; Z         ; Separator                        # Zl | Zp | Zs
                  */
         for (String[] extra : extras) {
-            UnicodeSet expected = new UnicodeSet(extra[2]).freeze();
+            UnicodeSet expected = UnicodeSetUtilities.parseUnicodeSet(extra[2]).freeze();
             for (String test : extra) {
                 if (test.startsWith("[")) continue;
                 for (String gc : gcs) {
