@@ -9154,7 +9154,7 @@ L2/23-174	Proposed Update UTS #39, Unicode Security Mechanisms (HTML version)	Ma
 L2/23-175	Proposed Update UAX #41, Common References for Unicode Standard Annexes (HTML version)	Ken Whistler, Rick McGowan	2023-07-10
 L2/23-176	Proposed Update UAX #44, Unicode Character Database (HTML version)	Ken Whistler	2023-07-10
 L2/23-177	Proposed Update UAX #45, U-Source Ideographs (HTML version)	Ken Lunde	2023-07-10
-L2/23-178	Proposed Update UTS #51, Unicode Emoji (HTML version)	Mark David, Ned Holbrook	2023-07-10
+L2/23-178	Proposed Update UTS #51, Unicode Emoji (HTML version)	Mark Davis, Ned Holbrook	2023-07-10
 L2/23-179	Draft UTS #55, Unicode Source Code Handling (HTML version)	Robin Leroy, Mark Davis	2023-07-10
 L2/23-180	Unicode PRI #476 - Background (LDML (UTS #35 Part 7: Keyboards)	Steven Loomis	2023-07-10
 L2/23-181	Encoding proposal for an extended Egyptian Hieroglyphs repertoire (WG2 N5240) (Sign Database [pdf 38MB]) (revised)	Michel Suignard	2023-12-29
