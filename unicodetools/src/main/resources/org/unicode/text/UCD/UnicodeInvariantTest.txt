@@ -546,6 +546,12 @@ Let $nonAlphabeticDependentVowels = [\N{ORIYA SIGN OVERLINE}\N{THAI CHARACTER MA
 Let $nonDiacriticNuktas = [\u1BE6\U00010A38\U00010A39\U00010A3A\U0001133B]
 [\p{InSc=Nukta} - \p{Diacritic}] = $nonDiacriticNuktas
 
+## Joining_Type and Joining_Group
+# Where defined, the Joining_Group refines the Joining_Type.
+EquivalencesOf \P{Joining_Group=No_Joining_Group} Joining_Group ⇒ Joining_Type
+\p{gc=Mn} ⊆ \p{Joining_Type=Transparent}
+\p{gc=Me} ⊆ \p{Joining_Type=Transparent}
+
 ##########################
 # LineBreak property
 ##########################
