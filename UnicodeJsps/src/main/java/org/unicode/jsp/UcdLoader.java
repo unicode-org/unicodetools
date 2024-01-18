@@ -16,7 +16,9 @@ import org.unicode.text.utility.Settings;
 @WebServlet
 public class UcdLoader implements javax.servlet.Servlet {
 
-    static VersionInfo oldestLoadedUcd;
+    // Allow access to the last (published) and latest (dev) versions lazily in tests, though these
+    // will get fully loaded by this servlet before actually serving the JSPs.
+    static VersionInfo oldestLoadedUcd = Settings.LAST_VERSION_INFO;
 
     public static synchronized VersionInfo getOldestLoadedUcd() {
         return oldestLoadedUcd;
