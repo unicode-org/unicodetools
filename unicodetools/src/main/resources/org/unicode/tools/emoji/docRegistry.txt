@@ -9028,7 +9028,7 @@ L2/23-049	Proposed Update UAX #44, Unicode Character Database (HTML version)	Ken
 L2/23-050	Proposed Update UAX #45, U-Source Ideographs (HTML version)	John Jenkins	2023-01-20
 L2/23-051	Proposed Update UTS #39, Unicode Security Mechanisms (HTML version)	Mark Davis, Michel Suignard	2023-01-20
 L2/23-052	Proposed Draft UTS #55, Unicode Source Code Handling (HTML version)	Robin Leroy, Mark Davis	2023-01-20
-L2/23-053	Proposed Update UTS #51, Unicode Emoji (HTML version)	Mark David, Ned Holbrook	2023-01-23
+L2/23-053	Proposed Update UTS #51, Unicode Emoji (HTML version)	Mark Davis, Ned Holbrook	2023-01-23
 L2/23-054	Requirements and Process for Changing Script Status for Identifier Use	Asmus Freytag	2023-01-23
 L2/23-055	Disunification of Tulu-Tigalari script & Invented Tulu Script	Vaishnavi Murthy, Vinodh Rajan	2023-01-23
 L2/23-056	Beyond Canonical Equivalence: A discussion on a way forward	Lawrence Wolf-Sonkin	2023-01-23
