@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.text.utility.Settings;
 
 @WebServlet
 public class UcdLoader implements javax.servlet.Servlet {
@@ -25,7 +26,8 @@ public class UcdLoader implements javax.servlet.Servlet {
         oldestLoadedUcd = v;
     }
 
-    private static void loadUcdHistory() {
+    private static void loadUcdHistory(VersionInfo earliest) {
+        System.out.println("Loading back to " + earliest + "...");
         Age_Values[] ages = Age_Values.values();
         final long overallStart = System.currentTimeMillis();
         for (int i = ages.length - 1; i >= 0; --i) {
@@ -62,7 +64,11 @@ public class UcdLoader implements javax.servlet.Servlet {
                             + " in "
                             + (System.currentTimeMillis() - ucdStart)
                             + " ms");
-            setOldestLoadedUcd(VersionInfo.getInstance(age.getShortName()));
+            var version = VersionInfo.getInstance(age.getShortName());
+            setOldestLoadedUcd(version);
+            if (version == earliest) {
+                break;
+            }
         }
         System.out.println(
                 "Loaded all UCD history in "
@@ -85,11 +91,12 @@ public class UcdLoader implements javax.servlet.Servlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
+        loadUcdHistory(Settings.LAST_VERSION_INFO);
         new Thread(
                         new Runnable() {
                             @Override
                             public void run() {
-                                loadUcdHistory();
+                                loadUcdHistory(null);
                             }
                         })
                 .start();
