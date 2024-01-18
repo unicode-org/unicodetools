@@ -9095,8 +9095,7 @@ L2/23-116	Proposal to update Appendix F: Documentation of CJK Strokes in Unicode
 L2/23-117	Handling of the Heh in Sindhi Text	Kamal Mansour	2023-05-05
 L2/23-118	Proposal for superscript katakana letters for Ryukyuan languages	Gen Kojitani	2023-05-08
 L2/23-119	Core Spec note on click letters	Kirk Miller	2023-05-15
-L2/23-120	Dot behavior for U+06CC ARABIC LETTER FARSI YEH followed by U+0654 ARABIC HAMZA
-ABOVE	Lorna Evans	2023-05-15
+L2/23-120	Dot behavior for U+06CC ARABIC LETTER FARSI YEH followed by U+0654 ARABIC HAMZA ABOVE	Lorna Evans	2023-05-15
 L2/23-121	Proposal to encode Arabic Letter Thin Noon	Khaled Hosny, Mostafa Jbire	2023-05-17
 L2/23-122	Proposal to Encode Kashmiri Sharada Characters	Vinodh Rajan	2023-05-17
 L2/23-123	Feedback on L2/23-118 (Proposal for superscript katakana letters for Ryukyuan languages)	Eiso Chan	2023-05-25
@@ -9202,8 +9201,7 @@ L2/23-222	Proposal to Encode the Pabuchi Script	Biswajit Mandal	2023-10-05
 L2/23-223	Preliminary Proposal to Encode the Kurux Banna	Biswajit Mandal	2023-10-05
 L2/23-224	Next steps for ISO 12199	ISO/TC 37/SC 2 Scty	2023-10-05
 L2/23-225	Request to up date the G Source reference for U+320DD (IRG N2648)	Eiso Chan, H. W. Ho	2023-10-08
-L2/23-226	Proposal to add one character used for ancient geographical
-name related to Mazu belief and customs to UAX #45	Eiso Chan	2023-10-08
+L2/23-226	Proposal to add one character used for ancient geographical name related to Mazu belief and customs to UAX #45	Eiso Chan	2023-10-08
 L2/23-227	Feedback on L2/23-167 (Proposal to update representative glyph of U+3029 SUZHOU NUMERAL NINE)	Eiso Chan	2023-10-08
 L2/23-228	Updated List of Characters for Mayan Codices (supersedes L2/20-248)	Carlos Pallán Gayol	2023-10-10
 L2/23-229	Proposed changes to PDUTR #56	Robin Leroy	2023-10-16
