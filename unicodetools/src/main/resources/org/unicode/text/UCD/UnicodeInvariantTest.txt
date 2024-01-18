@@ -552,6 +552,11 @@ EquivalencesOf \P{Joining_Group=No_Joining_Group} Joining_Group ⇒ Joining_Type
 \p{gc=Mn} ⊆ \p{Joining_Type=Transparent}
 \p{gc=Me} ⊆ \p{Joining_Type=Transparent}
 
+# Derivation of Joining_Type from the second column of ArabicShaping.txt (unofficially Other_Joining_Type).
+In \P{Other_Joining_Type=Deduce_From_General_Category} Joining_Type = Other_Joining_Type
+[ \p{Other_Joining_Type=Deduce_From_General_Category} & [\p{gc=Mn}\p{gc=Me}\p{gc=Cf}] ] ⊆ \p{Joining_Type=Transparent}
+[ \p{Other_Joining_Type=Deduce_From_General_Category} - [\p{gc=Mn}\p{gc=Me}\p{gc=Cf}] ] ⊆ \p{Joining_Type=Non_Joining}
+
 ##########################
 # LineBreak property
 ##########################
