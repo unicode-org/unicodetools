@@ -453,6 +453,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     public void internalStoreCachedMap(String dir, UcdProperty prop2, UnicodeMap<String> data) {
         try {
+            final var binDir = new File(dir);
+            if (!binDir.exists()) {
+                binDir.mkdir();
+            }
             final String cacheFileDirName = dir + getUcdVersion();
             final File cacheFileDir = new File(cacheFileDirName);
             if (!cacheFileDir.exists()) {

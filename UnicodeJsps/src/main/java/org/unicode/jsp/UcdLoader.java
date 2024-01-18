@@ -46,6 +46,7 @@ public class UcdLoader implements javax.servlet.Servlet {
                         try {
                             properties.load(property);
                         } catch (ICUException e) {
+                            e.printStackTrace();
                         }
                     }
                 }
