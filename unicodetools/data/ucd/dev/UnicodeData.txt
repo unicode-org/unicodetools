@@ -1,3 +1,7 @@
+1FA54;WHITE CHESS FERZ;So;0;ON;;;;;N;;;;;
+1FA55;WHITE CHESS ALFIL;So;0;ON;;;;;N;;;;;
+1FA56;BLACK CHESS FERZ;So;0;ON;;;;;N;;;;;
+1FA57;BLACK CHESS ALFIL;So;0;ON;;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
