@@ -1,3 +1,5 @@
+16FF2;NS
+16FF3;NS
 # LineBreak-16.0.0.txt
 # Date: 2023-11-10, 22:25:50 GMT
 # © 2023 Unicode®, Inc.
