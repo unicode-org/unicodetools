@@ -889,8 +889,6 @@ $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 Let $ideohack = [〆 〇 〡-〩 \p{Name=/^CHINESE SMALL (SIMPLIFIED|TRADITIONAL) ER$/}]
 
 [\p{ideographic}-\p{sc=tangut}-\p{sc=nushu}-\p{sc=Khitan_Small_Script}-\p{nfkcqc=n}-$ideohack] = \p{Unified_Ideograph}
-# 10.0 added Nushu
-# 13.0 added Khitan_Small_Script
 
 \p{Unified_Ideograph} ⊂ \p{kRSUnicode=/./}
 \p{kRSUnicode=/./} = [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
