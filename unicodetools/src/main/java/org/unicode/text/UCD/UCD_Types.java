@@ -607,12 +607,13 @@ public interface UCD_Types {
             Sunuwar = 170,
             Todhri = 171,
             Tulu_Tigalari = 172,
-            // Provisionally assigned
+            // Provisionally assigned and proposed
             Chisoi = 173,
             Sidetic = 174,
             Tai_Yo = 175,
             Tolong_Siki = 176,
-            LIMIT_SCRIPT = Tolong_Siki + 1;
+            Beria_Erfe = 177,
+            LIMIT_SCRIPT = Beria_Erfe + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte BPT_N = 0, BPT_O = 1, BPT_C = 2, LIMIT_BPT = 3;
