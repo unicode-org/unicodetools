@@ -1,7 +1,5 @@
-16FF2..16FF3; Ideographic
-16FF2..16FF3; Extender
 # PropList-16.0.0.txt
-# Date: 2023-11-10, 22:06:29 GMT
+# Date: 2024-01-19, 16:06:58 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -865,6 +863,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 F900..FA6D    ; Ideographic # Lo [366] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIBILITY IDEOGRAPH-FA6D
 FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COMPATIBILITY IDEOGRAPH-FAD9
 16FE4         ; Ideographic # Mn       KHITAN SMALL SCRIPT FILLER
+16FF2..16FF3  ; Ideographic # Lo   [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
 17000..187F7  ; Ideographic # Lo [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
 18800..18CD5  ; Ideographic # Lo [1238] TANGUT COMPONENT-001..KHITAN SMALL SCRIPT CHARACTER-18CD5
 18D00..18D08  ; Ideographic # Lo   [9] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D08
@@ -879,7 +878,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 30000..3134A  ; Ideographic # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Ideographic # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 106476
+# Total code points: 106478
 
 # ================================================
 
@@ -1171,11 +1170,12 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 16B42..16B43  ; Extender # Lm   [2] PAHAWH HMONG SIGN VOS NRUA..PAHAWH HMONG SIGN IB YAM
 16FE0..16FE1  ; Extender # Lm   [2] TANGUT ITERATION MARK..NUSHU ITERATION MARK
 16FE3         ; Extender # Lm       OLD CHINESE ITERATION MARK
+16FF2..16FF3  ; Extender # Lo   [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
 1E13C..1E13D  ; Extender # Lm   [2] NYIAKENG PUACHUE HMONG SIGN XW XW..NYIAKENG PUACHUE HMONG SYLLABLE LENGTHENER
 1E5EF         ; Extender # Mn       OL ONAL SIGN IKIR
 1E944..1E946  ; Extender # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 
-# Total code points: 56
+# Total code points: 58
 
 # ================================================
 
