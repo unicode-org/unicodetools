@@ -1356,9 +1356,11 @@ public class UnicodeUtilities {
     //    }
 
     private static String getScriptCat(String versionPrefix, int cp) {
-        String scriptCat = getFactory().getProperty(versionPrefix + "script").getValue(cp).replace("_", " ");
+        String scriptCat =
+                getFactory().getProperty(versionPrefix + "script").getValue(cp).replace("_", " ");
         if (scriptCat.equals("Common") || scriptCat.equals("Inherited")) {
-            scriptCat = getFactory().getProperty(versionPrefix + "gc").getValue(cp).replace("_", " ");
+            scriptCat =
+                    getFactory().getProperty(versionPrefix + "gc").getValue(cp).replace("_", " ");
         } else {
             scriptCat += " Script";
         }
