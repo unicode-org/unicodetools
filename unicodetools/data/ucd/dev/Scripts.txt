@@ -1,6 +1,5 @@
-1879;Mongolian
 # Scripts-16.0.0.txt
-# Date: 2023-11-10, 22:26:58 GMT
+# Date: 2024-01-19, 14:37:52 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1528,7 +1527,7 @@ AB70..ABBF    ; Cherokee # L&  [80] CHEROKEE SMALL LETTER A..CHEROKEE SMALL LETT
 1810..1819    ; Mongolian # Nd  [10] MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
 1820..1842    ; Mongolian # Lo  [35] MONGOLIAN LETTER A..MONGOLIAN LETTER CHI
 1843          ; Mongolian # Lm       MONGOLIAN LETTER TODO LONG VOWEL SIGN
-1844..1878    ; Mongolian # Lo  [53] MONGOLIAN LETTER TODO E..MONGOLIAN LETTER CHA WITH TWO DOTS
+1844..1879    ; Mongolian # Lo  [54] MONGOLIAN LETTER TODO E..MONGOLIAN LETTER MANCHU ALTERNATE UE
 1880..1884    ; Mongolian # Lo   [5] MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER ALI GALI INVERTED UBADAMA
 1885..1886    ; Mongolian # Mn   [2] MONGOLIAN LETTER ALI GALI BALUDA..MONGOLIAN LETTER ALI GALI THREE BALUDA
 1887..18A8    ; Mongolian # Lo  [34] MONGOLIAN LETTER ALI GALI A..MONGOLIAN LETTER MANCHU ALI GALI BHA
@@ -1536,7 +1535,7 @@ AB70..ABBF    ; Cherokee # L&  [80] CHEROKEE SMALL LETTER A..CHEROKEE SMALL LETT
 18AA          ; Mongolian # Lo       MONGOLIAN LETTER MANCHU ALI GALI LHA
 11660..1166C  ; Mongolian # Po  [13] MONGOLIAN BIRGA WITH ORNAMENT..MONGOLIAN TURNED SWIRL BIRGA WITH DOUBLE ORNAMENT
 
-# Total code points: 168
+# Total code points: 169
 
 # ================================================
 

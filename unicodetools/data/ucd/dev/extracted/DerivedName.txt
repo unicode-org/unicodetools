@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-11-10, 22:25:34 GMT
+# Date: 2024-01-19, 14:37:25 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -5595,6 +5595,7 @@
 1876          ; MONGOLIAN LETTER MANCHU FA
 1877          ; MONGOLIAN LETTER MANCHU ZHA
 1878          ; MONGOLIAN LETTER CHA WITH TWO DOTS
+1879          ; MONGOLIAN LETTER MANCHU ALTERNATE UE
 1880          ; MONGOLIAN LETTER ALI GALI ANUSVARA ONE
 1881          ; MONGOLIAN LETTER ALI GALI VISARGA ONE
 1882          ; MONGOLIAN LETTER ALI GALI DAMARU
@@ -45368,6 +45369,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 151005
+# Total code points: 151006
 
 # EOF
