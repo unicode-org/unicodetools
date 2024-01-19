@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2023-11-10, 22:06:29 GMT
+# Date: 2024-01-19, 15:04:48 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1752,8 +1752,8 @@ E0100..E01EF  ; Variation_Selector # Mn [240] VARIATION SELECTOR-17..VARIATION S
 2B30..2B44    ; Pattern_Syntax # Sm  [21] LEFT ARROW WITH SMALL CIRCLE..RIGHTWARDS ARROW THROUGH SUPERSET
 2B45..2B46    ; Pattern_Syntax # So   [2] LEFTWARDS QUADRUPLE ARROW..RIGHTWARDS QUADRUPLE ARROW
 2B47..2B4C    ; Pattern_Syntax # Sm   [6] REVERSE TILDE OPERATOR ABOVE RIGHTWARDS ARROW..RIGHTWARDS ARROW ABOVE REVERSE TILDE OPERATOR
-2B4D..2B73    ; Pattern_Syntax # So  [39] DOWNWARDS TRIANGLE-HEADED ZIGZAG ARROW..DOWNWARDS TRIANGLE-HEADED ARROW TO BAR
-2B74..2B75    ; Pattern_Syntax # Cn   [2] <reserved-2B74>..<reserved-2B75>
+2B4D..2B74    ; Pattern_Syntax # So  [40] DOWNWARDS TRIANGLE-HEADED ZIGZAG ARROW..EQUALS SIGN WITH INFINITY ABOVE
+2B75          ; Pattern_Syntax # Cn       <reserved-2B75>
 2B76..2B95    ; Pattern_Syntax # So  [32] NORTH WEST TRIANGLE-HEADED ARROW TO BAR..RIGHTWARDS BLACK ARROW
 2B96          ; Pattern_Syntax # Cn       <reserved-2B96>
 2B97..2BFF    ; Pattern_Syntax # So [105] SYMBOL FOR TYPE A ELECTRONICS..HELLSCHREIBER PAUSE SYMBOL
