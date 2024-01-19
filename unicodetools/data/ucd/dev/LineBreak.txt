@@ -1,3 +1,4 @@
+1879 ; AL # Lo MONGOLIAN LETTER MANCHU ALTERNATE UE
 # LineBreak-16.0.0.txt
 # Date: 2023-11-10, 22:25:50 GMT
 # © 2023 Unicode®, Inc.
