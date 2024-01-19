@@ -607,7 +607,7 @@ public interface UCD_Types {
             Sunuwar = 170,
             Todhri = 171,
             Tulu_Tigalari = 172,
-            // Provisionally assigned and proposed
+            // Provisionally assigned or proposed
             Chisoi = 173,
             Sidetic = 174,
             Tai_Yo = 175,
