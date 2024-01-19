@@ -1,5 +1,5 @@
 # EastAsianWidth-16.0.0.txt
-# Date: 2023-11-10, 22:25:47 GMT
+# Date: 2024-01-19, 15:29:44 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2641,7 +2641,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 1F93C..1F945   ; W  # So    [10] WRESTLERS..GOAL NET
 1F946          ; N  # So         RIFLE
 1F947..1F9FF   ; W  # So   [185] FIRST PLACE MEDAL..NAZAR AMULET
-1FA00..1FA53   ; N  # So    [84] NEUTRAL CHESS KING..BLACK CHESS KNIGHT-BISHOP
+1FA00..1FA57   ; N  # So    [88] NEUTRAL CHESS KING..BLACK CHESS ALFIL
 1FA60..1FA6D   ; N  # So    [14] XIANGQI RED GENERAL..XIANGQI BLACK SOLDIER
 1FA70..1FA7C   ; W  # So    [13] BALLET SHOES..CRUTCH
 1FA80..1FA89   ; W  # So    [10] YO-YO..HARP
