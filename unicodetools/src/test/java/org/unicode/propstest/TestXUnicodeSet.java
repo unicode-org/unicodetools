@@ -1,8 +1,5 @@
 package org.unicode.propstest;
 
-import com.ibm.icu.text.UnicodeSet;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
