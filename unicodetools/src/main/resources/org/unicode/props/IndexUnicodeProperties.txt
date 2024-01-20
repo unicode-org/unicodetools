@@ -92,7 +92,10 @@ UnicodeData; Simple_Lowercase_Mapping ; 13
 UnicodeData; Simple_Titlecase_Mapping ; 14
 UnicodeData; Unicode_1_Name ; 10
 UnicodeData; ISO_Comment ; 11
-ArabicShaping; Joining_Type; 2
+# Handle the complex default of ArabicShaping.txt by introducing an unofficial
+# contributory property, to be used when deriving Joining_Type.
+ArabicShaping; Other_Joining_Type; 2
+DerivedJoiningType; Joining_Type; 1
 ArabicShaping; Joining_Group; 3
 BidiMirroring; Bidi_Mirroring_Glyph;
 Blocks ; Block

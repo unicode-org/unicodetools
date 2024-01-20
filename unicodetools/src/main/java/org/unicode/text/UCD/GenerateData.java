@@ -1307,6 +1307,13 @@ public class GenerateData implements UCD_Types {
         "\u0592\u05B7\u05BC\u05A5\u05B0\u05C0\u05C4\u05AD",
         "\u1100\uAC00\u11A8",
         "\u1100\uAC00\u11A8\u11A8",
+        // Some implementations have an edge case when a character whose
+        // decomposition contains multiple starters and ends with a non-starter
+        // is followed by a non-starter of lower CCC.
+        // See https://github.com/unicode-org/unicodetools/issues/656
+        // and https://github.com/unicode-org/icu4x/pull/4530.
+        "\u01C4\u0323",
+        "\u0DDD\u0334",
     };
     /*
     static final void backwardsCompat(String directory, String filename, int[] list) throws IOException {

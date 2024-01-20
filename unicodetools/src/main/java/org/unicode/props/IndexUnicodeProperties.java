@@ -678,6 +678,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 stringToNamedEnum = ImmutableMap.copyOf(_stringToNamedEnum);
                 enumValueNames = ImmutableSet.copyOf(_mainNames);
             }
+            if (PropertyParsingInfo.property2PropertyInfo.get(item).getMultivalued()
+                    != ValueCardinality.Singleton) {
+                setMultivalued(true);
+                setDelimiter(SET_SEPARATOR);
+            }
         }
 
         protected UnicodeMap<String> _getUnicodeMap() {
