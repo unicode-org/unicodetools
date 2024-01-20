@@ -27,6 +27,9 @@ idtype ; Identifier_Type
 idns ; Idn_Status
 idn8 ; Idn_2008
 
+# Unofficial contributory property used in the derivation of Joining_Type.
+Other_Joining_Type ; Other_Joining_Type
+
 # ================================================
 # String Properties
 # ================================================
