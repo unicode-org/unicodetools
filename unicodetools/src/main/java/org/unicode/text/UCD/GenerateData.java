@@ -1014,7 +1014,7 @@ public class GenerateData implements UCD_Types {
         for (String decomposition : canonicalDecompositionsOfSingleCodepoints) {
             int first = decomposition.codePointAt(0);
             int second;
-            for (int i = UTF16.getCharCount(first);
+            for (int i = Character.charCount(first);
                     i < decomposition.length();
                     first = second, i += UTF16.getCharCount(first)) {
                 second = decomposition.codePointAt(i);
