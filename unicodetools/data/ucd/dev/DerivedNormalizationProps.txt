@@ -1,5 +1,5 @@
 # DerivedNormalizationProps-16.0.0.txt
-# Date: 2023-11-10, 20:57:25 GMT
+# Date: 2024-01-07, 05:05:34 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1167,17 +1167,17 @@ FB46..FB4E    ; NFC_QC; N # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBREW LET
 113B8         ; NFC_QC; M # Mc       TULU-TIGALARI VOWEL SIGN AA
 113BB         ; NFC_QC; M # Mn       TULU-TIGALARI VOWEL SIGN U
 113C2         ; NFC_QC; M # Mc       TULU-TIGALARI VOWEL SIGN EE
-113C9         ; NFC_QC; M # Mc       TULU-TIGALARI AU LENGTH MARK
+113C5         ; NFC_QC; M # Mc       TULU-TIGALARI VOWEL SIGN AI
+113C7..113C9  ; NFC_QC; M # Mc   [3] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI AU LENGTH MARK
 114B0         ; NFC_QC; M # Mc       TIRHUTA VOWEL SIGN AA
 114BA         ; NFC_QC; M # Mn       TIRHUTA VOWEL SIGN SHORT E
 114BD         ; NFC_QC; M # Mc       TIRHUTA VOWEL SIGN SHORT O
 115AF         ; NFC_QC; M # Mc       SIDDHAM VOWEL SIGN AA
 11930         ; NFC_QC; M # Mc       DIVES AKURU VOWEL SIGN AA
-1611E..16120  ; NFC_QC; M # Mn   [3] GURUNG KHEMA VOWEL SIGN AA..GURUNG KHEMA VOWEL SIGN II
-16129         ; NFC_QC; M # Mn       GURUNG KHEMA VOWEL LENGTH MARK
-16D67         ; NFC_QC; M # Lo       KIRAT RAI VOWEL SIGN E
+1611E..16129  ; NFC_QC; M # Mn  [12] GURUNG KHEMA VOWEL SIGN AA..GURUNG KHEMA VOWEL LENGTH MARK
+16D67..16D68  ; NFC_QC; M # Lo   [2] KIRAT RAI VOWEL SIGN E..KIRAT RAI VOWEL SIGN AI
 
-# Total code points: 120
+# Total code points: 132
 
 # ================================================
 
@@ -2211,17 +2211,17 @@ FFED..FFEE    ; NFKC_QC; N # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CI
 113B8         ; NFKC_QC; M # Mc       TULU-TIGALARI VOWEL SIGN AA
 113BB         ; NFKC_QC; M # Mn       TULU-TIGALARI VOWEL SIGN U
 113C2         ; NFKC_QC; M # Mc       TULU-TIGALARI VOWEL SIGN EE
-113C9         ; NFKC_QC; M # Mc       TULU-TIGALARI AU LENGTH MARK
+113C5         ; NFKC_QC; M # Mc       TULU-TIGALARI VOWEL SIGN AI
+113C7..113C9  ; NFKC_QC; M # Mc   [3] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI AU LENGTH MARK
 114B0         ; NFKC_QC; M # Mc       TIRHUTA VOWEL SIGN AA
 114BA         ; NFKC_QC; M # Mn       TIRHUTA VOWEL SIGN SHORT E
 114BD         ; NFKC_QC; M # Mc       TIRHUTA VOWEL SIGN SHORT O
 115AF         ; NFKC_QC; M # Mc       SIDDHAM VOWEL SIGN AA
 11930         ; NFKC_QC; M # Mc       DIVES AKURU VOWEL SIGN AA
-1611E..16120  ; NFKC_QC; M # Mn   [3] GURUNG KHEMA VOWEL SIGN AA..GURUNG KHEMA VOWEL SIGN II
-16129         ; NFKC_QC; M # Mn       GURUNG KHEMA VOWEL LENGTH MARK
-16D67         ; NFKC_QC; M # Lo       KIRAT RAI VOWEL SIGN E
+1611E..16129  ; NFKC_QC; M # Mn  [12] GURUNG KHEMA VOWEL SIGN AA..GURUNG KHEMA VOWEL LENGTH MARK
+16D67..16D68  ; NFKC_QC; M # Lo   [2] KIRAT RAI VOWEL SIGN E..KIRAT RAI VOWEL SIGN AI
 
-# Total code points: 120
+# Total code points: 132
 
 # ================================================
 
