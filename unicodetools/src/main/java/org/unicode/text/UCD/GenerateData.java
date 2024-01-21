@@ -851,7 +851,7 @@ public class GenerateData implements UCD_Types {
                     // both for æsthetic reasons and to reproduce the example
                     // ICU4X came across.  If all else fails, use a character
                     // with CCC=1, as low as it gets.
-                    if (script.equals("Arab") && lastCCC > 220) {
+                    if (script.equals("Arabic") && lastCCC > 220) {
                         // ARABIC SUBSCRIPT ALEF.
                         writeLine(cp + "\u0656", log, false);
                     } else if (lastCCC > 220) {
