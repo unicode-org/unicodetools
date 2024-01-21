@@ -1,5 +1,5 @@
 # EastAsianWidth-16.0.0.txt
-# Date: 2023-11-10, 22:25:47 GMT
+# Date: 2024-01-21, 16:49:34 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2671,6 +2671,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 3134B..3134F   ; W  # Cn     [5] <reserved-3134B>..<reserved-3134F>
 31350..323AF   ; W  # Lo  [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 323B0..3FFFD   ; W  # Cn [56398] <reserved-323B0>..<reserved-3FFFD>
+A0000          ; N  # Lo         MEOW
 E0001          ; N  # Cf         LANGUAGE TAG
 E0020..E007F   ; N  # Cf    [96] TAG SPACE..CANCEL TAG
 E0100..E01EF   ; A  # Mn   [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256

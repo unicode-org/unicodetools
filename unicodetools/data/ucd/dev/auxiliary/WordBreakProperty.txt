@@ -1,5 +1,5 @@
 # WordBreakProperty-16.0.0.txt
-# Date: 2023-11-10, 22:27:08 GMT
+# Date: 2024-01-21, 16:50:05 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1354,8 +1354,9 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F130..1F149  ; ALetter # So  [26] SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
+A0000         ; ALetter # Lo       MEOW
 
-# Total code points: 29799
+# Total code points: 29800
 
 # ================================================
 
