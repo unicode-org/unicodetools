@@ -29,10 +29,12 @@ if pipeline_label != "pipeline-" + version:
     draft = event['pull_request']['draft']
     # Caution the reader that the Age values are placeholders.
     if pipeline_label == "pipeline-provisionally-assigned":
-        print(f"::warning file=unicodetools/data/ucd/dev/DerivedAge.txt,title=Not in the {version} pipeline::" +
+        print("::warning file=unicodetools/data/ucd/dev/DerivedAge.txt,"
+              f"title=Not in the {version} pipeline::" +
               PROVISIONALLY_ASSIGNED_AGE_NOTICE)
     else:  # Not even provisionally assigned.
-        print(f"::warning file=unicodetools/data/ucd/dev/DerivedAge.txt,title=Not in the {version} pipeline::" +
+        print("::warning file=unicodetools/data/ucd/dev/DerivedAge.txt,"
+              f"title=Not in the {version} pipeline::" +
               UNREVIEWED_AGE_NOTICE)
     if not draft:
         print("::error title=PR must be draft::"
