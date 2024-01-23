@@ -569,7 +569,6 @@ public final class UCD implements UCD_Types {
             throw new ChainException("Han File Processing Exception", null, e);
         } finally {
             Utility.fixDot();
-            System.out.println("****Size: " + hanExceptions.size());
         }
     }
 

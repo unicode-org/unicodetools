@@ -1708,6 +1708,40 @@ public class UcdPropertyValues {
     }
 
     // Numeric_Value
+    public enum Other_Joining_Type_Values implements Named {
+        Join_Causing("C"),
+        Dual_Joining("D"),
+        Left_Joining("L"),
+        Right_Joining("R"),
+        Transparent("T"),
+        Non_Joining("U"),
+        Deduce_From_General_Category("Deduce_From_General_Category");
+        private final PropertyNames<Other_Joining_Type_Values> names;
+
+        private Other_Joining_Type_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Other_Joining_Type_Values>(
+                            Other_Joining_Type_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Other_Joining_Type_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Other_Joining_Type_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Other_Joining_Type_Values.class);
+
+        public static Other_Joining_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     public enum Script_Values implements Named {
         Adlam("Adlm"),
         Caucasian_Albanian("Aghb"),

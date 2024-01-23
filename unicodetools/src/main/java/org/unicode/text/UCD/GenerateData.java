@@ -972,24 +972,38 @@ public class GenerateData implements UCD_Types {
         log.println("@Part5 # Chained primary composites");
         log.println("#");
 
-        // Mutable maps because we end up adding some C↦C mappings for
-        // convenience below.
-        final Map<Integer, Set<Integer>> primaryCompositesByFirstNFDCodePoint = new TreeMap<>();
-        final Map<Integer, Set<Integer>> primaryCompositesByLastNFDCodePoint = new TreeMap<>();
+        // Not actually Builders of ImmutableMaps because those do not have
+        // computeIfAbsent and because we want ImmutableSets too.
+        final Map<Integer, Set<Integer>> primaryCompositesByFirstNFDCodePointBuilder =
+                new TreeMap<>();
+        final Map<Integer, Set<Integer>> primaryCompositesByLastNFDCodePointBuilder =
+                new TreeMap<>();
         for (var entry : canonicalDecompositionsByCodepoint.entrySet()) {
             final int cp = entry.getKey();
             final String decomposition = entry.getValue();
             if (Default.nfc().normalize(cp).equals(Character.toString(cp))) {
                 int first = decomposition.codePointAt(0);
                 int last = decomposition.codePointBefore(decomposition.length());
-                primaryCompositesByFirstNFDCodePoint
+                primaryCompositesByFirstNFDCodePointBuilder
                         .computeIfAbsent(first, key -> new TreeSet<>())
                         .add(cp);
-                primaryCompositesByLastNFDCodePoint
+                primaryCompositesByLastNFDCodePointBuilder
                         .computeIfAbsent(last, key -> new TreeSet<>())
                         .add(cp);
             }
         }
+        final ImmutableMap<Integer, ImmutableSet<Integer>> primaryCompositesByFirstNFDCodePoint =
+                primaryCompositesByFirstNFDCodePointBuilder.entrySet().stream()
+                        .collect(
+                                ImmutableMap.toImmutableMap(
+                                        entry -> entry.getKey(),
+                                        entry -> ImmutableSet.copyOf(entry.getValue())));
+        final ImmutableMap<Integer, ImmutableSet<Integer>> primaryCompositesByLastNFDCodePoint =
+                primaryCompositesByLastNFDCodePointBuilder.entrySet().stream()
+                        .collect(
+                                ImmutableMap.toImmutableMap(
+                                        entry -> entry.getKey(),
+                                        entry -> ImmutableSet.copyOf(entry.getValue())));
 
         Collection<String> skippedNFCs = new ArrayList<>();
         Set<String> part5NFCs = new TreeSet<>();
@@ -1000,7 +1014,7 @@ public class GenerateData implements UCD_Types {
         for (String decomposition : canonicalDecompositionsOfSingleCodepoints) {
             int first = decomposition.codePointAt(0);
             int second;
-            for (int i = UTF16.getCharCount(first);
+            for (int i = Character.charCount(first);
                     i < decomposition.length();
                     first = second, i += UTF16.getCharCount(first)) {
                 second = decomposition.codePointAt(i);
@@ -1026,96 +1040,93 @@ public class GenerateData implements UCD_Types {
             // Note that if both the first and second candidates are
             // canonically non-decomposable starters, any linking code point
             // will cover the whole string, meaning this is already covered
-            // in Parts 1 and 4, so we do not emit any such test cases.
+            // in Parts 1 and 4, and we will find that out, so we do not emit
+            // any such test cases.
+            Set<Integer> firstCandidates = new TreeSet<>();
+            Set<Integer> secondCandidates = new TreeSet<>();
+            firstCandidates.addAll(
+                    primaryCompositesByLastNFDCodePoint.getOrDefault(first, ImmutableSet.of()));
+            secondCandidates.addAll(
+                    primaryCompositesByFirstNFDCodePoint.getOrDefault(second, ImmutableSet.of()));
             if (Default.ucd().getCombiningClass(first) == 0) {
-                primaryCompositesByLastNFDCodePoint
-                        .computeIfAbsent(first, key -> new TreeSet<>())
-                        .add(first);
+                firstCandidates.add(first);
             }
             if (Default.ucd().getCombiningClass(second) == 0) {
-                primaryCompositesByFirstNFDCodePoint
-                        .computeIfAbsent(second, key -> new TreeSet<>())
-                        .add(second);
+                secondCandidates.add(second);
             }
-            if (primaryCompositesByLastNFDCodePoint.containsKey(first)
-                    && primaryCompositesByFirstNFDCodePoint.containsKey(second)) {
-                for (int firstCandidate : primaryCompositesByLastNFDCodePoint.get(first)) {
-                    for (int secondCandidate : primaryCompositesByFirstNFDCodePoint.get(second)) {
-                        String firstDecomposition = Default.nfd().normalize(firstCandidate);
-                        String secondDecomposition = Default.nfd().normalize(secondCandidate);
-                        String decomposition = firstDecomposition + secondDecomposition;
-                        if (canonicalDecompositionsOfSingleCodepoints.contains(decomposition)) {
-                            // Already covered in parts 1 (single code points)
-                            // and 4 (canonical closures of single code points).
-                            continue;
-                        }
-                        System.out.println(
-                                Default.ucd().getName(firstCandidate)
-                                        + "+"
-                                        + Default.ucd().getName(secondCandidate));
-                        // Within the canonical closure of the concatenation of
-                        // firstCandidate and secondCandidate, look for strings
-                        // that cannot be split between those two characters.
-                        // Those are our test cases for Part 5.
-                        String nfc = Default.nfc().normalize(decomposition);
-                        forAllStringsCanonicallyDecomposingTo(
-                                decomposition,
-                                s -> {
-                                    for (int j = 0; j < s.length(); ++j) {
-                                        if (Default.nfd()
-                                                        .normalize(s.substring(0, j))
-                                                        .equals(firstDecomposition)
-                                                && Default.nfd()
-                                                        .normalize(s.substring(j))
-                                                        .equals(secondDecomposition)) {
-                                            // The string splits into parts
-                                            // equivalent to firstCandidate and
-                                            // secondCandidate, i.e., it has no
-                                            // link.
-                                            return;
-                                        }
-                                    }
-                                    if (s.equals(nfc)) {
-                                        // If the NFC of
-                                        // firstCandidate + secondCandidate has
-                                        // a link, thus
-                                        // NFC(firstCandidate + secondCandidate)
-                                        //                        = f′ + l + s′,
-                                        // with f′ prefix of firstCandidate and
-                                        // s′ suffix of secondCandidate, f′ must
-                                        // be empty (otherwise the NFC would
-                                        // start with the longer first), so we
-                                        // should see this canonical equivalence
-                                        // class again for the link between l
-                                        // and s′.
-                                        // Since we give the NFC of all test
-                                        // cases and instruct implementers to
-                                        // run all normalizations on that
-                                        // column, we can skip this one.
-                                        // But in the spirit of “Beware of bugs
-                                        // in the above code; I have only proved
-                                        // it correct, not tried it.” (Knuth
-                                        // 1977), let us check those statements.
-                                        String linkDecomposition =
-                                                Default.nfd().normalize(nfc.codePointAt(0));
-                                        if (!linkDecomposition.startsWith(firstDecomposition)) {
-                                            throw new AssertionError(
-                                                    "The first code point of NFC("
-                                                            + Default.ucd()
-                                                                    .getName(firstDecomposition)
-                                                            + " + "
-                                                            + Default.ucd()
-                                                                    .getName(secondDecomposition)
-                                                            + ") does not cover the first part");
-                                        }
-                                        skippedNFCs.add(nfc);
+            for (int firstCandidate : firstCandidates) {
+                for (int secondCandidate : secondCandidates) {
+                    String firstDecomposition = Default.nfd().normalize(firstCandidate);
+                    String secondDecomposition = Default.nfd().normalize(secondCandidate);
+                    String decomposition = firstDecomposition + secondDecomposition;
+                    if (canonicalDecompositionsOfSingleCodepoints.contains(decomposition)) {
+                        // Already covered in parts 1 (single code points) and 4
+                        // (canonical closures of single code points).
+                        continue;
+                    }
+                    System.out.println(
+                            Default.ucd().getName(firstCandidate)
+                                    + "+"
+                                    + Default.ucd().getName(secondCandidate));
+                    // Within the canonical closure of the concatenation of
+                    // firstCandidate and secondCandidate, look for strings that
+                    // cannot be split between those two characters.
+                    // Those are our test cases for Part 5.
+                    String nfc = Default.nfc().normalize(decomposition);
+                    forAllStringsCanonicallyDecomposingTo(
+                            decomposition,
+                            s -> {
+                                for (int j = 0; j < s.length(); ++j) {
+                                    if (Default.nfd()
+                                                    .normalize(s.substring(0, j))
+                                                    .equals(firstDecomposition)
+                                            && Default.nfd()
+                                                    .normalize(s.substring(j))
+                                                    .equals(secondDecomposition)) {
+                                        // The string splits into parts
+                                        // equivalent to firstCandidate and
+                                        // secondCandidate, i.e., it has no
+                                        // link.
                                         return;
                                     }
-                                    part5NFCs.add(nfc);
-                                    writeLine(s, log, true);
-                                    System.out.println(Default.ucd().getName(s));
-                                });
-                    }
+                                }
+                                if (s.equals(nfc)) {
+                                    // If the NFC of
+                                    // firstCandidate + secondCandidate has a
+                                    // link, thus
+                                    // NFC(firstCandidate + secondCandidate)
+                                    //                            = f′ + l + s′,
+                                    // with f′ prefix of firstCandidate and s′
+                                    // suffix of secondCandidate, f′ must be
+                                    // empty (otherwise the NFC would start with
+                                    // the longer first), so we should see this
+                                    // canonical equivalence class again for the
+                                    // link between l and s′.
+                                    // Since we give the NFC of all test cases
+                                    // and instruct implementers to run all
+                                    // normalizations on that column, we can
+                                    // skip this one.
+                                    // But in the spirit of “Beware of bugs in
+                                    // the above code; I have only proved it
+                                    // correct, not tried it.” (Knuth 1977), let
+                                    // us check those statements.
+                                    String linkDecomposition =
+                                            Default.nfd().normalize(nfc.codePointAt(0));
+                                    if (!linkDecomposition.startsWith(firstDecomposition)) {
+                                        throw new AssertionError(
+                                                "The first code point of NFC("
+                                                        + Default.ucd().getName(firstDecomposition)
+                                                        + " + "
+                                                        + Default.ucd().getName(secondDecomposition)
+                                                        + ") does not cover the first part");
+                                    }
+                                    skippedNFCs.add(nfc);
+                                    return;
+                                }
+                                part5NFCs.add(nfc);
+                                writeLine(s, log, true);
+                                System.out.println(Default.ucd().getName(s));
+                            });
                 }
             }
         }
@@ -1307,6 +1318,13 @@ public class GenerateData implements UCD_Types {
         "\u0592\u05B7\u05BC\u05A5\u05B0\u05C0\u05C4\u05AD",
         "\u1100\uAC00\u11A8",
         "\u1100\uAC00\u11A8\u11A8",
+        // Some implementations have an edge case when a character whose
+        // decomposition contains multiple starters and ends with a non-starter
+        // is followed by a non-starter of lower CCC.
+        // See https://github.com/unicode-org/unicodetools/issues/656
+        // and https://github.com/unicode-org/icu4x/pull/4530.
+        "\u01C4\u0323",
+        "\u0DDD\u0334",
     };
     /*
     static final void backwardsCompat(String directory, String filename, int[] list) throws IOException {

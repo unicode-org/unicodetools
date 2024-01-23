@@ -29,6 +29,7 @@ import org.unicode.props.UcdPropertyValues.NFD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.NFKC_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
+import org.unicode.props.UcdPropertyValues.Other_Joining_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UcdPropertyValues.Sentence_Break_Values;
 import org.unicode.props.UcdPropertyValues.Vertical_Orientation_Values;
@@ -241,6 +242,8 @@ public enum UcdProperty {
     NFKC_Quick_Check(PropertyType.Enumerated, NFKC_Quick_Check_Values.class, null, "NFKC_QC"),
     NFKD_Quick_Check(PropertyType.Enumerated, NFKD_Quick_Check_Values.class, null, "NFKD_QC"),
     Numeric_Type(PropertyType.Enumerated, Numeric_Type_Values.class, null, "nt"),
+    Other_Joining_Type(
+            PropertyType.Enumerated, Other_Joining_Type_Values.class, null, "Other_Joining_Type"),
     Sentence_Break(PropertyType.Enumerated, Sentence_Break_Values.class, null, "SB"),
     Vertical_Orientation(PropertyType.Enumerated, Vertical_Orientation_Values.class, null, "vo"),
     Word_Break(PropertyType.Enumerated, Word_Break_Values.class, null, "WB"),

@@ -112,6 +112,12 @@ public class ChartUtilities {
 
     public static void writeFooter(Appendable out) {
         try {
+            if (Emoji.Source.SAMPLE_SOURCE == Emoji.Source.google) {
+                out.append(
+                        "\n<p>"
+                                + "Sample images are from <a href='https://fonts.google.com/noto/specimen/Noto+Color+Emoji'>Noto Color Emoji</a>."
+                                + "</p>");
+            }
             out.append(
                     "\n</div><div class='copyright'>"
                             // + "<hr width='50%'>"
