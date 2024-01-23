@@ -37,6 +37,7 @@ public class GenerateData implements UCD_Types {
             throws IOException {
         final var nfd = Default.nfd();
         final var nfc = Default.nfc();
+        final var nfkd = Default.nfkd();
 
         final UnicodeDataFile fc =
                 UnicodeDataFile.openAndWriteHeader(directory, fileName)
@@ -66,7 +67,7 @@ public class GenerateData implements UCD_Types {
                 IndexUnicodeProperties.make().getProperty(UcdProperty.Script);
         for (final String cp : UnicodeSet.ALL_CODE_POINTS) {
             final String[] decompositions =
-                    new String[] {nfd.normalize(cp), Default.nfkd().normalize(cp)};
+                    new String[] {nfd.normalize(cp), nfkd.normalize(cp)};
             for (final String decomposition : decompositions) {
                 final int lastCCC =
                         Default.ucd()
