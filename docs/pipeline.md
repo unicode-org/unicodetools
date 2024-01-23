@@ -58,10 +58,10 @@ Indic scripts only:
 
 ---
 PR preparation:
-- [ ] Proposal document — Cite L2 number
-- [ ] UTC decisions — Cite _in extenso_
+- [ ] When for a UTC decision — Cite in the format UTC-\d\d\d-[MC]\d+
+- [ ] Whenever there is a Proposal document — Cite L2 number in the format L2/yy-nnn
 - [ ] data-for-new — Set label
-- [ ] pipeline-* — Set label
+- [ ] pipeline-* — Set label to **pipeline-recommended-to-UTC** if the characters are not yet in the pipeline, and **pipeline-provisionally-assigned**, or **pipeline-`<version>`** depending on their status in [the Pipeline](https://unicode.org/alloc/Pipeline.html#future).
 - [ ] PR button — Set to DRAFT pull request
   - unless approved for the upcoming version
 - [ ] PR button — Press
@@ -134,6 +134,13 @@ git add unicodetools/src/main/java/org/unicode/text/UCD/UCD_Types.java
 git add unicodetools/data
 git merge --continue
 ```
+
+macchiati (IDE) 
+```
+sync github
+run MakeUnicodeFiles.java -c
+```
+Cf. https://github.com/unicode-org/unicodetools/pull/636
 
 ### Regenerate UCD
 

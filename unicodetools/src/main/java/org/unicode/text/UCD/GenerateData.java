@@ -10,12 +10,22 @@
  */
 package org.unicode.text.UCD;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.function.Consumer;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.UnicodeDataFile;
@@ -23,786 +33,70 @@ import org.unicode.text.utility.Utility;
 
 public class GenerateData implements UCD_Types {
 
-    /*   static final boolean DEBUG = false;
-
-    static final String HORIZONTAL_LINE = "# ================================================";
-
-    static final void genSplit () {
-        UnicodeSet split = new UnicodeSet();
-        UnicodeSet reordrant = new UnicodeSet(
-            "[\u093F\u09BF\u09c7\u09c8\u0abf\u0abf\u0b47\u0bc6\u0bc7\u0bc8"
-            + "\u0d46\u0d47\u0d48\u0dd9\u0dda\u0ddb\u1031\u17be\u17c1\u17c2\u17c3]");
-        UnicodeSet subjoined = new UnicodeSet();
-        for (int i = 0; i <= 0x10FFFF; ++i) {
-            if (!Default.ucd().isAssigned(i)) continue;
-            Utility.dot(i);
-            int cat = Default.ucd().getCategory(i);
-            if (cat != Mc && cat != Mn && cat != Me) continue;
-            if (Default.ucd().getName(i).indexOf("SUBJOINED") >= 0) {
-                System.out.print('*');
-                subjoined.add(i);
-                continue;
-            }
-            String decomp = Default.nfd().normalize(i);
-            //int count = countTypes(decomp, Mc);
-            if (UTF16.countCodePoint(decomp) > 1) split.add(i);
-        }
-        Utility.fixDot();
-        System.out.println("Split: " + split.size());
-        Utility.showSetNames("", split, false, Default.ucd());
-
-        System.out.println("Reordrant: " + reordrant.size());
-        Utility.showSetNames("", reordrant, false, Default.ucd());
-
-        System.out.println("Subjoined: " + subjoined.size());
-        Utility.showSetNames("", subjoined, false, Default.ucd());
-    }
-
-    static int countTypes(String s, int filter) {
-        int count = 0;
-        int cp;
-        for (int i = 0; i < s.length(); i+= UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(s, i);
-            int cat = Default.ucd().getCategory(i);
-            if (cat == filter) count++;
-        }
-        return count;
-    }
-
-    //static UnifiedBinaryProperty ubp
-
-    public static void checkHoffman(String test) {
-        String result = Default.nfkc().normalize(test);
-        System.out.println(Utility.hex(test) + " => " + Utility.hex(result));
-        System.out.println();
-        show(test, 0);
-        System.out.println();
-        show(result, 0);
-    }
-
-    public static void show(String s, int indent) {
-        int cp;
-        for (int i = 0; i < s.length(); i += UTF32.count16(cp)) {
-            cp = UTF32.char32At(s, i);
-            String cc = " " + Default.ucd().getCombiningClass(cp);
-            cc = Utility.repeat(" ", 4 - cc.length()) + cc;
-            System.out.println(Utility.repeat(" ", indent) + Default.ucd().getCode(cp) + cc + " " + Default.ucd().getName(cp));
-            String decomp = Default.nfkc().normalize(cp);
-            if (!decomp.equals(UTF32.valueOf32(cp))) {
-                show(decomp, indent + 4);
-            }
-        }
-    }
-
-
-    static final int HEADER_EXTEND = 0, HEADER_DERIVED = 1, HEADER_SCRIPTS = 2;
-
-    public static void doHeader(String fileName, PrintWriter output, int headerChoice) {
-        output.println("# " + fileName);
-        output.println(UnicodeDataFile.generateDateLine());
-        output.println("#");
-        if (headerChoice == HEADER_SCRIPTS) {
-        } else if (headerChoice == HEADER_EXTEND) {
-            output.println("# Unicode Character Database: Extended Properties");
-        } else {
-            output.println("# Unicode Character Database: Derived Property Data");
-            output.println("# Generated algorithmically from the Unicode Character Database");
-        }
-        output.println("# For documentation, see UCD.html");
-        //output.println("# Note: Unassigned and Noncharacter codepoints may be omitted");
-        //output.println("#       if they have default property values.");
-        output.println(HORIZONTAL_LINE);
-        output.println();
-    }
-
-    public static void checkDifferences (String targetVersion) throws IOException {
-        System.out.println("Checking Differences");
-        UCD target = UCD.make(targetVersion);
-
-        PrintWriter log1 = Utility.openPrintWriter("Log1.xml", Utility.LATIN1_UNIX);
-        log1.println("<diff version='" + target.getVersion() + "'>");
-
-        PrintWriter log2 = Utility.openPrintWriter("Log2.xml", Utility.LATIN1_UNIX);
-        log2.println("<diff version='" + Default.ucd().getVersion() + "'>");
-
-        for (int i = 0; i <= 0x10FFFF; ++i) {
-            if (!target.isAllocated(i)) continue;
-            Utility.dot(i);
-            UData t = target.get(i, true);
-            UData current = Default.ucd().get(i, true);
-            if (i == 0x5E) {
-                System.out.println(target.getDecompositionTypeID(i)
-                    + ", " + Utility.hex(target.getDecompositionMapping(i)));
-                System.out.println(Default.ucd().getDecompositionTypeID(i)
-                    + ", " + Utility.hex(Default.ucd().getDecompositionMapping(i)));
-            }
-            if (t.equals(current)) continue;
-
-            // print both for comparison
-            log1.println(t.toString(target, UData.ABBREVIATED));
-            log2.println(current.toString(Default.ucd(), UData.ABBREVIATED));
-        }
-        log1.println("</diff>");
-        log2.println("</diff>");
-        log1.close();
-        log2.close();
-    }
-
-    public static void generateDerived (byte type, boolean checkTypeAndStandard, int headerChoice, String directory, String fileName) throws IOException {
-
-
-        String newFile = directory + fileName + UnicodeDataFile.getFileSuffix(true);
-        System.out.println("New File: " + newFile);
-        PrintWriter output = Utility.openPrintWriter(newFile, Utility.LATIN1_UNIX);
-        String[] batName = {""};
-        org.unicode.cldr.util.Utility.generateBat(directory, fileName, UnicodeDataFile.getFileSuffix(true), batName);
-
-        doHeader(fileName + UnicodeDataFile.getFileSuffix(false), output, headerChoice);
-        for (int i = 0; i < DERIVED_PROPERTY_LIMIT; ++i) {
-            UCDProperty up = DerivedProperty.make(i, Default.ucd());
-            if (up == null) continue;
-            boolean keepGoing = true;
-            if (!up.isStandard()) keepGoing = false;
-            if ((up.getType() & type) == 0) keepGoing = false;
-
-            if (checkTypeAndStandard != keepGoing) continue;
-            //if ((bitMask & (1L<<i)) == 0) continue;
-
-            System.out.print('.');
-            output.println(HORIZONTAL_LINE);
-            output.println();
-            new DerivedPropertyLister(Default.ucd(), i, output).print();
-            output.flush();
-        }
-        output.close();
-        Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
-    }
-
-
-    public static void listStrings(String file, int type, int subtype) throws IOException {
-        Default.ucd = UCD.make("3.1.0");
-        UCD ucd30 = UCD.make("3.0.0");
-        PrintStream output = new PrintStream(new FileOutputStream(GEN_DIR + file));
-
-        for (int i = 0; i < 0x10FFFF; ++i) {
-            if ((i & 0xFFF) == 0) System.out.println("# " + i);
-            if (!Default.ucd.isRepresented(i)) continue;
-            if (ucd30.isRepresented(i)) continue;
-            String string = "";
-            switch(type) {
-                case 0: string = Default.ucd.getSimpleLowercase(i);
-            }
-            if (UTF32.length32(string) == 1 && UTF32.char32At(string,0) == i) continue;
-            output.println(Utility.hex(i) + "; C; " + Utility.hex(string) + "; # " + Default.ucd.getName(i));
-        }
-        output.close();
-    }
-
-
-    public static void generateCompExclusions() throws IOException {
-
-        String newFile = "DerivedData/CompositionExclusions" + UnicodeDataFile.getFileSuffix(true);
-        PrintWriter output = Utility.openPrintWriter(newFile, Utility.LATIN1_UNIX);
-        String[] batName = {""};
-        String mostRecent = org.unicode.cldr.util.Utility.generateBat("DerivedData/", "CompositionExclusions", UnicodeDataFile.getFileSuffix(true), batName);
-
-        output.println("# CompositionExclusions" + UnicodeDataFile.getFileSuffix(false));
-        output.println(UnicodeDataFile.generateDateLine());
-        output.println("#");
-        output.println("# This file lists the characters from the UAX #15 Composition Exclusion Table.");
-        output.println("#");
-        if (Default.ucd().getVersion().equals("3.2.0")) {
-            output.println("# The format of the comments in this file has been updated since the last version,");
-            output.println("# CompositionExclusions-3.txt. The only substantive change to this file between that");
-            output.println("# version and this one is the addition of U+2ADC FORKING.");
-            output.println("#");
-        }
-        output.println("# For more information, see");
-        output.println("# https://www.unicode.org/reports/tr15/#Primary Exclusion List Table");
-        output.println(HORIZONTAL_LINE);
-        output.println();
-        output.println("# (1) Script Specifics");
-        output.println("# This list of characters cannot be derived from the UnicodeData file.");
-        output.println(HORIZONTAL_LINE);
-        output.println();
-
-        new CompLister(output, 1).print();
-
-        output.println(HORIZONTAL_LINE);
-        output.println("# (2) Post Composition Version precomposed characters");
-        output.println("# These characters cannot be derived solely from the UnicodeData.txt file");
-        output.println("# in this version of Unicode.");
-        output.println(HORIZONTAL_LINE);
-        output.println();
-
-        new CompLister(output, 2).print();
-
-        output.println(HORIZONTAL_LINE);
-        output.println("# (3) Singleton Decompositions");
-        output.println("# These characters can be derived from the UnicodeData file");
-        output.println("# by including all characters whose canonical decomposition");
-        output.println("# consists of a single character.");
-        output.println("# These characters are simply quoted here for reference.");
-        output.println(HORIZONTAL_LINE);
-        output.println();
-
-        new CompLister(output, 3).print();
-
-        output.println(HORIZONTAL_LINE);
-        output.println("# (4) Non-Starter Decompositions");
-        output.println("# These characters can be derived from the UnicodeData file");
-        output.println("# by including all characters whose canonical decomposition consists");
-        output.println("# of a sequence of characters, the first of which has a non-zero");
-        output.println("# combining class.");
-        output.println("# These characters are simply quoted here for reference.");
-        output.println(HORIZONTAL_LINE);
-        output.println();
-        new CompLister(output, 4).print();
-
-        output.close();
-        Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
-    }
-
-    static class CompLister extends PropertyLister {
-        UCD oldUCD;
-        int type;
-
-        public CompLister(PrintWriter output, int type) {
-            this.output = output;
-            ucdData = Default.ucd();
-            oldUCD = UCD.make("3.0.0");
-            // showOnConsole = true;
-            alwaysBreaks = type <= 2; // CHANGE LATER
-            commentOut = type > 2;
-            this.type = type;
-        }
-
-        public String optionalComment(int cp) { return ""; }
-
-        public String valueName(int cp) {
-            return UTF32.length32(ucdData.getDecompositionMapping(cp)) + "";
-        }
-
-        public byte status(int cp) {
-            if (getType(cp) == type) return INCLUDE;
-            return EXCLUDE;
-        }
-
-        public int getType(int cp) {
-            if (!ucdData.isAssigned(cp)) return -1;
-            if (ucdData.getDecompositionType(cp) != CANONICAL) return -1;
-
-            if (oldUCD.getBinaryProperty(cp, CompositionExclusion)) return 1;
-            if (cp == 0xFB1D) return 1; // special
-
-            String decomp = ucdData.getDecompositionMapping(cp);
-            int len = UTF32.length32(decomp);
-            if (len == 1) return 3;
-            int first = UTF32.char32At(decomp,0);
-            if (ucdData.getCombiningClass(first) != 0) return 4;
-
-            if (oldUCD.getDecompositionType(cp) == CANONICAL) return -1;
-            if (ucdData.getDecompositionType(cp) == CANONICAL) return 2;
-
-            return -1;
-        }
-    }
-
-    public static void generatePropertyAliases() throws IOException {
-
-        String prop = "";
-        String propAbb = "";
-        String value = "";
-        String valueAbb = "";
-
-        Map duplicates = new TreeMap();
-        Set sorted = new TreeSet(java.text.Collator.getInstance());
-        Set accumulation = new TreeSet(java.text.Collator.getInstance());
-
-        for (int k = 0; k < UCD_Names.NON_ENUMERATED_NAMES.length; ++k) {
-            propAbb = Utility.getUnskeleton(UCD_Names.NON_ENUMERATED_NAMES[k][0], false);
-            prop = Utility.getUnskeleton(UCD_Names.NON_ENUMERATED_NAMES[k][1], true);
-
-            byte type = STRING_PROP;
-            if (propAbb.equals("nv")) {
-                type = NUMERIC_PROP;
-            } else if (propAbb.equals("age")) {
-                type = CATALOG_PROP;
-            } else if (propAbb.equals("blk")) {
-                type = CATALOG_PROP;
-            } else if (propAbb.equals("na")) {
-                type = MISC_PROP;
-            } else if (propAbb.equals("na1")) {
-                type = MISC_PROP;
-            } else if (propAbb.equals("isc")) {
-                type = MISC_PROP;
-            }
-            addLine(sorted, UCD_Names.PROP_TYPE_NAMES[type][1], propAbb, prop, null);
-            checkDuplicate(duplicates, accumulation, propAbb, prop);
-            if (!prop.equals(propAbb)) checkDuplicate(duplicates, accumulation, prop, prop);
-        }
-        addLine(sorted, UCD_Names.PROP_TYPE_NAMES[MISC_PROP][1], "URS", "Unicode_Radical_Stroke", null);
-        // TODO: merge above
-
-        for (int k = 0; k < UCD_Names.SUPER_CATEGORIES.length; ++k) {
-            valueAbb = Utility.getUnskeleton(UCD_Names.SUPER_CATEGORIES[k][0], false);
-            value = Utility.getUnskeleton(UCD_Names.SUPER_CATEGORIES[k][1], true);
-            String extra = Utility.getUnskeleton(UCD_Names.SUPER_CATEGORIES[k][1], true);
-            addLine(sorted, "gc", valueAbb, value, extra, "# " + UCD_Names.SUPER_CATEGORIES[k][2]);
-            checkDuplicate(duplicates, accumulation, value, "General_Category=" + value);
-            if (!value.equals(valueAbb)) checkDuplicate(duplicates, accumulation, valueAbb, "General_Category=" + value);
-            if (extra != null) checkDuplicate(duplicates, accumulation, extra, "General_Category=" + value);
-        }
-
-
-        addLine(sorted, "xx; T         ; True");
-        checkDuplicate(duplicates, accumulation, "T", "xx=True");
-        addLine(sorted, "xx; F         ; False");
-        checkDuplicate(duplicates, accumulation, "F", "xx=False");
-
-        addLine(sorted, "qc", UCD_Names.YN_TABLE[1], UCD_Names.YN_TABLE_LONG[1], null);
-        checkDuplicate(duplicates, accumulation, UCD_Names.YN_TABLE[1], "qc=" + UCD_Names.YN_TABLE_LONG[1]);
-        addLine(sorted, "qc", UCD_Names.YN_TABLE[0], UCD_Names.YN_TABLE_LONG[0], null);
-        checkDuplicate(duplicates, accumulation, UCD_Names.YN_TABLE[0], "qc=" + UCD_Names.YN_TABLE_LONG[0]);
-        addLine(sorted, "qc", "M", "Maybe", null);
-        checkDuplicate(duplicates, accumulation, "M", "qc=Maybe");
-
-        addLine(sorted, "blk", "n/a", Utility.getUnskeleton("no block", true), null);
-
-        for (int i = 0; i < LIMIT_ENUM; ++i) {
-            int type = i & 0xFF00;
-            if (type == AGE) continue;
-            if (i == (BINARY_PROPERTIES | CaseFoldTurkishI)) continue;
-            if (i == (BINARY_PROPERTIES | Non_break)) continue;
-            if (i == (BINARY_PROPERTIES | Case_Sensitive)) continue;
-
-            if (type == NUMERIC_TYPE) {
-                //System.out.println("debug");
-            }
-
-            UCDProperty up = UnifiedBinaryProperty.make(i, Default.ucd());
-            if (up == null) continue;
-            if (!up.isStandard()) continue;
-
-            // System.out.println("At" + Utility.hex(i));
-
-            // Save the Type Name, under BB for binary
-
-            if (type == i || type == BINARY_PROPERTIES || type == DERIVED) {
-                if (propAbb.equals("") || propAbb.equals(UCD_Names.YN_TABLE[1])) {
-                    System.out.println("WHOOPS: " + Utility.hex(i));
-                }
-                propAbb = Utility.getUnskeleton(up.getPropertyName(SHORT), false);
-                prop = Utility.getUnskeleton(up.getPropertyName(LONG), true);
-                addLine(sorted,
-                    type == SCRIPT
-                    ? UCD_Names.PROP_TYPE_NAMES[CATALOG_PROP][1]
-                    : type != DERIVED && type != BINARY_PROPERTIES
-                    ? UCD_Names.PROP_TYPE_NAMES[ENUMERATED_PROP][1]
-                    : UCD_Names.PROP_TYPE_NAMES[up.getValueType()][1],
-                    propAbb, prop, null);
-                checkDuplicate(duplicates, accumulation, propAbb, prop);
-                if (!prop.equals(propAbb)) checkDuplicate(duplicates, accumulation, prop, prop);
-            }
-
-            if (up.getValueType() < BINARY_PROP) continue;
-            value = up.getValue(LONG);
-            if (value.length() == 0) value = "none";
-            else if (value.equals(UnicodeProperty.UNUSED)) continue;
-
-            if (type != DECOMPOSITION_TYPE) {
-                value = Utility.getUnskeleton(value, true);
-            }
-
-            //if (type == DERIVED) {
-                //System.out.println("Derived " + up.getProperty());
-            //}
-
-
-            if (type == SCRIPT) {
-                value = Default.ucd().getCase(value, FULL, TITLE);
-            }
-
-            valueAbb = up.getValue(SHORT);
-            valueAbb = Utility.getUnskeleton(valueAbb, false);
-            if (valueAbb.length() == 0) valueAbb = "n/a";
-            //else if (valueAbb.equals(value)) valueAbb = "n/a";
-
-
-            if (type == COMBINING_CLASS) {
-                if (value.charAt(0) <= '9') { continue; }
-            }
-
-
-            if (type == JOINING_GROUP) {
-                valueAbb = "n/a";
-            }
-
-
-            String elide = "";
-            if (type == CATEGORY || type == SCRIPT || type == BINARY_PROPERTIES) elide = "\\p{"
-                + valueAbb
-                + "}";
-            String abb = "";
-            if (type != BINARY_PROPERTIES) abb = "\\p{"
-                + UCD_Names.ABB_UNIFIED_PROPERTIES[i>>8]
-                + "="
-                + valueAbb
-                + "}";
-            String norm = "";
-            if (type != BINARY_PROPERTIES) norm = "\\p{"
-                + UCD_Names.SHORT_UNIFIED_PROPERTIES[i>>8]
-                + "="
-                + value
-                + "}";
-            System.out.println("<tr><td>" + elide + "</td><td>" + abb + "</td><td>" + norm + "</td></tr>");
-
-
-
-            if (type == BINARY_PROPERTIES || type == DERIVED) {
-                //if (value.equals(YN_TABLE_LONG[1])) continue;
-                addLine(sorted, PROP_TYPE_NAMES[BINARY][1], valueAbb, value);
-                checkDuplicate(duplicates, accumulation, value, value);
-                if (!value.equalsIgnoreCase(valueAbb)) checkDuplicate(duplicates, accumulation, valueAbb, value);
-                continue;
-            }
-
-
-            if (type == COMBINING_CLASS) {
-                String num = up.getValue(NUMBER);
-                num = "; " + Utility.repeat(" ", 3-num.length()) + num;
-                addLine(sorted, propAbb + num, valueAbb, value, null);
-            } else if (!valueAbb.equals(UCD_Names.YN_TABLE[1])) {
-                addLine(sorted, propAbb, valueAbb, value, null);
-            }
-            checkDuplicate(duplicates, accumulation, value, prop + "=" + value);
-            if (!value.equalsIgnoreCase(valueAbb) && !valueAbb.equals("n/a")) {
-                checkDuplicate(duplicates, accumulation, valueAbb, prop + "=" + value);
-            }
-        }
-
-        Iterator blockIterator = Default.ucd().getBlockNames().iterator();
-        while (blockIterator.hasNext()) {
-            addLine(sorted, "blk", "n/a", (String)blockIterator.next(), null);
-        }
-
-        UCD.BlockData blockData = new UCD.BlockData();
-
-        int blockId = 0;
-        while (Default.ucd().getBlockData(blockId++, blockData)) {
-            addLine(sorted, "blk", "n/a", blockData.name);
-        }
-
-
-        String filename = "PropertyAliases";
-        String newFile = "DerivedData/" + filename + UnicodeDataFile.getFileSuffix(true);
-        PrintWriter log = Utility.openPrintWriter(newFile, Utility.LATIN1_UNIX);
-        String[] batName = {""};
-        String mostRecent = org.unicode.cldr.util.Utility.generateBat("DerivedData/", filename, UnicodeDataFile.getFileSuffix(true), batName);
-
-        log.println("# " + filename + UnicodeDataFile.getFileSuffix(false));
-        log.println(UnicodeDataFile.generateDateLine());
-        log.println("#");
-        Utility.appendFile("PropertyAliasesHeader.txt", Utility.LATIN1, log);
-        log.println(HORIZONTAL_LINE);
-        log.println();
-        int count = Utility.print(log, sorted, "\n", new MyBreaker(true));
-        log.println();
-        log.println();
-        log.println(HORIZONTAL_LINE);
-        log.println("# Total: \t" + count);
-        log.println();
-        log.close();
-        Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
-
-        filename = "PropertyValueAliases";
-        newFile = "DerivedData/" + filename + UnicodeDataFile.getFileSuffix(true);
-        log = Utility.openPrintWriter(newFile, Utility.LATIN1_UNIX);
-        mostRecent = org.unicode.cldr.util.Utility.generateBat("DerivedData/", filename, UnicodeDataFile.getFileSuffix(true), batName);
-
-        log.println("# " + filename + UnicodeDataFile.getFileSuffix(false));
-        log.println(UnicodeDataFile.generateDateLine());
-        log.println("#");
-        Utility.appendFile("PropertyValueAliasesHeader.txt", Utility.LATIN1, log);
-        log.println(HORIZONTAL_LINE);
-        log.println();
-        Utility.print(log, sorted, "\n", new MyBreaker(false));
-        log.println();
-        log.close();
-        Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
-
-        filename = "PropertyAliasSummary";
-        newFile = "OtherData/" + filename + UnicodeDataFile.getFileSuffix(true);
-        log = Utility.openPrintWriter(newFile, Utility.LATIN1_UNIX);
-        mostRecent = org.unicode.cldr.util.Utility.generateBat("OtherData/", filename, UnicodeDataFile.getFileSuffix(true), batName);
-
-        log.println();
-        log.println(HORIZONTAL_LINE);
-        log.println();
-        log.println("# Non-Unique names: the same name (under either an exact or loose match)");
-        log.println("# occurs as a property name or property value name");
-        log.println("# Note: no two property names can be the same,");
-        log.println("# nor can two property value names for the same property be the same.");
-        log.println();
-        Utility.print(log, accumulation, "\n", new MyBreaker(false));
-        log.println();
-        log.close();
-        Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
-    }
-
-    static void addLine(Set sorted, String f1, String f2, String f3, String f4) {
-        addLine(sorted, f1, f2, f3, f4, null);
-    }
-
-    static void addLine(Set sorted, String f1, String f2, String f3, String f4, String comment) {
-        //System.out.println("Adding: " + line);
-        f1 += Utility.repeat(" ", 3 - f1.length());
-        f1 += "; " + f2;
-        f1 += Utility.repeat(" ", 15 - f1.length());
-        f1 += "; " + f3;
-        if (f4 != null) {
-            f1 += Utility.repeat(" ", 30 - f1.length());
-            f1 += f4;
-        }
-        if (comment != null) {
-            f1 += Utility.repeat(" ", 50 - f1.length());
-            f1 += comment;
-        }
-        sorted.add(f1);
-    }
-
-    static class MyBreaker implements Utility.Breaker {
-        boolean status;
-        int count;
-
-        public MyBreaker(boolean status) {
-            this.status = status;
-        }
-
-        public byte getType (String c) {
-            for (byte i = 0; i <= BINARY_PROP; ++i) {
-                if (c.startsWith(UCD_Names.PROP_TYPE_NAMES[i][1])) return i;
-            }
-            return UNKNOWN_PROP;
-        }
-
-        public boolean filter(Object current) {
-            String c = current.toString();
-            byte type = getType(c);
-            if (type != UNKNOWN_PROP) return status;
-            return !status;
-        }
-
-        public String get(Object current, Object old) {
-            if (old == null) {
-                old = "  ";
-            }
-            String c = current.toString();
-            String o = old.toString();
-            String sep = "";
-            if (!c.substring(0,2).equals(o.substring(0,2))) {
-                sep = "\n";
-                if (status) {
-                    byte type = getType(c);
-                    sep = sep + HORIZONTAL_LINE + sep + "# " + UCD_Names.PROP_TYPE_NAMES[type][0] + " Properties" + sep + HORIZONTAL_LINE + sep;
-                }
-            }
-            if (status) {
-                int pos = c.indexOf(';');
-                c = c.substring(pos+1).trim();
-            }
-            return sep + c;
-        }
-    }
-
-    static void checkDuplicate(Map m, Set accumulation, String toCheck, String originalComment) {
-        toCheck = Utility.getSkeleton(toCheck);
-        String comment = "{" + originalComment + "}";
-
-        Set result = (Set) m.get(toCheck);
-        if (result != null) {
-            // Warn on serious problem: two property-names collide
-            // or two property names & values collide.
-            // examples:
-            // if (1) "c" stood for both "General_Category" and "Combining_Class"
-            // or if (2) "X=cc" stood for "X=control" and "X=compatibility"
-            // 1: comment doesn't contain "=", and something in the results doesn't contain "="
-            // 2: comment does contain "X=", and something else in results contains "X="
-
-            int equalPos = comment.indexOf('=');
-            if (equalPos < 0) { // #1
-                String conflict = Utility.findSubstring("=", result, false);
-                if (conflict != null) {
-                    System.out.println("Property Name Conflict " + toCheck);
-                    System.out.println("  With " + comment);
-                    System.out.println("  And  " + conflict);
-                }
-            } else {    // #2
-                String trial = comment.substring(0,equalPos+1);
-                String conflict = Utility.findSubstring(trial, result, true);
-                if (conflict != null) {
-                    System.out.println("Property Value Name Conflict " + toCheck);
-                    System.out.println("  With " + comment);
-                    System.out.println("  And  " + conflict);
-                }
-            }
-
-            // accumulate differences
-
-            String acc = (String)accumulation.get(toCheck);
-            if (acc == null) {
-                acc = "# \"" + toCheck + "\":\t" + originalComment;
-            }
-            acc += ";\t" + result;
-
-            result.add(comment);
-            accumulation.add("# " + result.toString() + ":\t" + toCheck);
-        } else {
-            result = new TreeSet();
-            result.add(comment);
-            m.put(toCheck, result);
-        }
-    }
-
-    public static void generateVerticalSlice(int startEnum, int endEnum,
-            int headerChoice, String directory, String file) throws IOException {
-
-
-        String newFile = directory + file + UnicodeDataFile.getFileSuffix(true);
-        PrintWriter output = Utility.openPrintWriter(newFile, Utility.LATIN1_UNIX);
-        String[] batName = {""};
-        String mostRecent = org.unicode.cldr.util.Utility.generateBat(directory, file, UnicodeDataFile.getFileSuffix(true), batName);
-
-        doHeader(file + UnicodeDataFile.getFileSuffix(false), output, headerChoice);
-        int last = -1;
-        for (int i = startEnum; i < endEnum; ++i) {
-            UCDProperty up = UnifiedBinaryProperty.make(i, Default.ucd());
-            if (up == null) continue;
-            if (up.skipInDerivedListing()) continue;
-
-
-            if (i == DECOMPOSITION_TYPE || i == NUMERIC_TYPE
-                || i == (BINARY_PROPERTIES | Non_break)
-                || i == (BINARY_PROPERTIES | CaseFoldTurkishI)
-                || i == (HANGUL_SYLLABLE_TYPE | NA)
-                || i == (JOINING_TYPE | JT_U)
-                || i == (JOINING_GROUP | NO_SHAPING)
-                ) continue; // skip zero case
-
-            if (skipSpecial == SKIP_SPECIAL
-                    && i >= (BINARY_PROPERTIES | CompositionExclusion)
-                    && i < (AGE + NEXT_ENUM)) continue;
-
-            if ((last & 0xFF00) != (i & 0xFF00) && (i <= BINARY_PROPERTIES || i >= SCRIPT)) {
-                output.println();
-                output.println(HORIZONTAL_LINE);
-                output.println("# " + up.getHeader());
-                output.println(HORIZONTAL_LINE);
-                output.println();
-                System.out.println();
-                System.out.println(up.getHeader());
-                last = i;
-            } else {
-                output.println(HORIZONTAL_LINE);
-                output.println();
-            }
-            System.out.print(".");
-            if (DEBUG) System.out.println(i);
-            new MyPropertyLister(Default.ucd(), i, output).print();
-            output.flush();
-        }
-        if (endEnum == LIMIT_ENUM) {
-            output.println();
-                output.println(HORIZONTAL_LINE);
-            output.println("# Numeric Values (from UnicodeData.txt, field 6/7/8)");
-                output.println(HORIZONTAL_LINE);
-            output.println();
-            System.out.println();
-            System.out.println("@NUMERIC VALUES");
-
-            Set numericValueSet = new TreeSet();
-            for (int i = 0; i < 0x10FFFF; ++i) {
-                double nv = Default.ucd().getNumericValue(i);
-                if (Double.isNaN(nv)) continue;
-                numericValueSet.add(new Double(nv));
-            }
-            Iterator it = numericValueSet.iterator();
-            while(it.hasNext()) {
-                new MyFloatLister(Default.ucd(), ((Double)it.next()).doubleValue(), output).print();
-                output.println();
-                System.out.print(".");
-            }
-            output.flush();
-        }
-        output.close();
-        //System.out.println("HERE");
-        Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
-        System.out.println();
-    }
-
-     */
     public static void writeNormalizerTestSuite(String directory, String fileName)
             throws IOException {
+        final var nfd = Default.nfd();
+        final var nfc = Default.nfc();
+        final var nfkd = Default.nfkd();
 
         final UnicodeDataFile fc =
                 UnicodeDataFile.openAndWriteHeader(directory, fileName)
                         .setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter log = fc.out;
 
-        // final String suffix = FileInfix.getDefault().getFileSuffix(".txt");
-        // final String newFile = directory + fileName + suffix;
-        // PrintWriter log = Utility.openPrintWriter(newFile, Utility.UTF8_UNIX);
-        // String[] batName = {""};
-        // String mostRecent = org.unicode.cldr.util.Utility.generateBat(directory, fileName,
-        // UnicodeDataFile.getFileSuffix(true), batName);
-
         final String[] example = new String[256];
-
-        // log.println("# " + fileName + UnicodeDataFile.getFileSuffix(false));
-        // log.println(UnicodeDataFile.generateDateLine());
-        //        log.println("#");
-        //        log.println("# Normalization Test Suite");
-        //        log.println("# Format:");
-        //        log.println("#");
-        //        log.println("#   Columns (c1, c2,...) are separated by semicolons");
-        //        log.println("#   Comments are indicated with hash marks");
-        //        log.println("#");
-        //        log.println("# CONFORMANCE:");
-        //        log.println("# 1. The following invariants must be true for all conformant
-        // implementations");
-        //        log.println("#");
-        //        log.println("#    NFC");
-        //        log.println("#      c2 ==  NFC(c1) ==  NFC(c2) ==  NFC(c3)");
-        //        log.println("#      c4 ==  NFC(c4) ==  NFC(c5)");
-        //        log.println("#");
-        //        log.println("#    NFD");
-        //        log.println("#      c3 ==  NFD(c1) ==  NFD(c2) ==  NFD(c3)");
-        //        log.println("#      c5 ==  NFD(c4) ==  NFD(c5)");
-        //        log.println("#");
-        //        log.println("#    NFKC");
-        //        log.println("#      c4 == NFKC(c1) == NFKC(c2) == NFKC(c3) == NFKC(c4) ==
-        // NFKC(c5)");
-        //        log.println("#");
-        //        log.println("#    NFKD");
-        //        log.println("#      c5 == NFKD(c1) == NFKD(c2) == NFKD(c3) == NFKD(c4) ==
-        // NFKD(c5)");
-        //        log.println("#");
-        //        log.println("# 2. For every code point X assigned in this version of Unicode that
-        // is not specifically");
-        //        log.println("#    listed in Part 1, the following invariants must be true for all
-        // conformant");
-        //        log.println("#    implementations:");
-        //        log.println("#");
-        //        log.println("#      X == NFC(X) == NFD(X) == NFKC(X) == NFKD(X)");
 
         System.out.println("Writing Part 1");
 
-        //        log.println("#");
-        //        log.println("@Part0 # Specific cases");
-        //        log.println("#");
-
         for (final String testSuiteCase : testSuiteCases) {
             writeLine(testSuiteCase, log, false);
+        }
+        // At least one implementation (ICU4X) has an edge case when a character
+        // whose decomposition contains multiple starters and ends with a
+        // non-starter is followed by a non-starter of lower CCC.
+        // See https://github.com/unicode-org/unicodetools/issues/656
+        // and https://github.com/unicode-org/icu4x/pull/4530.
+        // That implementation also has separate code paths for the BMP and
+        // higher planes.  No such decompositions currently exist outside the
+        // BMP, but by generating these test cases we ensure that this would be
+        // covered.
+        // We stick them in Part 0, which is in principle for handcrafted test
+        // cases, because there are not many of them, and the edge case feels a
+        // tad too weird to describe in the title of a new part.
+        final org.unicode.props.UnicodeProperty sc =
+                IndexUnicodeProperties.make().getProperty(UcdProperty.Script);
+        for (final String cp : UnicodeSet.ALL_CODE_POINTS) {
+            final String[] decompositions = new String[] {nfd.normalize(cp), nfkd.normalize(cp)};
+            for (final String decomposition : decompositions) {
+                final int lastCCC =
+                        Default.ucd()
+                                .getCombiningClass(
+                                        decomposition.codePointBefore(decomposition.length()));
+                final long nonStarterCount =
+                        decomposition
+                                .codePoints()
+                                .filter(c -> (Default.ucd().getCombiningClass(c) == 0))
+                                .count();
+                final String script = sc.getValue(cp.codePointAt(0));
+                if (lastCCC > 1 && nonStarterCount > 1) {
+                    // Try to pick a trailing nonstarter that might have a
+                    // chance of combining with the character if possible,
+                    // both for æsthetic reasons and to reproduce the example
+                    // ICU4X came across.  If all else fails, use a character
+                    // with CCC=1, as low as it gets.
+                    if (script.equals("Arabic") && lastCCC > 220) {
+                        // ARABIC SUBSCRIPT ALEF.
+                        writeLine(cp + "\u0656", log, false);
+                    } else if (lastCCC > 220) {
+                        // COMBINING DOT BELOW.
+                        writeLine(cp + "\u0323", log, false);
+                    } else {
+                        // COMBINING TILDE OVERLAY.
+                        writeLine(cp + "\u0334", log, false);
+                    }
+                    break;
+                }
+            }
         }
 
         System.out.println("Writing Part 2");
@@ -913,7 +207,6 @@ public class GenerateData implements UCD_Types {
             if (Default.ucd().getDecompositionType(ch) != CANONICAL) {
                 continue;
             }
-            // if (!Default.nfc().isNormalized(ch)) continue;
             final String s = Default.ucd().getDecompositionMapping(ch);
             if (UTF16.hasMoreCodePointsThan(s, 2)) {
                 continue;
@@ -938,32 +231,267 @@ public class GenerateData implements UCD_Types {
         }
 
         Utility.fixDot();
+
+        System.out.println("Writing Part 4");
+        log.println("#");
+        log.println("@Part4 # Canonical closures (excluding Hangul)");
+        log.println("#");
+        for (var entry : canonicalDecompositionsByCodepoint.entrySet()) {
+            final int cp = entry.getKey();
+            final String decomposition = entry.getValue();
+            if (cp >= 0xAC00 && cp <= 0xD7A3) {
+                continue;
+            }
+            forAllStringsCanonicallyDecomposingTo(
+                    decomposition,
+                    s -> {
+                        // Skip NFD and single code points (NFC or full
+                        // composition exclusions), already covered in Part 1.
+                        if (!s.equals(decomposition) && s.codePointCount(0, s.length()) != 1) {
+                            writeLine(s, log, true);
+                        }
+                    });
+        }
+
+        System.out.println("Writing Part 5");
+        log.println("#");
+        log.println("@Part5 # Chained primary composites");
+        log.println("#");
+
+        // Not actually Builders of ImmutableMaps because those do not have
+        // computeIfAbsent and because we want ImmutableSets too.
+        final Map<Integer, Set<Integer>> primaryCompositesByFirstNFDCodePointBuilder =
+                new TreeMap<>();
+        final Map<Integer, Set<Integer>> primaryCompositesByLastNFDCodePointBuilder =
+                new TreeMap<>();
+        for (var entry : canonicalDecompositionsByCodepoint.entrySet()) {
+            final int cp = entry.getKey();
+            final String decomposition = entry.getValue();
+            if (nfc.normalize(cp).equals(Character.toString(cp))) {
+                int first = decomposition.codePointAt(0);
+                int last = decomposition.codePointBefore(decomposition.length());
+                primaryCompositesByFirstNFDCodePointBuilder
+                        .computeIfAbsent(first, key -> new TreeSet<>())
+                        .add(cp);
+                primaryCompositesByLastNFDCodePointBuilder
+                        .computeIfAbsent(last, key -> new TreeSet<>())
+                        .add(cp);
+            }
+        }
+        final ImmutableMap<Integer, ImmutableSet<Integer>> primaryCompositesByFirstNFDCodePoint =
+                primaryCompositesByFirstNFDCodePointBuilder.entrySet().stream()
+                        .collect(
+                                ImmutableMap.toImmutableMap(
+                                        entry -> entry.getKey(),
+                                        entry -> ImmutableSet.copyOf(entry.getValue())));
+        final ImmutableMap<Integer, ImmutableSet<Integer>> primaryCompositesByLastNFDCodePoint =
+                primaryCompositesByLastNFDCodePointBuilder.entrySet().stream()
+                        .collect(
+                                ImmutableMap.toImmutableMap(
+                                        entry -> entry.getKey(),
+                                        entry -> ImmutableSet.copyOf(entry.getValue())));
+
+        Collection<String> skippedNFCs = new ArrayList<>();
+        Set<String> part5NFCs = new TreeSet<>();
+
+        // The set of all sequences of two code points appearing within a
+        // canonical decomposition.
+        Set<String> links = new TreeSet<>();
+        for (String decomposition : canonicalDecompositionsOfSingleCodepoints) {
+            int first = decomposition.codePointAt(0);
+            int second;
+            for (int i = Character.charCount(first);
+                    i < decomposition.length();
+                    first = second, i += UTF16.getCharCount(first)) {
+                second = decomposition.codePointAt(i);
+                links.add(Character.toString(first) + Character.toString(second));
+            }
+        }
+
+        for (String link : links) {
+            int first = link.codePointAt(0);
+            int second = link.codePointBefore(link.length());
+            // Look for primary composites firstCandidate and secondCandidate
+            // such that the concatenation of their canonical decompositions has
+            // the link at the boundary, e.g., for a link YZ, look for cases
+            // like firstDecomposition = XY, secondDecomposition = ZT.
+            // In addition to primary composites, allow the candidates to
+            // be a single canonically non-decomposable starters, thus
+            // firstDecomposition = XY, secondDecomposition = Z with ccc(Z)=0 or
+            // firstDecomposition = Y, secondDecomposition = ZT with ccc(Y)=0.
+            // We do not allow non-starters, since an initial nonstarter cannot
+            // do anything, and a final non-starter only exercises the CRA,
+            // which is not what we are looking for in Part 5.
+
+            // Note that if both the first and second candidates are
+            // canonically non-decomposable starters, any linking code point
+            // will cover the whole string, meaning this is already covered
+            // in Parts 1 and 4, and we will find that out, so we do not emit
+            // any such test cases.
+            Set<Integer> firstCandidates = new TreeSet<>();
+            Set<Integer> secondCandidates = new TreeSet<>();
+            firstCandidates.addAll(
+                    primaryCompositesByLastNFDCodePoint.getOrDefault(first, ImmutableSet.of()));
+            secondCandidates.addAll(
+                    primaryCompositesByFirstNFDCodePoint.getOrDefault(second, ImmutableSet.of()));
+            if (Default.ucd().getCombiningClass(first) == 0) {
+                firstCandidates.add(first);
+            }
+            if (Default.ucd().getCombiningClass(second) == 0) {
+                secondCandidates.add(second);
+            }
+            for (int firstCandidate : firstCandidates) {
+                for (int secondCandidate : secondCandidates) {
+                    String firstDecomposition = nfd.normalize(firstCandidate);
+                    String secondDecomposition = nfd.normalize(secondCandidate);
+                    String decomposition = firstDecomposition + secondDecomposition;
+                    if (canonicalDecompositionsOfSingleCodepoints.contains(decomposition)) {
+                        // Already covered in parts 1 (single code points) and 4
+                        // (canonical closures of single code points).
+                        continue;
+                    }
+                    System.out.println(
+                            Default.ucd().getName(firstCandidate)
+                                    + "+"
+                                    + Default.ucd().getName(secondCandidate));
+                    // Within the canonical closure of the concatenation of
+                    // firstCandidate and secondCandidate, look for strings that
+                    // cannot be split between those two characters.
+                    // Those are our test cases for Part 5.
+                    String normalizedFormC = nfc.normalize(decomposition);
+                    forAllStringsCanonicallyDecomposingTo(
+                            decomposition,
+                            s -> {
+                                for (int j = 0; j < s.length(); ++j) {
+                                    if (nfd.normalize(s.substring(0, j)).equals(firstDecomposition)
+                                            && nfd.normalize(s.substring(j))
+                                                    .equals(secondDecomposition)) {
+                                        // The string splits into parts
+                                        // equivalent to firstCandidate and
+                                        // secondCandidate, i.e., it has no
+                                        // link.
+                                        return;
+                                    }
+                                }
+                                if (s.equals(normalizedFormC)) {
+                                    // If the NFC of
+                                    // firstCandidate + secondCandidate has a
+                                    // link, thus
+                                    // NFC(firstCandidate + secondCandidate)
+                                    //                            = f′ + l + s′,
+                                    // with f′ prefix of firstCandidate and s′
+                                    // suffix of secondCandidate, f′ must be
+                                    // empty (otherwise the NFC would start with
+                                    // the longer first), so we should see this
+                                    // canonical equivalence class again for the
+                                    // link between l and s′.
+                                    // Since we give the NFC of all test cases
+                                    // and instruct implementers to run all
+                                    // normalizations on that column, we can
+                                    // skip this one.
+                                    // But in the spirit of “Beware of bugs in
+                                    // the above code; I have only proved it
+                                    // correct, not tried it.” (Knuth 1977), let
+                                    // us check those statements.
+                                    String linkDecomposition =
+                                            nfd.normalize(normalizedFormC.codePointAt(0));
+                                    if (!linkDecomposition.startsWith(firstDecomposition)) {
+                                        throw new AssertionError(
+                                                "The first code point of NFC("
+                                                        + Default.ucd().getName(firstDecomposition)
+                                                        + " + "
+                                                        + Default.ucd().getName(secondDecomposition)
+                                                        + ") does not cover the first part");
+                                    }
+                                    skippedNFCs.add(normalizedFormC);
+                                    return;
+                                }
+                                part5NFCs.add(normalizedFormC);
+                                writeLine(s, log, true);
+                                System.out.println(Default.ucd().getName(s));
+                            });
+                }
+            }
+        }
+
+        for (String normalizedFormC : skippedNFCs) {
+            if (!part5NFCs.contains(normalizedFormC)) {
+                throw new AssertionError(
+                        "Candidate Part 5 test case "
+                                + Default.ucd().getName(normalizedFormC)
+                                + " was suppressed but did not appear as the NFC of another test"
+                                + " case in Part 5.");
+            }
+        }
+
+        Utility.fixDot();
+
         log.println("#");
         log.println("# EOF");
         fc.close();
-        // Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
     }
-    /*
 
-    static void handleIdentical() throws IOException {
-        DirectoryIterator target = new DirectoryIterator(GEN_DIR + File.separator + "DerivedData");
-        DirectoryIterator.RootFileFilter filter = new DirectoryIterator.RootFileFilter("");
-        DirectoryIterator recent = new DirectoryIterator(UCD_DIR, filter);
-        while (true) {
-            File targetFile = target.next();
-            if (targetFile == null) break;
-            recent.reset();
-            filter.setRoot(DirectoryIterator.getRoot(targetFile));
-            File lastFile = recent.next();
-            if (lastFile == null) break;
-            System.out.println("Target: " + targetFile);
-            System.out.println("Last: " + lastFile);
-            if (!DirectoryIterator.isAlmostIdentical(targetFile, lastFile, true)) continue;
-            System.out.println("Almost Identical");
+    private static final ImmutableMap<Integer, String> canonicalDecompositionsByCodepoint;
+    private static final ImmutableSet<String> canonicalDecompositionsOfSingleCodepoints;
+
+    static {
+        ImmutableMap.Builder<Integer, String> builder = ImmutableMap.builder();
+        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+            String decomposition = Default.nfd().normalize(cp);
+            if (!decomposition.equals(Character.toString(cp))) {
+                builder.put(cp, decomposition);
+            }
+        }
+        canonicalDecompositionsByCodepoint = builder.build();
+        canonicalDecompositionsOfSingleCodepoints =
+                ImmutableSet.copyOf(canonicalDecompositionsByCodepoint.values());
+    }
+
+    private static void forAllStringsCanonicallyDecomposingTo(
+            String decomposition, Consumer<String> consumer) {
+        final Set<Integer> candidateCharacters = new TreeSet<>();
+        decomposition.codePoints().forEach(cp -> candidateCharacters.add(cp));
+        for (var entry : canonicalDecompositionsByCodepoint.entrySet()) {
+            int cp = entry.getKey();
+            String nfd = entry.getValue();
+            if (nfd.codePoints()
+                    .allMatch(
+                            candidateDecompositionCodePoint ->
+                                    decomposition.contains(
+                                            Character.toString(candidateDecompositionCodePoint)))) {
+                candidateCharacters.add(cp);
+            }
+        }
+        for (int length = 1;
+                length < decomposition.codePointCount(0, decomposition.length());
+                ++length) {
+            forAllStrings(
+                    candidateCharacters,
+                    "",
+                    length,
+                    s -> {
+                        if (Default.nfd().normalize(s).equals(decomposition)) {
+                            consumer.accept(s);
+                        }
+                    });
         }
     }
 
-     */
+    static void forAllStrings(
+            Collection<Integer> repertoire,
+            String prefix,
+            int suffixLength,
+            Consumer<String> consumer) {
+        if (suffixLength == 0) {
+            consumer.accept(prefix);
+        } else {
+            for (int next : repertoire) {
+                forAllStrings(
+                        repertoire, prefix + Character.toString(next), suffixLength - 1, consumer);
+            }
+        }
+    }
+
     static void writeLine(String cc, PrintWriter log, boolean check) {
         final String c = Default.nfc().normalize(cc);
         String d = Default.nfd().normalize(cc);
@@ -977,9 +505,9 @@ public class GenerateData implements UCD_Types {
         final String dc = Default.nfd().normalize(c);
         final String dkc = Default.nfd().normalize(kc);
         if (!dc.equals(d) || !dkc.equals(kd)) {
-            System.out.println("Danger Will Robinson!");
             Normalizer.SHOW_PROGRESS = true;
             d = Default.nfd().normalize(cc);
+            throw new AssertionError("Danger Will Robinson! " + Default.ucd().getName(cc));
         }
 
         // printout
@@ -1052,349 +580,4 @@ public class GenerateData implements UCD_Types {
         "\u1100\uAC00\u11A8",
         "\u1100\uAC00\u11A8\u11A8",
     };
-    /*
-    static final void backwardsCompat(String directory, String filename, int[] list) throws IOException {
-
-
-        String newFile = directory + filename + UnicodeDataFile.getFileSuffix(true);
-        PrintWriter log = Utility.openPrintWriter(newFile, Utility.LATIN1_UNIX);
-        String[] batName = {""};
-        String mostRecent = org.unicode.cldr.util.Utility.generateBat(directory, filename, UnicodeDataFile.getFileSuffix(true), batName);
-        DiffPropertyLister dpl;
-        UnicodeSet cummulative = new UnicodeSet();
-
-        try {
-            for (int i = 0; i < list.length; ++i) {
-                int prop = list[i];
-                log.println();
-                log.println(HORIZONTAL_LINE);
-                log.println("###### " + DerivedProperty.make(prop, Default.ucd()).getName());
-                //log.println();
-                //log.println(HORIZONTAL_LINE);
-                //new DiffPropertyLister("3.2.0", "1.1.0", log, prop).print();
-                log.println();
-                log.println(HORIZONTAL_LINE);
-
-                log.println();
-                dpl = new DiffPropertyLister("3.2.0", "2.0.0", log, prop);
-                dpl.print();
-                cummulative.addAll(dpl.getSet());
-                log.println(HORIZONTAL_LINE);
-
-                log.println();
-                dpl = new DiffPropertyLister("3.2.0", "2.1.2", log, prop);
-                dpl.print();
-                cummulative.addAll(dpl.getSet());
-                log.println(HORIZONTAL_LINE);
-
-                log.println();
-                dpl = new DiffPropertyLister("3.2.0", "2.1.5", log, prop);
-                dpl.print();
-                cummulative.addAll(dpl.getSet());
-                log.println(HORIZONTAL_LINE);
-
-                log.println();
-                dpl = new DiffPropertyLister("3.2.0", "2.1.8", log, prop);
-                dpl.print();
-                cummulative.addAll(dpl.getSet());
-                log.println(HORIZONTAL_LINE);
-
-                log.println();
-                dpl = new DiffPropertyLister("3.2.0", "3.0.0", log, prop);
-                dpl.print();
-                cummulative.addAll(dpl.getSet());
-                log.println(HORIZONTAL_LINE);
-
-                log.println();
-                dpl = new DiffPropertyLister("3.2.0", "3.0.1", log, prop);
-                dpl.print();
-                cummulative.addAll(dpl.getSet());
-                log.println(HORIZONTAL_LINE);
-
-                log.println();
-                dpl = new DiffPropertyLister("3.2.0", "3.1.0", log, prop);
-                dpl.print();
-                cummulative.addAll(dpl.getSet());
-                log.println(HORIZONTAL_LINE);
-
-                log.println();
-                dpl = new DiffPropertyLister("3.2.0", "3.1.1", log, prop);
-                dpl.print();
-                cummulative.addAll(dpl.getSet());
-                log.println(HORIZONTAL_LINE);
-
-                log.println();
-                log.println("Cummulative differences");
-                UCDProperty up = DerivedProperty.make(prop, Default.ucd());
-                UnicodeSet newProp = up.getSet();
-                Utility.showSetNames(log, "", cummulative.removeAll(newProp), false, false, Default.ucd());
-            }
-        } finally {
-            if (log != null) {
-                log.close();
-                Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
-            }
-        }
-    }
-
-    static final void generateAge(String directory, String filename) throws IOException {
-
-        String newFile = directory + filename + UnicodeDataFile.getFileSuffix(true);
-        PrintWriter log = Utility.openPrintWriter(newFile, Utility.LATIN1_UNIX);
-        String[] batName = {""};
-        String mostRecent = org.unicode.cldr.util.Utility.generateBat(directory, filename, UnicodeDataFile.getFileSuffix(true), batName);
-        try {
-            log.println("# " + filename + UnicodeDataFile.getFileSuffix(false));
-            log.println(UnicodeDataFile.generateDateLine());
-            log.println("#");
-            log.println("# Unicode Character Database: Derived Property Data");
-            log.println("# This file shows when various code points were designated in Unicode");
-            log.println("# Notes:");
-            log.println("# - The term 'designated' means that a previously reserved code point was specified");
-            log.println("#   to be a noncharacter or surrogate, or assigned as a character,");
-            log.println("#   control or format code.");
-            log.println("# - Versions are only tracked from 1.1 onwards, since version 1.0");
-            log.println("#   predated changes required by the ISO 10646 merger.");
-            log.println("# - The Hangul Syllables that were removed from 2.0 are not included in the 1.1 listing.");
-            log.println("# - The supplementary private use code points and the non-character code points");
-            log.println("#   were designated in version 2.0, but not specifically listed in the UCD");
-            log.println("#   until versions 3.0 and 3.1 respectively.");
-            log.println("#");
-            log.println("# For details on the contents of each version, see");
-            log.println("#   http://www.unicode.org/versions/enumeratedversions.html.");
-
-            // http://www.unicode.org/versions/enumeratedversions.html
-
-            log.println(HORIZONTAL_LINE);
-            log.println();
-            new DiffPropertyLister(null, "1.1.0", log).print();
-            log.println(HORIZONTAL_LINE);
-            log.println();
-            new DiffPropertyLister("1.1.0", "2.0.0", log).print();
-            log.println(HORIZONTAL_LINE);
-            log.println();
-            new DiffPropertyLister("2.0.0", "2.1.2", log).print();
-            log.println(HORIZONTAL_LINE);
-            log.println();
-            new DiffPropertyLister("2.1.2", "3.0.0", log).print();
-            log.println(HORIZONTAL_LINE);
-            log.println();
-            new DiffPropertyLister("3.0.0", "3.1.0", log).print();
-            log.println(HORIZONTAL_LINE);
-            log.println();
-            new DiffPropertyLister("3.1.0", "3.2.0", log).print();
-            log.println(HORIZONTAL_LINE);
-            log.println();
-            new DiffPropertyLister("3.2.0", "4.0.0", log).print();
-
-            printDiff("110", "200");
-            UnicodeSet u11 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-1.1.txt", false);
-            UnicodeSet u20 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-2.0.txt", false);
-            UnicodeSet u21 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-2.1.txt", false);
-            UnicodeSet u30 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-3.0.txt", false);
-            UnicodeSet u31 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-3.1.txt", false);
-
-            log.println();
-            log.println("# Code points assigned in Unicode 1.1 (minus Hangul Syllables): "
-                + n.format(u11.count()));
-            log.println();
-            u11.print(log, false, false, "1.1");
-
-            UnicodeSet u20m = new UnicodeSet(u20).remove(u11);
-            log.println();
-            log.println("# Code points assigned in Unicode 2.0 (minus Unicode 1.1): "
-                + n.format(u20m.count()));
-            log.println();
-            u20m.print(log, false, false, "2.0");
-
-            UnicodeSet u21m = new UnicodeSet(u21).remove(u20);
-            log.println();
-            log.println("# Code points assigned in Unicode 2.1 (minus Unicode 2.0): "
-                + n.format(u21m.count()));
-            log.println();
-            u21m.print(log, false, false, "2.1");
-
-            UnicodeSet u30m = new UnicodeSet(u30).remove(u21);
-            log.println();
-            log.println("# Code points assigned in Unicode 3.0 (minus Unicode 2.1): "
-                + n.format(u30m.count()));
-            log.println();
-            u30m.print(log, false, false, "3.0");
-
-            UnicodeSet u31m = new UnicodeSet(u31).remove(u30);
-            log.println();
-            log.println("# Code points assigned in Unicode 3.1 (minus Unicode 3.0): "
-                + n.format(u31m.count()));
-            log.println();
-            u31m.print(log, false, false, "3.1");
-
-        } finally {
-            if (log != null) {
-                log.close();
-                Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
-            }
-        }
-
-    }
-
-    public static void listCombiningAccents() throws IOException {
-
-        PrintWriter log = Utility.openPrintWriter("ListAccents" + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_UNIX);
-        Set set = new TreeSet();
-        Set set2 = new TreeSet();
-
-        for (int i = 0; i < 0x10FFFF; ++i) {
-            Utility.dot(i);
-            if (!Default.ucd().isRepresented(i)) continue;
-
-            if (Default.nfd().isNormalized(i)) {
-                if (Default.ucd().getScript(i) == LATIN_SCRIPT) {
-                    int cp = i;
-                    String hex = "u" + Utility.hex(cp, 4);
-                    set.add("# yyy $x <> \\" + hex + " ; # " + Default.ucd().getName(cp));
-                }
-                continue;
-            }
-
-            String decomp = Default.nfd().normalize(i);
-            int j;
-            for (j = 0; j < decomp.length(); j += UTF16.getCharCount(i)) {
-                int cp = UTF16.charAt(decomp, j);
-                byte cat = Default.ucd().getCategory(cp);
-                if (cat != Mn) continue;
-                String hex = "u" + Utility.hex(cp, 4);
-                set.add("# xxx $x <> \\" + hex + " ; # " + Default.ucd().getName(cp));
-            }
-        }
-
-        Iterator it = set.iterator();
-        while (it.hasNext()) {
-            log.println(it.next());
-        }
-        log.close();
-    }
-
-    public static void listGreekVowels() throws IOException {
-
-        PrintWriter log = Utility.openPrintWriter("ListGreekVowels" + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_UNIX);
-        Set set = new TreeSet();
-        Set set2 = new TreeSet();
-
-        String vowels = "\u03B1\u03B5\u03B7\u03B9\u03BF\u03C5\u03C9\u0391\u0395\u0397\u0399\u039F\u03A5\u03A9";
-        String diphthongEnd = "\u03B9\u03C5\u0399\u03A5";
-        String diphthongStart = "\u03B1\u03B5\u03B7\u03BF\u03C5\u0391\u0395\u0397\u039F\u03A5";
-        String etas = "\u03B7\u0397";
-        String iotas = "\u03B9\u0399";
-
-        for (char i = 0; i < 0xFFFF; ++i) {
-            Utility.dot(i);
-            if (!Default.ucd().isRepresented(i)) continue;
-            if (Default.ucd().getScript(i) != GREEK_SCRIPT) continue;
-            String decomp = Default.nfd().normalize(i);
-
-            if (decomp.indexOf('\u0306') >= 0) continue; // skip breve
-            if (decomp.indexOf('\u0304') >= 0) continue; // skip macron
-
-            String comp = Default.nfc().normalize(decomp);
-            if (!comp.equals(String.valueOf(i))) continue; // skip compats
-
-            char first = decomp.charAt(0);
-
-            if (vowels.indexOf(first) < 0) continue;
-
-            String h = "";
-            if (decomp.indexOf('\u0314') >= 0) h = "\uFFFF";
-
-            if (diphthongEnd.indexOf(first) >= 0) {
-                for (int j = 0; j < diphthongStart.length(); ++j) {
-                    String v = diphthongStart.substring(j, j+1);
-                    char vc = v.charAt(0);
-                    if (Default.ucd().getCategory(vc) == Ll && Default.ucd().getCategory(first) == Lu) continue;
-                    if (etas.indexOf(vc) >= 0 && iotas.indexOf(first) >= 0) continue;
-                    set.add(new Pair(h + v + first, new Pair(v + decomp, v + i)));
-                }
-            }
-            set.add(new Pair(h+first, new Pair(decomp, String.valueOf(i))));
-        }
-
-        Iterator it = set.iterator();
-        Object last = "";
-        while (it.hasNext()) {
-            Pair p = (Pair) it.next();
-            if (!last.equals(p.first)) {
-                log.println();
-                last = p.first;
-            } else {
-                log.print(", ");
-            }
-            p = (Pair) p.second;
-            log.print(p.second);
-        }
-        log.close();
-    }
-
-    public static void listKatakana() throws IOException {
-
-
-        for (char i = 'a'; i <= 'z'; ++i) {
-            doKana(String.valueOf(i));
-            if (i == 'c') doKana("ch");
-            if (i == 's') doKana("sh");
-            if (i == 'd') {
-                doKana("dz");
-                doKana("dj");
-            }
-        }
-
-        System.out.println();
-    }
-
-    public static void doKana(String i) {
-
-        String vowels = "aeiou";
-        System.out.println();
-        System.out.print(i + " " + i + i);
-        System.out.println();
-        for (int j = 0; j < vowels.length(); ++j) {
-            char c = vowels.charAt(j);
-            System.out.print(" " + i + c);
-        }
-
-        System.out.println();
-        for (int j = 0; j < vowels.length(); ++j) {
-            char c = vowels.charAt(j);
-            System.out.print(" " + i + "y" + c);
-        }
-    }
-
-    public static void genTrailingZeros() {
-
-        UnicodeSet result = new UnicodeSet();
-        for (int i = 0; i < 0x10FFFF; ++i) {
-            if ((i & 0xFFF) == 0) System.out.println("# " + i);
-            if (!Default.ucd().isAssigned(i)) continue;
-            if (Default.nfd().isNormalized(i)) continue;
-            String decomp = Default.nfd().normalize(i);
-            int cp;
-            for (int j = 0; j < decomp.length(); j += UTF16.getCharCount(cp)) {
-                cp = UTF16.charAt(decomp,j);
-                if (j == 0) continue; // skip first
-                if (Default.ucd().getCombiningClass(cp) == 0) {
-                    result.add(cp);
-                }
-            }
-        }
-        int rangeCount = result.getRangeCount();
-        for (int k = 0; k < rangeCount; ++k) {
-            int start = result.getRangeStart(k);
-            int end = result.getRangeEnd(k);
-            System.out.println(
-                Utility.hex(start)
-                + (start != end ? ".." + Utility.hex(end) : "")
-                + "; "
-                + Default.ucd().getName(start)
-                + (start != end ? ".." + Default.ucd().getName(end) : ""));
-        }
-        System.out.println("TrailingZero count: " + result.size());
-    }*/
 }
