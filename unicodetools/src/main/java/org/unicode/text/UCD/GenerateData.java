@@ -13,6 +13,7 @@ package org.unicode.text.UCD;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.function.Consumer;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.UnicodeDataFile;
@@ -811,6 +814,54 @@ public class GenerateData implements UCD_Types {
         for (final String testSuiteCase : testSuiteCases) {
             writeLine(testSuiteCase, log, false);
         }
+        // At least one implementation (ICU4X) has an edge case when a character
+        // whose decomposition contains multiple starters and ends with a
+        // non-starter is followed by a non-starter of lower CCC.
+        // See https://github.com/unicode-org/unicodetools/issues/656
+        // and https://github.com/unicode-org/icu4x/pull/4530.
+        // That implementation also has separate code paths for the BMP and
+        // higher planes.  No such decompositions currently exist outside the
+        // BMP, but by generating these test cases we ensure that this would be
+        // covered.
+        // We stick them in Part 0, which is in principle for handcrafted test
+        // cases, because there are not many of them, and the edge case feels a
+        // tad too weird to describe in the title of a new part.
+        final org.unicode.props.UnicodeProperty sc =
+                IndexUnicodeProperties.make().getProperty(UcdProperty.Script);
+        for (final String cp : UnicodeSet.ALL_CODE_POINTS) {
+            final String[] decompositions =
+                    new String[] {Default.nfd().normalize(cp), Default.nfkd().normalize(cp)};
+            for (final String decomposition : decompositions) {
+                final int lastCCC =
+                        Default.ucd()
+                                .getCombiningClass(
+                                        decomposition.codePointBefore(decomposition.length()));
+                final long nonStarterCount =
+                        decomposition
+                                .codePoints()
+                                .filter(c -> (Default.ucd().getCombiningClass(c) == 0))
+                                .count();
+                final String script = sc.getValue(cp.codePointAt(0));
+                if (lastCCC > 1 && nonStarterCount > 1) {
+                    // Try to pick a trailing nonstarter that might have a
+                    // chance of combining with the character if possible,
+                    // both for æsthetic reasons and to reproduce the example
+                    // ICU4X came across.  If all else fails, use a character
+                    // with CCC=1, as low as it gets.
+                    if (script.equals("Arabic") && lastCCC > 220) {
+                        // ARABIC SUBSCRIPT ALEF.
+                        writeLine(cp + "\u0656", log, false);
+                    } else if (lastCCC > 220) {
+                        // COMBINING DOT BELOW.
+                        writeLine(cp + "\u0323", log, false);
+                    } else {
+                        // COMBINING TILDE OVERLAY.
+                        writeLine(cp + "\u0334", log, false);
+                    }
+                    break;
+                }
+            }
+        }
 
         System.out.println("Writing Part 2");
 
@@ -1318,13 +1369,6 @@ public class GenerateData implements UCD_Types {
         "\u0592\u05B7\u05BC\u05A5\u05B0\u05C0\u05C4\u05AD",
         "\u1100\uAC00\u11A8",
         "\u1100\uAC00\u11A8\u11A8",
-        // Some implementations have an edge case when a character whose
-        // decomposition contains multiple starters and ends with a non-starter
-        // is followed by a non-starter of lower CCC.
-        // See https://github.com/unicode-org/unicodetools/issues/656
-        // and https://github.com/unicode-org/icu4x/pull/4530.
-        "\u01C4\u0323",
-        "\u0DDD\u0334",
     };
     /*
     static final void backwardsCompat(String directory, String filename, int[] list) throws IOException {
