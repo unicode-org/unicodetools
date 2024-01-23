@@ -1,5 +1,5 @@
 # DerivedBidiClass-16.0.0.txt
-# Date: 2023-11-10, 22:25:22 GMT
+# Date: 2023-12-18, 15:54:31 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1131,6 +1131,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 1D183..1D184  ; L # So   [2] MUSICAL SYMBOL ARPEGGIATO UP..MUSICAL SYMBOL ARPEGGIATO DOWN
 1D18C..1D1A9  ; L # So  [30] MUSICAL SYMBOL RINFORZANDO..MUSICAL SYMBOL DEGREE SLASH
 1D1AE..1D1E8  ; L # So  [59] MUSICAL SYMBOL PEDAL MARK..MUSICAL SYMBOL KIEVAN FLAT SIGN
+1D1F7..1D1FE  ; L # So   [8] MUSICAL SYMBOL DIGIT TWO WITH SLASH..MUSICAL SYMBOL DIGIT SEVEN WITH LOW SLASH
 1D2C0..1D2D3  ; L # No  [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3  ; L # No  [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
 1D360..1D378  ; L # No  [25] COUNTING ROD UNIT DIGIT ONE..TALLY MARK FIVE
@@ -1218,7 +1219,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 819344 code points not listed here.
+# The above property value applies to 819336 code points not listed here.
 # Total code points: 1095518
 
 # ================================================
