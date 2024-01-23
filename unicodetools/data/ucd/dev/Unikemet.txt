@@ -1,6 +1,6 @@
 ; charset=UTF-8
 # Unikemet-16.0.0.txt
-# Date: 2024-01-19
+# Date: 2024-01-22
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -13700,7 +13700,7 @@ U+13748	kEH_HG	B85
 U+13749	kEH_Cat	C-01-002
 U+13749	kEH_Core	Y
 U+13749	kEH_Desc	God, seated, both knees up, with covered legs and arms, with a long curved beard and long hair/wig, with a crescent moon with the entire moon disk (N62) on its head, holding a sceptre with a straight shaft, topped with the head of the Seth animal vertically.
-U+13749	kEH_Func	Logogram (in combination with C268B)
+U+13749	kEH_Func	Logogram (in combination with \C268B)
 U+13749	kEH_FVal	rꜥ-nb
 U+13749	kEH_UniK	HJ C118A
 U+13749	kEH_JSesh	C118A
@@ -16610,7 +16610,7 @@ U+138DE	kEH_HG	C183A
 U+138DF	kEH_Cat	C-39-003
 U+138DF	kEH_Core	Y
 U+138DF	kEH_Desc	Goddess, seated, knees up, with covered legs and arms, wearing the double crown (S5) and a vulture headdress, holding a stem of papyrus with a bud (M131) or flower vertically. 
-U+138DF	kEH_Func	Logogram (together with C98 and C43A, representing the triad of Dendera)
+U+138DF	kEH_Func	Logogram (together with \C98 and \C43A, representing the triad of Dendera)
 U+138DF	kEH_FVal	ꞽwn.t 
 U+138DF	kEH_UniK	C183B
 U+138E0	kEH_Cat	C-39-004
