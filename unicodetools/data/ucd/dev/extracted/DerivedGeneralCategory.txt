@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2023-11-10, 22:25:30 GMT
+# Date: 2024-01-19, 14:37:23 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -210,7 +210,7 @@
 17EA..17EF    ; Cn #   [6] <reserved-17EA>..<reserved-17EF>
 17FA..17FF    ; Cn #   [6] <reserved-17FA>..<reserved-17FF>
 181A..181F    ; Cn #   [6] <reserved-181A>..<reserved-181F>
-1879..187F    ; Cn #   [7] <reserved-1879>..<reserved-187F>
+187A..187F    ; Cn #   [6] <reserved-187A>..<reserved-187F>
 18AB..18AF    ; Cn #   [5] <reserved-18AB>..<reserved-18AF>
 18F6..18FF    ; Cn #  [10] <reserved-18F6>..<reserved-18FF>
 191F          ; Cn #       <reserved-191F>
@@ -746,7 +746,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 823526
+# Total code points: 823525
 
 # ================================================
 
@@ -2349,7 +2349,7 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 1780..17B3    ; Lo #  [52] KHMER LETTER KA..KHMER INDEPENDENT VOWEL QAU
 17DC          ; Lo #       KHMER SIGN AVAKRAHASANYA
 1820..1842    ; Lo #  [35] MONGOLIAN LETTER A..MONGOLIAN LETTER CHI
-1844..1878    ; Lo #  [53] MONGOLIAN LETTER TODO E..MONGOLIAN LETTER CHA WITH TWO DOTS
+1844..1879    ; Lo #  [54] MONGOLIAN LETTER TODO E..MONGOLIAN LETTER MANCHU ALTERNATE UE
 1880..1884    ; Lo #   [5] MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER ALI GALI INVERTED UBADAMA
 1887..18A8    ; Lo #  [34] MONGOLIAN LETTER ALI GALI A..MONGOLIAN LETTER MANCHU ALI GALI BHA
 18AA          ; Lo #       MONGOLIAN LETTER MANCHU ALI GALI LHA
@@ -2706,7 +2706,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Lo # [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 132484
+# Total code points: 132485
 
 # ================================================
 
