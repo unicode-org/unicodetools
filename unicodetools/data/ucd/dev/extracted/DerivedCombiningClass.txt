@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2023-11-10, 22:25:25 GMT
+# Date: 2023-12-18, 15:32:26 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1871,7 +1871,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1D173..1D17A  ; 0 # Cf   [8] MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
 1D183..1D184  ; 0 # So   [2] MUSICAL SYMBOL ARPEGGIATO UP..MUSICAL SYMBOL ARPEGGIATO DOWN
 1D18C..1D1A9  ; 0 # So  [30] MUSICAL SYMBOL RINFORZANDO..MUSICAL SYMBOL DEGREE SLASH
-1D1AE..1D1EA  ; 0 # So  [61] MUSICAL SYMBOL PEDAL MARK..MUSICAL SYMBOL KORON
+1D1AE..1D1F6  ; 0 # So  [73] MUSICAL SYMBOL PEDAL MARK..MUSICAL SYMBOL REVERSED FLAT AND FLAT DOWN
 1D200..1D241  ; 0 # So  [66] GREEK VOCAL NOTATION SYMBOL-1..GREEK INSTRUMENTAL NOTATION SYMBOL-54
 1D245         ; 0 # So       GREEK MUSICAL LEIMMA
 1D2C0..1D2D3  ; 0 # No  [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
@@ -2059,7 +2059,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 825574 code points not listed here.
+# The above property value applies to 825562 code points not listed here.
 # Total code points: 1113178
 
 # ================================================
