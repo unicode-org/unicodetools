@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2023-11-10, 22:25:30 GMT
+# Date: 2024-01-19, 15:04:39 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -262,7 +262,7 @@
 218C..218F    ; Cn #   [4] <reserved-218C>..<reserved-218F>
 242A..243F    ; Cn #  [22] <reserved-242A>..<reserved-243F>
 244B..245F    ; Cn #  [21] <reserved-244B>..<reserved-245F>
-2B74..2B75    ; Cn #   [2] <reserved-2B74>..<reserved-2B75>
+2B75          ; Cn #       <reserved-2B75>
 2B96          ; Cn #       <reserved-2B96>
 2CF4..2CF8    ; Cn #   [5] <reserved-2CF4>..<reserved-2CF8>
 2D26          ; Cn #       <reserved-2D26>
@@ -746,7 +746,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 823526
+# Total code points: 823525
 
 # ================================================
 
@@ -4171,7 +4171,7 @@ FFE3          ; Sk #       FULLWIDTH MACRON
 2800..28FF    ; So # [256] BRAILLE PATTERN BLANK..BRAILLE PATTERN DOTS-12345678
 2B00..2B2F    ; So #  [48] NORTH EAST WHITE ARROW..WHITE VERTICAL ELLIPSE
 2B45..2B46    ; So #   [2] LEFTWARDS QUADRUPLE ARROW..RIGHTWARDS QUADRUPLE ARROW
-2B4D..2B73    ; So #  [39] DOWNWARDS TRIANGLE-HEADED ZIGZAG ARROW..DOWNWARDS TRIANGLE-HEADED ARROW TO BAR
+2B4D..2B74    ; So #  [40] DOWNWARDS TRIANGLE-HEADED ZIGZAG ARROW..EQUALS SIGN WITH INFINITY ABOVE
 2B76..2B95    ; So #  [32] NORTH WEST TRIANGLE-HEADED ARROW TO BAR..RIGHTWARDS BLACK ARROW
 2B97..2BFF    ; So # [105] SYMBOL FOR TYPE A ELECTRONICS..HELLSCHREIBER PAUSE SYMBOL
 2CE5..2CEA    ; So #   [6] COPTIC SYMBOL MI RO..COPTIC SYMBOL SHIMA SIMA
@@ -4281,7 +4281,7 @@ FFFC..FFFD    ; So #   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1FB00..1FB92  ; So # [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK
 1FB94..1FBEF  ; So #  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 
-# Total code points: 7376
+# Total code points: 7377
 
 # ================================================
 
