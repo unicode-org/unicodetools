@@ -777,9 +777,13 @@ public class GenerateConfusablesCopy {
                     final String codelist = pieces[0].trim();
                     final Reason reasons = Reason.fromString(pieces[1]);
                     if (pieces[0].startsWith("[")) {
+                        // TODO(macchiati): Weird dependency on ChainedSymbolTable which we probably
+                        // do not need.
                         sources =
-                                TestUnicodeInvariants.parseUnicodeSet(
-                                        codelist); // .retainAll(allocated);
+                                VersionedProperty.parseUnicodeSet(
+                                        codelist,
+                                        new TestUnicodeInvariants
+                                                .ChainedSymbolTable()); // .retainAll(allocated);
                     } else {
                         final String[] codes = Utility.split(codelist, ' ');
                         for (final String code : codes) {
