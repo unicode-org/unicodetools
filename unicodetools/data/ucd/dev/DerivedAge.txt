@@ -1,5 +1,5 @@
 # DerivedAge-16.0.0.txt
-# Date: 2023-11-10, 22:24:48 GMT
+# Date: 2024-01-19, 15:29:13 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2049,6 +2049,7 @@ A7DA..A7DC    ; 16.0 #   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER L
 1E5FF         ; 16.0 #       OL ONAL ABBREVIATION SIGN
 1F8B2..1F8BB  ; 16.0 #  [10] RIGHTWARDS ARROW WITH LOWER HOOK..SOUTH WEST ARROW FROM BAR
 1F8C0..1F8C1  ; 16.0 #   [2] LEFTWARDS ARROW FROM DOWNWARDS ARROW..RIGHTWARDS ARROW FROM DOWNWARDS ARROW
+1FA54..1FA57  ; 16.0 #   [4] WHITE CHESS FERZ..BLACK CHESS ALFIL
 1FA89         ; 16.0 #       HARP
 1FA8F         ; 16.0 #       SHOVEL
 1FABE         ; 16.0 #       LEAFLESS TREE
@@ -2058,6 +2059,6 @@ A7DA..A7DC    ; 16.0 #   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER L
 1FAE9         ; 16.0 #       FACE WITH BAGS UNDER EYES
 1FBCB..1FBEF  ; 16.0 #  [37] WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 
-# Total code points: 1192
+# Total code points: 1196
 
 # EOF

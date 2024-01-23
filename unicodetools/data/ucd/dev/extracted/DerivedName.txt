@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-11-10, 22:25:34 GMT
+# Date: 2024-01-19, 15:29:42 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -44644,6 +44644,10 @@ FFFD          ; REPLACEMENT CHARACTER
 1FA51         ; BLACK CHESS KNIGHT-QUEEN
 1FA52         ; BLACK CHESS KNIGHT-ROOK
 1FA53         ; BLACK CHESS KNIGHT-BISHOP
+1FA54         ; WHITE CHESS FERZ
+1FA55         ; WHITE CHESS ALFIL
+1FA56         ; BLACK CHESS FERZ
+1FA57         ; BLACK CHESS ALFIL
 1FA60         ; XIANGQI RED GENERAL
 1FA61         ; XIANGQI RED MANDARIN
 1FA62         ; XIANGQI RED ELEPHANT
@@ -45368,6 +45372,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 151005
+# Total code points: 151009
 
 # EOF
