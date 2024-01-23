@@ -66,8 +66,7 @@ public class GenerateData implements UCD_Types {
         final org.unicode.props.UnicodeProperty sc =
                 IndexUnicodeProperties.make().getProperty(UcdProperty.Script);
         for (final String cp : UnicodeSet.ALL_CODE_POINTS) {
-            final String[] decompositions =
-                    new String[] {nfd.normalize(cp), nfkd.normalize(cp)};
+            final String[] decompositions = new String[] {nfd.normalize(cp), nfkd.normalize(cp)};
             for (final String decomposition : decompositions) {
                 final int lastCCC =
                         Default.ucd()
