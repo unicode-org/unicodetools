@@ -828,9 +828,6 @@ public class GenerateData implements UCD_Types {
         // tad too weird to describe in the title of a new part.
         final org.unicode.props.UnicodeProperty sc =
                 IndexUnicodeProperties.make().getProperty(UcdProperty.Script);
-        final org.unicode.props.UnicodeProperty ccc =
-                IndexUnicodeProperties.make().getProperty(UcdProperty.Canonical_Combining_Class);
-        loopOverCodePoints:
         for (final String cp : UnicodeSet.ALL_CODE_POINTS) {
             final String[] decompositions =
                     new String[] {Default.nfd().normalize(cp), Default.nfkd().normalize(cp)};
@@ -861,7 +858,7 @@ public class GenerateData implements UCD_Types {
                         // COMBINING TILDE OVERLAY.
                         writeLine(cp + "\u0334", log, false);
                     }
-                    continue loopOverCodePoints;
+                    break;
                 }
             }
         }
