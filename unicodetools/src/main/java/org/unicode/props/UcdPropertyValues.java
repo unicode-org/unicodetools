@@ -271,6 +271,7 @@ public class UcdPropertyValues {
         Early_Dynastic_Cuneiform("Early_Dynastic_Cuneiform"),
         Egyptian_Hieroglyph_Format_Controls("Egyptian_Hieroglyph_Format_Controls"),
         Egyptian_Hieroglyphs("Egyptian_Hieroglyphs"),
+        Egyptian_Hieroglyphs_Extended_A("Egyptian_Hieroglyphs_Ext_A"),
         Elbasan("Elbasan"),
         Elymaic("Elymaic"),
         Emoticons("Emoticons"),
