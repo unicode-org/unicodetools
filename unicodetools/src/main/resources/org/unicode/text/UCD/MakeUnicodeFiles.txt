@@ -876,7 +876,7 @@ Format: kenFile skipValue=Rotated
 #         Specials:                           U+FFF0..U+FFF8
 #         Siddham:                           U+11580..U+115FF
 #         Zanabazar Square & Soyombo:        U+11A00..U+11AAF
-#         Egyptian Hieroglyphs & Controls:   U+13000..U+1345F
+#         Egyptian Hieroglyphs & Controls:   U+13000..U+143FF
 #         Anatolian Hieroglyphs:             U+14400..U+1467F
 #         Ideographic Symbols & Tangut:      U+16FE0..U+18AFF
 #         Khitan Small Script & Tangut Sup:  U+18B00..U+18D7F
