@@ -3126,7 +3126,8 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 
 # ================================================
 
-16EA0..16ED1  ; Beria_Erfe # L&  [50] BERIA ERFE CAPITAL LETTER ARKAB..BERIA ERFE SMALL LETTER AY
+16EA0..16EB8; Beria_Erfe
+16EBB..16ED3; Beria_Erfe
 
 # Total code points: 50
 
