@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2024-01-10, 17:59:20 GMT
+# Date: 2024-01-26, 23:41:21 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1137,6 +1137,8 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 02D0..02D1    ; Extender # Lm   [2] MODIFIER LETTER TRIANGULAR COLON..MODIFIER LETTER HALF TRIANGULAR COLON
 0640          ; Extender # Lm       ARABIC TATWEEL
 07FA          ; Extender # Lm       NKO LAJANYALAN
+0A71          ; Extender # Mn       GURMUKHI ADDAK
+0AFB          ; Extender # Mn       GUJARATI SIGN SHADDA
 0B55          ; Extender # Mn       ORIYA SIGN OVERLINE
 0E46          ; Extender # Lm       THAI CHARACTER MAIYAMOK
 0EC6          ; Extender # Lm       LAO KO LA
@@ -1161,6 +1163,7 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 10D4E         ; Extender # Lm       GARAY VOWEL LENGTH MARK
 10D6A         ; Extender # Mn       GARAY CONSONANT GEMINATION MARK
 10D6F         ; Extender # Lm       GARAY REDUPLICATION MARK
+11237         ; Extender # Mn       KHOJKI SIGN SHADDA
 1135D         ; Extender # Lo       GRANTHA SIGN PLUTA
 113D2         ; Extender # Mn       TULU-TIGALARI GEMINATION MARK
 113D3         ; Extender # Lo       TULU-TIGALARI SIGN PLUTA
@@ -1173,7 +1176,7 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 1E5EF         ; Extender # Mn       OL ONAL SIGN IKIR
 1E944..1E946  ; Extender # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 
-# Total code points: 56
+# Total code points: 59
 
 # ================================================
 
