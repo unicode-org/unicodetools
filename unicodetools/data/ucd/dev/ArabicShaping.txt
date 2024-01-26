@@ -101,14 +101,18 @@
 # assigns jg=No_Joining_Group to all the singletons.
 #
 # Note: Code points that are not explicitly listed in this file are
-# either of joining type T or U:
+# either of Joining_Type T or U:
 #
-# - Those that are not explicitly listed and that are of General Category Mn, Me, or Cf
-#   have joining type T.
-# - All others not explicitly listed have joining type U.
+# - Those that are not explicitly listed and that are of General_Category Mn, Me, or Cf
+#   are Joining_Type=T.
+# - All others not explicitly listed are Joining_Type=U.
 #
-# For an explicit listing of all characters of joining type T, see
+# For an explicit listing of all characters of Joining_Type=T, see
 # the derived property file DerivedJoiningType.txt.
+# For an implementation that needs to parse for the values of
+# Joining_Type, it is recommended to use DerivedJoiningType.txt
+# instead of ArabicShaping.txt, to avoid the separate required step of
+# calculating the set for Joining_Type=T based on General_Category values.
 #
 # #############################################################
 
