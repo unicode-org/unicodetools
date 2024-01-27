@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2024-01-27, 00:07:21 GMT
+# Date: 2024-01-27, 00:32:10 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1088,6 +1088,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 11370..11374  ; Diacritic # Mn   [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
 113CE         ; Diacritic # Mn       TULU-TIGALARI SIGN VIRAMA
 113CF         ; Diacritic # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
+113D0         ; Diacritic # Mn       TULU-TIGALARI CONJOINER
 113D2         ; Diacritic # Mn       TULU-TIGALARI GEMINATION MARK
 113D3         ; Diacritic # Lo       TULU-TIGALARI SIGN PLUTA
 113E1..113E2  ; Diacritic # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
@@ -1118,6 +1119,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1612F         ; Diacritic # Mn       GURUNG KHEMA SIGN THOLHOMA
 16AF0..16AF4  ; Diacritic # Mn   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
 16B30..16B36  ; Diacritic # Mn   [7] PAHAWH HMONG MARK CIM TUB..PAHAWH HMONG MARK CIM TAUM
+16D6B..16D6C  ; Diacritic # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
 16F8F..16F92  ; Diacritic # Mn   [4] MIAO TONE RIGHT..MIAO TONE BELOW
 16F93..16F9F  ; Diacritic # Lm  [13] MIAO LETTER TONE-2..MIAO LETTER REFORMED TONE-8
 16FF0..16FF1  ; Diacritic # Mc   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
@@ -1140,7 +1142,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1175
+# Total code points: 1178
 
 # ================================================
 
