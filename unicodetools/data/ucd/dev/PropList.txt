@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2024-01-26, 23:57:30 GMT
+# Date: 2024-01-27, 00:07:21 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -976,6 +976,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 17C9..17D3    ; Diacritic # Mn  [11] KHMER SIGN MUUSIKATOAN..KHMER SIGN BATHAMASAT
 17DD          ; Diacritic # Mn       KHMER SIGN ATTHACAN
 1939..193B    ; Diacritic # Mn   [3] LIMBU SIGN MUKPHRENG..LIMBU SIGN SA-I
+1A60          ; Diacritic # Mn       TAI THAM SIGN SAKOT
 1A75..1A7C    ; Diacritic # Mn   [8] TAI THAM SIGN TONE-1..TAI THAM SIGN KHUEN-LUE KARAN
 1A7F          ; Diacritic # Mn       TAI THAM COMBINING CRYPTOGRAMMIC DOT
 1AB0..1ABD    ; Diacritic # Mn  [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
@@ -1062,6 +1063,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 10787..107B0  ; Diacritic # Lm  [42] MODIFIER LETTER SMALL DZ DIGRAPH..MODIFIER LETTER SMALL V WITH RIGHT HOOK
 107B2..107BA  ; Diacritic # Lm   [9] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL S WITH CURL
 10A38..10A3A  ; Diacritic # Mn   [3] KHAROSHTHI SIGN BAR ABOVE..KHAROSHTHI SIGN DOT BELOW
+10A3F         ; Diacritic # Mn       KHAROSHTHI VIRAMA
 10AE5..10AE6  ; Diacritic # Mn   [2] MANICHAEAN ABBREVIATION MARK ABOVE..MANICHAEAN ABBREVIATION MARK BELOW
 10D22..10D23  ; Diacritic # Lo   [2] HANIFI ROHINGYA MARK SAKIN..HANIFI ROHINGYA MARK NA KHONNA
 10D24..10D27  ; Diacritic # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
@@ -1110,6 +1112,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 11D44..11D45  ; Diacritic # Mn   [2] MASARAM GONDI SIGN HALANTA..MASARAM GONDI VIRAMA
 11D97         ; Diacritic # Mn       GUNJALA GONDI VIRAMA
 11F41         ; Diacritic # Mc       KAWI SIGN KILLER
+11F42         ; Diacritic # Mn       KAWI CONJOINER
 11F5A         ; Diacritic # Mn       KAWI SIGN NUKTA
 13447..13455  ; Diacritic # Mn  [15] EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
 1612F         ; Diacritic # Mn       GURUNG KHEMA SIGN THOLHOMA
@@ -1137,7 +1140,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1172
+# Total code points: 1175
 
 # ================================================
 
