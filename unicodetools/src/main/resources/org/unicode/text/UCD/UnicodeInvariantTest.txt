@@ -542,7 +542,7 @@ Let $nonAlphabeticDependentVowels = [\N{ORIYA SIGN OVERLINE}\N{THAI CHARACTER MA
 # Several invariants from L2/24-009 item 2.2.
 \p{InSC=Gemination_Mark} ⊆ \p{Extender}
 \p{InSC=Nukta} ⊆ \p{Diacritic}
-[\p{InSC=Virama}\p{InSC=Pure_Killer}] ⊆ \p{Diacritic}
+[\p{InSC=Virama}\p{InSC=Pure_Killer}\p{InSC=Reordering_Killer}] ⊆ \p{Diacritic}
 \p{InSC=Invisible_Stacker} ⊆ \p{Diacritic}
 Let $nonAlphabeticAvagrahas = [\N{TIBETAN MARK PALUTA}]  # A punctuation mark.
 [\p{InSC=Avagraha} - $nonAlphabeticAvagrahas] ⊆ \p{Alphabetic}
