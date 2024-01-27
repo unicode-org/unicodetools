@@ -523,6 +523,10 @@ Show [\u20b9]
 # [\p{Alphabetic}] ∥ \p{Script=Common}
 #  & [\p{Decomposition_Type=None} \p{Decomposition_Type=Canonical}]
 
+## Alphabetic, Diacritic, and Extender.
+
+# Consistency with Indic_Syllabic_Category.
+
 # The UTC 172 script ad hoc report (L2/22-128) item VII 27 “Nonalphabetic bindus” points out that
 # “Most characters with InSC=Bindu have Alphabetic=Yes”
 # and adjustments have been made so that all current bindus have Alphabetic=Yes.
@@ -535,16 +539,20 @@ Let $nonAlphabeticBindus = []
 Let $nonAlphabeticDependentVowels = [\N{ORIYA SIGN OVERLINE}\N{THAI CHARACTER MAITAIKHU}\N{LIMBU SIGN KEMPHRENG}\N{SHARADA VOWEL MODIFIER MARK}\N{SHARADA EXTRA SHORT VOWEL MARK}]
 [\p{InSC=Vowel_Dependent} - \p{Alphabetic}] = $nonAlphabeticDependentVowels
 
+# Several invariants from L2/24-009 item 2.2.
+\p{InSC=Gemination_Mark} ⊆ \p{Extender}
+\p{InSC=Nukta} ⊆ \p{Diacritic}
+[\p{InSC=Virama}\p{InSC=Pure_Killer}\p{InSC=Reordering_Killer}] ⊆ \p{Diacritic}
+\p{InSC=Invisible_Stacker} ⊆ \p{Diacritic}
+Let $nonAlphabeticAvagrahas = [\N{TIBETAN MARK PALUTA}]  # A punctuation mark.
+[\p{InSC=Avagraha} - $nonAlphabeticAvagrahas] ⊆ \p{Alphabetic}
+
+# Name-based checks.
+
 # Combining letters are often alphabetic (medievalist abbreviations).
 # The others are diacritic (cantillation marks, phonetics).
-# See 177-CXX.
+# See 177-C52.
 \p{name=/COMBINING .* LETTER/} ⊆ [\p{Alphabetic}\p{Diacritic}]
-
-# Nuktas should probably be diacritic, but as of 15.1 this is only the case of
-# those that have NUKTA in their name.
-# See https://github.com/unicode-org/properties/issues/195#issuecomment-1804962555.
-Let $nonDiacriticNuktas = [\u1BE6\U00010A38\U00010A39\U00010A3A\U0001133B]
-[\p{InSc=Nukta} - \p{Diacritic}] = $nonDiacriticNuktas
 
 ## Joining_Type and Joining_Group
 # Where defined, the Joining_Group refines the Joining_Type.
