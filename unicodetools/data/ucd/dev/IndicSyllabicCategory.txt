@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-16.0.0.txt
-# Date: 2023-11-13, 19:36:00 GMT
+# Date: 2023-11-14, 01:26:00 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -482,6 +482,7 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 11D6A..11D6B  ; Vowel_Independent # Lo   [2] GUNJALA GONDI LETTER OO..GUNJALA GONDI LETTER AU
 11F04..11F10  ; Vowel_Independent # Lo  [13] KAWI LETTER A..KAWI LETTER O
 16100         ; Vowel_Independent # Lo       GURUNG KHEMA LETTER A
+16D43         ; Vowel_Independent # Lo       KIRAT RAI LETTER A
 
 # ================================================
 
@@ -963,7 +964,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 11EE0..11EF1  ; Consonant # Lo  [18] MAKASAR LETTER KA..MAKASAR LETTER A
 11F12..11F33  ; Consonant # Lo  [34] KAWI LETTER KA..KAWI LETTER JNYA
 16101..1611D  ; Consonant # Lo  [29] GURUNG KHEMA LETTER KA..GURUNG KHEMA LETTER SA
-16D43..16D62  ; Consonant # Lo  [32] KIRAT RAI LETTER A..KIRAT RAI LETTER HA
+16D44..16D62  ; Consonant # Lo  [31] KIRAT RAI LETTER KA..KIRAT RAI LETTER HA
 
 # ================================================
 
