@@ -953,6 +953,9 @@ Let $nonIdeographicStrokes = \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZ
 
 \p{Equivalent_Unified_Ideograph=/./} ⊆ $strokesAndRadicals
 [$strokesAndRadicals - \p{Equivalent_Unified_Ideograph=/./}] = [$nonIdeographicStrokes $nonIdeographicRadicals]
+# TODO(egg): NFC_Quick_Check is a stupid way to get a Yes here; we are checking
+# that Equivalent_Unified_Ideograph values are single unified ideographs.
+In \p{Equivalent_Unified_Ideograph=/./} Unified_Ideograph * Equivalent_Unified_Ideograph = NFC_Quick_Check
 
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
