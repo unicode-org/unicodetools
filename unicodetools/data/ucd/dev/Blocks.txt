@@ -1,6 +1,6 @@
-# Blocks-16.0.0.txt
-# Date: 2024-01-20, 18:52:00 GMT
-# © 2024 Unicode®, Inc.
+# Blocks-15.1.0.txt
+# Date: 2023-07-28, 15:47:20 GMT
+# © 2023 Unicode®, Inc.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
