@@ -27,6 +27,11 @@ h3 {background-color: #EEEEEE}
 .L1 {background-color: #CCCCCC}
 .L0 {background-color: #C8C8C8} 
 .default           { background-color: #C8C8C8}
+.changed {
+  background-color: #FFFF00;
+  border-style: dotted;
+  border-width: 1px;
+}
 .propTable, .bigTable {
   margin-left: auto;
   margin-right: auto;

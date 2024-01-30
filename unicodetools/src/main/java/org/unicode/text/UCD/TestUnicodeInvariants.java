@@ -575,7 +575,8 @@ public class TestUnicodeInvariants {
                     final String propName = scan(PROPCHARS, line, pp, true);
                     if (propName.length() > 0) {
                         final FilterOrProp propOrFilter = new FilterOrProp();
-                        final VersionedProperty xprop = new VersionedProperty().set(propName);
+                        final VersionedProperty xprop =
+                                VersionedProperty.forInvariantTesting().set(propName);
                         propOrFilter.prop = xprop.getProperty();
                         if (propOrFilter.prop == null) {
                             throw new IllegalArgumentException(
@@ -1275,7 +1276,7 @@ public class TestUnicodeInvariants {
             return text.substring(start, i);
         }
 
-        final VersionedProperty propertyVersion = new VersionedProperty();
+        final VersionedProperty propertyVersion = VersionedProperty.forInvariantTesting();
 
         @Override
         public boolean applyPropertyAlias(

@@ -92,7 +92,7 @@ Files to investigate
 Go to `XPropertyFactory.java` to add new properties other than the ones in /props/
 ### Using Beta Properties
 
-Set CachedProps.IS_BETA to true.
+In [org.unicode.text.Settings](/unicodetools/src/main/java/org/unicode/text/utility/Settings.java), set `latestVersionPhase` to `BETA`.
 
 Build & Test
 

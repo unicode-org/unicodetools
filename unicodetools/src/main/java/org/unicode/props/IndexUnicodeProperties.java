@@ -128,7 +128,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         oldVersion = ucdVersion2.compareTo(GenerateEnums.ENUM_VERSION_INFO) < 0;
     }
 
-    public static final IndexUnicodeProperties make(VersionInfo ucdVersion) {
+    public static final synchronized IndexUnicodeProperties make(VersionInfo ucdVersion) {
         IndexUnicodeProperties newItem = version2IndexUnicodeProperties.get(ucdVersion);
         if (newItem == null) {
             version2IndexUnicodeProperties.put(
@@ -416,7 +416,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return result;
     }
 
-    public UnicodeMap<String> load(UcdProperty prop2) {
+    public synchronized boolean isLoaded(UcdProperty prop) {
+        return property2UnicodeMap.get(prop) != null;
+    }
+
+    public synchronized UnicodeMap<String> load(UcdProperty prop2) {
         String fullFilename = "?";
         try {
             if (prop2 == CHECK_PROPERTY) {
@@ -449,6 +453,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     public void internalStoreCachedMap(String dir, UcdProperty prop2, UnicodeMap<String> data) {
         try {
+            final var binDir = new File(dir);
+            if (!binDir.exists()) {
+                binDir.mkdir();
+            }
             final String cacheFileDirName = dir + getUcdVersion();
             final File cacheFileDir = new File(cacheFileDirName);
             if (!cacheFileDir.exists()) {
