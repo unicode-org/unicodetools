@@ -945,6 +945,15 @@ Let $ideohack = [〆 〇 〡-〩]
 # TODO(macchiati): The kHanyuPinyin UnicodeSet is excruciatingly slow.
 # \p{kHanyuPinyin=/./} - \p{kMandarin=/./} = [\{228F5}\x{2574C}]
 
+Let $strokesAndRadicals = [\p{Name=/^CJK STROKE /}\p{Name=/^(CJK|KANGXI) RADICAL /}]-\p{gc=Cn}
+Let $nonIdeographicRadicals = \N{CJK RADICAL REPEAT}
+# The following set may expand over time, if strokes are added.
+# It can also shrink, if single-stroke ideographs are encoded.
+Let $nonIdeographicStrokes = \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZWG|HZT|HZZP|HPWG|HZW|HZZZ|PG|Q|HZXG|SZP)$/}
+
+\p{Equivalent_Unified_Ideograph=/./} ⊆ $strokesAndRadicals
+[$strokesAndRadicals - \p{Equivalent_Unified_Ideograph=/./}] = [$nonIdeographicStrokes $nonIdeographicRadicals]
+
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
 \p{InPC=/(Left|Right)/} ⊆ [\p{gc=Mc}\p{gc=Lo}\p{gc=Lm}]
