@@ -103,6 +103,7 @@
 3FF7	U+7CD9<kMatthews,kMeyerWempe
 400B	U+9E7D<kLau
 4020	U+77BF<kMatthews
+4021	U+4993 U+8998
 4022	U+77AC<kMatthews
 4039	U+776B<kMatthews
 4080	U+252DF
@@ -162,7 +163,7 @@
 4968	U+9462<kMatthews,kMeyerWempe
 496A	U+2EE17
 4977	U+350D<kMatthews
-4993	U+8998<kMeyerWempe U+26552<kMeyerWempe
+4993	U+4021 U+8998<kMeyerWempe
 4A18	U+9730<kMatthews,kMeyerWempe
 4A36	U+29186<kKangXi
 4A5E	U+97C2<kMatthews
@@ -2537,7 +2538,7 @@
 8993	U+8994<kMatthews
 8994	U+8993<kMatthews
 8996	U+770E<kMatthews
-8998	U+4993<kMeyerWempe U+26552<kMeyerWempe
+8998	U+4021 U+4993<kMeyerWempe
 89A5	U+9766<kMeyerWempe
 89A9	U+7779<kMatthews,kMeyerWempe
 89B0	U+89B7<kMatthews,kMeyerWempe
@@ -2877,6 +2878,7 @@
 936B	U+936C<kMeyerWempe
 936C	U+936B<kMeyerWempe
 9370	U+9436<kMatthews
+9373	U+9451 U+9452
 937A	U+4920<kHanYu:T
 937C	U+7BB4<kMeyerWempe U+91DD<kLau,kMatthews,kMeyerWempe
 938B	U+8F44<kMatthews
@@ -2901,8 +2903,8 @@
 942E	U+938C<kLau,kMatthews,kMeyerWempe
 9435	U+9244<kLau,kMatthews,kMeyerWempe U+9295<kMatthews
 9436	U+9370<kMatthews
-9451	U+9452<kHKGlyph,kMatthews,kMeyerWempe
-9452	U+9451<kHKGlyph,kMatthews,kMeyerWempe
+9451	U+9373 U+9452<kHKGlyph,kMatthews,kMeyerWempe
+9452	U+9373 U+9451<kHKGlyph,kMatthews,kMeyerWempe
 945A	U+947D<kMatthews
 945B	U+7926<kLau,kMatthews,kMeyerWempe
 9462	U+4968<kMatthews,kMeyerWempe
@@ -3417,7 +3419,6 @@ FA18	U+793C<kMatthews U+79AE<kMatthews
 2627D	U+7F51<kKangXi:TZ
 26369	U+7F96<kMeyerWempe
 26400	U+821E<kKangXi:TZ
-26552	U+4993<kMeyerWempe U+8998<kMeyerWempe
 26675	U+8155<kFenn
 26676	U+80A1<kLau,kMeyerWempe
 2667C	U+9AB4<kMeyerWempe
