@@ -1,6 +1,6 @@
 ; charset=UTF-8
 # Unikemet-16.0.0.txt
-# Date: 2024-01-22
+# Date: 2024-01-30
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -22,7 +22,7 @@
 #	Core value: KEH_Core (Y if core, none otherwise)
 #	Description: kEH_Desc
 #	Function: kEH_Func
-#	Function: kEH_FValue
+#	Function: kEH_FVal
 #	JSesh source: kEH_JSesh
 #	Hieroglyphica source: KEH_HG
 #	IFAO source: KEH_IFAO
@@ -548,7 +548,7 @@ U+1303F	kEH_NoRotate	Y
 U+13040	kEH_Cat	A-32-008
 U+13040	kEH_Core	Y
 U+13040	kEH_Desc	A mummy with a long curved beard, lying horizontally on top of a bed.
-U+13040	kEH_Func	Logogram (to sleep/to spent the night)
+U+13040	kEH_Func	Logogram (to sleep/to spend the night)
 U+13040	kEH_FVal	sḏr
 U+13040	kEH_UniK	A055
 U+13040	kEH_JSesh	A55
@@ -894,7 +894,7 @@ U+1306A	kEH_IFAO	58,6
 U+1306B	kEH_Cat	C-03-011
 U+1306B	kEH_Core	Y
 U+1306B	kEH_Desc	God, seated, knees up, with covered legs and arms, with a long curved beard, wearing the double-plume headdress (S72A), with a line running from the crown down the back, holding a khopesh sword (T16A) vertically.
-U+1306B	kEH_Func	Logogram (Amon is his strength (%sA-ra% name Ramses VI))
+U+1306B	kEH_Func	Logogram (Amon is his strength (sꜣ-rꜥ name Ramses VI))
 U+1306B	kEH_FVal	ꞽmn-ḥr-ḫpš=f
 U+1306B	kEH_UniK	C014
 U+1306B	kEH_JSesh	C12F
@@ -2671,7 +2671,7 @@ U+13149	kEH_HG	G8
 U+1314A	kEH_Cat	G-12-015
 U+1314A	kEH_Core	Y
 U+1314A	kEH_Desc	A falcon (G5) with a sun-disk (N5) on its head.
-U+1314A	kEH_Func	Logogram (Re-Hor (usually in %ra-Hr-Ax.ty%)
+U+1314A	kEH_Func	Logogram (Re-Hor (usually in rꜥ-ḥr-ꜣḫ.ty)
 U+1314A	kEH_FVal	rꜥ-ḥr
 U+1314A	kEH_UniK	G009
 U+1314A	kEH_JSesh	G9
@@ -4645,7 +4645,7 @@ U+13241	kEH_JSesh	NU11
 U+13242	kEH_Cat	N-11-048
 U+13242	kEH_Core	Y
 U+13242	kEH_Desc	A wick of twisted flax, consisting of 3 loops (V28), in front of the red crown (S3), in front of three ripples of water, vertically aligned above one another (N35A); on top of a standard used for carrying religious symbols (R12), written on top of a parcel of land with irrigation ditches (N24).
-U+13242	kEH_Func	Logogram (11th Upper Egyptian nome (commonly under %stX/stS/SA%)
+U+13242	kEH_Func	Logogram (11th Upper Egyptian nome (commonly under stẖ/stš/šꜣ)
 U+13242	kEH_FVal	ḥw-n.t
 U+13242	kEH_UniK	NU011A
 U+13242	kEH_JSesh	NU11A
@@ -6535,7 +6535,7 @@ U+13334	kEH_HG	U2
 U+13334	kEH_IFAO	388,5
 U+13335	kEH_Cat	U-01-004
 U+13335	kEH_Desc	An eye (D4), written above the blade of a sickle (U1).
-U+13335	kEH_Func	Phonemogram (in %mAA%, to see)
+U+13335	kEH_Func	Phonemogram (in mꜣꜣ, to see)
 U+13335	kEH_FVal	mꜣ
 U+13335	kEH_UniK	U003
 U+13335	kEH_JSesh	U3
@@ -7735,7 +7735,7 @@ U+133D3	kEH_JSesh	X4A
 U+133D4	kEH_Cat	X-04-011
 U+133D4	kEH_Core	Y
 U+133D4	kEH_Desc	A roll of bread without internal detail.
-U+133D4	kEH_Func	Classifier bread, Festival; Phonemogram %t%; Logogram %t% (bread); Phono-repeater: %sn, fqA%
+U+133D4	kEH_Func	Classifier bread, Festival; Phonemogram t; Logogram t (bread); Phono-repeater: sn, fḳꜣ
 U+133D4	kEH_FVal	t | sn, fḳꜣ
 U+133D4	kEH_UniK	X004B
 U+133D5	kEH_Cat	X-05-001
@@ -8095,7 +8095,7 @@ U+1340A	kEH_Func	Logogram (seven)
 U+1340A	kEH_FVal	sfḫ
 U+1340A	kEH_UniK	Z016F
 U+1340B	kEH_Cat	Z-01-041
-U+1340B	kEH_Func	Logogram %xmn% (eight)/Logogram %xmnw% (Hermopolis)
+U+1340B	kEH_Func	Logogram ḫmn (eight)/Logogram ḫmnw (Hermopolis)
 U+1340B	kEH_FVal	ḫmn & ḫmnw
 U+1340B	kEH_UniK	Z016G
 U+1340C	kEH_Cat	Z-01-042
@@ -12675,7 +12675,7 @@ U+136B7	kEH_HG	A53A
 U+136B8	kEH_Cat	A-32-009
 U+136B8	kEH_Core	Y
 U+136B8	kEH_Desc	A mummy with a long curved beard, lying horizontally (A54) on top of a bed, with a leonid head, legs and tail (Q19), with the head towards the front.
-U+136B8	kEH_Func	Classifier to sleep/to spent the night
+U+136B8	kEH_Func	Classifier to sleep/to spend the night
 U+136B8	kEH_FVal	sḏr
 U+136B8	kEH_UniK	HJ A055A
 U+136B8	kEH_JSesh	A55A
@@ -31354,7 +31354,7 @@ U+140AB	kEH_IFAO	341,3
 U+140AC	kEH_Cat	Q-03-006
 U+140AC	kEH_Core	Y
 U+140AC	kEH_Desc	A bed, with a leonid head, legs and tail, with a triangular shape on the bed.
-U+140AC	kEH_Func	Classifier to sleep/to spent the night
+U+140AC	kEH_Func	Classifier to sleep/to spend the night
 U+140AC	kEH_FVal	sḏr
 U+140AC	kEH_UniK	HJ Q020
 U+140AC	kEH_JSesh	Q20

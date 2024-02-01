@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 16.0.0
 @@@+	NamesList-16.0.0.txt
-@+	Generation Date: 2024-01-23, 09:05:30 GMT
+@+	Generation Date: 2024-01-31, 11:40:08 GMT
 	Unicode 16.0.0 names list, ninth delta.
 	Repertoire synched with UnicodeData-16.0.0d13.txt.
 	Pre-alpha rollup of various fixes.
@@ -38168,7 +38168,7 @@ FFFF	<not a character>
 1303F	EGYPTIAN HIEROGLYPH A054
 	* classifier body/corpse/death
 13040	EGYPTIAN HIEROGLYPH A055
-	* logogram (to sleep/to spent the night) : sḏr
+	* logogram (to sleep/to spend the night) : sḏr
 13041	EGYPTIAN HIEROGLYPH A056
 	* classifier enemy : ḫft.y
 13042	EGYPTIAN HIEROGLYPH A057
@@ -38255,7 +38255,7 @@ FFFF	<not a character>
 1306A	EGYPTIAN HIEROGLYPH C013
 	* mirrored version of 13069
 1306B	EGYPTIAN HIEROGLYPH C014
-	* logogram (Amon is his strength (%sA-ra% name Ramses VI)) : ꞽmn-ḥr-ḫpš=f
+	* logogram (Amon is his strength (sꜣ-rꜥ name Ramses VI)) : ꞽmn-ḥr-ḫpš=f
 1306C	EGYPTIAN HIEROGLYPH C015
 	* mirrored version of 1306B
 1306D	EGYPTIAN HIEROGLYPH C016
@@ -38740,7 +38740,7 @@ FFFF	<not a character>
 13149	EGYPTIAN HIEROGLYPH G008
 	* logogram (golden Horus) : ḥr-nbw
 1314A	EGYPTIAN HIEROGLYPH G009
-	* logogram (Re-Hor (usually in %ra-Hr-Ax.ty%) : rꜥ-ḥr
+	* logogram (Re-Hor (usually in rꜥ-ḥr-ꜣḫ.ty) : rꜥ-ḥr
 1314B	EGYPTIAN HIEROGLYPH G010
 	* classifier bark of Sokar : ḥnw
 1314C	EGYPTIAN HIEROGLYPH G011
@@ -39292,7 +39292,7 @@ FFFF	<not a character>
 13241	EGYPTIAN HIEROGLYPH NU011
 	* logogram (11th nome of Upper Egypt) : šꜣ/stẖ/stš
 13242	EGYPTIAN HIEROGLYPH NU011A
-	* logogram (11th Upper Egyptian nome (commonly under %stX/stS/SA%) : ḥw-n.t
+	* logogram (11th Upper Egyptian nome (commonly under stẖ/stš/šꜣ) : ḥw-n.t
 13243	EGYPTIAN HIEROGLYPH NU012
 	* logogram (12th Upper Egyptian nome) : ꜣtf.t
 13244	EGYPTIAN HIEROGLYPH NU013
@@ -39833,7 +39833,7 @@ FFFF	<not a character>
 	* stylistic variant of 13333
 	* phonemogram : mꜣ
 13335	EGYPTIAN HIEROGLYPH U003
-	* phonemogram (in %mAA%, to see) : mꜣ
+	* phonemogram (in mꜣꜣ, to see) : mꜣ
 13336	EGYPTIAN HIEROGLYPH U004
 	* phonemogram : mꜣꜥ
 13337	EGYPTIAN HIEROGLYPH U005
@@ -40210,7 +40210,7 @@ FFFF	<not a character>
 133D4	EGYPTIAN HIEROGLYPH X004B
 	* variant of 133D2
 	* not to be confused with 13200, 132F0, or 133F3
-	* classifier bread, Festival; Phonemogram %t%; Logogram %t% (bread); Phono-repeater: %sn, fqA% : t | sn, fḳꜣ
+	* classifier bread, Festival; Phonemogram t; Logogram t (bread); Phono-repeater: sn, fḳꜣ : t | sn, fḳꜣ
 133D5	EGYPTIAN HIEROGLYPH X005
 	* hieratic
 	* variant of 133D4
@@ -40356,7 +40356,7 @@ FFFF	<not a character>
 1340A	EGYPTIAN HIEROGLYPH Z016F
 	* logogram (seven) : sfḫ
 1340B	EGYPTIAN HIEROGLYPH Z016G
-	* logogram %xmn% (eight)/Logogram %xmnw% (Hermopolis) : ḫmn & ḫmnw
+	* logogram ḫmn (eight)/Logogram ḫmnw (Hermopolis) : ḫmn & ḫmnw
 1340C	EGYPTIAN HIEROGLYPH Z016H
 	* logogram (nine) : psḏ
 @		Aa. Unclassified
@@ -41674,7 +41674,7 @@ FFFF	<not a character>
 136B7	EGYPTIAN HIEROGLYPH-136B7
 	* classifier creation/form : ꞽr.w
 136B8	EGYPTIAN HIEROGLYPH-136B8
-	* classifier to sleep/to spent the night : sḏr
+	* classifier to sleep/to spend the night : sḏr
 @		A33. Statue
 136B9	EGYPTIAN HIEROGLYPH-136B9
 	* classifier statue : ẖn.ty
@@ -46671,7 +46671,7 @@ FFFF	<not a character>
 140AB	EGYPTIAN HIEROGLYPH-140AB
 	* classifier bed : ꜣṯ.t
 140AC	EGYPTIAN HIEROGLYPH-140AC
-	* classifier to sleep/to spent the night : sḏr
+	* classifier to sleep/to spend the night : sḏr
 140AD	EGYPTIAN HIEROGLYPH-140AD
 	* classifier bed : ḥnk(.yt)
 140AE	EGYPTIAN HIEROGLYPH-140AE

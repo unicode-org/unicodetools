@@ -1,11 +1,11 @@
 # IndicSyllabicCategory-16.0.0.txt
-# Date: 2023-11-07
-# © 2023 Unicode®, Inc.
+# Date: 2024-01-30
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
-# For documentation, see UAX #44: Unicode Character Database,
-# at https://www.unicode.org/reports/tr44/
+# Unicode Character Database
+#   For documentation, see https://www.unicode.org/reports/tr44/
 #
 # This file defines the following property:
 #
@@ -150,6 +150,7 @@ A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 #   related, but structured somewhat differently.
 
 # [Not derivable]
+
 0903          ; Visarga # Mc       DEVANAGARI SIGN VISARGA
 0983          ; Visarga # Mc       BENGALI SIGN VISARGA
 0A03          ; Visarga # Mc       GURMUKHI SIGN VISARGA
@@ -1388,7 +1389,7 @@ ABF0..ABF9    ; Number # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NI
 # script, e.g. in Brahmi)
 #
 # Note: These are different from Numbers, in the way that there is no known
-# evidence of Brahmi Joining Numbers taking vowels or subjoined consonants. 
+# evidence of Brahmi Joining Numbers taking vowels or subjoined consonants.
 # Until such evidence is found, implementations may assume that Brahmi
 # Joining Numbers only participate in shaping with other Brahmi Joining
 # Numbers.
