@@ -27,6 +27,6 @@ COPY --from=cbuild /build/source/bidiref1 /usr/local/bin/
 RUN mkdir -p /var/lib/jetty/data/unicodetools/Generated
 COPY --from=cbuild /build/data/cldr /var/lib/jetty/data/cldr
 COPY --from=cbuild /build/data/unicodetools/ /var/lib/jetty/data/unicodetools/unicodetools/
-ENV JAVA_OPTIONS -DCLDR_DIR=/var/lib/jetty/data/cldr -DUNICODETOOLS_REPO_DIR=/var/lib/jetty/data/unicodetools -DUNICODETOOLS_GEN_DIR=/var/lib/jetty/data/unicodetools/Generated
+ENV JAVA_OPTIONS -DCLDR_DIR=/var/lib/jetty/data/cldr -DUNICODETOOLS_REPO_DIR=/var/lib/jetty/data/unicodetools -DUNICODETOOLS_GEN_DIR=/var/lib/jetty/data/unicodetools/Generated -Xmx4g
 # This is the default PORT. Override by setting PORT.
 EXPOSE 8080
