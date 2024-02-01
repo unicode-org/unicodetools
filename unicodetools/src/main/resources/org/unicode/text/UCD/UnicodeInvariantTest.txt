@@ -245,8 +245,8 @@ In \p{dt=canonical} bc * \P{bc=NSM} * dm = bc * \P{bc=NSM}
 
 # Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
 # This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
-# There are 5 special cases:
-Let $BMExclusions =[≠ ∤ ∦ ≢ \u2ADC]
+# There are 6 special cases, all symmetric symbols—which are not mirrored—with a solidus overlay:
+Let $BMExclusions = [ ≠ ∤ ∦ ≢ ≭ ⫝̸ ]
 In [\p{dt=canonical}-$BMExclusions] Bidi_M * \P{bc=NSM} * dm = Bidi_M * \P{bc=NSM}
 
 # Additional BIDI invariant constants
