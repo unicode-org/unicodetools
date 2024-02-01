@@ -2011,10 +2011,16 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                 // (long, short, additional aliases).
                                 // For CCC we want to support lookup by long value here, but to
                                 // return (numeric, short, long).
-                                short numericCCC = Utility.lookupShort(valueAlias, UCD_Names.LONG_COMBINING_CLASS, true);
+                                short numericCCC =
+                                        Utility.lookupShort(
+                                                valueAlias, UCD_Names.LONG_COMBINING_CLASS, true);
                                 result.add(Short.toString(numericCCC));
-                                result.add(Utility.getUnskeleton(UCD_Names.COMBINING_CLASS[numericCCC], true));
-                                result.add(Utility.getUnskeleton(UCD_Names.LONG_COMBINING_CLASS[numericCCC], true));
+                                result.add(
+                                        Utility.getUnskeleton(
+                                                UCD_Names.COMBINING_CLASS[numericCCC], true));
+                                result.add(
+                                        Utility.getUnskeleton(
+                                                UCD_Names.LONG_COMBINING_CLASS[numericCCC], true));
                                 return result;
                             case UCD_Types.BIDI_CLASS >> 8:
                                 return lookup(
@@ -2383,7 +2389,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         for (int i = 0; i < UCD_Names.DECOMPOSITION_TYPE.length; ++i) {
             TITLECASE_SHORT_DECOMPOSITION_TYPE[i] =
                     Utility.getUnskeleton(UCD_Names.DECOMPOSITION_TYPE[i], true);
-            LONG_TO_LOWERCASE_SHORT_DECOMPOSITION_TYPE.put(UCD_Names.LONG_DECOMPOSITION_TYPE[i], UCD_Names.DECOMPOSITION_TYPE[i]);
+            LONG_TO_LOWERCASE_SHORT_DECOMPOSITION_TYPE.put(
+                    UCD_Names.LONG_DECOMPOSITION_TYPE[i], UCD_Names.DECOMPOSITION_TYPE[i]);
         }
     }
 
