@@ -1,6 +1,6 @@
 ; charset=UTF-8
 # Unikemet-16.0.0.txt
-# Date: 2024-01-30
+# Date: 2024-01-31
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -6744,7 +6744,7 @@ U+1334E	kEH_JSesh	U25
 U+1334F	kEH_Cat	U-09-088
 U+1334F	kEH_Core	Y
 U+1334F	kEH_Desc	A drill with a truncated pyramid-shaped handle, with a round drill-bit with a horizontal line over it. 
-U+1334F	kEH_Func	logogram (to open)
+U+1334F	kEH_Func	Logogram (to open)
 U+1334F	kEH_FVal	wbꜣ
 U+1334F	kEH_UniK	U026
 U+1334F	kEH_JSesh	U26
@@ -29251,7 +29251,7 @@ U+13F8E	kEH_HG	O280
 U+13F8F	kEH_Cat	O-07-014
 U+13F8F	kEH_Core	Y
 U+13F8F	kEH_Desc	A façade of a shrine with a flat roof, with uraei on top, facing forwards, with oblique sides, with a large doorway.
-U+13F8F	kEH_Func	Phonemogram (in r-rw.t (outside)
+U+13F8F	kEH_Func	Phonemogram (in r-rw.t (outside))
 U+13F8F	kEH_FVal	rw.t
 U+13F8F	kEH_UniK	HJ O021C
 U+13F8F	kEH_JSesh	O21C
@@ -33057,7 +33057,7 @@ U+14196	kEH_IFAO	375,13
 U+14197	kEH_Cat	S-11-051
 U+14197	kEH_Core	Y
 U+14197	kEH_Desc	The sky (N1) / a pectoral resembling the sky; with three vertical lines consisting of short horizontal strokes, with upwards arrows at the bottom of the vertical lines, with three triangular shapes on top of the sky.
-U+14197	kEH_Func	Logogram ṯḥn (to be bright); Classifier dew/scent/rain (ꞽꜣd.t)
+U+14197	kEH_Func	Logogram (to be bright) or Classifier dew/scent/rain
 U+14197	kEH_FVal	ṯḥn | ꞽꜣd.t
 U+14197	kEH_UniK	HJ N004F
 U+14197	kEH_JSesh	N4F
@@ -35213,7 +35213,7 @@ U+142BD	kEH_HG	U25B
 U+142BE	kEH_Cat	U-09-052
 U+142BE	kEH_Core	Y
 U+142BE	kEH_Desc	A drill, with a half-circle handle, with a curl towards the front on top of the handle, with a round drill-bit with a horizontal line on top of the circle, with a forwards curl coming from the horizontal line.
-U+142BE	kEH_Func	logogram (to open)
+U+142BE	kEH_Func	Logogram (to open)
 U+142BE	kEH_FVal	wbꜣ
 U+142BF	kEH_Cat	U-09-053
 U+142BF	kEH_Core	Y
@@ -35230,7 +35230,7 @@ U+142C0	kEH_HG	U24J
 U+142C1	kEH_Cat	U-09-056
 U+142C1	kEH_Core	Y
 U+142C1	kEH_Desc	A drill, with a half-circle handle, with a vertical line on top, with a round drill-bit.
-U+142C1	kEH_Func	logogram (to open)
+U+142C1	kEH_Func	Logogram (to open)
 U+142C1	kEH_FVal	wbꜣ
 U+142C1	kEH_UniK	HJ U024K
 U+142C1	kEH_JSesh	U24K
@@ -35270,7 +35270,7 @@ U+142C6	kEH_UniK	U140
 U+142C7	kEH_Cat	U-09-064
 U+142C7	kEH_Core	Y
 U+142C7	kEH_Desc	A drill, with a half-circle handle, with a vertical line on top, with a curl towards the front on top of the handle, with a round drill-bit, with a horizontal line on top of the round drill-bit.
-U+142C7	kEH_Func	logogram (to open)
+U+142C7	kEH_Func	Logogram (to open)
 U+142C7	kEH_FVal	wbꜣ
 U+142C7	kEH_UniK	HJ U024D
 U+142C7	kEH_JSesh	U24D
@@ -35296,7 +35296,7 @@ U+142C9	kEH_IFAO	399,5
 U+142CA	kEH_Cat	U-09-075
 U+142CA	kEH_Core	Y
 U+142CA	kEH_Desc	A drill, with a half-circle handle, with a forward angled stroke on top of the handle, with a forked drill-bit, with a horizontal line on top of the forked drill-bit.
-U+142CA	kEH_Func	logogram (to open)
+U+142CA	kEH_Func	Logogram (to open)
 U+142CA	kEH_FVal	wbꜣ
 U+142CA	kEH_IFAO	399,9
 U+142CB	kEH_Cat	U-09-077
@@ -35342,7 +35342,7 @@ U+142D0	kEH_IFAO	399,13
 U+142D1	kEH_Cat	U-09-089
 U+142D1	kEH_Core	Y
 U+142D1	kEH_Desc	A drill with a handle consisting of a horizontal line with a vertical line on top of each side, with a round drill-bit with a horizontal line over it. 
-U+142D1	kEH_Func	logogram (to open)
+U+142D1	kEH_Func	Logogram (to open)
 U+142D1	kEH_FVal	wbꜣ
 U+142D2	kEH_Cat	U-09-092
 U+142D2	kEH_UniK	HJ U075
@@ -35358,17 +35358,17 @@ U+142D3	kEH_IFAO	400,9
 U+142D4	kEH_Cat	U-09-098
 U+142D4	kEH_Core	Y
 U+142D4	kEH_Desc	A drill, with a rectangular handle with a loop on it, with a round drill-bit with a horizontal line over it. 
-U+142D4	kEH_Func	logogram (to open)
+U+142D4	kEH_Func	Logogram (to open)
 U+142D4	kEH_FVal	wbꜣ
 U+142D5	kEH_Cat	U-09-099
 U+142D5	kEH_Core	Y
 U+142D5	kEH_Desc	A drill, with a rectangular handle with a loop on it, with a forked drill-bit, with a horizontal line on top of the forked drill-bit.
-U+142D5	kEH_Func	logogram (to open)
+U+142D5	kEH_Func	Logogram (to open)
 U+142D5	kEH_FVal	wbꜣ
 U+142D6	kEH_Cat	U-09-105
 U+142D6	kEH_Core	Y
 U+142D6	kEH_Desc	A drill, with a handle consisting of a horizontal line with a curling line which curves from the back to the front on top of the horizontal line, with a forked drill-bit, with a horizontal line on top of the drill-bit.
-U+142D6	kEH_Func	logogram (to open)
+U+142D6	kEH_Func	Logogram (to open)
 U+142D6	kEH_FVal	wbꜣ
 U+142D6	kEH_IFAO	400,14
 U+142D7	kEH_Cat	U-09-106
