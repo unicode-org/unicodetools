@@ -1054,13 +1054,10 @@ public class MakeUnicodeFiles {
                     // HACK
                     Tabber mt = mt2;
                     if (l.size() == 1) {
-                        if (propName.equals("Canonical_Combining_Class")) {
-                            continue;
-                        }
                         l.add(0, l.get(0)); // double up
                     } else if (propName.equals("Canonical_Combining_Class")) {
-                        if (l.size() == 2) {
-                            l.add(l.get(1)); // double up final value
+                        if (l.get(1).equals(l.get(0)) && l.get(2).equals(l.get(0))) {
+                            continue;
                         }
                         mt = mt3;
                     } else if (l.size() == 2 && propName.equals("Decomposition_Type")) {
