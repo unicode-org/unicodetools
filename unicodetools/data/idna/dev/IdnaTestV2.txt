@@ -1,6 +1,6 @@
 # IdnaTestV2.txt
-# Date: 2023-11-29, 00:42:51 GMT
-# © 2023 Unicode®, Inc.
+# Date: 2024-01-31, 23:11:54 GMT
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -1701,12 +1701,12 @@ xn----z1g168i.xn--1-ymba92321c; \u200CჀ-.1ς𞴺ς; [B1, C1, V3, V6]; xn----z1
 \u200CჀ-.𝟷σ𞴺Σ; \u200CჀ-.1σ𞴺σ; [B1, C1, V3, V6]; xn----z1g168i.xn--1-0mba52321c; ; xn----z1g.xn--1-0mba52321c; [B1, B6, V3, V6] # Ⴠ-.1σ𞴺σ
 \u200CჀ-.𝟷ς𞴺Σ; \u200CჀ-.1ς𞴺σ; [B1, C1, V3, V6]; xn----z1g168i.xn--1-ymbd52321c; ; xn----z1g.xn--1-0mba52321c; [B1, B6, V3, V6] # Ⴠ-.1ς𞴺σ
 \u200Cⴠ-.𝟷ς𞴺σ; \u200Cⴠ-.1ς𞴺σ; [B1, C1, V3]; xn----rgn530d.xn--1-ymbd52321c; ; xn----2ws.xn--1-0mba52321c; [B1, B6, V3] # ⴠ-.1ς𞴺σ
-𑲘󠄒𓑡｡𝟪Ⴜ; 𑲘𓑡.8Ⴜ; [V5, V6]; xn--7m3d291b.xn--8-s1g; ; ;  # 𑲘.8Ⴜ
-𑲘󠄒𓑡。8Ⴜ; 𑲘𓑡.8Ⴜ; [V5, V6]; xn--7m3d291b.xn--8-s1g; ; ;  # 𑲘.8Ⴜ
-𑲘󠄒𓑡。8ⴜ; 𑲘𓑡.8ⴜ; [V5, V6]; xn--7m3d291b.xn--8-vws; ; ;  # 𑲘.8ⴜ
-xn--7m3d291b.xn--8-vws; 𑲘𓑡.8ⴜ; [V5, V6]; xn--7m3d291b.xn--8-vws; ; ;  # 𑲘.8ⴜ
-xn--7m3d291b.xn--8-s1g; 𑲘𓑡.8Ⴜ; [V5, V6]; xn--7m3d291b.xn--8-s1g; ; ;  # 𑲘.8Ⴜ
-𑲘󠄒𓑡｡𝟪ⴜ; 𑲘𓑡.8ⴜ; [V5, V6]; xn--7m3d291b.xn--8-vws; ; ;  # 𑲘.8ⴜ
+𑲘󠄒𓑡｡𝟪Ⴜ; 𑲘𓑡.8Ⴜ; [V5, V6]; xn--7m3d291b.xn--8-s1g; ; ;  # 𑲘𓑡.8Ⴜ
+𑲘󠄒𓑡。8Ⴜ; 𑲘𓑡.8Ⴜ; [V5, V6]; xn--7m3d291b.xn--8-s1g; ; ;  # 𑲘𓑡.8Ⴜ
+𑲘󠄒𓑡。8ⴜ; 𑲘𓑡.8ⴜ; [V5]; xn--7m3d291b.xn--8-vws; ; ;  # 𑲘𓑡.8ⴜ
+xn--7m3d291b.xn--8-vws; 𑲘𓑡.8ⴜ; [V5]; xn--7m3d291b.xn--8-vws; ; ;  # 𑲘𓑡.8ⴜ
+xn--7m3d291b.xn--8-s1g; 𑲘𓑡.8Ⴜ; [V5, V6]; xn--7m3d291b.xn--8-s1g; ; ;  # 𑲘𓑡.8Ⴜ
+𑲘󠄒𓑡｡𝟪ⴜ; 𑲘𓑡.8ⴜ; [V5]; xn--7m3d291b.xn--8-vws; ; ;  # 𑲘𓑡.8ⴜ
 䪏\u06AB\u07E0\u0941｡뭕ᢝ\u17B9; 䪏\u06AB\u07E0\u0941.뭕ᢝ\u17B9; [B5, B6]; xn--ekb23dj4at01n.xn--43e96bh910b; ; ;  # 䪏ګߠु.뭕ᢝឹ
 䪏\u06AB\u07E0\u0941｡뭕ᢝ\u17B9; 䪏\u06AB\u07E0\u0941.뭕ᢝ\u17B9; [B5, B6]; xn--ekb23dj4at01n.xn--43e96bh910b; ; ;  # 䪏ګߠु.뭕ᢝឹ
 䪏\u06AB\u07E0\u0941。뭕ᢝ\u17B9; 䪏\u06AB\u07E0\u0941.뭕ᢝ\u17B9; [B5, B6]; xn--ekb23dj4at01n.xn--43e96bh910b; ; ;  # 䪏ګߠु.뭕ᢝឹ
@@ -4582,14 +4582,14 @@ xn--0ug.xn--hnd481gv73o; \u200C.Ⴉ≠𐫶; [B1, B5, B6, C1, V6]; xn--0ug.xn--hn
 \u0750。>\u0338σ; \u0750.≯σ; [B1]; xn--3ob.xn--4xa718m; ; ;  # ݐ.≯σ
 xn--3ob.xn--4xa718m; \u0750.≯σ; [B1]; xn--3ob.xn--4xa718m; ; ;  # ݐ.≯σ
 xn--3ob.xn--3xa918m; \u0750.≯ς; [B1]; xn--3ob.xn--3xa918m; ; ;  # ݐ.≯ς
-\u07FC𐸆.𓖏︒񊨩Ⴐ; ; [V6]; xn--0tb8725k.xn--ond3562jt18a7py9c; ; ;  # .︒Ⴐ
-\u07FC𐸆.𓖏。񊨩Ⴐ; \u07FC𐸆.𓖏.񊨩Ⴐ; [V6]; xn--0tb8725k.xn--tu8d.xn--ond97931d; ; ;  # ..Ⴐ
-\u07FC𐸆.𓖏。񊨩ⴐ; \u07FC𐸆.𓖏.񊨩ⴐ; [V6]; xn--0tb8725k.xn--tu8d.xn--7kj73887a; ; ;  # ..ⴐ
-xn--0tb8725k.xn--tu8d.xn--7kj73887a; \u07FC𐸆.𓖏.񊨩ⴐ; [V6]; xn--0tb8725k.xn--tu8d.xn--7kj73887a; ; ;  # ..ⴐ
-xn--0tb8725k.xn--tu8d.xn--ond97931d; \u07FC𐸆.𓖏.񊨩Ⴐ; [V6]; xn--0tb8725k.xn--tu8d.xn--ond97931d; ; ;  # ..Ⴐ
-\u07FC𐸆.𓖏︒񊨩ⴐ; ; [V6]; xn--0tb8725k.xn--7kj9008dt18a7py9c; ; ;  # .︒ⴐ
-xn--0tb8725k.xn--7kj9008dt18a7py9c; \u07FC𐸆.𓖏︒񊨩ⴐ; [V6]; xn--0tb8725k.xn--7kj9008dt18a7py9c; ; ;  # .︒ⴐ
-xn--0tb8725k.xn--ond3562jt18a7py9c; \u07FC𐸆.𓖏︒񊨩Ⴐ; [V6]; xn--0tb8725k.xn--ond3562jt18a7py9c; ; ;  # .︒Ⴐ
+\u07FC𐸆.𓖏︒񊨩Ⴐ; ; [V6]; xn--0tb8725k.xn--ond3562jt18a7py9c; ; ;  # .𓖏︒Ⴐ
+\u07FC𐸆.𓖏。񊨩Ⴐ; \u07FC𐸆.𓖏.񊨩Ⴐ; [V6]; xn--0tb8725k.xn--tu8d.xn--ond97931d; ; ;  # .𓖏.Ⴐ
+\u07FC𐸆.𓖏。񊨩ⴐ; \u07FC𐸆.𓖏.񊨩ⴐ; [V6]; xn--0tb8725k.xn--tu8d.xn--7kj73887a; ; ;  # .𓖏.ⴐ
+xn--0tb8725k.xn--tu8d.xn--7kj73887a; \u07FC𐸆.𓖏.񊨩ⴐ; [V6]; xn--0tb8725k.xn--tu8d.xn--7kj73887a; ; ;  # .𓖏.ⴐ
+xn--0tb8725k.xn--tu8d.xn--ond97931d; \u07FC𐸆.𓖏.񊨩Ⴐ; [V6]; xn--0tb8725k.xn--tu8d.xn--ond97931d; ; ;  # .𓖏.Ⴐ
+\u07FC𐸆.𓖏︒񊨩ⴐ; ; [V6]; xn--0tb8725k.xn--7kj9008dt18a7py9c; ; ;  # .𓖏︒ⴐ
+xn--0tb8725k.xn--7kj9008dt18a7py9c; \u07FC𐸆.𓖏︒񊨩ⴐ; [V6]; xn--0tb8725k.xn--7kj9008dt18a7py9c; ; ;  # .𓖏︒ⴐ
+xn--0tb8725k.xn--ond3562jt18a7py9c; \u07FC𐸆.𓖏︒񊨩Ⴐ; [V6]; xn--0tb8725k.xn--ond3562jt18a7py9c; ; ;  # .𓖏︒Ⴐ
 Ⴥ⚭󠖫⋃｡𑌼; Ⴥ⚭󠖫⋃.𑌼; [V5, V6]; xn--9nd623g4zc5z060c.xn--ro1d; ; ;  # Ⴥ⚭⋃.𑌼
 Ⴥ⚭󠖫⋃。𑌼; Ⴥ⚭󠖫⋃.𑌼; [V5, V6]; xn--9nd623g4zc5z060c.xn--ro1d; ; ;  # Ⴥ⚭⋃.𑌼
 ⴥ⚭󠖫⋃。𑌼; ⴥ⚭󠖫⋃.𑌼; [V5, V6]; xn--vfh16m67gx1162b.xn--ro1d; ; ;  # ⴥ⚭⋃.𑌼

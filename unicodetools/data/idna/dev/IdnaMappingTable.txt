@@ -1,6 +1,6 @@
 # IdnaMappingTable.txt
-# Date: 2023-11-29, 00:40:54 GMT
-# © 2023 Unicode®, Inc.
+# Date: 2024-01-31, 23:06:37 GMT
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -6606,7 +6606,9 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 13430..13438  ; disallowed                             # 12.0 EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH END SEGMENT
 13439..1343F  ; disallowed                             # 15.0 EGYPTIAN HIEROGLYPH INSERT AT MIDDLE..EGYPTIAN HIEROGLYPH END WALLED ENCLOSURE
 13440..13455  ; valid                                  # 15.0 EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
-13456..143FF  ; disallowed                             # NA   <reserved-13456>..<reserved-143FF>
+13456..1345F  ; disallowed                             # NA   <reserved-13456>..<reserved-1345F>
+13460..143FA  ; valid                                  # 16.0 EGYPTIAN HIEROGLYPH-13460..EGYPTIAN HIEROGLYPH-143FA
+143FB..143FF  ; disallowed                             # NA   <reserved-143FB>..<reserved-143FF>
 14400..14646  ; valid                                  # 8.0  ANATOLIAN HIEROGLYPH A001..ANATOLIAN HIEROGLYPH A530
 14647..160FF  ; disallowed                             # NA   <reserved-14647>..<reserved-160FF>
 16100..16139  ; valid                                  # 16.0 GURUNG KHEMA LETTER A..GURUNG KHEMA DIGIT NINE
