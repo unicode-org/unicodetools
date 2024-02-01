@@ -1,12 +1,11 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 16.0.0
 @@@+	NamesList-16.0.0.txt
-@+	Generation Date: 2024-01-31, 11:40:08 GMT
-	Unicode 16.0.0 names list, ninth delta.
+@+	Generation Date: 2024-02-01, 13:52:23 GMT
+	Unicode 16.0.0 names list, tenth delta.
 	Repertoire synched with UnicodeData-16.0.0d13.txt.
 	Pre-alpha rollup of various fixes.
-	Synched with additional annotations for Egyptian Hieroglyphs Extended-A.
-	Fix for Egyptian hieroglyph D25 subhead.
+	Fix Ol Onal digits subhead location.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -46128,7 +46127,7 @@ FFFF	<not a character>
 13F8E	EGYPTIAN HIEROGLYPH-13F8E
 	* logogram (chapel)
 13F8F	EGYPTIAN HIEROGLYPH-13F8F
-	* phonemogram (in r-rw.t (outside) : rw.t
+	* phonemogram (in r-rw.t (outside)) : rw.t
 13F90	EGYPTIAN HIEROGLYPH-13F90
 	* logogram (palace) : ꜥḥ
 13F91	EGYPTIAN HIEROGLYPH-13F91
@@ -47128,7 +47127,7 @@ FFFF	<not a character>
 14196	EGYPTIAN HIEROGLYPH-14196
 	* logogram (to be bright) : ṯḥn
 14197	EGYPTIAN HIEROGLYPH-14197
-	* logogram ṯḥn (to be bright); Classifier dew/scent/rain (ꞽꜣd.t) : ṯḥn | ꞽꜣd.t
+	* logogram (to be bright) or Classifier dew/scent/rain : ṯḥn | ꞽꜣd.t
 14198	EGYPTIAN HIEROGLYPH-14198
 14199	EGYPTIAN HIEROGLYPH-14199
 	* logogram (brightness) : ṯḥn
@@ -58956,8 +58955,8 @@ FFFF	<not a character>
 @		Various signs
 1E5EE	OL ONAL SIGN MU
 1E5EF	OL ONAL SIGN IKIR
-@		Digits
 1E5F0	OL ONAL SIGN HODDOND
+@		Digits
 1E5F1	OL ONAL DIGIT ZERO
 1E5F2	OL ONAL DIGIT ONE
 1E5F3	OL ONAL DIGIT TWO
