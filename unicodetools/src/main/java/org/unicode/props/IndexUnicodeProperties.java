@@ -713,7 +713,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         private String resolveValue(String rawValue, int codepoint) {
             if (DefaultValueType.forString(rawValue) == DefaultValueType.CODE_POINT) {
                 return Character.toString(codepoint);
-            } else if (prop == UcdProperty.Name && rawValue != null && result.endsWith("#")) {
+            } else if (prop == UcdProperty.Name && rawValue != null && rawValue.endsWith("#")) {
                 return rawValue.substring(0, rawValue.length() - 1) + Utility.hex(codepoint);
             } else {
                 return rawValue;
