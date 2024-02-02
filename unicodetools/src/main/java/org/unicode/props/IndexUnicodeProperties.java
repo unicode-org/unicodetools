@@ -688,7 +688,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     if (DefaultValueType.forString(range.value) == DefaultValueType.CODE_POINT
                             || (prop == UcdProperty.Name && range.value.endsWith("#"))) {
                         for (int c = range.codepoint; c <= range.codepointEnd; ++c) {
-                            newMap.put(c, _getValue(c));
+                            newMap.put(c, resolveValue(range.value, c));
                         }
                     } else {
                         newMap.putAll(range.codepoint, range.codepointEnd, range.value);
@@ -707,16 +707,16 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         @Override
         protected String _getValue(int codepoint) {
             final String result = _getRawUnicodeMap().get(codepoint);
-            if (!seen.contains(prop)) {
-                seen.add(prop);
-                System.out.println(prop);
-            }
-            if (DefaultValueType.forString(result) == DefaultValueType.CODE_POINT) {
+            return resolveValue(result, codepoint);
+        }
+
+        private String resolveValue(String rawValue, int codepoint) {
+            if (DefaultValueType.forString(rawValue) == DefaultValueType.CODE_POINT) {
                 return Character.toString(codepoint);
-            } else if (prop == UcdProperty.Name && result != null && result.endsWith("#")) {
-                return result.substring(0, result.length() - 1) + Utility.hex(codepoint);
+            } else if (prop == UcdProperty.Name && rawValue != null && result.endsWith("#")) {
+                return rawValue.substring(0, rawValue.length() - 1) + Utility.hex(codepoint);
             } else {
-                return result;
+                return rawValue;
             }
         }
 
@@ -770,6 +770,4 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public UnicodeSet loadBinary(UcdProperty ucdProp) {
         return load(ucdProp).getSet(Binary.Yes.toString());
     }
-
-    static Set<UcdProperty> seen = new HashSet<>();
 }
