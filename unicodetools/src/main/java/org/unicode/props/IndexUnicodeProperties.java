@@ -28,7 +28,6 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -685,7 +684,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     || raw.containsValue("<codepoint>")) {
                 UnicodeMap<String> newMap = new UnicodeMap<>();
                 for (UnicodeMap.EntryRange<String> range : raw.entryRanges()) {
-                    if (DefaultValueType.forString(range.value) == DefaultValueType.CODE_POINT
+                    if (range.codepoint == -1) {
+                        newMap.put(range.string, range.value);
+                    } else if (DefaultValueType.forString(range.value) == DefaultValueType.CODE_POINT
                             || (prop == UcdProperty.Name && range.value.endsWith("#"))) {
                         for (int c = range.codepoint; c <= range.codepointEnd; ++c) {
                             newMap.put(c, resolveValue(range.value, c));
