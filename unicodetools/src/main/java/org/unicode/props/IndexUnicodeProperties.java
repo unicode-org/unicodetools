@@ -688,7 +688,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     if (DefaultValueType.forString(range.value) == DefaultValueType.CODE_POINT
                             || (prop == UcdProperty.Name && range.value.endsWith("#"))) {
                         for (int c = range.codepoint; c <= range.codepointEnd; ++c) {
-                            newMap.putAll(c, c, _getValue(c));
+                            newMap.put(c, _getValue(c));
                         }
                     } else {
                         newMap.putAll(range.codepoint, range.codepointEnd, range.value);
