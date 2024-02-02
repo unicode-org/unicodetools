@@ -10,7 +10,6 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.VersionInfo;
@@ -29,6 +28,7 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -535,28 +535,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     public static String getResolvedValue(
             IndexUnicodeProperties props, UcdProperty prop, String codepoint, String value) {
-        if (value == null && props != null) {
-            if (getResolvedDefaultValueType(prop) == DefaultValueType.CODE_POINT) {
-                return codepoint;
-            }
-        }
-        if (prop == UcdProperty.Name && value != null && value.endsWith("-#")) {
-            return value.substring(0, value.length() - 1) + Utility.hex(codepoint);
-        }
-        return value;
+        return props.getProperty(prop).getValue(codepoint.codePointAt(0));
     }
 
     public static String getResolvedValue(
             IndexUnicodeProperties props, UcdProperty prop, int codepoint, String value) {
-        if (value == null && props != null) {
-            if (getResolvedDefaultValueType(prop) == DefaultValueType.CODE_POINT) {
-                return UTF16.valueOf(codepoint);
-            }
-        }
-        if (prop == UcdProperty.Name && value != null && value.endsWith("-#")) {
-            return value.substring(0, value.length() - 1) + Utility.hex(codepoint);
-        }
-        return value;
+        return props.getProperty(prop).getValue(codepoint);
     }
 
     UnicodeMap<String> nameMap;
@@ -693,15 +677,44 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
         }
 
+        @Override
         protected UnicodeMap<String> _getUnicodeMap() {
+            var raw = _getRawUnicodeMap();
+            if (prop == UcdProperty.Name
+                    || raw.containsValue("<code point>")
+                    || raw.containsValue("<codepoint>")) {
+                UnicodeMap<String> newMap = new UnicodeMap<>();
+                for (UnicodeMap.EntryRange<String> range : raw.entryRanges()) {
+                    if (DefaultValueType.forString(range.value) == DefaultValueType.CODE_POINT
+                            || (prop == UcdProperty.Name && range.value.endsWith("#"))) {
+                        for (int c = range.codepoint; c <= range.codepointEnd; ++c) {
+                            newMap.putAll(c, c, _getValue(c));
+                        }
+                    } else {
+                        newMap.putAll(range.codepoint, range.codepointEnd, range.value);
+                    }
+                }
+                return newMap;
+            } else {
+                return raw;
+            }
+        }
+
+        protected UnicodeMap<String> _getRawUnicodeMap() {
             return load(prop);
         }
 
         @Override
         protected String _getValue(int codepoint) {
-            final String result = _getUnicodeMap().get(codepoint);
+            final String result = _getRawUnicodeMap().get(codepoint);
+            if (!seen.contains(prop)) {
+                seen.add(prop);
+                System.out.println(prop);
+            }
             if (DefaultValueType.forString(result) == DefaultValueType.CODE_POINT) {
                 return Character.toString(codepoint);
+            } else if (prop == UcdProperty.Name && result != null && result.endsWith("#")) {
+                return result.substring(0, result.length() - 1) + Utility.hex(codepoint);
             } else {
                 return result;
             }
@@ -757,4 +770,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public UnicodeSet loadBinary(UcdProperty ucdProp) {
         return load(ucdProp).getSet(Binary.Yes.toString());
     }
+
+    static Set<UcdProperty> seen = new HashSet<>();
 }
