@@ -57,6 +57,8 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
         for (String propName : factory.getAvailableNames()) {
             UnicodeProperty prop = factory.getProperty(propName);
             switch (propName) {
+                // The default is <none> in BidiMirroring.txt, but TUP incorrectly has it as
+                // <code point>.
                 case "Bidi_Mirroring_Glyph":
                     prop =
                             replaceCpValues(
@@ -72,12 +74,6 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
                             replaceCpValues(
                                     prop, (cp, oldValue) -> fixFC_NFKC_Closure(cp, oldValue));
 
-                    break;
-                case "Joining_Type":
-                    prop = replaceCpValues(prop, (cp, oldValue) -> fixJoining_Type(cp, oldValue));
-                    break;
-                case "Joining_Group":
-                    prop = modifyJoining_Group(prop);
                     break;
                 case "Jamo_Short_Name":
                     prop = modifyJamo_Short_Name(prop);
@@ -316,23 +312,9 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
         }
     }
 
-    // Joining_Type needs fix in IUP
-    private String fixJoining_Type(int cp, String oldValue) {
-        if (defaultTransparent.contains(cp) && "Non_Joining".equals(oldValue)) {
-            return "Transparent";
-        } else {
-            return oldValue;
-        }
-    }
-
     // Jamo_Short_Name needs fix in IUP
     private UnicodeProperty modifyJamo_Short_Name(UnicodeProperty prop) {
         return copyPropReplacingMap(prop, prop.getUnicodeMap().put('ᄋ', ""));
-    }
-
-    // Joining_Group needs fix in IUP (really, in UCD data)
-    private UnicodeProperty modifyJoining_Group(UnicodeProperty prop) {
-        return copyPropReplacingMap(prop, prop.getUnicodeMap().put('ۃ', "Teh_Marbuta_Goal"));
     }
 
     /** Very useful. May already be in ICU, but not sure. */
