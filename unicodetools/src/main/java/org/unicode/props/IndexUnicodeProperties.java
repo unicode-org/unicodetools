@@ -677,6 +677,19 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         @Override
+        public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
+            final long start = System.currentTimeMillis();
+            super.getSet(matcher, result);
+            final long stop = System.currentTimeMillis();
+            final long Δt_in_ms = stop - start;
+            if (Δt_in_ms > 500) {
+                System.out.println("Long getSet for " + prop + " " + ucdVersion + " " + matcher + ": " + Δt_in_ms + " ms");
+                new Throwable().printStackTrace();
+            }
+            return result;
+        }
+
+        @Override
         protected UnicodeMap<String> _getUnicodeMap() {
             var raw = _getRawUnicodeMap();
             if (prop == UcdProperty.Name
