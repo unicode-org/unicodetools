@@ -751,15 +751,25 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         @Override
         protected List<String> _getAvailableValues(List result) {
+            final long start = System.currentTimeMillis();
             if (stringToNamedEnum != null) {
                 result.addAll(enumValueNames);
                 return result;
+            } else {
+                _getUnicodeMap().getAvailableValues(result);
             }
-            return _getUnicodeMap().getAvailableValues(result);
+            final long stop = System.currentTimeMillis();
+            final long Δt_in_ms = stop - start;
+            if (Δt_in_ms > 500) {
+                System.out.println("Long _getAvailableValues for " + prop + " " + ucdVersion + ": " + Δt_in_ms + " ms");
+                new Throwable().printStackTrace();
+            }
+            return result;
         }
 
         @Override
         protected List _getValueAliases(String valueAlias, List result) {
+            final long start = System.currentTimeMillis();
             if (stringToNamedEnum != null) {
                 PropertyNames valueName = stringToNamedEnum.get(valueAlias);
                 if (valueName != null) {
@@ -770,6 +780,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 if (_getUnicodeMap().containsValue(valueAlias)) {
                     result.add(valueAlias);
                 }
+            }
+            final long stop = System.currentTimeMillis();
+            final long Δt_in_ms = stop - start;
+            if (Δt_in_ms > 500) {
+                System.out.println("Long _getValueAliases for " + prop + " " + ucdVersion + " " + valueAlias + ": " + Δt_in_ms + " ms");
+                new Throwable().printStackTrace();
             }
             return result;
         }
