@@ -755,7 +755,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 result.addAll(enumValueNames);
                 return result;
             }
-            return _getUnicodeMap().getAvailableValues(result);
+            return _getRawUnicodeMap().getAvailableValues(result);
         }
 
         @Override
@@ -767,7 +767,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
             }
             if (!result.contains(valueAlias)) {
-                if (_getUnicodeMap().containsValue(valueAlias)) {
+                if (_getRawUnicodeMap().containsValue(valueAlias)) {
                     result.add(valueAlias);
                 }
             }
