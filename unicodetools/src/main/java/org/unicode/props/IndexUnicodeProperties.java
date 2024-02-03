@@ -679,7 +679,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         @Override
         public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
             final long start = System.currentTimeMillis();
-            super.getSet(matcher, result);
+            result = super.getSet(matcher, result);
             final long stop = System.currentTimeMillis();
             final long Δt_in_ms = stop - start;
             if (Δt_in_ms > 500) {
