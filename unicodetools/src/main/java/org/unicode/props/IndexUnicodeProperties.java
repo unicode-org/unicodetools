@@ -682,6 +682,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             if (prop == UcdProperty.Name
                     || raw.containsValue("<code point>")
                     || raw.containsValue("<codepoint>")) {
+                final long start = System.currentTimeMillis();
                 UnicodeMap<String> newMap = new UnicodeMap<>();
                 for (UnicodeMap.EntryRange<String> range : raw.entryRanges()) {
                     if (range.codepoint == -1) {
@@ -696,6 +697,13 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                         newMap.putAll(range.codepoint, range.codepointEnd, range.value);
                     }
                 }
+                final long stop = System.currentTimeMillis();
+                final long Δt_in_ms = stop - start;
+                System.out.println("Built " + prop + " " + ucdVersion + " map in " + Δt_in_ms + " ms");
+                if (Δt_in_ms > 500) {
+                    new Throwable().printStackTrace();
+                }
+
                 return newMap;
             } else {
                 return raw;
