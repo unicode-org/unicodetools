@@ -1199,17 +1199,17 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     }
 
     public static final UnicodeProperty.PatternMatcher NULL_MATCHER =
-        new UnicodeProperty.PatternMatcher() {
-            @Override
-            public boolean test(String o) {
-                return o == null;
-            }
+            new UnicodeProperty.PatternMatcher() {
+                @Override
+                public boolean test(String o) {
+                    return o == null;
+                }
 
-            @Override
-            public PatternMatcher set(String pattern) {
-                return this;
-            }
-        };
+                @Override
+                public PatternMatcher set(String pattern) {
+                    return this;
+                }
+            };
 
     public static class SimpleMatcher implements PatternMatcher {
         Comparator<String> comparator;
