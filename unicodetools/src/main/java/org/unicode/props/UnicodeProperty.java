@@ -470,11 +470,11 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             if (previousNullStart <= 0x10FFFF) {
                 result.addAll(previousNullStart, 0x10FFFF);
             }
-        }
-        if (matcher == UnicodeProperty.NULL_MATCHER) {
-            // Optimization: The null matcher matches only null, no need to look
-            // at the non-null values.
-            return result;
+            if (matcher == UnicodeProperty.NULL_MATCHER) {
+                // Optimization: The null matcher matches only null, no need to
+                // look at the non-null values.
+                return result;
+            }
         }
         Iterator<String> it = um.getAvailableValues(null).iterator();
         main:
