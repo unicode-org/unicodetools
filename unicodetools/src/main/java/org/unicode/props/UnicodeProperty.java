@@ -450,7 +450,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                     usi.next(); ) { // int i = 0; i <= 0x10FFFF; ++i
                 int i = usi.codepoint;
                 String value = getValue(i);
-                if (value != null && matcher.test(value)) {
+                if (matcher.test(value)) {
                     result.add(i);
                 }
             }
@@ -459,6 +459,19 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         List<String> valueAliases = new ArrayList<>(1); // to avoid reallocating...
         List<String> partAliases = new ArrayList<>(1);
         UnicodeMap<String> um = getUnicodeMap_internal();
+        if (matcher.test(null)) {
+            int previousNullStart = 0;
+            for (var range : um.entryRanges()) {
+                result.addAll(previousNullStart, range.codepoint - 1);
+                previousNullStart = range.codepointEnd + 1;
+            }
+            result.addAll(previousNullStart, 0x10FFFF);
+        }
+        if (matcher == UnicodeProperty.NULL_MATCHER) {
+            // Optimization: The null matcher matches only null, no need to look
+            // at the non-null values.
+            return result;
+        }
         Iterator<String> it = um.getAvailableValues(null).iterator();
         main:
         while (it.hasNext()) {
@@ -1185,6 +1198,19 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         }
     }
 
+    public static final UnicodeProperty.PatternMatcher NULL_MATCHER =
+        new UnicodeProperty.PatternMatcher() {
+            @Override
+            public boolean test(String o) {
+                return o == null;
+            }
+
+            @Override
+            public PatternMatcher set(String pattern) {
+                return this;
+            }
+        };
+
     public static class SimpleMatcher implements PatternMatcher {
         Comparator<String> comparator;
 
@@ -1219,7 +1245,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
         @Override
         public boolean test(String value) {
-            matcher.reset(value.toString());
+            if (value == null) {
+                return false;
+            }
+            matcher.reset(value);
             return matcher.find();
         }
     }
