@@ -63,10 +63,6 @@ public class VersionedProperty {
     private static final Set<String> TOOL_ONLY_PROPERTIES =
             Set.of("toNFC", "toNFD", "toNFKC", "toNFKD");
 
-    private static boolean isTrivial(UnicodeMap<String> map) {
-        return map.isEmpty() || map.getSet("").equals(UnicodeSet.ALL_CODE_POINTS);
-    }
-
     public UnicodeProperty getProperty() {
         return property;
     }
