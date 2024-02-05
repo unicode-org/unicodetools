@@ -679,7 +679,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         @Override
         public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
             final long start = System.currentTimeMillis();
-            result = super.getSet(matcher, result);
+            result = getSet(matcher, result, () -> _getRawUnicodeMap());
             final long stop = System.currentTimeMillis();
             final long Δt_in_ms = stop - start;
             if (Δt_in_ms > 500) {
@@ -691,7 +691,36 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         @Override
         protected UnicodeMap<String> _getUnicodeMap() {
-            return _getRawUnicodeMap();
+            var raw = _getRawUnicodeMap();
+            if (prop == UcdProperty.Name
+                    || raw.containsValue("<code point>")
+                    || raw.containsValue("<codepoint>")) {
+                final long start = System.currentTimeMillis();
+                UnicodeMap<String> newMap = new UnicodeMap<>();
+                for (UnicodeMap.EntryRange<String> range : raw.entryRanges()) {
+                    if (range.codepoint == -1) {
+                        newMap.put(range.string, range.value);
+                    } else if (DefaultValueType.forString(range.value)
+                                    == DefaultValueType.CODE_POINT
+                            || (prop == UcdProperty.Name && range.value.endsWith("#"))) {
+                        for (int c = range.codepoint; c <= range.codepointEnd; ++c) {
+                            newMap.put(c, resolveValue(range.value, c));
+                        }
+                    } else {
+                        newMap.putAll(range.codepoint, range.codepointEnd, range.value);
+                    }
+                }
+                final long stop = System.currentTimeMillis();
+                final long Δt_in_ms = stop - start;
+                System.out.println("Built " + prop + " " + ucdVersion + " map in " + Δt_in_ms + " ms");
+                if (Δt_in_ms > 500) {
+                    new Throwable().printStackTrace();
+                }
+
+                return newMap;
+            } else {
+                return raw;
+            }
         }
 
         protected UnicodeMap<String> _getRawUnicodeMap() {
