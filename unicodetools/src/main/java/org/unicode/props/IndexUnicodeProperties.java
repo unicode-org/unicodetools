@@ -713,9 +713,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 final long stop = System.currentTimeMillis();
                 final long Δt_in_ms = stop - start;
                 System.out.println("Built " + prop + " " + ucdVersion + " map in " + Δt_in_ms + " ms");
-                if (Δt_in_ms > 500) {
-                    new Throwable().printStackTrace();
-                }
+                new Throwable().printStackTrace(System.out);
 
                 return newMap;
             } else {
