@@ -147,8 +147,8 @@ public class VersionedProperty {
             }
             matcher.set(body);
             set = property.getSet(matcher);
-        } else if (propertyValue.equals("∅")) {
-            set = property.getSet(NULL_MATCHER, null);
+        } else if (propertyValue.equals("@none@")) {
+            set = property.getSet(UnicodeProperty.NULL_MATCHER, null);
         } else {
             set = property.getSet(propertyValue);
         }
@@ -172,17 +172,4 @@ public class VersionedProperty {
         }
         return result;
     }
-
-    static final UnicodeProperty.PatternMatcher NULL_MATCHER =
-            new UnicodeProperty.PatternMatcher() {
-                @Override
-                public boolean test(String o) {
-                    return o == null || "".equals(o);
-                }
-
-                @Override
-                public PatternMatcher set(String pattern) {
-                    return this;
-                }
-            };
 }

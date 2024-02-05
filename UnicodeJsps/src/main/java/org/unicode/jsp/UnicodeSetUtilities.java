@@ -368,7 +368,7 @@ public class UnicodeSetUtilities {
 
         @Override
         public boolean test(String value) {
-            int comp = comparator.compare(pattern, value.toString());
+            int comp = comparator.compare(pattern, value);
             switch (relation) {
                 case less:
                     return comp < 0;
