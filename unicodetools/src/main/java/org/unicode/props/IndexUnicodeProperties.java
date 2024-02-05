@@ -705,6 +705,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
                 final long stop = System.currentTimeMillis();
                 final long Δt_in_ms = stop - start;
+                // We do not want to construct these UnicodeMaps that map most of the code space to
+                // itself, not so much because building them is costly, but because whatever we do
+                // on them is almost certainly a bad idea (for instance calling `values()` will be
+                // extremely slow).  Log a trace so we can figure out where we are using this.
                 System.out.println(
                         "Built " + prop + " " + ucdVersion + " map in " + Δt_in_ms + " ms");
                 new Throwable().printStackTrace(System.out);
