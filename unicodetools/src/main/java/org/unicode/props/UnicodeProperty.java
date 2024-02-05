@@ -555,6 +555,11 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return getUnicodeMap(false);
     }
 
+    public boolean isTrivial() {
+        final var map = getUnicodeMap();
+        return map.isEmpty() || map.keySet("").equals(UnicodeSet.ALL_CODE_POINTS) && map.stringKeys().isEmpty();
+    }
+
     /**
      * @return the unicode map
      */

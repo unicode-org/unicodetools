@@ -690,6 +690,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         @Override
+        public boolean isTrivial() {
+            return _getRawUnicodeMap().isEmpty() || _getRawUnicodeMap().keySet("").equals(UnicodeSet.ALL_CODE_POINTS);
+        }
+
+        @Override
         protected UnicodeMap<String> _getUnicodeMap() {
             var raw = _getRawUnicodeMap();
             if (prop == UcdProperty.Name

@@ -109,11 +109,11 @@ public class VersionedProperty {
         propSource = getIndexedProperties(version);
         property = propSource.getProperty(xPropertyName);
         if ((property == null && TOOL_ONLY_PROPERTIES.contains(xPropertyName))
-                || (property != null && isTrivial(property.getUnicodeMap()) && allowRetroactive)) {
+                || (property != null && property.isTrivial() && allowRetroactive)) {
             propSource = ToolUnicodePropertySource.make(version);
             property = propSource.getProperty(xPropertyName);
         }
-        if (property == null || isTrivial(property.getUnicodeMap())) {
+        if (property == null || property.isTrivial()) {
             if (!throwOnUnknownProperty) {
                 return null;
             }
