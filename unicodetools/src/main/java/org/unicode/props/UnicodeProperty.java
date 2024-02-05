@@ -462,10 +462,14 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (matcher.test(null)) {
             int previousNullStart = 0;
             for (var range : um.entryRanges()) {
-                result.addAll(previousNullStart, range.codepoint - 1);
+                if (range.codepoint > 0) {
+                    result.addAll(previousNullStart, range.codepoint - 1);
+                }
                 previousNullStart = range.codepointEnd + 1;
             }
-            result.addAll(previousNullStart, 0x10FFFF);
+            if (previousNullStart <= 0x10FFFF) {
+                result.addAll(previousNullStart, 0x10FFFF);
+            }
         }
         if (matcher == UnicodeProperty.NULL_MATCHER) {
             // Optimization: The null matcher matches only null, no need to look
