@@ -950,7 +950,7 @@ Let $ideohack = [〆 〇 〡-〩]
 \P{kRSUnicode=@none@} = \P{kTotalStrokes=@none@}
 
 # TODO(eggrobin): Should those two have a kMandarin, or this not actually an invariant?
-# TODO(macchiati): The kHanyuPinyin UnicodeSet is excruciatingly slow.
+# See https://www.unicode.org/review/pri483/feedback.html#ID20240118004124.
 [\P{kHanyuPinyin=@none@} - \P{kMandarin=@none@}] = [\x{228F5}\x{2574C}]
 
 Let $strokesAndRadicals = [\p{Name=/^CJK STROKE /}\p{Name=/^(CJK|KANGXI) RADICAL /}]-\p{gc=Cn}
