@@ -30,7 +30,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.regex.Pattern;
 import org.unicode.cldr.util.props.UnicodeLabel;
 
@@ -553,7 +552,8 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     public boolean isTrivial() {
         final var map = getUnicodeMap();
-        return map.isEmpty() || map.keySet("").equals(UnicodeSet.ALL_CODE_POINTS) && map.stringKeys().isEmpty();
+        return map.isEmpty()
+                || map.keySet("").equals(UnicodeSet.ALL_CODE_POINTS) && map.stringKeys().isEmpty();
     }
 
     /**

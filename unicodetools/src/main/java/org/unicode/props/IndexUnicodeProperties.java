@@ -678,7 +678,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         @Override
         public boolean isTrivial() {
-            return _getRawUnicodeMap().isEmpty() || _getRawUnicodeMap().keySet("").equals(UnicodeSet.ALL_CODE_POINTS);
+            return _getRawUnicodeMap().isEmpty()
+                    || _getRawUnicodeMap().keySet("").equals(UnicodeSet.ALL_CODE_POINTS);
         }
 
         @Override
@@ -704,7 +705,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
                 final long stop = System.currentTimeMillis();
                 final long Δt_in_ms = stop - start;
-                System.out.println("Built " + prop + " " + ucdVersion + " map in " + Δt_in_ms + " ms");
+                System.out.println(
+                        "Built " + prop + " " + ucdVersion + " map in " + Δt_in_ms + " ms");
                 new Throwable().printStackTrace(System.out);
 
                 return newMap;

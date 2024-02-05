@@ -1,6 +1,5 @@
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.SymbolTable;
 import com.ibm.icu.text.UnicodeSet;
 import java.text.ParsePosition;
