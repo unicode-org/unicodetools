@@ -951,7 +951,9 @@ Let $ideohack = [〆 〇 〡-〩]
 
 # TODO(eggrobin): Should those two have a kMandarin, or this not actually an invariant?
 # See https://www.unicode.org/review/pri483/feedback.html#ID20240118004124.
-[\P{kHanyuPinyin=@none@} - \P{kMandarin=@none@}] = [\x{228F5}\x{2574C}]
+# Change to \P{kHanyuPinyin=@none@} ⊆ \P{kMandarin=@none@} once this gets fixed.
+Let $ideographsMissingkMandarin = [\x{228F5}\x{2574C}]
+[\P{kHanyuPinyin=@none@} - \P{kMandarin=@none@}] = $ideographsMissingkMandarin
 
 Let $strokesAndRadicals = [\p{Name=/^CJK STROKE /}\p{Name=/^(CJK|KANGXI) RADICAL /}]-\p{gc=Cn}
 Let $nonIdeographicRadicals = \N{CJK RADICAL REPEAT}
