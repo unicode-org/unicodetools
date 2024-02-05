@@ -444,10 +444,6 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     public static final String UNUSED = "??";
 
     public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
-        return getSet(matcher, result, () -> getUnicodeMap_internal());
-    }
-
-    protected final UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result, Supplier<UnicodeMap<String>> unicodeMap) {
         if (result == null) result = new UnicodeSet();
         boolean uniformUnassigned = hasUniformUnassigned();
         if (isType(STRING_OR_MISC_MASK) && !isMultivalued) {
@@ -463,7 +459,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         }
         List<String> valueAliases = new ArrayList<>(1); // to avoid reallocating...
         List<String> partAliases = new ArrayList<>(1);
-        UnicodeMap<String> um = unicodeMap.get();
+        UnicodeMap<String> um = getUnicodeMap_internal();
         Iterator<String> it = um.getAvailableValues(null).iterator();
         main:
         while (it.hasNext()) {

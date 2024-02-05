@@ -677,19 +677,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         @Override
-        public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
-            final long start = System.currentTimeMillis();
-            result = getSet(matcher, result, () -> _getRawUnicodeMap());
-            final long stop = System.currentTimeMillis();
-            final long Δt_in_ms = stop - start;
-            if (Δt_in_ms > 500) {
-                System.out.println("Long getSet for " + prop + " " + ucdVersion + " " + matcher + ": " + Δt_in_ms + " ms");
-                new Throwable().printStackTrace();
-            }
-            return result;
-        }
-
-        @Override
         public boolean isTrivial() {
             return _getRawUnicodeMap().isEmpty() || _getRawUnicodeMap().keySet("").equals(UnicodeSet.ALL_CODE_POINTS);
         }
@@ -758,7 +745,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 result.addAll(enumValueNames);
                 return result;
             }
-            return _getRawUnicodeMap().getAvailableValues(result);
+            return _getUnicodeMap().getAvailableValues(result);
         }
 
         @Override
@@ -770,7 +757,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
             }
             if (!result.contains(valueAlias)) {
-                if (_getRawUnicodeMap().containsValue(valueAlias)) {
+                // TODO(egg): We should not be constructing this map for this.
+                if (_getUnicodeMap().containsValue(valueAlias)) {
                     result.add(valueAlias);
                 }
             }
