@@ -11,7 +11,7 @@ DRAFT=$2
 UNITOOLS_DATA=$UNICODETOOLS/unicodetools/data
 
 # Adjust the following for each year and version as needed.
-COPY_YEAR=2023
+COPY_YEAR=2024
 UNI_VER=16.0.0
 EMOJI_VER=16.0
 
@@ -37,6 +37,14 @@ rm $DRAFT/UCD/ucd/zipped-ReadMe.txt
 
 mkdir -p $DRAFT/emoji
 cp $UNITOOLS_DATA/emoji/dev/* $DRAFT/emoji
+
+mkdir -p $DRAFT/idna
+cp $UNITOOLS_DATA/idna/dev/* $DRAFT/idna
+
+mkdir -p $DRAFT/idna2008derived
+rm $DRAFT/idna2008derived/*
+cp $UNITOOLS_DATA/idna/idna2008derived/Idna2008-$UNI_VER.txt $DRAFT/idna2008derived
+cp $UNITOOLS_DATA/idna/idna2008derived/ReadMe.txt $DRAFT/idna2008derived
 
 # Fix permissions. Everyone can read, and search directories.
 chmod a+rX -R $DRAFT

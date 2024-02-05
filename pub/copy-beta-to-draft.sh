@@ -11,7 +11,7 @@ DRAFT=$2
 UNITOOLS_DATA=$UNICODETOOLS/unicodetools/data
 
 # Adjust the following for each year and version as needed.
-COPY_YEAR=2023
+COPY_YEAR=2024
 UNI_VER=16.0.0
 EMOJI_VER=16.0
 # UTS #10 release revision number to be used in CollationTest.html:
