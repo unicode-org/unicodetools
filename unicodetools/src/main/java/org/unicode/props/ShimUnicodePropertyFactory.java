@@ -67,6 +67,8 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
                                             oldValue == null ? UTF16.valueOf(cp) : oldValue);
                     break;
                 case "Bidi_Paired_Bracket":
+                    // The default is <none> in PropertyValueAliases.txt, but TUP incorrectly
+                    // has it as U+0000.
                     prop = replaceValues(prop, oldValue -> oldValue == null ? "\u0000" : oldValue);
                     break;
                 case "FC_NFKC_Closure":
@@ -76,9 +78,6 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
                             replaceCpValues(
                                     prop, (cp, oldValue) -> fixFC_NFKC_Closure(cp, oldValue));
 
-                    break;
-                case "Jamo_Short_Name":
-                    prop = modifyJamo_Short_Name(prop);
                     break;
                 case "Name":
                     // TUP reports the special label <control-XXXX> as the value of the Name
@@ -313,11 +312,6 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
         } else {
             return oldValue;
         }
-    }
-
-    // Jamo_Short_Name needs fix in IUP
-    private UnicodeProperty modifyJamo_Short_Name(UnicodeProperty prop) {
-        return copyPropReplacingMap(prop, prop.getUnicodeMap().put('ᄋ', ""));
     }
 
     /** Very useful. May already be in ICU, but not sure. */

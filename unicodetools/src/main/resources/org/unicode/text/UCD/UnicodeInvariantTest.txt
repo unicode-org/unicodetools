@@ -53,25 +53,37 @@
 #
 # For each character in <unicodeSet>, verify that the result of applying the left <props>
 # is (=|≠) the result of applying the right <props>.
-#   <props> is of the form (<unicodeSet> | <prop>) ("*" (<unicodeSet> | <prop>))?
+#   <props> is of the form (<unicodeSet> | <prop>) ("*" (<unicodeSet> | <prop> | <sequenceTransformation>))?
 #   It is the functional composition of the properties applied to strings, whereby
 #   <unicodeSet> is used to filter the result.
 #   <prop> for a string property is applied to each character, and the result concatenated
 #       That is, cf("A1") is cf("A")+cf("1") = "a1"
-#   <prop> for an enumerated property, is applied to each character, and the result is a concatenated set.
-#       That is, gc("A1") is gc("A")+gc("1") = "Uppercase_LetterDecimal_Number"
+#   <prop> for an enumerated property is applied to each character, and the result is sequence of
+#   strings.
+#       That is, gc("A1") is [gc("A"), gc("1")] = ["Uppercase_Letter", "Decimal_Number"]
+#   <sequenceTransformation> may be applied to a seqence or strings or to a string.  On a string it
+#   operates on the code points and returns a string.
+#       The available operations are:
+#           (append <string>)
+#           (prepend <string>)
+#           (take <n>)
+#           (drop <n>)
+#           (delete-adjacent-duplicates)
+#           (string-join)
+#   The result of the <props> must be a string, a single-string sequence, or an empty sequence.
 #
 #   Example: for <props> of bc * \P{bc=NSM} * cf * dm, the result applied to Å (angstrom sign) are:
 #       bc * \P{bc=NSM} * cf * dm ("Å")
 #       bc * \P{bc=NSM} * cf ("A" + umlaut)
 #       bc * \P{bc=NSM} ("a" + umlaut)
 #       bc ("a")
-#       "Left"
+#       "Left_To_Right"
 #
-#   Example: In \p{dt=canonical} bc * \P{bc=NSM} * dm = bc * \P{bc=NSM}
+#   Example: In \p{dt=canonical} (delete-adjacent-duplicates) * bc * \P{bc=NSM} * dm = bc * \P{bc=NSM}
 #       This examines only those characters that have canonical compositions. For each such character X
-#       it gets the decomposition mapping of X, then filters out all NSM characters, then gets the Bidi_Class.
-#       It then tests that against the result of filtering out NSM characters from X, then getting the BIDI_Class.
+#       it gets the decomposition mapping of X, then filters out all NSM characters, then gets the Bidi_Class,
+#       then deduplicates runs of the same Bidi_Class.
+#       It then compares that with the result of filtering out NSM characters from X, then getting the Bidi_Class.
 #
 ##########################
 # EquivalencesOf <unicodeSet> <props> (⇐|⇔|⇒|⇍|⇎|⇏) <props>
@@ -241,13 +253,13 @@ Let $caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u10FC\u1D
 
 # Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
 # This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
-In \p{dt=canonical} bc * \P{bc=NSM} * dm = bc * \P{bc=NSM}
+In \p{dt=canonical} (delete-adjacent-duplicates) * bc * \P{bc=NSM} * dm = bc * \P{bc=NSM}
 
 # Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
 # This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
 # There are 6 special cases, all symmetric symbols—which are not mirrored—with a solidus overlay:
 Let $BMExclusions = [ ≠ ∤ ∦ ≢ ≭ ⫝̸ ]
-In [\p{dt=canonical}-$BMExclusions] Bidi_M * \P{bc=NSM} * dm = Bidi_M * \P{bc=NSM}
+In [\p{dt=canonical}-$BMExclusions] (delete-adjacent-duplicates) * Bidi_M * \P{bc=NSM} * dm = Bidi_M * \P{bc=NSM}
 
 # Additional BIDI invariant constants
 Let $AL_blocks = [\u0600-\u07BF \u0860-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF \U00010D00-\U00010D3F \U00010EC0-\U00010EFF \U00010F30-\U00010F6F \U0001EC70-\U0001ECBF \U0001ED00-\U0001ED4F \U0001EE00-\U0001EEFF]
@@ -321,7 +333,7 @@ EquivalencesOf $codepoints Case_Folding ⇔ Simple_Case_Folding
 
 # Stability: Once a character is assigned, both its Name and its Jamo_Short_Name will never change. 
 # Name is covered in Main policies
-# TODO: Short Name
+In \P{U-1:GC=Cn} Jamo_Short_Name=U-1:Jamo_Short_Name
 
 # Stability: The Noncharacter_Code_Point property is an immutable code point property, which means that its property values for all Unicode code points will never change.
 \p{NChar} = \p{U-1:NChar}
@@ -963,9 +975,7 @@ Let $nonIdeographicStrokes = \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZ
 
 \P{Equivalent_Unified_Ideograph=@none@} ⊆ $strokesAndRadicals
 [$strokesAndRadicals - \P{Equivalent_Unified_Ideograph=@none@}] = [$nonIdeographicStrokes $nonIdeographicRadicals]
-# TODO(egg): NFC_Quick_Check is a stupid way to get a Yes here; we are checking
-# that Equivalent_Unified_Ideograph values are single unified ideographs.
-In \P{Equivalent_Unified_Ideograph=@none@} Unified_Ideograph * Equivalent_Unified_Ideograph = NFC_Quick_Check
+In \P{Equivalent_Unified_Ideograph=@none@} Unified_Ideograph * Equivalent_Unified_Ideograph = (constant Yes)
 
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
@@ -978,3 +988,7 @@ In \P{Equivalent_Unified_Ideograph=@none@} Unified_Ideograph * Equivalent_Unifie
 # Script Extensions (mostly testing the proper handling of multivalued properties).
 \p{sc=Deva} ⊂ \p{scx=Deva}
 [\p{scx=Deva} & \p{scx=Beng}] ⊃ []
+
+# Hangul Syllable Name Generation,
+# https://www.unicode.org/versions/latest/ch03.pdf#G59675.
+In [\p{Block=Hangul Syllables} - \p{gc=Cn}] (prepend HANGUL SYLLABLE ) * (string-join) * Jamo_Short_Name * toNFD = Name
