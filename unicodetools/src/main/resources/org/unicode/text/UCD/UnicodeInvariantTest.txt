@@ -446,21 +446,42 @@ $Unicode_6_1_Decompositions ⊆ [\p{Name=/^CHAKMA VOWEL SIGN /}]
 # Stability: All characters other than those with General_Category property values Spacing_Mark (Mc) and Nonspacing_Mark (Mn) have the Canonical_Combining_Class property value 0.
 \p{CCC=0} ⊇ [^ \p{GC=Mc} \p{GC=Mn}]
 
-# Stability: Canonical and compatibility mappings (Decomposition_Mapping property values) are always in canonical order, and the resulting recursive decomposition will also be in canonical order. 
-# Note: We really mean the fixed point of Decomposition_Mapping on the left-hand side here.
-In \P{Decomposition_Mapping=}, Decomposition_Mapping * Decomposition_Mapping * Decomposition_Mapping = toNFKD
+# Stability: Canonical and compatibility mappings (Decomposition_Mapping
+# property values) are always in canonical order, and the resulting recursive
+# decomposition will also be in canonical order. 
+# Note: We really mean the fixed point of Decomposition_Mapping on the
+# left-hand side here.
+In $codepoints, Decomposition_Mapping * Decomposition_Mapping * Decomposition_Mapping = toNFKD
 
-# Stability: Canonical mappings (Decomposition_Mapping property values) are always limited either to a single value or to a pair. The second character in the pair cannot itself have a canonical mapping. 
+# Stability: Canonical mappings (Decomposition_Mapping property values) are
+# always limited either to a single value or to a pair. The second character in
+# the pair cannot itself have a canonical mapping.
 [ \p{Decomposition_Type=Canonical} & \p{Decomposition_Mapping=/.../} ] = []
-# TODO: The second character in the pair cannot itself have a canonical mapping.
+[ \p{Decomposition_Type=Canonical} & \p{Decomposition_Mapping=} ] = []
+Let $expandingCanonicalDecompositions = [ \p{Decomposition_Type=Canonical} & \p{Decomposition_Mapping=/../} ]
+In $expandingCanonicalDecompositions, Decomposition_Type * (drop 1) * Decomposition_Mapping ≠ (constant Canonical)
+# In fact the second character does not have a decomposition mapping at all,
+# though we do not promise that:
+In $expandingCanonicalDecompositions, Decomposition_Type * (drop 1) * Decomposition_Mapping = (constant None)
+In $expandingCanonicalDecompositions, Decomposition_Mapping * (drop 1) * Decomposition_Mapping = (drop 1) * Decomposition_Mapping
 
-# Stability: Canonical mappings (Decomposition_Mapping property values) are always limited so that no string when normalized to NFC expands to more than 3× in length (measured in code units). 
+# Stability: Canonical mappings (Decomposition_Mapping property values) are
+# always limited so that no string when normalized to NFC expands to more than
+# 3× in length (measured in code units). 
 \p{toNFC=/..../} = []
 # Note: This bound is tight:
 \p{toNFC=/.../} ⊃ []
 
-# Stability: Once a character is assigned, its Decomposition_Mapping will never change. 
+# Stability: Once a character is assigned, its Decomposition_Mapping will never
+# change. 
 In \P{U-1:GC=Cn}, dm=U-1:dm
+
+# Stability: Canonical mappings (Decomposition_Mapping property values) to a
+# pair of characters are limited such that the first of the pair in the mapping
+# must have ccc=0, except for the Decomposition_Mapping of the following four
+# characters: U+0344, U+0F73, U+0F75, U+0F81.
+Let $canonicallyExpandingNonstarters = [\u0344 \u0F73 \u0F75 \u0F81]
+In [$expandingCanonicalDecompositions - $canonicallyExpandingNonstarters], ccc * (take 1) * Decomposition_Mapping = (constant Not_Reordered)
 
 # U6.0: Construction of Full_Composition_Exclusion
 # Primary Composites don't include singletons, ccc!=0, or sequences starting with ccc!=0
