@@ -58,10 +58,10 @@
 #   <unicodeSet> is used to filter the result.
 #   <prop> for a string property is applied to each character, and the result concatenated
 #       That is, cf("A1") is cf("A")+cf("1") = "a1"
-#   <prop> for an enumerated property is applied to each character, and the result is sequence of
+#   <prop> for an enumerated property is applied to each character, and the result is a sequence of
 #   strings.
 #       That is, gc("A1") is [gc("A"), gc("1")] = ["Uppercase_Letter", "Decimal_Number"]
-#   <sequenceTransformation> may be applied to a seqence or strings or to a string.  On a string it
+#   <sequenceTransformation> may be applied to a sequence of strings or to a string.  On a string it
 #   operates on the code points and returns a string.
 #       The available operations are:
 #           (append <string>)
@@ -70,6 +70,7 @@
 #           (drop <n>)
 #           (delete-adjacent-duplicates)
 #           (string-join)
+#           (constant <string>)
 #   The result of the <props> must be a string, a single-string sequence, or an empty sequence.
 #
 #   Example: for <props> of bc * \P{bc=NSM} * cf * dm, the result applied to Å (angstrom sign) are:
