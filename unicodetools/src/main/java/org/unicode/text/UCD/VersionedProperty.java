@@ -1,6 +1,5 @@
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.SymbolTable;
 import com.ibm.icu.text.UnicodeSet;
 import java.text.ParsePosition;
@@ -63,13 +62,6 @@ public class VersionedProperty {
     private static final Set<String> TOOL_ONLY_PROPERTIES =
             Set.of("toNFC", "toNFD", "toNFKC", "toNFKD");
 
-    private static boolean isTrivial(UnicodeMap<String> map) {
-        return map.isEmpty()
-                || (map.values().size() == 1
-                        && map.getSet(map.values().iterator().next())
-                                .equals(UnicodeSet.ALL_CODE_POINTS));
-    }
-
     public UnicodeProperty getProperty() {
         return property;
     }
@@ -112,11 +104,11 @@ public class VersionedProperty {
         propSource = getIndexedProperties(version);
         property = propSource.getProperty(xPropertyName);
         if ((property == null && TOOL_ONLY_PROPERTIES.contains(xPropertyName))
-                || (property != null && isTrivial(property.getUnicodeMap()) && allowRetroactive)) {
+                || (property != null && property.isTrivial() && allowRetroactive)) {
             propSource = ToolUnicodePropertySource.make(version);
             property = propSource.getProperty(xPropertyName);
         }
-        if (property == null || isTrivial(property.getUnicodeMap())) {
+        if (property == null || property.isTrivial()) {
             if (!throwOnUnknownProperty) {
                 return null;
             }
