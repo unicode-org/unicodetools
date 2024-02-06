@@ -241,7 +241,7 @@ public class TestUnicodeInvariants {
                                 showMapLine(line, pp);
                             } else if (line.startsWith("Show")) {
                                 showLine(line, pp);
-                            } else if (line.startsWith("EquivalencesOf")) {
+                            } else if (line.startsWith("OnPairsOf")) {
                                 equivalencesLine(line, pp, lineNumber);
                             } else {
                                 testLine(line, pp, lineNumber);
@@ -278,12 +278,16 @@ public class TestUnicodeInvariants {
 
     private static void equivalencesLine(String line, ParsePosition pp, int lineNumber)
             throws ParseException {
-        pp.setIndex("EquivalencesOf".length());
+        pp.setIndex("OnPairsOf".length());
         final UnicodeSet domain = new UnicodeSet(line, pp, symbolTable);
+        expectToken(",", pp, line);
+        expectToken("EqualityOf", pp, line);
         final var leftProperty = CompoundProperty.of(LATEST_PROPS, line, pp);
         scan(PATTERN_WHITE_SPACE, line, pp, true);
         char relationOperator = line.charAt(pp.getIndex());
         pp.setIndex(pp.getIndex() + 1);
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+        expectToken("EqualityOf", pp, line);
         final var rightProperty = CompoundProperty.of(LATEST_PROPS, line, pp);
 
         boolean leftShouldImplyRight = false;
@@ -518,11 +522,22 @@ public class TestUnicodeInvariants {
         }
     }
 
+    private static void expectToken(String token, ParsePosition pp, String line)
+            throws ParseException {
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+        if (!line.substring(pp.getIndex()).startsWith(token)) {
+            throw new ParseException("Expected " + token, pp.getIndex());
+        }
+        pp.setIndex(pp.getIndex() + token.length());
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+    }
+
     private static PropertyComparison getPropertyComparison(ParsePosition pp, String line)
             throws ParseException {
         final PropertyComparison propertyComparison = new PropertyComparison();
 
         propertyComparison.valueSet = new UnicodeSet(line, pp, symbolTable);
+        expectToken(",", pp, line);
         propertyComparison.property1 = CompoundProperty.of(LATEST_PROPS, line, pp);
         final int cp = line.codePointAt(pp.getIndex());
         if (cp != '=' && cp != '≠') {
