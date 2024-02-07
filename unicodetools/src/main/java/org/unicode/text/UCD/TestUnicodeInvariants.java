@@ -598,82 +598,81 @@ public class TestUnicodeInvariants {
                     final var matcher =
                             Pattern.compile("(\\( *([^ )]+)(?: +([^)]+))? *\\)).*")
                                     .matcher(line.substring(pp.getIndex()));
-                    if (matcher.matches()) {
-                        propOrFilter.type = FilterOrProp.Type.sequenceTransformation;
-                        final String expression = matcher.group(1);
-                        final String operation = matcher.group(2);
-                        final String args = matcher.group(3);
-                        switch (operation) {
-                            case "take":
-                                {
-                                    final int count = Integer.parseInt(args);
-                                    propOrFilter.sequenceTransformation = s -> s.subList(0, count);
-                                    break;
-                                }
-                            case "drop":
-                                {
-                                    final int count = Integer.parseInt(args);
-                                    propOrFilter.sequenceTransformation =
-                                            s -> s.subList(count, s.size());
-                                    break;
-                                }
-                            case "delete-adjacent-duplicates":
-                                {
-                                    propOrFilter.sequenceTransformation =
-                                            s -> {
-                                                if (s.isEmpty()) {
-                                                    return s;
-                                                }
-                                                int j = 0;
-                                                for (int i = 1; i < s.size(); ++i) {
-                                                    if (!Objects.equals(s.get(i), s.get(j))) {
-                                                        s.set(++j, s.get(i));
-                                                    }
-                                                }
-                                                s.subList(j + 1, s.size()).clear();
-                                                return s;
-                                            };
-                                    break;
-                                }
-                            case "prepend":
-                                {
-                                    propOrFilter.sequenceTransformation =
-                                            s -> {
-                                                s.add(0, args);
-                                                return s;
-                                            };
-                                    break;
-                                }
-                            case "append":
-                                {
-                                    propOrFilter.sequenceTransformation =
-                                            s -> {
-                                                s.add(args);
-                                                return s;
-                                            };
-                                    break;
-                                }
-                            case "string-join":
-                                {
-                                    propOrFilter.sequenceReduction = s -> String.join("", s);
-                                    break;
-                                }
-                            case "constant":
-                                {
-                                    propOrFilter.sequenceReduction = s -> args;
-                                    break;
-                                }
-                            default:
-                                throw new IllegalArgumentException(
-                                        "Unknown operation " + matcher.group(1));
-                        }
-                        result.propOrFilters.add(propOrFilter);
-                        pp.setIndex(pp.getIndex() + expression.length());
-                    } else {
+                    if (!matcher.matches()) {
                         throw new IllegalArgumentException(
                                 "Expected (<operation> <args>), got "
                                         + line.substring(pp.getIndex()));
                     }
+                    propOrFilter.type = FilterOrProp.Type.sequenceTransformation;
+                    final String expression = matcher.group(1);
+                    final String operation = matcher.group(2);
+                    final String args = matcher.group(3);
+                    switch (operation) {
+                        case "take":
+                            {
+                                final int count = Integer.parseInt(args);
+                                propOrFilter.sequenceTransformation = s -> s.subList(0, count);
+                                break;
+                            }
+                        case "drop":
+                            {
+                                final int count = Integer.parseInt(args);
+                                propOrFilter.sequenceTransformation =
+                                        s -> s.subList(count, s.size());
+                                break;
+                            }
+                        case "delete-adjacent-duplicates":
+                            {
+                                propOrFilter.sequenceTransformation =
+                                        s -> {
+                                            if (s.isEmpty()) {
+                                                return s;
+                                            }
+                                            int j = 0;
+                                            for (int i = 1; i < s.size(); ++i) {
+                                                if (!Objects.equals(s.get(i), s.get(j))) {
+                                                    s.set(++j, s.get(i));
+                                                }
+                                            }
+                                            s.subList(j + 1, s.size()).clear();
+                                            return s;
+                                        };
+                                break;
+                            }
+                        case "prepend":
+                            {
+                                propOrFilter.sequenceTransformation =
+                                        s -> {
+                                            s.add(0, args);
+                                            return s;
+                                        };
+                                break;
+                            }
+                        case "append":
+                            {
+                                propOrFilter.sequenceTransformation =
+                                        s -> {
+                                            s.add(args);
+                                            return s;
+                                        };
+                                break;
+                            }
+                        case "string-join":
+                            {
+                                propOrFilter.sequenceReduction = s -> String.join("", s);
+                                break;
+                            }
+                        case "constant":
+                            {
+                                propOrFilter.sequenceReduction = s -> args;
+                                break;
+                            }
+                        default:
+                            throw new IllegalArgumentException(
+                                    "Unknown operation " + matcher.group(1));
+                    }
+                    result.propOrFilters.add(propOrFilter);
+                    pp.setIndex(pp.getIndex() + expression.length());
                 } else {
                     final String propName = scan(PROPCHARS, line, pp, true);
                     if (propName.length() > 0) {
