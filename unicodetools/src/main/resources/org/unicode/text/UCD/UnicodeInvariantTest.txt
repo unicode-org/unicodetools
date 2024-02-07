@@ -945,9 +945,11 @@ Let $ideohack = [〆 〇 〡-〩]
 # 10.0 added Nushu
 # 13.0 added Khitan_Small_Script
 
-\p{Unified_Ideograph} ⊂ \P{kRSUnicode=@none@}
-\P{kRSUnicode=@none@} = [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
-\P{kRSUnicode=@none@} = \P{kTotalStrokes=@none@}
+Let $unihanScope = [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
+\p{Unified_Ideograph} ⊂ $unihanScope
+$unihanScope = \P{kRSUnicode=@none@}
+$unihanScope = \P{kTotalStrokes=@none@}
+$unihanScope = [ \P{kIRG_GSource=@none@} \P{kIRG_HSource=@none@} \P{kIRG_JSource=@none@} \P{kIRG_KPSource=@none@} \P{kIRG_KSource=@none@} \P{kIRG_MSource=@none@} \P{kIRG_SSource=@none@} \P{kIRG_TSource=@none@} \P{kIRG_UKSource=@none@} \P{kIRG_USource=@none@} \P{kIRG_VSource=@none@} ]
 
 # TODO(eggrobin): Should those two have a kMandarin, or this not actually an invariant?
 # See https://www.unicode.org/review/pri483/feedback.html#ID20240118004124.
