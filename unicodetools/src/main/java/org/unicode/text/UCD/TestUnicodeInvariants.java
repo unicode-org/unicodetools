@@ -144,6 +144,7 @@ public class TestUnicodeInvariants {
      * @throws IOException
      */
     public static int testInvariants(String inputFile, boolean doRange) throws IOException {
+        TestUnicodeInvariants.doRange = doRange;
         parseErrorCount = 0;
         testFailureCount = 0;
         boolean showScript = false;
