@@ -86,6 +86,9 @@
 #       then deduplicates runs of the same Bidi_Class.
 #       It then compares that with the result of filtering out NSM characters from X, then getting the Bidi_Class.
 #
+# In <unicodeSet>, <props> (∈|∉) <unicodeSet>
+#   For each character in the first <unicodeSet>, verify that the result of applying the left <props>
+#   is (∈|∉) the right-hand-side unicodeSet.
 ##########################
 # OnPairsOf <unicodeSet>, EqualityOf <props> (⇐|⇔|⇒|⇍|⇎|⇏) EqualityOf <props>
 # 
@@ -983,7 +986,7 @@ Let $nonIdeographicStrokes = \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZ
 # Its value is a single unified ideograph.
 \P{Equivalent_Unified_Ideograph=@none@} ⊆ $strokesAndRadicals
 [$strokesAndRadicals - \P{Equivalent_Unified_Ideograph=@none@}] = [$nonIdeographicStrokes $nonIdeographicRadicals]
-In \P{Equivalent_Unified_Ideograph=@none@}, Unified_Ideograph * Equivalent_Unified_Ideograph = (constant Yes)
+In \P{Equivalent_Unified_Ideograph=@none@}, Equivalent_Unified_Ideograph ∈ \p{Unified_Ideograph}
 
 # Strokes are equivalent to a single-stroke ideograph, except for one strange one.
 # 𠄎 is the Equivalent_Unified_Ideograph of the stroke ㇡, but it has two strokes.
@@ -991,15 +994,27 @@ In \P{Equivalent_Unified_Ideograph=@none@}, Unified_Ideograph * Equivalent_Unifi
 # https://www.zdic.net/hans/%F0%A0%84%8E which has it as 5.0, 1 stroke
 # (contrast https://www.zdic.net/hant/%F0%A0%84%8E which is 6.1, 2 strokes).
 # This has been submitted as feedback on PRI #483.
+# If the kTotalStrokes value of 𠄎 gets changed to 1|2, the variable
+# $strokesWith2StrokeLookalikes can be removed.
 Let $strokesWith2StrokeLookalikes = \N{CJK STROKE HZZZG}
 
-In [$cjkStrokes - $nonIdeographicStrokes - $strokesWith2StrokeLookalikes], kTotalStrokes * Equivalent_Unified_Ideograph = (constant 1)
+In [$cjkStrokes - $nonIdeographicStrokes - $strokesWith2StrokeLookalikes], Equivalent_Unified_Ideograph ∈ \p{kTotalStrokes=1}
 In $strokesWith2StrokeLookalikes, kTotalStrokes * Equivalent_Unified_Ideograph = (constant 2)
 
-# TODO(egg): Some invariants for the Equivalent_Unified_Ideographs of radicals.
-# Easy enough for the Kangxi radicals (they are kRSUnicode=n.0), but trickier for the radicals supplement.
-# In particular I would expect those that are called SIMPLIFIED to have a '.0 or ''.0 kRSUnicode value,
-# but some do not.
+# Kangxi radicals are equivalent to those radicals with no residual strokes.
+In $kangxiRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/\.0/}
+# Simplified radicals are equivalent to a simplified radical with no residual strokes.
+# That is a Chinese simplified radical (kRSUnicode=n'.0) for Chinese simplified radicals, and a
+# non-Chinese simplified radical (kRSUnicode=n''.0) otherwise.
+# However, two of the simplified radicals are unifiable with their non-simplified counterparts,
+# and are therefore equivalent to ideographs with kRSUnicode=n.0.
+Let $radicalsWithUnifiableSimplifications = [角辶]
+$radicalsWithUnifiableSimplifications ⊆ \p{kRSUnicode=/^[0-9]+\.0$/}
+[$radicalsWithUnifiableSimplifications & \p{kRSUnicode=/^[0-9]+'\.0$/}] = []
+Let $chineseSimplifiedRadicals = \p{Name=/CJK RADICAL (C-)?SIMPLIFIED/}
+Let $japaneseSimplifiedRadicals = \p{Name=/CJK RADICAL J-SIMPLIFIED/}
+In $chineseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ [\p{kRSUnicode=/^[0-9]+'\.0$/} $radicalsWithUnifiableSimplifications]
+In $japaneseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/^[0-9]+''\.0$/}
 
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
