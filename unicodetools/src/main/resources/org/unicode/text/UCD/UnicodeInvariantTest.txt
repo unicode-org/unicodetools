@@ -471,7 +471,7 @@ In $expandingCanonicalDecompositions, Decomposition_Mapping * (drop 1) * Decompo
 \p{toNFC=/..../} = []
 # Note: This bound is tight:
 \p{toNFC=/.../} ⊃ []
-# TODO(egg): Test that for code units too.
+# TODO(egg): Test that for UTF-16 and UTF-8 code units too.
 
 # Stability: Once a character is assigned, its Decomposition_Mapping will never
 # change. 
