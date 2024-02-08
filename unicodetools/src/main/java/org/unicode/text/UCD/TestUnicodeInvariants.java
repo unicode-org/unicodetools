@@ -270,11 +270,57 @@ public class TestUnicodeInvariants {
         return parseErrorCount + testFailureCount;
     }
 
-    static class PropertyComparison {
+    abstract static class PropertyPredicate {
         UnicodeSet valueSet;
         UnicodeProperty property1;
+
+        public UnicodeMap<String> getFailures() {
+            final UnicodeMap<String> failures = new UnicodeMap<>();
+
+            for (final UnicodeSetIterator it = new UnicodeSetIterator(valueSet); it.next(); ) {
+                final String failure = getFailure(it.codepoint);
+                if (failure != null) {
+                    failures.put(it.codepoint, failure);
+                }
+            }
+            return failures;
+        }
+
+        // A description of the failure for the given codepoint, or null if the predicate holds.
+        protected abstract String getFailure(int codepoint);
+    }
+
+    static class PropertyComparison extends PropertyPredicate {
         boolean shouldBeEqual;
         UnicodeProperty property2;
+
+        @Override
+        protected String getFailure(int codepoint) {
+            final String value1 = property1.getValue(codepoint);
+            final String value2 = property2.getValue(codepoint);
+            final boolean areEqual = Objects.equals(value1, value2);
+            if (areEqual == shouldBeEqual) {
+                return null;
+            } else {
+                return value1 + (areEqual ? "=" : "≠") + value2;
+            }
+        }
+    }
+
+    static class PropertyValueContainment extends PropertyPredicate {
+        boolean shouldBeInSet;
+        UnicodeSet set;
+
+        @Override
+        protected String getFailure(int codepoint) {
+            final String value = property1.getValue(codepoint);
+            final boolean isInSet = set.contains(value);
+            if (isInSet == shouldBeInSet) {
+                return null;
+            } else {
+                return value + (isInSet ? "∈" : "∉") + set;
+            }
+        }
     }
 
     private static void equivalencesLine(String line, ParsePosition pp, int lineNumber)
@@ -476,28 +522,14 @@ public class TestUnicodeInvariants {
     private static void inLine(ParsePosition pp, String line, int lineNumber)
             throws ParseException {
         pp.setIndex(2);
-        final PropertyComparison propertyComparison = getPropertyComparison(pp, line);
-        final UnicodeMap<String> failures = new UnicodeMap<>();
-
-        for (final UnicodeSetIterator it = new UnicodeSetIterator(propertyComparison.valueSet);
-                it.next(); ) {
-            final String value1 = propertyComparison.property1.getValue(it.codepoint);
-            final String value2 = propertyComparison.property2.getValue(it.codepoint);
-            final boolean areEqual = equals(value1, value2);
-            if (areEqual != propertyComparison.shouldBeEqual) {
-                failures.put(it.codepoint, value1 + (areEqual ? "=" : "≠") + value2);
-            }
-        }
+        final PropertyPredicate propertyPredicate = getPropertyPredicate(pp, line);
+        final UnicodeMap<String> failures = propertyPredicate.getFailures();
         final UnicodeSet failureSet = failures.keySet();
         final int failureCount = failureSet.size();
         if (failureCount != 0) {
             testFailureCount++;
             printErrorLine("Test Failure", Side.START, testFailureCount);
-            String errorMessage =
-                    "Got unexpected "
-                            + (propertyComparison.shouldBeEqual ? "differences" : "equalities")
-                            + ": "
-                            + failureCount;
+            String errorMessage = "Got unexpected property values: " + failureCount;
             println("## " + errorMessage);
 
             final UnicodeLabel failureProp = new UnicodeProperty.UnicodeMapProperty().set(failures);
@@ -533,34 +565,41 @@ public class TestUnicodeInvariants {
         scan(PATTERN_WHITE_SPACE, line, pp, true);
     }
 
-    private static PropertyComparison getPropertyComparison(ParsePosition pp, String line)
+    private static PropertyPredicate getPropertyPredicate(ParsePosition pp, String line)
             throws ParseException {
-        final PropertyComparison propertyComparison = new PropertyComparison();
+        PropertyPredicate predicate;
 
-        propertyComparison.valueSet = new UnicodeSet(line, pp, symbolTable);
+        final UnicodeSet valueSet = new UnicodeSet(line, pp, symbolTable);
         expectToken(",", pp, line);
-        propertyComparison.property1 = CompoundProperty.of(LATEST_PROPS, line, pp);
+        final UnicodeProperty property1 = CompoundProperty.of(LATEST_PROPS, line, pp);
         final int cp = line.codePointAt(pp.getIndex());
-        if (cp != '=' && cp != '≠') {
-            throw new ParseException(line, pp.getIndex());
+        switch (cp) {
+            case '=':
+            case '≠':
+                final var comparison = new PropertyComparison();
+                comparison.shouldBeEqual = cp == '=';
+                pp.setIndex(pp.getIndex() + 1);
+                comparison.property2 = CompoundProperty.of(LATEST_PROPS, line, pp);
+                predicate = comparison;
+                break;
+            case '∈':
+            case '∉':
+                final var containment = new PropertyValueContainment();
+                containment.shouldBeInSet = cp == '∈';
+                pp.setIndex(pp.getIndex() + 1);
+                containment.set = new UnicodeSet(line, pp, symbolTable);
+                predicate = containment;
+                break;
+            default:
+                throw new ParseException("Expected =|≠|∈|∉", pp.getIndex());
         }
-        propertyComparison.shouldBeEqual = cp == '=';
-        pp.setIndex(pp.getIndex() + 1);
-        propertyComparison.property2 = CompoundProperty.of(LATEST_PROPS, line, pp);
+        predicate.valueSet = valueSet;
+        predicate.property1 = property1;
         scan(PATTERN_WHITE_SPACE, line, pp, true);
         if (pp.getIndex() != line.length()) {
             throw new ParseException(line, pp.getIndex());
         }
-        return propertyComparison;
-    }
-
-    private static boolean equals(Object value1, Object value2) {
-        if (value1 == null) {
-            return value2 == null;
-        } else if (value2 == null) {
-            return false;
-        }
-        return value1.equals(value2);
+        return predicate;
     }
 
     static class CompoundProperty extends UnicodeProperty {
