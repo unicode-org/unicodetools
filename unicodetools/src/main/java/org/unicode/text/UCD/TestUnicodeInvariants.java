@@ -17,10 +17,13 @@ import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
+import java.util.function.Function;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.Tabber.HTMLTabber;
@@ -141,6 +144,7 @@ public class TestUnicodeInvariants {
      * @throws IOException
      */
     public static int testInvariants(String inputFile, boolean doRange) throws IOException {
+        TestUnicodeInvariants.doRange = doRange;
         parseErrorCount = 0;
         testFailureCount = 0;
         boolean showScript = false;
@@ -238,7 +242,7 @@ public class TestUnicodeInvariants {
                                 showMapLine(line, pp);
                             } else if (line.startsWith("Show")) {
                                 showLine(line, pp);
-                            } else if (line.startsWith("EquivalencesOf")) {
+                            } else if (line.startsWith("OnPairsOf")) {
                                 equivalencesLine(line, pp, lineNumber);
                             } else {
                                 testLine(line, pp, lineNumber);
@@ -275,12 +279,16 @@ public class TestUnicodeInvariants {
 
     private static void equivalencesLine(String line, ParsePosition pp, int lineNumber)
             throws ParseException {
-        pp.setIndex("EquivalencesOf".length());
+        pp.setIndex("OnPairsOf".length());
         final UnicodeSet domain = new UnicodeSet(line, pp, symbolTable);
+        expectToken(",", pp, line);
+        expectToken("EqualityOf", pp, line);
         final var leftProperty = CompoundProperty.of(LATEST_PROPS, line, pp);
         scan(PATTERN_WHITE_SPACE, line, pp, true);
         char relationOperator = line.charAt(pp.getIndex());
         pp.setIndex(pp.getIndex() + 1);
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+        expectToken("EqualityOf", pp, line);
         final var rightProperty = CompoundProperty.of(LATEST_PROPS, line, pp);
 
         boolean leftShouldImplyRight = false;
@@ -515,11 +523,22 @@ public class TestUnicodeInvariants {
         }
     }
 
+    private static void expectToken(String token, ParsePosition pp, String line)
+            throws ParseException {
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+        if (!line.substring(pp.getIndex()).startsWith(token)) {
+            throw new ParseException("Expected " + token, pp.getIndex());
+        }
+        pp.setIndex(pp.getIndex() + token.length());
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+    }
+
     private static PropertyComparison getPropertyComparison(ParsePosition pp, String line)
             throws ParseException {
         final PropertyComparison propertyComparison = new PropertyComparison();
 
         propertyComparison.valueSet = new UnicodeSet(line, pp, symbolTable);
+        expectToken(",", pp, line);
         propertyComparison.property1 = CompoundProperty.of(LATEST_PROPS, line, pp);
         final int cp = line.codePointAt(pp.getIndex());
         if (cp != '=' && cp != '≠') {
@@ -549,12 +568,15 @@ public class TestUnicodeInvariants {
             enum Type {
                 filter,
                 prop,
-                stringprop
+                stringprop,
+                sequenceTransformation,
             };
 
             private Type type;
             private UnicodeProperty prop;
             private UnicodeSet filter;
+            private Function<List<String>, List<String>> sequenceTransformation;
+            private Function<List<String>, String> sequenceReduction;
         }
 
         private static final UnicodeSet PROPCHARS =
@@ -571,6 +593,86 @@ public class TestUnicodeInvariants {
                     propOrFilter.filter = parseUnicodeSet(line, pp);
                     propOrFilter.type = FilterOrProp.Type.filter;
                     result.propOrFilters.add(propOrFilter);
+                } else if (line.charAt(pp.getIndex()) == '(') {
+                    final FilterOrProp propOrFilter = new FilterOrProp();
+                    final var matcher =
+                            Pattern.compile("(\\( *([^ )]+)(?: +([^)]+))? *\\)).*")
+                                    .matcher(line.substring(pp.getIndex()));
+                    if (!matcher.matches()) {
+                        throw new IllegalArgumentException(
+                                "Expected (<operation> <args>), got "
+                                        + line.substring(pp.getIndex()));
+                    }
+                    propOrFilter.type = FilterOrProp.Type.sequenceTransformation;
+                    final String expression = matcher.group(1);
+                    final String operation = matcher.group(2);
+                    final String args = matcher.group(3);
+                    switch (operation) {
+                        case "take":
+                            {
+                                final int count = Integer.parseInt(args);
+                                propOrFilter.sequenceTransformation = s -> s.subList(0, count);
+                                break;
+                            }
+                        case "drop":
+                            {
+                                final int count = Integer.parseInt(args);
+                                propOrFilter.sequenceTransformation =
+                                        s -> s.subList(count, s.size());
+                                break;
+                            }
+                        case "delete-adjacent-duplicates":
+                            {
+                                propOrFilter.sequenceTransformation =
+                                        s -> {
+                                            if (s.isEmpty()) {
+                                                return s;
+                                            }
+                                            int j = 0;
+                                            for (int i = 1; i < s.size(); ++i) {
+                                                if (!Objects.equals(s.get(i), s.get(j))) {
+                                                    s.set(++j, s.get(i));
+                                                }
+                                            }
+                                            s.subList(j + 1, s.size()).clear();
+                                            return s;
+                                        };
+                                break;
+                            }
+                        case "prepend":
+                            {
+                                propOrFilter.sequenceTransformation =
+                                        s -> {
+                                            s.add(0, args);
+                                            return s;
+                                        };
+                                break;
+                            }
+                        case "append":
+                            {
+                                propOrFilter.sequenceTransformation =
+                                        s -> {
+                                            s.add(args);
+                                            return s;
+                                        };
+                                break;
+                            }
+                        case "string-join":
+                            {
+                                propOrFilter.sequenceReduction = s -> String.join("", s);
+                                break;
+                            }
+                        case "constant":
+                            {
+                                propOrFilter.sequenceReduction = s -> args;
+                                break;
+                            }
+                        default:
+                            throw new IllegalArgumentException(
+                                    "Unknown operation " + matcher.group(1));
+                    }
+                    result.propOrFilters.add(propOrFilter);
+                    pp.setIndex(pp.getIndex() + expression.length());
                 } else {
                     final String propName = scan(PROPCHARS, line, pp, true);
                     if (propName.length() > 0) {
@@ -583,9 +685,11 @@ public class TestUnicodeInvariants {
                                     "Can't create property for: " + propName);
                         }
                         propOrFilter.type =
-                                propOrFilter.prop.getType() != UnicodeProperty.STRING
-                                        ? FilterOrProp.Type.prop
-                                        : FilterOrProp.Type.stringprop;
+                                propOrFilter.prop.getType() == UnicodeProperty.STRING
+                                                || propOrFilter.prop.getType()
+                                                        == UnicodeProperty.EXTENDED_STRING
+                                        ? FilterOrProp.Type.stringprop
+                                        : FilterOrProp.Type.prop;
                         result.propOrFilters.add(propOrFilter);
                     } else {
                         break;
@@ -629,13 +733,21 @@ public class TestUnicodeInvariants {
         @Override
         protected String _getValue(int codepoint) {
             final StringBuffer buffer = new StringBuffer();
-            String value = UTF16.valueOf(codepoint);
+            String value = Character.toString(codepoint);
+            List<String> values = null;
             int cp;
 
             for (int i = propOrFilters.size() - 1; i >= 0; --i) {
                 final FilterOrProp propOrFilter = propOrFilters.get(i);
                 switch (propOrFilter.type) {
                     case filter:
+                        if (value == null) {
+                            throw new IllegalArgumentException(
+                                    "Cannot apply filter  "
+                                            + propOrFilter.filter.toString()
+                                            + " to sequence "
+                                            + values);
+                        }
                         buffer.setLength(0);
                         for (int j = 0; j < value.length(); j += UTF16.getCharCount(cp)) {
                             cp = UTF16.charAt(value, j);
@@ -647,6 +759,13 @@ public class TestUnicodeInvariants {
                         value = buffer.toString();
                         break;
                     case stringprop:
+                        if (value == null) {
+                            throw new IllegalArgumentException(
+                                    "Cannot apply string property "
+                                            + propOrFilter.prop.getName()
+                                            + " to sequence "
+                                            + values);
+                        }
                         buffer.setLength(0);
                         for (int j = 0; j < value.length(); j += UTF16.getCharCount(cp)) {
                             cp = UTF16.charAt(value, j);
@@ -656,19 +775,53 @@ public class TestUnicodeInvariants {
                         value = buffer.toString();
                         break;
                     case prop:
-                        final LinkedHashSet<String> values = new LinkedHashSet<String>();
+                        if (value == null) {
+                            throw new IllegalArgumentException(
+                                    "Cannot apply enumerated property "
+                                            + propOrFilter.prop.getName()
+                                            + " to sequence "
+                                            + values);
+                        }
+                        values = new ArrayList<>();
                         for (int j = 0; j < value.length(); j += UTF16.getCharCount(cp)) {
                             cp = UTF16.charAt(value, j);
                             final String value2 = propOrFilter.prop.getValue(cp);
                             values.add(value2);
                         }
-                        if (values.size() == 0) {
-                            value = "";
-                        } else if (values.size() == 1) {
-                            value = values.iterator().next();
-                        } else {
-                            value = values.toString();
+                        value = null;
+                        break;
+                    case sequenceTransformation:
+                        final boolean wasString = value != null;
+                        if (wasString) {
+                            values =
+                                    value.codePoints()
+                                            .mapToObj(Character::toString)
+                                            .collect(
+                                                    Collectors.toCollection(
+                                                            () -> new ArrayList<>()));
+                            value = null;
                         }
+                        if (propOrFilter.sequenceTransformation != null) {
+                            values = propOrFilter.sequenceTransformation.apply(values);
+                            if (wasString) {
+                                value = String.join("", values);
+                                values = null;
+                            }
+                        } else {
+                            value = propOrFilter.sequenceReduction.apply(values);
+                            values = null;
+                        }
+                        break;
+                }
+            }
+            if (value == null) {
+                if (values.isEmpty()) {
+                    return "";
+                } else if (values.size() == 1) {
+                    return values.get(0);
+                } else {
+                    throw new IllegalArgumentException(
+                            "Compound property must return a string, not sequence " + values);
                 }
             }
             return value;
