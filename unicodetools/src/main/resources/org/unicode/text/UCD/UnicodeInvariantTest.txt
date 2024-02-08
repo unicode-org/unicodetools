@@ -970,15 +970,36 @@ $unihanScope = [ \P{kIRG_GSource=@none@} \P{kIRG_HSource=@none@} \P{kIRG_JSource
 Let $ideographsMissingkMandarin = [\x{228F5}\x{2574C}]
 [\P{kHanyuPinyin=@none@} - \P{kMandarin=@none@}] = $ideographsMissingkMandarin
 
-Let $strokesAndRadicals = [\p{Name=/^CJK STROKE /}\p{Name=/^(CJK|KANGXI) RADICAL /}]-\p{gc=Cn}
+Let $cjkStrokes = \p{Name=/^CJK STROKE /}
+Let $kangxiRadicals = \p{Name=/^KANGXI RADICAL /}
+Let $cjkRadicals = \p{Name=/^CJK RADICAL /}
+Let $strokesAndRadicals = [ $cjkStrokes $kangxiRadicals $cjkRadicals ]
 Let $nonIdeographicRadicals = \N{CJK RADICAL REPEAT}
 # The following set may expand over time, if strokes are added.
 # It can also shrink, if single-stroke ideographs are encoded.
 Let $nonIdeographicStrokes = \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZWG|HZT|HZZP|HPWG|HZW|HZZZ|PG|Q|HZXG|SZP)$/}
 
+# The Equivalent_Unified_Ideograph property is applicable to CJK strokes and radicals.
+# Its value is a single unified ideograph.
 \P{Equivalent_Unified_Ideograph=@none@} ⊆ $strokesAndRadicals
 [$strokesAndRadicals - \P{Equivalent_Unified_Ideograph=@none@}] = [$nonIdeographicStrokes $nonIdeographicRadicals]
 In \P{Equivalent_Unified_Ideograph=@none@}, Unified_Ideograph * Equivalent_Unified_Ideograph = (constant Yes)
+
+# Strokes are equivalent to a single-stroke ideograph, except for one strange one.
+# 𠄎 is the Equivalent_Unified_Ideograph of the stroke ㇡, but it has two strokes.
+# TODO(egg): It might have one stroke in CN, see the one-stroke G-source glyph and
+# https://www.zdic.net/hans/%F0%A0%84%8E which has it as 5.0, 1 stroke
+# (contrast https://www.zdic.net/hant/%F0%A0%84%8E which is 6.1, 2 strokes).
+# This has been submitted as feedback on PRI #483.
+Let $strokesWith2StrokeLookalikes = \N{CJK STROKE HZZZG}
+
+In [$cjkStrokes - $nonIdeographicStrokes - $strokesWith2StrokeLookalikes], kTotalStrokes * Equivalent_Unified_Ideograph = (constant 1)
+In $strokesWith2StrokeLookalikes, kTotalStrokes * Equivalent_Unified_Ideograph = (constant 2)
+
+# TODO(egg): Some invariants for the Equivalent_Unified_Ideographs of radicals.
+# Easy enough for the Kangxi radicals (they are kRSUnicode=n.0), but trickier for the radicals supplement.
+# In particular I would expect those that are called SIMPLIFIED to have a '.0 or ''.0 kRSUnicode value,
+# but some do not.
 
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
