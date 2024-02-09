@@ -1,11 +1,12 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 16.0.0
 @@@+	NamesList-16.0.0.txt
-@+	Generation Date: 2024-02-01, 13:52:23 GMT
+@+	Generation Date: 2024-02-08, 16:13:43 GMT
 	Unicode 16.0.0 names list, tenth delta.
 	Repertoire synched with UnicodeData-16.0.0d13.txt.
 	Pre-alpha rollup of various fixes.
 	Fix Ol Onal digits subhead location.
+	Add vowel carrier subhead for 16100.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -49372,8 +49373,9 @@ FFFF	<not a character>
 	= lingua+x
 14646	ANATOLIAN HIEROGLYPH A530
 @@	16100	Gurung Khema	1613F
-@		Consonants
+@		Vowel carrier
 16100	GURUNG KHEMA LETTER A
+@		Consonants
 16101	GURUNG KHEMA LETTER KA
 16102	GURUNG KHEMA LETTER KHA
 16103	GURUNG KHEMA LETTER GA
