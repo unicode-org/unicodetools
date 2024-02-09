@@ -333,7 +333,6 @@ public class TestUnicodeInvariants {
         scan(PATTERN_WHITE_SPACE, line, pp, true);
         char relationOperator = line.charAt(pp.getIndex());
         pp.setIndex(pp.getIndex() + 1);
-        scan(PATTERN_WHITE_SPACE, line, pp, true);
         expectToken("EqualityOf", pp, line);
         final var rightProperty = CompoundProperty.of(LATEST_PROPS, line, pp);
 
