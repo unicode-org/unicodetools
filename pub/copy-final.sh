@@ -29,8 +29,8 @@ s/PUB_STATUS/final/
 s/UNI_VER/$UNI_VER/
 s/EMOJI_VER/$EMOJI_VER/
 s/TR10_REV/$TR10_REV/
-s%PUBLIC_EMOJI%Public/emoji/$EMOJI_VER/%
-s%PUBLIC_UCD_EMOJI%Public/$UNI_VER/ucd/emoji/%
+s%PUBLIC_EMOJI%Public/emoji/$EMOJI_VER%
+s%PUBLIC_UCD%Public/$UNI_VER%
 eof
 
 mkdir -p $DEST/$UNI_VER/ucd
@@ -87,6 +87,7 @@ rm $DEST/final.zip
 echo "--------------------"
 echo "Copy files from elsewhere:"
 echo "- Unihan.zip to $DEST/$UNI_VER/ucd"
+echo "- Unihan.zip to $DEST/zipped/$UNI_VER"
 echo "- UCDXML files to $DEST/$UNI_VER/ucdxml"
 echo "- final charts to $DEST/$UNI_VER/charts"
 
