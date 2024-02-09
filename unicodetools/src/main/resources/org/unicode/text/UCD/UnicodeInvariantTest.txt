@@ -460,8 +460,8 @@ In $codepoints, Decomposition_Mapping * Decomposition_Mapping * Decomposition_Ma
 [ \p{Decomposition_Type=Canonical} & \p{Decomposition_Mapping=} ] = []
 Let $expandingCanonicalDecompositions = [ \p{Decomposition_Type=Canonical} & \p{Decomposition_Mapping=/../} ]
 In $expandingCanonicalDecompositions, Decomposition_Type * (drop 1) * Decomposition_Mapping ≠ (constant Canonical)
-# In fact the second character does not have a decomposition mapping at all,
-# though we do not promise that:
+# Not a stability policy, but it happens to be the case that the second
+# character does not have a decomposition mapping at all:
 In $expandingCanonicalDecompositions, Decomposition_Type * (drop 1) * Decomposition_Mapping = (constant None)
 In $expandingCanonicalDecompositions, Decomposition_Mapping * (drop 1) * Decomposition_Mapping = (drop 1) * Decomposition_Mapping
 
