@@ -131,9 +131,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ucd.hpp" />
     <ClInclude Include="unisift.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ucd.cpp" />
     <ClCompile Include="unisifeggs.cpp" />
     <ClCompile Include="unisift.c" />
     <ClCompile Include="unisyms.c" />

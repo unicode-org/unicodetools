@@ -15,18 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\unisift.h">
+    <ClInclude Include="unisift.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ucd.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\unisift.c">
+    <ClCompile Include="unisifeggs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\unisyms.c">
+    <ClCompile Include="unisift.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\unisifeggs.cpp">
+    <ClCompile Include="unisyms.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ucd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
