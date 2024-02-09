@@ -100,7 +100,7 @@ class CodePointSet {
         return it != ranges_.end() && it->contains(c);
     }
 
-    void addAll(CodePointRange range) {
+    CodePointSet& addAll(CodePointRange range) {
         // All earlier ranges end before the new one and are not adjacent.
         const auto firstModifiedRange =
                 std::partition_point(ranges_.begin(),
@@ -128,14 +128,16 @@ class CodePointSet {
         }
         const auto it = ranges_.erase(firstModifiedRange, pastModifiedRanges);
         ranges_.insert(it,
-                       CodePointRange::Inclusive(insertedRangeFirst,
+                       CodePointRange::inclusive(insertedRangeFirst,
                                                  insertedRangeLast));
+        return *this;
     }
 
-    CodePointSet addAll(const CodePointSet& other) {
+    CodePointSet& addAll(const CodePointSet& other) {
         for (const auto& range : other.ranges_) {
             addAll(range);
         }
+        return *this;
     }
 
     const std::vector<CodePointRange>& ranges() const {
@@ -179,9 +181,9 @@ constexpr CodePointRange parseHexCodePointRange(std::string_view hex) {
     const auto first_dot = hex.find("..");
     if (first_dot == std::string_view::npos) {
         const char32_t code_point = parseHexCodePoint(hex);
-        return CodePointRange::Inclusive(code_point, code_point);
+        return CodePointRange::inclusive(code_point, code_point);
     }
-    return CodePointRange::Inclusive(
+    return CodePointRange::inclusive(
             parseHexCodePoint(hex.substr(0, first_dot)),
             parseHexCodePoint(hex.substr(first_dot + 2)));
 }
@@ -219,7 +221,7 @@ class UCD {
                 const char32_t codePoint = parseHexCodePoint(cp);
                 // TODO(egg): Handle ranges.
                 const auto range =
-                        CodePointRange::Inclusive(codePoint, codePoint);
+                        CodePointRange::inclusive(codePoint, codePoint);
                 coarseGeneralCategory_[gc.front()].addAll(range);
                 generalCategory_[std::string(gc)].addAll(range);
                 canonicalCombiningClass_.emplace(codePoint,
