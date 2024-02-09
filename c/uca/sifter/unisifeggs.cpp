@@ -43,7 +43,7 @@ class CodePointRange {
         char32_t value;
     };
 
-    static constexpr CodePointRange Inclusive(char32_t first, char32_t last) {
+    static constexpr CodePointRange inclusive(char32_t first, char32_t last) {
         return CodePointRange(first, last + 1);
     }
 
@@ -101,12 +101,14 @@ class CodePointSet {
     }
 
     void addAll(CodePointRange range) {
+        // All earlier ranges end before the new one and are not adjacent.
         const auto firstModifiedRange =
                 std::partition_point(ranges_.begin(),
                                      ranges_.end(),
                                      [&range](const CodePointRange& r) {
                                          return r.back() + 1 < range.front();
                                      });
+        // First range that starts after the new one and is not adjacent.
         const auto pastModifiedRanges =
                 std::partition_point(ranges_.begin(),
                                      ranges_.end(),
