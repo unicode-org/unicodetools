@@ -7,13 +7,19 @@ import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.OutputInt;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.io.UncheckedIOException;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -53,7 +59,68 @@ public class MakeUnicodeFiles {
     static boolean DEBUG = false;
 
     public static void main(String[] args) throws IOException {
+
+        boolean cleanAndCopy =
+                Arrays.asList(args).contains("-c"); // clean Bin & copy changed output
+
+        if (cleanAndCopy) {
+
+            // Remove the bin file so that changes to the dev directory aren't ignored
+            // The index unicode properties (eg Alphabetic.bin) don't need to be removed
+            // because they are rebuilt if the source files change
+
+            File binFile =
+                    new File(Settings.Output.BIN_DIR, "UCD_Data" + Settings.latestVersion + ".bin");
+            binFile.delete();
+
+            // Remove the old files in the output directory
+
+            Files.walk(Path.of(Settings.Output.GEN_UCD_DIR))
+                    .sorted(Comparator.reverseOrder())
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+        }
+
         generateFile();
+
+        if (cleanAndCopy) {
+
+            // Copy the important changed files to dev directory
+
+            Path sourceBase = Path.of(Settings.Output.GEN_UCD_DIR + Settings.latestVersion);
+            Path targetBase =
+                    Settings.UnicodeTools.DataDir.UCD.asPath(Settings.LATEST_VERSION_INFO);
+            OutputInt fileCount = new OutputInt(); // for use in forEach, can't be just int.
+            Files.walk(sourceBase)
+                    .filter(
+                            x ->
+                                    !x.toFile().isDirectory()
+                                            && !x.getFileName().toString().startsWith("ZZZ-")
+                                            && !x.getParent()
+                                                    .getFileName()
+                                                    .toString()
+                                                    .equals("cldr")
+                                            && !x.getParent()
+                                                    .getFileName()
+                                                    .toString()
+                                                    .equals("extra"))
+                    .forEach(
+                            x -> {
+                                Path targetDir = targetBase.resolve(sourceBase.relativize(x));
+                                System.out.println(
+                                        ++fileCount.value
+                                                + ") Moving:\t"
+                                                + x
+                                                + "\tto\t"
+                                                + targetDir);
+                                try {
+                                    Files.move(x, targetDir, StandardCopyOption.REPLACE_EXISTING);
+                                } catch (IOException e) {
+                                    throw new UncheckedIOException(e);
+                                }
+                            });
+            System.out.println(fileCount + " file(s) copied to " + targetBase);
+        }
         System.out.println("DONE");
     }
 
@@ -67,6 +134,7 @@ public class MakeUnicodeFiles {
         Map<String, List<String>> fileToPropertySet = new TreeMap<String, List<String>>();
         Map<String, String> fileToComments = new TreeMap<String, String>();
         Map<String, String> fileToDirectory = new TreeMap<String, String>();
+        Map<String, List<String>> propertyToOrderedValues = new TreeMap<String, List<String>>();
         Map<String, Map<String, String>> propertyToValueToComments =
                 new TreeMap<String, Map<String, String>>();
         Map<String, String> hackMap = new HashMap<String, String>();
@@ -110,6 +178,12 @@ public class MakeUnicodeFiles {
             // Unicode 15.1 and later LineBreak.txt and EastAsianWidth.txt, which are all generated
             // in that format by some other tool.
             boolean kenFile = false;
+            // Whether the file should be produced in the style of IndicPositionalCategory.txt and
+            // IndicSyllabicCategory.txt, which are both generated in that format by some other
+            // tool.
+            boolean roozbehFile = false;
+            // Whether to separate values of enumerated properties using a line of equal signs.
+            boolean separateValues = true;
             boolean hackValues = false;
             boolean mergeRanges = true;
             String nameStyle = "none";
@@ -138,6 +212,10 @@ public class MakeUnicodeFiles {
                         interleaveValues = true;
                     } else if (piece.equals("kenFile")) {
                         kenFile = true;
+                    } else if (piece.equals("roozbehFile")) {
+                        roozbehFile = true;
+                    } else if (piece.startsWith("separateValues=")) {
+                        separateValues = afterEqualsBoolean(piece);
                     } else if (piece.equals("hackValues")) {
                         hackValues = true;
                     } else if (piece.equals("sortNumeric")) {
@@ -301,6 +379,10 @@ public class MakeUnicodeFiles {
                     }
                     line = line.trim();
                     if (line.length() == 0) {
+                        if (comments.length() != 0) {
+                            // Preserve blank lines between comments.
+                            comments += "\n";
+                        }
                         continue;
                     }
                     if (DEBUG) {
@@ -321,6 +403,7 @@ public class MakeUnicodeFiles {
                         comments += line;
                     } else {
                         // end of comments, roll up
+                        comments = comments.trim();
                         if (comments.length() != 0) {
                             if (property != null) {
                                 addValueComments(property, value, comments);
@@ -350,6 +433,10 @@ public class MakeUnicodeFiles {
                             value = "";
                         } else if (line.startsWith("Value:")) {
                             value = lineValue;
+                            final var values =
+                                    propertyToOrderedValues.computeIfAbsent(
+                                            property, k -> new ArrayList<String>());
+                            values.add(value);
                         } else if (line.startsWith("HackName:")) {
                             final String regularItem = Utility.getUnskeleton(lineValue, true);
                             hackMap.put(regularItem, lineValue);
@@ -967,13 +1054,10 @@ public class MakeUnicodeFiles {
                     // HACK
                     Tabber mt = mt2;
                     if (l.size() == 1) {
-                        if (propName.equals("Canonical_Combining_Class")) {
-                            continue;
-                        }
                         l.add(0, l.get(0)); // double up
                     } else if (propName.equals("Canonical_Combining_Class")) {
-                        if (l.size() == 2) {
-                            l.add(l.get(1)); // double up final value
+                        if (l.get(1).equals(l.get(0)) && l.get(2).equals(l.get(0))) {
+                            continue;
                         }
                         mt = mt3;
                     } else if (l.size() == 2 && propName.equals("Decomposition_Type")) {
@@ -1152,6 +1236,9 @@ public class MakeUnicodeFiles {
                             filename, Format.theFormat.getPrintStyle(name));
             if (!ps.kenFile) {
                 pwProp.println();
+                if (!ps.separateValues) {
+                    pwProp.println();
+                }
                 pwProp.println(SEPARATOR);
             }
             final String propComment = Format.theFormat.getValueComments(name, "");
@@ -1161,7 +1248,11 @@ public class MakeUnicodeFiles {
                     pwProp.println(propComment);
                 } else if (!prop.isType(UnicodeProperty.BINARY_MASK)) {
                     pwProp.println();
-                    pwProp.println("# Property:\t" + name);
+                    if (ps.roozbehFile) {
+                        pwProp.println("# Property: " + name);
+                    } else {
+                        pwProp.println("# Property:\t" + name);
+                    }
                 }
             }
 
@@ -1182,9 +1273,12 @@ public class MakeUnicodeFiles {
                         v = v + " (" + v2 + ")";
                     }
                 }
-                pwProp.println();
+                pwProp.println(ps.roozbehFile ? "#" : "");
                 pwProp.println("#  All code points not explicitly listed for " + prop.getName());
-                pwProp.println("#  have the value " + v + ".");
+                pwProp.println(
+                        "#  have the value "
+                                + v
+                                + (ps.roozbehFile && v.equals("NA") ? " (not applicable)." : "."));
             }
 
             if (!ps.interleaveValues && prop.isType(UnicodeProperty.BINARY_MASK)) {
@@ -1254,6 +1348,21 @@ public class MakeUnicodeFiles {
             temp2.addAll(aliases);
             aliases = temp2;
         }
+        if (ps.roozbehFile) {
+            aliases.removeIf(alias -> UnicodeProperty.compareNames(alias, ps.skipValue) == 0);
+            if (!Format.theFormat
+                    .propertyToOrderedValues
+                    .get(prop.getName())
+                    .containsAll(aliases)) {
+                final TreeSet<String> missingAliases = new TreeSet<String>(aliases);
+                missingAliases.removeAll(
+                        Format.theFormat.propertyToOrderedValues.get(prop.getName()));
+                throw new IllegalArgumentException(
+                        "All values must be listed when using roozbehFile; missing "
+                                + missingAliases);
+            }
+            aliases = Format.theFormat.propertyToOrderedValues.get(prop.getName());
+        }
         if (ps.sortNumeric) {
             if (DEBUG) {
                 System.out.println("Reordering");
@@ -1284,7 +1393,7 @@ public class MakeUnicodeFiles {
 
         final String missing = ps.skipUnassigned != null ? ps.skipUnassigned : ps.skipValue;
         if (missing != null && !missing.equals(UCD_Names.NO)) {
-            pw.println();
+            pw.println(ps.roozbehFile ? "#" : "");
             final String propName = bf.getPropName();
             //      if (propName == null) propName = "";
             //      else if (propName.length() != 0) propName = propName + "; ";
@@ -1301,6 +1410,10 @@ public class MakeUnicodeFiles {
                 Line_Break_Values overallDefault = Line_Break_Values.forName(missing);
                 writeEnumeratedMissingValues(pw, overallDefault, defaultLbValues);
             }
+        }
+        if (!ps.separateValues) {
+            pw.println();
+            pw.println(SEPARATOR.replace('=', '-'));
         }
         for (final Iterator<String> it = aliases.iterator(); it.hasNext(); ) {
             final String value = it.next();
@@ -1346,29 +1459,17 @@ public class MakeUnicodeFiles {
             } else if (defaultBidiValues != null) {
                 Bidi_Class_Values bidiValue = Bidi_Class_Values.forName(value);
                 if (defaultBidiValues.containsValue(bidiValue)) {
-                    // We assume that unassigned code points that have this value
-                    // according to the props data also have this value according to the defaults.
-                    // Otherwise we would need to intersect defaultBidiValues.keySet(bidiValue)
-                    // with the unassigned set before removing from s.
-                    s.removeAll(unassigned);
+                    s.removeAll(defaultBidiValues.keySet(bidiValue).retainAll(unassigned));
                 }
             } else if (defaultEaValues != null) {
                 East_Asian_Width_Values eaValue = East_Asian_Width_Values.forName(value);
                 if (defaultEaValues.containsValue(eaValue)) {
-                    // We assume that unassigned code points that have this value
-                    // according to the props data also have this value according to the defaults.
-                    // Otherwise we would need to intersect defaultEaValues.keySet(eaValue)
-                    // with the unassigned set before removing from s.
-                    s.removeAll(unassigned);
+                    s.removeAll(defaultEaValues.keySet(eaValue).retainAll(unassigned));
                 }
             } else if (defaultLbValues != null) {
                 Line_Break_Values lbValue = Line_Break_Values.forName(value);
                 if (defaultLbValues.containsValue(lbValue)) {
-                    // We assume that unassigned code points that have this value
-                    // according to the props data also have this value according to the defaults.
-                    // Otherwise we would need to intersect defaultEaValues.keySet(eaValue)
-                    // with the unassigned set before removing from s.
-                    s.removeAll(unassigned);
+                    s.removeAll(defaultLbValues.keySet(lbValue).retainAll(unassigned));
                 }
             }
 
@@ -1416,9 +1517,13 @@ public class MakeUnicodeFiles {
 
             if (!prop.isType(UnicodeProperty.BINARY_MASK)) {
                 pw.println();
-                pw.println(SEPARATOR);
+                if (ps.separateValues) {
+                    pw.println(SEPARATOR);
+                }
                 if (nonLongValue) {
-                    pw.println();
+                    if (ps.separateValues) {
+                        pw.println();
+                    }
                     pw.println("# " + prop.getName() + "=" + value);
                 }
             }
@@ -1442,6 +1547,11 @@ public class MakeUnicodeFiles {
             pw.println();
             // if (s.size() != 0)
             bf.setMergeRanges(ps.mergeRanges);
+            bf.setShowTotal(!ps.roozbehFile);
+            if (ps.roozbehFile) {
+                bf.setRangeBreakSource(
+                        ToolUnicodePropertySource.make(Default.ucdVersion()).getProperty("Block"));
+            }
             bf.showSetNames(pw, s);
             if (DEBUG) {
                 System.out.println(bf.showSetNames(s));

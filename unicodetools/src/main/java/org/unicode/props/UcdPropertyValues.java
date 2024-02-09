@@ -271,6 +271,7 @@ public class UcdPropertyValues {
         Early_Dynastic_Cuneiform("Early_Dynastic_Cuneiform"),
         Egyptian_Hieroglyph_Format_Controls("Egyptian_Hieroglyph_Format_Controls"),
         Egyptian_Hieroglyphs("Egyptian_Hieroglyphs"),
+        Egyptian_Hieroglyphs_Extended_A("Egyptian_Hieroglyphs_Ext_A"),
         Elbasan("Elbasan"),
         Elymaic("Elymaic"),
         Emoticons("Emoticons"),
@@ -283,6 +284,7 @@ public class UcdPropertyValues {
         Ethiopic_Extended_A("Ethiopic_Ext_A"),
         Ethiopic_Extended_B("Ethiopic_Ext_B"),
         Ethiopic_Supplement("Ethiopic_Sup"),
+        Garay("Garay"),
         Geometric_Shapes("Geometric_Shapes"),
         Geometric_Shapes_Extended("Geometric_Shapes_Ext"),
         Georgian("Georgian"),
@@ -297,6 +299,7 @@ public class UcdPropertyValues {
         Gujarati("Gujarati"),
         Gunjala_Gondi("Gunjala_Gondi"),
         Gurmukhi("Gurmukhi"),
+        Gurung_Khema("Gurung_Khema"),
         Halfwidth_And_Fullwidth_Forms("Half_And_Full_Forms"),
         Combining_Half_Marks("Half_Marks"),
         Hangul_Syllables("Hangul"),
@@ -337,6 +340,7 @@ public class UcdPropertyValues {
         Khmer_Symbols("Khmer_Symbols"),
         Khojki("Khojki"),
         Khudawadi("Khudawadi"),
+        Kirat_Rai("Kirat_Rai"),
         Lao("Lao"),
         Latin_1_Supplement("Latin_1_Sup", "Latin_1"),
         Latin_Extended_A("Latin_Ext_A"),
@@ -393,6 +397,7 @@ public class UcdPropertyValues {
         Myanmar("Myanmar"),
         Myanmar_Extended_A("Myanmar_Ext_A"),
         Myanmar_Extended_B("Myanmar_Ext_B"),
+        Myanmar_Extended_C("Myanmar_Ext_C"),
         Nabataean("Nabataean"),
         Nag_Mundari("Nag_Mundari"),
         Nandinagari("Nandinagari"),
@@ -406,6 +411,7 @@ public class UcdPropertyValues {
         Optical_Character_Recognition("OCR"),
         Ogham("Ogham"),
         Ol_Chiki("Ol_Chiki"),
+        Ol_Onal("Ol_Onal"),
         Old_Hungarian("Old_Hungarian"),
         Old_Italic("Old_Italic"),
         Old_North_Arabian("Old_North_Arabian"),
@@ -451,6 +457,7 @@ public class UcdPropertyValues {
         Specials("Specials"),
         Sundanese("Sundanese"),
         Sundanese_Supplement("Sundanese_Sup"),
+        Sunuwar("Sunuwar"),
         Supplemental_Arrows_A("Sup_Arrows_A"),
         Supplemental_Arrows_B("Sup_Arrows_B"),
         Supplemental_Arrows_C("Sup_Arrows_C"),
@@ -464,6 +471,7 @@ public class UcdPropertyValues {
         Syloti_Nagri("Syloti_Nagri"),
         Symbols_And_Pictographs_Extended_A("Symbols_And_Pictographs_Ext_A"),
         Symbols_For_Legacy_Computing("Symbols_For_Legacy_Computing"),
+        Symbols_For_Legacy_Computing_Supplement("Symbols_For_Legacy_Computing_Sup"),
         Syriac("Syriac"),
         Syriac_Supplement("Syriac_Sup"),
         Tagalog("Tagalog"),
@@ -486,8 +494,10 @@ public class UcdPropertyValues {
         Tibetan("Tibetan"),
         Tifinagh("Tifinagh"),
         Tirhuta("Tirhuta"),
+        Todhri("Todhri"),
         Toto("Toto"),
         Transport_And_Map_Symbols("Transport_And_Map"),
+        Tulu_Tigalari("Tulu_Tigalari"),
         Unified_Canadian_Aboriginal_Syllabics("UCAS", "Canadian_Syllabics"),
         Unified_Canadian_Aboriginal_Syllabics_Extended("UCAS_Ext"),
         Unified_Canadian_Aboriginal_Syllabics_Extended_A("UCAS_Ext_A"),
@@ -1087,6 +1097,7 @@ public class UcdPropertyValues {
         Other("Other"),
         Pure_Killer("Pure_Killer"),
         Register_Shifter("Register_Shifter"),
+        Reordering_Killer("Reordering_Killer"),
         Syllable_Modifier("Syllable_Modifier"),
         Tone_Letter("Tone_Letter"),
         Tone_Mark("Tone_Mark"),
@@ -1294,7 +1305,7 @@ public class UcdPropertyValues {
         Tah("Tah"),
         Taw("Taw"),
         Teh_Marbuta("Teh_Marbuta"),
-        Hamza_On_Heh_Goal("Teh_Marbuta_Goal"),
+        Teh_Marbuta_Goal("Teh_Marbuta_Goal", "Hamza_On_Heh_Goal"),
         Teth("Teth"),
         Thin_Yeh("Thin_Yeh"),
         Vertical_Tail("Vertical_Tail"),
@@ -1698,6 +1709,40 @@ public class UcdPropertyValues {
     }
 
     // Numeric_Value
+    public enum Other_Joining_Type_Values implements Named {
+        Join_Causing("C"),
+        Dual_Joining("D"),
+        Left_Joining("L"),
+        Right_Joining("R"),
+        Transparent("T"),
+        Non_Joining("U"),
+        Deduce_From_General_Category("Deduce_From_General_Category");
+        private final PropertyNames<Other_Joining_Type_Values> names;
+
+        private Other_Joining_Type_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Other_Joining_Type_Values>(
+                            Other_Joining_Type_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Other_Joining_Type_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Other_Joining_Type_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Other_Joining_Type_Values.class);
+
+        public static Other_Joining_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     public enum Script_Values implements Named {
         Adlam("Adlm"),
         Caucasian_Albanian("Aghb"),
@@ -1736,6 +1781,7 @@ public class UcdPropertyValues {
         Elbasan("Elba"),
         Elymaic("Elym"),
         Ethiopic("Ethi"),
+        Garay("Gara"),
         Georgian("Geor"),
         Glagolitic("Glag"),
         Gunjala_Gondi("Gong"),
@@ -1744,6 +1790,7 @@ public class UcdPropertyValues {
         Grantha("Gran"),
         Greek("Grek"),
         Gujarati("Gujr"),
+        Gurung_Khema("Gukh"),
         Gurmukhi("Guru"),
         Hangul("Hang"),
         Han("Hani"),
@@ -1766,6 +1813,7 @@ public class UcdPropertyValues {
         Khojki("Khoj"),
         Khitan_Small_Script("Kits"),
         Kannada("Knda"),
+        Kirat_Rai("Krai"),
         Kaithi("Kthi"),
         Tai_Tham("Lana"),
         Lao("Laoo"),
@@ -1802,6 +1850,7 @@ public class UcdPropertyValues {
         Nushu("Nshu"),
         Ogham("Ogam"),
         Ol_Chiki("Olck"),
+        Ol_Onal("Onao"),
         Old_Turkic("Orkh"),
         Oriya("Orya"),
         Osage("Osge"),
@@ -1833,6 +1882,7 @@ public class UcdPropertyValues {
         Sora_Sompeng("Sora"),
         Soyombo("Soyo"),
         Sundanese("Sund"),
+        Sunuwar("Sunu"),
         Syloti_Nagri("Sylo"),
         Syriac("Syrc"),
         Tagbanwa("Tagb"),
@@ -1850,7 +1900,9 @@ public class UcdPropertyValues {
         Tibetan("Tibt"),
         Tirhuta("Tirh"),
         Tangsa("Tnsa"),
+        Todhri("Todr"),
         Toto("Toto"),
+        Tulu_Tigalari("Tutg"),
         Ugaritic("Ugar"),
         Vai("Vaii"),
         Vithkuqi("Vith"),

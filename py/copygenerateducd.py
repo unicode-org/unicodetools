@@ -17,9 +17,10 @@ import sys
 
 
 def main():
+    out_of_source = '--out-of-source' in sys.argv[1:]
     cwd = Path().cwd()
     uversion = os.getenv("CURRENT_UVERSION")
-    genucddir = cwd / "Generated" / "UCD" / uversion
+    genucddir = (cwd / ".." if out_of_source else cwd) / "Generated" / "UCD" / uversion
     if not genucddir.exists():
         raise Exception(f"Generated directory not found at {genucddir.absolute()}")
 
@@ -34,7 +35,7 @@ def main():
         print("THE FOLLOWING FILES WILL BE MOVED:\n")
         print("\n".join([f"{str(p.name)} --> {devucddir / p.relative_to(genucddir)}" for p in to_move]))  # noqa: E501
 
-        confirm = bool(sys.argv[-1] == "-y")  # enable running this in automation
+        confirm = bool("-y" in sys.argv[1:])  # enable running this in automation
         if not confirm:
             confirm = input("\nProceed [y/N]?").lower() == "y"
 

@@ -111,6 +111,11 @@ public final class UcdLineParser implements Iterable<UcdLineParser.UcdLine> {
                         return false;
                     }
                     line = line2 = rawLines.next();
+                    if (line.startsWith("<<<<<<<")
+                            || line.startsWith("=======")
+                            || line.startsWith(">>>>>>>")) {
+                        line2 = "";
+                    }
                     ++stats.lineCount;
                     final int hashPos = line2.indexOf('#');
                     if (hashPos >= 0) {

@@ -33,6 +33,7 @@ import org.unicode.props.UcdPropertyValues.Indic_Syllabic_Category_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.AliasAddAction;
 import org.unicode.props.UnicodeProperty.BaseProperty;
+import org.unicode.props.UnicodeProperty.RegexMatcher;
 import org.unicode.props.UnicodeProperty.SimpleProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.text.utility.Settings;
@@ -629,9 +630,6 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                         if (!ucd.isRepresented(cp)) {
                             return null;
                         }
-                        if (cp == '\u1E9E') {
-                            System.out.println("@#$ debug");
-                        }
                         final String b =
                                 nfkc.normalize(ucd.getCase(cp, UCD_Types.FULL, UCD_Types.FOLD));
                         final String c =
@@ -674,7 +672,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                     "is" + nf.getName(),
                                     version,
                                     getProperty("to" + nf.getName()),
-                                    false)
+                                    true)
                             .setExtended());
         }
 
@@ -1090,8 +1088,16 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             unicodeMap.putAll(gcbSpacingMarkSet, "SpacingMark");
 
             final UnicodeProperty hangul = getProperty("Hangul_Syllable_Type");
+            final UnicodeProperty name = getProperty("Name");
             unicodeMap.putAll(hangul.getSet("L"), "L");
-            unicodeMap.putAll(hangul.getSet("V"), "V");
+            var regexMatcher = new RegexMatcher();
+            unicodeMap.putAll(
+                    hangul.getSet("V")
+                            .addAll(
+                                    name.getSet(
+                                            regexMatcher.set(
+                                                    "KIRAT RAI VOWEL SIGN (E|AI|AA|O|AU)"))),
+                    "V");
             unicodeMap.putAll(hangul.getSet("T"), "T");
             unicodeMap.putAll(hangul.getSet("LV"), "LV");
             unicodeMap.putAll(hangul.getSet("LVT"), "LVT");
@@ -2001,19 +2007,21 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                         UCD_Names.EXTRA_GENERAL_CATEGORY,
                                         result);
                             case UCD_Types.COMBINING_CLASS >> 8:
-                                addUnique(
-                                        String.valueOf(
-                                                Utility.lookupShort(
-                                                        valueAlias,
-                                                        UCD_Names.LONG_COMBINING_CLASS,
-                                                        true)),
-                                        result);
-                                return lookup(
-                                        valueAlias,
-                                        UCD_Names.LONG_COMBINING_CLASS,
-                                        UCD_Names.COMBINING_CLASS,
-                                        null,
-                                        result);
+                                // The `lookup` function does lookup by long value, and returns
+                                // (long, short, additional aliases).
+                                // For CCC we want to support lookup by long value here, but to
+                                // return (numeric, short, long).
+                                short numericCCC =
+                                        Utility.lookupShort(
+                                                valueAlias, UCD_Names.LONG_COMBINING_CLASS, true);
+                                result.add(Short.toString(numericCCC));
+                                result.add(
+                                        Utility.getUnskeleton(
+                                                UCD_Names.COMBINING_CLASS[numericCCC], true));
+                                result.add(
+                                        Utility.getUnskeleton(
+                                                UCD_Names.LONG_COMBINING_CLASS[numericCCC], true));
+                                return result;
                             case UCD_Types.BIDI_CLASS >> 8:
                                 return lookup(
                                         valueAlias,
@@ -2022,17 +2030,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                         null,
                                         result);
                             case UCD_Types.DECOMPOSITION_TYPE >> 8:
-                                lookup(
-                                        valueAlias,
-                                        UCD_Names.LONG_DECOMPOSITION_TYPE,
-                                        FIXED_DECOMPOSITION_TYPE,
-                                        null,
-                                        result);
                                 return lookup(
                                         valueAlias,
                                         UCD_Names.LONG_DECOMPOSITION_TYPE,
-                                        UCD_Names.DECOMPOSITION_TYPE,
-                                        null,
+                                        TITLECASE_SHORT_DECOMPOSITION_TYPE,
+                                        LONG_TO_LOWERCASE_SHORT_DECOMPOSITION_TYPE,
                                         result);
                             case UCD_Types.NUMERIC_TYPE >> 8:
                                 return lookup(
@@ -2279,9 +2281,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         // System.out.println("=>" + aux[pos]);
         if (aux != null) {
             final int pos = Utility.lookupShort(valueAlias, main, true);
-            UnicodeProperty.addUnique(aux[pos], result);
+            result.add(aux[pos]);
         }
-        UnicodeProperty.addUnique(valueAlias, result);
+        result.add(valueAlias);
         if (aux2 != null) {
             final Set<String> xtra = aux2.getAll(valueAlias);
             if (xtra != null) {
@@ -2378,13 +2380,17 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         YNTF.putAll("Maybe", Arrays.asList(MAYBE_VALUES));
     }
 
-    private static final String[] FIXED_DECOMPOSITION_TYPE =
+    private static final String[] TITLECASE_SHORT_DECOMPOSITION_TYPE =
             new String[UCD_Names.DECOMPOSITION_TYPE.length];
+    private static final Relation<String, String> LONG_TO_LOWERCASE_SHORT_DECOMPOSITION_TYPE =
+            new Relation<String, String>(new HashMap<String, Set<String>>(), LinkedHashSet.class);
 
     static {
         for (int i = 0; i < UCD_Names.DECOMPOSITION_TYPE.length; ++i) {
-            FIXED_DECOMPOSITION_TYPE[i] =
+            TITLECASE_SHORT_DECOMPOSITION_TYPE[i] =
                     Utility.getUnskeleton(UCD_Names.DECOMPOSITION_TYPE[i], true);
+            LONG_TO_LOWERCASE_SHORT_DECOMPOSITION_TYPE.put(
+                    UCD_Names.LONG_DECOMPOSITION_TYPE[i], UCD_Names.DECOMPOSITION_TYPE[i]);
         }
     }
 

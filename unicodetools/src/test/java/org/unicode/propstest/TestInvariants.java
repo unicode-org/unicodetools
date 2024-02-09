@@ -351,6 +351,19 @@ public class TestInvariants extends TestFmwkMinusMinus {
                     // from disallowed_STD3_valid to valid, for Unicode 15.1.
                     level = LOG;
                 }
+                if (ucdProperty == UcdProperty.Standardized_Variant
+                                && Settings.latestVersion.equals("16.0.0")
+                                && (value.equals("rotated 90 degrees")
+                                        && missing.equals(
+                                                new UnicodeSet(
+                                                        "[{\\U00013092\\uFE00}{\\U00013403\\uFE00}]")))
+                        || (value.equals("rotated 180 degrees")
+                                && missing.equals(new UnicodeSet("[{\\U000130A9\\uFE01}]")))) {
+                    // [177-C18] Consensus: Rescind three Egyptian Hieroglyph variation
+                    //                      sequences as described in document L2/23-254
+                    //                      for Unicode version 16.0.
+                    level = LOG;
+                }
                 msg(
                         testName
                                 + ": Unicode "
@@ -359,7 +372,7 @@ public class TestInvariants extends TestFmwkMinusMinus {
                                 + ucdProperty
                                 + "="
                                 + value
-                                + ":] does’t contain "
+                                + ":] doesn’t contain "
                                 + missing.toPattern(true),
                         level,
                         true,
@@ -375,7 +388,7 @@ public class TestInvariants extends TestFmwkMinusMinus {
                                 + ucdProperty
                                 + "="
                                 + value
-                                + ":] does’t contain "
+                                + ":] doesn’t contain "
                                 + newOnes.toPattern(true));
             }
             // assertRelation(status.toString(), true, newSet, CONTAINS_US, oldSet);

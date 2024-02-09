@@ -10,7 +10,6 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.VersionInfo;
@@ -128,7 +127,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         oldVersion = ucdVersion2.compareTo(GenerateEnums.ENUM_VERSION_INFO) < 0;
     }
 
-    public static final IndexUnicodeProperties make(VersionInfo ucdVersion) {
+    public static final synchronized IndexUnicodeProperties make(VersionInfo ucdVersion) {
         IndexUnicodeProperties newItem = version2IndexUnicodeProperties.get(ucdVersion);
         if (newItem == null) {
             version2IndexUnicodeProperties.put(
@@ -416,7 +415,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return result;
     }
 
-    public UnicodeMap<String> load(UcdProperty prop2) {
+    public synchronized boolean isLoaded(UcdProperty prop) {
+        return property2UnicodeMap.get(prop) != null;
+    }
+
+    public synchronized UnicodeMap<String> load(UcdProperty prop2) {
         String fullFilename = "?";
         try {
             if (prop2 == CHECK_PROPERTY) {
@@ -449,6 +452,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     public void internalStoreCachedMap(String dir, UcdProperty prop2, UnicodeMap<String> data) {
         try {
+            final var binDir = new File(dir);
+            if (!binDir.exists()) {
+                binDir.mkdir();
+            }
             final String cacheFileDirName = dir + getUcdVersion();
             final File cacheFileDir = new File(cacheFileDirName);
             if (!cacheFileDir.exists()) {
@@ -527,28 +534,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     public static String getResolvedValue(
             IndexUnicodeProperties props, UcdProperty prop, String codepoint, String value) {
-        if (value == null && props != null) {
-            if (getResolvedDefaultValueType(prop) == DefaultValueType.CODE_POINT) {
-                return codepoint;
-            }
-        }
-        if (prop == UcdProperty.Name && value != null && value.endsWith("-#")) {
-            return value.substring(0, value.length() - 1) + Utility.hex(codepoint);
-        }
-        return value;
+        return props.getProperty(prop).getValue(codepoint.codePointAt(0));
     }
 
     public static String getResolvedValue(
             IndexUnicodeProperties props, UcdProperty prop, int codepoint, String value) {
-        if (value == null && props != null) {
-            if (getResolvedDefaultValueType(prop) == DefaultValueType.CODE_POINT) {
-                return UTF16.valueOf(codepoint);
-            }
-        }
-        if (prop == UcdProperty.Name && value != null && value.endsWith("-#")) {
-            return value.substring(0, value.length() - 1) + Utility.hex(codepoint);
-        }
-        return value;
+        return props.getProperty(prop).getValue(codepoint);
     }
 
     UnicodeMap<String> nameMap;
@@ -678,19 +669,73 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 stringToNamedEnum = ImmutableMap.copyOf(_stringToNamedEnum);
                 enumValueNames = ImmutableSet.copyOf(_mainNames);
             }
+            if (PropertyParsingInfo.property2PropertyInfo.get(item).getMultivalued()
+                    != ValueCardinality.Singleton) {
+                setMultivalued(true);
+                setDelimiter(SET_SEPARATOR);
+            }
         }
 
+        @Override
+        public boolean isTrivial() {
+            return _getRawUnicodeMap().isEmpty()
+                    || _getRawUnicodeMap().keySet("").equals(UnicodeSet.ALL_CODE_POINTS);
+        }
+
+        @Override
         protected UnicodeMap<String> _getUnicodeMap() {
+            var raw = _getRawUnicodeMap();
+            if (prop == UcdProperty.Name
+                    || raw.containsValue("<code point>")
+                    || raw.containsValue("<codepoint>")) {
+                final long start = System.currentTimeMillis();
+                UnicodeMap<String> newMap = new UnicodeMap<>();
+                for (UnicodeMap.EntryRange<String> range : raw.entryRanges()) {
+                    if (range.codepoint == -1) {
+                        newMap.put(range.string, range.value);
+                    } else if (DefaultValueType.forString(range.value)
+                                    == DefaultValueType.CODE_POINT
+                            || (prop == UcdProperty.Name && range.value.endsWith("#"))) {
+                        for (int c = range.codepoint; c <= range.codepointEnd; ++c) {
+                            newMap.put(c, resolveValue(range.value, c));
+                        }
+                    } else {
+                        newMap.putAll(range.codepoint, range.codepointEnd, range.value);
+                    }
+                }
+                final long stop = System.currentTimeMillis();
+                final long Δt_in_ms = stop - start;
+                // We do not want to construct these UnicodeMaps that map most of the code space to
+                // itself, not so much because building them is costly, but because whatever we do
+                // on them is almost certainly a bad idea (for instance calling `values()` will be
+                // extremely slow).  Log a trace so we can figure out where we are using this.
+                System.out.println(
+                        "Built " + prop + " " + ucdVersion + " map in " + Δt_in_ms + " ms");
+                new Throwable().printStackTrace(System.out);
+
+                return newMap;
+            } else {
+                return raw;
+            }
+        }
+
+        protected UnicodeMap<String> _getRawUnicodeMap() {
             return load(prop);
         }
 
         @Override
         protected String _getValue(int codepoint) {
-            final String result = _getUnicodeMap().get(codepoint);
-            if (DefaultValueType.forString(result) == DefaultValueType.CODE_POINT) {
+            final String result = _getRawUnicodeMap().get(codepoint);
+            return resolveValue(result, codepoint);
+        }
+
+        private String resolveValue(String rawValue, int codepoint) {
+            if (DefaultValueType.forString(rawValue) == DefaultValueType.CODE_POINT) {
                 return Character.toString(codepoint);
+            } else if (prop == UcdProperty.Name && rawValue != null && rawValue.endsWith("#")) {
+                return rawValue.substring(0, rawValue.length() - 1) + Utility.hex(codepoint);
             } else {
-                return result;
+                return rawValue;
             }
         }
 
@@ -718,6 +763,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
             }
             if (!result.contains(valueAlias)) {
+                // TODO(egg): We should not be constructing this map for this.
                 if (_getUnicodeMap().containsValue(valueAlias)) {
                     result.add(valueAlias);
                 }

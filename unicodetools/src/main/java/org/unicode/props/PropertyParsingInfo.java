@@ -231,7 +231,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         if (value != null
                 && value.isEmpty()
                 && property != UcdProperty.NFKC_Casefold
-                && property != UcdProperty.NFKC_Simple_Casefold) {
+                && property != UcdProperty.NFKC_Simple_Casefold
+                && property != UcdProperty.Jamo_Short_Name) {
+            // TODO(egg): We probably should do this only exceptionally for UnicodeData.txt,
+            // instead of by default for all but the few properties above.
             value = null;
         }
         value = normalizeAndVerify(value);
