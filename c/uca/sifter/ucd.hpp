@@ -1,5 +1,6 @@
 // © 2024 and later: Unicode, Inc. and others.
 // License & terms of use: http://www.unicode.org/copyright.html
+#pragma once
 #include <algorithm>
 #include <array>
 #include <filesystem>
@@ -50,6 +51,10 @@ class CodePointRange {
         return first_ >= pastTheEnd_;
     }
 
+    constexpr std::size_t size() const {
+        return empty() ? 0 : pastTheEnd_ - first_;
+    }
+
     constexpr bool contains(char32_t c) const {
         return c >= first_ && c < pastTheEnd_;
     }
@@ -97,6 +102,14 @@ class CodePointSet {
                 ranges_.end(),
                 [c](const CodePointRange& range) { return range.back() < c; });
         return it != ranges_.end() && it->contains(c);
+    }
+
+    std::size_t size() const {
+        std::size_t result = 0;
+        for (const auto& range : ranges_) {
+            result += range.size();
+        }
+        return result;
     }
 
     CodePointSet& addAll(CodePointRange range) {
