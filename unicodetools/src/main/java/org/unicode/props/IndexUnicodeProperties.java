@@ -656,6 +656,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         private final UcdProperty prop;
         private final Map<String, PropertyNames> stringToNamedEnum;
         private final Set<String> enumValueNames;
+        // The set of code points for which the property value differs from that in nextVersionProperties.
+        // TODO(egg): Really, for which it may differ, but does not in the default case.
+        private UnicodeSet diffSet;
 
         IndexUnicodeProperty(UcdProperty item) {
             this.prop = item;
@@ -734,13 +737,40 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             return load(prop);
         }
 
+        private UnicodeSet getDiffSet() {
+            if (diffSet == null) {
+                diffSet = _getRawUnicodeMap().keySet(UNCHANGED_IN_NEXT_VERSION).complement().freeze();
+            }
+            return diffSet;
+        }
+
         @Override
         protected String _getValue(int codepoint) {
             final String result = _getRawUnicodeMap().get(codepoint);
             return resolveValue(result, codepoint);
         }
+        
+        @Override
+        public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
+            if (nextVersionProperties == null) {
+                return super.getSet(matcher, result);
+            }
+            final long start = System.currentTimeMillis();
+            final UnicodeSet nextSet = nextVersionProperties.getProperty(prop).getSet(matcher, result);
+            final UnicodeSet matchingInThisVersion = super.getSet(matcher, null).retainAll(getDiffSet());
+            result = nextSet.addAll(matchingInThisVersion).removeAll(getDiffSet().cloneAsThawed().removeAll(matchingInThisVersion));
+            final long stop = System.currentTimeMillis();
+            final long Δt_in_ms = stop - start;
+            if (Δt_in_ms > 100) {
+                System.out.println("Long getSet for U" + ucdVersion + ":" + prop + " (" + Δt_in_ms + " ms)");
+            }
+            return result;
+        }
 
         private String resolveValue(String rawValue, int codepoint) {
+            if (UNCHANGED_IN_NEXT_VERSION.equals(rawValue)) {
+                return nextVersionProperties.getProperty(prop).getValue(codepoint);
+            }
             if (DefaultValueType.forString(rawValue) == DefaultValueType.CODE_POINT) {
                 return Character.toString(codepoint);
             } else if (prop == UcdProperty.Name && rawValue != null && rawValue.endsWith("#")) {
