@@ -1,5 +1,5 @@
 # SentenceBreakProperty-16.0.0.txt
-# Date: 2024-02-13, 22:30:33 GMT
+# Date: 2024-02-13, 23:29:29 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2702,6 +2702,7 @@ FF0E          ; ATerm # Po       FULLWIDTH FULL STOP
 1809          ; STerm # Po       MONGOLIAN MANCHU FULL STOP
 1944..1945    ; STerm # Po   [2] LIMBU EXCLAMATION MARK..LIMBU QUESTION MARK
 1AA8..1AAB    ; STerm # Po   [4] TAI THAM SIGN KAAN..TAI THAM SIGN SATKAANKUU
+1B4E..1B4F    ; STerm # Po   [2] BALINESE INVERTED CARIK SIKI..BALINESE INVERTED CARIK PAREREN
 1B5A..1B5B    ; STerm # Po   [2] BALINESE PANTI..BALINESE PAMADA
 1B5E..1B5F    ; STerm # Po   [2] BALINESE CARIK SIKI..BALINESE CARIK PAREREN
 1B7D..1B7E    ; STerm # Po   [2] BALINESE PANTI LANTANG..BALINESE PAMADA LANTANG
@@ -2762,7 +2763,7 @@ FF61          ; STerm # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 1BC9F         ; STerm # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; STerm # Po       SIGNWRITING FULL STOP
 
-# Total code points: 157
+# Total code points: 159
 
 # ================================================
 

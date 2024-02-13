@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2024-02-13, 22:56:04 GMT
+# Date: 2024-02-13, 23:29:04 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -150,6 +150,7 @@ FF63          ; Quotation_Mark # Pe       HALFWIDTH RIGHT CORNER BRACKET
 1808..1809    ; Terminal_Punctuation # Po   [2] MONGOLIAN MANCHU COMMA..MONGOLIAN MANCHU FULL STOP
 1944..1945    ; Terminal_Punctuation # Po   [2] LIMBU EXCLAMATION MARK..LIMBU QUESTION MARK
 1AA8..1AAB    ; Terminal_Punctuation # Po   [4] TAI THAM SIGN KAAN..TAI THAM SIGN SATKAANKUU
+1B4E..1B4F    ; Terminal_Punctuation # Po   [2] BALINESE INVERTED CARIK SIKI..BALINESE INVERTED CARIK PAREREN
 1B5A..1B5B    ; Terminal_Punctuation # Po   [2] BALINESE PANTI..BALINESE PAMADA
 1B5D..1B5F    ; Terminal_Punctuation # Po   [3] BALINESE CARIK PAMUNGKAH..BALINESE CARIK PAREREN
 1B7D..1B7E    ; Terminal_Punctuation # Po   [2] BALINESE PANTI LANTANG..BALINESE PAMADA LANTANG
@@ -228,7 +229,7 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 1BC9F         ; Terminal_Punctuation # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; Terminal_Punctuation # Po   [4] SIGNWRITING COMMA..SIGNWRITING COLON
 
-# Total code points: 282
+# Total code points: 284
 
 # ================================================
 
@@ -1531,6 +1532,7 @@ FF65          ; Other_ID_Continue # Po       HALFWIDTH KATAKANA MIDDLE DOT
 1809          ; Sentence_Terminal # Po       MONGOLIAN MANCHU FULL STOP
 1944..1945    ; Sentence_Terminal # Po   [2] LIMBU EXCLAMATION MARK..LIMBU QUESTION MARK
 1AA8..1AAB    ; Sentence_Terminal # Po   [4] TAI THAM SIGN KAAN..TAI THAM SIGN SATKAANKUU
+1B4E..1B4F    ; Sentence_Terminal # Po   [2] BALINESE INVERTED CARIK SIKI..BALINESE INVERTED CARIK PAREREN
 1B5A..1B5B    ; Sentence_Terminal # Po   [2] BALINESE PANTI..BALINESE PAMADA
 1B5E..1B5F    ; Sentence_Terminal # Po   [2] BALINESE CARIK SIKI..BALINESE CARIK PAREREN
 1B7D..1B7E    ; Sentence_Terminal # Po   [2] BALINESE PANTI LANTANG..BALINESE PAMADA LANTANG
@@ -1592,10 +1594,8 @@ FF61          ; Sentence_Terminal # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 16E98         ; Sentence_Terminal # Po       MEDEFAIDRIN FULL STOP
 1BC9F         ; Sentence_Terminal # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; Sentence_Terminal # Po       SIGNWRITING FULL STOP
-1B4E..1B4F ; Sentence_Terminal
-1B4E..1B4F ; Terminal_Punctuation
 
-# Total code points: 160
+# Total code points: 162
 
 # ================================================
 
