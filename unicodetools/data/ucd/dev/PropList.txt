@@ -1592,6 +1592,8 @@ FF61          ; Sentence_Terminal # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 16E98         ; Sentence_Terminal # Po       MEDEFAIDRIN FULL STOP
 1BC9F         ; Sentence_Terminal # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; Sentence_Terminal # Po       SIGNWRITING FULL STOP
+1B4E..1B4F ; Sentence_Terminal
+1B4E..1B4F ; Terminal_Punctuation
 
 # Total code points: 160
 
