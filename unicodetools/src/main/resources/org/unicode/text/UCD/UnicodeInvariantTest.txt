@@ -507,6 +507,9 @@ $combiningExclusions ⊇ [$firstNonStarter & \p{dt=canonical}]
 
 \p{Terminal_Punctuation} ⊃ \p{STerm}
 
+# We forgot about Sentence_Terminal while working on 16.0α; this would have caught us.
+\p{Name=/DANDA/} ⊆ \p{Sentence_Terminal}
+
 # 132-M3 if a character has a general category of "Number", it must have a numeric type that is not equal to "none".
 
 [\p{General_Category=Decimal_Number}\p{General_Category=Letter_Number}\p{General_Category=Other_Number}] ∥ \p{Numeric_Type=None}
