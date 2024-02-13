@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2024-02-13, 22:30:06 GMT
+# Date: 2024-02-13, 22:56:04 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -202,6 +202,7 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 111DE..111DF  ; Terminal_Punctuation # Po   [2] SHARADA SECTION MARK-1..SHARADA SECTION MARK-2
 11238..1123C  ; Terminal_Punctuation # Po   [5] KHOJKI DANDA..KHOJKI DOUBLE SECTION MARK
 112A9         ; Terminal_Punctuation # Po       MULTANI SECTION MARK
+113D4..113D5  ; Terminal_Punctuation # Po   [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
 1144B..1144D  ; Terminal_Punctuation # Po   [3] NEWA DANDA..NEWA COMMA
 1145A..1145B  ; Terminal_Punctuation # Po   [2] NEWA DOUBLE COMMA..NEWA PLACEHOLDER MARK
 115C2..115C5  ; Terminal_Punctuation # Po   [4] SIDDHAM DANDA..SIDDHAM SEPARATOR BAR
@@ -222,11 +223,12 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 16AF5         ; Terminal_Punctuation # Po       BASSA VAH FULL STOP
 16B37..16B39  ; Terminal_Punctuation # Po   [3] PAHAWH HMONG SIGN VOS THOM..PAHAWH HMONG SIGN CIM CHEEM
 16B44         ; Terminal_Punctuation # Po       PAHAWH HMONG SIGN XAUS
+16D6E..16D6F  ; Terminal_Punctuation # Po   [2] KIRAT RAI DANDA..KIRAT RAI DOUBLE DANDA
 16E97..16E98  ; Terminal_Punctuation # Po   [2] MEDEFAIDRIN COMMA..MEDEFAIDRIN FULL STOP
 1BC9F         ; Terminal_Punctuation # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; Terminal_Punctuation # Po   [4] SIGNWRITING COMMA..SIGNWRITING COLON
 
-# Total code points: 278
+# Total code points: 282
 
 # ================================================
 
@@ -1570,7 +1572,6 @@ FF61          ; Sentence_Terminal # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 1123B..1123C  ; Sentence_Terminal # Po   [2] KHOJKI SECTION MARK..KHOJKI DOUBLE SECTION MARK
 112A9         ; Sentence_Terminal # Po       MULTANI SECTION MARK
 113D4..113D5  ; Sentence_Terminal # Po   [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
-113D4..113D5  ; Terminal_Punctuation # Po   [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
 1144B..1144C  ; Sentence_Terminal # Po   [2] NEWA DANDA..NEWA DOUBLE DANDA
 115C2..115C3  ; Sentence_Terminal # Po   [2] SIDDHAM DANDA..SIDDHAM DOUBLE DANDA
 115C9..115D7  ; Sentence_Terminal # Po  [15] SIDDHAM END OF TEXT MARK..SIDDHAM SECTION MARK WITH CIRCLES AND FOUR ENCLOSURES
@@ -1588,7 +1589,6 @@ FF61          ; Sentence_Terminal # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 16B37..16B38  ; Sentence_Terminal # Po   [2] PAHAWH HMONG SIGN VOS THOM..PAHAWH HMONG SIGN VOS TSHAB CEEB
 16B44         ; Sentence_Terminal # Po       PAHAWH HMONG SIGN XAUS
 16D6E..16D6F  ; Sentence_Terminal # Po   [2] KIRAT RAI DANDA..KIRAT RAI DOUBLE DANDA
-16D6E..16D6F  ; Terminal_Punctuation # Po   [2] KIRAT RAI DANDA..KIRAT RAI DOUBLE DANDA
 16E98         ; Sentence_Terminal # Po       MEDEFAIDRIN FULL STOP
 1BC9F         ; Sentence_Terminal # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; Sentence_Terminal # Po       SIGNWRITING FULL STOP
