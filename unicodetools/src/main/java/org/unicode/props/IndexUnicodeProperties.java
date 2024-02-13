@@ -56,6 +56,7 @@ import org.unicode.text.utility.Utility;
  * @author markdavis
  */
 public class IndexUnicodeProperties extends UnicodeProperty.Factory {
+    public static final String UNCHANGED_IN_NEXT_VERSION = "👉 SEE NEXT VERSION OF UNICODE";
     static final String SET_SEPARATOR = "|";
     /** Control file caching */
     static final boolean GZIP = true;
@@ -122,16 +123,25 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     static Map<VersionInfo, IndexUnicodeProperties> version2IndexUnicodeProperties =
             new ConcurrentHashMap<>();
 
-    private IndexUnicodeProperties(VersionInfo ucdVersion2) {
+    private IndexUnicodeProperties(VersionInfo ucdVersion2, IndexUnicodeProperties next) {
         ucdVersion = ucdVersion2;
         oldVersion = ucdVersion2.compareTo(GenerateEnums.ENUM_VERSION_INFO) < 0;
+        nextVersionProperties = next;
     }
 
     public static final synchronized IndexUnicodeProperties make(VersionInfo ucdVersion) {
         IndexUnicodeProperties newItem = version2IndexUnicodeProperties.get(ucdVersion);
+        Age_Values nextAge = Age_Values.Unassigned;
+        for (int i = 0; i < Age_Values.values().length - 1; ++i) {
+            final var version = VersionInfo.getInstance(Age_Values.values()[i].getShortName());
+            if (version.equals(ucdVersion)) {
+                nextAge = Age_Values.values()[i + 1];
+            }
+        }
+        IndexUnicodeProperties next = nextAge == Age_Values.Unassigned ? null : make(nextAge);
         if (newItem == null) {
             version2IndexUnicodeProperties.put(
-                    ucdVersion, newItem = new IndexUnicodeProperties(ucdVersion));
+                    ucdVersion, newItem = new IndexUnicodeProperties(ucdVersion, next));
         }
         return newItem;
     }
@@ -151,6 +161,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     final VersionInfo ucdVersion;
     final boolean oldVersion;
+    final IndexUnicodeProperties nextVersionProperties;
     final EnumMap<UcdProperty, UnicodeMap<String>> property2UnicodeMap =
             new EnumMap<UcdProperty, UnicodeMap<String>>(UcdProperty.class);
     private final Set<String> fileNames = new TreeSet<String>();
@@ -443,7 +454,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
             }
 
-            PropertyParsingInfo.parseSourceFile(this, fullFilename, fileName);
+            PropertyParsingInfo.parseSourceFile(this, nextVersionProperties, fullFilename, fileName);
             return property2UnicodeMap.get(prop2);
         } catch (Exception e) {
             throw new ICUException(prop2.toString() + "( from: " + fullFilename + ")", e);
