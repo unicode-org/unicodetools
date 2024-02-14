@@ -35,6 +35,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import org.unicode.draft.CldrUtility.VariableReplacer;
@@ -830,5 +831,61 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     public UnicodeSet loadBinary(UcdProperty ucdProp) {
         return load(ucdProp).getSet(Binary.Yes.toString());
+    }
+
+    public static void loadUcdHistory(VersionInfo earliest, Consumer<VersionInfo> notifyLoaded) {
+        System.out.println(
+                "Loading back to " + (earliest == null ? "the dawn of time" : earliest) + "...");
+        Age_Values[] ages = Age_Values.values();
+        final long overallStart = System.currentTimeMillis();
+        for (int i = ages.length - 1; i >= 0; --i) {
+            final var age = ages[i];
+            if (age == Age_Values.Unassigned) {
+                continue;
+            }
+            final long ucdStart = System.currentTimeMillis();
+            System.out.println("Loading UCD " + age.getShortName() + "...");
+            for (boolean unihan : new boolean[] {false, true}) {
+                final long partStart = System.currentTimeMillis();
+                final String name = unihan ? "Unihan" : "non-Unihan properties";
+                final var properties = IndexUnicodeProperties.make(age.getShortName());
+                for (UcdProperty property : UcdProperty.values()) {
+                    if (property.getShortName().startsWith("cjk") == unihan) {
+                        try {
+                            properties.load(property);
+                        } catch (ICUException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                System.out.println(
+                        "Loaded "
+                                + name
+                                + " for "
+                                + age.getShortName()
+                                + " ("
+                                + (System.currentTimeMillis() - partStart)
+                                + " ms)");
+            }
+            System.out.println(
+                    "Loaded UCD "
+                            + age.getShortName()
+                            + " in "
+                            + (System.currentTimeMillis() - ucdStart)
+                            + " ms");
+            var version = VersionInfo.getInstance(age.getShortName());
+            if (notifyLoaded != null) {
+                notifyLoaded.accept(version);
+            }
+            if (version == earliest) {
+                break;
+            }
+        }
+        System.out.println(
+                "Loaded "
+                        + (earliest == null ? "all UCD history" : "UCD history back to " + earliest)
+                        + " in "
+                        + (System.currentTimeMillis() - overallStart) / 1000
+                        + " s");
     }
 }

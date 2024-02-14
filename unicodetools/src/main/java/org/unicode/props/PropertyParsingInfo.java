@@ -210,7 +210,11 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     public static final Normalizer2 NFD = Normalizer2.getNFDInstance();
     public static final Normalizer2 NFC = Normalizer2.getNFCInstance();
 
-    public void put(UnicodeMap<String> data, UcdLineParser.IntRange intRange, String string, UnicodeProperty nextVersion) {
+    public void put(
+            UnicodeMap<String> data,
+            UcdLineParser.IntRange intRange,
+            String string,
+            UnicodeProperty nextVersion) {
         put(data, intRange, string, null, nextVersion);
     }
 
@@ -508,26 +512,36 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             parser.withRange(false),
                             propInfo,
                             indexUnicodeProperties.property2UnicodeMap.get(propInfo.property),
-                            nextProperties == null ? null : nextProperties.getProperty(propInfo.property));
+                            nextProperties == null
+                                    ? null
+                                    : nextProperties.getProperty(propInfo.property));
                     break;
                 case NamedSequences:
                     parseNamedSequencesFile(
-                            parser.withRange(false), indexUnicodeProperties, nextProperties, propInfoSet);
+                            parser.withRange(false),
+                            indexUnicodeProperties,
+                            nextProperties,
+                            propInfoSet);
                     break;
                 case PropertyValue:
-                    parsePropertyValueFile(parser.withMissing(true), indexUnicodeProperties, nextProperties);
+                    parsePropertyValueFile(
+                            parser.withMissing(true), indexUnicodeProperties, nextProperties);
                     break;
                 case Confusables:
-                    parseConfusablesFile(parser, indexUnicodeProperties, nextProperties, propInfoSet);
+                    parseConfusablesFile(
+                            parser, indexUnicodeProperties, nextProperties, propInfoSet);
                     break;
                 case StandardizedVariants:
-                    parseStandardizedVariantsFile(parser, indexUnicodeProperties, nextProperties, propInfoSet);
+                    parseStandardizedVariantsFile(
+                            parser, indexUnicodeProperties, nextProperties, propInfoSet);
                     break;
                 case NameAliases:
-                    parseNameAliasesFile(parser, indexUnicodeProperties, nextProperties, propInfoSet);
+                    parseNameAliasesFile(
+                            parser, indexUnicodeProperties, nextProperties, propInfoSet);
                     break;
                 case HackField:
-                    parseUnicodeDataFile(parser, indexUnicodeProperties, nextProperties, propInfoSet);
+                    parseUnicodeDataFile(
+                            parser, indexUnicodeProperties, nextProperties, propInfoSet);
                     break;
                 case Field:
                     if (propInfoSet.size() == 1
@@ -538,10 +552,15 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                 parser.withMissing(true),
                                 propInfo,
                                 indexUnicodeProperties.property2UnicodeMap.get(propInfo.property),
-                                nextProperties == null ? null : nextProperties.getProperty(propInfo.property));
+                                nextProperties == null
+                                        ? null
+                                        : nextProperties.getProperty(propInfo.property));
                     } else {
                         parseFieldFile(
-                                parser.withMissing(true), indexUnicodeProperties, nextProperties, propInfoSet);
+                                parser.withMissing(true),
+                                indexUnicodeProperties,
+                                nextProperties,
+                                propInfoSet);
                     }
                     break;
                 case List:
@@ -552,7 +571,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                 parser,
                                 propInfo,
                                 indexUnicodeProperties.property2UnicodeMap.get(propInfo.property),
-                                nextProperties == null ? null : nextProperties.getProperty(propInfo.property));
+                                nextProperties == null
+                                        ? null
+                                        : nextProperties.getProperty(propInfo.property));
                     } else {
                         throw new UnicodePropertyException(
                                 "List files must have only one property, and must be Boolean");
@@ -591,7 +612,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             //                propInfo.defaultValue = "<none>";
             //            }
             switch (propInfo.defaultValueType) {
-                // TODO(egg): Consider also storing only the changed values here.
+                    // TODO(egg): Consider also storing only the changed values here.
                 case Script:
                 case Simple_Lowercase_Mapping:
                 case Simple_Titlecase_Mapping:
@@ -634,7 +655,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     }
 
     private static void parseCJKRadicalsFile(
-            UcdLineParser parser, PropertyParsingInfo propInfo, UnicodeMap<String> data, UnicodeProperty nextVersion) {
+            UcdLineParser parser,
+            PropertyParsingInfo propInfo,
+            UnicodeMap<String> data,
+            UnicodeProperty nextVersion) {
         // Note: CJKRadicals.txt cannot be completely represented via a UnicodeMap.
         // See the comments in RadicalStroke.getCJKRadicals().
         /*
@@ -659,19 +683,28 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     private static void parseNamedSequencesFile(
             UcdLineParser parser,
             IndexUnicodeProperties indexUnicodeProperties,
-            IndexUnicodeProperties nextProperties, Set<PropertyParsingInfo> propInfoSet) {
+            IndexUnicodeProperties nextProperties,
+            Set<PropertyParsingInfo> propInfoSet) {
         for (UcdLineParser.UcdLine line : parser) {
             line.getRange().set(line.getParts()[1]);
             for (final PropertyParsingInfo propInfo : propInfoSet) {
                 final UnicodeMap<String> data =
                         indexUnicodeProperties.property2UnicodeMap.get(propInfo.property);
-                propInfo.put(data, line.getRange(), line.getParts()[0], nextProperties == null ? null : nextProperties.getProperty(propInfo.property));
+                propInfo.put(
+                        data,
+                        line.getRange(),
+                        line.getParts()[0],
+                        nextProperties == null
+                                ? null
+                                : nextProperties.getProperty(propInfo.property));
             }
         }
     }
 
     private static void parsePropertyValueFile(
-            UcdLineParser parser, IndexUnicodeProperties indexUnicodeProperties, IndexUnicodeProperties nextProperties) {
+            UcdLineParser parser,
+            IndexUnicodeProperties indexUnicodeProperties,
+            IndexUnicodeProperties nextProperties) {
         for (UcdLineParser.UcdLine line : parser) {
             String propName = line.getParts()[1];
             UcdProperty item = UcdProperty.forString(propName);
@@ -743,7 +776,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 } catch (Exception e) {
                     throw new IllegalArgumentException(line.getOriginalLine(), e);
                 }
-                propInfo.put(data, line.getRange(), value, nextProperties == null ? null : nextProperties.getProperty(propInfo.property));
+                propInfo.put(
+                        data,
+                        line.getRange(),
+                        value,
+                        nextProperties == null
+                                ? null
+                                : nextProperties.getProperty(propInfo.property));
             } else {
                 setPropDefault(
                         propInfo.property,
@@ -757,7 +796,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     private static void parseConfusablesFile(
             UcdLineParser parser,
             IndexUnicodeProperties indexUnicodeProperties,
-            IndexUnicodeProperties nextProperties, Set<PropertyParsingInfo> propInfoSet) {
+            IndexUnicodeProperties nextProperties,
+            Set<PropertyParsingInfo> propInfoSet) {
         for (UcdLineParser.UcdLine line : parser) {
             UcdLineParser.IntRange intRange = line.getRange();
             String[] parts = line.getParts();
@@ -776,14 +816,30 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             }
             final UnicodeMap<String> data =
                     indexUnicodeProperties.property2UnicodeMap.get(propInfo.property);
-            propInfo.put(data, intRange, parts[1], nextProperties == null ? null : nextProperties.getProperty(propInfo.property));
+            propInfo.put(
+                    data,
+                    intRange,
+                    parts[1],
+                    nextProperties == null ? null : nextProperties.getProperty(propInfo.property));
             intRange.set(parts[1]);
             if (intRange.string == null) {
                 if (!data.containsKey(intRange.start)) {
-                    propInfo.put(data, intRange, parts[1], nextProperties == null ? null : nextProperties.getProperty(propInfo.property));
+                    propInfo.put(
+                            data,
+                            intRange,
+                            parts[1],
+                            nextProperties == null
+                                    ? null
+                                    : nextProperties.getProperty(propInfo.property));
                 }
             } else if (!intRange.string.isEmpty() && !data.containsKey(intRange.string)) {
-                propInfo.put(data, intRange, parts[1], nextProperties == null ? null : nextProperties.getProperty(propInfo.property));
+                propInfo.put(
+                        data,
+                        intRange,
+                        parts[1],
+                        nextProperties == null
+                                ? null
+                                : nextProperties.getProperty(propInfo.property));
             }
         }
     }
@@ -791,7 +847,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     private static void parseStandardizedVariantsFile(
             UcdLineParser parser,
             IndexUnicodeProperties indexUnicodeProperties,
-            IndexUnicodeProperties nextProperties, Set<PropertyParsingInfo> propInfoSet) {
+            IndexUnicodeProperties nextProperties,
+            Set<PropertyParsingInfo> propInfoSet) {
         for (UcdLineParser.UcdLine line : parser) {
             String[] parts = line.getParts();
             if (!parts[2].isEmpty()) {
@@ -810,7 +867,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     private static void parseNameAliasesFile(
             UcdLineParser parser,
             IndexUnicodeProperties indexUnicodeProperties,
-            IndexUnicodeProperties nextProperties, Set<PropertyParsingInfo> propInfoSet) {
+            IndexUnicodeProperties nextProperties,
+            Set<PropertyParsingInfo> propInfoSet) {
         for (UcdLineParser.UcdLine line : parser) {
             parseFields(
                     line,
@@ -825,7 +883,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     private static void parseUnicodeDataFile(
             UcdLineParser parser,
             IndexUnicodeProperties indexUnicodeProperties,
-            IndexUnicodeProperties nextProperties, Set<PropertyParsingInfo> propInfoSet) {
+            IndexUnicodeProperties nextProperties,
+            Set<PropertyParsingInfo> propInfoSet) {
         int lastCodepoint = 0;
         for (UcdLineParser.UcdLine line : parser) {
             String[] parts = line.getParts();
@@ -871,14 +930,16 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 // Decomposition_Mapping: Remove the decomposition type.
                 parts[5] = DECOMP_REMOVE.matcher(parts[5]).replaceAll("").trim();
             }
-            parseFields(line, indexUnicodeProperties, nextProperties, propInfoSet, null, hackHangul);
+            parseFields(
+                    line, indexUnicodeProperties, nextProperties, propInfoSet, null, hackHangul);
         }
     }
 
     private static void parseFieldFile(
             UcdLineParser parser,
             IndexUnicodeProperties indexUnicodeProperties,
-            IndexUnicodeProperties nextProperties, Set<PropertyParsingInfo> propInfoSet) {
+            IndexUnicodeProperties nextProperties,
+            Set<PropertyParsingInfo> propInfoSet) {
         for (UcdLineParser.UcdLine line : parser) {
             parseFields(line, indexUnicodeProperties, nextProperties, propInfoSet, null, false);
         }
@@ -938,7 +999,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         value,
                         merger,
                         hackHangul && propInfo.property == UcdProperty.Decomposition_Mapping,
-                        nextProperties == null ? null : nextProperties.getProperty(propInfo.property));
+                        nextProperties == null
+                                ? null
+                                : nextProperties.getProperty(propInfo.property));
             }
         } else {
             for (final PropertyParsingInfo propInfo : propInfoSet) {
@@ -954,7 +1017,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     }
 
     private static void parseSimpleFieldFile(
-            UcdLineParser parser, PropertyParsingInfo propInfo, UnicodeMap<String> data, UnicodeProperty nextVersion) {
+            UcdLineParser parser,
+            PropertyParsingInfo propInfo,
+            UnicodeMap<String> data,
+            UnicodeProperty nextVersion) {
         for (UcdLineParser.UcdLine line : parser) {
             if (line.getType() == UcdLineParser.UcdLine.Contents.DATA) {
                 if (propInfo.getDefaultValue() == null) {
@@ -997,7 +1063,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     }
 
     private static void parseListFile(
-            UcdLineParser parser, PropertyParsingInfo propInfo, UnicodeMap<String> data, UnicodeProperty nextVersion) {
+            UcdLineParser parser,
+            PropertyParsingInfo propInfo,
+            UnicodeMap<String> data,
+            UnicodeProperty nextVersion) {
         for (UcdLineParser.UcdLine line : parser) {
             propInfo.put(data, line.getRange(), "Yes", nextVersion);
         }

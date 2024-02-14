@@ -1221,10 +1221,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         if (compositeVersion >= 0x040000) {
             // Word_Break - auxiliary/WordBreakProperty.txt
             final UnicodeMap<String> unicodeMap = new UnicodeMap<String>();
-             // Disallow multiple values for code point, but only if we are using this class to
-             // derive the current properties; the derivation is incorrect for earlier versions
-             // anyway.
-            unicodeMap.setErrorOnReset(compositeVersion == UCD.makeLatestVersion().getCompositeVersion());
+            // Disallow multiple values for code point, but only if we are using this class to
+            // derive the current properties; the derivation is incorrect for earlier versions
+            // anyway.
+            unicodeMap.setErrorOnReset(
+                    compositeVersion == UCD.makeLatestVersion().getCompositeVersion());
 
             final UnicodeProperty cat = getProperty("General_Category");
             final UnicodeProperty script = getProperty("Script");
