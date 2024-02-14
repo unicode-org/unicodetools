@@ -122,6 +122,13 @@ CLDR_REF=$(mvn help:evaluate -Dexpression=cldr.version -q -DforceStdout | cut -d
 mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git -f UnicodeJsps/target/cldr-unicodetools.tgz ./cldr/ ./unicodetools/
 ```
 
+- Regenerate the property cache files:
+
+```
+mvn compile exec:java '-Dexec.mainClass="org.unicode.jsp.RebuildPropertyCache"' -am -pl unicodetools   "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=." "-DCLDR_DIR=<somewhere>"
+tar -cpz -f UnicodeJsps/target/generated.tgz ./Generated/
+```
+
 Now, finally build.
 
 - `docker build -t unicode/unicode-jsp:latest UnicodeJsps/`
