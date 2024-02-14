@@ -50,10 +50,6 @@ public class UpdateJspFiles {
         System.out.println("Sublaunching ListProps..");
         ListProps.main(args);
 
-        // Sublaunch CopyPropsToUnicodeJsp
-        System.out.println("Sublaunching CopyPropsToUnicodeJsp");
-        CopyPropsToUnicodeJsp.main(args);
-
         System.out.println(
                 "DONE! Now go run 'mvn org.eclipse.jetty:jetty-maven-plugin:run' to fire up the JSP");
     }
