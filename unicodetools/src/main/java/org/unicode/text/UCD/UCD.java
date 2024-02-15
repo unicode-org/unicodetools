@@ -29,6 +29,7 @@ import java.util.regex.Pattern;
 import org.unicode.props.DefaultValues;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
@@ -520,7 +521,7 @@ public final class UCD implements UCD_Types {
         byte numericType;
     }
 
-    private void populateHanExceptions(org.unicode.props.UnicodeProperty numeric) {
+    private void populateHanExceptions(UnicodeProperty numeric) {
         for (String value : numeric.getAvailableValues()) {
             if (value == null || value.equals("NaN")) {
                 continue;
