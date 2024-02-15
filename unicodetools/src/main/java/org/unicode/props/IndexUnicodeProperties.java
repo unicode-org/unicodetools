@@ -432,6 +432,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     public synchronized UnicodeMap<String> load(UcdProperty prop2) {
+        return load(prop2, false);
+    }
+
+    public synchronized UnicodeMap<String> load(UcdProperty prop2, boolean expectCacheHit) {
         String fullFilename = "?";
         try {
             if (prop2 == CHECK_PROPERTY) {
@@ -453,6 +457,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     property2UnicodeMap.put(prop2, data0.freeze());
                     return data0;
                 }
+            }
+
+            if (expectCacheHit) {
+                System.err.println("Failed to find cached " + prop2 + ", parsing from source");
             }
 
             PropertyParsingInfo.parseSourceFile(
@@ -842,7 +850,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return load(ucdProp).getSet(Binary.Yes.toString());
     }
 
-    public static void loadUcdHistory(VersionInfo earliest, Consumer<VersionInfo> notifyLoaded) {
+    public static void loadUcdHistory(
+            VersionInfo earliest, Consumer<VersionInfo> notifyLoaded, boolean expectCacheHit) {
         System.out.println(
                 "Loading back to " + (earliest == null ? "the dawn of time" : earliest) + "...");
         Age_Values[] ages = Age_Values.values();
@@ -861,7 +870,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 for (UcdProperty property : UcdProperty.values()) {
                     if (property.getShortName().startsWith("cjk") == unihan) {
                         try {
-                            properties.load(property);
+                            properties.load(property, expectCacheHit);
                         } catch (ICUException e) {
                             e.printStackTrace();
                         }

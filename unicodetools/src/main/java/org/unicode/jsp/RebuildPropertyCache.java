@@ -48,7 +48,7 @@ public class RebuildPropertyCache {
             }
         }
 
-        IndexUnicodeProperties.loadUcdHistory(null, null);
+        IndexUnicodeProperties.loadUcdHistory(null, null, false);
         System.out.println("Rebuilt property cache in " + Settings.Output.BIN_DIR);
     }
 }

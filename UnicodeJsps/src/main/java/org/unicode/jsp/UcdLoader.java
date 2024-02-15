@@ -41,13 +41,13 @@ public class UcdLoader implements javax.servlet.Servlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         IndexUnicodeProperties.loadUcdHistory(
-                Settings.LAST_VERSION_INFO, UcdLoader::setOldestLoadedUcd);
+                Settings.LAST_VERSION_INFO, UcdLoader::setOldestLoadedUcd, true);
         new Thread(
                         new Runnable() {
                             @Override
                             public void run() {
                                 IndexUnicodeProperties.loadUcdHistory(
-                                        null, UcdLoader::setOldestLoadedUcd);
+                                        null, UcdLoader::setOldestLoadedUcd, true);
                             }
                         })
                 .start();
