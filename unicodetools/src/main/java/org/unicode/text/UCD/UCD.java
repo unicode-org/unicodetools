@@ -26,8 +26,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.props.DefaultValues;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
