@@ -6,7 +6,6 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
-
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.utility.Settings;
 
@@ -30,7 +29,13 @@ public class RebuildPropertyCache {
                     }
                 }
             }
-            System.out.println("Cleaning " + filesToDelete.size() + " existing files in " + directoriesToDelete.size() + " existiing directories under " + Settings.Output.BIN_DIR);
+            System.out.println(
+                    "Cleaning "
+                            + filesToDelete.size()
+                            + " existing files in "
+                            + directoriesToDelete.size()
+                            + " existiing directories under "
+                            + Settings.Output.BIN_DIR);
             for (final var f : filesToDelete) {
                 if (!f.delete()) {
                     System.err.println("Failed to delete " + f);
@@ -46,5 +51,4 @@ public class RebuildPropertyCache {
         IndexUnicodeProperties.loadUcdHistory(null, null);
         System.out.println("Rebuilt property cache in " + Settings.Output.BIN_DIR);
     }
-    
 }

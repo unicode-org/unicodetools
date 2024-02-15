@@ -455,7 +455,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
             }
 
-            PropertyParsingInfo.parseSourceFile(this, nextVersionProperties, fullFilename, fileName);
+            PropertyParsingInfo.parseSourceFile(
+                    this, nextVersionProperties, fullFilename, fileName);
             return property2UnicodeMap.get(prop2);
         } catch (Exception e) {
             throw new ICUException(prop2.toString() + "( from: " + fullFilename + ")", e);
@@ -657,7 +658,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         private final UcdProperty prop;
         private final Map<String, PropertyNames> stringToNamedEnum;
         private final Set<String> enumValueNames;
-        // The set of code points for which the property value differs from that in nextVersionProperties.
+        // The set of code points for which the property value differs from that in
+        // nextVersionProperties.
         // TODO(egg): Really, for which it may differ, but does not in the default case.
         private UnicodeSet diffSet;
 
@@ -740,7 +742,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         private UnicodeSet getDiffSet() {
             if (diffSet == null) {
-                diffSet = _getRawUnicodeMap().keySet(UNCHANGED_IN_NEXT_VERSION).complement().freeze();
+                diffSet =
+                        _getRawUnicodeMap().keySet(UNCHANGED_IN_NEXT_VERSION).complement().freeze();
             }
             return diffSet;
         }
@@ -750,20 +753,26 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             final String result = _getRawUnicodeMap().get(codepoint);
             return resolveValue(result, codepoint);
         }
-        
+
         @Override
         public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
             if (nextVersionProperties == null) {
                 return super.getSet(matcher, result);
             }
             final long start = System.currentTimeMillis();
-            final UnicodeSet nextSet = nextVersionProperties.getProperty(prop).getSet(matcher, result);
-            final UnicodeSet matchingInThisVersion = super.getSet(matcher, null).retainAll(getDiffSet());
-            result = nextSet.addAll(matchingInThisVersion).removeAll(getDiffSet().cloneAsThawed().removeAll(matchingInThisVersion));
+            final UnicodeSet nextSet =
+                    nextVersionProperties.getProperty(prop).getSet(matcher, result);
+            final UnicodeSet matchingInThisVersion =
+                    super.getSet(matcher, null).retainAll(getDiffSet());
+            result =
+                    nextSet.addAll(matchingInThisVersion)
+                            .removeAll(
+                                    getDiffSet().cloneAsThawed().removeAll(matchingInThisVersion));
             final long stop = System.currentTimeMillis();
             final long Δt_in_ms = stop - start;
             if (Δt_in_ms > 100) {
-                System.out.println("Long getSet for U" + ucdVersion + ":" + prop + " (" + Δt_in_ms + " ms)");
+                System.out.println(
+                        "Long getSet for U" + ucdVersion + ":" + prop + " (" + Δt_in_ms + " ms)");
             }
             return result;
         }

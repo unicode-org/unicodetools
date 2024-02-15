@@ -2,7 +2,6 @@ package org.unicode.jsp;
 
 import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -41,12 +40,14 @@ public class UcdLoader implements javax.servlet.Servlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        IndexUnicodeProperties.loadUcdHistory(Settings.LAST_VERSION_INFO, UcdLoader::setOldestLoadedUcd);
+        IndexUnicodeProperties.loadUcdHistory(
+                Settings.LAST_VERSION_INFO, UcdLoader::setOldestLoadedUcd);
         new Thread(
                         new Runnable() {
                             @Override
                             public void run() {
-                                IndexUnicodeProperties.loadUcdHistory(null, UcdLoader::setOldestLoadedUcd);
+                                IndexUnicodeProperties.loadUcdHistory(
+                                        null, UcdLoader::setOldestLoadedUcd);
                             }
                         })
                 .start();
