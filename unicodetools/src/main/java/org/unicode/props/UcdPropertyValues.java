@@ -1377,6 +1377,7 @@ public class UcdPropertyValues {
     }
 
     // kAccountingNumeric
+    // kAlternateTotalStrokes
     // kBigFive
     // kCangjie
     // kCantonese
@@ -1391,6 +1392,7 @@ public class UcdPropertyValues {
     // kDaeJaweon
     // kDefinition
     // kEACC
+    // kFanqie
     // kFenn
     // kFennIndex
     // kFourCornerCode
@@ -1428,6 +1430,7 @@ public class UcdPropertyValues {
     // kIRGHanyuDaZidian
     // kIRGKangXi
     // kJa
+    // kJapanese
     // kJapaneseKun
     // kJapaneseOn
     // kJinmeiyoKanji
@@ -1449,6 +1452,7 @@ public class UcdPropertyValues {
     // kMandarin
     // kMatthews
     // kMeyerWempe
+    // kMojiJoho
     // kMorohashi
     // kNelson
     // kOtherNumeric
@@ -1464,8 +1468,11 @@ public class UcdPropertyValues {
     // kSBGY
     // kSemanticVariant
     // kSimplifiedVariant
+    // kSMSZD2003Index
+    // kSMSZD2003Readings
     // kSpecializedSemanticVariant
     // kSpoofingVariant
+    // kStrange
     // kTaiwanTelegraph
     // kTang
     // kTGH
@@ -1474,8 +1481,10 @@ public class UcdPropertyValues {
     // kTraditionalVariant
     // kUnihanCore2020
     // kVietnamese
+    // kVietnameseNumeric
     // kXerox
     // kXHC1983
+    // kZhuangNumeric
     // kZVariant
     public enum Line_Break_Values implements Named {
         Ambiguous("AI"),
