@@ -141,7 +141,20 @@ cjkJoyoKanji ; kJoyoKanji
 cjkKoreanEducationHanja ; kKoreanEducationHanja
 cjkKoreanName ; kKoreanName
 cjkTGH ; kTGH
-#13.0
+# 13.0
 cjkSpoofingVariant       ; kSpoofingVariant
 cjkTGHZ2013              ; kTGHZ2013
 cjkUnihanCore2020        ; kUnihanCore2020
+# 14.0
+cjkStrange               ; kStrange
+# 15.0
+cjkAlternateTotalStrokes ; kAlternateTotalStrokes
+# 15.1
+cjkJapanese              ; kJapanese
+cjkMojiJoho              ; kMojiJoho
+cjkSMSZD2003Index        ; kSMSZD2003Index
+cjkSMSZD2003Readings     ; kSMSZD2003Readings
+cjkVietnameseNumeric     ; kVietnameseNumeric
+cjkZhuangNumeric         ; kZhuangNumeric
+# 16.0
+cjkFanqie                ; kFanqie
