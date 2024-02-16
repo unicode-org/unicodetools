@@ -1,3 +1,6 @@
+FBC3..FBD2; Arabic
+FD91; Arabic
+10ED1..10ED8; Arabic
 # Scripts-16.0.0.txt
 # Date: 2024-02-02, 23:11:49 GMT
 # © 2024 Unicode®, Inc.
