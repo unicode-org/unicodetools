@@ -1,5 +1,5 @@
 # DerivedJoiningType-16.0.0.txt
-# Date: 2024-02-02, 23:11:26 GMT
+# Date: 2024-02-16, 22:51:56 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -96,6 +96,7 @@ A840..A871    ; D # Lo  [50] PHAGS-PA LETTER KA..PHAGS-PA SUBJOINED LETTER RA
 10D01..10D21  ; D # Lo  [33] HANIFI ROHINGYA LETTER BA..HANIFI ROHINGYA VOWEL O
 10D23         ; D # Lo       HANIFI ROHINGYA MARK NA KHONNA
 10EC3..10EC4  ; D # Lo   [2] ARABIC LETTER TAH WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+10EC7         ; D # Lo       ARABIC LETTER YEH WITH FOUR DOTS BELOW
 10F30..10F32  ; D # Lo   [3] SOGDIAN LETTER ALEPH..SOGDIAN LETTER GIMEL
 10F34..10F44  ; D # Lo  [17] SOGDIAN LETTER WAW..SOGDIAN LETTER LESH
 10F51..10F53  ; D # No   [3] SOGDIAN NUMBER ONE..SOGDIAN NUMBER TWENTY
@@ -111,7 +112,7 @@ A840..A871    ; D # Lo  [50] PHAGS-PA LETTER KA..PHAGS-PA SUBJOINED LETTER RA
 10FCA         ; D # No       CHORASMIAN NUMBER TWENTY
 1E900..1E943  ; D # L&  [68] ADLAM CAPITAL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 612
+# Total code points: 613
 
 # ================================================
 
