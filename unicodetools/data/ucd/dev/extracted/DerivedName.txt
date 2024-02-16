@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-12-29, 11:25:28 GMT
+# Date: 2024-02-16, 21:34:39 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -37837,7 +37837,6 @@ FFFD          ; REPLACEMENT CHARACTER
 18DF0         ; TANGUT COMPONENT-881
 18DF1         ; TANGUT COMPONENT-882
 18DF2         ; TANGUT COMPONENT-883
-18DF3         ; TANGUT COMPONENT-884
 1AFF0         ; KATAKANA LETTER MINNAN TONE-2
 1AFF1         ; KATAKANA LETTER MINNAN TONE-3
 1AFF2         ; KATAKANA LETTER MINNAN TONE-4
@@ -45482,6 +45481,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 151119
+# Total code points: 151118
 
 # EOF
