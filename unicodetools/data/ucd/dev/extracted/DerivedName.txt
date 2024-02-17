@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2024-02-02, 23:11:26 GMT
+# Date: 2024-02-16, 22:51:59 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -30208,6 +30208,7 @@ FFFD          ; REPLACEMENT CHARACTER
 10EC2         ; ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW
 10EC3         ; ARABIC LETTER TAH WITH TWO DOTS VERTICALLY BELOW
 10EC4         ; ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+10EC7         ; ARABIC LETTER YEH WITH FOUR DOTS BELOW
 10EFC         ; ARABIC COMBINING ALEF OVERLAY
 10EFD         ; ARABIC SMALL LOW WORD SAKTA
 10EFE         ; ARABIC SMALL LOW WORD QASR
@@ -45369,6 +45370,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 155000
+# Total code points: 155001
 
 # EOF
