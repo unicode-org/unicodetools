@@ -1,5 +1,5 @@
 # SentenceBreakProperty-16.0.0.txt
-# Date: 2024-02-02, 23:11:49 GMT
+# Date: 2024-02-17, 00:25:37 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2354,6 +2354,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 10740..10755  ; OLetter # Lo  [22] LINEAR A SIGN A701 A..LINEAR A SIGN A732 JE
 10760..10767  ; OLetter # Lo   [8] LINEAR A SIGN A800..LINEAR A SIGN A807
 10781..10782  ; OLetter # Lm   [2] MODIFIER LETTER SUPERSCRIPT TRIANGULAR COLON..MODIFIER LETTER SUPERSCRIPT HALF TRIANGULAR COLON
+107BB..107BF  ; OLetter # Lm   [5] MODIFIER LETTER SMALL TURNED T..MODIFIER LETTER SMALL TURNED K
 10800..10805  ; OLetter # Lo   [6] CYPRIOT SYLLABLE A..CYPRIOT SYLLABLE JA
 10808         ; OLetter # Lo       CYPRIOT SYLLABLE JO
 1080A..10835  ; OLetter # Lo  [44] CYPRIOT SYLLABLE KA..CYPRIOT SYLLABLE WO
@@ -2585,7 +2586,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 30000..3134A  ; OLetter # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; OLetter # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 136910
+# Total code points: 136915
 
 # ================================================
 

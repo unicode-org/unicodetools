@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2024-02-02, 23:11:26 GMT
+# Date: 2024-02-17, 00:24:55 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -29135,6 +29135,11 @@ FFFD          ; REPLACEMENT CHARACTER
 107B8         ; MODIFIER LETTER ALVEOLAR CLICK
 107B9         ; MODIFIER LETTER RETROFLEX CLICK WITH RETROFLEX HOOK
 107BA         ; MODIFIER LETTER SMALL S WITH CURL
+107BB         ; MODIFIER LETTER SMALL TURNED T
+107BC         ; MODIFIER LETTER INVERTED GLOTTAL STOP
+107BD         ; MODIFIER LETTER SMALL ESH WITH DOUBLE BAR
+107BE         ; MODIFIER LETTER STRETCHED C
+107BF         ; MODIFIER LETTER SMALL TURNED K
 10800         ; CYPRIOT SYLLABLE A
 10801         ; CYPRIOT SYLLABLE E
 10802         ; CYPRIOT SYLLABLE I
@@ -45369,6 +45374,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 155000
+# Total code points: 155005
 
 # EOF

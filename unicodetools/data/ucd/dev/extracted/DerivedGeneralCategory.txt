@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2024-02-02, 23:11:25 GMT
+# Date: 2024-02-17, 00:24:52 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -394,7 +394,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 10768..1077F  ; Cn #  [24] <reserved-10768>..<reserved-1077F>
 10786         ; Cn #       <reserved-10786>
 107B1         ; Cn #       <reserved-107B1>
-107BB..107FF  ; Cn #  [69] <reserved-107BB>..<reserved-107FF>
+107C0..107FF  ; Cn #  [64] <reserved-107C0>..<reserved-107FF>
 10806..10807  ; Cn #   [2] <reserved-10806>..<reserved-10807>
 10809         ; Cn #       <reserved-10809>
 10836         ; Cn #       <reserved-10836>
@@ -747,7 +747,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 819531
+# Total code points: 819526
 
 # ================================================
 
@@ -2156,7 +2156,7 @@ FF70          ; Lm #       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK
 FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAKANA SEMI-VOICED SOUND MARK
 10780..10785  ; Lm #   [6] MODIFIER LETTER SMALL CAPITAL AA..MODIFIER LETTER SMALL B WITH HOOK
 10787..107B0  ; Lm #  [42] MODIFIER LETTER SMALL DZ DIGRAPH..MODIFIER LETTER SMALL V WITH RIGHT HOOK
-107B2..107BA  ; Lm #   [9] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL S WITH CURL
+107B2..107BF  ; Lm #  [14] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL TURNED K
 10D4E         ; Lm #       GARAY VOWEL LENGTH MARK
 10D6F         ; Lm #       GARAY REDUPLICATION MARK
 16B40..16B43  ; Lm #   [4] PAHAWH HMONG SIGN VOS SEEV..PAHAWH HMONG SIGN IB YAM
@@ -2173,7 +2173,7 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 1E4EB         ; Lm #       NAG MUNDARI SIGN OJOD
 1E94B         ; Lm #       ADLAM NASALIZATION MARK
 
-# Total code points: 404
+# Total code points: 409
 
 # ================================================
 
