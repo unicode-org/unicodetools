@@ -1,12 +1,13 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 16.0.0
 @@@+	NamesList-16.0.0.txt
-@+	Generation Date: 2024-02-08, 16:13:43 GMT
-	Unicode 16.0.0 names list, tenth delta.
+@+	Generation Date: 2024-02-16, 09:40:56 GMT
+	Unicode 16.0.0 names list.
 	Repertoire synched with UnicodeData-16.0.0d13.txt.
 	Pre-alpha rollup of various fixes.
 	Fix Ol Onal digits subhead location.
 	Add vowel carrier subhead for 16100.
+	Fixed typo in one subhead at 1CE51.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -54348,7 +54349,7 @@ FFFF	<not a character>
 1CE4E	LARGE TYPE PIECE STEM-23
 1CE4F	LARGE TYPE PIECE STEM-2
 1CE50	LARGE TYPE PIECE STEM-12
-@		Separated mosaic termianl graphic characters
+@		Separated mosaic terminal graphic characters
 @+		The term "sextant" refers to block mosaics divided into six parts.
 1CE51	SEPARATED BLOCK SEXTANT-1
 1CE52	SEPARATED BLOCK SEXTANT-2
