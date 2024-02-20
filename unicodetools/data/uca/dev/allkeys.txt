@@ -1,5 +1,5 @@
 # allkeys-16.0.0.txt
-# Date: 2024-02-16, 18:04:33 GMT [KW]
+# Date: 2024-02-20, 10:55:28 GMT [KW]
 # Copyright 2023 Unicode, Inc.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -18,7 +18,7 @@
 
 @implicitweights 17000..18AFF; FB00 # Tangut and Tangut Components
 
-@implicitweights 18D00..18D8F; FB00 # Tangut Supplement
+@implicitweights 18D00..18D7F; FB00 # Tangut Supplement
 
 @implicitweights 1B170..1B2FF; FB01 # Nushu
 
