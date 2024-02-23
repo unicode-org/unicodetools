@@ -71,10 +71,10 @@ jobs:
     - name: Regenerate the property cache files
       run: >
         mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.jsp.RebuildPropertyCache"
-          -am -pl unicodetools
-          -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
-          -DUNICODETOOLS_REPO_DIR=$(pwd)
-          -DUNICODETOOLS_GEN_DIR=$(pwd)/output/Generated &&
+        -am -pl unicodetools
+        -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
+        -DUNICODETOOLS_REPO_DIR=$(pwd)
+        -DUNICODETOOLS_GEN_DIR=$(pwd)/output/Generated &&
         tar -cpz -f UnicodeJsps/target/generated.tgz ./output/Generated
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
