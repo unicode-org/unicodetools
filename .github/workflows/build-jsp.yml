@@ -40,6 +40,14 @@ jobs:
     - name: Backup Unicodetools and CLDR for jsps  # this is needed only for the Docker build
       run:
         mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git -f UnicodeJsps/target/cldr-unicodetools.tgz ./cldr ./unicodetools
+    - name: Regenerate the property cache files
+      run: >
+        mvn compile exec:java -Dexec.mainClass="org.unicode.jsp.RebuildPropertyCache"
+          -am -pl unicodetools
+          -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
+          -DUNICODETOOLS_REPO_DIR=$(pwd)
+          -DUNICODETOOLS_GEN_DIR=$(pwd)/output/Generated &&
+        tar -cpz -f UnicodeJsps/target/generated.tgz ./output/Generated
     - name: Set up JDK 11
       uses: actions/setup-java@v1
       with:
