@@ -74,8 +74,8 @@ jobs:
         -am -pl unicodetools
         -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
         -DUNICODETOOLS_REPO_DIR=$(pwd)
-        -DUNICODETOOLS_GEN_DIR=$(pwd)/output/Generated &&
-        tar -cpz -f UnicodeJsps/target/generated.tgz ./output/Generated
+        -DUNICODETOOLS_GEN_DIR=$(pwd)/Generated &&
+        tar -cpz -f UnicodeJsps/target/generated.tgz ./Generated
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Package JSPs
