@@ -134,13 +134,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     // Remove these static warts once https://github.com/unicode-org/unicodetools/issues/716 is
     // fixed.
     private static boolean incrementalProperties = false;
+
     public static synchronized void useIncrementalProperties() {
         if (!incrementalProperties && !version2IndexUnicodeProperties.isEmpty()) {
-            throw new IllegalStateException("Cannot switch to incremental storage after making IUPs");
+            throw new IllegalStateException(
+                    "Cannot switch to incremental storage after making IUPs");
         }
         incrementalProperties = true;
     }
-
 
     public static final synchronized IndexUnicodeProperties make(VersionInfo ucdVersion) {
         IndexUnicodeProperties newItem = version2IndexUnicodeProperties.get(ucdVersion);
@@ -151,7 +152,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 nextAge = Age_Values.values()[i + 1];
             }
         }
-        IndexUnicodeProperties next = nextAge == Age_Values.Unassigned || !incrementalProperties ? null : make(nextAge);
+        IndexUnicodeProperties next =
+                nextAge == Age_Values.Unassigned || !incrementalProperties ? null : make(nextAge);
         if (newItem == null) {
             version2IndexUnicodeProperties.put(
                     ucdVersion, newItem = new IndexUnicodeProperties(ucdVersion, next));
