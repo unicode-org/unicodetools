@@ -875,17 +875,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 "Loading back to " + (earliest == null ? "the dawn of time" : earliest) + "...");
         Age_Values[] ages = Age_Values.values();
         final long overallStart = System.currentTimeMillis();
-        for (int i = ages.length - 1; i >= 0; --i) {
+        for (int i = ages.length - 2; i >= 0; --i) {
             // Load in the order last (released, the base), latest (dev), penultimate,
             // antepenultimate, etc.
             final var age =
                     ages[
-                            i == ages.length - 1
-                                    ? ages.length - 2
-                                    : i == ages.length - 2 ? ages.length - 1 : i];
-            if (age == Age_Values.Unassigned) {
-                continue;
-            }
+                            i == ages.length - 2
+                                    ? ages.length - 3
+                                    : i == ages.length - 3 ? ages.length - 2 : i];
             final long ucdStart = System.currentTimeMillis();
             System.out.println("Loading UCD " + age.getShortName() + "...");
             for (boolean unihan : new boolean[] {false, true}) {
