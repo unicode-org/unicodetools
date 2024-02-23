@@ -156,7 +156,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             IndexUnicodeProperties base =
                     !incrementalProperties || ucdVersion == Settings.LAST_VERSION_INFO
                             ? null
-                            : nextAge == Age_Values.Unassigned ? make() : make(nextAge);
+                            : nextAge == Age_Values.Unassigned
+                                    ? make(Settings.LAST_VERSION_INFO)
+                                    : make(nextAge);
             version2IndexUnicodeProperties.put(
                     ucdVersion, newItem = new IndexUnicodeProperties(ucdVersion, base));
         }
