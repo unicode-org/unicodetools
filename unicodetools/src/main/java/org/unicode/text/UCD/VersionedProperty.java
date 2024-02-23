@@ -106,14 +106,16 @@ public class VersionedProperty {
         }
         propertyName = xPropertyName;
         final VersionInfo versionInfo = VersionInfo.getInstance(version);
-        final VersionInfo oldestLoaded = oldestLoadedUcd.get();
-        if (oldestLoadedUcd != null && versionInfo.compareTo(oldestLoaded) < 0) {
-            throw new IllegalStateException(
-                    "Requested version "
-                            + versionInfo
-                            + " is older than the oldest loaded version "
-                            + oldestLoaded
-                            + ". Try again later.");
+        if (oldestLoadedUcd != null) {
+            final VersionInfo oldestLoaded = oldestLoadedUcd.get();
+            if (versionInfo.compareTo(oldestLoaded) < 0) {
+                throw new IllegalStateException(
+                        "Requested version "
+                                + versionInfo
+                                + " is older than the oldest loaded version "
+                                + oldestLoaded
+                                + ". Try again later.");
+            }
         }
         propSource = getIndexedProperties(version);
         property = propSource.getProperty(xPropertyName);
