@@ -64,7 +64,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     }
 
     public UnicodeProperty getProperty(String propertyAlias) {
-        var versioned = VersionedProperty.forJSPs().set(propertyAlias);
+        var versioned = VersionedProperty.forJSPs(UcdLoader::getOldestLoadedUcd).set(propertyAlias);
         if (versioned != null) {
             return versioned.getProperty();
         }

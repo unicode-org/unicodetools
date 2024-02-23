@@ -2,10 +2,12 @@ package org.unicode.text.UCD;
 
 import com.ibm.icu.text.SymbolTable;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.text.ParsePosition;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.function.Supplier;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.Factory;
@@ -18,6 +20,7 @@ public class VersionedProperty {
     private UnicodeProperty.Factory propSource;
     private UnicodeProperty property;
     private final transient PatternMatcher matcher = new UnicodeProperty.RegexMatcher();
+    private Supplier<VersionInfo> oldestLoadedUcd;
 
     private boolean throwOnUnknownProperty;
     // The version used in the absence of a version prefix.
@@ -43,11 +46,12 @@ public class VersionedProperty {
         return result;
     }
 
-    public static VersionedProperty forJSPs() {
+    public static VersionedProperty forJSPs(Supplier<VersionInfo> oldestLoadedUcd) {
         var result = new VersionedProperty();
         result.throwOnUnknownProperty = false;
         result.defaultVersion = Settings.lastVersion;
         result.versionAliases.put("dev", Settings.latestVersion);
+        result.oldestLoadedUcd = oldestLoadedUcd;
         for (String latest = Settings.latestVersion;
                 ;
                 latest = latest.substring(0, latest.length() - 2)) {
@@ -101,6 +105,16 @@ public class VersionedProperty {
             version = defaultVersion;
         }
         propertyName = xPropertyName;
+        final VersionInfo versionInfo = VersionInfo.getInstance(version);
+        final VersionInfo oldestLoaded = oldestLoadedUcd.get();
+        if (oldestLoadedUcd != null && versionInfo.compareTo(oldestLoaded) < 0) {
+            throw new IllegalStateException(
+                    "Requested version "
+                            + versionInfo
+                            + " is older than the oldest loaded version "
+                            + oldestLoaded
+                            + ". Try again later.");
+        }
         propSource = getIndexedProperties(version);
         property = propSource.getProperty(xPropertyName);
         if ((property == null && TOOL_ONLY_PROPERTIES.contains(xPropertyName))
