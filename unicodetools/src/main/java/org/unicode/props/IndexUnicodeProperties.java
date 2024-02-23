@@ -876,7 +876,13 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         Age_Values[] ages = Age_Values.values();
         final long overallStart = System.currentTimeMillis();
         for (int i = ages.length - 1; i >= 0; --i) {
-            final var age = ages[i];
+            // Load in the order last (released, the base), latest (dev), penultimate,
+            // antepenultimate, etc.
+            final var age =
+                    ages[
+                            i == ages.length - 1
+                                    ? ages.length - 2
+                                    : i == ages.length - 2 ? ages.length - 1 : i];
             if (age == Age_Values.Unassigned) {
                 continue;
             }
