@@ -57,7 +57,7 @@ import org.unicode.text.utility.Utility;
  * @author markdavis
  */
 public class IndexUnicodeProperties extends UnicodeProperty.Factory {
-    public static final String UNCHANGED_IN_NEXT_VERSION = "👉 SEE NEXT VERSION OF UNICODE";
+    public static final String UNCHANGED_IN_BASE_VERSION = "👉 SEE OTHER VERSION OF UNICODE";
     static final String SET_SEPARATOR = "|";
     /** Control file caching */
     static final boolean GZIP = true;
@@ -124,10 +124,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     static Map<VersionInfo, IndexUnicodeProperties> version2IndexUnicodeProperties =
             new ConcurrentHashMap<>();
 
-    private IndexUnicodeProperties(VersionInfo ucdVersion2, IndexUnicodeProperties next) {
+    private IndexUnicodeProperties(VersionInfo ucdVersion2, IndexUnicodeProperties base) {
         ucdVersion = ucdVersion2;
         oldVersion = ucdVersion2.compareTo(GenerateEnums.ENUM_VERSION_INFO) < 0;
-        nextVersionProperties = next;
+        baseVersionProperties = base;
     }
 
     // TODO(egg): Too much stuff puts its hands in the raw maps to be able to do this by default.
@@ -145,18 +145,20 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     public static final synchronized IndexUnicodeProperties make(VersionInfo ucdVersion) {
         IndexUnicodeProperties newItem = version2IndexUnicodeProperties.get(ucdVersion);
-        Age_Values nextAge = Age_Values.Unassigned;
-        for (int i = 0; i < Age_Values.values().length - 1; ++i) {
-            final var version = VersionInfo.getInstance(Age_Values.values()[i].getShortName());
-            if (version.equals(ucdVersion)) {
-                nextAge = Age_Values.values()[i + 1];
-            }
-        }
-        IndexUnicodeProperties next =
-                nextAge == Age_Values.Unassigned || !incrementalProperties ? null : make(nextAge);
         if (newItem == null) {
+            Age_Values nextAge = Age_Values.Unassigned;
+            for (int i = 0; i < Age_Values.values().length - 1; ++i) {
+                final var version = VersionInfo.getInstance(Age_Values.values()[i].getShortName());
+                if (version.equals(ucdVersion)) {
+                    nextAge = Age_Values.values()[i + 1];
+                }
+            }
+            IndexUnicodeProperties base =
+                    !incrementalProperties || ucdVersion == Settings.LAST_VERSION_INFO
+                            ? null
+                            : nextAge == Age_Values.Unassigned ? make() : make(nextAge);
             version2IndexUnicodeProperties.put(
-                    ucdVersion, newItem = new IndexUnicodeProperties(ucdVersion, next));
+                    ucdVersion, newItem = new IndexUnicodeProperties(ucdVersion, base));
         }
         return newItem;
     }
@@ -176,7 +178,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     final VersionInfo ucdVersion;
     final boolean oldVersion;
-    final IndexUnicodeProperties nextVersionProperties;
+    final IndexUnicodeProperties baseVersionProperties;
     final EnumMap<UcdProperty, UnicodeMap<String>> property2UnicodeMap =
             new EnumMap<UcdProperty, UnicodeMap<String>>(UcdProperty.class);
     private final Set<String> fileNames = new TreeSet<String>();
@@ -478,7 +480,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
 
             PropertyParsingInfo.parseSourceFile(
-                    this, nextVersionProperties, fullFilename, fileName);
+                    this, baseVersionProperties, fullFilename, fileName);
             return property2UnicodeMap.get(prop2);
         } catch (Exception e) {
             throw new ICUException(prop2.toString() + "( from: " + fullFilename + ")", e);
@@ -681,7 +683,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         private final Map<String, PropertyNames> stringToNamedEnum;
         private final Set<String> enumValueNames;
         // The set of code points for which the property value differs from that in
-        // nextVersionProperties.
+        // baseVersionProperties.
         // TODO(egg): Really, for which it may differ, but does not in the default case.
         private UnicodeSet diffSet;
 
@@ -765,7 +767,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         private UnicodeSet getDiffSet() {
             if (diffSet == null) {
                 diffSet =
-                        _getRawUnicodeMap().keySet(UNCHANGED_IN_NEXT_VERSION).complement().freeze();
+                        _getRawUnicodeMap().keySet(UNCHANGED_IN_BASE_VERSION).complement().freeze();
             }
             return diffSet;
         }
@@ -778,16 +780,16 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         @Override
         public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
-            if (nextVersionProperties == null) {
+            if (baseVersionProperties == null) {
                 return super.getSet(matcher, result);
             }
             final long start = System.currentTimeMillis();
-            final UnicodeSet nextSet =
-                    nextVersionProperties.getProperty(prop).getSet(matcher, result);
+            final UnicodeSet baseSet =
+                    baseVersionProperties.getProperty(prop).getSet(matcher, result);
             final UnicodeSet matchingInThisVersion =
                     super.getSet(matcher, null).retainAll(getDiffSet());
             result =
-                    nextSet.addAll(matchingInThisVersion)
+                    baseSet.addAll(matchingInThisVersion)
                             .removeAll(
                                     getDiffSet().cloneAsThawed().removeAll(matchingInThisVersion));
             final long stop = System.currentTimeMillis();
@@ -800,8 +802,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         private String resolveValue(String rawValue, int codepoint) {
-            if (UNCHANGED_IN_NEXT_VERSION.equals(rawValue)) {
-                return nextVersionProperties.getProperty(prop).getValue(codepoint);
+            if (UNCHANGED_IN_BASE_VERSION.equals(rawValue)) {
+                return baseVersionProperties.getProperty(prop).getValue(codepoint);
             }
             if (DefaultValueType.forString(rawValue) == DefaultValueType.CODE_POINT) {
                 return Character.toString(codepoint);

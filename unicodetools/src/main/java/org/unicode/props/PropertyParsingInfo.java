@@ -272,7 +272,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         insertedValue = value;
                     }
                     if (nextVersion != null && Objects.equals(insertedValue, nextValue)) {
-                        insertedValue = IndexUnicodeProperties.UNCHANGED_IN_NEXT_VERSION;
+                        insertedValue = IndexUnicodeProperties.UNCHANGED_IN_BASE_VERSION;
                     }
                     PropertyUtilities.putNew(data, missingSet, codepoint, insertedValue, merger);
                 } catch (final Exception e) {
