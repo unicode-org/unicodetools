@@ -70,7 +70,7 @@ jobs:
         -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr -T 1C -Dparallel=classes -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=${CURRENT_UVERSION} -DUNICODETOOLS_GEN_DIR=$(pwd)/output/Generated
     - name: Regenerate the property cache files
       run: >
-        mvn compile exec:java -Dexec.mainClass="org.unicode.jsp.RebuildPropertyCache"
+        mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.jsp.RebuildPropertyCache"
           -am -pl unicodetools
           -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
           -DUNICODETOOLS_REPO_DIR=$(pwd)
