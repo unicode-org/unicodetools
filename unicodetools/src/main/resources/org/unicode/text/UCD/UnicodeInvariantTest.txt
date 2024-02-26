@@ -977,11 +977,18 @@ $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 
 # Ideographic invariants
 
-Let $ideohack = [〆 〇 〡-〩]
+# The Khitan Small Script filler is a Nonspacing Mark.
+# The other characters are numerals (the Hangzhou ten through thirty are compatibility decomposable,
+# but not the one through nine) and have Script=Han.
+Let $NonOtherLetterIdeographs = [\N{KHITAN SMALL SCRIPT FILLER}  〇 〡-〩 〸-〺]
+$NonOtherLetterIdeographs = [\p{Ideographic} - \p{gc=Lo}]
+# Ideographic closing mark, gc=Lo.
+Let $CommonIdeographs = [〆]
+$CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
 
-[\p{ideographic}-\p{sc=tangut}-\p{sc=nushu}-\p{sc=Khitan_Small_Script}-\p{nfkcqc=n}-$ideohack] = \p{Unified_Ideograph}
-# 10.0 added Nushu
-# 13.0 added Khitan_Small_Script
+\p{Ideographic} = [ $NonOtherLetterIdeographs $CommonIdeographs [ \p{gc=Lo} & [\p{Script=Han} \p{Script=Tangut} \p{Script=Nushu} \p{Script=Khitan_Small_Script}] ] ]
+
+[ [\p{Ideographic}&\p{sc=Han}] - \p{nfkcqc=n} - $NonOtherLetterIdeographs ] = \p{Unified_Ideograph}
 
 Let $unihanScope = [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
 \p{Unified_Ideograph} ⊂ $unihanScope
