@@ -988,9 +988,6 @@ $CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
 
 \p{Ideographic} = [ $NonOtherLetterIdeographs $CommonIdeographs [ \p{gc=Lo} & [\p{Script=Han} \p{Script=Tangut} \p{Script=Nushu} \p{Script=Khitan_Small_Script}] ] ]
 
-# The ideographic closing mark 〆 is an Other Letter.
-Let $NonUnifiedIdeographs = [〆 〇 〡-〩]
-
 [ [\p{Ideographic}&\p{sc=Han}] - \p{nfkcqc=n} - $NonOtherLetterIdeographs ] = \p{Unified_Ideograph}
 
 Let $unihanScope = [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
