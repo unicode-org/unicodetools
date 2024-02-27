@@ -632,8 +632,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
     }
 
-    public static String getDefaultValue(UcdProperty prop) {
-        return PropertyParsingInfo.property2PropertyInfo.get(prop).defaultValue;
+    public static String getDefaultValue(UcdProperty prop, VersionInfo version) {
+        return PropertyParsingInfo.property2PropertyInfo.get(prop).getDefaultValue(version);
     }
 
     public String getResolvedValue(UcdProperty prop, String codepoint) {
