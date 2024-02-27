@@ -415,19 +415,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 return entry.getValue();
             }
         }
-        // We do not have explicit ExtraPropertyValueAliases lines for
-        // @missing: 0000..10FFFF; kWhatever; <none>
-        // for every provisional but formally this is their @missing line.
-        if (property.getShortName().startsWith("cjk")) {
-            return null;
-        }
-        throw new IllegalArgumentException(
-                "Could not find default for "
-                        + property
-                        + " "
-                        + version
-                        + "; defaults are "
-                        + defaultValues);
+        // TODO(egg): Add plenty of @missing lines with <none> to ExtraPropertyValueAliases and make
+        // this an exception.
+        return null;
     }
 
     public ValueCardinality getMultivalued() {
