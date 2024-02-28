@@ -1045,22 +1045,21 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         setPropDefault(propInfo.property, defaultValue, "hardcoded", false);
                     }
                 }
-                if (line.getParts().length != 2) {
+                if (line.getParts().length == 3 && propInfo.property == UcdProperty.Block) {
                     // The old Blocks files had First; Last; Block.
-                    if (propInfo.property == UcdProperty.Block) {
-                        IntRange range = new IntRange();
-                        range.start = Utility.codePointFromHex(line.getParts()[0]);
-                        range.end = Utility.codePointFromHex(line.getParts()[1]);
-                        propInfo.put(
-                                data,
-                                line.getMissingSet(),
-                                range,
-                                line.getParts()[2],
-                                null,
-                                false,
-                                nextVersion);
-                        continue;
-                    }
+                    IntRange range = new IntRange();
+                    range.start = Utility.codePointFromHex(line.getParts()[0]);
+                    range.end = Utility.codePointFromHex(line.getParts()[1]);
+                    propInfo.put(
+                            data,
+                            line.getMissingSet(),
+                            range,
+                            line.getParts()[2],
+                            null,
+                            false,
+                            nextVersion);
+                    continue;
+                } else if (line.getParts().length != 2) {
                     throw new IllegalArgumentException(
                             "Too many fields in " + line.getOriginalLine());
                 }
