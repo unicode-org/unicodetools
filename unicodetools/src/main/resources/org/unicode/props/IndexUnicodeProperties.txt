@@ -137,7 +137,9 @@ DerivedCoreProperties ; Alphabetic
 DerivedCoreProperties ; Default_Ignorable_Code_Point
 DerivedCoreProperties ; Grapheme_Base
 DerivedCoreProperties ; Grapheme_Extend
+# Deprecated and made derived in 5.0.
 DerivedCoreProperties ; Grapheme_Link
+PropList ; Grapheme_Link ; v4.1
 DerivedCoreProperties ; Math
 DerivedCoreProperties ; ID_Start
 DerivedCoreProperties ; ID_Continue
