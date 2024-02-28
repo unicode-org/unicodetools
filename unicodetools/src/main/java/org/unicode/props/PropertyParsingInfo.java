@@ -24,6 +24,7 @@ import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.idna.Regexes;
 import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
 import org.unicode.props.PropertyUtilities.Merge;
+import org.unicode.props.UcdLineParser.IntRange;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -1043,6 +1044,24 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     if (defaultValue != null) {
                         setPropDefault(propInfo.property, defaultValue, "hardcoded", false);
                     }
+                }
+                if (line.getParts().length == 3 && propInfo.property == UcdProperty.Block) {
+                    // The old Blocks files had First; Last; Block.
+                    IntRange range = new IntRange();
+                    range.start = Utility.codePointFromHex(line.getParts()[0]);
+                    range.end = Utility.codePointFromHex(line.getParts()[1]);
+                    propInfo.put(
+                            data,
+                            line.getMissingSet(),
+                            range,
+                            line.getParts()[2],
+                            null,
+                            false,
+                            nextVersion);
+                    continue;
+                } else if (line.getParts().length != 2) {
+                    throw new IllegalArgumentException(
+                            "Too many fields in " + line.getOriginalLine());
                 }
                 propInfo.put(
                         data,

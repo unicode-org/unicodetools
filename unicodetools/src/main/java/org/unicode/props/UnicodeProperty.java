@@ -569,8 +569,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     public boolean isTrivial() {
         final var map = getUnicodeMap();
-        return map.isEmpty()
-                || map.keySet("").equals(UnicodeSet.ALL_CODE_POINTS) && map.stringKeys().isEmpty();
+        return (map.stringKeys() == null || map.stringKeys().isEmpty())
+                && (map.isEmpty()
+                        || map.keySet(map.getValue(0)).equals(UnicodeSet.ALL_CODE_POINTS));
     }
 
     /**
