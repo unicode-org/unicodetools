@@ -52,12 +52,12 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     public VersionInfo maxOldVersion = MIN_VERSION;
 
     /**
-     * Maps from Unicode versions to default values.
-     * A property whose default value depends on the version has more than one entry.
-     * A particular default value applies to the Unicode versions after the previous-version entry,
-     * up to and including its own version.
+     * Maps from Unicode versions to default values. A property whose default value depends on the
+     * version has more than one entry. A particular default value applies to the Unicode versions
+     * after the previous-version entry, up to and including its own version.
      */
     TreeMap<VersionInfo, String> defaultValues = new TreeMap<>();
+
     DefaultValueType defaultValueType = DefaultValueType.LITERAL;
     // UnicodeMap<String> data;
     // final Set<String> errors = new LinkedHashSet<String>();
