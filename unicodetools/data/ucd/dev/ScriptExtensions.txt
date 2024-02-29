@@ -1,5 +1,5 @@
 # ScriptExtensions-16.0.0.txt
-# Date: 2024-02-29, 13:03:28 GMT
+# Date: 2024-02-29, 13:03:45 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -32,13 +32,49 @@
 # have as their value the corresponding Script property value
 #
 # @missing: 0000..10FFFF; <script>
+00B7          ; Avst Cari Copt Elba Geor Glag Gong Goth Grek Hani Latn Lydi Mahj Perm Shaw #Po MIDDLE DOT
+02BC          ; Beng Cyrl Deva Latn Lisu Thai Toto #Lm   MODIFIER LETTER APOSTROPHE
+02C7          ; Bopo Latn                      # Lm      CARON
+02C9..02CB    ; Bopo Latn                      # Lm  [3] MODIFIER LETTER MACRON..MODIFIER LETTER GRAVE ACCENT
+02CD          ; Latn Lisu                      # Lm      MODIFIER LETTER LOW MACRON
+02D7          ; Latn Thai                      # Sk      MODIFIER LETTER MINUS SIGN
+02D9          ; Bopo Latn                      # Sk      DOT ABOVE
+0301          ; Cher Cyrl Grek Latn Osge Sunu Tale Todr #Mn COMBINING ACUTE ACCENT
+0302          ; Cher Cyrl Latn Tfng            # Mn      COMBINING CIRCUMFLEX ACCENT
+0303          ; Glag Latn Sunu Syrc Thai       # Mn      COMBINING TILDE
+0304          ; Aghb Cher Copt Cyrl Goth Grek Latn Osge Syrc Tfng Todr #Mn COMBINING MACRON
+0305          ; Copt Elba Glag Goth Kana Latn  # Mn      COMBINING OVERLINE
+0306          ; Cyrl Grek Latn Perm            # Mn      COMBINING BREVE
+0307          ; Copt Hebr Latn Perm Syrc Tale Tfng Todr #Mn COMBINING DOT ABOVE
+0309          ; Latn Tfng                      # Mn      COMBINING HOOK ABOVE
+030A          ; Latn Syrc                      # Mn      COMBINING RING ABOVE
+030B          ; Cher Cyrl Latn Osge            # Mn      COMBINING DOUBLE ACUTE ACCENT
+030C          ; Cher Latn Tale                 # Mn      COMBINING CARON
+030D          ; Latn Sunu                      # Mn      COMBINING VERTICAL LINE ABOVE
+030E          ; Ethi Latn                      # Mn      COMBINING DOUBLE VERTICAL LINE ABOVE
+0310          ; Latn Sunu                      # Mn      COMBINING CANDRABINDU
+0311          ; Cyrl Latn Todr                 # Mn      COMBINING INVERTED BREVE
+0313          ; Grek Latn Perm Todr            # Mn      COMBINING COMMA ABOVE
+0320          ; Latn Syrc                      # Mn      COMBINING MINUS SIGN BELOW
+0323          ; Cher Kana Latn Syrc            # Mn      COMBINING DOT BELOW
+0324          ; Cher Latn Syrc                 # Mn      COMBINING DIAERESIS BELOW
+0325          ; Latn Syrc                      # Mn      COMBINING RING BELOW
+032D          ; Latn Sunu Syrc                 # Mn      COMBINING CIRCUMFLEX ACCENT BELOW
+032E          ; Latn Syrc                      # Mn      COMBINING BREVE BELOW
+0330          ; Cher Latn Syrc                 # Mn      COMBINING TILDE BELOW
+0331          ; Aghb Cher Goth Latn Sunu Thai  # Mn      COMBINING MACRON BELOW
 0342          ; Grek                           # Mn      COMBINING GREEK PERISPOMENI
 0345          ; Grek                           # Mn      COMBINING GREEK YPOGEGRAMMENI
+0358          ; Latn Osge                      # Mn      COMBINING DOT ABOVE RIGHT
+035E          ; Aghb Latn Todr                 # Mn      COMBINING DOUBLE MACRON
 0363..036F    ; Latn                           # Mn [13] COMBINING LATIN SMALL LETTER A..COMBINING LATIN SMALL LETTER X
+0374          ; Copt Grek                      # Lm      GREEK NUMERAL SIGN
+0375          ; Copt Grek                      # Sk      GREEK LOWER NUMERAL SIGN
 0483          ; Cyrl Perm                      # Mn      COMBINING CYRILLIC TITLO
 0484          ; Cyrl Glag                      # Mn      COMBINING CYRILLIC PALATALIZATION
 0485..0486    ; Cyrl Latn                      # Mn  [2] COMBINING CYRILLIC DASIA PNEUMATA..COMBINING CYRILLIC PSILI PNEUMATA
 0487          ; Cyrl Glag                      # Mn      COMBINING CYRILLIC POKRYTIE
+0589          ; Armn Geor Glag                 # Po      ARMENIAN FULL STOP
 060C          ; Arab Gara Nkoo Rohg Syrc Thaa Yezi #Po   ARABIC COMMA
 061B          ; Arab Gara Nkoo Rohg Syrc Thaa Yezi #Po   ARABIC SEMICOLON
 061C          ; Arab Syrc Thaa                 # Cf      ARABIC LETTER MARK
@@ -61,7 +97,7 @@
 0BF3          ; Gran Taml                      # So      TAMIL DAY SIGN
 0CE6..0CEF    ; Knda Nand Tutg                 # Nd [10] KANNADA DIGIT ZERO..KANNADA DIGIT NINE
 1040..1049    ; Cakm Mymr Tale                 # Nd [10] MYANMAR DIGIT ZERO..MYANMAR DIGIT NINE
-10FB          ; Geor Latn                      # Po      GEORGIAN PARAGRAPH SEPARATOR
+10FB          ; Geor Glag Latn                 # Po      GEORGIAN PARAGRAPH SEPARATOR
 1735..1736    ; Buhd Hano Tagb Tglg            # Po  [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
 1802..1803    ; Mong Phag                      # Po  [2] MONGOLIAN COMMA..MONGOLIAN FULL STOP
 1805          ; Mong Phag                      # Po      MONGOLIAN FOUR DOTS
@@ -96,16 +132,25 @@
 1DC0..1DC1    ; Grek                           # Mn  [2] COMBINING DOTTED GRAVE ACCENT..COMBINING DOTTED ACUTE ACCENT
 1DF8          ; Cyrl Syrc                      # Mn      COMBINING DOT ABOVE LEFT
 1DFA          ; Syrc                           # Mn      COMBINING DOT BELOW LEFT
-202F          ; Latn Mong                      # Zs      NARROW NO-BREAK SPACE
+202F          ; Latn Mong Phag                 # Zs      NARROW NO-BREAK SPACE
+204F          ; Adlm Arab                      # Po      REVERSED SEMICOLON
+205A          ; Cari Geor Glag Hung Lyci Orkh  # Po      TWO DOT PUNCTUATION
+205D          ; Cari Grek Hung Mero            # Po      TRICOLON
 20F0          ; Deva Gran Latn                 # Mn      COMBINING ASTERISK ABOVE
+2E17          ; Copt Latn                      # Pd      DOUBLE OBLIQUE HYPHEN
+2E30          ; Avst Orkh                      # Po      RING POINT
+2E31          ; Avst Cari Geor Hung Kthi Lydi Samr #Po   WORD SEPARATOR MIDDLE DOT
+2E41          ; Adlm Arab Hung                 # Po      REVERSED COMMA
 2E43          ; Cyrl Glag                      # Po      DASH WITH LEFT UPTURN
-3001..3002    ; Bopo Hang Hani Hira Kana Yiii  # Po  [2] IDEOGRAPHIC COMMA..IDEOGRAPHIC FULL STOP
+2FF0..2FFF    ; Hani Tang                      # So [16] IDEOGRAPHIC DESCRIPTION CHARACTER LEFT TO RIGHT..IDEOGRAPHIC DESCRIPTION CHARACTER ROTATION
+3001          ; Bopo Hang Hani Hira Kana Mong Yiii #Po   IDEOGRAPHIC COMMA
+3002          ; Bopo Hang Hani Hira Kana Mong Phag Yiii #Po IDEOGRAPHIC FULL STOP
 3003          ; Bopo Hang Hani Hira Kana       # Po      DITTO MARK
 3006          ; Hani                           # Lo      IDEOGRAPHIC CLOSING MARK
 3008          ; Bopo Hang Hani Hira Kana Yiii  # Ps      LEFT ANGLE BRACKET
 3009          ; Bopo Hang Hani Hira Kana Yiii  # Pe      RIGHT ANGLE BRACKET
-300A          ; Bopo Hang Hani Hira Kana Yiii  # Ps      LEFT DOUBLE ANGLE BRACKET
-300B          ; Bopo Hang Hani Hira Kana Yiii  # Pe      RIGHT DOUBLE ANGLE BRACKET
+300A          ; Bopo Hang Hani Hira Kana Lisu Mong Yiii #Ps LEFT DOUBLE ANGLE BRACKET
+300B          ; Bopo Hang Hani Hira Kana Lisu Mong Yiii #Pe RIGHT DOUBLE ANGLE BRACKET
 300C          ; Bopo Hang Hani Hira Kana Yiii  # Ps      LEFT CORNER BRACKET
 300D          ; Bopo Hang Hani Hira Kana Yiii  # Pe      RIGHT CORNER BRACKET
 300E          ; Bopo Hang Hani Hira Kana Yiii  # Ps      LEFT WHITE CORNER BRACKET
@@ -140,6 +185,7 @@
 3192..3195    ; Hani                           # No  [4] IDEOGRAPHIC ANNOTATION ONE MARK..IDEOGRAPHIC ANNOTATION FOUR MARK
 3196..319F    ; Hani                           # So [10] IDEOGRAPHIC ANNOTATION TOP MARK..IDEOGRAPHIC ANNOTATION MAN MARK
 31C0..31E3    ; Hani                           # So [36] CJK STROKE T..CJK STROKE Q
+31EF          ; Hani Tang                      # So      IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
 3220..3229    ; Hani                           # No [10] PARENTHESIZED IDEOGRAPH ONE..PARENTHESIZED IDEOGRAPH TEN
 322A..3247    ; Hani                           # So [30] PARENTHESIZED IDEOGRAPH MOON..CIRCLED IDEOGRAPH KOTO
 3280..3289    ; Hani                           # No [10] CIRCLED IDEOGRAPH ONE..CIRCLED IDEOGRAPH TEN
