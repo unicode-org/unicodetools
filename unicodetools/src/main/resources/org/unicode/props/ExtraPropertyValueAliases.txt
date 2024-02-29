@@ -129,6 +129,7 @@ idstatus	; r	 ; Restricted
 idstatus	; a	 ; Allowed				
 
 # @missing: 0000..10FFFF; Identifier_Type    	; nc
+# @missing: 0000..10FFFF; Identifier_Type    	; rec ; v9.0
 
 idtype	; nc	; Not_Character ; not_chars				
 idtype	; d		; Deprecated		

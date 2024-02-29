@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
@@ -51,7 +52,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     public String oldFile;
     public VersionInfo maxOldVersion = MIN_VERSION;
 
-    String defaultValue;
+    /**
+     * Maps from Unicode versions to default values. A property whose default value depends on the
+     * version has more than one entry. A particular default value applies to the Unicode versions
+     * after the previous-version entry, up to and including its own version.
+     */
+    TreeMap<VersionInfo, String> defaultValues = new TreeMap<>();
+
     DefaultValueType defaultValueType = DefaultValueType.LITERAL;
     // UnicodeMap<String> data;
     // final Set<String> errors = new LinkedHashSet<String>();
@@ -161,7 +168,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 + " ;\t"
                 + special
                 + " ;\t"
-                + defaultValue
+                + defaultValues
                 + " ;\t"
                 + defaultValueType
                 + " ;\t"
@@ -409,8 +416,15 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         }
     }
 
-    public String getDefaultValue() {
-        return defaultValue;
+    public String getDefaultValue(VersionInfo version) {
+        for (final var entry : defaultValues.entrySet()) {
+            if (version.compareTo(entry.getKey()) <= 0) {
+                return entry.getValue();
+            }
+        }
+        // TODO(egg): Add plenty of @missing lines with <none> to ExtraPropertyValueAliases and make
+        // this an exception.
+        return null;
     }
 
     public ValueCardinality getMultivalued() {
@@ -553,6 +567,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                 parser.withMissing(true),
                                 propInfo,
                                 indexUnicodeProperties.property2UnicodeMap.get(propInfo.property),
+                                indexUnicodeProperties.ucdVersion,
                                 nextProperties == null
                                         ? null
                                         : nextProperties.getProperty(propInfo.property));
@@ -628,7 +643,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     // property2PropertyInfo.get(sourceProp).defaultValueType; // reset to the type
                     break;
                 case LITERAL:
-                    data.putAll(nullValues, propInfo.getDefaultValue());
+                    data.putAll(
+                            nullValues,
+                            propInfo.getDefaultValue(indexUnicodeProperties.ucdVersion));
                     break;
                 case NONE:
                     // data.putAll(nullValues, propInfo.defaultValue);
@@ -642,7 +659,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     // However, UnicodeMap is extremely slow with large numbers of values.
                     // Instead we fill it with <code point>, and let IndexUnicodeProperty resolve
                     // that.
-                    data.putAll(nullValues, propInfo.getDefaultValue());
+                    data.putAll(
+                            nullValues,
+                            propInfo.getDefaultValue(indexUnicodeProperties.ucdVersion));
                     break;
                 default:
                     throw new UnicodePropertyException(); // unexpected error
@@ -755,7 +774,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 }
             }
             if (line.getType() == UcdLineParser.UcdLine.Contents.DATA) {
-                if (propInfo.getDefaultValue() == null) {
+                if (propInfo.getDefaultValue(indexUnicodeProperties.ucdVersion) == null) {
                     // Old versions of data files did not yet have @missing lines.
                     // Supply the default value before applying the first real data line.
                     String defaultValue = null;
@@ -768,7 +787,12 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             break;
                     }
                     if (defaultValue != null) {
-                        setPropDefault(propInfo.property, defaultValue, "hardcoded", false);
+                        setPropDefault(
+                                propInfo.property,
+                                defaultValue,
+                                "hardcoded",
+                                false,
+                                indexUnicodeProperties.ucdVersion);
                     }
                 }
                 final UnicodeMap<String> data;
@@ -789,7 +813,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         propInfo.property,
                         value,
                         line.getOriginalLine(),
-                        line.getType() == UcdLineParser.UcdLine.Contents.EMPTY);
+                        line.getType() == UcdLineParser.UcdLine.Contents.EMPTY,
+                        indexUnicodeProperties.ucdVersion);
             }
         }
     }
@@ -1012,7 +1037,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         propInfo.property,
                         value,
                         line.getOriginalLine(),
-                        line.getType() == UcdLineParser.UcdLine.Contents.EMPTY);
+                        line.getType() == UcdLineParser.UcdLine.Contents.EMPTY,
+                        indexUnicodeProperties.ucdVersion);
             }
         }
     }
@@ -1021,10 +1047,11 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             UcdLineParser parser,
             PropertyParsingInfo propInfo,
             UnicodeMap<String> data,
+            VersionInfo version,
             UnicodeProperty nextVersion) {
         for (UcdLineParser.UcdLine line : parser) {
             if (line.getType() == UcdLineParser.UcdLine.Contents.DATA) {
-                if (propInfo.getDefaultValue() == null) {
+                if (propInfo.getDefaultValue(version) == null) {
                     // Old versions of data files did not yet have @missing lines.
                     // Supply the default value before applying the first real data line.
                     String defaultValue = null;
@@ -1042,7 +1069,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             break;
                     }
                     if (defaultValue != null) {
-                        setPropDefault(propInfo.property, defaultValue, "hardcoded", false);
+                        setPropDefault(
+                                propInfo.property, defaultValue, "hardcoded", false, version);
                     }
                 }
                 if (line.getParts().length == 3 && propInfo.property == UcdProperty.Block) {
@@ -1076,7 +1104,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         propInfo.property,
                         line.getParts()[1],
                         line.getOriginalLine(),
-                        line.getType() == UcdLineParser.UcdLine.Contents.EMPTY);
+                        line.getType() == UcdLineParser.UcdLine.Contents.EMPTY,
+                        version);
             }
         }
     }
@@ -1175,7 +1204,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     }
 
     public static void setPropDefault(
-            UcdProperty prop, String value, String line, boolean isEmpty) {
+            UcdProperty prop, String value, String line, boolean isEmpty, VersionInfo version) {
         if (prop == IndexUnicodeProperties.CHECK_PROPERTY) {
             System.out.format("** %s %s %s %s\n", prop, value, line, isEmpty);
         }
@@ -1185,9 +1214,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             value = propInfo.normalizeAndVerify(value);
         }
 
-        if (propInfo.getDefaultValue() == null) {
+        if (!propInfo.defaultValues.containsKey(version)) {
             propInfo.defaultValueType = IndexUnicodeProperties.DefaultValueType.forString(value);
-            propInfo.defaultValue = value;
+            propInfo.defaultValues.put(version, value);
             if (IndexUnicodeProperties.SHOW_DEFAULTS) {
                 IndexUnicodeProperties.getDataLoadingErrors()
                         .put(
@@ -1197,9 +1226,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                         + "\t"
                                         + propInfo.defaultValueType
                                         + "\t"
-                                        + propInfo.getDefaultValue());
+                                        + propInfo.getDefaultValue(version));
             }
-        } else if (propInfo.getDefaultValue().equals(value)) {
+        } else if (propInfo.getDefaultValue(version).equals(value)) {
         } else {
             final String comment =
                     "\t ** ERROR Will not change default for "
@@ -1207,7 +1236,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             + " to «"
                             + value
                             + "», retaining "
-                            + propInfo.getDefaultValue();
+                            + propInfo.getDefaultValue(version);
             //            propInfo.defaultValueType = DefaultValueType.forString(value);
             //            propInfo.defaultValue = value;
             IndexUnicodeProperties.getDataLoadingErrors().put(prop, comment);
@@ -1215,14 +1244,14 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     }
 
     private static void setDefaultValueForPropertyName(
-            String line, String propName, String value, boolean isEmpty) {
+            String line, String propName, String value, boolean isEmpty, VersionInfo version) {
         final UcdProperty ucdProp = UcdProperty.forString(propName);
         if (ucdProp == null) {
             throw new IllegalArgumentException(
                     propName + " not defined. " + "See " + NEW_UNICODE_PROPS_DOCS);
         }
         final PropertyParsingInfo propInfo = property2PropertyInfo.get(ucdProp);
-        setPropDefault(propInfo.property, value, line, isEmpty);
+        setPropDefault(propInfo.property, value, line, isEmpty, version);
     }
 
     static void init() {
@@ -1293,12 +1322,22 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         for (UcdLineParser.UcdLine line :
                 new UcdLineParser(aliasesLines).withRange(false).withMissing(true)) {
             if (line.getType() == UcdLineParser.UcdLine.Contents.MISSING) {
+                VersionInfo last_applicable_version = Settings.LATEST_VERSION_INFO;
+                if (line.getParts().length > 3) {
+                    final String suffix = line.getParts()[3];
+                    if (!VERSION.matcher(suffix).matches()) {
+                        throw new IllegalArgumentException(
+                                "Expected version suffix, got " + suffix);
+                    }
+                    last_applicable_version = VersionInfo.getInstance(suffix.substring(1));
+                }
                 // # @missing: 0000..10FFFF; cjkIRG_KPSource; <none>
                 setDefaultValueForPropertyName(
                         line.getOriginalLine(),
                         line.getParts()[1],
                         line.getParts()[2],
-                        /* isEmpty=*/ false);
+                        /* isEmpty=*/ false,
+                        last_applicable_version);
             }
         }
     }
