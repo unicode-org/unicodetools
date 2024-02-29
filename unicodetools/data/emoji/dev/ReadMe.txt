@@ -5,7 +5,7 @@
 
 This directory contains PUB_STATUS data files for Unicode Emoji, Version EMOJI_VER
 
-PUBLIC_EMOJI
+PUBLIC_EMOJI/
 
   emoji-sequences.txt
   emoji-zwj-sequences.txt
@@ -13,7 +13,7 @@ PUBLIC_EMOJI
 
 The following related files are found in the UCD for Version EMOJI_VER
 
-PUBLIC_UCD_EMOJI
+PUBLIC_UCD/ucd/emoji/
 
   emoji-data.txt
   emoji-variation-sequences.txt

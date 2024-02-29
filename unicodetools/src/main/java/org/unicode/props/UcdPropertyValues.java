@@ -271,6 +271,7 @@ public class UcdPropertyValues {
         Early_Dynastic_Cuneiform("Early_Dynastic_Cuneiform"),
         Egyptian_Hieroglyph_Format_Controls("Egyptian_Hieroglyph_Format_Controls"),
         Egyptian_Hieroglyphs("Egyptian_Hieroglyphs"),
+        Egyptian_Hieroglyphs_Extended_A("Egyptian_Hieroglyphs_Ext_A"),
         Elbasan("Elbasan"),
         Elymaic("Elymaic"),
         Emoticons("Emoticons"),
@@ -1304,7 +1305,7 @@ public class UcdPropertyValues {
         Tah("Tah"),
         Taw("Taw"),
         Teh_Marbuta("Teh_Marbuta"),
-        Hamza_On_Heh_Goal("Teh_Marbuta_Goal"),
+        Teh_Marbuta_Goal("Teh_Marbuta_Goal", "Hamza_On_Heh_Goal"),
         Teth("Teth"),
         Thin_Yeh("Thin_Yeh"),
         Vertical_Tail("Vertical_Tail"),
@@ -1376,6 +1377,7 @@ public class UcdPropertyValues {
     }
 
     // kAccountingNumeric
+    // kAlternateTotalStrokes
     // kBigFive
     // kCangjie
     // kCantonese
@@ -1390,6 +1392,7 @@ public class UcdPropertyValues {
     // kDaeJaweon
     // kDefinition
     // kEACC
+    // kFanqie
     // kFenn
     // kFennIndex
     // kFourCornerCode
@@ -1427,6 +1430,7 @@ public class UcdPropertyValues {
     // kIRGHanyuDaZidian
     // kIRGKangXi
     // kJa
+    // kJapanese
     // kJapaneseKun
     // kJapaneseOn
     // kJinmeiyoKanji
@@ -1448,6 +1452,7 @@ public class UcdPropertyValues {
     // kMandarin
     // kMatthews
     // kMeyerWempe
+    // kMojiJoho
     // kMorohashi
     // kNelson
     // kOtherNumeric
@@ -1463,8 +1468,11 @@ public class UcdPropertyValues {
     // kSBGY
     // kSemanticVariant
     // kSimplifiedVariant
+    // kSMSZD2003Index
+    // kSMSZD2003Readings
     // kSpecializedSemanticVariant
     // kSpoofingVariant
+    // kStrange
     // kTaiwanTelegraph
     // kTang
     // kTGH
@@ -1473,8 +1481,10 @@ public class UcdPropertyValues {
     // kTraditionalVariant
     // kUnihanCore2020
     // kVietnamese
+    // kVietnameseNumeric
     // kXerox
     // kXHC1983
+    // kZhuangNumeric
     // kZVariant
     public enum Line_Break_Values implements Named {
         Ambiguous("AI"),
@@ -1708,6 +1718,40 @@ public class UcdPropertyValues {
     }
 
     // Numeric_Value
+    public enum Other_Joining_Type_Values implements Named {
+        Join_Causing("C"),
+        Dual_Joining("D"),
+        Left_Joining("L"),
+        Right_Joining("R"),
+        Transparent("T"),
+        Non_Joining("U"),
+        Deduce_From_General_Category("Deduce_From_General_Category");
+        private final PropertyNames<Other_Joining_Type_Values> names;
+
+        private Other_Joining_Type_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Other_Joining_Type_Values>(
+                            Other_Joining_Type_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Other_Joining_Type_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Other_Joining_Type_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Other_Joining_Type_Values.class);
+
+        public static Other_Joining_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     public enum Script_Values implements Named {
         Adlam("Adlm"),
         Caucasian_Albanian("Aghb"),

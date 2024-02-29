@@ -1,0 +1,87 @@
+name: Pipeline
+
+
+on:
+  pull_request:
+    branches: ['*']
+    types: [opened, synchronize, reopened, labeled, unlabeled, ready_for_review, converted_to_draft, edited]
+
+jobs:
+  labels-for-repertoire-changes:
+    name: Labels for repertoire changes
+    outputs:
+      repertoire-changed: ${{ steps.compare-repertoire.outputs.repertoire-changed }}
+      pipeline-label: ${{ steps.check-labels.outputs.pipeline-label }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout merged UnicodeData.txt
+      uses: actions/checkout@v3
+      with:
+        path: merged
+        sparse-checkout: unicodetools/data/ucd/dev/UnicodeData.txt
+    - name: Checkout base UnicodeData.txt
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.base.sha }}
+        path: base
+        sparse-checkout: unicodetools/data/ucd/dev/UnicodeData.txt
+    - name: Compare repertoire
+      id: compare-repertoire
+      run: |
+        # Look for changes affecting the first two fields of UnicodeData.txt (code point and name).
+        sed 's/^\([^;]*;[^;]*\);.*$/\1/' merged/unicodetools/data/ucd/dev/UnicodeData.txt > merged-repertoire.txt
+        sed 's/^\([^;]*;[^;]*\);.*$/\1/' base/unicodetools/data/ucd/dev/UnicodeData.txt > base-repertoire.txt
+        if diff base-repertoire.txt merged-repertoire.txt
+        then echo "repertoire-changed=false" >> "$GITHUB_OUTPUT"
+        else echo "repertoire-changed=true" >> "$GITHUB_OUTPUT"
+        fi
+    - name: Checkout Python scripts
+      uses: actions/checkout@v3
+      with:
+        sparse-checkout: py/pipeline-workflow
+    - name: Check pipeline labels
+      id: check-labels
+      if: steps.compare-repertoire.outputs.repertoire-changed == 'true'
+      run: python3 py/pipeline-workflow/compare-repertoire.py
+  l2-document:
+    needs: labels-for-repertoire-changes
+    if: ${{ always() && needs.labels-for-repertoire-changes.outputs.repertoire-changed == 'true' }}
+    name: Proposal document
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Python scripts
+      uses: actions/checkout@v3
+      with:
+        sparse-checkout: py/pipeline-workflow
+    - name: Check L2 document
+      run: |
+        python3 py/pipeline-workflow/check-l2-document.py
+  utc-decision:
+    needs: labels-for-repertoire-changes
+    if: needs.labels-for-repertoire-changes.outputs.repertoire-changed == 'true' && needs.labels-for-repertoire-changes.outputs.pipeline-label != 'pipeline-recommended-to-UTC'
+    name: UTC decision
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Python scripts
+      uses: actions/checkout@v3
+      with:
+        sparse-checkout: py/pipeline-workflow
+    - name: Check UTC decision
+      run: python3 py/pipeline-workflow/check-utc-decision.py
+  draft-unless-approved:
+    needs: labels-for-repertoire-changes
+    if: needs.labels-for-repertoire-changes.outputs.repertoire-changed == 'true'
+    name: Draft unless approved
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Python scripts and DerivedAge.txt
+      uses: actions/checkout@v3
+      with:
+        sparse-checkout: |
+          py/pipeline-workflow
+          unicodetools/data/ucd/dev/DerivedAge.txt
+    - name: Check draft status
+      env:
+        PIPELINE_LABEL: ${{ needs.labels-for-repertoire-changes.outputs.pipeline-label }}
+      run: python3 py/pipeline-workflow/check-draft-status.py
+

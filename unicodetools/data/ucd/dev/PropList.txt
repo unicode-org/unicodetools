@@ -1,6 +1,6 @@
 # PropList-16.0.0.txt
-# Date: 2023-11-10, 22:06:29 GMT
-# © 2023 Unicode®, Inc.
+# Date: 2024-02-22, 15:58:06 GMT
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -865,7 +865,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 16FE4         ; Ideographic # Mn       KHITAN SMALL SCRIPT FILLER
 17000..187F7  ; Ideographic # Lo [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
 18800..18CD5  ; Ideographic # Lo [1238] TANGUT COMPONENT-001..KHITAN SMALL SCRIPT CHARACTER-18CD5
-18D00..18D08  ; Ideographic # Lo   [9] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D08
+18CFF..18D08  ; Ideographic # Lo  [10] KHITAN SMALL SCRIPT CHARACTER-18CFF..TANGUT IDEOGRAPH-18D08
 1B170..1B2FB  ; Ideographic # Lo [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
 20000..2A6DF  ; Ideographic # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
 2A700..2B739  ; Ideographic # Lo [4154] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B739
@@ -877,7 +877,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 30000..3134A  ; Ideographic # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Ideographic # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 106476
+# Total code points: 106477
 
 # ================================================
 
@@ -948,6 +948,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 0D3B..0D3C    ; Diacritic # Mn   [2] MALAYALAM SIGN VERTICAL BAR VIRAMA..MALAYALAM SIGN CIRCULAR VIRAMA
 0D4D          ; Diacritic # Mn       MALAYALAM SIGN VIRAMA
 0DCA          ; Diacritic # Mn       SINHALA SIGN AL-LAKUNA
+0E3A          ; Diacritic # Mn       THAI CHARACTER PHINTHU
 0E47..0E4C    ; Diacritic # Mn   [6] THAI CHARACTER MAITAIKHU..THAI CHARACTER THANTHAKHAT
 0E4E          ; Diacritic # Mn       THAI CHARACTER YAMAKKAN
 0EBA          ; Diacritic # Mn       LAO SIGN PALI VIRAMA
@@ -971,9 +972,11 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 135D..135F    ; Diacritic # Mn   [3] ETHIOPIC COMBINING GEMINATION AND VOWEL LENGTH MARK..ETHIOPIC COMBINING GEMINATION MARK
 1714          ; Diacritic # Mn       TAGALOG SIGN VIRAMA
 1715          ; Diacritic # Mc       TAGALOG SIGN PAMUDPOD
+1734          ; Diacritic # Mc       HANUNOO SIGN PAMUDPOD
 17C9..17D3    ; Diacritic # Mn  [11] KHMER SIGN MUUSIKATOAN..KHMER SIGN BATHAMASAT
 17DD          ; Diacritic # Mn       KHMER SIGN ATTHACAN
 1939..193B    ; Diacritic # Mn   [3] LIMBU SIGN MUKPHRENG..LIMBU SIGN SA-I
+1A60          ; Diacritic # Mn       TAI THAM SIGN SAKOT
 1A75..1A7C    ; Diacritic # Mn   [8] TAI THAM SIGN TONE-1..TAI THAM SIGN KHUEN-LUE KARAN
 1A7F          ; Diacritic # Mn       TAI THAM COMBINING CRYPTOGRAMMIC DOT
 1AB0..1ABD    ; Diacritic # Mn  [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
@@ -984,6 +987,8 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 1B6B..1B73    ; Diacritic # Mn   [9] BALINESE MUSICAL SYMBOL COMBINING TEGEH..BALINESE MUSICAL SYMBOL COMBINING GONG
 1BAA          ; Diacritic # Mc       SUNDANESE SIGN PAMAAEH
 1BAB          ; Diacritic # Mn       SUNDANESE SIGN VIRAMA
+1BE6          ; Diacritic # Mn       BATAK SIGN TOMPI
+1BF2..1BF3    ; Diacritic # Mc   [2] BATAK PANGOLAT..BATAK PANONGONAN
 1C36..1C37    ; Diacritic # Mn   [2] LEPCHA SIGN RAN..LEPCHA SIGN NUKTA
 1C78..1C7D    ; Diacritic # Lm   [6] OL CHIKI MU TTUDDAG..OL CHIKI AHAD
 1CD0..1CD2    ; Diacritic # Mn   [3] VEDIC TONE KARSHANA..VEDIC TONE PRENKHA
@@ -1022,6 +1027,8 @@ A720..A721    ; Diacritic # Sk   [2] MODIFIER LETTER STRESS AND HIGH TONE..MODIF
 A788          ; Diacritic # Lm       MODIFIER LETTER LOW CIRCUMFLEX ACCENT
 A789..A78A    ; Diacritic # Sk   [2] MODIFIER LETTER COLON..MODIFIER LETTER SHORT EQUALS SIGN
 A7F8..A7F9    ; Diacritic # Lm   [2] MODIFIER LETTER CAPITAL H WITH STROKE..MODIFIER LETTER SMALL LIGATURE OE
+A806          ; Diacritic # Mn       SYLOTI NAGRI SIGN HASANTA
+A82C          ; Diacritic # Mn       SYLOTI NAGRI SIGN ALTERNATE HASANTA
 A8C4          ; Diacritic # Mn       SAURASHTRA SIGN VIRAMA
 A8E0..A8F1    ; Diacritic # Mn  [18] COMBINING DEVANAGARI DIGIT ZERO..COMBINING DEVANAGARI SIGN AVAGRAHA
 A92B..A92D    ; Diacritic # Mn   [3] KAYAH LI TONE PLOPHU..KAYAH LI TONE CALYA PLOPHU
@@ -1055,6 +1062,8 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 10780..10785  ; Diacritic # Lm   [6] MODIFIER LETTER SMALL CAPITAL AA..MODIFIER LETTER SMALL B WITH HOOK
 10787..107B0  ; Diacritic # Lm  [42] MODIFIER LETTER SMALL DZ DIGRAPH..MODIFIER LETTER SMALL V WITH RIGHT HOOK
 107B2..107BA  ; Diacritic # Lm   [9] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL S WITH CURL
+10A38..10A3A  ; Diacritic # Mn   [3] KHAROSHTHI SIGN BAR ABOVE..KHAROSHTHI SIGN DOT BELOW
+10A3F         ; Diacritic # Mn       KHAROSHTHI VIRAMA
 10AE5..10AE6  ; Diacritic # Mn   [2] MANICHAEAN ABBREVIATION MARK ABOVE..MANICHAEAN ABBREVIATION MARK BELOW
 10D22..10D23  ; Diacritic # Lo   [2] HANIFI ROHINGYA MARK SAKIN..HANIFI ROHINGYA MARK NA KHONNA
 10D24..10D27  ; Diacritic # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
@@ -1073,12 +1082,13 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 11235         ; Diacritic # Mc       KHOJKI SIGN VIRAMA
 11236         ; Diacritic # Mn       KHOJKI SIGN NUKTA
 112E9..112EA  ; Diacritic # Mn   [2] KHUDAWADI SIGN NUKTA..KHUDAWADI SIGN VIRAMA
-1133C         ; Diacritic # Mn       GRANTHA SIGN NUKTA
+1133B..1133C  ; Diacritic # Mn   [2] COMBINING BINDU BELOW..GRANTHA SIGN NUKTA
 1134D         ; Diacritic # Mc       GRANTHA SIGN VIRAMA
 11366..1136C  ; Diacritic # Mn   [7] COMBINING GRANTHA DIGIT ZERO..COMBINING GRANTHA DIGIT SIX
 11370..11374  ; Diacritic # Mn   [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
 113CE         ; Diacritic # Mn       TULU-TIGALARI SIGN VIRAMA
 113CF         ; Diacritic # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
+113D0         ; Diacritic # Mn       TULU-TIGALARI CONJOINER
 113D2         ; Diacritic # Mn       TULU-TIGALARI GEMINATION MARK
 113D3         ; Diacritic # Lo       TULU-TIGALARI SIGN PLUTA
 113E1..113E2  ; Diacritic # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
@@ -1102,11 +1112,14 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 11D42         ; Diacritic # Mn       MASARAM GONDI SIGN NUKTA
 11D44..11D45  ; Diacritic # Mn   [2] MASARAM GONDI SIGN HALANTA..MASARAM GONDI VIRAMA
 11D97         ; Diacritic # Mn       GUNJALA GONDI VIRAMA
+11F41         ; Diacritic # Mc       KAWI SIGN KILLER
+11F42         ; Diacritic # Mn       KAWI CONJOINER
 11F5A         ; Diacritic # Mn       KAWI SIGN NUKTA
 13447..13455  ; Diacritic # Mn  [15] EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
 1612F         ; Diacritic # Mn       GURUNG KHEMA SIGN THOLHOMA
 16AF0..16AF4  ; Diacritic # Mn   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
 16B30..16B36  ; Diacritic # Mn   [7] PAHAWH HMONG MARK CIM TUB..PAHAWH HMONG MARK CIM TAUM
+16D6B..16D6C  ; Diacritic # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
 16F8F..16F92  ; Diacritic # Mn   [4] MIAO TONE RIGHT..MIAO TONE BELOW
 16F93..16F9F  ; Diacritic # Lm  [13] MIAO LETTER TONE-2..MIAO LETTER REFORMED TONE-8
 16FF0..16FF1  ; Diacritic # Mc   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
@@ -1129,7 +1142,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1160
+# Total code points: 1178
 
 # ================================================
 
@@ -1137,6 +1150,8 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 02D0..02D1    ; Extender # Lm   [2] MODIFIER LETTER TRIANGULAR COLON..MODIFIER LETTER HALF TRIANGULAR COLON
 0640          ; Extender # Lm       ARABIC TATWEEL
 07FA          ; Extender # Lm       NKO LAJANYALAN
+0A71          ; Extender # Mn       GURMUKHI ADDAK
+0AFB          ; Extender # Mn       GUJARATI SIGN SHADDA
 0B55          ; Extender # Mn       ORIYA SIGN OVERLINE
 0E46          ; Extender # Lm       THAI CHARACTER MAIYAMOK
 0EC6          ; Extender # Lm       LAO KO LA
@@ -1161,6 +1176,7 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 10D4E         ; Extender # Lm       GARAY VOWEL LENGTH MARK
 10D6A         ; Extender # Mn       GARAY CONSONANT GEMINATION MARK
 10D6F         ; Extender # Lm       GARAY REDUPLICATION MARK
+11237         ; Extender # Mn       KHOJKI SIGN SHADDA
 1135D         ; Extender # Lo       GRANTHA SIGN PLUTA
 113D2         ; Extender # Mn       TULU-TIGALARI GEMINATION MARK
 113D3         ; Extender # Lo       TULU-TIGALARI SIGN PLUTA
@@ -1173,7 +1189,7 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 1E5EF         ; Extender # Mn       OL ONAL SIGN IKIR
 1E944..1E946  ; Extender # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 
-# Total code points: 56
+# Total code points: 59
 
 # ================================================
 
@@ -1255,21 +1271,40 @@ FFFFE..FFFFF  ; Noncharacter_Code_Point # Cn   [2] <noncharacter-FFFFE>..<noncha
 0D57          ; Other_Grapheme_Extend # Mc       MALAYALAM AU LENGTH MARK
 0DCF          ; Other_Grapheme_Extend # Mc       SINHALA VOWEL SIGN AELA-PILLA
 0DDF          ; Other_Grapheme_Extend # Mc       SINHALA VOWEL SIGN GAYANUKITTA
+1715          ; Other_Grapheme_Extend # Mc       TAGALOG SIGN PAMUDPOD
+1734          ; Other_Grapheme_Extend # Mc       HANUNOO SIGN PAMUDPOD
 1B35          ; Other_Grapheme_Extend # Mc       BALINESE VOWEL SIGN TEDUNG
+1B44          ; Other_Grapheme_Extend # Mc       BALINESE ADEG ADEG
+1BAA          ; Other_Grapheme_Extend # Mc       SUNDANESE SIGN PAMAAEH
+1BF2..1BF3    ; Other_Grapheme_Extend # Mc   [2] BATAK PANGOLAT..BATAK PANONGONAN
 200C          ; Other_Grapheme_Extend # Cf       ZERO WIDTH NON-JOINER
 302E..302F    ; Other_Grapheme_Extend # Mc   [2] HANGUL SINGLE DOT TONE MARK..HANGUL DOUBLE DOT TONE MARK
+A953          ; Other_Grapheme_Extend # Mc       REJANG VIRAMA
+A9C0          ; Other_Grapheme_Extend # Mc       JAVANESE PANGKON
 FF9E..FF9F    ; Other_Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAKANA SEMI-VOICED SOUND MARK
+111C0         ; Other_Grapheme_Extend # Mc       SHARADA SIGN VIRAMA
+11235         ; Other_Grapheme_Extend # Mc       KHOJKI SIGN VIRAMA
 1133E         ; Other_Grapheme_Extend # Mc       GRANTHA VOWEL SIGN AA
+1134D         ; Other_Grapheme_Extend # Mc       GRANTHA SIGN VIRAMA
 11357         ; Other_Grapheme_Extend # Mc       GRANTHA AU LENGTH MARK
+113B8         ; Other_Grapheme_Extend # Mc       TULU-TIGALARI VOWEL SIGN AA
+113C2         ; Other_Grapheme_Extend # Mc       TULU-TIGALARI VOWEL SIGN EE
+113C5         ; Other_Grapheme_Extend # Mc       TULU-TIGALARI VOWEL SIGN AI
+113C7..113C9  ; Other_Grapheme_Extend # Mc   [3] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI AU LENGTH MARK
+113CF         ; Other_Grapheme_Extend # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
 114B0         ; Other_Grapheme_Extend # Mc       TIRHUTA VOWEL SIGN AA
 114BD         ; Other_Grapheme_Extend # Mc       TIRHUTA VOWEL SIGN SHORT O
 115AF         ; Other_Grapheme_Extend # Mc       SIDDHAM VOWEL SIGN AA
+116B6         ; Other_Grapheme_Extend # Mc       TAKRI SIGN VIRAMA
 11930         ; Other_Grapheme_Extend # Mc       DIVES AKURU VOWEL SIGN AA
-1D165         ; Other_Grapheme_Extend # Mc       MUSICAL SYMBOL COMBINING STEM
-1D16E..1D172  ; Other_Grapheme_Extend # Mc   [5] MUSICAL SYMBOL COMBINING FLAG-1..MUSICAL SYMBOL COMBINING FLAG-5
+1193D         ; Other_Grapheme_Extend # Mc       DIVES AKURU SIGN HALANTA
+11F41         ; Other_Grapheme_Extend # Mc       KAWI SIGN KILLER
+16FF0..16FF1  ; Other_Grapheme_Extend # Mc   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
+1D165..1D166  ; Other_Grapheme_Extend # Mc   [2] MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
+1D16D..1D172  ; Other_Grapheme_Extend # Mc   [6] MUSICAL SYMBOL COMBINING AUGMENTATION DOT..MUSICAL SYMBOL COMBINING FLAG-5
 E0020..E007F  ; Other_Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 127
+# Total code points: 152
 
 # ================================================
 

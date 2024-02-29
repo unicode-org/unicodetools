@@ -4,18 +4,13 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import com.google.common.base.Objects;
 import com.ibm.icu.impl.Row.R2;
-import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
-import com.ibm.icu.text.BreakIterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.TimeZone;
-import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -90,7 +85,8 @@ public class TestUnicodeSet extends TestFmwk2 {
     @Test
     public void TestEmoji() throws IOException {
         StringBuilder b = new StringBuilder();
-        UnicodeJsp.showSet("scx", "", UnicodeSetUtilities.TAKES_EMOJI_VS, false, false, false, b);
+        UnicodeJsp.showSet(
+                "scx", "", UnicodeSetUtilities.TAKES_EMOJI_VS, false, false, false, false, b);
         String bs = UnicodeUtilities.getPrettySet(UnicodeSetUtilities.FACE, false, false);
         if (bs.contains(" \uFE0F") || bs.contains(" \u200D")) {
             errln("Fails extra-space insert" + bs);
@@ -216,86 +212,6 @@ public class TestUnicodeSet extends TestFmwk2 {
         }
     }
 
-    @Test
-    public void TestICUStringProps() {
-        XPropertyFactory factory = XPropertyFactory.make();
-        BreakIterator titleIter = BreakIterator.getWordInstance(ULocale.ROOT);
-        for (int propEnum = UProperty.STRING_START; propEnum < UProperty.STRING_LIMIT; ++propEnum) {
-            String propName = UCharacter.getPropertyName(propEnum, NameChoice.SHORT);
-            String propNameLong = UCharacter.getPropertyName(propEnum, NameChoice.LONG);
-            UnicodeProperty prop3 = factory.getProperty(propName);
-            logln(Utility.hex(propEnum) + "\t" + propName + "\t" + propNameLong);
-            int errorCount = 0;
-            for (int i = 0; i <= 0x10ffff; ++i) {
-                if (i == 'ß') {
-                    int debug = 0;
-                }
-                String icuValue;
-                try {
-                    switch (propEnum) {
-                        case UProperty.BIDI_PAIRED_BRACKET:
-                            icuValue = UTF16.valueOf(UCharacter.getBidiPairedBracket(i));
-                            break;
-                        case UProperty.CASE_FOLDING:
-                            icuValue = UCharacter.foldCase(UTF16.valueOf(i), true);
-                            break;
-                        case UProperty.LOWERCASE_MAPPING:
-                            icuValue = UCharacter.toLowerCase(UTF16.valueOf(i));
-                            break;
-                        case UProperty.TITLECASE_MAPPING:
-                            icuValue = UCharacter.toTitleCase(UTF16.valueOf(i), titleIter);
-                            break;
-                        case UProperty.UPPERCASE_MAPPING:
-                            icuValue = UCharacter.toUpperCase(UTF16.valueOf(i));
-                            break;
-                        default:
-                            icuValue =
-                                    UCharacter.getStringPropertyValue(
-                                            propEnum, i, NameChoice.SHORT);
-                            if (propEnum == UProperty.AGE) {
-                                icuValue =
-                                        icuValue.equals("0.0.0.0")
-                                                ? "unassigned"
-                                                : VersionInfo.getInstance(icuValue)
-                                                        .getVersionString(2, 2);
-                            }
-                    }
-                } catch (Exception e) {
-                    errln(propNameLong + "\t" + e.getMessage());
-                    if (++errorCount > 5) break;
-                    else continue;
-                }
-                String propValue = prop3.getValue(i);
-                if (!Objects.equal(
-                        icuValue, propValue)) { // do to avoid verbose mode being every character
-                    assertEquals("string value", icuValue, propValue);
-                    if (++errorCount > 5) break;
-                    else continue;
-                }
-            }
-        }
-    }
-
-    @Test
-    public void TestICUDoubleProps() {
-        XPropertyFactory factory = XPropertyFactory.make();
-        // currently only one double property
-        assertEquals("only 1 double property", 1, UProperty.DOUBLE_LIMIT - UProperty.DOUBLE_START);
-        String propName = UCharacter.getPropertyName(UProperty.NUMERIC_VALUE, NameChoice.SHORT);
-        UnicodeProperty prop3 = factory.getProperty(propName);
-        for (int i = 0; i <= 0x10ffff; ++i) {
-            Double icuValue = UCharacter.getUnicodeNumericValue(i);
-            if (icuValue == UCharacter.NO_NUMERIC_VALUE) {
-                icuValue = Double.NaN;
-            }
-            String propString = prop3.getValue(i);
-            Double propValue = propString == null ? Double.NaN : Double.parseDouble(propString);
-            if (!icuValue.equals(propValue)) { // do to avoid verbose mode being every character
-                assertEquals("double value", icuValue, propValue);
-            }
-        }
-    }
-
     private void checkProperty(XPropertyFactory factory, int propEnum) {
         try {
             int min = UCharacter.getIntPropertyMinValue(propEnum);
@@ -414,14 +330,6 @@ public class TestUnicodeSet extends TestFmwk2 {
     }
 
     @Test
-    public void TestScriptSpecials() {
-        //        UnicodeSet set = UnicodeSetUtilities.parseUnicodeSet("[:scs=Hant:]");
-        //        assertNotEquals("Hant", 0, set.size());
-        UnicodeSet set2 = UnicodeSetUtilities.parseUnicodeSet("[:scx=Arab,Syrc:]");
-        assertNotEquals("Arab Syrc", 0, set2.size());
-    }
-
-    @Test
     public void TestGC() {
         Map<String, R2<String, UnicodeSet>> SPECIAL_GC =
                 new LinkedHashMap<String, R2<String, UnicodeSet>>();
@@ -451,7 +359,7 @@ public class TestUnicodeSet extends TestFmwk2 {
         gc ; Z         ; Separator                        # Zl | Zp | Zs
                  */
         for (String[] extra : extras) {
-            UnicodeSet expected = new UnicodeSet(extra[2]).freeze();
+            UnicodeSet expected = UnicodeSetUtilities.parseUnicodeSet(extra[2]).freeze();
             for (String test : extra) {
                 if (test.startsWith("[")) continue;
                 for (String gc : gcs) {

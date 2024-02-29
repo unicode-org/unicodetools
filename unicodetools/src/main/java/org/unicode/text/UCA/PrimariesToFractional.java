@@ -609,9 +609,9 @@ public final class PrimariesToFractional {
         // and its sort key length (with or without primary compression).
         // For rare and historic characters, we optimize for minimal storage.
 
-        // "Recommended Scripts" (http://www.unicode.org/reports/tr31/#Table_Recommended_Scripts)
+        // "Recommended Scripts" (https://www.unicode.org/reports/tr31/#Table_Recommended_Scripts)
         // are in "widespread modern customary use" but to widely varying degrees.
-        // http://en.wikipedia.org/wiki/List_of_writing_systems shows scripts by number of users.
+        // https://en.wikipedia.org/wiki/List_of_writing_systems shows scripts by number of users.
         // Neither list ranks by usage in computers or on the internet.
 
         // Mark reserved ranges as not compressible, to avoid confusion,
@@ -692,6 +692,8 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.CANADIAN_ABORIGINAL_SCRIPT).newByte();
         // Limited Use Script, avoid lead byte overflow.
         setOptionsForScript(UCD_Types.Vai).newByte();
+        // Limited Use Script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.Adlam).newByte();
         // Hangul uses one lead byte, with two-byte primaries for conjoining Jamo L/V/T.
         setOptionsForScript(UCD_Types.HANGUL_SCRIPT)
                 .wholeByte()
@@ -711,11 +713,11 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.Vithkuqi).noTwoBytePrimariesIfVariants();
         // Extinct script, use three-byte primaries for the few characters with variants.
         setOptionsForScript(UCD_Types.Elymaic).noTwoBytePrimariesIfVariants();
-        // Minor script, avoid lead byte overflow.
-        setOptionsForScript(UCD_Types.Egyptian_Hieroglyphs).newByte();
+        // Large Excluded Script, minimal gaps.
+        setOptionsForScript(UCD_Types.Egyptian_Hieroglyphs).newByte().minimalGap3();
         // Register the scripts as aliases.
         setOptionsForScripts(UCD_Types.Meroitic_Cursive, UCD_Types.Meroitic_Hieroglyphs);
-        // Larged Excluded Script, minimal gaps.
+        // Large Excluded Script, minimal gaps.
         setOptionsForScripts(UCD_Types.Tangut).minimalGap3();
         // Han uses many lead bytes, so that tailoring tens of thousands of characters
         // can use many two-byte primaries.

@@ -2988,7 +2988,7 @@
 4153	curved piece of wood, to bend; to crouch, name of a tree, name of a fruit
 4154	dead (withered) crops; dried grains; (same as 䎩) to till; to plough; to cultivate
 4155	a variety of millet
-4156	(same as 馣) sweet-smelling, tasty; delicious, to farm; to cultivate the land, luxuriant or exuberant of growing rice, grains;; rice plants producing no fruit, to fertilize, the grains not growing; shriveled rice plants
+4156	(same as 馣) sweet-smelling, tasty; delicious, to farm; to cultivate the land, luxuriant or exuberant of growing rice, grains; rice plants producing no fruit, to fertilize, the grains not growing; shriveled rice plants
 4157	(same as 䅑) four bundle of grains, to accumulate; to store up grains, grains; rice plant
 4158	wheat
 4159	grass; herb; straw; weed, bundle of straw
@@ -13695,7 +13695,7 @@
 79BA	district; mountain in Zhejiang
 79BB	rare beast; strange; elegant
 79BC	used in personal names
-79BD	birds, fowl; surname;; capture
+79BD	birds, fowl; surname; capture
 79BE	grain still on stalk; rice plant
 79BF	bald, bare, stripped
 79C0	ear of grain; flowering, luxuriant; refined, elegant, graceful
