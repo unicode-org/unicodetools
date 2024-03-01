@@ -387,8 +387,6 @@ public class GenerateIdna {
                                         // U+2132 ( Ⅎ ) TURNED CAPITAL F
                                         // U+2183 ( Ↄ ) ROMAN NUMERAL REVERSED ONE HUNDRED
                                         + "\\u04C0 \\u10A0-\\u10C5 \\u2132 \\u2183"
-                                        // Normalization Changes (CJK Compatibility Characters)
-                                        + "\\U0002F868 \\U0002F874 \\U0002F91F \\U0002F95F \\U0002F9BF"
                                         // Default Ignorable Changes
                                         // U+3164 HANGUL FILLER
                                         // U+FFA0 HALFWIDTH HANGUL FILLER
@@ -596,6 +594,11 @@ public class GenerateIdna {
                         idna2003 = UTF16.valueOf(i);
                     }
                     if (!base.equals(idna2003)) {
+                        if (0x20000 <= i && i <= 0x2FFFF) {
+                            // Skip the 5 normalization corrections from Unicode 4.0,
+                            // changing them from disallowed to mapped.
+                            continue;
+                        }
                         mappingChanged.add(i);
                     }
                     break;

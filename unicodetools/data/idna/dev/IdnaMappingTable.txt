@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2024-01-31, 23:06:37 GMT
+# Date: 2024-03-01, 22:55:36 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -8693,7 +8693,7 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 2F865         ; mapped                 ; 59D8          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F865
 2F866         ; mapped                 ; 5A66          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F866
 2F867         ; mapped                 ; 36EE          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F867
-2F868         ; disallowed                             # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F868
+2F868         ; mapped                 ; 36FC          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F868
 2F869         ; mapped                 ; 5B08          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F869
 2F86A..2F86B  ; mapped                 ; 5B3E          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F86A..CJK COMPATIBILITY IDEOGRAPH-2F86B
 2F86C         ; mapped                 ; 219C8         # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F86C
@@ -8704,7 +8704,7 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 2F871         ; mapped                 ; 21B18         # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F871
 2F872         ; mapped                 ; 5BFF          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F872
 2F873         ; mapped                 ; 5C06          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F873
-2F874         ; disallowed                             # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F874
+2F874         ; mapped                 ; 5F53          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F874
 2F875         ; mapped                 ; 5C22          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F875
 2F876         ; mapped                 ; 3781          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F876
 2F877         ; mapped                 ; 5C60          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F877
@@ -8873,7 +8873,7 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 2F91C         ; mapped                 ; 7145          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F91C
 2F91D         ; mapped                 ; 24263         # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F91D
 2F91E         ; mapped                 ; 719C          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F91E
-2F91F         ; disallowed                             # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F91F
+2F91F         ; mapped                 ; 243AB         # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F91F
 2F920         ; mapped                 ; 7228          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F920
 2F921         ; mapped                 ; 7235          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F921
 2F922         ; mapped                 ; 7250          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F922
@@ -8934,7 +8934,7 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 2F95B         ; mapped                 ; 7A4F          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F95B
 2F95C         ; mapped                 ; 2597C         # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F95C
 2F95D..2F95E  ; mapped                 ; 25AA7         # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F95D..CJK COMPATIBILITY IDEOGRAPH-2F95E
-2F95F         ; disallowed                             # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F95F
+2F95F         ; mapped                 ; 7AEE          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F95F
 2F960         ; mapped                 ; 4202          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F960
 2F961         ; mapped                 ; 25BAB         # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F961
 2F962         ; mapped                 ; 7BC6          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F962
@@ -9030,7 +9030,7 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 2F9BC         ; mapped                 ; 8728          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9BC
 2F9BD         ; mapped                 ; 876B          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9BD
 2F9BE         ; mapped                 ; 8786          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9BE
-2F9BF         ; disallowed                             # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9BF
+2F9BF         ; mapped                 ; 45D7          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9BF
 2F9C0         ; mapped                 ; 87E1          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9C0
 2F9C1         ; mapped                 ; 8801          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9C1
 2F9C2         ; mapped                 ; 45F9          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9C2
