@@ -372,6 +372,10 @@ public class GenerateIdna {
         final UnicodeSet mappingChanged = baseExclusionSetInfo.get1();
         final UnicodeSet baseExclusionSet =
                 new UnicodeSet(disallowedExclusionSet).addAll(mappingChanged);
+        // Hardcoded set of what we expect the base exclusion set to contain.
+        // Comments from UTS #46, but as of Unicode 15.1, the spec still shows the
+        // base exclusion set from 6.0 which no longer matches the current set.
+        // It is updated here.
         final UnicodeSet baseExclusionSet2 =
                 new UnicodeSet(
                                 "["
@@ -396,8 +400,9 @@ public class GenerateIdna {
                                         + "\u3164 \uFFA0 \u115F \u1160 \u17B4 \u17B5 \u1806"
 
                                         // * Characters that are disallowed in IDNA2003
-                                        // Bidi_Control characters
-                                        + "\\u200E\\u200F\\u202A-\\u202E"
+                                        // Miscellaneous
+                                        // U+180E MONGOLIAN VOWEL SEPARATOR
+                                        + "\\u180E"
                                         // Invisible operators
                                         + "\\u2061-\\u2063"
                                         // Replacement characters
@@ -408,8 +413,6 @@ public class GenerateIdna {
                                         + "\\u206A-\\u206F"
                                         // Tags (deprecated) & Other tags
                                         + "\\U000E0001\\U000E0020-\\U000E007F"
-                                        // TODO: Not listed in UTS #46
-                                        + "\u200B\u2060\uFEFF"
                                         + "]")
                         .freeze(); // .addAll(cn)
 
@@ -425,7 +428,7 @@ public class GenerateIdna {
             System.out.println(
                     "static-computed:\t"
                             + new UnicodeSet(baseExclusionSet2).removeAll(baseExclusionSet));
-            // TODO: throw new IllegalArgumentException();
+            throw new IllegalArgumentException("computed base exclusion set != expected set");
         }
 
         System.out.println(
