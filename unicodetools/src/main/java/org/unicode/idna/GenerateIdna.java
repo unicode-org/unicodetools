@@ -370,8 +370,9 @@ public class GenerateIdna {
                 computeBaseExclusionSet(baseMapping, baseValidSet, STD3);
         final UnicodeSet disallowedExclusionSet = baseExclusionSetInfo.get0();
         final UnicodeSet mappingChanged = baseExclusionSetInfo.get1();
-        final UnicodeSet baseExclusionSet =
-                new UnicodeSet(disallowedExclusionSet).addAll(mappingChanged);
+        final UnicodeSet baseExclusionSet = new UnicodeSet(disallowedExclusionSet);
+        // TODO: Ignore mapping changes between IDNA2003 and UTS #46 -- .addAll(mappingChanged);
+        // TODO: Decide how far to go.
         // Hardcoded set of what we expect the base exclusion set to contain.
         // Comments from UTS #46, but as of Unicode 15.1, the spec still shows the
         // base exclusion set from 6.0 which no longer matches the current set.
@@ -379,23 +380,25 @@ public class GenerateIdna {
         final UnicodeSet baseExclusionSet2 =
                 new UnicodeSet(
                                 "["
-                                        // * Characters that have a different mapping in IDNA2003
-                                        // Case Changes
-                                        // U+04C0 ( Ӏ ) CYRILLIC LETTER PALOCHKA
-                                        // U+10A0 ( Ⴀ ) GEORGIAN CAPITAL LETTER AN…
-                                        //   U+10C5 ( Ⴥ ) GEORGIAN CAPITAL LETTER HOE
-                                        // U+2132 ( Ⅎ ) TURNED CAPITAL F
-                                        // U+2183 ( Ↄ ) ROMAN NUMERAL REVERSED ONE HUNDRED
-                                        + "\\u04C0 \\u10A0-\\u10C5 \\u2132 \\u2183"
-                                        // Default Ignorable Changes
-                                        // U+3164 HANGUL FILLER
-                                        // U+FFA0 HALFWIDTH HANGUL FILLER
-                                        // U+115F HANGUL CHOSEONG FILLER
-                                        // U+1160 HANGUL JUNGSEONG FILLER
-                                        // U+17B4 KHMER VOWEL INHERENT AQ
-                                        // U+17B5 KHMER VOWEL INHERENT AA
-                                        // U+1806 ( ᠆ ) MONGOLIAN TODO SOFT HYPHEN
-                                        + "\u3164 \uFFA0 \u115F \u1160 \u17B4 \u17B5 \u1806"
+                                        /* TODO: clean up --
+                                           // * Characters that have a different mapping in IDNA2003
+                                           // Case Changes
+                                           // U+04C0 ( Ӏ ) CYRILLIC LETTER PALOCHKA
+                                           // U+10A0 ( Ⴀ ) GEORGIAN CAPITAL LETTER AN…
+                                           //   U+10C5 ( Ⴥ ) GEORGIAN CAPITAL LETTER HOE
+                                           // U+2132 ( Ⅎ ) TURNED CAPITAL F
+                                           // U+2183 ( Ↄ ) ROMAN NUMERAL REVERSED ONE HUNDRED
+                                           + "\\u04C0 \\u10A0-\\u10C5 \\u2132 \\u2183"
+                                           // Default Ignorable Changes
+                                           // U+3164 HANGUL FILLER
+                                           // U+FFA0 HALFWIDTH HANGUL FILLER
+                                           // U+115F HANGUL CHOSEONG FILLER
+                                           // U+1160 HANGUL JUNGSEONG FILLER
+                                           // U+17B4 KHMER VOWEL INHERENT AQ
+                                           // U+17B5 KHMER VOWEL INHERENT AA
+                                           // U+1806 ( ᠆ ) MONGOLIAN TODO SOFT HYPHEN
+                                           + "\u3164 \uFFA0 \u115F \u1160 \u17B4 \u17B5 \u1806"
+                                        */
 
                                         // * Characters that are disallowed in IDNA2003
                                         // Miscellaneous
