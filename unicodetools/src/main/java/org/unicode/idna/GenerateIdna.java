@@ -396,16 +396,16 @@ public class GenerateIdna {
                                         + "\u3164 \uFFA0 \u115F \u1160 \u17B4 \u17B5 \u1806"
 
                                         // * Characters that are disallowed in IDNA2003
-                                        // Replacement characters
-                                        + " \uFFFC \uFFFD"
                                         // Bidi_Control characters
                                         + "\\u200E\\u200F\\u202A-\\u202E"
                                         // Invisible operators
                                         + "\\u2061-\\u2063"
-                                        // Format characters (deprecated)
-                                        + "\\u206A-\\u206F"
+                                        // Replacement characters
+                                        + "\uFFFC \uFFFD"
                                         // Musical symbols
                                         + "\\U0001D173-\\U0001D17A"
+                                        // Format characters (deprecated)
+                                        + "\\u206A-\\u206F"
                                         // Tags (deprecated) & Other tags
                                         + "\\U000E0001\\U000E0020-\\U000E007F"
                                         // TODO: Not listed in UTS #46
