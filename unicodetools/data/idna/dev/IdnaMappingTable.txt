@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2024-03-01, 23:02:14 GMT
+# Date: 2024-03-02, 01:03:49 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1660,8 +1660,7 @@
 17F0..17F9    ; valid                  ;      ; NV8    # 4.0  KHMER SYMBOL LEK ATTAK SON..KHMER SYMBOL LEK ATTAK PRAM-BUON
 17FA..17FF    ; disallowed                             # NA   <reserved-17FA>..<reserved-17FF>
 1800..180A    ; valid                  ;      ; NV8    # 3.0  MONGOLIAN BIRGA..MONGOLIAN NIRUGU
-180B..180D    ; ignored                                # 3.0  MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
-180E          ; disallowed                             # 3.0  MONGOLIAN VOWEL SEPARATOR
+180B..180E    ; ignored                                # 3.0  MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN VOWEL SEPARATOR
 180F          ; ignored                                # 14.0 MONGOLIAN FREE VARIATION SELECTOR FOUR
 1810..1819    ; valid                                  # 3.0  MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
 181A..181F    ; disallowed                             # NA   <reserved-181A>..<reserved-181F>
@@ -2404,12 +2403,11 @@
 2057          ; mapped                 ; 2032 2032 2032 2032 #3.2 QUADRUPLE PRIME
 2058..205E    ; valid                  ;      ; NV8    # 4.1  FOUR DOT PUNCTUATION..VERTICAL FOUR DOTS
 205F          ; disallowed_STD3_mapped ; 0020          # 3.2  MEDIUM MATHEMATICAL SPACE
-2060          ; ignored                                # 3.2  WORD JOINER
-2061..2063    ; disallowed                             # 3.2  FUNCTION APPLICATION..INVISIBLE SEPARATOR
+2060..2063    ; ignored                                # 3.2  WORD JOINER..INVISIBLE SEPARATOR
 2064          ; ignored                                # 5.1  INVISIBLE PLUS
 2065          ; disallowed                             # NA   <reserved-2065>
 2066..2069    ; disallowed                             # 6.3  LEFT-TO-RIGHT ISOLATE..POP DIRECTIONAL ISOLATE
-206A..206F    ; disallowed                             # 1.1  INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES
+206A..206F    ; ignored                                # 1.1  INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES
 2070          ; mapped                 ; 0030          # 1.1  SUPERSCRIPT ZERO
 2071          ; mapped                 ; 0069          # 3.2  SUPERSCRIPT LATIN SMALL LETTER I
 2072..2073    ; disallowed                             # NA   <reserved-2072>..<reserved-2073>
@@ -6836,7 +6834,7 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 1D163         ; mapped                 ; 1D158 1D165 1D171 #3.1 MUSICAL SYMBOL SIXTY-FOURTH NOTE
 1D164         ; mapped                 ; 1D158 1D165 1D172 #3.1 MUSICAL SYMBOL ONE HUNDRED TWENTY-EIGHTH NOTE
 1D165..1D172  ; valid                  ;      ; NV8    # 3.1  MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING FLAG-5
-1D173..1D17A  ; disallowed                             # 3.1  MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
+1D173..1D17A  ; ignored                                # 3.1  MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
 1D17B..1D1BA  ; valid                  ;      ; NV8    # 3.1  MUSICAL SYMBOL COMBINING ACCENT..MUSICAL SYMBOL SEMIBREVIS BLACK
 1D1BB         ; mapped                 ; 1D1B9 1D165   # 3.1  MUSICAL SYMBOL MINIMA
 1D1BC         ; mapped                 ; 1D1BA 1D165   # 3.1  MUSICAL SYMBOL MINIMA BLACK
