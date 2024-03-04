@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Set;
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.CLDRFile;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyValueSets;
 import org.unicode.props.UcdProperty;
@@ -116,6 +117,12 @@ public class AacOrder {
                             + "\n# Compute the index while reading the file:"
                             + "\n#  For each single codepoint or string, add one; "
                             + "\n#  For each range, add the number of items in the range");
+            outEach.println("# -----");
+            outEach.println("# CLDR GEN_VERSION: " + CLDRFile.GEN_VERSION);
+            outEach.println("# ICU: " + VersionInfo.ICU_VERSION + " getUnicodeVersion(): " + UCharacter.getUnicodeVersion());
+            outEach.println("# UnicodeTools Settings.latestVersion: " + Settings.latestVersion);
+            outEach.println("# AacOrder.VERSION: " + VERSION);
+            outEach.println("# AacOrder.UCD_VERSION: " + UCD_VERSION);
             Range range = new Range(outRanges, true);
             Range rangeNone = new Range(outEach, false);
             for (String s : SORTED_ALL_CHARS_SET) {
