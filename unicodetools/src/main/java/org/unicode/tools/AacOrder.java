@@ -31,7 +31,7 @@ import org.unicode.tools.emoji.EmojiOrder;
 public class AacOrder {
 
     private static final VersionInfo VERSION = Emoji.VERSION15_1;
-    private static final VersionInfo UCD_VERSION = Emoji.VERSION15;
+    private static final VersionInfo UCD_VERSION = Emoji.VERSION15_1;
 
     private static final CandidateData CANDIDATE_DATA = CandidateData.getInstance();
 
@@ -119,7 +119,11 @@ public class AacOrder {
                             + "\n#  For each range, add the number of items in the range");
             outEach.println("# -----");
             outEach.println("# CLDR GEN_VERSION: " + CLDRFile.GEN_VERSION);
-            outEach.println("# ICU: " + VersionInfo.ICU_VERSION + " getUnicodeVersion(): " + UCharacter.getUnicodeVersion());
+            outEach.println(
+                    "# ICU: "
+                            + VersionInfo.ICU_VERSION
+                            + " getUnicodeVersion(): "
+                            + UCharacter.getUnicodeVersion());
             outEach.println("# UnicodeTools Settings.latestVersion: " + Settings.latestVersion);
             outEach.println("# AacOrder.VERSION: " + VERSION);
             outEach.println("# AacOrder.UCD_VERSION: " + UCD_VERSION);
