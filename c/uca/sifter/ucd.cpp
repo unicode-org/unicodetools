@@ -34,19 +34,34 @@ CharacterDatabase::CharacterDatabase(const std::string_view versionDirectory) {
                         slc,
                         stc] = fields<15>(line);
             const char32_t codePoint = parseHexCodePoint(cp);
-            // TODO(egg): Handle ranges.
-            const auto range = CodePointRange::inclusive(codePoint, codePoint);
+            auto range = CodePointRange::inclusive(codePoint, codePoint);
+            if (name.ends_with(", First>")) {
+                std::string nextLine;
+                std::getline(unicodeData, nextLine);
+                const auto [lastCp, lastName] = fields<2>(nextLine);
+                CHECK(lastName.ends_with(", Last>")) << line << "\n"
+                                                     << nextLine;
+                CHECK(lastName.starts_with(name.substr(0, name.size() - 8)))
+                        << line << "\n"
+                        << nextLine;
+                CHECK(line.substr(cp.size() + 1 + name.size()) ==
+                      nextLine.substr(lastCp.size() + 1 + lastName.size()))
+                        << line << "\n"
+                        << nextLine;
+                range = CodePointRange::inclusive(codePoint,
+                                                  parseHexCodePoint(lastCp));
+            }
             coarseGeneralCategory_[gc.front()].addAll(range);
             generalCategory_[std::string(gc)].addAll(range);
-            canonicalCombiningClass_.emplace(codePoint,
-                                             std::stoi(std::string(ccc)));
-            if (!suc.empty()) {
-                simpleUppercaseMapping_.emplace(codePoint,
-                                                parseHexCodePoint(suc));
-            }
-            if (!slc.empty()) {
-                simpleLowercaseMapping_.emplace(codePoint,
-                                                parseHexCodePoint(slc));
+            for (char32_t c : range) {
+                canonicalCombiningClass_.emplace(c,
+                                                 std::stoi(std::string(ccc)));
+                if (!suc.empty()) {
+                    simpleUppercaseMapping_.emplace(c, parseHexCodePoint(suc));
+                }
+                if (!slc.empty()) {
+                    simpleLowercaseMapping_.emplace(c, parseHexCodePoint(slc));
+                }
             }
         }
     }
