@@ -27,6 +27,13 @@ h3 {background-color: #EEEEEE}
 .L1 {background-color: #CCCCCC}
 .L0 {background-color: #C8C8C8} 
 .default           { background-color: #C8C8C8}
+@font-face {
+  font-family: 'Last Resort';
+  src: url('LastResort-Regular.ttf');
+}
+.control {
+  font-family: 'Last Resort'
+}
 .changed {
   background-color: #FFFF00;
   border-style: dotted;
