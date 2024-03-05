@@ -113,14 +113,16 @@ class CodePointSet {
     }
 
     CodePointSet& addAll(CodePointRange range) {
-        // All earlier ranges end before the new one and are not adjacent.
+        // All earlier ranges end before the new one and are not adjacent to
+        // |range|.
         const auto firstModifiedRange =
                 std::partition_point(ranges_.begin(),
                                      ranges_.end(),
                                      [&range](const CodePointRange& r) {
                                          return r.back() + 1 < range.front();
                                      });
-        // First range that starts after the new one and is not adjacent.
+        // First range that starts after the new one and is not adjacent to
+        // |range|.
         const auto pastModifiedRanges =
                 std::partition_point(ranges_.begin(),
                                      ranges_.end(),
@@ -133,7 +135,8 @@ class CodePointSet {
                     std::min(firstModifiedRange->front(), insertedRangeFirst);
         }
         char32_t insertedRangeLast = range.back();
-        if (pastModifiedRanges != ranges_.begin()) {
+        if (pastModifiedRanges != ranges_.begin() &&
+            pastModifiedRanges - 1 >= firstModifiedRange) {
             const auto lastModifiedRange = pastModifiedRanges - 1;
             insertedRangeLast =
                     std::max(lastModifiedRange->back(), insertedRangeLast);
