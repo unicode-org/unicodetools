@@ -6,19 +6,19 @@
 
 namespace {
 
-static unicode::CharacterDatabase const& ucd() {
+const unicode::CharacterDatabase& ucd() {
     static unicode::CharacterDatabase latest("dev");
     return latest;
 }
 
-static bool isSifterNonSpacingCombining(char32_t c) {
+bool isSifterNonSpacingCombining(char32_t c) {
     // The DUCET Sifter is using these PUA code points in artificial
     // decompositions. They are treated like gc=Mn, so that they get secondary
     // weights.
     return 0xF8F0 <= c && c <= 0xF8FF;
 }
 
-static bool isSpecialCJKIdeograph(char32_t c) {
+bool isSpecialCJKIdeograph(char32_t c) {
     return 0xFA0E <= c && c <= 0xFA29 &&
            (c <= 0xFA0F || c == 0xFA11 || c == 0xFA13 || c == 0xFA14 ||
             c == 0xFA1F || c == 0xFA21 || c == 0xFA23 || c == 0xFA24 ||

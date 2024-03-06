@@ -1,6 +1,7 @@
 # Start from Google style.
 BasedOnStyle: Google
 IndentWidth: 4
+AccessModifierOffset: -2
 ContinuationIndentWidth: 8
 QualifierAlignment: Left
 

@@ -14,7 +14,7 @@
 namespace unicode {
 
 class CheckFailure {
-   public:
+  public:
     ~CheckFailure() {
         std::terminate();
     }
@@ -27,7 +27,7 @@ class CheckFailure {
             : CheckFailure() & std::cerr << ("Check failed: " #condition "\n")
 
 class CodePointRange {
-   public:
+  public:
     struct iterator {
         constexpr char32_t operator*() const {
             return value;
@@ -82,7 +82,7 @@ class CodePointRange {
         return {pastTheEnd_};
     }
 
-   private:
+  private:
     constexpr CodePointRange(char32_t first, char32_t past_the_end)
         : first_(first), pastTheEnd_(past_the_end) {}
 
@@ -92,7 +92,7 @@ class CodePointRange {
 
 // TODO(egg): Make this behave like a container.
 class CodePointSet {
-   public:
+  public:
     // Empty set.
     CodePointSet() = default;
 
@@ -159,7 +159,7 @@ class CodePointSet {
         return ranges_;
     }
 
-   private:
+  private:
     // Non-overlapping, non-adjacent ranges, in ascending order.
     std::vector<CodePointRange> ranges_;
 };
@@ -204,7 +204,7 @@ constexpr CodePointRange parseHexCodePointRange(std::string_view hex) {
 }
 
 class CharacterDatabase {
-   public:
+  public:
     explicit CharacterDatabase(std::string_view versionDirectory);
 
     const CodePointSet& generalCategorySet(std::string_view const gc) const;
@@ -222,7 +222,7 @@ class CharacterDatabase {
 
     const CodePointSet& codePointsWithNumericValue() const;
 
-   private:
+  private:
     void readMultiPropertyFile(const std::filesystem::path& file);
 
     // Keys are C, L, M, N, P, S, Z.
