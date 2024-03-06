@@ -99,7 +99,7 @@ public class UnicodeUtilities {
                         + "([[:cn:][:co:][:cc:]-[:White_Space:]]) > '<span class=\"control\">'$1'</span>' ; ";
         toHTML =
                 Transliterator.createFromRules(
-                        "any-xml", HTML_RULES_CONTROLS  , Transliterator.FORWARD);
+                        "any-xml", HTML_RULES_CONTROLS, Transliterator.FORWARD);
     }
 
     public static String toHTML(String input) {
