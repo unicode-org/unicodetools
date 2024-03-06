@@ -53,14 +53,16 @@ CharacterDatabase::CharacterDatabase(const std::string_view versionDirectory) {
             }
             coarseGeneralCategory_[gc.front()].addAll(range);
             generalCategory_[std::string(gc)].addAll(range);
-            for (char32_t c : range) {
-                canonicalCombiningClass_.emplace(c,
-                                                 std::stoi(std::string(ccc)));
-                if (!suc.empty()) {
-                    simpleUppercaseMapping_.emplace(c, parseHexCodePoint(suc));
+            const std::uint8_t combiningClass = std::stoi(std::string(ccc));
+            const auto simpleUppercase = parseOptionalHexCodePoint(suc);
+            const auto simpleLowercase = parseOptionalHexCodePoint(slc);
+            for (const char32_t c : range) {
+                canonicalCombiningClass_.emplace(c, combiningClass);
+                if (simpleUppercase.has_value()) {
+                    simpleUppercaseMapping_.emplace(c, *simpleUppercase);
                 }
-                if (!slc.empty()) {
-                    simpleLowercaseMapping_.emplace(c, parseHexCodePoint(slc));
+                if (simpleLowercase.has_value()) {
+                    simpleLowercaseMapping_.emplace(c, *simpleLowercase);
                 }
             }
         }
@@ -83,9 +85,11 @@ CharacterDatabase::CharacterDatabase(const std::string_view versionDirectory) {
             codePointsWithNumericValue_.addAll(range);
             if (rationalNV.find_first_not_of("0123456789") ==
                 std::string_view::npos) {
+                std::uint64_t const naturalNumericValue =
+                        std::stoll(std::string(rationalNV));
                 for (const char32_t codePoint : range) {
-                    naturalNumericValue_.emplace(
-                            codePoint, std::stoll(std::string(rationalNV)));
+                    naturalNumericValue_.emplace(codePoint,
+                                                 naturalNumericValue);
                 }
             }
         }

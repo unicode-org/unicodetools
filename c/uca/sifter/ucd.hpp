@@ -192,6 +192,16 @@ constexpr char32_t parseHexCodePoint(std::string_view hex) {
     return static_cast<char32_t>(c);
 }
 
+constexpr std::optional<char32_t> parseOptionalHexCodePoint(
+        std::string_view hex) {
+    if (hex.empty()) {
+        return std::nullopt;
+    }
+    std::uint32_t c;
+    std::from_chars(hex.data(), hex.data() + hex.size(), c, 16);
+    return static_cast<char32_t>(c);
+}
+
 constexpr CodePointRange parseHexCodePointRange(std::string_view hex) {
     const auto first_dot = hex.find("..");
     if (first_dot == std::string_view::npos) {
