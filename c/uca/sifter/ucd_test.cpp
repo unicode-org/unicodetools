@@ -3,7 +3,7 @@
 #include "ucd.hpp"
 
 namespace {
-static int testFailures = 0;
+int testFailures = 0;
 }
 
 #define EXPECT_EQ(left, right)                                           \
