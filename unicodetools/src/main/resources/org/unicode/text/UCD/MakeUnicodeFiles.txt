@@ -542,7 +542,7 @@ Property:	Numeric_Value
 #    The values are based on field 8 of UnicodeData.txt, plus the fields 
 #    kAccountingNumeric, kOtherNumeric, kPrimaryNumeric in the Unicode Han Database (Unihan).
 #    The derivations for these values are as follows.
-#      Numeric_Value = the value of kAccountingNumeric, kOtherNumeric, or kPrimaryNumeric, if they exist; otherwise
+#      Numeric_Value = the first-listed value of kAccountingNumeric, kOtherNumeric, or kPrimaryNumeric, if they exist; otherwise
 #      Numeric_Value = the value of field 8, if it exists; otherwise
 #      Numeric_Value = NaN
 #  Field 2:
