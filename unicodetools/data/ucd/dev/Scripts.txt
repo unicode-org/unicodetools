@@ -24,7 +24,8 @@
 
 # ================================================
 
-11DB0..11DE9;Tolong_Siki
+11DB0..11DDB;Tolong_Siki
+11DE0..11DE9;Tolong_Siki
 0000..001F    ; Common # Cc  [32] <control-0000>..<control-001F>
 0020          ; Common # Zs       SPACE
 0021..0023    ; Common # Po   [3] EXCLAMATION MARK..NUMBER SIGN
