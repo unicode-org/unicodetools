@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2024-02-02, 23:11:49 GMT
+# Date: 2024-03-10, 17:12:52 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -24,8 +24,6 @@
 
 # ================================================
 
-11DB0..11DDB;Tolong_Siki
-11DE0..11DE9;Tolong_Siki
 0000..001F    ; Common # Cc  [32] <control-0000>..<control-001F>
 0020          ; Common # Zs       SPACE
 0021..0023    ; Common # Po   [3] EXCLAMATION MARK..NUMBER SIGN
@@ -3126,5 +3124,12 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 113E1..113E2  ; Tulu_Tigalari # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 
 # Total code points: 80
+
+# ================================================
+
+11DB0..11DDB  ; Tolong_Siki # Lo  [44] TOLONG SIKI LETTER I..TOLONG SIKI UNGGA
+11DE0..11DE9  ; Tolong_Siki # Nd  [10] TOLONG SIKI DIGIT ZERO..TOLONG SIKI DIGIT NINE
+
+# Total code points: 54
 
 # EOF

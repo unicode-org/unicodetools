@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2024-02-02, 23:11:25 GMT
+# Date: 2024-03-10, 17:12:35 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -544,7 +544,9 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 11D8F         ; Cn #       <reserved-11D8F>
 11D92         ; Cn #       <reserved-11D92>
 11D99..11D9F  ; Cn #   [7] <reserved-11D99>..<reserved-11D9F>
-11DAA..11EDF  ; Cn # [310] <reserved-11DAA>..<reserved-11EDF>
+11DAA..11DAF  ; Cn #   [6] <reserved-11DAA>..<reserved-11DAF>
+11DDC..11DDF  ; Cn #   [4] <reserved-11DDC>..<reserved-11DDF>
+11DEA..11EDF  ; Cn # [246] <reserved-11DEA>..<reserved-11EDF>
 11EF9..11EFF  ; Cn #   [7] <reserved-11EF9>..<reserved-11EFF>
 11F11         ; Cn #       <reserved-11F11>
 11F3B..11F3D  ; Cn #   [3] <reserved-11F3B>..<reserved-11F3D>
@@ -747,7 +749,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 819531
+# Total code points: 819477
 
 # ================================================
 
@@ -2616,6 +2618,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 11D67..11D68  ; Lo #   [2] GUNJALA GONDI LETTER EE..GUNJALA GONDI LETTER AI
 11D6A..11D89  ; Lo #  [32] GUNJALA GONDI LETTER OO..GUNJALA GONDI LETTER SA
 11D98         ; Lo #       GUNJALA GONDI OM
+11DB0..11DDB  ; Lo #  [44] TOLONG SIKI LETTER I..TOLONG SIKI UNGGA
 11EE0..11EF2  ; Lo #  [19] MAKASAR LETTER KA..MAKASAR ANGKA
 11F02         ; Lo #       KAWI SIGN REPHA
 11F04..11F10  ; Lo #  [13] KAWI LETTER A..KAWI LETTER O
@@ -2708,7 +2711,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Lo # [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 136479
+# Total code points: 136523
 
 # ================================================
 
@@ -3344,6 +3347,7 @@ FF10..FF19    ; Nd #  [10] FULLWIDTH DIGIT ZERO..FULLWIDTH DIGIT NINE
 11C50..11C59  ; Nd #  [10] BHAIKSUKI DIGIT ZERO..BHAIKSUKI DIGIT NINE
 11D50..11D59  ; Nd #  [10] MASARAM GONDI DIGIT ZERO..MASARAM GONDI DIGIT NINE
 11DA0..11DA9  ; Nd #  [10] GUNJALA GONDI DIGIT ZERO..GUNJALA GONDI DIGIT NINE
+11DE0..11DE9  ; Nd #  [10] TOLONG SIKI DIGIT ZERO..TOLONG SIKI DIGIT NINE
 11F50..11F59  ; Nd #  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
 16130..16139  ; Nd #  [10] GURUNG KHEMA DIGIT ZERO..GURUNG KHEMA DIGIT NINE
 16A60..16A69  ; Nd #  [10] MRO DIGIT ZERO..MRO DIGIT NINE
@@ -3359,7 +3363,7 @@ FF10..FF19    ; Nd #  [10] FULLWIDTH DIGIT ZERO..FULLWIDTH DIGIT NINE
 1E950..1E959  ; Nd #  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 1FBF0..1FBF9  ; Nd #  [10] SEGMENTED DIGIT ZERO..SEGMENTED DIGIT NINE
 
-# Total code points: 760
+# Total code points: 770
 
 # ================================================
 
