@@ -51,6 +51,8 @@
 # at https://www.unicode.org/reports/tr14/
 #
 # @missing: 0000..10FFFF; XX
+11DB0..11DDB;AL # Lo [44] TOLONG SIKI LETTER I..TOLONG SIKI UNGGA
+11DE0..11DE9;NU    # Nd  [10] TOLONG SIKI DIGIT ZERO..TOLONG SIKI DIGIT NINE
 0000..0008     ; CM # Cc     [9] <control-0000>..<control-0008>
 0009           ; BA # Cc         <control-0009>
 000A           ; LF # Cc         <control-000A>
