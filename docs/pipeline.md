@@ -75,7 +75,9 @@ If you take part in UCD development, feel free to add your own.
 
 ### Ken UnicodeData
 
-eggrobin (Windows, in-source; the remote corresponding to unicode-org is called la-vache, Ken’s files are downloaded next to the unicodetools repository). Ken's files come from [here](https://corp.unicode.org/~book/incoming/kenfiles/) (select appropriate ucd version e.g. `ucd160` for Unicode 16.0). NOTE: this check is probably not applicable for `pipeline-provisionally-assigned` data where Ken does not yet have a draft.
+Ken's files come from [here](https://corp.unicode.org/~book/incoming/kenfiles/) (select appropriate ucd version e.g. `ucd160` for Unicode 16.0). NOTE: this check is probably not applicable for `pipeline-provisionally-assigned` data where Ken does not yet have a draft.
+
+eggrobin (Windows, in-source; the remote corresponding to unicode-org is called la-vache, Ken’s files are downloaded next to the unicodetools repository).
 
 ```powershell
 $latestKenFile = (ls ..\UnicodeData-*.txt | sort LastWriteTime)[-1]
