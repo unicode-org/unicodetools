@@ -28,7 +28,7 @@ New scripts only:
 - [ ] UCD_Names — Check script name
 
 ---
-- [ ] Scripts.txt — Prepend ranges
+- [ ] Scripts.txt — Prepend ranges (carefully mind any gaps)
 - [ ] Commit
 
 ---
@@ -65,6 +65,8 @@ PR preparation:
 - [ ] PR button — Set to DRAFT pull request
   - unless approved for the upcoming version
 - [ ] PR button — Press
+  - The **Check UCA data** CI check might fail; many character additions need separate handling there, 
+    but that is out of scope for the PAG work of preparing `data-for-new`. This will get resolved later.
 
 ## Scripts
 
@@ -73,7 +75,7 @@ If you take part in UCD development, feel free to add your own.
 
 ### Ken UnicodeData
 
-eggrobin (Windows, in-source; the remote corresponding to unicode-org is called la-vache, Ken’s files are downloaded next to the unicodetools repository).
+eggrobin (Windows, in-source; the remote corresponding to unicode-org is called la-vache, Ken’s files are downloaded next to the unicodetools repository). Ken's files come from [here](https://corp.unicode.org/~book/incoming/kenfiles/) (select appropriate ucd version e.g. `ucd160` for Unicode 16.0). NOTE: this check is probably not applicable for `pipeline-provisionally-assigned` data where Ken does not yet have a draft.
 
 ```powershell
 $latestKenFile = (ls ..\UnicodeData-*.txt | sort LastWriteTime)[-1]
