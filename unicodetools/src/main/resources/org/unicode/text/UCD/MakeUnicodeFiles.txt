@@ -71,10 +71,9 @@ File: ScriptExtensions
 # All code points not explicitly listed for Script_Extensions
 # have as their value the corresponding Script property value
 #
-# @missing: 0000..10FFFF; <script>
 
 Property: Script_Extensions
-Format: valueStyle=short
+Format: kenFile valueStyle=short
 
 File: auxiliary/GraphemeBreakProperty
 Property: Grapheme_Cluster_Break
