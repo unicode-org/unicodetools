@@ -603,6 +603,12 @@ In \P{Other_Joining_Type=Deduce_From_General_Category}, Joining_Type = Other_Joi
 [ \p{Other_Joining_Type=Deduce_From_General_Category} & [\p{gc=Mn}\p{gc=Me}\p{gc=Cf}] ] ⊆ \p{Joining_Type=Transparent}
 [ \p{Other_Joining_Type=Deduce_From_General_Category} - [\p{gc=Mn}\p{gc=Me}\p{gc=Cf}] ] ⊆ \p{Joining_Type=Non_Joining}
 
+## Modifier_Combining_Mark stability.  Not yet testable, since MCM does not exist before 16.0.
+# NOTICE TO THE MAINTAINER: The following line is intended to fail after 16.0;
+# When it does, remove it and uncomment the line after it.
+\p{gc=Cn} = \p{U16:gc=Cn}  # ☚ REMOVE ME WHEN I FAIL…
+# … AND UNCOMMENT ME. ☛ # In \P{U-1:gc=Cn}, Modifier_Combining_Mark = U-1:Modifier_Combining_Mark
+
 ##########################
 # LineBreak property
 ##########################

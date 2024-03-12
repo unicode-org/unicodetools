@@ -733,6 +733,7 @@ Property:	Pattern_White_Space
 Property:	Pattern_Syntax
 Property:	Prepended_Concatenation_Mark
 Property:	Regional_Indicator
+Property:	Modifier_Combining_Mark
 
 File:	PropertyAliases
 Property: SPECIAL
