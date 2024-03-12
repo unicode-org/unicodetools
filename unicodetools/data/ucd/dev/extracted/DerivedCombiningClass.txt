@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2024-02-02, 23:11:23 GMT
+# Date: 2024-03-10, 17:12:34 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1763,6 +1763,8 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 11D96         ; 0 # Mc       GUNJALA GONDI SIGN VISARGA
 11D98         ; 0 # Lo       GUNJALA GONDI OM
 11DA0..11DA9  ; 0 # Nd  [10] GUNJALA GONDI DIGIT ZERO..GUNJALA GONDI DIGIT NINE
+11DB0..11DDB  ; 0 # Lo  [44] TOLONG SIKI LETTER I..TOLONG SIKI UNGGA
+11DE0..11DE9  ; 0 # Nd  [10] TOLONG SIKI DIGIT ZERO..TOLONG SIKI DIGIT NINE
 11EE0..11EF2  ; 0 # Lo  [19] MAKASAR LETTER KA..MAKASAR ANGKA
 11EF3..11EF4  ; 0 # Mn   [2] MAKASAR VOWEL SIGN I..MAKASAR VOWEL SIGN U
 11EF5..11EF6  ; 0 # Mc   [2] MAKASAR VOWEL SIGN E..MAKASAR VOWEL SIGN O
@@ -2060,7 +2062,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 821579 code points not listed here.
+# The above property value applies to 821525 code points not listed here.
 # Total code points: 1113178
 
 # ================================================

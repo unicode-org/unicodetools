@@ -283,6 +283,7 @@ FFF0..FFFF; Specials
 11C70..11CBF; Marchen
 11D00..11D5F; Masaram Gondi
 11D60..11DAF; Gunjala Gondi
+11DB0..11DEF; Tolong Siki
 11EE0..11EFF; Makasar
 11F00..11F5F; Kawi
 11FB0..11FBF; Lisu Supplement

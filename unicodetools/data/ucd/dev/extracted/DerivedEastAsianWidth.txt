@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2024-02-02, 23:11:25 GMT
+# Date: 2024-03-10, 17:12:35 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1797,6 +1797,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 11D97         ; N # Mn       GUNJALA GONDI VIRAMA
 11D98         ; N # Lo       GUNJALA GONDI OM
 11DA0..11DA9  ; N # Nd  [10] GUNJALA GONDI DIGIT ZERO..GUNJALA GONDI DIGIT NINE
+11DB0..11DDB  ; N # Lo  [44] TOLONG SIKI LETTER I..TOLONG SIKI UNGGA
+11DE0..11DE9  ; N # Nd  [10] TOLONG SIKI DIGIT ZERO..TOLONG SIKI DIGIT NINE
 11EE0..11EF2  ; N # Lo  [19] MAKASAR LETTER KA..MAKASAR ANGKA
 11EF3..11EF4  ; N # Mn   [2] MAKASAR VOWEL SIGN I..MAKASAR VOWEL SIGN U
 11EF5..11EF6  ; N # Mc   [2] MAKASAR VOWEL SIGN E..MAKASAR VOWEL SIGN O
@@ -2103,7 +2105,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 761097 code points not listed here.
+# The above property value applies to 761043 code points not listed here.
 # Total code points: 792608
 
 # ================================================
