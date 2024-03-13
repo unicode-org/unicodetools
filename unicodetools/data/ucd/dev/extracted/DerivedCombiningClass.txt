@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2024-02-02, 23:11:23 GMT
+# Date: 2024-02-17, 00:24:49 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1399,7 +1399,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 10760..10767  ; 0 # Lo   [8] LINEAR A SIGN A800..LINEAR A SIGN A807
 10780..10785  ; 0 # Lm   [6] MODIFIER LETTER SMALL CAPITAL AA..MODIFIER LETTER SMALL B WITH HOOK
 10787..107B0  ; 0 # Lm  [42] MODIFIER LETTER SMALL DZ DIGRAPH..MODIFIER LETTER SMALL V WITH RIGHT HOOK
-107B2..107BA  ; 0 # Lm   [9] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL S WITH CURL
+107B2..107BF  ; 0 # Lm  [14] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL TURNED K
 10800..10805  ; 0 # Lo   [6] CYPRIOT SYLLABLE A..CYPRIOT SYLLABLE JA
 10808         ; 0 # Lo       CYPRIOT SYLLABLE JO
 1080A..10835  ; 0 # Lo  [44] CYPRIOT SYLLABLE KA..CYPRIOT SYLLABLE WO
@@ -2060,7 +2060,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 821579 code points not listed here.
+# The above property value applies to 821574 code points not listed here.
 # Total code points: 1113178
 
 # ================================================
