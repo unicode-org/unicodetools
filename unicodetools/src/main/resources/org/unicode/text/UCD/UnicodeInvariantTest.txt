@@ -596,6 +596,14 @@ Let $nonLowercaseSmallModifierLetters = [ \p{gc=Lm} & \p{name=/^ARABIC SMALL/} ]
 # See 177-C52.
 \p{name=/COMBINING .* LETTER/} ⊆ [\p{Alphabetic}\p{Diacritic}]
 
+## Consistency of Lowercase with decompositions.
+# Note that the same is not true of Uppercase.
+# A non-lowercase character has non-lowercase characters in its decomposition,
+# or it its decomposition is <square> (㋍ etc.).
+In [\P{Lowercase} - \p{dt=square}], \p{Lowercase} * toNFKD ≠ toNFKD
+# A lowercase character decomposes to lowercase characters and nonspacing marks.
+In \p{Lowercase}, [\p{Lowercase}\p{Mn}] * toNFKD = toNFKD
+
 ## Joining_Type and Joining_Group
 # Where defined, the Joining_Group refines the Joining_Type.
 OnPairsOf \P{Joining_Group=No_Joining_Group}, EqualityOf Joining_Group ⇒ EqualityOf Joining_Type
