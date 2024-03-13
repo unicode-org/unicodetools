@@ -95,7 +95,10 @@ public class UnicodeUtilities {
 
         HTML_RULES_CONTROLS =
                 HTML_RULES
-                        + "[[:cs:]\\u0000] > \uFFFD ; "
+                //+ "\\u0000 > \uFFFD ; "
+                + "[\\uD800-\\uDB7F] > '<span class=\"high-surrogate\"><span>'\uFFFD'</span></span>' ; "
+                + "[\\uDB80-\\uDBFF] > '<span class=\"private-surrogate\"><span>'\uFFFD'</span></span>' ; "
+                + "[\\uDC00-\\uDFFF] > '<span class=\"low-surrogate\"><span>'\uFFFD'</span></span>' ; "
                         + "([[:cn:][:co:][:cc:]-[:White_Space:]]) > '<span class=\"control\">'$1'</span>' ; ";
         toHTML =
                 Transliterator.createFromRules(

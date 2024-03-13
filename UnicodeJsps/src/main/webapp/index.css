@@ -34,6 +34,26 @@ h3 {background-color: #EEEEEE}
 .control {
   font-family: 'Last Resort'
 }
+.high-surrogate::before, .private-surrogate::before, .low-surrogate::before {
+  content: "";
+  display: inline-block;
+  width: 1.1474609375em;
+  height: 1.08349609375em;
+  background-size: contain;
+  vertical-align: bottom;
+}
+.high-surrogate::before {
+  background-image: url('images/highsurrogate.svg');
+}
+.private-surrogate::before {
+  background-image: url('images/privatesurrogate.svg');
+}
+.low-surrogate::before {
+  background-image: url('images/lowsurrogate.svg');
+}
+.high-surrogate span, .private-surrogate span, .low-surrogate span {
+  font-size: 0;
+}
 .changed {
   background-color: #FFFF00;
   border-style: dotted;
