@@ -601,8 +601,6 @@ Let $nonLowercaseSmallModifierLetters = [ \p{gc=Lm} & \p{name=/^ARABIC SMALL/} ]
 # A non-lowercase character has non-lowercase characters in its decomposition,
 # or it its decomposition is <square> (㋍ etc.).
 In [\P{Lowercase} - \p{dt=square}], \p{Lowercase} * toNFKD ≠ toNFKD
-# A lowercase character decomposes to lowercase characters and nonspacing marks.
-In \p{Lowercase}, [\p{Lowercase}\p{gc=Mn}] * toNFKD = toNFKD
 
 ## Joining_Type and Joining_Group
 # Where defined, the Joining_Group refines the Joining_Type.
