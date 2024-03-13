@@ -586,6 +586,8 @@ Let $nonAlphabeticAvagrahas = [\N{TIBETAN MARK PALUTA}]  # A punctuation mark.
 [\p{InSC=Avagraha} - $nonAlphabeticAvagrahas] ⊆ \p{Alphabetic}
 
 # Name-based checks.
+Let $nonLowercaseSmallLetters = [ \p{name=/^LIMBU SMALL LETTER/} \N{TURNED GREEK SMALL LETTER IOTA} \p{name=/^(SQUARED|PARENTHESIZED|TAG) LATIN SMALL LETTER/} ]
+[ \p{name=/\bSMALL LETTER\b}-\p{gc=Mn}-\p{gc=Lt} - $nonLowercaseSmallLetters ] ⊆ \p{Lowercase}
 
 # Combining letters are often alphabetic (medievalist abbreviations).
 # The others are diacritic (cantillation marks, phonetics).
@@ -602,6 +604,12 @@ OnPairsOf \P{Joining_Group=No_Joining_Group}, EqualityOf Joining_Group ⇒ Equal
 In \P{Other_Joining_Type=Deduce_From_General_Category}, Joining_Type = Other_Joining_Type
 [ \p{Other_Joining_Type=Deduce_From_General_Category} & [\p{gc=Mn}\p{gc=Me}\p{gc=Cf}] ] ⊆ \p{Joining_Type=Transparent}
 [ \p{Other_Joining_Type=Deduce_From_General_Category} - [\p{gc=Mn}\p{gc=Me}\p{gc=Cf}] ] ⊆ \p{Joining_Type=Non_Joining}
+
+## Modifier_Combining_Mark stability.  Not yet testable, since MCM does not exist before 16.0.
+# NOTICE TO THE MAINTAINER: The following line is intended to fail after 16.0;
+# When it does, remove it and uncomment the line after it.
+\p{gc=Cn} = \p{U16:gc=Cn}  # ☚ REMOVE ME WHEN I FAIL…
+# … AND UNCOMMENT ME. ☛ # In \P{U-1:gc=Cn}, Modifier_Combining_Mark = U-1:Modifier_Combining_Mark
 
 ##########################
 # LineBreak property
@@ -977,11 +985,18 @@ $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 
 # Ideographic invariants
 
-Let $ideohack = [〆 〇 〡-〩]
+# The Khitan Small Script filler is a Nonspacing Mark.
+# The other characters are numerals (the Hangzhou ten through thirty are compatibility decomposable,
+# but not the one through nine) and have Script=Han.
+Let $NonOtherLetterIdeographs = [\N{KHITAN SMALL SCRIPT FILLER}  〇 〡-〩 〸-〺]
+$NonOtherLetterIdeographs = [\p{Ideographic} - \p{gc=Lo}]
+# Ideographic closing mark, gc=Lo.
+Let $CommonIdeographs = [〆]
+$CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
 
-[\p{ideographic}-\p{sc=tangut}-\p{sc=nushu}-\p{sc=Khitan_Small_Script}-\p{nfkcqc=n}-$ideohack] = \p{Unified_Ideograph}
-# 10.0 added Nushu
-# 13.0 added Khitan_Small_Script
+\p{Ideographic} = [ $NonOtherLetterIdeographs $CommonIdeographs [ \p{gc=Lo} & [\p{Script=Han} \p{Script=Tangut} \p{Script=Nushu} \p{Script=Khitan_Small_Script}] ] ]
+
+[ [\p{Ideographic}&\p{sc=Han}] - \p{nfkcqc=n} - $NonOtherLetterIdeographs ] = \p{Unified_Ideograph}
 
 Let $unihanScope = [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
 \p{Unified_Ideograph} ⊂ $unihanScope

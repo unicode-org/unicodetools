@@ -305,6 +305,7 @@ public enum UcdProperty {
     Logical_Order_Exception(PropertyType.Binary, Binary.class, null, "LOE"),
     Lowercase(PropertyType.Binary, Binary.class, null, "Lower"),
     Math(PropertyType.Binary, Binary.class, null, "Math"),
+    Modifier_Combining_Mark(PropertyType.Binary, Binary.class, null, "MCM"),
     Noncharacter_Code_Point(PropertyType.Binary, Binary.class, null, "NChar"),
     Other_Alphabetic(PropertyType.Binary, Binary.class, null, "OAlpha"),
     Other_Default_Ignorable_Code_Point(PropertyType.Binary, Binary.class, null, "ODI"),

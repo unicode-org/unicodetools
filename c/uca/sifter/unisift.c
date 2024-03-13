@@ -2,7 +2,7 @@
 // License & terms of use: https://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2023
+**      Copyright 2023 - 2024
 **      Ken Whistler, All rights reserved.
 */
 
@@ -51,6 +51,8 @@
  *   2023-Oct-09 Updates for Unicode 16.0.
  *   2023-Oct-23 Adjust processContractions() to deal correctly
  *               with multiple secondary decompositions in the input data.
+ *   2024-Feb-20 Tweak end of block range for the Tangut Supplement block
+ *               to match change in Unicode 14.0.
  */
 
 /*
@@ -175,7 +177,7 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 16.0.0d2, 2023-10-23\n";
+static char versionString[] = "Sifter version 16.0.0d3, 2024-02-20\n";
 
 static char unidatafilename[] = "unidata-16.0.0.txt";
 static char allkeysfilename[] = "allkeys-16.0.0.txt";
@@ -1699,7 +1701,7 @@ struct tm *temptptr;
     /* UCA 9.0 new syntax: add @implicitweights for each new ideographic range */
     sprintf ( localbuf, "@implicitweights 17000..18AFF; FB00 # Tangut and Tangut Components\n\n" );
     fputs ( localbuf, fd );
-    sprintf ( localbuf, "@implicitweights 18D00..18D8F; FB00 # Tangut Supplement\n\n" );
+    sprintf ( localbuf, "@implicitweights 18D00..18D7F; FB00 # Tangut Supplement\n\n" );
     fputs ( localbuf, fd );
     sprintf ( localbuf, "@implicitweights 1B170..1B2FF; FB01 # Nushu\n\n" );
     fputs ( localbuf, fd );
@@ -4981,9 +4983,9 @@ int i;
         CrackWalnuts ( i );
     }
 /*
- * Skip the Tangut & Khitan ranges (17000..18D8F), which are treated like CJK.
+ * Skip the Tangut & Khitan ranges (17000..18D7F), which are treated like CJK.
  */
-    for ( i = 0x18D90 ; i <= 0x1B16F; i++ )
+    for ( i = 0x18D80 ; i <= 0x1B16F; i++ )
     {
         CrackWalnuts ( i );
     }

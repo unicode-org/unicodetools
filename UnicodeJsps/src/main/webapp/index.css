@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'Last Resort';
+  src: url('LastResort-Regular.ttf');
+}
 body {font-family: Georgia, "Apple Color Emoji", "Segoe UI Emoji", "Times New Roman", Times, Symbola, Aegyptus, Code2000,  Code2001,  Code2002, Musica, serif}
 td,th,table			{ padding:1px; border:1px solid #F3F3FF; vertical-align:top }
 table		{ border-collapse: collapse }
@@ -27,6 +31,9 @@ h3 {background-color: #EEEEEE}
 .L1 {background-color: #CCCCCC}
 .L0 {background-color: #C8C8C8} 
 .default           { background-color: #C8C8C8}
+.control {
+  font-family: 'Last Resort'
+}
 .changed {
   background-color: #FFFF00;
   border-style: dotted;

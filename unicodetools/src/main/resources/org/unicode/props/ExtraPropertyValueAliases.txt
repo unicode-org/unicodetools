@@ -39,6 +39,7 @@
 # @missing: 0000..10FFFF; Logical_Order_Exception; No
 # @missing: 0000..10FFFF; Lowercase; No
 # @missing: 0000..10FFFF; Math; No
+# @missing: 0000..10FFFF; Modifier_Combining_Mark; No
 # @missing: 0000..10FFFF; Noncharacter_Code_Point; No
 # @missing: 0000..10FFFF; Pattern_Syntax; No
 # @missing: 0000..10FFFF; Pattern_White_Space; No
@@ -129,6 +130,7 @@ idstatus	; r	 ; Restricted
 idstatus	; a	 ; Allowed				
 
 # @missing: 0000..10FFFF; Identifier_Type    	; nc
+# @missing: 0000..10FFFF; Identifier_Type    	; rec ; v9.0
 
 idtype	; nc	; Not_Character ; not_chars				
 idtype	; d		; Deprecated		
