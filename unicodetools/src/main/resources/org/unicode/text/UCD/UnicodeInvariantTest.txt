@@ -587,7 +587,9 @@ Let $nonAlphabeticAvagrahas = [\N{TIBETAN MARK PALUTA}]  # A punctuation mark.
 
 # Name-based checks.
 Let $nonLowercaseSmallLetters = [ \p{name=/^LIMBU SMALL LETTER/} \N{TURNED GREEK SMALL LETTER IOTA} \p{name=/^(SQUARED|PARENTHESIZED|TAG) LATIN SMALL LETTER/} ]
-[ \p{name=/\bSMALL LETTER\b}-\p{gc=Mn}-\p{gc=Lt} - $nonLowercaseSmallLetters ] ⊆ \p{Lowercase}
+Let $nonLowercaseSmallModifierLetters = [ \p{gc=Lm} & \p{name=/^ARABIC SMALL/} ]
+[ \p{name=/\bSMALL LETTER\b/}-\p{gc=Mn}-\p{gc=Lt} - $nonLowercaseSmallLetters ] ⊆ \p{Lowercase}
+[ [\p{gc=Lm} & \p{name=/SMALL/}] - $nonLowercaseSmallModifierLetters ] ⊆ \p{Lowercase}
 
 # Combining letters are often alphabetic (medievalist abbreviations).
 # The others are diacritic (cantillation marks, phonetics).
