@@ -104,7 +104,7 @@
 1CD0          ; Beng Deva Gran Knda            # Mn      VEDIC TONE KARSHANA
 1CD1          ; Deva                           # Mn      VEDIC TONE SHARA
 1CD2          ; Beng Deva Gran Knda            # Mn      VEDIC TONE PRENKHA
-1CD3          ; Deva Gran                      # Po      VEDIC SIGN NIHSHVASA
+1CD3          ; Deva Gran Knda                 # Po      VEDIC SIGN NIHSHVASA
 1CD4          ; Deva                           # Mn      VEDIC SIGN YAJURVEDIC MIDLINE SVARITA
 1CD5..1CD6    ; Beng Deva                      # Mn  [2] VEDIC TONE YAJURVEDIC AGGRAVATED INDEPENDENT SVARITA..VEDIC TONE YAJURVEDIC INDEPENDENT SVARITA
 1CD7          ; Deva Shrd                      # Mn      VEDIC TONE YAJURVEDIC KATHAKA INDEPENDENT SVARITA
