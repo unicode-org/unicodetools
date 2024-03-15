@@ -1,3 +1,4 @@
+1AE0..1AEB;Diacritic
 # PropList-16.0.0.txt
 # Date: 2024-03-12, 13:28:44 GMT
 # © 2024 Unicode®, Inc.
