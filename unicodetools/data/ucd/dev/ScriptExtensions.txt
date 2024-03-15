@@ -1,5 +1,5 @@
 # ScriptExtensions-16.0.0.txt
-# Date: 2024-03-13, 01:45:00 GMT
+# Date: 2024-03-15, 12:16:00 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -147,10 +147,10 @@
 3002          ; Bopo Hang Hani Hira Kana Mong Phag Yiii #Po IDEOGRAPHIC FULL STOP
 3003          ; Bopo Hang Hani Hira Kana       # Po      DITTO MARK
 3006          ; Hani                           # Lo      IDEOGRAPHIC CLOSING MARK
-3008          ; Bopo Hang Hani Hira Kana Yiii  # Ps      LEFT ANGLE BRACKET
-3009          ; Bopo Hang Hani Hira Kana Yiii  # Pe      RIGHT ANGLE BRACKET
-300A          ; Bopo Hang Hani Hira Kana Lisu Mong Yiii #Ps LEFT DOUBLE ANGLE BRACKET
-300B          ; Bopo Hang Hani Hira Kana Lisu Mong Yiii #Pe RIGHT DOUBLE ANGLE BRACKET
+3008          ; Bopo Hang Hani Hira Kana Mong Tibt Yiii #Ps LEFT ANGLE BRACKET
+3009          ; Bopo Hang Hani Hira Kana Mong Tibt Yiii #Pe RIGHT ANGLE BRACKET
+300A          ; Bopo Hang Hani Hira Kana Lisu Mong Tibt Yiii #Ps LEFT DOUBLE ANGLE BRACKET
+300B          ; Bopo Hang Hani Hira Kana Lisu Mong Tibt Yiii #Pe RIGHT DOUBLE ANGLE BRACKET
 300C          ; Bopo Hang Hani Hira Kana Yiii  # Ps      LEFT CORNER BRACKET
 300D          ; Bopo Hang Hani Hira Kana Yiii  # Pe      RIGHT CORNER BRACKET
 300E          ; Bopo Hang Hani Hira Kana Yiii  # Ps      LEFT WHITE CORNER BRACKET
