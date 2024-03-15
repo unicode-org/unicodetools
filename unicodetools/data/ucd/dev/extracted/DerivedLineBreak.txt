@@ -1,5 +1,5 @@
 # DerivedLineBreak-16.0.0.txt
-# Date: 2024-02-02, 23:11:26 GMT
+# Date: 2024-03-15, 22:19:04 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -69,8 +69,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 757651 code points not listed here.
-# Total code points: 895119
+# The above property value applies to 757639 code points not listed here.
+# Total code points: 895107
 
 # ================================================
 
@@ -316,6 +316,7 @@ FF64          ; CL # Po       HALFWIDTH IDEOGRAPHIC COMMA
 0F12          ; GL # Po       TIBETAN MARK RGYA GRAM SHAD
 0FD9..0FDA    ; GL # Po   [2] TIBETAN MARK LEADING MCHAN RTAGS..TIBETAN MARK TRAILING MCHAN RTAGS
 180E          ; GL # Cf       MONGOLIAN VOWEL SEPARATOR
+1AEB          ; GL # Mn       COMBINING DOUBLE RIGHTWARDS ARROW ABOVE
 1DCD          ; GL # Mn       COMBINING DOUBLE CIRCUMFLEX ABOVE
 1DFC          ; GL # Mn       COMBINING DOUBLE INVERTED BREVE BELOW
 2007          ; GL # Zs       FIGURE SPACE
@@ -326,7 +327,7 @@ FF64          ; CL # Po       HALFWIDTH IDEOGRAPHIC COMMA
 13439..1343B  ; GL # Cf   [3] EGYPTIAN HIEROGLYPH INSERT AT MIDDLE..EGYPTIAN HIEROGLYPH INSERT AT BOTTOM
 16FE4         ; GL # Mn       KHITAN SMALL SCRIPT FILLER
 
-# Total code points: 32
+# Total code points: 33
 
 # ================================================
 
@@ -2056,6 +2057,7 @@ FE19          ; IN # Po       PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS
 1AB0..1ABD    ; CM # Mn  [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
 1ABE          ; CM # Me       COMBINING PARENTHESES OVERLAY
 1ABF..1ACE    ; CM # Mn  [16] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER INSULAR T
+1AE0..1AEA    ; CM # Mn  [11] COMBINING LEFT TACK ABOVE..COMBINING UPWARDS ARROW ABOVE
 1B00..1B03    ; CM # Mn   [4] BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
 1B04          ; CM # Mc       BALINESE SIGN BISAH
 1B34          ; CM # Mn       BALINESE SIGN REREKAN
@@ -2382,7 +2384,7 @@ E0001         ; CM # Cf       LANGUAGE TAG
 E0020..E007F  ; CM # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; CM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2479
+# Total code points: 2490
 
 # ================================================
 
