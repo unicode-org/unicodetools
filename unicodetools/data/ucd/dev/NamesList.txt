@@ -1,11 +1,12 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 16.0.0
 @@@+	NamesList-16.0.0.txt
-@+	Generation Date: 2024-03-04, 12:28:40 GMT
+@+	Generation Date: 2024-03-15, 14:43:47 GMT
 	Unicode 16.0.0 names list.
 	Repertoire synched with UnicodeData-16.0.0d13.txt.
 	Pre-beta rollup of various fixes.
 	Add xref between 131A6 and 13DEE.
+	Add xrefs between 01C3, A71D, 107B9.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -1640,6 +1641,7 @@
 	* "q" in Zulu orthography
 	x (exclamation mark - 0021)
 	x (latin letter stretched c - 0297)
+	x (modifier letter raised exclamation mark - A71D)
 	x (latin letter retroflex click with retroflex hook - 1DF0A)
 @		Latin digraphs matching Serbian Cyrillic letters
 @+		These digraphs are for Gaj's Latin alphabet, used in writing Bosnian, Croatian, Serbian, and Montenegrin.
@@ -24789,6 +24791,8 @@ A71A	MODIFIER LETTER LOWER RIGHT CORNER ANGLE
 A71B	MODIFIER LETTER RAISED UP ARROW
 A71C	MODIFIER LETTER RAISED DOWN ARROW
 A71D	MODIFIER LETTER RAISED EXCLAMATION MARK
+	x (latin letter retroflex click - 01C3)
+	x (modifier letter retroflex click with retroflex hook - 107B9)
 A71E	MODIFIER LETTER RAISED INVERTED EXCLAMATION MARK
 A71F	MODIFIER LETTER LOW INVERTED EXCLAMATION MARK
 @@	A720	Latin Extended-D	A7FF
@@ -32052,6 +32056,7 @@ FFFF	<not a character>
 107B8	MODIFIER LETTER ALVEOLAR CLICK
 	# <super> 01C2
 107B9	MODIFIER LETTER RETROFLEX CLICK WITH RETROFLEX HOOK
+	x (modifier letter raised exclamation mark - A71D)
 	# <super> 1DF0A
 107BA	MODIFIER LETTER SMALL S WITH CURL
 	# <super> 1DF1E
