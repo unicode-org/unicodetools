@@ -30,6 +30,7 @@ import org.unicode.props.DefaultValues;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
@@ -520,22 +521,23 @@ public final class UCD implements UCD_Types {
         byte numericType;
     }
 
-    private void populateHanExceptions(UnicodeMap<String> numeric) {
-        for (UnicodeMap.EntryRange<String> range : numeric.entryRanges()) {
-            if (range.value == null || range.value.equals("NaN")) {
+    private void populateHanExceptions(UnicodeProperty numeric) {
+        for (String value : numeric.getAvailableValues()) {
+            if (value == null || value.equals("NaN")) {
                 continue;
             }
-            String propertyValue = Utility.replace(range.value, ",", "");
+            String propertyValue = Utility.replace(value, ",", "");
             final int hack = propertyValue.indexOf(' ');
             if (hack >= 0) {
                 Utility.fixDot();
                 if (SHOW_LOADING) {
-                    System.out.println("BAD NUMBER: " + range);
+                    System.out.println("BAD NUMBER: " + value);
                 }
                 propertyValue = propertyValue.substring(0, hack);
             }
 
-            for (int code = range.codepoint; code <= range.codepointEnd; ++code) {
+            for (String s : numeric.getSet(value)) {
+                final int code = s.codePointAt(0);
                 // Unicode 15.1:
                 // This code had these two exceptions, but now U+4EAC actually has value
                 // 10000000000000000
@@ -562,9 +564,9 @@ public final class UCD implements UCD_Types {
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(versionInfo);
         hanExceptions = new IntMap();
         try {
-            populateHanExceptions(iup.load(UcdProperty.kPrimaryNumeric));
-            populateHanExceptions(iup.load(UcdProperty.kAccountingNumeric));
-            populateHanExceptions(iup.load(UcdProperty.kOtherNumeric));
+            populateHanExceptions(iup.getProperty(UcdProperty.kPrimaryNumeric));
+            populateHanExceptions(iup.getProperty(UcdProperty.kAccountingNumeric));
+            populateHanExceptions(iup.getProperty(UcdProperty.kOtherNumeric));
         } catch (final Exception e) {
             throw new ChainException("Han File Processing Exception", null, e);
         } finally {
