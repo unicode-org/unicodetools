@@ -890,8 +890,8 @@ Let $HairComponents = [\U0001F9B0-\U0001F9B3]
 \p{U15.1:RGI_Emoji_Zwj_Sequence} ⊃ \p{U15:RGI_Emoji_Zwj_Sequence}
 \p{U15.1:Emoji} = \p{U15:Emoji}
 [\p{U15.1:RGI_Emoji_Zwj_Sequence} - \p{U15:RGI_Emoji_Zwj_Sequence}] ⊃ [{🐦‍🔥}]
-# Likewise Emoji Version 13.1 (which was not actually a Unicode version, so we
-# cannot look at U13.1:Emoji.
+# Likewise Emoji Version 13.1
+# (which was not actually a Unicode version, so we cannot look at U13.1:Emoji).
 \p{U13.1:RGI_Emoji_Zwj_Sequence} ⊃ \p{U13:RGI_Emoji_Zwj_Sequence}
 [\p{U13.1:RGI_Emoji_Zwj_Sequence} - \p{U13:RGI_Emoji_Zwj_Sequence}] ⊃ [{😵‍💫}]
 
