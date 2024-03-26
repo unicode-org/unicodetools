@@ -319,6 +319,8 @@ EmojiSources ; Emoji_SB ; 3
 NamedSequences ; Named_Sequences
 NamedSequencesProv ; Named_Sequences_Prov
 StandardizedVariants ; Standardized_Variant
+DoNotEmit ; Do_Not_Emit_Preferred ; 1
+DoNotEmit ; Do_Not_Emit_Type ; 2
 
 idna/*/IdnaMappingTable; Idn_Status;
 idna/*/IdnaMappingTable; Idn_Mapping; 2
