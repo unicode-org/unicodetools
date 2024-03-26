@@ -172,6 +172,9 @@ Other_Joining_Type ; T                                ; Transparent
 Other_Joining_Type ; U                                ; Non_Joining
 Other_Joining_Type ; Deduce_From_General_Category     ; Deduce_From_General_Category
 
+# @missing: 0000..10FFFF; Do_Not_Emit_Preferred ; <none>
+
+# @missing: 0000..10FFFF; Do_Not_Emit_Type ; <none>
 Do_Not_Emit_Type ; Indic_Atomic_Consonant   ; Indic_Atomic_Consonant
 Do_Not_Emit_Type ; Indic_Consonant_Conjunct ; Indic_Consonant_Conjunct
 Do_Not_Emit_Type ; Indic_Vowel_Letter       ; Indic_Vowel_Letter
