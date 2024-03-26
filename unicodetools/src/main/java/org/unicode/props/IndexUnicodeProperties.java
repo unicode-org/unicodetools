@@ -722,9 +722,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         @Override
         public boolean isTrivial() {
             return _getRawUnicodeMap().isEmpty()
-                    || _getRawUnicodeMap()
-                            .keySet(_getRawUnicodeMap().getValue(0))
-                            .equals(UnicodeSet.ALL_CODE_POINTS);
+                    || ((_getRawUnicodeMap().stringKeys() == null
+                                    || _getRawUnicodeMap().stringKeys().isEmpty())
+                            && _getRawUnicodeMap()
+                                    .keySet(_getRawUnicodeMap().getValue(0))
+                                    .equals(UnicodeSet.ALL_CODE_POINTS));
         }
 
         @Override
