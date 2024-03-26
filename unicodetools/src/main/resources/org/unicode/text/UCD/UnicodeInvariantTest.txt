@@ -1084,6 +1084,13 @@ In $japaneseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/
 \p{sc=Deva} ⊂ \p{scx=Deva}
 [\p{scx=Deva} & \p{scx=Beng}] ⊃ []
 
+# DoNotEmit.txt.
+\p{Do_Not_Emit_Type=Deprecated} ⊆ \p{Deprecated}
+\p{Deprecated} ⊆ [\p{Do_Not_Emit_Type=Deprecated} \p{Do_Not_Emit_Type=@none@}]
+# The non-DI deprecated characters have replacements in DoNotEmit, except the angle brackets that
+# are ambiguous.
+\p{Do_Not_Emit_Type=Deprecated} = [ \p{Deprecated} - \p{Default_Ignorable_Code_Point} - \p{Name=/^(LEFT|RIGHT)-POINTING ANGLE BRACKET$/} ]
+
 # Hangul Syllable Name Generation,
 # https://www.unicode.org/versions/latest/ch03.pdf#G59675.
 In [\p{Block=Hangul Syllables} - \p{gc=Cn}], (prepend HANGUL SYLLABLE ) * (string-join) * Jamo_Short_Name * toNFD = Name
