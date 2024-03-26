@@ -722,9 +722,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         @Override
         public boolean isTrivial() {
             return _getRawUnicodeMap().isEmpty()
-                    || _getRawUnicodeMap()
-                            .keySet(_getRawUnicodeMap().getValue(0))
-                            .equals(UnicodeSet.ALL_CODE_POINTS);
+                    || ((_getRawUnicodeMap().stringKeys() == null
+                                    || _getRawUnicodeMap().stringKeys().isEmpty())
+                            && _getRawUnicodeMap()
+                                    .keySet(_getRawUnicodeMap().getValue(0))
+                                    .equals(UnicodeSet.ALL_CODE_POINTS));
         }
 
         @Override
@@ -801,6 +803,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             if (Δt_in_ms > 100) {
                 System.out.println(
                         "Long getSet for U" + ucdVersion + ":" + prop + " (" + Δt_in_ms + " ms)");
+            }
+            // We only do the delta thing for code points; for strings, we need to do the lookup
+            // directly (and clean whatever was added by walking through history).
+            if (baseVersionProperties != null
+                    && (result.hasStrings()
+                            || (_getRawUnicodeMap().stringKeys() != null
+                                    && !_getRawUnicodeMap().stringKeys().isEmpty()))) {
+                result.removeAllStrings().addAll(super.getSet(matcher, new UnicodeSet()).strings());
             }
             return result;
         }
