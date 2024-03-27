@@ -1,5 +1,5 @@
 # SentenceBreakProperty-16.0.0.txt
-# Date: 2024-02-02, 23:11:49 GMT
+# Date: 2024-03-15, 22:49:46 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1260,7 +1260,7 @@ A7D5          ; Lower # L&       LATIN SMALL LETTER DOUBLE WYNN
 A7D7          ; Lower # L&       LATIN SMALL LETTER MIDDLE SCOTS S
 A7D9          ; Lower # L&       LATIN SMALL LETTER SIGMOID S
 A7DB          ; Lower # L&       LATIN SMALL LETTER LAMBDA
-A7F2..A7F4    ; Lower # Lm   [3] MODIFIER LETTER CAPITAL C..MODIFIER LETTER CAPITAL Q
+A7F1..A7F4    ; Lower # Lm   [4] MODIFIER LETTER CAPITAL S..MODIFIER LETTER CAPITAL Q
 A7F6          ; Lower # L&       LATIN SMALL LETTER REVERSED HALF H
 A7F8..A7F9    ; Lower # Lm   [2] MODIFIER LETTER CAPITAL H WITH STROKE..MODIFIER LETTER SMALL LIGATURE OE
 A7FA          ; Lower # L&       LATIN LETTER SMALL CAPITAL TURNED M
@@ -1320,7 +1320,7 @@ FF41..FF5A    ; Lower # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 1E030..1E06D  ; Lower # Lm  [62] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
 1E922..1E943  ; Lower # L&  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2522
+# Total code points: 2523
 
 # ================================================
 
