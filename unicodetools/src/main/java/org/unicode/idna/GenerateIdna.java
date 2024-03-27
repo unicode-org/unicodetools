@@ -365,20 +365,60 @@ public class GenerateIdna {
                         + " Base Valid Set & nfkcqc=n"
                         + new UnicodeSet("[:nfkcqc=n:]").retainAll(baseValidSet));
 
+        // https://unicode.org/reports/tr46/#TableDerivationStep3
         final R2<UnicodeSet, UnicodeSet> baseExclusionSetInfo =
                 computeBaseExclusionSet(baseMapping, baseValidSet, STD3);
         final UnicodeSet disallowedExclusionSet = baseExclusionSetInfo.get0();
         final UnicodeSet mappingChanged = baseExclusionSetInfo.get1();
-        final UnicodeSet baseExclusionSet =
-                new UnicodeSet(disallowedExclusionSet).addAll(mappingChanged);
+        // TODO: Was union of disallowedExclusionSet & mappingChanged.
+        // TODO: Experimental small, fixed set.
+        // U+FFFC OBJECT REPLACEMENT CHARACTER
+        // U+FFFD REPLACEMENT CHARACTER
+        // U+E00xx tag characters
+        final UnicodeSet baseExclusionSet = new UnicodeSet(0xFFFC, 0xFFFD, 0xE0001, 0xE007F);
+        // TODO: Ignore mapping changes between IDNA2003 and UTS #46 -- .addAll(mappingChanged);
+        // TODO: Decide how far to go.
+        // Hardcoded set of what we expect the base exclusion set to contain.
+        // Comments from UTS #46, but as of Unicode 15.1, the spec still shows the
+        // base exclusion set from 6.0 which no longer matches the current set.
+        // It is updated here.
         final UnicodeSet baseExclusionSet2 =
                 new UnicodeSet(
                                 "["
-                                        + "\\u04C0 \\u10A0-\\u10C5 \\u2132 \\u2183"
-                                        + "\\U0002F868  \\U0002F874 \\U0002F91F \\U0002F95F \\U0002F9BF"
-                                        + "\u3164 \uFFA0 \u115F \u1160 \u17B4 \u17B5 \u1806 \uFFFC \uFFFD"
-                                        + "[\\u200E\\u200F\\u202A-\\u202E\\u2061-\\u2063\\u206A-\\u206F\\U0001D173-\\U0001D17A\\U000E0001\\U000E0020-\\U000E007F]"
-                                        + "[\u200B\u2060\uFEFF]"
+                                        /* TODO: clean up --
+                                           // * Characters that have a different mapping in IDNA2003
+                                           // Case Changes
+                                           // U+04C0 ( Ӏ ) CYRILLIC LETTER PALOCHKA
+                                           // U+10A0 ( Ⴀ ) GEORGIAN CAPITAL LETTER AN…
+                                           //   U+10C5 ( Ⴥ ) GEORGIAN CAPITAL LETTER HOE
+                                           // U+2132 ( Ⅎ ) TURNED CAPITAL F
+                                           // U+2183 ( Ↄ ) ROMAN NUMERAL REVERSED ONE HUNDRED
+                                           + "\\u04C0 \\u10A0-\\u10C5 \\u2132 \\u2183"
+                                           // Default Ignorable Changes
+                                           // U+3164 HANGUL FILLER
+                                           // U+FFA0 HALFWIDTH HANGUL FILLER
+                                           // U+115F HANGUL CHOSEONG FILLER
+                                           // U+1160 HANGUL JUNGSEONG FILLER
+                                           // U+17B4 KHMER VOWEL INHERENT AQ
+                                           // U+17B5 KHMER VOWEL INHERENT AA
+                                           // U+1806 ( ᠆ ) MONGOLIAN TODO SOFT HYPHEN
+                                           + "\u3164 \uFFA0 \u115F \u1160 \u17B4 \u17B5 \u1806"
+                                        */
+
+                                        // * Characters that are disallowed in IDNA2003
+                                        // Miscellaneous
+                                        // U+180E MONGOLIAN VOWEL SEPARATOR
+                                        + "\\u180E"
+                                        // Invisible operators
+                                        + "\\u2061-\\u2063"
+                                        // Replacement characters
+                                        + "\uFFFC \uFFFD"
+                                        // Musical symbols
+                                        + "\\U0001D173-\\U0001D17A"
+                                        // Format characters (deprecated)
+                                        + "\\u206A-\\u206F"
+                                        // Tags (deprecated) & Other tags
+                                        + "\\U000E0001\\U000E0020-\\U000E007F"
                                         + "]")
                         .freeze(); // .addAll(cn)
 
@@ -387,14 +427,15 @@ public class GenerateIdna {
                 STD3 + " computed base exclusion disallowed:\t" + disallowedExclusionSet);
         System.out.println(STD3 + " computed base exclusion mapping changed:\t" + mappingChanged);
 
-        if (false && !baseExclusionSet.equals(baseExclusionSet2)) {
+        if (!baseExclusionSet.equals(baseExclusionSet2)) {
             System.out.println(
                     "computed-static:\t"
                             + new UnicodeSet(baseExclusionSet).removeAll(baseExclusionSet2));
             System.out.println(
                     "static-computed:\t"
                             + new UnicodeSet(baseExclusionSet2).removeAll(baseExclusionSet));
-            throw new IllegalArgumentException();
+            // TODO: throw new IllegalArgumentException("computed base exclusion set != expected
+            // set");
         }
 
         System.out.println(
@@ -562,6 +603,11 @@ public class GenerateIdna {
                         idna2003 = UTF16.valueOf(i);
                     }
                     if (!base.equals(idna2003)) {
+                        if (0x20000 <= i && i <= 0x2FFFF) {
+                            // Skip the 5 normalization corrections from Unicode 4.0,
+                            // changing them from disallowed to mapped.
+                            continue;
+                        }
                         mappingChanged.add(i);
                     }
                     break;
