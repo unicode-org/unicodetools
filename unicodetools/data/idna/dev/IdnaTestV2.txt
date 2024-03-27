@@ -1,5 +1,5 @@
 # IdnaTestV2.txt
-# Date: 2024-01-31, 23:11:54 GMT
+# Date: 2024-02-18, 21:52:22 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -193,8 +193,8 @@ xn--ab-uuba211bca5157b; a\u0628\u0308\u200D\u0308\u0628b; [B5, C2]; xn--ab-uuba2
 xn--7a; ¡; ; xn--7a; ; ;  # ¡
 ᧚; ; ; xn--pkf; ; ;  # ᧚
 xn--pkf; ᧚; ; xn--pkf; ; ;  # ᧚
-。; .; [X4_2]; ; [A4_2]; ;  # .
-.; ; [X4_2]; ; [A4_2]; ;  # .
+。; .; [X4_2]; ; [A4_1, A4_2]; ;  # .
+.; ; [X4_2]; ; [A4_1, A4_2]; ;  # .
 ꭠ; ; ; xn--3y9a; ; ;  # ꭠ
 xn--3y9a; ꭠ; ; xn--3y9a; ; ;  # ꭠ
 1234567890ä1234567890123456789012345678901234567890123456; ; ; xn--12345678901234567890123456789012345678901234567890123456-fxe; [A4_2]; ;  # 1234567890ä1234567890123456789012345678901234567890123456
@@ -486,14 +486,14 @@ xn--dmc4b194h; ஹ\u0BCD\u200D; ; xn--dmc4b194h; ; ;  # ஹ்
 xn--dmc; ஹ; ; xn--dmc; ; ;  # ஹ
 ஹ; ; ; xn--dmc; ; ;  # ஹ
 xn--dmc225h; ஹ\u200D; [C2]; xn--dmc225h; ; ;  # ஹ
-\u200D; ; [C2]; xn--1ug; ; ; [A4_2] # 
-; ; [X4_2]; ; [A4_2]; ;  # 
+\u200D; ; [C2]; xn--1ug; ; ; [A4_1, A4_2] # 
+; ; [X4_2]; ; [A4_1, A4_2]; ;  # 
 xn--1ug; \u200D; [C2]; xn--1ug; ; ;  # 
 ஹ\u0BCD\u200C; ; ; xn--dmc4by94h; ; xn--dmc4b;  # ஹ்
 xn--dmc4by94h; ஹ\u0BCD\u200C; ; xn--dmc4by94h; ; ;  # ஹ்
 ஹ\u200C; ; [C1]; xn--dmc025h; ; xn--dmc; [] # ஹ
 xn--dmc025h; ஹ\u200C; [C1]; xn--dmc025h; ; ;  # ஹ
-\u200C; ; [C1]; xn--0ug; ; ; [A4_2] # 
+\u200C; ; [C1]; xn--0ug; ; ; [A4_1, A4_2] # 
 xn--0ug; \u200C; [C1]; xn--0ug; ; ;  # 
 \u0644\u0670\u200C\u06ED\u06EF; ; ; xn--ghb2gxqia7523a; ; xn--ghb2gxqia;  # لٰۭۯ
 xn--ghb2gxqia; \u0644\u0670\u06ED\u06EF; ; xn--ghb2gxqia; ; ;  # لٰۭۯ
@@ -3565,7 +3565,7 @@ xn--zca20040bgrkh.xn--zca3653v86qa; ß𰀻񆬗.𝩨🕮ß; [V5, V6]; xn--zca2004
 SS𰀻񆬗｡𝩨🕮SS; ss𰀻񆬗.𝩨🕮ss; [V5, V6]; xn--ss-jl59biy67d.xn--ss-4d11aw87d; ; ;  # ss𰀻.𝩨🕮ss
 ss𰀻񆬗｡𝩨🕮ss; ss𰀻񆬗.𝩨🕮ss; [V5, V6]; xn--ss-jl59biy67d.xn--ss-4d11aw87d; ; ;  # ss𰀻.𝩨🕮ss
 Ss𰀻񆬗｡𝩨🕮Ss; ss𰀻񆬗.𝩨🕮ss; [V5, V6]; xn--ss-jl59biy67d.xn--ss-4d11aw87d; ; ;  # ss𰀻.𝩨🕮ss
-\u200D。\u200C; \u200D.\u200C; [C1, C2]; xn--1ug.xn--0ug; ; .; [A4_2] # .
+\u200D。\u200C; \u200D.\u200C; [C1, C2]; xn--1ug.xn--0ug; ; .; [A4_1, A4_2] # .
 xn--1ug.xn--0ug; \u200D.\u200C; [C1, C2]; xn--1ug.xn--0ug; ; ;  # .
 \u0483𐭞\u200D.\u17B9𞯌򟩚; ; [B1, C2, V5, V6]; xn--m3a412lrr0o.xn--43e8670vmd79b; ; xn--m3a6965k.xn--43e8670vmd79b; [B1, V5, V6] # ҃𐭞.ឹ
 xn--m3a6965k.xn--43e8670vmd79b; \u0483𐭞.\u17B9𞯌򟩚; [B1, V5, V6]; xn--m3a6965k.xn--43e8670vmd79b; ; ;  # ҃𐭞.ឹ
@@ -5375,7 +5375,7 @@ xn--gky8837e.xn--0ug; 璼𝨭.\u200C; [C1]; xn--gky8837e.xn--0ug; ; ;  # 璼𝨭
 \u06698񂍽｡-5🞥; \u06698񂍽.-5🞥; [B1, V3, V6]; xn--8-qqc97891f.xn---5-rp92a; ; ;  # ٩8.-5🞥
 \u06698񂍽。-5🞥; \u06698񂍽.-5🞥; [B1, V3, V6]; xn--8-qqc97891f.xn---5-rp92a; ; ;  # ٩8.-5🞥
 xn--8-qqc97891f.xn---5-rp92a; \u06698񂍽.-5🞥; [B1, V3, V6]; xn--8-qqc97891f.xn---5-rp92a; ; ;  # ٩8.-5🞥
-\u200C.\u200C; ; [C1]; xn--0ug.xn--0ug; ; .; [A4_2] # .
+\u200C.\u200C; ; [C1]; xn--0ug.xn--0ug; ; .; [A4_1, A4_2] # .
 xn--0ug.xn--0ug; \u200C.\u200C; [C1]; xn--0ug.xn--0ug; ; ;  # .
 \u200D튛.\u0716; ; [B1, C2]; xn--1ug4441e.xn--gnb; ; xn--157b.xn--gnb; [] # 튛.ܖ
 \u200D튛.\u0716; \u200D튛.\u0716; [B1, C2]; xn--1ug4441e.xn--gnb; ; xn--157b.xn--gnb; [] # 튛.ܖ
