@@ -9,7 +9,7 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 16.0.0 draft 14 (Unicode Version: 16.0.0)
+# Version 16.0.0 draft 16 (Unicode Version: 16.0.0)
 # based on Unicode data file UnicodeData-16.0.0d13.txt
 # Ordering for Unicode 16.0
 #
@@ -23119,7 +23119,7 @@ CONTRACTION
 DEFAULT
 
 113CE;TULU-TIGALARI SIGN VIRAMA;Mn;;;;;;
-113CF;TULU-TIGALARI SIGN LOOPED VIRAMA;Mc;;;;;;
+113CF;TULU-TIGALARI SIGN LOOPED VIRAMA;Mc;<sort> 113CE;;;;;
 113D0;TULU-TIGALARI CONJOINER;Mn;;;;;;
 113C9;TULU-TIGALARI AU LENGTH MARK;Mc;;;;;;
 113D3;TULU-TIGALARI SIGN PLUTA;Lo;;;;;;
