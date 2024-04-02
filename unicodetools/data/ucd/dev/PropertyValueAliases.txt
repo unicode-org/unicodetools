@@ -1,5 +1,5 @@
 # PropertyValueAliases-16.0.0.txt
-# Date: 2024-03-12, 12:14:23 GMT
+# Date: 2024-04-02, 12:57:04 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -419,6 +419,7 @@ blk; Runic                            ; Runic
 blk; Samaritan                        ; Samaritan
 blk; Saurashtra                       ; Saurashtra
 blk; Sharada                          ; Sharada
+blk; Sharada_Sup                      ; Sharada_Supplement
 blk; Shavian                          ; Shavian
 blk; Shorthand_Format_Controls        ; Shorthand_Format_Controls
 blk; Siddham                          ; Siddham

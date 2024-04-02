@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-16.0.0.txt
-# Date: 2024-02-02, 23:11:29 GMT
+# Date: 2024-04-02, 12:56:51 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -425,6 +425,9 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 11A59..11A5B  ; Extend # Mn   [3] SOYOMBO VOWEL SIGN VOCALIC R..SOYOMBO VOWEL LENGTH MARK
 11A8A..11A96  ; Extend # Mn  [13] SOYOMBO FINAL CONSONANT SIGN G..SOYOMBO SIGN ANUSVARA
 11A98..11A99  ; Extend # Mn   [2] SOYOMBO GEMINATION MARK..SOYOMBO SUBJOINER
+11B60         ; Extend # Mn       SHARADA VOWEL SIGN OE
+11B62..11B64  ; Extend # Mn   [3] SHARADA VOWEL SIGN UE..SHARADA VOWEL SIGN SHORT E
+11B66         ; Extend # Mn       SHARADA VOWEL SIGN CANDRA E
 11C30..11C36  ; Extend # Mn   [7] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN VOCALIC L
 11C38..11C3D  ; Extend # Mn   [6] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI SIGN ANUSVARA
 11C3F         ; Extend # Mn       BHAIKSUKI SIGN VIRAMA
@@ -490,7 +493,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2190
+# Total code points: 2195
 
 # ================================================
 
@@ -645,6 +648,9 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 11A39         ; SpacingMark # Mc       ZANABAZAR SQUARE SIGN VISARGA
 11A57..11A58  ; SpacingMark # Mc   [2] SOYOMBO VOWEL SIGN AI..SOYOMBO VOWEL SIGN AU
 11A97         ; SpacingMark # Mc       SOYOMBO SIGN VISARGA
+11B61         ; SpacingMark # Mc       SHARADA VOWEL SIGN OOE
+11B65         ; SpacingMark # Mc       SHARADA VOWEL SIGN SHORT O
+11B67         ; SpacingMark # Mc       SHARADA VOWEL SIGN CANDRA O
 11C2F         ; SpacingMark # Mc       BHAIKSUKI VOWEL SIGN AA
 11C3E         ; SpacingMark # Mc       BHAIKSUKI SIGN VISARGA
 11CA9         ; SpacingMark # Mc       MARCHEN SUBJOINED LETTER YA
@@ -660,7 +666,7 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 1612A..1612C  ; SpacingMark # Mc   [3] GURUNG KHEMA CONSONANT SIGN MEDIAL YA..GURUNG KHEMA CONSONANT SIGN MEDIAL HA
 16F51..16F87  ; SpacingMark # Mc  [55] MIAO SIGN ASPIRATION..MIAO VOWEL SIGN UI
 
-# Total code points: 386
+# Total code points: 389
 
 # ================================================
 

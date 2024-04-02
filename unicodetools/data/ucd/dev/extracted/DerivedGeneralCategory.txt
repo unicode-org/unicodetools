@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2024-02-02, 23:11:25 GMT
+# Date: 2024-04-02, 12:56:45 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -522,7 +522,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 11A48..11A4F  ; Cn #   [8] <reserved-11A48>..<reserved-11A4F>
 11AA3..11AAF  ; Cn #  [13] <reserved-11AA3>..<reserved-11AAF>
 11AF9..11AFF  ; Cn #   [7] <reserved-11AF9>..<reserved-11AFF>
-11B0A..11BBF  ; Cn # [182] <reserved-11B0A>..<reserved-11BBF>
+11B0A..11B5F  ; Cn #  [86] <reserved-11B0A>..<reserved-11B5F>
+11B68..11BBF  ; Cn #  [88] <reserved-11B68>..<reserved-11BBF>
 11BE2..11BEF  ; Cn #  [14] <reserved-11BE2>..<reserved-11BEF>
 11BFA..11BFF  ; Cn #   [6] <reserved-11BFA>..<reserved-11BFF>
 11C09         ; Cn #       <reserved-11C09>
@@ -747,7 +748,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 819531
+# Total code points: 819523
 
 # ================================================
 
@@ -3013,6 +3014,9 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 11A59..11A5B  ; Mn #   [3] SOYOMBO VOWEL SIGN VOCALIC R..SOYOMBO VOWEL LENGTH MARK
 11A8A..11A96  ; Mn #  [13] SOYOMBO FINAL CONSONANT SIGN G..SOYOMBO SIGN ANUSVARA
 11A98..11A99  ; Mn #   [2] SOYOMBO GEMINATION MARK..SOYOMBO SUBJOINER
+11B60         ; Mn #       SHARADA VOWEL SIGN OE
+11B62..11B64  ; Mn #   [3] SHARADA VOWEL SIGN UE..SHARADA VOWEL SIGN SHORT E
+11B66         ; Mn #       SHARADA VOWEL SIGN CANDRA E
 11C30..11C36  ; Mn #   [7] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN VOCALIC L
 11C38..11C3D  ; Mn #   [6] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI SIGN ANUSVARA
 11C3F         ; Mn #       BHAIKSUKI SIGN VIRAMA
@@ -3072,7 +3076,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2020
+# Total code points: 2025
 
 # ================================================
 
@@ -3262,6 +3266,9 @@ ABEC          ; Mc #       MEETEI MAYEK LUM IYEK
 11A39         ; Mc #       ZANABAZAR SQUARE SIGN VISARGA
 11A57..11A58  ; Mc #   [2] SOYOMBO VOWEL SIGN AI..SOYOMBO VOWEL SIGN AU
 11A97         ; Mc #       SOYOMBO SIGN VISARGA
+11B61         ; Mc #       SHARADA VOWEL SIGN OOE
+11B65         ; Mc #       SHARADA VOWEL SIGN SHORT O
+11B67         ; Mc #       SHARADA VOWEL SIGN CANDRA O
 11C2F         ; Mc #       BHAIKSUKI VOWEL SIGN AA
 11C3E         ; Mc #       BHAIKSUKI SIGN VISARGA
 11CA9         ; Mc #       MARCHEN SUBJOINED LETTER YA
@@ -3281,7 +3288,7 @@ ABEC          ; Mc #       MEETEI MAYEK LUM IYEK
 1D165..1D166  ; Mc #   [2] MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
 1D16D..1D172  ; Mc #   [6] MUSICAL SYMBOL COMBINING AUGMENTATION DOT..MUSICAL SYMBOL COMBINING FLAG-5
 
-# Total code points: 468
+# Total code points: 471
 
 # ================================================
 

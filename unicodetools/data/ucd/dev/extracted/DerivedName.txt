@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2024-02-02, 23:11:26 GMT
+# Date: 2024-04-02, 12:56:47 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -32188,6 +32188,14 @@ FFFD          ; REPLACEMENT CHARACTER
 11B07         ; DEVANAGARI SIGN WESTERN NINE-LIKE BHALE
 11B08         ; DEVANAGARI SIGN REVERSED NINE-LIKE BHALE
 11B09         ; DEVANAGARI SIGN MINDU
+11B60         ; SHARADA VOWEL SIGN OE
+11B61         ; SHARADA VOWEL SIGN OOE
+11B62         ; SHARADA VOWEL SIGN UE
+11B63         ; SHARADA VOWEL SIGN UUE
+11B64         ; SHARADA VOWEL SIGN SHORT E
+11B65         ; SHARADA VOWEL SIGN SHORT O
+11B66         ; SHARADA VOWEL SIGN CANDRA E
+11B67         ; SHARADA VOWEL SIGN CANDRA O
 11BC0         ; SUNUWAR LETTER DEVI
 11BC1         ; SUNUWAR LETTER TASLA
 11BC2         ; SUNUWAR LETTER EKO
@@ -45369,6 +45377,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 155000
+# Total code points: 155008
 
 # EOF

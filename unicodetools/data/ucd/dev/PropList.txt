@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2024-03-12, 13:28:44 GMT
+# Date: 2024-04-02, 12:57:02 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -429,7 +429,7 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 # Total code points: 22
 
 # ================================================
-11B60..11B67 ; Other_Alphabetic
+
 0345          ; Other_Alphabetic # Mn       COMBINING GREEK YPOGEGRAMMENI
 0363..036F    ; Other_Alphabetic # Mn  [13] COMBINING LATIN SMALL LETTER A..COMBINING LATIN SMALL LETTER X
 05B0..05BD    ; Other_Alphabetic # Mn  [14] HEBREW POINT SHEVA..HEBREW POINT METEG
@@ -801,6 +801,12 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 11A59..11A5B  ; Other_Alphabetic # Mn   [3] SOYOMBO VOWEL SIGN VOCALIC R..SOYOMBO VOWEL LENGTH MARK
 11A8A..11A96  ; Other_Alphabetic # Mn  [13] SOYOMBO FINAL CONSONANT SIGN G..SOYOMBO SIGN ANUSVARA
 11A97         ; Other_Alphabetic # Mc       SOYOMBO SIGN VISARGA
+11B60         ; Other_Alphabetic # Mn       SHARADA VOWEL SIGN OE
+11B61         ; Other_Alphabetic # Mc       SHARADA VOWEL SIGN OOE
+11B62..11B64  ; Other_Alphabetic # Mn   [3] SHARADA VOWEL SIGN UE..SHARADA VOWEL SIGN SHORT E
+11B65         ; Other_Alphabetic # Mc       SHARADA VOWEL SIGN SHORT O
+11B66         ; Other_Alphabetic # Mn       SHARADA VOWEL SIGN CANDRA E
+11B67         ; Other_Alphabetic # Mc       SHARADA VOWEL SIGN CANDRA O
 11C2F         ; Other_Alphabetic # Mc       BHAIKSUKI VOWEL SIGN AA
 11C30..11C36  ; Other_Alphabetic # Mn   [7] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN VOCALIC L
 11C38..11C3D  ; Other_Alphabetic # Mn   [6] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI SIGN ANUSVARA
@@ -850,7 +856,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1495
+# Total code points: 1503
 
 # ================================================
 
