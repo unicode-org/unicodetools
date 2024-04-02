@@ -1,3 +1,6 @@
+1E6C0..1E6DE;Tai_Yo
+1E6E0..1E6F5;Tai_Yo
+1E6FE..1E6FF;Tai_Yo
 # Scripts-16.0.0.txt
 # Date: 2024-02-02, 23:11:49 GMT
 # © 2024 Unicode®, Inc.
