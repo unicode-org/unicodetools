@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2024-04-02, 15:04:45 GMT
+# Date: 2024-04-02, 15:11:15 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2427,7 +2427,7 @@
 09FC          ; BENGALI LETTER VEDIC ANUSVARA
 09FD          ; BENGALI ABBREVIATION SIGN
 09FE          ; BENGALI SANDHI MARK
-09FF          ; BENGALI LETTER ALTERNATE BA
+09FF          ; BENGALI LETTER SANSKRIT BA
 0A01          ; GURMUKHI SIGN ADAK BINDI
 0A02          ; GURMUKHI SIGN BINDI
 0A03          ; GURMUKHI SIGN VISARGA

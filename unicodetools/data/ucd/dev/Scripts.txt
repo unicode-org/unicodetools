@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2024-04-02, 15:05:43 GMT
+# Date: 2024-04-02, 15:12:12 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1014,7 +1014,7 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 09FC          ; Bengali # Lo       BENGALI LETTER VEDIC ANUSVARA
 09FD          ; Bengali # Po       BENGALI ABBREVIATION SIGN
 09FE          ; Bengali # Mn       BENGALI SANDHI MARK
-09FF          ; Bengali # Lo       BENGALI LETTER ALTERNATE BA
+09FF          ; Bengali # Lo       BENGALI LETTER SANSKRIT BA
 
 # Total code points: 97
 

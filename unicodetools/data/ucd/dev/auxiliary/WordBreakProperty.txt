@@ -1,5 +1,5 @@
 # WordBreakProperty-16.0.0.txt
-# Date: 2024-04-02, 15:05:51 GMT
+# Date: 2024-04-02, 15:12:20 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -766,7 +766,7 @@ FF71..FF9D    ; Katakana # Lo  [45] HALFWIDTH KATAKANA LETTER A..HALFWIDTH KATAK
 09DF..09E1    ; ALetter # Lo   [3] BENGALI LETTER YYA..BENGALI LETTER VOCALIC LL
 09F0..09F1    ; ALetter # Lo   [2] BENGALI LETTER RA WITH MIDDLE DIAGONAL..BENGALI LETTER RA WITH LOWER DIAGONAL
 09FC          ; ALetter # Lo       BENGALI LETTER VEDIC ANUSVARA
-09FF          ; ALetter # Lo       BENGALI LETTER ALTERNATE BA
+09FF          ; ALetter # Lo       BENGALI LETTER SANSKRIT BA
 0A05..0A0A    ; ALetter # Lo   [6] GURMUKHI LETTER A..GURMUKHI LETTER UU
 0A0F..0A10    ; ALetter # Lo   [2] GURMUKHI LETTER EE..GURMUKHI LETTER AI
 0A13..0A28    ; ALetter # Lo  [22] GURMUKHI LETTER OO..GURMUKHI LETTER NA
