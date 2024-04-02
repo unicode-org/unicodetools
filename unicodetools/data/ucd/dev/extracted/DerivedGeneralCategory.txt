@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2024-02-02, 23:11:25 GMT
+# Date: 2024-04-02, 16:05:57 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -439,7 +439,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 10EAA         ; Cn #       <reserved-10EAA>
 10EAE..10EAF  ; Cn #   [2] <reserved-10EAE>..<reserved-10EAF>
 10EB2..10EC1  ; Cn #  [16] <reserved-10EB2>..<reserved-10EC1>
-10EC5..10EFB  ; Cn #  [55] <reserved-10EC5>..<reserved-10EFB>
+10EC5..10ECF  ; Cn #  [11] <reserved-10EC5>..<reserved-10ECF>
+10ED1..10EFB  ; Cn #  [43] <reserved-10ED1>..<reserved-10EFB>
 10F28..10F2F  ; Cn #   [8] <reserved-10F28>..<reserved-10F2F>
 10F5A..10F6F  ; Cn #  [22] <reserved-10F5A>..<reserved-10F6F>
 10F8A..10FAF  ; Cn #  [38] <reserved-10F8A>..<reserved-10FAF>
@@ -747,7 +748,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 819531
+# Total code points: 819530
 
 # ================================================
 
@@ -3900,6 +3901,7 @@ FF64..FF65    ; Po #   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDL
 10AF0..10AF6  ; Po #   [7] MANICHAEAN PUNCTUATION STAR..MANICHAEAN PUNCTUATION LINE FILLER
 10B39..10B3F  ; Po #   [7] AVESTAN ABBREVIATION MARK..LARGE ONE RING OVER TWO RINGS PUNCTUATION
 10B99..10B9C  ; Po #   [4] PSALTER PAHLAVI SECTION MARK..PSALTER PAHLAVI FOUR DOTS WITH DOT
+10ED0         ; Po #       ARABIC BIBLICAL END OF VERSE
 10F55..10F59  ; Po #   [5] SOGDIAN PUNCTUATION TWO VERTICAL BARS..SOGDIAN PUNCTUATION HALF CIRCLE WITH DOT
 10F86..10F89  ; Po #   [4] OLD UYGHUR PUNCTUATION BAR..OLD UYGHUR PUNCTUATION FOUR DOTS
 11047..1104D  ; Po #   [7] BRAHMI DANDA..BRAHMI PUNCTUATION LOTUS
@@ -3951,7 +3953,7 @@ FF64..FF65    ; Po #   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDL
 1E5FF         ; Po #       OL ONAL ABBREVIATION SIGN
 1E95E..1E95F  ; Po #   [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 
-# Total code points: 640
+# Total code points: 641
 
 # ================================================
 

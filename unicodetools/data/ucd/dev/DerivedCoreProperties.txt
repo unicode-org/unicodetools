@@ -1,5 +1,5 @@
 # DerivedCoreProperties-16.0.0.txt
-# Date: 2024-02-02, 23:11:24 GMT
+# Date: 2024-04-02, 16:05:51 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -12329,6 +12329,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 10EAD         ; Grapheme_Base # Pd       YEZIDI HYPHENATION MARK
 10EB0..10EB1  ; Grapheme_Base # Lo   [2] YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
 10EC2..10EC4  ; Grapheme_Base # Lo   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+10ED0         ; Grapheme_Base # Po       ARABIC BIBLICAL END OF VERSE
 10F00..10F1C  ; Grapheme_Base # Lo  [29] OLD SOGDIAN LETTER ALEPH..OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
 10F1D..10F26  ; Grapheme_Base # No  [10] OLD SOGDIAN NUMBER ONE..OLD SOGDIAN FRACTION ONE HALF
 10F27         ; Grapheme_Base # Lo       OLD SOGDIAN LIGATURE AYIN-DALETH
@@ -12811,7 +12812,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 30000..3134A  ; Grapheme_Base # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Grapheme_Base # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 152740
+# Total code points: 152741
 
 # ================================================
 
