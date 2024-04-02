@@ -430,6 +430,7 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 
 # ================================================
 
+16D98; Other_Alphabetic
 0345          ; Other_Alphabetic # Mn       COMBINING GREEK YPOGEGRAMMENI
 0363..036F    ; Other_Alphabetic # Mn  [13] COMBINING LATIN SMALL LETTER A..COMBINING LATIN SMALL LETTER X
 05B0..05BD    ; Other_Alphabetic # Mn  [14] HEBREW POINT SHEVA..HEBREW POINT METEG
@@ -880,7 +881,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 # Total code points: 106477
 
 # ================================================
-
+16D9D ; Diacritic
 005E          ; Diacritic # Sk       CIRCUMFLEX ACCENT
 0060          ; Diacritic # Sk       GRAVE ACCENT
 00A8          ; Diacritic # Sk       DIAERESIS
