@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2024-02-02, 23:11:23 GMT
+# Date: 2024-04-02, 15:04:36 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -232,6 +232,7 @@
 09FB          ; 0 # Sc       BENGALI GANDA MARK
 09FC          ; 0 # Lo       BENGALI LETTER VEDIC ANUSVARA
 09FD          ; 0 # Po       BENGALI ABBREVIATION SIGN
+09FF          ; 0 # Lo       BENGALI LETTER ALTERNATE BA
 0A01..0A02    ; 0 # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A03          ; 0 # Mc       GURMUKHI SIGN VISARGA
 0A05..0A0A    ; 0 # Lo   [6] GURMUKHI LETTER A..GURMUKHI LETTER UU
@@ -2060,7 +2061,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 821579 code points not listed here.
+# The above property value applies to 821578 code points not listed here.
 # Total code points: 1113178
 
 # ================================================
