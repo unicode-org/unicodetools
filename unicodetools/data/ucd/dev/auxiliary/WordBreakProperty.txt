@@ -1,5 +1,5 @@
 # WordBreakProperty-16.0.0.txt
-# Date: 2024-04-02, 12:10:46 GMT
+# Date: 2024-04-02, 12:15:34 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1315,8 +1315,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1E4EB         ; ALetter # Lm       NAG MUNDARI SIGN OJOD
 1E5D0..1E5ED  ; ALetter # Lo  [30] OL ONAL LETTER O..OL ONAL LETTER EG
 1E5F0         ; ALetter # Lo       OL ONAL SIGN HODDOND
-1E6C0..1E6D2  ; ALetter # Lo  [19] TAI YO LETTER LOW KO..TAI YO LETTER HIGH PO
-1E6D4..1E6DE  ; ALetter # Lo  [11] TAI YO LETTER LOW FO..TAI YO LETTER HIGH KVO
+1E6C0..1E6DE  ; ALetter # Lo  [31] TAI YO LETTER LOW KO..TAI YO LETTER HIGH KVO
 1E6E0..1E6E2  ; ALetter # Lo   [3] TAI YO LETTER AA..TAI YO LETTER UE
 1E6E4..1E6E5  ; ALetter # Lo   [2] TAI YO LETTER U..TAI YO LETTER AE
 1E6E7..1E6ED  ; ALetter # Lo   [7] TAI YO LETTER O..TAI YO LETTER AUE
@@ -1367,7 +1366,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 33842
+# Total code points: 33843
 
 # ================================================
 

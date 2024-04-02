@@ -1,5 +1,5 @@
 # DerivedLineBreak-16.0.0.txt
-# Date: 2024-04-02, 12:10:00 GMT
+# Date: 2024-04-02, 12:14:47 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1532,9 +1532,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1E5D0..1E5ED  ; AL # Lo  [30] OL ONAL LETTER O..OL ONAL LETTER EG
 1E5F0         ; AL # Lo       OL ONAL SIGN HODDOND
 1E5FF         ; AL # Po       OL ONAL ABBREVIATION SIGN
-1E6C0..1E6D2  ; AL # Lo  [19] TAI YO LETTER LOW KO..TAI YO LETTER HIGH PO
-1E6D3         ; AL # Cn       <reserved-1E6D3>
-1E6D4..1E6DE  ; AL # Lo  [11] TAI YO LETTER LOW FO..TAI YO LETTER HIGH KVO
+1E6C0..1E6DE  ; AL # Lo  [31] TAI YO LETTER LOW KO..TAI YO LETTER HIGH KVO
 1E6DF         ; AL # Cn       <reserved-1E6DF>
 1E6E0..1E6E2  ; AL # Lo   [3] TAI YO LETTER AA..TAI YO LETTER UE
 1E6E4..1E6E5  ; AL # Lo   [2] TAI YO LETTER U..TAI YO LETTER AE

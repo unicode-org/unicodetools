@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2024-04-02, 12:09:57 GMT
+# Date: 2024-04-02, 12:14:45 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -651,7 +651,6 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1E4FA..1E5CF  ; Cn # [214] <reserved-1E4FA>..<reserved-1E5CF>
 1E5FB..1E5FE  ; Cn #   [4] <reserved-1E5FB>..<reserved-1E5FE>
 1E600..1E6BF  ; Cn # [192] <reserved-1E600>..<reserved-1E6BF>
-1E6D3         ; Cn #       <reserved-1E6D3>
 1E6DF         ; Cn #       <reserved-1E6DF>
 1E6F6..1E6FD  ; Cn #   [8] <reserved-1E6F6>..<reserved-1E6FD>
 1E700..1E7DF  ; Cn # [224] <reserved-1E700>..<reserved-1E7DF>
@@ -751,7 +750,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 819477
+# Total code points: 819476
 
 # ================================================
 
@@ -2665,8 +2664,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 1E4D0..1E4EA  ; Lo #  [27] NAG MUNDARI LETTER O..NAG MUNDARI LETTER ELL
 1E5D0..1E5ED  ; Lo #  [30] OL ONAL LETTER O..OL ONAL LETTER EG
 1E5F0         ; Lo #       OL ONAL SIGN HODDOND
-1E6C0..1E6D2  ; Lo #  [19] TAI YO LETTER LOW KO..TAI YO LETTER HIGH PO
-1E6D4..1E6DE  ; Lo #  [11] TAI YO LETTER LOW FO..TAI YO LETTER HIGH KVO
+1E6C0..1E6DE  ; Lo #  [31] TAI YO LETTER LOW KO..TAI YO LETTER HIGH KVO
 1E6E0..1E6E2  ; Lo #   [3] TAI YO LETTER AA..TAI YO LETTER UE
 1E6E4..1E6E5  ; Lo #   [2] TAI YO LETTER U..TAI YO LETTER AE
 1E6E7..1E6ED  ; Lo #   [7] TAI YO LETTER O..TAI YO LETTER AUE
@@ -2720,7 +2718,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Lo # [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 136527
+# Total code points: 136528
 
 # ================================================
 

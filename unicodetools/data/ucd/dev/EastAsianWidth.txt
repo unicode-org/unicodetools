@@ -1,5 +1,5 @@
 # EastAsianWidth-16.0.0.txt
-# Date: 2024-04-02, 12:10:03 GMT
+# Date: 2024-04-02, 12:14:51 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2491,8 +2491,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 1E5F0          ; N  # Lo         OL ONAL SIGN HODDOND
 1E5F1..1E5FA   ; N  # Nd    [10] OL ONAL DIGIT ZERO..OL ONAL DIGIT NINE
 1E5FF          ; N  # Po         OL ONAL ABBREVIATION SIGN
-1E6C0..1E6D2   ; N  # Lo    [19] TAI YO LETTER LOW KO..TAI YO LETTER HIGH PO
-1E6D4..1E6DE   ; N  # Lo    [11] TAI YO LETTER LOW FO..TAI YO LETTER HIGH KVO
+1E6C0..1E6DE   ; N  # Lo    [31] TAI YO LETTER LOW KO..TAI YO LETTER HIGH KVO
 1E6E0..1E6E2   ; N  # Lo     [3] TAI YO LETTER AA..TAI YO LETTER UE
 1E6E3          ; N  # Mn         TAI YO SIGN UE
 1E6E4..1E6E5   ; N  # Lo     [2] TAI YO LETTER U..TAI YO LETTER AE
