@@ -1,3 +1,13 @@
+# Indic_Positional_Category=Right
+11B61 ; Right # Mc SHARADA VOWEL SIGN OOE
+11B65 ; Right # Mc SHARADA VOWEL SIGN SHORT O
+11B67 ; Right # Mc SHARADA VOWEL SIGN CANDRA O
+# Indic_Positional_Category=Top
+11B60 ; Top # Mn SHARADA VOWEL SIGN OE
+11B64 ; Top # Mn SHARADA VOWEL SIGN SHORT E
+11B66 ; Top # Mn SHARADA VOWEL SIGN CANDRA E
+# Indic_Positional_Category=Bottom
+11B62..11B63 ; Bottom # Mn [2] SHARADA VOWEL SIGN UE..SHARADA VOWEL SIGN UUE
 # IndicPositionalCategory-16.0.0.txt
 # Date: 2024-02-02, 23:11:29 GMT
 # © 2024 Unicode®, Inc.
