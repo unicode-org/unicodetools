@@ -1,5 +1,5 @@
 # LineBreak-16.0.0.txt
-# Date: 2024-02-02, 23:11:30 GMT
+# Date: 2024-04-02, 14:56:40 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -338,6 +338,7 @@
 09FC           ; AL # Lo         BENGALI LETTER VEDIC ANUSVARA
 09FD           ; AL # Po         BENGALI ABBREVIATION SIGN
 09FE           ; CM # Mn         BENGALI SANDHI MARK
+09FF           ; AL # Lo         BENGALI LETTER ALTERNATE BA
 0A01..0A02     ; CM # Mn     [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A03           ; CM # Mc         GURMUKHI SIGN VISARGA
 0A05..0A0A     ; AL # Lo     [6] GURMUKHI LETTER A..GURMUKHI LETTER UU
