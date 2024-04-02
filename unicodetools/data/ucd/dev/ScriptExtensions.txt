@@ -86,8 +86,8 @@
 06D4          ; Arab Rohg                      # Po      ARABIC FULL STOP
 0951          ; Beng Deva Gran Gujr Guru Knda Latn Mlym Orya Shrd Taml Telu Tirh #Mn DEVANAGARI STRESS SIGN UDATTA
 0952          ; Beng Deva Gran Gujr Guru Knda Latn Mlym Orya Taml Telu Tirh #Mn DEVANAGARI STRESS SIGN ANUDATTA
-0964          ; Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh #Po DEVANAGARI DANDA
-0965          ; Beng Deva Dogr Gong Gonm Gran Gujr Gukh Guru Knda Limb Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh #Po DEVANAGARI DOUBLE DANDA
+0964          ; Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh Chis #Po DEVANAGARI DANDA
+0965          ; Beng Deva Dogr Gong Gonm Gran Gujr Gukh Guru Knda Limb Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh Chis #Po DEVANAGARI DOUBLE DANDA
 0966..096F    ; Deva Dogr Kthi Mahj            # Nd [10] DEVANAGARI DIGIT ZERO..DEVANAGARI DIGIT NINE
 09E6..09EF    ; Beng Cakm Sylo                 # Nd [10] BENGALI DIGIT ZERO..BENGALI DIGIT NINE
 0A66..0A6F    ; Guru Mult                      # Nd [10] GURMUKHI DIGIT ZERO..GURMUKHI DIGIT NINE
