@@ -1,5 +1,5 @@
 # LineBreak-16.0.0.txt
-# Date: 2024-02-02, 23:11:30 GMT
+# Date: 2024-04-02, 12:47:20 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3108,6 +3108,12 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 11AB0..11ABF   ; AL # Lo    [16] CANADIAN SYLLABICS NATTILIK HI..CANADIAN SYLLABICS SPA
 11AC0..11AF8   ; AL # Lo    [57] PAU CIN HAU LETTER PA..PAU CIN HAU GLOTTAL STOP FINAL
 11B00..11B09   ; BB # Po    [10] DEVANAGARI HEAD MARK..DEVANAGARI SIGN MINDU
+11B60          ; CM # Mn         SHARADA VOWEL SIGN OE
+11B61          ; CM # Mc         SHARADA VOWEL SIGN OOE
+11B62..11B64   ; CM # Mn     [3] SHARADA VOWEL SIGN UE..SHARADA VOWEL SIGN SHORT E
+11B65          ; CM # Mc         SHARADA VOWEL SIGN SHORT O
+11B66          ; CM # Mn         SHARADA VOWEL SIGN CANDRA E
+11B67          ; CM # Mc         SHARADA VOWEL SIGN CANDRA O
 11BC0..11BE0   ; AL # Lo    [33] SUNUWAR LETTER DEVI..SUNUWAR LETTER KLOKO
 11BE1          ; AL # Po         SUNUWAR SIGN PVO
 11BF0..11BF9   ; NU # Nd    [10] SUNUWAR DIGIT ZERO..SUNUWAR DIGIT NINE
