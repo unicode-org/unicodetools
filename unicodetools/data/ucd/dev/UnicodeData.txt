@@ -1,3 +1,5 @@
+10EFB; ARABIC SMALL LOW NOON;Mn;220;NSM;;;;;N;;;;;
+10EC5; ARABIC SMALL YEH BARREE WITH TWO DOTS BELOW;Lm;0;AL;;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
