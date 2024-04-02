@@ -1219,7 +1219,9 @@ public final class UCD_Names implements UCD_Types {
         "Hanifi_Rohingya_Kinna_Ya",
         // Unicode 14
         "THIN_YEH",
-        "VERTICAL_TAIL"
+        "VERTICAL_TAIL",
+        // Unicode n > 16
+        "THIN_NOON",
     };
 
     static {
