@@ -1,5 +1,5 @@
 # PropertyValueAliases-16.0.0.txt
-# Date: 2024-03-12, 12:14:23 GMT
+# Date: 2024-04-02, 12:10:20 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -456,6 +456,7 @@ blk; Tai_Le                           ; Tai_Le
 blk; Tai_Tham                         ; Tai_Tham
 blk; Tai_Viet                         ; Tai_Viet
 blk; Tai_Xuan_Jing                    ; Tai_Xuan_Jing_Symbols
+blk; Tai_Yo                           ; Tai_Yo
 blk; Takri                            ; Takri
 blk; Tamil                            ; Tamil
 blk; Tamil_Sup                        ; Tamil_Supplement
@@ -1454,6 +1455,7 @@ sc ; Talu                             ; New_Tai_Lue
 sc ; Taml                             ; Tamil
 sc ; Tang                             ; Tangut
 sc ; Tavt                             ; Tai_Viet
+sc ; Tayo                             ; Tai_Yo
 sc ; Telu                             ; Telugu
 sc ; Tfng                             ; Tifinagh
 sc ; Tglg                             ; Tagalog

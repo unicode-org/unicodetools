@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2024-03-12, 13:28:44 GMT
+# Date: 2024-04-02, 12:10:18 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -430,11 +430,6 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 
 # ================================================
 
-1E6E3;Other_Alphabetic
-1E6E6;Other_Alphabetic
-1E6EE;Other_Alphabetic
-1E6EF;Other_Alphabetic
-1E6F5;Other_Alphabetic
 0345          ; Other_Alphabetic # Mn       COMBINING GREEK YPOGEGRAMMENI
 0363..036F    ; Other_Alphabetic # Mn  [13] COMBINING LATIN SMALL LETTER A..COMBINING LATIN SMALL LETTER X
 05B0..05BD    ; Other_Alphabetic # Mn  [14] HEBREW POINT SHEVA..HEBREW POINT METEG
@@ -850,12 +845,16 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1E023..1E024  ; Other_Alphabetic # Mn   [2] COMBINING GLAGOLITIC LETTER YU..COMBINING GLAGOLITIC LETTER SMALL YUS
 1E026..1E02A  ; Other_Alphabetic # Mn   [5] COMBINING GLAGOLITIC LETTER YO..COMBINING GLAGOLITIC LETTER FITA
 1E08F         ; Other_Alphabetic # Mn       COMBINING CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
+1E6E3         ; Other_Alphabetic # Mn       TAI YO SIGN UE
+1E6E6         ; Other_Alphabetic # Mn       TAI YO SIGN AU
+1E6EE..1E6EF  ; Other_Alphabetic # Mn   [2] TAI YO SIGN AY..TAI YO SIGN ANG
+1E6F5         ; Other_Alphabetic # Mn       TAI YO SIGN OM
 1E947         ; Other_Alphabetic # Mn       ADLAM HAMZA
 1F130..1F149  ; Other_Alphabetic # So  [26] SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1495
+# Total code points: 1500
 
 # ================================================
 

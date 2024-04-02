@@ -1,8 +1,5 @@
-1E6C0..1E6DE;Tai_Yo
-1E6E0..1E6F5;Tai_Yo
-1E6FE..1E6FF;Tai_Yo
 # Scripts-16.0.0.txt
-# Date: 2024-02-02, 23:11:49 GMT
+# Date: 2024-04-02, 12:10:39 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3127,5 +3124,23 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 113E1..113E2  ; Tulu_Tigalari # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 
 # Total code points: 80
+
+# ================================================
+
+1E6C0..1E6D2  ; Tai_Yo # Lo  [19] TAI YO LETTER LOW KO..TAI YO LETTER HIGH PO
+1E6D3         ; Tai_Yo # Cn       <reserved-1E6D3>
+1E6D4..1E6DE  ; Tai_Yo # Lo  [11] TAI YO LETTER LOW FO..TAI YO LETTER HIGH KVO
+1E6E0..1E6E2  ; Tai_Yo # Lo   [3] TAI YO LETTER AA..TAI YO LETTER UE
+1E6E3         ; Tai_Yo # Mn       TAI YO SIGN UE
+1E6E4..1E6E5  ; Tai_Yo # Lo   [2] TAI YO LETTER U..TAI YO LETTER AE
+1E6E6         ; Tai_Yo # Mn       TAI YO SIGN AU
+1E6E7..1E6ED  ; Tai_Yo # Lo   [7] TAI YO LETTER O..TAI YO LETTER AUE
+1E6EE..1E6EF  ; Tai_Yo # Mn   [2] TAI YO SIGN AY..TAI YO SIGN ANG
+1E6F0..1E6F4  ; Tai_Yo # Lo   [5] TAI YO LETTER AN..TAI YO LETTER AP
+1E6F5         ; Tai_Yo # Mn       TAI YO SIGN OM
+1E6FE         ; Tai_Yo # Lo       TAI YO SYMBOL MEUANG
+1E6FF         ; Tai_Yo # Lm       TAI YO XAM LAI
+
+# Total code points: 55
 
 # EOF
