@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2024-03-12, 13:28:44 GMT
+# Date: 2024-04-02, 15:39:29 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -430,7 +430,6 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 
 # ================================================
 
-16D98; Other_Alphabetic
 0345          ; Other_Alphabetic # Mn       COMBINING GREEK YPOGEGRAMMENI
 0363..036F    ; Other_Alphabetic # Mn  [13] COMBINING LATIN SMALL LETTER A..COMBINING LATIN SMALL LETTER X
 05B0..05BD    ; Other_Alphabetic # Mn  [14] HEBREW POINT SHEVA..HEBREW POINT METEG
@@ -835,6 +834,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1611E..16129  ; Other_Alphabetic # Mn  [12] GURUNG KHEMA VOWEL SIGN AA..GURUNG KHEMA VOWEL LENGTH MARK
 1612A..1612C  ; Other_Alphabetic # Mc   [3] GURUNG KHEMA CONSONANT SIGN MEDIAL YA..GURUNG KHEMA CONSONANT SIGN MEDIAL HA
 1612D..1612E  ; Other_Alphabetic # Mn   [2] GURUNG KHEMA SIGN ANUSVARA..GURUNG KHEMA CONSONANT SIGN MEDIAL RA
+16D98         ; Other_Alphabetic # Mn       CHISOI SIGN ANUSVARA
 16F4F         ; Other_Alphabetic # Mn       MIAO SIGN CONSONANT MODIFIER BAR
 16F51..16F87  ; Other_Alphabetic # Mc  [55] MIAO SIGN ASPIRATION..MIAO VOWEL SIGN UI
 16F8F..16F92  ; Other_Alphabetic # Mn   [4] MIAO TONE RIGHT..MIAO TONE BELOW
@@ -851,7 +851,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1495
+# Total code points: 1496
 
 # ================================================
 
@@ -881,7 +881,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 # Total code points: 106477
 
 # ================================================
-16D9D ; Diacritic
+
 005E          ; Diacritic # Sk       CIRCUMFLEX ACCENT
 0060          ; Diacritic # Sk       GRAVE ACCENT
 00A8          ; Diacritic # Sk       DIAERESIS
@@ -1121,6 +1121,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 16AF0..16AF4  ; Diacritic # Mn   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
 16B30..16B36  ; Diacritic # Mn   [7] PAHAWH HMONG MARK CIM TUB..PAHAWH HMONG MARK CIM TAUM
 16D6B..16D6C  ; Diacritic # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
+16D9D         ; Diacritic # Mn       CHISOI SIGN SISO
 16F8F..16F92  ; Diacritic # Mn   [4] MIAO TONE RIGHT..MIAO TONE BELOW
 16F93..16F9F  ; Diacritic # Lm  [13] MIAO LETTER TONE-2..MIAO LETTER REFORMED TONE-8
 16FF0..16FF1  ; Diacritic # Mc   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
@@ -1143,7 +1144,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1178
+# Total code points: 1179
 
 # ================================================
 
