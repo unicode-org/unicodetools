@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2024-04-02, 12:14:44 GMT
+# Date: 2024-04-02, 13:12:54 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2002,7 +2002,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 1E6EE..1E6EF  ; N # Mn   [2] TAI YO SIGN AY..TAI YO SIGN ANG
 1E6F0..1E6F4  ; N # Lo   [5] TAI YO LETTER AN..TAI YO LETTER AP
 1E6F5         ; N # Mn       TAI YO SIGN OM
-1E6FE         ; N # Lo       TAI YO SYMBOL MEUANG
+1E6FE         ; N # Lo       TAI YO SYMBOL MUEANG
 1E6FF         ; N # Lm       TAI YO XAM LAI
 1E7E0..1E7E6  ; N # Lo   [7] ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
 1E7E8..1E7EB  ; N # Lo   [4] ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE

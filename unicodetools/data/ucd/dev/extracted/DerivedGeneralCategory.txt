@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2024-04-02, 12:14:45 GMT
+# Date: 2024-04-02, 13:12:55 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2669,7 +2669,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 1E6E4..1E6E5  ; Lo #   [2] TAI YO LETTER U..TAI YO LETTER AE
 1E6E7..1E6ED  ; Lo #   [7] TAI YO LETTER O..TAI YO LETTER AUE
 1E6F0..1E6F4  ; Lo #   [5] TAI YO LETTER AN..TAI YO LETTER AP
-1E6FE         ; Lo #       TAI YO SYMBOL MEUANG
+1E6FE         ; Lo #       TAI YO SYMBOL MUEANG
 1E7E0..1E7E6  ; Lo #   [7] ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
 1E7E8..1E7EB  ; Lo #   [4] ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE
 1E7ED..1E7EE  ; Lo #   [2] ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
