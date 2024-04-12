@@ -2,7 +2,8 @@
 # Date: 2024-01-09, 00:00:00 GMT [KL]
 #
 # © 2024 Unicode®, Inc.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr45/
 #
 # This file contains basic data for U-source ideographs
