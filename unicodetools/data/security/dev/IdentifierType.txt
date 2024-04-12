@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2024-04-12, 22:09:30 GMT
+# Date: 2024-04-12, 22:25:58 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -668,7 +668,7 @@ A8C5          ; Limited_Use                    # 9.0        SAURASHTRA SIGN CAND
 A8D0..A8D9    ; Limited_Use                    # 5.1   [10] SAURASHTRA DIGIT ZERO..SAURASHTRA DIGIT NINE
 A900..A92D    ; Limited_Use                    # 5.1   [46] KAYAH LI DIGIT ZERO..KAYAH LI TONE CALYA PLOPHU
 A980..A9C0    ; Limited_Use                    # 5.2   [65] JAVANESE SIGN PANYANGGA..JAVANESE PANGKON
-A9CF..A9D9    ; Limited_Use                    # 5.2   [11] JAVANESE PANGRANGKEP..JAVANESE DIGIT NINE
+A9D0..A9D9    ; Limited_Use                    # 5.2   [10] JAVANESE DIGIT ZERO..JAVANESE DIGIT NINE
 AA00..AA36    ; Limited_Use                    # 5.1   [55] CHAM LETTER A..CHAM CONSONANT SIGN WA
 AA40..AA4D    ; Limited_Use                    # 5.1   [14] CHAM LETTER FINAL K..CHAM CONSONANT SIGN FINAL H
 AA50..AA59    ; Limited_Use                    # 5.1   [10] CHAM DIGIT ZERO..CHAM DIGIT NINE
@@ -717,7 +717,13 @@ ABF0..ABF9    ; Limited_Use                    # 5.2   [10] MEETEI MAYEK DIGIT Z
 1E94B         ; Limited_Use                    # 12.0       ADLAM NASALIZATION MARK
 1E950..1E959  ; Limited_Use                    # 9.0   [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 
-# Total code points: 5034
+# Total code points: 5033
+
+#	Identifier_Type:	Limited_Use Uncommon_Use
+
+A9CF          ; Limited_Use Uncommon_Use       # 5.2        JAVANESE PANGRANGKEP
+
+# Total code points: 1
 
 #	Identifier_Type:	Limited_Use Technical
 
