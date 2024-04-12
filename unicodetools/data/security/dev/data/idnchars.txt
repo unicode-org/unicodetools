@@ -1,11 +1,11 @@
 # idnchars.txt
-# Date: 2023-08-11, 17:46:42 GMT
-# © 2023 Unicode®, Inc.
+# Date: 2024-04-12, 20:03:08 GMT
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 15.1.0
+# Version: 16.0.0
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr39
 #
@@ -325,7 +325,7 @@
 0C46..0C48    ; output #  [3] (ె..ై)  TELUGU VOWEL SIGN E..TELUGU VOWEL SIGN AI
 0C4A..0C4D    ; output #  [4] (ొ..్)  TELUGU VOWEL SIGN O..TELUGU SIGN VIRAMA
 0C55..0C56    ; output #  [2] (ౕ..ౖ)  TELUGU LENGTH MARK..TELUGU AI LENGTH MARK
-0C5D          ; output #      (ౝ)  TELUGU LETTER NAKAARA POLLU
+0C5C..0C5D    ; output #  [2] (౜..ౝ)  TELUGU ARCHAIC SHRII..TELUGU LETTER NAKAARA POLLU
 0C60..0C61    ; output #  [2] (ౠ..ౡ)  TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C66..0C6F    ; output # [10] (౦..౯)  TELUGU DIGIT ZERO..TELUGU DIGIT NINE
 0C80          ; output #      (ಀ)  KANNADA SIGN SPACING CANDRABINDU
@@ -339,7 +339,7 @@
 0CC6..0CC8    ; output #  [3] (ೆ..ೈ)  KANNADA VOWEL SIGN E..KANNADA VOWEL SIGN AI
 0CCA..0CCD    ; output #  [4] (ೊ..್)  KANNADA VOWEL SIGN O..KANNADA SIGN VIRAMA
 0CD5..0CD6    ; output #  [2] (ೕ..ೖ)  KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
-0CDD          ; output #      (ೝ)  KANNADA LETTER NAKAARA POLLU
+0CDC..0CDD    ; output #  [2] (೜..ೝ)  KANNADA ARCHAIC SHRII..KANNADA LETTER NAKAARA POLLU
 0CE0..0CE3    ; output #  [4] (ೠ..ೣ)  KANNADA LETTER VOCALIC RR..KANNADA VOWEL SIGN VOCALIC LL
 0CE6..0CEF    ; output # [10] (೦..೯)  KANNADA DIGIT ZERO..KANNADA DIGIT NINE
 0CF1..0CF3    ; output #  [3] (ೱ..ೳ)  KANNADA SIGN JIHVAMULIYA..KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
@@ -441,6 +441,7 @@
 17D7          ; output #      (ៗ)  KHMER SIGN LEK TOO
 17DC          ; output #      (ៜ)  KHMER SIGN AVAKRAHASANYA
 17E0..17E9    ; output # [10] (០..៩)  KHMER DIGIT ZERO..KHMER DIGIT NINE
+1C8A          ; output #      (ᲊ)  CYRILLIC SMALL LETTER TJE
 1E01          ; output #      (ḁ)  LATIN SMALL LETTER A WITH RING BELOW
 1E03          ; output #      (ḃ)  LATIN SMALL LETTER B WITH DOT ABOVE
 1E05          ; output #      (ḅ)  LATIN SMALL LETTER B WITH DOT BELOW
@@ -616,11 +617,13 @@ A7C1          ; output #      (ꟁ)  LATIN SMALL LETTER OLD POLISH O
 A7C3          ; output #      (ꟃ)  LATIN SMALL LETTER ANGLICANA W
 A7C8          ; output #      (ꟈ)  LATIN SMALL LETTER D WITH SHORT STROKE OVERLAY
 A7CA          ; output #      (ꟊ)  LATIN SMALL LETTER S WITH SHORT STROKE OVERLAY
+A7CD          ; output #      (ꟍ)  LATIN SMALL LETTER S WITH DIAGONAL STROKE
 A7D1          ; output #      (ꟑ)  LATIN SMALL LETTER CLOSED INSULAR G
 A7D3          ; output #      (ꟓ)  LATIN SMALL LETTER DOUBLE THORN
 A7D5          ; output #      (ꟕ)  LATIN SMALL LETTER DOUBLE WYNN
 A7D7          ; output #      (ꟗ)  LATIN SMALL LETTER MIDDLE SCOTS S
 A7D9          ; output #      (ꟙ)  LATIN SMALL LETTER SIGMOID S
+A7DB          ; output #      (ꟛ)  LATIN SMALL LETTER LAMBDA
 A9E7..A9FE    ; output # [24] (ꧧ..ꧾ)  MYANMAR LETTER TAI LAING NYA..MYANMAR LETTER TAI LAING BHA
 AA60..AA76    ; output # [23] (ꩠ..ꩶ)  MYANMAR LETTER KHAMTI GA..MYANMAR LOGOGRAM KHAMTI HM
 AA7A..AA7F    ; output #  [6] (ꩺ..ꩿ)  MYANMAR LETTER AITON RA..MYANMAR LETTER SHWE PALAUNG SHA
@@ -638,9 +641,11 @@ FA1F          ; output #      (﨟)  CJK COMPATIBILITY IDEOGRAPH-FA1F
 FA21          ; output #      (﨡)  CJK COMPATIBILITY IDEOGRAPH-FA21
 FA23..FA24    ; output #  [2] (﨣..﨤)  CJK COMPATIBILITY IDEOGRAPH-FA23..CJK COMPATIBILITY IDEOGRAPH-FA24
 FA27..FA29    ; output #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK COMPATIBILITY IDEOGRAPH-FA29
+10EC2..10EC4  ; output #  [3] (𐻂..𐻄)  ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
 11301         ; output #      (𑌁)  GRANTHA SIGN CANDRABINDU
 11303         ; output #      (𑌃)  GRANTHA SIGN VISARGA
 1133B..1133C  ; output #  [2] (𑌻..𑌼)  COMBINING BINDU BELOW..GRANTHA SIGN NUKTA
+116D0..116E3  ; output # [20] (𑛐..𑛣)  MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
 16FF0..16FF1  ; output #  [2] (𖿰..𖿱)  VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 1B11F..1B122  ; output #  [4] (𛄟..𛄢)  HIRAGANA LETTER ARCHAIC WU..KATAKANA LETTER ARCHAIC WU
 1B132         ; output #      (𛄲)  HIRAGANA LETTER SMALL KO
@@ -663,7 +668,7 @@ FA27..FA29    ; output #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK 
 30000..3134A  ; output # [4939] (𰀀..𱍊)  CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; output # [4192] (𱍐..𲎯)  CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 112107
+# Total code points: 112135
 
 # Not allowed at start of identifier
 
