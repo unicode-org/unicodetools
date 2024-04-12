@@ -1533,9 +1533,9 @@ public class GenerateEmoji {
 
             outPlain.println(
                     "# labels.txt\n"
-                            + "# Copyright © 1991-2016 Unicode, Inc.\n"
+                            + "# Copyright © 1991-Present Unicode, Inc.\n"
                             + "# CLDR data files are interpreted according to the LDML specification (https://unicode.org/reports/tr35/)\n"
-                            + "# For terms of use, see https://www.unicode.org/copyright.html\n"
+                            + "# For terms of use and license, see https://www.unicode.org/terms_of_use.html\n"
                             + "#\n"
                             + "# This file provides information for mapping character labels to sets of characters.\n"
                             + "# The characters should normally be sorted using CLDR collation data, but that order may be further customized.\n"
