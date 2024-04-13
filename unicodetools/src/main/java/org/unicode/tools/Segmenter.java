@@ -1310,7 +1310,9 @@ public class Segmenter {
                     "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
                             + "<!DOCTYPE ldml SYSTEM \"../../common/dtd/ldml.dtd\">\n"
                             + "<!--\n"
-                            + "Copyright © 1991-2015 Unicode, Inc.\n"
+                            + "Copyright © 1991-"
+                            + Default.getYear()
+                            + " Unicode, Inc.\n"
                             + "CLDR data files are interpreted according to the LDML specification (https://unicode.org/reports/tr35/)\n"
                             + "For terms of use and license, see https://www.unicode.org/terms_of_use.html\n"
                             + "-->\n"
