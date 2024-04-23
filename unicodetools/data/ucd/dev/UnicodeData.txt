@@ -1,3 +1,6 @@
+16FF4;YANGQIN SIGN SLOW TWO;Lo;0;L;;;;;N;;;;;
+16FF5;YANGQIN SIGN SLOW THREE;Lo;0;L;;;;;N;;;;;
+16FF6;YANGQIN SIGN SLOW FOUR;Lo;0;L;;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
