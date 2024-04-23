@@ -574,7 +574,7 @@ Show [\u20b9]
 Let $nonAlphabeticBindus = []
 [\p{InSc=Bindu} - \p{Alphabetic}] = $nonAlphabeticBindus
 
- [\p{Name=/^ORIYA SIGN (OVERLINE|(DOUBLE )?DOT ABOVE)$/}\N{ORIYA SIGN OVERLINE}\N{THAI CHARACTER MAITAIKHU}\N{LIMBU SIGN KEMPHRENG}\N{SHARADA VOWEL MODIFIER MARK}\N{SHARADA EXTRA SHORT VOWEL MARK}]
+Let $nonAlphabeticDependentVowels = [\p{Name=/^ORIYA SIGN (OVERLINE|(DOUBLE )?DOT ABOVE)$/}\N{ORIYA SIGN OVERLINE}\N{THAI CHARACTER MAITAIKHU}\N{LIMBU SIGN KEMPHRENG}\N{SHARADA VOWEL MODIFIER MARK}\N{SHARADA EXTRA SHORT VOWEL MARK}]
 [\p{InSC=Vowel_Dependent} - \p{Alphabetic}] = $nonAlphabeticDependentVowels
 
 # Several invariants from L2/24-009 item 2.2.
