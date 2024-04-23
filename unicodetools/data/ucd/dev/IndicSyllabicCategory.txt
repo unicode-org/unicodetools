@@ -1,3 +1,5 @@
+0B53 ; Vowel_Dependent # Mn [1] ORIYA SIGN DOT ABOVE
+0B54 ; Vowel_Dependent # Mn [1] ORIYA SIGN DOUBLE DOT ABOVE 
 # IndicSyllabicCategory-16.0.0.txt
 # Date: 2024-02-02, 23:11:30 GMT
 # © 2024 Unicode®, Inc.

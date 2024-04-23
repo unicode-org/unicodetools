@@ -1,3 +1,4 @@
+0B53..0B54 ; Top # Mn [2] ORIYA SIGN DOT ABOVE..ORIYA SIGN DOUBLE DOT ABOVE
 # IndicPositionalCategory-16.0.0.txt
 # Date: 2024-02-02, 23:11:29 GMT
 # © 2024 Unicode®, Inc.
