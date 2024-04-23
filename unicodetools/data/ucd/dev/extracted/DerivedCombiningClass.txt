@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2024-02-02, 23:11:23 GMT
+# Date: 2024-04-23, 12:50:29 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -117,11 +117,12 @@
 0488..0489    ; 0 # Me   [2] COMBINING CYRILLIC HUNDRED THOUSANDS SIGN..COMBINING CYRILLIC MILLIONS SIGN
 048A..052F    ; 0 # L& [166] CYRILLIC CAPITAL LETTER SHORT I WITH TAIL..CYRILLIC SMALL LETTER EL WITH DESCENDER
 0531..0556    ; 0 # L&  [38] ARMENIAN CAPITAL LETTER AYB..ARMENIAN CAPITAL LETTER FEH
-0559          ; 0 # Lm       ARMENIAN MODIFIER LETTER LEFT HALF RING
+0558..0559    ; 0 # Lm   [2] MODIFIER LETTER ARMENIAN SMALL EH..ARMENIAN MODIFIER LETTER LEFT HALF RING
 055A..055F    ; 0 # Po   [6] ARMENIAN APOSTROPHE..ARMENIAN ABBREVIATION MARK
 0560..0588    ; 0 # L&  [41] ARMENIAN SMALL LETTER TURNED AYB..ARMENIAN SMALL LETTER YI WITH STROKE
 0589          ; 0 # Po       ARMENIAN FULL STOP
 058A          ; 0 # Pd       ARMENIAN HYPHEN
+058B..058C    ; 0 # Lm   [2] MODIFIER LETTER ARMENIAN SMALL INI..MODIFIER LETTER ARMENIAN SMALL YI
 058D..058E    ; 0 # So   [2] RIGHT-FACING ARMENIAN ETERNITY SIGN..LEFT-FACING ARMENIAN ETERNITY SIGN
 058F          ; 0 # Sc       ARMENIAN DRAM SIGN
 05BE          ; 0 # Pd       HEBREW PUNCTUATION MAQAF
@@ -2060,7 +2061,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 821579 code points not listed here.
+# The above property value applies to 821576 code points not listed here.
 # Total code points: 1113178
 
 # ================================================

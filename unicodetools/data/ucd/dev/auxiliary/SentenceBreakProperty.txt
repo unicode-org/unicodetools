@@ -1,5 +1,5 @@
 # SentenceBreakProperty-16.0.0.txt
-# Date: 2024-02-02, 23:11:49 GMT
+# Date: 2024-04-23, 12:51:09 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -907,7 +907,9 @@ E0001         ; Format # Cf       LANGUAGE TAG
 052B          ; Lower # L&       CYRILLIC SMALL LETTER DZZHE
 052D          ; Lower # L&       CYRILLIC SMALL LETTER DCHE
 052F          ; Lower # L&       CYRILLIC SMALL LETTER EL WITH DESCENDER
+0558          ; Lower # Lm       MODIFIER LETTER ARMENIAN SMALL EH
 0560..0588    ; Lower # L&  [41] ARMENIAN SMALL LETTER TURNED AYB..ARMENIAN SMALL LETTER YI WITH STROKE
+058B..058C    ; Lower # Lm   [2] MODIFIER LETTER ARMENIAN SMALL INI..MODIFIER LETTER ARMENIAN SMALL YI
 10FC          ; Lower # Lm       MODIFIER LETTER GEORGIAN NAR
 13F8..13FD    ; Lower # L&   [6] CHEROKEE SMALL LETTER YE..CHEROKEE SMALL LETTER MV
 1C80..1C88    ; Lower # L&   [9] CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC SMALL LETTER UNBLENDED UK
@@ -1320,7 +1322,7 @@ FF41..FF5A    ; Lower # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 1E030..1E06D  ; Lower # Lm  [62] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
 1E922..1E943  ; Lower # L&  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2522
+# Total code points: 2525
 
 # ================================================
 

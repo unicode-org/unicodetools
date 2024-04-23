@@ -1,5 +1,5 @@
 # NormalizationTest-16.0.0.txt
-# Date: 2024-02-02, 23:11:32 GMT
+# Date: 2024-04-23, 12:50:38 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -489,7 +489,10 @@ FEFA 0334;FEFA 0334;FEFA 0334;0644 0625 0334;0644 0627 0334 0655; # (ﻺ◌̴; �
 04F5;04F5;0447 0308;04F5;0447 0308; # (ӵ; ӵ; ч◌̈; ӵ; ч◌̈; ) CYRILLIC SMALL LETTER CHE WITH DIAERESIS
 04F8;04F8;042B 0308;04F8;042B 0308; # (Ӹ; Ӹ; Ы◌̈; Ӹ; Ы◌̈; ) CYRILLIC CAPITAL LETTER YERU WITH DIAERESIS
 04F9;04F9;044B 0308;04F9;044B 0308; # (ӹ; ӹ; ы◌̈; ӹ; ы◌̈; ) CYRILLIC SMALL LETTER YERU WITH DIAERESIS
+0558;0558;0558;0567;0567; # (՘; ՘; ՘; է; է; ) MODIFIER LETTER ARMENIAN SMALL EH
 0587;0587;0587;0565 0582;0565 0582; # (և; և; և; եւ; եւ; ) ARMENIAN SMALL LIGATURE ECH YIWN
+058B;058B;058B;056B;056B; # (֋; ֋; ֋; ի; ի; ) MODIFIER LETTER ARMENIAN SMALL INI
+058C;058C;058C;0575;0575; # (֌; ֌; ֌; յ; յ; ) MODIFIER LETTER ARMENIAN SMALL YI
 0622;0622;0627 0653;0622;0627 0653; # (آ; آ; ا◌ٓ; آ; ا◌ٓ; ) ARABIC LETTER ALEF WITH MADDA ABOVE
 0623;0623;0627 0654;0623;0627 0654; # (أ; أ; ا◌ٔ; أ; ا◌ٔ; ) ARABIC LETTER ALEF WITH HAMZA ABOVE
 0624;0624;0648 0654;0624;0648 0654; # (ؤ; ؤ; و◌ٔ; ؤ; و◌ٔ; ) ARABIC LETTER WAW WITH HAMZA ABOVE

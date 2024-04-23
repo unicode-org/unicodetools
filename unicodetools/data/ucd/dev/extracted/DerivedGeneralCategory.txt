@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2024-02-02, 23:11:25 GMT
+# Date: 2024-04-23, 12:50:31 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -21,8 +21,7 @@
 038D          ; Cn #       <reserved-038D>
 03A2          ; Cn #       <reserved-03A2>
 0530          ; Cn #       <reserved-0530>
-0557..0558    ; Cn #   [2] <reserved-0557>..<reserved-0558>
-058B..058C    ; Cn #   [2] <reserved-058B>..<reserved-058C>
+0557          ; Cn #       <reserved-0557>
 0590          ; Cn #       <reserved-0590>
 05C8..05CF    ; Cn #   [8] <reserved-05C8>..<reserved-05CF>
 05EB..05EE    ; Cn #   [4] <reserved-05EB>..<reserved-05EE>
@@ -747,7 +746,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 819531
+# Total code points: 819528
 
 # ================================================
 
@@ -2104,7 +2103,8 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 02EE          ; Lm #       MODIFIER LETTER DOUBLE APOSTROPHE
 0374          ; Lm #       GREEK NUMERAL SIGN
 037A          ; Lm #       GREEK YPOGEGRAMMENI
-0559          ; Lm #       ARMENIAN MODIFIER LETTER LEFT HALF RING
+0558..0559    ; Lm #   [2] MODIFIER LETTER ARMENIAN SMALL EH..ARMENIAN MODIFIER LETTER LEFT HALF RING
+058B..058C    ; Lm #   [2] MODIFIER LETTER ARMENIAN SMALL INI..MODIFIER LETTER ARMENIAN SMALL YI
 0640          ; Lm #       ARABIC TATWEEL
 06E5..06E6    ; Lm #   [2] ARABIC SMALL WAW..ARABIC SMALL YEH
 07F4..07F5    ; Lm #   [2] NKO HIGH TONE APOSTROPHE..NKO LOW TONE APOSTROPHE
@@ -2173,7 +2173,7 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 1E4EB         ; Lm #       NAG MUNDARI SIGN OJOD
 1E94B         ; Lm #       ADLAM NASALIZATION MARK
 
-# Total code points: 404
+# Total code points: 407
 
 # ================================================
 
