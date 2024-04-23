@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2024-02-02, 23:11:23 GMT
+# Date: 2024-04-23, 14:12:40 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1839,6 +1839,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 16FE2         ; 0 # Po       OLD CHINESE HOOK MARK
 16FE3         ; 0 # Lm       OLD CHINESE ITERATION MARK
 16FE4         ; 0 # Mn       KHITAN SMALL SCRIPT FILLER
+16FF4..16FF6  ; 0 # Lo   [3] YANGQIN SIGN SLOW TWO..YANGQIN SIGN SLOW FOUR
 17000..187F7  ; 0 # Lo [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
 18800..18CD5  ; 0 # Lo [1238] TANGUT COMPONENT-001..KHITAN SMALL SCRIPT CHARACTER-18CD5
 18CFF..18D08  ; 0 # Lo  [10] KHITAN SMALL SCRIPT CHARACTER-18CFF..TANGUT IDEOGRAPH-18D08
@@ -2060,7 +2061,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 821579 code points not listed here.
+# The above property value applies to 821576 code points not listed here.
 # Total code points: 1113178
 
 # ================================================

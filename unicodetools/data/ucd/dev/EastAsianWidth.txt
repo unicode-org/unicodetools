@@ -1,5 +1,5 @@
 # EastAsianWidth-16.0.0.txt
-# Date: 2024-02-02, 23:11:29 GMT
+# Date: 2024-04-23, 14:12:46 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2356,6 +2356,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 16FE3          ; W  # Lm         OLD CHINESE ITERATION MARK
 16FE4          ; W  # Mn         KHITAN SMALL SCRIPT FILLER
 16FF0..16FF1   ; W  # Mc     [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
+16FF4..16FF6   ; N  # Lo     [3] YANGQIN SIGN SLOW TWO..YANGQIN SIGN SLOW FOUR
 17000..187F7   ; W  # Lo  [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
 18800..18AFF   ; W  # Lo   [768] TANGUT COMPONENT-001..TANGUT COMPONENT-768
 18B00..18CD5   ; W  # Lo   [470] KHITAN SMALL SCRIPT CHARACTER-18B00..KHITAN SMALL SCRIPT CHARACTER-18CD5
