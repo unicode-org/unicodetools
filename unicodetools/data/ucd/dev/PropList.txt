@@ -881,8 +881,8 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 
 # ================================================
 0558;Diacritic
-055B;Diacritic
-055C;Diacritic
+058B;Diacritic
+058C;Diacritic
 005E          ; Diacritic # Sk       CIRCUMFLEX ACCENT
 0060          ; Diacritic # Sk       GRAVE ACCENT
 00A8          ; Diacritic # Sk       DIAERESIS
@@ -1195,8 +1195,8 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 
 # ================================================
 0558;Other_Lowercase
-055B;Other_Lowercase
-055C;Other_Lowercase
+058B;Other_Lowercase
+058C;Other_Lowercase
 00AA          ; Other_Lowercase # Lo       FEMININE ORDINAL INDICATOR
 00BA          ; Other_Lowercase # Lo       MASCULINE ORDINAL INDICATOR
 02B0..02B8    ; Other_Lowercase # Lm   [9] MODIFIER LETTER SMALL H..MODIFIER LETTER SMALL Y
