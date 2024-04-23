@@ -1,5 +1,5 @@
 # LineBreak-16.0.0.txt
-# Date: 2024-04-23, 13:31:39 GMT
+# Date: 2024-04-23, 13:44:12 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -401,8 +401,7 @@
 0B47..0B48     ; CM # Mc     [2] ORIYA VOWEL SIGN E..ORIYA VOWEL SIGN AI
 0B4B..0B4C     ; CM # Mc     [2] ORIYA VOWEL SIGN O..ORIYA VOWEL SIGN AU
 0B4D           ; CM # Mn         ORIYA SIGN VIRAMA
-0B53..0B54     ; CM # Mn     [2] ORIYA SIGN DOT ABOVE..ORIYA SIGN DOUBLE DOT ABOVE
-0B55..0B56     ; CM # Mn     [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
+0B53..0B56     ; CM # Mn     [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
 0B57           ; CM # Mc         ORIYA AU LENGTH MARK
 0B5C..0B5D     ; AL # Lo     [2] ORIYA LETTER RRA..ORIYA LETTER RHA
 0B5F..0B61     ; AL # Lo     [3] ORIYA LETTER YYA..ORIYA LETTER VOCALIC LL

@@ -1,5 +1,5 @@
 # WordBreakProperty-16.0.0.txt
-# Date: 2024-02-22, 15:58:24 GMT
+# Date: 2024-04-23, 13:44:39 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -147,7 +147,7 @@ FB46..FB4F    ; Hebrew_Letter # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW
 0B47..0B48    ; Extend # Mc   [2] ORIYA VOWEL SIGN E..ORIYA VOWEL SIGN AI
 0B4B..0B4C    ; Extend # Mc   [2] ORIYA VOWEL SIGN O..ORIYA VOWEL SIGN AU
 0B4D          ; Extend # Mn       ORIYA SIGN VIRAMA
-0B55..0B56    ; Extend # Mn   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
+0B53..0B56    ; Extend # Mn   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
 0B57          ; Extend # Mc       ORIYA AU LENGTH MARK
 0B62..0B63    ; Extend # Mn   [2] ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
 0B82          ; Extend # Mn       TAMIL SIGN ANUSVARA
@@ -623,7 +623,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2605
+# Total code points: 2607
 
 # ================================================
 

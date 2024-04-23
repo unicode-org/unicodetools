@@ -1,5 +1,5 @@
 # DerivedJoiningType-16.0.0.txt
-# Date: 2024-02-02, 23:11:26 GMT
+# Date: 2024-04-23, 13:44:08 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -265,7 +265,7 @@ A872          ; L # Lo       PHAGS-PA SUPERFIXED LETTER RA
 0B3F          ; T # Mn       ORIYA VOWEL SIGN I
 0B41..0B44    ; T # Mn   [4] ORIYA VOWEL SIGN U..ORIYA VOWEL SIGN VOCALIC RR
 0B4D          ; T # Mn       ORIYA SIGN VIRAMA
-0B55..0B56    ; T # Mn   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
+0B53..0B56    ; T # Mn   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
 0B62..0B63    ; T # Mn   [2] ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
 0B82          ; T # Mn       TAMIL SIGN ANUSVARA
 0BC0          ; T # Mn       TAMIL VOWEL SIGN II
@@ -581,6 +581,6 @@ E0001         ; T # Cf       LANGUAGE TAG
 E0020..E007F  ; T # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; T # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2185
+# Total code points: 2187
 
 # EOF

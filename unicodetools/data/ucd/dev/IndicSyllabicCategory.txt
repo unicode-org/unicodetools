@@ -1,7 +1,5 @@
-0B53 ; Vowel_Dependent # Mn [1] ORIYA SIGN DOT ABOVE
-0B54 ; Vowel_Dependent # Mn [1] ORIYA SIGN DOUBLE DOT ABOVE 
 # IndicSyllabicCategory-16.0.0.txt
-# Date: 2024-02-02, 23:11:30 GMT
+# Date: 2024-04-23, 13:44:12 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -527,7 +525,7 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 0B41..0B44    ; Vowel_Dependent # Mn   [4] ORIYA VOWEL SIGN U..ORIYA VOWEL SIGN VOCALIC RR
 0B47..0B48    ; Vowel_Dependent # Mc   [2] ORIYA VOWEL SIGN E..ORIYA VOWEL SIGN AI
 0B4B..0B4C    ; Vowel_Dependent # Mc   [2] ORIYA VOWEL SIGN O..ORIYA VOWEL SIGN AU
-0B55..0B56    ; Vowel_Dependent # Mn   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
+0B53..0B56    ; Vowel_Dependent # Mn   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
 0B57          ; Vowel_Dependent # Mc       ORIYA AU LENGTH MARK
 0B62..0B63    ; Vowel_Dependent # Mn   [2] ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
 0BBE..0BBF    ; Vowel_Dependent # Mc   [2] TAMIL VOWEL SIGN AA..TAMIL VOWEL SIGN I
