@@ -1,5 +1,5 @@
 # EastAsianWidth-16.0.0.txt
-# Date: 2024-02-02, 23:11:29 GMT
+# Date: 2024-04-23, 12:10:38 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -806,7 +806,7 @@
 1AA8..1AAD     ; N  # Po     [6] TAI THAM SIGN KAAN..TAI THAM SIGN CAANG
 1AB0..1ABD     ; N  # Mn    [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
 1ABE           ; N  # Me         COMBINING PARENTHESES OVERLAY
-1ABF..1ACE     ; N  # Mn    [16] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER INSULAR T
+1ABF..1ACF     ; N  # Mn    [17] COMBINING LATIN SMALL LETTER W BELOW..COMBINING DOUBLE CARON
 1B00..1B03     ; N  # Mn     [4] BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
 1B04           ; N  # Mc         BALINESE SIGN BISAH
 1B05..1B33     ; N  # Lo    [47] BALINESE LETTER AKARA..BALINESE LETTER HA
