@@ -1,3 +1,6 @@
+0558;AL
+055B;AL
+055C;AL
 # LineBreak-16.0.0.txt
 # Date: 2024-02-02, 23:11:30 GMT
 # © 2024 Unicode®, Inc.
