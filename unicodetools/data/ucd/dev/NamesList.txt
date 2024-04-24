@@ -1,9 +1,9 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 16.0.0
 @@@+	NamesList-16.0.0.txt
-@+	Generation Date: 2024-03-15, 14:43:47 GMT
+@+	Generation Date: 2024-04-24, 09:09:06 GMT
 	Unicode 16.0.0 names list.
-	Repertoire synched with UnicodeData-16.0.0d13.txt.
+	Repertoire synched with UnicodeData-16.0.0d14.txt.
 	Pre-beta rollup of various fixes.
 	Add xref between 131A6 and 13DEE.
 	Add xrefs between 01C3, A71D, 107B9.
@@ -21606,7 +21606,7 @@
 	* 1st stroke of 4E44
 31E3	CJK STROKE Q
 	* 6th stroke of 3514
-31E4	CJK STROKE HZXG
+31E4	CJK STROKE HXG
 	* 1st stroke of 98DE
 31E5	CJK STROKE SZP
 	* 8th stroke of 594A
