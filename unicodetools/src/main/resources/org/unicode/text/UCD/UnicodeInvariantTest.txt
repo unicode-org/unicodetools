@@ -586,11 +586,21 @@ Let $nonAlphabeticAvagrahas = [\N{TIBETAN MARK PALUTA}]  # A punctuation mark.
 [\p{InSC=Avagraha} - $nonAlphabeticAvagrahas] ⊆ \p{Alphabetic}
 
 # Name-based checks.
+Let $nonLowercaseSmallLetters = [ \p{name=/^LIMBU SMALL LETTER/} \N{TURNED GREEK SMALL LETTER IOTA} \p{name=/^(SQUARED|PARENTHESIZED|TAG) LATIN SMALL LETTER/} ]
+Let $nonLowercaseSmallModifierLetters = [ \p{gc=Lm} & \p{name=/^ARABIC SMALL/} ]
+[ \p{name=/\bSMALL LETTER\b/}-\p{gc=Mn}-\p{gc=Lt} - $nonLowercaseSmallLetters ] ⊆ \p{Lowercase}
+[ [\p{gc=Lm} & \p{name=/SMALL/}] - $nonLowercaseSmallModifierLetters ] ⊆ \p{Lowercase}
 
 # Combining letters are often alphabetic (medievalist abbreviations).
 # The others are diacritic (cantillation marks, phonetics).
 # See 177-C52.
 \p{name=/COMBINING .* LETTER/} ⊆ [\p{Alphabetic}\p{Diacritic}]
+
+## Consistency of Lowercase with decompositions.
+# Note that the same is not true of Uppercase.
+# A non-lowercase character has non-lowercase characters in its decomposition,
+# or its decomposition is <square> (㋍ etc.).
+In [\P{Lowercase} - \p{dt=square}], \p{Lowercase} * toNFKD ≠ toNFKD
 
 ## Joining_Type and Joining_Group
 # Where defined, the Joining_Group refines the Joining_Type.
@@ -602,6 +612,12 @@ OnPairsOf \P{Joining_Group=No_Joining_Group}, EqualityOf Joining_Group ⇒ Equal
 In \P{Other_Joining_Type=Deduce_From_General_Category}, Joining_Type = Other_Joining_Type
 [ \p{Other_Joining_Type=Deduce_From_General_Category} & [\p{gc=Mn}\p{gc=Me}\p{gc=Cf}] ] ⊆ \p{Joining_Type=Transparent}
 [ \p{Other_Joining_Type=Deduce_From_General_Category} - [\p{gc=Mn}\p{gc=Me}\p{gc=Cf}] ] ⊆ \p{Joining_Type=Non_Joining}
+
+## Modifier_Combining_Mark stability.  Not yet testable, since MCM does not exist before 16.0.
+# NOTICE TO THE MAINTAINER: The following line is intended to fail after 16.0;
+# When it does, remove it and uncomment the line after it.
+\p{gc=Cn} = \p{U16:gc=Cn}  # ☚ REMOVE ME WHEN I FAIL…
+# … AND UNCOMMENT ME. ☛ # In \P{U-1:gc=Cn}, Modifier_Combining_Mark = U-1:Modifier_Combining_Mark
 
 ##########################
 # LineBreak property
@@ -868,6 +884,17 @@ Let $HairComponents = [\U0001F9B0-\U0001F9B3]
 
 [\p{Emoji_Presentation} - \p{RI}] ⊂ \p{ea=W}
 
+\p{RGI_Emoji_Zwj_Sequence} ⊃ []
+\p{RGI_Emoji_Zwj_Sequence} ⊇ \p{U-1:RGI_Emoji_Zwj_Sequence}
+# Unicode Version 15.1 had no new emoji code points, but had ZWJ sequences.
+\p{U15.1:RGI_Emoji_Zwj_Sequence} ⊃ \p{U15:RGI_Emoji_Zwj_Sequence}
+\p{U15.1:Emoji} = \p{U15:Emoji}
+[\p{U15.1:RGI_Emoji_Zwj_Sequence} - \p{U15:RGI_Emoji_Zwj_Sequence}] ⊃ [{🐦‍🔥}]
+# Likewise Emoji Version 13.1
+# (which was not actually a Unicode version, so we cannot look at U13.1:Emoji).
+\p{U13.1:RGI_Emoji_Zwj_Sequence} ⊃ \p{U13:RGI_Emoji_Zwj_Sequence}
+[\p{U13.1:RGI_Emoji_Zwj_Sequence} - \p{U13:RGI_Emoji_Zwj_Sequence}] ⊃ [{😵‍💫}]
+
 ##########################
 # POSIX Compatibility Properties (UTS#18)
 # http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html
@@ -977,11 +1004,18 @@ $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 
 # Ideographic invariants
 
-Let $ideohack = [〆 〇 〡-〩]
+# The Khitan Small Script filler is a Nonspacing Mark.
+# The other characters are numerals (the Hangzhou ten through thirty are compatibility decomposable,
+# but not the one through nine) and have Script=Han.
+Let $NonOtherLetterIdeographs = [\N{KHITAN SMALL SCRIPT FILLER}  〇 〡-〩 〸-〺]
+$NonOtherLetterIdeographs = [\p{Ideographic} - \p{gc=Lo}]
+# Ideographic closing mark, gc=Lo.
+Let $CommonIdeographs = [〆]
+$CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
 
-[\p{ideographic}-\p{sc=tangut}-\p{sc=nushu}-\p{sc=Khitan_Small_Script}-\p{nfkcqc=n}-$ideohack] = \p{Unified_Ideograph}
-# 10.0 added Nushu
-# 13.0 added Khitan_Small_Script
+\p{Ideographic} = [ $NonOtherLetterIdeographs $CommonIdeographs [ \p{gc=Lo} & [\p{Script=Han} \p{Script=Tangut} \p{Script=Nushu} \p{Script=Khitan_Small_Script}] ] ]
+
+[ [\p{Ideographic}&\p{sc=Han}] - \p{nfkcqc=n} - $NonOtherLetterIdeographs ] = \p{Unified_Ideograph}
 
 Let $unihanScope = [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
 \p{Unified_Ideograph} ⊂ $unihanScope
@@ -1002,7 +1036,7 @@ Let $strokesAndRadicals = [ $cjkStrokes $kangxiRadicals $cjkRadicals ]
 Let $nonIdeographicRadicals = \N{CJK RADICAL REPEAT}
 # The following set may expand over time, if strokes are added.
 # It can also shrink, if single-stroke ideographs are encoded.
-Let $nonIdeographicStrokes = \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZWG|HZT|HZZP|HPWG|HZW|HZZZ|PG|Q|HZXG|SZP)$/}
+Let $nonIdeographicStrokes = \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZWG|HZT|HZZP|HPWG|HZW|HZZZ|PG|Q|HXG|SZP)$/}
 
 # The Equivalent_Unified_Ideograph property is applicable to CJK strokes and radicals.
 # Its value is a single unified ideograph.
@@ -1049,6 +1083,13 @@ In $japaneseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/
 # Script Extensions (mostly testing the proper handling of multivalued properties).
 \p{sc=Deva} ⊂ \p{scx=Deva}
 [\p{scx=Deva} & \p{scx=Beng}] ⊃ []
+
+# DoNotEmit.txt.
+\p{Do_Not_Emit_Type=Deprecated} ⊆ \p{Deprecated}
+\p{Deprecated} ⊆ [\p{Do_Not_Emit_Type=Deprecated} \p{Do_Not_Emit_Type=@none@}]
+# The non-DI deprecated characters have replacements in DoNotEmit, except the angle brackets that
+# are ambiguous.
+\p{Do_Not_Emit_Type=Deprecated} = [ \p{Deprecated} - \p{Default_Ignorable_Code_Point} - \p{Name=/^(LEFT|RIGHT)-POINTING ANGLE BRACKET$/} ]
 
 # Hangul Syllable Name Generation,
 # https://www.unicode.org/versions/latest/ch03.pdf#G59675.
