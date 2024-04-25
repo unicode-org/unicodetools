@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2024-04-25, 21:07:58 GMT
+# Date: 2024-04-25, 21:15:40 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -6115,7 +6115,7 @@
 1AD9          ; COMBINING SHARP SIGN
 1ADA          ; COMBINING FLAT SIGN
 1ADB          ; COMBINING DOWN TACK ABOVE
-1ADC          ; COMBINING FALLING DIAGONAL DIAERESIS
+1ADC          ; COMBINING DIAERESIS WITH RAISED LEFT DOT
 1ADD          ; COMBINING DOT-AND-RING BELOW
 1B00          ; BALINESE SIGN ULU RICEM
 1B01          ; BALINESE SIGN ULU CANDRA
