@@ -109,6 +109,13 @@ New Properties if there are).
 
 ### Running a Docker-based build
 
+Download the Last Resort font.
+
+```
+wget https://github.com/unicode-org/last-resort-font/releases/latest/download/LastResort-Regular.ttf
+mv ./LastResort-Regular.ttf ./UnicodeJsps/src/main/webapp/
+```
+
 compile java stuff
 
 - `mvn -B package -am -pl UnicodeJsps -DskipTests=true`
@@ -120,6 +127,13 @@ git clone https://github.com/unicode-org/cldr.git     --reference-if-able ~/src/
 CLDR_REF=$(mvn help:evaluate -Dexpression=cldr.version -q -DforceStdout | cut -d- -f3)
 (cd cldr ; git reset --hard ${CLDR_REF})
 mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git -f UnicodeJsps/target/cldr-unicodetools.tgz ./cldr/ ./unicodetools/
+```
+
+- Regenerate the property cache files:
+
+```
+mvn compile exec:java '-Dexec.mainClass="org.unicode.jsp.RebuildPropertyCache"' -am -pl unicodetools   "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=." "-DCLDR_DIR=<somewhere>"
+tar -cpz -f UnicodeJsps/target/generated.tgz ./Generated/
 ```
 
 Now, finally build.

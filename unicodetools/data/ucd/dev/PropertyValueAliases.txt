@@ -1,6 +1,6 @@
 # PropertyValueAliases-16.0.0.txt
-# Date: 2024-01-31
-# © 2023 Unicode®, Inc.
+# Date: 2024-03-12, 12:14:23 GMT
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -1176,6 +1176,11 @@ Lower; Y                              ; Yes                              ; T    
 
 Math; N                               ; No                               ; F                                ; False
 Math; Y                               ; Yes                              ; T                                ; True
+
+# Modifier_Combining_Mark (MCM)
+
+MCM; N                                ; No                               ; F                                ; False
+MCM; Y                                ; Yes                              ; T                                ; True
 
 # NFC_Quick_Check (NFC_QC)
 

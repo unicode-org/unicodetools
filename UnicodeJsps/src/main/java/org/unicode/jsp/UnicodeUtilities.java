@@ -95,13 +95,11 @@ public class UnicodeUtilities {
 
         HTML_RULES_CONTROLS =
                 HTML_RULES
-                        + "[[:di:]-[:cc:]-[:cs:]-[\\u200c-\\u200F]] > ; " // remove, should ignore
-                        // in rendering (but may
-                        // not be in browser)
-                        + "[[:nchar:][:cn:][:cs:][:co:][:cc:]-[:whitespace:]-[\\u200c-\\u200F]] > \\uFFFD ; "; // should be missing glyph (but may not be in browser)
-        //     + "([[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]-[\\u0020]]) >
-        // &hex/xml($1) ; "; // [\\u0080-\\U0010FFFF]
-
+                        // + "\\u0000 > \uFFFD ; "
+                        + "[\\uD800-\\uDB7F] > '<span class=\"high-surrogate\"><span>'\uFFFD'</span></span>' ; "
+                        + "[\\uDB80-\\uDBFF] > '<span class=\"private-surrogate\"><span>'\uFFFD'</span></span>' ; "
+                        + "[\\uDC00-\\uDFFF] > '<span class=\"low-surrogate\"><span>'\uFFFD'</span></span>' ; "
+                        + "([[:cn:][:co:][:cc:]-[:White_Space:]]) > '<span class=\"control\">'$1'</span>' ; ";
         toHTML =
                 Transliterator.createFromRules(
                         "any-xml", HTML_RULES_CONTROLS, Transliterator.FORWARD);
