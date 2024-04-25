@@ -39,6 +39,7 @@
 # @missing: 0000..10FFFF; Logical_Order_Exception; No
 # @missing: 0000..10FFFF; Lowercase; No
 # @missing: 0000..10FFFF; Math; No
+# @missing: 0000..10FFFF; Modifier_Combining_Mark; No
 # @missing: 0000..10FFFF; Noncharacter_Code_Point; No
 # @missing: 0000..10FFFF; Pattern_Syntax; No
 # @missing: 0000..10FFFF; Pattern_White_Space; No
@@ -96,7 +97,6 @@
 # @missing: 0000..10FFFF; kTraditionalVariant ; <none>
 
 # @missing: 0000..10FFFF; Joining_Group ; No_Joining_Group
-# @missing: 0000..10FFFF; Joining_Type ; Non_Joining
 
 # Overrides for bugs
 
@@ -124,13 +124,13 @@ idn8 ; na	 ; na
 
 # @missing: 0000..10FFFF; Idn_Mapping  ; <code point>
 
-
 # @missing: 0000..10FFFF; Identifier_Status  	; r
 
 idstatus	; r	 ; Restricted			
 idstatus	; a	 ; Allowed				
 
 # @missing: 0000..10FFFF; Identifier_Type    	; nc
+# @missing: 0000..10FFFF; Identifier_Type    	; rec ; v9.0
 
 idtype	; nc	; Not_Character ; not_chars				
 idtype	; d		; Deprecated		
@@ -162,3 +162,29 @@ sc ; Zxxx                             ; Unwritten
 
 # TODO: there is no Unicode 13.1, see https://github.com/unicode-org/unicodetools/issues/100
 age; 13.1                             ; V13_1
+
+# @missing: 0000..10FFFF; Other_Joining_Type ; Deduce_From_General_Category
+Other_Joining_Type ; C                                ; Join_Causing
+Other_Joining_Type ; D                                ; Dual_Joining
+Other_Joining_Type ; L                                ; Left_Joining
+Other_Joining_Type ; R                                ; Right_Joining
+Other_Joining_Type ; T                                ; Transparent
+Other_Joining_Type ; U                                ; Non_Joining
+Other_Joining_Type ; Deduce_From_General_Category     ; Deduce_From_General_Category
+
+# @missing: 0000..10FFFF; Do_Not_Emit_Preferred ; <none>
+
+# @missing: 0000..10FFFF; Do_Not_Emit_Type ; <none>
+Do_Not_Emit_Type ; Indic_Atomic_Consonant   ; Indic_Atomic_Consonant
+Do_Not_Emit_Type ; Indic_Consonant_Conjunct ; Indic_Consonant_Conjunct
+Do_Not_Emit_Type ; Indic_Vowel_Letter       ; Indic_Vowel_Letter
+Do_Not_Emit_Type ; Bengali_Khanda_Ta        ; Bengali_Khanda_Ta
+Do_Not_Emit_Type ; Malayalam_Chillu         ; Malayalam_Chillu
+Do_Not_Emit_Type ; Tamil_Shrii              ; Tamil_Shrii
+Do_Not_Emit_Type ; Dotless_Form             ; Dotless_Form
+Do_Not_Emit_Type ; Hamza_Form               ; Hamza_Form
+Do_Not_Emit_Type ; Precomposed_Hieroglyph   ; Precomposed_Hieroglyph
+Do_Not_Emit_Type ; Precomposed_Form         ; Precomposed_Form
+Do_Not_Emit_Type ; Deprecated               ; Deprecated
+Do_Not_Emit_Type ; Discouraged              ; Discouraged
+Do_Not_Emit_Type ; Preferred_Spelling       ; Preferred_Spelling

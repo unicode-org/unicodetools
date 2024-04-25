@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'Last Resort';
+  src: url('LastResort-Regular.ttf');
+}
 body {font-family: Georgia, "Apple Color Emoji", "Segoe UI Emoji", "Times New Roman", Times, Symbola, Aegyptus, Code2000,  Code2001,  Code2002, Musica, serif}
 td,th,table			{ padding:1px; border:1px solid #F3F3FF; vertical-align:top }
 table		{ border-collapse: collapse }
@@ -27,6 +31,34 @@ h3 {background-color: #EEEEEE}
 .L1 {background-color: #CCCCCC}
 .L0 {background-color: #C8C8C8} 
 .default           { background-color: #C8C8C8}
+.control {
+  font-family: 'Last Resort'
+}
+.high-surrogate::before, .private-surrogate::before, .low-surrogate::before {
+  content: "";
+  display: inline-block;
+  width: 1.1474609375em;
+  height: 1.08349609375em;
+  background-size: contain;
+  vertical-align: bottom;
+}
+.high-surrogate::before {
+  background-image: url('images/highsurrogate.svg');
+}
+.private-surrogate::before {
+  background-image: url('images/privatesurrogate.svg');
+}
+.low-surrogate::before {
+  background-image: url('images/lowsurrogate.svg');
+}
+.high-surrogate span, .private-surrogate span, .low-surrogate span {
+  font-size: 0;
+}
+.changed {
+  background-color: #FFFF00;
+  border-style: dotted;
+  border-width: 1px;
+}
 .propTable, .bigTable {
   margin-left: auto;
   margin-right: auto;
@@ -57,7 +89,7 @@ caption {font-size:150%; font-weight: bold; }
 
 .char {display:inline; border:1px solid #EEEEFF;}
 .redName {color:#C00}
-.charCell {text-align:center;}
+.charCell {text-align:center;white-space:nowrap;}
 .cx { 
     display: inline-block;
     width: 3em;

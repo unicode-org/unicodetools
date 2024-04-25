@@ -106,6 +106,7 @@ public final class UCD_Names implements UCD_Types {
         "IDS_Unary_Operator",
         "ID_Compat_Math_Start",
         "ID_Compat_Math_Continue",
+        "Modifier_Combining_Mark",
     };
 
     static final String[] SHORT_BP = {
@@ -151,6 +152,7 @@ public final class UCD_Names implements UCD_Types {
         "IDSU",
         "ID_Compat_Math_Start",
         "ID_Compat_Math_Continue",
+        "MCM",
     };
 
     public static final int BINARY_UNIFIED_IDEOGRAPH =
@@ -427,6 +429,7 @@ public final class UCD_Names implements UCD_Types {
         "Sidetic",
         "Tai_Yo",
         "Tolong_Siki",
+        "Beria_Erfe",
     };
 
     public static final Relation<String, String> EXTRA_SCRIPT =
@@ -624,6 +627,7 @@ public final class UCD_Names implements UCD_Types {
         "Sidt",
         "Tayo",
         "Tols",
+        "Qaba", // Beria Erfe
     };
 
     static final String[] SHORT_AGE = {

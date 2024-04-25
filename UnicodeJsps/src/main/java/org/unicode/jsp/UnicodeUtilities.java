@@ -17,6 +17,7 @@ import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedReader;
@@ -49,8 +50,10 @@ import org.unicode.idna.Idna2008;
 import org.unicode.idna.IdnaTypes;
 import org.unicode.idna.Punycode;
 import org.unicode.idna.Uts46;
+import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.text.utility.Settings;
 
 // For dependency management, it might be useful to split this omnibus class into
 // pieces by topic, such as collation utilities vs. IDNA utilities etc.
@@ -67,10 +70,6 @@ public class UnicodeUtilities {
                     .addAll(new UnicodeSet("[:Cc:]"))
                     .removeAll(new UnicodeSet("[:whitespace:]"))
                     .freeze();
-
-    static {
-        CachedProps cp = CachedProps.CACHED_PROPS; // force load
-    }
 
     private static Subheader subheader = null;
 
@@ -96,13 +95,11 @@ public class UnicodeUtilities {
 
         HTML_RULES_CONTROLS =
                 HTML_RULES
-                        + "[[:di:]-[:cc:]-[:cs:]-[\\u200c-\\u200F]] > ; " // remove, should ignore
-                        // in rendering (but may
-                        // not be in browser)
-                        + "[[:nchar:][:cn:][:cs:][:co:][:cc:]-[:whitespace:]-[\\u200c-\\u200F]] > \\uFFFD ; "; // should be missing glyph (but may not be in browser)
-        //     + "([[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]-[\\u0020]]) >
-        // &hex/xml($1) ; "; // [\\u0080-\\U0010FFFF]
-
+                        // + "\\u0000 > \uFFFD ; "
+                        + "[\\uD800-\\uDB7F] > '<span class=\"high-surrogate\"><span>'\uFFFD'</span></span>' ; "
+                        + "[\\uDB80-\\uDBFF] > '<span class=\"private-surrogate\"><span>'\uFFFD'</span></span>' ; "
+                        + "[\\uDC00-\\uDFFF] > '<span class=\"low-surrogate\"><span>'\uFFFD'</span></span>' ; "
+                        + "([[:cn:][:co:][:cc:]-[:White_Space:]]) > '<span class=\"control\">'$1'</span>' ; ";
         toHTML =
                 Transliterator.createFromRules(
                         "any-xml", HTML_RULES_CONTROLS, Transliterator.FORWARD);
@@ -272,8 +269,6 @@ public class UnicodeUtilities {
         return true;
     }
 
-    static final int BLOCK_ENUM = UCharacter.getPropertyEnum("block");
-
     static XPropertyFactory getFactory() {
         return XPropertyFactory.make();
     }
@@ -285,10 +280,14 @@ public class UnicodeUtilities {
         numberFormat.setGroupingUsed(true);
     }
 
-    public static void showSetMain(UnicodeSet a, CodePointShower codePointShower, Appendable out)
+    public static void showSetMain(
+            UnicodeSet a,
+            boolean showDevProperties,
+            CodePointShower codePointShower,
+            Appendable out)
             throws IOException {
         if (codePointShower.groupingProps.isEmpty()) {
-            showSet(a, codePointShower, out);
+            showSet(a, showDevProperties, codePointShower, out);
             return;
         }
 
@@ -329,7 +328,7 @@ public class UnicodeUtilities {
                                         : "</div>")
                                 + "</h2><blockquote>\n");
             }
-            showSet(items, codePointShower, out);
+            showSet(items, showDevProperties, codePointShower, out);
             for (int i = 0; i < propsOld.length; ++i) {
                 propsOld[i] = props2[i];
             }
@@ -355,8 +354,7 @@ public class UnicodeUtilities {
     public static String getStringProperties(
             UnicodeProperty prop, String s, String separator, boolean getShortest) {
         // check for single code point, later
-        if (prop instanceof UnicodeMapProperty
-                || prop instanceof CachedProps.DelayedUnicodeProperty) {
+        if (prop instanceof UnicodeMapProperty) {
             Object value = prop.getUnicodeMap().get(s);
             if (value != null) {
                 return (String) value;
@@ -382,7 +380,10 @@ public class UnicodeUtilities {
 
     /*jsp*/
     public static void showSet(
-            UnicodeSet inputSetRaw, CodePointShower codePointShower, Appendable out)
+            UnicodeSet inputSetRaw,
+            boolean showDevProperties,
+            CodePointShower codePointShower,
+            Appendable out)
             throws IOException {
         if (codePointShower.doTable) {
             out.append("<table width='100%'>");
@@ -401,12 +402,21 @@ public class UnicodeUtilities {
             LinkedHashMap<String, UnicodeSet> items = new LinkedHashMap<String, UnicodeSet>();
             String specials = "Unassigned, Private use, or Surrogates";
 
-            UnicodeSet specialSet =
-                    new UnicodeSet(inputSetRaw).retainAll(UnicodeProperty.getSPECIALS());
+            var specialsForDisplay = UnicodeProperty.getSPECIALS();
+            if (!showDevProperties) {
+                // UnicodeProperty uses the freshest (smallest) set of unassigned code points; if we
+                // are not showing the corresponding block and character names, put the
+                // newly-assigned characters in the unassigned pile for display.
+                specialsForDisplay = specialsForDisplay.cloneAsThawed();
+                getFactory()
+                        .getProperty("General_Category")
+                        .getSet("Unassigned", specialsForDisplay);
+            }
+            UnicodeSet specialSet = new UnicodeSet(inputSetRaw).retainAll(specialsForDisplay);
             UnicodeSet inputSet =
                     specialSet.size() == 0
                             ? inputSetRaw
-                            : new UnicodeSet(inputSetRaw).removeAll(UnicodeProperty.getSPECIALS());
+                            : new UnicodeSet(inputSetRaw).removeAll(specialsForDisplay);
             if (specialSet.size() != 0) {
                 items.put(specials, specialSet);
             }
@@ -418,16 +428,24 @@ public class UnicodeUtilities {
                     if (set == null) items.put(newBlock, set = new UnicodeSet());
                     set.add(it.string);
                 } else {
-                    String block =
-                            UCharacter.getStringPropertyValue(
-                                            BLOCK_ENUM, s, UProperty.NameChoice.LONG)
-                                    .replace('_', ' ');
+                    String devBlock =
+                            getFactory().getProperty("Udev:Block").getValue(s).replace('_', ' ');
+                    String block = getFactory().getProperty("Block").getValue(s).replace('_', ' ');
                     String newBlock =
-                            "<a href='list-unicodeset.jsp?a=\\p{Block="
-                                    + block
-                                    + "}'>"
-                                    + block
-                                    + "</a>";
+                            showDevProperties && !devBlock.equals(block)
+                                    ? "<a class='changed' href='list-unicodeset.jsp?a=\\p{U"
+                                            + Settings.latestVersion
+                                            + Settings.latestVersionPhase
+                                            + ":Block="
+                                            + devBlock
+                                            + "}'>"
+                                            + devBlock
+                                            + "</a>"
+                                    : "<a href='list-unicodeset.jsp?a=\\p{Block="
+                                            + block
+                                            + "}'>"
+                                            + block
+                                            + "</a>";
                     String newSubhead = getSubheader().getSubheader(s);
                     if (newSubhead == null) {
                         newSubhead = "<u>no subhead</u>";
@@ -486,7 +504,7 @@ public class UnicodeUtilities {
         }
     }
 
-    public static String getIdentifier(String script) {
+    public static String getIdentifier(String script, boolean showDevProperties) {
         StringBuilder result = new StringBuilder();
         UnicodeProperty scriptProp = getFactory().getProperty("sc");
         UnicodeSet scriptSet;
@@ -529,7 +547,11 @@ public class UnicodeUtilities {
             if (allowed.size() == 0) {
                 result.append("<i>none</i>");
             } else {
-                showSet(allowed, new CodePointShower("", "", true, false, false), result);
+                showSet(
+                        allowed,
+                        showDevProperties,
+                        new CodePointShower("", "", showDevProperties, true, false, false),
+                        result);
             }
 
             if (restricted.size() == 0) {
@@ -547,7 +569,9 @@ public class UnicodeUtilities {
                                         + "</span></h2>");
                         showSet(
                                 items,
-                                new CodePointShower("", "", true, false, false).setRestricted(true),
+                                showDevProperties,
+                                new CodePointShower("", "", showDevProperties, true, false, false)
+                                        .setRestricted(true),
                                 result);
                     }
                 }
@@ -588,6 +612,7 @@ public class UnicodeUtilities {
     static class CodePointShower {
 
         public final boolean doTable;
+        public final boolean showDevProperties;
         public final boolean abbreviate;
         public final boolean ucdFormat;
         public final boolean collate;
@@ -604,12 +629,14 @@ public class UnicodeUtilities {
         public CodePointShower(
                 String grouping,
                 String info,
+                boolean showDevProperties,
                 boolean abbreviate,
                 boolean ucdFormat,
                 boolean collate) {
             this.groupingProps = getProps(grouping);
             this.infoProps = getProps(info);
             this.doTable = true; // !infoProps.isEmpty();
+            this.showDevProperties = showDevProperties;
             this.abbreviate = abbreviate;
             this.ucdFormat = ucdFormat;
             this.collate = collate;
@@ -637,7 +664,8 @@ public class UnicodeUtilities {
             if (UnicodeUtilities.RTL.containsSome(literal)) {
                 literal = '\u200E' + literal + '\u200E';
             }
-            String name = UnicodeUtilities.getName(string, separator, false, false);
+            String name =
+                    UnicodeUtilities.getName(string, separator, showDevProperties, false, false);
             literal = UnicodeSetUtilities.addEmojiVariation(literal);
             if (doTable) {
                 out.append(
@@ -793,7 +821,11 @@ public class UnicodeUtilities {
     }
 
     private static String getName(
-            String string, String separator, boolean andCode, boolean plainText) {
+            String string,
+            String separator,
+            boolean showDevProperties,
+            boolean andCode,
+            boolean plainText) {
         StringBuilder result = new StringBuilder();
         int cp;
         for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
@@ -804,23 +836,28 @@ public class UnicodeUtilities {
             if (andCode) {
                 result.append("U+").append(com.ibm.icu.impl.Utility.hex(cp, 4)).append(' ');
             }
-            final String name = CachedProps.NAMES.getValue(cp);
+            final String devName =
+                    showDevProperties ? getFactory().getProperty("Udev:Name").getValue(cp) : null;
+            final String name = getFactory().getProperty("Name").getValue(cp);
             if (name != null) {
                 result.append(name);
             } else {
-                // TODO(egg): We only have Name_Aliasβ during β, which is silly.  This will probably
-                // solve itself as part of https://github.com/unicode-org/unicodetools/issues/432.
-                String alias =
-                        getFactory()
-                                .getProperty(CachedProps.IS_BETA ? "Name_Aliasβ" : "Name_Alias")
-                                .getValue(cp);
-                if (alias == null) {
-                    alias = "no name";
-                }
-                if (plainText) {
-                    result.append("(" + alias + ")");
+                if (devName != null) {
+                    if (plainText) {
+                        result.append("{" + devName + "}");
+                    } else {
+                        result.append("<span class='changed'>" + devName + "</span>");
+                    }
                 } else {
-                    result.append("<i>" + alias + "</i>");
+                    String alias = getFactory().getProperty("Name_Alias").getValue(cp);
+                    if (alias == null) {
+                        alias = "no name";
+                    }
+                    if (plainText) {
+                        result.append("(" + alias + ")");
+                    } else {
+                        result.append("<i>" + alias + "</i>");
+                    }
                 }
             }
         }
@@ -1316,22 +1353,44 @@ public class UnicodeUtilities {
     //        ((RuleBasedCollator) col).setNumericCollation(true);
     //    }
 
-    public static void showProperties(int cp, Appendable out) throws IOException {
+    private static String getScriptCat(String versionPrefix, int cp) {
+        String scriptCat =
+                getFactory().getProperty(versionPrefix + "script").getValue(cp).replace("_", " ");
+        if (scriptCat.equals("Common") || scriptCat.equals("Inherited")) {
+            scriptCat =
+                    getFactory().getProperty(versionPrefix + "gc").getValue(cp).replace("_", " ");
+        } else {
+            scriptCat += " Script";
+        }
+        return scriptCat;
+    }
+
+    public static void showProperties(
+            int cp, String history, boolean showDevProperties, Appendable out) throws IOException {
         String text = UTF16.valueOf(cp);
 
         String name = getFactory().getProperty("Name").getValue(cp);
-        if (name != null) {
-            name = toHTML.transliterate(name);
+        final String devName =
+                showDevProperties ? getFactory().getProperty("Udev:Name").getValue(cp) : null;
+        if (name == null) {
+            if (devName != null) {
+                name = "<span class='changed'>" + toHTML.transliterate(devName) + "</span>";
+            } else {
+                name = "<i>Unknown</i>";
+            }
         } else {
-            name = "<i>Unknown</i>";
+            name = toHTML.transliterate(name);
         }
         boolean allowed = XIDModifications.isAllowed(cp);
 
-        String scriptCat = getFactory().getProperty("script").getValue(cp).replace("_", " ");
-        if (scriptCat.equals("Common") || scriptCat.equals("Inherited")) {
-            scriptCat = getFactory().getProperty("gc").getValue(cp).replace("_", " ");
-        } else {
-            scriptCat += " Script";
+        String scriptCat = getScriptCat("", cp);
+        if (showDevProperties) {
+            String devScriptCat = getScriptCat("Udev:", cp);
+            if (!devScriptCat.equals(scriptCat)) {
+                // The old and new script and GC will be given below; only show the new one here,
+                // but highlighted.
+                scriptCat = "<span class='changed'>" + devScriptCat + "</span>";
+            }
         }
 
         String hex = com.ibm.icu.impl.Utility.hex(cp, 4);
@@ -1369,23 +1428,48 @@ public class UnicodeUtilities {
         TreeSet<String> sortedProps =
                 Builder.with(new TreeSet<String>(col)).addAll(availableNames).remove("Name").get();
 
+        String kRSUnicode = getFactory().getProperty("kRSUnicode").getValue(cp);
+        boolean isUnihan = kRSUnicode != null;
+
+        Age_Values age = Age_Values.forName(getFactory().getProperty("Age").getValue(cp));
+        VersionInfo minVersion =
+                history.equals("assigned") && age != Age_Values.Unassigned
+                        ? VersionInfo.getInstance(age.getShortName())
+                        : history.equals("full")
+                                ? VersionInfo.getInstance(Age_Values.V1_1.getShortName())
+                                : Settings.LAST_VERSION_INFO;
+        if (minVersion.compareTo(UcdLoader.getOldestLoadedUcd()) < 0) {
+            minVersion = UcdLoader.getOldestLoadedUcd();
+            out.append(
+                    "<p class='changed'>Still loading UCD versions before "
+                            + minVersion.getVersionString(2, 4)
+                            + "</p>");
+        }
+
         out.append(
                 "<table class='propTable'>"
-                        + "<caption>Properties for U+"
+                        + "<caption>"
+                        + (isUnihan ? "non-Unihan properties for U+" : "Properties for U+")
                         + hex
                         + "</caption>"
                         + "<tr><th>With Non-Default Values</th><th>With Default Values</th></tr>"
                         + "<tr><td width='50%'>\n");
         out.append("<table width='100%'>\n");
 
+        List<String> unihanProperties = new ArrayList<>();
+        VersionInfo maxVersion =
+                showDevProperties ? Settings.LATEST_VERSION_INFO : Settings.LAST_VERSION_INFO;
         for (String propName : sortedProps) {
             UnicodeProperty prop = getFactory().getProperty(propName);
             if (prop.getName().equals("confusable")) continue;
+            if (prop.getFirstNameAlias().startsWith("cjk")) {
+                unihanProperties.add(propName);
+                continue;
+            }
 
             boolean isDefault = prop.isDefault(cp);
             if (isDefault) continue;
-            String propValue = prop.getValue(cp);
-            showPropertyValue(propName, propValue, isDefault, out);
+            showPropertyValue(propName, cp, minVersion, maxVersion, isDefault, out);
         }
         out.append("</table>\n");
 
@@ -1395,15 +1479,38 @@ public class UnicodeUtilities {
         for (String propName : sortedProps) {
             UnicodeProperty prop = getFactory().getProperty(propName);
             if (prop.getName().equals("confusable")) continue;
+            if (prop.getFirstNameAlias().startsWith("cjk")) {
+                continue;
+            }
 
             boolean isDefault = prop.isDefault(cp);
             if (!isDefault) continue;
-            String propValue = prop.getValue(cp);
-            showPropertyValue(propName, propValue, isDefault, out);
+            showPropertyValue(propName, cp, minVersion, maxVersion, isDefault, out);
         }
         out.append("</table>\n");
 
         out.append("</td></tr></table>\n");
+        if (isUnihan) {
+            out.append(
+                    "<table class='propTable'>"
+                            + "<caption>"
+                            + "Unihan properties for U+"
+                            + hex
+                            + "</caption>"
+                            + "<tr><td width='50%'>\n");
+            out.append("<table width='100%'>\n");
+            for (int i = 0; i < unihanProperties.size() / 2; ++i) {
+                showPropertyValue(unihanProperties.get(i), cp, minVersion, maxVersion, false, out);
+            }
+            out.append("</table>\n");
+            out.append("</td><td width='50%'>\n");
+            out.append("<table width='100%'>\n");
+            for (int i = unihanProperties.size() / 2; i < unihanProperties.size(); ++i) {
+                showPropertyValue(unihanProperties.get(i), cp, minVersion, maxVersion, false, out);
+            }
+            out.append("</table>\n");
+            out.append("</td></tr></table>\n");
+        }
     }
 
     private static StringBuilder displayConfusables(int codepoint) {
@@ -1527,32 +1634,69 @@ public class UnicodeUtilities {
     }
 
     private static void showPropertyValue(
-            String propName, String propValue, boolean isDefault, Appendable out)
+            String propName,
+            int codePoint,
+            VersionInfo minVersion,
+            VersionInfo maxVersion,
+            boolean isDefault,
+            Appendable out)
             throws IOException {
         String defaultClass = isDefault ? " class='default'" : "";
-        if (propValue == null) {
-            out.append(
-                    "<tr><th><a target='c' href='properties.jsp?a="
-                            + propName
-                            + "#"
-                            + propName
-                            + "'>"
-                            + propName
-                            + "</a></th><td"
-                            + defaultClass
-                            + "><i>null</i></td></tr>\n");
-            return;
+        class PropertyAssignment {
+            VersionInfo first;
+            VersionInfo last;
+            String value;
         }
-        String hValue = toHTML.transliterate(propValue);
-        hValue =
-                "<a target='u' href='list-unicodeset.jsp?a=[:"
-                        + propName
-                        + "="
-                        + propValue
-                        + ":]'>"
-                        + hValue
-                        + "</a>";
-
+        List<PropertyAssignment> history = new ArrayList<>();
+        // TODO(eggrobin): TUP normalization chokes on sufficiently old versions, but this is not
+        // worth debugging as we want to get rid of it.
+        if (!propName.startsWith("toNF")) {
+            for (var a : Age_Values.values()) {
+                if (a == Age_Values.Unassigned) {
+                    break;
+                }
+                var version = VersionInfo.getInstance(a.getShortName());
+                if (version.compareTo(minVersion) < 0) {
+                    continue;
+                }
+                if (version.compareTo(maxVersion) > 0) {
+                    break;
+                }
+                String versionPrefix =
+                        version == Settings.LATEST_VERSION_INFO
+                                ? "dev"
+                                : version.getVersionString(3, 3);
+                UnicodeProperty property = null;
+                try {
+                    property = getFactory().getProperty("U" + versionPrefix + ":" + propName);
+                } catch (ICUException e) {
+                }
+                if (property == null) {
+                    continue;
+                }
+                String value = property.getValue(codePoint);
+                PropertyAssignment lastAssignment =
+                        history.isEmpty() ? null : history.get(history.size() - 1);
+                if (lastAssignment == null
+                        || (value != null && !value.equals(lastAssignment.value))
+                        || (value == null && lastAssignment.value != null)) {
+                    PropertyAssignment assignment = new PropertyAssignment();
+                    assignment.first = version;
+                    assignment.last = version;
+                    assignment.value = value;
+                    history.add(assignment);
+                } else {
+                    lastAssignment.last = version;
+                }
+            }
+        }
+        if (history.isEmpty()) {
+            var current = new PropertyAssignment();
+            current.first = Settings.LAST_VERSION_INFO;
+            current.last = Settings.LAST_VERSION_INFO;
+            current.value = getFactory().getProperty(propName).getValue(codePoint);
+            history.add(current);
+        }
         out.append(
                 "<tr><th><a target='c' href='properties.jsp?a="
                         + propName
@@ -1560,11 +1704,47 @@ public class UnicodeUtilities {
                         + propName
                         + "'>"
                         + propName
-                        + "</a></th><td"
-                        + defaultClass
-                        + ">"
-                        + hValue
-                        + "</td></tr>\n");
+                        + "</a></th>");
+        for (PropertyAssignment assignment : history) {
+            String first =
+                    assignment.first.getVersionString(2, 4)
+                            + (assignment.first == Settings.LATEST_VERSION_INFO
+                                    ? Settings.latestVersionPhase.toString()
+                                    : "");
+            String last =
+                    assignment.last.getVersionString(2, 4)
+                            + (assignment.last == Settings.LATEST_VERSION_INFO
+                                    ? Settings.latestVersionPhase.toString()
+                                    : "");
+            boolean isCurrent =
+                    assignment.first.compareTo(Settings.LAST_VERSION_INFO) <= 0
+                            && Settings.LAST_VERSION_INFO.compareTo(assignment.last) <= 0;
+            boolean showVersion = !isCurrent || history.size() != 1;
+            boolean isSingleVersion = assignment.first == assignment.last;
+            boolean isNew = assignment.first == Settings.LATEST_VERSION_INFO;
+            String versionRange =
+                    (showVersion ? (isSingleVersion ? first : first + ".." + last) + ": " : "");
+            if (assignment.value == null) {
+                out.append("<td" + defaultClass + ">" + versionRange + "<i>null</i></td>");
+            } else {
+                String hValue = toHTML.transliterate(assignment.value);
+                out.append(
+                        "<td"
+                                + defaultClass
+                                + "><a target='u' "
+                                + (isNew ? "class='changed' " : "")
+                                + "href='list-unicodeset.jsp?a=[:"
+                                + (isCurrent ? "" : "U" + last + ":")
+                                + propName
+                                + "="
+                                + hValue
+                                + ":]'>"
+                                + versionRange
+                                + hValue
+                                + "</a></td>");
+            }
+        }
+        out.append("</tr>");
     }
 
     /*jsp*/
@@ -1941,7 +2121,7 @@ public class UnicodeUtilities {
         writer.println("</tr><tr><th>Character</th>");
         for (int i = 0; i < str.length(); ++i) {
             final String s = str.substring(i, i + 1);
-            String title = toHTML.transform(getName(s, "", true, true));
+            String title = toHTML.transform(getName(s, "", false, true, true));
             writer.println(
                     "<td class='bccell' title='"
                             + title
@@ -1992,7 +2172,7 @@ public class UnicodeUtilities {
             String title =
                     bidiChar.length() == 0
                             ? "deleted"
-                            : toHTML.transform(getName(bidiChar, "", true, true));
+                            : toHTML.transform(getName(bidiChar, "", false, true, true));
             String td = bidiChar.length() == 0 ? "bxcell" : "bccell";
             writer.println(
                     "<td class='"

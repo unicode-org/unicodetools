@@ -669,6 +669,8 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.MALAYALAM_SCRIPT).wholeByte().twoBytePrimaries();
         // Sinhala shares its lead byte with minor scripts.
         setOptionsForScript(UCD_Types.SINHALA_SCRIPT).newByte().twoBytePrimaries();
+        // Minor script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.Newa).newByte();
         // Recommended Script.
         setOptionsForScript(UCD_Types.THAI_SCRIPT).wholeByte().twoBytePrimaries();
         // Recommended Script.
@@ -713,11 +715,11 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.Vithkuqi).noTwoBytePrimariesIfVariants();
         // Extinct script, use three-byte primaries for the few characters with variants.
         setOptionsForScript(UCD_Types.Elymaic).noTwoBytePrimariesIfVariants();
-        // Minor script, avoid lead byte overflow.
-        setOptionsForScript(UCD_Types.Egyptian_Hieroglyphs).newByte();
+        // Large Excluded Script, minimal gaps.
+        setOptionsForScript(UCD_Types.Egyptian_Hieroglyphs).newByte().minimalGap3();
         // Register the scripts as aliases.
         setOptionsForScripts(UCD_Types.Meroitic_Cursive, UCD_Types.Meroitic_Hieroglyphs);
-        // Larged Excluded Script, minimal gaps.
+        // Large Excluded Script, minimal gaps.
         setOptionsForScripts(UCD_Types.Tangut).minimalGap3();
         // Han uses many lead bytes, so that tailoring tens of thousands of characters
         // can use many two-byte primaries.

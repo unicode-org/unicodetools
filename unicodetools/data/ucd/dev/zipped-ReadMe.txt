@@ -12,7 +12,7 @@
 #
 # The UAXes and UTS #51 can be accessed at https://www.unicode.org/versions/UnicodeUNI_VER/
 
-This directory contains zipped versions of the final data files
+This directory contains zipped versions of the PUB_STATUS data files
 for Version UNI_VER of the Unicode Standard.
 
 Unihan.zip contains the data files for the Unihan Database.
@@ -22,4 +22,4 @@ UCD.zip contains the collection of all other UCD data files
 
 The unzipped collection of UCD data files for Version UNI_VER are posted in:
 
-https://www.unicode.org/Public/UNI_VER/ucd/
+https://www.unicode.org/PUBLIC_UCD/ucd/

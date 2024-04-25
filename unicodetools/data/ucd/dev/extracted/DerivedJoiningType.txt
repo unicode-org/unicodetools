@@ -1,6 +1,6 @@
 # DerivedJoiningType-16.0.0.txt
-# Date: 2023-12-18, 16:59:33 GMT
-# © 2023 Unicode®, Inc.
+# Date: 2024-04-25, 21:07:56 GMT
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
