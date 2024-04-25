@@ -39,6 +39,7 @@
 02CD          ; Latn Lisu                      # Lm      MODIFIER LETTER LOW MACRON
 02D7          ; Latn Thai                      # Sk      MODIFIER LETTER MINUS SIGN
 02D9          ; Bopo Latn                      # Sk      DOT ABOVE
+0300          ; Cher Copt Cyrl Grek Latn Perm Sunu Tale #Mn COMBINING GRAVE ACCENT
 0301          ; Cher Cyrl Grek Latn Osge Sunu Tale Todr #Mn COMBINING ACUTE ACCENT
 0302          ; Cher Cyrl Latn Tfng            # Mn      COMBINING CIRCUMFLEX ACCENT
 0303          ; Glag Latn Sunu Syrc Thai       # Mn      COMBINING TILDE
@@ -46,6 +47,7 @@
 0305          ; Copt Elba Glag Goth Kana Latn  # Mn      COMBINING OVERLINE
 0306          ; Cyrl Grek Latn Perm            # Mn      COMBINING BREVE
 0307          ; Copt Hebr Latn Perm Syrc Tale Tfng Todr #Mn COMBINING DOT ABOVE
+0308          ; Armn Cyrl Goth Grek Hebr Latn Perm Syrc Tale #Mn COMBINING DIAERESIS
 0309          ; Latn Tfng                      # Mn      COMBINING HOOK ABOVE
 030A          ; Latn Syrc                      # Mn      COMBINING RING ABOVE
 030B          ; Cher Cyrl Latn Osge            # Mn      COMBINING DOUBLE ACUTE ACCENT
