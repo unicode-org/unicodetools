@@ -132,7 +132,7 @@
 1CF8..1CF9    ; Deva Gran                      # Mn  [2] VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
 1CFA          ; Nand                           # Lo      VEDIC SIGN DOUBLE ANUSVARA ANTARGOMUKHA
 1DC0..1DC1    ; Grek                           # Mn  [2] COMBINING DOTTED GRAVE ACCENT..COMBINING DOTTED ACUTE ACCENT
-1DF8          ; Cyrl Syrc                      # Mn      COMBINING DOT ABOVE LEFT
+1DF8          ; Cyrl Latn Syrc                 # Mn      COMBINING DOT ABOVE LEFT
 1DFA          ; Syrc                           # Mn      COMBINING DOT BELOW LEFT
 202F          ; Latn Mong Phag                 # Zs      NARROW NO-BREAK SPACE
 204F          ; Adlm Arab                      # Po      REVERSED SEMICOLON
