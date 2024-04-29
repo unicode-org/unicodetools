@@ -1,12 +1,18 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 16.0.0
 @@@+	NamesList-16.0.0.txt
-@+	Generation Date: 2024-04-24, 09:09:06 GMT
+@+	Generation Date: 2024-04-26, 11:55:14 GMT
 	Unicode 16.0.0 names list.
-	Repertoire synched with UnicodeData-16.0.0d14.txt.
+	Repertoire synched with UnicodeData-16.0.0d16.txt.
 	Pre-beta rollup of various fixes.
 	Add xref between 131A6 and 13DEE.
 	Add xrefs between 01C3, A71D, 107B9.
+	Added xrefs from 1DF0A to A71D and 107B9.
+	Added formal aliases and annotation for 1E899, 1E89A
+	Removed unneeded subheads for two postponed archaic SHRII characters.
+	Added formal alias for 12327.
+	Added xrefs between 050F and 1C8A.
+	Added an annotation about Amerindian orthographic use for 00B7.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -735,6 +741,7 @@
 	= Georgian comma
 	= Greek middle dot (ano teleia)
 	* also used as a raised decimal point or to denote multiplication; for multiplication 22C5 is preferred
+	* used as a vowel length mark (part of words) in many Amerindian orthographies
 	x (full stop - 002E)
 	x (dot above - 02D9)
 	x (greek ano teleia - 0387)
@@ -3689,7 +3696,6 @@
 04FF	CYRILLIC SMALL LETTER HA WITH STROKE
 @@	0500	Cyrillic Supplement	052F
 @		Komi letters
-@+		These letters are for the obsolete Molodtsov alphabet, used in the 1920s.
 0500	CYRILLIC CAPITAL LETTER KOMI DE
 0501	CYRILLIC SMALL LETTER KOMI DE
 0502	CYRILLIC CAPITAL LETTER KOMI DJE
@@ -3706,6 +3712,8 @@
 050D	CYRILLIC SMALL LETTER KOMI SJE
 050E	CYRILLIC CAPITAL LETTER KOMI TJE
 050F	CYRILLIC SMALL LETTER KOMI TJE
+	x (cyrillic small letter tje - 1C8A)
+@+		These letters are for the obsolete Molodtsov alphabet, used in the 1920s.
 @		Khanty letters
 0510	CYRILLIC CAPITAL LETTER REVERSED ZE
 0511	CYRILLIC SMALL LETTER REVERSED ZE
@@ -6253,8 +6261,6 @@
 0C59	TELUGU LETTER DZA
 0C5A	TELUGU LETTER RRRA
 	* letter for an alveolar consonant whose exact phonetic value is not known
-@		Historic syllable
-0C5C	TELUGU ARCHAIC SHRII
 @		Consonant
 0C5D	TELUGU LETTER NAKAARA POLLU
 	* vowelless form of na
@@ -6389,8 +6395,6 @@
 @		Various signs
 0CD5	KANNADA LENGTH MARK
 0CD6	KANNADA AI LENGTH MARK
-@		Historic syllable
-0CDC	KANNADA ARCHAIC SHRII
 @		Additional consonants
 0CDD	KANNADA LETTER NAKAARA POLLU
 	* vowelless form of na
@@ -11269,6 +11273,7 @@
 @		Khanty letters
 1C89	CYRILLIC CAPITAL LETTER TJE
 1C8A	CYRILLIC SMALL LETTER TJE
+	x (cyrillic small letter komi tje - 050F)
 @@	1C90	Georgian Extended	1CBF
 @		Capital letters (Mtavruli)
 @+		This is the special uppercase of the modern secular alphabet. Modern Georgian orthography uses these letters to emphasize words and phrases analogously to Latin "all caps" style. See the Georgian block for lowercase Mkhedruli.
@@ -37503,6 +37508,7 @@ FFFF	<not a character>
 12325	CUNEIFORM SIGN UMUM TIMES PA
 12326	CUNEIFORM SIGN UN
 12327	CUNEIFORM SIGN UN GUNU
+	% CUNEIFORM SIGN KALAM
 12328	CUNEIFORM SIGN UR
 12329	CUNEIFORM SIGN UR CROSSING UR
 1232A	CUNEIFORM SIGN UR SHESHIG
@@ -58449,6 +58455,8 @@ FFFF	<not a character>
 1DF09	LATIN SMALL LETTER T WITH HOOK AND RETROFLEX HOOK
 	x (latin small letter t with hook - 01AD)
 1DF0A	LATIN LETTER RETROFLEX CLICK WITH RETROFLEX HOOK
+	x (modifier letter raised exclamation mark - A71D)
+	x (modifier letter retroflex click with retroflex hook - 107B9)
 @		Clicks
 1DF0B	LATIN SMALL LETTER ESH WITH DOUBLE BAR
 	x (integral with double stroke - 2A0E)
@@ -59233,7 +59241,10 @@ FFFF	<not a character>
 1E897	MENDE KIKAKUI SYLLABLE M188 MBEE
 1E898	MENDE KIKAKUI SYLLABLE M072 MBE
 1E899	MENDE KIKAKUI SYLLABLE M172 MBOO
+	% MENDE KIKAKUI SYLLABLE M172 MBO
+	* this and the following character had swapped transliterations of the vowels in their names
 1E89A	MENDE KIKAKUI SYLLABLE M174 MBO
+	% MENDE KIKAKUI SYLLABLE M174 MBOO
 1E89B	MENDE KIKAKUI SYLLABLE M187 MBUU
 1E89C	MENDE KIKAKUI SYLLABLE M161 LONG MBE
 1E89D	MENDE KIKAKUI SYLLABLE M105 LONG MBOO
