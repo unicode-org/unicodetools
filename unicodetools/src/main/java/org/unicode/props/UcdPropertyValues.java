@@ -679,6 +679,47 @@ public class UcdPropertyValues {
         }
     }
 
+    // Do_Not_Emit_Preferred
+    public enum Do_Not_Emit_Type_Values implements Named {
+        Indic_Atomic_Consonant("Indic_Atomic_Consonant"),
+        Indic_Consonant_Conjunct("Indic_Consonant_Conjunct"),
+        Indic_Vowel_Letter("Indic_Vowel_Letter"),
+        Bengali_Khanda_Ta("Bengali_Khanda_Ta"),
+        Malayalam_Chillu("Malayalam_Chillu"),
+        Tamil_Shrii("Tamil_Shrii"),
+        Dotless_Form("Dotless_Form"),
+        Hamza_Form("Hamza_Form"),
+        Precomposed_Hieroglyph("Precomposed_Hieroglyph"),
+        Precomposed_Form("Precomposed_Form"),
+        Deprecated("Deprecated"),
+        Discouraged("Discouraged"),
+        Preferred_Spelling("Preferred_Spelling");
+        private final PropertyNames<Do_Not_Emit_Type_Values> names;
+
+        private Do_Not_Emit_Type_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Do_Not_Emit_Type_Values>(
+                            Do_Not_Emit_Type_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Do_Not_Emit_Type_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Do_Not_Emit_Type_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Do_Not_Emit_Type_Values.class);
+
+        public static Do_Not_Emit_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     public enum East_Asian_Width_Values implements Named {
         Ambiguous("A"),
         Fullwidth("F"),
@@ -1377,6 +1418,7 @@ public class UcdPropertyValues {
     }
 
     // kAccountingNumeric
+    // kAlternateTotalStrokes
     // kBigFive
     // kCangjie
     // kCantonese
@@ -1391,6 +1433,7 @@ public class UcdPropertyValues {
     // kDaeJaweon
     // kDefinition
     // kEACC
+    // kFanqie
     // kFenn
     // kFennIndex
     // kFourCornerCode
@@ -1428,6 +1471,7 @@ public class UcdPropertyValues {
     // kIRGHanyuDaZidian
     // kIRGKangXi
     // kJa
+    // kJapanese
     // kJapaneseKun
     // kJapaneseOn
     // kJinmeiyoKanji
@@ -1449,6 +1493,7 @@ public class UcdPropertyValues {
     // kMandarin
     // kMatthews
     // kMeyerWempe
+    // kMojiJoho
     // kMorohashi
     // kNelson
     // kOtherNumeric
@@ -1464,8 +1509,11 @@ public class UcdPropertyValues {
     // kSBGY
     // kSemanticVariant
     // kSimplifiedVariant
+    // kSMSZD2003Index
+    // kSMSZD2003Readings
     // kSpecializedSemanticVariant
     // kSpoofingVariant
+    // kStrange
     // kTaiwanTelegraph
     // kTang
     // kTGH
@@ -1474,8 +1522,10 @@ public class UcdPropertyValues {
     // kTraditionalVariant
     // kUnihanCore2020
     // kVietnamese
+    // kVietnameseNumeric
     // kXerox
     // kXHC1983
+    // kZhuangNumeric
     // kZVariant
     public enum Line_Break_Values implements Named {
         Ambiguous("AI"),

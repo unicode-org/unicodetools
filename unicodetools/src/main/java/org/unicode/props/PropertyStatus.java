@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import org.unicode.cldr.util.CldrUtility;
+import org.unicode.text.utility.Settings;
 
 public enum PropertyStatus {
     Obsolete,
@@ -601,7 +602,8 @@ public enum PropertyStatus {
                 dataType = prop.getType();
                 status = PropertyStatus.getPropertyStatusSet(prop);
                 cardinality = prop.getCardinality();
-                defaultValue = IndexUnicodeProperties.getDefaultValue(prop);
+                defaultValue =
+                        IndexUnicodeProperties.getDefaultValue(prop, Settings.LATEST_VERSION_INFO);
             } catch (Exception e) {
             }
 

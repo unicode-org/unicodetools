@@ -268,7 +268,8 @@ public interface UCD_Types {
             IDS_UnaryOperator = 39,
             ID_Compat_Math_Start = 40,
             ID_Compat_Math_Continue = 41,
-            LIMIT_BINARY_PROPERTIES = 42;
+            Modifier_Combining_Mark = 42,
+            LIMIT_BINARY_PROPERTIES = 43;
 
     /*
     static final int
