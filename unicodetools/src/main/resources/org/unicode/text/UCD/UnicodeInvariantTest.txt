@@ -1094,3 +1094,9 @@ In $japaneseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/
 # Hangul Syllable Name Generation,
 # https://www.unicode.org/versions/latest/ch03.pdf#G59675.
 In [\p{Block=Hangul Syllables} - \p{gc=Cn}], (prepend HANGUL SYLLABLE ) * (string-join) * Jamo_Short_Name * toNFD = Name
+
+# The Bidi Class of <font> compatibility decomposables is consistent with their “generic”
+# counterpart.  Could be, but so far need not be, restricted to the intersection with \p{Math}.
+# Inspired by, and would have caught,
+# https://www.unicode.org/review/pri497/feedback.html#ID20240216135149.
+In \p{Decomposition_Type=font}, Bidi_Class = Bidi_Class * Decomposition_Mapping
