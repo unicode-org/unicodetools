@@ -1,5 +1,5 @@
 # ScriptExtensions-16.0.0.txt
-# Date: 2024-03-15, 12:16:00 GMT
+# Date: 2024-04-30, 20:16:00 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -132,7 +132,7 @@
 1CF8..1CF9    ; Deva Gran                      # Mn  [2] VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
 1CFA          ; Nand                           # Lo      VEDIC SIGN DOUBLE ANUSVARA ANTARGOMUKHA
 1DC0..1DC1    ; Grek                           # Mn  [2] COMBINING DOTTED GRAVE ACCENT..COMBINING DOTTED ACUTE ACCENT
-1DF8          ; Cyrl Syrc                      # Mn      COMBINING DOT ABOVE LEFT
+1DF8          ; Cyrl Latn Syrc                 # Mn      COMBINING DOT ABOVE LEFT
 1DFA          ; Syrc                           # Mn      COMBINING DOT BELOW LEFT
 202F          ; Latn Mong Phag                 # Zs      NARROW NO-BREAK SPACE
 204F          ; Adlm Arab                      # Po      REVERSED SEMICOLON
