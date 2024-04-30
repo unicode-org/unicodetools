@@ -1,6 +1,5 @@
-; charset=UTF-8
 # Unikemet-16.0.0.txt
-# Date: 2024-03-01
+# Date: 2024-04-28
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -19,14 +18,14 @@
 #	This file contains the following information:
 #
 #	Catalog value: kEH_Cat
-#	Core value: KEH_Core (Y if core, none otherwise)
+#	Core value: kEH_Core (Y if core, none otherwise)
 #	Description: kEH_Desc
 #	Function: kEH_Func
 #	Function: kEH_FVal
 #	JSesh source: kEH_JSesh
-#	Hieroglyphica source: KEH_HG
-#	IFAO source: KEH_IFAO
-#	No Mirror: KEH_NoMirror
+#	Hieroglyphica source: kEH_HG
+#	IFAO source: kEH_IFAO
+#	No Mirror: kEH_NoMirror
 #	No Rotate: kEH_NoRotate
 #
 U+13000	kEH_Cat	A-01-001
@@ -1902,7 +1901,7 @@ U+130EC	kEH_IFAO	135,11
 U+130ED	kEH_Cat	E-17-011
 U+130ED	kEH_Core	Y
 U+130ED	kEH_Desc	A lion, lying down, tail curled over the body towards the back.
-U+130ED	kEH_Func	Phonogram
+U+130ED	kEH_Func	Phonemogram
 U+130ED	kEH_FVal	rw
 U+130ED	kEH_UniK	E023
 U+130ED	kEH_JSesh	E23
@@ -1989,7 +1988,7 @@ U+130F6	kEH_IFAO	132,13
 U+130F7	kEH_Cat	E-20-003
 U+130F7	kEH_Core	Y
 U+130F7	kEH_Desc	A hamadryas baboon (Papio hamadryas).
-U+130F7	kEH_Func	Classifier rage, fury 
+U+130F7	kEH_Func	Classifier rage, fury
 U+130F7	kEH_FVal	ḳnd
 U+130F7	kEH_UniK	E032
 U+130F7	kEH_JSesh	E32
@@ -3733,7 +3732,7 @@ U+131CD	kEH_IFAO	248,14
 U+131CE	kEH_Cat	M-14-017
 U+131CE	kEH_Core	Y
 U+131CE	kEH_Desc	A flowering reed (M17) and a club used by washer-men for beating laundry as part of the cleaning process (U36), connected by a network consisting of four horizontal lines and three lines going from bottom corner to top corner.
-U+131CE	kEH_Func	Phonemogram 
+U+131CE	kEH_Func	Phonemogram
 U+131CE	kEH_FVal	ꜥꜣb
 U+131CE	kEH_UniK	M019
 U+131CE	kEH_JSesh	M19
@@ -6037,7 +6036,7 @@ U+132F8	kEH_IFAO	382,8
 U+132F9	kEH_Cat	S-17-001
 U+132F9	kEH_Core	Y
 U+132F9	kEH_Desc	A tie or strap, used with sandals (ankh-sign).
-U+132F9	kEH_Func	Logogrm (life)
+U+132F9	kEH_Func	Logogram (life)
 U+132F9	kEH_FVal	ꜥnḫ
 U+132F9	kEH_UniK	S034
 U+132F9	kEH_JSesh	S34
@@ -6837,7 +6836,7 @@ U+13359	kEH_HG	U34
 U+13359	kEH_IFAO	403,13
 U+1335A	kEH_Cat	U-13-007
 U+1335A	kEH_Desc	A horned desert viper (Cerastes cerastes) (I9), written over a spindle (U34).
-U+1335A	kEH_Func	Phonemogram 
+U+1335A	kEH_Func	Phonemogram
 U+1335A	kEH_FVal	ḫsf
 U+1335A	kEH_UniK	U035
 U+1335A	kEH_JSesh	U35
@@ -7548,7 +7547,7 @@ U+133BB	kEH_HG	W10A
 U+133BC	kEH_Cat	W-05-005
 U+133BC	kEH_Core	Y
 U+133BC	kEH_Desc	A ring-stand for jars.
-U+133BC	kEH_Func	Phonogram
+U+133BC	kEH_Func	Phonemogram
 U+133BC	kEH_FVal	g
 U+133BC	kEH_UniK	W011
 U+133BC	kEH_JSesh	W11
@@ -7557,7 +7556,7 @@ U+133BC	kEH_IFAO	450,9
 U+133BD	kEH_Cat	W-05-007
 U+133BD	kEH_Core	Y
 U+133BD	kEH_Desc	A ring-stand for jars, with a level bottom.
-U+133BD	kEH_Func	Phonogram
+U+133BD	kEH_Func	Phonemogram
 U+133BD	kEH_FVal	g
 U+133BD	kEH_UniK	W012
 U+133BD	kEH_JSesh	W12
@@ -7956,7 +7955,7 @@ U+133F1	kEH_HG	Z6
 U+133F2	kEH_Cat	Z-08-005
 U+133F2	kEH_Core	Y
 U+133F2	kEH_Desc	 A spiral, winding counter-clockwise away from its central point, ending at the right lower corner after about 1,5 turns.
-U+133F2	kEH_Func	Phonemogrom
+U+133F2	kEH_Func	Phonemogram
 U+133F2	kEH_FVal	w
 U+133F2	kEH_UniK	Z007
 U+133F2	kEH_JSesh	Z7
@@ -9494,7 +9493,7 @@ U+134FB	kEH_HG	A402
 U+134FC	kEH_Cat	A-07-060
 U+134FC	kEH_Core	Y
 U+134FC	kEH_Desc	Man, seated on heel, both knees down, both arms extended in front, supporting a child (A17: knees at 90°, both lower legs visible, slightly apart, right arm raised with hand to mouth, left arm hanging beside the body).
-U+134FC	kEH_Func	Phonogram
+U+134FC	kEH_Func	Phonemogram
 U+134FC	kEH_FVal	f
 U+134FC	kEH_UniK	HJ A131C
 U+134FC	kEH_JSesh	A131C
@@ -13044,7 +13043,7 @@ U+136EA	kEH_UniK	B001Q
 U+136EB	kEH_Cat	B-01-049
 U+136EB	kEH_Core	Y
 U+136EB	kEH_Desc	Woman, seated, both knees up, with covered legs and arms, with long hair, holding a stem of papyrus with a bud (M13).
-U+136EB	kEH_Func	Classifier divinty
+U+136EB	kEH_Func	Classifier divinity
 U+136EB	kEH_FVal	srḳ.t
 U+136EB	kEH_UniK	HJ B001C
 U+136EB	kEH_JSesh	B1C
@@ -14218,7 +14217,7 @@ U+1378E	kEH_IFAO	60,7
 U+1378F	kEH_Cat	C-05-003
 U+1378F	kEH_Core	Y
 U+1378F	kEH_Desc	God, seated, knees up, with covered legs and arms, with the head of a bovid.
-U+1378F	kEH_Func	Classifier divinty (Apis)
+U+1378F	kEH_Func	Classifier divinity (Apis)
 U+1378F	kEH_FVal	ḥp
 U+1378F	kEH_UniK	C030B
 U+13790	kEH_Cat	C-05-005
@@ -15898,14 +15897,14 @@ U+13875	kEH_UniK	C351
 U+13876	kEH_Cat	C-33-002
 U+13876	kEH_Core	Y
 U+13876	kEH_Desc	Goddess, seated, knees up, with covered legs and arms, wearing a headdress of outwards waving plumes, holding a holding a stem of papyrus with a bud (M131) or flower vertically.
-U+13876	kEH_Func	Classifier Anukis
+U+13876	kEH_Func	Classifier Anubis
 U+13876	kEH_FVal	ꜥnḳ.t
 U+13876	kEH_UniK	C148
 U+13876	kEH_JSesh	C148
 U+13877	kEH_Cat	C-33-004
 U+13877	kEH_Core	Y
 U+13877	kEH_Desc	Goddess, seated, knees up, with covered legs and arms, wearing a headdress of outwards waving plumes, holding a tie or strap, used with sandals (ankh-sign, S34), angling forward. 
-U+13877	kEH_Func	Classifier Anukis
+U+13877	kEH_Func	Classifier Anubis
 U+13877	kEH_FVal	ꜥnḳ.t
 U+13877	kEH_UniK	C148A
 U+13877	kEH_JSesh	C148A
@@ -20276,7 +20275,7 @@ U+13AC3	kEH_HG	E200A
 U+13AC4	kEH_Cat	E-17-008
 U+13AC4	kEH_Core	Y
 U+13AC4	kEH_Desc	A lion, lying down, tail upwards.
-U+13AC4	kEH_Func	Phonogram
+U+13AC4	kEH_Func	Phonemogram
 U+13AC4	kEH_FVal	rw
 U+13AC4	kEH_UniK	HJ E023A
 U+13AC4	kEH_JSesh	E23A
@@ -21714,7 +21713,7 @@ U+13B85	kEH_IFAO	149,8
 U+13B86	kEH_Cat	F-05-032
 U+13B86	kEH_Core	Y
 U+13B86	kEH_Desc	The head of a canine, on top of legs in a walking posture, feet orientated towards the reading direction (D54).
-U+13B86	kEH_Func	Phonemogram 
+U+13B86	kEH_Func	Phonemogram
 U+13B86	kEH_FVal	wsr
 U+13B86	kEH_UniK	HJ F078
 U+13B86	kEH_JSesh	F78
@@ -23029,7 +23028,7 @@ U+13C2F	kEH_HG	G17B
 U+13C30	kEH_Cat	G-09-033
 U+13C30	kEH_Core	Y
 U+13C30	kEH_Desc	A schematic representation of an owl, legs drawn towards the body, with the head represented by a blob with two upwards lines.
-U+13C30	kEH_Func	Phonogram/phono-repeater
+U+13C30	kEH_Func	Phonemogram/phono-repeater
 U+13C30	kEH_FVal	ꞽb
 U+13C30	kEH_UniK	G017F
 U+13C30	kEH_IFAO	178,7
@@ -23422,7 +23421,7 @@ U+13C65	kEH_HG	G196A
 U+13C66	kEH_Cat	G-11-112
 U+13C66	kEH_Core	Y
 U+13C66	kEH_Desc	An African sacred ibis (Threskiornis aethiopicus), legs drawn towards the body, with the wings extended on either side of the body.
-U+13C66	kEH_Func	Phonemomgram
+U+13C66	kEH_Func	Phonemogram
 U+13C66	kEH_FVal	ṯꜣ
 U+13C66	kEH_UniK	HJ G197
 U+13C66	kEH_JSesh	G197
@@ -23875,8 +23874,8 @@ U+13CA0	kEH_IFAO	191,5
 U+13CA1	kEH_Cat	G-12-137
 U+13CA1	kEH_Core	Y
 U+13CA1	kEH_Desc	A falcon (G5), standing on top of a ring-stand for jars (W11).
-U+13CA1	kEH_Func	Phonogram
-U+13CA1	kEH_FVal	 p  & nst
+U+13CA1	kEH_Func	Phonemogram
+U+13CA1	kEH_FVal	p & nst
 U+13CA1	kEH_UniK	G280B
 U+13CA2	kEH_Cat	G-12-139
 U+13CA2	kEH_Core	Y
@@ -24862,7 +24861,7 @@ U+13D25	kEH_HG	H41
 U+13D26	kEH_Cat	H-09-001
 U+13D26	kEH_Core	Y
 U+13D26	kEH_Desc	The leg of a bird, as if drawn towards the body.
-U+13D26	kEH_Func	phonemogram
+U+13D26	kEH_Func	Phonemogram
 U+13D26	kEH_FVal	r
 U+13D26	kEH_UniK	HJ H031
 U+13D26	kEH_JSesh	H31
@@ -25162,7 +25161,7 @@ U+13D4D	kEH_IFAO	213,6
 U+13D4E	kEH_Cat	I-04-015
 U+13D4E	kEH_Core	Y
 U+13D4E	kEH_Desc	A round piece of crocodile skin with spines.
-U+13D4E	kEH_Func	phonemogram
+U+13D4E	kEH_Func	Phonemogram
 U+13D4E	kEH_FVal	km
 U+13D4E	kEH_UniK	HJ N028C
 U+13D4E	kEH_JSesh	N28C
@@ -26142,7 +26141,7 @@ U+13DD1	kEH_HG	K15
 U+13DD2	kEH_Cat	K-01-028
 U+13DD2	kEH_Core	Y
 U+13DD2	kEH_Desc	A fish with a small fin on the top and a small and long fin on the bottom (K14), written inside an oval.
-U+13DD2	kEH_Func	phonemogram
+U+13DD2	kEH_Func	Phonemogram
 U+13DD2	kEH_FVal	rꜥ
 U+13DD2	kEH_UniK	K015A
 U+13DD3	kEH_Cat	K-01-032
@@ -26467,7 +26466,7 @@ U+13DFD	kEH_IFAO	487,4
 U+13DFE	kEH_Cat	M-01-018
 U+13DFE	kEH_Core	Y
 U+13DFE	kEH_Desc	A shield with a round top, with a line coming from either side, angled upwards, on top of a standard used for carrying religious symbols, with a loop under the horizontal beam, running over the vertical pole (R56/R12A).
-U+13DFE	kEH_Func	Logogram Neith (4-5th nome of LE)
+U+13DFE	kEH_Func	Logogram (Neith, 4-5th nome of LE)
 U+13DFE	kEH_FVal	n.t
 U+13DFE	kEH_UniK	M260
 U+13DFF	kEH_Cat	M-01-019
@@ -26954,7 +26953,7 @@ U+13E42	kEH_IFAO	239,15
 U+13E43	kEH_Cat	M-08-022
 U+13E43	kEH_Core	Y
 U+13E43	kEH_Desc	A flower with 7 petals, on top of a long stalk.
-U+13E43	kEH_Func	Ckassifier plant/phono-repeater
+U+13E43	kEH_Func	Classifier plant/phono-repeater
 U+13E43	kEH_FVal	hdn
 U+13E43	kEH_UniK	HJ M237
 U+13E43	kEH_JSesh	M237
@@ -27145,7 +27144,7 @@ U+13E5C	kEH_IFAO	243,2
 U+13E5D	kEH_Cat	M-11-017
 U+13E5D	kEH_Core	Y
 U+13E5D	kEH_Desc	A leaf, stem and root of a lotus plant, with a forwards, downwards line coming from the leaf.
-U+13E5D	kEH_Func	Phonogram ḫꜣ? (in the verb ḫꜣḫꜣ, to winnow, to scatter)
+U+13E5D	kEH_Func	Phonemogram ḫꜣ? (in the verb ḫꜣḫꜣ, to winnow, to scatter)
 U+13E5D	kEH_FVal	ḫꜣ
 U+13E5D	kEH_UniK	HJ M102
 U+13E5D	kEH_JSesh	M102
@@ -31354,7 +31353,7 @@ U+1408B	kEH_IFAO	335,5
 U+1408C	kEH_Cat	P-07-002
 U+1408C	kEH_Core	Y
 U+1408C	kEH_Desc	A mast of a ship, with two prongs,  resembling a sceptre (S42).
-U+1408C	kEH_Func	Phonemogram 
+U+1408C	kEH_Func	Phonemogram
 U+1408C	kEH_FVal	ꜥḥꜥ
 U+1408C	kEH_UniK	P006C
 U+1408C	kEH_IFAO	335,6
@@ -32319,7 +32318,7 @@ U+14112	kEH_IFAO	356,1
 U+14113	kEH_Cat	R-08-004
 U+14113	kEH_Core	Y
 U+14113	kEH_Desc	A column imitating a bundle of stalks tied together with a sun disk (N5) on top of it.
-U+14113	kEH_Func	Phonemogram 
+U+14113	kEH_Func	Phonemogram
 U+14113	kEH_FVal	psḏ
 U+14113	kEH_UniK	HJ R122
 U+14113	kEH_JSesh	R122
@@ -34429,7 +34428,7 @@ U+1422D	kEH_UniK	T142
 U+1422E	kEH_Cat	T-09-024
 U+1422E	kEH_Core	Y
 U+1422E	kEH_Desc	A fire-drill in a piece of wood (U28), written between two times pieces of wood, lashed together with the top piece at an angle, with a loop and tie at the back (T13), with the first mirrored, on top of a base.
-U+1422E	kEH_Func	Phonemogram 
+U+1422E	kEH_Func	Phonemogram
 U+1422E	kEH_FVal	rs-wḏꜣ
 U+1422E	kEH_UniK	HJ T124
 U+1422E	kEH_JSesh	T124
@@ -34892,7 +34891,7 @@ U+1426B	kEH_IFAO	426,7
 U+1426C	kEH_Cat	T-16-008
 U+1426C	kEH_Core	Y
 U+1426C	kEH_Desc	A bird trap, with two vertical poles at the back, with a line running from the front to the vertical poles, with two upwards ticks at the front of the line.
-U+1426C	kEH_Func	Phono-repeater 
+U+1426C	kEH_Func	Phono-repeater
 U+1426C	kEH_FVal	sḫt
 U+1426C	kEH_UniK	HJ T026A
 U+1426C	kEH_JSesh	T26A
@@ -35393,7 +35392,7 @@ U+142AF	kEH_IFAO	395,15
 U+142B0	kEH_Cat	U-08-025
 U+142B0	kEH_Core	Y
 U+142B0	kEH_Desc	An adze, with an attached triangular blade at the front, bound at the upwards piece of the handle, in a piece of wood, with the end handle ending at the hight of the wood.
-U+142B0	kEH_Func	phonemogram
+U+142B0	kEH_Func	Phonemogram
 U+142B0	kEH_FVal	stp
 U+142B0	kEH_UniK	HJ U065
 U+142B0	kEH_JSesh	U65
@@ -35411,7 +35410,7 @@ U+142B1	kEH_IFAO	396,7
 U+142B2	kEH_Cat	U-09-011
 U+142B2	kEH_Core	Y
 U+142B2	kEH_Desc	A chisel with a half-circle handle, vertical line at the top and a long blade.
-U+142B2	kEH_Func	Phonemogram 
+U+142B2	kEH_Func	Phonemogram
 U+142B2	kEH_FVal	mnḫ
 U+142B2	kEH_UniK	HJ U024E
 U+142B2	kEH_JSesh	U24E
@@ -35686,7 +35685,7 @@ U+142D7	kEH_HG	U24N
 U+142D8	kEH_Cat	U-11-003
 U+142D8	kEH_Core	Y
 U+142D8	kEH_Desc	A pottery kiln, with the bottom curving forwards.
-U+142D8	kEH_Func	Phonemogram 
+U+142D8	kEH_Func	Phonemogram
 U+142D8	kEH_FVal	tꜣ
 U+142D8	kEH_UniK	HJ U030A
 U+142D8	kEH_JSesh	U30A
@@ -35926,7 +35925,7 @@ U+142F6	kEH_IFAO	407,10
 U+142F7	kEH_Cat	U-16-044
 U+142F7	kEH_Core	Y
 U+142F7	kEH_Desc	An astronomical instrument to measure the movements of the stars, consisting of two vertical ovals at the front of a long horizontal base, with a plummet in the shape of a heart (F34) hanging below the base, connected to a vertical line between the two ovals, with an upwards dot in the middle of the horizontal base.
-U+142F7	kEH_Func	Classifier astronomical instrument 
+U+142F7	kEH_Func	Classifier astronomical instrument
 U+142F7	kEH_FVal	mrḫ.t
 U+142F7	kEH_UniK	U096A
 U+142F7	kEH_IFAO	407,11
@@ -36606,7 +36605,7 @@ U+14352	kEH_IFAO	445,5
 U+14353	kEH_Cat	V-15-010
 U+14353	kEH_Core	Y
 U+14353	kEH_Desc	A basket-shaped bag with a tied of end at the front, with a split end / A uterus of a cow, tied of at the front, with a split end.
-U+14353	kEH_Func	Phonemogram 
+U+14353	kEH_Func	Phonemogram
 U+14353	kEH_FVal	ḫnm
 U+14353	kEH_UniK	HJ V131
 U+14353	kEH_JSesh	V131
@@ -36815,7 +36814,7 @@ U+1436C	kEH_IFAO	450,4
 U+1436D	kEH_Cat	W-05-003
 U+1436D	kEH_Core	Y
 U+1436D	kEH_Desc	A ring-stand for jars, without internal decoration.
-U+1436D	kEH_Func	Phonogram
+U+1436D	kEH_Func	Phonemogram
 U+1436D	kEH_FVal	g
 U+1436D	kEH_UniK	HJ W011A
 U+1436D	kEH_JSesh	W11A
@@ -37028,7 +37027,7 @@ U+14387	kEH_HG	W57
 U+14388	kEH_Cat	W-09-006
 U+14388	kEH_Core	Y
 U+14388	kEH_Desc	A vase with a broad rim, written at a 45° forward angle, with a forwards line of liquid coming from the vase.
-U+14388	kEH_Func	phonemogram
+U+14388	kEH_Func	Phonemogram
 U+14388	kEH_FVal	rd
 U+14388	kEH_UniK	HJ W056
 U+14388	kEH_JSesh	W56
