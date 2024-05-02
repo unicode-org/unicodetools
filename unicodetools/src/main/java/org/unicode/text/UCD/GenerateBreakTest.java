@@ -1729,6 +1729,11 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         //   (PR | PO)? (OP | HY)? IS? NU (NU | SY | IS)* (CL | CP)? (PR | PO)?
                         // separated by spaces.
                         "$-5 -.3 £(123.456) 123.€ +.25 1/2",
+                        // Examples for LB20a:
+                        // From L2/24-064R2 Section 5.13.
+                        "the 3ms possessive pronominal suffix ( -šu )",
+                        // From https://unicode-org.atlassian.net/browse/CLDR-3029.
+                        "Mac Pro -tietokone",
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM

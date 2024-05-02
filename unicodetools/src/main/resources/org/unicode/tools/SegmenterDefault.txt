@@ -115,6 +115,7 @@ $QU_Pi=[$QU & \p{gc=Pi}]
 $QU_Pf=[$QU & \p{gc=Pf}]
 
 $DottedCircle = ◌
+$Hyphen = [\u2010]
 
 $CP30=[$CP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
 $OP30=[$OP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
@@ -271,11 +272,8 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 # LB 20  Break before and after unresolved CB.
 20.01)  ÷ $CB
 20.02) $CB ÷
-##CLDR: LB 20.9  Don't break between Hyphens and Letters when there is a break preceding the hyphen.
-##CLDR: Originally added as a Finnish tailoring, now promoted to default CLDR behavior.
-##CLDR: Must be before LB 21. Note: this is not default UAX #14 behaviour. See ICU issue ICU-8151.
-##CLDR: (Unlike in ICU, here we just check a limited set of known breaks, ignoring some cases like LB 14).
-##CLDR: 20.09) $Spec5_ $HY × $AL
+LB20a Do not break after a hyphen that follows break opportunity, a space, or the start of text.
+20.10) ( $sot | $BK | $CR | $LF | $NL | $SP | $ZW | $CB | $GL ) ( $HY | $Hyphen ) × $AL
 # LB 21  Do not break before hyphen-minus, other hyphens, fixed-width spaces, small kana and other non-starters, or after acute accents.
 21.01) × $BA
 21.02) × $HY
