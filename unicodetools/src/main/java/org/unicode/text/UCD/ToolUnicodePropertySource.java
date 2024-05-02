@@ -1192,10 +1192,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .putAll(incbConsonant, "Consonant")
                             .putAll(
                                     gcb.getSet("Extend")
-                                            .removeAll(ccc.getSet("Not_Reordered"))
                                             .addAll(gcb.getSet("ZWJ"))
                                             .removeAll(incbLinker)
-                                            .removeAll(incbConsonant),
+                                            .removeAll(incbConsonant)
+                                            .remove(0x200C),
                                     "Extend")
                             .setMissing("None");
             add(
