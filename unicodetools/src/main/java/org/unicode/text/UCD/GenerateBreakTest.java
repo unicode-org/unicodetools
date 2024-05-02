@@ -1728,7 +1728,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         // various reasonable productions of the regex for numbers
                         //   (PR | PO)? (OP | HY)? IS? NU (NU | SY | IS)* (CL | CP)? (PR | PO)?
                         // separated by spaces.
-                        "$-5 -.3 £(123.456) 123.€ +.25",
+                        "$-5 -.3 £(123.456) 123.€ +.25 1/2",
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
