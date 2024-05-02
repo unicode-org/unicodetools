@@ -1,5 +1,5 @@
 # unidata-16.0.0.txt
-# Date: 2024-02-16, 00:00:00 GMT [KW]
+# Date: 2024-04-24, 00:00:00 GMT [KW]
 # © 2024 Unicode®, Inc.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -9,8 +9,8 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 16.0.0 draft 17 (Unicode Version: 16.0.0)
-# based on Unicode data file UnicodeData-16.0.0d13.txt
+# Version 16.0.0 draft 18 (Unicode Version: 16.0.0)
+# based on Unicode data file UnicodeData-16.0.0d14.txt
 # Ordering for Unicode 16.0
 #
 # Fields:
@@ -11118,7 +11118,7 @@ DEFAULT
 31E1;CJK STROKE HZZZG;So;;;;;;
 31E2;CJK STROKE PG;So;;;;;;
 31E3;CJK STROKE Q;So;;;;;;
-31E4;CJK STROKE HZXG;So;;;;;;
+31E4;CJK STROKE HXG;So;;;;;;
 31E5;CJK STROKE SZP;So;;;;;;
 
 3004;JAPANESE INDUSTRIAL STANDARD SYMBOL;So;;;;;;
