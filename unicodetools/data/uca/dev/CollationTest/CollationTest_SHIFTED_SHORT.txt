@@ -1,8 +1,8 @@
 # CollationTest_SHIFTED_SHORT.txt
-# Date: 2024-05-01, 18:39:56 GMT
+# Date: 2024-05-02, 01:46:29 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 # UCA Version: 16.0.0
 # UCD Version: 16.0.0
 # For a description of the format and usage, see CollationTest.html
@@ -105834,11 +105834,6 @@ A8FF 0062
 0C36 0061
 0C36 0041
 0C36 0062
-0C5C 0021
-0C5C 003F
-0C5C 0061
-0C5C 0041
-0C5C 0062
 0C37 0021
 0C37 003F
 0C37 0061
@@ -106221,11 +106216,6 @@ A8FF 0062
 0CB6 0061
 0CB6 0041
 0CB6 0062
-0CDC 0021
-0CDC 003F
-0CDC 0061
-0CDC 0041
-0CDC 0062
 0CB7 0021
 0CB7 003F
 0CB7 0061
@@ -154756,16 +154746,16 @@ FF9D 0062
 3111 0061
 3111 0041
 3111 0062
-3112 0021
-3112 003F
-3112 0061
-3112 0041
-3112 0062
 312C 0021
 312C 003F
 312C 0061
 312C 0041
 312C 0062
+3112 0021
+3112 003F
+3112 0061
+3112 0041
+3112 0062
 31BC 0021
 31BC 003F
 31BC 0061
