@@ -489,12 +489,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         out.println(
                 ", which is the one that applies to that case. "
                         + "Note that a rule is invoked only when no lower-numbered rules have applied.</p>");
-        if (fileName.equals("Line")) {
-            out.println(
-                    "<p>The "
-                            + propertyName
-                            + " tests use tailoring of numbers described in Example 7 of Section 8.2, “Examples of Customization” of UAX #14.</p>");
-        }
         generateTable(out);
 
         if (false) {
@@ -565,12 +559,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         out.println("#\t- (x) the " + propertyName + " property value for the sample character");
         out.println("#\t- [x] the rule that determines whether there is a break or not,");
         out.println("#\t   as listed in the Rules section of " + fileName + "BreakTest.html");
-        if (fileName.equals("Line")) {
-            out.println("#");
-            out.println("# Note:");
-            out.println("#  The " + propertyName + " tests use tailoring of numbers described in");
-            out.println("#  Example 7 of Section 8.2, \"Examples of Customization\" of UAX #14.");
-        }
         out.println("#");
         sampleDescription(out);
         out.println("# These samples may be extended or changed in the future.");
