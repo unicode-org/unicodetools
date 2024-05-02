@@ -1,5 +1,5 @@
 # LineBreakTest-16.0.0.txt
-# Date: 2024-05-02, 18:42:05 GMT
+# Date: 2024-05-02, 18:48:03 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -19,10 +19,6 @@
 #	- (x) the Line_Break property value for the sample character
 #	- [x] the rule that determines whether there is a break or not,
 #	   as listed in the Rules section of LineBreakTest.html
-#
-# Note:
-#  The Line_Break tests use tailoring of numbers described in
-#  Example 7 of Section 8.2, "Examples of Customization" of UAX #14.
 #
 # These samples may be extended or changed in the future.
 #
