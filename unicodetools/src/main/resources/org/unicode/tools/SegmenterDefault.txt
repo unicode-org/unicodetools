@@ -272,7 +272,7 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 # LB 20  Break before and after unresolved CB.
 20.01)  ÷ $CB
 20.02) $CB ÷
-LB20a Do not break after a hyphen that follows break opportunity, a space, or the start of text.
+# LB20a Do not break after a hyphen that follows break opportunity, a space, or the start of text.
 20.10) ( $sot | $BK | $CR | $LF | $NL | $SP | $ZW | $CB | $GL ) ( $HY | $Hyphen ) × $AL
 # LB 21  Do not break before hyphen-minus, other hyphens, fixed-width spaces, small kana and other non-starters, or after acute accents.
 21.01) × $BA
