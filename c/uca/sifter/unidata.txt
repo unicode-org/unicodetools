@@ -9,8 +9,8 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 16.0.0 draft 18 (Unicode Version: 16.0.0)
-# based on Unicode data file UnicodeData-16.0.0d14.txt
+# Version 16.0.0 draft 19 (Unicode Version: 16.0.0)
+# based on Unicode data file UnicodeData-16.0.0d15.txt
 # Ordering for Unicode 16.0
 #
 # Fields:
@@ -30672,8 +30672,8 @@ FF9D;HALFWIDTH KATAKANA LETTER N;Lo;<narrow> 30F3;;;;;
 3110;BOPOMOFO LETTER J;Lo;;;;;;
 31A2;BOPOMOFO LETTER JI;Lo;<sort> 3110 F8F1;;;;;
 3111;BOPOMOFO LETTER Q;Lo;;;;;;
-3112;BOPOMOFO LETTER X;Lo;;;;;;
 312C;BOPOMOFO LETTER GN;Lo;;;;;;
+3112;BOPOMOFO LETTER X;Lo;;;;;;
 31BC;BOPOMOFO LETTER GW;Lo;;;;;;
 31BD;BOPOMOFO LETTER KW;Lo;;;;;;
 3113;BOPOMOFO LETTER ZH;Lo;;;;;;
