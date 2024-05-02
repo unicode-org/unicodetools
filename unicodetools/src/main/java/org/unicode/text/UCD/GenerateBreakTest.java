@@ -1734,6 +1734,15 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         "the 3ms possessive pronominal suffix ( -šu )",
                         // From https://unicode-org.atlassian.net/browse/CLDR-3029.
                         "Mac Pro -tietokone",
+                        // Examples for LB19/LB19a from L2/24-064R2 Section 5.5.
+                        "子曰：“学而时习之，不亦说乎？有朋自远方来，不亦乐乎？人不知而不愠，不亦君子乎？”",
+                        "子贡曰：“贫而无谄，富而无骄，何如？”子曰：“可也。未若贫而乐，富而好礼者也”。子贡曰：“《诗》云：‘如切如磋，如琢如磨。’其斯之谓与？”子曰：“赐也，始可与言《诗》已矣！吿诸往而知来者。”",
+                        "哪一所中国学校乃“为各省派往日本游学之首倡”？",
+                        "哪个商标以人名为名，因特色小吃“五台杂烩汤”而入选“新疆老字号”？",
+                        "毕士悌（1901年—1936年），朝鲜籍红军将领",
+                        "2000年获得了《IGN》的“Best Game Boy Strategy”奖。",
+                        "Z-1“莱贝雷希特·马斯”号是德国国家海军暨战争海军于1930年代",
+                        "Anmerkung: „White“ bzw. ‚白人‘ – in der Amtlichen Statistik",
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
