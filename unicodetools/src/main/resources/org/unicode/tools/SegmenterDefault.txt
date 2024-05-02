@@ -278,8 +278,8 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 # LB 18  Break after spaces.
 18) $SP ÷
 # LB 19  Do not break before or after \u2018\"\u2019.
-19.01)  × [$QU - \p{gc=Pi}]
-19.02) [$QU - \p{Pf}]  ×
+19.01) × $QUmPi
+19.02) $QUmPf ×
 # LB 19a Unless surrounded by East Asian Characters, do not break either side of any unresolved quotation marks.
 19.10) $NotEastAsian × $QU
 19.11) × $QU ( $NotEastAsian | $eot )
