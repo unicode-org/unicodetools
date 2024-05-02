@@ -52,7 +52,7 @@
 # UTN42 = Andrew West and Viacheslav Zaytsev, Tangut Character Additions and Glyph Corrections,
 #         Unicode Technical Note #42. 2019-12-21.
 #
-#	For more information, see Section 18.10, Tangut, of the
+#	For more information, see Section 18.11, Tangut, of the
 #	core specification.
 #
 U+17000	kTGT_MergedSrc	L2008-0008
