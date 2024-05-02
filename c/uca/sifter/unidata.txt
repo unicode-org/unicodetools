@@ -1,5 +1,5 @@
 # unidata-16.0.0.txt
-# Date: 2024-04-24, 00:00:00 GMT [KW]
+# Date: 2024-04-25, 00:00:00 GMT [KW]
 # © 2024 Unicode®, Inc.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -9,8 +9,8 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 16.0.0 draft 19 (Unicode Version: 16.0.0)
-# based on Unicode data file UnicodeData-16.0.0d15.txt
+# Version 16.0.0 draft 20 (Unicode Version: 16.0.0)
+# based on Unicode data file UnicodeData-16.0.0d16.txt
 # Ordering for Unicode 16.0
 #
 # Fields:
@@ -22067,11 +22067,6 @@ DEFAULT
 0C55;TELUGU LENGTH MARK;Mn;;;;;;
 0C56;TELUGU AI LENGTH MARK;Mn;;;;;;
 
-# Telugu archaic SHRII.
-# Collate as a spelled-out word.
-
-0C5C;TELUGU ARCHAIC SHRII;Lo;<sort> 0C36 0C4D 0C30 0C40;;;;;
-
 # Kannada script begins here
 
 0C85;KANNADA LETTER A;Lo;;;;;;
@@ -22177,11 +22172,6 @@ DEFAULT
 0CCD;KANNADA SIGN VIRAMA;Mn;;;;;;
 0CD5;KANNADA LENGTH MARK;Mc;;;;;;
 0CD6;KANNADA AI LENGTH MARK;Mc;;;;;;
-
-# Kannada archaic SHRII.
-# Collate as a spelled-out word.
-
-0CDC;KANNADA ARCHAIC SHRII;Lo;<sort> 0CB6 0CCD 0CB0 0CC0;;;;;
 
 # Malayalam script begins here
 
