@@ -1711,8 +1711,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         // ZWSP.
                         "Pas une citation »Zitat« Pas une citation non plus",
                         "« Citation »\u200BKein Zitat\u200B« Autre citation »",
-                        // Various number examples for https://www.unicode.org/L2/L2024/24061.htm#179-A117
-                        "start .789 end",  // From https://unicode-org.atlassian.net/browse/ICU-12017
+                        // Various number examples for
+                        // https://www.unicode.org/L2/L2024/24061.htm#179-A117
+                        "start .789 end", // From https://unicode-org.atlassian.net/browse/ICU-12017
                         // various reasonable productions of the regex for numbers
                         //   (PR | PO)? (OP | HY)? IS? NU (NU | SY | IS)* (CL | CP)? (PR | PO)?
                         // separated by spaces.
