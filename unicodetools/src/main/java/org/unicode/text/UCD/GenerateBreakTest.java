@@ -1732,6 +1732,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         "2000年获得了《IGN》的“Best Game Boy Strategy”奖。",
                         "Z-1“莱贝雷希特·马斯”号是德国国家海军暨战争海军于1930年代",
                         "Anmerkung: „White“ bzw. ‚白人‘ – in der Amtlichen Statistik",
+                        // Examples for LB21a.
+                        " ⁧John ו-Michael⁩;", // No break after ו-‏.
+                        "וַֽיְהִי־כֵֽן׃", // Break after maqaf since Unicode 16.
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
