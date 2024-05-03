@@ -1,8 +1,8 @@
 # ScriptExtensions-16.0.0.txt
-# Date: 2024-03-15, 12:16:00 GMT
+# Date: 2024-04-30, 21:48:40 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
 #   For documentation, see https://www.unicode.org/reports/tr44/
@@ -39,6 +39,7 @@
 02CD          ; Latn Lisu                      # Lm      MODIFIER LETTER LOW MACRON
 02D7          ; Latn Thai                      # Sk      MODIFIER LETTER MINUS SIGN
 02D9          ; Bopo Latn                      # Sk      DOT ABOVE
+0300          ; Cher Copt Cyrl Grek Latn Perm Sunu Tale #Mn COMBINING GRAVE ACCENT
 0301          ; Cher Cyrl Grek Latn Osge Sunu Tale Todr #Mn COMBINING ACUTE ACCENT
 0302          ; Cher Cyrl Latn Tfng            # Mn      COMBINING CIRCUMFLEX ACCENT
 0303          ; Glag Latn Sunu Syrc Thai       # Mn      COMBINING TILDE
@@ -46,6 +47,7 @@
 0305          ; Copt Elba Glag Goth Kana Latn  # Mn      COMBINING OVERLINE
 0306          ; Cyrl Grek Latn Perm            # Mn      COMBINING BREVE
 0307          ; Copt Hebr Latn Perm Syrc Tale Tfng Todr #Mn COMBINING DOT ABOVE
+0308          ; Armn Cyrl Goth Grek Hebr Latn Perm Syrc Tale #Mn COMBINING DIAERESIS
 0309          ; Latn Tfng                      # Mn      COMBINING HOOK ABOVE
 030A          ; Latn Syrc                      # Mn      COMBINING RING ABOVE
 030B          ; Cher Cyrl Latn Osge            # Mn      COMBINING DOUBLE ACUTE ACCENT
@@ -130,7 +132,7 @@
 1CF8..1CF9    ; Deva Gran                      # Mn  [2] VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
 1CFA          ; Nand                           # Lo      VEDIC SIGN DOUBLE ANUSVARA ANTARGOMUKHA
 1DC0..1DC1    ; Grek                           # Mn  [2] COMBINING DOTTED GRAVE ACCENT..COMBINING DOTTED ACUTE ACCENT
-1DF8          ; Cyrl Syrc                      # Mn      COMBINING DOT ABOVE LEFT
+1DF8          ; Cyrl Latn Syrc                 # Mn      COMBINING DOT ABOVE LEFT
 1DFA          ; Syrc                           # Mn      COMBINING DOT BELOW LEFT
 202F          ; Latn Mong Phag                 # Zs      NARROW NO-BREAK SPACE
 204F          ; Adlm Arab                      # Po      REVERSED SEMICOLON

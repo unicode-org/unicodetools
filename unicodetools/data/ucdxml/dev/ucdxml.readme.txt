@@ -1,13 +1,11 @@
-XML Representation of Unicode 15.1.0 UCD
+# XML Representation of the Unicode Character Database
+# © COPY_YEAR Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 
-
-© 2023 Unicode®, Inc.
-For terms of use, see https://www.unicode.org/terms_of_use.html
-
-
-This directory contains the representation in XML of Version 15.1.0 of
-the UCD, using the schema defined by UAX #42: Unicode Character
-Database in XML, at https://www.unicode.org/reports/tr42/
+This directory contains the representation in XML of Version UNI_VER of
+the UCD, using the schema defined by
+UAX #42: Unicode Character Database in XML, at https://www.unicode.org/reports/tr42/
 
 While every effort has been made to ensure consistency of the 
 XML representation with the UCD files, there may be some errors;

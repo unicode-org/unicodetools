@@ -18,14 +18,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.text.MessageFormat;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
@@ -207,12 +205,19 @@ public final class UCA implements Comparator<String>, UCA_Types {
     }
 
     /**
-     * Initializes the collation from a stream of rules in the normal formal. If the source is null,
-     * uses the normal Unicode data files, which need to be in BASE_DIR.
-     *
-     * @param type
+     * Initializes the collation from a stream of rules in the allkeys.txt format. If the source is
+     * null, uses the normal Unicode data files, which need to be in BASE_DIR.
      */
-    public UCA(String sourceFile, String unicodeVersion, Remap primaryRemap)
+    public UCA(String sourceFile, String unicodeVersion) throws java.io.IOException {
+        this(sourceFile, unicodeVersion, -1, -1);
+    }
+
+    /**
+     * Initializes the collation from a stream of rules in the allkeys.txt format. If the source is
+     * null, uses the normal Unicode data files, which need to be in BASE_DIR. Supports explicit
+     * variableHigh for the CLDR sort order.
+     */
+    UCA(String sourceFile, String unicodeVersion, int variableHigh, int firstNonVariable)
             throws java.io.IOException {
         fullData = sourceFile == null;
         fileVersion = sourceFile;
@@ -225,7 +230,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
         ucd = UCD.make(unicodeVersion);
         ucdVersion = ucd.getVersion();
 
-        ucaData = new UCA_Data(toD, ucd, primaryRemap);
+        ucaData = new UCA_Data(toD, ucd, variableHigh, firstNonVariable);
         implicit = new Implicit(ucd);
 
         moreSamples = new UnicodeSet();
@@ -1692,7 +1697,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
                 if (key1 < ucaData.variableLow) {
                     ucaData.variableLow = key1;
                 }
-                if (ucaData.getPrimaryRemap() == null && key1 > ucaData.variableHigh) {
+                if (!ucaData.hasExplicitVariableHigh && key1 > ucaData.variableHigh) {
                     ucaData.variableHigh = key1;
                 }
             }
@@ -1777,12 +1782,17 @@ public final class UCA implements Comparator<String>, UCA_Types {
         return getStatistics().homelessSecondaries;
     }
 
-    public static UCA buildCollator(Remap primaryRemap) {
+    public static UCA buildDucetCollator() {
+        return buildCollator(-1, -1);
+    }
+
+    static UCA buildCollator(int variableHigh, int firstNonVariable) {
         try {
             if (VERBOSE) System.out.println("Building UCA");
             final Path dataPath = Settings.UnicodeTools.getDataPathForLatestVersion("uca");
             final String file = Utility.searchDirectory(dataPath.toFile(), "allkeys", true, ".txt");
-            final UCA collator = new UCA(file, Default.ucdVersion(), primaryRemap);
+            final UCA collator =
+                    new UCA(file, Default.ucdVersion(), variableHigh, firstNonVariable);
             if (VERBOSE)
                 System.out.println(
                         "Built version "
@@ -1798,62 +1808,5 @@ public final class UCA implements Comparator<String>, UCA_Types {
 
     UCA_Statistics getStatistics() {
         return ucaData.statistics;
-    }
-
-    public static final class Remap {
-        private int counter = 0x100;
-        private final Map<Integer, Integer> primaryRemap = new TreeMap<Integer, Integer>();
-        private final Map<Integer, IntStack> characterRemap = new TreeMap<Integer, IntStack>();
-        private int variableHigh;
-        private int firstDucetNonVariable;
-
-        public Integer getRemappedPrimary(int ducetPrimary) {
-            return primaryRemap.get(ducetPrimary);
-        }
-
-        public IntStack getRemappedCharacter(int source) {
-            return characterRemap.get(source);
-        }
-        /**
-         * The UnicodeSet is not characters but primaries....
-         *
-         * @param items
-         * @return
-         */
-        public Remap addItems(UnicodeSet items) {
-            for (final String s : items) {
-                primaryRemap.put(s.codePointAt(0), counter++);
-            }
-            return this;
-        }
-
-        public Remap putRemappedCharacters(int codePoint) {
-            final IntStack stack = new IntStack(1);
-            stack.append(makeKey(counter++, NEUTRAL_SECONDARY, NEUTRAL_TERTIARY));
-            characterRemap.put(codePoint, stack);
-            // *130D.0020.0002
-            return this;
-        }
-
-        public Map<Integer, IntStack> getCharacterRemap() {
-            return Collections.unmodifiableMap(characterRemap);
-        }
-
-        public void setFirstDucetNonVariable(int firstDucetNonVariable) {
-            this.firstDucetNonVariable = primaryRemap.get(firstDucetNonVariable);
-        }
-
-        public int getFirstDucetNonVariable() {
-            return firstDucetNonVariable;
-        }
-
-        public int getVariableHigh() {
-            return variableHigh;
-        }
-
-        public Remap setVariableHigh() {
-            variableHigh = counter - 1;
-            return this;
-        }
     }
 }
