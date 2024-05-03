@@ -39,6 +39,7 @@
 # @missing: 0000..10FFFF; Logical_Order_Exception; No
 # @missing: 0000..10FFFF; Lowercase; No
 # @missing: 0000..10FFFF; Math; No
+# @missing: 0000..10FFFF; Modifier_Combining_Mark; No
 # @missing: 0000..10FFFF; Noncharacter_Code_Point; No
 # @missing: 0000..10FFFF; Pattern_Syntax; No
 # @missing: 0000..10FFFF; Pattern_White_Space; No
@@ -170,3 +171,20 @@ Other_Joining_Type ; R                                ; Right_Joining
 Other_Joining_Type ; T                                ; Transparent
 Other_Joining_Type ; U                                ; Non_Joining
 Other_Joining_Type ; Deduce_From_General_Category     ; Deduce_From_General_Category
+
+# @missing: 0000..10FFFF; Do_Not_Emit_Preferred ; <none>
+
+# @missing: 0000..10FFFF; Do_Not_Emit_Type ; <none>
+Do_Not_Emit_Type ; Indic_Atomic_Consonant   ; Indic_Atomic_Consonant
+Do_Not_Emit_Type ; Indic_Consonant_Conjunct ; Indic_Consonant_Conjunct
+Do_Not_Emit_Type ; Indic_Vowel_Letter       ; Indic_Vowel_Letter
+Do_Not_Emit_Type ; Bengali_Khanda_Ta        ; Bengali_Khanda_Ta
+Do_Not_Emit_Type ; Malayalam_Chillu         ; Malayalam_Chillu
+Do_Not_Emit_Type ; Tamil_Shrii              ; Tamil_Shrii
+Do_Not_Emit_Type ; Dotless_Form             ; Dotless_Form
+Do_Not_Emit_Type ; Hamza_Form               ; Hamza_Form
+Do_Not_Emit_Type ; Precomposed_Hieroglyph   ; Precomposed_Hieroglyph
+Do_Not_Emit_Type ; Precomposed_Form         ; Precomposed_Form
+Do_Not_Emit_Type ; Deprecated               ; Deprecated
+Do_Not_Emit_Type ; Discouraged              ; Discouraged
+Do_Not_Emit_Type ; Preferred_Spelling       ; Preferred_Spelling

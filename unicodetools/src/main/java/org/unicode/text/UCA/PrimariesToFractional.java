@@ -669,6 +669,8 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.MALAYALAM_SCRIPT).wholeByte().twoBytePrimaries();
         // Sinhala shares its lead byte with minor scripts.
         setOptionsForScript(UCD_Types.SINHALA_SCRIPT).newByte().twoBytePrimaries();
+        // Minor script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.Newa).newByte();
         // Recommended Script.
         setOptionsForScript(UCD_Types.THAI_SCRIPT).wholeByte().twoBytePrimaries();
         // Recommended Script.

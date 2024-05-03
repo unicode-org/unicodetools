@@ -1,11 +1,11 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2023-08-11, 17:46:40 GMT
-# © 2023 Unicode®, Inc.
+# Date: 2024-05-03, 03:26:41 GMT
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 15.1.0
+# Version: 16.0.0
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr39
 #
@@ -445,9 +445,8 @@
 	(‎ oe ‎)	006F 0065	 LATIN SMALL LETTER O, LATIN SMALL LETTER E
 ←	(‎ œ ‎)	0153	 LATIN SMALL LIGATURE OE
 
-#	ô	ه̂	ۿ
+#	ô	ۿ
 	(‎ ô ‎)	006F 0302	 LATIN SMALL LETTER O, COMBINING CIRCUMFLEX ACCENT
-←	(‎ ه̂ ‎)	0647 0302	 ARABIC LETTER HEH, COMBINING CIRCUMFLEX ACCENT	# →‎ھٛ‎→
 ←	(‎ ۿ ‎)	06FF	 ARABIC LETTER HEH WITH INVERTED V	# →‎ھٛ‎→
 
 #	o̵	о̵	ө
@@ -1839,5 +1838,5 @@
 	(‎ 鹂 ‎)	9E42	 CJK UNIFIED IDEOGRAPH-9E42
 ←	(‎ 鹃 ‎)	9E43	 CJK UNIFIED IDEOGRAPH-9E43
 
-# total : 635
+# total : 634
 

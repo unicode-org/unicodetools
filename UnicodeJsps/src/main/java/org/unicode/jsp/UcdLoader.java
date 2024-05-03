@@ -22,7 +22,9 @@ public class UcdLoader implements javax.servlet.Servlet {
     }
 
     private static synchronized void setOldestLoadedUcd(VersionInfo v) {
-        oldestLoadedUcd = v;
+        if (v.compareTo(oldestLoadedUcd) < 0) {
+            oldestLoadedUcd = v;
+        }
     }
 
     @Override
@@ -41,7 +43,7 @@ public class UcdLoader implements javax.servlet.Servlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         IndexUnicodeProperties.loadUcdHistory(
-                Settings.LAST_VERSION_INFO, UcdLoader::setOldestLoadedUcd, true);
+                Settings.LATEST_VERSION_INFO, UcdLoader::setOldestLoadedUcd, true);
         new Thread(
                         new Runnable() {
                             @Override

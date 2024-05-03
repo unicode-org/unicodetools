@@ -64,6 +64,7 @@ import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.VersionToAge;
+import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.NamesList;
 import org.unicode.text.utility.Birelation;
 import org.unicode.text.utility.Utility;
@@ -1533,9 +1534,11 @@ public class GenerateEmoji {
 
             outPlain.println(
                     "# labels.txt\n"
-                            + "# Copyright © 1991-2016 Unicode, Inc.\n"
+                            + "# Copyright © 1991-"
+                            + Default.getYear()
+                            + " Unicode, Inc.\n"
                             + "# CLDR data files are interpreted according to the LDML specification (https://unicode.org/reports/tr35/)\n"
-                            + "# For terms of use, see https://www.unicode.org/copyright.html\n"
+                            + "# For terms of use and license, see https://www.unicode.org/terms_of_use.html\n"
                             + "#\n"
                             + "# This file provides information for mapping character labels to sets of characters.\n"
                             + "# The characters should normally be sorted using CLDR collation data, but that order may be further customized.\n"
