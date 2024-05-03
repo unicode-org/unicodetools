@@ -814,6 +814,6 @@ A7F6; Obsolete
 AB68; Technical
 
 # Unicode 16
-# UTC-179-Cxx: Change the Identifier_Type of A9CF to Limited_Use Uncommon_Use, removing Exclusion.
+# UTC-179-C39: Change the Identifier_Type of A9CF to Limited_Use Uncommon_Use, removing Exclusion.
 # (A code fix removed Exclusion from Limited_Use characters, but adding Uncommon_Use needs an override.)
 A9CF; Limited_Use Uncommon_Use
