@@ -1072,18 +1072,8 @@ Let $nonIdeographicStrokes = \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZ
 [$strokesAndRadicals - \P{Equivalent_Unified_Ideograph=@none@}] = [$nonIdeographicStrokes $nonIdeographicRadicals]
 In \P{Equivalent_Unified_Ideograph=@none@}, Equivalent_Unified_Ideograph ∈ \p{Unified_Ideograph}
 
-# Strokes are equivalent to a single-stroke ideograph, except for one strange one.
-# 𠄎 is the Equivalent_Unified_Ideograph of the stroke ㇡, but it has two strokes.
-# TODO(egg): It might have one stroke in CN, see the one-stroke G-source glyph and
-# https://www.zdic.net/hans/%F0%A0%84%8E which has it as 5.0, 1 stroke
-# (contrast https://www.zdic.net/hant/%F0%A0%84%8E which is 6.1, 2 strokes).
-# This has been submitted as feedback on PRI #483.
-# If the kTotalStrokes value of 𠄎 gets changed to 1|2, the variable
-# $strokesWith2StrokeLookalikes can be removed.
-Let $strokesWith2StrokeLookalikes = \N{CJK STROKE HZZZG}
-
-In [$cjkStrokes - $nonIdeographicStrokes - $strokesWith2StrokeLookalikes], Equivalent_Unified_Ideograph ∈ \p{kTotalStrokes=1}
-In $strokesWith2StrokeLookalikes, kTotalStrokes * Equivalent_Unified_Ideograph = (constant 2)
+# Strokes are equivalent to single-stroke ideographs.
+In [$cjkStrokes - $nonIdeographicStrokes], Equivalent_Unified_Ideograph ∈ \p{kTotalStrokes=1}
 
 # Kangxi radicals are equivalent to those radicals with no residual strokes.
 In $kangxiRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/\.0/}
