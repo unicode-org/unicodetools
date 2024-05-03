@@ -8,7 +8,6 @@ import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
@@ -42,7 +41,6 @@ public class GenerateIdna {
 
     // Utility.WORKSPACE_DIRECTORY + "draft/reports/tr46/data";
     private static final int MAX_STATUS_LENGTH = "disallowed_STD3_mapped".length();
-    private static final boolean DISALLOW_BIDI_CONTROLS = true;
     public static UnicodeSet U32;
     public static UnicodeSet U40;
     public static UnicodeSet VALID_ASCII;
@@ -366,78 +364,14 @@ public class GenerateIdna {
                         + new UnicodeSet("[:nfkcqc=n:]").retainAll(baseValidSet));
 
         // https://unicode.org/reports/tr46/#TableDerivationStep3
-        final R2<UnicodeSet, UnicodeSet> baseExclusionSetInfo =
-                computeBaseExclusionSet(baseMapping, baseValidSet, STD3);
-        final UnicodeSet disallowedExclusionSet = baseExclusionSetInfo.get0();
-        final UnicodeSet mappingChanged = baseExclusionSetInfo.get1();
-        // TODO: Was union of disallowedExclusionSet & mappingChanged.
-        // TODO: Experimental small, fixed set.
+        // Fixed base exclusion set since Unicode 16.
+        // (We now ignore mapping changes between IDNA2003 and UTS #46.)
         // U+FFFC OBJECT REPLACEMENT CHARACTER
         // U+FFFD REPLACEMENT CHARACTER
         // U+E00xx tag characters
         final UnicodeSet baseExclusionSet = new UnicodeSet(0xFFFC, 0xFFFD, 0xE0001, 0xE007F);
-        // TODO: Ignore mapping changes between IDNA2003 and UTS #46 -- .addAll(mappingChanged);
-        // TODO: Decide how far to go.
-        // Hardcoded set of what we expect the base exclusion set to contain.
-        // Comments from UTS #46, but as of Unicode 15.1, the spec still shows the
-        // base exclusion set from 6.0 which no longer matches the current set.
-        // It is updated here.
-        final UnicodeSet baseExclusionSet2 =
-                new UnicodeSet(
-                                "["
-                                        /* TODO: clean up --
-                                           // * Characters that have a different mapping in IDNA2003
-                                           // Case Changes
-                                           // U+04C0 ( Ӏ ) CYRILLIC LETTER PALOCHKA
-                                           // U+10A0 ( Ⴀ ) GEORGIAN CAPITAL LETTER AN…
-                                           //   U+10C5 ( Ⴥ ) GEORGIAN CAPITAL LETTER HOE
-                                           // U+2132 ( Ⅎ ) TURNED CAPITAL F
-                                           // U+2183 ( Ↄ ) ROMAN NUMERAL REVERSED ONE HUNDRED
-                                           + "\\u04C0 \\u10A0-\\u10C5 \\u2132 \\u2183"
-                                           // Default Ignorable Changes
-                                           // U+3164 HANGUL FILLER
-                                           // U+FFA0 HALFWIDTH HANGUL FILLER
-                                           // U+115F HANGUL CHOSEONG FILLER
-                                           // U+1160 HANGUL JUNGSEONG FILLER
-                                           // U+17B4 KHMER VOWEL INHERENT AQ
-                                           // U+17B5 KHMER VOWEL INHERENT AA
-                                           // U+1806 ( ᠆ ) MONGOLIAN TODO SOFT HYPHEN
-                                           + "\u3164 \uFFA0 \u115F \u1160 \u17B4 \u17B5 \u1806"
-                                        */
-
-                                        // * Characters that are disallowed in IDNA2003
-                                        // Miscellaneous
-                                        // U+180E MONGOLIAN VOWEL SEPARATOR
-                                        + "\\u180E"
-                                        // Invisible operators
-                                        + "\\u2061-\\u2063"
-                                        // Replacement characters
-                                        + "\uFFFC \uFFFD"
-                                        // Musical symbols
-                                        + "\\U0001D173-\\U0001D17A"
-                                        // Format characters (deprecated)
-                                        + "\\u206A-\\u206F"
-                                        // Tags (deprecated) & Other tags
-                                        + "\\U000E0001\\U000E0020-\\U000E007F"
-                                        + "]")
-                        .freeze(); // .addAll(cn)
 
         System.out.println(STD3 + " base valid set:\t" + baseValidSet);
-        System.out.println(
-                STD3 + " computed base exclusion disallowed:\t" + disallowedExclusionSet);
-        System.out.println(STD3 + " computed base exclusion mapping changed:\t" + mappingChanged);
-
-        if (!baseExclusionSet.equals(baseExclusionSet2)) {
-            System.out.println(
-                    "computed-static:\t"
-                            + new UnicodeSet(baseExclusionSet).removeAll(baseExclusionSet2));
-            System.out.println(
-                    "static-computed:\t"
-                            + new UnicodeSet(baseExclusionSet2).removeAll(baseExclusionSet));
-            // TODO: throw new IllegalArgumentException("computed base exclusion set != expected
-            // set");
-        }
-
         System.out.println(
                 STD3
                         + " ***Overlap with baseValidSet and baseExclusionSet:\t"
@@ -571,53 +505,7 @@ public class GenerateIdna {
         return mappingTable.freeze();
     }
 
-    private static R2<UnicodeSet, UnicodeSet> computeBaseExclusionSet(
-            UnicodeMap<String> baseMapping, UnicodeSet baseValidSet, boolean STD3) {
-        final Idna Idna2003Data = STD3 ? Idna2003.SINGLETON : Idna2003.SINGLETON_NSTD3;
-        final UnicodeSet disallowed = new UnicodeSet();
-        final UnicodeSet mappingChanged = new UnicodeSet();
-        for (final UnicodeSetIterator it = new UnicodeSetIterator(U32); it.next(); ) {
-            final int i = it.codepoint;
-            final IdnaType type = Idna2003Data.types.get(i);
-            switch (type) {
-                case disallowed:
-                    if (baseValidSet.contains(i)) {
-                        disallowed.add(i);
-                        break;
-                    }
-                    final String base2 = baseMapping.get(i);
-                    if (base2 != null && baseValidSet.containsAll(base2)) {
-                        disallowed.add(i);
-                    }
-                    break;
-                default:
-                    String idna2003 = Idna2003Data.mappings.get(i);
-                    String base = baseMapping.get(i);
-                    if (base == idna2003) {
-                        continue;
-                    }
-                    if (base == null) {
-                        base = UTF16.valueOf(i);
-                    }
-                    if (idna2003 == null) {
-                        idna2003 = UTF16.valueOf(i);
-                    }
-                    if (!base.equals(idna2003)) {
-                        if (0x20000 <= i && i <= 0x2FFFF) {
-                            // Skip the 5 normalization corrections from Unicode 4.0,
-                            // changing them from disallowed to mapped.
-                            continue;
-                        }
-                        mappingChanged.add(i);
-                    }
-                    break;
-            }
-        }
-        return Row.of(disallowed.freeze(), mappingChanged.freeze());
-    }
-
     private static void writeDataFile(UnicodeMap<String> mappingTable) throws IOException {
-        final String filename = "IdnaMappingTable-" + Default.ucdVersion() + ".txt";
         final String unversionedFileName = "IdnaMappingTable.txt";
         final PrintWriter writer = FileUtilities.openUTF8Writer(GEN_IDNA_DIR, unversionedFileName);
 
