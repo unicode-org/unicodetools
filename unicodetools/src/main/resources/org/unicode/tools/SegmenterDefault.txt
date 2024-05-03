@@ -114,7 +114,13 @@ $ZWJ=\p{Line_Break=ZWJ}
 $QU_Pi=[$QU & \p{gc=Pi}]
 $QU_Pf=[$QU & \p{gc=Pf}]
 
+$QUmPi=[$QU - \p{gc=Pi}]
+$QUmPf=[$QU - \p{gc=Pf}]
+
+$NotEastAsian = [^\p{ea=F}\p{ea=W}\p{ea=H}]
+
 $DottedCircle = ◌
+$Hyphen = [\u2010]
 
 $CP30=[$CP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
 $OP30=[$OP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
@@ -200,7 +206,13 @@ $ZWJ=($ZWJ $X)
 $QU_Pi=($QU_Pi $X)
 $QU_Pf=($QU_Pf $X)
 
+$QUmPi=($QUmPi $X)
+$QUmPf=($QUmPf $X)
+
+$NotEastAsian=($NotEastAsian $X)
+
 $DottedCircle=($DottedCircle $X)
+$Hyphen=($Hyphen $X)
 
 $CP30=($CP30 $X)
 $OP30=($OP30 $X)
@@ -242,13 +254,10 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 12.2) $Spec3b_ $CM+ × $GL
 12.3) ^ $CM+ × $GL
 # LB 13  Do not break before \u2018]\u2019 or \u2018!\u2019 or \u2018;\u2019 or \u2018/\u2019, even after spaces.
-# Using customization 7.
 13.01) × $EX
-13.02) $Spec4_ × ($CL | $CP | $IS | $SY)
-13.03) $Spec4_ $CM+ ×  ($CL | $CP | $IS | $SY)
-13.04) ^ $CM+ ×  ($CL | $CP | $IS | $SY)
-##	13.03) $Spec4_ × $IS
-##	13.04) $Spec4_ × $SY
+13.02) × $CL
+13.03) × $CP 
+13.04) × $SY
 #LB 14  Do not break after \u2018[\u2019, even after spaces.
 14) $OP $SP* ×
 # LB 15a Do not break after an unresolved initial punctuation that lies at the start of the line,
@@ -258,6 +267,10 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 # LB 15b Do not break before an unresolved final punctuation that lies at the end of the line, before
 # a space, before a prohibited break, or before an unresolved quotation mark, even before spaces.
 15.21) × $QU_Pf ( $SP | $GL | $WJ | $CL | $QU | $CP | $EX | $IS | $SY | $BK | $CR | $LF | $NL | $ZW | $eot )
+# LB 15c Break before numbers starting with a decimal mark.
+15.30) $SP ÷ $IS $NU
+# LB 15d Otherwise, do not break before commas or full stops.
+15.40) × $IS
 # LB 16  Do not break between closing punctuation and a nonstarter (lb=NS), even with intervening spaces.
 16) ($CL | $CP) $SP* × $NS
 # LB 17  Do not break within \u2018\u2014\u2014\u2019, even with intervening spaces.
@@ -265,16 +278,18 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 # LB 18  Break after spaces.
 18) $SP ÷
 # LB 19  Do not break before or after \u2018\"\u2019.
-19.01)  × $QU
-19.02) $QU ×
+19.01) × $QUmPi
+19.02) $QUmPf ×
+# LB 19a Unless surrounded by East Asian Characters, do not break either side of any unresolved quotation marks.
+19.10) $NotEastAsian × $QU
+19.11) × $QU ( $NotEastAsian | $eot )
+19.12) $QU × $NotEastAsian
+19.13) ( $sot | $NotEastAsian ) $QU ×
 # LB 20  Break before and after unresolved CB.
 20.01)  ÷ $CB
 20.02) $CB ÷
-##CLDR: LB 20.9  Don't break between Hyphens and Letters when there is a break preceding the hyphen.
-##CLDR: Originally added as a Finnish tailoring, now promoted to default CLDR behavior.
-##CLDR: Must be before LB 21. Note: this is not default UAX #14 behaviour. See ICU issue ICU-8151.
-##CLDR: (Unlike in ICU, here we just check a limited set of known breaks, ignoring some cases like LB 14).
-##CLDR: 20.09) $Spec5_ $HY × $AL
+# LB20a Do not break after a hyphen that follows break opportunity, a space, or the start of text.
+20.10) ( $sot | $BK | $CR | $LF | $NL | $SP | $ZW | $CB | $GL ) ( $HY | $Hyphen ) × $AL
 # LB 21  Do not break before hyphen-minus, other hyphens, fixed-width spaces, small kana and other non-starters, or after acute accents.
 21.01) × $BA
 21.02) × $HY
@@ -297,14 +312,23 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 # LB24 Do not break between numeric prefix/postfix and letters, or between letters and prefix/postfix.
 24.02) ($PR | $PO) × ($AL | $HL)
 24.03) ($AL | $HL) × ($PR | $PO)
-# Using customization 7
-# LB Alternative: ( PR | PO) ? ( OP | HY ) ? NU (NU | SY | IS) * (CL | CP) ? ( PR | PO) ?
-# Insert × every place it could go. However, make sure that at least one thing is concrete, otherwise would cause $NU to not break before or after 
-25.01) ($PR | $PO) × ( $OP | $HY )? $NU
-25.02) ( $OP | $HY ) × $NU
-25.03) $NU × ($NU | $SY | $IS)
-25.04) $NU ($NU | $SY | $IS)* × ($NU | $SY | $IS | $CL | $CP)
-25.05) $NU ($NU | $SY | $IS)* ($CL | $CP)? × ($PO | $PR)
+# LB 25 Do not break numbers.
+25.01) $NU ( $SY | $IS )* $CL × $PO
+25.02) $NU ( $SY | $IS )* $CP × $PO
+25.03) $NU ( $SY | $IS )* $CL × $PR
+25.04) $NU ( $SY | $IS )* $CP × $PR
+25.05) $NU ( $SY | $IS )* × $PO
+25.06) $NU ( $SY | $IS )* × $PR
+25.07) $PO × $OP $NU
+25.08) $PO × $OP $IS $NU
+25.09) $PO × $NU
+25.10) $PR × $OP $NU
+25.11) $PR × $OP $IS $NU
+25.12) $PR × $NU
+25.13) $HY × $NU
+25.14) $IS × $NU
+25.15) $NU ( $SY | $IS )* × $NU
+25.16) $NU ( $SY | $IS )* × $SY
 #LB 26 Do not break a Korean syllable.
 26.01) $JL  × $JL | $JV | $H2 | $H3
 26.02) $JV | $H2 × $JV | $JT

@@ -489,12 +489,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         out.println(
                 ", which is the one that applies to that case. "
                         + "Note that a rule is invoked only when no lower-numbered rules have applied.</p>");
-        if (fileName.equals("Line")) {
-            out.println(
-                    "<p>The "
-                            + propertyName
-                            + " tests use tailoring of numbers described in Example 7 of Section 8.2, “Examples of Customization” of UAX #14.</p>");
-        }
         generateTable(out);
 
         if (false) {
@@ -565,12 +559,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         out.println("#\t- (x) the " + propertyName + " property value for the sample character");
         out.println("#\t- [x] the rule that determines whether there is a break or not,");
         out.println("#\t   as listed in the Rules section of " + fileName + "BreakTest.html");
-        if (fileName.equals("Line")) {
-            out.println("#");
-            out.println("# Note:");
-            out.println("#  The " + propertyName + " tests use tailoring of numbers described in");
-            out.println("#  Example 7 of Section 8.2, \"Examples of Customization\" of UAX #14.");
-        }
         out.println("#");
         sampleDescription(out);
         out.println("# These samples may be extended or changed in the future.");
@@ -1722,7 +1710,28 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         "— Không ai hãm bao giờ mà bây giờ hãm, thế nó mới « mới ».",
                         // ZWSP.
                         "Pas une citation »Zitat« Pas une citation non plus",
-                        "« Citation »\u200BKein Zitat\u200B« Autre citation »"
+                        "« Citation »\u200BKein Zitat\u200B« Autre citation »",
+                        // Various number examples for
+                        // https://www.unicode.org/L2/L2024/24061.htm#179-A117
+                        "start .789 end", // From https://unicode-org.atlassian.net/browse/ICU-12017
+                        // various reasonable productions of the regex for numbers
+                        //   (PR | PO)? (OP | HY)? IS? NU (NU | SY | IS)* (CL | CP)? (PR | PO)?
+                        // separated by spaces.
+                        "$-5 -.3 £(123.456) 123.€ +.25 1/2",
+                        // Examples for LB20a:
+                        // From L2/24-064R2 Section 5.13.
+                        "the 3ms possessive pronominal suffix ( -šu )",
+                        // From https://unicode-org.atlassian.net/browse/CLDR-3029.
+                        "Mac Pro -tietokone",
+                        // Examples for LB19/LB19a from L2/24-064R2 Section 5.5.
+                        "子曰：“学而时习之，不亦说乎？有朋自远方来，不亦乐乎？人不知而不愠，不亦君子乎？”",
+                        "子贡曰：“贫而无谄，富而无骄，何如？”子曰：“可也。未若贫而乐，富而好礼者也”。子贡曰：“《诗》云：‘如切如磋，如琢如磨。’其斯之谓与？”子曰：“赐也，始可与言《诗》已矣！吿诸往而知来者。”",
+                        "哪一所中国学校乃“为各省派往日本游学之首倡”？",
+                        "哪个商标以人名为名，因特色小吃“五台杂烩汤”而入选“新疆老字号”？",
+                        "毕士悌（1901年—1936年），朝鲜籍红军将领",
+                        "2000年获得了《IGN》的“Best Game Boy Strategy”奖。",
+                        "Z-1“莱贝雷希特·马斯”号是德国国家海军暨战争海军于1930年代",
+                        "Anmerkung: „White“ bzw. ‚白人‘ – in der Amtlichen Statistik",
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
