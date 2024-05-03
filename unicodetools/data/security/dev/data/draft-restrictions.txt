@@ -25682,7 +25682,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0C4D          ; Allowed ; Recommended #      (్)  TELUGU SIGN VIRAMA
 0C55          ; Allowed ; Recommended #      (ౕ)  TELUGU LENGTH MARK
 0C56          ; Allowed ; Recommended #      (ౖ)  TELUGU AI LENGTH MARK
-0C5C          ; Allowed ; Recommended #      (౜)  TELUGU ARCHAIC SHRII
 0C5D          ; Allowed ; Recommended #      (ౝ)  TELUGU LETTER NAKAARA POLLU
 0C60          ; Allowed ; Recommended #      (ౠ)  TELUGU LETTER VOCALIC RR
 0C61          ; Allowed ; Recommended #      (ౡ)  TELUGU LETTER VOCALIC LL
@@ -25766,7 +25765,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0CCD          ; Allowed ; Recommended #      (್)  KANNADA SIGN VIRAMA
 0CD5          ; Allowed ; Recommended #      (ೕ)  KANNADA LENGTH MARK
 0CD6          ; Allowed ; Recommended #      (ೖ)  KANNADA AI LENGTH MARK
-0CDC          ; Allowed ; Recommended #      (೜)  KANNADA ARCHAIC SHRII
 0CDD          ; Allowed ; Recommended #      (ೝ)  KANNADA LETTER NAKAARA POLLU
 0CE0          ; Allowed ; Recommended #      (ೠ)  KANNADA LETTER VOCALIC RR
 0CE1          ; Allowed ; Recommended #      (ೡ)  KANNADA LETTER VOCALIC LL
@@ -54816,7 +54814,7 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 323AF         ; Allowed ; Recommended #      (𲎯)  CJK UNIFIED IDEOGRAPH-323AF
 E0100..E01EF  ; Allowed ; Recommended # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 113031
+# Total code points: 113029
 
 005F          ; ~IDNA #      (_)  LOW LINE
 04C0          ; ~IDNA #      (Ӏ)  CYRILLIC LETTER PALOCHKA

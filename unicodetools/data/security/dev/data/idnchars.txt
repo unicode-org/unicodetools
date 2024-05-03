@@ -1,8 +1,8 @@
 # idnchars.txt
-# Date: 2024-04-12, 20:03:08 GMT
+# Date: 2024-05-03, 03:26:42 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
 # Version: 16.0.0
@@ -325,7 +325,7 @@
 0C46..0C48    ; output #  [3] (ె..ై)  TELUGU VOWEL SIGN E..TELUGU VOWEL SIGN AI
 0C4A..0C4D    ; output #  [4] (ొ..్)  TELUGU VOWEL SIGN O..TELUGU SIGN VIRAMA
 0C55..0C56    ; output #  [2] (ౕ..ౖ)  TELUGU LENGTH MARK..TELUGU AI LENGTH MARK
-0C5C..0C5D    ; output #  [2] (౜..ౝ)  TELUGU ARCHAIC SHRII..TELUGU LETTER NAKAARA POLLU
+0C5D          ; output #      (ౝ)  TELUGU LETTER NAKAARA POLLU
 0C60..0C61    ; output #  [2] (ౠ..ౡ)  TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C66..0C6F    ; output # [10] (౦..౯)  TELUGU DIGIT ZERO..TELUGU DIGIT NINE
 0C80          ; output #      (ಀ)  KANNADA SIGN SPACING CANDRABINDU
@@ -339,7 +339,7 @@
 0CC6..0CC8    ; output #  [3] (ೆ..ೈ)  KANNADA VOWEL SIGN E..KANNADA VOWEL SIGN AI
 0CCA..0CCD    ; output #  [4] (ೊ..್)  KANNADA VOWEL SIGN O..KANNADA SIGN VIRAMA
 0CD5..0CD6    ; output #  [2] (ೕ..ೖ)  KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
-0CDC..0CDD    ; output #  [2] (೜..ೝ)  KANNADA ARCHAIC SHRII..KANNADA LETTER NAKAARA POLLU
+0CDD          ; output #      (ೝ)  KANNADA LETTER NAKAARA POLLU
 0CE0..0CE3    ; output #  [4] (ೠ..ೣ)  KANNADA LETTER VOCALIC RR..KANNADA VOWEL SIGN VOCALIC LL
 0CE6..0CEF    ; output # [10] (೦..೯)  KANNADA DIGIT ZERO..KANNADA DIGIT NINE
 0CF1..0CF3    ; output #  [3] (ೱ..ೳ)  KANNADA SIGN JIHVAMULIYA..KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
@@ -668,7 +668,7 @@ FA27..FA29    ; output #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK 
 30000..3134A  ; output # [4939] (𰀀..𱍊)  CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; output # [4192] (𱍐..𲎯)  CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 112135
+# Total code points: 112133
 
 # Not allowed at start of identifier
 
