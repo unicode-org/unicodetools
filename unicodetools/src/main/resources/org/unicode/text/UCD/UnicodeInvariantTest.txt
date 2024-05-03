@@ -854,6 +854,34 @@ Let $TwoVietnameseReadingMarks = [\p{U15.1.0:ccc=6}]
 [\p{NFC_QC=Maybe}&\p{ccc=0}] ⊆ [\p{GCB=Extend}\p{GCB=T}\p{GCB=V}]
 
 ##########################
+# Security
+##########################
+
+# https://www.unicode.org/reports/tr39/#Identifier_Status_and_Type
+
+# “Unassigned characters, private use characters, surrogates, non-whitespace control characters.”
+\p{Identifier_Type=Not_Character} = [\p{gc=Cn}\p{gc=Co}\p{gc=Cs}\p{gc=Cc}-\p{White_Space}]
+
+# “Multiple values are not assigned to characters with strong restrictions:
+# Not_Character, Deprecated, Default_Ignorable, Not_NFKC.”
+\p{Identifier_Type=Deprecated} = \p{Deprecated}
+
+# When a code point fits the criteria for multiple restrictions, then the strongest one wins.
+# For example, Default_Ignorable is trumped by unassigned and Deprecated.
+\p{Identifier_Type=Default_Ignorable} = [\p{Default_Ignorable_Code_Point}-\p{gc=Cn}-\p{Deprecated}]
+
+\p{Identifier_Type=Not_NFKC} = [\p{NFKC_QC=No}-\p{Deprecated}-\p{Default_Ignorable_Code_Point}]
+
+Let $Strongly_Restricted = [\p{Identifier_Type=Not_Character}\p{Identifier_Type=Deprecated}\p{Identifier_Type=Default_Ignorable}\p{Identifier_Type=Not_NFKC}]
+
+\p{Identifier_Type=Not_XID} = [\P{XID_Continue}-$Strongly_Restricted-\p{Identifier_Type=Inclusion}]
+
+# By definition, no character can have both Exclusion and Limited_Use.
+\p{Identifier_Type=Exclusion} ∥ \p{Identifier_Type=Limited_Use}
+
+\p{Identifier_Status=Allowed} = [\p{Identifier_Type=Inclusion}\p{Identifier_Type=Recommended}]
+
+##########################
 # Emoji
 ##########################
 
@@ -1100,3 +1128,4 @@ In [\p{Block=Hangul Syllables} - \p{gc=Cn}], (prepend HANGUL SYLLABLE ) * (strin
 # Inspired by, and would have caught,
 # https://www.unicode.org/review/pri497/feedback.html#ID20240216135149.
 In \p{Decomposition_Type=font}, Bidi_Class = Bidi_Class * Decomposition_Mapping
+

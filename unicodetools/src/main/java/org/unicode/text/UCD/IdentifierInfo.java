@@ -616,7 +616,17 @@ public class IdentifierInfo {
                 identifierTypesMap.getSet(null),
                 Collections.singleton(Identifier_Type.recommended));
 
-        // make immutable
+        // By definition, no character can have both Exclusion and Limited_Use.
+        // The weaker restriction wins.
+        for (Set<Identifier_Type> value : identifierTypesMap.getAvailableValues()) {
+            if (value.contains(Identifier_Type.exclusion)
+                    && value.contains(Identifier_Type.limited_use)) {
+                UnicodeSet set = identifierTypesMap.getSet(value);
+                EnumSet<Identifier_Type> value2 = EnumSet.copyOf(value);
+                value2.remove(Identifier_Type.exclusion);
+                identifierTypesMap.putAll(set, ImmutableSet.copyOf(value2));
+            }
+        }
         // special hack for Exclusion + Obsolete!!
         for (Set<Identifier_Type> value : identifierTypesMap.getAvailableValues()) {
             if (value.contains(Identifier_Type.exclusion)
@@ -627,6 +637,7 @@ public class IdentifierInfo {
                 identifierTypesMap.putAll(set, ImmutableSet.copyOf(value2));
             }
         }
+        // make immutable
         identifierTypesMap.freeze();
         // removals.putAll(getNonIICore(), PROHIBITED + "~IICore");
         br.close();
