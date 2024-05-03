@@ -732,6 +732,25 @@ AB63; uncommon-use # LATIN SMALL LETTER UO
 # Question: should be default for anything new; add exceptions otherwise
 # \p{Age=13} ; uncommon_use
 
+# PAG meeting 2024-04-18 before Unicode 16 beta:
+# [Mark]: Policy is that by default
+# new characters in scripts that are not Excluded or Limited Use,
+# are marked as Uncommon_Use & communicate to SEW
+# to ask if there are any exceptions (needed in customary modern widespread use).
+# ----
+# https://www.unicode.org/reports/tr31/#Table_Recommended_Scripts
+# ----
+# TODO: This should work with the following set pattern but doesn't;
+# and neither with \p{Age=16}. Why?
+# [\P{Age=15.1}&[\p{script=Zyyy}\p{script=Zinh}\p{script=Arab}\p{script=Armn}\p{script=Beng}\p{script=Bopo}\p{script=Cyrl}\p{script=Deva}\p{script=Ethi}\p{script=Geor}\p{script=Grek}\p{script=Gujr}\p{script=Guru}\p{script=Hang}\p{script=Hani}\p{script=Hebr}\p{script=Hira}\p{script=Kana}\p{script=Knda}\p{script=Khmr}\p{script=Laoo}\p{script=Latn}\p{script=Mlym}\p{script=Mymr}\p{script=Orya}\p{script=Sinh}\p{script=Taml}\p{script=Telu}\p{script=Thaa}\p{script=Thai}\p{script=Tibt}]] ; uncommon_use
+# ----
+# TODO: We should work our way backwards to
+# review Recommended characters added at least since Unicode 13 (inclusive).
+
+# For now, hardcode the set of characters that would otherwise become Recommended in Unicode 16.
+[\u1C89-\u1C8A \uA7CB-\uA7CD \uA7DA-\uA7DC \U00010EC2-\U00010EC4 \U000116D0-\U000116E3] ; uncommon_use
+# End hardcoded set.
+
 # 19-329 Section 4
 0192	;	uncommon_use
 0199	;	uncommon_use

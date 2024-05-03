@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2024-05-03, 03:26:41 GMT
+# Date: 2024-05-03, 03:51:21 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -447,7 +447,6 @@
 17D7          ; Recommended                    # 3.0        KHMER SIGN LEK TOO
 17DC          ; Recommended                    # 3.0        KHMER SIGN AVAKRAHASANYA
 17E0..17E9    ; Recommended                    # 3.0   [10] KHMER DIGIT ZERO..KHMER DIGIT NINE
-1C89..1C8A    ; Recommended                    # 16.0   [2] CYRILLIC CAPITAL LETTER TJE..CYRILLIC SMALL LETTER TJE
 1C90..1CBA    ; Recommended                    # 11.0  [43] GEORGIAN MTAVRULI CAPITAL LETTER AN..GEORGIAN MTAVRULI CAPITAL LETTER AIN
 1CBD..1CBF    ; Recommended                    # 11.0   [3] GEORGIAN MTAVRULI CAPITAL LETTER AEN..GEORGIAN MTAVRULI CAPITAL LETTER LABIAL SIGN
 1E00..1E99    ; Recommended                    # 1.1  [154] LATIN CAPITAL LETTER A WITH RING BELOW..LATIN SMALL LETTER Y WITH RING ABOVE
@@ -530,11 +529,9 @@ A7AA          ; Recommended                    # 6.1        LATIN CAPITAL LETTER
 A7C0..A7C1    ; Recommended                    # 14.0   [2] LATIN CAPITAL LETTER OLD POLISH O..LATIN SMALL LETTER OLD POLISH O
 A7C2..A7C6    ; Recommended                    # 12.0   [5] LATIN CAPITAL LETTER ANGLICANA W..LATIN CAPITAL LETTER Z WITH PALATAL HOOK
 A7C7..A7CA    ; Recommended                    # 13.0   [4] LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY..LATIN SMALL LETTER S WITH SHORT STROKE OVERLAY
-A7CB..A7CD    ; Recommended                    # 16.0   [3] LATIN CAPITAL LETTER RAMS HORN..LATIN SMALL LETTER S WITH DIAGONAL STROKE
 A7D0..A7D1    ; Recommended                    # 14.0   [2] LATIN CAPITAL LETTER CLOSED INSULAR G..LATIN SMALL LETTER CLOSED INSULAR G
 A7D3          ; Recommended                    # 14.0       LATIN SMALL LETTER DOUBLE THORN
 A7D5..A7D9    ; Recommended                    # 14.0   [5] LATIN SMALL LETTER DOUBLE WYNN..LATIN SMALL LETTER SIGMOID S
-A7DA..A7DC    ; Recommended                    # 16.0   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER LAMBDA WITH STROKE
 A9E7..A9FE    ; Recommended                    # 7.0   [24] MYANMAR LETTER TAI LAING NYA..MYANMAR LETTER TAI LAING BHA
 AA60..AA76    ; Recommended                    # 5.2   [23] MYANMAR LETTER KHAMTI GA..MYANMAR LOGOGRAM KHAMTI HM
 AA7A..AA7B    ; Recommended                    # 5.2    [2] MYANMAR LETTER AITON RA..MYANMAR SIGN PAO KAREN TONE
@@ -553,12 +550,10 @@ FA1F          ; Recommended                    # 1.1        CJK COMPATIBILITY ID
 FA21          ; Recommended                    # 1.1        CJK COMPATIBILITY IDEOGRAPH-FA21
 FA23..FA24    ; Recommended                    # 1.1    [2] CJK COMPATIBILITY IDEOGRAPH-FA23..CJK COMPATIBILITY IDEOGRAPH-FA24
 FA27..FA29    ; Recommended                    # 1.1    [3] CJK COMPATIBILITY IDEOGRAPH-FA27..CJK COMPATIBILITY IDEOGRAPH-FA29
-10EC2..10EC4  ; Recommended                    # 16.0   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
 11301         ; Recommended                    # 7.0        GRANTHA SIGN CANDRABINDU
 11303         ; Recommended                    # 7.0        GRANTHA SIGN VISARGA
 1133B         ; Recommended                    # 11.0       COMBINING BINDU BELOW
 1133C         ; Recommended                    # 7.0        GRANTHA SIGN NUKTA
-116D0..116E3  ; Recommended                    # 16.0  [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
 16FF0..16FF1  ; Recommended                    # 13.0   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 1B11F..1B122  ; Recommended                    # 14.0   [4] HIRAGANA LETTER ARCHAIC WU..KATAKANA LETTER ARCHAIC WU
 1B132         ; Recommended                    # 15.0       HIRAGANA LETTER SMALL KO
@@ -585,7 +580,7 @@ FA27..FA29    ; Recommended                    # 1.1    [3] CJK COMPATIBILITY ID
 30000..3134A  ; Recommended                    # 13.0 [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Recommended                    # 15.0 [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 112792
+# Total code points: 112761
 
 #	Identifier_Type:	Inclusion
 
@@ -860,6 +855,7 @@ ABEB          ; Limited_Use Not_XID            # 5.2        MEETEI MAYEK CHEIKHE
 0D62..0D63    ; Uncommon_Use                   # 5.1    [2] MALAYALAM VOWEL SIGN VOCALIC L..MALAYALAM VOWEL SIGN VOCALIC LL
 0F39          ; Uncommon_Use                   # 2.0        TIBETAN MARK TSA -PHRU
 1AC1..1ACE    ; Uncommon_Use                   # 14.0  [14] COMBINING LEFT PARENTHESIS ABOVE LEFT..COMBINING LATIN SMALL LETTER INSULAR T
+1C89..1C8A    ; Uncommon_Use                   # 16.0   [2] CYRILLIC CAPITAL LETTER TJE..CYRILLIC SMALL LETTER TJE
 2054          ; Uncommon_Use                   # 4.0        INVERTED UNDERTIE
 2C68..2C6C    ; Uncommon_Use                   # 5.0    [5] LATIN SMALL LETTER H WITH DESCENDER..LATIN SMALL LETTER Z WITH DESCENDER
 A66F          ; Uncommon_Use                   # 5.1        COMBINING CYRILLIC VZMET
@@ -868,15 +864,19 @@ A78B..A78C    ; Uncommon_Use                   # 5.1    [2] LATIN CAPITAL LETTER
 A78F          ; Uncommon_Use                   # 8.0        LATIN LETTER SINOLOGICAL DOT
 A7B2..A7B7    ; Uncommon_Use                   # 8.0    [6] LATIN CAPITAL LETTER J WITH CROSSED-TAIL..LATIN SMALL LETTER OMEGA
 A7B8..A7B9    ; Uncommon_Use                   # 11.0   [2] LATIN CAPITAL LETTER U WITH STROKE..LATIN SMALL LETTER U WITH STROKE
+A7CB..A7CD    ; Uncommon_Use                   # 16.0   [3] LATIN CAPITAL LETTER RAMS HORN..LATIN SMALL LETTER S WITH DIAGONAL STROKE
+A7DA..A7DC    ; Uncommon_Use                   # 16.0   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER LAMBDA WITH STROKE
 AB60..AB63    ; Uncommon_Use                   # 8.0    [4] LATIN SMALL LETTER SAKHA YAT..LATIN SMALL LETTER UO
 10780         ; Uncommon_Use                   # 14.0       MODIFIER LETTER SMALL CAPITAL AA
+10EC2..10EC4  ; Uncommon_Use                   # 16.0   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
 10EFC         ; Uncommon_Use                   # 16.0       ARABIC COMBINING ALEF OVERLAY
 10EFD..10EFF  ; Uncommon_Use                   # 15.0   [3] ARABIC SMALL LOW WORD SAKTA..ARABIC SMALL LOW WORD MADDA
+116D0..116E3  ; Uncommon_Use                   # 16.0  [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
 1AFF0..1AFF3  ; Uncommon_Use                   # 14.0   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF5..1AFFB  ; Uncommon_Use                   # 14.0   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; Uncommon_Use                   # 14.0   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
 
-# Total code points: 315
+# Total code points: 346
 
 #	Identifier_Type:	Uncommon_Use Technical
 
