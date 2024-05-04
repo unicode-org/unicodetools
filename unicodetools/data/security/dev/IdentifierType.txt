@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2024-05-03, 03:51:21 GMT
+# Date: 2024-05-04, 21:31:06 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -16,7 +16,7 @@
 #
 # For the purpose of regular expressions, the property Identifier_Type is defined as
 # mapping each code point to a set of enumerated values.
-# The short name of Identifier_Type is the same as the long name.
+# The short name of Identifier_Type is ID_Type.
 # The possible values are:
 #   Not_Character, Deprecated, Default_Ignorable, Not_NFKC, Not_XID,
 #   Exclusion, Obsolete, Technical, Uncommon_Use, Limited_Use, Inclusion, Recommended

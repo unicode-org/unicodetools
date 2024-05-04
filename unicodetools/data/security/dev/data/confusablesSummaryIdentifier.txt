@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2024-05-03, 03:26:41 GMT
+# Date: 2024-05-04, 21:31:06 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -60,7 +60,7 @@
 ←	(‎ Θ ‎)	0398	 GREEK CAPITAL LETTER THETA	# →Ѳ→→О̵→
 ←	(‎ Ө ‎)	04E8	 CYRILLIC CAPITAL LETTER BARRED O	# →Ѳ→→О̵→
 
-#	l	I	1	|	ו	ן	ا	١	۱	Ι	І
+#	l	I	1	|	ו	ן	ا	١	۱	Ι	І	Ӏ
 	(‎ 1 ‎)	0031	 DIGIT ONE
 ←	(‎ l ‎)	006C	 LATIN SMALL LETTER L
 ←	(‎ I ‎)	0049	 LATIN CAPITAL LETTER I
@@ -72,6 +72,7 @@
 ←	(‎ ۱ ‎)	06F1	 EXTENDED ARABIC-INDIC DIGIT ONE
 ←	(‎ Ι ‎)	0399	 GREEK CAPITAL LETTER IOTA	# →I→
 ←	(‎ І ‎)	0406	 CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I	# →I→
+←	(‎ Ӏ ‎)	04C0	 CYRILLIC LETTER PALOCHKA	# →I→
 
 #	l'	1'	וי	ױ
 	(‎ 1' ‎)	0031 0027	 DIGIT ONE, APOSTROPHE
@@ -1838,5 +1839,5 @@
 	(‎ 鹂 ‎)	9E42	 CJK UNIFIED IDEOGRAPH-9E42
 ←	(‎ 鹃 ‎)	9E43	 CJK UNIFIED IDEOGRAPH-9E43
 
-# total : 634
+# total : 635
 
