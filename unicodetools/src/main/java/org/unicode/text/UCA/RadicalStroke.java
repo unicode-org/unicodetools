@@ -483,6 +483,13 @@ public final class RadicalStroke {
                     // non-Chinese simplified version of the given radical.
                     simplified = 2;
                     --radicalNumberLimit;
+                    if (radicalString.charAt(radicalNumberLimit - 1) == '\'') {
+                        // Unicode 16 UAX #38:
+                        // Three apostrophes after the radical indicates a
+                        // second non-Chinese simplified version of the given radical.
+                        simplified = 3;
+                        --radicalNumberLimit;
+                    }
                 }
             }
             int radicalNumber = parseInt(radicalString, 0, radicalNumberLimit);
