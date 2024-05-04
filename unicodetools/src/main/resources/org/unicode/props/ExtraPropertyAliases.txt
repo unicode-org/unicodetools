@@ -21,8 +21,8 @@ REZS ; RGI_Emoji_Zwj_Sequence ; Emoji_Zwj_Sequence
 # Enumerated Properties
 # ================================================
 
-idstatus ; Identifier_Status
-idtype ; Identifier_Type
+ID_Status ; Identifier_Status
+ID_Type ; Identifier_Type
 
 idns ; Idn_Status
 idn8 ; Idn_2008

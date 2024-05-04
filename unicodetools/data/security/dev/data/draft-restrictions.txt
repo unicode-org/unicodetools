@@ -22438,14 +22438,14 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 0DED          ;  ; Obsolete #      (෭)  SINHALA LITH DIGIT SEVEN
 0DEE          ;  ; Obsolete #      (෮)  SINHALA LITH DIGIT EIGHT
 0DEF          ;  ; Obsolete #      (෯)  SINHALA LITH DIGIT NINE
+10A0..10C5    ;  ; Obsolete # [38] (Ⴀ..Ⴥ)  GEORGIAN CAPITAL LETTER AN..GEORGIAN CAPITAL LETTER HOE
 10F1          ;  ; Obsolete #      (ჱ)  GEORGIAN LETTER HE
 10F2          ;  ; Obsolete #      (ჲ)  GEORGIAN LETTER HIE
 10F3          ;  ; Obsolete #      (ჳ)  GEORGIAN LETTER WE
 10F4          ;  ; Obsolete #      (ჴ)  GEORGIAN LETTER HAR
 10F5          ;  ; Obsolete #      (ჵ)  GEORGIAN LETTER HOE
 10F6          ;  ; Obsolete #      (ჶ)  GEORGIAN LETTER FI
-1100..115E    ;  ; Obsolete # [95] (ᄀ..ᅞ)  HANGUL CHOSEONG KIYEOK..HANGUL CHOSEONG TIKEUT-RIEUL
-1161..11FF    ;  ; Obsolete # [159] (ᅡ..ᇿ)  HANGUL JUNGSEONG A..HANGUL JONGSEONG SSANGNIEUN
+1100..11FF    ;  ; Obsolete # [256] (ᄀ..ᇿ)  HANGUL CHOSEONG KIYEOK..HANGUL JONGSEONG SSANGNIEUN
 1369..1371    ;  ; Obsolete #  [9] (፩..፱)  ETHIOPIC DIGIT ONE..ETHIOPIC DIGIT NINE
 1681..169A    ;  ; Obsolete # [26] (ᚁ..ᚚ)  OGHAM LETTER BEITH..OGHAM LETTER PEITH
 16A0..16EA    ;  ; Obsolete # [75] (ᚠ..ᛪ)  RUNIC LETTER FEHU FEOH FE F..RUNIC LETTER X
@@ -22537,10 +22537,12 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 1DE4          ;  ; Obsolete #      (ᷤ)  COMBINING LATIN SMALL LETTER S
 1DE5          ;  ; Obsolete #      (ᷥ)  COMBINING LATIN SMALL LETTER LONG S
 1DE6          ;  ; Obsolete #      (ᷦ)  COMBINING LATIN SMALL LETTER Z
+2132          ;  ; Obsolete #      (Ⅎ)  TURNED CAPITAL F
 214E          ;  ; Obsolete #      (ⅎ)  TURNED SMALL F
 2180          ;  ; Obsolete #      (ↀ)  ROMAN NUMERAL ONE THOUSAND C D
 2181          ;  ; Obsolete #      (ↁ)  ROMAN NUMERAL FIVE THOUSAND
 2182          ;  ; Obsolete #      (ↂ)  ROMAN NUMERAL TEN THOUSAND
+2183          ;  ; Obsolete #      (Ↄ)  ROMAN NUMERAL REVERSED ONE HUNDRED
 2184          ;  ; Obsolete #      (ↄ)  LATIN SMALL LETTER REVERSED C
 2185          ;  ; Obsolete #      (ↅ)  ROMAN NUMERAL SIX LATE FORM
 2186          ;  ; Obsolete #      (ↆ)  ROMAN NUMERAL FIFTY EARLY FORM
@@ -23348,7 +23350,7 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 1D243         ;  ; Obsolete #      (𝉃)  COMBINING GREEK MUSICAL TETRASEME
 1D244         ;  ; Obsolete #      (𝉄)  COMBINING GREEK MUSICAL PENTASEME
 
-# Total code points: 1667
+# Total code points: 1709
 
 0180          ;  ; Technical #      (ƀ)  LATIN SMALL LETTER B WITH STROKE
 01C0          ;  ; Technical #      (ǀ)  LATIN LETTER DENTAL CLICK
@@ -24652,7 +24654,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 04BD          ; Allowed ; Recommended #      (ҽ)  CYRILLIC SMALL LETTER ABKHASIAN CHE
 04BE          ; Allowed ; Recommended #      (Ҿ)  CYRILLIC CAPITAL LETTER ABKHASIAN CHE WITH DESCENDER
 04BF          ; Allowed ; Recommended #      (ҿ)  CYRILLIC SMALL LETTER ABKHASIAN CHE WITH DESCENDER
-04C1          ; Allowed ; Recommended #      (Ӂ)  CYRILLIC CAPITAL LETTER ZHE WITH BREVE
+04C0..04C1    ; Allowed ; Recommended #  [2] (Ӏ..Ӂ)  CYRILLIC LETTER PALOCHKA..CYRILLIC CAPITAL LETTER ZHE WITH BREVE
 04C2          ; Allowed ; Recommended #      (ӂ)  CYRILLIC SMALL LETTER ZHE WITH BREVE
 04C3          ; Allowed ; Recommended #      (Ӄ)  CYRILLIC CAPITAL LETTER KA WITH HOOK
 04C4          ; Allowed ; Recommended #      (ӄ)  CYRILLIC SMALL LETTER KA WITH HOOK
@@ -26517,6 +26519,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 17B1          ; Allowed ; Recommended #      (ឱ)  KHMER INDEPENDENT VOWEL QOO TYPE ONE
 17B2          ; Allowed ; Recommended #      (ឲ)  KHMER INDEPENDENT VOWEL QOO TYPE TWO
 17B3          ; Allowed ; Recommended #      (ឳ)  KHMER INDEPENDENT VOWEL QAU
+17B4..17B5    ; Allowed ; Recommended #  [2] (U+17B4..U+17B5)  KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
 17B6          ; Allowed ; Recommended #      (ា)  KHMER VOWEL SIGN AA
 17B7          ; Allowed ; Recommended #      (ិ)  KHMER VOWEL SIGN I
 17B8          ; Allowed ; Recommended #      (ី)  KHMER VOWEL SIGN II
@@ -54814,17 +54817,11 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 323AF         ; Allowed ; Recommended #      (𲎯)  CJK UNIFIED IDEOGRAPH-323AF
 E0100..E01EF  ; Allowed ; Recommended # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 112998
+# Total code points: 113001
 
 005F          ; ~IDNA #      (_)  LOW LINE
-04C0          ; ~IDNA #      (Ӏ)  CYRILLIC LETTER PALOCHKA
-10A0..10C5    ; ~IDNA # [38] (Ⴀ..Ⴥ)  GEORGIAN CAPITAL LETTER AN..GEORGIAN CAPITAL LETTER HOE
-115F..1160    ; ~IDNA #  [2] (U+115F..U+1160)  HANGUL CHOSEONG FILLER..HANGUL JUNGSEONG FILLER
-17B4..17B5    ; ~IDNA #  [2] (U+17B4..U+17B5)  KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
-2132          ; ~IDNA #      (Ⅎ)  TURNED CAPITAL F
-2183          ; ~IDNA #      (Ↄ)  ROMAN NUMERAL REVERSED ONE HUNDRED
 
-# Total code points: 46
+# Total code points: 1
 
 0000..002F    ; ~Unicode Identifier # [48] (U+0000../)  <control-0000>..SOLIDUS
 003A..0040    ; ~Unicode Identifier #  [7] (:..@)  COLON..COMMERCIAL AT
