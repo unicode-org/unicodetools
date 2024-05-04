@@ -9,6 +9,7 @@
 # UAX #42, "Unicode Character Database in XML"
 # UAX #44, "Unicode Character Database"
 # UTS #51, "Unicode Emoji"
+# UAX #57, "Unicode Egyptian Hieroglyph Database"
 #
 # The UAXes and UTS #51 can be accessed at https://www.unicode.org/versions/UnicodeUNI_VER/
 
