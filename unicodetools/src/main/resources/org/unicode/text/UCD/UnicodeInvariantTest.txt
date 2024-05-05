@@ -507,6 +507,10 @@ $combiningExclusions ⊇ [$firstNonStarter & \p{dt=canonical}]
 
 \p{Terminal_Punctuation} ⊃ \p{STerm}
 
+# Sentence terminal punctuation is exactly
+# ambiguous sentence terminal punctuation and unambiguous sentence terminal punctuation.
+\p{Sentence_Terminal} = [\p{sb=ATerm}\p{sb=STerm}]
+
 # 132-M3 if a character has a general category of "Number", it must have a numeric type that is not equal to "none".
 
 [\p{General_Category=Decimal_Number}\p{General_Category=Letter_Number}\p{General_Category=Other_Number}] ∥ \p{Numeric_Type=None}
