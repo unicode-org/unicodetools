@@ -507,6 +507,9 @@ $combiningExclusions ⊇ [$firstNonStarter & \p{dt=canonical}]
 
 \p{Terminal_Punctuation} ⊃ \p{STerm}
 
+# We forgot about Sentence_Terminal while working on 16.0α; this would have caught us.
+\p{Name=/DANDA/} ⊆ \p{Sentence_Terminal}
+
 # Sentence terminal punctuation is exactly
 # ambiguous sentence terminal punctuation and unambiguous sentence terminal punctuation.
 \p{Sentence_Terminal} = [\p{sb=ATerm}\p{sb=STerm}]
