@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 16.0.0
 @@@+	NamesList-16.0.0.txt
-@+	Generation Date: 2024-04-28, 13:44:21 GMT
+@+	Generation Date: 2024-04-30, 11:19:40 GMT
 	Unicode 16.0.0 names list.
 	Repertoire synched with UnicodeData-16.0.0d16.txt.
 	Pre-beta rollup of various fixes.
@@ -14,6 +14,9 @@
 	Added alias and annotation for 12326.
 	Added xrefs between 050F and 1C8A.
 	Added an annotation about Amerindian orthographic use for 00B7.
+	Add notices about use of colon in Egyptian hieroglyph annotations.
+	Add annotation for 0B35; update annotation for 0B55.
+	Add annotation for 1DF8.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -21,7 +24,7 @@
 	at the expense of some details; therefore, this file should not
 	be parsed for machine-readable information.
 @+		© 2024 Unicode®, Inc.
-	For terms of use, see https://www.unicode.org/terms_of_use.html
+	For terms of use and license, see https://www.unicode.org/terms_of_use.html
 @@	0000	C0 Controls and Basic Latin (Basic Latin)	007F
 @@+
 @		C0 controls
@@ -5949,6 +5952,7 @@
 0B32	ORIYA LETTER LA
 0B33	ORIYA LETTER LLA
 0B35	ORIYA LETTER VA
+	* Kui uses an alternate glyph with the dot above the small circle
 	x (oriya letter ba - 0B2C)
 0B36	ORIYA LETTER SHA
 0B37	ORIYA LETTER SSA
@@ -5981,7 +5985,7 @@
 0B4D	ORIYA SIGN VIRAMA
 @		Various signs
 0B55	ORIYA SIGN OVERLINE
-	* Kuvi
+	* Kuvi, Kui
 0B56	ORIYA AI LENGTH MARK
 0B57	ORIYA AU LENGTH MARK
 @		Additional consonants
@@ -11936,6 +11940,7 @@
 1DF8	COMBINING DOT ABOVE LEFT
 	* used in Syriac as a disambiguation dot
 	* used in Typicon Cyrillic, where the dot may have a square appearance
+	* used in the Latin-based Americanist phonetic notation of Franz Boas
 	x (combining dot above right - 0358)
 	x (syriac feminine dot - 0740)
 1DF9	COMBINING WIDE INVERTED BRIDGE BELOW
@@ -38054,7 +38059,7 @@ FFFF	<not a character>
 12FF1	CYPRO-MINOAN SIGN CM301
 12FF2	CYPRO-MINOAN SIGN CM302
 @@	13000	Egyptian Hieroglyphs	1342F
-@+		The characters in this block are taken primarily from Alan Gardiner's works on Middle Egyptian.
+@+		The characters in this block are taken primarily from Alan Gardiner's works on Middle Egyptian. Annotations use a colon, preceded and followed by a space, as a delimiter between fields defining functions and phonetic values.
 @		A. Man and his occupations
 13000	EGYPTIAN HIEROGLYPH A001
 	* classifier human being
@@ -40523,6 +40528,7 @@ FFFF	<not a character>
 13455	EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
 @~	!
 @@	13460	Egyptian Hieroglyphs Extended-A	143FF
+@+		Annotations use a colon, preceded and followed by a space, as a delimiter between fields defining functions and phonetic values.
 @		A01. Man seated or kneeling empty handed
 13460	EGYPTIAN HIEROGLYPH-13460
 	* classifier human being

@@ -1,8 +1,8 @@
 # PropList-16.0.0.txt
-# Date: 2024-04-30, 20:08:39 GMT
+# Date: 2024-05-06, 12:17:26 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
 #   For documentation, see https://www.unicode.org/reports/tr44/
@@ -157,6 +157,7 @@ FF63          ; Quotation_Mark # Pe       HALFWIDTH RIGHT CORNER BRACKET
 1B7D..1B7F    ; Terminal_Punctuation # Po   [3] BALINESE PANTI LANTANG..BALINESE PANTI BAWAK
 1C3B..1C3F    ; Terminal_Punctuation # Po   [5] LEPCHA PUNCTUATION TA-ROL..LEPCHA PUNCTUATION TSHOOK
 1C7E..1C7F    ; Terminal_Punctuation # Po   [2] OL CHIKI PUNCTUATION MUCAAD..OL CHIKI PUNCTUATION DOUBLE MUCAAD
+2024          ; Terminal_Punctuation # Po       ONE DOT LEADER
 203C..203D    ; Terminal_Punctuation # Po   [2] DOUBLE EXCLAMATION MARK..INTERROBANG
 2047..2049    ; Terminal_Punctuation # Po   [3] DOUBLE QUESTION MARK..EXCLAMATION QUESTION MARK
 2E2E          ; Terminal_Punctuation # Po       REVERSED QUESTION MARK
@@ -230,7 +231,7 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 1BC9F         ; Terminal_Punctuation # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; Terminal_Punctuation # Po   [4] SIGNWRITING COMMA..SIGNWRITING COLON
 
-# Total code points: 284
+# Total code points: 285
 
 # ================================================
 
@@ -1539,6 +1540,7 @@ FF65          ; Other_ID_Continue # Po       HALFWIDTH KATAKANA MIDDLE DOT
 1B7D..1B7F    ; Sentence_Terminal # Po   [3] BALINESE PANTI LANTANG..BALINESE PANTI BAWAK
 1C3B..1C3C    ; Sentence_Terminal # Po   [2] LEPCHA PUNCTUATION TA-ROL..LEPCHA PUNCTUATION NYET THYOOM TA-ROL
 1C7E..1C7F    ; Sentence_Terminal # Po   [2] OL CHIKI PUNCTUATION MUCAAD..OL CHIKI PUNCTUATION DOUBLE MUCAAD
+2024          ; Sentence_Terminal # Po       ONE DOT LEADER
 203C..203D    ; Sentence_Terminal # Po   [2] DOUBLE EXCLAMATION MARK..INTERROBANG
 2047..2049    ; Sentence_Terminal # Po   [3] DOUBLE QUESTION MARK..EXCLAMATION QUESTION MARK
 2E2E          ; Sentence_Terminal # Po       REVERSED QUESTION MARK
@@ -1596,7 +1598,7 @@ FF61          ; Sentence_Terminal # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 1BC9F         ; Sentence_Terminal # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; Sentence_Terminal # Po       SIGNWRITING FULL STOP
 
-# Total code points: 163
+# Total code points: 164
 
 # ================================================
 

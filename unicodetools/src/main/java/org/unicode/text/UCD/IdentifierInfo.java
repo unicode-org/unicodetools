@@ -616,7 +616,17 @@ public class IdentifierInfo {
                 identifierTypesMap.getSet(null),
                 Collections.singleton(Identifier_Type.recommended));
 
-        // make immutable
+        // By definition, no character can have both Exclusion and Limited_Use.
+        // The weaker restriction wins.
+        for (Set<Identifier_Type> value : identifierTypesMap.getAvailableValues()) {
+            if (value.contains(Identifier_Type.exclusion)
+                    && value.contains(Identifier_Type.limited_use)) {
+                UnicodeSet set = identifierTypesMap.getSet(value);
+                EnumSet<Identifier_Type> value2 = EnumSet.copyOf(value);
+                value2.remove(Identifier_Type.exclusion);
+                identifierTypesMap.putAll(set, ImmutableSet.copyOf(value2));
+            }
+        }
         // special hack for Exclusion + Obsolete!!
         for (Set<Identifier_Type> value : identifierTypesMap.getAvailableValues()) {
             if (value.contains(Identifier_Type.exclusion)
@@ -627,6 +637,7 @@ public class IdentifierInfo {
                 identifierTypesMap.putAll(set, ImmutableSet.copyOf(value2));
             }
         }
+        // make immutable
         identifierTypesMap.freeze();
         // removals.putAll(getNonIICore(), PROHIBITED + "~IICore");
         br.close();
@@ -1071,7 +1082,7 @@ public class IdentifierInfo {
                             + "# mapping each code point to a set of enumerated values.\n"
                             + "# The short name of "
                             + propName
-                            + " is the same as the long name.\n"
+                            + " is ID_Type.\n"
                             + "# The possible values are:\n"
                             + "#   Not_Character, Deprecated, Default_Ignorable, Not_NFKC, Not_XID,\n"
                             + "#   Exclusion, Obsolete, Technical, Uncommon_Use, Limited_Use, Inclusion, Recommended\n"
@@ -1142,7 +1153,7 @@ public class IdentifierInfo {
                             + "# an enumerated property of code points.\n"
                             + "# The short name of "
                             + propName
-                            + " is the same as the long name.\n"
+                            + " is ID_Status.\n"
                             + "# The possible values are:\n"
                             + "#   Allowed, Restricted\n"
                             + "# The short name of each value is the same as its long name.\n\n"

@@ -1177,35 +1177,25 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .addAll(script.getSet("Orya"))
                             .addAll(script.getSet("Beng"))
                             .addAll(script.getSet("Deva"));
+            final UnicodeSet incbLinker =
+                    conjunctLinkingScripts
+                            .cloneAsThawed()
+                            .retainAll(isc.getSet(Indic_Syllabic_Category_Values.Virama));
+            final UnicodeSet incbConsonant =
+                    conjunctLinkingScripts
+                            .cloneAsThawed()
+                            .retainAll(isc.getSet(Indic_Syllabic_Category_Values.Consonant));
             final UnicodeMap<String> incbDefinition =
                     new UnicodeMap<String>()
                             .setErrorOnReset(true)
-                            .putAll(
-                                    conjunctLinkingScripts
-                                            .cloneAsThawed()
-                                            .retainAll(
-                                                    isc.getSet(
-                                                            Indic_Syllabic_Category_Values.Virama)),
-                                    "Linker")
-                            .putAll(
-                                    conjunctLinkingScripts
-                                            .cloneAsThawed()
-                                            .retainAll(
-                                                    isc.getSet(
-                                                            Indic_Syllabic_Category_Values
-                                                                    .Consonant)),
-                                    "Consonant")
+                            .putAll(incbLinker, "Linker")
+                            .putAll(incbConsonant, "Consonant")
                             .putAll(
                                     gcb.getSet("Extend")
-                                            .removeAll(ccc.getSet("Not_Reordered"))
                                             .addAll(gcb.getSet("ZWJ"))
-                                            .removeAll(
-                                                    isc.getSet(
-                                                            Indic_Syllabic_Category_Values.Virama))
-                                            .removeAll(
-                                                    isc.getSet(
-                                                            Indic_Syllabic_Category_Values
-                                                                    .Consonant)),
+                                            .removeAll(incbLinker)
+                                            .removeAll(incbConsonant)
+                                            .remove(0x200C),
                                     "Extend")
                             .setMissing("None");
             add(
