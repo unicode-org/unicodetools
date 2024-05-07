@@ -13,15 +13,12 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.junit.jupiter.api.Test;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.CollectionUtilities;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
-@RunWith(JUnit4.class)
-public class TestUtilities extends TestFmwk {
+public class TestCollectionUtilities extends TestFmwkMinusMinus {
     @Test
     public void TestCollectionUtilitySpeed() {
         TreeSet ts1 = new TreeSet();
@@ -52,7 +49,7 @@ public class TestUtilities extends TestFmwk {
         if (utilityTimeSorted < standardTimeSorted*factorOfStandard) {
             logln("Sorted: Utility time (" + utilityTimeSorted + ") << Standard duration (" + standardTimeSorted + "); " + 100*(utilityTimeSorted/standardTimeSorted) + "%");
         } else {
-            /*errln*/logln("Sorted: Utility time (" + utilityTimeSorted + ") !<< Standard duration (" + standardTimeSorted + "); " + 100*(utilityTimeSorted/standardTimeSorted) + "%");
+            errln("ERROR: Sorted: Utility time (" + utilityTimeSorted + ") !<< Standard duration (" + standardTimeSorted + "); " + 100*(utilityTimeSorted/standardTimeSorted) + "%");
         }
     }
 

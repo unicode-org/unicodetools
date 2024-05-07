@@ -1,6 +1,5 @@
 package org.unicode.jsp;
 
-import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
@@ -391,7 +390,7 @@ public class ScriptTester {
             for (int i = value.nextSetBit(0); i >= 0; i = value.nextSetBit(i + 1)) {
                 names.add(ScriptTester.getScriptName(i, choice));
             }
-            return CollectionUtilities.join(names, separator).toString();
+            return String.join(separator, names);
         }
     }
 
