@@ -60,7 +60,7 @@ public class TestCollectionUtilities extends TestFmwkMinusMinus {
                             + 100 * (utilityTimeSorted / standardTimeSorted)
                             + "%");
         } else {
-            /*errln*/logln(
+            /*errln*/ logln(
                     "Sorted: Utility time ("
                             + utilityTimeSorted
                             + ") !<< Standard duration ("
