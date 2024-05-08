@@ -1,5 +1,5 @@
 # SentenceBreakProperty-16.0.0.txt
-# Date: 2024-05-08, 02:52:00 GMT
+# Date: 2024-05-08, 04:00:01 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2961,6 +2961,7 @@ FF63          ; Close # Pe       HALFWIDTH RIGHT CORNER BRACKET
 002C          ; SContinue # Po       COMMA
 002D          ; SContinue # Pd       HYPHEN-MINUS
 003A..003B    ; SContinue # Po   [2] COLON..SEMICOLON
+037E          ; SContinue # Po       GREEK QUESTION MARK
 055D          ; SContinue # Po       ARMENIAN COMMA
 060C..060D    ; SContinue # Po   [2] ARABIC COMMA..ARABIC DATE SEPARATOR
 061B          ; SContinue # Po       ARABIC SEMICOLON
@@ -2986,6 +2987,6 @@ FF1A..FF1B    ; SContinue # Po   [2] FULLWIDTH COLON..FULLWIDTH SEMICOLON
 FF64          ; SContinue # Po       HALFWIDTH IDEOGRAPHIC COMMA
 1DA89         ; SContinue # Po       SIGNWRITING SEMICOLON
 
-# Total code points: 36
+# Total code points: 37
 
 # EOF

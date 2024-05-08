@@ -1493,6 +1493,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                     // L2/08-029
                                     "]")
                                     .add(0x003B)
+                                    .add(0x037E)
                                     .add(0x061B)
                                     .add(0x1364)
                                     .add(0x204F)
