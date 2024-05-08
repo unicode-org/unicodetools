@@ -1477,32 +1477,32 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     "Close");
             unicodeMap.putAll(
                     new UnicodeSet(
-                            "[\\u002C\\u3001\\uFE10\\uFE11\\uFF0C"
-                                    + "\\uFE50\\uFF64\\uFE51\\uFE51\\u055D\\u060C\\u060D\\u07F8\\u1802\\u1808"
-                                    + // new
-                                    // from
-                                    // L2/08-029
-                                    "\\u003A\\uFE13\\uFF1A"
-                                    + "\\uFE55"
-                                    + // new from L2/08-029
-                                    // "\\u003B\\uFE14\\uFF1B" +
-                                    "\\u2014\\uFE31\\u002D\\uFF0D"
-                                    + "\\u2013\\uFE32\\uFE58\\uFE63"
-                                    + // new
-                                    // from
-                                    // L2/08-029
-                                    "]")
-                                    .add(0x003B)
-                                    .add(0x037E)
-                                    .add(0x061B)
-                                    .add(0x1364)
-                                    .add(0x204F)
-                                    .add(0x2E35)
-                                    .add(0xA6F6)
-                                    .add(0xFE14)
-                                    .add(0xFE54)
-                                    .add(0xFF1B)
-                                    .add(0x1DA89),
+                                    "[\\u002C\\u3001\\uFE10\\uFE11\\uFF0C"
+                                            + "\\uFE50\\uFF64\\uFE51\\uFE51\\u055D\\u060C\\u060D\\u07F8\\u1802\\u1808"
+                                            + // new
+                                            // from
+                                            // L2/08-029
+                                            "\\u003A\\uFE13\\uFF1A"
+                                            + "\\uFE55"
+                                            + // new from L2/08-029
+                                            // "\\u003B\\uFE14\\uFF1B" +
+                                            "\\u2014\\uFE31\\u002D\\uFF0D"
+                                            + "\\u2013\\uFE32\\uFE58\\uFE63"
+                                            + // new
+                                            // from
+                                            // L2/08-029
+                                            "]")
+                            .add(0x003B)
+                            .add(0x037E)
+                            .add(0x061B)
+                            .add(0x1364)
+                            .add(0x204F)
+                            .add(0x2E35)
+                            .add(0xA6F6)
+                            .add(0xFE14)
+                            .add(0xFE54)
+                            .add(0xFF1B)
+                            .add(0x1DA89),
                     "SContinue");
             // unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none
             // of the above touch it.
