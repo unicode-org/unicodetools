@@ -1464,6 +1464,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             unicodeMap.putAll(
                     getProperty("STerm")
                             .getSet(UCD_Names.YES)
+                            .addAll(new UnicodeSet("[\\u2CF9\\u2CFA\\u2CFB\\uFE12\\uFE15\\uFE16]"))
                             .removeAll(unicodeMap.keySet("ATerm")),
                     "STerm");
             unicodeMap.putAll(
@@ -1490,7 +1491,17 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                     + // new
                                     // from
                                     // L2/08-029
-                                    "]"),
+                                    "]")
+                                    .add(0x003B)
+                                    .add(0x061B)
+                                    .add(0x1364)
+                                    .add(0x204F)
+                                    .add(0x2E35)
+                                    .add(0xA6F6)
+                                    .add(0xFE14)
+                                    .add(0xFE54)
+                                    .add(0xFF1B)
+                                    .add(0x1DA89),
                     "SContinue");
             // unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none
             // of the above touch it.

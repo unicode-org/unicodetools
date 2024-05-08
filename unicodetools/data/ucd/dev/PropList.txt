@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2024-05-06, 12:17:26 GMT
+# Date: 2024-05-08, 03:40:06 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -160,6 +160,7 @@ FF63          ; Quotation_Mark # Pe       HALFWIDTH RIGHT CORNER BRACKET
 2024          ; Terminal_Punctuation # Po       ONE DOT LEADER
 203C..203D    ; Terminal_Punctuation # Po   [2] DOUBLE EXCLAMATION MARK..INTERROBANG
 2047..2049    ; Terminal_Punctuation # Po   [3] DOUBLE QUESTION MARK..EXCLAMATION QUESTION MARK
+2CF9..2CFB    ; Terminal_Punctuation # Po   [3] COPTIC OLD NUBIAN FULL STOP..COPTIC OLD NUBIAN INDIRECT QUESTION MARK
 2E2E          ; Terminal_Punctuation # Po       REVERSED QUESTION MARK
 2E3C          ; Terminal_Punctuation # Po       STENOGRAPHIC FULL STOP
 2E41          ; Terminal_Punctuation # Po       REVERSED COMMA
@@ -178,6 +179,8 @@ AA5D..AA5F    ; Terminal_Punctuation # Po   [3] CHAM PUNCTUATION DANDA..CHAM PUN
 AADF          ; Terminal_Punctuation # Po       TAI VIET SYMBOL KOI KOI
 AAF0..AAF1    ; Terminal_Punctuation # Po   [2] MEETEI MAYEK CHEIKHAN..MEETEI MAYEK AHANG KHUDAM
 ABEB          ; Terminal_Punctuation # Po       MEETEI MAYEK CHEIKHEI
+FE12          ; Terminal_Punctuation # Po       PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC FULL STOP
+FE15..FE16    ; Terminal_Punctuation # Po   [2] PRESENTATION FORM FOR VERTICAL EXCLAMATION MARK..PRESENTATION FORM FOR VERTICAL QUESTION MARK
 FE50..FE52    ; Terminal_Punctuation # Po   [3] SMALL COMMA..SMALL FULL STOP
 FE54..FE57    ; Terminal_Punctuation # Po   [4] SMALL SEMICOLON..SMALL EXCLAMATION MARK
 FF01          ; Terminal_Punctuation # Po       FULLWIDTH EXCLAMATION MARK
@@ -231,7 +234,7 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 1BC9F         ; Terminal_Punctuation # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; Terminal_Punctuation # Po   [4] SIGNWRITING COMMA..SIGNWRITING COLON
 
-# Total code points: 285
+# Total code points: 291
 
 # ================================================
 
@@ -1543,6 +1546,7 @@ FF65          ; Other_ID_Continue # Po       HALFWIDTH KATAKANA MIDDLE DOT
 2024          ; Sentence_Terminal # Po       ONE DOT LEADER
 203C..203D    ; Sentence_Terminal # Po   [2] DOUBLE EXCLAMATION MARK..INTERROBANG
 2047..2049    ; Sentence_Terminal # Po   [3] DOUBLE QUESTION MARK..EXCLAMATION QUESTION MARK
+2CF9..2CFB    ; Sentence_Terminal # Po   [3] COPTIC OLD NUBIAN FULL STOP..COPTIC OLD NUBIAN INDIRECT QUESTION MARK
 2E2E          ; Sentence_Terminal # Po       REVERSED QUESTION MARK
 2E3C          ; Sentence_Terminal # Po       STENOGRAPHIC FULL STOP
 2E53..2E54    ; Sentence_Terminal # Po   [2] MEDIEVAL EXCLAMATION MARK..MEDIEVAL QUESTION MARK
@@ -1558,6 +1562,8 @@ A9C8..A9C9    ; Sentence_Terminal # Po   [2] JAVANESE PADA LINGSA..JAVANESE PADA
 AA5D..AA5F    ; Sentence_Terminal # Po   [3] CHAM PUNCTUATION DANDA..CHAM PUNCTUATION TRIPLE DANDA
 AAF0..AAF1    ; Sentence_Terminal # Po   [2] MEETEI MAYEK CHEIKHAN..MEETEI MAYEK AHANG KHUDAM
 ABEB          ; Sentence_Terminal # Po       MEETEI MAYEK CHEIKHEI
+FE12          ; Sentence_Terminal # Po       PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC FULL STOP
+FE15..FE16    ; Sentence_Terminal # Po   [2] PRESENTATION FORM FOR VERTICAL EXCLAMATION MARK..PRESENTATION FORM FOR VERTICAL QUESTION MARK
 FE52          ; Sentence_Terminal # Po       SMALL FULL STOP
 FE56..FE57    ; Sentence_Terminal # Po   [2] SMALL QUESTION MARK..SMALL EXCLAMATION MARK
 FF01          ; Sentence_Terminal # Po       FULLWIDTH EXCLAMATION MARK
@@ -1598,7 +1604,7 @@ FF61          ; Sentence_Terminal # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 1BC9F         ; Sentence_Terminal # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; Sentence_Terminal # Po       SIGNWRITING FULL STOP
 
-# Total code points: 164
+# Total code points: 170
 
 # ================================================
 
