@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 /**
  * Utilities that ought to be on collections, but aren't
@@ -190,12 +189,6 @@ public final class CollectionUtilities {
         Iterator<T> iterator1 = o1.iterator();
         Iterator<T> iterator2 = o2.iterator();
         return compare(iterator1, iterator2);
-    }
-
-    public static class SetComparator<T extends Comparable<T>> implements Comparator<Set<T>> {
-        public int compare(Set<T> o1, Set<T> o2) {
-            return CollectionUtilities.compare(o1, o2);
-        }
     }
 
     public static class CollectionComparator<T extends Comparable<T>>
