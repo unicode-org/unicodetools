@@ -10,7 +10,6 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.CollectionUtilities.SetComparator;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
@@ -3626,8 +3625,6 @@ public class GenerateEmoji {
 
     static final Comparator<Row.R2<Set<String>, UnicodeSet>> PAIR_SORT =
             new Comparator<Row.R2<Set<String>, UnicodeSet>>() {
-                SetComparator<Comparable> setComp;
-
                 public int compare(R2<Set<String>, UnicodeSet> o1, R2<Set<String>, UnicodeSet> o2) {
                     int diff =
                             compareX(
