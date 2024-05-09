@@ -375,7 +375,8 @@ public class TestUnicodeSet extends TestFmwk2 {
                 UnicodeSetUtilities.parseUnicodeSet("[[:C:][:L:][:M:][:N:][:P:][:S:][:Z:]]"));
     }
 
-    @Test @Disabled("Stop using ICU for properties: version skew")
+    @Test
+    @Disabled("Stop using ICU for properties: version skew")
     public void TestNF() {
         for (String nf : new String[] {"d", "c", "kd", "kc"}) {
             checkSetsEqual("[:isnf" + nf + ":]", "[:nf" + nf + "qc!=N:]");
