@@ -287,7 +287,7 @@ public class TestProperties extends TestFmwk2 {
         XPropertyFactory factory = XPropertyFactory.make();
         checkProperty(factory, "ccc");
 
-        String test = "[:ccc=/3/:]";
+        String test = "[:Udev:ccc=/3/:]";
         UnicodeSet actual = UnicodeSetUtilities.parseUnicodeSet(test);
         UnicodeSet expected = new UnicodeSet();
         for (int i = 0; i < 256; ++i) {
