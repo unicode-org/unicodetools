@@ -24,6 +24,7 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeSet;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -374,7 +375,7 @@ public class TestUnicodeSet extends TestFmwk2 {
                 UnicodeSetUtilities.parseUnicodeSet("[[:C:][:L:][:M:][:N:][:P:][:S:][:Z:]]"));
     }
 
-    @Test
+    @Test @Disabled("Stop using ICU for properties: version skew")
     public void TestNF() {
         for (String nf : new String[] {"d", "c", "kd", "kc"}) {
             checkSetsEqual("[:isnf" + nf + ":]", "[:nf" + nf + "qc!=N:]");
