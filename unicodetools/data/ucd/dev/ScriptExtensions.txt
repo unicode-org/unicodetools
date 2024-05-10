@@ -1,5 +1,5 @@
 # ScriptExtensions-16.0.0.txt
-# Date: 2024-04-30, 21:48:40 GMT
+# Date: 2024-05-10, 22:27:16 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -21,15 +21,8 @@
 # values in that set is not material, but for stability in presentation
 # it is given here as alphabetical.
 #
-# The Script_Extensions values are presented in sorted order in the file.
-# They are sorted first by the number of Script property values in their sets,
-# and then alphabetically by first differing Script property value.
-#
-# Following each distinct Script_Extensions value is the list of code
-# points associated with that value, listed in code point order.
-#
 # All code points not explicitly listed for Script_Extensions
-# have as their value the corresponding Script property value
+# have as their value the corresponding Script property value.
 #
 # @missing: 0000..10FFFF; <script>
 00B7          ; Avst Cari Copt Elba Geor Glag Gong Goth Grek Hani Latn Lydi Mahj Perm Shaw #Po MIDDLE DOT
