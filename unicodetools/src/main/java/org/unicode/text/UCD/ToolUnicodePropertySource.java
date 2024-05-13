@@ -1494,15 +1494,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                             "]")
                             .add(0x003B)
                             .add(0x037E)
-                            .add(0x061B)
-                            .add(0x1364)
-                            .add(0x204F)
-                            .add(0x2E35)
-                            .add(0xA6F6)
                             .add(0xFE14)
                             .add(0xFE54)
-                            .add(0xFF1B)
-                            .add(0x1DA89),
+                            .add(0xFF1B),
                     "SContinue");
             // unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none
             // of the above touch it.
