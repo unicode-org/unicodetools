@@ -703,10 +703,11 @@ public class Uts46 extends Idna {
         // information, see [STD13] and [STD3].
         // The length of the domain name, excluding the root label and its dot,
         // is from 1 to 253.
-        final int labelDomainNameLength = UTF16.countCodePoint(domainName);
-        if (labelDomainNameLength < 0
-                || labelDomainNameLength > 254
-                || labelDomainNameLength == 254 && !domainName.endsWith(".")) {
+        int labelDomainNameLength = UTF16.countCodePoint(domainName);
+        if (domainName.endsWith(".")) {
+            labelDomainNameLength--;
+        }
+        if (labelDomainNameLength < 1 || labelDomainNameLength > 253) {
             errors.add(Errors.A4_1);
         }
         // If an error was recorded, then the operation failed, and no DNS
