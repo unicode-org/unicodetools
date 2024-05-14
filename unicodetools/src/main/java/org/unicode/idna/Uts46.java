@@ -185,7 +185,7 @@ public class Uts46 extends Idna {
     /**
      * Checks a string for IDNA2008 bidi errors. label must not be empty
      *
-     * @param domainName the string to be tested
+     * @param label the string to be tested
      * @param errors if an error is found, then an error string is added to this set.
      * @return true if errors are found, otherwise false.
      */
@@ -409,12 +409,41 @@ public class Uts46 extends Idna {
         C2(UIDNA_ERROR_CONTEXTJ),
         P1(UIDNA_ERROR_DISALLOWED),
         P4(UIDNA_ERROR_INVALID_ACE_LABEL),
+
+        // https://www.unicode.org/reports/tr46/#Validity_Criteria
+        /** 1. The label must be in Unicode Normalization Form NFC. */
         V1(UIDNA_ERROR_INVALID_ACE_LABEL),
+        /**
+         * 2. If CheckHyphens, the label must not contain a U+002D HYPHEN-MINUS character in both
+         * the third and fourth positions.
+         */
         V2(UIDNA_ERROR_HYPHEN_3_4),
+        /**
+         * 3. If CheckHyphens, the label must neither begin nor end with a U+002D HYPHEN-MINUS
+         * character.
+         */
         V3(UIDNA_ERROR_LEADING_HYPHEN | UIDNA_ERROR_TRAILING_HYPHEN),
-        V4(UIDNA_ERROR_LABEL_HAS_DOT),
-        V5(UIDNA_ERROR_LEADING_COMBINING_MARK),
-        V6(UIDNA_ERROR_INVALID_ACE_LABEL),
+        // V4 was *inserted* in Unicode 15.1.
+        // TODO 4. If not CheckHyphens, the label must not begin with “xn--”.
+        /** 5. The label must not contain a U+002E ( . ) FULL STOP. */
+        V5(UIDNA_ERROR_LABEL_HAS_DOT),
+        /** 6. The label must not begin with a combining mark, that is: General_Category=Mark. */
+        V6(UIDNA_ERROR_LEADING_COMBINING_MARK),
+        /**
+         * 7. Each code point in the label must only have certain Status values according to Section
+         * 5, IDNA Mapping Table: For Transitional Processing (deprecated), each value must be
+         * valid. For Nontransitional Processing, each value must be either valid or deviation.
+         */
+        V7(UIDNA_ERROR_INVALID_ACE_LABEL),
+        // 8. If CheckJoiners, the label must satisify the ContextJ rules from Appendix A,
+        //    in The Unicode Code Points and Internationalized Domain Names for Applications (IDNA)
+        //    [IDNA2008].
+        // --> see Bn errors
+        // 9. If CheckBidi, and if the domain name is a  Bidi domain name, then
+        //    the label must satisfy all six of the numbered conditions in
+        //    [IDNA2008] RFC 5893, Section 2.
+        // --> see Cn errors
+
         A3(UIDNA_ERROR_PUNYCODE),
         A4_1(UIDNA_ERROR_DOMAIN_NAME_TOO_LONG),
         A4_2(UIDNA_ERROR_EMPTY_LABEL | UIDNA_ERROR_LABEL_TOO_LONG),
@@ -620,14 +649,14 @@ public class Uts46 extends Idna {
         }
         // The label must not contain a U+002E ( . ) FULL STOP.
         if (Idna.FULL_STOP.matcher(label).find()) {
-            errors.add(Errors.V4);
+            errors.add(Errors.V5);
         }
         // The label must not begin with a combining mark, that is:
         // General_Category=Mark.
         if (label.length() > 0) {
             final int firstChar = label.codePointAt(0);
             if (MARKS.contains(firstChar)) {
-                errors.add(Errors.V5);
+                errors.add(Errors.V6);
             }
         }
         // Each code point in the label must only have certain status values
@@ -644,11 +673,11 @@ public class Uts46 extends Idna {
                     break;
                 case deviation:
                     if (idnaChoice == IdnaChoice.transitional) {
-                        errors.add(Errors.V6);
+                        errors.add(Errors.V7);
                     }
                     break;
                 default:
-                    errors.add(Errors.V6);
+                    errors.add(Errors.V7);
             }
         }
     }
