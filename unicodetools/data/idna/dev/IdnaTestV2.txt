@@ -1,5 +1,5 @@
 # IdnaTestV2.txt
-# Date: 2024-05-14, 22:39:44 GMT
+# Date: 2024-05-14, 22:55:32 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -300,7 +300,7 @@ XN--A-Ä.PT; xn--a-ä.pt; [P4]; xn--xn--a--gua.pt; ; ;  # xn--a-ä.pt
 XN--A-A\u0308.PT; xn--a-ä.pt; [P4]; xn--xn--a--gua.pt; ; ;  # xn--a-ä.pt
 Xn--A-A\u0308.pt; xn--a-ä.pt; [P4]; xn--xn--a--gua.pt; ; ;  # xn--a-ä.pt
 Xn--A-Ä.pt; xn--a-ä.pt; [P4]; xn--xn--a--gua.pt; ; ;  # xn--a-ä.pt
-xn--xn--a--gua.pt; xn--a-ä.pt; [V2]; xn--xn--a--gua.pt; ; ;  # xn--a-ä.pt
+xn--xn--a--gua.pt; xn--a-ä.pt; [V2, V4]; xn--xn--a--gua.pt; ; ;  # xn--a-ä.pt
 日本語。ＪＰ; 日本語.jp; ; xn--wgv71a119e.jp; ; ;  # 日本語.jp
 日本語。JP; 日本語.jp; ; xn--wgv71a119e.jp; ; ;  # 日本語.jp
 日本語。jp; 日本語.jp; ; xn--wgv71a119e.jp; ; ;  # 日本語.jp
@@ -403,6 +403,7 @@ a.-b.; ; [V3]; ; ; ;  # a.-b.
 a.b-.c; ; [V3]; ; ; ;  # a.b-.c
 a.-.c; ; [V3]; ; ; ;  # a.-.c
 a.bc--de.f; ; [V2]; ; ; ;  # a.bc--de.f
+xn--xn---epa; xn--é; [V2, V4]; xn--xn---epa; ; ;  # xn--é
 ä.\u00AD.c; ä..c; [X4_2]; xn--4ca..c; [A4_2]; ;  # ä..c
 a\u0308.\u00AD.c; ä..c; [X4_2]; xn--4ca..c; [A4_2]; ;  # ä..c
 A\u0308.\u00AD.C; ä..c; [X4_2]; xn--4ca..c; [A4_2]; ;  # ä..c

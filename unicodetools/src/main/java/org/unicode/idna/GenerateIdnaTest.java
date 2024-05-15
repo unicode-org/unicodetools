@@ -791,6 +791,7 @@ public class GenerateIdnaTest {
         "a.b-.c",
         "a.-.c",
         "a.bc--de.f",
+        "xn--xn---epa",
         "\u00E4.\u00AD.c",
         "\u00E4.-b.",
         "\u00E4.b-.c",
