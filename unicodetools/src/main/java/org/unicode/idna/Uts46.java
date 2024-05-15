@@ -424,7 +424,8 @@ public class Uts46 extends Idna {
          */
         V3(UIDNA_ERROR_LEADING_HYPHEN | UIDNA_ERROR_TRAILING_HYPHEN),
         // V4 was *inserted* in Unicode 15.1.
-        // TODO 4. If not CheckHyphens, the label must not begin with “xn--”.
+        /** 4. If not CheckHyphens, the label must not begin with “xn--”. */
+        V4(0),
         /** 5. The label must not contain a U+002E ( . ) FULL STOP. */
         V5(UIDNA_ERROR_LABEL_HAS_DOT),
         /** 6. The label must not begin with a combining mark, that is: General_Category=Mark. */
@@ -646,6 +647,11 @@ public class Uts46 extends Idna {
         // character.
         if (HYPHEN_START_END.matcher(label).matches()) {
             errors.add(Errors.V3);
+        }
+        // Since Unicode 15.1:
+        // If not CheckHyphens, the label must not begin with “xn--”.
+        if (label.startsWith("xn--")) {
+            errors.add(Errors.V4);
         }
         // The label must not contain a U+002E ( . ) FULL STOP.
         if (Idna.FULL_STOP.matcher(label).find()) {
