@@ -1,5 +1,5 @@
 # IdnaTestV2.txt
-# Date: 2024-05-14, 22:55:32 GMT
+# Date: 2024-05-15, 03:51:27 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -21,21 +21,25 @@
 # Leading and trailing spaces and tabs in each column are ignored.
 # Comments are indicated with hash marks.
 #
-# Column 1: source -          The source string to be tested
+# Column 1: source -          The source string to be tested.
+#                             "" means the empty string.
 # Column 2: toUnicode -       The result of applying toUnicode to the source,
 #                             with Transitional_Processing=false.
 #                             A blank value means the same as the source value.
+#                             "" means the empty string.
 # Column 3: toUnicodeStatus - A set of status codes, each corresponding to a particular test.
 #                             A blank value means [] (no errors).
 # Column 4: toAsciiN -        The result of applying toASCII to the source,
 #                             with Transitional_Processing=false.
 #                             A blank value means the same as the toUnicode value.
+#                             "" means the empty string.
 # Column 5: toAsciiNStatus -  A set of status codes, each corresponding to a particular test.
 #                             A blank value means the same as the toUnicodeStatus value.
 #                             An explicit [] means no errors.
 # Column 6: toAsciiT -        The result of applying toASCII to the source,
 #                             with Transitional_Processing=true.
 #                             A blank value means the same as the toAsciiN value.
+#                             "" means the empty string.
 # Column 7: toAsciiTStatus -  A set of status codes, each corresponding to a particular test.
 #                             A blank value means the same as the toAsciiNStatus value.
 #                             An explicit [] means no errors.
@@ -193,6 +197,7 @@ xn--ab-uuba211bca5157b; a\u0628\u0308\u200D\u0308\u0628b; [B5, C2]; xn--ab-uuba2
 xn--7a; ¡; ; xn--7a; ; ;  # ¡
 ᧚; ; ; xn--pkf; ; ;  # ᧚
 xn--pkf; ᧚; ; xn--pkf; ; ;  # ᧚
+""; ; [X4_2]; ; [A4_1, A4_2]; ;  # 
 。; .; [X4_2]; ; [A4_1, A4_2]; ;  # .
 .; ; [X4_2]; ; [A4_1, A4_2]; ;  # .
 ꭠ; ; ; xn--3y9a; ; ;  # ꭠ
@@ -487,14 +492,13 @@ xn--dmc4b194h; ஹ\u0BCD\u200D; ; xn--dmc4b194h; ; ;  # ஹ்
 xn--dmc; ஹ; ; xn--dmc; ; ;  # ஹ
 ஹ; ; ; xn--dmc; ; ;  # ஹ
 xn--dmc225h; ஹ\u200D; [C2]; xn--dmc225h; ; ;  # ஹ
-\u200D; ; [C2]; xn--1ug; ; ; [A4_1, A4_2] # 
-; ; [X4_2]; ; [A4_1, A4_2]; ;  # 
+\u200D; ; [C2]; xn--1ug; ; ""; [A4_1, A4_2] # 
 xn--1ug; \u200D; [C2]; xn--1ug; ; ;  # 
 ஹ\u0BCD\u200C; ; ; xn--dmc4by94h; ; xn--dmc4b;  # ஹ்
 xn--dmc4by94h; ஹ\u0BCD\u200C; ; xn--dmc4by94h; ; ;  # ஹ்
 ஹ\u200C; ; [C1]; xn--dmc025h; ; xn--dmc; [] # ஹ
 xn--dmc025h; ஹ\u200C; [C1]; xn--dmc025h; ; ;  # ஹ
-\u200C; ; [C1]; xn--0ug; ; ; [A4_1, A4_2] # 
+\u200C; ; [C1]; xn--0ug; ; ""; [A4_1, A4_2] # 
 xn--0ug; \u200C; [C1]; xn--0ug; ; ;  # 
 \u0644\u0670\u200C\u06ED\u06EF; ; ; xn--ghb2gxqia7523a; ; xn--ghb2gxqia;  # لٰۭۯ
 xn--ghb2gxqia; \u0644\u0670\u06ED\u06EF; ; xn--ghb2gxqia; ; ;  # لٰۭۯ

@@ -295,7 +295,7 @@ public class GenerateIdnaTest {
         //        }
 
         out2.println(
-                hexForTest.transform(source)
+                escape(source)
                         + "; "
                         + escapeIfDifferentElseEmpty(unicode, source)
                         + "; "
@@ -312,9 +312,7 @@ public class GenerateIdnaTest {
                         + removeInvisible.transform(unicode));
 
         if (!transitionalErrors.equals(nonTransitionalErrors)
-                || !transitional.equals(nontransitional)
-        // && transitionalErrors.size() == 0
-        ) {
+                || !transitional.equals(nontransitional)) {
             showLine(source, "T", transitional, transitionalErrors, unicode, toUnicodeErrors, out);
             showLine(
                     source,
@@ -347,12 +345,8 @@ public class GenerateIdnaTest {
         result += generateLine(UCharacter.foldCase(source, true), out, out2);
         result += generateLine(UCharacter.toTitleCase(source, null), out, out2);
 
-        // if (transitionalErrors.size() == 0) {
         result += generateLine(transitional, out, out2);
-        // }
-        // if (nonTransitionalErrors.size() == 0) {
         result += generateLine(nontransitional, out, out2);
-        // }
         if (toUnicodeErrors.size() == 0) {
             result += generateLine(unicode, out, out2);
         }
@@ -363,8 +357,30 @@ public class GenerateIdnaTest {
         if (target.equals(source)) {
             return "";
         } else {
-            return hexForTest.transform(target);
+            return escape(target);
         }
+    }
+
+    private String escape(String s) {
+        if (s.equals("\"\"")) {
+            throw new IllegalArgumentException("unable to escape \"\"");
+        }
+        if (s.isEmpty()) {
+            return "\"\"";
+        }
+        s = hexForTest.transform(s);
+        // Escape leading & trailing spaces & tabs.
+        if (s.startsWith(" ")) {
+            s = "\\u0020" + s.substring(1);
+        } else if (s.startsWith("\t")) {
+            s = "\\u0009" + s.substring(1);
+        }
+        if (s.endsWith(" ")) {
+            s = s.substring(0, s.length() - 1) + "\\u0020";
+        } else if (s.endsWith("\t")) {
+            s = s.substring(0, s.length() - 1) + "\\u0009";
+        }
+        return s;
     }
 
     private void replace(
@@ -432,7 +448,7 @@ public class GenerateIdnaTest {
             String unicode,
             Set<Errors> toUnicodeErrors,
             PrintWriter out) {
-        final String unicodeReveal = hexForTest.transform(unicode);
+        final String unicodeReveal = escape(unicode);
         final boolean hasUnicodeErrors = toUnicodeErrors.size() != 0;
         final boolean hasAsciiErrors = asciiErrors.size() != 0;
         final Set<Errors> extraErrors = EnumSet.noneOf(Errors.class);
@@ -442,7 +458,7 @@ public class GenerateIdnaTest {
         out.println(
                 type
                         + ";\t"
-                        + hexForTest.transform(source)
+                        + escape(source)
                         + ";\t"
                         + (hasUnicodeErrors
                                 ? showErrors(toUnicodeErrors)
@@ -450,7 +466,7 @@ public class GenerateIdnaTest {
                         + ";\t"
                         + (hasAsciiErrors
                                 ? showErrors(asciiErrors)
-                                : unicode.equals(ascii) ? "" : hexForTest.transform(ascii))
+                                : unicode.equals(ascii) ? "" : escape(ascii))
                         + (Idna2008.GRANDFATHERED_VALID.containsSome(unicode)
                                 ? ";\tXV8"
                                 : hasUnicodeErrors || validIdna2008 ? "" : ";\tNV8") // checking
@@ -655,6 +671,7 @@ public class GenerateIdnaTest {
             };
 
     public static final String[] testCases = {
+        "",
         // special case
         "。",
         // special case

@@ -10,21 +10,25 @@
 # Leading and trailing spaces and tabs in each column are ignored.
 # Comments are indicated with hash marks.
 #
-# Column 1: source -          The source string to be tested
+# Column 1: source -          The source string to be tested.
+#                             "" means the empty string.
 # Column 2: toUnicode -       The result of applying toUnicode to the source,
 #                             with Transitional_Processing=false.
 #                             A blank value means the same as the source value.
+#                             "" means the empty string.
 # Column 3: toUnicodeStatus - A set of status codes, each corresponding to a particular test.
 #                             A blank value means [] (no errors).
 # Column 4: toAsciiN -        The result of applying toASCII to the source,
 #                             with Transitional_Processing=false.
 #                             A blank value means the same as the toUnicode value.
+#                             "" means the empty string.
 # Column 5: toAsciiNStatus -  A set of status codes, each corresponding to a particular test.
 #                             A blank value means the same as the toUnicodeStatus value.
 #                             An explicit [] means no errors.
 # Column 6: toAsciiT -        The result of applying toASCII to the source,
 #                             with Transitional_Processing=true.
 #                             A blank value means the same as the toAsciiN value.
+#                             "" means the empty string.
 # Column 7: toAsciiTStatus -  A set of status codes, each corresponding to a particular test.
 #                             A blank value means the same as the toAsciiNStatus value.
 #                             An explicit [] means no errors.
