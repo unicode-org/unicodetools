@@ -1,5 +1,5 @@
 # IdnaTestV2.txt
-# Date: 2024-05-15, 03:51:27 GMT
+# Date: 2024-05-15, 04:28:51 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -537,6 +537,11 @@ xn--1ug..xn--skb080k; \u200D..\u06B9\u200C; [B1, B3, C1, C2, X4_2]; xn--1ug..xn-
 \u05D00\u0660; ; [B4]; xn--0-zhc74b; ; ;  # א0٠
 xn--0-zhc74b; \u05D00\u0660; [B4]; xn--0-zhc74b; ; ;  # א0٠
 $; ; [V7]; ; ; ;  # $
+⑷.four; ; [V7]; xn--csh.four; ; ;  # ⑷.four
+(4).four; ; [V7]; ; ; ;  # (4).four
+⑷.FOUR; ⑷.four; [V7]; xn--csh.four; ; ;  # ⑷.four
+⑷.Four; ⑷.four; [V7]; xn--csh.four; ; ;  # ⑷.four
+xn--csh.four; ⑷.four; [V7]; xn--csh.four; ; ;  # ⑷.four
 
 # RANDOMIZED TESTS
 

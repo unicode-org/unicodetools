@@ -884,5 +884,9 @@ public class GenerateIdnaTest {
         "\u200D。。\u06B9\u200C",
         "\u05D0\u0030\u0660",
         "$",
+        // 2477 ; disallowed_STD3_mapped ; 0028 0034 0029 # PARENTHESIZED DIGIT FOUR
+        "\u2477.four",
+        // parentheses are disallowed_STD3_valid
+        "(4).four",
     };
 }
