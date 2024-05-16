@@ -1,5 +1,5 @@
 # SentenceBreakProperty-16.0.0.txt
-# Date: 2024-05-08, 04:00:01 GMT
+# Date: 2024-05-13, 20:53:44 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2964,16 +2964,11 @@ FF63          ; Close # Pe       HALFWIDTH RIGHT CORNER BRACKET
 037E          ; SContinue # Po       GREEK QUESTION MARK
 055D          ; SContinue # Po       ARMENIAN COMMA
 060C..060D    ; SContinue # Po   [2] ARABIC COMMA..ARABIC DATE SEPARATOR
-061B          ; SContinue # Po       ARABIC SEMICOLON
 07F8          ; SContinue # Po       NKO COMMA
-1364          ; SContinue # Po       ETHIOPIC SEMICOLON
 1802          ; SContinue # Po       MONGOLIAN COMMA
 1808          ; SContinue # Po       MONGOLIAN MANCHU COMMA
 2013..2014    ; SContinue # Pd   [2] EN DASH..EM DASH
-204F          ; SContinue # Po       REVERSED SEMICOLON
-2E35          ; SContinue # Po       TURNED SEMICOLON
 3001          ; SContinue # Po       IDEOGRAPHIC COMMA
-A6F6          ; SContinue # Po       BAMUM SEMICOLON
 FE10..FE11    ; SContinue # Po   [2] PRESENTATION FORM FOR VERTICAL COMMA..PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA
 FE13..FE14    ; SContinue # Po   [2] PRESENTATION FORM FOR VERTICAL COLON..PRESENTATION FORM FOR VERTICAL SEMICOLON
 FE31..FE32    ; SContinue # Pd   [2] PRESENTATION FORM FOR VERTICAL EM DASH..PRESENTATION FORM FOR VERTICAL EN DASH
@@ -2985,8 +2980,7 @@ FF0C          ; SContinue # Po       FULLWIDTH COMMA
 FF0D          ; SContinue # Pd       FULLWIDTH HYPHEN-MINUS
 FF1A..FF1B    ; SContinue # Po   [2] FULLWIDTH COLON..FULLWIDTH SEMICOLON
 FF64          ; SContinue # Po       HALFWIDTH IDEOGRAPHIC COMMA
-1DA89         ; SContinue # Po       SIGNWRITING SEMICOLON
 
-# Total code points: 37
+# Total code points: 31
 
 # EOF
