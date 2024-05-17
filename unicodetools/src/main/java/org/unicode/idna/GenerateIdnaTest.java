@@ -888,5 +888,7 @@ public class GenerateIdnaTest {
         "\u2477.four",
         // parentheses are disallowed_STD3_valid
         "(4).four",
+        // Ill-formed string with an unpaired surrogate. Punycode.encode() fails, and we report A3.
+        "a" + (char)0xD900 + "z",
     };
 }
