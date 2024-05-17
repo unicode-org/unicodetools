@@ -229,7 +229,45 @@ public class GenerateIdnaTest {
         return sb.toString();
     }
 
+    /**
+     * Avoid writing domain names where the last label contains only ASCII digits. Such domain names
+     * may trigger an IPv4 dotted-decimal parser, which is inconvenient for testing in browsers. See
+     * UTC action item 175-A88.
+     *
+     * <p>For simplicity, don't check for compabibility variants of the dot around the last label.
+     */
+    private String avoidLastLabelAllAsciiDigits(String s) {
+        int lastLabelEnd = s.length() - 1;
+        if (lastLabelEnd < 0) {
+            return s;
+        }
+        // Ignore the optional empty root label.
+        if (s.charAt(lastLabelEnd) == '.') {
+            --lastLabelEnd;
+        }
+        int i;
+        for (i = lastLabelEnd; i >= 0; --i) {
+            char c = s.charAt(i);
+            if (c == '.') {
+                break;
+            }
+            if (!('0' <= c && c <= '9')) {
+                // not all ASCII digits
+                return s;
+            }
+        }
+        if (i == lastLabelEnd) {
+            // The last label (not counting the empty root) is empty.
+            return s;
+        }
+        // Modify the last digit.
+        char lastDigit = s.charAt(lastLabelEnd);
+        char repl = (char) ('a' + lastDigit - '0');
+        return s.substring(0, lastLabelEnd) + repl + s.substring(lastLabelEnd + 1);
+    }
+
     int generateLine(String source, PrintWriter out, PrintWriter out2) {
+        source = avoidLastLabelAllAsciiDigits(source);
         if (alreadyDone(source)) {
             return 0;
         }
@@ -889,6 +927,6 @@ public class GenerateIdnaTest {
         // parentheses are disallowed_STD3_valid
         "(4).four",
         // Ill-formed string with an unpaired surrogate. Punycode.encode() fails, and we report A3.
-        "a" + (char)0xD900 + "z",
+        "a" + (char) 0xD900 + "z",
     };
 }
