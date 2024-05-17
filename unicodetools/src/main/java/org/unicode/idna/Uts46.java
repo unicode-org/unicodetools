@@ -362,6 +362,7 @@ public class Uts46 extends Idna {
      */
     protected String fromPunycode(String label, Set<Errors> errors) {
         if (label.isEmpty()) {
+            // Impossible as long as this function is only called when label.startsWith("xn--").
             errors.add(Errors.X3);
             return label;
         }
