@@ -21,6 +21,8 @@ public class Uts46 extends Idna {
 
     private final boolean isUnicode15OrEarlier;
 
+    private UnicodeSet disallowedSTD3 = new UnicodeSet();
+
     private Uts46() {
         String path = Settings.UnicodeTools.getDataPathStringForLatestVersion("idna");
         new MyHandler().process(path, "IdnaMappingTable.txt");
@@ -43,6 +45,7 @@ public class Uts46 extends Idna {
             String status = items[1];
             final int dash = status.indexOf("_STD3");
             if (dash >= 0) {
+                disallowedSTD3.add(start, end);
                 status = status.substring(0, dash);
             }
             final IdnaType type = IdnaType.valueOf(status);
@@ -446,6 +449,9 @@ public class Uts46 extends Idna {
         //    [IDNA2008] RFC 5893, Section 2.
         // --> see Cn errors
 
+        /** U1 for UseSTD3ASCIIRules: Replaces V7 for disallowed_STD3_*. */
+        U1(0),
+
         A3(UIDNA_ERROR_PUNYCODE),
         A4_1(UIDNA_ERROR_DOMAIN_NAME_TOO_LONG),
         A4_2(UIDNA_ERROR_EMPTY_LABEL | UIDNA_ERROR_LABEL_TOO_LONG),
@@ -684,7 +690,7 @@ public class Uts46 extends Idna {
                     }
                     break;
                 default:
-                    errors.add(Errors.V7);
+                    errors.add(disallowedSTD3.contains(cp) ? Errors.U1 : Errors.V7);
             }
         }
     }
