@@ -723,9 +723,12 @@ public class Uts46 extends Idna {
                 }
             }
             // The length of each label is from 1 to 63.
+            // In principle, the last label could be the optional empty root label,
+            // but we generate test data with VerifyDnsLength=true,
+            // and since Unicode 15.0 UTS #46 says:
+            // When VerifyDnsLength is true, the empty root label is disallowed.
             final int labelLength = UTF16.countCodePoint(label);
-            if (labelLength > 63 || labelLength < 1 && i != labelsLength - 1) {
-                // last one can be zero length
+            if (labelLength > 63 || labelLength < 1) {
                 errors.add(Errors.A4_2);
             }
             if (first) {
