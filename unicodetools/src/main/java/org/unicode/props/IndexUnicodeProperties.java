@@ -59,6 +59,7 @@ import org.unicode.text.utility.Utility;
 public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public static final String UNCHANGED_IN_BASE_VERSION = "👉 SEE OTHER VERSION OF UNICODE";
     static final String SET_SEPARATOR = "|";
+
     /** Control file caching */
     static final boolean GZIP = true;
 

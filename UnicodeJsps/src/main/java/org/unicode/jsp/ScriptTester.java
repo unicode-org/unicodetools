@@ -45,6 +45,7 @@ public class ScriptTester {
     public static final int EXTRA_COUNT = 16; // should be enough, hard working as UTC is!
 
     public static final Map<String, Integer> extraScripts = new ConcurrentHashMap<>(EXTRA_COUNT);
+
     /** Extended scripts; note that they do not have stable numbers, and should not be persisted. */
     public static final int
             // HANT = UScript.CODE_LIMIT,
@@ -551,6 +552,7 @@ public class ScriptTester {
             }
             return new ScriptTester(character_scripts);
         }
+
         /**
          * Add list of scripts that are acceptable in combination together.
          *

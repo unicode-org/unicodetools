@@ -223,6 +223,7 @@ public class TestProperties extends TestFmwk2 {
         assertTrue("toNFM=a", actual2.contains("A"));
         assertTrue("toNFM=a", !actual2.contains("B"));
     }
+
     //  public void TestDefaultEncodingValue() {
     //    UnicodeProperty prop = factory.getProperty("enc_ISO-8859-2");
     //    assertTrue("Default for Å, enc_ISO-8859-2", prop.isDefault('Å'));

@@ -47,7 +47,7 @@
         <!-- Need to use an updated surefire plugin here. -->
         <maven-surefire-plugin-version>3.0.0-M5</maven-surefire-plugin-version>
 
-        <spotless.version>2.22.5</spotless.version>
+        <spotless.version>2.43.0</spotless.version>
     </properties>
 
     <modules>
@@ -138,8 +138,9 @@
                             <!-- no need to specify files, inferred automatically, but you can if you want -->
                             <!-- apply a specific flavor of google-java-format and reflow long strings -->
                             <googleJavaFormat>
-                                <!-- version of google-java-style -->
-                                <version>1.15.0</version>
+                                <!-- version of google-java-style, see
+                                    https://mvnrepository.com/artifact/com.google.googlejavaformat/google-java-format -->
+                                <version>1.22.0</version>
                                 <style>AOSP</style>
                                 <reflowLongStrings>false</reflowLongStrings>
                             </googleJavaFormat>

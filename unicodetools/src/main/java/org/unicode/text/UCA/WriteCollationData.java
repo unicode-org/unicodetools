@@ -1738,6 +1738,7 @@ public class WriteCollationData {
 
     // Do not print a full date+time, to reduce gratuitous file changes.
     private static DateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
     // was "yyyy-MM-dd','HH:mm:ss' GMT'" in UCA 6.2
 
     static String getNormalDate() {

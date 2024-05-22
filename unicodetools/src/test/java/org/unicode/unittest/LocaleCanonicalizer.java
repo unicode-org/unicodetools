@@ -305,6 +305,7 @@ public class LocaleCanonicalizer {
                             ? _tVariant
                             : _tVariant.isEmpty() ? null : _tVariant;
         }
+
         /* Set the other fields of the result, and return the new datatype value */
         public void setTarget(Datatype datatype, LocaleCanonicalizer.LSRV result) {
             if (tLang != null && (result.language.isEmpty() || datatype == Datatype.language)) {

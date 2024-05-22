@@ -313,6 +313,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
         return getSortKey(
                 null, sourceString, defaultAlternate, defaultDecomposition, AppendToCe.none);
     }
+
     /**
      * Constructs a sort key for a string of input Unicode characters. Uses default value
      * decomposition.
@@ -779,6 +780,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
     public static String toString(String sortKey) {
         return toString(sortKey, Integer.MAX_VALUE);
     }
+
     /** Produces a human-readable string for a sort key. The 0000 separator is replaced by a '|' */
     public static String toString(String sortKey, int level) {
         final StringBuffer result = new StringBuffer();
@@ -1757,12 +1759,14 @@ public final class UCA implements Comparator<String>, UCA_Types {
             uniqueTable.put(ceObj, new Character(value));
         }
     }
+
     /**
      * @return Returns the fileVersion.
      */
     public String getFileVersion() {
         return fileVersion;
     }
+
     /**
      * @return the path (directory) where we write collation output files.
      */

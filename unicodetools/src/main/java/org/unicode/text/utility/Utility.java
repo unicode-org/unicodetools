@@ -176,6 +176,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
 
     /** Sutton SignWriting really does want to be in CamelCase without underscore. */
     private static final String Signwriting = "Signwriting";
+
     /**
      * @see Signwriting
      */
