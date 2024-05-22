@@ -935,5 +935,38 @@ public class GenerateIdnaTest {
         "xn---",
         "xn--ASCII-",
         "xn--unicode-.org",
+        // Characters in NormalizationCorrections.txt.
+        // Escpecially ones that changed in Unicode 4.0, after IDNA2003 was baked.
+        // F951;96FB;964B;3.2.0 # Corrigendum 3
+        // 2F868;2136A;36FC;4.0.0 # Corrigendum 4
+        // 2F874;5F33;5F53;4.0.0 # Corrigendum 4
+        // 2F91F;43AB;243AB;4.0.0 # Corrigendum 4
+        // 2F95F;7AAE;7AEE;4.0.0 # Corrigendum 4
+        // 2F9BF;4D57;45D7;4.0.0 # Corrigendum 4
+        //
+        // source characters
+        new StringBuilder("\uF951")
+                .appendCodePoint(0x2F868)
+                .appendCodePoint(0x2F874)
+                .appendCodePoint(0x2F91F)
+                .appendCodePoint(0x2F95F)
+                .appendCodePoint(0x2F9BF)
+                .toString(),
+        // old decompositions
+        new StringBuilder("\u96FB")
+                .appendCodePoint(0x2136A)
+                .appendCodePoint(0x5F33)
+                .appendCodePoint(0x43AB)
+                .appendCodePoint(0x7AAE)
+                .appendCodePoint(0x4D57)
+                .toString(),
+        // corrected decompositions
+        new StringBuilder("\u964B")
+                .appendCodePoint(0x36FC)
+                .appendCodePoint(0x5F53)
+                .appendCodePoint(0x243AB)
+                .appendCodePoint(0x7AEE)
+                .appendCodePoint(0x45D7)
+                .toString(),
     };
 }
