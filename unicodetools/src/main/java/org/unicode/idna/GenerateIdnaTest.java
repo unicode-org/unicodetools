@@ -928,5 +928,11 @@ public class GenerateIdnaTest {
         "(4).four",
         // Ill-formed string with an unpaired surrogate. Punycode.encode() fails, and we report A3.
         "a" + (char) 0xD900 + "z",
+        // Unicode 16 Processing after Punycode decoding: If the label is empty,
+        // or if the label contains only ASCII code points, record that there was an error.
+        "xn--",
+        "xn---",
+        "xn--ASCII-",
+        "xn--unicode-.org",
     };
 }
