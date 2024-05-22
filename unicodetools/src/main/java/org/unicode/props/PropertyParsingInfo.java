@@ -83,6 +83,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     public static final Pattern EQUALS = Pattern.compile("\\s*=\\s*");
     public static final Pattern COMMA = Pattern.compile("\\s*,\\s*");
     public static final Pattern DECOMP_REMOVE = Pattern.compile("\\{[^}]+\\}|\\<[^>]+\\>");
+
     /** General constants */
     public static final Pattern SEMICOLON = Pattern.compile("\\s*;\\s*");
 
@@ -1336,7 +1337,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         line.getOriginalLine(),
                         line.getParts()[1],
                         line.getParts()[2],
-                        /* isEmpty=*/ false,
+                        /* isEmpty= */ false,
                         last_applicable_version);
             }
         }

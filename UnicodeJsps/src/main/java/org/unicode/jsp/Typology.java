@@ -34,6 +34,7 @@ public class Typology {
     public static Relation<String, String> labelToPaths =
             new Relation(new TreeMap(), TreeSet.class);
     public static Map<String, Map<String, UnicodeSet>> label_parent_uset = new TreeMap();
+
     // public static Relation<String, String> pathToList = new Relation(new TreeMap(),
     // TreeSet.class);
 

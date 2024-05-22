@@ -453,6 +453,7 @@ public class GenerateIdnaTest {
         result.append(getCanonicalLabel(source.substring(last)));
         return result.toString();
     }
+
     // we uppercase IF all ascii, otherwise leave it alone
     String getCanonicalLabel(String source) {
         final StringBuilder result = new StringBuilder();

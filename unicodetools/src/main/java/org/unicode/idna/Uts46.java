@@ -185,6 +185,7 @@ public class Uts46 extends Idna {
     static final UnicodeSet EN = new UnicodeSet("[[:bc=EN:]]").freeze();
     static final UnicodeSet AN = new UnicodeSet("[[:bc=AN:]]").freeze();
     static final UnicodeSet NSM = new UnicodeSet("[[:bc=NSM:]]").freeze();
+
     /**
      * Checks a string for IDNA2008 bidi errors. label must not be empty
      *

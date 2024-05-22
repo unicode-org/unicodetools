@@ -389,6 +389,7 @@ public class IdentifierInfo {
             return results;
         }
     }
+
     /** */
     private void loadFileData() throws IOException {
         BufferedReader br;

@@ -150,6 +150,7 @@ public class TestUts46 extends TestFmwkMinusMinus {
             }
         }
     }
+
     /**
      * Return true if each rule is contained in at least one error.
      *

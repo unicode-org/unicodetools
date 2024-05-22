@@ -327,6 +327,7 @@ public class Test2 {
             return value;
         }
     }
+
     /**
      * Verifies correct UTF-8. Uses Table 3-7 of the Unicode Standard.
      *

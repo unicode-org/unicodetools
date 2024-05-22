@@ -16,6 +16,7 @@ import org.unicode.text.utility.Utility;
 
 public final class RadicalStroke {
     private static final int MAX_RADICAL_NUMBER = 214;
+
     /**
      * The Unicode 1.1 Unihan block was U+4E00..U+9FA5. The ideographs there were allocated in
      * radical-stroke order, but some of the radical-stroke data was changed later.
@@ -27,16 +28,22 @@ public final class RadicalStroke {
     private static final int SIMPLIFIED_NUM_BITS = 2;
 
     private String unicodeVersion;
+
     /** Han character data in code point order. */
     private long[] rawHan;
+
     /** Han character data in UCA radical-stroke order. */
     private long[] orderedHan;
+
     /** Maps radicalNumberAndSimplified to the radical character. */
     private String[] radToChar = new String[(MAX_RADICAL_NUMBER + 1) << SIMPLIFIED_NUM_BITS];
+
     /** Maps radicalNumberAndSimplified to the radical character and its ideograph sibling. */
     private String[] radToChars = new String[(MAX_RADICAL_NUMBER + 1) << SIMPLIFIED_NUM_BITS];
+
     /** Radical strings. Avoid constructing them over and over. */
     private String[] radicalStrings = new String[(MAX_RADICAL_NUMBER + 1) << SIMPLIFIED_NUM_BITS];
+
     /**
      * Han characters for which code point order == radical-stroke order. Hand-picked exceptions
      * that are hard to detect optimally (because there are 2 or 3 in a row out of order) are
