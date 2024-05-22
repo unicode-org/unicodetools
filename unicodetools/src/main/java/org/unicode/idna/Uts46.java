@@ -373,6 +373,11 @@ public class Uts46 extends Idna {
             final StringBuffer temp = new StringBuffer();
             temp.append(label.substring(4));
             final StringBuffer depuny = Punycode.decode(temp, null);
+            // Unicode 16: If the label is empty,
+            // or if the label contains only ASCII code points, record that there was an error.
+            if (depuny.length() == 0 || depuny.chars().allMatch((c) -> c <= 0x7f)) {
+                errors.add(Errors.P4);
+            }
             return depuny.toString();
         } catch (final Exception e) {
             errors.add(Errors.P4);
