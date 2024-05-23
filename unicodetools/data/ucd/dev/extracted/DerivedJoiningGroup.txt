@@ -1,5 +1,5 @@
 # DerivedJoiningGroup-16.0.0.txt
-# Date: 2024-04-30, 21:48:17 GMT
+# Date: 2024-05-23, 16:14:22 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -157,8 +157,9 @@
 # ================================================
 
 0647          ; Heh # Lo       ARABIC LETTER HEH
+10EED         ; Heh # Lo       ARABIC CROWN LETTER HEH
 
-# Total code points: 1
+# Total code points: 2
 
 # ================================================
 
@@ -179,8 +180,9 @@
 077F          ; Kaf # Lo       ARABIC LETTER KAF WITH TWO DOTS ABOVE
 08B4          ; Kaf # Lo       ARABIC LETTER KAF WITH DOT BELOW
 10EC4         ; Kaf # Lo       ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+10EEA         ; Kaf # Lo       ARABIC CROWN LETTER KAF
 
-# Total code points: 7
+# Total code points: 8
 
 # ================================================
 
@@ -216,8 +218,9 @@
 0645          ; Meem # Lo       ARABIC LETTER MEEM
 0765..0766    ; Meem # Lo   [2] ARABIC LETTER MEEM WITH DOT ABOVE..ARABIC LETTER MEEM WITH DOT BELOW
 08A7          ; Meem # Lo       ARABIC LETTER MEEM WITH THREE DOTS ABOVE
+10EEB         ; Meem # Lo       ARABIC CROWN LETTER MEEM
 
-# Total code points: 4
+# Total code points: 5
 
 # ================================================
 
@@ -744,5 +747,49 @@
 088E          ; Vertical_Tail # Lo       ARABIC VERTICAL TAIL
 
 # Total code points: 1
+
+# ================================================
+
+10ED9..10EDC  ; Crown_Beh # Lo   [4] ARABIC CROWN LETTER BEH..ARABIC CROWN LETTER THEH
+10EEC         ; Crown_Beh # Lo       ARABIC CROWN LETTER NOON
+10EEE         ; Crown_Beh # Lo       ARABIC CROWN LETTER YEH
+
+# Total code points: 6
+
+# ================================================
+
+10EDD..10EDF  ; Crown_Hah # Lo   [3] ARABIC CROWN LETTER JEEM..ARABIC CROWN LETTER KHAH
+
+# Total code points: 3
+
+# ================================================
+
+10EE0..10EE1  ; Crown_Seen # Lo   [2] ARABIC CROWN LETTER SEEN..ARABIC CROWN LETTER SHEEN
+
+# Total code points: 2
+
+# ================================================
+
+10EE2..10EE3  ; Crown_Sad # Lo   [2] ARABIC CROWN LETTER SAD..ARABIC CROWN LETTER DAD
+
+# Total code points: 2
+
+# ================================================
+
+10EE4..10EE5  ; Crown_Tah # Lo   [2] ARABIC CROWN LETTER TAH..ARABIC CROWN LETTER ZAH
+
+# Total code points: 2
+
+# ================================================
+
+10EE6..10EE7  ; Crown_Ain # Lo   [2] ARABIC CROWN LETTER AIN..ARABIC CROWN LETTER GHAIN
+
+# Total code points: 2
+
+# ================================================
+
+10EE8..10EE9  ; Crown_Feh # Lo   [2] ARABIC CROWN LETTER FEH..ARABIC CROWN LETTER QAF
+
+# Total code points: 2
 
 # EOF

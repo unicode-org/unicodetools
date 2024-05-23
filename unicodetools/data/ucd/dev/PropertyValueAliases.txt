@@ -1,5 +1,5 @@
 # PropertyValueAliases-16.0.0.txt
-# Date: 2024-04-30, 21:48:30 GMT
+# Date: 2024-05-23, 16:14:42 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1002,6 +1002,13 @@ jg ; Alef                             ; Alef
 jg ; Beh                              ; Beh
 jg ; Beth                             ; Beth
 jg ; Burushaski_Yeh_Barree            ; Burushaski_Yeh_Barree
+jg ; Crown_Ain                        ; Crown_Ain
+jg ; Crown_Beh                        ; Crown_Beh
+jg ; Crown_Feh                        ; Crown_Feh
+jg ; Crown_Hah                        ; Crown_Hah
+jg ; Crown_Sad                        ; Crown_Sad
+jg ; Crown_Seen                       ; Crown_Seen
+jg ; Crown_Tah                        ; Crown_Tah
 jg ; Dal                              ; Dal
 jg ; Dalath_Rish                      ; Dalath_Rish
 jg ; E                                ; E

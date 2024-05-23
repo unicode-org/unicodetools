@@ -1,5 +1,5 @@
 # DerivedJoiningType-16.0.0.txt
-# Date: 2024-04-30, 21:48:18 GMT
+# Date: 2024-05-23, 16:14:23 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -194,9 +194,10 @@ A872          ; L # Lo       PHAGS-PA SUPERFIXED LETTER RA
 10ACD         ; L # Lo       MANICHAEAN LETTER HETH
 10AD7         ; L # Lo       MANICHAEAN LETTER NUN
 10D00         ; L # Lo       HANIFI ROHINGYA LETTER A
+10ED9..10EEE  ; L # Lo  [22] ARABIC CROWN LETTER BEH..ARABIC CROWN LETTER YEH
 10FCB         ; L # No       CHORASMIAN NUMBER ONE HUNDRED
 
-# Total code points: 5
+# Total code points: 27
 
 # ================================================
 
@@ -441,6 +442,7 @@ FFF9..FFFB    ; T # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTATI
 10D24..10D27  ; T # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
 10D69..10D6D  ; T # Mn   [5] GARAY VOWEL SIGN E..GARAY CONSONANT NASALIZATION MARK
 10EAB..10EAC  ; T # Mn   [2] YEZIDI COMBINING HAMZA MARK..YEZIDI COMBINING MADDA MARK
+10EF9         ; T # Mn       ARABIC CROWN
 10EFC..10EFF  ; T # Mn   [4] ARABIC COMBINING ALEF OVERLAY..ARABIC SMALL LOW WORD MADDA
 10F46..10F50  ; T # Mn  [11] SOGDIAN COMBINING DOT BELOW..SOGDIAN COMBINING STROKE BELOW
 10F82..10F85  ; T # Mn   [4] OLD UYGHUR COMBINING DOT ABOVE..OLD UYGHUR COMBINING TWO DOTS BELOW
@@ -581,6 +583,6 @@ E0001         ; T # Cf       LANGUAGE TAG
 E0020..E007F  ; T # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; T # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2185
+# Total code points: 2186
 
 # EOF

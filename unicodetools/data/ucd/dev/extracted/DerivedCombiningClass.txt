@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2024-04-30, 21:48:15 GMT
+# Date: 2024-05-23, 16:14:18 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1475,6 +1475,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 10EAD         ; 0 # Pd       YEZIDI HYPHENATION MARK
 10EB0..10EB1  ; 0 # Lo   [2] YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
 10EC2..10EC4  ; 0 # Lo   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+10ED9..10EEE  ; 0 # Lo  [22] ARABIC CROWN LETTER BEH..ARABIC CROWN LETTER YEH
 10EFC         ; 0 # Mn       ARABIC COMBINING ALEF OVERLAY
 10F00..10F1C  ; 0 # Lo  [29] OLD SOGDIAN LETTER ALEPH..OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
 10F1D..10F26  ; 0 # No  [10] OLD SOGDIAN NUMBER ONE..OLD SOGDIAN FRACTION ONE HALF
@@ -2060,8 +2061,8 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 821581 code points not listed here.
-# Total code points: 1113178
+# The above property value applies to 821558 code points not listed here.
+# Total code points: 1113177
 
 # ================================================
 
@@ -2778,6 +2779,7 @@ FE2E..FE2F    ; 230 # Mn   [2] COMBINING CYRILLIC TITLO LEFT HALF..COMBINING CYR
 10D24..10D27  ; 230 # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
 10D69..10D6D  ; 230 # Mn   [5] GARAY VOWEL SIGN E..GARAY CONSONANT NASALIZATION MARK
 10EAB..10EAC  ; 230 # Mn   [2] YEZIDI COMBINING HAMZA MARK..YEZIDI COMBINING MADDA MARK
+10EF9         ; 230 # Mn       ARABIC CROWN
 10F48..10F4A  ; 230 # Mn   [3] SOGDIAN COMBINING DOT ABOVE..SOGDIAN COMBINING CURVE ABOVE
 10F4C         ; 230 # Mn       SOGDIAN COMBINING HOOK ABOVE
 10F82         ; 230 # Mn       OLD UYGHUR COMBINING DOT ABOVE
@@ -2803,7 +2805,7 @@ FE2E..FE2F    ; 230 # Mn   [2] COMBINING CYRILLIC TITLO LEFT HALF..COMBINING CYR
 1E5EE         ; 230 # Mn       OL ONAL SIGN MU
 1E944..1E949  ; 230 # Mn   [6] ADLAM ALIF LENGTHENER..ADLAM GEMINATE CONSONANT MODIFIER
 
-# Total code points: 517
+# Total code points: 518
 
 # ================================================
 
