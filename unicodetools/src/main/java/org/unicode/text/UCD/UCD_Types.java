@@ -776,8 +776,16 @@ public interface UCD_Types {
             // Unicode 14
             THIN_YEH = 103,
             VERTICAL_TAIL = 104,
+            // Unicode n > 17
+            CROWN_BEH = 105,
+            CROWN_HAH = 106,
+            CROWN_SEEN = 107,
+            CROWN_SAD = 108,
+            CROWN_TAH = 109,
+            CROWN_AIN = 110,
+            CROWN_FEH = 111,
             // limit
-            LIMIT_JOINING_GROUP = VERTICAL_TAIL + 1;
+            LIMIT_JOINING_GROUP = CROWN_FEH + 1;
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;
     public static final int NF_COMPATIBILITY_MASK = 2, NF_COMPOSITION_MASK = 1;
 

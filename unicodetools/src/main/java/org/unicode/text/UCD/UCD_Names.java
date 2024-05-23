@@ -1220,7 +1220,15 @@ public final class UCD_Names implements UCD_Types {
         "Hanifi_Rohingya_Kinna_Ya",
         // Unicode 14
         "THIN_YEH",
-        "VERTICAL_TAIL"
+        "VERTICAL_TAIL",
+        // Unicode n > 17
+        "CROWN_BEH",
+        "CROWN_HAH",
+        "CROWN_SEEN",
+        "CROWN_SAD",
+        "CROWN_TAH",
+        "CROWN_AIN",
+        "CROWN_FEH",
     };
 
     static {
