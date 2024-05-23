@@ -1054,6 +1054,7 @@ $CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
 
 Let $unihanScope = [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
 \p{Unified_Ideograph} ⊂ $unihanScope
+$unihanScope = [\p{gc=Lo} & \p{sc=Hani}]
 $unihanScope = \P{kRSUnicode=@none@}
 $unihanScope = \P{kTotalStrokes=@none@}
 $unihanScope = [ \P{kIRG_GSource=@none@} \P{kIRG_HSource=@none@} \P{kIRG_JSource=@none@} \P{kIRG_KPSource=@none@} \P{kIRG_KSource=@none@} \P{kIRG_MSource=@none@} \P{kIRG_SSource=@none@} \P{kIRG_TSource=@none@} \P{kIRG_UKSource=@none@} \P{kIRG_USource=@none@} \P{kIRG_VSource=@none@} ]
