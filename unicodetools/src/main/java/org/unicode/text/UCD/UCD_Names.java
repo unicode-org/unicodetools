@@ -1229,6 +1229,9 @@ public final class UCD_Names implements UCD_Types {
         "CROWN_TAH",
         "CROWN_AIN",
         "CROWN_FEH",
+        "CROWN_KAF",
+        "CROWN_MEEM",
+        "CROWN_HEH",
     };
 
     static {

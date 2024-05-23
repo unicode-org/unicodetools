@@ -784,8 +784,11 @@ public interface UCD_Types {
             CROWN_TAH = 109,
             CROWN_AIN = 110,
             CROWN_FEH = 111,
+            CROWN_KAF = 112,
+            CROWN_MEEM = 113,
+            CROWN_HEH = 114,
             // limit
-            LIMIT_JOINING_GROUP = CROWN_FEH + 1;
+            LIMIT_JOINING_GROUP = CROWN_HEH + 1;
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;
     public static final int NF_COMPATIBILITY_MASK = 2, NF_COMPOSITION_MASK = 1;
 
