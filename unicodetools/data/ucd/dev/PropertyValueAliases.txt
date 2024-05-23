@@ -1,5 +1,5 @@
 # PropertyValueAliases-16.0.0.txt
-# Date: 2024-05-23, 16:14:42 GMT
+# Date: 2024-05-23, 16:43:21 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1006,6 +1006,9 @@ jg ; Crown_Ain                        ; Crown_Ain
 jg ; Crown_Beh                        ; Crown_Beh
 jg ; Crown_Feh                        ; Crown_Feh
 jg ; Crown_Hah                        ; Crown_Hah
+jg ; Crown_Heh                        ; Crown_Heh
+jg ; Crown_Kaf                        ; Crown_Kaf
+jg ; Crown_Meem                       ; Crown_Meem
 jg ; Crown_Sad                        ; Crown_Sad
 jg ; Crown_Seen                       ; Crown_Seen
 jg ; Crown_Tah                        ; Crown_Tah
