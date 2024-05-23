@@ -968,5 +968,11 @@ public class GenerateIdnaTest {
                 .appendCodePoint(0x7AEE)
                 .appendCodePoint(0x45D7)
                 .toString(),
+        // unicodetools issue #747:
+        // IdnaTestV2.txt should test for valid input with upper case in the ASCII part of Punycode
+        // Henri Sivonen:
+        // IdnaTestV2.txt missed a bug in the UTS 46 implementation that I'm writing due to
+        // not testing an upper-case letter in the ASCII part of Punycode when there are no errors.
+        "xn--A-1ga",
     };
 }
