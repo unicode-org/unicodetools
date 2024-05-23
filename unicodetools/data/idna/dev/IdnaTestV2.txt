@@ -1,5 +1,5 @@
 # IdnaTestV2.txt
-# Date: 2024-05-22, 22:45:49 GMT
+# Date: 2024-05-23, 04:13:59 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -559,6 +559,13 @@ unicode.org; ; ; ; ; ;  # unicode.org
 xn--snl253bgitxhzwu2arn60c; 陋㛼当𤎫竮䗗; ; xn--snl253bgitxhzwu2arn60c; ; ;  # 陋㛼当𤎫竮䗗
 電𡍪弳䎫窮䵗; ; ; xn--kbo60w31ob3z6t3av9z5b; ; ;  # 電𡍪弳䎫窮䵗
 xn--kbo60w31ob3z6t3av9z5b; 電𡍪弳䎫窮䵗; ; xn--kbo60w31ob3z6t3av9z5b; ; ;  # 電𡍪弳䎫窮䵗
+xn--A-1ga; aö; ; xn--a-1ga; ; ;  # aö
+aö; ; ; xn--a-1ga; ; ;  # aö
+ao\u0308; aö; ; xn--a-1ga; ; ;  # aö
+AO\u0308; aö; ; xn--a-1ga; ; ;  # aö
+AÖ; aö; ; xn--a-1ga; ; ;  # aö
+Aö; aö; ; xn--a-1ga; ; ;  # aö
+Ao\u0308; aö; ; xn--a-1ga; ; ;  # aö
 
 # RANDOMIZED TESTS
 
