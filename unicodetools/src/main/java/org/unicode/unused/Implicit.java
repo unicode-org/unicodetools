@@ -276,6 +276,7 @@ public class Implicit implements UCD_Types {
     public static int divideAndRoundUp(int a, int b) {
         return 1 + (a - 1) / b;
     }
+
     /**
      * Converts implicit CE into raw integer
      *
@@ -388,6 +389,7 @@ public class Implicit implements UCD_Types {
             return (last3 << 24) + (last2 << 16) + (last1 << 8) + last0;
         }
     }
+
     /**
      * Gets an Implicit from a code point. Internally, swaps (which produces a raw value 0..220000,
      * then converts raw to implicit.

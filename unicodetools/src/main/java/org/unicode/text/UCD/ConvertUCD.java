@@ -158,6 +158,7 @@ public final class ConvertUCD implements UCD_Types {
             }
         }
     }
+
     /*
     static String[][] labelList31 = {
         // Labels for the incoming files. Labels MUST match field order in file.
@@ -371,6 +372,7 @@ public final class ConvertUCD implements UCD_Types {
     }
 
     static PrintWriter log;
+
     // static String directory = BASE_DIR;
     // static Map appendDuplicates = new HashMap();
 
@@ -850,6 +852,7 @@ public final class ConvertUCD implements UCD_Types {
         getEntryUData = charEntry;
         return charEntry;
     }
+
     /** Adds the character data. Signals duplicates with an exception */
     void setBinaryProperty(int cp, int binProp) {
         final UData charEntry = getEntry(cp);

@@ -381,6 +381,7 @@ public class GenerateConfusables {
                                     + "|\\\\U([a-fA-F0-9]{6})"
                                     + "|\\\\u\\{([a-fA-F0-9]{1,6})\\}")
                     .matcher("");
+
     /**
      * Convert a string with a mixture of hex and normal characters. Anything like the following is
      * converted from hex to chars and all spaces are removed hexChar = \b[A-F0-9]{4,6}\b |
@@ -574,6 +575,7 @@ public class GenerateConfusables {
     //    static final String PROHIBITED = "Restricted ; ";
     //    static final String UNPROHIBITED = "Allowed ; ";
     private static final boolean suppress_NFKC = true;
+
     /** */
 
     /** */
@@ -1484,6 +1486,7 @@ public class GenerateConfusables {
                                 : UCAComparator.compare(o1.getSecond(), o2.getSecond());
                     }
                 };
+
         /**
          * @param skipNFKEquivs TODO
          * @param onlyLowercase TODO
@@ -1606,6 +1609,7 @@ public class GenerateConfusables {
         public Set<String> getEquivalences(String string) {
             return dataMixedAnycase.getEquivalences(string);
         }
+
         /*        */
         /** */
         /*
@@ -1693,6 +1697,7 @@ public class GenerateConfusables {
             //            dataSingleAnycase.close(reason);
             //            dataSingleLowercase.close(reason);
         }
+
         /** */
         public void addUnicodeMap(UnicodeMap decompMap, String type, String errorLine) {
             int count = 0;
@@ -1732,6 +1737,7 @@ public class GenerateConfusables {
             }
         }
         ;
+
         /**
          * @param script TODO
          * @throws IOException
@@ -1933,6 +1939,7 @@ public class GenerateConfusables {
             wsAny.write(out);
             out.close();
         }
+
         /** */
         //        private String getStatus(String source) {
         //            // TODO Auto-generated method stub
@@ -2331,6 +2338,7 @@ public class GenerateConfusables {
         // DataSet clean = total.clean();
         // clean.write(outdir, "confusables.txt", true);
     }
+
     /*
         BufferedReader in = FileUtilities.openUTF8Reader(Utility.BASE_DIR + "confusables/", "DiacriticFolding.txt");
         Set set = new TreeSet(new ArrayComparator(new Comparator[] {new UTF16.StringComparator(),
@@ -2468,6 +2476,7 @@ public class GenerateConfusables {
      */
 
     private static _BetterTargetIsLess betterTargetIsLess = new _BetterTargetIsLess(false);
+
     // private static _BetterTargetIsLess betterTargetIsLessFavorNeutral = new
     // _BetterTargetIsLess(true);
 
@@ -2557,6 +2566,7 @@ public class GenerateConfusables {
             }
             return codepointComparator.compare(a, b);
         }
+
         //        private static final int BAD = 1000;
 
         private int getValue(String a) { // lower is better
