@@ -126,26 +126,26 @@ idn8 ; na	 ; na
 
 # @missing: 0000..10FFFF; Identifier_Status  	; r
 
-idstatus	; r	 ; Restricted			
-idstatus	; a	 ; Allowed				
+ID_Status	; r	 ; Restricted			
+ID_Status	; a	 ; Allowed				
 
 # @missing: 0000..10FFFF; Identifier_Type    	; nc
 # @missing: 0000..10FFFF; Identifier_Type    	; rec ; v9.0
 
-idtype	; nc	; Not_Character ; not_chars				
-idtype	; d		; Deprecated		
-idtype	; di	; Default_Ignorable		
-idtype	; nn	; Not_NFKC				
-idtype	; nx	; Not_XID		
-idtype	; o		; Obsolete				
-idtype	; ex	; Exclusion		
-idtype	; t		; Technical				
-idtype	; uu	; Uncommon_Use
-# idtype	; h		; Historic		
-idtype	; lu	; Limited_Use			
-idtype	; a		; Aspirational		
-idtype	; inc	; Inclusion				
-idtype	; rec	; Recommended	
+ID_Type	; nc	; Not_Character ; not_chars				
+ID_Type	; d		; Deprecated		
+ID_Type	; di	; Default_Ignorable		
+ID_Type	; nn	; Not_NFKC				
+ID_Type	; nx	; Not_XID		
+ID_Type	; o		; Obsolete				
+ID_Type	; ex	; Exclusion		
+ID_Type	; t		; Technical				
+ID_Type	; uu	; Uncommon_Use
+# ID_Type	; h		; Historic		
+ID_Type	; lu	; Limited_Use			
+ID_Type	; a		; Aspirational		
+ID_Type	; inc	; Inclusion				
+ID_Type	; rec	; Recommended	
 
 # @missing: 0000..10FFFF; Confusable_SL    	; <code point>
 # @missing: 0000..10FFFF; Confusable_SA    	; <code point>
@@ -171,3 +171,20 @@ Other_Joining_Type ; R                                ; Right_Joining
 Other_Joining_Type ; T                                ; Transparent
 Other_Joining_Type ; U                                ; Non_Joining
 Other_Joining_Type ; Deduce_From_General_Category     ; Deduce_From_General_Category
+
+# @missing: 0000..10FFFF; Do_Not_Emit_Preferred ; <none>
+
+# @missing: 0000..10FFFF; Do_Not_Emit_Type ; <none>
+Do_Not_Emit_Type ; Indic_Atomic_Consonant   ; Indic_Atomic_Consonant
+Do_Not_Emit_Type ; Indic_Consonant_Conjunct ; Indic_Consonant_Conjunct
+Do_Not_Emit_Type ; Indic_Vowel_Letter       ; Indic_Vowel_Letter
+Do_Not_Emit_Type ; Bengali_Khanda_Ta        ; Bengali_Khanda_Ta
+Do_Not_Emit_Type ; Malayalam_Chillu         ; Malayalam_Chillu
+Do_Not_Emit_Type ; Tamil_Shrii              ; Tamil_Shrii
+Do_Not_Emit_Type ; Dotless_Form             ; Dotless_Form
+Do_Not_Emit_Type ; Hamza_Form               ; Hamza_Form
+Do_Not_Emit_Type ; Precomposed_Hieroglyph   ; Precomposed_Hieroglyph
+Do_Not_Emit_Type ; Precomposed_Form         ; Precomposed_Form
+Do_Not_Emit_Type ; Deprecated               ; Deprecated
+Do_Not_Emit_Type ; Discouraged              ; Discouraged
+Do_Not_Emit_Type ; Preferred_Spelling       ; Preferred_Spelling

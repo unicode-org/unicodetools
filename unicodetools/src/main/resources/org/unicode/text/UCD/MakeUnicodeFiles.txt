@@ -61,15 +61,8 @@ File: ScriptExtensions
 # values in that set is not material, but for stability in presentation
 # it is given here as alphabetical.
 #
-# The Script_Extensions values are presented in sorted order in the file.
-# They are sorted first by the number of Script property values in their sets,
-# and then alphabetically by first differing Script property value.
-#
-# Following each distinct Script_Extensions value is the list of code
-# points associated with that value, listed in code point order.
-# 
 # All code points not explicitly listed for Script_Extensions
-# have as their value the corresponding Script property value
+# have as their value the corresponding Script property value.
 #
 
 Property: Script_Extensions

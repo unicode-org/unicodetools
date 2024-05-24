@@ -55,6 +55,7 @@ class UData implements UCD_Types {
     byte Vertical_Orientation = VO_R;
 
     static final UData UNASSIGNED = new UData();
+
     // static final UData NONCHARACTER = new UData();
     static {
         UNASSIGNED.name = "<unassigned>";

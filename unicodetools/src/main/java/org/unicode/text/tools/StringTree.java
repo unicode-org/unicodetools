@@ -31,6 +31,7 @@ public class StringTree {
 
     public abstract static class CPNode<T extends CPNode<T>> implements Iterable<EntryRange<T>> {
         public static final int NO_VALUE = Integer.MIN_VALUE;
+
         /** Not complete comparator !! * */
         public static final Comparator<CPNode> DEPTH_FIRST =
                 new Comparator<CPNode>() {

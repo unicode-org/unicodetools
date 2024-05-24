@@ -10,6 +10,7 @@ import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.Canonical_Combining_Class_Values;
 import org.unicode.props.UcdPropertyValues.Decomposition_Type_Values;
+import org.unicode.props.UcdPropertyValues.Do_Not_Emit_Type_Values;
 import org.unicode.props.UcdPropertyValues.East_Asian_Width_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
@@ -57,6 +58,7 @@ public enum UcdProperty {
     Confusable_SA(PropertyType.String, "ConfSA"),
     Confusable_SL(PropertyType.String, "ConfSL"),
     Decomposition_Mapping(PropertyType.String, "dm"),
+    Do_Not_Emit_Preferred(PropertyType.String, "Do_Not_Emit_Preferred"),
     Equivalent_Unified_Ideograph(PropertyType.String, "EqUIdeo"),
     FC_NFKC_Closure(PropertyType.String, "FC_NFKC"),
     Idn_Mapping(PropertyType.String, "idnm"),
@@ -225,17 +227,19 @@ public enum UcdProperty {
     Canonical_Combining_Class(
             PropertyType.Enumerated, Canonical_Combining_Class_Values.class, null, "ccc"),
     Decomposition_Type(PropertyType.Enumerated, Decomposition_Type_Values.class, null, "dt"),
+    Do_Not_Emit_Type(
+            PropertyType.Enumerated, Do_Not_Emit_Type_Values.class, null, "Do_Not_Emit_Type"),
     East_Asian_Width(PropertyType.Enumerated, East_Asian_Width_Values.class, null, "ea"),
     General_Category(PropertyType.Enumerated, General_Category_Values.class, null, "gc"),
     Grapheme_Cluster_Break(
             PropertyType.Enumerated, Grapheme_Cluster_Break_Values.class, null, "GCB"),
     Hangul_Syllable_Type(PropertyType.Enumerated, Hangul_Syllable_Type_Values.class, null, "hst"),
-    Identifier_Status(PropertyType.Enumerated, Identifier_Status_Values.class, null, "idstatus"),
+    Identifier_Status(PropertyType.Enumerated, Identifier_Status_Values.class, null, "ID_Status"),
     Identifier_Type(
             PropertyType.Enumerated,
             Identifier_Type_Values.class,
             ValueCardinality.Unordered,
-            "idtype"),
+            "ID_Type"),
     Idn_2008(PropertyType.Enumerated, Idn_2008_Values.class, null, "idn8"),
     Idn_Status(PropertyType.Enumerated, Idn_Status_Values.class, null, "idns"),
     Indic_Conjunct_Break(PropertyType.Enumerated, Indic_Conjunct_Break_Values.class, null, "InCB"),
