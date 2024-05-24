@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2024-05-08, 03:40:06 GMT
+# Date: 2024-05-24, 11:55:15 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1917,8 +1917,8 @@ FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 08CD..08CF    ; Modifier_Combining_Mark # Mn   [3] ARABIC SMALL HIGH ZAH..ARABIC LARGE ROUND DOT BELOW
 08D3          ; Modifier_Combining_Mark # Mn       ARABIC SMALL LOW WAW
 08F3          ; Modifier_Combining_Mark # Mn       ARABIC SMALL HIGH WAW
-10EF9;Modifier_Combining_Mark
+10EF9         ; Modifier_Combining_Mark # Mn       ARABIC CROWN
 
-# Total code points: 14
+# Total code points: 15
 
 # EOF
