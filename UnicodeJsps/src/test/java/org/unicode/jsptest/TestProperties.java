@@ -37,6 +37,8 @@ import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
+import org.unicode.text.utility.Settings;
 
 public class TestProperties extends TestFmwk2 {
     static XPropertyFactory factory = XPropertyFactory.make();
@@ -294,7 +296,10 @@ public class TestProperties extends TestFmwk2 {
         for (int i = 0; i < 256; ++i) {
             String s = String.valueOf(i);
             if (s.contains("3")) {
-                expected.addAll(new UnicodeSet("[:ccc=" + s + ":]"));
+                expected.addAll(
+                        ToolUnicodePropertySource.make(Settings.latestVersion)
+                                .getProperty("ccc")
+                                .getSet(s));
             }
         }
         assertEquals(test, expected, actual);
