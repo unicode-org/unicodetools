@@ -32,7 +32,13 @@ public class TestTestUnicodeInvariants {
     @Test
     void testUnicodeInvariants() throws IOException {
         int rc = TestUnicodeInvariants.testInvariants(null, true);
-        assertEquals(0, rc, "TestUnicodeInvariants.testInvariants() failed");
+        assertEquals(0, rc, "TestUnicodeInvariants.testInvariants(default) failed");
+    }
+
+    @Test
+    void testSecurityInvariants() throws IOException {
+        int rc = TestUnicodeInvariants.testInvariants("SecurityInvariantTest.txt", true);
+        assertEquals(0, rc, "TestUnicodeInvariants.testInvariants(security) failed");
     }
 
     @Test

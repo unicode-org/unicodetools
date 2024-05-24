@@ -291,15 +291,13 @@ public class TestProperties extends TestFmwk2 {
         checkProperty(factory, "ccc");
 
         String test = "[:Udev:ccc=/3/:]";
+        final var devProperties = ToolUnicodePropertySource.make(Settings.latestVersion);
         UnicodeSet actual = UnicodeSetUtilities.parseUnicodeSet(test);
         UnicodeSet expected = new UnicodeSet();
         for (int i = 0; i < 256; ++i) {
             String s = String.valueOf(i);
             if (s.contains("3")) {
-                expected.addAll(
-                        ToolUnicodePropertySource.make(Settings.latestVersion)
-                                .getProperty("ccc")
-                                .getSet(s));
+                expected.addAll(devProperties.getProperty("ccc").getSet(s));
             }
         }
         assertEquals(test, expected, actual);
