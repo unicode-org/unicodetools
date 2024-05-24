@@ -1,3 +1,4 @@
+31E4..31E5;Hani
 # ScriptExtensions-16.0.0.txt
 # Date: 2024-05-10, 22:27:16 GMT
 # © 2024 Unicode®, Inc.
