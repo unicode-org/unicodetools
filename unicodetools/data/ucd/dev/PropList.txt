@@ -1917,6 +1917,7 @@ FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 08CD..08CF    ; Modifier_Combining_Mark # Mn   [3] ARABIC SMALL HIGH ZAH..ARABIC LARGE ROUND DOT BELOW
 08D3          ; Modifier_Combining_Mark # Mn       ARABIC SMALL LOW WAW
 08F3          ; Modifier_Combining_Mark # Mn       ARABIC SMALL HIGH WAW
+10EF9;Modifier_Combining_Mark
 
 # Total code points: 14
 
