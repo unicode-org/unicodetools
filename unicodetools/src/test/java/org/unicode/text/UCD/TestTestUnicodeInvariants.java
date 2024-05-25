@@ -40,10 +40,4 @@ public class TestTestUnicodeInvariants {
         int rc = TestUnicodeInvariants.testInvariants("SecurityInvariantTest.txt", true);
         assertEquals(0, rc, "TestUnicodeInvariants.testInvariants(security) failed");
     }
-
-    @Test
-    void testSecurityInvariants() throws IOException {
-        int rc = TestUnicodeInvariants.testInvariants("SecurityInvariantTest.txt", true);
-        assertEquals(0, rc, "TestUnicodeInvariants.testInvariants() failed");
-    }
 }
