@@ -849,6 +849,10 @@ Let $TwoVietnameseReadingMarks = [\p{U15.1.0:ccc=6}]
 # an LV or V, respectively.
 [\p{NFC_QC=Maybe}&\p{ccc=0}] ⊆ [\p{GCB=Extend}\p{GCB=T}\p{GCB=V}]
 
+# Canonical decomposition preserves the initial GCB, except for LV and LVT.
+In [\p{dt=canonical}-[\p{gcb=LV}\p{gcb=LVT}]], gcb * (take 1) * dm = gcb
+In [\p{gcb=LV}\p{gcb=LVT}], (take 1) * dm ∈ [\p{gcb=L} \p{gcb=LV} \p{gcb=LVT}]
+
 ##########################
 # Emoji
 ##########################
