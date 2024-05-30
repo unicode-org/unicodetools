@@ -153,8 +153,7 @@ public class TestUnicodeInvariants {
                                 + (inputFile.equals(DEFAULT_FILE)
                                         ? ""
                                         : "-" + inputFile.split("\\.")[0])
-                                + "."
-                                + (doHtml ? "html" : "txt"))) {
+                                + (doHtml ? ".html" : ".txt"))) {
             final StringWriter writer = new StringWriter();
             try (PrintWriter out3 = new PrintWriter(writer)) {
                 out = out3;
