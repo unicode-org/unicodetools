@@ -151,7 +151,10 @@ public class TestUnicodeInvariants {
         try (final PrintWriter out2 =
                 FileUtilities.openUTF8Writer(
                         Settings.Output.GEN_DIR,
-                        "UnicodeTestResults." + (doHtml ? "html" : "txt"))) {
+                        "UnicodeTestResults"
+                                + (inputFile == null ? "" : "-" + inputFile.split("\\.")[0])
+                                + "."
+                                + (doHtml ? "html" : "txt"))) {
             final StringWriter writer = new StringWriter();
             try (PrintWriter out3 = new PrintWriter(writer)) {
                 out = out3;
