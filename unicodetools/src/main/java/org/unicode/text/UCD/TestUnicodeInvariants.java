@@ -144,6 +144,9 @@ public class TestUnicodeInvariants {
      * @throws IOException
      */
     public static int testInvariants(String inputFile, boolean doRange) throws IOException {
+        if (inputFile == null) {
+            inputFile = DEFAULT_FILE;
+        }
         TestUnicodeInvariants.doRange = doRange;
         parseErrorCount = 0;
         testFailureCount = 0;
@@ -152,7 +155,9 @@ public class TestUnicodeInvariants {
                 FileUtilities.openUTF8Writer(
                         Settings.Output.GEN_DIR,
                         "UnicodeTestResults"
-                                + (inputFile == null ? "" : "-" + inputFile.split("\\.")[0])
+                                + (inputFile.equals(DEFAULT_FILE)
+                                        ? ""
+                                        : "-" + inputFile.split("\\.")[0])
                                 + "."
                                 + (doHtml ? "html" : "txt"))) {
             final StringWriter writer = new StringWriter();
