@@ -152,9 +152,7 @@ public class TestUnicodeInvariants {
                 FileUtilities.openUTF8Writer(
                         Settings.Output.GEN_DIR,
                         "UnicodeTestResults"
-                                + (inputFile.equals(DEFAULT_FILE)
-                                        ? ""
-                                        : "-" + inputFile.split("\\.")[0])
+                                + (inputFile == null ? "" : "-" + inputFile.split("\\.")[0])
                                 + "."
                                 + (doHtml ? "html" : "txt"))) {
             final StringWriter writer = new StringWriter();
