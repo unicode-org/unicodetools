@@ -14,6 +14,7 @@ public class PropertyUtilities {
 
     public static final class Joiner implements Merge<String> {
         static String separator;
+
         /**
          * @param separator
          */

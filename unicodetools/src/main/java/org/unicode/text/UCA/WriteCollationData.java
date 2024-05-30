@@ -25,7 +25,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -36,7 +35,6 @@ import java.util.Vector;
 import java.util.regex.Pattern;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCA.UCA.CollatorType;
-import org.unicode.text.UCA.UCA.Remap;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
@@ -1740,6 +1738,7 @@ public class WriteCollationData {
 
     // Do not print a full date+time, to reduce gratuitous file changes.
     private static DateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
     // was "yyyy-MM-dd','HH:mm:ss' GMT'" in UCA 6.2
 
     static String getNormalDate() {
@@ -1859,21 +1858,12 @@ public class WriteCollationData {
         switch (type) {
             case cldr:
                 if (cldrCollator == null) {
-                    //                if (Default.ucdVersion().compareTo("6.1") < 0) { // only
-                    // reorder if less than v6.1
-                    //                    cldrCollator = buildCldrCollator(true);
-                    //                } else
-                    {
-                        cldrCollator = buildCldrCollator(false);
-
-                        cldrCollator.overrideCE("\uFFFE", 0x1, 0x20, 2);
-                        cldrCollator.overrideCE("\uFFFF", 0xFFFE, 0x20, 2);
-                    }
+                    cldrCollator = buildCldrCollator(true);
                 }
                 return cldrCollator;
             case ducet:
                 if (ducetCollator == null) {
-                    ducetCollator = UCA.buildCollator(null);
+                    ducetCollator = UCA.buildDucetCollator();
                 }
                 return ducetCollator;
             case cldrWithoutFFFx:
@@ -1887,60 +1877,29 @@ public class WriteCollationData {
     }
 
     private static UCA buildCldrCollator(boolean addFFFx) {
-        final PrintWriter fractionalLog =
-                Utility.openPrintWriter(
-                        UCA.getOutputDir() + File.separator + "log",
-                        "FractionalRemap.txt",
-                        Utility.UTF8_WINDOWS);
-        // hack to reorder elements
         final UCA ducet = getCollator(CollatorType.ducet);
-        final CEList ceListForA = ducet.getCEList("a", true);
-        final int firstForA = ceListForA.at(0);
-        final int firstScriptPrimary = CEList.getPrimary(firstForA);
-        final Remap primaryRemap = new Remap();
-        // gather the data
-        final UnicodeSet spaces = new UnicodeSet();
-        final UnicodeSet punctuation = new UnicodeSet();
-        final UnicodeSet generalSymbols = new UnicodeSet();
-        final UnicodeSet currencySymbols = new UnicodeSet();
-        final UnicodeSet numbers = new UnicodeSet();
 
-        final int oldVariableHigh = CEList.getPrimary(ducet.getVariableHighCE());
+        final int ducetVariableHigh = CEList.getPrimary(ducet.getVariableHighCE());
+        int cldrVariableHigh = 0;
+        // This will normally come out as ducetVariableHigh + 1.
         int firstDucetNonVariable = -1;
 
+        // DUCET: variable primary weights include spaces, punctuation, and symbols
+        // CLDR: variable primary weights include only spaces and punctuation
         for (final UCA.Primary up : ducet.getRegularPrimaries()) {
             final int ducetPrimary = up.primary;
             if (ducetPrimary == 0xFFFD) {
                 // Do not remap the REPLACEMENT CHARACTER which has the special FFFD primary.
                 continue;
             }
-            if (firstDucetNonVariable < 0 && ducetPrimary > oldVariableHigh) {
+            if (firstDucetNonVariable < 0 && ducetPrimary > ducetVariableHigh) {
                 firstDucetNonVariable = ducetPrimary;
             }
 
             final String repChar = up.getRepresentative();
-            CharSequence rep2 = filter(repChar);
-            if (rep2 == null) {
-                rep2 = repChar;
-                fractionalLog.println(
-                        "# Warning - No NFKD primary with:\t"
-                                + Utility.hex(ducetPrimary)
-                                + "\t"
-                                + repChar
-                                + "\t"
-                                + Default.ucd().getCodeAndName(repChar.toString()));
-                // continue;
-            }
-            rep2 = repChar;
-            final int firstChar = Character.codePointAt(rep2, 0);
+            final int firstChar = Character.codePointAt(repChar, 0);
             final int cat = Default.ucd().getCategory(firstChar);
             switch (cat) {
-                case UCD_Types.SPACE_SEPARATOR:
-                case UCD_Types.LINE_SEPARATOR:
-                case UCD_Types.PARAGRAPH_SEPARATOR:
-                case UCD_Types.CONTROL:
-                    spaces.add(ducetPrimary);
-                    break;
                 case UCD_Types.DASH_PUNCTUATION:
                 case UCD_Types.START_PUNCTUATION:
                 case UCD_Types.END_PUNCTUATION:
@@ -1948,116 +1907,15 @@ public class WriteCollationData {
                 case UCD_Types.OTHER_PUNCTUATION:
                 case UCD_Types.INITIAL_PUNCTUATION:
                 case UCD_Types.FINAL_PUNCTUATION:
-                    punctuation.add(ducetPrimary);
-                    break;
-                case UCD_Types.DECIMAL_DIGIT_NUMBER:
-                    numbers.add(ducetPrimary);
-                    break;
-                case UCD_Types.LETTER_NUMBER:
-                case UCD_Types.OTHER_NUMBER:
-                    if (ducetPrimary >= firstScriptPrimary) {
-                        break;
+                    if (ducetPrimary <= ducetVariableHigh && ducetPrimary > cldrVariableHigh) {
+                        cldrVariableHigh = ducetPrimary;
                     }
-                    numbers.add(ducetPrimary);
-                    break;
-                case UCD_Types.CURRENCY_SYMBOL:
-                    currencySymbols.add(ducetPrimary);
-                    break;
-                case UCD_Types.MATH_SYMBOL:
-                case UCD_Types.MODIFIER_SYMBOL:
-                case UCD_Types.OTHER_SYMBOL:
-                    generalSymbols.add(ducetPrimary);
-                    break;
-                case UCD_Types.UNASSIGNED:
-                case UCD_Types.UPPERCASE_LETTER:
-                case UCD_Types.LOWERCASE_LETTER:
-                case UCD_Types.TITLECASE_LETTER:
-                case UCD_Types.MODIFIER_LETTER:
-                case UCD_Types.OTHER_LETTER:
-                case UCD_Types.NON_SPACING_MARK:
-                case UCD_Types.ENCLOSING_MARK:
-                case UCD_Types.COMBINING_SPACING_MARK:
-                case UCD_Types.FORMAT:
-                    if (ducetPrimary >= firstScriptPrimary) {
-                        break;
-                    }
-                    generalSymbols.add(ducetPrimary);
                     break;
                 default:
-                    throw new IllegalArgumentException();
+                    break;
             }
         }
-        // now reorder
-        primaryRemap
-                .addItems(spaces)
-                .addItems(punctuation)
-                .setVariableHigh()
-                .addItems(generalSymbols)
-                .addItems(currencySymbols)
-                .putRemappedCharacters(0x20A8) // U+20A8 RUPEE SIGN
-                .putRemappedCharacters(0xFDFC) // U+FDFC RIAL SIGN
-                .addItems(numbers);
-
-        primaryRemap.setFirstDucetNonVariable(firstDucetNonVariable);
-
-        final LinkedHashSet<String> s = new LinkedHashSet<String>();
-
-        fractionalLog.println("# Remapped primaries");
-
-        for (final UCA.Primary up : ducet.getIgnorableAndRegularPrimaries()) {
-            final int ducetPrimary = up.primary;
-            final String repChar = up.getRepresentative();
-            final CharSequence rep2 = repChar;
-            //                        filter(repChar);
-            //                    if (rep2 == null) {
-            //                        rep2 = repChar;
-            //                    }
-            final String gcInfo =
-                    FractionalUCA.getStringTransform(
-                            rep2, "/", FractionalUCA.GeneralCategoryTransform, s);
-            // FractionalUCA.GeneralCategoryTransform.transform(repChar);
-            // String scriptInfo = FractionalUCA.ScriptTransform.transform(repChar);
-
-            final Integer remap = primaryRemap.getRemappedPrimary(ducetPrimary);
-            if (remap == null) {
-                if (!SHOW_NON_MAPPED) {
-                    continue;
-                }
-            }
-            final int remap2 = remap == null ? ducetPrimary : remap;
-            fractionalLog.println(
-                    (remap == null ? "#" : "")
-                            + "\t"
-                            + ducetPrimary
-                            + "\t"
-                            + remap2
-                            + "\tx"
-                            + Utility.hex(ducetPrimary)
-                            + "\tx"
-                            + Utility.hex(remap2)
-                            + "\t"
-                            + gcInfo
-                            + "\t"
-                            + excelQuote(rep2)
-                            + "\t"
-                            + Default.ucd().getCodeAndName(Character.codePointAt(rep2, 0)));
-        }
-        final Map<Integer, IntStack> characterRemap = primaryRemap.getCharacterRemap();
-        fractionalLog.println("# Remapped characters");
-
-        for (final Entry<Integer, IntStack> x : characterRemap.entrySet()) {
-            final Integer character = x.getKey();
-            fractionalLog.println(
-                    "#"
-                            + Utility.hex(character)
-                            + "\t"
-                            + x.getValue()
-                            + "\t"
-                            + Default.ucd().getCodeAndName(character));
-        }
-        fractionalLog.close();
-
-        final UCA result = UCA.buildCollator(primaryRemap);
+        final UCA result = UCA.buildCollator(cldrVariableHigh, firstDucetNonVariable);
 
         if (addFFFx) {
             result.overrideCE("\uFFFE", 0x1, 0x20, 2);
@@ -2119,59 +1977,6 @@ public class WriteCollationData {
             // [.255A.0020.0002.0FB3][.2576.0020.0002.0F75]  = prev
         }
 
-        // verify results
-        final int[] output = new int[30];
-        final StringBuilder failures = new StringBuilder();
-        for (int i = 0; i <= 0x10FFFF; ++i) {
-            if (!result.codePointHasExplicitMappings(i)) {
-                continue;
-            }
-            if (!Default.ucd().isAllocated(i)) {
-                continue;
-            }
-            final int ceCount = result.getCEs(UTF16.valueOf(i), true, output);
-            final int primary = ceCount < 1 ? 0 : CEList.getPrimary(output[0]);
-            final int cat = Default.ucd().getCategory(i);
-
-            if (i == 0x20A7) {
-                // Starting with Unicode 15.1, U+20A7 PESETA SIGN sorts like "Pts".
-                continue;
-            }
-            switch (cat) {
-                case UCD_Types.SPACE_SEPARATOR:
-                case UCD_Types.LINE_SEPARATOR:
-                case UCD_Types.PARAGRAPH_SEPARATOR:
-                case UCD_Types.CONTROL:
-                case UCD_Types.DASH_PUNCTUATION:
-                case UCD_Types.START_PUNCTUATION:
-                case UCD_Types.END_PUNCTUATION:
-                case UCD_Types.CONNECTOR_PUNCTUATION:
-                case UCD_Types.OTHER_PUNCTUATION:
-                case UCD_Types.INITIAL_PUNCTUATION:
-                case UCD_Types.FINAL_PUNCTUATION:
-                case UCD_Types.DECIMAL_DIGIT_NUMBER: // case LETTER_NUMBER: case OTHER_NUMBER:
-                case UCD_Types.CURRENCY_SYMBOL:
-                case UCD_Types.MATH_SYMBOL:
-                case UCD_Types.MODIFIER_SYMBOL:
-                    // case OTHER_SYMBOL:
-                    if (primary > firstScriptPrimary) {
-                        failures.append(
-                                "\t"
-                                        + Utility.hex(primary)
-                                        + "\t"
-                                        + Default.ucd().getCategoryID(i)
-                                        + "\t"
-                                        + Default.ucd().getCodeAndName(i)
-                                        + "\n");
-                    }
-                    break;
-                default:
-                    // no action
-            }
-        }
-        if (failures.length() > 0) {
-            throw new IllegalArgumentException("Failures:\n" + failures);
-        }
         return result;
     }
 
