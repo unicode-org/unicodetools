@@ -124,17 +124,12 @@ public class TestUnicodeInvariants {
     /**
      * Fetch a reader for our input data.
      *
-     * @param inputFile if null, read DEFAULT_FILE from classpath
+     * @param inputFile read from classpath
      * @return BufferedReader
      * @throws IOException
      */
     private static BufferedReader getInputReader(String inputFile) throws IOException {
-        if (inputFile != null) {
-            return FileUtilities.openUTF8Reader(Settings.SRC_UCD_DIR, inputFile);
-        }
-
-        // null: read it from resource data
-        return FileUtilities.openFile(TestUnicodeInvariants.class, DEFAULT_FILE);
+        return FileUtilities.openFile(TestUnicodeInvariants.class, inputFile);
     }
 
     /**
