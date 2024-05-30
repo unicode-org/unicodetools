@@ -1,5 +1,5 @@
 # DerivedNumericValues-16.0.0.txt
-# Date: 2024-05-30, 13:12:09 GMT
+# Date: 2024-05-30, 21:36:46 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -575,7 +575,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 # ================================================
 
 0F2B          ; 1.5 ; ; 3/2 # No       TIBETAN DIGIT HALF TWO
-16FF5         ; 1.5 ; ; 3/2 # Nl       YANGQIN SIGN SLOW THREE HALVES BEAT
+16FF5         ; 1.5 ; ; 3/2 # Nl       YANGQIN SIGN SLOW THREE HALF BEATS
 
 # Total code points: 2
 
