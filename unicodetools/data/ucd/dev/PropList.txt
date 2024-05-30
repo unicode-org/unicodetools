@@ -1,3 +1,10 @@
+0CC0;Other_Grapheme_Extend
+0CC7;Other_Grapheme_Extend
+0CC8;Other_Grapheme_Extend
+0CCA;Other_Grapheme_Extend
+1B3B;Other_Grapheme_Extend
+1B3D;Other_Grapheme_Extend
+1B43;Other_Grapheme_Extend
 # PropList-16.0.0.txt
 # Date: 2024-05-08, 03:40:06 GMT
 # © 2024 Unicode®, Inc.
