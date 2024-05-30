@@ -1,5 +1,5 @@
 # DerivedNumericValues-16.0.0.txt
-# Date: 2024-04-30, 21:48:20 GMT
+# Date: 2024-05-30, 13:12:09 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -544,6 +544,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 16D71         ; 1.0 ; ; 1 # Nd       KIRAT RAI DIGIT ONE
 16E81         ; 1.0 ; ; 1 # No       MEDEFAIDRIN DIGIT ONE
 16E94         ; 1.0 ; ; 1 # No       MEDEFAIDRIN DIGIT ONE ALTERNATE FORM
+16FF4         ; 1.0 ; ; 1 # Nl       YANGQIN SIGN SLOW ONE BEAT
 1CCF1         ; 1.0 ; ; 1 # Nd       OUTLINED DIGIT ONE
 1D2C1         ; 1.0 ; ; 1 # No       KAKTOVIK NUMERAL ONE
 1D2E1         ; 1.0 ; ; 1 # No       MAYAN NUMERAL ONE
@@ -569,13 +570,14 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1FBF1         ; 1.0 ; ; 1 # Nd       SEGMENTED DIGIT ONE
 2092A         ; 1.0 ; ; 1 # Lo       CJK UNIFIED IDEOGRAPH-2092A
 
-# Total code points: 152
+# Total code points: 153
 
 # ================================================
 
 0F2B          ; 1.5 ; ; 3/2 # No       TIBETAN DIGIT HALF TWO
+16FF5         ; 1.5 ; ; 3/2 # Nl       YANGQIN SIGN SLOW THREE HALVES BEAT
 
-# Total code points: 1
+# Total code points: 2
 
 # ================================================
 
@@ -706,6 +708,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 16D72         ; 2.0 ; ; 2 # Nd       KIRAT RAI DIGIT TWO
 16E82         ; 2.0 ; ; 2 # No       MEDEFAIDRIN DIGIT TWO
 16E95         ; 2.0 ; ; 2 # No       MEDEFAIDRIN DIGIT TWO ALTERNATE FORM
+16FF6         ; 2.0 ; ; 2 # Nl       YANGQIN SIGN SLOW TWO BEATS
 1CCF2         ; 2.0 ; ; 2 # Nd       OUTLINED DIGIT TWO
 1D2C2         ; 2.0 ; ; 2 # No       KAKTOVIK NUMERAL TWO
 1D2E2         ; 2.0 ; ; 2 # No       MAYAN NUMERAL TWO
@@ -731,7 +734,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 1FBF2         ; 2.0 ; ; 2 # Nd       SEGMENTED DIGIT TWO
 22390         ; 2.0 ; ; 2 # Lo       CJK UNIFIED IDEOGRAPH-22390
 
-# Total code points: 154
+# Total code points: 155
 
 # ================================================
 

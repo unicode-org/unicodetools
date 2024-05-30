@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2024-05-30, 11:04:59 GMT
+# Date: 2024-05-30, 13:12:06 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -36951,9 +36951,9 @@ FFFD          ; REPLACEMENT CHARACTER
 16FE4         ; KHITAN SMALL SCRIPT FILLER
 16FF0         ; VIETNAMESE ALTERNATE READING MARK CA
 16FF1         ; VIETNAMESE ALTERNATE READING MARK NHAY
-16FF4         ; YANGQIN SIGN SLOW TWO
-16FF5         ; YANGQIN SIGN SLOW THREE
-16FF6         ; YANGQIN SIGN SLOW FOUR
+16FF4         ; YANGQIN SIGN SLOW ONE BEAT
+16FF5         ; YANGQIN SIGN SLOW THREE HALVES BEAT
+16FF6         ; YANGQIN SIGN SLOW TWO BEATS
 17000..187F7  ; TANGUT IDEOGRAPH-*
 18800         ; TANGUT COMPONENT-001
 18801         ; TANGUT COMPONENT-002
