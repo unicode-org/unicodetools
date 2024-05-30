@@ -1005,16 +1005,13 @@ $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 # but not the one through nine) and have Script=Han.
 Let $NonOtherLetterIdeographs = [\N{KHITAN SMALL SCRIPT FILLER}  〇 〡-〩 〸-〺]
 $NonOtherLetterIdeographs = [\p{Ideographic} - \p{gc=Lo}]
-# The yangqin numerals are like the Suzhou numerals (misnamed Hangzhou), and in
-# particular they are not unified ideographs; but they are not numerals.
-Let $Slow234 = [\p{Name=/^YANGQIN SIGN SLOW (TWO|THREE|FOUR)$/}]
 # Ideographic closing mark, gc=Lo.
 Let $CommonIdeographs = [〆]
 $CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
 
 \p{Ideographic} = [ $NonOtherLetterIdeographs $CommonIdeographs [ \p{gc=Lo} & [\p{Script=Han} \p{Script=Tangut} \p{Script=Nushu} \p{Script=Khitan_Small_Script}] ] ]
 
-[ [\p{Ideographic}&\p{sc=Han}] - \p{nfkcqc=n} - $NonOtherLetterIdeographs - $Slow234 ] = \p{Unified_Ideograph}
+[ [\p{Ideographic}&\p{sc=Han}] - \p{nfkcqc=n} - $NonOtherLetterIdeographs ] = \p{Unified_Ideograph}
 
 Let $unihanScope = [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
 \p{Unified_Ideograph} ⊂ $unihanScope
