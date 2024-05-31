@@ -387,9 +387,7 @@ public class TestUnicodeInvariants {
                                             + property.getName()
                                             + "("
                                             + Character.toString(c)
-                                            + ") \t default is "
-                                            + IndexUnicodeProperties.getResolvedDefaultValueType(
-                                                    p));
+                                            + ")");
                         }
                     }
                 }
