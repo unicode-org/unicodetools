@@ -357,19 +357,19 @@ public class TestUnicodeInvariants {
         }
         final var iup = IndexUnicodeProperties.make(Settings.latestVersion);
         final List<String> errorMessageLines = new ArrayList<>();
-        properties:
         for (var p : UcdProperty.values()) {
             final var property = iup.getProperty(p);
-            for (String alias : property.getNameAliases()) {
-                if (excludedProperties.contains(alias)) {
-                    continue properties;
-                }
+            if (property.getNameAliases().stream()
+                    .anyMatch(alias -> excludedProperties.contains(alias))) {
+                continue;
             }
             final int first = set.charAt(0);
             String p1 = property.getValue(first);
             for (var range : set.ranges()) {
                 for (int c = range.codepoint; c <= range.codepointEnd; ++c) {
-                    if (c == first) { continue; }
+                    if (c == first) {
+                        continue;
+                    }
                     String p2 = property.getValue(c);
                     if (!Objects.equals(p1, p2)) {
                         if (IndexUnicodeProperties.getResolvedDefaultValueType(p)
