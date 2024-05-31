@@ -1,5 +1,5 @@
 # DerivedCoreProperties-16.0.0.txt
-# Date: 2024-05-30, 14:35:33 GMT
+# Date: 2024-05-31, 18:09:32 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -10703,7 +10703,7 @@ E01F0..E0FFF  ; Default_Ignorable_Code_Point # Cn [3600] <reserved-E01F0>..<rese
 0CC2          ; Grapheme_Extend # Mc       KANNADA VOWEL SIGN UU
 0CC6          ; Grapheme_Extend # Mn       KANNADA VOWEL SIGN E
 0CC7..0CC8    ; Grapheme_Extend # Mc   [2] KANNADA VOWEL SIGN EE..KANNADA VOWEL SIGN AI
-0CCA          ; Grapheme_Extend # Mc       KANNADA VOWEL SIGN O
+0CCA..0CCB    ; Grapheme_Extend # Mc   [2] KANNADA VOWEL SIGN O..KANNADA VOWEL SIGN OO
 0CCC..0CCD    ; Grapheme_Extend # Mn   [2] KANNADA VOWEL SIGN AU..KANNADA SIGN VIRAMA
 0CD5..0CD6    ; Grapheme_Extend # Mc   [2] KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
 0CE2..0CE3    ; Grapheme_Extend # Mn   [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
@@ -11029,7 +11029,7 @@ FF9E..FF9F    ; Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK.
 E0020..E007F  ; Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2192
+# Total code points: 2193
 
 # ================================================
 
@@ -11323,7 +11323,6 @@ E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELE
 0CBE          ; Grapheme_Base # Mc       KANNADA VOWEL SIGN AA
 0CC1          ; Grapheme_Base # Mc       KANNADA VOWEL SIGN U
 0CC3..0CC4    ; Grapheme_Base # Mc   [2] KANNADA VOWEL SIGN VOCALIC R..KANNADA VOWEL SIGN VOCALIC RR
-0CCB          ; Grapheme_Base # Mc       KANNADA VOWEL SIGN OO
 0CDD..0CDE    ; Grapheme_Base # Lo   [2] KANNADA LETTER NAKAARA POLLU..KANNADA LETTER FA
 0CE0..0CE1    ; Grapheme_Base # Lo   [2] KANNADA LETTER VOCALIC RR..KANNADA LETTER VOCALIC LL
 0CE6..0CEF    ; Grapheme_Base # Nd  [10] KANNADA DIGIT ZERO..KANNADA DIGIT NINE
@@ -12813,7 +12812,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 30000..3134A  ; Grapheme_Base # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Grapheme_Base # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 152731
+# Total code points: 152730
 
 # ================================================
 
@@ -13032,7 +13031,7 @@ ABED          ; Grapheme_Link # Mn       MEETEI MAYEK APUN IYEK
 0CC2          ; InCB; Extend # Mc       KANNADA VOWEL SIGN UU
 0CC6          ; InCB; Extend # Mn       KANNADA VOWEL SIGN E
 0CC7..0CC8    ; InCB; Extend # Mc   [2] KANNADA VOWEL SIGN EE..KANNADA VOWEL SIGN AI
-0CCA          ; InCB; Extend # Mc       KANNADA VOWEL SIGN O
+0CCA..0CCB    ; InCB; Extend # Mc   [2] KANNADA VOWEL SIGN O..KANNADA VOWEL SIGN OO
 0CCC..0CCD    ; InCB; Extend # Mn   [2] KANNADA VOWEL SIGN AU..KANNADA SIGN VIRAMA
 0CD5..0CD6    ; InCB; Extend # Mc   [2] KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
 0CE2..0CE3    ; InCB; Extend # Mn   [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
@@ -13358,6 +13357,6 @@ FF9E..FF9F    ; InCB; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HA
 E0020..E007F  ; InCB; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; InCB; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2191
+# Total code points: 2192
 
 # EOF

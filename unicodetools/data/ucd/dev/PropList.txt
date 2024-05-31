@@ -1,6 +1,5 @@
-0CCB;Other_Grapheme_Extend
 # PropList-16.0.0.txt
-# Date: 2024-05-30, 14:35:58 GMT
+# Date: 2024-05-31, 18:09:48 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1277,7 +1276,7 @@ FFFFE..FFFFF  ; Noncharacter_Code_Point # Cn   [2] <noncharacter-FFFFE>..<noncha
 0CC0          ; Other_Grapheme_Extend # Mc       KANNADA VOWEL SIGN II
 0CC2          ; Other_Grapheme_Extend # Mc       KANNADA VOWEL SIGN UU
 0CC7..0CC8    ; Other_Grapheme_Extend # Mc   [2] KANNADA VOWEL SIGN EE..KANNADA VOWEL SIGN AI
-0CCA          ; Other_Grapheme_Extend # Mc       KANNADA VOWEL SIGN O
+0CCA..0CCB    ; Other_Grapheme_Extend # Mc   [2] KANNADA VOWEL SIGN O..KANNADA VOWEL SIGN OO
 0CD5..0CD6    ; Other_Grapheme_Extend # Mc   [2] KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
 0D3E          ; Other_Grapheme_Extend # Mc       MALAYALAM VOWEL SIGN AA
 0D57          ; Other_Grapheme_Extend # Mc       MALAYALAM AU LENGTH MARK
@@ -1318,7 +1317,7 @@ FF9E..FF9F    ; Other_Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND
 1D16D..1D172  ; Other_Grapheme_Extend # Mc   [6] MUSICAL SYMBOL COMBINING AUGMENTATION DOT..MUSICAL SYMBOL COMBINING FLAG-5
 E0020..E007F  ; Other_Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 159
+# Total code points: 160
 
 # ================================================
 

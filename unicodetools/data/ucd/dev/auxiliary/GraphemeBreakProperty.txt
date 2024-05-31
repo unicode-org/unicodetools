@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-16.0.0.txt
-# Date: 2024-05-30, 14:35:42 GMT
+# Date: 2024-05-31, 18:09:38 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -168,7 +168,7 @@ E01F0..E0FFF  ; Control # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 0CC2          ; Extend # Mc       KANNADA VOWEL SIGN UU
 0CC6          ; Extend # Mn       KANNADA VOWEL SIGN E
 0CC7..0CC8    ; Extend # Mc   [2] KANNADA VOWEL SIGN EE..KANNADA VOWEL SIGN AI
-0CCA          ; Extend # Mc       KANNADA VOWEL SIGN O
+0CCA..0CCB    ; Extend # Mc   [2] KANNADA VOWEL SIGN O..KANNADA VOWEL SIGN OO
 0CCC..0CCD    ; Extend # Mn   [2] KANNADA VOWEL SIGN AU..KANNADA SIGN VIRAMA
 0CD5..0CD6    ; Extend # Mc   [2] KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
 0CE2..0CE3    ; Extend # Mn   [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
@@ -495,7 +495,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2197
+# Total code points: 2198
 
 # ================================================
 
@@ -534,7 +534,6 @@ E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 0CBE          ; SpacingMark # Mc       KANNADA VOWEL SIGN AA
 0CC1          ; SpacingMark # Mc       KANNADA VOWEL SIGN U
 0CC3..0CC4    ; SpacingMark # Mc   [2] KANNADA VOWEL SIGN VOCALIC R..KANNADA VOWEL SIGN VOCALIC RR
-0CCB          ; SpacingMark # Mc       KANNADA VOWEL SIGN OO
 0CF3          ; SpacingMark # Mc       KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
 0D02..0D03    ; SpacingMark # Mc   [2] MALAYALAM SIGN ANUSVARA..MALAYALAM SIGN VISARGA
 0D3F..0D40    ; SpacingMark # Mc   [2] MALAYALAM VOWEL SIGN I..MALAYALAM VOWEL SIGN II
@@ -662,7 +661,7 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 1612A..1612C  ; SpacingMark # Mc   [3] GURUNG KHEMA CONSONANT SIGN MEDIAL YA..GURUNG KHEMA CONSONANT SIGN MEDIAL HA
 16F51..16F87  ; SpacingMark # Mc  [55] MIAO SIGN ASPIRATION..MIAO VOWEL SIGN UI
 
-# Total code points: 379
+# Total code points: 378
 
 # ================================================
 
