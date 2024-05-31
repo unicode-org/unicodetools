@@ -13,4 +13,5 @@
 Propertywise [\N{KHITAN SMALL SCRIPT CHARACTER-18CFF} \N{KHITAN SMALL SCRIPT CHARACTER-18B00}] AreAlike, Except: Age
 
 # HXG (briefly known as HZXG) and SZP are just like all the other CJK strokes.
+# In particular, they are scx=Hani:  https://www.unicode.org/review/pri502/feedback.html#ID20240523095709.
 Propertywise [\N{CJK STROKE T} \N{CJK STROKE HXG}\N{CJK STROKE SZP}] AreAlike, Except: Age
