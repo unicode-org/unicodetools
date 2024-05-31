@@ -77,7 +77,7 @@ public class TestUnicodeInvariants {
 
         System.out.println("HTML?\t" + doHtml);
 
-        testInvariants(file, doRange);
+        testInvariants(file, null, doRange);
     }
 
     static Transliterator toHTML;
@@ -134,11 +134,13 @@ public class TestUnicodeInvariants {
 
     /**
      * @param inputFile file to input, defaults to DEFAULT_FILE
+     * @param suffix Suffix for the test results report file, added after a hyphen if non-null.
      * @param doRange normally true
      * @return number of failures (0 is better)
      * @throws IOException
      */
-    public static int testInvariants(String inputFile, boolean doRange) throws IOException {
+    public static int testInvariants(String inputFile, String suffix, boolean doRange)
+            throws IOException {
         if (inputFile == null) {
             inputFile = DEFAULT_FILE;
         }
@@ -150,11 +152,8 @@ public class TestUnicodeInvariants {
                 FileUtilities.openUTF8Writer(
                         Settings.Output.GEN_DIR,
                         "UnicodeTestResults"
-                                + (inputFile.equals(DEFAULT_FILE)
-                                        ? ""
-                                        : "-" + inputFile.split("\\.")[0])
-                                + "."
-                                + (doHtml ? "html" : "txt"))) {
+                                + (suffix == null ? "" : "-" + suffix)
+                                + (doHtml ? ".html" : ".txt"))) {
             final StringWriter writer = new StringWriter();
             try (PrintWriter out3 = new PrintWriter(writer)) {
                 out = out3;
