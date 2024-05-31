@@ -1,4 +1,17 @@
-﻿0021 ;  01C3    # ( ! → ǃ) EXCLAMATION MARK → LATIN LETTER RETROFLEX CLICK
+﻿# See https://github.com/unicode-org/unicodetools/security for how to use this file.
+# The format is 
+# Source ; Target ; comments # comments
+# Source is:
+#  - a hex code point
+#  - a literal character
+#  - a range of the above with .. (need to check this)
+#  - a UnicodeSet
+# Target is:
+#  - a hex code point
+#  - a literal character
+#  - a sequence of  hex code points and or literal characters (they can be mixed)
+#######
+0021 ;  01C3    # ( ! → ǃ) EXCLAMATION MARK → LATIN LETTER RETROFLEX CLICK
 0022 ;  02BA    # ( " → ʺ) QUOTATION MARK → MODIFIER LETTER DOUBLE PRIME
 0022 ; 0027 0027
 0022 ;  05F4    # ( " → ״) QUOTATION MARK → HEBREW PUNCTUATION GERSHAYIM
@@ -5437,7 +5450,14 @@ ABBB; 0473; V8_0; ꮻ => ѳ; CHEROKEE SMALL LETTER WI => CYRILLIC SMALL LETTER F
 1F16E ; C 20E0 	; V11_0 ; CIRCLED C WITH OVERLAID BACKSLASH
 # 1F16F ; 🚹	; V11_0 ; CIRCLED HUMAN FIGURE
 
-# 178-A76
+# 178-A76 — Section 21 of document L2/24-012
 513F ; 儿  ; V16.0 ; U+513F --> U+16FF2
 16FF3 ; 兒 ; V16.0 ; U+5152 -->  U+16FF3
 ㄦ ; 儿  ; V16.0 ;  U+3126 ㄦ BOPOMOFO LETTER ER --> 儿
+
+# 176-A116 — Section 2a of L2/23-164
+
+A7DA ; Λ ; V16.0 ; U+A7DA LATIN CAPITAL LETTER LAMBDA --> greek equiv
+A7DB ; λ ; V16.0 ; U+A7DB LATIN SMALL LETTER LAMBDA --> greek equiv
+A7DC ; Λ̷̷̷ ; V16.0 ; U+A7DC LATIN CAPITAL LETTER LAMBDA WITH STROKE --> greek equiv
+ƛ ; λ̷̷̷ ; V16.0 ; existing Latin variant

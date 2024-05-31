@@ -9,8 +9,8 @@ machine-generated, then tweaked. They have names like
 source/confusables-winFonts.txt. The main file is confusables-source.txt.
 
 ***There is fairly complex processing for the confusables, so carefully diff the
-results. Sometimes you may get an unexpected union of two equivalence sets. Look
-at Testing below for help.***
+results. Sometimes you may get an unexpected union of two equivalence sets.
+Look at Testing below for help.***
 
 Look at the following spreadsheets / bugs to see if there are any additional
 suggestions.
