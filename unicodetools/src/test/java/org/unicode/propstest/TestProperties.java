@@ -68,10 +68,12 @@ public class TestProperties extends TestFmwkMinusMinus {
             String p1 = iup.getProperty(property).getValue(c1);
             String p2 = iup.getProperty(property).getValue(c2);
             if (!Objects.equals(p1, p2)) {
-                if (IndexUnicodeProperties.getResolvedDefaultValueType(property) != DefaultValueType.CODE_POINT
-                    || !p1.equals(Character.toString(c1)) || !p2.equals(Character.toString(c2))) {
-                System.err.println(property.getShortName() + "\t" + p1 + "\t" + p2);
-                    }
+                if (IndexUnicodeProperties.getResolvedDefaultValueType(property)
+                                != DefaultValueType.CODE_POINT
+                        || !p1.equals(Character.toString(c1))
+                        || !p2.equals(Character.toString(c2))) {
+                    System.err.println(property.getShortName() + "\t" + p1 + "\t" + p2);
+                }
             }
         }
         System.exit(1);

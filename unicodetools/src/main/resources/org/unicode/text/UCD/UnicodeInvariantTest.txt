@@ -112,6 +112,20 @@
 #          OnPairsOf $strings, EqualityOf Case_Folding ⇏ EqualityOf Simple_Case_Folding
 #          OnPairsOf $strings, EqualityOf Case_Folding ⇐ EqualityOf Simple_Case_Folding
 ##########################
+# Propertywise <unicodeSet> AreAlike [, Except: <properties>]
+#
+# Checks that all property assignments of the code points in <unicodeSet> are the same,
+# except for the Name property and any properties listed in the space-separated
+# Except clause.
+# For the purposes of this check, if all characters in <unicodeSet> are mapped to themselves
+# by some property with default value <code point>, these assignments are the same.
+#
+#   Example: Propertywise [𐛪 𐛫] AreAlike
+#       These two Linear A signs (A751 and A752) behave identically.
+#   Example: Propertywise [ي ۑ] AreAlike, Except: Confusable_MA Unicode_1_Name
+#       This checks that yeh (with two dots) and yeh with three dots behave the same,
+#       except for confusability and their name in Unicode 1 (both have one, so it is different).
+##########################
 # There is new syntax for testing UnicodeMaps
 #
 #  Map <unicodeMap> <relation> <unicodeMap>
@@ -1090,4 +1104,8 @@ In [\p{Block=Hangul Syllables} - \p{gc=Cn}], (prepend HANGUL SYLLABLE ) * (strin
 # Inspired by, and would have caught,
 # https://www.unicode.org/review/pri497/feedback.html#ID20240216135149.
 In \p{Decomposition_Type=font}, Bidi_Class = Bidi_Class * Decomposition_Mapping
+
+# Basic Propertywise tests.
+Propertywise [𐛪 𐛫] AreAlike
+Propertywise [ي ۑ] AreAlike, Except: Confusable_MA Unicode_1_Name
 

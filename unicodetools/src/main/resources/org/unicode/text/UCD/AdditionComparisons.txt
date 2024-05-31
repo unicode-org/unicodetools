@@ -1,0 +1,16 @@
+# This file uses the invariant test language, but contains comparisons between
+# new and pre-existing characters to aid in PAG review of encoding proposals.
+
+## Unicode 16.0 additions.
+
+# These comparisons were not in place when properties were initially assigned for the 16.0
+# répertoire.
+# We note here the feedback about errors that would have been caught by them.
+
+# U+18CFF is a blank character for the Khitan Small Script; aside from looking blank,
+# it is indistinguishable from other Khitan Small Script characters.  See L2/23-065.
+# In particular, it is ideographic: https://www.unicode.org/review/pri497/feedback.html#ID20240216140104.
+Propertywise [\N{KHITAN SMALL SCRIPT CHARACTER-18CFF} \N{KHITAN SMALL SCRIPT CHARACTER-18B00}] AreAlike, Except: Age
+
+# HXG (briefly known as HZXG) and SZP are just like all the other CJK strokes.
+Propertywise [\N{CJK STROKE T} \N{CJK STROKE HXG}\N{CJK STROKE SZP}] AreAlike, Except: Age
