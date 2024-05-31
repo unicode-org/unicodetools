@@ -77,7 +77,7 @@ public class TestUnicodeInvariants {
 
         System.out.println("HTML?\t" + doHtml);
 
-        testInvariants(file, doRange);
+        testInvariants(file, null, doRange);
     }
 
     static Transliterator toHTML;
@@ -124,26 +124,26 @@ public class TestUnicodeInvariants {
     /**
      * Fetch a reader for our input data.
      *
-     * @param inputFile if null, read DEFAULT_FILE from classpath
+     * @param inputFile read from classpath
      * @return BufferedReader
      * @throws IOException
      */
     private static BufferedReader getInputReader(String inputFile) throws IOException {
-        if (inputFile != null) {
-            return FileUtilities.openUTF8Reader(Settings.SRC_UCD_DIR, inputFile);
-        }
-
-        // null: read it from resource data
-        return FileUtilities.openFile(TestUnicodeInvariants.class, DEFAULT_FILE);
+        return FileUtilities.openFile(TestUnicodeInvariants.class, inputFile);
     }
 
     /**
      * @param inputFile file to input, defaults to DEFAULT_FILE
+     * @param suffix Suffix for the test results report file, added after a hyphen if non-null.
      * @param doRange normally true
      * @return number of failures (0 is better)
      * @throws IOException
      */
-    public static int testInvariants(String inputFile, boolean doRange) throws IOException {
+    public static int testInvariants(String inputFile, String suffix, boolean doRange)
+            throws IOException {
+        if (inputFile == null) {
+            inputFile = DEFAULT_FILE;
+        }
         TestUnicodeInvariants.doRange = doRange;
         parseErrorCount = 0;
         testFailureCount = 0;
@@ -151,7 +151,9 @@ public class TestUnicodeInvariants {
         try (final PrintWriter out2 =
                 FileUtilities.openUTF8Writer(
                         Settings.Output.GEN_DIR,
-                        "UnicodeTestResults." + (doHtml ? "html" : "txt"))) {
+                        "UnicodeTestResults"
+                                + (suffix == null ? "" : "-" + suffix)
+                                + (doHtml ? ".html" : ".txt"))) {
             final StringWriter writer = new StringWriter();
             try (PrintWriter out3 = new PrintWriter(writer)) {
                 out = out3;
