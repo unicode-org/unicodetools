@@ -43,6 +43,13 @@ It also doesn't matter if you have identical lines; the second one will be a NOO
 The mappings are used to generate equivalence classes.
 From each equivalence class, one representative member will be chosen,
 and in the resulting data file, all the other characters will map to that representative.
+Because of transitivity, the equivalence class will tend to be somewhat looser than expected.
+
+We've discussed possible future enhancements:
+- Have a second, narrower mapping that is more exact.
+- Allow for mappings from sequences to sequences (instead of just code points to sequences).
+- Provide for context, perhaps like the Transform rules. 
+  Eg [x { a } y → A](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3Aarabic_type%3A%5D&g=&i=)
 
 ## Before generating
 
