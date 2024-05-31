@@ -1,5 +1,5 @@
 # ScriptExtensions-16.0.0.txt
-# Date: 2024-05-10, 22:27:16 GMT
+# Date: 2024-05-24, 12:57:15 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -179,7 +179,7 @@
 3190..3191    ; Hani                           # So  [2] IDEOGRAPHIC ANNOTATION LINKING MARK..IDEOGRAPHIC ANNOTATION REVERSE MARK
 3192..3195    ; Hani                           # No  [4] IDEOGRAPHIC ANNOTATION ONE MARK..IDEOGRAPHIC ANNOTATION FOUR MARK
 3196..319F    ; Hani                           # So [10] IDEOGRAPHIC ANNOTATION TOP MARK..IDEOGRAPHIC ANNOTATION MAN MARK
-31C0..31E3    ; Hani                           # So [36] CJK STROKE T..CJK STROKE Q
+31C0..31E5    ; Hani                           # So [38] CJK STROKE T..CJK STROKE SZP
 31EF          ; Hani Tang                      # So      IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
 3220..3229    ; Hani                           # No [10] PARENTHESIZED IDEOGRAPH ONE..PARENTHESIZED IDEOGRAPH TEN
 322A..3247    ; Hani                           # So [30] PARENTHESIZED IDEOGRAPH MOON..CIRCLED IDEOGRAPH KOTO

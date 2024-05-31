@@ -1049,6 +1049,9 @@ Let $nonIdeographicRadicals = \N{CJK RADICAL REPEAT}
 # It can also shrink, if single-stroke ideographs are encoded.
 Let $nonIdeographicStrokes = \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZWG|HZT|HZZP|HPWG|HZW|HZZZ|PG|Q|HXG|SZP)$/}
 
+# See https://www.unicode.org/review/pri502/feedback.html#ID20240523095709.
+$cjkStrokes ⊆ \p{scx=Hani}
+
 # The Equivalent_Unified_Ideograph property is applicable to CJK strokes and radicals.
 # Its value is a single unified ideograph.
 \P{Equivalent_Unified_Ideograph=@none@} ⊆ $strokesAndRadicals
