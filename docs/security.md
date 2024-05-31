@@ -30,7 +30,7 @@ If so, assess and add to unicodetools/data/security/{version}/data/source/confus
 Then in the spreadsheets, move the "new stuff" line to the end.
 
 ### File Format
-There is a brief discription of the file format at the top. 
+There is a brief description of the file format at the top. 
 Each line represents a mapping from a code point or set of code points to a sequence of one or more code points.
 
 For example:
