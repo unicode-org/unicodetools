@@ -196,6 +196,7 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
                     "ONLY IN " + "main-props - fully-qualified");
         }
     }
+
     /*
     NEW
     #       component           — an Emoji_Component,
@@ -215,6 +216,7 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
     }
 
     Tabber tabber = new Tabber.MonoTabber().add(40, Tabber.LEFT).add(20, Tabber.LEFT);
+
     //    tabber.add(2, Tabber.LEFT) // hash
     //    .add(4, Tabber.RIGHT) // version
     //    .add(6, Tabber.RIGHT) // count
