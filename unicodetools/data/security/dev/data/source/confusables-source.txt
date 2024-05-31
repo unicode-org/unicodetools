@@ -5467,7 +5467,7 @@ A7DC ; Λ 0337 # V16.0 ; U+A7DC LATIN CAPITAL LETTER LAMBDA WITH STROKE ➡ gree
 
 1715 ; 1734 # V16.0 ; U+1715 TAGALOG SIGN PAMUDPOD ➡ 1734, Hanunoo Sign Pamudpod
 
-# 166-A55  — 
+# 166-A55 — Section 3n of L2/21-016R
 
 ß ; β # sharp S with beta
 ẞ ; ß # sharp S upper/lower
