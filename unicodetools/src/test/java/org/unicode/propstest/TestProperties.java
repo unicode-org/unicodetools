@@ -17,7 +17,6 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 import org.junit.jupiter.api.Disabled;
@@ -58,26 +57,6 @@ public class TestProperties extends TestFmwkMinusMinus {
     private static final UnicodeSet newChars =
             iup.load(UcdProperty.Age).getSet(UcdPropertyValues.Age_Values.V7_0.name());
     private static final UnicodeMap<String> nameMap = iup.load(UcdProperty.Name);
-
-    @Test
-    public void TestPropertyComparison() {
-        final int c1 = "ي ۑ".codePointAt(0);
-        final int c2 = 0x10EC7;
-        System.err.println("Property\tU+" + Utility.hex(c1) + "\tU+" + Utility.hex(c2));
-        for (var property : UcdProperty.values()) {
-            String p1 = iup.getProperty(property).getValue(c1);
-            String p2 = iup.getProperty(property).getValue(c2);
-            if (!Objects.equals(p1, p2)) {
-                if (IndexUnicodeProperties.getResolvedDefaultValueType(property)
-                                != DefaultValueType.CODE_POINT
-                        || !p1.equals(Character.toString(c1))
-                        || !p2.equals(Character.toString(c2))) {
-                    System.err.println(property.getShortName() + "\t" + p1 + "\t" + p2);
-                }
-            }
-        }
-        System.exit(1);
-    }
 
     @Test
     public void TestPropertyValuesSetCoverage() {
