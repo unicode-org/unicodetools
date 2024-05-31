@@ -1,3 +1,4 @@
+0CCB;Other_Grapheme_Extend
 # PropList-16.0.0.txt
 # Date: 2024-05-30, 14:35:58 GMT
 # © 2024 Unicode®, Inc.
