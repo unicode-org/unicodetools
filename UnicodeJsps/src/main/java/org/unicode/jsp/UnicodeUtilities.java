@@ -1348,6 +1348,7 @@ public class UnicodeUtilities {
     };
 
     static Comparator<String> col = UnicodeSetUtilities.MAIN_COLLATOR;
+
     //    Collator.getInstance(ULocale.ROOT);
     //    static {
     //        ((RuleBasedCollator) col).setNumericCollation(true);
@@ -1958,6 +1959,7 @@ public class UnicodeUtilities {
     static String removals =
             new UnicodeSet("[\u1806[:di:]-[:cn:]]").complement().complement().toPattern(false);
     static Matcher rem = Pattern.compile(removals).matcher("");
+
     // TODO use UnicodeRegex
 
     //  static IdnaLabelTester getIdna2008Tester() {

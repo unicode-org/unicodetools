@@ -105,6 +105,7 @@ public final class DataInputCompressor implements ObjectInput {
     public String toString() {
         return dataInput.toString();
     }
+
     // ==== New Routines ====
 
     public char readChar() throws IOException {

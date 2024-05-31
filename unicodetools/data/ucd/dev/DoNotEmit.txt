@@ -1,8 +1,8 @@
 # DoNotEmit-16.0.0.txt
-# Date: 2024-03-18, 09:28:00 GMT
+# Date: 2024-05-24, 11:01:00 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # For documentation, see UAX #44: Unicode Character Database,
 # at https://www.unicode.org/reports/tr44/
@@ -83,7 +83,7 @@
 # Hamza_Form:
 #    Sequences containing Arabic hamza above, which should be avoided.
 # Precomposed_Hieroglyph:
-#    Precomposed sequences for Egyptial Hieroglyphs which should be avoided.
+#    Precomposed sequences for Egyptian Hieroglyphs which should be avoided.
 # Precomposed_Form:
 #    Sequences for which a precomposed form exists, but without canonical
 #    equivalence.

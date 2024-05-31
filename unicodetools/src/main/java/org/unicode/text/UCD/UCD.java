@@ -1482,6 +1482,7 @@ public final class UCD implements UCD_Types {
         }
         return true;
     }
+
     /*
     Middle Dot. Because most Catalan legacy data will be encoded in Latin-1, U+00B7 MIDDLE DOT needs to be
     allowed in <identifier_extend>.
