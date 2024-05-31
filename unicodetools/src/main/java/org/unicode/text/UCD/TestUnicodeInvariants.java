@@ -369,6 +369,7 @@ public class TestUnicodeInvariants {
             String p1 = property.getValue(first);
             for (var range : set.ranges()) {
                 for (int c = range.codepoint; c <= range.codepointEnd; ++c) {
+                    if (c == first) { continue; }
                     String p2 = property.getValue(c);
                     if (!Objects.equals(p1, p2)) {
                         if (IndexUnicodeProperties.getResolvedDefaultValueType(p)
