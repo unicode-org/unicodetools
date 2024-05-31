@@ -19,12 +19,7 @@ suggestions.
     Suggestions](https://docs.google.com/spreadsheet/ccc?key=0ArRWBHdd5mx-dHRXelRVbXRYSVp2QTNDdTBlV1I5X1E&usp=drive_web#gid=0)**
 *   **[Identifier Restriction
     Suggestions](https://docs.google.com/spreadsheet/ccc?key=0ArRWBHdd5mx-dEJJWkdzZzk4cDRYbEVLTmhraGN0Q3c&usp=drive_web#gid=0)**
-*   *[Unicode
-    Bugs](http://www.unicode.org/edcom/bugtrack/query?status=accepted&status=assigned&status=new&status=reopened&group=component&order=priority&col=id&col=summary&col=status&col=type&col=priority&col=milestone&col=component&owner=mark&report=10)
-    (under TR #36/39)*\
-    :construction: **TODO**: That Trac instance is gone.
-    Markus thinks we decided that there was nothing useful in it,
-    and deleted it without saving data. Check with Mark.
+*   *[Sample PRs](https://github.com/unicode-org/unicodetools/pull/841)
 
 If so, assess and add to unicodetools/data/security/{version}/data/source/confusables-source.txt — *if needed.*
 Then in the spreadsheets, move the "new stuff" line to the end.

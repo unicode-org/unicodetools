@@ -5460,8 +5460,8 @@ ABBB; 0473; V8_0; ꮻ => ѳ; CHEROKEE SMALL LETTER WI => CYRILLIC SMALL LETTER F
 
 A7DA ; Λ # V16.0 ; U+A7DA LATIN CAPITAL LETTER LAMBDA ➡ greek equiv
 A7DB ; λ # V16.0 ; U+A7DB LATIN SMALL LETTER LAMBDA ➡ greek equiv
-A7DC ; Λ̷̷̷ # V16.0 ; U+A7DC LATIN CAPITAL LETTER LAMBDA WITH STROKE ➡ greek equiv
-ƛ ; λ̷̷̷ # V16.0 ; existing Latin variant
+A7DC ; Λ 0337 # V16.0 ; U+A7DC LATIN CAPITAL LETTER LAMBDA WITH STROKE ➡ greek equiv
+ƛ ; λ 0337 # V16.0 ; existing Latin variant
 
 # 165-A37 — L2/20-272
 
@@ -5470,6 +5470,6 @@ A7DC ; Λ̷̷̷ # V16.0 ; U+A7DC LATIN CAPITAL LETTER LAMBDA WITH STROKE ➡ gre
 # 166-A55  — 
 
 ß ; β # sharp S with beta
-ẞ ~ ß # sharp S upper/lower
+ẞ ; ß # sharp S upper/lower
 A7D6 ; β # Middle Scots S, uppercase
 A7D6 ; β # Middle Scots S, lowercase
