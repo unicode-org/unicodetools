@@ -1,3 +1,5 @@
+1DFF3;MODIFIER LETTER GREEK SMALL PSI;Lm;0;L;<super> 03C8;;;;N;;;;;
+1DFF4;MODIFIER LETTER GREEK SMALL OMEGA;Lm;0;L;<super> 03C9;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
