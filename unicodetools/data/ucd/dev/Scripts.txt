@@ -1,6 +1,5 @@
-1DFF3..1DFF4; Greek
 # Scripts-16.0.0.txt
-# Date: 2024-04-30, 21:48:40 GMT
+# Date: 2024-06-04, 22:26:18 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -762,8 +761,9 @@ AB65          ; Greek # L&       GREEK LETTER SMALL CAPITAL OMEGA
 1D200..1D241  ; Greek # So  [66] GREEK VOCAL NOTATION SYMBOL-1..GREEK INSTRUMENTAL NOTATION SYMBOL-54
 1D242..1D244  ; Greek # Mn   [3] COMBINING GREEK MUSICAL TRISEME..COMBINING GREEK MUSICAL PENTASEME
 1D245         ; Greek # So       GREEK MUSICAL LEIMMA
+1DFF3..1DFF4  ; Greek # Lm   [2] MODIFIER LETTER GREEK SMALL PSI..MODIFIER LETTER GREEK SMALL OMEGA
 
-# Total code points: 518
+# Total code points: 520
 
 # ================================================
 
