@@ -888,7 +888,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 # Total code points: 106477
 
 # ================================================
-
+1DFF3..1DFF4 ; Diacritic
 005E          ; Diacritic # Sk       CIRCUMFLEX ACCENT
 0060          ; Diacritic # Sk       GRAVE ACCENT
 00A8          ; Diacritic # Sk       DIAERESIS
