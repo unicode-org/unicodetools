@@ -112,6 +112,20 @@
 #          OnPairsOf $strings, EqualityOf Case_Folding ⇏ EqualityOf Simple_Case_Folding
 #          OnPairsOf $strings, EqualityOf Case_Folding ⇐ EqualityOf Simple_Case_Folding
 ##########################
+# Propertywise <unicodeSet> AreAlike [, Except: <properties>]
+#
+# Checks that all property assignments of the code points in <unicodeSet> are the same,
+# except for the Name property and any properties listed in the space-separated
+# Except clause.
+# For the purposes of this check, if all characters in <unicodeSet> are mapped to themselves
+# by some property with default value <code point>, these assignments are the same.
+#
+#   Example: Propertywise [𐛪 𐛫] AreAlike
+#       These two Linear A signs (A751 and A752) behave identically.
+#   Example: Propertywise [ي ۑ] AreAlike, Except: Confusable_MA Unicode_1_Name
+#       This checks that yeh (with two dots) and yeh with three dots behave the same,
+#       except for confusability and their name in Unicode 1 (both have one, so it is different).
+##########################
 # There is new syntax for testing UnicodeMaps
 #
 #  Map <unicodeMap> <relation> <unicodeMap>
@@ -227,21 +241,10 @@ In \P{U-1:gc=Cn}, R-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
 # Case Pair Stability: If two characters form a case pair in a version of Unicode, they will remain a case pair in each subsequent version of Unicode. If two characters do not form a case pair in a version of Unicode, they will never become a case pair in any subsequent version of Unicode.
 # TODO
 
-# Red Flag: cased and case_ignorable should be disjoint
+# Red Flag: cased and case_ignorable should be disjoint,
+# except for modifier letters and ◌ͅ.
 
-Let $caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u10FC\u1D2C-\u1D61\u1D78\u1D9B-\u1DBF\u2090-\u2094\u2C7D\uA770[\u1D62-\u1D6A\u2071\u207F\u2095-\u209C\u2C7C\uA7F2-\uA7F4\uA7F8\uA7F9 \uA69C-\uA69D\uAB5C-\uAB5F\uAB69]\U00010780\U00010783-\U00010785\U00010787-\U000107B0\U000107B2-\U000107BA\U0001E030-\U0001E06D]
-# 6.1.0, added 22 overlap characters
-# 7.0 added \uA69C-\uA69D\uAB5C-\uAB5F
-# 14.0 new modifier letters in Latin Extended-F are Lowercase (U+107xx)
-# 15.0 new modifier letters in Cyrillic Extended-D are Lowercase (U+1E030..1E06C)
-# 15.0 [172-A58] Action Item for Markus Scherer, PAG:
-#   Give the Other_Lowercase property (and thus also Cased)
-#   to modifier letter U+1E06D, for Unicode Version 15.0. See L2/22-124 item UCD3.
-# 15.0 [172-A59] Action Item for Markus Scherer, PAG:
-#   Give the Other_Lowercase property (and thus also Cased)
-#   to the modifier letters U+10FC and U+A7F2..A7F4 and U+AB69,
-#   for Unicode Version 15.0. See L2/22-124 item UCD4.
-\p{cased} ∥ [\p{caseignorable} - $caseOverlap]
+\p{Cased} ∥ [\p{Case_Ignorable} - \p{gc=Lm} - \N{COMBINING GREEK YPOGEGRAMMENI} ]
 
 ##########################
 # Property Stability Policies
@@ -506,6 +509,13 @@ $combiningExclusions ⊇ [$firstNonStarter & \p{dt=canonical}]
 # 138-A029 check that STerm is a proper subset of Terminal_Punctuation
 
 \p{Terminal_Punctuation} ⊃ \p{STerm}
+
+# We forgot about Sentence_Terminal while working on 16.0α; this would have caught us.
+\p{Name=/DANDA/} ⊆ \p{Sentence_Terminal}
+
+# Sentence terminal punctuation is exactly
+# ambiguous sentence terminal punctuation and unambiguous sentence terminal punctuation.
+\p{Sentence_Terminal} = [\p{sb=ATerm}\p{sb=STerm}]
 
 # 132-M3 if a character has a general category of "Number", it must have a numeric type that is not equal to "none".
 
@@ -884,6 +894,17 @@ Let $HairComponents = [\U0001F9B0-\U0001F9B3]
 
 [\p{Emoji_Presentation} - \p{RI}] ⊂ \p{ea=W}
 
+\p{RGI_Emoji_Zwj_Sequence} ⊃ []
+\p{RGI_Emoji_Zwj_Sequence} ⊇ \p{U-1:RGI_Emoji_Zwj_Sequence}
+# Unicode Version 15.1 had no new emoji code points, but had ZWJ sequences.
+\p{U15.1:RGI_Emoji_Zwj_Sequence} ⊃ \p{U15:RGI_Emoji_Zwj_Sequence}
+\p{U15.1:Emoji} = \p{U15:Emoji}
+[\p{U15.1:RGI_Emoji_Zwj_Sequence} - \p{U15:RGI_Emoji_Zwj_Sequence}] ⊃ [{🐦‍🔥}]
+# Likewise Emoji Version 13.1
+# (which was not actually a Unicode version, so we cannot look at U13.1:Emoji).
+\p{U13.1:RGI_Emoji_Zwj_Sequence} ⊃ \p{U13:RGI_Emoji_Zwj_Sequence}
+[\p{U13.1:RGI_Emoji_Zwj_Sequence} - \p{U13:RGI_Emoji_Zwj_Sequence}] ⊃ [{😵‍💫}]
+
 ##########################
 # POSIX Compatibility Properties (UTS#18)
 # http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html
@@ -1008,6 +1029,7 @@ $CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
 
 Let $unihanScope = [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
 \p{Unified_Ideograph} ⊂ $unihanScope
+$unihanScope = [\p{gc=Lo} & \p{sc=Hani}]
 $unihanScope = \P{kRSUnicode=@none@}
 $unihanScope = \P{kTotalStrokes=@none@}
 $unihanScope = [ \P{kIRG_GSource=@none@} \P{kIRG_HSource=@none@} \P{kIRG_JSource=@none@} \P{kIRG_KPSource=@none@} \P{kIRG_KSource=@none@} \P{kIRG_MSource=@none@} \P{kIRG_SSource=@none@} \P{kIRG_TSource=@none@} \P{kIRG_UKSource=@none@} \P{kIRG_USource=@none@} \P{kIRG_VSource=@none@} ]
@@ -1025,7 +1047,10 @@ Let $strokesAndRadicals = [ $cjkStrokes $kangxiRadicals $cjkRadicals ]
 Let $nonIdeographicRadicals = \N{CJK RADICAL REPEAT}
 # The following set may expand over time, if strokes are added.
 # It can also shrink, if single-stroke ideographs are encoded.
-Let $nonIdeographicStrokes = \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZWG|HZT|HZZP|HPWG|HZW|HZZZ|PG|Q|HZXG|SZP)$/}
+Let $nonIdeographicStrokes = \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZWG|HZT|HZZP|HPWG|HZW|HZZZ|PG|Q|HXG|SZP)$/}
+
+# See https://www.unicode.org/review/pri502/feedback.html#ID20240523095709.
+$cjkStrokes ⊆ \p{scx=Hani}
 
 # The Equivalent_Unified_Ideograph property is applicable to CJK strokes and radicals.
 # Its value is a single unified ideograph.
@@ -1033,18 +1058,8 @@ Let $nonIdeographicStrokes = \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZ
 [$strokesAndRadicals - \P{Equivalent_Unified_Ideograph=@none@}] = [$nonIdeographicStrokes $nonIdeographicRadicals]
 In \P{Equivalent_Unified_Ideograph=@none@}, Equivalent_Unified_Ideograph ∈ \p{Unified_Ideograph}
 
-# Strokes are equivalent to a single-stroke ideograph, except for one strange one.
-# 𠄎 is the Equivalent_Unified_Ideograph of the stroke ㇡, but it has two strokes.
-# TODO(egg): It might have one stroke in CN, see the one-stroke G-source glyph and
-# https://www.zdic.net/hans/%F0%A0%84%8E which has it as 5.0, 1 stroke
-# (contrast https://www.zdic.net/hant/%F0%A0%84%8E which is 6.1, 2 strokes).
-# This has been submitted as feedback on PRI #483.
-# If the kTotalStrokes value of 𠄎 gets changed to 1|2, the variable
-# $strokesWith2StrokeLookalikes can be removed.
-Let $strokesWith2StrokeLookalikes = \N{CJK STROKE HZZZG}
-
-In [$cjkStrokes - $nonIdeographicStrokes - $strokesWith2StrokeLookalikes], Equivalent_Unified_Ideograph ∈ \p{kTotalStrokes=1}
-In $strokesWith2StrokeLookalikes, kTotalStrokes * Equivalent_Unified_Ideograph = (constant 2)
+# Strokes are equivalent to single-stroke ideographs.
+In [$cjkStrokes - $nonIdeographicStrokes], Equivalent_Unified_Ideograph ∈ \p{kTotalStrokes=1}
 
 # Kangxi radicals are equivalent to those radicals with no residual strokes.
 In $kangxiRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/\.0/}
@@ -1073,6 +1088,24 @@ In $japaneseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/
 \p{sc=Deva} ⊂ \p{scx=Deva}
 [\p{scx=Deva} & \p{scx=Beng}] ⊃ []
 
+# DoNotEmit.txt.
+\p{Do_Not_Emit_Type=Deprecated} ⊆ \p{Deprecated}
+\p{Deprecated} ⊆ [\p{Do_Not_Emit_Type=Deprecated} \p{Do_Not_Emit_Type=@none@}]
+# The non-DI deprecated characters have replacements in DoNotEmit, except the angle brackets that
+# are ambiguous.
+\p{Do_Not_Emit_Type=Deprecated} = [ \p{Deprecated} - \p{Default_Ignorable_Code_Point} - \p{Name=/^(LEFT|RIGHT)-POINTING ANGLE BRACKET$/} ]
+
 # Hangul Syllable Name Generation,
 # https://www.unicode.org/versions/latest/ch03.pdf#G59675.
 In [\p{Block=Hangul Syllables} - \p{gc=Cn}], (prepend HANGUL SYLLABLE ) * (string-join) * Jamo_Short_Name * toNFD = Name
+
+# The Bidi Class of <font> compatibility decomposables is consistent with their “generic”
+# counterpart.  Could be, but so far need not be, restricted to the intersection with \p{Math}.
+# Inspired by, and would have caught,
+# https://www.unicode.org/review/pri497/feedback.html#ID20240216135149.
+In \p{Decomposition_Type=font}, Bidi_Class = Bidi_Class * Decomposition_Mapping
+
+# Basic Propertywise tests.
+Propertywise [𐛪 𐛫] AreAlike
+Propertywise [ي ۑ] AreAlike, Except: Confusable_MA Unicode_1_Name
+

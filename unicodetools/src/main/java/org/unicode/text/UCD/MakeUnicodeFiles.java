@@ -1655,6 +1655,7 @@ public class MakeUnicodeFiles {
                     return Double.compare(Double.parseDouble(o1), Double.parseDouble(o2));
                 }
             };
+
     /*
     private static void writeBinaryValues(
     PrintWriter pw,
@@ -1676,7 +1677,7 @@ public class MakeUnicodeFiles {
                 pw,
                 prop.getName(),
                 prop,
-                /*showPropName=*/ false,
+                /* showPropName= */ false,
                 ps.skipValue == null ? null : prop.getFirstValueAlias(ps.skipValue));
         var source = ToolUnicodePropertySource.make(Default.ucdVersion());
         UnicodeProperty generalCategory = source.getProperty("General_Category");
@@ -1780,6 +1781,7 @@ public class MakeUnicodeFiles {
 
     static class RestoreSpacesFilter extends UnicodeProperty.StringFilter {
         String skipValue;
+
         /**
          * @param ps
          */

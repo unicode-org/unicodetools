@@ -70,6 +70,7 @@ public class NamesList {
     static final String SP = "\\s+";
     static final String OSP = "\\s*";
     static final Pattern CHAR_PATTERN = Pattern.compile(CHAR);
+
     // static final Matcher INVISIBLE =
     // UnicodeRegex.compile(TO_SUPPRESS.toPattern(true)).matcher("");
 

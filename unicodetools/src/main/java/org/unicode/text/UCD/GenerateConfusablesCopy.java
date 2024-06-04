@@ -329,6 +329,7 @@ public class GenerateConfusablesCopy {
                                     + "|\\\\U([a-fA-F0-9]{6})"
                                     + "|\\\\u\\{([a-fA-F0-9]{1,6})\\}")
                     .matcher("");
+
     /**
      * Convert a string with a mixture of hex and normal characters. Anything like the following is
      * converted from hex to chars and all spaces are removed hexChar = \b[A-F0-9]{4,6}\b |
@@ -745,6 +746,7 @@ public class GenerateConfusablesCopy {
                                 && possibleReplacement == limited_use; // && this != historic;
             }
         }
+
         /** */
         private void loadFileData() throws IOException {
             BufferedReader br;
@@ -1240,6 +1242,7 @@ public class GenerateConfusablesCopy {
     private static final String UNPROHIBITED = "allowed ; ";
     private static final String NOT_IN_XID = "not in XID+";
     private static final boolean suppress_NFKC = true;
+
     /** */
 
     /** */
@@ -2203,6 +2206,7 @@ public class GenerateConfusablesCopy {
                                 : UCAComparator.compare(o1.getSecond(), o2.getSecond());
                     }
                 };
+
         /**
          * @param skipNFKEquivs TODO
          * @param onlyLowercase TODO
@@ -2321,6 +2325,7 @@ public class GenerateConfusablesCopy {
         public Set<String> getEquivalences(String string) {
             return dataMixedAnycase.getEquivalences(string);
         }
+
         /*        */
         /** */
         /*
@@ -2408,6 +2413,7 @@ public class GenerateConfusablesCopy {
             //            dataSingleAnycase.close(reason);
             //            dataSingleLowercase.close(reason);
         }
+
         /** */
         public void addUnicodeMap(UnicodeMap decompMap, String type, String errorLine) {
             int count = 0;
@@ -2447,6 +2453,7 @@ public class GenerateConfusablesCopy {
             }
         }
         ;
+
         /**
          * @param script TODO
          * @throws IOException
@@ -2647,6 +2654,7 @@ public class GenerateConfusablesCopy {
             wsAny.write(out);
             out.close();
         }
+
         /** */
         //        private String getStatus(String source) {
         //            // TODO Auto-generated method stub
@@ -3044,6 +3052,7 @@ public class GenerateConfusablesCopy {
         // DataSet clean = total.clean();
         // clean.write(outdir, "confusables.txt", true);
     }
+
     /*
         BufferedReader in = FileUtilities.openUTF8Reader(Utility.BASE_DIR + "confusables/", "DiacriticFolding.txt");
         Set set = new TreeSet(new ArrayComparator(new Comparator[] {new UTF16.StringComparator(),
@@ -3272,6 +3281,7 @@ public class GenerateConfusablesCopy {
             }
             return codepointComparator.compare(a, b);
         }
+
         //        private static final int BAD = 1000;
 
         private int getValue(String a) { // lower is better

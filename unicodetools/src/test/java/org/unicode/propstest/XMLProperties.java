@@ -68,6 +68,7 @@ public class XMLProperties {
         int start;
         int end;
     }
+
     //    <description>Unicode 6.1.0</description>
     //    <repertoire>
     //  <char cp="0000" age="1.1" na="" JSN="" gc="Cc" ccc="0" dt="none" dm="#" nt="None" nv=""
@@ -91,6 +92,7 @@ public class XMLProperties {
     }
 
     Set<String> leavesNotHandled = new LinkedHashSet<String>();
+
     //    Set<String> leavesNotRecognized = new LinkedHashSet<String>();
 
     public XMLProperties(String folder, boolean includeUnihan, int maxLines) {

@@ -20,6 +20,7 @@ import java.util.TreeSet;
 
 public class OldEquivalenceClass {
     static final boolean DEBUG = false;
+
     /**
      * Takes a many:many relation between source and value. Produces equivalence class. Two sources
      * are in the same equivalence class any time they share the same value.
@@ -33,6 +34,7 @@ public class OldEquivalenceClass {
 
     Map valueToRepresentativeSource = new HashMap();
     Map forcedMerge = new HashMap();
+
     /**
      * @return true if made a difference
      */
