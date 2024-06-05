@@ -347,6 +347,7 @@ jobs:
           sed 's/^\([^;]*;[^;]*\);.*$/\1/' unicodetools/mine/src/unicodetools/data/ucd/dev/UnicodeData.txt > merged-repertoire.txt
           sed 's/^\([^;]*;[^;]*\);.*$/\1/' base/unicodetools/data/ucd/dev/UnicodeData.txt > base-repertoire.txt
           DIFF=(diff base-repertoire.txt merged-repertoire.txt)
+          echo "REPERTOIRE_CHANGED=$DIFF"
           echo "REPERTOIRE_CHANGED=$DIFF" >> "$GITHUB_ENV"
       - name: Get the CLDR_REF from pom.xml
         id: cldr_ref
@@ -387,11 +388,12 @@ jobs:
       - name: Run invariant tests
         run: |
           cd unicodetools/mine/src
+          echo "REPERTOIRE_CHANGED=$REPERTOIRE_CHANGED"
           if [[ $REPERTOIRE_CHANGED -ne 0 ]]
           then ERROR="::notice"
           else ERROR="::error"
           fi
-          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants#testSecurityInvariants -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION -DfailIfNoTests=false -DEMIT_GITHUB_ERRORS | sed "s/^::error/$ERROR/"
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants#testSecurityInvariants -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION -DfailIfNoTests=false -DEMIT_GITHUB_ERRORS 2>&1 | sed "s/^::error/$ERROR/"
           STATUS=${PIPESTATUS[0]}
           if [[ $REPERTOIRE_CHANGED -ne 0 ]]
           then exit 0
