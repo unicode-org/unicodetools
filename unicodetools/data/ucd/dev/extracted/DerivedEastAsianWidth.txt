@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2024-06-04, 23:16:56 GMT
+# Date: 2024-06-05, 00:24:30 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1964,6 +1964,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 1DF00..1DF09  ; N # L&  [10] LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER T WITH HOOK AND RETROFLEX HOOK
 1DF0A         ; N # Lo       LATIN LETTER RETROFLEX CLICK WITH RETROFLEX HOOK
 1DF0B..1DF2C  ; N # L&  [34] LATIN SMALL LETTER ESH WITH DOUBLE BAR..LATIN SMALL LETTER TESH DIGRAPH WITH CURL
+1DF3E..1DF3F  ; N # L&   [2] LATIN SMALL LETTER BARRED TURNED H..LATIN SMALL LETTER BARRED W
+1DFD8..1DFE8  ; N # Lm  [17] MODIFIER LETTER SMALL N WITH LONG RIGHT LEG..MODIFIER LETTER SMALL CAPITAL D
 1E000..1E006  ; N # Mn   [7] COMBINING GLAGOLITIC LETTER AZU..COMBINING GLAGOLITIC LETTER ZHIVETE
 1E008..1E018  ; N # Mn  [17] COMBINING GLAGOLITIC LETTER ZEMLJA..COMBINING GLAGOLITIC LETTER HERU
 1E01B..1E021  ; N # Mn   [7] COMBINING GLAGOLITIC LETTER SHTA..COMBINING GLAGOLITIC LETTER YATI
@@ -2102,7 +2104,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 761091 code points not listed here.
+# The above property value applies to 761072 code points not listed here.
 # Total code points: 792420
 
 # ================================================
