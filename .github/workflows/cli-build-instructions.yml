@@ -335,7 +335,7 @@ jobs:
           mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCA.Main"  -Dexec.args="writeCollationValidityLog ICU" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
           # check for output file
           compgen -G "../Generated/UCA/*/CheckCollationValidity.html"
-          if $REPERTOIRE_CHANGED
+          if [[$REPERTOIRE_CHANGED]]
           then exit 0
           else exit $?
           fi
@@ -406,12 +406,12 @@ jobs:
       - name: Run invariant tests
         run: |
           cd unicodetools/mine/src
-          if $REPERTOIRE_CHANGED
+          if [[$REPERTOIRE_CHANGED]]
           then ERROR="::error"
           else ERROR="::notice"
           fi
           MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants#testSecurityInvariants -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION -DfailIfNoTests=false -DEMIT_GITHUB_ERRORS | sed "s/^::error/$ERROR/"
-          if $REPERTOIRE_CHANGED
+          if [[$REPERTOIRE_CHANGED]]
           then exit 0
           else exit $?
           fi
