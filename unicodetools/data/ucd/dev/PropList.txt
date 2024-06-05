@@ -1201,7 +1201,7 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 # Total code points: 59
 
 # ================================================
-
+1DFD8..1DFE8 ; Other_Lowercase
 00AA          ; Other_Lowercase # Lo       FEMININE ORDINAL INDICATOR
 00BA          ; Other_Lowercase # Lo       MASCULINE ORDINAL INDICATOR
 02B0..02B8    ; Other_Lowercase # Lm   [9] MODIFIER LETTER SMALL H..MODIFIER LETTER SMALL Y
