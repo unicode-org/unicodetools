@@ -868,6 +868,9 @@ Let $TwoVietnameseReadingMarks = [\p{U15.1.0:ccc=6}]
 # and ICU-TC should be notified.
 # See https://github.com/unicode-org/icu/pull/3026.
 \p{HST=V} = \p{GCB=V} & [\u0000-\uFFFF]
+# A more principled (if less practically useful) statement is that the
+# dual-conjoining Hangul characters are exactly the Hangul vowels.
+\p{HST=V} = \p{GCB=V} & \p{Script=Hangul}
 
 ##########################
 # Emoji
