@@ -10,7 +10,7 @@
 
 # “Multiple values are not assigned to characters with strong restrictions:
 # Not_Character, Deprecated, Default_Ignorable, Not_NFKC.”
-\p{Identifier_Type=Deprecated} = \p{Deprecated}
+\p{Identifier_Type=Deprecated} = [\p{Deprecated}a]
 
 # When a code point fits the criteria for multiple restrictions, then the strongest one wins.
 # For example, Default_Ignorable is trumped by unassigned and Deprecated.
