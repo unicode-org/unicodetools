@@ -1255,7 +1255,7 @@
 5F3C	bặt
 5F48	đàn
 5F4A	cương
-5F50	kí mự
+5F50	kẹ kệ kí mự
 5F62	hình
 5F69	thái
 5F6B	điêu
@@ -1526,7 +1526,7 @@
 62C1	giơ
 62C2	phất
 62C4	chủ
-62C5	đam đảm đẵn đắn đẵm tạ
+62C5	dứt đam đảm đán đẵm đắn đẵn đét tạ
 62C6	sách
 62C8	chêm
 62C9	lấp
@@ -1584,7 +1584,7 @@
 6337	văng
 6338	kén
 6339	úp
-633C	noa nỗi
+633C	nhôi noa noi nôi nối nổi nỗi nuôi
 633E	xáp
 633F	thọc
 6341	kéo
@@ -1824,7 +1824,7 @@
 66F0	viết
 66F2	khúc
 66F3	dấy
-66F4	xâu canh
+66F4	canh cành cánh ngạnh
 66F7	hạt
 66F8	thư
 66F9	tào
@@ -1870,7 +1870,7 @@
 6763	sơn
 676F	bôi
 6770	kiệt
-6771	hốc đông
+6771	đang đông
 6775	ngỏ
 6776	đòn
 677A	tăm
@@ -1893,12 +1893,12 @@
 67C1	xà
 67C3	rành
 67C4	bính
-67C6	cũi sập
+67C6	sập
 67C9	mướp
 67CA	dông
 67CF	bách
 67D0	mỗ
-67D1	đàn cam
+67D1	cam cùm
 67D3	nhuộm
 67D4	nhu
 67DA	dâu
@@ -1908,14 +1908,14 @@
 67F1	trụ
 67F3	liễu
 67F4	sài
-67FF	niêu thị
+67FF	thị
 680D	sanh
 6810	vành
 6813	thoen
 6816	thê
-6817	niêu lật
+6817	lặt lật lứt rất rật rứt sắt sật sựt trật
 6818	đa
-6821	đắng hiệu
+6821	chò giâu hiệu
 6822	bứa
 682A	chò
 6838	hạch
@@ -1926,7 +1926,7 @@
 6842	quế
 6843	đào
 6844	quang
-6848	duyên án
+6848	an án yên
 684E	chuối
 6851	tang
 686E	bễ
@@ -1959,14 +1959,14 @@
 68C2	ranh
 68C6	suôn
 68CB	cời
-68CD	điềm côn
+68CD	côn gon gòn
 68D2	vổng
 68D6	trường
 68D7	táo
 68D8	gấc
-68DF	nhắm đống
+68DF	chống đóng đống đúng gióng
 68E6	ranh
-68E7	suông sàn
+68E7	sàn sạn sến
 68EE	chùm
 68EF	nạm
 68F1	săng
@@ -1997,9 +1997,9 @@
 6973	mõ
 6974	ghế
 6975	cực
-6994	tóm lang
-6996	kéo cốc
-699C	xách bàng
+6994	lang lăng trang
+6996	cốc
+699C	bàng báng bảng bãng bấng bẩng bẫng bứng bửng vảng
 69A1	tó
 69A9	kiền
 69AE	vinh
@@ -2037,7 +2037,7 @@
 6A21	mô
 6A23	dạng
 6A2A	hoạnh
-6A33	đẽo giầm
+6A33	giầm tầm
 6A36	chuối
 6A38	phác
 6A39	thụ
@@ -2057,23 +2057,23 @@
 6A7A	giàn
 6A7D	thớt
 6A80	đàn
-6A81	day lẫm
+6A81	bấm lẫm
 6A82	nòng
 6A84	hịch
 6A8A	gán
 6A91	rui
 6A9C	cối
 6AA2	ghém
-6AAC	quạt muồng
+6AAC	môm mông muỗm muồng
 6ABA	cào
 6AC2	trạc
 6AC3	cũi
 6AC8	đắng
-6ACA	hàn gác
+6ACA	gác
 6AD7	mít
 6ADF	lác
 6AF3	trồng
-6B04	đan lan
+6B04	giàn lan lán lang lơn lườn ràn
 6B0A	quyền
 6B17	lườn
 6B20	khiếm
@@ -2083,7 +2083,7 @@
 6B3A	khi
 6B3D	khâm
 6B3E	khoản
-6B46	cắn hâm
+6B46	ham hám hăm hằm hâm hẩm hom hôm hổm hum
 6B47	hết
 6B4C	ca
 6B4E	thán
@@ -2099,30 +2099,30 @@
 6B73	tuế
 6B77	lịch
 6B79	ngạt
-6B7B	phơi tử
+6B7B	tợ tử
 6B80	yểu
-6B83	trưa ương
+6B83	ương
 6B89	tuẫn
 6B8A	thùa
-6B98	đêm tàn
+6B98	tàn thàn
 6BAA	ế
 6BAE	liệm
 6BAF	tấn
 6BB5	đoạn
 6BB7	ân
 6BBA	sát
-6BBC	nôi xác
+6BBC	xác
 6BBF	điện
 6BC0	huỷ
 6BC5	nghị
 6BCB	vô
 6BCD	mẫu
-6BCF	dằm mỗi
+6BCF	hỏi mỏi mọi mỗi mủ mủi mũi
 6BD2	độc
 6BD4	tỉ
 6BDB	mao
 6BEB	hào
-6BEC	choác cầu
+6BEC	cầu
 6BEF	xồm
 6C02	li
 6C08	chen
@@ -2130,15 +2130,15 @@
 6C11	dân
 6C13	manh
 6C23	khí
-6C34	héo thuỷ
+6C34	thuỷ
 6C38	vắng
 6C40	đênh
 6C41	chấp
 6C42	cầu
 6C4A	xoà
-6C50	đập tách
+6C50	tách tịch
 6C53	tở
-6C55	khung sươn
+6C55	sán sớn sươn
 6C5B	vàm
 6C5C	dẫy
 6C5D	nhớ
@@ -2147,8 +2147,8 @@
 6C61	ô
 6C68	nhặt
 6C6B	giếng
-6C70	vè thảy
-6C72	cụm ngập
+6C70	sưởi thải thãi thảy thẩy
+6C72	bập cấp ngập
 6C75	ngấm
 6C7A	quyết
 6C7F	dơ
@@ -2158,16 +2158,16 @@
 6C89	tròm
 6C8C	xộn
 6C90	múc
-6C92	mớ một
+6C92	mốt một
 6C93	đạp
 6C94	miền
 6C95	vắt
-6C96	khem trong
-6C99	vành sa
+6C96	trong trùng xung
+6C99	nhểu sa sà xa xoà
 6C9A	chảy
 6C9B	phải
 6CAB	mượt
-6CB1	săng đờ
+6CB1	đà đờ đừ
 6CB3	hà
 6CB8	phí
 6CB9	dầu
@@ -2191,12 +2191,12 @@
 6CE1	bàu
 6CE2	ba
 6CE3	khắp
-6CE5	nhãn nề
+6CE5	lầy ne nè né nê nề nể nễ nệ nơi
 6CE8	chú
-6CEA	thớt lệ
+6CEA	lệ
 6CEE	bợn
 6CF0	thái
-6D01	thợ cát
+6D01	cát khiết
 6D03	hôi
 6D04	hói
 6D05	tưới
@@ -2212,11 +2212,11 @@
 6D1F	dề
 6D21	giội
 6D29	dáy
-6D2A	suyền hồng
+6D2A	hòng hồng
 6D2E	rệu
-6D32	chòng chao
+6D32	chao châu
 6D33	nhơ
-6D37	sờ xối
+6D37	xối
 6D3B	hoạt
 6D3E	phái
 6D41	lưu
@@ -2238,7 +2238,7 @@
 6D88	tiêu
 6D89	thiệp
 6D93	quen
-6D96	rang rị
+6D96	lị rỉ rị
 6D97	đuối
 6D9E	thui
 6DAF	rượi
@@ -2251,9 +2251,9 @@
 6DD2	thê
 6DD8	đào
 6DDA	lệ
-6DDF	sượng đén
+6DDF	đén
 6DE1	đạm
-6DE2	thổi vực
+6DE2	vặc vực
 6DE4	ứa
 6DE5	lóc
 6DE9	lâng
@@ -2281,14 +2281,14 @@
 6E28	hoáy
 6E29	ồn
 6E2C	trắc
-6E2D	ngan vây
+6E2D	vấy vĩ vị vời vợi
 6E2F	cảng
 6E34	khát
 6E3C	mẻ
 6E44	mưa
 6E45	rịn
 6E46	ùm
-6E48	sói mủ
+6E48	mủ
 6E4E	giờn
 6E53	bùn
 6E56	hồ
@@ -2355,18 +2355,18 @@
 6F77	vuốt
 6F7A	sờn
 6F84	chừng
-6F86	khú nhão
-6F8E	dề bành
+6F86	kiêu nhão nhau nhiều
+6F8E	bành bềnh
 6FA4	rạch
 6FAE	gội
 6FBE	dạt
-6FC0	váng khích
+6FC0	khích kích
 6FC1	trọc
 6FC3	nống
 6FC8	xắp
 6FD3	nhèm
 6FD4	nhễ
-6FD5	lậu thấp
+6FD5	dấp nhấp thấm thấp
 6FDB	mông
 6FDE	tia
 6FE1	nhụa
@@ -2381,8 +2381,8 @@
 7018	lư
 701D	lạch
 7027	rông
-703E	nhắm làn
-7051	ngơ rợi
+703E	lan làn lượn ràn tràn trơn
+7051	rạy rởi rợi rưới sái sợi
 705F	luộc
 7061	làn
 706B	hoả
@@ -2393,11 +2393,11 @@
 7078	cứu
 707C	chước
 707D..707E	tai
-708A	tròn sôi
+708A	sôi xôi xuy xuý
 708E	viêm
 7090	phừng
 7092	sao
-7096	đoái đùn
+7096	don đôn đùn
 709F	rán
 70A4	chiếu
 70A5	phụt
@@ -2405,7 +2405,7 @@
 70AA	đốt
 70AD	than
 70AE	pháo
-70B3	đòng bính
+70B3	bảnh bính
 70B6	trèm
 70B9	điểm
 70C8	liệt
@@ -2438,9 +2438,9 @@
 7169	phiền
 717D	phiến
 7184	tắt
-7185	đào ùn
+7185	un ùn
 718A	hùng
-7191	mũi rim
+7191	rim
 7199	hây
 719F	thục
 71A3	thui
@@ -2452,7 +2452,7 @@
 71C3	nhen
 71C8	đăng
 71C9	đun
-71CE	díp liệu
+71CE	leo liệu riu
 71D0	lân
 71D2	thiêu
 71D5	én
@@ -2466,7 +2466,7 @@
 7201	rám
 7209	dộp
 720C	quáng
-7210	chùa lô
+7210	lò lô lư tro
 7219	nháng
 721B	lạn
 722A..722B	trảo
@@ -2478,7 +2478,7 @@
 723D	sửng
 723E	nhãi
 7240	giường
-7246	teo tường
+7246	tường
 7247	phiến
 7248	bản
 724B	tiên
@@ -2486,7 +2486,7 @@
 7252	điệp
 7259	nha
 725B	ngưu
-725F	rậm màu
+725F	mào mau màu mâu mầu mồ mưu
 7262	lao
 7263	nhẳn
 7269	vật
@@ -2504,16 +2504,16 @@
 72D7	cẩu
 72E1	giảo
 72F9	hẹp
-72FC	lừa lang
+72FC	lang
 7309	cầy
 730A	nghê
 731B	mãnh
 7322	hồ
 732E	hiến
 7334	hầu
-733F	rô vượn
-7344	đong ngục
-7345	tép sư
+733F	viên vượn
+7344	ngục
+7345	sư
 7352	ngao
 7353	ngao ngáo
 7368	độc
@@ -2530,13 +2530,13 @@
 73A1	ngà
 73A9	ngoạn
 73B2	liếng
-73B3	ngan đồi
-73B7	dẽ điếm
+73B3	đại đồi
+73B7	đém điếm
 73C0	phách
 73CA	san
 73CD	trân
 73E0	châu
-73E5	yến nhẹ
+73E5	lẹ nhẹ nhĩ nhị
 73ED	ban
 73FE	hiện
 7403	cầu
@@ -2547,26 +2547,26 @@
 7434	cầm
 7435	tì
 7436	bà
-7441	cười mồi
+7441	mao mạo mồi mùi
 7459	não
 745A	hô
 745F	sắt
-7464	rơm dao
+7464	dao
 746A	mã
-7483	rế li
+7483	lê li ly
 74A7	bích
 74BD	tỉ
-74CA	sừng quỳnh
+74CA	quành quạnh quầng quềnh quỳnh quýnh
 74DC	qua
 74E2	bầu
 74E6	ngói
 74F6	bình
-74F7	dậu sứ
+74F7	sứ tư từ
 750C	âu
 750D	mành
 7513	bịch
 7515	ống
-7518	bả cam
+7518	cam
 751A	thậm
 751F	sinh
 7523	sản
@@ -2580,10 +2580,10 @@
 754F	uý
 7551	đèn
 7559	lưu
-755C	chuỗi súc
-7562	đứt tất
+755C	róc sộc súc sục xộc
+7562	tất
 7565	lược
-756A	dẻo phen
+756A	phan phen phiên phiện
 756B	hoạ
 7571	lưu
 7576	đương
@@ -2606,7 +2606,7 @@
 75C7	chứng
 75CA	thuyên
 75D4	trĩ
-75D5	nốt ngấn
+75D5	hằn ngằn ngân ngần ngấn ngẩn
 75D8	đậu
 75DB	thống
 75E2	lị
@@ -2623,8 +2623,8 @@
 7626	xấu
 7634	chướng
 7642	liệu
-7646	còm lao
-7650	quặm hủi
+7646	lao
+7650	hội hủi
 765C	đẹn
 7661	si
 7670	ung
@@ -2633,16 +2633,16 @@
 767B	đăng
 767C	phát
 767D	bạch
-767E	vầu bách
+767E	bá bách trăm
 7684	đích
 7686	giai
 7687	hoàng
-768B	đậu cau
+768B	cao cau
 7690	cau
 76AE	bì
 76BF	mãnh
 76C3	bôi
-76C6	phơ bồn
+76C6	bòn bồn bộn bùn buồn dồn vồn
 76C8	dềnh
 76CA	ích
 76CE	áng
@@ -2657,14 +2657,14 @@
 76E4	bàn
 76E7	lư
 76EE	mục
-76F2	xồm manh
+76F2	manh
 76F8	tương
 76FE	thuẫn
 7701	tỉnh
 7707	dẻo
 7708	xẩm
 7709	mi
-770B	trầu khan
+770B	khan khán khản khăn khen khớn
 7713	mù
 771B	muội
 771C	mắt
@@ -2673,30 +2673,30 @@
 7723	chợt
 7729	gioèn
 772A	rĩnh
-772D	vờ khoé
+772D	huy khoé khoẻ
 7737	quyến
-773C	cua nhản
+773C	nhản nhãn nhặn nhẫn nhởn
 773E	chúng
-7752	cò gườm
+7752	gườm gượm thiểm
 7763	đốc
 7766	mục
 7768	nghễ
 7778	mí
 7779	đủ
 778B	trân
-7791	thằn manh
+7791	manh minh
 779E	man
 77AD	lẹo
-77B3	chàng tròng
+77B3	đồng tròng
 77BB	chiêm
 77BC	lim
 77C7	mông
 77CC	quạng
-77D1	kẻ lờ
+77D1	lờ lư lừ
 77D7	sực
 77DB	mâu
 77DC	căng
-77E2	ngao thỉ
+77E2	tẻ thẻ thỉ
 77E3	hỉ
 77E5	tri
 77E7	thẩn
@@ -2704,36 +2704,36 @@
 77ED	đoản
 77EF	kiểu
 77F3	thạch
-7814	khăn nghiên
-7827	khâm chỉm
-782D	đãy bìm
-7832	bâu pháo
+7814	nghiên nghiền nghiến nghiện
+7827	châm chiêm chỉm
+782D	bàm bãm bâm bẫm biêm bìm bom bơm bờm
+7832	bác phao pháo
 7834	phá
 784C	ngắc
 786B	lưu
-786C	khư ngạnh
-786F	khố nghiền
+786C	ngạnh
+786F	nghẽn nghiên nghiền nghiễn
 7881	cờ
 788D	ngại
 788E	toái
-789E	yếm nham
-78A7	cời bích
+789E	nham
+78A7	bích biếc vách
 78A9	thạc
 78BA	xác
 78CA	lối
-78CB	vải tha
+78CB	gây tha xay xây xoay
 78D4	kẹt
 78E8	mài
 78EC	khánh
-78F7	co lân
+78F7	lân
 78FA	hoàng
 78FE	sạn
 790C	sỏi
 790E	sờ
 7919	ngại
 7926	khoáng
-792C	trối phèn
-793A	đình thị
+792C	phàn phèn
+793A	kì thị
 793C	lễ
 793E	xã
 795A	tộ
@@ -2748,10 +2748,10 @@
 798D	hoạ
 798F	phúc
 79A6	ngừa
-79AB	đệm thiện
+79AB	đệm
 79AE	lễ
 79B1	đảo
-79B9	dừng vũ
+79B9	vũ
 79BB	le
 79BD	cầm
 79BF	thóc
@@ -2760,7 +2760,7 @@
 79C9	bảnh
 79CB	thu
 79D1	khoa
-79DF	dịp tô
+79DF	to tò tô
 79E4	xứng
 79E5	chiêm
 79E7	ương
@@ -2770,7 +2770,7 @@
 79F8	gặt
 79FB	dời
 7A00	hi
-7A0A	thê đề
+7A0A	đề thê
 7A0B	trình
 7A0E	thuế
 7A14	nậm
@@ -2783,7 +2783,7 @@
 7A62	uế
 7A69	ủn
 7A6B	hoạch
-7A6D	hớt lúa
+7A6D	lúa
 7A74	huyệt
 7A76	cứu
 7A79	khum
@@ -2809,15 +2809,15 @@
 7AFF	cần
 7B00	măng
 7B08	cặp
-7B18	đồn chòm
-7B19	dấm sênh
+7B18	chòm chùm chũm chụm đệm rơm xờm xúm
+7B19	sanh sênh sềnh sinh xênh
 7B1B	địch
 7B20	lợp
 7B23	vầu
 7B24	giậu
 7B26	bùa
 7B2A	đác
-7B2C	nồng đệ
+7B2C	đậy đệ
 7B2F	nò
 7B31	càu
 7B35	phạm
@@ -2844,7 +2844,7 @@
 7BA4	nhốt
 7BAD	tiễn
 7BB1	rương
-7BB4	bú giăm
+7BB4	chăm châm dăm giăm giằm
 7BB8	giạ
 7BC0	tiết
 7BC6	triện
@@ -2867,7 +2867,7 @@
 7C3E	rèm
 7C43	xờm
 7C56	tăm
-7C5A	gắt lờ
+7C5A	lơ lờ lư lừ
 7C60	lồng
 7C63	tràn
 7C7A	hạt
@@ -2878,7 +2878,7 @@
 7CA1	đòng
 7CB9	tuý
 7CBE	tinh
-7CC6	à miến
+7CC6	miến
 7CCA	hồ
 7CD6	đường
 7CDD	tấm
@@ -2901,7 +2901,7 @@
 7D20	tố
 7D21	vưởng
 7D22	sách
-7D29	nhạu thắt
+7D29	dệt thắt
 7D2B	tía
 7D2C	dò
 7D2F	luỵ
@@ -2948,18 +2948,18 @@
 7DF4	luyện
 7E08	quanh
 7E0A	ải
-7E0E	lăm gút
+7E0E	cốt cột gút
 7E10	sô
 7E1F	nhọc
 7E23	huyện
 7E31	tung
 7E37	lụa
 7E38	mắc
-7E3A	nếm len
+7E3A	len
 7E3D	tổng
 7E3E	tích
 7E41	phồn
-7E53	nhè tói
+7E53	tói trói túi
 7E54	chức
 7E5A	lèo
 7E5E	nhiễu
@@ -3001,7 +3001,7 @@
 7FAE	canh
 7FBD	võ
 7FC1	ông
-7FCE	ầm liệng
+7FCE	liếng liệng linh
 7FD2	tập
 7FD5	hấp
 7FE0	thuý
@@ -3014,12 +3014,12 @@
 8012	lồi
 8015	canh
 8017	hao
-8019	khịt bừa
+8019	bà bá bồ bừa
 801E	rội
 8028	nậu
 8033	nhĩ
 803D	xẩm
-8040	giõng giấc
+8040	chắc chức giấc nhức thắc trác
 8056	thánh
 8058	sánh
 805A	tụ
@@ -3042,7 +3042,7 @@
 80C6	đảm
 80CC	bối
 80CE	thai
-80D2	tiếng nây
+80D2	nây sề
 80D6	bỡn
 80D7	chẩn
 80DC	thắng
@@ -3061,7 +3061,7 @@
 8131	thoát
 8139	trướng
 813E	tì
-813F	óng béo
+813F	béo
 814B	nách
 814E	thận
 8150	hủ
@@ -3118,7 +3118,7 @@
 8278	tháu
 827A	ớt
 827E	ngải
-827F	ạc nẩy
+827F	nãi nảy
 8283	bông
 828D	thược
 828E	khung
@@ -3147,7 +3147,7 @@
 82EB	chôm
 82ED	ấu
 82F1	anh
-82F2	nghêu rạ
+82F2	rạ
 82F3	rong
 82FE	bí
 8300	phất
@@ -3166,7 +3166,7 @@
 8349	thảo
 834D	thẩu
 834E	chuối
-8351	sún rì
+8351	di rì
 8352	hoang
 8354	lệ
 8378	mụt
@@ -3179,10 +3179,10 @@
 83AA	ngò
 83AB	mạc
 83AF	móc
-83B0	vay khúm
+83B0	khóm khúm
 83CA	cúc
-83CD	đặt nấm
-83D5	hăm trun
+83CD	nấm nộm núm
+83D5	trun
 83DB	môn
 83DF	tho
 83E9	bồ
@@ -3196,7 +3196,7 @@
 840C	manh
 840D	bềnh
 8421	bạc
-8429	thèm tho
+8429	tho thưu
 842B	hảng
 842C	vạn
 843B	âm
@@ -3223,7 +3223,7 @@
 84C3	sấu
 84C9	rong
 84CB	cái
-84D0	dối nóc
+84D0	náu nhục nóc
 84D3	bụi
 84EC	bồng
 84EE	sen
@@ -3238,7 +3238,7 @@
 8544	muống
 8549	tiêu
 854A..854B	nhị
-854E	ướm kiệu
+854E	kiều kiệu
 8559	huệ
 855E	tỏi
 8569	đãng
@@ -3290,7 +3290,7 @@
 86D2	cắc
 86DB	châu
 86DF	giao
-86E6	nhăn dơi
+86E6	dơi ri
 86ED	chấy
 86EE	man
 86F9	nhộng
@@ -3304,7 +3304,7 @@
 871C	mật
 8726	trun
 874E	rết
-8752	gò nhện
+8752	dện nhện rện
 8763	du
 8769	trùn
 8773	nọc
@@ -3324,7 +3324,7 @@
 87F3	tằm
 8805	nhặng
 8810	xê
-8813	chĩnh mòng
+8813	mòng mông mống
 881B	mọt
 881F	rệp
 8821	lãi
@@ -3347,7 +3347,7 @@
 8888	cà
 888B	đãy
 888D	bào
-888F	ven tã
+888F	tả tã
 8891	chéo
 8896	tụ
 8899	mặc
@@ -3575,7 +3575,7 @@
 8E7B	kều
 8E7D	trèo
 8E81	tháo
-8E85	ghen xộc
+8E85	sộc trọc trục xộc
 8E87	chứa
 8E8A	trù
 8E8D	dược
@@ -3614,7 +3614,7 @@
 8FC2	vu
 8FC4	hất
 8FC7	quá
-8FCD	trêu đón
+8FCD	dọn đon đón đọn đốn trốn truân
 8FCE	nghênh
 8FD1	cận
 8FD4	phản
@@ -3628,7 +3628,7 @@
 8FF4	hồi
 8FF7	mê
 8FF9	tích
-8FFB	áy đưa
+8FFB	đi đưa đừa
 8FFD	truy
 8FFE	lướt
 9000	thoái
@@ -3721,7 +3721,7 @@
 91D5	rẻo
 91D8	đinh
 91DD	châm
-91DF	ngoắt nhíp
+91DF	bát díp
 91E7	xuyến
 91ED	cong
 91F5	thoa
@@ -3730,8 +3730,8 @@
 920D	nhọn
 9210	kiềm
 9215	nạo
-9219	nhặt chìa
-922E	bắn nỉa
+9219	chày
+922E	ni nỉa
 9238	bạt
 923C	rựa
 923D	búa
@@ -3749,16 +3749,16 @@
 9285	đồng
 928A	nhong
 9291	ten
-9299	giơ khoá
+9299	khoá
 92B7	tiu
 92C2	mũi
 92DF	xăm
-92E5	cất xiềng
+92E5	rỉnh xiềng
 92E6	cuốc
 92EA	phố
 92ED	nhọn
 92EF	cạo
-92F2	lấp beng
+92F2	beng
 92F8	cưa
 92FC	gang
 9301	khoá
@@ -3771,7 +3771,7 @@
 9329	xuổng
 932B	thiếc
 932F	thó
-9344	dí kiềng
+9344	keng kiềng
 934A	luyện
 936E	thau
 937A	chá
@@ -3780,31 +3780,31 @@
 938C	gươm
 9396	toả
 9397	thương
-93AC	nhúm cào
+93AC	cào cảo
 93AE	trấn
 93B0	dát
-93B6	nhẹ cà
+93B6	cà
 93CC	mác
-93D7	trét keng
+93D7	keng khanh
 93E1	kẻng
 93E2	tiu
-9404	bịt vàng
-9410	banh rìu
-9412	xoá lao
+9404	hoàng vàng
+9410	liêu rìu
+9412	lao
 9418	chuông
 9419	đâng
 942E	liềm
-9430	khuân thau
+9430	thao thau
 9431	kẽm
 9432	đục
 9435	thiết
 9438	đạc
-943B	gánh cứa
-9445	lỏng vành
+943B	cự cứa
+9445	vành vạnh vòng
 944A	vạc
-9455	sểnh chặt
+9455	chặt chất
 9460	thước
-9467	thoa khoan
+9467	khoan
 9468	xuổng
 947C	la
 947F	tạc
@@ -3876,7 +3876,7 @@
 96F4	rợp
 96F6	lênh
 96F7	lôi
-9702	đong móc
+9702	móc mộc
 9706	đình
 9708	pháy
 970D	hoắc
@@ -3922,7 +3922,7 @@
 9834	nhánh
 983A	đồi
 984D	ngạch
-9852	dong ngóng
+9852	ngong ngóng ngỏng ngõng ngọng ngông ngung ngùng ngủng
 9854	nhan
 9858	nguyện
 985B	điên
@@ -3976,7 +3976,7 @@
 9AA8	cốt
 9AB8	hài
 9ABE	ngạnh
-9AC5	vày lâu
+9AC5	lâu
 9AD3	tuỷ
 9AD4	thể
 9AD8	cao
@@ -3997,12 +3997,12 @@
 9B54	ma
 9B5A	ngư
 9B6F	lỗ
-9B89	quẳng chạo
+9B89	chạo
 9BAE	tiên
 9BB9	tiêu
 9BE2	nghê
 9BE8	kình
-9C31	nặn lươn
+9C31	liên lờn lươn
 9C59	nghéo
 9C60	gỏi
 9C78	rô

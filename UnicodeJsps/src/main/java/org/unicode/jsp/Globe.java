@@ -495,6 +495,7 @@ public class Globe {
         }
         changeImage(frame);
     }
+
     /**
      * @param frame
      */
@@ -704,12 +705,14 @@ public class Globe {
             }
             return clip;
         }
+
         /**
          * @return
          */
         public boolean usesOrigin() {
             return false;
         }
+
         // must set before use
         Transform set(double srcW, double srcH, double dstW, double dstH) {
             this.srcW = srcW;
@@ -724,6 +727,7 @@ public class Globe {
             clip = null;
             return this;
         }
+
         // Remember that the coordinate system is upside down so apply
         // the transform as if the angle were negated.
         // cos(-angle) =  cos(angle)
@@ -750,6 +754,7 @@ public class Globe {
             retcoord.y = lat_dstH.map(retcoord.y);
             return retcoord.x >= 0.0 && retcoord.x <= dstW && retcoord.y >= 0 && retcoord.y <= dstH;
         }
+
         // Remember that the coordinate system is upside down so apply
         // the transform as if the angle were negated.  Since inverting
         // the transform is also the same as negating the angle, itransform
@@ -774,11 +779,13 @@ public class Globe {
             retcoord.y = srcH_lat.back(retcoord.y);
             return retcoord.x >= 0.0 && retcoord.x <= srcW && retcoord.y >= 0 && retcoord.y <= srcH;
         }
+
         /**
          * @param input and output: latitude in y (radians from -pi/2 to pi/2) and longitude in x
          *     (radians from -pi to pi)
          */
         protected abstract void _transform(DPoint retcoord);
+
         /**
          * @param input and output: latitude in y (radians from -pi/2 to pi/2) and longitude in x
          *     (radians from -pi to pi)
@@ -786,6 +793,7 @@ public class Globe {
         protected abstract void _itransform(DPoint retcoord);
 
         protected abstract Shape _getClip();
+
         /**
          * @param style
          * @return
@@ -866,6 +874,7 @@ public class Globe {
         public void _itransform(DPoint retcoord) {
             // nothing
         }
+
         /* (non-Javadoc)
          * @see Globe.Transform#_getClip()
          */
@@ -979,6 +988,7 @@ public class Globe {
                 debugTemp = false;
             }
         }
+
         // Area of a spherical cap is 2 pi r^2 (1-sin(lat))
         // Area of a circular segment is r^2 ( acos(p) - p sqrt(1-p^2)), where p = dist to chord/r
         // Thus we get the itransform easily:
@@ -1016,6 +1026,7 @@ public class Globe {
         protected Shape _getClip() {
             return new Ellipse2D.Double(0, 0, dstW, dstH);
         }
+
         /**
          * @param in -1..1
          * @return value in 0..PI
@@ -1573,6 +1584,7 @@ public class Globe {
             consumer.imageComplete(status);
         }
     }
+
     /*
      public static double convertDegreesToDecimal(double degrees, double minutes, double seconds, boolean NorthOrEast) {
          double result = (degrees + minutes / 60 + seconds / 3600);
@@ -1932,6 +1944,7 @@ public class Globe {
                 lineContents[c.yStart].add(c);
             }
         }
+
         /**
          * @param c
          * @return
@@ -2066,6 +2079,7 @@ public class Globe {
     }
 
     private static DPoint drawLineP1 = new DPoint();
+
     /*
 
      private static void drawLine(Graphics2D graphics2D, Transform trans, double x1, double y1, double x2, double y2) {
@@ -2111,6 +2125,7 @@ public class Globe {
 
     abstract static class TTransform {
         double x, y;
+
         // t is 0..1
         abstract void transform(double t);
     }
@@ -2174,11 +2189,13 @@ public class Globe {
         transient double startX, startY, startT;
         // transient double endX, endY, endT;
         TTransform ttransform;
+
         // int segments = 0;
         LineDrawer(Graphics2D graphics2D, TTransform ttransform) {
             this.graphics2D = graphics2D;
             this.ttransform = ttransform;
         }
+
         // t is 0..1
         void draw(double startT, double endT) {
             this.startT = startT;

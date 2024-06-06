@@ -38,6 +38,7 @@ public final class PrimariesToFractional {
 
     /** Maps UCA primaries to PrimaryToFractional objects. */
     private PrimaryToFractional[] primaryProps;
+
     // Put special properties into slots not used for UCA primaries.
     private static final int IMPLICIT_RANGES_INDEX = 0x10;
     private static final int HAN_INDEX = 0x50;
@@ -55,6 +56,7 @@ public final class PrimariesToFractional {
 
         boolean beginsByte;
         boolean endsByte;
+
         /**
          * If true, then primary weights of this group/script all have the same lead byte and are
          * therefore compressible when writing sort keys. We need to know this before assigning
@@ -69,8 +71,10 @@ public final class PrimariesToFractional {
 
         /** First UCA primary weight for this script. */
         int firstPrimary;
+
         /** The script-first fractional primary inserted before the normal fractional primary. */
         int scriptFirstFractional;
+
         /** true until the script-first fractional primary has been written. */
         boolean needToWriteScriptFirstFractional = true;
 
@@ -85,11 +89,13 @@ public final class PrimariesToFractional {
             beginsByte = endsByte = true;
             return this;
         }
+
         /** Start with a new primary lead byte. */
         ScriptOptions newByte() {
             beginsByte = true;
             return this;
         }
+
         /** End with the top of a primary lead byte. */
         ScriptOptions finishByte() {
             endsByte = true;
@@ -135,6 +141,7 @@ public final class PrimariesToFractional {
     /** FractionalUCA properties for a UCA primary weight. */
     public static class PrimaryToFractional {
         private ScriptOptions options;
+
         /**
          * true if this primary is at the start of a group or script that begins with a new primary
          * lead byte.
@@ -146,6 +153,7 @@ public final class PrimariesToFractional {
         private boolean useThreeBytePrimary;
 
         private int fractionalPrimary;
+
         /**
          * Stores fractional primaries for a siniform ideographic range, otherwise null. Offset by
          * options.implicitRange.startCP. 0 for unassigned code points.
@@ -160,6 +168,7 @@ public final class PrimariesToFractional {
         int neutralSec = -1;
 
         int neutralTer = -1;
+
         /**
          * {@link PrimaryToFractional} serves as a container for {@link SecTerToFractional}. {@link
          * PrimaryToFractional} does not set or use this reference at all. We just avoid yet another
@@ -609,9 +618,9 @@ public final class PrimariesToFractional {
         // and its sort key length (with or without primary compression).
         // For rare and historic characters, we optimize for minimal storage.
 
-        // "Recommended Scripts" (http://www.unicode.org/reports/tr31/#Table_Recommended_Scripts)
+        // "Recommended Scripts" (https://www.unicode.org/reports/tr31/#Table_Recommended_Scripts)
         // are in "widespread modern customary use" but to widely varying degrees.
-        // http://en.wikipedia.org/wiki/List_of_writing_systems shows scripts by number of users.
+        // https://en.wikipedia.org/wiki/List_of_writing_systems shows scripts by number of users.
         // Neither list ranks by usage in computers or on the internet.
 
         // Mark reserved ranges as not compressible, to avoid confusion,
@@ -669,6 +678,8 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.MALAYALAM_SCRIPT).wholeByte().twoBytePrimaries();
         // Sinhala shares its lead byte with minor scripts.
         setOptionsForScript(UCD_Types.SINHALA_SCRIPT).newByte().twoBytePrimaries();
+        // Minor script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.Newa).newByte();
         // Recommended Script.
         setOptionsForScript(UCD_Types.THAI_SCRIPT).wholeByte().twoBytePrimaries();
         // Recommended Script.
@@ -692,6 +703,8 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.CANADIAN_ABORIGINAL_SCRIPT).newByte();
         // Limited Use Script, avoid lead byte overflow.
         setOptionsForScript(UCD_Types.Vai).newByte();
+        // Limited Use Script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.Adlam).newByte();
         // Hangul uses one lead byte, with two-byte primaries for conjoining Jamo L/V/T.
         setOptionsForScript(UCD_Types.HANGUL_SCRIPT)
                 .wholeByte()
@@ -711,11 +724,11 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.Vithkuqi).noTwoBytePrimariesIfVariants();
         // Extinct script, use three-byte primaries for the few characters with variants.
         setOptionsForScript(UCD_Types.Elymaic).noTwoBytePrimariesIfVariants();
-        // Minor script, avoid lead byte overflow.
-        setOptionsForScript(UCD_Types.Egyptian_Hieroglyphs).newByte();
+        // Large Excluded Script, minimal gaps.
+        setOptionsForScript(UCD_Types.Egyptian_Hieroglyphs).newByte().minimalGap3();
         // Register the scripts as aliases.
         setOptionsForScripts(UCD_Types.Meroitic_Cursive, UCD_Types.Meroitic_Hieroglyphs);
-        // Larged Excluded Script, minimal gaps.
+        // Large Excluded Script, minimal gaps.
         setOptionsForScripts(UCD_Types.Tangut).minimalGap3();
         // Han uses many lead bytes, so that tailoring tens of thousands of characters
         // can use many two-byte primaries.

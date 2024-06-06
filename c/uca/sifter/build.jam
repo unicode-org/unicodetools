@@ -4,15 +4,14 @@
 # sjam makefile to build sifter for all platforms
 #
 # This makefile is used with sjam to automate the build
-# of the Collation Table Sifter
-# for the Unicode Infrastructure Library.
+# of the Collation Table Sifter, to generate DUCET and the CTT
 #
 # Required environment variables:
-#    CALM_PROJECT_ROOT points to the top directory for the UIL source 
+#    CALM_PROJECT_ROOT points to the top directory for the source 
 #    SSMODE is set to "dev" or "purify" (default is "normal")
 #    SSBUILT is set to the target build directory
 
-SSPart unilib utility sifter ;
+SSPart unilib sifter ;
 
 SSLocalHdrs unilib src ;
 
@@ -23,16 +22,4 @@ SSMain sifter :
     unisyms.c
     unisifex.c
     ;
-
-SSSybLibs ustbuild : unic ;
-
-SSMain ustbuild :
-    ustbuild.c
-    unisift2.c
-    ustwrite.c
-    ;
-
-
-
-
 

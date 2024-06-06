@@ -21,7 +21,7 @@ import org.unicode.text.utility.Utility;
 
 public class GenerateUcaDecompositions {
     private static final int LEAST_FAKE_SECONDARY = 0x139;
-    static final UCA uca = UCA.buildCollator(null);
+    static final UCA uca = UCA.buildDucetCollator();
     static Normalizer2 nfkcCf = Normalizer2.getNFKCCasefoldInstance();
     static Normalizer2 nfd = Normalizer2.getNFDInstance();
     static Normalizer2 nfkd = Normalizer2.getNFKDInstance();

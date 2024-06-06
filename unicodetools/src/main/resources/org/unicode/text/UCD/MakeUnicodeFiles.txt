@@ -1,5 +1,5 @@
 Generate: .
-CopyrightYear: 2023
+CopyrightYear: 2024
 
 File: extra/ScriptNfkc
 Property: SPECIAL
@@ -61,20 +61,12 @@ File: ScriptExtensions
 # values in that set is not material, but for stability in presentation
 # it is given here as alphabetical.
 #
-# The Script_Extensions values are presented in sorted order in the file.
-# They are sorted first by the number of Script property values in their sets,
-# and then alphabetically by first differing Script property value.
-#
-# Following each distinct Script_Extensions value is the list of code
-# points associated with that value, listed in code point order.
-# 
 # All code points not explicitly listed for Script_Extensions
-# have as their value the corresponding Script property value
+# have as their value the corresponding Script property value.
 #
-# @missing: 0000..10FFFF; <script>
 
 Property: Script_Extensions
-Format: valueStyle=short
+Format: kenFile valueStyle=short
 
 File: auxiliary/GraphemeBreakProperty
 Property: Grapheme_Cluster_Break
@@ -542,7 +534,7 @@ Property:	Numeric_Value
 #    The values are based on field 8 of UnicodeData.txt, plus the fields 
 #    kAccountingNumeric, kOtherNumeric, kPrimaryNumeric in the Unicode Han Database (Unihan).
 #    The derivations for these values are as follows.
-#      Numeric_Value = the value of kAccountingNumeric, kOtherNumeric, or kPrimaryNumeric, if they exist; otherwise
+#      Numeric_Value = the first-listed value of kAccountingNumeric, kOtherNumeric, or kPrimaryNumeric, if they exist; otherwise
 #      Numeric_Value = the value of field 8, if it exists; otherwise
 #      Numeric_Value = NaN
 #  Field 2:
@@ -734,6 +726,7 @@ Property:	Pattern_White_Space
 Property:	Pattern_Syntax
 Property:	Prepended_Concatenation_Mark
 Property:	Regional_Indicator
+Property:	Modifier_Combining_Mark
 
 File:	PropertyAliases
 Property: SPECIAL
@@ -876,7 +869,7 @@ Format: kenFile skipValue=Rotated
 #         Specials:                           U+FFF0..U+FFF8
 #         Siddham:                           U+11580..U+115FF
 #         Zanabazar Square & Soyombo:        U+11A00..U+11AAF
-#         Egyptian Hieroglyphs & Controls:   U+13000..U+1345F
+#         Egyptian Hieroglyphs & Controls:   U+13000..U+143FF
 #         Anatolian Hieroglyphs:             U+14400..U+1467F
 #         Ideographic Symbols & Tangut:      U+16FE0..U+18AFF
 #         Khitan Small Script & Tangut Sup:  U+18B00..U+18D7F
@@ -971,13 +964,14 @@ File:	IndicPositionalCategory
 #
 # Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
 # Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
-# Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada, Kawi,
-# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Lao, Lepcha, Limbu,
-# Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek, Modi,
-# Myanmar, Nandinagari, Newa, New Tai Lue, Oriya, Rejang, Saurashtra,
-# Sharada, Siddham, Sinhala, Soyombo, Sundanese, Syloti Nagri,
-# Tagalog, Tagbanwa, Tai Tham, Tai Viet, Takri, Tamil, Telugu, Thai,
-# Tibetan, Tirhuta, and Zanabazar Square.
+# Gunjala Gondi, Gurmukhi, Gurung Khema, Hanunoo, Javanese, Kaithi,
+# Kannada, Kawi, Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi,
+# Kirat Rai, Lao, Lepcha, Limbu, Makasar, Malayalam, Marchen,
+# Masaram Gondi, Meetei Mayek, Modi, Myanmar, Nandinagari, Newa,
+# New Tai Lue, Oriya, Rejang, Saurashtra, Sharada, Siddham, Sinhala,
+# Soyombo, Sundanese, Syloti Nagri, Tagalog, Tagbanwa, Tai Tham,
+# Tai Viet, Takri, Tamil, Telugu, Thai, Tibetan, Tirhuta,
+# Tulu-Tigalari, and Zanabazar Square.
 #
 # All characters for all other scripts not in that list
 # take the default value for this property.
@@ -994,8 +988,6 @@ File:	IndicPositionalCategory
 # but may have different positions in some cases:
 #   * U+0BC1 TAMIL VOWEL SIGN U and U+0BC2 TAMIL VOWEL SIGN UU have
 #     contextually variable placement in Tamil.
-#   * U+0D41 MALAYALAM VOWEL SIGN U and U+0D42 MALAYALAM VOWEL SIGN UU form
-#     complex ligatures with consonants in older Malayalam orthography.
 #   * U+11341 GRANTHA VOWEL SIGN U and U+11342 GRANTHA VOWEL SIGN UU have
 #     contextually variable placement in Grantha.
 #   * U+11440 NEWA VOWEL SIGN O and U+11441 NEWA VOWEL SIGN AU have contextually
@@ -1008,10 +1000,17 @@ File:	IndicPositionalCategory
 #
 # 3. The following characters are all assigned the positional category Bottom,
 # but may have different positions in some cases:
+#   * U+0D41 MALAYALAM VOWEL SIGN U and U+0D42 MALAYALAM VOWEL SIGN UU form
+#     complex ligatures with consonants in older Malayalam orthography, and
+#     are spacing marks to the right of the base in reformed Malayalam
+#     orthography.
 #   * U+102F MYANMAR VOWEL SIGN U and U+1030 MYANMAR VOWEL SIGN UU have
 #     contextually variable placement in Myanmar.
 #   * U+1A69 TAI THAM VOWEL SIGN U and U+1A6A TAI THAM VOWEL SIGN UU have
 #     contextually variable placement in Tai Tham.
+#   * U+113BB TULU-TIGALARI VOWEL SIGN U and
+#     U+113BC TULU-TIGALARI VOWEL SIGN UU form complex ligatures with
+#     consonants.
 #
 # 4. The following character is assigned the positional category Left, but
 # may have different positions in different styles:
@@ -1075,13 +1074,14 @@ File:	IndicSyllabicCategory
 #
 # Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
 # Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
-# Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada, Kawi,
-# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Lao, Lepcha, Limbu,
-# Mahajani, Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek,
-# Modi, Multani, Myanmar, Nandinagari, Newa, New Tai Lue, Oriya,
-# Phags-pa, Rejang, Saurashtra, Sharada, Siddham, Sinhala, Soyombo,
-# Sundanese, Syloti Nagri, Tagalog, Tagbanwa, Tai Le, Tai Tham,
-# Tai Viet, Takri, Tamil, Telugu, Thai, Tibetan, Tirhuta, and
+# Gunjala Gondi, Gurmukhi, Gurung Khema, Hanunoo, Javanese, Kaithi,
+# Kannada, Kawi, Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi,
+# Kirat Rai, Lao, Lepcha, Limbu, Mahajani, Makasar, Malayalam,
+# Marchen, Masaram Gondi, Meetei Mayek, Modi, Multani, Myanmar,
+# Nandinagari, Newa, New Tai Lue, Oriya, Phags-pa, Rejang,
+# Saurashtra, Sharada, Siddham, Sinhala, Soyombo, Sundanese,
+# Syloti Nagri, Tagalog, Tagbanwa, Tai Le, Tai Tham, Tai Viet, Takri,
+# Tamil, Telugu, Thai, Tibetan, Tirhuta, Tulu-Tigalari, and
 # Zanabazar Square.
 #
 # All characters for all other scripts not in that list
@@ -1114,21 +1114,30 @@ Value: Nukta
 
 # [Not derivable]
 Value: Virama
-# Virama (killing of inherent vowel in consonant sequence
-#         or consonant stacker)
+# Virama (kills inherent vowel of consonant; may act as a Pure_Killer
+#         or Invisible_Stacker depending on context)
 # Only includes characters that can act both as visible killer viramas
 # and consonant stackers. Separate property values exist for characters
-# that can only act as pure killers or only as consonant stackers.
+# that can only act as pure killers, only as reordering killers, or only
+# as consonant stackers.
 
 # [Derivation: (ccc=9) - (InSC=Pure_Killer) - (InSC=Invisible_Stacker)
-#  - (InSC=Number_Joiner) - 2D7F]
+#  - (InSC=Reordering_Killer) - (InSC=Number_Joiner) - 2D7F]
 Value: Pure_Killer
-# Pure killer (killing of inherent vowel in consonant sequence,
-#              with no consonant stacking behavior)
+# Pure killer (kills inherent vowel of consonant; always visible;
+#              has no conjuct formation, consonant stacking, or reordering
+#              behavior)
+
+# [Not derivable]
+Value: Reordering_Killer
+# Reordering killer (kills inherent vowel of consonant; always visible;
+#                    may cause consonant reordering)
 
 # [Not derivable]
 Value: Invisible_Stacker
-# Invisible stacker (invisible consonant stacker virama).
+# Invisible stacker (usually kills inherent vowel of consonant; is not visible
+#                    by itself; causes conjunct formation or consonant
+#                    stacking)
 #
 # Note that in some scripts, such as Kharoshthi and Masaram Gondi, an invisible
 # stacker may have a second function, changing the shape and/or location of the

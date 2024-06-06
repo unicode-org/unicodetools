@@ -1,5 +1,5 @@
 // © 2019 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html
+// License & terms of use: https://www.unicode.org/copyright.html
 /*
 **      Unilib
 **      Copyright 2023
@@ -38,6 +38,7 @@
  *               to fix memory leak.
  *   2022-May-18 Add secondary ranges for UCA 15.0. Tweak some other ranges.
  *   2023-May-09 Add four more variant weights for UCA 15.1.
+ *   2023-Oct-09 Add secondary ranges for UCA 16.0.
  */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -118,7 +119,7 @@ extern char *GetUnidataFileName ( void );
  * NUMSECONDSYMS and the following tables needs to be revisited whenever
  * any new NSM is added or reordered.
  */
-#define NUMSECONDSYMS (261)
+#define NUMSECONDSYMS (263)
 
 static const char *tertSyms[NUMTERTSYMS] =
                    { "<RES-1>",
@@ -579,6 +580,8 @@ static const char *secondSyms[NUMSECONDSYMS] = {
 "<D116B7>", /* Takri nukta */
 #endif
 "<D11A98>", /* Soyombo gemination mark */
+"<D10D6A>", /* Garay gemination mark */
+"<D113D2>", /* Tulu-Tigalari gemination mark */
 "<D0E4E>", /* Thai character yamakkan */
 "<D0E47>", /* Thai character maitaikhu */
 "<D0E48>", /* Thai character mai ek*/
@@ -833,8 +836,8 @@ static utf32char secondSymVals[NUMSECONDSYMS] = {
     /* 0x11180, 0x11181, 0x11182, 0x111C9, */ 0x111CB, 0x111CD,
 /* Takri */
     /* 0x116AB, 0x116AC, 0x116B7, */
-/* Soyombo */
-    0x11A98,
+/* Soyombo, Garay, Tulu-Tigalari */
+    0x11A98, 0x10D6A, 0x113D2,
 /* Thai, Lao, Tai Viet */
     0x0E4E, 0x0E47, 0x0E48, 0x0E49, 0x0E4A, 0x0E4B, 0x0E4C, 0x0E4D, 
     0x0ECE, 0x0EC8, 0x0EC9, 0x0ECA, 0x0ECB, 0x0ECC, 0x0ECD,
@@ -1044,9 +1047,9 @@ char localbuf[120];
     fputs ( "collating-symbol <S10000>..<S12543> % Alphabetics from SMP\n", fd );
     fputs ( "collating-symbol <S13000>..<S1343F> % Alphabetics from SMP\n", fd );
     fputs ( "collating-symbol <S14400>..<S14646> % Alphabetics from SMP\n", fd );
-    fputs ( "collating-symbol <S16800>..<S16FFF> % Alphabetics and symbols from SMP\n", fd );
-    fputs ( "collating-symbol <S1B000>..<S1BCAF> % Alphabetics and symbols from SMP\n", fd );
-    fputs ( "collating-symbol <S1D000>..<S1D37F> % Symbols from SMP\n", fd );
+    fputs ( "collating-symbol <S16100>..<S16FFF> % Alphabetics and symbols from SMP\n", fd );
+    fputs ( "collating-symbol <S1AFF0>..<S1BCAF> % Alphabetics and symbols from SMP\n", fd );
+    fputs ( "collating-symbol <S1CC00>..<S1D37F> % Symbols from SMP\n", fd );
     fputs ( "collating-symbol <S1D800>..<S1DA8B> % Sutton SignWriting\n", fd );
     fputs ( "collating-symbol <S1E000>..<S1E95F> % Alphabetics from SMP\n", fd );
     fputs ( "collating-symbol <S1EC70>..<S1EEFF> % Symbols from SMP\n", fd );
@@ -2488,7 +2491,7 @@ int greatestdepth;
         return ( rc );
     }
 
-    rc = unisift_BuildSymWtTreeRange ( 0x16800, 0x16FFF, &greatestdepth );
+    rc = unisift_BuildSymWtTreeRange ( 0x16100, 0x16FFF, &greatestdepth );
     if ( rc < 0 )
     {
         return ( rc );
@@ -2500,7 +2503,7 @@ int greatestdepth;
         return ( rc );
     }
 
-    rc = unisift_BuildSymWtTreeRange ( 0x1CF00, 0x1D37F, &greatestdepth );
+    rc = unisift_BuildSymWtTreeRange ( 0x1CC00, 0x1D37F, &greatestdepth );
     if ( rc < 0 )
     {
         return ( rc );

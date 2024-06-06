@@ -2,18 +2,18 @@
 # Date: PUB_DATE
 # © COPY_YEAR Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 
 This directory contains PUB_STATUS data files for Unicode, Version EMOJI_VER
 
-PUBLIC_EMOJI
+PUBLIC_EMOJI/
 
   emoji-data.txt
   emoji-variation-sequences.txt
 
 The following related files are found in Unicode Emoji, Version EMOJI_VER
 
-PUBLIC_UCD_EMOJI
+PUBLIC_UCD/ucd/emoji/
 
   emoji-sequences.txt
   emoji-zwj-sequences.txt
