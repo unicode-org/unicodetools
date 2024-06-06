@@ -1,4 +1,5 @@
 package org.unicode.draft;
+
 /*
  *******************************************************************************
  * Copyright (C) 2003-2008, International Business Machines Corporation and    *
@@ -38,6 +39,7 @@ public final class Punycode {
     private final char DELIMITER;
 
     private static final int MAX_CP_COUNT = 200;
+
     // private static final int UINT_MAGIC     = 0x80000000;
     // private static final long ULONG_MAGIC   = 0x8000000000000000L;
 

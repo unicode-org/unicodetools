@@ -46,6 +46,7 @@ public class LocaleExtensions {
             ukeyBucket = 4,
             vwyzBucket = 5,
             xBucket = 6;
+
     // TODO maybe optimize to make complete mapping to integers.
     public static int getBucket(String o1) {
         char first;
