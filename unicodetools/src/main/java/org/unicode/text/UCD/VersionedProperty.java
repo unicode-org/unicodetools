@@ -1,11 +1,13 @@
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.SymbolTable;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.text.ParsePosition;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.function.Supplier;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.Factory;
@@ -18,16 +20,51 @@ public class VersionedProperty {
     private UnicodeProperty.Factory propSource;
     private UnicodeProperty property;
     private final transient PatternMatcher matcher = new UnicodeProperty.RegexMatcher();
+    private Supplier<VersionInfo> oldestLoadedUcd;
+
+    private boolean throwOnUnknownProperty;
+    // The version used in the absence of a version prefix.
+    private String defaultVersion;
+    // Maps custom names to versions.  For the versions covered by this map, no
+    // other names are permitted, so if this contains "16.0.0β"↦"16.0.0" but not
+    // "16.0.0"↦"16.0.0", "U16.0.0:General_Category" is rejected.
+    private Map<String, String> versionAliases = new TreeMap<>();
+
+    private VersionedProperty() {}
+
+    public static VersionedProperty forInvariantTesting() {
+        var result = new VersionedProperty();
+        result.throwOnUnknownProperty = true;
+        result.defaultVersion = Settings.latestVersion;
+        result.versionAliases.put("-1", Settings.lastVersion);
+        for (String last = Settings.lastVersion; ; last = last.substring(0, last.length() - 2)) {
+            result.versionAliases.put(last, Settings.lastVersion);
+            if (!last.endsWith(".0")) {
+                break;
+            }
+        }
+        return result;
+    }
+
+    public static VersionedProperty forJSPs(Supplier<VersionInfo> oldestLoadedUcd) {
+        var result = new VersionedProperty();
+        result.throwOnUnknownProperty = false;
+        result.defaultVersion = Settings.lastVersion;
+        result.versionAliases.put("dev", Settings.latestVersion);
+        result.oldestLoadedUcd = oldestLoadedUcd;
+        for (String latest = Settings.latestVersion;
+                ;
+                latest = latest.substring(0, latest.length() - 2)) {
+            result.versionAliases.put(latest + Settings.latestVersionPhase, Settings.latestVersion);
+            if (!latest.endsWith(".0")) {
+                break;
+            }
+        }
+        return result;
+    }
 
     private static final Set<String> TOOL_ONLY_PROPERTIES =
             Set.of("toNFC", "toNFD", "toNFKC", "toNFKD");
-
-    private static boolean isTrivial(UnicodeMap<String> map) {
-        return map.isEmpty()
-                || (map.values().size() == 1
-                        && map.getSet(map.values().iterator().next())
-                                .equals(UnicodeSet.ALL_CODE_POINTS));
-    }
 
     public UnicodeProperty getProperty() {
         return property;
@@ -54,25 +91,43 @@ public class VersionedProperty {
                     throw new IllegalArgumentException(
                             "Version field should start with U or R in " + xPropertyName);
             }
-            if (names[0].substring(1).equals("-1")) {
-                version = Settings.lastVersion;
+            var aliased = versionAliases.get(names[0].substring(1));
+            if (aliased != null) {
+                version = aliased;
             } else {
                 version = names[0].substring(1);
+                if (versionAliases.containsValue(version)) {
+                    throw new IllegalArgumentException("Invalid version " + version);
+                }
             }
             xPropertyName = names[1];
         } else {
-            version = Settings.latestVersion;
+            version = defaultVersion;
         }
-        ;
         propertyName = xPropertyName;
+        final VersionInfo versionInfo = VersionInfo.getInstance(version);
+        if (oldestLoadedUcd != null) {
+            final VersionInfo oldestLoaded = oldestLoadedUcd.get();
+            if (versionInfo.compareTo(oldestLoaded) < 0) {
+                throw new IllegalStateException(
+                        "Requested version "
+                                + versionInfo
+                                + " is older than the oldest loaded version "
+                                + oldestLoaded
+                                + ". Try again later.");
+            }
+        }
         propSource = getIndexedProperties(version);
         property = propSource.getProperty(xPropertyName);
         if ((property == null && TOOL_ONLY_PROPERTIES.contains(xPropertyName))
-                || (isTrivial(property.getUnicodeMap()) && allowRetroactive)) {
+                || (property != null && property.isTrivial() && allowRetroactive)) {
             propSource = ToolUnicodePropertySource.make(version);
             property = propSource.getProperty(xPropertyName);
         }
-        if (property == null || isTrivial(property.getUnicodeMap())) {
+        if (property == null || property.isTrivial()) {
+            if (!throwOnUnknownProperty) {
+                return null;
+            }
             throw new IllegalArgumentException(
                     "Can't create property from name: "
                             + propertyName
@@ -100,8 +155,8 @@ public class VersionedProperty {
             }
             matcher.set(body);
             set = property.getSet(matcher);
-        } else if (propertyValue.equals("∅")) {
-            set = property.getSet(NULL_MATCHER, null);
+        } else if (propertyValue.equals("@none@")) {
+            set = property.getSet(UnicodeProperty.NULL_MATCHER, null);
         } else {
             set = property.getSet(propertyValue);
         }
@@ -125,17 +180,4 @@ public class VersionedProperty {
         }
         return result;
     }
-
-    static final UnicodeProperty.PatternMatcher NULL_MATCHER =
-            new UnicodeProperty.PatternMatcher() {
-                @Override
-                public boolean test(String o) {
-                    return o == null || "".equals(o);
-                }
-
-                @Override
-                public PatternMatcher set(String pattern) {
-                    return this;
-                }
-            };
 }

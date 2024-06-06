@@ -2988,7 +2988,7 @@
 4153	curved piece of wood, to bend; to crouch, name of a tree, name of a fruit
 4154	dead (withered) crops; dried grains; (same as 䎩) to till; to plough; to cultivate
 4155	a variety of millet
-4156	(same as 馣) sweet-smelling, tasty; delicious, to farm; to cultivate the land, luxuriant or exuberant of growing rice, grains;; rice plants producing no fruit, to fertilize, the grains not growing; shriveled rice plants
+4156	(same as 馣) sweet-smelling, tasty; delicious, to farm; to cultivate the land, luxuriant or exuberant of growing rice, grains; rice plants producing no fruit, to fertilize, the grains not growing; shriveled rice plants
 4157	(same as 䅑) four bundle of grains, to accumulate; to store up grains, grains; rice plant
 4158	wheat
 4159	grass; herb; straw; weed, bundle of straw
@@ -5250,7 +5250,7 @@
 4AB0	(same as 噫) (in grammar) interjection, to exclaim
 4AB1	(same as 胲) cheek; face, ugly (same as 孩) a child
 4AB2	(interchangeable 頑 髡) ancient punishment of shaving the head
-4AB3	slanted face causing by the paralyzed of the facial nerve
+4AB3	slanted face caused by facial nerve paralysis
 4AB4	the occiput, or occipital bone, to hang down one's head, ugly, silly; foolish; stupid; idiotic; crazy; insane
 4AB6	the chin; the jaws
 4AB7	to toil or labor sedulously
@@ -13695,7 +13695,7 @@
 79BA	district; mountain in Zhejiang
 79BB	rare beast; strange; elegant
 79BC	used in personal names
-79BD	birds, fowl; surname;; capture
+79BD	birds, fowl; surname; capture
 79BE	grain still on stalk; rice plant
 79BF	bald, bare, stripped
 79C0	ear of grain; flowering, luxuriant; refined, elegant, graceful
@@ -14874,6 +14874,7 @@
 8031	a kind of farm tool
 8032	a tool used in northeast China for overturning soil
 8033	ear; merely, only; handle; Kangxi radical 128
+8034	ear lobe; lobule
 8035	earwax
 8036	used in transliteration
 8037	ears hanging down

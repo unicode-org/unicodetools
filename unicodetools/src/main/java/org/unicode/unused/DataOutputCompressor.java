@@ -85,6 +85,7 @@ public final class DataOutputCompressor implements ObjectOutput {
     public void writeObject(Object obj) throws IOException {
         dataOutput.writeObject(obj);
     }
+
     // ==== New Routines ====
 
     public void writeChar(int v) throws IOException {
