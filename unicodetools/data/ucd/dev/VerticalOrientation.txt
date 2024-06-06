@@ -1,8 +1,8 @@
 # VerticalOrientation-16.0.0.txt
-# Date: 2023-12-29, 11:09:11 GMT
-# © 2023 Unicode®, Inc.
+# Date: 2024-06-06, 18:25:56 GMT
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
 #   For documentation, see https://www.unicode.org/reports/tr44/
@@ -42,7 +42,7 @@
 #         Specials:                           U+FFF0..U+FFF8
 #         Siddham:                           U+11580..U+115FF
 #         Zanabazar Square & Soyombo:        U+11A00..U+11AAF
-#         Egyptian Hieroglyphs & Controls:   U+13000..U+1345F
+#         Egyptian Hieroglyphs & Controls:   U+13000..U+143FF
 #         Anatolian Hieroglyphs:             U+14400..U+1467F
 #         Ideographic Symbols & Tangut:      U+16FE0..U+18AFF
 #         Khitan Small Script & Tangut Sup:  U+18B00..U+18D7F
@@ -437,7 +437,7 @@
 0C4A..0C4D     ; R  # Mn     [4] TELUGU VOWEL SIGN O..TELUGU SIGN VIRAMA
 0C55..0C56     ; R  # Mn     [2] TELUGU LENGTH MARK..TELUGU AI LENGTH MARK
 0C58..0C5A     ; R  # Lo     [3] TELUGU LETTER TSA..TELUGU LETTER RRRA
-0C5C..0C5D     ; R  # Lo     [2] TELUGU ARCHAIC SHRII..TELUGU LETTER NAKAARA POLLU
+0C5D           ; R  # Lo         TELUGU LETTER NAKAARA POLLU
 0C60..0C61     ; R  # Lo     [2] TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C62..0C63     ; R  # Mn     [2] TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
 0C66..0C6F     ; R  # Nd    [10] TELUGU DIGIT ZERO..TELUGU DIGIT NINE
@@ -463,7 +463,7 @@
 0CCA..0CCB     ; R  # Mc     [2] KANNADA VOWEL SIGN O..KANNADA VOWEL SIGN OO
 0CCC..0CCD     ; R  # Mn     [2] KANNADA VOWEL SIGN AU..KANNADA SIGN VIRAMA
 0CD5..0CD6     ; R  # Mc     [2] KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
-0CDC..0CDE     ; R  # Lo     [3] KANNADA ARCHAIC SHRII..KANNADA LETTER FA
+0CDD..0CDE     ; R  # Lo     [2] KANNADA LETTER NAKAARA POLLU..KANNADA LETTER FA
 0CE0..0CE1     ; R  # Lo     [2] KANNADA LETTER VOCALIC RR..KANNADA LETTER VOCALIC LL
 0CE2..0CE3     ; R  # Mn     [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
 0CE6..0CEF     ; R  # Nd    [10] KANNADA DIGIT ZERO..KANNADA DIGIT NINE
@@ -2140,6 +2140,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 13441..13446   ; U  # Lo     [6] EGYPTIAN HIEROGLYPH FULL BLANK..EGYPTIAN HIEROGLYPH WIDE LOST SIGN
 13447..13455   ; U  # Mn    [15] EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
 13456..1345F   ; U  # Cn    [10] <reserved-13456>..<reserved-1345F>
+13460..143FA   ; U  # Lo  [3995] EGYPTIAN HIEROGLYPH-13460..EGYPTIAN HIEROGLYPH-143FA
+143FB..143FF   ; U  # Cn     [5] <reserved-143FB>..<reserved-143FF>
 14400..14646   ; U  # Lo   [583] ANATOLIAN HIEROGLYPH A001..ANATOLIAN HIEROGLYPH A530
 14647..1467F   ; U  # Cn    [57] <reserved-14647>..<reserved-1467F>
 16100..1611D   ; R  # Lo    [30] GURUNG KHEMA LETTER A..GURUNG KHEMA LETTER SA

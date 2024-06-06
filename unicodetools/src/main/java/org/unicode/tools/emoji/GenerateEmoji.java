@@ -10,7 +10,6 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.CollectionUtilities.SetComparator;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
@@ -64,6 +63,7 @@ import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.VersionToAge;
+import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.NamesList;
 import org.unicode.text.utility.Birelation;
 import org.unicode.text.utility.Utility;
@@ -575,6 +575,10 @@ public class GenerateEmoji {
             boolean doFlip) {
         if (chars.codePointAt(0) == 0x1FA72) {
             int debug = 0;
+        }
+        if (type == Source.ref && !Emoji.REGIONAL_INDICATORS.containsAll(chars)) {
+            // Only use reference source for country flags.
+            return null;
         }
         String filename = Emoji.getImageFilenameFromChars(type, charsForFile);
         if (filename != null && new File(type.getImageDirectory(), filename).exists()) {
@@ -1529,9 +1533,11 @@ public class GenerateEmoji {
 
             outPlain.println(
                     "# labels.txt\n"
-                            + "# Copyright © 1991-2016 Unicode, Inc.\n"
+                            + "# Copyright © 1991-"
+                            + Default.getYear()
+                            + " Unicode, Inc.\n"
                             + "# CLDR data files are interpreted according to the LDML specification (https://unicode.org/reports/tr35/)\n"
-                            + "# For terms of use, see https://www.unicode.org/copyright.html\n"
+                            + "# For terms of use and license, see https://www.unicode.org/terms_of_use.html\n"
                             + "#\n"
                             + "# This file provides information for mapping character labels to sets of characters.\n"
                             + "# The characters should normally be sorted using CLDR collation data, but that order may be further customized.\n"
@@ -3619,8 +3625,6 @@ public class GenerateEmoji {
 
     static final Comparator<Row.R2<Set<String>, UnicodeSet>> PAIR_SORT =
             new Comparator<Row.R2<Set<String>, UnicodeSet>>() {
-                SetComparator<Comparable> setComp;
-
                 public int compare(R2<Set<String>, UnicodeSet> o1, R2<Set<String>, UnicodeSet> o2) {
                     int diff =
                             compareX(
@@ -4072,7 +4076,7 @@ public class GenerateEmoji {
                     + " This form may have changed since earlier proposals were submitted.</li>\n"
                     + "<li>The UTC may accept a proposal for reasons other than those stated in the proposal, and does not necessarily endorse or consider relevant all of the proposed reasons.</li></ol>\n";
 
-    public static Set<Emoji.Source> getPlatforms(UnicodeSet set, int minCount) {
+    public static Set<Emoji.Source> getPlatforms(UnicodeSet set, int maxCount) {
         Output<Boolean> isFound = new Output<>();
         Set<Emoji.Source> found = EnumSet.noneOf(Emoji.Source.class);
 
@@ -4091,8 +4095,8 @@ public class GenerateEmoji {
                                     + Utility.hex(item, " ")
                                     + "\t"
                                     + EmojiData.EMOJI_DATA.getName(item));
-                    if (++count >= minCount) {
-                        found.add(s);
+                    found.add(s);
+                    if (maxCount > 0 && ++count >= maxCount) {
                         break;
                     }
                 }

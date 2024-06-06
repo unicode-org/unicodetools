@@ -10,6 +10,7 @@ import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.Canonical_Combining_Class_Values;
 import org.unicode.props.UcdPropertyValues.Decomposition_Type_Values;
+import org.unicode.props.UcdPropertyValues.Do_Not_Emit_Type_Values;
 import org.unicode.props.UcdPropertyValues.East_Asian_Width_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
@@ -29,6 +30,7 @@ import org.unicode.props.UcdPropertyValues.NFD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.NFKC_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
+import org.unicode.props.UcdPropertyValues.Other_Joining_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UcdPropertyValues.Sentence_Break_Values;
 import org.unicode.props.UcdPropertyValues.Vertical_Orientation_Values;
@@ -56,6 +58,7 @@ public enum UcdProperty {
     Confusable_SA(PropertyType.String, "ConfSA"),
     Confusable_SL(PropertyType.String, "ConfSL"),
     Decomposition_Mapping(PropertyType.String, "dm"),
+    Do_Not_Emit_Preferred(PropertyType.String, "Do_Not_Emit_Preferred"),
     Equivalent_Unified_Ideograph(PropertyType.String, "EqUIdeo"),
     FC_NFKC_Closure(PropertyType.String, "FC_NFKC"),
     Idn_Mapping(PropertyType.String, "idnm"),
@@ -87,6 +90,7 @@ public enum UcdProperty {
     Named_Sequences_Prov(PropertyType.Miscellaneous, "NSP"),
     Standardized_Variant(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "SV"),
     Unicode_1_Name(PropertyType.Miscellaneous, "na1"),
+    kAlternateTotalStrokes(PropertyType.Miscellaneous, "cjkAlternateTotalStrokes"),
     kBigFive(PropertyType.Miscellaneous, "cjkBigFive"),
     kCCCII(PropertyType.Miscellaneous, "cjkCCCII"),
     kCNS1986(PropertyType.Miscellaneous, "cjkCNS1986"),
@@ -101,6 +105,7 @@ public enum UcdProperty {
     kDaeJaweon(PropertyType.Miscellaneous, "cjkDaeJaweon"),
     kDefinition(PropertyType.Miscellaneous, "cjkDefinition"),
     kEACC(PropertyType.Miscellaneous, "cjkEACC"),
+    kFanqie(PropertyType.Miscellaneous, "cjkFanqie"),
     kFenn(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkFenn"),
     kFennIndex(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkFennIndex"),
     kFourCornerCode(
@@ -140,6 +145,7 @@ public enum UcdProperty {
     kIRG_VSource(PropertyType.Miscellaneous, "cjkIRG_VSource"),
     kJIS0213(PropertyType.Miscellaneous, "cjkJIS0213"),
     kJa(PropertyType.Miscellaneous, "cjkJa"),
+    kJapanese(PropertyType.Miscellaneous, "cjkJapanese"),
     kJapaneseKun(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkJapaneseKun"),
     kJapaneseOn(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkJapaneseOn"),
     kJinmeiyoKanji(
@@ -165,6 +171,7 @@ public enum UcdProperty {
     kMandarin(PropertyType.Miscellaneous, null, ValueCardinality.Ordered, "cjkMandarin"),
     kMatthews(PropertyType.Miscellaneous, "cjkMatthews"),
     kMeyerWempe(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkMeyerWempe"),
+    kMojiJoho(PropertyType.Miscellaneous, "cjkMojiJoho"),
     kMorohashi(PropertyType.Miscellaneous, "cjkMorohashi"),
     kNelson(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkNelson"),
     kPhonetic(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkPhonetic"),
@@ -183,6 +190,8 @@ public enum UcdProperty {
             "Unicode_Radical_Stroke",
             "URS"),
     kSBGY(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSBGY"),
+    kSMSZD2003Index(PropertyType.Miscellaneous, "cjkSMSZD2003Index"),
+    kSMSZD2003Readings(PropertyType.Miscellaneous, "cjkSMSZD2003Readings"),
     kSemanticVariant(
             PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSemanticVariant"),
     kSpecializedSemanticVariant(
@@ -191,6 +200,7 @@ public enum UcdProperty {
             ValueCardinality.Unordered,
             "cjkSpecializedSemanticVariant"),
     kSpoofingVariant(PropertyType.Miscellaneous, "cjkSpoofingVariant"),
+    kStrange(PropertyType.Miscellaneous, "cjkStrange"),
     kTGH(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkTGH"),
     kTGHZ2013(PropertyType.Miscellaneous, "cjkTGHZ2013"),
     kTaiwanTelegraph(PropertyType.Miscellaneous, "cjkTaiwanTelegraph"),
@@ -198,9 +208,11 @@ public enum UcdProperty {
     kTotalStrokes(PropertyType.Miscellaneous, null, ValueCardinality.Ordered, "cjkTotalStrokes"),
     kUnihanCore2020(PropertyType.Miscellaneous, "cjkUnihanCore2020"),
     kVietnamese(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkVietnamese"),
+    kVietnameseNumeric(PropertyType.Miscellaneous, "cjkVietnameseNumeric"),
     kXHC1983(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkXHC1983"),
     kXerox(PropertyType.Miscellaneous, "cjkXerox"),
     kZVariant(PropertyType.Miscellaneous, "cjkZVariant"),
+    kZhuangNumeric(PropertyType.Miscellaneous, "cjkZhuangNumeric"),
 
     // Catalog
     Age(PropertyType.Catalog, Age_Values.class, null, "age"),
@@ -215,17 +227,19 @@ public enum UcdProperty {
     Canonical_Combining_Class(
             PropertyType.Enumerated, Canonical_Combining_Class_Values.class, null, "ccc"),
     Decomposition_Type(PropertyType.Enumerated, Decomposition_Type_Values.class, null, "dt"),
+    Do_Not_Emit_Type(
+            PropertyType.Enumerated, Do_Not_Emit_Type_Values.class, null, "Do_Not_Emit_Type"),
     East_Asian_Width(PropertyType.Enumerated, East_Asian_Width_Values.class, null, "ea"),
     General_Category(PropertyType.Enumerated, General_Category_Values.class, null, "gc"),
     Grapheme_Cluster_Break(
             PropertyType.Enumerated, Grapheme_Cluster_Break_Values.class, null, "GCB"),
     Hangul_Syllable_Type(PropertyType.Enumerated, Hangul_Syllable_Type_Values.class, null, "hst"),
-    Identifier_Status(PropertyType.Enumerated, Identifier_Status_Values.class, null, "idstatus"),
+    Identifier_Status(PropertyType.Enumerated, Identifier_Status_Values.class, null, "ID_Status"),
     Identifier_Type(
             PropertyType.Enumerated,
             Identifier_Type_Values.class,
             ValueCardinality.Unordered,
-            "idtype"),
+            "ID_Type"),
     Idn_2008(PropertyType.Enumerated, Idn_2008_Values.class, null, "idn8"),
     Idn_Status(PropertyType.Enumerated, Idn_Status_Values.class, null, "idns"),
     Indic_Conjunct_Break(PropertyType.Enumerated, Indic_Conjunct_Break_Values.class, null, "InCB"),
@@ -241,6 +255,8 @@ public enum UcdProperty {
     NFKC_Quick_Check(PropertyType.Enumerated, NFKC_Quick_Check_Values.class, null, "NFKC_QC"),
     NFKD_Quick_Check(PropertyType.Enumerated, NFKD_Quick_Check_Values.class, null, "NFKD_QC"),
     Numeric_Type(PropertyType.Enumerated, Numeric_Type_Values.class, null, "nt"),
+    Other_Joining_Type(
+            PropertyType.Enumerated, Other_Joining_Type_Values.class, null, "Other_Joining_Type"),
     Sentence_Break(PropertyType.Enumerated, Sentence_Break_Values.class, null, "SB"),
     Vertical_Orientation(PropertyType.Enumerated, Vertical_Orientation_Values.class, null, "vo"),
     Word_Break(PropertyType.Enumerated, Word_Break_Values.class, null, "WB"),
@@ -293,6 +309,7 @@ public enum UcdProperty {
     Logical_Order_Exception(PropertyType.Binary, Binary.class, null, "LOE"),
     Lowercase(PropertyType.Binary, Binary.class, null, "Lower"),
     Math(PropertyType.Binary, Binary.class, null, "Math"),
+    Modifier_Combining_Mark(PropertyType.Binary, Binary.class, null, "MCM"),
     Noncharacter_Code_Point(PropertyType.Binary, Binary.class, null, "NChar"),
     Other_Alphabetic(PropertyType.Binary, Binary.class, null, "OAlpha"),
     Other_Default_Ignorable_Code_Point(PropertyType.Binary, Binary.class, null, "ODI"),

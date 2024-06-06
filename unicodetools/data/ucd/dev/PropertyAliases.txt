@@ -1,8 +1,8 @@
-# PropertyAliases-15.1.0.txt
-# Date: 2023-08-07, 15:21:34 GMT
-# © 2023 Unicode®, Inc.
+# PropertyAliases-16.0.0.txt
+# Date: 2024-04-30, 21:48:30 GMT
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
 #   For documentation, see https://www.unicode.org/reports/tr44/
@@ -182,6 +182,7 @@ Join_C                   ; Join_Control
 LOE                      ; Logical_Order_Exception
 Lower                    ; Lowercase
 Math                     ; Math
+MCM                      ; Modifier_Combining_Mark
 NChar                    ; Noncharacter_Code_Point
 OAlpha                   ; Other_Alphabetic
 ODI                      ; Other_Default_Ignorable_Code_Point
@@ -212,6 +213,6 @@ XO_NFKC                  ; Expands_On_NFKC
 XO_NFKD                  ; Expands_On_NFKD
 
 # ================================================
-# Total:    134
+# Total:    135
 
 # EOF
