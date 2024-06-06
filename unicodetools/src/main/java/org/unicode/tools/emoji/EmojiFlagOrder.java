@@ -105,6 +105,7 @@ public class EmojiFlagOrder {
         private Set<R2<Long, HSB>> colorDistribution;
         static int order = 0;
         private int currentOrder = ++order;
+
         /**
          * returns hue, saturation, brightness
          *

@@ -1,8 +1,8 @@
 # WordBreakProperty-16.0.0.txt
-# Date: 2024-04-02, 11:47:55 GMT
+# Date: 2024-06-06, 10:09:55 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
 #   For documentation, see https://www.unicode.org/reports/tr44/
@@ -813,7 +813,7 @@ FF71..FF9D    ; Katakana # Lo  [45] HALFWIDTH KATAKANA LETTER A..HALFWIDTH KATAK
 0C2A..0C39    ; ALetter # Lo  [16] TELUGU LETTER PA..TELUGU LETTER HA
 0C3D          ; ALetter # Lo       TELUGU SIGN AVAGRAHA
 0C58..0C5A    ; ALetter # Lo   [3] TELUGU LETTER TSA..TELUGU LETTER RRRA
-0C5C..0C5D    ; ALetter # Lo   [2] TELUGU ARCHAIC SHRII..TELUGU LETTER NAKAARA POLLU
+0C5D          ; ALetter # Lo       TELUGU LETTER NAKAARA POLLU
 0C60..0C61    ; ALetter # Lo   [2] TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C80          ; ALetter # Lo       KANNADA SIGN SPACING CANDRABINDU
 0C85..0C8C    ; ALetter # Lo   [8] KANNADA LETTER A..KANNADA LETTER VOCALIC L
@@ -822,7 +822,7 @@ FF71..FF9D    ; Katakana # Lo  [45] HALFWIDTH KATAKANA LETTER A..HALFWIDTH KATAK
 0CAA..0CB3    ; ALetter # Lo  [10] KANNADA LETTER PA..KANNADA LETTER LLA
 0CB5..0CB9    ; ALetter # Lo   [5] KANNADA LETTER VA..KANNADA LETTER HA
 0CBD          ; ALetter # Lo       KANNADA SIGN AVAGRAHA
-0CDC..0CDE    ; ALetter # Lo   [3] KANNADA ARCHAIC SHRII..KANNADA LETTER FA
+0CDD..0CDE    ; ALetter # Lo   [2] KANNADA LETTER NAKAARA POLLU..KANNADA LETTER FA
 0CE0..0CE1    ; ALetter # Lo   [2] KANNADA LETTER VOCALIC RR..KANNADA LETTER VOCALIC LL
 0CF1..0CF2    ; ALetter # Lo   [2] KANNADA SIGN JIHVAMULIYA..KANNADA SIGN UPADHMANIYA
 0D04..0D0C    ; ALetter # Lo   [9] MALAYALAM LETTER VEDIC ANUSVARA..MALAYALAM LETTER VOCALIC L
@@ -1356,7 +1356,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 33794
+# Total code points: 33792
 
 # ================================================
 
@@ -1382,14 +1382,12 @@ FF1A          ; MidLetter # Po       FULLWIDTH COLON
 066C          ; MidNum # Po       ARABIC THOUSANDS SEPARATOR
 07F8          ; MidNum # Po       NKO COMMA
 2044          ; MidNum # Sm       FRACTION SLASH
-FE10          ; MidNum # Po       PRESENTATION FORM FOR VERTICAL COMMA
-FE14          ; MidNum # Po       PRESENTATION FORM FOR VERTICAL SEMICOLON
 FE50          ; MidNum # Po       SMALL COMMA
 FE54          ; MidNum # Po       SMALL SEMICOLON
 FF0C          ; MidNum # Po       FULLWIDTH COMMA
 FF1B          ; MidNum # Po       FULLWIDTH SEMICOLON
 
-# Total code points: 15
+# Total code points: 13
 
 # ================================================
 

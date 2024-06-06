@@ -46,10 +46,12 @@ public abstract class UnicodeTransform implements Transform<String, String> {
     public boolean isTransformed(String source) {
         return source.equals(transform(source));
     }
+
     /** Can be overridden for performance. */
     public String transform(int source) {
         return transform(UTF16.valueOf(source));
     }
+
     /** Can be overridden for performance. */
     public boolean isTransformed(int source) {
         return isTransformed(UTF16.valueOf(source));

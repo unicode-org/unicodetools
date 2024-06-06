@@ -453,6 +453,8 @@ public class TestSecurity extends TestFmwkMinusMinus {
         Set<Set<Script_Values>> expected = new HashSet<>();
         String[][] tests = {
             {"℮", "Common"},
+            {"1ℓ ℮", "Common"},
+            {"75 cl ℮", "Latin"},
             {"ցօօց1℮", "Armenian"},
             {"ցօօց1℮ー", "Armenian; Japanese"},
             {"ー", "Japanese"},
@@ -460,8 +462,8 @@ public class TestSecurity extends TestFmwkMinusMinus {
             {"\u303C", "Han, Korean, Japanese"},
             {"\u303Cー", "Japanese"},
             {"\u303CA", "Latin; Han, Korean, Japanese"},
-            {"\u0300", "Common"},
-            {"\u0300.", "Common"},
+            {"\u0300", "Cherokee, Coptic, Cyrillic, Greek, Latin, Old_Permic, Sunuwar, Tai_Le"},
+            {"\u0300.", "Cherokee, Coptic, Cyrillic, Greek, Latin, Old_Permic, Sunuwar, Tai_Le"},
             {"a\u0300", "Latin"},
             {"ä", "Latin"},
         };
@@ -524,9 +526,9 @@ public class TestSecurity extends TestFmwkMinusMinus {
             {"⼒", Status.SAME}, // KANGXI RADICAL POWER
             {"力", Status.SAME}, // CJK UNIFIED IDEOGRAPH-529B
             {"!", Status.SAME, Status.OTHER},
-            {"\u0300", Status.SAME},
+            {"\u0300", Status.COMMON},
             {"a\u0300", Status.SAME, Status.COMMON, Status.OTHER},
-            {"ä", Status.SAME, Status.COMMON, Status.OTHER},
+            {"ä", Status.SAME, Status.OTHER},
             {"idSet", "[[:L:][:M:][:N:]-[:nfkcqc=n:]]"}, // a typical identifier set
             {"google", Status.SAME},
             {"ցօօց1℮", Status.OTHER},
