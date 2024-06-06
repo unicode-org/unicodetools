@@ -1433,6 +1433,14 @@ public class UcdPropertyValues {
     // kDaeJaweon
     // kDefinition
     // kEACC
+    // kEH_Cat
+    // kEH_Desc
+    // kEH_Func
+    // kEH_FVal
+    // kEH_HG
+    // kEH_IFAO
+    // kEH_JSesh
+    // kEH_UniK
     // kFanqie
     // kFenn
     // kFennIndex
