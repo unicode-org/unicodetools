@@ -42,6 +42,7 @@ public class UCDXMLWriter {
         transformerHandler.startDocument ();
         char[] c = "\n".toCharArray ();
         transformerHandler.characters (c, 0, c.length);
+        //TODO: JRW change hardcoded 2023 to current year.
         c = " \u00A9 2023 Unicode\u00AE, Inc. ".toCharArray ();
         transformerHandler.comment (c, 0, c.length);
         c = "\n".toCharArray ();
