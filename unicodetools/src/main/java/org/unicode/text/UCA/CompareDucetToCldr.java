@@ -241,6 +241,7 @@ public class CompareDucetToCldr {
             secondary = parseInt2;
             tertiary = parseInt2;
         }
+
         // 0EC4 0E9C ;  [.24BE.0020.0002.0E9C][.24DC.0020.001F.0EC4]
         static WeightList parse(String input) {
             final List<Weight> result = new ArrayList<Weight>();

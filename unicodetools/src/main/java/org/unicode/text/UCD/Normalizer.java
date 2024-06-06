@@ -288,7 +288,12 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
     }
 
     public boolean isTrailing(int cp) {
-        return composition ? data.isTrailing(cp) : false;
+        if (!composition) {
+            return false;
+        }
+        var buffer = new StringBuffer();
+        data.getRecursiveDecomposition(cp, buffer, compatibility);
+        return data.isTrailing(buffer.codePointAt(0));
     }
 
     public boolean isLeading(int cp) {

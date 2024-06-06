@@ -73,6 +73,7 @@ public final class UcdLineParser implements Iterable<UcdLineParser.UcdLine> {
         private final boolean withRange;
         private final boolean withMissing;
         private final Iterator<String> rawLines;
+
         /** Code points covered by @missing lines for less than all of Unicode. */
         private final UnicodeSet missingSet = new UnicodeSet();
 
@@ -210,6 +211,7 @@ public final class UcdLineParser implements Iterable<UcdLineParser.UcdLine> {
         public IntRange getRange() {
             return intRange;
         }
+
         /**
          * @return Code points covered by @missing lines for less than all of Unicode.
          */
