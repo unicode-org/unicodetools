@@ -219,6 +219,7 @@ public class TestFmwkMinusMinus {
         System.err.println("UNICODETOOLS_VERBOSE=" + verbose);
         System.err.println("UNICODETOOLS_RUN_BROKEN_TEST=" + runBroken);
     }
+
     /**
      * set property: UNICODETOOLS_INCLUSION 0 = fewest tests, 5 is normal build (default), 10 is
      * most tests

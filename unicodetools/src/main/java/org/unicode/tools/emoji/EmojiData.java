@@ -170,6 +170,7 @@ public class EmojiData implements EmojiDataSource {
         Emoji_Component,
         Extended_Pictographic
     }
+
     // 0023 ; Emoji # [1] (#️) NUMBER SIGN
     // 231A..231B ; Emoji_Presentation # [2] (⌚️..⌛️) WATCH..HOURGLASS
     // 1F3FB..1F3FF ; Emoji_Modifier
@@ -1318,6 +1319,18 @@ public class EmojiData implements EmojiDataSource {
             String source, boolean toLower, Transform<String, String> otherNameSource) {
         if (source.contains(DEBUG_STRING)) {
             int debug = 0;
+        }
+        // workaround: preserve skin tones for direction ZWJ sequences
+        String trimmed = source.replace(UTF16.valueOf(Emoji.EMOJI_VARIANT), "");
+        if (trimmed.endsWith(Emoji.JOINER_STR + UTF16.valueOf(0x27A1))) {
+            trimmed = trimmed.replace(Emoji.JOINER_STR + UTF16.valueOf(0x27A1), "");
+            String name = _getName(trimmed, toLower, otherNameSource);
+            if (name != null) {
+                String[] components = name.split(":");
+                components[0] += " facing right";
+                name = String.join(":", components);
+                return name;
+            }
         }
         String name = ANNOTATION_SET.getShortName(source, otherNameSource);
         if (name != null) {
