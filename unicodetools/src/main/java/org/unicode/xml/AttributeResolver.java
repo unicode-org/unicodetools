@@ -1,7 +1,6 @@
 package org.unicode.xml;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.util.VersionInfo;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.*;
 
@@ -99,11 +98,11 @@ public class AttributeResolver {
     }
 
     private enum AliasType {
-        ABBREVIATION ("abbreviation"),
-        ALTERNATE ("alternate"),
-        CONTROL ("control"),
-        CORRECTION ("correction"),
-        FIGMENT ("figment");
+        ABBREVIATION("abbreviation"),
+        ALTERNATE("alternate"),
+        CONTROL("control"),
+        CORRECTION("correction"),
+        FIGMENT("figment");
 
         private final String aliasType;
 
@@ -129,6 +128,7 @@ public class AttributeResolver {
         public String getAlias() {
             return alias;
         }
+
         public AliasType getType() {
             return type;
         }
@@ -154,15 +154,14 @@ public class AttributeResolver {
             String[] parts = line.getParts();
             int codepoint = Integer.parseInt(parts[0], 16);
             NameAlias nameAlias = new NameAlias(
-                    parts[1], AliasType.valueOf(parts[2].toUpperCase()));
+                    parts[1], AliasType.valueOf(parts[2].toUpperCase(Locale.ROOT)));
 
             if (nameAliasesByCodepoint.containsKey(codepoint)) {
                 LinkedList<NameAlias> nameAliases = new LinkedList<>(nameAliasesByCodepoint.get(codepoint));
                 nameAliases.add(nameAlias);
                 nameAliases.sort(nameAliasComparator);
                 nameAliasesByCodepoint.replace(codepoint, nameAliases);
-            }
-            else {
+            } else {
                 nameAliasesByCodepoint.put(codepoint, new LinkedList<>(List.of(nameAlias)));
             }
         }
@@ -171,9 +170,9 @@ public class AttributeResolver {
 
     public String getAttributeValue(UcdProperty prop, int codepoint) {
         String resolvedValue = indexUnicodeProperties.getResolvedValue(prop, codepoint);
-        switch(prop.getType()) {
+        switch (prop.getType()) {
             case Numeric:
-                switch(prop) {
+                switch (prop) {
                     case kOtherNumeric:
                     case kPrimaryNumeric:
                     case kAccountingNumeric:
@@ -182,7 +181,7 @@ public class AttributeResolver {
                         return Optional.ofNullable(resolvedValue).orElse("NaN");
                 }
             case String:
-                switch(prop) {
+                switch (prop) {
                     case Equivalent_Unified_Ideograph:
                         String EqUIdeo = getMappingValue(codepoint, resolvedValue, false, "");
                         return (EqUIdeo.equals("#")) ? null : EqUIdeo;
@@ -191,51 +190,51 @@ public class AttributeResolver {
                         return (kCompatibilityVariant.equals("#")) ? "" : kCompatibilityVariant;
                     case kSimplifiedVariant:
                     case kTraditionalVariant:
-                        String kVariant = getMappingValue(codepoint, resolvedValue, isUnihanAttributeRange(codepoint), "U+");
+                        String kVariant = getMappingValue(codepoint, resolvedValue, isUnihanAttributeRange(codepoint)
+                                , "U+");
                         return (kVariant.equals("#")) ? "" : kVariant;
                     case Bidi_Mirroring_Glyph:
-                        //TODO: Question for PAG - This is probably not the desired behavior, but adding this case to maintain consistent output.
-                        // Check the spec. But otherwise keep consistent. Update this comment to indicate why.
+                        //Returning empty string for bmg to maintain compatibility with older generated files.
                         String bmg = getMappingValue(codepoint, resolvedValue, false, "");
                         return (bmg.equals("#")) ? "" : bmg;
                     default:
                         return getMappingValue(codepoint, resolvedValue, false, "");
                 }
             case Miscellaneous:
-                switch(prop) {
+                switch (prop) {
                     case Jamo_Short_Name:
                         //return map_jamo_short_name.get(codepoint).getShortName();
                         return Optional.ofNullable(resolvedValue).orElse("");
                     case Name:
-                        if(resolvedValue != null && resolvedValue.startsWith("CJK UNIFIED IDEOGRAPH-")) {
+                        if (resolvedValue != null && resolvedValue.startsWith("CJK UNIFIED IDEOGRAPH-")) {
                             return "CJK UNIFIED IDEOGRAPH-#";
                         }
-                        if(resolvedValue != null && resolvedValue.startsWith("CJK COMPATIBILITY IDEOGRAPH-")) {
+                        if (resolvedValue != null && resolvedValue.startsWith("CJK COMPATIBILITY IDEOGRAPH-")) {
                             return "CJK COMPATIBILITY IDEOGRAPH-#";
                         }
-                        if(resolvedValue != null && resolvedValue.startsWith("TANGUT IDEOGRAPH-")) {
+                        if (resolvedValue != null && resolvedValue.startsWith("TANGUT IDEOGRAPH-")) {
                             return "TANGUT IDEOGRAPH-#";
                         }
-                        if(resolvedValue != null && resolvedValue.startsWith("KHITAN SMALL SCRIPT CHARACTER-")) {
+                        if (resolvedValue != null && resolvedValue.startsWith("KHITAN SMALL SCRIPT CHARACTER-")) {
                             return "KHITAN SMALL SCRIPT CHARACTER-#";
                         }
-                        if(resolvedValue != null && resolvedValue.startsWith("NUSHU CHARACTER-")) {
+                        if (resolvedValue != null && resolvedValue.startsWith("NUSHU CHARACTER-")) {
                             return "NUSHU CHARACTER-#";
                         }
-                        if(resolvedValue != null && resolvedValue.startsWith("EGYPTIAN HIEROGLYPH-")) {
+                        if (resolvedValue != null && resolvedValue.startsWith("EGYPTIAN HIEROGLYPH-")) {
                             return "EGYPTIAN HIEROGLYPH-#";
                         }
                         return Optional.ofNullable(resolvedValue).orElse("");
                     case kDefinition:
                         return resolvedValue;
                     default:
-                        if (resolvedValue!= null) {
+                        if (resolvedValue != null) {
                             return resolvedValue.replaceAll("\\|", " ");
                         }
                         return "";
                 }
             case Catalog:
-                switch(prop) {
+                switch (prop) {
                     case Age:
                         String age = map_age.get(codepoint).getShortName();
                         return (age.equals("NA")) ? "unassigned" : age;
@@ -245,7 +244,7 @@ public class AttributeResolver {
                         return map_script.get(codepoint).getShortName();
                     case Script_Extensions:
                         StringBuilder extensionBuilder = new StringBuilder();
-                        String[] extensions =  map_script_extensions.get(codepoint).split("\\|", 0);
+                        String[] extensions = map_script_extensions.get(codepoint).split("\\|", 0);
                         for (String extension : extensions) {
                             extensionBuilder.append(UcdPropertyValues.Script_Values.valueOf(extension).getShortName());
                             extensionBuilder.append(" ");
@@ -255,7 +254,7 @@ public class AttributeResolver {
                         throw new RuntimeException("Missing Catalog case");
                 }
             case Enumerated:
-                switch(prop) {
+                switch (prop) {
                     case Bidi_Class:
                         return map_bidi_class.get(codepoint).getShortName();
                     case Bidi_Paired_Bracket_Type:
@@ -263,9 +262,8 @@ public class AttributeResolver {
                     case Canonical_Combining_Class:
                         return map_canonical_combining_class.get(codepoint).getShortName();
                     case Decomposition_Type:
-                        //TODO: Question for PAG - This is probably not the desired behavior, but specifying lower case to maintain consistent output.
-                        // Check the spec. But otherwise keep consistent. Update this comment to indicate why.
-                        return map_decomposition_type.get(codepoint).getShortName().toLowerCase();
+                        //Returning lower case to maintain compatibility with older generated files.
+                        return map_decomposition_type.get(codepoint).getShortName().toLowerCase(Locale.ROOT);
                     case Do_Not_Emit_Type:
                         return map_do_not_emit_type.get(codepoint).getShortName();
                     case East_Asian_Width:
@@ -317,9 +315,8 @@ public class AttributeResolver {
                     default:
                         throw new RuntimeException("Missing Enumerated case");
                 }
-            case Binary:
-            {
-                switch(resolvedValue) {
+            case Binary: {
+                switch (resolvedValue) {
                     // Seems overkill to get this from UcdPropertyValues.Binary
                     case "No":
                         return "N";
@@ -385,7 +382,7 @@ public class AttributeResolver {
     }
 
     private static String getCPString(int codepoint) {
-        return String.format("%4s", Integer.toHexString(codepoint)).replace(" ", "0").toUpperCase();
+        return String.format("%4s", Integer.toHexString(codepoint)).replace(" ", "0").toUpperCase(Locale.ROOT);
     }
 
     public String getHexString(int codepoint) {

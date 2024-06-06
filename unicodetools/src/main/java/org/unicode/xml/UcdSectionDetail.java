@@ -9,13 +9,18 @@ import java.util.Set;
 public class UcdSectionDetail {
 
     public enum UcdSection {
-        BLOCKS ("blocks", "block", VersionInfo.getInstance(1, 1, 0), null, Blocks_Detail, true, true),
-        CJKRADICALS ("cjk-radicals", "cjk-radical", VersionInfo.getInstance(1, 1, 0), null, CJKRadicals_Detail, false, false),
-        DONOTEMIT ("do-not-emit", "instead", VersionInfo.getInstance(16, 0, 0), null, DoNotEmit_Detail, false, false),
-        EMOJISOURCES ("emoji-sources", "emoji-source", VersionInfo.getInstance(1, 1, 0), null, EmojiSources_Detail, true, false),
-        NAMEDSEQUENCES ("named-sequences", "named-sequence", VersionInfo.getInstance(1, 1, 0), null, NamedSequences_Detail, false, false),
-        NORMALIZATIONCORRECTIONS ("normalization-corrections", "normalization-correction", VersionInfo.getInstance(1, 1, 0), null, NormalizationCorrections_Detail, true, false),
-        STANDARDIZEDVARIANTS ("standardized-variants", "standardized-variant", VersionInfo.getInstance(1, 1, 0), null, StandardizedVariants_Detail, true, false);
+        BLOCKS("blocks", "block", VersionInfo.getInstance(1, 1, 0), null, Blocks_Detail, true, true),
+        CJKRADICALS("cjk-radicals", "cjk-radical", VersionInfo.getInstance(1, 1, 0), null, CJKRadicals_Detail, false,
+                false),
+        DONOTEMIT("do-not-emit", "instead", VersionInfo.getInstance(16, 0, 0), null, DoNotEmit_Detail, false, false),
+        EMOJISOURCES("emoji-sources", "emoji-source", VersionInfo.getInstance(1, 1, 0), null, EmojiSources_Detail,
+                true, false),
+        NAMEDSEQUENCES("named-sequences", "named-sequence", VersionInfo.getInstance(1, 1, 0), null,
+                NamedSequences_Detail, false, false),
+        NORMALIZATIONCORRECTIONS("normalization-corrections", "normalization-correction", VersionInfo.getInstance(1,
+                1, 0), null, NormalizationCorrections_Detail, true, false),
+        STANDARDIZEDVARIANTS("standardized-variants", "standardized-variant", VersionInfo.getInstance(1, 1, 0), null,
+                StandardizedVariants_Detail, true, false);
         private final String tag;
         private final String childTag;
         private final VersionInfo minVersion;
@@ -44,20 +49,30 @@ public class UcdSectionDetail {
         public String toString() {
             return tag;
         }
+
         public String getChildTag() {
             return childTag;
         }
+
         public VersionInfo getMinVersion() {
             return minVersion;
         }
+
         public VersionInfo getMaxVersion() {
             return maxVersion;
         }
+
         public UcdSectionDetail getUcdSectionDetail() {
             return ucdSectionDetail;
         }
-        public boolean getParserWithRange() { return parserWithRange; }
-        public boolean getParserWithMissing() { return parserWithMissing; }
+
+        public boolean getParserWithRange() {
+            return parserWithRange;
+        }
+
+        public boolean getParserWithMissing() {
+            return parserWithMissing;
+        }
     }
 
     public static UcdSectionDetail Blocks_Detail = new UcdSectionDetail(
@@ -144,9 +159,11 @@ public class UcdSectionDetail {
     public UcdSection getSection() {
         return this.ucdSection;
     }
+
     public UcdSectionComponent[] getUcdSectionComponents() {
         return this.ucdSectionComponents;
     }
+
     public int getSortOrder() {
         return this.sortOrder;
     }
