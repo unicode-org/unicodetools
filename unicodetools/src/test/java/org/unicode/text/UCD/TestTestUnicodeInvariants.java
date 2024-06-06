@@ -31,13 +31,22 @@ public class TestTestUnicodeInvariants {
 
     @Test
     void testUnicodeInvariants() throws IOException {
-        int rc = TestUnicodeInvariants.testInvariants(null, true);
+        int rc = TestUnicodeInvariants.testInvariants(null, null, true);
         assertEquals(0, rc, "TestUnicodeInvariants.testInvariants(default) failed");
     }
 
     @Test
+    void testAdditionComparisons() throws IOException {
+        int rc =
+                TestUnicodeInvariants.testInvariants(
+                        "AdditionComparisons.txt", "addition-comparisons", true);
+        assertEquals(0, rc, "TestUnicodeInvariants.testInvariants(addition-comparisons) failed");
+    }
+
+    @Test
     void testSecurityInvariants() throws IOException {
-        int rc = TestUnicodeInvariants.testInvariants("SecurityInvariantTest.txt", true);
+        int rc =
+                TestUnicodeInvariants.testInvariants("SecurityInvariantTest.txt", "security", true);
         assertEquals(0, rc, "TestUnicodeInvariants.testInvariants(security) failed");
     }
 }
