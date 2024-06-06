@@ -28,7 +28,6 @@ public class VersionedProperty {
     // Maps custom names to versions.  For the versions covered by this map, no
     // other names are permitted, so if this contains "16.0.0β"↦"16.0.0" but not
     // "16.0.0"↦"16.0.0", "U16.0.0:General_Category" is rejected.
-    // TODO(egg): This does not actually work!
     private Map<String, String> versionAliases = new TreeMap<>();
 
     private VersionedProperty() {}
@@ -97,8 +96,13 @@ public class VersionedProperty {
                 version = aliased;
             } else {
                 version = names[0].substring(1);
-                if (versionAliases.containsValue(version)) {
-                    throw new IllegalArgumentException("Invalid version " + version);
+                if (versionAliases.containsValue(
+                        VersionInfo.getInstance(version).getVersionString(3, 3))) {
+                    throw new IllegalArgumentException(
+                            "Unreleased version "
+                                    + version
+                                    + "; use suffix: "
+                                    + String.join(", ", versionAliases.keySet()));
                 }
             }
             xPropertyName = names[1];
