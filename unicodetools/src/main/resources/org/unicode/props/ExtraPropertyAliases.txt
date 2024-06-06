@@ -166,6 +166,13 @@ cjkVietnameseNumeric     ; kVietnameseNumeric
 cjkZhuangNumeric         ; kZhuangNumeric
 # 16.0
 cjkFanqie                ; kFanqie
+
+kTGT_MergedSrc           ; kTGT_MergedSrc
+kRSTUnicode              ; kRSTUnicode
+
+kSrc_NushuDuben          ; kSrc_NushuDuben
+kReading                 ; kReading
+
 kEH_Cat                  ; kEH_Cat
 kEH_Desc                 ; kEH_Desc
 kEH_Func                 ; kEH_Func

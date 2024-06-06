@@ -199,6 +199,11 @@ Do_Not_Emit_Type ; Deprecated               ; Deprecated
 Do_Not_Emit_Type ; Discouraged              ; Discouraged
 Do_Not_Emit_Type ; Preferred_Spelling       ; Preferred_Spelling
 
+# @missing: 0000..10FFFF; kTGT_MergedSrc ; <none>
+# @missing: 0000..10FFFF; kRSTUnicode ; <none>
+
+# @missing: 0000..10FFFF; kSrc_NushuDuben ; <none>
+# @missing: 0000..10FFFF; kReading ; <none>
 
 # @missing: 0000..10FFFF; kEH_Cat ; <none>
 # @missing: 0000..10FFFF; kEH_Desc ; <none>
