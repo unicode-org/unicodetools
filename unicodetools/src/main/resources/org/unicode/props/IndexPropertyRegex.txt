@@ -178,28 +178,9 @@ kKoreanEducationHanja ;       MULTI_VALUED ;                 20[0-9]{2}
 kKoreanName ;                 MULTI_VALUED ;                 (20[0-9]{2})(:U\+2?[0-9A-F]{4})*
 kTGH ;                        MULTI_VALUED ;                 20[0-9]{2}:[1-9][0-9]{0,3}
 
+
 kIRG_UKSource ;               SINGLE_VALUED ;                V[0-4]-[0-9A-F]{4}
 kIRG_SSource ;                SINGLE_VALUED ;                V[0-4]-[0-9A-F]{4}
-
-# Unihan properties from 13.0 and later.  No regexes for now.
-# TODO(egg): We should automate the updating of the regexes from UAX #38.
-kSpoofingVariant ; MULTI_VALUED ; .*
-kTGHZ2013        ; MULTI_VALUED ; .*
-kUnihanCore2020  ; SINGLE_VALUED ; .*
-# 14.0
-kStrange ; MULTI_VALUED ; .*
-# 15.0
-kAlternateTotalStrokes ; MULTI_VALUED ; .*
-# 15.1
-kJapanese ; MULTI_VALUED ; .*
-kMojiJoho ; MULTI_VALUED ; .*
-kSMSZD2003Index ; MULTI_VALUED ; .*
-kSMSZD2003Readings ; MULTI_VALUED ; .*
-kVietnameseNumeric ; MULTI_VALUED ; .*
-kZhuangNumeric ; MULTI_VALUED ; .*
-# 16.0
-kFanqie ; MULTI_VALUED ; .*
-kZhuang ; MULTI_VALUED ; .*
 
 kSrc_NushuDuben ;             SINGLE_VALUED ;                [0-9]+\.[0-9]+
 kReading ;                    SINGLE_VALUED ;                [a-z]{1,6}[1-6]+
@@ -231,8 +212,8 @@ Confusable_SA ;               SINGLE_VALUED ;                $codePoints
 Confusable_ML ;               SINGLE_VALUED ;                $codePoints
 Confusable_MA ;               SINGLE_VALUED ;                $codePoints
 
-#Emoji ;                       SINGLE_VALUED ;                <enum>
-#Emoji_Presentation ;          SINGLE_VALUED ;                <enum>
-#Emoji_Modifier ;              SINGLE_VALUED ;                <enum>
-#Emoji_Modifier_Base ;         SINGLE_VALUED ;                <enum>
+#Emoji					;	SINGLE_VALUED	;				<enum>
+#Emoji_Presentation		;	SINGLE_VALUED	;				<enum>
+#Emoji_Modifier			;	SINGLE_VALUED	;				<enum>
+#Emoji_Modifier_Base 	;	SINGLE_VALUED	;				<enum>
 

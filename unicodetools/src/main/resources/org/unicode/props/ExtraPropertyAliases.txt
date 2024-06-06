@@ -161,10 +161,10 @@ cjkJoyoKanji ; kJoyoKanji
 cjkKoreanEducationHanja ; kKoreanEducationHanja
 cjkKoreanName ; kKoreanName
 cjkTGH ; kTGH
-kRSTUnicode ; kRSTUnicode
-kReading ; kReading
-kSrc_NushuDuben ; kSrc_NushuDuben
-kTGT_MergedSrc ; kTGT_MergedSrc
+cjkRSTUnicode ; kRSTUnicode
+cjkReading ; kReading
+cjkSrc_NushuDuben ; kSrc_NushuDuben
+cjkTGT_MergedSrc ; kTGT_MergedSrc
 ncCorrected ; NC_Corrected
 ncOriginal ; NC_Original
 ncVersion ; NC_Version
@@ -185,7 +185,7 @@ cjkVietnameseNumeric     ; kVietnameseNumeric
 cjkZhuangNumeric         ; kZhuangNumeric
 # 16.0
 cjkFanqie                ; kFanqie
-cjkZhuang                ; kZhuang
+<<<<<<< HEAD
 
 kTGT_MergedSrc           ; kTGT_MergedSrc
 kRSTUnicode              ; kRSTUnicode
@@ -196,3 +196,6 @@ kReading                 ; kReading
 kEH_Func                 ; kEH_Func
 kEH_FVal                 ; kEH_FVal
 kEH_UniK                 ; kEH_UniK
+=======
+cjkZhuang                ; kZhuang
+>>>>>>> 2f297052 (Initial checkin for UcdXML)
