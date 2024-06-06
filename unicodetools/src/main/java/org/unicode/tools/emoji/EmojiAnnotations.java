@@ -52,6 +52,7 @@ public class EmojiAnnotations extends Birelation<String, String> {
 
     public static final EmojiAnnotations ANNOTATIONS_TO_CHARS =
             new EmojiAnnotations("en", EmojiOrder.STD_ORDER.codepointCompare);
+
     /**
      * @deprecated Use {@link #EmojiAnnotations(String,Comparator<String>,String...)} instead
      */
@@ -97,18 +98,7 @@ public class EmojiAnnotations extends Birelation<String, String> {
             } else if (outShortName.value.contains(Annotations.BAD_MARKER)) {
                 status = Status.gender;
             }
-            // workaround: 15.1 sequences have commas instead of pipes
-            Set<String> dataKeywords = new LinkedHashSet<String>();
-            for (String k : annotationData.getKeywords(s)) {
-                if (k.contains(",") && !k.contains("family")) {
-                    for (String piece : k.split(",")) {
-                        dataKeywords.add(piece.trim());
-                    }
-                    continue;
-                }
-                dataKeywords.add(k);
-            }
-            keywords.addAll(dataKeywords);
+            keywords.addAll(annotationData.getKeywords(s));
             if (keywords.isEmpty()) {
                 status = Status.missing; // incomplete
             }

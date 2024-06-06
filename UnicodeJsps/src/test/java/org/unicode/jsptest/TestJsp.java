@@ -666,6 +666,7 @@ public class TestJsp extends TestFmwkMinusMinus {
                 false,
                 actual);
     }
+
     //         return handleAssert(expected == actual, message, stringFor(expected),
     // stringFor(actual), "==", false);
 
@@ -757,6 +758,7 @@ public class TestJsp extends TestFmwkMinusMinus {
                 "sc gc",
                 "",
                 UnicodeSetUtilities.parseUnicodeSet("[:subhead=/Syllables/:]"),
+                false,
                 true,
                 true,
                 true,
@@ -767,6 +769,7 @@ public class TestJsp extends TestFmwkMinusMinus {
                 "subhead",
                 "",
                 UnicodeSetUtilities.parseUnicodeSet("[:subhead=/Syllables/:]"),
+                false,
                 true,
                 true,
                 true,
@@ -789,17 +792,26 @@ public class TestJsp extends TestFmwkMinusMinus {
                     "sc gc",
                     "",
                     new UnicodeSet("[[:ascii:]{123}{ab}{456}]"),
+                    false,
                     true,
                     true,
                     true,
                     printWriter);
 
             UnicodeJsp.showSet(
-                    "", "", new UnicodeSet("[\\u0080\\U0010FFFF]"), true, true, true, printWriter);
+                    "",
+                    "",
+                    new UnicodeSet("[\\u0080\\U0010FFFF]"),
+                    false,
+                    true,
+                    true,
+                    true,
+                    printWriter);
             UnicodeJsp.showSet(
                     "",
                     "",
                     new UnicodeSet("[\\u0080\\U0010FFFF{abc}]"),
+                    false,
                     true,
                     true,
                     true,
@@ -808,6 +820,7 @@ public class TestJsp extends TestFmwkMinusMinus {
                     "",
                     "",
                     new UnicodeSet("[\\u0080-\\U0010FFFF{abc}]"),
+                    false,
                     true,
                     true,
                     true,
@@ -823,7 +836,7 @@ public class TestJsp extends TestFmwkMinusMinus {
 
             final UnicodeSet unicodeSet = new UnicodeSet();
             logln("simple: " + UnicodeJsp.getSimpleSet("[a-bm-p\uAc00]", unicodeSet, true, false));
-            UnicodeJsp.showSet("", "", unicodeSet, true, true, true, printWriter);
+            UnicodeJsp.showSet("", "", unicodeSet, false, true, true, true, printWriter);
 
             //    String archaic =
             // "[[\u018D\u01AA\u01AB\u01B9-\u01BB\u01BE\u01BF\u021C\u021D\u025F\u0277\u027C\u029E\u0343\u03D0\u03D1\u03D5-\u03E1\u03F7-\u03FB\u0483-\u0486\u05A2\u05C5-\u05C7\u066E\u066F\u068E\u0CDE\u10F1-\u10F6\u1100-\u115E\u1161-\u11FF\u17A8\u17D1\u17DD\u1DC0-\u1DC3\u3165-\u318E\uA700-\uA707\\U00010140-\\U00010174]" +
@@ -840,6 +853,7 @@ public class TestJsp extends TestFmwkMinusMinus {
                     UnicodeSetUtilities.parseUnicodeSet("[:hantype=/simp/:]"),
                     false,
                     false,
+                    false,
                     true,
                     printWriter);
         }
@@ -848,14 +862,14 @@ public class TestJsp extends TestFmwkMinusMinus {
     @Test
     public void TestShowProperties() throws IOException {
         StringWriter out = new StringWriter();
-        UnicodeJsp.showProperties(0x00C5, out);
+        UnicodeJsp.showProperties(0x00C5, "", false, out);
         assertTrue("props for character", out.toString().contains("Line_Break"));
         logln(out.toString());
         // logln(out);
     }
 
     public void TestIdentifiers() throws IOException {
-        String out = UnicodeUtilities.getIdentifier("Latin");
+        String out = UnicodeUtilities.getIdentifier("Latin", false);
         assertTrue("identifier info", out.toString().contains("U+016F"));
         logln(out.toString());
         // logln(out);
@@ -881,6 +895,7 @@ public class TestJsp extends TestFmwkMinusMinus {
                 "sc",
                 "",
                 UnicodeSetUtilities.parseUnicodeSet("[:script=/Han/:]"),
+                false,
                 false,
                 true,
                 true,

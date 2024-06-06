@@ -56,7 +56,7 @@ public class GenerateNormalizeForMatch {
     private static final Comparator<String> UCA;
 
     static {
-        org.unicode.text.UCA.UCA uca_raw = org.unicode.text.UCA.UCA.buildCollator(null);
+        org.unicode.text.UCA.UCA uca_raw = org.unicode.text.UCA.UCA.buildDucetCollator();
         //        uca_raw.setDecomposition(Collator.CANONICAL_DECOMPOSITION);
         UCA = new MultiComparator<String>((Comparator<String>) (Comparator<?>) uca_raw, CODEPOINT);
     }

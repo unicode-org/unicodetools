@@ -19,7 +19,7 @@ public class TestEmoji extends TestFmwk2 {
         String[] message = {""};
         UnicodeSet primary = UnicodeUtilities.parseSimpleSet("[:emoji:]", message);
         StringBuilder out = new StringBuilder();
-        UnicodeJsp.showSet("gc", "sc", primary, false, false, true, out);
+        UnicodeJsp.showSet("gc", "sc", primary, false, false, false, true, out);
         assertTrue("", out.toString().contains("ASCII"));
         logln(out.toString());
 

@@ -21,6 +21,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
@@ -37,6 +38,8 @@ import org.unicode.props.UcdPropertyValues.Line_Break_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.ValueCardinality;
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.Normalizer;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
@@ -215,32 +218,127 @@ public class TestProperties extends TestFmwkMinusMinus {
     }
 
     @Test
-    public void TestJoiningGroupConsistency() {
-        // TODO(egg): I would like to be able to put that in the invariants tests as « the partition
-        // defined by Joining_Group is finer than that defined by Joining_Type ».
-        UnicodeMap<String> joiningGroup = iup.load(UcdProperty.Joining_Group);
-        UnicodeMap<String> joiningType = iup.load(UcdProperty.Joining_Type);
-        var charactersByJoiningGroup = new HashMap<String, UnicodeSet>();
-        joiningGroup.addInverseTo(charactersByJoiningGroup).remove("No_Joining_Group");
-        charactersByJoiningGroup.forEach(
-                (group, set) -> {
-                    final int first = set.getRangeStart(0);
-                    final String firstType = joiningType.get(first);
-                    set.forEach(
-                            (c) -> {
-                                assertEquals(
-                                        "U+"
-                                                + getCodeAndName(Character.toString(first))
-                                                + "\nand\nU+"
-                                                + getCodeAndName(c)
-                                                + "\nhave different joining types but are in the"
-                                                + " same joining group ("
-                                                + group
-                                                + ")\n",
-                                        firstType,
-                                        joiningType.get(c));
-                            });
-                });
+    public void TestNFCQuickCheck() {
+        checkQuickCheckOnNormalizationTest(Default.nfc(), iup.load(UcdProperty.NFC_Quick_Check));
+    }
+
+    @Test
+    public void TestNFKCQuickCheck() {
+        checkQuickCheckOnNormalizationTest(Default.nfkc(), iup.load(UcdProperty.NFKC_Quick_Check));
+    }
+
+    private void checkQuickCheckOnNormalizationTest(
+            Normalizer normalizer, UnicodeMap<String> isAllowed) {
+        String normalizationTest =
+                org.unicode.text.utility.Utility.getMostRecentUnicodeDataFile(
+                        "NormalizationTest", GenerateEnums.ENUM_VERSION, true, false);
+        String partLine = null;
+        for (String line : FileUtilities.in("", normalizationTest)) {
+            line = line.trim();
+            if (line.startsWith("#")) {
+                continue;
+            }
+            if (line.startsWith("@Part")) {
+                partLine = line;
+                continue;
+            }
+            String[] parts = Arrays.copyOfRange(line.split(";"), 0, 5);
+            for (String part : parts) {
+                checkQuickCheck(
+                        normalizer,
+                        isAllowed,
+                        org.unicode.text.utility.Utility.fromHex(part),
+                        partLine);
+            }
+        }
+    }
+
+    private void checkQuickCheck(
+            Normalizer normalizer, UnicodeMap<String> isAllowed, String testCase, String context) {
+        if (testCase.equals(normalizer.normalize(testCase))) {
+            if (quickCheck(isAllowed, testCase) == NO) {
+                errln(
+                        normalizer.getName()
+                                + " quickCheck returns NO for normalized string "
+                                + Default.ucd().getName(testCase)
+                                + " ("
+                                + context
+                                + ")");
+            }
+        } else {
+            if (quickCheck(isAllowed, testCase) == YES) {
+                errln(
+                        normalizer.getName()
+                                + " quickCheck returns YES for non-normalized string "
+                                + Default.ucd().getName(testCase)
+                                + " ("
+                                + context
+                                + ")");
+            }
+        }
+    }
+
+    private static final int NO = 0, YES = 1, MAYBE = -1;
+
+    // From UAX #15.
+    private static int quickCheck(UnicodeMap<String> isAllowed, String source) {
+        short lastCanonicalClass = 0;
+        int result = YES;
+        for (int i = 0; i < source.length(); ++i) {
+            int ch = source.codePointAt(i);
+            if (Character.isSupplementaryCodePoint(ch)) ++i;
+            short canonicalClass = Default.ucd().getCombiningClass(ch);
+            if (lastCanonicalClass > canonicalClass && canonicalClass != 0) {
+                return NO;
+            }
+            String check = isAllowed.getValue(ch);
+            if (check.toUpperCase().equals("NO")) return NO;
+            if (check.toUpperCase().equals("MAYBE")) result = MAYBE;
+            lastCanonicalClass = canonicalClass;
+        }
+        return result;
+    }
+
+    @Test
+    public void TestNFCQuickCheckConsistency() {
+        UnicodeMap<String> nfcqc = iup.load(UcdProperty.NFC_Quick_Check);
+        UnicodeMap<String> dm = iup.load(UcdProperty.Decomposition_Mapping);
+        UnicodeMap<String> dt = iup.load(UcdProperty.Decomposition_Type);
+        for (String codepoint : nfcqc.getSet("Yes")) {
+            if (!dt.getValue(codepoint).equals("Canonical")) {
+                continue;
+            }
+            String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
+            String decompositionFirstNFCQC = nfcqc.getValue(decompositionFirst);
+            if (!decompositionFirstNFCQC.equals("Yes")) {
+                errln(
+                        "U+"
+                                + getCodeAndName(codepoint)
+                                + " has NFC_QC=Yes, but its (canonical) Decomposition_Mapping starts with U+"
+                                + getCodeAndName(decompositionFirst)
+                                + ", which has NFC_QC="
+                                + decompositionFirstNFCQC);
+            }
+        }
+    }
+
+    @Test
+    public void TestNFKCQuickCheckConsistency() {
+        UnicodeMap<String> nfkcqc = iup.load(UcdProperty.NFKC_Quick_Check);
+        UnicodeMap<String> dm = iup.load(UcdProperty.Decomposition_Mapping);
+        for (String codepoint : nfkcqc.getSet("Yes")) {
+            String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
+            String decompositionFirstNFKCQC = nfkcqc.getValue(decompositionFirst);
+            if (!decompositionFirstNFKCQC.equals("Yes")) {
+                errln(
+                        "U+"
+                                + getCodeAndName(codepoint)
+                                + " has NFKC_QC=Yes, but its Decomposition_Mapping starts with U+"
+                                + getCodeAndName(decompositionFirst)
+                                + ", which has NFKC_QC="
+                                + decompositionFirstNFKCQC);
+            }
+        }
     }
 
     @Test

@@ -72,6 +72,7 @@ public class Emoji {
      * can be used to do link-checks.
      */
     static final boolean ABBR = CldrUtility.getProperty("emoji-abbr", false);
+
     // static final boolean EMOJI_BUILD_VERSION = CldrUtility.getProperty("emoji-version", false);
 
     /**
@@ -90,6 +91,7 @@ public class Emoji {
      */
     public static final boolean USE_PROPOSED =
             true; // set to true between the release of Emoji 5.0 & Unicode 10.0. (or similar
+
     // situation)
 
     // Constants for versions
@@ -112,6 +114,7 @@ public class Emoji {
     public static final VersionInfo VERSION1 = VersionInfo.getInstance(1);
     public static final VersionInfo VERSION0_7 = VersionInfo.getInstance(0, 7);
     public static final VersionInfo VERSION0_6 = VersionInfo.getInstance(0, 6);
+
     // lic static final VersionInfo VERSION0_5 = VersionInfo.getInstance(0, 5, 2);
 
     // ALSO fix VersionToAge.java!
@@ -403,6 +406,7 @@ public class Emoji {
                 ImmutableSet.<Emoji.Source>builder()
                         .add(Source.SAMPLE_SOURCE)
                         .add(Source.proposed)
+                        .add(Source.ref) // B&W reference images
                         .build();
 
         private final String shortName;
@@ -789,6 +793,7 @@ public class Emoji {
         }
         return line;
     }
+
     //    private static final Transform<String,String> WINDOWS_URL = new Transform<String,String>()
     // {
     //        public String transform(String s) {
