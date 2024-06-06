@@ -630,6 +630,7 @@
 571E	U+571D<kXHC1983
 5722	U+753A<kMeyerWempe
 5723	U+8056<kMatthews,kMeyerWempe
+5729	U+589F<kPhonetic
 572C	U+6747<kMatthews,kMeyerWempe
 572D	U+73EA<kMatthews
 5746	U+58B3<kLau
@@ -683,6 +684,7 @@
 5888	U+78E1<kLau,kMatthews
 5896	U+5854<kFenn
 589D	U+78FD<kMatthews
+589F	U+5729<kPhonetic
 58A4	U+96A4<kMatthews,kMeyerWempe
 58AB	U+6A3D<kMatthews U+7F47<kMatthews
 58B0	U+7F48<kFenn U+58DC<kMatthews

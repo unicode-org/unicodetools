@@ -518,6 +518,7 @@ public class CountEmoji {
         public String toStringPlain() {
             return displayName;
         }
+
         /** added to make migration easier */
         public static Category getType(String s) {
             return getBucket(s);

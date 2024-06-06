@@ -18,6 +18,7 @@ import org.unicode.text.utility.Utility;
 public final class UnifiedBinaryProperty extends UCDProperty {
     int majorProp;
     int propValue;
+
     // DerivedProperty dp;
 
     public static UCDProperty make(int propMask) {
