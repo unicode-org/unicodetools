@@ -1233,7 +1233,7 @@ public class WriteCharts implements UCD_Types {
                     "any-addCircle", "([[:Mn:][:Me:]]) > \u25CC $1", Transliterator.FORWARD);
 
     public static void writeCompositionChart() throws IOException {
-        final UCA uca = new UCA(null, "", null);
+        final UCA uca = new UCA(null, "");
 
         final Set letters = new TreeSet();
         final Set marks = new TreeSet(uca);

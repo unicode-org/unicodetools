@@ -60,6 +60,7 @@ public class Segmenter {
      * debugging.
      */
     public static UnicodeSet DEBUG_REDUCE_SET_SIZE = null; // new
+
     // UnicodeSet("[\\u0000-\\u00FF\\u0300-\\u03FF\\u2000-\\u20FF]");
     // // new UnicodeSet("[\\u0000-\\u00FF\\u2000-\\u20FF]"); //
     // or null
@@ -135,6 +136,7 @@ public class Segmenter {
             BREAK_SOT = 0.2,
             BREAK_EOT = 0.3,
             BREAK_ANY = 999;
+
     /** Convenience for formatting doubles */
     public static NumberFormat nf = NumberFormat.getInstance(ULocale.ENGLISH);
 
@@ -1310,9 +1312,11 @@ public class Segmenter {
                     "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
                             + "<!DOCTYPE ldml SYSTEM \"../../common/dtd/ldml.dtd\">\n"
                             + "<!--\n"
-                            + "Copyright © 1991-2015 Unicode, Inc.\n"
-                            + "CLDR data files are interpreted according to the LDML specification (http://unicode.org/reports/tr35/)\n"
-                            + "For terms of use, see http://www.unicode.org/copyright.html\n"
+                            + "Copyright © 1991-"
+                            + Default.getYear()
+                            + " Unicode, Inc.\n"
+                            + "CLDR data files are interpreted according to the LDML specification (https://unicode.org/reports/tr35/)\n"
+                            + "For terms of use and license, see https://www.unicode.org/terms_of_use.html\n"
                             + "-->\n"
                             + "<ldml>\n"
                             + "\t<identity>\n"

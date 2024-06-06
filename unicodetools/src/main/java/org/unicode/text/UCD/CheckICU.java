@@ -224,6 +224,7 @@ public class CheckICU {
         bf.showSetNames(pw, new UnicodeSet(trailing).removeAll(leading));
         pw.close();
     }
+
     /*
     *                 int icuType;
                int toolType;
