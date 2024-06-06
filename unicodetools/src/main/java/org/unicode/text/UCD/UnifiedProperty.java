@@ -20,6 +20,7 @@ import org.unicode.text.utility.Utility;
 
 public final class UnifiedProperty extends UCDProperty {
     int majorProp;
+
     // DerivedProperty dp;
 
     public static UCDProperty make(int propMask) {

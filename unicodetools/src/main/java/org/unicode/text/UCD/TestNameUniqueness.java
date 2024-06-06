@@ -35,6 +35,7 @@ public class TestNameUniqueness implements UCD_Types {
         String line;
         BufferedReader br;
         String[] pieces = new String[3];
+
         /**
          * @return null when done
          */

@@ -170,6 +170,7 @@ public class EmojiData implements EmojiDataSource {
         Emoji_Component,
         Extended_Pictographic
     }
+
     // 0023 ; Emoji # [1] (#️) NUMBER SIGN
     // 231A..231B ; Emoji_Presentation # [2] (⌚️..⌛️) WATCH..HOURGLASS
     // 1F3FB..1F3FF ; Emoji_Modifier

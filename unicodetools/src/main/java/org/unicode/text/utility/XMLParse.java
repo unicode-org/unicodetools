@@ -365,6 +365,7 @@ public final class XMLParse implements XMLParseTypes {
         }
         return result;
     }
+
     // =================== PRIVATES =================================
 
     private static final char[] buf2 = new char[2];
