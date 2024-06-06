@@ -1655,6 +1655,7 @@ public class MakeUnicodeFiles {
                     return Double.compare(Double.parseDouble(o1), Double.parseDouble(o2));
                 }
             };
+
     /*
     private static void writeBinaryValues(
     PrintWriter pw,
@@ -1676,8 +1677,8 @@ public class MakeUnicodeFiles {
                 pw,
                 prop.getName(),
                 prop,
-                /*showPropName=*/ false,
-                prop.getFirstValueAlias(ps.skipValue));
+                /* showPropName= */ false,
+                ps.skipValue == null ? null : prop.getFirstValueAlias(ps.skipValue));
         var source = ToolUnicodePropertySource.make(Default.ucdVersion());
         UnicodeProperty generalCategory = source.getProperty("General_Category");
         UnicodeProperty block = source.getProperty("Block");
@@ -1694,13 +1695,17 @@ public class MakeUnicodeFiles {
                         block, new UnicodeProperty.MapFilter(ignoreBlocksInCJKVPlanes));
         UnicodeSet omitted =
                 generalCategory.getSet("Unassigned").retainAll(prop.getSet(ps.skipValue));
+        if (prop.getName().equals("Script_Extensions")) {
+            bf.setValueWidthOverride(30).setCountWidth(4);
+        } else {
+            bf.setMinSpacesBeforeSemicolon(1)
+                    .setValueWidthOverride(3)
+                    .setMinSpacesBeforeComment(0)
+                    .setCountWidth(7);
+        }
         bf.setValueSource(prop)
                 .setRangeBreakSource(blockOrIdeographicPlane)
-                .setMinSpacesBeforeSemicolon(1)
-                .setValueWidthOverride(3)
-                .setMinSpacesBeforeComment(0)
                 .setRefinedLabelSource(generalCategory)
-                .setCountWidth(7)
                 .setMergeRanges(ps.mergeRanges)
                 .setShowTotal(false)
                 .showSetNames(pw, new UnicodeSet(0, 0x10FFFF).removeAll(omitted));
@@ -1776,6 +1781,7 @@ public class MakeUnicodeFiles {
 
     static class RestoreSpacesFilter extends UnicodeProperty.StringFilter {
         String skipValue;
+
         /**
          * @param ps
          */

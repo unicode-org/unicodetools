@@ -416,6 +416,7 @@ public class EmojiFrequency {
                 countIndex = 3,
                 hexIndex = 4,
                 limitIndex = 5;
+
         // global: 1,    ߘ  ,[128514] ,3354042, ['0x1F602']
         // locale: ab_GE,    ߘ£  ,[128547]   ,24, ['0x1F623']
 
@@ -448,11 +449,13 @@ public class EmojiFrequency {
         private static final String FREQ_SOURCE = DATA_DIR + "/frequency/emoji/";
         // static Counter<String> counts = new Counter<>();
         static Map<String, CountInfo> localeToCountInfo = new LinkedHashMap<>();
+
         //        static Counter<String> countsRaw = new Counter<>();
         //        static Counter<String> countsWithoutFe0f = new Counter<>();
         private static long toAddAdjusted(String term, Long countWithFe0f, Long countWithoutFe0f) {
             return HACK_FE0F.contains(term) ? countWithFe0f * 4 : countWithoutFe0f;
         }
+
         // Android API Distribution
         // from sheet:
         static final Map<Integer, Double> yearToWeight =
@@ -697,6 +700,7 @@ public class EmojiFrequency {
             start,
             quote
         }
+
         // ab,cd => -1,2,5 that is, point before each comma
         private String line;
         private List<Integer> commaPoints = new ArrayList<>();

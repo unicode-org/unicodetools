@@ -5,7 +5,46 @@
 # High-Level exclusions
 [:^xid-continue:]; not-xid
 
-# remove combining marks that are not used in normal languages
+# Remove combining marks that are not used in normal languages.
+
+# PAG meeting 2024-04-18 before Unicode 16 beta:
+# [Mark]: Policy is that by default
+# new characters in scripts that are not Excluded or Limited Use,
+# are marked as Uncommon_Use & communicate to SEW
+# to ask if there are any exceptions (needed in customary modern widespread use).
+# ----
+# https://www.unicode.org/reports/tr31/#Table_Recommended_Scripts
+# ----
+# TODO: We should work our way backwards to
+# review Recommended characters added at least in Unicode 13, 14, 15, 15.1.
+
+# Possible data sources:
+# - character encoding proposal docs
+# - EGIDS = https://en.wikipedia.org/wiki/Expanded_Graded_Intergenerational_Disruption_Scale
+#   For ICANN work, according to Asmus:
+#   We found level 4, which has some institutional support,
+#   a good cutoff for assuming that the language (and therefore its writing system)
+#   is in everyday use in the community.
+#   However, for any language at that boundary, we always look for additional info,
+#   sometimes making exceptions for level 5.
+#   (Sometimes, research shows a language, while vigorous, is only used orally,
+#   so then we downgrade it for domain names).
+# - Data from icann.org/idn under Root Zone LGR (look for "proposal documents").
+#   Each proposal evaluates which languages written in the script are common enough to
+#   support top-level domain names.
+#   A machine readable version is found in the XML files for the current version of the RZ-LGR
+#  (each character is annotated with a reference identifying the language that requires it).
+# - ethnologue.com
+#
+# Asmus recommends for characters to be Recommended to look for positive evidence of
+# - large population
+# - stable, well supported language
+# - evidence it's (commonly) written in that script
+# - digitally supported
+# - not a specialized use in the writing system
+# One or the other factor, except 5, may be offset by other factors.
+# Consider whether the community conducts its business in writing in that language,
+# and if so, in that script.
 
 035C..0362 ; technical # subhead=Double diacritics
 
@@ -732,6 +771,15 @@ AB63; uncommon-use # LATIN SMALL LETTER UO
 # Question: should be default for anything new; add exceptions otherwise
 # \p{Age=13} ; uncommon_use
 
+# For Unicode 16, the following characters would become Recommended without these overrides.
+# They are all used in languages with EGIDS level 5 or higher.
+# 1C89..1C8A       [2] CYRILLIC CAPITAL LETTER TJE..CYRILLIC SMALL LETTER TJE
+# A7CB..A7CD       [3] LATIN CAPITAL LETTER RAMS HORN..LATIN SMALL LETTER S WITH DIAGONAL STROKE
+# A7DA..A7DC       [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER LAMBDA WITH STROKE
+# 10EC2..10EC4     [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+# 116D0..116E3    [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
+[\u1C89-\u1C8A \uA7CB-\uA7CD \uA7DA-\uA7DC \U00010EC2-\U00010EC4 \U000116D0-\U000116E3] ; uncommon_use
+
 # 19-329 Section 4
 0192	;	uncommon_use
 0199	;	uncommon_use
@@ -794,3 +842,7 @@ A7F5; Obsolete
 A7F6; Obsolete
 AB68; Technical
 
+# Unicode 16
+# UTC-179-C39: Change the Identifier_Type of A9CF to Limited_Use Uncommon_Use, removing Exclusion.
+# (A code fix removed Exclusion from Limited_Use characters, but adding Uncommon_Use needs an override.)
+A9CF; Limited_Use Uncommon_Use

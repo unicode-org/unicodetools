@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     <licenses>
         <license>
-            <name>Unicode-DFS-2016</name>
+            <name>Unicode-3.0</name>
         </license>
     </licenses>
 
@@ -26,7 +26,7 @@
             For ICU versions, see https://github.com/orgs/unicode-org/packages?repo_name=icu
             Note that we can't use the general ICU maven packages, because utilities isn't exported (yet).
          -->
-        <icu.version>72.0.1-SNAPSHOT-cldr-2022-08-17</icu.version>
+        <icu.version>76.0.1-SNAPSHOT</icu.version>
 
         <!--
              For CLDR versions, see https://github.com/orgs/unicode-org/packages?repo_name=cldr
@@ -47,7 +47,7 @@
         <!-- Need to use an updated surefire plugin here. -->
         <maven-surefire-plugin-version>3.0.0-M5</maven-surefire-plugin-version>
 
-        <spotless.version>2.22.5</spotless.version>
+        <spotless.version>2.43.0</spotless.version>
     </properties>
 
     <modules>
@@ -68,7 +68,7 @@
             <!-- icu -->
             <dependency>
                 <groupId>com.ibm.icu</groupId>
-                <artifactId>icu4j-for-cldr</artifactId>
+                <artifactId>icu4j</artifactId>
                 <version>${icu.version}</version>
             </dependency>
 
@@ -138,8 +138,9 @@
                             <!-- no need to specify files, inferred automatically, but you can if you want -->
                             <!-- apply a specific flavor of google-java-format and reflow long strings -->
                             <googleJavaFormat>
-                                <!-- version of google-java-style -->
-                                <version>1.15.0</version>
+                                <!-- version of google-java-style, see
+                                    https://mvnrepository.com/artifact/com.google.googlejavaformat/google-java-format -->
+                                <version>1.22.0</version>
                                 <style>AOSP</style>
                                 <reflowLongStrings>false</reflowLongStrings>
                             </googleJavaFormat>
