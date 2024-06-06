@@ -55,6 +55,18 @@ public class TestMultivalued extends TestFmwkMinusMinus {
         } catch (Exception e) {
             exceptionMessage = e.getMessage();
         }
+        assertContains("Expected exception", "The value 'beng,deva' is illegal.", exceptionMessage);
+    }
+
+    @Test
+    public void TestkHanyuPinyinMulti() {
+        String unicodeSetString = "\\p{kRSUnicode=35.6|66.6}";
+        String exceptionMessage = null;
+        try {
+            UnicodeSet parsed = UnicodeSetUtilities.parseUnicodeSet(unicodeSetString);
+        } catch (Exception e) {
+            exceptionMessage = e.getMessage();
+        }
         assertEquals(
                 "Expected exception",
                 "Multivalued property values can't contain the delimiter.",

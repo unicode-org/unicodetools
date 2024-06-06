@@ -12,8 +12,9 @@
 		UtfParameters utfParameters = new UtfParameters(queryString);
 
 		String test = utfParameters.getParameter("a", "Latin");
+    boolean showDevProperties = utfParameters.getParameter("showDevProperties", "", "").equals("1");
 
-		String a_out = UnicodeJsp.getIdentifier(test);
+		String a_out = UnicodeJsp.getIdentifier(test, showDevProperties);
 
 %>
 <h1>Unicode Utilities: Identifier</h1>

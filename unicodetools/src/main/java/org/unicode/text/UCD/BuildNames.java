@@ -292,6 +292,7 @@ public class BuildNames implements UCD_Types {
                         + ", "
                         + (CompactName.lastToken * 4));
     }
+
     /*
        Set stuff = new TreeSet();
        for (int i = 0; i < letters.length; ++i) {
