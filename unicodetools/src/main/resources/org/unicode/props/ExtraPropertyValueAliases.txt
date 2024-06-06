@@ -86,6 +86,8 @@
 # @missing: 0000..10FFFF; Extended_Pictographic  	; No
 
 # @missing: 0000..10FFFF; kEH_Core  ;  No
+# @missing: 0000..10FFFF; kEH_NoMirror  ;  No
+# @missing: 0000..10FFFF; kEH_NoRotate  ;  No
 
 # End of binary properties.
 
