@@ -33,10 +33,12 @@ public class UCDDataResolver {
         UcdSectionComponent[] ucdSectionComponents = ucdSection.getUcdSectionDetail().getUcdSectionComponents();
 
         if (isCompatibleVersion(minVersion, maxVersion)) {
-            writer.startElement(tag); {
+            writer.startElement(tag);
+            {
                 for (UcdSectionComponent ucdSectionComponent : ucdSectionComponents) {
                     if (isCompatibleVersion(ucdSectionComponent.getMinVersion(), ucdSectionComponent.getMaxVersion())) {
-                        final PropertyParsingInfo fileInfoEVS = PropertyParsingInfo.getPropertyInfo(ucdSectionComponent.getUcdProperty());
+                        final PropertyParsingInfo fileInfoEVS =
+                                PropertyParsingInfo.getPropertyInfo(ucdSectionComponent.getUcdProperty());
                         String fullFilename = fileInfoEVS.getFullFileName(indexUnicodeProperties.getUcdVersion());
                         UcdLineParser parser = new UcdLineParser(FileUtilities.in("", fullFilename));
                         parser.withRange(parserWithRange);
@@ -46,7 +48,8 @@ public class UCDDataResolver {
                                 for (UcdLineParser.UcdLine line : parser) {
                                     if (!line.getOriginalLine().startsWith("#")) {
                                         AttributesImpl attributes = getBlockAttributes(namespace, line);
-                                        writer.startElement(childTag, attributes); {
+                                        writer.startElement(childTag, attributes);
+                                        {
                                             writer.endElement(childTag);
                                         }
                                     }
@@ -61,8 +64,10 @@ public class UCDDataResolver {
                                 List<String> names = new ArrayList<>(namedSequences.keySet());
                                 Collections.sort(names);
                                 for (String name : names) {
-                                    AttributesImpl attributes = getNamedSequenceAttributes(namespace, name, namedSequences);
-                                    writer.startElement(childTag, attributes); {
+                                    AttributesImpl attributes = getNamedSequenceAttributes(namespace, name,
+                                            namedSequences);
+                                    writer.startElement(childTag, attributes);
+                                    {
                                         writer.endElement(childTag);
                                     }
                                 }
@@ -83,8 +88,9 @@ public class UCDDataResolver {
         }
     }
 
-    private AttributesImpl getAttributes(UcdSectionDetail.UcdSection ucdSection, String namespace, UcdLineParser.UcdLine line) {
-        switch(ucdSection) {
+    private AttributesImpl getAttributes(UcdSectionDetail.UcdSection ucdSection, String namespace,
+                                         UcdLineParser.UcdLine line) {
+        switch (ucdSection) {
             case CJKRADICALS:
                 return getCJKRadicalAttributes(namespace, line);
             case DONOTEMIT:
@@ -151,7 +157,8 @@ public class UCDDataResolver {
         return attributes;
     }
 
-    private static AttributesImpl getNamedSequenceAttributes(String namespace, String name, HashMap<String, String> namedSequences) {
+    private static AttributesImpl getNamedSequenceAttributes(String namespace, String name,
+                                                             HashMap<String, String> namedSequences) {
         AttributesImpl attributes = new AttributesImpl();
         attributes.addAttribute(
                 namespace, "name", "name", "CDATA", name);
