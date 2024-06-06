@@ -82,8 +82,6 @@
 #    combining dot above.
 # Hamza_Form:
 #    Sequences containing Arabic hamza above, which should be avoided.
-# Precomposed_Hieroglyph:
-#    Precomposed sequences for Egyptian Hieroglyphs which should be avoided.
 # Precomposed_Form:
 #    Sequences for which a precomposed form exists, but without canonical
 #    equivalence.
@@ -100,12 +98,6 @@
 # ================================================
 # "Do Not Use" tables from the Core Specification
 # ================================================
-
-# Egyptian Hieroglyphs, from Table 11-2
-# Note: This list may be incomplete.
-13217; 13216 13430 13216 13430 13216; Precomposed_Hieroglyph # EGYPTIAN HIEROGLYPH N035A; EGYPTIAN HIEROGLYPH N035, EGYPTIAN HIEROGLYPH VERTICAL JOINER, EGYPTIAN HIEROGLYPH N035, EGYPTIAN HIEROGLYPH VERTICAL JOINER, EGYPTIAN HIEROGLYPH N035
-130C1; 130C0 13436 1309D; Precomposed_Hieroglyph # EGYPTIAN HIEROGLYPH D059; EGYPTIAN HIEROGLYPH D058, EGYPTIAN HIEROGLYPH OVERLAY MIDDLE, EGYPTIAN HIEROGLYPH D036
-13196; 13193 13433 13437 133CF 13430 131FF 13438; Precomposed_Hieroglyph # EGYPTIAN HIEROGLYPH I011A; EGYPTIAN HIEROGLYPH I010, EGYPTIAN HIEROGLYPH INSERT AT BOTTOM START, EGYPTIAN HIEROGLYPH BEGIN SEGMENT, EGYPTIAN HIEROGLYPH X001, EGYPTIAN HIEROGLYPH VERTICAL JOINER, EGYPTIAN HIEROGLYPH N017, EGYPTIAN HIEROGLYPH END SEGMENT
 
 # Devanagari, from Table 12-1
 0905 0946; 0904; Indic_Vowel_Letter # DEVANAGARI LETTER A, DEVANAGARI VOWEL SIGN SHORT E; DEVANAGARI LETTER SHORT A
