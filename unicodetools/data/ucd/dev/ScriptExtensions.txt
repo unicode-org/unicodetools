@@ -1,8 +1,8 @@
 # ScriptExtensions-16.0.0.txt
-# Date: 2024-02-29, 13:03:45 GMT
+# Date: 2024-05-24, 12:57:15 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
 #   For documentation, see https://www.unicode.org/reports/tr44/
@@ -21,15 +21,8 @@
 # values in that set is not material, but for stability in presentation
 # it is given here as alphabetical.
 #
-# The Script_Extensions values are presented in sorted order in the file.
-# They are sorted first by the number of Script property values in their sets,
-# and then alphabetically by first differing Script property value.
-#
-# Following each distinct Script_Extensions value is the list of code
-# points associated with that value, listed in code point order.
-#
 # All code points not explicitly listed for Script_Extensions
-# have as their value the corresponding Script property value
+# have as their value the corresponding Script property value.
 #
 # @missing: 0000..10FFFF; <script>
 00B7          ; Avst Cari Copt Elba Geor Glag Gong Goth Grek Hani Latn Lydi Mahj Perm Shaw #Po MIDDLE DOT
@@ -39,6 +32,7 @@
 02CD          ; Latn Lisu                      # Lm      MODIFIER LETTER LOW MACRON
 02D7          ; Latn Thai                      # Sk      MODIFIER LETTER MINUS SIGN
 02D9          ; Bopo Latn                      # Sk      DOT ABOVE
+0300          ; Cher Copt Cyrl Grek Latn Perm Sunu Tale #Mn COMBINING GRAVE ACCENT
 0301          ; Cher Cyrl Grek Latn Osge Sunu Tale Todr #Mn COMBINING ACUTE ACCENT
 0302          ; Cher Cyrl Latn Tfng            # Mn      COMBINING CIRCUMFLEX ACCENT
 0303          ; Glag Latn Sunu Syrc Thai       # Mn      COMBINING TILDE
@@ -46,6 +40,7 @@
 0305          ; Copt Elba Glag Goth Kana Latn  # Mn      COMBINING OVERLINE
 0306          ; Cyrl Grek Latn Perm            # Mn      COMBINING BREVE
 0307          ; Copt Hebr Latn Perm Syrc Tale Tfng Todr #Mn COMBINING DOT ABOVE
+0308          ; Armn Cyrl Goth Grek Hebr Latn Perm Syrc Tale #Mn COMBINING DIAERESIS
 0309          ; Latn Tfng                      # Mn      COMBINING HOOK ABOVE
 030A          ; Latn Syrc                      # Mn      COMBINING RING ABOVE
 030B          ; Cher Cyrl Latn Osge            # Mn      COMBINING DOUBLE ACUTE ACCENT
@@ -104,7 +99,7 @@
 1CD0          ; Beng Deva Gran Knda            # Mn      VEDIC TONE KARSHANA
 1CD1          ; Deva                           # Mn      VEDIC TONE SHARA
 1CD2          ; Beng Deva Gran Knda            # Mn      VEDIC TONE PRENKHA
-1CD3          ; Deva Gran                      # Po      VEDIC SIGN NIHSHVASA
+1CD3          ; Deva Gran Knda                 # Po      VEDIC SIGN NIHSHVASA
 1CD4          ; Deva                           # Mn      VEDIC SIGN YAJURVEDIC MIDLINE SVARITA
 1CD5..1CD6    ; Beng Deva                      # Mn  [2] VEDIC TONE YAJURVEDIC AGGRAVATED INDEPENDENT SVARITA..VEDIC TONE YAJURVEDIC INDEPENDENT SVARITA
 1CD7          ; Deva Shrd                      # Mn      VEDIC TONE YAJURVEDIC KATHAKA INDEPENDENT SVARITA
@@ -130,7 +125,7 @@
 1CF8..1CF9    ; Deva Gran                      # Mn  [2] VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
 1CFA          ; Nand                           # Lo      VEDIC SIGN DOUBLE ANUSVARA ANTARGOMUKHA
 1DC0..1DC1    ; Grek                           # Mn  [2] COMBINING DOTTED GRAVE ACCENT..COMBINING DOTTED ACUTE ACCENT
-1DF8          ; Cyrl Syrc                      # Mn      COMBINING DOT ABOVE LEFT
+1DF8          ; Cyrl Latn Syrc                 # Mn      COMBINING DOT ABOVE LEFT
 1DFA          ; Syrc                           # Mn      COMBINING DOT BELOW LEFT
 202F          ; Latn Mong Phag                 # Zs      NARROW NO-BREAK SPACE
 204F          ; Adlm Arab                      # Po      REVERSED SEMICOLON
@@ -147,10 +142,10 @@
 3002          ; Bopo Hang Hani Hira Kana Mong Phag Yiii #Po IDEOGRAPHIC FULL STOP
 3003          ; Bopo Hang Hani Hira Kana       # Po      DITTO MARK
 3006          ; Hani                           # Lo      IDEOGRAPHIC CLOSING MARK
-3008          ; Bopo Hang Hani Hira Kana Yiii  # Ps      LEFT ANGLE BRACKET
-3009          ; Bopo Hang Hani Hira Kana Yiii  # Pe      RIGHT ANGLE BRACKET
-300A          ; Bopo Hang Hani Hira Kana Lisu Mong Yiii #Ps LEFT DOUBLE ANGLE BRACKET
-300B          ; Bopo Hang Hani Hira Kana Lisu Mong Yiii #Pe RIGHT DOUBLE ANGLE BRACKET
+3008          ; Bopo Hang Hani Hira Kana Mong Tibt Yiii #Ps LEFT ANGLE BRACKET
+3009          ; Bopo Hang Hani Hira Kana Mong Tibt Yiii #Pe RIGHT ANGLE BRACKET
+300A          ; Bopo Hang Hani Hira Kana Lisu Mong Tibt Yiii #Ps LEFT DOUBLE ANGLE BRACKET
+300B          ; Bopo Hang Hani Hira Kana Lisu Mong Tibt Yiii #Pe RIGHT DOUBLE ANGLE BRACKET
 300C          ; Bopo Hang Hani Hira Kana Yiii  # Ps      LEFT CORNER BRACKET
 300D          ; Bopo Hang Hani Hira Kana Yiii  # Pe      RIGHT CORNER BRACKET
 300E          ; Bopo Hang Hani Hira Kana Yiii  # Ps      LEFT WHITE CORNER BRACKET
@@ -184,7 +179,7 @@
 3190..3191    ; Hani                           # So  [2] IDEOGRAPHIC ANNOTATION LINKING MARK..IDEOGRAPHIC ANNOTATION REVERSE MARK
 3192..3195    ; Hani                           # No  [4] IDEOGRAPHIC ANNOTATION ONE MARK..IDEOGRAPHIC ANNOTATION FOUR MARK
 3196..319F    ; Hani                           # So [10] IDEOGRAPHIC ANNOTATION TOP MARK..IDEOGRAPHIC ANNOTATION MAN MARK
-31C0..31E3    ; Hani                           # So [36] CJK STROKE T..CJK STROKE Q
+31C0..31E5    ; Hani                           # So [38] CJK STROKE T..CJK STROKE SZP
 31EF          ; Hani Tang                      # So      IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
 3220..3229    ; Hani                           # No [10] PARENTHESIZED IDEOGRAPH ONE..PARENTHESIZED IDEOGRAPH TEN
 322A..3247    ; Hani                           # So [30] PARENTHESIZED IDEOGRAPH MOON..CIRCLED IDEOGRAPH KOTO

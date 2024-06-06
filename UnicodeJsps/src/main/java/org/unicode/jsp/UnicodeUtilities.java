@@ -95,7 +95,10 @@ public class UnicodeUtilities {
 
         HTML_RULES_CONTROLS =
                 HTML_RULES
-                        + "[[:cs:]\\u0000] > \uFFFD ; "
+                        // + "\\u0000 > \uFFFD ; "
+                        + "[\\uD800-\\uDB7F] > '<span class=\"high-surrogate\"><span>'\uFFFD'</span></span>' ; "
+                        + "[\\uDB80-\\uDBFF] > '<span class=\"private-surrogate\"><span>'\uFFFD'</span></span>' ; "
+                        + "[\\uDC00-\\uDFFF] > '<span class=\"low-surrogate\"><span>'\uFFFD'</span></span>' ; "
                         + "([[:cn:][:co:][:cc:]-[:White_Space:]]) > '<span class=\"control\">'$1'</span>' ; ";
         toHTML =
                 Transliterator.createFromRules(
@@ -1345,6 +1348,7 @@ public class UnicodeUtilities {
     };
 
     static Comparator<String> col = UnicodeSetUtilities.MAIN_COLLATOR;
+
     //    Collator.getInstance(ULocale.ROOT);
     //    static {
     //        ((RuleBasedCollator) col).setNumericCollation(true);
@@ -1955,6 +1959,7 @@ public class UnicodeUtilities {
     static String removals =
             new UnicodeSet("[\u1806[:di:]-[:cn:]]").complement().complement().toPattern(false);
     static Matcher rem = Pattern.compile(removals).matcher("");
+
     // TODO use UnicodeRegex
 
     //  static IdnaLabelTester getIdna2008Tester() {

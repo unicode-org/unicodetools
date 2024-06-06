@@ -134,6 +134,7 @@ public final class DerivedProperty implements UCD_Types {
 
     class NF_UnsafeStartProp extends UCDProperty {
         Normalizer nfx;
+
         // int prop;
 
         NF_UnsafeStartProp(int i) {
