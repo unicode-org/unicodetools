@@ -28,6 +28,7 @@ public class VersionedProperty {
     // Maps custom names to versions.  For the versions covered by this map, no
     // other names are permitted, so if this contains "16.0.0β"↦"16.0.0" but not
     // "16.0.0"↦"16.0.0", "U16.0.0:General_Category" is rejected.
+    // TODO(egg): This does not actually work!
     private Map<String, String> versionAliases = new TreeMap<>();
 
     private VersionedProperty() {}
