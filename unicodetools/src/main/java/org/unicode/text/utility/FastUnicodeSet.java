@@ -5,6 +5,7 @@ import com.ibm.icu.text.UnicodeSet;
 public final class FastUnicodeSet {
     static final int index1Length = 272;
     static final int index2Length = 64;
+
     /**
      * Structured as a simple trie. The last level is a long (64 bits). It is accessed by taking
      * successive parts of the codepoint

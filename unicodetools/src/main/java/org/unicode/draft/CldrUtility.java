@@ -1,4 +1,5 @@
 package org.unicode.draft;
+
 /*
  **********************************************************************
  * Copyright (c) 2002-2004, International Business Machines
@@ -68,6 +69,7 @@ public class CldrUtility {
         // simple implementation for now
         private final Map<String, String> m =
                 new TreeMap<String, String>(Collections.reverseOrder());
+
         /**
          * Add a new variable
          *
@@ -79,6 +81,7 @@ public class CldrUtility {
             m.put(variable, value);
             return this;
         }
+
         /**
          * Replace all of the variables in the source, recursively.
          *
@@ -118,6 +121,7 @@ public class CldrUtility {
     }
 
     static final boolean DEBUG_SHOW_BAT = false;
+
     /**
      * default working directory for Eclipse is . = ${workspace_loc:cldr}, which is
      * <CLDR>/tools/java/
@@ -129,6 +133,7 @@ public class CldrUtility {
                     CldrUtility.getProperty(
                             "CLDR_DIR",
                             null)); // new File(Utility.getProperty("CLDR_DIR", null)).getPath();
+
     // // get up to <CLDR>
 
     public static final String UTIL_DATA_DIR =
@@ -150,6 +155,7 @@ public class CldrUtility {
      */
     @Deprecated
     public static final String SUPPLEMENTAL_DIRECTORY = getPath(COMMON_DIRECTORY, "supplemental/");
+
     /** Only the default, if no other directory is specified. */
     public static final String DEFAULT_SUPPLEMENTAL_DIRECTORY =
             getPath(COMMON_DIRECTORY, "supplemental/");
@@ -171,6 +177,7 @@ public class CldrUtility {
 
     public interface LineComparer {
         static final int LINES_DIFFERENT = -1, LINES_SAME = 0, SKIP_FIRST = 1, SKIP_SECOND = 2;
+
         /**
          * Returns LINES_DIFFERENT, LINES_SAME, or if one of the lines is ignorable, SKIP_FIRST or
          * SKIP_SECOND
@@ -399,6 +406,7 @@ public class CldrUtility {
                 }
             }
         }
+
         /**
          * @return Returns the position.
          */

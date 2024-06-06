@@ -21,6 +21,7 @@ public class UnicodeSetTree<T> {
         public boolean add(UnicodeSet entry) {
             return add(new Node(entry));
         }
+
         // returns false if we don't need addition as a child.
         public boolean add(Node entry) {
             if (parent == null || parent.containsAll(entry.parent)) {
