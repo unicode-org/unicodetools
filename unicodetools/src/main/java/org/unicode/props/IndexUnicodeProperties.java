@@ -59,6 +59,7 @@ import org.unicode.text.utility.Utility;
 public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public static final String UNCHANGED_IN_BASE_VERSION = "👉 SEE OTHER VERSION OF UNICODE";
     static final String SET_SEPARATOR = "|";
+
     /** Control file caching */
     static final boolean GZIP = true;
 
@@ -470,6 +471,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             final String fileName = fileInfo.getFileName(ucdVersion);
 
             if (FILE_CACHE) {
+                // TODO(egg): When using cached property data, most defaults do not get
+                // loaded in PropertyParsingInfo, as that happens in parseSourceFile.
+                // Only the ones from the Extra files are loaded.
                 data0 = getCachedMap(prop2, fullFilename);
                 if (data0 != null) {
                     property2UnicodeMap.put(prop2, data0.freeze());

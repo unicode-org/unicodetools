@@ -243,6 +243,7 @@ public class GenerateMissingAnnotations {
 
     static final class Counts {
         int emojiCount;
+
         //        int charCount;
 
         void add(String tts, Set<String> keywords) {

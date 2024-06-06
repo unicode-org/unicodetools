@@ -33,6 +33,7 @@ public final class SecTerToFractional {
     // and the associated tertiaries (if there are non-trivial ones).
 
     private static final int UCA_TERTIARY_LIMIT = UCA_Types.MAX_TERTIARY + 1;
+
     /**
      * If true, then we store the secondary and tertiary weights for CEs like [00, 00, tt] and [00,
      * ss, tt]. ss cannot be the common weight. {@link #commonSecTs2f} stores the tertiary weights
@@ -45,6 +46,7 @@ public final class SecTerToFractional {
     private final boolean isPrimaryIgnorable;
 
     private int commonSecLowestUCATer;
+
     /**
      * Tertiaries for the 00 or common secondary weight. null if only 00 and common tertiary
      * weights.
@@ -52,12 +54,14 @@ public final class SecTerToFractional {
      * @see #isPrimaryIgnorable
      */
     private int[] commonSecTs2f;
+
     /** Secondaries-to-fractional. */
     private Map<Integer, SecondaryToFractional> ss2f;
 
     private static final class SecondaryToFractional {
         private int fractionalSecondary;
         private int lowestUCATer;
+
         /** Tertiaries-to-fractional. */
         private int[] ts2f;
     }
