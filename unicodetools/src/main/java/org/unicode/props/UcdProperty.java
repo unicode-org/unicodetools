@@ -234,12 +234,12 @@ public enum UcdProperty {
     Grapheme_Cluster_Break(
             PropertyType.Enumerated, Grapheme_Cluster_Break_Values.class, null, "GCB"),
     Hangul_Syllable_Type(PropertyType.Enumerated, Hangul_Syllable_Type_Values.class, null, "hst"),
-    Identifier_Status(PropertyType.Enumerated, Identifier_Status_Values.class, null, "idstatus"),
+    Identifier_Status(PropertyType.Enumerated, Identifier_Status_Values.class, null, "ID_Status"),
     Identifier_Type(
             PropertyType.Enumerated,
             Identifier_Type_Values.class,
             ValueCardinality.Unordered,
-            "idtype"),
+            "ID_Type"),
     Idn_2008(PropertyType.Enumerated, Idn_2008_Values.class, null, "idn8"),
     Idn_Status(PropertyType.Enumerated, Idn_Status_Values.class, null, "idns"),
     Indic_Conjunct_Break(PropertyType.Enumerated, Indic_Conjunct_Break_Values.class, null, "InCB"),

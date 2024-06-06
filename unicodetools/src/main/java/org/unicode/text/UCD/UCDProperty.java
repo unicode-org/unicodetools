@@ -96,6 +96,7 @@ public abstract class UCDProperty implements UCD_Types {
     public String getFullName() {
         return getFullName(NORMAL);
     }
+
     /** Get the property name. Style is SHORT, NORMAL, LONG */
     public String getPropertyName(byte style) {
         if (style == NORMAL) {

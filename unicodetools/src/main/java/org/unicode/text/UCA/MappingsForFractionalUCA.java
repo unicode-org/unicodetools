@@ -32,13 +32,16 @@ public final class MappingsForFractionalUCA {
         private final String prefix;
 
         private final String s;
+
         /** Only non-zero collation elements, enforced by the constructors. */
         private final CEList ces;
+
         /**
          * Modified CEs, if any. If not null, then these are the CEs to be transformed into
          * fractional CEs.
          */
         private CEList modifiedCEs;
+
         /** Standard 3-level UCA sort key "string" corresponding to ces. */
         private final String sortKey;
 
