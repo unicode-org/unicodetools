@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2024-06-04, 23:16:56 GMT
+# Date: 2024-06-05, 00:24:30 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -632,7 +632,9 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1DA8C..1DA9A  ; Cn #  [15] <reserved-1DA8C>..<reserved-1DA9A>
 1DAA0         ; Cn #       <reserved-1DAA0>
 1DAB0..1DEFF  ; Cn # [1104] <reserved-1DAB0>..<reserved-1DEFF>
-1DF2D..1DFFF  ; Cn # [211] <reserved-1DF2D>..<reserved-1DFFF>
+1DF2D..1DF3D  ; Cn #  [17] <reserved-1DF2D>..<reserved-1DF3D>
+1DF40..1DFD7  ; Cn # [152] <reserved-1DF40>..<reserved-1DFD7>
+1DFE9..1DFFF  ; Cn #  [23] <reserved-1DFE9>..<reserved-1DFFF>
 1E007         ; Cn #       <reserved-1E007>
 1E019..1E01A  ; Cn #   [2] <reserved-1E019>..<reserved-1E01A>
 1E022         ; Cn #       <reserved-1E022>
@@ -746,7 +748,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 819525
+# Total code points: 819506
 
 # ================================================
 
@@ -2070,9 +2072,10 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1D7CB         ; Ll #       MATHEMATICAL BOLD SMALL DIGAMMA
 1DF00..1DF09  ; Ll #  [10] LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER T WITH HOOK AND RETROFLEX HOOK
 1DF0B..1DF2C  ; Ll #  [34] LATIN SMALL LETTER ESH WITH DOUBLE BAR..LATIN SMALL LETTER TESH DIGRAPH WITH CURL
+1DF3E..1DF3F  ; Ll #   [2] LATIN SMALL LETTER BARRED TURNED H..LATIN SMALL LETTER BARRED W
 1E922..1E943  ; Ll #  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2266
+# Total code points: 2268
 
 # ================================================
 
@@ -2166,12 +2169,13 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 1AFF0..1AFF3  ; Lm #   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF5..1AFFB  ; Lm #   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; Lm #   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
+1DFD8..1DFE8  ; Lm #  [17] MODIFIER LETTER SMALL N WITH LONG RIGHT LEG..MODIFIER LETTER SMALL CAPITAL D
 1E030..1E06D  ; Lm #  [62] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
 1E137..1E13D  ; Lm #   [7] NYIAKENG PUACHUE HMONG SIGN FOR PERSON..NYIAKENG PUACHUE HMONG SYLLABLE LENGTHENER
 1E4EB         ; Lm #       NAG MUNDARI SIGN OJOD
 1E94B         ; Lm #       ADLAM NASALIZATION MARK
 
-# Total code points: 404
+# Total code points: 421
 
 # ================================================
 

@@ -49,7 +49,7 @@ Indic scripts only:
 - [ ] Commit
 
 ---
-- [ ] PropsList.txt — Add Other_Alphabetic, Diacritic, and Extender to satisfy invariants, or to taste
+- [ ] PropsList.txt — Add Other_Alphabetic, Other_Lowercase, Diacritic, and Extender to satisfy invariants, or to taste
 - [ ] Commit
 
 ---
@@ -67,8 +67,13 @@ PR preparation:
 - [ ] PR button — Set to DRAFT pull request
   - unless approved for the upcoming version
 - [ ] PR button — Press
-  - The **Check UCA data** CI check might fail; many character additions need separate handling there, 
-    but that is out of scope for the PAG work of preparing `data-for-new`. This will get resolved later.
+  - The **Check UCA data** and **Check security data invariants** CI checks are
+    suppressed; many character additions need separate handling there,
+    but that is out of scope for the PAG work of preparing `data-for-new`,
+    so reporting those failures could distract from real issues
+    in the UCD invariants.
+    UCA and security data issues are addressed later in the process,
+    before the start of β review.
 
 ## Scripts
 

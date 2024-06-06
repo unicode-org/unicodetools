@@ -863,6 +863,20 @@ Let $TwoVietnameseReadingMarks = [\p{U15.1.0:ccc=6}]
 # an LV or V, respectively.
 [\p{NFC_QC=Maybe}&\p{ccc=0}] ⊆ [\p{GCB=Extend}\p{GCB=T}\p{GCB=V}]
 
+# ICU relies on this to avoid carrying data for HST which would be mostly
+# redundant with GCB.  If this breaks, it should be noted on the landing page,
+# and ICU-TC should be notified.
+# See https://github.com/unicode-org/icu/pull/3026.
+\p{HST=V} = [\p{GCB=V} & [\u0000-\uFFFF]]
+# A more principled (if less practically useful) statement is that the
+# dual-conjoining Hangul characters are exactly the Hangul vowels.
+\p{HST=V} = [\p{GCB=V} & \p{Script=Hangul}]
+# The other types are still straightforwardly related to their GCB counterparts.
+\p{HST=L}   = \p{GCB=L}
+\p{HST=LV}  = \p{GCB=LV}
+\p{HST=LVT} = \p{GCB=LVT}
+\p{HST=T}   = \p{GCB=T}
+
 ##########################
 # Emoji
 ##########################

@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2024-05-04, 21:31:06 GMT
+# Date: 2024-05-31, 21:12:55 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -542,8 +542,10 @@
 	(‎ Ö ‎)	00D6	 LATIN CAPITAL LETTER O WITH DIAERESIS
 ←	(‎ Ő ‎)	0150	 LATIN CAPITAL LETTER O WITH DOUBLE ACUTE
 
-#	ß	β
+#	ß	Ꟗ	ẞ	β
 	(‎ ß ‎)	00DF	 LATIN SMALL LETTER SHARP S
+←	(‎ Ꟗ ‎)	A7D6	 LATIN CAPITAL LETTER MIDDLE SCOTS S	# →β→
+←	(‎ ẞ ‎)	1E9E	 LATIN CAPITAL LETTER SHARP S
 ←	(‎ β ‎)	03B2	 GREEK SMALL LETTER BETA
 
 #	å	ȧ
@@ -1618,6 +1620,10 @@
 	(‎ 二 ‎)	4E8C	 CJK UNIFIED IDEOGRAPH-4E8C
 ←	(‎ ニ ‎)	30CB	 KATAKANA LETTER NI
 
+#	儿	ㄦ
+	(‎ 儿 ‎)	513F	 CJK UNIFIED IDEOGRAPH-513F
+←	(‎ ㄦ ‎)	3126	 BOPOMOFO LETTER ER
+
 #	八	ハ
 	(‎ 八 ‎)	516B	 CJK UNIFIED IDEOGRAPH-516B
 ←	(‎ ハ ‎)	30CF	 KATAKANA LETTER HA
@@ -1839,5 +1845,5 @@
 	(‎ 鹂 ‎)	9E42	 CJK UNIFIED IDEOGRAPH-9E42
 ←	(‎ 鹃 ‎)	9E43	 CJK UNIFIED IDEOGRAPH-9E43
 
-# total : 635
+# total : 638
 

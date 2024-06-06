@@ -275,6 +275,22 @@ jobs:
         with:
           repository: unicode-org/unicodetools
           path: unicodetools/mine/src
+      - name: Checkout base UnicodeData.txt
+        if: ${{ github.event_name == 'pull_request'}}
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          sparse-checkout: unicodetools/data/ucd/dev/UnicodeData.txt
+      - name: Compare repertoire
+        if: ${{ github.event_name == 'pull_request'}}
+        run: |
+          # Look for changes affecting the first two fields of UnicodeData.txt (code point and name).
+          sed 's/^\([^;]*;[^;]*\);.*$/\1/' unicodetools/mine/src/unicodetools/data/ucd/dev/UnicodeData.txt > merged-repertoire.txt
+          sed 's/^\([^;]*;[^;]*\);.*$/\1/' base/unicodetools/data/ucd/dev/UnicodeData.txt > base-repertoire.txt
+          set +e
+          diff base-repertoire.txt merged-repertoire.txt
+          echo "REPERTOIRE_CHANGED=$?" >> "$GITHUB_ENV"
       - name: Get the CLDR_REF from pom.xml
         id: cldr_ref
         run: echo "CLDR_REF="$(mvn --file unicodetools/mine/src/pom.xml help:evaluate -Dexpression=cldr.version -q -DforceStdout | cut -d- -f3) >> $GITHUB_OUTPUT && cat ${GITHUB_OUTPUT}
@@ -316,6 +332,10 @@ jobs:
       - name: Run command - UCA - collation validity log
         run: |
           cd unicodetools/mine/src
+          echo "REPERTOIRE_CHANGED=$REPERTOIRE_CHANGED"
+          if [[ ${REPERTOIRE_CHANGED:-0} -ne 0 ]]
+          then set +e
+          fi
           # invoke main() in class ...UCA.Main
           mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCA.Main"  -Dexec.args="writeCollationValidityLog ICU" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
           # check for output file
@@ -333,6 +353,22 @@ jobs:
         with:
           repository: unicode-org/unicodetools
           path: unicodetools/mine/src
+      - name: Checkout base UnicodeData.txt
+        if: ${{ github.event_name == 'pull_request'}}
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          sparse-checkout: unicodetools/data/ucd/dev/UnicodeData.txt
+      - name: Compare repertoire
+        if: ${{ github.event_name == 'pull_request'}}
+        run: |
+          # Look for changes affecting the first two fields of UnicodeData.txt (code point and name).
+          sed 's/^\([^;]*;[^;]*\);.*$/\1/' unicodetools/mine/src/unicodetools/data/ucd/dev/UnicodeData.txt > merged-repertoire.txt
+          sed 's/^\([^;]*;[^;]*\);.*$/\1/' base/unicodetools/data/ucd/dev/UnicodeData.txt > base-repertoire.txt
+          set +e
+          diff base-repertoire.txt merged-repertoire.txt
+          echo "REPERTOIRE_CHANGED=$?" >> "$GITHUB_ENV"
       - name: Get the CLDR_REF from pom.xml
         id: cldr_ref
         run: echo "CLDR_REF="$(mvn --file unicodetools/mine/src/pom.xml help:evaluate -Dexpression=cldr.version -q -DforceStdout | cut -d- -f3) >> $GITHUB_OUTPUT && cat ${GITHUB_OUTPUT}
@@ -372,6 +408,16 @@ jobs:
       - name: Run invariant tests
         run: |
           cd unicodetools/mine/src
-          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants#testSecurityInvariants -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION -DfailIfNoTests=false -DEMIT_GITHUB_ERRORS
+          echo "REPERTOIRE_CHANGED=$REPERTOIRE_CHANGED"
+          if [[ ${REPERTOIRE_CHANGED:-0} -ne 0 ]]
+          then ERROR="::notice"
+          else ERROR="::error"
+          fi
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants#testSecurityInvariants -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION -DfailIfNoTests=false -DEMIT_GITHUB_ERRORS 2>&1 | sed "s/^::error/$ERROR/"
+          STATUS=${PIPESTATUS[0]}
+          if [[ ${REPERTOIRE_CHANGED:-0} -ne 0 ]]
+          then exit 0
+          else exit $STATUS
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
