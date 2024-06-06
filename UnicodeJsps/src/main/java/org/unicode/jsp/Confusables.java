@@ -1,6 +1,5 @@
 package org.unicode.jsp;
 
-import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.Normalizer;
@@ -41,7 +40,7 @@ public class Confusables implements Iterable<String> {
         UnicodeMap<String> result = new UnicodeMap<String>();
         for (String s : equivalents) {
             Set<String> others = new TreeSet<String>(equivalents.getEquivalences(s));
-            String list = "\u2051" + CollectionUtilities.join(others, "\u2051") + "\u2051";
+            String list = "\u2051" + String.join("\u2051", others) + "\u2051";
             for (String other : others) {
                 result.put(other, list);
             }

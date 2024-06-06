@@ -83,7 +83,7 @@ public class ScriptCount {
     }
 
     static class SecondaryCounts {
-        private final UCA uca = UCA.buildCollator(null);
+        private final UCA uca = UCA.buildDucetCollator();
         private final Map<Integer, SecondaryInfo> counter = new HashMap<Integer, SecondaryInfo>();
 
         void add(int sourceString, long count) {
