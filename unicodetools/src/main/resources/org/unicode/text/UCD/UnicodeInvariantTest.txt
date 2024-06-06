@@ -1090,6 +1090,20 @@ Let $japaneseSimplifiedRadicals = \p{Name=/CJK RADICAL J-SIMPLIFIED/}
 In $chineseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ [\p{kRSUnicode=/^[0-9]+'\.0$/} $radicalsWithUnifiableSimplifications]
 In $japaneseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/^[0-9]+''\.0$/}
 
+# Tangut invariants
+
+Let $tangutSourcesScope = [\p{Block=/^Tangut(.Supplement)?$/} - \p{gc=Cn}]
+$tangutSourcesScope = [ [\p{gc=Lo} & \p{sc=Tangut}] - \p{name=/^TANGUT COMPONENT-/} ]
+$tangutSourcesScope = \P{kTGT_MergedSrc=@none@}
+$tangutSourcesScope = \P{kRSTUnicode=@none@}
+
+# Nüshu invariants
+
+Let $nüshuSourcesScope = [\p{Block=Nushu} - \p{gc=Cn}]
+$nüshuSourcesScope = [\p{gc=Lo} & \p{sc=Nushu}]
+$nüshuSourcesScope = \P{kSrc_NushuDuben=@none@}
+$nüshuSourcesScope = \P{kReading=@none@}
+
 # Egyptian hieroglyph invariants
 
 Let $unikemetScope = [\p{Block=/^Egyptian.Hieroglyphs/} - \p{gc=Cn}]
