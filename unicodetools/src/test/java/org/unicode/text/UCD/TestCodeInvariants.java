@@ -157,6 +157,9 @@ public class TestCodeInvariants {
                 continue;
             }
 
+            // TODO: Use the Unicode Tools normalization code to fetch the Decomposition_Mapping,
+            // not ICU. Using ICU makes this test depend on the ICU version that the
+            // Maven dependency declares.
             final String nfdOrNull = NORM2_NFD.getDecomposition(cp);
             if (nfdOrNull == null || nfdOrNull.length() <= 1) {
                 continue;
@@ -165,10 +168,16 @@ public class TestCodeInvariants {
             int ch;
             boolean flagged = false;
             for (int i = 0; i < nfdOrNull.length(); i += Character.charCount(ch)) {
-                ch = UTF16.charAt(nfdOrNull, i);
-                if ((i > 0)
-                        && (GCB.get(ch)
-                                != UcdPropertyValues.Grapheme_Cluster_Break_Values.Extend)) {
+                ch = Character.codePointAt(nfdOrNull, i);
+                if (i == 0) {
+                    continue;
+                }
+                // We normally expect the non-initial character in the Decomposition_Mapping
+                // to be an extender.
+                // Some Kirat Rai vowel signs use the value for Jamo vowels instead.
+                UcdPropertyValues.Grapheme_Cluster_Break_Values gcb = GCB.get(ch);
+                if (!(gcb == UcdPropertyValues.Grapheme_Cluster_Break_Values.Extend
+                        || gcb == UcdPropertyValues.Grapheme_Cluster_Break_Values.V)) {
                     flagged = true;
                     testResult = TEST_FAIL;
                 }

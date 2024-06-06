@@ -80,9 +80,9 @@ public class CollatorEquivalencesNew {
     }
 
     private static final org.unicode.text.UCA.UCA uca_raw =
-            org.unicode.text.UCA.UCA.buildCollator(null);
+            org.unicode.text.UCA.UCA.buildDucetCollator();
     private static final org.unicode.text.UCA.UCA uca_level2Only =
-            org.unicode.text.UCA.UCA.buildCollator(null);
+            org.unicode.text.UCA.UCA.buildDucetCollator();
 
     static {
         uca_level2Only.setStrength(2);

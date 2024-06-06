@@ -2,7 +2,7 @@
 # Date: 2024-01-17, 19:15:00 GMT [MS, KW]
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
 # For documentation, see https://www.unicode.org/reports/tr44/
@@ -52,7 +52,7 @@
 # UTN42 = Andrew West and Viacheslav Zaytsev, Tangut Character Additions and Glyph Corrections,
 #         Unicode Technical Note #42. 2019-12-21.
 #
-#	For more information, see Section 18.10, Tangut, of the
+#	For more information, see Section 18.11, Tangut, of the
 #	core specification.
 #
 U+17000	kTGT_MergedSrc	L2008-0008

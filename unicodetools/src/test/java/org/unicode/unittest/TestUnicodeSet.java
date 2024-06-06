@@ -76,6 +76,7 @@ public class TestUnicodeSet extends TestFmwkMinusMinus {
             }
         }
     }
+
     // https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
     // Unicode scripts, blocks, categories and binary properties are written with the \p and \P
     // constructs as in Perl.
