@@ -408,7 +408,7 @@
 🐊 🐢 🦎 🐍 🐲 🐉
 🦕 🦖
 @ animal-marine
-🐳 🐋 🐬 🦭 🐟 🐠 🐡 🦈 🐙 🐚 🪸 🪼
+🐳 🐋 🐬 🦭 🐟 🐠 🐡 🦈 🐙 🐚 🪸 🪼 🦀 🦞 🦐 🦑 🦪
 @ animal-bug
 🐌 🦋 🐛 🐜 🐝 🪲 🐞 🦗 🪳 🕷️ 🕸️ 🦂 🦟 🪰 🪱 🦠
 @ plant-flower
@@ -428,8 +428,6 @@
 🥫
 @ food-asian
 🍱 🍘 🍙 🍚 🍛 🍜 🍝 🍠 🍢 🍣 🍤 🍥 🥮 🍡 🥟 🥠 🥡
-@ food-marine
-🦀 🦞 🦐 🦑 🦪
 @ food-sweet
 🍦 🍧 🍨 🍩 🍪 🎂 🍰 🧁 🥧 🍫 🍬 🍭 🍮 🍯
 @ drink

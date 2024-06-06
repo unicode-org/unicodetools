@@ -101,8 +101,14 @@
 # Overrides for bugs
 
 # TODO(egg): These are specified in their respective files, we should not need them here.
+
 # @missing: 0000..10FFFF; Bidi_Mirroring_Glyph; <none>
 # @missing: 0000..10FFFF; Equivalent_Unified_Ideograph; <none>
+
+# At least the following two appear to be needed because of issues related to caching;
+# See comments in IndexUnicodeProperties.java.
+# @missing: 0000..10FFFF; NFKC_Casefold; <code point>
+# @missing: 0000..10FFFF; NFKC_SCF; <code point>
 
 # Extras
 
