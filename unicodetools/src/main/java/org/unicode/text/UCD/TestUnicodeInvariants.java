@@ -17,9 +17,11 @@ import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.regex.Pattern;
@@ -31,6 +33,8 @@ import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
+import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.Factory;
 import org.unicode.text.utility.Settings;
@@ -77,7 +81,7 @@ public class TestUnicodeInvariants {
 
         System.out.println("HTML?\t" + doHtml);
 
-        testInvariants(file, doRange);
+        testInvariants(file, null, doRange);
     }
 
     static Transliterator toHTML;
@@ -124,26 +128,26 @@ public class TestUnicodeInvariants {
     /**
      * Fetch a reader for our input data.
      *
-     * @param inputFile if null, read DEFAULT_FILE from classpath
+     * @param inputFile read from classpath
      * @return BufferedReader
      * @throws IOException
      */
     private static BufferedReader getInputReader(String inputFile) throws IOException {
-        if (inputFile != null) {
-            return FileUtilities.openUTF8Reader(Settings.SRC_UCD_DIR, inputFile);
-        }
-
-        // null: read it from resource data
-        return FileUtilities.openFile(TestUnicodeInvariants.class, DEFAULT_FILE);
+        return FileUtilities.openFile(TestUnicodeInvariants.class, inputFile);
     }
 
     /**
      * @param inputFile file to input, defaults to DEFAULT_FILE
+     * @param suffix Suffix for the test results report file, added after a hyphen if non-null.
      * @param doRange normally true
      * @return number of failures (0 is better)
      * @throws IOException
      */
-    public static int testInvariants(String inputFile, boolean doRange) throws IOException {
+    public static int testInvariants(String inputFile, String suffix, boolean doRange)
+            throws IOException {
+        if (inputFile == null) {
+            inputFile = DEFAULT_FILE;
+        }
         TestUnicodeInvariants.doRange = doRange;
         parseErrorCount = 0;
         testFailureCount = 0;
@@ -151,7 +155,9 @@ public class TestUnicodeInvariants {
         try (final PrintWriter out2 =
                 FileUtilities.openUTF8Writer(
                         Settings.Output.GEN_DIR,
-                        "UnicodeTestResults." + (doHtml ? "html" : "txt"))) {
+                        "UnicodeTestResults"
+                                + (suffix == null ? "" : "-" + suffix)
+                                + (doHtml ? ".html" : ".txt"))) {
             final StringWriter writer = new StringWriter();
             try (PrintWriter out3 = new PrintWriter(writer)) {
                 out = out3;
@@ -232,6 +238,8 @@ public class TestUnicodeInvariants {
                                 letLine(pp, line);
                             } else if (line.startsWith("In")) {
                                 inLine(pp, line, inputFile, lineNumber);
+                            } else if (line.startsWith("Propertywise")) {
+                                propertywiseLine(pp, line, inputFile, lineNumber);
                             } else if (line.startsWith("ShowScript")) {
                                 showScript = true;
                             } else if (line.startsWith("HideScript")) {
@@ -321,6 +329,84 @@ public class TestUnicodeInvariants {
             } else {
                 return value + (isInSet ? "∈" : "∉") + set;
             }
+        }
+    }
+
+    private static void propertywiseLine(ParsePosition pp, String line, String file, int lineNumber)
+            throws ParseException {
+        pp.setIndex("Propertywise".length());
+        final UnicodeSet set = new UnicodeSet(line, pp, symbolTable);
+        if (set.hasStrings()) {
+            throw new ParseException(
+                    "Set should contain only single code points for property comparison",
+                    pp.getIndex());
+        }
+        expectToken("AreAlike", pp, line);
+        if (pp.getIndex() < line.length()) {
+            expectToken(",", pp, line);
+            expectToken("Except", pp, line);
+            expectToken(":", pp, line);
+        }
+        Set<String> excludedProperties = new HashSet<>();
+        excludedProperties.add("Name");
+        while (pp.getIndex() < line.length()) {
+            final int propertyNameStart = pp.getIndex();
+            scan(PATTERN_WHITE_SPACE, line, pp, false);
+            excludedProperties.add(line.substring(propertyNameStart, pp.getIndex()));
+            scan(PATTERN_WHITE_SPACE, line, pp, true);
+        }
+        final var iup = IndexUnicodeProperties.make(Settings.latestVersion);
+        final List<String> errorMessageLines = new ArrayList<>();
+        for (var p : UcdProperty.values()) {
+            final var property = iup.getProperty(p);
+            if (property.getNameAliases().stream()
+                    .anyMatch(alias -> excludedProperties.contains(alias))) {
+                continue;
+            }
+            final int first = set.charAt(0);
+            String p1 = property.getValue(first);
+            for (var range : set.ranges()) {
+                for (int c = range.codepoint; c <= range.codepointEnd; ++c) {
+                    if (c == first) {
+                        continue;
+                    }
+                    String p2 = property.getValue(c);
+                    if (!Objects.equals(p1, p2)) {
+                        if (IndexUnicodeProperties.getResolvedDefaultValueType(p)
+                                        != DefaultValueType.CODE_POINT
+                                || !p1.equals(Character.toString(first))
+                                || !p2.equals(Character.toString(c))) {
+                            errorMessageLines.add(
+                                    property.getName()
+                                            + "("
+                                            + Character.toString(first)
+                                            + ")\t=\t"
+                                            + p1
+                                            + "\t≠\t"
+                                            + p2
+                                            + "\t=\t"
+                                            + property.getName()
+                                            + "("
+                                            + Character.toString(c)
+                                            + ")");
+                        }
+                    }
+                }
+            }
+        }
+        if (!errorMessageLines.isEmpty()) {
+            testFailureCount++;
+            printErrorLine("Test Failure", Side.START, testFailureCount);
+            reportTestFailure(
+                    file, lineNumber, String.join("\n", errorMessageLines).replace('\t', ' '));
+            out.println("<table class='f'>");
+            for (String errorMessageLine : errorMessageLines) {
+                out.println("<tr><td>");
+                out.println(toHTML.transform(errorMessageLine).replace("\t", "</td><td>"));
+                out.println("</tr></td>");
+            }
+            out.println("</table>");
+            printErrorLine("Test Failure", Side.END, testFailureCount);
         }
     }
 

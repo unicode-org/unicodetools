@@ -9,8 +9,8 @@ machine-generated, then tweaked. They have names like
 source/confusables-winFonts.txt. The main file is confusables-source.txt.
 
 ***There is fairly complex processing for the confusables, so carefully diff the
-results. Sometimes you may get an unexpected union of two equivalence sets. Look
-at Testing below for help.***
+results. Sometimes you may get an unexpected union of two equivalence sets.
+Look at Testing below for help.***
 
 Look at the following spreadsheets / bugs to see if there are any additional
 suggestions.
@@ -19,16 +19,37 @@ suggestions.
     Suggestions](https://docs.google.com/spreadsheet/ccc?key=0ArRWBHdd5mx-dHRXelRVbXRYSVp2QTNDdTBlV1I5X1E&usp=drive_web#gid=0)**
 *   **[Identifier Restriction
     Suggestions](https://docs.google.com/spreadsheet/ccc?key=0ArRWBHdd5mx-dEJJWkdzZzk4cDRYbEVLTmhraGN0Q3c&usp=drive_web#gid=0)**
-*   *[Unicode
-    Bugs](http://www.unicode.org/edcom/bugtrack/query?status=accepted&status=assigned&status=new&status=reopened&group=component&order=priority&col=id&col=summary&col=status&col=type&col=priority&col=milestone&col=component&owner=mark&report=10)
-    (under TR #36/39)*\
-    :construction: **TODO**: That Trac instance is gone.
-    Markus thinks we decided that there was nothing useful in it,
-    and deleted it without saving data. Check with Mark.
+*   *[Sample PRs](https://github.com/unicode-org/unicodetools/pull/841)
 
 If so, assess and add to unicodetools/data/security/{version}/data/source/confusables-source.txt — *if needed.*
-
 Then in the spreadsheets, move the "new stuff" line to the end.
+
+### File Format
+There is a brief description of the file format at the top. 
+Each line represents a mapping from a code point or set of code points to a sequence of one or more code points.
+
+For example:
+```
+0021 ;  01C3    # ( ! → ǃ) EXCLAMATION MARK → LATIN LETTER RETROFLEX CLICK
+```
+
+The ordering of characters doesn't matter. 
+So it doesn't matter whether you have the above line, or
+```
+01C3 ; 0021    # ( ǃ → !) LATIN LETTER RETROFLEX CLICK → EXCLAMATION MARK
+```
+It also doesn't matter if you have identical lines; the second one will be a NOOP.
+
+The mappings are used to generate equivalence classes.
+From each equivalence class, one representative member will be chosen,
+and in the resulting data file, all the other characters will map to that representative.
+Because of transitivity, the equivalence class will tend to be somewhat looser than expected.
+
+We've discussed possible future enhancements:
+- Have a second, narrower mapping that is more exact.
+- Allow for mappings from sequences to sequences (instead of just code points to sequences).
+- Provide for context, perhaps like the Transform rules. 
+  Eg [x { a } y → A](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3Aarabic_type%3A%5D&g=&i=)
 
 ## Before generating
 
@@ -51,13 +72,10 @@ Run GenerateConfusables -c -b to generate the files. They will appear in two pla
 *   reformatted source, log
     *   $UNICODETOOLS_DIR/data/security/11.0.0/* *including log.txt*
 
-**Run TestSecurity to verify that the confusable mappings are idempotent!**
+The TestSecurity.java test is part of the unit test suite, run by a github CI.
+It verifies that the confusable mappings are idempotent.
 
-With the same VM arguments as the generator.
-Starting in 2021q3, TestSecurity needs to be run as a JUnit test.
-It is also now part of the unit test suite and run on GitHub CI.
-
-Copy the following from the output directory to the top level of the revision directory:
+Copy the following from the output directory to the top level of the revision directory, and check in.
 
 *   confusables.txt
 *   confusablesSummary.txt
@@ -65,6 +83,12 @@ Copy the following from the output directory to the top level of the revision di
 *   intentional.txt
 *   ReadMe.txt
 *   xidmodifications.txt
+
+### Review
+
+Review the mappings to make sure that there are no surprises.
+The biggest issue is if two equivalence classes are mistakenly joined. 
+For example, if you map b to d, then that will join the equivalence class for b with that of d.
 
 ### IdentifierStatus.txt & IdentifierType.txt
 
