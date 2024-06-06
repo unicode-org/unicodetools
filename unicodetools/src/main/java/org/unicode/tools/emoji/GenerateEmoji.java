@@ -3518,7 +3518,8 @@ public class GenerateEmoji {
             }
         }
         try (PrintWriter outText =
-                FileUtilities.openUTF8Writer(GenerateEmojiData.getOutputDir(), "internal/emoji-ordering-rules.txt")) {
+                FileUtilities.openUTF8Writer(
+                        GenerateEmojiData.getOutputDir(), "internal/emoji-ordering-rules.txt")) {
             outText.append(
                     "<!-- Machine-readable version of the emoji ordering rules for v"
                             + Emoji.VERSION_STRING
