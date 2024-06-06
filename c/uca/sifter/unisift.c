@@ -53,6 +53,8 @@
  *               with multiple secondary decompositions in the input data.
  *   2024-Feb-20 Tweak end of block range for the Tangut Supplement block
  *               to match change in Unicode 14.0.
+ *   2024-Mar-29 Change main sift to treat non-Nd numerics as non-variables.
+ *   2024-Apr-05 Fixed botched edit in comment.
  */
 
 /*
@@ -177,7 +179,7 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 16.0.0d3, 2024-02-20\n";
+static char versionString[] = "Sifter version 16.0.0d4, 2024-04-05\n";
 
 static char unidatafilename[] = "unidata-16.0.0.txt";
 static char allkeysfilename[] = "allkeys-16.0.0.txt";
@@ -185,7 +187,7 @@ static char decompsfilename[] = "decomps-16.0.0.txt";
 
 static char versionstring[] = "@version 16.0.0\n\n";
 
-#define COPYRIGHTYEAR (2023)
+#define COPYRIGHTYEAR (2024)
 
 #define defaultInfile "unidata.txt"
 
@@ -4454,8 +4456,13 @@ int doTrace;
             }
             else
 /*
- * Numerics with values outside the range 0..9 are treated just
- * like miscellaneous symbols.
+ * 2024-03-29 note: Prior to this date, numerics other than
+ * decimals and others with values 0..9 were treated as
+ * symbols and weighted as variables. Following agreement about
+ * converging DUCET with the CLDR default tailoring, they
+ * have been moved down in the input file and are treated as
+ * non-variables, weighted *after* the main set of 0..9
+ * primary weights for numbers.
  */
             {
                 SIFT_TRACE(p);
@@ -4463,8 +4470,8 @@ int doTrace;
                 p->level1 = getNextPrimary( 0 );
                 p->level2 = FIRST_SECONDARY;
                 p->level3 = FIRST_TERTIARY;
-                p->variable = 1;
-                numIgnorables++;
+                // p->variable = 1;
+                // numIgnorables++;
             }
         }
 /*

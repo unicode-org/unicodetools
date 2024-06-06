@@ -341,6 +341,28 @@ public class TestInvariants extends TestFmwkMinusMinus {
                     // [172-A62] Change the Identifier_Type of U+A7B8 and U+A7B9 to Uncommon_Use
                     level = LOG;
                 }
+                if (ucdProperty == UcdProperty.Identifier_Type
+                        && value.equals("Obsolete|Not_XID")
+                        && Settings.latestVersion.equals("16.0.0")
+                        && missing.size() == 1
+                        && missing.containsAll("\u2E30")) {
+                    // Changed from Obsolete to Exclusion due to
+                    // [178-C39] Consensus: Add 51 entries to ScriptExtensions.txt
+                    // as proposed in L2/23-280
+                    // (And IdentifierInfo.java for some reason
+                    // removes Obsolete when there is also Exclusion.)
+                    level = LOG;
+                }
+                if (ucdProperty == UcdProperty.Identifier_Type
+                        && value.equals("Limited_Use|Exclusion")
+                        && Settings.latestVersion.equals("16.0.0")
+                        && missing.size() == 1
+                        && missing.containsAll("\uA9CF")) {
+                    // PAG issue 217 -->
+                    // [179-Cxx] Change the Identifier_Type of A9CF to Limited_Use Uncommon_Use,
+                    // removing Exclusion.
+                    level = LOG;
+                }
                 if (ucdProperty == UcdProperty.Idn_Status
                         && value.equals("disallowed_STD3_valid")
                         && Settings.latestVersion.equals("15.1.0")

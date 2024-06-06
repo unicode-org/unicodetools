@@ -318,6 +318,7 @@ public class ProposalData {
                     .put("🧑🏿‍❤️‍💋‍🧑🏿", "💏🏿")
                     .put("🧑🏿‍❤️‍🧑🏿", "💑🏿")
                     .build();
+
     //    static {
     //        for (Entry<String, String> entry : SHORTEST_SKELETON.entrySet()) {
     //            System.out.println(".put(\"" + entry.getKey() + "\",\"" + entry.getValue() + "\")"
@@ -356,6 +357,7 @@ public class ProposalData {
         String shorter = shortestForm(result);
         return shorter == null ? result : shorter;
     }
+
     // parse a .. construction.
     // syntax =  item ("," item)
     // item = cp (".." cp)? | string

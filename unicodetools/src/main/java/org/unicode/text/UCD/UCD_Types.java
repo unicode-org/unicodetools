@@ -21,6 +21,7 @@ public interface UCD_Types {
      * end/limit of the range depends on the Unicode version, see UCD.java mapToRepresentative().
      */
     public static final int TANGUT_BASE = 0x17000;
+
     // Unicode 9:
     // 17000;<Tangut Ideograph, First>;Lo;0;L;;;;;N;;;;;
     // 187EC;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;

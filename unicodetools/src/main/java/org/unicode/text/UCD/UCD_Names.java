@@ -889,6 +889,7 @@ public final class UCD_Names implements UCD_Types {
 
     static String[] COMBINING_CLASS = new String[256];
     static String[] LONG_COMBINING_CLASS = new String[256];
+
     // TODO clean this up, just a quick copy of code
     static {
         for (int style = SHORT; style <= LONG; ++style) {
