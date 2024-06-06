@@ -34,6 +34,7 @@ public class UCA_Statistics {
     UnicodeSet variantSecondaries = new UnicodeSet(0x0153, 0x0154); // TODO, fix
     UnicodeSet digitSecondaries = new UnicodeSet(0x155, 0x017F); // TODO, fix
     UnicodeSet homelessSecondaries;
+
     /** Just for statistics */
     int lastUniqueVariable = 0;
 

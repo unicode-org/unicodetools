@@ -74,6 +74,7 @@ public final class CompactShortArray implements Serializable {
     public CompactShortArray() {
         this((short) 0);
     }
+
     /**
      * Constructor for CompactShortArray.
      *
@@ -91,6 +92,7 @@ public final class CompactShortArray implements Serializable {
         }
         isCompact = false;
     }
+
     /**
      * Constructor for CompactShortArray.
      *
@@ -113,6 +115,7 @@ public final class CompactShortArray implements Serializable {
         indices = indexArray;
         values = newValues;
     }
+
     /**
      * Get the mapped value of a Unicode character.
      *
@@ -123,6 +126,7 @@ public final class CompactShortArray implements Serializable {
             {
         return (values[(indices[index >> BLOCKSHIFT] & 0xFFFF) + (index & BLOCKMASK)]);
     }
+
     /**
      * Set a new value for a Unicode character. Set automatically expands the array if it is
      * compacted.
@@ -136,6 +140,7 @@ public final class CompactShortArray implements Serializable {
         }
         values[index] = value;
     }
+
     /**
      * Set new values for a range of Unicode character.
      *
@@ -152,6 +157,7 @@ public final class CompactShortArray implements Serializable {
             values[i] = value;
         }
     }
+
     /** Compact the array. */
     public void compact() {
         if (isCompact == false) {
@@ -202,6 +208,7 @@ public final class CompactShortArray implements Serializable {
             isCompact = true;
         } // endif (isCompact != false)
     }
+
     /**
      * For internal use only. Do not modify the result, the behavior of modified results are
      * undefined.
@@ -209,6 +216,7 @@ public final class CompactShortArray implements Serializable {
     public short getIndexArray()[] {
         return indices;
     }
+
     /**
      * For internal use only. Do not modify the result, the behavior of modified results are
      * undefined.
@@ -216,6 +224,7 @@ public final class CompactShortArray implements Serializable {
     public short getStringArray()[] {
         return values;
     }
+
     // --------------------------------------------------------------
     // package private
     // --------------------------------------------------------------
@@ -253,6 +262,7 @@ public final class CompactShortArray implements Serializable {
         }
         System.out.println("(short)" + (int) getArrayValue(cnt - 1) + " }");
     }
+
     // Print char Array  : Debug only
     void printIndex(short start, short count) {
         int i;
@@ -276,6 +286,7 @@ public final class CompactShortArray implements Serializable {
         }
         System.out.println("    Range: start " + start + " , count " + count);
     }
+
     // --------------------------------------------------------------
     // private
     // --------------------------------------------------------------
@@ -296,6 +307,7 @@ public final class CompactShortArray implements Serializable {
             isCompact = false;
         }
     }
+
     // # of elements in the indexed array
     private short capacity() {
         return (short) values.length;

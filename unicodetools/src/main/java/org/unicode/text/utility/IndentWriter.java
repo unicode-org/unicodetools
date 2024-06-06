@@ -58,6 +58,7 @@ public class IndentWriter extends Writer {
     public int getIndent() {
         return indent;
     }
+
     /*
     public void write(String cbuf, int off, int len) throws IOException {
         if (buffer.length() + len > width) {
