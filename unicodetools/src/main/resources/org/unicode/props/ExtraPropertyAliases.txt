@@ -173,11 +173,6 @@ kRSTUnicode              ; kRSTUnicode
 kSrc_NushuDuben          ; kSrc_NushuDuben
 kReading                 ; kReading
 
-kEH_Cat                  ; kEH_Cat
-kEH_Desc                 ; kEH_Desc
 kEH_Func                 ; kEH_Func
 kEH_FVal                 ; kEH_FVal
-kEH_JSesh                ; kEH_JSesh
-kEH_HG                   ; kEH_HG
-kEH_IFAO                 ; kEH_IFAO
 kEH_UniK                 ; kEH_UniK
