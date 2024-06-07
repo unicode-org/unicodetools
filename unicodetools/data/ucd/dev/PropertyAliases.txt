@@ -1,5 +1,5 @@
 # PropertyAliases-16.0.0.txt
-# Date: 2024-04-30, 21:48:30 GMT
+# Date: 2024-06-06, 21:52:48 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -99,6 +99,11 @@ cjkIRG_VSource           ; kIRG_VSource
 cjkRSUnicode             ; kRSUnicode                  ; Unicode_Radical_Stroke; URS
 isc                      ; ISO_Comment
 JSN                      ; Jamo_Short_Name
+kEH_Cat                  ; kEH_Cat
+kEH_Desc                 ; kEH_Desc
+kEH_HG                   ; kEH_HG
+kEH_IFAO                 ; kEH_IFAO
+kEH_JSesh                ; kEH_JSesh
 na                       ; Name
 na1                      ; Unicode_1_Name
 Name_Alias               ; Name_Alias
@@ -179,6 +184,8 @@ IDSB                     ; IDS_Binary_Operator
 IDST                     ; IDS_Trinary_Operator
 IDSU                     ; IDS_Unary_Operator
 Join_C                   ; Join_Control
+kEH_NoMirror             ; kEH_NoMirror
+kEH_NoRotate             ; kEH_NoRotate
 LOE                      ; Logical_Order_Exception
 Lower                    ; Lowercase
 Math                     ; Math
@@ -213,6 +220,6 @@ XO_NFKC                  ; Expands_On_NFKC
 XO_NFKD                  ; Expands_On_NFKD
 
 # ================================================
-# Total:    135
+# Total:    142
 
 # EOF
