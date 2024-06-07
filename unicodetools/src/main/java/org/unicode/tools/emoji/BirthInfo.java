@@ -56,6 +56,7 @@ public class BirthInfo implements Comparable<BirthInfo> {
     static final UnicodeMap<BirthInfo> birthYear = new UnicodeMap<BirthInfo>();
     static Map<Integer, UnicodeSet> yearToEmoji;
     static Map<VersionInfo, UnicodeSet> emojiVersionToEmoji;
+
     // static final UnicodeMap<Integer> birthYearWithVarians = new UnicodeMap<Integer>();
 
     public static BirthInfo getBirthInfo(String s) {
@@ -201,6 +202,7 @@ public class BirthInfo implements Comparable<BirthInfo> {
             emojiVersionToEmoji = ImmutableMap.copyOf(_emojiVersionToEmoji2);
         }
     }
+
     /**
      * Return the year values, from largest to smallest
      *

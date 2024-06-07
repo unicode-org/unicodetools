@@ -591,6 +591,7 @@ public class QuickTest implements UCD_Types {
     }
 
     static final int skip = (1 << UCD.UNASSIGNED) | (1 << UCD.PRIVATE_USE) | (1 << UCD.SURROGATE);
+
     /** */
     private static void getLengths(String title, Normalizer normalizer) throws IOException {
         System.out.println();

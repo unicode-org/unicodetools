@@ -84,12 +84,20 @@ public class TestIdnaTest extends TestFmwkMinusMinus {
 
         String versionString =
                 " expected=v" + Settings.latestVersion + " actual=v" + Settings.lastVersion;
+        // Unicode 16.0 minimizes the base exclusion set,
+        // which changes a number of characters from disallowed to mapped/ignored/valid.
+        UnicodeSet changingIn16 =
+                new UnicodeSet(
+                                0x04C0, 0x04C0, 0x10A0, 0x10C5, 0x115F, 0x1160, 0x17B4, 0x17B5,
+                                0x1806, 0x1806, 0x180E, 0x180E, 0x2061, 0x2063, 0x206A, 0x206F,
+                                0x2132, 0x2132, 0x2183, 0x2183, 0x3164, 0x3164, 0xFFA0, 0xFFA0,
+                                0x1D173, 0x1D17A, 0x2F868, 0x2F868, 0x2F874, 0x2F874, 0x2F91F,
+                                0x2F91F, 0x2F95F, 0x2F95F, 0x2F9BF, 0x2F9BF)
+                        .freeze();
         for (String x : oldAssigned) {
-            char c0 = x.charAt(0);
+            int c0 = x.codePointAt(0);
             {
-                // Unicode 15.1 changes the mapping of capital sharp s:
-                // Used to map to ss, now to lowercase sharp s.
-                boolean skip = c0 == 0x1E9E;
+                boolean skip = changingIn16.contains(c0);
                 if (!skip) {
                     assertEquals(
                             "mapping" + versionString, idnaMappingLast.get(x), idnaMapping.get(x));
@@ -98,10 +106,7 @@ public class TestIdnaTest extends TestFmwkMinusMinus {
             {
                 Idn_Status_Values lastStatus = idnaStatusLast.get(x);
                 Idn_Status_Values currentStatus = idnaStatus.get(x);
-                // Unicode 15.1 changes these from disallowed_STD3_valid to valid.
-                boolean skip =
-                        (c0 == 0x2260 || c0 == 0x226E || c0 == 0x226F)
-                                && currentStatus == Idn_Status_Values.valid;
+                boolean skip = changingIn16.contains(c0);
                 if (!skip) {
                     assertEquals("status" + versionString, lastStatus, currentStatus);
                 }

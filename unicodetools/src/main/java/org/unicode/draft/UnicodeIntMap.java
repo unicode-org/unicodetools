@@ -251,6 +251,7 @@ public final class UnicodeIntMap
         }
         length -= count;
     }
+
     /**
      * Add a gap from index to index+count-1. The values there are undefined, and must be set.
      * Logically grows arrays to accomodate. Actual growth is limited
@@ -547,6 +548,7 @@ public final class UnicodeIntMap
             return putAll(keySet(UNASSIGNED), value);
         }
     }
+
     /**
      * Returns the keyset consisting of all the keys that would produce the given value. Deposits
      * into result if it is not null. Remember to clear if you just want the new values.
@@ -623,6 +625,7 @@ public final class UnicodeIntMap
     public Set<Integer> values() {
         return getAvailableValues(null);
     }
+
     /**
      * Gets the value associated with a given code point. Returns null, if there is no such value.
      *
@@ -755,12 +758,14 @@ public final class UnicodeIntMap
         }
         return result.toString();
     }
+
     /**
      * @return Returns the errorOnReset value.
      */
     public boolean getErrorOnReset() {
         return errorOnReset;
     }
+
     /**
      * Puts the UnicodeMap into a state whereby new mappings are accepted, but changes to old
      * mappings cause an exception.

@@ -1,8 +1,12 @@
 # IdnaMappingTable.txt
+<<<<<<< HEAD
 # Date: 2024-01-31, 23:06:37 GMT
+=======
+# Date: 2024-05-03, 23:53:50 GMT
+>>>>>>> la-vache/main
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode IDNA Compatible Preprocessing for UTS #46
 # Version: 16.0.0
@@ -710,7 +714,7 @@
 04BD          ; valid                                  # 1.1  CYRILLIC SMALL LETTER ABKHASIAN CHE
 04BE          ; mapped                 ; 04BF          # 1.1  CYRILLIC CAPITAL LETTER ABKHASIAN CHE WITH DESCENDER
 04BF          ; valid                                  # 1.1  CYRILLIC SMALL LETTER ABKHASIAN CHE WITH DESCENDER
-04C0          ; disallowed                             # 1.1  CYRILLIC LETTER PALOCHKA
+04C0          ; mapped                 ; 04CF          # 1.1  CYRILLIC LETTER PALOCHKA
 04C1          ; mapped                 ; 04C2          # 1.1  CYRILLIC CAPITAL LETTER ZHE WITH BREVE
 04C2          ; valid                                  # 1.1  CYRILLIC SMALL LETTER ZHE WITH BREVE
 04C3          ; mapped                 ; 04C4          # 1.1  CYRILLIC CAPITAL LETTER KA WITH HOOK
@@ -1492,7 +1496,44 @@
 105A..1099    ; valid                                  # 5.1  MYANMAR LETTER MON NGA..MYANMAR SHAN DIGIT NINE
 109A..109D    ; valid                                  # 5.2  MYANMAR SIGN KHAMTI TONE-1..MYANMAR VOWEL SIGN AITON AI
 109E..109F    ; valid                  ;      ; NV8    # 5.1  MYANMAR SYMBOL SHAN ONE..MYANMAR SYMBOL SHAN EXCLAMATION
-10A0..10C5    ; disallowed                             # 1.1  GEORGIAN CAPITAL LETTER AN..GEORGIAN CAPITAL LETTER HOE
+10A0          ; mapped                 ; 2D00          # 1.1  GEORGIAN CAPITAL LETTER AN
+10A1          ; mapped                 ; 2D01          # 1.1  GEORGIAN CAPITAL LETTER BAN
+10A2          ; mapped                 ; 2D02          # 1.1  GEORGIAN CAPITAL LETTER GAN
+10A3          ; mapped                 ; 2D03          # 1.1  GEORGIAN CAPITAL LETTER DON
+10A4          ; mapped                 ; 2D04          # 1.1  GEORGIAN CAPITAL LETTER EN
+10A5          ; mapped                 ; 2D05          # 1.1  GEORGIAN CAPITAL LETTER VIN
+10A6          ; mapped                 ; 2D06          # 1.1  GEORGIAN CAPITAL LETTER ZEN
+10A7          ; mapped                 ; 2D07          # 1.1  GEORGIAN CAPITAL LETTER TAN
+10A8          ; mapped                 ; 2D08          # 1.1  GEORGIAN CAPITAL LETTER IN
+10A9          ; mapped                 ; 2D09          # 1.1  GEORGIAN CAPITAL LETTER KAN
+10AA          ; mapped                 ; 2D0A          # 1.1  GEORGIAN CAPITAL LETTER LAS
+10AB          ; mapped                 ; 2D0B          # 1.1  GEORGIAN CAPITAL LETTER MAN
+10AC          ; mapped                 ; 2D0C          # 1.1  GEORGIAN CAPITAL LETTER NAR
+10AD          ; mapped                 ; 2D0D          # 1.1  GEORGIAN CAPITAL LETTER ON
+10AE          ; mapped                 ; 2D0E          # 1.1  GEORGIAN CAPITAL LETTER PAR
+10AF          ; mapped                 ; 2D0F          # 1.1  GEORGIAN CAPITAL LETTER ZHAR
+10B0          ; mapped                 ; 2D10          # 1.1  GEORGIAN CAPITAL LETTER RAE
+10B1          ; mapped                 ; 2D11          # 1.1  GEORGIAN CAPITAL LETTER SAN
+10B2          ; mapped                 ; 2D12          # 1.1  GEORGIAN CAPITAL LETTER TAR
+10B3          ; mapped                 ; 2D13          # 1.1  GEORGIAN CAPITAL LETTER UN
+10B4          ; mapped                 ; 2D14          # 1.1  GEORGIAN CAPITAL LETTER PHAR
+10B5          ; mapped                 ; 2D15          # 1.1  GEORGIAN CAPITAL LETTER KHAR
+10B6          ; mapped                 ; 2D16          # 1.1  GEORGIAN CAPITAL LETTER GHAN
+10B7          ; mapped                 ; 2D17          # 1.1  GEORGIAN CAPITAL LETTER QAR
+10B8          ; mapped                 ; 2D18          # 1.1  GEORGIAN CAPITAL LETTER SHIN
+10B9          ; mapped                 ; 2D19          # 1.1  GEORGIAN CAPITAL LETTER CHIN
+10BA          ; mapped                 ; 2D1A          # 1.1  GEORGIAN CAPITAL LETTER CAN
+10BB          ; mapped                 ; 2D1B          # 1.1  GEORGIAN CAPITAL LETTER JIL
+10BC          ; mapped                 ; 2D1C          # 1.1  GEORGIAN CAPITAL LETTER CIL
+10BD          ; mapped                 ; 2D1D          # 1.1  GEORGIAN CAPITAL LETTER CHAR
+10BE          ; mapped                 ; 2D1E          # 1.1  GEORGIAN CAPITAL LETTER XAN
+10BF          ; mapped                 ; 2D1F          # 1.1  GEORGIAN CAPITAL LETTER JHAN
+10C0          ; mapped                 ; 2D20          # 1.1  GEORGIAN CAPITAL LETTER HAE
+10C1          ; mapped                 ; 2D21          # 1.1  GEORGIAN CAPITAL LETTER HE
+10C2          ; mapped                 ; 2D22          # 1.1  GEORGIAN CAPITAL LETTER HIE
+10C3          ; mapped                 ; 2D23          # 1.1  GEORGIAN CAPITAL LETTER WE
+10C4          ; mapped                 ; 2D24          # 1.1  GEORGIAN CAPITAL LETTER HAR
+10C5          ; mapped                 ; 2D25          # 1.1  GEORGIAN CAPITAL LETTER HOE
 10C6          ; disallowed                             # NA   <reserved-10C6>
 10C7          ; mapped                 ; 2D27          # 6.1  GEORGIAN CAPITAL LETTER YN
 10C8..10CC    ; disallowed                             # NA   <reserved-10C8>..<reserved-10CC>
@@ -1506,7 +1547,7 @@
 10FD..10FF    ; valid                                  # 6.1  GEORGIAN LETTER AEN..GEORGIAN LETTER LABIAL SIGN
 1100..1159    ; valid                  ;      ; NV8    # 1.1  HANGUL CHOSEONG KIYEOK..HANGUL CHOSEONG YEORINHIEUH
 115A..115E    ; valid                  ;      ; NV8    # 5.2  HANGUL CHOSEONG KIYEOK-TIKEUT..HANGUL CHOSEONG TIKEUT-RIEUL
-115F..1160    ; disallowed                             # 1.1  HANGUL CHOSEONG FILLER..HANGUL JUNGSEONG FILLER
+115F..1160    ; ignored                                # 1.1  HANGUL CHOSEONG FILLER..HANGUL JUNGSEONG FILLER
 1161..11A2    ; valid                  ;      ; NV8    # 1.1  HANGUL JUNGSEONG A..HANGUL JUNGSEONG SSANGARAEA
 11A3..11A7    ; valid                  ;      ; NV8    # 5.2  HANGUL JUNGSEONG A-EU..HANGUL JUNGSEONG O-YAE
 11A8..11F9    ; valid                  ;      ; NV8    # 1.1  HANGUL JONGSEONG KIYEOK..HANGUL JONGSEONG YEORINHIEUH
@@ -1610,7 +1651,7 @@
 1772..1773    ; valid                                  # 3.2  TAGBANWA VOWEL SIGN I..TAGBANWA VOWEL SIGN U
 1774..177F    ; disallowed                             # NA   <reserved-1774>..<reserved-177F>
 1780..17B3    ; valid                                  # 3.0  KHMER LETTER KA..KHMER INDEPENDENT VOWEL QAU
-17B4..17B5    ; disallowed                             # 3.0  KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
+17B4..17B5    ; ignored                                # 3.0  KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
 17B6..17D3    ; valid                                  # 3.0  KHMER VOWEL SIGN AA..KHMER SIGN BATHAMASAT
 17D4..17D6    ; valid                  ;      ; NV8    # 3.0  KHMER SIGN KHAN..KHMER SIGN CAMNUC PII KUUH
 17D7          ; valid                                  # 3.0  KHMER SIGN LEK TOO
@@ -1622,11 +1663,8 @@
 17EA..17EF    ; disallowed                             # NA   <reserved-17EA>..<reserved-17EF>
 17F0..17F9    ; valid                  ;      ; NV8    # 4.0  KHMER SYMBOL LEK ATTAK SON..KHMER SYMBOL LEK ATTAK PRAM-BUON
 17FA..17FF    ; disallowed                             # NA   <reserved-17FA>..<reserved-17FF>
-1800..1805    ; valid                  ;      ; NV8    # 3.0  MONGOLIAN BIRGA..MONGOLIAN FOUR DOTS
-1806          ; disallowed                             # 3.0  MONGOLIAN TODO SOFT HYPHEN
-1807..180A    ; valid                  ;      ; NV8    # 3.0  MONGOLIAN SIBE SYLLABLE BOUNDARY MARKER..MONGOLIAN NIRUGU
-180B..180D    ; ignored                                # 3.0  MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
-180E          ; disallowed                             # 3.0  MONGOLIAN VOWEL SEPARATOR
+1800..180A    ; valid                  ;      ; NV8    # 3.0  MONGOLIAN BIRGA..MONGOLIAN NIRUGU
+180B..180E    ; ignored                                # 3.0  MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN VOWEL SEPARATOR
 180F          ; ignored                                # 14.0 MONGOLIAN FREE VARIATION SELECTOR FOUR
 1810..1819    ; valid                                  # 3.0  MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
 181A..181F    ; disallowed                             # NA   <reserved-181A>..<reserved-181F>
@@ -2369,12 +2407,11 @@
 2057          ; mapped                 ; 2032 2032 2032 2032 #3.2 QUADRUPLE PRIME
 2058..205E    ; valid                  ;      ; NV8    # 4.1  FOUR DOT PUNCTUATION..VERTICAL FOUR DOTS
 205F          ; disallowed_STD3_mapped ; 0020          # 3.2  MEDIUM MATHEMATICAL SPACE
-2060          ; ignored                                # 3.2  WORD JOINER
-2061..2063    ; disallowed                             # 3.2  FUNCTION APPLICATION..INVISIBLE SEPARATOR
+2060..2063    ; ignored                                # 3.2  WORD JOINER..INVISIBLE SEPARATOR
 2064          ; ignored                                # 5.1  INVISIBLE PLUS
 2065          ; disallowed                             # NA   <reserved-2065>
 2066..2069    ; disallowed                             # 6.3  LEFT-TO-RIGHT ISOLATE..POP DIRECTIONAL ISOLATE
-206A..206F    ; disallowed                             # 1.1  INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES
+206A..206F    ; ignored                                # 1.1  INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES
 2070          ; mapped                 ; 0030          # 1.1  SUPERSCRIPT ZERO
 2071          ; mapped                 ; 0069          # 3.2  SUPERSCRIPT LATIN SMALL LETTER I
 2072..2073    ; disallowed                             # NA   <reserved-2072>..<reserved-2073>
@@ -2483,7 +2520,7 @@
 212E          ; valid                  ;      ; NV8    # 1.1  ESTIMATED SYMBOL
 212F..2130    ; mapped                 ; 0065          # 1.1  SCRIPT SMALL E..SCRIPT CAPITAL E
 2131          ; mapped                 ; 0066          # 1.1  SCRIPT CAPITAL F
-2132          ; disallowed                             # 1.1  TURNED CAPITAL F
+2132          ; mapped                 ; 214E          # 1.1  TURNED CAPITAL F
 2133          ; mapped                 ; 006D          # 1.1  SCRIPT CAPITAL M
 2134          ; mapped                 ; 006F          # 1.1  SCRIPT SMALL O
 2135          ; mapped                 ; 05D0          # 1.1  ALEF SYMBOL
@@ -2556,7 +2593,7 @@
 217E          ; mapped                 ; 0064          # 1.1  SMALL ROMAN NUMERAL FIVE HUNDRED
 217F          ; mapped                 ; 006D          # 1.1  SMALL ROMAN NUMERAL ONE THOUSAND
 2180..2182    ; valid                  ;      ; NV8    # 1.1  ROMAN NUMERAL ONE THOUSAND C D..ROMAN NUMERAL TEN THOUSAND
-2183          ; disallowed                             # 3.0  ROMAN NUMERAL REVERSED ONE HUNDRED
+2183          ; mapped                 ; 2184          # 3.0  ROMAN NUMERAL REVERSED ONE HUNDRED
 2184          ; valid                                  # 5.0  LATIN SMALL LETTER REVERSED C
 2185..2188    ; valid                  ;      ; NV8    # 5.1  ROMAN NUMERAL SIX LATE FORM..ROMAN NUMERAL ONE HUNDRED THOUSAND
 2189          ; mapped                 ; 0030 2044 0033 #5.2  VULGAR FRACTION ZERO THIRDS
@@ -3364,7 +3401,7 @@
 3161          ; mapped                 ; 1173          # 1.1  HANGUL LETTER EU
 3162          ; mapped                 ; 1174          # 1.1  HANGUL LETTER YI
 3163          ; mapped                 ; 1175          # 1.1  HANGUL LETTER I
-3164          ; disallowed                             # 1.1  HANGUL FILLER
+3164          ; ignored                                # 1.1  HANGUL FILLER
 3165          ; mapped                 ; 1114          # 1.1  HANGUL LETTER SSANGNIEUN
 3166          ; mapped                 ; 1115          # 1.1  HANGUL LETTER NIEUN-TIKEUT
 3167          ; mapped                 ; 11C7          # 1.1  HANGUL LETTER NIEUN-SIOS
@@ -5727,7 +5764,7 @@ FF9C          ; mapped                 ; 30EF          # 1.1  HALFWIDTH KATAKANA
 FF9D          ; mapped                 ; 30F3          # 1.1  HALFWIDTH KATAKANA LETTER N
 FF9E          ; mapped                 ; 3099          # 1.1  HALFWIDTH KATAKANA VOICED SOUND MARK
 FF9F          ; mapped                 ; 309A          # 1.1  HALFWIDTH KATAKANA SEMI-VOICED SOUND MARK
-FFA0          ; disallowed                             # 1.1  HALFWIDTH HANGUL FILLER
+FFA0          ; ignored                                # 1.1  HALFWIDTH HANGUL FILLER
 FFA1          ; mapped                 ; 1100          # 1.1  HALFWIDTH HANGUL LETTER KIYEOK
 FFA2          ; mapped                 ; 1101          # 1.1  HALFWIDTH HANGUL LETTER SSANGKIYEOK
 FFA3          ; mapped                 ; 11AA          # 1.1  HALFWIDTH HANGUL LETTER KIYEOK-SIOS
@@ -6801,7 +6838,7 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 1D163         ; mapped                 ; 1D158 1D165 1D171 #3.1 MUSICAL SYMBOL SIXTY-FOURTH NOTE
 1D164         ; mapped                 ; 1D158 1D165 1D172 #3.1 MUSICAL SYMBOL ONE HUNDRED TWENTY-EIGHTH NOTE
 1D165..1D172  ; valid                  ;      ; NV8    # 3.1  MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING FLAG-5
-1D173..1D17A  ; disallowed                             # 3.1  MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
+1D173..1D17A  ; ignored                                # 3.1  MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
 1D17B..1D1BA  ; valid                  ;      ; NV8    # 3.1  MUSICAL SYMBOL COMBINING ACCENT..MUSICAL SYMBOL SEMIBREVIS BLACK
 1D1BB         ; mapped                 ; 1D1B9 1D165   # 3.1  MUSICAL SYMBOL MINIMA
 1D1BC         ; mapped                 ; 1D1BA 1D165   # 3.1  MUSICAL SYMBOL MINIMA BLACK
@@ -8693,7 +8730,7 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 2F865         ; mapped                 ; 59D8          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F865
 2F866         ; mapped                 ; 5A66          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F866
 2F867         ; mapped                 ; 36EE          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F867
-2F868         ; disallowed                             # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F868
+2F868         ; mapped                 ; 36FC          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F868
 2F869         ; mapped                 ; 5B08          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F869
 2F86A..2F86B  ; mapped                 ; 5B3E          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F86A..CJK COMPATIBILITY IDEOGRAPH-2F86B
 2F86C         ; mapped                 ; 219C8         # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F86C
@@ -8704,7 +8741,7 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 2F871         ; mapped                 ; 21B18         # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F871
 2F872         ; mapped                 ; 5BFF          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F872
 2F873         ; mapped                 ; 5C06          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F873
-2F874         ; disallowed                             # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F874
+2F874         ; mapped                 ; 5F53          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F874
 2F875         ; mapped                 ; 5C22          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F875
 2F876         ; mapped                 ; 3781          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F876
 2F877         ; mapped                 ; 5C60          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F877
@@ -8873,7 +8910,7 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 2F91C         ; mapped                 ; 7145          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F91C
 2F91D         ; mapped                 ; 24263         # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F91D
 2F91E         ; mapped                 ; 719C          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F91E
-2F91F         ; disallowed                             # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F91F
+2F91F         ; mapped                 ; 243AB         # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F91F
 2F920         ; mapped                 ; 7228          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F920
 2F921         ; mapped                 ; 7235          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F921
 2F922         ; mapped                 ; 7250          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F922
@@ -8934,7 +8971,7 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 2F95B         ; mapped                 ; 7A4F          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F95B
 2F95C         ; mapped                 ; 2597C         # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F95C
 2F95D..2F95E  ; mapped                 ; 25AA7         # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F95D..CJK COMPATIBILITY IDEOGRAPH-2F95E
-2F95F         ; disallowed                             # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F95F
+2F95F         ; mapped                 ; 7AEE          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F95F
 2F960         ; mapped                 ; 4202          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F960
 2F961         ; mapped                 ; 25BAB         # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F961
 2F962         ; mapped                 ; 7BC6          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F962
@@ -9030,7 +9067,7 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 2F9BC         ; mapped                 ; 8728          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9BC
 2F9BD         ; mapped                 ; 876B          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9BD
 2F9BE         ; mapped                 ; 8786          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9BE
-2F9BF         ; disallowed                             # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9BF
+2F9BF         ; mapped                 ; 45D7          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9BF
 2F9C0         ; mapped                 ; 87E1          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9C0
 2F9C1         ; mapped                 ; 8801          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9C1
 2F9C2         ; mapped                 ; 45F9          # 3.1  CJK COMPATIBILITY IDEOGRAPH-2F9C2
