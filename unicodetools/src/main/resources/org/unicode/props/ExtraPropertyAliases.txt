@@ -167,6 +167,12 @@ cjkZhuangNumeric         ; kZhuangNumeric
 # 16.0
 cjkFanqie                ; kFanqie
 
+kTGT_MergedSrc           ; kTGT_MergedSrc
+kRSTUnicode              ; kRSTUnicode
+
+kSrc_NushuDuben          ; kSrc_NushuDuben
+kReading                 ; kReading
+
 kEH_Func                 ; kEH_Func
 kEH_FVal                 ; kEH_FVal
 kEH_UniK                 ; kEH_UniK
