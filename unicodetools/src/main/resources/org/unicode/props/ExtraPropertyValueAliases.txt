@@ -205,11 +205,6 @@ Do_Not_Emit_Type ; Preferred_Spelling       ; Preferred_Spelling
 # @missing: 0000..10FFFF; kSrc_NushuDuben ; <none>
 # @missing: 0000..10FFFF; kReading ; <none>
 
-# @missing: 0000..10FFFF; kEH_Cat ; <none>
-# @missing: 0000..10FFFF; kEH_Desc ; <none>
 # @missing: 0000..10FFFF; kEH_Func ; <none>
 # @missing: 0000..10FFFF; kEH_FVal ; <none>
-# @missing: 0000..10FFFF; kEH_JSesh ; <none>
-# @missing: 0000..10FFFF; kEH_HG ; <none>
-# @missing: 0000..10FFFF; kEH_IFAO ; <none>
 # @missing: 0000..10FFFF; kEH_UniK ; <none>
