@@ -58,6 +58,8 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
             UnicodeProperty prop = factory.getProperty(propName);
             switch (propName) {
                 case "Bidi_Mirroring_Glyph":
+                    // The default is <none> in BidiMirroring.txt, but TUP incorrectly has it as
+                    // <code point>.
                     prop =
                             replaceCpValues(
                                     prop,
@@ -65,25 +67,23 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
                                             oldValue == null ? UTF16.valueOf(cp) : oldValue);
                     break;
                 case "Bidi_Paired_Bracket":
+                    // The default is <none> in PropertyValueAliases.txt, but TUP incorrectly
+                    // has it as U+0000.
                     prop = replaceValues(prop, oldValue -> oldValue == null ? "\u0000" : oldValue);
                     break;
                 case "FC_NFKC_Closure":
+                    // The default is <code point> in PropertyValueAliases.txt, but TUP incorrectly
+                    // has it as <none>.
                     prop =
                             replaceCpValues(
                                     prop, (cp, oldValue) -> fixFC_NFKC_Closure(cp, oldValue));
 
                     break;
-                case "Joining_Type":
-                    prop = replaceCpValues(prop, (cp, oldValue) -> fixJoining_Type(cp, oldValue));
-                    break;
-                case "Joining_Group":
-                    prop = modifyJoining_Group(prop);
-                    break;
-                case "Jamo_Short_Name":
-                    prop = modifyJamo_Short_Name(prop);
-                    break;
                 case "Name":
-                    // prop = modifyName(prop);
+                    // TUP reports the special label <control-XXXX> as the value of the Name
+                    // property. This is incorrect, the actual value of the Name property is "" for
+                    // those, see https://www.unicode.org/versions/latest/ch04.pdf#G135245 and
+                    // https://www.unicode.org/reports/tr44/#Name.
                     prop = replaceCpValues(prop, (cp, x) -> fixName(cp, x));
                     break;
                 case "Numeric_Value":
@@ -301,38 +301,17 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
     private String fixName(int cp, String value) {
         if (control.contains(cp)) {
             return "<control-" + Utility.hex(cp, 4) + ">";
-        } else if (value != null && value.contains("#")) {
-            return value.replace("#", Utility.hex(cp, 4));
         } else {
             return value;
         }
     }
 
     private String fixFC_NFKC_Closure(int cp, String oldValue) {
-        if (oldValue.equals("<code point>") || equalsString(cp, oldValue)) {
+        if (equalsString(cp, oldValue)) {
             return null;
         } else {
             return oldValue;
         }
-    }
-
-    // Joining_Type needs fix in IUP
-    private String fixJoining_Type(int cp, String oldValue) {
-        if (defaultTransparent.contains(cp) && "Non_Joining".equals(oldValue)) {
-            return "Transparent";
-        } else {
-            return oldValue;
-        }
-    }
-
-    // Jamo_Short_Name needs fix in IUP
-    private UnicodeProperty modifyJamo_Short_Name(UnicodeProperty prop) {
-        return copyPropReplacingMap(prop, prop.getUnicodeMap().put('ᄋ', ""));
-    }
-
-    // Joining_Group needs fix in IUP (really, in UCD data)
-    private UnicodeProperty modifyJoining_Group(UnicodeProperty prop) {
-        return copyPropReplacingMap(prop, prop.getUnicodeMap().put('ۃ', "Teh_Marbuta_Goal"));
     }
 
     /** Very useful. May already be in ICU, but not sure. */

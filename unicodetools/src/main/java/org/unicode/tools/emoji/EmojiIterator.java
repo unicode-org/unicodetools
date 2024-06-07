@@ -23,6 +23,7 @@ public final class EmojiIterator implements Iterable<String>, Iterator<String> {
         this.modifier = data.MODIFIERS;
         this.stripTrailingStyleVariants = stripTrailingStyleVariants;
     }
+
     /**
      * Resets newLabel if there is a label.
      *

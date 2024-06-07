@@ -306,6 +306,7 @@ public abstract class UnicodePropertySource implements Cloneable {
             return getFixedValueAlias(valueAlias, -1, nameChoice);
         }
     }
+
     // TODO file bug on getPropertyValueName for Canonical_Combining_Class
 
     public StringFilter getFilter() {
