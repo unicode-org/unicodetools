@@ -1,32 +1,38 @@
 package org.unicode.xml;
 
 import com.ibm.icu.dev.util.UnicodeMap;
+import java.util.*;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.*;
-
-import java.util.*;
 
 public class AttributeResolver {
 
     private final IndexUnicodeProperties indexUnicodeProperties;
     private final UnicodeMap<UcdPropertyValues.Age_Values> map_age;
     private final UnicodeMap<UcdPropertyValues.Bidi_Class_Values> map_bidi_class;
-    private final UnicodeMap<UcdPropertyValues.Bidi_Paired_Bracket_Type_Values> map_bidi_paired_bracket_type;
+    private final UnicodeMap<UcdPropertyValues.Bidi_Paired_Bracket_Type_Values>
+            map_bidi_paired_bracket_type;
     private final UnicodeMap<UcdPropertyValues.Block_Values> map_block;
-    private final UnicodeMap<UcdPropertyValues.Canonical_Combining_Class_Values> map_canonical_combining_class;
+    private final UnicodeMap<UcdPropertyValues.Canonical_Combining_Class_Values>
+            map_canonical_combining_class;
     private final UnicodeMap<UcdPropertyValues.Decomposition_Type_Values> map_decomposition_type;
     private final UnicodeMap<UcdPropertyValues.Do_Not_Emit_Type_Values> map_do_not_emit_type;
     private final UnicodeMap<UcdPropertyValues.East_Asian_Width_Values> map_east_asian_width;
     private final UnicodeMap<UcdPropertyValues.General_Category_Values> map_general_category;
-    private final UnicodeMap<UcdPropertyValues.Grapheme_Cluster_Break_Values> map_grapheme_cluster_break;
-    private final UnicodeMap<UcdPropertyValues.Hangul_Syllable_Type_Values> map_hangul_syllable_type;
+    private final UnicodeMap<UcdPropertyValues.Grapheme_Cluster_Break_Values>
+            map_grapheme_cluster_break;
+    private final UnicodeMap<UcdPropertyValues.Hangul_Syllable_Type_Values>
+            map_hangul_syllable_type;
     private final UnicodeMap<UcdPropertyValues.Identifier_Status_Values> map_identifier_status;
     private final UnicodeMap<UcdPropertyValues.Identifier_Type_Values> map_identifier_type;
     private final UnicodeMap<UcdPropertyValues.Idn_2008_Values> map_idn_2008;
     private final UnicodeMap<UcdPropertyValues.Idn_Status_Values> map_idn_status;
-    private final UnicodeMap<UcdPropertyValues.Indic_Conjunct_Break_Values> map_indic_conjunct_break;
-    private final UnicodeMap<UcdPropertyValues.Indic_Positional_Category_Values> map_indic_positional_category;
-    private final UnicodeMap<UcdPropertyValues.Indic_Syllabic_Category_Values> map_indic_syllabic_category;
+    private final UnicodeMap<UcdPropertyValues.Indic_Conjunct_Break_Values>
+            map_indic_conjunct_break;
+    private final UnicodeMap<UcdPropertyValues.Indic_Positional_Category_Values>
+            map_indic_positional_category;
+    private final UnicodeMap<UcdPropertyValues.Indic_Syllabic_Category_Values>
+            map_indic_syllabic_category;
     private final UnicodeMap<UcdPropertyValues.Jamo_Short_Name_Values> map_jamo_short_name;
     private final UnicodeMap<UcdPropertyValues.Joining_Group_Values> map_joining_group;
     private final UnicodeMap<UcdPropertyValues.Joining_Type_Values> map_joining_type;
@@ -40,41 +46,50 @@ public class AttributeResolver {
     private final UnicodeMap<UcdPropertyValues.Script_Values> map_script;
     private final UnicodeMap<String> map_script_extensions;
     private final UnicodeMap<UcdPropertyValues.Sentence_Break_Values> map_sentence_break;
-    private final UnicodeMap<UcdPropertyValues.Vertical_Orientation_Values> map_vertical_orientation;
+    private final UnicodeMap<UcdPropertyValues.Vertical_Orientation_Values>
+            map_vertical_orientation;
     private final UnicodeMap<UcdPropertyValues.Word_Break_Values> map_word_break;
     private final HashMap<Integer, LinkedList<NameAlias>> map_NameAlias;
 
-    //If there is a change in any of these properties between two adjacent characters, it will result in a new range.
+    // If there is a change in any of these properties between two adjacent characters, it will
+    // result in a new range.
     private final UcdProperty[] rangeDefiningProperties = {
-            UcdProperty.Age,
-            UcdProperty.Bidi_Class,
-            UcdProperty.Block,
-            UcdProperty.Decomposition_Mapping,
-            UcdProperty.Numeric_Type,
-            UcdProperty.Numeric_Value,
-            UcdProperty.Vertical_Orientation
+        UcdProperty.Age,
+        UcdProperty.Bidi_Class,
+        UcdProperty.Block,
+        UcdProperty.Decomposition_Mapping,
+        UcdProperty.Numeric_Type,
+        UcdProperty.Numeric_Value,
+        UcdProperty.Vertical_Orientation
     };
 
     public AttributeResolver(IndexUnicodeProperties iup) {
         indexUnicodeProperties = iup;
         map_age = indexUnicodeProperties.loadEnum(UcdProperty.Age);
         map_bidi_class = indexUnicodeProperties.loadEnum(UcdProperty.Bidi_Class);
-        map_bidi_paired_bracket_type = indexUnicodeProperties.loadEnum(UcdProperty.Bidi_Paired_Bracket_Type);
+        map_bidi_paired_bracket_type =
+                indexUnicodeProperties.loadEnum(UcdProperty.Bidi_Paired_Bracket_Type);
         map_block = indexUnicodeProperties.loadEnum(UcdProperty.Block);
-        map_canonical_combining_class = indexUnicodeProperties.loadEnum(UcdProperty.Canonical_Combining_Class);
+        map_canonical_combining_class =
+                indexUnicodeProperties.loadEnum(UcdProperty.Canonical_Combining_Class);
         map_decomposition_type = indexUnicodeProperties.loadEnum(UcdProperty.Decomposition_Type);
         map_do_not_emit_type = indexUnicodeProperties.loadEnum(UcdProperty.Do_Not_Emit_Type);
         map_east_asian_width = indexUnicodeProperties.loadEnum(UcdProperty.East_Asian_Width);
         map_general_category = indexUnicodeProperties.loadEnum(UcdProperty.General_Category);
-        map_grapheme_cluster_break = indexUnicodeProperties.loadEnum(UcdProperty.Grapheme_Cluster_Break);
-        map_hangul_syllable_type = indexUnicodeProperties.loadEnum(UcdProperty.Hangul_Syllable_Type);
+        map_grapheme_cluster_break =
+                indexUnicodeProperties.loadEnum(UcdProperty.Grapheme_Cluster_Break);
+        map_hangul_syllable_type =
+                indexUnicodeProperties.loadEnum(UcdProperty.Hangul_Syllable_Type);
         map_identifier_status = indexUnicodeProperties.loadEnum(UcdProperty.Identifier_Status);
         map_identifier_type = indexUnicodeProperties.loadEnum(UcdProperty.Identifier_Type);
         map_idn_2008 = indexUnicodeProperties.loadEnum(UcdProperty.Idn_2008);
         map_idn_status = indexUnicodeProperties.loadEnum(UcdProperty.Idn_Status);
-        map_indic_conjunct_break = indexUnicodeProperties.loadEnum(UcdProperty.Indic_Conjunct_Break);
-        map_indic_positional_category = indexUnicodeProperties.loadEnum(UcdProperty.Indic_Positional_Category);
-        map_indic_syllabic_category = indexUnicodeProperties.loadEnum(UcdProperty.Indic_Syllabic_Category);
+        map_indic_conjunct_break =
+                indexUnicodeProperties.loadEnum(UcdProperty.Indic_Conjunct_Break);
+        map_indic_positional_category =
+                indexUnicodeProperties.loadEnum(UcdProperty.Indic_Positional_Category);
+        map_indic_syllabic_category =
+                indexUnicodeProperties.loadEnum(UcdProperty.Indic_Syllabic_Category);
         map_jamo_short_name = indexUnicodeProperties.loadEnum(UcdProperty.Jamo_Short_Name);
         map_joining_group = indexUnicodeProperties.loadEnum(UcdProperty.Joining_Group);
         map_joining_type = indexUnicodeProperties.loadEnum(UcdProperty.Joining_Type);
@@ -86,14 +101,17 @@ public class AttributeResolver {
         map_numeric_type = indexUnicodeProperties.loadEnum(UcdProperty.Numeric_Type);
         map_other_joining_type = indexUnicodeProperties.loadEnum(UcdProperty.Other_Joining_Type);
         map_script = indexUnicodeProperties.loadEnum(UcdProperty.Script);
-        map_script_extensions = indexUnicodeProperties.getProperty(UcdProperty.Script_Extensions).getUnicodeMap();
+        map_script_extensions =
+                indexUnicodeProperties.getProperty(UcdProperty.Script_Extensions).getUnicodeMap();
         map_sentence_break = indexUnicodeProperties.loadEnum(UcdProperty.Sentence_Break);
-        map_vertical_orientation = indexUnicodeProperties.loadEnum(UcdProperty.Vertical_Orientation);
+        map_vertical_orientation =
+                indexUnicodeProperties.loadEnum(UcdProperty.Vertical_Orientation);
         map_word_break = indexUnicodeProperties.loadEnum(UcdProperty.Word_Break);
 
-        //UCD code is only set up to read a single Alias value from NameAliases.txt
-        //Instead, we'll load the Alias and the Type data as part of the constructor. We'll keep in memory as it
-        //NameAliases isn't too large.
+        // UCD code is only set up to read a single Alias value from NameAliases.txt
+        // Instead, we'll load the Alias and the Type data as part of the constructor. We'll keep in
+        // memory as it
+        // NameAliases isn't too large.
         map_NameAlias = loadNameAliases();
     }
 
@@ -132,7 +150,6 @@ public class AttributeResolver {
         public AliasType getType() {
             return type;
         }
-
     }
 
     private static class NameAliasComparator implements java.util.Comparator<NameAlias> {
@@ -145,7 +162,8 @@ public class AttributeResolver {
 
     private HashMap<Integer, LinkedList<NameAlias>> loadNameAliases() {
         HashMap<Integer, LinkedList<NameAlias>> nameAliasesByCodepoint = new HashMap<>();
-        final PropertyParsingInfo fileInfo = PropertyParsingInfo.getPropertyInfo(UcdProperty.Name_Alias);
+        final PropertyParsingInfo fileInfo =
+                PropertyParsingInfo.getPropertyInfo(UcdProperty.Name_Alias);
         String fullFilename = fileInfo.getFullFileName(indexUnicodeProperties.getUcdVersion());
         UcdLineParser parser = new UcdLineParser(FileUtilities.in("", fullFilename));
         NameAliasComparator nameAliasComparator = new NameAliasComparator();
@@ -153,11 +171,12 @@ public class AttributeResolver {
         for (UcdLineParser.UcdLine line : parser) {
             String[] parts = line.getParts();
             int codepoint = Integer.parseInt(parts[0], 16);
-            NameAlias nameAlias = new NameAlias(
-                    parts[1], AliasType.valueOf(parts[2].toUpperCase(Locale.ROOT)));
+            NameAlias nameAlias =
+                    new NameAlias(parts[1], AliasType.valueOf(parts[2].toUpperCase(Locale.ROOT)));
 
             if (nameAliasesByCodepoint.containsKey(codepoint)) {
-                LinkedList<NameAlias> nameAliases = new LinkedList<>(nameAliasesByCodepoint.get(codepoint));
+                LinkedList<NameAlias> nameAliases =
+                        new LinkedList<>(nameAliasesByCodepoint.get(codepoint));
                 nameAliases.add(nameAlias);
                 nameAliases.sort(nameAliasComparator);
                 nameAliasesByCodepoint.replace(codepoint, nameAliases);
@@ -186,15 +205,21 @@ public class AttributeResolver {
                         String EqUIdeo = getMappingValue(codepoint, resolvedValue, false, "");
                         return (EqUIdeo.equals("#")) ? null : EqUIdeo;
                     case kCompatibilityVariant:
-                        String kCompatibilityVariant = getMappingValue(codepoint, resolvedValue, false, "U+");
+                        String kCompatibilityVariant =
+                                getMappingValue(codepoint, resolvedValue, false, "U+");
                         return (kCompatibilityVariant.equals("#")) ? "" : kCompatibilityVariant;
                     case kSimplifiedVariant:
                     case kTraditionalVariant:
-                        String kVariant = getMappingValue(codepoint, resolvedValue, isUnihanAttributeRange(codepoint)
-                                , "U+");
+                        String kVariant =
+                                getMappingValue(
+                                        codepoint,
+                                        resolvedValue,
+                                        isUnihanAttributeRange(codepoint),
+                                        "U+");
                         return (kVariant.equals("#")) ? "" : kVariant;
                     case Bidi_Mirroring_Glyph:
-                        //Returning empty string for bmg to maintain compatibility with older generated files.
+                        // Returning empty string for bmg to maintain compatibility with older
+                        // generated files.
                         String bmg = getMappingValue(codepoint, resolvedValue, false, "");
                         return (bmg.equals("#")) ? "" : bmg;
                     default:
@@ -203,25 +228,30 @@ public class AttributeResolver {
             case Miscellaneous:
                 switch (prop) {
                     case Jamo_Short_Name:
-                        //return map_jamo_short_name.get(codepoint).getShortName();
+                        // return map_jamo_short_name.get(codepoint).getShortName();
                         return Optional.ofNullable(resolvedValue).orElse("");
                     case Name:
-                        if (resolvedValue != null && resolvedValue.startsWith("CJK UNIFIED IDEOGRAPH-")) {
+                        if (resolvedValue != null
+                                && resolvedValue.startsWith("CJK UNIFIED IDEOGRAPH-")) {
                             return "CJK UNIFIED IDEOGRAPH-#";
                         }
-                        if (resolvedValue != null && resolvedValue.startsWith("CJK COMPATIBILITY IDEOGRAPH-")) {
+                        if (resolvedValue != null
+                                && resolvedValue.startsWith("CJK COMPATIBILITY IDEOGRAPH-")) {
                             return "CJK COMPATIBILITY IDEOGRAPH-#";
                         }
-                        if (resolvedValue != null && resolvedValue.startsWith("TANGUT IDEOGRAPH-")) {
+                        if (resolvedValue != null
+                                && resolvedValue.startsWith("TANGUT IDEOGRAPH-")) {
                             return "TANGUT IDEOGRAPH-#";
                         }
-                        if (resolvedValue != null && resolvedValue.startsWith("KHITAN SMALL SCRIPT CHARACTER-")) {
+                        if (resolvedValue != null
+                                && resolvedValue.startsWith("KHITAN SMALL SCRIPT CHARACTER-")) {
                             return "KHITAN SMALL SCRIPT CHARACTER-#";
                         }
                         if (resolvedValue != null && resolvedValue.startsWith("NUSHU CHARACTER-")) {
                             return "NUSHU CHARACTER-#";
                         }
-                        if (resolvedValue != null && resolvedValue.startsWith("EGYPTIAN HIEROGLYPH-")) {
+                        if (resolvedValue != null
+                                && resolvedValue.startsWith("EGYPTIAN HIEROGLYPH-")) {
                             return "EGYPTIAN HIEROGLYPH-#";
                         }
                         return Optional.ofNullable(resolvedValue).orElse("");
@@ -246,7 +276,9 @@ public class AttributeResolver {
                         StringBuilder extensionBuilder = new StringBuilder();
                         String[] extensions = map_script_extensions.get(codepoint).split("\\|", 0);
                         for (String extension : extensions) {
-                            extensionBuilder.append(UcdPropertyValues.Script_Values.valueOf(extension).getShortName());
+                            extensionBuilder.append(
+                                    UcdPropertyValues.Script_Values.valueOf(extension)
+                                            .getShortName());
                             extensionBuilder.append(" ");
                         }
                         return extensionBuilder.toString().trim();
@@ -262,8 +294,12 @@ public class AttributeResolver {
                     case Canonical_Combining_Class:
                         return map_canonical_combining_class.get(codepoint).getShortName();
                     case Decomposition_Type:
-                        //Returning lower case to maintain compatibility with older generated files.
-                        return map_decomposition_type.get(codepoint).getShortName().toLowerCase(Locale.ROOT);
+                        // Returning lower case to maintain compatibility with older generated
+                        // files.
+                        return map_decomposition_type
+                                .get(codepoint)
+                                .getShortName()
+                                .toLowerCase(Locale.ROOT);
                     case Do_Not_Emit_Type:
                         return map_do_not_emit_type.get(codepoint).getShortName();
                     case East_Asian_Width:
@@ -315,26 +351,27 @@ public class AttributeResolver {
                     default:
                         throw new RuntimeException("Missing Enumerated case");
                 }
-            case Binary: {
-                switch (resolvedValue) {
-                    // Seems overkill to get this from UcdPropertyValues.Binary
-                    case "No":
-                        return "N";
-                    case "Yes":
-                        return "Y";
-                    default:
-                        throw new RuntimeException("Unexpected Binary value");
+            case Binary:
+                {
+                    switch (resolvedValue) {
+                            // Seems overkill to get this from UcdPropertyValues.Binary
+                        case "No":
+                            return "N";
+                        case "Yes":
+                            return "Y";
+                        default:
+                            throw new RuntimeException("Unexpected Binary value");
+                    }
                 }
-            }
             default:
                 throw new RuntimeException("Missing PropertyType case");
         }
     }
 
     public boolean isUnassignedCodepoint(int codepoint) {
-        return UcdPropertyValues.General_Category_Values.Unassigned.equals(getgc(codepoint)) ||
-                UcdPropertyValues.General_Category_Values.Private_Use.equals(getgc(codepoint)) ||
-                UcdPropertyValues.General_Category_Values.Surrogate.equals(getgc(codepoint));
+        return UcdPropertyValues.General_Category_Values.Unassigned.equals(getgc(codepoint))
+                || UcdPropertyValues.General_Category_Values.Private_Use.equals(getgc(codepoint))
+                || UcdPropertyValues.General_Category_Values.Surrogate.equals(getgc(codepoint));
     }
 
     public UcdPropertyValues.General_Category_Values getgc(int codepoint) {
@@ -357,12 +394,15 @@ public class AttributeResolver {
         return null;
     }
 
-    private String getMappingValue(int codepoint, String resolvedValue, boolean ignoreUnihanRange, String prefix) {
+    private String getMappingValue(
+            int codepoint, String resolvedValue, boolean ignoreUnihanRange, String prefix) {
         if (null == resolvedValue) {
             return "#";
         }
         int[] resolvedValueInts = resolvedValue.codePoints().toArray();
-        if (resolvedValueInts.length == 1 && resolvedValueInts[0] == codepoint && !ignoreUnihanRange) {
+        if (resolvedValueInts.length == 1
+                && resolvedValueInts[0] == codepoint
+                && !ignoreUnihanRange) {
             return "#";
         }
         StringBuilder sb = new StringBuilder();
@@ -375,14 +415,18 @@ public class AttributeResolver {
     public boolean isDifferentRange(int codepointA, int codepointB) {
         boolean isDifference = false;
         for (UcdProperty property : rangeDefiningProperties) {
-            isDifference = isDifference ||
-                    !getAttributeValue(property, codepointA).equals(getAttributeValue(property, codepointB));
+            isDifference =
+                    isDifference
+                            || !getAttributeValue(property, codepointA)
+                                    .equals(getAttributeValue(property, codepointB));
         }
         return isDifference;
     }
 
     private static String getCPString(int codepoint) {
-        return String.format("%4s", Integer.toHexString(codepoint)).replace(" ", "0").toUpperCase(Locale.ROOT);
+        return String.format("%4s", Integer.toHexString(codepoint))
+                .replace(" ", "0")
+                .toUpperCase(Locale.ROOT);
     }
 
     public String getHexString(int codepoint) {
@@ -390,12 +434,12 @@ public class AttributeResolver {
     }
 
     public boolean isUnihanAttributeRange(int codepoint) {
-        return getAttributeValue(UcdProperty.Unified_Ideograph, codepoint).equals("Y") ||
-                !getAttributeValue(UcdProperty.kCompatibilityVariant, codepoint).isEmpty();
+        return getAttributeValue(UcdProperty.Unified_Ideograph, codepoint).equals("Y")
+                || !getAttributeValue(UcdProperty.kCompatibilityVariant, codepoint).isEmpty();
     }
 
     public boolean isUnifiedIdeograph(int codepoint) {
-        return getAttributeValue(UcdProperty.Unified_Ideograph, codepoint).equals("Y") &&
-                getAttributeValue(UcdProperty.Name, codepoint).equals("CJK UNIFIED IDEOGRAPH-#");
+        return getAttributeValue(UcdProperty.Unified_Ideograph, codepoint).equals("Y")
+                && getAttributeValue(UcdProperty.Name, codepoint).equals("CJK UNIFIED IDEOGRAPH-#");
     }
 }

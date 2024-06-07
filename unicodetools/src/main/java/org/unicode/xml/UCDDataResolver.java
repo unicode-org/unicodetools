@@ -1,15 +1,13 @@
 package org.unicode.xml;
 
 import com.ibm.icu.util.VersionInfo;
+import java.util.*;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyParsingInfo;
 import org.unicode.props.UcdLineParser;
-import org.unicode.props.UcdProperty;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
-
-import java.util.*;
 
 public class UCDDataResolver {
 
@@ -30,24 +28,31 @@ public class UCDDataResolver {
         String childTag = ucdSection.getChildTag();
         boolean parserWithRange = ucdSection.getParserWithRange();
         boolean parserWithMissing = ucdSection.getParserWithMissing();
-        UcdSectionComponent[] ucdSectionComponents = ucdSection.getUcdSectionDetail().getUcdSectionComponents();
+        UcdSectionComponent[] ucdSectionComponents =
+                ucdSection.getUcdSectionDetail().getUcdSectionComponents();
 
         if (isCompatibleVersion(minVersion, maxVersion)) {
             writer.startElement(tag);
             {
                 for (UcdSectionComponent ucdSectionComponent : ucdSectionComponents) {
-                    if (isCompatibleVersion(ucdSectionComponent.getMinVersion(), ucdSectionComponent.getMaxVersion())) {
+                    if (isCompatibleVersion(
+                            ucdSectionComponent.getMinVersion(),
+                            ucdSectionComponent.getMaxVersion())) {
                         final PropertyParsingInfo fileInfoEVS =
-                                PropertyParsingInfo.getPropertyInfo(ucdSectionComponent.getUcdProperty());
-                        String fullFilename = fileInfoEVS.getFullFileName(indexUnicodeProperties.getUcdVersion());
-                        UcdLineParser parser = new UcdLineParser(FileUtilities.in("", fullFilename));
+                                PropertyParsingInfo.getPropertyInfo(
+                                        ucdSectionComponent.getUcdProperty());
+                        String fullFilename =
+                                fileInfoEVS.getFullFileName(indexUnicodeProperties.getUcdVersion());
+                        UcdLineParser parser =
+                                new UcdLineParser(FileUtilities.in("", fullFilename));
                         parser.withRange(parserWithRange);
                         parser.withMissing(parserWithMissing);
                         switch (ucdSection) {
                             case BLOCKS:
                                 for (UcdLineParser.UcdLine line : parser) {
                                     if (!line.getOriginalLine().startsWith("#")) {
-                                        AttributesImpl attributes = getBlockAttributes(namespace, line);
+                                        AttributesImpl attributes =
+                                                getBlockAttributes(namespace, line);
                                         writer.startElement(childTag, attributes);
                                         {
                                             writer.endElement(childTag);
@@ -64,8 +69,9 @@ public class UCDDataResolver {
                                 List<String> names = new ArrayList<>(namedSequences.keySet());
                                 Collections.sort(names);
                                 for (String name : names) {
-                                    AttributesImpl attributes = getNamedSequenceAttributes(namespace, name,
-                                            namedSequences);
+                                    AttributesImpl attributes =
+                                            getNamedSequenceAttributes(
+                                                    namespace, name, namedSequences);
                                     writer.startElement(childTag, attributes);
                                     {
                                         writer.endElement(childTag);
@@ -74,7 +80,8 @@ public class UCDDataResolver {
                                 break;
                             default:
                                 for (UcdLineParser.UcdLine line : parser) {
-                                    AttributesImpl attributes = getAttributes(ucdSection, namespace, line);
+                                    AttributesImpl attributes =
+                                            getAttributes(ucdSection, namespace, line);
                                     writer.startElement(childTag, attributes);
                                     {
                                         writer.endElement(childTag);
@@ -88,8 +95,8 @@ public class UCDDataResolver {
         }
     }
 
-    private AttributesImpl getAttributes(UcdSectionDetail.UcdSection ucdSection, String namespace,
-                                         UcdLineParser.UcdLine line) {
+    private AttributesImpl getAttributes(
+            UcdSectionDetail.UcdSection ucdSection, String namespace, UcdLineParser.UcdLine line) {
         switch (ucdSection) {
             case CJKRADICALS:
                 return getCJKRadicalAttributes(namespace, line);
@@ -102,7 +109,8 @@ public class UCDDataResolver {
             case STANDARDIZEDVARIANTS:
                 return getSVAttributes(namespace, line);
             default:
-                throw new IllegalArgumentException("getAttributes failed on an unexpected UcdSection");
+                throw new IllegalArgumentException(
+                        "getAttributes failed on an unexpected UcdSection");
         }
     }
 
@@ -110,92 +118,74 @@ public class UCDDataResolver {
         String[] parts = line.getParts();
         String[] range = parts[0].split("\\.\\.");
         AttributesImpl attributes = new AttributesImpl();
-        attributes.addAttribute(
-                namespace, "first-cp", "first-cp", "CDATA", range[0]);
-        attributes.addAttribute(
-                namespace, "last-cp", "last-cp", "CDATA", range[1]);
-        attributes.addAttribute(
-                namespace, "name", "name", "CDATA", parts[1]);
+        attributes.addAttribute(namespace, "first-cp", "first-cp", "CDATA", range[0]);
+        attributes.addAttribute(namespace, "last-cp", "last-cp", "CDATA", range[1]);
+        attributes.addAttribute(namespace, "name", "name", "CDATA", parts[1]);
         return attributes;
     }
 
-    private static AttributesImpl getCJKRadicalAttributes(String namespace, UcdLineParser.UcdLine line) {
+    private static AttributesImpl getCJKRadicalAttributes(
+            String namespace, UcdLineParser.UcdLine line) {
         String[] parts = line.getParts();
         AttributesImpl attributes = new AttributesImpl();
-        attributes.addAttribute(
-                namespace, "number", "number", "CDATA", parts[0]);
-        attributes.addAttribute(
-                namespace, "radical", "radical", "CDATA", parts[1]);
-        attributes.addAttribute(
-                namespace, "ideograph", "ideograph", "CDATA", parts[2]);
+        attributes.addAttribute(namespace, "number", "number", "CDATA", parts[0]);
+        attributes.addAttribute(namespace, "radical", "radical", "CDATA", parts[1]);
+        attributes.addAttribute(namespace, "ideograph", "ideograph", "CDATA", parts[2]);
         return attributes;
     }
 
-    private static AttributesImpl getDoNotEmitAttributes(String namespace, UcdLineParser.UcdLine line) {
+    private static AttributesImpl getDoNotEmitAttributes(
+            String namespace, UcdLineParser.UcdLine line) {
         String[] parts = line.getParts();
         AttributesImpl attributes = new AttributesImpl();
-        attributes.addAttribute(
-                namespace, "of", "of", "CDATA", parts[0]);
-        attributes.addAttribute(
-                namespace, "use", "use", "CDATA", parts[1]);
-        attributes.addAttribute(
-                namespace, "because", "because", "CDATA", parts[2]);
+        attributes.addAttribute(namespace, "of", "of", "CDATA", parts[0]);
+        attributes.addAttribute(namespace, "use", "use", "CDATA", parts[1]);
+        attributes.addAttribute(namespace, "because", "because", "CDATA", parts[2]);
         return attributes;
     }
 
-    private static AttributesImpl getEmojiSourceAttributes(String namespace, UcdLineParser.UcdLine line) {
+    private static AttributesImpl getEmojiSourceAttributes(
+            String namespace, UcdLineParser.UcdLine line) {
         String[] parts = line.getParts();
         AttributesImpl attributes = new AttributesImpl();
-        attributes.addAttribute(
-                namespace, "unicode", "unicode", "CDATA", parts[0]);
-        attributes.addAttribute(
-                namespace, "docomo", "docomo", "CDATA", parts[1]);
-        attributes.addAttribute(
-                namespace, "kddi", "kddi", "CDATA", parts[2]);
-        attributes.addAttribute(
-                namespace, "softbank", "softbank", "CDATA", parts[3]);
+        attributes.addAttribute(namespace, "unicode", "unicode", "CDATA", parts[0]);
+        attributes.addAttribute(namespace, "docomo", "docomo", "CDATA", parts[1]);
+        attributes.addAttribute(namespace, "kddi", "kddi", "CDATA", parts[2]);
+        attributes.addAttribute(namespace, "softbank", "softbank", "CDATA", parts[3]);
         return attributes;
     }
 
-    private static AttributesImpl getNamedSequenceAttributes(String namespace, String name,
-                                                             HashMap<String, String> namedSequences) {
+    private static AttributesImpl getNamedSequenceAttributes(
+            String namespace, String name, HashMap<String, String> namedSequences) {
         AttributesImpl attributes = new AttributesImpl();
-        attributes.addAttribute(
-                namespace, "name", "name", "CDATA", name);
-        attributes.addAttribute(
-                namespace, "cps", "cps", "CDATA", namedSequences.get(name));
+        attributes.addAttribute(namespace, "name", "name", "CDATA", name);
+        attributes.addAttribute(namespace, "cps", "cps", "CDATA", namedSequences.get(name));
         return attributes;
     }
 
     private static AttributesImpl getNCAttributes(String namespace, UcdLineParser.UcdLine line) {
         String[] parts = line.getParts();
         AttributesImpl attributes = new AttributesImpl();
-        attributes.addAttribute(
-                namespace, "cp", "cp", "CDATA", parts[0]);
-        attributes.addAttribute(
-                namespace, "old", "old", "CDATA", parts[1]);
-        attributes.addAttribute(
-                namespace, "new", "new", "CDATA", parts[2]);
-        attributes.addAttribute(
-                namespace, "version", "version", "CDATA", parts[3]);
+        attributes.addAttribute(namespace, "cp", "cp", "CDATA", parts[0]);
+        attributes.addAttribute(namespace, "old", "old", "CDATA", parts[1]);
+        attributes.addAttribute(namespace, "new", "new", "CDATA", parts[2]);
+        attributes.addAttribute(namespace, "version", "version", "CDATA", parts[3]);
         return attributes;
     }
 
     private static AttributesImpl getSVAttributes(String namespace, UcdLineParser.UcdLine line) {
         String[] parts = line.getParts();
         AttributesImpl attributes = new AttributesImpl();
+        attributes.addAttribute(namespace, "cps", "cps", "CDATA", parts[0]);
+        attributes.addAttribute(namespace, "desc", "desc", "CDATA", parts[1]);
         attributes.addAttribute(
-                namespace, "cps", "cps", "CDATA", parts[0]);
-        attributes.addAttribute(
-                namespace, "desc", "desc", "CDATA", parts[1]);
-        attributes.addAttribute(
-                namespace, "when", "when", "CDATA",
-                parts[2] != null ? parts[2] : "");
+                namespace, "when", "when", "CDATA", parts[2] != null ? parts[2] : "");
         return attributes;
     }
 
     private boolean isCompatibleVersion(VersionInfo minVersion, VersionInfo maxVersion) {
-        return (indexUnicodeProperties.getUcdVersion().compareTo(minVersion) >= 0 && (
-                maxVersion == null || indexUnicodeProperties.getUcdVersion().compareTo(maxVersion) <= 0));
+        return (indexUnicodeProperties.getUcdVersion().compareTo(minVersion) >= 0
+                && (maxVersion == null
+                        || indexUnicodeProperties.getUcdVersion().compareTo(maxVersion) <= 0));
     }
 }
