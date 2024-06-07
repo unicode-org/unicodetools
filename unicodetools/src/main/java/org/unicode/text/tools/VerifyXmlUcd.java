@@ -141,6 +141,7 @@ public class VerifyXmlUcd {
 
     static Set codepoints = getSet("char", "reserved", "noncharacter", "surrogate");
     static Set skipProperties = getSet("cp", "first-cp", "last-cp");
+
     // static Set hexValue = getSet("slc", "bmg", "lc", "stc", "suc", "tc", "uc");
 
     static Set<String> getSet(String... strings) {

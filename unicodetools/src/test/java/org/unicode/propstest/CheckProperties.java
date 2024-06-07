@@ -529,14 +529,15 @@ public class CheckProperties {
                         + ";\t"
                         + info.getMultivalued()
                         + ";\t"
-                        + info.getDefaultValue()
+                        + info.getDefaultValue(Settings.LATEST_VERSION_INFO)
                         + ";\t"
                         + (info.originalRegex == null ? "<enum>" : info.originalRegex));
     }
 
     public static void checkEmpty(IndexUnicodeProperties latest, UcdProperty prop) {
         final UnicodeMap<String> map = latest.load(prop);
-        final String defaultValue = IndexUnicodeProperties.getDefaultValue(prop);
+        final String defaultValue =
+                IndexUnicodeProperties.getDefaultValue(prop, Settings.LATEST_VERSION_INFO);
         final UnicodeSet nullElements = map.getSet(null);
 
         final UnicodeSet empty = map.getSet("");
@@ -987,7 +988,8 @@ public class CheckProperties {
         if (details) {
             int maxCodepointLength = 0;
             final List<R2<String, String>> list = new ArrayList<R2<String, String>>();
-            final String defaultValue = IndexUnicodeProperties.getDefaultValue(prop);
+            final String defaultValue =
+                    IndexUnicodeProperties.getDefaultValue(prop, Settings.LATEST_VERSION_INFO);
             for (final EntryRange<String> entryRange : map.entryRanges()) {
                 if (entryRange.value == defaultValue) {
                     continue;

@@ -26,6 +26,7 @@ import org.unicode.idna.Idna2008;
 import org.unicode.idna.Uts46;
 import org.unicode.jsp.UnicodeUtilities.CodePointShower;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Settings.ReleasePhase;
 
 public class UnicodeJsp {
 
@@ -128,8 +129,10 @@ public class UnicodeJsp {
         return result.toString();
     }
 
-    public static void showProperties(int cp, Appendable out) throws IOException {
-        UnicodeUtilities.showProperties(cp, out);
+    public static void showProperties(
+            int cp, String history, boolean showDevProperties, Appendable out) throws IOException {
+        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
+        UnicodeUtilities.showProperties(cp, history, showDevProperties, out);
     }
 
     static String defaultIdnaInput =
@@ -176,14 +179,17 @@ public class UnicodeJsp {
             String grouping,
             String info,
             UnicodeSet a,
+            boolean showDevProperties,
             boolean abbreviate,
             boolean ucdFormat,
             boolean collate,
             Appendable out)
             throws IOException {
+        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
         CodePointShower codePointShower =
-                new CodePointShower(grouping, info, abbreviate, ucdFormat, collate);
-        UnicodeUtilities.showSetMain(a, codePointShower, out);
+                new CodePointShower(
+                        grouping, info, showDevProperties, abbreviate, ucdFormat, collate);
+        UnicodeUtilities.showSetMain(a, showDevProperties, codePointShower, out);
     }
 
     public static void showPropsTable(Appendable out, String propForValues, String myLink)
@@ -393,8 +399,9 @@ public class UnicodeJsp {
         return UnicodeUtilities.testIdnaLines(lines, filter);
     }
 
-    public static String getIdentifier(String script) {
-        return UnicodeUtilities.getIdentifier(script);
+    public static String getIdentifier(String script, boolean showDevProperties) {
+        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
+        return UnicodeUtilities.getIdentifier(script, showDevProperties);
     }
 
     static final String VERSIONS =
@@ -403,12 +410,10 @@ public class UnicodeJsp {
                     + VersionInfo.ICU_VERSION.getVersionString(2, 2)
                     + "; "
                     + "Unicode/Emoji version: "
-                    + UCharacter.getUnicodeVersion().getVersionString(2, 2)
+                    + Settings.lastVersion
                     + "; "
-                    + (CachedProps.IS_BETA
-                            ? "Unicodeβ version: "
-                                    + CachedProps.CACHED_PROPS.version.getVersionString(2, 2)
-                                    + "; "
+                    + (Settings.latestVersionPhase == ReleasePhase.BETA
+                            ? "Unicodeβ version: " + Settings.latestVersion + "; "
                             : "");
 
     public static String getVersions() {
@@ -416,14 +421,14 @@ public class UnicodeJsp {
     }
 
     static final String SUBHEAD =
-            !CachedProps.IS_BETA
-                    ? ""
-                    : "<p style='border: 1pt solid red;'>Properties use ICU for Unicode V"
-                            + UCharacter.getUnicodeVersion().getVersionString(2, 2)
-                            + "; the beta properties support Unicode V"
-                            + VersionInfo.getInstance(Settings.latestVersion).getVersionString(2, 2)
-                            + "&beta;. "
-                            + "For more information, see <a target='help' href='https://unicode-org.github.io/unicodetools/help/changes'>Unicode Utilities Beta</a>.</p>";
+            Settings.latestVersionPhase == ReleasePhase.BETA
+                    ? "<p style='border: 1pt solid red;'>Unmarked properties are from Unicode V"
+                            + Settings.lastVersion
+                            + "; the beta properties are from Unicode V"
+                            + Settings.latestVersion
+                            + "β. "
+                            + "For more information, see <a target='help' href='https://unicode-org.github.io/unicodetools/help/changes'>Unicode Utilities Beta</a>.</p>"
+                    : "";
 
     public static String getSubtitle() {
         return SUBHEAD;
