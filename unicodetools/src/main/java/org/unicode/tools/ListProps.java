@@ -96,7 +96,8 @@ public class ListProps {
                             + "\tCard:\t"
                             + cardinality
                             + "\tDefVal:\t"
-                            + IndexUnicodeProperties.getDefaultValue(item)
+                            + IndexUnicodeProperties.getDefaultValue(
+                                    item, Settings.LATEST_VERSION_INFO)
                             + "\tScope:\t"
                             + scope
                             + "\tOrigin:\t"

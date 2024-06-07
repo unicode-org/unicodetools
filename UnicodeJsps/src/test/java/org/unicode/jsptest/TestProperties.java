@@ -37,6 +37,8 @@ import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
+import org.unicode.text.utility.Settings;
 
 public class TestProperties extends TestFmwk2 {
     static XPropertyFactory factory = XPropertyFactory.make();
@@ -223,6 +225,7 @@ public class TestProperties extends TestFmwk2 {
         assertTrue("toNFM=a", actual2.contains("A"));
         assertTrue("toNFM=a", !actual2.contains("B"));
     }
+
     //  public void TestDefaultEncodingValue() {
     //    UnicodeProperty prop = factory.getProperty("enc_ISO-8859-2");
     //    assertTrue("Default for Å, enc_ISO-8859-2", prop.isDefault('Å'));
@@ -287,13 +290,14 @@ public class TestProperties extends TestFmwk2 {
         XPropertyFactory factory = XPropertyFactory.make();
         checkProperty(factory, "ccc");
 
-        String test = "[:ccc=/3/:]";
+        String test = "[:Udev:ccc=/3/:]";
+        final var devProperties = ToolUnicodePropertySource.make(Settings.latestVersion);
         UnicodeSet actual = UnicodeSetUtilities.parseUnicodeSet(test);
         UnicodeSet expected = new UnicodeSet();
         for (int i = 0; i < 256; ++i) {
             String s = String.valueOf(i);
             if (s.contains("3")) {
-                expected.addAll(new UnicodeSet("[:ccc=" + s + ":]"));
+                expected.addAll(devProperties.getProperty("ccc").getSet(s));
             }
         }
         assertEquals(test, expected, actual);

@@ -41,6 +41,7 @@ public final class Punycode {
     private static final int CAPITAL_A = 0x41;
     private static final int CAPITAL_Z = 0x5a;
     private static final int MAX_CP_COUNT = 200;
+
     // private static final int UINT_MAGIC     = 0x80000000;
     // private static final long ULONG_MAGIC   = 0x8000000000000000L;
 
@@ -97,6 +98,7 @@ public final class Punycode {
         }
         return b;
     }
+
     /// CLOVER:ON
     /**
      * digitToBasic() returns the basic code point whose value (when used for representing integers)
@@ -116,6 +118,7 @@ public final class Punycode {
             return (char) ((ZERO - 26) + digit);
         }
     }
+
     /**
      * Converts Unicode to Punycode. The input string must not contain single, unpaired surrogates.
      * The output will be represented as an array of ASCII code points.
@@ -266,14 +269,17 @@ public final class Punycode {
     private static boolean isBasic(int ch) {
         return (ch < INITIAL_N);
     }
+
     /// CLOVER:OFF
     private static boolean isBasicUpperCase(int ch) {
         return (CAPITAL_A <= ch && ch >= CAPITAL_Z);
     }
+
     /// CLOVER:ON
     private static boolean isSurrogate(int ch) {
         return (((ch) & 0xfffff800) == 0xd800);
     }
+
     /**
      * Converts Punycode to Unicode. The Unicode string will be at most as long as the Punycode
      * string.
