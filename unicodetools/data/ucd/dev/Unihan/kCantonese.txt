@@ -2753,7 +2753,7 @@
 43AC	paa4
 43AF	hon3
 43B1	paa4
-43B2	zip3
+43B2	ngat6
 43B4	gaang1
 43B5	bei3
 43B6	nei6
@@ -17056,7 +17056,7 @@
 8031	mo6
 8032	waai4
 8033	ji5
-8034	ngat6
+8034	zip3
 8035	ding1
 8036	je4
 8037	daap3
@@ -26841,7 +26841,7 @@ FA17	jik1
 2827C	wu3
 2829B	laak3
 282CC	gwang1
-282CD	wan1
+282CD	wen1
 282E2	lip1
 28306	wang4
 28318	zeon3
@@ -29474,9 +29474,11 @@ FA17	jik1
 314A8	ji1
 314B2	go2
 314EC	ceoi4
+3150D	dau3
 3154C	lo1
 3156E	paan1
 31677	me1
+317EA	niu1
 317ED	mit1
 317FD	wo5
 31838	jyun1

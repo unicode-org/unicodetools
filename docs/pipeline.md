@@ -28,7 +28,7 @@ New scripts only:
 - [ ] UCD_Names — Check script name
 
 ---
-- [ ] Scripts.txt — Prepend ranges
+- [ ] Scripts.txt — Prepend ranges (carefully mind any gaps)
 - [ ] Commit
 
 ---
@@ -49,7 +49,7 @@ Indic scripts only:
 - [ ] Commit
 
 ---
-- [ ] PropsList.txt — Add Other_Alphabetic, Diacritic, and Extender to satisfy invariants, or to taste
+- [ ] PropsList.txt — Add Other_Alphabetic, Other_Lowercase, Diacritic, and Extender to satisfy invariants, or to taste
 - [ ] Commit
 
 ---
@@ -58,13 +58,22 @@ Indic scripts only:
 
 ---
 PR preparation:
-- [ ] Proposal document — Cite L2 number
-- [ ] UTC decisions — Cite _in extenso_
+- [ ] If from SAH — Link SAH issue
+- [ ] If from ESC or CJK — Mention ESC or CJK in the PR description
+- [ ] When for a UTC decision — Cite in the format UTC-\d\d\d-[MC]\d+ or with a link.
+- [ ] Whenever there is a Proposal document — Cite L2 number in the format L2/yy-nnn
 - [ ] data-for-new — Set label
-- [ ] pipeline-* — Set label
+- [ ] pipeline-* — Set label to **pipeline-recommended-to-UTC** if the characters are not yet in the pipeline, and **pipeline-provisionally-assigned**, or **pipeline-`<version>`** depending on their status in [the Pipeline](https://unicode.org/alloc/Pipeline.html#future).
 - [ ] PR button — Set to DRAFT pull request
   - unless approved for the upcoming version
 - [ ] PR button — Press
+  - The **Check UCA data** and **Check security data invariants** CI checks are
+    suppressed; many character additions need separate handling there,
+    but that is out of scope for the PAG work of preparing `data-for-new`,
+    so reporting those failures could distract from real issues
+    in the UCD invariants.
+    UCA and security data issues are addressed later in the process,
+    before the start of β review.
 
 ## Scripts
 
@@ -72,6 +81,8 @@ There are a variety of setups for unicodetools, depending on OS, in-source vs. o
 If you take part in UCD development, feel free to add your own.
 
 ### Ken UnicodeData
+
+Ken's files come from [here](https://corp.unicode.org/~book/incoming/kenfiles/) (select appropriate ucd version e.g. `ucd160` for Unicode 16.0). NOTE: this check is probably not applicable for `pipeline-provisionally-assigned` data where Ken does not yet have a draft.
 
 eggrobin (Windows, in-source; the remote corresponding to unicode-org is called la-vache, Ken’s files are downloaded next to the unicodetools repository).
 
@@ -134,6 +145,13 @@ git add unicodetools/src/main/java/org/unicode/text/UCD/UCD_Types.java
 git add unicodetools/data
 git merge --continue
 ```
+
+macchiati (IDE) 
+```
+sync github
+run MakeUnicodeFiles.java -c
+```
+Cf. https://github.com/unicode-org/unicodetools/pull/636
 
 ### Regenerate UCD
 

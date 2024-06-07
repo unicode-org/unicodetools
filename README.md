@@ -23,7 +23,7 @@ The tools maintainers use GH issues for issues with the code in this repo.
 
 ### Copyright & Licenses
 
-Copyright © 2001-2023 Unicode, Inc. Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the United States and other countries.
+Copyright © 2001-2024 Unicode, Inc. Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the United States and other countries.
 
 The project is released under [LICENSE](./LICENSE).
 
