@@ -21,6 +21,7 @@ public class EmojiMatcher {
     static final UnicodeSet BASE = new UnicodeSet("[\\p{Emoji}-\\p{Emoji_Component}]");
     static final UnicodeSet BASE2 = new UnicodeSet("[\\p{Emoji_Modifier}\uFE0F]");
     static final UnicodeSet TAG_SPEC = new UnicodeSet("[\\x{E0020}-\\x{E007E}]");
+
     /**
      * Returns true if a possible emoji occurs at or after offset. If true, use getStart() to find
      * the start of the emoji, and getEnd() to get the end.
