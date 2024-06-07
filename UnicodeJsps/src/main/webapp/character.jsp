@@ -22,12 +22,22 @@ th           { text-align: left }
         String queryString = request.getQueryString();
 
         UtfParameters utfParameters = new UtfParameters(queryString);
-		String text = utfParameters.getParameter("a", "\u2615", "\u2615");
+        String text = utfParameters.getParameter("a", "\u2615", "\u2615");
+        String history = utfParameters.getParameter("history", "", "");
+        boolean showDevProperties = utfParameters.getParameter("showDevProperties", "", "").equals("1");
 
 		int[] codePoints = UnicodeJsp.parseCode(text,null,null);
 		int cp = codePoints[0];
     String nextHex = "character.jsp?a=" + Utility.hex(cp < 0x110000 ? cp+1 : 0, 4);
 		String prevHex = "character.jsp?a=" + Utility.hex(cp > 0 ? cp-1 : 0x10FFFF, 4);
+    if (!history.isEmpty()) {
+      nextHex += "&history=" + history;
+      prevHex += "&history=" + history;
+    }
+    if (showDevProperties) {
+      nextHex += "&showDevProperties=1";
+      prevHex += "&showDevProperties=1";
+    }
     if (codePoints.length > 1) {
       %>
         <p class="error">
@@ -64,10 +74,22 @@ th           { text-align: left }
   <input name="a" type="text" style='text-align:center; font-size:150%' size="10" value="<%=UnicodeUtilities.toHTMLInput(text)%>">
   <input name="B2" type="button" value="+" onClick="window.location.href='<%=nextHex%>'"><br>
   <input name="B1" type="submit" value="Show">
+  <%
+  if (!history.isEmpty()) {
+    %>
+    <input name="history" type="hidden" value="<%=history%>">
+    <%
+  }
+  if (showDevProperties) {
+    %>
+    <input name="showDevProperties" type="hidden" value="1">
+    <%
+  }
+  %>
   </p>
 </form>
 <%
-	UnicodeJsp.showProperties(cp, out);
+	UnicodeJsp.showProperties(cp, history, showDevProperties, out);
 %>
 </div>
 <p>The list includes both Unicode Character Properties and some additions (like idna2003 or subhead)</p>

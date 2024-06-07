@@ -130,6 +130,7 @@ public final class CompactByteArray implements Serializable {
             {
         return (values[(indices[index >>> BLOCKSHIFT] & 0xFFFF) + (index & BLOCKMASK)]);
     }
+
     // Set automatically expands the array if it is compacted.
     // parameterized on value (byte)
     public void setElementAt(char index, byte value) {
@@ -148,6 +149,7 @@ public final class CompactByteArray implements Serializable {
             values[i] = value;
         }
     }
+
     // Compact the array.
     // The value of cycle determines how large the overlap can be.
     // A cycle of 1 is the most compacted, but takes the most time to do.
@@ -203,6 +205,7 @@ public final class CompactByteArray implements Serializable {
             isCompact = true;
         } // endif (isCompact != false)
     }
+
     // Expanded takes the array back to a 65536 element array
     public void expand() {
         int i;
@@ -220,6 +223,7 @@ public final class CompactByteArray implements Serializable {
             isCompact = false;
         }
     }
+
     // Print char Array  : Debug only
     public void printIndex(short start, short count) {
         int i;
@@ -243,6 +247,7 @@ public final class CompactByteArray implements Serializable {
         }
         System.out.println("    Range: start " + start + " , count " + count);
     }
+
     // # of elements in the indexed array
     public short capacity() {
         return (short) values.length;

@@ -1,4 +1,5 @@
 package org.unicode.draft;
+
 /*
  **********************************************************************
  * Copyright (c) 2004-2009, International Business Machines
@@ -839,6 +840,7 @@ public class MessageFormat extends UFormat {
         }
         return resultArray;
     }
+
     // TODO: provide method public Map getFormatsByArgumentName().
     // Where Map is: String argumentName --> Format format.
 
