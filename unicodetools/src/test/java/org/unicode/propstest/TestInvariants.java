@@ -341,6 +341,28 @@ public class TestInvariants extends TestFmwkMinusMinus {
                     // [172-A62] Change the Identifier_Type of U+A7B8 and U+A7B9 to Uncommon_Use
                     level = LOG;
                 }
+                if (ucdProperty == UcdProperty.Identifier_Type
+                        && value.equals("Obsolete|Not_XID")
+                        && Settings.latestVersion.equals("16.0.0")
+                        && missing.size() == 1
+                        && missing.containsAll("\u2E30")) {
+                    // Changed from Obsolete to Exclusion due to
+                    // [178-C39] Consensus: Add 51 entries to ScriptExtensions.txt
+                    // as proposed in L2/23-280
+                    // (And IdentifierInfo.java for some reason
+                    // removes Obsolete when there is also Exclusion.)
+                    level = LOG;
+                }
+                if (ucdProperty == UcdProperty.Identifier_Type
+                        && value.equals("Limited_Use|Exclusion")
+                        && Settings.latestVersion.equals("16.0.0")
+                        && missing.size() == 1
+                        && missing.containsAll("\uA9CF")) {
+                    // PAG issue 217 -->
+                    // [179-Cxx] Change the Identifier_Type of A9CF to Limited_Use Uncommon_Use,
+                    // removing Exclusion.
+                    level = LOG;
+                }
                 if (ucdProperty == UcdProperty.Idn_Status
                         && value.equals("disallowed_STD3_valid")
                         && Settings.latestVersion.equals("15.1.0")
@@ -351,6 +373,19 @@ public class TestInvariants extends TestFmwkMinusMinus {
                     // from disallowed_STD3_valid to valid, for Unicode 15.1.
                     level = LOG;
                 }
+                if (ucdProperty == UcdProperty.Standardized_Variant
+                                && Settings.latestVersion.equals("16.0.0")
+                                && (value.equals("rotated 90 degrees")
+                                        && missing.equals(
+                                                new UnicodeSet(
+                                                        "[{\\U00013092\\uFE00}{\\U00013403\\uFE00}]")))
+                        || (value.equals("rotated 180 degrees")
+                                && missing.equals(new UnicodeSet("[{\\U000130A9\\uFE01}]")))) {
+                    // [177-C18] Consensus: Rescind three Egyptian Hieroglyph variation
+                    //                      sequences as described in document L2/23-254
+                    //                      for Unicode version 16.0.
+                    level = LOG;
+                }
                 msg(
                         testName
                                 + ": Unicode "
@@ -359,7 +394,7 @@ public class TestInvariants extends TestFmwkMinusMinus {
                                 + ucdProperty
                                 + "="
                                 + value
-                                + ":] does’t contain "
+                                + ":] doesn’t contain "
                                 + missing.toPattern(true),
                         level,
                         true,
@@ -375,7 +410,7 @@ public class TestInvariants extends TestFmwkMinusMinus {
                                 + ucdProperty
                                 + "="
                                 + value
-                                + ":] does’t contain "
+                                + ":] doesn’t contain "
                                 + newOnes.toPattern(true));
             }
             // assertRelation(status.toString(), true, newSet, CONTAINS_US, oldSet);

@@ -451,6 +451,7 @@ public class TablePrinter {
         }
         return sortedFlat.length - rowIndex;
     }
+
     // to-do: prevent overlap when it would cause information to be lost.
     private BitSet breaksSpans = new BitSet();
 

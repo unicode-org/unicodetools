@@ -9,6 +9,7 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.VersionToAge;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 /**
@@ -53,7 +54,10 @@ public class CheckPropertyStability {
         }
         UnicodeProperty uprop = latest.getProperty(prop);
 
-        String propValueRaw = args.length < 2 ? latest.getDefaultValue(prop) : args[1];
+        String propValueRaw =
+                args.length < 2
+                        ? latest.getDefaultValue(prop, Settings.LATEST_VERSION_INFO)
+                        : args[1];
 
         // Check that the value occurs.
 

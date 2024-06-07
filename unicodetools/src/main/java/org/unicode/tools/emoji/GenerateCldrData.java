@@ -32,12 +32,11 @@ public class GenerateCldrData {
     static final EmojiDataSource releaseData = EmojiData.EMOJI_DATA_RELEASED;
 
     public static void main(String[] args) throws IOException {
-        EmojiData EMOJI_DATA_PREVIOUS = EmojiData.EMOJI_DATA;
         UnicodeMap<Annotations> cldrEnglishData = org.unicode.cldr.util.Annotations.getData("en");
 
         UnicodeSet onlyNew =
                 new UnicodeSet(betaPlusCandidateData.getAllEmojiWithoutDefectives())
-                        .removeAll(EMOJI_DATA_PREVIOUS.getAllEmojiWithoutDefectives())
+                        .removeAll(releaseData.getAllEmojiWithoutDefectives())
                 // .removeAll(previousEmoji.getZwjSequencesAll()) // catch the eye
                 // witness
                 ;
