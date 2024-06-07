@@ -1,6 +1,5 @@
 package org.unicode.jsp;
 
-import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
@@ -46,6 +45,7 @@ public class ScriptTester {
     public static final int EXTRA_COUNT = 16; // should be enough, hard working as UTC is!
 
     public static final Map<String, Integer> extraScripts = new ConcurrentHashMap<>(EXTRA_COUNT);
+
     /** Extended scripts; note that they do not have stable numbers, and should not be persisted. */
     public static final int
             // HANT = UScript.CODE_LIMIT,
@@ -391,7 +391,7 @@ public class ScriptTester {
             for (int i = value.nextSetBit(0); i >= 0; i = value.nextSetBit(i + 1)) {
                 names.add(ScriptTester.getScriptName(i, choice));
             }
-            return CollectionUtilities.join(names, separator).toString();
+            return String.join(separator, names);
         }
     }
 
@@ -552,6 +552,7 @@ public class ScriptTester {
             }
             return new ScriptTester(character_scripts);
         }
+
         /**
          * Add list of scripts that are acceptable in combination together.
          *

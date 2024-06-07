@@ -18,6 +18,7 @@ import org.unicode.props.UnicodeProperty;
 
 public class StringPrepData {
     private static final boolean DEBUG = getDebugFlag(StringPrepData.class);
+
     /**
      * 3. Mapping This profile specifies mapping using the following tables from [STRINGPREP]: Table
      * B.1 Table B.2 4. Normalization This profile specifies using Unicode normalization form KC, as

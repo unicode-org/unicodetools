@@ -22,6 +22,7 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import org.unicode.props.IndexUnicodeProperties;
 
 public class ScriptTester2 {
     private final UnicodeMap<UnicodeSet> toEquivalents;
@@ -48,7 +49,7 @@ public class ScriptTester2 {
 
     public static ScriptTester2 getInstance(VersionInfo version, UnicodeSet allowed) {
         allowed = allowed.isFrozen() ? allowed : new UnicodeSet(allowed).freeze();
-        CachedProps props = CachedProps.getInstance(version);
+        var props = IndexUnicodeProperties.make(version);
         // System.out.println(new TreeSet(props.getAvailable()));
         UnicodeMap<String> confusables = props.getProperty("Confusable_MA").getUnicodeMap();
         UnicodeMap<UnicodeSet> equiv = new UnicodeMap();
@@ -114,12 +115,12 @@ public class ScriptTester2 {
     }
 
     public static UnicodeSet getAllowedStatus(VersionInfo version) {
-        CachedProps props = CachedProps.getInstance(version);
+        var props = IndexUnicodeProperties.make(version);
         return props.getProperty("Identifier_Status").getUnicodeMap().getSet("Allowed").freeze();
     }
 
     public static UnicodeSet getNFKD_Quick_CheckNo(VersionInfo version) {
-        CachedProps props = CachedProps.getInstance(version);
+        var props = IndexUnicodeProperties.make(version);
         return props.getProperty("NFKD_Quick_Check").getUnicodeMap().getSet("No").freeze();
     }
 

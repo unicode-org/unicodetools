@@ -55,6 +55,7 @@ public abstract class Pick {
     public abstract String toString(int depth);
 
     public abstract String getInternal(int depth, Set<String> alreadySeen);
+
     // Internals
 
     protected String name;
@@ -130,6 +131,7 @@ public abstract class Pick {
             }
             return result + ")";
         }
+
         // keep private
         private Alternation() {
             sep = "|";
@@ -303,6 +305,7 @@ public abstract class Pick {
 
     abstract static class Visitor {
         Set already = new HashSet();
+
         // Note: each visitor should return the Pick that will replace a (or a itself)
         abstract Pick handle(Pick a);
 

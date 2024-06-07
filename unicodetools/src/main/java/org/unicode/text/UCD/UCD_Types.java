@@ -21,6 +21,7 @@ public interface UCD_Types {
      * end/limit of the range depends on the Unicode version, see UCD.java mapToRepresentative().
      */
     public static final int TANGUT_BASE = 0x17000;
+
     // Unicode 9:
     // 17000;<Tangut Ideograph, First>;Lo;0;L;;;;;N;;;;;
     // 187EC;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;
@@ -268,7 +269,8 @@ public interface UCD_Types {
             IDS_UnaryOperator = 39,
             ID_Compat_Math_Start = 40,
             ID_Compat_Math_Continue = 41,
-            LIMIT_BINARY_PROPERTIES = 42;
+            Modifier_Combining_Mark = 42,
+            LIMIT_BINARY_PROPERTIES = 43;
 
     /*
     static final int
@@ -607,7 +609,7 @@ public interface UCD_Types {
             Sunuwar = 170,
             Todhri = 171,
             Tulu_Tigalari = 172,
-            // Provisionally assigned and proposed
+            // Provisionally assigned or proposed
             Chisoi = 173,
             Sidetic = 174,
             Tai_Yo = 175,
