@@ -97,7 +97,7 @@ public class CaseBitTest extends TestFmwkMinusMinus {
             try {
                 final Path path = Settings.UnicodeTools.getDataPathForLatestVersion("uca");
                 final String file = Utility.searchDirectory(path.toFile(), "allkeys", true, ".txt");
-                uca = new UCA(file, Default.ucdVersion(), null);
+                uca = new UCA(file, Default.ucdVersion());
             } catch (final IOException e) {
                 throw new IllegalArgumentException(e);
             }

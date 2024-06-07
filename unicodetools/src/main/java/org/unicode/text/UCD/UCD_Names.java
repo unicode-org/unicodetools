@@ -106,6 +106,7 @@ public final class UCD_Names implements UCD_Types {
         "IDS_Unary_Operator",
         "ID_Compat_Math_Start",
         "ID_Compat_Math_Continue",
+        "Modifier_Combining_Mark",
     };
 
     static final String[] SHORT_BP = {
@@ -151,6 +152,7 @@ public final class UCD_Names implements UCD_Types {
         "IDSU",
         "ID_Compat_Math_Start",
         "ID_Compat_Math_Continue",
+        "MCM",
     };
 
     public static final int BINARY_UNIFIED_IDEOGRAPH =
@@ -887,6 +889,7 @@ public final class UCD_Names implements UCD_Types {
 
     static String[] COMBINING_CLASS = new String[256];
     static String[] LONG_COMBINING_CLASS = new String[256];
+
     // TODO clean this up, just a quick copy of code
     static {
         for (int style = SHORT; style <= LONG; ++style) {
