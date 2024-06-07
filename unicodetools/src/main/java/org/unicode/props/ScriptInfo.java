@@ -83,6 +83,7 @@ public class ScriptInfo {
         private final UnicodeMap<Double> numericValue;
         private final UnicodeMap<Set<Script_Values>> scriptExtensions;
         private final Map<Script_Values, UnicodeSet> scriptExtensionsFlattened;
+
         //        private final UnicodeMap<Script_Values> script;
 
         public IdentifierVersionInfo(String version) {

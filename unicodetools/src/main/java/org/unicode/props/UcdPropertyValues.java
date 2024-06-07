@@ -271,6 +271,7 @@ public class UcdPropertyValues {
         Early_Dynastic_Cuneiform("Early_Dynastic_Cuneiform"),
         Egyptian_Hieroglyph_Format_Controls("Egyptian_Hieroglyph_Format_Controls"),
         Egyptian_Hieroglyphs("Egyptian_Hieroglyphs"),
+        Egyptian_Hieroglyphs_Extended_A("Egyptian_Hieroglyphs_Ext_A"),
         Elbasan("Elbasan"),
         Elymaic("Elymaic"),
         Emoticons("Emoticons"),
@@ -298,6 +299,7 @@ public class UcdPropertyValues {
         Gujarati("Gujarati"),
         Gunjala_Gondi("Gunjala_Gondi"),
         Gurmukhi("Gurmukhi"),
+        Gurung_Khema("Gurung_Khema"),
         Halfwidth_And_Fullwidth_Forms("Half_And_Full_Forms"),
         Combining_Half_Marks("Half_Marks"),
         Hangul_Syllables("Hangul"),
@@ -496,6 +498,7 @@ public class UcdPropertyValues {
         Todhri("Todhri"),
         Toto("Toto"),
         Transport_And_Map_Symbols("Transport_And_Map"),
+        Tulu_Tigalari("Tulu_Tigalari"),
         Unified_Canadian_Aboriginal_Syllabics("UCAS", "Canadian_Syllabics"),
         Unified_Canadian_Aboriginal_Syllabics_Extended("UCAS_Ext"),
         Unified_Canadian_Aboriginal_Syllabics_Extended_A("UCAS_Ext_A"),
@@ -673,6 +676,47 @@ public class UcdPropertyValues {
                 PropertyNames.getNameToEnums(Decomposition_Type_Values.class);
 
         public static Decomposition_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
+    // Do_Not_Emit_Preferred
+    public enum Do_Not_Emit_Type_Values implements Named {
+        Indic_Atomic_Consonant("Indic_Atomic_Consonant"),
+        Indic_Consonant_Conjunct("Indic_Consonant_Conjunct"),
+        Indic_Vowel_Letter("Indic_Vowel_Letter"),
+        Bengali_Khanda_Ta("Bengali_Khanda_Ta"),
+        Malayalam_Chillu("Malayalam_Chillu"),
+        Tamil_Shrii("Tamil_Shrii"),
+        Dotless_Form("Dotless_Form"),
+        Hamza_Form("Hamza_Form"),
+        Precomposed_Hieroglyph("Precomposed_Hieroglyph"),
+        Precomposed_Form("Precomposed_Form"),
+        Deprecated("Deprecated"),
+        Discouraged("Discouraged"),
+        Preferred_Spelling("Preferred_Spelling");
+        private final PropertyNames<Do_Not_Emit_Type_Values> names;
+
+        private Do_Not_Emit_Type_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Do_Not_Emit_Type_Values>(
+                            Do_Not_Emit_Type_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Do_Not_Emit_Type_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Do_Not_Emit_Type_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Do_Not_Emit_Type_Values.class);
+
+        public static Do_Not_Emit_Type_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
@@ -1095,6 +1139,7 @@ public class UcdPropertyValues {
         Other("Other"),
         Pure_Killer("Pure_Killer"),
         Register_Shifter("Register_Shifter"),
+        Reordering_Killer("Reordering_Killer"),
         Syllable_Modifier("Syllable_Modifier"),
         Tone_Letter("Tone_Letter"),
         Tone_Mark("Tone_Mark"),
@@ -1302,7 +1347,7 @@ public class UcdPropertyValues {
         Tah("Tah"),
         Taw("Taw"),
         Teh_Marbuta("Teh_Marbuta"),
-        Hamza_On_Heh_Goal("Teh_Marbuta_Goal"),
+        Teh_Marbuta_Goal("Teh_Marbuta_Goal", "Hamza_On_Heh_Goal"),
         Teth("Teth"),
         Thin_Yeh("Thin_Yeh"),
         Vertical_Tail("Vertical_Tail"),
@@ -1374,6 +1419,7 @@ public class UcdPropertyValues {
     }
 
     // kAccountingNumeric
+    // kAlternateTotalStrokes
     // kBigFive
     // kCangjie
     // kCantonese
@@ -1388,6 +1434,15 @@ public class UcdPropertyValues {
     // kDaeJaweon
     // kDefinition
     // kEACC
+    // kEH_Cat
+    // kEH_Desc
+    // kEH_Func
+    // kEH_FVal
+    // kEH_HG
+    // kEH_IFAO
+    // kEH_JSesh
+    // kEH_UniK
+    // kFanqie
     // kFenn
     // kFennIndex
     // kFourCornerCode
@@ -1425,6 +1480,7 @@ public class UcdPropertyValues {
     // kIRGHanyuDaZidian
     // kIRGKangXi
     // kJa
+    // kJapanese
     // kJapaneseKun
     // kJapaneseOn
     // kJinmeiyoKanji
@@ -1446,33 +1502,43 @@ public class UcdPropertyValues {
     // kMandarin
     // kMatthews
     // kMeyerWempe
+    // kMojiJoho
     // kMorohashi
     // kNelson
     // kOtherNumeric
     // kPhonetic
     // kPrimaryNumeric
     // kPseudoGB1
+    // kReading
     // kRSAdobe_Japan1_6
     // kRSJapanese
     // kRSKangXi
     // kRSKanWa
     // kRSKorean
+    // kRSTUnicode
     // kRSUnicode
     // kSBGY
     // kSemanticVariant
     // kSimplifiedVariant
+    // kSMSZD2003Index
+    // kSMSZD2003Readings
     // kSpecializedSemanticVariant
     // kSpoofingVariant
+    // kSrc_NushuDuben
+    // kStrange
     // kTaiwanTelegraph
     // kTang
     // kTGH
     // kTGHZ2013
+    // kTGT_MergedSrc
     // kTotalStrokes
     // kTraditionalVariant
     // kUnihanCore2020
     // kVietnamese
+    // kVietnameseNumeric
     // kXerox
     // kXHC1983
+    // kZhuangNumeric
     // kZVariant
     public enum Line_Break_Values implements Named {
         Ambiguous("AI"),
@@ -1706,6 +1772,40 @@ public class UcdPropertyValues {
     }
 
     // Numeric_Value
+    public enum Other_Joining_Type_Values implements Named {
+        Join_Causing("C"),
+        Dual_Joining("D"),
+        Left_Joining("L"),
+        Right_Joining("R"),
+        Transparent("T"),
+        Non_Joining("U"),
+        Deduce_From_General_Category("Deduce_From_General_Category");
+        private final PropertyNames<Other_Joining_Type_Values> names;
+
+        private Other_Joining_Type_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Other_Joining_Type_Values>(
+                            Other_Joining_Type_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Other_Joining_Type_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Other_Joining_Type_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Other_Joining_Type_Values.class);
+
+        public static Other_Joining_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     public enum Script_Values implements Named {
         Adlam("Adlm"),
         Caucasian_Albanian("Aghb"),
@@ -1753,6 +1853,7 @@ public class UcdPropertyValues {
         Grantha("Gran"),
         Greek("Grek"),
         Gujarati("Gujr"),
+        Gurung_Khema("Gukh"),
         Gurmukhi("Guru"),
         Hangul("Hang"),
         Han("Hani"),
@@ -1865,6 +1966,7 @@ public class UcdPropertyValues {
         Tangsa("Tnsa"),
         Todhri("Todr"),
         Toto("Toto"),
+        Tulu_Tigalari("Tutg"),
         Ugaritic("Ugar"),
         Vai("Vaii"),
         Vithkuqi("Vith"),

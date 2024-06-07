@@ -20,7 +20,6 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import org.unicode.text.UCA.UCA.Remap;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.IntStack;
@@ -32,21 +31,27 @@ public class UCA_Data {
 
     private final Normalizer toD;
     private final UCD ucd;
-    private final Remap primaryRemap;
 
     public int variableLow = '\uFFFF';
     public int nonVariableLow = '\uFFFF'; // HACK '\u089A';
     public int variableHigh = '\u0000';
+    boolean hasExplicitVariableHigh = false;
 
     UCA_Statistics statistics = new UCA_Statistics();
 
-    public UCA_Data(Normalizer toD, UCD ucd, Remap primaryRemap) {
+    /**
+     * @param toD Normalizer
+     * @param ucd UCD
+     * @param variableHigh -1 for DUCET, explicit variable high primary for CLDR
+     * @param firstDucetNonVariable -1 for DUCET, explicit primary for CLDR
+     */
+    public UCA_Data(Normalizer toD, UCD ucd, int variableHigh, int firstDucetNonVariable) {
         this.toD = toD;
         this.ucd = ucd;
-        this.primaryRemap = primaryRemap;
-        if (primaryRemap != null) {
-            variableHigh = primaryRemap.getVariableHigh();
-            statistics.firstDucetNonVariable = primaryRemap.getFirstDucetNonVariable();
+        if (variableHigh >= 0) {
+            this.variableHigh = variableHigh;
+            hasExplicitVariableHigh = true;
+            statistics.firstDucetNonVariable = firstDucetNonVariable;
         }
     }
 
@@ -89,10 +94,6 @@ public class UCA_Data {
         return longest != null;
     }
 
-    public Remap getPrimaryRemap() {
-        return primaryRemap;
-    }
-
     private boolean endsWithZeroCC(String s) {
         return toD.getCanonicalClass(s.codePointBefore(s.length())) == 0;
     }
@@ -104,23 +105,6 @@ public class UCA_Data {
         final String sourceString = source.toString();
         checkForIllegal(sourceString);
         final int firstCodePoint = sourceString.codePointAt(0);
-
-        if (primaryRemap != null) {
-            final IntStack charRemap = primaryRemap.getRemappedCharacter(firstCodePoint);
-            if (charRemap != null) {
-                ces = charRemap;
-            } else {
-                for (int i = 0; i < ces.length(); ++i) {
-                    int value = ces.get(i);
-                    final char primary = CEList.getPrimary(value);
-                    final Integer remap = primaryRemap.getRemappedPrimary(primary);
-                    if (remap != null) {
-                        value = (remap << 16) | (value & 0xFFFF);
-                        ces.set(i, value);
-                    }
-                }
-            }
-        }
 
         // gather statistics
         if ("a".contentEquals(source)) {

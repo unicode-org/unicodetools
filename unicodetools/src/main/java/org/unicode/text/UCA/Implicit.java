@@ -15,18 +15,22 @@ import org.unicode.text.utility.Utility;
 public class Implicit {
     /** Start of implicit primaries. */
     static final int START = 0xFB00;
+
     /**
      * First primary weight available for ranges. Intended for siniform ideographic scripts,
      * starting with Tangut in UCA 9.
      */
     static final int RANGES_BASE = 0xFB00;
+
     /**
      * Base primary weight for the original CJK Unihan block & non-decomposable CJK compatibility
      * characters.
      */
     static final int CJK_BASE = 0xFB40;
+
     /** Base primary weight for CJK extensions blocks. */
     static final int CJK_EXTENSIONS_BASE = 0xFB80;
+
     /**
      * Base primary weight for unassigned code points. Formally, this is used for characters that
      * have neither explicit DUCET mappings nor implicit mappings according to any other rule.
@@ -34,6 +38,7 @@ public class Implicit {
     static final int UNASSIGNED_BASE = 0xFBC0;
 
     static final int UNASSIGNED_LIMIT = 0xFC00;
+
     /** End of implicit primaries, start of trailing ones. */
     static final int LIMIT = 0xFC00;
 
@@ -54,8 +59,10 @@ public class Implicit {
         final int leadPrimary;
         int startCP;
         int endCP;
+
         /** First assigned code point in the range. */
         int firstCP;
+
         /** Last assigned code point in the range. */
         int lastCP;
 

@@ -2632,6 +2632,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
             Transliterator.getInstance("katakana-hiragana");
 
     static final UnicodeSet kana = new UnicodeSet("[[:hiragana:][:katakana:]\u30FC]");
+
     // since we are working in NFC, we don't worry about the combining marks.
 
     // ADD Factory since otherwise getInverse blows out

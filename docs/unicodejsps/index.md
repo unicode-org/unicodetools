@@ -1,6 +1,6 @@
 # Building UnicodeJsp
 
-- Note 2: there are some notes on updated processes for using GCP at [gcp-run.md](./gcp-run.md) - at present, automated deployment is TODO.
+- Note 2: there are some notes on updated processes for using GCP at [gcp-run.md](./gcp-run.md) - at present, automated deployment is being worked on.
 
 ## Compiling
 ### Prerequisites
@@ -92,7 +92,7 @@ Files to investigate
 Go to `XPropertyFactory.java` to add new properties other than the ones in /props/
 ### Using Beta Properties
 
-Set CachedProps.IS_BETA to true.
+In [org.unicode.text.Settings](/unicodetools/src/main/java/org/unicode/text/utility/Settings.java), set `latestVersionPhase` to `BETA`.
 
 Build & Test
 
@@ -109,14 +109,32 @@ New Properties if there are).
 
 ### Running a Docker-based build
 
+Download the Last Resort font.
+
+```
+wget https://github.com/unicode-org/last-resort-font/releases/latest/download/LastResort-Regular.ttf
+mv ./LastResort-Regular.ttf ./UnicodeJsps/src/main/webapp/
+```
+
 compile java stuff
 
 - `mvn -B package -am -pl UnicodeJsps -DskipTests=true`
 
-”backup” copy of CLDR and UnicodeTools. (`~/src/cldr` is an optional existing CLDR dir to save a few packets)
+- make a copy of CLDR - lots of ways to do this. `--reference-if-able ~/src/cldr` is another directory on my disk which has a copy of CLDR, to save copying. The CLDR_REF calculation is to make sure you have the same CLDR version as the build.
 
-- `git clone --reference-if-able ~/src/cldr https://github.com/unicode-org/cldr.git || (cd cldr && git pull)`
-- `mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git --exclude=unicodetools/target/ -f UnicodeJsps/target/cldr-unicodetools.tgz ./cldr/ ./unicodetools/`
+```
+git clone https://github.com/unicode-org/cldr.git     --reference-if-able ~/src/cldr
+CLDR_REF=$(mvn help:evaluate -Dexpression=cldr.version -q -DforceStdout | cut -d- -f3)
+(cd cldr ; git reset --hard ${CLDR_REF})
+mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git -f UnicodeJsps/target/cldr-unicodetools.tgz ./cldr/ ./unicodetools/
+```
+
+- Regenerate the property cache files:
+
+```
+mvn compile exec:java '-Dexec.mainClass="org.unicode.jsp.RebuildPropertyCache"' -am -pl unicodetools   "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=." "-DCLDR_DIR=<somewhere>"
+tar -cpz -f UnicodeJsps/target/generated.tgz ./Generated/
+```
 
 Now, finally build.
 
@@ -167,7 +185,7 @@ Unicode Tools.
         and "test4" )
 4.  Now, login to https://console.cloud.google.com/ with your unicode.org
     account
-    1.  At the top of the page, switch the project to Unicode Dev Infra\
+    1.  At the top of the page, switch the project to [`goog-unicode-dev`](https://console.cloud.google.com/run?project=goog-unicode-dev)
         ![choose a deployment](chooseimage.png)
     2.  From the left nav / hamburger menu, find "Cloud Run".
         Click on the link for the service "**unicode-jsps-staging**". This way
@@ -179,7 +197,7 @@ Unicode Tools.
         ![Google Cloud Run Image Selection Page](CLDR-14145-processb.png)
 
         2.  Click Select
-        3.  expand the "us.gcr.io/dev-infra…/unicode-jsps" images
+        3.  expand the "us-central1-docker.pkg.dev/goog-unicode-dev/unicode-jsps" images
         4.  You should see the release tags (test3, test4) show up as "images".
         5.  Choose the image that corresponds with your deployment (such as
             **2020-09-15-release**) - the full title may not show up.
@@ -192,9 +210,9 @@ Unicode Tools.
         the new revision takes over traffic.
 5.  Check
     1.  Test the new deployment at
-        <https://unicode-jsps-staging-5ocgitonaa-uw.a.run.app>
+        <https://unicode-jsps-staging-o2ookmn2oq-uc.a.run.app>
     2.  To check new characters (for example):
-        <https://unicode-jsps-staging-5ocgitonaa-uw.a.run.app/UnicodeJsps/list-unicodeset.jsp?a=\p{age=8.0}-\p{age=7.0}>
+        <https://unicode-jsps-staging-o2ookmn2oq-uc.a.run.app/UnicodeJsps/list-unicodeset.jsp?a=\p{age=8.0}-\p{age=7.0}>
     3.  Check at the bottom for the right Unicode and ICU versions.
     4.  Click once on each top link to do simple sanity check.
     5.  Once that's successful then:
