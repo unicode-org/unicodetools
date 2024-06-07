@@ -309,6 +309,7 @@ class GenerateStringPrep implements UCD_Types {
     }
 
     static final int OK = 0, DELETED = 1, ILLEGAL = 2, REMAPPED = 3, IDNA_TYPE_LIMIT = 4;
+
     /** */
     public static int getIDNAType(int cp) {
         inbuffer.setLength(0);

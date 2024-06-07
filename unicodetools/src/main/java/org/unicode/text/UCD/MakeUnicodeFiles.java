@@ -7,13 +7,19 @@ import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.OutputInt;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.io.UncheckedIOException;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -53,7 +59,68 @@ public class MakeUnicodeFiles {
     static boolean DEBUG = false;
 
     public static void main(String[] args) throws IOException {
+
+        boolean cleanAndCopy =
+                Arrays.asList(args).contains("-c"); // clean Bin & copy changed output
+
+        if (cleanAndCopy) {
+
+            // Remove the bin file so that changes to the dev directory aren't ignored
+            // The index unicode properties (eg Alphabetic.bin) don't need to be removed
+            // because they are rebuilt if the source files change
+
+            File binFile =
+                    new File(Settings.Output.BIN_DIR, "UCD_Data" + Settings.latestVersion + ".bin");
+            binFile.delete();
+
+            // Remove the old files in the output directory
+
+            Files.walk(Path.of(Settings.Output.GEN_UCD_DIR))
+                    .sorted(Comparator.reverseOrder())
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+        }
+
         generateFile();
+
+        if (cleanAndCopy) {
+
+            // Copy the important changed files to dev directory
+
+            Path sourceBase = Path.of(Settings.Output.GEN_UCD_DIR + Settings.latestVersion);
+            Path targetBase =
+                    Settings.UnicodeTools.DataDir.UCD.asPath(Settings.LATEST_VERSION_INFO);
+            OutputInt fileCount = new OutputInt(); // for use in forEach, can't be just int.
+            Files.walk(sourceBase)
+                    .filter(
+                            x ->
+                                    !x.toFile().isDirectory()
+                                            && !x.getFileName().toString().startsWith("ZZZ-")
+                                            && !x.getParent()
+                                                    .getFileName()
+                                                    .toString()
+                                                    .equals("cldr")
+                                            && !x.getParent()
+                                                    .getFileName()
+                                                    .toString()
+                                                    .equals("extra"))
+                    .forEach(
+                            x -> {
+                                Path targetDir = targetBase.resolve(sourceBase.relativize(x));
+                                System.out.println(
+                                        ++fileCount.value
+                                                + ") Moving:\t"
+                                                + x
+                                                + "\tto\t"
+                                                + targetDir);
+                                try {
+                                    Files.move(x, targetDir, StandardCopyOption.REPLACE_EXISTING);
+                                } catch (IOException e) {
+                                    throw new UncheckedIOException(e);
+                                }
+                            });
+            System.out.println(fileCount + " file(s) copied to " + targetBase);
+        }
         System.out.println("DONE");
     }
 
@@ -988,13 +1055,10 @@ public class MakeUnicodeFiles {
                     // HACK
                     Tabber mt = mt2;
                     if (l.size() == 1) {
-                        if (propName.equals("Canonical_Combining_Class")) {
-                            continue;
-                        }
                         l.add(0, l.get(0)); // double up
                     } else if (propName.equals("Canonical_Combining_Class")) {
-                        if (l.size() == 2) {
-                            l.add(l.get(1)); // double up final value
+                        if (l.get(1).equals(l.get(0)) && l.get(2).equals(l.get(0))) {
+                            continue;
                         }
                         mt = mt3;
                     } else if (l.size() == 2 && propName.equals("Decomposition_Type")) {
@@ -1592,6 +1656,7 @@ public class MakeUnicodeFiles {
                     return Double.compare(Double.parseDouble(o1), Double.parseDouble(o2));
                 }
             };
+
     /*
     private static void writeBinaryValues(
     PrintWriter pw,
@@ -1613,8 +1678,8 @@ public class MakeUnicodeFiles {
                 pw,
                 prop.getName(),
                 prop,
-                /*showPropName=*/ false,
-                prop.getFirstValueAlias(ps.skipValue));
+                /* showPropName= */ false,
+                ps.skipValue == null ? null : prop.getFirstValueAlias(ps.skipValue));
         var source = ToolUnicodePropertySource.make(Default.ucdVersion());
         UnicodeProperty generalCategory = source.getProperty("General_Category");
         UnicodeProperty block = source.getProperty("Block");
@@ -1631,13 +1696,17 @@ public class MakeUnicodeFiles {
                         block, new UnicodeProperty.MapFilter(ignoreBlocksInCJKVPlanes));
         UnicodeSet omitted =
                 generalCategory.getSet("Unassigned").retainAll(prop.getSet(ps.skipValue));
+        if (prop.getName().equals("Script_Extensions")) {
+            bf.setValueWidthOverride(30).setCountWidth(4);
+        } else {
+            bf.setMinSpacesBeforeSemicolon(1)
+                    .setValueWidthOverride(3)
+                    .setMinSpacesBeforeComment(0)
+                    .setCountWidth(7);
+        }
         bf.setValueSource(prop)
                 .setRangeBreakSource(blockOrIdeographicPlane)
-                .setMinSpacesBeforeSemicolon(1)
-                .setValueWidthOverride(3)
-                .setMinSpacesBeforeComment(0)
                 .setRefinedLabelSource(generalCategory)
-                .setCountWidth(7)
                 .setMergeRanges(ps.mergeRanges)
                 .setShowTotal(false)
                 .showSetNames(pw, new UnicodeSet(0, 0x10FFFF).removeAll(omitted));
@@ -1713,6 +1782,7 @@ public class MakeUnicodeFiles {
 
     static class RestoreSpacesFilter extends UnicodeProperty.StringFilter {
         String skipValue;
+
         /**
          * @param ps
          */

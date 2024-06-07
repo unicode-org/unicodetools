@@ -17,15 +17,24 @@ RETS ; RGI_Emoji_Tag_Sequence ; Emoji_Tag_Sequence
 REZS ; RGI_Emoji_Zwj_Sequence ; Emoji_Zwj_Sequence
 # RE ; RGI_Emoji
 
+kEH_Core                 ; kEH_Core
+kEH_NoMirror             ; kEH_NoMirror
+kEH_NoRotate             ; kEH_NoRotate
+
 # ================================================
 # Enumerated Properties
 # ================================================
 
-idstatus ; Identifier_Status
-idtype ; Identifier_Type
+ID_Status ; Identifier_Status
+ID_Type ; Identifier_Type
 
 idns ; Idn_Status
 idn8 ; Idn_2008
+
+# Unofficial contributory property used in the derivation of Joining_Type.
+Other_Joining_Type ; Other_Joining_Type
+
+Do_Not_Emit_Type ; Do_Not_Emit_Type
 
 # ================================================
 # String Properties
@@ -45,6 +54,8 @@ bpb                      ; Bidi_Paired_Bracket
 
 cjkSimplifiedVariant ; kSimplifiedVariant
 cjkTraditionalVariant ; kTraditionalVariant
+
+Do_Not_Emit_Preferred ; Do_Not_Emit_Preferred
 
 # ================================================
 # Miscellaneous Properties
@@ -138,7 +149,30 @@ cjkJoyoKanji ; kJoyoKanji
 cjkKoreanEducationHanja ; kKoreanEducationHanja
 cjkKoreanName ; kKoreanName
 cjkTGH ; kTGH
-#13.0
+# 13.0
 cjkSpoofingVariant       ; kSpoofingVariant
 cjkTGHZ2013              ; kTGHZ2013
 cjkUnihanCore2020        ; kUnihanCore2020
+# 14.0
+cjkStrange               ; kStrange
+# 15.0
+cjkAlternateTotalStrokes ; kAlternateTotalStrokes
+# 15.1
+cjkJapanese              ; kJapanese
+cjkMojiJoho              ; kMojiJoho
+cjkSMSZD2003Index        ; kSMSZD2003Index
+cjkSMSZD2003Readings     ; kSMSZD2003Readings
+cjkVietnameseNumeric     ; kVietnameseNumeric
+cjkZhuangNumeric         ; kZhuangNumeric
+# 16.0
+cjkFanqie                ; kFanqie
+
+kTGT_MergedSrc           ; kTGT_MergedSrc
+kRSTUnicode              ; kRSTUnicode
+
+kSrc_NushuDuben          ; kSrc_NushuDuben
+kReading                 ; kReading
+
+kEH_Func                 ; kEH_Func
+kEH_FVal                 ; kEH_FVal
+kEH_UniK                 ; kEH_UniK

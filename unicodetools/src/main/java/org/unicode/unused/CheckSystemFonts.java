@@ -552,6 +552,7 @@ public class CheckSystemFonts {
     static UnicodeMap<Set<String>> invisibles = new UnicodeMap();
     static Map<R2<Integer, Integer>, Set<String>> equivalences =
             new TreeMap<R2<Integer, Integer>, Set<String>>(NFCLowerR2);
+
     //    static Set<String> SKIP_SHAPES = new HashSet<String>(Arrays.asList(
     //            "MT-Extra",
     //            "JCsmPC",

@@ -37,7 +37,9 @@ public class ListAssignedWithDefaultValues {
                 default:
                     UnicodeMap<String> map = latest.load(prop);
                     String defaultValue = map.get(0x80000);
-                    String defaultValue2 = IndexUnicodeProperties.getDefaultValue(prop);
+                    String defaultValue2 =
+                            IndexUnicodeProperties.getDefaultValue(
+                                    prop, Settings.LATEST_VERSION_INFO);
 
                     UnicodeSet defaultValues = map.getSet(defaultValue);
                     UnicodeSet assignedWithDefaultValues =

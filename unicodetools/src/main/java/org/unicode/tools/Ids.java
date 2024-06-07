@@ -192,6 +192,7 @@ public class Ids {
                     return o1.length() - o2.length();
                 }
             };
+
     // private static final UnicodeMap<String> totalStrokes = iup.load(UcdProperty.kTotalStrokes);
 
     /**
@@ -1783,6 +1784,7 @@ public class Ids {
         }
         return b.append("</svg>").toString();
     }
+
     // Confusable
     /*
        ⼖  U+2F16 KANGXI RADICAL HIDING ENCLOSURE
