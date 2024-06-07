@@ -1090,6 +1090,15 @@ Let $japaneseSimplifiedRadicals = \p{Name=/CJK RADICAL J-SIMPLIFIED/}
 In $chineseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ [\p{kRSUnicode=/^[0-9]+'\.0$/} $radicalsWithUnifiableSimplifications]
 In $japaneseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/^[0-9]+''\.0$/}
 
+# Egyptian hieroglyph invariants
+
+Let $unikemetScope = [\p{Block=/^Egyptian.Hieroglyphs/} - \p{gc=Cn}]
+$unikemetScope = [ [\p{gc=Lo} & \p{sc=Egyp}] - \p{Name=/^EGYPTIAN HIEROGLYPH (FULL |HALF |TALL |WIDE )?(BLANK|LOST SIGN)$/} ]
+$unikemetScope = \P{kEH_Cat=@none@}
+$unikemetScope = \P{kEH_UniK=@none@}
+\p{kEH_NoMirror} ⊂ $unikemetScope
+\p{kEH_NoRotate} ⊂ $unikemetScope
+
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
 \p{InPC=/(Left|Right)/} ⊆ [\p{gc=Mc}\p{gc=Lo}\p{gc=Lm}]

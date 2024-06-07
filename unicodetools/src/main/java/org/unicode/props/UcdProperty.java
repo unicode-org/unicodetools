@@ -105,6 +105,14 @@ public enum UcdProperty {
     kDaeJaweon(PropertyType.Miscellaneous, "cjkDaeJaweon"),
     kDefinition(PropertyType.Miscellaneous, "cjkDefinition"),
     kEACC(PropertyType.Miscellaneous, "cjkEACC"),
+    kEH_Cat(PropertyType.Miscellaneous, "kEH_Cat"),
+    kEH_Desc(PropertyType.Miscellaneous, "kEH_Desc"),
+    kEH_FVal(PropertyType.Miscellaneous, "kEH_FVal"),
+    kEH_Func(PropertyType.Miscellaneous, "kEH_Func"),
+    kEH_HG(PropertyType.Miscellaneous, "kEH_HG"),
+    kEH_IFAO(PropertyType.Miscellaneous, "kEH_IFAO"),
+    kEH_JSesh(PropertyType.Miscellaneous, "kEH_JSesh"),
+    kEH_UniK(PropertyType.Miscellaneous, "kEH_UniK"),
     kFanqie(PropertyType.Miscellaneous, "cjkFanqie"),
     kFenn(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkFenn"),
     kFennIndex(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkFennIndex"),
@@ -341,6 +349,9 @@ public enum UcdProperty {
     White_Space(PropertyType.Binary, Binary.class, null, "WSpace", "space"),
     XID_Continue(PropertyType.Binary, Binary.class, null, "XIDC"),
     XID_Start(PropertyType.Binary, Binary.class, null, "XIDS"),
+    kEH_Core(PropertyType.Binary, Binary.class, null, "kEH_Core"),
+    kEH_NoMirror(PropertyType.Binary, Binary.class, null, "kEH_NoMirror"),
+    kEH_NoRotate(PropertyType.Binary, Binary.class, null, "kEH_NoRotate"),
 
 // Unknown
 ;

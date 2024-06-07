@@ -85,6 +85,10 @@
 # @missing: 0000..10FFFF; Emoji_Component  	; No
 # @missing: 0000..10FFFF; Extended_Pictographic  	; No
 
+# @missing: 0000..10FFFF; kEH_Core  ;  No
+# @missing: 0000..10FFFF; kEH_NoMirror  ;  No
+# @missing: 0000..10FFFF; kEH_NoRotate  ;  No
+
 # End of binary properties.
 
 # @missing: 0000..10FFFF; Canonical_Combining_Class; Not_Reordered
@@ -194,3 +198,8 @@ Do_Not_Emit_Type ; Precomposed_Form         ; Precomposed_Form
 Do_Not_Emit_Type ; Deprecated               ; Deprecated
 Do_Not_Emit_Type ; Discouraged              ; Discouraged
 Do_Not_Emit_Type ; Preferred_Spelling       ; Preferred_Spelling
+
+
+# @missing: 0000..10FFFF; kEH_Func ; <none>
+# @missing: 0000..10FFFF; kEH_FVal ; <none>
+# @missing: 0000..10FFFF; kEH_UniK ; <none>

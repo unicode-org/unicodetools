@@ -17,6 +17,10 @@ RETS ; RGI_Emoji_Tag_Sequence ; Emoji_Tag_Sequence
 REZS ; RGI_Emoji_Zwj_Sequence ; Emoji_Zwj_Sequence
 # RE ; RGI_Emoji
 
+kEH_Core                 ; kEH_Core
+kEH_NoMirror             ; kEH_NoMirror
+kEH_NoRotate             ; kEH_NoRotate
+
 # ================================================
 # Enumerated Properties
 # ================================================
@@ -162,3 +166,7 @@ cjkVietnameseNumeric     ; kVietnameseNumeric
 cjkZhuangNumeric         ; kZhuangNumeric
 # 16.0
 cjkFanqie                ; kFanqie
+
+kEH_Func                 ; kEH_Func
+kEH_FVal                 ; kEH_FVal
+kEH_UniK                 ; kEH_UniK
