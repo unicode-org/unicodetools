@@ -8,6 +8,8 @@ The explicit version number for the β can be used;
 the resulting property is then only valid when that specific β is current.
 Examples:
 
+| Query | Result |
+|---|---|
 | `\p{Word_Break=ALetter}` | Released version of Unicode. |
 | `\p{Uβ:Word_Break=ALetter}` | Beta version of Unicode; error outside of beta review. |
 | `\p{U16β:Word_Break=ALetter}` | Beta version of Unicode 16.0; error during the beta review of any other version. |
