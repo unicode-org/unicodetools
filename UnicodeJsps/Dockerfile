@@ -9,6 +9,7 @@ RUN cd source && gcc -I ../include/ -static -Os -o3 -o bidiref1 bidiref1.c bruti
 RUN ls -lh /build/source/bidiref1 && (/build/source/bidiref1 || true)
 # copy and unpack to /tmp/data
 ADD ./target/cldr-unicodetools.tgz /build/data/
+ADD ./target/generated.tgz /build/data/
 # move this into place (including unicodetools/unicodetools)
 RUN rm -rf /build/data/cldr/.git  # unneeded
 FROM jetty:9-jre11-alpine-eclipse-temurin AS run
@@ -24,9 +25,10 @@ ENV BIDIREFHOME /usr/local/share
 # copy the bidiref1 bin
 ENV BIDIREF1 /usr/local/bin/bidiref1
 COPY --from=cbuild /build/source/bidiref1 /usr/local/bin/
-RUN mkdir -p /var/lib/jetty/data/unicodetools
+RUN mkdir -p /var/lib/jetty/data/unicodetools/Generated
 COPY --from=cbuild /build/data/cldr /var/lib/jetty/data/cldr
 COPY --from=cbuild /build/data/unicodetools/ /var/lib/jetty/data/unicodetools/unicodetools/
-ENV JAVA_OPTIONS -DCLDR_DIR=/var/lib/jetty/data/cldr -DUNICODETOOLS_REPO_DIR=/var/lib/jetty/data/unicodetools
+COPY --from=cbuild /build/data/Generated /var/lib/jetty/data/unicodetools/Generated
+ENV JAVA_OPTIONS -DCLDR_DIR=/var/lib/jetty/data/cldr -DUNICODETOOLS_REPO_DIR=/var/lib/jetty/data/unicodetools -DUNICODETOOLS_GEN_DIR=/var/lib/jetty/data/unicodetools/Generated -Xmx4g
 # This is the default PORT. Override by setting PORT.
 EXPOSE 8080

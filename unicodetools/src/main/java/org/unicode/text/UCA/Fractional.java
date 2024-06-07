@@ -17,6 +17,7 @@ public final class Fractional {
 
     /** Common (default) secondary weight. */
     public static final int COMMON_SEC = 5;
+
     /**
      * Top of the byte range for compressing a sequence of common secondary weights into a single
      * sort key byte.
@@ -25,8 +26,10 @@ public final class Fractional {
      * for tailoring secondary-after a primary CE with a common secondary.
      */
     public static final int COMMON_SEC_TOP = 0x45;
+
     /** First non-common secondary weight byte used in FractionalUCA.txt. */
     public static final int FIRST_SEC_ASSIGNED = 0x70;
+
     /**
      * First secondary weight byte of any secondary CE (primary ignorable). Not actually assigned in
      * FractionalUCA.txt.
@@ -35,8 +38,10 @@ public final class Fractional {
      * a gap for tailoring secondary-before the first secondary CE.
      */
     public static final int FIRST_IGNORABLE_SEC = 0x80;
+
     /** First secondary weight byte of any secondary CE in FractionalUCA.txt. */
     public static final int FIRST_IGNORABLE_SEC_ASSIGNED = 0x82;
+
     /**
      * First secondary weight byte after secondary CEs in FractionalUCA.txt.
      *
@@ -53,13 +58,16 @@ public final class Fractional {
      * tailoring tertiary-after a primary or secondary CE with a common tertiary.
      */
     public static final int COMMON_TER = 5;
+
     /** First non-common tertiary weight byte used in FractionalUCA.txt. */
     public static final int FIRST_TER_ASSIGNED = 0x10;
+
     /**
      * First non-common tertiary weight byte used in FractionalUCA.txt for primary+secondary with
      * very few distinct tertiary weights.
      */
     public static final int FIRST_TER_FEW_ASSIGNED = 0x20;
+
     /**
      * First tertiary weight byte of any tertiary CE (secondary ignorable). Not actually assigned in
      * FractionalUCA.txt.
@@ -68,11 +76,13 @@ public final class Fractional {
      * a gap for tailoring tertiary-before the first tertiary CE.
      */
     public static final int FIRST_IGNORABLE_TER = 0x3C;
+
     /**
      * First tertiary weight byte of any tertiary CE in FractionalUCA.txt. There are none in UCA 6.3
      * or earlier.
      */
     public static final int FIRST_IGNORABLE_TER_ASSIGNED = 0x3D;
+
     /**
      * First tertiary weight byte after tertiary CEs in FractionalUCA.txt.
      *

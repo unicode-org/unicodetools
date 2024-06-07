@@ -550,7 +550,7 @@ We no longer post files to FTP folders, nor publish individual files without con
     *   org.unicode.text.UCD
         *   TestUnicodeInvariants.java
 1.  Run>Run As... Java Application\
-    Will create the following file of results:
+    Will create the following files of results:
     ```
     {Generated}/UnicodeTestResults.txt
     ```
@@ -623,6 +623,8 @@ We no longer post files to FTP folders, nor publish individual files without con
         and what are likely remedies
         (changing properties, adding to an exceptions list, changing the test case).
         Improve these comments as needed.
+1.  Additional tests for UTS #39 data are found in [unicodetools/src/main/resources/org/unicode/text/UCD/SecurityInvariantTest.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/src/main/resources/org/unicode/text/UCD/SecurityInvariantTest.txt).
+    1.  These are reported in `{Generated}/UnicodeTestResults-security.txt` when running `TestTestUnicodeInvariants`.
 
 ### Options
 
