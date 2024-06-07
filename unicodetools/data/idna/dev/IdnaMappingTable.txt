@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2024-04-25, 18:06:27 GMT
+# Date: 2024-01-31, 23:06:37 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1237,7 +1237,8 @@
 0C57          ; disallowed                             # NA   <reserved-0C57>
 0C58..0C59    ; valid                                  # 5.1  TELUGU LETTER TSA..TELUGU LETTER DZA
 0C5A          ; valid                                  # 8.0  TELUGU LETTER RRRA
-0C5B..0C5C    ; disallowed                             # NA   <reserved-0C5B>..<reserved-0C5C>
+0C5B          ; disallowed                             # NA   <reserved-0C5B>
+0C5C          ; valid                                  # 16.0 TELUGU ARCHAIC SHRII
 0C5D          ; valid                                  # 14.0 TELUGU LETTER NAKAARA POLLU
 0C5E..0C5F    ; disallowed                             # NA   <reserved-0C5E>..<reserved-0C5F>
 0C60..0C61    ; valid                                  # 1.1  TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
@@ -1269,7 +1270,8 @@
 0CCA..0CCD    ; valid                                  # 1.1  KANNADA VOWEL SIGN O..KANNADA SIGN VIRAMA
 0CCE..0CD4    ; disallowed                             # NA   <reserved-0CCE>..<reserved-0CD4>
 0CD5..0CD6    ; valid                                  # 1.1  KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
-0CD7..0CDC    ; disallowed                             # NA   <reserved-0CD7>..<reserved-0CDC>
+0CD7..0CDB    ; disallowed                             # NA   <reserved-0CD7>..<reserved-0CDB>
+0CDC          ; valid                                  # 16.0 KANNADA ARCHAIC SHRII
 0CDD          ; valid                                  # 14.0 KANNADA LETTER NAKAARA POLLU
 0CDE          ; valid                                  # 1.1  KANNADA LETTER FA
 0CDF          ; disallowed                             # NA   <reserved-0CDF>
@@ -3426,7 +3428,7 @@
 31BB..31BF    ; valid                                  # 13.0 BOPOMOFO FINAL LETTER G..BOPOMOFO LETTER AH
 31C0..31CF    ; valid                  ;      ; NV8    # 4.1  CJK STROKE T..CJK STROKE N
 31D0..31E3    ; valid                  ;      ; NV8    # 5.1  CJK STROKE H..CJK STROKE Q
-31E4..31E5    ; valid                  ;      ; NV8    # 16.0 CJK STROKE HXG..CJK STROKE SZP
+31E4..31E5    ; valid                  ;      ; NV8    # 16.0 CJK STROKE HZXG..CJK STROKE SZP
 31E6..31EE    ; disallowed                             # NA   <reserved-31E6>..<reserved-31EE>
 31EF          ; disallowed                             # 15.1 IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
 31F0..31FF    ; valid                                  # 3.2  KATAKANA LETTER SMALL KU..KATAKANA LETTER SMALL RO
