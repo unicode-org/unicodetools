@@ -214,6 +214,7 @@ public class TestUnicodeInvariants {
                     // ToolUnicodePropertySource.make(UCD.lastVersion).getSymbolTable("\u00D7"),
                     //
                     // ToolUnicodePropertySource.make(Default.ucdVersion()).getSymbolTable("")});
+                    Set<String> ignoredProperties = Set.of();
                     for (int lineNumber = 1; ; ++lineNumber) {
                         String line = in.readLine();
                         if (line == null) {
@@ -238,8 +239,12 @@ public class TestUnicodeInvariants {
                                 letLine(pp, line);
                             } else if (line.startsWith("In")) {
                                 inLine(pp, line, inputFile, lineNumber);
+                            } else if (line.startsWith("Ignoring")) {
+                                ignoredProperties =
+                                        ignoringPropertiesLine(pp, line, inputFile, lineNumber);
                             } else if (line.startsWith("Propertywise")) {
-                                propertywiseLine(pp, line, inputFile, lineNumber);
+                                propertywiseLine(
+                                        ignoredProperties, pp, line, inputFile, lineNumber);
                             } else if (line.startsWith("ShowScript")) {
                                 showScript = true;
                             } else if (line.startsWith("HideScript")) {
@@ -332,7 +337,28 @@ public class TestUnicodeInvariants {
         }
     }
 
-    private static void propertywiseLine(ParsePosition pp, String line, String file, int lineNumber)
+    private static Set<String> ignoringPropertiesLine(
+            ParsePosition pp, String line, String file, int lineNumber) throws ParseException {
+        pp.setIndex("Ignoring".length());
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+        Set<String> excludedProperties = new HashSet<>();
+        while (pp.getIndex() < line.length()
+                && !PATTERN_WHITE_SPACE_UNION_SYNTAX.contains(line.charAt(pp.getIndex()))) {
+            final int propertyNameStart = pp.getIndex();
+            scan(PATTERN_WHITE_SPACE_UNION_SYNTAX, line, pp, false);
+            excludedProperties.add(line.substring(propertyNameStart, pp.getIndex()));
+            scan(PATTERN_WHITE_SPACE, line, pp, true);
+        }
+        expectToken(":", pp, line);
+        return excludedProperties;
+    }
+
+    private static void propertywiseLine(
+            Set<String> ignoredProperties,
+            ParsePosition pp,
+            String line,
+            String file,
+            int lineNumber)
             throws ParseException {
         pp.setIndex("Propertywise".length());
         final UnicodeSet set = new UnicodeSet(line, pp, symbolTable);
@@ -341,22 +367,47 @@ public class TestUnicodeInvariants {
                     "Set should contain only single code points for property comparison",
                     pp.getIndex());
         }
-        expectToken("AreAlike", pp, line);
+
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+        if (line.substring(pp.getIndex()).startsWith("AreAlike")) {
+            propertywiseAlikeLine(ignoredProperties, set, pp, line, file, lineNumber);
+        } else {
+            propertywiseCorrespondenceLine(ignoredProperties, set, pp, line, file, lineNumber);
+        }
+    }
+
+    private static Set<String> parseSpaceSeparatedList(
+            String prefix, Set<String> initial, ParsePosition pp, String line, String file)
+            throws ParseException {
         if (pp.getIndex() < line.length()) {
             expectToken(",", pp, line);
-            expectToken("Except", pp, line);
+            expectToken(prefix, pp, line);
             expectToken(":", pp, line);
         }
-        Set<String> excludedProperties = new HashSet<>();
-        excludedProperties.add("Name");
-        while (pp.getIndex() < line.length()) {
+        Set<String> excludedProperties = new HashSet<>(initial);
+        while (pp.getIndex() < line.length()
+                && !PATTERN_WHITE_SPACE_UNION_SYNTAX.contains(line.charAt(pp.getIndex()))) {
             final int propertyNameStart = pp.getIndex();
-            scan(PATTERN_WHITE_SPACE, line, pp, false);
+            scan(PATTERN_WHITE_SPACE_UNION_SYNTAX, line, pp, false);
             excludedProperties.add(line.substring(propertyNameStart, pp.getIndex()));
             scan(PATTERN_WHITE_SPACE, line, pp, true);
         }
+        return excludedProperties;
+    }
+
+    private static void propertywiseAlikeLine(
+            Set<String> ignoredProperties,
+            UnicodeSet set,
+            ParsePosition pp,
+            String line,
+            String file,
+            int lineNumber)
+            throws ParseException {
         final var iup = IndexUnicodeProperties.make(Settings.latestVersion);
         final List<String> errorMessageLines = new ArrayList<>();
+        expectToken("AreAlike", pp, line);
+        final var excludedProperties =
+                parseSpaceSeparatedList("Except", ignoredProperties, pp, line, file);
         for (var p : UcdProperty.values()) {
             final var property = iup.getProperty(p);
             if (property.getNameAliases().stream()
@@ -390,6 +441,161 @@ public class TestUnicodeInvariants {
                                             + Character.toString(c)
                                             + ")");
                         }
+                    }
+                }
+            }
+        }
+        if (!errorMessageLines.isEmpty()) {
+            testFailureCount++;
+            printErrorLine("Test Failure", Side.START, testFailureCount);
+            reportTestFailure(
+                    file, lineNumber, String.join("\n", errorMessageLines).replace('\t', ' '));
+            out.println("<table class='f'>");
+            for (String errorMessageLine : errorMessageLines) {
+                out.println("<tr><td>");
+                out.println(toHTML.transform(errorMessageLine).replace("\t", "</td><td>"));
+                out.println("</tr></td>");
+            }
+            out.println("</table>");
+            printErrorLine("Test Failure", Side.END, testFailureCount);
+        }
+    }
+
+    private static void propertywiseCorrespondenceLine(
+            Set<String> ignoredProperties,
+            UnicodeSet left,
+            ParsePosition pp,
+            String line,
+            String file,
+            int lineNumber)
+            throws ParseException {
+        final var iup = IndexUnicodeProperties.make(Settings.latestVersion);
+        final List<String> errorMessageLines = new ArrayList<>();
+        expectToken("AreTo", pp, line);
+        final var right = new UnicodeSet(line, pp, symbolTable);
+        if (right.hasStrings()) {
+            throw new ParseException(
+                    "Set should contain only single code points for property comparison",
+                    pp.getIndex());
+        }
+        if (right.size() != left.size()) {
+            throw new ParseException(
+                    "Sets should have the same size for property correspondence", pp.getIndex());
+        }
+        expectToken("What", pp, line);
+        final var referenceSet = new UnicodeSet(line, pp, symbolTable);
+        if (referenceSet.hasStrings() || referenceSet.size() != 1) {
+            throw new ParseException(
+                    "reference should be a single code point for property correspondence",
+                    pp.getIndex());
+        }
+        final var leftReference = referenceSet.charAt(0);
+        expectToken("IsTo", pp, line);
+        final var correspondingReferenceSet = new UnicodeSet(line, pp, symbolTable);
+        if (correspondingReferenceSet.hasStrings() || correspondingReferenceSet.size() != 1) {
+            throw new ParseException(
+                    "reference should correspond to a single code point for property correspondence",
+                    pp.getIndex());
+        }
+        final var rightReference = correspondingReferenceSet.charAt(0);
+        final var expectedDifferences =
+                parseSpaceSeparatedList("DifferingIn", Set.of(), pp, line, file);
+        final var excludedProperties =
+                parseSpaceSeparatedList("Except", ignoredProperties, pp, line, file);
+        for (var p : UcdProperty.values()) {
+            final var property = iup.getProperty(p);
+            if (property.getNameAliases().stream()
+                    .anyMatch(alias -> excludedProperties.contains(alias))) {
+                continue;
+            }
+            final String pLeftReference = property.getValue(leftReference);
+            final String pRightReference = property.getValue(rightReference);
+            for (int i = 0; i < left.size(); ++i) {
+                final int leftCodePoint = left.charAt(i);
+                final int rightCodePoint = right.charAt(i);
+                final String pLeft = property.getValue(leftCodePoint);
+                final String pRight = property.getValue(rightCodePoint);
+                if (Objects.equals(pLeftReference, pRightReference)) {
+                    if (!Objects.equals(pLeft, pRight)) {
+                        errorMessageLines.add(
+                                property.getName()
+                                        + "("
+                                        + Character.toString(leftReference)
+                                        + ")\t=\t"
+                                        + pLeftReference
+                                        + "\t=\t"
+                                        + property.getName()
+                                        + "("
+                                        + Character.toString(rightReference)
+                                        + ")\tbut\t"
+                                        + property.getName()
+                                        + "("
+                                        + Character.toString(leftCodePoint)
+                                        + ")\t=\t"
+                                        + pLeft
+                                        + "\t≠\t"
+                                        + pRight
+                                        + "\t=\t"
+                                        + property.getName()
+                                        + "("
+                                        + Character.toString(rightCodePoint)
+                                        + ")");
+                    }
+                    if (!property.getNameAliases().stream()
+                            .anyMatch(alias -> expectedDifferences.contains(alias))) {
+                        if (!Objects.equals(pLeft, pLeftReference)
+                                && !Objects.equals(
+                                        pLeftReference, Character.toString(leftReference))
+                                && !Objects.equals(
+                                        pLeftReference, Character.toString(rightReference))) {
+                            errorMessageLines.add(
+                                    property.getName()
+                                            + "("
+                                            + Character.toString(leftReference)
+                                            + ")\t=\t"
+                                            + pLeftReference
+                                            + "\t≠\t"
+                                            + property.getName()
+                                            + "("
+                                            + Character.toString(leftCodePoint)
+                                            + ")\t=\t"
+                                            + pLeft);
+                        }
+                    }
+                } else if (Objects.equals(pLeftReference, Character.toString(rightReference))) {
+                    if (!Objects.equals(pLeft, Character.toString(rightCodePoint))) {
+                        errorMessageLines.add(
+                                property.getName()
+                                        + "("
+                                        + Character.toString(leftReference)
+                                        + ")\t=\t"
+                                        + Character.toString(rightReference)
+                                        + "\tbut\t"
+                                        + property.getName()
+                                        + "("
+                                        + Character.toString(leftCodePoint)
+                                        + ")\t=\t"
+                                        + pLeft
+                                        + "\t≠\t"
+                                        + Character.toString(rightCodePoint));
+                    }
+                } else if (Objects.equals(Character.toString(leftReference), pRightReference)) {
+                    if (!Objects.equals(pLeft, Character.toString(rightCodePoint))) {
+                        errorMessageLines.add(
+                                Character.toString(leftReference)
+                                        + "\t=\t"
+                                        + property.getName()
+                                        + "("
+                                        + Character.toString(rightReference)
+                                        + ")\tbut\t"
+                                        + Character.toString(leftCodePoint)
+                                        + "\t≠\t"
+                                        + pRight
+                                        + "\t=\t"
+                                        + property.getName()
+                                        + "("
+                                        + Character.toString(rightCodePoint)
+                                        + ")");
                     }
                 }
             }
@@ -1400,6 +1606,8 @@ public class TestUnicodeInvariants {
             Transliterator.createFromRules("any-html", HTML_RULES_CONTROLS, Transliterator.FORWARD);
     private static final UnicodeSet PATTERN_WHITE_SPACE =
             new UnicodeSet("\\p{pattern white space}").freeze();
+    private static final UnicodeSet PATTERN_WHITE_SPACE_UNION_SYNTAX =
+            new UnicodeSet("[\\p{pattern white space}\\p{pattern syntax}]").freeze();
     private static int testFailureCount;
     private static int parseErrorCount;
     private static BagFormatter errorLister;

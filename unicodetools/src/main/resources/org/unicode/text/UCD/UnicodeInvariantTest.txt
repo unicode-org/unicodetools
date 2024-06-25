@@ -112,15 +112,18 @@
 #          OnPairsOf $strings, EqualityOf Case_Folding ⇏ EqualityOf Simple_Case_Folding
 #          OnPairsOf $strings, EqualityOf Case_Folding ⇐ EqualityOf Simple_Case_Folding
 ##########################
+# Ignoring <properties>:
 # Propertywise <unicodeSet> AreAlike [, Except: <properties>]
 #
 # Checks that all property assignments of the code points in <unicodeSet> are the same,
-# except for the Name property and any properties listed in the space-separated
-# Except clause.
+# except for any properties listed in the space-separated Except clause or in the
+# most recent Ignoring line.
+# 
 # For the purposes of this check, if all characters in <unicodeSet> are mapped to themselves
 # by some property with default value <code point>, these assignments are the same.
 #
-#   Example: Propertywise [𐛪 𐛫] AreAlike
+#   Example: Ignoring Name:
+#            Propertywise [𐛪 𐛫] AreAlike
 #       These two Linear A signs (A751 and A752) behave identically.
 #   Example: Propertywise [ي ۑ] AreAlike, Except: Confusable_MA Unicode_1_Name
 #       This checks that yeh (with two dots) and yeh with three dots behave the same,
@@ -1143,6 +1146,13 @@ In [\p{Block=Hangul Syllables} - \p{gc=Cn}], (prepend HANGUL SYLLABLE ) * (strin
 In \p{Decomposition_Type=font}, Bidi_Class = Bidi_Class * Decomposition_Mapping
 
 # Basic Propertywise tests.
+Ignoring Name:
+
 Propertywise [𐛪 𐛫] AreAlike
 Propertywise [ي ۑ] AreAlike, Except: Confusable_MA Unicode_1_Name
 
+Ignoring Name Unicode_1_Name:
+Propertywise [[β-ω] - [ς]] AreTo [[Β-Ω] - \p{gc=Cn}] What [α] IsTo [Α]
+
+Ignoring Name Unicode_1_Name ASCII_Hex_Digit Hex_Digit:
+Propertywise [[α-ω] - [ς]] AreTo [[Α-Ω] - \p{gc=Cn}] What [a] IsTo [A], DifferingIn: Block Script East_Asian_Width Script_Extensions
