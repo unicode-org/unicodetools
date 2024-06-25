@@ -239,8 +239,9 @@ public class TestUnicodeInvariants {
                 final ParsePosition pp = new ParsePosition(0);
                 for (; ; ) {
                     final int statementStart = pp.getIndex();
+                    final int statementLineNumber = getLineNumber.apply(pp);
                     final String nextToken = nextToken(pp, source);
-                    while (getLineNumber.apply(pp) > lastPrintedLine) {
+                    while (statementLineNumber >= lastPrintedLine) {
                         println(lines.get(lastPrintedLine++));
                     }
                     if (nextToken == null) {
@@ -266,6 +267,10 @@ public class TestUnicodeInvariants {
                             testLine(source, pp, inputFile, getLineNumber);
                         }
                     } catch (final Exception e) {
+                        final int lineNumber = getLineNumber.apply(pp);
+                        while (lineNumber > lastPrintedLine) {
+                            println(lines.get(lastPrintedLine++));
+                        }
                         parseErrorCount =
                                 parseError(
                                         parseErrorCount,
@@ -274,7 +279,7 @@ public class TestUnicodeInvariants {
                                         statementStart,
                                         inputFile,
                                         getLineNumber.apply(pp));
-                        break;
+                        continue;
                     }
                 }
                 println();

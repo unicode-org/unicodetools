@@ -170,7 +170,15 @@ Let $fii = \p{toNFD=/$foo/}
 Let $codepoints = [\u0000-\U0010FFFF]
 
 Let $gcAllPunctuation = \p{gc=/_Punctuation/}
-$gcAllPunctuation = [\p{gc=Close_Punctuation}\p{gc=Connector_Punctuation}}\p{gc=Dash_Punctuation}\p{gc=Final_Punctuation}\p{gc=Initial_Punctuation}\p{gc=Open_Punctuation}\p{gc=Other_Punctuation}]
+$gcAllPunctuation = [
+    \p{gc=Close_Punctuation}
+    \p{gc=Connector_Punctuation}
+    \p{gc=Dash_Punctuation}
+    \p{gc=Final_Punctuation}
+    \p{gc=Initial_Punctuation}
+    \p{gc=Open_Punctuation}
+    \p{gc=Other_Punctuation}
+]
 
 Let $gcAllSymbols = \p{gc=/_Symbol/}
 $gcAllSymbols = [\p{gc=Math_Symbol}\p{gc=Currency_Symbol}\p{gc=Modifier_Symbol}\p{gc=Other_Symbol}]
@@ -269,13 +277,34 @@ Let $BMExclusions = [ ≠ ∤ ∦ ≢ ≭ ⫝̸ ]
 In [\p{dt=canonical}-$BMExclusions], (delete-adjacent-duplicates) * Bidi_M * \P{bc=NSM} * dm = Bidi_M * \P{bc=NSM}
 
 # Additional BIDI invariant constants
-Let $AL_blocks = [\u0600-\u07BF \u0860-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF \U00010D00-\U00010D3F \U00010EC0-\U00010EFF \U00010F30-\U00010F6F \U0001EC70-\U0001ECBF \U0001ED00-\U0001ED4F \U0001EE00-\U0001EEFF]
-Let $R_blocks = [\u0590-\u05FF \u07C0-\u085F \uFB1D-\uFB4F \U00010800-\U00010CFF \U00010D40-\U00010EBF \U00010F00-\U00010F2F \U00010F70-\U00010FFF \U0001E800-\U0001EC6F \U0001ECC0-\U0001ECFF \U0001ED50-\U0001EDFF \U0001EF00-\U0001EFFF]
-# 6.1.0 updated blocks
-# 10.0 updated blocks (Syriac Supplement is bc=AL)
-# 11.0 updated blocks (Hanifi Rohingya, Sogdian, Indic Siyaq Numbers are bc=AL); Old Sogdian is bc=R
-# 12.0 updated blocks (Ottoman Siyaq Numbers is bc=AL)
-# 14.0 updated blocks (Arabic Extended-B is bc=AL)
+Let $AL_blocks = [
+    \u0600-\u07BF
+    \u0860-\u086F          # Syriac Supplement,     10.0
+    \u0870-\u089F          # Arabic Extended-B,     14.0
+    \u08A0-\u08FF
+    \uFB50-\uFDCF
+    \uFDF0-\uFDFF
+    \uFE70-\uFEFF
+    \U00010D00-\U00010D3F  # Hanifi Rohingya,       11.0
+    \U00010EC0-\U00010EFF
+    \U00010F30-\U00010F6F  # Sogdian,               11.0
+    \U0001EC70-\U0001ECBF  # Indic Siyaq Numbers,   11.0
+    \U0001ED00-\U0001ED4F  # Ottoman Siyaq Numbers, 12.0
+    \U0001EE00-\U0001EEFF
+]
+Let $R_blocks = [
+    \u0590-\u05FF
+    \u07C0-\u085F
+    \uFB1D-\uFB4F
+    \U00010800-\U00010CFF
+    \U00010D40-\U00010EBF
+    \U00010F00-\U00010F2F
+    \U00010F70-\U00010FFF
+    \U0001E800-\U0001EC6F
+    \U0001ECC0-\U0001ECFF
+    \U0001ED50-\U0001EDFF
+    \U0001EF00-\U0001EFFF
+]
 
 # Unassigned characters in these blocks have R or AL respectively
 \p{Bidi_Class=R} ⊇ [$R_blocks & \p{gc=Cn}]
@@ -292,7 +321,14 @@ $AL_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=R}]
 
 Let $BN_Exceptions = [\u001C-\u001F\u17B4\u17B5]
 
-[\p{Bidi_Class=BN}] = [\p{di}\p{nchar}\p{gc=Cc}-\p{gc=Mc}-\p{gc=Mn}-\p{gc=Me}-\p{Bidi_C}-\p{alpha}-\p{wspace} - $BN_Exceptions]
+[\p{Bidi_Class=BN}] = [
+    \p{di}\p{nchar}\p{gc=Cc}
+    - \p{gc=Mc} - \p{gc=Mn} - \p{gc=Me}
+    - \p{Bidi_C}
+    - \p{alpha}
+    - \p{wspace}
+    - $BN_Exceptions
+]
 
 # Nonspacing and enclosing combining marks are bc=NSM, with a few exceptions (all of which are nonspacing)
 Let $gcMn_bcL = [\u0CBF\u0CC6\U00011A07\U00011A08\U00011C3F]
@@ -425,25 +461,37 @@ In \P{U-1:GC=Cn}, ccc=U-1:ccc
 
 # Canonical decompositions (minus exclusions) must be identical across releases (also required by strong normalization stability),
 # except where a character and at least one character in its decomposition are both new in the release.
-Let $New_Decompositions = [[\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion}] - [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion}]]
+Let $New_Decompositions = [
+      [    \p{Decomposition_Type=Canonical} -     \p{Full_Composition_Exclusion}]
+    - [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion}]
+]
 $New_Decompositions ⊆ \p{U-1:GC=Cn}
 # Stripping previously-unassigned characters from the current NFD does
 # something, that is, the decomposition contains newly-assigned characters.
 In $New_Decompositions, toNFD * \P{U-1:GC=Cn} ≠ toNFD
 
-Let $Unicode_13_Decompositions = [[\p{U13.0.0:Decomposition_Type=Canonical} - \p{U13.0.0:Full_Composition_Exclusion}] - [\p{U12.1.0:Decomposition_Type=Canonical} - \p{U12.1.0:Full_Composition_Exclusion}]]
+Let $Unicode_13_Decompositions = [
+      [\p{U13.0.0:Decomposition_Type=Canonical} - \p{U13.0.0:Full_Composition_Exclusion}]
+    - [\p{U12.1.0:Decomposition_Type=Canonical} - \p{U12.1.0:Full_Composition_Exclusion}]
+]
 $Unicode_13_Decompositions ⊆ \p{U12.1.0:GC=Cn}
 In $Unicode_13_Decompositions, toNFD * \P{U12.1.0:GC=Cn} ≠ toNFD
 $Unicode_13_Decompositions = [\U00011938]
 $Unicode_13_Decompositions = [\p{Name=DIVES AKURU VOWEL SIGN O}]
 
-Let $Unicode_7_Decompositions = [[\p{U7.0.0:Decomposition_Type=Canonical} - \p{U7.0.0:Full_Composition_Exclusion}] - [\p{U6.3.0:Decomposition_Type=Canonical} - \p{U6.3.0:Full_Composition_Exclusion}]]
+Let $Unicode_7_Decompositions = [
+      [\p{U7.0.0:Decomposition_Type=Canonical} - \p{U7.0.0:Full_Composition_Exclusion}]
+    - [\p{U6.3.0:Decomposition_Type=Canonical} - \p{U6.3.0:Full_Composition_Exclusion}]
+]
 $Unicode_7_Decompositions ⊆ \p{U6.3.0:GC=Cn}
 In $Unicode_7_Decompositions, toNFD * \P{U6.3.0:GC=Cn} ≠ toNFD
 $Unicode_7_Decompositions = [\U0001134B-\U0001134C \U000114BB-\U000114BC \U000114BE \U000115BA-\U000115BB]
 $Unicode_7_Decompositions ⊆ [\p{Name=/^(GRANTHA|TIRHUTA|SIDDHAM) VOWEL SIGN /}]
 
-Let $Unicode_6_1_Decompositions = [[\p{U6.1.0:Decomposition_Type=Canonical} - \p{U6.1.0:Full_Composition_Exclusion}] - [\p{U6.0.0:Decomposition_Type=Canonical} - \p{U6.0.0:Full_Composition_Exclusion}]]
+Let $Unicode_6_1_Decompositions = [
+      [\p{U6.1.0:Decomposition_Type=Canonical} - \p{U6.1.0:Full_Composition_Exclusion}]
+    - [\p{U6.0.0:Decomposition_Type=Canonical} - \p{U6.0.0:Full_Composition_Exclusion}]
+]
 $Unicode_6_1_Decompositions ⊆ \p{U6.0.0:GC=Cn}
 In $Unicode_6_1_Decompositions, toNFD * \P{U6.0.0:GC=Cn} ≠ toNFD
 $Unicode_6_1_Decompositions = [\U0001112E-\U0001112F]
@@ -469,7 +517,9 @@ In $expandingCanonicalDecompositions, Decomposition_Type * (drop 1) * Decomposit
 # Not a stability policy, but it happens to be the case that the second
 # character does not have a decomposition mapping at all:
 In $expandingCanonicalDecompositions, Decomposition_Type * (drop 1) * Decomposition_Mapping = (constant None)
-In $expandingCanonicalDecompositions, Decomposition_Mapping * (drop 1) * Decomposition_Mapping = (drop 1) * Decomposition_Mapping
+In $expandingCanonicalDecompositions,
+      Decomposition_Mapping * (drop 1) * Decomposition_Mapping
+    =                         (drop 1) * Decomposition_Mapping
 
 # Stability: Canonical mappings (Decomposition_Mapping property values) are
 # always limited so that no string when normalized to NFC expands to more than
@@ -488,7 +538,8 @@ In \P{U-1:GC=Cn}, dm=U-1:dm
 # must have ccc=0, except for the Decomposition_Mapping of the following four
 # characters: U+0344, U+0F73, U+0F75, U+0F81.
 Let $canonicallyExpandingNonstarters = [\u0344 \u0F73 \u0F75 \u0F81]
-In [$expandingCanonicalDecompositions - $canonicallyExpandingNonstarters], ccc * (take 1) * Decomposition_Mapping = (constant Not_Reordered)
+In [$expandingCanonicalDecompositions - $canonicallyExpandingNonstarters],
+    ccc * (take 1) * Decomposition_Mapping = (constant Not_Reordered)
 
 # U6.0: Construction of Full_Composition_Exclusion
 # Primary Composites don't include singletons, ccc!=0, or sequences starting with ccc!=0
@@ -584,7 +635,13 @@ Show [\u20b9]
 Let $nonAlphabeticBindus = []
 [\p{InSc=Bindu} - \p{Alphabetic}] = $nonAlphabeticBindus
 
-Let $nonAlphabeticDependentVowels = [\N{ORIYA SIGN OVERLINE}\N{THAI CHARACTER MAITAIKHU}\N{LIMBU SIGN KEMPHRENG}\N{SHARADA VOWEL MODIFIER MARK}\N{SHARADA EXTRA SHORT VOWEL MARK}]
+Let $nonAlphabeticDependentVowels = [
+    \N{ORIYA SIGN OVERLINE}
+    \N{THAI CHARACTER MAITAIKHU}
+    \N{LIMBU SIGN KEMPHRENG}
+    \N{SHARADA VOWEL MODIFIER MARK}
+    \N{SHARADA EXTRA SHORT VOWEL MARK}
+]
 [\p{InSC=Vowel_Dependent} - \p{Alphabetic}] = $nonAlphabeticDependentVowels
 
 # Several invariants from L2/24-009 item 2.2.
@@ -596,7 +653,11 @@ Let $nonAlphabeticAvagrahas = [\N{TIBETAN MARK PALUTA}]  # A punctuation mark.
 [\p{InSC=Avagraha} - $nonAlphabeticAvagrahas] ⊆ \p{Alphabetic}
 
 # Name-based checks.
-Let $nonLowercaseSmallLetters = [ \p{name=/^LIMBU SMALL LETTER/} \N{TURNED GREEK SMALL LETTER IOTA} \p{name=/^(SQUARED|PARENTHESIZED|TAG) LATIN SMALL LETTER/} ]
+Let $nonLowercaseSmallLetters = [
+    \p{name=/^LIMBU SMALL LETTER/}
+    \N{TURNED GREEK SMALL LETTER IOTA}
+    \p{name=/^(SQUARED|PARENTHESIZED|TAG) LATIN SMALL LETTER/}
+]
 Let $nonLowercaseSmallModifierLetters = [ \p{gc=Lm} & \p{name=/^ARABIC SMALL/} ]
 [ \p{name=/\bSMALL LETTER\b/}-\p{gc=Mn}-\p{gc=Lt} - $nonLowercaseSmallLetters ] ⊆ \p{Lowercase}
 [ [\p{gc=Lm} & \p{name=/SMALL/}] - $nonLowercaseSmallModifierLetters ] ⊆ \p{Lowercase}
@@ -633,14 +694,39 @@ In \P{Other_Joining_Type=Deduce_From_General_Category}, Joining_Type = Other_Joi
 # LineBreak property
 ##########################
 
-Let $IDInclusions = [[:block=/Ideographs/:] [[\U00020000-\U0003FFFF][\U0001F000-\U0001FFFF] - [[:block=Symbols for Legacy Computing:][:block=Supplemental Arrows C:]]] & [:gc=Cn:] - [:NChar:]]
-# 9.0 Added range 1F000..1FFFF: all undesignated code points in this range are lb=ID
-# 13.0 exclude those in 1FB00..1FBFF Symbols for Legacy Computing
-# 16.0 exclude Supplemental Arrows C
+Let $IDInclusions = [
+    [:block=/Ideographs/:]
+    [
+        [\U00020000-\U0003FFFF]  # Planes 2 and 3, lb=ID since 5.2.
+        [\U0001F000-\U0001FFFF]  # lb=ID default since 9.0, 147-C25,
+        - [                      # with exceptions:
+              [:block=Symbols for Legacy Computing:]  # since 13.0, 115-C27
+              [:block=Supplemental Arrows C:]         # since 16.0, 177-C47.
+          ]
+    ] & [:gc=Cn:] - [:NChar:]
+]
 \p{LB=ID} ⊃ $IDInclusions
-\p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse} - $IDInclusions - [\u20C0-\u20CF]]
+\p{Line_Break=Unknown} = [
+      \p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse}
+    - $IDInclusions
+    - [\u20C0-\u20CF]  # Unassigned currency symbols are lb=PR since 6.3, 133-C26.
+]
 
-Let $BrahmicLineBreaking = [\p{sc=Balinese}\p{sc=Batak}\p{sc=Brahmi}\p{sc=Cham}\p{sc=DivesAkuru}\p{sc=Grantha}\p{sc=Javanese}\p{sc=Makasar}\p{sc=Kawi}\p{sc=Cham}\p{sc=Makasar}\p{sc=Tulu_Tigalari}\p{sc=Gurung_Khema}]
+Let $BrahmicLineBreaking = [
+    \p{sc=Balinese}
+    \p{sc=Batak}
+    \p{sc=Brahmi}
+    \p{sc=Cham}
+    \p{sc=DivesAkuru}
+    \p{sc=Grantha}
+    \p{sc=Javanese}
+    \p{sc=Makasar}
+    \p{sc=Kawi}
+    \p{sc=Cham}
+    \p{sc=Makasar}
+    \p{sc=Tulu_Tigalari}
+    \p{sc=Gurung_Khema}
+]
 Let $VFScripts = [\p{sc=Batak}]
 
 Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379\U0001342F\U00013437\U0001343C\U0001343E\U000145CE\U0001E95E-\U0001E95F]
@@ -658,9 +744,15 @@ Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288
 \p{LB=VI} = [[\p{Indic_Syllabic_Category=Virama}\p{Indic_Syllabic_Category=Invisible_Stacker}] & $BrahmicLineBreaking]
 \p{LB=VF} = [\p{Indic_Syllabic_Category=Reordering_Killer} & $VFScripts]
 
-# 15.1: Action item UTC-176-A81: change [[:PCM:]-\u070F] lb=AL->NU
-\p{LB=CM} = [[\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -[\U00013437\U00013438\U0001343C-\U0001343F] -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL} -\p{LB=ZWJ} - \p{LB=VI} - \p{LB=VF} - \p{LB=NU}]
-# Excluded Egyptian controls begin/end segment etc. 13437, 13438 & 1343C..1343F (gc=Cf, lb=OP/CL)
+\p{LB=CM} = [
+      [\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf}
+    - [\U00013437\U00013438\U0001343C-\U0001343F]  # Egyptian controls begin/end segment etc. (gc=Cf, lb=OP/CL)
+    - \p{LB=SA} - \p{LB=WJ} - \p{LB=ZW} - \p{LB=BA}
+    - \p{LB=LF} - \p{LB=BK} - \p{LB=CR} - \p{LB=NL}
+    - \p{LB=GL} - \p{LB=AL} - \p{LB=ZWJ}
+    - \p{LB=VI} - \p{LB=VF}
+    - \p{LB=NU}  # 176-A81 changed [[:PCM:]-\u070F] from lb=AL to lb=NU
+]
 
 #  3.0.0: Numeric characters consist of decimal digits (all characters of General_Category Nd),
 #         except those with East_Asian_Width F (Fullwidth)
@@ -725,7 +817,17 @@ Let $QUInclusions = [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\u
 # covered by adding them to the exception set $SAScriptExceptions for the test.
 
 # SA are limited to certain scripts:
-Let $SAScripts = [\p{script=ahom} \p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=khmer} \p{script=Tai_Le} \p{script=New_Tai_Lue} \p{script=Tai_Tham} \p{script=Tai_Viet}]
+Let $SAScripts = [
+    \p{script=ahom}
+    \p{script=thai}
+    \p{script=lao}
+    \p{script=myanmar}
+    \p{script=khmer}
+    \p{script=Tai_Le}
+    \p{script=New_Tai_Lue}
+    \p{script=Tai_Tham}
+    \p{script=Tai_Viet}
+]
 $SAScripts ⊇ \p{LineBreak=SA}
 
 # And in $SA scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn, plus the NEW TAI LUE THAM DIGIT ONE
@@ -845,9 +947,12 @@ Let $PostBaseSpacingMarks_Missed = []
 Let $TwoForgottenMusicalSymbols = \p{Name=/^MUSICAL SYMBOL COMBINING (SPRECHGESANG STEM|AUGMENTATION DOT)$/}
 Let $FourteenSpacingViramas = [\p{U15.1.0:ccc=9}&\p{U15.1.0:gc=Mc}]
 Let $TwoVietnameseReadingMarks = [\p{U15.1.0:ccc=6}]
-[\P{U4.0.0:ccc=0}  - \p{U4.0.0:Grapheme_Extend}] = [$TwoForgottenMusicalSymbols \p{Name=/^MUSICAL SYMBOL COMBINING FLAG-[3-5]$/}]
+[\P{U4.0.0:ccc=0}  - \p{U4.0.0:Grapheme_Extend}] = [$TwoForgottenMusicalSymbols
+                                                    \p{Name=/^MUSICAL SYMBOL COMBINING FLAG-[3-5]$/}]
 [\P{U4.1.0:ccc=0}  - \p{U4.1.0:GCB=Extend}]      = $TwoForgottenMusicalSymbols
-[\P{U15.1.0:ccc=0} - \p{U15.1.0:GCB=Extend}]     = [$TwoForgottenMusicalSymbols $FourteenSpacingViramas $TwoVietnameseReadingMarks]
+[\P{U15.1.0:ccc=0} - \p{U15.1.0:GCB=Extend}]     = [$TwoForgottenMusicalSymbols
+                                                    $FourteenSpacingViramas
+                                                    $TwoVietnameseReadingMarks]
  \P{        ccc=0} ⊆ \p{        GCB=Extend}
 
 # Characters that appear in non-initial position in the canonical decomposition
@@ -1037,7 +1142,17 @@ $NonOtherLetterIdeographs = [\p{Ideographic} - \p{gc=Lo}]
 Let $CommonIdeographs = [〆]
 $CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
 
-\p{Ideographic} = [ $NonOtherLetterIdeographs $CommonIdeographs [ \p{gc=Lo} & [\p{Script=Han} \p{Script=Tangut} \p{Script=Nushu} \p{Script=Khitan_Small_Script}] ] ]
+\p{Ideographic} = [
+    $NonOtherLetterIdeographs $CommonIdeographs
+    [
+        \p{gc=Lo} & [
+            \p{Script=Han}
+            \p{Script=Tangut}
+            \p{Script=Nushu}
+            \p{Script=Khitan_Small_Script}
+        ]
+    ]
+]
 
 [ [\p{Ideographic}&\p{sc=Han}] - \p{nfkcqc=n} - $NonOtherLetterIdeographs ] = \p{Unified_Ideograph}
 
@@ -1046,7 +1161,19 @@ Let $unihanScope = [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=
 $unihanScope = [\p{gc=Lo} & \p{sc=Hani}]
 $unihanScope = \P{kRSUnicode=@none@}
 $unihanScope = \P{kTotalStrokes=@none@}
-$unihanScope = [ \P{kIRG_GSource=@none@} \P{kIRG_HSource=@none@} \P{kIRG_JSource=@none@} \P{kIRG_KPSource=@none@} \P{kIRG_KSource=@none@} \P{kIRG_MSource=@none@} \P{kIRG_SSource=@none@} \P{kIRG_TSource=@none@} \P{kIRG_UKSource=@none@} \P{kIRG_USource=@none@} \P{kIRG_VSource=@none@} ]
+$unihanScope = [
+    \P{kIRG_GSource=@none@}
+    \P{kIRG_HSource=@none@}
+    \P{kIRG_JSource=@none@}
+    \P{kIRG_KPSource=@none@}
+    \P{kIRG_KSource=@none@}
+    \P{kIRG_MSource=@none@}
+    \P{kIRG_SSource=@none@}
+    \P{kIRG_TSource=@none@}
+    \P{kIRG_UKSource=@none@}
+    \P{kIRG_USource=@none@}
+    \P{kIRG_VSource=@none@}
+]
 
 # TODO(eggrobin): Should those two have a kMandarin, or this not actually an invariant?
 # See https://www.unicode.org/review/pri483/feedback.html#ID20240118004124.
