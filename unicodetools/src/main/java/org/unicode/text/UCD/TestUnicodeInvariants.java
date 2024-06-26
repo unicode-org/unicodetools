@@ -1113,7 +1113,7 @@ public class TestUnicodeInvariants {
     private static void letLine(ParsePosition pp, String source) throws ParseException {
         expectToken("$", pp, source);
         final String variable = Lookahead.oneTokenNoSpace(pp, source).consume();
-        expectToken("=", pp, source);
+        expectToken(":=", pp, source);
         final int valueStart = pp.getIndex();
         final UnicodeSet valueSet = parseUnicodeSet(source, pp);
         valueSet.complement().complement();
