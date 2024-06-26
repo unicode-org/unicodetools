@@ -696,11 +696,11 @@ In \P{Other_Joining_Type=Deduce_From_General_Category}, Joining_Type = Other_Joi
 
 Let $IDInclusions = [
     [:block=/Ideographs/:]
-    [
-        [\U00020000-\U0003FFFF]  # Planes 2 and 3, lb=ID since 5.2.
-        [\U0001F000-\U0001FFFF]  # lb=ID default since 9.0, 147-C25,
+    [  # Some ranges default to lb=ID even outside of any blocks:
+        [\U00020000-\U0003FFFF]  # Planes 2 and 3, lb=ID since 5.2, 115-C27.
+        [\U0001F000-\U0001FFFF]  # SMP range lb=ID by default since 9.0, 147-C25,
         - [                      # with exceptions:
-              [:block=Symbols for Legacy Computing:]  # since 13.0, 115-C27
+              [:block=Symbols for Legacy Computing:]  # since 13.0, 162-A67;
               [:block=Supplemental Arrows C:]         # since 16.0, 177-C47.
           ]
     ] & [:gc=Cn:] - [:NChar:]
