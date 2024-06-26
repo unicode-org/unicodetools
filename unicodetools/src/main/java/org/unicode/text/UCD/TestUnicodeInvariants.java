@@ -713,9 +713,11 @@ public class TestUnicodeInvariants {
 
     private static void expectToken(String token, ParsePosition pp, String text)
             throws ParseException {
-        if (!token.equals(nextToken(pp, text))) {
-            throw new BackwardParseException("Expected '" + token + "'", pp.getIndex());
+        ParsePosition next = new ParsePosition(pp.getIndex());
+        if (!token.equals(nextToken(next, text))) {
+            throw new ParseException("Expected '" + token + "'", pp.getIndex());
         }
+        pp.setIndex(next.getIndex());
     }
 
     private static PropertyPredicate getPropertyPredicate(ParsePosition pp, String line)
