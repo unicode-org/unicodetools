@@ -241,7 +241,7 @@ public class TestUnicodeInvariants {
                 for (; ; ) {
                     final int statementStart = pp.getIndex();
                     final int statementLineNumber = getLineNumber.apply(pp);
-                    final String nextToken = nextToken(pp, source);
+                    final var nextToken = Lookahead.oneToken(pp, source);
                     while (lastPrintedLine < statementLineNumber) {
                         println(lines.get(lastPrintedLine++));
                     }
@@ -249,19 +249,19 @@ public class TestUnicodeInvariants {
                         break;
                     }
                     try {
-                        if (nextToken.equals("Let")) {
+                        if (nextToken.accept("Let")) {
                             letLine(pp, source);
-                        } else if (nextToken.equals("In")) {
+                        } else if (nextToken.accept("In")) {
                             inLine(pp, source, inputFile, getLineNumber);
-                        } else if (nextToken.equals("Propertywise")) {
+                        } else if (nextToken.accept("Propertywise")) {
                             propertywiseLine(pp, source, inputFile, getLineNumber);
-                        } else if (nextToken.equals("Map")) {
+                        } else if (nextToken.accept("Map")) {
                             testMapLine(source, pp, getLineNumber);
-                        } else if (nextToken.equals("ShowMap")) {
+                        } else if (nextToken.accept("ShowMap")) {
                             showMapLine(source, pp);
-                        } else if (nextToken.equals("Show")) {
+                        } else if (nextToken.accept("Show")) {
                             showLine(source, pp);
-                        } else if (nextToken.equals("OnPairsOf")) {
+                        } else if (nextToken.accept("OnPairsOf")) {
                             equivalencesLine(source, pp, inputFile, getLineNumber);
                         } else {
                             pp.setIndex(statementStart);
@@ -380,8 +380,7 @@ public class TestUnicodeInvariants {
                     pp.getIndex());
         }
         expectToken("AreAlike", pp, line);
-        if (",".equals(nextToken(new ParsePosition(pp.getIndex()), line))) {
-            expectToken(",", pp, line);
+        if (Lookahead.oneToken(pp, line).accept(",")) {
             expectToken("Except", pp, line);
             expectToken(":", pp, line);
         }
@@ -691,33 +690,67 @@ public class TestUnicodeInvariants {
         }
     }
 
-    private static String nextTokenNoSpace(ParsePosition pp, String text) {
-        if (pp.getIndex() == text.length()) {
-            return null;
+    // A one-token lookahead.
+    // Tokens are defined as runs of [^\p{Pattern_White_Space}\p{Pattern_Syntax}],
+    // or single code points in \p{Pattern_Syntax}.
+    private static class Lookahead {
+        // Advances pp through any pattern white space, then looks ahead one token.
+        public static Lookahead oneToken(ParsePosition pp, String text) {
+            scan(PATTERN_WHITE_SPACE, text, pp, true);
+            return oneTokenNoSpace(pp, text);
         }
-        int start = pp.getIndex();
-        if (PATTERN_SYNTAX.contains(text.codePointAt(start))) {
-            final String result = Character.toString(text.codePointAt(start));
-            pp.setIndex(start + result.length());
-            return result;
-        } else {
-            final String result = scan(PATTERN_SYNTAX_OR_WHITE_SPACE, text, pp, false);
-            return result.isEmpty() ? null : result;
-        }
-    }
 
-    private static String nextToken(ParsePosition pp, String text) {
-        scan(PATTERN_WHITE_SPACE, text, pp, true);
-        return nextTokenNoSpace(pp, text);
+        // Returns null if pp is before pattern white space; otherwise, looks ahead one token.
+        public static Lookahead oneTokenNoSpace(ParsePosition pp, String text) {
+            ParsePosition next = new ParsePosition(pp.getIndex());
+            if (next.getIndex() == text.length()) {
+                return null;
+            }
+            int start = next.getIndex();
+            if (PATTERN_SYNTAX.contains(text.codePointAt(start))) {
+                final String result = Character.toString(text.codePointAt(start));
+                next.setIndex(start + result.length());
+                return new Lookahead(result, pp, next);
+            } else {
+                final String result = scan(PATTERN_SYNTAX_OR_WHITE_SPACE, text, next, false);
+                return result.isEmpty() ? null : new Lookahead(result, pp, next);
+            }
+        }
+
+        private Lookahead(String token, ParsePosition pp, ParsePosition next) {
+            this.token = token;
+            this.pp = pp;
+            this.next = next;
+        }
+
+        // Advances the ParsePosition passed at construction past the token, and returns the token.
+        public String consume() {
+            pp.setIndex(next.getIndex());
+            return token;
+        }
+
+        // If this token is expected, advances the ParsePosition passed at construction past the
+        // token past it and returns true.
+        // Otherwise, this function no effect and returns false.
+        public boolean accept(String expected) {
+            if (expected.equals(token)) {
+                consume();
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        private final String token;
+        private final ParsePosition pp;
+        private final ParsePosition next;
     }
 
     private static void expectToken(String token, ParsePosition pp, String text)
             throws ParseException {
-        ParsePosition next = new ParsePosition(pp.getIndex());
-        if (!token.equals(nextToken(next, text))) {
+        if (!Lookahead.oneToken(pp, text).accept(token)) {
             throw new ParseException("Expected '" + token + "'", pp.getIndex());
         }
-        pp.setIndex(next.getIndex());
     }
 
     private static PropertyPredicate getPropertyPredicate(ParsePosition pp, String line)
@@ -1035,7 +1068,7 @@ public class TestUnicodeInvariants {
 
     private static void letLine(ParsePosition pp, String source) throws ParseException {
         expectToken("$", pp, source);
-        final String variable = nextTokenNoSpace(pp, source);
+        final String variable = Lookahead.oneTokenNoSpace(pp, source).consume();
         expectToken("=", pp, source);
         final int valueStart = pp.getIndex();
         final UnicodeSet valueSet = parseUnicodeSet(source, pp);
@@ -1050,10 +1083,8 @@ public class TestUnicodeInvariants {
     }
 
     private static void showLine(String source, ParsePosition pp) throws ParseException {
-        final var next = new ParsePosition(pp.getIndex());
-        if (nextToken(next, source).equals("Each")) {
+        if (Lookahead.oneToken(pp, source).accept("Each")) {
             showLister.setMergeRanges(false);
-            pp.setIndex(next.getIndex());
         }
         showSet(pp, source);
         showLister.setMergeRanges(doRange);
