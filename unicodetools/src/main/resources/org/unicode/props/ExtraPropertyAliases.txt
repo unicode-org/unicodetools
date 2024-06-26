@@ -174,17 +174,7 @@ cjkVietnameseNumeric     ; kVietnameseNumeric
 cjkZhuangNumeric         ; kZhuangNumeric
 # 16.0
 cjkFanqie                ; kFanqie
-<<<<<<< HEAD
-
-kTGT_MergedSrc           ; kTGT_MergedSrc
-kRSTUnicode              ; kRSTUnicode
-
-kSrc_NushuDuben          ; kSrc_NushuDuben
-kReading                 ; kReading
-
 kEH_Func                 ; kEH_Func
 kEH_FVal                 ; kEH_FVal
 kEH_UniK                 ; kEH_UniK
-=======
 cjkZhuang                ; kZhuang
->>>>>>> 2f297052 (Initial checkin for UcdXML)
