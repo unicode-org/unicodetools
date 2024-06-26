@@ -382,15 +382,6 @@ emoji/*/emoji-zwj-sequences; RGI_Emoji_Zwj_Sequence
 
 #emoji/*/emoji-test ; Emoji_Short_Name
 
-
-FileType ; TangutSources ; PropertyValue
-TangutSources ; kTGT_MergedSrc
-TangutSources ; kRSTUnicode
-
-FileType ; NushuSources ; PropertyValue
-NushuSources ; kSrc_NushuDuben
-NushuSources ; kReading
-
 FileType ; Unikemet ; PropertyValue
 Unikemet ; kEH_Cat
 Unikemet ; kEH_Core
