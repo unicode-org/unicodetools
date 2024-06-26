@@ -1,5 +1,5 @@
 # NormalizationTest-16.0.0.txt
-# Date: 2024-04-30, 21:48:23 GMT
+# Date: 2024-06-06, 10:19:30 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -15208,6 +15208,11 @@ FFEE;FFEE;FFEE;25CB;25CB; # (￮; ￮; ￮; ○; ○; ) HALFWIDTH WHITE CIRCLE
 107B8;107B8;107B8;01C2;01C2; # (𐞸; 𐞸; 𐞸; ǂ; ǂ; ) MODIFIER LETTER ALVEOLAR CLICK
 107B9;107B9;107B9;1DF0A;1DF0A; # (𐞹; 𐞹; 𐞹; 𝼊; 𝼊; ) MODIFIER LETTER RETROFLEX CLICK WITH RETROFLEX HOOK
 107BA;107BA;107BA;1DF1E;1DF1E; # (𐞺; 𐞺; 𐞺; 𝼞; 𝼞; ) MODIFIER LETTER SMALL S WITH CURL
+107BB;107BB;107BB;0287;0287; # (𐞻; 𐞻; 𐞻; ʇ; ʇ; ) MODIFIER LETTER SMALL TURNED T
+107BC;107BC;107BC;0296;0296; # (𐞼; 𐞼; 𐞼; ʖ; ʖ; ) MODIFIER LETTER INVERTED GLOTTAL STOP
+107BD;107BD;107BD;1DF0B;1DF0B; # (𐞽; 𐞽; 𐞽; 𝼋; 𝼋; ) MODIFIER LETTER SMALL ESH WITH DOUBLE BAR
+107BE;107BE;107BE;0297;0297; # (𐞾; 𐞾; 𐞾; ʗ; ʗ; ) MODIFIER LETTER STRETCHED C
+107BF;107BF;107BF;029E;029E; # (𐞿; 𐞿; 𐞿; ʞ; ʞ; ) MODIFIER LETTER SMALL TURNED K
 1109A;1109A;11099 110BA;1109A;11099 110BA; # (𑂚; 𑂚; 𑂙◌𑂺; 𑂚; 𑂙◌𑂺; ) KAITHI LETTER DDDHA
 1109C;1109C;1109B 110BA;1109C;1109B 110BA; # (𑂜; 𑂜; 𑂛◌𑂺; 𑂜; 𑂛◌𑂺; ) KAITHI LETTER RHA
 110AB;110AB;110A5 110BA;110AB;110A5 110BA; # (𑂫; 𑂫; 𑂥◌𑂺; 𑂫; 𑂥◌𑂺; ) KAITHI LETTER VA
