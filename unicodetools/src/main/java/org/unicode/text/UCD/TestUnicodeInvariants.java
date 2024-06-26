@@ -694,8 +694,8 @@ public class TestUnicodeInvariants {
     // 1. words: runs of [^\p{Pattern_White_Space}\p{Pattern_Syntax}];
     // 2. simple operators: sequences of the form \p{Pattern_Syntax} \p{Mn}*;
     // 3. explicitly expected sequences of words and simple operators without intervening spaces;
-    //    this allows for contextually accepting operators such as :=, <<, ’s, or .GT.,
-    //    without treating, e.g., every << as atomic.
+    //    this allows for contextually accepting operators such as :=, >>, ’s, or .GT.,
+    //    without treating, e.g., every >> as atomic.
     private static class Lookahead {
         // Advances pp through any pattern white space, then looks ahead one token.
         public static Lookahead oneToken(ParsePosition pp, String text) {
