@@ -1278,11 +1278,15 @@ Ignoring Name:
 Propertywise [𐛪 𐛫] AreAlike;
 Propertywise [ي ۑ] AreAlike, Except: Confusable_MA Unicode_1_Name;
 
-Ignoring Name Unicode_1_Name:
-Propertywise [[β-ω] - [ς]] AreTo [[Β-Ω] - \p{gc=Cn}]
-        What [α]           IsTo  [Α];
+Ignoring Unicode_1_Name Confusable_MA:
+    Propertywise [[β-ω] - [ς]] AreTo [[Β-Ω] - \p{gc=Cn}]
+            What [α]           IsTo  [Α];
+end Ignoring;
 
-Ignoring Name Unicode_1_Name ASCII_Hex_Digit Hex_Digit:
-Propertywise [[α-ω] - [ς]] AreTo [[Α-Ω] - \p{gc=Cn}]
-        What [a]           IsTo  [A],
-    DifferingIn: Block Script East_Asian_Width Script_Extensions;
+Ignoring Name Unicode_1_Name Confusable_MA:
+    Propertywise [[α-ω] - [ς]] AreTo [[Α-Ω] - \p{gc=Cn}]
+            What [g]           IsTo  [G],
+        DifferingIn: Block Script East_Asian_Width Script_Extensions;
+end Ignoring;
+
+end Ignoring;

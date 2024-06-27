@@ -22,9 +22,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.Stack;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.regex.Pattern;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
@@ -173,6 +175,7 @@ public class TestUnicodeInvariants {
                                     + ".bb {font-weight:bold; color:blue}\n"
                                     + ".e, .f {color:red}\n"
                                     + ".s {color:gray}\n"
+                                    + "code {white-space: pre}\n"
                                     + "</style>");
                     out3.println("</head><body><h1>#Unicode Invariant Results</h1>");
                 } else {
@@ -238,7 +241,15 @@ public class TestUnicodeInvariants {
                 int lastPrintedLine = 0;
                 final ParsePosition pp = new ParsePosition(0);
                 boolean followingParseError = false;
-                Set<String> ignoredProperties = Set.of();
+                class IgnoringBlock {
+                    public IgnoringBlock(Set<String> properties, int position) {
+                        this.properties = properties;
+                        this.position = new ParsePosition(position);
+                    }
+                    Set<String> properties;
+                    ParsePosition position;
+                };
+                Stack<IgnoringBlock> ignoredProperties = new Stack<>();
                 for (; ; ) {
                     final int statementStart = pp.getIndex();
                     final int statementLineNumber = getLineNumber.apply(pp);
@@ -255,11 +266,17 @@ public class TestUnicodeInvariants {
                         } else if (nextToken.accept("In")) {
                             inLine(pp, source, inputFile, getLineNumber);
                         } else if (nextToken.accept("Ignoring")) {
-                            ignoredProperties =
-                                    ignoringPropertiesLine(pp, source, inputFile, getLineNumber);
+                            ignoredProperties.add(
+                                new IgnoringBlock(
+                                    ignoringPropertiesLine(pp, source, inputFile, getLineNumber),
+                                    statementStart));
+                        } else if (nextToken.accept("end")) {
+                            ignoredProperties.pop();
+                            expectToken("Ignoring", pp, source);
+                            expectToken(";", pp, source);
                         } else if (nextToken.accept("Propertywise")) {
                             propertywiseLine(
-                                    ignoredProperties, pp, source, inputFile, getLineNumber);
+                                    ignoredProperties.stream().flatMap(b -> b.properties.stream()).collect(Collectors.toSet()), pp, source, inputFile, getLineNumber);
                         } else if (nextToken.accept("Map")) {
                             testMapLine(source, pp, getLineNumber);
                         } else if (nextToken.accept("ShowMap")) {
@@ -302,6 +319,15 @@ public class TestUnicodeInvariants {
                             break;
                         }
                     }
+                }
+                for (IgnoringBlock block : ignoredProperties) {
+                    parseErrorCount = parseError(
+                            parseErrorCount,
+                            source,
+                            new ParseException("Unterminated Ignoring block for " + block.properties, block.position.getIndex()),
+                            block.position.getIndex(),
+                            inputFile,
+                            getLineNumber.apply(block.position));
                 }
                 println();
                 println("**** SUMMARY ****");
@@ -578,13 +604,13 @@ public class TestUnicodeInvariants {
                                         + Character.toString(rightCodePoint)
                                         + ")");
                     }
-                    if (!property.getNameAliases().stream()
-                            .anyMatch(alias -> expectedDifferences.contains(alias))) {
-                        if (!Objects.equals(pLeft, pLeftReference)
+                    if (property.getNameAliases().stream()
+                            .anyMatch(alias -> expectedDifferences.contains(alias))
+                        != (!Objects.equals(pLeft, pLeftReference)
                                 && !Objects.equals(
                                         pLeftReference, Character.toString(leftReference))
                                 && !Objects.equals(
-                                        pLeftReference, Character.toString(rightReference))) {
+                                        pLeftReference, Character.toString(rightReference)))) {
                             errorMessageLines.add(
                                     property.getName()
                                             + "("
@@ -597,7 +623,6 @@ public class TestUnicodeInvariants {
                                             + Character.toString(leftCodePoint)
                                             + ")\t=\t"
                                             + pLeft);
-                        }
                     }
                 } else if (Objects.equals(pLeftReference, Character.toString(rightReference))) {
                     if (!Objects.equals(pLeft, Character.toString(rightCodePoint))) {
@@ -633,6 +658,39 @@ public class TestUnicodeInvariants {
                                         + "("
                                         + Character.toString(rightCodePoint)
                                         + ")");
+                    }
+                } else {
+                    if (!Objects.equals(pLeftReference, pLeft) &&
+                        !(Objects.equals(pLeftReference, Character.toString(leftReference)) &&
+                          Objects.equals(pLeft, Character.toString(leftCodePoint)))) {
+                        errorMessageLines.add(
+                                property.getName()
+                                        + "("
+                                        + Character.toString(leftReference)
+                                        + ")\t=\t"
+                                        + pLeftReference
+                                        + "\t≠\t"
+                                        + property.getName()
+                                        + "("
+                                        + Character.toString(leftCodePoint)
+                                        + ")\t=\t"
+                                        + pLeft);
+                    }
+                    if (!Objects.equals(pRightReference, pRight) &&
+                        !(Objects.equals(pRightReference, Character.toString(rightReference)) &&
+                          Objects.equals(pRight, Character.toString(rightCodePoint)))) {
+                        errorMessageLines.add(
+                                property.getName()
+                                        + "("
+                                        + Character.toString(rightReference)
+                                        + ")\t=\t"
+                                        + pRightReference
+                                        + "\t≠\t"
+                                        + property.getName()
+                                        + "("
+                                        + Character.toString(rightCodePoint)
+                                        + ")\t=\t"
+                                        + pRight);
                     }
                 }
             }
@@ -1740,15 +1798,13 @@ public class TestUnicodeInvariants {
                     if (line.length() > commentPos + 1 && line.charAt(commentPos + 1) == '#') {
                         aClass = "bb";
                     }
-                    line =
-                            line.substring(0, commentPos)
-                                    + "<span class='"
+                    out.println("<p><code>" + line.substring(0, commentPos)
+                                    + "</code><span class='"
                                     + aClass
                                     + "'>"
                                     + line.substring(commentPos)
-                                    + "</span>";
-                }
-                if (line.startsWith("****")) {
+                                    + "</span></p>");
+                } else if (line.startsWith("****")) {
                     out.println(
                             "<h2>"
                                     + (anchor == null ? "" : "<a name='" + anchor + "'>")
@@ -1756,7 +1812,7 @@ public class TestUnicodeInvariants {
                                     + (anchor == null ? "" : "</a>")
                                     + "</h2>");
                 } else {
-                    out.println("<p>" + line + "</p>");
+                    out.println("<p><code>" + line + "</code></p>");
                 }
             }
         } else {
