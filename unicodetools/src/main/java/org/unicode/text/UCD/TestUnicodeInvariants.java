@@ -26,7 +26,6 @@ import java.util.Stack;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.regex.Pattern;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
@@ -246,9 +245,11 @@ public class TestUnicodeInvariants {
                         this.properties = properties;
                         this.position = new ParsePosition(position);
                     }
+
                     Set<String> properties;
                     ParsePosition position;
-                };
+                }
+                ;
                 Stack<IgnoringBlock> ignoredProperties = new Stack<>();
                 for (; ; ) {
                     final int statementStart = pp.getIndex();
@@ -261,22 +262,43 @@ public class TestUnicodeInvariants {
                         break;
                     }
                     try {
-                        if (nextToken.accept("Let")) {
-                            letLine(pp, source);
-                        } else if (nextToken.accept("In")) {
-                            inLine(pp, source, inputFile, getLineNumber);
-                        } else if (nextToken.accept("Ignoring")) {
+                        if (nextToken.accept("Ignoring")) {
                             ignoredProperties.add(
-                                new IgnoringBlock(
-                                    ignoringPropertiesLine(pp, source, inputFile, getLineNumber),
-                                    statementStart));
+                                    new IgnoringBlock(
+                                            ignoringPropertiesLine(
+                                                    pp, source, inputFile, getLineNumber),
+                                            statementStart));
                         } else if (nextToken.accept("end")) {
                             ignoredProperties.pop();
                             expectToken("Ignoring", pp, source);
                             expectToken(";", pp, source);
+                        } else if (!ignoredProperties.empty()) {
+                            if (nextToken.accept("end")) {
+                                ignoredProperties.pop();
+                                expectToken("Ignoring", pp, source);
+                                expectToken(";", pp, source);
+                            } else if (nextToken.accept("Propertywise")) {
+                                propertywiseLine(
+                                        ignoredProperties.stream()
+                                                .flatMap(b -> b.properties.stream())
+                                                .collect(Collectors.toSet()),
+                                        pp,
+                                        source,
+                                        inputFile,
+                                        getLineNumber);
+                            } else {
+                                throw new ParseException(
+                                        "Expected Propertywise test within Ignoring block",
+                                        pp.getIndex());
+                            }
                         } else if (nextToken.accept("Propertywise")) {
-                            propertywiseLine(
-                                    ignoredProperties.stream().flatMap(b -> b.properties.stream()).collect(Collectors.toSet()), pp, source, inputFile, getLineNumber);
+                            throw new ParseException(
+                                    "Propertywise test should be within an Ignoring block",
+                                    pp.getIndex());
+                        } else if (nextToken.accept("Let")) {
+                            letLine(pp, source);
+                        } else if (nextToken.accept("In")) {
+                            inLine(pp, source, inputFile, getLineNumber);
                         } else if (nextToken.accept("Map")) {
                             testMapLine(source, pp, getLineNumber);
                         } else if (nextToken.accept("ShowMap")) {
@@ -321,13 +343,16 @@ public class TestUnicodeInvariants {
                     }
                 }
                 for (IgnoringBlock block : ignoredProperties) {
-                    parseErrorCount = parseError(
-                            parseErrorCount,
-                            source,
-                            new ParseException("Unterminated Ignoring block for " + block.properties, block.position.getIndex()),
-                            block.position.getIndex(),
-                            inputFile,
-                            getLineNumber.apply(block.position));
+                    parseErrorCount =
+                            parseError(
+                                    parseErrorCount,
+                                    source,
+                                    new ParseException(
+                                            "Unterminated Ignoring block for " + block.properties,
+                                            block.position.getIndex()),
+                                    block.position.getIndex(),
+                                    inputFile,
+                                    getLineNumber.apply(block.position));
                 }
                 println();
                 println("**** SUMMARY ****");
@@ -431,31 +456,6 @@ public class TestUnicodeInvariants {
         } else {
             propertywiseCorrespondenceLine(ignoredProperties, set, pp, source, file, getLineNumber);
         }
-        expectToken(";", pp, source);
-    }
-
-    private static Set<String> parseSpaceSeparatedList(
-            String prefix, ParsePosition pp, String source, String file) throws ParseException {
-        var lookahead = Lookahead.oneToken(pp, source);
-        // TODO(egg): This is ugly.
-        if (lookahead.token.equals(",")
-                && Lookahead.oneToken(lookahead.next, source).token.equals(prefix)) {
-            lookahead.consume();
-            expectToken(prefix, pp, source);
-            expectToken(":", pp, source);
-            Set<String> excludedProperties = new HashSet<>();
-            for (var next = Lookahead.oneToken(pp, source);
-                    !next.token.equals(",") && !next.token.equals(";");
-                    next = Lookahead.oneToken(pp, source)) {
-                excludedProperties.add(next.consume());
-            }
-            if (excludedProperties.isEmpty()) {
-                throw new ParseException("Expected property aliases", pp.getIndex());
-            }
-            return excludedProperties;
-        } else {
-            return new HashSet<>();
-        }
     }
 
     private static void propertywiseAlikeLine(
@@ -468,12 +468,10 @@ public class TestUnicodeInvariants {
             throws ParseException {
         final var iup = IndexUnicodeProperties.make(Settings.latestVersion);
         final List<String> errorMessageLines = new ArrayList<>();
-        final var excludedProperties = parseSpaceSeparatedList("Except", pp, source, file);
-        excludedProperties.addAll(ignoredProperties);
         for (var p : UcdProperty.values()) {
             final var property = iup.getProperty(p);
             if (property.getNameAliases().stream()
-                    .anyMatch(alias -> excludedProperties.contains(alias))) {
+                    .anyMatch(alias -> ignoredProperties.contains(alias))) {
                 continue;
             }
             final int first = set.charAt(0);
@@ -562,17 +560,74 @@ public class TestUnicodeInvariants {
                     pp.getIndex());
         }
         final var rightReference = correspondingReferenceSet.charAt(0);
-        final var expectedDifferences = parseSpaceSeparatedList("DifferingIn", pp, source, file);
-        final var excludedProperties = parseSpaceSeparatedList("Except", pp, source, file);
-        excludedProperties.addAll(ignoredProperties);
+        class ExpectedPropertyDifference {
+            public ExpectedPropertyDifference(String actualValueAlias, String referenceValueAlias) {
+                this.actualValueAlias = actualValueAlias;
+                this.referenceValueAlias = referenceValueAlias;
+            }
+
+            String actualValueAlias;
+            String referenceValueAlias;
+        }
+        ;
+        final Map<String, ExpectedPropertyDifference> expectedPropertyDifferences = new HashMap<>();
+        if (Lookahead.oneToken(pp, source).accept("UpTo")) {
+            expectToken(":", pp, source);
+            do {
+                String property = Lookahead.oneToken(pp, source).consume();
+                expectToken("(", pp, source);
+                String actualValueAlias = Lookahead.oneToken(pp, source).consume();
+                expectToken("vs", pp, source);
+                String referenceValueAlias = Lookahead.oneToken(pp, source).consume();
+                expectToken(")", pp, source);
+                expectedPropertyDifferences.put(
+                        property,
+                        new ExpectedPropertyDifference(actualValueAlias, referenceValueAlias));
+            } while (Lookahead.oneToken(pp, source).accept(","));
+        }
         for (var p : UcdProperty.values()) {
             final var property = iup.getProperty(p);
             if (property.getNameAliases().stream()
-                    .anyMatch(alias -> excludedProperties.contains(alias))) {
+                    .anyMatch(alias -> ignoredProperties.contains(alias))) {
                 continue;
+            }
+            ExpectedPropertyDifference expectedDifference = null;
+            for (String alias : property.getNameAliases()) {
+                expectedDifference = expectedPropertyDifferences.get(alias);
             }
             final String pLeftReference = property.getValue(leftReference);
             final String pRightReference = property.getValue(rightReference);
+            if (expectedDifference != null) {
+                if (!Objects.equals(pLeftReference, pRightReference)) {
+                    errorMessageLines.add(
+                            property.getName()
+                                    + "("
+                                    + Character.toString(leftReference)
+                                    + ")\t=\t"
+                                    + pLeftReference
+                                    + "\t≠\t"
+                                    + pRightReference
+                                    + "\t=\t"
+                                    + property.getName()
+                                    + "("
+                                    + Character.toString(rightReference)
+                                    + ")");
+                }
+                if (!Objects.equals(pLeftReference, expectedDifference.referenceValueAlias)) {
+                    errorMessageLines.add(
+                            property.getName()
+                                    + "("
+                                    + Character.toString(leftReference)
+                                    + ")\t=\t"
+                                    + property.getName()
+                                    + "("
+                                    + Character.toString(rightReference)
+                                    + ")\t=\t"
+                                    + pLeftReference
+                                    + "\t≠\t"
+                                    + expectedDifference.referenceValueAlias);
+                }
+            }
             for (int i = 0; i < left.size(); ++i) {
                 final int leftCodePoint = left.charAt(i);
                 final int rightCodePoint = right.charAt(i);
@@ -604,25 +659,39 @@ public class TestUnicodeInvariants {
                                         + Character.toString(rightCodePoint)
                                         + ")");
                     }
-                    if (property.getNameAliases().stream()
-                            .anyMatch(alias -> expectedDifferences.contains(alias))
-                        != (!Objects.equals(pLeft, pLeftReference)
-                                && !Objects.equals(
-                                        pLeftReference, Character.toString(leftReference))
-                                && !Objects.equals(
-                                        pLeftReference, Character.toString(rightReference)))) {
-                            errorMessageLines.add(
-                                    property.getName()
-                                            + "("
-                                            + Character.toString(leftReference)
-                                            + ")\t=\t"
-                                            + pLeftReference
-                                            + "\t≠\t"
-                                            + property.getName()
-                                            + "("
-                                            + Character.toString(leftCodePoint)
-                                            + ")\t=\t"
-                                            + pLeft);
+                    if (expectedDifference == null
+                            && !Objects.equals(pLeft, pLeftReference)
+                            && !(Objects.equals(pLeftReference, Character.toString(leftReference))
+                                    && Objects.equals(pLeft, Character.toString(leftCodePoint)))
+                            && !(Objects.equals(pLeftReference, Character.toString(rightReference))
+                                    && Objects.equals(pLeft, Character.toString(rightCodePoint)))) {
+                        errorMessageLines.add(
+                                property.getName()
+                                        + "("
+                                        + Character.toString(leftReference)
+                                        + ")\t=\t"
+                                        + pLeftReference
+                                        + "\t≠\t"
+                                        + property.getName()
+                                        + "("
+                                        + Character.toString(leftCodePoint)
+                                        + ")\t=\t"
+                                        + pLeft);
+                    }
+                    if (expectedDifference != null
+                            && !Objects.equals(pLeft, expectedDifference.actualValueAlias)) {
+                        errorMessageLines.add(
+                                property.getName()
+                                        + "("
+                                        + Character.toString(leftCodePoint)
+                                        + ")\t=\t"
+                                        + property.getName()
+                                        + "("
+                                        + Character.toString(rightCodePoint)
+                                        + ")\t=\t"
+                                        + pLeft
+                                        + "\t≠\t"
+                                        + expectedDifference.actualValueAlias);
                     }
                 } else if (Objects.equals(pLeftReference, Character.toString(rightReference))) {
                     if (!Objects.equals(pLeft, Character.toString(rightCodePoint))) {
@@ -660,9 +729,9 @@ public class TestUnicodeInvariants {
                                         + ")");
                     }
                 } else {
-                    if (!Objects.equals(pLeftReference, pLeft) &&
-                        !(Objects.equals(pLeftReference, Character.toString(leftReference)) &&
-                          Objects.equals(pLeft, Character.toString(leftCodePoint)))) {
+                    if (!Objects.equals(pLeftReference, pLeft)
+                            && !(Objects.equals(pLeftReference, Character.toString(leftReference))
+                                    && Objects.equals(pLeft, Character.toString(leftCodePoint)))) {
                         errorMessageLines.add(
                                 property.getName()
                                         + "("
@@ -676,9 +745,10 @@ public class TestUnicodeInvariants {
                                         + ")\t=\t"
                                         + pLeft);
                     }
-                    if (!Objects.equals(pRightReference, pRight) &&
-                        !(Objects.equals(pRightReference, Character.toString(rightReference)) &&
-                          Objects.equals(pRight, Character.toString(rightCodePoint)))) {
+                    if (!Objects.equals(pRightReference, pRight)
+                            && !(Objects.equals(pRightReference, Character.toString(rightReference))
+                                    && Objects.equals(
+                                            pRight, Character.toString(rightCodePoint)))) {
                         errorMessageLines.add(
                                 property.getName()
                                         + "("
@@ -1798,7 +1868,9 @@ public class TestUnicodeInvariants {
                     if (line.length() > commentPos + 1 && line.charAt(commentPos + 1) == '#') {
                         aClass = "bb";
                     }
-                    out.println("<p><code>" + line.substring(0, commentPos)
+                    out.println(
+                            "<p><code>"
+                                    + line.substring(0, commentPos)
                                     + "</code><span class='"
                                     + aClass
                                     + "'>"
