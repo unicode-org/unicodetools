@@ -1290,6 +1290,9 @@ Propertywise [ي ۑ] AreAlike
               Script_Extensions (Greek            vs Latin),
               East_Asian_Width  (Ambiguous        vs Narrow)
 
+    Propertywise [ʲʳʷʸ] AreTo [jrwy]
+            What [ʰ]    IsTo  [h]
+
 end Ignoring;
 
 end Ignoring;
