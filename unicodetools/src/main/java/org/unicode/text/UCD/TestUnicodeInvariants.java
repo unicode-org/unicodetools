@@ -525,7 +525,7 @@ public class TestUnicodeInvariants {
 
     private static void propertywiseCorrespondenceLine(
             Set<String> ignoredProperties,
-            UnicodeSet left,
+            UnicodeSet firstSet,
             ParsePosition pp,
             String source,
             String file,
@@ -533,33 +533,34 @@ public class TestUnicodeInvariants {
             throws ParseException {
         final var iup = IndexUnicodeProperties.make(Settings.latestVersion);
         final List<String> errorMessageLines = new ArrayList<>();
-        expectToken("AreTo", pp, source);
-        final var right = parseUnicodeSet(source, pp);
-        if (right.hasStrings()) {
-            throw new ParseException(
-                    "Set should contain only single code points for property comparison",
-                    pp.getIndex());
-        }
-        if (right.size() != left.size()) {
-            throw new ParseException(
-                    "Sets should have the same size for property correspondence", pp.getIndex());
-        }
-        expectToken("What", pp, source);
-        final var referenceSet = parseUnicodeSet(source, pp);
-        if (referenceSet.hasStrings() || referenceSet.size() != 1) {
-            throw new ParseException(
-                    "reference should be a single code point for property correspondence",
-                    pp.getIndex());
-        }
-        final var leftReference = referenceSet.charAt(0);
-        expectToken("IsTo", pp, source);
-        final var correspondingReferenceSet = parseUnicodeSet(source, pp);
-        if (correspondingReferenceSet.hasStrings() || correspondingReferenceSet.size() != 1) {
-            throw new ParseException(
-                    "reference should correspond to a single code point for property correspondence",
-                    pp.getIndex());
-        }
-        final var rightReference = correspondingReferenceSet.charAt(0);
+        final List<UnicodeSet> sets = new ArrayList<>();
+        sets.add(firstSet);
+        expectToken(":", pp, source);
+        do {
+            final var set = parseUnicodeSet(source, pp);
+            if (set.hasStrings()) {
+                throw new BackwardParseException(
+                        "Set should contain only single code points for property comparison",
+                        pp.getIndex());
+            }
+            if (set.size() != firstSet.size()) {
+                throw new BackwardParseException(
+                        "Sets should have the same size for property correspondence (got " + set.size() + ", expected " + firstSet.size() + ")", pp.getIndex());
+            }
+            sets.add(set);
+        } while (Lookahead.oneToken(pp, source).accept(":"));
+        final List<Integer> referenceCodePoints = new ArrayList<>();
+        expectToken("CorrespondTo", pp, source);
+        do {
+            final var referenceSet = parseUnicodeSet(source, pp);
+            if (referenceSet.hasStrings() || referenceSet.size() != 1) {
+                throw new BackwardParseException(
+                        "reference should be a single code point for property correspondence",
+                        pp.getIndex());
+            }
+            referenceCodePoints.add(referenceSet.charAt(0));
+        } while (Lookahead.oneToken(pp, source).accept(":"));
+
         class ExpectedPropertyDifference {
             public ExpectedPropertyDifference(String actualValueAlias, String referenceValueAlias) {
                 this.actualValueAlias = actualValueAlias;
@@ -569,7 +570,6 @@ public class TestUnicodeInvariants {
             String actualValueAlias;
             String referenceValueAlias;
         }
-        ;
         final Map<String, ExpectedPropertyDifference> expectedPropertyDifferences = new HashMap<>();
         if (Lookahead.oneToken(pp, source).accept("UpTo")) {
             expectToken(":", pp, source);

@@ -1280,18 +1280,18 @@ Propertywise [𐛪 𐛫] AreAlike
 Ignoring Unicode_1_Name Confusable_MA:
 Propertywise [ي ۑ] AreAlike
 
-    Propertywise [[β-ω] - [ς]] AreTo [[Β-Ω] - \p{gc=Cn}]
-            What [α]           IsTo  [Α]
+    Propertywise [[β-ω] - [ς]] : [[Β-Ω] - \p{gc=Cn}]
+    CorrespondTo [α]           :  [Α]
 
-    Propertywise [[α-ω] - [ς]] AreTo [[Α-Ω] - \p{gc=Cn}]
-            What [g]           IsTo  [G]
+    Propertywise [[α-ω] - [ς]] : [[Α-Ω] - \p{gc=Cn}]
+    CorrespondTo [g]           :  [G]
         UpTo: Block             (Greek_And_Coptic vs Basic_Latin),
               Script            (Greek            vs Latin),
               Script_Extensions (Greek            vs Latin),
               East_Asian_Width  (Ambiguous        vs Narrow)
 
-    Propertywise [ʲʳʷʸ] AreTo [jrwy]
-            What [ʰ]    IsTo  [h]
+    Propertywise [ʲʳʷʸ] : [jrwy] : [JRWY]
+    CorrespondTo [ʰ]    : [h]    : [H]
 
 end Ignoring;
 
