@@ -560,6 +560,11 @@ public class TestUnicodeInvariants {
             }
             referenceCodePoints.add(referenceSet.charAt(0));
         } while (Lookahead.oneToken(pp, source).accept(":"));
+        if (referenceCodePoints.size() != sets.size()) {
+            throw new BackwardParseException(
+                    "Property correspondence requires as many reference code points as sets under test",
+                    pp.getIndex());
+        }
 
         class ExpectedPropertyDifference {
             public ExpectedPropertyDifference(String actualValueAlias, String referenceValueAlias) {
@@ -595,172 +600,61 @@ public class TestUnicodeInvariants {
             for (String alias : property.getNameAliases()) {
                 expectedDifference = expectedPropertyDifferences.get(alias);
             }
-            final String pLeftReference = property.getValue(leftReference);
-            final String pRightReference = property.getValue(rightReference);
             if (expectedDifference != null) {
-                if (!Objects.equals(pLeftReference, pRightReference)) {
-                    errorMessageLines.add(
-                            property.getName()
-                                    + "("
-                                    + Character.toString(leftReference)
-                                    + ")\t=\t"
-                                    + pLeftReference
-                                    + "\t≠\t"
-                                    + pRightReference
-                                    + "\t=\t"
-                                    + property.getName()
-                                    + "("
-                                    + Character.toString(rightReference)
-                                    + ")");
-                }
-                if (!Objects.equals(pLeftReference, expectedDifference.referenceValueAlias)) {
-                    errorMessageLines.add(
-                            property.getName()
-                                    + "("
-                                    + Character.toString(leftReference)
-                                    + ")\t=\t"
-                                    + property.getName()
-                                    + "("
-                                    + Character.toString(rightReference)
-                                    + ")\t=\t"
-                                    + pLeftReference
-                                    + "\t≠\t"
-                                    + expectedDifference.referenceValueAlias);
-                }
-            }
-            for (int i = 0; i < left.size(); ++i) {
-                final int leftCodePoint = left.charAt(i);
-                final int rightCodePoint = right.charAt(i);
-                final String pLeft = property.getValue(leftCodePoint);
-                final String pRight = property.getValue(rightCodePoint);
-                if (Objects.equals(pLeftReference, pRightReference)) {
-                    if (!Objects.equals(pLeft, pRight)) {
-                        errorMessageLines.add(
-                                property.getName()
-                                        + "("
-                                        + Character.toString(leftReference)
-                                        + ")\t=\t"
-                                        + pLeftReference
-                                        + "\t=\t"
-                                        + property.getName()
-                                        + "("
-                                        + Character.toString(rightReference)
-                                        + ")\tbut\t"
-                                        + property.getName()
-                                        + "("
-                                        + Character.toString(leftCodePoint)
-                                        + ")\t=\t"
-                                        + pLeft
-                                        + "\t≠\t"
-                                        + pRight
-                                        + "\t=\t"
-                                        + property.getName()
-                                        + "("
-                                        + Character.toString(rightCodePoint)
-                                        + ")");
-                    }
-                    if (expectedDifference == null
-                            && !Objects.equals(pLeft, pLeftReference)
-                            && !(Objects.equals(pLeftReference, Character.toString(leftReference))
-                                    && Objects.equals(pLeft, Character.toString(leftCodePoint)))
-                            && !(Objects.equals(pLeftReference, Character.toString(rightReference))
-                                    && Objects.equals(pLeft, Character.toString(rightCodePoint)))) {
-                        errorMessageLines.add(
-                                property.getName()
-                                        + "("
-                                        + Character.toString(leftReference)
-                                        + ")\t=\t"
-                                        + pLeftReference
-                                        + "\t≠\t"
-                                        + property.getName()
-                                        + "("
-                                        + Character.toString(leftCodePoint)
-                                        + ")\t=\t"
-                                        + pLeft);
-                    }
-                    if (expectedDifference != null
-                            && !Objects.equals(pLeft, expectedDifference.actualValueAlias)) {
-                        errorMessageLines.add(
-                                property.getName()
-                                        + "("
-                                        + Character.toString(leftCodePoint)
-                                        + ")\t=\t"
-                                        + property.getName()
-                                        + "("
-                                        + Character.toString(rightCodePoint)
-                                        + ")\t=\t"
-                                        + pLeft
-                                        + "\t≠\t"
-                                        + expectedDifference.actualValueAlias);
-                    }
-                } else if (Objects.equals(pLeftReference, Character.toString(rightReference))) {
-                    if (!Objects.equals(pLeft, Character.toString(rightCodePoint))) {
-                        errorMessageLines.add(
-                                property.getName()
-                                        + "("
-                                        + Character.toString(leftReference)
-                                        + ")\t=\t"
-                                        + Character.toString(rightReference)
-                                        + "\tbut\t"
-                                        + property.getName()
-                                        + "("
-                                        + Character.toString(leftCodePoint)
-                                        + ")\t=\t"
-                                        + pLeft
-                                        + "\t≠\t"
-                                        + Character.toString(rightCodePoint));
-                    }
-                } else if (Objects.equals(Character.toString(leftReference), pRightReference)) {
-                    if (!Objects.equals(pLeft, Character.toString(rightCodePoint))) {
-                        errorMessageLines.add(
-                                Character.toString(leftReference)
-                                        + "\t=\t"
-                                        + property.getName()
-                                        + "("
-                                        + Character.toString(rightReference)
-                                        + ")\tbut\t"
-                                        + Character.toString(leftCodePoint)
-                                        + "\t≠\t"
-                                        + pRight
-                                        + "\t=\t"
-                                        + property.getName()
-                                        + "("
-                                        + Character.toString(rightCodePoint)
-                                        + ")");
-                    }
-                } else {
-                    if (!Objects.equals(pLeftReference, pLeft)
-                            && !(Objects.equals(pLeftReference, Character.toString(leftReference))
-                                    && Objects.equals(pLeft, Character.toString(leftCodePoint)))) {
-                        errorMessageLines.add(
-                                property.getName()
-                                        + "("
-                                        + Character.toString(leftReference)
-                                        + ")\t=\t"
-                                        + pLeftReference
-                                        + "\t≠\t"
-                                        + property.getName()
-                                        + "("
-                                        + Character.toString(leftCodePoint)
-                                        + ")\t=\t"
-                                        + pLeft);
-                    }
-                    if (!Objects.equals(pRightReference, pRight)
-                            && !(Objects.equals(pRightReference, Character.toString(rightReference))
-                                    && Objects.equals(
-                                            pRight, Character.toString(rightCodePoint)))) {
-                        errorMessageLines.add(
-                                property.getName()
-                                        + "("
-                                        + Character.toString(rightReference)
-                                        + ")\t=\t"
-                                        + pRightReference
-                                        + "\t≠\t"
-                                        + property.getName()
-                                        + "("
-                                        + Character.toString(rightCodePoint)
-                                        + ")\t=\t"
-                                        + pRight);
+                // TODO(egg): Test things.
+            } else {
+                for (int k = 0; k < sets.size(); ++k) {
+                    final UnicodeSet set = sets.get(k);
+                    final int rk = referenceCodePoints.get(k);
+                    final String pRk = property.getValue(rk);
+                loop_over_set:
+                    for (int i = 0; i < set.size(); ++i) {
+                        final int ck = set.charAt(i);
+                        final String pCk = property.getValue(ck);
+                        if (Objects.equals(pCk, pRk)) {
+                            continue;
+                        }
+                        Integer lMatchingForReference = null;
+                        for (int l = 0; l < sets.size(); ++l) {
+                            final boolean pCkEqualsCl = Objects.equals(pCk, Character.toString(sets.get(l).charAt(i)));
+                            final boolean pRkEqualsRl = Objects.equals(pRk, Character.toString(referenceCodePoints.get(l)));
+                            if (pRkEqualsRl) {
+                                lMatchingForReference = l;
+                                if (pCkEqualsCl) {
+                                    continue loop_over_set;
+                                }
+                            }
+                        }
+                        if (lMatchingForReference == null) {
+                            errorMessageLines.add(
+                                    property.getName()
+                                            + "("
+                                            + Character.toString(ck)
+                                            + ")\t=\t"
+                                            + pCk
+                                            + "\t≠\t"
+                                            + pRk
+                                            + "\t=\t"
+                                            + property.getName()
+                                            + "("
+                                            + Character.toString(rk)
+                                            + ")");
+                        } else {
+                            errorMessageLines.add(
+                                    property.getName()
+                                            + "("
+                                            + Character.toString(ck)
+                                            + ")\t=\t"
+                                            + pCk
+                                            + "\t≠\t"
+                                            + Character.toString(sets.get(lMatchingForReference).charAt(i))
+                                            + "\twhereas\t"
+                                            + property.getName()
+                                            + "("
+                                            + Character.toString(rk)
+                                            + ")\t=\t"
+                                            + pRk);
+                        }
                     }
                 }
             }
