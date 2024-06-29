@@ -113,40 +113,22 @@
 #          OnPairsOf $strings, EqualityOf Case_Folding ⇐ EqualityOf Simple_Case_Folding
 ##########################
 # Ignoring <properties>:
-#   Propertywise <unicodeSet> AreAlike
+#     <propertywise checks>
 # end Ignoring;
 #
+# Within an ignoring block, the properties listed in the space-separated list <properties>
+# are ignored in Propertywise checks.
+# Only Propertywise checks can occur within Ignoring blocks.
+# Propertywise checks can only occur within Ignoring blocks.
+#
+##########################
+# Propertywise <unicodeSet> AreAlike
+#
 # Checks that all property assignments of the code points in <unicodeSet> are the same,
-# except for any properties listed in the space-separated Except clause or in the
-# most recent Ignoring line.
+# except for any ignored properties.
 #
 # For the purposes of this check, if all characters in <unicodeSet> are mapped to themselves
 # by some property with default value <code point>, these assignments are the same.
-#
-# Ignoring <properties>:
-#   Propertywise <S₁> : ... : <Sₙ>
-#   CorrespondTo <R₁> : ... : <Rₙ>
-# [     UpTo: <Property> (<SValue> vs <RValue>) {, <Property> (<SValue> vs <RValue>) }]
-# end Ignoring;
-#
-# The Sₖ must be Unicode sets of equal size with no strings.  They are considered in code
-# point order for the correspondence check (item 2 below).
-# The references Rₖ must be Unicode sets each containing a single code point; by a slight abuse of
-# notation we refer to the code point as Rₖ in the explanation below.
-# For every property P that does not appear in the optional UpTo clause,
-# checks that for each k in 1 .. n, for the ith character C in Sₖ, either:
-# 1. P(C) = P(Rₖ), or
-# 2. for some l in 1 .. n, both:
-#    — P(Rₖ) is equal to Rₗ, and
-#    — P(C) is equal to the ith character in Sₗ.
-# For every property P that appears in the UpTo clause, checks all characters in the sets Sₖ have
-# the SValue and all R characters have the RValue.
-#
-# With n=1 this check is equivalent to the more straightforward AreAlike check; however, it also
-# allows for testing of properties such as case mappings, which differ for most characters in a
-# script, but behave regularly.  See the examples below.
-#
-# Ignoring blocks can be nested.  Only Propertywise checks can appear within Ignoring blocks.
 #
 #   Examples:
 #       The Linear A signs A751 and A752 behave identically (of course they have different
@@ -155,25 +137,51 @@
                 Propertywise [𐛪 𐛫] AreAlike
 #       Yeh (with two dots) and yeh with three dots behave the same, except for confusability and
 #       their name in Unicode 1 (both had one that differs from their current name).
-                Ignoring Name Unicode_1_Name Confusable_MA:
+                Ignoring Unicode_1_Name Confusable_MA:
                     Propertywise [ي ۑ] AreAlike
+                end Ignoring;
+            end Ignoring;
+#
+##########################
+# Propertywise <S₁> : ... : <Sₙ>
+# CorrespondTo <R₁> : ... : <Rₙ>
+# [   UpTo: <Property> (<SValue> vs <RValue>) {, <Property> (<SValue> vs <RValue>) }]
+#
+# The Sₖ must be Unicode sets of equal size with no strings.  They are considered in code
+# point order for the correspondence check (item 2 below).
+# The references Rₖ must be Unicode sets each containing a single code point; by a slight abuse of
+# notation we refer to the code point as Rₖ in the explanation below.
+# For every non-ignored property P that does not appear in the optional UpTo clause,
+# checks that for each k in 1 .. n, for the ith character C in Sₖ, either:
+# 1. P(C) = P(Rₖ), or
+# 2. for some l in 1 .. n, both:
+#    — P(Rₖ) is equal to Rₗ, and
+#    — P(C) is equal to the ith character in Sₗ.
+# For every non-ignored property P that appears in the UpTo clause, checks all characters in the
+# sets Sₖ have the SValue and all R characters have the RValue.
+#
+# With n=1 this check is equivalent to the more straightforward AreAlike check; however, it also
+# allows for testing of properties such as case mappings, which differ for most characters in a
+# script, but behave regularly.  See the examples below.
+#
+#   Examples:
+            Ignoring Name Unicode_1_Name Confusable_MA:
 #       The basic Greek and Latin scripts behave the same, except that they are different scripts,
 #       encoded in different blocks, and that Latin is ea=Narrow (because fullwidth Latin exists)
 #       whereas Greek is ea=Ambiguous.
 #       In particular, this checks that the lowercase and uppercase greek letters map to each other
 #       under the case properties in the same way that Latin g and G do.
-                    Propertywise [[α-ω] - [ς]] : [[Α-Ω] - \p{gc=Cn}]
-                    CorrespondTo [g]           :  [G]
-                        UpTo: Block             (Greek_And_Coptic vs Basic_Latin),
-                            Script            (Greek            vs Latin),
-                            Script_Extensions (Greek            vs Latin),
-                            East_Asian_Width  (Ambiguous        vs Narrow)
+                Propertywise [[α-ω] - [ς]] : [[Α-Ω] - \p{gc=Cn}]
+                CorrespondTo [g]           :  [G]
+                    UpTo: Block             (Greek_And_Coptic vs Basic_Latin),
+                        Script            (Greek            vs Latin),
+                        Script_Extensions (Greek            vs Latin),
+                        East_Asian_Width  (Ambiguous        vs Narrow)
 #       The modifier letters ʳʷʸ are related to their non-superscripted counterparts in the same way
 #       that ʰ is related to h.  The capitals must be part of the correspondence because they are
 #       property values of the lowercase letters.
-                    Propertywise [ʳʷʸ] : [rwy] : [RWY]
-                    CorrespondTo [ʰ]   : [h]   : [H]
-                end Ignoring;
+                Propertywise [ʳʷʸ] : [rwy] : [RWY]
+                CorrespondTo [ʰ]   : [h]   : [H]
             end Ignoring;
 #
 ##########################
