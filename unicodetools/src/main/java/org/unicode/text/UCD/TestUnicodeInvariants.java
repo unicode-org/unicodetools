@@ -545,7 +545,12 @@ public class TestUnicodeInvariants {
             }
             if (set.size() != firstSet.size()) {
                 throw new BackwardParseException(
-                        "Sets should have the same size for property correspondence (got " + set.size() + ", expected " + firstSet.size() + ")", pp.getIndex());
+                        "Sets should have the same size for property correspondence (got "
+                                + set.size()
+                                + ", expected "
+                                + firstSet.size()
+                                + ")",
+                        pp.getIndex());
             }
             sets.add(set);
         } while (Lookahead.oneToken(pp, source).accept(":"));
@@ -601,13 +606,41 @@ public class TestUnicodeInvariants {
                 expectedDifference = expectedPropertyDifferences.get(alias);
             }
             if (expectedDifference != null) {
-                // TODO(egg): Test things.
+                for (int k = 0; k < sets.size(); ++k) {
+                    final int rk = referenceCodePoints.get(k);
+                    final String pRk = property.getValue(rk);
+                    if (!Objects.equals(pRk, expectedDifference.referenceValueAlias)) {
+                        errorMessageLines.add(
+                                property.getName()
+                                        + "("
+                                        + Character.toString(rk)
+                                        + ")\t=\t"
+                                        + pRk
+                                        + "\t≠\t"
+                                        + expectedDifference.referenceValueAlias);
+                    }
+                    final UnicodeSet set = sets.get(k);
+                    for (int i = 0; i < set.size(); ++i) {
+                        final int ck = set.charAt(i);
+                        final String pCk = property.getValue(ck);
+                        if (!Objects.equals(pCk, expectedDifference.actualValueAlias)) {
+                            errorMessageLines.add(
+                                    property.getName()
+                                            + "("
+                                            + Character.toString(ck)
+                                            + ")\t=\t"
+                                            + pCk
+                                            + "\t≠\t"
+                                            + expectedDifference.actualValueAlias);
+                        }
+                    }
+                }
             } else {
                 for (int k = 0; k < sets.size(); ++k) {
                     final UnicodeSet set = sets.get(k);
                     final int rk = referenceCodePoints.get(k);
                     final String pRk = property.getValue(rk);
-                loop_over_set:
+                    loop_over_set:
                     for (int i = 0; i < set.size(); ++i) {
                         final int ck = set.charAt(i);
                         final String pCk = property.getValue(ck);
@@ -616,8 +649,11 @@ public class TestUnicodeInvariants {
                         }
                         Integer lMatchingForReference = null;
                         for (int l = 0; l < sets.size(); ++l) {
-                            final boolean pCkEqualsCl = Objects.equals(pCk, Character.toString(sets.get(l).charAt(i)));
-                            final boolean pRkEqualsRl = Objects.equals(pRk, Character.toString(referenceCodePoints.get(l)));
+                            final boolean pCkEqualsCl =
+                                    Objects.equals(pCk, Character.toString(sets.get(l).charAt(i)));
+                            final boolean pRkEqualsRl =
+                                    Objects.equals(
+                                            pRk, Character.toString(referenceCodePoints.get(l)));
                             if (pRkEqualsRl) {
                                 lMatchingForReference = l;
                                 if (pCkEqualsCl) {
@@ -647,7 +683,8 @@ public class TestUnicodeInvariants {
                                             + ")\t=\t"
                                             + pCk
                                             + "\t≠\t"
-                                            + Character.toString(sets.get(lMatchingForReference).charAt(i))
+                                            + Character.toString(
+                                                    sets.get(lMatchingForReference).charAt(i))
                                             + "\twhereas\t"
                                             + property.getName()
                                             + "("
