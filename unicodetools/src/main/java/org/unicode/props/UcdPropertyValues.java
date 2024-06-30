@@ -756,6 +756,7 @@ public class UcdPropertyValues {
     // Emoji_DCM
     // Emoji_KDDI
     // Emoji_SB
+    // emoji_variation_sequence
     // Equivalent_Unified_Ideograph
     // FC_NFKC_Closure
     public enum General_Category_Values implements Named {
@@ -1537,6 +1538,7 @@ public class UcdPropertyValues {
     // kVietnameseNumeric
     // kXerox
     // kXHC1983
+    // kZhuang
     // kZhuangNumeric
     // kZVariant
     public enum Line_Break_Values implements Named {
@@ -1619,6 +1621,9 @@ public class UcdPropertyValues {
     // Name_Alias
     // Named_Sequences
     // Named_Sequences_Prov
+    // NC_Corrected
+    // NC_Original
+    // NC_Version
     public enum NFC_Quick_Check_Values implements Named {
         Maybe("M"),
         No("N"),
