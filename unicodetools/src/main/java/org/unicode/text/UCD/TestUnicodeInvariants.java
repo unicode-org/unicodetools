@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.Stack;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.regex.Pattern;
@@ -173,6 +174,7 @@ public class TestUnicodeInvariants {
                                     + ".bb {font-weight:bold; color:blue}\n"
                                     + ".e, .f {color:red}\n"
                                     + ".s {color:gray}\n"
+                                    + "code {white-space: pre}\n"
                                     + "</style>");
                     out3.println("</head><body><h1>#Unicode Invariant Results</h1>");
                 } else {
@@ -238,6 +240,17 @@ public class TestUnicodeInvariants {
                 int lastPrintedLine = 0;
                 final ParsePosition pp = new ParsePosition(0);
                 boolean followingParseError = false;
+                class IgnoringBlock {
+                    public IgnoringBlock(Set<String> properties, int position) {
+                        this.properties = properties;
+                        this.position = new ParsePosition(position);
+                    }
+
+                    Set<String> properties;
+                    ParsePosition position;
+                }
+                ;
+                Stack<IgnoringBlock> ignoredProperties = new Stack<>();
                 for (; ; ) {
                     final int statementStart = pp.getIndex();
                     final int statementLineNumber = getLineNumber.apply(pp);
@@ -249,12 +262,43 @@ public class TestUnicodeInvariants {
                         break;
                     }
                     try {
-                        if (nextToken.accept("Let")) {
+                        if (nextToken.accept("Ignoring")) {
+                            ignoredProperties.add(
+                                    new IgnoringBlock(
+                                            ignoringPropertiesLine(
+                                                    pp, source, inputFile, getLineNumber),
+                                            statementStart));
+                        } else if (nextToken.accept("end")) {
+                            ignoredProperties.pop();
+                            expectToken("Ignoring", pp, source);
+                            expectToken(";", pp, source);
+                        } else if (!ignoredProperties.empty()) {
+                            if (nextToken.accept("end")) {
+                                ignoredProperties.pop();
+                                expectToken("Ignoring", pp, source);
+                                expectToken(";", pp, source);
+                            } else if (nextToken.accept("Propertywise")) {
+                                propertywiseLine(
+                                        ignoredProperties.stream()
+                                                .flatMap(b -> b.properties.stream())
+                                                .collect(Collectors.toSet()),
+                                        pp,
+                                        source,
+                                        inputFile,
+                                        getLineNumber);
+                            } else {
+                                throw new ParseException(
+                                        "Expected Propertywise test within Ignoring block",
+                                        pp.getIndex());
+                            }
+                        } else if (nextToken.accept("Propertywise")) {
+                            throw new ParseException(
+                                    "Propertywise test should be within an Ignoring block",
+                                    pp.getIndex());
+                        } else if (nextToken.accept("Let")) {
                             letLine(pp, source);
                         } else if (nextToken.accept("In")) {
                             inLine(pp, source, inputFile, getLineNumber);
-                        } else if (nextToken.accept("Propertywise")) {
-                            propertywiseLine(pp, source, inputFile, getLineNumber);
                         } else if (nextToken.accept("Map")) {
                             testMapLine(source, pp, getLineNumber);
                         } else if (nextToken.accept("ShowMap")) {
@@ -297,6 +341,18 @@ public class TestUnicodeInvariants {
                             break;
                         }
                     }
+                }
+                for (IgnoringBlock block : ignoredProperties) {
+                    parseErrorCount =
+                            parseError(
+                                    parseErrorCount,
+                                    source,
+                                    new ParseException(
+                                            "Unterminated Ignoring block for " + block.properties,
+                                            block.position.getIndex()),
+                                    block.position.getIndex(),
+                                    inputFile,
+                                    getLineNumber.apply(block.position));
                 }
                 println();
                 println("**** SUMMARY ****");
@@ -367,37 +423,55 @@ public class TestUnicodeInvariants {
         }
     }
 
-    private static void propertywiseLine(
+    private static Set<String> ignoringPropertiesLine(
             ParsePosition pp,
-            String line,
+            String source,
             String file,
             Function<ParsePosition, Integer> getLineNumber)
             throws ParseException {
-        final UnicodeSet set = parseUnicodeSet(line, pp);
+        Set<String> excludedProperties = new HashSet<>();
+        for (var next = Lookahead.oneToken(pp, source);
+                !next.accept(":");
+                next = Lookahead.oneToken(pp, source)) {
+            excludedProperties.add(next.consume());
+        }
+        return excludedProperties;
+    }
+
+    private static void propertywiseLine(
+            Set<String> ignoredProperties,
+            ParsePosition pp,
+            String source,
+            String file,
+            Function<ParsePosition, Integer> getLineNumber)
+            throws ParseException {
+        final UnicodeSet set = parseUnicodeSet(source, pp);
         if (set.hasStrings()) {
             throw new BackwardParseException(
                     "Set should contain only single code points for property comparison",
                     pp.getIndex());
         }
-        expectToken("AreAlike", pp, line);
-        if (Lookahead.oneToken(pp, line).accept(",")) {
-            expectToken("Except", pp, line);
-            expectToken(":", pp, line);
+        if (Lookahead.oneToken(pp, source).accept("AreAlike")) {
+            propertywiseAlikeLine(ignoredProperties, set, pp, source, file, getLineNumber);
+        } else {
+            propertywiseCorrespondenceLine(ignoredProperties, set, pp, source, file, getLineNumber);
         }
-        Set<String> excludedProperties = new HashSet<>();
-        excludedProperties.add("Name");
-        while (pp.getIndex() < line.length()) {
-            final int propertyNameStart = pp.getIndex();
-            scan(PATTERN_WHITE_SPACE, line, pp, false);
-            excludedProperties.add(line.substring(propertyNameStart, pp.getIndex()));
-            scan(PATTERN_WHITE_SPACE, line, pp, true);
-        }
+    }
+
+    private static void propertywiseAlikeLine(
+            Set<String> ignoredProperties,
+            UnicodeSet set,
+            ParsePosition pp,
+            String source,
+            String file,
+            Function<ParsePosition, Integer> getLineNumber)
+            throws ParseException {
         final var iup = IndexUnicodeProperties.make(Settings.latestVersion);
         final List<String> errorMessageLines = new ArrayList<>();
         for (var p : UcdProperty.values()) {
             final var property = iup.getProperty(p);
             if (property.getNameAliases().stream()
-                    .anyMatch(alias -> excludedProperties.contains(alias))) {
+                    .anyMatch(alias -> ignoredProperties.contains(alias))) {
                 continue;
             }
             final int first = set.charAt(0);
@@ -426,6 +500,197 @@ public class TestUnicodeInvariants {
                                             + "("
                                             + Character.toString(c)
                                             + ")");
+                        }
+                    }
+                }
+            }
+        }
+        if (!errorMessageLines.isEmpty()) {
+            testFailureCount++;
+            printErrorLine("Test Failure", Side.START, testFailureCount);
+            reportTestFailure(
+                    file,
+                    getLineNumber.apply(pp),
+                    String.join("\n", errorMessageLines).replace('\t', ' '));
+            out.println("<table class='f'>");
+            for (String errorMessageLine : errorMessageLines) {
+                out.println("<tr><td>");
+                out.println(toHTML.transform(errorMessageLine).replace("\t", "</td><td>"));
+                out.println("</tr></td>");
+            }
+            out.println("</table>");
+            printErrorLine("Test Failure", Side.END, testFailureCount);
+        }
+    }
+
+    private static void propertywiseCorrespondenceLine(
+            Set<String> ignoredProperties,
+            UnicodeSet firstSet,
+            ParsePosition pp,
+            String source,
+            String file,
+            Function<ParsePosition, Integer> getLineNumber)
+            throws ParseException {
+        final var iup = IndexUnicodeProperties.make(Settings.latestVersion);
+        final List<String> errorMessageLines = new ArrayList<>();
+        final List<UnicodeSet> sets = new ArrayList<>();
+        sets.add(firstSet);
+        expectToken(":", pp, source);
+        do {
+            final var set = parseUnicodeSet(source, pp);
+            if (set.hasStrings()) {
+                throw new BackwardParseException(
+                        "Set should contain only single code points for property comparison",
+                        pp.getIndex());
+            }
+            if (set.size() != firstSet.size()) {
+                throw new BackwardParseException(
+                        "Sets should have the same size for property correspondence (got "
+                                + set.size()
+                                + ", expected "
+                                + firstSet.size()
+                                + ")",
+                        pp.getIndex());
+            }
+            sets.add(set);
+        } while (Lookahead.oneToken(pp, source).accept(":"));
+        final List<Integer> referenceCodePoints = new ArrayList<>();
+        expectToken("CorrespondTo", pp, source);
+        do {
+            final var referenceSet = parseUnicodeSet(source, pp);
+            if (referenceSet.hasStrings() || referenceSet.size() != 1) {
+                throw new BackwardParseException(
+                        "reference should be a single code point for property correspondence",
+                        pp.getIndex());
+            }
+            referenceCodePoints.add(referenceSet.charAt(0));
+        } while (Lookahead.oneToken(pp, source).accept(":"));
+        if (referenceCodePoints.size() != sets.size()) {
+            throw new BackwardParseException(
+                    "Property correspondence requires as many reference code points as sets under test",
+                    pp.getIndex());
+        }
+
+        class ExpectedPropertyDifference {
+            public ExpectedPropertyDifference(String actualValueAlias, String referenceValueAlias) {
+                this.actualValueAlias = actualValueAlias;
+                this.referenceValueAlias = referenceValueAlias;
+            }
+
+            String actualValueAlias;
+            String referenceValueAlias;
+        }
+        final Map<String, ExpectedPropertyDifference> expectedPropertyDifferences = new HashMap<>();
+        if (Lookahead.oneToken(pp, source).accept("UpTo")) {
+            expectToken(":", pp, source);
+            do {
+                String property = Lookahead.oneToken(pp, source).consume();
+                expectToken("(", pp, source);
+                String actualValueAlias = Lookahead.oneToken(pp, source).consume();
+                expectToken("vs", pp, source);
+                String referenceValueAlias = Lookahead.oneToken(pp, source).consume();
+                expectToken(")", pp, source);
+                expectedPropertyDifferences.put(
+                        property,
+                        new ExpectedPropertyDifference(actualValueAlias, referenceValueAlias));
+            } while (Lookahead.oneToken(pp, source).accept(","));
+        }
+        for (var p : UcdProperty.values()) {
+            final var property = iup.getProperty(p);
+            if (property.getNameAliases().stream()
+                    .anyMatch(alias -> ignoredProperties.contains(alias))) {
+                continue;
+            }
+            ExpectedPropertyDifference expectedDifference = null;
+            for (String alias : property.getNameAliases()) {
+                expectedDifference = expectedPropertyDifferences.get(alias);
+            }
+            if (expectedDifference != null) {
+                for (int k = 0; k < sets.size(); ++k) {
+                    final int rk = referenceCodePoints.get(k);
+                    final String pRk = property.getValue(rk);
+                    if (!Objects.equals(pRk, expectedDifference.referenceValueAlias)) {
+                        errorMessageLines.add(
+                                property.getName()
+                                        + "("
+                                        + Character.toString(rk)
+                                        + ")\t=\t"
+                                        + pRk
+                                        + "\t≠\t"
+                                        + expectedDifference.referenceValueAlias);
+                    }
+                    final UnicodeSet set = sets.get(k);
+                    for (int i = 0; i < set.size(); ++i) {
+                        final int ck = set.charAt(i);
+                        final String pCk = property.getValue(ck);
+                        if (!Objects.equals(pCk, expectedDifference.actualValueAlias)) {
+                            errorMessageLines.add(
+                                    property.getName()
+                                            + "("
+                                            + Character.toString(ck)
+                                            + ")\t=\t"
+                                            + pCk
+                                            + "\t≠\t"
+                                            + expectedDifference.actualValueAlias);
+                        }
+                    }
+                }
+            } else {
+                for (int k = 0; k < sets.size(); ++k) {
+                    final UnicodeSet set = sets.get(k);
+                    final int rk = referenceCodePoints.get(k);
+                    final String pRk = property.getValue(rk);
+                    loop_over_set:
+                    for (int i = 0; i < set.size(); ++i) {
+                        final int ck = set.charAt(i);
+                        final String pCk = property.getValue(ck);
+                        if (Objects.equals(pCk, pRk)) {
+                            continue;
+                        }
+                        Integer lMatchingForReference = null;
+                        for (int l = 0; l < sets.size(); ++l) {
+                            final boolean pCkEqualsCl =
+                                    Objects.equals(pCk, Character.toString(sets.get(l).charAt(i)));
+                            final boolean pRkEqualsRl =
+                                    Objects.equals(
+                                            pRk, Character.toString(referenceCodePoints.get(l)));
+                            if (pRkEqualsRl) {
+                                lMatchingForReference = l;
+                                if (pCkEqualsCl) {
+                                    continue loop_over_set;
+                                }
+                            }
+                        }
+                        if (lMatchingForReference == null) {
+                            errorMessageLines.add(
+                                    property.getName()
+                                            + "("
+                                            + Character.toString(ck)
+                                            + ")\t=\t"
+                                            + pCk
+                                            + "\t≠\t"
+                                            + pRk
+                                            + "\t=\t"
+                                            + property.getName()
+                                            + "("
+                                            + Character.toString(rk)
+                                            + ")");
+                        } else {
+                            errorMessageLines.add(
+                                    property.getName()
+                                            + "("
+                                            + Character.toString(ck)
+                                            + ")\t=\t"
+                                            + pCk
+                                            + "\t≠\t"
+                                            + Character.toString(
+                                                    sets.get(lMatchingForReference).charAt(i))
+                                            + "\twhereas\t"
+                                            + property.getName()
+                                            + "("
+                                            + Character.toString(rk)
+                                            + ")\t=\t"
+                                            + pRk);
                         }
                     }
                 }
@@ -1534,15 +1799,15 @@ public class TestUnicodeInvariants {
                     if (line.length() > commentPos + 1 && line.charAt(commentPos + 1) == '#') {
                         aClass = "bb";
                     }
-                    line =
-                            line.substring(0, commentPos)
-                                    + "<span class='"
+                    out.println(
+                            "<p><code>"
+                                    + line.substring(0, commentPos)
+                                    + "</code><span class='"
                                     + aClass
                                     + "'>"
                                     + line.substring(commentPos)
-                                    + "</span>";
-                }
-                if (line.startsWith("****")) {
+                                    + "</span></p>");
+                } else if (line.startsWith("****")) {
                     out.println(
                             "<h2>"
                                     + (anchor == null ? "" : "<a name='" + anchor + "'>")
@@ -1550,7 +1815,7 @@ public class TestUnicodeInvariants {
                                     + (anchor == null ? "" : "</a>")
                                     + "</h2>");
                 } else {
-                    out.println("<p>" + line + "</p>");
+                    out.println("<p><code>" + line + "</code></p>");
                 }
             }
         } else {
