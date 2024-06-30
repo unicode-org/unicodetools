@@ -18,7 +18,7 @@
 
 \p{Identifier_Type=Not_NFKC} = [\p{NFKC_QC=No}-\p{Deprecated}-\p{Default_Ignorable_Code_Point}]
 
-Let $Strongly_Restricted = [\p{Identifier_Type=Not_Character}\p{Identifier_Type=Deprecated}\p{Identifier_Type=Default_Ignorable}\p{Identifier_Type=Not_NFKC}]
+Let $Strongly_Restricted := [\p{Identifier_Type=Not_Character}\p{Identifier_Type=Deprecated}\p{Identifier_Type=Default_Ignorable}\p{Identifier_Type=Not_NFKC}]
 
 \p{Identifier_Type=Not_XID} = [\P{XID_Continue}-$Strongly_Restricted-\p{Identifier_Type=Inclusion}]
 
