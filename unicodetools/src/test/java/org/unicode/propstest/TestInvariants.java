@@ -316,6 +316,26 @@ public class TestInvariants extends TestFmwkMinusMinus {
         boolean same = true;
         for (String value : values) {
             UnicodeSet oldSet = oldStatus.getSet(value);
+            if (ucdProperty == UcdProperty.Idn_Status && Settings.latestVersion.equals("16.0.0")) {
+                // Until Unicode 15.1, we had conditional Status values
+                // disallowed_STD3_valid and disallowed_STD3_mapped.
+                // At runtime, if UseSTD3ASCIIRules=true, they resolved to disallowed;
+                // if UseSTD3ASCIIRules=false, they resolved to valid or mapped, respectively.
+                // Unicode 16 replaces them with valid/mapped and handles UseSTD3ASCIIRules=true
+                // while checking the Validity Criteria.
+                switch (value) {
+                    case "disallowed_STD3_valid":
+                    case "disallowed_STD3_mapped":
+                        continue;
+                    case "valid":
+                    case "mapped":
+                        UnicodeSet disallowedSTD3 = oldStatus.getSet("disallowed_STD3_" + value);
+                        oldSet.addAll(disallowedSTD3);
+                        break;
+                    default:
+                        break;
+                }
+            }
             UnicodeSet newSet = currentStatus.getSet(value);
             same &= oldSet.equals(newSet);
             if (!newSet.containsAll(oldSet)) {
