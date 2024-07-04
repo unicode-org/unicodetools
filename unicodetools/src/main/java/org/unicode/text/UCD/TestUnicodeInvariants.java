@@ -15,6 +15,7 @@ import java.io.StringWriter;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -43,7 +44,6 @@ import org.unicode.text.utility.Settings;
 public class TestUnicodeInvariants {
     private static final boolean DEBUG = false;
 
-    // private static final Pattern IN_PATTERN = Pattern.compile("(.*)([≠=])(.*)");
     private static final boolean ICU_VERSION = false; // ignore the versions if this is true
     private static final Factory LATEST_PROPS = getProperties(Settings.latestVersion);
     private static final boolean SHOW_LOOKUP = false;
@@ -955,9 +955,13 @@ public class TestUnicodeInvariants {
         }
     }
 
-    // A one-token lookahead.
-    // Tokens are defined as runs of [^\p{Pattern_White_Space}\p{Pattern_Syntax}],
-    // or single code points in \p{Pattern_Syntax}.
+    /**
+     * A one-token lookahead. Tokens are defined as: 1. words: runs of
+     * [^\p{Pattern_White_Space}\p{Pattern_Syntax}]; 2. simple operators: sequences of the form
+     * \p{Pattern_Syntax} \p{Mn}*; 3. explicitly expected sequences of words and simple operators
+     * without intervening spaces; this allows for contextually accepting operators such as :=, >>,
+     * ’s, or .GT., without treating, e.g., every >> as atomic.
+     */
     private static class Lookahead {
         // Advances pp through any pattern white space, then looks ahead one token.
         public static Lookahead oneToken(ParsePosition pp, String text) {
@@ -965,7 +969,43 @@ public class TestUnicodeInvariants {
             return oneTokenNoSpace(pp, text);
         }
 
-        // Returns null if pp is before pattern white space; otherwise, looks ahead one token.
+        /**
+         * Advances pp through any pattern white space, then looks ahead one token, treating the
+         * given sequences as single tokens.
+         */
+        public static Lookahead oneToken(ParsePosition pp, String text, String... sequences) {
+            scan(PATTERN_WHITE_SPACE, text, pp, true);
+            Lookahead result = oneTokenNoSpace(pp, text);
+            if (result == null) {
+                return result;
+            }
+            Lookahead candidate = result;
+            for (; ; ) {
+                final String candidateToken = candidate.token;
+                final boolean candidateIsSequencePrefix =
+                        Arrays.asList(sequences).stream()
+                                .anyMatch(s -> s.startsWith(candidateToken));
+                if (!candidateIsSequencePrefix) {
+                    break;
+                }
+                final Lookahead continuation = oneTokenNoSpace(candidate.next, text);
+                if (continuation == null) {
+                    break;
+                }
+                candidate =
+                        new Lookahead(candidateToken + continuation.token, pp, continuation.next);
+
+                if (Arrays.asList(sequences).contains(candidate.token)) {
+                    result = candidate;
+                }
+            }
+            return result;
+        }
+
+        /**
+         * Returns null if pp is before pattern white space; otherwise, looks ahead one token. This
+         * function does not alter pp.
+         */
         public static Lookahead oneTokenNoSpace(ParsePosition pp, String text) {
             ParsePosition next = new ParsePosition(pp.getIndex());
             if (next.getIndex() == text.length()) {
@@ -973,9 +1013,10 @@ public class TestUnicodeInvariants {
             }
             int start = next.getIndex();
             if (PATTERN_SYNTAX.contains(text.codePointAt(start))) {
-                final String result = Character.toString(text.codePointAt(start));
-                next.setIndex(start + result.length());
-                return new Lookahead(result, pp, next);
+                final String syntax = Character.toString(text.codePointAt(start));
+                next.setIndex(start + syntax.length());
+                final String marks = scan(NONSPACING_MARK, text, next, true);
+                return new Lookahead(syntax + marks, pp, next);
             } else {
                 final String result = scan(PATTERN_SYNTAX_OR_WHITE_SPACE, text, next, false);
                 return result.isEmpty() ? null : new Lookahead(result, pp, next);
@@ -988,15 +1029,18 @@ public class TestUnicodeInvariants {
             this.next = next;
         }
 
-        // Advances the ParsePosition passed at construction past the token, and returns the token.
+        /**
+         * Advances the ParsePosition passed at construction past the token, and returns the token.
+         */
         public String consume() {
             pp.setIndex(next.getIndex());
             return token;
         }
 
-        // If this token is expected, advances the ParsePosition passed at construction past the
-        // token past it and returns true.
-        // Otherwise, this function no effect and returns false.
+        /**
+         * If this token is expected, advances the ParsePosition passed at construction past the
+         * token past it and returns true. Otherwise, this function no effect and returns false.
+         */
         public boolean accept(String expected) {
             if (expected.equals(token)) {
                 consume();
@@ -1013,8 +1057,10 @@ public class TestUnicodeInvariants {
 
     private static void expectToken(String token, ParsePosition pp, String text)
             throws ParseException {
-        if (!Lookahead.oneToken(pp, text).accept(token)) {
-            throw new ParseException("Expected '" + token + "'", pp.getIndex());
+        final var lookahead = Lookahead.oneToken(pp, text, token);
+        if (!lookahead.accept(token)) {
+            throw new ParseException(
+                    "Expected '" + token + "', got '" + lookahead.token + "'", pp.getIndex());
         }
     }
 
@@ -1334,7 +1380,7 @@ public class TestUnicodeInvariants {
     private static void letLine(ParsePosition pp, String source) throws ParseException {
         expectToken("$", pp, source);
         final String variable = Lookahead.oneTokenNoSpace(pp, source).consume();
-        expectToken("=", pp, source);
+        expectToken(":=", pp, source);
         final int valueStart = pp.getIndex();
         final UnicodeSet valueSet = parseUnicodeSet(source, pp);
         valueSet.complement().complement();
@@ -1719,6 +1765,7 @@ public class TestUnicodeInvariants {
             final int eol = source.indexOf("\n", statementStart);
             source = source.substring(sol >= 0 ? sol : 0, eol >= 0 ? eol : source.length());
         }
+        source = source.trim();
 
         printErrorLine("Parse Failure", Side.START, parseErrorCount);
         println("**** PARSE ERROR:\t" + source);
@@ -1771,6 +1818,7 @@ public class TestUnicodeInvariants {
     private static final UnicodeSet PATTERN_WHITE_SPACE =
             new UnicodeSet("\\p{pattern white space}").freeze();
     private static final UnicodeSet PATTERN_SYNTAX = new UnicodeSet("\\p{pattern syntax}").freeze();
+    private static final UnicodeSet NONSPACING_MARK = new UnicodeSet("\\p{Mn}").freeze();
     private static final UnicodeSet PATTERN_SYNTAX_OR_WHITE_SPACE =
             new UnicodeSet("[\\p{pattern white space}\\p{pattern syntax}]").freeze();
 
