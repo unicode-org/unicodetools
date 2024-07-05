@@ -210,7 +210,7 @@ $QU_Pf=($QU_Pf $X)
 $QUmPi=($QUmPi $X)
 $QUmPf=($QUmPf $X)
 
-$NotEastAsian=( ^ $CM | (?<=$Spec1_) $CM | [$NotEastAsian - $Spec1_] $X)
+$NotEastAsian=( $NotEastAsian | [$NotEastAsian - $Spec1_] $X)
 $NonEastAsianBA=(NonEastAsianBA $X)
 
 $DottedCircle=($DottedCircle $X)
