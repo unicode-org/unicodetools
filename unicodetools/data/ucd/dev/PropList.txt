@@ -1,3 +1,6 @@
+10EF4 ; Modifier_Combining_Mark # Mn ARABIC SMALL LOW NOON WITH FATHA
+10EF6 ; Modifier_Combining_Mark # Mn ARABIC SMALL LOW NOON WITH DAMMA
+
 # PropList-16.0.0.txt
 # Date: 2024-05-08, 03:40:06 GMT
 # © 2024 Unicode®, Inc.
