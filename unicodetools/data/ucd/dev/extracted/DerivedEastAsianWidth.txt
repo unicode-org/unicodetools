@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2024-04-30, 21:48:17 GMT
+# Date: 2024-07-05, 18:55:12 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1486,6 +1486,9 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 10EAD         ; N # Pd       YEZIDI HYPHENATION MARK
 10EB0..10EB1  ; N # Lo   [2] YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
 10EC2..10EC4  ; N # Lo   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+10EC9..10ECA  ; N # Lo   [2] ARABIC SMALL BASELINE FATHA..ARABIC SMALL BASELINE DOTLESS HEAD OF KHAH
+10ECB..10ECF  ; N # Mn   [5] ARABIC NORTHEAST POINTING ARROWHEAD ABOVE..ARABIC LARGE CIRCLE ABOVE
+10EF0..10EF8  ; N # Mn   [9] ARABIC SMALL LOW UPRIGHT RECTANGULAR ZERO..ARABIC SMALL HIGH WORD KABBIR
 10EFC..10EFF  ; N # Mn   [4] ARABIC COMBINING ALEF OVERLAY..ARABIC SMALL LOW WORD MADDA
 10F00..10F1C  ; N # Lo  [29] OLD SOGDIAN LETTER ALEPH..OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
 10F1D..10F26  ; N # No  [10] OLD SOGDIAN NUMBER ONE..OLD SOGDIAN FRACTION ONE HALF
@@ -2103,7 +2106,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 761099 code points not listed here.
+# The above property value applies to 761083 code points not listed here.
 # Total code points: 792420
 
 # ================================================
