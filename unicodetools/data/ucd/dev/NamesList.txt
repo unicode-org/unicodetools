@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 16.0.0
 @@@+	NamesList-16.0.0.txt
-@+	Generation Date: 2024-06-28, 16:46:26 GMT
+@+	Generation Date: 2024-07-09, 17:21:32 GMT
 	Unicode 16.0.0 names list.
 	Repertoire synched with UnicodeData-16.0.0d16.txt.
 	Post-beta rollup of various fixes.
@@ -38690,6 +38690,7 @@ FFFF	<not a character>
 	* phonemogram : m
 13132	EGYPTIAN HIEROGLYPH F046
 	* logogram (to go round, to turn round) : pẖr
+	~ 13132 FE01 rotated 180 degrees
 13133	EGYPTIAN HIEROGLYPH F046A
 	* rotated version of 13132
 	* logogram (to go round, to turn round) : pẖr
@@ -38709,6 +38710,7 @@ FFFF	<not a character>
 13139	EGYPTIAN HIEROGLYPH F051
 	* phonemogram : f
 	~ 13139 FE00 rotated 90 degrees
+	~ 13139 FE01 rotated 180 degrees
 	~ 13139 FE02 rotated 270 degrees
 1313A	EGYPTIAN HIEROGLYPH F051A
 	* classifier part of a body : ḥꜥ.w
@@ -39075,6 +39077,7 @@ FFFF	<not a character>
 	* classifier growing : rd
 131E0	EGYPTIAN HIEROGLYPH M033
 	* logogram (grain, barley, corn) : ꞽt
+	~ 131E0 FE00 rotated 90 degrees (= 270 degrees)
 131E1	EGYPTIAN HIEROGLYPH M033A
 	* variant of 131E0
 	* classifier grain, barley, corn : ꞽt
@@ -39420,6 +39423,7 @@ FFFF	<not a character>
 	* phonemogram : ꞽwn
 1327B	EGYPTIAN HIEROGLYPH O029
 	* phonemogram : ꜥꜣ
+	~ 1327B FE00 rotated 90 degrees
 	~ 1327B FE02 rotated 270 degrees
 1327C	EGYPTIAN HIEROGLYPH O029A
 	* rotated variant of 1327B
@@ -39853,6 +39857,8 @@ FFFF	<not a character>
 	* phonemogram : mꜣꜥ
 13338	EGYPTIAN HIEROGLYPH U006
 	* phonemogram : mr
+	~ 13338 FE03 rotated approximately 30 degrees
+	~ 13338 FE06 rotated approximately 320 degrees (horizontal)
 13339	EGYPTIAN HIEROGLYPH U006A
 	* stylistic variant of 13338
 1333A	EGYPTIAN HIEROGLYPH U006B
@@ -39860,7 +39866,6 @@ FFFF	<not a character>
 1333B	EGYPTIAN HIEROGLYPH U007
 	* variant of 13338
 	* phonemogram : mr
-	~ 1333B FE00 rotated 90 degrees
 1333C	EGYPTIAN HIEROGLYPH U008
 	* variant of 1333B
 	* phonemogram : ḥn
@@ -40242,6 +40247,7 @@ FFFF	<not a character>
 @		Y. Writings, games, music
 133DB	EGYPTIAN HIEROGLYPH Y001
 	* classifier abstract words : sspd.w
+	~ 133DB FE02 rotated 270 degrees
 133DC	EGYPTIAN HIEROGLYPH Y001A
 	* rotated variant of 133DB
 	* logogram (papyrus scroll, book) : mḏꜣ.t
@@ -40269,13 +40275,16 @@ FFFF	<not a character>
 133E5	EGYPTIAN HIEROGLYPH Z002
 	* not to be confused with 133FC
 	* classifier plural
+	~ 133E5 FE00 rotated 90 degrees (= 270 degrees)
 133E6	EGYPTIAN HIEROGLYPH Z002A
 	* stylistic variant of 133E5
 133E7	EGYPTIAN HIEROGLYPH Z002B
 	* not to be confused with 13213
+	~ 133E7 FE00 rotated 90 degrees (= 270 degrees)
 133E8	EGYPTIAN HIEROGLYPH Z002C
 	* variant of 133E6
 	* classifier plural
+	~ 133E8 FE01 rotated 180 degrees
 133E9	EGYPTIAN HIEROGLYPH Z002D
 	* variant of 133E8
 	* classifier plural
@@ -41150,7 +41159,7 @@ FFFF	<not a character>
 	* classifier army (semitic loanword) : ḏbꞽ
 135A3	EGYPTIAN HIEROGLYPH-135A3
 135A4	EGYPTIAN HIEROGLYPH-135A4
-	* classifer to trample : tꞽtꞽ
+	* classifier to trample : tꞽtꞽ
 @		A17. Soldier, seated
 135A5	EGYPTIAN HIEROGLYPH-135A5
 	* logogram (army) : mšꜥ
@@ -41215,7 +41224,7 @@ FFFF	<not a character>
 135C4	EGYPTIAN HIEROGLYPH-135C4
 	* classifier enemy : bdš
 135C5	EGYPTIAN HIEROGLYPH-135C5
-	* classifer rebel : bṯn
+	* classifier rebel : bṯn
 135C6	EGYPTIAN HIEROGLYPH-135C6
 	* classifier rebel : sbꞽ
 135C7	EGYPTIAN HIEROGLYPH-135C7
@@ -41225,7 +41234,7 @@ FFFF	<not a character>
 135C9	EGYPTIAN HIEROGLYPH-135C9
 	* classifier enemy : šnṯ
 135CA	EGYPTIAN HIEROGLYPH-135CA
-	* classifer foreigners (as enemies) : ḫꜣs.t
+	* classifier foreigners (as enemies) : ḫꜣs.t
 135CB	EGYPTIAN HIEROGLYPH-135CB
 	* classifier rebel : sbꞽ
 135CC	EGYPTIAN HIEROGLYPH-135CC
@@ -42019,7 +42028,7 @@ FFFF	<not a character>
 13763	EGYPTIAN HIEROGLYPH-13763
 	* logogram (Amon) : ꞽmn
 13764	EGYPTIAN HIEROGLYPH-13764
-	* classifier divinitiy : ꞽn-ḥr-šw
+	* classifier divinity : ꞽn-ḥr-šw
 13765	EGYPTIAN HIEROGLYPH-13765
 	* logogram (Maat and Amon) : mꜣꜥ.t & ꞽmn 
 13766	EGYPTIAN HIEROGLYPH-13766
@@ -42572,7 +42581,7 @@ FFFF	<not a character>
 1387E	EGYPTIAN HIEROGLYPH-1387E
 	* logogram (Isis) : ꜣs.t
 1387F	EGYPTIAN HIEROGLYPH-1387F
-	* classifier female divinitiy (Usually associated with Hathor)
+	* classifier female divinity (Usually associated with Hathor)
 13880	EGYPTIAN HIEROGLYPH-13880
 	* logogram : nb
 13881	EGYPTIAN HIEROGLYPH-13881
@@ -42779,7 +42788,7 @@ FFFF	<not a character>
 138E9	EGYPTIAN HIEROGLYPH-138E9
 	* logogram (Neith) : n.t
 138EA	EGYPTIAN HIEROGLYPH-138EA
-	* (cryptography) phonemogram : wn
+	* (cryptography) Phonemogram : wn
 138EB	EGYPTIAN HIEROGLYPH-138EB
 	* phonemogram : n(.t)
 138EC	EGYPTIAN HIEROGLYPH-138EC
@@ -44135,7 +44144,7 @@ FFFF	<not a character>
 13B94	EGYPTIAN HIEROGLYPH-13B94
 	* logogram (Khonsu) : ḫnsw
 13B95	EGYPTIAN HIEROGLYPH-13B95
-	* classifer strength : ꜣ.t
+	* classifier strength : ꜣ.t
 13B96	EGYPTIAN HIEROGLYPH-13B96
 @		F09. Donkey and horse protome
 13B97	EGYPTIAN HIEROGLYPH-13B97
@@ -47397,7 +47406,7 @@ FFFF	<not a character>
 14213	EGYPTIAN HIEROGLYPH-14213
 	* logogram (Neith) : n.t
 14214	EGYPTIAN HIEROGLYPH-14214
-	* logogram (Neith 4-5th nome of LE) : n.t
+	* logogram (Neith, 4-5th nome of LE) : n.t
 14215	EGYPTIAN HIEROGLYPH-14215
 	* logogram (Neith, 4-5th nome of LE) : n.t
 14216	EGYPTIAN HIEROGLYPH-14216
