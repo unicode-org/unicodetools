@@ -378,12 +378,17 @@ public class TestInvariants extends TestFmwkMinusMinus {
                                 && (value.equals("rotated 90 degrees")
                                         && missing.equals(
                                                 new UnicodeSet(
-                                                        "[{\\U00013092\\uFE00}{\\U00013403\\uFE00}]")))
+                                                        "[{\\U00013092\\uFE00}{\\U0001333B\\uFE00}{\\U00013403\\uFE00}]")))
                         || (value.equals("rotated 180 degrees")
                                 && missing.equals(new UnicodeSet("[{\\U000130A9\\uFE01}]")))) {
                     // [177-C18] Consensus: Rescind three Egyptian Hieroglyph variation
                     //                      sequences as described in document L2/23-254
                     //                      for Unicode version 16.0.
+                    // UTC #180 should rescind another one, see
+                    // https://github.com/unicode-org/sah/issues/378
+                    // recommending that UTC Rescind the Egyptian Hieroglyph standardized variation
+                    // sequence 1333B FE00 as described in document L2/24-177 for Unicode version
+                    // 16.0.
                     level = LOG;
                 }
                 msg(
