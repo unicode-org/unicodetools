@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 16.0.0
 @@@+	NamesList-16.0.0.txt
-@+	Generation Date: 2024-07-09, 17:21:32 GMT
+@+	Generation Date: 2024-07-10, 12:25:21 GMT
 	Unicode 16.0.0 names list.
 	Repertoire synched with UnicodeData-16.0.0d16.txt.
 	Post-beta rollup of various fixes.
@@ -39077,7 +39077,7 @@ FFFF	<not a character>
 	* classifier growing : rd
 131E0	EGYPTIAN HIEROGLYPH M033
 	* logogram (grain, barley, corn) : ꞽt
-	~ 131E0 FE00 rotated 90 degrees (= 270 degrees)
+	~ 131E0 FE00 rotated 90 degrees [= 270 degrees]
 131E1	EGYPTIAN HIEROGLYPH M033A
 	* variant of 131E0
 	* classifier grain, barley, corn : ꞽt
@@ -39858,7 +39858,7 @@ FFFF	<not a character>
 13338	EGYPTIAN HIEROGLYPH U006
 	* phonemogram : mr
 	~ 13338 FE03 rotated approximately 30 degrees
-	~ 13338 FE06 rotated approximately 320 degrees (horizontal)
+	~ 13338 FE06 rotated approximately 320 degrees [horizontal]
 13339	EGYPTIAN HIEROGLYPH U006A
 	* stylistic variant of 13338
 1333A	EGYPTIAN HIEROGLYPH U006B
@@ -40275,12 +40275,12 @@ FFFF	<not a character>
 133E5	EGYPTIAN HIEROGLYPH Z002
 	* not to be confused with 133FC
 	* classifier plural
-	~ 133E5 FE00 rotated 90 degrees (= 270 degrees)
+	~ 133E5 FE00 rotated 90 degrees [= 270 degrees]
 133E6	EGYPTIAN HIEROGLYPH Z002A
 	* stylistic variant of 133E5
 133E7	EGYPTIAN HIEROGLYPH Z002B
 	* not to be confused with 13213
-	~ 133E7 FE00 rotated 90 degrees (= 270 degrees)
+	~ 133E7 FE00 rotated 90 degrees [= 270 degrees]
 133E8	EGYPTIAN HIEROGLYPH Z002C
 	* variant of 133E6
 	* classifier plural
