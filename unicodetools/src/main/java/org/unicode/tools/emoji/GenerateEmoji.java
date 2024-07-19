@@ -1520,10 +1520,8 @@ public class GenerateEmoji {
                             + "The categories are broad and not exclusive: and any character will match multiple categories.</p>"
                             + "<p>The emoji modifier sequences are omitted for brevity, "
                             + "because they are simply ordered after their emoji modifier bases. "
-                            + "In the CLDR collation rules, the emoji modifiers cause a secondary difference. See also the machine-readable files: "
-                            + "<a target='text' href='emoji-ordering.txt'>emoji-ordering.txt</a>"
-                            + " and "
-                            + "<a target='text' href='emoji-ordering-rules.txt'>emoji-ordering-rules.txt</a>. "
+                            + "In the CLDR collation rules, the emoji modifiers cause a secondary difference. See also the machine-readable file "
+                            + "<a target='text' href='emoji-ordering.txt'>emoji-ordering.txt</a>. "
                             + "To make suggestions for improvements, please file a "
                             + getCldrTicket("collation", "Emoji ordering suggestions")
                             + ".</p>\n",
@@ -3520,7 +3518,8 @@ public class GenerateEmoji {
             }
         }
         try (PrintWriter outText =
-                FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-ordering-rules.txt")) {
+                FileUtilities.openUTF8Writer(
+                        GenerateEmojiData.getOutputDir(), "internal/emoji-ordering-rules.txt")) {
             outText.append(
                     "<!-- Machine-readable version of the emoji ordering rules for v"
                             + Emoji.VERSION_STRING

@@ -53,7 +53,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         sparse-checkout: py/pipeline-workflow
-    - name: Check L2 document
+    - name: Check L2 document and WG references
       run: |
         python3 py/pipeline-workflow/check-l2-document.py
   utc-decision:
