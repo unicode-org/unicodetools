@@ -37,6 +37,14 @@ CorrespondTo [\N{OLD HUNGARIAN SMALL LETTER A}]
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status:
 
+# « Another ن, propertywise like the others. ».
+# Differs from ڽ (with three dots above) in Joining_Group,
+# ڽ being jg=Nya vs. jg=Noon for the others; see
+# https://www.unicode.org/versions/latest/ch09.pdf#G39824.
+Let $OldNoons = [ ن ڹ ں ڻ ڼ ڽ ݧ ݨ ݩ ࢉ ]
+Propertywise [ $OldNoons \N{ARABIC LETTER NOON WITH RING ABOVE} ] AreAlike
+Propertywise [ $OldNoons - [ڽ] \N{ARABIC LETTER NOON WITH RING ABOVE} ] AreAlike
+
 end Ignoring;
 
 end Ignoring;
