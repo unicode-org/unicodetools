@@ -1406,9 +1406,10 @@ public final class UCD implements UCD_Types {
                 }
             }
             // 323B0..3347B; CJK Unified Ideographs Extension H
-            if (rCompositeVersion >= 0x110000) {
+            // TODO(egg): This should be 0x110000, but the tools are still at 16.0.
+            if (rCompositeVersion >= 0x100000) {
                 if (ch <= CJK_J_BASE) {
-                    return ch; // Extension H first char
+                    return ch; // Extension J first char
                 }
                 if (ch < CJK_J_LIMIT) {
                     return CJK_J_BASE;
