@@ -1,5 +1,5 @@
 # LineBreak-16.0.0.txt
-# Date: 2024-05-11, 16:57:19 GMT
+# Date: 2024-07-24, 15:32:36 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3649,8 +3649,8 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 1FC00..1FFFD   ; ID # Cn  [1022] <reserved-1FC00>..<reserved-1FFFD>
 20000..2A6DF   ; ID # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
 2A6E0..2A6FF   ; ID # Cn    [32] <reserved-2A6E0>..<reserved-2A6FF>
-2A700..2B739   ; ID # Lo  [4154] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B739
-2B73A..2B73F   ; ID # Cn     [6] <reserved-2B73A>..<reserved-2B73F>
+2A700..2B73A   ; ID # Lo  [4155] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B73A
+2B73B..2B73F   ; ID # Cn     [5] <reserved-2B73B>..<reserved-2B73F>
 2B740..2B81D   ; ID # Lo   [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B81E..2B81F   ; ID # Cn     [2] <reserved-2B81E>..<reserved-2B81F>
 2B820..2CEA1   ; ID # Lo  [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
