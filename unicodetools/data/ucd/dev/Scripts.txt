@@ -1,6 +1,5 @@
-323B0..3347B; Han
 # Scripts-16.0.0.txt
-# Date: 2024-04-30, 21:48:40 GMT
+# Date: 2024-07-24, 14:54:18 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1603,9 +1602,9 @@ FA70..FAD9    ; Han # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COMPATIBILI
 2EBF0..2EE5D  ; Han # Lo [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 2F800..2FA1D  ; Han # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; Han # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
-31350..323AF  ; Han # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
+31350..3347B  ; Han # Lo [8492] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-3347B
 
-# Total code points: 99030
+# Total code points: 103330
 
 # ================================================
 
