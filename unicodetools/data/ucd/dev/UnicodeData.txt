@@ -1,3 +1,6 @@
+1B123;HIRAGANA DIGRAPH KOTO;Lo;0;L;<vertical> 3053 3068;;;;N;;;;;
+1B124;KATAKANA DIGRAPH TOKI;Lo;0;L;<vertical> 30C8 30AD;;;;N;;;;;
+1B125;KATAKANA DIGRAPH TOTE;Lo;0;L;<vertical> 30C8 30C6;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
