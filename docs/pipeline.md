@@ -49,7 +49,7 @@ Indic scripts only:
 - [ ] Commit
 
 ---
-- [ ] PropsList.txt — Add Other_Alphabetic, Diacritic, and Extender to satisfy invariants, or to taste
+- [ ] PropsList.txt — Add Other_Alphabetic, Other_Lowercase, Diacritic, and Extender to satisfy invariants, or to taste
 - [ ] Commit
 
 ---
@@ -61,14 +61,20 @@ PR preparation:
 - [ ] If from SAH — Link SAH issue
 - [ ] If from ESC or CJK — Mention ESC or CJK in the PR description
 - [ ] When for a UTC decision — Cite in the format UTC-\d\d\d-[MC]\d+ or with a link.
+- [ ] Link RMG issue
 - [ ] Whenever there is a Proposal document — Cite L2 number in the format L2/yy-nnn
 - [ ] data-for-new — Set label
 - [ ] pipeline-* — Set label to **pipeline-recommended-to-UTC** if the characters are not yet in the pipeline, and **pipeline-provisionally-assigned**, or **pipeline-`<version>`** depending on their status in [the Pipeline](https://unicode.org/alloc/Pipeline.html#future).
 - [ ] PR button — Set to DRAFT pull request
   - unless approved for the upcoming version
 - [ ] PR button — Press
-  - The **Check UCA data** CI check might fail; many character additions need separate handling there, 
-    but that is out of scope for the PAG work of preparing `data-for-new`. This will get resolved later.
+  - The **Check UCA data** and **Check security data invariants** CI checks are
+    suppressed; many character additions need separate handling there,
+    but that is out of scope for the PAG work of preparing `data-for-new`,
+    so reporting those failures could distract from real issues
+    in the UCD invariants.
+    UCA and security data issues are addressed later in the process,
+    before the start of β review.
 
 ## Scripts
 

@@ -85,6 +85,10 @@
 # @missing: 0000..10FFFF; Emoji_Component  	; No
 # @missing: 0000..10FFFF; Extended_Pictographic  	; No
 
+# @missing: 0000..10FFFF; kEH_Core  ;  No
+# @missing: 0000..10FFFF; kEH_NoMirror  ;  No
+# @missing: 0000..10FFFF; kEH_NoRotate  ;  No
+
 # End of binary properties.
 
 # @missing: 0000..10FFFF; Canonical_Combining_Class; Not_Reordered
@@ -101,8 +105,14 @@
 # Overrides for bugs
 
 # TODO(egg): These are specified in their respective files, we should not need them here.
+
 # @missing: 0000..10FFFF; Bidi_Mirroring_Glyph; <none>
 # @missing: 0000..10FFFF; Equivalent_Unified_Ideograph; <none>
+
+# At least the following two appear to be needed because of issues related to caching;
+# See comments in IndexUnicodeProperties.java.
+# @missing: 0000..10FFFF; NFKC_Casefold; <code point>
+# @missing: 0000..10FFFF; NFKC_SCF; <code point>
 
 # Extras
 
@@ -188,3 +198,13 @@ Do_Not_Emit_Type ; Precomposed_Form         ; Precomposed_Form
 Do_Not_Emit_Type ; Deprecated               ; Deprecated
 Do_Not_Emit_Type ; Discouraged              ; Discouraged
 Do_Not_Emit_Type ; Preferred_Spelling       ; Preferred_Spelling
+
+# @missing: 0000..10FFFF; kTGT_MergedSrc ; <none>
+# @missing: 0000..10FFFF; kRSTUnicode ; <none>
+
+# @missing: 0000..10FFFF; kSrc_NushuDuben ; <none>
+# @missing: 0000..10FFFF; kReading ; <none>
+
+# @missing: 0000..10FFFF; kEH_Func ; <none>
+# @missing: 0000..10FFFF; kEH_FVal ; <none>
+# @missing: 0000..10FFFF; kEH_UniK ; <none>

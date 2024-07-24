@@ -112,6 +112,79 @@
 #          OnPairsOf $strings, EqualityOf Case_Folding ⇏ EqualityOf Simple_Case_Folding
 #          OnPairsOf $strings, EqualityOf Case_Folding ⇐ EqualityOf Simple_Case_Folding
 ##########################
+# Ignoring <properties>:
+#     <propertywise checks>
+# end Ignoring;
+#
+# Within an ignoring block, the properties listed in the space-separated list <properties>
+# are ignored in Propertywise checks.
+# Only Propertywise checks can occur within Ignoring blocks.
+# Propertywise checks can only occur within Ignoring blocks.
+#
+##########################
+# Propertywise <unicodeSet> AreAlike
+#
+# Checks that all property assignments of the code points in <unicodeSet> are the same,
+# except for any ignored properties.
+#
+# For the purposes of this check, if all characters in <unicodeSet> are mapped to themselves
+# by some property with default value <code point>, these assignments are the same.
+#
+#   Examples:
+#       The Linear A signs A751 and A752 behave identically (of course they have different
+#       names).
+            Ignoring Name:
+                Propertywise [𐛪 𐛫] AreAlike
+#       Yeh (with two dots) and yeh with three dots behave the same, except for confusability and
+#       their name in Unicode 1 (both had one that differs from their current name).
+                Ignoring Unicode_1_Name Confusable_MA:
+                    Propertywise [ي ۑ] AreAlike
+                end Ignoring;
+            end Ignoring;
+#
+##########################
+# Propertywise <S₁> : ... : <Sₙ>
+# CorrespondTo <R₁> : ... : <Rₙ>
+# [   UpTo: <Property> (<SValue> vs <RValue>) {, <Property> (<SValue> vs <RValue>) }]
+#
+# The Sₖ must be Unicode sets of equal size with no strings.  They are considered in code
+# point order for the correspondence check (item 2 below).
+# The references Rₖ must be Unicode sets each containing a single code point; by a slight abuse of
+# notation we refer to the code point as Rₖ in the explanation below.
+# For every non-ignored property P that does not appear in the optional UpTo clause,
+# checks that for each k in 1 .. n, for the ith character C in Sₖ, either:
+# 1. P(C) = P(Rₖ), or
+# 2. for some l in 1 .. n, both:
+#    — P(Rₖ) is equal to Rₗ, and
+#    — P(C) is equal to the ith character in Sₗ.
+# For every non-ignored property P that appears in the UpTo clause, checks all characters in the
+# sets Sₖ have the SValue and all R characters have the RValue.
+#
+# With n=1 this check is equivalent to the more straightforward AreAlike check; however, it also
+# allows for testing of properties such as case mappings, which differ for most characters in a
+# script, but behave regularly.  See the examples below.
+#
+#   Examples:
+            Ignoring Name Unicode_1_Name Confusable_MA:
+#       The basic Greek and Latin scripts behave the same, except that they are different scripts,
+#       encoded in different blocks, and that Latin is ea=Narrow (because fullwidth Latin exists)
+#       whereas Greek is ea=Ambiguous.
+#       In particular, this checks that the lowercase and uppercase greek letters map to each other
+#       under the case properties in the same way that Latin g and G do.
+                Propertywise [[α-ω] - [ς]] : [[Α-Ω] - \p{gc=Cn}]
+                CorrespondTo [g]           :  [G]
+                    UpTo: Block             (Greek_And_Coptic vs Basic_Latin),
+                        Script            (Greek            vs Latin),
+                        Script_Extensions (Greek            vs Latin),
+                        East_Asian_Width  (Ambiguous        vs Narrow)
+#       The modifier letters ʳʷʸ are related to their non-superscripted counterparts in the same way
+#       that ʰ is related to h.  The capitals must be part of the correspondence because they are
+#       property values of the lowercase letters.
+                Propertywise [ʳʷʸ] : [rwy] : [RWY]
+                CorrespondTo [ʰ]   : [h]   : [H]
+            end Ignoring;
+#
+##########################
 # There is new syntax for testing UnicodeMaps
 #
 #  Map <unicodeMap> <relation> <unicodeMap>
@@ -150,21 +223,29 @@
 # General Constants
 ##########################
 
-Let $foo = \p{ccc=9}
-Let $fii = \p{toNFD=/$foo/}
+Let $foo := \p{ccc=9}
+Let $fii := \p{toNFD=/$foo/}
 
-Let $codepoints = [\u0000-\U0010FFFF]
+Let $codepoints := [\u0000-\U0010FFFF]
 
-Let $gcAllPunctuation = \p{gc=/_Punctuation/}
-$gcAllPunctuation = [\p{gc=Close_Punctuation}\p{gc=Connector_Punctuation}}\p{gc=Dash_Punctuation}\p{gc=Final_Punctuation}\p{gc=Initial_Punctuation}\p{gc=Open_Punctuation}\p{gc=Other_Punctuation}]
+Let $gcAllPunctuation := \p{gc=/_Punctuation/}
+$gcAllPunctuation = [
+    \p{gc=Close_Punctuation}
+    \p{gc=Connector_Punctuation}
+    \p{gc=Dash_Punctuation}
+    \p{gc=Final_Punctuation}
+    \p{gc=Initial_Punctuation}
+    \p{gc=Open_Punctuation}
+    \p{gc=Other_Punctuation}
+]
 
-Let $gcAllSymbols = \p{gc=/_Symbol/}
+Let $gcAllSymbols := \p{gc=/_Symbol/}
 $gcAllSymbols = [\p{gc=Math_Symbol}\p{gc=Currency_Symbol}\p{gc=Modifier_Symbol}\p{gc=Other_Symbol}]
 
-Let $gcAllMarks = \p{gc=/_Mark/}
+Let $gcAllMarks := \p{gc=/_Mark/}
 $gcAllMarks = [\p{gc=Nonspacing_Mark}\p{gc=Enclosing_Mark}\p{gc=Spacing_Mark}]
 
-Let $gcAllLetters = \p{gc=/_Letter/}
+Let $gcAllLetters := \p{gc=/_Letter/}
 $gcAllLetters = [\p{gc=Ll}\p{gc=Lu}\p{gc=Lo}\p{gc=Lt}\p{gc=Lm}]
 
 ##########################
@@ -251,17 +332,38 @@ In \p{dt=canonical}, (delete-adjacent-duplicates) * bc * \P{bc=NSM} * dm = bc * 
 # Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
 # This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
 # There are 6 special cases, all symmetric symbols—which are not mirrored—with a solidus overlay:
-Let $BMExclusions = [ ≠ ∤ ∦ ≢ ≭ ⫝̸ ]
+Let $BMExclusions := [ ≠ ∤ ∦ ≢ ≭ ⫝̸ ]
 In [\p{dt=canonical}-$BMExclusions], (delete-adjacent-duplicates) * Bidi_M * \P{bc=NSM} * dm = Bidi_M * \P{bc=NSM}
 
 # Additional BIDI invariant constants
-Let $AL_blocks = [\u0600-\u07BF \u0860-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF \U00010D00-\U00010D3F \U00010EC0-\U00010EFF \U00010F30-\U00010F6F \U0001EC70-\U0001ECBF \U0001ED00-\U0001ED4F \U0001EE00-\U0001EEFF]
-Let $R_blocks = [\u0590-\u05FF \u07C0-\u085F \uFB1D-\uFB4F \U00010800-\U00010CFF \U00010D40-\U00010EBF \U00010F00-\U00010F2F \U00010F70-\U00010FFF \U0001E800-\U0001EC6F \U0001ECC0-\U0001ECFF \U0001ED50-\U0001EDFF \U0001EF00-\U0001EFFF]
-# 6.1.0 updated blocks
-# 10.0 updated blocks (Syriac Supplement is bc=AL)
-# 11.0 updated blocks (Hanifi Rohingya, Sogdian, Indic Siyaq Numbers are bc=AL); Old Sogdian is bc=R
-# 12.0 updated blocks (Ottoman Siyaq Numbers is bc=AL)
-# 14.0 updated blocks (Arabic Extended-B is bc=AL)
+Let $AL_blocks := [
+    \u0600-\u07BF
+    \u0860-\u086F          # Syriac Supplement,     10.0
+    \u0870-\u089F          # Arabic Extended-B,     14.0
+    \u08A0-\u08FF
+    \uFB50-\uFDCF
+    \uFDF0-\uFDFF
+    \uFE70-\uFEFF
+    \U00010D00-\U00010D3F  # Hanifi Rohingya,       11.0
+    \U00010EC0-\U00010EFF
+    \U00010F30-\U00010F6F  # Sogdian,               11.0
+    \U0001EC70-\U0001ECBF  # Indic Siyaq Numbers,   11.0
+    \U0001ED00-\U0001ED4F  # Ottoman Siyaq Numbers, 12.0
+    \U0001EE00-\U0001EEFF
+]
+Let $R_blocks := [
+    \u0590-\u05FF
+    \u07C0-\u085F
+    \uFB1D-\uFB4F
+    \U00010800-\U00010CFF
+    \U00010D40-\U00010EBF
+    \U00010F00-\U00010F2F
+    \U00010F70-\U00010FFF
+    \U0001E800-\U0001EC6F
+    \U0001ECC0-\U0001ECFF
+    \U0001ED50-\U0001EDFF
+    \U0001EF00-\U0001EFFF
+]
 
 # Unassigned characters in these blocks have R or AL respectively
 \p{Bidi_Class=R} ⊇ [$R_blocks & \p{gc=Cn}]
@@ -276,12 +378,19 @@ $AL_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=R}]
 
 # U6.0: BN characters are default ignorable, noncharacters, controls, minus marks, bidi-controls, alphabetic, whitespace, with a few exceptions
 
-Let $BN_Exceptions = [\u001C-\u001F\u17B4\u17B5]
+Let $BN_Exceptions := [\u001C-\u001F\u17B4\u17B5]
 
-[\p{Bidi_Class=BN}] = [\p{di}\p{nchar}\p{gc=Cc}-\p{gc=Mc}-\p{gc=Mn}-\p{gc=Me}-\p{Bidi_C}-\p{alpha}-\p{wspace} - $BN_Exceptions]
+[\p{Bidi_Class=BN}] = [
+    \p{di}\p{nchar}\p{gc=Cc}
+    - \p{gc=Mc} - \p{gc=Mn} - \p{gc=Me}
+    - \p{Bidi_C}
+    - \p{alpha}
+    - \p{wspace}
+    - $BN_Exceptions
+]
 
 # Nonspacing and enclosing combining marks are bc=NSM, with a few exceptions (all of which are nonspacing)
-Let $gcMn_bcL = [\u0CBF\u0CC6\U00011A07\U00011A08\U00011C3F]
+Let $gcMn_bcL := [\u0CBF\u0CC6\U00011A07\U00011A08\U00011C3F]
 \p{bc=NSM} = [\p{gc=Mn} \p{gc=Me} - $gcMn_bcL]
 
 ##########################
@@ -391,8 +500,8 @@ In \P{U-1:GC=Cn}, Jamo_Short_Name=U-1:Jamo_Short_Name
 # NOTE: If this invariant needs to change, the section on migrating from the
 #       Unicode 3.0 identifier definition in UTS #55 must be updated:
 #       https://www.unicode.org/reports/tr55/#Evolution-Unicode-3.
-Let $identifier_start = [\p{GC=Lu}\p{GC=Ll}\p{GC=Lt}\p{GC=Lm}\p{GC=Lo}\p{GC=Nl}]
-Let $identifier_extend = [\p{GC=Mn}\p{GC=Mc}\p{GC=Nd}\p{GC=Pc}]
+Let $identifier_start := [\p{GC=Lu}\p{GC=Ll}\p{GC=Lt}\p{GC=Lm}\p{GC=Lo}\p{GC=Nl}]
+Let $identifier_extend := [\p{GC=Mn}\p{GC=Mc}\p{GC=Nd}\p{GC=Pc}]
 [\p{ID_Start}\p{Name=VERTICAL TILDE}]    ⊇ $identifier_start
 [\p{ID_Continue}\p{Name=VERTICAL TILDE}] ⊇ [$identifier_start $identifier_extend]
 
@@ -411,25 +520,37 @@ In \P{U-1:GC=Cn}, ccc=U-1:ccc
 
 # Canonical decompositions (minus exclusions) must be identical across releases (also required by strong normalization stability),
 # except where a character and at least one character in its decomposition are both new in the release.
-Let $New_Decompositions = [[\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion}] - [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion}]]
+Let $New_Decompositions := [
+      [    \p{Decomposition_Type=Canonical} -     \p{Full_Composition_Exclusion}]
+    - [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion}]
+]
 $New_Decompositions ⊆ \p{U-1:GC=Cn}
 # Stripping previously-unassigned characters from the current NFD does
 # something, that is, the decomposition contains newly-assigned characters.
 In $New_Decompositions, toNFD * \P{U-1:GC=Cn} ≠ toNFD
 
-Let $Unicode_13_Decompositions = [[\p{U13.0.0:Decomposition_Type=Canonical} - \p{U13.0.0:Full_Composition_Exclusion}] - [\p{U12.1.0:Decomposition_Type=Canonical} - \p{U12.1.0:Full_Composition_Exclusion}]]
+Let $Unicode_13_Decompositions := [
+      [\p{U13.0.0:Decomposition_Type=Canonical} - \p{U13.0.0:Full_Composition_Exclusion}]
+    - [\p{U12.1.0:Decomposition_Type=Canonical} - \p{U12.1.0:Full_Composition_Exclusion}]
+]
 $Unicode_13_Decompositions ⊆ \p{U12.1.0:GC=Cn}
 In $Unicode_13_Decompositions, toNFD * \P{U12.1.0:GC=Cn} ≠ toNFD
 $Unicode_13_Decompositions = [\U00011938]
 $Unicode_13_Decompositions = [\p{Name=DIVES AKURU VOWEL SIGN O}]
 
-Let $Unicode_7_Decompositions = [[\p{U7.0.0:Decomposition_Type=Canonical} - \p{U7.0.0:Full_Composition_Exclusion}] - [\p{U6.3.0:Decomposition_Type=Canonical} - \p{U6.3.0:Full_Composition_Exclusion}]]
+Let $Unicode_7_Decompositions := [
+      [\p{U7.0.0:Decomposition_Type=Canonical} - \p{U7.0.0:Full_Composition_Exclusion}]
+    - [\p{U6.3.0:Decomposition_Type=Canonical} - \p{U6.3.0:Full_Composition_Exclusion}]
+]
 $Unicode_7_Decompositions ⊆ \p{U6.3.0:GC=Cn}
 In $Unicode_7_Decompositions, toNFD * \P{U6.3.0:GC=Cn} ≠ toNFD
 $Unicode_7_Decompositions = [\U0001134B-\U0001134C \U000114BB-\U000114BC \U000114BE \U000115BA-\U000115BB]
 $Unicode_7_Decompositions ⊆ [\p{Name=/^(GRANTHA|TIRHUTA|SIDDHAM) VOWEL SIGN /}]
 
-Let $Unicode_6_1_Decompositions = [[\p{U6.1.0:Decomposition_Type=Canonical} - \p{U6.1.0:Full_Composition_Exclusion}] - [\p{U6.0.0:Decomposition_Type=Canonical} - \p{U6.0.0:Full_Composition_Exclusion}]]
+Let $Unicode_6_1_Decompositions := [
+      [\p{U6.1.0:Decomposition_Type=Canonical} - \p{U6.1.0:Full_Composition_Exclusion}]
+    - [\p{U6.0.0:Decomposition_Type=Canonical} - \p{U6.0.0:Full_Composition_Exclusion}]
+]
 $Unicode_6_1_Decompositions ⊆ \p{U6.0.0:GC=Cn}
 In $Unicode_6_1_Decompositions, toNFD * \P{U6.0.0:GC=Cn} ≠ toNFD
 $Unicode_6_1_Decompositions = [\U0001112E-\U0001112F]
@@ -450,12 +571,14 @@ In $codepoints, Decomposition_Mapping * Decomposition_Mapping * Decomposition_Ma
 # the pair cannot itself have a canonical mapping.
 [ \p{Decomposition_Type=Canonical} & \p{Decomposition_Mapping=/.../} ] = []
 [ \p{Decomposition_Type=Canonical} & \p{Decomposition_Mapping=} ] = []
-Let $expandingCanonicalDecompositions = [ \p{Decomposition_Type=Canonical} & \p{Decomposition_Mapping=/../} ]
+Let $expandingCanonicalDecompositions := [ \p{Decomposition_Type=Canonical} & \p{Decomposition_Mapping=/../} ]
 In $expandingCanonicalDecompositions, Decomposition_Type * (drop 1) * Decomposition_Mapping ≠ (constant Canonical)
 # Not a stability policy, but it happens to be the case that the second
 # character does not have a decomposition mapping at all:
 In $expandingCanonicalDecompositions, Decomposition_Type * (drop 1) * Decomposition_Mapping = (constant None)
-In $expandingCanonicalDecompositions, Decomposition_Mapping * (drop 1) * Decomposition_Mapping = (drop 1) * Decomposition_Mapping
+In $expandingCanonicalDecompositions,
+      Decomposition_Mapping * (drop 1) * Decomposition_Mapping
+    =                         (drop 1) * Decomposition_Mapping
 
 # Stability: Canonical mappings (Decomposition_Mapping property values) are
 # always limited so that no string when normalized to NFC expands to more than
@@ -473,16 +596,17 @@ In \P{U-1:GC=Cn}, dm=U-1:dm
 # pair of characters are limited such that the first of the pair in the mapping
 # must have ccc=0, except for the Decomposition_Mapping of the following four
 # characters: U+0344, U+0F73, U+0F75, U+0F81.
-Let $canonicallyExpandingNonstarters = [\u0344 \u0F73 \u0F75 \u0F81]
-In [$expandingCanonicalDecompositions - $canonicallyExpandingNonstarters], ccc * (take 1) * Decomposition_Mapping = (constant Not_Reordered)
+Let $canonicallyExpandingNonstarters := [\u0344 \u0F73 \u0F75 \u0F81]
+In [$expandingCanonicalDecompositions - $canonicallyExpandingNonstarters],
+    ccc * (take 1) * Decomposition_Mapping = (constant Not_Reordered)
 
 # U6.0: Construction of Full_Composition_Exclusion
 # Primary Composites don't include singletons, ccc!=0, or sequences starting with ccc!=0
-Let $combiningExclusions = [\p{dt=canonical}-\P{nfcqc=N}-\P{nfdqc=N}]
+Let $combiningExclusions := [\p{dt=canonical}-\P{nfcqc=N}-\P{nfdqc=N}]
 
-Let $singletons = \p{toNFD=/^.$/}
-Let $nonstarter = \P{ccc=0}
-Let $firstNonStarter = \p{toNFD=/^$nonstarter/}
+Let $singletons := \p{toNFD=/^.$/}
+Let $nonstarter := \P{ccc=0}
+Let $firstNonStarter := \p{toNFD=/^$nonstarter/}
 
 $combiningExclusions ⊇ [$singletons & \p{dt=canonical}]
 $combiningExclusions ⊇ [$nonstarter & \p{dt=canonical}]
@@ -518,13 +642,13 @@ $combiningExclusions ⊇ [$firstNonStarter & \p{dt=canonical}]
 
 # Decimals are 0-9
 
-Let $decimalValue = [\p{Numeric_Value=/^[0-9]+(.0)?$/}]
+Let $decimalValue := [\p{Numeric_Value=/^[0-9]+(.0)?$/}]
 
 $decimalValue ⊇ \p{General_Category=Decimal_Number}
 
 # All and only those items with numeric types have numeric values
 
-Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+(.[0-9]+)?/}
+Let $anyNumericValue := \p{Numeric_Value=/-?[0-9]+(.[0-9]+)?/}
 [\p{Numeric_Type=Decimal} \p{Numeric_Type=Digit} \p{Numeric_Type=Numeric}] = $anyNumericValue
 
 ##########################
@@ -533,7 +657,7 @@ Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+(.[0-9]+)?/}
 
 # Musical symbol combining marks, other oddities
 
-Let $AlphaExclusions = [\uAA7D \u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u1CE1\u1CF7\uAA7B\uABEC\U0001D165\U0001D166\U0001D16D-\U0001D172][[:gc=mc:]&[:ccc=9:][\u302E\u302F]]
+Let $AlphaExclusions := [[\uAA7D \u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u1CE1\u1CF7\uAA7B\uABEC\U0001D165\U0001D166\U0001D16D-\U0001D172][[:gc=mc:]&[:ccc=9:][\u302E\u302F]]]
 # 6.1.0 Added HANGUL SINGLE DOT TONE MARK..HANGUL DOUBLE DOT TONE MARK
 # 7.0 Added AA7D
 # 10.0 Added 1CF7 (similar to 1CE1)
@@ -567,10 +691,16 @@ Show [\u20b9]
 # The check below enforces that rule, but allows for possible future
 # exceptions. Should such exceptions arise, they can be added to the definition of
 # $nonAlphabeticBindus to avoid a failure on this test.
-Let $nonAlphabeticBindus = []
+Let $nonAlphabeticBindus := []
 [\p{InSc=Bindu} - \p{Alphabetic}] = $nonAlphabeticBindus
 
-Let $nonAlphabeticDependentVowels = [\N{ORIYA SIGN OVERLINE}\N{THAI CHARACTER MAITAIKHU}\N{LIMBU SIGN KEMPHRENG}\N{SHARADA VOWEL MODIFIER MARK}\N{SHARADA EXTRA SHORT VOWEL MARK}]
+Let $nonAlphabeticDependentVowels := [
+    \N{ORIYA SIGN OVERLINE}
+    \N{THAI CHARACTER MAITAIKHU}
+    \N{LIMBU SIGN KEMPHRENG}
+    \N{SHARADA VOWEL MODIFIER MARK}
+    \N{SHARADA EXTRA SHORT VOWEL MARK}
+]
 [\p{InSC=Vowel_Dependent} - \p{Alphabetic}] = $nonAlphabeticDependentVowels
 
 # Several invariants from L2/24-009 item 2.2.
@@ -578,12 +708,16 @@ Let $nonAlphabeticDependentVowels = [\N{ORIYA SIGN OVERLINE}\N{THAI CHARACTER MA
 \p{InSC=Nukta} ⊆ \p{Diacritic}
 [\p{InSC=Virama}\p{InSC=Pure_Killer}\p{InSC=Reordering_Killer}] ⊆ \p{Diacritic}
 \p{InSC=Invisible_Stacker} ⊆ \p{Diacritic}
-Let $nonAlphabeticAvagrahas = [\N{TIBETAN MARK PALUTA}]  # A punctuation mark.
+Let $nonAlphabeticAvagrahas := [\N{TIBETAN MARK PALUTA}]  # A punctuation mark.
 [\p{InSC=Avagraha} - $nonAlphabeticAvagrahas] ⊆ \p{Alphabetic}
 
 # Name-based checks.
-Let $nonLowercaseSmallLetters = [ \p{name=/^LIMBU SMALL LETTER/} \N{TURNED GREEK SMALL LETTER IOTA} \p{name=/^(SQUARED|PARENTHESIZED|TAG) LATIN SMALL LETTER/} ]
-Let $nonLowercaseSmallModifierLetters = [ \p{gc=Lm} & \p{name=/^ARABIC SMALL/} ]
+Let $nonLowercaseSmallLetters := [
+    \p{name=/^LIMBU SMALL LETTER/}
+    \N{TURNED GREEK SMALL LETTER IOTA}
+    \p{name=/^(SQUARED|PARENTHESIZED|TAG) LATIN SMALL LETTER/}
+]
+Let $nonLowercaseSmallModifierLetters := [ \p{gc=Lm} & \p{name=/^ARABIC SMALL/} ]
 [ \p{name=/\bSMALL LETTER\b/}-\p{gc=Mn}-\p{gc=Lt} - $nonLowercaseSmallLetters ] ⊆ \p{Lowercase}
 [ [\p{gc=Lm} & \p{name=/SMALL/}] - $nonLowercaseSmallModifierLetters ] ⊆ \p{Lowercase}
 
@@ -619,17 +753,42 @@ In \P{Other_Joining_Type=Deduce_From_General_Category}, Joining_Type = Other_Joi
 # LineBreak property
 ##########################
 
-Let $IDInclusions = [[:block=/Ideographs/:] [[\U00020000-\U0003FFFF][\U0001F000-\U0001FFFF] - [[:block=Symbols for Legacy Computing:][:block=Supplemental Arrows C:]]] & [:gc=Cn:] - [:NChar:]]
-# 9.0 Added range 1F000..1FFFF: all undesignated code points in this range are lb=ID
-# 13.0 exclude those in 1FB00..1FBFF Symbols for Legacy Computing
-# 16.0 exclude Supplemental Arrows C
+Let $IDInclusions := [
+    [:block=/Ideographs/:]
+    [  # Some ranges default to lb=ID even outside of any blocks:
+        [\U00020000-\U0003FFFF]  # Planes 2 and 3, lb=ID since 5.2, 115-C27.
+        [\U0001F000-\U0001FFFF]  # SMP range lb=ID by default since 9.0, 147-C25,
+        - [                      # with exceptions:
+              [:block=Symbols for Legacy Computing:]  # since 13.0, 162-A67;
+              [:block=Supplemental Arrows C:]         # since 16.0, 177-C47.
+          ]
+    ] & [:gc=Cn:] - [:NChar:]
+]
 \p{LB=ID} ⊃ $IDInclusions
-\p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse} - $IDInclusions - [\u20C0-\u20CF]]
+\p{Line_Break=Unknown} = [
+      \p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse}
+    - $IDInclusions
+    - [\u20C0-\u20CF]  # Unassigned currency symbols are lb=PR since 6.3, 133-C26.
+]
 
-Let $BrahmicLineBreaking = [\p{sc=Balinese}\p{sc=Batak}\p{sc=Brahmi}\p{sc=Cham}\p{sc=DivesAkuru}\p{sc=Grantha}\p{sc=Javanese}\p{sc=Makasar}\p{sc=Kawi}\p{sc=Cham}\p{sc=Makasar}\p{sc=Tulu_Tigalari}\p{sc=Gurung_Khema}]
-Let $VFScripts = [\p{sc=Batak}]
+Let $BrahmicLineBreaking := [
+    \p{sc=Balinese}
+    \p{sc=Batak}
+    \p{sc=Brahmi}
+    \p{sc=Cham}
+    \p{sc=DivesAkuru}
+    \p{sc=Grantha}
+    \p{sc=Javanese}
+    \p{sc=Makasar}
+    \p{sc=Kawi}
+    \p{sc=Cham}
+    \p{sc=Makasar}
+    \p{sc=Tulu_Tigalari}
+    \p{sc=Gurung_Khema}
+]
+Let $VFScripts := [\p{sc=Batak}]
 
-Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379\U0001342F\U00013437\U0001343C\U0001343E\U000145CE\U0001E95E-\U0001E95F]
+Let $OPInclusions := [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379\U0001342F\U00013437\U0001343C\U0001343E\U000145CE\U0001E95E-\U0001E95F]
 # 7.0 Removed hack  - [\u2308\u230A]
 # 9.0 Added Adlam initial punctuation 1E95E..1E95F
 # 12.0 Added Egyptian control begin segment 13437 (gc=Cf, lb=OP)
@@ -644,17 +803,23 @@ Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288
 \p{LB=VI} = [[\p{Indic_Syllabic_Category=Virama}\p{Indic_Syllabic_Category=Invisible_Stacker}] & $BrahmicLineBreaking]
 \p{LB=VF} = [\p{Indic_Syllabic_Category=Reordering_Killer} & $VFScripts]
 
-# 15.1: Action item UTC-176-A81: change [[:PCM:]-\u070F] lb=AL->NU
-\p{LB=CM} = [[\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -[\U00013437\U00013438\U0001343C-\U0001343F] -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL} -\p{LB=ZWJ} - \p{LB=VI} - \p{LB=VF} - \p{LB=NU}]
-# Excluded Egyptian controls begin/end segment etc. 13437, 13438 & 1343C..1343F (gc=Cf, lb=OP/CL)
+\p{LB=CM} = [
+      [\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf}
+    - [\U00013437\U00013438\U0001343C-\U0001343F]  # Egyptian controls begin/end segment etc. (gc=Cf, lb=OP/CL)
+    - \p{LB=SA} - \p{LB=WJ} - \p{LB=ZW} - \p{LB=BA}
+    - \p{LB=LF} - \p{LB=BK} - \p{LB=CR} - \p{LB=NL}
+    - \p{LB=GL} - \p{LB=AL} - \p{LB=ZWJ}
+    - \p{LB=VI} - \p{LB=VF}
+    - \p{LB=NU}  # 176-A81 changed [[:PCM:]-\u070F] from lb=AL to lb=NU
+]
 
 #  3.0.0: Numeric characters consist of decimal digits (all characters of General_Category Nd),
 #         except those with East_Asian_Width F (Fullwidth)
 # 15.1.0: and those from scripts that use the Brahmic style of context analysis,
 #  4.0.1: plus these characters: 066B ARABIC DECIMAL SEPARATOR, 066C ARABIC THOUSANDS SEPARATOR.
 # 15.1.0: Action item UTC-176-A81: change [[:PCM:]-\u070F] lb=AL->NU
-Let $NUInclusions = [\u066B\u066C]
-Let $NUFormats = [[:PCM:]-[\u070F]]
+Let $NUInclusions := [\u066B\u066C]
+Let $NUFormats := [[:PCM:]-[\u070F]]
 \p{LB=NU} = [\p{GC=Nd} $NUInclusions $NUFormats - \p{EA=F} - $BrahmicLineBreaking]
 
 # Digits are lb=AS in scripts with brahmic line breaking.
@@ -664,10 +829,10 @@ Let $NUFormats = [[:PCM:]-[\u070F]]
 # of the rule (AK | ◌ | AS) × (AK | ◌ | AS) VF.  There are no Batak digits.
 [\p{GC=Nd} & $VFScripts] = []
 
-Let $PRInclusions = [\u002b\u005c\u00b1\u2116\u2212\u2213\u20C0-\u20CF]
+Let $PRInclusions := [\u002b\u005c\u00b1\u2116\u2212\u2213\u20C0-\u20CF]
 \p{LB=PR} = [\p{GC=Sc} $PRInclusions - \p{LB=PO}]
 
-Let $QUInclusions = [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\u275E \u2E00-\u2E01 \u2E06-\u2E08 \u2E0B]
+Let $QUInclusions := [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\u275E \u2E00-\u2E01 \u2E06-\u2E08 \u2E0B]
 # 7.0 added 275F..2760 1F676..1F678
 \p{LB=QU} = [\p{GC=Pf} \p{GC=Pi} $QUInclusions]
 \p{LB=SG} = \p{GC=Cs}
@@ -711,11 +876,21 @@ Let $QUInclusions = [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\u
 # covered by adding them to the exception set $SAScriptExceptions for the test.
 
 # SA are limited to certain scripts:
-Let $SAScripts = [\p{script=ahom} \p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=khmer} \p{script=Tai_Le} \p{script=New_Tai_Lue} \p{script=Tai_Tham} \p{script=Tai_Viet}]
+Let $SAScripts := [
+    \p{script=ahom}
+    \p{script=thai}
+    \p{script=lao}
+    \p{script=myanmar}
+    \p{script=khmer}
+    \p{script=Tai_Le}
+    \p{script=New_Tai_Lue}
+    \p{script=Tai_Tham}
+    \p{script=Tai_Viet}
+]
 $SAScripts ⊇ \p{LineBreak=SA}
 
 # And in $SA scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn, plus the NEW TAI LUE THAM DIGIT ONE
-Let $SAScriptExceptions = [\x{1173A}\x{1173B}\x{1173F} \u19DA\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAADE-\uAADF]
+Let $SAScriptExceptions := [\x{1173A}\x{1173B}\x{1173F} \u19DA\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAADE-\uAADF]
 # 7.0 Added AA7D
 # 12.0 Removed Myanmar spacing marks which were assigned Other_Alphabetic: 1063..1064, 1069..106D, 1087..108C, 108F, 109A..109B, AA7B, AA7D
 
@@ -733,10 +908,10 @@ $SAScriptExceptions ∥ [\p{Alphabetic} \p{gc=cf} \p{gc=Mn}]
 
 # UAX 31 Table 3: Candidate Characters for Inclusion in Identifiers
 # Warning: the uax31 tables don't have machine-readable tables, so must be updated each release.
-Let $uax31table3 = [\u0027\u002D\u002E\u003A\u00B7\u058A\u05F3\u05F4\u0F0B\u200C\u200D\u2010\u2019\u2027\u30A0\u30FB]
+Let $uax31table3 := [\u0027\u002D\u002E\u003A\u00B7\u058A\u05F3\u05F4\u0F0B\u200C\u200D\u2010\u2019\u2027\u30A0\u30FB]
 
-Let $WBRemovals = [\u0387\u0604\u2018\u2024\u202F\u2E2F\uFE13\uFE52\uFE55\uFF07\uFF0E\uFF1A\u200c\u200d'.\:\u00AD\u00B7\u05F3\u05F4\u0600-\u0603\u06DD\u070F\u17B4\u17B5\u200E\u200F\u2019\u2027\u202A-\u202E\u2060-\u2064\u206A-\u206F\uFEFF\uFFF9-\uFFFB\u02C2-\u02C5\u02D2-\u02D6\u02DE-\u02DF\u02ED\u02EF-\u02FF\uA720-\uA721\uA789-\uA78A\uAB5B\u055B\u055C\u055E\U000110BD\U0001D173-\U0001D17A\U000E0001\U000E0020-\U000E007F\p{gc=Cf}\p{Block=Enclosed Alphanumerics}[\u02D7\u0605\u061C\u180E\u2066-\u2069\U0001BCA0-\U0001BCA3\U0001F130-\U0001F149\U0001F150-\U0001F169\U0001F170-\U0001F189\U0001F3FB-\U0001F3FF]]
-Let $WBRemovals13 = [\u02E5-\u02EB\u055A\u058A\uA708-\uA716\u055F]
+Let $WBRemovals := [\u0387\u0604\u2018\u2024\u202F\u2E2F\uFE13\uFE52\uFE55\uFF07\uFF0E\uFF1A\u200c\u200d'.\:\u00AD\u00B7\u05F3\u05F4\u0600-\u0603\u06DD\u070F\u17B4\u17B5\u200E\u200F\u2019\u2027\u202A-\u202E\u2060-\u2064\u206A-\u206F\uFEFF\uFFF9-\uFFFB\u02C2-\u02C5\u02D2-\u02D6\u02DE-\u02DF\u02ED\u02EF-\u02FF\uA720-\uA721\uA789-\uA78A\uAB5B\u055B\u055C\u055E\U000110BD\U0001D173-\U0001D17A\U000E0001\U000E0020-\U000E007F\p{gc=Cf}\p{Block=Enclosed Alphanumerics}[\u02D7\u0605\u061C\u180E\u2066-\u2069\U0001BCA0-\U0001BCA3\U0001F130-\U0001F149\U0001F150-\U0001F169\U0001F170-\U0001F189\U0001F3FB-\U0001F3FF]]
+Let $WBRemovals13 := [\u02E5-\u02EB\u055A\u058A\uA708-\uA716\u055F]
 # 9.0 corrected \p{gc=Cf} and added 202F
 # 10.0 added 34 characters which were absorbed into WB=LE (see http://www.unicode.org/reports/tr29/tr29-30d2.html#ALetter)
 # 11.0 added 5 skin tone modifiers which were absorbed into WB=Extend
@@ -744,7 +919,7 @@ Let $WBRemovals13 = [\u02E5-\u02EB\u055A\u058A\uA708-\uA716\u055F]
 # 13.0 added 24 characters (mostly tone modifiers) which were absorbed into WB=LE (see http://www.unicode.org/reports/tr29/tr29-36.html#ALetter)
 # 13.0 added 055F which was absorbed into WB=ML (see http://www.unicode.org/reports/tr29/tr29-36.html#MidLetter)
 
-Let $Uax31Removals = [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F\u17B4-\u17B5]
+Let $Uax31Removals := [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F\u17B4-\u17B5]
 # 6.1.0 adjust SAMVAT, KHMER VOWEL INHERENT*
 
 [\p{Alpha}\p{WB=Extend}\p{WB=FO}\p{WB=LE}\p{WB=ML}\p{WB=MB}\p{WB=EX}-$WBRemovals-$WBRemovals13] = [$gcAllLetters $gcAllMarks \p{gc=Nl}\p{gc=Pc}-$Uax31Removals]
@@ -770,8 +945,8 @@ Let $Uax31Removals = [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F\u17B4-\u17B5]
 \p{ID_Continue} = [\p{Other_ID_Continue} \p{ID_Start} \p{GC=Mn} \p{GC=Mc} \p{GC=Nd} \p{GC=Pc} - \p{Pattern_Syntax} - \p{Pattern_White_Space}] 
 
 # See derivation of Default_Ignorable_Code_Point in DerivedCoreProperties.txt
-Let $Annotations = [\uFFF9-\uFFFB]
-Let $EgyptianControls = [\U00013430-\U00013440]
+Let $Annotations := [\uFFF9-\uFFFB]
+Let $EgyptianControls := [\U00013430-\U00013440]
 \p{Default_Ignorable_Code_Point} = [\p{Other_Default_Ignorable_Code_Point} \p{GC=Cf} \p{Variation_Selector} - [\p{White_Space} $Annotations $EgyptianControls \p{PCM}]]
 
 \p{Grapheme_Extend} = [\p{Other_Grapheme_Extend} \p{GC=Me} \p{GC=Mn}]
@@ -810,9 +985,9 @@ Let $EgyptianControls = [\U00013430-\U00013440]
 # either adjust the set of scripts, or
 # - change ToolUnicodePropertySource.java to remove the offending characters from the gcbSpacingMarkSet
 # - add them to the exceptions list in UAX #29
-Let $PostBaseSpacingMarks_All = [[:sc=Myanmar:][:sc=Tai_Tham:][:sc=Ahom:] & [:gc=Mc:] & [:InPC=Right:]]
-Let $PostBaseSpacingMarks_Tweak = [\u103B \u1056 \u1057 \u1A57 \u1A6D]
-Let $PostBaseSpacingMarks_Missed = []
+Let $PostBaseSpacingMarks_All := [[:sc=Myanmar:][:sc=Tai_Tham:][:sc=Ahom:] & [:gc=Mc:] & [:InPC=Right:]]
+Let $PostBaseSpacingMarks_Tweak := [\u103B \u1056 \u1057 \u1A57 \u1A6D]
+Let $PostBaseSpacingMarks_Missed := []
 [$PostBaseSpacingMarks_All - $PostBaseSpacingMarks_Tweak - $PostBaseSpacingMarks_Missed] ⊂ [:GCB=XX:]
 
 # Check the consistency of grapheme cluster segmentation (both legacy and
@@ -828,12 +1003,15 @@ Let $PostBaseSpacingMarks_Missed = []
 # But not before Unicode Version 16.0, even though we were saying so since
 # Unicode Version 4.0 (https://www.unicode.org/reports/tr29/tr29-4.html#Implementation_Notes),
 # oops (see L2/24-009).
-Let $TwoForgottenMusicalSymbols = \p{Name=/^MUSICAL SYMBOL COMBINING (SPRECHGESANG STEM|AUGMENTATION DOT)$/}
-Let $FourteenSpacingViramas = [\p{U15.1.0:ccc=9}&\p{U15.1.0:gc=Mc}]
-Let $TwoVietnameseReadingMarks = [\p{U15.1.0:ccc=6}]
-[\P{U4.0.0:ccc=0}  - \p{U4.0.0:Grapheme_Extend}] = [$TwoForgottenMusicalSymbols \p{Name=/^MUSICAL SYMBOL COMBINING FLAG-[3-5]$/}]
+Let $TwoForgottenMusicalSymbols := \p{Name=/^MUSICAL SYMBOL COMBINING (SPRECHGESANG STEM|AUGMENTATION DOT)$/}
+Let $FourteenSpacingViramas := [\p{U15.1.0:ccc=9}&\p{U15.1.0:gc=Mc}]
+Let $TwoVietnameseReadingMarks := [\p{U15.1.0:ccc=6}]
+[\P{U4.0.0:ccc=0}  - \p{U4.0.0:Grapheme_Extend}] = [$TwoForgottenMusicalSymbols
+                                                    \p{Name=/^MUSICAL SYMBOL COMBINING FLAG-[3-5]$/}]
 [\P{U4.1.0:ccc=0}  - \p{U4.1.0:GCB=Extend}]      = $TwoForgottenMusicalSymbols
-[\P{U15.1.0:ccc=0} - \p{U15.1.0:GCB=Extend}]     = [$TwoForgottenMusicalSymbols $FourteenSpacingViramas $TwoVietnameseReadingMarks]
+[\P{U15.1.0:ccc=0} - \p{U15.1.0:GCB=Extend}]     = [$TwoForgottenMusicalSymbols
+                                                    $FourteenSpacingViramas
+                                                    $TwoVietnameseReadingMarks]
  \P{        ccc=0} ⊆ \p{        GCB=Extend}
 
 # Characters that appear in non-initial position in the canonical decomposition
@@ -853,6 +1031,20 @@ Let $TwoVietnameseReadingMarks = [\p{U15.1.0:ccc=6}]
 In [\p{dt=canonical}-[\p{gcb=LV}\p{gcb=LVT}]], gcb * (take 1) * dm = gcb
 In [\p{gcb=LV}\p{gcb=LVT}], (take 1) * dm ∈ [\p{gcb=L} \p{gcb=LV} \p{gcb=LVT}]
 
+# ICU relies on this to avoid carrying data for HST which would be mostly
+# redundant with GCB.  If this breaks, it should be noted on the landing page,
+# and ICU-TC should be notified.
+# See https://github.com/unicode-org/icu/pull/3026.
+\p{HST=V} = [\p{GCB=V} & [\u0000-\uFFFF]]
+# A more principled (if less practically useful) statement is that the
+# dual-conjoining Hangul characters are exactly the Hangul vowels.
+\p{HST=V} = [\p{GCB=V} & \p{Script=Hangul}]
+# The other types are still straightforwardly related to their GCB counterparts.
+\p{HST=L}   = \p{GCB=L}
+\p{HST=LV}  = \p{GCB=LV}
+\p{HST=LVT} = \p{GCB=LVT}
+\p{HST=T}   = \p{GCB=T}
+
 ##########################
 # Emoji
 ##########################
@@ -864,7 +1056,7 @@ In [\p{gcb=LV}\p{gcb=LVT}], (take 1) * dm ∈ [\p{gcb=L} \p{gcb=LV} \p{gcb=LVT}]
 \p{Emoji_Modifier} ⊂ \p{Emoji_Presentation}
 \p{Emoji_Presentation} ⊂ \p{Emoji}
 
-Let $HairComponents = [\U0001F9B0-\U0001F9B3]
+Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 [\p{Extended_Pictographic} & \p{Emoji_Component}] = $HairComponents
 \p{Extended_Pictographic} ⊃ [\p{Emoji} - \p{Emoji_Component}]
 \p{Extended_Pictographic} ⊃ [\p{Emoji_Presentation} - \p{Emoji_Component}]
@@ -902,17 +1094,17 @@ Let $HairComponents = [\U0001F9B0-\U0001F9B3]
 
 # constants
 
-Let $SP = [\u0020]	# [\N{space}]
-Let $TAB = [\u0009] # [\N{CHARACTER TABULATION}]
-Let $LF = [\u000A]	# \N{linefeed}
-Let $VTAB = [\u000B]	# [\N{LINE TABULATION}]
-Let $FF = [\u000C]	# [\N{formfeed}]
-Let $CR = [\u000D]	# \N{carriage return}
-Let $NEL = [\u0085]	# \N{next line}
+Let $SP := [\u0020]	# [\N{space}]
+Let $TAB := [\u0009] # [\N{CHARACTER TABULATION}]
+Let $LF := [\u000A]	# \N{linefeed}
+Let $VTAB := [\u000B]	# [\N{LINE TABULATION}]
+Let $FF := [\u000C]	# [\N{formfeed}]
+Let $CR := [\u000D]	# \N{carriage return}
+Let $NEL := [\u0085]	# \N{next line}
 #Let $ZWNJ = [\u200C]	# [\N{ZERO WIDTH NON-JOINER}]
 #Let $ZWJ = [\u200D]	# [\N{ZERO WIDTH JOINER}]
 
-Let $CircledAsciiLetters = [\u24B6-\u24E9]
+Let $CircledAsciiLetters := [\u24B6-\u24E9]
 
 # Unassigned, Control, Format, Private_Use, Surrogate, 
 # Uppercase_Letter, Lowercase_Letter, Titlecase_Letter, Modifier_Letter, Other_Letter,
@@ -924,19 +1116,19 @@ Let $CircledAsciiLetters = [\u24B6-\u24E9]
 
 # UTS Rules
 
-Let $alpha = [\p{Alphabetic} $CircledAsciiLetters]
-Let $lower = \p{Lowercase} 
-Let $upper = [\p{Uppercase}]
-Let $punct = [$gcAllPunctuation $gcAllSymbols - $alpha]
-Let $digit = \p{gc=Decimal_Number} 
-Let $xdigit = [\p{gc=Decimal_Number} \p{Hex_Digit}] # in both!
-Let $alnum = [$alpha $digit]
-Let $space = \p{Whitespace} 
-Let $blank = [\p{Whitespace} - [$LF $VTAB $FF $CR $NEL \p{gc=Line_Separator} \p{gc=Paragraph_Separator}]]
-Let $cntrl = \p{gc=Control} 
-Let $graph = [^$space \p{gc=Control} \p{gc=Surrogate} \p{gc=Unassigned}]
-Let $print = [$graph $blank - $cntrl]
-Let $word = [$alpha $gcAllMarks $digit \p{gc=Connector_Punctuation}] 
+Let $alpha := [\p{Alphabetic} $CircledAsciiLetters]
+Let $lower := \p{Lowercase} 
+Let $upper := [\p{Uppercase}]
+Let $punct := [$gcAllPunctuation $gcAllSymbols - $alpha]
+Let $digit := \p{gc=Decimal_Number} 
+Let $xdigit := [\p{gc=Decimal_Number} \p{Hex_Digit}] # in both!
+Let $alnum := [$alpha $digit]
+Let $space := \p{Whitespace} 
+Let $blank := [\p{Whitespace} - [$LF $VTAB $FF $CR $NEL \p{gc=Line_Separator} \p{gc=Paragraph_Separator}]]
+Let $cntrl := \p{gc=Control} 
+Let $graph := [^$space \p{gc=Control} \p{gc=Surrogate} \p{gc=Unassigned}]
+Let $print := [$graph $blank - $cntrl]
+Let $word := [$alpha $gcAllMarks $digit \p{gc=Connector_Punctuation}] 
 
 # ===========================
 
@@ -975,7 +1167,7 @@ $blank ⊇ [$SP $TAB]
 
 # Extra POSIX 'POSIX locale' constraints
 
-Let $C0Controls = [\u0000-\u001F]
+Let $C0Controls := [\u0000-\u001F]
 
 $cntrl ⊇  $C0Controls
 
@@ -1007,37 +1199,59 @@ $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 # The Khitan Small Script filler is a Nonspacing Mark.
 # The other characters are numerals (the Hangzhou ten through thirty are compatibility decomposable,
 # but not the one through nine) and have Script=Han.
-Let $NonOtherLetterIdeographs = [\N{KHITAN SMALL SCRIPT FILLER}  〇 〡-〩 〸-〺]
+Let $NonOtherLetterIdeographs := [\N{KHITAN SMALL SCRIPT FILLER}  〇 〡-〩 〸-〺]
 $NonOtherLetterIdeographs = [\p{Ideographic} - \p{gc=Lo}]
 # Ideographic closing mark, gc=Lo.
-Let $CommonIdeographs = [〆]
+Let $CommonIdeographs := [〆]
 $CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
 
-\p{Ideographic} = [ $NonOtherLetterIdeographs $CommonIdeographs [ \p{gc=Lo} & [\p{Script=Han} \p{Script=Tangut} \p{Script=Nushu} \p{Script=Khitan_Small_Script}] ] ]
+\p{Ideographic} = [
+    $NonOtherLetterIdeographs $CommonIdeographs
+    [
+        \p{gc=Lo} & [
+            \p{Script=Han}
+            \p{Script=Tangut}
+            \p{Script=Nushu}
+            \p{Script=Khitan_Small_Script}
+        ]
+    ]
+]
 
 [ [\p{Ideographic}&\p{sc=Han}] - \p{nfkcqc=n} - $NonOtherLetterIdeographs ] = \p{Unified_Ideograph}
 
-Let $unihanScope = [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
+Let $unihanScope := [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
 \p{Unified_Ideograph} ⊂ $unihanScope
 $unihanScope = [\p{gc=Lo} & \p{sc=Hani}]
 $unihanScope = \P{kRSUnicode=@none@}
 $unihanScope = \P{kTotalStrokes=@none@}
-$unihanScope = [ \P{kIRG_GSource=@none@} \P{kIRG_HSource=@none@} \P{kIRG_JSource=@none@} \P{kIRG_KPSource=@none@} \P{kIRG_KSource=@none@} \P{kIRG_MSource=@none@} \P{kIRG_SSource=@none@} \P{kIRG_TSource=@none@} \P{kIRG_UKSource=@none@} \P{kIRG_USource=@none@} \P{kIRG_VSource=@none@} ]
+$unihanScope = [
+    \P{kIRG_GSource=@none@}
+    \P{kIRG_HSource=@none@}
+    \P{kIRG_JSource=@none@}
+    \P{kIRG_KPSource=@none@}
+    \P{kIRG_KSource=@none@}
+    \P{kIRG_MSource=@none@}
+    \P{kIRG_SSource=@none@}
+    \P{kIRG_TSource=@none@}
+    \P{kIRG_UKSource=@none@}
+    \P{kIRG_USource=@none@}
+    \P{kIRG_VSource=@none@}
+]
 
 # TODO(eggrobin): Should those two have a kMandarin, or this not actually an invariant?
 # See https://www.unicode.org/review/pri483/feedback.html#ID20240118004124.
 # Change to \P{kHanyuPinyin=@none@} ⊆ \P{kMandarin=@none@} once this gets fixed.
-Let $ideographsMissingkMandarin = [\x{228F5}\x{2574C}]
+Let $ideographsMissingkMandarin := [\x{228F5}\x{2574C}]
 [\P{kHanyuPinyin=@none@} - \P{kMandarin=@none@}] = $ideographsMissingkMandarin
 
-Let $cjkStrokes = \p{Name=/^CJK STROKE /}
-Let $kangxiRadicals = \p{Name=/^KANGXI RADICAL /}
-Let $cjkRadicals = \p{Name=/^CJK RADICAL /}
-Let $strokesAndRadicals = [ $cjkStrokes $kangxiRadicals $cjkRadicals ]
-Let $nonIdeographicRadicals = \N{CJK RADICAL REPEAT}
+Let $cjkStrokes := \p{Name=/^CJK STROKE /}
+Let $kangxiRadicals := \p{Name=/^KANGXI RADICAL /}
+Let $cjkRadicals := \p{Name=/^CJK RADICAL /}
+Let $strokesAndRadicals := [ $cjkStrokes $kangxiRadicals $cjkRadicals ]
+Let $nonIdeographicRadicals := \N{CJK RADICAL REPEAT}
 # The following set may expand over time, if strokes are added.
 # It can also shrink, if single-stroke ideographs are encoded.
-Let $nonIdeographicStrokes = \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZWG|HZT|HZZP|HPWG|HZW|HZZZ|PG|Q|HXG|SZP)$/}
+Let $nonIdeographicStrokes := \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZWG|HZT|HZZP|HPWG|HZW|HZZZ|PG|Q|HXG|SZP)$/}
 
 # See https://www.unicode.org/review/pri502/feedback.html#ID20240523095709.
 $cjkStrokes ⊆ \p{scx=Hani}
@@ -1058,13 +1272,36 @@ In $kangxiRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/\.0/}
 # non-Chinese simplified radical (kRSUnicode=n''.0) otherwise.
 # However, two of the simplified radicals are unifiable with their non-simplified counterparts,
 # and are therefore equivalent to ideographs with kRSUnicode=n.0.
-Let $radicalsWithUnifiableSimplifications = [角辶]
+Let $radicalsWithUnifiableSimplifications := [角辶]
 $radicalsWithUnifiableSimplifications ⊆ \p{kRSUnicode=/^[0-9]+\.0$/}
 [$radicalsWithUnifiableSimplifications & \p{kRSUnicode=/^[0-9]+'\.0$/}] = []
-Let $chineseSimplifiedRadicals = \p{Name=/CJK RADICAL (C-)?SIMPLIFIED/}
-Let $japaneseSimplifiedRadicals = \p{Name=/CJK RADICAL J-SIMPLIFIED/}
+Let $chineseSimplifiedRadicals := \p{Name=/CJK RADICAL (C-)?SIMPLIFIED/}
+Let $japaneseSimplifiedRadicals := \p{Name=/CJK RADICAL J-SIMPLIFIED/}
 In $chineseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ [\p{kRSUnicode=/^[0-9]+'\.0$/} $radicalsWithUnifiableSimplifications]
 In $japaneseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/^[0-9]+''\.0$/}
+
+# Tangut invariants
+
+Let $tangutSourcesScope := [\p{Block=/^Tangut(.Supplement)?$/} - \p{gc=Cn}]
+$tangutSourcesScope = [ [\p{gc=Lo} & \p{sc=Tangut}] - \p{name=/^TANGUT COMPONENT-/} ]
+$tangutSourcesScope = \P{kTGT_MergedSrc=@none@}
+$tangutSourcesScope = \P{kRSTUnicode=@none@}
+
+# Nüshu invariants
+
+Let $nüshuSourcesScope := [\p{Block=Nushu} - \p{gc=Cn}]
+$nüshuSourcesScope = [\p{gc=Lo} & \p{sc=Nushu}]
+$nüshuSourcesScope = \P{kSrc_NushuDuben=@none@}
+$nüshuSourcesScope = \P{kReading=@none@}
+
+# Egyptian hieroglyph invariants
+
+Let $unikemetScope := [\p{Block=/^Egyptian.Hieroglyphs/} - \p{gc=Cn}]
+$unikemetScope = [ [\p{gc=Lo} & \p{sc=Egyp}] - \p{Name=/^EGYPTIAN HIEROGLYPH (FULL |HALF |TALL |WIDE )?(BLANK|LOST SIGN)$/} ]
+$unikemetScope = \P{kEH_Cat=@none@}
+$unikemetScope = \P{kEH_UniK=@none@}
+\p{kEH_NoMirror} ⊂ $unikemetScope
+\p{kEH_NoRotate} ⊂ $unikemetScope
 
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
@@ -1095,3 +1332,39 @@ In [\p{Block=Hangul Syllables} - \p{gc=Cn}], (prepend HANGUL SYLLABLE ) * (strin
 # https://www.unicode.org/review/pri497/feedback.html#ID20240216135149.
 In \p{Decomposition_Type=font}, Bidi_Class = Bidi_Class * Decomposition_Mapping
 
+# Basic Propertywise tests.
+Ignoring Name:
+
+Propertywise [𐛪 𐛫] AreAlike
+
+Ignoring Unicode_1_Name Confusable_MA:
+    Propertywise [ي ۑ] AreAlike
+
+    Propertywise [[β-ω] - [ς]] : [[Β-Ω] - \p{gc=Cn}]
+    CorrespondTo [α]           :  [Α]
+
+    Propertywise [[α-ω] - [ς]] : [[Α-Ω] - \p{gc=Cn}]
+    CorrespondTo [g]           :  [G]
+        UpTo: Block             (Greek_And_Coptic vs Basic_Latin),
+              Script            (Greek            vs Latin),
+              Script_Extensions (Greek            vs Latin),
+              East_Asian_Width  (Ambiguous        vs Narrow)
+
+    Propertywise [ʳʷʸ] : [rwy] : [RWY]
+    CorrespondTo [ʰ]   : [h]   : [H]
+
+    Ignoring Soft_Dotted:
+        Propertywise [ʲ] : [j] : [J]
+        CorrespondTo [ʰ] : [h] : [H]
+    end Ignoring;
+
+    # TODO(egg): Should ⁱ have Diacritic?  It is not its original intent, but
+    # maybe it gets used that way too.
+    Ignoring Block Age Diacritic:
+        Propertywise [ʲ] : [j] : [J]
+        CorrespondTo [ⁱ] : [i] : [I]
+    end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
