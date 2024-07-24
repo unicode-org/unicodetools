@@ -1405,6 +1405,15 @@ public final class UCD implements UCD_Types {
                     return CJK_H_BASE;
                 }
             }
+            // 323B0..3347B; CJK Unified Ideographs Extension H
+            if (rCompositeVersion >= 0x110000) {
+                if (ch <= CJK_J_BASE) {
+                    return ch; // Extension H first char
+                }
+                if (ch < CJK_J_LIMIT) {
+                    return CJK_J_BASE;
+                }
+            }
 
             if (ch < 0xF0000) {
                 return ch;
@@ -1659,6 +1668,7 @@ public final class UCD implements UCD_Types {
             case CJK_I_BASE:
             case CJK_G_BASE: // Extension G
             case CJK_H_BASE:
+            case CJK_J_BASE:
                 if (fixStrings) {
                     constructedName = "CJK UNIFIED IDEOGRAPH-" + Utility.hex(codePoint, 4);
                 }
