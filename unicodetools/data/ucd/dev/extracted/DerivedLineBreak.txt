@@ -1,5 +1,5 @@
 # DerivedLineBreak-16.0.0.txt
-# Date: 2024-06-06, 16:48:51 GMT
+# Date: 2024-07-24, 16:28:23 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -356,7 +356,7 @@ FF9E..FF9F    ; NS # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KA
 16FE0..16FE1  ; NS # Lm   [2] TANGUT ITERATION MARK..NUSHU ITERATION MARK
 16FE2         ; NS # Po       OLD CHINESE HOOK MARK
 16FE3         ; NS # Lm       OLD CHINESE ITERATION MARK
-16FF2..16FF3  ; NS # Lo   [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
+16FF2..16FF3  ; NS # Lm   [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
 1F679..1F67B  ; NS # So   [3] HEAVY INTERROBANG ORNAMENT..HEAVY SANS-SERIF INTERROBANG ORNAMENT
 
 # Total code points: 37

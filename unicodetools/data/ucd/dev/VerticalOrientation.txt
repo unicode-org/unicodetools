@@ -1,5 +1,5 @@
 # VerticalOrientation-16.0.0.txt
-# Date: 2024-06-06, 16:49:21 GMT
+# Date: 2024-07-24, 16:29:33 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2188,7 +2188,7 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 16FE4          ; U  # Mn         KHITAN SMALL SCRIPT FILLER
 16FE5..16FEF   ; U  # Cn    [11] <reserved-16FE5>..<reserved-16FEF>
 16FF0..16FF1   ; U  # Mc     [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
-16FF2..16FF3   ; U  # Lo     [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
+16FF2..16FF3   ; U  # Lm     [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
 16FF4..16FFF   ; U  # Cn    [12] <reserved-16FF4>..<reserved-16FFF>
 17000..187F7   ; U  # Lo  [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
 187F8..187FF   ; U  # Cn     [8] <reserved-187F8>..<reserved-187FF>
