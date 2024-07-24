@@ -1,3 +1,5 @@
+323B0;<CJK Ideograph Extension J, First>;Lo;0;L;;;;;N;;;;;
+3347B;<CJK Ideograph Extension J, Last>;Lo;0;L;;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
