@@ -1435,9 +1435,9 @@ public class UcdPropertyValues {
     // kEACC
     // kEH_Cat
     public enum kEH_Core_Values implements Named {
-        C("C"),
-        L("L"),
-        N("N");
+        Core("C"),
+        Legacy("L"),
+        None("N");
         private final PropertyNames<kEH_Core_Values> names;
 
         private kEH_Core_Values(String shortName, String... otherNames) {
