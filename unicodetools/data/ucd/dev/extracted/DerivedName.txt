@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2024-04-30, 21:48:18 GMT
+# Date: 2024-07-25, 15:19:46 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -39604,6 +39604,12 @@ FFFD          ; REPLACEMENT CHARACTER
 1D243         ; COMBINING GREEK MUSICAL TETRASEME
 1D244         ; COMBINING GREEK MUSICAL PENTASEME
 1D245         ; GREEK MUSICAL LEIMMA
+1D250         ; MUSICAL SYMBOL COMBINING FLAG-6
+1D251         ; MUSICAL SYMBOL COMBINING FLAG-7
+1D252         ; MUSICAL SYMBOL COMBINING FLAG-8
+1D253         ; MUSICAL SYMBOL TWO HUNDRED FIFTY-SIXTH REST
+1D254         ; MUSICAL SYMBOL FIVE HUNDRED TWELFTH REST
+1D255         ; MUSICAL SYMBOL ONE THOUSAND TWENTY-FOURTH REST
 1D2C0         ; KAKTOVIK NUMERAL ZERO
 1D2C1         ; KAKTOVIK NUMERAL ONE
 1D2C2         ; KAKTOVIK NUMERAL TWO
@@ -45367,6 +45373,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 154998
+# Total code points: 155004
 
 # EOF

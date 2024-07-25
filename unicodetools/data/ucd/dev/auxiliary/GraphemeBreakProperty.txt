@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-16.0.0.txt
-# Date: 2024-05-31, 18:09:38 GMT
+# Date: 2024-07-25, 15:19:48 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -660,8 +660,9 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 11F3E..11F3F  ; SpacingMark # Mc   [2] KAWI VOWEL SIGN E..KAWI VOWEL SIGN AI
 1612A..1612C  ; SpacingMark # Mc   [3] GURUNG KHEMA CONSONANT SIGN MEDIAL YA..GURUNG KHEMA CONSONANT SIGN MEDIAL HA
 16F51..16F87  ; SpacingMark # Mc  [55] MIAO SIGN ASPIRATION..MIAO VOWEL SIGN UI
+1D250..1D252  ; SpacingMark # Mc   [3] MUSICAL SYMBOL COMBINING FLAG-6..MUSICAL SYMBOL COMBINING FLAG-8
 
-# Total code points: 378
+# Total code points: 381
 
 # ================================================
 
