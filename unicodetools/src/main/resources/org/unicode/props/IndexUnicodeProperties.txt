@@ -368,3 +368,25 @@ emoji/*/emoji-sequences; RGI_Emoji_Tag_Sequence
 emoji/*/emoji-zwj-sequences; RGI_Emoji_Zwj_Sequence
 
 #emoji/*/emoji-test ; Emoji_Short_Name
+
+
+FileType ; TangutSources ; PropertyValue
+TangutSources ; kTGT_MergedSrc
+TangutSources ; kRSTUnicode
+
+FileType ; NushuSources ; PropertyValue
+NushuSources ; kSrc_NushuDuben
+NushuSources ; kReading
+
+FileType ; Unikemet ; PropertyValue
+Unikemet ; kEH_Cat
+Unikemet ; kEH_Core
+Unikemet ; kEH_Desc
+Unikemet ; kEH_Func
+Unikemet ; kEH_FVal
+Unikemet ; kEH_JSesh
+Unikemet ; kEH_HG
+Unikemet ; kEH_IFAO
+Unikemet ; kEH_NoMirror
+Unikemet ; kEH_NoRotate
+Unikemet ; kEH_UniK
