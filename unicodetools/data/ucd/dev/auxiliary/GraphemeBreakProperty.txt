@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-16.0.0.txt
-# Date: 2024-04-30, 21:48:20 GMT
+# Date: 2024-07-25, 11:42:52 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -117,6 +117,7 @@ E01F0..E0FFF  ; Control # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 0951..0957    ; Extend # Mn   [7] DEVANAGARI STRESS SIGN UDATTA..DEVANAGARI VOWEL SIGN UUE
 0962..0963    ; Extend # Mn   [2] DEVANAGARI VOWEL SIGN VOCALIC L..DEVANAGARI VOWEL SIGN VOCALIC LL
 0981          ; Extend # Mn       BENGALI SIGN CANDRABINDU
+0984          ; Extend # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 09BC          ; Extend # Mn       BENGALI SIGN NUKTA
 09BE          ; Extend # Mc       BENGALI VOWEL SIGN AA
 09C1..09C4    ; Extend # Mn   [4] BENGALI VOWEL SIGN U..BENGALI VOWEL SIGN VOCALIC RR
@@ -490,7 +491,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2190
+# Total code points: 2191
 
 # ================================================
 

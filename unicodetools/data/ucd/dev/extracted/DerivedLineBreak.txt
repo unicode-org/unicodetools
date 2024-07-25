@@ -1,5 +1,5 @@
 # DerivedLineBreak-16.0.0.txt
-# Date: 2024-05-11, 16:57:14 GMT
+# Date: 2024-07-25, 11:42:47 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -69,8 +69,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 757653 code points not listed here.
-# Total code points: 895121
+# The above property value applies to 757652 code points not listed here.
+# Total code points: 895120
 
 # ================================================
 
@@ -1928,6 +1928,7 @@ FE19          ; IN # Po       PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS
 0962..0963    ; CM # Mn   [2] DEVANAGARI VOWEL SIGN VOCALIC L..DEVANAGARI VOWEL SIGN VOCALIC LL
 0981          ; CM # Mn       BENGALI SIGN CANDRABINDU
 0982..0983    ; CM # Mc   [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
+0984          ; CM # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 09BC          ; CM # Mn       BENGALI SIGN NUKTA
 09BE..09C0    ; CM # Mc   [3] BENGALI VOWEL SIGN AA..BENGALI VOWEL SIGN II
 09C1..09C4    ; CM # Mn   [4] BENGALI VOWEL SIGN U..BENGALI VOWEL SIGN VOCALIC RR
@@ -2389,7 +2390,7 @@ E0001         ; CM # Cf       LANGUAGE TAG
 E0020..E007F  ; CM # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; CM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2470
+# Total code points: 2471
 
 # ================================================
 
