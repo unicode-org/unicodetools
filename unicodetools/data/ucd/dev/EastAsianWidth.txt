@@ -1,3 +1,5 @@
+18E00..19191;W
+191A0..191D2;W
 # EastAsianWidth-16.0.0.txt
 # Date: 2024-04-30, 21:48:20 GMT
 # © 2024 Unicode®, Inc.
