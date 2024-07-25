@@ -1,3 +1,4 @@
+0984; CM # Mn BENGALI SIGN COMBINING ANUSVARA ABOVE
 # LineBreak-16.0.0.txt
 # Date: 2024-05-11, 16:57:19 GMT
 # © 2024 Unicode®, Inc.
