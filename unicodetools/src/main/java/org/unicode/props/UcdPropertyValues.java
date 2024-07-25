@@ -394,6 +394,7 @@ public class UcdPropertyValues {
         Mro("Mro"),
         Multani("Multani"),
         Musical_Symbols("Music"),
+        Musical_Symbols_Supplement("Music_Sup"),
         Myanmar("Myanmar"),
         Myanmar_Extended_A("Myanmar_Ext_A"),
         Myanmar_Extended_B("Myanmar_Ext_B"),
