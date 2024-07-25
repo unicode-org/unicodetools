@@ -3131,7 +3131,6 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 16D98         ; Chisoi # Mn       CHISOI SIGN ANUSVARA
 16D99..16D9C  ; Chisoi # Lo   [4] CHISOI LETTER YA..CHISOI LETTER JARAHA
 16D9D         ; Chisoi # Mn       CHISOI SIGN SISO
-16D9E..16D9F  ; Chisoi # Cn   [2] <reserved-16D9E>..<reserved-16D9F>
 16DA0..16DA9  ; Chisoi # Nd  [10] CHISOI DIGIT ZERO..CHISOI DIGIT NINE
 
 # Total code points: 42
