@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2024-06-05, 00:24:58 GMT
+# Date: 2024-07-25, 16:25:40 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -701,7 +701,7 @@ FF41..FF5A    ; Latin # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 1DF0A         ; Latin # Lo       LATIN LETTER RETROFLEX CLICK WITH RETROFLEX HOOK
 1DF0B..1DF2C  ; Latin # L&  [34] LATIN SMALL LETTER ESH WITH DOUBLE BAR..LATIN SMALL LETTER TESH DIGRAPH WITH CURL
 1DF3E..1DF3F  ; Latin # L&   [2] LATIN SMALL LETTER BARRED TURNED H..LATIN SMALL LETTER BARRED W
-1DFD8..1DFE8  ; Latin # Lm  [17] MODIFIER LETTER SMALL N WITH LONG RIGHT LEG..MODIFIER LETTER SMALL CAPITAL D
+1DFD8..1DFE8  ; Latin # Lm  [17] MODIFIER LETTER SMALL BARRED TURNED H..MODIFIER LETTER SMALL CAPITAL D
 
 # Total code points: 1514
 
