@@ -1,3 +1,4 @@
+1D250..1D252; Other_Grapheme_Extend
 # PropList-16.0.0.txt
 # Date: 2024-05-31, 18:09:48 GMT
 # © 2024 Unicode®, Inc.
