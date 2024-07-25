@@ -205,9 +205,9 @@ Do_Not_Emit_Type ; Preferred_Spelling       ; Preferred_Spelling
 # @missing: 0000..10FFFF; kReading ; <none>
 
 # @missing: 0000..10FFFF; kEH_Core  ;  N
-kEH_Core ; C ; C
-kEH_Core ; L ; L
-kEH_Core ; N ; N
+kEH_Core ; C ; Core
+kEH_Core ; L ; Legacy
+kEH_Core ; N ; None
 
 # @missing: 0000..10FFFF; kEH_Func ; <none>
 # @missing: 0000..10FFFF; kEH_FVal ; <none>
