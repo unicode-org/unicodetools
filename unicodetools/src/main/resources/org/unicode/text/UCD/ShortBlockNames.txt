@@ -144,6 +144,8 @@ Inscriptional_Pahlavi	;	Inscriptional_Pahlavi
 Inscriptional_Parthian	;	Inscriptional_Parthian
 IPA_Ext	;	IPA_Extensions
 Javanese	;	Javanese
+Jurchen	;	Jurchen
+Jurchen_Radicals	;	Jurchen_Radicals
 Kaithi	;	Kaithi
 Kaktovik_Numerals	;	Kaktovik_Numerals
 Kana_Ext_A	;	Kana_Extended_A
