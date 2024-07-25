@@ -1,6 +1,5 @@
-0984; Bindu # Mn BENGALI SIGN COMBINING ANUSVARA ABOVE
 # IndicSyllabicCategory-16.0.0.txt
-# Date: 2024-04-30, 21:48:21 GMT
+# Date: 2024-07-25, 11:42:53 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -73,6 +72,7 @@
 0900..0902    ; Bindu # Mn   [3] DEVANAGARI SIGN INVERTED CANDRABINDU..DEVANAGARI SIGN ANUSVARA
 0981          ; Bindu # Mn       BENGALI SIGN CANDRABINDU
 0982          ; Bindu # Mc       BENGALI SIGN ANUSVARA
+0984          ; Bindu # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 09FC          ; Bindu # Lo       BENGALI LETTER VEDIC ANUSVARA
 0A01..0A02    ; Bindu # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A70          ; Bindu # Mn       GURMUKHI TIPPI

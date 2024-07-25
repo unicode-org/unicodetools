@@ -1,6 +1,5 @@
-0984; CM # Mn BENGALI SIGN COMBINING ANUSVARA ABOVE
 # LineBreak-16.0.0.txt
-# Date: 2024-05-11, 16:57:19 GMT
+# Date: 2024-07-25, 11:42:53 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -311,6 +310,7 @@
 0980           ; AL # Lo         BENGALI ANJI
 0981           ; CM # Mn         BENGALI SIGN CANDRABINDU
 0982..0983     ; CM # Mc     [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
+0984           ; CM # Mn         BENGALI SIGN COMBINING ANUSVARA ABOVE
 0985..098C     ; AL # Lo     [8] BENGALI LETTER A..BENGALI LETTER VOCALIC L
 098F..0990     ; AL # Lo     [2] BENGALI LETTER E..BENGALI LETTER AI
 0993..09A8     ; AL # Lo    [22] BENGALI LETTER O..BENGALI LETTER NA

@@ -1,5 +1,5 @@
 # EastAsianWidth-16.0.0.txt
-# Date: 2024-04-30, 21:48:20 GMT
+# Date: 2024-07-25, 11:42:51 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -364,6 +364,7 @@
 0980           ; N  # Lo         BENGALI ANJI
 0981           ; N  # Mn         BENGALI SIGN CANDRABINDU
 0982..0983     ; N  # Mc     [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
+0984           ; N  # Mn         BENGALI SIGN COMBINING ANUSVARA ABOVE
 0985..098C     ; N  # Lo     [8] BENGALI LETTER A..BENGALI LETTER VOCALIC L
 098F..0990     ; N  # Lo     [2] BENGALI LETTER E..BENGALI LETTER AI
 0993..09A8     ; N  # Lo    [22] BENGALI LETTER O..BENGALI LETTER NA
