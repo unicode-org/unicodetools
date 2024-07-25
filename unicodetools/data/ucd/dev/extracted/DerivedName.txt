@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2024-07-25, 15:03:26 GMT
+# Date: 2024-07-25, 17:25:36 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -37724,15 +37724,15 @@ FFFD          ; REPLACEMENT CHARACTER
 18CFF         ; KHITAN SMALL SCRIPT CHARACTER-*
 18D00..18D08  ; TANGUT IDEOGRAPH-*
 18E00..19191  ; JURCHEN IDEOGRAPH-*
-191A0         ; JURCHEN RADICAL-1
-191A1         ; JURCHEN RADICAL-2
-191A2         ; JURCHEN RADICAL-3
-191A3         ; JURCHEN RADICAL-4
-191A4         ; JURCHEN RADICAL-5
-191A5         ; JURCHEN RADICAL-6
-191A6         ; JURCHEN RADICAL-7
-191A7         ; JURCHEN RADICAL-8
-191A8         ; JURCHEN RADICAL-9
+191A0         ; JURCHEN RADICAL-01
+191A1         ; JURCHEN RADICAL-02
+191A2         ; JURCHEN RADICAL-03
+191A3         ; JURCHEN RADICAL-04
+191A4         ; JURCHEN RADICAL-05
+191A5         ; JURCHEN RADICAL-06
+191A6         ; JURCHEN RADICAL-07
+191A7         ; JURCHEN RADICAL-08
+191A8         ; JURCHEN RADICAL-09
 191A9         ; JURCHEN RADICAL-10
 191AA         ; JURCHEN RADICAL-11
 191AB         ; JURCHEN RADICAL-12

@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2024-07-25, 15:03:55 GMT
+# Date: 2024-07-25, 17:26:41 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3128,7 +3128,7 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 # ================================================
 
 18E00..19191  ; Jurchen # Lo [914] JURCHEN IDEOGRAPH-18E00..JURCHEN IDEOGRAPH-19191
-191A0..191D2  ; Jurchen # Lo  [51] JURCHEN RADICAL-1..JURCHEN RADICAL-51
+191A0..191D2  ; Jurchen # Lo  [51] JURCHEN RADICAL-01..JURCHEN RADICAL-51
 
 # Total code points: 965
 
