@@ -1,5 +1,5 @@
 # PropertyValueAliases-16.0.0.txt
-# Date: 2024-06-06, 22:21:34 GMT
+# Date: 2024-07-25, 15:03:41 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -297,6 +297,8 @@ blk; Jamo                             ; Hangul_Jamo
 blk; Jamo_Ext_A                       ; Hangul_Jamo_Extended_A
 blk; Jamo_Ext_B                       ; Hangul_Jamo_Extended_B
 blk; Javanese                         ; Javanese
+blk; Jurchen                          ; Jurchen
+blk; Jurchen_Radicals                 ; Jurchen_Radicals
 blk; Kaithi                           ; Kaithi
 blk; Kaktovik_Numerals                ; Kaktovik_Numerals
 blk; Kana_Ext_A                       ; Kana_Extended_A
@@ -1367,6 +1369,7 @@ sc ; Hrkt                             ; Katakana_Or_Hiragana
 sc ; Hung                             ; Old_Hungarian
 sc ; Ital                             ; Old_Italic
 sc ; Java                             ; Javanese
+sc ; Jurc                             ; Jurchen
 sc ; Kali                             ; Kayah_Li
 sc ; Kana                             ; Katakana
 sc ; Kawi                             ; Kawi

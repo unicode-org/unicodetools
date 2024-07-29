@@ -1213,6 +1213,7 @@ $CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
             \p{Script=Tangut}
             \p{Script=Nushu}
             \p{Script=Khitan_Small_Script}
+            \p{Script=Jurchen}
         ]
     ]
 ]
