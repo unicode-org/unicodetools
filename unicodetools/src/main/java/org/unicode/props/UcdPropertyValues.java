@@ -1281,6 +1281,7 @@ public class UcdPropertyValues {
         Heth("Heth"),
         Kaf("Kaf"),
         Kaph("Kaph"),
+        Kashmiri_Yeh("Kashmiri_Yeh"),
         Khaph("Khaph"),
         Knotted_Heh("Knotted_Heh"),
         Lam("Lam"),
