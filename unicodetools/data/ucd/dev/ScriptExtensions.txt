@@ -93,7 +93,7 @@
 0CE6..0CEF    ; Knda Nand Tutg                 # Nd [10] KANNADA DIGIT ZERO..KANNADA DIGIT NINE
 1040..1049    ; Cakm Mymr Tale                 # Nd [10] MYANMAR DIGIT ZERO..MYANMAR DIGIT NINE
 10FB          ; Geor Glag Latn                 # Po      GEORGIAN PARAGRAPH SEPARATOR
-16EB..16ED    ; Runr                           # Po      RUNIC SINGLE PUNCTUATION..RUNIC CROSS PUNCTUATION
+16EB..16ED    ; Runr                           # Po  [3] RUNIC SINGLE PUNCTUATION..RUNIC CROSS PUNCTUATION
 1735..1736    ; Buhd Hano Tagb Tglg            # Po  [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
 1802..1803    ; Mong Phag                      # Po  [2] MONGOLIAN COMMA..MONGOLIAN FULL STOP
 1805          ; Mong Phag                      # Po      MONGOLIAN FOUR DOTS
