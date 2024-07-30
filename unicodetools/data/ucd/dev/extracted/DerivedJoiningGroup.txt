@@ -190,12 +190,6 @@
 
 # ================================================
 
-0620          ; Kashmiri_Yeh # Lo       ARABIC LETTER KASHMIRI YEH
-
-# Total code points: 1
-
-# ================================================
-
 06BE          ; Knotted_Heh # Lo       ARABIC LETTER HEH DOACHASHMEE
 06FF          ; Knotted_Heh # Lo       ARABIC LETTER HEH WITH INVERTED V
 
@@ -748,6 +742,12 @@
 # ================================================
 
 088E          ; Vertical_Tail # Lo       ARABIC VERTICAL TAIL
+
+# Total code points: 1
+
+# ================================================
+
+0620          ; Kashmiri_Yeh # Lo       ARABIC LETTER KASHMIRI YEH
 
 # Total code points: 1
 
