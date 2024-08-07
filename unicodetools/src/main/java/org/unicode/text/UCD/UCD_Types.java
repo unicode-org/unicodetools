@@ -615,7 +615,8 @@ public interface UCD_Types {
             Tai_Yo = 175,
             Tolong_Siki = 176,
             Beria_Erfe = 177,
-            LIMIT_SCRIPT = Beria_Erfe + 1;
+            Jurchen = 178,
+            LIMIT_SCRIPT = Jurchen + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte BPT_N = 0, BPT_O = 1, BPT_C = 2, LIMIT_BPT = 3;
@@ -776,8 +777,10 @@ public interface UCD_Types {
             // Unicode 14
             THIN_YEH = 103,
             VERTICAL_TAIL = 104,
+            // Unicode 16
+            KASHMIRI_YEH = 105,
             // limit
-            LIMIT_JOINING_GROUP = VERTICAL_TAIL + 1;
+            LIMIT_JOINING_GROUP = KASHMIRI_YEH + 1;
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;
     public static final int NF_COMPATIBILITY_MASK = 2, NF_COMPOSITION_MASK = 1;
 
