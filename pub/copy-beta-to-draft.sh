@@ -42,7 +42,7 @@ mv $DRAFT/UCD/ucd/zipped-ReadMe.txt $DRAFT/zipped/ReadMe.txt
 
 mkdir -p $DRAFT/UCA
 cp -r $UNITOOLS_DATA/uca/dev/* $DRAFT/UCA
-sed -i -f $DEST/sed-readmes.txt $DRAFT/UCA/CollationTest.html
+sed -i -f $DRAFT/sed-readmes.txt $DRAFT/UCA/CollationTest.html
 
 mkdir -p $DRAFT/emoji
 cp $UNITOOLS_DATA/emoji/dev/* $DRAFT/emoji
