@@ -35,7 +35,11 @@ CorrespondTo [\N{OLD HUNGARIAN SMALL LETTER A}]
 
 ## Provisionally assigned. [placeholder for draft PRs]
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
-Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status:
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_2008:
+
+Ignoring Block:
+Propertywise [𝄰 \x{1D256}-\x{1D25A}] AreAlike
+end Ignoring;
 
 end Ignoring;
 
