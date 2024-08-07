@@ -35,7 +35,19 @@ CorrespondTo [\N{OLD HUNGARIAN SMALL LETTER A}]
 
 ## Provisionally assigned. [placeholder for draft PRs]
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
-Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status:
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_2008:
+
+Ignoring Block:
+Propertywise [\N{MUSICAL SYMBOL COMBINING FLAG-5}
+              \N{MUSICAL SYMBOL COMBINING FLAG-6}
+              \N{MUSICAL SYMBOL COMBINING FLAG-7}
+              \N{MUSICAL SYMBOL COMBINING FLAG-8}] AreAlike
+
+Propertywise [𝅂
+              \N{MUSICAL SYMBOL TWO HUNDRED FIFTY-SIXTH REST}
+              \N{MUSICAL SYMBOL FIVE HUNDRED TWELFTH REST}
+              \N{MUSICAL SYMBOL ONE THOUSAND TWENTY-FOURTH REST}] AreAlike
+end Ignoring;
 
 end Ignoring;
 
