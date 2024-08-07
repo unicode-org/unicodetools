@@ -1,5 +1,5 @@
 # StandardizedVariants-16.0.0.txt
-# Date: 2024-07-09, 23:05:00 GMT [KW]
+# Date: 2024-07-31, 15:31:00 GMT [KW]
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -358,7 +358,7 @@ A868 FE00; phags-pa letter reversed shaping subjoined ya; # PHAGS-PA SUBJOINED L
 13331 FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH T035
 13338 FE03; rotated approximately 30 degrees; # EGYPTIAN HIEROGLYPH U006
 13338 FE06; rotated approximately 320 degrees [horizontal]; # EGYPTIAN HIEROGLYPH U006
-# The following sequence was removed as unrequired, per UTC Consensus 180-Cxx.
+# The following sequence was removed as unrequired, per UTC Consensus 180-C7.
 # 1333B FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH U007
 1333C FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH U008
 1334A FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH U022

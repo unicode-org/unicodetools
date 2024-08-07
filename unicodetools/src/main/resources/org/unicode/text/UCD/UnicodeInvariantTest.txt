@@ -818,7 +818,8 @@ Let $OPInclusions := [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U0001328
 # 15.1.0: and those from scripts that use the Brahmic style of context analysis,
 #  4.0.1: plus these characters: 066B ARABIC DECIMAL SEPARATOR, 066C ARABIC THOUSANDS SEPARATOR.
 # 15.1.0: Action item UTC-176-A81: change [[:PCM:]-\u070F] lb=AL->NU
-Let $NUInclusions := [\u066B\u066C]
+# 16.0.0: UTC-180-A54: U+19DA from lb=SA to lb=NU.
+Let $NUInclusions := [\u066B\u066C\u19DA]
 Let $NUFormats := [[:PCM:]-[\u070F]]
 \p{LB=NU} = [\p{GC=Nd} $NUInclusions $NUFormats - \p{EA=F} - $BrahmicLineBreaking]
 
@@ -889,8 +890,8 @@ Let $SAScripts := [
 ]
 $SAScripts ⊇ \p{LineBreak=SA}
 
-# And in $SA scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn, plus the NEW TAI LUE THAM DIGIT ONE
-Let $SAScriptExceptions := [\x{1173A}\x{1173B}\x{1173F} \u19DA\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAADE-\uAADF]
+# And in $SA scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn
+Let $SAScriptExceptions := [\x{1173A}\x{1173B}\x{1173F} \u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAADE-\uAADF]
 # 7.0 Added AA7D
 # 12.0 Removed Myanmar spacing marks which were assigned Other_Alphabetic: 1063..1064, 1069..106D, 1087..108C, 108F, 109A..109B, AA7B, AA7D
 
@@ -1300,8 +1301,11 @@ Let $unikemetScope := [\p{Block=/^Egyptian.Hieroglyphs/} - \p{gc=Cn}]
 $unikemetScope = [ [\p{gc=Lo} & \p{sc=Egyp}] - \p{Name=/^EGYPTIAN HIEROGLYPH (FULL |HALF |TALL |WIDE )?(BLANK|LOST SIGN)$/} ]
 $unikemetScope = \P{kEH_Cat=@none@}
 $unikemetScope = \P{kEH_UniK=@none@}
+$unikemetScope ⊃ \P{kEH_Core=None}
 \p{kEH_NoMirror} ⊂ $unikemetScope
 \p{kEH_NoRotate} ⊂ $unikemetScope
+\p{kEH_Core=Legacy} ⊂ \p{Block=Egyptian Hieroglyphs}
+[\p{kEH_Core=None} & $unikemetScope] ⊂ \p{Block=Egyptian Hieroglyphs Extended-A}
 
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
