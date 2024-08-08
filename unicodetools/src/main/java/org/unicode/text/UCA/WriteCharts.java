@@ -1036,7 +1036,17 @@ public class WriteCharts implements UCD_Types {
         }
         indexFile.println("<a href = '" + indexAttributes + "'>" + indexAnchorText + "</a><br>\n");
         indexHasNew = false;
-        output.println("</table></body></html>");
+        output.println(
+                "</table>\n"
+                        + "\n"
+                        + "<hr width=\"50%\">\n"
+                        + "\n"
+                        + "<p class=\"copyright\">© 2003–2024 Unicode, Inc.\n"
+                        + "Unicode and the Unicode Logo are registered trademarks of Unicode, Inc.,\n"
+                        + "in the U.S. and other countries. "
+                        + "See <a href=\"https://www.unicode.org/copyright.html\">Terms of Use</a>.</p>\n"
+                        + "</body>\n"
+                        + "</html>");
         output.close();
     }
 
