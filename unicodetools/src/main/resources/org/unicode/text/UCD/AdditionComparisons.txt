@@ -3,7 +3,7 @@
 
 # Names always differ.
 # Age always differs since these tests are comparing additions to pre-existing characters.
-Ignoring Name Age:
+Ignoring Unicode_1_Name Name Age:
 
 ## Unicode 16.0 additions.
 
@@ -35,7 +35,26 @@ CorrespondTo [\N{OLD HUNGARIAN SMALL LETTER A}]
 
 ## Provisionally assigned. [placeholder for draft PRs]
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
-Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status:
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping:
+
+# Modifier ꞕ separately below because its non-modifier counterpart is out of
+# order (Latin Extended D vs. Phonetic Extensions Supplement for [ᶁᶇᶊᶎ]).
+# Modifier ᶎ separately because Ᶎ exists.
+Ignoring Block:
+Ignoring Diacritic:  # TODO(egg): Remove if https://github.com/unicode-org/properties/issues/315 is accepted.
+Propertywise [\N{MODIFIER LETTER SMALL D WITH PALATAL HOOK}
+              \N{MODIFIER LETTER SMALL N WITH PALATAL HOOK}
+              \N{MODIFIER LETTER SMALL S WITH PALATAL HOOK}]
+           : [ᶁᶇᶊ]
+CorrespondTo [ᶪ] : [ᶅ]
+Propertywise [\N{MODIFIER LETTER SMALL H WITH PALATAL HOOK}]
+           : [ꞕ]
+CorrespondTo [ᶪ] : [ᶅ]
+end Ignoring;
+Propertywise [\N{MODIFIER LETTER SMALL Z WITH PALATAL HOOK}]
+           : [ᶎ] : [Ᶎ]
+CorrespondTo [ʱ] : [ɦ] : [Ɦ]
+end Ignoring;
 
 end Ignoring;
 
