@@ -3,9 +3,13 @@ package org.unicode.text.UCD;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.ParsePosition;
 import org.junit.jupiter.api.Test;
+import org.unicode.text.UCD.TestUnicodeInvariants.BackwardParseException;
 import org.unicode.text.utility.Settings;
 
 public class TestTestUnicodeInvariants {
@@ -48,5 +52,32 @@ public class TestTestUnicodeInvariants {
         int rc =
                 TestUnicodeInvariants.testInvariants("SecurityInvariantTest.txt", "security", true);
         assertEquals(0, rc, "TestUnicodeInvariants.testInvariants(security) failed");
+    }
+
+    @Test
+    void testUnicodeSetParsing() throws ParseException {
+        assertEquals(
+                26,
+                TestUnicodeInvariants.parseUnicodeSet(
+                                "TEST [\\N{LATIN SMALL LETTER A}-\\N{LATIN SMALL LETTER Z}]",
+                                new ParsePosition(5))
+                        .size());
+        ParseException thrown =
+                assertThrows(
+                        ParseException.class,
+                        () ->
+                                TestUnicodeInvariants.parseUnicodeSet(
+                                        "TEST [\\N{MEOW}]", new ParsePosition(5)));
+        assertEquals("No character matching \\N escape", thrown.getMessage());
+        assertEquals("TEST [".length(), thrown.getErrorOffset());
+        thrown =
+                assertThrows(
+                        BackwardParseException.class,
+                        () ->
+                                TestUnicodeInvariants.parseUnicodeSet(
+                                        "TEST [[a-z]-\\N{LATIN SMALL LETTER Z}]",
+                                        new ParsePosition(5)));
+        assertEquals("Error: Set expected after operator", thrown.getMessage());
+        assertEquals("TEST [[a-z]-.N{LATIN SMALL LETTER Z}".length(), thrown.getErrorOffset());
     }
 }
