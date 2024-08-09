@@ -35,7 +35,14 @@ CorrespondTo [\N{OLD HUNGARIAN SMALL LETTER A}]
 
 ## Provisionally assigned. [placeholder for draft PRs]
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
-Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status:
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping:
+
+Ignoring Block:
+Propertywise [\N{MODIFIER LETTER GREEK SMALL PSI}\N{MODIFIER LETTER GREEK SMALL OMEGA}]
+           : [ψω]
+           : [ΨΩ]
+CorrespondTo [ᵝ] : [β] : [Β]
+end Ignoring;
 
 end Ignoring;
 
