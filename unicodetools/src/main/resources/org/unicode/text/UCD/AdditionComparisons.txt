@@ -37,6 +37,9 @@ CorrespondTo [\N{OLD HUNGARIAN SMALL LETTER A}]
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status:
 
+Propertywise [\N{HIRAGANA DIGRAPH KOTO} ゟ] AreAlike
+Propertywise [\N{HIRAGANA DIGRAPH KOTO} \N{KATAKANA DIGRAPH TOTE} \N{KATAKANA DIGRAPH TOKI} ヿ] AreAlike
+
 end Ignoring;
 
 end Ignoring;
