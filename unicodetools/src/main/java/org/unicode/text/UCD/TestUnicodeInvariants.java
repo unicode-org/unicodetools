@@ -1,5 +1,6 @@
 package org.unicode.text.UCD;
 
+import com.google.common.base.Strings;
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
@@ -2045,14 +2046,14 @@ public class TestUnicodeInvariants {
                                 badEscapePositions.add(match.start());
                                 return "";
                             }
-                            return String.format(
-                                    "%" + (match.group().length() + 1) + "s",
-                                    "\\\\x{" + Integer.toHexString(character.charAt(0)) + "}");
+                            return Strings.padStart(
+                                    "\\\\x{" + Integer.toHexString(character.charAt(0)) + "}",
+                                    match.group().length() + 1,
+                                    ' ');
                         });
         for (int p : badEscapePositions) {
             throw new ParseException("No character matching \\N escape", initialPosition + p);
         }
-        System.err.println(unicodeSetExpression);
         var patchedParsePosition = new ParsePosition(0);
         try {
             return new UnicodeSet(unicodeSetExpression, patchedParsePosition, symbolTable);
