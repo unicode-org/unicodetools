@@ -2035,6 +2035,10 @@ public class TestUnicodeInvariants {
         if (!matcher.find()) {
             return icuSet;
         }
+        // Simplest way for the lambda function to report errors.
+        // It cannot throw a ParseException, and it cannot modify class fields.
+        // It _can_ modify what this field points to.
+        // Below, we will throw a ParseException for the first bad position.
         List<Integer> badEscapePositions = new ArrayList<>();
         unicodeSetExpression =
                 matcher.replaceAll(
