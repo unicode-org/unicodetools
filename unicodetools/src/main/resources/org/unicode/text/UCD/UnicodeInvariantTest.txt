@@ -311,7 +311,7 @@ In \P{U-1:gc=Cn}, R-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
 # Red Flag: cased and case_ignorable should be disjoint,
 # except for modifier letters and ◌ͅ.
 
-\p{Cased} ∥ [\p{Case_Ignorable} - \p{gc=Lm} - \N{COMBINING GREEK YPOGEGRAMMENI} ]
+\p{Cased} ∥ [\p{Case_Ignorable} - \p{gc=Lm} - [\N{COMBINING GREEK YPOGEGRAMMENI}] ]
 
 ##########################
 # Property Stability Policies
@@ -837,8 +837,8 @@ Let $QUInclusions := [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\
 # 7.0 added 275F..2760 1F676..1F678
 \p{LB=QU} = [\p{GC=Pf} \p{GC=Pi} $QUInclusions]
 \p{LB=SG} = \p{GC=Cs}
-\p{LB=SP} = \N{SPACE}
-\p{LB=SY} = \N{SOLIDUS}
+\p{LB=SP} = [\N{SPACE}]
+\p{LB=SY} = [\N{SOLIDUS}]
 
 # The classes WJ and ZW are reserved for characters meant as explicit overrides
 # to the line breaking algorithms.  For historical reasons, WJ has two such
@@ -1249,7 +1249,7 @@ Let $cjkStrokes := \p{Name=/^CJK STROKE /}
 Let $kangxiRadicals := \p{Name=/^KANGXI RADICAL /}
 Let $cjkRadicals := \p{Name=/^CJK RADICAL /}
 Let $strokesAndRadicals := [ $cjkStrokes $kangxiRadicals $cjkRadicals ]
-Let $nonIdeographicRadicals := \N{CJK RADICAL REPEAT}
+Let $nonIdeographicRadicals := [\N{CJK RADICAL REPEAT}]
 # The following set may expand over time, if strokes are added.
 # It can also shrink, if single-stroke ideographs are encoded.
 Let $nonIdeographicStrokes := \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZWG|HZT|HZZP|HPWG|HZW|HZZZ|PG|Q|HXG|SZP)$/}
