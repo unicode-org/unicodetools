@@ -26,6 +26,7 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.TreeMap;
 import java.util.function.Function;
+import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.unicode.cldr.draft.FileUtilities;
@@ -2007,17 +2008,58 @@ public class TestUnicodeInvariants {
         }
     }
 
+    private static Pattern nameEscape = Pattern.compile("\\\\N\\{[^}]*\\}");
+
     public static UnicodeSet parseUnicodeSet(String source, ParsePosition pp)
             throws ParseException {
+        final int initialPosition = pp.getIndex();
+        UnicodeSet icuSet;
         try {
-            final var result = new UnicodeSet(source, pp, symbolTable);
-            return result;
+            // Let ICU figure out where the UnicodeSet expression ends.
+            icuSet = new UnicodeSet(source, pp, symbolTable);
         } catch (IllegalArgumentException e) {
             // ICU produces unhelpful messages when parsing UnicodeSet deep into
             // a large string in a string that contains line terminators, as the
             // whole string is escaped and printed.
             final String message = e.getMessage().split(" at \"", 2)[0];
             throw new BackwardParseException(message, pp.getIndex());
+        }
+        String unicodeSetExpression = source.substring(initialPosition, pp.getIndex());
+        // ICU incorrectly treats \N{X} as a synonym for \p{Name=X}, returning a
+        // set rather than a character, so that it can be empty, and so that
+        // \N{X}-\N{Y} is a set difference (equal to \N{X}) rather than the range \N{X}-\N{Y}.
+        // This should likely be fixed in ICU, but in the meantime we need to work around it in
+        // the invariant before someone gets hurt.
+        var matcher = nameEscape.matcher(unicodeSetExpression);
+        if (!matcher.find()) {
+            return icuSet;
+        }
+        List<Integer> badEscapePositions = new ArrayList<>();
+        unicodeSetExpression =
+                matcher.replaceAll(
+                        (MatchResult match) -> {
+                            UnicodeSet character =
+                                    new UnicodeSet(
+                                            match.group(), new ParsePosition(0), symbolTable);
+                            if (character.isEmpty()) {
+                                badEscapePositions.add(match.start());
+                                return "";
+                            }
+                            return String.format(
+                                    "%" + (match.group().length() + 1) + "s",
+                                    "\\\\x{" + Integer.toHexString(character.charAt(0)) + "}");
+                        });
+        for (int p : badEscapePositions) {
+            throw new ParseException("No character matching \\N escape", initialPosition + p);
+        }
+        System.err.println(unicodeSetExpression);
+        var patchedParsePosition = new ParsePosition(0);
+        try {
+            return new UnicodeSet(unicodeSetExpression, patchedParsePosition, symbolTable);
+        } catch (IllegalArgumentException e) {
+            final String message = e.getMessage().split(" at \"", 2)[0];
+            throw new BackwardParseException(
+                    message, patchedParsePosition.getIndex() + initialPosition);
         }
     }
 }
