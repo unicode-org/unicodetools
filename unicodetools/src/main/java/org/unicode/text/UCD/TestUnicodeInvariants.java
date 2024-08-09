@@ -2052,6 +2052,7 @@ public class TestUnicodeInvariants {
                                     ' ');
                         });
         for (int p : badEscapePositions) {
+            // Simplest way to throw an exception for only the first list element.
             throw new ParseException("No character matching \\N escape", initialPosition + p);
         }
         var patchedParsePosition = new ParsePosition(0);
