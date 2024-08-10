@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2024-08-07, 18:52:36 GMT
+# Date: 2024-08-10, 15:33:50 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -41461,8 +41461,8 @@ FFFD          ; REPLACEMENT CHARACTER
 1DF28         ; LATIN SMALL LETTER R WITH MID-HEIGHT LEFT HOOK
 1DF29         ; LATIN SMALL LETTER S WITH MID-HEIGHT LEFT HOOK
 1DF2A         ; LATIN SMALL LETTER T WITH MID-HEIGHT LEFT HOOK
-1DFF3         ; MODIFIER LETTER GREEK SMALL PSI
-1DFF4         ; MODIFIER LETTER GREEK SMALL OMEGA
+1DFF3         ; MODIFIER LETTER SMALL GREEK PSI
+1DFF4         ; MODIFIER LETTER SMALL GREEK OMEGA
 1E000         ; COMBINING GLAGOLITIC LETTER AZU
 1E001         ; COMBINING GLAGOLITIC LETTER BUKY
 1E002         ; COMBINING GLAGOLITIC LETTER VEDE
