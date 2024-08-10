@@ -38,7 +38,7 @@ CorrespondTo [\N{OLD HUNGARIAN SMALL LETTER A}]
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping:
 
 Ignoring Block:
-Propertywise [\N{MODIFIER LETTER GREEK SMALL PSI}  \N{MODIFIER LETTER GREEK SMALL OMEGA}]
+Propertywise [ \N{MODIFIER LETTER SMALL GREEK PSI} \N{MODIFIER LETTER SMALL GREEK OMEGA}]
            : [ψ\N{GREEK SMALL LETTER PSI}         ω\N{GREEK CAPITAL LETTER OMEGA}]
            : [Ψ\N{GREEK SMALL LETTER PSI}         Ω\N{GREEK CAPITAL LETTER OMEGA}]
 CorrespondTo [ᵞ\N{MODIFIER LETTER SMALL GREEK GAMMA}]
