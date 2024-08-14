@@ -16,6 +16,7 @@ import org.unicode.text.utility.Utility;
 
 public final class RadicalStroke {
     private static final int MAX_RADICAL_NUMBER = 214;
+    private static final int MAX_STROKES = 255;
 
     /**
      * The Unicode 1.1 Unihan block was U+4E00..U+9FA5. The ideographs there were allocated in
@@ -24,6 +25,14 @@ public final class RadicalStroke {
     private static final int LAST_UNIHAN_11 = 0x9fa5;
 
     private static final boolean DEBUG = false;
+
+    // Bit field shift values (low-order bit numbers) in the combined "order".
+    private static final int RADICAL_SHIFT = 36;
+    private static final int STROKE_SHIFT = 28;
+    private static final int SIMPLIFIED_SHIFT = 24;
+    private static final int EXTENSION_SHIFT = 20;
+    private static final int MAX_EXTENSION = 0xf;
+    private static final int CODE_POINT_MASK = 0xfffff;
 
     private static final int SIMPLIFIED_NUM_BITS = 2;
 
@@ -75,24 +84,12 @@ public final class RadicalStroke {
         while (hanIter.next()) {
             int c = hanIter.codepoint;
             assert c >= 0;
-            // Create an "order" collation key similar to the one in
-            // https://www.unicode.org/reports/tr38/#SortingAlgorithm
-            // Sorting Algorithm Used by the Radical-Stroke Charts.
-            //
-            // extension (1 bit):
-            // Sort the original Unihan block first, then all extension blocks.
-            // We also include the code point in the "order".
-            // No need to determine the extension block number since they sort in code point order.
-            // We don't use special values for compatibility ideographs.
-            int extension =
-                    (0x4E00 <= c && c <= 0xFFFF)
-                            ? 0
-                            : 1; // see UCA implicit weights BASE FB40 vs. FB80
+            int extension = getExtension(c);
             String rs = rsUnicode.get(c);
             if (rs == null) {
                 // Sort characters with missing radical-stroke data last.
                 // Maximum radical numbers, simplified, and residual strokes.
-                rs = "214''.63";
+                rs = "214'''.254";
             }
             // Use only the first radical-stroke value if there are multiple.
             int delim = rs.indexOf(' '); // value separator in Unihan data files
@@ -104,24 +101,7 @@ public final class RadicalStroke {
             }
             int dot = rs.indexOf('.');
             assert 0 <= dot && dot < delim;
-            // simplified (2 bits):
-            // - 0 = traditional form for the radical (for example, 齒)
-            // - 1 = Chinese simplified form of the radical (for example, 齿)
-            // - 2 = non-Chinese simplified form of the radical (for example, 歯)
-            //       [new in Unicode 15.1]
-            int simplified = 0;
-            int radicalNumberLimit = dot;
-            if (rs.charAt(radicalNumberLimit - 1) == '\'') {
-                simplified = 1;
-                --radicalNumberLimit;
-                if (rs.charAt(radicalNumberLimit - 1) == '\'') {
-                    simplified = 2;
-                    --radicalNumberLimit;
-                }
-            }
-            int radicalNumber = parseInt(rs, 0, radicalNumberLimit);
-            int radicalNumberAndSimplified =
-                    makeRadicalNumberAndSimplified(radicalNumber, simplified);
+            int radicalNumberAndSimplified = parseRadicalNumberAndSimplified(rs, 0, dot);
             int residualStrokeCount = parseInt(rs, dot + 1, delim);
             long order = makeOrder(radicalNumberAndSimplified, residualStrokeCount, extension, c);
             if (DEBUG) {
@@ -197,8 +177,52 @@ public final class RadicalStroke {
         // or there is a bug in the code.
         // Turn on the DEBUG flag and see if we can manually remove some characters from the set
         // so that a sequence of following ones does not get removed.
-        assert numOutOfOrder <= 320;
+        // TODO: Before changing the sort order to conform to UAX #38, demoting the simplified-ness
+        // of radicals to below the number of residual strokes,
+        // this successfully asserted numOutOfOrder <= 320.
+        // Find out if this is a known issue.
+        assert numOutOfOrder <= 1500;
         hanNotInCPOrder = new UnicodeSet(hanSet).removeAll(hanInCPOrder).freeze();
+    }
+
+    // Triples of (start, end, extension) for coalesced UAX #38 order blocks.
+    // Read in order, so ranges can overlap.
+    private static final int[] EXTENSION_TRIPLES = {
+        // The original Unihan block sorts before extension A.
+        // CJK Unified Ideographs block
+        0x4E00, 0x9FFF, 0,
+        // Compatibility ideographs sort last.
+        // CJK Compatibility Ideographs
+        0xF900, 0xFAFF, 0xf,
+        // CJK Compatibility Ideographs Supplement
+        0x2F800, 0x2FA1F, 0xf,
+        // Extension I pokes a hole in the following range and sorts between H & J.
+        // CJK Unified Ideographs Extension I
+        0x2EBF0, 0x2EE5F, 2,
+        // Extensions A..H sort after the original Unihan block.
+        // CJK Unified Ideographs Extension A, B, C, D, E, F, G, H
+        0x3400, 0x323AF, 1,
+        // J+ after I.
+        // CJK Unified Ideographs Extension J+
+        // TODO: This needs adjustments when another extension block is encoded out of letter order.
+        // https://www.unicode.org/roadmaps/tip/
+        0x323B0, 0x37FFF, 3,
+    };
+
+    private static final int getExtension(int c) {
+        // https://www.unicode.org/reports/tr38/#SortingAlgorithm
+        // at a low level sorts by Block, then by code point.
+        // This function determines an extension value so that extension|code point sorts
+        // in the same order as UAX #38 block|code point.
+        // We simply coalesce adjacent blocks that sort in code point order.
+        for (int i = 0; i < EXTENSION_TRIPLES.length; i += 3) {
+            int start = EXTENSION_TRIPLES[i];
+            int end = EXTENSION_TRIPLES[i + 1];
+            if (start <= c && c <= end) {
+                return EXTENSION_TRIPLES[i + 2];
+            }
+        }
+        throw new IllegalArgumentException("cannot find extension value for U+" + Utility.hex(c));
     }
 
     private static final int makeRadicalNumberAndSimplified(int radical, int simplified) {
@@ -209,20 +233,20 @@ public final class RadicalStroke {
 
     private static final long makeOrder(
             int radicalNumberAndSimplified, int residualStrokeCount, int extension, int c) {
-        assert residualStrokeCount <= 255;
-        assert extension == 0 || extension == 1;
-        return ((long) radicalNumberAndSimplified << 34)
-                | (residualStrokeCount << 24)
-                | (extension << 23)
+        assert residualStrokeCount <= MAX_STROKES;
+        assert 0 <= extension && extension <= MAX_EXTENSION;
+        assert 0 <= c && c <= CODE_POINT_MASK;
+        int radical = radicalNumberAndSimplified >> SIMPLIFIED_NUM_BITS;
+        int simplified = radicalNumberAndSimplified & 3;
+        return ((long) radical << RADICAL_SHIFT)
+                | ((long) residualStrokeCount << STROKE_SHIFT)
+                | (simplified << SIMPLIFIED_SHIFT)
+                | (extension << EXTENSION_SHIFT)
                 | c;
     }
 
-    private static final int getRadicalNumberAndSimplified(long order) {
-        return (int) (order >> 34);
-    }
-
     private static final int getCodePoint(long order) {
-        return (int) (order & 0x1fffff);
+        return (int) (order & CODE_POINT_MASK);
     }
 
     public void printRadicalStrokeOrder(Writer writer) throws IOException {
@@ -243,12 +267,18 @@ public final class RadicalStroke {
         }
         StringBuilder sb = new StringBuilder("[radical ");
         long order = orderedHan[pos];
-        int radicalNumberAndSimplified = getRadicalNumberAndSimplified(order);
-        String radicalChars = radToChars[radicalNumberAndSimplified];
-        sb.append(getRadicalStringFromShortData(getShortData(order)))
-                .append('=')
-                .append(radicalChars)
-                .append(':');
+        sb.append(getRadicalString(order)).append('=');
+        int radicalNumber = getRadicalNumber(order);
+        // Append the radicals and ideographs for each of the traditional and simplified forms.
+        for (int i = radicalNumber << SIMPLIFIED_NUM_BITS, limit = i + (1 << SIMPLIFIED_NUM_BITS);
+                i < limit;
+                ++i) {
+            String radicalChars = radToChars[i];
+            if (radicalChars != null) {
+                sb.append(radicalChars);
+            }
+        }
+        sb.append(':');
         int start = 0;
         int prev = 0;
         do {
@@ -271,7 +301,7 @@ public final class RadicalStroke {
                 break;
             }
             order = orderedHan[pos];
-        } while (getRadicalNumberAndSimplified(order) == radicalNumberAndSimplified);
+        } while (getRadicalNumber(order) == radicalNumber);
         if (start < prev) {
             // Finish the last range.
             if ((start + 2) <= prev) { // at least 3 code points
@@ -295,19 +325,18 @@ public final class RadicalStroke {
         for (int pos = 0; ; ) {
             long order = orderedHan[pos];
             int c = getCodePoint(order); // First code point for the radical.
-            int radicalNumberAndSimplified = getRadicalNumberAndSimplified(order);
+            int radicalNumber = getRadicalNumber(order);
             // For the representative radical character,
             // use the unified ideograph which is almost always in the original Unihan block
             // which has good font support,
             // rather than the character in the radicals block (if there is such a character).
-            int ideograph =
-                    getUnifiedIdeographForRadicalNumberAndSimplified(radicalNumberAndSimplified);
+            int ideograph = getUnifiedIdeograph(order);
             sb.replace(0, sb.length(), "&")
                     .appendCodePoint(c)
                     .append("=\\uFDD0")
                     .appendCodePoint(ideograph)
                     .append(" # radical ")
-                    .append(getRadicalStringFromShortData(getShortData(order)))
+                    .append(getRadicalString(order))
                     .append('\n');
             writer.append(sb);
             do {
@@ -315,7 +344,7 @@ public final class RadicalStroke {
                     return;
                 }
                 order = orderedHan[pos];
-            } while (getRadicalNumberAndSimplified(order) == radicalNumberAndSimplified);
+            } while (getRadicalNumber(order) == radicalNumber);
         }
     }
 
@@ -333,100 +362,7 @@ public final class RadicalStroke {
      * Returns a long for the UCA order of ideographs, including the code point tie-breaker. Returns
      * 0 for non-ideographs.
      */
-    public long getLongOrder(int cp) {
-        return getDataForCodePoint(cp);
-    }
-
-    /**
-     * Returns data in bit sets: 19..12=radicalNumber, 11..10=simplified, 7..0=residualStrokes.
-     * Returns 0 for non-ideographs.
-     */
-    public int getShortDataForCodePoint(int cp) {
-        return getShortData(getDataForCodePoint(cp));
-    }
-
-    // TODO: Why not always work with long order?
-    // If we always get the "short data" from the long order, then these just seem like
-    // unnecessarily duplicate APIs.
-    private static int getShortData(long order) {
-        return (int) (order >> 24);
-    }
-
-    private static int getRadicalNumberAndSimplifiedFromShortData(int data) {
-        assert data != 0;
-        int radicalNumberAndSimplified = data >> 10;
-        assert radicalNumberAndSimplified >= makeRadicalNumberAndSimplified(1, 0); // radical >= 1
-        return radicalNumberAndSimplified;
-    }
-
-    public static int getRadicalNumberFromShortData(int data) {
-        assert data != 0;
-        return data >> 12;
-    }
-
-    public static int getSimplifiedFromShortData(int data) {
-        assert data != 0;
-        return (data >> 10) & 3;
-    }
-
-    public static boolean isSimplifiedFromShortData(int data) {
-        assert data != 0;
-        return (data & 0xc00) != 0;
-    }
-
-    public static int getResidualStrokesFromShortData(int data) {
-        assert data != 0;
-        return data & 0xff;
-    }
-
-    /** Returns the radical character for its number and simplified-ness. */
-    public String getRadicalCharFromShortData(int data) {
-        int radicalNumberAndSimplified = getRadicalNumberAndSimplifiedFromShortData(data);
-        if (radicalNumberAndSimplified >= radToChar.length) {
-            return null;
-        }
-        String s = radToChar[radicalNumberAndSimplified];
-        if (s != null) {
-            return s;
-        }
-        // For some radicals there is no character in the radicals block. Return the unified
-        // ideograph.
-        return radToChars[radicalNumberAndSimplified];
-    }
-
-    /** Returns a string like "90" or "90'". */
-    public String getRadicalStringFromShortData(int data) {
-        int radicalNumberAndSimplified = getRadicalNumberAndSimplifiedFromShortData(data);
-        return radicalNumberAndSimplified < radicalStrings.length
-                ? radicalStrings[radicalNumberAndSimplified]
-                : null;
-    }
-
-    private int getUnifiedIdeographForRadicalNumberAndSimplified(int radicalNumberAndSimplified) {
-        String radicalChars = radToChars[radicalNumberAndSimplified];
-        if (radicalChars == null) {
-            int radical = radicalNumberAndSimplified >> SIMPLIFIED_NUM_BITS;
-            int simplified = radicalNumberAndSimplified & ((1 << SIMPLIFIED_NUM_BITS) - 1);
-            if (radical == MAX_RADICAL_NUMBER && simplified == 2) {
-                // Special entry for missing radical-stroke data.
-                return '?';
-            }
-            throw new IllegalArgumentException(
-                    "no radToChars for " + radical + "'''".substring(0, simplified));
-        }
-        int length = radicalChars.length();
-        // All radical characters should be BMP characters.
-        // Unicode 15.1 exception: 182'' --> U+322C4
-        assert length == Character.codePointCount(radicalChars, 0, length)
-                || radicalNumberAndSimplified == makeRadicalNumberAndSimplified(182, 2);
-        // Also in Unicode 15.1, there are two radicals for which there are no characters in the
-        // radicals blocks.
-        // In these cases, radicalChars contains only one code point, the unified ideograph.
-        // Return the unified ideograph, which is always the last code point.
-        return radicalChars.codePointBefore(length);
-    }
-
-    private long getDataForCodePoint(int cp) {
+    public long getOrderForCodePoint(int cp) {
         // There is no Arrays.binarySearch(long[], ...) that takes a Comparator.
         int start = 0;
         int limit = rawHan.length;
@@ -442,6 +378,69 @@ public final class RadicalStroke {
             }
         }
         return 0; // not found
+    }
+
+    public static int getRadicalNumber(long order) {
+        assert order != 0;
+        return (int) (order >> RADICAL_SHIFT);
+    }
+
+    public static boolean isSimplified(long order) {
+        assert order != 0;
+        return ((order >> SIMPLIFIED_SHIFT) & 3) != 0;
+    }
+
+    public static int getResidualStrokes(long order) {
+        assert order != 0;
+        return (int) (order >> STROKE_SHIFT) & 0xff;
+    }
+
+    /**
+     * Returns the radical character (traditional form) for its number. Returns the unified
+     * ideograph if there is no radical character for this number.
+     */
+    public String getRadicalChar(long order) {
+        int radicalNumber = getRadicalNumber(order);
+        if (radicalNumber >= radToChar.length) {
+            return null;
+        }
+        String s = radToChar[radicalNumber];
+        if (s != null) {
+            return s;
+        }
+        // For some radicals there is no character in the radicals block.
+        // Return the unified ideograph.
+        // Since there is no radical character, the ideograph is the only
+        // character in this string.
+        return radToChars[radicalNumber];
+    }
+
+    public String getRadicalString(long order) {
+        int radicalNumberAndSimplified = getRadicalNumber(order) << SIMPLIFIED_NUM_BITS;
+        return radicalNumberAndSimplified < radicalStrings.length
+                ? radicalStrings[radicalNumberAndSimplified]
+                : null;
+    }
+
+    private int getUnifiedIdeograph(long order) {
+        int radicalNumber = getRadicalNumber(order);
+        String radicalChars = radToChars[radicalNumber << SIMPLIFIED_NUM_BITS];
+        if (radicalChars == null) {
+            if (radicalNumber == MAX_RADICAL_NUMBER && getResidualStrokes(order) == 254) {
+                // Special entry for missing radical-stroke data.
+                return '?';
+            }
+            throw new IllegalArgumentException("no radToChars for " + radicalNumber);
+        }
+        int length = radicalChars.length();
+        // All radical characters should be BMP characters.
+        // Unicode 15.1 exception: 182'' --> U+322C4
+        assert length == Character.codePointCount(radicalChars, 0, length);
+        // Also in Unicode 15.1, there are two radicals for which there are no characters in the
+        // radicals blocks.
+        // In these cases, radicalChars contains only one code point, the unified ideograph.
+        // Return the unified ideograph, which is always the last code point.
+        return radicalChars.codePointBefore(length);
     }
 
     // TODO: Consider moving this into a new class/file CJKRadicals which could also be called from
@@ -479,35 +478,13 @@ public final class RadicalStroke {
         for (UcdLineParser.UcdLine line : parser) {
             String[] parts = line.getParts();
             String radicalString = parts[0];
-            int simplified = 0;
-            int radicalNumberLimit = radicalString.length();
-            if (radicalString.charAt(radicalNumberLimit - 1) == '\'') {
-                simplified = 1;
-                --radicalNumberLimit;
-                if (radicalString.charAt(radicalNumberLimit - 1) == '\'') {
-                    // Unicode 15.1 UAX #38:
-                    // Two apostrophes (") after the radical indicates a
-                    // non-Chinese simplified version of the given radical.
-                    simplified = 2;
-                    --radicalNumberLimit;
-                    if (radicalString.charAt(radicalNumberLimit - 1) == '\'') {
-                        // Unicode 16 UAX #38:
-                        // Three apostrophes after the radical indicates a
-                        // second non-Chinese simplified version of the given radical.
-                        simplified = 3;
-                        --radicalNumberLimit;
-                    }
-                }
-            }
-            int radicalNumber = parseInt(radicalString, 0, radicalNumberLimit);
             int radicalNumberAndSimplified =
-                    makeRadicalNumberAndSimplified(radicalNumber, simplified);
+                    parseRadicalNumberAndSimplified(radicalString, 0, radicalString.length());
             radicalStrings[radicalNumberAndSimplified] = radicalString;
 
-            int radicalChar = -1;
             String radicalCharString = "";
             if (!parts[1].isEmpty()) {
-                radicalChar = Integer.parseInt(parts[1], 16);
+                int radicalChar = Integer.parseInt(parts[1], 16);
                 assert 0 < radicalChar;
                 assert radicalChar < 0x3000; // should be a radical code point
                 radToChar[radicalNumberAndSimplified] =
@@ -521,6 +498,33 @@ public final class RadicalStroke {
             radToChars[radicalNumberAndSimplified] = radicalCharString + ideographString;
             // radToChars[] contains only one character if there is no radical character.
         }
+    }
+
+    private static int parseRadicalNumberAndSimplified(String s, int start, int limit) {
+        // simplified (2 bits):
+        // https://www.unicode.org/reports/tr38/#SortingAlgorithm
+        // Quoted from Unicode 16.0:
+        // - 0 = traditional form for the radical (for example, U+9F8D 龍)
+        // - 1 = Chinese simplified form of the radical (for example, U+9F99 龙)
+        // - 2 = non-Chinese simplified form of the radical (for example, U+7ADC 竜)
+        //       [new in Unicode 15.1]
+        // - 3 = second non-Chinese simplified form of the radical (for example, U+31DE5 𱷥).
+        //       [new in Unicode 16.0]
+        int simplified = 0;
+        if (s.charAt(limit - 1) == '\'') {
+            simplified = 1;
+            --limit;
+            if (s.charAt(limit - 1) == '\'') {
+                simplified = 2;
+                --limit;
+                if (s.charAt(limit - 1) == '\'') {
+                    simplified = 3;
+                    --limit;
+                }
+            }
+        }
+        int radicalNumber = parseInt(s, start, limit);
+        return makeRadicalNumberAndSimplified(radicalNumber, simplified);
     }
 
     /**
