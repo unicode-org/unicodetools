@@ -516,7 +516,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         } else {
             indexUnicodeProperties.getFileNames().add(fullFilename);
             UcdLineParser parser = new UcdLineParser(FileUtilities.in("", fullFilename));
-            if (fileName.startsWith("Unihan") || fileName.startsWith("k")) {
+            if (fileName.startsWith("Unihan")
+                    || fileName.startsWith("Unikemet")
+                    || (fileName.endsWith("Sources") && !fileName.startsWith("Emoji"))
+                    || fileName.startsWith("k")) {
                 parser.withTabs(true);
             }
             PropertyParsingInfo propInfo;
