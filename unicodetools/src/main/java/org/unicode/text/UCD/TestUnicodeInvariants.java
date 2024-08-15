@@ -714,8 +714,7 @@ public class TestUnicodeInvariants {
                                             + ")\t=\t"
                                             + pCk
                                             + "\t≠\t"
-                                            + Character.toString(
-                                                    sets.get(lMatchingForReference).charAt(i))
+                                            + stringAt(sets.get(lMatchingForReference), i)
                                             + "\twhereas\t"
                                             + property.getName()
                                             + "("
