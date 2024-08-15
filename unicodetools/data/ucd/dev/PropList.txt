@@ -1,3 +1,4 @@
+1DFD9; Soft_Dotted
 # PropList-16.0.0.txt
 # Date: 2024-08-15, 13:22:57 GMT
 # © 2024 Unicode®, Inc.
