@@ -684,8 +684,7 @@ public class TestUnicodeInvariants {
                             final boolean pCkEqualsCl =
                                     Objects.equals(pCk, stringAt(sets.get(l), i));
                             final boolean pRkEqualsRl =
-                                    Objects.equals(
-                                            pRk, referenceCodePoints.get(l));
+                                    Objects.equals(pRk, referenceCodePoints.get(l));
                             if (pRkEqualsRl) {
                                 lMatchingForReference = l;
                                 if (pCkEqualsCl) {
