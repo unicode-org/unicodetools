@@ -35,7 +35,80 @@ CorrespondTo [\N{OLD HUNGARIAN SMALL LETTER A}]
 
 ## Provisionally assigned. [placeholder for draft PRs]
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
-Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status:
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping:
+
+Ignoring Block:
+Propertywise [ \N{LATIN SMALL LETTER BARRED TURNED H}
+               \N{LATIN SMALL LETTER BARRED W}
+              ꬳ\N{LATIN SMALL LETTER BARRED E}] AreAlike
+Ignoring Unicode_1_Name:  # ʱ and ɦ have Unicode_1_Names.
+Propertywise [ \N{MODIFIER LETTER SMALL N WITH LONG RIGHT LEG}]
+           : [ƞ\N{LATIN SMALL LETTER N WITH LONG RIGHT LEG}]
+           : [Ƞ\N{LATIN CAPITAL LETTER N WITH LONG RIGHT LEG}]
+CorrespondTo [ʱ\N{MODIFIER LETTER SMALL H WITH HOOK}]
+           : [ɦ\N{LATIN SMALL LETTER H WITH HOOK}]
+           : [Ɦ\N{LATIN CAPITAL LETTER H WITH HOOK}]
+end Ignoring;
+Propertywise [ \N{MODIFIER LETTER SMALL DB DIGRAPH}
+               \N{MODIFIER LETTER SMALL QP DIGRAPH}]
+           : [ȸ\N{LATIN SMALL LETTER DB DIGRAPH}
+              ȹ\N{LATIN SMALL LETTER QP DIGRAPH}]
+CorrespondTo [ʶ\N{MODIFIER LETTER SMALL CAPITAL INVERTED R}]
+           : [ʁ\N{LATIN LETTER SMALL CAPITAL INVERTED R}]
+Ignoring Unicode_1_Name:  # ʝ has a Unicode_1_Name.
+# ᶨ is not Diacritic, but this seems to be an oversight.
+# See https://github.com/unicode-org/properties/issues/315.
+# TODO(egg): Remove the Ignoring clause if that gets accepted.
+Ignoring Diacritic:
+Propertywise [ \N{MODIFIER LETTER SMALL J WITH STROKE}]
+           : [ɉ\N{LATIN SMALL LETTER J WITH STROKE}]
+           : [Ɉ\N{LATIN CAPITAL LETTER J WITH STROKE}]
+CorrespondTo [ᶨ\N{MODIFIER LETTER SMALL J WITH CROSSED-TAIL}]
+           : [ʝ\N{LATIN SMALL LETTER J WITH CROSSED-TAIL}]
+           : [Ʝ\N{LATIN CAPITAL LETTER J WITH CROSSED-TAIL}]
+end Ignoring;
+end Ignoring;
+Ignoring Unicode_1_Name:  # ʆ and ʓ have Unicode_1_Names.
+Propertywise [ \N{MODIFIER LETTER SMALL R WITH LONG LEG}
+               \N{MODIFIER LETTER SMALL ESH WITH CURL}
+               \N{MODIFIER LETTER SMALL EZH WITH CURL}
+               \N{MODIFIER LETTER SMALL CAPITAL D}]
+           : [ɼ\N{LATIN SMALL LETTER R WITH LONG LEG}
+              ʆ\N{LATIN SMALL LETTER ESH WITH CURL}
+              ʓ\N{LATIN SMALL LETTER EZH WITH CURL}
+              ᴅ\N{LATIN LETTER SMALL CAPITAL D}]
+CorrespondTo [ʶ\N{MODIFIER LETTER SMALL CAPITAL INVERTED R}]
+           : [ʁ\N{LATIN LETTER SMALL CAPITAL INVERTED R}]
+end Ignoring;
+Propertywise [ \N{MODIFIER LETTER SMALL UPSILON WITH STROKE}
+               \N{MODIFIER LETTER SMALL ESH WITH RETROFLEX HOOK}
+               \N{MODIFIER LETTER SMALL EZH WITH RETROFLEX HOOK}]
+           : [ᵿ\N{LATIN SMALL LETTER UPSILON WITH STROKE}
+              ᶘ\N{LATIN SMALL LETTER ESH WITH RETROFLEX HOOK}
+              ᶚ\N{LATIN SMALL LETTER EZH WITH RETROFLEX HOOK}]
+CorrespondTo [ʶ\N{MODIFIER LETTER SMALL CAPITAL INVERTED R}]
+           : [ʁ\N{LATIN LETTER SMALL CAPITAL INVERTED R}]
+Propertywise [ \N{MODIFIER LETTER SMALL DEZH DIGRAPH WITH RETROFLEX HOOK}
+               \N{MODIFIER LETTER SMALL TESH DIGRAPH WITH RETROFLEX HOOK}]
+           : [𝼙\N{LATIN SMALL LETTER DEZH DIGRAPH WITH RETROFLEX HOOK}
+              𝼜\N{LATIN SMALL LETTER TESH DIGRAPH WITH RETROFLEX HOOK}]
+CorrespondTo [ʶ\N{MODIFIER LETTER SMALL CAPITAL INVERTED R}]
+           : [ʁ\N{LATIN LETTER SMALL CAPITAL INVERTED R}]
+Propertywise [ \N{MODIFIER LETTER SMALL DEZH DIGRAPH WITH CURL}
+               \N{MODIFIER LETTER SMALL TESH DIGRAPH WITH CURL}]
+           : # From L2/24-051:
+             [ \N{LATIN SMALL LETTER DEZH DIGRAPH WITH CURL}
+               \N{LATIN SMALL LETTER TESH DIGRAPH WITH CURL}]
+CorrespondTo [ʶ\N{MODIFIER LETTER SMALL CAPITAL INVERTED R}]
+           : [ʁ\N{LATIN LETTER SMALL CAPITAL INVERTED R}]
+Propertywise [ \N{MODIFIER LETTER SMALL BARRED TURNED H}
+               \N{MODIFIER LETTER SMALL BARRED W}]
+           : # From the same proposal:
+             [ \N{LATIN SMALL LETTER BARRED TURNED H}
+               \N{LATIN SMALL LETTER BARRED W}]
+CorrespondTo [ʶ\N{MODIFIER LETTER SMALL CAPITAL INVERTED R}]
+           : [ʁ\N{LATIN LETTER SMALL CAPITAL INVERTED R}]
+end Ignoring;
 
 end Ignoring;
 
