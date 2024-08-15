@@ -1,6 +1,10 @@
 # This file uses the invariant test language, but contains comparisons between
 # new and pre-existing characters to aid in PAG review of encoding proposals.
 
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
 ## Unicode 16.0 additions.
 
 # These comparisons were not in place when properties were initially assigned for the 16.0
@@ -9,11 +13,30 @@
 
 # U+18CFF is a blank character for the Khitan Small Script; aside from looking blank,
 # it is indistinguishable from other Khitan Small Script characters.  See L2/23-065.
-# In particular, it is ideographic: https://www.unicode.org/review/pri497/feedback.html#ID20240216140104.
-Propertywise [\N{KHITAN SMALL SCRIPT CHARACTER-18CFF} \N{KHITAN SMALL SCRIPT CHARACTER-18B00}] AreAlike, Except: Age
+# In particular, it is ideographic:
+# https://www.unicode.org/review/pri497/feedback.html#ID20240216140104.
+Propertywise [\N{KHITAN SMALL SCRIPT CHARACTER-18CFF}
+              \N{KHITAN SMALL SCRIPT CHARACTER-18B00}] AreAlike
 
 # HXG (briefly known as HZXG) and SZP are just like all the other CJK strokes.
-# In particular, they are scx=Hani:  https://www.unicode.org/review/pri502/feedback.html#ID20240523095709.
-Propertywise [\N{CJK STROKE T} \N{CJK STROKE HXG}\N{CJK STROKE SZP}] AreAlike, Except: Age
+# In particular, they are scx=Hani:
+# https://www.unicode.org/review/pri502/feedback.html#ID20240523095709.
+Propertywise [\N{CJK STROKE HXG}\N{CJK STROKE SZP}
+              \N{CJK STROKE T}] AreAlike
+
+# Garay is a right-to-left cased script:
+Propertywise [\N{GARAY SMALL LETTER A} - \N{GARAY SMALL LETTER OLD NA}]
+           : [\N{GARAY CAPITAL LETTER A} - \N{GARAY CAPITAL LETTER OLD NA}]
+CorrespondTo [\N{OLD HUNGARIAN SMALL LETTER A}]
+           : [\N{OLD HUNGARIAN CAPITAL LETTER A}]
+    UpTo: Block             (Garay vs Old_Hungarian),
+          Script            (Garay vs Old_Hungarian),
+          Script_Extensions (Garay vs Old_Hungarian)
 
 ## Provisionally assigned. [placeholder for draft PRs]
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status:
+
+end Ignoring;
+
+end Ignoring;
