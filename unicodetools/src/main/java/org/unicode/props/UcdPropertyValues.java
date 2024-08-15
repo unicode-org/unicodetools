@@ -1281,6 +1281,7 @@ public class UcdPropertyValues {
         Heth("Heth"),
         Kaf("Kaf"),
         Kaph("Kaph"),
+        Kashmiri_Yeh("Kashmiri_Yeh"),
         Khaph("Khaph"),
         Knotted_Heh("Knotted_Heh"),
         Lam("Lam"),
@@ -1434,6 +1435,36 @@ public class UcdPropertyValues {
     // kDefinition
     // kEACC
     // kEH_Cat
+    public enum kEH_Core_Values implements Named {
+        Core("C"),
+        Legacy("L"),
+        None("N");
+        private final PropertyNames<kEH_Core_Values> names;
+
+        private kEH_Core_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<kEH_Core_Values>(
+                            kEH_Core_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<kEH_Core_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<kEH_Core_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(kEH_Core_Values.class);
+
+        public static kEH_Core_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     // kEH_Desc
     // kEH_Func
     // kEH_FVal
