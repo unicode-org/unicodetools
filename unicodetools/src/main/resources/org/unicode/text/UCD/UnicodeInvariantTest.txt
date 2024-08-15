@@ -147,16 +147,19 @@
 # CorrespondTo <R₁> : ... : <Rₙ>
 # [   UpTo: <Property> (<SValue> vs <RValue>) {, <Property> (<SValue> vs <RValue>) }]
 #
-# The Sₖ must be Unicode sets of equal size with no strings.  They are considered in code
-# point order for the correspondence check (item 2 below).
-# The references Rₖ must be Unicode sets each containing a single code point; by a slight abuse of
-# notation we refer to the code point as Rₖ in the explanation below.
+# The Sₖ must be Unicode sets of equal size, either with no strings or only strings.
+# They are considered in code point order for the correspondence check (item 2 below).
+# The references Rₖ must be Unicode sets each containing a single code point or a single string;
+# by a slight abuse of notation we refer to the code point or string as Rₖ in the explanation below.
+# For some m in 2 .. n, the following must hold:
+# a. Rₖ is a code point and Sₖ must contain only code points for k ≤ m, and
+# b. Rₖ is a string and Sₖ must contain only strings for m < k ≤ n, and
 # For every non-ignored property P that does not appear in the optional UpTo clause,
-# checks that for each k in 1 .. n, for the ith character C in Sₖ, either:
+# checks that for each k in 1 .. m, for the ith character C in Sₖ, either:
 # 1. P(C) = P(Rₖ), or
 # 2. for some l in 1 .. n, both:
 #    — P(Rₖ) is equal to Rₗ, and
-#    — P(C) is equal to the ith character in Sₗ.
+#    — P(C) is equal to the ith character (or string, if l > m) in Sₗ.
 # For every non-ignored property P that appears in the UpTo clause, checks all characters in the
 # sets Sₖ have the SValue and all R characters have the RValue.
 #
@@ -311,7 +314,7 @@ In \P{U-1:gc=Cn}, R-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
 # Red Flag: cased and case_ignorable should be disjoint,
 # except for modifier letters and ◌ͅ.
 
-\p{Cased} ∥ [\p{Case_Ignorable} - \p{gc=Lm} - \N{COMBINING GREEK YPOGEGRAMMENI} ]
+\p{Cased} ∥ [\p{Case_Ignorable} - \p{gc=Lm} - [\N{COMBINING GREEK YPOGEGRAMMENI}] ]
 
 ##########################
 # Property Stability Policies
@@ -818,7 +821,8 @@ Let $OPInclusions := [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U0001328
 # 15.1.0: and those from scripts that use the Brahmic style of context analysis,
 #  4.0.1: plus these characters: 066B ARABIC DECIMAL SEPARATOR, 066C ARABIC THOUSANDS SEPARATOR.
 # 15.1.0: Action item UTC-176-A81: change [[:PCM:]-\u070F] lb=AL->NU
-Let $NUInclusions := [\u066B\u066C]
+# 16.0.0: UTC-180-A54: U+19DA from lb=SA to lb=NU.
+Let $NUInclusions := [\u066B\u066C\u19DA]
 Let $NUFormats := [[:PCM:]-[\u070F]]
 \p{LB=NU} = [\p{GC=Nd} $NUInclusions $NUFormats - \p{EA=F} - $BrahmicLineBreaking]
 
@@ -836,8 +840,8 @@ Let $QUInclusions := [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\
 # 7.0 added 275F..2760 1F676..1F678
 \p{LB=QU} = [\p{GC=Pf} \p{GC=Pi} $QUInclusions]
 \p{LB=SG} = \p{GC=Cs}
-\p{LB=SP} = \N{SPACE}
-\p{LB=SY} = \N{SOLIDUS}
+\p{LB=SP} = [\N{SPACE}]
+\p{LB=SY} = [\N{SOLIDUS}]
 
 # The classes WJ and ZW are reserved for characters meant as explicit overrides
 # to the line breaking algorithms.  For historical reasons, WJ has two such
@@ -847,7 +851,7 @@ Let $QUInclusions := [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\
 # behaviour requires the prohibition of line breaks on either side should have
 # class GL.
 \p{LB=WJ} = [\N{WORD JOINER} \N{ZERO WIDTH NO-BREAK SPACE}]
-\p{LB=ZW} = \N{ZERO WIDTH SPACE}
+\p{LB=ZW} = [\N{ZERO WIDTH SPACE}]
 
 \p{LB=ZWJ} = [\u200D]
 \p{LB=RI} = \p{RI=Y}
@@ -889,8 +893,8 @@ Let $SAScripts := [
 ]
 $SAScripts ⊇ \p{LineBreak=SA}
 
-# And in $SA scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn, plus the NEW TAI LUE THAM DIGIT ONE
-Let $SAScriptExceptions := [\x{1173A}\x{1173B}\x{1173F} \u19DA\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAADE-\uAADF]
+# And in $SA scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn
+Let $SAScriptExceptions := [\x{1173A}\x{1173B}\x{1173F} \u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAADE-\uAADF]
 # 7.0 Added AA7D
 # 12.0 Removed Myanmar spacing marks which were assigned Other_Alphabetic: 1063..1064, 1069..106D, 1087..108C, 108F, 109A..109B, AA7B, AA7D
 
@@ -1026,6 +1030,10 @@ Let $TwoVietnameseReadingMarks := [\p{U15.1.0:ccc=6}]
 # appear in canonical decompositions where they follow an LV, LVT, V, or T, or
 # an LV or V, respectively.
 [\p{NFC_QC=Maybe}&\p{ccc=0}] ⊆ [\p{GCB=Extend}\p{GCB=T}\p{GCB=V}]
+
+# Canonical decomposition preserves the initial GCB, except for LV and LVT.
+In [\p{dt=canonical}-[\p{gcb=LV}\p{gcb=LVT}]], gcb * (take 1) * dm = gcb
+In [\p{gcb=LV}\p{gcb=LVT}], (take 1) * dm ∈ [\p{gcb=L} \p{gcb=LV} \p{gcb=LVT}]
 
 # ICU relies on this to avoid carrying data for HST which would be mostly
 # redundant with GCB.  If this breaks, it should be noted on the landing page,
@@ -1244,7 +1252,7 @@ Let $cjkStrokes := \p{Name=/^CJK STROKE /}
 Let $kangxiRadicals := \p{Name=/^KANGXI RADICAL /}
 Let $cjkRadicals := \p{Name=/^CJK RADICAL /}
 Let $strokesAndRadicals := [ $cjkStrokes $kangxiRadicals $cjkRadicals ]
-Let $nonIdeographicRadicals := \N{CJK RADICAL REPEAT}
+Let $nonIdeographicRadicals := [\N{CJK RADICAL REPEAT}]
 # The following set may expand over time, if strokes are added.
 # It can also shrink, if single-stroke ideographs are encoded.
 Let $nonIdeographicStrokes := \p{Name=/^CJK STROKE (T|WG|XG|BXG|SW|HZZ|HP|HZWG|SZWG|HZT|HZZP|HPWG|HZW|HZZZ|PG|Q|HXG|SZP)$/}
@@ -1296,8 +1304,11 @@ Let $unikemetScope := [\p{Block=/^Egyptian.Hieroglyphs/} - \p{gc=Cn}]
 $unikemetScope = [ [\p{gc=Lo} & \p{sc=Egyp}] - \p{Name=/^EGYPTIAN HIEROGLYPH (FULL |HALF |TALL |WIDE )?(BLANK|LOST SIGN)$/} ]
 $unikemetScope = \P{kEH_Cat=@none@}
 $unikemetScope = \P{kEH_UniK=@none@}
+$unikemetScope ⊃ \P{kEH_Core=None}
 \p{kEH_NoMirror} ⊂ $unikemetScope
 \p{kEH_NoRotate} ⊂ $unikemetScope
+\p{kEH_Core=Legacy} ⊂ \p{Block=Egyptian Hieroglyphs}
+[\p{kEH_Core=None} & $unikemetScope] ⊂ \p{Block=Egyptian Hieroglyphs Extended-A}
 
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
@@ -1360,6 +1371,13 @@ Ignoring Unicode_1_Name Confusable_MA:
         Propertywise [ʲ] : [j] : [J]
         CorrespondTo [ⁱ] : [i] : [I]
     end Ignoring;
+
+    Propertywise [ゟ] : [{より}]
+    CorrespondTo [ヿ] : [{コト}]
+        UpTo: Block             (Hiragana vs Katakana),
+              Script            (Hiragana vs Katakana),
+              Script_Extensions (Hiragana vs Katakana),
+              Word_Break        (Other    vs Katakana)
 
 end Ignoring;
 

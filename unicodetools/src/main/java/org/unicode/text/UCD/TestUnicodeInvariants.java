@@ -1,5 +1,6 @@
 package org.unicode.text.UCD;
 
+import com.google.common.base.Strings;
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
@@ -26,6 +27,7 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.TreeMap;
 import java.util.function.Function;
+import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.unicode.cldr.draft.FileUtilities;
@@ -523,6 +525,15 @@ public class TestUnicodeInvariants {
         }
     }
 
+    private static String stringAt(UnicodeSet set, int i) {
+        int codePoints = set.size() - set.strings().size();
+        if (i < codePoints) {
+            return Character.toString(set.charAt(i));
+        } else {
+            return set.strings().stream().skip(i - codePoints).findFirst().get();
+        }
+    }
+
     private static void propertywiseCorrespondenceLine(
             Set<String> ignoredProperties,
             UnicodeSet firstSet,
@@ -536,13 +547,12 @@ public class TestUnicodeInvariants {
         final List<UnicodeSet> sets = new ArrayList<>();
         sets.add(firstSet);
         expectToken(":", pp, source);
+
+        // Index of the first set of multi-character strings (and of the first multi-character
+        // reference string).
+        int m = -1;
         do {
             final var set = parseUnicodeSet(source, pp);
-            if (set.hasStrings()) {
-                throw new BackwardParseException(
-                        "Set should contain only single code points for property comparison",
-                        pp.getIndex());
-            }
             if (set.size() != firstSet.size()) {
                 throw new BackwardParseException(
                         "Sets should have the same size for property correspondence (got "
@@ -552,18 +562,40 @@ public class TestUnicodeInvariants {
                                 + ")",
                         pp.getIndex());
             }
+            if (set.hasStrings() && set.strings().size() != set.size()) {
+                throw new BackwardParseException(
+                        "Sets should be all strings or all code points for property correspondence",
+                        pp.getIndex());
+            }
+            if (m == -1) {
+                if (set.hasStrings()) {
+                    m = sets.size();
+                }
+            } else if (!set.hasStrings()) {
+                throw new BackwardParseException(
+                        "Code points should come before strings in property correspondence",
+                        pp.getIndex());
+            }
             sets.add(set);
         } while (Lookahead.oneToken(pp, source).accept(":"));
-        final List<Integer> referenceCodePoints = new ArrayList<>();
+        if (m == -1) {
+            m = sets.size();
+        }
+        final List<String> referenceCodePoints = new ArrayList<>();
         expectToken("CorrespondTo", pp, source);
         do {
             final var referenceSet = parseUnicodeSet(source, pp);
-            if (referenceSet.hasStrings() || referenceSet.size() != 1) {
+            if (referenceSet.size() != 1) {
                 throw new BackwardParseException(
-                        "reference should be a single code point for property correspondence",
+                        "reference should be a single code point or string for property correspondence",
                         pp.getIndex());
             }
-            referenceCodePoints.add(referenceSet.charAt(0));
+            if (referenceSet.hasStrings() != (referenceCodePoints.size() >= m)) {
+                throw new BackwardParseException(
+                        "Strings should correspond to strings for property correspondence",
+                        pp.getIndex());
+            }
+            referenceCodePoints.add(referenceSet.iterator().next());
         } while (Lookahead.oneToken(pp, source).accept(":"));
         if (referenceCodePoints.size() != sets.size()) {
             throw new BackwardParseException(
@@ -606,8 +638,8 @@ public class TestUnicodeInvariants {
                 expectedDifference = expectedPropertyDifferences.get(alias);
             }
             if (expectedDifference != null) {
-                for (int k = 0; k < sets.size(); ++k) {
-                    final int rk = referenceCodePoints.get(k);
+                for (int k = 0; k < m; ++k) {
+                    final int rk = referenceCodePoints.get(k).codePointAt(0);
                     final String pRk = property.getValue(rk);
                     if (!Objects.equals(pRk, expectedDifference.referenceValueAlias)) {
                         errorMessageLines.add(
@@ -636,9 +668,9 @@ public class TestUnicodeInvariants {
                     }
                 }
             } else {
-                for (int k = 0; k < sets.size(); ++k) {
+                for (int k = 0; k < m; ++k) {
                     final UnicodeSet set = sets.get(k);
-                    final int rk = referenceCodePoints.get(k);
+                    final int rk = referenceCodePoints.get(k).codePointAt(0);
                     final String pRk = property.getValue(rk);
                     loop_over_set:
                     for (int i = 0; i < set.size(); ++i) {
@@ -650,10 +682,9 @@ public class TestUnicodeInvariants {
                         Integer lMatchingForReference = null;
                         for (int l = 0; l < sets.size(); ++l) {
                             final boolean pCkEqualsCl =
-                                    Objects.equals(pCk, Character.toString(sets.get(l).charAt(i)));
+                                    Objects.equals(pCk, stringAt(sets.get(l), i));
                             final boolean pRkEqualsRl =
-                                    Objects.equals(
-                                            pRk, Character.toString(referenceCodePoints.get(l)));
+                                    Objects.equals(pRk, referenceCodePoints.get(l));
                             if (pRkEqualsRl) {
                                 lMatchingForReference = l;
                                 if (pCkEqualsCl) {
@@ -2007,17 +2038,63 @@ public class TestUnicodeInvariants {
         }
     }
 
+    private static Pattern nameEscape = Pattern.compile("\\\\N\\{[^}]*\\}");
+
     public static UnicodeSet parseUnicodeSet(String source, ParsePosition pp)
             throws ParseException {
+        final int initialPosition = pp.getIndex();
+        UnicodeSet icuSet;
         try {
-            final var result = new UnicodeSet(source, pp, symbolTable);
-            return result;
+            // Let ICU figure out where the UnicodeSet expression ends.
+            icuSet = new UnicodeSet(source, pp, symbolTable);
         } catch (IllegalArgumentException e) {
             // ICU produces unhelpful messages when parsing UnicodeSet deep into
             // a large string in a string that contains line terminators, as the
             // whole string is escaped and printed.
             final String message = e.getMessage().split(" at \"", 2)[0];
             throw new BackwardParseException(message, pp.getIndex());
+        }
+        String unicodeSetExpression = source.substring(initialPosition, pp.getIndex());
+        // ICU incorrectly treats \N{X} as a synonym for \p{Name=X}, returning a
+        // set rather than a character, so that it can be empty, and so that
+        // \N{X}-\N{Y} is a set difference (equal to \N{X}) rather than the range \N{X}-\N{Y}.
+        // This should likely be fixed in ICU, but in the meantime we need to work around it in
+        // the invariant before someone gets hurt.
+        var matcher = nameEscape.matcher(unicodeSetExpression);
+        if (!matcher.find()) {
+            return icuSet;
+        }
+        // Simplest way for the lambda function to report errors.
+        // It cannot throw a ParseException, and it cannot modify local variables.
+        // It _can_ modify what this local variable points to.
+        // Below, we will throw a ParseException for the first bad position.
+        final List<Integer> badEscapePositions = new ArrayList<>();
+        unicodeSetExpression =
+                matcher.replaceAll(
+                        (MatchResult match) -> {
+                            UnicodeSet character =
+                                    new UnicodeSet(
+                                            match.group(), new ParsePosition(0), symbolTable);
+                            if (character.isEmpty()) {
+                                badEscapePositions.add(match.start());
+                                return "";
+                            }
+                            return Strings.padStart(
+                                    "\\\\x{" + Integer.toHexString(character.charAt(0)) + "}",
+                                    match.group().length() + 1,
+                                    ' ');
+                        });
+        for (int p : badEscapePositions) {
+            // Simplest way to throw an exception for only the first list element.
+            throw new ParseException("No character matching \\N escape", initialPosition + p);
+        }
+        var patchedParsePosition = new ParsePosition(0);
+        try {
+            return new UnicodeSet(unicodeSetExpression, patchedParsePosition, symbolTable);
+        } catch (IllegalArgumentException e) {
+            final String message = e.getMessage().split(" at \"", 2)[0];
+            throw new BackwardParseException(
+                    message, patchedParsePosition.getIndex() + initialPosition);
         }
     }
 }
