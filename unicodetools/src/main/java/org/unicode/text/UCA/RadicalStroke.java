@@ -53,6 +53,8 @@ public final class RadicalStroke {
     /** Radical strings. Avoid constructing them over and over. */
     private String[] radicalStrings = new String[(MAX_RADICAL_NUMBER + 1) << SIMPLIFIED_NUM_BITS];
 
+    private final UnicodeSet simplifiedRadicals = new UnicodeSet();
+
     /**
      * Han characters for which code point order == radical-stroke order. Hand-picked exceptions
      * that are hard to detect optimally (because there are 2 or 3 in a row out of order) are
@@ -182,7 +184,14 @@ public final class RadicalStroke {
         // this successfully asserted numOutOfOrder <= 320.
         // Find out if this is a known issue.
         assert numOutOfOrder <= 1500;
-        hanNotInCPOrder = new UnicodeSet(hanSet).removeAll(hanInCPOrder).freeze();
+        // Exclude simplifiedRadicals so that WriteConformanceTest omits those.
+        // The test data should work with both implicit-han and radical-stroke orders.
+        // CLDR 46 changes radical-stroke order to match UAX #38,
+        // which intermingles characters with traditional and simplified radicals,
+        // different from CLDR 26..45 where
+        // simplified radicals strongly sorted after traditional ones.
+        hanNotInCPOrder =
+                new UnicodeSet(hanSet).removeAll(hanInCPOrder).addAll(simplifiedRadicals).freeze();
     }
 
     // Triples of (start, end, extension) for coalesced UAX #38 order blocks.
@@ -487,6 +496,9 @@ public final class RadicalStroke {
                 int radicalChar = Integer.parseInt(parts[1], 16);
                 assert 0 < radicalChar;
                 assert radicalChar < 0x3000; // should be a radical code point
+                if ((radicalNumberAndSimplified & 3) != 0) {
+                    simplifiedRadicals.add(radicalChar);
+                }
                 radToChar[radicalNumberAndSimplified] =
                         radicalCharString = Character.toString((char) radicalChar);
                 // radToChar[] remains null if there is no radical character.
