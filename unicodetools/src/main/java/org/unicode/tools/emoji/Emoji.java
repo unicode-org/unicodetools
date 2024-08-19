@@ -940,8 +940,7 @@ public class Emoji {
 
     public static final IndexUnicodeProperties PROPS =
             IndexUnicodeProperties.make(VERSION_TO_GENERATE_UNICODE);
-    public static final IndexUnicodeProperties BETA =
-            IndexUnicodeProperties.make(VERSION_BETA_UNICODE);
+    public static final IndexUnicodeProperties BETA = PROPS;
 
     static final UnicodeMap<Age_Values> VERSION_ENUM =
             BETA.loadEnum(UcdProperty.Age, Age_Values.class);
