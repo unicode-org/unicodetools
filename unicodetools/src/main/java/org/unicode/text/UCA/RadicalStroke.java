@@ -53,6 +53,8 @@ public final class RadicalStroke {
     /** Radical strings. Avoid constructing them over and over. */
     private String[] radicalStrings = new String[(MAX_RADICAL_NUMBER + 1) << SIMPLIFIED_NUM_BITS];
 
+    private final UnicodeSet simplifiedRadicals = new UnicodeSet();
+
     /**
      * Han characters for which code point order == radical-stroke order. Hand-picked exceptions
      * that are hard to detect optimally (because there are 2 or 3 in a row out of order) are
@@ -172,17 +174,46 @@ public final class RadicalStroke {
         System.out.println("hanInCPOrder = " + hanInCPOrder.toPattern(false));
         int numOutOfOrder = LAST_UNIHAN_11 + 1 - 0x4e00 - hanInCPOrder.size();
         System.out.println("number of original-Unihan characters out of order: " + numOutOfOrder);
-        // In Unicode 7.0, there are 313 original-Unihan characters out of order.
-        // If this number is much higher, then either the data has changed a lot,
+        // In CLDR 26..46, we generated a radical-stroke order where
+        // we treated traditional vs. simplified forms of radicals as different radicals.
+        // Effectively, the simplified-ness of a radical had more weight than
+        // the number of residual strokes.
+        // This apparently matched the allocation of the original Unihan characters.
+        // Sample Unicode 16 kRSUnicode data, where
+        // the characters with radical 120 as a group precede the ones with 120':
+        // 7E97        120.18
+        // 7E98..7E9B  120.19
+        // 7E9C..7E9D  120.21
+        // 7E9E        120.23
+        // 7E9F        120'.0
+        // 7EA0        120'.2
+        // 7EA1..7EAB  120'.3
+        // 7EAC..7EB5  120'.4
+        //
+        // Based on that, in Unicode 7.0, there were 313 original-Unihan characters out of order.
+        // The following assertion was put here as a trip wire, testing numOutOfOrder <= 320.
+        //
+        // In CLDR 46 (2024), we changed the sort order to conform to UAX #38,
+        // demoting the simplified-ness of radicals to below the number of residual strokes.
+        // For example, looking at the small sample above,
+        // characters 7E9F..7EB5 sort before 7E97 because they have fewer residual strokes.
+        // As a result, the improved radical-stroke order matches the
+        // original-Unihan code point order less well, and
+        // we got 1446 of these characters sorting differently.
+        //
+        // If this number is suddenly much higher, then either the data has changed a lot,
         // or there is a bug in the code.
         // Turn on the DEBUG flag and see if we can manually remove some characters from the set
         // so that a sequence of following ones does not get removed.
-        // TODO: Before changing the sort order to conform to UAX #38, demoting the simplified-ness
-        // of radicals to below the number of residual strokes,
-        // this successfully asserted numOutOfOrder <= 320.
-        // Find out if this is a known issue.
         assert numOutOfOrder <= 1500;
-        hanNotInCPOrder = new UnicodeSet(hanSet).removeAll(hanInCPOrder).freeze();
+        // Exclude simplifiedRadicals so that WriteConformanceTest omits those.
+        // The test data should work with both implicit-han and radical-stroke orders.
+        // CLDR 46 changes radical-stroke order to match UAX #38,
+        // which intermingles characters with traditional and simplified radicals,
+        // different from CLDR 26..45 where
+        // simplified radicals strongly sorted after traditional ones.
+        hanNotInCPOrder =
+                new UnicodeSet(hanSet).removeAll(hanInCPOrder).addAll(simplifiedRadicals).freeze();
     }
 
     // Triples of (start, end, extension) for coalesced UAX #38 order blocks.
@@ -487,6 +518,9 @@ public final class RadicalStroke {
                 int radicalChar = Integer.parseInt(parts[1], 16);
                 assert 0 < radicalChar;
                 assert radicalChar < 0x3000; // should be a radical code point
+                if ((radicalNumberAndSimplified & 3) != 0) {
+                    simplifiedRadicals.add(radicalChar);
+                }
                 radToChar[radicalNumberAndSimplified] =
                         radicalCharString = Character.toString((char) radicalChar);
                 // radToChar[] remains null if there is no radical character.
