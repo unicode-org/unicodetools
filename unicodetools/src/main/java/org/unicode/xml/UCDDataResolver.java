@@ -84,7 +84,8 @@ public class UCDDataResolver {
                                     String[] parts = line.getParts();
                                     provisionalNamedSequences.put(parts[0], parts[1]);
                                 }
-                                List<String> psNames = new ArrayList<>(provisionalNamedSequences.keySet());
+                                List<String> psNames =
+                                        new ArrayList<>(provisionalNamedSequences.keySet());
                                 Collections.sort(psNames);
                                 for (String name : psNames) {
                                     AttributesImpl attributes =
