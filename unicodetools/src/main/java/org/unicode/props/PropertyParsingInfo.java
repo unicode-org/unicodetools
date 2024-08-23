@@ -785,41 +785,22 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 }
                 value = "Yes";
             } else {
-                value = line.getParts()[2];
                 if (propInfo.property.getType() == PropertyType.Binary) {
-                    if (line.getType() == Contents.DATA
-                            && UcdPropertyValues.Binary.forName(value)
-                                    != UcdPropertyValues.Binary.Yes) {
-                        // Most binary properties have no value field, but at least kEH_NoRotate has
-                        // Y.
-                        throw new IllegalArgumentException(
-                                "Unexpected value "
-                                        + value
-                                        + " for binary property "
-                                        + propName
-                                        + " in "
-                                        + filename);
-                    } else if (line.getType() == Contents.MISSING
-                            && UcdPropertyValues.Binary.forName(value)
-                                    != UcdPropertyValues.Binary.No) {
-                        throw new IllegalArgumentException(
-                                "Unexpected default "
-                                        + value
-                                        + " for binary property "
-                                        + propName
-                                        + " in "
-                                        + filename);
-                    } else if (line.getParts().length == 3) {
-                        if (line.getParts()[2].equals("No")) {
-                            value = "No";
-                        }
-                        else {
-                            value = "Yes";
-                        }
+                    //Handle @missing values for binary attributes (see 13.0.0 emoji-data.txt)
+                    if (line.getParts().length == 3) {
+                       if (line.getParts()[2].equals("No")) {
+                           value = "No";
+                       }
+                       else {
+                           value = "Yes";
+                       }
                     }
                     else {
                         value = "Yes";
                     }
+                }
+                else {
+                    value = line.getParts()[2];
                 }
                 // The value should not be an empty string.
                 // Exception: NFKC_Casefold does remove some characters by mapping them to nothing.

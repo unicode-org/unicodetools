@@ -2,6 +2,8 @@ package org.unicode.xml;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import java.util.*;
+
+import com.ibm.icu.util.VersionInfo;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.*;
 
@@ -53,14 +55,14 @@ public class AttributeResolver {
 
     // If there is a change in any of these properties between two adjacent characters, it will
     // result in a new range.
-    private final UcdProperty[] rangeDefiningProperties = {
-        UcdProperty.Age,
-        UcdProperty.Bidi_Class,
-        UcdProperty.Block,
-        UcdProperty.Decomposition_Mapping,
-        UcdProperty.Numeric_Type,
-        UcdProperty.Numeric_Value,
-        UcdProperty.Vertical_Orientation
+    private final UcdPropertyDetail[] rangeDefiningPropertyDetails = {
+        UcdPropertyDetail.Age_Detail,
+        UcdPropertyDetail.Bidi_Class_Detail,
+        UcdPropertyDetail.Block_Detail,
+        UcdPropertyDetail.Decomposition_Mapping_Detail,
+        UcdPropertyDetail.Numeric_Type_Detail,
+        UcdPropertyDetail.Numeric_Value_Detail,
+        UcdPropertyDetail.Vertical_Orientation_Detail
     };
 
     public AttributeResolver(IndexUnicodeProperties iup) {
@@ -120,7 +122,8 @@ public class AttributeResolver {
         ALTERNATE("alternate"),
         CONTROL("control"),
         CORRECTION("correction"),
-        FIGMENT("figment");
+        FIGMENT("figment"),
+        NONE("none");
 
         private final String aliasType;
 
@@ -171,8 +174,13 @@ public class AttributeResolver {
         for (UcdLineParser.UcdLine line : parser) {
             String[] parts = line.getParts();
             int codepoint = Integer.parseInt(parts[0], 16);
-            NameAlias nameAlias =
-                    new NameAlias(parts[1], AliasType.valueOf(parts[2].toUpperCase(Locale.ROOT)));
+            NameAlias nameAlias;
+            if(parts.length < 3) {
+                nameAlias = new NameAlias(parts[1], AliasType.NONE);
+            }
+            else {
+                nameAlias = new NameAlias(parts[1], AliasType.valueOf(parts[2].toUpperCase(Locale.ROOT)));
+            }
 
             if (nameAliasesByCodepoint.containsKey(codepoint)) {
                 LinkedList<NameAlias> nameAliases =
@@ -412,13 +420,18 @@ public class AttributeResolver {
         return sb.toString().trim();
     }
 
-    public boolean isDifferentRange(int codepointA, int codepointB) {
+    public boolean isDifferentRange(VersionInfo ucdVersion, int codepointA, int codepointB) {
         boolean isDifference = false;
-        for (UcdProperty property : rangeDefiningProperties) {
-            isDifference =
-                    isDifference
-                            || !getAttributeValue(property, codepointA)
-                                    .equals(getAttributeValue(property, codepointB));
+        for (UcdPropertyDetail propDetail : rangeDefiningPropertyDetails) {
+            UcdProperty prop = propDetail.getUcdProperty();
+            if (ucdVersion.compareTo(propDetail.getMinVersion()) >= 0
+                    && (propDetail.getMaxVersion() == null
+                    || ucdVersion.compareTo(propDetail.getMaxVersion()) < 0)) {
+                isDifference =
+                        isDifference
+                                || !getAttributeValue(prop, codepointA)
+                                .equals(getAttributeValue(prop, codepointB));
+            }
         }
         return isDifference;
     }

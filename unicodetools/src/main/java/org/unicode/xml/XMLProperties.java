@@ -1,16 +1,17 @@
 package org.unicode.xml;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.*;
-import java.util.Map.Entry;
 import org.unicode.cldr.util.XMLFileReader;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Utility;
 import org.xml.sax.*;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.*;
+import java.util.Map.Entry;
 
 public class XMLProperties {
 
@@ -59,7 +60,6 @@ public class XMLProperties {
 
     Map<UcdProperty, UnicodeMap<String>> property2data =
             new EnumMap<UcdProperty, UnicodeMap<String>>(UcdProperty.class);
-
     {
         for (final UcdProperty prop : UcdProperty.values()) {
             property2data.put(prop, new UnicodeMap<String>());
@@ -67,7 +67,6 @@ public class XMLProperties {
     }
 
     Set<String> leavesNotHandled = new LinkedHashSet<String>();
-
     public XMLProperties(File ucdxmlFile) {
         readFile(ucdxmlFile);
 
@@ -162,8 +161,7 @@ public class XMLProperties {
         public void startPrefixMapping(String arg0, String arg1) throws SAXException {}
 
         @Override
-        public void startElement(
-                String namespaceURI, String localName, String qName, Attributes atts) {
+        public void startElement(String namespaceURI, String localName, String qName, Attributes atts) {
             try {
                 final XmlLeaf xmlLeaf = XmlLeaf.forString(qName);
                 if (xmlLeaf == null) {
@@ -247,8 +245,7 @@ public class XMLProperties {
                         }
                         break;
                     case NAME_ALIAS:
-                        final String alias =
-                                attributes.get("alias") + "(" + attributes.get("type") + ")";
+                        final String alias = attributes.get("alias") + "(" + attributes.get("type") + ")";
                         appendProp(cp.start, UcdProperty.Name_Alias, alias);
                         break;
                     case STANDARDIZED_VARIANT:
@@ -263,22 +260,15 @@ public class XMLProperties {
                             break;
                         }
                     case NORMALIZATION_CORRECTION:
-                        final String correction =
-                                "old: "
-                                        + attributes.get("old")
-                                        + " new: "
-                                        + attributes.get("new")
-                                        + " version: "
-                                        + attributes.get("version");
+                        final String correction = "old: " + attributes.get("old") +
+                                " new: " + attributes.get("new") +
+                                " version: " + attributes.get("version");
                         cps = Utility.fromHex(attributes.get("cp"));
                         appendProp(cps, UcdProperty.NC_Original, correction);
                         break;
                     case INSTEAD:
-                        final String instead =
-                                "use: "
-                                        + attributes.get("use")
-                                        + " because: "
-                                        + attributes.get("because");
+                        final String instead = "use: " + attributes.get("use") +
+                                " because: " + attributes.get("because");
                         cps = attributes.get("of");
                         appendProp(cps, UcdProperty.Do_Not_Emit_Preferred, instead);
                         break;
@@ -397,7 +387,6 @@ public class XMLProperties {
     public Set<String> getLeavesNotHandled() {
         return leavesNotHandled;
     }
-
     static String show(String ival) {
         if (ival == null) {
             return "null";

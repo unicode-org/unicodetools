@@ -58,9 +58,17 @@ public class UcdXML {
     private static final int HELP = 0, UCDVERSION = 1, RANGE = 2, OUTPUT = 3, OUTPUTFOLDER = 4;
 
     public static void main(String[] args) throws Exception {
+
         VersionInfo ucdVersion = null;
-        UCDXMLOUTPUTRANGE ucdxmloutputrange = null;
-        UCDXMLOUTPUTTYPE ucdxmloutputtype = null;
+        UCDXMLOUTPUTRANGE[] ucdxmloutputranges = new UCDXMLOUTPUTRANGE[] {
+                UCDXMLOUTPUTRANGE.ALL,
+                UCDXMLOUTPUTRANGE.NOUNIHAN,
+                UCDXMLOUTPUTRANGE.UNIHAN
+        };
+        UCDXMLOUTPUTTYPE[] ucdxmloutputtypes = new UCDXMLOUTPUTTYPE[] {
+                UCDXMLOUTPUTTYPE.FLAT,
+                UCDXMLOUTPUTTYPE.GROUPED
+        };
         File destinationFolder = null;
 
         UOption.parseArgs(args, options);
@@ -88,31 +96,29 @@ public class UcdXML {
             }
             if (options[RANGE].doesOccur) {
                 try {
-                    ucdxmloutputrange =
+                    ucdxmloutputranges = new UCDXMLOUTPUTRANGE[]{
                             UCDXMLOUTPUTRANGE.valueOf(
-                                    options[RANGE].value.toUpperCase(Locale.ROOT));
+                                    options[RANGE].value.toUpperCase(Locale.ROOT))
+                            };
                 } catch (Exception e) {
                     throw new IllegalArgumentException(
                             "Could not convert "
                                     + options[RANGE].value
                                     + " to one of [ALL|NOUNIHAN|UNIHAN]");
                 }
-            } else {
-                throw new IllegalArgumentException("Missing command line option: --range (or -r)");
             }
             if (options[OUTPUT].doesOccur) {
                 try {
-                    ucdxmloutputtype =
+                    ucdxmloutputtypes = new UCDXMLOUTPUTTYPE[] {
                             UCDXMLOUTPUTTYPE.valueOf(
-                                    options[OUTPUT].value.toUpperCase(Locale.ROOT));
+                                    options[OUTPUT].value.toUpperCase(Locale.ROOT))
+                    };
                 } catch (Exception e) {
                     throw new IllegalArgumentException(
                             "Could not convert "
                                     + options[OUTPUT].value
                                     + " to one of [FLAT|GROUPED]");
                 }
-            } else {
-                throw new IllegalArgumentException("Missing command line option: --output (or -o)");
             }
             if (options[OUTPUTFOLDER].doesOccur) {
                 try {
@@ -141,8 +147,14 @@ public class UcdXML {
         }
 
         if (ucdVersion != null && destinationFolder.exists()) {
-            buildUcdXMLFile(ucdVersion, destinationFolder, ucdxmloutputrange, ucdxmloutputtype);
-            System.out.println("end");
+            for (UCDXMLOUTPUTRANGE ucdxmloutputrange : ucdxmloutputranges) {
+                for (UCDXMLOUTPUTTYPE ucdxmloutputtype: ucdxmloutputtypes) {
+                    System.out.println("Building the " + ucdxmloutputrange + " " + ucdxmloutputtype +
+                                    " UcdXML file for " + ucdVersion);
+                    buildUcdXMLFile(ucdVersion, destinationFolder, ucdxmloutputrange, ucdxmloutputtype);
+                }
+            }
+            System.out.println("End");
             System.exit(0);
         } else {
             System.err.println("Unexpected error when building UcdXML file.");
@@ -198,11 +210,18 @@ public class UcdXML {
             if (outputRange != UCDXMLOUTPUTRANGE.UNIHAN) {
                 ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.BLOCKS);
                 ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.NAMEDSEQUENCES);
+                ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.PROVISIONALNAMEDSEQUENCES);
                 ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.NORMALIZATIONCORRECTIONS);
                 ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.STANDARDIZEDVARIANTS);
-                ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.CJKRADICALS);
-                ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.EMOJISOURCES);
-                ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.DONOTEMIT);
+                if (ucdVersion.compareTo(VersionInfo.getInstance(5, 2, 0)) >= 0) {
+                    ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.CJKRADICALS);
+                }
+                if (ucdVersion.compareTo(VersionInfo.getInstance(6, 0, 0)) >= 0) {
+                    ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.EMOJISOURCES);
+                }
+                if (ucdVersion.compareTo(VersionInfo.getInstance(16, 0, 0)) >= 0) {
+                    ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.DONOTEMIT);
+                }
             }
             writer.endElement("ucd");
         }
@@ -345,7 +364,7 @@ public class UcdXML {
                 Range currentRangeType = getRangeType(attributeResolver, codepoint);
                 if (!range.isEmpty()) {
                     if (!currentRangeType.equals(rangeType)
-                            || attributeResolver.isDifferentRange(codepoint, codepoint - 1)) {
+                            || attributeResolver.isDifferentRange(ucdVersion, codepoint, codepoint - 1)) {
                         if (outputRange != UCDXMLOUTPUTRANGE.UNIHAN) {
                             if (outputType == UCDXMLOUTPUTTYPE.GROUPED) {
                                 buildGroupedRange(
@@ -439,13 +458,19 @@ public class UcdXML {
         AttributesImpl orgCharAttributes =
                 getAttributes(ucdVersion, attributeResolver, codepoint, outputRange);
         AttributesImpl charAttributes = new AttributesImpl();
-        for (int index = 0; index < orgCharAttributes.getLength(); index++) {
-            String attributeQName = orgCharAttributes.getQName(index);
-            String orgCharAttributesValue = orgCharAttributes.getValue(index);
-            String groupAttributeValue = groupAttrs.getValue(attributeQName);
-            if (!orgCharAttributesValue.equals(groupAttributeValue)) {
+        charAttributes.addAttribute(
+                NAMESPACE, "cp", "cp", "CDATA", attributeResolver.getHexString(codepoint));
+
+        for (UcdPropertyDetail propDetail : UcdPropertyDetail.ucdxmlValues()) {
+            String qName = propDetail.getUcdProperty().getShortName();
+            if (qName.startsWith("cjk")) {
+                qName = qName.substring(2);
+            }
+            String orgCharAttributesValue = orgCharAttributes.getValue(qName);
+            String groupAttributeValue = groupAttrs.getValue(qName);
+            if (!Objects.equals(orgCharAttributesValue, groupAttributeValue)) {
                 charAttributes.addAttribute(
-                        NAMESPACE, attributeQName, attributeQName, "CDATA", orgCharAttributesValue);
+                        NAMESPACE, qName, qName, "CDATA", Objects.requireNonNullElse(orgCharAttributesValue, ""));
             }
         }
         buildChar(writer, attributeResolver, codepoint, charAttributes);
@@ -464,8 +489,11 @@ public class UcdXML {
                 for (String alias : nameAliases.keySet()) {
                     AttributesImpl nameAliasAt = new AttributesImpl();
                     nameAliasAt.addAttribute(NAMESPACE, "alias", "alias", "CDATA", alias);
-                    nameAliasAt.addAttribute(
-                            NAMESPACE, "type", "type", "CDATA", nameAliases.get(alias));
+                    String type = nameAliases.get(alias);
+                    if (!Objects.equals(type, "none")) {
+                        nameAliasAt.addAttribute(
+                                NAMESPACE, "type", "type", "CDATA", nameAliases.get(alias));
+                    }
                     writer.startElement("name-alias", nameAliasAt);
                     {
                         writer.endElement("name-alias");
@@ -487,13 +515,34 @@ public class UcdXML {
         AttributesImpl orgRangeAttributes =
                 getReservedAttributes(ucdVersion, attributeResolver, range);
         AttributesImpl rangeAttributes = new AttributesImpl();
-        for (int index = 0; index < orgRangeAttributes.getLength(); index++) {
-            String attributeQName = orgRangeAttributes.getQName(index);
-            String orgCharAttributesValue = orgRangeAttributes.getValue(index);
-            String groupAttributeValue = groupAttrs.getValue(attributeQName);
-            if (!orgCharAttributesValue.equals(groupAttributeValue)) {
+        if (range.size() == 1) {
+            rangeAttributes.addAttribute(
+                    NAMESPACE, "cp", "cp", "CDATA", attributeResolver.getHexString(range.get(0)));
+        } else {
+            rangeAttributes.addAttribute(
+                    NAMESPACE,
+                    "first-cp",
+                    "first-cp",
+                    "CDATA",
+                    attributeResolver.getHexString(range.get(0)));
+            rangeAttributes.addAttribute(
+                    NAMESPACE,
+                    "last-cp",
+                    "last-cp",
+                    "CDATA",
+                    attributeResolver.getHexString(range.get(range.size() - 1)));
+        }
+
+        for (UcdPropertyDetail propDetail : UcdPropertyDetail.ucdxmlValues()) {
+            String qName = propDetail.getUcdProperty().getShortName();
+            if (qName.startsWith("cjk")) {
+                qName = qName.substring(2);
+            }
+            String orgCharAttributesValue = orgRangeAttributes.getValue(qName);
+            String groupAttributeValue = groupAttrs.getValue(qName);
+            if (!Objects.equals(orgCharAttributesValue, groupAttributeValue)) {
                 rangeAttributes.addAttribute(
-                        NAMESPACE, attributeQName, attributeQName, "CDATA", orgCharAttributesValue);
+                        NAMESPACE, qName, qName, "CDATA", Objects.requireNonNullElse(orgCharAttributesValue, ""));
             }
         }
         writer.startElement(rangeType.tag, rangeAttributes);

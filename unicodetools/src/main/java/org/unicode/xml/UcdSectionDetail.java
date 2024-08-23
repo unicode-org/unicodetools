@@ -46,6 +46,14 @@ public class UcdSectionDetail {
                 NamedSequences_Detail,
                 false,
                 false),
+        PROVISIONALNAMEDSEQUENCES(
+                "provisional-named-sequences",
+                "named-sequence",
+                VersionInfo.getInstance(5, 0, 0),
+                VersionInfo.getInstance(13, 0, 0),
+                ProvisionalNamedSequences_Detail,
+                false,
+                false),
         NORMALIZATIONCORRECTIONS(
                 "normalization-corrections",
                 "normalization-correction",
@@ -128,8 +136,17 @@ public class UcdSectionDetail {
             new UcdSectionDetail(
                     UcdSection.NAMEDSEQUENCES,
                     new UcdSectionComponent[] {
-                        new UcdSectionComponent(
-                                VersionInfo.getInstance(1, 1, 0), null, UcdProperty.Named_Sequences)
+                            new UcdSectionComponent(
+                                    VersionInfo.getInstance(1, 1, 0), null, UcdProperty.Named_Sequences)
+                    },
+                    1);
+    public static UcdSectionDetail ProvisionalNamedSequences_Detail =
+            new UcdSectionDetail(
+                    UcdSection.PROVISIONALNAMEDSEQUENCES,
+                    new UcdSectionComponent[] {
+                            new UcdSectionComponent(
+                                    VersionInfo.getInstance(5, 0, 0), VersionInfo.getInstance(13, 0, 0),
+                                    UcdProperty.Named_Sequences_Prov)
                     },
                     1);
     public static UcdSectionDetail NormalizationCorrections_Detail =
@@ -149,7 +166,7 @@ public class UcdSectionDetail {
                                 null,
                                 UcdProperty.Standardized_Variant),
                         new UcdSectionComponent(
-                                VersionInfo.getInstance(13, 1, 0),
+                                VersionInfo.getInstance(13, 0, 0),
                                 null,
                                 UcdProperty.emoji_variation_sequence)
                     },
