@@ -760,10 +760,23 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 assert propInfo.property.getType() == PropertyType.Binary;
                 value = "Yes";
             } else {
-                value =
-                        propInfo.property.getType() == PropertyType.Binary
-                                ? "Yes"
-                                : line.getParts()[2];
+                if (propInfo.property.getType() == PropertyType.Binary) {
+                    //Handle @missing values for binary attributes (see 13.0.0 emoji-data.txt)
+                    if (line.getParts().length == 3) {
+                       if (line.getParts()[2].equals("No")) {
+                           value = "No";
+                       }
+                       else {
+                           value = "Yes";
+                       }
+                    }
+                    else {
+                        value = "Yes";
+                    }
+                }
+                else {
+                    value = line.getParts()[2];
+                }
                 // The value should not be an empty string.
                 // Exception: NFKC_Casefold does remove some characters by mapping them to nothing.
                 assert !value.isEmpty()
