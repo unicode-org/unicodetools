@@ -1,9 +1,8 @@
 package org.unicode.xml;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import java.util.*;
-
 import com.ibm.icu.util.VersionInfo;
+import java.util.*;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.*;
 
@@ -175,11 +174,12 @@ public class AttributeResolver {
             String[] parts = line.getParts();
             int codepoint = Integer.parseInt(parts[0], 16);
             NameAlias nameAlias;
-            if(parts.length < 3) {
+            if (parts.length < 3) {
                 nameAlias = new NameAlias(parts[1], AliasType.NONE);
-            }
-            else {
-                nameAlias = new NameAlias(parts[1], AliasType.valueOf(parts[2].toUpperCase(Locale.ROOT)));
+            } else {
+                nameAlias =
+                        new NameAlias(
+                                parts[1], AliasType.valueOf(parts[2].toUpperCase(Locale.ROOT)));
             }
 
             if (nameAliasesByCodepoint.containsKey(codepoint)) {
@@ -426,11 +426,11 @@ public class AttributeResolver {
             UcdProperty prop = propDetail.getUcdProperty();
             if (ucdVersion.compareTo(propDetail.getMinVersion()) >= 0
                     && (propDetail.getMaxVersion() == null
-                    || ucdVersion.compareTo(propDetail.getMaxVersion()) < 0)) {
+                            || ucdVersion.compareTo(propDetail.getMaxVersion()) < 0)) {
                 isDifference =
                         isDifference
                                 || !getAttributeValue(prop, codepointA)
-                                .equals(getAttributeValue(prop, codepointB));
+                                        .equals(getAttributeValue(prop, codepointB));
             }
         }
         return isDifference;

@@ -1278,7 +1278,8 @@ public class UcdPropertyDetail {
                     false,
                     true);
     //        public static UcdPropertyDetail kAlternateHanYu_Detail = new UcdPropertyDetail (
-    //            UcdProperty.kAlternateHanYu, VersionInfo.getInstance(2,0,0), VersionInfo.getInstance(3,1,1), 143,
+    //            UcdProperty.kAlternateHanYu, VersionInfo.getInstance(2,0,0),
+    // VersionInfo.getInstance(3,1,1), 143,
     //            false, true, false, true);
     public static UcdPropertyDetail kMandarin_Detail =
             new UcdPropertyDetail(
@@ -1506,7 +1507,8 @@ public class UcdPropertyDetail {
                     false,
                     true);
     //    public static UcdPropertyDetail kAlternateKangXi_Detail = new UcdPropertyDetail (
-    //            UcdProperty.kAlternateKangXi, VersionInfo.getInstance(2,0,0), VersionInfo.getInstance(4,0,1), 169,
+    //            UcdProperty.kAlternateKangXi, VersionInfo.getInstance(2,0,0),
+    // VersionInfo.getInstance(4,0,1), 169,
     //            false, true, false, true);
     public static UcdPropertyDetail kBigFive_Detail =
             new UcdPropertyDetail(
@@ -1664,7 +1666,8 @@ public class UcdPropertyDetail {
                     false,
                     true);
     //    public static UcdPropertyDetail kAlternateMorohashi_Detail = new UcdPropertyDetail (
-    //            UcdProperty.kAlternateMorohashi, VersionInfo.getInstance(2,0,0), VersionInfo.getInstance(4,0,1), 187,
+    //            UcdProperty.kAlternateMorohashi, VersionInfo.getInstance(2,0,0),
+    // VersionInfo.getInstance(4,0,1), 187,
     //            false, true, false, true);
     public static UcdPropertyDetail kPrimaryNumeric_Detail =
             new UcdPropertyDetail(

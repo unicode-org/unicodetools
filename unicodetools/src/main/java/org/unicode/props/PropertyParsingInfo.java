@@ -786,20 +786,17 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 value = "Yes";
             } else {
                 if (propInfo.property.getType() == PropertyType.Binary) {
-                    //Handle @missing values for binary attributes (see 13.0.0 emoji-data.txt)
+                    // Handle @missing values for binary attributes (see 13.0.0 emoji-data.txt)
                     if (line.getParts().length == 3) {
-                       if (line.getParts()[2].equals("No")) {
-                           value = "No";
-                       }
-                       else {
-                           value = "Yes";
-                       }
-                    }
-                    else {
+                        if (line.getParts()[2].equals("No")) {
+                            value = "No";
+                        } else {
+                            value = "Yes";
+                        }
+                    } else {
                         value = "Yes";
                     }
-                }
-                else {
+                } else {
                     value = line.getParts()[2];
                 }
                 // The value should not be an empty string.
