@@ -18,7 +18,7 @@ public class UcdPropertyDetail {
 
     public static UcdPropertyDetail Age_Detail =
             new UcdPropertyDetail(
-                    UcdProperty.Age, VersionInfo.getInstance(1, 1, 0), 1, true, false, false, true);
+                    UcdProperty.Age, VersionInfo.getInstance(3, 2, 0), 1, true, false, false, true);
     public static UcdPropertyDetail Name_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Name,
@@ -31,7 +31,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Jamo_Short_Name_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Jamo_Short_Name,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(5, 1, 0),
                     3,
                     true,
                     false,
@@ -130,7 +130,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Bidi_Mirroring_Glyph_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Bidi_Mirroring_Glyph,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 0, 1),
                     14,
                     true,
                     false,
@@ -166,7 +166,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Uppercase_Mapping_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Uppercase_Mapping,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 1, 8),
                     18,
                     true,
                     false,
@@ -175,7 +175,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Lowercase_Mapping_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Lowercase_Mapping,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 1, 8),
                     19,
                     true,
                     false,
@@ -184,7 +184,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Titlecase_Mapping_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Titlecase_Mapping,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 1, 8),
                     20,
                     true,
                     false,
@@ -197,7 +197,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Simple_Case_Folding_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Simple_Case_Folding,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 0, 1),
                     22,
                     true,
                     false,
@@ -206,7 +206,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Case_Folding_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Case_Folding,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 0, 1),
                     23,
                     true,
                     false,
@@ -215,7 +215,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Joining_Type_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Joining_Type,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     24,
                     true,
                     false,
@@ -224,7 +224,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Joining_Group_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Joining_Group,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     25,
                     true,
                     false,
@@ -233,7 +233,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail East_Asian_Width_Detail =
             new UcdPropertyDetail(
                     UcdProperty.East_Asian_Width,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 0, 0),
                     26,
                     true,
                     false,
@@ -242,7 +242,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Line_Break_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Line_Break,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 0, 0),
                     27,
                     true,
                     false,
@@ -251,7 +251,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Script_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Script,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     28,
                     true,
                     false,
@@ -269,7 +269,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Dash_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Dash,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     30,
                     true,
                     false,
@@ -278,7 +278,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail White_Space_Detail =
             new UcdPropertyDetail(
                     UcdProperty.White_Space,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     31,
                     true,
                     false,
@@ -287,7 +287,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Hyphen_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Hyphen,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     32,
                     true,
                     false,
@@ -296,7 +296,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Quotation_Mark_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Quotation_Mark,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     33,
                     true,
                     false,
@@ -305,7 +305,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Radical_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Radical,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     34,
                     true,
                     false,
@@ -314,7 +314,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Ideographic_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Ideographic,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     35,
                     true,
                     false,
@@ -323,7 +323,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Unified_Ideograph_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Unified_Ideograph,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     36,
                     true,
                     false,
@@ -332,7 +332,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail IDS_Binary_Operator_Detail =
             new UcdPropertyDetail(
                     UcdProperty.IDS_Binary_Operator,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     37,
                     true,
                     false,
@@ -341,7 +341,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail IDS_Trinary_Operator_Detail =
             new UcdPropertyDetail(
                     UcdProperty.IDS_Trinary_Operator,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     38,
                     true,
                     false,
@@ -350,7 +350,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Hangul_Syllable_Type_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Hangul_Syllable_Type,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(4, 0, 0),
                     39,
                     true,
                     false,
@@ -359,7 +359,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Default_Ignorable_Code_Point_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Default_Ignorable_Code_Point,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     40,
                     true,
                     false,
@@ -368,7 +368,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Other_Default_Ignorable_Code_Point_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Other_Default_Ignorable_Code_Point,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     41,
                     true,
                     false,
@@ -386,7 +386,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Other_Alphabetic_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Other_Alphabetic,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     43,
                     true,
                     false,
@@ -395,7 +395,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Uppercase_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Uppercase,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     44,
                     true,
                     false,
@@ -404,7 +404,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Other_Uppercase_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Other_Uppercase,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     45,
                     true,
                     false,
@@ -413,7 +413,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Lowercase_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Lowercase,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     46,
                     true,
                     false,
@@ -422,7 +422,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Other_Lowercase_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Other_Lowercase,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     47,
                     true,
                     false,
@@ -431,7 +431,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Math_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Math,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     48,
                     true,
                     false,
@@ -440,7 +440,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Other_Math_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Other_Math,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     49,
                     true,
                     false,
@@ -449,7 +449,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Hex_Digit_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Hex_Digit,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     50,
                     true,
                     false,
@@ -458,7 +458,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail ASCII_Hex_Digit_Detail =
             new UcdPropertyDetail(
                     UcdProperty.ASCII_Hex_Digit,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 1, 1),
                     51,
                     true,
                     false,
@@ -467,7 +467,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Noncharacter_Code_Point_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Noncharacter_Code_Point,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 0, 1),
                     52,
                     true,
                     false,
@@ -476,7 +476,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Variation_Selector_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Variation_Selector,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(4, 0, 1),
                     53,
                     true,
                     false,
@@ -485,7 +485,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Bidi_Control_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Bidi_Control,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     54,
                     true,
                     false,
@@ -494,7 +494,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Join_Control_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Join_Control,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     55,
                     true,
                     false,
@@ -503,7 +503,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Grapheme_Base_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Grapheme_Base,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     56,
                     true,
                     false,
@@ -512,7 +512,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Grapheme_Extend_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Grapheme_Extend,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     57,
                     true,
                     false,
@@ -521,7 +521,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Other_Grapheme_Extend_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Other_Grapheme_Extend,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     58,
                     true,
                     false,
@@ -530,7 +530,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Grapheme_Link_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Grapheme_Link,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     59,
                     true,
                     false,
@@ -539,7 +539,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Sentence_Terminal_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Sentence_Terminal,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(9, 0, 0),
                     60,
                     true,
                     false,
@@ -548,7 +548,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Extender_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Extender,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     61,
                     true,
                     false,
@@ -557,7 +557,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Terminal_Punctuation_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Terminal_Punctuation,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     62,
                     true,
                     false,
@@ -566,7 +566,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Diacritic_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Diacritic,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     63,
                     true,
                     false,
@@ -575,7 +575,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Deprecated_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Deprecated,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     64,
                     true,
                     false,
@@ -584,7 +584,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail ID_Start_Detail =
             new UcdPropertyDetail(
                     UcdProperty.ID_Start,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     65,
                     true,
                     false,
@@ -593,7 +593,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Other_ID_Start_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Other_ID_Start,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(4, 0, 0),
                     66,
                     true,
                     false,
@@ -602,7 +602,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail XID_Start_Detail =
             new UcdPropertyDetail(
                     UcdProperty.XID_Start,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     67,
                     true,
                     false,
@@ -611,7 +611,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail ID_Continue_Detail =
             new UcdPropertyDetail(
                     UcdProperty.ID_Continue,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     68,
                     true,
                     false,
@@ -620,7 +620,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Other_ID_Continue_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Other_ID_Continue,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(4, 1, 0),
                     69,
                     true,
                     false,
@@ -629,7 +629,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail XID_Continue_Detail =
             new UcdPropertyDetail(
                     UcdProperty.XID_Continue,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     70,
                     true,
                     false,
@@ -638,7 +638,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Soft_Dotted_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Soft_Dotted,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     71,
                     true,
                     false,
@@ -647,7 +647,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Logical_Order_Exception_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Logical_Order_Exception,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     72,
                     true,
                     false,
@@ -656,7 +656,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Pattern_White_Space_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Pattern_White_Space,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(4, 1, 0),
                     73,
                     true,
                     false,
@@ -665,7 +665,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Pattern_Syntax_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Pattern_Syntax,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(4, 1, 0),
                     74,
                     true,
                     false,
@@ -674,7 +674,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Grapheme_Cluster_Break_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Grapheme_Cluster_Break,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(4, 1, 0),
                     75,
                     true,
                     false,
@@ -683,7 +683,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Word_Break_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Word_Break,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(4, 1, 0),
                     76,
                     true,
                     false,
@@ -692,7 +692,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Sentence_Break_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Sentence_Break,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(4, 1, 0),
                     77,
                     true,
                     false,
@@ -701,7 +701,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Composition_Exclusion_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Composition_Exclusion,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 0, 0),
                     78,
                     true,
                     false,
@@ -710,7 +710,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Full_Composition_Exclusion_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Full_Composition_Exclusion,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     79,
                     true,
                     false,
@@ -719,7 +719,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail NFC_Quick_Check_Detail =
             new UcdPropertyDetail(
                     UcdProperty.NFC_Quick_Check,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     80,
                     true,
                     false,
@@ -728,7 +728,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail NFD_Quick_Check_Detail =
             new UcdPropertyDetail(
                     UcdProperty.NFD_Quick_Check,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     81,
                     true,
                     false,
@@ -737,7 +737,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail NFKC_Quick_Check_Detail =
             new UcdPropertyDetail(
                     UcdProperty.NFKC_Quick_Check,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(5, 2, 0),
                     82,
                     true,
                     false,
@@ -746,7 +746,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail NFKD_Quick_Check_Detail =
             new UcdPropertyDetail(
                     UcdProperty.NFKD_Quick_Check,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     83,
                     true,
                     false,
@@ -755,7 +755,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Expands_On_NFC_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Expands_On_NFC,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     84,
                     true,
                     false,
@@ -764,7 +764,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Expands_On_NFD_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Expands_On_NFD,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     85,
                     true,
                     false,
@@ -773,7 +773,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Expands_On_NFKC_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Expands_On_NFKC,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     86,
                     true,
                     false,
@@ -782,7 +782,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Expands_On_NFKD_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Expands_On_NFKD,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     87,
                     true,
                     false,
@@ -791,7 +791,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail FC_NFC_Closure_Detail =
             new UcdPropertyDetail(
                     UcdProperty.FC_NFKC_Closure,
-                    VersionInfo.getInstance(1, 1, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     88,
                     true,
                     false,
@@ -881,14 +881,14 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Indic_Syllabic_Category_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Indic_Syllabic_Category,
-                    VersionInfo.getInstance(6, 0, 0),
+                    VersionInfo.getInstance(6, 1, 0),
                     98,
                     true,
                     false,
                     false,
                     true);
     //        public static UcdPropertyDetail Indic_Matra_Category_Detail = new UcdPropertyDetail (
-    //            UcdProperty.Indic_Matra_Category, VersionInfo.getInstance(6,0,0),
+    //            UcdProperty.Indic_Matra_Category, VersionInfo.getInstance(6,1,0),
     // VersionInfo.getInstance(7,0,0), 99,
     //            true, false, false, true);
     public static UcdPropertyDetail Indic_Positional_Category_Detail =
@@ -939,7 +939,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Block_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Block,
-                    VersionInfo.getInstance(10, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     105,
                     true,
                     false,
@@ -957,7 +957,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kCompatibilityVariant_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kCompatibilityVariant,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     107,
                     false,
                     true,
@@ -966,7 +966,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kRSUnicode_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kRSUnicode,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     108,
                     false,
                     true,
@@ -978,7 +978,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIRG_GSource_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIRG_GSource,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 0, 0),
                     110,
                     false,
                     true,
@@ -987,7 +987,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIRG_TSource_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIRG_TSource,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 0, 0),
                     111,
                     false,
                     true,
@@ -996,7 +996,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIRG_JSource_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIRG_JSource,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 0, 0),
                     112,
                     false,
                     true,
@@ -1005,7 +1005,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIRG_KSource_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIRG_KSource,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 0, 0),
                     113,
                     false,
                     true,
@@ -1014,7 +1014,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIRG_KPSource_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIRG_KPSource,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 1),
                     114,
                     false,
                     true,
@@ -1023,7 +1023,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIRG_VSource_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIRG_VSource,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 0, 0),
                     115,
                     false,
                     true,
@@ -1032,7 +1032,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIRG_HSource_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIRG_HSource,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     116,
                     false,
                     true,
@@ -1041,7 +1041,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIRG_USource_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIRG_USource,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(4, 0, 1),
                     117,
                     false,
                     true,
@@ -1050,7 +1050,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIRG_MSource_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIRG_MSource,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(5, 2, 0),
                     118,
                     false,
                     true,
@@ -1077,7 +1077,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIICore_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIICore,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(4, 1, 0),
                     121,
                     false,
                     true,
@@ -1086,7 +1086,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kUnihanCore2020_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kUnihanCore2020,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(13, 0, 0),
                     122,
                     false,
                     true,
@@ -1095,7 +1095,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kGB0_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kGB0,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     123,
                     false,
                     true,
@@ -1104,7 +1104,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kGB1_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kGB1,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     124,
                     false,
                     true,
@@ -1113,7 +1113,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kGB3_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kGB3,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     125,
                     false,
                     true,
@@ -1122,7 +1122,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kGB5_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kGB5,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     126,
                     false,
                     true,
@@ -1131,7 +1131,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kGB7_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kGB7,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     127,
                     false,
                     true,
@@ -1140,7 +1140,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kGB8_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kGB8,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     128,
                     false,
                     true,
@@ -1149,7 +1149,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kCNS1986_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kCNS1986,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     129,
                     false,
                     true,
@@ -1158,7 +1158,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kCNS1992_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kCNS1992,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     130,
                     false,
                     true,
@@ -1167,7 +1167,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kJis0_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kJis0,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     131,
                     false,
                     true,
@@ -1176,7 +1176,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kJis1_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kJis1,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     132,
                     false,
                     true,
@@ -1185,7 +1185,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kJIS0213_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kJIS0213,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 1),
                     133,
                     false,
                     true,
@@ -1194,7 +1194,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kKSC0_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kKSC0,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     VersionInfo.getInstance(15, 1, 0),
                     134,
                     false,
@@ -1204,7 +1204,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kKSC1_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kKSC1,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     VersionInfo.getInstance(15, 1, 0),
                     135,
                     false,
@@ -1214,7 +1214,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kKPS0_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kKPS0,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 1),
                     VersionInfo.getInstance(15, 1, 0),
                     136,
                     false,
@@ -1224,7 +1224,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kKPS1_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kKPS1,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 1),
                     VersionInfo.getInstance(15, 1, 0),
                     137,
                     false,
@@ -1234,7 +1234,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kHKSCS_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kHKSCS,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 1),
                     VersionInfo.getInstance(15, 1, 0),
                     138,
                     false,
@@ -1244,7 +1244,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kCantonese_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kCantonese,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     139,
                     false,
                     true,
@@ -1253,7 +1253,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kHangul_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kHangul,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(5, 0, 0),
                     140,
                     false,
                     true,
@@ -1262,7 +1262,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kDefinition_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kDefinition,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     141,
                     false,
                     true,
@@ -1271,19 +1271,19 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kHanYu_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kHanYu,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     142,
                     false,
                     true,
                     false,
                     true);
     //        public static UcdPropertyDetail kAlternateHanYu_Detail = new UcdPropertyDetail (
-    //            UcdProperty.kAlternateHanYu, VersionInfo.getInstance(11,0,0), 143,
+    //            UcdProperty.kAlternateHanYu, VersionInfo.getInstance(2,0,0), VersionInfo.getInstance(3,1,1), 143,
     //            false, true, false, true);
     public static UcdPropertyDetail kMandarin_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kMandarin,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     144,
                     false,
                     true,
@@ -1292,7 +1292,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kCihaiT_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kCihaiT,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     145,
                     false,
                     true,
@@ -1301,7 +1301,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kSBGY_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kSBGY,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     146,
                     false,
                     true,
@@ -1310,7 +1310,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kNelson_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kNelson,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     147,
                     false,
                     true,
@@ -1319,7 +1319,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kCowles_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kCowles,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 1),
                     148,
                     false,
                     true,
@@ -1328,7 +1328,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kMatthews_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kMatthews,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     149,
                     false,
                     true,
@@ -1337,7 +1337,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kOtherNumeric_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kOtherNumeric,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     150,
                     false,
                     true,
@@ -1346,7 +1346,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kPhonetic_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kPhonetic,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     151,
                     false,
                     true,
@@ -1355,7 +1355,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kGSR_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kGSR,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(4, 0, 1),
                     152,
                     false,
                     true,
@@ -1364,7 +1364,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kFenn_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kFenn,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 1),
                     153,
                     false,
                     true,
@@ -1373,7 +1373,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kFennIndex_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kFennIndex,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(4, 1, 0),
                     154,
                     false,
                     true,
@@ -1382,7 +1382,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kKarlgren_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kKarlgren,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 1),
                     155,
                     false,
                     true,
@@ -1391,7 +1391,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kCangjie_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kCangjie,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 1),
                     156,
                     false,
                     true,
@@ -1400,7 +1400,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kMeyerWempe_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kMeyerWempe,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     157,
                     false,
                     true,
@@ -1409,7 +1409,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kSimplifiedVariant_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kSimplifiedVariant,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     158,
                     false,
                     true,
@@ -1418,7 +1418,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kTraditionalVariant_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kTraditionalVariant,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     159,
                     false,
                     true,
@@ -1427,7 +1427,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kSpecializedSemanticVariant_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kSpecializedSemanticVariant,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     160,
                     false,
                     true,
@@ -1436,7 +1436,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kSemanticVariant_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kSemanticVariant,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     161,
                     false,
                     true,
@@ -1445,7 +1445,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kVietnamese_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kVietnamese,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 1),
                     162,
                     false,
                     true,
@@ -1454,7 +1454,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kLau_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kLau,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 1),
                     163,
                     false,
                     true,
@@ -1463,7 +1463,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kTang_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kTang,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     164,
                     false,
                     true,
@@ -1472,7 +1472,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kZVariant_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kZVariant,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     165,
                     false,
                     true,
@@ -1481,7 +1481,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kJapaneseKun_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kJapaneseKun,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     166,
                     false,
                     true,
@@ -1490,7 +1490,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kJapaneseOn_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kJapaneseOn,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     167,
                     false,
                     true,
@@ -1499,19 +1499,19 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kKangXi_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kKangXi,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     168,
                     false,
                     true,
                     false,
                     true);
     //    public static UcdPropertyDetail kAlternateKangXi_Detail = new UcdPropertyDetail (
-    //            UcdProperty.kAlternateKangXi, VersionInfo.getInstance(11,0,0), 169,
+    //            UcdProperty.kAlternateKangXi, VersionInfo.getInstance(2,0,0), VersionInfo.getInstance(4,0,1), 169,
     //            false, true, false, true);
     public static UcdPropertyDetail kBigFive_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kBigFive,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     170,
                     false,
                     true,
@@ -1520,7 +1520,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kCCCII_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kCCCII,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     171,
                     false,
                     true,
@@ -1529,7 +1529,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kDaeJaweon_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kDaeJaweon,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     172,
                     false,
                     true,
@@ -1538,7 +1538,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kEACC_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kEACC,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     173,
                     false,
                     true,
@@ -1547,7 +1547,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kFrequency_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kFrequency,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     VersionInfo.getInstance(16, 0, 0),
                     174,
                     false,
@@ -1557,7 +1557,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kGradeLevel_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kGradeLevel,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     175,
                     false,
                     true,
@@ -1566,7 +1566,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kHDZRadBreak_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kHDZRadBreak,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(4, 1, 0),
                     176,
                     false,
                     true,
@@ -1575,7 +1575,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kHKGlyph_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kHKGlyph,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 1),
                     177,
                     false,
                     true,
@@ -1584,7 +1584,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kHanyuPinlu_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kHanyuPinlu,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(4, 0, 1),
                     178,
                     false,
                     true,
@@ -1593,7 +1593,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kHanyuPinyin_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kHanyuPinyin,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(5, 2, 0),
                     179,
                     false,
                     true,
@@ -1602,7 +1602,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIRGHanyuDaZidian_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIRGHanyuDaZidian,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 0, 0),
                     180,
                     false,
                     true,
@@ -1611,7 +1611,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIRGKangXi_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIRGKangXi,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 0, 0),
                     181,
                     false,
                     true,
@@ -1620,7 +1620,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIRGDaeJaweon_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIRGDaeJaweon,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 0, 0),
                     182,
                     false,
                     true,
@@ -1629,7 +1629,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIRGDaiKanwaZiten_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIRGDaiKanwaZiten,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 0, 0),
                     VersionInfo.getInstance(15, 1, 0),
                     183,
                     false,
@@ -1639,7 +1639,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kKorean_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kKorean,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     184,
                     false,
                     true,
@@ -1648,7 +1648,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kMainlandTelegraph_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kMainlandTelegraph,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     185,
                     false,
                     true,
@@ -1657,19 +1657,19 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kMorohashi_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kMorohashi,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     186,
                     false,
                     true,
                     false,
                     true);
     //    public static UcdPropertyDetail kAlternateMorohashi_Detail = new UcdPropertyDetail (
-    //            UcdProperty.kAlternateMorohashi, VersionInfo.getInstance(11,0,0), 187,
+    //            UcdProperty.kAlternateMorohashi, VersionInfo.getInstance(2,0,0), VersionInfo.getInstance(4,0,1), 187,
     //            false, true, false, true);
     public static UcdPropertyDetail kPrimaryNumeric_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kPrimaryNumeric,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     188,
                     false,
                     true,
@@ -1678,7 +1678,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kTaiwanTelegraph_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kTaiwanTelegraph,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     189,
                     false,
                     true,
@@ -1687,7 +1687,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kXerox_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kXerox,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     190,
                     false,
                     true,
@@ -1696,7 +1696,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kPseudoGB1_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kPseudoGB1,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     191,
                     false,
                     true,
@@ -1705,7 +1705,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kIBMJapan_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kIBMJapan,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     192,
                     false,
                     true,
@@ -1714,7 +1714,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kAccountingNumeric_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kAccountingNumeric,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 2, 0),
                     193,
                     false,
                     true,
@@ -1723,7 +1723,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kCheungBauer_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kCheungBauer,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(5, 0, 0),
                     194,
                     false,
                     true,
@@ -1732,7 +1732,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kCheungBauerIndex_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kCheungBauerIndex,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(5, 0, 0),
                     195,
                     false,
                     true,
@@ -1741,7 +1741,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kFourCornerCode_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kFourCornerCode,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(5, 0, 0),
                     196,
                     false,
                     true,
@@ -1753,7 +1753,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kXHC1983_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kXHC1983,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(5, 1, 0),
                     198,
                     false,
                     true,
@@ -1807,7 +1807,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kTGHZ2013_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kTGHZ2013,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(13, 0, 0),
                     204,
                     false,
                     true,
@@ -1816,7 +1816,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kSpoofingVariant_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kSpoofingVariant,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(13, 0, 0),
                     205,
                     false,
                     true,
@@ -1825,7 +1825,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kRSKanWa_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kRSKanWa,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     206,
                     false,
                     true,
@@ -1834,7 +1834,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kRSJapanese_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kRSJapanese,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     207,
                     false,
                     true,
@@ -1843,7 +1843,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kRSKorean_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kRSKorean,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     208,
                     false,
                     true,
@@ -1852,7 +1852,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kRSKangXi_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kRSKangXi,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     VersionInfo.getInstance(15, 1, 0),
                     209,
                     false,
@@ -1862,7 +1862,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kRSAdobe_Japan1_6_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kRSAdobe_Japan1_6,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(4, 1, 0),
                     210,
                     false,
                     true,
@@ -1871,7 +1871,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail kTotalStrokes_Detail =
             new UcdPropertyDetail(
                     UcdProperty.kTotalStrokes,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(3, 1, 0),
                     211,
                     false,
                     true,
@@ -1925,7 +1925,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Unicode_1_Name_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Unicode_1_Name,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(2, 0, 0),
                     217,
                     true,
                     false,
@@ -1934,7 +1934,7 @@ public class UcdPropertyDetail {
     public static UcdPropertyDetail Name_Alias_Detail =
             new UcdPropertyDetail(
                     UcdProperty.Name_Alias,
-                    VersionInfo.getInstance(11, 0, 0),
+                    VersionInfo.getInstance(5, 0, 0),
                     218,
                     false,
                     false,

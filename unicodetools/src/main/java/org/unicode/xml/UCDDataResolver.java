@@ -78,6 +78,24 @@ public class UCDDataResolver {
                                     }
                                 }
                                 break;
+                            case PROVISIONALNAMEDSEQUENCES:
+                                HashMap<String, String> provisionalNamedSequences = new HashMap<>();
+                                for (UcdLineParser.UcdLine line : parser) {
+                                    String[] parts = line.getParts();
+                                    provisionalNamedSequences.put(parts[0], parts[1]);
+                                }
+                                List<String> psNames = new ArrayList<>(provisionalNamedSequences.keySet());
+                                Collections.sort(psNames);
+                                for (String name : psNames) {
+                                    AttributesImpl attributes =
+                                            getNamedSequenceAttributes(
+                                                    namespace, name, provisionalNamedSequences);
+                                    writer.startElement(childTag, attributes);
+                                    {
+                                        writer.endElement(childTag);
+                                    }
+                                }
+                                break;
                             default:
                                 for (UcdLineParser.UcdLine line : parser) {
                                     AttributesImpl attributes =

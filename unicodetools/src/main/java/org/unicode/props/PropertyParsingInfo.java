@@ -809,6 +809,16 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                         + propName
                                         + " in "
                                         + filename);
+                    } else                         if (line.getParts().length == 3) {
+                        if (line.getParts()[2].equals("No")) {
+                            value = "No";
+                        }
+                        else {
+                            value = "Yes";
+                        }
+                    }
+                    else {
+                        value = "Yes";
                     }
                 }
                 // The value should not be an empty string.
