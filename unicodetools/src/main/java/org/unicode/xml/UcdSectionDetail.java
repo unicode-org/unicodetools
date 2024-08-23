@@ -136,17 +136,18 @@ public class UcdSectionDetail {
             new UcdSectionDetail(
                     UcdSection.NAMEDSEQUENCES,
                     new UcdSectionComponent[] {
-                            new UcdSectionComponent(
-                                    VersionInfo.getInstance(1, 1, 0), null, UcdProperty.Named_Sequences)
+                        new UcdSectionComponent(
+                                VersionInfo.getInstance(1, 1, 0), null, UcdProperty.Named_Sequences)
                     },
                     1);
     public static UcdSectionDetail ProvisionalNamedSequences_Detail =
             new UcdSectionDetail(
                     UcdSection.PROVISIONALNAMEDSEQUENCES,
                     new UcdSectionComponent[] {
-                            new UcdSectionComponent(
-                                    VersionInfo.getInstance(5, 0, 0), VersionInfo.getInstance(13, 0, 0),
-                                    UcdProperty.Named_Sequences_Prov)
+                        new UcdSectionComponent(
+                                VersionInfo.getInstance(5, 0, 0),
+                                VersionInfo.getInstance(13, 0, 0),
+                                UcdProperty.Named_Sequences_Prov)
                     },
                     1);
     public static UcdSectionDetail NormalizationCorrections_Detail =

@@ -60,15 +60,12 @@ public class UcdXML {
     public static void main(String[] args) throws Exception {
 
         VersionInfo ucdVersion = null;
-        UCDXMLOUTPUTRANGE[] ucdxmloutputranges = new UCDXMLOUTPUTRANGE[] {
-                UCDXMLOUTPUTRANGE.ALL,
-                UCDXMLOUTPUTRANGE.NOUNIHAN,
-                UCDXMLOUTPUTRANGE.UNIHAN
-        };
-        UCDXMLOUTPUTTYPE[] ucdxmloutputtypes = new UCDXMLOUTPUTTYPE[] {
-                UCDXMLOUTPUTTYPE.FLAT,
-                UCDXMLOUTPUTTYPE.GROUPED
-        };
+        UCDXMLOUTPUTRANGE[] ucdxmloutputranges =
+                new UCDXMLOUTPUTRANGE[] {
+                    UCDXMLOUTPUTRANGE.ALL, UCDXMLOUTPUTRANGE.NOUNIHAN, UCDXMLOUTPUTRANGE.UNIHAN
+                };
+        UCDXMLOUTPUTTYPE[] ucdxmloutputtypes =
+                new UCDXMLOUTPUTTYPE[] {UCDXMLOUTPUTTYPE.FLAT, UCDXMLOUTPUTTYPE.GROUPED};
         File destinationFolder = null;
 
         UOption.parseArgs(args, options);
@@ -96,9 +93,10 @@ public class UcdXML {
             }
             if (options[RANGE].doesOccur) {
                 try {
-                    ucdxmloutputranges = new UCDXMLOUTPUTRANGE[]{
-                            UCDXMLOUTPUTRANGE.valueOf(
-                                    options[RANGE].value.toUpperCase(Locale.ROOT))
+                    ucdxmloutputranges =
+                            new UCDXMLOUTPUTRANGE[] {
+                                UCDXMLOUTPUTRANGE.valueOf(
+                                        options[RANGE].value.toUpperCase(Locale.ROOT))
                             };
                 } catch (Exception e) {
                     throw new IllegalArgumentException(
@@ -109,10 +107,11 @@ public class UcdXML {
             }
             if (options[OUTPUT].doesOccur) {
                 try {
-                    ucdxmloutputtypes = new UCDXMLOUTPUTTYPE[] {
-                            UCDXMLOUTPUTTYPE.valueOf(
-                                    options[OUTPUT].value.toUpperCase(Locale.ROOT))
-                    };
+                    ucdxmloutputtypes =
+                            new UCDXMLOUTPUTTYPE[] {
+                                UCDXMLOUTPUTTYPE.valueOf(
+                                        options[OUTPUT].value.toUpperCase(Locale.ROOT))
+                            };
                 } catch (Exception e) {
                     throw new IllegalArgumentException(
                             "Could not convert "
@@ -148,10 +147,16 @@ public class UcdXML {
 
         if (ucdVersion != null && destinationFolder.exists()) {
             for (UCDXMLOUTPUTRANGE ucdxmloutputrange : ucdxmloutputranges) {
-                for (UCDXMLOUTPUTTYPE ucdxmloutputtype: ucdxmloutputtypes) {
-                    System.out.println("Building the " + ucdxmloutputrange + " " + ucdxmloutputtype +
-                                    " UcdXML file for " + ucdVersion);
-                    buildUcdXMLFile(ucdVersion, destinationFolder, ucdxmloutputrange, ucdxmloutputtype);
+                for (UCDXMLOUTPUTTYPE ucdxmloutputtype : ucdxmloutputtypes) {
+                    System.out.println(
+                            "Building the "
+                                    + ucdxmloutputrange
+                                    + " "
+                                    + ucdxmloutputtype
+                                    + " UcdXML file for "
+                                    + ucdVersion);
+                    buildUcdXMLFile(
+                            ucdVersion, destinationFolder, ucdxmloutputrange, ucdxmloutputtype);
                 }
             }
             System.out.println("End");
@@ -364,7 +369,8 @@ public class UcdXML {
                 Range currentRangeType = getRangeType(attributeResolver, codepoint);
                 if (!range.isEmpty()) {
                     if (!currentRangeType.equals(rangeType)
-                            || attributeResolver.isDifferentRange(ucdVersion, codepoint, codepoint - 1)) {
+                            || attributeResolver.isDifferentRange(
+                                    ucdVersion, codepoint, codepoint - 1)) {
                         if (outputRange != UCDXMLOUTPUTRANGE.UNIHAN) {
                             if (outputType == UCDXMLOUTPUTTYPE.GROUPED) {
                                 buildGroupedRange(
@@ -470,7 +476,11 @@ public class UcdXML {
             String groupAttributeValue = groupAttrs.getValue(qName);
             if (!Objects.equals(orgCharAttributesValue, groupAttributeValue)) {
                 charAttributes.addAttribute(
-                        NAMESPACE, qName, qName, "CDATA", Objects.requireNonNullElse(orgCharAttributesValue, ""));
+                        NAMESPACE,
+                        qName,
+                        qName,
+                        "CDATA",
+                        Objects.requireNonNullElse(orgCharAttributesValue, ""));
             }
         }
         buildChar(writer, attributeResolver, codepoint, charAttributes);
@@ -542,7 +552,11 @@ public class UcdXML {
             String groupAttributeValue = groupAttrs.getValue(qName);
             if (!Objects.equals(orgCharAttributesValue, groupAttributeValue)) {
                 rangeAttributes.addAttribute(
-                        NAMESPACE, qName, qName, "CDATA", Objects.requireNonNullElse(orgCharAttributesValue, ""));
+                        NAMESPACE,
+                        qName,
+                        qName,
+                        "CDATA",
+                        Objects.requireNonNullElse(orgCharAttributesValue, ""));
             }
         }
         writer.startElement(rangeType.tag, rangeAttributes);

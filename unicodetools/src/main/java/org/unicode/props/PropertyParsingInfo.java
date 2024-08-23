@@ -809,7 +809,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                         + propName
                                         + " in "
                                         + filename);
-                    } else                         if (line.getParts().length == 3) {
+                    } else if (line.getParts().length == 3) {
                         if (line.getParts()[2].equals("No")) {
                             value = "No";
                         }
