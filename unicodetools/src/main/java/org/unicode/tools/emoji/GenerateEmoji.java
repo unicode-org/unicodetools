@@ -198,12 +198,12 @@ public class GenerateEmoji {
     }
 
     static final UnicodeMap<String> GENERAL_CATEGORY =
-            Emoji.LATEST.load(UcdProperty.General_Category);
+            Emoji.PROPS.load(UcdProperty.General_Category);
     static final UnicodeMap<General_Category_Values> GENERAL_CATEGORY_E =
-            Emoji.LATEST.loadEnum(
+            Emoji.PROPS.loadEnum(
                     UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.class);
     static final UnicodeMap<String> SCRIPT_EXTENSIONS =
-            Emoji.LATEST.load(UcdProperty.Script_Extensions);
+            Emoji.PROPS.load(UcdProperty.Script_Extensions);
     private static final UnicodeSet COMMON_SCRIPT =
             new UnicodeSet()
                     .addAll(
@@ -211,7 +211,7 @@ public class GenerateEmoji {
                                     UcdPropertyValues.Script_Values.Common.toString()))
                     .freeze();
 
-    static final UnicodeMap<String> NFKCQC = Emoji.LATEST.load(UcdProperty.NFKD_Quick_Check);
+    static final UnicodeMap<String> NFKCQC = Emoji.PROPS.load(UcdProperty.NFKD_Quick_Check);
     static final Pattern tab = Pattern.compile("\t");
     static final Pattern space = Pattern.compile(" ");
     static final String REPLACEMENT_CHARACTER = "\uFFFD";
@@ -1190,7 +1190,7 @@ public class GenerateEmoji {
                         .retainAll(EmojiData.EMOJI_DATA.getSingletonsWithoutDefectives())
                         .freeze();
         final UnicodeMap<Age_Values> VERSION =
-                Emoji.LATEST.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
+                Emoji.PROPS.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
 
         ArrayList<Age_Values> ordered = new ArrayList(Arrays.asList(Age_Values.values()));
         Collections.reverse(ordered);
@@ -1520,10 +1520,8 @@ public class GenerateEmoji {
                             + "The categories are broad and not exclusive: and any character will match multiple categories.</p>"
                             + "<p>The emoji modifier sequences are omitted for brevity, "
                             + "because they are simply ordered after their emoji modifier bases. "
-                            + "In the CLDR collation rules, the emoji modifiers cause a secondary difference. See also the machine-readable files: "
-                            + "<a target='text' href='emoji-ordering.txt'>emoji-ordering.txt</a>"
-                            + " and "
-                            + "<a target='text' href='emoji-ordering-rules.txt'>emoji-ordering-rules.txt</a>. "
+                            + "In the CLDR collation rules, the emoji modifiers cause a secondary difference. See also the machine-readable file "
+                            + "<a target='text' href='emoji-ordering.txt'>emoji-ordering.txt</a>. "
                             + "To make suggestions for improvements, please file a "
                             + getCldrTicket("collation", "Emoji ordering suggestions")
                             + ".</p>\n",
@@ -3520,7 +3518,8 @@ public class GenerateEmoji {
             }
         }
         try (PrintWriter outText =
-                FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-ordering-rules.txt")) {
+                FileUtilities.openUTF8Writer(
+                        GenerateEmojiData.getOutputDir(), "internal/emoji-ordering-rules.txt")) {
             outText.append(
                     "<!-- Machine-readable version of the emoji ordering rules for v"
                             + Emoji.VERSION_STRING

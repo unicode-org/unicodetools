@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.Factory;
@@ -51,6 +52,7 @@ public class VersionedProperty {
         result.throwOnUnknownProperty = false;
         result.defaultVersion = Settings.lastVersion;
         result.versionAliases.put("dev", Settings.latestVersion);
+        result.versionAliases.put(Settings.latestVersionPhase.toString(), Settings.latestVersion);
         result.oldestLoadedUcd = oldestLoadedUcd;
         for (String latest = Settings.latestVersion;
                 ;
@@ -96,8 +98,15 @@ public class VersionedProperty {
                 version = aliased;
             } else {
                 version = names[0].substring(1);
-                if (versionAliases.containsValue(version)) {
-                    throw new IllegalArgumentException("Invalid version " + version);
+                if (versionAliases.containsValue(
+                        VersionInfo.getInstance(version).getVersionString(3, 3))) {
+                    throw new IllegalArgumentException(
+                            "Unreleased version "
+                                    + version
+                                    + "; use suffix: "
+                                    + versionAliases.keySet().stream()
+                                            .map(v -> "U" + v)
+                                            .collect(Collectors.joining(", ")));
                 }
             }
             xPropertyName = names[1];
