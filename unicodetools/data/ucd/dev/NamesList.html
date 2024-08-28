@@ -100,7 +100,7 @@ a.headernav:hover {
     <tbody>
       <tr>
         <td>Revision</td>
-        <td>15.1.0</td>
+        <td>16.0.0</td>
       </tr>
       <tr>
         <td>Authors</td>
@@ -108,19 +108,19 @@ a.headernav:hover {
       </tr>
       <tr>
         <td>Date</td>
-        <td>2023-08-23</td>
+        <td>2024-08-21</td>
       </tr>
       <tr>
         <td>This Version</td>
         <td >
-		<a href="https://www.unicode.org/Public/15.1.0/ucd/NamesList.html">
-		https://www.unicode.org/Public/15.1.0/ucd/NamesList.html</a></td>
+		<a href="https://www.unicode.org/Public/16.0.0/ucd/NamesList.html">
+		https://www.unicode.org/Public/16.0.0/ucd/NamesList.html</a></td>
       </tr>
       <tr>
         <td>Previous Version</td>
         <td>
-		<a href="https://www.unicode.org/Public/15.0.0/ucd/NamesList.html">
-		https://www.unicode.org/Public/15.0.0/ucd/NamesList.html</a></td>
+		<a href="https://www.unicode.org/Public/15.1.0/ucd/NamesList.html">
+		https://www.unicode.org/Public/15.1.0/ucd/NamesList.html</a></td>
       </tr>
       <tr>
         <td>Latest Version</td>
@@ -159,8 +159,8 @@ released form of the NamesList.txt file.</p>
 draft versions of the NamesList.txt file. The support for UTF-8 encoded files and the syntax for the UTF-8 charset 
 declaration in a comment at the head of the file were introduced after Unicode 
 6.1.0 was published, as was the syntax for the specification of variation sequences and alternate glyphs and their respective summaries. The repertoire restriction
-in comments and aliases in the names list format was loosened from the prior
-limitation to U+0020..U+00FF, to include the wider range U+0020..U+02FF, as of Unicode 11.0.</p>
+in comments and aliases in the names list format was loosened from the earlier
+limitation to U+0020..U+00FF, to include the wider range U+0020..U+02FF, as of Unicode 11.0, and dropped entirely as of Unicode 16.0.0.</p>
 
 <p>The same input file can be used for the preparation of drafts and final editions for ISO/IEC 
   10646. Earlier versions of that standard used a different style, referred to below as ISO-style. That style necessitated the presence of some 
@@ -281,10 +281,18 @@ CHAR_ENTRY:   NAME_LINE | RESERVED_LINE
     charset declaration (see below). Alternatively, or in addition, a BOM may be 
     present at the very beginning of the file, forcing the encoding to be 
     interpreted as UTF-16 (little-endian only) or UTF-8. When
-    declared as UTF-8, the names list format will support use of characters in
-    the range U+0020..U+02FF in LINE and LABEL elements. Otherwise,
+    declared as UTF-8, the names list format will support use of any Unicode characters in
+    STRING and LABEL elements. Otherwise,
     the supported repertoire is limited to Latin-1, and attempted use of characters outside
     the Latin-1 range will result in data corruption.</p>
+<p>The NamesList file format does not support styled text; each line or other element
+    will usually be displayed in a specific font selected for it. To allow CHAR elements
+    that normally use chart glyphs to better coexist with running text in LABEL and STRING
+    elements, a user defined limit can be set, below which the normal selection of (chart) glyphs 
+    for the CHAR element is overridden in favor of equivalent glyphs from a font selected for better
+    readability in running text. Any running text outside that range will use standard chart
+    glyphs, which may result in a ransom note effect. For production of the Unicode Standard 
+    Version 16.0.0 and later the limit is set to U+1EFF.</p>
 <p>Several of these elements, while part of the formal definition of the 
   file format, do not occur in final published versions of 
    NamesList.txt in the <a href="https://www.unicode.org/Public/UCD/latest/">UCD</a>.</p>
@@ -514,14 +522,14 @@ is machine generated and will always explicitly provide any summary subheaders.<
     <li>Because a LINE or an EXPAND_LINE can itself start with a special character followed 
         by a SP or LF, an &quot;unmarked&quot; COMMENT_LINE should match the input in lower priority than line 
         types that require a special character or have a more restrictive set of characters than EXPAND_LINE. 
-        Similarly, a SUBHEADER containing TAB &quot;!&quot; LF should match with a higher priority than those
+        Similarly, a SUBHEADER containing TAB &quot;!&quot; LF should match with a higher priority than one
         where the TAB is followed by a LINE.</li>
 	</ul>
 
 
 <h3 id="FilePrimitives">2.2 <a href="#FilePrimitives">NamesList File Primitives</a></h3>
 
-<p>The following are the primitives and terminals for the NamesList syntax.</p>
+<p>The following are the primitives and terminals for the NamesList syntax. "Limit" is a user-defined value; see discussion of the implications of Limit in the notes below.</p>
 
 <pre><strong>LINE</strong>:		<strong>STRING LF
 COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
@@ -533,8 +541,8 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
 
 <strong>TAG</strong>:		&lt;sequence of ASCII letters&gt;
 <strong>LCTAG</strong>:		&lt;sequence of lowercase ASCII letters&gt;
-<strong>STRING</strong>:	  	&lt;sequence of characters in the range U+0020..U+02FF, except controls&gt; 
-<strong>LABEL</strong>:	  	&lt;sequence of characters in the range U+0020..U+02FF, except controls, &quot;(&quot; or &quot;)&quot;&gt; 
+<strong>STRING</strong>:	  	&lt;sequence of characters, except controls&gt; 
+<strong>LABEL</strong>:	  	&lt;sequence of characters, except controls, &quot;(&quot; or &quot;)&quot;&gt; 
 <strong>VARSEL</strong>:		<strong>CHAR
 		| &quot;ALT&quot; ( &quot;1&quot;|&quot;2&quot;|&quot;3&quot;|&quot;4&quot;|&quot;5&quot;|&quot;6&quot;|&quot;7&quot;|&quot;8&quot;|&quot;9&quot; )</strong>
 <strong>VARSEL_LIST</strong>:	<strong>&quot;{&quot; CHAR_LIST &quot;}&quot;</strong>
@@ -580,19 +588,27 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
        of following characters.</li>
        <li>The hyphen in a character range CHAR-CHAR is replaced by an EN DASH on 
        output.</li>
-       <li>In a STRING or LABEL, a Unicode character outside the range 
-        U+0000..U+02FF is displayed as is, with a glyph matching
-        the chart font, and not with the font that is otherwise defined for that element.</li>
        <li>The NamesList.txt file is encoded in UTF-8 if the <i>first line</i> is a 
        FILE_COMMENT containing the declaration &quot;UTF-8&quot; or any casemap variation 
        thereof. Otherwise the file is encoded in Latin-1 (older versions). Beyond 
        detecting the charset declaration (typically: &quot;; charset=utf-8&quot;) the 
        remainder of that comment is ignored. 
-       If the file is not encoded as 
-       UTF-8, the character repertoire for running text (anything
-       other than CHAR) is effectively restricted to the repertoire of Latin-1.
-       Otherwise, characters in the range U+0020..U+02FF
-       	are allowed in STRING or LABEL elements, and elements derived from them.</li>
+       When declared as UTF-8, the NamesList format will support any Unicode character
+       in STRING or LABEL elements, but see further implications below.</li>
+       <li>In a STRING or LABEL element, a Unicode character outside the range 
+        U+0020..Limit is displayed with a glyph matching 
+        the chart font, and not with the font that is otherwise defined for that element. 
+        The Limit value is user defined.
+        For production of the Unicode Standard from Version 16.0.0 and later the Limit
+        value is set to U+1EFF.
+        All code points less than the Limit value can be mapped onto a font selected for best
+        results in running text. However, any CHAR elements contained in an EXPAND_LINE 
+        are exempt from this and are always displayed with a glyph matching the chart font.
+        The net effect is a workaround for the fact that the NamesList format does 
+        not support style runs within any element that encompasses a single unit of flowed text.</li>
+       <li>When drafting STRING or LABEL elements, one should note that text containing
+        characters outside the range U+0020..Limit may result in a ransom note effect,
+    as the regular text font and charts fonts would be alternated. This is best avoided.</li>
        <li>The code chart layout program
        (<a href="https://www.unicode.org/unibook/">Unibook</a>)
        can accept files in several other formats. These include little-endian UTF-16,
@@ -610,9 +626,16 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
 </ul>
   <h2 id="Modifications"><a href="#Modifications">Modifications</a></h2>
 
+    <p><b>Version 16.0.0</b></p>
+        <ul>
+            <li>Reissued for Unicode 16.0.0</li>
+            <li>Reflect the wider range of possible values for the user defined Limit.</li>
+            <li>Added an explanation of the effect of the Limit value.</li>
+        </ul>
+
     <p><b>Version 15.1.0</b></p>
         <ul>
-        <li>Reissued for Unicode 15.0.0.</li>
+        <li>Reissued for Unicode 15.1.0.</li>
         <li>Adjusted NAMELIST definition to account for positions of FILE_COMMENT.</li>
         <li>Added a note to the bullets in Section 2.1 to clarify priority of matching for
         some line types.</li>
