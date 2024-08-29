@@ -37,6 +37,50 @@ CorrespondTo [\N{OLD HUNGARIAN SMALL LETTER A}]
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status:
 
+Ignoring Block:
+
+# We test Joining_Type, but not Other_Joining_Type, which distinguishes characters explicitly listed
+# in ArabicShaping.txt from those where Joining_Type is derived.
+Ignoring Other_Joining_Type:
+Propertywise [
+      \N{ARABIC SMALL BASELINE FATHA}
+      \N{ARABIC SMALL BASELINE DOTLESS HEAD OF KHAH}
+    ࢇ \N{ARABIC BASELINE ROUND DOT}
+] AreAlike
+end Ignoring;
+
+Propertywise [
+      \N{ARABIC NORTHEAST POINTING ARROWHEAD ABOVE}
+      \N{ARABIC SMALL CIRCLE ABOVE}
+      \N{ARABIC LARGE CIRCLE ABOVE}
+     ۠ \N{ARABIC SMALL HIGH UPRIGHT RECTANGULAR ZERO}
+] AreAlike
+
+Propertywise [
+      \N{ARABIC SMALL HIGH NOON WITH FATHA}
+      \N{ARABIC SMALL HIGH NOON WITH DAMMA}
+      \N{ARABIC SMALL HIGH HEH INITIAL FORM}
+      \N{ARABIC SMALL HIGH WORD KABBIR}
+     ࣕ \N{ARABIC SMALL HIGH SAD}  # Not like SMALL HIGH NOON, which is MCM.
+     ࣞ \N{ARABIC SMALL HIGH WORD QIF}
+] AreAlike
+
+Propertywise [
+      \N{ARABIC NORTHEAST POINTING ARROWHEAD BELOW}
+      \N{ARABIC SOUTHWEST POINTING ARROWHEAD BELOW}
+      \N{ARABIC SMALL LOW UPRIGHT RECTANGULAR ZERO}
+      \N{ARABIC SQUARE BELOW}
+      \N{ARABIC FILLED SQUARE BELOW}
+     ࣑ \N{ARABIC LARGE CIRCLE BELOW}
+] AreAlike
+end Ignoring;
+
+Propertywise [
+      \N{ARABIC SMALL LOW NOON WITH FATHA}
+      \N{ARABIC SMALL LOW NOON WITH DAMMA}
+     ۣ \N{ARABIC SMALL LOW SEEN}  # Not like SMALL LOW NOON WITH KASRA, which is not MCM.
+] AreAlike
+
 end Ignoring;
 
 end Ignoring;
