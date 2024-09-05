@@ -526,11 +526,11 @@ public class TestUnicodeInvariants {
     }
 
     private static String stringAt(UnicodeSet set, int i) {
-        int codePoints = set.size() - set.strings().size();
-        if (i < codePoints) {
+        final int codePointsSize = set.size() - set.strings().size();
+        if (i < codePointsSize) {
             return Character.toString(set.charAt(i));
         } else {
-            return set.strings().stream().skip(i - codePoints).findFirst().get();
+            return set.strings().stream().skip(i - codePointsSize).findFirst().get();
         }
     }
 
@@ -550,7 +550,8 @@ public class TestUnicodeInvariants {
 
         // Index of the first set of multi-character strings (and of the first multi-character
         // reference string).
-        int m = -1;
+        // This is `m` in the documentation in UnicodeInvariantTest.txt.
+        int firstMultiCharacterIndex = -1;
         do {
             final var set = parseUnicodeSet(source, pp);
             if (set.size() != firstSet.size()) {
@@ -567,9 +568,9 @@ public class TestUnicodeInvariants {
                         "Sets should be all strings or all code points for property correspondence",
                         pp.getIndex());
             }
-            if (m == -1) {
+            if (firstMultiCharacterIndex == -1) {
                 if (set.hasStrings()) {
-                    m = sets.size();
+                    firstMultiCharacterIndex = sets.size();
                 }
             } else if (!set.hasStrings()) {
                 throw new BackwardParseException(
@@ -578,8 +579,8 @@ public class TestUnicodeInvariants {
             }
             sets.add(set);
         } while (Lookahead.oneToken(pp, source).accept(":"));
-        if (m == -1) {
-            m = sets.size();
+        if (firstMultiCharacterIndex == -1) {
+            firstMultiCharacterIndex = sets.size();
         }
         final List<String> referenceCodePoints = new ArrayList<>();
         expectToken("CorrespondTo", pp, source);
@@ -590,7 +591,7 @@ public class TestUnicodeInvariants {
                         "reference should be a single code point or string for property correspondence",
                         pp.getIndex());
             }
-            if (referenceSet.hasStrings() != (referenceCodePoints.size() >= m)) {
+            if (referenceSet.hasStrings() != (referenceCodePoints.size() >= firstMultiCharacterIndex)) {
                 throw new BackwardParseException(
                         "Strings should correspond to strings for property correspondence",
                         pp.getIndex());
@@ -638,7 +639,7 @@ public class TestUnicodeInvariants {
                 expectedDifference = expectedPropertyDifferences.get(alias);
             }
             if (expectedDifference != null) {
-                for (int k = 0; k < m; ++k) {
+                for (int k = 0; k < firstMultiCharacterIndex; ++k) {
                     final int rk = referenceCodePoints.get(k).codePointAt(0);
                     final String pRk = property.getValue(rk);
                     if (!Objects.equals(pRk, expectedDifference.referenceValueAlias)) {
@@ -668,7 +669,7 @@ public class TestUnicodeInvariants {
                     }
                 }
             } else {
-                for (int k = 0; k < m; ++k) {
+                for (int k = 0; k < firstMultiCharacterIndex; ++k) {
                     final UnicodeSet set = sets.get(k);
                     final int rk = referenceCodePoints.get(k).codePointAt(0);
                     final String pRk = property.getValue(rk);

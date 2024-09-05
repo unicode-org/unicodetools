@@ -177,9 +177,9 @@
                 Propertywise [[α-ω] - [ς]] : [[Α-Ω] - \p{gc=Cn}]
                 CorrespondTo [g]           :  [G]
                     UpTo: Block             (Greek_And_Coptic vs Basic_Latin),
-                        Script            (Greek            vs Latin),
-                        Script_Extensions (Greek            vs Latin),
-                        East_Asian_Width  (Ambiguous        vs Narrow)
+                          Script            (Greek            vs Latin),
+                          Script_Extensions (Greek            vs Latin),
+                          East_Asian_Width  (Ambiguous        vs Narrow)
 #       The modifier letters ʳʷʸ are related to their non-superscripted counterparts in the same way
 #       that ʰ is related to h.  The capitals must be part of the correspondence because they are
 #       property values of the lowercase letters.
