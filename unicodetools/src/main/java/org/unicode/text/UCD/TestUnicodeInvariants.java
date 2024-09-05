@@ -591,7 +591,8 @@ public class TestUnicodeInvariants {
                         "reference should be a single code point or string for property correspondence",
                         pp.getIndex());
             }
-            if (referenceSet.hasStrings() != (referenceCodePoints.size() >= firstMultiCharacterIndex)) {
+            if (referenceSet.hasStrings()
+                    != (referenceCodePoints.size() >= firstMultiCharacterIndex)) {
                 throw new BackwardParseException(
                         "Strings should correspond to strings for property correspondence",
                         pp.getIndex());
