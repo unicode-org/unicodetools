@@ -525,6 +525,15 @@ public class TestUnicodeInvariants {
         }
     }
 
+    private static String stringAt(UnicodeSet set, int i) {
+        final int codePointsSize = set.size() - set.strings().size();
+        if (i < codePointsSize) {
+            return Character.toString(set.charAt(i));
+        } else {
+            return set.strings().stream().skip(i - codePointsSize).findFirst().get();
+        }
+    }
+
     private static void propertywiseCorrespondenceLine(
             Set<String> ignoredProperties,
             UnicodeSet firstSet,
@@ -538,13 +547,13 @@ public class TestUnicodeInvariants {
         final List<UnicodeSet> sets = new ArrayList<>();
         sets.add(firstSet);
         expectToken(":", pp, source);
+
+        // Index of the first set of multi-character strings (and of the first multi-character
+        // reference string).
+        // This is `m` in the documentation in UnicodeInvariantTest.txt.
+        int firstMultiCharacterIndex = -1;
         do {
             final var set = parseUnicodeSet(source, pp);
-            if (set.hasStrings()) {
-                throw new BackwardParseException(
-                        "Set should contain only single code points for property comparison",
-                        pp.getIndex());
-            }
             if (set.size() != firstSet.size()) {
                 throw new BackwardParseException(
                         "Sets should have the same size for property correspondence (got "
@@ -554,18 +563,41 @@ public class TestUnicodeInvariants {
                                 + ")",
                         pp.getIndex());
             }
+            if (set.hasStrings() && set.strings().size() != set.size()) {
+                throw new BackwardParseException(
+                        "Sets should be all strings or all code points for property correspondence",
+                        pp.getIndex());
+            }
+            if (firstMultiCharacterIndex == -1) {
+                if (set.hasStrings()) {
+                    firstMultiCharacterIndex = sets.size();
+                }
+            } else if (!set.hasStrings()) {
+                throw new BackwardParseException(
+                        "Code points should come before strings in property correspondence",
+                        pp.getIndex());
+            }
             sets.add(set);
         } while (Lookahead.oneToken(pp, source).accept(":"));
-        final List<Integer> referenceCodePoints = new ArrayList<>();
+        if (firstMultiCharacterIndex == -1) {
+            firstMultiCharacterIndex = sets.size();
+        }
+        final List<String> referenceCodePoints = new ArrayList<>();
         expectToken("CorrespondTo", pp, source);
         do {
             final var referenceSet = parseUnicodeSet(source, pp);
-            if (referenceSet.hasStrings() || referenceSet.size() != 1) {
+            if (referenceSet.size() != 1) {
                 throw new BackwardParseException(
-                        "reference should be a single code point for property correspondence",
+                        "reference should be a single code point or string for property correspondence",
                         pp.getIndex());
             }
-            referenceCodePoints.add(referenceSet.charAt(0));
+            if (referenceSet.hasStrings()
+                    != (referenceCodePoints.size() >= firstMultiCharacterIndex)) {
+                throw new BackwardParseException(
+                        "Strings should correspond to strings for property correspondence",
+                        pp.getIndex());
+            }
+            referenceCodePoints.add(referenceSet.iterator().next());
         } while (Lookahead.oneToken(pp, source).accept(":"));
         if (referenceCodePoints.size() != sets.size()) {
             throw new BackwardParseException(
@@ -608,8 +640,8 @@ public class TestUnicodeInvariants {
                 expectedDifference = expectedPropertyDifferences.get(alias);
             }
             if (expectedDifference != null) {
-                for (int k = 0; k < sets.size(); ++k) {
-                    final int rk = referenceCodePoints.get(k);
+                for (int k = 0; k < firstMultiCharacterIndex; ++k) {
+                    final int rk = referenceCodePoints.get(k).codePointAt(0);
                     final String pRk = property.getValue(rk);
                     if (!Objects.equals(pRk, expectedDifference.referenceValueAlias)) {
                         errorMessageLines.add(
@@ -638,9 +670,9 @@ public class TestUnicodeInvariants {
                     }
                 }
             } else {
-                for (int k = 0; k < sets.size(); ++k) {
+                for (int k = 0; k < firstMultiCharacterIndex; ++k) {
                     final UnicodeSet set = sets.get(k);
-                    final int rk = referenceCodePoints.get(k);
+                    final int rk = referenceCodePoints.get(k).codePointAt(0);
                     final String pRk = property.getValue(rk);
                     loop_over_set:
                     for (int i = 0; i < set.size(); ++i) {
@@ -652,10 +684,9 @@ public class TestUnicodeInvariants {
                         Integer lMatchingForReference = null;
                         for (int l = 0; l < sets.size(); ++l) {
                             final boolean pCkEqualsCl =
-                                    Objects.equals(pCk, Character.toString(sets.get(l).charAt(i)));
+                                    Objects.equals(pCk, stringAt(sets.get(l), i));
                             final boolean pRkEqualsRl =
-                                    Objects.equals(
-                                            pRk, Character.toString(referenceCodePoints.get(l)));
+                                    Objects.equals(pRk, referenceCodePoints.get(l));
                             if (pRkEqualsRl) {
                                 lMatchingForReference = l;
                                 if (pCkEqualsCl) {
@@ -685,8 +716,7 @@ public class TestUnicodeInvariants {
                                             + ")\t=\t"
                                             + pCk
                                             + "\t≠\t"
-                                            + Character.toString(
-                                                    sets.get(lMatchingForReference).charAt(i))
+                                            + stringAt(sets.get(lMatchingForReference), i)
                                             + "\twhereas\t"
                                             + property.getName()
                                             + "("

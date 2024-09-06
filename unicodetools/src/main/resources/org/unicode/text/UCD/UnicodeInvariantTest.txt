@@ -147,16 +147,19 @@
 # CorrespondTo <R₁> : ... : <Rₙ>
 # [   UpTo: <Property> (<SValue> vs <RValue>) {, <Property> (<SValue> vs <RValue>) }]
 #
-# The Sₖ must be Unicode sets of equal size with no strings.  They are considered in code
-# point order for the correspondence check (item 2 below).
-# The references Rₖ must be Unicode sets each containing a single code point; by a slight abuse of
-# notation we refer to the code point as Rₖ in the explanation below.
+# The Sₖ must be Unicode sets of equal size, either with no strings or only strings.
+# They are considered in code point order for the correspondence check (item 2 below).
+# The references Rₖ must be Unicode sets each containing a single code point or a single string;
+# by a slight abuse of notation we refer to the code point or string as Rₖ in the explanation below.
+# For some m in 2 .. n, the following must hold:
+# a. Rₖ is a code point and Sₖ must contain only code points for k ≤ m, and
+# b. Rₖ is a string and Sₖ must contain only strings for m < k ≤ n, and
 # For every non-ignored property P that does not appear in the optional UpTo clause,
-# checks that for each k in 1 .. n, for the ith character C in Sₖ, either:
+# checks that for each k in 1 .. m, for the ith character C in Sₖ, either:
 # 1. P(C) = P(Rₖ), or
 # 2. for some l in 1 .. n, both:
 #    — P(Rₖ) is equal to Rₗ, and
-#    — P(C) is equal to the ith character in Sₗ.
+#    — P(C) is equal to the ith character (or string, if l > m) in Sₗ.
 # For every non-ignored property P that appears in the UpTo clause, checks all characters in the
 # sets Sₖ have the SValue and all R characters have the RValue.
 #
@@ -174,9 +177,9 @@
                 Propertywise [[α-ω] - [ς]] : [[Α-Ω] - \p{gc=Cn}]
                 CorrespondTo [g]           :  [G]
                     UpTo: Block             (Greek_And_Coptic vs Basic_Latin),
-                        Script            (Greek            vs Latin),
-                        Script_Extensions (Greek            vs Latin),
-                        East_Asian_Width  (Ambiguous        vs Narrow)
+                          Script            (Greek            vs Latin),
+                          Script_Extensions (Greek            vs Latin),
+                          East_Asian_Width  (Ambiguous        vs Narrow)
 #       The modifier letters ʳʷʸ are related to their non-superscripted counterparts in the same way
 #       that ʰ is related to h.  The capitals must be part of the correspondence because they are
 #       property values of the lowercase letters.
@@ -1368,6 +1371,13 @@ Ignoring Unicode_1_Name Confusable_MA:
         Propertywise [ʲ] : [j] : [J]
         CorrespondTo [ⁱ] : [i] : [I]
     end Ignoring;
+
+    Propertywise [ゟ] : [{より}]
+    CorrespondTo [ヿ] : [{コト}]
+        UpTo: Block             (Hiragana vs Katakana),
+              Script            (Hiragana vs Katakana),
+              Script_Extensions (Hiragana vs Katakana),
+              Word_Break        (Other    vs Katakana)
 
 end Ignoring;
 
