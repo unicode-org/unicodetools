@@ -215,6 +215,7 @@ Mongolian_Sup	;	Mongolian_Supplement
 Mro	;	Mro
 Multani	;	Multani
 Music	;	Musical_Symbols
+Music_Sup	;	Musical_Symbols_Supplement
 Myanmar	;	Myanmar
 Myanmar_Ext_A	;	Myanmar_Extended_A
 Myanmar_Ext_B	;	Myanmar_Extended_B
