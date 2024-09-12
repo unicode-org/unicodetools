@@ -1038,7 +1038,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
                                 + getRule()
                                 + "'><span"
                                 + status
-                                + ">&nbsp;</span>&nbsp;</span>");
+                                + ">&nbsp;</span>&nbsp;</span>\n");
             } else {
                 if (string.length() > 0) {
                     string.append(' ');
