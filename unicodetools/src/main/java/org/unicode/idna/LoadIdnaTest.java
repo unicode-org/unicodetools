@@ -102,7 +102,7 @@ public class LoadIdnaTest {
 
             // type = Type.valueOf(parts.get(0));
             try {
-                source = fromHex.transform(parts.get(col++));
+                source = getWithFallback(fromHex.transform(parts.get(col++)), "");
 
                 toUnicode = getWithFallback(fromHex.transform(parts.get(col++)), source);
                 toUnicodeErrors = parseEnumSet(parts.get(col++));
@@ -135,7 +135,7 @@ public class LoadIdnaTest {
         }
 
         private String getWithFallback(String string, String fallback) {
-            return string.isEmpty() ? fallback : string;
+            return string.isEmpty() ? fallback : string.equals("\"\"") ? "" : string;
         }
 
         @Override
