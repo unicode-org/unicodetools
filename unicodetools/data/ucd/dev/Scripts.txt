@@ -1,3 +1,6 @@
+12550..125A7; Cuneiform
+125A8..1264B; Proto_Cuneiform
+1264C..12686; Cuneiform
 # Scripts-16.0.0.txt
 # Date: 2024-04-30, 21:48:40 GMT
 # © 2024 Unicode®, Inc.
