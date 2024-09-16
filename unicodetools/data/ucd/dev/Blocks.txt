@@ -291,6 +291,7 @@ FFF0..FFFF; Specials
 12000..123FF; Cuneiform
 12400..1247F; Cuneiform Numbers and Punctuation
 12480..1254F; Early Dynastic Cuneiform
+12550..1268F; Archaic Cuneiform Numerals
 12F90..12FFF; Cypro-Minoan
 13000..1342F; Egyptian Hieroglyphs
 13430..1345F; Egyptian Hieroglyph Format Controls
