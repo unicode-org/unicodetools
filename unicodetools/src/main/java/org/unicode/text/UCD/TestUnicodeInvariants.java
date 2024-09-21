@@ -184,7 +184,7 @@ public class TestUnicodeInvariants {
                 }
                 final var noComments = new StringBuilder();
                 final List<String> lines = new ArrayList<>();
-                final List<Integer> lineBeginnings = new ArrayList();
+                final List<Integer> lineBeginnings = new ArrayList<>();
                 try (final BufferedReader in = getInputReader(inputFile)) {
                     in.lines()
                             .forEach(
@@ -234,7 +234,24 @@ public class TestUnicodeInvariants {
                         position -> {
                             for (int i = 0; i < lineBeginnings.size(); ++i) {
                                 if (lineBeginnings.get(i) > position.getIndex()) {
-                                    return i; // 1-based line number.
+                                    // The error is before the beginning of line i (0-based), thus
+                                    // on line i (1-based).
+                                    return i;
+                                } else if (lineBeginnings.get(i) == position.getIndex()) {
+                                    // The position in a beginning of line; this happens when an
+                                    // statement has been successfully parsed, but then fails for
+                                    // nonsyntactic reasons.
+                                    // The parse position is then the beginning of the next
+                                    // statement.
+                                    // Backtrack to the last nonempty line (ignoring comments),
+                                    // which is the last line of the failing statement.
+                                    int indexInTrimmedSource = position.getIndex();
+                                    while (lineBeginnings.get(i) == indexInTrimmedSource
+                                            && indexInTrimmedSource > 0) {
+                                        --indexInTrimmedSource;
+                                        --i;
+                                    }
+                                    return i + 1;
                                 }
                             }
                             return lineBeginnings.size();
