@@ -238,9 +238,9 @@ public class TestUnicodeInvariants {
                                     // on line i (1-based).
                                     return i;
                                 } else if (lineBeginnings.get(i) == position.getIndex()) {
-                                    // The position in a beginning of line; this happens when an
+                                    // The position in a beginning of line; this happens when a
                                     // statement has been successfully parsed, but then fails for
-                                    // nonsyntactic reasons.
+                                    // non-syntactic reasons.
                                     // The parse position is then the beginning of the next
                                     // statement.
                                     // Backtrack to the last nonempty line (ignoring comments),
