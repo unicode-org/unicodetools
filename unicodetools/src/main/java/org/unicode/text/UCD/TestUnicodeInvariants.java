@@ -563,13 +563,11 @@ public class TestUnicodeInvariants {
         final List<String> errorMessageLines = new ArrayList<>();
         final List<UnicodeSet> sets = new ArrayList<>();
         sets.add(firstSet);
-        expectToken(":", pp, source);
 
-        // Index of the first set of multi-character strings (and of the first multi-character
-        // reference string).
+        // Index of the first set of value-only sets (prefixed by ⧴ rather than :).
+        // Only value-only sets may contain multi-character strings.
         // This is `m` in the documentation in UnicodeInvariantTest.txt.
-        int firstMultiCharacterIndex = -1;
-        do {
+        while (Lookahead.oneToken(pp, source).accept(":")) {
             final var set = parseUnicodeSet(source, pp);
             if (set.size() != firstSet.size()) {
                 throw new BackwardParseException(
@@ -580,24 +578,29 @@ public class TestUnicodeInvariants {
                                 + ")",
                         pp.getIndex());
             }
-            if (set.hasStrings() && set.strings().size() != set.size()) {
+            if (set.hasStrings()) {
                 throw new BackwardParseException(
-                        "Sets should be all strings or all code points for property correspondence",
-                        pp.getIndex());
-            }
-            if (firstMultiCharacterIndex == -1) {
-                if (set.hasStrings()) {
-                    firstMultiCharacterIndex = sets.size();
-                }
-            } else if (!set.hasStrings()) {
-                throw new BackwardParseException(
-                        "Code points should come before strings in property correspondence",
+                        "Strings are only allowed in value-only sets (prefixed by ⧴ rather than :)",
                         pp.getIndex());
             }
             sets.add(set);
-        } while (Lookahead.oneToken(pp, source).accept(":"));
-        if (firstMultiCharacterIndex == -1) {
-            firstMultiCharacterIndex = sets.size();
+        }
+        // Index of the first set of value-only sets (prefixed by ⧴ rather than :).
+        // Only value-only sets may contain multi-character strings.
+        // This is `m` in the documentation in UnicodeInvariantTest.txt.
+        final int firstValueOnlyIndex = sets.size();
+        while (Lookahead.oneToken(pp, source).accept("⧴")) {
+            final var set = parseUnicodeSet(source, pp);
+            if (set.size() != firstSet.size()) {
+                throw new BackwardParseException(
+                        "Sets should have the same size for property correspondence (got "
+                                + set.size()
+                                + ", expected "
+                                + firstSet.size()
+                                + ")",
+                        pp.getIndex());
+            }
+            sets.add(set);
         }
         final List<String> referenceCodePoints = new ArrayList<>();
         expectToken("CorrespondTo", pp, source);
@@ -608,14 +611,14 @@ public class TestUnicodeInvariants {
                         "reference should be a single code point or string for property correspondence",
                         pp.getIndex());
             }
-            if (referenceSet.hasStrings()
-                    != (referenceCodePoints.size() >= firstMultiCharacterIndex)) {
+            if (referenceSet.hasStrings() && referenceCodePoints.size() < firstValueOnlyIndex) {
                 throw new BackwardParseException(
-                        "Strings should correspond to strings for property correspondence",
+                        "Strings are only allowed in value-only sets (prefixed by ⧴ rather than :)",
                         pp.getIndex());
             }
             referenceCodePoints.add(referenceSet.iterator().next());
-        } while (Lookahead.oneToken(pp, source).accept(":"));
+        } while (Lookahead.oneToken(pp, source)
+                .accept(referenceCodePoints.size() >= firstValueOnlyIndex ? "⧴" : ":"));
         if (referenceCodePoints.size() != sets.size()) {
             throw new BackwardParseException(
                     "Property correspondence requires as many reference code points as sets under test",
@@ -638,8 +641,14 @@ public class TestUnicodeInvariants {
                 String property = Lookahead.oneToken(pp, source).consume();
                 expectToken("(", pp, source);
                 String actualValueAlias = Lookahead.oneToken(pp, source).consume();
+                while (Lookahead.oneToken(pp, source).accept("|")) {
+                    actualValueAlias += "|" + Lookahead.oneToken(pp, source).consume();
+                }
                 expectToken("vs", pp, source);
                 String referenceValueAlias = Lookahead.oneToken(pp, source).consume();
+                while (Lookahead.oneToken(pp, source).accept("|")) {
+                    referenceValueAlias += "|" + Lookahead.oneToken(pp, source).consume();
+                }
                 expectToken(")", pp, source);
                 expectedPropertyDifferences.put(
                         property,
@@ -657,7 +666,7 @@ public class TestUnicodeInvariants {
                 expectedDifference = expectedPropertyDifferences.get(alias);
             }
             if (expectedDifference != null) {
-                for (int k = 0; k < firstMultiCharacterIndex; ++k) {
+                for (int k = 0; k < firstValueOnlyIndex; ++k) {
                     final int rk = referenceCodePoints.get(k).codePointAt(0);
                     final String pRk = property.getValue(rk);
                     if (!Objects.equals(pRk, expectedDifference.referenceValueAlias)) {
@@ -687,7 +696,7 @@ public class TestUnicodeInvariants {
                     }
                 }
             } else {
-                for (int k = 0; k < firstMultiCharacterIndex; ++k) {
+                for (int k = 0; k < firstValueOnlyIndex; ++k) {
                     final UnicodeSet set = sets.get(k);
                     final int rk = referenceCodePoints.get(k).codePointAt(0);
                     final String pRk = property.getValue(rk);
