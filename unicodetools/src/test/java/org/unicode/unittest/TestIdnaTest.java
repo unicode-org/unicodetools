@@ -105,6 +105,17 @@ public class TestIdnaTest extends TestFmwkMinusMinus {
             }
             {
                 Idn_Status_Values lastStatus = idnaStatusLast.get(x);
+                // Until Unicode 15.1, we had conditional Status values
+                // disallowed_STD3_valid and disallowed_STD3_mapped.
+                // At runtime, if UseSTD3ASCIIRules=true, they resolved to disallowed;
+                // if UseSTD3ASCIIRules=false, they resolved to valid or mapped, respectively.
+                // Unicode 16 replaces them with valid/mapped and handles UseSTD3ASCIIRules=true
+                // while checking the Validity Criteria.
+                if (lastStatus == Idn_Status_Values.disallowed_STD3_valid) {
+                    lastStatus = Idn_Status_Values.valid;
+                } else if (lastStatus == Idn_Status_Values.disallowed_STD3_mapped) {
+                    lastStatus = Idn_Status_Values.mapped;
+                }
                 Idn_Status_Values currentStatus = idnaStatus.get(x);
                 boolean skip = changingIn16.contains(c0);
                 if (!skip) {

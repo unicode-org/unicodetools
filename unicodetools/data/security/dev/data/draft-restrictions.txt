@@ -24194,6 +24194,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0038          ; Allowed ; Recommended #      (8)  DIGIT EIGHT
 0039          ; Allowed ; Recommended #      (9)  DIGIT NINE
 0041..005A    ; Allowed ; Recommended # [26] (A..Z)  LATIN CAPITAL LETTER A..LATIN CAPITAL LETTER Z
+005F          ; Allowed ; Recommended #      (_)  LOW LINE
 0061          ; Allowed ; Recommended #      (a)  LATIN SMALL LETTER A
 0062          ; Allowed ; Recommended #      (b)  LATIN SMALL LETTER B
 0063          ; Allowed ; Recommended #      (c)  LATIN SMALL LETTER C
@@ -54817,11 +54818,7 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 323AF         ; Allowed ; Recommended #      (𲎯)  CJK UNIFIED IDEOGRAPH-323AF
 E0100..E01EF  ; Allowed ; Recommended # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 113001
-
-005F          ; ~IDNA #      (_)  LOW LINE
-
-# Total code points: 1
+# Total code points: 113002
 
 0000..002F    ; ~Unicode Identifier # [48] (U+0000../)  <control-0000>..SOLIDUS
 003A..0040    ; ~Unicode Identifier #  [7] (:..@)  COLON..COMMERCIAL AT
