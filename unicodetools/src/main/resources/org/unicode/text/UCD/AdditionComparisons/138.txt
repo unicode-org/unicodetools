@@ -14,9 +14,9 @@ Ignoring Block:
 # characters explicitly listed in ArabicShaping.txt from those where Joining_Type is derived.
 Ignoring Other_Joining_Type:
 Propertywise [
-      \N{ARABIC SMALL BASELINE FATHA}
-      \N{ARABIC SMALL BASELINE DOTLESS HEAD OF KHAH}
-    ࢇ \N{ARABIC BASELINE ROUND DOT}
+               \N{ARABIC SMALL BASELINE FATHA}
+               \N{ARABIC SMALL BASELINE DOTLESS HEAD OF KHAH}
+    \x{0888} ࢈ \N{ARABIC RAISED ROUND DOT}
 ] AreAlike
 end Ignoring;
 
