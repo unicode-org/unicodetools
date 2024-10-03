@@ -1,5 +1,5 @@
-# SentenceBreakProperty-16.0.0.txt
-# Date: 2024-07-29, 16:27:32 GMT
+# SentenceBreakProperty-17.0.0.txt
+# Date: 2024-10-03, 16:47:00 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1934,6 +1934,7 @@ A7D6          ; Upper # L&       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; Upper # L&       LATIN CAPITAL LETTER SIGMOID S
 A7DA          ; Upper # L&       LATIN CAPITAL LETTER LAMBDA
 A7DC          ; Upper # L&       LATIN CAPITAL LETTER LAMBDA WITH STROKE
+A7E2          ; Upper # L&       LATIN CAPITAL LETTER R WITH LONG LEG
 A7F5          ; Upper # L&       LATIN CAPITAL LETTER REVERSED HALF H
 FF21..FF3A    ; Upper # L&  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAPITAL LETTER Z
 10400..10427  ; Upper # L&  [40] DESERET CAPITAL LETTER LONG I..DESERET CAPITAL LETTER EW
@@ -1982,7 +1983,7 @@ FF21..FF3A    ; Upper # L&  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LAT
 1F150..1F169  ; Upper # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Upper # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1963
+# Total code points: 1964
 
 # ================================================
 
