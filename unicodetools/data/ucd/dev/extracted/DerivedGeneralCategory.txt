@@ -1,5 +1,5 @@
-# DerivedGeneralCategory-16.0.0.txt
-# Date: 2024-04-30, 21:48:17 GMT
+# DerivedGeneralCategory-17.0.0.txt
+# Date: 2024-10-03, 16:46:29 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -297,7 +297,8 @@ A6F8..A6FF    ; Cn #   [8] <reserved-A6F8>..<reserved-A6FF>
 A7CE..A7CF    ; Cn #   [2] <reserved-A7CE>..<reserved-A7CF>
 A7D2          ; Cn #       <reserved-A7D2>
 A7D4          ; Cn #       <reserved-A7D4>
-A7DD..A7F1    ; Cn #  [21] <reserved-A7DD>..<reserved-A7F1>
+A7DD..A7E1    ; Cn #   [5] <reserved-A7DD>..<reserved-A7E1>
+A7E3..A7F1    ; Cn #  [15] <reserved-A7E3>..<reserved-A7F1>
 A82D..A82F    ; Cn #   [3] <reserved-A82D>..<reserved-A82F>
 A83A..A83F    ; Cn #   [6] <reserved-A83A>..<reserved-A83F>
 A878..A87F    ; Cn #   [8] <reserved-A878>..<reserved-A87F>
@@ -747,7 +748,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 819533
+# Total code points: 819532
 
 # ================================================
 
@@ -1360,6 +1361,7 @@ A7D6          ; Lu #       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; Lu #       LATIN CAPITAL LETTER SIGMOID S
 A7DA          ; Lu #       LATIN CAPITAL LETTER LAMBDA
 A7DC          ; Lu #       LATIN CAPITAL LETTER LAMBDA WITH STROKE
+A7E2          ; Lu #       LATIN CAPITAL LETTER R WITH LONG LEG
 A7F5          ; Lu #       LATIN CAPITAL LETTER REVERSED HALF H
 FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAPITAL LETTER Z
 10400..10427  ; Lu #  [40] DESERET CAPITAL LETTER LONG I..DESERET CAPITAL LETTER EW
@@ -1405,7 +1407,7 @@ FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAP
 1D7CA         ; Lu #       MATHEMATICAL BOLD CAPITAL DIGAMMA
 1E900..1E921  ; Lu #  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 
-# Total code points: 1858
+# Total code points: 1859
 
 # ================================================
 
