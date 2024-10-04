@@ -8,8 +8,10 @@ Ignoring Name Age:
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
 
+Ignoring Block:
 Propertywise [\x{1D260} \N{MUSICAL SYMBOL TRIPLE FLAT}
               𝄫 \N{MUSICAL SYMBOL DOUBLE FLAT}] AreAlike
+end Ignoring;
 
 end Ignoring;
 
