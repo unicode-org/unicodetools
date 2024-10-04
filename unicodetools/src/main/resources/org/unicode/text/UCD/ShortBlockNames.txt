@@ -15,6 +15,7 @@ Arabic_Math	;	Arabic_Mathematical_Alphabetic_Symbols
 Arabic_PF_A	;	Arabic_Presentation_Forms_A
 Arabic_PF_B	;	Arabic_Presentation_Forms_B
 Arabic_Sup	;	Arabic_Supplement
+Archaic_Cuneiform_Numerals	;	Archaic_Cuneiform_Numerals
 Armenian	;	Armenian
 Arrows	;	Arrows
 Avestan	;	Avestan
