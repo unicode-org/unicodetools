@@ -82,7 +82,7 @@ Propertywise [\x{12587}\N{CUNEIFORM NUMERIC SIGN ONE EIGHTH IKU CURVED}
 Propertywise [\x{12589}\N{CUNEIFORM NUMERIC SIGN ONE N01 REVERSED}
               \x{1258A}\N{CUNEIFORM NUMERIC SIGN ONE QUARTER IKU CURVED VARIANT FORM}
               𒑠\N{CUNEIFORM NUMERIC SIGN ONE QUARTER ASH}] AreAlike
-# U+12589 does not semantically correspond to 𒑤 (which is 150 l, not 1800 m²), but instead to 𒀹.
+# U+1258B does not semantically correspond to 𒑤 (which is 150 l, not 1800 m²), but instead to 𒀹.
 # However, 𒀹 is also used non-numerically and numerically for 1 of various things, so it has very
 # different properties.
 Propertywise [\x{1258B}\N{CUNEIFORM NUMERIC SIGN ONE HALF IKU CURVED VARIANT FORM}
