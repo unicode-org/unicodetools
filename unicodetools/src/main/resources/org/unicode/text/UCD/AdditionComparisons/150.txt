@@ -1,0 +1,23 @@
+# FIVE ADDITIONAL TREMOLI (MUSIC SYMBOLS)
+# https://github.com/unicode-org/utc-release-management/issues/150
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+
+Ignoring Block:
+Propertywise [\x{1D169} \N{MUSICAL SYMBOL COMBINING TREMOLO-3}
+              \x{1D25B} \N{MUSICAL SYMBOL COMBINING TREMOLO-4}
+              \x{1D25C} \N{MUSICAL SYMBOL COMBINING TREMOLO-5}
+              \x{1D25F} \N{MUSICAL SYMBOL BUZZ ROLL}] AreAlike
+Propertywise [\x{1D16C} 𝅬 \N{MUSICAL SYMBOL FINGERED TREMOLO-3}
+              \x{1D25D}   \N{MUSICAL SYMBOL FINGERED TREMOLO-4}
+              \x{1D25E}   \N{MUSICAL SYMBOL FINGERED TREMOLO-5}] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
