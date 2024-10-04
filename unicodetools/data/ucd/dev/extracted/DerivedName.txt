@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2024-10-04, 13:04:56 GMT
+# Date: 2024-10-04, 13:10:08 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -39605,7 +39605,6 @@ FFFD          ; REPLACEMENT CHARACTER
 1D244         ; COMBINING GREEK MUSICAL PENTASEME
 1D245         ; GREEK MUSICAL LEIMMA
 1D260         ; MUSICAL SYMBOL TRIPLE FLAT
-1D261         ; MUSICAL SYMBOL QUADRUPLE FLAT
 1D2C0         ; KAKTOVIK NUMERAL ZERO
 1D2C1         ; KAKTOVIK NUMERAL ONE
 1D2C2         ; KAKTOVIK NUMERAL TWO
@@ -45369,6 +45368,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 155000
+# Total code points: 154999
 
 # EOF

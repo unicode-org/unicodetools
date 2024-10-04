@@ -1,5 +1,5 @@
 # EastAsianWidth-17.0.0.txt
-# Date: 2024-10-04, 13:05:00 GMT
+# Date: 2024-10-04, 13:10:11 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2406,7 +2406,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 1D200..1D241   ; N  # So    [66] GREEK VOCAL NOTATION SYMBOL-1..GREEK INSTRUMENTAL NOTATION SYMBOL-54
 1D242..1D244   ; N  # Mn     [3] COMBINING GREEK MUSICAL TRISEME..COMBINING GREEK MUSICAL PENTASEME
 1D245          ; N  # So         GREEK MUSICAL LEIMMA
-1D260..1D261   ; N  # So     [2] MUSICAL SYMBOL TRIPLE FLAT..MUSICAL SYMBOL QUADRUPLE FLAT
+1D260          ; N  # So         MUSICAL SYMBOL TRIPLE FLAT
 1D2C0..1D2D3   ; N  # No    [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3   ; N  # No    [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
 1D300..1D356   ; W  # So    [87] MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
