@@ -1,5 +1,5 @@
-# DerivedAge-16.0.0.txt
-# Date: 2024-04-30, 21:48:12 GMT
+# DerivedAge-17.0.0.txt
+# Date: 2024-10-04, 13:04:18 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2058,5 +2058,15 @@ A7DA..A7DC    ; 16.0 #   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER L
 1FBCB..1FBEF  ; 16.0 #  [37] WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 
 # Total code points: 5185
+
+# ================================================
+
+# Age=V17_0
+
+# Newly assigned in Unicode 17.0.0 (September, 2025)
+
+1D260..1D261  ; 17.0 #   [2] MUSICAL SYMBOL TRIPLE FLAT..MUSICAL SYMBOL QUADRUPLE FLAT
+
+# Total code points: 2
 
 # EOF
