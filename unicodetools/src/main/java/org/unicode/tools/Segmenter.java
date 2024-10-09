@@ -234,11 +234,16 @@ public class Segmenter {
 
     /** A « treat as » rule. */
     public static class RemapRule {
+        
+        public RemapRule(String leftHandSide, String replacement) {
+            pattern = Pattern.compile(leftHandSide, REGEX_FLAGS);
+        }
 
         public void apply(String text, List<Integer> indexConcordance) {
             final var result = new StringBuilder();
             final var newConcordance = new ArrayList<Integer>(indexConcordance.size());
             int lastEnd = 0;
+            final var matcher = pattern.matcher(text);
             while (matcher.find()) {
                 int i = lastEnd;
                 for (; i < matcher.start(); ++i) {
@@ -256,7 +261,7 @@ public class Segmenter {
             matcher.appendTail(result);
         }
 
-        private Matcher matcher;
+        private Pattern pattern;
         private String replacement;
     }
 
