@@ -42,7 +42,7 @@ import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Settings;
-import org.unicode.tools.Segmenter.Rule.Breaks;
+import org.unicode.tools.Segmenter.RegexRule.Breaks;
 
 /** Ordered list of rules, with variables resolved before building. Use Builder to make. */
 public class Segmenter {
@@ -170,16 +170,16 @@ public class Segmenter {
             breakRule = NOBREAK_SUPPLEMENTARY;
             return false;
         }
-        for (int i = 0; i < rules.size(); ++i) {
-            Rule rule = rules.get(i);
+        for (int i = 0; i < regexRules.size(); ++i) {
+            RegexRule rule = regexRules.get(i);
             if (DEBUG_AT_RULE_CONTAINING != null
                     && rule.toString().contains(DEBUG_AT_RULE_CONTAINING)) {
                 System.out.println(" !#$@543 Debug");
             }
             Breaks result = rule.matches(text, position);
-            if (result != Rule.Breaks.UNKNOWN_BREAK) {
+            if (result != RegexRule.Breaks.UNKNOWN_BREAK) {
                 breakRule = orders.get(i).doubleValue();
-                return result == Rule.Breaks.BREAK;
+                return result == RegexRule.Breaks.BREAK;
             }
         }
         breakRule = BREAK_ANY;
@@ -197,15 +197,15 @@ public class Segmenter {
      * @param order
      * @param rule
      */
-    public void add(double order, Rule rule) {
+    public void add(double order, RegexRule rule) {
         orders.add(new Double(order));
-        rules.add(rule);
+        regexRules.add(rule);
     }
 
-    public Rule get(double order) {
+    public RegexRule get(double order) {
         int loc = orders.indexOf(new Double(order));
         if (loc < 0) return null;
-        return rules.get(loc);
+        return regexRules.get(loc);
     }
 
     /**
@@ -224,15 +224,44 @@ public class Segmenter {
 
     public String toString(boolean showResolved) {
         String result = "";
-        for (int i = 0; i < rules.size(); ++i) {
+        for (int i = 0; i < regexRules.size(); ++i) {
             if (i != 0) result += Utility.LINE_SEPARATOR;
-            result += orders.get(i) + ")\t" + rules.get(i).toString(showResolved);
+            result += orders.get(i) + ")\t" + regexRules.get(i).toString(showResolved);
         }
         return result;
     }
 
+
+    /** A « treat as » rule. */
+    public static class RemapRule {
+
+        public void apply(String text, List<Integer> indexConcordance) {
+            final var result = new StringBuilder();
+            final var newConcordance = new ArrayList<Integer>(indexConcordance.size());
+            int lastEnd = 0;
+            while (matcher.find()) {
+                int i = lastEnd;
+                for (; i < matcher.start(); ++i) {
+                    newConcordance.add(indexConcordance.get(i));
+                }
+                lastEnd = matcher.end();
+                matcher.appendReplacement(result, replacement);
+                while (newConcordance.size() < result.length()) {
+                    if (i >= matcher.end()) {
+                        throw new IllegalArgumentException("Lengthening remap rule: " + matcher.group());
+                    }
+                    newConcordance.add(indexConcordance.get(i++));
+                }
+            }
+            matcher.appendTail(result);
+        }
+
+        private Matcher matcher;
+        private String replacement;
+    }
+
     /** A rule that determines the status of an offset. */
-    public static class Rule {
+    public static class RegexRule {
         /** Status of a breaking rule */
         public enum Breaks {
             UNKNOWN_BREAK,
@@ -246,7 +275,7 @@ public class Segmenter {
          * @param after pattern for the text before the offset. All variables must be resolved.
          * @param line
          */
-        public Rule(String before, Breaks result, String after, String line) {
+        public RegexRule(String before, Breaks result, String after, String line) {
             breaks = result;
             before = ".*(" + before + ")";
             String parsing = null;
@@ -475,14 +504,14 @@ public class Segmenter {
             }
             line = line.substring(relationPosition + 1).trim();
             relationPosition = line.indexOf('\u00F7');
-            Breaks breaks = Segmenter.Rule.Breaks.BREAK;
+            Breaks breaks = Segmenter.RegexRule.Breaks.BREAK;
             if (relationPosition < 0) {
                 relationPosition = line.indexOf('\u00D7');
                 if (relationPosition < 0) {
                     throw new IllegalArgumentException(
                             "Couldn't find =, \u00F7, or \u00D7 on line: " + line);
                 }
-                breaks = Segmenter.Rule.Breaks.NO_BREAK;
+                breaks = Segmenter.RegexRule.Breaks.NO_BREAK;
             }
             addRule(
                     order,
@@ -646,7 +675,7 @@ public class Segmenter {
             }
             rules.put(
                     order,
-                    new Segmenter.Rule(
+                    new Segmenter.RegexRule(
                             replaceVariables(before), breaks, replaceVariables(after), line));
             return this;
         }
@@ -671,9 +700,9 @@ public class Segmenter {
         // longest first, to
         // make substitution
         // easy
-        private Map<Double, Rule> rules = new TreeMap<Double, Rule>();
+        private Map<Double, RegexRule> rules = new TreeMap<Double, RegexRule>();
 
-        public Map<Double, Rule> getProcessedRules() {
+        public Map<Double, RegexRule> getProcessedRules() {
             return rules;
         }
 
@@ -813,7 +842,8 @@ public class Segmenter {
 
     // ============== Internals ================
 
-    private List<Rule> rules = new ArrayList<Rule>(1);
+    private List<RemapRule> remapRules = new ArrayList<RemapRule>(1);
+    private List<RegexRule> regexRules = new ArrayList<RegexRule>(1);
     private List<Double> orders = new ArrayList<Double>(1);
     private double breakRule;
 
