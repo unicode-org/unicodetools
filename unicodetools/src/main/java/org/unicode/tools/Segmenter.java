@@ -35,6 +35,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
+import javax.swing.text.Segment;
+
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
@@ -42,7 +45,7 @@ import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Settings;
-import org.unicode.tools.Segmenter.RegexRule.Breaks;
+import org.unicode.tools.Segmenter.SegmentationRule.Breaks;
 
 /** Ordered list of rules, with variables resolved before building. Use Builder to make. */
 public class Segmenter {
@@ -170,16 +173,16 @@ public class Segmenter {
             breakRule = NOBREAK_SUPPLEMENTARY;
             return false;
         }
-        for (int i = 0; i < regexRules.size(); ++i) {
-            RegexRule rule = regexRules.get(i);
+        for (int i = 0; i < rules.size(); ++i) {
+            SegmentationRule rule = rules.get(i);
             if (DEBUG_AT_RULE_CONTAINING != null
                     && rule.toString().contains(DEBUG_AT_RULE_CONTAINING)) {
                 System.out.println(" !#$@543 Debug");
             }
             Breaks result = rule.matches(text, position);
-            if (result != RegexRule.Breaks.UNKNOWN_BREAK) {
+            if (result != SegmentationRule.Breaks.UNKNOWN_BREAK) {
                 breakRule = orders.get(i).doubleValue();
-                return result == RegexRule.Breaks.BREAK;
+                return result == SegmentationRule.Breaks.BREAK;
             }
         }
         breakRule = BREAK_ANY;
@@ -197,15 +200,15 @@ public class Segmenter {
      * @param order
      * @param rule
      */
-    public void add(double order, RegexRule rule) {
+    public void add(double order, SegmentationRule rule) {
         orders.add(new Double(order));
-        regexRules.add(rule);
+        rules.add(rule);
     }
 
-    public RegexRule get(double order) {
+    public SegmentationRule get(double order) {
         int loc = orders.indexOf(new Double(order));
         if (loc < 0) return null;
-        return regexRules.get(loc);
+        return rules.get(loc);
     }
 
     /**
@@ -224,16 +227,25 @@ public class Segmenter {
 
     public String toString(boolean showResolved) {
         String result = "";
-        for (int i = 0; i < regexRules.size(); ++i) {
+        for (int i = 0; i < rules.size(); ++i) {
             if (i != 0) result += Utility.LINE_SEPARATOR;
-            result += orders.get(i) + ")\t" + regexRules.get(i).toString(showResolved);
+            result += orders.get(i) + ")\t" + rules.get(i).toString(showResolved);
         }
         return result;
     }
 
 
+    public static class SegmentationRule {
+        /** Status of a breaking rule */
+        public enum Breaks {
+            UNKNOWN_BREAK,
+            BREAK,
+            NO_BREAK
+        };
+    }
+
     /** A « treat as » rule. */
-    public static class RemapRule {
+    public static class RemapRule extends SegmentationRule {
         
         public RemapRule(String leftHandSide, String replacement) {
             pattern = Pattern.compile(leftHandSide, REGEX_FLAGS);
@@ -266,14 +278,7 @@ public class Segmenter {
     }
 
     /** A rule that determines the status of an offset. */
-    public static class RegexRule {
-        /** Status of a breaking rule */
-        public enum Breaks {
-            UNKNOWN_BREAK,
-            BREAK,
-            NO_BREAK
-        };
-
+    public static class RegexRule extends SegmentationRule {
         /**
          * @param before pattern for the text after the offset. All variables must be resolved.
          * @param result the break status to return when the rule is invoked
@@ -847,8 +852,7 @@ public class Segmenter {
 
     // ============== Internals ================
 
-    private List<RemapRule> remapRules = new ArrayList<RemapRule>(1);
-    private List<RegexRule> regexRules = new ArrayList<RegexRule>(1);
+    private List<SegmentationRule> rules = new ArrayList<SegmentationRule>(1);
     private List<Double> orders = new ArrayList<Double>(1);
     private double breakRule;
 
