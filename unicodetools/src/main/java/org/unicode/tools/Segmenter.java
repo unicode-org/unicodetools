@@ -238,13 +238,32 @@ public class Segmenter {
     }
 
 
-    public static class SegmentationRule {
+    public static abstract class SegmentationRule {
         /** Status of a breaking rule */
         public enum Breaks {
             UNKNOWN_BREAK,
             BREAK,
             NO_BREAK
         };
+
+        /**
+         * Applies this rule throughout the text.
+         * @param remappedString The text, with any preceding remappings applied.
+         * @param indexInRemapped An array whose size is one greater than the original string.
+         *                        Associates indices in the original string to indices in remappedString.
+         *                        indexInRemapped[0] == 0, and indexInRemapped[indexInRemapped.size() - 1] == remappedString.size().
+         *                        Whenever indexInRemapped[i] == null,
+         *                        resolvedBreaks[i] == NO_BREAK: this corresponds to positions
+         *                        inside a string which has been replaced by a remap rule.
+         *                        Remap rules may update this mapping.
+         * @param resolvedBreaks An array whose size is one greater than the original string, indicating resolved breaks in the string.
+         *                       Values that are UNKNOWN_BREAK are updated if the rule applies to their position.
+         * @param remap A string consumer, called by remap rules with the value of remappedString to be passed to subsequent rules.
+         *              The indices in indexInRemapped are updated consistently.
+         */
+        public abstract void apply(String remappedString, Integer[] indexInRemapped, Breaks[] resolvedBreaks, Consumer<String> remap);
+        /** Same as above, but only returns the resolution at the current position.  */
+        public abstract Breaks applyAt(int position, String remappedString, Integer[] indexInRemapped, Consumer<String> remap);
     }
 
     /** A « treat as » rule. */
@@ -253,11 +272,7 @@ public class Segmenter {
         public RemapRule(String leftHandSide, String replacement) {
             pattern = Pattern.compile(leftHandSide, REGEX_FLAGS);
         }
-
-        // TODO words
-        // invariants:
-        // indexInRemapped[0] == 0
-        // indexInRemapped[initialString.size()] == remappedString.size()
+        
         public void apply(String remappedString, Integer[] indexInRemapped, Breaks[] resolvedBreaks, Consumer<String> remap) {
             final var result = new StringBuilder();
             int i = 0;
@@ -280,6 +295,9 @@ public class Segmenter {
                     if (indexInRemapped[i] == matcher.end()) {
                         break;
                     }
+                    if (resolvedBreaks[i] == Breaks.BREAK) {
+                        throw new IllegalArgumentException("Replacement rule at remapped indices " + matcher.start() + " sqq. spans a break: " + remappedString);
+                    }
                     resolvedBreaks[i] = Breaks.NO_BREAK;
                     indexInRemapped[i] = null;
                 }
@@ -298,6 +316,13 @@ public class Segmenter {
 
         private Pattern pattern;
         private String replacement;
+        @Override
+        public Breaks applyAt(int position, String remappedString, Integer[] indexInRemapped,
+                Consumer<String> remap) {
+            var resolvedBreaks = new Breaks[indexInRemapped.length];
+            apply(remappedString, indexInRemapped, resolvedBreaks, remap);
+            return resolvedBreaks[position];
+        }
     }
 
     /** A rule that determines the status of an offset. */
