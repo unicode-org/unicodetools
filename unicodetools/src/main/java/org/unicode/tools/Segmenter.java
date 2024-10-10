@@ -32,6 +32,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -251,23 +254,46 @@ public class Segmenter {
             pattern = Pattern.compile(leftHandSide, REGEX_FLAGS);
         }
 
-        public void apply(String text, List<Integer> indexConcordance) {
+        // TODO words
+        // invariants:
+        // indexInRemapped[0] == 0
+        // indexInRemapped[initialString.size()] == remappedString.size()
+        public void apply(String remappedString, Integer[] indexInRemapped, Breaks[] resolvedBreaks, Consumer<String> remap) {
             final var result = new StringBuilder();
-            final var newConcordance = new ArrayList<Integer>(indexConcordance.size());
-            int lastEnd = 0;
-            final var matcher = pattern.matcher(text);
+            int i = 0;
+            int offset = 0;
+            final var matcher = pattern.matcher(remappedString);
             while (matcher.find()) {
-                int i = lastEnd;
-                for (; i < matcher.start(); ++i) {
-                    newConcordance.add(indexConcordance.get(i));
+                for (;; ++i) {
+                    if (indexInRemapped[i] == null) {
+                        continue;
+                    }
+                    if (indexInRemapped[i] > matcher.start()) {
+                        break;
+                    }
+                    indexInRemapped[i] += offset;
                 }
-                lastEnd = matcher.end();
+                for (;; ++i) {
+                    if (indexInRemapped[i] == null) {
+                        continue;
+                    }
+                    if (indexInRemapped[i] == matcher.end()) {
+                        break;
+                    }
+                    resolvedBreaks[i] = Breaks.NO_BREAK;
+                    indexInRemapped[i] = null;
+                }
                 matcher.appendReplacement(result, replacement);
-                while (newConcordance.size() < result.length()) {
-                    newConcordance.add(indexConcordance.get(i));
+                offset += result.length() - indexInRemapped[i];
+            }
+            for (; i < indexInRemapped.length; ++i) {
+                if (indexInRemapped[i] == null) {
+                    continue;
                 }
+                indexInRemapped[i] += offset;
             }
             matcher.appendTail(result);
+            remap.accept(result.toString());
         }
 
         private Pattern pattern;
