@@ -264,10 +264,7 @@ public class Segmenter {
                 lastEnd = matcher.end();
                 matcher.appendReplacement(result, replacement);
                 while (newConcordance.size() < result.length()) {
-                    if (i >= matcher.end()) {
-                        throw new IllegalArgumentException("Lengthening remap rule: " + matcher.group());
-                    }
-                    newConcordance.add(indexConcordance.get(i++));
+                    newConcordance.add(indexConcordance.get(i));
                 }
             }
             matcher.appendTail(result);
