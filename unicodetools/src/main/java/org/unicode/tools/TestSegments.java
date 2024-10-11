@@ -22,7 +22,6 @@ import org.unicode.cldr.util.Log;
 import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.RandomStringGenerator;
 import org.unicode.props.UnicodeProperty;
-import org.unicode.tools.Segmenter.RegexRule.Breaks;
 
 /**
  * Quick class for testing proposed syntax for Segments. TODO doesn't yet handle supplementaries. It
@@ -133,7 +132,7 @@ public class TestSegments {
     }
 
     private static void debugRule(Segmenter.Builder rb) {
-        Segmenter.RegexRule rule = rb.make().get(16.01);
+        Segmenter.SegmentationRule rule = rb.make().get(16.01);
         String oldAL = (String) rb.getVariables().get("$oldAL");
         UnicodeSet oldALSet = new UnicodeSet(oldAL);
         String testStr = "\uA80D/\u0745\u2026";
@@ -142,7 +141,7 @@ public class TestSegments {
             System.out.println(
                     k + ": " + inside + com.ibm.icu.impl.Utility.escape("" + testStr.charAt(k)));
         }
-        Breaks m = rule.matches(testStr, 3);
+        rule.applyAt(3, testStr, new Integer[] {0, 1, 2, 3}, null);
     }
 
     private static void doCompare(UnicodeProperty.Factory factory, Segmenter rl, String line) {

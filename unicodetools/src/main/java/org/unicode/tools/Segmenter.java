@@ -176,13 +176,22 @@ public class Segmenter {
             breakRule = NOBREAK_SUPPLEMENTARY;
             return false;
         }
+        StringBuilder remapped = new StringBuilder(text.toString());
+        Consumer<CharSequence> remap = (s) -> {
+            remapped.setLength(0);
+            remapped.append(s);}
+        ;
+        Integer[] indexInRemapped = new Integer[text.length() + 1];
+        for (int i = 0; i < indexInRemapped.length; ++i) {
+            indexInRemapped[i] = i;
+        }
         for (int i = 0; i < rules.size(); ++i) {
             SegmentationRule rule = rules.get(i);
             if (DEBUG_AT_RULE_CONTAINING != null
                     && rule.toString().contains(DEBUG_AT_RULE_CONTAINING)) {
                 System.out.println(" !#$@543 Debug");
             }
-            Breaks result = rule.matches(text, position);
+            Breaks result = rule.applyAt(position, remapped, indexInRemapped, remap);
             if (result != SegmentationRule.Breaks.UNKNOWN_BREAK) {
                 breakRule = orders.get(i).doubleValue();
                 return result == SegmentationRule.Breaks.BREAK;
@@ -232,7 +241,7 @@ public class Segmenter {
         String result = "";
         for (int i = 0; i < rules.size(); ++i) {
             if (i != 0) result += Utility.LINE_SEPARATOR;
-            result += orders.get(i) + ")\t" + rules.get(i).toString(showResolved);
+            result += orders.get(i) + ")\tTODO";// + rules.get(i).toString(showResolved);
         }
         return result;
     }
@@ -258,12 +267,12 @@ public class Segmenter {
          *                        Remap rules may update this mapping.
          * @param resolvedBreaks An array whose size is one greater than the original string, indicating resolved breaks in the string.
          *                       Values that are UNKNOWN_BREAK are updated if the rule applies to their position.
-         * @param remap A string consumer, called by remap rules with the value of remappedString to be passed to subsequent rules.
+         * @param remap Called by remap rules with the value of remappedString to be passed to subsequent rules.
          *              The indices in indexInRemapped are updated consistently.
          */
-        public abstract void apply(String remappedString, Integer[] indexInRemapped, Breaks[] resolvedBreaks, Consumer<String> remap);
+        public abstract void apply(CharSequence remappedString, Integer[] indexInRemapped, Breaks[] resolvedBreaks, Consumer<CharSequence> remap);
         /** Same as above, but only returns the resolution at the current position.  */
-        public abstract Breaks applyAt(int position, String remappedString, Integer[] indexInRemapped, Consumer<String> remap);
+        public abstract Breaks applyAt(int position, CharSequence remappedString, Integer[] indexInRemapped, Consumer<CharSequence> remap);
     }
 
     /** A « treat as » rule. */
@@ -273,7 +282,7 @@ public class Segmenter {
             pattern = Pattern.compile(leftHandSide, REGEX_FLAGS);
         }
         
-        public void apply(String remappedString, Integer[] indexInRemapped, Breaks[] resolvedBreaks, Consumer<String> remap) {
+        public void apply(CharSequence remappedString, Integer[] indexInRemapped, Breaks[] resolvedBreaks, Consumer<CharSequence> remap) {
             final var result = new StringBuilder();
             int i = 0;
             int offset = 0;
@@ -317,8 +326,8 @@ public class Segmenter {
         private Pattern pattern;
         private String replacement;
         @Override
-        public Breaks applyAt(int position, String remappedString, Integer[] indexInRemapped,
-                Consumer<String> remap) {
+        public Breaks applyAt(int position, CharSequence remappedString, Integer[] indexInRemapped,
+                Consumer<CharSequence> remap) {
             var resolvedBreaks = new Breaks[indexInRemapped.length];
             apply(remappedString, indexInRemapped, resolvedBreaks, remap);
             return resolvedBreaks[position];
@@ -366,19 +375,20 @@ public class Segmenter {
             // COMMENTS allows whitespace
         }
 
-        // Matcher numberMatcher = PatternCache.get("[0-9]+").matcher("");
+        public void apply(CharSequence remappedString, Integer[] indexInRemapped, Breaks[] resolvedBreaks, Consumer<CharSequence> remap) {
+            for (int i = 0; i < indexInRemapped.length; ++i) {
+                if (resolvedBreaks[i] == Breaks.UNKNOWN_BREAK) {
+                    resolvedBreaks[i] = applyAt(i, remappedString, indexInRemapped, remap);
+                }
+            }
+        }
 
-        /**
-         * Match the rule against text, at a position
-         *
-         * @param text
-         * @param position
-         * @return break status
-         */
-        public Breaks matches(CharSequence text, int position) {
-            if (!matchAfter(matchSucceeding, text, position)) return Breaks.UNKNOWN_BREAK;
-            if (!matchBefore(matchPrevious, text, position)) return Breaks.UNKNOWN_BREAK;
-            return breaks;
+        public Breaks applyAt(int position, CharSequence remappedString, Integer[] indexInRemapped, Consumer<CharSequence> remap) {
+            if (matchAfter(matchSucceeding, remappedString, indexInRemapped[position]) &&
+                matchBefore(matchPrevious, remappedString, indexInRemapped[position])) {
+                return breaks;
+            }
+            return Breaks.UNKNOWN_BREAK;
         }
 
         /** Debugging aid */
