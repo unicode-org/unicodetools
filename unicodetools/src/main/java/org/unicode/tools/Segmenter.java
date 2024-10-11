@@ -571,6 +571,15 @@ public class Segmenter {
                 throw new IllegalArgumentException("Rule must be of form '1)...': <" + line + ">");
             }
             line = line.substring(relationPosition + 1).trim();
+            relationPosition = line.indexOf('→');
+            if (relationPosition >= 0) {
+                addRemapRule(
+                        order,
+                        line.substring(0, relationPosition).trim(),
+                        line.substring(relationPosition + 1).trim(),
+                        line);
+                return true;
+            }
             relationPosition = line.indexOf('\u00F7');
             Breaks breaks = Segmenter.RegexRule.Breaks.BREAK;
             if (relationPosition < 0) {
@@ -581,7 +590,7 @@ public class Segmenter {
                 }
                 breaks = Segmenter.RegexRule.Breaks.NO_BREAK;
             }
-            addRule(
+            addRegexRule(
                     order,
                     line.substring(0, relationPosition).trim(),
                     breaks,
@@ -688,6 +697,44 @@ public class Segmenter {
             return target;
         }
 
+
+        Builder addRemapRule(Double order, String before, String after, String line) {
+            line = whiteSpace.reset(line).replaceAll(" ");
+            if (lastComments.size() != 0) {
+                double increment = 0.0001;
+                double temp = order.doubleValue() - increment * lastComments.size();
+                for (int i = 0; i < lastComments.size(); ++i) {
+                    Double position = new Double(temp);
+                    if (xmlRules.containsKey(position)) {
+                        System.out.println("WARNING: Overriding rule " + position);
+                    }
+                    xmlRules.put(position, lastComments.get(i));
+                    temp += increment;
+                }
+                lastComments.clear();
+            }
+            if (htmlRules.containsKey(order)
+                    || xmlRules.containsKey(order)
+                    || rules.containsKey(order)) {
+                throw new IllegalArgumentException("Duplicate numbers for rules: " + order);
+            }
+            htmlRules.put(order, TransliteratorUtilities.toHTML.transliterate(line));
+            xmlRules.put(
+                    order,
+                    "<rule id=\""
+                            + Segmenter.nf.format(order)
+                            + "\""
+                            // + (flagItems.reset(line).find() ? " normative=\"true\"" : "")
+                            + "> "
+                            + TransliteratorUtilities.toXML.transliterate(line)
+                            + " </rule>");
+            rules.put(
+                    order,
+                    new Segmenter.RemapRule(
+                            replaceVariables(before), after));
+            return this;
+        }
+
         /**
          * Add a numbered rule, already broken into the parts before and after.
          *
@@ -698,7 +745,7 @@ public class Segmenter {
          * @param line
          * @return
          */
-        Builder addRule(Double order, String before, Breaks breaks, String after, String line) {
+        Builder addRegexRule(Double order, String before, Breaks breaks, String after, String line) {
             // if (brokenIdentifierMatcher.reset(line).find()) {
             // int start = brokenIdentifierMatcher.start();
             // int end = brokenIdentifierMatcher.end();
@@ -768,9 +815,9 @@ public class Segmenter {
         // longest first, to
         // make substitution
         // easy
-        private Map<Double, RegexRule> rules = new TreeMap<Double, RegexRule>();
+        private Map<Double, SegmentationRule> rules = new TreeMap<Double, SegmentationRule>();
 
-        public Map<Double, RegexRule> getProcessedRules() {
+        public Map<Double, SegmentationRule> getProcessedRules() {
             return rules;
         }
 
