@@ -312,7 +312,7 @@ public class Segmenter {
                     indexInRemapped[i] = null;
                 }
                 matcher.appendReplacement(result, replacement);
-                offset += result.length() - indexInRemapped[i];
+                offset = result.length() - indexInRemapped[i];
             }
             for (; i < indexInRemapped.length; ++i) {
                 if (indexInRemapped[i] == null) {
@@ -321,7 +321,15 @@ public class Segmenter {
                 indexInRemapped[i] += offset;
             }
             matcher.appendTail(result);
-            remap.accept(result.toString());
+            if (indexInRemapped[indexInRemapped.length - 1] != result.length()) {
+                StringBuilder meow = new StringBuilder();
+                for (var j :  indexInRemapped) {
+                    meow.append(j == null ? "null" : j.toString());
+                    meow.append(",");
+                }
+                throw new IllegalArgumentException("Inconsistent indexInRemapped " + meow + " for new remapped string " + result);
+            }
+            remap.accept(result);
         }
 
         private Pattern pattern;
@@ -331,7 +339,7 @@ public class Segmenter {
                 Consumer<CharSequence> remap) {
             var resolvedBreaks = new Breaks[indexInRemapped.length];
             apply(remappedString, indexInRemapped, resolvedBreaks, remap);
-            return resolvedBreaks[position];
+            return resolvedBreaks[position] == null ? Breaks.UNKNOWN_BREAK : resolvedBreaks[position];
         }
     }
 
