@@ -280,6 +280,7 @@ public class Segmenter {
         
         public RemapRule(String leftHandSide, String replacement) {
             pattern = Pattern.compile(leftHandSide, REGEX_FLAGS);
+            this.replacement = replacement;
         }
         
         public void apply(CharSequence remappedString, Integer[] indexInRemapped, Breaks[] resolvedBreaks, Consumer<CharSequence> remap) {

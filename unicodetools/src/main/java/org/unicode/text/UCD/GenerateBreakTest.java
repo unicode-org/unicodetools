@@ -926,6 +926,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
             if (breakPoint < 0) {
                 breakPoint = ruleBody.indexOf('÷');
             }
+            if (breakPoint < 0) {
+                breakPoint = ruleBody.indexOf('→');
+            }
             out.println(
                     "<tr><th style='text-align:right'>"
                             + linkAndAnchor("r" + ruleNumber, ruleNumber)
