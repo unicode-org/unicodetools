@@ -145,8 +145,7 @@ $NS=[$NS $CJ]
 
 # MACROS
 
-$Spec3a_=[^ $SP $BA $HY $CM]
-$Spec3b_=[^ $BA $HY $CM]
+$Spec3a_=[^ $SP $BA $HY]
 
 # RULES
 
@@ -174,11 +173,9 @@ $Spec3b_=[^ $BA $HY $CM]
 11.01) × $WJ
 11.02) $WJ ×
 # LB 12  Do not break after NBSP and related characters.
-##	12.01) [^$SP] × $GL
 12) $GL ×
+# LB 12a Do not break before NBSP and related characters, except after spaces and hyphens.
 12.1) $Spec3a_ × $GL
-12.2) $Spec3b_ $CM+ × $GL
-12.3) ^ $CM+ × $GL
 # LB 13  Do not break before \u2018]\u2019 or \u2018!\u2019 or \u2018;\u2019 or \u2018/\u2019, even after spaces.
 13.01) × $EX
 13.02) × $CL
