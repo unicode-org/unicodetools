@@ -237,7 +237,7 @@ public class Segmenter {
         String result = "";
         for (int i = 0; i < rules.size(); ++i) {
             if (i != 0) result += Utility.LINE_SEPARATOR;
-            result += orders.get(i) + ")\t"+ rules.get(i).toString(showResolved);
+            result += orders.get(i) + ")\t" + rules.get(i).toString(showResolved);
         }
         return result;
     }
