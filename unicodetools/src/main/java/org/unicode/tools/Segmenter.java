@@ -335,14 +335,14 @@ public class Segmenter {
             }
             matcher.appendTail(result);
             if (indexInRemapped[indexInRemapped.length - 1] != result.length()) {
-                StringBuilder meow = new StringBuilder();
+                StringBuilder indices = new StringBuilder();
                 for (var j : indexInRemapped) {
-                    meow.append(j == null ? "null" : j.toString());
-                    meow.append(",");
+                    indices.append(j == null ? "null" : j.toString());
+                    indices.append(",");
                 }
                 throw new IllegalArgumentException(
                         "Inconsistent indexInRemapped "
-                                + meow
+                                + indices
                                 + " for new remapped string "
                                 + result);
             }
