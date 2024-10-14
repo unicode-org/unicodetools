@@ -116,7 +116,7 @@ public class AttributeResolver {
         map_NameAlias = loadNameAliases();
     }
 
-    private enum AliasType {
+    protected enum AliasType {
         ABBREVIATION("abbreviation"),
         ALTERNATE("alternate"),
         CONTROL("control"),

@@ -44,9 +44,11 @@ $codePoint0 =   ($codePoints)?
 # Main data
 
 Bidi_Mirroring_Glyph ;        SINGLE_VALUED ;               $codePoint
+Bidi_Paired_Bracket ;         SINGLE_VALUED ;               $codePoint
 Simple_Lowercase_Mapping ;    SINGLE_VALUED ;               $codePoint
 Simple_Titlecase_Mapping ;    SINGLE_VALUED ;               $codePoint
 Simple_Uppercase_Mapping ;    SINGLE_VALUED ;               $codePoint
+Equivalent_Unified_Ideograph; SINGLE_VALUED ;               $codePoint
 
 NFKC_Casefold ;               SINGLE_VALUED ;               $codePoint0
 NFKC_Simple_Casefold ;        SINGLE_VALUED ;               $codePoint0
