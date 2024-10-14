@@ -237,7 +237,7 @@ public class Segmenter {
         String result = "";
         for (int i = 0; i < rules.size(); ++i) {
             if (i != 0) result += Utility.LINE_SEPARATOR;
-            result += orders.get(i) + ")\tTODO"; // + rules.get(i).toString(showResolved);
+            result += orders.get(i) + ")\t"+ rules.get(i).toString(showResolved);
         }
         return result;
     }
@@ -272,22 +272,30 @@ public class Segmenter {
                 Breaks[] resolvedBreaks,
                 Consumer<CharSequence> remap);
 
+        protected abstract String toString(boolean showResolved);
+
         /** Same as above, but only returns the resolution at the current position. */
         public abstract Breaks applyAt(
                 int position,
                 CharSequence remappedString,
                 Integer[] indexInRemapped,
                 Consumer<CharSequence> remap);
+
+        public String toString() {
+            return toString(false);
+        }
     }
 
     /** A « treat as » rule. */
     public static class RemapRule extends SegmentationRule {
 
-        public RemapRule(String leftHandSide, String replacement) {
+        public RemapRule(String leftHandSide, String replacement, String line) {
             pattern = Pattern.compile(leftHandSide, REGEX_FLAGS);
             this.replacement = replacement;
+            name = line;
         }
 
+        @Override
         public void apply(
                 CharSequence remappedString,
                 Integer[] indexInRemapped,
@@ -351,6 +359,7 @@ public class Segmenter {
 
         private Pattern pattern;
         private String replacement;
+        private String name;
 
         @Override
         public Breaks applyAt(
@@ -363,6 +372,11 @@ public class Segmenter {
             return resolvedBreaks[position] == null
                     ? Breaks.UNKNOWN_BREAK
                     : resolvedBreaks[position];
+        }
+
+        @Override
+        protected String toString(boolean showResolved) {
+            return name;
         }
     }
 
@@ -407,6 +421,7 @@ public class Segmenter {
             // COMMENTS allows whitespace
         }
 
+        @Override
         public void apply(
                 CharSequence remappedString,
                 Integer[] indexInRemapped,
@@ -419,6 +434,7 @@ public class Segmenter {
             }
         }
 
+        @Override
         public Breaks applyAt(
                 int position,
                 CharSequence remappedString,
@@ -431,11 +447,7 @@ public class Segmenter {
             return Breaks.UNKNOWN_BREAK;
         }
 
-        /** Debugging aid */
-        public String toString() {
-            return toString(false);
-        }
-
+        @Override
         public String toString(boolean showResolved) {
             String result = name;
             if (showResolved) result += ": " + resolved;
@@ -767,7 +779,7 @@ public class Segmenter {
                             + "> "
                             + TransliteratorUtilities.toXML.transliterate(line)
                             + " </rule>");
-            rules.put(order, new Segmenter.RemapRule(replaceVariables(before), after));
+            rules.put(order, new Segmenter.RemapRule(replaceVariables(before), after, line));
             return this;
         }
 

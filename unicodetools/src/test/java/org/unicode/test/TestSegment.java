@@ -31,7 +31,7 @@ import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Segmenter;
 import org.unicode.tools.Segmenter.Builder;
-import org.unicode.tools.Segmenter.RegexRule;
+import org.unicode.tools.Segmenter.SegmentationRule;
 
 public class TestSegment {
 
@@ -398,8 +398,8 @@ public class TestSegment {
     }
 
     private static <T> void getExemplarStrings(UnicodeMap<T> exemplars, Builder segmenter) {
-        Map<Double, RegexRule> srules = segmenter.getProcessedRules();
-        for (Entry<Double, RegexRule> entry : srules.entrySet()) {
+        Map<Double, SegmentationRule> srules = segmenter.getProcessedRules();
+        for (Entry<Double, SegmentationRule> entry : srules.entrySet()) {
             System.out.println(entry.getKey() + "\t\t" + entry.getValue());
         }
     }
