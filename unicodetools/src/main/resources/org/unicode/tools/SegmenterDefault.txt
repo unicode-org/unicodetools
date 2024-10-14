@@ -165,10 +165,11 @@ $Spec3a_=[^ $SP $BA $HY]
 8) $ZW $SP* ÷
 # LB 8a  Don't break between ZWJ and IDs (for use in Emoji ZWJ sequences)
 8.1) $ZWJ_O ×
-# LB 9  Do not break a combining character sequence; treat it as if it has the LB class of the base character
-# in all of the following rules. (Where X is any line break class except SP, BK, CR, LF, NL or ZW.)
-9) ([^$SP $BK $CR $LF $NL $ZW]) [$CM $ZWJ]* → $1
-10) [$CM $ZWJ] → A
+# LB 9  Do not break a combining character sequence; treat it as if it has the line breaking class
+# of the base character in all of the following rules. Treat ZWJ as if it were CM.
+9) (?<X>[^$BK $CR $LF $NL $SP $ZW]) ( $CM | $ZWJ )* → ${X}
+# LB10 Treat any remaining combining mark or ZWJ as AL.
+10) ( $CM | $ZWJ ) → A
 ## LB 11  Do not break before or after WORD JOINER and related characters.
 11.01) × $WJ
 11.02) $WJ ×
