@@ -855,23 +855,14 @@ public abstract class GenerateBreakTest implements UCD_Types {
         }
         out.print(
                 ".</li>"
-                        + "<li>Any “treat as” or “ignore” rules are handled as discussed in UAX #"
-                        + (fileName.equals("Line") ? "14" : "29")
-                        + ", and thus reflected in a transformation of the rules usually not visible here. ");
-        if (fileName.equals("Line")) {
-            out.print(
-                    "Where it does show up, an extra variable like CM+ may appear, and the rule may be recast. ");
-        }
-        out.print(
-                "In addition, final rules like “Any ÷ Any” may be recast as the equivalent expression “÷ Any”.</li><li>");
+                        + "<li>Final rules like “Any ÷ Any” may be recast as the equivalent expression “÷ Any”.</li><li>");
         if (fileName.equals("Line")) {
             out.print(
                     "Where a rule has multiple parts (lines), each one is numbered using hundredths, "
                             + "such as 21.01) × BA, 21.02) × HY, ... ");
         }
         out.println(
-                "In some cases, the numbering and form of a rule is changed due to “treat as” rules.</li>"
-                        + "</ol>"
+                "</li></ol>"
                         + "<p>For the original rules"
                         + (fileName.equals("Word") || fileName.equals("Sentence")
                                 ? " and the macro values they use"
