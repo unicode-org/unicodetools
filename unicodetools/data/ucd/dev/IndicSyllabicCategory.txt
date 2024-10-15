@@ -1,3 +1,20 @@
+16D80;Vowel
+16D81;Consonant
+16D82;Vowel
+16D83;Vowel
+16D84..16D85;Consonant
+16D86;Vowel
+16D87..16D88;Consonant
+16D89;Vowel
+16D8A..16D8E;Consonant
+16D8F;Vowel
+16D90..16D91;Consonant
+16D92;Vowel
+16D93..16D97;Consonant
+16D98;Bindu
+16D99..16D9C;Consonant
+16D9D;Pure_Killer
+16DA0..16DA9;Number
 # IndicSyllabicCategory-16.0.0.txt
 # Date: 2024-04-30, 21:48:21 GMT
 # © 2024 Unicode®, Inc.
