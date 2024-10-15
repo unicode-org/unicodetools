@@ -184,7 +184,7 @@ public class TestUnicodeInvariants {
                 }
                 final var noComments = new StringBuilder();
                 final List<String> lines = new ArrayList<>();
-                final List<Integer> lineBeginnings = new ArrayList();
+                final List<Integer> lineBeginnings = new ArrayList<>();
                 try (final BufferedReader in = getInputReader(inputFile)) {
                     in.lines()
                             .forEach(
@@ -234,7 +234,24 @@ public class TestUnicodeInvariants {
                         position -> {
                             for (int i = 0; i < lineBeginnings.size(); ++i) {
                                 if (lineBeginnings.get(i) > position.getIndex()) {
-                                    return i; // 1-based line number.
+                                    // The error is before the beginning of line i (0-based), thus
+                                    // on line i (1-based).
+                                    return i;
+                                } else if (lineBeginnings.get(i) == position.getIndex()) {
+                                    // The position in a beginning of line; this happens when a
+                                    // statement has been successfully parsed, but then fails for
+                                    // non-syntactic reasons.
+                                    // The parse position is then the beginning of the next
+                                    // statement.
+                                    // Backtrack to the last nonempty line (ignoring comments),
+                                    // which is the last line of the failing statement.
+                                    int indexInTrimmedSource = position.getIndex();
+                                    while (lineBeginnings.get(i) == indexInTrimmedSource
+                                            && indexInTrimmedSource > 0) {
+                                        --indexInTrimmedSource;
+                                        --i;
+                                    }
+                                    return i + 1;
                                 }
                             }
                             return lineBeginnings.size();
@@ -526,11 +543,11 @@ public class TestUnicodeInvariants {
     }
 
     private static String stringAt(UnicodeSet set, int i) {
-        int codePoints = set.size() - set.strings().size();
-        if (i < codePoints) {
+        final int codePointsSize = set.size() - set.strings().size();
+        if (i < codePointsSize) {
             return Character.toString(set.charAt(i));
         } else {
-            return set.strings().stream().skip(i - codePoints).findFirst().get();
+            return set.strings().stream().skip(i - codePointsSize).findFirst().get();
         }
     }
 
@@ -546,12 +563,11 @@ public class TestUnicodeInvariants {
         final List<String> errorMessageLines = new ArrayList<>();
         final List<UnicodeSet> sets = new ArrayList<>();
         sets.add(firstSet);
-        expectToken(":", pp, source);
 
-        // Index of the first set of multi-character strings (and of the first multi-character
-        // reference string).
-        int m = -1;
-        do {
+        // Index of the first set of value-only sets (prefixed by ⧴ rather than :).
+        // Only value-only sets may contain multi-character strings.
+        // This is `m` in the documentation in UnicodeInvariantTest.txt.
+        while (Lookahead.oneToken(pp, source).accept(":")) {
             final var set = parseUnicodeSet(source, pp);
             if (set.size() != firstSet.size()) {
                 throw new BackwardParseException(
@@ -562,24 +578,29 @@ public class TestUnicodeInvariants {
                                 + ")",
                         pp.getIndex());
             }
-            if (set.hasStrings() && set.strings().size() != set.size()) {
+            if (set.hasStrings()) {
                 throw new BackwardParseException(
-                        "Sets should be all strings or all code points for property correspondence",
-                        pp.getIndex());
-            }
-            if (m == -1) {
-                if (set.hasStrings()) {
-                    m = sets.size();
-                }
-            } else if (!set.hasStrings()) {
-                throw new BackwardParseException(
-                        "Code points should come before strings in property correspondence",
+                        "Strings are only allowed in value-only sets (prefixed by ⧴ rather than :)",
                         pp.getIndex());
             }
             sets.add(set);
-        } while (Lookahead.oneToken(pp, source).accept(":"));
-        if (m == -1) {
-            m = sets.size();
+        }
+        // Index of the first set of value-only sets (prefixed by ⧴ rather than :).
+        // Only value-only sets may contain multi-character strings.
+        // This is `m` in the documentation in UnicodeInvariantTest.txt.
+        final int firstValueOnlyIndex = sets.size();
+        while (Lookahead.oneToken(pp, source).accept("⧴")) {
+            final var set = parseUnicodeSet(source, pp);
+            if (set.size() != firstSet.size()) {
+                throw new BackwardParseException(
+                        "Sets should have the same size for property correspondence (got "
+                                + set.size()
+                                + ", expected "
+                                + firstSet.size()
+                                + ")",
+                        pp.getIndex());
+            }
+            sets.add(set);
         }
         final List<String> referenceCodePoints = new ArrayList<>();
         expectToken("CorrespondTo", pp, source);
@@ -590,13 +611,14 @@ public class TestUnicodeInvariants {
                         "reference should be a single code point or string for property correspondence",
                         pp.getIndex());
             }
-            if (referenceSet.hasStrings() != (referenceCodePoints.size() >= m)) {
+            if (referenceSet.hasStrings() && referenceCodePoints.size() < firstValueOnlyIndex) {
                 throw new BackwardParseException(
-                        "Strings should correspond to strings for property correspondence",
+                        "Strings are only allowed in value-only sets (prefixed by ⧴ rather than :)",
                         pp.getIndex());
             }
             referenceCodePoints.add(referenceSet.iterator().next());
-        } while (Lookahead.oneToken(pp, source).accept(":"));
+        } while (Lookahead.oneToken(pp, source)
+                .accept(referenceCodePoints.size() >= firstValueOnlyIndex ? "⧴" : ":"));
         if (referenceCodePoints.size() != sets.size()) {
             throw new BackwardParseException(
                     "Property correspondence requires as many reference code points as sets under test",
@@ -619,8 +641,14 @@ public class TestUnicodeInvariants {
                 String property = Lookahead.oneToken(pp, source).consume();
                 expectToken("(", pp, source);
                 String actualValueAlias = Lookahead.oneToken(pp, source).consume();
+                while (Lookahead.oneToken(pp, source).accept("|")) {
+                    actualValueAlias += "|" + Lookahead.oneToken(pp, source).consume();
+                }
                 expectToken("vs", pp, source);
                 String referenceValueAlias = Lookahead.oneToken(pp, source).consume();
+                while (Lookahead.oneToken(pp, source).accept("|")) {
+                    referenceValueAlias += "|" + Lookahead.oneToken(pp, source).consume();
+                }
                 expectToken(")", pp, source);
                 expectedPropertyDifferences.put(
                         property,
@@ -638,7 +666,7 @@ public class TestUnicodeInvariants {
                 expectedDifference = expectedPropertyDifferences.get(alias);
             }
             if (expectedDifference != null) {
-                for (int k = 0; k < m; ++k) {
+                for (int k = 0; k < firstValueOnlyIndex; ++k) {
                     final int rk = referenceCodePoints.get(k).codePointAt(0);
                     final String pRk = property.getValue(rk);
                     if (!Objects.equals(pRk, expectedDifference.referenceValueAlias)) {
@@ -668,7 +696,7 @@ public class TestUnicodeInvariants {
                     }
                 }
             } else {
-                for (int k = 0; k < m; ++k) {
+                for (int k = 0; k < firstValueOnlyIndex; ++k) {
                     final UnicodeSet set = sets.get(k);
                     final int rk = referenceCodePoints.get(k).codePointAt(0);
                     final String pRk = property.getValue(rk);
