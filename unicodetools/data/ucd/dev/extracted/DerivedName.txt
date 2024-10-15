@@ -1,5 +1,5 @@
-# DerivedName-16.0.0.txt
-# Date: 2024-04-30, 21:48:18 GMT
+# DerivedName-17.0.0.txt
+# Date: 2024-10-03, 23:17:03 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -15035,6 +15035,8 @@ AB68          ; LATIN SMALL LETTER TURNED R WITH MIDDLE TILDE
 AB69          ; MODIFIER LETTER SMALL TURNED W
 AB6A          ; MODIFIER LETTER LEFT TACK
 AB6B          ; MODIFIER LETTER RIGHT TACK
+AB6C          ; LATIN CAPITAL LETTER SCRIPT R
+AB6D          ; LATIN CAPITAL LETTER SCRIPT R WITH RING
 AB70          ; CHEROKEE SMALL LETTER A
 AB71          ; CHEROKEE SMALL LETTER E
 AB72          ; CHEROKEE SMALL LETTER I
@@ -45367,6 +45369,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 154998
+# Total code points: 155000
 
 # EOF
