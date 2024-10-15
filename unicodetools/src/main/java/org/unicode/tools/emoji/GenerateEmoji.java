@@ -18,6 +18,7 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Transform;
+import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
@@ -544,6 +545,8 @@ public class GenerateEmoji {
         return null;
     }
 
+    static final Transliterator TO_HEX = Transliterator.getInstance("Any-Hex/XML");
+
     /*
      * Note that Emoji.BESTOVERRIDE can override the source type for specific
      * characters.
@@ -597,8 +600,9 @@ public class GenerateEmoji {
                                                 type, filename, doFlip)
                                         : "../images/" + filename;
             }
+            String escaped = TO_HEX.transliterate(chars);
             return "<img alt='"
-                    + chars
+                    + escaped
                     + "'"
                     + " title='"
                     + getCodeCharsAndName(chars, " ")
@@ -1970,15 +1974,18 @@ public class GenerateEmoji {
                             + "</td>");
             if (EmojiData.EMOJI_DATA.getKeycapBases().contains(cp)) {
                 // keycaps, treat specially
-                String cp2 = cp + Emoji.KEYCAP_MARK;
-                out.println(GenerateEmoji.getCell(Emoji.Source.ref, cp2, "andr", false, null));
-                out.println(GenerateEmoji.getCell(null, cp2, "andr", false, null));
+                String cp1 = cp + Emoji.TEXT_VARIANT + Emoji.KEYCAP_MARK;
+                String cp2 = cp + Emoji.EMOJI_VARIANT + Emoji.KEYCAP_MARK;
+                out.println(getCell(Emoji.Source.ref, cp1, "andr", false, null));
+                out.println(getCell(null, cp2, "andr", false, null));
                 out.println("<td>" + version + "</td>");
                 out.println(
                         "<td>" + UCharacter.getName(cp.codePointAt(0)) + keycapIndicator + "</td>");
             } else {
-                out.println(GenerateEmoji.getCell(Emoji.Source.ref, cp, "andr", false, null));
-                out.println(GenerateEmoji.getCell(null, cp, "andr", false, null));
+                String cp1 = cp + Emoji.TEXT_VARIANT;
+                String cp2 = cp + Emoji.EMOJI_VARIANT;
+                out.println(getCell(Emoji.Source.ref, cp1, "andr", false, null));
+                out.println(getCell(null, cp2, "andr", false, null));
                 out.println("<td>" + version + "</td>");
                 out.println("<td>" + UCharacter.getName(cp.codePointAt(0)) + "</td>");
             }
@@ -3723,17 +3730,17 @@ public class GenerateEmoji {
     }
 
     public static String getCell(
-            Emoji.Source type,
-            String core,
-            String cellClass,
-            boolean addLink,
-            Output<Boolean> found) {
+            Emoji.Source type, String s, String cellClass, boolean addLink, Output<Boolean> found) {
+        String core = s;
+        if (core.contains(Emoji.TEXT_VARIANT_STRING)) {
+            core = core.replace(Emoji.TEXT_VARIANT_STRING, "");
+        }
         String linkPre = addLink ? getMoreInfoLink("full-emoji-list.html", core) : "";
         String linkPost = addLink ? "</a>" : "";
         if (type == null) {
             return "<td class='andr'>"
                     + linkPre
-                    + getBestImage(core, true, "", Emoji.Source.SAMPLE_SOURCE)
+                    + getBestImage(s, true, "", Emoji.Source.SAMPLE_SOURCE)
                     + linkPost
                     + "</td>\n";
         }
@@ -3748,6 +3755,7 @@ public class GenerateEmoji {
                 fullName = EmojiImageData.getDataUrlFromFilename(type, filename);
             }
             if (fullName != null) {
+                String escaped = TO_HEX.transliterate(s);
                 String className = type.getClassAttribute(core);
                 androidCell =
                         "<td class='"
@@ -3755,7 +3763,7 @@ public class GenerateEmoji {
                                 + "'>"
                                 + linkPre
                                 + "<img alt='"
-                                + core
+                                + escaped
                                 + "' class='"
                                 + className
                                 + "' src='"
