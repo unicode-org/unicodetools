@@ -21,7 +21,9 @@ public class Uts46 extends Idna {
 
     private final boolean isUnicode15OrEarlier;
 
-    private UnicodeSet disallowedSTD3 = new UnicodeSet();
+    /** ASCII characters other than lowercase ASCII letters, digits, and hyphen-minus. */
+    private UnicodeSet disallowedSTD3 =
+            new UnicodeSet(0, 0x7f).remove('-').remove('0', '9').remove('a', 'z').freeze();
 
     private Uts46() {
         String path = Settings.UnicodeTools.getDataPathStringForLatestVersion("idna");
@@ -43,11 +45,6 @@ public class Uts46 extends Idna {
         @Override
         public boolean handleLine(int start, int end, String[] items) {
             String status = items[1];
-            final int dash = status.indexOf("_STD3");
-            if (dash >= 0) {
-                disallowedSTD3.add(start, end);
-                status = status.substring(0, dash);
-            }
             final IdnaType type = IdnaType.valueOf(status);
             types.putAll(start, end, type);
 
@@ -455,7 +452,7 @@ public class Uts46 extends Idna {
         //    [IDNA2008] RFC 5893, Section 2.
         // --> see Cn errors
 
-        /** U1 for UseSTD3ASCIIRules: Replaces V7 for disallowed_STD3_*. */
+        /** U1 for UseSTD3ASCIIRules: Replaces V7 for ASCII other than lowercase LDH. */
         U1(0),
 
         A3(UIDNA_ERROR_PUNYCODE),
@@ -689,6 +686,9 @@ public class Uts46 extends Idna {
             // or deviation.
             switch (type) {
                 case valid:
+                    if (disallowedSTD3.contains(cp)) {
+                        errors.add(Errors.U1);
+                    }
                     break;
                 case deviation:
                     if (idnaChoice == IdnaChoice.transitional) {
@@ -696,7 +696,7 @@ public class Uts46 extends Idna {
                     }
                     break;
                 default:
-                    errors.add(disallowedSTD3.contains(cp) ? Errors.U1 : Errors.V7);
+                    errors.add(Errors.V7);
             }
         }
     }
