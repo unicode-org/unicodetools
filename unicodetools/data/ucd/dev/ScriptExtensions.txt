@@ -1,5 +1,5 @@
-# ScriptExtensions-16.0.0.txt
-# Date: 2024-06-06, 09:45:21 GMT
+# ScriptExtensions-17.0.0.txt
+# Date: 2024-10-15, 12:27:40 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -25,7 +25,7 @@
 # have as their value the corresponding Script property value.
 #
 # @missing: 0000..10FFFF; <script>
-00B7          ; Avst Cari Copt Elba Geor Glag Gong Goth Grek Hani Latn Lydi Mahj Perm Shaw #Po MIDDLE DOT
+00B7          ; Avst Cari Copt Dupl Elba Geor Glag Gong Goth Grek Hani Latn Lydi Mahj Perm Shaw #Po MIDDLE DOT
 02BC          ; Beng Cyrl Deva Latn Lisu Thai Toto #Lm   MODIFIER LETTER APOSTROPHE
 02C7          ; Bopo Latn                      # Lm      CARON
 02C9..02CB    ; Bopo Latn                      # Lm  [3] MODIFIER LETTER MACRON..MODIFIER LETTER GRAVE ACCENT
@@ -39,10 +39,10 @@
 0304          ; Aghb Cher Copt Cyrl Goth Grek Latn Osge Syrc Tfng Todr #Mn COMBINING MACRON
 0305          ; Copt Elba Glag Goth Kana Latn  # Mn      COMBINING OVERLINE
 0306          ; Cyrl Grek Latn Perm            # Mn      COMBINING BREVE
-0307          ; Copt Hebr Latn Perm Syrc Tale Tfng Todr #Mn COMBINING DOT ABOVE
-0308          ; Armn Cyrl Goth Grek Hebr Latn Perm Syrc Tale #Mn COMBINING DIAERESIS
+0307          ; Copt Dupl Hebr Latn Perm Syrc Tale Tfng Todr #Mn COMBINING DOT ABOVE
+0308          ; Armn Cyrl Dupl Goth Grek Hebr Latn Perm Syrc Tale #Mn COMBINING DIAERESIS
 0309          ; Latn Tfng                      # Mn      COMBINING HOOK ABOVE
-030A          ; Latn Syrc                      # Mn      COMBINING RING ABOVE
+030A          ; Dupl Latn Syrc                 # Mn      COMBINING RING ABOVE
 030B          ; Cher Cyrl Latn Osge            # Mn      COMBINING DOUBLE ACUTE ACCENT
 030C          ; Cher Latn Tale                 # Mn      COMBINING CARON
 030D          ; Latn Sunu                      # Mn      COMBINING VERTICAL LINE ABOVE
@@ -51,8 +51,8 @@
 0311          ; Cyrl Latn Todr                 # Mn      COMBINING INVERTED BREVE
 0313          ; Grek Latn Perm Todr            # Mn      COMBINING COMMA ABOVE
 0320          ; Latn Syrc                      # Mn      COMBINING MINUS SIGN BELOW
-0323          ; Cher Kana Latn Syrc            # Mn      COMBINING DOT BELOW
-0324          ; Cher Latn Syrc                 # Mn      COMBINING DIAERESIS BELOW
+0323          ; Cher Dupl Kana Latn Syrc       # Mn      COMBINING DOT BELOW
+0324          ; Cher Dupl Latn Syrc            # Mn      COMBINING DIAERESIS BELOW
 0325          ; Latn Syrc                      # Mn      COMBINING RING BELOW
 032D          ; Latn Sunu Syrc                 # Mn      COMBINING CIRCUMFLEX ACCENT BELOW
 032E          ; Latn Syrc                      # Mn      COMBINING BREVE BELOW
@@ -93,6 +93,7 @@
 0CE6..0CEF    ; Knda Nand Tutg                 # Nd [10] KANNADA DIGIT ZERO..KANNADA DIGIT NINE
 1040..1049    ; Cakm Mymr Tale                 # Nd [10] MYANMAR DIGIT ZERO..MYANMAR DIGIT NINE
 10FB          ; Geor Glag Latn                 # Po      GEORGIAN PARAGRAPH SEPARATOR
+16EB..16ED    ; Runr                           # Po  [3] RUNIC SINGLE PUNCTUATION..RUNIC CROSS PUNCTUATION
 1735..1736    ; Buhd Hano Tagb Tglg            # Po  [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
 1802..1803    ; Mong Phag                      # Po  [2] MONGOLIAN COMMA..MONGOLIAN FULL STOP
 1805          ; Mong Phag                      # Po      MONGOLIAN FOUR DOTS
@@ -135,6 +136,7 @@
 2E17          ; Copt Latn                      # Pd      DOUBLE OBLIQUE HYPHEN
 2E30          ; Avst Orkh                      # Po      RING POINT
 2E31          ; Avst Cari Geor Hung Kthi Lydi Samr #Po   WORD SEPARATOR MIDDLE DOT
+2E3C          ; Dupl                           # Po      STENOGRAPHIC FULL STOP
 2E41          ; Adlm Arab Hung                 # Po      REVERSED COMMA
 2E43          ; Cyrl Glag                      # Po      DASH WITH LEFT UPTURN
 2FF0..2FFF    ; Hani Tang                      # So [16] IDEOGRAPHIC DESCRIPTION CHARACTER LEFT TO RIGHT..IDEOGRAPHIC DESCRIPTION CHARACTER ROTATION

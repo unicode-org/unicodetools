@@ -81,8 +81,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         new GenerateWordBreakTest(ucd, Segmenter.Target.FOR_UCD).run();
         new GenerateLineBreakTest(ucd, Segmenter.Target.FOR_UCD).run();
         new GenerateSentenceBreakTest(ucd, Segmenter.Target.FOR_UCD).run();
-
-        new GenerateGraphemeBreakTest(ucd, Segmenter.Target.FOR_CLDR).run();
     }
 
     GenerateBreakTest(UCD ucd, Segmenter seg) {
@@ -1038,7 +1036,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
                                 + getRule()
                                 + "'><span"
                                 + status
-                                + ">&nbsp;</span>&nbsp;</span>");
+                                + ">&nbsp;</span>&nbsp;</span>\n");
             } else {
                 if (string.length() > 0) {
                     string.append(' ');
