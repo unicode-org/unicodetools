@@ -92,9 +92,6 @@ Property: SPECIAL
 File: auxiliary/SentenceBreakTest
 Property: SPECIAL
 
-File: cldr/GraphemeBreakTest-cldr
-Property: SPECIAL
-
 File:	extra/BidiPairedBracketType
 Property: BidiPairedBracketType
 Format:	valueList skipUnassigned=None
