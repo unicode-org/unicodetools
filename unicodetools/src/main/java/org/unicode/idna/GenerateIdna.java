@@ -40,11 +40,10 @@ public class GenerateIdna {
             Settings.Output.GEN_DIR + "idna/" + Default.ucdVersion() + "/";
 
     // Utility.WORKSPACE_DIRECTORY + "draft/reports/tr46/data";
-    private static final int MAX_STATUS_LENGTH = "disallowed_STD3_mapped".length();
+    private static final int MAX_STATUS_LENGTH = "disallowed".length();
     public static UnicodeSet U32;
     public static UnicodeSet U40;
-    public static UnicodeSet VALID_ASCII;
-    public static UnicodeSet NSTD3_ASCII;
+    public static UnicodeSet ASCII_EXCEPT_DOT;
     static ToolUnicodePropertySource properties;
     static UnicodeSet cn;
     static UnicodeSet bidiControls;
@@ -74,14 +73,12 @@ public class GenerateIdna {
         }
 
         U32 = new UnicodeSet("[:age=3.2:]").freeze();
-        VALID_ASCII = new UnicodeSet("[\\u002Da-zA-Z0-9]").freeze();
-        NSTD3_ASCII = new UnicodeSet("[[\\u0000-\\u007F]-[.]]").freeze();
+        ASCII_EXCEPT_DOT = new UnicodeSet("[[\\u0000-\\u007F]-[.]]").freeze();
         properties = ToolUnicodePropertySource.make(Default.ucdVersion());
         cn = properties.getSet("gc=Cn").freeze();
         bidiControls = properties.getSet("bidi_control=true");
 
-        final UnicodeMap<Row.R2<IdnaType, String>> mappingTable = createMappingTable(true);
-        final UnicodeMap<Row.R2<IdnaType, String>> mappingTableNSTD3 = createMappingTable(false);
+        final UnicodeMap<Row.R2<IdnaType, String>> mappingTable = createMappingTable();
         {
             final UnicodeMap<String> mappings = new UnicodeMap<String>();
             final UnicodeMap<IdnaType> types = new UnicodeMap<IdnaType>();
@@ -101,8 +98,7 @@ public class GenerateIdna {
 
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             final Row.R2<IdnaType, String> value = mappingTable.get(cp);
-            final Row.R2<IdnaType, String> valueNstd3 = mappingTableNSTD3.get(cp);
-            if (value == null || valueNstd3 == null) {
+            if (value == null) {
                 throw new IllegalArgumentException("Expected value for " + Utility.hex(cp));
             }
             final IdnaType status = value.get0();
@@ -116,21 +112,13 @@ public class GenerateIdna {
                                 : status);
             }
 
-            final IdnaType statusNstd3 = valueNstd3.get0();
-            String endStatus =
-                    statusNstd3 == status ? status.toString() : status + "_STD3_" + statusNstd3;
+            String endStatus = status.toString();
             final String mapping = value.get1();
-            final String mappingNstd3 = valueNstd3.get1();
             // if mapped, add info
-            if (status == IdnaType.mapped
-                    || status == IdnaType.deviation
-                    || statusNstd3 == IdnaType.mapped
-                    || statusNstd3 == IdnaType.deviation) {
+            if (status == IdnaType.mapped || status == IdnaType.deviation) {
                 endStatus += Utility.repeat(" ", MAX_STATUS_LENGTH - endStatus.length()) + " ; ";
                 if (mapping != null && mapping.length() != 0) {
                     endStatus += Utility.hex(mapping);
-                } else if (mappingNstd3 != null && mappingNstd3.length() != 0) {
-                    endStatus += Utility.hex(mappingNstd3);
                 }
             } else {
                 if (mapping != null) {
@@ -316,8 +304,7 @@ public class GenerateIdna {
         return a.equals(b);
     }
 
-    private static UnicodeMap<Row.R2<IdnaType, String>> createMappingTable(boolean STD3) {
-
+    private static UnicodeMap<Row.R2<IdnaType, String>> createMappingTable() {
         final UnicodeMap<String> nfkc_cfMap = properties.getProperty("NFKC_CF").getUnicodeMap();
         final UnicodeMap<String> baseMapping = new UnicodeMap<String>().putAll(nfkc_cfMap);
         baseMapping.put(0xFF0E, "\u002E");
@@ -356,12 +343,11 @@ public class GenerateIdna {
                         // would not be valid, and capital sharp s would end up disallowed.
                         .add(0x00DF)
                         // .addAll(0x200c, 0x200d)
-                        .addAll(STD3 ? VALID_ASCII : NSTD3_ASCII)
+                        .addAll(ASCII_EXCEPT_DOT)
                         .freeze();
 
         System.out.println(
-                STD3
-                        + " Base Valid Set & nfkcqc=n"
+                "Base Valid Set & nfkcqc=n"
                         + new UnicodeSet("[:nfkcqc=n:]").retainAll(baseValidSet));
 
         // https://unicode.org/reports/tr46/#TableDerivationStep3
@@ -372,10 +358,9 @@ public class GenerateIdna {
         // U+E00xx tag characters
         final UnicodeSet baseExclusionSet = new UnicodeSet(0xFFFC, 0xFFFD, 0xE0001, 0xE007F);
 
-        System.out.println(STD3 + " base valid set:\t" + baseValidSet);
+        System.out.println("base valid set:\t" + baseValidSet);
         System.out.println(
-                STD3
-                        + " ***Overlap with baseValidSet and baseExclusionSet:\t"
+                "***Overlap with baseValidSet and baseExclusionSet:\t"
                         + new UnicodeSet(baseValidSet).retainAll(baseExclusionSet));
 
         final UnicodeSet deviationSet =
@@ -475,7 +460,7 @@ public class GenerateIdna {
                 }
             }
             mappingTable.putAll(excluded, disallowedResult);
-            System.out.println(STD3 + " ***Step 7 Invalid Exclusion: " + excluded);
+            System.out.println("***Step 7 Invalid Exclusion: " + excluded);
         } while (excluded.size() != 0);
 
         // detect errors, where invalid character doesn't have at least one invalid in decomposition

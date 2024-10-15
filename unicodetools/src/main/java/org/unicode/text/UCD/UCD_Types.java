@@ -616,7 +616,8 @@ public interface UCD_Types {
             Tolong_Siki = 176,
             Beria_Erfe = 177,
             Jurchen = 178,
-            LIMIT_SCRIPT = Jurchen + 1;
+            Proto_Cuneiform = 179,
+            LIMIT_SCRIPT = Proto_Cuneiform + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte BPT_N = 0, BPT_O = 1, BPT_C = 2, LIMIT_BPT = 3;
@@ -652,12 +653,13 @@ public interface UCD_Types {
             AGE150 = 25,
             AGE151 = 26,
             AGE160 = 27,
-            LIMIT_AGE = AGE160 + 1; // + FIX_FOR_NEW_VERSION;
+            AGE170 = 28,
+            LIMIT_AGE = AGE170 + 1; // + FIX_FOR_NEW_VERSION;
 
     static final String[] AGE_VERSIONS = {
         "?", "1.1.0", "2.0.0", "2.1.2", "3.0.0", "3.1.0", "3.2.0", "4.0.0", "4.1.0", "5.0.0",
         "5.1.0", "5.2.0", "6.0.0", "6.1.0", "6.2.0", "6.3.0", "7.0.0", "8.0.0", "9.0.0", "10.0.0",
-        "11.0.0", "12.0.0", "12.1.0", "13.0.0", "14.0.0", "15.0.0", "15.1.0", "16.0.0",
+        "11.0.0", "12.0.0", "12.1.0", "13.0.0", "14.0.0", "15.0.0", "15.1.0", "16.0.0", "17.0.0",
         // FIX_FOR_NEW_VERSION
     };
 
@@ -777,8 +779,10 @@ public interface UCD_Types {
             // Unicode 14
             THIN_YEH = 103,
             VERTICAL_TAIL = 104,
+            // Unicode 16
+            KASHMIRI_YEH = 105,
             // limit
-            LIMIT_JOINING_GROUP = VERTICAL_TAIL + 1;
+            LIMIT_JOINING_GROUP = KASHMIRI_YEH + 1;
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;
     public static final int NF_COMPATIBILITY_MASK = 2, NF_COMPOSITION_MASK = 1;
 
