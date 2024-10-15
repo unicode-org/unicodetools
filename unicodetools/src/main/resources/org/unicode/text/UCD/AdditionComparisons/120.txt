@@ -1,0 +1,18 @@
+# Bengali Sign Combining Anusvara Above
+# https://github.com/unicode-org/utc-release-management/issues/120
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+
+Propertywise [\N{BENGALI SIGN COMBINING ANUSVARA ABOVE} \N{BENGALI SIGN CANDRABINDU}] AreAlike
+Ignoring Block Script Script_Extensions:
+Propertywise [\N{BENGALI SIGN COMBINING ANUSVARA ABOVE} \N{TELUGU SIGN COMBINING ANUSVARA ABOVE}] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
