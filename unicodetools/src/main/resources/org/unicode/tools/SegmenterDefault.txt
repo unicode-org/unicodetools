@@ -1,6 +1,5 @@
 @GraphemeClusterBreak
 ## double ## at the start of a line doesn't show up
-## use Segmenter.Target.FOR_CLDR to select SegmenterCldr.txt
 
 # VARIABLES
 
@@ -157,7 +156,6 @@ $Spec2_=[^ $SP $BK $CR $LF $NL $ZW]
 $Spec3a_=[^ $SP $BA $HY $CM]
 $Spec3b_=[^ $BA $HY $CM]
 $Spec4_=[^ $NU $CM]
-##CLDR: $Spec5_=[$BK $CB $CR $LF $NL $SP $ZW]
 
 # SPECIAL EXTENSIONS
 
