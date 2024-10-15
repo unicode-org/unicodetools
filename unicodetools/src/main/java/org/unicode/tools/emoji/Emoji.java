@@ -44,18 +44,7 @@ import org.unicode.text.utility.Utility;
  *
  * <p>Example: -Demoji-beta
  *
- * <p>With each new version, set
- *
- * <ul>
- *   <li>VERSION_LAST_RELEASED2 = VERSIONxx;
- *   <li>VERSION_LAST_RELEASED = VERSIONyy;
- *   <li>VERSION_BETA = VERSIONzz;
- * </ul>
- *
- * <p>Normally, when emoji and Unicode versions are in sync, we should use
- * Settings.LATEST_VERSION_INFO etc. here.
- *
- * <p>You also need to
+ * <p>With each new version:
  *
  * <ul>
  *   <li>add a new constant like <code>VERSION15</code>
@@ -86,8 +75,7 @@ public class Emoji {
 
     /**
      * Set the following to true iff the charts for the release should still point to proposed.html
-     * for TR51. The main function is to add pointers between the release and beta charts. Also
-     * change the VERSION_LAST_RELEASED2, etc below!!!
+     * for TR51. The main function is to add pointers between the release and beta charts.
      */
     public static final boolean USE_PROPOSED =
             true; // set to true between the release of Emoji 5.0 & Unicode 10.0. (or similar
@@ -203,20 +191,14 @@ public class Emoji {
     public static final String VERSION_BETA_STRING = VERSION_BETA.getVersionString(2, 4);
     public static final String VERSION_BETA_STRING_WITH_COLOR = VERSION_BETA_STRING + BETA_COLORED;
 
-    public static final VersionInfo VERSION_TO_GENERATE =
-            IS_BETA ? VERSION_BETA : VERSION_LAST_RELEASED;
-    public static final VersionInfo VERSION_TO_GENERATE_PREVIOUS =
-            IS_BETA ? VERSION_LAST_RELEASED : VERSION_LAST_RELEASED2;
+    public static final VersionInfo VERSION_TO_GENERATE = VERSION_BETA;
+    public static final VersionInfo VERSION_TO_GENERATE_PREVIOUS = VERSION_LAST_RELEASED;
 
     public static final String VERSION_STRING = VERSION_TO_GENERATE.getVersionString(2, 4);
 
-    public static final VersionInfo VERSION_TO_GENERATE_UNICODE =
-            IS_BETA ? VERSION_BETA_UNICODE : VERSION_LAST_RELEASED_UNICODE;
+    public static final VersionInfo VERSION_TO_GENERATE_UNICODE = VERSION_BETA_UNICODE;
     public static final String VERSION_UNICODE_STRING =
             VERSION_TO_GENERATE_UNICODE.getVersionString(2, 4);
-
-    // public static final String TR51_SVN_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
-    // public static final String TR51_PREFIX = IS_BETA ? "internal-beta/" : "internal/";
 
     public static final String EMOJI_DIR =
             Settings.Output.GEN_DIR + "emoji/" + (Emoji.ABBR ? "🏴" : "");
@@ -956,10 +938,9 @@ public class Emoji {
         return ordered;
     }
 
-    public static final IndexUnicodeProperties LATEST =
+    public static final IndexUnicodeProperties PROPS =
             IndexUnicodeProperties.make(VERSION_TO_GENERATE_UNICODE);
-    public static final IndexUnicodeProperties BETA =
-            IS_BETA ? IndexUnicodeProperties.make(VERSION_BETA_UNICODE) : LATEST;
+    public static final IndexUnicodeProperties BETA = PROPS;
 
     static final UnicodeMap<Age_Values> VERSION_ENUM =
             BETA.loadEnum(UcdProperty.Age, Age_Values.class);
@@ -1095,15 +1076,15 @@ public class Emoji {
         DING_MAP.freeze();
     }
 
-    static final UnicodeMap<String> WHITESPACE = Emoji.LATEST.load(UcdProperty.White_Space);
+    static final UnicodeMap<String> WHITESPACE = Emoji.PROPS.load(UcdProperty.White_Space);
 
     public static final UnicodeSet JSOURCES = new UnicodeSet();
     private static final boolean DEBUG = false;
 
     static {
-        UnicodeMap<String> dcmProp = Emoji.LATEST.load(UcdProperty.Emoji_DCM);
-        UnicodeMap<String> kddiProp = Emoji.LATEST.load(UcdProperty.Emoji_KDDI);
-        UnicodeMap<String> sbProp = Emoji.LATEST.load(UcdProperty.Emoji_SB);
+        UnicodeMap<String> dcmProp = Emoji.PROPS.load(UcdProperty.Emoji_DCM);
+        UnicodeMap<String> kddiProp = Emoji.PROPS.load(UcdProperty.Emoji_KDDI);
+        UnicodeMap<String> sbProp = Emoji.PROPS.load(UcdProperty.Emoji_SB);
         checkDuplicates(dcmProp, kddiProp, sbProp);
         JSOURCES.addAll(dcmProp.keySet())
                 .addAll(kddiProp.keySet())

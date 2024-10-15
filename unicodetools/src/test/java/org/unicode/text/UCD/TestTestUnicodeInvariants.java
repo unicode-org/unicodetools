@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.ParsePosition;
@@ -41,9 +42,20 @@ public class TestTestUnicodeInvariants {
 
     @Test
     void testAdditionComparisons() throws IOException {
-        int rc =
-                TestUnicodeInvariants.testInvariants(
-                        "AdditionComparisons.txt", "addition-comparisons", true);
+        final var directory = new File(Settings.SRC_DIR + "UCD/AdditionComparisons/");
+        int rc = 0;
+        for (var file : directory.listFiles()) {
+            final String filename = file.getName();
+            if (!file.getName().endsWith(".txt")) {
+                continue;
+            }
+            final String nameWithoutExtension = filename.substring(0, filename.length() - 4);
+            rc +=
+                    TestUnicodeInvariants.testInvariants(
+                            "AdditionComparisons/" + filename,
+                            "addition-comparisons-" + nameWithoutExtension,
+                            true);
+        }
         assertEquals(0, rc, "TestUnicodeInvariants.testInvariants(addition-comparisons) failed");
     }
 
