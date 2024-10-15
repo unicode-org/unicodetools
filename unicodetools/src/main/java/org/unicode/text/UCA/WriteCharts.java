@@ -19,7 +19,6 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.BitSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -540,13 +539,9 @@ public class WriteCharts implements UCD_Types {
     public static void scriptChart() throws IOException {
         HACK_KANA = false;
 
-        final Set set = new TreeSet();
-        final BitSet toReturn = new BitSet();
+        final Set<Pair> set = new TreeSet<>();
 
         for (int i = 0; i <= 0x10FFFF; ++i) {
-            if (i == 0x0342) {
-                System.out.println("?");
-            }
             if (!Default.ucd().isRepresented(i)) {
                 continue;
             }
@@ -555,23 +550,21 @@ public class WriteCharts implements UCD_Types {
                 continue;
             }
 
-            final String code = UTF16.valueOf(i);
-
+            // TODO: Consider building a Map from script to set-of-code points.
+            // Or maybe one Map by script, and one Map by General_Category.
             final String decomp = Default.nfkd().normalize(i);
-            getBestScript(i, decomp.equals(code) ? null : decomp, toReturn);
-            for (int script = toReturn.nextSetBit(0);
-                    script >= 0;
-                    script = toReturn.nextSetBit(script + 1)) {
-                set.add(
-                        new Pair(
-                                script == COMMON_SCRIPT ? cat + CAT_OFFSET : script,
-                                new Pair(decomp, i)));
-            }
+            int script = getBestScript(i, decomp);
+            // By adding the decomp string into the inner Pair, the chart is sorted by
+            // decomp, then by code point.
+            // TODO: Consider sorting each per-script chart in collation order.
+            set.add(new Pair(script >= 0 ? script : cat + CAT_OFFSET, new Pair(decomp, i)));
+            // TODO: Consider sorting the scripts in the index in collation order.
+            // Currently it is in the order of our numeric internal script IDs,
+            // which is meaningless.
+            // (Putting the non-script General_Category groups at the end is probably fine.)
         }
 
         PrintWriter output = null;
-
-        final Iterator it = set.iterator();
 
         int oldScript = -127;
 
@@ -608,16 +601,13 @@ public class WriteCharts implements UCD_Types {
 
         int columnCount = 0;
 
-        while (it.hasNext()) {
+        for (Pair p : set) {
             Utility.dot(counter);
 
-            final Pair p = (Pair) it.next();
             final int script = ((Integer) p.first).intValue();
             final int cp = ((Integer) ((Pair) p.second).second).intValue();
 
-            if (script != oldScript
-            // && (script != COMMON_SCRIPT && script != INHERITED_SCRIPT)
-            ) {
+            if (script != oldScript) {
                 closeFile(output);
                 output = null;
                 oldScript = script;
@@ -909,46 +899,52 @@ public class WriteCharts implements UCD_Types {
     // static final UnicodeMap<String> SCRIPT_EXTENSIONS =
     // INDEX_UNICODE_PROPS.load(UcdProperty.Script_Extensions);
 
-    static BitSet getBestScript(int original, String transformed, BitSet toReturn) {
-        toReturn.clear();
-        addScript(original, toReturn);
-        if (transformed != null) {
-            int cp;
-            for (int i = 0; i < transformed.length(); i += UTF16.getCharCount(cp)) {
-                cp = UTF16.charAt(transformed, i);
-                addScript(cp, toReturn);
+    /**
+     * Returns the best explicit Script value for cp or else for decomp. If there is no such
+     * explicit script, returns a negative value. Never returns Common or Inherited.
+     */
+    private static int getBestScript(int cp, String decomp) {
+        int sc = getExplicitScript(cp);
+        if (sc < 0 && !equals(decomp, cp)) {
+            for (int i = 0; sc < 0 && i < decomp.length(); i += Character.charCount(cp)) {
+                cp = decomp.codePointAt(i);
+                sc = getExplicitScript(cp);
             }
         }
-        if (toReturn.isEmpty()) {
-            toReturn.set(COMMON_SCRIPT);
-        }
-        return toReturn;
+        return sc;
+    }
+
+    private static boolean equals(CharSequence s, int cp) {
+        int first;
+        return s.length() != 0
+                && (first = Character.codePointAt(s, 0)) == cp
+                && Character.charCount(first) == s.length();
     }
 
     static ToolUnicodePropertySource properties =
             ToolUnicodePropertySource.make(Default.ucdVersion());
     static UnicodeProperty SCRIPT_EXTENSIONS = properties.getProperty("script extensions");
 
-    private static void addScript(int cp, BitSet toReturn) {
-        final short script2 = Default.ucd().getScript(cp);
-        if (script2 == COMMON_SCRIPT || script2 == INHERITED_SCRIPT) {
-            final String scriptString = SCRIPT_EXTENSIONS.getValue(cp);
-            if (scriptString == null) {
-                return;
-            }
-            if (scriptString.equals("Zinh") || scriptString.equals("Zyyy")) {
-                return;
-            }
-            if (scriptString.contains(" ")) {
-                for (final String part : scriptString.split(" ")) {
-                    toReturn.set(findScriptCode(part));
-                }
-            } else {
-                toReturn.set(findScriptCode(scriptString));
-            }
-            return;
+    /**
+     * Returns cp's explicit Script if it has one. Otherwise returns the script in its
+     * Script_Extensions, if there is exactly one and that one is explicit. Otherwise returns a
+     * negative value. Never returns Common or Inherited.
+     */
+    private static int getExplicitScript(int cp) {
+        int sc = Default.ucd().getScript(cp);
+        if (isExplicitScript(sc)) {
+            return sc;
         }
-        toReturn.set(script2);
+        // See if there is exactly one explicit script in the Script_Extensions.
+        String scx = SCRIPT_EXTENSIONS.getValue(cp);
+        if (scx != null && !scx.contains(" ") && !scx.equals("Zinh") && !scx.equals("Zyyy")) {
+            sc = findScriptCode(scx);
+        }
+        return isExplicitScript(sc) ? sc : -1;
+    }
+
+    private static boolean isExplicitScript(int sc) {
+        return !(sc == COMMON_SCRIPT || sc == INHERITED_SCRIPT);
     }
 
     private static int findScriptCode(String part) {

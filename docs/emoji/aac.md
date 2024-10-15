@@ -5,15 +5,6 @@
 Once the emoji are finalized for new version of TR51, or there is a new version
 of CLDR, run AacOrder.java to generate 3 new files which will be checked in.
 
-Fix the versions at the top of the file, such as:
-```
-private static final VersionInfo VERSION = Emoji.VERSION12;
-
-private static final VersionInfo UCD_VERSION = Emoji.VERSION12;
-```
-
-The emoji version will be ≥ the UCD version.
-
 **Results:**
 
 :construction: **TODO**: Work with Mark on working replacements for "draft" URLs.
