@@ -104,6 +104,7 @@ DerivedAge ; Age
 EastAsianWidth ; East_Asian_Width
 HangulSyllableType ; Hangul_Syllable_Type
 IndicPositionalCategory ; Indic_Positional_Category
+IndicMatraCategory ; Indic_Positional_Category ; v7.0
 IndicSyllabicCategory ; Indic_Syllabic_Category
 Jamo ; Jamo_Short_Name
 LineBreak ; Line_Break
