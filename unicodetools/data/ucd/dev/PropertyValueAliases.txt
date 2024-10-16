@@ -1,5 +1,5 @@
 # PropertyValueAliases-17.0.0.txt
-# Date: 2024-09-11, 23:38:17 GMT
+# Date: 2024-10-16, 17:27:56 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -423,6 +423,7 @@ blk; Sharada                          ; Sharada
 blk; Shavian                          ; Shavian
 blk; Shorthand_Format_Controls        ; Shorthand_Format_Controls
 blk; Siddham                          ; Siddham
+blk; Sidetic                          ; Sidetic
 blk; Sinhala                          ; Sinhala
 blk; Sinhala_Archaic_Numbers          ; Sinhala_Archaic_Numbers
 blk; Small_Forms                      ; Small_Form_Variants
@@ -1439,6 +1440,7 @@ sc ; Sgnw                             ; SignWriting
 sc ; Shaw                             ; Shavian
 sc ; Shrd                             ; Sharada
 sc ; Sidd                             ; Siddham
+sc ; Sidt                             ; Sidetic
 sc ; Sind                             ; Khudawadi
 sc ; Sinh                             ; Sinhala
 sc ; Sogd                             ; Sogdian
