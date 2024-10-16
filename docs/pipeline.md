@@ -61,6 +61,7 @@ PR preparation:
 - [ ] If from SAH — Link SAH issue
 - [ ] If from ESC or CJK — Mention ESC or CJK in the PR description
 - [ ] When for a UTC decision — Cite in the format UTC-\d\d\d-[MC]\d+ or with a link.
+- [ ] Link RMG issue
 - [ ] Whenever there is a Proposal document — Cite L2 number in the format L2/yy-nnn
 - [ ] data-for-new — Set label
 - [ ] pipeline-* — Set label to **pipeline-recommended-to-UTC** if the characters are not yet in the pipeline, and **pipeline-provisionally-assigned**, or **pipeline-`<version>`** depending on their status in [the Pipeline](https://unicode.org/alloc/Pipeline.html#future).
@@ -113,7 +114,7 @@ git checkout la-vache/main unicodetools/data/ucd/dev/extracted/*;
 git checkout la-vache/main unicodetools/data/ucd/dev/auxiliary/*;
 rm .\Generated\* -recurse -force;
 mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.Main"'  '-Dexec.args="build MakeUnicodeFiles"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
-cp .\Generated\UCD\16.0.0\* .\unicodetools\data\ucd\dev -recurse -force;
+cp .\Generated\UCD\17.0.0\* .\unicodetools\data\ucd\dev -recurse -force;
 rm unicodetools\data\ucd\dev\zzz-unchanged-*;
 rm unicodetools\data\ucd\dev\*\zzz-unchanged-*;
 rm .\unicodetools\data\ucd\dev\extra\*;
@@ -123,19 +124,20 @@ git merge --continue
 ```
 
 markusicu (Linux, out-of-source; main tracks unicode-org/main)
+<!--FIX_FOR_NEW_VERSION-->
 ```sh
 git merge main
 # complains about merge conflicts as expected
 git checkout main unicodetools/data/ucd/dev/Derived*
 git checkout main unicodetools/data/ucd/dev/extracted/*
 git checkout main unicodetools/data/ucd/dev/auxiliary/*
-rm -r ../Generated/BIN/16.0.0.0/
-rm -r ../Generated/BIN/UCD_Data16.0.0.bin
-mvn -s ~/.m2/settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 16.0.0 build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=16.0.0
+rm -r ../Generated/BIN/17.0.0.0/
+rm -r ../Generated/BIN/UCD_Data17.0.0.bin
+mvn -s ~/.m2/settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 17.0.0 build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=17.0.0
 # fix merge conflicts in unicodetools/src/main/java/org/unicode/text/UCD/UCD_Types.java
 #   and in UCD_Names.java
 # rerun mvn
-cp -r ../Generated/UCD/16.0.0/* unicodetools/data/ucd/dev
+cp -r ../Generated/UCD/17.0.0/* unicodetools/data/ucd/dev
 rm unicodetools/data/ucd/dev/ZZZ-UNCHANGED-*
 rm unicodetools/data/ucd/dev/*/ZZZ-UNCHANGED-*
 rm unicodetools/data/ucd/dev/extra/*
@@ -156,10 +158,11 @@ Cf. https://github.com/unicode-org/unicodetools/pull/636
 ### Regenerate UCD
 
 eggrobin (Windows, in-source).
+<!--FIX_FOR_NEW_VERSION-->
 ```powershell
 rm .\Generated\* -recurse -force
 mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.Main"'  '-Dexec.args="build MakeUnicodeFiles"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
-cp .\Generated\UCD\16.0.0\* .\unicodetools\data\ucd\dev -recurse -force
+cp .\Generated\UCD\17.0.0\* .\unicodetools\data\ucd\dev -recurse -force
 rm unicodetools\data\ucd\dev\zzz-unchanged-*
 rm unicodetools\data\ucd\dev\*\zzz-unchanged-*
 rm .\unicodetools\data\ucd\dev\extra\*
@@ -171,10 +174,11 @@ git commit -m "Regenerate UCD"
 ### Regenerate LineBreak
 
 eggrobin (Windows, in-source).
+<!--FIX_FOR_NEW_VERSION-->
 ```powershell
 rm .\Generated\* -recurse -force
 mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.Main"'  '-Dexec.args="build MakeUnicodeFiles"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
-cp .\Generated\UCD\16.0.0\LineBreak.txt .\unicodetools\data\ucd\dev
+cp .\Generated\UCD\17.0.0\LineBreak.txt .\unicodetools\data\ucd\dev
 ```
 
 ### GenerateEnums

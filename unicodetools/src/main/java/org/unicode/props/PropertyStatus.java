@@ -131,6 +131,7 @@ public enum PropertyStatus {
                     UcdProperty.Emoji_KDDI,
                     UcdProperty.Emoji_SB);
 
+    // TODO(egg): These lists are not up to date!
     private static final EnumSet<UcdProperty> CONTRIBUTORY_PROPERTY =
             EnumSet.of(
                     UcdProperty.Jamo_Short_Name,
@@ -230,7 +231,10 @@ public enum PropertyStatus {
                     UcdProperty.Named_Sequences_Prov,
                     UcdProperty.Regional_Indicator,
                     UcdProperty.Standardized_Variant,
-                    UcdProperty.Vertical_Orientation);
+                    UcdProperty.Vertical_Orientation,
+                    // Unikemet
+                    UcdProperty.kEH_Cat,
+                    UcdProperty.kEH_Desc);
 
     private static final EnumSet<UcdProperty> NORMATIVE_PROPERTY =
             EnumSet.of(
@@ -290,7 +294,13 @@ public enum PropertyStatus {
                     UcdProperty.kIRG_MSource,
                     UcdProperty.kIRG_TSource,
                     UcdProperty.kIRG_USource,
-                    UcdProperty.kIRG_VSource);
+                    UcdProperty.kIRG_VSource,
+                    // Unikemet
+                    UcdProperty.kEH_HG,
+                    UcdProperty.kEH_IFAO,
+                    UcdProperty.kEH_JSesh,
+                    UcdProperty.kEH_NoMirror,
+                    UcdProperty.kEH_NoRotate);
     private static final EnumSet<UcdProperty> IMMUTABLE_PROPERTY =
             EnumSet.of(
                     UcdProperty.Name,

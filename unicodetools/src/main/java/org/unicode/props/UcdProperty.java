@@ -35,6 +35,7 @@ import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UcdPropertyValues.Sentence_Break_Values;
 import org.unicode.props.UcdPropertyValues.Vertical_Orientation_Values;
 import org.unicode.props.UcdPropertyValues.Word_Break_Values;
+import org.unicode.props.UcdPropertyValues.kEH_Core_Values;
 
 /**
  * Machine-generated file for properties, produced by GenerateEnums.java from PropertyAliases.txt
@@ -105,6 +106,14 @@ public enum UcdProperty {
     kDaeJaweon(PropertyType.Miscellaneous, "cjkDaeJaweon"),
     kDefinition(PropertyType.Miscellaneous, "cjkDefinition"),
     kEACC(PropertyType.Miscellaneous, "cjkEACC"),
+    kEH_Cat(PropertyType.Miscellaneous, "kEH_Cat"),
+    kEH_Desc(PropertyType.Miscellaneous, "kEH_Desc"),
+    kEH_FVal(PropertyType.Miscellaneous, "kEH_FVal"),
+    kEH_Func(PropertyType.Miscellaneous, "kEH_Func"),
+    kEH_HG(PropertyType.Miscellaneous, "kEH_HG"),
+    kEH_IFAO(PropertyType.Miscellaneous, "kEH_IFAO"),
+    kEH_JSesh(PropertyType.Miscellaneous, "kEH_JSesh"),
+    kEH_UniK(PropertyType.Miscellaneous, "kEH_UniK"),
     kFanqie(PropertyType.Miscellaneous, "cjkFanqie"),
     kFenn(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkFenn"),
     kFennIndex(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkFennIndex"),
@@ -182,6 +191,7 @@ public enum UcdProperty {
     kRSKanWa(PropertyType.Miscellaneous, "cjkRSKanWa"),
     kRSKangXi(PropertyType.Miscellaneous, "cjkRSKangXi"),
     kRSKorean(PropertyType.Miscellaneous, "cjkRSKorean"),
+    kRSTUnicode(PropertyType.Miscellaneous, "kRSTUnicode"),
     kRSUnicode(
             PropertyType.Miscellaneous,
             null,
@@ -189,6 +199,7 @@ public enum UcdProperty {
             "cjkRSUnicode",
             "Unicode_Radical_Stroke",
             "URS"),
+    kReading(PropertyType.Miscellaneous, "kReading"),
     kSBGY(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSBGY"),
     kSMSZD2003Index(PropertyType.Miscellaneous, "cjkSMSZD2003Index"),
     kSMSZD2003Readings(PropertyType.Miscellaneous, "cjkSMSZD2003Readings"),
@@ -200,9 +211,11 @@ public enum UcdProperty {
             ValueCardinality.Unordered,
             "cjkSpecializedSemanticVariant"),
     kSpoofingVariant(PropertyType.Miscellaneous, "cjkSpoofingVariant"),
+    kSrc_NushuDuben(PropertyType.Miscellaneous, "kSrc_NushuDuben"),
     kStrange(PropertyType.Miscellaneous, "cjkStrange"),
     kTGH(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkTGH"),
     kTGHZ2013(PropertyType.Miscellaneous, "cjkTGHZ2013"),
+    kTGT_MergedSrc(PropertyType.Miscellaneous, "kTGT_MergedSrc"),
     kTaiwanTelegraph(PropertyType.Miscellaneous, "cjkTaiwanTelegraph"),
     kTang(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkTang"),
     kTotalStrokes(PropertyType.Miscellaneous, null, ValueCardinality.Ordered, "cjkTotalStrokes"),
@@ -260,6 +273,7 @@ public enum UcdProperty {
     Sentence_Break(PropertyType.Enumerated, Sentence_Break_Values.class, null, "SB"),
     Vertical_Orientation(PropertyType.Enumerated, Vertical_Orientation_Values.class, null, "vo"),
     Word_Break(PropertyType.Enumerated, Word_Break_Values.class, null, "WB"),
+    kEH_Core(PropertyType.Enumerated, kEH_Core_Values.class, null, "kEH_Core"),
 
     // Binary
     ASCII_Hex_Digit(PropertyType.Binary, Binary.class, null, "AHex"),
@@ -341,6 +355,8 @@ public enum UcdProperty {
     White_Space(PropertyType.Binary, Binary.class, null, "WSpace", "space"),
     XID_Continue(PropertyType.Binary, Binary.class, null, "XIDC"),
     XID_Start(PropertyType.Binary, Binary.class, null, "XIDS"),
+    kEH_NoMirror(PropertyType.Binary, Binary.class, null, "kEH_NoMirror"),
+    kEH_NoRotate(PropertyType.Binary, Binary.class, null, "kEH_NoRotate"),
 
 // Unknown
 ;
