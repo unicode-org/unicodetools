@@ -782,7 +782,7 @@ public interface UCD_Types {
             // Unicode 16
             KASHMIRI_YEH = 105,
             // Unicode n > 16
-            THIN_NOON = 105,
+            THIN_NOON = 106,
             // limit
             LIMIT_JOINING_GROUP = THIN_NOON + 1;
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;
