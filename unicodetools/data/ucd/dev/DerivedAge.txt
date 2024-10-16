@@ -1,5 +1,5 @@
-# DerivedAge-16.0.0.txt
-# Date: 2024-06-06, 09:37:21 GMT
+# DerivedAge-17.0.0.txt
+# Date: 2024-10-16, 14:11:18 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2010,7 +2010,6 @@ FDFE..FDFF    ; 14.0 #   [2] ARABIC LIGATURE SUBHAANAHU WA TAAALAA..ARABIC LIGAT
 # Newly assigned in Unicode 16.0.0 (September, 2024)
 
 0897          ; 16.0 #       ARABIC PEPET
-0B53..0B54    ; 16.0 #   [2] ORIYA SIGN DOT ABOVE..ORIYA SIGN DOUBLE DOT ABOVE
 1B4E..1B4F    ; 16.0 #   [2] BALINESE INVERTED CARIK SIKI..BALINESE INVERTED CARIK PAREREN
 1B7F          ; 16.0 #       BALINESE PANTI BAWAK
 1C89..1C8A    ; 16.0 #   [2] CYRILLIC CAPITAL LETTER TJE..CYRILLIC SMALL LETTER TJE
@@ -2058,6 +2057,16 @@ A7DA..A7DC    ; 16.0 #   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER L
 1FAE9         ; 16.0 #       FACE WITH BAGS UNDER EYES
 1FBCB..1FBEF  ; 16.0 #  [37] WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 
-# Total code points: 5187
+# Total code points: 5185
+
+# ================================================
+
+# Age=V17_0
+
+# Newly assigned in Unicode 17.0.0 (September, 2025)
+
+0B53..0B54    ; 17.0 #   [2] ORIYA SIGN DOT ABOVE..ORIYA SIGN DOUBLE DOT ABOVE
+
+# Total code points: 2
 
 # EOF
