@@ -1,5 +1,5 @@
-# PropList-16.0.0.txt
-# Date: 2024-05-31, 18:09:48 GMT
+# PropList-17.0.0.txt
+# Date: 2024-10-16, 14:12:08 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -947,7 +947,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 0AFD..0AFF    ; Diacritic # Mn   [3] GUJARATI SIGN THREE-DOT NUKTA ABOVE..GUJARATI SIGN TWO-CIRCLE NUKTA ABOVE
 0B3C          ; Diacritic # Mn       ORIYA SIGN NUKTA
 0B4D          ; Diacritic # Mn       ORIYA SIGN VIRAMA
-0B55          ; Diacritic # Mn       ORIYA SIGN OVERLINE
+0B53..0B55    ; Diacritic # Mn   [3] ORIYA SIGN DOT ABOVE..ORIYA SIGN OVERLINE
 0BCD          ; Diacritic # Mn       TAMIL SIGN VIRAMA
 0C3C          ; Diacritic # Mn       TELUGU SIGN NUKTA
 0C4D          ; Diacritic # Mn       TELUGU SIGN VIRAMA
@@ -1150,7 +1150,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1178
+# Total code points: 1180
 
 # ================================================
 
@@ -1160,7 +1160,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 07FA          ; Extender # Lm       NKO LAJANYALAN
 0A71          ; Extender # Mn       GURMUKHI ADDAK
 0AFB          ; Extender # Mn       GUJARATI SIGN SHADDA
-0B55          ; Extender # Mn       ORIYA SIGN OVERLINE
+0B54..0B55    ; Extender # Mn   [2] ORIYA SIGN DOUBLE DOT ABOVE..ORIYA SIGN OVERLINE
 0E46          ; Extender # Lm       THAI CHARACTER MAIYAMOK
 0EC6          ; Extender # Lm       LAO KO LA
 180A          ; Extender # Po       MONGOLIAN NIRUGU
@@ -1197,7 +1197,7 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 1E5EF         ; Extender # Mn       OL ONAL SIGN IKIR
 1E944..1E946  ; Extender # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 
-# Total code points: 59
+# Total code points: 60
 
 # ================================================
 
