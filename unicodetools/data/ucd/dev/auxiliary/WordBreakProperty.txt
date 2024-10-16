@@ -1,8 +1,8 @@
-# WordBreakProperty-16.0.0.txt
-# Date: 2024-03-10, 17:12:54 GMT
+# WordBreakProperty-17.0.0.txt
+# Date: 2024-10-16, 15:31:50 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
 #   For documentation, see https://www.unicode.org/reports/tr44/
@@ -813,7 +813,7 @@ FF71..FF9D    ; Katakana # Lo  [45] HALFWIDTH KATAKANA LETTER A..HALFWIDTH KATAK
 0C2A..0C39    ; ALetter # Lo  [16] TELUGU LETTER PA..TELUGU LETTER HA
 0C3D          ; ALetter # Lo       TELUGU SIGN AVAGRAHA
 0C58..0C5A    ; ALetter # Lo   [3] TELUGU LETTER TSA..TELUGU LETTER RRRA
-0C5C..0C5D    ; ALetter # Lo   [2] TELUGU ARCHAIC SHRII..TELUGU LETTER NAKAARA POLLU
+0C5D          ; ALetter # Lo       TELUGU LETTER NAKAARA POLLU
 0C60..0C61    ; ALetter # Lo   [2] TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C80          ; ALetter # Lo       KANNADA SIGN SPACING CANDRABINDU
 0C85..0C8C    ; ALetter # Lo   [8] KANNADA LETTER A..KANNADA LETTER VOCALIC L
@@ -822,7 +822,7 @@ FF71..FF9D    ; Katakana # Lo  [45] HALFWIDTH KATAKANA LETTER A..HALFWIDTH KATAK
 0CAA..0CB3    ; ALetter # Lo  [10] KANNADA LETTER PA..KANNADA LETTER LLA
 0CB5..0CB9    ; ALetter # Lo   [5] KANNADA LETTER VA..KANNADA LETTER HA
 0CBD          ; ALetter # Lo       KANNADA SIGN AVAGRAHA
-0CDC..0CDE    ; ALetter # Lo   [3] KANNADA ARCHAIC SHRII..KANNADA LETTER FA
+0CDD..0CDE    ; ALetter # Lo   [2] KANNADA LETTER NAKAARA POLLU..KANNADA LETTER FA
 0CE0..0CE1    ; ALetter # Lo   [2] KANNADA LETTER VOCALIC RR..KANNADA LETTER VOCALIC LL
 0CF1..0CF2    ; ALetter # Lo   [2] KANNADA SIGN JIHVAMULIYA..KANNADA SIGN UPADHMANIYA
 0D04..0D0C    ; ALetter # Lo   [9] MALAYALAM LETTER VEDIC ANUSVARA..MALAYALAM LETTER VOCALIC L
@@ -1232,7 +1232,9 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 11D67..11D68  ; ALetter # Lo   [2] GUNJALA GONDI LETTER EE..GUNJALA GONDI LETTER AI
 11D6A..11D89  ; ALetter # Lo  [32] GUNJALA GONDI LETTER OO..GUNJALA GONDI LETTER SA
 11D98         ; ALetter # Lo       GUNJALA GONDI OM
-11DB0..11DDB  ; ALetter # Lo  [44] TOLONG SIKI LETTER I..TOLONG SIKI UNGGA
+11DB0..11DD8  ; ALetter # Lo  [41] TOLONG SIKI LETTER I..TOLONG SIKI LETTER RRH
+11DD9         ; ALetter # Lm       TOLONG SIKI SIGN SELA
+11DDA..11DDB  ; ALetter # Lo   [2] TOLONG SIKI SIGN HECAKA..TOLONG SIKI UNGGA
 11EE0..11EF2  ; ALetter # Lo  [19] MAKASAR LETTER KA..MAKASAR ANGKA
 11F02         ; ALetter # Lo       KAWI SIGN REPHA
 11F04..11F10  ; ALetter # Lo  [13] KAWI LETTER A..KAWI LETTER O
@@ -1356,7 +1358,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 33837
+# Total code points: 33835
 
 # ================================================
 
@@ -1382,14 +1384,12 @@ FF1A          ; MidLetter # Po       FULLWIDTH COLON
 066C          ; MidNum # Po       ARABIC THOUSANDS SEPARATOR
 07F8          ; MidNum # Po       NKO COMMA
 2044          ; MidNum # Sm       FRACTION SLASH
-FE10          ; MidNum # Po       PRESENTATION FORM FOR VERTICAL COMMA
-FE14          ; MidNum # Po       PRESENTATION FORM FOR VERTICAL SEMICOLON
 FE50          ; MidNum # Po       SMALL COMMA
 FE54          ; MidNum # Po       SMALL SEMICOLON
 FF0C          ; MidNum # Po       FULLWIDTH COMMA
 FF1B          ; MidNum # Po       FULLWIDTH SEMICOLON
 
-# Total code points: 15
+# Total code points: 13
 
 # ================================================
 
@@ -1433,6 +1433,7 @@ FF0E          ; MidNumLet # Po       FULLWIDTH FULL STOP
 1810..1819    ; Numeric # Nd  [10] MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
 1946..194F    ; Numeric # Nd  [10] LIMBU DIGIT ZERO..LIMBU DIGIT NINE
 19D0..19D9    ; Numeric # Nd  [10] NEW TAI LUE DIGIT ZERO..NEW TAI LUE DIGIT NINE
+19DA          ; Numeric # No       NEW TAI LUE THAM DIGIT ONE
 1A80..1A89    ; Numeric # Nd  [10] TAI THAM HORA DIGIT ZERO..TAI THAM HORA DIGIT NINE
 1A90..1A99    ; Numeric # Nd  [10] TAI THAM THAM DIGIT ZERO..TAI THAM THAM DIGIT NINE
 1B50..1B59    ; Numeric # Nd  [10] BALINESE DIGIT ZERO..BALINESE DIGIT NINE
@@ -1485,7 +1486,7 @@ FF10..FF19    ; Numeric # Nd  [10] FULLWIDTH DIGIT ZERO..FULLWIDTH DIGIT NINE
 1E950..1E959  ; Numeric # Nd  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 1FBF0..1FBF9  ; Numeric # Nd  [10] SEGMENTED DIGIT ZERO..SEGMENTED DIGIT NINE
 
-# Total code points: 783
+# Total code points: 784
 
 # ================================================
 

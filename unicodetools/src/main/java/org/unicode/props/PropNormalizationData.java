@@ -17,6 +17,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
     final UnicodeMap<String> nfd = new UnicodeMap<>();
     final UnicodeMap<String> nfkd = new UnicodeMap<>();
     final UnicodeMap<HashMap<Integer, Integer>> pairwiseComposition;
+
     // TODO find out why UnicodeMap[] fails hashCode
 
     public PropNormalizationData(IndexUnicodeProperties properties) {

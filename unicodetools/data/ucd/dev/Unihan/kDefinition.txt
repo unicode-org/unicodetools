@@ -5250,7 +5250,7 @@
 4AB0	(same as 噫) (in grammar) interjection, to exclaim
 4AB1	(same as 胲) cheek; face, ugly (same as 孩) a child
 4AB2	(interchangeable 頑 髡) ancient punishment of shaving the head
-4AB3	slanted face causing by the paralyzed of the facial nerve
+4AB3	slanted face caused by facial nerve paralysis
 4AB4	the occiput, or occipital bone, to hang down one's head, ugly, silly; foolish; stupid; idiotic; crazy; insane
 4AB6	the chin; the jaws
 4AB7	to toil or labor sedulously
@@ -14874,6 +14874,7 @@
 8031	a kind of farm tool
 8032	a tool used in northeast China for overturning soil
 8033	ear; merely, only; handle; Kangxi radical 128
+8034	ear lobe; lobule
 8035	earwax
 8036	used in transliteration
 8037	ears hanging down
@@ -18532,7 +18533,7 @@
 9524	balance weight on scale; hammer
 9525	gimlet, awl, drill, auger; bore
 9526	brocade, tapestry; embroidered
-9527	tungsten (element 74, W)
+9527	chopping block, executioner's block
 9528	shovel
 9529	to bend iron
 952A	a kind of tool

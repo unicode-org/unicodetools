@@ -30,8 +30,8 @@ import org.unicode.tools.emoji.EmojiOrder;
 
 public class AacOrder {
 
-    private static final VersionInfo VERSION = Emoji.VERSION15_1;
-    private static final VersionInfo UCD_VERSION = Emoji.VERSION15_1;
+    private static final VersionInfo VERSION = Emoji.VERSION_TO_GENERATE;
+    private static final VersionInfo UCD_VERSION = Emoji.VERSION_TO_GENERATE_UNICODE;
 
     private static final CandidateData CANDIDATE_DATA = CandidateData.getInstance();
 

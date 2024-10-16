@@ -14,6 +14,7 @@ import java.text.MessageFormat;
 public class ChainException extends RuntimeException {
     Object[] keyData;
     String messageFormat;
+
     // Exception chain;
 
     public ChainException(String messageFormat, Object[] objects) {

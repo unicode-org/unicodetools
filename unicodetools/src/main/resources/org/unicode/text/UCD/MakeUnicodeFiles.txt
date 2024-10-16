@@ -61,20 +61,12 @@ File: ScriptExtensions
 # values in that set is not material, but for stability in presentation
 # it is given here as alphabetical.
 #
-# The Script_Extensions values are presented in sorted order in the file.
-# They are sorted first by the number of Script property values in their sets,
-# and then alphabetically by first differing Script property value.
-#
-# Following each distinct Script_Extensions value is the list of code
-# points associated with that value, listed in code point order.
-# 
 # All code points not explicitly listed for Script_Extensions
-# have as their value the corresponding Script property value
+# have as their value the corresponding Script property value.
 #
-# @missing: 0000..10FFFF; <script>
 
 Property: Script_Extensions
-Format: valueStyle=short
+Format: kenFile valueStyle=short
 
 File: auxiliary/GraphemeBreakProperty
 Property: Grapheme_Cluster_Break
@@ -98,9 +90,6 @@ File: auxiliary/LineBreakTest
 Property: SPECIAL
 
 File: auxiliary/SentenceBreakTest
-Property: SPECIAL
-
-File: cldr/GraphemeBreakTest-cldr
 Property: SPECIAL
 
 File:	extra/BidiPairedBracketType
@@ -235,6 +224,9 @@ Value:  V15_1
 
 Value:  V16_0
 # Newly assigned in Unicode 16.0.0 (September, 2024)
+
+Value:  V17_0
+# Newly assigned in Unicode 17.0.0 (September, 2025)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
@@ -734,6 +726,7 @@ Property:	Pattern_White_Space
 Property:	Pattern_Syntax
 Property:	Prepended_Concatenation_Mark
 Property:	Regional_Indicator
+Property:	Modifier_Combining_Mark
 
 File:	PropertyAliases
 Property: SPECIAL

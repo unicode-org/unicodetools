@@ -1,8 +1,8 @@
 # ArabicShaping-16.0.0.txt
-# Date: 2024-02-02
+# Date: 2024-07-30
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # This file is a normative contributory data file in the
 # Unicode Character Database.
@@ -128,7 +128,7 @@
 0605; ARABIC NUMBER MARK ABOVE; U; No_Joining_Group
 0608; ARABIC RAY; U; No_Joining_Group
 060B; AFGHANI SIGN; U; No_Joining_Group
-0620; DOTLESS YEH WITH SEPARATE RING BELOW; D; YEH
+0620; KASHMIRI YEH; D; KASHMIRI YEH
 0621; HAMZA; U; No_Joining_Group
 0622; ALEF WITH MADDA ABOVE; R; ALEF
 0623; ALEF WITH HAMZA ABOVE; R; ALEF

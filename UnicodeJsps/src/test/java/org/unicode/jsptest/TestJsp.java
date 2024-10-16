@@ -666,6 +666,7 @@ public class TestJsp extends TestFmwkMinusMinus {
                 false,
                 actual);
     }
+
     //         return handleAssert(expected == actual, message, stringFor(expected),
     // stringFor(actual), "==", false);
 
@@ -928,7 +929,7 @@ public class TestJsp extends TestFmwkMinusMinus {
         checkValues(error, Uts46.SINGLETON);
         checkValidIdna(Uts46.SINGLETON, "À｡÷");
         checkValidIdna(Uts46.SINGLETON, "≠"); // valid since Unicode 15.1
-        checkInvalidIdna(Uts46.SINGLETON, "\u0001");
+        checkInvalidIdna(Uts46.SINGLETON, "\u0080");
         checkToUnicode(Uts46.SINGLETON, "ß｡ab", "ß.ab");
         // checkToPunyCode(Uts46.SINGLETON, "\u0002", "xn---");
         checkToPunyCode(Uts46.SINGLETON, "ß｡ab", "ss.ab");
@@ -972,7 +973,8 @@ public class TestJsp extends TestFmwkMinusMinus {
     private void checkValues(boolean[] error, Idna idna) {
         checkToUnicodeAndPunyCode(idna, "α.xn--mxa", "α.α", "xn--mxa.xn--mxa");
         checkValidIdna(idna, "a");
-        checkInvalidIdna(idna, "=");
+        // 33C2          ; disallowed                 # 1.1  SQUARE AM
+        checkInvalidIdna(idna, "㏂");
     }
 
     private void checkToUnicodeAndPunyCode(

@@ -1,18 +1,20 @@
 # idnchars.txt
-# Date: 2023-08-11, 17:46:42 GMT
-# © 2023 Unicode®, Inc.
+# Date: 2024-08-14, 23:39:58 GMT
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 15.1.0
+# Version: 16.0.0
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr39
 #
 # Allowed as output characters
 
+0027          ; output #      (')  APOSTROPHE
 002D..002E    ; output #  [2] (-...)  HYPHEN-MINUS..FULL STOP
-0030..0039    ; output # [10] (0..9)  DIGIT ZERO..DIGIT NINE
+0030..003A    ; output # [11] (0..:)  DIGIT ZERO..COLON
+005F          ; output #      (_)  LOW LINE
 0061..007A    ; output # [26] (a..z)  LATIN SMALL LETTER A..LATIN SMALL LETTER Z
 00B7          ; output #      (·)  MIDDLE DOT
 00DF..00F6    ; output # [24] (ß..ö)  LATIN SMALL LETTER SHARP S..LATIN SMALL LETTER O WITH DIAERESIS
@@ -663,7 +665,7 @@ FA27..FA29    ; output #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK 
 30000..3134A  ; output # [4939] (𰀀..𱍊)  CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; output # [4192] (𱍐..𲎯)  CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 112107
+# Total code points: 112110
 
 # Not allowed at start of identifier
 

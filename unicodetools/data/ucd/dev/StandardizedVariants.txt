@@ -1,7 +1,8 @@
 # StandardizedVariants-16.0.0.txt
-# Date: 2024-01-30, 23:17:00 GMT [KW]
+# Date: 2024-07-31, 15:31:00 GMT [KW]
 # © 2024 Unicode®, Inc.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Specification of the variation sequences that are defined in the
 # Unicode Standard.
@@ -40,6 +41,12 @@
 #   Field 2: where the appearance is only different in particular shaping environments
 #	this field lists them. The possible values are: isolate, initial, medial, final.
 #	If more than one is present, there are spaces between them.
+#
+# Note that parentheses must not be used in Field 1, because for names
+# list generation, values from Field 2 are appended as a parenthetical to the Field 1
+# value, and that parenthetical syntax is explicitly interpreted as part
+# of the overall names list syntax used for code chart production.
+#
 # =============================
 
 # Mathematical
@@ -288,7 +295,9 @@ A868 FE00; phags-pa letter reversed shaping subjoined ya; # PHAGS-PA SUBJOINED L
 1311C FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH F028
 13121 FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH F032
 13127 FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH F037A
+13132 FE01; rotated 180 degrees; # EGYPTIAN HIEROGLYPH F046
 13139 FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH F051
+13139 FE01; rotated 180 degrees; # EGYPTIAN HIEROGLYPH F051
 13139 FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH F051
 13183 FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH H005
 13187 FE01; rotated 180 degrees; # EGYPTIAN HIEROGLYPH H008
@@ -300,6 +309,7 @@ A868 FE00; phags-pa letter reversed shaping subjoined ya; # PHAGS-PA SUBJOINED L
 131B9 FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH M010
 131BA FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH M010A
 131CB FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH M017
+131E0 FE00; rotated 90 degrees [= 270 degrees]; # EGYPTIAN HIEROGLYPH M033
 131EE FE01; rotated 180 degrees; # EGYPTIAN HIEROGLYPH M044
 131EE FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH M044
 131F8 FE01; rotated 180 degrees; # EGYPTIAN HIEROGLYPH N010
@@ -309,6 +319,7 @@ A868 FE00; phags-pa letter reversed shaping subjoined ya; # PHAGS-PA SUBJOINED L
 131FA FE01; rotated 180 degrees; # EGYPTIAN HIEROGLYPH N012
 13216 FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH N035
 13257 FE01; rotated 180 degrees; # EGYPTIAN HIEROGLYPH O006
+1327B FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH O029
 1327B FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH O029
 1327F FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH O031
 1327F FE01; rotated 180 degrees; # EGYPTIAN HIEROGLYPH O031
@@ -345,7 +356,10 @@ A868 FE00; phags-pa letter reversed shaping subjoined ya; # PHAGS-PA SUBJOINED L
 13322 FE01; rotated 180 degrees; # EGYPTIAN HIEROGLYPH T022
 13331 FE01; rotated 180 degrees; # EGYPTIAN HIEROGLYPH T035
 13331 FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH T035
-1333B FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH U007
+13338 FE03; rotated approximately 30 degrees; # EGYPTIAN HIEROGLYPH U006
+13338 FE06; rotated approximately 320 degrees [horizontal]; # EGYPTIAN HIEROGLYPH U006
+# The following sequence was removed as unrequired, per UTC Consensus 180-C7.
+# 1333B FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH U007
 1333C FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH U008
 1334A FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH U022
 13361 FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH U042
@@ -360,7 +374,11 @@ A868 FE00; phags-pa letter reversed shaping subjoined ya; # PHAGS-PA SUBJOINED L
 133B0 FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH W002
 133BF FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH W014
 133D3 FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH X004A
+133DB FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH Y001
 133DD FE02; rotated 270 degrees; # EGYPTIAN HIEROGLYPH Y002
+133E5 FE00; rotated 90 degrees [= 270 degrees]; # EGYPTIAN HIEROGLYPH Z002
+133E7 FE00; rotated 90 degrees [= 270 degrees]; # EGYPTIAN HIEROGLYPH Z002B
+133E8 FE01; rotated 180 degrees; # EGYPTIAN HIEROGLYPH Z002C
 133F2 FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH Z007
 133F5 FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH Z010
 133F6 FE00; rotated 90 degrees; # EGYPTIAN HIEROGLYPH Z011

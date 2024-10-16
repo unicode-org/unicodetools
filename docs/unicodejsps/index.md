@@ -109,6 +109,13 @@ New Properties if there are).
 
 ### Running a Docker-based build
 
+Download the Last Resort font.
+
+```
+wget https://github.com/unicode-org/last-resort-font/releases/latest/download/LastResort-Regular.ttf
+mv ./LastResort-Regular.ttf ./UnicodeJsps/src/main/webapp/
+```
+
 compile java stuff
 
 - `mvn -B package -am -pl UnicodeJsps -DskipTests=true`
