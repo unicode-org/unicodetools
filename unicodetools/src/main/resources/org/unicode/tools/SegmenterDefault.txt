@@ -1,6 +1,5 @@
 @GraphemeClusterBreak
 ## double ## at the start of a line doesn't show up
-## use Segmenter.Target.FOR_CLDR to select SegmenterCldr.txt
 
 # VARIABLES
 
@@ -117,7 +116,8 @@ $QU_Pf=[$QU & \p{gc=Pf}]
 $QUmPi=[$QU - \p{gc=Pi}]
 $QUmPf=[$QU - \p{gc=Pf}]
 
-$NotEastAsian = [^\p{ea=F}\p{ea=W}\p{ea=H}]
+$NotEastAsian   = [^\p{ea=F}\p{ea=W}\p{ea=H}]
+$NonEastAsianBA = [$BA & $NotEastAsian]
 
 $DottedCircle = ◌
 $Hyphen = [\u2010]
@@ -156,7 +156,6 @@ $Spec2_=[^ $SP $BK $CR $LF $NL $ZW]
 $Spec3a_=[^ $SP $BA $HY $CM]
 $Spec3b_=[^ $BA $HY $CM]
 $Spec4_=[^ $NU $CM]
-##CLDR: $Spec5_=[$BK $CB $CR $LF $NL $SP $ZW]
 
 # SPECIAL EXTENSIONS
 
@@ -209,7 +208,8 @@ $QU_Pf=($QU_Pf $X)
 $QUmPi=($QUmPi $X)
 $QUmPf=($QUmPf $X)
 
-$NotEastAsian=($NotEastAsian $X)
+$NotEastAsian=( $NotEastAsian | [$NotEastAsian - $Spec1_] $X)
+$NonEastAsianBA=(NonEastAsianBA $X)
 
 $DottedCircle=($DottedCircle $X)
 $Hyphen=($Hyphen $X)
@@ -219,8 +219,9 @@ $OP30=($OP30 $X)
 
 # OUT OF ORDER ON PURPOSE
 
-# LB 10  Treat any remaining combining mark as AL.
+# LB 10  Treat any remaining combining mark as AL and non-$EastAsian.
 $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
+$NotEastAsian=( $NotEastAsian | ^ $CM | (?<=$Spec1_) $CM )
 
 # RULES
 
@@ -296,7 +297,7 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 21.03) × $NS
 21.04) $BB ×
 # LB 21a Do not break after the hyphen in Hebrew-hyphen-non-Hebrew.
-21.1) $HL ($HY | $BA) × [^$HL]
+21.1) $HL ($HY | $NonEastAsianBA) × [^$HL]
 # LB 21b Don’t break between Solidus and Hebrew letters.
 21.2) $SY × $HL
 # LB 22  Do not break before ellipses.

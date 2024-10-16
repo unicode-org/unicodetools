@@ -1,0 +1,9 @@
+Ignoring Name Age:
+
+# HXG (briefly known as HZXG) and SZP are just like all the other CJK strokes.
+# In particular, they are scx=Hani:
+# https://www.unicode.org/review/pri502/feedback.html#ID20240523095709.
+Propertywise [\N{CJK STROKE HXG}\N{CJK STROKE SZP}
+              \N{CJK STROKE T}] AreAlike
+
+end Ignoring;
