@@ -700,7 +700,7 @@ Let $nonAlphabeticBindus := []
 
 Let $nonAlphabeticDependentVowels := [
     \N{ORIYA SIGN OVERLINE}
-    \p{Name=/^ORYIA SIGN (DOUBLE )?DOT ABOVE$/}  # L2/24-106R, related to the overline.
+    \p{Name=/^ORIYA SIGN (DOUBLE )?DOT ABOVE$/}  # L2/24-106R, related to the overline.
     \N{THAI CHARACTER MAITAIKHU}
     \N{LIMBU SIGN KEMPHRENG}
     \N{SHARADA VOWEL MODIFIER MARK}
