@@ -809,26 +809,21 @@ public final class UCA implements Comparator<String>, UCA_Types {
         return result.toString();
     }
 
-    static final int variableBottom = UCA.getPrimary(CE_FFFE) + 1;
-
-    /*
-     * Produces a human-readable string for a sort key.
-     * removed after unicodetools svn r641
+    /**
+     * Start of variable primaries. Primary weight one higher than that for the special U+FFFE.
+     * https://www.unicode.org/reports/tr35/tr35-collation.html#tailored_noncharacter_weights
      */
-    // static public String toStringUCA(String sortKey, String original, int variableTop,
-    // StringBuilder extraComment)
+    private static final int variableBottom = UCA.getPrimary(CE_FFFE) + 1;
 
-    public static boolean isVariablePrimary(
-            char primary, int variableTop, boolean lastWasVariable) {
-        return primary == 0 ? lastWasVariable : primary <= variableTop && variableBottom <= primary;
+    private boolean isVariablePrimary(char primary) {
+        return variableBottom <= primary && primary <= ucaData.variableHigh;
     }
 
-    public static String toStringUCA(CEList ceList, int variableTop, StringBuilder extraComment) {
+    public String toStringUCA(CEList ceList, StringBuilder extraComment) {
         if (ceList == null || ceList.isEmpty()) {
             return "[.0000.0000.0000]";
         }
         extraComment.setLength(0);
-        boolean lastWasVariable = false;
         final StringBuffer result = new StringBuffer();
 
         for (int i = 0; i < ceList.length(); ++i) {
@@ -837,12 +832,8 @@ public final class UCA implements Comparator<String>, UCA_Types {
             final char s = UCA.getSecondary(ce);
             final char t = UCA.getTertiary(ce);
 
-            final boolean isVariable = isVariablePrimary(p, variableTop, lastWasVariable);
-
-            lastWasVariable = isVariable;
-
             result.append("[")
-                    .append(isVariable ? "*" : ".")
+                    .append(isVariablePrimary(p) ? "*" : ".")
                     .append(Utility.hex(p))
                     .append(".")
                     .append(Utility.hex(s))
@@ -904,7 +895,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
      * from the UCA data, they are narrowed in. The first three values are used in building; the
      * last two in testing.
      */
-    private int variableLowCE; // used for testing against
+    private static final int variableLowCE = makeKey(1, 0, 0); // used for testing against
 
     private int variableHighCE; // used for testing against
 
@@ -1452,8 +1443,6 @@ public final class UCA implements Comparator<String>, UCA_Types {
         }
          */
 
-        // fixlater;
-        variableLowCE = makeKey(1, 0, 0);
         variableHighCE =
                 makeKey(
                         ucaData.variableHigh,

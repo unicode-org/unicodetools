@@ -389,7 +389,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                                                 .length()));
             }
         }
-        UnicodeMap<Age_Values> ages = Emoji.LATEST.loadEnum(UcdProperty.Age, Age_Values.class);
+        UnicodeMap<Age_Values> ages = Emoji.PROPS.loadEnum(UcdProperty.Age, Age_Values.class);
         Age_Values minAge =
                 Age_Values.forName(Emoji.VERSION_LAST_RELEASED_UNICODE.getVersionString(2, 2));
         EmojiData releasedData = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
