@@ -600,12 +600,12 @@ public class GenerateUnihanCollators {
             int strokes = CldrUtility.ifNull(bestStrokesS.get(item), 0);
             buffer.append(pad(String.valueOf(strokes), 3)).append(";\t");
 
-            int data = getRSShortData(item.codePointAt(0));
+            long order = getRSOrder(item.codePointAt(0));
             String radical = null;
             String remainingStrokes = null;
-            if (data != 0) {
-                radical = radicalStroke.getRadicalStringFromShortData(data);
-                remainingStrokes = RadicalStroke.getResidualStrokesFromShortData(data) + "";
+            if (order != 0) {
+                radical = radicalStroke.getRadicalString(order);
+                remainingStrokes = RadicalStroke.getResidualStrokes(order) + "";
             }
             buffer.append(pad(radical, 4)).append(";\t");
             buffer.append(pad(remainingStrokes, 2)).append(";\t");
@@ -1017,14 +1017,14 @@ public class GenerateUnihanCollators {
             for (final String s : bestStrokesIn) {
                 final int c = s.codePointAt(0);
                 final Integer bestStrokeInfo = bestStrokesIn.get(c);
-                int data = getRSShortData(c);
-                if (data == 0) {
+                long order = getRSOrder(c);
+                if (order == 0) {
                     continue;
                 }
-                int radical = RadicalStroke.getRadicalNumberFromShortData(data);
+                int radical = RadicalStroke.getRadicalNumber(order);
                 final int radicalsStrokes =
-                        bestStrokeInfo - RadicalStroke.getResidualStrokesFromShortData(data);
-                if (!RadicalStroke.isSimplifiedFromShortData(data)) {
+                        bestStrokeInfo - RadicalStroke.getResidualStrokes(order);
+                if (!RadicalStroke.isSimplified(order)) {
                     mainStrokesTotal.add(radical, radicalsStrokes);
                     mainCount.add(radical, 1);
                 } else {
@@ -1057,11 +1057,11 @@ public class GenerateUnihanCollators {
             for (final String s :
                     new UnicodeSet(kRSUnicode.keySet()).removeAll(bestStrokesIn.keySet())) {
                 int c = s.codePointAt(0);
-                int data = getRSShortData(c);
-                int radical = RadicalStroke.getRadicalNumberFromShortData(data);
+                long order = getRSOrder(c);
+                int radical = RadicalStroke.getRadicalNumber(order);
                 final int computedStrokes =
-                        RadicalStroke.getResidualStrokesFromShortData(data)
-                                + (RadicalStroke.isSimplifiedFromShortData(data)
+                        RadicalStroke.getResidualStrokes(order)
+                                + (RadicalStroke.isSimplified(order)
                                         ? alternateStrokes[radical]
                                         : mainStrokes[radical]);
                 bestStrokesIn.put(s, computedStrokes);
@@ -1079,10 +1079,10 @@ public class GenerateUnihanCollators {
         }
     }
 
-    private static int getRSShortData(int c) {
-        int data = radicalStroke.getShortDataForCodePoint(c);
-        if (data != 0) {
-            return data;
+    private static long getRSOrder(int c) {
+        long order = radicalStroke.getOrderForCodePoint(c);
+        if (order != 0) {
+            return order;
         }
         if (c < 0x3000) {
             String radical = radicalMap.get(c);
@@ -1091,36 +1091,21 @@ public class GenerateUnihanCollators {
             }
             c = radical.codePointAt(0);
             assert radical.length() == Character.charCount(c); // single code point
-            data = radicalStroke.getShortDataForCodePoint(c);
-            assert data != 0;
-            return data;
-        }
-        String decomp = nfd.normalize(c);
-        c = decomp.codePointAt(0);
-        data = radicalStroke.getShortDataForCodePoint(c);
-        return data;
-    }
-
-    private static long getRSLongOrder(int c) {
-        long order = radicalStroke.getLongOrder(c);
-        if (order != 0) {
-            return order;
-        }
-        if (c < 0x3000) {
-            String radical = radicalMap.get(c);
-            if (radical == null) {
-                // Not an ideograph, sort higher than any of them.
-                return ((long) Integer.MAX_VALUE << 32) | c;
-            }
-            c = radical.codePointAt(0);
-            assert radical.length() == Character.charCount(c); // single code point
-            order = radicalStroke.getLongOrder(c);
+            order = radicalStroke.getOrderForCodePoint(c);
             assert order != 0;
             return order;
         }
         String decomp = nfd.normalize(c);
         c = decomp.codePointAt(0);
-        order = radicalStroke.getLongOrder(c);
+        return radicalStroke.getOrderForCodePoint(c);
+    }
+
+    /**
+     * Same as getRSOrder() but if c does not have radical-stroke data, then this function returns a
+     * value higher than that for any ideograph.
+     */
+    private static long getRSOrderOrHigh(int c) {
+        long order = getRSOrder(c);
         if (order == 0) {
             // Not an ideograph, sort higher than any of them.
             order = ((long) Integer.MAX_VALUE << 32) | c;
@@ -1850,8 +1835,8 @@ public class GenerateUnihanCollators {
                     assert Character.charCount(c1) == s1.length();
                     int c2 = s2.codePointAt(0);
                     assert Character.charCount(c2) == s2.length();
-                    long order1 = getRSLongOrder(c1);
-                    long order2 = getRSLongOrder(c2);
+                    long order1 = getRSOrderOrHigh(c1);
+                    long order2 = getRSOrderOrHigh(c2);
                     if (order1 != order2) {
                         return order1 < order2 ? -1 : 1;
                     }
@@ -1940,13 +1925,13 @@ public class GenerateUnihanCollators {
                 break;
             case radicalStroke:
                 final int codepoint = s.codePointAt(0);
-                int data = getRSShortData(codepoint);
-                if (data == 0) {
+                long order = getRSOrder(codepoint);
+                if (order == 0) {
                     throw new IllegalArgumentException(
                             "Missing R-S data for U+" + Utility.hex(codepoint));
                 }
-                rest = radicalStroke.getRadicalCharFromShortData(data);
-                comment.value = radicalStroke.getRadicalStringFromShortData(data);
+                rest = radicalStroke.getRadicalChar(order);
+                comment.value = radicalStroke.getRadicalString(order);
                 break;
             case stroke:
                 final Integer strokeCount = getStrokeValue(s, bestStrokesT);
