@@ -1,5 +1,5 @@
 # VerticalOrientation-16.0.0.txt
-# Date: 2024-04-30, 21:48:42 GMT
+# Date: 2024-07-24, 14:54:22 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2493,8 +2493,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 2FA20..2FFFD   ; U  # Cn  [1502] <reserved-2FA20>..<reserved-2FFFD>
 30000..3134A   ; U  # Lo  [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 3134B..3134F   ; U  # Cn     [5] <reserved-3134B>..<reserved-3134F>
-31350..323AF   ; U  # Lo  [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
-323B0..3FFFD   ; U  # Cn [56398] <reserved-323B0>..<reserved-3FFFD>
+31350..3347B   ; U  # Lo  [8492] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-3347B
+3347C..3FFFD   ; U  # Cn [52098] <reserved-3347C>..<reserved-3FFFD>
 E0001          ; R  # Cf         LANGUAGE TAG
 E0020..E007F   ; R  # Cf    [96] TAG SPACE..CANCEL TAG
 E0100..E01EF   ; R  # Mn   [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
