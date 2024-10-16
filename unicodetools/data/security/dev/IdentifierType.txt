@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2024-05-04, 21:31:06 GMT
+# Date: 2024-08-14, 23:39:57 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1406,12 +1406,14 @@ A930..A953    ; Exclusion                      # 5.1   [36] REJANG LETTER KA..RE
 0830..083E    ; Exclusion Not_XID              # 5.2   [15] SAMARITAN PUNCTUATION NEQUDAA..SAMARITAN PUNCTUATION ANNAAU
 1680          ; Exclusion Not_XID              # 3.0        OGHAM SPACE MARK
 169B..169C    ; Exclusion Not_XID              # 3.0    [2] OGHAM FEATHER MARK..OGHAM REVERSED FEATHER MARK
+16EB..16ED    ; Exclusion Not_XID              # 3.0    [3] RUNIC SINGLE PUNCTUATION..RUNIC CROSS PUNCTUATION
 1735..1736    ; Exclusion Not_XID              # 3.2    [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
 1800..180A    ; Exclusion Not_XID              # 3.0   [11] MONGOLIAN BIRGA..MONGOLIAN NIRUGU
 1A1E..1A1F    ; Exclusion Not_XID              # 4.1    [2] BUGINESE PALLAWA..BUGINESE END OF SECTION
 2CE5..2CEA    ; Exclusion Not_XID              # 4.1    [6] COPTIC SYMBOL MI RO..COPTIC SYMBOL SHIMA SIMA
 2CF9..2CFF    ; Exclusion Not_XID              # 4.1    [7] COPTIC OLD NUBIAN FULL STOP..COPTIC MORPHOLOGICAL DIVIDER
 2E30          ; Exclusion Not_XID              # 5.1        RING POINT
+2E3C          ; Exclusion Not_XID              # 7.0        STENOGRAPHIC FULL STOP
 A874..A877    ; Exclusion Not_XID              # 5.0    [4] PHAGS-PA SINGLE HEAD MARK..PHAGS-PA MARK DOUBLE SHAD
 A95F          ; Exclusion Not_XID              # 5.1        REJANG SECTION MARK
 10100..10102  ; Exclusion Not_XID              # 4.0    [3] AEGEAN WORD SEPARATOR LINE..AEGEAN CHECK MARK
@@ -1509,7 +1511,7 @@ A95F          ; Exclusion Not_XID              # 5.1        REJANG SECTION MARK
 1E5FF         ; Exclusion Not_XID              # 16.0       OL ONAL ABBREVIATION SIGN
 1E8C7..1E8CF  ; Exclusion Not_XID              # 7.0    [9] MENDE KIKAKUI DIGIT ONE..MENDE KIKAKUI DIGIT NINE
 
-# Total code points: 1138
+# Total code points: 1142
 
 #	Identifier_Type:	Obsolete
 
@@ -1752,7 +1754,6 @@ A8F8..A8FA    ; Obsolete Not_XID               # 5.2    [3] DEVANAGARI SIGN PUSH
 1361..1368    ; Not_XID                        # 3.0    [8] ETHIOPIC WORDSPACE..ETHIOPIC PARAGRAPH SEPARATOR
 1372..137C    ; Not_XID                        # 3.0   [11] ETHIOPIC NUMBER TEN..ETHIOPIC NUMBER TEN THOUSAND
 1390..1399    ; Not_XID                        # 4.1   [10] ETHIOPIC TONAL MARK YIZET..ETHIOPIC TONAL MARK KURT
-16EB..16ED    ; Not_XID                        # 3.0    [3] RUNIC SINGLE PUNCTUATION..RUNIC CROSS PUNCTUATION
 17D4..17D6    ; Not_XID                        # 3.0    [3] KHMER SIGN KHAN..KHMER SIGN CAMNUC PII KUUH
 17D9..17DB    ; Not_XID                        # 3.0    [3] KHMER SIGN PHNAEK MUAN..KHMER CURRENCY SYMBOL RIEL
 17F0..17F9    ; Not_XID                        # 4.0   [10] KHMER SYMBOL LEK ATTAK SON..KHMER SYMBOL LEK ATTAK PRAM-BUON
@@ -1923,7 +1924,7 @@ A8F8..A8FA    ; Obsolete Not_XID               # 5.2    [3] DEVANAGARI SIGN PUSH
 2E33..2E34    ; Not_XID                        # 6.1    [2] RAISED DOT..RAISED COMMA
 2E36..2E38    ; Not_XID                        # 6.1    [3] DAGGER WITH LEFT GUARD..TURNED DAGGER
 2E3A..2E3B    ; Not_XID                        # 6.1    [2] TWO-EM DASH..THREE-EM DASH
-2E3C..2E42    ; Not_XID                        # 7.0    [7] STENOGRAPHIC FULL STOP..DOUBLE LOW-REVERSED-9 QUOTATION MARK
+2E3D..2E42    ; Not_XID                        # 7.0    [6] VERTICAL SIX DOTS..DOUBLE LOW-REVERSED-9 QUOTATION MARK
 2E43..2E44    ; Not_XID                        # 9.0    [2] DASH WITH LEFT UPTURN..DOUBLE SUSPENSION MARK
 2E45..2E49    ; Not_XID                        # 10.0   [5] INVERTED LOW KAVYKA..DOUBLE STACKED COMMA
 2E4A..2E4E    ; Not_XID                        # 11.0   [5] DOTTED SOLIDUS..PUNCTUS ELEVATUS MARK
@@ -2193,7 +2194,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1FB94..1FBCA  ; Not_XID                        # 13.0  [55] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..WHITE UP-POINTING CHEVRON
 1FBCB..1FBEF  ; Not_XID                        # 16.0  [37] WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 
-# Total code points: 6415
+# Total code points: 6411
 
 #	Identifier_Type:	Not_NFKC
 

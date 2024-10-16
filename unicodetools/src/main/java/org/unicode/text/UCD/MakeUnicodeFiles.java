@@ -599,11 +599,6 @@ public class MakeUnicodeFiles {
                                     Default.ucd(), Segmenter.Target.FOR_UCD)
                             .run();
                     break;
-                case "GraphemeBreakTest-cldr":
-                    new GenerateBreakTest.GenerateGraphemeBreakTest(
-                                    Default.ucd(), Segmenter.Target.FOR_CLDR)
-                            .run();
-                    break;
                 case "DerivedName":
                 case "DerivedLabel":
                     generateDerivedName(filename);
