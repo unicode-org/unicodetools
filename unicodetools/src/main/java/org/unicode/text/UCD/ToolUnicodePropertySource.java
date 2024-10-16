@@ -309,6 +309,13 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 "cjkIRG_VSource",
                 "cjkIRG_VSource",
                 "kIRG_VSource");
+        add(iup.getProperty("kEH_Cat"));
+        add(iup.getProperty("kEH_Desc"));
+        add(iup.getProperty("kEH_HG"));
+        add(iup.getProperty("kEH_IFAO"));
+        add(iup.getProperty("kEH_JSesh"));
+        add(iup.getProperty("kEH_NoMirror"));
+        add(iup.getProperty("kEH_NoRotate"));
         add(iup.getProperty("Emoji"));
         add(iup.getProperty("Emoji_Presentation"));
         add(iup.getProperty("Emoji_Modifier"));
