@@ -1227,7 +1227,9 @@ public final class UCD_Names implements UCD_Types {
         "THIN_YEH",
         "VERTICAL_TAIL",
         // Unicode 16
-        "KASHMIRI_YEH"
+        "KASHMIRI_YEH",
+        // Unicode n > 16
+        "THIN_NOON",
     };
 
     static {

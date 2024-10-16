@@ -781,8 +781,10 @@ public interface UCD_Types {
             VERTICAL_TAIL = 104,
             // Unicode 16
             KASHMIRI_YEH = 105,
+            // Unicode n > 16
+            THIN_NOON = 106,
             // limit
-            LIMIT_JOINING_GROUP = KASHMIRI_YEH + 1;
+            LIMIT_JOINING_GROUP = THIN_NOON + 1;
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;
     public static final int NF_COMPATIBILITY_MASK = 2, NF_COMPOSITION_MASK = 1;
 
