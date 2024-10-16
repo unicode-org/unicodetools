@@ -176,7 +176,7 @@ public class GenerateIdnaTest {
             // See https://github.com/unicode-org/unicodetools/issues/100 "Whither 13.1.0?"
             lastVersion = "13.0.0";
         }
-        int ucdTypesLastVersion = UCD_Types.AGE151;
+        int ucdTypesLastVersion = UCD_Types.AGE160; // FIX_FOR_NEW_VERSION
         String ucdTypesLastVersionString = UCD_Types.AGE_VERSIONS[ucdTypesLastVersion];
         if (!ucdTypesLastVersionString.equals(lastVersion)) {
             throw new AssertionError(
@@ -974,5 +974,10 @@ public class GenerateIdnaTest {
         // IdnaTestV2.txt missed a bug in the UTS 46 implementation that I'm writing due to
         // not testing an upper-case letter in the ASCII part of Punycode when there are no errors.
         "xn--A-1ga",
+        // https://www.unicode.org/L2/L2024/24063-pubrev.html#ID20240402104744 / PAG issue #282:
+        // Subtle behavior change for UseSTD3ASCIIRules=true
+        // due to simplified checking only in Validity Criteria, after Map+Normalize.
+        // fullwidth equals + combining solidus overlay
+        "\uFF1D\u0338",
     };
 }

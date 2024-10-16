@@ -1,5 +1,5 @@
-# DerivedJoiningGroup-16.0.0.txt
-# Date: 2024-06-07, 16:37:16 GMT
+# DerivedJoiningGroup-17.0.0.txt
+# Date: 2024-10-16, 15:53:21 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -377,7 +377,6 @@
 
 # ================================================
 
-0620          ; Yeh # Lo       ARABIC LETTER KASHMIRI YEH
 0626          ; Yeh # Lo       ARABIC LETTER YEH WITH HAMZA ABOVE
 0649..064A    ; Yeh # Lo   [2] ARABIC LETTER ALEF MAKSURA..ARABIC LETTER YEH
 0678          ; Yeh # Lo       ARABIC LETTER HIGH HAMZA YEH
@@ -387,7 +386,7 @@
 08BA          ; Yeh # Lo       ARABIC LETTER YEH WITH TWO DOTS BELOW AND SMALL NOON ABOVE
 10EC7         ; Yeh # Lo       ARABIC LETTER YEH WITH FOUR DOTS BELOW
 
-# Total code points: 12
+# Total code points: 11
 
 # ================================================
 
@@ -743,6 +742,12 @@
 # ================================================
 
 088E          ; Vertical_Tail # Lo       ARABIC VERTICAL TAIL
+
+# Total code points: 1
+
+# ================================================
+
+0620          ; Kashmiri_Yeh # Lo       ARABIC LETTER KASHMIRI YEH
 
 # Total code points: 1
 
