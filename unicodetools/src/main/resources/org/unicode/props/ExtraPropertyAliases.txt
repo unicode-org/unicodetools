@@ -17,7 +17,6 @@ RETS ; RGI_Emoji_Tag_Sequence ; Emoji_Tag_Sequence
 REZS ; RGI_Emoji_Zwj_Sequence ; Emoji_Zwj_Sequence
 # RE ; RGI_Emoji
 
-kEH_Core                 ; kEH_Core
 kEH_NoMirror             ; kEH_NoMirror
 kEH_NoRotate             ; kEH_NoRotate
 
@@ -35,6 +34,8 @@ idn8 ; Idn_2008
 Other_Joining_Type ; Other_Joining_Type
 
 Do_Not_Emit_Type ; Do_Not_Emit_Type
+
+kEH_Core                 ; kEH_Core
 
 # ================================================
 # String Properties

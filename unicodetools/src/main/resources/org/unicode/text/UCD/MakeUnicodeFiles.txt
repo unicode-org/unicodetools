@@ -92,9 +92,6 @@ Property: SPECIAL
 File: auxiliary/SentenceBreakTest
 Property: SPECIAL
 
-File: cldr/GraphemeBreakTest-cldr
-Property: SPECIAL
-
 File:	extra/BidiPairedBracketType
 Property: BidiPairedBracketType
 Format:	valueList skipUnassigned=None
@@ -227,6 +224,9 @@ Value:  V15_1
 
 Value:  V16_0
 # Newly assigned in Unicode 16.0.0 (September, 2024)
+
+Value:  V17_0
+# Newly assigned in Unicode 17.0.0 (September, 2025)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
