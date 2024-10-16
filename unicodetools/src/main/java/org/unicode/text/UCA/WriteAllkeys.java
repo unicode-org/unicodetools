@@ -63,7 +63,6 @@ public class WriteAllkeys {
         addString(collator, "\uFFFE", sorted);
         addString(collator, "\uFFFF", sorted);
 
-        final int variableTop = CEList.getPrimary(collator.getVariableHighCE());
         final StringBuilder extraComment = new StringBuilder();
         for (final Entry<String, String> entry : sorted.entrySet()) {
             // String key = entry.getKey();
@@ -80,7 +79,7 @@ public class WriteAllkeys {
             log.println(
                     hex
                             + " ; "
-                            + UCA.toStringUCA(ceList, variableTop, extraComment)
+                            + collator.toStringUCA(ceList, extraComment)
                             + " # "
                             + Default.ucd().getName(value)
                             + extraComment);
