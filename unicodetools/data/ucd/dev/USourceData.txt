@@ -1,8 +1,10 @@
 # USourceData-16.0.0.txt
-# Date: 2024-04-11, 00:00:00 GMT [KL]
+# Date: 2024-07-31, 00:00:00 GMT [KL]
 #
 # © 2024 Unicode®, Inc.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
+#
 # For documentation, see http://www.unicode.org/reports/tr45/
 #
 # This file contains basic data for U-source ideographs
@@ -36,9 +38,6 @@
 # Field 7: General comments
 # Field 8: kTotalStrokes property value (see UAX #38)
 # Field 9: First residual stroke
-#
-# The full format for this file and information on parsing the source
-# field are available at <http://www.unicode.org/reports/tr45/>.
 #
 # Additions prior to Unicode 6.3.0: 952
 UTC-00001;ExtE;U+2B88A;4.2;;;kCowles 4762;;5;4
