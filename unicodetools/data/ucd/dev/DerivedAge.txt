@@ -1,5 +1,5 @@
-# DerivedAge-16.0.0.txt
-# Date: 2024-06-07, 20:38:38 GMT
+# DerivedAge-17.0.0.txt
+# Date: 2024-10-16, 17:19:10 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2042,9 +2042,8 @@ A7DA..A7DC    ; 16.0 #   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER L
 16100..16139  ; 16.0 #  [58] GURUNG KHEMA LETTER A..GURUNG KHEMA DIGIT NINE
 16D40..16D79  ; 16.0 #  [58] KIRAT RAI SIGN ANUSVARA..KIRAT RAI DIGIT NINE
 18CFF         ; 16.0 #       KHITAN SMALL SCRIPT CHARACTER-18CFF
-1CC00..1CCFC  ; 16.0 # [253] UP-POINTING GO-KART..NOSE SYMBOL
+1CC00..1CCF9  ; 16.0 # [250] UP-POINTING GO-KART..OUTLINED DIGIT NINE
 1CD00..1CEB3  ; 16.0 # [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
-1CEBA..1CEBF  ; 16.0 #   [6] FRAGILE SYMBOL..STRAWBERRY SYMBOL
 1E5D0..1E5FA  ; 16.0 #  [43] OL ONAL LETTER O..OL ONAL DIGIT NINE
 1E5FF         ; 16.0 #       OL ONAL ABBREVIATION SIGN
 1F8B2..1F8BB  ; 16.0 #  [10] RIGHTWARDS ARROW WITH LOWER HOOK..SOUTH WEST ARROW FROM BAR
@@ -2057,8 +2056,19 @@ A7DA..A7DC    ; 16.0 #   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER L
 1FADF         ; 16.0 #       SPLATTER
 1FAE9         ; 16.0 #       FACE WITH BAGS UNDER EYES
 1FBCB..1FBEF  ; 16.0 #  [37] WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
-1FBFA         ; 16.0 #       ALARM BELL SYMBOL
 
-# Total code points: 5195
+# Total code points: 5185
+
+# ================================================
+
+# Age=V17_0
+
+# Newly assigned in Unicode 17.0.0 (September, 2025)
+
+1CCFA..1CCFC  ; 17.0 #   [3] SNAKE SYMBOL..NOSE SYMBOL
+1CEBA..1CEBF  ; 17.0 #   [6] FRAGILE SYMBOL..STRAWBERRY SYMBOL
+1FBFA         ; 17.0 #       ALARM BELL SYMBOL
+
+# Total code points: 10
 
 # EOF
