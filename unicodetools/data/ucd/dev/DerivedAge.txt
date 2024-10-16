@@ -1,5 +1,5 @@
-# DerivedAge-16.0.0.txt
-# Date: 2024-07-24, 22:44:46 GMT
+# DerivedAge-17.0.0.txt
+# Date: 2024-10-16, 17:26:56 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2018,7 +2018,6 @@ FDFE..FDFF    ; 14.0 #   [2] ARABIC LIGATURE SUBHAANAHU WA TAAALAA..ARABIC LIGAT
 A7CB..A7CD    ; 16.0 #   [3] LATIN CAPITAL LETTER RAMS HORN..LATIN SMALL LETTER S WITH DIAGONAL STROKE
 A7DA..A7DC    ; 16.0 #   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER LAMBDA WITH STROKE
 105C0..105F3  ; 16.0 #  [52] TODHRI LETTER A..TODHRI LETTER OO
-10940..1095C  ; 16.0 #  [29] SIDETIC LETTER N01..SIDETIC LETTER N29
 10D40..10D65  ; 16.0 #  [38] GARAY DIGIT ZERO..GARAY CAPITAL LETTER OLD NA
 10D69..10D85  ; 16.0 #  [29] GARAY VOWEL SIGN E..GARAY SMALL LETTER OLD NA
 10D8E..10D8F  ; 16.0 #   [2] GARAY PLUS SIGN..GARAY MINUS SIGN
@@ -2058,6 +2057,16 @@ A7DA..A7DC    ; 16.0 #   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER L
 1FAE9         ; 16.0 #       FACE WITH BAGS UNDER EYES
 1FBCB..1FBEF  ; 16.0 #  [37] WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 
-# Total code points: 5214
+# Total code points: 5185
+
+# ================================================
+
+# Age=V17_0
+
+# Newly assigned in Unicode 17.0.0 (September, 2025)
+
+10940..1095C  ; 17.0 #  [29] SIDETIC LETTER N01..SIDETIC LETTER N29
+
+# Total code points: 29
 
 # EOF
