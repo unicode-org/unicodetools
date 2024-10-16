@@ -18533,7 +18533,7 @@
 9524	balance weight on scale; hammer
 9525	gimlet, awl, drill, auger; bore
 9526	brocade, tapestry; embroidered
-9527	tungsten (element 74, W)
+9527	chopping block, executioner's block
 9528	shovel
 9529	to bend iron
 952A	a kind of tool

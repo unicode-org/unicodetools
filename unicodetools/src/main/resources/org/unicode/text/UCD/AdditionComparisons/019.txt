@@ -1,0 +1,10 @@
+Ignoring Name Age:
+
+# U+18CFF is a blank character for the Khitan Small Script; aside from looking blank,
+# it is indistinguishable from other Khitan Small Script characters.  See L2/23-065.
+# In particular, it is ideographic:
+# https://www.unicode.org/review/pri497/feedback.html#ID20240216140104.
+Propertywise [\N{KHITAN SMALL SCRIPT CHARACTER-18CFF}
+              \N{KHITAN SMALL SCRIPT CHARACTER-18B00}] AreAlike
+
+end Ignoring;
