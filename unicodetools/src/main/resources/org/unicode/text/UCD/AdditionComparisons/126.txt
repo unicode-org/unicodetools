@@ -1,0 +1,21 @@
+# IPA: Greek letters with palatal hook
+# https://github.com/unicode-org/utc-release-management/issues/126
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+
+Ignoring Block:
+Propertywise [ \N{LATIN SMALL LETTER BETA WITH PALATAL HOOK}
+               \N{LATIN SMALL LETTER THETA WITH PALATAL HOOK}
+               \N{LATIN SMALL LETTER CHI WITH PALATAL HOOK}
+               ᶀ\N{LATIN SMALL LETTER B WITH PALATAL HOOK}
+               ꭔ\N{LATIN SMALL LETTER CHI WITH LOW RIGHT RING} ] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
