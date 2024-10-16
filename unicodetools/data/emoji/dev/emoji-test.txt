@@ -1,5 +1,5 @@
 # emoji-test.txt
-# Date: 2024-06-04, 16:46:01 GMT
+# Date: 2024-08-14, 23:51:54 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1751,12 +1751,12 @@
 1F936 1F3FD                                            ; fully-qualified     # 🤶🏽 E3.0 Mrs. Claus: medium skin tone
 1F936 1F3FE                                            ; fully-qualified     # 🤶🏾 E3.0 Mrs. Claus: medium-dark skin tone
 1F936 1F3FF                                            ; fully-qualified     # 🤶🏿 E3.0 Mrs. Claus: dark skin tone
-1F9D1 200D 1F384                                       ; fully-qualified     # 🧑‍🎄 E13.0 Mx claus
-1F9D1 1F3FB 200D 1F384                                 ; fully-qualified     # 🧑🏻‍🎄 E13.0 Mx claus: light skin tone
-1F9D1 1F3FC 200D 1F384                                 ; fully-qualified     # 🧑🏼‍🎄 E13.0 Mx claus: medium-light skin tone
-1F9D1 1F3FD 200D 1F384                                 ; fully-qualified     # 🧑🏽‍🎄 E13.0 Mx claus: medium skin tone
-1F9D1 1F3FE 200D 1F384                                 ; fully-qualified     # 🧑🏾‍🎄 E13.0 Mx claus: medium-dark skin tone
-1F9D1 1F3FF 200D 1F384                                 ; fully-qualified     # 🧑🏿‍🎄 E13.0 Mx claus: dark skin tone
+1F9D1 200D 1F384                                       ; fully-qualified     # 🧑‍🎄 E13.0 Mx Claus
+1F9D1 1F3FB 200D 1F384                                 ; fully-qualified     # 🧑🏻‍🎄 E13.0 Mx Claus: light skin tone
+1F9D1 1F3FC 200D 1F384                                 ; fully-qualified     # 🧑🏼‍🎄 E13.0 Mx Claus: medium-light skin tone
+1F9D1 1F3FD 200D 1F384                                 ; fully-qualified     # 🧑🏽‍🎄 E13.0 Mx Claus: medium skin tone
+1F9D1 1F3FE 200D 1F384                                 ; fully-qualified     # 🧑🏾‍🎄 E13.0 Mx Claus: medium-dark skin tone
+1F9D1 1F3FF 200D 1F384                                 ; fully-qualified     # 🧑🏿‍🎄 E13.0 Mx Claus: dark skin tone
 1F9B8                                                  ; fully-qualified     # 🦸 E11.0 superhero
 1F9B8 1F3FB                                            ; fully-qualified     # 🦸🏻 E11.0 superhero: light skin tone
 1F9B8 1F3FC                                            ; fully-qualified     # 🦸🏼 E11.0 superhero: medium-light skin tone
