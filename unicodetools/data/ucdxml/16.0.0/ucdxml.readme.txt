@@ -1,0 +1,28 @@
+XML Representation of Unicode 16.0.0 UCD
+
+
+© 2024 Unicode®, Inc.
+For terms of use, see https://www.unicode.org/terms_of_use.html
+
+
+This directory contains the representation in XML of Version 16.0.0 of
+the UCD, using the schema defined by UAX #42: Unicode Character
+Database in XML, at https://www.unicode.org/reports/tr42/
+
+While every effort has been made to ensure consistency of the 
+XML representation with the UCD files, there may be some errors;
+the UCD files are authoritative.
+
+
+There are six files, available in zip/jar format:
+  - flat vs. grouped
+  - no Unihan data vs. Unihan data only vs. complete UCD. 
+
+The flat versions do not use the group mechanism. The grouped versions
+use the group mechanism, with groups corresponding approximately to
+the blocks (a few blocks have been subdivided).
+
+The "no Unihan data" files do not contain the properties expressed only
+in the Unihan database. The "Unihan data only" files contain only
+the properties and code points expressed in the Unihan database.
+The "complete UCD" files reflect the complete UCD data.
