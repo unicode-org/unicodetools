@@ -1,5 +1,5 @@
-# WordBreakProperty-16.0.0.txt
-# Date: 2024-06-07, 20:35:02 GMT
+# WordBreakProperty-17.0.0.txt
+# Date: 2024-10-16, 17:10:22 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1429,6 +1429,7 @@ FF0E          ; MidNumLet # Po       FULLWIDTH FULL STOP
 1810..1819    ; Numeric # Nd  [10] MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
 1946..194F    ; Numeric # Nd  [10] LIMBU DIGIT ZERO..LIMBU DIGIT NINE
 19D0..19D9    ; Numeric # Nd  [10] NEW TAI LUE DIGIT ZERO..NEW TAI LUE DIGIT NINE
+19DA          ; Numeric # No       NEW TAI LUE THAM DIGIT ONE
 1A80..1A89    ; Numeric # Nd  [10] TAI THAM HORA DIGIT ZERO..TAI THAM HORA DIGIT NINE
 1A90..1A99    ; Numeric # Nd  [10] TAI THAM THAM DIGIT ZERO..TAI THAM THAM DIGIT NINE
 1B50..1B59    ; Numeric # Nd  [10] BALINESE DIGIT ZERO..BALINESE DIGIT NINE
@@ -1480,7 +1481,7 @@ FF10..FF19    ; Numeric # Nd  [10] FULLWIDTH DIGIT ZERO..FULLWIDTH DIGIT NINE
 1E950..1E959  ; Numeric # Nd  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 1FBF0..1FBF9  ; Numeric # Nd  [10] SEGMENTED DIGIT ZERO..SEGMENTED DIGIT NINE
 
-# Total code points: 773
+# Total code points: 774
 
 # ================================================
 
