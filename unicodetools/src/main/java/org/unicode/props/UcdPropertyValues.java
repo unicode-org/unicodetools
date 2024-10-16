@@ -445,6 +445,7 @@ public class UcdPropertyValues {
         Samaritan("Samaritan"),
         Saurashtra("Saurashtra"),
         Sharada("Sharada"),
+        Sharada_Supplement("Sharada_Sup"),
         Shavian("Shavian"),
         Shorthand_Format_Controls("Shorthand_Format_Controls"),
         Siddham("Siddham"),
