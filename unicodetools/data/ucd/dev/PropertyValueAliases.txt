@@ -1,5 +1,5 @@
-# PropertyValueAliases-16.0.0.txt
-# Date: 2024-06-07, 20:31:38 GMT
+# PropertyValueAliases-17.0.0.txt
+# Date: 2024-10-16, 17:07:34 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -93,6 +93,7 @@ age; 14.0                             ; V14_0
 age; 15.0                             ; V15_0
 age; 15.1                             ; V15_1
 age; 16.0                             ; V16_0
+age; 17.0                             ; V17_0
 age; NA                               ; Unassigned
 
 # Alphabetic (Alpha)
@@ -1021,6 +1022,7 @@ jg ; Heh_Goal                         ; Heh_Goal
 jg ; Heth                             ; Heth
 jg ; Kaf                              ; Kaf
 jg ; Kaph                             ; Kaph
+jg ; Kashmiri_Yeh                     ; Kashmiri_Yeh
 jg ; Khaph                            ; Khaph
 jg ; Knotted_Heh                      ; Knotted_Heh
 jg ; Lam                              ; Lam
