@@ -1,7 +1,7 @@
 # ARABIC LETTER NOON WITH RING ABOVE (088F)
 # https://github.com/unicode-org/utc-release-management/issues/118
 
-Let $OldNoons = [ ن ڹ ں ڻ ڼ ڽ ݧ ݨ ݩ ࢉ ]
+Let $OldNoons := [ ن ڹ ں ڻ ڼ ڽ ݧ ݨ ݩ ࢉ ]
 
 # Names always differ.
 # Age always differs since these tests are comparing additions to pre-existing characters.
