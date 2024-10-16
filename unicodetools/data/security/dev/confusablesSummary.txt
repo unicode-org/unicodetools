@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2024-05-31, 21:12:55 GMT
+# Date: 2024-08-14, 23:39:56 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -91,7 +91,7 @@
 ←	(‎ ʽ ‎)	02BD	 MODIFIER LETTER REVERSED COMMA	# →‘→
 ←	(‎ ʾ ‎)	02BE	 MODIFIER LETTER RIGHT HALF RING	# →ʼ→→′→
 ←	(‎ ˈ ‎)	02C8	 MODIFIER LETTER VERTICAL LINE
-←	(‎ ˊ ‎)	02CA	 MODIFIER LETTER ACUTE ACCENT	# →΄→→ʹ→
+←	(‎ ˊ ‎)	02CA	 MODIFIER LETTER ACUTE ACCENT	# →ʹ→→′→
 ←	(‎ ˋ ‎)	02CB	 MODIFIER LETTER GRAVE ACCENT	# →｀→→‘→
 ←	(‎ ߴ ‎)	07F4	 NKO HIGH TONE APOSTROPHE	# →’→
 ←	(‎ ߵ ‎)	07F5	 NKO LOW TONE APOSTROPHE	# →‘→
