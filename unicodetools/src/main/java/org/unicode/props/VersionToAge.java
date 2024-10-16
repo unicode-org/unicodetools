@@ -41,6 +41,7 @@ public enum VersionToAge {
 
     ucd(
             ImmutableMap.<VersionInfo, Long>builder()
+                    .put(VersionInfo.getInstance(17, 0), getDate(2025, 9))
                     .put(VersionInfo.getInstance(16, 0), getDate(2024, 9))
                     .put(VersionInfo.getInstance(15, 1), getDate(2023, 9))
                     .put(VersionInfo.getInstance(15, 0), getDate(2022, 9))
@@ -73,6 +74,7 @@ public enum VersionToAge {
 
     emoji(
             ImmutableMap.<VersionInfo, Long>builder()
+                    .put(VersionInfo.getInstance(17, 0), getDate(2025, 9))
                     .put(VersionInfo.getInstance(16, 0), getDate(2024, 9))
                     .put(VersionInfo.getInstance(15, 1), getDate(2023, 9))
                     .put(VersionInfo.getInstance(15, 0), getDate(2022, 9))
