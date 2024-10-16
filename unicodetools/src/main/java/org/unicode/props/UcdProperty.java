@@ -35,6 +35,7 @@ import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UcdPropertyValues.Sentence_Break_Values;
 import org.unicode.props.UcdPropertyValues.Vertical_Orientation_Values;
 import org.unicode.props.UcdPropertyValues.Word_Break_Values;
+import org.unicode.props.UcdPropertyValues.kEH_Core_Values;
 
 /**
  * Machine-generated file for properties, produced by GenerateEnums.java from PropertyAliases.txt
@@ -277,6 +278,7 @@ public enum UcdProperty {
     Sentence_Break(PropertyType.Enumerated, Sentence_Break_Values.class, null, "SB"),
     Vertical_Orientation(PropertyType.Enumerated, Vertical_Orientation_Values.class, null, "vo"),
     Word_Break(PropertyType.Enumerated, Word_Break_Values.class, null, "WB"),
+    kEH_Core(PropertyType.Enumerated, kEH_Core_Values.class, null, "kEH_Core"),
 
     // Binary
     ASCII_Hex_Digit(PropertyType.Binary, Binary.class, null, "AHex"),
@@ -358,7 +360,6 @@ public enum UcdProperty {
     White_Space(PropertyType.Binary, Binary.class, null, "WSpace", "space"),
     XID_Continue(PropertyType.Binary, Binary.class, null, "XIDC"),
     XID_Start(PropertyType.Binary, Binary.class, null, "XIDS"),
-    kEH_Core(PropertyType.Binary, Binary.class, null, "kEH_Core"),
     kEH_NoMirror(PropertyType.Binary, Binary.class, null, "kEH_NoMirror"),
     kEH_NoRotate(PropertyType.Binary, Binary.class, null, "kEH_NoRotate"),
 
