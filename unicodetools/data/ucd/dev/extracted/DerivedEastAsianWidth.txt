@@ -1,5 +1,5 @@
-# DerivedEastAsianWidth-16.0.0.txt
-# Date: 2024-05-27, 13:03:35 GMT
+# DerivedEastAsianWidth-17.0.0.txt
+# Date: 2024-10-16, 13:52:58 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
