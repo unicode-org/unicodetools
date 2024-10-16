@@ -3,5 +3,11 @@
       </td>
   </table>
 </form>
+
+<hr width="50%">
+
+<p class="copyright">© 2003–2024 Unicode, Inc.
+Unicode and the Unicode Logo are registered trademarks of Unicode, Inc.,
+in the U.S. and other countries. See <a href="https://www.unicode.org/copyright.html">Terms of Use</a>.</p>
 </body>
 </html>
