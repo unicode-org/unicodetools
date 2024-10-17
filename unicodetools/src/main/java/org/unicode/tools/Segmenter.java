@@ -393,8 +393,8 @@ public class Segmenter {
             before = ".*(" + before + ")";
             String parsing = null;
             try {
-                matchPrevious = Pattern.compile(parsing = before, REGEX_FLAGS).matcher("");
-                matchSucceeding = Pattern.compile(parsing = after, REGEX_FLAGS).matcher("");
+                this.before = Pattern.compile(parsing = before, REGEX_FLAGS);
+                this.after = Pattern.compile(parsing = after, REGEX_FLAGS);
             } catch (PatternSyntaxException e) {
                 // Format: Unclosed character class near index 927
                 int index = e.getIndex();
@@ -440,8 +440,12 @@ public class Segmenter {
                 CharSequence remappedString,
                 Integer[] indexInRemapped,
                 Consumer<CharSequence> remap) {
-            if (matchAfter(matchSucceeding, remappedString, indexInRemapped[position])
-                    && matchBefore(matchPrevious, remappedString, indexInRemapped[position])) {
+            if (after.matcher(remappedString)
+                            .region(indexInRemapped[position], remappedString.length())
+                            .lookingAt()
+                    && before.matcher(remappedString)
+                            .region(0, indexInRemapped[position])
+                            .matches()) {
                 return breaks;
             }
             return Breaks.UNKNOWN_BREAK;
@@ -455,27 +459,14 @@ public class Segmenter {
         }
 
         // ============== Internals ================
-        // in Java 5, this can be more efficient, and use a single regex
-        // of the form "(?<= before) after". MUST then have transparent bounds
-        private Matcher matchPrevious;
-        private Matcher matchSucceeding;
+        // We cannot use a single regex of the form "(?<= before) after" because
+        // (RI RI)* RI × RI would require unbounded lookbehind.
+        private Pattern before;
+        private Pattern after;
         private String name;
 
         private String resolved;
         private Breaks breaks;
-    }
-
-    /** utility, since we are using Java 1.4 */
-    static boolean matchAfter(Matcher matcher, CharSequence text, int position) {
-        return matcher.reset(text.subSequence(position, text.length())).lookingAt();
-    }
-
-    /**
-     * utility, since we are using Java 1.4 depends on the pattern having been built with .* not
-     * very efficient, works for testing and the best we can do.
-     */
-    static boolean matchBefore(Matcher matcher, CharSequence text, int position) {
-        return matcher.reset(text.subSequence(0, position)).matches();
     }
 
     /** Separate the builder for clarity */
