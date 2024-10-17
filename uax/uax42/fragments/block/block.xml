@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Manual-->
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="blocks" id='schema.block'>
+  ucd.content &amp;=
+    element blocks {
+      element block {
+        attribute first-cp { single-code-point },
+        attribute last-cp { single-code-point },
+        attribute name { text } }+ }?
+</ucdxml:block>
