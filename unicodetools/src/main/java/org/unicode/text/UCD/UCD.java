@@ -1331,6 +1331,11 @@ public final class UCD implements UCD_Types {
                     // Unicode [..] added TANGUT IDEOGRAPH-18D09..TANGUT IDEOGRAPH-18D1C.
                     return TANGUT_SUP_BASE;
                 }
+                // REMOVE BEFORE FLIGHT: The actual version will be greater than 0x110000.
+                if (ch <= 0x18D1E && rCompositeVersion >= 0x110000) {
+                    // Unicode [..] added TANGUT IDEOGRAPH-18D1D..TANGUT IDEOGRAPH-18D1E.
+                    return TANGUT_SUP_BASE;
+                }
             }
 
             // 20000..2A6DF; CJK Unified Ideographs Extension B

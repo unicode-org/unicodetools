@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2024-10-16, 17:24:50 GMT
+# Date: 2024-10-18, 17:34:22 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -37722,7 +37722,7 @@ FFFD          ; REPLACEMENT CHARACTER
 18AFF         ; TANGUT COMPONENT-768
 18B00..18CD5  ; KHITAN SMALL SCRIPT CHARACTER-*
 18CFF         ; KHITAN SMALL SCRIPT CHARACTER-*
-18D00..18D1C  ; TANGUT IDEOGRAPH-*
+18D00..18D1E  ; TANGUT IDEOGRAPH-*
 18D80         ; TANGUT COMPONENT-769
 18D81         ; TANGUT COMPONENT-770
 1AFF0         ; KATAKANA LETTER MINNAN TONE-2
@@ -45369,6 +45369,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 155028
+# Total code points: 155030
 
 # EOF
