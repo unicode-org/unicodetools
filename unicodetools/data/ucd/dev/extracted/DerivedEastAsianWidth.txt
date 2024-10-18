@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-17.0.0.txt
-# Date: 2024-10-16, 17:24:47 GMT
+# Date: 2024-10-18, 17:34:16 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2103,8 +2103,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 761069 code points not listed here.
-# Total code points: 792390
+# The above property value applies to 761067 code points not listed here.
+# Total code points: 792388
 
 # ================================================
 
@@ -2509,7 +2509,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 16FE4         ; W # Mn       KHITAN SMALL SCRIPT FILLER
 16FF0..16FF1  ; W # Mc   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 17000..18CD5  ; W # Lo [7382] TANGUT IDEOGRAPH-17000..KHITAN SMALL SCRIPT CHARACTER-18CD5
-18CFF..18D1C  ; W # Lo  [30] KHITAN SMALL SCRIPT CHARACTER-18CFF..TANGUT IDEOGRAPH-18D1C
+18CFF..18D1E  ; W # Lo  [32] KHITAN SMALL SCRIPT CHARACTER-18CFF..TANGUT IDEOGRAPH-18D1E
 18D80..18D81  ; W # Lo   [2] TANGUT COMPONENT-769..TANGUT COMPONENT-770
 1AFF0..1AFF3  ; W # Lm   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF5..1AFFB  ; W # Lm   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
@@ -2580,7 +2580,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 31350..323AF  ; W # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
 # The above property value applies to 60482 code points not listed here.
-# Total code points: 182645
+# Total code points: 182647
 
 # ================================================
 
