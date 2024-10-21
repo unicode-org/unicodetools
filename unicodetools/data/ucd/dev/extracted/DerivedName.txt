@@ -1,5 +1,5 @@
-# DerivedName-16.0.0.txt
-# Date: 2024-04-30, 21:48:18 GMT
+# DerivedName-17.0.0.txt
+# Date: 2024-10-21, 15:37:51 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -41461,6 +41461,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1DF28         ; LATIN SMALL LETTER R WITH MID-HEIGHT LEFT HOOK
 1DF29         ; LATIN SMALL LETTER S WITH MID-HEIGHT LEFT HOOK
 1DF2A         ; LATIN SMALL LETTER T WITH MID-HEIGHT LEFT HOOK
+1DFD1         ; MODIFIER LETTER SMALL CAPITAL P
 1E000         ; COMBINING GLAGOLITIC LETTER AZU
 1E001         ; COMBINING GLAGOLITIC LETTER BUKY
 1E002         ; COMBINING GLAGOLITIC LETTER VEDE
@@ -45367,6 +45368,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 154998
+# Total code points: 154999
 
 # EOF

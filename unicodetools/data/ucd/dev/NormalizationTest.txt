@@ -1,5 +1,5 @@
-# NormalizationTest-16.0.0.txt
-# Date: 2024-04-30, 21:48:23 GMT
+# NormalizationTest-17.0.0.txt
+# Date: 2024-10-21, 15:38:01 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -16284,6 +16284,7 @@ FFEE;FFEE;FFEE;25CB;25CB; # (￮; ￮; ￮; ○; ○; ) HALFWIDTH WHITE CIRCLE
 1D7FD;1D7FD;1D7FD;0037;0037; # (𝟽; 𝟽; 𝟽; 7; 7; ) MATHEMATICAL MONOSPACE DIGIT SEVEN
 1D7FE;1D7FE;1D7FE;0038;0038; # (𝟾; 𝟾; 𝟾; 8; 8; ) MATHEMATICAL MONOSPACE DIGIT EIGHT
 1D7FF;1D7FF;1D7FF;0039;0039; # (𝟿; 𝟿; 𝟿; 9; 9; ) MATHEMATICAL MONOSPACE DIGIT NINE
+1DFD1;1DFD1;1DFD1;1D18;1D18; # (𝿑; 𝿑; 𝿑; ᴘ; ᴘ; ) MODIFIER LETTER SMALL CAPITAL P
 1E030;1E030;1E030;0430;0430; # (𞀰; 𞀰; 𞀰; а; а; ) MODIFIER LETTER CYRILLIC SMALL A
 1E031;1E031;1E031;0431;0431; # (𞀱; 𞀱; 𞀱; б; б; ) MODIFIER LETTER CYRILLIC SMALL BE
 1E032;1E032;1E032;0432;0432; # (𞀲; 𞀲; 𞀲; в; в; ) MODIFIER LETTER CYRILLIC SMALL VE
