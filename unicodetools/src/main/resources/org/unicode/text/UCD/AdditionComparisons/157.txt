@@ -17,13 +17,16 @@ CorrespondTo [\x{2093} ₓ \N{LATIN SUBSCRIPT SMALL LETTER X}]
            : [x]
            : [X]
 
+# Comparing against ₔ rather than ₓ so we don’t need to ignore the
+# East_Asian_Width of x (Narrow, whereas ə and ɣ are Neutral).
+Ignoring Block:
 Propertywise [\x{1DFD0}   \N{LATIN SUBSCRIPT SMALL LETTER GAMMA}]
            : [ \x{0263} ɣ \N{LATIN SMALL LETTER GAMMA}]
            : [ \x{0194} Ɣ \N{LATIN CAPITAL LETTER GAMMA}]
-CorrespondTo [\x{2093} ₓ \N{LATIN SUBSCRIPT SMALL LETTER X}]
-           : [x]
-           : [X]
-
+CorrespondTo [\x{2094} ₔ \N{LATIN SUBSCRIPT SMALL LETTER SCHWA}]
+           : [\x{0259} ə \N{LATIN SMALL LETTER SCHWA}]
+           : [\x{018F} \N{LATIN CAPITAL LETTER SCHWA}]
+end Ignoring;
 
 end Ignoring;
 
