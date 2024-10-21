@@ -1,0 +1,20 @@
+# Phonetic character: Modifier Small Capital P
+# https://github.com/unicode-org/utc-release-management/issues/156
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+
+Ignoring Block:
+Propertywise [\x{1DFD1}  \N{MODIFIER LETTER SMALL CAPITAL P}]
+           : [\x{1D18} ᴘ \N{LATIN LETTER SMALL CAPITAL P}]
+CorrespondTo [\x{1DAB} ᶫ \N{MODIFIER LETTER SMALL CAPITAL L}]
+           : [\x{029F} ʟ \N{LATIN LETTER SMALL CAPITAL L}]
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
