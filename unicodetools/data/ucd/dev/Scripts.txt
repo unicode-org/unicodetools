@@ -1,7 +1,5 @@
-209D..209F; Latin
-1DFD0; Latin
-# Scripts-16.0.0.txt
-# Date: 2024-04-30, 21:48:40 GMT
+# Scripts-17.0.0.txt
+# Date: 2024-10-21, 18:53:53 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -663,7 +661,7 @@ E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 1E00..1EFF    ; Latin # L& [256] LATIN CAPITAL LETTER A WITH RING BELOW..LATIN SMALL LETTER Y WITH LOOP
 2071          ; Latin # Lm       SUPERSCRIPT LATIN SMALL LETTER I
 207F          ; Latin # Lm       SUPERSCRIPT LATIN SMALL LETTER N
-2090..209C    ; Latin # Lm  [13] LATIN SUBSCRIPT SMALL LETTER A..LATIN SUBSCRIPT SMALL LETTER T
+2090..209F    ; Latin # Lm  [16] LATIN SUBSCRIPT SMALL LETTER A..LATIN SUBSCRIPT SMALL LETTER Z
 212A..212B    ; Latin # L&   [2] KELVIN SIGN..ANGSTROM SIGN
 2132          ; Latin # L&       TURNED CAPITAL F
 214E          ; Latin # L&       TURNED SMALL F
@@ -703,8 +701,9 @@ FF41..FF5A    ; Latin # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 1DF0A         ; Latin # Lo       LATIN LETTER RETROFLEX CLICK WITH RETROFLEX HOOK
 1DF0B..1DF1E  ; Latin # L&  [20] LATIN SMALL LETTER ESH WITH DOUBLE BAR..LATIN SMALL LETTER S WITH CURL
 1DF25..1DF2A  ; Latin # L&   [6] LATIN SMALL LETTER D WITH MID-HEIGHT LEFT HOOK..LATIN SMALL LETTER T WITH MID-HEIGHT LEFT HOOK
+1DFD0         ; Latin # Lm       LATIN SUBSCRIPT SMALL LETTER GAMMA
 
-# Total code points: 1487
+# Total code points: 1491
 
 # ================================================
 

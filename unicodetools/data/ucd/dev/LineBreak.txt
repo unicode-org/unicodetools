@@ -1,5 +1,5 @@
 # LineBreak-17.0.0.txt
-# Date: 2024-10-21, 18:48:21 GMT
+# Date: 2024-10-21, 18:53:24 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -959,8 +959,7 @@
 208A..208C     ; AL # Sm     [3] SUBSCRIPT PLUS SIGN..SUBSCRIPT EQUALS SIGN
 208D           ; OP # Ps         SUBSCRIPT LEFT PARENTHESIS
 208E           ; CL # Pe         SUBSCRIPT RIGHT PARENTHESIS
-2090..209C     ; AL # Lm    [13] LATIN SUBSCRIPT SMALL LETTER A..LATIN SUBSCRIPT SMALL LETTER T
-209D..209F     ; AL # Lm     [3] LATIN SUBSCRIPT SMALL LETTER W..LATIN SUBSCRIPT SMALL LETTER Z
+2090..209F     ; AL # Lm    [16] LATIN SUBSCRIPT SMALL LETTER A..LATIN SUBSCRIPT SMALL LETTER Z
 20A0..20A6     ; PR # Sc     [7] EURO-CURRENCY SIGN..NAIRA SIGN
 20A7           ; PO # Sc         PESETA SIGN
 20A8..20B5     ; PR # Sc    [14] RUPEE SIGN..CEDI SIGN
