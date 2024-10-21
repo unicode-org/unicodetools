@@ -1,3 +1,4 @@
+1DFD1;MODIFIER LETTER SMALL CAPITAL P;Lm;0;L;<super> 1D18;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
