@@ -1,3 +1,5 @@
+209D..209F; Other_Lowercase
+1DFD0; Other_Lowercase
 # PropList-16.0.0.txt
 # Date: 2024-05-31, 18:09:48 GMT
 # © 2024 Unicode®, Inc.
