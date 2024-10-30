@@ -1393,7 +1393,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             "क" + "\u094D" + "a",
                             "a" + "\u094D" + "त",
                             "?" + "\u094D" + "त",
-                            "क" + "\u094D\u094D" + "त"));
+                            "क" + "\u094D\u094D" + "त",
+                            // From L2/14-131, §3.2; made into a single EGC by 179-C31.
+                            // This test would have caught ICU-22956.
+                            "સૻ્સૻ"));
         }
     }
 
