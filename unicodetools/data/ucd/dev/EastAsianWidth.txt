@@ -1,5 +1,5 @@
-# EastAsianWidth-16.0.0.txt
-# Date: 2024-04-30, 21:48:20 GMT
+# EastAsianWidth-17.0.0.txt
+# Date: 2024-10-03, 16:46:33 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1552,6 +1552,7 @@ A790..A7CD     ; N  # L&    [62] LATIN CAPITAL LETTER N WITH DESCENDER..LATIN SM
 A7D0..A7D1     ; N  # L&     [2] LATIN CAPITAL LETTER CLOSED INSULAR G..LATIN SMALL LETTER CLOSED INSULAR G
 A7D3           ; N  # Ll         LATIN SMALL LETTER DOUBLE THORN
 A7D5..A7DC     ; N  # L&     [8] LATIN SMALL LETTER DOUBLE WYNN..LATIN CAPITAL LETTER LAMBDA WITH STROKE
+A7E2           ; N  # Lu         LATIN CAPITAL LETTER R WITH LONG LEG
 A7F2..A7F4     ; N  # Lm     [3] MODIFIER LETTER CAPITAL C..MODIFIER LETTER CAPITAL Q
 A7F5..A7F6     ; N  # L&     [2] LATIN CAPITAL LETTER REVERSED HALF H..LATIN SMALL LETTER REVERSED HALF H
 A7F7           ; N  # Lo         LATIN EPIGRAPHIC LETTER SIDEWAYS I
