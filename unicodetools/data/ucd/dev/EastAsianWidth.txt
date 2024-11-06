@@ -1,5 +1,5 @@
-# EastAsianWidth-16.0.0.txt
-# Date: 2024-04-30, 21:48:20 GMT
+# EastAsianWidth-17.0.0.txt
+# Date: 2024-10-03, 23:17:05 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1673,6 +1673,7 @@ AB5C..AB5F     ; N  # Lm     [4] MODIFIER LETTER SMALL HENG..MODIFIER LETTER SMA
 AB60..AB68     ; N  # Ll     [9] LATIN SMALL LETTER SAKHA YAT..LATIN SMALL LETTER TURNED R WITH MIDDLE TILDE
 AB69           ; N  # Lm         MODIFIER LETTER SMALL TURNED W
 AB6A..AB6B     ; N  # Sk     [2] MODIFIER LETTER LEFT TACK..MODIFIER LETTER RIGHT TACK
+AB6C..AB6D     ; N  # Lu     [2] LATIN CAPITAL LETTER SCRIPT R..LATIN CAPITAL LETTER SCRIPT R WITH RING
 AB70..ABBF     ; N  # Ll    [80] CHEROKEE SMALL LETTER A..CHEROKEE SMALL LETTER YA
 ABC0..ABE2     ; N  # Lo    [35] MEETEI MAYEK LETTER KOK..MEETEI MAYEK LETTER I LONSUM
 ABE3..ABE4     ; N  # Mc     [2] MEETEI MAYEK VOWEL SIGN ONAP..MEETEI MAYEK VOWEL SIGN INAP
