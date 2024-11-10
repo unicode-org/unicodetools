@@ -1,13 +1,25 @@
 package org.unicode.tools;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Objects;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
+import com.ibm.icu.text.StringTransform;
+import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.NavigableMap;
 import java.util.Stack;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.text.utility.Utility;
 
@@ -17,18 +29,20 @@ public class CheckLinkification {
     }
 
     private void check() {
-        checkParsePathQueryFragment();
+        checkLinkification();
         checkOverlap();
+        checkMinimumEscaping();
+        if (true) return;
         showLinkTermination();
         showLinkPairedOpeners();
     }
 
     public enum LinkTermination {
-        None("[\\p{ANY}]"), // overridden by following
+        Include("[\\p{ANY}]"), // overridden by following
         Hard("[\\p{whitespace}\\p{NChar}\\p{C}]"),
         Soft("[\\p{Term}[‘-‛ ‹ › \"“-‟ « »']]"),
-        Closing("\\p{Bidi_Paired_Bracket_Type=Close}"),
-        Opening("\\p{Bidi_Paired_Bracket_Type=Open}"),
+        Close("[\\p{Bidi_Paired_Bracket_Type=Close}[>]]"),
+        Open("[\\p{Bidi_Paired_Bracket_Type=Open}[<]]"),
         ;
 
         final UnicodeSet base;
@@ -49,7 +63,7 @@ public class CheckLinkification {
 
     void checkOverlap() {
         for (LinkTermination lt : LinkTermination.values()) {
-            if (lt == lt.None) {
+            if (lt == lt.Include) {
                 continue;
             }
             UnicodeSet propValue = lt.Property.getSet(lt);
@@ -63,8 +77,8 @@ public class CheckLinkification {
         for (LinkTermination lt : LinkTermination.values()) {
             UnicodeSet value = LinkTermination.Property.getSet(lt);
             String name = lt.toString();
-            System.out.println("\n#\tLinkTermination=" + name);
-            if (lt == lt.None) {
+            System.out.println("\n#\tLink_Termination=" + name);
+            if (lt == lt.Include) {
                 System.out.println("#   " + "(All code points without other values)");
                 continue;
             } else {
@@ -123,10 +137,11 @@ public class CheckLinkification {
     }
 
     void showLinkPairedOpeners() {
-        UnicodeSet value = LinkTermination.Property.getSet(LinkTermination.Closing);
+        UnicodeSet value = LinkTermination.Property.getSet(LinkTermination.Close);
 
-        System.out.println("\n#\tLinkPairedOpeners");
-        System.out.println("#   draft = BidiPairedBracket");
+        System.out.println("\n#\tLink_Paired_Opener");
+        System.out.println(
+                "#   draft = BidiPairedBracket + (“&gt;” GREATER-THAN SIGN 🡆  “&lt;” LESS-THAN SIGN)");
         System.out.println();
 
         for (String cpString : value) {
@@ -152,7 +167,7 @@ public class CheckLinkification {
     }
 
     public int getOpening(int cp) {
-        return UCharacter.getBidiPairedBracket(cp);
+        return cp == '>' ? '<' : UCharacter.getBidiPairedBracket(cp);
     }
 
     public enum Part {
@@ -209,9 +224,10 @@ public class CheckLinkification {
                 lastSafe = i + 1;
                 continue;
             }
+            
             LinkTermination lt = LinkTermination.Property.get(cp);
             switch (lt) {
-                case None:
+                case Include:
                     if (part.terminators.contains(cp)) {
                         lastSafe = i;
                         part = Part.fromInitiator(cp);
@@ -225,10 +241,11 @@ public class CheckLinkification {
                     break;
                 case Hard:
                     return lastSafe;
-                case Opening:
+                case Open:
                     openingStack.push(cp);
+                    lastSafe = i + 1;
                     break;
-                case Closing:
+                case Close:
                     if (openingStack.empty()) {
                         return lastSafe;
                     }
@@ -244,39 +261,238 @@ public class CheckLinkification {
         return codePoints.length;
     }
 
-    /** TODO: change into test */
-    public void checkParsePathQueryFragment() {
-        String[][] tests = {
-            {"abc", "|abc"},
-            {"/abc", "/abc|"},
-            {"?abc", "?abc|"},
-            {"#abc", "#abc|"},
-            // complex
-            {"/abc/qrs?def#ghi", "/abc/qrs?def#ghi|"},
-            // soft vs hard
-            {"/abc/qrs?d.ef#ghi", "/abc/qrs?d.ef#ghi|"},
-            {"/abc/qrs?d ef#ghi", "/abc/qrs?d| ef#ghi"},
-            {"/abc/qrs?d. ef#ghi", "/abc/qrs?d|. ef#ghi"},
-            // ordering
-            {"/a/bc?d/e?f#g/h?i#j", "/a/bc?d/e?f#g/h?i#j|"},
-            // opening/closing
-            {"/a(c)", "/a(c)|"},
-            {"/ac)", "/ac|)"},
-            {"/ab(c/q)rs?def#ghi", "/ab(c/q)rs?def#ghi|"},
-        };
-        for (String[] test : tests) {
-            String source = test[0];
-            String expected = test[1];
-            int parseResult = parsePathQueryFragment(source, 0);
-            String actual = source.substring(0, parseResult) + "|" + source.substring(parseResult);
-            System.out.println(
-                    (expected.equals(actual) ? "OK" : "ERROR")
-                            + " "
-                            + source
-                            + " expected: "
-                            + expected
-                            + " actual: "
-                            + actual);
+    /**
+     * Minimally escape. Presumes that the parts have had necessary interior quoting.<br>
+     * For example, a path
+     */
+    public String minimalEscape(NavigableMap<Part, String> parts) {
+        StringBuilder output = new StringBuilder();
+        // get the last part
+        List<Entry<Part, String>> ordered = List.copyOf(parts.entrySet());
+        Part lastPart = ordered.get(ordered.size() - 1).getKey();
+        // process all parts
+        for (Entry<Part, String> partEntry : ordered) {
+            Part part = partEntry.getKey();
+            int[] cps = partEntry.getValue().codePoints().toArray();
+            int n = cps.length;
+            output.appendCodePoint(part.initiator);
+            int copiedAlready = 0;
+            Stack<Integer> openingStack = new Stack<>();
+            for (int i = 0; i < n; ++i) {
+                final int cp = cps[i];
+                LinkTermination lt = part.terminators.contains(cp) ? LinkTermination.Hard :
+                        LinkTermination.Property.get(cp);
+                switch (lt) {
+                    case Include:
+                        appendCodePointsBetween(output, cps, copiedAlready, i);
+                        output.appendCodePoint(cp);
+                        copiedAlready = i + 1;
+                        break;
+                    case Hard:
+                        appendCodePointsBetween(output, cps, copiedAlready, i);
+                        appendPercentEscaped(output, cp);
+                        copiedAlready = i + 1;
+                        continue;
+                    case Soft: // fix
+                        continue;
+                    case Open:
+                        openingStack.push(cp);
+                        appendCodePointsBetween(output, cps, copiedAlready, i);
+                        output.appendCodePoint(cp);
+                        copiedAlready = i + 1;
+                        continue; // fix
+                    case Close: // fix
+                        if (openingStack.empty()) {
+                            appendCodePointsBetween(output, cps, copiedAlready, i);
+                            appendPercentEscaped(output, cp);
+                        } else {
+                            Integer topOfStack = openingStack.pop();
+                            int matchingOpening = getOpening(cp);
+                            if (matchingOpening == topOfStack) {
+                                appendCodePointsBetween(output, cps, copiedAlready, i);
+                                output.appendCodePoint(cp);
+                            } else { // failed to match
+                                appendCodePointsBetween(output, cps, copiedAlready, i);
+                                appendPercentEscaped(output, cp);
+                            }
+                        }
+                        copiedAlready = i + 1;
+                        continue;
+                    default:
+                        throw new IllegalArgumentException();
+                }
+            } // fix
+            if (part != lastPart) {
+                appendCodePointsBetween(output, cps, copiedAlready, n);
+            } else if (copiedAlready < n) {
+                appendCodePointsBetween(output, cps, copiedAlready, n - 1);
+                appendPercentEscaped(output, cps[n - 1]);
+            }
         }
+        return output.toString();
+    }
+
+    private void appendPercentEscaped(StringBuilder output, int cp) {
+        output.append('%');
+        byte[] bytes = Character.toString(cp).getBytes(StandardCharsets.UTF_8);
+        for (int i = 0; i < bytes.length; ++i) {
+            output.append(Utility.hex(bytes[i]));
+        }
+    }
+
+    private void appendCodePointsBetween(
+            StringBuilder output, int[] cp, int copyEnd, int notToCopy) {
+        for (int i = copyEnd; i < notToCopy; ++i) {
+            output.appendCodePoint(cp[i]);
+        }
+    }
+
+    static final char LINKIFY_START = '⸠';
+    static final char LINKIFY_END = '⸡';
+
+    /* The following is very temporary, just during the spec development. */
+
+    /** TODO: extract test later */
+    public void checkLinkification() {
+        String[][] tests = {
+            {"!", "!"},
+            {"/avg", "/avg⸡"},
+            {"?avg", "?avg⸡"},
+            {"#avg", "#avg⸡"},
+            // complex
+            {"/avg/dez?thik#lmn", "/avg/dez?thik#lmn⸡"},
+            // soft vs hard
+            {"/avg/dez?d.ef#lmn", "/avg/dez?d.ef#lmn⸡"},
+            {"/avg/dez?d ef#lmn", "/avg/dez?d⸡ ef#lmn", "Break on hard (' ')"},
+            {"/avg/dez?d. ef#lmn", "/avg/dez?d⸡. ef#lmn", "Break on soft ('.') followed by hard (' ')"},
+            // ordering
+            {"/a/vg?d/e?z#l/m?n#p", "/a/vg?d/e?z#l/m?n#p⸡"},
+            // opening/closing
+            {"/av)", "/av⸡)", "Break on unmatched bracket"},
+            {"/a(v)", "/a(v)⸡", "Include matched bracket"},
+            {"/av(g/d)rs?thik#lmn", "/av(g/d)rs?thik#lmn⸡", "Includes matching across interior syntax — consider changing"},
+        };
+        List<List<String>> testLines = new ArrayList<>();
+        for (String[] test : tests) {
+            for (StringTransform alt : ALTS) {
+                if (alt != null) { // generate alt version
+                    String comment = test.length < 3 ? null : test[2]; // save
+                  test =
+                            Arrays.asList(test).stream()
+                                    .map(x -> alt.transform(x))
+                                    .collect(Collectors.toList())
+                                    .toArray(new String[test.length]);
+                  if (comment != null) {
+                      test[2] = comment;
+                  }
+                 testLines.add(Arrays.asList(test));
+                }
+
+                String source = test[0];
+                String expected = test[1];
+                int parseResult = parsePathQueryFragment(source, 0);
+                String actual =
+                        parseResult == 0
+                                ? source
+                                : source.substring(0, parseResult)
+                                        + LINKIFY_END
+                                        + source.substring(parseResult);
+                tempAssertEquals(source.toString(), expected, actual);
+            }
+        }
+        System.out.println(
+                "\n@Linkification\n"
+                        + "# Field 0: Source\n" //
+                        + "# Field 1: Expected Linkification, where:\n\t"
+                        + LINKIFY_START
+                        + " is at the start, and \n\t"
+                        + LINKIFY_END
+                        + " is at the end" //
+                        + "\n");
+        for (List<String> testLine : testLines) {
+            System.out.println("See example.com" + testLine.get(0) + " on…;\tSee " + LINKIFY_START + "example.com" + testLine.get(1) + " on…" + (testLine.size() == 2 ? "" : "\t# " + testLine.get(2)));
+        }
+    }
+
+    static final StringTransform[] ALTS = {
+        null, Transliterator.getInstance("[a-z] Latin-Greek/UNGEGN")
+    };
+
+    /** TODO: extract test later */
+    public void checkMinimumEscaping() {
+        System.out.println();
+        String[][] tests = {
+                {"a", "", "", "/a", "Path only"},
+                {"", "a", "", "?a", "Query only"},
+                {"", "", "a", "#a", "Fragment only"},
+                {"avg/dez", "th=ikl&m=nxo", "prs", "/avg/dez?th=ikl&m=nxo#prs", "All parts"},
+           {"a?b", "", "", "/a%3Fb", "Escape ? in Path"},
+            {"a#v", "g=d#e", "", "/a%23v?g=d%23e", "Escape # in Path/Query"},
+            {"av g/dez", "th=ik l&=nxo", "pr s", "/av%20g/dez?th=ik%20l&=nxo#pr%20s", "Escape hard (' ')"},
+            {"avg./dez.", "th=ik.l&=nxo.", "prs.", "/avg./dez.?th=ik.l&=nxo.#prs%2E", "Escape soft ('.') unless followed by include"},
+            {"a(v))", "g(d))", "e(z))", "/a(v)%29?g(d)%29#e(z)%29", "Escape unmatched brackets"},
+        };
+        List<List<String>> testLines = new ArrayList<>();
+        int line = 0;
+        for (String[] test : tests) {
+            ++line;
+            for (StringTransform alt : ALTS) {
+                if (alt != null) { // generate alt version
+                    String comment = test.length < 5 ? null : test[4]; // save
+                    test =
+                            Arrays.asList(test).stream()
+                                    .map(x -> alt.transform(x))
+                                    .collect(Collectors.toList())
+                                    .toArray(new String[test.length]);
+                    if (comment != null) {
+                        test[4] = comment;
+                    }
+                    testLines.add(Arrays.asList(test));
+                }
+                // produce a map, ignoring null values
+                int j = 0;
+                TreeMap<Part, String> source = new TreeMap<>();
+                for (Part part : List.of(Part.PATH, Part.QUERY, Part.FRAGMENT)) {
+                    if (!test[j].isEmpty()) {
+                        source.put(part, test[j]);
+                    }
+                    j++;
+                }
+                // check
+                final String expected = test[3];
+                final String actual = minimalEscape(source);
+                tempAssertEquals(line + ") " + source.toString() , expected, actual);
+            }
+        }
+        System.out.println(
+                "\n@Minimal-Escaping\n"
+                        + "# Field 0: Domain\n"
+                        + "# Field 1: Path\n"
+                        + "# Field 2: Query\n"
+                        + "# Field 3: Fragment\n"
+                        + "# Field 4: Expected result\n");
+        for (List<String> testLine : testLines) {
+            System.out.println(
+                    "https://example.com;\t"
+                            + Joiner.on(";\t").join(testLine.subList(0, 3))
+                            + ";\thttps://example.com"
+                            + testLine.get(3)
+                            + (testLine.size() < 5 ? "" : "\t# " + testLine.get(4)));
+        }
+    }
+
+    private static final String SPLIT1 = "\t"; // for debugging, "\n";
+
+    public <T> void tempAssertEquals(String message, T expected, T actual) {
+        System.out.println(
+                (Objects.equal(expected, actual) ? "OK" : "ERROR")
+                        + " "
+                        + message
+                        + SPLIT1
+                        + "expected:\t"
+                        + expected
+                        + SPLIT1
+                        + "actual:  \t"
+                        + actual);
     }
 }
