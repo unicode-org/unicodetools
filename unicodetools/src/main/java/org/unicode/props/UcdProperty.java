@@ -213,7 +213,7 @@ public enum UcdProperty {
             "cjkRSUnicode",
             "Unicode_Radical_Stroke",
             "URS"),
-    kReading(PropertyType.Miscellaneous, "cjkReading"),
+    kReading(PropertyType.Miscellaneous, "kReading"),
     kSBGY(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSBGY"),
     kSMSZD2003Index(
             PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSMSZD2003Index"),
