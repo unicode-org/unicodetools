@@ -1,5 +1,5 @@
 # DerivedNormalizationProps-17.0.0.txt
-# Date: 2024-10-16, 15:12:05 GMT
+# Date: 2024-11-13, 22:18:47 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -5449,7 +5449,10 @@ A7C7          ; NFKC_CF; A7C8           # L&       LATIN CAPITAL LETTER D WITH S
 A7C9          ; NFKC_CF; A7CA           # L&       LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY
 A7CB          ; NFKC_CF; 0264           # L&       LATIN CAPITAL LETTER RAMS HORN
 A7CC          ; NFKC_CF; A7CD           # L&       LATIN CAPITAL LETTER S WITH DIAGONAL STROKE
+A7CE          ; NFKC_CF; A7CF           # L&       LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE
 A7D0          ; NFKC_CF; A7D1           # L&       LATIN CAPITAL LETTER CLOSED INSULAR G
+A7D2          ; NFKC_CF; A7D3           # L&       LATIN CAPITAL LETTER DOUBLE THORN
+A7D4          ; NFKC_CF; A7D5           # L&       LATIN CAPITAL LETTER DOUBLE WYNN
 A7D6          ; NFKC_CF; A7D7           # L&       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; NFKC_CF; A7D9           # L&       LATIN CAPITAL LETTER SIGMOID S
 A7DA          ; NFKC_CF; A7DB           # L&       LATIN CAPITAL LETTER LAMBDA
@@ -9150,7 +9153,7 @@ E0080..E00FF  ; NFKC_CF;                # Cn [128] <reserved-E0080>..<reserved-E
 E0100..E01EF  ; NFKC_CF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_CF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10555
+# Total code points: 10558
 
 # ================================================
 
@@ -11584,7 +11587,10 @@ A7C7          ; NFKC_SCF; A7C8           # L&       LATIN CAPITAL LETTER D WITH 
 A7C9          ; NFKC_SCF; A7CA           # L&       LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY
 A7CB          ; NFKC_SCF; 0264           # L&       LATIN CAPITAL LETTER RAMS HORN
 A7CC          ; NFKC_SCF; A7CD           # L&       LATIN CAPITAL LETTER S WITH DIAGONAL STROKE
+A7CE          ; NFKC_SCF; A7CF           # L&       LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE
 A7D0          ; NFKC_SCF; A7D1           # L&       LATIN CAPITAL LETTER CLOSED INSULAR G
+A7D2          ; NFKC_SCF; A7D3           # L&       LATIN CAPITAL LETTER DOUBLE THORN
+A7D4          ; NFKC_SCF; A7D5           # L&       LATIN CAPITAL LETTER DOUBLE WYNN
 A7D6          ; NFKC_SCF; A7D7           # L&       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; NFKC_SCF; A7D9           # L&       LATIN CAPITAL LETTER SIGMOID S
 A7DA          ; NFKC_SCF; A7DB           # L&       LATIN CAPITAL LETTER LAMBDA
@@ -15285,7 +15291,7 @@ E0080..E00FF  ; NFKC_SCF;                # Cn [128] <reserved-E0080>..<reserved-
 E0100..E01EF  ; NFKC_SCF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_SCF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10517
+# Total code points: 10520
 
 # ================================================
 
@@ -16055,7 +16061,10 @@ A7C2          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER ANG
 A7C4..A7C7    ; Changes_When_NFKC_Casefolded # L&   [4] LATIN CAPITAL LETTER C WITH PALATAL HOOK..LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY
 A7C9          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY
 A7CB..A7CC    ; Changes_When_NFKC_Casefolded # L&   [2] LATIN CAPITAL LETTER RAMS HORN..LATIN CAPITAL LETTER S WITH DIAGONAL STROKE
+A7CE          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE
 A7D0          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER CLOSED INSULAR G
+A7D2          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER DOUBLE THORN
+A7D4          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER DOUBLE WYNN
 A7D6          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER SIGMOID S
 A7DA          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER LAMBDA
@@ -16303,6 +16312,6 @@ E0080..E00FF  ; Changes_When_NFKC_Casefolded # Cn [128] <reserved-E0080>..<reser
 E0100..E01EF  ; Changes_When_NFKC_Casefolded # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; Changes_When_NFKC_Casefolded # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10555
+# Total code points: 10558
 
 # EOF
