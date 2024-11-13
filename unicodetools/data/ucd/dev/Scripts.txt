@@ -1,5 +1,5 @@
 # Scripts-17.0.0.txt
-# Date: 2024-11-13, 16:15:00 GMT
+# Date: 2024-11-13, 17:50:59 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1014,8 +1014,9 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 09FC          ; Bengali # Lo       BENGALI LETTER VEDIC ANUSVARA
 09FD          ; Bengali # Po       BENGALI ABBREVIATION SIGN
 09FE          ; Bengali # Mn       BENGALI SANDHI MARK
+09FF          ; Bengali # Lo       BENGALI LETTER SANSKRIT BA
 
-# Total code points: 96
+# Total code points: 97
 
 # ================================================
 
@@ -1092,7 +1093,7 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 0B47..0B48    ; Oriya # Mc   [2] ORIYA VOWEL SIGN E..ORIYA VOWEL SIGN AI
 0B4B..0B4C    ; Oriya # Mc   [2] ORIYA VOWEL SIGN O..ORIYA VOWEL SIGN AU
 0B4D          ; Oriya # Mn       ORIYA SIGN VIRAMA
-0B55..0B56    ; Oriya # Mn   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
+0B53..0B56    ; Oriya # Mn   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
 0B57          ; Oriya # Mc       ORIYA AU LENGTH MARK
 0B5C..0B5D    ; Oriya # Lo   [2] ORIYA LETTER RRA..ORIYA LETTER RHA
 0B5F..0B61    ; Oriya # Lo   [3] ORIYA LETTER YYA..ORIYA LETTER VOCALIC LL
@@ -1102,7 +1103,7 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 0B71          ; Oriya # Lo       ORIYA LETTER WA
 0B72..0B77    ; Oriya # No   [6] ORIYA FRACTION ONE QUARTER..ORIYA FRACTION THREE SIXTEENTHS
 
-# Total code points: 91
+# Total code points: 93
 
 # ================================================
 
@@ -1155,7 +1156,7 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 0C4A..0C4D    ; Telugu # Mn   [4] TELUGU VOWEL SIGN O..TELUGU SIGN VIRAMA
 0C55..0C56    ; Telugu # Mn   [2] TELUGU LENGTH MARK..TELUGU AI LENGTH MARK
 0C58..0C5A    ; Telugu # Lo   [3] TELUGU LETTER TSA..TELUGU LETTER RRRA
-0C5D          ; Telugu # Lo       TELUGU LETTER NAKAARA POLLU
+0C5C..0C5D    ; Telugu # Lo   [2] TELUGU ARCHAIC SHRII..TELUGU LETTER NAKAARA POLLU
 0C60..0C61    ; Telugu # Lo   [2] TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C62..0C63    ; Telugu # Mn   [2] TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
 0C66..0C6F    ; Telugu # Nd  [10] TELUGU DIGIT ZERO..TELUGU DIGIT NINE
@@ -1163,7 +1164,7 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 0C78..0C7E    ; Telugu # No   [7] TELUGU FRACTION DIGIT ZERO FOR ODD POWERS OF FOUR..TELUGU FRACTION DIGIT THREE FOR EVEN POWERS OF FOUR
 0C7F          ; Telugu # So       TELUGU SIGN TUUMU
 
-# Total code points: 100
+# Total code points: 101
 
 # ================================================
 
@@ -1186,14 +1187,14 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 0CCA..0CCB    ; Kannada # Mc   [2] KANNADA VOWEL SIGN O..KANNADA VOWEL SIGN OO
 0CCC..0CCD    ; Kannada # Mn   [2] KANNADA VOWEL SIGN AU..KANNADA SIGN VIRAMA
 0CD5..0CD6    ; Kannada # Mc   [2] KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
-0CDD..0CDE    ; Kannada # Lo   [2] KANNADA LETTER NAKAARA POLLU..KANNADA LETTER FA
+0CDC..0CDE    ; Kannada # Lo   [3] KANNADA ARCHAIC SHRII..KANNADA LETTER FA
 0CE0..0CE1    ; Kannada # Lo   [2] KANNADA LETTER VOCALIC RR..KANNADA LETTER VOCALIC LL
 0CE2..0CE3    ; Kannada # Mn   [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
 0CE6..0CEF    ; Kannada # Nd  [10] KANNADA DIGIT ZERO..KANNADA DIGIT NINE
 0CF1..0CF2    ; Kannada # Lo   [2] KANNADA SIGN JIHVAMULIYA..KANNADA SIGN UPADHMANIYA
 0CF3          ; Kannada # Mc       KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
 
-# Total code points: 91
+# Total code points: 92
 
 # ================================================
 
@@ -1647,8 +1648,7 @@ A490..A4C6    ; Yi # So  [55] YI RADICAL QOT..YI RADICAL KE
 0951..0954    ; Inherited # Mn   [4] DEVANAGARI STRESS SIGN UDATTA..DEVANAGARI ACUTE ACCENT
 1AB0..1ABD    ; Inherited # Mn  [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
 1ABE          ; Inherited # Me       COMBINING PARENTHESES OVERLAY
-1ABF..1ACE    ; Inherited # Mn  [16] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER INSULAR T
-1AD0..1AD5    ; Inherited # Mn   [6] COMBINING VERTICAL-LINE-ACUTE..COMBINING MACRON-VERTICAL-LINE
+1ABF..1AD5    ; Inherited # Mn  [23] COMBINING LATIN SMALL LETTER W BELOW..COMBINING MACRON-VERTICAL-LINE
 1CD0..1CD2    ; Inherited # Mn   [3] VEDIC TONE KARSHANA..VEDIC TONE PRENKHA
 1CD4..1CE0    ; Inherited # Mn  [13] VEDIC SIGN YAJURVEDIC MIDLINE SVARITA..VEDIC TONE RIGVEDIC KASHMIRI INDEPENDENT SVARITA
 1CE2..1CE8    ; Inherited # Mn   [7] VEDIC SIGN VISARGA SVARITA..VEDIC SIGN VISARGA ANUDATTA WITH TAIL
@@ -1677,7 +1677,7 @@ FE20..FE2D    ; Inherited # Mn  [14] COMBINING LIGATURE LEFT HALF..COMBINING CON
 1D1AA..1D1AD  ; Inherited # Mn   [4] MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 E0100..E01EF  ; Inherited # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 663
+# Total code points: 664
 
 # ================================================
 

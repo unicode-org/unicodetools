@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-17.0.0.txt
-# Date: 2024-11-13, 16:14:37 GMT
+# Date: 2024-11-13, 17:50:36 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -50,7 +50,7 @@
 09D8..09DB    ; Cn #   [4] <reserved-09D8>..<reserved-09DB>
 09DE          ; Cn #       <reserved-09DE>
 09E4..09E5    ; Cn #   [2] <reserved-09E4>..<reserved-09E5>
-09FF..0A00    ; Cn #   [2] <reserved-09FF>..<reserved-0A00>
+0A00          ; Cn #       <reserved-0A00>
 0A04          ; Cn #       <reserved-0A04>
 0A0B..0A0E    ; Cn #   [4] <reserved-0A0B>..<reserved-0A0E>
 0A11..0A12    ; Cn #   [2] <reserved-0A11>..<reserved-0A12>
@@ -90,7 +90,7 @@
 0B3A..0B3B    ; Cn #   [2] <reserved-0B3A>..<reserved-0B3B>
 0B45..0B46    ; Cn #   [2] <reserved-0B45>..<reserved-0B46>
 0B49..0B4A    ; Cn #   [2] <reserved-0B49>..<reserved-0B4A>
-0B4E..0B54    ; Cn #   [7] <reserved-0B4E>..<reserved-0B54>
+0B4E..0B52    ; Cn #   [5] <reserved-0B4E>..<reserved-0B52>
 0B58..0B5B    ; Cn #   [4] <reserved-0B58>..<reserved-0B5B>
 0B5E          ; Cn #       <reserved-0B5E>
 0B64..0B65    ; Cn #   [2] <reserved-0B64>..<reserved-0B65>
@@ -119,7 +119,7 @@
 0C49          ; Cn #       <reserved-0C49>
 0C4E..0C54    ; Cn #   [7] <reserved-0C4E>..<reserved-0C54>
 0C57          ; Cn #       <reserved-0C57>
-0C5B..0C5C    ; Cn #   [2] <reserved-0C5B>..<reserved-0C5C>
+0C5B          ; Cn #       <reserved-0C5B>
 0C5E..0C5F    ; Cn #   [2] <reserved-0C5E>..<reserved-0C5F>
 0C64..0C65    ; Cn #   [2] <reserved-0C64>..<reserved-0C65>
 0C70..0C76    ; Cn #   [7] <reserved-0C70>..<reserved-0C76>
@@ -131,7 +131,7 @@
 0CC5          ; Cn #       <reserved-0CC5>
 0CC9          ; Cn #       <reserved-0CC9>
 0CCE..0CD4    ; Cn #   [7] <reserved-0CCE>..<reserved-0CD4>
-0CD7..0CDC    ; Cn #   [6] <reserved-0CD7>..<reserved-0CDC>
+0CD7..0CDB    ; Cn #   [5] <reserved-0CD7>..<reserved-0CDB>
 0CDF          ; Cn #       <reserved-0CDF>
 0CE4..0CE5    ; Cn #   [2] <reserved-0CE4>..<reserved-0CE5>
 0CF0          ; Cn #       <reserved-0CF0>
@@ -227,7 +227,6 @@
 1A8A..1A8F    ; Cn #   [6] <reserved-1A8A>..<reserved-1A8F>
 1A9A..1A9F    ; Cn #   [6] <reserved-1A9A>..<reserved-1A9F>
 1AAE..1AAF    ; Cn #   [2] <reserved-1AAE>..<reserved-1AAF>
-1ACF          ; Cn #       <reserved-1ACF>
 1AD6..1AFF    ; Cn #  [42] <reserved-1AD6>..<reserved-1AFF>
 1B4D          ; Cn #       <reserved-1B4D>
 1BF4..1BFB    ; Cn #   [8] <reserved-1BF4>..<reserved-1BFB>
@@ -747,7 +746,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 819526
+# Total code points: 819520
 
 # ================================================
 
@@ -2222,6 +2221,7 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 09DF..09E1    ; Lo #   [3] BENGALI LETTER YYA..BENGALI LETTER VOCALIC LL
 09F0..09F1    ; Lo #   [2] BENGALI LETTER RA WITH MIDDLE DIAGONAL..BENGALI LETTER RA WITH LOWER DIAGONAL
 09FC          ; Lo #       BENGALI LETTER VEDIC ANUSVARA
+09FF          ; Lo #       BENGALI LETTER SANSKRIT BA
 0A05..0A0A    ; Lo #   [6] GURMUKHI LETTER A..GURMUKHI LETTER UU
 0A0F..0A10    ; Lo #   [2] GURMUKHI LETTER EE..GURMUKHI LETTER AI
 0A13..0A28    ; Lo #  [22] GURMUKHI LETTER OO..GURMUKHI LETTER NA
@@ -2269,7 +2269,7 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 0C2A..0C39    ; Lo #  [16] TELUGU LETTER PA..TELUGU LETTER HA
 0C3D          ; Lo #       TELUGU SIGN AVAGRAHA
 0C58..0C5A    ; Lo #   [3] TELUGU LETTER TSA..TELUGU LETTER RRRA
-0C5D          ; Lo #       TELUGU LETTER NAKAARA POLLU
+0C5C..0C5D    ; Lo #   [2] TELUGU ARCHAIC SHRII..TELUGU LETTER NAKAARA POLLU
 0C60..0C61    ; Lo #   [2] TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C80          ; Lo #       KANNADA SIGN SPACING CANDRABINDU
 0C85..0C8C    ; Lo #   [8] KANNADA LETTER A..KANNADA LETTER VOCALIC L
@@ -2278,7 +2278,7 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 0CAA..0CB3    ; Lo #  [10] KANNADA LETTER PA..KANNADA LETTER LLA
 0CB5..0CB9    ; Lo #   [5] KANNADA LETTER VA..KANNADA LETTER HA
 0CBD          ; Lo #       KANNADA SIGN AVAGRAHA
-0CDD..0CDE    ; Lo #   [2] KANNADA LETTER NAKAARA POLLU..KANNADA LETTER FA
+0CDC..0CDE    ; Lo #   [3] KANNADA ARCHAIC SHRII..KANNADA LETTER FA
 0CE0..0CE1    ; Lo #   [2] KANNADA LETTER VOCALIC RR..KANNADA LETTER VOCALIC LL
 0CF1..0CF2    ; Lo #   [2] KANNADA SIGN JIHVAMULIYA..KANNADA SIGN UPADHMANIYA
 0D04..0D0C    ; Lo #   [9] MALAYALAM LETTER VEDIC ANUSVARA..MALAYALAM LETTER VOCALIC L
@@ -2708,7 +2708,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Lo # [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 136478
+# Total code points: 136481
 
 # ================================================
 
@@ -2773,7 +2773,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 0B3F          ; Mn #       ORIYA VOWEL SIGN I
 0B41..0B44    ; Mn #   [4] ORIYA VOWEL SIGN U..ORIYA VOWEL SIGN VOCALIC RR
 0B4D          ; Mn #       ORIYA SIGN VIRAMA
-0B55..0B56    ; Mn #   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
+0B53..0B56    ; Mn #   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
 0B62..0B63    ; Mn #   [2] ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
 0B82          ; Mn #       TAMIL SIGN ANUSVARA
 0BC0          ; Mn #       TAMIL VOWEL SIGN II
@@ -2856,8 +2856,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 1A73..1A7C    ; Mn #  [10] TAI THAM VOWEL SIGN OA ABOVE..TAI THAM SIGN KHUEN-LUE KARAN
 1A7F          ; Mn #       TAI THAM COMBINING CRYPTOGRAMMIC DOT
 1AB0..1ABD    ; Mn #  [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
-1ABF..1ACE    ; Mn #  [16] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER INSULAR T
-1AD0..1AD5    ; Mn #   [6] COMBINING VERTICAL-LINE-ACUTE..COMBINING MACRON-VERTICAL-LINE
+1ABF..1AD5    ; Mn #  [23] COMBINING LATIN SMALL LETTER W BELOW..COMBINING MACRON-VERTICAL-LINE
 1B00..1B03    ; Mn #   [4] BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
 1B34          ; Mn #       BALINESE SIGN REREKAN
 1B36..1B3A    ; Mn #   [5] BALINESE VOWEL SIGN ULU..BALINESE VOWEL SIGN RA REPA
@@ -3073,7 +3072,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2026
+# Total code points: 2029
 
 # ================================================
 
