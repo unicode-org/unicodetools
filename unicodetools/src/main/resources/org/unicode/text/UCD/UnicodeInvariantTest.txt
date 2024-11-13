@@ -721,7 +721,7 @@ Let $nonLowercaseSmallLetters := [
     \N{TURNED GREEK SMALL LETTER IOTA}
     \p{name=/^(SQUARED|PARENTHESIZED|TAG) LATIN SMALL LETTER/}
 ]
-Let $nonLowercaseSmallModifierLetters := [ \p{gc=Lm} & \p{name=/^ARABIC SMALL/} ]
+Let $nonLowercaseSmallModifierLetters := [ \p{gc=Lm} & \p{name=/^(ARABIC|CHINESE) SMALL/} ]
 [ \p{name=/\bSMALL LETTER\b/}-\p{gc=Mn}-\p{gc=Lt} - $nonLowercaseSmallLetters ] ⊆ \p{Lowercase}
 [ [\p{gc=Lm} & \p{name=/SMALL/}] - $nonLowercaseSmallModifierLetters ] ⊆ \p{Lowercase}
 
