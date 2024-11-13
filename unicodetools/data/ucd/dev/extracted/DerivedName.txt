@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2024-10-16, 13:46:31 GMT
+# Date: 2024-11-13, 12:26:52 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -45021,7 +45021,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1FBF8         ; SEGMENTED DIGIT EIGHT
 1FBF9         ; SEGMENTED DIGIT NINE
 20000..2A6DF  ; CJK UNIFIED IDEOGRAPH-*
-2A700..2B73A  ; CJK UNIFIED IDEOGRAPH-*
+2A700..2B73E  ; CJK UNIFIED IDEOGRAPH-*
 2B740..2B81D  ; CJK UNIFIED IDEOGRAPH-*
 2B820..2CEA1  ; CJK UNIFIED IDEOGRAPH-*
 2CEB0..2EBE0  ; CJK UNIFIED IDEOGRAPH-*
@@ -45367,6 +45367,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 154999
+# Total code points: 155003
 
 # EOF
