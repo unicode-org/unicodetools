@@ -1,5 +1,5 @@
-# Scripts-16.0.0.txt
-# Date: 2024-06-06, 09:38:09 GMT
+# Scripts-17.0.0.txt
+# Date: 2024-11-13, 16:22:25 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -869,7 +869,7 @@ FB46..FB4F    ; Hebrew # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW LIGATU
 0750..077F    ; Arabic # Lo  [48] ARABIC LETTER BEH WITH THREE DOTS HORIZONTALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS ABOVE
 0870..0887    ; Arabic # Lo  [24] ARABIC LETTER ALEF WITH ATTACHED FATHA..ARABIC BASELINE ROUND DOT
 0888          ; Arabic # Sk       ARABIC RAISED ROUND DOT
-0889..088E    ; Arabic # Lo   [6] ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC VERTICAL TAIL
+0889..088F    ; Arabic # Lo   [7] ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC LETTER NOON WITH RING ABOVE
 0890..0891    ; Arabic # Cf   [2] ARABIC POUND MARK ABOVE..ARABIC PIASTRE MARK ABOVE
 0897..089F    ; Arabic # Mn   [9] ARABIC PEPET..ARABIC HALF MADDA OVER MADDA
 08A0..08C8    ; Arabic # Lo  [41] ARABIC LETTER BEH WITH SMALL V BELOW..ARABIC LETTER GRAF
@@ -926,7 +926,7 @@ FE76..FEFC    ; Arabic # Lo [135] ARABIC FATHA ISOLATED FORM..ARABIC LIGATURE LA
 1EEAB..1EEBB  ; Arabic # Lo  [17] ARABIC MATHEMATICAL DOUBLE-STRUCK LAM..ARABIC MATHEMATICAL DOUBLE-STRUCK GHAIN
 1EEF0..1EEF1  ; Arabic # Sm   [2] ARABIC MATHEMATICAL OPERATOR MEEM WITH HAH WITH TATWEEL..ARABIC MATHEMATICAL OPERATOR HAH WITH DAL
 
-# Total code points: 1373
+# Total code points: 1374
 
 # ================================================
 
@@ -1014,8 +1014,9 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 09FC          ; Bengali # Lo       BENGALI LETTER VEDIC ANUSVARA
 09FD          ; Bengali # Po       BENGALI ABBREVIATION SIGN
 09FE          ; Bengali # Mn       BENGALI SANDHI MARK
+09FF          ; Bengali # Lo       BENGALI LETTER SANSKRIT BA
 
-# Total code points: 96
+# Total code points: 97
 
 # ================================================
 
