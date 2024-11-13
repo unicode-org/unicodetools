@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-17.0.0.txt
-# Date: 2024-11-13, 17:23:26 GMT
+# Date: 2024-11-13, 17:50:39 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -243,7 +243,7 @@ E01F0..E0FFF  ; Control # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 1A7F          ; Extend # Mn       TAI THAM COMBINING CRYPTOGRAMMIC DOT
 1AB0..1ABD    ; Extend # Mn  [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
 1ABE          ; Extend # Me       COMBINING PARENTHESES OVERLAY
-1ABF..1ACF    ; Extend # Mn  [17] COMBINING LATIN SMALL LETTER W BELOW..COMBINING DOUBLE CARON
+1ABF..1AD5    ; Extend # Mn  [23] COMBINING LATIN SMALL LETTER W BELOW..COMBINING MACRON-VERTICAL-LINE
 1B00..1B03    ; Extend # Mn   [4] BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
 1B34          ; Extend # Mn       BALINESE SIGN REREKAN
 1B35          ; Extend # Mc       BALINESE VOWEL SIGN TEDUNG
@@ -495,7 +495,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2201
+# Total code points: 2207
 
 # ================================================
 
