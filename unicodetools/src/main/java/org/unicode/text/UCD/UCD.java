@@ -1350,8 +1350,7 @@ public final class UCD implements UCD_Types {
                 if (ch <= 0x2B739 && rCompositeVersion >= 0xf0000) {
                     return CJK_C_BASE;
                 }
-                // TODO(egg): This should be 0x110000, but the tools are still at 16.0.
-                if (ch <= 0x2B73A && rCompositeVersion >= 0x100000) {
+                if (ch <= 0x2B73E && rCompositeVersion >= 0x110000) {
                     return CJK_C_BASE;
                 }
             }
