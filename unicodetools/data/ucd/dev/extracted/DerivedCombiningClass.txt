@@ -1,5 +1,5 @@
-# DerivedCombiningClass-16.0.0.txt
-# Date: 2024-04-30, 21:48:15 GMT
+# DerivedCombiningClass-17.0.0.txt
+# Date: 2024-10-15, 12:06:46 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -182,7 +182,7 @@
 0860..086A    ; 0 # Lo  [11] SYRIAC LETTER MALAYALAM NGA..SYRIAC LETTER MALAYALAM SSA
 0870..0887    ; 0 # Lo  [24] ARABIC LETTER ALEF WITH ATTACHED FATHA..ARABIC BASELINE ROUND DOT
 0888          ; 0 # Sk       ARABIC RAISED ROUND DOT
-0889..088E    ; 0 # Lo   [6] ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC VERTICAL TAIL
+0889..088F    ; 0 # Lo   [7] ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC LETTER NOON WITH RING ABOVE
 0890..0891    ; 0 # Cf   [2] ARABIC POUND MARK ABOVE..ARABIC PIASTRE MARK ABOVE
 08A0..08C8    ; 0 # Lo  [41] ARABIC LETTER BEH WITH SMALL V BELOW..ARABIC LETTER GRAF
 08C9          ; 0 # Lm       ARABIC SMALL FARSI YEH
@@ -2060,7 +2060,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 821581 code points not listed here.
+# The above property value applies to 821580 code points not listed here.
 # Total code points: 1113178
 
 # ================================================
