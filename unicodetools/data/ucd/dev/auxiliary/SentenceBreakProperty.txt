@@ -1,5 +1,5 @@
 # SentenceBreakProperty-17.0.0.txt
-# Date: 2024-11-13, 21:49:20 GMT
+# Date: 2024-11-13, 22:04:04 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1933,6 +1933,8 @@ A7C9          ; Upper # L&       LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLA
 A7CB..A7CC    ; Upper # L&   [2] LATIN CAPITAL LETTER RAMS HORN..LATIN CAPITAL LETTER S WITH DIAGONAL STROKE
 A7CE          ; Upper # L&       LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE
 A7D0          ; Upper # L&       LATIN CAPITAL LETTER CLOSED INSULAR G
+A7D2          ; Upper # L&       LATIN CAPITAL LETTER DOUBLE THORN
+A7D4          ; Upper # L&       LATIN CAPITAL LETTER DOUBLE WYNN
 A7D6          ; Upper # L&       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; Upper # L&       LATIN CAPITAL LETTER SIGMOID S
 A7DA          ; Upper # L&       LATIN CAPITAL LETTER LAMBDA
@@ -1985,7 +1987,7 @@ FF21..FF3A    ; Upper # L&  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LAT
 1F150..1F169  ; Upper # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Upper # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1964
+# Total code points: 1966
 
 # ================================================
 

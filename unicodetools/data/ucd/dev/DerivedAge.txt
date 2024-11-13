@@ -1,5 +1,5 @@
 # DerivedAge-17.0.0.txt
-# Date: 2024-11-13, 21:48:39 GMT
+# Date: 2024-11-13, 22:03:17 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2074,7 +2074,9 @@ A7DA..A7DC    ; 16.0 #   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER L
 1AE0..1AEB    ; 17.0 #  [12] COMBINING LEFT TACK ABOVE..COMBINING DOUBLE RIGHTWARDS ARROW ABOVE
 2B96          ; 17.0 #       EQUALS SIGN WITH INFINITY ABOVE
 A7CE..A7CF    ; 17.0 #   [2] LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE..LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIVE
+A7D2          ; 17.0 #       LATIN CAPITAL LETTER DOUBLE THORN
+A7D4          ; 17.0 #       LATIN CAPITAL LETTER DOUBLE WYNN
 
-# Total code points: 36
+# Total code points: 38
 
 # EOF
