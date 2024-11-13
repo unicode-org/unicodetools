@@ -142,86 +142,10 @@ $CM=[$CM1 $ZWJ]
 ##	show $AL
 $AL=[$AI $AL $SG $XX $SA]
 $NS=[$NS $CJ]
-##	show $AL
-##	$oldAL=$AL // for debugging
-# WARNING: Fixes for Rule 9
-# Treat X (CM|ZWJ* as if it were X.
-# Where X is any line break class except SP, BK, CR, LF, NL or ZW.
-$X=$CM*
 
 # MACROS
 
-$Spec1_=[$SP $BK $CR $LF $NL $ZW]
-$Spec2_=[^ $SP $BK $CR $LF $NL $ZW]
-$Spec3a_=[^ $SP $BA $HY $CM]
-$Spec3b_=[^ $BA $HY $CM]
-$Spec4_=[^ $NU $CM]
-
-# SPECIAL EXTENSIONS
-
-$AI=($AI $X)
-$AK=($AK $X)
-$AL=($AL $X)
-$AP=($AP $X)
-$AS=($AS $X)
-$B2=($B2 $X)
-$BA=($BA $X)
-$BB=($BB $X)
-$CB=($CB $X)
-$CL=($CL $X)
-$CP=($CP $X)
-$CM=($CM $X)
-##	$CM=($CM $X)
-$EX=($EX $X)
-$GL=($GL $X)
-$H2=($H2 $X)
-$H3=($H3 $X)
-$HL=($HL $X)
-$HY=($HY $X)
-$ID=($ID $X)
-$IN=($IN $X)
-$IS=($IS $X)
-$JL=($JL $X)
-$JT=($JT $X)
-$JV=($JV $X)
-$NS=($NS $X)
-$NU=($NU $X)
-$OP=($OP $X)
-$PO=($PO $X)
-$PR=($PR $X)
-$QU=($QU $X)
-$SA=($SA $X)
-$SG=($SG $X)
-$SY=($SY $X)
-$VF=($VF $X)
-$VI=($VI $X)
-$WJ=($WJ $X)
-$XX=($XX $X)
-$RI=($RI $X)
-$EB=($EB $X)
-$EM=($EM $X)
-$ZWJ=($ZWJ $X)
-
-$QU_Pi=($QU_Pi $X)
-$QU_Pf=($QU_Pf $X)
-
-$QUmPi=($QUmPi $X)
-$QUmPf=($QUmPf $X)
-
-$NotEastAsian=( $NotEastAsian | [$NotEastAsian - $Spec1_] $X)
-$NonEastAsianBA=(NonEastAsianBA $X)
-
-$DottedCircle=($DottedCircle $X)
-$Hyphen=($Hyphen $X)
-
-$CP30=($CP30 $X)
-$OP30=($OP30 $X)
-
-# OUT OF ORDER ON PURPOSE
-
-# LB 10  Treat any remaining combining mark as AL and non-$EastAsian.
-$AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
-$NotEastAsian=( $NotEastAsian | ^ $CM | (?<=$Spec1_) $CM )
+$Spec3a_=[^ $SP $BA $HY]
 
 # RULES
 
@@ -241,19 +165,18 @@ $NotEastAsian=( $NotEastAsian | ^ $CM | (?<=$Spec1_) $CM )
 8) $ZW $SP* ÷
 # LB 8a  Don't break between ZWJ and IDs (for use in Emoji ZWJ sequences)
 8.1) $ZWJ_O ×
-# LB 9  Do not break a combining character sequence; treat it as if it has the LB class of the base character
-# in all of the following rules. (Where X is any line break class except SP, BK, CR, LF, NL or ZW.)
-9) $Spec2_ × $CM
-##WARNING: this is done by modifying the variable values for all but SP.... That is, $AL is really ($AI $CM*)!
+# LB 9  Do not break a combining character sequence; treat it as if it has the line breaking class
+# of the base character in all of the following rules. Treat ZWJ as if it were CM.
+9) (?<X>[^$BK $CR $LF $NL $SP $ZW]) ( $CM | $ZWJ )* → ${X}
+# LB10 Treat any remaining combining mark or ZWJ as AL.
+10) ( $CM | $ZWJ ) → A
 ## LB 11  Do not break before or after WORD JOINER and related characters.
 11.01) × $WJ
 11.02) $WJ ×
 # LB 12  Do not break after NBSP and related characters.
-##	12.01) [^$SP] × $GL
 12) $GL ×
+# LB 12a Do not break before NBSP and related characters, except after spaces and hyphens.
 12.1) $Spec3a_ × $GL
-12.2) $Spec3b_ $CM+ × $GL
-12.3) ^ $CM+ × $GL
 # LB 13  Do not break before \u2018]\u2019 or \u2018!\u2019 or \u2018;\u2019 or \u2018/\u2019, even after spaces.
 13.01) × $EX
 13.02) × $CL

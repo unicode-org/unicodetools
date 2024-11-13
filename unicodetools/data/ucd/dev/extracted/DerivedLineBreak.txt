@@ -1,5 +1,5 @@
 # DerivedLineBreak-17.0.0.txt
-# Date: 2024-10-16, 13:50:42 GMT
+# Date: 2024-11-13, 16:38:45 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -69,8 +69,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 757651 code points not listed here.
-# Total code points: 895119
+# The above property value applies to 757647 code points not listed here.
+# Total code points: 895115
 
 # ================================================
 
@@ -665,7 +665,7 @@ ABF0..ABF9    ; NU # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NINE
 0860..086A    ; AL # Lo  [11] SYRIAC LETTER MALAYALAM NGA..SYRIAC LETTER MALAYALAM SSA
 0870..0887    ; AL # Lo  [24] ARABIC LETTER ALEF WITH ATTACHED FATHA..ARABIC BASELINE ROUND DOT
 0888          ; AL # Sk       ARABIC RAISED ROUND DOT
-0889..088E    ; AL # Lo   [6] ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC VERTICAL TAIL
+0889..088F    ; AL # Lo   [7] ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC LETTER NOON WITH RING ABOVE
 08A0..08C8    ; AL # Lo  [41] ARABIC LETTER BEH WITH SMALL V BELOW..ARABIC LETTER GRAF
 08C9          ; AL # Lm       ARABIC SMALL FARSI YEH
 0904..0939    ; AL # Lo  [54] DEVANAGARI LETTER SHORT A..DEVANAGARI LETTER HA
@@ -690,6 +690,7 @@ ABF0..ABF9    ; NU # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NINE
 09FA          ; AL # So       BENGALI ISSHAR
 09FC          ; AL # Lo       BENGALI LETTER VEDIC ANUSVARA
 09FD          ; AL # Po       BENGALI ABBREVIATION SIGN
+09FF          ; AL # Lo       BENGALI LETTER SANSKRIT BA
 0A05..0A0A    ; AL # Lo   [6] GURMUKHI LETTER A..GURMUKHI LETTER UU
 0A0F..0A10    ; AL # Lo   [2] GURMUKHI LETTER EE..GURMUKHI LETTER AI
 0A13..0A28    ; AL # Lo  [22] GURMUKHI LETTER OO..GURMUKHI LETTER NA
@@ -1613,7 +1614,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB00..1FB92  ; AL # So [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK
 1FB94..1FBEF  ; AL # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 
-# Total code points: 26681
+# Total code points: 26683
 
 # ================================================
 
@@ -1966,7 +1967,7 @@ FE19          ; IN # Po       PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS
 0B47..0B48    ; CM # Mc   [2] ORIYA VOWEL SIGN E..ORIYA VOWEL SIGN AI
 0B4B..0B4C    ; CM # Mc   [2] ORIYA VOWEL SIGN O..ORIYA VOWEL SIGN AU
 0B4D          ; CM # Mn       ORIYA SIGN VIRAMA
-0B55..0B56    ; CM # Mn   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
+0B53..0B56    ; CM # Mn   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
 0B57          ; CM # Mc       ORIYA AU LENGTH MARK
 0B62..0B63    ; CM # Mn   [2] ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
 0B82          ; CM # Mn       TAMIL SIGN ANUSVARA
@@ -2387,7 +2388,7 @@ E0001         ; CM # Cf       LANGUAGE TAG
 E0020..E007F  ; CM # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; CM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2470
+# Total code points: 2472
 
 # ================================================
 
