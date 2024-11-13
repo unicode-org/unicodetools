@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2024-11-13, 21:35:12 GMT
+# Date: 2024-11-13, 21:48:59 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -14281,6 +14281,8 @@ A7CA          ; LATIN SMALL LETTER S WITH SHORT STROKE OVERLAY
 A7CB          ; LATIN CAPITAL LETTER RAMS HORN
 A7CC          ; LATIN CAPITAL LETTER S WITH DIAGONAL STROKE
 A7CD          ; LATIN SMALL LETTER S WITH DIAGONAL STROKE
+A7CE          ; LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE
+A7CF          ; LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIVE
 A7D0          ; LATIN CAPITAL LETTER CLOSED INSULAR G
 A7D1          ; LATIN SMALL LETTER CLOSED INSULAR G
 A7D3          ; LATIN SMALL LETTER DOUBLE THORN
@@ -45401,6 +45403,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 155032
+# Total code points: 155034
 
 # EOF
