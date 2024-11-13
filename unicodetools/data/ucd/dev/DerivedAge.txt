@@ -1,5 +1,5 @@
-# DerivedAge-16.0.0.txt
-# Date: 2024-04-30, 21:48:12 GMT
+# DerivedAge-17.0.0.txt
+# Date: 2024-11-13, 13:55:21 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2058,5 +2058,22 @@ A7DA..A7DC    ; 16.0 #   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER L
 1FBCB..1FBEF  ; 16.0 #  [37] WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 
 # Total code points: 5185
+
+# ================================================
+
+# Age=V17_0
+
+# Newly assigned in Unicode 17.0.0 (September, 2025)
+
+1F6D8         ; 17.0 #       LANDSLIDE
+1FA8A         ; 17.0 #       TROMBONE
+1FA8E         ; 17.0 #       TREASURE CHEST
+1FAC8         ; 17.0 #       HAIRY CREATURE
+1FACD         ; 17.0 #       ORCA
+1FADD         ; 17.0 #       APPLE CORE
+1FAEA         ; 17.0 #       DISTORTED FACE
+1FAEF         ; 17.0 #       FIGHT CLOUD
+
+# Total code points: 8
 
 # EOF

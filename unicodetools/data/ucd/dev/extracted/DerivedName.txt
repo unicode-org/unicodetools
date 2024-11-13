@@ -1,5 +1,5 @@
-# DerivedName-16.0.0.txt
-# Date: 2024-04-30, 21:48:18 GMT
+# DerivedName-17.0.0.txt
+# Date: 2024-11-13, 13:55:42 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -43884,6 +43884,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1F6D5         ; HINDU TEMPLE
 1F6D6         ; HUT
 1F6D7         ; ELEVATOR
+1F6D8         ; LANDSLIDE
 1F6DC         ; WIRELESS
 1F6DD         ; PLAYGROUND SLIDE
 1F6DE         ; WHEEL
@@ -44680,6 +44681,8 @@ FFFD          ; REPLACEMENT CHARACTER
 1FA87         ; MARACAS
 1FA88         ; FLUTE
 1FA89         ; HARP
+1FA8A         ; TROMBONE
+1FA8E         ; TREASURE CHEST
 1FA8F         ; SHOVEL
 1FA90         ; RINGED PLANET
 1FA91         ; CHAIR
@@ -44736,6 +44739,8 @@ FFFD          ; REPLACEMENT CHARACTER
 1FAC4         ; PREGNANT PERSON
 1FAC5         ; PERSON WITH CROWN
 1FAC6         ; FINGERPRINT
+1FAC8         ; HAIRY CREATURE
+1FACD         ; ORCA
 1FACE         ; MOOSE
 1FACF         ; DONKEY
 1FAD0         ; BLUEBERRIES
@@ -44751,6 +44756,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1FADA         ; GINGER ROOT
 1FADB         ; PEA POD
 1FADC         ; ROOT VEGETABLE
+1FADD         ; APPLE CORE
 1FADF         ; SPLATTER
 1FAE0         ; MELTING FACE
 1FAE1         ; SALUTING FACE
@@ -44762,6 +44768,8 @@ FFFD          ; REPLACEMENT CHARACTER
 1FAE7         ; BUBBLES
 1FAE8         ; SHAKING FACE
 1FAE9         ; FACE WITH BAGS UNDER EYES
+1FAEA         ; DISTORTED FACE
+1FAEF         ; FIGHT CLOUD
 1FAF0         ; HAND WITH INDEX FINGER AND THUMB CROSSED
 1FAF1         ; RIGHTWARDS HAND
 1FAF2         ; LEFTWARDS HAND
@@ -45367,6 +45375,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 154998
+# Total code points: 155006
 
 # EOF

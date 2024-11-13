@@ -1,5 +1,5 @@
-# EastAsianWidth-16.0.0.txt
-# Date: 2024-04-30, 21:48:20 GMT
+# EastAsianWidth-17.0.0.txt
+# Date: 2024-11-13, 13:55:44 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2624,6 +2624,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 1F6D0..1F6D2   ; W  # So     [3] PLACE OF WORSHIP..SHOPPING TROLLEY
 1F6D3..1F6D4   ; N  # So     [2] STUPA..PAGODA
 1F6D5..1F6D7   ; W  # So     [3] HINDU TEMPLE..ELEVATOR
+1F6D8          ; N  # So         LANDSLIDE
 1F6DC..1F6DF   ; W  # So     [4] WIRELESS..RING BUOY
 1F6E0..1F6EA   ; N  # So    [11] HAMMER AND WRENCH..NORTHEAST-POINTING AIRPLANE
 1F6EB..1F6EC   ; W  # So     [2] AIRPLANE DEPARTURE..AIRPLANE ARRIVING
@@ -2651,9 +2652,16 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 1FA60..1FA6D   ; N  # So    [14] XIANGQI RED GENERAL..XIANGQI BLACK SOLDIER
 1FA70..1FA7C   ; W  # So    [13] BALLET SHOES..CRUTCH
 1FA80..1FA89   ; W  # So    [10] YO-YO..HARP
+1FA8A          ; N  # So         TROMBONE
+1FA8E          ; N  # So         TREASURE CHEST
 1FA8F..1FAC6   ; W  # So    [56] SHOVEL..FINGERPRINT
+1FAC8          ; N  # So         HAIRY CREATURE
+1FACD          ; N  # So         ORCA
 1FACE..1FADC   ; W  # So    [15] MOOSE..ROOT VEGETABLE
+1FADD          ; N  # So         APPLE CORE
 1FADF..1FAE9   ; W  # So    [11] SPLATTER..FACE WITH BAGS UNDER EYES
+1FAEA          ; N  # So         DISTORTED FACE
+1FAEF          ; N  # So         FIGHT CLOUD
 1FAF0..1FAF8   ; W  # So     [9] HAND WITH INDEX FINGER AND THUMB CROSSED..RIGHTWARDS PUSHING HAND
 1FB00..1FB92   ; N  # So   [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK
 1FB94..1FBEF   ; N  # So    [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
