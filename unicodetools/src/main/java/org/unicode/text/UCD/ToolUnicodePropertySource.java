@@ -309,6 +309,13 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 "cjkIRG_VSource",
                 "cjkIRG_VSource",
                 "kIRG_VSource");
+        add(iup.getProperty("kEH_Cat"));
+        add(iup.getProperty("kEH_Desc"));
+        add(iup.getProperty("kEH_HG"));
+        add(iup.getProperty("kEH_IFAO"));
+        add(iup.getProperty("kEH_JSesh"));
+        add(iup.getProperty("kEH_NoMirror"));
+        add(iup.getProperty("kEH_NoRotate"));
         add(iup.getProperty("Emoji"));
         add(iup.getProperty("Emoji_Presentation"));
         add(iup.getProperty("Emoji_Modifier"));
@@ -630,9 +637,6 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                         if (!ucd.isRepresented(cp)) {
                             return null;
                         }
-                        if (cp == '\u1E9E') {
-                            System.out.println("@#$ debug");
-                        }
                         final String b =
                                 nfkc.normalize(ucd.getCase(cp, UCD_Types.FULL, UCD_Types.FOLD));
                         final String c =
@@ -675,7 +679,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                     "is" + nf.getName(),
                                     version,
                                     getProperty("to" + nf.getName()),
-                                    false)
+                                    true)
                             .setExtended());
         }
 
@@ -1180,35 +1184,25 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .addAll(script.getSet("Orya"))
                             .addAll(script.getSet("Beng"))
                             .addAll(script.getSet("Deva"));
+            final UnicodeSet incbLinker =
+                    conjunctLinkingScripts
+                            .cloneAsThawed()
+                            .retainAll(isc.getSet(Indic_Syllabic_Category_Values.Virama));
+            final UnicodeSet incbConsonant =
+                    conjunctLinkingScripts
+                            .cloneAsThawed()
+                            .retainAll(isc.getSet(Indic_Syllabic_Category_Values.Consonant));
             final UnicodeMap<String> incbDefinition =
                     new UnicodeMap<String>()
                             .setErrorOnReset(true)
-                            .putAll(
-                                    conjunctLinkingScripts
-                                            .cloneAsThawed()
-                                            .retainAll(
-                                                    isc.getSet(
-                                                            Indic_Syllabic_Category_Values.Virama)),
-                                    "Linker")
-                            .putAll(
-                                    conjunctLinkingScripts
-                                            .cloneAsThawed()
-                                            .retainAll(
-                                                    isc.getSet(
-                                                            Indic_Syllabic_Category_Values
-                                                                    .Consonant)),
-                                    "Consonant")
+                            .putAll(incbLinker, "Linker")
+                            .putAll(incbConsonant, "Consonant")
                             .putAll(
                                     gcb.getSet("Extend")
-                                            .removeAll(ccc.getSet("Not_Reordered"))
                                             .addAll(gcb.getSet("ZWJ"))
-                                            .removeAll(
-                                                    isc.getSet(
-                                                            Indic_Syllabic_Category_Values.Virama))
-                                            .removeAll(
-                                                    isc.getSet(
-                                                            Indic_Syllabic_Category_Values
-                                                                    .Consonant)),
+                                            .removeAll(incbLinker)
+                                            .removeAll(incbConsonant)
+                                            .remove(0x200C),
                                     "Extend")
                             .setMissing("None");
             add(
@@ -1224,7 +1218,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         if (compositeVersion >= 0x040000) {
             // Word_Break - auxiliary/WordBreakProperty.txt
             final UnicodeMap<String> unicodeMap = new UnicodeMap<String>();
-            unicodeMap.setErrorOnReset(true); // disallow multiple values for code point
+            // Disallow multiple values for code point, but only if we are using this class to
+            // derive the current properties; the derivation is incorrect for earlier versions
+            // anyway.
+            unicodeMap.setErrorOnReset(
+                    compositeVersion == UCD.makeLatestVersion().getCompositeVersion());
 
             final UnicodeProperty cat = getProperty("General_Category");
             final UnicodeProperty script = getProperty("Script");
@@ -1473,6 +1471,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             unicodeMap.putAll(
                     getProperty("STerm")
                             .getSet(UCD_Names.YES)
+                            .addAll(new UnicodeSet("[\\u2CF9\\u2CFA\\u2CFB\\uFE12\\uFE15\\uFE16]"))
                             .removeAll(unicodeMap.keySet("ATerm")),
                     "STerm");
             unicodeMap.putAll(
@@ -1485,21 +1484,26 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     "Close");
             unicodeMap.putAll(
                     new UnicodeSet(
-                            "[\\u002C\\u3001\\uFE10\\uFE11\\uFF0C"
-                                    + "\\uFE50\\uFF64\\uFE51\\uFE51\\u055D\\u060C\\u060D\\u07F8\\u1802\\u1808"
-                                    + // new
-                                    // from
-                                    // L2/08-029
-                                    "\\u003A\\uFE13\\uFF1A"
-                                    + "\\uFE55"
-                                    + // new from L2/08-029
-                                    // "\\u003B\\uFE14\\uFF1B" +
-                                    "\\u2014\\uFE31\\u002D\\uFF0D"
-                                    + "\\u2013\\uFE32\\uFE58\\uFE63"
-                                    + // new
-                                    // from
-                                    // L2/08-029
-                                    "]"),
+                                    "[\\u002C\\u3001\\uFE10\\uFE11\\uFF0C"
+                                            + "\\uFE50\\uFF64\\uFE51\\uFE51\\u055D\\u060C\\u060D\\u07F8\\u1802\\u1808"
+                                            + // new
+                                            // from
+                                            // L2/08-029
+                                            "\\u003A\\uFE13\\uFF1A"
+                                            + "\\uFE55"
+                                            + // new from L2/08-029
+                                            // "\\u003B\\uFE14\\uFF1B" +
+                                            "\\u2014\\uFE31\\u002D\\uFF0D"
+                                            + "\\u2013\\uFE32\\uFE58\\uFE63"
+                                            + // new
+                                            // from
+                                            // L2/08-029
+                                            "]")
+                            .add(0x003B)
+                            .add(0x037E)
+                            .add(0xFE14)
+                            .add(0xFE54)
+                            .add(0xFF1B),
                     "SContinue");
             // unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none
             // of the above touch it.
@@ -2010,19 +2014,21 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                         UCD_Names.EXTRA_GENERAL_CATEGORY,
                                         result);
                             case UCD_Types.COMBINING_CLASS >> 8:
-                                addUnique(
-                                        String.valueOf(
-                                                Utility.lookupShort(
-                                                        valueAlias,
-                                                        UCD_Names.LONG_COMBINING_CLASS,
-                                                        true)),
-                                        result);
-                                return lookup(
-                                        valueAlias,
-                                        UCD_Names.LONG_COMBINING_CLASS,
-                                        UCD_Names.COMBINING_CLASS,
-                                        null,
-                                        result);
+                                // The `lookup` function does lookup by long value, and returns
+                                // (long, short, additional aliases).
+                                // For CCC we want to support lookup by long value here, but to
+                                // return (numeric, short, long).
+                                short numericCCC =
+                                        Utility.lookupShort(
+                                                valueAlias, UCD_Names.LONG_COMBINING_CLASS, true);
+                                result.add(Short.toString(numericCCC));
+                                result.add(
+                                        Utility.getUnskeleton(
+                                                UCD_Names.COMBINING_CLASS[numericCCC], true));
+                                result.add(
+                                        Utility.getUnskeleton(
+                                                UCD_Names.LONG_COMBINING_CLASS[numericCCC], true));
+                                return result;
                             case UCD_Types.BIDI_CLASS >> 8:
                                 return lookup(
                                         valueAlias,
@@ -2031,17 +2037,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                         null,
                                         result);
                             case UCD_Types.DECOMPOSITION_TYPE >> 8:
-                                lookup(
-                                        valueAlias,
-                                        UCD_Names.LONG_DECOMPOSITION_TYPE,
-                                        FIXED_DECOMPOSITION_TYPE,
-                                        null,
-                                        result);
                                 return lookup(
                                         valueAlias,
                                         UCD_Names.LONG_DECOMPOSITION_TYPE,
-                                        UCD_Names.DECOMPOSITION_TYPE,
-                                        null,
+                                        TITLECASE_SHORT_DECOMPOSITION_TYPE,
+                                        LONG_TO_LOWERCASE_SHORT_DECOMPOSITION_TYPE,
                                         result);
                             case UCD_Types.NUMERIC_TYPE >> 8:
                                 return lookup(
@@ -2288,9 +2288,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         // System.out.println("=>" + aux[pos]);
         if (aux != null) {
             final int pos = Utility.lookupShort(valueAlias, main, true);
-            UnicodeProperty.addUnique(aux[pos], result);
+            result.add(aux[pos]);
         }
-        UnicodeProperty.addUnique(valueAlias, result);
+        result.add(valueAlias);
         if (aux2 != null) {
             final Set<String> xtra = aux2.getAll(valueAlias);
             if (xtra != null) {
@@ -2367,6 +2367,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     }
 
     static final Pattern WELL_FORMED_LANGUAGE_TAG = Pattern.compile("..."); // ...
+
     // is
     // ugly
     // mess
@@ -2387,13 +2388,17 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         YNTF.putAll("Maybe", Arrays.asList(MAYBE_VALUES));
     }
 
-    private static final String[] FIXED_DECOMPOSITION_TYPE =
+    private static final String[] TITLECASE_SHORT_DECOMPOSITION_TYPE =
             new String[UCD_Names.DECOMPOSITION_TYPE.length];
+    private static final Relation<String, String> LONG_TO_LOWERCASE_SHORT_DECOMPOSITION_TYPE =
+            new Relation<String, String>(new HashMap<String, Set<String>>(), LinkedHashSet.class);
 
     static {
         for (int i = 0; i < UCD_Names.DECOMPOSITION_TYPE.length; ++i) {
-            FIXED_DECOMPOSITION_TYPE[i] =
+            TITLECASE_SHORT_DECOMPOSITION_TYPE[i] =
                     Utility.getUnskeleton(UCD_Names.DECOMPOSITION_TYPE[i], true);
+            LONG_TO_LOWERCASE_SHORT_DECOMPOSITION_TYPE.put(
+                    UCD_Names.LONG_DECOMPOSITION_TYPE[i], UCD_Names.DECOMPOSITION_TYPE[i]);
         }
     }
 

@@ -14,6 +14,7 @@ public class PropertyUtilities {
 
     public static final class Joiner implements Merge<String> {
         static String separator;
+
         /**
          * @param separator
          */
@@ -30,6 +31,9 @@ public class PropertyUtilities {
     static final <K, V, M extends Map<K, V>> M putNew(M map, K key, V value) {
         final V oldValue = map.get(key);
         if (oldValue != null) {
+            if (oldValue.equals(value)) {
+                return map;
+            }
             throw new UnicodePropertyException(
                     "Key already present in Map: "
                             + key
@@ -47,6 +51,9 @@ public class PropertyUtilities {
         final V oldValue = map.get(key);
         if (oldValue != null && (missingSet == null || !missingSet.contains(key))) {
             if (merger == null) {
+                if (oldValue.equals(value)) {
+                    return map;
+                }
                 throw new UnicodePropertyException(
                         "Key already present in UnicodeMap: "
                                 + Utility.hex(key)

@@ -1,8 +1,8 @@
 # ArabicShaping-16.0.0.txt
-# Date: 2023-11-06
-# © 2023 Unicode®, Inc.
+# Date: 2024-07-30
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # This file is a normative contributory data file in the
 # Unicode Character Database.
@@ -101,14 +101,18 @@
 # assigns jg=No_Joining_Group to all the singletons.
 #
 # Note: Code points that are not explicitly listed in this file are
-# either of joining type T or U:
+# either of Joining_Type T or U:
 #
-# - Those that are not explicitly listed and that are of General Category Mn, Me, or Cf
-#   have joining type T.
-# - All others not explicitly listed have joining type U.
+# - Those that are not explicitly listed and that are of General_Category Mn, Me, or Cf
+#   are Joining_Type=T.
+# - All others not explicitly listed are Joining_Type=U.
 #
-# For an explicit listing of all characters of joining type T, see
+# For an explicit listing of all characters of Joining_Type=T, see
 # the derived property file DerivedJoiningType.txt.
+# For an implementation that needs to parse for the values of
+# Joining_Type, it is recommended to use DerivedJoiningType.txt
+# instead of ArabicShaping.txt, to avoid the separate required step of
+# calculating the set for Joining_Type=T based on General_Category values.
 #
 # #############################################################
 
@@ -124,7 +128,7 @@
 0605; ARABIC NUMBER MARK ABOVE; U; No_Joining_Group
 0608; ARABIC RAY; U; No_Joining_Group
 060B; AFGHANI SIGN; U; No_Joining_Group
-0620; DOTLESS YEH WITH SEPARATE RING BELOW; D; YEH
+0620; KASHMIRI YEH; D; KASHMIRI YEH
 0621; HAMZA; U; No_Joining_Group
 0622; ALEF WITH MADDA ABOVE; R; ALEF
 0623; ALEF WITH HAMZA ABOVE; R; ALEF
@@ -478,6 +482,7 @@
 088C; TAH WITH 3 DOTS BELOW; D; TAH
 088D; KEHEH WITH VERTICAL 2 DOTS BELOW; D; GAF
 088E; VERTICAL TAIL; R; VERTICAL TAIL
+088F; DOTLESS NOON WITH SEPARATE RING ABOVE; D; NOON
 0890; ARABIC POUND MARK ABOVE; U; No_Joining_Group
 0891; ARABIC PIASTRE MARK ABOVE; U; No_Joining_Group
 
@@ -620,7 +625,7 @@
 1875; MONGOLIAN MANCHU RA; D; No_Joining_Group
 1876; MONGOLIAN MANCHU FA; D; No_Joining_Group
 1877; MONGOLIAN MANCHU ZHA; D; No_Joining_Group
-1878; MONGOLIAN MANCHU CHA WITH 2 DOTS; D; No_Joining_Group
+1878; MONGOLIAN CHA WITH 2 DOTS; D; No_Joining_Group
 1880; MONGOLIAN ALI GALI ANUSVARA ONE; U; No_Joining_Group
 1881; MONGOLIAN ALI GALI VISARGA ONE; U; No_Joining_Group
 1882; MONGOLIAN ALI GALI DAMARU; U; No_Joining_Group

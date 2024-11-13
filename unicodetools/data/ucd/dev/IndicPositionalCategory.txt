@@ -1,8 +1,8 @@
 # IndicPositionalCategory-16.0.0.txt
-# Date: 2023-11-11, 19:47:00 GMT
-# © 2023 Unicode®, Inc.
+# Date: 2024-06-06, 09:37:46 GMT
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
 #   For documentation, see https://www.unicode.org/reports/tr44/
@@ -68,13 +68,14 @@
 #
 # Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
 # Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
-# Gunjala Gondi, Gurmukhi, Gurung Khema, Hanunoo, Javanese, Kaithi, Kannada,
-# Kawi, Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Kirat Rai, Lao, Lepcha,
-# Limbu, Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek, Modi,
-# Myanmar, Nandinagari, Newa, New Tai Lue, Oriya, Rejang, Saurashtra,
-# Sharada, Siddham, Sinhala, Soyombo, Sundanese, Syloti Nagri,
-# Tagalog, Tagbanwa, Tai Tham, Tai Viet, Takri, Tamil, Telugu, Thai,
-# Tibetan, Tirhuta, Tulu-Tigalari, and Zanabazar Square.
+# Gunjala Gondi, Gurmukhi, Gurung Khema, Hanunoo, Javanese, Kaithi,
+# Kannada, Kawi, Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi,
+# Kirat Rai, Lao, Lepcha, Limbu, Makasar, Malayalam, Marchen,
+# Masaram Gondi, Meetei Mayek, Modi, Myanmar, Nandinagari, Newa,
+# New Tai Lue, Oriya, Rejang, Saurashtra, Sharada, Siddham, Sinhala,
+# Soyombo, Sundanese, Syloti Nagri, Tagalog, Tagbanwa, Tai Tham,
+# Tai Viet, Takri, Tamil, Telugu, Thai, Tibetan, Tirhuta,
+# Tulu-Tigalari, and Zanabazar Square.
 #
 # All characters for all other scripts not in that list
 # take the default value for this property.
@@ -422,7 +423,7 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 0AFA..0AFF    ; Top # Mn   [6] GUJARATI SIGN SUKUN..GUJARATI SIGN TWO-CIRCLE NUKTA ABOVE
 0B01          ; Top # Mn       ORIYA SIGN CANDRABINDU
 0B3F          ; Top # Mn       ORIYA VOWEL SIGN I
-0B55..0B56    ; Top # Mn   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
+0B53..0B56    ; Top # Mn   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
 0B82          ; Top # Mn       TAMIL SIGN ANUSVARA
 0BC0          ; Top # Mn       TAMIL VOWEL SIGN II
 0BCD          ; Top # Mn       TAMIL SIGN VIRAMA

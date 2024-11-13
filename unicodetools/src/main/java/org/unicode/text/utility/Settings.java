@@ -22,13 +22,32 @@ public class Settings {
     // Are they equivalent for our purposes?
 
     /** Used for the default version. */
-    public static final String latestVersion = "16.0.0";
+    public static final String latestVersion = "17.0.0";
 
-    public static final String lastVersion = "15.1.0"; // last released version
+    public enum ReleasePhase {
+        DEV("dev"), // Before α.
+        ALPHA("α"), // α review.
+        BETA("β"); // β review.
+
+        private final String toString;
+
+        ReleasePhase(String s) {
+            toString = s;
+        }
+
+        @Override
+        public String toString() {
+            return toString;
+        }
+    };
+
+    public static final ReleasePhase latestVersionPhase = ReleasePhase.DEV;
+
+    public static final String lastVersion = "16.0.0"; // last released version
 
     public static final VersionInfo LATEST_VERSION_INFO = VersionInfo.getInstance(latestVersion);
     public static final VersionInfo LAST_VERSION_INFO = VersionInfo.getInstance(lastVersion);
-    public static final VersionInfo LAST2_VERSION_INFO = VersionInfo.getInstance(15);
+    public static final VersionInfo LAST2_VERSION_INFO = VersionInfo.getInstance(15, 1);
 
     private static final String TRIMMED_LATEST_VERSION = trimVersion(latestVersion);
 
@@ -164,12 +183,15 @@ public class Settings {
          */
         public static final String UNICODETOOLS_REPO_DIR =
                 getRequiredPathAndFix("UNICODETOOLS_REPO_DIR");
+
         // TODO: Try to make this private; see
         // https://github.com/unicode-org/unicodetools/issues/159
         // Call sites should use more specific paths.
         public static final String UNICODETOOLS_DIR = UNICODETOOLS_REPO_DIR + "unicodetools/";
+
         /** Use this for files such as org/unicode/Whatever.java */
         public static final String UNICODETOOLS_JAVA_DIR = UNICODETOOLS_DIR + "src/main/java/";
+
         /** Use this for package-relative data, such as org/unicode/SomeData.txt */
         public static final String UNICODETOOLS_RSRC_DIR = UNICODETOOLS_DIR + "src/main/resources/";
 
@@ -298,8 +320,10 @@ public class Settings {
 
     public static final String SRC_DIR =
             Utility.fixFileName(UnicodeTools.UNICODETOOLS_RSRC_DIR + "org/unicode/text") + "/";
+
     /** Used for data files */
     public static final String SRC_UCA_DIR = SRC_DIR + "UCA/";
+
     /** Used for data files */
     public static final String SRC_UCD_DIR = SRC_DIR + "UCD/";
 }

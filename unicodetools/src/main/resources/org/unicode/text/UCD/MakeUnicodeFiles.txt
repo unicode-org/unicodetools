@@ -1,5 +1,5 @@
 Generate: .
-CopyrightYear: 2023
+CopyrightYear: 2024
 
 File: extra/ScriptNfkc
 Property: SPECIAL
@@ -61,20 +61,12 @@ File: ScriptExtensions
 # values in that set is not material, but for stability in presentation
 # it is given here as alphabetical.
 #
-# The Script_Extensions values are presented in sorted order in the file.
-# They are sorted first by the number of Script property values in their sets,
-# and then alphabetically by first differing Script property value.
-#
-# Following each distinct Script_Extensions value is the list of code
-# points associated with that value, listed in code point order.
-# 
 # All code points not explicitly listed for Script_Extensions
-# have as their value the corresponding Script property value
+# have as their value the corresponding Script property value.
 #
-# @missing: 0000..10FFFF; <script>
 
 Property: Script_Extensions
-Format: valueStyle=short
+Format: kenFile valueStyle=short
 
 File: auxiliary/GraphemeBreakProperty
 Property: Grapheme_Cluster_Break
@@ -98,9 +90,6 @@ File: auxiliary/LineBreakTest
 Property: SPECIAL
 
 File: auxiliary/SentenceBreakTest
-Property: SPECIAL
-
-File: cldr/GraphemeBreakTest-cldr
 Property: SPECIAL
 
 File:	extra/BidiPairedBracketType
@@ -235,6 +224,9 @@ Value:  V15_1
 
 Value:  V16_0
 # Newly assigned in Unicode 16.0.0 (September, 2024)
+
+Value:  V17_0
+# Newly assigned in Unicode 17.0.0 (September, 2025)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
@@ -542,7 +534,7 @@ Property:	Numeric_Value
 #    The values are based on field 8 of UnicodeData.txt, plus the fields 
 #    kAccountingNumeric, kOtherNumeric, kPrimaryNumeric in the Unicode Han Database (Unihan).
 #    The derivations for these values are as follows.
-#      Numeric_Value = the value of kAccountingNumeric, kOtherNumeric, or kPrimaryNumeric, if they exist; otherwise
+#      Numeric_Value = the first-listed value of kAccountingNumeric, kOtherNumeric, or kPrimaryNumeric, if they exist; otherwise
 #      Numeric_Value = the value of field 8, if it exists; otherwise
 #      Numeric_Value = NaN
 #  Field 2:
@@ -734,6 +726,7 @@ Property:	Pattern_White_Space
 Property:	Pattern_Syntax
 Property:	Prepended_Concatenation_Mark
 Property:	Regional_Indicator
+Property:	Modifier_Combining_Mark
 
 File:	PropertyAliases
 Property: SPECIAL
@@ -876,7 +869,7 @@ Format: kenFile skipValue=Rotated
 #         Specials:                           U+FFF0..U+FFF8
 #         Siddham:                           U+11580..U+115FF
 #         Zanabazar Square & Soyombo:        U+11A00..U+11AAF
-#         Egyptian Hieroglyphs & Controls:   U+13000..U+1345F
+#         Egyptian Hieroglyphs & Controls:   U+13000..U+143FF
 #         Anatolian Hieroglyphs:             U+14400..U+1467F
 #         Ideographic Symbols & Tangut:      U+16FE0..U+18AFF
 #         Khitan Small Script & Tangut Sup:  U+18B00..U+18D7F
@@ -971,13 +964,14 @@ File:	IndicPositionalCategory
 #
 # Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
 # Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
-# Gunjala Gondi, Gurmukhi, Gurung Khema, Hanunoo, Javanese, Kaithi, Kannada,
-# Kawi, Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Kirat Rai, Lao, Lepcha,
-# Limbu, Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek, Modi,
-# Myanmar, Nandinagari, Newa, New Tai Lue, Oriya, Rejang, Saurashtra,
-# Sharada, Siddham, Sinhala, Soyombo, Sundanese, Syloti Nagri,
-# Tagalog, Tagbanwa, Tai Tham, Tai Viet, Takri, Tamil, Telugu, Thai,
-# Tibetan, Tirhuta, Tulu-Tigalari, and Zanabazar Square.
+# Gunjala Gondi, Gurmukhi, Gurung Khema, Hanunoo, Javanese, Kaithi,
+# Kannada, Kawi, Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi,
+# Kirat Rai, Lao, Lepcha, Limbu, Makasar, Malayalam, Marchen,
+# Masaram Gondi, Meetei Mayek, Modi, Myanmar, Nandinagari, Newa,
+# New Tai Lue, Oriya, Rejang, Saurashtra, Sharada, Siddham, Sinhala,
+# Soyombo, Sundanese, Syloti Nagri, Tagalog, Tagbanwa, Tai Tham,
+# Tai Viet, Takri, Tamil, Telugu, Thai, Tibetan, Tirhuta,
+# Tulu-Tigalari, and Zanabazar Square.
 #
 # All characters for all other scripts not in that list
 # take the default value for this property.
@@ -1080,13 +1074,14 @@ File:	IndicSyllabicCategory
 #
 # Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
 # Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
-# Gunjala Gondi, Gurmukhi, Gurung Khema, Hanunoo, Javanese, Kaithi, Kannada,
-# Kawi, Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Kirat Rai, Lao, Lepcha,
-# Limbu, Mahajani, Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek,
-# Modi, Multani, Myanmar, Nandinagari, Newa, New Tai Lue, Oriya,
-# Phags-pa, Rejang, Saurashtra, Sharada, Siddham, Sinhala, Soyombo,
-# Sundanese, Syloti Nagri, Tagalog, Tagbanwa, Tai Le, Tai Tham,
-# Tai Viet, Takri, Tamil, Telugu, Thai, Tibetan, Tirhuta, Tulu-Tigalari, and
+# Gunjala Gondi, Gurmukhi, Gurung Khema, Hanunoo, Javanese, Kaithi,
+# Kannada, Kawi, Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi,
+# Kirat Rai, Lao, Lepcha, Limbu, Mahajani, Makasar, Malayalam,
+# Marchen, Masaram Gondi, Meetei Mayek, Modi, Multani, Myanmar,
+# Nandinagari, Newa, New Tai Lue, Oriya, Phags-pa, Rejang,
+# Saurashtra, Sharada, Siddham, Sinhala, Soyombo, Sundanese,
+# Syloti Nagri, Tagalog, Tagbanwa, Tai Le, Tai Tham, Tai Viet, Takri,
+# Tamil, Telugu, Thai, Tibetan, Tirhuta, Tulu-Tigalari, and
 # Zanabazar Square.
 #
 # All characters for all other scripts not in that list

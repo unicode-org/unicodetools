@@ -1,8 +1,8 @@
-# CaseFolding-16.0.0.txt
-# Date: 2023-12-14, 01:49:09 GMT
-# © 2023 Unicode®, Inc.
+# CaseFolding-17.0.0.txt
+# Date: 2024-11-13, 22:03:16 GMT
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
 #   For documentation, see https://www.unicode.org/reports/tr44/
@@ -1243,6 +1243,7 @@ A7C7; C; A7C8; # LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY
 A7C9; C; A7CA; # LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY
 A7CB; C; 0264; # LATIN CAPITAL LETTER RAMS HORN
 A7CC; C; A7CD; # LATIN CAPITAL LETTER S WITH DIAGONAL STROKE
+A7CE; C; A7CF; # LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE
 A7D0; C; A7D1; # LATIN CAPITAL LETTER CLOSED INSULAR G
 A7D2; C; A7D3; # LATIN CAPITAL LETTER DOUBLE THORN
 A7D4; C; A7D5; # LATIN CAPITAL LETTER DOUBLE WYNN

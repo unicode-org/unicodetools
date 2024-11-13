@@ -1,8 +1,8 @@
-# DerivedJoiningGroup-16.0.0.txt
-# Date: 2023-10-02, 12:16:28 GMT
-# © 2023 Unicode®, Inc.
+# DerivedJoiningGroup-17.0.0.txt
+# Date: 2024-10-15, 12:06:51 GMT
+# © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
 #   For documentation, see https://www.unicode.org/reports/tr44/
@@ -231,8 +231,9 @@
 06B9..06BC    ; Noon # Lo   [4] ARABIC LETTER NOON WITH DOT BELOW..ARABIC LETTER NOON WITH RING
 0767..0769    ; Noon # Lo   [3] ARABIC LETTER NOON WITH TWO DOTS BELOW..ARABIC LETTER NOON WITH SMALL V
 0889          ; Noon # Lo       ARABIC LETTER NOON WITH INVERTED SMALL V
+088F          ; Noon # Lo       ARABIC LETTER NOON WITH RING ABOVE
 
-# Total code points: 9
+# Total code points: 10
 
 # ================================================
 
@@ -377,7 +378,6 @@
 
 # ================================================
 
-0620          ; Yeh # Lo       ARABIC LETTER KASHMIRI YEH
 0626          ; Yeh # Lo       ARABIC LETTER YEH WITH HAMZA ABOVE
 0649..064A    ; Yeh # Lo   [2] ARABIC LETTER ALEF MAKSURA..ARABIC LETTER YEH
 0678          ; Yeh # Lo       ARABIC LETTER HIGH HAMZA YEH
@@ -386,7 +386,7 @@
 08A8..08A9    ; Yeh # Lo   [2] ARABIC LETTER YEH WITH TWO DOTS BELOW AND HAMZA ABOVE..ARABIC LETTER YEH WITH TWO DOTS BELOW AND DOT ABOVE
 08BA          ; Yeh # Lo       ARABIC LETTER YEH WITH TWO DOTS BELOW AND SMALL NOON ABOVE
 
-# Total code points: 11
+# Total code points: 10
 
 # ================================================
 
@@ -742,6 +742,12 @@
 # ================================================
 
 088E          ; Vertical_Tail # Lo       ARABIC VERTICAL TAIL
+
+# Total code points: 1
+
+# ================================================
+
+0620          ; Kashmiri_Yeh # Lo       ARABIC LETTER KASHMIRI YEH
 
 # Total code points: 1
 

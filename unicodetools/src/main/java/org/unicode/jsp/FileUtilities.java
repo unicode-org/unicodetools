@@ -123,6 +123,7 @@ public final class FileUtilities {
 
         protected void processComment(String line, int comment) {}
     }
+
     //
     //  public static SemiFileReader fillMapFromSemi(Class classLocation, String fileName,
     // SemiFileReader handler) {

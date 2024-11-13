@@ -92,7 +92,10 @@ UnicodeData; Simple_Lowercase_Mapping ; 13
 UnicodeData; Simple_Titlecase_Mapping ; 14
 UnicodeData; Unicode_1_Name ; 10
 UnicodeData; ISO_Comment ; 11
-ArabicShaping; Joining_Type; 2
+# Handle the complex default of ArabicShaping.txt by introducing an unofficial
+# contributory property, to be used when deriving Joining_Type.
+ArabicShaping; Other_Joining_Type; 2
+DerivedJoiningType; Joining_Type; 1
 ArabicShaping; Joining_Group; 3
 BidiMirroring; Bidi_Mirroring_Glyph;
 Blocks ; Block
@@ -101,6 +104,7 @@ DerivedAge ; Age
 EastAsianWidth ; East_Asian_Width
 HangulSyllableType ; Hangul_Syllable_Type
 IndicPositionalCategory ; Indic_Positional_Category
+IndicMatraCategory ; Indic_Positional_Category ; v7.0
 IndicSyllabicCategory ; Indic_Syllabic_Category
 Jamo ; Jamo_Short_Name
 LineBreak ; Line_Break
@@ -134,7 +138,9 @@ DerivedCoreProperties ; Alphabetic
 DerivedCoreProperties ; Default_Ignorable_Code_Point
 DerivedCoreProperties ; Grapheme_Base
 DerivedCoreProperties ; Grapheme_Extend
+# Deprecated and made derived in 5.0.
 DerivedCoreProperties ; Grapheme_Link
+PropList ; Grapheme_Link ; v4.1
 DerivedCoreProperties ; Math
 DerivedCoreProperties ; ID_Start
 DerivedCoreProperties ; ID_Continue
@@ -191,6 +197,7 @@ PropList ; Variation_Selector
 PropList ; White_Space
 PropList ; Prepended_Concatenation_Mark
 PropList ; Regional_Indicator
+PropList ; Modifier_Combining_Mark
 
 Unihan_DictionaryIndices ; kCheungBauerIndex
 Unihan_DictionaryIndices ; kCowles
@@ -313,6 +320,8 @@ EmojiSources ; Emoji_SB ; 3
 NamedSequences ; Named_Sequences
 NamedSequencesProv ; Named_Sequences_Prov
 StandardizedVariants ; Standardized_Variant
+DoNotEmit ; Do_Not_Emit_Preferred ; 1
+DoNotEmit ; Do_Not_Emit_Type ; 2
 
 idna/*/IdnaMappingTable; Idn_Status;
 idna/*/IdnaMappingTable; Idn_Mapping; 2
@@ -360,3 +369,25 @@ emoji/*/emoji-sequences; RGI_Emoji_Tag_Sequence
 emoji/*/emoji-zwj-sequences; RGI_Emoji_Zwj_Sequence
 
 #emoji/*/emoji-test ; Emoji_Short_Name
+
+
+FileType ; TangutSources ; PropertyValue
+TangutSources ; kTGT_MergedSrc
+TangutSources ; kRSTUnicode
+
+FileType ; NushuSources ; PropertyValue
+NushuSources ; kSrc_NushuDuben
+NushuSources ; kReading
+
+FileType ; Unikemet ; PropertyValue
+Unikemet ; kEH_Cat
+Unikemet ; kEH_Core
+Unikemet ; kEH_Desc
+Unikemet ; kEH_Func
+Unikemet ; kEH_FVal
+Unikemet ; kEH_JSesh
+Unikemet ; kEH_HG
+Unikemet ; kEH_IFAO
+Unikemet ; kEH_NoMirror
+Unikemet ; kEH_NoRotate
+Unikemet ; kEH_UniK
