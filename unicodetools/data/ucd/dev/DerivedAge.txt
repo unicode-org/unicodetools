@@ -1,5 +1,5 @@
 # DerivedAge-17.0.0.txt
-# Date: 2024-11-13, 21:22:30 GMT
+# Date: 2024-11-13, 21:34:52 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2072,7 +2072,8 @@ A7DA..A7DC    ; 16.0 #   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER L
 0CDC          ; 17.0 #       KANNADA ARCHAIC SHRII
 1ACF..1ADD    ; 17.0 #  [15] COMBINING DOUBLE CARON..COMBINING DOT-AND-RING BELOW
 1AE0..1AEB    ; 17.0 #  [12] COMBINING LEFT TACK ABOVE..COMBINING DOUBLE RIGHTWARDS ARROW ABOVE
+2B96          ; 17.0 #       EQUALS SIGN WITH INFINITY ABOVE
 
-# Total code points: 33
+# Total code points: 34
 
 # EOF

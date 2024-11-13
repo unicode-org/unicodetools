@@ -1,5 +1,5 @@
 # DerivedLineBreak-17.0.0.txt
-# Date: 2024-11-13, 21:22:51 GMT
+# Date: 2024-11-13, 21:35:12 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -69,8 +69,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 757620 code points not listed here.
-# Total code points: 895088
+# The above property value applies to 757619 code points not listed here.
+# Total code points: 895087
 
 # ================================================
 
@@ -1080,8 +1080,7 @@ ABF0..ABF9    ; NU # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NINE
 2B47..2B4C    ; AL # Sm   [6] REVERSE TILDE OPERATOR ABOVE RIGHTWARDS ARROW..RIGHTWARDS ARROW ABOVE REVERSE TILDE OPERATOR
 2B4D..2B54    ; AL # So   [8] DOWNWARDS TRIANGLE-HEADED ZIGZAG ARROW..WHITE RIGHT-POINTING PENTAGON
 2B5A..2B73    ; AL # So  [26] SLANTED NORTH ARROW WITH HOOKED HEAD..DOWNWARDS TRIANGLE-HEADED ARROW TO BAR
-2B76..2B95    ; AL # So  [32] NORTH WEST TRIANGLE-HEADED ARROW TO BAR..RIGHTWARDS BLACK ARROW
-2B97..2BFF    ; AL # So [105] SYMBOL FOR TYPE A ELECTRONICS..HELLSCHREIBER PAUSE SYMBOL
+2B76..2BFF    ; AL # So [138] NORTH WEST TRIANGLE-HEADED ARROW TO BAR..HELLSCHREIBER PAUSE SYMBOL
 2C00..2C7B    ; AL # L& [124] GLAGOLITIC CAPITAL LETTER AZU..LATIN LETTER SMALL CAPITAL TURNED E
 2C7C..2C7D    ; AL # Lm   [2] LATIN SUBSCRIPT SMALL LETTER J..MODIFIER LETTER CAPITAL V
 2C7E..2CE4    ; AL # L& [103] LATIN CAPITAL LETTER S WITH SWASH TAIL..COPTIC SYMBOL KAI
@@ -1615,7 +1614,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB00..1FB92  ; AL # So [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK
 1FB94..1FBEF  ; AL # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 
-# Total code points: 26683
+# Total code points: 26684
 
 # ================================================
 

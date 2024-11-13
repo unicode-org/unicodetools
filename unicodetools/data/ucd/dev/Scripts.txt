@@ -1,5 +1,5 @@
 # Scripts-17.0.0.txt
-# Date: 2024-11-13, 21:23:13 GMT
+# Date: 2024-11-13, 21:35:38 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -306,8 +306,7 @@
 2B45..2B46    ; Common # So   [2] LEFTWARDS QUADRUPLE ARROW..RIGHTWARDS QUADRUPLE ARROW
 2B47..2B4C    ; Common # Sm   [6] REVERSE TILDE OPERATOR ABOVE RIGHTWARDS ARROW..RIGHTWARDS ARROW ABOVE REVERSE TILDE OPERATOR
 2B4D..2B73    ; Common # So  [39] DOWNWARDS TRIANGLE-HEADED ZIGZAG ARROW..DOWNWARDS TRIANGLE-HEADED ARROW TO BAR
-2B76..2B95    ; Common # So  [32] NORTH WEST TRIANGLE-HEADED ARROW TO BAR..RIGHTWARDS BLACK ARROW
-2B97..2BFF    ; Common # So [105] SYMBOL FOR TYPE A ELECTRONICS..HELLSCHREIBER PAUSE SYMBOL
+2B76..2BFF    ; Common # So [138] NORTH WEST TRIANGLE-HEADED ARROW TO BAR..HELLSCHREIBER PAUSE SYMBOL
 2E00..2E01    ; Common # Po   [2] RIGHT ANGLE SUBSTITUTION MARKER..RIGHT ANGLE DOTTED SUBSTITUTION MARKER
 2E02          ; Common # Pi       LEFT SUBSTITUTION BRACKET
 2E03          ; Common # Pf       RIGHT SUBSTITUTION BRACKET
@@ -633,7 +632,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 9053
+# Total code points: 9054
 
 # ================================================
 

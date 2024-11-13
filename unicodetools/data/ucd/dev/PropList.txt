@@ -1,5 +1,5 @@
 # PropList-17.0.0.txt
-# Date: 2024-11-13, 21:23:00 GMT
+# Date: 2024-11-13, 21:35:23 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1811,9 +1811,7 @@ E0100..E01EF  ; Variation_Selector # Mn [240] VARIATION SELECTOR-17..VARIATION S
 2B47..2B4C    ; Pattern_Syntax # Sm   [6] REVERSE TILDE OPERATOR ABOVE RIGHTWARDS ARROW..RIGHTWARDS ARROW ABOVE REVERSE TILDE OPERATOR
 2B4D..2B73    ; Pattern_Syntax # So  [39] DOWNWARDS TRIANGLE-HEADED ZIGZAG ARROW..DOWNWARDS TRIANGLE-HEADED ARROW TO BAR
 2B74..2B75    ; Pattern_Syntax # Cn   [2] <reserved-2B74>..<reserved-2B75>
-2B76..2B95    ; Pattern_Syntax # So  [32] NORTH WEST TRIANGLE-HEADED ARROW TO BAR..RIGHTWARDS BLACK ARROW
-2B96          ; Pattern_Syntax # Cn       <reserved-2B96>
-2B97..2BFF    ; Pattern_Syntax # So [105] SYMBOL FOR TYPE A ELECTRONICS..HELLSCHREIBER PAUSE SYMBOL
+2B76..2BFF    ; Pattern_Syntax # So [138] NORTH WEST TRIANGLE-HEADED ARROW TO BAR..HELLSCHREIBER PAUSE SYMBOL
 2E00..2E01    ; Pattern_Syntax # Po   [2] RIGHT ANGLE SUBSTITUTION MARKER..RIGHT ANGLE DOTTED SUBSTITUTION MARKER
 2E02          ; Pattern_Syntax # Pi       LEFT SUBSTITUTION BRACKET
 2E03          ; Pattern_Syntax # Pf       RIGHT SUBSTITUTION BRACKET
