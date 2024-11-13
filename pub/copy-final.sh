@@ -11,12 +11,12 @@ DEST=$2
 UNITOOLS_DATA=$UNICODETOOLS/unicodetools/data
 
 # Adjust the following for each year and version as needed.
-COPY_YEAR=2023
-UNI_VER=16.0.0
-EMOJI_VER=16.0
+COPY_YEAR=2024
+UNI_VER=17.0.0
+EMOJI_VER=17.0
 # UTS #10 release revision number to be used in CollationTest.html:
 # *Two* more than the last release revision number.
-TR10_REV=tr10-51
+TR10_REV=tr10-53
 
 TODAY=`date --iso-8601`
 
@@ -29,8 +29,8 @@ s/PUB_STATUS/final/
 s/UNI_VER/$UNI_VER/
 s/EMOJI_VER/$EMOJI_VER/
 s/TR10_REV/$TR10_REV/
-s%PUBLIC_EMOJI%Public/emoji/$EMOJI_VER/%
-s%PUBLIC_UCD_EMOJI%Public/$UNI_VER/ucd/emoji/%
+s%PUBLIC_EMOJI%Public/emoji/$EMOJI_VER%
+s%PUBLIC_UCD%Public/$UNI_VER%
 eof
 
 mkdir -p $DEST/$UNI_VER/ucd
@@ -87,6 +87,7 @@ rm $DEST/final.zip
 echo "--------------------"
 echo "Copy files from elsewhere:"
 echo "- Unihan.zip to $DEST/$UNI_VER/ucd"
+echo "- Unihan.zip to $DEST/zipped/$UNI_VER"
 echo "- UCDXML files to $DEST/$UNI_VER/ucdxml"
 echo "- final charts to $DEST/$UNI_VER/charts"
 

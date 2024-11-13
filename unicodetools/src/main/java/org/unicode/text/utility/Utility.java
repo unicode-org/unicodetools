@@ -176,6 +176,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
 
     /** Sutton SignWriting really does want to be in CamelCase without underscore. */
     private static final String Signwriting = "Signwriting";
+
     /**
      * @see Signwriting
      */
@@ -889,6 +890,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
 
     public static final String[] searchPath = {
         // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
+        "17.0.0",
         "16.0.0",
         "15.1.0",
         "15.0.0",
@@ -1931,7 +1933,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                 + Default.getYear()
                 + " Unicode®, Inc."
                 + "\n# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries."
-                + "\n# For terms of use, see https://www.unicode.org/terms_of_use.html";
+                + "\n# For terms of use and license, see https://www.unicode.org/terms_of_use.html";
     }
 
     public static String getBaseDataHeaderWithVersionText(

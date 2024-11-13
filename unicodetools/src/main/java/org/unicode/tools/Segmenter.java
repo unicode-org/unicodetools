@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -42,7 +43,7 @@ import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Settings;
-import org.unicode.tools.Segmenter.Rule.Breaks;
+import org.unicode.tools.Segmenter.SegmentationRule.Breaks;
 
 /** Ordered list of rules, with variables resolved before building. Use Builder to make. */
 public class Segmenter {
@@ -60,6 +61,7 @@ public class Segmenter {
      * debugging.
      */
     public static UnicodeSet DEBUG_REDUCE_SET_SIZE = null; // new
+
     // UnicodeSet("[\\u0000-\\u00FF\\u0300-\\u03FF\\u2000-\\u20FF]");
     // // new UnicodeSet("[\\u0000-\\u00FF\\u2000-\\u20FF]"); //
     // or null
@@ -135,6 +137,7 @@ public class Segmenter {
             BREAK_SOT = 0.2,
             BREAK_EOT = 0.3,
             BREAK_ANY = 999;
+
     /** Convenience for formatting doubles */
     public static NumberFormat nf = NumberFormat.getInstance(ULocale.ENGLISH);
 
@@ -168,16 +171,26 @@ public class Segmenter {
             breakRule = NOBREAK_SUPPLEMENTARY;
             return false;
         }
+        StringBuilder remapped = new StringBuilder(text.toString());
+        Consumer<CharSequence> remap =
+                (s) -> {
+                    remapped.setLength(0);
+                    remapped.append(s);
+                };
+        Integer[] indexInRemapped = new Integer[text.length() + 1];
+        for (int i = 0; i < indexInRemapped.length; ++i) {
+            indexInRemapped[i] = i;
+        }
         for (int i = 0; i < rules.size(); ++i) {
-            Rule rule = rules.get(i);
+            SegmentationRule rule = rules.get(i);
             if (DEBUG_AT_RULE_CONTAINING != null
                     && rule.toString().contains(DEBUG_AT_RULE_CONTAINING)) {
                 System.out.println(" !#$@543 Debug");
             }
-            Breaks result = rule.matches(text, position);
-            if (result != Rule.Breaks.UNKNOWN_BREAK) {
+            Breaks result = rule.applyAt(position, remapped, indexInRemapped, remap);
+            if (result != SegmentationRule.Breaks.UNKNOWN_BREAK) {
                 breakRule = orders.get(i).doubleValue();
-                return result == Rule.Breaks.BREAK;
+                return result == SegmentationRule.Breaks.BREAK;
             }
         }
         breakRule = BREAK_ANY;
@@ -195,12 +208,12 @@ public class Segmenter {
      * @param order
      * @param rule
      */
-    public void add(double order, Rule rule) {
+    public void add(double order, SegmentationRule rule) {
         orders.add(new Double(order));
         rules.add(rule);
     }
 
-    public Rule get(double order) {
+    public SegmentationRule get(double order) {
         int loc = orders.indexOf(new Double(order));
         if (loc < 0) return null;
         return rules.get(loc);
@@ -229,8 +242,7 @@ public class Segmenter {
         return result;
     }
 
-    /** A rule that determines the status of an offset. */
-    public static class Rule {
+    public abstract static class SegmentationRule {
         /** Status of a breaking rule */
         public enum Breaks {
             UNKNOWN_BREAK,
@@ -239,18 +251,150 @@ public class Segmenter {
         };
 
         /**
+         * Applies this rule throughout the text.
+         *
+         * @param remappedString The text, with any preceding remappings applied.
+         * @param indexInRemapped An array whose size is one greater than the original string.
+         *     Associates indices in the original string to indices in remappedString.
+         *     indexInRemapped[0] == 0, and indexInRemapped[indexInRemapped.size() - 1] ==
+         *     remappedString.size(). Whenever indexInRemapped[i] == null, resolvedBreaks[i] ==
+         *     NO_BREAK: this corresponds to positions inside a string which has been replaced by a
+         *     remap rule. Remap rules may update this mapping.
+         * @param resolvedBreaks An array whose size is one greater than the original string,
+         *     indicating resolved breaks in the string. Values that are UNKNOWN_BREAK are updated
+         *     if the rule applies to their position.
+         * @param remap Called by remap rules with the value of remappedString to be passed to
+         *     subsequent rules. The indices in indexInRemapped are updated consistently.
+         */
+        public abstract void apply(
+                CharSequence remappedString,
+                Integer[] indexInRemapped,
+                Breaks[] resolvedBreaks,
+                Consumer<CharSequence> remap);
+
+        protected abstract String toString(boolean showResolved);
+
+        /** Same as above, but only returns the resolution at the current position. */
+        public abstract Breaks applyAt(
+                int position,
+                CharSequence remappedString,
+                Integer[] indexInRemapped,
+                Consumer<CharSequence> remap);
+
+        public String toString() {
+            return toString(false);
+        }
+    }
+
+    /** A « treat as » rule. */
+    public static class RemapRule extends SegmentationRule {
+
+        public RemapRule(String leftHandSide, String replacement, String line) {
+            pattern = Pattern.compile(leftHandSide, REGEX_FLAGS);
+            this.replacement = replacement;
+            name = line;
+        }
+
+        @Override
+        public void apply(
+                CharSequence remappedString,
+                Integer[] indexInRemapped,
+                Breaks[] resolvedBreaks,
+                Consumer<CharSequence> remap) {
+            final var result = new StringBuilder();
+            int i = 0;
+            int offset = 0;
+            final var matcher = pattern.matcher(remappedString);
+            while (matcher.find()) {
+                for (; ; ++i) {
+                    if (indexInRemapped[i] == null) {
+                        continue;
+                    }
+                    if (indexInRemapped[i] > matcher.start()) {
+                        break;
+                    }
+                    indexInRemapped[i] += offset;
+                }
+                for (; ; ++i) {
+                    if (indexInRemapped[i] == null) {
+                        continue;
+                    }
+                    if (indexInRemapped[i] == matcher.end()) {
+                        break;
+                    }
+                    if (resolvedBreaks[i] == Breaks.BREAK) {
+                        throw new IllegalArgumentException(
+                                "Replacement rule at remapped indices "
+                                        + matcher.start()
+                                        + " sqq. spans a break: "
+                                        + remappedString);
+                    }
+                    resolvedBreaks[i] = Breaks.NO_BREAK;
+                    indexInRemapped[i] = null;
+                }
+                matcher.appendReplacement(result, replacement);
+                offset = result.length() - indexInRemapped[i];
+            }
+            for (; i < indexInRemapped.length; ++i) {
+                if (indexInRemapped[i] == null) {
+                    continue;
+                }
+                indexInRemapped[i] += offset;
+            }
+            matcher.appendTail(result);
+            if (indexInRemapped[indexInRemapped.length - 1] != result.length()) {
+                StringBuilder indices = new StringBuilder();
+                for (var j : indexInRemapped) {
+                    indices.append(j == null ? "null" : j.toString());
+                    indices.append(",");
+                }
+                throw new IllegalArgumentException(
+                        "Inconsistent indexInRemapped "
+                                + indices
+                                + " for new remapped string "
+                                + result);
+            }
+            remap.accept(result);
+        }
+
+        private Pattern pattern;
+        private String replacement;
+        private String name;
+
+        @Override
+        public Breaks applyAt(
+                int position,
+                CharSequence remappedString,
+                Integer[] indexInRemapped,
+                Consumer<CharSequence> remap) {
+            var resolvedBreaks = new Breaks[indexInRemapped.length];
+            apply(remappedString, indexInRemapped, resolvedBreaks, remap);
+            return resolvedBreaks[position] == null
+                    ? Breaks.UNKNOWN_BREAK
+                    : resolvedBreaks[position];
+        }
+
+        @Override
+        protected String toString(boolean showResolved) {
+            return name;
+        }
+    }
+
+    /** A rule that determines the status of an offset. */
+    public static class RegexRule extends SegmentationRule {
+        /**
          * @param before pattern for the text after the offset. All variables must be resolved.
          * @param result the break status to return when the rule is invoked
          * @param after pattern for the text before the offset. All variables must be resolved.
          * @param line
          */
-        public Rule(String before, Breaks result, String after, String line) {
+        public RegexRule(String before, Breaks result, String after, String line) {
             breaks = result;
             before = ".*(" + before + ")";
             String parsing = null;
             try {
-                matchPrevious = Pattern.compile(parsing = before, REGEX_FLAGS).matcher("");
-                matchSucceeding = Pattern.compile(parsing = after, REGEX_FLAGS).matcher("");
+                this.before = Pattern.compile(parsing = before, REGEX_FLAGS);
+                this.after = Pattern.compile(parsing = after, REGEX_FLAGS);
             } catch (PatternSyntaxException e) {
                 // Format: Unclosed character class near index 927
                 int index = e.getIndex();
@@ -277,26 +421,37 @@ public class Segmenter {
             // COMMENTS allows whitespace
         }
 
-        // Matcher numberMatcher = PatternCache.get("[0-9]+").matcher("");
-
-        /**
-         * Match the rule against text, at a position
-         *
-         * @param text
-         * @param position
-         * @return break status
-         */
-        public Breaks matches(CharSequence text, int position) {
-            if (!matchAfter(matchSucceeding, text, position)) return Breaks.UNKNOWN_BREAK;
-            if (!matchBefore(matchPrevious, text, position)) return Breaks.UNKNOWN_BREAK;
-            return breaks;
+        @Override
+        public void apply(
+                CharSequence remappedString,
+                Integer[] indexInRemapped,
+                Breaks[] resolvedBreaks,
+                Consumer<CharSequence> remap) {
+            for (int i = 0; i < indexInRemapped.length; ++i) {
+                if (resolvedBreaks[i] == Breaks.UNKNOWN_BREAK) {
+                    resolvedBreaks[i] = applyAt(i, remappedString, indexInRemapped, remap);
+                }
+            }
         }
 
-        /** Debugging aid */
-        public String toString() {
-            return toString(false);
+        @Override
+        public Breaks applyAt(
+                int position,
+                CharSequence remappedString,
+                Integer[] indexInRemapped,
+                Consumer<CharSequence> remap) {
+            if (after.matcher(remappedString)
+                            .region(indexInRemapped[position], remappedString.length())
+                            .lookingAt()
+                    && before.matcher(remappedString)
+                            .region(0, indexInRemapped[position])
+                            .matches()) {
+                return breaks;
+            }
+            return Breaks.UNKNOWN_BREAK;
         }
 
+        @Override
         public String toString(boolean showResolved) {
             String result = name;
             if (showResolved) result += ": " + resolved;
@@ -304,27 +459,14 @@ public class Segmenter {
         }
 
         // ============== Internals ================
-        // in Java 5, this can be more efficient, and use a single regex
-        // of the form "(?<= before) after". MUST then have transparent bounds
-        private Matcher matchPrevious;
-        private Matcher matchSucceeding;
+        // We cannot use a single regex of the form "(?<= before) after" because
+        // (RI RI)* RI × RI would require unbounded lookbehind.
+        private Pattern before;
+        private Pattern after;
         private String name;
 
         private String resolved;
         private Breaks breaks;
-    }
-
-    /** utility, since we are using Java 1.4 */
-    static boolean matchAfter(Matcher matcher, CharSequence text, int position) {
-        return matcher.reset(text.subSequence(position, text.length())).lookingAt();
-    }
-
-    /**
-     * utility, since we are using Java 1.4 depends on the pattern having been built with .* not
-     * very efficient, works for testing and the best we can do.
-     */
-    static boolean matchBefore(Matcher matcher, CharSequence text, int position) {
-        return matcher.reset(text.subSequence(0, position)).matches();
     }
 
     /** Separate the builder for clarity */
@@ -472,17 +614,26 @@ public class Segmenter {
                 throw new IllegalArgumentException("Rule must be of form '1)...': <" + line + ">");
             }
             line = line.substring(relationPosition + 1).trim();
+            relationPosition = line.indexOf('→');
+            if (relationPosition >= 0) {
+                addRemapRule(
+                        order,
+                        line.substring(0, relationPosition).trim(),
+                        line.substring(relationPosition + 1).trim(),
+                        line);
+                return true;
+            }
             relationPosition = line.indexOf('\u00F7');
-            Breaks breaks = Segmenter.Rule.Breaks.BREAK;
+            Breaks breaks = Segmenter.RegexRule.Breaks.BREAK;
             if (relationPosition < 0) {
                 relationPosition = line.indexOf('\u00D7');
                 if (relationPosition < 0) {
                     throw new IllegalArgumentException(
                             "Couldn't find =, \u00F7, or \u00D7 on line: " + line);
                 }
-                breaks = Segmenter.Rule.Breaks.NO_BREAK;
+                breaks = Segmenter.RegexRule.Breaks.NO_BREAK;
             }
-            addRule(
+            addRegexRule(
                     order,
                     line.substring(0, relationPosition).trim(),
                     breaks,
@@ -589,6 +740,40 @@ public class Segmenter {
             return target;
         }
 
+        Builder addRemapRule(Double order, String before, String after, String line) {
+            line = whiteSpace.reset(line).replaceAll(" ");
+            if (lastComments.size() != 0) {
+                double increment = 0.0001;
+                double temp = order.doubleValue() - increment * lastComments.size();
+                for (int i = 0; i < lastComments.size(); ++i) {
+                    Double position = new Double(temp);
+                    if (xmlRules.containsKey(position)) {
+                        System.out.println("WARNING: Overriding rule " + position);
+                    }
+                    xmlRules.put(position, lastComments.get(i));
+                    temp += increment;
+                }
+                lastComments.clear();
+            }
+            if (htmlRules.containsKey(order)
+                    || xmlRules.containsKey(order)
+                    || rules.containsKey(order)) {
+                throw new IllegalArgumentException("Duplicate numbers for rules: " + order);
+            }
+            htmlRules.put(order, TransliteratorUtilities.toHTML.transliterate(line));
+            xmlRules.put(
+                    order,
+                    "<rule id=\""
+                            + Segmenter.nf.format(order)
+                            + "\""
+                            // + (flagItems.reset(line).find() ? " normative=\"true\"" : "")
+                            + "> "
+                            + TransliteratorUtilities.toXML.transliterate(line)
+                            + " </rule>");
+            rules.put(order, new Segmenter.RemapRule(replaceVariables(before), after, line));
+            return this;
+        }
+
         /**
          * Add a numbered rule, already broken into the parts before and after.
          *
@@ -599,7 +784,8 @@ public class Segmenter {
          * @param line
          * @return
          */
-        Builder addRule(Double order, String before, Breaks breaks, String after, String line) {
+        Builder addRegexRule(
+                Double order, String before, Breaks breaks, String after, String line) {
             // if (brokenIdentifierMatcher.reset(line).find()) {
             // int start = brokenIdentifierMatcher.start();
             // int end = brokenIdentifierMatcher.end();
@@ -644,7 +830,7 @@ public class Segmenter {
             }
             rules.put(
                     order,
-                    new Segmenter.Rule(
+                    new Segmenter.RegexRule(
                             replaceVariables(before), breaks, replaceVariables(after), line));
             return this;
         }
@@ -669,9 +855,9 @@ public class Segmenter {
         // longest first, to
         // make substitution
         // easy
-        private Map<Double, Rule> rules = new TreeMap<Double, Rule>();
+        private Map<Double, SegmentationRule> rules = new TreeMap<Double, SegmentationRule>();
 
-        public Map<Double, Rule> getProcessedRules() {
+        public Map<Double, SegmentationRule> getProcessedRules() {
             return rules;
         }
 
@@ -811,7 +997,7 @@ public class Segmenter {
 
     // ============== Internals ================
 
-    private List<Rule> rules = new ArrayList<Rule>(1);
+    private List<SegmentationRule> rules = new ArrayList<SegmentationRule>(1);
     private List<Double> orders = new ArrayList<Double>(1);
     private double breakRule;
 
@@ -1310,9 +1496,11 @@ public class Segmenter {
                     "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
                             + "<!DOCTYPE ldml SYSTEM \"../../common/dtd/ldml.dtd\">\n"
                             + "<!--\n"
-                            + "Copyright © 1991-2015 Unicode, Inc.\n"
-                            + "CLDR data files are interpreted according to the LDML specification (http://unicode.org/reports/tr35/)\n"
-                            + "For terms of use, see http://www.unicode.org/copyright.html\n"
+                            + "Copyright © 1991-"
+                            + Default.getYear()
+                            + " Unicode, Inc.\n"
+                            + "CLDR data files are interpreted according to the LDML specification (https://unicode.org/reports/tr35/)\n"
+                            + "For terms of use and license, see https://www.unicode.org/terms_of_use.html\n"
                             + "-->\n"
                             + "<ldml>\n"
                             + "\t<identity>\n"

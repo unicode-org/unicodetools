@@ -46,6 +46,7 @@ public class TestBuilder extends TestFmwkMinusMinus {
         Set<Foo> w = Builder.with(EnumSet.noneOf(Foo.class)).add(Foo.foo1).freeze();
         assertTrue("w", w.size() == 1 && w.contains(Foo.foo1));
     }
+
     /**
      *
      *
