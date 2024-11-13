@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-17.0.0.txt
-# Date: 2024-10-16, 13:48:28 GMT
+# Date: 2024-11-13, 12:16:07 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -740,6 +740,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 2EE5E..2F7FF  ; Cn # [2466] <reserved-2EE5E>..<reserved-2F7FF>
 2FA1E..2FFFF  ; Cn # [1506] <reserved-2FA1E>..<noncharacter-2FFFF>
 3134B..3134F  ; Cn #   [5] <reserved-3134B>..<reserved-3134F>
+3347A         ; Cn #       <reserved-3347A>
 3347C..E0000  ; Cn # [707461] <reserved-3347C>..<reserved-E0000>
 E0002..E001F  ; Cn #  [30] <reserved-E0002>..<reserved-E001F>
 E0080..E00FF  ; Cn # [128] <reserved-E0080>..<reserved-E00FF>
@@ -747,7 +748,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 815233
+# Total code points: 815234
 
 # ================================================
 
@@ -2706,9 +2707,10 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 2EBF0..2EE5D  ; Lo # [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 2F800..2FA1D  ; Lo # [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
-31350..3347B  ; Lo # [8492] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-3347B
+31350..33479  ; Lo # [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
+3347B         ; Lo #       <CJK Ideograph Extension J, Last>
 
-# Total code points: 140777
+# Total code points: 140776
 
 # ================================================
 

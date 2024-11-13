@@ -1,5 +1,5 @@
 # DerivedLineBreak-17.0.0.txt
-# Date: 2024-10-16, 13:48:29 GMT
+# Date: 2024-11-13, 12:16:08 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1851,9 +1851,10 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 2EBF0..2EE5D  ; ID # Lo [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 2F800..2FA1D  ; ID # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; ID # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
-31350..3347B  ; ID # Lo [8492] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-3347B
+31350..33479  ; ID # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
+3347B         ; ID # Lo       <CJK Ideograph Extension J, Last>
 
-# The above property value applies to 57565 code points not listed here.
+# The above property value applies to 57566 code points not listed here.
 # Total code points: 172421
 
 # ================================================

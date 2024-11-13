@@ -1,5 +1,5 @@
-# EastAsianWidth-16.0.0.txt
-# Date: 2024-07-24, 14:53:48 GMT
+# EastAsianWidth-17.0.0.txt
+# Date: 2024-11-13, 12:16:09 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2675,7 +2675,9 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 2FA20..2FFFD   ; W  # Cn  [1502] <reserved-2FA20>..<reserved-2FFFD>
 30000..3134A   ; W  # Lo  [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 3134B..3134F   ; W  # Cn     [5] <reserved-3134B>..<reserved-3134F>
-31350..3347B   ; W  # Lo  [8492] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-3347B
+31350..33479   ; W  # Lo  [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
+3347A          ; W  # Cn         <reserved-3347A>
+3347B          ; W  # Lo         <CJK Ideograph Extension J, Last>
 3347C..3FFFD   ; W  # Cn [52098] <reserved-3347C>..<reserved-3FFFD>
 E0001          ; N  # Cf         LANGUAGE TAG
 E0020..E007F   ; N  # Cf    [96] TAG SPACE..CANCEL TAG
