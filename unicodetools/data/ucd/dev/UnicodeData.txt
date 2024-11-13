@@ -1,3 +1,11 @@
+1FAEA;DISTORTED FACE;So;0;ON;;;;;N;;;;;
+1FAEF;FIGHT CLOUD;So;0;ON;;;;;N;;;;;
+1FADD;APPLE CORE;So;0;ON;;;;;N;;;;;
+1FACD;ORCA;So;0;ON;;;;;N;;;;;
+1FAC8;HAIRY CREATURE;So;0;ON;;;;;N;;;;;
+1FA8A;TROMBONE;So;0;ON;;;;;N;;;;;
+1F6D8;LANDSLIDE;So;0;ON;;;;;N;;;;;
+1FA8E;TREASURE CHEST;So;0;ON;;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
