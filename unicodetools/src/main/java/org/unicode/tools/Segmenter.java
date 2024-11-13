@@ -20,8 +20,6 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,9 +38,6 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.props.UnicodeProperty;
-import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
-import org.unicode.text.utility.Settings;
 import org.unicode.tools.Segmenter.SegmentationRule.Breaks;
 
 /** Ordered list of rules, with variables resolved before building. Use Builder to make. */
