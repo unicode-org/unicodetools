@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2024-10-16, 14:20:05 GMT
+# Date: 2024-11-13, 16:03:58 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2096,6 +2096,7 @@
 088C          ; ARABIC LETTER TAH WITH THREE DOTS BELOW
 088D          ; ARABIC LETTER KEHEH WITH TWO DOTS VERTICALLY BELOW
 088E          ; ARABIC VERTICAL TAIL
+088F          ; ARABIC LETTER NOON WITH RING ABOVE
 0890          ; ARABIC POUND MARK ABOVE
 0891          ; ARABIC PIASTRE MARK ABOVE
 0897          ; ARABIC PEPET
@@ -45368,6 +45369,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 154999
+# Total code points: 155000
 
 # EOF

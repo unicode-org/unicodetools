@@ -1,5 +1,5 @@
-# VerticalOrientation-16.0.0.txt
-# Date: 2024-06-06, 09:54:11 GMT
+# VerticalOrientation-17.0.0.txt
+# Date: 2024-11-13, 16:04:22 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -266,7 +266,7 @@
 0860..086A     ; R  # Lo    [11] SYRIAC LETTER MALAYALAM NGA..SYRIAC LETTER MALAYALAM SSA
 0870..0887     ; R  # Lo    [24] ARABIC LETTER ALEF WITH ATTACHED FATHA..ARABIC BASELINE ROUND DOT
 0888           ; R  # Sk         ARABIC RAISED ROUND DOT
-0889..088E     ; R  # Lo     [6] ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC VERTICAL TAIL
+0889..088F     ; R  # Lo     [7] ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC LETTER NOON WITH RING ABOVE
 0890..0891     ; R  # Cf     [2] ARABIC POUND MARK ABOVE..ARABIC PIASTRE MARK ABOVE
 0897..089F     ; R  # Mn     [9] ARABIC PEPET..ARABIC HALF MADDA OVER MADDA
 08A0..08C8     ; R  # Lo    [41] ARABIC LETTER BEH WITH SMALL V BELOW..ARABIC LETTER GRAF

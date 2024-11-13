@@ -1,0 +1,30 @@
+# ARABIC LETTER NOON WITH RING ABOVE (088F)
+# https://github.com/unicode-org/utc-release-management/issues/118
+
+Let $OldNoons := [ ن ڹ ں ڻ ڼ ڽ ݧ ݨ ݩ ࢉ ]
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+
+Ignoring Block Unicode_1_Name:
+
+# « Another ن, propertywise like the others. ».
+
+# Differs from ڽ (with three dots above) in Joining_Group,
+# ڽ being jg=Nya vs. jg=Noon for the others; see
+# https://www.unicode.org/versions/latest/ch09.pdf#G39824.
+Ignoring Joining_Group:
+Propertywise [ $OldNoons \N{ARABIC LETTER NOON WITH RING ABOVE} ] AreAlike
+end Ignoring;
+
+Propertywise [ $OldNoons - [ڽ] \N{ARABIC LETTER NOON WITH RING ABOVE} ] AreAlike
+
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
