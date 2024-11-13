@@ -88,9 +88,9 @@ public interface UCD_Types {
             CJK_H_LIMIT = 0x323AF + 1,
 
             // 323B0;<CJK Ideograph Extension J, First>;Lo;0;L;;;;;N;;;;;
-            // 3347B;<CJK Ideograph Extension J, Last>;Lo;0;L;;;;;N;;;;;
+            // 33479;<CJK Ideograph Extension J, Last>;Lo;0;L;;;;;N;;;;;
             CJK_J_BASE = 0x323B0,
-            CJK_J_LIMIT = 0x3347B + 1
+            CJK_J_LIMIT = 0x33479 + 1
 
     // when adding to this list, look for all occurrences (in project) of CJK_C_BASE and CJK_C_LIMIT
     // to check for code that needs changing.
