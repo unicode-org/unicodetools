@@ -1,5 +1,5 @@
 # NormalizationTest-17.0.0.txt
-# Date: 2024-11-13, 21:22:57 GMT
+# Date: 2024-11-13, 22:18:53 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2429,6 +2429,7 @@ FEFA 0334;FEFA 0334;FEFA 0334;0644 0625 0334;0644 0627 0334 0655; # (ﻺ◌̴; �
 A69C;A69C;A69C;044A;044A; # (ꚜ; ꚜ; ꚜ; ъ; ъ; ) MODIFIER LETTER CYRILLIC HARD SIGN
 A69D;A69D;A69D;044C;044C; # (ꚝ; ꚝ; ꚝ; ь; ь; ) MODIFIER LETTER CYRILLIC SOFT SIGN
 A770;A770;A770;A76F;A76F; # (ꝰ; ꝰ; ꝰ; ꝯ; ꝯ; ) MODIFIER LETTER US
+A7F1;A7F1;A7F1;0053;0053; # (꟱; ꟱; ꟱; S; S; ) MODIFIER LETTER CAPITAL S
 A7F2;A7F2;A7F2;0043;0043; # (ꟲ; ꟲ; ꟲ; C; C; ) MODIFIER LETTER CAPITAL C
 A7F3;A7F3;A7F3;0046;0046; # (ꟳ; ꟳ; ꟳ; F; F; ) MODIFIER LETTER CAPITAL F
 A7F4;A7F4;A7F4;0051;0051; # (ꟴ; ꟴ; ꟴ; Q; Q; ) MODIFIER LETTER CAPITAL Q
