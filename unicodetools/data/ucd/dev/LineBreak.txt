@@ -1,5 +1,5 @@
 # LineBreak-17.0.0.txt
-# Date: 2024-11-13, 17:50:39 GMT
+# Date: 2024-11-13, 19:41:43 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -777,7 +777,7 @@
 1AA8..1AAD     ; SA # Po     [6] TAI THAM SIGN KAAN..TAI THAM SIGN CAANG
 1AB0..1ABD     ; CM # Mn    [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
 1ABE           ; CM # Me         COMBINING PARENTHESES OVERLAY
-1ABF..1AD5     ; CM # Mn    [23] COMBINING LATIN SMALL LETTER W BELOW..COMBINING MACRON-VERTICAL-LINE
+1ABF..1AD8     ; CM # Mn    [26] COMBINING LATIN SMALL LETTER W BELOW..COMBINING MACRON-ACUTE-GRAVE
 1B00..1B03     ; CM # Mn     [4] BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
 1B04           ; CM # Mc         BALINESE SIGN BISAH
 1B05..1B33     ; AK # Lo    [47] BALINESE LETTER AKARA..BALINESE LETTER HA
