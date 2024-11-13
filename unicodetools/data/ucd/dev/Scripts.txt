@@ -1,3 +1,11 @@
+1FAEA ; Common
+1FAEF ; Common
+1FADD ; Common
+1FACD ; Common
+1FAC8 ; Common
+1FA8A ; Common
+1F6D8 ; Common
+1FA8E ; Common
 # Scripts-16.0.0.txt
 # Date: 2024-04-30, 21:48:40 GMT
 # © 2024 Unicode®, Inc.
