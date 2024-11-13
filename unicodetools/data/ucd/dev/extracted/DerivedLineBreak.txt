@@ -1,5 +1,5 @@
 # DerivedLineBreak-17.0.0.txt
-# Date: 2024-11-13, 16:03:58 GMT
+# Date: 2024-11-13, 16:21:59 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -69,8 +69,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 757651 code points not listed here.
-# Total code points: 895119
+# The above property value applies to 757649 code points not listed here.
+# Total code points: 895117
 
 # ================================================
 
@@ -1967,7 +1967,7 @@ FE19          ; IN # Po       PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS
 0B47..0B48    ; CM # Mc   [2] ORIYA VOWEL SIGN E..ORIYA VOWEL SIGN AI
 0B4B..0B4C    ; CM # Mc   [2] ORIYA VOWEL SIGN O..ORIYA VOWEL SIGN AU
 0B4D          ; CM # Mn       ORIYA SIGN VIRAMA
-0B55..0B56    ; CM # Mn   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
+0B53..0B56    ; CM # Mn   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
 0B57          ; CM # Mc       ORIYA AU LENGTH MARK
 0B62..0B63    ; CM # Mn   [2] ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
 0B82          ; CM # Mn       TAMIL SIGN ANUSVARA
@@ -2388,7 +2388,7 @@ E0001         ; CM # Cf       LANGUAGE TAG
 E0020..E007F  ; CM # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; CM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2470
+# Total code points: 2472
 
 # ================================================
 
