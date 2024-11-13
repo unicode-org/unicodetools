@@ -1,5 +1,5 @@
 # DerivedJoiningType-17.0.0.txt
-# Date: 2024-10-16, 14:15:53 GMT
+# Date: 2024-11-13, 17:23:24 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -70,6 +70,7 @@
 0868          ; D # Lo       SYRIAC LETTER MALAYALAM LLA
 0886          ; D # Lo       ARABIC LETTER THIN YEH
 0889..088D    ; D # Lo   [5] ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC LETTER KEHEH WITH TWO DOTS VERTICALLY BELOW
+088F          ; D # Lo       ARABIC LETTER NOON WITH RING ABOVE
 08A0..08A9    ; D # Lo  [10] ARABIC LETTER BEH WITH SMALL V BELOW..ARABIC LETTER YEH WITH TWO DOTS BELOW AND DOT ABOVE
 08AF..08B0    ; D # Lo   [2] ARABIC LETTER SAD WITH THREE DOTS BELOW..ARABIC LETTER GAF WITH INVERTED STROKE
 08B3..08B8    ; D # Lo   [6] ARABIC LETTER AIN WITH THREE DOTS BELOW..ARABIC LETTER TEH WITH SMALL TEH ABOVE
@@ -111,7 +112,7 @@ A840..A871    ; D # Lo  [50] PHAGS-PA LETTER KA..PHAGS-PA SUBJOINED LETTER RA
 10FCA         ; D # No       CHORASMIAN NUMBER TWENTY
 1E900..1E943  ; D # L&  [68] ADLAM CAPITAL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 612
+# Total code points: 613
 
 # ================================================
 
@@ -265,7 +266,7 @@ A872          ; L # Lo       PHAGS-PA SUPERFIXED LETTER RA
 0B3F          ; T # Mn       ORIYA VOWEL SIGN I
 0B41..0B44    ; T # Mn   [4] ORIYA VOWEL SIGN U..ORIYA VOWEL SIGN VOCALIC RR
 0B4D          ; T # Mn       ORIYA SIGN VIRAMA
-0B55..0B56    ; T # Mn   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
+0B53..0B56    ; T # Mn   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
 0B62..0B63    ; T # Mn   [2] ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
 0B82          ; T # Mn       TAMIL SIGN ANUSVARA
 0BC0          ; T # Mn       TAMIL VOWEL SIGN II
@@ -581,6 +582,6 @@ E0001         ; T # Cf       LANGUAGE TAG
 E0020..E007F  ; T # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; T # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2186
+# Total code points: 2188
 
 # EOF
