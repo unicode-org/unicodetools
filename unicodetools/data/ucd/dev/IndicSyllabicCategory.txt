@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-17.0.0.txt
-# Date: 2024-11-13, 16:22:02 GMT
+# Date: 2024-11-14, 18:38:07 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -729,6 +729,12 @@ ABE9..ABEA    ; Vowel_Dependent # Mc   [2] MEETEI MAYEK VOWEL SIGN CHEINAP..MEET
 11A51..11A56  ; Vowel_Dependent # Mn   [6] SOYOMBO VOWEL SIGN I..SOYOMBO VOWEL SIGN OE
 11A57..11A58  ; Vowel_Dependent # Mc   [2] SOYOMBO VOWEL SIGN AI..SOYOMBO VOWEL SIGN AU
 11A59..11A5B  ; Vowel_Dependent # Mn   [3] SOYOMBO VOWEL SIGN VOCALIC R..SOYOMBO VOWEL LENGTH MARK
+11B60         ; Vowel_Dependent # Mn       SHARADA VOWEL SIGN OE
+11B61         ; Vowel_Dependent # Mc       SHARADA VOWEL SIGN OOE
+11B62..11B64  ; Vowel_Dependent # Mn   [3] SHARADA VOWEL SIGN UE..SHARADA VOWEL SIGN SHORT E
+11B65         ; Vowel_Dependent # Mc       SHARADA VOWEL SIGN SHORT O
+11B66         ; Vowel_Dependent # Mn       SHARADA VOWEL SIGN CANDRA E
+11B67         ; Vowel_Dependent # Mc       SHARADA VOWEL SIGN CANDRA O
 11C2F         ; Vowel_Dependent # Mc       BHAIKSUKI VOWEL SIGN AA
 11C30..11C36  ; Vowel_Dependent # Mn   [7] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN VOCALIC L
 11C38..11C3B  ; Vowel_Dependent # Mn   [4] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI VOWEL SIGN AU

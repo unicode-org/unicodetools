@@ -1,5 +1,5 @@
 # DerivedAge-17.0.0.txt
-# Date: 2024-11-14, 16:07:50 GMT
+# Date: 2024-11-14, 18:37:36 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2084,7 +2084,8 @@ FDC8..FDCE    ; 17.0 #   [7] ARABIC LIGATURE RAHIMAHU ALLAAH TAAALAA..ARABIC LIG
 10EC5..10EC7  ; 17.0 #   [3] ARABIC SMALL YEH BARREE WITH TWO DOTS BELOW..ARABIC LETTER YEH WITH FOUR DOTS BELOW
 10ED0..10ED8  ; 17.0 #   [9] ARABIC BIBLICAL END OF VERSE..ARABIC LIGATURE NAWWARA ALLAAHU MARQADAH
 10EFA..10EFB  ; 17.0 #   [2] ARABIC DOUBLE VERTICAL BAR BELOW..ARABIC SMALL LOW NOON
+11B60..11B67  ; 17.0 #   [8] SHARADA VOWEL SIGN OE..SHARADA VOWEL SIGN CANDRA O
 
-# Total code points: 107
+# Total code points: 115
 
 # EOF

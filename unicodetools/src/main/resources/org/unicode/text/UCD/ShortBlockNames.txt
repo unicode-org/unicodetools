@@ -264,6 +264,7 @@ Runic	;	Runic
 Samaritan	;	Samaritan
 Saurashtra	;	Saurashtra
 Sharada	;	Sharada
+Sharada_Sup	;	Sharada_Supplement
 Shavian	;	Shavian
 Shorthand_Format_Controls	;	Shorthand_Format_Controls
 Siddham	;	Siddham

@@ -1,5 +1,5 @@
 # Scripts-17.0.0.txt
-# Date: 2024-11-14, 16:08:54 GMT
+# Date: 2024-11-14, 18:38:37 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2351,8 +2351,14 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 111DB         ; Sharada # Po       SHARADA SIGN SIDDHAM
 111DC         ; Sharada # Lo       SHARADA HEADSTROKE
 111DD..111DF  ; Sharada # Po   [3] SHARADA CONTINUATION SIGN..SHARADA SECTION MARK-2
+11B60         ; Sharada # Mn       SHARADA VOWEL SIGN OE
+11B61         ; Sharada # Mc       SHARADA VOWEL SIGN OOE
+11B62..11B64  ; Sharada # Mn   [3] SHARADA VOWEL SIGN UE..SHARADA VOWEL SIGN SHORT E
+11B65         ; Sharada # Mc       SHARADA VOWEL SIGN SHORT O
+11B66         ; Sharada # Mn       SHARADA VOWEL SIGN CANDRA E
+11B67         ; Sharada # Mc       SHARADA VOWEL SIGN CANDRA O
 
-# Total code points: 96
+# Total code points: 104
 
 # ================================================
 

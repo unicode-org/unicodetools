@@ -1,5 +1,5 @@
 # DerivedLineBreak-17.0.0.txt
-# Date: 2024-11-14, 16:08:18 GMT
+# Date: 2024-11-14, 18:38:04 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -69,8 +69,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 757546 code points not listed here.
-# Total code points: 895014
+# The above property value applies to 757538 code points not listed here.
+# Total code points: 895006
 
 # ================================================
 
@@ -2313,6 +2313,12 @@ FFF9..FFFB    ; CM # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTAT
 11A8A..11A96  ; CM # Mn  [13] SOYOMBO FINAL CONSONANT SIGN G..SOYOMBO SIGN ANUSVARA
 11A97         ; CM # Mc       SOYOMBO SIGN VISARGA
 11A98..11A99  ; CM # Mn   [2] SOYOMBO GEMINATION MARK..SOYOMBO SUBJOINER
+11B60         ; CM # Mn       SHARADA VOWEL SIGN OE
+11B61         ; CM # Mc       SHARADA VOWEL SIGN OOE
+11B62..11B64  ; CM # Mn   [3] SHARADA VOWEL SIGN UE..SHARADA VOWEL SIGN SHORT E
+11B65         ; CM # Mc       SHARADA VOWEL SIGN SHORT O
+11B66         ; CM # Mn       SHARADA VOWEL SIGN CANDRA E
+11B67         ; CM # Mc       SHARADA VOWEL SIGN CANDRA O
 11C2F         ; CM # Mc       BHAIKSUKI VOWEL SIGN AA
 11C30..11C36  ; CM # Mn   [7] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN VOCALIC L
 11C38..11C3D  ; CM # Mn   [6] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI SIGN ANUSVARA
@@ -2392,7 +2398,7 @@ E0001         ; CM # Cf       LANGUAGE TAG
 E0020..E007F  ; CM # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; CM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2500
+# Total code points: 2508
 
 # ================================================
 
