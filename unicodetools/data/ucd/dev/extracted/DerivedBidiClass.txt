@@ -1,5 +1,5 @@
 # DerivedBidiClass-17.0.0.txt
-# Date: 2024-11-14, 12:16:21 GMT
+# Date: 2024-11-14, 14:37:19 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -67,6 +67,7 @@
 # 108E0..108FF Hatran
 # 10900..1091F Phoenician
 # 10920..1093F Lydian
+# 10940..1095C Sidetic
 # 10980..1099F Meroitic_Hieroglyphs
 # 109A0..109FF Meroitic_Cursive
 # 10A00..10A5F Kharoshthi
@@ -1267,6 +1268,7 @@ FB46..FB4F    ; R # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW LIGATURE AL
 10916..1091B  ; R # No   [6] PHOENICIAN NUMBER ONE..PHOENICIAN NUMBER THREE
 10920..10939  ; R # Lo  [26] LYDIAN LETTER A..LYDIAN LETTER C
 1093F         ; R # Po       LYDIAN TRIANGULAR MARK
+10940..1095C  ; R # Lo  [29] SIDETIC LETTER N01..SIDETIC LETTER N29
 10980..109B7  ; R # Lo  [56] MEROITIC HIEROGLYPHIC LETTER A..MEROITIC CURSIVE LETTER DA
 109BC..109BD  ; R # No   [2] MEROITIC CURSIVE FRACTION ELEVEN TWELFTHS..MEROITIC CURSIVE FRACTION ONE HALF
 109BE..109BF  ; R # Lo   [2] MEROITIC CURSIVE LOGOGRAM RMT..MEROITIC CURSIVE LOGOGRAM IMN
@@ -1325,7 +1327,7 @@ FB46..FB4F    ; R # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW LIGATURE AL
 1E950..1E959  ; R # Nd  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 1E95E..1E95F  ; R # Po   [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 
-# The above property value applies to 2087 code points not listed here.
+# The above property value applies to 2058 code points not listed here.
 # Total code points: 3631
 
 # ================================================
