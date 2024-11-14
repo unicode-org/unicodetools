@@ -1,5 +1,5 @@
 # SentenceBreakProperty-17.0.0.txt
-# Date: 2024-11-13, 12:16:29 GMT
+# Date: 2024-11-14, 15:20:19 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2584,9 +2584,8 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 2F800..2FA1D  ; OLetter # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; OLetter # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..33479  ; OLetter # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
-3347B         ; OLetter # Lo       <CJK Ideograph Extension J, Last>
 
-# Total code points: 141207
+# Total code points: 141206
 
 # ================================================
 
