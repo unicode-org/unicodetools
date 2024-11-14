@@ -1,5 +1,5 @@
-# GraphemeBreakTest-16.0.0.txt
-# Date: 2024-05-02, 15:02:48 GMT
+# GraphemeBreakTest-17.0.0.txt
+# Date: 2024-10-30, 21:25:11 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1115,7 +1115,8 @@
 ÷ 0061 × 094D ÷ 0924 ÷	#  ÷ [0.2] LATIN SMALL LETTER A (Other) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinkingScripts_ConjunctLinker_ExtCccZwj) ÷ [999.0] DEVANAGARI LETTER TA (ConjunctLinkingScripts_LinkingConsonant) ÷ [0.3]
 ÷ 003F × 094D ÷ 0924 ÷	#  ÷ [0.2] QUESTION MARK (Other) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinkingScripts_ConjunctLinker_ExtCccZwj) ÷ [999.0] DEVANAGARI LETTER TA (ConjunctLinkingScripts_LinkingConsonant) ÷ [0.3]
 ÷ 0915 × 094D × 094D × 0924 ÷	#  ÷ [0.2] DEVANAGARI LETTER KA (ConjunctLinkingScripts_LinkingConsonant) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinkingScripts_ConjunctLinker_ExtCccZwj) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinkingScripts_ConjunctLinker_ExtCccZwj) × [9.3] DEVANAGARI LETTER TA (ConjunctLinkingScripts_LinkingConsonant) ÷ [0.3]
+÷ 0AB8 × 0AFB × 0ACD × 0AB8 × 0AFB ÷	#  ÷ [0.2] GUJARATI LETTER SA (ConjunctLinkingScripts_LinkingConsonant) × [9.0] GUJARATI SIGN SHADDA (Extend_ConjunctLinkingScripts_ExtCccZwj) × [9.0] GUJARATI SIGN VIRAMA (Extend_ConjunctLinkingScripts_ConjunctLinker_ExtCccZwj) × [9.3] GUJARATI LETTER SA (ConjunctLinkingScripts_LinkingConsonant) × [9.0] GUJARATI SIGN SHADDA (Extend_ConjunctLinkingScripts_ExtCccZwj) ÷ [0.3]
 #
-# Lines: 1093
+# Lines: 1094
 #
 # EOF
