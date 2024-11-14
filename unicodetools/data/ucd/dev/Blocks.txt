@@ -228,6 +228,7 @@ FFF0..FFFF; Specials
 108E0..108FF; Hatran
 10900..1091F; Phoenician
 10920..1093F; Lydian
+10940..1095C; Sidetic
 10980..1099F; Meroitic Hieroglyphs
 109A0..109FF; Meroitic Cursive
 10A00..10A5F; Kharoshthi
@@ -279,6 +280,7 @@ FFF0..FFFF; Specials
 11AB0..11ABF; Unified Canadian Aboriginal Syllabics Extended-A
 11AC0..11AFF; Pau Cin Hau
 11B00..11B5F; Devanagari Extended-A
+11B60..11B7F; Sharada Supplement
 11BC0..11BFF; Sunuwar
 11C00..11C6F; Bhaiksuki
 11C70..11CBF; Marchen
