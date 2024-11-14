@@ -7,7 +7,7 @@ td, th { vertical-align: top }
 <body bgcolor='#FFFFFF'>
 <h2>Line_Break Chart</h2>
 <p><b>Unicode Version:</b> 17.0.0</p>
-<p><b>Date:</b> 2024-10-14, 12:25:22 GMT</p>
+<p><b>Date:</b> 2024-10-30, 21:25:12 GMT</p>
 <p>This page illustrates the application of the Line_Break specification. The material here is informative, not normative.</p> <p>The first chart shows where breaks would appear between different sample characters or strings. The sample characters are chosen mechanically to represent the different properties used by the specification.</p><p>Each cell shows the break-status for the position between the character(s) in its row header and the character(s) in its column header. The × symbol indicates no break, while the ÷ symbol indicated a break. The cells with × are also shaded to make it easier to scan the table. For example, in the cell at the intersection of the row headed by “CR” and the column headed by “LF”, there is a × symbol, indicating that there is no break between CR and LF.</p>
 <p>Some column headers may be composed, reflecting “treat as” or “ignore” rules.</p>
 <p>If your browser handles titles (tooltips), then hovering the mouse over the row header will show a sample character of that type. Hovering over a column header will show the sample character, plus its abbreviated general category and script. Hovering over the intersected cells shows the rule number that produces the break-status. For example, hovering over the cell at the intersection of H3 and JT shows ×, with the rule 26.03. Checking below the table, rule 26.03 is “JT | H3 × JT”, which is the one that applies to that case. Note that a rule is invoked only when no lower-numbered rules have applied.</p>
@@ -93,7 +93,7 @@ td, th { vertical-align: top }
 <tr><th style='text-align:right'><a href='#r7.02' name='r7.02'>7.02</a></th><td style='text-align:right'></td><td>×</td><td> ZW</td></tr>
 <tr><th style='text-align:right'><a href='#r8.0' name='r8.0'>8.0</a></th><td style='text-align:right'>ZW SP* </td><td>÷</td><td></td></tr>
 <tr><th style='text-align:right'><a href='#r8.1' name='r8.1'>8.1</a></th><td style='text-align:right'>ZWJ_O </td><td>×</td><td></td></tr>
-<tr><th style='text-align:right'><a href='#r9.0' name='r9.0'>9.0</a></th><td style='text-align:right'>(?&lt;X&gt;[^SP BK CR LF NL ZW]) ( CM | ZWJ )* </td><td>→</td><td> {X}</td></tr>
+<tr><th style='text-align:right'><a href='#r9.0' name='r9.0'>9.0</a></th><td style='text-align:right'>(?&lt;X&gt;[^BK CR LF NL SP ZW]) ( CM | ZWJ )* </td><td>→</td><td> {X}</td></tr>
 <tr><th style='text-align:right'><a href='#r10.0' name='r10.0'>10.0</a></th><td style='text-align:right'>( CM | ZWJ ) </td><td>→</td><td> A</td></tr>
 <tr><th style='text-align:right'><a href='#r11.01' name='r11.01'>11.01</a></th><td style='text-align:right'></td><td>×</td><td> WJ</td></tr>
 <tr><th style='text-align:right'><a href='#r11.02' name='r11.02'>11.02</a></th><td style='text-align:right'>WJ </td><td>×</td><td></td></tr>
