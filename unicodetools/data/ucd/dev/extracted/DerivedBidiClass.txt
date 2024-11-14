@@ -1,5 +1,5 @@
 # DerivedBidiClass-17.0.0.txt
-# Date: 2024-11-14, 19:48:22 GMT
+# Date: 2024-11-14, 20:20:01 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1101,6 +1101,8 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 16E40..16E7F  ; L # L&  [64] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN SMALL LETTER Y
 16E80..16E96  ; L # No  [23] MEDEFAIDRIN DIGIT ZERO..MEDEFAIDRIN DIGIT THREE ALTERNATE FORM
 16E97..16E9A  ; L # Po   [4] MEDEFAIDRIN COMMA..MEDEFAIDRIN EXCLAMATION OH
+16EA0..16EB8  ; L # L&  [25] BERIA ERFE CAPITAL LETTER ARKAB..BERIA ERFE CAPITAL LETTER AY
+16EBB..16ED3  ; L # L&  [25] BERIA ERFE SMALL LETTER ARKAB..BERIA ERFE SMALL LETTER AY
 16F00..16F4A  ; L # Lo  [75] MIAO LETTER PA..MIAO LETTER RTE
 16F50         ; L # Lo       MIAO LETTER NASALIZATION
 16F51..16F87  ; L # Mc  [55] MIAO SIGN ASPIRATION..MIAO VOWEL SIGN UI
@@ -1219,7 +1221,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 815265 code points not listed here.
+# The above property value applies to 815215 code points not listed here.
 # Total code points: 1095476
 
 # ================================================

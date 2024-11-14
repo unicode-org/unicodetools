@@ -1,5 +1,5 @@
 # WordBreakProperty-17.0.0.txt
-# Date: 2024-11-14, 19:49:05 GMT
+# Date: 2024-11-14, 20:20:45 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1270,6 +1270,8 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 16D80..16D97  ; ALetter # Lo  [24] CHISOI LETTER A..CHISOI LETTER PA
 16D99..16D9C  ; ALetter # Lo   [4] CHISOI LETTER YA..CHISOI LETTER JARAHA
 16E40..16E7F  ; ALetter # L&  [64] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN SMALL LETTER Y
+16EA0..16EB8  ; ALetter # L&  [25] BERIA ERFE CAPITAL LETTER ARKAB..BERIA ERFE CAPITAL LETTER AY
+16EBB..16ED3  ; ALetter # L&  [25] BERIA ERFE SMALL LETTER ARKAB..BERIA ERFE SMALL LETTER AY
 16F00..16F4A  ; ALetter # Lo  [75] MIAO LETTER PA..MIAO LETTER RTE
 16F50         ; ALetter # Lo       MIAO LETTER NASALIZATION
 16F93..16F9F  ; ALetter # Lm  [13] MIAO LETTER TONE-2..MIAO LETTER REFORMED TONE-8
@@ -1367,7 +1369,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 33860
+# Total code points: 33910
 
 # ================================================
 

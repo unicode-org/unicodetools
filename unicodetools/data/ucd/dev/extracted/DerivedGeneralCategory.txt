@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-17.0.0.txt
-# Date: 2024-11-14, 19:48:27 GMT
+# Date: 2024-11-14, 20:20:06 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -570,7 +570,9 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 16D7A..16D7F  ; Cn #   [6] <reserved-16D7A>..<reserved-16D7F>
 16D9E..16D9F  ; Cn #   [2] <reserved-16D9E>..<reserved-16D9F>
 16DAA..16E3F  ; Cn # [150] <reserved-16DAA>..<reserved-16E3F>
-16E9B..16EFF  ; Cn # [101] <reserved-16E9B>..<reserved-16EFF>
+16E9B..16E9F  ; Cn #   [5] <reserved-16E9B>..<reserved-16E9F>
+16EB9..16EBA  ; Cn #   [2] <reserved-16EB9>..<reserved-16EBA>
+16ED4..16EFF  ; Cn #  [44] <reserved-16ED4>..<reserved-16EFF>
 16F4B..16F4E  ; Cn #   [4] <reserved-16F4B>..<reserved-16F4E>
 16F88..16F8E  ; Cn #   [7] <reserved-16F88>..<reserved-16F8E>
 16FA0..16FDF  ; Cn #  [64] <reserved-16FA0>..<reserved-16FDF>
@@ -744,7 +746,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 819378
+# Total code points: 819328
 
 # ================================================
 
@@ -1372,6 +1374,7 @@ FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAP
 10D50..10D65  ; Lu #  [22] GARAY CAPITAL LETTER A..GARAY CAPITAL LETTER OLD NA
 118A0..118BF  ; Lu #  [32] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI CAPITAL LETTER VIYO
 16E40..16E5F  ; Lu #  [32] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN CAPITAL LETTER Y
+16EA0..16EB8  ; Lu #  [25] BERIA ERFE CAPITAL LETTER ARKAB..BERIA ERFE CAPITAL LETTER AY
 1D400..1D419  ; Lu #  [26] MATHEMATICAL BOLD CAPITAL A..MATHEMATICAL BOLD CAPITAL Z
 1D434..1D44D  ; Lu #  [26] MATHEMATICAL ITALIC CAPITAL A..MATHEMATICAL ITALIC CAPITAL Z
 1D468..1D481  ; Lu #  [26] MATHEMATICAL BOLD ITALIC CAPITAL A..MATHEMATICAL BOLD ITALIC CAPITAL Z
@@ -1405,7 +1408,7 @@ FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAP
 1D7CA         ; Lu #       MATHEMATICAL BOLD CAPITAL DIGAMMA
 1E900..1E921  ; Lu #  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 
-# Total code points: 1861
+# Total code points: 1886
 
 # ================================================
 
@@ -2042,6 +2045,7 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 10D70..10D85  ; Ll #  [22] GARAY SMALL LETTER A..GARAY SMALL LETTER OLD NA
 118C0..118DF  ; Ll #  [32] WARANG CITI SMALL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 16E60..16E7F  ; Ll #  [32] MEDEFAIDRIN SMALL LETTER M..MEDEFAIDRIN SMALL LETTER Y
+16EBB..16ED3  ; Ll #  [25] BERIA ERFE SMALL LETTER ARKAB..BERIA ERFE SMALL LETTER AY
 1D41A..1D433  ; Ll #  [26] MATHEMATICAL BOLD SMALL A..MATHEMATICAL BOLD SMALL Z
 1D44E..1D454  ; Ll #   [7] MATHEMATICAL ITALIC SMALL A..MATHEMATICAL ITALIC SMALL G
 1D456..1D467  ; Ll #  [18] MATHEMATICAL ITALIC SMALL I..MATHEMATICAL ITALIC SMALL Z
@@ -2075,7 +2079,7 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1DF25..1DF2A  ; Ll #   [6] LATIN SMALL LETTER D WITH MID-HEIGHT LEFT HOOK..LATIN SMALL LETTER T WITH MID-HEIGHT LEFT HOOK
 1E922..1E943  ; Ll #  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2258
+# Total code points: 2283
 
 # ================================================
 

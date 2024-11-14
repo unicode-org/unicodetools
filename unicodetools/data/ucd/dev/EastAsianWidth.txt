@@ -1,5 +1,5 @@
 # EastAsianWidth-17.0.0.txt
-# Date: 2024-11-14, 19:48:31 GMT
+# Date: 2024-11-14, 20:20:10 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2365,6 +2365,8 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 16E40..16E7F   ; N  # L&    [64] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN SMALL LETTER Y
 16E80..16E96   ; N  # No    [23] MEDEFAIDRIN DIGIT ZERO..MEDEFAIDRIN DIGIT THREE ALTERNATE FORM
 16E97..16E9A   ; N  # Po     [4] MEDEFAIDRIN COMMA..MEDEFAIDRIN EXCLAMATION OH
+16EA0..16EB8   ; N  # Lu    [25] BERIA ERFE CAPITAL LETTER ARKAB..BERIA ERFE CAPITAL LETTER AY
+16EBB..16ED3   ; N  # Ll    [25] BERIA ERFE SMALL LETTER ARKAB..BERIA ERFE SMALL LETTER AY
 16F00..16F4A   ; N  # Lo    [75] MIAO LETTER PA..MIAO LETTER RTE
 16F4F          ; N  # Mn         MIAO SIGN CONSONANT MODIFIER BAR
 16F50          ; N  # Lo         MIAO LETTER NASALIZATION

@@ -1,5 +1,5 @@
 # PropertyValueAliases-17.0.0.txt
-# Date: 2024-11-14, 19:48:45 GMT
+# Date: 2024-11-14, 20:20:25 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -180,6 +180,7 @@ blk; Bamum_Sup                        ; Bamum_Supplement
 blk; Bassa_Vah                        ; Bassa_Vah
 blk; Batak                            ; Batak
 blk; Bengali                          ; Bengali
+blk; Beria_Erfe                       ; Beria_Erfe
 blk; Bhaiksuki                        ; Bhaiksuki
 blk; Block_Elements                   ; Block_Elements
 blk; Bopomofo                         ; Bopomofo
@@ -1434,6 +1435,7 @@ sc ; Phlp                             ; Psalter_Pahlavi
 sc ; Phnx                             ; Phoenician
 sc ; Plrd                             ; Miao
 sc ; Prti                             ; Inscriptional_Parthian
+sc ; Qaba                             ; Beria_Erfe
 sc ; Rjng                             ; Rejang
 sc ; Rohg                             ; Hanifi_Rohingya
 sc ; Runr                             ; Runic

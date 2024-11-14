@@ -1,5 +1,5 @@
 # DerivedAge-17.0.0.txt
-# Date: 2024-11-14, 19:48:01 GMT
+# Date: 2024-11-14, 20:19:40 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2087,7 +2087,9 @@ FDC8..FDCE    ; 17.0 #   [7] ARABIC LIGATURE RAHIMAHU ALLAAH TAAALAA..ARABIC LIG
 11B60..11B67  ; 17.0 #   [8] SHARADA VOWEL SIGN OE..SHARADA VOWEL SIGN CANDRA O
 16D80..16D9D  ; 17.0 #  [30] CHISOI LETTER A..CHISOI SIGN SISO
 16DA0..16DA9  ; 17.0 #  [10] CHISOI DIGIT ZERO..CHISOI DIGIT NINE
+16EA0..16EB8  ; 17.0 #  [25] BERIA ERFE CAPITAL LETTER ARKAB..BERIA ERFE CAPITAL LETTER AY
+16EBB..16ED3  ; 17.0 #  [25] BERIA ERFE SMALL LETTER ARKAB..BERIA ERFE SMALL LETTER AY
 
-# Total code points: 155
+# Total code points: 205
 
 # EOF

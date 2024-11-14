@@ -304,6 +304,7 @@ FFF0..FFFF; Specials
 16A70..16ACF; Tangsa
 16AD0..16AFF; Bassa Vah
 16B00..16B8F; Pahawh Hmong
+16EA0..16EDF; Beria Erfe
 16D40..16D7F; Kirat Rai
 16D80..16DAF; Chisoi
 16E40..16E9F; Medefaidrin

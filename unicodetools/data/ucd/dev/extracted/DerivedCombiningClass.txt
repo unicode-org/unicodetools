@@ -1,5 +1,5 @@
 # DerivedCombiningClass-17.0.0.txt
-# Date: 2024-11-14, 19:48:24 GMT
+# Date: 2024-11-14, 20:20:03 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1843,6 +1843,8 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 16E40..16E7F  ; 0 # L&  [64] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN SMALL LETTER Y
 16E80..16E96  ; 0 # No  [23] MEDEFAIDRIN DIGIT ZERO..MEDEFAIDRIN DIGIT THREE ALTERNATE FORM
 16E97..16E9A  ; 0 # Po   [4] MEDEFAIDRIN COMMA..MEDEFAIDRIN EXCLAMATION OH
+16EA0..16EB8  ; 0 # L&  [25] BERIA ERFE CAPITAL LETTER ARKAB..BERIA ERFE CAPITAL LETTER AY
+16EBB..16ED3  ; 0 # L&  [25] BERIA ERFE SMALL LETTER ARKAB..BERIA ERFE SMALL LETTER AY
 16F00..16F4A  ; 0 # Lo  [75] MIAO LETTER PA..MIAO LETTER RTE
 16F4F         ; 0 # Mn       MIAO SIGN CONSONANT MODIFIER BAR
 16F50         ; 0 # Lo       MIAO LETTER NASALIZATION
@@ -2074,7 +2076,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 821426 code points not listed here.
+# The above property value applies to 821376 code points not listed here.
 # Total code points: 1113148
 
 # ================================================
