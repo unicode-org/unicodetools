@@ -671,7 +671,7 @@ public interface UCD_Types {
             JT_T = 5,
             LIMIT_JOINING_TYPE = 6;
     public static short NO_SHAPING = 0,
-            LIMIT_JOINING_GROUP = (short)UCD_Names.JOINING_GROUP.length;
+            LIMIT_JOINING_GROUP = (short) UCD_Names.JOINING_GROUP.length;
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;
     public static final int NF_COMPATIBILITY_MASK = 2, NF_COMPOSITION_MASK = 1;
 
