@@ -42,6 +42,7 @@ Cham	;	Cham
 Cherokee	;	Cherokee
 Cherokee_Sup	;	Cherokee_Supplement
 Chess_Symbols	;	Chess_Symbols
+Chisoi	;	Chisoi
 Chorasmian	;	Chorasmian
 CJK_Compat	;	CJK_Compatibility
 CJK_Compat_Forms	;	CJK_Compatibility_Forms
