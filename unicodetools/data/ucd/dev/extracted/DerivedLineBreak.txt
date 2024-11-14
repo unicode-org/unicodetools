@@ -1,5 +1,5 @@
 # DerivedLineBreak-17.0.0.txt
-# Date: 2024-11-14, 15:27:19 GMT
+# Date: 2024-11-14, 15:54:36 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -69,8 +69,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 757548 code points not listed here.
-# Total code points: 895016
+# The above property value applies to 757547 code points not listed here.
+# Total code points: 895015
 
 # ================================================
 
@@ -2509,6 +2509,7 @@ ABEB          ; BA # Po       MEETEI MAYEK CHEIKHEI
 10B39..10B3F  ; BA # Po   [7] AVESTAN ABBREVIATION MARK..LARGE ONE RING OVER TWO RINGS PUNCTUATION
 10D6E         ; BA # Pd       GARAY HYPHEN
 10EAD         ; BA # Pd       YEZIDI HYPHENATION MARK
+10ED0         ; BA # Po       ARABIC BIBLICAL END OF VERSE
 11047..11048  ; BA # Po   [2] BRAHMI DANDA..BRAHMI DOUBLE DANDA
 110BE..110C1  ; BA # Po   [4] KAITHI SECTION MARK..KAITHI DOUBLE DANDA
 11140..11143  ; BA # Po   [4] CHAKMA SECTION MARK..CHAKMA QUESTION MARK
@@ -2545,7 +2546,7 @@ ABEB          ; BA # Po       MEETEI MAYEK CHEIKHEI
 1BC9F         ; BA # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; BA # Po   [4] SIGNWRITING COMMA..SIGNWRITING COLON
 
-# Total code points: 272
+# Total code points: 273
 
 # ================================================
 

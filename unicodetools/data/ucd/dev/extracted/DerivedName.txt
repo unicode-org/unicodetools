@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2024-11-14, 15:27:19 GMT
+# Date: 2024-11-14, 15:54:36 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -30302,6 +30302,7 @@ FFFD          ; REPLACEMENT CHARACTER
 10EC5         ; ARABIC SMALL YEH BARREE WITH TWO DOTS BELOW
 10EC6         ; ARABIC LETTER THIN NOON
 10EC7         ; ARABIC LETTER YEH WITH FOUR DOTS BELOW
+10ED0         ; ARABIC BIBLICAL END OF VERSE
 10ED1         ; ARABIC LIGATURE ALAYHAA AS-SALAATU WAS-SALAAM
 10ED2         ; ARABIC LIGATURE ALAYHIM AS-SALAATU WAS-SALAAM
 10ED3         ; ARABIC LIGATURE ALAYHIMAA AS-SALAATU WAS-SALAAM
@@ -45472,6 +45473,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 155103
+# Total code points: 155104
 
 # EOF
