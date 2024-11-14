@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 17.0.0
 @@@+	NamesList-17.0.0.txt
-@+	Generation Date: 2024-11-13, 14:40:49 GMT
+@+	Generation Date: 2024-11-13, 16:03:48 GMT
 	Unicode 17.0.0 names list.
 	Repertoire synched with UnicodeData-17.0.0d1.txt.
 	Synch with 7th edition CD; post UTC181 annotation updates for 17.0.
@@ -37069,6 +37069,8 @@ FFFF	<not a character>
 12036	CUNEIFORM SIGN ARKAB
 12037	CUNEIFORM SIGN ASAL2
 12038	CUNEIFORM SIGN ASH
+	= 1 aš
+	x (cuneiform numeric sign two ash - 12400)
 12039	CUNEIFORM SIGN ASH ZIDA TENU
 	= 1 aš tenû
 	= 1 diš tenû
