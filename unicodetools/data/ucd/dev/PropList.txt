@@ -1,5 +1,5 @@
 # PropList-17.0.0.txt
-# Date: 2024-11-13, 22:18:57 GMT
+# Date: 2024-11-14, 14:55:37 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -702,7 +702,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 10D24..10D27  ; Other_Alphabetic # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
 10D69         ; Other_Alphabetic # Mn       GARAY VOWEL SIGN E
 10EAB..10EAC  ; Other_Alphabetic # Mn   [2] YEZIDI COMBINING HAMZA MARK..YEZIDI COMBINING MADDA MARK
-10EFC         ; Other_Alphabetic # Mn       ARABIC COMBINING ALEF OVERLAY
+10EFB..10EFC  ; Other_Alphabetic # Mn   [2] ARABIC SMALL LOW NOON..ARABIC COMBINING ALEF OVERLAY
 11000         ; Other_Alphabetic # Mc       BRAHMI SIGN CANDRABINDU
 11001         ; Other_Alphabetic # Mn       BRAHMI SIGN ANUSVARA
 11002         ; Other_Alphabetic # Mc       BRAHMI SIGN VISARGA
@@ -858,7 +858,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1495
+# Total code points: 1496
 
 # ================================================
 

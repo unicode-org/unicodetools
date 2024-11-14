@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-17.0.0.txt
-# Date: 2024-11-14, 14:37:23 GMT
+# Date: 2024-11-14, 14:55:12 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -432,8 +432,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 10EAA         ; Cn #       <reserved-10EAA>
 10EAE..10EAF  ; Cn #   [2] <reserved-10EAE>..<reserved-10EAF>
 10EB2..10EC1  ; Cn #  [16] <reserved-10EB2>..<reserved-10EC1>
-10EC5..10ED0  ; Cn #  [12] <reserved-10EC5>..<reserved-10ED0>
-10ED9..10EFB  ; Cn #  [35] <reserved-10ED9>..<reserved-10EFB>
+10EC6..10ED0  ; Cn #  [11] <reserved-10EC6>..<reserved-10ED0>
+10ED9..10EFA  ; Cn #  [34] <reserved-10ED9>..<reserved-10EFA>
 10F28..10F2F  ; Cn #   [8] <reserved-10F28>..<reserved-10F2F>
 10F5A..10F6F  ; Cn #  [22] <reserved-10F5A>..<reserved-10F6F>
 10F8A..10FAF  ; Cn #  [38] <reserved-10F8A>..<reserved-10FAF>
@@ -741,7 +741,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 819432
+# Total code points: 819430
 
 # ================================================
 
@@ -2157,6 +2157,7 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 107B2..107BA  ; Lm #   [9] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL S WITH CURL
 10D4E         ; Lm #       GARAY VOWEL LENGTH MARK
 10D6F         ; Lm #       GARAY REDUPLICATION MARK
+10EC5         ; Lm #       ARABIC SMALL YEH BARREE WITH TWO DOTS BELOW
 16B40..16B43  ; Lm #   [4] PAHAWH HMONG SIGN VOS SEEV..PAHAWH HMONG SIGN IB YAM
 16D40..16D42  ; Lm #   [3] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN VISARGA
 16D6B..16D6C  ; Lm #   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
@@ -2171,7 +2172,7 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 1E4EB         ; Lm #       NAG MUNDARI SIGN OJOD
 1E94B         ; Lm #       ADLAM NASALIZATION MARK
 
-# Total code points: 405
+# Total code points: 406
 
 # ================================================
 
@@ -2939,7 +2940,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 10D24..10D27  ; Mn #   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
 10D69..10D6D  ; Mn #   [5] GARAY VOWEL SIGN E..GARAY CONSONANT NASALIZATION MARK
 10EAB..10EAC  ; Mn #   [2] YEZIDI COMBINING HAMZA MARK..YEZIDI COMBINING MADDA MARK
-10EFC..10EFF  ; Mn #   [4] ARABIC COMBINING ALEF OVERLAY..ARABIC SMALL LOW WORD MADDA
+10EFB..10EFF  ; Mn #   [5] ARABIC SMALL LOW NOON..ARABIC SMALL LOW WORD MADDA
 10F46..10F50  ; Mn #  [11] SOGDIAN COMBINING DOT BELOW..SOGDIAN COMBINING STROKE BELOW
 10F82..10F85  ; Mn #   [4] OLD UYGHUR COMBINING DOT ABOVE..OLD UYGHUR COMBINING TWO DOTS BELOW
 11001         ; Mn #       BRAHMI SIGN ANUSVARA
@@ -3073,7 +3074,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2049
+# Total code points: 2050
 
 # ================================================
 
