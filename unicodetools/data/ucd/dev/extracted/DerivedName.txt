@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2024-10-16, 15:30:44 GMT
+# Date: 2024-11-14, 20:08:55 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -32554,7 +32554,7 @@ FFFD          ; REPLACEMENT CHARACTER
 11DC2         ; TOLONG SIKI LETTER DD
 11DC3         ; TOLONG SIKI LETTER DDH
 11DC4         ; TOLONG SIKI LETTER NN
-11DC5         ; TOLONG SIKI LETTER CA
+11DC5         ; TOLONG SIKI LETTER C
 11DC6         ; TOLONG SIKI LETTER CH
 11DC7         ; TOLONG SIKI LETTER J
 11DC8         ; TOLONG SIKI LETTER JH
