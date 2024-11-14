@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-17.0.0.txt
-# Date: 2024-11-14, 14:55:12 GMT
+# Date: 2024-11-14, 15:13:22 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -432,7 +432,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 10EAA         ; Cn #       <reserved-10EAA>
 10EAE..10EAF  ; Cn #   [2] <reserved-10EAE>..<reserved-10EAF>
 10EB2..10EC1  ; Cn #  [16] <reserved-10EB2>..<reserved-10EC1>
-10EC6..10ED0  ; Cn #  [11] <reserved-10EC6>..<reserved-10ED0>
+10EC7..10ED0  ; Cn #  [10] <reserved-10EC7>..<reserved-10ED0>
 10ED9..10EFA  ; Cn #  [34] <reserved-10ED9>..<reserved-10EFA>
 10F28..10F2F  ; Cn #   [8] <reserved-10F28>..<reserved-10F2F>
 10F5A..10F6F  ; Cn #  [22] <reserved-10F5A>..<reserved-10F6F>
@@ -741,7 +741,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 819430
+# Total code points: 819429
 
 # ================================================
 
@@ -2526,6 +2526,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 10E80..10EA9  ; Lo #  [42] YEZIDI LETTER ELIF..YEZIDI LETTER ET
 10EB0..10EB1  ; Lo #   [2] YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
 10EC2..10EC4  ; Lo #   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+10EC6         ; Lo #       ARABIC LETTER THIN NOON
 10F00..10F1C  ; Lo #  [29] OLD SOGDIAN LETTER ALEPH..OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
 10F27         ; Lo #       OLD SOGDIAN LIGATURE AYIN-DALETH
 10F30..10F45  ; Lo #  [22] SOGDIAN LETTER ALEPH..SOGDIAN INDEPENDENT SHIN
@@ -2709,7 +2710,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Lo # [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 136511
+# Total code points: 136512
 
 # ================================================
 

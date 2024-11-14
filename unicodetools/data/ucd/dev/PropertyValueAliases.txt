@@ -1,5 +1,5 @@
 # PropertyValueAliases-17.0.0.txt
-# Date: 2024-10-16, 17:27:56 GMT
+# Date: 2024-11-14, 15:13:47 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1090,6 +1090,7 @@ jg ; Taw                              ; Taw
 jg ; Teh_Marbuta                      ; Teh_Marbuta
 jg ; Teh_Marbuta_Goal                 ; Teh_Marbuta_Goal                 ; Hamza_On_Heh_Goal
 jg ; Teth                             ; Teth
+jg ; Thin_Noon                        ; Thin_Noon
 jg ; Thin_Yeh                         ; Thin_Yeh
 jg ; Vertical_Tail                    ; Vertical_Tail
 jg ; Waw                              ; Waw

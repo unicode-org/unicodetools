@@ -1351,6 +1351,7 @@ public class UcdPropertyValues {
         Teh_Marbuta("Teh_Marbuta"),
         Teh_Marbuta_Goal("Teh_Marbuta_Goal", "Hamza_On_Heh_Goal"),
         Teth("Teth"),
+        Thin_Noon("Thin_Noon"),
         Thin_Yeh("Thin_Yeh"),
         Vertical_Tail("Vertical_Tail"),
         Waw("Waw"),
