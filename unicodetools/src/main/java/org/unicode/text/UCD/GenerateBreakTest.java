@@ -728,6 +728,16 @@ public abstract class GenerateBreakTest implements UCD_Types {
     public void generateTable(PrintWriter out) {
         out.println("<h3>" + linkAndAnchor("table", "Table") + "</h3>");
         final String width = "width='" + (100 / (tableLimit + 1)) + "%'";
+        // REMOVE BEFORE FLIGHT
+        for (String variable: variables.keySet()) {
+            out.println("<p>");
+            out.println(variable);
+            out.println("=");
+            // Recursively expand variables.
+            out.println(Segmenter.Builder.replaceVariables("$" + variable, variables));
+            out.println("</p>");
+        }
+        // REMOVE BEFORE FLIGHT
         out.print("<table border='1' cellspacing='0' width='100%'>");
         String types = "";
         for (int type = 0; type < tableLimit; ++type) {

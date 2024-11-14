@@ -586,7 +586,7 @@ public class Segmenter {
             if (line.startsWith("show")) {
                 line = line.substring(4).trim();
                 System.out.println("# " + line + ": ");
-                System.out.println("\t" + replaceVariables(line));
+                System.out.println("\t" + expandUnicodeSets(replaceVariables(line, variables)));
                 return false;
             }
             // dumb parsing for now
@@ -676,7 +676,7 @@ public class Segmenter {
                 throw new IllegalArgumentException(
                         "Variable name must be $id: '" + name + "' — " + show);
             }
-            value = replaceVariables(value);
+            value = expandUnicodeSets(replaceVariables(value, variables));
             if (!name.endsWith("_")) {
                 try {
                     parsePosition.setIndex(0);
@@ -765,7 +765,7 @@ public class Segmenter {
                             + "> "
                             + TransliteratorUtilities.toXML.transliterate(line)
                             + " </rule>");
-            rules.put(order, new Segmenter.RemapRule(replaceVariables(before), after, line));
+            rules.put(order, new Segmenter.RemapRule(expandUnicodeSets(replaceVariables(before, variables)), after, line));
             return this;
         }
 
@@ -826,7 +826,7 @@ public class Segmenter {
             rules.put(
                     order,
                     new Segmenter.RegexRule(
-                            replaceVariables(before), breaks, replaceVariables(after), line));
+                            expandUnicodeSets(replaceVariables(before, variables)), breaks, expandUnicodeSets(replaceVariables(after, variables)), line));
             return this;
         }
 
@@ -864,7 +864,7 @@ public class Segmenter {
          * @param input
          * @return
          */
-        private String replaceVariables(String input) {
+        public static String replaceVariables(String input, Map<String, String> variables) {
             // to do, optimize
             String result = input;
             int position = -1;
@@ -883,11 +883,16 @@ public class Segmenter {
                         continue main;
                     }
                 }
-                if (identifierMatcher.reset(result.substring(position)).lookingAt()) {
+                if (IDENTIFIER_PATTERN.matcher(result.substring(position)).lookingAt()) {
                     throw new IllegalArgumentException(
                             "Illegal variable at: '" + result.substring(position) + "'");
                 }
             }
+            return result;
+        }
+
+        public String expandUnicodeSets(String input) {
+            String result = input;
             // replace properties
             // TODO really dumb parse for now, fix later
             for (int i = 0; i < result.length(); ++i) {
