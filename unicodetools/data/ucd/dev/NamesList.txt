@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 17.0.0
 @@@+	NamesList-17.0.0.txt
-@+	Generation Date: 2024-11-13, 16:03:48 GMT
+@+	Generation Date: 2024-11-14, 10:30:36 GMT
 	Unicode 17.0.0 names list.
 	Repertoire synched with UnicodeData-17.0.0d1.txt.
 	Synch with 7th edition CD; post UTC181 annotation updates for 17.0.
@@ -48792,7 +48792,7 @@ FFFF	<not a character>
 143F9	EGYPTIAN HIEROGLYPH-143F9
 143FA	EGYPTIAN HIEROGLYPH-143FA
 	* phonemogram : ꜣb
-@~	!
+@~	Standardized Variation Sequences
 @@	14400	Anatolian Hieroglyphs	1467F
 @+		In the names list, most of the comments are in Latin. Those which have a Luwian phonetic value are identified as syllabic.
 @		A. The human body and clothing
@@ -52733,8 +52733,9 @@ FFFF	<not a character>
 @		Indication of missing character
 18CFF	KHITAN SMALL SCRIPT CHARACTER-18CFF
 	* represents a lost or illegible character
-@@	18D00	Tangut Supplement	18D1C
+@@	18D00	Tangut Supplement	18D1E
 @@	18D80	Tangut Components Supplement	18DFF
+@		Miscellaneous components
 18D80	TANGUT COMPONENT-769
 	* seven strokes
 18D81	TANGUT COMPONENT-770
@@ -63406,8 +63407,8 @@ FFFF	<not a character>
 1F6D5	HINDU TEMPLE
 1F6D6	HUT
 1F6D7	ELEVATOR
-@		Miscellaneous symbols
 1F6D8	LANDSLIDE
+@		Miscellaneous symbols
 1F6DC	WIRELESS
 1F6DD	PLAYGROUND SLIDE
 1F6DE	WHEEL
@@ -64793,7 +64794,7 @@ FFFF	<not a character>
 1FAE8	SHAKING FACE
 1FAE9	FACE WITH BAGS UNDER EYES
 1FAEA	DISTORTED FACE
-@		Miscellaneous
+@		Emotion
 1FAEF	FIGHT CLOUD
 @		Hand symbols
 1FAF0	HAND WITH INDEX FINGER AND THUMB CROSSED
