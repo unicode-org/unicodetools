@@ -54,7 +54,7 @@ public interface UCD_Types {
             // 2A700;<CJK Ideograph Extension C, First>;Lo;0;L;;;;;N;;;;;
             // 2B734;<CJK Ideograph Extension C, Last>;Lo;0;L;;;;;N;;;;;
             CJK_C_BASE = 0x2A700,
-            CJK_C_LIMIT = 0x2B739 + 1, // last changed in Unicode 15
+            CJK_C_LIMIT = 0x2B73E + 1, // last changed in Unicode 17
 
             // 2B740;<CJK Ideograph Extension D, First>;Lo;0;L;;;;;N;;;;;
             // 2B81D;<CJK Ideograph Extension D, Last>;Lo;0;L;;;;;N;;;;;

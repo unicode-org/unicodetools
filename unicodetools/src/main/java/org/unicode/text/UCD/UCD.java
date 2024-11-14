@@ -1350,6 +1350,9 @@ public final class UCD implements UCD_Types {
                 if (ch <= 0x2B739 && rCompositeVersion >= 0xf0000) {
                     return CJK_C_BASE;
                 }
+                if (ch <= 0x2B73E && rCompositeVersion >= 0x110000) {
+                    return CJK_C_BASE;
+                }
             }
             // 2B740..2B81F; CJK Unified Ideographs Extension D
             if (rCompositeVersion >= 0x60000) {
