@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 17.0.0
 @@@+	NamesList-17.0.0.txt
-@+	Generation Date: 2024-11-14, 10:30:36 GMT
+@+	Generation Date: 2024-11-14, 11:05:33 GMT
 	Unicode 17.0.0 names list.
 	Repertoire synched with UnicodeData-17.0.0d1.txt.
 	Synch with 7th edition CD; post UTC181 annotation updates for 17.0.
@@ -2929,11 +2929,11 @@
 034E	COMBINING UPWARDS ARROW BELOW
 	* IPA: whistled articulation
 	x (combining upwards arrow above - 1AEA)
-@		Grapheme joiner
+@		Miscellaneous addition
+@+		The name of 034F is misleading; it does not actually join graphemes. It can be used to affect the collation of adjacent characters for purposes of language-sensitive searching and sorting. It can also be used to distinguish sequences that would otherwise be canonically equivalent.
 034F	COMBINING GRAPHEME JOINER
 	* commonly abbreviated as CGJ
 	* has no visible glyph
-	* the name of this character is misleading; it does not actually join graphemes
 @		Additions for the Uralic Phonetic Alphabet
 0350	COMBINING RIGHT ARROWHEAD ABOVE
 0351	COMBINING LEFT HALF RING ABOVE
