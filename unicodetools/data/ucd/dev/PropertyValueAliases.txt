@@ -1,5 +1,5 @@
 # PropertyValueAliases-17.0.0.txt
-# Date: 2024-11-14, 22:51:32 GMT
+# Date: 2024-11-15, 15:33:08 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -467,6 +467,7 @@ blk; Tamil_Sup                        ; Tamil_Supplement
 blk; Tangsa                           ; Tangsa
 blk; Tangut                           ; Tangut
 blk; Tangut_Components                ; Tangut_Components
+blk; Tangut_Components_Sup            ; Tangut_Components_Supplement
 blk; Tangut_Sup                       ; Tangut_Supplement
 blk; Telugu                           ; Telugu
 blk; Thaana                           ; Thaana

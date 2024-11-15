@@ -1,5 +1,5 @@
 # Scripts-17.0.0.txt
-# Date: 2024-11-15, 15:07:02 GMT
+# Date: 2024-11-15, 15:33:26 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2768,11 +2768,11 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 # ================================================
 
 16FE0         ; Tangut # Lm       TANGUT ITERATION MARK
-17000..187F7  ; Tangut # Lo [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
-18800..18AFF  ; Tangut # Lo [768] TANGUT COMPONENT-001..TANGUT COMPONENT-768
-18D00..18D08  ; Tangut # Lo   [9] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D08
+17000..18AFF  ; Tangut # Lo [6912] TANGUT IDEOGRAPH-17000..TANGUT COMPONENT-768
+18D00..18D1C  ; Tangut # Lo  [29] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D1C
+18D80..18D81  ; Tangut # Lo   [2] TANGUT COMPONENT-769..TANGUT COMPONENT-770
 
-# Total code points: 6914
+# Total code points: 6944
 
 # ================================================
 
