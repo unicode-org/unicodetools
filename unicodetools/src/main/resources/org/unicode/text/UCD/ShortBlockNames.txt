@@ -25,6 +25,7 @@ ASCII	;	Basic_Latin
 Bassa_Vah	;	Bassa_Vah
 Batak	;	Batak
 Bengali	;	Bengali
+Beria_Erfe  ;   Beria_Erfe
 Bhaiksuki	;	Bhaiksuki
 Block_Elements	;	Block_Elements
 Bopomofo	;	Bopomofo
@@ -42,6 +43,7 @@ Cham	;	Cham
 Cherokee	;	Cherokee
 Cherokee_Sup	;	Cherokee_Supplement
 Chess_Symbols	;	Chess_Symbols
+Chisoi	;	Chisoi
 Chorasmian	;	Chorasmian
 CJK_Compat	;	CJK_Compatibility
 CJK_Compat_Forms	;	CJK_Compatibility_Forms
@@ -265,9 +267,11 @@ Runic	;	Runic
 Samaritan	;	Samaritan
 Saurashtra	;	Saurashtra
 Sharada	;	Sharada
+Sharada_Sup	;	Sharada_Supplement
 Shavian	;	Shavian
 Shorthand_Format_Controls	;	Shorthand_Format_Controls
 Siddham	;	Siddham
+Sidetic ;	Sidetic
 Sinhala	;	Sinhala
 Sinhala_Archaic_Numbers	;	Sinhala_Archaic_Numbers
 Small_Forms	;	Small_Form_Variants
@@ -309,6 +313,7 @@ Tamil	;	Tamil
 Tamil_Sup	;	Tamil_Supplement
 Tangut	;	Tangut
 Tangut_Components	;	Tangut_Components
+Tangut_Components_Sup	;	Tangut_Components_Supplement
 Tangut_Sup	;	Tangut_Supplement
 Telugu	;	Telugu
 Thaana	;	Thaana
@@ -317,6 +322,7 @@ Tibetan	;	Tibetan
 Tifinagh	;	Tifinagh
 Tirhuta	;	Tirhuta
 Todhri	;	Todhri
+Tolong_Siki	;	Tolong_Siki
 Toto    ;   Toto
 Tulu_Tigalari   ;   Tulu_Tigalari
 Transport_And_Map	;	Transport_And_Map_Symbols
