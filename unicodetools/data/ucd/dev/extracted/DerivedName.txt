@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2024-11-14, 22:51:15 GMT
+# Date: 2024-11-15, 13:43:32 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -37210,6 +37210,8 @@ FFFD          ; REPLACEMENT CHARACTER
 16FE4         ; KHITAN SMALL SCRIPT FILLER
 16FF0         ; VIETNAMESE ALTERNATE READING MARK CA
 16FF1         ; VIETNAMESE ALTERNATE READING MARK NHAY
+16FF2         ; CHINESE SMALL SIMPLIFIED ER
+16FF3         ; CHINESE SMALL TRADITIONAL ER
 17000..187F7  ; TANGUT IDEOGRAPH-*
 18800         ; TANGUT COMPONENT-001
 18801         ; TANGUT COMPONENT-002
@@ -45626,6 +45628,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 155257
+# Total code points: 155259
 
 # EOF

@@ -722,7 +722,7 @@ Let $nonLowercaseSmallLetters := [
     \N{TURNED GREEK SMALL LETTER IOTA}
     \p{name=/^(SQUARED|PARENTHESIZED|TAG) LATIN SMALL LETTER/}
 ]
-Let $nonLowercaseSmallModifierLetters := [ \p{gc=Lm} & \p{name=/^ARABIC SMALL/} ]
+Let $nonLowercaseSmallModifierLetters := [ \p{gc=Lm} & \p{name=/^(ARABIC|CHINESE) SMALL/} ]
 [ \p{name=/\bSMALL LETTER\b/}-\p{gc=Mn}-\p{gc=Lt} - $nonLowercaseSmallLetters ] ⊆ \p{Lowercase}
 [ [\p{gc=Lm} & \p{name=/SMALL/}] - $nonLowercaseSmallModifierLetters ] ⊆ \p{Lowercase}
 
@@ -1202,7 +1202,11 @@ $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 # The Khitan Small Script filler is a Nonspacing Mark.
 # The other characters are numerals (the Hangzhou ten through thirty are compatibility decomposable,
 # but not the one through nine) and have Script=Han.
-Let $NonOtherLetterIdeographs := [\N{KHITAN SMALL SCRIPT FILLER}  〇 〡-〩 〸-〺]
+Let $NonOtherLetterIdeographs := [
+  \N{KHITAN SMALL SCRIPT FILLER}
+  〇 〡-〩 〸-〺
+  \p{NAME=/^CHINESE SMALL (SIMPLIFIED|TRADITIONAL) ER$/}
+]
 $NonOtherLetterIdeographs = [\p{Ideographic} - \p{gc=Lo}]
 # Ideographic closing mark, gc=Lo.
 Let $CommonIdeographs := [〆]

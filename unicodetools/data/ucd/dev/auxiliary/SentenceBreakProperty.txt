@@ -1,5 +1,5 @@
 # SentenceBreakProperty-17.0.0.txt
-# Date: 2024-11-14, 22:51:50 GMT
+# Date: 2024-11-15, 13:44:09 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2534,6 +2534,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 16F93..16F9F  ; OLetter # Lm  [13] MIAO LETTER TONE-2..MIAO LETTER REFORMED TONE-8
 16FE0..16FE1  ; OLetter # Lm   [2] TANGUT ITERATION MARK..NUSHU ITERATION MARK
 16FE3         ; OLetter # Lm       OLD CHINESE ITERATION MARK
+16FF2..16FF3  ; OLetter # Lm   [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
 17000..187F7  ; OLetter # Lo [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
 18800..18CD5  ; OLetter # Lo [1238] TANGUT COMPONENT-001..KHITAN SMALL SCRIPT CHARACTER-18CD5
 18CFF..18D08  ; OLetter # Lo  [10] KHITAN SMALL SCRIPT CHARACTER-18CFF..TANGUT IDEOGRAPH-18D08
@@ -2609,7 +2610,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 30000..3134A  ; OLetter # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; OLetter # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 137017
+# Total code points: 137019
 
 # ================================================
 

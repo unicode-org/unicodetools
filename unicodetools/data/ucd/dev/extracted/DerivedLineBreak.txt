@@ -1,5 +1,5 @@
 # DerivedLineBreak-17.0.0.txt
-# Date: 2024-11-14, 22:51:14 GMT
+# Date: 2024-11-15, 13:43:32 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -69,8 +69,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 757394 code points not listed here.
-# Total code points: 894862
+# The above property value applies to 757392 code points not listed here.
+# Total code points: 894860
 
 # ================================================
 
@@ -357,9 +357,10 @@ FF9E..FF9F    ; NS # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KA
 16FE0..16FE1  ; NS # Lm   [2] TANGUT ITERATION MARK..NUSHU ITERATION MARK
 16FE2         ; NS # Po       OLD CHINESE HOOK MARK
 16FE3         ; NS # Lm       OLD CHINESE ITERATION MARK
+16FF2..16FF3  ; NS # Lm   [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
 1F679..1F67B  ; NS # So   [3] HEAVY INTERROBANG ORNAMENT..HEAVY SANS-SERIF INTERROBANG ORNAMENT
 
-# Total code points: 35
+# Total code points: 37
 
 # ================================================
 
