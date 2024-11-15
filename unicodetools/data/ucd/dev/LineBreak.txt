@@ -1,5 +1,5 @@
 # LineBreak-17.0.0.txt
-# Date: 2024-11-14, 20:20:11 GMT
+# Date: 2024-11-14, 22:51:18 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3172,6 +3172,10 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 11D97          ; CM # Mn         GUNJALA GONDI VIRAMA
 11D98          ; AL # Lo         GUNJALA GONDI OM
 11DA0..11DA9   ; NU # Nd    [10] GUNJALA GONDI DIGIT ZERO..GUNJALA GONDI DIGIT NINE
+11DB0..11DD8   ; AL # Lo    [41] TOLONG SIKI LETTER I..TOLONG SIKI LETTER RRH
+11DD9          ; AL # Lm         TOLONG SIKI SIGN SELA
+11DDA..11DDB   ; AL # Lo     [2] TOLONG SIKI SIGN HECAKA..TOLONG SIKI UNGGA
+11DE0..11DE9   ; NU # Nd    [10] TOLONG SIKI DIGIT ZERO..TOLONG SIKI DIGIT NINE
 11EE0..11EF1   ; AS # Lo    [18] MAKASAR LETTER KA..MAKASAR LETTER A
 11EF2          ; BA # Lo         MAKASAR ANGKA
 11EF3..11EF4   ; CM # Mn     [2] MAKASAR VOWEL SIGN I..MAKASAR VOWEL SIGN U

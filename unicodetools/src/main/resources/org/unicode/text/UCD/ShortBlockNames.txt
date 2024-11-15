@@ -320,6 +320,7 @@ Tibetan	;	Tibetan
 Tifinagh	;	Tifinagh
 Tirhuta	;	Tirhuta
 Todhri	;	Todhri
+Tolong_Siki	;	Tolong_Siki
 Toto    ;   Toto
 Tulu_Tigalari   ;   Tulu_Tigalari
 Transport_And_Map	;	Transport_And_Map_Symbols

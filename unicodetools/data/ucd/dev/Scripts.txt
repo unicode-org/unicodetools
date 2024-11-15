@@ -1,5 +1,5 @@
 # Scripts-17.0.0.txt
-# Date: 2024-11-14, 20:20:42 GMT
+# Date: 2024-11-14, 22:51:49 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3150,6 +3150,15 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 10940..1095C  ; Sidetic # Lo  [29] SIDETIC LETTER N01..SIDETIC LETTER N29
 
 # Total code points: 29
+
+# ================================================
+
+11DB0..11DD8  ; Tolong_Siki # Lo  [41] TOLONG SIKI LETTER I..TOLONG SIKI LETTER RRH
+11DD9         ; Tolong_Siki # Lm       TOLONG SIKI SIGN SELA
+11DDA..11DDB  ; Tolong_Siki # Lo   [2] TOLONG SIKI SIGN HECAKA..TOLONG SIKI UNGGA
+11DE0..11DE9  ; Tolong_Siki # Nd  [10] TOLONG SIKI DIGIT ZERO..TOLONG SIKI DIGIT NINE
+
+# Total code points: 54
 
 # ================================================
 

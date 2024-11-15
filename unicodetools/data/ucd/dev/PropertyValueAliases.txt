@@ -1,5 +1,5 @@
 # PropertyValueAliases-17.0.0.txt
-# Date: 2024-11-14, 20:20:25 GMT
+# Date: 2024-11-14, 22:51:32 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -475,6 +475,7 @@ blk; Tibetan                          ; Tibetan
 blk; Tifinagh                         ; Tifinagh
 blk; Tirhuta                          ; Tirhuta
 blk; Todhri                           ; Todhri
+blk; Tolong_Siki                      ; Tolong_Siki
 blk; Toto                             ; Toto
 blk; Transport_And_Map                ; Transport_And_Map_Symbols
 blk; Tulu_Tigalari                    ; Tulu_Tigalari
@@ -1473,6 +1474,7 @@ sc ; Tibt                             ; Tibetan
 sc ; Tirh                             ; Tirhuta
 sc ; Tnsa                             ; Tangsa
 sc ; Todr                             ; Todhri
+sc ; Tols                             ; Tolong_Siki
 sc ; Toto                             ; Toto
 sc ; Tutg                             ; Tulu_Tigalari
 sc ; Ugar                             ; Ugaritic

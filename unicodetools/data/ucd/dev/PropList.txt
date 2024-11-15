@@ -1,5 +1,5 @@
 # PropList-17.0.0.txt
-# Date: 2024-11-14, 19:48:43 GMT
+# Date: 2024-11-14, 22:51:30 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1131,6 +1131,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 11D42         ; Diacritic # Mn       MASARAM GONDI SIGN NUKTA
 11D44..11D45  ; Diacritic # Mn   [2] MASARAM GONDI SIGN HALANTA..MASARAM GONDI VIRAMA
 11D97         ; Diacritic # Mn       GUNJALA GONDI VIRAMA
+11DD9         ; Diacritic # Lm       TOLONG SIKI SIGN SELA
 11F41         ; Diacritic # Mc       KAWI SIGN KILLER
 11F42         ; Diacritic # Mn       KAWI CONJOINER
 11F5A         ; Diacritic # Mn       KAWI SIGN NUKTA
@@ -1162,7 +1163,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1210
+# Total code points: 1211
 
 # ================================================
 
@@ -1202,6 +1203,7 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 113D3         ; Extender # Lo       TULU-TIGALARI SIGN PLUTA
 115C6..115C8  ; Extender # Po   [3] SIDDHAM REPETITION MARK-1..SIDDHAM REPETITION MARK-3
 11A98         ; Extender # Mn       SOYOMBO GEMINATION MARK
+11DD9         ; Extender # Lm       TOLONG SIKI SIGN SELA
 16B42..16B43  ; Extender # Lm   [2] PAHAWH HMONG SIGN VOS NRUA..PAHAWH HMONG SIGN IB YAM
 16FE0..16FE1  ; Extender # Lm   [2] TANGUT ITERATION MARK..NUSHU ITERATION MARK
 16FE3         ; Extender # Lm       OLD CHINESE ITERATION MARK
@@ -1209,7 +1211,7 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 1E5EF         ; Extender # Mn       OL ONAL SIGN IKIR
 1E944..1E946  ; Extender # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 
-# Total code points: 60
+# Total code points: 61
 
 # ================================================
 
