@@ -34,7 +34,9 @@
 #
 # The following abbreviations are used in kTGT_MergedSrc:
 #
-# H2004 = Hán Xiǎománg (韓小忙), 西夏文正字研究 (Xīxiàwén Zhèngzì Yánjiū)
+# H2021 = Hán Xiǎománg (韩小忙), 西夏文词典: 世俗文献部分 (Xīxiàwén Cídiǎn: Shìsú Wénxiàn Bùfēn)
+#       [Tangut Word Dictionary: Secular Literature Part, 9 vols.]. 2021.
+# H2004 = Hán Xiǎománg (韩小忙), 西夏文正字研究 (Xīxiàwén Zhèngzì Yánjiū)
 #	      [Research into the Correct Forms of Tangut Characters]. 2004.
 # L1986 = Lǐ Fànwén (李範文), 同音研究 (Tóngyīn Yánjiū)
 #	      [Study of the Homophones]. Yinchuan. 1986
@@ -12403,5 +12405,12 @@ U+18D1B	kTGT_MergedSrc	N5217-27
 U+18D1B	kRSTUnicode	36.7
 U+18D1C	kTGT_MergedSrc	N5217-28
 U+18D1C	kRSTUnicode	141.9
+<<<<<<< HEAD
+U+18D1D	kTGT_MergedSrc	H2021-309801
+U+18D1D	kRSTUnicode	106.13
+U+18D1E	kTGT_MergedSrc	H2021-834001
+U+18D1E	kRSTUnicode	579.14
+=======
+>>>>>>> la-vache/main
 
 # EOF

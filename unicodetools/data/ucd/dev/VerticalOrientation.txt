@@ -1,5 +1,5 @@
 # VerticalOrientation-17.0.0.txt
-# Date: 2024-11-15, 15:33:29 GMT
+# Date: 2024-11-15, 15:58:22 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2220,8 +2220,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 18B00..18CD5   ; U  # Lo   [470] KHITAN SMALL SCRIPT CHARACTER-18B00..KHITAN SMALL SCRIPT CHARACTER-18CD5
 18CD6..18CFE   ; U  # Cn    [41] <reserved-18CD6>..<reserved-18CFE>
 18CFF          ; U  # Lo         KHITAN SMALL SCRIPT CHARACTER-18CFF
-18D00..18D1C   ; U  # Lo    [29] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D1C
-18D1D..18D7F   ; U  # Cn    [99] <reserved-18D1D>..<reserved-18D7F>
+18D00..18D1E   ; U  # Lo    [31] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D1E
+18D1F..18D7F   ; U  # Cn    [97] <reserved-18D1F>..<reserved-18D7F>
 18D80..18D81   ; U  # Lo     [2] TANGUT COMPONENT-769..TANGUT COMPONENT-770
 18D82..18DFF   ; U  # Cn   [126] <reserved-18D82>..<reserved-18DFF>
 1AFF0..1AFF3   ; U  # Lm     [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
