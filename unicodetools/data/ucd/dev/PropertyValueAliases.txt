@@ -1,5 +1,5 @@
 # PropertyValueAliases-17.0.0.txt
-# Date: 2024-10-16, 17:25:13 GMT
+# Date: 2024-11-15, 15:33:08 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -180,6 +180,7 @@ blk; Bamum_Sup                        ; Bamum_Supplement
 blk; Bassa_Vah                        ; Bassa_Vah
 blk; Batak                            ; Batak
 blk; Bengali                          ; Bengali
+blk; Beria_Erfe                       ; Beria_Erfe
 blk; Bhaiksuki                        ; Bhaiksuki
 blk; Block_Elements                   ; Block_Elements
 blk; Bopomofo                         ; Bopomofo
@@ -197,6 +198,7 @@ blk; Cham                             ; Cham
 blk; Cherokee                         ; Cherokee
 blk; Cherokee_Sup                     ; Cherokee_Supplement
 blk; Chess_Symbols                    ; Chess_Symbols
+blk; Chisoi                           ; Chisoi
 blk; Chorasmian                       ; Chorasmian
 blk; CJK                              ; CJK_Unified_Ideographs
 blk; CJK_Compat                       ; CJK_Compatibility
@@ -420,9 +422,11 @@ blk; Runic                            ; Runic
 blk; Samaritan                        ; Samaritan
 blk; Saurashtra                       ; Saurashtra
 blk; Sharada                          ; Sharada
+blk; Sharada_Sup                      ; Sharada_Supplement
 blk; Shavian                          ; Shavian
 blk; Shorthand_Format_Controls        ; Shorthand_Format_Controls
 blk; Siddham                          ; Siddham
+blk; Sidetic                          ; Sidetic
 blk; Sinhala                          ; Sinhala
 blk; Sinhala_Archaic_Numbers          ; Sinhala_Archaic_Numbers
 blk; Small_Forms                      ; Small_Form_Variants
@@ -472,6 +476,7 @@ blk; Tibetan                          ; Tibetan
 blk; Tifinagh                         ; Tifinagh
 blk; Tirhuta                          ; Tirhuta
 blk; Todhri                           ; Todhri
+blk; Tolong_Siki                      ; Tolong_Siki
 blk; Toto                             ; Toto
 blk; Transport_And_Map                ; Transport_And_Map_Symbols
 blk; Tulu_Tigalari                    ; Tulu_Tigalari
@@ -1090,6 +1095,7 @@ jg ; Taw                              ; Taw
 jg ; Teh_Marbuta                      ; Teh_Marbuta
 jg ; Teh_Marbuta_Goal                 ; Teh_Marbuta_Goal                 ; Hamza_On_Heh_Goal
 jg ; Teth                             ; Teth
+jg ; Thin_Noon                        ; Thin_Noon
 jg ; Thin_Yeh                         ; Thin_Yeh
 jg ; Vertical_Tail                    ; Vertical_Tail
 jg ; Waw                              ; Waw
@@ -1332,6 +1338,7 @@ sc ; Cans                             ; Canadian_Aboriginal
 sc ; Cari                             ; Carian
 sc ; Cham                             ; Cham
 sc ; Cher                             ; Cherokee
+sc ; Chis                             ; Chisoi
 sc ; Chrs                             ; Chorasmian
 sc ; Copt                             ; Coptic                           ; Qaac
 sc ; Cpmn                             ; Cypro_Minoan
@@ -1430,6 +1437,7 @@ sc ; Phlp                             ; Psalter_Pahlavi
 sc ; Phnx                             ; Phoenician
 sc ; Plrd                             ; Miao
 sc ; Prti                             ; Inscriptional_Parthian
+sc ; Qaba                             ; Beria_Erfe
 sc ; Rjng                             ; Rejang
 sc ; Rohg                             ; Hanifi_Rohingya
 sc ; Runr                             ; Runic
@@ -1440,6 +1448,7 @@ sc ; Sgnw                             ; SignWriting
 sc ; Shaw                             ; Shavian
 sc ; Shrd                             ; Sharada
 sc ; Sidd                             ; Siddham
+sc ; Sidt                             ; Sidetic
 sc ; Sind                             ; Khudawadi
 sc ; Sinh                             ; Sinhala
 sc ; Sogd                             ; Sogdian
@@ -1466,6 +1475,7 @@ sc ; Tibt                             ; Tibetan
 sc ; Tirh                             ; Tirhuta
 sc ; Tnsa                             ; Tangsa
 sc ; Todr                             ; Todhri
+sc ; Tols                             ; Tolong_Siki
 sc ; Toto                             ; Toto
 sc ; Tutg                             ; Tulu_Tigalari
 sc ; Ugar                             ; Ugaritic
