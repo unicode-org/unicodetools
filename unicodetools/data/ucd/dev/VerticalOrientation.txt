@@ -1,5 +1,5 @@
 # VerticalOrientation-17.0.0.txt
-# Date: 2024-11-15, 13:44:11 GMT
+# Date: 2024-11-15, 15:07:04 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2212,7 +2212,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 16FE5..16FEF   ; U  # Cn    [11] <reserved-16FE5>..<reserved-16FEF>
 16FF0..16FF1   ; U  # Mc     [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 16FF2..16FF3   ; U  # Lm     [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
-16FF4..16FFF   ; U  # Cn    [12] <reserved-16FF4>..<reserved-16FFF>
+16FF4..16FF6   ; U  # Nl     [3] YANGQIN SIGN SLOW ONE BEAT..YANGQIN SIGN SLOW TWO BEATS
+16FF7..16FFF   ; U  # Cn     [9] <reserved-16FF7>..<reserved-16FFF>
 17000..187F7   ; U  # Lo  [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
 187F8..187FF   ; U  # Cn     [8] <reserved-187F8>..<reserved-187FF>
 18800..18AFF   ; U  # Lo   [768] TANGUT COMPONENT-001..TANGUT COMPONENT-768

@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-17.0.0.txt
-# Date: 2024-11-15, 13:43:30 GMT
+# Date: 2024-11-15, 15:06:26 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -579,7 +579,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 16F88..16F8E  ; Cn #   [7] <reserved-16F88>..<reserved-16F8E>
 16FA0..16FDF  ; Cn #  [64] <reserved-16FA0>..<reserved-16FDF>
 16FE5..16FEF  ; Cn #  [11] <reserved-16FE5>..<reserved-16FEF>
-16FF4..16FFF  ; Cn #  [12] <reserved-16FF4>..<reserved-16FFF>
+16FF7..16FFF  ; Cn #   [9] <reserved-16FF7>..<reserved-16FFF>
 187F8..187FF  ; Cn #   [8] <reserved-187F8>..<reserved-187FF>
 18CD6..18CFE  ; Cn #  [41] <reserved-18CD6>..<reserved-18CFE>
 18D09..1AFEF  ; Cn # [8935] <reserved-18D09>..<reserved-1AFEF>
@@ -748,7 +748,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 819272
+# Total code points: 819269
 
 # ================================================
 
@@ -3405,8 +3405,9 @@ A6E6..A6EF    ; Nl #  [10] BAMUM LETTER MO..BAMUM LETTER KOGHOM
 1034A         ; Nl #       GOTHIC LETTER NINE HUNDRED
 103D1..103D5  ; Nl #   [5] OLD PERSIAN NUMBER ONE..OLD PERSIAN NUMBER HUNDRED
 12400..1246E  ; Nl # [111] CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN NINE U VARIANT FORM
+16FF4..16FF6  ; Nl #   [3] YANGQIN SIGN SLOW ONE BEAT..YANGQIN SIGN SLOW TWO BEATS
 
-# Total code points: 236
+# Total code points: 239
 
 # ================================================
 
