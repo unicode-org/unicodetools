@@ -1309,6 +1309,10 @@ public final class UCD implements UCD_Types {
                     // Unicode 12 added TANGUT IDEOGRAPH-187F2..TANGUT IDEOGRAPH-187F7.
                     return TANGUT_BASE;
                 }
+                if (ch <= 0x187FF && rCompositeVersion >= 0x110000) {
+                    // Unicode 17 added TANGUT IDEOGRAPH-187F8..TANGUT IDEOGRAPH-187FF.
+                    return TANGUT_BASE;
+                }
             }
 
             if (rCompositeVersion >= 0xd0000) {
@@ -1320,6 +1324,14 @@ public final class UCD implements UCD_Types {
                 }
                 if (ch <= 0x18D08) {
                     return TANGUT_SUP_BASE; // 18D00..18D08 Tangut Ideograph Supplement
+                }
+                if (ch <= 0x18D1C && rCompositeVersion >= 0x110000) {
+                    // Unicode 17 added TANGUT IDEOGRAPH-18D09..TANGUT IDEOGRAPH-18D1C.
+                    return TANGUT_SUP_BASE;
+                }
+                if (ch <= 0x18D1E && rCompositeVersion >= 0x110000) {
+                    // Unicode 17 added TANGUT IDEOGRAPH-18D1D..TANGUT IDEOGRAPH-18D1E.
+                    return TANGUT_SUP_BASE;
                 }
             }
 
