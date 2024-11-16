@@ -1,5 +1,5 @@
 # DerivedCombiningClass-17.0.0.txt
-# Date: 2024-11-16, 01:39:23 GMT
+# Date: 2024-11-16, 01:52:31 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1979,6 +1979,13 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1E5F0         ; 0 # Lo       OL ONAL SIGN HODDOND
 1E5F1..1E5FA  ; 0 # Nd  [10] OL ONAL DIGIT ZERO..OL ONAL DIGIT NINE
 1E5FF         ; 0 # Po       OL ONAL ABBREVIATION SIGN
+1E6C0..1E6DE  ; 0 # Lo  [31] TAI YO LETTER LOW KO..TAI YO LETTER HIGH KVO
+1E6E0..1E6E2  ; 0 # Lo   [3] TAI YO LETTER AA..TAI YO LETTER UE
+1E6E4..1E6E5  ; 0 # Lo   [2] TAI YO LETTER U..TAI YO LETTER AE
+1E6E7..1E6ED  ; 0 # Lo   [7] TAI YO LETTER O..TAI YO LETTER AUE
+1E6F0..1E6F4  ; 0 # Lo   [5] TAI YO LETTER AN..TAI YO LETTER AP
+1E6FE         ; 0 # Lo       TAI YO SYMBOL MUEANG
+1E6FF         ; 0 # Lm       TAI YO XAM LAI
 1E7E0..1E7E6  ; 0 # Lo   [7] ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
 1E7E8..1E7EB  ; 0 # Lo   [4] ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE
 1E7ED..1E7EE  ; 0 # Lo   [2] ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
@@ -2087,8 +2094,8 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 821115 code points not listed here.
-# Total code points: 1113148
+# The above property value applies to 821060 code points not listed here.
+# Total code points: 1113143
 
 # ================================================
 
@@ -2834,9 +2841,13 @@ FE2E..FE2F    ; 230 # Mn   [2] COMBINING CYRILLIC TITLO LEFT HALF..COMBINING CYR
 1E2EC..1E2EF  ; 230 # Mn   [4] WANCHO TONE TUP..WANCHO TONE KOINI
 1E4EF         ; 230 # Mn       NAG MUNDARI SIGN SUTUH
 1E5EE         ; 230 # Mn       OL ONAL SIGN MU
+1E6E3         ; 230 # Mn       TAI YO SIGN UE
+1E6E6         ; 230 # Mn       TAI YO SIGN AU
+1E6EE..1E6EF  ; 230 # Mn   [2] TAI YO SIGN AY..TAI YO SIGN ANG
+1E6F5         ; 230 # Mn       TAI YO SIGN OM
 1E944..1E949  ; 230 # Mn   [6] ADLAM ALIF LENGTHENER..ADLAM GEMINATE CONSONANT MODIFIER
 
-# Total code points: 541
+# Total code points: 546
 
 # ================================================
 

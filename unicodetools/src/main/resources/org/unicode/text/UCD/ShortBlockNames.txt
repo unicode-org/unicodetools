@@ -307,6 +307,7 @@ Tai_Le	;	Tai_Le
 Tai_Tham	;	Tai_Tham
 Tai_Viet	;	Tai_Viet
 Tai_Xuan_Jing	;	Tai_Xuan_Jing_Symbols
+Tai_Yo	;	Tai_Yo
 Tangsa  ;   Tangsa
 Takri	;	Takri
 Tamil	;	Tamil

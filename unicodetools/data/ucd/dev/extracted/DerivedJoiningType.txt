@@ -1,5 +1,5 @@
 # DerivedJoiningType-17.0.0.txt
-# Date: 2024-11-14, 19:48:28 GMT
+# Date: 2024-11-16, 01:52:35 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -582,6 +582,10 @@ FFF9..FFFB    ; T # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTATI
 1E2EC..1E2EF  ; T # Mn   [4] WANCHO TONE TUP..WANCHO TONE KOINI
 1E4EC..1E4EF  ; T # Mn   [4] NAG MUNDARI SIGN MUHOR..NAG MUNDARI SIGN SUTUH
 1E5EE..1E5EF  ; T # Mn   [2] OL ONAL SIGN MU..OL ONAL SIGN IKIR
+1E6E3         ; T # Mn       TAI YO SIGN UE
+1E6E6         ; T # Mn       TAI YO SIGN AU
+1E6EE..1E6EF  ; T # Mn   [2] TAI YO SIGN AY..TAI YO SIGN ANG
+1E6F5         ; T # Mn       TAI YO SIGN OM
 1E8D0..1E8D6  ; T # Mn   [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 1E944..1E94A  ; T # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 1E94B         ; T # Lm       ADLAM NASALIZATION MARK
@@ -589,6 +593,6 @@ E0001         ; T # Cf       LANGUAGE TAG
 E0020..E007F  ; T # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; T # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2223
+# Total code points: 2228
 
 # EOF

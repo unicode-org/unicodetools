@@ -1,5 +1,5 @@
 # EastAsianWidth-17.0.0.txt
-# Date: 2024-11-16, 01:39:30 GMT
+# Date: 2024-11-16, 01:52:38 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2526,6 +2526,17 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 1E5F0          ; N  # Lo         OL ONAL SIGN HODDOND
 1E5F1..1E5FA   ; N  # Nd    [10] OL ONAL DIGIT ZERO..OL ONAL DIGIT NINE
 1E5FF          ; N  # Po         OL ONAL ABBREVIATION SIGN
+1E6C0..1E6DE   ; N  # Lo    [31] TAI YO LETTER LOW KO..TAI YO LETTER HIGH KVO
+1E6E0..1E6E2   ; N  # Lo     [3] TAI YO LETTER AA..TAI YO LETTER UE
+1E6E3          ; N  # Mn         TAI YO SIGN UE
+1E6E4..1E6E5   ; N  # Lo     [2] TAI YO LETTER U..TAI YO LETTER AE
+1E6E6          ; N  # Mn         TAI YO SIGN AU
+1E6E7..1E6ED   ; N  # Lo     [7] TAI YO LETTER O..TAI YO LETTER AUE
+1E6EE..1E6EF   ; N  # Mn     [2] TAI YO SIGN AY..TAI YO SIGN ANG
+1E6F0..1E6F4   ; N  # Lo     [5] TAI YO LETTER AN..TAI YO LETTER AP
+1E6F5          ; N  # Mn         TAI YO SIGN OM
+1E6FE          ; N  # Lo         TAI YO SYMBOL MUEANG
+1E6FF          ; N  # Lm         TAI YO XAM LAI
 1E7E0..1E7E6   ; N  # Lo     [7] ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
 1E7E8..1E7EB   ; N  # Lo     [4] ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE
 1E7ED..1E7EE   ; N  # Lo     [2] ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
