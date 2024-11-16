@@ -724,6 +724,7 @@ public class MakeUnicodeFiles {
         final BagFormatter bf = new BagFormatter();
         bf.setHexValue(false)
                 .setMergeRanges(true)
+                .setRangeBreakSource(null)
                 .setNoSpacesBeforeSemicolon()
                 .setMinSpacesAfterSemicolon(0)
                 .setUnicodeDataStyleRanges(true)
@@ -1682,7 +1683,7 @@ public class MakeUnicodeFiles {
         // where Cn ranges are allowed to extend from the unassigned part of one block into the
         // No_Block void beyond.
         Map<String, String> ignoreBlocksInCJKVPlanes = new HashMap<String, String>();
-        for (char ext = 'B'; ext <= 'I'; ++ext) {
+        for (char ext = 'B'; ext <= 'J'; ++ext) {
             ignoreBlocksInCJKVPlanes.put("CJK_Ext_" + ext, "NB");
         }
         UnicodeProperty blockOrIdeographicPlane =

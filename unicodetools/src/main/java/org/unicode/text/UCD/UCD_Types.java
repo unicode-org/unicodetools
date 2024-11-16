@@ -28,10 +28,16 @@ public interface UCD_Types {
     // Unicode 12:
     // 17000;<Tangut Ideograph, First>;Lo;0;L;;;;;N;;;;;
     // 187F7;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;
+    // Unicode [..]:
+    // 17000;<Tangut Ideograph, First>;Lo;0;L;;;;;N;;;;;
+    // 187FF;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;
     public static final int TANGUT_SUP_BASE = 0x18D00;
     // Unicode 13:
     // 18D00;<Tangut Ideograph Supplement, First>;Lo;0;L;;;;;N;;;;;
     // 18D08;<Tangut Ideograph Supplement, Last>;Lo;0;L;;;;;N;;;;;
+    // Unicode [..]:
+    // 18D00;<Tangut Ideograph Supplement, First>;Lo;0;L;;;;;N;;;;;
+    // 18D1C;<Tangut Ideograph Supplement, Last>;Lo;0;L;;;;;N;;;;;
 
     public static final int
             // 4E00;<CJK Ideograph, First>;Lo;0;L;;;;;N;;;;;
@@ -54,7 +60,7 @@ public interface UCD_Types {
             // 2A700;<CJK Ideograph Extension C, First>;Lo;0;L;;;;;N;;;;;
             // 2B734;<CJK Ideograph Extension C, Last>;Lo;0;L;;;;;N;;;;;
             CJK_C_BASE = 0x2A700,
-            CJK_C_LIMIT = 0x2B739 + 1, // last changed in Unicode 15
+            CJK_C_LIMIT = 0x2B73E + 1, // last changed in Unicode 17
 
             // 2B740;<CJK Ideograph Extension D, First>;Lo;0;L;;;;;N;;;;;
             // 2B81D;<CJK Ideograph Extension D, Last>;Lo;0;L;;;;;N;;;;;
@@ -85,7 +91,12 @@ public interface UCD_Types {
             // 31350;<CJK Ideograph Extension H, First>;Lo;0;L;;;;;N;;;;;
             // 323AF;<CJK Ideograph Extension H, Last>;Lo;0;L;;;;;N;;;;;
             CJK_H_BASE = 0x31350,
-            CJK_H_LIMIT = 0x323AF + 1
+            CJK_H_LIMIT = 0x323AF + 1,
+
+            // 323B0;<CJK Ideograph Extension J, First>;Lo;0;L;;;;;N;;;;;
+            // 33479;<CJK Ideograph Extension J, Last>;Lo;0;L;;;;;N;;;;;
+            CJK_J_BASE = 0x323B0,
+            CJK_J_LIMIT = 0x33479 + 1
 
     // when adding to this list, look for all occurrences (in project) of CJK_C_BASE and CJK_C_LIMIT
     // to check for code that needs changing.
@@ -671,120 +682,7 @@ public interface UCD_Types {
             JT_T = 5,
             LIMIT_JOINING_TYPE = 6;
     public static short NO_SHAPING = 0,
-            AIN = 1,
-            ALAPH = 2,
-            ALEF = 3,
-            BEH = 4,
-            BETH = 5,
-            DAL = 6,
-            DALATH_RISH = 7,
-            E = 8,
-            FEH = 9,
-            FINAL_SEMKATH = 10,
-            GAF = 11,
-            GAMAL = 12,
-            HAH = 13,
-            TEH_MARBUTA_GOAL = 14,
-            HE = 15,
-            HEH = 16,
-            HEH_GOAL = 17,
-            HETH = 18,
-            KAF = 19,
-            KAPH = 20,
-            KNOTTED_HEH = 21,
-            LAM = 22,
-            LAMADH = 23,
-            MEEM = 24,
-            MIM = 25,
-            NOON = 26,
-            NUN = 27,
-            PE = 28,
-            QAF = 29,
-            QAPH = 30,
-            REH = 31,
-            REVERSED_PE = 32,
-            SAD = 33,
-            SADHE = 34,
-            SEEN = 35,
-            SEMKATH = 36,
-            SHIN = 37,
-            SWASH_KAF = 38,
-            TAH = 39,
-            TAW = 40,
-            TEH_MARBUTA = 41,
-            TETH = 42,
-            WAW = 43,
-            SYRIAC_WAW = 44,
-            YEH = 45,
-            YEH_BARREE = 46,
-            YEH_WITH_TAIL = 47,
-            YUDH = 48,
-            YUDH_HE = 49,
-            ZAIN = 50,
-            ZHAIN = 51,
-            KHAPH = 52,
-            FE = 53,
-            BURUSHASKI_YEH_BARREE = 54,
-            FARSI_YEH = 55,
-            NYA = 56,
-            ROHINGYA_YEH = 57,
-            HAMZAH_ON_HA_GOAL = 58,
-            STRAIGHT_WAW = 59,
-            MANICHAEAN_ALEPH = 60,
-            MANICHAEAN_AYIN = 61,
-            MANICHAEAN_BETH = 62,
-            MANICHAEAN_DALETH = 63,
-            MANICHAEAN_DHAMEDH = 64,
-            MANICHAEAN_FIVE = 65,
-            MANICHAEAN_GIMEL = 66,
-            MANICHAEAN_HETH = 67,
-            MANICHAEAN_HUNDRED = 68,
-            MANICHAEAN_KAPH = 69,
-            MANICHAEAN_LAMEDH = 70,
-            MANICHAEAN_MEM = 71,
-            MANICHAEAN_NUN = 72,
-            MANICHAEAN_ONE = 73,
-            MANICHAEAN_PE = 74,
-            MANICHAEAN_QOPH = 75,
-            MANICHAEAN_RESH = 76,
-            MANICHAEAN_SADHE = 77,
-            MANICHAEAN_SAMEKH = 78,
-            MANICHAEAN_TAW = 79,
-            MANICHAEAN_TEN = 80,
-            MANICHAEAN_TETH = 81,
-            MANICHAEAN_THAMEDH = 82,
-            MANICHAEAN_TWENTY = 83,
-            MANICHAEAN_WAW = 84,
-            MANICHAEAN_YODH = 85,
-            MANICHAEAN_ZAYIN = 86,
-            // Unicode 9:
-            AFRICAN_FEH = 87,
-            AFRICAN_QAF = 88,
-            AFRICAN_NOON = 89,
-            // Unicode 10:
-            MALAYALAM_NGA = 90,
-            MALAYALAM_JA = 91,
-            MALAYALAM_NYA = 92,
-            MALAYALAM_TTA = 93,
-            MALAYALAM_NNA = 94,
-            MALAYALAM_NNNA = 95,
-            MALAYALAM_BHA = 96,
-            MALAYALAM_RA = 97,
-            MALAYALAM_LLA = 98,
-            MALAYALAM_LLLA = 99,
-            MALAYALAM_SSA = 100,
-            // Unicode 11, non-singletons:
-            Hanifi_Rohingya_Pa = 101,
-            Hanifi_Rohingya_Kinna_Ya = 102,
-            // Unicode 14
-            THIN_YEH = 103,
-            VERTICAL_TAIL = 104,
-            // Unicode 16
-            KASHMIRI_YEH = 105,
-            // Unicode n > 16
-            THIN_NOON = 106,
-            // limit
-            LIMIT_JOINING_GROUP = THIN_NOON + 1;
+            LIMIT_JOINING_GROUP = (short) UCD_Names.JOINING_GROUP.length;
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;
     public static final int NF_COMPATIBILITY_MASK = 2, NF_COMPOSITION_MASK = 1;
 
