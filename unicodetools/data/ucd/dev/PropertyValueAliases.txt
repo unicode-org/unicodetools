@@ -1,5 +1,5 @@
 # PropertyValueAliases-17.0.0.txt
-# Date: 2024-11-15, 16:14:26 GMT
+# Date: 2024-11-15, 18:27:15 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -363,6 +363,7 @@ blk; Misc_Math_Symbols_A              ; Miscellaneous_Mathematical_Symbols_A
 blk; Misc_Math_Symbols_B              ; Miscellaneous_Mathematical_Symbols_B
 blk; Misc_Pictographs                 ; Miscellaneous_Symbols_And_Pictographs
 blk; Misc_Symbols                     ; Miscellaneous_Symbols
+blk; Misc_Symbols_Sup                 ; Miscellaneous_Symbols_Supplement
 blk; Misc_Technical                   ; Miscellaneous_Technical
 blk; Modi                             ; Modi
 blk; Modifier_Letters                 ; Spacing_Modifier_Letters

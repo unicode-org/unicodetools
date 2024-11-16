@@ -1,5 +1,5 @@
 # DerivedLineBreak-17.0.0.txt
-# Date: 2024-11-15, 16:54:28 GMT
+# Date: 2024-11-15, 18:26:57 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -69,8 +69,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 757234 code points not listed here.
-# Total code points: 894702
+# The above property value applies to 757217 code points not listed here.
+# Total code points: 894685
 
 # ================================================
 
@@ -1471,7 +1471,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1CC00..1CCEF  ; AL # So [240] UP-POINTING GO-KART..OUTLINED LATIN CAPITAL LETTER Z
 1CCFA..1CCFC  ; AL # So   [3] SNAKE SYMBOL..NOSE SYMBOL
 1CD00..1CEB3  ; AL # So [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
-1CEBA..1CEBF  ; AL # So   [6] FRAGILE SYMBOL..STRAWBERRY SYMBOL
+1CEBA..1CED0  ; AL # So  [23] FRAGILE SYMBOL..LEUKOTHEA
 1CF50..1CFC3  ; AL # So [116] ZNAMENNY NEUME KRYUK..ZNAMENNY NEUME PAUK
 1D000..1D0F5  ; AL # So [246] BYZANTINE MUSICAL SYMBOL PSILI..BYZANTINE MUSICAL SYMBOL GORGON NEO KATO
 1D100..1D126  ; AL # So  [39] MUSICAL SYMBOL SINGLE BARLINE..MUSICAL SYMBOL DRUM CLEF-2
@@ -1616,6 +1616,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1F650..1F675  ; AL # So  [38] NORTH WEST POINTING LEAF..SWASH AMPERSAND ORNAMENT
 1F67C..1F67F  ; AL # So   [4] VERY HEAVY SOLIDUS..REVERSE CHECKER BOARD
 1F700..1F773  ; AL # So [116] ALCHEMICAL SYMBOL FOR QUINTESSENCE..ALCHEMICAL SYMBOL FOR HALF OUNCE
+1F777..1F77A  ; AL # So   [4] VESTA FORM TWO..PARTHENOPE FORM TWO
 1F780..1F7D4  ; AL # So  [85] BLACK LEFT-POINTING ISOSCELES RIGHT TRIANGLE..HEAVY TWELVE POINTED PINWHEEL STAR
 1F800..1F80B  ; AL # So  [12] LEFTWARDS ARROW WITH SMALL TRIANGLE ARROWHEAD..DOWNWARDS ARROW WITH LARGE TRIANGLE ARROWHEAD
 1F810..1F847  ; AL # So  [56] LEFTWARDS ARROW WITH SMALL EQUILATERAL ARROWHEAD..DOWNWARDS HEAVY ARROW
@@ -1630,7 +1631,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB94..1FBEF  ; AL # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; AL # So       ALARM BELL SYMBOL
 
-# Total code points: 26886
+# Total code points: 26907
 
 # ================================================
 
@@ -1870,8 +1871,8 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 30000..3134A  ; ID # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; ID # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# The above property value applies to 61865 code points not listed here.
-# Total code points: 172569
+# The above property value applies to 61861 code points not listed here.
+# Total code points: 172565
 
 # ================================================
 

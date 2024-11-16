@@ -1,5 +1,5 @@
 # DerivedAge-17.0.0.txt
-# Date: 2024-11-15, 16:53:58 GMT
+# Date: 2024-11-15, 18:26:29 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2096,9 +2096,10 @@ FDC8..FDCE    ; 17.0 #   [7] ARABIC LIGATURE RAHIMAHU ALLAAH TAAALAA..ARABIC LIG
 18D09..18D1E  ; 17.0 #  [22] TANGUT IDEOGRAPH-18D09..TANGUT IDEOGRAPH-18D1E
 18D80..18DF2  ; 17.0 # [115] TANGUT COMPONENT-769..TANGUT COMPONENT-883
 1CCFA..1CCFC  ; 17.0 #   [3] SNAKE SYMBOL..NOSE SYMBOL
-1CEBA..1CEBF  ; 17.0 #   [6] FRAGILE SYMBOL..STRAWBERRY SYMBOL
+1CEBA..1CED0  ; 17.0 #  [23] FRAGILE SYMBOL..LEUKOTHEA
+1F777..1F77A  ; 17.0 #   [4] VESTA FORM TWO..PARTHENOPE FORM TWO
 1FBFA         ; 17.0 #       ALARM BELL SYMBOL
 
-# Total code points: 419
+# Total code points: 440
 
 # EOF
