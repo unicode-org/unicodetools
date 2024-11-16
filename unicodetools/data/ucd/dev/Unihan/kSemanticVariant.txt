@@ -2592,6 +2592,7 @@
 8AE1	U+8B1A<kMatthews
 8AE4	U+8B8D<kMatthews
 8AE7	U+9FA4<kMatthews
+8AE9	U+8B5C
 8AEE	U+54A8<kMatthews,kMeyerWempe U+55DE<kMatthews,kMeyerWempe
 8AF5	U+5583<kLau,kMatthews,kMeyerWempe
 8AF6	U+8A26<kMatthews,kMeyerWempe

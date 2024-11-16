@@ -1,5 +1,5 @@
 # EastAsianWidth-17.0.0.txt
-# Date: 2024-11-16, 02:34:36 GMT
+# Date: 2024-11-16, 02:53:10 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2703,8 +2703,8 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 1FBFA          ; N  # So         ALARM BELL SYMBOL
 20000..2A6DF   ; W  # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
 2A6E0..2A6FF   ; W  # Cn    [32] <reserved-2A6E0>..<reserved-2A6FF>
-2A700..2B739   ; W  # Lo  [4154] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B739
-2B73A..2B73F   ; W  # Cn     [6] <reserved-2B73A>..<reserved-2B73F>
+2A700..2B73E   ; W  # Lo  [4159] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B73E
+2B73F          ; W  # Cn         <reserved-2B73F>
 2B740..2B81D   ; W  # Lo   [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B81E..2B81F   ; W  # Cn     [2] <reserved-2B81E>..<reserved-2B81F>
 2B820..2CEA1   ; W  # Lo  [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
@@ -2718,8 +2718,8 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 2FA20..2FFFD   ; W  # Cn  [1502] <reserved-2FA20>..<reserved-2FFFD>
 30000..3134A   ; W  # Lo  [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 3134B..3134F   ; W  # Cn     [5] <reserved-3134B>..<reserved-3134F>
-31350..323AF   ; W  # Lo  [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
-323B0..3FFFD   ; W  # Cn [56398] <reserved-323B0>..<reserved-3FFFD>
+31350..33479   ; W  # Lo  [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
+3347A..3FFFD   ; W  # Cn [52100] <reserved-3347A>..<reserved-3FFFD>
 E0001          ; N  # Cf         LANGUAGE TAG
 E0020..E007F   ; N  # Cf    [96] TAG SPACE..CANCEL TAG
 E0100..E01EF   ; A  # Mn   [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256

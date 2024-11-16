@@ -238,6 +238,7 @@ public class UcdPropertyValues {
         CJK_Unified_Ideographs_Extension_G("CJK_Ext_G"),
         CJK_Unified_Ideographs_Extension_H("CJK_Ext_H"),
         CJK_Unified_Ideographs_Extension_I("CJK_Ext_I"),
+        CJK_Unified_Ideographs_Extension_J("CJK_Ext_J"),
         CJK_Radicals_Supplement("CJK_Radicals_Sup"),
         CJK_Strokes("CJK_Strokes"),
         CJK_Symbols_And_Punctuation("CJK_Symbols"),
