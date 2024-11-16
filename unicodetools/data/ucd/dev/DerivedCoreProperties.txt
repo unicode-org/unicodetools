@@ -1,5 +1,5 @@
 # DerivedCoreProperties-17.0.0.txt
-# Date: 2024-11-16, 01:52:31 GMT
+# Date: 2024-11-16, 02:09:19 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -12993,7 +12993,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 1F8B0..1F8BB  ; Grapheme_Base # So  [12] ARROW POINTING UPWARDS THEN NORTH WEST..SOUTH WEST ARROW FROM BAR
 1F8C0..1F8C1  ; Grapheme_Base # So   [2] LEFTWARDS ARROW FROM DOWNWARDS ARROW..RIGHTWARDS ARROW FROM DOWNWARDS ARROW
 1F8D0..1F8D8  ; Grapheme_Base # Sm   [9] LONG RIGHTWARDS ARROW OVER LONG LEFTWARDS ARROW..LONG LEFT RIGHT ARROW WITH DEPENDENT LOBE
-1F900..1FA53  ; Grapheme_Base # So [340] CIRCLED CROSS FORMEE WITH FOUR DOTS..BLACK CHESS KNIGHT-BISHOP
+1F900..1FA57  ; Grapheme_Base # So [344] CIRCLED CROSS FORMEE WITH FOUR DOTS..BLACK CHESS ALFIL
 1FA60..1FA6D  ; Grapheme_Base # So  [14] XIANGQI RED GENERAL..XIANGQI BLACK SOLDIER
 1FA70..1FA7C  ; Grapheme_Base # So  [13] BALLET SHOES..CRUTCH
 1FA80..1FA89  ; Grapheme_Base # So  [10] YO-YO..HARP
@@ -13015,7 +13015,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 30000..3134A  ; Grapheme_Base # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Grapheme_Base # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 153208
+# Total code points: 153212
 
 # ================================================
 

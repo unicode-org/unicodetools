@@ -1,5 +1,5 @@
 # LineBreak-17.0.0.txt
-# Date: 2024-11-16, 01:52:39 GMT
+# Date: 2024-11-16, 02:09:26 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3663,8 +3663,8 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 1F9D0          ; ID # So         FACE WITH MONOCLE
 1F9D1..1F9DD   ; EB # So    [13] ADULT..ELF
 1F9DE..1F9FF   ; ID # So    [34] GENIE..NAZAR AMULET
-1FA00..1FA53   ; AL # So    [84] NEUTRAL CHESS KING..BLACK CHESS KNIGHT-BISHOP
-1FA54..1FA5F   ; ID # Cn    [12] <reserved-1FA54>..<reserved-1FA5F>
+1FA00..1FA57   ; AL # So    [88] NEUTRAL CHESS KING..BLACK CHESS ALFIL
+1FA58..1FA5F   ; ID # Cn     [8] <reserved-1FA58>..<reserved-1FA5F>
 1FA60..1FA6D   ; ID # So    [14] XIANGQI RED GENERAL..XIANGQI BLACK SOLDIER
 1FA6E..1FA6F   ; ID # Cn     [2] <reserved-1FA6E>..<reserved-1FA6F>
 1FA70..1FA7C   ; ID # So    [13] BALLET SHOES..CRUTCH

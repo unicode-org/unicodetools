@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2024-11-16, 01:52:35 GMT
+# Date: 2024-11-16, 02:09:23 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -45133,6 +45133,10 @@ FFFD          ; REPLACEMENT CHARACTER
 1FA51         ; BLACK CHESS KNIGHT-QUEEN
 1FA52         ; BLACK CHESS KNIGHT-ROOK
 1FA53         ; BLACK CHESS KNIGHT-BISHOP
+1FA54         ; WHITE CHESS FERZ
+1FA55         ; WHITE CHESS ALFIL
+1FA56         ; BLACK CHESS FERZ
+1FA57         ; BLACK CHESS ALFIL
 1FA60         ; XIANGQI RED GENERAL
 1FA61         ; XIANGQI RED MANDARIN
 1FA62         ; XIANGQI RED ELEPHANT
@@ -45858,6 +45862,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 155519
+# Total code points: 155523
 
 # EOF

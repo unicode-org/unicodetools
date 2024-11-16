@@ -1,5 +1,5 @@
 # Scripts-17.0.0.txt
-# Date: 2024-11-16, 01:53:14 GMT
+# Date: 2024-11-16, 02:09:59 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -622,7 +622,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 1F8B0..1F8BB  ; Common # So  [12] ARROW POINTING UPWARDS THEN NORTH WEST..SOUTH WEST ARROW FROM BAR
 1F8C0..1F8C1  ; Common # So   [2] LEFTWARDS ARROW FROM DOWNWARDS ARROW..RIGHTWARDS ARROW FROM DOWNWARDS ARROW
 1F8D0..1F8D8  ; Common # Sm   [9] LONG RIGHTWARDS ARROW OVER LONG LEFTWARDS ARROW..LONG LEFT RIGHT ARROW WITH DEPENDENT LOBE
-1F900..1FA53  ; Common # So [340] CIRCLED CROSS FORMEE WITH FOUR DOTS..BLACK CHESS KNIGHT-BISHOP
+1F900..1FA57  ; Common # So [344] CIRCLED CROSS FORMEE WITH FOUR DOTS..BLACK CHESS ALFIL
 1FA60..1FA6D  ; Common # So  [14] XIANGQI RED GENERAL..XIANGQI BLACK SOLDIER
 1FA70..1FA7C  ; Common # So  [13] BALLET SHOES..CRUTCH
 1FA80..1FA89  ; Common # So  [10] YO-YO..HARP
@@ -637,7 +637,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 9111
+# Total code points: 9115
 
 # ================================================
 
