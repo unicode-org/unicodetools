@@ -1,5 +1,5 @@
 # LineBreak-17.0.0.txt
-# Date: 2024-11-16, 02:09:26 GMT
+# Date: 2024-11-16, 02:25:04 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3613,8 +3613,8 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 1F6C0          ; EB # So         BATH
 1F6C1..1F6CB   ; ID # So    [11] BATHTUB..COUCH AND LAMP
 1F6CC          ; EB # So         SLEEPING ACCOMMODATION
-1F6CD..1F6D7   ; ID # So    [11] SHOPPING BAGS..ELEVATOR
-1F6D8..1F6DB   ; ID # Cn     [4] <reserved-1F6D8>..<reserved-1F6DB>
+1F6CD..1F6D8   ; ID # So    [12] SHOPPING BAGS..LANDSLIDE
+1F6D9..1F6DB   ; ID # Cn     [3] <reserved-1F6D9>..<reserved-1F6DB>
 1F6DC..1F6EC   ; ID # So    [17] WIRELESS..AIRPLANE ARRIVING
 1F6ED..1F6EF   ; ID # Cn     [3] <reserved-1F6ED>..<reserved-1F6EF>
 1F6F0..1F6FC   ; ID # So    [13] SATELLITE..ROLLER SKATE
@@ -3669,16 +3669,19 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 1FA6E..1FA6F   ; ID # Cn     [2] <reserved-1FA6E>..<reserved-1FA6F>
 1FA70..1FA7C   ; ID # So    [13] BALLET SHOES..CRUTCH
 1FA7D..1FA7F   ; ID # Cn     [3] <reserved-1FA7D>..<reserved-1FA7F>
-1FA80..1FA89   ; ID # So    [10] YO-YO..HARP
-1FA8A..1FA8E   ; ID # Cn     [5] <reserved-1FA8A>..<reserved-1FA8E>
-1FA8F..1FAC2   ; ID # So    [52] SHOVEL..PEOPLE HUGGING
+1FA80..1FA8A   ; ID # So    [11] YO-YO..TROMBONE
+1FA8B..1FA8D   ; ID # Cn     [3] <reserved-1FA8B>..<reserved-1FA8D>
+1FA8E..1FAC2   ; ID # So    [53] TREASURE CHEST..PEOPLE HUGGING
 1FAC3..1FAC5   ; EB # So     [3] PREGNANT MAN..PERSON WITH CROWN
 1FAC6          ; ID # So         FINGERPRINT
-1FAC7..1FACD   ; ID # Cn     [7] <reserved-1FAC7>..<reserved-1FACD>
-1FACE..1FADC   ; ID # So    [15] MOOSE..ROOT VEGETABLE
-1FADD..1FADE   ; ID # Cn     [2] <reserved-1FADD>..<reserved-1FADE>
-1FADF..1FAE9   ; ID # So    [11] SPLATTER..FACE WITH BAGS UNDER EYES
-1FAEA..1FAEF   ; ID # Cn     [6] <reserved-1FAEA>..<reserved-1FAEF>
+1FAC7          ; ID # Cn         <reserved-1FAC7>
+1FAC8          ; ID # So         HAIRY CREATURE
+1FAC9..1FACC   ; ID # Cn     [4] <reserved-1FAC9>..<reserved-1FACC>
+1FACD..1FADD   ; ID # So    [17] ORCA..APPLE CORE
+1FADE          ; ID # Cn         <reserved-1FADE>
+1FADF..1FAEA   ; ID # So    [12] SPLATTER..DISTORTED FACE
+1FAEB..1FAEE   ; ID # Cn     [4] <reserved-1FAEB>..<reserved-1FAEE>
+1FAEF          ; ID # So         FIGHT CLOUD
 1FAF0..1FAF8   ; EB # So     [9] HAND WITH INDEX FINGER AND THUMB CROSSED..RIGHTWARDS PUSHING HAND
 1FAF9..1FAFF   ; ID # Cn     [7] <reserved-1FAF9>..<reserved-1FAFF>
 1FB00..1FB92   ; AL # So   [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK

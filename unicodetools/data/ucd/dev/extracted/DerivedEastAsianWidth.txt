@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-17.0.0.txt
-# Date: 2024-11-16, 02:09:21 GMT
+# Date: 2024-11-16, 02:34:31 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2143,8 +2143,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 760574 code points not listed here.
-# Total code points: 792275
+# The above property value applies to 760566 code points not listed here.
+# Total code points: 792267
 
 # ================================================
 
@@ -2594,7 +2594,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 1F680..1F6C5  ; W # So  [70] ROCKET..LEFT LUGGAGE
 1F6CC         ; W # So       SLEEPING ACCOMMODATION
 1F6D0..1F6D2  ; W # So   [3] PLACE OF WORSHIP..SHOPPING TROLLEY
-1F6D5..1F6D7  ; W # So   [3] HINDU TEMPLE..ELEVATOR
+1F6D5..1F6D8  ; W # So   [4] HINDU TEMPLE..LANDSLIDE
 1F6DC..1F6DF  ; W # So   [4] WIRELESS..RING BUOY
 1F6EB..1F6EC  ; W # So   [2] AIRPLANE DEPARTURE..AIRPLANE ARRIVING
 1F6F4..1F6FC  ; W # So   [9] SCOOTER..ROLLER SKATE
@@ -2604,11 +2604,12 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 1F93C..1F945  ; W # So  [10] WRESTLERS..GOAL NET
 1F947..1F9FF  ; W # So [185] FIRST PLACE MEDAL..NAZAR AMULET
 1FA70..1FA7C  ; W # So  [13] BALLET SHOES..CRUTCH
-1FA80..1FA89  ; W # So  [10] YO-YO..HARP
-1FA8F..1FAC6  ; W # So  [56] SHOVEL..FINGERPRINT
-1FACE..1FADC  ; W # So  [15] MOOSE..ROOT VEGETABLE
-1FADF..1FAE9  ; W # So  [11] SPLATTER..FACE WITH BAGS UNDER EYES
-1FAF0..1FAF8  ; W # So   [9] HAND WITH INDEX FINGER AND THUMB CROSSED..RIGHTWARDS PUSHING HAND
+1FA80..1FA8A  ; W # So  [11] YO-YO..TROMBONE
+1FA8E..1FAC6  ; W # So  [57] TREASURE CHEST..FINGERPRINT
+1FAC8         ; W # So       HAIRY CREATURE
+1FACD..1FADD  ; W # So  [17] ORCA..APPLE CORE
+1FADF..1FAEA  ; W # So  [12] SPLATTER..DISTORTED FACE
+1FAEF..1FAF8  ; W # So  [10] FIGHT CLOUD..RIGHTWARDS PUSHING HAND
 20000..2A6DF  ; W # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
 2A700..2B739  ; W # Lo [4154] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B739
 2B740..2B81D  ; W # Lo [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
@@ -2620,7 +2621,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 31350..323AF  ; W # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
 # The above property value applies to 60482 code points not listed here.
-# Total code points: 182760
+# Total code points: 182768
 
 # ================================================
 
