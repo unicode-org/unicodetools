@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-17.0.0.txt
-# Date: 2024-11-15, 18:26:55 GMT
+# Date: 2024-11-16, 00:53:22 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1911,6 +1911,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 1CCFA..1CCFC  ; N # So   [3] SNAKE SYMBOL..NOSE SYMBOL
 1CD00..1CEB3  ; N # So [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
 1CEBA..1CED0  ; N # So  [23] FRAGILE SYMBOL..LEUKOTHEA
+1CEE0..1CEEF  ; N # So  [16] GEOMANTIC FIGURE POPULUS..GEOMANTIC FIGURE VIA
 1CF00..1CF2D  ; N # Mn  [46] ZNAMENNY COMBINING MARK GORAZDO NIZKO S KRYZHEM ON LEFT..ZNAMENNY COMBINING MARK KRYZH ON LEFT
 1CF30..1CF46  ; N # Mn  [23] ZNAMENNY COMBINING TONAL RANGE MARK MRACHNO..ZNAMENNY PRIZNAK MODIFIER ROG
 1CF50..1CFC3  ; N # So [116] ZNAMENNY NEUME KRYUK..ZNAMENNY NEUME PAUK
@@ -2129,7 +2130,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 760659 code points not listed here.
+# The above property value applies to 760643 code points not listed here.
 # Total code points: 792275
 
 # ================================================

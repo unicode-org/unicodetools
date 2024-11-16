@@ -1,5 +1,5 @@
 # DerivedCombiningClass-17.0.0.txt
-# Date: 2024-11-15, 18:26:52 GMT
+# Date: 2024-11-16, 00:53:19 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1886,6 +1886,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1CCFA..1CCFC  ; 0 # So   [3] SNAKE SYMBOL..NOSE SYMBOL
 1CD00..1CEB3  ; 0 # So [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
 1CEBA..1CED0  ; 0 # So  [23] FRAGILE SYMBOL..LEUKOTHEA
+1CEE0..1CEEF  ; 0 # So  [16] GEOMANTIC FIGURE POPULUS..GEOMANTIC FIGURE VIA
 1CF00..1CF2D  ; 0 # Mn  [46] ZNAMENNY COMBINING MARK GORAZDO NIZKO S KRYZHEM ON LEFT..ZNAMENNY COMBINING MARK KRYZH ON LEFT
 1CF30..1CF46  ; 0 # Mn  [23] ZNAMENNY COMBINING TONAL RANGE MARK MRACHNO..ZNAMENNY PRIZNAK MODIFIER ROG
 1CF50..1CFC3  ; 0 # So [116] ZNAMENNY NEUME KRYUK..ZNAMENNY NEUME PAUK
@@ -2084,7 +2085,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 821141 code points not listed here.
+# The above property value applies to 821125 code points not listed here.
 # Total code points: 1113148
 
 # ================================================
