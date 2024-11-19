@@ -143,10 +143,6 @@ $CM=[$CM1 $ZWJ]
 $AL=[$AI $AL $SG $XX $SA]
 $NS=[$NS $CJ]
 
-# MACROS
-
-$Spec3a_=[^ $SP $BA $HY]
-
 # RULES
 
 # LB 4  Always break after hard line breaks (but never between CR and LF).
@@ -176,7 +172,7 @@ $Spec3a_=[^ $SP $BA $HY]
 # LB 12  Do not break after NBSP and related characters.
 12) $GL ×
 # LB 12a Do not break before NBSP and related characters, except after spaces and hyphens.
-12.1) $Spec3a_ × $GL
+12.1) [^ $SP $BA $HY] × $GL
 # LB 13  Do not break before \u2018]\u2019 or \u2018!\u2019 or \u2018;\u2019 or \u2018/\u2019, even after spaces.
 13.01) × $EX
 13.02) × $CL
@@ -306,27 +302,10 @@ $Any=.
 ## Expresses the negation in rule 8; can't do this with normal regex, but works with UnicodeSet, which is all we need.
 ##	$NotStuff=[^$OLetter $Upper $Lower $Sep]
 ##	# $ATerm and $Sterm are temporary, to match ICU until UTC decides.
-
-# WARNING: For Rule 5, now add format and extend to everything but Sep, Format, and Extend
-
-$FE=[$Format $Extend]
-$NotPreLower_=[^ $OLetter $Upper $Lower $Sep $CR $LF $STerm $ATerm]
-##	$NotSep_=[^ $Sep $CR $LF]
-##	$FE=$Extend* $Format*
-$Sp=($Sp $FE*)
-$Lower=($Lower $FE*)
-$Upper=($Upper $FE*)
-$OLetter=($OLetter $FE*)
-$Numeric=($Numeric $FE*)
-$ATerm=($ATerm $FE*)
-$STerm=($STerm $FE*)
-$Close=($Close $FE*)
-$SContinue=($SContinue $FE*)
-
 # MACROS
 
-$ParaSep = ($Sep | $CR | $LF)
-$SATerm = ($STerm | $ATerm)
+$ParaSep = [$Sep $CR $LF]
+$SATerm = [$STerm $ATerm]
 
 # RULES
 
@@ -337,18 +316,16 @@ $SATerm = ($STerm | $ATerm)
 4) $ParaSep  	÷
 ##	3.4) ( $Control | $CR | $LF ) 	÷
 ##	3.5) ÷ 	( $Control | $CR | $LF )
-# Ignore Format and Extend characters, except after sot, ParaSep, and within CRLF. (See Section 6.2, Replacing Ignore Rules.) This also has the effect of: Any × (Format | Extend)
-# WARNING: Implemented as don't break before format (except after linebreaks),
-# AND add format and extend in all variables definitions that appear after this point!
-##	3.91) [^$Control | $CR | $LF] × 	$Extend
-5) × [$Format $Extend]
+# Ignore Format and Extend characters, except after sot, ParaSep, and within CRLF. (See Section 6.2, Replacing Ignore Rules.)
+# This also has the effect of: Any × (Format | Extend)
+5) (?<X>[^$ParaSep]) ( $Extend | $Format )* → ${X}
 # Do not break after full stop in certain contexts. [See note below.]
 # Do not break after ambiguous terminators like period, if immediately followed by a number or lowercase letter,
 # is between uppercase letters, or if the first following letter (optionally after certain punctuation) is lowercase.
 # For example, a period may be an abbreviation or numeric period, and not mark the end of a sentence.
 6) $ATerm 	× 	$Numeric
 7) ($Upper | $Lower) $ATerm 	× 	$Upper
-8) $ATerm $Close* $Sp* 	× 	$NotPreLower_* $Lower
+8) $ATerm $Close* $Sp* 	× 	[^ $OLetter $Upper $Lower $ParaSep $SATerm]* $Lower
 8.1) $SATerm $Close* $Sp* 	× 	($SContinue | $SATerm)
 # Break after sentence terminators, but include closing punctuation, trailing spaces, and any paragraph separator. [See note below.] Include closing punctuation, trailing spaces, and (optionally) a paragraph separator.
 9) $SATerm $Close* 	× 	( $Close | $Sp | $ParaSep )
@@ -399,32 +376,6 @@ $MidNumLetQ=($MidNumLet | $Single_Quote)
 ##	# Subtract Format from Control, since we don't want to break before/after
 ##	$Control=[$Control-$Format]
 
-# SPECIAL EXTENSIONS
-
-# Add format and extend to everything
-$FE=[$Format $Extend $ZWJ]
-
-$NotBreak_=[^ $Newline $CR $LF ]
-##	$FE= ($Extend | $Format)*
-$Katakana=($Katakana $FE*)
-$ALetter=($ALetter $FE*)
-$MidLetter=($MidLetter $FE*)
-$MidNum=($MidNum $FE*)
-$MidNumLet=($MidNumLet $FE*)
-$Numeric=($Numeric $FE*)
-$ExtendNumLet=($ExtendNumLet $FE*)
-$RI=($RI $FE*)
-$Hebrew_Letter=($Hebrew_Letter $FE*)
-$Double_Quote=($Double_Quote $FE*)
-$Single_Quote=($Single_Quote $FE*)
-##	$E_Base=($E_Base $FE*)
-##	$E_Modifier=($E_Modifier $FE*)
-##	$ZWJ=($ZWJ $FE*) # don't do this one!
-##	$Glue_After_Zwj=($Glue_After_Zwj $FE*)
-##	$EBG=($EBG $FE*)
-$AHLetter=($AHLetter $FE*)
-$MidNumLetQ=($MidNumLetQ $FE*)
-
 # RULES
 
 # Break at the start and end of text, unless the text is empty.
@@ -440,11 +391,9 @@ $MidNumLetQ=($MidNumLetQ $FE*)
 ##	3.5) ÷ 	( $Control | $CR | $LF )
 ##	3.9) × 	$Extend
 ##	3.91) [^$Control | $CR | $LF] × 	$Extend
-# Ignore Format and Extend characters, except after sot, CR, LF, and Newline. (See Section 6.2, Replacing Ignore Rules.) This also has the effect of: Any × (Format | Extend)
-# WARNING: Implemented as don't break before format (except after linebreaks),
-# AND add format and extend in all variables definitions that appear after this point!
-##	4) × [$Format $Extend]
-4) $NotBreak_ × [$Format $Extend $ZWJ]
+# Ignore Format and Extend characters, except after sot, CR, LF, and Newline. (See Section 6.2, Replacing Ignore Rules.)
+# This also has the effect of: Any × (Format | Extend)
+4) (?<X>[^$CR $LF $Newline]) ($Extend | $Format | $ZWJ)* → ${X}
 
 # VANILLA RULES
 
