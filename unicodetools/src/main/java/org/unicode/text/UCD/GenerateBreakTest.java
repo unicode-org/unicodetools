@@ -728,16 +728,15 @@ public abstract class GenerateBreakTest implements UCD_Types {
     public void generateTable(PrintWriter out) {
         out.println("<h3>" + linkAndAnchor("table", "Table") + "</h3>");
         final String width = "width='" + (100 / (tableLimit + 1)) + "%'";
-        // REMOVE BEFORE FLIGHT
+        // REMOVE BEFORE FLIGHT: begin
         for (String variable: variables.keySet()) {
             out.println("<p>");
             out.println(variable);
             out.println("=");
-            // Recursively expand variables.
-            out.println(Segmenter.Builder.replaceVariables("$" + variable, variables));
+            out.println(variables.get(variable));
             out.println("</p>");
         }
-        // REMOVE BEFORE FLIGHT
+        // end REMOVE BEFORE FLIGHT;
         out.print("<table border='1' cellspacing='0' width='100%'>");
         String types = "";
         for (int type = 0; type < tableLimit; ++type) {
@@ -882,41 +881,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         + ".</p>");
         // out.println("<ul style='list-style-type: none'>");
         out.println("<table>");
-        // same pattern, but require _ at the end.
-        final Matcher identifierMatcher = Segmenter.IDENTIFIER_PATTERN.matcher("");
         for (int ii = 0; ii < ruleListCount; ++ii) {
-            String ruleString = ruleList[ii];
-            int pos = 0;
-            while (true) {
-                if (!identifierMatcher.reset(ruleString).find(pos)) {
-                    break;
-                }
-                final String variable = identifierMatcher.group();
-                if (!variable.endsWith("_")) {
-                    pos = identifierMatcher.end();
-                    continue;
-                }
-                final String replacement = variables.get(variable);
-                if (replacement == null) {
-                    throw new IllegalArgumentException("Can't find variable: " + variable);
-                }
-                final String prefix = ruleString.substring(0, identifierMatcher.start());
-                final String suffix = ruleString.substring(identifierMatcher.end());
-                if (DEBUG_RULE_REPLACEMENT) {
-                    System.out.println(
-                            "Replacing "
-                                    + prefix
-                                    + "$$"
-                                    + variable
-                                    + "$$"
-                                    + suffix
-                                    + "\t by \t"
-                                    + replacement);
-                }
-                ruleString = prefix + replacement + suffix;
-                pos = identifierMatcher.start() + replacement.length();
-            }
-            String cleanRule = ruleString.replaceAll("[$]", "");
+            String cleanRule = ruleList[ii].replaceAll("[$]", "");
             if (!isBreak("a", 0)) {
                 cleanRule = cleanRule.replace("sot ÷", "sot ×");
             }
@@ -1262,7 +1228,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
                 final String rule = it.next();
                 setRule(rule);
             }
-            variables = segBuilder.getOriginalVariables();
+            variables = segBuilder.getVariables();
             collectingRules = false;
             map.add("Other", new UnicodeSet(0, 0x10FFFF));
             final UnicodeMap<String> segSamples = seg.getSamples();

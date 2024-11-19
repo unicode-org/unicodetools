@@ -639,7 +639,6 @@ public class Segmenter {
 
         private transient Matcher whiteSpace = Pattern.compile("\\s+", REGEX_FLAGS).matcher("");
         private transient Matcher identifierMatcher = IDENTIFIER_PATTERN.matcher("");
-        private Map<String, String> originalVariables = new TreeMap<String, String>();
 
         /**
          * Add a variable and value. Resolves the internal references in the value.
@@ -660,7 +659,6 @@ public class Segmenter {
         static MyComposer myComposer = new MyComposer();
 
         Builder addVariable(String name, String value) {
-            originalVariables.put(name, value);
             if (lastComments.size() != 0) {
                 rawVariables.addAll(lastComments);
                 lastComments.clear();
@@ -676,7 +674,7 @@ public class Segmenter {
                 throw new IllegalArgumentException(
                         "Variable name must be $id: '" + name + "' — " + show);
             }
-            value = expandUnicodeSets(replaceVariables(value, variables));
+            value = replaceVariables(value, variables);
             if (!name.endsWith("_")) {
                 try {
                     parsePosition.setIndex(0);
@@ -713,11 +711,12 @@ public class Segmenter {
             if (value.equals("[]")) {
                 value = "(?!a)[a]"; // HACK to match nothing.
             }
-            Pattern.compile(value, REGEX_FLAGS).matcher("");
+            Pattern.compile(expandUnicodeSets(value), REGEX_FLAGS).matcher("");
             // if (false && name.equals("$AL")) {
             // findRegexProblem(value);
             // }
             variables.put(name, value);
+            expandedVariables.put(name, expandUnicodeSets(value));
             return this;
         }
 
@@ -765,7 +764,7 @@ public class Segmenter {
                             + "> "
                             + TransliteratorUtilities.toXML.transliterate(line)
                             + " </rule>");
-            rules.put(order, new Segmenter.RemapRule(expandUnicodeSets(replaceVariables(before, variables)), after, line));
+            rules.put(order, new Segmenter.RemapRule(replaceVariables(before, expandedVariables), after, line));
             return this;
         }
 
@@ -826,7 +825,7 @@ public class Segmenter {
             rules.put(
                     order,
                     new Segmenter.RegexRule(
-                            expandUnicodeSets(replaceVariables(before, variables)), breaks, expandUnicodeSets(replaceVariables(after, variables)), line));
+                            replaceVariables(before, expandedVariables), breaks, replaceVariables(after, expandedVariables), line));
             return this;
         }
 
@@ -845,6 +844,8 @@ public class Segmenter {
         }
 
         // ============== internals ===================
+        private Map<String, String> expandedVariables =
+                new TreeMap<String, String>(LONGEST_STRING_FIRST);
         private Map<String, String> variables =
                 new TreeMap<String, String>(LONGEST_STRING_FIRST); // sorted by length,
         // longest first, to
@@ -858,13 +859,12 @@ public class Segmenter {
 
         /**
          * A workhorse. Replaces all variable references: anything of the form $id. Flags an error
-         * if anything of that form is not a variable. Since we are using Java regex, the properties
-         * support is extremely weak. So replace them by literals.
+         * if anything of that form is not a variable.
          *
          * @param input
          * @return
          */
-        public static String replaceVariables(String input, Map<String, String> variables) {
+        private static String replaceVariables(String input, Map<String, String> variables) {
             // to do, optimize
             String result = input;
             int position = -1;
@@ -891,6 +891,7 @@ public class Segmenter {
             return result;
         }
 
+        /** Replaces Unicode Sets with literals. */
         public String expandUnicodeSets(String input) {
             String result = input;
             // replace properties
@@ -978,6 +979,7 @@ public class Segmenter {
             return result.toString();
         }
 
+        /* The mapping of variables to their values. */
         public Map<String, String> getVariables() {
             return Collections.unmodifiableMap(variables);
         }
@@ -988,10 +990,6 @@ public class Segmenter {
                 result.add(key.toString() + ")\t" + htmlRules.get(key));
             }
             return result;
-        }
-
-        public Map<String, String> getOriginalVariables() {
-            return Collections.unmodifiableMap(originalVariables);
         }
     }
 
