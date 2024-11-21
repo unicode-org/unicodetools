@@ -1,4 +1,4 @@
-# Jamo-16.0.0.txt
+# Jamo-17.0.0.txt
 # Date: 2024-02-02
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
@@ -9,7 +9,7 @@
 #
 # This file defines the Jamo_Short_Name property.
 #
-# See Section 3.12 of The Unicode Standard, Version 15.0
+# See Section 3.12 of the core specification of the Unicode Standard
 # for more information.
 #
 # Each line contains two fields, separated by a semicolon.
