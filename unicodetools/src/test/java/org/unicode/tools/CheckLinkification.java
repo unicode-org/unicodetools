@@ -3,6 +3,7 @@ package org.unicode.tools;
 import com.google.common.base.Joiner;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableSortedMap;
+import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
@@ -13,7 +14,10 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,15 +34,19 @@ import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.text.utility.Utility;
 
 public class CheckLinkification {
+    private static final Joiner JOIN_TAB = Joiner.on('\t');
+
     public static void main(String[] args) throws IOException {
         new CheckLinkification().check();
     }
 
     private void check() throws IOException {
+        checkParts();
         checkUnescape();
         checkTestFile();
         checkLinkification();
@@ -178,7 +186,7 @@ public class CheckLinkification {
         }
     }
 
-    public int getOpening(int cp) {
+    public static int getOpening(int cp) {
         return cp == '>' ? '<' : UCharacter.getBidiPairedBracket(cp);
     }
 
@@ -191,11 +199,14 @@ public class CheckLinkification {
         final int initiator;
         final UnicodeSet terminators;
         final UnicodeSet interior;
+        final UnicodeSet interiorAndTerminators;
 
         private Part(char initiator, String terminators, String interior) {
             this.initiator = initiator;
             this.terminators = new UnicodeSet(terminators).freeze();
             this.interior = new UnicodeSet(interior).freeze();
+            this.interiorAndTerminators =
+                    new UnicodeSet(this.interior).addAll(this.terminators).freeze();
         }
 
         static Part fromInitiator(int cp) {
@@ -212,9 +223,10 @@ public class CheckLinkification {
          * TODO: unescape the %escapes.
          *
          * @param source
+         * @param unescape TODO
          * @return
          */
-        static Map<Part, String> getParts(String source) {
+        static NavigableMap<Part, String> getParts(String source, boolean unescape) {
             Map<Part, String> result = new HashMap<>();
             // quick and dirty
             int partStart = 0;
@@ -234,50 +246,29 @@ public class CheckLinkification {
                         partEnd =
                                 part.terminators.span(
                                         source, partStart, SpanCondition.NOT_CONTAINED);
-                        result.put(part, part.unescape(source.substring(partStart, partEnd)));
+                        if (partStart != partEnd) {
+                            result.put(part, part.unescape(source.substring(partStart, partEnd)));
+                        }
                         if (partEnd == source.length()) {
                             break main;
                         }
-                        partStart = partEnd + 1;
+                        partStart = partEnd;
                         break;
                 }
             }
             return ImmutableSortedMap.copyOf(result);
         }
 
-        static final Pattern escapedSequence = Pattern.compile("(%[a-fA-F0-9][a-fA-F0-9])+");
-
         /**
-         * Unescape a part. But don't unescape interior characters because they are content! For
-         * example "a/b%2Fc" as a path should not be turned into a/b/c, because that b/c is a
-         * path-part.
+         * Unescape a part. But don't unescape interior characters or terminators because they are
+         * content! For example "a/b%2Fc" as a path should not be turned into a/b/c, because that
+         * b/c is a path-part.
          *
          * @param substring
          * @return
          */
         String unescape(String substring) {
-            StringBuilder result = new StringBuilder();
-            Matcher matcher = escapedSequence.matcher(substring);
-            int current = 0;
-            while (matcher.find(current)) {
-                result.append(
-                        substring.substring(current, matcher.start())); // append intervening text
-                String unescaped = percentUnescape(matcher.group());
-                unescaped
-                        .chars()
-                        .forEach(
-                                x -> {
-                                    if (terminators.contains(x) || interior.contains(x)) {
-                                        // quote it
-                                        appendPercentEscaped(result, x, null);
-                                    } else {
-                                        result.appendCodePoint(x);
-                                    }
-                                });
-                current = matcher.end();
-            }
-            result.append(substring.substring(current, substring.length()));
-            return result.toString();
+            return CheckLinkification.unescape(substring, interiorAndTerminators);
         }
     }
 
@@ -354,12 +345,10 @@ public class CheckLinkification {
      * Minimally escape. Presumes that the parts have had necessary interior quoting.<br>
      * For example, a path
      *
-     * @param escaped TODO
+     * @param escapedCounter TODO
      */
-    public String minimalEscape(NavigableMap<Part, String> parts, UnicodeSet escaped) {
-        if (escaped != null) {
-            escaped.clear();
-        }
+    public static String minimalEscape(
+            NavigableMap<Part, String> parts, Counter<Integer> escapedCounter) {
         StringBuilder output = new StringBuilder();
         // get the last part
         List<Entry<Part, String>> ordered = List.copyOf(parts.entrySet());
@@ -368,13 +357,19 @@ public class CheckLinkification {
         for (Entry<Part, String> partEntry : ordered) {
             Part part = partEntry.getKey();
             final String string = partEntry.getValue();
+            if (string.isEmpty()) {
+                throw new IllegalArgumentException();
+            }
             if (part == Part.HOST || part == Part.PROTOCOL) {
                 output.append(string);
                 continue;
             }
             int[] cps = string.codePoints().toArray();
             int n = cps.length;
-            output.appendCodePoint(part.initiator);
+            if (cps[0] != part.initiator) {
+                output.appendCodePoint(part.initiator);
+            }
+            ;
             int copiedAlready = 0;
             Stack<Integer> openingStack = new Stack<>();
             for (int i = 0; i < n; ++i) {
@@ -391,7 +386,7 @@ public class CheckLinkification {
                         break;
                     case Hard:
                         appendCodePointsBetween(output, cps, copiedAlready, i);
-                        appendPercentEscaped(output, cp, escaped);
+                        appendPercentEscaped(output, cp, escapedCounter);
                         copiedAlready = i + 1;
                         continue;
                     case Soft: // fix
@@ -405,7 +400,7 @@ public class CheckLinkification {
                     case Close: // fix
                         if (openingStack.empty()) {
                             appendCodePointsBetween(output, cps, copiedAlready, i);
-                            appendPercentEscaped(output, cp, escaped);
+                            appendPercentEscaped(output, cp, escapedCounter);
                         } else {
                             Integer topOfStack = openingStack.pop();
                             int matchingOpening = getOpening(cp);
@@ -414,7 +409,7 @@ public class CheckLinkification {
                                 output.appendCodePoint(cp);
                             } else { // failed to match
                                 appendCodePointsBetween(output, cps, copiedAlready, i);
-                                appendPercentEscaped(output, cp, escaped);
+                                appendPercentEscaped(output, cp, escapedCounter);
                             }
                         }
                         copiedAlready = i + 1;
@@ -427,35 +422,10 @@ public class CheckLinkification {
                 appendCodePointsBetween(output, cps, copiedAlready, n);
             } else if (copiedAlready < n) {
                 appendCodePointsBetween(output, cps, copiedAlready, n - 1);
-                appendPercentEscaped(output, cps[n - 1], escaped);
+                appendPercentEscaped(output, cps[n - 1], escapedCounter);
             }
         }
         return output.toString();
-    }
-
-    private static void appendPercentEscaped(StringBuilder output, int cp, UnicodeSet escaped) {
-        if (escaped != null) {
-            escaped.add(cp);
-        }
-        byte[] bytes = Character.toString(cp).getBytes(StandardCharsets.UTF_8);
-        for (int i = 0; i < bytes.length; ++i) {
-            output.append('%');
-            output.append(Utility.hex(bytes[i]));
-        }
-    }
-
-    /** We are guaranteed that string is all percent escaped utf8, %a3%c0 ... */
-    private static String percentUnescape(String escapedSource) {
-        byte[] temp = new byte[escapedSource.length() / 3];
-        int tempOffset = 0;
-        for (int i = 0; i < escapedSource.length(); i += 3) {
-            if (escapedSource.charAt(i) != '%') {
-                throw new IllegalArgumentException();
-            }
-            byte b = (byte) Integer.parseInt(escapedSource.substring(i + 1, i + 3), 16);
-            temp[tempOffset++] = b;
-        }
-        return new String(temp, StandardCharsets.UTF_8);
     }
 
     private static void appendCodePointsBetween(
@@ -499,6 +469,7 @@ public class CheckLinkification {
             },
         };
         List<List<String>> testLines = new ArrayList<>();
+        Counter<Boolean> counter = new Counter<>();
         for (String[] test : tests) {
             for (StringTransform alt : ALTS) {
                 if (alt != null) { // generate alt version
@@ -523,9 +494,10 @@ public class CheckLinkification {
                                 : source.substring(0, parseResult)
                                         + LINKIFY_END
                                         + source.substring(parseResult);
-                tempAssertEquals(source.toString(), expected, actual);
+                counter.add(tempAssertEquals(source.toString(), expected, actual), 1);
             }
         }
+        show("checkLinkification", counter);
         System.out.println(
                 "\n@Linkification\n"
                         + "# Field 0: Source\n" //
@@ -546,6 +518,17 @@ public class CheckLinkification {
                             + " on…"
                             + (testLine.size() == 2 ? "" : "\t# " + testLine.get(2)));
         }
+    }
+
+    private static void show(String functionName, Counter<Boolean> counter) {
+        System.out.println(
+                JOIN_TAB.join(
+                        "Summary",
+                        functionName,
+                        "error:",
+                        counter.get(Boolean.FALSE),
+                        "ok:",
+                        counter.get(Boolean.TRUE)));
     }
 
     static final StringTransform[] ALTS = {
@@ -578,11 +561,12 @@ public class CheckLinkification {
             },
             {"a(v))", "g(d))", "e(z))", "/a(v)%29?g(d)%29#e(z)%29", "Escape unmatched brackets"},
             {"", "a%3D%26%=%3D%26%", "", "?a%3D%26%=%3D%26%", "Query with escapes"},
-            {"a/v%2Fg", "", "", "a/v%2Fg", "Path with escapes"},
-            {"", "a", "", "?a%3D%26%=%3D%26%", "Query with escapes"},
+            {"a/v%2Fg", "", "", "/a/v%2Fg", "Path with escapes"},
+            {"", "a%3D%26%=%3D%26%", "", "?a%3D%26%=%3D%26%", "Query with escapes"},
         };
         List<List<String>> testLines = new ArrayList<>();
         int line = 0;
+        Counter<Boolean> counter = new Counter<>();
         for (String[] test : tests) {
             ++line;
             for (StringTransform alt : ALTS) {
@@ -610,9 +594,11 @@ public class CheckLinkification {
                 // check
                 final String expected = test[3];
                 final String actual = minimalEscape(source, null);
-                tempAssertEquals(line + ") " + source.toString(), expected, actual);
+                counter.add(tempAssertEquals(line + ") " + source.toString(), expected, actual), 1);
             }
         }
+        show("checkMinimumEscaping", counter);
+
         System.out.println(
                 "\n@Minimal-Escaping\n"
                         + "# Field 0: Domain\n"
@@ -630,6 +616,26 @@ public class CheckLinkification {
         }
     }
 
+    public void checkParts() {
+        String[][] tests = {
+            {
+                "https://ja.wikipedia.org/wiki/Special:EntityPage/Q5582#sitelinks-wikipedia",
+                "{PROTOCOL=https://, HOST=ja.wikipedia.org, PATH=/wiki/Special:EntityPage/Q5582, FRAGMENT=#sitelinks-wikipedia}"
+            },
+            {
+                "https://docs.foobar.com/knowledge/area/?name=article&topic=seo#top",
+                "{PROTOCOL=https://, HOST=docs.foobar.com, PATH=/knowledge/area/, QUERY=?name=article&topic=seo, FRAGMENT=#top}"
+            },
+        };
+        for (String[] test : tests) {
+            String test0 = test[0];
+            String expected = test[1];
+            NavigableMap<Part, String> parts0 = Part.getParts(test0, false);
+            tempAssertEquals("checkParts", expected, parts0.toString());
+            String min0 = minimalEscape(parts0, null);
+        }
+    }
+
     /**
      * Check some examples of translated links of
      * https://en.wikipedia.org/wiki/Wikipedia:List_of_articles_every_Wikipedia_should_have <br>
@@ -639,10 +645,8 @@ public class CheckLinkification {
      * Will have to add unescaping to the Part.getParts method.
      */
     public void checkTestFile() throws IOException {
-        String test0 = "https://docs.foobar.com/knowledge/area/?name=article&topic=seo#top";
-        Map<Part, String> parts0 = Part.getParts(test0);
-        String min0 = minimalEscape(new TreeMap<Part, String>(parts0), null);
-        UnicodeSet escaped = new UnicodeSet();
+        UnicodeMap<Counter<String>> allEscaped = new UnicodeMap<>();
+        Counter<Boolean> allOkCounter = new Counter<>();
         final Consumer<? super String> action =
                 x -> {
                     if (x.startsWith("#")) {
@@ -651,12 +655,31 @@ public class CheckLinkification {
                     String[] urls = x.split("\t");
                     String source = urls[0];
                     String expected = urls.length == 2 ? urls[1] : source;
-                    Map<Part, String> parts = Part.getParts(source);
-                    String actual = minimalEscape(new TreeMap<Part, String>(parts), escaped);
-                    tempAssertEquals(source, expected, actual);
-                    //                    final boolean areEqual = actual.equals(expected);
-                    //                    System.out.println(areEqual ? "OK\t" + x : "FAIL\t" + x +
-                    // "\t" + min + "\t" + show(escaped));
+                    Map<Part, String> parts = Part.getParts(source, false);
+                    String host = parts.get(Part.HOST);
+                    final Counter<Boolean> okCounter = new Counter<>();
+                    Counter<Integer> escapedCounter = new Counter<>();
+
+                    String actual = minimalEscape(new TreeMap<Part, String>(parts), escapedCounter);
+                    okCounter.add(tempAssertEquals(source, expected, actual), 1);
+                    try {
+                        processUrls(source, okCounter, escapedCounter);
+                    } catch (IOException e) {
+                        // skip if failure
+                    }
+                    show(host, okCounter);
+                    allEscaped.put(host, new Counter<>());
+                    for (R2<Long, Integer> entry :
+                            escapedCounter.getEntrySetSortedByCount(false, null)) {
+                        Integer cp = entry.get1();
+                        long count = escapedCounter.getCount(cp);
+                        Counter<String> countByLocale = allEscaped.get(cp);
+                        if (countByLocale == null) {
+                            allEscaped.put(cp, countByLocale = new Counter<>());
+                        }
+                        countByLocale.add(host, count);
+                    }
+                    allOkCounter.addAll(okCounter);
                 };
         final Path filePath =
                 Path.of(
@@ -664,6 +687,59 @@ public class CheckLinkification {
                         .toRealPath();
         System.out.println(filePath);
         Files.lines(filePath).forEach(action);
+        show("ALL", allOkCounter);
+        if (!allEscaped.isEmpty()) {
+            final UnicodeSet keySet = allEscaped.keySet();
+            for (String ch : keySet) {
+                LinkTermination prop2 = LinkTermination.Property.get(ch);
+                Counter<String> escapedCounter = allEscaped.get(ch);
+                for (R2<Long, String> host : escapedCounter.getEntrySetSortedByCount(false, null)) {
+                    Long count = host.get0();
+                    String source = host.get1();
+                    System.out.println(
+                            JOIN_TAB.join(
+                                    "ESCAPED",
+                                    ch,
+                                    Utility.hex(ch),
+                                    UCharacter.getName(ch, ", "),
+                                    prop2,
+                                    count,
+                                    source));
+                }
+            }
+        }
+    }
+
+    static final Pattern HREF = Pattern.compile("href='([^']+)'|href=\"([^\"]+)\"");
+
+    public static void processUrls(
+            String requestURL, Counter<Boolean> counter, Counter<Integer> escaped)
+            throws IOException {
+        int wikindex = requestURL.indexOf("/wiki/");
+        String prefix = requestURL.substring(0, wikindex + 6);
+        final Matcher href = HREF.matcher("");
+        try (BufferedReader reader =
+                new BufferedReader(new InputStreamReader(new URL(requestURL).openStream()))) {
+            reader.lines()
+                    .forEach(
+                            line -> {
+                                if (href.reset(line).find()) {
+                                    String url = href.group(1);
+                                    if (url == null) {
+                                        url = href.group(2);
+                                    }
+                                    int wikipos = url.indexOf("/wiki/");
+                                    if (wikipos >= 0) {
+                                        url = prefix + url.substring(wikipos + 6);
+                                        NavigableMap<Part, String> parts =
+                                                Part.getParts(url, false); // splits and unescapes
+                                        String raw = Joiner.on("").join(parts.values());
+                                        String actual = minimalEscape(parts, escaped);
+                                        counter.add(tempAssertEquals(prefix, raw, actual), 1);
+                                    }
+                                }
+                            });
+        }
     }
 
     public void checkUnescape() {
@@ -674,12 +750,13 @@ public class CheckLinkification {
             {"PATH", "%61/v%2Fc", "a/v%2Fc"},
             {"QUERY", "%3D%26%23", "%3D%26%23"},
         };
+        Counter<Boolean> counter = new Counter<>();
         for (String[] test : tests) {
             Part part = Part.valueOf(test[0]);
             String source = test[1];
             String expected = test[2];
             final String actual = part.unescape(source);
-            tempAssertEquals(part + " " + source, expected, actual);
+            counter.add(tempAssertEquals(part + " " + source, expected, actual), 1);
         }
     }
 
@@ -696,16 +773,74 @@ public class CheckLinkification {
 
     private static final String SPLIT1 = "\t"; // for debugging, "\n";
 
-    public <T> void tempAssertEquals(String message, T expected, T actual) {
-        System.out.println(
-                (Objects.equal(expected, actual) ? "OK" : "ERROR")
-                        + " "
-                        + message
-                        + SPLIT1
-                        + "expected:\t"
-                        + expected
-                        + SPLIT1
-                        + "actual:  \t"
-                        + actual);
+    private static final boolean VERBOSE_ASSERT = false;
+
+    public static <T> boolean tempAssertEquals(String message, T expected, T actual) {
+        final boolean areEqual = Objects.equal(expected, actual);
+        if (!areEqual || VERBOSE_ASSERT) {
+            System.out.println(
+                    JOIN_TAB.join(
+                            (areEqual ? "OK" : "ERROR"),
+                            message,
+                            "expected:",
+                            expected,
+                            "actual:",
+                            actual));
+        }
+        return areEqual;
+    }
+
+    static final Pattern escapedSequence = Pattern.compile("(%[a-fA-F0-9][a-fA-F0-9])+");
+
+    public static String unescape(String stringWithEscapes, UnicodeSet toEscape) {
+        StringBuilder result = new StringBuilder();
+        Matcher matcher = escapedSequence.matcher(stringWithEscapes);
+        int current = 0;
+        while (matcher.find(current)) {
+            result.append(
+                    stringWithEscapes.substring(
+                            current, matcher.start())); // append intervening text
+            String unescaped = percentUnescape(matcher.group());
+            unescaped
+                    .chars()
+                    .forEach(
+                            x -> {
+                                if (toEscape.contains(x)) {
+                                    // quote it
+                                    appendPercentEscaped(result, x, null);
+                                } else {
+                                    result.appendCodePoint(x);
+                                }
+                            });
+            current = matcher.end();
+        }
+        result.append(stringWithEscapes.substring(current, stringWithEscapes.length()));
+        return result.toString();
+    }
+
+    private static void appendPercentEscaped(
+            StringBuilder output, int cp, Counter<Integer> escaped) {
+        if (escaped != null) {
+            escaped.add(cp, 1);
+        }
+        byte[] bytes = Character.toString(cp).getBytes(StandardCharsets.UTF_8);
+        for (int i = 0; i < bytes.length; ++i) {
+            output.append('%');
+            output.append(Utility.hex(bytes[i]));
+        }
+    }
+
+    /** We are guaranteed that string is all percent escaped utf8, %a3%c0 ... */
+    private static String percentUnescape(String escapedSource) {
+        byte[] temp = new byte[escapedSource.length() / 3];
+        int tempOffset = 0;
+        for (int i = 0; i < escapedSource.length(); i += 3) {
+            if (escapedSource.charAt(i) != '%') {
+                throw new IllegalArgumentException();
+            }
+            byte b = (byte) Integer.parseInt(escapedSource.substring(i + 1, i + 3), 16);
+            temp[tempOffset++] = b;
+        }
+        return new String(temp, StandardCharsets.UTF_8);
     }
 }
