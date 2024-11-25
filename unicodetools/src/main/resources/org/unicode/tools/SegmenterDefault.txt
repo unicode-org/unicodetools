@@ -109,16 +109,19 @@ $EB=\p{Line_Break=E_Base}
 $EM=\p{Line_Break=E_Modifier}
 $ZWJ=\p{Line_Break=ZWJ}
 
-$QU_Pi=[$QU & \p{gc=Pi}]
-$QU_Pf=[$QU & \p{gc=Pf}]
+$Pi = \p{gc=Pi}
+$Pf = \p{gc=Pf}
 
-$QUmPi=[$QU - \p{gc=Pi}]
-$QUmPf=[$QU - \p{gc=Pf}]
+$QU_Pi=[$QU & $Pi]
+$QU_Pf=[$QU & $Pf]
 
-$NotEastAsian   = [^\p{ea=F}\p{ea=W}\p{ea=H}]
-$NonEastAsianBA = [$BA & $NotEastAsian]
+$QUmPi=[$QU - $Pi]
+$QUmPf=[$QU - $Pf]
 
-$DottedCircle = ◌
+$EastAsian   = [\p{ea=F}\p{ea=W}\p{ea=H}]
+$NonEastAsianBA = [$BA & [^$EastAsian]]
+
+$DottedCircle = [◌]
 $Hyphen = [\u2010]
 
 $CP30=[$CP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
@@ -199,10 +202,10 @@ $NS=[$NS $CJ]
 19.01) × $QUmPi
 19.02) $QUmPf ×
 # LB 19a Unless surrounded by East Asian Characters, do not break either side of any unresolved quotation marks.
-19.10) $NotEastAsian × $QU
-19.11) × $QU ( $NotEastAsian | $eot )
-19.12) $QU × $NotEastAsian
-19.13) ( $sot | $NotEastAsian ) $QU ×
+19.10) [^$EastAsian] × $QU
+19.11) × $QU ( [^$EastAsian] | $eot )
+19.12) $QU × [^$EastAsian]
+19.13) ( $sot | [^$EastAsian] ) $QU ×
 # LB 20  Break before and after unresolved CB.
 20.01)  ÷ $CB
 20.02) $CB ÷
@@ -368,8 +371,8 @@ $WSegSpace=\p{Word_Break=WSegSpace}
 
 # MACROS
 
-$AHLetter=($ALetter | $Hebrew_Letter)
-$MidNumLetQ=($MidNumLet | $Single_Quote)
+$AHLetter=[$ALetter $Hebrew_Letter]
+$MidNumLetQ=[$MidNumLet $Single_Quote]
 ## WARNING: For Rule 4: Fixes for GC, Format
 ##	# Subtract Format from Control, since we don't want to break before/after
 ##	$Control=[$Control-$Format]
