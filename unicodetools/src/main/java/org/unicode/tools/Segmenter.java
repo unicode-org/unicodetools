@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -494,7 +495,15 @@ public class Segmenter {
         private Map<Double, String> xmlRules = new TreeMap<Double, String>();
         private Map<Double, String> htmlRules = new TreeMap<Double, String>();
         private List<String> lastComments = new ArrayList<String>();
-        private UnicodeMap<String> samples = new UnicodeMap<String>();
+        class NamedSet {
+            NamedSet(String name, UnicodeSet set) {
+                this.name = name;
+                this.set = set;
+            }
+            String name;
+            UnicodeSet set;
+        }
+        private List<NamedSet> partition = new ArrayList<>(List.of(new NamedSet(null, UnicodeSet.ALL_CODE_POINTS)));
 
         public Builder(UnicodeProperty.Factory factory, Target target) {
             propFactory = factory;
@@ -642,24 +651,6 @@ public class Segmenter {
         private transient Matcher whiteSpace = Pattern.compile("\\s+", REGEX_FLAGS).matcher("");
         private transient Matcher identifierMatcher = IDENTIFIER_PATTERN.matcher("");
 
-        /**
-         * Add a variable and value. Resolves the internal references in the value.
-         *
-         * @param displayName
-         * @param value
-         * @return
-         */
-        static class MyComposer extends UnicodeMap.Composer<String> {
-            public String compose(int codePoint, String string, String a, String b) {
-                if (a == null) return b;
-                if (b == null) return a;
-                if (a.equals(b)) return a;
-                return a + "_" + b;
-            }
-        }
-
-        static MyComposer myComposer = new MyComposer();
-
         Builder addVariable(String name, String value) {
             if (lastComments.size() != 0) {
                 rawVariables.addAll(lastComments);
@@ -697,7 +688,7 @@ public class Segmenter {
                     } else {
                         String name2 = name;
                         if (name2.startsWith("$")) name2 = name2.substring(1);
-                        composeWith(samples, valueSet, name2, myComposer);
+                        refinePartition(valueSet, name2);
                         if (SHOW_SAMPLES) {
                             System.out.println("Samples for: " + name + " = " + value);
                             System.out.println("\t" + valueSet);
@@ -722,41 +713,22 @@ public class Segmenter {
             return this;
         }
 
-        public static UnicodeMap<String> composeWith(
-                UnicodeMap<String> target,
-                UnicodeSet set,
-                String value,
-                Composer<String> composer) {
-            final Set<String> complements = new HashSet<>();
-            for (UnicodeSetIterator it = new UnicodeSetIterator(set); it.next(); ) {
-                int i = it.codepoint;
-                String v = target.getValue(i);
-                // Every `v` is a `value`, no need to rename it to `v_value`.
-                if (set.containsAll(target.getSet(v))) {
-                    continue;
-                }
-                if (target.getSet(v).containsAll(set)) {
-                    // Every `value` is a `v`, just call them `value` rather than `v_value`;
-                    // But we want to call the other `v` `vmvalue`.
-                    target.put(i, value);
-                    if (v != null) {
-                        complements.add(v);
+        void refinePartition(UnicodeSet refinementSet, String name) {
+            var it = partition.listIterator();
+            while (it.hasNext()) {
+                final NamedSet part = it.next();
+                final UnicodeSet intersection = part.set.cloneAsThawed().retainAll(refinementSet);
+                final UnicodeSet complement = part.set.cloneAsThawed().removeAll(refinementSet);
+                if ((!intersection.isEmpty() && !complement.isEmpty()) ||
+                    (part.name == null && !intersection.isEmpty())) {
+                    System.out.println(name + " refines " + (part.name == null ? "<null>" : part.name));
+                    it.remove();
+                    if (!complement.isEmpty()) {
+                        it.add(new NamedSet(part.name == null ? null : part.name + "m" + name, complement));
                     }
-                } else {
-                    final String intersectionName = composer.compose(i, null, v, value);
-                    target.put(i, intersectionName);
-                    if (v != null) {
-                        complements.add(v);
-                    }
+                    it.add(new NamedSet(part.name == null ? name : part.name + "_" + name, intersection));
                 }
             }
-            // Whenever we have used `v_value` for the intersection, the remaining `v` are
-            // actually `v` minus `value`.
-            for (String v : complements) {
-                System.out.println("Renaming " + v + " to " + v + "m" + value);
-               target.putAll(target.getSet(v), v + "m" + value);
-            }
-            return target;
         }
 
         Builder addRemapRule(Double order, String before, String after, String line) {
@@ -870,7 +842,9 @@ public class Segmenter {
             for (Double key : rules.keySet()) {
                 result.add(key.doubleValue(), rules.get(key));
             }
-            result.samples = samples;
+            for (var part : partition) {
+                result.samples.putAll(part.set, part.name);
+            }
             return result;
         }
 

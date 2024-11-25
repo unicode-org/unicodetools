@@ -1249,12 +1249,12 @@ public abstract class GenerateBreakTest implements UCD_Types {
             final Collection<String> x = segSamples.getAvailableValues();
             for (final Iterator<String> it = x.iterator(); it.hasNext(); ) {
                 final String label = it.next();
-                UnicodeSet values = segSamples.keySet(label);
+                UnicodeSet values = segSamples.keySet(label);/*
                 if (label.contains("ExtPict")) { // hack to use reasonable values
                     System.out.println(label);
                     UnicodeSet pres = IUP.load(UcdProperty.Emoji_Presentation).getSet("Yes");
                     values = new UnicodeSet(pres).retainAll(values);
-                }
+                }*/
                 map.add(label, values, true, false);
             }
             fileName = filename;
