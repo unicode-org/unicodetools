@@ -25,9 +25,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
@@ -725,11 +727,34 @@ public class Segmenter {
                 UnicodeSet set,
                 String value,
                 Composer<String> composer) {
+            final Set<String> complements = new HashSet<>();
             for (UnicodeSetIterator it = new UnicodeSetIterator(set); it.next(); ) {
                 int i = it.codepoint;
-                String v1 = target.getValue(i);
-                String v3 = composer.compose(i, null, v1, value);
-                if (v1 != v3 && (v1 == null || !v1.equals(v3))) target.put(i, v3);
+                String v = target.getValue(i);
+                // Every `v` is a `value`, no need to rename it to `v_value`.
+                if (set.containsAll(target.getSet(v))) {
+                    continue;
+                }
+                if (target.getSet(v).containsAll(set)) {
+                    // Every `value` is a `v`, just call them `value` rather than `v_value`;
+                    // But we want to call the other `v` `vmvalue`.
+                    target.put(i, value);
+                    if (v != null) {
+                        complements.add(v);
+                    }
+                } else {
+                    final String intersectionName = composer.compose(i, null, v, value);
+                    target.put(i, intersectionName);
+                    if (v != null) {
+                        complements.add(v);
+                    }
+                }
+            }
+            // Whenever we have used `v_value` for the intersection, the remaining `v` are
+            // actually `v` minus `value`.
+            for (String v : complements) {
+                System.out.println("Renaming " + v + " to " + v + "m" + value);
+               target.putAll(target.getSet(v), v + "m" + value);
             }
             return target;
         }
@@ -764,7 +789,10 @@ public class Segmenter {
                             + "> "
                             + TransliteratorUtilities.toXML.transliterate(line)
                             + " </rule>");
-            rules.put(order, new Segmenter.RemapRule(replaceVariables(before, expandedVariables), after, line));
+            rules.put(
+                    order,
+                    new Segmenter.RemapRule(
+                            replaceVariables(before, expandedVariables), after, line));
             return this;
         }
 
@@ -825,7 +853,10 @@ public class Segmenter {
             rules.put(
                     order,
                     new Segmenter.RegexRule(
-                            replaceVariables(before, expandedVariables), breaks, replaceVariables(after, expandedVariables), line));
+                            replaceVariables(before, expandedVariables),
+                            breaks,
+                            replaceVariables(after, expandedVariables),
+                            line));
             return this;
         }
 

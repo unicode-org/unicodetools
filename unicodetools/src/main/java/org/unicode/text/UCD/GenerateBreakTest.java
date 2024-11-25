@@ -15,6 +15,7 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -28,7 +29,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.regex.Matcher;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
@@ -729,11 +729,25 @@ public abstract class GenerateBreakTest implements UCD_Types {
         out.println("<h3>" + linkAndAnchor("table", "Table") + "</h3>");
         final String width = "width='" + (100 / (tableLimit + 1)) + "%'";
         // REMOVE BEFORE FLIGHT: begin
-        for (String variable: variables.keySet()) {
+        final var mainProperty =
+                IUP.getProperty(fileName.replace("Grapheme", "Grapheme_Cluster") + "_Break");
+        for (var entry : variables.entrySet()) {
+            final String variable = entry.getKey().substring(1);
+            final String value = entry.getValue();
+            if (variable.equals("sot")
+                    || variable.equals("eot")
+                    || variable.equals("Any")
+                    || mainProperty
+                            .getSet(variable)
+                            .equals(
+                                    new UnicodeSet(
+                                            value, new ParsePosition(0), IUP.getXSymbolTable()))) {
+                continue;
+            }
             out.println("<p>");
             out.println(variable);
             out.println("=");
-            out.println(variables.get(variable));
+            out.println(value);
             out.println("</p>");
         }
         // end REMOVE BEFORE FLIGHT;
