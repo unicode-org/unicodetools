@@ -37,6 +37,8 @@ import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+import java.util.stream.Collectors;
+
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
@@ -503,7 +505,59 @@ public class Segmenter {
             String name;
             UnicodeSet set;
         }
-        private List<NamedSet> partition = new ArrayList<>(List.of(new NamedSet(null, UnicodeSet.ALL_CODE_POINTS)));
+        class NamedRefinedSet {
+            public NamedRefinedSet clone() {
+                NamedRefinedSet result = new NamedRefinedSet();
+                for (var term : intersectionTerms) {
+                    result.intersectionTerms.add(new NamedSet(term.name, term.set.cloneAsThawed()));
+                }
+                for (var subtrahend : subtrahends) {
+                    result.subtrahends.add(new NamedSet(subtrahend.name, subtrahend.set.cloneAsThawed()));
+                }
+                result.set = this.set.cloneAsThawed();
+                return result;
+            }
+            public NamedRefinedSet intersect(NamedSet set) {
+                String oldName = getName();
+                intersectionTerms.add(set);
+                UnicodeSet s = getIntersection();
+                var it = subtrahends.listIterator();
+                while (it.hasNext()) {
+                    NamedSet subtrahend = it.next();
+                    if (subtrahend.set.cloneAsThawed().retainAll(s).isEmpty()) {
+                        System.out.println(oldName + " intersected with " + set.name + ": no need to subtract " + subtrahend.name);
+                        it.remove();
+                    }
+                    s.removeAll(subtrahend.set);
+                }
+                this.set = s;
+                return this;
+            }
+            public NamedRefinedSet subtract(NamedSet set) {
+                subtrahends.add(set);
+                this.set.removeAll(set.set);
+                return this;
+            }
+            public UnicodeSet getSet() {
+                return set.cloneAsThawed();
+            }
+            public String getName() {
+                return intersectionTerms.isEmpty() ? null :
+                intersectionTerms.stream().map((s) -> s.name).collect(Collectors.joining("_"))
+                + subtrahends.stream().map((s) -> "m" + s.name).collect(Collectors.joining());
+            }
+            private UnicodeSet getIntersection() {
+                UnicodeSet result = UnicodeSet.ALL_CODE_POINTS.cloneAsThawed();
+                for (var term : intersectionTerms) {
+                    result.retainAll(term.set);
+                }
+                return result;
+            }
+            private List<NamedSet> intersectionTerms = new ArrayList<>();
+            private List<NamedSet> subtrahends = new ArrayList<>();
+            private UnicodeSet set = UnicodeSet.ALL_CODE_POINTS.cloneAsThawed();
+        }
+        private List<NamedRefinedSet> partition = new ArrayList<>(List.of(new NamedRefinedSet()));
 
         public Builder(UnicodeProperty.Factory factory, Target target) {
             propFactory = factory;
@@ -688,7 +742,7 @@ public class Segmenter {
                     } else {
                         String name2 = name;
                         if (name2.startsWith("$")) name2 = name2.substring(1);
-                        refinePartition(valueSet, name2);
+                        refinePartition(new NamedSet(name2, valueSet));
                         if (SHOW_SAMPLES) {
                             System.out.println("Samples for: " + name + " = " + value);
                             System.out.println("\t" + valueSet);
@@ -713,20 +767,21 @@ public class Segmenter {
             return this;
         }
 
-        void refinePartition(UnicodeSet refinementSet, String name) {
+        void refinePartition(NamedSet refinement) {
             var it = partition.listIterator();
             while (it.hasNext()) {
-                final NamedSet part = it.next();
-                final UnicodeSet intersection = part.set.cloneAsThawed().retainAll(refinementSet);
-                final UnicodeSet complement = part.set.cloneAsThawed().removeAll(refinementSet);
+                final NamedRefinedSet part = it.next();
+                final String partName = part.getName();
+                final UnicodeSet intersection = part.getSet().retainAll(refinement.set);
+                final UnicodeSet complement = part.getSet().removeAll(refinement.set);
                 if ((!intersection.isEmpty() && !complement.isEmpty()) ||
-                    (part.name == null && !intersection.isEmpty())) {
-                    System.out.println(name + " refines " + (part.name == null ? "<null>" : part.name));
+                    (partName == null && !intersection.isEmpty())) {
+                    System.out.println(refinement.name + " refines " + (partName == null ? "(remainder)" : partName));
                     it.remove();
                     if (!complement.isEmpty()) {
-                        it.add(new NamedSet(part.name == null ? null : part.name + "m" + name, complement));
+                        it.add(part.clone().subtract(refinement));
                     }
-                    it.add(new NamedSet(part.name == null ? name : part.name + "_" + name, intersection));
+                    it.add(part.clone().intersect(refinement));
                 }
             }
         }
@@ -843,7 +898,7 @@ public class Segmenter {
                 result.add(key.doubleValue(), rules.get(key));
             }
             for (var part : partition) {
-                result.samples.putAll(part.set, part.name);
+                result.samples.putAll(part.getSet(), part.getName());
             }
             return result;
         }

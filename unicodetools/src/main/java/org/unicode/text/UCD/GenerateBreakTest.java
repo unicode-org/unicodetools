@@ -1079,9 +1079,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
         final Map<Integer, String> lbToSampleChar = new TreeMap<Integer, String>();
 
         for (int i = 1; i <= 0x10FFFF; ++i) {
-            if (!ucd.isAllocated(i)) {
-                continue;
-            }
+            //if (!ucd.isAllocated(i)) {
+            //    continue;
+            //}
             if (0xD800 <= i && i <= 0xDFFF) { // skip Cs characters
                 continue;
             }
