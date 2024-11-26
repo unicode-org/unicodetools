@@ -18,8 +18,6 @@ import java.io.PrintWriter;
 import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -31,9 +29,8 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues;
-import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
@@ -980,16 +977,28 @@ public abstract class GenerateBreakTest implements UCD_Types {
         final var unassigned = gc.getSet("Cn");
         final var surrogate = gc.getSet("Cs");
         final var privateUse = gc.getSet("Co");
-        final var noncharacters = IUP.getProperty(UcdProperty.Noncharacter_Code_Point).getSet("True");
+        final var noncharacters =
+                IUP.getProperty(UcdProperty.Noncharacter_Code_Point).getSet("True");
         final var age = IUP.getProperty(UcdProperty.Age);
 
         for (String partName : partition.getAvailableValues()) {
             final UnicodeSet part = partition.getSet(partName);
-            final UnicodeSet assigned = part.cloneAsThawed().removeAll(unassigned).removeAll(surrogate).removeAll(privateUse);
+            final UnicodeSet assigned =
+                    part.cloneAsThawed()
+                            .removeAll(unassigned)
+                            .removeAll(surrogate)
+                            .removeAll(privateUse);
             if (assigned.isEmpty()) {
-                final UnicodeSet nonCsCoNChar = part.cloneAsThawed().removeAll(surrogate).removeAll(privateUse).removeAll(noncharacters);
+                final UnicodeSet nonCsCoNChar =
+                        part.cloneAsThawed()
+                                .removeAll(surrogate)
+                                .removeAll(privateUse)
+                                .removeAll(noncharacters);
                 if (nonCsCoNChar.isEmpty()) {
-                    System.out.println("Skipping " + partName + " which only applies to surrogate, private use, or noncharacter code points");
+                    System.out.println(
+                            "Skipping "
+                                    + partName
+                                    + " which only applies to surrogate, private use, or noncharacter code points");
                     continue;
                 }
                 samples.add(Character.toString(nonCsCoNChar.charAt(nonCsCoNChar.size() - 1)));

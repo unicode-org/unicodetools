@@ -723,7 +723,8 @@ public class Segmenter {
 
         Builder addVariable(String name, String value) {
             if (variables.containsKey(name)) {
-                throw new IllegalArgumentException("Reassigning " + name + " = " + variables.get(name) + " to " + value);
+                throw new IllegalArgumentException(
+                        "Reassigning " + name + " = " + variables.get(name) + " to " + value);
             }
             if (lastComments.size() != 0) {
                 rawVariables.addAll(lastComments);
