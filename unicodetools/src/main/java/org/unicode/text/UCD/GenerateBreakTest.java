@@ -30,7 +30,6 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
@@ -450,9 +449,13 @@ public abstract class GenerateBreakTest implements UCD_Types {
         }
         out.println(
                 "</p><p>In the row and column headers of the <a href='#table'>Table</a>, "
-                + "in the <a href='#rules'>Rules</a>, "
-                + "when hovering over characters in the <a href='#samples'>Samples</a>, "
-                + "and in the comments in the associated list of test cases <a href='"+ outFilename +".txt'>" + outFilename + ".txt</a>:</p>");
+                        + "in the <a href='#rules'>Rules</a>, "
+                        + "when hovering over characters in the <a href='#samples'>Samples</a>, "
+                        + "and in the comments in the associated list of test cases <a href='"
+                        + outFilename
+                        + ".txt'>"
+                        + outFilename
+                        + ".txt</a>:</p>");
         out.println("<ol><li>The following sets are used:<ul>");
         // REMOVE BEFORE FLIGHT: begin
         final var mainProperty =
@@ -477,8 +480,14 @@ public abstract class GenerateBreakTest implements UCD_Types {
             out.println("</li>");
         }
         out.println("</ul></li>");
-        out.println("<li>Any other set that is a short property value alias for the " + propertyName + " property represents the set of characters with that property, e.g., LF=\\p{"+propertyName+"=LF}.</li>");
-        out.println("<li>The aforementioned sets are used to generate a partition of the code space in classes named X_Y for the intersection of X and Y and XmY for the complement of Y in X.</li></ol>");
+        out.println(
+                "<li>Any other set that is a short property value alias for the "
+                        + propertyName
+                        + " property represents the set of characters with that property, e.g., LF=\\p{"
+                        + propertyName
+                        + "=LF}.</li>");
+        out.println(
+                "<li>The aforementioned sets are used to generate a partition of the code space in classes named X_Y for the intersection of X and Y and XmY for the complement of Y in X.</li></ol>");
         // end REMOVE BEFORE FLIGHT;
         out.print(
                 "<p>If your browser handles titles (tooltips), then hovering the mouse over the row header will show a sample character of that type. "
@@ -584,7 +593,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
         out.println("#\t" + NOBREAK + " wherever there is not.");
         out.println("#  <comment> the format can change, but currently it shows:");
         out.println("#\t- the sample character name");
-        out.println("#\t- (x) the " + propertyName + " property value for the sample character and ");
+        out.println(
+                "#\t- (x) the " + propertyName + " property value for the sample character and ");
         out.println("#\t  any other properties relevant to the algorithm, as described in ");
         out.println("#\t  " + fileName + "BreakTest.html");
         out.println("#\t- [x] the rule that determines whether there is a break or not,");
@@ -1088,9 +1098,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
         final Map<Integer, String> lbToSampleChar = new TreeMap<Integer, String>();
 
         for (int i = 1; i <= 0x10FFFF; ++i) {
-            //if (!ucd.isAllocated(i)) {
+            // if (!ucd.isAllocated(i)) {
             //    continue;
-            //}
+            // }
             if (0xD800 <= i && i <= 0xDFFF) { // skip Cs characters
                 continue;
             }
@@ -1258,7 +1268,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
             final Collection<String> x = segSamples.getAvailableValues();
             for (final Iterator<String> it = x.iterator(); it.hasNext(); ) {
                 final String label = it.next();
-                UnicodeSet values = segSamples.keySet(label);/*
+                UnicodeSet values = segSamples.keySet(label); /*
                 if (label.contains("ExtPict")) { // hack to use reasonable values
                     System.out.println(label);
                     UnicodeSet pres = IUP.load(UcdProperty.Emoji_Presentation).getSet("Yes");

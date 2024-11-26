@@ -12,7 +12,6 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.Composer;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UTF16;
@@ -25,12 +24,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
@@ -38,7 +34,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
@@ -497,14 +492,17 @@ public class Segmenter {
         private Map<Double, String> xmlRules = new TreeMap<Double, String>();
         private Map<Double, String> htmlRules = new TreeMap<Double, String>();
         private List<String> lastComments = new ArrayList<String>();
+
         class NamedSet {
             NamedSet(String name, UnicodeSet set) {
                 this.name = name;
                 this.set = set;
             }
+
             String name;
             UnicodeSet set;
         }
+
         class NamedRefinedSet {
             public NamedRefinedSet clone() {
                 NamedRefinedSet result = new NamedRefinedSet();
@@ -512,11 +510,13 @@ public class Segmenter {
                     result.intersectionTerms.add(new NamedSet(term.name, term.set.cloneAsThawed()));
                 }
                 for (var subtrahend : subtrahends) {
-                    result.subtrahends.add(new NamedSet(subtrahend.name, subtrahend.set.cloneAsThawed()));
+                    result.subtrahends.add(
+                            new NamedSet(subtrahend.name, subtrahend.set.cloneAsThawed()));
                 }
                 result.set = this.set.cloneAsThawed();
                 return result;
             }
+
             public NamedRefinedSet intersect(NamedSet set) {
                 String oldName = getName();
                 intersectionTerms.add(set);
@@ -525,7 +525,12 @@ public class Segmenter {
                 while (it.hasNext()) {
                     NamedSet subtrahend = it.next();
                     if (subtrahend.set.cloneAsThawed().retainAll(s).isEmpty()) {
-                        System.out.println(oldName + " intersected with " + set.name + ": no need to subtract " + subtrahend.name);
+                        System.out.println(
+                                oldName
+                                        + " intersected with "
+                                        + set.name
+                                        + ": no need to subtract "
+                                        + subtrahend.name);
                         it.remove();
                     }
                     s.removeAll(subtrahend.set);
@@ -533,19 +538,28 @@ public class Segmenter {
                 this.set = s;
                 return this;
             }
+
             public NamedRefinedSet subtract(NamedSet set) {
                 subtrahends.add(set);
                 this.set.removeAll(set.set);
                 return this;
             }
+
             public UnicodeSet getSet() {
                 return set.cloneAsThawed();
             }
+
             public String getName() {
-                return intersectionTerms.isEmpty() ? null :
-                intersectionTerms.stream().map((s) -> s.name).collect(Collectors.joining("_"))
-                + subtrahends.stream().map((s) -> "m" + s.name).collect(Collectors.joining());
+                return intersectionTerms.isEmpty()
+                        ? null
+                        : intersectionTerms.stream()
+                                        .map((s) -> s.name)
+                                        .collect(Collectors.joining("_"))
+                                + subtrahends.stream()
+                                        .map((s) -> "m" + s.name)
+                                        .collect(Collectors.joining());
             }
+
             private UnicodeSet getIntersection() {
                 UnicodeSet result = UnicodeSet.ALL_CODE_POINTS.cloneAsThawed();
                 for (var term : intersectionTerms) {
@@ -553,10 +567,12 @@ public class Segmenter {
                 }
                 return result;
             }
+
             private List<NamedSet> intersectionTerms = new ArrayList<>();
             private List<NamedSet> subtrahends = new ArrayList<>();
             private UnicodeSet set = UnicodeSet.ALL_CODE_POINTS.cloneAsThawed();
         }
+
         private List<NamedRefinedSet> partition = new ArrayList<>(List.of(new NamedRefinedSet()));
 
         public Builder(UnicodeProperty.Factory factory, Target target) {
@@ -774,9 +790,12 @@ public class Segmenter {
                 final String partName = part.getName();
                 final UnicodeSet intersection = part.getSet().retainAll(refinement.set);
                 final UnicodeSet complement = part.getSet().removeAll(refinement.set);
-                if ((!intersection.isEmpty() && !complement.isEmpty()) ||
-                    (partName == null && !intersection.isEmpty())) {
-                    System.out.println(refinement.name + " refines " + (partName == null ? "(remainder)" : partName));
+                if ((!intersection.isEmpty() && !complement.isEmpty())
+                        || (partName == null && !intersection.isEmpty())) {
+                    System.out.println(
+                            refinement.name
+                                    + " refines "
+                                    + (partName == null ? "(remainder)" : partName));
                     it.remove();
                     it.add(part.clone().intersect(refinement));
                     if (!complement.isEmpty()) {
