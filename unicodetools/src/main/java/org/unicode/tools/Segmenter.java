@@ -949,6 +949,9 @@ public class Segmenter {
          */
         private static String replaceVariables(String input, Map<String, String> variables) {
             // to do, optimize
+            // REMOVE BEFORE FLIGHT
+            // TODO(egg): This parses $abc as $a followed by literal bc if $a exists but $abc does not.
+            // Write a proper lexer before someone gets hurt!!!
             String result = input;
             int position = -1;
             main:
