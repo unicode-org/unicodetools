@@ -449,7 +449,37 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             + (fileName.equals("Word") ? ", such as “ALetter MidLetter”. " : ". "));
         }
         out.println(
-                "Some column headers may be composed, reflecting “treat as” or “ignore” rules.</p>");
+                "</p><p>In the row and column headers of the <a href='#table'>Table</a>, "
+                + "in the <a href='#rules'>Rules</a>, "
+                + "when hovering over characters in the <a href='#samples'>Samples</a>, "
+                + "and in the comments in the associated list of test cases <a href='"+ outFilename +".txt'>" + outFilename + ".txt</a>:</p>");
+        out.println("<ol><li>The following sets are used:<ul>");
+        // REMOVE BEFORE FLIGHT: begin
+        final var mainProperty =
+                IUP.getProperty(fileName.replace("Grapheme", "Grapheme_Cluster") + "_Break");
+        for (var entry : variables.entrySet()) {
+            final String variable = entry.getKey().substring(1);
+            final String value = entry.getValue();
+            if (variable.equals("sot")
+                    || variable.equals("eot")
+                    || variable.equals("Any")
+                    || mainProperty
+                            .getSet(variable)
+                            .equals(
+                                    new UnicodeSet(
+                                            value, new ParsePosition(0), IUP.getXSymbolTable()))) {
+                continue;
+            }
+            out.println("<li>");
+            out.println(variable);
+            out.println("=");
+            out.println(value);
+            out.println("</li>");
+        }
+        out.println("</ul></li>");
+        out.println("<li>Any other set that is a short property value alias for the " + propertyName + " property represents the set of characters with that property, e.g., LF=\\p{"+propertyName+"=LF}.</li>");
+        out.println("<li>The aforementioned sets are used to generate a partition of the code space in classes named X_Y for the intersection of X and Y and XmY for the complement of Y in X.</li></ol>");
+        // end REMOVE BEFORE FLIGHT;
         out.print(
                 "<p>If your browser handles titles (tooltips), then hovering the mouse over the row header will show a sample character of that type. "
                         + "Hovering over a column header will show the sample character, plus its abbreviated general category and script. "
@@ -554,7 +584,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
         out.println("#\t" + NOBREAK + " wherever there is not.");
         out.println("#  <comment> the format can change, but currently it shows:");
         out.println("#\t- the sample character name");
-        out.println("#\t- (x) the " + propertyName + " property value for the sample character");
+        out.println("#\t- (x) the " + propertyName + " property value for the sample character and ");
+        out.println("#\t  any other properties relevant to the algorithm, as described in ");
+        out.println("#\t  " + fileName + "BreakTest.html");
         out.println("#\t- [x] the rule that determines whether there is a break or not,");
         out.println("#\t   as listed in the Rules section of " + fileName + "BreakTest.html");
         out.println("#");
@@ -728,29 +760,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
     public void generateTable(PrintWriter out) {
         out.println("<h3>" + linkAndAnchor("table", "Table") + "</h3>");
         final String width = "width='" + (100 / (tableLimit + 1)) + "%'";
-        // REMOVE BEFORE FLIGHT: begin
-        final var mainProperty =
-                IUP.getProperty(fileName.replace("Grapheme", "Grapheme_Cluster") + "_Break");
-        for (var entry : variables.entrySet()) {
-            final String variable = entry.getKey().substring(1);
-            final String value = entry.getValue();
-            if (variable.equals("sot")
-                    || variable.equals("eot")
-                    || variable.equals("Any")
-                    || mainProperty
-                            .getSet(variable)
-                            .equals(
-                                    new UnicodeSet(
-                                            value, new ParsePosition(0), IUP.getXSymbolTable()))) {
-                continue;
-            }
-            out.println("<p>");
-            out.println(variable);
-            out.println("=");
-            out.println(value);
-            out.println("</p>");
-        }
-        // end REMOVE BEFORE FLIGHT;
         out.print("<table border='1' cellspacing='0' width='100%'>");
         String types = "";
         for (int type = 0; type < tableLimit; ++type) {

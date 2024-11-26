@@ -778,10 +778,10 @@ public class Segmenter {
                     (partName == null && !intersection.isEmpty())) {
                     System.out.println(refinement.name + " refines " + (partName == null ? "(remainder)" : partName));
                     it.remove();
+                    it.add(part.clone().intersect(refinement));
                     if (!complement.isEmpty()) {
                         it.add(part.clone().subtract(refinement));
                     }
-                    it.add(part.clone().intersect(refinement));
                 }
             }
         }
