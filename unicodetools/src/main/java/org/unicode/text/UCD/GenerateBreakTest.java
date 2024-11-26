@@ -400,7 +400,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
         }
         out.println("</ul></li>");
         out.println(
-                "<li>Any other set that is a short property value alias for the "
+                "<li>Any other name that is a short property value alias for the "
                         + propertyName
                         + " property represents the set of characters with that property, e.g., LF=\\p{"
                         + propertyName

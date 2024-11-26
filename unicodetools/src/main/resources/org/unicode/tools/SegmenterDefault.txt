@@ -62,7 +62,7 @@ $ExtCccZwj=[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
 
 $AI=\p{Line_Break=Ambiguous}
 $AK=\p{Line_Break=Aksara}
-$AL=\p{Line_Break=Alphabetic}
+$ALstrict=\p{Line_Break=Alphabetic}
 $AP=\p{Line_Break=Aksara_Prebase}
 $AS=\p{Line_Break=Aksara_Start}
 $B2=\p{Line_Break=Break_Both}
@@ -72,7 +72,7 @@ $BK=\p{Line_Break=Mandatory_Break}
 $CB=\p{Line_Break=Contingent_Break}
 $CL=\p{Line_Break=Close_Punctuation}
 $CP=\p{Line_Break=CP}
-$CM=\p{Line_Break=Combining_Mark}
+$CMstrict=\p{Line_Break=Combining_Mark}
 $CR=\p{Line_Break=Carriage_Return}
 $EX=\p{Line_Break=Exclamation}
 $GL=\p{Line_Break=Glue}
@@ -88,13 +88,15 @@ $JT=\p{Line_Break=JT}
 $JV=\p{Line_Break=JV}
 $LF=\p{Line_Break=Line_Feed}
 $NL=\p{Line_Break=Next_Line}
-$NS=\p{Line_Break=Nonstarter}
+$NSstrict=\p{Line_Break=Nonstarter}
 $NU=\p{Line_Break=Numeric}
 $OP=\p{Line_Break=Open_Punctuation}
 $PO=\p{Line_Break=Postfix_Numeric}
 $PR=\p{Line_Break=Prefix_Numeric}
 $QU=\p{Line_Break=Quotation}
-$SA=\p{Line_Break=Complex_Context}
+$SA_Mn=[\p{Line_Break=Complex_Context}&\p{gc=Mn}]
+$SA_Mc=[\p{Line_Break=Complex_Context}&\p{gc=Mc}]
+$SAmMnmMc=[\p{Line_Break=Complex_Context}-\p{gc=Mn}-\p{gc=Mc}]
 $SG=\p{Line_Break=Surrogate}
 $SP=\p{Line_Break=Space}
 $SY=\p{Line_Break=Break_Symbols}
@@ -124,8 +126,8 @@ $NonEastAsianBA = [$BA & [^$EastAsian]]
 $DottedCircle = [◌]
 $Hyphen = [\u2010]
 
-$CP30=[$CP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
-$OP30=[$OP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
+$CPmEastAsian=[$CP-$EastAsian]
+$OPmEastAsian=[$OP-$EastAsian]
 
 $ExtPictUnassigned=[\p{Extended_Pictographic}&\p{gc=Cn}]
 
@@ -140,9 +142,9 @@ $eot=(?!.)
 # LB 1  Assign a line breaking class to each code point of the input. 
 # Resolve AI, CB, SA, SG, and XX into other line breaking classes depending on criteria outside the scope of this algorithm.
 # NOTE: CB is ok to fall through, but must handle others here.
-##	show $AL
-$AL=[$AI $AL $SG $XX $SA]
-$NS=[$NS $CJ]
+$AL=[$AI $ALstrict $SG $XX $SAmMnmMc]
+$CM=[$CMstrict $SA_Mn $SA_Mc]
+$NS=[$NSstrict $CJ]
 
 # RULES
 

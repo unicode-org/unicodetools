@@ -722,6 +722,9 @@ public class Segmenter {
         private transient Matcher identifierMatcher = IDENTIFIER_PATTERN.matcher("");
 
         Builder addVariable(String name, String value) {
+            if (variables.containsKey(name)) {
+                throw new IllegalArgumentException("Reassigning " + name + " = " + variables.get(name) + " to " + value);
+            }
             if (lastComments.size() != 0) {
                 rawVariables.addAll(lastComments);
                 lastComments.clear();
