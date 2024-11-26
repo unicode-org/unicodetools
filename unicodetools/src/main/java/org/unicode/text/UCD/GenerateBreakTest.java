@@ -60,8 +60,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
     Normalizer nfd;
     Normalizer nfkd;
 
-    OldUnicodeMap sampleMap = null;
-    OldUnicodeMap map = new OldUnicodeMap();
+    UnicodeMap<String> partition;
     UnicodeProperty prop;
 
     protected final Segmenter seg;
@@ -93,25 +92,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
             ToolUnicodePropertySource.make(Default.ucdVersion());
 
     Set<String> labels = new HashSet<String>();
-
-    int addToMap(String label) {
-        labels.add(label);
-        final UnicodeSet s = prop.getSet(label);
-        if (s == null || s.size() == 0) {
-            throw new IllegalArgumentException("Bad value: " + prop.getName() + ", " + label);
-        }
-        return map.add(label, s);
-    }
-
-    int addToMapLast(String label) {
-        final int result = addToMap(label);
-        final Set<String> values = new HashSet<String>(prop.getAvailableValues());
-        if (!values.equals(labels)) {
-            throw new IllegalArgumentException(
-                    "Missing Property Values: " + prop.getName() + ": " + values.removeAll(labels));
-        }
-        return result;
-    }
 
     public static boolean onCodepointBoundary(String s, int offset) {
         if (offset < 0 || offset > s.length()) {
@@ -166,10 +146,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         final Normalizer nfd = new Normalizer(UCD_Types.NFD, ucd.getVersion());
 
         System.out.println("Check Decomps");
-        // System.out.println("otherExtendSet: " +
-        // ((GenerateGraphemeBreakTest)tests[0]).otherExtendSet.toPattern(true));
-        // Utility.showSetNames("", ((GenerateGraphemeBreakTest)tests[0]).otherExtendSet, false,
-        // ucd);
 
         for (final GenerateBreakTest test2 : tests) {
             for (int i = 0; i < 0x10FFFF; ++i) {
@@ -468,20 +444,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         + "Note that a rule is invoked only when no lower-numbered rules have applied.</p>");
         generateTable(out);
 
-        if (false) {
-            out.println("<h3>Character Type Breakdown</h3>");
-            out.println("<table border='1' cellspacing='0' width='100%'>");
-            for (int i = 0; i < sampleMap.size(); ++i) {
-                out.println(
-                        "<tr><th>"
-                                + sampleMap.getLabelFromIndex(i)
-                                + "</th><td>"
-                                + sampleMap.getSetFromIndex(i)
-                                + "</td></tr>");
-            }
-            out.println("</table>");
-        }
-
         out.println(
                 "<hr width='50%'>\n"
                         + "<div align='center'>\n"
@@ -607,12 +569,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
 
     public abstract String fullBreakSample();
 
-    public abstract byte getType(int cp);
-
-    public byte getSampleType(int cp) {
-        return getType(cp);
-    }
-
     public int mapType(int input) {
         return input;
     }
@@ -673,10 +629,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         final String normalRule = getRule();
         ruleOut[0] = normalRule;
         return normalBreak ? BREAK : NOBREAK;
-    }
-
-    public byte getResolvedType(int cp) {
-        return getType(cp);
     }
 
     boolean skipType(int type) {
@@ -1021,51 +973,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
         // then
         // we want a type for each cross-section
 
-        /**
-         * Set of lb values that already have sample characters. Faster to test than
-         * Map.contains(lb) because it avoids creating an Integer object for each code point.
-         */
-        final BitSet bitset = new BitSet();
-        /**
-         * Maps lb values to sample characters. We do not really need this map -- we could add each
-         * sample character directly to samples -- but adding them in sorted order by lb value
-         * stabilizes the output.
-         */
-        final Map<Integer, String> lbToSampleChar = new TreeMap<Integer, String>();
-
-        for (int i = 1; i <= 0x10FFFF; ++i) {
-            // if (!ucd.isAllocated(i)) {
-            //    continue;
-            // }
-            if (0xD800 <= i && i <= 0xDFFF) { // skip Cs characters
-                continue;
-            }
-            if (DEBUG && i == 0x1100) {
-                System.out.println("debug");
-            }
-            final byte lb = getSampleType(i);
-            if (skipType(lb)) {
-                skippedSamples[lb] = i;
-                didSkipSamples = true;
-                continue;
-            }
-
-            if (!bitset.get(lb)) {
-                bitset.set(lb);
-                // Unassigned U+50005 is better than PUA U+E000
-                // because implementations may override PUA properties.
-                // A supplementary code point also adds to implementation code coverage.
-                String sample;
-                if (i == 0xE000 && getSampleType(0x50005) == lb) {
-                    sample = UTF16.valueOf(0x50005);
-                } else {
-                    sample = UTF16.valueOf(i);
-                }
-                lbToSampleChar.put(new Integer(lb), sample);
-            }
+        for (String part : partition.getAvailableValues()) {
+            samples.add(Character.toString(partition.getSet(part).charAt(0)));
         }
-
-        samples.addAll(lbToSampleChar.values());
 
         tableLimit = samples.size();
 
@@ -1073,18 +983,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         if (extraSamples.size() > 0) {
             samples.addAll(extraSamples);
         }
-    }
-
-    public int findLastNon(String source, int offset, byte notLBType) {
-        int cp;
-        for (int i = offset - 1; i >= 0; i -= UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(source, i);
-            final byte f = getResolvedType(cp);
-            if (f != notLBType) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     public static UnicodeSet getSet(UCD ucd, int prop, byte propValue) {
@@ -1117,62 +1015,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         }
     }
 
-    public void getGraphemeBases(
-            MyBreakIterator graphemeIterator,
-            String source,
-            int offset,
-            int ignoreType,
-            Context context) {
-        context.cpBefore2 = context.cpBefore = context.cpAfter = context.cpAfter2 = -1;
-        context.tBefore2 = context.tBefore = context.tAfter = context.tAfter2 = -1;
-        // if (DEBUG_GRAPHEMES) System.out.println(Utility.hex(source) + "; " + offset + "; " +
-        // ignoreType);
-
-        // MyBreakIterator graphemeIterator = new MyBreakIterator(new
-        // GenerateGraphemeBreakTest(ucd));
-
-        graphemeIterator.set(source, offset);
-        while (true) {
-            final int cp = graphemeIterator.previousBase();
-            if (cp == -1) {
-                break;
-            }
-            final byte t = getResolvedType(cp);
-            if (t == ignoreType) {
-                continue;
-            }
-
-            if (context.cpBefore == -1) {
-                context.cpBefore = cp;
-                context.tBefore = t;
-            } else {
-                context.cpBefore2 = cp;
-                context.tBefore2 = t;
-                break;
-            }
-        }
-        graphemeIterator.set(source, offset);
-        while (true) {
-            final int cp = graphemeIterator.nextBase();
-            if (cp == -1) {
-                break;
-            }
-            final byte t = getResolvedType(cp);
-            if (t == ignoreType) {
-                continue;
-            }
-
-            if (context.cpAfter == -1) {
-                context.cpAfter = cp;
-                context.tAfter = t;
-            } else {
-                context.cpAfter2 = cp;
-                context.tAfter2 = t;
-                break;
-            }
-        }
-    }
-
     // ==============================================
 
     static class XGenerateBreakTest extends GenerateBreakTest {
@@ -1199,17 +1041,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
             }
             variables = segBuilder.getVariables();
             collectingRules = false;
-            map.add("Other", new UnicodeSet(0, 0x10FFFF));
-            final UnicodeMap<String> segSamples = seg.getSamples();
-            final Collection<String> x = segSamples.getAvailableValues();
-            for (final Iterator<String> it = x.iterator(); it.hasNext(); ) {
-                final String label = it.next();
-                UnicodeSet values = segSamples.keySet(label);
-                map.add(label, values, true, false);
-            }
+            partition = seg.getSamples();
             fileName = filename;
             propertyName = (filename.equals("Grapheme") ? "Grapheme_Cluster" : fileName) + "_Break";
-            sampleMap = map;
             this.extraSamples.addAll(Arrays.asList(extraSamples));
 
             this.extraSingleSamples.addAll(
@@ -1232,13 +1066,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
         // stuff that subclasses need to override
         @Override
         public String getTypeID(int cp) {
-            return map.getLabel(cp);
-        }
-
-        // stuff that subclasses need to override
-        @Override
-        public byte getType(int cp) {
-            return (byte) map.getIndex(cp);
+            return partition.get(cp);
         }
     }
 
