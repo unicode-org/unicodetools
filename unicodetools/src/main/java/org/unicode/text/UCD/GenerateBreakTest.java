@@ -373,9 +373,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         + outFilename
                         + ".txt</a>:</p>");
         out.println("<ol><li>The following sets are used:<ul>");
-        // REMOVE BEFORE FLIGHT: begin
-        final var mainProperty =
-                IUP.getProperty(fileName.replace("Grapheme", "Grapheme_Cluster") + "_Break");
+        final var mainProperty = IUP.getProperty(propertyName);
         for (var entry : variables.entrySet()) {
             final String variable = entry.getKey().substring(1);
             final String value = entry.getValue();
@@ -403,8 +401,18 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         + propertyName
                         + "=LF}.</li>");
         out.println(
-                "<li>The aforementioned sets are used to generate a partition of the code space in classes named X_Y for the intersection of X and Y and XmY for the complement of Y in X.</li></ol>");
-        // end REMOVE BEFORE FLIGHT;
+                "<li>The aforementioned sets are used to generate a partition of the code space in"
+                        + " classes named X_Y for the intersection of X and Y and XmY for the"
+                        + "  complement of Y in X.</li></ol>");
+        out.println(
+                "<p>Note that the resulting partition may be finer than needed for the algorithm.");
+        if (propertyName.equals("Line_Break")) {
+            out.println(
+                    "For instance, characters in CMorig_EastAsian and CMorigmEastAsian behave"
+                            + " identically in line breaking, as characters in these classes are"
+                            + " remapped before EastAsian is used in the rules.");
+        }
+        out.println("</p>");
         out.print(
                 "<p>If your browser handles titles (tooltips), then hovering the mouse over the row header will show a sample character of that type. "
                         + "Hovering over a column header will show the sample character, plus its abbreviated general category and script. "

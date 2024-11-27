@@ -265,8 +265,8 @@ $NS=[$NSorig $CJ]
 # LB 29  Do not break between numeric punctuation and alphabetics (\"e.g.\").
 29) $IS × ($AL | $HL)
 # LB 30  Do not break between letters, numbers or ordinary symbols and opening or closing punctuation.
-30.01) ($AL | $HL | $NU) × $OP30
-30.02) $CP30 × ($AL | $HL | $NU)
+30.01) ($AL | $HL | $NU) × $OPmEastAsian
+30.02) $CPmEastAsian × ($AL | $HL | $NU)
 # LB 30a  Break between two Regional Indicators if and only if there is an even number of them before the point being considered.
 30.11) $sot ($RI $RI)* $RI × $RI
 30.12) [^$RI] ($RI $RI)* $RI × $RI

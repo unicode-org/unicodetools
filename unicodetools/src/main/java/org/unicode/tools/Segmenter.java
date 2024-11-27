@@ -942,6 +942,9 @@ public class Segmenter {
                         PATTERN_SYNTAX_OR_WHITE_SPACE.span(
                                 input, dollar + 1, SpanCondition.NOT_CONTAINED);
                 final String name = input.substring(dollar, position);
+                if (!variables.containsKey(name)) {
+                    throw new IllegalArgumentException("Undefined variable " + name);
+                }
                 result.append(variables.get(name));
             }
             result.append(input.substring(position));
