@@ -353,8 +353,14 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         + "<p>The first chart shows where breaks would appear between different sample characters or strings. "
                         + "The sample characters are chosen mechanically to represent the different properties used by the specification.</p>"
                         + "<p>Each cell shows the break-status for the position between the character(s) in its row header and the character(s) in its column header. "
-                        + "The × symbol indicates no break, while the ÷ symbol indicated a break. "
-                        + "The cells with × are also shaded to make it easier to scan the table. "
+                        + (fileName.equals("Line")
+                                ? "The symbol × indicates a prohibited break, even with intervening spaces;"
+                                        + " the ÷ symbol indicates a (direct) break; the symbol ∻ indicates a"
+                                        + " break only in the presence of an intervening space (an indirect break)."
+                                : "The × symbol indicates no break, while the ÷ symbol indicates a break. ")
+                        + "The cells with ×"
+                        + (fileName.equals("Line") ? " or ∹ " : "")
+                        + " are also shaded to make it easier to scan the table. "
                         + "For example, in the cell at the intersection of the row headed by “CR” and the column headed by “LF”, there is a × symbol, "
                         + "indicating that there is no break between CR and LF.</p>");
         out.print("<p>");
@@ -581,10 +587,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         return input;
     }
 
-    public boolean highlightTableEntry(int x, int y, String s) {
-        return false;
-    }
-
     public abstract String getTypeID(int s);
 
     public String getTypeID(String s) {
@@ -632,11 +634,24 @@ public abstract class GenerateBreakTest implements UCD_Types {
         return results;
     }
 
-    public String getTableEntry(String before, String after, String[] ruleOut) {
+    public String getTableEntry(String before, String after, List<String> rulesOut) {
+        rulesOut.clear();
         final boolean normalBreak = isBreak(before + after, before.length());
         final String normalRule = getRule();
-        ruleOut[0] = normalRule;
-        return normalBreak ? BREAK : NOBREAK;
+        rulesOut.add(normalRule);
+        if (fileName.equals("Line")) {
+            final boolean spaceBreak = isBreak(before + " " + after, before.length() + 1);
+            final String spaceRule = getRule();
+            if (normalBreak && !spaceBreak) {
+                // Edge cases such as LF ÷ LF, but LF SP × LF.
+                return BREAK;
+            } else if (!spaceRule.equals(normalRule)) {
+                rulesOut.add(spaceRule);
+            }
+            return normalBreak ? BREAK : spaceBreak ? INDIRECT_BREAK : NOBREAK;
+        } else {
+            return normalBreak ? BREAK : NOBREAK;
+        }
     }
 
     boolean skipType(int type) {
@@ -691,8 +706,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
         out.println("<tr><th " + width + "></th>" + types + "</tr>");
         // out.println("<tr><th " + width + "></th><th " + width + "></th>" + codes + "</tr>");
 
-        final String[] rule = new String[1];
-        final String[] rule2 = new String[1];
+        final List<String> rules = new ArrayList<>();
         for (int type = 0; type < samples.size(); ++type) {
             if (type == tableLimit) {
                 out.println(
@@ -720,24 +734,16 @@ public abstract class GenerateBreakTest implements UCD_Types {
                     continue;
                 }
 
-                final String t = getTableEntry(before, after, rule);
+                final String t = getTableEntry(before, after, rules);
                 String background = "";
-                final String t2 = getTableEntry(before, after, rule2);
-                if (highlightTableEntry(type, type2, t)) {
-                    background = " bgcolor='#FFFF00'";
-                }
-                if (!t.equals(t2)) {
-                    if (t.equals(NOBREAK)) {
-                        background = " bgcolor='#CCFFFF'";
-                    } else {
-                        background = " bgcolor='#FFFF00'";
-                    }
-                } else if (t.equals(NOBREAK)) {
+                if (t.contains(NOBREAK)) {
                     background = " bgcolor='#CCCCFF'";
+                } else if (!t.equals(BREAK)) {
+                    background = " bgcolor='#CCFFCC'";
                 }
                 line +=
                         "<th title='"
-                                + rule[0]
+                                + String.join(" ", rules)
                                 + "'"
                                 + background
                                 + " class='pairItem'>"
@@ -885,8 +891,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
         return ("<a href='#" + anchor + "' name='" + anchor + "'>" + text + "</a>");
     }
 
-    static final String BREAK = "\u00F7";
-    static final String NOBREAK = "\u00D7";
+    static final String BREAK = "÷";
+    static final String INDIRECT_BREAK = "∻";
+    static final String NOBREAK = "×";
 
     public void printLine(
             PrintWriter out,
