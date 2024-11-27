@@ -966,13 +966,12 @@ public abstract class GenerateBreakTest implements UCD_Types {
     }
 
     public void findSamples() {
-
-        // what we want is a list of sample characters. In the simple case, this is just one per
-        // type.
-        // However, if there are characters that have different types (when recommended or not),
-        // then
-        // we want a type for each cross-section
-
+        // Pick a sample for each class of the partition.
+        // The sample is picked among the oldest characters in the class for classes containing
+        // assigned characters.  For classes containing only unassigned code points, the last code
+        // point is used.  This makes the sample stable when new characters are encoded; however,
+        // the choice of sample can be affected by changes to relevant property assignments of
+        // existing characters.
         final var gc = IUP.getProperty(UcdProperty.General_Category);
         final var unassigned = gc.getSet("Cn");
         final var surrogate = gc.getSet("Cs");

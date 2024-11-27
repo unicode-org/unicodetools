@@ -16,19 +16,15 @@ $V=\p{Grapheme_Cluster_Break=V}
 $T=\p{Grapheme_Cluster_Break=T}
 $LV=\p{Grapheme_Cluster_Break=LV}
 $LVT=\p{Grapheme_Cluster_Break=LVT}
-# Note: The following may overlap with the above
-# Note: ConjunctLinkingScripts is not used anymore, instead that list exists in the derivation of Indic_Conjunct_Break.
-# It is kept here so that the diff of the generated test cases compared to the Unicode 15.1 β is minimal.
-# TODO(egg): Consider removing in Unicode 16.0.
-$ConjunctLinkingScripts=[\p{Gujr}\p{sc=Telu}\p{sc=Mlym}\p{sc=Orya}\p{sc=Beng}\p{sc=Deva}]
 $ConjunctLinker=\p{Indic_Conjunct_Break=Linker}
 $LinkingConsonant=\p{Indic_Conjunct_Break=Consonant}
 ##	$E_Base=\p{Grapheme_Cluster_Break=E_Base}
 ##	$E_Modifier=\p{Grapheme_Cluster_Break=E_Modifier}
 $ExtPict=\p{Extended_Pictographic}
-$ExtCccZwj=[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
+$ConjunctExtender=[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
 ##	$EBG=\p{Grapheme_Cluster_Break=E_Base_GAZ}
 ##	$Glue_After_Zwj=\p{Grapheme_Cluster_Break=Glue_After_Zwj}
+$XX = \p{Grapheme_Cluster_Break=Other}
 
 # RULES
 
@@ -47,7 +43,7 @@ $ExtCccZwj=[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
 # Only for extended grapheme clusters: Do not break before SpacingMarks, or after Prepend characters.
 9.1) × 	$SpacingMark
 9.2) $Prepend  ×
-9.3) $LinkingConsonant $ExtCccZwj* $ConjunctLinker $ExtCccZwj*  × $LinkingConsonant
+9.3) $LinkingConsonant $ConjunctExtender* $ConjunctLinker $ConjunctExtender*  × $LinkingConsonant
 ## Do not break within emoji modifier sequences or emoji zwj sequences.
 ##	10) $E_Base $Extend* × $E_Modifier
 11) $ExtPict $Extend* $ZWJ × $ExtPict
