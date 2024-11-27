@@ -133,7 +133,7 @@ public class TestSegments {
 
     private static void debugRule(Segmenter.Builder rb) {
         Segmenter.SegmentationRule rule = rb.make().get(16.01);
-        String oldAL = (String) rb.getExpandedVariables().get("$oldAL");
+        String oldAL = (String) rb.getVariables().get("$oldAL");
         UnicodeSet oldALSet = new UnicodeSet(oldAL);
         String testStr = "\uA80D/\u0745\u2026";
         for (int k = 0; k < testStr.length(); ++k) {
