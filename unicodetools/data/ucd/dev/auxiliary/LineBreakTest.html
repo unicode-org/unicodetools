@@ -7,19 +7,29 @@ td, th { vertical-align: top }
 <body bgcolor='#FFFFFF'>
 <h2>Line_Break Chart</h2>
 <p><b>Unicode Version:</b> 17.0.0</p>
-<p><b>Date:</b> 2024-11-26, 18:56:31 GMT</p>
+<p><b>Date:</b> 2024-11-27, 13:06:17 GMT</p>
 <p>This page illustrates the application of the Line_Break specification. The material here is informative, not normative.</p> <p>The first chart shows where breaks would appear between different sample characters or strings. The sample characters are chosen mechanically to represent the different properties used by the specification.</p><p>Each cell shows the break-status for the position between the character(s) in its row header and the character(s) in its column header. The × symbol indicates no break, while the ÷ symbol indicated a break. The cells with × are also shaded to make it easier to scan the table. For example, in the cell at the intersection of the row headed by “CR” and the column headed by “LF”, there is a × symbol, indicating that there is no break between CR and LF.</p>
 <p></p><p>In the row and column headers of the <a href='#table'>Table</a>, in the <a href='#rules'>Rules</a>, when hovering over characters in the <a href='#samples'>Samples</a>, and in the comments in the associated list of test cases <a href='LineBreakTest.txt'>LineBreakTest.txt</a>:</p>
 <ol><li>The following sets are used:<ul>
 <li>
-ExtPictUnassigned
+AL
 =
-[\p{Extended_Pictographic}&\p{gc=Cn}]
+[\p{Line_Break=Ambiguous} \p{Line_Break=Alphabetic} \p{Line_Break=Surrogate} \p{Line_Break=Unknown} [\p{Line_Break=Complex_Context}-\p{gc=Mn}-\p{gc=Mc}]]
 </li>
 <li>
-NonEastAsianBA
+ALorig
 =
-[\p{Line_Break=Break_After} & [^[\p{ea=F}\p{ea=W}\p{ea=H}]]]
+\p{Line_Break=Alphabetic}
+</li>
+<li>
+CM
+=
+[\p{Line_Break=Combining_Mark} [\p{Line_Break=Complex_Context}&\p{gc=Mn}] [\p{Line_Break=Complex_Context}&\p{gc=Mc}]]
+</li>
+<li>
+CMorig
+=
+\p{Line_Break=Combining_Mark}
 </li>
 <li>
 CPmEastAsian
@@ -32,29 +42,14 @@ DottedCircle
 [◌]
 </li>
 <li>
-OPmEastAsian
-=
-[\p{Line_Break=Open_Punctuation}-[\p{ea=F}\p{ea=W}\p{ea=H}]]
-</li>
-<li>
 EastAsian
 =
 [\p{ea=F}\p{ea=W}\p{ea=H}]
 </li>
 <li>
-SAmMnmMc
+ExtPictUnassigned
 =
-[\p{Line_Break=Complex_Context}-\p{gc=Mn}-\p{gc=Mc}]
-</li>
-<li>
-ALorig
-=
-\p{Line_Break=Alphabetic}
-</li>
-<li>
-CMorig
-=
-\p{Line_Break=Combining_Mark}
+[\p{Extended_Pictographic}&\p{gc=Cn}]
 </li>
 <li>
 Hyphen
@@ -62,9 +57,34 @@ Hyphen
 [\u2010]
 </li>
 <li>
+NS
+=
+[\p{Line_Break=Nonstarter} \p{Line_Break=Conditional_Japanese_Starter}]
+</li>
+<li>
 NSorig
 =
 \p{Line_Break=Nonstarter}
+</li>
+<li>
+NonEastAsianBA
+=
+[\p{Line_Break=Break_After} & [^[\p{ea=F}\p{ea=W}\p{ea=H}]]]
+</li>
+<li>
+OPmEastAsian
+=
+[\p{Line_Break=Open_Punctuation}-[\p{ea=F}\p{ea=W}\p{ea=H}]]
+</li>
+<li>
+Pf
+=
+\p{gc=Pf}
+</li>
+<li>
+Pi
+=
+\p{gc=Pi}
 </li>
 <li>
 QU_Pf
@@ -97,29 +117,9 @@ SA_Mn
 [\p{Line_Break=Complex_Context}&\p{gc=Mn}]
 </li>
 <li>
-AL
+SAmMnmMc
 =
-[\p{Line_Break=Ambiguous} \p{Line_Break=Alphabetic} \p{Line_Break=Surrogate} \p{Line_Break=Unknown} [\p{Line_Break=Complex_Context}-\p{gc=Mn}-\p{gc=Mc}]]
-</li>
-<li>
-CM
-=
-[\p{Line_Break=Combining_Mark} [\p{Line_Break=Complex_Context}&\p{gc=Mn}] [\p{Line_Break=Complex_Context}&\p{gc=Mc}]]
-</li>
-<li>
-NS
-=
-[\p{Line_Break=Nonstarter} \p{Line_Break=Conditional_Japanese_Starter}]
-</li>
-<li>
-Pf
-=
-\p{gc=Pf}
-</li>
-<li>
-Pi
-=
-\p{gc=Pi}
+[\p{Line_Break=Complex_Context}-\p{gc=Mn}-\p{gc=Mc}]
 </li>
 </ul></li>
 <li>Any other name that is a short property value alias for the Line_Break property represents the set of characters with that property, e.g., LF=\p{Line_Break=LF}.</li>

@@ -16,6 +16,7 @@ import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.SpanCondition;
 import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
@@ -23,7 +24,6 @@ import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +35,6 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.tools.Segmenter.SegmentationRule.Breaks;
@@ -48,8 +47,9 @@ public class Segmenter {
     }
 
     public static final int REGEX_FLAGS = Pattern.COMMENTS | Pattern.MULTILINE | Pattern.DOTALL;
-    public static final Pattern IDENTIFIER_PATTERN =
-            Pattern.compile("[$][\\p{Alnum}_]+", REGEX_FLAGS);
+    private static final UnicodeSet PATTERN_SYNTAX = new UnicodeSet("\\p{pattern syntax}").freeze();
+    private static final UnicodeSet PATTERN_SYNTAX_OR_WHITE_SPACE =
+            new UnicodeSet("[\\p{pattern white space}\\p{pattern syntax}]").freeze();
 
     /**
      * If not null, masks off the character properties so the UnicodeSets are easier to use when
@@ -466,19 +466,6 @@ public class Segmenter {
 
     /** Separate the builder for clarity */
 
-    /** Sort the longest strings first. Used for variable lists. */
-    static Comparator<String> LONGEST_STRING_FIRST =
-            new Comparator<String>() {
-                public int compare(String s0, String s1) {
-                    int len0 = s0.length();
-                    int len1 = s1.length();
-                    if (len0 < len1) return 1; // longest first
-                    if (len0 > len1) return -1;
-                    // lengths equal, use string order
-                    return s0.compareTo(s1);
-                }
-            };
-
     /**
      * Used to build RuleLists. Can be used to do inheritance, since (a) adding a variable overrides
      * any previous value, and any variables used in its value are resolved before adding, and (b)
@@ -719,9 +706,13 @@ public class Segmenter {
         }
 
         private transient Matcher whiteSpace = Pattern.compile("\\s+", REGEX_FLAGS).matcher("");
-        private transient Matcher identifierMatcher = IDENTIFIER_PATTERN.matcher("");
 
         Builder addVariable(String name, String value) {
+            if (!(name.startsWith("$")
+                    && name.length() > 1
+                    && PATTERN_SYNTAX_OR_WHITE_SPACE.containsNone(name.substring(1)))) {
+                throw new IllegalArgumentException("Invalid name " + name);
+            }
             if (variables.containsKey(name)) {
                 throw new IllegalArgumentException(
                         "Reassigning " + name + " = " + variables.get(name) + " to " + value);
@@ -736,11 +727,6 @@ public class Segmenter {
                             + "\">"
                             + TransliteratorUtilities.toXML.transliterate(value)
                             + "</variable>");
-            if (!identifierMatcher.reset(name).matches()) {
-                String show = RegexUtilities.showMismatch(identifierMatcher, name);
-                throw new IllegalArgumentException(
-                        "Variable name must be $id: '" + name + "' — " + show);
-            }
             value = replaceVariables(value, variables);
             if (!name.endsWith("_")) {
                 try {
@@ -927,13 +913,8 @@ public class Segmenter {
         }
 
         // ============== internals ===================
-        private Map<String, String> expandedVariables =
-                new TreeMap<String, String>(LONGEST_STRING_FIRST);
-        private Map<String, String> variables =
-                new TreeMap<String, String>(LONGEST_STRING_FIRST); // sorted by length,
-        // longest first, to
-        // make substitution
-        // easy
+        private Map<String, String> expandedVariables = new TreeMap<String, String>();
+        private Map<String, String> variables = new TreeMap<String, String>();
         private Map<Double, SegmentationRule> rules = new TreeMap<Double, SegmentationRule>();
 
         public Map<Double, SegmentationRule> getProcessedRules() {
@@ -948,33 +929,20 @@ public class Segmenter {
          * @return
          */
         private static String replaceVariables(String input, Map<String, String> variables) {
-            // to do, optimize
-            // REMOVE BEFORE FLIGHT
-            // TODO(egg): This parses $abc as $a followed by literal bc if $a exists but $abc does not.
-            // Write a proper lexer before someone gets hurt!!!
-            String result = input;
-            int position = -1;
-            main:
-            while (true) {
-                position = result.indexOf('$', position);
-                if (position < 0) break;
-                for (String name : variables.keySet()) {
-                    if (result.regionMatches(position, name, 0, name.length())) {
-                        String value = variables.get(name);
-                        result =
-                                result.substring(0, position)
-                                        + value
-                                        + result.substring(position + name.length());
-                        position += value.length(); // don't allow overlap
-                        continue main;
-                    }
-                }
-                if (IDENTIFIER_PATTERN.matcher(result.substring(position)).lookingAt()) {
-                    throw new IllegalArgumentException(
-                            "Illegal variable at: '" + result.substring(position) + "'");
-                }
+            StringBuilder result = new StringBuilder();
+            int position = 0;
+            while (position < input.length()) {
+                final int dollar = input.indexOf('$', position);
+                if (dollar < 0) break;
+                result.append(input.substring(position, dollar));
+                position =
+                        PATTERN_SYNTAX_OR_WHITE_SPACE.span(
+                                input, dollar + 1, SpanCondition.NOT_CONTAINED);
+                final String name = input.substring(dollar, position);
+                result.append(variables.get(name));
             }
-            return result;
+            result.append(input.substring(position));
+            return result.toString();
         }
 
         /** Replaces Unicode Sets with literals. */
