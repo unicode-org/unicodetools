@@ -907,6 +907,9 @@ public class Segmenter {
                 result.add(key.doubleValue(), rules.get(key));
             }
             for (var part : partition) {
+                if (part.getName() == null) {
+                    throw new IllegalArgumentException("Unclassified characters: " + part.getSet());
+                }
                 result.samples.putAll(part.getSet(), part.getName());
             }
             return result;

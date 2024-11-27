@@ -293,6 +293,7 @@ $ATerm=\p{Sentence_Break=ATerm}
 $STerm=\p{Sentence_Break=STerm}
 $Close=\p{Sentence_Break=Close}
 $SContinue=\p{Sentence_Break=SContinue}
+$XX=\p{Sentence_Break=Other}
 $Any=.
 
 # SPECIAL EXTENSIONS
@@ -367,6 +368,7 @@ $ExtPict=\p{Extended_Pictographic}
 ##	$EBG=\p{Word_Break=E_Base_GAZ}
 ##	$Glue_After_Zwj=\p{Word_Break=Glue_After_Zwj}
 $WSegSpace=\p{Word_Break=WSegSpace}
+$XX=\p{Word_Break=Other}
 
 # MACROS
 
