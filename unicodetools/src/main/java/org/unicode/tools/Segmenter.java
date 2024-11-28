@@ -383,7 +383,7 @@ public class Segmenter {
 
         @Override
         public String toCppOldMonkeyString() {
-            return "std::make_unique<RemapRule>(uR\"(" + name + ")\", uR\"(" + patternDefinition + ")\", uR\"("  + replacement + ")\")";
+            return "std::make_unique<RemapRule>(uR\"(" + name + ")\", uR\"(" + patternDefinition.replaceAll("&", "&&").replaceAll("-", "--") + ")\", uR\"("  + replacement + ")\")";
         }
     }
 
@@ -471,8 +471,8 @@ public class Segmenter {
 
         @Override
         public String toCppOldMonkeyString() {
-            return "std::make_unique<RegexRule>(uR\"(" + name + ")\", uR\"(" + beforeDefinition + ")\", u'"
-                    + (breaks == Breaks.BREAK ? '÷' : '×') + "', uR\"(" + afterDefinition + ")\")";
+            return "std::make_unique<RegexRule>(uR\"(" + name + ")\", uR\"(" + beforeDefinition.replaceAll("&", "&&").replaceAll("-", "--") + ")\", u'"
+                    + (breaks == Breaks.BREAK ? '÷' : '×') + "', uR\"(" + afterDefinition.replaceAll("&", "&&").replaceAll("-", "--") + ")\")";
         }
 
         // ============== Internals ================
