@@ -359,7 +359,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
                                         + " break only in the presence of an intervening space (an indirect break)."
                                 : "The × symbol indicates no break, while the ÷ symbol indicates a break. ")
                         + "The cells with ×"
-                        + (fileName.equals("Line") ? " or ∹ " : "")
+                        + (fileName.equals("Line") ? " or ∻ " : "")
                         + " are also shaded to make it easier to scan the table. "
                         + "For example, in the cell at the intersection of the row headed by “CR” and the column headed by “LF”, there is a × symbol, "
                         + "indicating that there is no break between CR and LF.</p>");
