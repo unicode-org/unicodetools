@@ -36,7 +36,9 @@ import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
+import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.tools.Segmenter.Builder.NamedRefinedSet;
 import org.unicode.tools.Segmenter.SegmentationRule.Breaks;
 
 /** Ordered list of rules, with variables resolved before building. Use Builder to make. */
@@ -68,6 +70,7 @@ public class Segmenter {
     public final Target target;
 
     private UnicodeMap<String> samples = new UnicodeMap<String>();
+    private List<NamedRefinedSet> partitionDefinition = new ArrayList<>();
 
     private Segmenter(Target target) {
         this.target = target;
@@ -279,13 +282,16 @@ public class Segmenter {
         public String toString() {
             return toString(false);
         }
+
+        public abstract String toCppOldMonkeyString();
     }
 
     /** A « treat as » rule. */
     public static class RemapRule extends SegmentationRule {
 
         public RemapRule(String leftHandSide, String replacement, String line) {
-            pattern = Pattern.compile(leftHandSide, REGEX_FLAGS);
+            patternDefinition = leftHandSide;
+            pattern = Pattern.compile(Builder.expandUnicodeSets(leftHandSide), REGEX_FLAGS);
             this.replacement = replacement;
             name = line;
         }
@@ -352,6 +358,7 @@ public class Segmenter {
             remap.accept(result);
         }
 
+        private String patternDefinition;
         private Pattern pattern;
         private String replacement;
         private String name;
@@ -373,6 +380,11 @@ public class Segmenter {
         protected String toString(boolean showResolved) {
             return name;
         }
+
+        @Override
+        public String toCppOldMonkeyString() {
+            return "std::make_unique<RemapRule>(uR\"(" + name + ")\", uR\"(" + patternDefinition + ")\", uR\"("  + replacement + ")\")";
+        }
     }
 
     /** A rule that determines the status of an offset. */
@@ -384,6 +396,10 @@ public class Segmenter {
          * @param line
          */
         public RegexRule(String before, Breaks result, String after, String line) {
+            beforeDefinition = before;
+            afterDefinition = after;
+            before = Builder.expandUnicodeSets(before);
+            after = Builder.expandUnicodeSets(after);
             breaks = result;
             before = ".*(" + before + ")";
             String parsing = null;
@@ -453,12 +469,20 @@ public class Segmenter {
             return result;
         }
 
+        @Override
+        public String toCppOldMonkeyString() {
+            return "std::make_unique<RegexRule>(uR\"(" + name + ")\", uR\"(" + beforeDefinition + ")\", u'"
+                    + (breaks == Breaks.BREAK ? '÷' : '×') + "', uR\"(" + afterDefinition + ")\")";
+        }
+
         // ============== Internals ================
         // We cannot use a single regex of the form "(?<= before) after" because
         // (RI RI)* RI × RI would require unbounded lookbehind.
         private Pattern before;
         private Pattern after;
         private String name;
+        private String beforeDefinition;
+        private String afterDefinition;
 
         private String resolved;
         private Breaks breaks;
@@ -474,31 +498,32 @@ public class Segmenter {
     public static class Builder {
         private final UnicodeProperty.Factory propFactory;
         private final Target target;
-        private XSymbolTable symbolTable;
         private List<String> rawVariables = new ArrayList<String>();
         private Map<Double, String> xmlRules = new TreeMap<Double, String>();
         private Map<Double, String> htmlRules = new TreeMap<Double, String>();
         private List<String> lastComments = new ArrayList<String>();
 
         class NamedSet {
-            NamedSet(String name, UnicodeSet set) {
+            NamedSet(String name, String definition, UnicodeSet set) {
                 this.name = name;
+                this.definition = definition;
                 this.set = set;
             }
 
             String name;
+            String definition;
             UnicodeSet set;
         }
 
-        class NamedRefinedSet {
+        public class NamedRefinedSet {
             public NamedRefinedSet clone() {
                 NamedRefinedSet result = new NamedRefinedSet();
                 for (var term : intersectionTerms) {
-                    result.intersectionTerms.add(new NamedSet(term.name, term.set.cloneAsThawed()));
+                    result.intersectionTerms.add(new NamedSet(term.name, term.definition, term.set.cloneAsThawed()));
                 }
                 for (var subtrahend : subtrahends) {
                     result.subtrahends.add(
-                            new NamedSet(subtrahend.name, subtrahend.set.cloneAsThawed()));
+                            new NamedSet(subtrahend.name, subtrahend.definition, subtrahend.set.cloneAsThawed()));
                 }
                 result.set = this.set.cloneAsThawed();
                 return result;
@@ -547,6 +572,17 @@ public class Segmenter {
                                         .collect(Collectors.joining());
             }
 
+            public String getDefinition() {
+                return intersectionTerms.isEmpty()
+                        ? "[^[]]"
+                        : "[" + intersectionTerms.stream()
+                                        .map((s) -> s.definition)
+                                        .collect(Collectors.joining("&"))
+                                + subtrahends.stream()
+                                        .map((s) -> "-" + s.definition)
+                                        .collect(Collectors.joining()) + "]";
+            }
+
             private UnicodeSet getIntersection() {
                 UnicodeSet result = UnicodeSet.ALL_CODE_POINTS.cloneAsThawed();
                 for (var term : intersectionTerms) {
@@ -565,52 +601,9 @@ public class Segmenter {
         public Builder(UnicodeProperty.Factory factory, Target target) {
             propFactory = factory;
             this.target = target;
-            symbolTable = new MyXSymbolTable(); // propFactory.getXSymbolTable();
             htmlRules.put(new Double(BREAK_SOT), "sot \u00F7");
             htmlRules.put(new Double(BREAK_EOT), "\u00F7 eot");
             htmlRules.put(new Double(BREAK_ANY), "\u00F7 Any");
-        }
-
-        // copied to make independent of ICU4J internals
-        private class MyXSymbolTable extends UnicodeSet.XSymbolTable {
-            public boolean applyPropertyAlias(
-                    String propertyName, String propertyValue, UnicodeSet result) {
-                UnicodeProperty prop = propFactory.getProperty(propertyName);
-                if (prop == null) {
-                    if (propertyValue.isEmpty()) {
-                        prop = propFactory.getProperty("Script");
-                        result.clear();
-                        UnicodeSet x = prop.getSet(propertyName, result);
-                        if (!x.isEmpty()) {
-                            return true;
-                        }
-                    }
-                    // If we cannot handle the property name, then we need to really fail.
-                    // If we were to just print something and return false, then the UnicodeSet code
-                    // would just evaluate this itself, and may succeed but give wrong results.
-                    // For example, as long as we require "gc=Cn" and don't handle "Cn" here,
-                    // falling back to built-in ICU data means that we get gc=Cn ranges from ICU
-                    // rather than from the current Unicode beta.
-                    throw new IllegalArgumentException(
-                            "Segmenter.MyXSymbolTable: Unknown property " + propertyName);
-                }
-                // Binary properties:
-                // \p{Extended_Pictographic} is equivalent with \p{Extended_Pictographic=Yes}
-                if (propertyValue.isEmpty() && prop.isType(UnicodeProperty.BINARY_MASK)) {
-                    propertyValue = "Yes";
-                }
-                result.clear();
-                UnicodeSet x = prop.getSet(propertyValue, result);
-                if (x.isEmpty()) {
-                    // didn't find anything
-                    System.out.println(
-                            "Segmenter.MyXSymbolTable: !Empty! "
-                                    + propertyName
-                                    + "="
-                                    + propertyValue);
-                }
-                return true; // mark that we handled it even if there are no results.
-            }
         }
 
         public String toString(String testName, String indent) {
@@ -727,11 +720,11 @@ public class Segmenter {
                             + "\">"
                             + TransliteratorUtilities.toXML.transliterate(value)
                             + "</variable>");
-            value = replaceVariables(value, variables);
+            value = replaceVariables(value, variables);;
             if (!name.endsWith("_")) {
                 try {
                     parsePosition.setIndex(0);
-                    UnicodeSet valueSet = new UnicodeSet(value, parsePosition, symbolTable);
+                    UnicodeSet valueSet = new UnicodeSet(value, parsePosition, IndexUnicodeProperties.make().getXSymbolTable());
                     if (parsePosition.getIndex() != value.length()) {
                         if (SHOW_SAMPLES)
                             System.out.println(
@@ -748,7 +741,7 @@ public class Segmenter {
                     } else {
                         String name2 = name;
                         if (name2.startsWith("$")) name2 = name2.substring(1);
-                        refinePartition(new NamedSet(name2, valueSet));
+                        refinePartition(new NamedSet(name2, value, valueSet));
                         if (SHOW_SAMPLES) {
                             System.out.println("Samples for: " + name + " = " + value);
                             System.out.println("\t" + valueSet);
@@ -828,7 +821,7 @@ public class Segmenter {
             rules.put(
                     order,
                     new Segmenter.RemapRule(
-                            replaceVariables(before, expandedVariables), after, line));
+                            replaceVariables(before, variables), after, line));
             return this;
         }
 
@@ -889,9 +882,9 @@ public class Segmenter {
             rules.put(
                     order,
                     new Segmenter.RegexRule(
-                            replaceVariables(before, expandedVariables),
+                            replaceVariables(before, variables),
                             breaks,
-                            replaceVariables(after, expandedVariables),
+                            replaceVariables(after, variables),
                             line));
             return this;
         }
@@ -906,6 +899,7 @@ public class Segmenter {
             for (Double key : rules.keySet()) {
                 result.add(key.doubleValue(), rules.get(key));
             }
+            result.partitionDefinition = partition;
             for (var part : partition) {
                 if (part.getName() == null) {
                     throw new IllegalArgumentException("Unclassified characters: " + part.getSet());
@@ -952,14 +946,15 @@ public class Segmenter {
         }
 
         /** Replaces Unicode Sets with literals. */
-        public String expandUnicodeSets(String input) {
+        public static String expandUnicodeSets(String input) {
             String result = input;
+            var parsePosition = new ParsePosition(0);
             // replace properties
             // TODO really dumb parse for now, fix later
             for (int i = 0; i < result.length(); ++i) {
                 if (UnicodeSet.resemblesPattern(result, i)) {
                     parsePosition.setIndex(i);
-                    UnicodeSet temp = new UnicodeSet(result, parsePosition, symbolTable);
+                    UnicodeSet temp = new UnicodeSet(result, parsePosition, IndexUnicodeProperties.make().getXSymbolTable());
                     String insert = getInsertablePattern(temp);
                     result =
                             result.substring(0, i)
@@ -981,7 +976,7 @@ public class Segmenter {
          * @param temp
          * @return
          */
-        private String getInsertablePattern(UnicodeSet temp) {
+        private static String getInsertablePattern(UnicodeSet temp) {
             temp.complement().complement();
             if (DEBUG_REDUCE_SET_SIZE != null) {
                 UnicodeSet temp2 = new UnicodeSet(temp);
@@ -1051,6 +1046,14 @@ public class Segmenter {
             }
             return result;
         }
+    }
+
+    public List<NamedRefinedSet> getPartitionDefinition() {
+        return partitionDefinition;
+    }
+
+    public List<SegmentationRule> getRules() {
+        return rules;
     }
 
     // ============== Internals ================
