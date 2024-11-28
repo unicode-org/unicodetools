@@ -1330,6 +1330,7 @@ sc ; Bamu                             ; Bamum
 sc ; Bass                             ; Bassa_Vah
 sc ; Batk                             ; Batak
 sc ; Beng                             ; Bengali
+sc ; Berf                             ; Beria_Erfe
 sc ; Bhks                             ; Bhaiksuki
 sc ; Bopo                             ; Bopomofo
 sc ; Brah                             ; Brahmi
@@ -1440,7 +1441,6 @@ sc ; Phlp                             ; Psalter_Pahlavi
 sc ; Phnx                             ; Phoenician
 sc ; Plrd                             ; Miao
 sc ; Prti                             ; Inscriptional_Parthian
-sc ; Qaba                             ; Beria_Erfe
 sc ; Rjng                             ; Rejang
 sc ; Rohg                             ; Hanifi_Rohingya
 sc ; Runr                             ; Runic
