@@ -12,11 +12,11 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.Composer;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.SpanCondition;
 import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
@@ -24,7 +24,6 @@ import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -34,8 +33,8 @@ import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+import java.util.stream.Collectors;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.tools.Segmenter.SegmentationRule.Breaks;
@@ -48,8 +47,9 @@ public class Segmenter {
     }
 
     public static final int REGEX_FLAGS = Pattern.COMMENTS | Pattern.MULTILINE | Pattern.DOTALL;
-    public static final Pattern IDENTIFIER_PATTERN =
-            Pattern.compile("[$][\\p{Alnum}_]+", REGEX_FLAGS);
+    private static final UnicodeSet PATTERN_SYNTAX = new UnicodeSet("\\p{pattern syntax}").freeze();
+    private static final UnicodeSet PATTERN_SYNTAX_OR_WHITE_SPACE =
+            new UnicodeSet("[\\p{pattern white space}\\p{pattern syntax}]").freeze();
 
     /**
      * If not null, masks off the character properties so the UnicodeSets are easier to use when
@@ -466,19 +466,6 @@ public class Segmenter {
 
     /** Separate the builder for clarity */
 
-    /** Sort the longest strings first. Used for variable lists. */
-    static Comparator<String> LONGEST_STRING_FIRST =
-            new Comparator<String>() {
-                public int compare(String s0, String s1) {
-                    int len0 = s0.length();
-                    int len1 = s1.length();
-                    if (len0 < len1) return 1; // longest first
-                    if (len0 > len1) return -1;
-                    // lengths equal, use string order
-                    return s0.compareTo(s1);
-                }
-            };
-
     /**
      * Used to build RuleLists. Can be used to do inheritance, since (a) adding a variable overrides
      * any previous value, and any variables used in its value are resolved before adding, and (b)
@@ -492,7 +479,88 @@ public class Segmenter {
         private Map<Double, String> xmlRules = new TreeMap<Double, String>();
         private Map<Double, String> htmlRules = new TreeMap<Double, String>();
         private List<String> lastComments = new ArrayList<String>();
-        private UnicodeMap<String> samples = new UnicodeMap<String>();
+
+        class NamedSet {
+            NamedSet(String name, UnicodeSet set) {
+                this.name = name;
+                this.set = set;
+            }
+
+            String name;
+            UnicodeSet set;
+        }
+
+        class NamedRefinedSet {
+            public NamedRefinedSet clone() {
+                NamedRefinedSet result = new NamedRefinedSet();
+                for (var term : intersectionTerms) {
+                    result.intersectionTerms.add(new NamedSet(term.name, term.set.cloneAsThawed()));
+                }
+                for (var subtrahend : subtrahends) {
+                    result.subtrahends.add(
+                            new NamedSet(subtrahend.name, subtrahend.set.cloneAsThawed()));
+                }
+                result.set = this.set.cloneAsThawed();
+                return result;
+            }
+
+            public NamedRefinedSet intersect(NamedSet set) {
+                String oldName = getName();
+                intersectionTerms.add(set);
+                UnicodeSet s = getIntersection();
+                var it = subtrahends.listIterator();
+                while (it.hasNext()) {
+                    NamedSet subtrahend = it.next();
+                    if (subtrahend.set.cloneAsThawed().retainAll(s).isEmpty()) {
+                        System.out.println(
+                                oldName
+                                        + " intersected with "
+                                        + set.name
+                                        + ": no need to subtract "
+                                        + subtrahend.name);
+                        it.remove();
+                    }
+                    s.removeAll(subtrahend.set);
+                }
+                this.set = s;
+                return this;
+            }
+
+            public NamedRefinedSet subtract(NamedSet set) {
+                subtrahends.add(set);
+                this.set.removeAll(set.set);
+                return this;
+            }
+
+            public UnicodeSet getSet() {
+                return set.cloneAsThawed();
+            }
+
+            public String getName() {
+                return intersectionTerms.isEmpty()
+                        ? null
+                        : intersectionTerms.stream()
+                                        .map((s) -> s.name)
+                                        .collect(Collectors.joining("_"))
+                                + subtrahends.stream()
+                                        .map((s) -> "m" + s.name)
+                                        .collect(Collectors.joining());
+            }
+
+            private UnicodeSet getIntersection() {
+                UnicodeSet result = UnicodeSet.ALL_CODE_POINTS.cloneAsThawed();
+                for (var term : intersectionTerms) {
+                    result.retainAll(term.set);
+                }
+                return result;
+            }
+
+            private List<NamedSet> intersectionTerms = new ArrayList<>();
+            private List<NamedSet> subtrahends = new ArrayList<>();
+            private UnicodeSet set = UnicodeSet.ALL_CODE_POINTS.cloneAsThawed();
+        }
+
+        private List<NamedRefinedSet> partition = new ArrayList<>(List.of(new NamedRefinedSet()));
 
         public Builder(UnicodeProperty.Factory factory, Target target) {
             propFactory = factory;
@@ -586,7 +654,7 @@ public class Segmenter {
             if (line.startsWith("show")) {
                 line = line.substring(4).trim();
                 System.out.println("# " + line + ": ");
-                System.out.println("\t" + replaceVariables(line));
+                System.out.println("\t" + expandUnicodeSets(replaceVariables(line, variables)));
                 return false;
             }
             // dumb parsing for now
@@ -638,29 +706,17 @@ public class Segmenter {
         }
 
         private transient Matcher whiteSpace = Pattern.compile("\\s+", REGEX_FLAGS).matcher("");
-        private transient Matcher identifierMatcher = IDENTIFIER_PATTERN.matcher("");
-        private Map<String, String> originalVariables = new TreeMap<String, String>();
-
-        /**
-         * Add a variable and value. Resolves the internal references in the value.
-         *
-         * @param displayName
-         * @param value
-         * @return
-         */
-        static class MyComposer extends UnicodeMap.Composer<String> {
-            public String compose(int codePoint, String string, String a, String b) {
-                if (a == null) return b;
-                if (b == null) return a;
-                if (a.equals(b)) return a;
-                return a + "_" + b;
-            }
-        }
-
-        static MyComposer myComposer = new MyComposer();
 
         Builder addVariable(String name, String value) {
-            originalVariables.put(name, value);
+            if (!(name.startsWith("$")
+                    && name.length() > 1
+                    && PATTERN_SYNTAX_OR_WHITE_SPACE.containsNone(name.substring(1)))) {
+                throw new IllegalArgumentException("Invalid name " + name);
+            }
+            if (variables.containsKey(name)) {
+                throw new IllegalArgumentException(
+                        "Reassigning " + name + " = " + variables.get(name) + " to " + value);
+            }
             if (lastComments.size() != 0) {
                 rawVariables.addAll(lastComments);
                 lastComments.clear();
@@ -671,12 +727,7 @@ public class Segmenter {
                             + "\">"
                             + TransliteratorUtilities.toXML.transliterate(value)
                             + "</variable>");
-            if (!identifierMatcher.reset(name).matches()) {
-                String show = RegexUtilities.showMismatch(identifierMatcher, name);
-                throw new IllegalArgumentException(
-                        "Variable name must be $id: '" + name + "' — " + show);
-            }
-            value = replaceVariables(value);
+            value = replaceVariables(value, variables);
             if (!name.endsWith("_")) {
                 try {
                     parsePosition.setIndex(0);
@@ -697,7 +748,7 @@ public class Segmenter {
                     } else {
                         String name2 = name;
                         if (name2.startsWith("$")) name2 = name2.substring(1);
-                        composeWith(samples, valueSet, name2, myComposer);
+                        refinePartition(new NamedSet(name2, valueSet));
                         if (SHOW_SAMPLES) {
                             System.out.println("Samples for: " + name + " = " + value);
                             System.out.println("\t" + valueSet);
@@ -713,26 +764,35 @@ public class Segmenter {
             if (value.equals("[]")) {
                 value = "(?!a)[a]"; // HACK to match nothing.
             }
-            Pattern.compile(value, REGEX_FLAGS).matcher("");
+            Pattern.compile(expandUnicodeSets(value), REGEX_FLAGS).matcher("");
             // if (false && name.equals("$AL")) {
             // findRegexProblem(value);
             // }
             variables.put(name, value);
+            expandedVariables.put(name, expandUnicodeSets(value));
             return this;
         }
 
-        public static UnicodeMap<String> composeWith(
-                UnicodeMap<String> target,
-                UnicodeSet set,
-                String value,
-                Composer<String> composer) {
-            for (UnicodeSetIterator it = new UnicodeSetIterator(set); it.next(); ) {
-                int i = it.codepoint;
-                String v1 = target.getValue(i);
-                String v3 = composer.compose(i, null, v1, value);
-                if (v1 != v3 && (v1 == null || !v1.equals(v3))) target.put(i, v3);
+        void refinePartition(NamedSet refinement) {
+            var it = partition.listIterator();
+            while (it.hasNext()) {
+                final NamedRefinedSet part = it.next();
+                final String partName = part.getName();
+                final UnicodeSet intersection = part.getSet().retainAll(refinement.set);
+                final UnicodeSet complement = part.getSet().removeAll(refinement.set);
+                if ((!intersection.isEmpty() && !complement.isEmpty())
+                        || (partName == null && !intersection.isEmpty())) {
+                    System.out.println(
+                            refinement.name
+                                    + " refines "
+                                    + (partName == null ? "(remainder)" : partName));
+                    it.remove();
+                    it.add(part.clone().intersect(refinement));
+                    if (!complement.isEmpty()) {
+                        it.add(part.clone().subtract(refinement));
+                    }
+                }
             }
-            return target;
         }
 
         Builder addRemapRule(Double order, String before, String after, String line) {
@@ -765,7 +825,10 @@ public class Segmenter {
                             + "> "
                             + TransliteratorUtilities.toXML.transliterate(line)
                             + " </rule>");
-            rules.put(order, new Segmenter.RemapRule(replaceVariables(before), after, line));
+            rules.put(
+                    order,
+                    new Segmenter.RemapRule(
+                            replaceVariables(before, expandedVariables), after, line));
             return this;
         }
 
@@ -826,7 +889,10 @@ public class Segmenter {
             rules.put(
                     order,
                     new Segmenter.RegexRule(
-                            replaceVariables(before), breaks, replaceVariables(after), line));
+                            replaceVariables(before, expandedVariables),
+                            breaks,
+                            replaceVariables(after, expandedVariables),
+                            line));
             return this;
         }
 
@@ -840,16 +906,18 @@ public class Segmenter {
             for (Double key : rules.keySet()) {
                 result.add(key.doubleValue(), rules.get(key));
             }
-            result.samples = samples;
+            for (var part : partition) {
+                if (part.getName() == null) {
+                    throw new IllegalArgumentException("Unclassified characters: " + part.getSet());
+                }
+                result.samples.putAll(part.getSet(), part.getName());
+            }
             return result;
         }
 
         // ============== internals ===================
-        private Map<String, String> variables =
-                new TreeMap<String, String>(LONGEST_STRING_FIRST); // sorted by length,
-        // longest first, to
-        // make substitution
-        // easy
+        private Map<String, String> expandedVariables = new TreeMap<String, String>();
+        private Map<String, String> variables = new TreeMap<String, String>();
         private Map<Double, SegmentationRule> rules = new TreeMap<Double, SegmentationRule>();
 
         public Map<Double, SegmentationRule> getProcessedRules() {
@@ -858,36 +926,34 @@ public class Segmenter {
 
         /**
          * A workhorse. Replaces all variable references: anything of the form $id. Flags an error
-         * if anything of that form is not a variable. Since we are using Java regex, the properties
-         * support is extremely weak. So replace them by literals.
+         * if anything of that form is not a variable.
          *
          * @param input
          * @return
          */
-        private String replaceVariables(String input) {
-            // to do, optimize
-            String result = input;
-            int position = -1;
-            main:
-            while (true) {
-                position = result.indexOf('$', position);
-                if (position < 0) break;
-                for (String name : variables.keySet()) {
-                    if (result.regionMatches(position, name, 0, name.length())) {
-                        String value = variables.get(name);
-                        result =
-                                result.substring(0, position)
-                                        + value
-                                        + result.substring(position + name.length());
-                        position += value.length(); // don't allow overlap
-                        continue main;
-                    }
+        private static String replaceVariables(String input, Map<String, String> variables) {
+            StringBuilder result = new StringBuilder();
+            int position = 0;
+            while (position < input.length()) {
+                final int dollar = input.indexOf('$', position);
+                if (dollar < 0) break;
+                result.append(input.substring(position, dollar));
+                position =
+                        PATTERN_SYNTAX_OR_WHITE_SPACE.span(
+                                input, dollar + 1, SpanCondition.NOT_CONTAINED);
+                final String name = input.substring(dollar, position);
+                if (!variables.containsKey(name)) {
+                    throw new IllegalArgumentException("Undefined variable " + name);
                 }
-                if (identifierMatcher.reset(result.substring(position)).lookingAt()) {
-                    throw new IllegalArgumentException(
-                            "Illegal variable at: '" + result.substring(position) + "'");
-                }
+                result.append(variables.get(name));
             }
+            result.append(input.substring(position));
+            return result.toString();
+        }
+
+        /** Replaces Unicode Sets with literals. */
+        public String expandUnicodeSets(String input) {
+            String result = input;
             // replace properties
             // TODO really dumb parse for now, fix later
             for (int i = 0; i < result.length(); ++i) {
@@ -973,6 +1039,7 @@ public class Segmenter {
             return result.toString();
         }
 
+        /* The mapping of variables to their values. */
         public Map<String, String> getVariables() {
             return Collections.unmodifiableMap(variables);
         }
@@ -983,10 +1050,6 @@ public class Segmenter {
                 result.add(key.toString() + ")\t" + htmlRules.get(key));
             }
             return result;
-        }
-
-        public Map<String, String> getOriginalVariables() {
-            return Collections.unmodifiableMap(originalVariables);
         }
     }
 

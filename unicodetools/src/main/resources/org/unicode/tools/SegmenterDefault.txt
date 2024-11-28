@@ -16,19 +16,15 @@ $V=\p{Grapheme_Cluster_Break=V}
 $T=\p{Grapheme_Cluster_Break=T}
 $LV=\p{Grapheme_Cluster_Break=LV}
 $LVT=\p{Grapheme_Cluster_Break=LVT}
-# Note: The following may overlap with the above
-# Note: ConjunctLinkingScripts is not used anymore, instead that list exists in the derivation of Indic_Conjunct_Break.
-# It is kept here so that the diff of the generated test cases compared to the Unicode 15.1 β is minimal.
-# TODO(egg): Consider removing in Unicode 16.0.
-$ConjunctLinkingScripts=[\p{Gujr}\p{sc=Telu}\p{sc=Mlym}\p{sc=Orya}\p{sc=Beng}\p{sc=Deva}]
 $ConjunctLinker=\p{Indic_Conjunct_Break=Linker}
 $LinkingConsonant=\p{Indic_Conjunct_Break=Consonant}
 ##	$E_Base=\p{Grapheme_Cluster_Break=E_Base}
 ##	$E_Modifier=\p{Grapheme_Cluster_Break=E_Modifier}
 $ExtPict=\p{Extended_Pictographic}
-$ExtCccZwj=[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
+$ConjunctExtender=[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
 ##	$EBG=\p{Grapheme_Cluster_Break=E_Base_GAZ}
 ##	$Glue_After_Zwj=\p{Grapheme_Cluster_Break=Glue_After_Zwj}
+$XX = \p{Grapheme_Cluster_Break=Other}
 
 # RULES
 
@@ -47,7 +43,7 @@ $ExtCccZwj=[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
 # Only for extended grapheme clusters: Do not break before SpacingMarks, or after Prepend characters.
 9.1) × 	$SpacingMark
 9.2) $Prepend  ×
-9.3) $LinkingConsonant $ExtCccZwj* $ConjunctLinker $ExtCccZwj*  × $LinkingConsonant
+9.3) $LinkingConsonant $ConjunctExtender* $ConjunctLinker $ConjunctExtender*  × $LinkingConsonant
 ## Do not break within emoji modifier sequences or emoji zwj sequences.
 ##	10) $E_Base $Extend* × $E_Modifier
 11) $ExtPict $Extend* $ZWJ × $ExtPict
@@ -62,7 +58,7 @@ $ExtCccZwj=[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
 
 $AI=\p{Line_Break=Ambiguous}
 $AK=\p{Line_Break=Aksara}
-$AL=\p{Line_Break=Alphabetic}
+$ALorig=\p{Line_Break=Alphabetic}
 $AP=\p{Line_Break=Aksara_Prebase}
 $AS=\p{Line_Break=Aksara_Start}
 $B2=\p{Line_Break=Break_Both}
@@ -72,7 +68,7 @@ $BK=\p{Line_Break=Mandatory_Break}
 $CB=\p{Line_Break=Contingent_Break}
 $CL=\p{Line_Break=Close_Punctuation}
 $CP=\p{Line_Break=CP}
-$CM=\p{Line_Break=Combining_Mark}
+$CMorig=\p{Line_Break=Combining_Mark}
 $CR=\p{Line_Break=Carriage_Return}
 $EX=\p{Line_Break=Exclamation}
 $GL=\p{Line_Break=Glue}
@@ -88,13 +84,15 @@ $JT=\p{Line_Break=JT}
 $JV=\p{Line_Break=JV}
 $LF=\p{Line_Break=Line_Feed}
 $NL=\p{Line_Break=Next_Line}
-$NS=\p{Line_Break=Nonstarter}
+$NSorig=\p{Line_Break=Nonstarter}
 $NU=\p{Line_Break=Numeric}
 $OP=\p{Line_Break=Open_Punctuation}
 $PO=\p{Line_Break=Postfix_Numeric}
 $PR=\p{Line_Break=Prefix_Numeric}
 $QU=\p{Line_Break=Quotation}
-$SA=\p{Line_Break=Complex_Context}
+$SA_Mn=[\p{Line_Break=Complex_Context}&\p{gc=Mn}]
+$SA_Mc=[\p{Line_Break=Complex_Context}&\p{gc=Mc}]
+$SAmMnmMc=[\p{Line_Break=Complex_Context}-\p{gc=Mn}-\p{gc=Mc}]
 $SG=\p{Line_Break=Surrogate}
 $SP=\p{Line_Break=Space}
 $SY=\p{Line_Break=Break_Symbols}
@@ -109,11 +107,14 @@ $EB=\p{Line_Break=E_Base}
 $EM=\p{Line_Break=E_Modifier}
 $ZWJ=\p{Line_Break=ZWJ}
 
-$QU_Pi=[$QU & \p{gc=Pi}]
-$QU_Pf=[$QU & \p{gc=Pf}]
+$Pi = \p{gc=Pi}
+$Pf = \p{gc=Pf}
 
-$QUmPi=[$QU - \p{gc=Pi}]
-$QUmPf=[$QU - \p{gc=Pf}]
+$QU_Pi=[$QU & $Pi]
+$QU_Pf=[$QU & $Pf]
+
+$QUmPi=[$QU - $Pi]
+$QUmPf=[$QU - $Pf]
 
 $EastAsian   = [\p{ea=F}\p{ea=W}\p{ea=H}]
 $NonEastAsianBA = [$BA & [^$EastAsian]]
@@ -121,8 +122,8 @@ $NonEastAsianBA = [$BA & [^$EastAsian]]
 $DottedCircle = [◌]
 $Hyphen = [\u2010]
 
-$CP30=[$CP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
-$OP30=[$OP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
+$CPmEastAsian=[$CP-$EastAsian]
+$OPmEastAsian=[$OP-$EastAsian]
 
 $ExtPictUnassigned=[\p{Extended_Pictographic}&\p{gc=Cn}]
 
@@ -136,10 +137,11 @@ $eot=(?!.)
 
 # LB 1  Assign a line breaking class to each code point of the input. 
 # Resolve AI, CB, SA, SG, and XX into other line breaking classes depending on criteria outside the scope of this algorithm.
-# NOTE: CB is ok to fall through, but must handle others here.
-##	show $AL
-$AL=[$AI $AL $SG $XX $SA]
-$NS=[$NS $CJ]
+# In the absence of such criteria all characters with a specific combination of
+# original class and General_Category property value are resolved as follows:
+$AL=[$AI $ALorig $SG $XX $SAmMnmMc]
+$CM=[$CMorig $SA_Mn $SA_Mc]
+$NS=[$NSorig $CJ]
 
 # RULES
 
@@ -263,8 +265,8 @@ $NS=[$NS $CJ]
 # LB 29  Do not break between numeric punctuation and alphabetics (\"e.g.\").
 29) $IS × ($AL | $HL)
 # LB 30  Do not break between letters, numbers or ordinary symbols and opening or closing punctuation.
-30.01) ($AL | $HL | $NU) × $OP30
-30.02) $CP30 × ($AL | $HL | $NU)
+30.01) ($AL | $HL | $NU) × $OPmEastAsian
+30.02) $CPmEastAsian × ($AL | $HL | $NU)
 # LB 30a  Break between two Regional Indicators if and only if there is an even number of them before the point being considered.
 30.11) $sot ($RI $RI)* $RI × $RI
 30.12) [^$RI] ($RI $RI)* $RI × $RI
@@ -291,6 +293,7 @@ $ATerm=\p{Sentence_Break=ATerm}
 $STerm=\p{Sentence_Break=STerm}
 $Close=\p{Sentence_Break=Close}
 $SContinue=\p{Sentence_Break=SContinue}
+$XX=\p{Sentence_Break=Other}
 $Any=.
 
 # SPECIAL EXTENSIONS
@@ -365,6 +368,7 @@ $ExtPict=\p{Extended_Pictographic}
 ##	$EBG=\p{Word_Break=E_Base_GAZ}
 ##	$Glue_After_Zwj=\p{Word_Break=Glue_After_Zwj}
 $WSegSpace=\p{Word_Break=WSegSpace}
+$XX=\p{Word_Break=Other}
 
 # MACROS
 
