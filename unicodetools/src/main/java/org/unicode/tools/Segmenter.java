@@ -17,7 +17,6 @@ import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
-import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
 import java.text.ParsePosition;
@@ -383,7 +382,13 @@ public class Segmenter {
 
         @Override
         public String toCppOldMonkeyString() {
-            return "std::make_unique<RemapRule>(uR\"(" + name + ")\", uR\"(" + patternDefinition.replaceAll("&", "&&").replaceAll("-", "--") + ")\", uR\"("  + replacement + ")\")";
+            return "std::make_unique<RemapRule>(uR\"("
+                    + name
+                    + ")\", uR\"("
+                    + patternDefinition.replaceAll("&", "&&").replaceAll("-", "--")
+                    + ")\", uR\"("
+                    + replacement
+                    + ")\")";
         }
     }
 
@@ -471,8 +476,15 @@ public class Segmenter {
 
         @Override
         public String toCppOldMonkeyString() {
-            return "std::make_unique<RegexRule>(uR\"(" + name + ")\", uR\"(" + beforeDefinition.replaceAll("&", "&&").replaceAll("-", "--") + ")\", u'"
-                    + (breaks == Breaks.BREAK ? '÷' : '×') + "', uR\"(" + afterDefinition.replaceAll("&", "&&").replaceAll("-", "--") + ")\")";
+            return "std::make_unique<RegexRule>(uR\"("
+                    + name
+                    + ")\", uR\"("
+                    + beforeDefinition.replaceAll("&", "&&").replaceAll("-", "--")
+                    + ")\", u'"
+                    + (breaks == Breaks.BREAK ? '÷' : '×')
+                    + "', uR\"("
+                    + afterDefinition.replaceAll("&", "&&").replaceAll("-", "--")
+                    + ")\")";
         }
 
         // ============== Internals ================
@@ -519,11 +531,15 @@ public class Segmenter {
             public NamedRefinedSet clone() {
                 NamedRefinedSet result = new NamedRefinedSet();
                 for (var term : intersectionTerms) {
-                    result.intersectionTerms.add(new NamedSet(term.name, term.definition, term.set.cloneAsThawed()));
+                    result.intersectionTerms.add(
+                            new NamedSet(term.name, term.definition, term.set.cloneAsThawed()));
                 }
                 for (var subtrahend : subtrahends) {
                     result.subtrahends.add(
-                            new NamedSet(subtrahend.name, subtrahend.definition, subtrahend.set.cloneAsThawed()));
+                            new NamedSet(
+                                    subtrahend.name,
+                                    subtrahend.definition,
+                                    subtrahend.set.cloneAsThawed()));
                 }
                 result.set = this.set.cloneAsThawed();
                 return result;
@@ -575,12 +591,14 @@ public class Segmenter {
             public String getDefinition() {
                 return intersectionTerms.isEmpty()
                         ? "[^[]]"
-                        : "[" + intersectionTerms.stream()
+                        : "["
+                                + intersectionTerms.stream()
                                         .map((s) -> s.definition)
                                         .collect(Collectors.joining("&"))
                                 + subtrahends.stream()
                                         .map((s) -> "-" + s.definition)
-                                        .collect(Collectors.joining()) + "]";
+                                        .collect(Collectors.joining())
+                                + "]";
             }
 
             private UnicodeSet getIntersection() {
@@ -720,11 +738,16 @@ public class Segmenter {
                             + "\">"
                             + TransliteratorUtilities.toXML.transliterate(value)
                             + "</variable>");
-            value = replaceVariables(value, variables);;
+            value = replaceVariables(value, variables);
+            ;
             if (!name.endsWith("_")) {
                 try {
                     parsePosition.setIndex(0);
-                    UnicodeSet valueSet = new UnicodeSet(value, parsePosition, IndexUnicodeProperties.make().getXSymbolTable());
+                    UnicodeSet valueSet =
+                            new UnicodeSet(
+                                    value,
+                                    parsePosition,
+                                    IndexUnicodeProperties.make().getXSymbolTable());
                     if (parsePosition.getIndex() != value.length()) {
                         if (SHOW_SAMPLES)
                             System.out.println(
@@ -820,8 +843,7 @@ public class Segmenter {
                             + " </rule>");
             rules.put(
                     order,
-                    new Segmenter.RemapRule(
-                            replaceVariables(before, variables), after, line));
+                    new Segmenter.RemapRule(replaceVariables(before, variables), after, line));
             return this;
         }
 
@@ -954,7 +976,11 @@ public class Segmenter {
             for (int i = 0; i < result.length(); ++i) {
                 if (UnicodeSet.resemblesPattern(result, i)) {
                     parsePosition.setIndex(i);
-                    UnicodeSet temp = new UnicodeSet(result, parsePosition, IndexUnicodeProperties.make().getXSymbolTable());
+                    UnicodeSet temp =
+                            new UnicodeSet(
+                                    result,
+                                    parsePosition,
+                                    IndexUnicodeProperties.make().getXSymbolTable());
                     String insert = getInsertablePattern(temp);
                     result =
                             result.substring(0, i)
