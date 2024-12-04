@@ -1,13 +1,10 @@
 # See publish-ucd.yml
 
-UNITOOLS_DATA=unicodetools/data
-DRAFT=dist
-
 TODAY=`date --iso-8601`
 
-mkdir -p $DRAFT
+mkdir dist
 
-cat > $DRAFT/sed-readmes.txt << eof
+cat > dist/sed-readmes.txt << eof
 s/COPY_YEAR/$COPY_YEAR/
 s/PUB_DATE/$TODAY/
 s/PUB_STATUS/draft/
@@ -17,34 +14,33 @@ s%PUBLIC_EMOJI%Public/draft/emoji%
 s%PUBLIC_UCD%Public/draft/UCD%
 eof
 
-mkdir -p $DRAFT/UCD/ucd
-mkdir -p $DRAFT/zipped
-cp -r $UNITOOLS_DATA/ucd/dev/* $DRAFT/UCD/ucd
-rm -r $DRAFT/UCD/ucd/Unihan
-mv $DRAFT/UCD/ucd/version-ReadMe.txt $DRAFT/UCD/ReadMe.txt
-mv $DRAFT/UCD/ucd/zipped-ReadMe.txt $DRAFT/zipped/ReadMe.txt
+mkdir -p dist/UCD/ucd
+mkdir dist/zipped
+cp -r unicodetools/data/ucd/dev/* dist/UCD/ucd
+rm -r dist/UCD/ucd/Unihan
+mv dist/UCD/ucd/version-ReadMe.txt dist/UCD/ReadMe.txt
+mv dist/UCD/ucd/zipped-ReadMe.txt dist/zipped/ReadMe.txt
 
 if [ $MODE = "alpha" ]; then
-    mkdir -p $DRAFT/emoji
-    cp $UNITOOLS_DATA/emoji/dev/* $DRAFT/emoji
+    mkdir dist/emoji
+    cp unicodetools/data/emoji/dev/* dist/emoji
 
-    mkdir -p $DRAFT/idna
-    cp $UNITOOLS_DATA/idna/dev/* $DRAFT/idna
+    mkdir dist/idna
+    cp unicodetools/data/idna/dev/* dist/idna
 
-    mkdir -p $DRAFT/idna2008derived
-    rm $DRAFT/idna2008derived/*
-    cp $UNITOOLS_DATA/idna/idna2008derived/Idna2008-$UNI_VER.txt $DRAFT/idna2008derived
-    cp $UNITOOLS_DATA/idna/idna2008derived/ReadMe.txt $DRAFT/idna2008derived
+    mkdir dist/idna2008derived
+    cp unicodetools/data/idna/idna2008derived/Idna2008-$UNI_VER.txt dist/idna2008derived
+    cp unicodetools/data/idna/idna2008derived/ReadMe.txt dist/idna2008derived
 else
-    rm -r $DRAFT/UCD/ucd/emoji
+    rm -r dist/UCD/ucd/emoji
 fi
 
 # Update the readmes in-place (-i) as set up above.
-find $DRAFT -name '*ReadMe.txt' | xargs sed -i -f $DRAFT/sed-readmes.txt
+find dist -name '*ReadMe.txt' | xargs sed -i -f dist/sed-readmes.txt
 
 # Zip files for some types of data, after fixing permissions
-rm $DRAFT/UCD/ucd/UCD.zip
-(cd $DRAFT/UCD/ucd; zip -r UCD.zip * && mv UCD.zip $DRAFT/zipped)
+(cd dist/UCD/ucd; zip -r UCD.zip *)
+mv dist/UCD/ucd/UCD.zip dist/zipped
 
 # Cleanup
-rm $DRAFT/sed-readmes.txt
+rm dist/sed-readmes.txt
