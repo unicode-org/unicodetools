@@ -21,9 +21,23 @@ mkdir -p $DRAFT/UCD/ucd
 mkdir -p $DRAFT/zipped
 cp -r $UNITOOLS_DATA/ucd/dev/* $DRAFT/UCD/ucd
 rm -r $DRAFT/UCD/ucd/Unihan
-rm -r $DRAFT/UCD/ucd/emoji
 mv $DRAFT/UCD/ucd/version-ReadMe.txt $DRAFT/UCD/ReadMe.txt
 mv $DRAFT/UCD/ucd/zipped-ReadMe.txt $DRAFT/zipped/ReadMe.txt
+
+if [ $MODE = "alpha" ]; then
+    mkdir -p $DRAFT/emoji
+    cp $UNITOOLS_DATA/emoji/dev/* $DRAFT/emoji
+
+    mkdir -p $DRAFT/idna
+    cp $UNITOOLS_DATA/idna/dev/* $DRAFT/idna
+
+    mkdir -p $DRAFT/idna2008derived
+    rm $DRAFT/idna2008derived/*
+    cp $UNITOOLS_DATA/idna/idna2008derived/Idna2008-$UNI_VER.txt $DRAFT/idna2008derived
+    cp $UNITOOLS_DATA/idna/idna2008derived/ReadMe.txt $DRAFT/idna2008derived
+else
+    rm -r $DRAFT/UCD/ucd/emoji
+fi
 
 # Update the readmes in-place (-i) as set up above.
 find $DRAFT -name '*ReadMe.txt' | xargs sed -i -f $DRAFT/sed-readmes.txt

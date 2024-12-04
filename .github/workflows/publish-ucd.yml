@@ -1,16 +1,26 @@
 # See https://github.com/unicode-org/unicodetools/blob/main/docs/data-workflow.md#publication
 
-# Test locally with https://github.com/nektos/act: act --workflows .github/workflows/publish-ucd.yml
+# Test locally with https://github.com/nektos/act:
+#   act --workflows .github/workflows/publish-ucd.yml --input mode=snapshot
 
 name: Publish UCD
 
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: Publication mode
+        type: choice
+        options:
+          - snapshot
+          - alpha
+        default: snapshot
 
 env:
   COPY_YEAR: "2024"
   UNI_VER: "17.0.0"
   EMOJI_VER: "17.0"
+  MODE: ${{ inputs.mode }}
 
 jobs:
   build:
