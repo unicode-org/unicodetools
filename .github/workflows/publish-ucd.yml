@@ -1,0 +1,23 @@
+# See https://github.com/unicode-org/unicodetools/blob/main/docs/data-workflow.md#publication
+
+# Test locally with https://github.com/nektos/act: act --workflows .github/workflows/publish-ucd.yml
+
+name: Publish UCD
+
+on:
+  workflow_dispatch:
+
+env:
+  COPY_YEAR: "2024"
+  UNI_VER: "17.0.0"
+  EMOJI_VER: "17.0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: .github/workflows/publish-ucd.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          path: dist

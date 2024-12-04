@@ -1,19 +1,7 @@
-# Script for
-# https://github.com/unicode-org/unicodetools/blob/main/docs/data-workflow.md#publish-a-ucd-snapshot
-#
-# Invoke like this:
-#
-# pub/copy-ucd-to-draft.sh  ~/unitools/mine/src  /tmp/unicode/Public/draft
+# See publish-ucd.yml
 
-UNICODETOOLS=$1
-DRAFT=$2
-
-UNITOOLS_DATA=$UNICODETOOLS/unicodetools/data
-
-# Adjust the following for each year and version as needed.
-COPY_YEAR=2024
-UNI_VER=17.0.0
-EMOJI_VER=17.0
+UNITOOLS_DATA=unicodetools/data
+DRAFT=dist
 
 TODAY=`date --iso-8601`
 
@@ -37,9 +25,6 @@ rm -r $DRAFT/UCD/ucd/emoji
 mv $DRAFT/UCD/ucd/version-ReadMe.txt $DRAFT/UCD/ReadMe.txt
 mv $DRAFT/UCD/ucd/zipped-ReadMe.txt $DRAFT/zipped/ReadMe.txt
 
-# Fix permissions. Everyone can read, and search directories.
-chmod a+rX -R $DRAFT
-
 # Update the readmes in-place (-i) as set up above.
 find $DRAFT -name '*ReadMe.txt' | xargs sed -i -f $DRAFT/sed-readmes.txt
 
@@ -49,12 +34,3 @@ rm $DRAFT/UCD/ucd/UCD.zip
 
 # Cleanup
 rm $DRAFT/sed-readmes.txt
-
-rm $DRAFT/ucd-snapshot.zip
-(cd $DRAFT; zip -r ucd-snapshot.zip *)
-
-echo "--------------------"
-echo "Copy files from elsewhere:"
-echo "- Unihan.zip to $DRAFT/UCD/ucd"
-echo "- Unihan.zip to $DRAFT/zipped"
-
