@@ -1,9 +1,11 @@
 # See https://github.com/unicode-org/unicodetools/blob/main/docs/data-workflow.md#publication
 
 # Test locally with https://github.com/nektos/act:
-#   act --workflows .github/workflows/publish-ucd.yml --input mode=snapshot
+#   act --workflows .github/workflows/publish-ucd.yml --input mode=Alpha
 
 name: Publish UCD
+
+run-name: "${{ github.workflow }}: ${{ inputs.mode }}"
 
 on:
   workflow_dispatch:
@@ -12,9 +14,9 @@ on:
         description: Publication mode
         type: choice
         options:
-          - snapshot
-          - alpha
-        default: snapshot
+          - Snapshot
+          - Alpha
+        default: Snapshot
 
 env:
   COPY_YEAR: "2024"
@@ -27,6 +29,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github/workflows
+            unicodetools/data/ucd/dev
+            unicodetools/data/emoji/dev
+            unicodetools/data/idna/dev
+            unicodetools/data/idna/idna2008derived
       - run: .github/workflows/publish-ucd.sh
       - uses: actions/upload-artifact@v4
         with:

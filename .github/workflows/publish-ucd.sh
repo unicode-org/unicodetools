@@ -21,7 +21,7 @@ rm -r dist/UCD/ucd/Unihan
 mv dist/UCD/ucd/version-ReadMe.txt dist/UCD/ReadMe.txt
 mv dist/UCD/ucd/zipped-ReadMe.txt dist/zipped/ReadMe.txt
 
-if [ $MODE = "alpha" ]; then
+if [ $MODE = "Alpha" ]; then
     mkdir dist/emoji
     cp unicodetools/data/emoji/dev/* dist/emoji
 
