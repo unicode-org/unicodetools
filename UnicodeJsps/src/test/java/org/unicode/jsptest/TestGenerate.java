@@ -1,7 +1,7 @@
 package org.unicode.jsptest;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.DateFormat;

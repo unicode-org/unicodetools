@@ -10,7 +10,7 @@
 package org.unicode.text.utility;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Replaceable;
 import com.ibm.icu.text.Transliterator;
