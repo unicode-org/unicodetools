@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="gc attribute" id='schema.properties'>
+  code-point-attributes &amp;=
+    attribute gc { "Cc" | "Cf" | "Cn" | "Co" | "Cs"
+                 | "Ll" | "Lm" | "Lo" | "Lt" | "Lu"
+                 | "Mc" | "Me" | "Mn"
+                 | "Nd" | "Nl" | "No"
+                 | "Pc" | "Pd" | "Pe" | "Pf" | "Pi" | "Po" | "Ps"
+                 | "Sc" | "Sk" | "Sm" | "So"
+                 | "Zl" | "Zp" | "Zs"
+                 }?
+</ucdxml:block>

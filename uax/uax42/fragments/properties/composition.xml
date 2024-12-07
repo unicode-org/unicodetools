@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="composition properties" id='schema.properties'>
+  code-point-attributes &amp;=
+    attribute CE { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Comp_Ex { boolean }?
+</ucdxml:block>
