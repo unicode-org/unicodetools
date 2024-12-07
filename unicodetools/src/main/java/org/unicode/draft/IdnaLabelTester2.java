@@ -1,7 +1,7 @@
 package org.unicode.draft;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMapIterator;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMapIterator;
 import com.ibm.icu.impl.Punycode;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;

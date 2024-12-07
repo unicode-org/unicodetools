@@ -10,7 +10,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;

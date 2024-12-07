@@ -1,6 +1,6 @@
 package org.unicode.draft;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.Normalizer2.Mode;

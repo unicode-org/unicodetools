@@ -1,6 +1,6 @@
 package org.unicode.text.tools;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import java.util.HashMap;
 import java.util.Locale;

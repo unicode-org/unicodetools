@@ -6,7 +6,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Row.R2;
 import java.io.File;
 import java.io.IOException;

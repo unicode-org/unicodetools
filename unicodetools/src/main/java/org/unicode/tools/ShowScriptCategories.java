@@ -1,6 +1,6 @@
 package org.unicode.tools;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.text.LocaleDisplayNames;
 import com.ibm.icu.text.UnicodeSet;

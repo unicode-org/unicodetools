@@ -2,8 +2,8 @@ package org.unicode.tools;
 
 import com.google.common.collect.ComparisonChain;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;

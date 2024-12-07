@@ -1,7 +1,7 @@
 package org.unicode.jsptest;
 
 import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.impl.Utility;

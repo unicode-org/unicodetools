@@ -2,7 +2,7 @@ package org.unicode.text.UCD;
 
 import com.google.common.base.Strings;
 import com.ibm.icu.dev.tool.UOption;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.Transliterator;

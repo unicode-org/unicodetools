@@ -1,7 +1,7 @@
 package org.unicode.props;
 
 import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer2;

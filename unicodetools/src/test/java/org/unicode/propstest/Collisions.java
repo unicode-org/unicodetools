@@ -2,7 +2,7 @@ package org.unicode.propstest;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;

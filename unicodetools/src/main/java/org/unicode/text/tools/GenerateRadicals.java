@@ -1,6 +1,6 @@
 package org.unicode.text.tools;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row.R5;
 import com.ibm.icu.lang.CharSequences;

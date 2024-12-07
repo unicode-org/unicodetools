@@ -8,9 +8,9 @@
  */
 package org.unicode.unused;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.Composer;
-import com.ibm.icu.dev.util.UnicodeMapIterator;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap.Composer;
+import com.ibm.icu.impl.UnicodeMapIterator;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Utility;
