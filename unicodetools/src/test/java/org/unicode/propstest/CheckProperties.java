@@ -1,10 +1,10 @@
 package org.unicode.propstest;
 
-import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;

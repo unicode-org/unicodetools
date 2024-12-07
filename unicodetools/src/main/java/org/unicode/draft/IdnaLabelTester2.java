@@ -1,11 +1,11 @@
 package org.unicode.draft;
 
-import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.impl.UnicodeMapIterator;
 import com.ibm.icu.impl.Punycode;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Row.R5;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMapIterator;
 import com.ibm.icu.impl.UnicodeRegex;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;

@@ -8,11 +8,11 @@
  */
 package org.unicode.unused;
 
+import com.ibm.icu.impl.Row;
+import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.UnicodeMap.Composer;
 import com.ibm.icu.impl.UnicodeMapIterator;
-import com.ibm.icu.impl.Row;
-import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UScript;

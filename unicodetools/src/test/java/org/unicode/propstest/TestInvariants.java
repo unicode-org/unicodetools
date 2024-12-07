@@ -1,7 +1,7 @@
 package org.unicode.propstest;
 
-import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Relation;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.ArrayList;
 import java.util.Arrays;

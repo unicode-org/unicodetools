@@ -1,7 +1,7 @@
 package org.unicode.tools;
 
-import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Relation;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 // import com.ibm.icu.text.CollationElementIterator;
 // import com.ibm.icu.text.Collator;

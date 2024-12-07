@@ -1,7 +1,7 @@
 package org.unicode.draft;
 
-import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.Normalizer;
