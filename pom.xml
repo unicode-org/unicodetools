@@ -24,9 +24,9 @@
     <properties>
         <!--
             For ICU versions, see https://github.com/orgs/unicode-org/packages?repo_name=icu
-            Note that we can't use the general ICU maven packages, because utilities isn't exported (yet).
-         -->
-        <icu.version>76.1-20241206.234144-4</icu.version>
+            or use vanilla *released* ICU versions like 76.1 which come from Maven Central.
+          -->
+        <icu.version>76.1</icu.version>
 
         <!--
              For CLDR versions, see https://github.com/orgs/unicode-org/packages?repo_name=cldr
