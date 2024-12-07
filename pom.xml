@@ -71,12 +71,6 @@
                 <artifactId>icu4j</artifactId>
                 <version>${icu.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>com.ibm.icu</groupId>
-                <artifactId>utilities-for-cldr</artifactId>
-                <version>${icu.version}</version>
-            </dependency>
             <!-- cldr -->
             <dependency>
                 <groupId>org.unicode.cldr</groupId>
