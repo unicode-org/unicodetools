@@ -1,7 +1,7 @@
 package org.unicode.propstest;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;

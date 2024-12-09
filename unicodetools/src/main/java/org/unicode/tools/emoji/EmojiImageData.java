@@ -1,7 +1,7 @@
 package org.unicode.tools.emoji;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.VersionInfo;

@@ -9,7 +9,7 @@
  */
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -1309,6 +1309,10 @@ public final class UCD implements UCD_Types {
                     // Unicode 12 added TANGUT IDEOGRAPH-187F2..TANGUT IDEOGRAPH-187F7.
                     return TANGUT_BASE;
                 }
+                if (ch <= 0x187FF && rCompositeVersion >= 0x110000) {
+                    // Unicode 17 added TANGUT IDEOGRAPH-187F8..TANGUT IDEOGRAPH-187FF.
+                    return TANGUT_BASE;
+                }
             }
 
             if (rCompositeVersion >= 0xd0000) {
@@ -1320,6 +1324,14 @@ public final class UCD implements UCD_Types {
                 }
                 if (ch <= 0x18D08) {
                     return TANGUT_SUP_BASE; // 18D00..18D08 Tangut Ideograph Supplement
+                }
+                if (ch <= 0x18D1C && rCompositeVersion >= 0x110000) {
+                    // Unicode 17 added TANGUT IDEOGRAPH-18D09..TANGUT IDEOGRAPH-18D1C.
+                    return TANGUT_SUP_BASE;
+                }
+                if (ch <= 0x18D1E && rCompositeVersion >= 0x110000) {
+                    // Unicode 17 added TANGUT IDEOGRAPH-18D1D..TANGUT IDEOGRAPH-18D1E.
+                    return TANGUT_SUP_BASE;
                 }
             }
 
@@ -1348,6 +1360,9 @@ public final class UCD implements UCD_Types {
                     return CJK_C_BASE;
                 }
                 if (ch <= 0x2B739 && rCompositeVersion >= 0xf0000) {
+                    return CJK_C_BASE;
+                }
+                if (ch <= 0x2B73E && rCompositeVersion >= 0x110000) {
                     return CJK_C_BASE;
                 }
             }
@@ -1403,6 +1418,15 @@ public final class UCD implements UCD_Types {
                 }
                 if (ch < CJK_H_LIMIT) {
                     return CJK_H_BASE;
+                }
+            }
+            // 323B0..33479; CJK Unified Ideographs Extension H
+            if (rCompositeVersion >= 0x110000) {
+                if (ch <= CJK_J_BASE) {
+                    return ch; // Extension J first char
+                }
+                if (ch < CJK_J_LIMIT) {
+                    return CJK_J_BASE;
                 }
             }
 
@@ -1659,6 +1683,7 @@ public final class UCD implements UCD_Types {
             case CJK_I_BASE:
             case CJK_G_BASE: // Extension G
             case CJK_H_BASE:
+            case CJK_J_BASE:
                 if (fixStrings) {
                     constructedName = "CJK UNIFIED IDEOGRAPH-" + Utility.hex(codePoint, 4);
                 }

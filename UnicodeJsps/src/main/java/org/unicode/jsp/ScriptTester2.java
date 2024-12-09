@@ -4,7 +4,7 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer2;

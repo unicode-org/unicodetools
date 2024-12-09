@@ -1,8 +1,8 @@
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R3;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.RuleBasedCollator;
@@ -724,6 +724,7 @@ public class MakeUnicodeFiles {
         final BagFormatter bf = new BagFormatter();
         bf.setHexValue(false)
                 .setMergeRanges(true)
+                .setRangeBreakSource(null)
                 .setNoSpacesBeforeSemicolon()
                 .setMinSpacesAfterSemicolon(0)
                 .setUnicodeDataStyleRanges(true)
@@ -1682,7 +1683,7 @@ public class MakeUnicodeFiles {
         // where Cn ranges are allowed to extend from the unassigned part of one block into the
         // No_Block void beyond.
         Map<String, String> ignoreBlocksInCJKVPlanes = new HashMap<String, String>();
-        for (char ext = 'B'; ext <= 'I'; ++ext) {
+        for (char ext = 'B'; ext <= 'J'; ++ext) {
             ignoreBlocksInCJKVPlanes.put("CJK_Ext_" + ext, "NB");
         }
         UnicodeProperty blockOrIdeographicPlane =

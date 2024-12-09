@@ -1,0 +1,18 @@
+# [Template for property comparison tests of character encoding proposals]
+# [RMG ISSUE TITLE]
+# https://github.com/unicode-org/utc-release-management/issues/[RMG ISSUE NUMBER]
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+
+Ignoring kRSTUnicode kTGT_MergedSrc:
+Propertywise [\x{18D00}\x{18D1D}\x{18D1E}] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
