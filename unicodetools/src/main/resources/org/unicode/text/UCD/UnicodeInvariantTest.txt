@@ -1296,6 +1296,13 @@ $tangutSourcesScope = [ [\p{gc=Lo} & \p{sc=Tangut}] - \p{name=/^TANGUT COMPONENT
 $tangutSourcesScope = \P{kTGT_MergedSrc=@none@}
 $tangutSourcesScope = \P{kRSTUnicode=@none@}
 
+# Jurchen invariants
+
+Let $jurchenSourcesScope := [\p{Block=/^Jurchen(.Supplement)?$/} - \p{gc=Cn}]
+$jurchenSourcesScope = [ [\p{gc=Lo} & \p{sc=Jurchen}] - \p{name=/^JURCHEN RADICAL-/} ]
+$jurchenSourcesScope = \P{kJUR_Src=@none@}
+$jurchenSourcesScope = \P{kRSJUnicode=@none@}
+
 # Nüshu invariants
 
 Let $nüshuSourcesScope := [\p{Block=Nushu} - \p{gc=Cn}]
