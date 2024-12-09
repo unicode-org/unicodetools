@@ -91,6 +91,28 @@ Make sure to publish exactly the intended set of files.
 Skip the NamesList.txt and Unihan data files (see above),
 and skip any others that are only for internal use.
 
+### Publish a UCD snapshot
+
+When we have a usable snapshot of the UCD for new repertoire, we should publish the data files,
+so that the Charts WG and others can pick them up for their work.
+As a pre-alpha snapshot, we do not yet publish security/IDNA/emoji files.
+
+Review/edit the pub/*.sh scripts and advance the version numbers and copyright years.
+
+Run the [pub/copy-ucd-to-draft.sh](https://github.com/unicode-org/unicodetools/blob/main/pub/copy-ucd-to-draft.sh)
+script from an up-to-date repo workspace.
+The script copies the set of the .../dev/ data files for an alpha snapshot
+from a unicodetools workspace to a target folder with the layout of https://www.unicode.org/Public/draft/ .
+
+Send the resulting zip file to Rick for posting to https://www.unicode.org/Public/draft/ .
+Ask Rick to add other files that are not tracked in the unicodetools repo:
+*   Unihan.zip to .../draft/UCD/ucd
+
+TODO: Figure out new process & people replacing Rick in 2025.
+
+Note: No version/delta infixes in names of data files.
+We simply use the “draft” folder and the file-internal time stamps for versioning.
+
 ### Publish an alpha snapshot
 
 For the alpha review, publish (at least) the UCD and emoji files, and the charts.

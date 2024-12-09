@@ -424,12 +424,13 @@ public final class UCD_Names implements UCD_Types {
         "Sunuwar",
         "Todhri",
         "Tulu_Tigalari",
-        // Provisionally assigned
+        // Unicode 17
         "Chisoi",
         "Sidetic",
         "Tai_Yo",
         "Tolong_Siki",
         "Beria_Erfe",
+        // Provisionally assigned
         "Jurchen",
         "Proto_Cuneiform",
     };
@@ -624,12 +625,13 @@ public final class UCD_Names implements UCD_Types {
         "Sunu",
         "Todr",
         "Tutg",
-        // Provisionally assigned
+        // Unicode 17
         "Chis",
         "Sidt",
         "Tayo",
         "Tols",
-        "Qaba", // Beria Erfe
+        "Berf", // Beria Erfe
+        // Provisionally assigned
         "Jurc",
         "Pcun",
     };
@@ -1227,7 +1229,9 @@ public final class UCD_Names implements UCD_Types {
         "THIN_YEH",
         "VERTICAL_TAIL",
         // Unicode 16
-        "KASHMIRI_YEH"
+        "KASHMIRI_YEH",
+        // Unicode n > 16
+        "THIN_NOON",
     };
 
     static {

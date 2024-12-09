@@ -1,5 +1,5 @@
-# USourceData-16.0.0.txt
-# Date: 2024-07-31, 00:00:00 GMT [KL]
+# USourceData-17.0.0.txt
+# Date: 2024-11-09, 00:00:00 GMT [KL]
 #
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
@@ -3539,4 +3539,83 @@ UTC-03484;FutureWS;;196.7;;⿰克鳥;UTCDoc L2/24-099 7;;18;1
 UTC-03485;FutureWS;;208.9;;⿺鼠革;UTCDoc L2/24-099 8;;22;1
 UTC-03486;FutureWS;;208.9;;⿺𣆨𮧓;UTCDoc L2/24-099 9;;19;1
 UTC-03487;FutureWS;;208.16;;⿺𣆨⿸⿻丅⿸⿱乛丿二𰤷;UTCDoc L2/24-099 10;U+2A58C;26;1
+# Unicode 17.0.0 Additions: 78
+UTC-03488;FutureWS;;137.10;;⿰舟离;UTCDoc L2/24-127;kKorean I LI;16;4
+UTC-03489;FutureWS;;194.29;;⿱龸⿺鬼鑫;UTCDoc L2/24-179 1;Related to 金, which is one of the five elements;37;2
+UTC-03490;FutureWS;;194.17;;⿱龸⿺鬼森;UTCDoc L2/24-179 2;Related to 木, which is one of the five elements;25;2
+UTC-03491;FutureWS;;194.25;;⿱龸⿺鬼⿱淼沝;UTCDoc L2/24-179 3;Related to 水, which is one of the five elements;33;2
+UTC-03492;FutureWS;;194.25;;⿱龸⿺鬼⿱焱炏;UTCDoc L2/24-179 4;Related to 火, which is one of the five elements;33;2
+UTC-03493;FutureWS;;194.14;;⿱龸⿺鬼垚;UTCDoc L2/24-179 5;Related to 土, which is one of the five elements;22;2
+UTC-03494;FutureWS;;194.16;;⿱龸⿺鬼⿱宫儿;UTCDoc L2/24-179 6;Related to 宫, which is one of the five ancient Chinese tones (五音);26;2
+UTC-03495;FutureWS;;194.19;;⿱龸⿺鬼⿱商上;UTCDoc L2/24-179 7;Related to 商, which is one of the five ancient Chinese tones (五音);29;2
+UTC-03496;FutureWS;;194.12;;⿱龸⿺鬼角;UTCDoc L2/24-179 8;Related to 角, which is one of the five ancient Chinese tones (五音);20;2
+UTC-03497;FutureWS;;194.23;;⿱龸⿺鬼⿳山⿰犭玫火;UTCDoc L2/24-179 9;Related to 徵, which is one of The five ancient Chinese tones(五音):⿱山⿰犭玫 is variant of 徵.;31;2
+UTC-03498;FutureWS;;194.15;;⿱龸⿺鬼⿱羽旡;UTCDoc L2/24-179 10;Related to 羽, which is one of the five ancient Chinese tones (五音):炁体 is a term used by the Daoist, so 旡 is a reasonable shape;23;2
+UTC-03499;FutureWS;;194.18;;⿱龸⿺鬼⿱啇⿴〇丶;UTCDoc L2/24-179 11;Used to cure 耳聾 (deafness) and 耳鳴 (tinnitus);26;2
+UTC-03500;FutureWS;;173.14;;⿱雨⿺鬼𢆶;UTCDoc L2/24-179 12;Used to cure diseases about 小腹 (underbelly);22;3
+UTC-03501;FutureWS;;173.26;;⿱雨⿺鬼⿱⿰木林⿲乂乂乂;UTCDoc L2/24-179 13;Used to cure diseases about 臍 (navel);34;3
+UTC-03502;FutureWS;;173.16;;⿱雨⿺鬼⿱王灬;UTCDoc L2/24-179 14;Used to cure diseases about 腸 (intestines);24;2
+UTC-03503;FutureWS;;173.14;;⿱雨⿺鬼劦;UTCDoc L2/24-179 15;Used to cure diseases about 腰 (waist);22;3
+UTC-03504;FutureWS;;173.15;;⿱雨⿺鬼⿱工木;UTCDoc L2/24-179 16;Used to cure diseases about 背 (back);23;3
+UTC-03505;FutureWS;;173.20;;⿱雨⿺鬼⿱⿲乂乂乂⿲乂乂乂;UTCDoc L2/24-179 17;Used to cure diseases about 液 (fluid);28;3
+UTC-03506;FutureWS;;173.19;;⿱雨⿺鬼⿲彡目⿾彡;UTCDoc L2/24-179 18;Used to cure 淋症 (stranguria);27;3
+UTC-03507;FutureWS;;173.18;;⿱雨⿺鬼⿰巠彡;UTCDoc L2/24-179 19;Used to cure 风症 (a concept used by traditional Chinese medical science);26;3
+UTC-03508;FutureWS;;173.16;;⿱雨⿺鬼⿰⿳〇〇二⿳〇〇二;UTCDoc L2/24-179 20;Used to cure 寒症 (a concept used by traditional Chinese medical science);24;3
+UTC-03509;FutureWS;;194.58;;⿱尚⿰⿳鬼鬼鬼⿳鬼鬼鬼;UTCDoc L2/24-179 21;Used to cure 寒热病 (疟疾, malaria);68;2
+UTC-03510;FutureWS;;173.19;;⿱雨⿺鬼⿱日光;UTCDoc L2/24-179 22;Used to a ritual called 開光點眼 (also called 開光點睛, some people believe that this can help them understand the way that the world works and so be wise):日光 means the light of sun, and the character is used to open (開) your left eye;27;3
+UTC-03511;FutureWS;;173.19;;⿱雨⿺鬼⿱月光;UTCDoc L2/24-179 23;Used to a ritual called 開光點眼 (also called 開光點睛, some people believe that this can help them understand the way that the world works and so be wise):月光 means the light of moon, and the character is used to open (開) your right eye;27;3
+UTC-03512;FutureWS;;46.9;;⿵𡶔𡭕;UTCDoc L2/24-181;U+6B72 U+21ED5;12;1
+UTC-03513;FutureWS;;122.6;;⿱罒⿰纟马;UTCDoc L2/24-206;kMandarin jī;11;5
+UTC-03514;FutureWS;;30.17;;⿰口龠;UTCDoc L2/24-212 1;kKorean YAK;20;3
+UTC-03515;FutureWS;;46.6;;⿱山夷;UTCDoc L2/24-212 2;kKorean I;9;1
+UTC-03516;FutureWS;;5.12;;⿱都乙;UTCDoc L2/24-212 3;kKorean TOL;13;1
+UTC-03517;FutureWS;;30.12;;⿱時𠮟;UTCDoc L2/24-212 4;kKorean SIS;15;2
+UTC-03518;FutureWS;;30.10;;⿱阿𠮟;UTCDoc L2/24-212 5;kKorean AS;13;2
+UTC-03519;FutureWS;;30.15;;⿱會𠮟;UTCDoc L2/24-212 6;kKorean HOIS;18;3
+UTC-03520;FutureWS;;7.7;;⿽⿹弋贝二;UTCDoc L2/24-208 1;kTraditionalVariant U+8CB3:kMandarin èr;9;1
+UTC-03521;FutureWS;;7.10;;⿽𧴮二;UTCDoc L2/24-208 2;kTraditionalVariant U+8CB3:kMandarin èr;12;1
+UTC-03522;FutureWS;;124.1;;⿱羽乙;UTCDoc L2/24-208 3;kTraditionalVariant U+7FFC:kMandarin yì;7;5
+UTC-03523;FutureWS;;93.9;;⿰午前;UTCDoc L2/24-208 4;;13;4
+UTC-03524;FutureWS;;159.4;;⿰車气;UTCDoc L2/24-208 5;;11;3
+UTC-03525;FutureWS;;75.7;;⿰木⿱五土;UTCDoc L2/24-208 6;;11;1
+UTC-03526;FutureWS;;169'.2;;⿵门丅;UTCDoc L2/24-208 7;;5;1
+UTC-03527;FutureWS;;169.2;;⿵門丅;UTCDoc L2/24-208 8;;10;1
+UTC-03528;FutureWS;;36.7;;⿱夗央;UTCDoc L2/24-208 9;;10;5
+UTC-03529;FutureWS;;31.5;;⿴囗示;UTCDoc L2/24-208 10;;8;1
+UTC-03530;FutureWS;;86.12;;⿰火⿱林止;UTCDoc L2/24-208 11;;16;1
+UTC-03531;FutureWS;;8.7;;⿳亠丷⿱冖义;UTCDoc L2/24-208 12;;9;4
+UTC-03532;FutureWS;;145.5;;⿰衤⿸厂及;UTCDoc L2/24-208 13;;11;1
+UTC-03533;FutureWS;;149.6;;⿰設十;UTCDoc L2/24-208 14;;13;3
+UTC-03534;FutureWS;;27.5;;⿸厂史;UTCDoc L2/24-208 15;;7;2
+UTC-03535;FutureWS;;93.6;;⿰午后;UTCDoc L2/24-208 16;;10;3
+UTC-03536;FutureWS;;159.13;;⿰車電;UTCDoc L2/24-208 17;;20;1
+UTC-03537;FutureWS;;173.9;;⿰電𠬝;UTCDoc L2/24-208 18;;17;2
+UTC-03538;FutureWS;;113.3;;⿰示义;UTCDoc L2/24-208 19;;8;3
+UTC-03539;FutureWS;;4.10;;⿳𠂉卌⿱一及;UTCDoc L2/24-208 20;;11;1
+UTC-03540;FutureWS;;15.7;;⿱次及;UTCDoc L2/24-208 21;;9;3
+UTC-03541;FutureWS;;1.8;;⿱廿叩;UTCDoc L2/24-208 22;;9;2
+UTC-03542;FutureWS;;140.7;;⿱艹𰆘;UTCDoc L2/24-208 23;;11;1
+UTC-03543;FutureWS;;61.5;;⿱仝心;UTCDoc L2/24-208 24;;9;3
+UTC-03544;FutureWS;;107.6;;⿰皮夹;UTCDoc L2/24-208 25;kMandarin piā;11;1
+UTC-03545;FutureWS;;30.9;;⿰口⿱比由;UTCDoc L2/24-208 26;kMandarin biu;12;1
+UTC-03546;FutureWS;;137.4;;⿰舟气;UTCDoc L2/24-208 27;;10;3
+UTC-03547;FutureWS;;30.13;;⿰口電;UTCDoc L2/24-208 28;;16;1
+UTC-03548;FutureWS;;120.13;;⿰糸電;UTCDoc L2/24-208 29;;19;1
+UTC-03549;FutureWS;;31.6;;⿴囗众;UTCDoc L2/24-208 30;kTraditionalVariant U+570B:kMandarin guó;9;3
+UTC-03550;FutureWS;;1.11;;⿱𠮛⿴囗龱;UTCDoc L2/24-208 31;kTraditionalVariant U+798F:kMandarin fú;12;2
+UTC-03551;FutureWS;;142.2;;⿰虫了;UTCDoc L2/24-208 32;kMandarin liǎo;8;5
+UTC-03552;FutureWS;;149'.6;;⿰讠夸;UTCDoc L2/24-208 33;kTraditionalVariant U+8A87:kMandarin kuā;8;1
+UTC-03553;FutureWS;;86.12;;⿰火阑;UTCDoc L2/24-208 34;kTraditionalVariant U+721B:kMandarin làn;16;2
+UTC-03554;FutureWS;;23.2;;⿷匸又;UTCDoc L2/24-208 35;kTraditionalVariant U+5340;4;5
+UTC-03555;FutureWS;;60.6;;⿰彳贞;UTCDoc L2/24-208 36;kTraditionalVariant U+22524;9;2
+UTC-03556;FutureWS;;30.10;;⿰口罢;UTCDoc L2/24-208 37;kTraditionalVariant U+2BB18;13;2
+UTC-03557;FutureWS;;64.8;;⿰扌⿵门东;UTCDoc L2/24-208 38;kTraditionalVariant U+6514:kMandarin làn;11;2
+UTC-03558;FutureWS;;30.6;;⿰口穵;UTCDoc L2/24-208 39;;9;4
+UTC-03559;FutureWS;;9.0;;⿿人;UTCDoc L2/24-208 40;kMandarin rén;2;0
+UTC-03560;FutureWS;;86.8;;⿰火⿵门东;UTCDoc L2/24-208 41;kTraditionalVariant U+721B:kMandarin làn;12;2
+UTC-03561;FutureWS;;9.8;;⿰亻忝;UTCDoc L2/24-208 42;kTraditionalVariant U+6DFB:kMandarin tiān;10;1
+UTC-03562;FutureWS;;18.15;;⿰⿱𥫗韭刂;UTCDoc L2/24-208 43;;17;3
+UTC-03563;FutureWS;;108.4;;⿱天皿;UTCDoc L2/24-208 44;;9;1
+UTC-03564;FutureWS;;209.4;;⿰鼻匀;UTCDoc L2/24-208 45;;18;3
+UTC-03565;FutureWS;;8.13;;⿰亭匠;UTCDoc L2/24-208 47;kMandarin tāng;15;2
 # EOF
