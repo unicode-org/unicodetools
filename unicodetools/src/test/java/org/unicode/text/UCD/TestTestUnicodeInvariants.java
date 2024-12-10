@@ -12,6 +12,7 @@ import java.text.ParsePosition;
 import org.junit.jupiter.api.Test;
 import org.unicode.text.UCD.TestUnicodeInvariants.BackwardParseException;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Settings.UnicodeTools;
 
 public class TestTestUnicodeInvariants {
     @Test
@@ -43,6 +44,23 @@ public class TestTestUnicodeInvariants {
     @Test
     void testAdditionComparisons() throws IOException {
         final var directory = new File(Settings.SRC_DIR + "UCD/AdditionComparisons/");
+        if (!directory.exists()) {
+            throw new IOException(
+                    "UnicodeTools.UNICODETOOLS_REPO_DIR="
+                            + UnicodeTools.UNICODETOOLS_REPO_DIR
+                            + ", "
+                            + "UnicodeTools.UNICODETOOLS_DIR="
+                            + UnicodeTools.UNICODETOOLS_DIR
+                            + ", "
+                            + "UnicodeTools.UNICODETOOLS_RSRC_DIR="
+                            + UnicodeTools.UNICODETOOLS_RSRC_DIR
+                            + ", "
+                            + "Settings.SRC_DIR="
+                            + Settings.SRC_DIR
+                            + ", "
+                            + directory.getAbsolutePath()
+                            + " which does not exist");
+        }
         int rc = 0;
         for (var file : directory.listFiles()) {
             final String filename = file.getName();
