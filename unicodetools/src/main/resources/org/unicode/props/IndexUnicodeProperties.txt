@@ -375,6 +375,12 @@ FileType ; TangutSources ; PropertyValue
 TangutSources ; kTGT_MergedSrc
 TangutSources ; kRSTUnicode
 
+FileType ; JurchenSources ; PropertyValue
+JurchenSources ; kRSJUnicode
+JurchenSources ; kJUR_Src
+JurchenSources ; kJUR_NCReading
+JurchenSources ; kJurchenNumeric
+
 FileType ; NushuSources ; PropertyValue
 NushuSources ; kSrc_NushuDuben
 NushuSources ; kReading

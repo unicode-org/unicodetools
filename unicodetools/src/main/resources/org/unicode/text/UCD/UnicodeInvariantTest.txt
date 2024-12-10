@@ -1221,6 +1221,7 @@ $CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
             \p{Script=Tangut}
             \p{Script=Nushu}
             \p{Script=Khitan_Small_Script}
+            \p{Script=Jurchen}
         ]
     ]
 ]
@@ -1294,6 +1295,15 @@ Let $tangutSourcesScope := [\p{Block=/^Tangut(.Supplement)?$/} - \p{gc=Cn}]
 $tangutSourcesScope = [ [\p{gc=Lo} & \p{sc=Tangut}] - \p{name=/^TANGUT COMPONENT-/} ]
 $tangutSourcesScope = \P{kTGT_MergedSrc=@none@}
 $tangutSourcesScope = \P{kRSTUnicode=@none@}
+
+# Jurchen invariants
+
+Let $jurchenSourcesScope := [\p{Block=/^Jurchen(.Supplement)?$/} - \p{gc=Cn}]
+$jurchenSourcesScope = [ [\p{gc=Lo} & \p{sc=Jurchen}] - \p{name=/^JURCHEN RADICAL-/} ]
+$jurchenSourcesScope = \P{kJUR_Src=@none@}
+$jurchenSourcesScope = \P{kRSJUnicode=@none@}
+$jurchenSourcesScope ⊃ \P{kJurchenNumeric=@none@}
+$jurchenSourcesScope ⊃ \P{kJUR_NCReading=@none@}
 
 # Nüshu invariants
 
