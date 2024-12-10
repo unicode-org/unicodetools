@@ -12,6 +12,7 @@ import java.text.ParsePosition;
 import org.junit.jupiter.api.Test;
 import org.unicode.text.UCD.TestUnicodeInvariants.BackwardParseException;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Settings.UnicodeTools;
 
 public class TestTestUnicodeInvariants {
     @Test
@@ -45,10 +46,18 @@ public class TestTestUnicodeInvariants {
         final var directory = new File(Settings.SRC_DIR + "UCD/AdditionComparisons/");
         if (!directory.exists()) {
             throw new IOException(
-                    "new File("
+                    "UnicodeTools.UNICODETOOLS_REPO_DIR="
+                            + UnicodeTools.UNICODETOOLS_REPO_DIR
+                            + ", "
+                            + "UnicodeTools.UNICODETOOLS_DIR="
+                            + UnicodeTools.UNICODETOOLS_DIR
+                            + ", "
+                            + "UnicodeTools.UNICODETOOLS_RSRC_DIR="
+                            + UnicodeTools.UNICODETOOLS_RSRC_DIR
+                            + ", "
+                            + "Settings.SRC_DIR="
                             + Settings.SRC_DIR
-                            + "UCD/AdditionComparisons/"
-                            + ") has absolute path"
+                            + ", "
                             + directory.getAbsolutePath()
                             + " which does not exist");
         }
