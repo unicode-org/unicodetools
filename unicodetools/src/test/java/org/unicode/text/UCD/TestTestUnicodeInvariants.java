@@ -43,6 +43,9 @@ public class TestTestUnicodeInvariants {
     @Test
     void testAdditionComparisons() throws IOException {
         final var directory = new File(Settings.SRC_DIR + "UCD/AdditionComparisons/");
+        if (!directory.exists()) {
+                throw new IOException(directory.getAbsolutePath() + " does not exist");
+        }
         int rc = 0;
         for (var file : directory.listFiles()) {
             final String filename = file.getName();
