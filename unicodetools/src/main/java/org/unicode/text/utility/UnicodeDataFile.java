@@ -70,7 +70,7 @@ public class UnicodeDataFile {
         }
         try {
             Utility.appendFile(
-                    getClass().getResource(filename + "Header" + fileType).getPath(),
+                    getClass().getResource("/").getPath() + filename + "Header" + fileType,
                     Utility.UTF8_UNIX,
                     out);
         } catch (final RuntimeIOException e) {
