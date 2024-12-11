@@ -12,7 +12,6 @@ import java.text.ParsePosition;
 import org.junit.jupiter.api.Test;
 import org.unicode.text.UCD.TestUnicodeInvariants.BackwardParseException;
 import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.Settings.UnicodeTools;
 
 public class TestTestUnicodeInvariants {
     @Test
@@ -20,7 +19,6 @@ public class TestTestUnicodeInvariants {
         assertAll(
                 "assert that no components of Settings.SRC_UCD_DIR are null",
                 () -> assertNotNull(Settings.SRC_UCD_DIR, "Settings.SRC_UCD_DIR"),
-                () -> assertNotNull(Settings.SRC_DIR, "Settings.SRC_DIR"),
                 () ->
                         assertNotNull(
                                 Settings.UnicodeTools.UNICODETOOLS_RSRC_DIR,
@@ -43,23 +41,17 @@ public class TestTestUnicodeInvariants {
 
     @Test
     void testAdditionComparisons() throws IOException {
-        final var directory = new File(Settings.SRC_DIR + "UCD/AdditionComparisons/");
+        final var directory =
+                new File(
+                        Settings.UnicodeTools.UNICODETOOLS_RSRC_DIR
+                                + "org/unicode/text/UCD/AdditionComparisons/");
         if (!directory.exists()) {
             throw new IOException(
-                    "UnicodeTools.UNICODETOOLS_REPO_DIR="
-                            + UnicodeTools.UNICODETOOLS_REPO_DIR
-                            + ", "
-                            + "UnicodeTools.UNICODETOOLS_DIR="
-                            + UnicodeTools.UNICODETOOLS_DIR
-                            + ", "
-                            + "UnicodeTools.UNICODETOOLS_RSRC_DIR="
-                            + UnicodeTools.UNICODETOOLS_RSRC_DIR
-                            + ", "
-                            + "Settings.SRC_DIR="
-                            + Settings.SRC_DIR
+                    "Settings.UnicodeTools.UNICODETOOLS_RSRC_DIR="
+                            + Settings.UnicodeTools.UNICODETOOLS_RSRC_DIR
                             + ", "
                             + directory.getAbsolutePath()
-                            + " which does not exist");
+                            + " does not exist");
         }
         int rc = 0;
         for (var file : directory.listFiles()) {
