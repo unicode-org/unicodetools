@@ -19,6 +19,7 @@ mkdir dist/UCD
 cp -R unicodetools/data/ucd/dev dist/UCD/ucd
 mv dist/UCD/ucd/version-ReadMe.txt dist/UCD/ReadMe.txt
 rm -r dist/UCD/ucd/Unihan
+
 if [ "$MODE" = "Snapshot" ]; then
     rm -r dist/UCD/ucd/emoji
 fi
@@ -31,13 +32,13 @@ if [ "$MODE" = "Alpha" ] || [ "$MODE" = "Beta" ]; then
     mkdir dist/idna2008derived
     cp unicodetools/data/idna/idna2008derived/ReadMe.txt dist/idna2008derived
     cp unicodetools/data/idna/idna2008derived/Idna2008-$UNI_VER.txt dist/idna2008derived
+fi
 
-    if [ "$MODE" = "Beta" ]; then
-        cp -R unicodetools/data/uca/dev dist/UCA
-        sed -i -f dist/sed-readmes.txt dist/UCA/CollationTest.html
+if [ "$MODE" = "Beta" ]; then
+    cp -R unicodetools/data/uca/dev dist/UCA
+    sed -i -f dist/sed-readmes.txt dist/UCA/CollationTest.html
 
-        cp -R unicodetools/data/security/dev dist/security
-    fi
+    cp -R unicodetools/data/security/dev dist/security
 fi
 
 # Update the readmes in-place (-i) as set up above.
