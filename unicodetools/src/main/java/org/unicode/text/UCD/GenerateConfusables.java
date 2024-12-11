@@ -1421,7 +1421,7 @@ public class GenerateConfusables {
             if (appendFile) {
                 final String[] replacements = {"%date%", Default.getDate()};
                 Utility.appendFile(
-                        Settings.SRC_UCD_DIR + "confusablesHeader.txt",
+                        GenerateConfusables.class.getResource("confusablesHeader.txt").getPath(),
                         Utility.UTF8_WINDOWS,
                         out,
                         replacements);

@@ -70,7 +70,9 @@ public class UnicodeDataFile {
         }
         try {
             Utility.appendFile(
-                    Settings.SRC_UCD_DIR + filename + "Header" + fileType, Utility.UTF8_UNIX, out);
+                    getClass().getResource(filename + "Header" + fileType).getPath(),
+                    Utility.UTF8_UNIX,
+                    out);
         } catch (final RuntimeIOException e) {
             if (!(e.getCause() instanceof FileNotFoundException)) {
                 throw e;

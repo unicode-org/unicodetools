@@ -370,7 +370,10 @@ public class MakeUnicodeFiles {
             try {
                 br =
                         Utility.openReadFile(
-                                Settings.SRC_UCD_DIR + "MakeUnicodeFiles.txt", Utility.UTF8);
+                                MakeUnicodeFiles.class
+                                        .getResource("MakeUnicodeFiles.txt")
+                                        .getPath(),
+                                Utility.UTF8);
                 String file = null, property = null, value = "", comments = "";
                 while (true) {
                     String line = br.readLine();

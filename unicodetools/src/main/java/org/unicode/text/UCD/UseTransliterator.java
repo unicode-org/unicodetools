@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
-import org.unicode.text.utility.Settings;
 
 public class UseTransliterator {
     public static void main(String[] args) throws IOException {
@@ -15,7 +14,7 @@ public class UseTransliterator {
             final File f2 = new File("org/unicode/text/UCD/");
             System.out.println(f2.getAbsolutePath());
             TransliteratorUtilities.registerTransliteratorFromFile(
-                    Settings.SRC_UCD_DIR, "any-temp");
+                    UseTransliterator.class.getResource("/").getPath(), "any-temp");
             final Transliterator t = Transliterator.getInstance("any-temp");
             final File f = new File(filename);
             final String fileContents =

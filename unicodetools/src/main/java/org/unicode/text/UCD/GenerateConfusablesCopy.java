@@ -2125,7 +2125,9 @@ public class GenerateConfusablesCopy {
             if (appendFile) {
                 final String[] replacements = {"%date%", Default.getDate()};
                 Utility.appendFile(
-                        Settings.SRC_UCD_DIR + "confusablesHeader.txt",
+                        GenerateConfusablesCopy.class
+                                .getResource("confusablesHeader.txt")
+                                .getPath(),
                         Utility.UTF8_WINDOWS,
                         out,
                         replacements);
