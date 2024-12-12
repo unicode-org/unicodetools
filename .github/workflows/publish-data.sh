@@ -1,7 +1,7 @@
 # See publish-data.yml
 
 TMP=pub/tmp
-mkdir $TMP
+mkdir -p $TMP
 
 COPY_YEAR=$(date -u +%Y)
 PUB_DATE=$(date -u +%Y-%m-%d)
