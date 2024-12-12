@@ -1,30 +1,30 @@
 # See https://github.com/unicode-org/unicodetools/blob/main/docs/data-workflow.md#publication
 
 # Test locally with https://github.com/nektos/act:
-#   act --workflows .github/workflows/publish-ucd.yml --input mode=Alpha
+#   act --workflows .github/workflows/publish-data.yml --input releasePhase=Alpha
 
-name: Publish UCD
+name: Publish Data
 
-run-name: "${{ github.workflow }}: ${{ inputs.mode }}"
+run-name: "${{ github.workflow }}: ${{ inputs.releasePhase }}"
 
 on:
   workflow_dispatch:
     inputs:
-      mode:
-        description: Publication mode
+      releasePhase: # See ReleasePhase in https://github.com/unicode-org/unicodetools/blob/main/unicodetools/src/main/java/org/unicode/text/utility/Settings.java
+        description: Release phase
         type: choice
         options:
-          - Snapshot
+          - Dev
           - Alpha
           - Beta
-        default: Snapshot
+        default: Dev
 
 env:
   COPY_YEAR: "2024"
   UNI_VER: "17.0.0"
   EMOJI_VER: "17.0"
   TR10_REV: "tr10-52" # UTS #10 release revision number to be used in CollationTest.html: One more than the last release revision number.
-  MODE: ${{ inputs.mode }}
+  RELEASE_PHASE: ${{ inputs.releasePhase }}
 
 jobs:
   build:
@@ -38,7 +38,7 @@ jobs:
             unicodetools/data/emoji/dev
             unicodetools/data/idna/dev
             unicodetools/data/idna/idna2008derived
-      - run: .github/workflows/publish-ucd.sh
+      - run: .github/workflows/publish-data.sh
       - uses: actions/upload-artifact@v4
         with:
-          path: dist
+          path: pub/tmp # See TMP in publish-data.sh
