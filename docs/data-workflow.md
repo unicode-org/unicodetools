@@ -79,6 +79,9 @@ https://github.com/unicode-org/unicodetools/tree/main/unicodetools/data/emoji/de
 
 ## Publication
 
+> An experimental GitHub workflow, [publish-data.yml](/.github/workflows/publish-data.yml),
+can create a dev (UCD), alpha, or beta snapshot.
+
 Certain snapshots of the .../dev/ files are copied into https://www.unicode.org/Public/draft/
 for Unicode alpha, beta, and final releases, and more as appropriate.
 *   UCD files go into https://www.unicode.org/Public/draft/UCD/
@@ -104,11 +107,9 @@ script from an up-to-date repo workspace.
 The script copies the set of the .../dev/ data files for an alpha snapshot
 from a unicodetools workspace to a target folder with the layout of https://www.unicode.org/Public/draft/ .
 
-Send the resulting zip file to Rick for posting to https://www.unicode.org/Public/draft/ .
-Ask Rick to add other files that are not tracked in the unicodetools repo:
+Send the resulting zip file to Gregg for posting to https://www.unicode.org/Public/draft/ .
+Ask Gregg to add other files that are not tracked in the unicodetools repo:
 *   Unihan.zip to .../draft/UCD/ucd
-
-TODO: Figure out new process & people replacing Rick in 2025.
 
 Note: No version/delta infixes in names of data files.
 We simply use the “draft” folder and the file-internal time stamps for versioning.
@@ -124,8 +125,8 @@ script from an up-to-date repo workspace.
 The script copies the set of the .../dev/ data files for an alpha snapshot
 from a unicodetools workspace to a target folder with the layout of https://www.unicode.org/Public/draft/ .
 
-Send the resulting zip file to Rick for posting to https://www.unicode.org/Public/draft/ .
-Ask Rick to add other files that are not tracked in the unicodetools repo:
+Send the resulting zip file to Gregg for posting to https://www.unicode.org/Public/draft/ .
+Ask Gregg to add other files that are not tracked in the unicodetools repo:
 *   Unihan.zip to .../draft/UCD/ucd
 *   alpha charts to .../draft/UCD/charts
 
@@ -141,8 +142,8 @@ script from an up-to-date repo workspace.
 The script copies the set of the .../dev/ data files for a beta snapshot
 from a unicodetools workspace to a target folder with the layout of https://www.unicode.org/Public/draft/ .
 
-Send the resulting zip file to Rick for posting to https://www.unicode.org/Public/draft/ .
-Ask Rick to add other files that are not tracked in the unicodetools repo:
+Send the resulting zip file to Gregg for posting to https://www.unicode.org/Public/draft/ .
+Ask Gregg to add other files that are not tracked in the unicodetools repo:
 *   Unihan.zip to .../draft/UCD/ucd
 *   UCDXML files to .../draft/UCD/ucdxml
 *   beta charts to .../draft/UCD/charts
@@ -158,8 +159,8 @@ Verify the final set of files in the draft folder.
 Run the [pub/copy-final.sh](https://github.com/unicode-org/unicodetools/blob/main/pub/copy-final.sh)
 script from an up-to-date repo workspace.
 
-Send the resulting zip file to Rick for posting to https://www.unicode.org/Public/ (not .../Public/draft/).
-Ask Rick to add other files that are not tracked in the unicodetools repo:
+Send the resulting zip file to Gregg for posting to https://www.unicode.org/Public/ (not .../Public/draft/).
+Ask Gregg to add other files that are not tracked in the unicodetools repo:
 *   Unihan.zip to .../{version}/ucd
 *   UCDXML files to .../{version}/ucdxml
 *   final charts to .../{version}/charts
