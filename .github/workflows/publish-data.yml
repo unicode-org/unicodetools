@@ -20,7 +20,6 @@ on:
         default: Dev
 
 env:
-  COPY_YEAR: "2024"
   UNI_VER: "17.0.0"
   EMOJI_VER: "17.0"
   TR10_REV: "tr10-52" # UTS #10 release revision number to be used in CollationTest.html: One more than the last release revision number.

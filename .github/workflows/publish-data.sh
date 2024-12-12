@@ -3,7 +3,8 @@
 TMP=pub/tmp
 mkdir $TMP
 
-PUB_DATE=$(date --iso-8601)
+COPY_YEAR=$(date -u +%Y)
+PUB_DATE=$(date -u +%Y-%m-%d)
 
 cat > $TMP/sed-readmes.txt << eof
 s/COPY_YEAR/$COPY_YEAR/
