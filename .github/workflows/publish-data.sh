@@ -22,11 +22,11 @@ cp -R unicodetools/data/ucd/dev $TMP/UCD/ucd
 mv $TMP/UCD/ucd/version-ReadMe.txt $TMP/UCD/ReadMe.txt
 rm -r $TMP/UCD/ucd/Unihan
 
-if [ "$RELEASE_PHASE" = "Dev" ]; then
+if [[ "$RELEASE_PHASE" == "Dev" ]]; then
     rm -r $TMP/UCD/ucd/emoji
 fi
 
-if [ "$RELEASE_PHASE" = "Alpha" ] || [ "$RELEASE_PHASE" = "Beta" ]; then
+if [[ "$RELEASE_PHASE" == "Alpha" || "$RELEASE_PHASE" == "Beta" ]]; then
     cp -R unicodetools/data/emoji/dev $TMP/emoji
 
     cp -R unicodetools/data/idna/dev $TMP/idna
@@ -36,7 +36,7 @@ if [ "$RELEASE_PHASE" = "Alpha" ] || [ "$RELEASE_PHASE" = "Beta" ]; then
     cp unicodetools/data/idna/idna2008derived/Idna2008-$UNI_VER.txt $TMP/idna2008derived
 fi
 
-if [ "$RELEASE_PHASE" = "Beta" ]; then
+if [[ "$RELEASE_PHASE" == "Beta" ]]; then
     cp -R unicodetools/data/uca/dev $TMP/UCA
     sed -i -f $TMP/sed-readmes.txt $TMP/UCA/CollationTest.html
 
@@ -52,7 +52,7 @@ mv $TMP/UCD/ucd/zipped-ReadMe.txt $TMP/zipped/ReadMe.txt
 (cd $TMP/UCD/ucd; zip -r UCD.zip *)
 mv $TMP/UCD/ucd/UCD.zip $TMP/zipped
 
-if [ "$RELEASE_PHASE" = "Beta" ]; then
+if [[ "$RELEASE_PHASE" == "Beta" ]]; then
     (cd $TMP/UCA; zip -r CollationTest.zip CollationTest; rm -r CollationTest)
 
     (cd $TMP/security; zip -r uts39-data-$UNI_VER.zip *)
