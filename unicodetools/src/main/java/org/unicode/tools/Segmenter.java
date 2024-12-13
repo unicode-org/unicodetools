@@ -283,6 +283,8 @@ public class Segmenter {
         }
 
         public abstract String toCppOldMonkeyString();
+
+        public abstract String toJavaOldMonkeyString();
     }
 
     /** A « treat as » rule. */
@@ -390,6 +392,17 @@ public class Segmenter {
                     + replacement
                     + ")\")";
         }
+
+        @Override
+        public String toJavaOldMonkeyString() {
+            return "new RemapRule(\""
+                    + name.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\", \""
+                    + patternDefinition.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\", \""
+                    + replacement.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\")";
+        }
     }
 
     /** A rule that determines the status of an offset. */
@@ -485,6 +498,19 @@ public class Segmenter {
                     + "', uR\"("
                     + afterDefinition.replaceAll("&", "&&").replaceAll("-", "--")
                     + ")\")";
+        }
+
+        @Override
+        public String toJavaOldMonkeyString() {
+            return "new RegexRule(\""
+                    + name.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\", \""
+                    + beforeDefinition.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\", Resolution."
+                    + breaks.name()
+                    + ", \""
+                    + afterDefinition.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\")";
         }
 
         // ============== Internals ================
