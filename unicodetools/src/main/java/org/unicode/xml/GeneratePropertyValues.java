@@ -385,7 +385,7 @@ public class GeneratePropertyValues {
     private static void createPropertyFragment(
             String filename, String title, SCHEMA schema, String formattedFragment)
             throws IOException {
-        BufferedWriter writer = getFragmentWriter(schema.getName(), filename);
+        BufferedWriter writer = getFragmentWriter(filename);
         writer.write(
                 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
                         + NEWLINE
@@ -403,10 +403,10 @@ public class GeneratePropertyValues {
         writer.close();
     }
 
-    private static BufferedWriter getFragmentWriter(String schema, String filename)
+    private static BufferedWriter getFragmentWriter(String filename)
             throws IOException {
         File fragmentFolder =
-                new File(destinationFolder + File.separator + schema + File.separator);
+                new File(destinationFolder + File.separator);
         if (!fragmentFolder.exists()) {
             if (!fragmentFolder.mkdir()) {
                 throw new IOException();

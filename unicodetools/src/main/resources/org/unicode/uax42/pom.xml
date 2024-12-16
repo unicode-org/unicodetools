@@ -35,7 +35,7 @@
 								<include>index.xml</include>
 							</includes>
 							<stylesheet>index2html.xsl</stylesheet>
-							<outputDir>${project.basedir}/output/</outputDir>
+							<outputDir>${outputdir}</outputDir>
 							<fileMappers>
 								<fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
 									<targetExtension>.html</targetExtension>
@@ -49,7 +49,7 @@
 								<include>index.xml</include>
 							</includes>
 							<stylesheet>index2rnc.xsl</stylesheet>
-							<outputDir>${project.basedir}/output/</outputDir>
+							<outputDir>${outputdir}</outputDir>
 							<fileMappers>
 								<fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
 									<targetExtension>.rnc</targetExtension>

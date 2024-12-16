@@ -2,13 +2,11 @@
 
 ## Step 1 - Generate property value fragments
 
-- Run org.unicode.xml.GeneratePropertyValues to populate the UNICODETOOLS_REPO_DIR/uax/uax42/fragments/ folder.
+- mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.GeneratePropertyValues"' '-Dexec.args="--ucdversion 16.0.0 -f $(cd ./unicodetools/src/main/resources/org/unicode/uax42/fragments; pwd)"' -DCLDR_DIR=$(cd ../cldr ; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
 
 ## Step 2 - Generate TR42 index.html and index.rnc 
 
-- In UNICODETOOLS_REPO_DIR/uax/uax42/ run `mvn xml:transform`
-
-  index.html and index.rnc will be generated in UNICODETOOLS_REPO_DIR/uax/uax42/output/
+- mvn xml:transform -f $(cd ./unicodetools/src/main/resources/org/unicode/uax42/fragments; pwd) -Doutputdir=../Generated/uax42/
 
 ## Step 3 - Validate generated UAX XML files
 

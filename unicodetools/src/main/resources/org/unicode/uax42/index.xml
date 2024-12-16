@@ -650,7 +650,7 @@
             <para>The namespace for our elements is &#x201C;http://www.unicode.org/ns/2003/ucd/1.0&#x201D;. Our
                 attributes are in the empty namespace.
             </para>
-            <!--Manual--><xi:include href="./fragments/namespace/namespace.xml"/>
+            <!--Manual--><xi:include href="./fragments/namespace.xml"/>
             <para>In all our examples, we assume that this namespace is the default one.
             </para>
         </section>
@@ -659,7 +659,7 @@
         <section>
             <title>Datatypes</title>
             <para>We use a standard XML Schema datatypes:</para>
-            <!--Manual--><xi:include href="./fragments/datatypes/datatypes.xml"/>
+            <!--Manual--><xi:include href="./fragments/datatypes.xml"/>
             <para>Characters are pervasive in the UCD, and will need to be represented. Representing characters directly
                 by themselves would seem the most obvious choice; for example, we could express that the decomposition
                 of U+00E8 is &#x201c;&amp;#x0065;&amp;#x0300;&#x201d;, that is have exactly two characters in (the
@@ -672,7 +672,7 @@
                 decomposition of U+00E8 will be represented by the nine characters &#x201c;0065 0300&#x201d; in the
                 infoset.
             </para>
-            <!--Manual--><xi:include href="./fragments/datatypes/code points.xml"/>
+            <!--Manual--><xi:include href="./fragments/datatypes_code_points.xml"/>
         </section>
 
         <!--______________________________________________________________________-->
@@ -680,7 +680,7 @@
             <title>Root Element</title>
             <para>The root element of valid documents is a <elem>ucd</elem>.
             </para>
-            <!--Manual--><xi:include href="./fragments/start/start.xml"/>
+            <!--Manual--><xi:include href="./fragments/start.xml"/>
         </section>
 
         <!--______________________________________________________________________-->
@@ -689,7 +689,7 @@
             <para>A large number of properties are boolean. We uniformly use the values <val>Y</val> and
                 <val>N</val> for those:
             </para>
-            <xi:include href="./fragments/boolean/boolean.xml"/>
+            <xi:include href="./fragments/boolean.xml"/>
         </section>
 
         <!--______________________________________________________________________-->
@@ -713,7 +713,7 @@
                     url='https://www.unicode.org/reports/tr41/tr41-34.html#Versions'>[Versions]</ulink>; and
             conversely, that documents which do not purport to represent the UCD be described as such.
         </para>
-        <!--Manual--><xi:include href="./fragments/description/description.xml"/>
+        <!--Manual--><xi:include href="./fragments/description.xml"/>
     </section>
 
     <!--========================================================================-->
@@ -722,7 +722,7 @@
         <para>The <elem>repertoire</elem> child element of the <elem>ucd</elem> element describes the code points and
             their properties. As we will see shortly, code points can be described individually or as part of a group:
         </para>
-        <!--Manual--><xi:include href="./fragments/repertoire/repertoire.xml"/>
+        <!--Manual--><xi:include href="./fragments/repertoire.xml"/>
 
         <!--______________________________________________________________________-->
         <section>
@@ -733,7 +733,7 @@
                 .. U+9FA5) where all the code points have the same property values if we ignore their name and their
                 Unihan properties.
             </para>
-            <!--Manual--><xi:include href="./fragments/repertoire/Set of code points.xml"/>
+            <!--Manual--><xi:include href="./fragments/Set_of_code_points.xml"/>
             <para>This observation suggests that it is profitable to represent sets of code points which share the
                 same properties, rather than individual code points. To make the representation of the sets simple,
                 we restrict them to be segments in the code point space, that is a set is defined by the first and
@@ -759,7 +759,7 @@
             </itemizedlist>
             <para>This leads to four elements to describe sets of code points:
             </para>
-            <!--Manual--><xi:include href="./fragments/repertoire/Code points.xml"/>
+            <!--Manual--><xi:include href="./fragments/repertoire_Code_points.xml"/>
         </section>
 
         <!--______________________________________________________________________-->
@@ -811,7 +811,7 @@
                 easier: either a property is defined by the element for a code point, or it is defined by the
                 immediately enclosing <elem>group</elem> element.
             </para>
-            <!--Manual--><xi:include href="./fragments/repertoire/groups.xml"/>
+            <!--Manual--><xi:include href="./fragments/groups.xml"/>
         </section>
 
         <!--========================================================================-->
@@ -845,7 +845,7 @@
                 <para>The <elem>age</elem> attribute captures the version of Unicode in which a code point was
                     assigned to an abstract character, or made a surrogate or non-character.
                 </para>
-                <xi:include href="./fragments/properties/age.xml"/>
+                <xi:include href="./fragments/age.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -855,8 +855,8 @@
                     (<elem>na</elem>), and possibly the name this character had in version 1.0 of the standard
                     (<elem>na1</elem>).
                 </para>
-                <xi:include href="./fragments/properties/na.xml"/>
-                <xi:include href="./fragments/properties/na1.xml"/>
+                <xi:include href="./fragments/na.xml"/>
+                <xi:include href="./fragments/na1.xml"/>
                 <para>The majority of the characters in Unicode have a name which is of the form CJK UNIFIED
                     IDEOGRAPH-<codephrase>&lt;code point&gt;</codephrase>. It also happens that character names cannot
                     contain the character U+0023 &#x0023; NUMBER SIGN, so we adopted the following convention: if a
@@ -890,7 +890,7 @@
                 <para>The <prop>Name_Alias</prop> property is represented by zero or more <elem>name-alias</elem>
                     child elements:
                 </para>
-                <xi:include href="./fragments/properties/Name_Alias.xml"/>
+                <xi:include href="./fragments/Name_Alias.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -898,7 +898,7 @@
                 <title>Block property</title>
                 <para>The <prop>Block</prop> property is represented by the <attr>blk</attr> attribute:
                 </para>
-                <xi:include href="./fragments/properties/blk.xml"/>
+                <xi:include href="./fragments/blk.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -906,7 +906,7 @@
                 <title>General Category</title>
                 <para>The general category is represented by the <attr>gc</attr> attribute.
                 </para>
-                <xi:include href="./fragments/properties/gc.xml"/>
+                <xi:include href="./fragments/gc.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -918,7 +918,7 @@
                 <para>Because the set of values that this property has taken across the various versions of the UCD
                     is rather large, our schema does not restrict the possible values to those actually used.
                 </para>
-                <!--Manual--><xi:include href="./fragments/properties/ccc.xml"/>
+                <!--Manual--><xi:include href="./fragments/ccc.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -926,15 +926,15 @@
                 <title>Bidirectionality properties</title>
                 <para>The bidirectional class is represented by the <attr>bc</attr> attribute.
                 </para>
-                <xi:include href="./fragments/properties/bc.xml"/>
+                <xi:include href="./fragments/bc.xml"/>
                 <para>The mirrored property is represented by the <attr>Bidi_M</attr> attribute, which takes a
                     boolean value.
                 </para>
-                <xi:include href="./fragments/properties/Bidi_M.xml"/>
+                <xi:include href="./fragments/Bidi_M.xml"/>
                 <para>The <attr>bmg</attr> attribute is the code point of a character whose glyph is typically
                     a mirrored image of the glyph for the current character.
                 </para>
-                <xi:include href="./fragments/properties/bmg.xml"/>
+                <xi:include href="./fragments/bmg.xml"/>
                 <para>Note that we do not express the &#x201c;Best Fit&#x201d; element recorded in BidiMirroring.txt.
                     For one thing, it is not meant to be machine readable. More importantly, the idea underlying the
                     mirrored glyph is delicate to use, since it makes assumptions about the design of the fonts, and
@@ -942,12 +942,12 @@
                 </para>
                 <para>The <prop>Bidi_Control</prop> property is represented by the <attr>Bidi_C</attr> attribute.
                 </para>
-                <xi:include href="./fragments/properties/Bidi_C.xml"/>
+                <xi:include href="./fragments/Bidi_C.xml"/>
                 <para>The bidi paired bracket type and bidi paired bracket properties are represented by the
                     <attr>bpt</attr> and <attr>bpb</attr> attributes respectively.
                 </para>
-                <xi:include href="./fragments/properties/bpt.xml"/>
-                <xi:include href="./fragments/properties/bpb.xml"/>
+                <xi:include href="./fragments/bpt.xml"/>
+                <xi:include href="./fragments/bpb.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -961,17 +961,17 @@
                     decomposition mapping is the character itself, we use the attribute value # (U+0023 &#x0023;
                     NUMBER SIGN) as a shorthand notation; this enables those attributes to be captured in groups.
                 </para>
-                <xi:include href="./fragments/properties/decomposition.xml"/>
+                <xi:include href="./fragments/decomposition.xml"/>
                 <para>The properties <prop>Composition_Exclusion</prop> and <prop>Full_Composition_Exclusion</prop> are
                     represented by the attributes <attr>CE</attr> and <attr>Comp_Ex</attr>:
                 </para>
-                <xi:include href="./fragments/properties/composition.xml"/>
+                <xi:include href="./fragments/composition.xml"/>
                 <para>The properties <prop>NFC_Quick_Check</prop>, <prop>NFD_Quick_Check</prop>,
                     <prop>NFKC_Quick_Check</prop>, <prop>NFKD_Quick_Check</prop>, <prop>Expands_On_NFC</prop>,
                     <prop>Expands_On_NFD</prop>, <prop>Expands_On_NFKC</prop>, <prop>Expands_On_NKFD</prop>,
                     <prop>FC_NFKC_Closure</prop> have corresponding attributes.
                 </para>
-                <xi:include href="./fragments/properties/quickcheck.xml"/>
+                <xi:include href="./fragments/quickcheck.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -982,7 +982,7 @@
                 <para>The numeric value is represented by the <attr>nv</attr> attribute, represented as a whole
                     number or a fraction.
                 </para>
-                <xi:include href="./fragments/properties/numeric.xml"/>
+                <xi:include href="./fragments/numeric.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -992,10 +992,10 @@
                 </para>
                 <para>The <attr>jg</attr> attribute is the joining group of the character.
                 </para>
-                <xi:include href="./fragments/properties/joining.xml"/>
+                <xi:include href="./fragments/joining.xml"/>
                 <para>The <prop>Join_Control</prop> property is represented by the <attr>Join_C</attr> attribute.
                 </para>
-                <xi:include href="./fragments/properties/Join_C.xml"/>
+                <xi:include href="./fragments/Join_C.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1003,7 +1003,7 @@
                 <title>Linebreak properties</title>
                 <para>The <prop>Line_Break</prop> property is represented by the <attr>lb</attr> attribute.
                 </para>
-                <xi:include href="./fragments/properties/lb.xml"/>
+                <xi:include href="./fragments/lb.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1011,7 +1011,7 @@
                 <title>East Asian Width property</title>
                 <para>The East Asian width property is represented by the <attr>ea</attr> attribute.
                 </para>
-                <xi:include href="./fragments/properties/ea.xml"/>
+                <xi:include href="./fragments/ea.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1020,7 +1020,7 @@
                 <para>The <prop>Uppercase</prop>, <prop>Lowercase</prop>, <prop>Other_Uppercase</prop> and
                     <prop>Other_Lowercase</prop> properties are represented by corresponding attributes.
                 </para>
-                <xi:include href="./fragments/properties/casing.xml"/>
+                <xi:include href="./fragments/casing.xml"/>
                 <para>Most characters have a case mapping and case folding properties that simply map or fold to
                     themselves. This is very similar to the situation we encountered with names, and we adopted a
                     similar convention: if the value of a case mapping or case folding property is the character
@@ -1030,22 +1030,22 @@
                 <para>The simple case mappings are recorded in the <attr>suc</attr>, <attr>slc</attr>, <attr>stc</attr>
                     attributes.
                 </para>
-                <xi:include href="./fragments/properties/simple_case_mapping.xml"/>
+                <xi:include href="./fragments/simple_case_mapping.xml"/>
                 <para>The non-simple casing are recorded in the <attr>uc</attr>, <attr>lc</attr> and <attr>tc</attr>
                     attributes.
                 </para>
-                <xi:include href="./fragments/properties/case_mapping.xml"/>
+                <xi:include href="./fragments/case_mapping.xml"/>
                 <para>The <prop>Simple_Case_Folding</prop> and <prop>Case_Folding</prop> properties are recorded in the
                     <attr>scf</attr> and <attr>cf</attr> attributes respectively.
                 </para>
-                <xi:include href="./fragments/properties/case_folding.xml"/>
+                <xi:include href="./fragments/case_folding.xml"/>
                 <para>The <prop>Case_Ignorable</prop>, <prop>Cased</prop>, <prop>Changes_When_Casefolded</prop>,
                     <prop>Changes_When_Casemapped</prop>, <prop>Changes_When_Lowercased</prop>,
                     <prop>Changes_When_NFKC_Casefolded</prop>, <prop>Changes_When_Titlecased</prop>,
                     <prop>Changes_When_Uppercased</prop>, <prop>NFKC_Casefold</prop>, and
                     <prop>NFKC_Simple_Casefold</prop> properties are recorded in these attributes:
                 </para>
-                <xi:include href="./fragments/properties/case_other.xml"/>
+                <xi:include href="./fragments/case_other.xml"/>
                 <para>Note that the UCD records more information about case folding than is expressed in the
                     properties, specifically the entries in CaseFolding.txt with status T.
                 </para>
@@ -1057,7 +1057,7 @@
                 <para>The script and script extension properties are represented by the <attr>sc</attr> and
                     <attr>scx</attr> attributes respectively.
                 </para>
-                <xi:include href="./fragments/properties/script.xml"/>
+                <xi:include href="./fragments/script.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1065,7 +1065,7 @@
                 <title>ISO Comment properties</title>
                 <para>The ISO 10646 comment field is represented by the <attr>isc</attr> attribute.
                 </para>
-                <xi:include href="./fragments/properties/isc.xml"/>
+                <xi:include href="./fragments/isc.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1073,10 +1073,10 @@
                 <title>Hangul properties</title>
                 <para>The property <prop>Hangul_Syllable_Type</prop> is represented by the <attr>hst</attr> attribute.
                 </para>
-                <xi:include href="./fragments/properties/hst.xml"/>
+                <xi:include href="./fragments/hst.xml"/>
                 <para>The property <prop>Jamo_Short_Name</prop> is represented by the <attr>JSN</attr> attribute:
                 </para>
-                <xi:include href="./fragments/properties/JSN.xml"/>
+                <xi:include href="./fragments/JSN.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1085,14 +1085,14 @@
                 <para>The property <prop>Indic_Syllabic_Category</prop> is represented by the <attr>InSC</attr>
                     attribute.
                 </para>
-                <xi:include href="./fragments/properties/InSC.xml"/>
+                <xi:include href="./fragments/InSC.xml"/>
                 <para>The property <prop>Indic_Positional_Category</prop> is represented by the <attr>InPC</attr>
                     attribute:
                 </para>
-                <xi:include href="./fragments/properties/InPC.xml"/>
+                <xi:include href="./fragments/InPC.xml"/>
                 <para>The property <prop>Indic_Conjunct_Break</prop> is represented by the <attr>InCB</attr> attribute:
                 </para>
-                <xi:include href="./fragments/properties/InCB.xml"/>
+                <xi:include href="./fragments/InCB.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1104,11 +1104,11 @@
                     <prop>ID_Compat_Math_Start</prop>, and <prop>ID_Compat_Math_Continue</prop> are represented by
                     corresponding attributes:
                 </para>
-                <xi:include href="./fragments/properties/identifier.xml"/>
+                <xi:include href="./fragments/identifier.xml"/>
                 <para>The properties <prop>Pattern_Syntax</prop> and <prop>Pattern_White_Space</prop> are represented
                     by corresponding attributes:
                 </para>
-                <xi:include href="./fragments/properties/pattern.xml"/>
+                <xi:include href="./fragments/pattern.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1125,7 +1125,7 @@
                     describe the function or graphic characteristic of a character, and have each a corresponding
                     attribute.
                 </para>
-                <xi:include href="./fragments/properties/function_graphic.xml"/>
+                <xi:include href="./fragments/function_graphic.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1136,7 +1136,7 @@
                     <prop>Grapheme_Cluster_Break</prop>, <prop>Word_Break</prop>, and <prop>Sentence_Break</prop> each
                     have a corresponding attribute:
                 </para>
-                <xi:include href="./fragments/properties/boundaries.xml"/>
+                <xi:include href="./fragments/boundaries.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1147,7 +1147,7 @@
                     <prop>IDS_Trinary_Operator</prop>, <prop>IDS_Unary_Operator</prop>, and  <prop>Radical</prop> have
                     corresponding attributes:
                 </para>
-                <xi:include href="./fragments/properties/ideographs.xml"/>
+                <xi:include href="./fragments/ideographs.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1156,7 +1156,7 @@
                 <para>The properties <prop>Deprecated</prop>, <prop>Variation_Selector</prop>, and
                     <prop>Noncharacter_Code_Point</prop> have corresponding attributes:
                 </para>
-                <xi:include href="./fragments/properties/miscellaneous.xml"/>
+                <xi:include href="./fragments/miscellaneous.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1164,7 +1164,7 @@
                 <title>Unihan properties</title>
                 <para>The Unihan properties (from the Unihan database) are represented as attributes.
                 </para>
-                <xi:include href="./fragments/properties/Unihan.xml"/>
+                <xi:include href="./fragments/Unihan.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1174,7 +1174,7 @@
                     represents the radical stroke index. The attribute <attr>kTGT_MergedSrc</attr> indicates the
                     source reference for the character.
                 </para>
-                <xi:include href="./fragments/tangut/Tangut.xml"/>
+                <xi:include href="./fragments/Tangut.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1183,7 +1183,7 @@
                 <para>The Nushu data are represented as attributes. The attribute <attr>kSrc_NushuDuben</attr>
                     indicates the page number and order of the item from the NushuDuben reference source. Nushu common
                     reading is represented as <attr>kReading</attr>.</para>
-                <xi:include href="./fragments/nushu/Nushu.xml"/>
+                <xi:include href="./fragments/Nushu.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1192,7 +1192,7 @@
                 <para>The properties <prop>Emoji</prop>, <prop>EPres</prop>, <prop>EMod</prop>, <prop>EBase</prop>,
                     <prop>EComp</prop>, and <prop>ExtPict</prop> have corresponding attributes:
                 </para>
-                <xi:include href="./fragments/emoji-data/Emoji.xml"/>
+                <xi:include href="./fragments/Emoji.xml"/>
             </section>
         </section>
     </section>
@@ -1203,7 +1203,7 @@
         <para>The <elem>blocks</elem> child of the <elem>ucd</elem> describes the blocks. It has one child
             <elem>block</elem> element per block, with attributes to describe the extent and name of the block.
         </para>
-        <xi:include href="./fragments/block/block.xml"/>
+        <xi:include href="./fragments/block.xml"/>
     </section>
 
     <!--========================================================================-->
@@ -1216,7 +1216,7 @@
         <para>Similarly, the <elem>provisional-named-sequences</elem> child of the <elem>ucd</elem> describes the
             provisional named sequences.
         </para>
-        <xi:include href="./fragments/named-sequences/named-sequences.xml"/>
+        <xi:include href="./fragments/named-sequences.xml"/>
     </section>
 
     <!--========================================================================-->
@@ -1227,7 +1227,7 @@
             attributes to describe the code point affected, its old normalization, its new normalization and the
             version of Unicode in which the correction was made.
         </para>
-        <xi:include href="./fragments/normalization-corrections/normalization-corrections.xml"/>
+        <xi:include href="./fragments/normalization-corrections.xml"/>
     </section>
 
     <!--========================================================================-->
@@ -1238,7 +1238,7 @@
             last element capture the variation sequence, the description of the desired appearance, and the shaping
             environment under which the appearance is different.
         </para>
-        <xi:include href="./fragments/standardized-variants/standardized-variants.xml"/>
+        <xi:include href="./fragments/standardized-variants.xml"/>
     </section>
 
     <!--========================================================================-->
@@ -1248,7 +1248,7 @@
             child element <elem>cjk-radical</elem> per radical. The attributes on that last element capture the
             radical number, the corresponding CJK radical character, and the corresponding CJK unified ideograph.
         </para>
-        <xi:include href="./fragments/cjk-radicals/cjk-radicals.xml"/>
+        <xi:include href="./fragments/cjk-radicals.xml"/>
     </section>
 
     <!--========================================================================-->
@@ -1256,9 +1256,9 @@
         <title>Emoji sources</title>
         <para>The <elem>emoji-sources</elem> child of the <elem>ucd</elem> describes the emoji sources.
         </para>
-        <xi:include href="./fragments/emoji-sources/emoji-sources.xml"/>
+        <xi:include href="./fragments/emoji-sources.xml"/>
 
-        <xi:include href="./fragments/datatypes/jis-code-point.xml"/>
+        <xi:include href="./fragments/jis-code-point.xml"/>
     </section>
 
     <!--========================================================================-->
@@ -1268,7 +1268,7 @@
             character sequences that should not be emitted or generated in newly authored texts.
             </phrase>
         </para>
-        <xi:include href="./fragments/do-not-emit/do-not-emit.xml"/>
+        <xi:include href="./fragments/do-not-emit.xml"/>
     </section>
 
     <!--========================================================================-->
