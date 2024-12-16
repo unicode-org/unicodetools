@@ -216,23 +216,23 @@ NC_Version ;                  SINGLE_VALUED ;                [0-9]\.[0-9]\.[0-9]
 # All not listed are SINGLE_VALUED ; null
 # =============================
 
-Script_Extensions		;	MULTI_VALUED	;				<enum> 
-Standardized_Variant	;	MULTI_VALUED	;				.* 
+Script_Extensions ;           MULTI_VALUED ;                 <enum> 
+Standardized_Variant ;        MULTI_VALUED ;                 .*
 
-Idn_Status				;	SINGLE_VALUED	;				<enum>
-Idn_Mapping				;	SINGLE_VALUED	;				$codePoints
-Idn_2008				;	SINGLE_VALUED	;				<enum>
+Idn_Status ;                  SINGLE_VALUED ;                <enum>
+Idn_Mapping ;                 SINGLE_VALUED ;                $codePoints
+Idn_2008 ;                    SINGLE_VALUED ;                <enum>
 
-Identifier_Status		;	SINGLE_VALUED	; 				<enum>
-Identifier_Type			;	MULTI_VALUED	;				<enum>
+Identifier_Status ;           SINGLE_VALUED ;                <enum>
+Identifier_Type ;             MULTI_VALUED ;                 <enum>
 
-Confusable_SL			;	SINGLE_VALUED	;				$codePoints
-Confusable_SA			;	SINGLE_VALUED	;				$codePoints
-Confusable_ML			;	SINGLE_VALUED	;				$codePoints
-Confusable_MA			;	SINGLE_VALUED	;				$codePoints
+Confusable_SL ;               SINGLE_VALUED ;                $codePoints
+Confusable_SA ;               SINGLE_VALUED ;                $codePoints
+Confusable_ML ;               SINGLE_VALUED ;                $codePoints
+Confusable_MA ;               SINGLE_VALUED ;                $codePoints
 
-#Emoji					;	SINGLE_VALUED	;				<enum>
-#Emoji_Presentation		;	SINGLE_VALUED	;				<enum>
-#Emoji_Modifier			;	SINGLE_VALUED	;				<enum>
-#Emoji_Modifier_Base 	;	SINGLE_VALUED	;				<enum>
+#Emoji ;                       SINGLE_VALUED ;                <enum>
+#Emoji_Presentation ;          SINGLE_VALUED ;                <enum>
+#Emoji_Modifier ;              SINGLE_VALUED ;                <enum>
+#Emoji_Modifier_Base ;         SINGLE_VALUED ;                <enum>
 
