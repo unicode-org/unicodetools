@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="pattern properties" id='schema.properties'>
-  code-point-attributes &amp;=
-    attribute Pat_Syn { boolean }?
-
-  code-point-attributes &amp;=
-    attribute Pat_WS { boolean }?
-</ucdxml:block>

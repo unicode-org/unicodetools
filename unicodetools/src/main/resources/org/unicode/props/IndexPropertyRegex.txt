@@ -212,8 +212,8 @@ Confusable_SA ;               SINGLE_VALUED ;                $codePoints
 Confusable_ML ;               SINGLE_VALUED ;                $codePoints
 Confusable_MA ;               SINGLE_VALUED ;                $codePoints
 
-#Emoji					;	SINGLE_VALUED	;				<enum>
-#Emoji_Presentation		;	SINGLE_VALUED	;				<enum>
-#Emoji_Modifier			;	SINGLE_VALUED	;				<enum>
-#Emoji_Modifier_Base 	;	SINGLE_VALUED	;				<enum>
+#Emoji ;                       SINGLE_VALUED ;                <enum>
+#Emoji_Presentation ;          SINGLE_VALUED ;                <enum>
+#Emoji_Modifier ;              SINGLE_VALUED ;                <enum>
+#Emoji_Modifier_Base ;         SINGLE_VALUED ;                <enum>
 

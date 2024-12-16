@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="numeric properties" id='schema.properties'>
-  code-point-attributes &amp;=
-    attribute nt { "De" | "Di" | "Nu" | "None" }?
-
-  code-point-attributes &amp;=
-    attribute nv { "NaN" | xsd:string { pattern="-?[0-9]+(/[0-9]+)?" } }?
-</ucdxml:block>

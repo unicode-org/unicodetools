@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--Manual-->
-<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="description" id='schema.description'>
-  ucd.content &amp;=
-    element description { text }?
-</ucdxml:block>

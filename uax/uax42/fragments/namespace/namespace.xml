@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--Manual-->
-<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="namespace declaration" id='schema.namespace'>
-  default namespace ucd = "http://www.unicode.org/ns/2003/ucd/1.0"
-</ucdxml:block>

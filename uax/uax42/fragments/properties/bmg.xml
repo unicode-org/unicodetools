@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="bmg attribute" id='schema.properties'>
-  code-point-attributes &amp;=
-    attribute bmg { "" | single-code-point }?
-</ucdxml:block>

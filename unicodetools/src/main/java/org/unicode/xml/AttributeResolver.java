@@ -10,46 +10,11 @@ public class AttributeResolver {
 
     private final IndexUnicodeProperties indexUnicodeProperties;
     private final UnicodeMap<UcdPropertyValues.Age_Values> map_age;
-    private final UnicodeMap<UcdPropertyValues.Bidi_Class_Values> map_bidi_class;
-    private final UnicodeMap<UcdPropertyValues.Bidi_Paired_Bracket_Type_Values>
-            map_bidi_paired_bracket_type;
     private final UnicodeMap<UcdPropertyValues.Block_Values> map_block;
-    private final UnicodeMap<UcdPropertyValues.Canonical_Combining_Class_Values>
-            map_canonical_combining_class;
     private final UnicodeMap<UcdPropertyValues.Decomposition_Type_Values> map_decomposition_type;
-    private final UnicodeMap<UcdPropertyValues.Do_Not_Emit_Type_Values> map_do_not_emit_type;
-    private final UnicodeMap<UcdPropertyValues.East_Asian_Width_Values> map_east_asian_width;
     private final UnicodeMap<UcdPropertyValues.General_Category_Values> map_general_category;
-    private final UnicodeMap<UcdPropertyValues.Grapheme_Cluster_Break_Values>
-            map_grapheme_cluster_break;
-    private final UnicodeMap<UcdPropertyValues.Hangul_Syllable_Type_Values>
-            map_hangul_syllable_type;
-    private final UnicodeMap<UcdPropertyValues.Identifier_Status_Values> map_identifier_status;
-    private final UnicodeMap<UcdPropertyValues.Identifier_Type_Values> map_identifier_type;
-    private final UnicodeMap<UcdPropertyValues.Idn_2008_Values> map_idn_2008;
-    private final UnicodeMap<UcdPropertyValues.Idn_Status_Values> map_idn_status;
-    private final UnicodeMap<UcdPropertyValues.Indic_Conjunct_Break_Values>
-            map_indic_conjunct_break;
-    private final UnicodeMap<UcdPropertyValues.Indic_Positional_Category_Values>
-            map_indic_positional_category;
-    private final UnicodeMap<UcdPropertyValues.Indic_Syllabic_Category_Values>
-            map_indic_syllabic_category;
-    private final UnicodeMap<UcdPropertyValues.Jamo_Short_Name_Values> map_jamo_short_name;
-    private final UnicodeMap<UcdPropertyValues.Joining_Group_Values> map_joining_group;
-    private final UnicodeMap<UcdPropertyValues.Joining_Type_Values> map_joining_type;
-    private final UnicodeMap<UcdPropertyValues.Line_Break_Values> map_line_break;
-    private final UnicodeMap<UcdPropertyValues.NFC_Quick_Check_Values> map_nfc_quick_check;
-    private final UnicodeMap<UcdPropertyValues.NFD_Quick_Check_Values> map_nfd_quick_check;
-    private final UnicodeMap<UcdPropertyValues.NFKC_Quick_Check_Values> map_nfkc_quick_check;
-    private final UnicodeMap<UcdPropertyValues.NFKD_Quick_Check_Values> map_nfkd_quick_check;
-    private final UnicodeMap<UcdPropertyValues.Numeric_Type_Values> map_numeric_type;
-    private final UnicodeMap<UcdPropertyValues.Other_Joining_Type_Values> map_other_joining_type;
     private final UnicodeMap<UcdPropertyValues.Script_Values> map_script;
     private final UnicodeMap<String> map_script_extensions;
-    private final UnicodeMap<UcdPropertyValues.Sentence_Break_Values> map_sentence_break;
-    private final UnicodeMap<UcdPropertyValues.Vertical_Orientation_Values>
-            map_vertical_orientation;
-    private final UnicodeMap<UcdPropertyValues.Word_Break_Values> map_word_break;
     private final HashMap<Integer, LinkedList<NameAlias>> map_NameAlias;
 
     // If there is a change in any of these properties between two adjacent characters, it will
@@ -67,47 +32,12 @@ public class AttributeResolver {
     public AttributeResolver(IndexUnicodeProperties iup) {
         indexUnicodeProperties = iup;
         map_age = indexUnicodeProperties.loadEnum(UcdProperty.Age);
-        map_bidi_class = indexUnicodeProperties.loadEnum(UcdProperty.Bidi_Class);
-        map_bidi_paired_bracket_type =
-                indexUnicodeProperties.loadEnum(UcdProperty.Bidi_Paired_Bracket_Type);
         map_block = indexUnicodeProperties.loadEnum(UcdProperty.Block);
-        map_canonical_combining_class =
-                indexUnicodeProperties.loadEnum(UcdProperty.Canonical_Combining_Class);
         map_decomposition_type = indexUnicodeProperties.loadEnum(UcdProperty.Decomposition_Type);
-        map_do_not_emit_type = indexUnicodeProperties.loadEnum(UcdProperty.Do_Not_Emit_Type);
-        map_east_asian_width = indexUnicodeProperties.loadEnum(UcdProperty.East_Asian_Width);
         map_general_category = indexUnicodeProperties.loadEnum(UcdProperty.General_Category);
-        map_grapheme_cluster_break =
-                indexUnicodeProperties.loadEnum(UcdProperty.Grapheme_Cluster_Break);
-        map_hangul_syllable_type =
-                indexUnicodeProperties.loadEnum(UcdProperty.Hangul_Syllable_Type);
-        map_identifier_status = indexUnicodeProperties.loadEnum(UcdProperty.Identifier_Status);
-        map_identifier_type = indexUnicodeProperties.loadEnum(UcdProperty.Identifier_Type);
-        map_idn_2008 = indexUnicodeProperties.loadEnum(UcdProperty.Idn_2008);
-        map_idn_status = indexUnicodeProperties.loadEnum(UcdProperty.Idn_Status);
-        map_indic_conjunct_break =
-                indexUnicodeProperties.loadEnum(UcdProperty.Indic_Conjunct_Break);
-        map_indic_positional_category =
-                indexUnicodeProperties.loadEnum(UcdProperty.Indic_Positional_Category);
-        map_indic_syllabic_category =
-                indexUnicodeProperties.loadEnum(UcdProperty.Indic_Syllabic_Category);
-        map_jamo_short_name = indexUnicodeProperties.loadEnum(UcdProperty.Jamo_Short_Name);
-        map_joining_group = indexUnicodeProperties.loadEnum(UcdProperty.Joining_Group);
-        map_joining_type = indexUnicodeProperties.loadEnum(UcdProperty.Joining_Type);
-        map_line_break = indexUnicodeProperties.loadEnum(UcdProperty.Line_Break);
-        map_nfc_quick_check = indexUnicodeProperties.loadEnum(UcdProperty.NFC_Quick_Check);
-        map_nfd_quick_check = indexUnicodeProperties.loadEnum(UcdProperty.NFD_Quick_Check);
-        map_nfkc_quick_check = indexUnicodeProperties.loadEnum(UcdProperty.NFKC_Quick_Check);
-        map_nfkd_quick_check = indexUnicodeProperties.loadEnum(UcdProperty.NFKD_Quick_Check);
-        map_numeric_type = indexUnicodeProperties.loadEnum(UcdProperty.Numeric_Type);
-        map_other_joining_type = indexUnicodeProperties.loadEnum(UcdProperty.Other_Joining_Type);
         map_script = indexUnicodeProperties.loadEnum(UcdProperty.Script);
         map_script_extensions =
                 indexUnicodeProperties.getProperty(UcdProperty.Script_Extensions).getUnicodeMap();
-        map_sentence_break = indexUnicodeProperties.loadEnum(UcdProperty.Sentence_Break);
-        map_vertical_orientation =
-                indexUnicodeProperties.loadEnum(UcdProperty.Vertical_Orientation);
-        map_word_break = indexUnicodeProperties.loadEnum(UcdProperty.Word_Break);
 
         // UCD code is only set up to read a single Alias value from NameAliases.txt
         // Instead, we'll load the Alias and the Type data as part of the constructor. We'll keep in
@@ -295,12 +225,6 @@ public class AttributeResolver {
                 }
             case Enumerated:
                 switch (prop) {
-                    case Bidi_Class:
-                        return map_bidi_class.get(codepoint).getShortName();
-                    case Bidi_Paired_Bracket_Type:
-                        return map_bidi_paired_bracket_type.get(codepoint).getShortName();
-                    case Canonical_Combining_Class:
-                        return map_canonical_combining_class.get(codepoint).getShortName();
                     case Decomposition_Type:
                         // Returning lower case to maintain compatibility with older generated
                         // files.
@@ -308,56 +232,10 @@ public class AttributeResolver {
                                 .get(codepoint)
                                 .getShortName()
                                 .toLowerCase(Locale.ROOT);
-                    case Do_Not_Emit_Type:
-                        return map_do_not_emit_type.get(codepoint).getShortName();
-                    case East_Asian_Width:
-                        return map_east_asian_width.get(codepoint).getShortName();
-                    case General_Category:
-                        return map_general_category.get(codepoint).getShortName();
-                    case Grapheme_Cluster_Break:
-                        return map_grapheme_cluster_break.get(codepoint).getShortName();
-                    case Hangul_Syllable_Type:
-                        return map_hangul_syllable_type.get(codepoint).getShortName();
-                    case Identifier_Status:
-                        return map_identifier_status.get(codepoint).getShortName();
-                    case Identifier_Type:
-                        return map_identifier_type.get(codepoint).getShortName();
-                    case Idn_2008:
-                        return map_idn_2008.get(codepoint).getShortName();
-                    case Idn_Status:
-                        return map_idn_status.get(codepoint).getShortName();
-                    case Indic_Conjunct_Break:
-                        return map_indic_conjunct_break.get(codepoint).getShortName();
-                    case Indic_Positional_Category:
-                        return map_indic_positional_category.get(codepoint).getShortName();
-                    case Indic_Syllabic_Category:
-                        return map_indic_syllabic_category.get(codepoint).getShortName();
-                    case Joining_Group:
-                        return map_joining_group.get(codepoint).getShortName();
-                    case Joining_Type:
-                        return map_joining_type.get(codepoint).getShortName();
-                    case Line_Break:
-                        return map_line_break.get(codepoint).getShortName();
-                    case NFC_Quick_Check:
-                        return map_nfc_quick_check.get(codepoint).getShortName();
-                    case NFD_Quick_Check:
-                        return map_nfd_quick_check.get(codepoint).getShortName();
-                    case NFKC_Quick_Check:
-                        return map_nfkc_quick_check.get(codepoint).getShortName();
-                    case NFKD_Quick_Check:
-                        return map_nfkd_quick_check.get(codepoint).getShortName();
-                    case Numeric_Type:
-                        return map_numeric_type.get(codepoint).getShortName();
-                    case Other_Joining_Type:
-                        return map_other_joining_type.get(codepoint).getShortName();
-                    case Sentence_Break:
-                        return map_sentence_break.get(codepoint).getShortName();
-                    case Vertical_Orientation:
-                        return map_vertical_orientation.get(codepoint).getShortName();
-                    case Word_Break:
-                        return map_word_break.get(codepoint).getShortName();
                     default:
-                        throw new RuntimeException("Missing Enumerated case");
+                        final UnicodeProperty property = indexUnicodeProperties.getProperty(prop);
+                        final List<String> valueAliases = property.getValueAliases(property.getValue(codepoint));
+                        return valueAliases.get(0);
                 }
             case Binary:
                 {
