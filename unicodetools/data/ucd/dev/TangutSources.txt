@@ -12405,12 +12405,9 @@ U+18D1B	kTGT_MergedSrc	N5217-27
 U+18D1B	kRSTUnicode	36.7
 U+18D1C	kTGT_MergedSrc	N5217-28
 U+18D1C	kRSTUnicode	141.9
-<<<<<<< HEAD
 U+18D1D	kTGT_MergedSrc	H2021-309801
 U+18D1D	kRSTUnicode	106.13
 U+18D1E	kTGT_MergedSrc	H2021-834001
 U+18D1E	kRSTUnicode	579.14
-=======
->>>>>>> la-vache/main
 
 # EOF
