@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-17.0.0.txt
-# Date: 2024-11-16, 02:53:05 GMT
+# Date: 2024-12-13, 12:16:21 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2144,8 +2144,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 760566 code points not listed here.
-# Total code points: 792267
+# The above property value applies to 760564 code points not listed here.
+# Total code points: 792265
 
 # ================================================
 
@@ -2567,6 +2567,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 1F0CF         ; W # So       PLAYING CARD BLACK JOKER
 1F18E         ; W # So       NEGATIVE SQUARED AB
 1F191..1F19A  ; W # So  [10] SQUARED CL..SQUARED VS
+1F1AE         ; W # So       TOMOBIKI SYMBOL
 1F200..1F202  ; W # So   [3] SQUARE HIRAGANA HOKA..SQUARED KATAKANA SA
 1F210..1F23B  ; W # So  [44] SQUARED CJK UNIFIED IDEOGRAPH-624B..SQUARED CJK UNIFIED IDEOGRAPH-914D
 1F240..1F248  ; W # So   [9] TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-672C..TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-6557
@@ -2599,6 +2600,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 1F6DC..1F6DF  ; W # So   [4] WIRELESS..RING BUOY
 1F6EB..1F6EC  ; W # So   [2] AIRPLANE DEPARTURE..AIRPLANE ARRIVING
 1F6F4..1F6FC  ; W # So   [9] SCOOTER..ROLLER SKATE
+1F7DA         ; W # So       BLACK CIRCLE WITH WHITE VERTICAL BAR
 1F7E0..1F7EB  ; W # So  [12] LARGE ORANGE CIRCLE..LARGE BROWN SQUARE
 1F7F0         ; W # So       HEAVY EQUALS SIGN
 1F90C..1F93A  ; W # So  [47] PINCHED FINGERS..FENCER
@@ -2622,7 +2624,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 31350..33479  ; W # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 
 # The above property value applies to 56179 code points not listed here.
-# Total code points: 182768
+# Total code points: 182770
 
 # ================================================
 
