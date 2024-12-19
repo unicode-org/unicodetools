@@ -1,6 +1,5 @@
-# [Template for property comparison tests of character encoding proposals]
-# [RMG ISSUE TITLE]
-# https://github.com/unicode-org/utc-release-management/issues/[RMG ISSUE NUMBER]
+# Tangut: Two Tangut ideographs (18D1D..18D1E)
+# https://github.com/unicode-org/utc-release-management/issues/154
 
 # Names always differ.
 # Age always differs since these tests are comparing additions to pre-existing characters.
