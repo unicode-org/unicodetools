@@ -21,7 +21,6 @@ CorrespondTo [\x{25D0} ◐ \N{CIRCLE WITH LEFT HALF BLACK}]
     UpTo: Bidi_Class            (Left_To_Right vs Other_Neutral),
           East_Asian_Width      (Wide          vs Ambiguous),
           Line_Break            (Ideographic   vs Ambiguous),
-          Extended_Pictographic (Yes           vs No),
           Math                  (No            vs Yes),
           Other_Math            (No            vs Yes),
           Pattern_Syntax        (No            vs Yes)
