@@ -7,8 +7,8 @@ assignees: ''
 
 ---
 
-## If you have access to the Unicode-internal PAG repo
-Please submit a PAG issue there.
+## Members of UTC/PAG and other Unicoders with access
+Please submit an issue in the Unicode-internal PAG repo.
 
 ## Otherwise
 Please submit feedback via https://www.unicode.org/reporting.html
