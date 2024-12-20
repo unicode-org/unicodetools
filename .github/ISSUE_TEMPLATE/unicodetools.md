@@ -1,6 +1,6 @@
 ---
 name: Feedback on the internal Unicode Tools code and processes
-about: internal tools used by Unicode committees during various processes
+about: Internal tools used by UTC/PAG
 title: ''
 labels: ''
 assignees: ''
