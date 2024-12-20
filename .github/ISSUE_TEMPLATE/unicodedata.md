@@ -1,6 +1,6 @@
 ---
 name: Feedback on Unicode data, properties, algorithms
-about: Report bugs and suggestions elsewhere
+about: Not for reporting bugs or suggestions
 title: ''
 labels: ''
 assignees: ''
