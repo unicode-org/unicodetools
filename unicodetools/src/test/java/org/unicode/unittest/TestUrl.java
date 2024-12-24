@@ -1,4 +1,4 @@
-package org.unicode.tools;
+package org.unicode.unittest;
 
 import com.google.common.base.Joiner;
 import com.ibm.icu.dev.test.TestFmwk;
@@ -30,8 +30,9 @@ import java.util.stream.Collectors;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Rational.MutableLong;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.UrlUtilities.LinkTermination;
-import org.unicode.tools.UrlUtilities.Part;
+import org.unicode.utilities.UrlUtilities;
+import org.unicode.utilities.UrlUtilities.LinkTermination;
+import org.unicode.utilities.UrlUtilities.Part;
 
 /** The following is very temporary, just during the spec development. */
 public class TestUrl extends TestFmwk {
