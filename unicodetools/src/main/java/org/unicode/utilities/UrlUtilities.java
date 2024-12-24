@@ -1,4 +1,4 @@
-package org.unicode.tools;
+package org.unicode.utilities;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
@@ -43,7 +43,7 @@ public class UrlUtilities {
     public static final Joiner JOIN_LF = Joiner.on('\n');
     public static final Joiner JOIN_EMPTY = Joiner.on("");
 
-    static final CLDRFile ENGLISH = USE_CLDR ? CLDRConfig.getInstance().getEnglish() : null;
+    public static final CLDRFile ENGLISH = USE_CLDR ? CLDRConfig.getInstance().getEnglish() : null;
 
     public enum LinkTermination {
         Include("[\\p{ANY}]"), // overridden by following
@@ -53,13 +53,13 @@ public class UrlUtilities {
         Open("[\\p{Bidi_Paired_Bracket_Type=Open}[<]]"),
         ;
 
-        final UnicodeSet base;
+        public final UnicodeSet base;
 
         private LinkTermination(String uset) {
             this.base = new UnicodeSet(uset).freeze();
         }
 
-        static final UnicodeMap<LinkTermination> Property = new UnicodeMap<>();
+        public static final UnicodeMap<LinkTermination> Property = new UnicodeMap<>();
 
         static {
             for (LinkTermination lt : values()) {
@@ -121,7 +121,7 @@ public class UrlUtilities {
          * @param unescape TODO
          * @return
          */
-        static NavigableMap<Part, String> getParts(String source, boolean unescape) {
+        public static NavigableMap<Part, String> getParts(String source, boolean unescape) {
             Map<Part, String> result = new HashMap<>();
             // quick and dirty
             int partStart = 0;
@@ -162,7 +162,7 @@ public class UrlUtilities {
          * @param substring
          * @return
          */
-        String unescape(String substring) {
+        public String unescape(String substring) {
             return UrlUtilities.unescape(substring, extraQuoted);
         }
     }

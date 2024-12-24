@@ -14,7 +14,8 @@ import java.util.function.Consumer;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Rational.MutableLong;
-import org.unicode.tools.UrlUtilities.Part;
+import org.unicode.utilities.UrlUtilities;
+import org.unicode.utilities.UrlUtilities.Part;
 
 /**
  * Use the query https://w.wiki/CKpG to create a file. Put it in RESOURCE_DIR as
