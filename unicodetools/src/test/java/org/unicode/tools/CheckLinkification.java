@@ -2,21 +2,28 @@ package org.unicode.tools;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Objects;
+import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedMap;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
+import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
+import com.ibm.icu.util.ULocale;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -28,24 +35,40 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NavigableMap;
+import java.util.Set;
 import java.util.Stack;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.CLDRConfig;
+import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.Rational.MutableLong;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.text.utility.Utility;
 
 public class CheckLinkification {
+
+    private static final boolean DEBUG = false;
+
+    private static final String RESOURCE_DIR =
+            "/Users/markdavis/github/unicodetools/unicodetools/src/main/resources/org/unicode/tools/";
+    static final boolean USE_CLDR = false;
     private static final Joiner JOIN_TAB = Joiner.on('\t');
+    private static final CLDRFile ENGLISH = USE_CLDR ? CLDRConfig.getInstance().getEnglish() : null;
 
     public static void main(String[] args) throws IOException {
         new CheckLinkification().check();
     }
 
     private void check() throws IOException {
+        processTestFile();
+        if (true) return;
+        showLinkTermination();
         checkParts();
         checkUnescape();
         checkTestFile();
@@ -53,14 +76,13 @@ public class CheckLinkification {
         checkOverlap();
         checkMinimumEscaping();
         if (true) return;
-        showLinkTermination();
         showLinkPairedOpeners();
     }
 
     public enum LinkTermination {
         Include("[\\p{ANY}]"), // overridden by following
-        Hard("[\\p{whitespace}\\p{NChar}\\p{C}]"),
-        Soft("[\\p{Term}[‘-‛ ‹ › \"“-‟ « »']]"),
+        Hard("[\\p{whitespace}\\p{NChar}[\\p{C}-\\p{Cf}]\\p{deprecated}]"),
+        Soft("[\\p{Term}\\p{lb=qu}]"), // was [‘-‛ ‹ › \"“-‟ « »'] instead of \p{lb=qu}
         Close("[\\p{Bidi_Paired_Bracket_Type=Close}[>]]"),
         Open("[\\p{Bidi_Paired_Bracket_Type=Open}[<]]"),
         ;
@@ -191,22 +213,25 @@ public class CheckLinkification {
     }
 
     public enum Part {
-        PROTOCOL('\u0000', "[{//}]", "[]"),
-        HOST('\u0000', "[/?#]", "[]"),
-        PATH('/', "[?#]", "[/]"),
-        QUERY('?', "[#]", "[=\\&]"),
-        FRAGMENT('#', "[]", "[]");
+        PROTOCOL('\u0000', "[{//}]", "[]", "[]"),
+        HOST('\u0000', "[/?#]", "[]", "[]"),
+        PATH('/', "[?#]", "[/]", "[]"),
+        QUERY('?', "[#]", "[=\\&]", "[+]"),
+        FRAGMENT('#', "[]", "[]", "[]");
         final int initiator;
         final UnicodeSet terminators;
-        final UnicodeSet interior;
-        final UnicodeSet interiorAndTerminators;
+        final UnicodeSet clearStack;
+        final UnicodeSet extraQuoted;
 
-        private Part(char initiator, String terminators, String interior) {
+        private Part(char initiator, String terminators, String clearStack, String extraQuoted) {
             this.initiator = initiator;
             this.terminators = new UnicodeSet(terminators).freeze();
-            this.interior = new UnicodeSet(interior).freeze();
-            this.interiorAndTerminators =
-                    new UnicodeSet(this.interior).addAll(this.terminators).freeze();
+            this.clearStack = new UnicodeSet(clearStack).freeze();
+            this.extraQuoted =
+                    new UnicodeSet(extraQuoted)
+                            .addAll(this.clearStack)
+                            .addAll(this.terminators)
+                            .freeze();
         }
 
         static Part fromInitiator(int cp) {
@@ -268,7 +293,7 @@ public class CheckLinkification {
          * @return
          */
         String unescape(String substring) {
-            return CheckLinkification.unescape(substring, interiorAndTerminators);
+            return CheckLinkification.unescape(substring, extraQuoted);
         }
     }
 
@@ -345,10 +370,13 @@ public class CheckLinkification {
      * Minimally escape. Presumes that the parts have had necessary interior quoting.<br>
      * For example, a path
      *
+     * @param atEndOfText TODO
      * @param escapedCounter TODO
      */
     public static String minimalEscape(
-            NavigableMap<Part, String> parts, Counter<Integer> escapedCounter) {
+            NavigableMap<Part, String> parts,
+            boolean atEndOfText,
+            Counter<Integer> escapedCounter) {
         StringBuilder output = new StringBuilder();
         // get the last part
         List<Entry<Part, String>> ordered = List.copyOf(parts.entrySet());
@@ -418,7 +446,7 @@ public class CheckLinkification {
                         throw new IllegalArgumentException();
                 }
             } // fix
-            if (part != lastPart) {
+            if (atEndOfText || part != lastPart) {
                 appendCodePointsBetween(output, cps, copiedAlready, n);
             } else if (copiedAlready < n) {
                 appendCodePointsBetween(output, cps, copiedAlready, n - 1);
@@ -593,7 +621,7 @@ public class CheckLinkification {
                 }
                 // check
                 final String expected = test[3];
-                final String actual = minimalEscape(source, null);
+                final String actual = minimalEscape(source, false, null);
                 counter.add(tempAssertEquals(line + ") " + source.toString(), expected, actual), 1);
             }
         }
@@ -632,7 +660,7 @@ public class CheckLinkification {
             String expected = test[1];
             NavigableMap<Part, String> parts0 = Part.getParts(test0, false);
             tempAssertEquals("checkParts", expected, parts0.toString());
-            String min0 = minimalEscape(parts0, null);
+            String min0 = minimalEscape(parts0, false, null);
         }
     }
 
@@ -645,8 +673,12 @@ public class CheckLinkification {
      * Will have to add unescaping to the Part.getParts method.
      */
     public void checkTestFile() throws IOException {
+        long skippedAscii = 0;
         UnicodeMap<Counter<String>> allEscaped = new UnicodeMap<>();
         Counter<Boolean> allOkCounter = new Counter<>();
+        Counter<String> langToPageCount = new Counter<>();
+        final Matcher wikiLanguageMatcher = WIKI_LANGUAGE.matcher("");
+        Set<String> unseen = new TreeSet<>(WIKI_LANGUAGES);
         final Consumer<? super String> action =
                 x -> {
                     if (x.startsWith("#")) {
@@ -657,18 +689,27 @@ public class CheckLinkification {
                     String expected = urls.length == 2 ? urls[1] : source;
                     Map<Part, String> parts = Part.getParts(source, false);
                     String host = parts.get(Part.HOST);
+                    String wikiLanguage = host;
+                    if (wikiLanguageMatcher.reset(host).find()) {
+                        final String rawWikiCode = wikiLanguageMatcher.group(1);
+                        wikiLanguage = fixWiki(rawWikiCode);
+                        unseen.remove(rawWikiCode);
+                    }
+                    wikiLanguage += "\t" + getLanguageName(x);
                     final Counter<Boolean> okCounter = new Counter<>();
                     Counter<Integer> escapedCounter = new Counter<>();
 
-                    String actual = minimalEscape(new TreeMap<Part, String>(parts), escapedCounter);
-                    okCounter.add(tempAssertEquals(source, expected, actual), 1);
+                    String actual =
+                            minimalEscape(new TreeMap<Part, String>(parts), false, escapedCounter);
+                    okCounter.add(tempAssertEquals(wikiLanguage, expected, actual), 1);
                     try {
-                        processUrls(source, okCounter, escapedCounter);
+                        processUrls(source, wikiLanguage, okCounter, escapedCounter);
                     } catch (IOException e) {
                         // skip if failure
                     }
-                    show(host, okCounter);
-                    allEscaped.put(host, new Counter<>());
+                    show(wikiLanguage, okCounter);
+                    langToPageCount.add(wikiLanguage, okCounter.getTotal());
+                    allEscaped.put(wikiLanguage, new Counter<>());
                     for (R2<Long, Integer> entry :
                             escapedCounter.getEntrySetSortedByCount(false, null)) {
                         Integer cp = entry.get1();
@@ -677,14 +718,11 @@ public class CheckLinkification {
                         if (countByLocale == null) {
                             allEscaped.put(cp, countByLocale = new Counter<>());
                         }
-                        countByLocale.add(host, count);
+                        countByLocale.add(wikiLanguage, count);
                     }
                     allOkCounter.addAll(okCounter);
                 };
-        final Path filePath =
-                Path.of(
-                                "/Users/markdavis/github/unicodetools/unicodetools/src/main/resources/org/unicode/tools/testLinkification.txt")
-                        .toRealPath();
+        final Path filePath = Path.of(RESOURCE_DIR + "testLinkification.txt").toRealPath();
         System.out.println(filePath);
         Files.lines(filePath).forEach(action);
         show("ALL", allOkCounter);
@@ -693,9 +731,11 @@ public class CheckLinkification {
             for (String ch : keySet) {
                 LinkTermination prop2 = LinkTermination.Property.get(ch);
                 Counter<String> escapedCounter = allEscaped.get(ch);
-                for (R2<Long, String> host : escapedCounter.getEntrySetSortedByCount(false, null)) {
-                    Long count = host.get0();
-                    String source = host.get1();
+                for (R2<Long, String> countAndSource :
+                        escapedCounter.getEntrySetSortedByCount(false, null)) {
+                    Long count = countAndSource.get0();
+                    String source = countAndSource.get1();
+                    long sourceCount = langToPageCount.get(source);
                     System.out.println(
                             JOIN_TAB.join(
                                     "ESCAPED",
@@ -704,16 +744,124 @@ public class CheckLinkification {
                                     UCharacter.getName(ch, ", "),
                                     prop2,
                                     count,
-                                    source));
+                                    source,
+                                    sourceCount));
                 }
             }
+        }
+        unseen.stream()
+                .forEach(
+                        x -> {
+                            System.out.println(JOIN_TAB.join("MISSING", x, getLanguageName(x)));
+                        });
+    }
+
+    /**
+     * Use the query https://w.wiki/CKpG to create a file. Put it in RESOURCE_DIR as
+     * wikipedia1000raw.tsv, then run this method. It generates two new files, testUrls.txt and
+     * testUrlsStats.txt
+     *
+     * @throws IOException
+     */
+    public void processTestFile() throws IOException {
+        MutableLong skippedAscii = new MutableLong();
+        MutableLong included = new MutableLong();
+        final UnicodeSet skipIfOnly = new UnicodeSet("\\p{ascii}").freeze(); // [a-zA-Z0-9:/?#]
+        final Path sourcePath = Path.of(RESOURCE_DIR + "wikipedia1000raw.tsv").toRealPath();
+        final String toRemove = "http://www.wikidata.org/entity/Q";
+        final Multimap<Long, String> output = TreeMultimap.create();
+        final Counter<Integer> escaped = new Counter<>();
+        final Counter<String> hostCounter = new Counter<>();
+        MutableLong lines = new MutableLong();
+        Consumer<? super String> action =
+                line -> {
+                    if (line.startsWith("item")) {
+                        return;
+                    }
+                    lines.value++;
+                    int fieldNumber = 0;
+                    long qid = 0;
+                    String url = null;
+                    for (String item : Splitter.on('\t').split(line)) {
+                        ++fieldNumber;
+                        switch (fieldNumber) {
+                            case 1:
+                                if (!item.startsWith(toRemove)) {
+                                    throw new IllegalArgumentException(line);
+                                }
+                                qid = Long.parseLong(item.substring(toRemove.length()));
+                                break;
+                            case 2:
+                                NavigableMap<Part, String> parts =
+                                        Part.getParts(item, false); // splits and unescapes
+                                hostCounter.add(parts.get(Part.HOST), 1);
+                                url = minimalEscape(parts, true, escaped);
+                                break;
+                        }
+                    }
+                    if (skipIfOnly.containsAll(url)) {
+                        skippedAscii.value++;
+                        return;
+                    } else if (DEBUG && url.startsWith("https://en.wiki")) {
+                        System.out.println("en non-ascii:\t" + url);
+                    }
+                    included.value++;
+                    output.put(qid, url);
+                    escaped.clear();
+                };
+        Files.lines(sourcePath).forEach(action);
+        MutableLong lastQid = new MutableLong();
+        System.out.println("Lines read: " + lines + "\tLines generated: " + output.size());
+        lines.value = 0;
+        try (PrintWriter output2 = FileUtilities.openUTF8Writer(RESOURCE_DIR, "testUrls.txt")) {
+            output2.println("# Test file using the the 1000 pages every wiki should have.");
+            output2.println("# Included urls: " + included);
+            output2.println("# Skipping all-ASCII urls: " + skippedAscii);
+            NumberFormat nf = NumberFormat.getPercentInstance();
+            output.entries().stream()
+                    .forEach(
+                            x -> {
+                                long qid = x.getKey();
+                                if (qid != lastQid.value) {
+                                    output2.println(
+                                            JOIN_TAB.join(
+                                                    "# Q" + qid,
+                                                    nf.format(
+                                                            lines.value / (double) output.size())));
+                                    lastQid.value = qid;
+                                }
+                                lines.value++;
+                                output2.println(x.getValue());
+                            });
+            output2.println("# EOF");
+        }
+        try (PrintWriter output2 =
+                FileUtilities.openUTF8Writer(RESOURCE_DIR, "testUrlsStats.txt")) {
+            hostCounter.getKeysetSortedByKey().stream()
+                    .forEach(x -> output2.println(hostCounter.get(x) + "\t" + x));
+        }
+    }
+
+    public String getLanguageName(String localeCode) {
+        try {
+            if (USE_CLDR) {
+                return ENGLISH.getName(localeCode);
+            } else {
+                return ULocale.getDisplayCountry(localeCode, "en");
+            }
+        } catch (Exception e1) {
+            return "BAD LANGUAGE CODE";
         }
     }
 
     static final Pattern HREF = Pattern.compile("href='([^']+)'|href=\"([^\"]+)\"");
+    static final Pattern WIKI_LANGUAGE = Pattern.compile("([^/]+)\\.wikipedia\\.org");
 
     public static void processUrls(
-            String requestURL, Counter<Boolean> counter, Counter<Integer> escaped)
+            String requestURL,
+            String wikiLanguage,
+            Counter<Boolean> counter,
+            Counter<Integer> escaped)
             throws IOException {
         int wikindex = requestURL.indexOf("/wiki/");
         String prefix = requestURL.substring(0, wikindex + 6);
@@ -734,8 +882,8 @@ public class CheckLinkification {
                                         NavigableMap<Part, String> parts =
                                                 Part.getParts(url, false); // splits and unescapes
                                         String raw = Joiner.on("").join(parts.values());
-                                        String actual = minimalEscape(parts, escaped);
-                                        counter.add(tempAssertEquals(prefix, raw, actual), 1);
+                                        String actual = minimalEscape(parts, false, escaped);
+                                        counter.add(tempAssertEquals(wikiLanguage, raw, actual), 1);
                                     }
                                 }
                             });
@@ -843,4 +991,48 @@ public class CheckLinkification {
         }
         return new String(temp, StandardCharsets.UTF_8);
     }
+
+    /**
+     * https://meta.wikimedia.org/wiki/Special_language_codes <br>
+     * https://meta.wikimedia.org/wiki/List_of_Wikipedias#Nonstandard_language_codes
+     *
+     * @param languageCode
+     * @return
+     */
+    static String fixWiki(String languageCode) {
+        switch (languageCode) {
+            case "als":
+                return "gsw";
+            case "roa-rup":
+                return "rup";
+            case "bat-smg":
+                return "sgs";
+            case "simple":
+                return "en";
+            case "fiu-vro":
+                return "vro";
+            case "zh-classical":
+                return "lzh";
+            case "zh-min-nan":
+                return "nan";
+            case "zh-yue":
+                return "yue";
+            case "cbk-zam":
+                return "cbk";
+            case "map-bms":
+                return "map";
+            case "nrm":
+                return "nrf";
+            case "roa-tara":
+                return "nap";
+            default:
+                return languageCode;
+        }
+    }
+
+    static Set<String> WIKI_LANGUAGES =
+            ImmutableSet.copyOf(
+                    Splitter.on(",")
+                            .splitToList(
+                                    "en,ceb,de,fr,sv,nl,ru,es,it,pl,arz,zh,ja,uk,vi,war,ar,pt,fa,ca,id,sr,ko,no,tr,ce,fi,cs,hu,tt,ro,sh,eu,zh-min-nan,ms,he,eo,hy,da,bg,uz,cy,simple,sk,et,be,azb,el,kk,min,hr,lt,gl,ur,az,sl,lld,ka,nn,ta,th,hi,bn,mk,zh-yue,la,ast,lv,af,tg,my,te,sq,mr,mg,bs,oc,be-tarask,ku,br,sw,ml,nds,ky,lmo,jv,pnb,ckb,new,ht,vec,pms,lb,ba,su,ga,is,szl,cv,pa,fy,io,ha,tl,an,mzn,wuu,diq,vo,ig,yo,sco,kn,ne,als,gu,ia,avk,crh,bar,ban,scn,bpy,mn,qu,nv,si,xmf,frr,ps,os,or,tum,sd,bcl,bat-smg,sah,cdo,gd,bug,glk,yi,ilo,am,li,nap,gor,as,fo,mai,hsb,map-bms,shn,zh-classical,eml,ace,ie,wa,sa,hyw,sat,zu,sn,mhr,lij,hif,km,bjn,mrj,mni,dag,ary,hak,pam,rue,roa-tara,ug,zgh,bh,nso,co,tly,so,vls,nds-nl,mi,se,myv,rw,kaa,sc,bo,kw,vep,mt,tk,mdf,kab,gv,gan,fiu-vro,ff,zea,ab,skr,smn,ks,gn,frp,pcd,udm,kv,csb,ay,nrm,lo,ang,fur,olo,lfn,lez,ln,pap,nah,mwl,tw,stq,rm,ext,lad,gom,dty,av,tyv,koi,dsb,lg,cbk-zam,dv,ksh,za,bxr,blk,gag,pfl,bew,szy,haw,tay,pag,pi,awa,tcy,krc,inh,gpe,xh,kge,fon,atj,to,pdc,mnw,arc,shi,om,tn,dga,ki,nia,jam,kbp,wo,xal,nov,kbd,anp,nqo,bi,kg,roa-rup,tpi,tet,guw,jbo,mad,fj,lbe,kcg,pcm,cu,ty,trv,dtp,sm,ami,st,iba,srn,btm,alt,ltg,gcr,ny,kus,mos,ss,chr,ee,ts,got,bbc,gur,bm,pih,ve,rmy,fat,chy,rn,igl,ik,guc,ch,ady,pnt,iu,ann,rsk,pwn,dz,ti,sg,din,tdd,kl,bdr,nr,cr"));
 }
