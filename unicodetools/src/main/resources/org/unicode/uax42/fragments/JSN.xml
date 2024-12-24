@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="JSN attribute" id='schema.properties'>
+  code-point-attributes &amp;=
+    attribute JSN { xsd:string { pattern="[A-Z]{0,3}" } }?
+</ucdxml:block>
