@@ -1,7 +1,5 @@
-1246F         ; Cuneiform # Nl       CUNEIFORM NUMERIC SIGN SEVEN ASH TENU
-12475..1247F  ; Cuneiform # Nl  [11] CUNEIFORM NUMERIC SIGN EIGHT ASH TENU..CUNEIFORM NUMERIC SIGN ASH TIMES NINE DISH TENU
 # Scripts-17.0.0.txt
-# Date: 2024-11-16, 02:53:45 GMT
+# Date: 2025-01-09, 16:02:42 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1920,11 +1918,12 @@ A82C          ; Syloti_Nagri # Mn       SYLOTI NAGRI SIGN ALTERNATE HASANTA
 # ================================================
 
 12000..12399  ; Cuneiform # Lo [922] CUNEIFORM SIGN A..CUNEIFORM SIGN U U
-12400..1246E  ; Cuneiform # Nl [111] CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN NINE U VARIANT FORM
+12400..1246F  ; Cuneiform # Nl [112] CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN SEVEN ASH TENU
 12470..12474  ; Cuneiform # Po   [5] CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
+12475..1247F  ; Cuneiform # Nl  [11] CUNEIFORM NUMERIC SIGN EIGHT ASH TENU..CUNEIFORM NUMERIC SIGN ASH TIMES NINE DISH TENU
 12480..12543  ; Cuneiform # Lo [196] CUNEIFORM SIGN AB TIMES NUN TENU..CUNEIFORM SIGN ZU5 TIMES THREE DISH TENU
 
-# Total code points: 1234
+# Total code points: 1246
 
 # ================================================
 

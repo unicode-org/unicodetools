@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-17.0.0.txt
-# Date: 2024-11-16, 02:53:06 GMT
+# Date: 2025-01-09, 16:02:07 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -549,8 +549,6 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 11FB1..11FBF  ; Cn #  [15] <reserved-11FB1>..<reserved-11FBF>
 11FF2..11FFE  ; Cn #  [13] <reserved-11FF2>..<reserved-11FFE>
 1239A..123FF  ; Cn # [102] <reserved-1239A>..<reserved-123FF>
-1246F         ; Cn #       <reserved-1246F>
-12475..1247F  ; Cn #  [11] <reserved-12475>..<reserved-1247F>
 12544..12F8F  ; Cn # [2636] <reserved-12544>..<reserved-12F8F>
 12FF3..12FFF  ; Cn #  [13] <reserved-12FF3>..<reserved-12FFF>
 13456..1345F  ; Cn #  [10] <reserved-13456>..<reserved-1345F>
@@ -754,7 +752,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 814697
+# Total code points: 814685
 
 # ================================================
 
@@ -3421,10 +3419,11 @@ A6E6..A6EF    ; Nl #  [10] BAMUM LETTER MO..BAMUM LETTER KOGHOM
 10341         ; Nl #       GOTHIC LETTER NINETY
 1034A         ; Nl #       GOTHIC LETTER NINE HUNDRED
 103D1..103D5  ; Nl #   [5] OLD PERSIAN NUMBER ONE..OLD PERSIAN NUMBER HUNDRED
-12400..1246E  ; Nl # [111] CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN NINE U VARIANT FORM
+12400..1246F  ; Nl # [112] CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN SEVEN ASH TENU
+12475..1247F  ; Nl #  [11] CUNEIFORM NUMERIC SIGN EIGHT ASH TENU..CUNEIFORM NUMERIC SIGN ASH TIMES NINE DISH TENU
 16FF4..16FF6  ; Nl #   [3] YANGQIN SIGN SLOW ONE BEAT..YANGQIN SIGN SLOW TWO BEATS
 
-# Total code points: 239
+# Total code points: 251
 
 # ================================================
 

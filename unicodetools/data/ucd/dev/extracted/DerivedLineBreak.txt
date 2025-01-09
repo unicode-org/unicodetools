@@ -1,5 +1,5 @@
 # DerivedLineBreak-17.0.0.txt
-# Date: 2024-11-16, 02:53:07 GMT
+# Date: 2025-01-09, 16:02:08 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -70,8 +70,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 757136 code points not listed here.
-# Total code points: 894604
+# The above property value applies to 757124 code points not listed here.
+# Total code points: 894592
 
 # ================================================
 
@@ -1420,7 +1420,8 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 11FD5..11FDC  ; AL # So   [8] TAMIL SIGN NEL..TAMIL SIGN MUKKURUNI
 11FE1..11FF1  ; AL # So  [17] TAMIL SIGN PAARAM..TAMIL SIGN VAKAIYARAA
 12000..12399  ; AL # Lo [922] CUNEIFORM SIGN A..CUNEIFORM SIGN U U
-12400..1246E  ; AL # Nl [111] CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN NINE U VARIANT FORM
+12400..1246F  ; AL # Nl [112] CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN SEVEN ASH TENU
+12475..1247F  ; AL # Nl  [11] CUNEIFORM NUMERIC SIGN EIGHT ASH TENU..CUNEIFORM NUMERIC SIGN ASH TIMES NINE DISH TENU
 12480..12543  ; AL # Lo [196] CUNEIFORM SIGN AB TIMES NUN TENU..CUNEIFORM SIGN ZU5 TIMES THREE DISH TENU
 12F90..12FF0  ; AL # Lo  [97] CYPRO-MINOAN SIGN CM001..CYPRO-MINOAN SIGN CM114
 12FF1..12FF2  ; AL # Po   [2] CYPRO-MINOAN SIGN CM301..CYPRO-MINOAN SIGN CM302
@@ -1642,7 +1643,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB94..1FBEF  ; AL # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; AL # So       ALARM BELL SYMBOL
 
-# Total code points: 26987
+# Total code points: 26999
 
 # ================================================
 
