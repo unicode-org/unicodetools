@@ -1217,6 +1217,30 @@
 # L2/23-260
 1FAE9; L2/23-260 # 2024 (🫩) face with bags under eyes
 
+# L2/24-257
+1F6D8; L2/24-257 # 2025 (🛘) landslide
+
+# L2/24-256
+1FA8A; L2/24-256 # 2025 (🪊) trombone
+
+# L2/24-255
+1FA8E; L2/24-255 # 2025 (🪎) treasure chest
+
+# L2/24-251
+1FAC8; L2/24-251 # 2025 (🫈) hairy creature
+
+# L2/24-249
+1FACD; L2/24-249 # 2025 (🫍) orca
+
+# L2/24-253
+1FADD; L2/24-253 # 2025 (🫝) apple core
+
+# L2/24-250
+1FAEA; L2/24-250 # 2025 (🫪) distorted face
+
+# L2/24-254
+1FAEF; L2/24-254 # 2025 (🫯) fight cloud
+
 # L2/07-257, L2/09-026, L2/14-173
 261D 1F3FF; L2/07-257, L2/09-026, L2/14-173 # 2015 (☝🏿) index pointing up: dark skin tone
 270A 1F3FF; L2/07-257, L2/09-026, L2/14-173 # 2015 (✊🏿) raised fist: dark skin tone
@@ -1812,6 +1836,14 @@
 1F46D 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # 2019 (👭🏿) women holding hands: dark skin tone
 1F9D1 1F3FF 200D 1F91D 200D 1F9D1 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # 2019 (🧑🏿‍🤝‍🧑🏿) people holding hands: dark skin tone
 
+# L2/24-252, L2/14-173
+1F46F 1F3FF; L2/24-252, L2/14-173 # 2025 (👯🏿) people with bunny ears: dark skin tone
+1F93C 1F3FF; L2/24-252, L2/14-173 # 2016 (🤼🏿) people wrestling: dark skin tone
+
+# L2/24-252, L2/16‑160, L2/14-173
+1F46F 1F3FF 200D 2640; L2/24-252, L2/16‑160, L2/14-173 # 2025 (👯🏿‍♀️) women with bunny ears: dark skin tone
+1F93C 1F3FF 200D 2640; L2/24-252, L2/16‑160, L2/14-173 # 2025 (🤼🏿‍♀️) women wrestling: dark skin tone
+
 # L2/19-231, L2/17-071, L2/16-160, L2/16‑160
 1F470 200D 2640; L2/19-231, L2/17-071, L2/16-160, L2/16‑160 # 2020 (👰‍♀️) woman with veil
 1F470 200D 2642; L2/19-231, L2/17-071, L2/16-160, L2/16‑160 # 2020 (👰‍♂️) man with veil
@@ -1936,10 +1968,16 @@
 1F9D1 200D 1F9D2; L2/23-029 # 2023 (🧑‍🧒) family: adult, child
 1F9D1 200D 1F9D2 200D 1F9D2; L2/23-029 # 2023 (🧑‍🧒‍🧒) family: adult, child, child
 
+# L2/24-226
+1F9D1 200D 1FA70; L2/24-226 # 2025 (🧑‍🩰) ballet dancer
+
 # L2/16-317, L2/14-173
 1F9D1 1F3FF; L2/16-317, L2/14-173 # 2017 (🧑🏿) person: dark skin tone
 1F9D2 1F3FF; L2/16-317, L2/14-173 # 2017 (🧒🏿) child: dark skin tone
 1F9D3 1F3FF; L2/16-317, L2/14-173 # 2017 (🧓🏿) older person: dark skin tone
+
+# L2/24-226, L2/14-173
+1F9D1 1F3FF 200D 1FA70; L2/24-226, L2/14-173 # 2025 (🧑🏿‍🩰) ballet dancer: dark skin tone
 
 # L2/20-133, L2/16-160, L2/16‑160
 1F9D4 200D 2640; L2/20-133, L2/16-160, L2/16‑160 # 2020 (🧔‍♀️) woman: beard

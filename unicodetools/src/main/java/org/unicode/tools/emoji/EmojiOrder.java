@@ -508,10 +508,11 @@ public class EmojiOrder {
                     string.contains(EmojiData.ZWJ_HANDSHAKE_ZWJ)
                             && !string.equals(EmojiData.NEUTRAL_HOLDING);
             boolean isHandshake = EmojiData.EMOJI_DATA_BETA.isHandshake(string);
+            boolean isOtherGroup = EmojiData.EMOJI_DATA_BETA.isOtherGroup(string);
             UnicodeSet temp = isHoldingHands || isHandshake ? new UnicodeSet() : null;
 
             for (String item : results) {
-                if (isHoldingHands || isHandshake) {
+                if (isHoldingHands || isHandshake || isOtherGroup) {
                     // substitute the single character IFF the modifiers are the same
                     temp.clear().addAll(item).retainAll(EmojiData.MODIFIERS);
                     String oldItem = item;
