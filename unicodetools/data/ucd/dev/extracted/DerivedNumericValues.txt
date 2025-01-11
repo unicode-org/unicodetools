@@ -1,5 +1,5 @@
 # DerivedNumericValues-17.0.0.txt
-# Date: 2024-11-15, 15:06:30 GMT
+# Date: 2025-01-09, 16:02:11 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -540,6 +540,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 12434         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE BURU
 1244F         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE BAN2
 12458         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE ESHE3
+12477         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES ONE DISH TENU
 16131         ; 1.0 ; ; 1 # Nd       GURUNG KHEMA DIGIT ONE
 16A61         ; 1.0 ; ; 1 # Nd       MRO DIGIT ONE
 16AC1         ; 1.0 ; ; 1 # Nd       TANGSA DIGIT ONE
@@ -574,7 +575,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1FBF1         ; 1.0 ; ; 1 # Nd       SEGMENTED DIGIT ONE
 2092A         ; 1.0 ; ; 1 # Lo       CJK UNIFIED IDEOGRAPH-2092A
 
-# Total code points: 155
+# Total code points: 156
 
 # ================================================
 
@@ -706,6 +707,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 12450         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO BAN2
 12456         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN NIGIDAMIN
 12459         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO ESHE3
+12478         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES TWO DISH TENU
 16132         ; 2.0 ; ; 2 # Nd       GURUNG KHEMA DIGIT TWO
 16A62         ; 2.0 ; ; 2 # Nd       MRO DIGIT TWO
 16AC2         ; 2.0 ; ; 2 # Nd       TANGSA DIGIT TWO
@@ -740,7 +742,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 1FBF2         ; 2.0 ; ; 2 # Nd       SEGMENTED DIGIT TWO
 22390         ; 2.0 ; ; 2 # Lo       CJK UNIFIED IDEOGRAPH-22390
 
-# Total code points: 157
+# Total code points: 158
 
 # ================================================
 
@@ -863,6 +865,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 1244B         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE ASH TENU
 12451         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE BAN2
 12457         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN NIGIDAESH
+12479         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES THREE DISH TENU
 16133         ; 3.0 ; ; 3 # Nd       GURUNG KHEMA DIGIT THREE
 16A63         ; 3.0 ; ; 3 # Nd       MRO DIGIT THREE
 16AC3         ; 3.0 ; ; 3 # Nd       TANGSA DIGIT THREE
@@ -898,7 +901,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 22998         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-22998
 23B1B         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-23B1B
 
-# Total code points: 154
+# Total code points: 155
 
 # ================================================
 
@@ -1016,6 +1019,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 1244C         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN FOUR ASH TENU
 12452..12453  ; 4.0 ; ; 4 # Nl   [2] CUNEIFORM NUMERIC SIGN FOUR BAN2..CUNEIFORM NUMERIC SIGN FOUR BAN2 VARIANT FORM
 12469         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN FOUR U VARIANT FORM
+1247A         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES FOUR DISH TENU
 16134         ; 4.0 ; ; 4 # Nd       GURUNG KHEMA DIGIT FOUR
 16A64         ; 4.0 ; ; 4 # Nd       MRO DIGIT FOUR
 16AC4         ; 4.0 ; ; 4 # Nd       TANGSA DIGIT FOUR
@@ -1049,7 +1053,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 200E2         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-200E2
 2626D         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-2626D
 
-# Total code points: 145
+# Total code points: 146
 
 # ================================================
 
@@ -1170,6 +1174,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 1244D         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN FIVE ASH TENU
 12454..12455  ; 5.0 ; ; 5 # Nl   [2] CUNEIFORM NUMERIC SIGN FIVE BAN2..CUNEIFORM NUMERIC SIGN FIVE BAN2 VARIANT FORM
 1246A         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN FIVE U VARIANT FORM
+1247B         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES FIVE DISH TENU
 16135         ; 5.0 ; ; 5 # Nd       GURUNG KHEMA DIGIT FIVE
 16A65         ; 5.0 ; ; 5 # Nd       MRO DIGIT FIVE
 16AC5         ; 5.0 ; ; 5 # Nd       TANGSA DIGIT FIVE
@@ -1202,7 +1207,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 1FBF5         ; 5.0 ; ; 5 # Nd       SEGMENTED DIGIT FIVE
 20121         ; 5.0 ; ; 5 # Lo       CJK UNIFIED IDEOGRAPH-20121
 
-# Total code points: 143
+# Total code points: 144
 
 # ================================================
 
@@ -1310,6 +1315,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 12440         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX VARIANT FORM ASH9
 1244E         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX ASH TENU
 1246B         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX U VARIANT FORM
+1247C         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES SIX DISH TENU
 16136         ; 6.0 ; ; 6 # Nd       GURUNG KHEMA DIGIT SIX
 16A66         ; 6.0 ; ; 6 # Nd       MRO DIGIT SIX
 16AC6         ; 6.0 ; ; 6 # Nd       TANGSA DIGIT SIX
@@ -1340,7 +1346,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 1FBF6         ; 6.0 ; ; 6 # Nd       SEGMENTED DIGIT SIX
 20AEA         ; 6.0 ; ; 6 # Lo       CJK UNIFIED IDEOGRAPH-20AEA
 
-# Total code points: 127
+# Total code points: 128
 
 # ================================================
 
@@ -1446,6 +1452,8 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 12429         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN SHAR2
 12441..12443  ; 7.0 ; ; 7 # Nl   [3] CUNEIFORM NUMERIC SIGN SEVEN VARIANT FORM IMIN3..CUNEIFORM NUMERIC SIGN SEVEN VARIANT FORM IMIN B
 1246C         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN U VARIANT FORM
+1246F         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN ASH TENU
+1247D         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES SEVEN DISH TENU
 16137         ; 7.0 ; ; 7 # Nd       GURUNG KHEMA DIGIT SEVEN
 16A67         ; 7.0 ; ; 7 # Nd       MRO DIGIT SEVEN
 16AC7         ; 7.0 ; ; 7 # Nd       TANGSA DIGIT SEVEN
@@ -1476,7 +1484,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 1FBF7         ; 7.0 ; ; 7 # Nd       SEGMENTED DIGIT SEVEN
 20001         ; 7.0 ; ; 7 # Lo       CJK UNIFIED IDEOGRAPH-20001
 
-# Total code points: 127
+# Total code points: 129
 
 # ================================================
 
@@ -1579,6 +1587,8 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 1242A         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT SHAR2
 12444..12445  ; 8.0 ; ; 8 # Nl   [2] CUNEIFORM NUMERIC SIGN EIGHT VARIANT FORM USSU..CUNEIFORM NUMERIC SIGN EIGHT VARIANT FORM USSU3
 1246D         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT U VARIANT FORM
+12475         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT ASH TENU
+1247E         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES EIGHT DISH TENU
 16138         ; 8.0 ; ; 8 # Nd       GURUNG KHEMA DIGIT EIGHT
 16A68         ; 8.0 ; ; 8 # Nd       MRO DIGIT EIGHT
 16AC8         ; 8.0 ; ; 8 # Nd       TANGSA DIGIT EIGHT
@@ -1608,7 +1618,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 1F109         ; 8.0 ; ; 8 # No       DIGIT EIGHT COMMA
 1FBF8         ; 8.0 ; ; 8 # Nd       SEGMENTED DIGIT EIGHT
 
-# Total code points: 122
+# Total code points: 124
 
 # ================================================
 
@@ -1714,6 +1724,8 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 1242B         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE SHAR2
 12446..12449  ; 9.0 ; ; 9 # Nl   [4] CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU..CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU A
 1246E         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE U VARIANT FORM
+12476         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE ASH TENU
+1247F         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES NINE DISH TENU
 16139         ; 9.0 ; ; 9 # Nd       GURUNG KHEMA DIGIT NINE
 16A69         ; 9.0 ; ; 9 # Nd       MRO DIGIT NINE
 16AC9         ; 9.0 ; ; 9 # Nd       TANGSA DIGIT NINE
@@ -1744,7 +1756,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 1FBF9         ; 9.0 ; ; 9 # Nd       SEGMENTED DIGIT NINE
 2F890         ; 9.0 ; ; 9 # Lo       CJK COMPATIBILITY IDEOGRAPH-2F890
 
-# Total code points: 128
+# Total code points: 130
 
 # ================================================
 
