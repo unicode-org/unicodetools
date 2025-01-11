@@ -1,5 +1,5 @@
 # VerticalOrientation-17.0.0.txt
-# Date: 2024-11-16, 02:53:48 GMT
+# Date: 2024-12-13, 11:40:32 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2461,8 +2461,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1F0D1..1F0F5   ; U  # So    [37] PLAYING CARD ACE OF CLUBS..PLAYING CARD TRUMP-21
 1F0F6..1F0FF   ; U  # Cn    [10] <reserved-1F0F6>..<reserved-1F0FF>
 1F100..1F10C   ; U  # No    [13] DIGIT ZERO FULL STOP..DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO
-1F10D..1F1AD   ; U  # So   [161] CIRCLED ZERO WITH SLASH..MASK WORK SYMBOL
-1F1AE..1F1E5   ; U  # Cn    [56] <reserved-1F1AE>..<reserved-1F1E5>
+1F10D..1F1AE   ; U  # So   [162] CIRCLED ZERO WITH SLASH..TOMOBIKI SYMBOL
+1F1AF..1F1E5   ; U  # Cn    [55] <reserved-1F1AF>..<reserved-1F1E5>
 1F1E6..1F1FF   ; U  # So    [26] REGIONAL INDICATOR SYMBOL LETTER A..REGIONAL INDICATOR SYMBOL LETTER Z
 1F200..1F201   ; Tu # So     [2] SQUARE HIRAGANA HOKA..SQUARED KATAKANA KOKO
 1F202          ; U  # So         SQUARED KATAKANA SA
@@ -2487,8 +2487,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1F6F0..1F6FC   ; U  # So    [13] SATELLITE..ROLLER SKATE
 1F6FD..1F6FF   ; U  # Cn     [3] <reserved-1F6FD>..<reserved-1F6FF>
 1F700..1F77F   ; U  # So   [128] ALCHEMICAL SYMBOL FOR QUINTESSENCE..ORCUS
-1F780..1F7D9   ; U  # So    [90] BLACK LEFT-POINTING ISOSCELES RIGHT TRIANGLE..NINE POINTED WHITE STAR
-1F7DA..1F7DF   ; U  # Cn     [6] <reserved-1F7DA>..<reserved-1F7DF>
+1F780..1F7DA   ; U  # So    [91] BLACK LEFT-POINTING ISOSCELES RIGHT TRIANGLE..BLACK CIRCLE WITH WHITE VERTICAL BAR
+1F7DB..1F7DF   ; U  # Cn     [5] <reserved-1F7DB>..<reserved-1F7DF>
 1F7E0..1F7EB   ; U  # So    [12] LARGE ORANGE CIRCLE..LARGE BROWN SQUARE
 1F7EC..1F7EF   ; U  # Cn     [4] <reserved-1F7EC>..<reserved-1F7EF>
 1F7F0          ; U  # So         HEAVY EQUALS SIGN
