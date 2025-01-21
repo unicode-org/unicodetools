@@ -2249,6 +2249,10 @@ public class EmojiData implements EmojiDataSource {
                     .put("👩‍🤝‍👩", "👭")
                     .put("🧑‍❤️‍💋‍🧑", "💏")
                     .put("🧑‍❤️‍🧑", "💑")
+                    .put("👨‍🐰‍👨", "👯")
+                    .put("👩‍🐰‍👩", "👯")
+                    .put("👨‍🫯‍👨", "🤼")
+                    .put("👩‍🫯‍👩", "🤼")
                     .build();
 
     public static final Map<String, String> COUPLES_TO_HANDSHAKE_VERSION =
@@ -2280,6 +2284,16 @@ public class EmojiData implements EmojiDataSource {
     public boolean isHandshake(String s) {
         if (version.compareTo(Emoji.VERSION14) >= 0) {
             return getBaseRemovingModsGender(s).equals(EmojiData.SHAKING_HANDS);
+        }
+        return false;
+    }
+
+    public boolean isOtherGroup(String s) {
+        if (version.compareTo(Emoji.VERSION17) >= 0) {
+            String base = getBaseRemovingModsGender(s);
+            if (base == UTF16.valueOf(0x1F430) || base == UTF16.valueOf(0x1FAEF)) {
+                return true;
+            }
         }
         return false;
     }

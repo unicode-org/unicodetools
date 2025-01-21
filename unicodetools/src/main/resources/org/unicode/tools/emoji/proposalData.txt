@@ -1878,6 +1878,21 @@
 1FADF; L2/23-261; splatter
 1FAE9; L2/23-260; face with bags under eyes
 
+1F6D8; L2/24-257; landslide
+1FA8A; L2/24-256; trombone
+1FA8E; L2/24-255; treasure chest
+1FAC8; L2/24-251; hairy creature
+1FACD; L2/24-249; orca
+1FADD; L2/24-253; apple core
+1FAEA; L2/24-250; distorted face
+1FAEF; L2/24-254; fight cloud
+1F46F 1F3FF; L2/24-252; men with bunny ears: light skin tone, medium-light skin tone
+1F93C 1F3FF; L2/24-252; men wrestling: light skin tone, medium-light skin tone
+1F46F 1F3FF 200D 2640; L2/24-252; women with bunny ears: light skin tone
+1F93C 1F3FF 200D 2640; L2/24-252; women wrestling: light skin tone
+1F9D1 200D 1FA70; L2/24-226; ballet dancer
+1F9D1 1F3FF 200D 1FA70; L2/24-226; ballet dancer: light skin tone
+
 # https://www.unicode.org/L2/L2023/23157.htm#176-A6
 1F1E8 1F1F6; MISSING; Sark
 
