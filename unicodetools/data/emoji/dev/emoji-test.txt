@@ -1,5 +1,5 @@
 # emoji-test.txt
-# Date: 2025-01-09, 18:11:59 GMT
+# Date: 2025-01-16, 01:47:18 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -4135,8 +4135,8 @@
 1F3D4                                                  ; unqualified         # 🏔 E0.7 snow-capped mountain
 26F0 FE0F                                              ; fully-qualified     # ⛰️ E0.7 mountain
 26F0                                                   ; unqualified         # ⛰ E0.7 mountain
-1F30B                                                  ; fully-qualified     # 🌋 E0.6 volcano
 1F6D8                                                  ; fully-qualified     # 🛘 E17.0 landslide
+1F30B                                                  ; fully-qualified     # 🌋 E0.6 volcano
 1F5FB                                                  ; fully-qualified     # 🗻 E0.6 mount fuji
 1F3D5 FE0F                                             ; fully-qualified     # 🏕️ E0.7 camping
 1F3D5                                                  ; unqualified         # 🏕 E0.7 camping
@@ -4691,8 +4691,9 @@
 1F3F7                                                  ; unqualified         # 🏷 E0.7 label
 
 # subgroup: money
-1F4B0                                                  ; fully-qualified     # 💰 E0.6 money bag
 1FA99                                                  ; fully-qualified     # 🪙 E13.0 coin
+1F4B0                                                  ; fully-qualified     # 💰 E0.6 money bag
+1FA8E                                                  ; fully-qualified     # 🪎 E17.0 treasure chest
 1F4B4                                                  ; fully-qualified     # 💴 E0.6 yen banknote
 1F4B5                                                  ; fully-qualified     # 💵 E0.6 dollar banknote
 1F4B6                                                  ; fully-qualified     # 💶 E1.0 euro banknote
@@ -4700,7 +4701,6 @@
 1F4B8                                                  ; fully-qualified     # 💸 E0.6 money with wings
 1F4B3                                                  ; fully-qualified     # 💳 E0.6 credit card
 1F9FE                                                  ; fully-qualified     # 🧾 E11.0 receipt
-1FA8E                                                  ; fully-qualified     # 🪎 E17.0 treasure chest
 1F4B9                                                  ; fully-qualified     # 💹 E0.6 chart increasing with yen
 
 # subgroup: mail
