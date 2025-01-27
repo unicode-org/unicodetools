@@ -1,6 +1,6 @@
 # StandardizedVariants-17.0.0.txt
-# Date: 2024-11-11, 22:24:00 GMT [KW]
-# © 2024 Unicode®, Inc.
+# Date: 2025-01-23, 00:00:00 GMT [KW]
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -146,12 +146,16 @@ FF10 FE00; short diagonal stroke form; # FULLWIDTH DIGIT ZERO
 
 2018 FE00; non-fullwidth form; # LEFT SINGLE QUOTATION MARK
 2018 FE01; right-justified fullwidth form; # LEFT SINGLE QUOTATION MARK
+2018 FE02; Sibe form; # LEFT SINGLE QUOTATION MARK
 2019 FE00; non-fullwidth form; # RIGHT SINGLE QUOTATION MARK
 2019 FE01; left-justified fullwidth form; # RIGHT SINGLE QUOTATION MARK
+2019 FE02; Sibe form; # RIGHT SINGLE QUOTATION MARK
 201C FE00; non-fullwidth form; # LEFT DOUBLE QUOTATION MARK
 201C FE01; right-justified fullwidth form; # LEFT DOUBLE QUOTATION MARK
+201C FE02; Sibe form; # LEFT DOUBLE QUOTATION MARK
 201D FE00; non-fullwidth form; # RIGHT DOUBLE QUOTATION MARK
 201D FE01; left-justified fullwidth form; # RIGHT DOUBLE QUOTATION MARK
+201D FE02; Sibe form; # RIGHT DOUBLE QUOTATION MARK
 3001 FE00; corner-justified form; # IDEOGRAPHIC COMMA
 3001 FE01; centered form; # IDEOGRAPHIC COMMA
 3002 FE00; corner-justified form; # IDEOGRAPHIC FULL STOP
