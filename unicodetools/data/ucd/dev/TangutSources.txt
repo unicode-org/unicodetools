@@ -1,6 +1,6 @@
 # TangutSources-17.0.0.txt
-# Date: 2024-11-15
-# © 2024 Unicode®, Inc.
+# Date: 2025-01-24, 19:15:00 GMT [MS, KW]
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -10,9 +10,6 @@
 # This file is a normative contributory data file in the
 # Unicode Character Database.
 #
-#	Data values match those for ISO/IEC 10646:2020
-#	with exception of U+17105 where the Radical Stroke Index value has been updated from 11.10 to 11.9
-#	and U+180DF where the Radical Stroke Index value has been updated from 303.9 to 303.10
 #	Original Date: 2019-07-29
 #
 #	Format information:
@@ -34,27 +31,27 @@
 #
 # The following abbreviations are used in kTGT_MergedSrc:
 #
-# H2021 = Hán Xiǎománg (韩小忙), 西夏文词典: 世俗文献部分 (Xīxiàwén Cídiǎn: Shìsú Wénxiàn Bùfēn)
-#       [Tangut Word Dictionary: Secular Literature Part, 9 vols.]. 2021.
-# H2004 = Hán Xiǎománg (韩小忙), 西夏文正字研究 (Xīxiàwén Zhèngzì Yánjiū)
-#	      [Research into the Correct Forms of Tangut Characters]. 2004.
-# L1986 = Lǐ Fànwén (李範文), 同音研究 (Tóngyīn Yánjiū)
-#	      [Study of the Homophones]. Yinchuan. 1986
-# L1997 = Lǐ Fànwén (李範文), 夏漢字典 (Xià-Hàn Zìdiàn)
-#	      [Tangut-Chinese Dictionary]. Beijing. 1997.
-# L2006 = Lǐ Fànwén (李範文), 《五音切韵》与《文海宝韵》比较研究 (Wǔyīn Qiēyùn yǔ Wénhǎi Bǎoyùn bǐjiào yánjiū).
-#	      In 西夏研究 (Xīxià Yánjiū) [Western Xia Studies] no.2. Beijing. 2006
-# L2008 = Lǐ Fànwén (李範文). 夏漢字典 (Xià-Hàn Zìdiàn)
-#         [Tangut-Chinese Dictionary]. Beijing, 2008.
-# N1966 = Nishida Tatsuo (西田龍雄), 西夏文小字典 (Seikabun Shōjiten)
-#         [Little Dictionary of Tangut].
-#	      In 西夏語の研 究 (Seikago no kenkyū) [A Study of the Hsi-Hsia Language] (1964-1966) vol.2. Tokyo, 1966.
-# S1968 = Sofronov M. V. (М. В. Софронов), Грамматика тангутского языка (Grammatika tangutskogo jazyka)
-#	      [Grammar of the Tangut Language]. Moscow, 1968.
-# UTN42 = Andrew West and Viacheslav Zaytsev, Tangut Character Additions and Glyph Corrections,
-#         Unicode Technical Note #42. 2019-12-21.
-# N5217 = Andrew West, Proposal to encode 2 Tangut components and 28 Tangut ideographs,
-#         WG2 N5217 = L2/23-149. 2023-10-02.
+#H2004 = Hán Xiǎománg (韓小忙), 西夏文正字研究 (Xīxiàwén Zhèngzì Yánjiū)
+# [Research into the Correct Forms of Tangut Characters]. 2004.
+#H2021 = Hán Xiǎománg (韓小忙), 西夏文词典: 世俗文献部分 (Xīxiàwén Cídiǎn: Shìsú Wénxiàn Bùfēn)
+# [Tangut Word Dictionary: Secular Literature Part, 9 vols.]. 2021. WG2 N5286 2024-10-14.
+#L1986 = Lǐ Fànwén (李範文), 同音研究 (Tóngyīn Yánjiū)  [Study of the Homophones].
+# Yinchuan. 1986.
+#L1997 = Lǐ Fànwén (李範文), 夏漢字典 (Xià-Hàn Zìdiàn)
+# [Tangut-Chinese Dictionary]. Beijing. 1997.
+#L2006 = Lǐ Fànwén (李範文), 《五音切韵》与《文海宝韵》比较研究 (Wǔyīn Qiēyùn yǔ Wénhǎi Bǎoyùn
+# bǐjiào yánjiū), in 西夏研究 (Xīxià Yánjiū) [Western Xia Studies] no.2. Beijing. 2006
+#L2008 = Lǐ Fànwén (李範文). 夏漢字典 (Xià-Hàn Zìdiàn)  [Tangut-Chinese Dictionary]. Beijing, 2008.
+#L2012 = Lǐ Fànwén, 2012 abridged edition, 2008 Tangut-Chinese Dictionary, cited
+# in WG2 N 4724, page 2, 2014-04-21.
+#N1966 = Nishida Tatsuo (西田龍雄), 西夏文小字典 (Seikabun Shōjiten) [Little Dictionary of Tangut],
+# In 西夏語の研 究 (Seikago no kenkyū) [A Study of the Hsi-Hsia Language] (1964-1966) vol.2. Tokyo, 1966.
+#N5217 = Andrew West, Proposal to encode 2 Tangut components and 28 Tangut ideographs,
+# WG2 N5217 = L2/23-149. 2023-10-02.
+#S1968 = Sofronov M. V. (М. В. Софронов), Грамматика тангутского языка (Grammatika tangutskogo jazyka)
+# [Grammar of the Tangut Language]. Moscow, 1968.
+#UTN42 = Andrew West and Viacheslav Zaytsev, Tangut Character Additions and Glyph Corrections,
+# Unicode Technical Note #42. 2019-12-21.
 #
 #	For more information, see Section 18.11, Tangut, of the
 #	core specification.
@@ -12408,6 +12405,6 @@ U+18D1C	kRSTUnicode	141.9
 U+18D1D	kTGT_MergedSrc	H2021-309801
 U+18D1D	kRSTUnicode	106.13
 U+18D1E	kTGT_MergedSrc	H2021-834001
-U+18D1E	kRSTUnicode	579.14
+U+18D1E	kRSTUnicode	579.15
 
 # EOF
