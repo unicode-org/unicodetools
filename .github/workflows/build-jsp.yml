@@ -59,7 +59,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
     - name: Fetch Last Resort Font
-      run: >
+      run: |
         wget https://github.com/unicode-org/last-resort-font/releases/latest/download/LastResort-Regular.ttf
         mv ./LastResort-Regular.ttf ./UnicodeJsps/src/main/webapp/
     # TODO: move this DOWN after JSPs once it works
