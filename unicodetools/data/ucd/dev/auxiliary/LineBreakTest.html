@@ -7,7 +7,7 @@ td, th { vertical-align: top }
 <body bgcolor='#FFFFFF'>
 <h2>Line_Break Chart</h2>
 <p><b>Unicode Version:</b> 17.0.0</p>
-<p><b>Date:</b> 2024-11-28, 01:27:49 GMT</p>
+<p><b>Date:</b> 2025-01-28, 00:21:01 GMT</p>
 <p>This page illustrates the application of the Line_Break specification. The material here is informative, not normative.</p> <p>The first chart shows where breaks would appear between different sample characters or strings. The sample characters are chosen mechanically to represent the different properties used by the specification.</p><p>Each cell shows the break-status for the position between the character(s) in its row header and the character(s) in its column header. The symbol × indicates a prohibited break, even with intervening spaces; the ÷ symbol indicates a (direct) break; the symbol ∻ indicates a break only in the presence of an intervening space (an indirect break).The cells with × or ∻  are also shaded to make it easier to scan the table. For example, in the cell at the intersection of the row headed by “CR” and the column headed by “LF”, there is a × symbol, indicating that there is no break between CR and LF.</p>
 <p></p><p>In the row and column headers of the <a href='#table'>Table</a>, in the <a href='#rules'>Rules</a>, when hovering over characters in the <a href='#samples'>Samples</a>, and in the comments in the associated list of test cases <a href='LineBreakTest.txt'>LineBreakTest.txt</a>:</p>
 <ol><li>The following sets are used:<ul>
@@ -226,7 +226,7 @@ For instance, characters in CMorig_EastAsian and CMorigmEastAsian behave identic
 <tr><th style='text-align:right'><a href='#r13.03' name='r13.03'>13.03</a></th><td style='text-align:right'></td><td>×</td><td> CP</td></tr>
 <tr><th style='text-align:right'><a href='#r13.04' name='r13.04'>13.04</a></th><td style='text-align:right'></td><td>×</td><td> SY</td></tr>
 <tr><th style='text-align:right'><a href='#r14.0' name='r14.0'>14.0</a></th><td style='text-align:right'>OP SP* </td><td>×</td><td></td></tr>
-<tr><th style='text-align:right'><a href='#r15.11' name='r15.11'>15.11</a></th><td style='text-align:right'>( sot | BK | CR | LF | NL | OP | QU | GL | SP | ZW ) QU_Pi SP* </td><td>×</td><td></td></tr>
+<tr><th style='text-align:right'><a href='#r15.11' name='r15.11'>15.11</a></th><td style='text-align:right'>( BK | CR | LF | NL | OP | QU | GL | SP | ZW | sot ) QU_Pi SP* </td><td>×</td><td></td></tr>
 <tr><th style='text-align:right'><a href='#r15.21' name='r15.21'>15.21</a></th><td style='text-align:right'></td><td>×</td><td> QU_Pf ( SP | GL | WJ | CL | QU | CP | EX | IS | SY | BK | CR | LF | NL | ZW | eot )</td></tr>
 <tr><th style='text-align:right'><a href='#r15.3' name='r15.3'>15.3</a></th><td style='text-align:right'>SP </td><td>÷</td><td> IS NU</td></tr>
 <tr><th style='text-align:right'><a href='#r15.4' name='r15.4'>15.4</a></th><td style='text-align:right'></td><td>×</td><td> IS</td></tr>
@@ -238,10 +238,10 @@ For instance, characters in CMorig_EastAsian and CMorigmEastAsian behave identic
 <tr><th style='text-align:right'><a href='#r19.1' name='r19.1'>19.1</a></th><td style='text-align:right'>[^EastAsian] </td><td>×</td><td> QU</td></tr>
 <tr><th style='text-align:right'><a href='#r19.11' name='r19.11'>19.11</a></th><td style='text-align:right'></td><td>×</td><td> QU ( [^EastAsian] | eot )</td></tr>
 <tr><th style='text-align:right'><a href='#r19.12' name='r19.12'>19.12</a></th><td style='text-align:right'>QU </td><td>×</td><td> [^EastAsian]</td></tr>
-<tr><th style='text-align:right'><a href='#r19.13' name='r19.13'>19.13</a></th><td style='text-align:right'>( sot | [^EastAsian] ) QU </td><td>×</td><td></td></tr>
+<tr><th style='text-align:right'><a href='#r19.13' name='r19.13'>19.13</a></th><td style='text-align:right'>( [^EastAsian] | sot ) QU </td><td>×</td><td></td></tr>
 <tr><th style='text-align:right'><a href='#r20.01' name='r20.01'>20.01</a></th><td style='text-align:right'></td><td>÷</td><td> CB</td></tr>
 <tr><th style='text-align:right'><a href='#r20.02' name='r20.02'>20.02</a></th><td style='text-align:right'>CB </td><td>÷</td><td></td></tr>
-<tr><th style='text-align:right'><a href='#r20.1' name='r20.1'>20.1</a></th><td style='text-align:right'>( sot | BK | CR | LF | NL | SP | ZW | CB | GL ) ( HY | Hyphen ) </td><td>×</td><td> AL</td></tr>
+<tr><th style='text-align:right'><a href='#r20.1' name='r20.1'>20.1</a></th><td style='text-align:right'>( BK | CR | LF | NL | SP | ZW | CB | GL | sot ) ( HY | Hyphen ) </td><td>×</td><td> AL</td></tr>
 <tr><th style='text-align:right'><a href='#r21.01' name='r21.01'>21.01</a></th><td style='text-align:right'></td><td>×</td><td> BA</td></tr>
 <tr><th style='text-align:right'><a href='#r21.02' name='r21.02'>21.02</a></th><td style='text-align:right'></td><td>×</td><td> HY</td></tr>
 <tr><th style='text-align:right'><a href='#r21.03' name='r21.03'>21.03</a></th><td style='text-align:right'></td><td>×</td><td> NS</td></tr>

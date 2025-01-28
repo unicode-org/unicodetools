@@ -1,7 +1,7 @@
 # USourceData-17.0.0.txt
-# Date: 2024-11-09, 00:00:00 GMT [KL]
+# Date: 2025-01-24, 00:00:00 GMT [KL]
 #
-# © 2024 Unicode®, Inc.
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -3539,7 +3539,7 @@ UTC-03484;FutureWS;;196.7;;⿰克鳥;UTCDoc L2/24-099 7;;18;1
 UTC-03485;FutureWS;;208.9;;⿺鼠革;UTCDoc L2/24-099 8;;22;1
 UTC-03486;FutureWS;;208.9;;⿺𣆨𮧓;UTCDoc L2/24-099 9;;19;1
 UTC-03487;FutureWS;;208.16;;⿺𣆨⿸⿻丅⿸⿱乛丿二𰤷;UTCDoc L2/24-099 10;U+2A58C;26;1
-# Unicode 17.0.0 Additions: 78
+# Unicode 17.0.0 Additions: 94
 UTC-03488;FutureWS;;137.10;;⿰舟离;UTCDoc L2/24-127;kKorean I LI;16;4
 UTC-03489;FutureWS;;194.29;;⿱龸⿺鬼鑫;UTCDoc L2/24-179 1;Related to 金, which is one of the five elements;37;2
 UTC-03490;FutureWS;;194.17;;⿱龸⿺鬼森;UTCDoc L2/24-179 2;Related to 木, which is one of the five elements;25;2
@@ -3618,4 +3618,20 @@ UTC-03562;FutureWS;;18.15;;⿰⿱𥫗韭刂;UTCDoc L2/24-208 43;;17;3
 UTC-03563;FutureWS;;108.4;;⿱天皿;UTCDoc L2/24-208 44;;9;1
 UTC-03564;FutureWS;;209.4;;⿰鼻匀;UTCDoc L2/24-208 45;;18;3
 UTC-03565;FutureWS;;8.13;;⿰亭匠;UTCDoc L2/24-208 47;kMandarin tāng;15;2
+UTC-03566;FutureWS;;118.13;;⿱⺮愚;UTCDoc L2/24-263;kJapanese ばかむら;19;2
+UTC-03567;FutureWS;;53.3;;⿸广Ｋ;UTCDoc L2/24-266 1;kJapanese ケイ よろこぶ:kSemanticVariant U+6176;6;0
+UTC-03568;FutureWS;;53.1;;⿸广Ｏ;UTCDoc L2/24-266 2;kJapanese オウ:kSemanticVariant U+61C9;4;0
+UTC-03569;FutureWS;;78.6;;⿰歹亥;UTCDoc L2/24-269 1;U+5B69:kMandarin hái;10;4
+UTC-03570;FutureWS;;82.13;;⿺毛準;UTCDoc L2/24-269 2;U+23BCD:kMandarin rǔn;14;4
+UTC-03571;FutureWS;;86.2;;⿰火几;UTCDoc L2/24-276 1;kJapanese ホ:kSemanticVariant U+5E06;3;6
+UTC-03572;FutureWS;;64.4;;⿰扌⿱𠃋口;UTCDoc L2/24-276 2;kJapanese ム;5;7
+UTC-03573;FutureWS;;140.13;;⿱艹⿺夌玉;UTCDoc L2/24-276 3;kJapanese か:kSemanticVariant U+26F06;1;17
+UTC-03574;FutureWS;;9.10;;⿱神人;UTCDoc L2/24-276 4;kJapanese ジン;4;12
+UTC-03575;FutureWS;;16.2;;⿵𠘨⺀;UTCDoc L2/24-276 5;kJapanese かぜ:kSemanticVariant U+98A8 U+322C4;4;4
+UTC-03576;FutureWS;;149.4;;⿰言仑;UTCDoc L2/24-276 6;kJapanese ロン:kSemanticVariant U+8AD6;3;11
+UTC-03577;FutureWS;;4.1;;⿰厂𠃉;UTCDoc L2/24-276 7;kJapanese かぜ:kSemanticVariant U+98A8 U+322C4;5;2
+UTC-03578;FutureWS;;199.4;;⿺麥方;UTCDoc L2/24-276 8;kSimplifiedVariant WS2024-04636;4;15
+UTC-03579;FutureWS;;119.7;;⿰米佥;UTCDoc L2/24-278R 1;kTraditionalVariant U+25F4B:kMandarin jiǎn:Xiapu keiŋ⁴²;3;13
+UTC-03580;FutureWS;;130.15;;⿰月賞;UTCDoc L2/24-278R 2;kMandarin shǎng:kCantonese soeng2;2;19
+UTC-03581;FutureWS;;130.12;;⿰月赏;UTCDoc L2/24-278R 3;kMandarin shǎng:kCantonese soeng2;2;16
 # EOF

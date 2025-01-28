@@ -1,6 +1,6 @@
 # DerivedNumericValues-17.0.0.txt
-# Date: 2024-11-15, 15:06:30 GMT
-# © 2024 Unicode®, Inc.
+# Date: 2025-01-27, 18:26:38 GMT
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -2685,10 +2685,9 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 
 # ================================================
 
-5146          ; 1000000.0 ; ; 1000000 # Lo       CJK UNIFIED IDEOGRAPH-5146
 16B5E         ; 1000000.0 ; ; 1000000 # No       PAHAWH HMONG NUMBER MILLIONS
 
-# Total code points: 2
+# Total code points: 1
 
 # ================================================
 
@@ -2724,9 +2723,10 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 
 # ================================================
 
+5146          ; 1000000000000.0 ; ; 1000000000000 # Lo       CJK UNIFIED IDEOGRAPH-5146
 16B61         ; 1000000000000.0 ; ; 1000000000000 # No       PAHAWH HMONG NUMBER TRILLIONS
 
-# Total code points: 1
+# Total code points: 2
 
 # ================================================
 

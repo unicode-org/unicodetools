@@ -183,7 +183,7 @@ $NS=[$NSorig $CJ]
 # LB 15a Do not break after an unresolved initial punctuation that lies at the start of the line,
 # after a space, after opening punctuation, or after an unresolved quotation mark, even after
 # spaces.
-15.11) ( $sot | $BK | $CR | $LF | $NL | $OP | $QU | $GL | $SP | $ZW ) $QU_Pi $SP* ×
+15.11) ( $BK | $CR | $LF | $NL | $OP | $QU | $GL | $SP | $ZW | $sot ) $QU_Pi $SP* ×
 # LB 15b Do not break before an unresolved final punctuation that lies at the end of the line, before
 # a space, before a prohibited break, or before an unresolved quotation mark, even before spaces.
 15.21) × $QU_Pf ( $SP | $GL | $WJ | $CL | $QU | $CP | $EX | $IS | $SY | $BK | $CR | $LF | $NL | $ZW | $eot )
@@ -204,12 +204,12 @@ $NS=[$NSorig $CJ]
 19.10) [^$EastAsian] × $QU
 19.11) × $QU ( [^$EastAsian] | $eot )
 19.12) $QU × [^$EastAsian]
-19.13) ( $sot | [^$EastAsian] ) $QU ×
+19.13) ( [^$EastAsian] | $sot ) $QU ×
 # LB 20  Break before and after unresolved CB.
 20.01)  ÷ $CB
 20.02) $CB ÷
 # LB 20a Do not break after a hyphen that follows break opportunity, a space, or the start of text.
-20.10) ( $sot | $BK | $CR | $LF | $NL | $SP | $ZW | $CB | $GL ) ( $HY | $Hyphen ) × $AL
+20.10) ( $BK | $CR | $LF | $NL | $SP | $ZW | $CB | $GL | $sot ) ( $HY | $Hyphen ) × $AL
 # LB 21  Do not break before hyphen-minus, other hyphens, fixed-width spaces, small kana and other non-starters, or after acute accents.
 21.01) × $BA
 21.02) × $HY
