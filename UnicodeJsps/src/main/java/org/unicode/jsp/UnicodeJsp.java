@@ -166,6 +166,19 @@ public class UnicodeJsp {
         String a_out;
         a.clear();
         try {
+            if (setA.length() > 4
+                    && setA.startsWith("[:k")
+                    && setA.endsWith(":]")
+                    && setA.contains("=")
+                    && !setA.substring(2, setA.length() - 2).contains(":]")
+                    && XPropertyFactory.make()
+                            .getProperty(setA.substring(2, setA.indexOf("=")))
+                            .isMultivalued()) {
+                throw new Exception(
+                        "POSIX-style queries for multivalued Unihan properties are temporarily disabled.  Try \\p{"
+                                + setA.substring(2, setA.length() - 2)
+                                + "}");
+            }
             // setA = UnicodeSetUtilities.MyNormalize(setA, Normalizer.NFC);
             a.addAll(UnicodeSetUtilities.parseUnicodeSet(setA));
             a_out = UnicodeUtilities.getPrettySet(a, abbreviate, escape);
