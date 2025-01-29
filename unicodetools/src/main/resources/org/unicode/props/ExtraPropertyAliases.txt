@@ -167,6 +167,7 @@ cjkVietnameseNumeric     ; kVietnameseNumeric
 cjkZhuangNumeric         ; kZhuangNumeric
 # 16.0
 cjkFanqie                ; kFanqie
+cjkZhuang                ; kZhuang
 
 kTGT_MergedSrc           ; kTGT_MergedSrc
 kRSTUnicode              ; kRSTUnicode
