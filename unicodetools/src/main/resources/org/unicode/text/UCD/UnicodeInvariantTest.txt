@@ -1090,6 +1090,13 @@ Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 \p{U13.1:RGI_Emoji_Zwj_Sequence} ⊃ \p{U13:RGI_Emoji_Zwj_Sequence}
 [\p{U13.1:RGI_Emoji_Zwj_Sequence} - \p{U13:RGI_Emoji_Zwj_Sequence}] ⊃ [{😵‍💫}]
 
+# [182-C20] Consensus: Unassign the Extended_Pictographic property from the 672 assigned characters
+#           that do not have the Emoji property. For Unicode Version 17.0. See L2/25-006 item 5.1.
+# The only assigned characters that are Extended_Pictographic are Emoji.
+[\p{Extended_Pictographic}-\p{gc=Cn}] ⊆ \p{Emoji}
+# And nearly all emoji are Extended_Pictographic.
+[\p{Extended_Pictographic}-\p{gc=Cn}] = [\p{Emoji}-\p{Regional_Indicator}-\p{Emoji_Modifier}-\p{Block=Basic Latin}]
+
 ##########################
 # POSIX Compatibility Properties (UTS#18)
 # http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html
