@@ -225,6 +225,7 @@ public enum UcdProperty {
     kXHC1983(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkXHC1983"),
     kXerox(PropertyType.Miscellaneous, "cjkXerox"),
     kZVariant(PropertyType.Miscellaneous, "cjkZVariant"),
+    kZhuang(PropertyType.Miscellaneous, "cjkZhuang"),
     kZhuangNumeric(PropertyType.Miscellaneous, "cjkZhuangNumeric"),
 
     // Catalog

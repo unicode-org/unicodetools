@@ -1579,6 +1579,7 @@ public class UcdPropertyValues {
     // kVietnameseNumeric
     // kXerox
     // kXHC1983
+    // kZhuang
     // kZhuangNumeric
     // kZVariant
     public enum Line_Break_Values implements Named {
