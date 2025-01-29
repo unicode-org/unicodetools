@@ -2,7 +2,6 @@ kCantonese
 kCheungBauerIndex
 kCihaiT
 kCowles
-kFanqie
 kFenn
 kFennIndex
 kFourCornerCode
@@ -12,14 +11,12 @@ kHanYu
 kHanyuPinlu
 kHanyuPinyin
 kHKGlyph
-kJapanese
 kJapaneseKun
 kJapaneseOn
 kKorean
 kLau
 kMandarin
 kMeyerWempe
-kMojiJoho
 kNelson
 kPhonetic
 kRSAdobe_Japan1_6
@@ -27,13 +24,8 @@ kRSUnicode
 kSBGY
 kSemanticVariant
 kSimplifiedVariant
-kSMSZD2003Index
-kSMSZD2003Readings
 kSpecializedSemanticVariant
-kSpoofingVariant
-kStrange
 kTang
-kTGHZ2013
 kTraditionalVariant
 kVietnamese
 kXHC1983
