@@ -195,7 +195,7 @@ kSMSZD2003Index ; MULTI_VALUED
 kSMSZD2003Readings ; MULTI_VALUED
 kVietnameseNumeric ; MULTI_VALUED
 kZhuangNumeric ; MULTI_VALUED
-#16.0
+# 16.0
 kFanqie ; MULTI_VALUED
 kZhuang ; MULTI_VALUED
 
