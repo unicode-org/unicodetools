@@ -11,7 +11,7 @@ DRAFT=$2
 UNITOOLS_DATA=$UNICODETOOLS/unicodetools/data
 
 # Adjust the following for each year and version as needed.
-COPY_YEAR=2024
+COPY_YEAR=2025
 UNI_VER=17.0.0
 EMOJI_VER=17.0
 
@@ -26,15 +26,13 @@ s/PUB_STATUS/draft/
 s/UNI_VER/$UNI_VER/
 s/EMOJI_VER/$EMOJI_VER/
 s%PUBLIC_EMOJI%Public/draft/emoji%
-s%PUBLIC_UCD%Public/draft/UCD%
+s%PUBLIC_UCD%Public/draft%
 eof
 
-mkdir -p $DRAFT/UCD/ucd
-mkdir -p $DRAFT/zipped
-cp -r $UNITOOLS_DATA/ucd/dev/* $DRAFT/UCD/ucd
-rm -r $DRAFT/UCD/ucd/Unihan
-mv $DRAFT/UCD/ucd/version-ReadMe.txt $DRAFT/UCD/ReadMe.txt
-mv $DRAFT/UCD/ucd/zipped-ReadMe.txt $DRAFT/zipped/ReadMe.txt
+mkdir -p $DRAFT/ucd
+cp -r $UNITOOLS_DATA/ucd/dev/* $DRAFT/ucd
+rm -r $DRAFT/ucd/Unihan
+mv $DRAFT/ucd/version-ReadMe.txt $DRAFT/ReadMe.txt
 
 mkdir -p $DRAFT/UCA
 cp -r $UNITOOLS_DATA/uca/dev/* $DRAFT/UCA
@@ -60,8 +58,8 @@ chmod a+rX -R $DRAFT
 find $DRAFT -name '*ReadMe.txt' | xargs sed -i -f $DRAFT/sed-readmes.txt
 
 # Zip files for some types of data, after fixing permissions
-rm $DRAFT/UCD/ucd/UCD.zip
-(cd $DRAFT/UCD/ucd; zip -r UCD.zip * && mv UCD.zip $DRAFT/zipped)
+rm $DRAFT/ucd/UCD.zip
+(cd $DRAFT/ucd; zip -r UCD.zip *)
 
 rm $DRAFT/UCA/CollationTest.zip
 (cd $DRAFT/UCA; zip -r CollationTest.zip CollationTest && rm -r CollationTest)
@@ -81,8 +79,7 @@ rm $DRAFT/beta.zip
 
 echo "--------------------"
 echo "Copy files from elsewhere:"
-echo "- Unihan.zip to $DRAFT/UCD/ucd"
-echo "- Unihan.zip to $DRAFT/zipped"
-echo "- UCDXML files to $DRAFT/UCD/ucdxml"
-echo "- beta charts to $DRAFT/UCD/charts"
+echo "- Unihan.zip to $DRAFT/ucd"
+echo "- UCDXML files to $DRAFT/ucdxml"
+echo "- beta charts to $DRAFT/charts"
 
