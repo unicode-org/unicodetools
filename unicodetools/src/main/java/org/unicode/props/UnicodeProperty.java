@@ -164,6 +164,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return this;
     }
 
+    public boolean isMultivalued() {
+        return isMultivalued;
+    }
+
     public UnicodeProperty setDelimiter(String value) {
         delimiter = value;
         delimiterSplitter = Splitter.on(delimiter);

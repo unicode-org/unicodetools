@@ -145,48 +145,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                                 },
                                 false)
                         .setMain("toNFKD", "toNFKD", UnicodeProperty.STRING, "1.1"));
-
-        add(
-                new StringTransformProperty(
-                                new StringTransform() {
-                                    @Override
-                                    public String transform(String source) {
-                                        return UCharacter.foldCase(source, true);
-                                    }
-                                },
-                                false)
-                        .setMain("toCasefold", "toCF", UnicodeProperty.STRING, "1.1"));
-        add(
-                new StringTransformProperty(
-                                new StringTransform() {
-                                    @Override
-                                    public String transform(String source) {
-                                        return UCharacter.toLowerCase(ULocale.ROOT, source);
-                                    }
-                                },
-                                false)
-                        .setMain("toLowercase", "toLC", UnicodeProperty.STRING, "1.1"));
-        add(
-                new StringTransformProperty(
-                                new StringTransform() {
-                                    @Override
-                                    public String transform(String source) {
-                                        return UCharacter.toUpperCase(ULocale.ROOT, source);
-                                    }
-                                },
-                                false)
-                        .setMain("toUppercase", "toUC", UnicodeProperty.STRING, "1.1"));
-        add(
-                new StringTransformProperty(
-                                new StringTransform() {
-                                    @Override
-                                    public String transform(String source) {
-                                        return UCharacter.toTitleCase(ULocale.ROOT, source, null);
-                                    }
-                                },
-                                false)
-                        .setMain("toTitlecase", "toTC", UnicodeProperty.STRING, "1.1"));
-
         add(
                 new StringTransformProperty(
                                 new StringTransform() {
