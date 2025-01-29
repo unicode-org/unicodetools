@@ -181,23 +181,23 @@ kIRG_SSource ;                SINGLE_VALUED ;                V[0-4]-[0-9A-F]{4}
 
 # Unihan properties from 13.0 and later.  No regexes for now.
 # TODO(egg): We should automate the updating of the regexes from UAX #38.
-kSpoofingVariant ; MULTI_VALUED
-kTGHZ2013        ; MULTI_VALUED
-kUnihanCore2020  ; SINGLE_VALUED
+kSpoofingVariant ; MULTI_VALUED ;
+kTGHZ2013        ; MULTI_VALUED ;
+kUnihanCore2020  ; SINGLE_VALUED ;
 # 14.0
-kStrange ; MULTI_VALUED
+kStrange ; MULTI_VALUED ;
 # 15.0
-kAlternateTotalStrokes ; MULTI_VALUED
+kAlternateTotalStrokes ; MULTI_VALUED ;
 # 15.1
-kJapanese ; MULTI_VALUED
-kMojiJoho ; MULTI_VALUED
-kSMSZD2003Index ; MULTI_VALUED
-kSMSZD2003Readings ; MULTI_VALUED
-kVietnameseNumeric ; MULTI_VALUED
-kZhuangNumeric ; MULTI_VALUED
+kJapanese ; MULTI_VALUED ;
+kMojiJoho ; MULTI_VALUED ;
+kSMSZD2003Index ; MULTI_VALUED ;
+kSMSZD2003Readings ; MULTI_VALUED ;
+kVietnameseNumeric ; MULTI_VALUED ;
+kZhuangNumeric ; MULTI_VALUED ;
 # 16.0
-kFanqie ; MULTI_VALUED
-kZhuang ; MULTI_VALUED
+kFanqie ; MULTI_VALUED ;
+kZhuang ; MULTI_VALUED ;
 
 # =============================
 # Catalog/Enum/Binary Properties
