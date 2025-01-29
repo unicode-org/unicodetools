@@ -48,7 +48,7 @@ public enum UcdProperty {
     Numeric_Value(PropertyType.Numeric, "nv"),
     kAccountingNumeric(PropertyType.Numeric, "cjkAccountingNumeric"),
     kOtherNumeric(PropertyType.Numeric, "cjkOtherNumeric"),
-    kPrimaryNumeric(PropertyType.Numeric, "cjkPrimaryNumeric"),
+    kPrimaryNumeric(PropertyType.Numeric, null, ValueCardinality.Ordered, "cjkPrimaryNumeric"),
 
     // String
     Bidi_Mirroring_Glyph(PropertyType.String, "bmg"),
@@ -91,7 +91,11 @@ public enum UcdProperty {
     Named_Sequences_Prov(PropertyType.Miscellaneous, "NSP"),
     Standardized_Variant(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "SV"),
     Unicode_1_Name(PropertyType.Miscellaneous, "na1"),
-    kAlternateTotalStrokes(PropertyType.Miscellaneous, "cjkAlternateTotalStrokes"),
+    kAlternateTotalStrokes(
+            PropertyType.Miscellaneous,
+            null,
+            ValueCardinality.Unordered,
+            "cjkAlternateTotalStrokes"),
     kBigFive(PropertyType.Miscellaneous, "cjkBigFive"),
     kCCCII(PropertyType.Miscellaneous, "cjkCCCII"),
     kCNS1986(PropertyType.Miscellaneous, "cjkCNS1986"),
@@ -114,7 +118,7 @@ public enum UcdProperty {
     kEH_IFAO(PropertyType.Miscellaneous, "kEH_IFAO"),
     kEH_JSesh(PropertyType.Miscellaneous, "kEH_JSesh"),
     kEH_UniK(PropertyType.Miscellaneous, "kEH_UniK"),
-    kFanqie(PropertyType.Miscellaneous, "cjkFanqie"),
+    kFanqie(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkFanqie"),
     kFenn(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkFenn"),
     kFennIndex(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkFennIndex"),
     kFourCornerCode(
@@ -154,7 +158,7 @@ public enum UcdProperty {
     kIRG_VSource(PropertyType.Miscellaneous, "cjkIRG_VSource"),
     kJIS0213(PropertyType.Miscellaneous, "cjkJIS0213"),
     kJa(PropertyType.Miscellaneous, "cjkJa"),
-    kJapanese(PropertyType.Miscellaneous, "cjkJapanese"),
+    kJapanese(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkJapanese"),
     kJapaneseKun(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkJapaneseKun"),
     kJapaneseOn(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkJapaneseOn"),
     kJinmeiyoKanji(
@@ -180,7 +184,7 @@ public enum UcdProperty {
     kMandarin(PropertyType.Miscellaneous, null, ValueCardinality.Ordered, "cjkMandarin"),
     kMatthews(PropertyType.Miscellaneous, "cjkMatthews"),
     kMeyerWempe(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkMeyerWempe"),
-    kMojiJoho(PropertyType.Miscellaneous, "cjkMojiJoho"),
+    kMojiJoho(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkMojiJoho"),
     kMorohashi(PropertyType.Miscellaneous, "cjkMorohashi"),
     kNelson(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkNelson"),
     kPhonetic(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkPhonetic"),
@@ -201,8 +205,10 @@ public enum UcdProperty {
             "URS"),
     kReading(PropertyType.Miscellaneous, "kReading"),
     kSBGY(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSBGY"),
-    kSMSZD2003Index(PropertyType.Miscellaneous, "cjkSMSZD2003Index"),
-    kSMSZD2003Readings(PropertyType.Miscellaneous, "cjkSMSZD2003Readings"),
+    kSMSZD2003Index(
+            PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSMSZD2003Index"),
+    kSMSZD2003Readings(
+            PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSMSZD2003Readings"),
     kSemanticVariant(
             PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSemanticVariant"),
     kSpecializedSemanticVariant(
@@ -210,23 +216,26 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkSpecializedSemanticVariant"),
-    kSpoofingVariant(PropertyType.Miscellaneous, "cjkSpoofingVariant"),
+    kSpoofingVariant(
+            PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSpoofingVariant"),
     kSrc_NushuDuben(PropertyType.Miscellaneous, "kSrc_NushuDuben"),
-    kStrange(PropertyType.Miscellaneous, "cjkStrange"),
+    kStrange(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkStrange"),
     kTGH(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkTGH"),
-    kTGHZ2013(PropertyType.Miscellaneous, "cjkTGHZ2013"),
+    kTGHZ2013(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkTGHZ2013"),
     kTGT_MergedSrc(PropertyType.Miscellaneous, "kTGT_MergedSrc"),
     kTaiwanTelegraph(PropertyType.Miscellaneous, "cjkTaiwanTelegraph"),
     kTang(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkTang"),
     kTotalStrokes(PropertyType.Miscellaneous, null, ValueCardinality.Ordered, "cjkTotalStrokes"),
     kUnihanCore2020(PropertyType.Miscellaneous, "cjkUnihanCore2020"),
     kVietnamese(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkVietnamese"),
-    kVietnameseNumeric(PropertyType.Miscellaneous, "cjkVietnameseNumeric"),
+    kVietnameseNumeric(
+            PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkVietnameseNumeric"),
     kXHC1983(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkXHC1983"),
     kXerox(PropertyType.Miscellaneous, "cjkXerox"),
     kZVariant(PropertyType.Miscellaneous, "cjkZVariant"),
-    kZhuang(PropertyType.Miscellaneous, "cjkZhuang"),
-    kZhuangNumeric(PropertyType.Miscellaneous, "cjkZhuangNumeric"),
+    kZhuang(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkZhuang"),
+    kZhuangNumeric(
+            PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkZhuangNumeric"),
 
     // Catalog
     Age(PropertyType.Catalog, Age_Values.class, null, "age"),
