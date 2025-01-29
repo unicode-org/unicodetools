@@ -253,40 +253,6 @@ public class GenerateEmojiData {
                 System.out.println(
                         CandidateData.getInstance().getExtendedPictographic().contains("🦰"));
             UnicodeSet emoji_pict = emojiDataSource.getExtendedPictographic();
-            UnicodeSet emoji_pict_to_remove =
-                    emoji_pict
-                            .cloneAsThawed()
-                            .removeAll(iup.getProperty(UcdProperty.General_Category).getSet("Cn"))
-                            .removeAll(emoji)
-                            .freeze();
-            UnicodeSet emoji_pict_to_remove_16 =
-                    emoji_pict_to_remove
-                            .cloneAsThawed()
-                            .removeAll(
-                                    IndexUnicodeProperties.make(Age_Values.V16_0)
-                                            .getProperty(UcdProperty.General_Category)
-                                            .getSet("Cn"))
-                            .freeze();
-            if (emoji_pict_to_remove_16.size() != 672) {
-                throw new IllegalArgumentException(emoji_pict_to_remove_16.toString());
-            }
-            System.out.println(
-                    "Unassigning Extended_Pictographic from "
-                            + emoji_pict_to_remove.size()
-                            + " characters, including 672 characters present in 16.0, as well as:");
-            emoji_pict = emoji_pict.cloneAsThawed().removeAll(emoji_pict_to_remove).freeze();
-            var out = new PrintWriter(System.out);
-            printer.show(
-                    out,
-                    "",
-                    null,
-                    0,
-                    14,
-                    emoji_pict_to_remove.cloneAsThawed().removeAll(emoji_pict_to_remove_16),
-                    true,
-                    false,
-                    false);
-            out.flush();
             outText2.println(
                     Utility.getBaseDataHeaderWithVersionText(
                             "emoji-data", 51, "Emoji Data", versionTextForUCD));
