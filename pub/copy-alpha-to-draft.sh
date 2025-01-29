@@ -40,11 +40,6 @@ cp $UNITOOLS_DATA/emoji/dev/* $DRAFT/emoji
 mkdir -p $DRAFT/idna
 cp $UNITOOLS_DATA/idna/dev/* $DRAFT/idna
 
-mkdir -p $DRAFT/idna2008derived
-rm $DRAFT/idna2008derived/*
-cp $UNITOOLS_DATA/idna/idna2008derived/Idna2008-$UNI_VER.txt $DRAFT/idna2008derived
-cp $UNITOOLS_DATA/idna/idna2008derived/ReadMe.txt $DRAFT/idna2008derived
-
 # Fix permissions. Everyone can read, and search directories.
 chmod a+rX -R $DRAFT
 
