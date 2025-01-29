@@ -1,5 +1,5 @@
 # VerticalOrientation-17.0.0.txt
-# Date: 2025-01-29, 10:33:13 GMT [KW]
+# Date: 2025-01-29
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -853,9 +853,9 @@
 200B..200F     ; R  # Cf     [5] ZERO WIDTH SPACE..RIGHT-TO-LEFT MARK
 2010..2015     ; R  # Pd     [6] HYPHEN..HORIZONTAL BAR
 2016           ; U  # Po         DOUBLE VERTICAL LINE
-2017           ; Tr # Po         DOUBLE LOW LINE
+2017           ; R  # Po         DOUBLE LOW LINE
 2018           ; Tr # Pi         LEFT SINGLE QUOTATION MARK
-2019           ; R  # Pf         RIGHT SINGLE QUOTATION MARK
+2019           ; Tr # Pf         RIGHT SINGLE QUOTATION MARK
 201A           ; R  # Ps         SINGLE LOW-9 QUOTATION MARK
 201B           ; R  # Pi         SINGLE HIGH-REVERSED-9 QUOTATION MARK
 201C           ; Tr # Pi         LEFT DOUBLE QUOTATION MARK
