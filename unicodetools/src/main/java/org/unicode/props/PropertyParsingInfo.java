@@ -110,11 +110,17 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         String _file = propertyInfo[0];
         final String propName = propertyInfo[1];
         UcdProperty _property = UcdProperty.forString(propName);
+        if (_property == null) {
+            throw new IllegalArgumentException("No such property: " + propName);
+        }
 
         String last = propertyInfo[propertyInfo.length - 1];
         if (VERSION.matcher(last).matches()) {
             propertyInfo[propertyInfo.length - 1] = "";
             PropertyParsingInfo result = property2PropertyInfo.get(_property);
+            if (result == null) {
+                throw new IllegalArgumentException("No modern info for property with old file record: " + propName);
+            }
             result.oldFile = _file;
             result.maxOldVersion = VersionInfo.getInstance(last.substring(1));
             file2PropertyInfoSet.put(_file, result);
