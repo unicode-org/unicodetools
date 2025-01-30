@@ -176,7 +176,7 @@ jobs:
 
       - name: Upload UnicodeTestResults artifact
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: unicode-test-results
           path: |
