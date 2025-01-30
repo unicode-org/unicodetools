@@ -44,13 +44,16 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     private static final String NEW_UNICODE_PROPS_DOCS =
             "https://github.com/unicode-org/unicodetools/blob/main/docs/newunicodeproperties.md";
     private static final VersionInfo MIN_VERSION = VersionInfo.getInstance(0, 0, 0, 0);
-    public final String file;
     public final UcdProperty property;
     public final int fieldNumber;
     public final SpecialProperty special;
 
-    public String oldFile;
-    public VersionInfo maxOldVersion = MIN_VERSION;
+    /**
+     * Maps from Unicode versions to files. A property whose file depends on the
+     * version has more than one entry. A particular file applies to the Unicode versions
+     * after the previous-version entry, up to and including its own version.
+     */
+    TreeMap<VersionInfo, String> files;
 
     /**
      * Maps from Unicode versions to default values. A property whose default value depends on the
@@ -94,7 +97,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
     public PropertyParsingInfo(
             String file, UcdProperty property, int fieldNumber, SpecialProperty special) {
-        this.file = file;
+        this.files = new TreeMap<>();
+        files.put(Settings.LATEST_VERSION_INFO, file);
         this.property = property;
         this.fieldNumber = fieldNumber;
         this.special = special;
@@ -119,10 +123,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             propertyInfo[propertyInfo.length - 1] = "";
             PropertyParsingInfo result = property2PropertyInfo.get(_property);
             if (result == null) {
-                throw new IllegalArgumentException("No modern info for property with old file record: " + propName);
+                throw new IllegalArgumentException(
+                        "No modern info for property with old file record: " + propName);
             }
-            result.oldFile = _file;
-            result.maxOldVersion = VersionInfo.getInstance(last.substring(1));
+            result.files.put(VersionInfo.getInstance(last.substring(1)), _file);
             file2PropertyInfoSet.put(_file, result);
             return;
         }
@@ -163,13 +167,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
     @Override
     public String toString() {
-        return file
+        return files
                 + " ;\t"
                 + property
-                + " ;\t"
-                + oldFile
-                + " ;\t"
-                + maxOldVersion
                 + " ;\t"
                 + fieldNumber
                 + " ;\t"
@@ -185,10 +185,11 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 + " ;\t";
     }
 
+    // TODO(egg): This compares a strange subset of the fields which may be a historical artefact.
     @Override
     public int compareTo(PropertyParsingInfo arg0) {
         int result;
-        if (0 != (result = file.compareTo(arg0.file))) {
+        if (0 != (result = files.get(Settings.LATEST_VERSION_INFO).compareTo(arg0.files.get(Settings.LATEST_VERSION_INFO)))) {
             return result;
         }
         if (0 != (result = property.toString().compareTo(arg0.property.toString()))) {
@@ -207,20 +208,21 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     }
 
     public String getFileName(VersionInfo ucdVersionRequested) {
-        String filename;
-        if (file.startsWith("Unihan") && ucdVersionRequested.compareTo(V13) >= 0) {
-            filename = property.toString();
-        } else {
-            filename = useOldFile(ucdVersionRequested) ? oldFile : file;
+        String file = null;
+        for (final var entry : files.entrySet()) {
+            if (ucdVersionRequested.compareTo(entry.getKey()) <= 0) {
+                file = entry.getValue();
+                break;
+            }
         }
-        return filename;
+        if (file.startsWith("Unihan") && ucdVersionRequested.compareTo(V13) >= 0) {
+            return property.toString();
+        } else {
+            return file;
+        }
     }
 
     private static final VersionInfo V13 = VersionInfo.getInstance(13);
-
-    public boolean useOldFile(VersionInfo ucdVersionRequested) {
-        return ucdVersionRequested.compareTo(maxOldVersion) <= 0;
-    }
 
     public static final Normalizer2 NFD = Normalizer2.getNFDInstance();
     public static final Normalizer2 NFC = Normalizer2.getNFCInstance();
@@ -550,7 +552,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     break;
                 case PropertyValue:
                     parsePropertyValueFile(
-                            parser.withMissing(true), indexUnicodeProperties, nextProperties);
+                            parser.withMissing(true),
+                            fileName,
+                            indexUnicodeProperties,
+                            nextProperties);
                     break;
                 case Confusables:
                     parseConfusablesFile(
@@ -733,6 +738,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
     private static void parsePropertyValueFile(
             UcdLineParser parser,
+            String filename,
             IndexUnicodeProperties indexUnicodeProperties,
             IndexUnicodeProperties nextProperties) {
         for (UcdLineParser.UcdLine line : parser) {
@@ -810,6 +816,28 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     data = indexUnicodeProperties.property2UnicodeMap.get(propInfo.property);
                 } catch (Exception e) {
                     throw new IllegalArgumentException(line.getOriginalLine(), e);
+                }
+                if (data == null) {
+                    throw new IllegalArgumentException(
+                            "No map for property "
+                                    + propInfo.property
+                                    + " when parsing file "
+                                    + filename
+                                    + "; property expected in "
+                                    + propInfo.getFileName(indexUnicodeProperties.ucdVersion)
+                                    + " in "
+                                    + indexUnicodeProperties.ucdVersion);
+                }
+                if (data.isFrozen()) {
+                    throw new IllegalArgumentException(
+                            "Found record for frozen property "
+                                    + propInfo.property
+                                    + " when parsing file "
+                                    + filename
+                                    + "; property expected in "
+                                    + propInfo.getFileName(indexUnicodeProperties.ucdVersion)
+                                    + " in "
+                                    + indexUnicodeProperties.ucdVersion);
                 }
                 propInfo.put(
                         data,

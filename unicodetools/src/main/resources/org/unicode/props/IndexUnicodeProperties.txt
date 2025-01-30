@@ -217,7 +217,6 @@ Unihan_DictionaryIndices ; kMeyerWempe
 Unihan_DictionaryIndices ; kMorohashi
 Unihan_DictionaryIndices ; kNelson
 Unihan_DictionaryIndices ; kSBGY
-Unihan_DictionaryIndices ; kSMSZD2003Index
 Unihan_DictionaryLikeData ; kCangjie
 Unihan_DictionaryLikeData ; kCheungBauer
 Unihan_DictionaryLikeData ; kCihaiT
@@ -229,6 +228,7 @@ Unihan_DictionaryLikeData ; kHDZRadBreak
 Unihan_DictionaryLikeData ; kHKGlyph
 Unihan_DictionaryLikeData ; kPhonetic
 Unihan_DictionaryLikeData ; kUnihanCore2020
+Unihan_DictionaryIndices ; kSMSZD2003Index
 Unihan_DictionaryLikeData ; kAlternateTotalStrokes
 Unihan_DictionaryLikeData ; kStrange
 Unihan_DictionaryLikeData ; kMojiJoho
@@ -320,13 +320,24 @@ Unihan_Variants ; kSpoofingVariant
 Unihan_Variants ; kTraditionalVariant
 Unihan_Variants ; kZVariant
 
+# Properties removed from Unihan before 5.1.
+# Point to a nonexistent file so that we don’t try to read them from the most recent monolithic
+# Unihan, as we would then get confused by the other (still-extant) properties in that file.
+
+Unihan_Removed ; kAlternateHanYu
+Unihan_Removed ; kAlternateJEF
+Unihan_Removed ; kAlternateKangXi
+Unihan_Removed ; kAlternateMorohashi
+Unihan_Removed ; kRSMerged
+Unihan_Removed ; kJHJ
+
 # Unihan in one big file, Unicode 2.0..5.1.
 FileType ; Unihan ; PropertyValue
 Unihan ; kAccountingNumeric ; v5.1
-Unihan ; kAlternateHanYu
-Unihan ; kAlternateJEF
-Unihan ; kAlternateKangXi
-Unihan ; kAlternateMorohashi
+Unihan ; kAlternateHanYu ; v5.1
+Unihan ; kAlternateJEF ; v5.1
+Unihan ; kAlternateKangXi ; v5.1
+Unihan ; kAlternateMorohashi ; v5.1
 Unihan ; kBigFive ; v5.1
 Unihan ; kCangjie ; v5.1
 Unihan ; kCantonese ; v5.1
@@ -375,7 +386,7 @@ Unihan ; kIRGHanyuDaZidian ; v5.1
 Unihan ; kIRGKangXi ; v5.1
 Unihan ; kJapaneseKun ; v5.1
 Unihan ; kJapaneseOn ; v5.1
-Unihan ; kJHJ
+Unihan ; kJHJ ; v5.1
 Unihan ; kJis0 ; v5.1
 Unihan ; kJis1 ; v5.1
 Unihan ; kJIS0213 ; v5.1
@@ -402,7 +413,7 @@ Unihan ; kRSJapanese ; v5.1
 Unihan ; kRSKangXi ; v5.1
 Unihan ; kRSKanWa ; v5.1
 Unihan ; kRSKorean ; v5.1
-Unihan ; kRSMerged
+Unihan ; kRSMerged ; v5.1
 Unihan ; kRSUnicode ; v5.1
 Unihan ; kSBGY ; v5.1
 Unihan ; kSemanticVariant ; v5.1
