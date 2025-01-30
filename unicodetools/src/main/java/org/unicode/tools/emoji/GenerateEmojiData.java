@@ -164,10 +164,7 @@ public class GenerateEmojiData {
                                 .asPath(Emoji.VERSION_TO_GENERATE_UNICODE)
                                 .toString()
                         + "/emoji";
-        String versionTextForUCD =
-                "Used with Emoji Version "
-                        + Emoji.VERSION_UNICODE_STRING
-                        + " and subsequent minor revisions (if any)";
+        String versionTextForUCD = "Version: " + Emoji.VERSION_UNICODE_STRING;
         UnicodeSet emojiMultiPersonGroupings = emojiDataSource.getMultiPersonGroupings();
 
         PropPrinter printer = new PropPrinter().set(emojiDataSource);
