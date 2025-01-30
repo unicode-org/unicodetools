@@ -1,0 +1,18 @@
+# Katakana digraph (1B126)
+# https://github.com/unicode-org/utc-release-management/issues/190
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+
+Ignoring Block:
+Propertywise [  \N{KATAKANA DIGRAPH YORI}]
+           ⧴ [{ヨリ} {\N{KATAKANA LETTER YO}\N{KATAKANA LETTER RI}}]
+CorrespondTo [ヿ\N{KATAKANA DIGRAPH KOTO}]
+           ⧴ [{コト} {\N{KATAKANA LETTER KO}\N{KATAKANA LETTER TO}}]
+end Ignoring;
+
+end Ignoring;
