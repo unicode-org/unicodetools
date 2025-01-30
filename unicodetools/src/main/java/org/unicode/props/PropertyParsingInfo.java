@@ -851,6 +851,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                                 <= 0
                                 ? new PropertyUtilities.Joiner("|")
                                 : null;
+                final var originalMultivaluedSplit = propInfo.multivaluedSplit;
+                // The first version of kPrimaryNumeric had spaces in values.
+                if (propName.equals("kPrimaryNumeric")
+                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_4_0)
+                                <= 0) {
+                    propInfo.multivaluedSplit = NO_SPLIT;
+                }
                 propInfo.put(
                         data,
                         line.getRange(),
@@ -859,6 +866,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         nextProperties == null
                                 ? null
                                 : nextProperties.getProperty(propInfo.property));
+                propInfo.multivaluedSplit = originalMultivaluedSplit;
             } else {
                 setPropDefault(
                         propInfo.property,
