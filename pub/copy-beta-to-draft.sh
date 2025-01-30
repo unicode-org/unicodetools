@@ -34,8 +34,8 @@ cp -r $UNITOOLS_DATA/ucd/dev/* $DRAFT/ucd
 rm -r $DRAFT/ucd/Unihan
 mv $DRAFT/ucd/version-ReadMe.txt $DRAFT/ReadMe.txt
 
-mkdir -p $DRAFT/UCA
-cp -r $UNITOOLS_DATA/uca/dev/* $DRAFT/UCA
+mkdir -p $DRAFT/uca
+cp -r $UNITOOLS_DATA/uca/dev/* $DRAFT/uca
 
 mkdir -p $DRAFT/emoji
 cp $UNITOOLS_DATA/emoji/dev/* $DRAFT/emoji

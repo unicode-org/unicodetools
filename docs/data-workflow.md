@@ -19,8 +19,10 @@ List of these files (see https://www.unicode.org/Public/UCD/latest/ucd/):
 
 Process:
 *   The “source of truth” is the Unihan database maintained by the CJK/Unihan group, including data maintained by Michel.
-*   The CJK/Unihan group posts data files into an internal location.
-*   KenW vets these files and posts them to https://www.unicode.org/Public/draft/UCD/ucd/ .
+*   The CJK/Unihan group maintains the data files in the Unicode-internal unihan-tools repo
+    and creates GitHub releases with the /Public data files.
+*   These include RSIndex.txt and RSIndex.pdf which are published in the charts folder, not in the ucd folder.
+*   An infrastructure person copies these files to /Public/draft/ucd, /Public/draft/charts, /Public/{version}/... as appropriate.
 *   A unicodetools GitHub contributor fetches these files, preprocesses the contents of Unihan.zip,
     and creates a pull request as for “regular” data files.
     (The processed data files go into .../unicodetools/data/ucd/dev/Unihan.)
@@ -48,6 +50,7 @@ Changes are made in a GitHub pull request.
 *   Updated files could be shared in various ways including via email or via private FTP areas.
 *   Updated files should be based on the latest (or fairly recent) data in the unicodetools repo.
 *   Updated files should not be posted directly to https://www.unicode.org/Public/...
+*   We work with an infra person to publish whole UCD/alpha/beta/final data file drops into /Public .
 
 Pull request cycle:
 *   One commit for manual or contributed data changes.
@@ -81,8 +84,8 @@ https://github.com/unicode-org/unicodetools/tree/main/unicodetools/data/emoji/de
 
 Certain snapshots of the .../dev/ files are copied into https://www.unicode.org/Public/draft/
 for Unicode alpha, beta, and final releases, and more as appropriate.
-*   UCD files go into https://www.unicode.org/Public/draft/UCD/
-*   UCA files go into https://www.unicode.org/Public/draft/UCA/
+*   UCD files go into https://www.unicode.org/Public/draft/ucd/
+*   UCA files go into https://www.unicode.org/Public/draft/uca/
 *   emoji files go into https://www.unicode.org/Public/draft/emoji/
 *   etc.
 *   Inside “draft” there are no folder levels with version numbers.
@@ -104,18 +107,16 @@ script from an up-to-date repo workspace.
 The script copies the set of the .../dev/ data files for an alpha snapshot
 from a unicodetools workspace to a target folder with the layout of https://www.unicode.org/Public/draft/ .
 
-Send the resulting zip file to Rick for posting to https://www.unicode.org/Public/draft/ .
-Ask Rick to add other files that are not tracked in the unicodetools repo:
-*   Unihan.zip to .../draft/UCD/ucd
-
-TODO: Figure out new process & people replacing Rick in 2025.
+Send the resulting zip file to an infra person for posting to https://www.unicode.org/Public/draft/ .
+Ask the infra person to add other files that are not tracked in the unicodetools repo:
+*   Unihan.zip to .../draft/ucd
 
 Note: No version/delta infixes in names of data files.
 We simply use the “draft” folder and the file-internal time stamps for versioning.
 
 ### Publish an alpha snapshot
 
-For the alpha review, publish (at least) the UCD and emoji files, and the charts.
+For the alpha review, publish (at least) the UCD and emoji files, the IDNA files, and the charts.
 
 Review/edit the pub/*.sh scripts and advance the version numbers and copyright years.
 
@@ -124,10 +125,10 @@ script from an up-to-date repo workspace.
 The script copies the set of the .../dev/ data files for an alpha snapshot
 from a unicodetools workspace to a target folder with the layout of https://www.unicode.org/Public/draft/ .
 
-Send the resulting zip file to Rick for posting to https://www.unicode.org/Public/draft/ .
-Ask Rick to add other files that are not tracked in the unicodetools repo:
-*   Unihan.zip to .../draft/UCD/ucd
-*   alpha charts to .../draft/UCD/charts
+Send the resulting zip file to an infra person for posting to https://www.unicode.org/Public/draft/ .
+Ask the infra person to add other files that are not tracked in the unicodetools repo:
+*   Unihan.zip to .../draft/ucd
+*   alpha charts to .../draft/charts
 
 Note: No version/delta infixes in names of data files.
 We simply use the “draft” folder and the file-internal time stamps for versioning.
@@ -141,11 +142,11 @@ script from an up-to-date repo workspace.
 The script copies the set of the .../dev/ data files for a beta snapshot
 from a unicodetools workspace to a target folder with the layout of https://www.unicode.org/Public/draft/ .
 
-Send the resulting zip file to Rick for posting to https://www.unicode.org/Public/draft/ .
-Ask Rick to add other files that are not tracked in the unicodetools repo:
-*   Unihan.zip to .../draft/UCD/ucd
-*   UCDXML files to .../draft/UCD/ucdxml
-*   beta charts to .../draft/UCD/charts
+Send the resulting zip file to an infra person for posting to https://www.unicode.org/Public/draft/ .
+Ask the infra person to add other files that are not tracked in the unicodetools repo:
+*   Unihan.zip to .../draft/ucd
+*   UCDXML files to .../draft/ucdxml
+*   beta charts to .../draft/charts
 
 ### Publish a release snapshot
 
@@ -158,18 +159,18 @@ Verify the final set of files in the draft folder.
 Run the [pub/copy-final.sh](https://github.com/unicode-org/unicodetools/blob/main/pub/copy-final.sh)
 script from an up-to-date repo workspace.
 
-Send the resulting zip file to Rick for posting to https://www.unicode.org/Public/ (not .../Public/draft/).
-Ask Rick to add other files that are not tracked in the unicodetools repo:
+Send the resulting zip file to an infra person for posting to https://www.unicode.org/Public/ (not .../Public/draft/).
+Ask the infra person to add other files that are not tracked in the unicodetools repo:
 *   Unihan.zip to .../{version}/ucd
 *   UCDXML files to .../{version}/ucdxml
 *   final charts to .../{version}/charts
 
-This script works much like the beta script, except it:
-*   assembles all of the files for Public/ in their release folder structure,
-    rather than for Public/draft/
-*   creates a zipped/{version} folder with UCD.zip
+TODO: Starting with 17.0, the folder structure of /Public/draft is the same as that of /Public/{version} .
+Consider moving the final files from /Public/draft to /Public/{version} rather than running another script.
 
 ### Before a release
+
+TODO: Review this section, and merge it into the previous one.
 
 When the data files are supposed to be final, about a week or two before the release:
 
@@ -182,7 +183,7 @@ https://github.com/unicode-org/unicodetools/releases/tag/final-15.1-20230908
 ### After a release
 
 Copy a snapshot of the unicodetools repo .../dev/ files to a versioned unicodetools folder;
-for example: .../unicodetools/data/ucd/16.0.0/ .
+for example: .../unicodetools/data/ucd/17.0.0/ .
 (We no longer append a “-Update” suffix to the folder name.)
 List: emoji, idna, security, uca, ucd, ucdxml
 Watch for different naming conventions: emoji versions use only two fields, not three.
