@@ -217,6 +217,7 @@ Unihan_DictionaryIndices ; kMeyerWempe
 Unihan_DictionaryIndices ; kMorohashi
 Unihan_DictionaryIndices ; kNelson
 Unihan_DictionaryIndices ; kSBGY
+Unihan_DictionaryIndices ; kSMSZD2003Index
 Unihan_DictionaryLikeData ; kCangjie
 Unihan_DictionaryLikeData ; kCheungBauer
 Unihan_DictionaryLikeData ; kCihaiT
@@ -228,6 +229,9 @@ Unihan_DictionaryLikeData ; kHDZRadBreak
 Unihan_DictionaryLikeData ; kHKGlyph
 Unihan_DictionaryLikeData ; kPhonetic
 Unihan_DictionaryLikeData ; kUnihanCore2020
+Unihan_DictionaryLikeData ; kAlternateTotalStrokes
+Unihan_DictionaryLikeData ; kStrange
+Unihan_DictionaryLikeData ; kMojiJoho
 Unihan_IRGSources ; kIICore
 Unihan_IRGSources ; kIRG_GSource
 Unihan_IRGSources ; kIRG_HSource
@@ -252,6 +256,8 @@ Unihan_DictionaryLikeData ; kTotalStrokes ; v12.1
 Unihan_NumericValues ; kAccountingNumeric
 Unihan_NumericValues ; kOtherNumeric
 Unihan_NumericValues ; kPrimaryNumeric
+Unihan_NumericValues ; kVietnameseNumeric
+Unihan_NumericValues ; kZhuangNumeric
 Unihan_OtherMappings ; kBigFive
 Unihan_OtherMappings ;  kCCCII
 Unihan_OtherMappings ;  kCNS1986
@@ -302,6 +308,10 @@ Unihan_Readings ; kTang
 Unihan_Readings ; kTGHZ2013
 Unihan_Readings ; kVietnamese
 Unihan_Readings ; kXHC1983
+Unihan_Readings ; kJapanese
+Unihan_Readings ; kSMSZD2003Readings
+Unihan_Readings ; kFanqie
+Unihan_Readings ; kZhuang
 Unihan_Variants ; kCompatibilityVariant	; v6.3
 Unihan_Variants ; kSemanticVariant
 Unihan_Variants ; kSimplifiedVariant

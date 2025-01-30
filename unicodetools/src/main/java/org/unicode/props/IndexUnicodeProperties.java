@@ -28,6 +28,7 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -263,7 +264,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                             || prop2 == UcdProperty.kAccountingNumeric
                             || prop2 == UcdProperty.kOtherNumeric) {
                         // Unicode 15.1+: A character may have multiple Unihan numeric values.
-                        pos = v.indexOf(' ');
+                        pos = v.indexOf('|');
                         if (pos >= 0) {
                             v = value.substring(0, pos);
                         }
@@ -839,9 +840,19 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         @Override
-        protected List<String> _getAvailableValues(List result) {
+        protected List<String> _getAvailableValues(List<String> result) {
             if (stringToNamedEnum != null) {
                 result.addAll(enumValueNames);
+                return result;
+            }
+            if (isMultivalued()) {
+                HashSet<String> valueSet = new HashSet<>();
+                for (var value : _getUnicodeMap().getAvailableValues()) {
+                    for (var part : delimiterSplitter.split(value)) {
+                        valueSet.add(part);
+                    }
+                }
+                result.addAll(valueSet);
                 return result;
             }
             return _getUnicodeMap().getAvailableValues(result);

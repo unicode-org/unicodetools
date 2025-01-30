@@ -4,7 +4,6 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.CollationElementIterator;
 import com.ibm.icu.text.Normalizer;
@@ -567,89 +566,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             return Idna2008.SINGLETON.getType(codepoint).toString();
         }
     }
-
-    private static class IcuEnumProperty extends XEnumUnicodeProperty {
-        final int propNum;
-
-        public IcuEnumProperty(int propNum) {
-            super(
-                    UCharacter.getPropertyName(propNum, NameChoice.LONG),
-                    getValues(propNum).toArray());
-            this.propNum = propNum;
-        }
-
-        private static List<String> getValues(int propNum) {
-            List<String> valueList = new ArrayList<String>();
-            for (int i = UCharacter.getIntPropertyMinValue(propNum);
-                    i <= UCharacter.getIntPropertyMaxValue(propNum);
-                    ++i) {
-                valueList.add(UCharacter.getPropertyValueName(propNum, i, NameChoice.LONG));
-            }
-            return valueList;
-        }
-
-        @Override
-        protected String _getValue(int codepoint) {
-            int propValue = UCharacter.getIntPropertyValue(codepoint, propNum);
-            try {
-                return UCharacter.getPropertyValueName(propNum, propValue, NameChoice.LONG);
-            } catch (Exception e) {
-                return "n/a";
-            }
-        }
-    }
-
-    //    private static class IcuBidiPairedBracket extends SimpleProperty {
-    //        final int propNum;
-    //        public IcuBidiPairedBracket() {
-    //            setName(UCharacter.getPropertyName(UProperty.BIDI_PAIRED_BRACKET,
-    // NameChoice.LONG));
-    //            this.propNum = UProperty.BIDI_PAIRED_BRACKET;
-    //        }
-    //        @Override
-    //        public List _getNameAliases(List result) {
-    //            return Arrays.asList(UCharacter.getPropertyName(propNum, NameChoice.LONG),
-    // UCharacter.getPropertyName(propNum, NameChoice.SHORT));
-    //        }
-    //
-    //        @Override
-    //        protected String _getValue(int codepoint) {
-    //            return UTF16.valueOf(UCharacter.getBidiPairedBracket(codepoint));
-    //        }
-    //        @Override
-    //        protected UnicodeMap _getUnicodeMap() {
-    //            // TODO Auto-generated method stub
-    //            return super._getUnicodeMap();
-    //        }
-    //    }
-
-    //    private static class Usage extends XEnumUnicodeProperty {
-    //        enum UsageValues {common, historic, deprecated, liturgical, limited, symbol,
-    // punctuation, na;
-    //        public static UsageValues getValue(int codepoint) {
-    //            if (UnicodeProperty.SPECIALS.contains(codepoint)) return na;
-    //            if (UnicodeUtilities.DEPRECATED.contains(codepoint)) return deprecated;
-    //            if (UnicodeUtilities.LITURGICAL.contains(codepoint)) return liturgical;
-    //            //if (ScriptCategoriesCopy.ARCHAIC.contains(codepoint)) return historic;
-    //            //if (UnicodeUtilities.LIM.contains(codepoint)) return archaic;
-    //            if (UnicodeUtilities.COMMON_USE_SCRIPTS.contains(codepoint)) {
-    //                if (UnicodeUtilities.SYMBOL.contains(codepoint)) return symbol;
-    //                if (UnicodeUtilities.PUNCTUATION.contains(codepoint)) return punctuation;
-    //                return common;
-    //            }
-    //            return limited;
-    //        }
-    //        }
-    //        public Usage() {
-    //            super("Usage", UsageValues.values());
-    //            setType(UnicodeProperty.EXTENDED_ENUMERATED);
-    //        }
-    //
-    //        @Override
-    //        protected String _getValue(int codepoint) {
-    //            return UsageValues.getValue(codepoint).toString();
-    //        }
-    //    }
 
     static class HanType extends XEnumUnicodeProperty {
         enum HanTypeValues {
