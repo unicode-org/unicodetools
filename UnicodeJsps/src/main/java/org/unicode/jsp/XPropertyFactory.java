@@ -574,11 +574,11 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         public IcuEnumProperty(int propNum) {
             super(
                     UCharacter.getPropertyName(propNum, NameChoice.LONG),
-                    getValues(propNum).toArray());
+                    getAvailableValues(propNum).toArray());
             this.propNum = propNum;
         }
 
-        private static List<String> getValues(int propNum) {
+        private static List<String> getAvailableValues(int propNum) {
             List<String> valueList = new ArrayList<String>();
             for (int i = UCharacter.getIntPropertyMinValue(propNum);
                     i <= UCharacter.getIntPropertyMaxValue(propNum);
