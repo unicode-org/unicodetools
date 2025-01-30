@@ -1430,6 +1430,10 @@ public class UcdPropertyValues {
     }
 
     // kAccountingNumeric
+    // kAlternateHanYu
+    // kAlternateJEF
+    // kAlternateKangXi
+    // kAlternateMorohashi
     // kAlternateTotalStrokes
     // kBigFive
     // kCangjie
@@ -1524,6 +1528,7 @@ public class UcdPropertyValues {
     // kJapanese
     // kJapaneseKun
     // kJapaneseOn
+    // kJHJ
     // kJinmeiyoKanji
     // kJis0
     // kJis1
@@ -1556,6 +1561,7 @@ public class UcdPropertyValues {
     // kRSKangXi
     // kRSKanWa
     // kRSKorean
+    // kRSMerged
     // kRSTUnicode
     // kRSUnicode
     // kSBGY

@@ -91,6 +91,10 @@ public enum UcdProperty {
     Named_Sequences_Prov(PropertyType.Miscellaneous, "NSP"),
     Standardized_Variant(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "SV"),
     Unicode_1_Name(PropertyType.Miscellaneous, "na1"),
+    kAlternateHanYu(PropertyType.Miscellaneous, "cjkAlternateHanYu"),
+    kAlternateJEF(PropertyType.Miscellaneous, "cjkAlternateJEF"),
+    kAlternateKangXi(PropertyType.Miscellaneous, "cjkAlternateKangXi"),
+    kAlternateMorohashi(PropertyType.Miscellaneous, "cjkAlternateMorohashi"),
     kAlternateTotalStrokes(
             PropertyType.Miscellaneous,
             null,
@@ -156,6 +160,7 @@ public enum UcdProperty {
     kIRG_UKSource(PropertyType.Miscellaneous, "cjkIRG_UKSource"),
     kIRG_USource(PropertyType.Miscellaneous, "cjkIRG_USource"),
     kIRG_VSource(PropertyType.Miscellaneous, "cjkIRG_VSource"),
+    kJHJ(PropertyType.Miscellaneous, "cjkJHJ"),
     kJIS0213(PropertyType.Miscellaneous, "cjkJIS0213"),
     kJa(PropertyType.Miscellaneous, "cjkJa"),
     kJapanese(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkJapanese"),
@@ -195,6 +200,7 @@ public enum UcdProperty {
     kRSKanWa(PropertyType.Miscellaneous, "cjkRSKanWa"),
     kRSKangXi(PropertyType.Miscellaneous, "cjkRSKangXi"),
     kRSKorean(PropertyType.Miscellaneous, "cjkRSKorean"),
+    kRSMerged(PropertyType.Miscellaneous, "cjkRSMerged"),
     kRSTUnicode(PropertyType.Miscellaneous, "kRSTUnicode"),
     kRSUnicode(
             PropertyType.Miscellaneous,
