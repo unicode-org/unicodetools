@@ -264,7 +264,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                             || prop2 == UcdProperty.kAccountingNumeric
                             || prop2 == UcdProperty.kOtherNumeric) {
                         // Unicode 15.1+: A character may have multiple Unihan numeric values.
-                        pos = v.indexOf(' ');
+                        pos = v.indexOf('|');
                         if (pos >= 0) {
                             v = value.substring(0, pos);
                         }
