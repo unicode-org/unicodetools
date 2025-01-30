@@ -49,9 +49,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     public final SpecialProperty special;
 
     /**
-     * Maps from Unicode versions to files. A property whose file depends on the
-     * version has more than one entry. A particular file applies to the Unicode versions
-     * after the previous-version entry, up to and including its own version.
+     * Maps from Unicode versions to files. A property whose file depends on the version has more
+     * than one entry. A particular file applies to the Unicode versions after the previous-version
+     * entry, up to and including its own version.
      */
     TreeMap<VersionInfo, String> files;
 
@@ -189,7 +189,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     @Override
     public int compareTo(PropertyParsingInfo arg0) {
         int result;
-        if (0 != (result = files.get(Settings.LATEST_VERSION_INFO).compareTo(arg0.files.get(Settings.LATEST_VERSION_INFO)))) {
+        if (0
+                != (result =
+                        files.get(Settings.LATEST_VERSION_INFO)
+                                .compareTo(arg0.files.get(Settings.LATEST_VERSION_INFO)))) {
             return result;
         }
         if (0 != (result = property.toString().compareTo(arg0.property.toString()))) {
@@ -839,10 +842,20 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                     + " in "
                                     + indexUnicodeProperties.ucdVersion);
                 }
+                // Unihan 4.0 and earlier implemented multivalued properties by repeating the
+                // property value record instead of using a delimiter.
+                var merger =
+                        propInfo.property.getShortName().startsWith("cjk")
+                                        && indexUnicodeProperties.ucdVersion.compareTo(
+                                                        VersionInfo.UNICODE_4_0)
+                                                <= 0
+                                ? new PropertyUtilities.Joiner("|")
+                                : null;
                 propInfo.put(
                         data,
                         line.getRange(),
                         value,
+                        merger,
                         nextProperties == null
                                 ? null
                                 : nextProperties.getProperty(propInfo.property));
