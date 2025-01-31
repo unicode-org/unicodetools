@@ -26,6 +26,7 @@ import org.unicode.idna.Regexes;
 import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
 import org.unicode.props.PropertyUtilities.Merge;
 import org.unicode.props.UcdLineParser.IntRange;
+import org.unicode.props.UcdLineParser.UcdLine.Contents;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -771,19 +772,53 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             // file: " + propInfo);
             //                    }
             String value;
-            if (line.getParts().length == 2) {
-                assert propInfo.property.getType() == PropertyType.Binary;
+            // The file emoji-sequences.txt has a comment-like field after the binary property.
+            if (line.getParts().length == 2
+                    || filename.equals("emoji/*/emoji-sequences")
+                    || filename.equals("emoji/*/emoji-zwj-sequences")) {
+                if (propInfo.property.getType() != PropertyType.Binary) {
+                    throw new IllegalArgumentException(
+                            "Expected a value for "
+                                    + propInfo.property.getType()
+                                    + " property "
+                                    + propName);
+                }
                 value = "Yes";
             } else {
-                value =
-                        propInfo.property.getType() == PropertyType.Binary
-                                ? "Yes"
-                                : line.getParts()[2];
+                value = line.getParts()[2];
+                if (propInfo.property.getType() == PropertyType.Binary) {
+                    if (line.getType() == Contents.DATA
+                            && UcdPropertyValues.Binary.forName(value)
+                                    != UcdPropertyValues.Binary.Yes) {
+                        // Most binary properties have no value field, but at least kEH_NoRotate has
+                        // Y.
+                        throw new IllegalArgumentException(
+                                "Unexpected value "
+                                        + value
+                                        + " for binary property "
+                                        + propName
+                                        + " in "
+                                        + filename);
+                    } else if (line.getType() == Contents.MISSING
+                            && UcdPropertyValues.Binary.forName(value)
+                                    != UcdPropertyValues.Binary.No) {
+                        throw new IllegalArgumentException(
+                                "Unexpected default "
+                                        + value
+                                        + " for binary property "
+                                        + propName
+                                        + " in "
+                                        + filename);
+                    }
+                }
                 // The value should not be an empty string.
                 // Exception: NFKC_Casefold does remove some characters by mapping them to nothing.
-                assert !value.isEmpty()
-                        || propInfo.property == UcdProperty.NFKC_Casefold
-                        || propInfo.property == UcdProperty.NFKC_Simple_Casefold;
+                if (value.isEmpty()
+                        && !(propInfo.property == UcdProperty.NFKC_Casefold
+                                || propInfo.property == UcdProperty.NFKC_Simple_Casefold)) {
+                    throw new IllegalArgumentException(
+                            "Unexpected empty value for property " + propName);
+                }
                 if (propInfo.property == UcdProperty.kMandarin) {
                     if (indexUnicodeProperties.oldVersion) {
                         value =
