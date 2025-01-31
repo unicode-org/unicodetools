@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-17.0.0.txt
-# Date: 2025-01-30, 20:54:26 GMT
+# Date: 2025-01-31, 16:44:07 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1899,7 +1899,6 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 16F93..16F9F  ; N # Lm  [13] MIAO LETTER TONE-2..MIAO LETTER REFORMED TONE-8
 16FF2..16FF3  ; N # Lm   [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
 16FF4..16FF6  ; N # Nl   [3] YANGQIN SIGN SLOW ONE BEAT..YANGQIN SIGN SLOW TWO BEATS
-1B126         ; N # Lo       KATAKANA DIGRAPH YORI
 1BC00..1BC6A  ; N # Lo [107] DUPLOYAN LETTER H..DUPLOYAN LETTER VOCALIC M
 1BC70..1BC7C  ; N # Lo  [13] DUPLOYAN AFFIX LEFT HORIZONTAL SECANT..DUPLOYAN AFFIX ATTACHED TANGENT HOOK
 1BC80..1BC88  ; N # Lo   [9] DUPLOYAN AFFIX HIGH ACUTE..DUPLOYAN AFFIX HIGH VERTICAL
@@ -2146,7 +2145,7 @@ E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
 # The above property value applies to 760565 code points not listed here.
-# Total code points: 792267
+# Total code points: 792266
 
 # ================================================
 
@@ -2557,6 +2556,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 1AFF5..1AFFB  ; W # Lm   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; W # Lm   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
 1B000..1B122  ; W # Lo [291] KATAKANA LETTER ARCHAIC E..KATAKANA LETTER ARCHAIC WU
+1B126         ; W # Lo       KATAKANA DIGRAPH YORI
 1B132         ; W # Lo       HIRAGANA LETTER SMALL KO
 1B150..1B152  ; W # Lo   [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
 1B155         ; W # Lo       KATAKANA LETTER SMALL KO
@@ -2623,7 +2623,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 31350..33479  ; W # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 
 # The above property value applies to 56179 code points not listed here.
-# Total code points: 182768
+# Total code points: 182769
 
 # ================================================
 
