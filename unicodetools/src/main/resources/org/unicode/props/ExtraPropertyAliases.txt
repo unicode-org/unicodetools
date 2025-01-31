@@ -71,6 +71,16 @@ NS ; Named_Sequences
 NSP ; Named_Sequences_Prov
 SV ; Standardized_Variant
 
+# 2.0 .. 3.1.1
+cjkAlternateHanYu ; kAlternateHanYu
+# 3.0
+cjkAlternateJEF ; kAlternateJEF
+cjkJHJ ; kJHJ
+cjkRSMerged ; kRSMerged
+# 2.0 .. 4.0.1
+cjkAlternateKangXi ; kAlternateKangXi
+cjkAlternateMorohashi ; kAlternateMorohashi
+
 cjkCheungBauerIndex ; kCheungBauerIndex
 cjkCowles ; kCowles
 cjkDaeJaweon ; kDaeJaweon
