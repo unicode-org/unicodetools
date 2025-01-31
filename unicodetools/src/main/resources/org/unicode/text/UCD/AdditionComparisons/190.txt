@@ -16,3 +16,5 @@ CorrespondTo [ヿ\N{KATAKANA DIGRAPH KOTO}]
 end Ignoring;
 
 end Ignoring;
+
+end Ignoring;
