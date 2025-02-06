@@ -35,6 +35,7 @@ import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UcdPropertyValues.Sentence_Break_Values;
 import org.unicode.props.UcdPropertyValues.Vertical_Orientation_Values;
 import org.unicode.props.UcdPropertyValues.Word_Break_Values;
+import org.unicode.props.UcdPropertyValues.kEH_Core_Values;
 
 /**
  * Machine-generated file for properties, produced by GenerateEnums.java from PropertyAliases.txt
@@ -84,12 +85,16 @@ public enum UcdProperty {
     Emoji_SB(PropertyType.Miscellaneous, "ESB"),
     ISO_Comment(PropertyType.Miscellaneous, "isc"),
     Jamo_Short_Name(PropertyType.Miscellaneous, "JSN"),
+    NC_Corrected(PropertyType.Miscellaneous, "ncCorrected"),
+    NC_Original(PropertyType.Miscellaneous, "ncOriginal"),
+    NC_Version(PropertyType.Miscellaneous, "ncVersion"),
     Name(PropertyType.Miscellaneous, "na"),
     Name_Alias(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "Name_Alias"),
     Named_Sequences(PropertyType.Miscellaneous, "NS"),
     Named_Sequences_Prov(PropertyType.Miscellaneous, "NSP"),
     Standardized_Variant(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "SV"),
     Unicode_1_Name(PropertyType.Miscellaneous, "na1"),
+    emoji_variation_sequence(PropertyType.Miscellaneous, "EVS"),
     kAlternateTotalStrokes(PropertyType.Miscellaneous, "cjkAlternateTotalStrokes"),
     kBigFive(PropertyType.Miscellaneous, "cjkBigFive"),
     kCCCII(PropertyType.Miscellaneous, "cjkCCCII"),
@@ -224,6 +229,7 @@ public enum UcdProperty {
     kXHC1983(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkXHC1983"),
     kXerox(PropertyType.Miscellaneous, "cjkXerox"),
     kZVariant(PropertyType.Miscellaneous, "cjkZVariant"),
+    kZhuang(PropertyType.Miscellaneous, "cjkZhuang"),
     kZhuangNumeric(PropertyType.Miscellaneous, "cjkZhuangNumeric"),
 
     // Catalog
