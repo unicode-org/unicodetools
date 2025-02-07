@@ -2,9 +2,22 @@ package org.unicode.xml;
 
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.util.VersionInfo;
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.xml.transform.TransformerConfigurationException;
@@ -14,7 +27,12 @@ import org.unicode.props.UcdPropertyValues;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
 
-public class UcdXML {
+/**
+ * Utility for generating UCDXML files.
+ * The utility can build flat or grouped versions of UCDXML for non-Unihan code points, Unihan code points, or the
+ * complete range of code points.
+ */
+public class UCDXML {
 
     private static final String NAMESPACE = "http://www.unicode.org/ns/2003/ucd/1.0";
 
@@ -72,7 +90,7 @@ public class UcdXML {
 
         if (options[HELP].doesOccur) {
             System.out.println(
-                    "UcdXML --ucdversion {version number} --outputfolder {destination} "
+                    "UCDXML --ucdversion {version number} --outputfolder {destination} "
                             + "--range [ALL|NOUNIHAN|UNIHAN] --output [FLAT|GROUPED]");
             System.exit(0);
         }
@@ -173,11 +191,11 @@ public class UcdXML {
             UCDXMLOUTPUTRANGE outputRange,
             UCDXMLOUTPUTTYPE outputType)
             throws IOException, TransformerConfigurationException, SAXException {
-        int lowCodepoint = 0x0;
-        int highCodepoint = 0x10FFFF;
+        int lowCodePoint = 0x0;
+        int highCodePoint = 0x10FFFF;
         // Tangut
-        // int lowCodepoint = 0x17000;
-        // int highCodepoint = 0x1B2FB;
+        // int lowCodePoint = 0x17000;
+        // int highCodePoint = 0x1B2FB;
         // 0x10FFFF
 
         File tempFile = new File(destinationFolder, "temp.xml");
@@ -208,24 +226,24 @@ public class UcdXML {
                     writer,
                     attributeResolver,
                     ucdVersion,
-                    lowCodepoint,
-                    highCodepoint,
+                    lowCodePoint,
+                    highCodePoint,
                     outputRange,
                     outputType);
             if (outputRange != UCDXMLOUTPUTRANGE.UNIHAN) {
-                ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.BLOCKS);
-                ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.NAMEDSEQUENCES);
-                ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.PROVISIONALNAMEDSEQUENCES);
-                ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.NORMALIZATIONCORRECTIONS);
-                ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.STANDARDIZEDVARIANTS);
+                ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.BLOCKS);
+                ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.NAMEDSEQUENCES);
+                ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.PROVISIONALNAMEDSEQUENCES);
+                ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.NORMALIZATIONCORRECTIONS);
+                ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.STANDARDIZEDVARIANTS);
                 if (ucdVersion.compareTo(VersionInfo.getInstance(5, 2, 0)) >= 0) {
-                    ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.CJKRADICALS);
+                    ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.CJKRADICALS);
                 }
                 if (ucdVersion.compareTo(VersionInfo.getInstance(6, 0, 0)) >= 0) {
-                    ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.EMOJISOURCES);
+                    ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.EMOJISOURCES);
                 }
                 if (ucdVersion.compareTo(VersionInfo.getInstance(16, 0, 0)) >= 0) {
-                    ucdDataResolver.buildSection(UcdSectionDetail.UcdSection.DONOTEMIT);
+                    ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.DONOTEMIT);
                 }
             }
             writer.endElement("ucd");
@@ -274,34 +292,34 @@ public class UcdXML {
             UCDXMLWriter writer,
             AttributeResolver attributeResolver,
             VersionInfo ucdVersion,
-            int lowCodepoint,
-            int highCodepoint,
+            int lowCodePoint,
+            int highCodePoint,
             UCDXMLOUTPUTRANGE outputRange,
             UCDXMLOUTPUTTYPE outputType)
             throws SAXException {
 
         writer.startElement("repertoire");
         {
-            for (int codepoint = lowCodepoint; codepoint <= highCodepoint; codepoint++) {
-                if (isWritableCodepoint(codepoint, outputRange, attributeResolver)) {
+            for (int CodePoint = lowCodePoint; CodePoint <= highCodePoint; CodePoint++) {
+                if (isWritableCodePoint(CodePoint, outputRange, attributeResolver)) {
                     if (outputType == UCDXMLOUTPUTTYPE.GROUPED) {
-                        codepoint =
+                        CodePoint =
                                 buildGroup(
                                         writer,
                                         attributeResolver,
                                         ucdVersion,
-                                        codepoint,
-                                        highCodepoint,
+                                        CodePoint,
+                                        highCodePoint,
                                         outputRange,
                                         outputType);
                     } else {
-                        codepoint =
+                        CodePoint =
                                 buildChars(
                                         writer,
                                         attributeResolver,
                                         ucdVersion,
-                                        codepoint,
-                                        highCodepoint,
+                                        CodePoint,
+                                        highCodePoint,
                                         outputRange,
                                         outputType,
                                         null);
@@ -316,21 +334,21 @@ public class UcdXML {
             UCDXMLWriter writer,
             AttributeResolver attributeResolver,
             VersionInfo ucdVersion,
-            int lowCodepoint,
-            int highCodepoint,
+            int lowCodePoint,
+            int highCodePoint,
             UCDXMLOUTPUTRANGE outputRange,
             UCDXMLOUTPUTTYPE outputType)
             throws SAXException {
 
-        int lastCodepointInGroup =
-                getLastCodepointInGroup(attributeResolver, lowCodepoint, highCodepoint);
+        int lastCodePointInGroup =
+                getLastCodePointInGroup(attributeResolver, lowCodePoint, highCodePoint);
 
         AttributesImpl groupAttrs =
                 getGroupAttributes(
                         ucdVersion,
                         attributeResolver,
-                        lowCodepoint,
-                        lastCodepointInGroup,
+                        lowCodePoint,
+                        lastCodePointInGroup,
                         outputRange);
 
         writer.startElement("group", groupAttrs);
@@ -339,22 +357,22 @@ public class UcdXML {
                     writer,
                     attributeResolver,
                     ucdVersion,
-                    lowCodepoint,
-                    lastCodepointInGroup,
+                    lowCodePoint,
+                    lastCodePointInGroup,
                     outputRange,
                     outputType,
                     groupAttrs);
             writer.endElement("group");
         }
-        return lastCodepointInGroup;
+        return lastCodePointInGroup;
     }
 
     private static int buildChars(
             UCDXMLWriter writer,
             AttributeResolver attributeResolver,
             VersionInfo ucdVersion,
-            int lowCodepoint,
-            int highCodepoint,
+            int lowCodePoint,
+            int highCodePoint,
             UCDXMLOUTPUTRANGE outputRange,
             UCDXMLOUTPUTTYPE outputType,
             AttributesImpl groupAttrs)
@@ -362,15 +380,15 @@ public class UcdXML {
 
         ArrayList<Integer> range = new ArrayList<>();
         Range rangeType = Range.NONRANGE;
-        for (int codepoint = lowCodepoint; codepoint <= highCodepoint; codepoint++) {
-            if (attributeResolver.isUnassignedCodepoint(codepoint)
+        for (int CodePoint = lowCodePoint; CodePoint <= highCodePoint; CodePoint++) {
+            if (attributeResolver.isUnassignedCodePoint(CodePoint)
                     || (outputRange == UCDXMLOUTPUTRANGE.NOUNIHAN
-                            && attributeResolver.isUnifiedIdeograph(codepoint))) {
-                Range currentRangeType = getRangeType(attributeResolver, codepoint);
+                            && attributeResolver.isUnifiedIdeograph(CodePoint))) {
+                Range currentRangeType = getRangeType(attributeResolver, CodePoint);
                 if (!range.isEmpty()) {
                     if (!currentRangeType.equals(rangeType)
                             || attributeResolver.isDifferentRange(
-                                    ucdVersion, codepoint, codepoint - 1)) {
+                                    ucdVersion, CodePoint, CodePoint - 1)) {
                         if (outputRange != UCDXMLOUTPUTRANGE.UNIHAN) {
                             if (outputType == UCDXMLOUTPUTTYPE.GROUPED) {
                                 buildGroupedRange(
@@ -388,7 +406,7 @@ public class UcdXML {
                         range.clear();
                     }
                 }
-                range.add(codepoint);
+                range.add(CodePoint);
                 rangeType = currentRangeType;
             } else {
                 if (!range.isEmpty()) {
@@ -409,18 +427,18 @@ public class UcdXML {
                     range.clear();
                     rangeType = Range.NONRANGE;
                 }
-                if (isWritableCodepoint(codepoint, outputRange, attributeResolver)) {
+                if (isWritableCodePoint(CodePoint, outputRange, attributeResolver)) {
                     if (outputType == UCDXMLOUTPUTTYPE.GROUPED) {
                         buildGroupedChar(
                                 writer,
                                 attributeResolver,
                                 ucdVersion,
-                                codepoint,
+                                CodePoint,
                                 outputRange,
                                 groupAttrs);
                     } else {
                         buildUngroupedChar(
-                                writer, attributeResolver, ucdVersion, codepoint, outputRange);
+                                writer, attributeResolver, ucdVersion, CodePoint, outputRange);
                     }
                 }
             }
@@ -436,38 +454,38 @@ public class UcdXML {
                 }
             }
         }
-        return highCodepoint;
+        return highCodePoint;
     }
 
     private static void buildUngroupedChar(
             UCDXMLWriter writer,
             AttributeResolver attributeResolver,
             VersionInfo ucdVersion,
-            int codepoint,
+            int CodePoint,
             UCDXMLOUTPUTRANGE outputRange)
             throws SAXException {
 
         AttributesImpl charAttributes =
-                getAttributes(ucdVersion, attributeResolver, codepoint, outputRange);
-        buildChar(writer, attributeResolver, codepoint, charAttributes);
+                getAttributes(ucdVersion, attributeResolver, CodePoint, outputRange);
+        buildChar(writer, attributeResolver, CodePoint, charAttributes);
     }
 
     private static void buildGroupedChar(
             UCDXMLWriter writer,
             AttributeResolver attributeResolver,
             VersionInfo ucdVersion,
-            int codepoint,
+            int CodePoint,
             UCDXMLOUTPUTRANGE outputRange,
             AttributesImpl groupAttrs)
             throws SAXException {
 
         AttributesImpl orgCharAttributes =
-                getAttributes(ucdVersion, attributeResolver, codepoint, outputRange);
+                getAttributes(ucdVersion, attributeResolver, CodePoint, outputRange);
         AttributesImpl charAttributes = new AttributesImpl();
         charAttributes.addAttribute(
-                NAMESPACE, "cp", "cp", "CDATA", attributeResolver.getHexString(codepoint));
+                NAMESPACE, "cp", "cp", "CDATA", attributeResolver.getHexString(CodePoint));
 
-        for (UcdPropertyDetail propDetail : UcdPropertyDetail.ucdxmlValues()) {
+        for (UCDPropertyDetail propDetail : UCDPropertyDetail.ucdxmlValues()) {
             String qName = propDetail.getUcdProperty().getShortName();
             if (qName.startsWith("cjk")) {
                 qName = qName.substring(2);
@@ -483,18 +501,18 @@ public class UcdXML {
                         Objects.requireNonNullElse(orgCharAttributesValue, ""));
             }
         }
-        buildChar(writer, attributeResolver, codepoint, charAttributes);
+        buildChar(writer, attributeResolver, CodePoint, charAttributes);
     }
 
     private static void buildChar(
             UCDXMLWriter writer,
             AttributeResolver attributeResolver,
-            int codepoint,
+            int CodePoint,
             AttributesImpl charAttributes)
             throws SAXException {
         writer.startElement("char", charAttributes);
         {
-            HashMap<String, String> nameAliases = attributeResolver.getNameAliases(codepoint);
+            HashMap<String, String> nameAliases = attributeResolver.getNameAliases(CodePoint);
             if (null != nameAliases && !nameAliases.isEmpty()) {
                 for (String alias : nameAliases.keySet()) {
                     AttributesImpl nameAliasAt = new AttributesImpl();
@@ -543,7 +561,7 @@ public class UcdXML {
                     attributeResolver.getHexString(range.get(range.size() - 1)));
         }
 
-        for (UcdPropertyDetail propDetail : UcdPropertyDetail.ucdxmlValues()) {
+        for (UCDPropertyDetail propDetail : UCDPropertyDetail.ucdxmlValues()) {
             String qName = propDetail.getUcdProperty().getShortName();
             if (qName.startsWith("cjk")) {
                 qName = qName.substring(2);
@@ -580,20 +598,20 @@ public class UcdXML {
         }
     }
 
-    private static boolean isWritableCodepoint(
-            int codepoint, UCDXMLOUTPUTRANGE outputRange, AttributeResolver attributeResolver) {
+    private static boolean isWritableCodePoint(
+            int CodePoint, UCDXMLOUTPUTRANGE outputRange, AttributeResolver attributeResolver) {
         return outputRange == UCDXMLOUTPUTRANGE.ALL
                 || (outputRange == UCDXMLOUTPUTRANGE.UNIHAN
-                        && attributeResolver.isUnihanAttributeRange(codepoint))
+                        && attributeResolver.isUnihanAttributeRange(CodePoint))
                 || (outputRange == UCDXMLOUTPUTRANGE.NOUNIHAN
-                        && !attributeResolver.isUnifiedIdeograph(codepoint));
+                        && !attributeResolver.isUnifiedIdeograph(CodePoint));
     }
 
-    private static Range getRangeType(AttributeResolver attributeResolver, int codepoint) {
-        String NChar = attributeResolver.getNChar(codepoint);
-        UcdPropertyValues.General_Category_Values gc = attributeResolver.getgc(codepoint);
+    private static Range getRangeType(AttributeResolver attributeResolver, int CodePoint) {
+        String NChar = attributeResolver.getNChar(CodePoint);
+        UcdPropertyValues.General_Category_Values gc = attributeResolver.getgc(CodePoint);
 
-        if (attributeResolver.isUnihanAttributeRange(codepoint)) {
+        if (attributeResolver.isUnihanAttributeRange(CodePoint)) {
             return Range.CJKUNIFIEDIDEOGRAPH;
         }
         if (gc.equals(UcdPropertyValues.General_Category_Values.Surrogate)) {
@@ -608,44 +626,44 @@ public class UcdXML {
         return Range.RESERVED;
     }
 
-    private static int getLastCodepointInGroup(
-            AttributeResolver attributeResolver, int lowCodepoint, int highCodepoint) {
-        String blk = attributeResolver.getAttributeValue(UcdProperty.Block, lowCodepoint);
-        for (int codepoint = lowCodepoint; codepoint <= highCodepoint; codepoint++) {
-            if (!blk.equals(attributeResolver.getAttributeValue(UcdProperty.Block, codepoint))) {
-                return codepoint - 1;
+    private static int getLastCodePointInGroup(
+            AttributeResolver attributeResolver, int lowCodePoint, int highCodePoint) {
+        String blk = attributeResolver.getAttributeValue(UcdProperty.Block, lowCodePoint);
+        for (int CodePoint = lowCodePoint; CodePoint <= highCodePoint; CodePoint++) {
+            if (!blk.equals(attributeResolver.getAttributeValue(UcdProperty.Block, CodePoint))) {
+                return CodePoint - 1;
             }
-            if (codepoint == 0x20 - 1 // put the C0 controls in their own group
-                    || codepoint == 0xa0 - 1 // put the C0 controls in their own group
-                    || codepoint == 0x1160 - 1 // split the jamos into three groups
-                    || codepoint == 0x11a8 - 1 // split the jamos into three groups
-                    || codepoint == 0x1f1e6 - 1 // put the regional indicators in their own group
+            if (CodePoint == 0x20 - 1 // put the C0 controls in their own group
+                    || CodePoint == 0xa0 - 1 // put the C1 controls in their own group
+                    || CodePoint == 0x1160 - 1 // split the jamos into three groups
+                    || CodePoint == 0x11a8 - 1 // split the jamos into three groups
+                    || CodePoint == 0x1f1e6 - 1 // put the regional indicators in their own group
             ) {
-                return codepoint;
+                return CodePoint;
             }
         }
-        return highCodepoint;
+        return highCodePoint;
     }
 
     private static AttributesImpl getAttributes(
             VersionInfo version,
             AttributeResolver attributeResolver,
-            int codepoint,
+            int CodePoint,
             UCDXMLOUTPUTRANGE outputRange) {
         AttributesImpl attributes = new AttributesImpl();
         attributes.addAttribute(
-                NAMESPACE, "cp", "cp", "CDATA", attributeResolver.getHexString(codepoint));
+                NAMESPACE, "cp", "cp", "CDATA", attributeResolver.getHexString(CodePoint));
 
-        for (UcdPropertyDetail propDetail : UcdPropertyDetail.ucdxmlValues()) {
+        for (UCDPropertyDetail propDetail : UCDPropertyDetail.ucdxmlValues()) {
             UcdProperty prop = propDetail.getUcdProperty();
             if (version.compareTo(propDetail.getMinVersion()) >= 0
                     && (propDetail.getMaxVersion() == null
                             || version.compareTo(propDetail.getMaxVersion()) < 0)) {
-                String attrValue = attributeResolver.getAttributeValue(prop, codepoint);
+                String attrValue = attributeResolver.getAttributeValue(prop, CodePoint);
                 boolean isAttributeIncluded =
                         getIsAttributeIncluded(
                                 attrValue,
-                                attributeResolver.isUnihanAttributeRange(codepoint),
+                                attributeResolver.isUnihanAttributeRange(CodePoint),
                                 propDetail,
                                 prop,
                                 outputRange);
@@ -664,12 +682,12 @@ public class UcdXML {
     private static AttributesImpl getGroupAttributes(
             VersionInfo version,
             AttributeResolver attributeResolver,
-            int lowCodepoint,
-            int highCodepoint,
+            int lowCodePoint,
+            int highCodePoint,
             UCDXMLOUTPUTRANGE outputRange) {
         AttributesImpl attributes = new AttributesImpl();
 
-        for (UcdPropertyDetail propDetail : UcdPropertyDetail.ucdxmlValues()) {
+        for (UCDPropertyDetail propDetail : UCDPropertyDetail.ucdxmlValues()) {
             UcdProperty prop = propDetail.getUcdProperty();
             if (version.compareTo(propDetail.getMinVersion()) >= 0
                     && (propDetail.getMaxVersion() == null
@@ -677,9 +695,9 @@ public class UcdXML {
                 int totalCount = 0;
                 Map<String, Integer> counters = new LinkedHashMap<>();
 
-                for (int codepoint = lowCodepoint; codepoint <= highCodepoint; codepoint++) {
-                    if (!attributeResolver.isUnassignedCodepoint(codepoint)) {
-                        String attrValue = attributeResolver.getAttributeValue(prop, codepoint);
+                for (int CodePoint = lowCodePoint; CodePoint <= highCodePoint; CodePoint++) {
+                    if (!attributeResolver.isUnassignedCodePoint(CodePoint)) {
+                        String attrValue = attributeResolver.getAttributeValue(prop, CodePoint);
                         int currentCount =
                                 (counters.get(attrValue) == null) ? 0 : counters.get(attrValue);
                         currentCount++;
@@ -714,7 +732,7 @@ public class UcdXML {
                     boolean isAttributeIncluded =
                             getIsAttributeIncluded(
                                     bestAttrValue,
-                                    attributeResolver.isUnihanAttributeRange(lowCodepoint),
+                                    attributeResolver.isUnihanAttributeRange(lowCodePoint),
                                     propDetail,
                                     prop,
                                     outputRange);
@@ -735,7 +753,7 @@ public class UcdXML {
     private static boolean getIsAttributeIncluded(
             String attrValue,
             boolean isUnihanAttributeRange,
-            UcdPropertyDetail propDetail,
+            UCDPropertyDetail propDetail,
             UcdProperty prop,
             UCDXMLOUTPUTRANGE outputRange) {
         if (attrValue == null) {
@@ -786,7 +804,7 @@ public class UcdXML {
                     "CDATA",
                     attributeResolver.getHexString(range.get(range.size() - 1)));
         }
-        for (UcdPropertyDetail propDetail : UcdPropertyDetail.baseValues()) {
+        for (UCDPropertyDetail propDetail : UCDPropertyDetail.baseValues()) {
             UcdProperty prop = propDetail.getUcdProperty();
             if (version.compareTo(propDetail.getMinVersion()) >= 0
                     && (propDetail.getMaxVersion() == null

@@ -2,9 +2,24 @@ package org.unicode.xml;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.util.VersionInfo;
-import java.util.*;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.props.*;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.PropertyParsingInfo;
+import org.unicode.props.UcdLineParser;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UnicodeProperty;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
+
+/**
+ * Used by UCDXML to get string values of attributes for each code point from IndexUnicodeProperties.
+ */
 
 public class AttributeResolver {
 
@@ -19,14 +34,14 @@ public class AttributeResolver {
 
     // If there is a change in any of these properties between two adjacent characters, it will
     // result in a new range.
-    private final UcdPropertyDetail[] rangeDefiningPropertyDetails = {
-        UcdPropertyDetail.Age_Detail,
-        UcdPropertyDetail.Bidi_Class_Detail,
-        UcdPropertyDetail.Block_Detail,
-        UcdPropertyDetail.Decomposition_Mapping_Detail,
-        UcdPropertyDetail.Numeric_Type_Detail,
-        UcdPropertyDetail.Numeric_Value_Detail,
-        UcdPropertyDetail.Vertical_Orientation_Detail
+    private final UCDPropertyDetail[] rangeDefiningPropertyDetails = {
+        UCDPropertyDetail.Age_Detail,
+        UCDPropertyDetail.Bidi_Class_Detail,
+        UCDPropertyDetail.Block_Detail,
+        UCDPropertyDetail.Decomposition_Mapping_Detail,
+        UCDPropertyDetail.Numeric_Type_Detail,
+        UCDPropertyDetail.Numeric_Value_Detail,
+        UCDPropertyDetail.Vertical_Orientation_Detail
     };
 
     public AttributeResolver(IndexUnicodeProperties iup) {
@@ -93,7 +108,7 @@ public class AttributeResolver {
     }
 
     private HashMap<Integer, LinkedList<NameAlias>> loadNameAliases() {
-        HashMap<Integer, LinkedList<NameAlias>> nameAliasesByCodepoint = new HashMap<>();
+        HashMap<Integer, LinkedList<NameAlias>> nameAliasesByCodePoint = new HashMap<>();
         final PropertyParsingInfo fileInfo =
                 PropertyParsingInfo.getPropertyInfo(UcdProperty.Name_Alias);
         String fullFilename = fileInfo.getFullFileName(indexUnicodeProperties.getUcdVersion());
@@ -112,17 +127,17 @@ public class AttributeResolver {
                                 parts[1], AliasType.valueOf(parts[2].toUpperCase(Locale.ROOT)));
             }
 
-            if (nameAliasesByCodepoint.containsKey(codepoint)) {
+            if (nameAliasesByCodePoint.containsKey(codepoint)) {
                 LinkedList<NameAlias> nameAliases =
-                        new LinkedList<>(nameAliasesByCodepoint.get(codepoint));
+                        new LinkedList<>(nameAliasesByCodePoint.get(codepoint));
                 nameAliases.add(nameAlias);
                 nameAliases.sort(nameAliasComparator);
-                nameAliasesByCodepoint.replace(codepoint, nameAliases);
+                nameAliasesByCodePoint.replace(codepoint, nameAliases);
             } else {
-                nameAliasesByCodepoint.put(codepoint, new LinkedList<>(List.of(nameAlias)));
+                nameAliasesByCodePoint.put(codepoint, new LinkedList<>(List.of(nameAlias)));
             }
         }
-        return nameAliasesByCodepoint;
+        return nameAliasesByCodePoint;
     }
 
     public String getAttributeValue(UcdProperty prop, int codepoint) {
@@ -254,7 +269,7 @@ public class AttributeResolver {
         }
     }
 
-    public boolean isUnassignedCodepoint(int codepoint) {
+    public boolean isUnassignedCodePoint(int codepoint) {
         return UcdPropertyValues.General_Category_Values.Unassigned.equals(getgc(codepoint))
                 || UcdPropertyValues.General_Category_Values.Private_Use.equals(getgc(codepoint))
                 || UcdPropertyValues.General_Category_Values.Surrogate.equals(getgc(codepoint));
@@ -300,7 +315,7 @@ public class AttributeResolver {
 
     public boolean isDifferentRange(VersionInfo ucdVersion, int codepointA, int codepointB) {
         boolean isDifference = false;
-        for (UcdPropertyDetail propDetail : rangeDefiningPropertyDetails) {
+        for (UCDPropertyDetail propDetail : rangeDefiningPropertyDetails) {
             UcdProperty prop = propDetail.getUcdProperty();
             if (ucdVersion.compareTo(propDetail.getMinVersion()) >= 0
                     && (propDetail.getMaxVersion() == null

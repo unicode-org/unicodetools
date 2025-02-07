@@ -2,17 +2,31 @@ package org.unicode.xml;
 
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.util.VersionInfo;
-import java.io.*;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.props.PropertyParsingInfo;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.*;
 
+/**
+ * Utility for generating fragments that describe the property values in a format that can be displayed in UAX42.
+ * UAX42 fragments live in unicodetools/src/main/resources/org/unicode/uax42/fragments
+ */
 public class GeneratePropertyValues {
 
     private enum VALUESOUTPUTTYPE {
@@ -669,7 +683,7 @@ public class GeneratePropertyValues {
         // TODO: We should determine whether we still want to show empty values in the XML files.
         // TODO: See org.unicode.xml.UcdPropertyDetail.isCJKShowIfEmpty()
         boolean isShowIfEmpty = false;
-        for (UcdPropertyDetail propDetail : UcdPropertyDetail.cjkValues()) {
+        for (UCDPropertyDetail propDetail : UCDPropertyDetail.cjkValues()) {
             if (propDetail.getUcdProperty().equals(ucdProperty)) {
                 isShowIfEmpty = propDetail.isCJKShowIfEmpty();
             }

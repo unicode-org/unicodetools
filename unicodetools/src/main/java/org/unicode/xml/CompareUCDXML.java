@@ -3,12 +3,19 @@ package org.unicode.xml;
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
-import java.io.*;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Objects;
 import org.unicode.props.UcdProperty;
 
-public class CompareUcdXML {
+/**
+ * Utility for comparing two UCDXML files.
+ * Originally intended to compare UCDXML files generated using https://github.com/eric-muller/ucdxml to UCDXML files
+ * generated using org.unicode.xml.UCDXML.
+ */
+public class CompareUCDXML {
 
     private static final String NEWLINE = System.getProperty("line.separator");
     private static final UOption[] options = {

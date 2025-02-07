@@ -4,14 +4,24 @@ import com.ibm.icu.impl.UnicodeMap;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
-import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.unicode.cldr.util.XMLFileReader;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Utility;
 import org.xml.sax.*;
 
+/**
+ * Helper class for org.unicode.xml.CompareUCDXML.
+ * Facilitates traversal of the contents of a UCDXML file.
+ */
 public class XMLProperties {
 
     enum XmlLeaf {
@@ -187,7 +197,7 @@ public class XMLProperties {
                     case SURROGATE:
                     case NONCHARACTER:
                         parseCp(attributes);
-                        for (final Entry<String, String> entry : attributes.entrySet()) {
+                        for (final Map.Entry<String, String> entry : attributes.entrySet()) {
                             doAttributes(entry.getKey(), entry.getValue());
                         }
                         if (xmlLeaf == XmlLeaf.NONCHARACTER) {

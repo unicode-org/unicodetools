@@ -3,7 +3,12 @@ package org.unicode.xml;
 import com.ibm.icu.util.VersionInfo;
 import org.unicode.props.UcdProperty;
 
-public class UcdSectionDetail {
+/**
+ * Helper class that defines an object that stores information about a section of the UCDXML file.
+ * Information includes the section name, the type of elements that the section contains, and the version range of
+ * the section.
+ */
+public class UCDSectionDetail {
 
     public enum UcdSection {
         BLOCKS(
@@ -74,7 +79,7 @@ public class UcdSectionDetail {
         private final String childTag;
         private final VersionInfo minVersion;
         private final VersionInfo maxVersion;
-        private final UcdSectionDetail ucdSectionDetail;
+        private final UCDSectionDetail ucdSectionDetail;
         private final boolean parserWithRange;
         private final boolean parserWithMissing;
 
@@ -83,7 +88,7 @@ public class UcdSectionDetail {
                 String childTag,
                 VersionInfo minVersion,
                 VersionInfo maxVersion,
-                UcdSectionDetail ucdSectionDetail,
+                UCDSectionDetail ucdSectionDetail,
                 boolean parserWithRange,
                 boolean parserWithMissing) {
             this.tag = tag;
@@ -111,7 +116,7 @@ public class UcdSectionDetail {
             return maxVersion;
         }
 
-        public UcdSectionDetail getUcdSectionDetail() {
+        public UCDSectionDetail getUcdSectionDetail() {
             return ucdSectionDetail;
         }
 
@@ -124,75 +129,75 @@ public class UcdSectionDetail {
         }
     }
 
-    public static UcdSectionDetail Blocks_Detail =
-            new UcdSectionDetail(
+    public static UCDSectionDetail Blocks_Detail =
+            new UCDSectionDetail(
                     UcdSection.BLOCKS,
-                    new UcdSectionComponent[] {
-                        new UcdSectionComponent(
+                    new UCDSectionComponent[] {
+                        new UCDSectionComponent(
                                 VersionInfo.getInstance(1, 1, 0), null, UcdProperty.Block)
                     },
                     0);
-    public static UcdSectionDetail NamedSequences_Detail =
-            new UcdSectionDetail(
+    public static UCDSectionDetail NamedSequences_Detail =
+            new UCDSectionDetail(
                     UcdSection.NAMEDSEQUENCES,
-                    new UcdSectionComponent[] {
-                        new UcdSectionComponent(
+                    new UCDSectionComponent[] {
+                        new UCDSectionComponent(
                                 VersionInfo.getInstance(1, 1, 0), null, UcdProperty.Named_Sequences)
                     },
                     1);
-    public static UcdSectionDetail ProvisionalNamedSequences_Detail =
-            new UcdSectionDetail(
+    public static UCDSectionDetail ProvisionalNamedSequences_Detail =
+            new UCDSectionDetail(
                     UcdSection.PROVISIONALNAMEDSEQUENCES,
-                    new UcdSectionComponent[] {
-                        new UcdSectionComponent(
+                    new UCDSectionComponent[] {
+                        new UCDSectionComponent(
                                 VersionInfo.getInstance(5, 0, 0),
                                 VersionInfo.getInstance(13, 0, 0),
                                 UcdProperty.Named_Sequences_Prov)
                     },
                     1);
-    public static UcdSectionDetail NormalizationCorrections_Detail =
-            new UcdSectionDetail(
+    public static UCDSectionDetail NormalizationCorrections_Detail =
+            new UCDSectionDetail(
                     UcdSection.NORMALIZATIONCORRECTIONS,
-                    new UcdSectionComponent[] {
-                        new UcdSectionComponent(
+                    new UCDSectionComponent[] {
+                        new UCDSectionComponent(
                                 VersionInfo.getInstance(1, 1, 0), null, UcdProperty.NC_Original)
                     },
                     2);
-    public static UcdSectionDetail StandardizedVariants_Detail =
-            new UcdSectionDetail(
+    public static UCDSectionDetail StandardizedVariants_Detail =
+            new UCDSectionDetail(
                     UcdSection.STANDARDIZEDVARIANTS,
-                    new UcdSectionComponent[] {
-                        new UcdSectionComponent(
+                    new UCDSectionComponent[] {
+                        new UCDSectionComponent(
                                 VersionInfo.getInstance(1, 1, 0),
                                 null,
                                 UcdProperty.Standardized_Variant),
-                        new UcdSectionComponent(
+                        new UCDSectionComponent(
                                 VersionInfo.getInstance(13, 0, 0),
                                 null,
                                 UcdProperty.emoji_variation_sequence)
                     },
                     3);
-    public static UcdSectionDetail CJKRadicals_Detail =
-            new UcdSectionDetail(
+    public static UCDSectionDetail CJKRadicals_Detail =
+            new UCDSectionDetail(
                     UcdSection.CJKRADICALS,
-                    new UcdSectionComponent[] {
-                        new UcdSectionComponent(
+                    new UCDSectionComponent[] {
+                        new UCDSectionComponent(
                                 VersionInfo.getInstance(1, 1, 0), null, UcdProperty.CJK_Radical)
                     },
                     4);
-    public static UcdSectionDetail EmojiSources_Detail =
-            new UcdSectionDetail(
+    public static UCDSectionDetail EmojiSources_Detail =
+            new UCDSectionDetail(
                     UcdSection.EMOJISOURCES,
-                    new UcdSectionComponent[] {
-                        new UcdSectionComponent(
+                    new UCDSectionComponent[] {
+                        new UCDSectionComponent(
                                 VersionInfo.getInstance(1, 1, 0), null, UcdProperty.Emoji_DCM)
                     },
                     5);
-    public static UcdSectionDetail DoNotEmit_Detail =
-            new UcdSectionDetail(
+    public static UCDSectionDetail DoNotEmit_Detail =
+            new UCDSectionDetail(
                     UcdSection.DONOTEMIT,
-                    new UcdSectionComponent[] {
-                        new UcdSectionComponent(
+                    new UCDSectionComponent[] {
+                        new UCDSectionComponent(
                                 VersionInfo.getInstance(1, 1, 0),
                                 null,
                                 UcdProperty.Do_Not_Emit_Type)
@@ -200,11 +205,11 @@ public class UcdSectionDetail {
                     6);
 
     private final UcdSection ucdSection;
-    private final UcdSectionComponent[] ucdSectionComponents;
+    private final UCDSectionComponent[] ucdSectionComponents;
     private final int sortOrder;
 
-    private UcdSectionDetail(
-            UcdSection ucdSection, UcdSectionComponent[] ucdSectionComponents, int sortOrder) {
+    private UCDSectionDetail(
+            UcdSection ucdSection, UCDSectionComponent[] ucdSectionComponents, int sortOrder) {
         this.ucdSection = ucdSection;
         this.ucdSectionComponents = ucdSectionComponents;
         this.sortOrder = sortOrder;
@@ -214,7 +219,7 @@ public class UcdSectionDetail {
         return this.ucdSection;
     }
 
-    public UcdSectionComponent[] getUcdSectionComponents() {
+    public UCDSectionComponent[] getUcdSectionComponents() {
         return this.ucdSectionComponents;
     }
 
