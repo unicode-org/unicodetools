@@ -1,7 +1,6 @@
 package org.unicode.xml;
 
 import com.ibm.icu.util.VersionInfo;
-import java.util.*;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyParsingInfo;
@@ -9,6 +8,14 @@ import org.unicode.props.UcdLineParser;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * Helper class for building sections of UCDXML files based on IndexUnicodeProperties values.
+ */
 public class UCDDataResolver {
 
     private final IndexUnicodeProperties indexUnicodeProperties;
@@ -21,20 +28,20 @@ public class UCDDataResolver {
         this.writer = writer;
     }
 
-    public void buildSection(UcdSectionDetail.UcdSection ucdSection) throws SAXException {
+    public void buildSection(UCDSectionDetail.UcdSection ucdSection) throws SAXException {
         VersionInfo minVersion = ucdSection.getMinVersion();
         VersionInfo maxVersion = ucdSection.getMaxVersion();
         String tag = ucdSection.toString();
         String childTag = ucdSection.getChildTag();
         boolean parserWithRange = ucdSection.getParserWithRange();
         boolean parserWithMissing = ucdSection.getParserWithMissing();
-        UcdSectionComponent[] ucdSectionComponents =
+        UCDSectionComponent[] ucdSectionComponents =
                 ucdSection.getUcdSectionDetail().getUcdSectionComponents();
 
         if (isCompatibleVersion(minVersion, maxVersion)) {
             writer.startElement(tag);
             {
-                for (UcdSectionComponent ucdSectionComponent : ucdSectionComponents) {
+                for (UCDSectionComponent ucdSectionComponent : ucdSectionComponents) {
                     if (isCompatibleVersion(
                             ucdSectionComponent.getMinVersion(),
                             ucdSectionComponent.getMaxVersion())) {
@@ -115,7 +122,7 @@ public class UCDDataResolver {
     }
 
     private AttributesImpl getAttributes(
-            UcdSectionDetail.UcdSection ucdSection, String namespace, UcdLineParser.UcdLine line) {
+            UCDSectionDetail.UcdSection ucdSection, String namespace, UcdLineParser.UcdLine line) {
         switch (ucdSection) {
             case CJKRADICALS:
                 return getCJKRadicalAttributes(namespace, line);

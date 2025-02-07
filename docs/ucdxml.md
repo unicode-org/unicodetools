@@ -10,8 +10,8 @@
 
 ## Step 3 - Validate generated UAX XML files
 
-You'll need a [RELAX NG](https://relaxng.org/) schema validator. We'll use [jing-trang](https://github.
-com/relaxng/jing-trang) in this example.
+You'll need a [RELAX NG](https://relaxng.org/) schema validator.
+We'll use [jing-trang](https://github.com/relaxng/jing-trang) in this example.
 
 1. Clone and build [jing-trang](https://github.com/relaxng/jing-trang)
 2. Run the following:

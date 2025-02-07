@@ -1,6 +1,8 @@
 package org.unicode.xml;
 
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -11,6 +13,9 @@ import javax.xml.transform.stream.StreamResult;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
 
+/**
+ * Helper class for writing the contents for the UCDXML files.
+ */
 public class UCDXMLWriter {
 
     public static final String NAMESPACE = "http://www.unicode.org/ns/2003/ucd/1.0";
@@ -36,11 +41,11 @@ public class UCDXMLWriter {
     }
 
     public void startFile() throws SAXException {
+        String copyrightYear = new SimpleDateFormat("yyyy").format(new Date());
         transformerHandler.startDocument();
         char[] c = "\n".toCharArray();
         transformerHandler.characters(c, 0, c.length);
-        // TODO: JRW change hardcoded 2023 to current year.
-        c = " \u00A9 2023 Unicode\u00AE, Inc. ".toCharArray();
+        c = (" \u00A9 " + copyrightYear + " Unicode\u00AE, Inc. ").toCharArray();
         transformerHandler.comment(c, 0, c.length);
         c = "\n".toCharArray();
         transformerHandler.characters(c, 0, c.length);

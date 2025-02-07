@@ -3,12 +3,15 @@ package org.unicode.xml;
 import com.ibm.icu.util.VersionInfo;
 import org.unicode.props.UcdProperty;
 
-public class UcdSectionComponent {
+/**
+ * Helper class that defines an object that stores the version range of a given UcdProperty.
+ */
+public class UCDSectionComponent {
     private final VersionInfo minVersion;
     private final VersionInfo maxVersion;
     private final UcdProperty ucdProperty;
 
-    UcdSectionComponent(VersionInfo minVersion, VersionInfo maxVersion, UcdProperty ucdProperty) {
+    UCDSectionComponent(VersionInfo minVersion, VersionInfo maxVersion, UcdProperty ucdProperty) {
         this.minVersion = minVersion;
         this.maxVersion = maxVersion;
         this.ucdProperty = ucdProperty;
