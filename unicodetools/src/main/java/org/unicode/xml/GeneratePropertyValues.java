@@ -2,7 +2,6 @@ package org.unicode.xml;
 
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.util.VersionInfo;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,8 +23,9 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.*;
 
 /**
- * Utility for generating fragments that describe the property values in a format that can be displayed in UAX42.
- * UAX42 fragments live in unicodetools/src/main/resources/org/unicode/uax42/fragments
+ * Utility for generating fragments that describe the property values in a format that can be
+ * displayed in UAX42. UAX42 fragments live in
+ * unicodetools/src/main/resources/org/unicode/uax42/fragments
  */
 public class GeneratePropertyValues {
 
@@ -417,10 +417,8 @@ public class GeneratePropertyValues {
         writer.close();
     }
 
-    private static BufferedWriter getFragmentWriter(String filename)
-            throws IOException {
-        File fragmentFolder =
-                new File(destinationFolder + File.separator);
+    private static BufferedWriter getFragmentWriter(String filename) throws IOException {
+        File fragmentFolder = new File(destinationFolder + File.separator);
         if (!fragmentFolder.exists()) {
             if (!fragmentFolder.mkdir()) {
                 throw new IOException();

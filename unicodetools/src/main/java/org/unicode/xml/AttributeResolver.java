@@ -2,6 +2,12 @@ package org.unicode.xml;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.util.VersionInfo;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyParsingInfo;
@@ -10,17 +16,10 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UnicodeProperty;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
-
 /**
- * Used by UCDXML to get string values of attributes for each code point from IndexUnicodeProperties.
+ * Used by UCDXML to get string values of attributes for each code point from
+ * IndexUnicodeProperties.
  */
-
 public class AttributeResolver {
 
     private final IndexUnicodeProperties indexUnicodeProperties;
@@ -249,7 +248,8 @@ public class AttributeResolver {
                                 .toLowerCase(Locale.ROOT);
                     default:
                         final UnicodeProperty property = indexUnicodeProperties.getProperty(prop);
-                        final List<String> valueAliases = property.getValueAliases(property.getValue(codepoint));
+                        final List<String> valueAliases =
+                                property.getValueAliases(property.getValue(codepoint));
                         return valueAliases.get(0);
                 }
             case Binary:

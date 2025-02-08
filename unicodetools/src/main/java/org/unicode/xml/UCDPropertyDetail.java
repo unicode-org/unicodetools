@@ -6,8 +6,8 @@ import java.util.Set;
 import org.unicode.props.UcdProperty;
 
 /**
- * Helper class for determining how and when UCD properties should be shown in UCDXML. Also includes information
- * about when a UCDProperty was added to Unicode.
+ * Helper class for determining how and when UCD properties should be shown in UCDXML. Also includes
+ * information about when a UCDProperty was added to Unicode.
  */
 public class UCDPropertyDetail {
 
@@ -2100,11 +2100,20 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     true);
+    public static UCDPropertyDetail kZhuang_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kZhuang,
+                    VersionInfo.getInstance(16, 0, 0),
+                    236,
+                    false,
+                    true,
+                    false,
+                    true);
     public static UCDPropertyDetail kZhuangNumeric_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kZhuangNumeric,
                     VersionInfo.getInstance(15, 1, 0),
-                    236,
+                    237,
                     false,
                     true,
                     false,
@@ -2113,7 +2122,7 @@ public class UCDPropertyDetail {
             new UCDPropertyDetail(
                     UcdProperty.Indic_Conjunct_Break,
                     VersionInfo.getInstance(15, 1, 0),
-                    237,
+                    238,
                     true,
                     false,
                     false,
@@ -2122,7 +2131,7 @@ public class UCDPropertyDetail {
             new UCDPropertyDetail(
                     UcdProperty.Modifier_Combining_Mark,
                     VersionInfo.getInstance(16, 0, 0),
-                    238,
+                    239,
                     true,
                     false,
                     false,
@@ -2130,15 +2139,6 @@ public class UCDPropertyDetail {
     public static UCDPropertyDetail kFanqie_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kFanqie,
-                    VersionInfo.getInstance(16, 0, 0),
-                    239,
-                    false,
-                    true,
-                    false,
-                    true);
-    public static UCDPropertyDetail kZhuang_Detail =
-            new UCDPropertyDetail(
-                    UcdProperty.kZhuang,
                     VersionInfo.getInstance(16, 0, 0),
                     240,
                     false,

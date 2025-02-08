@@ -11,7 +11,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.unicode.cldr.util.XMLFileReader;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -19,8 +18,8 @@ import org.unicode.text.utility.Utility;
 import org.xml.sax.*;
 
 /**
- * Helper class for org.unicode.xml.CompareUCDXML.
- * Facilitates traversal of the contents of a UCDXML file.
+ * Helper class for org.unicode.xml.CompareUCDXML. Facilitates traversal of the contents of a UCDXML
+ * file.
  */
 public class XMLProperties {
 

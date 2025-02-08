@@ -13,9 +13,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
 
-/**
- * Helper class for writing the contents for the UCDXML files.
- */
+/** Helper class for writing the contents for the UCDXML files. */
 public class UCDXMLWriter {
 
     public static final String NAMESPACE = "http://www.unicode.org/ns/2003/ucd/1.0";

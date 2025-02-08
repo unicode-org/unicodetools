@@ -3,7 +3,6 @@ package org.unicode.xml;
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -11,9 +10,9 @@ import java.util.Objects;
 import org.unicode.props.UcdProperty;
 
 /**
- * Utility for comparing two UCDXML files.
- * Originally intended to compare UCDXML files generated using https://github.com/eric-muller/ucdxml to UCDXML files
- * generated using org.unicode.xml.UCDXML.
+ * Utility for comparing two UCDXML files. Originally intended to compare UCDXML files generated
+ * using https://github.com/eric-muller/ucdxml to UCDXML files generated using
+ * org.unicode.xml.UCDXML.
  */
 public class CompareUCDXML {
 

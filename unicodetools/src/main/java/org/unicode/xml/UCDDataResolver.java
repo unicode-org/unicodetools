@@ -1,6 +1,10 @@
 package org.unicode.xml;
 
 import com.ibm.icu.util.VersionInfo;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyParsingInfo;
@@ -8,14 +12,7 @@ import org.unicode.props.UcdLineParser;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-
-/**
- * Helper class for building sections of UCDXML files based on IndexUnicodeProperties values.
- */
+/** Helper class for building sections of UCDXML files based on IndexUnicodeProperties values. */
 public class UCDDataResolver {
 
     private final IndexUnicodeProperties indexUnicodeProperties;

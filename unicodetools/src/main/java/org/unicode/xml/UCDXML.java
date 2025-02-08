@@ -2,7 +2,6 @@ package org.unicode.xml;
 
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.util.VersionInfo;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -28,9 +27,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
 
 /**
- * Utility for generating UCDXML files.
- * The utility can build flat or grouped versions of UCDXML for non-Unihan code points, Unihan code points, or the
- * complete range of code points.
+ * Utility for generating UCDXML files. The utility can build flat or grouped versions of UCDXML for
+ * non-Unihan code points, Unihan code points, or the complete range of code points.
  */
 public class UCDXML {
 

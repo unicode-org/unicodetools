@@ -5,8 +5,8 @@ import org.unicode.props.UcdProperty;
 
 /**
  * Helper class that defines an object that stores information about a section of the UCDXML file.
- * Information includes the section name, the type of elements that the section contains, and the version range of
- * the section.
+ * Information includes the section name, the type of elements that the section contains, and the
+ * version range of the section.
  */
 public class UCDSectionDetail {
 

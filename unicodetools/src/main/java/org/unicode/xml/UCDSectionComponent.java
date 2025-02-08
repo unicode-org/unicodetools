@@ -3,9 +3,7 @@ package org.unicode.xml;
 import com.ibm.icu.util.VersionInfo;
 import org.unicode.props.UcdProperty;
 
-/**
- * Helper class that defines an object that stores the version range of a given UcdProperty.
- */
+/** Helper class that defines an object that stores the version range of a given UcdProperty. */
 public class UCDSectionComponent {
     private final VersionInfo minVersion;
     private final VersionInfo maxVersion;
