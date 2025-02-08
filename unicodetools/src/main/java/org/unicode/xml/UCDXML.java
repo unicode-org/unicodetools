@@ -140,7 +140,7 @@ public class UCDXML {
                     destinationFolder =
                             new File(
                                     options[OUTPUTFOLDER].value
-                                            + getVersionString(ucdVersion, 3)
+                                            + ucdVersion.getVersionString(3, 3)
                                             + "\\xmltest\\");
                     if (!destinationFolder.exists()) {
                         if (!destinationFolder.mkdir()) {
@@ -217,7 +217,7 @@ public class UCDXML {
         {
             writer.startElement("description");
             {
-                writer.addContent("Unicode " + getVersionString(ucdVersion, 3));
+                writer.addContent("Unicode " + ucdVersion.getVersionString(3, 3));
                 writer.endElement("description");
             }
             buildRepertoire(
@@ -668,7 +668,7 @@ public class UCDXML {
                 if (isAttributeIncluded) {
                     String propName = prop.getShortName();
                     if (propName.startsWith("cjk")) {
-                        propName = propName.substring(2);
+                        propName = prop.getNames().getAllNames().get(1);
                     }
                     attributes.addAttribute(NAMESPACE, propName, propName, "CDATA", attrValue);
                 }
@@ -737,7 +737,7 @@ public class UCDXML {
                     if (isAttributeIncluded) {
                         String propName = prop.getShortName();
                         if (propName.startsWith("cjk")) {
-                            propName = propName.substring(2);
+                            propName = prop.getNames().getAllNames().get(1);
                         }
                         attributes.addAttribute(
                                 NAMESPACE, propName, propName, "CDATA", bestAttrValue);
@@ -816,26 +816,5 @@ public class UCDXML {
             }
         }
         return attributes;
-    }
-
-    private static String getVersionString(VersionInfo version, int maxDigits) {
-        if (maxDigits >= 1 && maxDigits <= 4) {
-            int[] digits =
-                    new int[] {
-                        version.getMajor(),
-                        version.getMinor(),
-                        version.getMilli(),
-                        version.getMicro()
-                    };
-            StringBuilder verStr = new StringBuilder(7);
-            verStr.append(digits[0]);
-            for (int i = 1; i < maxDigits; ++i) {
-                verStr.append(".");
-                verStr.append(digits[i]);
-            }
-            return verStr.toString();
-        } else {
-            throw new IllegalArgumentException("Invalid maxDigits range");
-        }
     }
 }
