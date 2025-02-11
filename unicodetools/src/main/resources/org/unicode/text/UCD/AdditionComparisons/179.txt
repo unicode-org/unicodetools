@@ -8,6 +8,11 @@ Ignoring Name Age:
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
 
+Propertywise [\x{2E62}   \N{LEFT PARENTHESIS WITH MIDDLE RING}]
+           : [\x{2E63}   \N{RIGHT PARENTHESIS WITH MIDDLE RING}]
+CorrespondTo [\x{2E28} ⸨ \N{LEFT DOUBLE PARENTHESIS}]
+           : [\x{2E29} ⸩ \N{RIGHT DOUBLE PARENTHESIS}]
+
 Ignoring Unicode_1_Name:
 Propertywise [\x{A7DD}   \N{LATIN CAPITAL LETTER CLOSED OMEGA}]
            : [\x{0277} ɷ \N{LATIN SMALL LETTER CLOSED OMEGA}]
