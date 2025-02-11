@@ -1,5 +1,5 @@
 # PropList-17.0.0.txt
-# Date: 2025-01-27, 18:09:27 GMT
+# Date: 2025-02-11, 13:48:26 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1880,7 +1880,11 @@ E0100..E01EF  ; Variation_Selector # Mn [240] VARIATION SELECTOR-17..VARIATION S
 2E5B          ; Pattern_Syntax # Ps       BOTTOM HALF LEFT PARENTHESIS
 2E5C          ; Pattern_Syntax # Pe       BOTTOM HALF RIGHT PARENTHESIS
 2E5D          ; Pattern_Syntax # Pd       OBLIQUE HYPHEN
-2E5E..2E7F    ; Pattern_Syntax # Cn  [34] <reserved-2E5E>..<reserved-2E7F>
+2E5E..2E5F    ; Pattern_Syntax # Cn   [2] <reserved-2E5E>..<reserved-2E5F>
+2E60..2E61    ; Pattern_Syntax # Po   [2] WIGGLY EXCLAMATION MARK..INVERTED WIGGLY EXCLAMATION MARK
+2E62          ; Pattern_Syntax # Ps       LEFT PARENTHESIS WITH MIDDLE RING
+2E63          ; Pattern_Syntax # Pe       RIGHT PARENTHESIS WITH MIDDLE RING
+2E64..2E7F    ; Pattern_Syntax # Cn  [28] <reserved-2E64>..<reserved-2E7F>
 3001..3003    ; Pattern_Syntax # Po   [3] IDEOGRAPHIC COMMA..DITTO MARK
 3008          ; Pattern_Syntax # Ps       LEFT ANGLE BRACKET
 3009          ; Pattern_Syntax # Pe       RIGHT ANGLE BRACKET

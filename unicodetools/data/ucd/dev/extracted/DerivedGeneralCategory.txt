@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-17.0.0.txt
-# Date: 2025-01-27, 18:09:13 GMT
+# Date: 2025-02-11, 13:48:09 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -278,7 +278,8 @@
 2DCF          ; Cn #       <reserved-2DCF>
 2DD7          ; Cn #       <reserved-2DD7>
 2DDF          ; Cn #       <reserved-2DDF>
-2E5E..2E7F    ; Cn #  [34] <reserved-2E5E>..<reserved-2E7F>
+2E5E..2E5F    ; Cn #   [2] <reserved-2E5E>..<reserved-2E5F>
+2E64..2E7F    ; Cn #  [28] <reserved-2E64>..<reserved-2E7F>
 2E9A          ; Cn #       <reserved-2E9A>
 2EF4..2EFF    ; Cn #  [12] <reserved-2EF4>..<reserved-2EFF>
 2FD6..2FEF    ; Cn #  [26] <reserved-2FD6>..<reserved-2FEF>
@@ -293,7 +294,7 @@ A48D..A48F    ; Cn #   [3] <reserved-A48D>..<reserved-A48F>
 A4C7..A4CF    ; Cn #   [9] <reserved-A4C7>..<reserved-A4CF>
 A62C..A63F    ; Cn #  [20] <reserved-A62C>..<reserved-A63F>
 A6F8..A6FF    ; Cn #   [8] <reserved-A6F8>..<reserved-A6FF>
-A7DD..A7F0    ; Cn #  [20] <reserved-A7DD>..<reserved-A7F0>
+A7DE..A7F0    ; Cn #  [19] <reserved-A7DE>..<reserved-A7F0>
 A82D..A82F    ; Cn #   [3] <reserved-A82D>..<reserved-A82F>
 A83A..A83F    ; Cn #   [6] <reserved-A83A>..<reserved-A83F>
 A878..A87F    ; Cn #   [8] <reserved-A878>..<reserved-A87F>
@@ -636,7 +637,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1DAA0         ; Cn #       <reserved-1DAA0>
 1DAB0..1DEFF  ; Cn # [1104] <reserved-1DAB0>..<reserved-1DEFF>
 1DF1F..1DF24  ; Cn #   [6] <reserved-1DF1F>..<reserved-1DF24>
-1DF2B..1DFFF  ; Cn # [213] <reserved-1DF2B>..<reserved-1DFFF>
+1DF2B..1DF67  ; Cn #  [61] <reserved-1DF2B>..<reserved-1DF67>
+1DF82..1DFFF  ; Cn # [126] <reserved-1DF82>..<reserved-1DFFF>
 1E007         ; Cn #       <reserved-1E007>
 1E019..1E01A  ; Cn #   [2] <reserved-1E019>..<reserved-1E01A>
 1E022         ; Cn #       <reserved-1E022>
@@ -754,7 +756,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 814697
+# Total code points: 814666
 
 # ================================================
 
@@ -1369,7 +1371,7 @@ A7D4          ; Lu #       LATIN CAPITAL LETTER DOUBLE WYNN
 A7D6          ; Lu #       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; Lu #       LATIN CAPITAL LETTER SIGMOID S
 A7DA          ; Lu #       LATIN CAPITAL LETTER LAMBDA
-A7DC          ; Lu #       LATIN CAPITAL LETTER LAMBDA WITH STROKE
+A7DC..A7DD    ; Lu #   [2] LATIN CAPITAL LETTER LAMBDA WITH STROKE..LATIN CAPITAL LETTER CLOSED OMEGA
 A7F5          ; Lu #       LATIN CAPITAL LETTER REVERSED HALF H
 FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAPITAL LETTER Z
 10400..10427  ; Lu #  [40] DESERET CAPITAL LETTER LONG I..DESERET CAPITAL LETTER EW
@@ -1414,9 +1416,20 @@ FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAP
 1D756..1D76E  ; Lu #  [25] MATHEMATICAL SANS-SERIF BOLD CAPITAL ALPHA..MATHEMATICAL SANS-SERIF BOLD CAPITAL OMEGA
 1D790..1D7A8  ; Lu #  [25] MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL ALPHA..MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL OMEGA
 1D7CA         ; Lu #       MATHEMATICAL BOLD CAPITAL DIGAMMA
+1DF68         ; Lu #       LATIN CAPITAL LETTER PHONOTYPIC A WITH SWASH
+1DF6A         ; Lu #       LATIN CAPITAL LETTER PHONOTYPIC ROUNDTOP A
+1DF6C..1DF6E  ; Lu #   [3] LATIN CAPITAL LETTER REVERSED SCRUPLE..LATIN CAPITAL LETTER PHONOTYPIC DIPHTHONG AI
+1DF72         ; Lu #       LATIN CAPITAL LETTER O WITH CURL
+1DF74         ; Lu #       LATIN CAPITAL LETTER CLOSED OMEGA WITH LONG STEM
+1DF76         ; Lu #       LATIN CAPITAL LETTER TURNED CLOSED OMEGA
+1DF78         ; Lu #       LATIN CAPITAL LETTER PHONOTYPIC TH
+1DF7A         ; Lu #       LATIN CAPITAL LETTER U WITH HOOK TAIL
+1DF7C         ; Lu #       LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM
+1DF7E         ; Lu #       LATIN CAPITAL LETTER REVERSED ENLARGED SMALL U
+1DF80..1DF81  ; Lu #   [2] LATIN CAPITAL LETTER A WITH TOPBAR..LATIN CAPITAL LETTER E WITH BENT TOPBAR
 1E900..1E921  ; Lu #  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 
-# Total code points: 1886
+# Total code points: 1901
 
 # ================================================
 
@@ -2085,9 +2098,19 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1DF00..1DF09  ; Ll #  [10] LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER T WITH HOOK AND RETROFLEX HOOK
 1DF0B..1DF1E  ; Ll #  [20] LATIN SMALL LETTER ESH WITH DOUBLE BAR..LATIN SMALL LETTER S WITH CURL
 1DF25..1DF2A  ; Ll #   [6] LATIN SMALL LETTER D WITH MID-HEIGHT LEFT HOOK..LATIN SMALL LETTER T WITH MID-HEIGHT LEFT HOOK
+1DF69         ; Ll #       LATIN SMALL LETTER PHONOTYPIC A WITH SWASH
+1DF6B         ; Ll #       LATIN SMALL LETTER PHONOTYPIC ROUNDTOP A
+1DF6F..1DF71  ; Ll #   [3] LATIN SMALL LETTER PHONOTYPIC DIPHTHONG AI..LATIN SMALL LETTER STRETCHED I
+1DF73         ; Ll #       LATIN SMALL LETTER O WITH CURL
+1DF75         ; Ll #       LATIN SMALL LETTER CLOSED OMEGA WITH LONG STEM
+1DF77         ; Ll #       LATIN SMALL LETTER TURNED CLOSED OMEGA
+1DF79         ; Ll #       LATIN SMALL LETTER PHONOTYPIC TH
+1DF7B         ; Ll #       LATIN SMALL LETTER U WITH HOOK TAIL
+1DF7D         ; Ll #       LATIN SMALL LETTER U WITH NOTCH AT BOTTOM
+1DF7F         ; Ll #       LATIN SMALL LETTER REVERSED U
 1E922..1E943  ; Ll #  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2283
+# Total code points: 2295
 
 # ================================================
 
@@ -3671,6 +3694,7 @@ FF0D          ; Pd #       FULLWIDTH HYPHEN-MINUS
 2E57          ; Ps #       LEFT SQUARE BRACKET WITH DOUBLE STROKE
 2E59          ; Ps #       TOP HALF LEFT PARENTHESIS
 2E5B          ; Ps #       BOTTOM HALF LEFT PARENTHESIS
+2E62          ; Ps #       LEFT PARENTHESIS WITH MIDDLE RING
 3008          ; Ps #       LEFT ANGLE BRACKET
 300A          ; Ps #       LEFT DOUBLE ANGLE BRACKET
 300C          ; Ps #       LEFT CORNER BRACKET
@@ -3701,7 +3725,7 @@ FF5B          ; Ps #       FULLWIDTH LEFT CURLY BRACKET
 FF5F          ; Ps #       FULLWIDTH LEFT WHITE PARENTHESIS
 FF62          ; Ps #       HALFWIDTH LEFT CORNER BRACKET
 
-# Total code points: 79
+# Total code points: 80
 
 # ================================================
 
@@ -3754,6 +3778,7 @@ FF62          ; Ps #       HALFWIDTH LEFT CORNER BRACKET
 2E58          ; Pe #       RIGHT SQUARE BRACKET WITH DOUBLE STROKE
 2E5A          ; Pe #       TOP HALF RIGHT PARENTHESIS
 2E5C          ; Pe #       BOTTOM HALF RIGHT PARENTHESIS
+2E63          ; Pe #       RIGHT PARENTHESIS WITH MIDDLE RING
 3009          ; Pe #       RIGHT ANGLE BRACKET
 300B          ; Pe #       RIGHT DOUBLE ANGLE BRACKET
 300D          ; Pe #       RIGHT CORNER BRACKET
@@ -3784,7 +3809,7 @@ FF5D          ; Pe #       FULLWIDTH RIGHT CURLY BRACKET
 FF60          ; Pe #       FULLWIDTH RIGHT WHITE PARENTHESIS
 FF63          ; Pe #       HALFWIDTH RIGHT CORNER BRACKET
 
-# Total code points: 77
+# Total code points: 78
 
 # ================================================
 
@@ -3894,6 +3919,7 @@ FF3F          ; Pc #       FULLWIDTH LOW LINE
 2E41          ; Po #       REVERSED COMMA
 2E43..2E4F    ; Po #  [13] DASH WITH LEFT UPTURN..CORNISH VERSE DIVIDER
 2E52..2E54    ; Po #   [3] TIRONIAN SIGN CAPITAL ET..MEDIEVAL QUESTION MARK
+2E60..2E61    ; Po #   [2] WIGGLY EXCLAMATION MARK..INVERTED WIGGLY EXCLAMATION MARK
 3001..3003    ; Po #   [3] IDEOGRAPHIC COMMA..DITTO MARK
 303D          ; Po #       PART ALTERNATION MARK
 30FB          ; Po #       KATAKANA MIDDLE DOT
@@ -3998,7 +4024,7 @@ FF64..FF65    ; Po #   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDL
 1E5FF         ; Po #       OL ONAL ABBREVIATION SIGN
 1E95E..1E95F  ; Po #   [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 
-# Total code points: 641
+# Total code points: 643
 
 # ================================================
 
