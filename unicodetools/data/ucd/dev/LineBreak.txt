@@ -1,5 +1,5 @@
 # LineBreak-17.0.0.txt
-# Date: 2025-02-11, 11:34:11 GMT
+# Date: 2025-02-11, 11:40:14 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -201,8 +201,7 @@
 05C3           ; AL # Po         HEBREW PUNCTUATION SOF PASUQ
 05C4..05C5     ; CM # Mn     [2] HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
 05C6           ; EX # Po         HEBREW PUNCTUATION NUN HAFUKHA
-05C7           ; CM # Mn         HEBREW POINT QAMATS QATAN
-05C8           ; CM # Mn         HEBREW POINT HEAVY SHEVA
+05C7..05C8     ; CM # Mn     [2] HEBREW POINT QAMATS QATAN..HEBREW POINT HEAVY SHEVA
 05D0..05EA     ; HL # Lo    [27] HEBREW LETTER ALEF..HEBREW LETTER TAV
 05EF..05F2     ; HL # Lo     [4] HEBREW YOD TRIANGLE..HEBREW LIGATURE YIDDISH DOUBLE YOD
 05F3..05F4     ; AL # Po     [2] HEBREW PUNCTUATION GERESH..HEBREW PUNCTUATION GERSHAYIM

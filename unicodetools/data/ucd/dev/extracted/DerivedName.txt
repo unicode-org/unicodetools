@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2025-01-27, 18:09:14 GMT
+# Date: 2025-02-11, 11:40:10 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1438,6 +1438,7 @@
 05C5          ; HEBREW MARK LOWER DOT
 05C6          ; HEBREW PUNCTUATION NUN HAFUKHA
 05C7          ; HEBREW POINT QAMATS QATAN
+05C8          ; HEBREW POINT HEAVY SHEVA
 05D0          ; HEBREW LETTER ALEF
 05D1          ; HEBREW LETTER BET
 05D2          ; HEBREW LETTER GIMEL
@@ -45870,6 +45871,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 159834
+# Total code points: 159835
 
 # EOF

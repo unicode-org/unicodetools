@@ -1,6 +1,5 @@
-05C8 ; Hebrew
 # Scripts-17.0.0.txt
-# Date: 2025-01-27, 18:09:39 GMT
+# Date: 2025-02-11, 11:40:42 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -820,7 +819,7 @@ FB13..FB17    ; Armenian # L&   [5] ARMENIAN SMALL LIGATURE MEN NOW..ARMENIAN SM
 05C3          ; Hebrew # Po       HEBREW PUNCTUATION SOF PASUQ
 05C4..05C5    ; Hebrew # Mn   [2] HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
 05C6          ; Hebrew # Po       HEBREW PUNCTUATION NUN HAFUKHA
-05C7          ; Hebrew # Mn       HEBREW POINT QAMATS QATAN
+05C7..05C8    ; Hebrew # Mn   [2] HEBREW POINT QAMATS QATAN..HEBREW POINT HEAVY SHEVA
 05D0..05EA    ; Hebrew # Lo  [27] HEBREW LETTER ALEF..HEBREW LETTER TAV
 05EF..05F2    ; Hebrew # Lo   [4] HEBREW YOD TRIANGLE..HEBREW LIGATURE YIDDISH DOUBLE YOD
 05F3..05F4    ; Hebrew # Po   [2] HEBREW PUNCTUATION GERESH..HEBREW PUNCTUATION GERSHAYIM
@@ -835,7 +834,7 @@ FB40..FB41    ; Hebrew # Lo   [2] HEBREW LETTER NUN WITH DAGESH..HEBREW LETTER S
 FB43..FB44    ; Hebrew # Lo   [2] HEBREW LETTER FINAL PE WITH DAGESH..HEBREW LETTER PE WITH DAGESH
 FB46..FB4F    ; Hebrew # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW LIGATURE ALEF LAMED
 
-# Total code points: 134
+# Total code points: 135
 
 # ================================================
 

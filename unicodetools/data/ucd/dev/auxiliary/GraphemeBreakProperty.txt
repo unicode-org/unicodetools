@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-17.0.0.txt
-# Date: 2025-01-27, 18:09:16 GMT
+# Date: 2025-02-11, 11:40:13 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -89,7 +89,7 @@ E01F0..E0FFF  ; Control # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 05BF          ; Extend # Mn       HEBREW POINT RAFE
 05C1..05C2    ; Extend # Mn   [2] HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
 05C4..05C5    ; Extend # Mn   [2] HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
-05C7          ; Extend # Mn       HEBREW POINT QAMATS QATAN
+05C7..05C8    ; Extend # Mn   [2] HEBREW POINT QAMATS QATAN..HEBREW POINT HEAVY SHEVA
 0610..061A    ; Extend # Mn  [11] ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..ARABIC SMALL KASRA
 064B..065F    ; Extend # Mn  [21] ARABIC FATHATAN..ARABIC WAVY HAMZA BELOW
 0670          ; Extend # Mn       ARABIC LETTER SUPERSCRIPT ALEF
@@ -505,7 +505,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2241
+# Total code points: 2242
 
 # ================================================
 
