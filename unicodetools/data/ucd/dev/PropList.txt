@@ -1,7 +1,5 @@
-2E60..2E61;Terminal_Punctuation
-2E60..2E61;Sentence_Terminal
 # PropList-17.0.0.txt
-# Date: 2025-02-11, 13:48:26 GMT
+# Date: 2025-02-11, 16:14:30 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -169,6 +167,7 @@ FF63          ; Quotation_Mark # Pe       HALFWIDTH RIGHT CORNER BRACKET
 2E4C          ; Terminal_Punctuation # Po       MEDIEVAL COMMA
 2E4E..2E4F    ; Terminal_Punctuation # Po   [2] PUNCTUS ELEVATUS MARK..CORNISH VERSE DIVIDER
 2E53..2E54    ; Terminal_Punctuation # Po   [2] MEDIEVAL EXCLAMATION MARK..MEDIEVAL QUESTION MARK
+2E60..2E61    ; Terminal_Punctuation # Po   [2] WIGGLY EXCLAMATION MARK..INVERTED WIGGLY EXCLAMATION MARK
 3001..3002    ; Terminal_Punctuation # Po   [2] IDEOGRAPHIC COMMA..IDEOGRAPHIC FULL STOP
 A4FE..A4FF    ; Terminal_Punctuation # Po   [2] LISU PUNCTUATION COMMA..LISU PUNCTUATION FULL STOP
 A60D..A60F    ; Terminal_Punctuation # Po   [3] VAI COMMA..VAI QUESTION MARK
@@ -236,7 +235,7 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 1BC9F         ; Terminal_Punctuation # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; Terminal_Punctuation # Po   [4] SIGNWRITING COMMA..SIGNWRITING COLON
 
-# Total code points: 291
+# Total code points: 293
 
 # ================================================
 
@@ -1578,6 +1577,7 @@ FF65          ; Other_ID_Continue # Po       HALFWIDTH KATAKANA MIDDLE DOT
 2E2E          ; Sentence_Terminal # Po       REVERSED QUESTION MARK
 2E3C          ; Sentence_Terminal # Po       STENOGRAPHIC FULL STOP
 2E53..2E54    ; Sentence_Terminal # Po   [2] MEDIEVAL EXCLAMATION MARK..MEDIEVAL QUESTION MARK
+2E60..2E61    ; Sentence_Terminal # Po   [2] WIGGLY EXCLAMATION MARK..INVERTED WIGGLY EXCLAMATION MARK
 3002          ; Sentence_Terminal # Po       IDEOGRAPHIC FULL STOP
 A4FF          ; Sentence_Terminal # Po       LISU PUNCTUATION FULL STOP
 A60E..A60F    ; Sentence_Terminal # Po   [2] VAI FULL STOP..VAI QUESTION MARK
@@ -1632,7 +1632,7 @@ FF61          ; Sentence_Terminal # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 1BC9F         ; Sentence_Terminal # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; Sentence_Terminal # Po       SIGNWRITING FULL STOP
 
-# Total code points: 170
+# Total code points: 172
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # SentenceBreakProperty-17.0.0.txt
-# Date: 2025-02-11, 14:22:55 GMT
+# Date: 2025-02-11, 16:14:47 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2777,6 +2777,7 @@ FF0E          ; ATerm # Po       FULLWIDTH FULL STOP
 2E2E          ; STerm # Po       REVERSED QUESTION MARK
 2E3C          ; STerm # Po       STENOGRAPHIC FULL STOP
 2E53..2E54    ; STerm # Po   [2] MEDIEVAL EXCLAMATION MARK..MEDIEVAL QUESTION MARK
+2E60..2E61    ; STerm # Po   [2] WIGGLY EXCLAMATION MARK..INVERTED WIGGLY EXCLAMATION MARK
 3002          ; STerm # Po       IDEOGRAPHIC FULL STOP
 A4FF          ; STerm # Po       LISU PUNCTUATION FULL STOP
 A60E..A60F    ; STerm # Po   [2] VAI FULL STOP..VAI QUESTION MARK
@@ -2829,7 +2830,7 @@ FF61          ; STerm # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 1BC9F         ; STerm # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; STerm # Po       SIGNWRITING FULL STOP
 
-# Total code points: 166
+# Total code points: 168
 
 # ================================================
 
