@@ -1,3 +1,5 @@
+05C8 ; Other_Alphabetic
+05C8 ; Diacritic
 # PropList-17.0.0.txt
 # Date: 2025-01-27, 18:09:27 GMT
 # © 2025 Unicode®, Inc.
