@@ -1,4 +1,4 @@
-05C8;HEBREW POINT SHEVA NA;Mn;10;NSM;;;;;N;;;;;
+05C8;HEBREW POINT HEAVY SHEVA;Mn;10;NSM;;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
