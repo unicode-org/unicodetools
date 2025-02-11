@@ -34,8 +34,33 @@ CorrespondTo [\x{A79A} Ꞛ \N{LATIN CAPITAL LETTER VOLAPUK AE}]
            : [\x{A79B} ꞛ \N{LATIN SMALL LETTER VOLAPUK AE}]
     UpTo: Block (Latin_Extended_G vs Latin_Extended_D)
 
- #   \x{1DF80} \N{LATIN CAPITAL LETTER A WITH TOPBAR}
- #   \x{1DF81} \N{LATIN CAPITAL LETTER E WITH BENT TOPBAR}
+Propertywise [
+    \x{1DF70}   \N{LATIN SMALL LETTER I WITH PIGTAIL AT BOTTOM}
+    \x{1DF71}   \N{LATIN SMALL LETTER STRETCHED I}
+    \x{1DF03} 𝼃 \N{LATIN SMALL LETTER REVERSED K}
+] AreAlike
+
+Ignoring
+    Unicode_1_Name Block
+    Decomposition_Mapping Decomposition_Type
+        FC_NFKC_Closure NFKC_Casefold NFKC_Simple_Casefold NFKC_Quick_Check NFKD_Quick_Check
+        Changes_When_NFKC_Casefolded
+    Script Script_Extensions
+    Math Other_Math:
+Propertywise [
+    \x{1DF80}  \N{LATIN CAPITAL LETTER A WITH TOPBAR}
+    \x{1DF81}  \N{LATIN CAPITAL LETTER E WITH BENT TOPBAR}
+    \x{03D2} ϒ \N{GREEK UPSILON WITH HOOK SYMBOL}
+] AreAlike
+end Ignoring;
+
+Ignoring General_Category Lowercase Uppercase Sentence_Break:
+Propertywise [
+    \x{1DF80}  \N{LATIN CAPITAL LETTER A WITH TOPBAR}
+    \x{1DF81}  \N{LATIN CAPITAL LETTER E WITH BENT TOPBAR}
+    \x{1DF03} 𝼃 \N{LATIN SMALL LETTER REVERSED K}
+] AreAlike
+end Ignoring;
 
 end Ignoring;
 
