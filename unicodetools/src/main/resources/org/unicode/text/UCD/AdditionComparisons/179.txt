@@ -8,6 +8,13 @@ Ignoring Name Age:
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
 
+Ignoring Unicode_1_Name:
+Propertywise [\x{A7DD}   \N{LATIN CAPITAL LETTER CLOSED OMEGA}]
+           : [\x{0277} ɷ \N{LATIN SMALL LETTER CLOSED OMEGA}]
+CorrespondTo [\x{A7AD} Ɬ \N{LATIN CAPITAL LETTER L WITH BELT}]
+           : [\x{026C} ɬ \N{LATIN SMALL LETTER L WITH BELT}]
+end Ignoring;
+
 Propertywise [\x{1DF68} \N{LATIN CAPITAL LETTER PHONOTYPIC A WITH SWASH}
               \x{1DF6A} \N{LATIN CAPITAL LETTER PHONOTYPIC ROUNDTOP A}
               \x{1DF6C} \N{LATIN CAPITAL LETTER REVERSED SCRUPLE}
