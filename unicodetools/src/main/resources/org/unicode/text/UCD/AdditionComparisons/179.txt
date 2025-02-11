@@ -83,7 +83,8 @@ Propertywise [\x{1DF80}  \N{LATIN CAPITAL LETTER A WITH TOPBAR}
 CorrespondTo [\x{1DF03} 𝼃 \N{LATIN SMALL LETTER REVERSED K}]
     UpTo: General_Category (Uppercase_Letter vs Lowercase_Letter),
           Lowercase        (No               vs Yes),
-          Uppercase        (Yes              vs No)
+          Uppercase        (Yes              vs No),
+          Sentence_Break   (Upper            vs Lower)
 
 end Ignoring;
 
