@@ -1,5 +1,5 @@
 # EastAsianWidth-17.0.0.txt
-# Date: 2025-01-27, 18:09:15 GMT
+# Date: 2025-02-11, 18:11:20 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2240,6 +2240,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 11AB0..11ABF   ; N  # Lo    [16] CANADIAN SYLLABICS NATTILIK HI..CANADIAN SYLLABICS SPA
 11AC0..11AF8   ; N  # Lo    [57] PAU CIN HAU LETTER PA..PAU CIN HAU GLOTTAL STOP FINAL
 11B00..11B09   ; N  # Po    [10] DEVANAGARI HEAD MARK..DEVANAGARI SIGN MINDU
+11B0A          ; N  # Lo         DEVANAGARI LETTER ALTERNATE DDDA
 11B60          ; N  # Mn         SHARADA VOWEL SIGN OE
 11B61          ; N  # Mc         SHARADA VOWEL SIGN OOE
 11B62..11B64   ; N  # Mn     [3] SHARADA VOWEL SIGN UE..SHARADA VOWEL SIGN SHORT E

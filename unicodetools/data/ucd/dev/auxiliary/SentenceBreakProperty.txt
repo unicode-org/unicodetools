@@ -1,5 +1,5 @@
 # SentenceBreakProperty-17.0.0.txt
-# Date: 2025-01-27, 18:09:39 GMT
+# Date: 2025-02-11, 18:11:51 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2490,6 +2490,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 11A5C..11A89  ; OLetter # Lo  [46] SOYOMBO LETTER KA..SOYOMBO CLUSTER-INITIAL LETTER SA
 11A9D         ; OLetter # Lo       SOYOMBO MARK PLUTA
 11AB0..11AF8  ; OLetter # Lo  [73] CANADIAN SYLLABICS NATTILIK HI..PAU CIN HAU GLOTTAL STOP FINAL
+11B0A         ; OLetter # Lo       DEVANAGARI LETTER ALTERNATE DDDA
 11BC0..11BE0  ; OLetter # Lo  [33] SUNUWAR LETTER DEVI..SUNUWAR LETTER KLOKO
 11C00..11C08  ; OLetter # Lo   [9] BHAIKSUKI LETTER A..BHAIKSUKI LETTER VOCALIC L
 11C0A..11C2E  ; OLetter # Lo  [37] BHAIKSUKI LETTER E..BHAIKSUKI LETTER HA
@@ -2622,7 +2623,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 30000..3134A  ; OLetter # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..33479  ; OLetter # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 
-# Total code points: 141520
+# Total code points: 141521
 
 # ================================================
 

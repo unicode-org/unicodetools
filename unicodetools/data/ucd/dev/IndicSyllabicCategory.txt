@@ -1,6 +1,5 @@
-11B0A ; Consonant # Lo [01] DEVANAGARI LETTER SINDHI DDDA
 # IndicSyllabicCategory-17.0.0.txt
-# Date: 2025-01-27, 18:09:16 GMT
+# Date: 2025-02-11, 18:11:22 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -973,6 +972,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 119AE..119D0  ; Consonant # Lo  [35] NANDINAGARI LETTER KA..NANDINAGARI LETTER RRA
 11A0B..11A32  ; Consonant # Lo  [40] ZANABAZAR SQUARE LETTER KA..ZANABAZAR SQUARE LETTER KSSA
 11A5C..11A83  ; Consonant # Lo  [40] SOYOMBO LETTER KA..SOYOMBO LETTER KSSA
+11B0A         ; Consonant # Lo       DEVANAGARI LETTER ALTERNATE DDDA
 11C0E..11C2E  ; Consonant # Lo  [33] BHAIKSUKI LETTER KA..BHAIKSUKI LETTER HA
 11C72..11C8F  ; Consonant # Lo  [30] MARCHEN LETTER KA..MARCHEN LETTER A
 11D0C..11D30  ; Consonant # Lo  [37] MASARAM GONDI LETTER KA..MASARAM GONDI LETTER TRA

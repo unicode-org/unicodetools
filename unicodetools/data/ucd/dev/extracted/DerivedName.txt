@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2025-01-27, 18:09:14 GMT
+# Date: 2025-02-11, 18:11:18 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -32293,6 +32293,7 @@ FFFD          ; REPLACEMENT CHARACTER
 11B07         ; DEVANAGARI SIGN WESTERN NINE-LIKE BHALE
 11B08         ; DEVANAGARI SIGN REVERSED NINE-LIKE BHALE
 11B09         ; DEVANAGARI SIGN MINDU
+11B0A         ; DEVANAGARI LETTER ALTERNATE DDDA
 11B60         ; SHARADA VOWEL SIGN OE
 11B61         ; SHARADA VOWEL SIGN OOE
 11B62         ; SHARADA VOWEL SIGN UE
@@ -45870,6 +45871,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 159834
+# Total code points: 159835
 
 # EOF

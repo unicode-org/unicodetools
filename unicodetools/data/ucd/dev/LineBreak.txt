@@ -1,6 +1,5 @@
-11B0A ; AL # Lo [01] DEVANAGARI LETTER SINDHI DDDA
 # LineBreak-17.0.0.txt
-# Date: 2025-01-27, 18:09:16 GMT
+# Date: 2025-02-11, 18:11:22 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3122,6 +3121,7 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 11AB0..11ABF   ; AL # Lo    [16] CANADIAN SYLLABICS NATTILIK HI..CANADIAN SYLLABICS SPA
 11AC0..11AF8   ; AL # Lo    [57] PAU CIN HAU LETTER PA..PAU CIN HAU GLOTTAL STOP FINAL
 11B00..11B09   ; BB # Po    [10] DEVANAGARI HEAD MARK..DEVANAGARI SIGN MINDU
+11B0A          ; AL # Lo         DEVANAGARI LETTER ALTERNATE DDDA
 11B60          ; CM # Mn         SHARADA VOWEL SIGN OE
 11B61          ; CM # Mc         SHARADA VOWEL SIGN OOE
 11B62..11B64   ; CM # Mn     [3] SHARADA VOWEL SIGN UE..SHARADA VOWEL SIGN SHORT E
