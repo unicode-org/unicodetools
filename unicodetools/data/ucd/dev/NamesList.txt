@@ -1,10 +1,15 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 17.0.0
 @@@+	NamesList-17.0.0.txt
-@+	Generation Date: 2025-01-23, 16:40:26 GMT
+@+	Generation Date: 2025-02-11, 12:33:07 GMT
 	Unicode 17.0.0 names list.
 	Repertoire synched with UnicodeData-17.0.0d2.txt.
 	Synch with 7th edition CD; post UTC182 annotation updates for 17.0.
+	Added annotation to 0674 per 171-A75 and edcom issue #180.
+	Update annotation for 0342 per edcom issue #211.
+	Added Tajik to 01A3 per edcom issue #209.
+	Annotations added to Sidetic, per edcom issue #177.
+	Added informative aliases for Adlam letters, per edcom issue #186.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -1519,7 +1524,7 @@
 	% LATIN CAPITAL LETTER GHA
 01A3	LATIN SMALL LETTER OI
 	% LATIN SMALL LETTER GHA
-	* Pan-Turkic Latin alphabets
+	* Pan-Turkic Latin alphabets, Tajik
 01A4	LATIN CAPITAL LETTER P WITH HOOK
 01A5	LATIN SMALL LETTER P WITH HOOK
 	* African
@@ -2890,7 +2895,7 @@
 @		Additions for Greek
 0342	COMBINING GREEK PERISPOMENI
 	* Greek-specific form of circumflex for rising-falling accent
-	* alternative glyph is similar to an inverted breve
+	* alternative glyphs may be similar to an inverted breve, a circumflex, a tilde, or occasionally a macron
 	x (combining tilde - 0303)
 	x (combining inverted breve - 0311)
 0343	COMBINING GREEK KORONIS
@@ -4308,6 +4313,7 @@
 0674	ARABIC LETTER HIGH HAMZA
 	* Kazakh, Jawi
 	* forms digraphs
+	* in Jawi this character uses the fullsize hamza shape positioned at three-quarter height
 @		Digraphic letters for Kazakh
 @+		These characters were encoded for Kazakh digraphs, but their compatibility decompositions do not reflect the preferred order of representation. Accordingly, the representation of these Kazakh digraphs should instead use the preferred two-character spellings with the correct order of elements.
 0675	ARABIC LETTER HIGH HAMZA ALEF
@@ -32534,33 +32540,57 @@ FFFF	<not a character>
 @		Punctuation
 1093F	LYDIAN TRIANGULAR MARK
 @@	10940	Sidetic	1095F
-@		Letters
+@+		The phonetic values of many Sidetic letters are not well-determined.
+@		Vowel and semivowel letters
 10940	SIDETIC LETTER N01
+	* vowel a
 10941	SIDETIC LETTER N02
+	* vowel e
 10942	SIDETIC LETTER N03
+	* vowel i
 10943	SIDETIC LETTER N04
+	* vowel o
 10944	SIDETIC LETTER N05
+	* vowel
 10945	SIDETIC LETTER N06
+	* semivowel
 10946	SIDETIC LETTER N07
+	* semivowel
+@		Consonant letters
 10947	SIDETIC LETTER N08
+	* consonant p
 10948	SIDETIC LETTER N09
+	* consonant
 10949	SIDETIC LETTER N10
+	* consonant m
 1094A	SIDETIC LETTER N11
+	* consonant t
 1094B	SIDETIC LETTER N12
+	* consonant d
 1094C	SIDETIC LETTER N13
+	* consonant θ
 1094D	SIDETIC LETTER N14
+	* fricative consonant
 1094E	SIDETIC LETTER N15
+	* fricative consonant
 1094F	SIDETIC LETTER N16
+	* consonant n
 10950	SIDETIC LETTER N17
+	* consonant l
 10951	SIDETIC LETTER N18
+	* consonant
 10952	SIDETIC LETTER N19
 10953	SIDETIC LETTER N20
 10954	SIDETIC LETTER N21
+	* consonant r
 10955	SIDETIC LETTER N22
 10956	SIDETIC LETTER N23
+	* consonant
 10957	SIDETIC LETTER N24
+	* consonant
 10958	SIDETIC LETTER N25
 10959	SIDETIC LETTER N26
+	* consonant
 1095A	SIDETIC LETTER N27
 1095B	SIDETIC LETTER N28
 1095C	SIDETIC LETTER N29
@@ -60128,13 +60158,20 @@ FFFF	<not a character>
 @@	1E900	Adlam	1E95F
 @		Capital letters
 1E900	ADLAM CAPITAL LETTER ALIF
+	= a
 1E901	ADLAM CAPITAL LETTER DAALI
+	= da
 1E902	ADLAM CAPITAL LETTER LAAM
+	= la
 1E903	ADLAM CAPITAL LETTER MIIM
+	= ma
 1E904	ADLAM CAPITAL LETTER BA
 1E905	ADLAM CAPITAL LETTER SINNYIIYHE
+	= sa
 1E906	ADLAM CAPITAL LETTER PE
+	= pa
 1E907	ADLAM CAPITAL LETTER BHE
+	= bha
 1E908	ADLAM CAPITAL LETTER RA
 1E909	ADLAM CAPITAL LETTER E
 1E90A	ADLAM CAPITAL LETTER FA
@@ -60142,25 +60179,36 @@ FFFF	<not a character>
 1E90C	ADLAM CAPITAL LETTER O
 1E90D	ADLAM CAPITAL LETTER DHA
 1E90E	ADLAM CAPITAL LETTER YHE
+	= yha
 1E90F	ADLAM CAPITAL LETTER WAW
+	= wa
 1E910	ADLAM CAPITAL LETTER NUN
+	= na
 1E911	ADLAM CAPITAL LETTER KAF
+	= ka
 1E912	ADLAM CAPITAL LETTER YA
 1E913	ADLAM CAPITAL LETTER U
 1E914	ADLAM CAPITAL LETTER JIIM
+	= ja
 1E915	ADLAM CAPITAL LETTER CHI
+	= tcha
 1E916	ADLAM CAPITAL LETTER HA
 1E917	ADLAM CAPITAL LETTER QAAF
+	= qa
 1E918	ADLAM CAPITAL LETTER GA
 1E919	ADLAM CAPITAL LETTER NYA
 1E91A	ADLAM CAPITAL LETTER TU
+	= ta
 1E91B	ADLAM CAPITAL LETTER NHA
 @		Supplementary capital letters
 1E91C	ADLAM CAPITAL LETTER VA
 1E91D	ADLAM CAPITAL LETTER KHA
 1E91E	ADLAM CAPITAL LETTER GBE
+	= gba
 1E91F	ADLAM CAPITAL LETTER ZAL
+	= za
 1E920	ADLAM CAPITAL LETTER KPO
+	= kpa
 1E921	ADLAM CAPITAL LETTER SHA
 @		Small letters
 1E922	ADLAM SMALL LETTER ALIF
@@ -60209,7 +60257,7 @@ FFFF	<not a character>
 	* called hoortobbhere when drawn above and lestobbhere when drawn below the base character
 @		Modifier letter
 1E94B	ADLAM NASALIZATION MARK
-	* indicates prenasalization of succeeding consonant letter
+	* indicates preceding nasal consonant prenasalizes subsequent consonant letter
 @		Digits
 1E950	ADLAM DIGIT ZERO
 1E951	ADLAM DIGIT ONE
