@@ -1,3 +1,5 @@
+1DF57..1DF59   ; Latin
+1DFCD..1DFCF   ; Latin
 # Scripts-17.0.0.txt
 # Date: 2025-01-27, 18:09:39 GMT
 # © 2025 Unicode®, Inc.
