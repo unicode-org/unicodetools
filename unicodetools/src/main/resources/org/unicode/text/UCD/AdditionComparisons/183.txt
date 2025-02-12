@@ -1,0 +1,24 @@
+# Latin (RFE phonetic alphabet) (1DF7..1DF9; 1DFCD..1DFCF)
+# https://github.com/unicode-org/utc-release-management/issues/183
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+
+Ignoring Block:
+Propertywise [\x{1DF57} \N{LATIN SMALL LETTER TURNED R WITH MID-HEIGHT LEFT HOOK}
+              \x{1DF58} \N{LATIN SMALL LETTER SPLIT O}
+              \x{1DF59} \N{LATIN SMALL LETTER SPLIT U}]
+           : [\x{1DFCD} \N{LATIN SUPERSCRIPT SMALL LETTER TURNED R WITH MID-HEIGHT LEFT HOOK}
+              \x{1DFCE} \N{LATIN SUPERSCRIPT SMALL LETTER SPLIT O}
+              \x{1DFCF} \N{LATIN SUPERSCRIPT SMALL LETTER SPLIT U}]
+CorrespondTo [\x{028D} ʍ \N{LATIN SMALL LETTER TURNED W}]
+           : [\x{AB69} ꭩ \N{MODIFIER LETTER SMALL TURNED W}]
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
