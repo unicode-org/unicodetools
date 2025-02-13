@@ -69,7 +69,7 @@ Indic scripts only:
 
 ---
 PR preparation:
-- [ ] UTC decision — If available, cite
+- [ ] UTC decision — Cite if available
   - Copy from the minutes (this includes a link), or, if unavailable, use the form UTC-\d\d\d-[MC]\d+.
   - If there is no UTC decision but an L2 document is available, cite as L2/\d\d-\d+.
 - [ ] Working group — Mention:
@@ -91,7 +91,7 @@ PR preparation:
     in the UCD invariants.
     UCA and security data issues are addressed later in the process,
     before the start of β review.
-- [ ] Write PAG review summary for the report:
+- [ ] PAG review summary for the report — Write
   - For proposals from SAH, use the following template in the SAH issue:
     ```markdown
     # PAG Review
@@ -107,6 +107,8 @@ PR preparation:
   - For proposals from CJK, file a PAG issue of type `Document`, citing the proposal.
     Put the review in the `Background information / discussion` section, and link the pull request
     in the `Internal` section. See, _e.g._, https://github.com/unicode-org/properties/issues/366.
+- [ ] PAG dashboard status of SAH or PAG issue — Set to `Review`
+- [ ] Pipeline dashboard PAG status of RMG issue — Set to `data review`
 ## Scripts
 
 There are a variety of setups for unicodetools, depending on OS, in-source vs. out-of-source, git practices, etc.
