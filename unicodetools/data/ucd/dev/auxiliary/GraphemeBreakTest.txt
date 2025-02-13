@@ -1,5 +1,5 @@
 # GraphemeBreakTest-17.0.0.txt
-# Date: 2025-01-27, 18:09:16 GMT
+# Date: 2025-02-13, 22:55:10 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -782,7 +782,13 @@
 ÷ 003F × 094D ÷ 0924 ÷	#  ÷ [0.2] QUESTION MARK (XXmLinkingConsonantmExtPict) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker) ÷ [999.0] DEVANAGARI LETTER TA (LinkingConsonant) ÷ [0.3]
 ÷ 0915 × 094D × 094D × 0924 ÷	#  ÷ [0.2] DEVANAGARI LETTER KA (LinkingConsonant) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker) × [9.3] DEVANAGARI LETTER TA (LinkingConsonant) ÷ [0.3]
 ÷ 0AB8 × 0AFB × 0ACD × 0AB8 × 0AFB ÷	#  ÷ [0.2] GUJARATI LETTER SA (LinkingConsonant) × [9.0] GUJARATI SIGN SHADDA (Extend_ConjunctExtendermConjunctLinker) × [9.0] GUJARATI SIGN VIRAMA (Extend_ConjunctLinker) × [9.3] GUJARATI LETTER SA (LinkingConsonant) × [9.0] GUJARATI SIGN SHADDA (Extend_ConjunctExtendermConjunctLinker) ÷ [0.3]
+÷ 1019 × 1039 ÷ 1018 ÷ 102C × 1037 ÷	#  ÷ [0.2] MYANMAR LETTER MA (XXmLinkingConsonantmExtPict) × [9.0] MYANMAR SIGN VIRAMA (Extend_ConjunctExtendermConjunctLinker) ÷ [999.0] MYANMAR LETTER BHA (XXmLinkingConsonantmExtPict) ÷ [999.0] MYANMAR VOWEL SIGN AA (XXmLinkingConsonantmExtPict) × [9.0] MYANMAR SIGN DOT BELOW (Extend_ConjunctExtendermConjunctLinker) ÷ [0.3]
+÷ 1004 × 103A × 1039 ÷ 1011 × 1039 ÷ 1011 ÷	#  ÷ [0.2] MYANMAR LETTER NGA (XXmLinkingConsonantmExtPict) × [9.0] MYANMAR SIGN ASAT (Extend_ConjunctExtendermConjunctLinker) × [9.0] MYANMAR SIGN VIRAMA (Extend_ConjunctExtendermConjunctLinker) ÷ [999.0] MYANMAR LETTER THA (XXmLinkingConsonantmExtPict) × [9.0] MYANMAR SIGN VIRAMA (Extend_ConjunctExtendermConjunctLinker) ÷ [999.0] MYANMAR LETTER THA (XXmLinkingConsonantmExtPict) ÷ [0.3]
+÷ 1B12 × 1B01 ÷ 1B32 × 1B44 ÷ 1B2F ÷ 1B32 × 1B44 ÷ 1B22 × 1B44 ÷ 1B2C ÷ 1B32 × 1B44 ÷ 1B22 × 1B38 ÷	#  ÷ [0.2] BALINESE LETTER OKARA TEDUNG (XXmLinkingConsonantmExtPict) × [9.0] BALINESE SIGN ULU CANDRA (Extend_ConjunctExtendermConjunctLinker) ÷ [999.0] BALINESE LETTER SA (XXmLinkingConsonantmExtPict) × [9.0] BALINESE ADEG ADEG (Extend_ConjunctExtendermConjunctLinker) ÷ [999.0] BALINESE LETTER WA (XXmLinkingConsonantmExtPict) ÷ [999.0] BALINESE LETTER SA (XXmLinkingConsonantmExtPict) × [9.0] BALINESE ADEG ADEG (Extend_ConjunctExtendermConjunctLinker) ÷ [999.0] BALINESE LETTER TA (XXmLinkingConsonantmExtPict) × [9.0] BALINESE ADEG ADEG (Extend_ConjunctExtendermConjunctLinker) ÷ [999.0] BALINESE LETTER YA (XXmLinkingConsonantmExtPict) ÷ [999.0] BALINESE LETTER SA (XXmLinkingConsonantmExtPict) × [9.0] BALINESE ADEG ADEG (Extend_ConjunctExtendermConjunctLinker) ÷ [999.0] BALINESE LETTER TA (XXmLinkingConsonantmExtPict) × [9.0] BALINESE VOWEL SIGN SUKU (Extend_ConjunctExtendermConjunctLinker) ÷ [0.3]
+÷ 179F × 17D2 ÷ 178F × 17D2 ÷ 179A × 17B8 ÷	#  ÷ [0.2] KHMER LETTER SA (XXmLinkingConsonantmExtPict) × [9.0] KHMER SIGN COENG (Extend_ConjunctExtendermConjunctLinker) ÷ [999.0] KHMER LETTER TA (XXmLinkingConsonantmExtPict) × [9.0] KHMER SIGN COENG (Extend_ConjunctExtendermConjunctLinker) ÷ [999.0] KHMER LETTER RO (XXmLinkingConsonantmExtPict) × [9.0] KHMER VOWEL SIGN II (Extend_ConjunctExtendermConjunctLinker) ÷ [0.3]
+÷ 1B26 ÷ 1B17 × 1B44 ÷ 1B13 ÷	#  ÷ [0.2] BALINESE LETTER NA (XXmLinkingConsonantmExtPict) ÷ [999.0] BALINESE LETTER NGA (XXmLinkingConsonantmExtPict) × [9.0] BALINESE ADEG ADEG (Extend_ConjunctExtendermConjunctLinker) ÷ [999.0] BALINESE LETTER KA (XXmLinkingConsonantmExtPict) ÷ [0.3]
+÷ 1B27 ÷ 1B13 × 1B44 ÷ 1B0B ÷ 1B0B × 1B04 ÷	#  ÷ [0.2] BALINESE LETTER PA (XXmLinkingConsonantmExtPict) ÷ [999.0] BALINESE LETTER KA (XXmLinkingConsonantmExtPict) × [9.0] BALINESE ADEG ADEG (Extend_ConjunctExtendermConjunctLinker) ÷ [999.0] BALINESE LETTER RA REPA (XXmLinkingConsonantmExtPict) ÷ [999.0] BALINESE LETTER RA REPA (XXmLinkingConsonantmExtPict) × [9.1] BALINESE SIGN BISAH (SpacingMark) ÷ [0.3]
 #
-# Lines: 758
+# Lines: 764
 #
 # EOF
