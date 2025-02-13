@@ -7,8 +7,8 @@
 package org.unicode.props;
 
 import com.ibm.icu.impl.UnicodeRegex;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -202,7 +202,9 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
                     set =
                             prop.getSet(
                                     new ComparisonMatcher(
-                                            propertyValue, Relation.geq, DOUBLE_STRING_COMPARATOR));
+                                            propertyValue,
+                                            Relation.geq,
+                                            VERSION_STRING_COMPARATOR));
                 } else {
                     set = prop.getSet(propertyValue);
                 }
@@ -247,10 +249,6 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
         final Comparator<String> comparator;
         String pattern;
 
-        public ComparisonMatcher(String pattern, Relation relation) {
-            this(pattern, relation, new UTF16.StringComparator(true, false, 0));
-        }
-
         public ComparisonMatcher(String pattern, Relation relation, Comparator<String> comparator) {
             this.relation = relation;
             this.pattern = pattern;
@@ -281,8 +279,11 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
         }
     }
 
-    /** Special parser for doubles. Anything not parsable is higher than everything else. */
-    public static final Comparator<String> DOUBLE_STRING_COMPARATOR =
+    /**
+     * Special parser for version strings. Anything not parsable is higher than everything
+     * parseable.
+     */
+    public static final Comparator<String> VERSION_STRING_COMPARATOR =
             new Comparator<String>() {
 
                 @Override
@@ -294,22 +295,25 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
                     } else if (o2 == null) {
                         return 1;
                     } else {
-                        int f1 = o1.codePointAt(0);
-                        int f2 = o2.codePointAt(0);
-                        boolean n1 = f1 < '0' || f1 > '9';
-                        boolean n2 = f2 < '0' || f2 > '9';
-                        if (n1) {
-                            return n2 ? o1.compareTo(o2) : 1;
-                        } else if (n2) {
-                            return -1;
+                        boolean o1Valid = true;
+                        boolean o2Valid = true;
+                        VersionInfo v1 = null;
+                        VersionInfo v2 = null;
+                        try {
+                            v1 = VersionInfo.getInstance(o1);
+                        } catch (IllegalArgumentException e) {
+                            o1Valid = false;
                         }
-                        double d1 = Double.parseDouble(o1);
-                        double d2 = Double.parseDouble(o2);
-                        if (Double.isNaN(d1) || Double.isNaN(d2)) {
-                            throw new IllegalArgumentException();
+                        try {
+                            v2 = VersionInfo.getInstance(o2);
+                        } catch (IllegalArgumentException e) {
+                            o2Valid = false;
                         }
-
-                        return d1 > d2 ? 1 : d1 < d2 ? -1 : 0;
+                        if (o1Valid && o2Valid) {
+                            return v1.compareTo(v2);
+                        } else {
+                            return o2Valid ? 1 : o1Valid ? -1 : o1.compareTo(o2);
+                        }
                     }
                 }
             };

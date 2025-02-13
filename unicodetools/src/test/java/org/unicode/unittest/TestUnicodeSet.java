@@ -33,11 +33,11 @@ public class TestUnicodeSet extends TestFmwkMinusMinus {
         assertEquals(
                 d1 + " ?< " + d2,
                 expected,
-                UnicodePropertySymbolTable.DOUBLE_STRING_COMPARATOR.compare(d1, d2));
+                UnicodePropertySymbolTable.VERSION_STRING_COMPARATOR.compare(d1, d2));
         assertEquals(
                 d2 + " ?< " + d1,
                 -expected,
-                UnicodePropertySymbolTable.DOUBLE_STRING_COMPARATOR.compare(d2, d1));
+                UnicodePropertySymbolTable.VERSION_STRING_COMPARATOR.compare(d2, d1));
     }
 
     @Test

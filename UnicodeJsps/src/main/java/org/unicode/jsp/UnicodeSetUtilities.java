@@ -12,9 +12,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
 import org.unicode.cldr.util.MultiComparator;
-import org.unicode.jsp.UnicodeSetUtilities.ComparisonMatcher.Relation;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.PatternMatcher;
+import org.unicode.props.UnicodePropertySymbolTable;
 
 public class UnicodeSetUtilities {
 
@@ -292,7 +292,13 @@ public class UnicodeSetUtilities {
                                         + prop.getValueAliases());
                     }
                     if (isAge) {
-                        set = prop.getSet(new ComparisonMatcher(propertyValue, Relation.geq));
+                        set =
+                                prop.getSet(
+                                        new UnicodePropertySymbolTable.ComparisonMatcher(
+                                                propertyValue,
+                                                UnicodePropertySymbolTable.Relation.geq,
+                                                UnicodePropertySymbolTable
+                                                        .VERSION_STRING_COMPARATOR));
                     } else {
                         if (prop.getName().equals("General_Category")) {
                             for (String[] coarseValue : COARSE_GENERAL_CATEGORIES) {
@@ -342,51 +348,6 @@ public class UnicodeSetUtilities {
             //        if (propertyValue)
             //      }
             return prop.isValidValue(propertyValue);
-        }
-    }
-    ;
-
-    public static class ComparisonMatcher implements PatternMatcher {
-        Relation relation;
-
-        enum Relation {
-            less,
-            leq,
-            equal,
-            geq,
-            greater
-        }
-
-        static Comparator comparator = new UTF16.StringComparator(true, false, 0);
-
-        String pattern;
-
-        public ComparisonMatcher(String pattern, Relation comparator) {
-            this.relation = comparator;
-            this.pattern = pattern;
-        }
-
-        @Override
-        public boolean test(String value) {
-            int comp = comparator.compare(pattern, value);
-            switch (relation) {
-                case less:
-                    return comp < 0;
-                case leq:
-                    return comp <= 0;
-                default:
-                    return comp == 0;
-                case geq:
-                    return comp >= 0;
-                case greater:
-                    return comp > 0;
-            }
-        }
-
-        @Override
-        public PatternMatcher set(String pattern) {
-            this.pattern = pattern;
-            return this;
         }
     }
 }
