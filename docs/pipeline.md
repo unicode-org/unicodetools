@@ -55,7 +55,7 @@ Indic scripts only:
 ---
 - [ ] In unicodetools/src/main/resources/org/unicode/text/UCD/AdditionComparisons,
       copy template.txt to [RMG issue number].txt.
-- [ ] Write comparison tests
+- [ ] Comparison tests — Write
   - Examples:
     - [straightforward characters](https://github.com/unicode-org/unicodetools/blob/08748760e371d9dbdc6a0fc883c68dff944648e2/unicodetools/src/main/resources/org/unicode/text/UCD/AdditionComparisons/182.txt#L11-L18),
     - [various Latin (lowercase-only, case pairs, modifiers)](https://github.com/unicode-org/unicodetools/blob/4f8a581c77fdda2d572a16b28e74d865a689108e/unicodetools/src/main/resources/org/unicode/text/UCD/AdditionComparisons/155.txt#L11-L72),
