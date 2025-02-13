@@ -1287,9 +1287,14 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             // Khmer and Balinese examples from the table on p. 4:
                             "ស្ត្រី",
                             "ᬦᬗ᭄ᬓ",
-                            // Example with U+1B0B from
-                            // https://unicode-core-spec.pages.dev/chapter-17/#G27073.
-                            "ᬧᬓ᭄ᬋᬋᬄ"));
+                            // Balinese example with subjoined U+1B0B from
+                            // https://unicode.org/versions/Unicode16.0.0/core-spec/chapter-17/#G27073:
+                            "ᬧᬓ᭄ᬋᬋᬄ",
+                            // Khmer Examples with subscript independent vowel signs from
+                            // https://unicode.org/versions/Unicode16.0.0/core-spec/chapter-16/#G37635:
+                            "ផ្ឯម",
+                            "ហ្ឫទ័យ"
+                            ));
         }
     }
 
