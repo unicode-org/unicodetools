@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-17.0.0.txt
-# Date: 2025-01-27, 18:09:12 GMT
+# Date: 2025-02-13, 14:35:42 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1934,6 +1934,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 1D200..1D241  ; N # So  [66] GREEK VOCAL NOTATION SYMBOL-1..GREEK INSTRUMENTAL NOTATION SYMBOL-54
 1D242..1D244  ; N # Mn   [3] COMBINING GREEK MUSICAL TRISEME..COMBINING GREEK MUSICAL PENTASEME
 1D245         ; N # So       GREEK MUSICAL LEIMMA
+1D261         ; N # So       MUSICAL SYMBOL SUSPENSION
 1D2C0..1D2D3  ; N # No  [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3  ; N # No  [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
 1D377..1D378  ; N # No   [2] TALLY MARK ONE..TALLY MARK FIVE
@@ -2144,7 +2145,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 760566 code points not listed here.
+# The above property value applies to 760565 code points not listed here.
 # Total code points: 792267
 
 # ================================================
