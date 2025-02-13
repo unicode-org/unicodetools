@@ -1279,7 +1279,17 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             "क" + "\u094D\u094D" + "त",
                             // From L2/14-131, §3.2; made into a single EGC by 179-C31.
                             // This test would have caught ICU-22956.
-                            "સૻ્સૻ"));
+                            "સૻ્સૻ",
+                            // Examples from L2/24-058R:
+                            "မ္ဘာ့", // Myanmar, first example pp. 2 sq.
+                            "င်္ထ္ထ", // Second Myanmar example p. 3.
+                            "ᬒᬁᬲ᭄ᬯᬲ᭄ᬢ᭄ᬬᬲ᭄ᬢᬸ", // Balinese greeting p. 3.
+                            // Khmer and Balinese examples from the table on p. 4:
+                            "ស្ត្រី",
+                            "ᬦᬗ᭄ᬓ",
+                            // Example with U+1B0B from
+                            // https://unicode-core-spec.pages.dev/chapter-17/#G27073.
+                            "ᬧᬓ᭄ᬋᬋᬄ"));
         }
     }
 
