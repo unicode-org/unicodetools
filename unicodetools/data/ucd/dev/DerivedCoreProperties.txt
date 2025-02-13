@@ -1,5 +1,5 @@
 # DerivedCoreProperties-17.0.0.txt
-# Date: 2025-01-27, 18:09:11 GMT
+# Date: 2025-02-13, 15:21:53 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -12833,6 +12833,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 1D1AE..1D1EA  ; Grapheme_Base # So  [61] MUSICAL SYMBOL PEDAL MARK..MUSICAL SYMBOL KORON
 1D200..1D241  ; Grapheme_Base # So  [66] GREEK VOCAL NOTATION SYMBOL-1..GREEK INSTRUMENTAL NOTATION SYMBOL-54
 1D245         ; Grapheme_Base # So       GREEK MUSICAL LEIMMA
+1D262..1D27F  ; Grapheme_Base # So  [30] MUSICAL SYMBOL HEAVY DOUBLE BARLINE..MUSICAL SYMBOL ARPEGGIATO UP WITH ARROW
 1D2C0..1D2D3  ; Grapheme_Base # No  [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3  ; Grapheme_Base # No  [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
 1D300..1D356  ; Grapheme_Base # So  [87] MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
@@ -13016,7 +13017,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 30000..3134A  ; Grapheme_Base # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..33479  ; Grapheme_Base # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 
-# Total code points: 157523
+# Total code points: 157553
 
 # ================================================
 

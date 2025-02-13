@@ -1,6 +1,5 @@
-1D262..1D27F;Common
 # Scripts-17.0.0.txt
-# Date: 2025-01-27, 18:09:39 GMT
+# Date: 2025-02-13, 15:22:28 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -540,6 +539,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 1D183..1D184  ; Common # So   [2] MUSICAL SYMBOL ARPEGGIATO UP..MUSICAL SYMBOL ARPEGGIATO DOWN
 1D18C..1D1A9  ; Common # So  [30] MUSICAL SYMBOL RINFORZANDO..MUSICAL SYMBOL DEGREE SLASH
 1D1AE..1D1EA  ; Common # So  [61] MUSICAL SYMBOL PEDAL MARK..MUSICAL SYMBOL KORON
+1D262..1D27F  ; Common # So  [30] MUSICAL SYMBOL HEAVY DOUBLE BARLINE..MUSICAL SYMBOL ARPEGGIATO UP WITH ARROW
 1D2C0..1D2D3  ; Common # No  [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3  ; Common # No  [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
 1D300..1D356  ; Common # So  [87] MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
@@ -639,7 +639,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 9123
+# Total code points: 9153
 
 # ================================================
 
