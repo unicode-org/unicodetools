@@ -74,6 +74,7 @@ $EX=\p{Line_Break=Exclamation}
 $GL=\p{Line_Break=Glue}
 $H2=\p{Line_Break=H2}
 $H3=\p{Line_Break=H3}
+$HH=\p{Line_Break=Unambiguous_Hyphen}
 $HL=\p{Line_Break=HL}
 $HY=\p{Line_Break=Hyphen}
 $ID=\p{Line_Break=Ideographic}
@@ -117,10 +118,8 @@ $QUmPi=[$QU - $Pi]
 $QUmPf=[$QU - $Pf]
 
 $EastAsian   = [\p{ea=F}\p{ea=W}\p{ea=H}]
-$NonEastAsianBA = [$BA & [^$EastAsian]]
 
 $DottedCircle = [◌]
-$Hyphen = [\u2010]
 
 $CPmEastAsian=[$CP-$EastAsian]
 $OPmEastAsian=[$OP-$EastAsian]
@@ -172,7 +171,7 @@ $NS=[$NSorig $CJ]
 # LB 12  Do not break after NBSP and related characters.
 12) $GL ×
 # LB 12a Do not break before NBSP and related characters, except after spaces and hyphens.
-12.1) [^ $SP $BA $HY] × $GL
+12.1) [^ $SP $BA $HY $HH] × $GL
 # LB 13  Do not break before \u2018]\u2019 or \u2018!\u2019 or \u2018;\u2019 or \u2018/\u2019, even after spaces.
 13.01) × $EX
 13.02) × $CL
@@ -209,14 +208,15 @@ $NS=[$NSorig $CJ]
 20.01)  ÷ $CB
 20.02) $CB ÷
 # LB 20a Do not break after a hyphen that follows break opportunity, a space, or the start of text.
-20.10) ( $BK | $CR | $LF | $NL | $SP | $ZW | $CB | $GL | $sot ) ( $HY | $Hyphen ) × $AL
+20.10) ( $BK | $CR | $LF | $NL | $SP | $ZW | $CB | $GL | $sot ) ( $HY | $HH ) × ( $AL | $HL )
 # LB 21  Do not break before hyphen-minus, other hyphens, fixed-width spaces, small kana and other non-starters, or after acute accents.
 21.01) × $BA
-21.02) × $HY
-21.03) × $NS
-21.04) $BB ×
+21.02) × $HH
+21.03) × $HY
+21.04) × $NS
+21.05) $BB ×
 # LB 21a Do not break after the hyphen in Hebrew-hyphen-non-Hebrew.
-21.1) $HL ($HY | $NonEastAsianBA) × [^$HL]
+21.1) $HL ($HY | $HH) × [^$HL]
 # LB 21b Don’t break between Solidus and Hebrew letters.
 21.2) $SY × $HL
 # LB 22  Do not break before ellipses.
