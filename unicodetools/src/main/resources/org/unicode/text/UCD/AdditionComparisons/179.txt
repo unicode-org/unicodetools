@@ -64,28 +64,10 @@ Propertywise [
     \x{1DF03} 𝼃 \N{LATIN SMALL LETTER REVERSED K}
 ] AreAlike
 
-Ignoring
-    Unicode_1_Name Block
-    Decomposition_Mapping Decomposition_Type
-        FC_NFKC_Closure NFKC_Casefold NFKC_Simple_Casefold NFKC_Quick_Check NFKD_Quick_Check
-        Changes_When_NFKC_Casefolded
-    Script Script_Extensions
-    Math Other_Math:
 Propertywise [
     \x{1DF80}  \N{LATIN CAPITAL LETTER A WITH TOPBAR}
     \x{1DF81}  \N{LATIN CAPITAL LETTER E WITH BENT TOPBAR}
-    \x{03D2} ϒ \N{GREEK UPSILON WITH HOOK SYMBOL}
+    \x{A7FB} ꟻ \N{LATIN EPIGRAPHIC LETTER REVERSED F}
 ] AreAlike
-end Ignoring;
-
-Propertywise [\x{1DF80}  \N{LATIN CAPITAL LETTER A WITH TOPBAR}
-              \x{1DF81}  \N{LATIN CAPITAL LETTER E WITH BENT TOPBAR}]
-CorrespondTo [\x{1DF03} 𝼃 \N{LATIN SMALL LETTER REVERSED K}]
-    UpTo: General_Category (Uppercase_Letter vs Lowercase_Letter),
-          Lowercase        (No               vs Yes),
-          Uppercase        (Yes              vs No),
-          Sentence_Break   (Upper            vs Lower)
-
-end Ignoring;
 
 end Ignoring;
