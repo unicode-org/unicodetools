@@ -1613,6 +1613,15 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         // Examples for LB21a.
                         " ⁧John ו-Michael⁩;", // No break after ו-‏.
                         "וַֽיְהִי־כֵֽן׃", // Break after maqaf since Unicode 16.
+                        // Examples from L2/24-224 Section 6.1.
+                        "the Akkadian suffix -ī",
+                        "the Hebrew suffix ‏-י",
+                        "the Hebrew suffix ‏־י",
+                        "the Hebrew suffix ־ִי",
+                        // There are mathematical spaces with lb=BA either side of this ≔, so that
+                        // the Unicode 16.0 LB21a prevents a break before ≔, but Unicode 17.0 allows
+                        // it as these spaces are not hyphens (lb=HH).
+                        "Let ש ≔ |𝑆|"
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
