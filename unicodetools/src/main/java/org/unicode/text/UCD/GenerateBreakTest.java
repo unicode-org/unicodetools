@@ -1615,8 +1615,14 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         "וַֽיְהִי־כֵֽן׃", // Break after maqaf since Unicode 16.
                         // Examples from L2/24-224 Section 6.1.
                         "the Akkadian suffix -ī",
+                        // This one does not work because the lb=CM RLM turns into lb=AL, so that
+                        // LB20a does not apply.
                         "the Hebrew suffix ‏-י",
-                        "the Hebrew suffix ‏־י",
+                        // With an extraneous space after the RLM, LB20a applies.
+                        "the Hebrew suffix ‏ -י",
+                        // LB20a applies to maqaf too.
+                        "the Hebrew suffix ־י",
+                        // As well as a maqaf carrying a point.
                         "the Hebrew suffix ־ִי",
                         // There are mathematical spaces with lb=BA either side of this ≔, so that
                         // the Unicode 16.0 LB21a prevents a break before ≔, but Unicode 17.0 allows
