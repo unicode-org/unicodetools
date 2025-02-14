@@ -1293,8 +1293,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             // Khmer Examples with subscript independent vowel signs from
                             // https://unicode.org/versions/Unicode16.0.0/core-spec/chapter-16/#G37635:
                             "ផ្ឯម",
-                            "ហ្ឫទ័យ"
-                            ));
+                            "ហ្ឫទ័យ"));
         }
     }
 
