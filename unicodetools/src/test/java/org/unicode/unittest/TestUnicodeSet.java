@@ -5,7 +5,7 @@ import com.ibm.icu.text.UnicodeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
-import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
+import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.text.utility.UnicodeSetParser;
 import org.unicode.text.utility.Utility;
 
