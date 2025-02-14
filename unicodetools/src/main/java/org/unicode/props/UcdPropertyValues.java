@@ -1610,6 +1610,7 @@ public class UcdPropertyValues {
         Glue("GL"),
         H2("H2"),
         H3("H3"),
+        Unambiguous_Hyphen("HH"),
         Hebrew_Letter("HL"),
         Hyphen("HY"),
         Ideographic("ID"),
