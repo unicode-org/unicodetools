@@ -1,5 +1,5 @@
 # DerivedLineBreak-17.0.0.txt
-# Date: 2025-01-27, 18:09:13 GMT
+# Date: 2025-02-14, 15:13:02 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -306,7 +306,6 @@ FF64          ; CL # Po       HALFWIDTH IDEOGRAPHIC COMMA
 # Line_Break=Glue
 
 00A0          ; GL # Zs       NO-BREAK SPACE
-034F          ; GL # Mn       COMBINING GRAPHEME JOINER
 035C..0362    ; GL # Mn   [7] COMBINING DOUBLE BREVE BELOW..COMBINING DOUBLE RIGHTWARDS ARROW BELOW
 0F08          ; GL # Po       TIBETAN MARK SBRUL SHAD
 0F0C          ; GL # Po       TIBETAN MARK DELIMITER TSHEG BSTAR
@@ -331,7 +330,7 @@ FE2D..FE2E    ; GL # Mn   [2] COMBINING CONJOINING MACRON BELOW..COMBINING CYRIL
 13439..1343B  ; GL # Cf   [3] EGYPTIAN HIEROGLYPH INSERT AT MIDDLE..EGYPTIAN HIEROGLYPH INSERT AT BOTTOM
 16FE4         ; GL # Mn       KHITAN SMALL SCRIPT FILLER
 
-# Total code points: 42
+# Total code points: 41
 
 # ================================================
 
@@ -1914,8 +1913,7 @@ FE19          ; IN # Po       PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS
 000E..001F    ; CM # Cc  [18] <control-000E>..<control-001F>
 007F..0084    ; CM # Cc   [6] <control-007F>..<control-0084>
 0086..009F    ; CM # Cc  [26] <control-0086>..<control-009F>
-0300..034E    ; CM # Mn  [79] COMBINING GRAVE ACCENT..COMBINING UPWARDS ARROW BELOW
-0350..035B    ; CM # Mn  [12] COMBINING RIGHT ARROWHEAD ABOVE..COMBINING ZIGZAG ABOVE
+0300..035B    ; CM # Mn  [92] COMBINING GRAVE ACCENT..COMBINING ZIGZAG ABOVE
 0363..036F    ; CM # Mn  [13] COMBINING LATIN SMALL LETTER A..COMBINING LATIN SMALL LETTER X
 0483..0487    ; CM # Mn   [5] COMBINING CYRILLIC TITLO..COMBINING CYRILLIC POKRYTIE
 0488..0489    ; CM # Me   [2] COMBINING CYRILLIC HUNDRED THOUSANDS SIGN..COMBINING CYRILLIC MILLIONS SIGN
@@ -2432,7 +2430,7 @@ E0001         ; CM # Cf       LANGUAGE TAG
 E0020..E007F  ; CM # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; CM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2515
+# Total code points: 2516
 
 # ================================================
 
