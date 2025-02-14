@@ -64,10 +64,14 @@ Propertywise [
     \x{1DF03} 𝼃 \N{LATIN SMALL LETTER REVERSED K}
 ] AreAlike
 
+Ignoring Block:
 Propertywise [
     \x{1DF80}  \N{LATIN CAPITAL LETTER A WITH TOPBAR}
     \x{1DF81}  \N{LATIN CAPITAL LETTER E WITH BENT TOPBAR}
     \x{A7FB} ꟻ \N{LATIN EPIGRAPHIC LETTER REVERSED F}
 ] AreAlike
+end Ignoring;
+
+end Ignoring;
 
 end Ignoring;
