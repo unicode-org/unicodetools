@@ -188,7 +188,7 @@ public final class UCD_Names implements UCD_Types {
         "XX", "OP", "CL", "QU", "GL", "NS", "EX", "SY", "IS", "PR", "PO", "NU", "AL", "ID", "IN",
         "HY", "CM", "BB", "BA", "SP", "BK", "CR", "LF", "CB", "SA", "AI", "B2", "SG", "ZW", "NL",
         "WJ", "JL", "JV", "JT", "H2", "H3", "CP", "HL", "CJ", "RI", "EB", "EM", "ZWJ", "AK", "AP",
-        "AS", "VI", "VF"
+        "AS", "VI", "VF", "HH",
     };
 
     static final String[] LONG_LINE_BREAK = {
@@ -240,6 +240,7 @@ public final class UCD_Names implements UCD_Types {
         "Aksara_Start",
         "Virama",
         "Virama_Final",
+        "Unambiguous_Hyphen",
     };
 
     public static final String[] LONG_SCRIPT = {
