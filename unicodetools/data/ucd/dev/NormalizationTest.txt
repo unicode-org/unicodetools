@@ -1,5 +1,5 @@
 # NormalizationTest-17.0.0.txt
-# Date: 2025-01-27, 18:09:23 GMT
+# Date: 2025-01-30, 20:54:40 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -15240,6 +15240,7 @@ FFEE;FFEE;FFEE;25CB;25CB; # (￮; ￮; ￮; ○; ○; ) HALFWIDTH WHITE CIRCLE
 16D68;16D68;16D67 16D67;16D68;16D67 16D67; # (𖵨; 𖵨; 𖵨; 𖵨; 𖵨; ) KIRAT RAI VOWEL SIGN AI
 16D69;16D69;16D63 16D67;16D69;16D63 16D67; # (𖵩; 𖵩; 𖵩; 𖵩; 𖵩; ) KIRAT RAI VOWEL SIGN O
 16D6A;16D6A;16D63 16D67 16D67;16D6A;16D63 16D67 16D67; # (𖵪; 𖵪; 𖵪; 𖵪; 𖵪; ) KIRAT RAI VOWEL SIGN AU
+1B126;1B126;1B126;30E8 30EA;30E8 30EA; # (𛄦; 𛄦; 𛄦; ヨリ; ヨリ; ) KATAKANA DIGRAPH YORI
 1CCD6;1CCD6;1CCD6;0041;0041; # (𜳖; 𜳖; 𜳖; A; A; ) OUTLINED LATIN CAPITAL LETTER A
 1CCD7;1CCD7;1CCD7;0042;0042; # (𜳗; 𜳗; 𜳗; B; B; ) OUTLINED LATIN CAPITAL LETTER B
 1CCD8;1CCD8;1CCD8;0043;0043; # (𜳘; 𜳘; 𜳘; C; C; ) OUTLINED LATIN CAPITAL LETTER C
