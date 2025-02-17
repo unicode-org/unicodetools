@@ -107,18 +107,27 @@ public class WriteCharts implements UCD_Types {
         final String folder = GEN_CHARTS_DIR + "collation/";
 
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "index.html",
+                WriteCharts.class.getResource("index.html").getPath(),
                 Utility.UTF8,
                 folder + "index.html",
                 replacement);
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, folder + "charts.css", null);
+                WriteCharts.class.getResource("charts.css").getPath(),
+                Utility.LATIN1,
+                folder + "charts.css",
+                null);
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "help.html", Utility.UTF8, folder + "help.html", null);
+                WriteCharts.class.getResource("help.html").getPath(),
+                Utility.UTF8,
+                folder + "help.html",
+                null);
 
         indexFile = Utility.openPrintWriter(folder, "index_list.html", Utility.UTF8_WINDOWS);
         Utility.appendFile(
-                Settings.SRC_UCA_DIR + "index_header.html", Utility.UTF8, indexFile, replacement);
+                WriteCharts.class.getResource("index_header.html").getPath(),
+                Utility.UTF8,
+                indexFile,
+                replacement);
 
         /*
         indexFile.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
@@ -319,18 +328,25 @@ public class WriteCharts implements UCD_Types {
         // System.out.println("File: " + new File(".").getCanonicalPath());
 
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "index.html",
+                WriteCharts.class.getResource("index.html").getPath(),
                 Utility.UTF8,
                 folder + "index.html",
                 replacement);
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, folder + "charts.css");
+                WriteCharts.class.getResource("charts.css").getPath(),
+                Utility.LATIN1,
+                folder + "charts.css");
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "norm_help.html", Utility.UTF8, folder + "help.html");
+                WriteCharts.class.getResource("norm_help.html").getPath(),
+                Utility.UTF8,
+                folder + "help.html");
 
         indexFile = Utility.openPrintWriter(folder, "index_list.html", Utility.UTF8_WINDOWS);
         Utility.appendFile(
-                Settings.SRC_UCA_DIR + "index_header.html", Utility.UTF8, indexFile, replacement);
+                WriteCharts.class.getResource("index_header.html").getPath(),
+                Utility.UTF8,
+                indexFile,
+                replacement);
 
         /*
         indexFile.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
@@ -447,18 +463,27 @@ public class WriteCharts implements UCD_Types {
         final String folder = GEN_CHARTS_DIR + "case/";
 
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "index.html",
+                WriteCharts.class.getResource("index.html").getPath(),
                 Utility.UTF8,
                 folder + "index.html",
                 replacement);
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, folder + "charts.css", null);
+                WriteCharts.class.getResource("charts.css").getPath(),
+                Utility.LATIN1,
+                folder + "charts.css",
+                null);
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "case_help.html", Utility.UTF8, folder + "help.html", null);
+                WriteCharts.class.getResource("case_help.html").getPath(),
+                Utility.UTF8,
+                folder + "help.html",
+                null);
 
         indexFile = Utility.openPrintWriter(folder, "index_list.html", Utility.UTF8_WINDOWS);
         Utility.appendFile(
-                Settings.SRC_UCA_DIR + "index_header.html", Utility.UTF8, indexFile, replacement);
+                WriteCharts.class.getResource("index_header.html").getPath(),
+                Utility.UTF8,
+                indexFile,
+                replacement);
 
         /*
         indexFile.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
@@ -574,18 +599,22 @@ public class WriteCharts implements UCD_Types {
         final String folder = GEN_CHARTS_DIR + "script/";
 
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "index.html",
+                WriteCharts.class.getResource("index.html").getPath(),
                 Utility.UTF8,
                 folder + "index.html",
                 replacement);
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, folder + "charts.css");
+                WriteCharts.class.getResource("charts.css").getPath(),
+                Utility.LATIN1,
+                folder + "charts.css");
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "script_help.html", Utility.UTF8, folder + "help.html");
+                WriteCharts.class.getResource("script_help.html").getPath(),
+                Utility.UTF8,
+                folder + "help.html");
 
         indexFile = Utility.openPrintWriter(folder, "index_list.html", Utility.UTF8_WINDOWS);
         Utility.appendFile(
-                Settings.SRC_UCA_DIR + "script_index_header.html",
+                WriteCharts.class.getResource("script_index_header.html").getPath(),
                 Utility.UTF8,
                 indexFile,
                 replacement);
@@ -724,18 +753,25 @@ public class WriteCharts implements UCD_Types {
         final String folder = GEN_CHARTS_DIR + "name/";
 
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "index.html",
+                WriteCharts.class.getResource("index.html").getPath(),
                 Utility.UTF8,
                 folder + "index.html",
                 replacement);
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, folder + "charts.css");
+                WriteCharts.class.getResource("charts.css").getPath(),
+                Utility.LATIN1,
+                folder + "charts.css");
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "name_help.html", Utility.UTF8, folder + "help.html");
+                WriteCharts.class.getResource("name_help.html").getPath(),
+                Utility.UTF8,
+                folder + "help.html");
 
         indexFile = Utility.openPrintWriter(folder, "index_list.html", Utility.UTF8_WINDOWS);
         Utility.appendFile(
-                Settings.SRC_UCA_DIR + "index_header.html", Utility.UTF8, indexFile, replacement);
+                WriteCharts.class.getResource("index_header.html").getPath(),
+                Utility.UTF8,
+                indexFile,
+                replacement);
 
         int columnCount = 0;
         char lastInitial = 0;

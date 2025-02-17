@@ -11,22 +11,18 @@ package org.unicode.tools;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.Composer;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSet.XSymbolTable;
+import com.ibm.icu.text.UnicodeSet.SpanCondition;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -36,13 +32,12 @@ import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+import java.util.stream.Collectors;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
+import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
-import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
-import org.unicode.text.utility.Settings;
+import org.unicode.tools.Segmenter.Builder.NamedRefinedSet;
 import org.unicode.tools.Segmenter.SegmentationRule.Breaks;
 
 /** Ordered list of rules, with variables resolved before building. Use Builder to make. */
@@ -53,8 +48,9 @@ public class Segmenter {
     }
 
     public static final int REGEX_FLAGS = Pattern.COMMENTS | Pattern.MULTILINE | Pattern.DOTALL;
-    public static final Pattern IDENTIFIER_PATTERN =
-            Pattern.compile("[$][\\p{Alnum}_]+", REGEX_FLAGS);
+    private static final UnicodeSet PATTERN_SYNTAX = new UnicodeSet("\\p{pattern syntax}").freeze();
+    private static final UnicodeSet PATTERN_SYNTAX_OR_WHITE_SPACE =
+            new UnicodeSet("[\\p{pattern white space}\\p{pattern syntax}]").freeze();
 
     /**
      * If not null, masks off the character properties so the UnicodeSets are easier to use when
@@ -73,6 +69,7 @@ public class Segmenter {
     public final Target target;
 
     private UnicodeMap<String> samples = new UnicodeMap<String>();
+    private List<NamedRefinedSet> partitionDefinition = new ArrayList<>();
 
     private Segmenter(Target target) {
         this.target = target;
@@ -284,13 +281,18 @@ public class Segmenter {
         public String toString() {
             return toString(false);
         }
+
+        public abstract String toCppOldMonkeyString();
+
+        public abstract String toJavaOldMonkeyString();
     }
 
     /** A « treat as » rule. */
     public static class RemapRule extends SegmentationRule {
 
         public RemapRule(String leftHandSide, String replacement, String line) {
-            pattern = Pattern.compile(leftHandSide, REGEX_FLAGS);
+            patternDefinition = leftHandSide;
+            pattern = Pattern.compile(Builder.expandUnicodeSets(leftHandSide), REGEX_FLAGS);
             this.replacement = replacement;
             name = line;
         }
@@ -357,6 +359,7 @@ public class Segmenter {
             remap.accept(result);
         }
 
+        private String patternDefinition;
         private Pattern pattern;
         private String replacement;
         private String name;
@@ -378,6 +381,28 @@ public class Segmenter {
         protected String toString(boolean showResolved) {
             return name;
         }
+
+        @Override
+        public String toCppOldMonkeyString() {
+            return "std::make_unique<RemapRule>(uR\"("
+                    + name
+                    + ")\", uR\"("
+                    + patternDefinition.replaceAll("&", "&&").replaceAll("-", "--")
+                    + ")\", uR\"("
+                    + replacement
+                    + ")\")";
+        }
+
+        @Override
+        public String toJavaOldMonkeyString() {
+            return "new RemapRule(\""
+                    + name.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\", \""
+                    + patternDefinition.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\", \""
+                    + replacement.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\")";
+        }
     }
 
     /** A rule that determines the status of an offset. */
@@ -389,6 +414,10 @@ public class Segmenter {
          * @param line
          */
         public RegexRule(String before, Breaks result, String after, String line) {
+            beforeDefinition = before;
+            afterDefinition = after;
+            before = Builder.expandUnicodeSets(before);
+            after = Builder.expandUnicodeSets(after);
             breaks = result;
             before = ".*(" + before + ")";
             String parsing = null;
@@ -458,31 +487,46 @@ public class Segmenter {
             return result;
         }
 
+        @Override
+        public String toCppOldMonkeyString() {
+            return "std::make_unique<RegexRule>(uR\"("
+                    + name
+                    + ")\", uR\"("
+                    + beforeDefinition.replaceAll("&", "&&").replaceAll("-", "--")
+                    + ")\", u'"
+                    + (breaks == Breaks.BREAK ? '÷' : '×')
+                    + "', uR\"("
+                    + afterDefinition.replaceAll("&", "&&").replaceAll("-", "--")
+                    + ")\")";
+        }
+
+        @Override
+        public String toJavaOldMonkeyString() {
+            return "new RegexRule(\""
+                    + name.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\", \""
+                    + beforeDefinition.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\", Resolution."
+                    + breaks.name()
+                    + ", \""
+                    + afterDefinition.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\")";
+        }
+
         // ============== Internals ================
         // We cannot use a single regex of the form "(?<= before) after" because
         // (RI RI)* RI × RI would require unbounded lookbehind.
         private Pattern before;
         private Pattern after;
         private String name;
+        private String beforeDefinition;
+        private String afterDefinition;
 
         private String resolved;
         private Breaks breaks;
     }
 
     /** Separate the builder for clarity */
-
-    /** Sort the longest strings first. Used for variable lists. */
-    static Comparator<String> LONGEST_STRING_FIRST =
-            new Comparator<String>() {
-                public int compare(String s0, String s1) {
-                    int len0 = s0.length();
-                    int len1 = s1.length();
-                    if (len0 < len1) return 1; // longest first
-                    if (len0 > len1) return -1;
-                    // lengths equal, use string order
-                    return s0.compareTo(s1);
-                }
-            };
 
     /**
      * Used to build RuleLists. Can be used to do inheritance, since (a) adding a variable overrides
@@ -492,62 +536,118 @@ public class Segmenter {
     public static class Builder {
         private final UnicodeProperty.Factory propFactory;
         private final Target target;
-        private XSymbolTable symbolTable;
         private List<String> rawVariables = new ArrayList<String>();
         private Map<Double, String> xmlRules = new TreeMap<Double, String>();
         private Map<Double, String> htmlRules = new TreeMap<Double, String>();
         private List<String> lastComments = new ArrayList<String>();
-        private UnicodeMap<String> samples = new UnicodeMap<String>();
+
+        class NamedSet {
+            NamedSet(String name, String definition, UnicodeSet set) {
+                this.name = name;
+                this.definition = definition;
+                this.set = set;
+            }
+
+            String name;
+            String definition;
+            UnicodeSet set;
+        }
+
+        public class NamedRefinedSet {
+            public NamedRefinedSet clone() {
+                NamedRefinedSet result = new NamedRefinedSet();
+                for (var term : intersectionTerms) {
+                    result.intersectionTerms.add(
+                            new NamedSet(term.name, term.definition, term.set.cloneAsThawed()));
+                }
+                for (var subtrahend : subtrahends) {
+                    result.subtrahends.add(
+                            new NamedSet(
+                                    subtrahend.name,
+                                    subtrahend.definition,
+                                    subtrahend.set.cloneAsThawed()));
+                }
+                result.set = this.set.cloneAsThawed();
+                return result;
+            }
+
+            public NamedRefinedSet intersect(NamedSet set) {
+                String oldName = getName();
+                intersectionTerms.add(set);
+                UnicodeSet s = getIntersection();
+                var it = subtrahends.listIterator();
+                while (it.hasNext()) {
+                    NamedSet subtrahend = it.next();
+                    if (subtrahend.set.cloneAsThawed().retainAll(s).isEmpty()) {
+                        System.out.println(
+                                oldName
+                                        + " intersected with "
+                                        + set.name
+                                        + ": no need to subtract "
+                                        + subtrahend.name);
+                        it.remove();
+                    }
+                    s.removeAll(subtrahend.set);
+                }
+                this.set = s;
+                return this;
+            }
+
+            public NamedRefinedSet subtract(NamedSet set) {
+                subtrahends.add(set);
+                this.set.removeAll(set.set);
+                return this;
+            }
+
+            public UnicodeSet getSet() {
+                return set.cloneAsThawed();
+            }
+
+            public String getName() {
+                return intersectionTerms.isEmpty()
+                        ? null
+                        : intersectionTerms.stream()
+                                        .map((s) -> s.name)
+                                        .collect(Collectors.joining("_"))
+                                + subtrahends.stream()
+                                        .map((s) -> "m" + s.name)
+                                        .collect(Collectors.joining());
+            }
+
+            public String getDefinition() {
+                return intersectionTerms.isEmpty()
+                        ? "[^[]]"
+                        : "["
+                                + intersectionTerms.stream()
+                                        .map((s) -> s.definition)
+                                        .collect(Collectors.joining("&"))
+                                + subtrahends.stream()
+                                        .map((s) -> "-" + s.definition)
+                                        .collect(Collectors.joining())
+                                + "]";
+            }
+
+            private UnicodeSet getIntersection() {
+                UnicodeSet result = UnicodeSet.ALL_CODE_POINTS.cloneAsThawed();
+                for (var term : intersectionTerms) {
+                    result.retainAll(term.set);
+                }
+                return result;
+            }
+
+            private List<NamedSet> intersectionTerms = new ArrayList<>();
+            private List<NamedSet> subtrahends = new ArrayList<>();
+            private UnicodeSet set = UnicodeSet.ALL_CODE_POINTS.cloneAsThawed();
+        }
+
+        private List<NamedRefinedSet> partition = new ArrayList<>(List.of(new NamedRefinedSet()));
 
         public Builder(UnicodeProperty.Factory factory, Target target) {
             propFactory = factory;
             this.target = target;
-            symbolTable = new MyXSymbolTable(); // propFactory.getXSymbolTable();
             htmlRules.put(new Double(BREAK_SOT), "sot \u00F7");
             htmlRules.put(new Double(BREAK_EOT), "\u00F7 eot");
             htmlRules.put(new Double(BREAK_ANY), "\u00F7 Any");
-        }
-
-        // copied to make independent of ICU4J internals
-        private class MyXSymbolTable extends UnicodeSet.XSymbolTable {
-            public boolean applyPropertyAlias(
-                    String propertyName, String propertyValue, UnicodeSet result) {
-                UnicodeProperty prop = propFactory.getProperty(propertyName);
-                if (prop == null) {
-                    if (propertyValue.isEmpty()) {
-                        prop = propFactory.getProperty("Script");
-                        result.clear();
-                        UnicodeSet x = prop.getSet(propertyName, result);
-                        if (!x.isEmpty()) {
-                            return true;
-                        }
-                    }
-                    // If we cannot handle the property name, then we need to really fail.
-                    // If we were to just print something and return false, then the UnicodeSet code
-                    // would just evaluate this itself, and may succeed but give wrong results.
-                    // For example, as long as we require "gc=Cn" and don't handle "Cn" here,
-                    // falling back to built-in ICU data means that we get gc=Cn ranges from ICU
-                    // rather than from the current Unicode beta.
-                    throw new IllegalArgumentException(
-                            "Segmenter.MyXSymbolTable: Unknown property " + propertyName);
-                }
-                // Binary properties:
-                // \p{Extended_Pictographic} is equivalent with \p{Extended_Pictographic=Yes}
-                if (propertyValue.isEmpty() && prop.isType(UnicodeProperty.BINARY_MASK)) {
-                    propertyValue = "Yes";
-                }
-                result.clear();
-                UnicodeSet x = prop.getSet(propertyValue, result);
-                if (x.isEmpty()) {
-                    // didn't find anything
-                    System.out.println(
-                            "Segmenter.MyXSymbolTable: !Empty! "
-                                    + propertyName
-                                    + "="
-                                    + propertyValue);
-                }
-                return true; // mark that we handled it even if there are no results.
-            }
         }
 
         public String toString(String testName, String indent) {
@@ -591,7 +691,7 @@ public class Segmenter {
             if (line.startsWith("show")) {
                 line = line.substring(4).trim();
                 System.out.println("# " + line + ": ");
-                System.out.println("\t" + replaceVariables(line));
+                System.out.println("\t" + expandUnicodeSets(replaceVariables(line, variables)));
                 return false;
             }
             // dumb parsing for now
@@ -643,29 +743,17 @@ public class Segmenter {
         }
 
         private transient Matcher whiteSpace = Pattern.compile("\\s+", REGEX_FLAGS).matcher("");
-        private transient Matcher identifierMatcher = IDENTIFIER_PATTERN.matcher("");
-        private Map<String, String> originalVariables = new TreeMap<String, String>();
-
-        /**
-         * Add a variable and value. Resolves the internal references in the value.
-         *
-         * @param displayName
-         * @param value
-         * @return
-         */
-        static class MyComposer extends UnicodeMap.Composer<String> {
-            public String compose(int codePoint, String string, String a, String b) {
-                if (a == null) return b;
-                if (b == null) return a;
-                if (a.equals(b)) return a;
-                return a + "_" + b;
-            }
-        }
-
-        static MyComposer myComposer = new MyComposer();
 
         Builder addVariable(String name, String value) {
-            originalVariables.put(name, value);
+            if (!(name.startsWith("$")
+                    && name.length() > 1
+                    && PATTERN_SYNTAX_OR_WHITE_SPACE.containsNone(name.substring(1)))) {
+                throw new IllegalArgumentException("Invalid name " + name);
+            }
+            if (variables.containsKey(name)) {
+                throw new IllegalArgumentException(
+                        "Reassigning " + name + " = " + variables.get(name) + " to " + value);
+            }
             if (lastComments.size() != 0) {
                 rawVariables.addAll(lastComments);
                 lastComments.clear();
@@ -676,16 +764,16 @@ public class Segmenter {
                             + "\">"
                             + TransliteratorUtilities.toXML.transliterate(value)
                             + "</variable>");
-            if (!identifierMatcher.reset(name).matches()) {
-                String show = RegexUtilities.showMismatch(identifierMatcher, name);
-                throw new IllegalArgumentException(
-                        "Variable name must be $id: '" + name + "' — " + show);
-            }
-            value = replaceVariables(value);
+            value = replaceVariables(value, variables);
+            ;
             if (!name.endsWith("_")) {
                 try {
                     parsePosition.setIndex(0);
-                    UnicodeSet valueSet = new UnicodeSet(value, parsePosition, symbolTable);
+                    UnicodeSet valueSet =
+                            new UnicodeSet(
+                                    value,
+                                    parsePosition,
+                                    IndexUnicodeProperties.make().getXSymbolTable());
                     if (parsePosition.getIndex() != value.length()) {
                         if (SHOW_SAMPLES)
                             System.out.println(
@@ -702,7 +790,7 @@ public class Segmenter {
                     } else {
                         String name2 = name;
                         if (name2.startsWith("$")) name2 = name2.substring(1);
-                        composeWith(samples, valueSet, name2, myComposer);
+                        refinePartition(new NamedSet(name2, value, valueSet));
                         if (SHOW_SAMPLES) {
                             System.out.println("Samples for: " + name + " = " + value);
                             System.out.println("\t" + valueSet);
@@ -718,26 +806,35 @@ public class Segmenter {
             if (value.equals("[]")) {
                 value = "(?!a)[a]"; // HACK to match nothing.
             }
-            Pattern.compile(value, REGEX_FLAGS).matcher("");
+            Pattern.compile(expandUnicodeSets(value), REGEX_FLAGS).matcher("");
             // if (false && name.equals("$AL")) {
             // findRegexProblem(value);
             // }
             variables.put(name, value);
+            expandedVariables.put(name, expandUnicodeSets(value));
             return this;
         }
 
-        public static UnicodeMap<String> composeWith(
-                UnicodeMap<String> target,
-                UnicodeSet set,
-                String value,
-                Composer<String> composer) {
-            for (UnicodeSetIterator it = new UnicodeSetIterator(set); it.next(); ) {
-                int i = it.codepoint;
-                String v1 = target.getValue(i);
-                String v3 = composer.compose(i, null, v1, value);
-                if (v1 != v3 && (v1 == null || !v1.equals(v3))) target.put(i, v3);
+        void refinePartition(NamedSet refinement) {
+            var it = partition.listIterator();
+            while (it.hasNext()) {
+                final NamedRefinedSet part = it.next();
+                final String partName = part.getName();
+                final UnicodeSet intersection = part.getSet().retainAll(refinement.set);
+                final UnicodeSet complement = part.getSet().removeAll(refinement.set);
+                if ((!intersection.isEmpty() && !complement.isEmpty())
+                        || (partName == null && !intersection.isEmpty())) {
+                    System.out.println(
+                            refinement.name
+                                    + " refines "
+                                    + (partName == null ? "(remainder)" : partName));
+                    it.remove();
+                    it.add(part.clone().intersect(refinement));
+                    if (!complement.isEmpty()) {
+                        it.add(part.clone().subtract(refinement));
+                    }
+                }
             }
-            return target;
         }
 
         Builder addRemapRule(Double order, String before, String after, String line) {
@@ -770,7 +867,9 @@ public class Segmenter {
                             + "> "
                             + TransliteratorUtilities.toXML.transliterate(line)
                             + " </rule>");
-            rules.put(order, new Segmenter.RemapRule(replaceVariables(before), after, line));
+            rules.put(
+                    order,
+                    new Segmenter.RemapRule(replaceVariables(before, variables), after, line));
             return this;
         }
 
@@ -831,7 +930,10 @@ public class Segmenter {
             rules.put(
                     order,
                     new Segmenter.RegexRule(
-                            replaceVariables(before), breaks, replaceVariables(after), line));
+                            replaceVariables(before, variables),
+                            breaks,
+                            replaceVariables(after, variables),
+                            line));
             return this;
         }
 
@@ -845,16 +947,19 @@ public class Segmenter {
             for (Double key : rules.keySet()) {
                 result.add(key.doubleValue(), rules.get(key));
             }
-            result.samples = samples;
+            result.partitionDefinition = partition;
+            for (var part : partition) {
+                if (part.getName() == null) {
+                    throw new IllegalArgumentException("Unclassified characters: " + part.getSet());
+                }
+                result.samples.putAll(part.getSet(), part.getName());
+            }
             return result;
         }
 
         // ============== internals ===================
-        private Map<String, String> variables =
-                new TreeMap<String, String>(LONGEST_STRING_FIRST); // sorted by length,
-        // longest first, to
-        // make substitution
-        // easy
+        private Map<String, String> expandedVariables = new TreeMap<String, String>();
+        private Map<String, String> variables = new TreeMap<String, String>();
         private Map<Double, SegmentationRule> rules = new TreeMap<Double, SegmentationRule>();
 
         public Map<Double, SegmentationRule> getProcessedRules() {
@@ -863,42 +968,45 @@ public class Segmenter {
 
         /**
          * A workhorse. Replaces all variable references: anything of the form $id. Flags an error
-         * if anything of that form is not a variable. Since we are using Java regex, the properties
-         * support is extremely weak. So replace them by literals.
+         * if anything of that form is not a variable.
          *
          * @param input
          * @return
          */
-        private String replaceVariables(String input) {
-            // to do, optimize
-            String result = input;
-            int position = -1;
-            main:
-            while (true) {
-                position = result.indexOf('$', position);
-                if (position < 0) break;
-                for (String name : variables.keySet()) {
-                    if (result.regionMatches(position, name, 0, name.length())) {
-                        String value = variables.get(name);
-                        result =
-                                result.substring(0, position)
-                                        + value
-                                        + result.substring(position + name.length());
-                        position += value.length(); // don't allow overlap
-                        continue main;
-                    }
+        private static String replaceVariables(String input, Map<String, String> variables) {
+            StringBuilder result = new StringBuilder();
+            int position = 0;
+            while (position < input.length()) {
+                final int dollar = input.indexOf('$', position);
+                if (dollar < 0) break;
+                result.append(input.substring(position, dollar));
+                position =
+                        PATTERN_SYNTAX_OR_WHITE_SPACE.span(
+                                input, dollar + 1, SpanCondition.NOT_CONTAINED);
+                final String name = input.substring(dollar, position);
+                if (!variables.containsKey(name)) {
+                    throw new IllegalArgumentException("Undefined variable " + name);
                 }
-                if (identifierMatcher.reset(result.substring(position)).lookingAt()) {
-                    throw new IllegalArgumentException(
-                            "Illegal variable at: '" + result.substring(position) + "'");
-                }
+                result.append(variables.get(name));
             }
+            result.append(input.substring(position));
+            return result.toString();
+        }
+
+        /** Replaces Unicode Sets with literals. */
+        public static String expandUnicodeSets(String input) {
+            String result = input;
+            var parsePosition = new ParsePosition(0);
             // replace properties
             // TODO really dumb parse for now, fix later
             for (int i = 0; i < result.length(); ++i) {
                 if (UnicodeSet.resemblesPattern(result, i)) {
                     parsePosition.setIndex(i);
-                    UnicodeSet temp = new UnicodeSet(result, parsePosition, symbolTable);
+                    UnicodeSet temp =
+                            new UnicodeSet(
+                                    result,
+                                    parsePosition,
+                                    IndexUnicodeProperties.make().getXSymbolTable());
                     String insert = getInsertablePattern(temp);
                     result =
                             result.substring(0, i)
@@ -920,7 +1028,7 @@ public class Segmenter {
          * @param temp
          * @return
          */
-        private String getInsertablePattern(UnicodeSet temp) {
+        private static String getInsertablePattern(UnicodeSet temp) {
             temp.complement().complement();
             if (DEBUG_REDUCE_SET_SIZE != null) {
                 UnicodeSet temp2 = new UnicodeSet(temp);
@@ -978,6 +1086,7 @@ public class Segmenter {
             return result.toString();
         }
 
+        /* The mapping of variables to their values. */
         public Map<String, String> getVariables() {
             return Collections.unmodifiableMap(variables);
         }
@@ -989,10 +1098,14 @@ public class Segmenter {
             }
             return result;
         }
+    }
 
-        public Map<String, String> getOriginalVariables() {
-            return Collections.unmodifiableMap(originalVariables);
-        }
+    public List<NamedRefinedSet> getPartitionDefinition() {
+        return partitionDefinition;
+    }
+
+    public List<SegmentationRule> getRules() {
+        return rules;
     }
 
     // ============== Internals ================
@@ -1003,526 +1116,5 @@ public class Segmenter {
 
     public UnicodeMap<String> getSamples() {
         return samples;
-    }
-
-    // TODO: delete? move elsewhere?
-    // Only used in main() to write to some files. Out of sync with SegmenterDefault.txt.
-    private static final String[][] cannedRules = {
-        {
-            "GraphemeClusterBreak",
-            "$CR=\\p{Grapheme_Cluster_Break=CR}",
-            "$LF=\\p{Grapheme_Cluster_Break=LF}",
-            "$Control=\\p{Grapheme_Cluster_Break=Control}",
-            "$Extend=\\p{Grapheme_Cluster_Break=Extend}",
-            "$ZWJ=\\p{Grapheme_Cluster_Break=ZWJ}",
-            "$RI=\\p{Grapheme_Cluster_Break=Regional_Indicator}",
-            "$Prepend=\\p{Grapheme_Cluster_Break=Prepend}",
-            "$SpacingMark=\\p{Grapheme_Cluster_Break=SpacingMark}",
-            "$L=\\p{Grapheme_Cluster_Break=L}",
-            "$V=\\p{Grapheme_Cluster_Break=V}",
-            "$T=\\p{Grapheme_Cluster_Break=T}",
-            "$LV=\\p{Grapheme_Cluster_Break=LV}",
-            "$LVT=\\p{Grapheme_Cluster_Break=LVT}",
-            "$Virama=[\\p{Gujr}\\p{sc=Telu}\\p{sc=Mlym}\\p{sc=Orya}\\p{sc=Beng}\\p{sc=Deva}&\\p{Indic_Syllabic_Category=Virama}]",
-            "$LinkingConsonant=[\\p{Gujr}\\p{sc=Telu}\\p{sc=Mlym}\\p{sc=Orya}\\p{sc=Beng}\\p{sc=Deva}&\\p{Indic_Syllabic_Category=Consonant}]",
-
-            //                "$E_Base=\\p{Grapheme_Cluster_Break=E_Base}",
-            //                "$E_Modifier=\\p{Grapheme_Cluster_Break=E_Modifier}",
-
-            "$ExtPict=\\p{Extended_Pictographic}",
-            "$ExtCccZwj=[[$Extend-\\p{ccc=0}] $ZWJ]",
-            // "$EBG=\\p{Grapheme_Cluster_Break=E_Base_GAZ}",
-            // "$Glue_After_Zwj=\\p{Grapheme_Cluster_Break=Glue_After_Zwj}",
-
-            "# Rules",
-            "# Break at the start and end of text, unless the text is empty.",
-            "# Do not break between a CR and LF. Otherwise, break before and after controls.",
-            "3) $CR          \u00D7          $LF",
-            "4) ( $Control | $CR | $LF )         \u00F7",
-            "5) \u00F7         ( $Control | $CR | $LF )",
-            "# Do not break Hangul syllable sequences.",
-            "6) $L         \u00D7         ( $L | $V | $LV | $LVT )",
-            "7) ( $LV | $V )         \u00D7         ( $V | $T )",
-            "8) ( $LVT | $T)    \u00D7  $T",
-            "# Do not break before extending characters or ZWJ.",
-            // "9) \u00D7         ($Extend | $ZWJ | $Virama)",
-            "9) \u00D7         ($Extend | $ZWJ)",
-            "# Only for extended grapheme clusters: Do not break before SpacingMarks, or after Prepend characters.",
-            "9.1) \u00D7         $SpacingMark",
-            "9.2) $Prepend  \u00D7",
-            "9.3) $LinkingConsonant $ExtCccZwj* $Virama $ExtCccZwj*  \u00D7 $LinkingConsonant",
-            "# Do not break within emoji modifier sequences or emoji zwj sequences.",
-            // "10) $E_Base $Extend* × $E_Modifier",
-            "11) $ExtPict $Extend* $ZWJ × $ExtPict",
-            "# Do not break within emoji flag sequences. That is, do not break between regional indicator (RI) symbols if there is an odd number of RI characters before the break point.",
-            "12) ^ ($RI $RI)* $RI × $RI",
-            "13) [^$RI] ($RI $RI)* $RI × $RI",
-            "# Otherwise, break everywhere.",
-        },
-        {
-            "LineBreak",
-            "# Variables",
-            "$AI=\\p{Line_Break=Ambiguous}",
-            "$AL=\\p{Line_Break=Alphabetic}",
-            "$B2=\\p{Line_Break=Break_Both}",
-            "$BA=\\p{Line_Break=Break_After}",
-            "$BB=\\p{Line_Break=Break_Before}",
-            "$BK=\\p{Line_Break=Mandatory_Break}",
-            "$CB=\\p{Line_Break=Contingent_Break}",
-            "$CL=\\p{Line_Break=Close_Punctuation}",
-            "$CP=\\p{Line_Break=CP}",
-            "$CM1=\\p{Line_Break=Combining_Mark}",
-            "$CR=\\p{Line_Break=Carriage_Return}",
-            "$EX=\\p{Line_Break=Exclamation}",
-            "$GL=\\p{Line_Break=Glue}",
-            "$H2=\\p{Line_Break=H2}",
-            "$H3=\\p{Line_Break=H3}",
-            "$HL=\\p{Line_Break=HL}",
-            "$HY=\\p{Line_Break=Hyphen}",
-            "$ID=\\p{Line_Break=Ideographic}",
-            "$IN=\\p{Line_Break=Inseparable}",
-            "$IS=\\p{Line_Break=Infix_Numeric}",
-            "$JL=\\p{Line_Break=JL}",
-            "$JT=\\p{Line_Break=JT}",
-            "$JV=\\p{Line_Break=JV}",
-            "$LF=\\p{Line_Break=Line_Feed}",
-            "$NL=\\p{Line_Break=Next_Line}",
-            "$NS=\\p{Line_Break=Nonstarter}",
-            "$NU=\\p{Line_Break=Numeric}",
-            "$OP=\\p{Line_Break=Open_Punctuation}",
-            "$PO=\\p{Line_Break=Postfix_Numeric}",
-            "$PR=\\p{Line_Break=Prefix_Numeric}",
-            "$QU=\\p{Line_Break=Quotation}",
-            "$SA=\\p{Line_Break=Complex_Context}",
-            "$SG=\\p{Line_Break=Surrogate}",
-            "$SP=\\p{Line_Break=Space}",
-            "$SY=\\p{Line_Break=Break_Symbols}",
-            "$WJ=\\p{Line_Break=Word_Joiner}",
-            "$XX=\\p{Line_Break=Unknown}",
-            "$ZW=\\p{Line_Break=ZWSpace}",
-            "$CJ=\\p{Line_Break=Conditional_Japanese_Starter}",
-            "$RI=\\p{Line_Break=Regional_Indicator}",
-            "$EB=\\p{Line_Break=E_Base}",
-            "$EM=\\p{Line_Break=E_Modifier}",
-            "$ZWJ_O=\\p{Line_Break=ZWJ}",
-            "$ZWJ=\\p{Line_Break=ZWJ}",
-            "# Macros",
-            "$CM=[$CM1 $ZWJ]",
-            "# LB 1  Assign a line breaking class to each code point of the input. ",
-            "# Resolve AI, CB, SA, SG, and XX into other line breaking classes depending on criteria outside the scope of this algorithm.",
-            "# NOTE: CB is ok to fall through, but must handle others here.",
-            // "show $AL",
-            "$AL=[$AI $AL $SG $XX $SA]",
-            "$NS=[$NS $CJ]",
-            // "show $AL",
-            // "$oldAL=$AL", // for debugging
-            "# WARNING: Fixes for Rule 9",
-            "# Treat X (CM|ZWJ* as if it were X.",
-            "# Where X is any line break class except SP, BK, CR, LF, NL or ZW.",
-            "$X=$CM*",
-            "# Macros",
-            "$Spec1_=[$SP $BK $CR $LF $NL $ZW]",
-            "$Spec2_=[^ $SP $BK $CR $LF $NL $ZW]",
-            "$Spec3a_=[^ $SP $BA $HY $CM]",
-            "$Spec3b_=[^ $BA $HY $CM]",
-            "$Spec4_=[^ $NU $CM]",
-            "$AI=($AI $X)",
-            "$AL=($AL $X)",
-            "$B2=($B2 $X)",
-            "$BA=($BA $X)",
-            "$BB=($BB $X)",
-            "$CB=($CB $X)",
-            "$CL=($CL $X)",
-            "$CP=($CP $X)",
-            "$CM=($CM $X)",
-            // "$CM=($CM $X)",
-            "$EX=($EX $X)",
-            "$GL=($GL $X)",
-            "$H2=($H2 $X)",
-            "$H3=($H3 $X)",
-            "$HL=($HL $X)",
-            "$HY=($HY $X)",
-            "$ID=($ID $X)",
-            "$IN=($IN $X)",
-            "$IS=($IS $X)",
-            "$JL=($JL $X)",
-            "$JT=($JT $X)",
-            "$JV=($JV $X)",
-            "$NS=($NS $X)",
-            "$NU=($NU $X)",
-            "$OP=($OP $X)",
-            "$PO=($PO $X)",
-            "$PR=($PR $X)",
-            "$QU=($QU $X)",
-            "$SA=($SA $X)",
-            "$SG=($SG $X)",
-            "$SY=($SY $X)",
-            "$WJ=($WJ $X)",
-            "$XX=($XX $X)",
-            "$RI=($RI $X)",
-            "$EB=($EB $X)",
-            "$EM=($EM $X)",
-            "$ZWJ=($ZWJ $X)",
-            "# OUT OF ORDER ON PURPOSE",
-            "# LB 10  Treat any remaining combining mark as AL.",
-            "$AL=($AL | ^ $CM | (?<=$Spec1_) $CM)",
-            "# Rules",
-            "# LB 4  Always break after hard line breaks (but never between CR and LF).",
-            "4) $BK \u00F7",
-            "# LB 5  Treat CR followed by LF, as well as CR, LF and NL as hard line breaks.",
-            "5.01) $CR \u00D7 $LF",
-            "5.02) $CR \u00F7",
-            "5.03) $LF \u00F7",
-            "5.04) $NL \u00F7",
-            "# LB 6  Do not break before hard line breaks.",
-            "6) \u00D7 ( $BK | $CR | $LF | $NL )",
-            "# LB 7  Do not break before spaces or zero-width space.",
-            "7.01) \u00D7 $SP",
-            "7.02) \u00D7 $ZW",
-            "# LB 8  Break before any character following a zero-width space, even if one or more spaces intervene.",
-            "8) $ZW $SP* \u00F7",
-            "# LB 8a  Don't break between ZWJ and IDs (for use in Emoji ZWJ sequences)",
-            "8.1) $ZWJ_O \u00D7",
-            "# LB 9  Do not break a combining character sequence; treat it as if it has the LB class of the base character",
-            "# in all of the following rules. (Where X is any line break class except SP, BK, CR, LF, NL or ZW.)",
-            "9) $Spec2_ \u00D7 $CM",
-            "#WARNING: this is done by modifying the variable values for all but SP.... That is, $AL is really ($AI $CM*)!",
-            "# LB 11  Do not break before or after WORD JOINER and related characters.",
-            "11.01) \u00D7 $WJ",
-            "11.02) $WJ \u00D7",
-            "# LB 12  Do not break after NBSP and related characters.",
-            // "12.01) [^$SP] \u00D7 $GL",
-            "12) $GL \u00D7",
-            "12.1) $Spec3a_ \u00D7 $GL",
-            "12.2) $Spec3b_ $CM+ \u00D7 $GL",
-            "12.3) ^ $CM+ \u00D7 $GL",
-            "# LB 13  Do not break before \u2018]\u2019 or \u2018!\u2019 or \u2018;\u2019 or \u2018/\u2019, even after spaces.",
-            "# Using customization 7.",
-            "13.01) \u00D7 $EX",
-            "13.02) $Spec4_ \u00D7 ($CL | $CP | $IS | $SY)",
-            "13.03) $Spec4_ $CM+ \u00D7  ($CL | $CP | $IS | $SY)",
-            "13.04) ^ $CM+ \u00D7  ($CL | $CP | $IS | $SY)",
-            // "13.03) $Spec4_ \u00D7 $IS",
-            // "13.04) $Spec4_ \u00D7 $SY",
-            "#LB 14  Do not break after \u2018[\u2019, even after spaces.",
-            "14) $OP $SP* \u00D7",
-            "# LB 15  Do not break within \u2018\"[\u2019, even with intervening spaces.",
-            "15) $QU $SP* \u00D7 $OP",
-            "# LB 16  Do not break between closing punctuation and a nonstarter (lb=NS), even with intervening spaces.",
-            "16) ($CL | $CP) $SP* \u00D7 $NS",
-            "# LB 17  Do not break within \u2018\u2014\u2014\u2019, even with intervening spaces.",
-            "17) $B2 $SP* \u00D7 $B2",
-            "# LB 18  Break after spaces.",
-            "18) $SP \u00F7",
-            "# LB 19  Do not break before or after \u2018\"\u2019.",
-            "19.01)  \u00D7 $QU",
-            "19.02) $QU \u00D7",
-            "# LB 20  Break before and after unresolved CB.",
-            "20.01)  \u00F7 $CB",
-            "20.02) $CB \u00F7",
-            "# LB 21  Do not break before hyphen-minus, other hyphens, fixed-width spaces, small kana and other non-starters, or after acute accents.",
-            "21.01) \u00D7 $BA",
-            "21.02) \u00D7 $HY",
-            "21.03) \u00D7 $NS",
-            "21.04) $BB \u00D7",
-            "# LB 21a  Don't break after Hebrew + Hyphen.",
-            "21.1) $HL ($HY | $BA) \u00D7",
-            "# LB 21b Don’t break between Solidus and Hebrew letters.",
-            "21.2) $SY × $HL",
-            "# LB 22  Do not break between two ellipses, or between letters, numbers or exclamations and ellipsis.",
-            // "show $AL",
-            "22.01) ($AL | $HL) \u00D7 $IN",
-            "22.02) $EX \u00D7 $IN",
-            "22.03) ($ID | $EB | $EM) \u00D7 $IN",
-            "22.04) $IN \u00D7 $IN",
-            "22.05) $NU \u00D7 $IN",
-            "# LB 23  Do not break between digits and letters.",
-            // "23.01) ($ID | $EB | $EM) \u00D7 $PO",
-            "23.02) ($AL | $HL) \u00D7 $NU",
-            "23.03) $NU \u00D7 ($AL | $HL)",
-            "# LB 24  Do not break between prefix and letters or ideographs.",
-            "23.12) $PR \u00D7 ($ID | $EB | $EM)",
-            "23.13) ($ID | $EB | $EM) \u00D7 $PO",
-            "# LB24 Do not break between numeric prefix/postfix and letters, or between letters and prefix/postfix.",
-            "24.02) ($PR | $PO) \u00D7 ($AL | $HL)",
-            "24.03) ($AL | $HL) \u00D7 ($PR | $PO)",
-            "# Using customization 7",
-            "# LB Alternative: ( PR | PO) ? ( OP | HY ) ? NU (NU | SY | IS) * (CL | CP) ? ( PR | PO) ?",
-            "# Insert \u00D7 every place it could go. However, make sure that at least one thing is concrete, otherwise would cause $NU to not break before or after ",
-            "25.01) ($PR | $PO) \u00D7 ( $OP | $HY )? $NU",
-            "25.02) ( $OP | $HY ) \u00D7 $NU",
-            "25.03) $NU \u00D7 ($NU | $SY | $IS)",
-            "25.04) $NU ($NU | $SY | $IS)* \u00D7 ($NU | $SY | $IS | $CL | $CP)",
-            "25.05) $NU ($NU | $SY | $IS)* ($CL | $CP)? \u00D7 ($PO | $PR)",
-            "#LB 26 Do not break a Korean syllable.",
-            "26.01) $JL  \u00D7 $JL | $JV | $H2 | $H3",
-            "26.02) $JV | $H2 \u00D7 $JV | $JT",
-            "26.03) $JT | $H3 \u00D7 $JT",
-            "# LB 27 Treat a Korean Syllable Block the same as ID.",
-            "27.01) $JL | $JV | $JT | $H2 | $H3  \u00D7 $PO",
-            "27.02) $PR \u00D7 $JL | $JV | $JT | $H2 | $H3",
-            "# LB 28  Do not break between alphabetics (\"at\").",
-            "28) ($AL | $HL) \u00D7 ($AL | $HL)",
-            "# LB 29  Do not break between numeric punctuation and alphabetics (\"e.g.\").",
-            "29) $IS \u00D7 ($AL | $HL)",
-            "# LB 30  Do not break between letters, numbers or ordinary symbols and opening or closing punctuation.",
-            "30.01) ($AL | $HL | $NU) \u00D7 $OP",
-            "30.02) $CP \u00D7 ($AL | $HL | $NU)",
-            "# LB 30a  Break between two Regional Indicators if and only if there is an even number of them before the point being considered.",
-            "30.11) ^ ($RI $RI)* $RI × $RI",
-            "30.12) [^$RI] ($RI $RI)* $RI × $RI",
-            "30.13) $RI ÷ $RI",
-            "30.2) $EB × $EM",
-        },
-        {
-            "SentenceBreak",
-            "$CR=\\p{Sentence_Break=CR}",
-            "$LF=\\p{Sentence_Break=LF}",
-            "$Extend=\\p{Sentence_Break=Extend}",
-            "$Format=\\p{Sentence_Break=Format}",
-            "$Sep=\\p{Sentence_Break=Sep}",
-            "$Sp=\\p{Sentence_Break=Sp}",
-            "$Lower=\\p{Sentence_Break=Lower}",
-            "$Upper=\\p{Sentence_Break=Upper}",
-            "$OLetter=\\p{Sentence_Break=OLetter}",
-            "$Numeric=\\p{Sentence_Break=Numeric}",
-            "$ATerm=\\p{Sentence_Break=ATerm}",
-            "$STerm=\\p{Sentence_Break=STerm}",
-            "$Close=\\p{Sentence_Break=Close}",
-            "$SContinue=\\p{Sentence_Break=SContinue}",
-            "$Any=.",
-            // "# subtract Format from Control, since we don't want to break before/after",
-            // "$Control=[$Control-$Format]",
-            "# Expresses the negation in rule 8; can't do this with normal regex, but works with UnicodeSet, which is all we need.",
-            // "$NotStuff=[^$OLetter $Upper $Lower $Sep]",
-            // "# $ATerm and $Sterm are temporary, to match ICU until UTC decides.",
-
-            "# WARNING: For Rule 5, now add format and extend to everything but Sep, Format, and Extend",
-            "$FE=[$Format $Extend]",
-            "# Special rules",
-            "$NotPreLower_=[^ $OLetter $Upper $Lower $Sep $CR $LF $STerm $ATerm]",
-            // "$NotSep_=[^ $Sep $CR $LF]",
-
-            // "$FE=$Extend* $Format*",
-            "$Sp=($Sp $FE*)",
-            "$Lower=($Lower $FE*)",
-            "$Upper=($Upper $FE*)",
-            "$OLetter=($OLetter $FE*)",
-            "$Numeric=($Numeric $FE*)",
-            "$ATerm=($ATerm $FE*)",
-            "$STerm=($STerm $FE*)",
-            "$Close=($Close $FE*)",
-            "$SContinue=($SContinue $FE*)",
-            "# Macros",
-            "$ParaSep = ($Sep | $CR | $LF)",
-            "$SATerm = ($STerm | $ATerm)",
-            "# Rules",
-            "# Break at the start and end of text, unless the text is empty.",
-            "# Do not break within CRLF.",
-            "3) $CR          \u00D7          $LF",
-            "# Break after paragraph separators.",
-            "4) $ParaSep          \u00F7",
-            // "3.4) ( $Control | $CR | $LF )         \u00F7",
-            // "3.5) \u00F7         ( $Control | $CR | $LF )",
-            "# Ignore Format and Extend characters, except after sot, ParaSep, and within CRLF. (See Section 6.2, Replacing Ignore Rules.) This also has the effect of: Any × (Format | Extend)",
-            "# WARNING: Implemented as don't break before format (except after linebreaks),",
-            "# AND add format and extend in all variables definitions that appear after this point!",
-            // "3.91) [^$Control | $CR | $LF] \u00D7         $Extend",
-            "5) \u00D7 [$Format $Extend]",
-            "# Do not break after full stop in certain contexts. [See note below.]",
-            "# Do not break after ambiguous terminators like period, if immediately followed by a number or lowercase letter,",
-            "# is between uppercase letters, or if the first following letter (optionally after certain punctuation) is lowercase.",
-            "# For example, a period may be an abbreviation or numeric period, and not mark the end of a sentence.",
-            "6) $ATerm         \u00D7         $Numeric",
-            "7) ($Upper | $Lower) $ATerm         \u00D7         $Upper",
-            "8) $ATerm $Close* $Sp*         \u00D7         $NotPreLower_* $Lower",
-            "8.1) $SATerm $Close* $Sp*         \u00D7         ($SContinue | $SATerm)",
-            "# Break after sentence terminators, but include closing punctuation, trailing spaces, and any paragraph separator. [See note below.] Include closing punctuation, trailing spaces, and (optionally) a paragraph separator.",
-            "9) $SATerm $Close*         \u00D7         ( $Close | $Sp | $ParaSep )",
-            "# Note the fix to $Sp*, $Sep?",
-            "10) $SATerm $Close* $Sp*         \u00D7         ( $Sp | $ParaSep )",
-            "11) $SATerm $Close* $Sp* $ParaSep? \u00F7",
-            "#Otherwise, do not break",
-            "998) \u00D7         $Any",
-        },
-        {
-            "WordBreak",
-            "$CR=\\p{Word_Break=CR}",
-            "$LF=\\p{Word_Break=LF}",
-            "$Newline=\\p{Word_Break=Newline}",
-            // "$Control=\\p{Word_Break=Control}",
-            "$Extend=\\p{Word_Break=Extend}",
-            // "$NEWLINE=[$CR $LF \\u0085 \\u000B \\u000C \\u2028 \\u2029]",
-            // "$Sep=\\p{Sentence_Break=Sep}",
-            "# Now normal variables",
-            "$Format=\\p{Word_Break=Format}",
-            "$Katakana=\\p{Word_Break=Katakana}",
-            "$ALetter=\\p{Word_Break=ALetter}",
-            "$MidLetter=\\p{Word_Break=MidLetter}",
-            "$MidNum=\\p{Word_Break=MidNum}",
-            "$MidNumLet=\\p{Word_Break=MidNumLet}",
-            "$Numeric=\\p{Word_Break=Numeric}",
-            "$ExtendNumLet=\\p{Word_Break=ExtendNumLet}",
-            "$RI=\\p{Word_Break=Regional_Indicator}",
-            "$Hebrew_Letter=\\p{Word_Break=Hebrew_Letter}",
-            "$Double_Quote=\\p{Word_Break=Double_Quote}",
-            "$Single_Quote=\\p{Word_Break=Single_Quote}",
-
-            //                "$E_Base=\\p{Word_Break=E_Base}",
-            //                "$E_Modifier=\\p{Word_Break=E_Modifier}",
-            "$ZWJ=\\p{Word_Break=ZWJ}",
-            "$ExtPict=\\p{Extended_Pictographic}",
-
-            // "$EBG=\\p{Word_Break=E_Base_GAZ}",
-            // "$Glue_After_Zwj=\\p{Word_Break=Glue_After_Zwj}",
-
-            "$WSegSpace=\\p{Word_Break=WSegSpace}",
-            "# Macros",
-            "$AHLetter=($ALetter | $Hebrew_Letter)",
-            "$MidNumLetQ=($MidNumLet | $Single_Quote)",
-            "# WARNING: For Rule 4: Fixes for GC, Format",
-            // "# Subtract Format from Control, since we don't want to break before/after",
-            // "$Control=[$Control-$Format]",
-            "# Add format and extend to everything",
-            "$FE=[$Format $Extend $ZWJ]",
-            "# Special rules",
-            "$NotBreak_=[^ $Newline $CR $LF ]",
-            // "$FE= ($Extend | $Format)*",
-            "$Katakana=($Katakana $FE*)",
-            "$ALetter=($ALetter $FE*)",
-            "$MidLetter=($MidLetter $FE*)",
-            "$MidNum=($MidNum $FE*)",
-            "$MidNumLet=($MidNumLet $FE*)",
-            "$Numeric=($Numeric $FE*)",
-            "$ExtendNumLet=($ExtendNumLet $FE*)",
-            "$RI=($RI $FE*)",
-            "$Hebrew_Letter=($Hebrew_Letter $FE*)",
-            "$Double_Quote=($Double_Quote $FE*)",
-            "$Single_Quote=($Single_Quote $FE*)",
-
-            //                "$E_Base=($E_Base $FE*)",
-            //                "$E_Modifier=($E_Modifier $FE*)",
-            // "$ZWJ=($ZWJ $FE*)", don't do this one!
-            // "$Glue_After_Zwj=($Glue_After_Zwj $FE*)",
-            // "$EBG=($EBG $FE*)",
-
-            "$AHLetter=($AHLetter $FE*)",
-            "$MidNumLetQ=($MidNumLetQ $FE*)",
-            "# Rules",
-            "# Break at the start and end of text, unless the text is empty.",
-            "# Do not break within CRLF.",
-            "3) $CR          \u00D7          $LF",
-            "# Otherwise break before and after Newlines (including CR and LF)",
-            "3.1) ($Newline | $CR | $LF)        \u00F7",
-            "3.2) \u00F7    ($Newline | $CR | $LF)",
-            "# Do not break within emoji zwj sequences.",
-            "3.3) $ZWJ × $ExtPict",
-            "3.4) $WSegSpace × $WSegSpace",
-
-            // "3.4) ( $Control | $CR | $LF )         \u00F7",
-            // "3.5) \u00F7         ( $Control | $CR | $LF )",
-            // "3.9) \u00D7         $Extend",
-            // "3.91) [^$Control | $CR | $LF] \u00D7         $Extend",
-            "# Ignore Format and Extend characters, except after sot, CR, LF, and Newline. (See Section 6.2, Replacing Ignore Rules.) This also has the effect of: Any × (Format | Extend)",
-            "# WARNING: Implemented as don't break before format (except after linebreaks),",
-            "# AND add format and extend in all variables definitions that appear after this point!",
-            // "4) \u00D7 [$Format $Extend]",
-            "4) $NotBreak_ \u00D7 [$Format $Extend $ZWJ]",
-            "# Vanilla rules",
-            "# Do not break between most letters.",
-            "5) $AHLetter          \u00D7          $AHLetter",
-            "# Do not break letters across certain punctuation.",
-            "6) $AHLetter         \u00D7         ($MidLetter | $MidNumLetQ) $AHLetter",
-            "7) $AHLetter ($MidLetter | $MidNumLetQ)         \u00D7         $AHLetter",
-            "7.1) $Hebrew_Letter × $Single_Quote",
-            "7.2) $Hebrew_Letter × $Double_Quote $Hebrew_Letter",
-            "7.3) $Hebrew_Letter $Double_Quote × $Hebrew_Letter",
-            "# Do not break within sequences of digits, or digits adjacent to letters (“3a”, or “A3”).",
-            "8) $Numeric         \u00D7         $Numeric",
-            "9) $AHLetter         \u00D7         $Numeric",
-            "10) $Numeric         \u00D7         $AHLetter",
-            "# Do not break within sequences, such as “3.2” or “3,456.789”.",
-            "11) $Numeric ($MidNum | $MidNumLetQ)         \u00D7         $Numeric",
-            "12) $Numeric         \u00D7         ($MidNum | $MidNumLetQ) $Numeric",
-            "# Do not break between Katakana.",
-            "13) $Katakana         \u00D7         $Katakana",
-            "# Do not break from extenders.",
-            "13.1) ($AHLetter | $Numeric | $Katakana | $ExtendNumLet)         \u00D7         $ExtendNumLet",
-            "13.2) $ExtendNumLet         \u00D7         ($AHLetter | $Numeric | $Katakana)",
-
-            // "# Do not break within emoji modifier sequences.",
-            // "14) $E_Base × $E_Modifier",
-
-            "# Do not break within emoji flag sequences. That is, do not break between regional indicator (RI) symbols if there is an odd number of RI characters before the break point.",
-            "15) ^ ($RI $RI)* $RI × $RI",
-            "16) [^$RI] ($RI $RI)* $RI × $RI",
-            "# Otherwise, break everywhere (including around ideographs).",
-        }
-    };
-
-    public static void main(String[] args) throws IOException {
-        for (int i = 0; i < cannedRules.length; ++i) {
-            String type = cannedRules[i][0];
-            boolean hadHash = false;
-            try (PrintWriter out =
-                    FileUtilities.openUTF8Writer(
-                            Settings.Output.GEN_DIR + "segmentation/", type + "Rules.txt")) {
-                out.println("# Segmentation rules for " + type);
-                out.println("#");
-                out.println("# Character Classes");
-                out.println("#");
-                for (int j = 1; j < cannedRules[i].length; ++j) {
-                    String cannedRule = cannedRules[i][j].trim();
-                    if (cannedRule.equals("#")) {
-                        continue;
-                    }
-                    boolean hasHash = cannedRule.startsWith("#");
-                    if (hasHash && !hadHash) {
-                        out.println("#");
-                    }
-                    out.println(cannedRule);
-                    if (hasHash) {
-                        out.println("#");
-                    }
-                    hadHash = hasHash;
-                }
-            }
-        }
-
-        try (PrintWriter out =
-                FileUtilities.openUTF8Writer(
-                        Settings.Output.GEN_DIR + "cldr/segmentation/", "rootAddon.xml")) {
-            out.println(
-                    "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
-                            + "<!DOCTYPE ldml SYSTEM \"../../common/dtd/ldml.dtd\">\n"
-                            + "<!--\n"
-                            + "Copyright © 1991-"
-                            + Default.getYear()
-                            + " Unicode, Inc.\n"
-                            + "CLDR data files are interpreted according to the LDML specification (https://unicode.org/reports/tr35/)\n"
-                            + "For terms of use and license, see https://www.unicode.org/terms_of_use.html\n"
-                            + "-->\n"
-                            + "<ldml>\n"
-                            + "\t<identity>\n"
-                            + "\t\t<version number=\"$Revision: 13690 $\"/>\n"
-                            + "\t\t<language type=\"root\"/>\n"
-                            + "\t</identity>\n"
-                            + "\t<segmentations>");
-            for (final String type :
-                    new String[] {
-                        "GraphemeClusterBreak", "LineBreak", "SentenceBreak", "WordBreak"
-                    }) {
-                final Builder segBuilder =
-                        Segmenter.make(ToolUnicodePropertySource.make(Default.ucdVersion()), type);
-                out.print(segBuilder.toString(type, "\t\t"));
-                if (type.equals("")) {
-                    out.print(
-                            "\t\t\t<suppressions type=\"standard\">\n"
-                                    + "\t\t\t\t<!-- root suppression is empty. -->\n"
-                                    + "\t\t\t</suppressions>\n");
-                }
-            }
-            out.println("\t</segmentations>\n" + "</ldml>");
-        }
     }
 }

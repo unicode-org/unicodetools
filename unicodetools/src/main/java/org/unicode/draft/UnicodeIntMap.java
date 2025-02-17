@@ -6,7 +6,7 @@
  */
 package org.unicode.draft;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.UTF16;

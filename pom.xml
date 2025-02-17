@@ -24,14 +24,14 @@
     <properties>
         <!--
             For ICU versions, see https://github.com/orgs/unicode-org/packages?repo_name=icu
-            Note that we can't use the general ICU maven packages, because utilities isn't exported (yet).
-         -->
-        <icu.version>76.0.1-SNAPSHOT</icu.version>
+            or use vanilla *released* ICU versions like 76.1 which come from Maven Central.
+          -->
+        <icu.version>76.1</icu.version>
 
         <!--
              For CLDR versions, see https://github.com/orgs/unicode-org/packages?repo_name=cldr
           -->
-        <cldr.version>0.0.0-SNAPSHOT-880c12f291</cldr.version>
+        <cldr.version>0.0.0-SNAPSHOT-e1d37acce5</cldr.version>
 
 
         <!-- these two set the JDK version for source and target -->
@@ -69,12 +69,6 @@
             <dependency>
                 <groupId>com.ibm.icu</groupId>
                 <artifactId>icu4j</artifactId>
-                <version>${icu.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.ibm.icu</groupId>
-                <artifactId>utilities-for-cldr</artifactId>
                 <version>${icu.version}</version>
             </dependency>
             <!-- cldr -->

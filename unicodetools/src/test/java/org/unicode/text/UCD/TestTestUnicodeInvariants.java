@@ -18,8 +18,6 @@ public class TestTestUnicodeInvariants {
     void testSRC_UCD_DIR() {
         assertAll(
                 "assert that no components of Settings.SRC_UCD_DIR are null",
-                () -> assertNotNull(Settings.SRC_UCD_DIR, "Settings.SRC_UCD_DIR"),
-                () -> assertNotNull(Settings.SRC_DIR, "Settings.SRC_DIR"),
                 () ->
                         assertNotNull(
                                 Settings.UnicodeTools.UNICODETOOLS_RSRC_DIR,
@@ -42,7 +40,10 @@ public class TestTestUnicodeInvariants {
 
     @Test
     void testAdditionComparisons() throws IOException {
-        final var directory = new File(Settings.SRC_DIR + "UCD/AdditionComparisons/");
+        final var directory = new File(getClass().getResource("AdditionComparisons").getPath());
+        if (!directory.exists()) {
+            throw new IOException(directory.getAbsolutePath() + " does not exist");
+        }
         int rc = 0;
         for (var file : directory.listFiles()) {
             final String filename = file.getName();
