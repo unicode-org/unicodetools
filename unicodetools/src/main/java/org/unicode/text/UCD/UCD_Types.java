@@ -355,7 +355,8 @@ public interface UCD_Types {
             LB_AS = 45,
             LB_VI = 46,
             LB_VF = 47,
-            LIMIT_LINE_BREAK = 48,
+            LB_HH = 48,
+            LIMIT_LINE_BREAK = 49,
             LB_LIMIT = LIMIT_LINE_BREAK;
 
     // east asian width
