@@ -7,6 +7,7 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
+import com.ibm.icu.util.VersionInfo;
 import java.text.ParsePosition;
 import java.util.Comparator;
 import java.util.List;
@@ -294,11 +295,15 @@ public class UnicodeSetUtilities {
                     if (isAge) {
                         set =
                                 prop.getSet(
-                                        new UnicodePropertySymbolTable.ComparisonMatcher(
-                                                propertyValue,
+                                        new UnicodePropertySymbolTable.ComparisonMatcher<
+                                                VersionInfo>(
+                                                UnicodePropertySymbolTable.parseVersionInfoOrMax(
+                                                        propertyValue),
                                                 UnicodePropertySymbolTable.Relation.geq,
-                                                UnicodePropertySymbolTable
-                                                        .VERSION_STRING_COMPARATOR));
+                                                Comparator.nullsFirst(Comparator.naturalOrder()),
+                                                (s) ->
+                                                        UnicodePropertySymbolTable
+                                                                .parseVersionInfoOrMax(s)));
                     } else {
                         if (prop.getName().equals("General_Category")) {
                             for (String[] coarseValue : COARSE_GENERAL_CATEGORIES) {

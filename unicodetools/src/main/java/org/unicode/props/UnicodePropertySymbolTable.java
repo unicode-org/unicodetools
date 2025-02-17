@@ -12,6 +12,7 @@ import com.ibm.icu.util.VersionInfo;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Function;
 import org.unicode.props.UnicodeProperty.PatternMatcher;
 
 /**
@@ -201,10 +202,14 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
                 if (isAge) {
                     set =
                             prop.getSet(
-                                    new ComparisonMatcher(
-                                            propertyValue,
+                                    new ComparisonMatcher<VersionInfo>(
+                                            UnicodePropertySymbolTable.parseVersionInfoOrMax(
+                                                    propertyValue),
                                             Relation.geq,
-                                            VERSION_STRING_COMPARATOR));
+                                            Comparator.nullsFirst(Comparator.naturalOrder()),
+                                            (s) ->
+                                                    UnicodePropertySymbolTable
+                                                            .parseVersionInfoOrMax(s)));
                 } else {
                     set = prop.getSet(propertyValue);
                 }
@@ -244,20 +249,26 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
         greater
     }
 
-    public static class ComparisonMatcher implements PatternMatcher {
+    public static class ComparisonMatcher<T> implements PatternMatcher {
         final Relation relation;
-        final Comparator<String> comparator;
-        String pattern;
+        final Comparator<T> comparator;
+        final Function<String, T> parser;
+        T expected;
 
-        public ComparisonMatcher(String pattern, Relation relation, Comparator<String> comparator) {
+        public ComparisonMatcher(
+                T expected,
+                Relation relation,
+                Comparator<T> comparator,
+                Function<String, T> parser) {
             this.relation = relation;
-            this.pattern = pattern;
+            this.expected = expected;
             this.comparator = comparator;
+            this.parser = parser;
         }
 
         @Override
         public boolean test(String value) {
-            int comp = comparator.compare(pattern, value);
+            int comp = comparator.compare(expected, parser.apply(value));
             switch (relation) {
                 case less:
                     return comp < 0;
@@ -274,47 +285,19 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
 
         @Override
         public PatternMatcher set(String pattern) {
-            this.pattern = pattern;
+            this.expected = parser.apply(pattern);
             return this;
         }
     }
 
-    /**
-     * Special parser for version strings. Anything not parsable is higher than everything
-     * parseable.
-     */
-    public static final Comparator<String> VERSION_STRING_COMPARATOR =
-            new Comparator<String>() {
-
-                @Override
-                public int compare(String o1, String o2) {
-                    if (o1 == o2) {
-                        return 0;
-                    } else if (o1 == null) {
-                        return -1;
-                    } else if (o2 == null) {
-                        return 1;
-                    } else {
-                        boolean o1Valid = true;
-                        boolean o2Valid = true;
-                        VersionInfo v1 = null;
-                        VersionInfo v2 = null;
-                        try {
-                            v1 = VersionInfo.getInstance(o1);
-                        } catch (IllegalArgumentException e) {
-                            o1Valid = false;
-                        }
-                        try {
-                            v2 = VersionInfo.getInstance(o2);
-                        } catch (IllegalArgumentException e) {
-                            o2Valid = false;
-                        }
-                        if (o1Valid && o2Valid) {
-                            return v1.compareTo(v2);
-                        } else {
-                            return o2Valid ? 1 : o1Valid ? -1 : o1.compareTo(o2);
-                        }
-                    }
-                }
-            };
+    public static VersionInfo parseVersionInfoOrMax(String s) {
+        if (s == null) {
+            return null;
+        }
+        try {
+            return VersionInfo.getInstance(s);
+        } catch (IllegalArgumentException e) {
+            return VersionInfo.getInstance(255, 255, 255, 255);
+        }
+    }
 }

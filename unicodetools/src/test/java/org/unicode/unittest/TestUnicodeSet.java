@@ -2,6 +2,8 @@ package org.unicode.unittest;
 
 import com.ibm.icu.impl.UnicodeRegex;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
+import java.util.Comparator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
@@ -48,12 +50,18 @@ public class TestUnicodeSet extends TestFmwkMinusMinus {
                 d1 + " ?< " + d2,
                 expected,
                 Comparison.fromCompareResult(
-                        UnicodePropertySymbolTable.VERSION_STRING_COMPARATOR.compare(d1, d2)));
+                        Comparator.nullsFirst(Comparator.<VersionInfo>naturalOrder())
+                                .compare(
+                                        UnicodePropertySymbolTable.parseVersionInfoOrMax(d1),
+                                        UnicodePropertySymbolTable.parseVersionInfoOrMax(d2))));
         assertEquals(
                 d2 + " ?< " + d1,
                 expected.opposite(),
                 Comparison.fromCompareResult(
-                        UnicodePropertySymbolTable.VERSION_STRING_COMPARATOR.compare(d2, d1)));
+                        Comparator.nullsFirst(Comparator.<VersionInfo>naturalOrder())
+                                .compare(
+                                        UnicodePropertySymbolTable.parseVersionInfoOrMax(d2),
+                                        UnicodePropertySymbolTable.parseVersionInfoOrMax(d1))));
     }
 
     @Test
