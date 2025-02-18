@@ -1,6 +1,5 @@
-1D9B..1DBE ; Diacritic
 # PropList-17.0.0.txt
-# Date: 2025-01-27, 18:09:27 GMT
+# Date: 2025-02-18, 12:46:41 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1025,6 +1024,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 1CF7          ; Diacritic # Mc       VEDIC SIGN ATIKRAMA
 1CF8..1CF9    ; Diacritic # Mn   [2] VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
 1D2C..1D6A    ; Diacritic # Lm  [63] MODIFIER LETTER CAPITAL A..GREEK SUBSCRIPT SMALL LETTER CHI
+1D9B..1DBE    ; Diacritic # Lm  [36] MODIFIER LETTER SMALL TURNED ALPHA..MODIFIER LETTER SMALL EZH
 1DC4..1DCF    ; Diacritic # Mn  [12] COMBINING MACRON-ACUTE..COMBINING ZIGZAG BELOW
 1DF5..1DFF    ; Diacritic # Mn  [11] COMBINING UP TACK ABOVE..COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW
 1FBD          ; Diacritic # Sk       GREEK KORONIS
@@ -1170,7 +1170,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1211
+# Total code points: 1247
 
 # ================================================
 
