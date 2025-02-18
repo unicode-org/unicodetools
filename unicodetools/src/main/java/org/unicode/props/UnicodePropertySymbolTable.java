@@ -207,9 +207,7 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
                                                     propertyValue),
                                             Relation.geq,
                                             Comparator.nullsFirst(Comparator.naturalOrder()),
-                                            (s) ->
-                                                    UnicodePropertySymbolTable
-                                                            .parseVersionInfoOrMax(s)));
+                                            UnicodePropertySymbolTable::parseVersionInfoOrMax));
                 } else {
                     set = prop.getSet(propertyValue);
                 }

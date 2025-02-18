@@ -301,9 +301,7 @@ public class UnicodeSetUtilities {
                                                         propertyValue),
                                                 UnicodePropertySymbolTable.Relation.geq,
                                                 Comparator.nullsFirst(Comparator.naturalOrder()),
-                                                (s) ->
-                                                        UnicodePropertySymbolTable
-                                                                .parseVersionInfoOrMax(s)));
+                                                UnicodePropertySymbolTable::parseVersionInfoOrMax));
                     } else {
                         if (prop.getName().equals("General_Category")) {
                             for (String[] coarseValue : COARSE_GENERAL_CATEGORIES) {
