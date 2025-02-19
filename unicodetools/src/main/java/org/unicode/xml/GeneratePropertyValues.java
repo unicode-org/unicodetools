@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 import org.unicode.props.PropertyParsingInfo;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.*;
+import org.unicode.text.utility.Settings;
 
 /**
  * Utility for generating fragments that describe the property values in a format that can be
@@ -109,7 +110,7 @@ public class GeneratePropertyValues {
     private static final String TR38URL = "https://www.unicode.org/reports/tr38";
     private static final UOption[] options = {
         UOption.HELP_H(),
-        UOption.create("ucdversion", 'v', UOption.REQUIRES_ARG),
+        UOption.create("ucdversion", 'v', UOption.OPTIONAL_ARG),
         UOption.create("outputfolder", 'f', UOption.REQUIRES_ARG)
     };
 
@@ -123,7 +124,7 @@ public class GeneratePropertyValues {
 
         if (options[HELP].doesOccur) {
             System.out.println(
-                    "GeneratePropertyValuesList --ucdversion {version number} --outputfolder {destination}");
+                    "GeneratePropertyValuesList [--ucdversion {version number}] [--outputfolder {destination}]");
             System.exit(0);
         }
 
@@ -138,14 +139,13 @@ public class GeneratePropertyValues {
                                     + " to a valid UCD version");
                 }
             } else {
-                throw new IllegalArgumentException(
-                        "Missing command line option: --ucdversion (or -v)");
+                ucdVersion = VersionInfo.getInstance(Settings.latestVersion);
             }
             if (options[OUTPUTFOLDER].doesOccur) {
                 try {
                     destinationFolder = new File(options[OUTPUTFOLDER].value);
                     if (!destinationFolder.exists()) {
-                        if (!destinationFolder.mkdir()) {
+                        if (!destinationFolder.mkdirs()) {
                             throw new IOException();
                         }
                     }
@@ -154,8 +154,19 @@ public class GeneratePropertyValues {
                             "Could not find or create " + options[OUTPUTFOLDER].value);
                 }
             } else {
-                throw new IllegalArgumentException(
-                        "Missing command line option: --outputfolder (or -f)");
+                try {
+                    destinationFolder = new File(Settings.Output.GEN_DIR + "uax42\\fragments\\");
+                    if (!destinationFolder.exists()) {
+                        if (!destinationFolder.mkdirs()) {
+                            throw new IOException();
+                        }
+                    }
+                } catch (Exception e) {
+                    throw new IllegalArgumentException(
+                            "Could not find or create "
+                                    + Settings.Output.GEN_DIR
+                                    + "uax42\\fragments\\");
+                }
             }
 
         } catch (Exception e) {
@@ -168,7 +179,7 @@ public class GeneratePropertyValues {
             System.out.println("End");
             System.exit(0);
         } else {
-            System.err.println("Unexpected error when building UcdXML file.");
+            System.err.println("Unexpected error when generating uax42 fragment files.");
             System.exit(1);
         }
     }

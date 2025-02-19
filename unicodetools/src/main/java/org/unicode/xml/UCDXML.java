@@ -23,6 +23,7 @@ import javax.xml.transform.TransformerConfigurationException;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
+import org.unicode.text.utility.Settings;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
 
@@ -66,10 +67,10 @@ public class UCDXML {
 
     private static final UOption[] options = {
         UOption.HELP_H(),
-        UOption.create("ucdversion", 'v', UOption.REQUIRES_ARG),
+        UOption.create("ucdversion", 'v', UOption.OPTIONAL_ARG),
         UOption.create("range", 'r', UOption.REQUIRES_ARG),
         UOption.create("output", 'o', UOption.REQUIRES_ARG),
-        UOption.create("outputfolder", 'f', UOption.REQUIRES_ARG)
+        UOption.create("outputfolder", 'f', UOption.OPTIONAL_ARG)
     };
     private static final int HELP = 0, UCDVERSION = 1, RANGE = 2, OUTPUT = 3, OUTPUTFOLDER = 4;
 
@@ -88,7 +89,7 @@ public class UCDXML {
 
         if (options[HELP].doesOccur) {
             System.out.println(
-                    "UCDXML --ucdversion {version number} --outputfolder {destination} "
+                    "UCDXML [--ucdversion {version number}] [--outputfolder {destination}] "
                             + "--range [ALL|NOUNIHAN|UNIHAN] --output [FLAT|GROUPED]");
             System.exit(0);
         }
@@ -104,8 +105,7 @@ public class UCDXML {
                                     + " to a valid UCD version");
                 }
             } else {
-                throw new IllegalArgumentException(
-                        "Missing command line option: --ucdversion (or -v)");
+                ucdVersion = VersionInfo.getInstance(Settings.latestVersion);
             }
             if (options[RANGE].doesOccur) {
                 try {
@@ -141,9 +141,9 @@ public class UCDXML {
                             new File(
                                     options[OUTPUTFOLDER].value
                                             + ucdVersion.getVersionString(3, 3)
-                                            + "\\xmltest\\");
+                                            + "/");
                     if (!destinationFolder.exists()) {
-                        if (!destinationFolder.mkdir()) {
+                        if (!destinationFolder.mkdirs()) {
                             throw new IOException();
                         }
                     }
@@ -152,8 +152,26 @@ public class UCDXML {
                             "Could not find or create " + options[OUTPUTFOLDER].value);
                 }
             } else {
-                throw new IllegalArgumentException(
-                        "Missing command line option: --outputfolder (or -f)");
+                try {
+                    destinationFolder =
+                            new File(
+                                    Settings.Output.GEN_DIR
+                                            + "ucdxml\\"
+                                            + ucdVersion.getVersionString(3, 3)
+                                            + "\\");
+                    if (!destinationFolder.exists()) {
+                        if (!destinationFolder.mkdirs()) {
+                            throw new IOException();
+                        }
+                    }
+                } catch (Exception e) {
+                    throw new IllegalArgumentException(
+                            "Could not find or create "
+                                    + Settings.Output.GEN_DIR
+                                    + "ucdxml\\"
+                                    + ucdVersion.getVersionString(3, 3)
+                                    + "\\");
+                }
             }
 
         } catch (Exception e) {
