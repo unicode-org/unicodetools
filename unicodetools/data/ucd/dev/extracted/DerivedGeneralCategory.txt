@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-17.0.0.txt
-# Date: 2025-01-27, 18:09:13 GMT
+# Date: 2025-02-24, 14:03:27 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -255,7 +255,6 @@
 1FFF          ; Cn #       <reserved-1FFF>
 2065          ; Cn #       <reserved-2065>
 2072..2073    ; Cn #   [2] <reserved-2072>..<reserved-2073>
-208F          ; Cn #       <reserved-208F>
 209D..209F    ; Cn #   [3] <reserved-209D>..<reserved-209F>
 20C1..20CF    ; Cn #  [15] <reserved-20C1>..<reserved-20CF>
 20F1..20FF    ; Cn #  [15] <reserved-20F1>..<reserved-20FF>
@@ -754,7 +753,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 814697
+# Total code points: 814696
 
 # ================================================
 
@@ -4126,6 +4125,7 @@ FFE5..FFE6    ; Sc #   [2] FULLWIDTH YEN SIGN..FULLWIDTH WON SIGN
 1FDD..1FDF    ; Sk #   [3] GREEK DASIA AND VARIA..GREEK DASIA AND PERISPOMENI
 1FED..1FEF    ; Sk #   [3] GREEK DIALYTIKA AND VARIA..GREEK VARIA
 1FFD..1FFE    ; Sk #   [2] GREEK OXIA..GREEK DASIA
+208F          ; Sk #       MODIFIER LETTER HIGH AND LOW VERTICAL LINE
 309B..309C    ; Sk #   [2] KATAKANA-HIRAGANA VOICED SOUND MARK..KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK
 A700..A716    ; Sk #  [23] MODIFIER LETTER CHINESE TONE YIN PING..MODIFIER LETTER EXTRA-LOW LEFT-STEM TONE BAR
 A720..A721    ; Sk #   [2] MODIFIER LETTER STRESS AND HIGH TONE..MODIFIER LETTER STRESS AND LOW TONE
@@ -4138,7 +4138,7 @@ FF40          ; Sk #       FULLWIDTH GRAVE ACCENT
 FFE3          ; Sk #       FULLWIDTH MACRON
 1F3FB..1F3FF  ; Sk #   [5] EMOJI MODIFIER FITZPATRICK TYPE-1-2..EMOJI MODIFIER FITZPATRICK TYPE-6
 
-# Total code points: 125
+# Total code points: 126
 
 # ================================================
 
