@@ -1,3 +1,4 @@
+1B168 ; Tu # Lo KATAKANA LETTER SMALL ARCHAIC YE
 # VerticalOrientation-17.0.0.txt
 # Date: 2025-01-29
 # © 2025 Unicode®, Inc.
