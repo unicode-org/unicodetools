@@ -1,5 +1,5 @@
 # Scripts-17.0.0.txt
-# Date: 2025-02-24, 12:28:14 GMT
+# Date: 2025-02-24, 12:38:02 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -537,6 +537,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 1D18C..1D1A9  ; Common # So  [30] MUSICAL SYMBOL RINFORZANDO..MUSICAL SYMBOL DEGREE SLASH
 1D1AE..1D1EA  ; Common # So  [61] MUSICAL SYMBOL PEDAL MARK..MUSICAL SYMBOL KORON
 1D25D..1D25E  ; Common # So   [2] MUSICAL SYMBOL FINGERED TREMOLO-4..MUSICAL SYMBOL FINGERED TREMOLO-5
+1D25F         ; Common # Mc       MUSICAL SYMBOL COMBINING BUZZ ROLL STEM
 1D2C0..1D2D3  ; Common # No  [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3  ; Common # No  [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
 1D300..1D356  ; Common # So  [87] MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
@@ -634,7 +635,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 9055
+# Total code points: 9056
 
 # ================================================
 
@@ -1676,10 +1677,9 @@ FE20..FE2D    ; Inherited # Mn  [14] COMBINING LIGATURE LEFT HALF..COMBINING CON
 1D185..1D18B  ; Inherited # Mn   [7] MUSICAL SYMBOL COMBINING DOIT..MUSICAL SYMBOL COMBINING TRIPLE TONGUE
 1D1AA..1D1AD  ; Inherited # Mn   [4] MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 1D25B..1D25C  ; Inherited # Mn   [2] MUSICAL SYMBOL COMBINING TREMOLO-4..MUSICAL SYMBOL COMBINING TREMOLO-5
-1D25F         ; Common # Mc       MUSICAL SYMBOL COMBINING BUZZ ROLL STEM
 E0100..E01EF  ; Inherited # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 660
+# Total code points: 659
 
 # ================================================
 
