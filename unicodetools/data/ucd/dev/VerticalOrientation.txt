@@ -1,5 +1,5 @@
 # VerticalOrientation-17.0.0.txt
-# Date: 2025-02-24, 14:36:43 GMT
+# Date: 2025-02-24, 14:59:00 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2246,8 +2246,7 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1B153..1B154   ; U  # Cn     [2] <reserved-1B153>..<reserved-1B154>
 1B155          ; Tu # Lo         KATAKANA LETTER SMALL KO
 1B156..1B163   ; U  # Cn    [14] <reserved-1B156>..<reserved-1B163>
-1B164..1B167   ; Tu # Lo     [4] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL N
-1B168          ; Tu  # Lo         KATAKANA LETTER SMALL ARCHAIC YE
+1B164..1B168   ; Tu # Lo     [5] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL ARCHAIC YE
 1B169..1B16F   ; U  # Cn     [7] <reserved-1B169>..<reserved-1B16F>
 1B170..1B2FB   ; U  # Lo   [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
 1B2FC..1B2FF   ; U  # Cn     [4] <reserved-1B2FC>..<reserved-1B2FF>
