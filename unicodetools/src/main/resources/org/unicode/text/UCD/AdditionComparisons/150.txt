@@ -11,11 +11,13 @@ Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping 
 Ignoring Block:
 Propertywise [\x{1D169} \N{MUSICAL SYMBOL COMBINING TREMOLO-3}
               \x{1D25B} \N{MUSICAL SYMBOL COMBINING TREMOLO-4}
-              \x{1D25C} \N{MUSICAL SYMBOL COMBINING TREMOLO-5}
-              \x{1D25F} \N{MUSICAL SYMBOL BUZZ ROLL}] AreAlike
+              \x{1D25C} \N{MUSICAL SYMBOL COMBINING TREMOLO-5}] AreAlike
 Propertywise [\x{1D16C} 𝅬 \N{MUSICAL SYMBOL FINGERED TREMOLO-3}
               \x{1D25D}   \N{MUSICAL SYMBOL FINGERED TREMOLO-4}
               \x{1D25E}   \N{MUSICAL SYMBOL FINGERED TREMOLO-5}] AreAlike
+Propertywise [\x{1D165} \N{MUSICAL SYMBOL COMBINING STEM}
+              \x{1D166} \N{MUSICAL SYMBOL COMBINING SPRECHGESANG STEM}
+              \x{1D25F} \N{MUSICAL SYMBOL COMBINING BUZZ ROLL STEM}] AreAlike
 end Ignoring;
 
 end Ignoring;
