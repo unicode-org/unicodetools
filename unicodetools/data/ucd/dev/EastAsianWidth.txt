@@ -1,5 +1,5 @@
 # EastAsianWidth-17.0.0.txt
-# Date: 2025-02-24, 14:36:21 GMT
+# Date: 2025-02-24, 14:52:12 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2398,8 +2398,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 1B132          ; W  # Lo         HIRAGANA LETTER SMALL KO
 1B150..1B152   ; W  # Lo     [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
 1B155          ; W  # Lo         KATAKANA LETTER SMALL KO
-1B164..1B167   ; W  # Lo     [4] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL N
-1B168          ; W  # Lo         KATAKANA LETTER SMALL ARCHAIC YE
+1B164..1B168   ; W  # Lo     [5] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL ARCHAIC YE
 1B170..1B2FB   ; W  # Lo   [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
 1BC00..1BC6A   ; N  # Lo   [107] DUPLOYAN LETTER H..DUPLOYAN LETTER VOCALIC M
 1BC70..1BC7C   ; N  # Lo    [13] DUPLOYAN AFFIX LEFT HORIZONTAL SECANT..DUPLOYAN AFFIX ATTACHED TANGENT HOOK
