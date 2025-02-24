@@ -1,5 +1,5 @@
 # Scripts-17.0.0.txt
-# Date: 2025-02-24, 14:03:53 GMT
+# Date: 2025-02-24, 14:12:44 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -154,7 +154,7 @@
 208A..208C    ; Common # Sm   [3] SUBSCRIPT PLUS SIGN..SUBSCRIPT EQUALS SIGN
 208D          ; Common # Ps       SUBSCRIPT LEFT PARENTHESIS
 208E          ; Common # Pe       SUBSCRIPT RIGHT PARENTHESIS
-208F          ; Common # Sk       MODIFIER LETTER HIGH AND LOW VERTICAL LINE
+208F          ; Common # Lm       MODIFIER LETTER HIGH AND LOW VERTICAL LINE
 20A0..20C0    ; Common # Sc  [33] EURO-CURRENCY SIGN..SOM SIGN
 2100..2101    ; Common # So   [2] ACCOUNT OF..ADDRESSED TO THE SUBJECT
 2102          ; Common # L&       DOUBLE-STRUCK CAPITAL C

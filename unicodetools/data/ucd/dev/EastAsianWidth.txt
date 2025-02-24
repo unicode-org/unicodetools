@@ -1,5 +1,5 @@
 # EastAsianWidth-17.0.0.txt
-# Date: 2025-02-24, 14:03:30 GMT
+# Date: 2025-02-24, 14:12:20 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -973,8 +973,7 @@
 208A..208C     ; N  # Sm     [3] SUBSCRIPT PLUS SIGN..SUBSCRIPT EQUALS SIGN
 208D           ; N  # Ps         SUBSCRIPT LEFT PARENTHESIS
 208E           ; N  # Pe         SUBSCRIPT RIGHT PARENTHESIS
-208F           ; N  # Sk         MODIFIER LETTER HIGH AND LOW VERTICAL LINE
-2090..209C     ; N  # Lm    [13] LATIN SUBSCRIPT SMALL LETTER A..LATIN SUBSCRIPT SMALL LETTER T
+208F..209C     ; N  # Lm    [14] MODIFIER LETTER HIGH AND LOW VERTICAL LINE..LATIN SUBSCRIPT SMALL LETTER T
 20A0..20A8     ; N  # Sc     [9] EURO-CURRENCY SIGN..RUPEE SIGN
 20A9           ; H  # Sc         WON SIGN
 20AA..20AB     ; N  # Sc     [2] NEW SHEQEL SIGN..DONG SIGN

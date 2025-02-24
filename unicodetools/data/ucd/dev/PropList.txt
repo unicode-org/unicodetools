@@ -1,5 +1,5 @@
 # PropList-17.0.0.txt
-# Date: 2025-02-24, 14:03:40 GMT
+# Date: 2025-02-24, 14:12:32 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1033,7 +1033,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 1FDD..1FDF    ; Diacritic # Sk   [3] GREEK DASIA AND VARIA..GREEK DASIA AND PERISPOMENI
 1FED..1FEF    ; Diacritic # Sk   [3] GREEK DIALYTIKA AND VARIA..GREEK VARIA
 1FFD..1FFE    ; Diacritic # Sk   [2] GREEK OXIA..GREEK DASIA
-208F          ; Diacritic # Sk       MODIFIER LETTER HIGH AND LOW VERTICAL LINE
+208F          ; Diacritic # Lm       MODIFIER LETTER HIGH AND LOW VERTICAL LINE
 2CEF..2CF1    ; Diacritic # Mn   [3] COPTIC COMBINING NI ABOVE..COPTIC COMBINING SPIRITUS LENIS
 2E2F          ; Diacritic # Lm       VERTICAL TILDE
 302A..302D    ; Diacritic # Mn   [4] IDEOGRAPHIC LEVEL TONE MARK..IDEOGRAPHIC ENTERING TONE MARK

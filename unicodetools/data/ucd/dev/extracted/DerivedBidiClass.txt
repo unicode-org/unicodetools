@@ -1,5 +1,5 @@
 # DerivedBidiClass-17.0.0.txt
-# Date: 2025-02-24, 14:03:24 GMT
+# Date: 2025-02-24, 14:12:13 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1614,7 +1614,7 @@ FF1A          ; CS # Po       FULLWIDTH COLON
 208C          ; ON # Sm       SUBSCRIPT EQUALS SIGN
 208D          ; ON # Ps       SUBSCRIPT LEFT PARENTHESIS
 208E          ; ON # Pe       SUBSCRIPT RIGHT PARENTHESIS
-208F          ; ON # Sk       MODIFIER LETTER HIGH AND LOW VERTICAL LINE
+208F          ; ON # Lm       MODIFIER LETTER HIGH AND LOW VERTICAL LINE
 2100..2101    ; ON # So   [2] ACCOUNT OF..ADDRESSED TO THE SUBJECT
 2103..2106    ; ON # So   [4] DEGREE CELSIUS..CADA UNA
 2108..2109    ; ON # So   [2] SCRUPLE..DEGREE FAHRENHEIT

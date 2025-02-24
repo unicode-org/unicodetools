@@ -1,5 +1,5 @@
 # DerivedLineBreak-17.0.0.txt
-# Date: 2025-02-24, 14:03:28 GMT
+# Date: 2025-02-24, 14:12:18 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2450,7 +2450,7 @@ E0100..E01EF  ; CM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 0FD3          ; BB # Po       TIBETAN MARK INITIAL BRDA RNYING YIG MGO MDUN MA
 1806          ; BB # Pd       MONGOLIAN TODO SOFT HYPHEN
 1FFD          ; BB # Sk       GREEK OXIA
-208F          ; BB # Sk       MODIFIER LETTER HIGH AND LOW VERTICAL LINE
+208F          ; BB # Lm       MODIFIER LETTER HIGH AND LOW VERTICAL LINE
 A874..A875    ; BB # Po   [2] PHAGS-PA SINGLE HEAD MARK..PHAGS-PA DOUBLE HEAD MARK
 A8FC          ; BB # Po       DEVANAGARI SIGN SIDDHAM
 11175         ; BB # Po       MAHAJANI SECTION MARK
