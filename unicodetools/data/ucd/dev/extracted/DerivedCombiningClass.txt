@@ -1,5 +1,5 @@
 # DerivedCombiningClass-17.0.0.txt
-# Date: 2024-10-03, 19:41:04 GMT
+# Date: 2025-02-24, 12:27:52 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2080,9 +2080,8 @@ F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 1BC9E         ; 1 # Mn       DUPLOYAN DOUBLE MARK
 1D167..1D169  ; 1 # Mn   [3] MUSICAL SYMBOL COMBINING TREMOLO-1..MUSICAL SYMBOL COMBINING TREMOLO-3
 1D25B..1D25C  ; 1 # Mn   [2] MUSICAL SYMBOL COMBINING TREMOLO-4..MUSICAL SYMBOL COMBINING TREMOLO-5
-1D25F         ; 1 # Mn       MUSICAL SYMBOL BUZZ ROLL
 
-# Total code points: 35
+# Total code points: 34
 
 # ================================================
 
@@ -2527,8 +2526,9 @@ FB1E          ; 26 # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 0F39          ; 216 # Mn       TIBETAN MARK TSA -PHRU
 1D165..1D166  ; 216 # Mc   [2] MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
 1D16E..1D172  ; 216 # Mc   [5] MUSICAL SYMBOL COMBINING FLAG-1..MUSICAL SYMBOL COMBINING FLAG-5
+1D25F         ; 216 # Mc       MUSICAL SYMBOL COMBINING BUZZ ROLL STEM
 
-# Total code points: 9
+# Total code points: 10
 
 # ================================================
 

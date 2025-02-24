@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2024-10-03, 19:41:08 GMT
+# Date: 2025-02-24, 12:27:55 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -39608,7 +39608,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1D25C         ; MUSICAL SYMBOL COMBINING TREMOLO-5
 1D25D         ; MUSICAL SYMBOL FINGERED TREMOLO-4
 1D25E         ; MUSICAL SYMBOL FINGERED TREMOLO-5
-1D25F         ; MUSICAL SYMBOL BUZZ ROLL
+1D25F         ; MUSICAL SYMBOL COMBINING BUZZ ROLL STEM
 1D2C0         ; KAKTOVIK NUMERAL ZERO
 1D2C1         ; KAKTOVIK NUMERAL ONE
 1D2C2         ; KAKTOVIK NUMERAL TWO
