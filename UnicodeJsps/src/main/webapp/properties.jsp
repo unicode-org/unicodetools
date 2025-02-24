@@ -20,7 +20,8 @@ th           { text-align: left }
         UtfParameters utfParameters = new UtfParameters(queryString);
 
         String propForValues = utfParameters.getParameter("a");
-		UnicodeJsp.showPropsTable(out, propForValues, "properties.jsp");
+        // TODO(egg): Cache this page.
+		//UnicodeJsp.showPropsTable(out, propForValues, "properties.jsp");
 %>
 <h2>Key</h2>
 <p>The Categories are from <a target='_blank' href='http://www.unicode.org/reports/tr44#Property_Index'>UCD

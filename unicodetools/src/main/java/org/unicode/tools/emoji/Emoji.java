@@ -3,8 +3,8 @@ package org.unicode.tools.emoji;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.LocaleDisplayNames;
@@ -83,6 +83,7 @@ public class Emoji {
     // situation)
 
     // Constants for versions
+    public static final VersionInfo VERSION17 = VersionInfo.getInstance(17);
     public static final VersionInfo VERSION16 = VersionInfo.getInstance(16);
     public static final VersionInfo VERSION15_1 = VersionInfo.getInstance(15, 1);
     public static final VersionInfo VERSION15 = VersionInfo.getInstance(15, 0);
@@ -135,6 +136,7 @@ public class Emoji {
 
     public static final Map<VersionInfo, String> EMOJI_TO_DATE =
             ImmutableMap.<VersionInfo, String>builder()
+                    .put(VERSION17, "2025-09-09")
                     .put(VERSION16, "2024-09-10")
                     .put(VERSION15_1, "2023-09-12")
                     .put(VERSION15, "2022-09-13")

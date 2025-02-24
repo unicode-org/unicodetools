@@ -1,8 +1,8 @@
 package org.unicode.test;
 
 import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.Composer;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap.Composer;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Segmenter;
 import org.unicode.tools.Segmenter.Builder;
-import org.unicode.tools.Segmenter.Rule;
+import org.unicode.tools.Segmenter.SegmentationRule;
 
 public class TestSegment {
 
@@ -398,8 +398,8 @@ public class TestSegment {
     }
 
     private static <T> void getExemplarStrings(UnicodeMap<T> exemplars, Builder segmenter) {
-        Map<Double, Rule> srules = segmenter.getProcessedRules();
-        for (Entry<Double, Rule> entry : srules.entrySet()) {
+        Map<Double, SegmentationRule> srules = segmenter.getProcessedRules();
+        for (Entry<Double, SegmentationRule> entry : srules.entrySet()) {
             System.out.println(entry.getKey() + "\t\t" + entry.getValue());
         }
     }

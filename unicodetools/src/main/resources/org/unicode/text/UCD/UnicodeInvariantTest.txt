@@ -700,6 +700,7 @@ Let $nonAlphabeticBindus := []
 
 Let $nonAlphabeticDependentVowels := [
     \N{ORIYA SIGN OVERLINE}
+    \p{Name=/^ORIYA SIGN (DOUBLE )?DOT ABOVE$/}  # L2/24-106R, related to the overline.
     \N{THAI CHARACTER MAITAIKHU}
     \N{LIMBU SIGN KEMPHRENG}
     \N{SHARADA VOWEL MODIFIER MARK}
@@ -721,7 +722,7 @@ Let $nonLowercaseSmallLetters := [
     \N{TURNED GREEK SMALL LETTER IOTA}
     \p{name=/^(SQUARED|PARENTHESIZED|TAG) LATIN SMALL LETTER/}
 ]
-Let $nonLowercaseSmallModifierLetters := [ \p{gc=Lm} & \p{name=/^ARABIC SMALL/} ]
+Let $nonLowercaseSmallModifierLetters := [ \p{gc=Lm} & \p{name=/^(ARABIC|CHINESE) SMALL/} ]
 [ \p{name=/\bSMALL LETTER\b/}-\p{gc=Mn}-\p{gc=Lt} - $nonLowercaseSmallLetters ] ⊆ \p{Lowercase}
 [ [\p{gc=Lm} & \p{name=/SMALL/}] - $nonLowercaseSmallModifierLetters ] ⊆ \p{Lowercase}
 
@@ -1089,6 +1090,13 @@ Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 \p{U13.1:RGI_Emoji_Zwj_Sequence} ⊃ \p{U13:RGI_Emoji_Zwj_Sequence}
 [\p{U13.1:RGI_Emoji_Zwj_Sequence} - \p{U13:RGI_Emoji_Zwj_Sequence}] ⊃ [{😵‍💫}]
 
+# [182-C20] Consensus: Unassign the Extended_Pictographic property from the 672 assigned characters
+#           that do not have the Emoji property. For Unicode Version 17.0. See L2/25-006 item 5.1.
+# The only assigned characters that are Extended_Pictographic are Emoji.
+[\p{Extended_Pictographic}-\p{gc=Cn}] ⊆ \p{Emoji}
+# And nearly all emoji are Extended_Pictographic.
+[\p{Extended_Pictographic}-\p{gc=Cn}] = [\p{Emoji}-\p{Regional_Indicator}-\p{Emoji_Modifier}-\p{Block=Basic Latin}]
+
 ##########################
 # POSIX Compatibility Properties (UTS#18)
 # http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html
@@ -1201,8 +1209,13 @@ $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 # The Khitan Small Script filler is a Nonspacing Mark.
 # The other characters are numerals (the Hangzhou ten through thirty are compatibility decomposable,
 # but not the one through nine) and have Script=Han.
-Let $NonOtherLetterIdeographs := [\N{KHITAN SMALL SCRIPT FILLER}  〇 〡-〩 〸-〺]
-$NonOtherLetterIdeographs = [\p{Ideographic} - \p{gc=Lo}]
+Let $NonOtherLetterIdeographs := [\p{Ideographic} - \p{gc=Lo}]
+$NonOtherLetterIdeographs = [
+    \N{KHITAN SMALL SCRIPT FILLER}
+    〇 〡-〩 〸-〺
+    \p{NAME=/^CHINESE SMALL (SIMPLIFIED|TRADITIONAL) ER$/}
+    \p{Name=/^YANGQIN SIGN SLOW (ONE|THREE HALF|TWO) BEATS?$/}
+]
 # Ideographic closing mark, gc=Lo.
 Let $CommonIdeographs := [〆]
 $CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]

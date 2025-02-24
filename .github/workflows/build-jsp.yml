@@ -3,33 +3,40 @@ name: Build JSP
 env:
   CURRENT_UVERSION: 17.0.0 # FIX_FOR_NEW_VERSION
   PREVIOUS_UVERSION: 16.0.0  # not used at present
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 on:
-  push:
-    branches:
-    - '*'
   pull_request:
     branches:
+    - '*'
+  push:
+    tags:
     - '*'
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Get the CLDR_REF from pom.xml
       id: cldr_ref
       run: echo "CLDR_REF="$(mvn help:evaluate -Dexpression=cldr.version -q -DforceStdout | cut -d- -f3) >> $GITHUB_OUTPUT && cat ${GITHUB_OUTPUT}
     - name: Verify CLDR checkout ref
       run: echo CLDR_REF="${{ steps.cldr_ref.outputs.CLDR_REF }}" && [ "${{ steps.cldr_ref.outputs.CLDR_REF }}x" != "x" ] # fail if empty
     - name: Cache CLDR repository
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: cldr
         key: cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
         restore-keys: |
           cldr
     - name: Check out CLDR
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: unicode-org/cldr
         path: cldr
@@ -45,12 +52,16 @@ jobs:
       with:
         java-version: 11
     - name: Cache local Maven repository
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
+    - name: Fetch Last Resort Font
+      run: |
+        wget https://github.com/unicode-org/last-resort-font/releases/latest/download/LastResort-Regular.ttf
+        mv ./LastResort-Regular.ttf ./UnicodeJsps/src/main/webapp/
     # TODO: move this DOWN after JSPs once it works
     - name: Regenerate the property cache files
       run: >
@@ -69,10 +80,46 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload UnicodeJsps.war
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: UnicodeJsps
         path: UnicodeJsps/target/UnicodeJsps.war
-    - name: build docker image
-      run: cd UnicodeJsps && bash update-bidic-ucd.sh && docker build .
-
+    - name: Build C Bidi
+      run: cd UnicodeJsps && bash update-bidic-ucd.sh
+    - name: Log in to the Container registry
+      if: github.event_name != 'pull_request'
+      uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+    - name: Build and push Docker image
+      if: github.event_name != 'pull_request'
+      id: push
+      uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+      with:
+        context: UnicodeJsps/
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+    - name: Build and Docker image (PR)
+      if: github.event_name == 'pull_request'
+      id: builddocker
+      uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+      with:
+        context: UnicodeJsps/
+        push: false
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+    - name: Generate artifact attestation
+      if: github.event_name != 'pull_request'
+      uses: actions/attest-build-provenance@v2
+      with:
+        subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
+        subject-digest: ${{ steps.push.outputs.digest }}
+        push-to-registry: true

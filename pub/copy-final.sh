@@ -14,9 +14,6 @@ UNITOOLS_DATA=$UNICODETOOLS/unicodetools/data
 COPY_YEAR=2024
 UNI_VER=17.0.0
 EMOJI_VER=17.0
-# UTS #10 release revision number to be used in CollationTest.html:
-# *Two* more than the last release revision number.
-TR10_REV=tr10-53
 
 TODAY=`date --iso-8601`
 
@@ -28,7 +25,7 @@ s/PUB_DATE/$TODAY/
 s/PUB_STATUS/final/
 s/UNI_VER/$UNI_VER/
 s/EMOJI_VER/$EMOJI_VER/
-s/TR10_REV/$TR10_REV/
+
 s%PUBLIC_EMOJI%Public/emoji/$EMOJI_VER%
 s%PUBLIC_UCD%Public/$UNI_VER%
 eof
@@ -42,7 +39,6 @@ mv $DEST/$UNI_VER/ucd/zipped-ReadMe.txt $DEST/zipped/$UNI_VER/ReadMe.txt
 
 mkdir -p $DEST/UCA/$UNI_VER
 cp -r $UNITOOLS_DATA/uca/dev/* $DEST/UCA/$UNI_VER
-sed -i -f $DEST/sed-readmes.txt $DEST/UCA/$UNI_VER/CollationTest.html
 
 mkdir -p $DEST/emoji/$EMOJI_VER
 cp $UNITOOLS_DATA/emoji/dev/* $DEST/emoji/$EMOJI_VER

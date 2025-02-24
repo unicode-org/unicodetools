@@ -217,6 +217,7 @@ Unihan_DictionaryIndices ; kMeyerWempe
 Unihan_DictionaryIndices ; kMorohashi
 Unihan_DictionaryIndices ; kNelson
 Unihan_DictionaryIndices ; kSBGY
+Unihan_DictionaryIndices ; kSMSZD2003Index
 Unihan_DictionaryLikeData ; kCangjie
 Unihan_DictionaryLikeData ; kCheungBauer
 Unihan_DictionaryLikeData ; kCihaiT
@@ -228,6 +229,9 @@ Unihan_DictionaryLikeData ; kHDZRadBreak
 Unihan_DictionaryLikeData ; kHKGlyph
 Unihan_DictionaryLikeData ; kPhonetic
 Unihan_DictionaryLikeData ; kUnihanCore2020
+Unihan_DictionaryLikeData ; kAlternateTotalStrokes
+Unihan_DictionaryLikeData ; kStrange
+Unihan_DictionaryLikeData ; kMojiJoho
 Unihan_IRGSources ; kIICore
 Unihan_IRGSources ; kIRG_GSource
 Unihan_IRGSources ; kIRG_HSource
@@ -252,6 +256,8 @@ Unihan_DictionaryLikeData ; kTotalStrokes ; v12.1
 Unihan_NumericValues ; kAccountingNumeric
 Unihan_NumericValues ; kOtherNumeric
 Unihan_NumericValues ; kPrimaryNumeric
+Unihan_NumericValues ; kVietnameseNumeric
+Unihan_NumericValues ; kZhuangNumeric
 Unihan_OtherMappings ; kBigFive
 Unihan_OtherMappings ;  kCCCII
 Unihan_OtherMappings ;  kCNS1986
@@ -302,6 +308,10 @@ Unihan_Readings ; kTang
 Unihan_Readings ; kTGHZ2013
 Unihan_Readings ; kVietnamese
 Unihan_Readings ; kXHC1983
+Unihan_Readings ; kJapanese
+Unihan_Readings ; kSMSZD2003Readings
+Unihan_Readings ; kFanqie
+Unihan_Readings ; kZhuang
 Unihan_Variants ; kCompatibilityVariant	; v6.3
 Unihan_Variants ; kSemanticVariant
 Unihan_Variants ; kSimplifiedVariant
@@ -309,6 +319,114 @@ Unihan_Variants ; kSpecializedSemanticVariant
 Unihan_Variants ; kSpoofingVariant
 Unihan_Variants ; kTraditionalVariant
 Unihan_Variants ; kZVariant
+
+# Properties removed from Unihan before 5.1.
+# Point to a nonexistent file so that we don’t try to read them from the most recent monolithic
+# Unihan, as we would then get confused by the other (still-extant) properties in that file.
+
+Unihan_Removed ; kAlternateHanYu
+Unihan_Removed ; kAlternateJEF
+Unihan_Removed ; kAlternateKangXi
+Unihan_Removed ; kAlternateMorohashi
+Unihan_Removed ; kRSMerged
+Unihan_Removed ; kJHJ
+
+# Unihan in one big file, Unicode 2.0..5.1.
+FileType ; Unihan ; PropertyValue
+Unihan ; kAccountingNumeric ; v5.1
+Unihan ; kAlternateHanYu ; v5.1
+Unihan ; kAlternateJEF ; v5.1
+Unihan ; kAlternateKangXi ; v5.1
+Unihan ; kAlternateMorohashi ; v5.1
+Unihan ; kBigFive ; v5.1
+Unihan ; kCangjie ; v5.1
+Unihan ; kCantonese ; v5.1
+Unihan ; kCCCII ; v5.1
+Unihan ; kCheungBauer ; v5.1
+Unihan ; kCheungBauerIndex ; v5.1
+Unihan ; kCihaiT ; v5.1
+Unihan ; kCNS1986 ; v5.1
+Unihan ; kCNS1992 ; v5.1
+Unihan ; kCompatibilityVariant ; v5.1
+Unihan ; kCowles ; v5.1
+Unihan ; kDaeJaweon ; v5.1
+Unihan ; kDefinition ; v5.1
+Unihan ; kEACC ; v5.1
+Unihan ; kFenn ; v5.1
+Unihan ; kFennIndex ; v5.1
+Unihan ; kFourCornerCode ; v5.1
+Unihan ; kFrequency ; v5.1
+Unihan ; kGB0 ; v5.1
+Unihan ; kGB1 ; v5.1
+Unihan ; kGB3 ; v5.1
+Unihan ; kGB5 ; v5.1
+Unihan ; kGB7 ; v5.1
+Unihan ; kGB8 ; v5.1
+Unihan ; kGradeLevel ; v5.1
+Unihan ; kGSR ; v5.1
+Unihan ; kHangul ; v5.1
+Unihan ; kHanYu ; v5.1
+Unihan ; kHanyuPinlu ; v5.1
+Unihan ; kHDZRadBreak ; v5.1
+Unihan ; kHKGlyph ; v5.1
+Unihan ; kHKSCS ; v5.1
+Unihan ; kIBMJapan ; v5.1
+Unihan ; kIICore ; v5.1
+Unihan ; kIRG_GSource ; v5.1
+Unihan ; kIRG_HSource ; v5.1
+Unihan ; kIRG_JSource ; v5.1
+Unihan ; kIRG_KPSource ; v5.1
+Unihan ; kIRG_KSource ; v5.1
+Unihan ; kIRG_TSource ; v5.1
+Unihan ; kIRG_USource ; v5.1
+Unihan ; kIRG_VSource ; v5.1
+Unihan ; kIRGDaeJaweon ; v5.1
+Unihan ; kIRGDaiKanwaZiten ; v5.1
+Unihan ; kIRGHanyuDaZidian ; v5.1
+Unihan ; kIRGKangXi ; v5.1
+Unihan ; kJapaneseKun ; v5.1
+Unihan ; kJapaneseOn ; v5.1
+Unihan ; kJHJ ; v5.1
+Unihan ; kJis0 ; v5.1
+Unihan ; kJis1 ; v5.1
+Unihan ; kJIS0213 ; v5.1
+Unihan ; kKangXi ; v5.1
+Unihan ; kKarlgren ; v5.1
+Unihan ; kKorean ; v5.1
+Unihan ; kKPS0 ; v5.1
+Unihan ; kKPS1 ; v5.1
+Unihan ; kKSC0 ; v5.1
+Unihan ; kKSC1 ; v5.1
+Unihan ; kLau ; v5.1
+Unihan ; kMainlandTelegraph ; v5.1
+Unihan ; kMandarin ; v5.1
+Unihan ; kMatthews ; v5.1
+Unihan ; kMeyerWempe ; v5.1
+Unihan ; kMorohashi ; v5.1
+Unihan ; kNelson ; v5.1
+Unihan ; kOtherNumeric ; v5.1
+Unihan ; kPhonetic ; v5.1
+Unihan ; kPrimaryNumeric ; v5.1
+Unihan ; kPseudoGB1 ; v5.1
+Unihan ; kRSAdobe_Japan1_6 ; v5.1
+Unihan ; kRSJapanese ; v5.1
+Unihan ; kRSKangXi ; v5.1
+Unihan ; kRSKanWa ; v5.1
+Unihan ; kRSKorean ; v5.1
+Unihan ; kRSMerged ; v5.1
+Unihan ; kRSUnicode ; v5.1
+Unihan ; kSBGY ; v5.1
+Unihan ; kSemanticVariant ; v5.1
+Unihan ; kSimplifiedVariant ; v5.1
+Unihan ; kSpecializedSemanticVariant ; v5.1
+Unihan ; kTaiwanTelegraph ; v5.1
+Unihan ; kTang ; v5.1
+Unihan ; kTotalStrokes ; v5.1
+Unihan ; kTraditionalVariant ; v5.1
+Unihan ; kVietnamese ; v5.1
+Unihan ; kXerox ; v5.1
+Unihan ; kXHC1983 ; v5.1
+Unihan ; kZVariant ; v5.1
 
 # Extras
 

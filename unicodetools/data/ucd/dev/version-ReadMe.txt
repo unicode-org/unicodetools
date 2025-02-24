@@ -17,8 +17,8 @@
 This directory contains the PUB_STATUS data files 
 for Version UNI_VER of the Unicode Standard.
 
-The "ucd" subdirectory contains the Unicode
-Character Database data files.
-
 The "charts" subdirectory contains an archival set of
 pdf code charts corresponding exactly to Version UNI_VER.
+
+The other subdirectories contain the data files for the
+Unicode Character Database and for the synchronized Unicode Technical Standards.
