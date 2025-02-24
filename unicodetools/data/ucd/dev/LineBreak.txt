@@ -1,3 +1,4 @@
+1B168 ; CJ # Lo KATAKANA LETTER SMALL ARCHAIC YE
 # LineBreak-17.0.0.txt
 # Date: 2025-02-14, 15:13:07 GMT
 # © 2025 Unicode®, Inc.
