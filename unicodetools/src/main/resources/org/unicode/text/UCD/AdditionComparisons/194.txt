@@ -1,0 +1,20 @@
+# Kana: 1B168 KATAKANA LETTER SMALL ARCHAIC YE
+# https://github.com/unicode-org/utc-release-management/issues/194
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+
+Ignoring Block:
+Propertywise [\x{1B168}   \N{KATAKANA LETTER SMALL ARCHAIC YE}]
+           : [\x{1B121} 𛄡 \N{KATAKANA LETTER ARCHAIC YE}]
+CorrespondTo [\x{30E3} ャ \N{KATAKANA LETTER SMALL YA}]
+           : [\x{30E4} ヤ \N{KATAKANA LETTER YA}]
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
