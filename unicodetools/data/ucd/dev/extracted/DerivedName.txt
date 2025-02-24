@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2025-01-27, 18:09:14 GMT
+# Date: 2025-02-24, 16:01:25 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -40026,6 +40026,8 @@ FFFD          ; REPLACEMENT CHARACTER
 1D243         ; COMBINING GREEK MUSICAL TETRASEME
 1D244         ; COMBINING GREEK MUSICAL PENTASEME
 1D245         ; GREEK MUSICAL LEIMMA
+1D280         ; MUSICAL SYMBOL COMBINING STEM BOW BEHIND BRIDGE
+1D281         ; MUSICAL SYMBOL COMBINING STEM BOW ON TOP OF BRIDGE
 1D2C0         ; KAKTOVIK NUMERAL ZERO
 1D2C1         ; KAKTOVIK NUMERAL ONE
 1D2C2         ; KAKTOVIK NUMERAL TWO
@@ -45870,6 +45872,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 159834
+# Total code points: 159836
 
 # EOF
