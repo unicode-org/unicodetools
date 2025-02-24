@@ -9,16 +9,15 @@
  */
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -28,9 +27,9 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.regex.Matcher;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
@@ -61,8 +60,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
     Normalizer nfd;
     Normalizer nfkd;
 
-    OldUnicodeMap sampleMap = null;
-    OldUnicodeMap map = new OldUnicodeMap();
+    Segmenter segmenter;
+    UnicodeMap<String> partition;
     UnicodeProperty prop;
 
     protected final Segmenter seg;
@@ -88,63 +87,12 @@ public abstract class GenerateBreakTest implements UCD_Types {
         nfd = new Normalizer(UCD_Types.NFD, ucd.getVersion());
         nfkd = new Normalizer(UCD_Types.NFKD, ucd.getVersion());
         this.seg = seg;
-        /*
-        public void fillMap(String propName) {
-                List list = y.getAvailableValues();
-                for (Iterator it = list.iterator(); it.hasNext();) {
-                        String label = (String) it.next();
-                        map.add(label, y.getSet(label));
-                }
-        }
-         */
     }
 
     static final ToolUnicodePropertySource unicodePropertySource =
             ToolUnicodePropertySource.make(Default.ucdVersion());
 
     Set<String> labels = new HashSet<String>();
-
-    int addToMap(String label) {
-        labels.add(label);
-        final UnicodeSet s = prop.getSet(label);
-        if (s == null || s.size() == 0) {
-            throw new IllegalArgumentException("Bad value: " + prop.getName() + ", " + label);
-        }
-        return map.add(label, s);
-    }
-
-    int addToMapLast(String label) {
-        final int result = addToMap(label);
-        final Set<String> values = new HashSet<String>(prop.getAvailableValues());
-        if (!values.equals(labels)) {
-            throw new IllegalArgumentException(
-                    "Missing Property Values: " + prop.getName() + ": " + values.removeAll(labels));
-        }
-        return result;
-    }
-
-    // COMMON STUFF for Hangul
-    /*
-    static final byte hNot = -1, hL = 0, hV = 1, hT = 2, hLV = 3, hLVT = 4, hLIMIT = 5;
-    static final String[] hNames = {"L", "V", "T", "LV", "LVT"};
-
-
-    static byte getHangulType(int cp) {
-        if (ucd.isLeadingJamo(cp)) return hL;
-        if (ucd.isVowelJamo(cp)) return hV;
-        if (ucd.isTrailingJamo(cp)) return hT;
-        if (ucd.isHangulSyllable(cp)) {
-            if (ucd.isDoubleHangul(cp)) return hLV;
-            return hLVT;
-        }
-        return hNot;
-    }
-     */
-
-    /* static {
-        setUCD();
-    }
-     */
 
     public static boolean onCodepointBoundary(String s, int offset) {
         if (offset < 0 || offset > s.length()) {
@@ -199,10 +147,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         final Normalizer nfd = new Normalizer(UCD_Types.NFD, ucd.getVersion());
 
         System.out.println("Check Decomps");
-        // System.out.println("otherExtendSet: " +
-        // ((GenerateGraphemeBreakTest)tests[0]).otherExtendSet.toPattern(true));
-        // Utility.showSetNames("", ((GenerateGraphemeBreakTest)tests[0]).otherExtendSet, false,
-        // ucd);
 
         for (final GenerateBreakTest test2 : tests) {
             for (int i = 0; i < 0x10FFFF; ++i) {
@@ -298,18 +242,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         return result;
     }
 
-    /*
-    static UnicodeSet extraAlpha = new UnicodeSet("[\\u02B9-\\u02BA\\u02C2-\\u02CF\\u02D2-\\u02DF\\u02E5-\\u02ED\\u05F3]");
-    static UnicodeSet alphabeticSet = UnifiedBinaryProperty.make(DERIVED | PropAlphabetic).getSet()
-        .addAll(extraAlpha);
-
-    static UnicodeSet ideographicSet = UnifiedBinaryProperty.make(BINARY_PROPERTIES | Ideographic).getSet();
-
-    static {
-        if (false) System.out.println("alphabetic: " + alphabeticSet.toPattern(true));
-    }
-     */
-
     void generateTerminalClosure() {
         final UnicodeSet midLetterSet =
                 new UnicodeSet(
@@ -342,17 +274,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         System.out.println("sentPunct");
         System.out.println(sentPunct.toPattern(true));
         Utility.showSetNames("", sentPunct, true, ucd);
-        /*
-
-                UnicodeSet sentencePunctuation = new UnicodeSet("[\u0021\003F          ; Terminal_Punctuation # Po       QUESTION MARK
-        037E          ; Terminal_Punctuation # Po       GREEK QUESTION MARK
-        061F          ; Terminal_Punctuation # Po       ARABIC QUESTION MARK
-        06D4          ; Terminal_Punctuation # Po       ARABIC FULL STOP
-        203C..203D    ; Terminal_Punctuation # Po   [2] DOUBLE EXCLAMATION MARK..INTERROBANG
-        3002          ; Terminal_Punctuation # Po       IDEOGRAPHIC FULL STOP
-        2048..2049    ; Terminal_Punctuation # Po   [2] QUESTION EXCLAMATION MARK..EXCLAMATION QUESTION MARK
-                 */
-
     }
 
     // ============================
@@ -402,6 +323,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
 
         boolean forCLDR = seg.target == Segmenter.Target.FOR_CLDR;
         String path = "UCD/" + ucd.getVersion() + '/' + (forCLDR ? "cldr/" : "auxiliary/");
+        String extraPath = "UCD/" + ucd.getVersion() + "/extra/";
         String outFilename = fileName + "BreakTest";
         if (forCLDR) {
             outFilename = outFilename + "-cldr";
@@ -411,11 +333,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         .setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter out = fc.out;
 
-        /*        PrintWriter out = Utility.openPrintWriter("auxiliary/"
-           + fileName + "BreakTest-"
-           + ucd.getVersion()
-           + ".html", Utility.UTF8_WINDOWS);
-        */
         out.println(DOCTYPE);
         out.println(
                 "<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
@@ -438,8 +355,14 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         + "<p>The first chart shows where breaks would appear between different sample characters or strings. "
                         + "The sample characters are chosen mechanically to represent the different properties used by the specification.</p>"
                         + "<p>Each cell shows the break-status for the position between the character(s) in its row header and the character(s) in its column header. "
-                        + "The × symbol indicates no break, while the ÷ symbol indicated a break. "
-                        + "The cells with × are also shaded to make it easier to scan the table. "
+                        + (fileName.equals("Line")
+                                ? "The symbol × indicates a prohibited break, even with intervening spaces;"
+                                        + " the ÷ symbol indicates a (direct) break; the symbol ∻ indicates a"
+                                        + " break only in the presence of an intervening space (an indirect break)."
+                                : "The × symbol indicates no break, while the ÷ symbol indicates a break. ")
+                        + "The cells with ×"
+                        + (fileName.equals("Line") ? " or ∻ " : "")
+                        + " are also shaded to make it easier to scan the table. "
                         + "For example, in the cell at the intersection of the row headed by “CR” and the column headed by “LF”, there is a × symbol, "
                         + "indicating that there is no break between CR and LF.</p>");
         out.print("<p>");
@@ -449,7 +372,55 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             + (fileName.equals("Word") ? ", such as “ALetter MidLetter”. " : ". "));
         }
         out.println(
-                "Some column headers may be composed, reflecting “treat as” or “ignore” rules.</p>");
+                "</p><p>In the row and column headers of the <a href='#table'>Table</a>, "
+                        + "in the <a href='#rules'>Rules</a>, "
+                        + "when hovering over characters in the <a href='#samples'>Samples</a>, "
+                        + "and in the comments in the associated list of test cases <a href='"
+                        + outFilename
+                        + ".txt'>"
+                        + outFilename
+                        + ".txt</a>:</p>");
+        out.println("<ol><li>The following sets are used:<ul>");
+        final var mainProperty = IUP.getProperty(propertyName);
+        for (var entry : variables.entrySet()) {
+            final String variable = entry.getKey().substring(1);
+            final String value = entry.getValue();
+            if (variable.equals("sot")
+                    || variable.equals("eot")
+                    || variable.equals("Any")
+                    || mainProperty
+                            .getSet(variable)
+                            .equals(
+                                    new UnicodeSet(
+                                            value, new ParsePosition(0), IUP.getXSymbolTable()))) {
+                continue;
+            }
+            out.println("<li>");
+            out.println(variable);
+            out.println("=");
+            out.println(value);
+            out.println("</li>");
+        }
+        out.println("</ul></li>");
+        out.println(
+                "<li>Any other name that is a short property value alias for the "
+                        + propertyName
+                        + " property represents the set of characters with that property, e.g., LF=\\p{"
+                        + propertyName
+                        + "=LF}.</li>");
+        out.println(
+                "<li>The aforementioned sets are used to generate a partition of the code space in"
+                        + " classes named X_Y for the intersection of X and Y and XmY for the"
+                        + "  complement of Y in X.</li></ol>");
+        out.println(
+                "<p>Note that the resulting partition may be finer than needed for the algorithm.");
+        if (propertyName.equals("Line_Break")) {
+            out.println(
+                    "For instance, characters in CMorig_EastAsian and CMorigmEastAsian behave"
+                            + " identically in line breaking, as characters in these classes are"
+                            + " remapped before EastAsian is used in the rules.");
+        }
+        out.println("</p>");
         out.print(
                 "<p>If your browser handles titles (tooltips), then hovering the mouse over the row header will show a sample character of that type. "
                         + "Hovering over a column header will show the sample character, plus its abbreviated general category and script. "
@@ -489,20 +460,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         + "Note that a rule is invoked only when no lower-numbered rules have applied.</p>");
         generateTable(out);
 
-        if (false) {
-            out.println("<h3>Character Type Breakdown</h3>");
-            out.println("<table border='1' cellspacing='0' width='100%'>");
-            for (int i = 0; i < sampleMap.size(); ++i) {
-                out.println(
-                        "<tr><th>"
-                                + sampleMap.getLabelFromIndex(i)
-                                + "</th><td>"
-                                + sampleMap.getSetFromIndex(i)
-                                + "</td></tr>");
-            }
-            out.println("</table>");
-        }
-
         out.println(
                 "<hr width='50%'>\n"
                         + "<div align='center'>\n"
@@ -522,6 +479,68 @@ public abstract class GenerateBreakTest implements UCD_Types {
         fc.close();
 
         generateTest(false, path, outFilename, propertyName);
+        generateCppOldMonkeys(extraPath, outFilename);
+        generateJavaOldMonkeys(extraPath, outFilename);
+    }
+
+    private void generateCppOldMonkeys(String path, String outFilename) throws IOException {
+        final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(path, outFilename + ".cpp");
+        final PrintWriter out = fc.out;
+        out.println();
+        out.println("####### Instructions ##################################");
+        out.println("# Copy the following lines into rbbitst.cpp in ICU4C, #");
+        out.println(
+                "# in the constructor of RBBIMeowMonkey, replacing the #"
+                        .replace("Meow", outFilename.substring(0, 4).replace("Graph", "Char")));
+        out.println("# existing block of generated code.                   #");
+        out.println("#######################################################");
+        out.println();
+        out.println("    // --- NOLI ME TANGERE ---");
+        out.println("    // Generated by GenerateBreakTest.java in the Unicode tools.");
+        for (Segmenter.Builder.NamedRefinedSet part : segmenter.getPartitionDefinition()) {
+            out.println(
+                    "    partition.emplace_back(\""
+                            + part.getName()
+                            + "\", UnicodeSet(uR\"("
+                            + part.getDefinition()
+                            + ")\", status));");
+        }
+        out.println();
+        for (Segmenter.SegmentationRule rule : segmenter.getRules()) {
+            out.println("    rules.push_back(" + rule.toCppOldMonkeyString() + ");");
+        }
+        out.println("    // --- End of generated code. ---");
+        fc.close();
+    }
+
+    private void generateJavaOldMonkeys(String path, String outFilename) throws IOException {
+        final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(path, outFilename + ".java");
+        final PrintWriter out = fc.out;
+        out.println();
+        out.println("####### Instructions ###################################");
+        out.println("# Copy the following lines into RBBITestMonkey.java in #");
+        out.println(
+                "# ICU4J, in the constructor of RBBIMeowMonkey, replacing #"
+                        .replace("Meow", outFilename.substring(0, 4).replace("Graph", "Char")));
+        out.println("# the existing block of generated code.                #");
+        out.println("########################################################");
+        out.println();
+        out.println("            // --- NOLI ME TANGERE ---");
+        out.println("            // Generated by GenerateBreakTest.java in the Unicode tools.");
+        for (Segmenter.Builder.NamedRefinedSet part : segmenter.getPartitionDefinition()) {
+            out.println(
+                    "            partition.add(new NamedSet(\""
+                            + part.getName().replace("\\", "\\\\").replace("\"", "\\\"")
+                            + "\", new UnicodeSet(\""
+                            + part.getDefinition().replace("\\", "\\\\").replace("\"", "\\\"")
+                            + "\")));");
+        }
+        out.println();
+        for (Segmenter.SegmentationRule rule : segmenter.getRules()) {
+            out.println("            rules.add(" + rule.toJavaOldMonkeyString() + ");");
+        }
+        out.println("            // --- End of generated code. ---");
+        fc.close();
     }
 
     private void generateTest(
@@ -537,11 +556,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
                                 path, outFilename + (shortVersion ? "_SHORT" : ""))
                         .setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter out = fc.out;
-        /*        PrintWriter out = Utility.openPrintWriter("TR29/" + fileName + "BreakTest"
-           + (shortVersion ? "_SHORT" : "")
-           + "-" + ucd.getVersion()
-           + ".txt", Utility.UTF8_WINDOWS);
-        */
+
         int counter = 0;
 
         out.println("#");
@@ -554,7 +569,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
         out.println("#\t" + NOBREAK + " wherever there is not.");
         out.println("#  <comment> the format can change, but currently it shows:");
         out.println("#\t- the sample character name");
-        out.println("#\t- (x) the " + propertyName + " property value for the sample character");
+        out.println(
+                "#\t- (x) the " + propertyName + " property value for the sample character and ");
+        out.println("#\t  any other properties relevant to the algorithm, as described in ");
+        out.println("#\t  " + fileName + "BreakTest.html");
         out.println("#\t- [x] the rule that determines whether there is a break or not,");
         out.println("#\t   as listed in the Rules section of " + fileName + "BreakTest.html");
         out.println("#");
@@ -574,7 +592,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
                 genTestItems(before, after, testCases);
                 genTestItems(before + "\u0308", after, testCases);
                 for (final String testCase : testCases) {
-                    printLine(out, testCase, !shortVersion /*&& isFirst */, false, rulesFound);
+                    printLine(out, testCase, !shortVersion, false, rulesFound);
                     ++counter;
                 }
             }
@@ -629,18 +647,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
 
     public abstract String fullBreakSample();
 
-    public abstract byte getType(int cp);
-
-    public byte getSampleType(int cp) {
-        return getType(cp);
-    }
-
     public int mapType(int input) {
         return input;
-    }
-
-    public boolean highlightTableEntry(int x, int y, String s) {
-        return false;
     }
 
     public abstract String getTypeID(int s);
@@ -690,15 +698,24 @@ public abstract class GenerateBreakTest implements UCD_Types {
         return results;
     }
 
-    public String getTableEntry(String before, String after, String[] ruleOut) {
+    public String getTableEntry(String before, String after, List<String> rulesOut) {
+        rulesOut.clear();
         final boolean normalBreak = isBreak(before + after, before.length());
         final String normalRule = getRule();
-        ruleOut[0] = normalRule;
-        return normalBreak ? BREAK : NOBREAK;
-    }
-
-    public byte getResolvedType(int cp) {
-        return getType(cp);
+        rulesOut.add(normalRule);
+        if (fileName.equals("Line")) {
+            final boolean spaceBreak = isBreak(before + " " + after, before.length() + 1);
+            final String spaceRule = getRule();
+            if (normalBreak && !spaceBreak) {
+                // Edge cases such as LF ÷ LF, but LF SP × LF.
+                return BREAK;
+            } else if (!spaceRule.equals(normalRule)) {
+                rulesOut.add(spaceRule);
+            }
+            return normalBreak ? BREAK : spaceBreak ? INDIRECT_BREAK : NOBREAK;
+        } else {
+            return normalBreak ? BREAK : NOBREAK;
+        }
     }
 
     boolean skipType(int type) {
@@ -753,8 +770,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
         out.println("<tr><th " + width + "></th>" + types + "</tr>");
         // out.println("<tr><th " + width + "></th><th " + width + "></th>" + codes + "</tr>");
 
-        final String[] rule = new String[1];
-        final String[] rule2 = new String[1];
+        final List<String> rules = new ArrayList<>();
         for (int type = 0; type < samples.size(); ++type) {
             if (type == tableLimit) {
                 out.println(
@@ -782,24 +798,16 @@ public abstract class GenerateBreakTest implements UCD_Types {
                     continue;
                 }
 
-                final String t = getTableEntry(before, after, rule);
+                final String t = getTableEntry(before, after, rules);
                 String background = "";
-                final String t2 = getTableEntry(before, after, rule2);
-                if (highlightTableEntry(type, type2, t)) {
-                    background = " bgcolor='#FFFF00'";
-                }
-                if (!t.equals(t2)) {
-                    if (t.equals(NOBREAK)) {
-                        background = " bgcolor='#CCFFFF'";
-                    } else {
-                        background = " bgcolor='#FFFF00'";
-                    }
-                } else if (t.equals(NOBREAK)) {
+                if (t.contains(NOBREAK)) {
                     background = " bgcolor='#CCCCFF'";
+                } else if (!t.equals(BREAK)) {
+                    background = " bgcolor='#CCFFCC'";
                 }
                 line +=
                         "<th title='"
-                                + rule[0]
+                                + String.join(" ", rules)
                                 + "'"
                                 + background
                                 + " class='pairItem'>"
@@ -855,23 +863,14 @@ public abstract class GenerateBreakTest implements UCD_Types {
         }
         out.print(
                 ".</li>"
-                        + "<li>Any “treat as” or “ignore” rules are handled as discussed in UAX #"
-                        + (fileName.equals("Line") ? "14" : "29")
-                        + ", and thus reflected in a transformation of the rules usually not visible here. ");
-        if (fileName.equals("Line")) {
-            out.print(
-                    "Where it does show up, an extra variable like CM+ may appear, and the rule may be recast. ");
-        }
-        out.print(
-                "In addition, final rules like “Any ÷ Any” may be recast as the equivalent expression “÷ Any”.</li><li>");
+                        + "<li>Final rules like “Any ÷ Any” may be recast as the equivalent expression “÷ Any”.</li><li>");
         if (fileName.equals("Line")) {
             out.print(
                     "Where a rule has multiple parts (lines), each one is numbered using hundredths, "
                             + "such as 21.01) × BA, 21.02) × HY, ... ");
         }
         out.println(
-                "In some cases, the numbering and form of a rule is changed due to “treat as” rules.</li>"
-                        + "</ol>"
+                "</li></ol>"
                         + "<p>For the original rules"
                         + (fileName.equals("Word") || fileName.equals("Sentence")
                                 ? " and the macro values they use"
@@ -881,41 +880,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         + ".</p>");
         // out.println("<ul style='list-style-type: none'>");
         out.println("<table>");
-        // same pattern, but require _ at the end.
-        final Matcher identifierMatcher = Segmenter.IDENTIFIER_PATTERN.matcher("");
         for (int ii = 0; ii < ruleListCount; ++ii) {
-            String ruleString = ruleList[ii];
-            int pos = 0;
-            while (true) {
-                if (!identifierMatcher.reset(ruleString).find(pos)) {
-                    break;
-                }
-                final String variable = identifierMatcher.group();
-                if (!variable.endsWith("_")) {
-                    pos = identifierMatcher.end();
-                    continue;
-                }
-                final String replacement = variables.get(variable);
-                if (replacement == null) {
-                    throw new IllegalArgumentException("Can't find variable: " + variable);
-                }
-                final String prefix = ruleString.substring(0, identifierMatcher.start());
-                final String suffix = ruleString.substring(identifierMatcher.end());
-                if (DEBUG_RULE_REPLACEMENT) {
-                    System.out.println(
-                            "Replacing "
-                                    + prefix
-                                    + "$$"
-                                    + variable
-                                    + "$$"
-                                    + suffix
-                                    + "\t by \t"
-                                    + replacement);
-                }
-                ruleString = prefix + replacement + suffix;
-                pos = identifierMatcher.start() + replacement.length();
-            }
-            String cleanRule = ruleString.replaceAll("[$]", "");
+            String cleanRule = ruleList[ii].replaceAll("[$]", "");
             if (!isBreak("a", 0)) {
                 cleanRule = cleanRule.replace("sot ÷", "sot ×");
             }
@@ -925,6 +891,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
             int breakPoint = ruleBody.indexOf('×');
             if (breakPoint < 0) {
                 breakPoint = ruleBody.indexOf('÷');
+            }
+            if (breakPoint < 0) {
+                breakPoint = ruleBody.indexOf('→');
             }
             out.println(
                     "<tr><th style='text-align:right'>"
@@ -986,8 +955,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
         return ("<a href='#" + anchor + "' name='" + anchor + "'>" + text + "</a>");
     }
 
-    static final String BREAK = "\u00F7";
-    static final String NOBREAK = "\u00D7";
+    static final String BREAK = "÷";
+    static final String INDIRECT_BREAK = "∻";
+    static final String NOBREAK = "×";
 
     public void printLine(
             PrintWriter out,
@@ -1075,58 +1045,51 @@ public abstract class GenerateBreakTest implements UCD_Types {
     }
 
     public void findSamples() {
+        // Pick a sample for each class of the partition.
+        // The sample is picked among the oldest characters in the class for classes containing
+        // assigned characters.  For classes containing only unassigned code points, the last code
+        // point is used.  This makes the sample stable when new characters are encoded; however,
+        // the choice of sample can be affected by changes to relevant property assignments of
+        // existing characters.
+        final var gc = IUP.getProperty(UcdProperty.General_Category);
+        final var unassigned = gc.getSet("Cn");
+        final var surrogate = gc.getSet("Cs");
+        final var privateUse = gc.getSet("Co");
+        final var noncharacters =
+                IUP.getProperty(UcdProperty.Noncharacter_Code_Point).getSet("True");
+        final var age = IUP.getProperty(UcdProperty.Age);
 
-        // what we want is a list of sample characters. In the simple case, this is just one per
-        // type.
-        // However, if there are characters that have different types (when recommended or not),
-        // then
-        // we want a type for each cross-section
-
-        /**
-         * Set of lb values that already have sample characters. Faster to test than
-         * Map.contains(lb) because it avoids creating an Integer object for each code point.
-         */
-        final BitSet bitset = new BitSet();
-        /**
-         * Maps lb values to sample characters. We do not really need this map -- we could add each
-         * sample character directly to samples -- but adding them in sorted order by lb value
-         * stabilizes the output.
-         */
-        final Map<Integer, String> lbToSampleChar = new TreeMap<Integer, String>();
-
-        for (int i = 1; i <= 0x10FFFF; ++i) {
-            if (!ucd.isAllocated(i)) {
-                continue;
-            }
-            if (0xD800 <= i && i <= 0xDFFF) { // skip Cs characters
-                continue;
-            }
-            if (DEBUG && i == 0x1100) {
-                System.out.println("debug");
-            }
-            final byte lb = getSampleType(i);
-            if (skipType(lb)) {
-                skippedSamples[lb] = i;
-                didSkipSamples = true;
-                continue;
-            }
-
-            if (!bitset.get(lb)) {
-                bitset.set(lb);
-                // Unassigned U+50005 is better than PUA U+E000
-                // because implementations may override PUA properties.
-                // A supplementary code point also adds to implementation code coverage.
-                String sample;
-                if (i == 0xE000 && getSampleType(0x50005) == lb) {
-                    sample = UTF16.valueOf(0x50005);
-                } else {
-                    sample = UTF16.valueOf(i);
+        for (String partName : partition.getAvailableValues()) {
+            final UnicodeSet part = partition.getSet(partName);
+            final UnicodeSet assigned =
+                    part.cloneAsThawed()
+                            .removeAll(unassigned)
+                            .removeAll(surrogate)
+                            .removeAll(privateUse);
+            if (assigned.isEmpty()) {
+                final UnicodeSet nonCsCoNChar =
+                        part.cloneAsThawed()
+                                .removeAll(surrogate)
+                                .removeAll(privateUse)
+                                .removeAll(noncharacters);
+                if (nonCsCoNChar.isEmpty()) {
+                    System.out.println(
+                            "Skipping "
+                                    + partName
+                                    + " which only applies to surrogate, private use, or noncharacter code points");
+                    continue;
                 }
-                lbToSampleChar.put(new Integer(lb), sample);
+                samples.add(Character.toString(nonCsCoNChar.charAt(nonCsCoNChar.size() - 1)));
+            } else {
+                for (var version : Age_Values.values()) {
+                    final UnicodeSet assignedAtVersion = age.getSet(version).retainAll(assigned);
+                    if (!assignedAtVersion.isEmpty()) {
+                        samples.add(Character.toString(assignedAtVersion.charAt(0)));
+                        break;
+                    }
+                }
             }
         }
-
-        samples.addAll(lbToSampleChar.values());
 
         tableLimit = samples.size();
 
@@ -1134,18 +1097,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         if (extraSamples.size() > 0) {
             samples.addAll(extraSamples);
         }
-    }
-
-    public int findLastNon(String source, int offset, byte notLBType) {
-        int cp;
-        for (int i = offset - 1; i >= 0; i -= UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(source, i);
-            final byte f = getResolvedType(cp);
-            if (f != notLBType) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     public static UnicodeSet getSet(UCD ucd, int prop, byte propValue) {
@@ -1178,62 +1129,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         }
     }
 
-    public void getGraphemeBases(
-            MyBreakIterator graphemeIterator,
-            String source,
-            int offset,
-            int ignoreType,
-            Context context) {
-        context.cpBefore2 = context.cpBefore = context.cpAfter = context.cpAfter2 = -1;
-        context.tBefore2 = context.tBefore = context.tAfter = context.tAfter2 = -1;
-        // if (DEBUG_GRAPHEMES) System.out.println(Utility.hex(source) + "; " + offset + "; " +
-        // ignoreType);
-
-        // MyBreakIterator graphemeIterator = new MyBreakIterator(new
-        // GenerateGraphemeBreakTest(ucd));
-
-        graphemeIterator.set(source, offset);
-        while (true) {
-            final int cp = graphemeIterator.previousBase();
-            if (cp == -1) {
-                break;
-            }
-            final byte t = getResolvedType(cp);
-            if (t == ignoreType) {
-                continue;
-            }
-
-            if (context.cpBefore == -1) {
-                context.cpBefore = cp;
-                context.tBefore = t;
-            } else {
-                context.cpBefore2 = cp;
-                context.tBefore2 = t;
-                break;
-            }
-        }
-        graphemeIterator.set(source, offset);
-        while (true) {
-            final int cp = graphemeIterator.nextBase();
-            if (cp == -1) {
-                break;
-            }
-            final byte t = getResolvedType(cp);
-            if (t == ignoreType) {
-                continue;
-            }
-
-            if (context.cpAfter == -1) {
-                context.cpAfter = cp;
-                context.tAfter = t;
-            } else {
-                context.cpAfter2 = cp;
-                context.tAfter2 = t;
-                break;
-            }
-        }
-    }
-
     // ==============================================
 
     static class XGenerateBreakTest extends GenerateBreakTest {
@@ -1258,24 +1153,12 @@ public abstract class GenerateBreakTest implements UCD_Types {
                 final String rule = it.next();
                 setRule(rule);
             }
-            variables = segBuilder.getOriginalVariables();
+            variables = segBuilder.getVariables();
             collectingRules = false;
-            map.add("Other", new UnicodeSet(0, 0x10FFFF));
-            final UnicodeMap<String> segSamples = seg.getSamples();
-            final Collection<String> x = segSamples.getAvailableValues();
-            for (final Iterator<String> it = x.iterator(); it.hasNext(); ) {
-                final String label = it.next();
-                UnicodeSet values = segSamples.keySet(label);
-                if (label.contains("ExtPict")) { // hack to use reasonable values
-                    System.out.println(label);
-                    UnicodeSet pres = IUP.load(UcdProperty.Emoji_Presentation).getSet("Yes");
-                    values = new UnicodeSet(pres).retainAll(values);
-                }
-                map.add(label, values, true, false);
-            }
+            segmenter = seg;
+            partition = seg.getSamples();
             fileName = filename;
             propertyName = (filename.equals("Grapheme") ? "Grapheme_Cluster" : fileName) + "_Break";
-            sampleMap = map;
             this.extraSamples.addAll(Arrays.asList(extraSamples));
 
             this.extraSingleSamples.addAll(
@@ -1298,13 +1181,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
         // stuff that subclasses need to override
         @Override
         public String getTypeID(int cp) {
-            return map.getLabel(cp);
-        }
-
-        // stuff that subclasses need to override
-        @Override
-        public byte getType(int cp) {
-            return (byte) map.getIndex(cp);
+            return partition.get(cp);
         }
     }
 
@@ -1399,7 +1276,24 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             "क" + "\u094D" + "a",
                             "a" + "\u094D" + "त",
                             "?" + "\u094D" + "त",
-                            "क" + "\u094D\u094D" + "त"));
+                            "क" + "\u094D\u094D" + "त",
+                            // From L2/14-131, §3.2; made into a single EGC by 179-C31.
+                            // This test would have caught ICU-22956.
+                            "સૻ્સૻ",
+                            // Examples from L2/24-058R:
+                            "မ္ဘာ့", // Myanmar, first example pp. 2 sq.
+                            "င်္ထ္ထ", // Second Myanmar example p. 3.
+                            "ᬒᬁᬲ᭄ᬯᬲ᭄ᬢ᭄ᬬᬲ᭄ᬢᬸ", // Balinese greeting p. 3.
+                            // Khmer and Balinese examples from the table on p. 4:
+                            "ស្ត្រី",
+                            "ᬦᬗ᭄ᬓ",
+                            // Balinese example with subjoined U+1B0B from
+                            // https://unicode.org/versions/Unicode16.0.0/core-spec/chapter-17/#G27073:
+                            "ᬧᬓ᭄ᬋᬋᬄ",
+                            // Khmer Examples with subscript independent vowel signs from
+                            // https://unicode.org/versions/Unicode16.0.0/core-spec/chapter-16/#G37635:
+                            "ផ្ឯម",
+                            "ហ្ឫទ័យ"));
         }
     }
 
@@ -1733,6 +1627,21 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         // Examples for LB21a.
                         " ⁧John ו-Michael⁩;", // No break after ו-‏.
                         "וַֽיְהִי־כֵֽן׃", // Break after maqaf since Unicode 16.
+                        // Examples from L2/24-224 Section 6.1.
+                        "the Akkadian suffix -ī",
+                        // This one does not work because the lb=CM RLM turns into lb=AL, so that
+                        // LB20a does not apply.
+                        "the Hebrew suffix ‏-י",
+                        // With an extraneous space after the RLM, LB20a applies.
+                        "the Hebrew suffix ‏ -י",
+                        // LB20a applies to maqaf too.
+                        "the Hebrew suffix ־י",
+                        // As well as a maqaf carrying a point.
+                        "the Hebrew suffix ־ִי",
+                        // There are mathematical spaces with lb=BA either side of this ≔, so that
+                        // the Unicode 16.0 LB21a prevents a break before ≔, but Unicode 17.0 allows
+                        // it as these spaces are not hyphens (lb=HH).
+                        "Let ש ≔ |𝑆|"
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
@@ -1847,15 +1756,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
                     "aa",
                     "Word",
                     new String[] {
-                        /*"\uFF70", "\uFF65", "\u30FD", */ "a\u2060",
-                        "a:",
-                        "a'",
-                        "a'\u2060",
-                        "a,",
-                        "1:",
-                        "1'",
-                        "1,",
-                        "1.\u2060",
+                        "a\u2060", "a:", "a'", "a'\u2060", "a,", "1:", "1'", "1,", "1.\u2060",
                     },
                     new String[] {
                         // Last word of and end of ayah 1, from
@@ -1965,1084 +1866,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         }
     }
 
-    // static class OLDGenerateGraphemeBreakTest extends GenerateBreakTest {
-
-    // OLDGenerateGraphemeBreakTest(UCD ucd) {
-    // super(ucd);
-    // fileName = "Grapheme";
-    // sampleMap = map;
-    // }
-
-    // Object foo = prop = unicodePropertySource.getProperty("Grapheme_Cluster_Break");
-
-    // final int
-    // CR =    addToMap("CR"),
-    // LF =    addToMap("LF"),
-    // Control = addToMap("Control"),
-    // Extend = addToMap("Extend"),
-    // L =     addToMap("L"),
-    // V =     addToMap("V"),
-    // T =     addToMap("T"),
-    // LV =    addToMap("LV"),
-    // LVT =   addToMap("LVT"),
-    // Other = addToMapLast("Other");
-
-    //// stuff that subclasses need to override
-    // public String getTypeID(int cp) {
-    // return map.getLabel(cp);
-    // }
-
-    //// stuff that subclasses need to override
-    // public byte getType(int cp) {
-    // return (byte) map.getIndex(cp);
-    // }
-
-    // public String fullBreakSample() {
-    // return "aa";
-    // }
-
-    // public boolean isBreak(String source, int offset) {
-
-    // setRule("1: sot ÷");
-    // if (offset < 0 || offset > source.length()) return false;
-    // if (offset == 0) return true;
-
-    // setRule("2: ÷ eot");
-    // if (offset == source.length()) return true;
-
-    //// UTF-16: never break in the middle of a code point
-    // if (!onCodepointBoundary(source, offset)) return false;
-
-    //// now get the character before and after, and their types
-
-    // int cpBefore = UTF16.charAt(source, offset-1);
-    // int cpAfter = UTF16.charAt(source, offset);
-
-    // byte before = getResolvedType(cpBefore);
-    // byte after = getResolvedType(cpAfter);
-
-    // setRule("3: CR × LF");
-    // if (before == CR && after == LF) return false;
-
-    // setRule("4: ( Control | CR | LF ) ÷");
-    // if (before == CR || before == LF || before == Control) return true;
-
-    // setRule("5: ÷ ( Control | CR | LF )");
-    // if (after == Control || after == LF || after == CR) return true;
-
-    // setRule("6: L × ( L | V | LV | LVT )");
-    // if (before == L && (after == L || after == V || after == LV || after == LVT)) return false;
-
-    // setRule("7: ( LV | V ) × ( V | T )");
-    // if ((before == LV || before == V) && (after == V || after == T)) return false;
-
-    // setRule("8: ( LVT | T ) × T");
-    // if ((before == LVT || before == T) && (after == T)) return false;
-
-    // setRule("9: × Extend");
-    // if (after == Extend) return false;
-
-    //// Otherwise break after all characters.
-    // setRule("10: Any ÷ Any");
-    // return true;
-
-    // }
-
-    // }
-
-    // ==============================================
-
-    // static class XGenerateWordBreakTest extends GenerateBreakTest {
-
-    // GenerateGraphemeBreakTest grapheme;
-    // MyBreakIterator breaker;
-    // Context context = new Context();
-
-    // XGenerateWordBreakTest(UCD ucd) {
-    // super(ucd);
-    // grapheme = new GenerateGraphemeBreakTest(ucd);
-    // breaker = new MyBreakIterator(grapheme);
-    // fileName = "Word";
-    // sampleMap = map;
-    // extraSamples = new String[] {
-    /// *"\uFF70", "\uFF65", "\u30FD", */ "a\u2060", "a:", "a'", "a'\u2060", "a,", "1:", "1'", "1,",
-    //  "1.\u2060"
-    // };
-
-    // String [] temp = {"can't", "can\u2019t", "ab\u00ADby", "a$-34,567.14%b", "3a" };
-    // extraSingleSamples = new String [temp.length * 2];
-    // System.arraycopy(temp, 0, extraSingleSamples, 0, temp.length);
-    // for (int i = 0; i < temp.length; ++i) {
-    // extraSingleSamples[i+temp.length] = insertEverywhere(temp[i], "\u2060", grapheme);
-    // }
-
-    // if (false) Utility.showSetDifferences("Katakana", map.getSetFromIndex(Katakana),
-    // "Script=Katakana", getSet(ucd, SCRIPT, KATAKANA_SCRIPT), false, ucd);
-
-    // }
-
-    // Object foo = prop = unicodePropertySource.getProperty("Word_Break");
-
-    //// static String LENGTH = "[\u30FC\uFF70]";
-    //// static String HALFWIDTH_KATAKANA = "[\uFF66-\uFF9F]";
-    //// static String KATAKANA_ITERATION = "[\u30FD\u30FE]";
-    //// static String HIRAGANA_ITERATION = "[\u309D\u309E]";
-
-    // final int
-    // Format =    addToMap("Format"),
-    // Katakana =    addToMap("Katakana"),
-    // ALetter = addToMap("ALetter"),
-    // MidLetter = addToMap("MidLetter"),
-    //// MidNumLet =     addToMap("MidNumLet"),
-    // MidNum =     addToMap("MidNum"),
-    // Numeric =     addToMap("Numeric"),
-    // ExtendNumLet =     addToMap("ExtendNumLet"),
-    // Other = addToMapLast("Other");
-
-    //// stuff that subclasses need to override
-    // public String getTypeID(int cp) {
-    // return map.getLabel(cp);
-    // }
-
-    //// stuff that subclasses need to override
-    // public byte getType(int cp) {
-    // return (byte) map.getIndex(cp);
-    // }
-
-    // public String fullBreakSample() {
-    // return " a";
-    // }
-
-    // public int genTestItems(String before, String after, String[] results) {
-    // results[0] = before + after;
-    // results[1] = 'a' + before + "\u0301\u0308" + after + "\u0301\u0308" + 'a';
-    // results[2] = 'a' + before + "\u0301\u0308" + samples[MidLetter] + after + "\u0301\u0308" +
-    // 'a';
-    // results[3] = 'a' + before + "\u0301\u0308" + samples[MidNum] + after + "\u0301\u0308" + 'a';
-    // return 3;
-    // }
-
-    // public boolean isBreak(String source, int offset) {
-
-    // setRule("1: sot ÷");
-    // if (offset < 0 || offset > source.length()) return false;
-
-    // if (offset == 0) return true;
-
-    // setRule("2: ÷ eot");
-    // if (offset == source.length()) return true;
-
-    //// Treat a grapheme cluster as if it were a single character:
-    //// the first base character, if there is one; otherwise the first character.
-
-    // setRule("3: GC -> FC");
-    // if (!grapheme.isBreak( source,  offset)) return false;
-
-    // setRule("4: X Format* -> X");
-    // byte afterChar = getResolvedType(source.charAt(offset));
-    // if (afterChar == Format) return false;
-
-    //// now get the base character before and after, and their types
-
-    // getGraphemeBases(breaker, source, offset, Format, context);
-
-    // byte before = context.tBefore;
-    // byte after = context.tAfter;
-    // byte before2 = context.tBefore2;
-    // byte after2 = context.tAfter2;
-
-    //// Don't break between most letters
-
-    // setRule("5: ALetter × ALetter");
-    // if (before == ALetter && after == ALetter) return false;
-
-    //// Don’t break letters across certain punctuation
-
-    // setRule("6: ALetter × MidLetter ALetter");
-    // if (before == ALetter && after == MidLetter && after2 == ALetter) return false;
-
-    // setRule("7: ALetter (MidLetter | MidNumLet) × ALetter");
-    // if (before2 == ALetter && before == MidLetter && after == ALetter) return false;
-
-    //// Don’t break within sequences of digits, or digits adjacent to letters.
-
-    // setRule("8: Numeric × Numeric");
-    // if (before == Numeric && after == Numeric) return false;
-
-    // setRule("9: ALetter × Numeric");
-    // if (before == ALetter && after == Numeric) return false;
-
-    // setRule("10: Numeric × ALetter");
-    // if (before == Numeric && after == ALetter) return false;
-
-    //// Don’t break within sequences like: '-3.2'
-    // setRule("11: Numeric (MidNum | MidNumLet) × Numeric");
-    // if (before2 == Numeric && before == MidNum && after == Numeric) return false;
-
-    // setRule("12: Numeric × (MidNum | MidNumLet) Numeric");
-    // if (before == Numeric && after == MidNum && after2 == Numeric) return false;
-
-    //// Don't break between Katakana
-
-    // setRule("13: Katakana × Katakana");
-    // if (before == Katakana && after == Katakana) return false;
-
-    //// Do not break from extenders
-    // setRule("13a: (ALetter | Numeric | Katakana | ExtendNumLet)          ×
-    // ExtendNumLet");
-    // if ((before == ALetter || before == Numeric || before == Katakana || before == ExtendNumLet)
-    // && after == ExtendNumLet) return false;
-
-    // setRule("13b: ExtendNumLet         ×         (ALetter | Numeric | Katakana)");
-    // if (before == ExtendNumLet && (after == ALetter || after == Numeric || after == Katakana))
-    // return false;
-
-    //// Otherwise break always.
-    // setRule("14: Any ÷ Any");
-    // return true;
-
-    // }
-
-    // }
-
-    // ========================================
-
-    // static class XGenerateLineBreakTest extends GenerateBreakTest {
-
-    // GenerateGraphemeBreakTest grapheme;
-    // MyBreakIterator breaker;
-    // Context context = new Context();
-
-    // XGenerateLineBreakTest(UCD ucd) {
-    // super(ucd);
-    // grapheme = new GenerateGraphemeBreakTest(ucd);
-    // breaker = new MyBreakIterator(grapheme);
-
-    // sampleMap = map;
-    // fileName = "Line";
-    // extraSingleSamples = new String[] {"can't", "can\u2019t", "ab\u00ADby",
-    // "-3",
-    // "e.g.",
-    // "\u4e00.\u4e00.",
-    // "a  b",
-    // "a  \u200bb",
-    // "a \u0308b",
-    // "1\u0308b(a)-(b)",
-    // };
-    // }
-
-    //// all the other items are supplied in UCD_TYPES
-
-    /// *static byte LB_L = LB_LIMIT + hL, LB_V = LB_LIMIT + hV, LB_T = LB_LIMIT + hT,
-    // LB_LV = LB_LIMIT + hLV, LB_LVT = LB_LIMIT + hLVT, LB_SUP = LB_LIMIT + hLIMIT,
-    // LB2_LIMIT = (byte)(LB_SUP + 1);
-    // */
-
-    /// *
-    // private byte[] AsmusOrderToMyOrder = {
-    // LB_OP, LB_CL, LB_QU, LB_GL, LB_NS, LB_EX, LB_SY, LB_IS, LB_PR, LB_PO,
-    // LB_NU, LB_AL, LB_ID, LB_IN, LB_HY, LB_BA, LB_BB, LB_B2, LB_ZW, LB_CM,
-    //// missing from Pair Table
-    // LB_SP, LB_BK, LB_CR, LB_LF,
-    //// resolved types below
-    // LB_CB, LB_AI, LB_SA, LB_SG, LB_XX,
-    //// 3 JAMO CLASSES, plus supplementary
-    // LB_L, LB_V, LB_T, LB_LV, LB_LVT, LB_SUP
-    // };
-
-    // private byte[] MyOrderToAsmusOrder = new byte[AsmusOrderToMyOrder.length];
-    // {
-    // for (byte i = 0; i < AsmusOrderToMyOrder.length; ++i) {
-    // MyOrderToAsmusOrder[AsmusOrderToMyOrder[i]] = i;
-    // }
-    // */
-
-    // {
-    //// System.out.println("Adding Linebreak");
-    // for (int i = 0; i <= 0x10FFFF; ++i) {
-    // map.put(i, ucd.getLineBreak(i));
-    // }
-    // for (int i = 0; i < LB_LIMIT; ++i) {
-    // map.setLabel(i, ucd.getLineBreakID_fromIndex((byte)i, SHORT));
-    // }
-    //// System.out.println(map.getSetFromIndex(LB_CL));
-    //// System.out.println("Done adding Linebreak");
-    // }
-
-    // public int mapType(int input) {
-    // int old = input;
-    // switch (input) {
-    // case LB_BA: input = 16; break;
-    // case LB_BB: input = 17; break;
-    // case LB_B2: input = 18; break;
-    // case LB_ZW: input = 19; break;
-    // case LB_CM: input = 20; break;
-    // case LB_WJ: input = 21; break;
-
-    // case LB_SP: input = 22; break;
-    // case LB_BK: input = 23; break;
-    // case LB_NL: input = 24; break;
-    // case LB_CR: input = 25; break;
-    // case LB_LF: input = 26; break;
-
-    // case LB_CB: input = 27; break;
-    // case LB_SA: input = 28; break;
-    // case LB_AI: input = 29; break;
-    // case LB_SG: input = 30; break;
-    // }
-    //// if (old != input) System.out.println(old + " => " + input);
-    // return input;
-    // }
-
-    // public void sampleDescription(PrintWriter out) {
-    // out.println("# Samples:");
-    // out.println("# The test currently takes all pairs of linebreak types*,");
-    // out.println("# picks a sample for each type, and generates three strings: ");
-    // out.println("#\t- the pair alone");
-    // out.println("#\t- the pair alone with an imbeded space");
-    // out.println("#\t- the pair alone with embedded combining marks");
-    // out.println("# The sample for each type is simply the first code point (above NULL)");
-    // out.println("# with that property.");
-    // out.println("# * Note:");
-    // out.println("#\t- SG is omitted");
-    // out.println("#\t- 3 different Jamo characters and a supplementary character are added");
-    // out.println("#\t  The syllable types for the Jamo (L, V, T) are displayed in comments");
-    // out.println("#\t  instead of the linebreak property");
-    // out.println("#");
-    // }
-
-    //// stuff that subclasses need to override
-    // public int genTestItems(String before, String after, String[] results) {
-    // results[0] = before + after;
-    // results[1] = before + " " + after;
-    // results[2] = before + "\u0301\u0308" + after;
-    // return 3;
-    // }
-
-    //// stuff that subclasses need to override
-    // boolean skipType(int type) {
-    // return type == LB_AI || type == LB_SA || type == LB_SG || type == LB_XX
-    // || type == LB_CB || type == LB_CR || type == LB_BK || type == LB_LF
-    // || type == LB_NL || type == LB_SP;
-    // }
-
-    //// stuff that subclasses need to override
-    // public String getTypeID(int cp) {
-    /// *
-    // byte result = getType(cp);
-    // if (result == LB_SUP) return "SUP";
-    // if (result >= LB_LIMIT) return hNames[result - LB_LIMIT];
-    // */
-    //// return ucd.getLineBreakID_fromIndex(cp); // AsmusOrderToMyOrder[result]);
-    // return ucd.getLineBreakID(cp); // AsmusOrderToMyOrder[result]);
-    // }
-
-    // public String fullBreakSample() {
-    // return ")a";
-    // }
-
-    //// stuff that subclasses need to override
-    // public byte getType(int cp) {
-    /// *if (cp > 0xFFFF) return LB_SUP;
-    // byte result = getHangulType(cp);
-    // if (result != hNot) return (byte)(result + LB_LIMIT);
-    // */
-    //// return MyOrderToAsmusOrder[ucd.getLineBreak(cp)];
-    // return ucd.getLineBreak(cp);
-    // }
-
-    // public String getTableEntry(String before, String after, String[] ruleOut) {
-    // String t = "_"; // break
-    // boolean spaceBreak = isBreak(before + " " + after, before.length()+1);
-    // String spaceRule = getRule();
-
-    // boolean spaceBreak2 = isBreak(before + " " + after, before.length());
-    // String spaceRule2 = getRule();
-
-    // boolean normalBreak = isBreak(before + after, before.length());
-    // String normalRule = getRule();
-
-    // ruleOut[0] = normalRule;
-    // if (!normalBreak) {
-    // if (!spaceBreak && !spaceBreak2) {
-    // t = "^"; // don't break, even with intervening spaces
-    // } else {
-    // t = "%"; // don't break, but break with intervening spaces
-    // }
-    // if (!spaceRule2.equals(normalRule)) {
-    // ruleOut[0] += " [" + spaceRule2 + "]";
-    // }
-    // if (!spaceRule.equals(normalRule) && !spaceRule.equals(spaceRule2)) {
-    // ruleOut[0] += " {" + spaceRule + "}";
-    // }
-    // }
-    // return t;
-    // }
-
-    // public boolean highlightTableEntry(int x, int y, String s) {
-    // return false;
-    /// *
-    // try {
-    // return !oldLineBreak[x][y].equals(s);
-    // } catch (Exception e) {}
-    // return true;
-    // */
-    // }
-
-    /// *
-    // String[][] oldLineBreak = {
-    // {"^",        "^",        "^",        "^",        "^",        "^",        "^",        "^",
-    //    "^",        "^",        "^",        "^",        "^",        "^",        "^",        "^",
-    //      "^",        "^",        "^",        "%"},
-    // {"_",        "^",        "%",        "%",        "^",        "^",        "^",        "^",
-    //    "",        "%",        "_",        "_",        "_",        "_",        "%",        "%",
-    //     "_",        "_",        "^",        "%"},
-    // {"^",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "%",        "%",        "%",        "%",        "%",        "%",        "%",        "%",
-    //      "%",        "%",        "^",        "%"},
-    // {"%",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "%",        "%",        "%",        "%",        "%",        "%",        "%",        "%",
-    //      "%",        "%",        "^",        "%"},
-    // {"_",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "_",        "_",        "_",        "_",        "_",        "_",        "%",        "%",
-    //      "_",        "_",        "^",        "%"},
-    // {"_",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "_",        "_",        "_",        "_",        "_",        "_",        "%",        "%",
-    //      "_",        "_",        "^",        "%"},
-    // {"_",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "_",        "_",        "%",        "_",        "_",        "_",        "%",        "%",
-    //      "_",        "_",        "^",        "%"},
-    // {"_",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "_",        "_",        "%",        "_",        "_",        "_",        "%",        "%",
-    //      "_",        "_",        "^",        "%"},
-    // {"%",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "_",        "_",        "%",        "%",        "%",        "_",        "%",        "%",
-    //      "_",        "_",        "^",        "%"},
-    // {"_",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "_",        "_",        "_",        "_",        "_",        "_",        "%",        "%",
-    //      "_",        "_",        "^",        "%"},
-    // {"_",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "_",        "%",        "%",        "%",        "_",        "%",        "%",        "%",
-    //      "_",        "_",        "^",        "%"},
-    // {"_",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "_",        "_",        "%",        "%",        "_",        "%",        "%",        "%",
-    //      "_",        "_",        "^",        "%"},
-    // {"_",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "_",        "%",        "_",        "_",        "_",        "%",        "%",        "%",
-    //      "_",        "_",        "^",        "%"},
-    // {"_",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "_",        "_",        "_",        "_",        "_",        "%",        "%",        "%",
-    //      "_",        "_",        "^",        "%"},
-    // {"_",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "_",        "_",        "_",        "_",        "_",        "_",        "%",        "%",
-    //      "_",        "_",        "^",        "%"},
-    // {"_",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "_",        "_",        "_",        "_",        "_",        "_",        "%",        "%",
-    //      "_",        "_",        "^",        "%"},
-    // {"%",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "%",        "%",        "%",        "%",        "%",        "%",        "%",        "%",
-    //      "%",        "%",        "^",        "%"},
-    // {"_",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "_",        "_",        "_",        "_",        "_",        "_",        "%",        "%",
-    //      "_",        "^",        "^",        "%"},
-    // {"_",        "_",        "_",        "_",        "_",        "_",        "_",        "_",
-    //    "_",        "_",        "_",        "_",        "_",        "_",        "_",        "_",
-    //      "_",        "_",        "^",        "%"},
-    // {"_",        "^",        "%",        "%",        "%",        "^",        "^",        "^",
-    //    "_",        "_",        "%",        "%",        "_",        "%",        "%",        "%",
-    //      "_",        "_",        "^",        "%"}
-    // };
-    // */
-
-    // public byte getResolvedType (int cp) {
-    //// LB 1  Assign a line break category to each character of the input.
-    //// Resolve AI, CB, SA, SG, XX into other line break classes depending on criteria outside this
-    // algorithm.
-    // byte result = getType(cp);
-    // switch (result) {
-    // case LB_AI: result = LB_AI; break;
-    //// case LB_CB: result = LB_ID; break;
-    // case LB_SA: result = LB_AL; break;
-    //// case LB_SG: result = LB_XX; break; Surrogates; will never occur
-    // case LB_XX: result = LB_AL; break;
-    // }
-    /// *
-    // if (recommended) {
-    // if (getHangulType(cp) != hNot) {
-    // result = LB_ID;
-    // }
-    // }
-    // */
-
-    // return result;
-    // }
-
-    // public byte getSampleType (int cp) {
-    // if (ucd.getHangulSyllableType(cp) != NA) return LB_XX;
-    // return getType(cp);
-    // }
-
-    //// find out whether there is a break at offset
-    //// WARNING: as a side effect, sets "rule"
-
-    // public boolean isBreak(String source, int offset) {
-
-    //// LB 1  Assign a line break category to each character of the input.
-    //// Resolve AI, CB, SA, SG, XX into other line break classes depending on criteria outside this
-    // algorithm.
-    //// this is taken care of in the getResolvedType function
-
-    //// LB 2a  Never break at the start of text
-
-    // setRule("2a: × sot");
-    // if (offset <= 0) return false;
-
-    //// LB 2b  Always break at the end of text
-
-    // setRule("2b: ! eot");
-    // if (offset >= source.length()) return true;
-
-    //// UTF-16: never break in the middle of a code point
-
-    //// now get the base character before and after, and their types
-
-    // getGraphemeBases(breaker, source, offset, -1, context);
-
-    // byte before = context.tBefore;
-    // byte after = context.tAfter;
-    // byte before2 = context.tBefore2;
-    // byte after2 = context.tAfter2;
-
-    //// if (!onCodepointBoundary(source, offset)) return false;
-
-    //// now get the character before and after, and their types
-
-    //// int cpBefore = UTF16.charAt(source, offset-1);
-    //// int cpAfter = UTF16.charAt(source, offset);
-
-    //// byte before = getResolvedType(cpBefore);
-    //// byte after = getResolvedType(cpAfter);
-
-    // setRule("3a: CR × LF ; ( BK | CR | LF | NL ) !");
-
-    //// Always break after hard line breaks (but never between CR and LF).
-    //// CR ^ LF
-    // if (before == LB_CR && after == LB_LF) return false;
-    // if (before == LB_BK || before == LB_LF || before == LB_CR) return true;
-
-    //// LB 3b  Don’t break before hard line breaks.
-    // setRule("3b: × ( BK | CR | LF )");
-    // if (after == LB_BK || after == LB_LF || after == LB_CR) return false;
-
-    //// LB 4  Don’t break before spaces or zero-width space.
-    // setRule("4: × ( SP | ZW )");
-    // if (after == LB_SP || after == LB_ZW) return false;
-
-    //// LB 5 Break after zero-width space.
-    // setRule("5: ZW ÷");
-    // if (before == LB_ZW) return true;
-
-    //// LB 6  Don’t break graphemes (before combining marks, around virama or on sequences of
-    // conjoining Jamos.
-    // setRule("6: DGC -> FC");
-    // if (!grapheme.isBreak( source,  offset)) return false;
-
-    /// *
-    // if (before == LB_L && (after == LB_L || after == LB_V || after == LB_LV || after == LB_LVT))
-    // return false;
-    // if ((before == LB_LV || before == LB_V) && (after == LB_V || after == LB_T)) return false;
-    // if ((before == LB_LVT || before == LB_T) && (after == LB_T)) return false;
-    // */
-
-    // byte backBase = -1;
-    // boolean setBase = false;
-    // if (before == LB_CM) {
-    // setBase = true;
-    // int backOffset = findLastNon(source, offset, LB_CM);
-    // if (backOffset >= 0) {
-    // backBase = getResolvedType(UTF16.charAt(source, backOffset));
-    // }
-    // }
-
-    //// LB 7  In all of the following rules, if a space is the base character for a combining mark,
-    //// the space is changed to type ID. In other words, break before SP CM* in the same cases as
-    //// one would break before an ID.
-    // setRule("7: SP CM* -> ID");
-    // if (setBase && backBase == LB_SP) before = LB_ID;
-    // if (after == LB_SP && after2 == LB_CM) after = LB_ID;
-
-    // setRule("7a: X CM* -> X");
-    // if (after == LB_CM) return false;
-    // if (setBase && backBase != -1) before = LB_ID;
-
-    // setRule("7b: CM -> AL");
-    // if (setBase && backBase == -1) before = LB_AL;
-
-    //// LB 8  Don’t break before ‘]’ or ‘!’ or ‘;’ or ‘/’,  even after spaces.
-    //// × CL, × EX, × IS, × SY
-    // setRule("8: × ( CL | EX | IS | SY )");
-    // if (after == LB_CL || after == LB_EX || after == LB_SY | after == LB_IS) return false;
-
-    //// find the last non-space character; we will need it
-    // byte lastNonSpace = before;
-    // if (lastNonSpace == LB_SP) {
-    // int backOffset = findLastNon(source, offset, LB_SP);
-    // if (backOffset >= 0) {
-    // lastNonSpace = getResolvedType(UTF16.charAt(source, backOffset));
-    // }
-    // }
-
-    //// LB 9  Don’t break after ‘[’, even after spaces.
-    //// OP SP* ×
-    // setRule("9: OP SP* ×");
-    // if (lastNonSpace == LB_OP) return false;
-
-    //// LB 10  Don’t break within ‘�?[’, , even with intervening spaces.
-    //// QU SP* × OP
-    // setRule("10: QU SP* × OP");
-    // if (lastNonSpace == LB_QU && after == LB_OP) return false;
-
-    //// LB 11  Don’t break within ‘]h’, even with intervening spaces.
-    //// CL SP* × NS
-    // setRule("11: CL SP* × NS");
-    // if (lastNonSpace == LB_CL && after == LB_NS) return false;
-
-    //// LB 11a  Don’t break within ‘——’, even with intervening spaces.
-    //// B2 × B2
-    // setRule("11a: B2 × B2");
-    // if (lastNonSpace == LB_B2 && after == LB_B2) return false;
-
-    //// LB 13  Don’t break before or after NBSP or WORD JOINER
-    //// × GL
-    //// GL ×
-
-    // setRule("11b: × WJ ; WJ ×");
-    // if (after == LB_WJ || before == LB_WJ) return false;
-
-    //// [Note: by this time, all of the "X" in the table are accounted for. We can safely break
-    // after spaces.]
-
-    //// LB 12  Break after spaces
-    // setRule("12: SP ÷");
-    // if (before == LB_SP) return true;
-
-    //// LB 13  Don’t break before or after NBSP or WORD JOINER
-    // setRule("13: × GL ; GL ×");
-    // if (after == LB_GL || before == LB_GL) return false;
-
-    //// LB 14  Don’t break before or after ‘�?’
-    // setRule("14: × QU ; QU ×");
-    // if (before == LB_QU || after == LB_QU) return false;
-
-    //// LB 14a  Break before and after CB
-    // setRule("14a: ÷ CB ; CB ÷");
-    // if (before == LB_CB || after == LB_CB) return true;
-
-    //// LB 15  Don’t break before hyphen-minus, other hyphens, fixed-width spaces,
-    //// small kana and other non- starters,  or after acute accents:
-
-    // setRule("15: × ( BA | HY | NS ) ; BB ×");
-    // if (after == LB_NS) return false;
-    // if (after == LB_HY) return false;
-    // if (after == LB_BA) return false;
-    // if (before == LB_BB) return false;
-
-    //// setRule("15a: HY × NU"); // NEW
-    //// if (before == LB_HY && after == LB_NU) return false;
-
-    //// LB 16  Don’t break between two ellipses, or between letters or numbers and ellipsis:
-    //// Examples: ’9...’, ‘a...’, ‘H...’
-    // setRule("16: ( AL | ID | IN | NU ) × IN");
-    // if ((before == LB_NU || before == LB_AL || before == LB_ID) && after == LB_IN) return false;
-    // if (before == LB_IN && after == LB_IN) return false;
-
-    //// Don't break alphanumerics.
-    //// LB 17  Don’t break within ‘a9’, ‘3a’, or ‘H%’
-    //// Numbers are of the form PR ? ( OP | HY ) ? NU (NU | IS) * CL ?  PO ?
-    //// Examples:   $(12.35)    2,1234    (12)¢    12.54¢
-    //// This is approximated with the following rules. (Some cases already handled above,
-    //// like ‘9,’, ‘[9’.)
-    // setRule("17: ID × PO ; AL × NU; NU × AL");
-    // if (before == LB_ID && after == LB_PO) return false;
-    // if (before == LB_AL && after == LB_NU) return false;
-    // if (before == LB_NU && after == LB_AL) return false;
-
-    //// LB 18  Don’t break between the following pairs of classes.
-    //// CL × PO
-    //// HY × NU
-    //// IS × NU
-    //// NU × NU
-    //// NU × PO
-    //// PR × AL
-    //// PR × HY
-    //// PR × ID
-    //// PR × NU
-    //// PR × OP
-    //// SY × NU
-    //// Example pairs: ‘$9’, ‘$[’, ‘$-‘, ‘-9’, ‘/9’, ‘99’, ‘,9’,  ‘9%’ ‘]%’
-
-    // setRule("18: CL × PO ; NU × PO ; ( IS | NU | HY | PR | SY ) × NU ; PR × ( AL | HY | ID | OP
-    // )");
-    // if (before == LB_CL && after == LB_PO) return false;
-    // if (before == LB_IS && after == LB_NU) return false;
-    // if (before == LB_NU && after == LB_NU) return false;
-    // if (before == LB_NU && after == LB_PO) return false;
-
-    // if (before == LB_HY && after == LB_NU) return false;
-
-    // if (before == LB_PR && after == LB_AL) return false;
-    // if (before == LB_PR && after == LB_HY) return false;
-    // if (before == LB_PR && after == LB_ID) return false;
-    // if (before == LB_PR && after == LB_NU) return false;
-    // if (before == LB_PR && after == LB_OP) return false;
-
-    // if (before == LB_SY && after == LB_NU) return false;
-
-    //// LB 15b  Break after hyphen-minus, and before acute accents:
-    // setRule("18b: HY ÷ ; ÷ BB");
-    // if (before == LB_HY) return true;
-    // if (after == LB_BB) return true;
-
-    //// LB 19  Don’t break between alphabetics (“at�?)
-    //// AL × AL
-
-    // setRule("19: AL × AL");
-    // if (before == LB_AL && after == LB_AL) return false;
-
-    //// LB 20  Break everywhere else
-    //// ALL ÷
-    //// ÷ ALL
-
-    // if (ucd.getCompositeVersion() > 0x040000) {
-    // setRule("19b: IS × AL");
-    // if (before == LB_IS && after == LB_AL) return false;
-    // }
-
-    //// LB 20  Break everywhere else
-    //// ALL ÷
-    //// ÷ ALL
-
-    // setRule("20: ALL ÷ ; ÷ ALL");
-    // return true;
-    // }
-    // }
-
-    // ==============================================
-
-    // static class XGenerateSentenceBreakTest extends GenerateBreakTest {
-
-    // GenerateGraphemeBreakTest grapheme;
-    // MyBreakIterator breaker;
-
-    // XGenerateSentenceBreakTest(UCD ucd) {
-    // super(ucd);
-    // grapheme = new GenerateGraphemeBreakTest(ucd);
-    // breaker = new MyBreakIterator(grapheme);
-
-    // fileName = "Sentence";
-    // extraSamples = new String[] {
-    // };
-
-    // extraSingleSamples = new String[] {
-    // "(\"Go.\") (He did.)",
-    // "(\u201CGo?\u201D) (He did.)",
-    // "U.S.A\u0300. is",
-    // "U.S.A\u0300? He",
-    // "U.S.A\u0300.",
-    // "3.4",
-    // "c.d",
-    // "etc.)\u2019 \u2018(the",
-    // "etc.)\u2019 \u2018(The",
-    // "the resp. leaders are",
-    // "\u5B57.\u5B57",
-    // "etc.\u5B83",
-    // "etc.\u3002",
-    // "\u5B57\u3002\u5B83",
-    // };
-    // String[] temp = new String [extraSingleSamples.length * 2];
-    // System.arraycopy(extraSingleSamples, 0, temp, 0, extraSingleSamples.length);
-    // for (int i = 0; i < extraSingleSamples.length; ++i) {
-    // temp[i+extraSingleSamples.length] = insertEverywhere(extraSingleSamples[i], "\u2060",
-    // grapheme);
-    // }
-    // extraSingleSamples = temp;
-
-    // }
-
-    // Object foo = prop = unicodePropertySource.getProperty("Sentence_Break");
-
-    // final int
-    // CR =    addToMap("CR"),
-    // LF =    addToMap("LF"),
-    // Extend =    addToMap("Extend"),
-    // Sep =    addToMap("Sep"),
-    // Format =    addToMap("Format"),
-    // Sp = addToMap("Sp"),
-    // Lower = addToMap("Lower"),
-    // Upper = addToMap("Upper"),
-    // OLetter = addToMap("OLetter"),
-    // Numeric =     addToMap("Numeric"),
-    // ATerm =     addToMap("ATerm"),
-    // STerm =    addToMap("STerm"),
-    // Close =     addToMap("Close"),
-    // SContinue =     addToMap("SContinue"),
-    // Other = addToMapLast("Other");
-
-    //// stuff that subclasses need to override
-    // public String getTypeID(int cp) {
-    // return map.getLabel(cp);
-    // }
-
-    // public String fullBreakSample() {
-    // return "!a";
-    // }
-
-    //// stuff that subclasses need to override
-    // public byte getType(int cp) {
-    // return (byte) map.getIndex(cp);
-    // }
-
-    /// *LB_XX = 0, LB_OP = 1, LB_CL = 2, LB_QU = 3, LB_GL = 4, LB_NS = 5, LB_EX = 6, LB_SY = 7,
-    // LB_IS = 8, LB_PR = 9, LB_PO = 10, LB_NU = 11, LB_AL = 12, LB_ID = 13, LB_IN = 14, LB_HY = 15,
-    // LB_CM = 16, LB_BB = 17, LB_BA = 18, LB_SP = 19, LB_BK = 20, LB_CR = 21, LB_LF = 22, LB_CB =
-    // 23,
-    // LB_SA = 24, LB_AI = 25, LB_B2 = 26, LB_SG = 27, LB_ZW = 28,
-    // LB_NL = 29,
-    // LB_WJ = 30,
-    // */
-    /// *
-    // static final byte Format = 0, Sep = 1, Sp = 2, OLetter = 3, Lower = 4, Upper = 5,
-    // Numeric = 6, Close = 7, ATerm = 8, Term = 9, Other = 10,
-    // LIMIT = Other + 1;
-
-    // static final String[] Names = {"Format", "Sep", "Sp", "OLetter", "Lower", "Upper", "Numeric",
-    // "Close", "ATerm", "Term", "Other" };
-
-    // static UnicodeSet sepSet = new UnicodeSet("[\\u000a\\u000d\\u0085\\u2029\\u2028]");
-    // static UnicodeSet atermSet = new UnicodeSet("[\\u002E]");
-    // static UnicodeSet termSet = new UnicodeSet(
-    // "[\\u0021\\u003F\\u0589\\u061f\\u06d4\\u0700-\\u0702\\u0934"
-    // + "\\u1362\\u1367\\u1368\\u104A\\u104B\\u166E"
-    // + "\\u1803\\u1809\\u203c\\u203d"
-    // + "\\u2048\\u2049\\u3002\\ufe52\\ufe57\\uff01\\uff0e\\uff1f\\uff61]");
-
-    // static UnicodeProperty lowercaseProp = UnifiedBinaryProperty.make(DERIVED | PropLowercase);
-    // static UnicodeProperty uppercaseProp = UnifiedBinaryProperty.make(DERIVED | PropUppercase);
-
-    // UnicodeSet linebreakNS = UnifiedBinaryProperty.make(LINE_BREAK | LB_NU).getSet();
-    // */
-
-    /// *
-    //// stuff that subclasses need to override
-    // public String getTypeID(int cp) {
-    // byte type = getType(cp);
-    // return Names[type];
-    // }
-
-    //// stuff that subclasses need to override
-    // public byte getType(int cp) {
-    // byte cat = ucd.getCategory(cp);
-
-    // if (cat == Cf) return Format;
-    // if (sepSet.contains(cp)) return Sep;
-    // if (ucd.getBinaryProperty(cp, White_space)) return Sp;
-    // if (linebreakNS.contains(cp)) return Numeric;
-    // if (lowercaseProp.hasValue(cp)) return Lower;
-    // if (uppercaseProp.hasValue(cp) || cat == Lt) return Upper;
-    // if (alphabeticSet.contains(cp)) return OLetter;
-    // if (atermSet.contains(cp)) return ATerm;
-    // if (termSet.contains(cp)) return Term;
-    // if (cat == Po || cat == Pe
-    // || ucd.getLineBreak(cp) == LB_QU) return Close;
-    // return Other;
-    // }
-    // */
-
-    // public int genTestItems(String before, String after, String[] results) {
-    // results[0] = before + after;
-    /// *
-    // results[1] = 'a' + before + "\u0301\u0308" + after + "\u0301\u0308" + 'a';
-    // results[2] = 'a' + before + "\u0301\u0308" + samples[MidLetter] + after + "\u0301\u0308" +
-    // 'a';
-    // results[3] = 'a' + before + "\u0301\u0308" + samples[MidNum] + after + "\u0301\u0308" + 'a';
-    // */
-    // return 1;
-    // }
-
-    // static Context context = new Context();
-
-    // public boolean isBreak(String source, int offset) {
-
-    //// Break at the start and end of text.
-    // setRule("1: sot ÷");
-    // if (offset < 0 || offset > source.length()) return false;
-
-    // if (offset == 0) return true;
-
-    // setRule("2: ÷ eot");
-    // if (offset == source.length()) return true;
-
-    // setRule("3: Sep ÷");
-    // byte beforeChar = getResolvedType(source.charAt(offset-1));
-    // if (beforeChar == Sep) return true;
-
-    //// Treat a grapheme cluster as if it were a single character:
-    //// the first base character, if there is one; otherwise the first character.
-
-    // setRule("4: GC -> FC");
-    // if (!grapheme.isBreak( source,  offset)) return false;
-
-    //// Ignore interior Format characters. That is, ignore Format characters in all subsequent
-    // rules.
-    // setRule("5: X Format* -> X");
-    // byte afterChar = getResolvedType(source.charAt(offset));
-    // if (afterChar == Format) return false;
-
-    // getGraphemeBases(breaker, source, offset, Format, context);
-    // byte before = context.tBefore;
-    // byte after = context.tAfter;
-    // byte before2 = context.tBefore2;
-    // byte after2 = context.tAfter2;
-
-    //// HACK COPY for rule collection!
-    // if (collectingRules) {
-    // setRule("6: ATerm × ( Numeric | Lower )");
-    // setRule("7: Upper ATerm × Upper");
-    //// setRule("8: ATerm Close* Sp* × ( ¬(OLetter | Upper | Lower) )* Lower");
-    // setRule("8: ATerm Close* Sp* × ( ¬(OLetter | Upper | Lower | Sep | CR | LF | STerm | ATerm)
-    // )* Lower");
-    // setRule("8a: STerm | ATerm) Close* Sp* × (SContinue | STerm | ATerm)");
-    // setRule("9: ( Term | ATerm ) Close* × ( Close | Sp | Sep )");
-    // setRule("10: ( Term | ATerm ) Close* Sp × ( Sp | Sep )");
-    // setRule("11: ( Term | ATerm ) Close* Sp* ÷");
-    // setRule("12: Any × Any");
-    // collectingRules = false;
-    // }
-
-    //// Do not break after ambiguous terminators like period, if immediately followed by a number
-    // or lowercase letter, is between uppercase letters, or if the first following letter
-    // (optionally after certain punctuation) is lowercase. For example, a period may be an
-    // abbreviation or numeric period, and not mark the end of a sentence.
-
-    // if (before == ATerm) {
-    // setRule("6: ATerm × ( Numeric | Lower )");
-    // if (after == Lower || after == Numeric) return false;
-    // setRule("7: Upper ATerm × Upper");
-    // if (DEBUG_GRAPHEMES) System.out.println(context + ", " + Upper);
-    // if (before2 == Upper && after == Upper) return false;
-    // }
-
-    //// The following cases are all handled together.
-
-    //// First we loop backwards, checking for the different types.
-
-    // MyBreakIterator graphemeIterator = new MyBreakIterator(grapheme);
-    // graphemeIterator.set(source, offset);
-
-    // int state = 0;
-    // int lookAfter = -1;
-    // int cp;
-    // byte t;
-    // boolean gotSpace = false;
-    // boolean gotClose = false;
-
-    // behindLoop:
-    // while (true) {
-    // cp = graphemeIterator.previousBase();
-    // if (cp == -1) break;
-    // t = getResolvedType(cp);
-    // if (SHOW_TYPE) System.out.println(ucd.getCodeAndName(cp) + ", " + getTypeID(cp));
-
-    // if (t == Format) continue;  // ignore all formats!
-
-    // switch (state) {
-    // case 0:
-    // if (t == Sp) {
-    //// loop as long as we have Space
-    // gotSpace = true;
-    // continue behindLoop;
-    // } else if (t == Close) {
-    // gotClose = true;
-    // state = 1;    // go to close loop
-    // continue behindLoop;
-    // }
-    // break;
-    // case 1:
-    // if (t == Close) {
-    //// loop as long as we have Close
-    // continue behindLoop;
-    // }
-    // break;
-    // }
-    // if (t == ATerm) {
-    // lookAfter = ATerm;
-    // } else if (t == STerm) {
-    // lookAfter = STerm;
-    // }
-    // break;
-    // }
-
-    //// if we didn't find ATerm or Term, bail
-
-    // if (lookAfter == -1) {
-    //// Otherwise, do not break
-    //// Any × Any (11)
-    // setRule("12: Any × Any");
-    // return false;
-    // }
-
-    //// ATerm Close* Sp*×(¬( OLetter))* Lower(8)
-
-    //// Break after sentence terminators, but include closing punctuation, trailing spaces, and
-    // (optionally) a paragraph separator.
-    //// ( Term | ATerm ) Close*×( Close | Sp | Sep )(9)
-    //// ( Term | ATerm ) Close* Sp×( Sp | Sep )(10)
-    //// ( Term | ATerm ) Close* Sp*÷(11)
-
-    //// We DID find one. Loop to see if the right side is ok.
-
-    // graphemeIterator.set(source, offset);
-    // boolean isFirst = true;
-    // while (true) {
-    // cp = graphemeIterator.nextBase();
-    // if (cp == -1) break;
-    // t = getResolvedType(cp);
-    // if (SHOW_TYPE) System.out.println(ucd.getCodeAndName(cp) + ", " + getTypeID(cp));
-
-    // if (t == Format) continue;  // skip format characters!
-
-    // if (isFirst) {
-    // isFirst = false;
-    // if (lookAfter == ATerm && t == Upper) {
-    // setRule("8: ATerm Close* Sp* × ( ¬(OLetter | Upper | Lower | Sep | CR | LF | STerm | ATerm)
-    // )* Lower");
-    // return false;
-    // }
-    // if (gotSpace) {
-    // if (t == Sp || t == Sep) {
-    // setRule("10: ( Term | ATerm ) Close* Sp × ( Sp | Sep )");
-    // return false;
-    // }
-    // } else if (t == Close || t == Sp || t == Sep) {
-    // setRule("9: ( Term | ATerm ) Close* × ( Close | Sp | Sep )");
-    // return false;
-    // }
-    // if (lookAfter == STerm) break;
-    // }
-
-    //// at this point, we have an ATerm. All other conditions are ok, but we need to verify 6
-    // if (t != OLetter && t != Upper && t != Lower) continue;
-    // if (t == Lower) {
-    // setRule("8: ATerm Close* Sp* × ( ¬(OLetter | Upper | Lower) )* Lower");
-    // return false;
-    // }
-    // break;
-    // }
-    // setRule("11: ( Term | ATerm ) Close* Sp* ÷");
-    // return true;
-    // }
-    // }
-
     static final boolean DEBUG_GRAPHEMES = false;
     static final Transliterator escaper =
             Transliterator.createFromRules(
@@ -3093,89 +1916,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
             return result;
         }
     }
-
-    /*
-     *
-     *         if (false) {
-
-            PrintWriter log = Utility.openPrintWriter("Diff.txt", Utility.UTF8_WINDOWS);
-            UnicodeSet Term = new UnicodeSet(
-                "[\\u0021\\u003F\\u0589\\u061F\\u06D4\\u0700\\u0701\\u0702\\u0964\\u1362\\u1367"
-                + "\\u1368\\u104A\\u104B\\u166E\\u1803\\u1809\\u203C\\u203D\\u2047\\u2048\\u2049"
-                + "\\u3002\\uFE52\\uFE57\\uFF01\\uFF0E\\uFF1F\\uFF61]");
-            UnicodeSet terminal_punctuation = getSet(BINARY_PROPERTIES, Terminal_Punctuation);
-            UnicodeMap names = new UnicodeMap();
-            names.add("Pd", getSet(CATEGORY, Pd));
-            names.add("Ps", getSet(CATEGORY, Ps));
-            names.add("Pe", getSet(CATEGORY, Pe));
-            names.add("Pc", getSet(CATEGORY, Pc));
-            names.add("Po", getSet(CATEGORY, Po));
-            names.add("Pi", getSet(CATEGORY, Pi));
-            names.add("Pf", getSet(CATEGORY, Pf));
-
-            Utility.showSetDifferences(log, "Term", Term, "Terminal_Punctuation", terminal_punctuation, true, true, names, ucd);
-            Utility.showSetDifferences(log, "Po", getSet(CATEGORY, Po), "Terminal_Punctuation", terminal_punctuation, true, true, names, ucd);
-            log.close();
-
-            if (true) return;
-
-            UnicodeSet whitespace = getSet(BINARY_PROPERTIES, White_space);
-            UnicodeSet space = getSet(CATEGORY, Zs).addAll(getSet(CATEGORY, Zp)).addAll(getSet(CATEGORY, Zl));
-            Utility.showSetDifferences("White_Space", whitespace, "Z", space, true, ucd);
-
-            UnicodeSet isSpace = new UnicodeSet();
-            UnicodeSet isSpaceChar = new UnicodeSet();
-            UnicodeSet isWhitespace = new UnicodeSet();
-            for (int i = 0; i <= 0xFFFF; ++i) {
-                if (Character.isSpace((char)i)) isSpace.add(i);
-                if (Character.isSpaceChar((char)i)) isSpaceChar.add(i);
-                if (Character.isWhitespace((char)i)) isWhitespace.add(i);
-            }
-            Utility.showSetDifferences("White_Space", whitespace, "isSpace", isSpace, true, ucd);
-            Utility.showSetDifferences("White_Space", whitespace, "isSpaceChar", isSpaceChar, true, ucd);
-            Utility.showSetDifferences("White_Space", whitespace, "isWhitespace", isWhitespace, true, ucd);
-            return;
-        }
-
-        if (DEBUG) {
-            checkDecomps();
-
-            Utility.showSetNames("", new UnicodeSet("[\u034F\u00AD\u1806[:DI:]-[:Cs:]-[:Cn:]]"), true, ucd);
-
-            System.out.println("*** Extend - Cf");
-
-            generateTerminalClosure();
-
-            GenerateWordBreakTest gwb = new GenerateWordBreakTest();
-            PrintWriter systemPrintWriter = new PrintWriter(System.out);
-            gwb.printLine(systemPrintWriter, "n\u0308't", true, true, false);
-            systemPrintWriter.flush();
-            //showSet("sepSet", GenerateSentenceBreakTest.sepSet);
-            //showSet("atermSet", GenerateSentenceBreakTest.atermSet);
-            //showSet("termSet", GenerateSentenceBreakTest.termSet);
-        }
-
-        if (true) {
-            GenerateBreakTest foo = new GenerateLineBreakTest();
-            //foo.isBreak("(\"Go.\") (He did)", 5, true);
-            foo.isBreak("\u4e00\u4300", 1, true);
-            /*
-            GenerateSentenceBreakTest foo = new GenerateSentenceBreakTest();
-            //foo.isBreak("(\"Go.\") (He did)", 5, true);
-            foo.isBreak("3.4", 2, true);
-     * /
-        }
-
-        new GenerateGraphemeBreakTest().run();
-        new GenerateWordBreakTest().run();
-        new GenerateLineBreakTest().run();
-        new GenerateSentenceBreakTest().run();
-
-        //if (true) return; // cut short for now
-
-    }
-
-     */
 
     public static String[] add(String[] strings1, String... strings2) {
         final ArrayList<String> result = new ArrayList<String>(Arrays.asList(strings1));

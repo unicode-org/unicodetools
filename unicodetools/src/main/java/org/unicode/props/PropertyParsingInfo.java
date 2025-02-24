@@ -1,8 +1,8 @@
 package org.unicode.props;
 
 import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UnicodeSet;
@@ -26,6 +26,7 @@ import org.unicode.idna.Regexes;
 import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
 import org.unicode.props.PropertyUtilities.Merge;
 import org.unicode.props.UcdLineParser.IntRange;
+import org.unicode.props.UcdLineParser.UcdLine.Contents;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -44,13 +45,16 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     private static final String NEW_UNICODE_PROPS_DOCS =
             "https://github.com/unicode-org/unicodetools/blob/main/docs/newunicodeproperties.md";
     private static final VersionInfo MIN_VERSION = VersionInfo.getInstance(0, 0, 0, 0);
-    public final String file;
     public final UcdProperty property;
     public final int fieldNumber;
     public final SpecialProperty special;
 
-    public String oldFile;
-    public VersionInfo maxOldVersion = MIN_VERSION;
+    /**
+     * Maps from Unicode versions to files. A property whose file depends on the version has more
+     * than one entry. A particular file applies to the Unicode versions after the previous-version
+     * entry, up to and including its own version.
+     */
+    TreeMap<VersionInfo, String> files;
 
     /**
      * Maps from Unicode versions to default values. A property whose default value depends on the
@@ -94,7 +98,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
     public PropertyParsingInfo(
             String file, UcdProperty property, int fieldNumber, SpecialProperty special) {
-        this.file = file;
+        this.files = new TreeMap<>();
+        files.put(Settings.LATEST_VERSION_INFO, file);
         this.property = property;
         this.fieldNumber = fieldNumber;
         this.special = special;
@@ -110,13 +115,19 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         String _file = propertyInfo[0];
         final String propName = propertyInfo[1];
         UcdProperty _property = UcdProperty.forString(propName);
+        if (_property == null) {
+            throw new IllegalArgumentException("No such property: " + propName);
+        }
 
         String last = propertyInfo[propertyInfo.length - 1];
         if (VERSION.matcher(last).matches()) {
             propertyInfo[propertyInfo.length - 1] = "";
             PropertyParsingInfo result = property2PropertyInfo.get(_property);
-            result.oldFile = _file;
-            result.maxOldVersion = VersionInfo.getInstance(last.substring(1));
+            if (result == null) {
+                throw new IllegalArgumentException(
+                        "No modern info for property with old file record: " + propName);
+            }
+            result.files.put(VersionInfo.getInstance(last.substring(1)), _file);
             file2PropertyInfoSet.put(_file, result);
             return;
         }
@@ -157,13 +168,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
     @Override
     public String toString() {
-        return file
+        return files
                 + " ;\t"
                 + property
-                + " ;\t"
-                + oldFile
-                + " ;\t"
-                + maxOldVersion
                 + " ;\t"
                 + fieldNumber
                 + " ;\t"
@@ -179,10 +186,14 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 + " ;\t";
     }
 
+    // TODO(egg): This compares a strange subset of the fields which may be a historical artefact.
     @Override
     public int compareTo(PropertyParsingInfo arg0) {
         int result;
-        if (0 != (result = file.compareTo(arg0.file))) {
+        if (0
+                != (result =
+                        files.get(Settings.LATEST_VERSION_INFO)
+                                .compareTo(arg0.files.get(Settings.LATEST_VERSION_INFO)))) {
             return result;
         }
         if (0 != (result = property.toString().compareTo(arg0.property.toString()))) {
@@ -201,20 +212,21 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     }
 
     public String getFileName(VersionInfo ucdVersionRequested) {
-        String filename;
-        if (file.startsWith("Unihan") && ucdVersionRequested.compareTo(V13) >= 0) {
-            filename = property.toString();
-        } else {
-            filename = useOldFile(ucdVersionRequested) ? oldFile : file;
+        String file = null;
+        for (final var entry : files.entrySet()) {
+            if (ucdVersionRequested.compareTo(entry.getKey()) <= 0) {
+                file = entry.getValue();
+                break;
+            }
         }
-        return filename;
+        if (file.startsWith("Unihan") && ucdVersionRequested.compareTo(V13) >= 0) {
+            return property.toString();
+        } else {
+            return file;
+        }
     }
 
     private static final VersionInfo V13 = VersionInfo.getInstance(13);
-
-    public boolean useOldFile(VersionInfo ucdVersionRequested) {
-        return ucdVersionRequested.compareTo(maxOldVersion) <= 0;
-    }
 
     public static final Normalizer2 NFD = Normalizer2.getNFDInstance();
     public static final Normalizer2 NFC = Normalizer2.getNFCInstance();
@@ -544,7 +556,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     break;
                 case PropertyValue:
                     parsePropertyValueFile(
-                            parser.withMissing(true), indexUnicodeProperties, nextProperties);
+                            parser.withMissing(true),
+                            fileName,
+                            indexUnicodeProperties,
+                            nextProperties);
                     break;
                 case Confusables:
                     parseConfusablesFile(
@@ -727,6 +742,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
     private static void parsePropertyValueFile(
             UcdLineParser parser,
+            String filename,
             IndexUnicodeProperties indexUnicodeProperties,
             IndexUnicodeProperties nextProperties) {
         for (UcdLineParser.UcdLine line : parser) {
@@ -756,19 +772,53 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             // file: " + propInfo);
             //                    }
             String value;
-            if (line.getParts().length == 2) {
-                assert propInfo.property.getType() == PropertyType.Binary;
+            // The file emoji-sequences.txt has a comment-like field after the binary property.
+            if (line.getParts().length == 2
+                    || filename.equals("emoji/*/emoji-sequences")
+                    || filename.equals("emoji/*/emoji-zwj-sequences")) {
+                if (propInfo.property.getType() != PropertyType.Binary) {
+                    throw new IllegalArgumentException(
+                            "Expected a value for "
+                                    + propInfo.property.getType()
+                                    + " property "
+                                    + propName);
+                }
                 value = "Yes";
             } else {
-                value =
-                        propInfo.property.getType() == PropertyType.Binary
-                                ? "Yes"
-                                : line.getParts()[2];
+                value = line.getParts()[2];
+                if (propInfo.property.getType() == PropertyType.Binary) {
+                    if (line.getType() == Contents.DATA
+                            && UcdPropertyValues.Binary.forName(value)
+                                    != UcdPropertyValues.Binary.Yes) {
+                        // Most binary properties have no value field, but at least kEH_NoRotate has
+                        // Y.
+                        throw new IllegalArgumentException(
+                                "Unexpected value "
+                                        + value
+                                        + " for binary property "
+                                        + propName
+                                        + " in "
+                                        + filename);
+                    } else if (line.getType() == Contents.MISSING
+                            && UcdPropertyValues.Binary.forName(value)
+                                    != UcdPropertyValues.Binary.No) {
+                        throw new IllegalArgumentException(
+                                "Unexpected default "
+                                        + value
+                                        + " for binary property "
+                                        + propName
+                                        + " in "
+                                        + filename);
+                    }
+                }
                 // The value should not be an empty string.
                 // Exception: NFKC_Casefold does remove some characters by mapping them to nothing.
-                assert !value.isEmpty()
-                        || propInfo.property == UcdProperty.NFKC_Casefold
-                        || propInfo.property == UcdProperty.NFKC_Simple_Casefold;
+                if (value.isEmpty()
+                        && !(propInfo.property == UcdProperty.NFKC_Casefold
+                                || propInfo.property == UcdProperty.NFKC_Simple_Casefold)) {
+                    throw new IllegalArgumentException(
+                            "Unexpected empty value for property " + propName);
+                }
                 if (propInfo.property == UcdProperty.kMandarin) {
                     if (indexUnicodeProperties.oldVersion) {
                         value =
@@ -805,13 +855,53 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 } catch (Exception e) {
                     throw new IllegalArgumentException(line.getOriginalLine(), e);
                 }
+                if (data == null) {
+                    throw new IllegalArgumentException(
+                            "No map for property "
+                                    + propInfo.property
+                                    + " when parsing file "
+                                    + filename
+                                    + "; property expected in "
+                                    + propInfo.getFileName(indexUnicodeProperties.ucdVersion)
+                                    + " in "
+                                    + indexUnicodeProperties.ucdVersion);
+                }
+                if (data.isFrozen()) {
+                    throw new IllegalArgumentException(
+                            "Found record for frozen property "
+                                    + propInfo.property
+                                    + " when parsing file "
+                                    + filename
+                                    + "; property expected in "
+                                    + propInfo.getFileName(indexUnicodeProperties.ucdVersion)
+                                    + " in "
+                                    + indexUnicodeProperties.ucdVersion);
+                }
+                // Unihan 4.0 and earlier implemented multivalued properties by repeating the
+                // property value record instead of using a delimiter.
+                var merger =
+                        propInfo.property.getShortName().startsWith("cjk")
+                                        && indexUnicodeProperties.ucdVersion.compareTo(
+                                                        VersionInfo.UNICODE_4_0)
+                                                <= 0
+                                ? new PropertyUtilities.Joiner("|")
+                                : null;
+                final var originalMultivaluedSplit = propInfo.multivaluedSplit;
+                // The first version of kPrimaryNumeric had spaces in values.
+                if (propName.equals("kPrimaryNumeric")
+                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_4_0)
+                                <= 0) {
+                    propInfo.multivaluedSplit = NO_SPLIT;
+                }
                 propInfo.put(
                         data,
                         line.getRange(),
                         value,
+                        merger,
                         nextProperties == null
                                 ? null
                                 : nextProperties.getProperty(propInfo.property));
+                propInfo.multivaluedSplit = originalMultivaluedSplit;
             } else {
                 setPropDefault(
                         propInfo.property,

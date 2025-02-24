@@ -1,7 +1,7 @@
 package org.unicode.text.tools;
 
 import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.List;
 import org.unicode.cldr.draft.FileUtilities;

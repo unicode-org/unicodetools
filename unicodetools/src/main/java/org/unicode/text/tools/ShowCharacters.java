@@ -1,9 +1,9 @@
 package org.unicode.text.tools;
 
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.impl.Row.R5;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;

@@ -11,9 +11,9 @@
 package org.unicode.text.UCD;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.impl.Relation;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Transform;
@@ -1421,7 +1421,7 @@ public class GenerateConfusables {
             if (appendFile) {
                 final String[] replacements = {"%date%", Default.getDate()};
                 Utility.appendFile(
-                        Settings.SRC_UCD_DIR + "confusablesHeader.txt",
+                        GenerateConfusables.class.getResource("confusablesHeader.txt").getPath(),
                         Utility.UTF8_WINDOWS,
                         out,
                         replacements);

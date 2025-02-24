@@ -204,6 +204,7 @@ public class UcdPropertyValues {
         Bassa_Vah("Bassa_Vah"),
         Batak("Batak"),
         Bengali("Bengali"),
+        Beria_Erfe("Beria_Erfe"),
         Bhaiksuki("Bhaiksuki"),
         Block_Elements("Block_Elements"),
         Bopomofo("Bopomofo"),
@@ -221,6 +222,7 @@ public class UcdPropertyValues {
         Cherokee("Cherokee"),
         Cherokee_Supplement("Cherokee_Sup"),
         Chess_Symbols("Chess_Symbols"),
+        Chisoi("Chisoi"),
         Chorasmian("Chorasmian"),
         CJK_Unified_Ideographs("CJK"),
         CJK_Compatibility("CJK_Compat"),
@@ -236,6 +238,7 @@ public class UcdPropertyValues {
         CJK_Unified_Ideographs_Extension_G("CJK_Ext_G"),
         CJK_Unified_Ideographs_Extension_H("CJK_Ext_H"),
         CJK_Unified_Ideographs_Extension_I("CJK_Ext_I"),
+        CJK_Unified_Ideographs_Extension_J("CJK_Ext_J"),
         CJK_Radicals_Supplement("CJK_Radicals_Sup"),
         CJK_Strokes("CJK_Strokes"),
         CJK_Symbols_And_Punctuation("CJK_Symbols"),
@@ -386,6 +389,7 @@ public class UcdPropertyValues {
         Miscellaneous_Mathematical_Symbols_B("Misc_Math_Symbols_B"),
         Miscellaneous_Symbols_And_Pictographs("Misc_Pictographs"),
         Miscellaneous_Symbols("Misc_Symbols"),
+        Miscellaneous_Symbols_Supplement("Misc_Symbols_Sup"),
         Miscellaneous_Technical("Misc_Technical"),
         Modi("Modi"),
         Spacing_Modifier_Letters("Modifier_Letters"),
@@ -446,9 +450,11 @@ public class UcdPropertyValues {
         Samaritan("Samaritan"),
         Saurashtra("Saurashtra"),
         Sharada("Sharada"),
+        Sharada_Supplement("Sharada_Sup"),
         Shavian("Shavian"),
         Shorthand_Format_Controls("Shorthand_Format_Controls"),
         Siddham("Siddham"),
+        Sidetic("Sidetic"),
         Sinhala("Sinhala"),
         Sinhala_Archaic_Numbers("Sinhala_Archaic_Numbers"),
         Small_Form_Variants("Small_Forms"),
@@ -483,12 +489,14 @@ public class UcdPropertyValues {
         Tai_Tham("Tai_Tham"),
         Tai_Viet("Tai_Viet"),
         Tai_Xuan_Jing_Symbols("Tai_Xuan_Jing"),
+        Tai_Yo("Tai_Yo"),
         Takri("Takri"),
         Tamil("Tamil"),
         Tamil_Supplement("Tamil_Sup"),
         Tangsa("Tangsa"),
         Tangut("Tangut"),
         Tangut_Components("Tangut_Components"),
+        Tangut_Components_Supplement("Tangut_Components_Sup"),
         Tangut_Supplement("Tangut_Sup"),
         Telugu("Telugu"),
         Thaana("Thaana"),
@@ -497,6 +505,7 @@ public class UcdPropertyValues {
         Tifinagh("Tifinagh"),
         Tirhuta("Tirhuta"),
         Todhri("Todhri"),
+        Tolong_Siki("Tolong_Siki"),
         Toto("Toto"),
         Transport_And_Map_Symbols("Transport_And_Map"),
         Tulu_Tigalari("Tulu_Tigalari"),
@@ -1351,6 +1360,7 @@ public class UcdPropertyValues {
         Teh_Marbuta("Teh_Marbuta"),
         Teh_Marbuta_Goal("Teh_Marbuta_Goal", "Hamza_On_Heh_Goal"),
         Teth("Teth"),
+        Thin_Noon("Thin_Noon"),
         Thin_Yeh("Thin_Yeh"),
         Vertical_Tail("Vertical_Tail"),
         Waw("Waw"),
@@ -1421,6 +1431,10 @@ public class UcdPropertyValues {
     }
 
     // kAccountingNumeric
+    // kAlternateHanYu
+    // kAlternateJEF
+    // kAlternateKangXi
+    // kAlternateMorohashi
     // kAlternateTotalStrokes
     // kBigFive
     // kCangjie
@@ -1515,6 +1529,7 @@ public class UcdPropertyValues {
     // kJapanese
     // kJapaneseKun
     // kJapaneseOn
+    // kJHJ
     // kJinmeiyoKanji
     // kJis0
     // kJis1
@@ -1547,6 +1562,7 @@ public class UcdPropertyValues {
     // kRSKangXi
     // kRSKanWa
     // kRSKorean
+    // kRSMerged
     // kRSTUnicode
     // kRSUnicode
     // kSBGY
@@ -1570,6 +1586,7 @@ public class UcdPropertyValues {
     // kVietnameseNumeric
     // kXerox
     // kXHC1983
+    // kZhuang
     // kZhuangNumeric
     // kZVariant
     public enum Line_Break_Values implements Named {
@@ -1594,6 +1611,7 @@ public class UcdPropertyValues {
         Glue("GL"),
         H2("H2"),
         H3("H3"),
+        Unambiguous_Hyphen("HH"),
         Hebrew_Letter("HL"),
         Hyphen("HY"),
         Ideographic("ID"),
@@ -1851,6 +1869,7 @@ public class UcdPropertyValues {
         Bassa_Vah("Bass"),
         Batak("Batk"),
         Bengali("Beng"),
+        Beria_Erfe("Berf"),
         Bhaiksuki("Bhks"),
         Bopomofo("Bopo"),
         Brahmi("Brah"),
@@ -1862,6 +1881,7 @@ public class UcdPropertyValues {
         Carian("Cari"),
         Cham("Cham"),
         Cherokee("Cher"),
+        Chisoi("Chis"),
         Chorasmian("Chrs"),
         Coptic("Copt", "Qaac"),
         Cypro_Minoan("Cpmn"),
@@ -1970,6 +1990,7 @@ public class UcdPropertyValues {
         Shavian("Shaw"),
         Sharada("Shrd"),
         Siddham("Sidd"),
+        Sidetic("Sidt"),
         Khudawadi("Sind"),
         Sinhala("Sinh"),
         Sogdian("Sogd"),
@@ -1987,6 +2008,7 @@ public class UcdPropertyValues {
         Tamil("Taml"),
         Tangut("Tang"),
         Tai_Viet("Tavt"),
+        Tai_Yo("Tayo"),
         Telugu("Telu"),
         Tifinagh("Tfng"),
         Tagalog("Tglg"),
@@ -1996,6 +2018,7 @@ public class UcdPropertyValues {
         Tirhuta("Tirh"),
         Tangsa("Tnsa"),
         Todhri("Todr"),
+        Tolong_Siki("Tols"),
         Toto("Toto"),
         Tulu_Tigalari("Tutg"),
         Ugaritic("Ugar"),

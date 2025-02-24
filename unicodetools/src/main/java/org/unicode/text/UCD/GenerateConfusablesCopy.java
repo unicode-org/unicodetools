@@ -11,10 +11,10 @@
 package org.unicode.text.UCD;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Transform;
@@ -2125,7 +2125,9 @@ public class GenerateConfusablesCopy {
             if (appendFile) {
                 final String[] replacements = {"%date%", Default.getDate()};
                 Utility.appendFile(
-                        Settings.SRC_UCD_DIR + "confusablesHeader.txt",
+                        GenerateConfusablesCopy.class
+                                .getResource("confusablesHeader.txt")
+                                .getPath(),
                         Utility.UTF8_WINDOWS,
                         out,
                         replacements);

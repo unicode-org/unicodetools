@@ -7,7 +7,7 @@
 package org.unicode.props;
 
 import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.SymbolTable;
 import com.ibm.icu.text.UTF16;
@@ -20,6 +20,7 @@ import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -157,11 +158,15 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     private boolean isMultivalued = false;
 
     private String delimiter = ",";
-    private Splitter delimiterSplitter = Splitter.on(delimiter);
+    protected Splitter delimiterSplitter = Splitter.on(delimiter);
 
     public UnicodeProperty setMultivalued(boolean value) {
         isMultivalued = value;
         return this;
+    }
+
+    public boolean isMultivalued() {
+        return isMultivalued;
     }
 
     public UnicodeProperty setDelimiter(String value) {
@@ -259,6 +264,12 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return _getVersion();
     }
 
+    public Iterable<String> getValues(int codepoint) {
+        return isMultivalued
+                ? delimiterSplitter.split(getValue(codepoint))
+                : Collections.singleton(getValue(codepoint));
+    }
+
     public String getValue(int codepoint) {
         if (DEBUG && CHECK_VALUE == codepoint && CHECK_NAME.equals(getName())) {
             String value = _getValue(codepoint);
@@ -286,8 +297,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (result == null) result = new ArrayList<>(1);
         result = _getValueAliases(valueAlias, result);
         if (!result.contains(valueAlias)) { // FIX && type < NUMERIC
-            if (type == MISC) {
+            if (type == MISC || type == NUMERIC) {
                 // Unihan has multivalued properties but does not use aliases.
+                // The concept of aliases does not really apply to numeric properties,
+                // but we should apply UAX44-LM1.  We don’t, though.
                 result.add(valueAlias);
             } else {
                 result = _getValueAliases(valueAlias, result); // for debugging

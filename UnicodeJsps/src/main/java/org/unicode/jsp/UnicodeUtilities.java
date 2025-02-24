@@ -1,7 +1,7 @@
 package org.unicode.jsp;
 
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R4;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
@@ -1648,6 +1648,7 @@ public class UnicodeUtilities {
             VersionInfo last;
             String value;
         }
+        final boolean isMultivalued = getFactory().getProperty(propName).isMultivalued();
         List<PropertyAssignment> history = new ArrayList<>();
         // TODO(eggrobin): TUP normalization chokes on sufficiently old versions, but this is not
         // worth debugging as we want to get rid of it.
@@ -1732,17 +1733,21 @@ public class UnicodeUtilities {
                 out.append(
                         "<td"
                                 + defaultClass
-                                + "><a target='u' "
-                                + (isNew ? "class='changed' " : "")
-                                + "href='list-unicodeset.jsp?a=[:"
-                                + (isCurrent ? "" : "U" + last + ":")
-                                + propName
-                                + "="
-                                + hValue
-                                + ":]'>"
+                                + ">"
+                                + (isMultivalued
+                                        ? ""
+                                        : ("<a target='u' "
+                                                + (isNew ? "class='changed' " : "")
+                                                + "href='list-unicodeset.jsp?a=[:"
+                                                + (isCurrent ? "" : "U" + last + ":")
+                                                + propName
+                                                + "="
+                                                + hValue
+                                                + ":]'>"))
                                 + versionRange
                                 + hValue
-                                + "</a></td>");
+                                + (isMultivalued ? "" : "</a>")
+                                + "</td>");
             }
         }
         out.append("</tr>");

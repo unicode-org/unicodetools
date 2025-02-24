@@ -1,6 +1,6 @@
 package org.unicode.tools.emoji;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.ICUUncheckedIOException;

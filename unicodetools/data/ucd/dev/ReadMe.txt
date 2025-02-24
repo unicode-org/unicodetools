@@ -7,6 +7,7 @@
 # For documentation, see the following:
 # NamesList.html
 # UAX #38, "Unicode Han Database (Unihan)"
+# UAX #42, "Unicode Character Database in XML"
 # UAX #44, "Unicode Character Database"
 # UTS #51, "Unicode Emoji"
 # UAX #57, "Unicode Egyptian Hieroglyph Database"

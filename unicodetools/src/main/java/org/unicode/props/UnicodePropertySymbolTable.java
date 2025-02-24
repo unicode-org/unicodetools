@@ -7,11 +7,12 @@
 package org.unicode.props;
 
 import com.ibm.icu.impl.UnicodeRegex;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Function;
 import org.unicode.props.UnicodeProperty.PatternMatcher;
 
 /**
@@ -201,8 +202,12 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
                 if (isAge) {
                     set =
                             prop.getSet(
-                                    new ComparisonMatcher(
-                                            propertyValue, Relation.geq, DOUBLE_STRING_COMPARATOR));
+                                    new ComparisonMatcher<VersionInfo>(
+                                            UnicodePropertySymbolTable.parseVersionInfoOrMax(
+                                                    propertyValue),
+                                            Relation.geq,
+                                            Comparator.nullsFirst(Comparator.naturalOrder()),
+                                            UnicodePropertySymbolTable::parseVersionInfoOrMax));
                 } else {
                     set = prop.getSet(propertyValue);
                 }
@@ -242,24 +247,26 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
         greater
     }
 
-    public static class ComparisonMatcher implements PatternMatcher {
+    public static class ComparisonMatcher<T> implements PatternMatcher {
         final Relation relation;
-        final Comparator<String> comparator;
-        String pattern;
+        final Comparator<T> comparator;
+        final Function<String, T> parser;
+        T expected;
 
-        public ComparisonMatcher(String pattern, Relation relation) {
-            this(pattern, relation, new UTF16.StringComparator(true, false, 0));
-        }
-
-        public ComparisonMatcher(String pattern, Relation relation, Comparator<String> comparator) {
+        public ComparisonMatcher(
+                T expected,
+                Relation relation,
+                Comparator<T> comparator,
+                Function<String, T> parser) {
             this.relation = relation;
-            this.pattern = pattern;
+            this.expected = expected;
             this.comparator = comparator;
+            this.parser = parser;
         }
 
         @Override
         public boolean test(String value) {
-            int comp = comparator.compare(pattern, value);
+            int comp = comparator.compare(expected, parser.apply(value));
             switch (relation) {
                 case less:
                     return comp < 0;
@@ -276,41 +283,19 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
 
         @Override
         public PatternMatcher set(String pattern) {
-            this.pattern = pattern;
+            this.expected = parser.apply(pattern);
             return this;
         }
     }
 
-    /** Special parser for doubles. Anything not parsable is higher than everything else. */
-    public static final Comparator<String> DOUBLE_STRING_COMPARATOR =
-            new Comparator<String>() {
-
-                @Override
-                public int compare(String o1, String o2) {
-                    if (o1 == o2) {
-                        return 0;
-                    } else if (o1 == null) {
-                        return -1;
-                    } else if (o2 == null) {
-                        return 1;
-                    } else {
-                        int f1 = o1.codePointAt(0);
-                        int f2 = o2.codePointAt(0);
-                        boolean n1 = f1 < '0' || f1 > '9';
-                        boolean n2 = f2 < '0' || f2 > '9';
-                        if (n1) {
-                            return n2 ? o1.compareTo(o2) : 1;
-                        } else if (n2) {
-                            return -1;
-                        }
-                        double d1 = Double.parseDouble(o1);
-                        double d2 = Double.parseDouble(o2);
-                        if (Double.isNaN(d1) || Double.isNaN(d2)) {
-                            throw new IllegalArgumentException();
-                        }
-
-                        return d1 > d2 ? 1 : d1 < d2 ? -1 : 0;
-                    }
-                }
-            };
+    public static VersionInfo parseVersionInfoOrMax(String s) {
+        if (s == null) {
+            return null;
+        }
+        try {
+            return VersionInfo.getInstance(s);
+        } catch (IllegalArgumentException e) {
+            return VersionInfo.getInstance(255, 255, 255, 255);
+        }
+    }
 }
