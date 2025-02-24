@@ -678,7 +678,7 @@ Let $AlphaExclusions := [
     \U0001D166
     \U0001D16D-\U0001D172
     \U0001D25F
-    [:gc=mc:]&[:ccc=9:]
+    [[:gc=mc:]&[:ccc=9:]]
     \u302E\u302F
 ]
 \p{Alphabetic} ⊇ [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} \p{GC=Mc} - $AlphaExclusions]
