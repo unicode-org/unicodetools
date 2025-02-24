@@ -1,5 +1,5 @@
 # SentenceBreakProperty-17.0.0.txt
-# Date: 2025-01-27, 18:09:39 GMT
+# Date: 2025-02-24, 14:36:42 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2550,7 +2550,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1B132         ; OLetter # Lo       HIRAGANA LETTER SMALL KO
 1B150..1B152  ; OLetter # Lo   [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
 1B155         ; OLetter # Lo       KATAKANA LETTER SMALL KO
-1B164..1B167  ; OLetter # Lo   [4] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL N
+1B164..1B168  ; OLetter # Lo   [5] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL ARCHAIC YE
 1B170..1B2FB  ; OLetter # Lo [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
 1BC00..1BC6A  ; OLetter # Lo [107] DUPLOYAN LETTER H..DUPLOYAN LETTER VOCALIC M
 1BC70..1BC7C  ; OLetter # Lo  [13] DUPLOYAN AFFIX LEFT HORIZONTAL SECANT..DUPLOYAN AFFIX ATTACHED TANGENT HOOK
@@ -2622,7 +2622,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 30000..3134A  ; OLetter # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..33479  ; OLetter # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 
-# Total code points: 141520
+# Total code points: 141521
 
 # ================================================
 
