@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Manual-->
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="Code points" id='schema.repertoire'>
+  code-point |=
+    element reserved {
+      set-of-code-points,
+      code-point-attributes }
+
+  code-point |=
+    element noncharacter {
+      set-of-code-points,
+      code-point-attributes }
+
+  code-point |=
+    element surrogate {
+      set-of-code-points,
+      code-point-attributes }
+
+  code-point |=
+    element char {
+      set-of-code-points,
+      code-point-attributes }
+</ucdxml:block>
