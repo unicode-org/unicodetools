@@ -149,7 +149,7 @@ public class TestUnicodeSet extends TestFmwk2 {
                 "\\P{Uppercase=@Changes_When_Lowercased@}");
 
         checkSetsEqual(
-                "\\p{Uppercase≠@Changes_When_Lowercased@}",
+                "\\p{Is_Uppercase≠@Changes_When_Lowercased@}",
                 "[[\\p{Uppercase}\\p{Changes_When_Lowercased}]-[\\p{Uppercase}&\\p{Changes_When_Lowercased}]]");
     }
 
@@ -161,7 +161,7 @@ public class TestUnicodeSet extends TestFmwk2 {
 
     @Test
     public void TestNullQuery() {
-        checkSetsEqual("\\p{Bidi_Paired_Bracket=@none@}", "\\p{Bidi_Paired_Bracket_Type=None}");
+        checkSetsEqual("\\p{Bidi_Paired_Bracket=@none@}", "\\p{Bidi_Paired_Bracket_Type=Is_None}");
         checkSetsEqual("\\p{Bidi_Paired_Bracket≠@None@}", "\\p{Bidi_Paired_Bracket_Type≠None}");
     }
 
