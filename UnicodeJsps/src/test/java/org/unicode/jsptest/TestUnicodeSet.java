@@ -146,18 +146,23 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkProperties("\\p{Uppercase≠@Changes_When_Lowercased@}", "[𝕬-𝖅]");
         checkSetsEqual(
                 "\\p{Uppercase≠@Changes_When_Lowercased@}",
+                "\\P{Uppercase=@Changes_When_Lowercased@}");
+
+        checkSetsEqual(
+                "\\p{Uppercase≠@Changes_When_Lowercased@}",
                 "[[\\p{Uppercase}\\p{Changes_When_Lowercased}]-[\\p{Uppercase}&\\p{Changes_When_Lowercased}]]");
     }
 
     @Test
     public void TestIdentityQuery() {
-        checkSetsEqual("\\p{NFKC_Casefold=@codepoint@}", "\\P{Changes_When_NFKC_Casefolded}");
-        checkSetsEqual("\\p{NFKC_Casefold=@Code_Point@}", "\\P{Changes_When_NFKC_Casefolded}");
+        checkSetsEqual("\\p{NFKC_Casefold=@code point@}", "\\P{Changes_When_NFKC_Casefolded}");
+        checkSetsEqual("\\p{NFKC_Casefold≠@Code_Point@}", "\\p{Changes_When_NFKC_Casefolded}");
     }
 
     @Test
     public void TestNullQuery() {
         checkSetsEqual("\\p{Bidi_Paired_Bracket=@none@}", "\\p{Bidi_Paired_Bracket_Type=None}");
+        checkSetsEqual("\\p{Bidi_Paired_Bracket≠@None@}", "\\p{Bidi_Paired_Bracket_Type≠None}");
     }
 
     //    public void TestAExemplars() {
