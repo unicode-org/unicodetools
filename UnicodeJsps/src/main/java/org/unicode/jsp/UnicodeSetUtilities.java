@@ -275,8 +275,8 @@ public class UnicodeSetUtilities {
                         if (invert != UnicodeProperty.equals(i, prop.getValue(i))) {
                             set.add(i);
                         }
-                        invert = false;
                     }
+                    invert = false;
                 } else if (testNone) {
                     set = prop.getSet(UnicodeProperty.NULL_MATCHER);
                 } else if (otherProperty != null) {
@@ -288,8 +288,8 @@ public class UnicodeSetUtilities {
                         if (invert != UnicodeProperty.equals(v1, v2)) {
                             set.add(i);
                         }
-                        invert = false;
                     }
+                    invert = false;
                 } else if (patternMatcher == null) {
                     if (!isValid(prop, propertyValue)) {
                         throw new IllegalArgumentException(
