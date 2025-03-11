@@ -250,13 +250,16 @@ public class UnicodeSetUtilities {
             }
             UnicodeProperty otherProperty = null;
             boolean testCp = false;
+            boolean testNone = false;
             if (trimmedPropertyValue.length() > 1
                     && trimmedPropertyValue.startsWith("@")
                     && trimmedPropertyValue.endsWith("@")) {
                 String otherPropName =
                         trimmedPropertyValue.substring(1, trimmedPropertyValue.length() - 1).trim();
-                if ("cp".equalsIgnoreCase(otherPropName)) {
+                if (UnicodeProperty.equalNames("code point", otherPropName)) {
                     testCp = true;
+                } else if (UnicodeProperty.equalNames("none", otherPropName)) {
+                    testNone = true;
                 } else {
                     otherProperty = factory.getProperty(otherPropName);
                 }
@@ -270,8 +273,12 @@ public class UnicodeSetUtilities {
                         if (invert != UnicodeProperty.equals(i, prop.getValue(i))) {
                             set.add(i);
                         }
+                        invert = false;
                     }
+                } else if (testNone) {
+                    set = prop.getSet(UnicodeProperty.NULL_MATCHER);
                 } else if (otherProperty != null) {
+                    System.err.println(otherProperty + ", " + invert);
                     set = new UnicodeSet();
                     for (int i = 0; i <= 0x10FFFF; ++i) {
                         String v1 = prop.getValue(i);
@@ -279,6 +286,7 @@ public class UnicodeSetUtilities {
                         if (invert != UnicodeProperty.equals(v1, v2)) {
                             set.add(i);
                         }
+                        invert = false;
                     }
                 } else if (patternMatcher == null) {
                     if (!isValid(prop, propertyValue)) {

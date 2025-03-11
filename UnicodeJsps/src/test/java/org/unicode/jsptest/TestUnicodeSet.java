@@ -141,6 +141,25 @@ public class TestUnicodeSet extends TestFmwk2 {
         logln(derived);
     }
 
+    @Test
+    public void TestInteriorlyNegatedComparison() {
+        checkProperties("\\p{Uppercase≠@Changes_When_Lowercased@}", "[𝕬-𝖅]");
+        checkSetsEqual(
+                "\\p{Uppercase≠@Changes_When_Lowercased@}",
+                "[[\\p{Uppercase}\\p{Changes_When_Lowercased}]-[\\p{Uppercase}&\\p{Changes_When_Lowercased}]]");
+    }
+
+    @Test
+    public void TestIdentityQuery() {
+        checkSetsEqual("\\p{NFKC_Casefold=@codepoint@}", "\\P{Changes_When_NFKC_Casefolded}");
+        checkSetsEqual("\\p{NFKC_Casefold=@Code_Point@}", "\\P{Changes_When_NFKC_Casefolded}");
+    }
+
+    @Test
+    public void TestNullQuery() {
+        checkSetsEqual("\\p{Bidi_Paired_Bracket=@none@}", "\\p{Bidi_Paired_Bracket_Type=None}");
+    }
+
     //    public void TestAExemplars() {
     //        checkProperties("[:exemplars_en:]", "[a]", "[\u0350]");
     //    }
@@ -380,7 +399,7 @@ public class TestUnicodeSet extends TestFmwk2 {
     public void TestNF() {
         for (String nf : new String[] {"d", "c", "kd", "kc"}) {
             checkSetsEqual("[:isnf" + nf + ":]", "[:nf" + nf + "qc!=N:]");
-            checkSetsEqual("[:isnf" + nf + ":]", "[:tonf" + nf + "=@cp@:]");
+            checkSetsEqual("[:isnf" + nf + ":]", "[:tonf" + nf + "=@code point@:]");
         }
     }
 
@@ -479,7 +498,7 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkProperties("\\p{isNFC}", "[:ASCII:]", "[\u212B]");
         checkProperties("[:isNFC=no:]", "[\u212B]", "[:ASCII:]");
         checkProperties("[:dt!=none:]&[:toNFD=/^\\p{ccc:0}/:]", "[\u00A0]", "[\u0340]");
-        checkProperties("[:toLowercase!=@cp@:]", "[A-Z\u00C0]", "[abc]");
+        checkProperties("[:toLowercase!=@code point@:]", "[A-Z\u00C0]", "[abc]");
         checkProperties("[:toNfkc!=@toNfc@:]", "[\\u00A0]", "[abc]");
 
         String trans1 = Common.NFKC_CF.transform("\u2065");
