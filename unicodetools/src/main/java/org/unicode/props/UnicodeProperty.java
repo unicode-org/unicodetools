@@ -712,7 +712,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                 }
             }
         }
-        while (skeletonBuffer.subSequence(0, 2).equals("is")) {
+        while (skeletonBuffer.length() >= 2 && skeletonBuffer.subSequence(0, 2).equals("is")) {
             gotOne = true;
             skeletonBuffer.delete(0, 2);
         }
