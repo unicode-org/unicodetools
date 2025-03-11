@@ -161,6 +161,12 @@ public class TestUnicodeSet extends TestFmwk2 {
 
     @Test
     public void TestNullQuery() {
+        // Check that we are not falling into the trap described in
+        // https://www.unicode.org/reports/tr44/#UAX44-LM3.
+        checkProperties("\\p{lb=IS}", "[,.:;]");
+        // TODO(egg): This should perhaps be an error. But if it is not an error, it
+        // should be empty.
+        checkSetsEqual("\\p{lb=@none@}", "[]");
         checkSetsEqual("\\p{Bidi_Paired_Bracket=@none@}", "\\p{Bidi_Paired_Bracket_Type=Is_None}");
         checkSetsEqual("\\p{Bidi_Paired_Bracket≠@None@}", "\\p{Bidi_Paired_Bracket_Type≠None}");
     }
