@@ -720,7 +720,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return skeletonBuffer.toString();
     }
 
-    // get the name skeleton
+    /** Returns a representative of the equivalence class of source under UAX44-LM2. */
     public static String toNameSkeleton(String source) {
         if (source == null) return null;
         StringBuffer result = new StringBuffer();

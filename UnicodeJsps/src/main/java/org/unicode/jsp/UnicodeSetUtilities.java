@@ -264,6 +264,8 @@ public class UnicodeSetUtilities {
                     otherProperty = factory.getProperty(otherPropName);
                 }
             }
+            // TODO(egg): Name and Name_Alias require special handling (UAX44-LM2), and
+            // treating Name_Alias as aliases for Name.
             boolean isAge = UnicodeProperty.equalNames("age", propertyName);
             if (prop != null) {
                 UnicodeSet set;
