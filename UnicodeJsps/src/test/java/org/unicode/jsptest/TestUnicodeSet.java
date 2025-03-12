@@ -163,6 +163,36 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkSetsEqual("[\\p{Mc}\\p{Me}\\p{Mn}]", "\\p{gc=Combining_Mark}");
     }
 
+    @Test
+    public void TestInteriorlyNegatedComparison() {
+        checkProperties("\\p{Uppercase≠@Changes_When_Lowercased@}", "[𝕬-𝖅]");
+        checkSetsEqual(
+                "\\p{Uppercase≠@Changes_When_Lowercased@}",
+                "\\P{Uppercase=@Changes_When_Lowercased@}");
+
+        checkSetsEqual(
+                "\\p{Is_Uppercase≠@Changes_When_Lowercased@}",
+                "[[\\p{Uppercase}\\p{Changes_When_Lowercased}]-[\\p{Uppercase}&\\p{Changes_When_Lowercased}]]");
+    }
+
+    @Test
+    public void TestIdentityQuery() {
+        checkSetsEqual("\\p{NFKC_Casefold=@code point@}", "\\P{Changes_When_NFKC_Casefolded}");
+        checkSetsEqual("\\p{NFKC_Casefold≠@Code_Point@}", "\\p{Changes_When_NFKC_Casefolded}");
+    }
+
+    @Test
+    public void TestNullQuery() {
+        // Check that we are not falling into the trap described in
+        // https://www.unicode.org/reports/tr44/#UAX44-LM3.
+        checkProperties("\\p{lb=IS}", "[,.:;]");
+        // TODO(egg): This should perhaps be an error. But if it is not an error, it
+        // should be empty.
+        checkSetsEqual("\\p{lb=@none@}", "[]");
+        checkSetsEqual("\\p{Bidi_Paired_Bracket=@none@}", "\\p{Bidi_Paired_Bracket_Type=Is_None}");
+        checkSetsEqual("\\p{Bidi_Paired_Bracket≠@None@}", "\\p{Bidi_Paired_Bracket_Type≠None}");
+    }
+
     //    public void TestAExemplars() {
     //        checkProperties("[:exemplars_en:]", "[a]", "[\u0350]");
     //    }
@@ -402,7 +432,7 @@ public class TestUnicodeSet extends TestFmwk2 {
     public void TestNF() {
         for (String nf : new String[] {"d", "c", "kd", "kc"}) {
             checkSetsEqual("[:isnf" + nf + ":]", "[:nf" + nf + "qc!=N:]");
-            checkSetsEqual("[:isnf" + nf + ":]", "[:tonf" + nf + "=@cp@:]");
+            checkSetsEqual("[:isnf" + nf + ":]", "[:tonf" + nf + "=@code point@:]");
         }
     }
 
@@ -501,7 +531,7 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkProperties("\\p{isNFC}", "[:ASCII:]", "[\u212B]");
         checkProperties("[:isNFC=no:]", "[\u212B]", "[:ASCII:]");
         checkProperties("[:dt!=none:]&[:toNFD=/^\\p{ccc:0}/:]", "[\u00A0]", "[\u0340]");
-        checkProperties("[:toLowercase!=@cp@:]", "[A-Z\u00C0]", "[abc]");
+        checkProperties("[:toLowercase!=@code point@:]", "[A-Z\u00C0]", "[abc]");
         checkProperties("[:toNfkc!=@toNfc@:]", "[\\u00A0]", "[abc]");
 
         String trans1 = Common.NFKC_CF.transform("\u2065");

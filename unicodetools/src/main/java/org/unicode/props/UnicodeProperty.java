@@ -691,8 +691,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return toSkeleton(a).compareTo(toSkeleton(b));
     }
 
-    /** Utility for managing property & non-string value aliases */
-    // TODO account for special names, tibetan, hangul
+    /** Returns a representative of the equivalence class of source under UAX44-LM3. */
     public static String toSkeleton(String source) {
         if (source == null) return null;
         StringBuffer skeletonBuffer = new StringBuffer();
@@ -713,11 +712,15 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                 }
             }
         }
+        while (skeletonBuffer.length() >= 2 && skeletonBuffer.subSequence(0, 2).equals("is")) {
+            gotOne = true;
+            skeletonBuffer.delete(0, 2);
+        }
         if (!gotOne) return source; // avoid string creation
         return skeletonBuffer.toString();
     }
 
-    // get the name skeleton
+    /** Returns a representative of the equivalence class of source under UAX44-LM2. */
     public static String toNameSkeleton(String source) {
         if (source == null) return null;
         StringBuffer result = new StringBuffer();
