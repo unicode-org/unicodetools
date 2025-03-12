@@ -27,17 +27,21 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.opentest4j.TestAbortedException;
 import org.unicode.jsp.CharEncoder;
 import org.unicode.jsp.Common;
+import org.unicode.jsp.UcdLoader;
 import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;
+import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.utility.Settings;
 
 public class TestUnicodeSet extends TestFmwk2 {
 
@@ -139,6 +143,24 @@ public class TestUnicodeSet extends TestFmwk2 {
         String derived = UnicodeUtilities.getPrettySet(source, false, false);
         assertTrue("contains 00A0", derived.contains("00A0"));
         logln(derived);
+    }
+
+    @Test
+    @EnabledIfSystemProperty(
+            named = "UNICODETOOLS_TEST_WITH_INCREMENTAL_PROPERTIES",
+            matches = ".*",
+            disabledReason = "Tests with incremental properties must be run separately")
+    public void TestGeneralCategoryGroupingsWithIncrementalProperties() {
+        IndexUnicodeProperties.useIncrementalProperties();
+        UcdLoader.setOldestLoadedUcd(VersionInfo.UNICODE_10_0);
+        checkSetsEqual("[\\p{U10:Lu}\\p{U10:Ll}\\p{U10:Lm}\\p{U10:Lt}\\p{U10:Lo}]", "\\p{U10:L}");
+        UcdLoader.setOldestLoadedUcd(Settings.LAST_VERSION_INFO);
+    }
+
+    @Test
+    public void TestGeneralCategoryGroupings() {
+        checkSetsEqual("[\\p{Lu}\\p{Ll}\\p{Lm}\\p{Lt}\\p{Lo}]", "\\p{L}");
+        checkSetsEqual("[\\p{Mc}\\p{Me}\\p{Mn}]", "\\p{gc=Combining_Mark}");
     }
 
     @Test

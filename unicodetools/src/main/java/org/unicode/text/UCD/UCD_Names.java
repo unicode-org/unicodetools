@@ -747,17 +747,6 @@ public final class UCD_Names implements UCD_Types {
         // usage)
     };
 
-    static final String[][] SUPER_CATEGORIES = {
-        {"L", "Letter", null, "Ll | Lm | Lo | Lt | Lu"},
-        {"M", "Mark", "Combining_Mark", "Mc | Me | Mn"},
-        {"N", "Number", null, "Nd | Nl | No"},
-        {"Z", "Separator", null, "Zl | Zp | Zs"},
-        {"C", "Other", "cntrl", "Cc | Cf | Cn | Co | Cs"},
-        {"S", "Symbol", null, "Sc | Sk | Sm | So"},
-        {"P", "Punctuation", "punct", "Pc | Pd | Pe | Pf | Pi | Po | Ps"},
-        {"LC", "Cased Letter", null, "Ll | Lt | Lu"},
-    };
-
     public static final Relation<String, String> EXTRA_GENERAL_CATEGORY =
             new Relation<String, String>(new TreeMap<String, Set<String>>(), LinkedHashSet.class);
 
