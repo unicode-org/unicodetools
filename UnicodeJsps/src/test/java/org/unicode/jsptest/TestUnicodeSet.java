@@ -27,6 +27,7 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -145,6 +146,10 @@ public class TestUnicodeSet extends TestFmwk2 {
     }
 
     @Test
+    @EnabledIfSystemProperty(
+            named = "UNICODETOOLS_TEST_WITH_INCREMENTAL_PROPERTIES",
+            matches = ".*",
+            disabledReason = "Tests with incremental properties must be run separately")
     public void TestGeneralCategoryGroupingsWithIncrementalProperties() {
         IndexUnicodeProperties.useIncrementalProperties();
         UcdLoader.setOldestLoadedUcd(VersionInfo.UNICODE_10_0);
