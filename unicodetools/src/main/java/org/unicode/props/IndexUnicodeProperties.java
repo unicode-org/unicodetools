@@ -796,14 +796,16 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 return super.getSet(matcher, result);
             }
             final long start = System.currentTimeMillis();
-            final UnicodeSet baseSet =
-                    baseVersionProperties.getProperty(prop).getSet(matcher, result);
+            final UnicodeSet baseSet = baseVersionProperties.getProperty(prop).getSet(matcher);
             final UnicodeSet matchingInThisVersion =
                     super.getSet(matcher, null).retainAll(getDiffSet());
-            result =
-                    baseSet.addAll(matchingInThisVersion)
-                            .removeAll(
-                                    getDiffSet().cloneAsThawed().removeAll(matchingInThisVersion));
+            baseSet.addAll(matchingInThisVersion)
+                    .removeAll(getDiffSet().cloneAsThawed().removeAll(matchingInThisVersion));
+            if (result == null) {
+                result = baseSet;
+            } else {
+                result.addAll(baseSet);
+            }
             final long stop = System.currentTimeMillis();
             final long Δt_in_ms = stop - start;
             if (Δt_in_ms > 100) {
