@@ -37,6 +37,8 @@ import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
 
 public class TestUnicodeSet extends TestFmwk2 {
@@ -151,6 +153,33 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkSetsEqual(
                 "\\p{Is_Uppercase≠@Changes_When_Lowercased@}",
                 "[[\\p{Uppercase}\\p{Changes_When_Lowercased}]-[\\p{Uppercase}&\\p{Changes_When_Lowercased}]]");
+    }
+
+    @Test
+    public void TestNameMatching() {
+        // UAX44-LM2 for both Name and Name_Alias.
+        checkSetsEqual("\\p{Name=NO-BREAK SPACE}", "[\\xA0]");
+        checkSetsEqual("\\p{Name=no break space}", "[\\xA0]");
+        checkSetsEqual("\\p{Name=HANGUL JUNGSEONG O-E}", "[\\u1180]");
+        checkSetsEqual("\\p{Name=HANGUL JUNGSEONG OE}", "[\\u116C]");
+        checkSetsEqual("\\p{Name=MARCHEN LETTER -A}", "[\\x{11C88}]");
+        checkSetsEqual("\\p{Name=MARCHEN LETTER A}", "[\\x{11C8F}]");
+        checkSetsEqual("\\p{Name=TIBETAN MARK TSA -PHRU}", "[\\u0F39]");
+        checkSetsEqual("\\p{Name=TIBETAN MARK TSA PHRU}", "[]");
+        checkSetsEqual("\\p{Name=TIBETAN MARK BKA- SHOG YIG MGO}", "[\\u0F0A]");
+        checkSetsEqual("\\p{Name=TIBETAN MARK BKA SHOG YIG MGO}", "[]");
+        checkSetsEqual("\\p{Name_Alias=newline}", "[\\x0A]");
+        checkSetsEqual("\\p{Name_Alias=NEW LINE}", "[\\x0A]");
+    }
+
+    @Test
+    public void TestNameAliases() {
+        // Name_Alias values behave as aliases for Name, but not vice-versa.
+        checkSetsEqual("\\p{Name=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET}", "[︘]");
+        checkSetsEqual("\\p{Name=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET}", "[︘]");
+        checkSetsEqual("\\p{Name_Alias=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET}", "[]");
+        checkSetsEqual("\\p{Name_Alias=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET}", "[︘]");
+        checkProperties("\\p{Name_Alias=@none@}", "[a-z]");
     }
 
     @Test

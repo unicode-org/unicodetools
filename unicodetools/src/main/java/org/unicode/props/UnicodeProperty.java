@@ -448,7 +448,11 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                             ? NULL_MATCHER
                             : new SimpleMatcher(
                                     propertyValue,
-                                    isType(STRING_OR_MISC_MASK) ? null : PROPERTY_COMPARATOR),
+                                    getName().equals("Name") || getName().equals("Name_Alias")
+                                            ? CHARACTER_NAME_COMPARATOR
+                                            : isType(STRING_OR_MISC_MASK)
+                                                    ? null
+                                                    : PROPERTY_COMPARATOR),
                     result);
         }
     }
@@ -720,8 +724,25 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return skeletonBuffer.toString();
     }
 
-    /** Returns a representative of the equivalence class of source under UAX44-LM2. */
-    public static String toNameSkeleton(String source) {
+    public static final Comparator<String> CHARACTER_NAME_COMPARATOR =
+            new Comparator<String>() {
+                @Override
+                public int compare(String o1, String o2) {
+                    return compareCharacterNames(o1, o2);
+                }
+            };
+
+    public static int compareCharacterNames(String a, String b) {
+        if (a == b) return 0;
+        if (a == null) return -1;
+        if (b == null) return 1;
+        return toNameSkeleton(a, false).compareTo(toNameSkeleton(b, false));
+    }
+
+    /** Returns a representative of the equivalence class of source under UAX44-LM2.
+     * If validate=true, checks that source contains only characters allowed in character names.
+     */
+    public static String toNameSkeleton(String source, boolean validate) {
         if (source == null) return null;
         StringBuffer result = new StringBuffer();
         // remove spaces, medial '-'
@@ -741,16 +762,24 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                         || (i == source.length() - 2
                                 && source.charAt(i - 1) == 'O'
                                 && source.charAt(i + 1) == 'E')) {
-                    System.out.println("****** EXCEPTION " + source);
+                    if (validate) {
+                        System.out.println("****** EXCEPTION " + source);
+                    }
                     result.append(ch);
                 }
                 // otherwise don't copy
-            } else {
+            } else if (validate) {
                 throw new IllegalArgumentException(
                         "Illegal Name Char: U+" + Utility.hex(ch) + ", " + ch);
+            } else if (ch != '_') {
+                result.append(Character.toUpperCase(ch));
             }
         }
         return result.toString();
+    }
+
+    public static String toNameSkeleton(String source) {
+        return toNameSkeleton(source, true);
     }
 
     /**
