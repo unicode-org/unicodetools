@@ -184,7 +184,14 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkSetsEqual("\\p{Name=HANGUL JUNGSEONG OE}", "[\\u116C]");
         checkSetsEqual("\\p{Name=Hangul jungseong o-e}", "[\\u1180]");
         checkSetsEqual("\\p{Name=Hangul jungseong oe}", "[\\u116C]");
+        checkSetsEqual("\\p{Name=HANGUL JUNGSEONG O -E}", "[\\u1180]");
+        checkSetsEqual("\\p{Name= HANGUL JUNGSEONG O-E }", "[\\u1180]");
+        checkSetsEqual("\\p{Name=_HANGUL_JUNGSEONG_O-E_}", "[\\u1180]");
+        checkSetsEqual("\\p{Name=HANGUL JUNGSEONG O-EO}", "[\\u117F]");
+        checkSetsEqual("\\p{Name=HANGUL JUNGSEONG OE O}", "[\\u117F]");
+        checkSetsEqual("\\p{Name=HANGUL JUNGSEONG O -EO}", "[]");
         checkSetsEqual("\\p{Name=MARCHEN LETTER -A}", "[\\x{11C88}]");
+        checkSetsEqual("\\p{Name=MARCHEN_LETTER_-A}", "[\\x{11C88}]");
         checkSetsEqual("\\p{Name=MARCHEN LETTER A}", "[\\x{11C8F}]");
         checkSetsEqual("\\p{Name=TIBETAN MARK TSA -PHRU}", "[\\u0F39]");
         checkSetsEqual("\\p{Name=TIBETAN MARK TSA PHRU}", "[]");

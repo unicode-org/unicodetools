@@ -750,19 +750,44 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         // we can do this with char, since no surrogates are involved
         for (int i = 0; i < source.length(); ++i) {
             char ch = source.charAt(i);
+            final char uppercase = Character.toUpperCase(ch);
+            if (validate && uppercase != ch) {
+                throw new IllegalArgumentException(
+                        "Illegal Name Char: U+" + Utility.hex(ch) + ", " + ch);
+            }
+            ch = uppercase;
             if (('0' <= ch && ch <= '9') || ('A' <= ch && ch <= 'Z') || ch == '<' || ch == '>') {
                 result.append(ch);
             } else if (ch == ' ') {
                 // don't copy ever
             } else if (ch == '-') {
-                // only copy non-medials AND trailing O-E
-                if (0 == i
-                        || i == source.length() - 1
-                        || source.charAt(i - 1) == ' '
-                        || source.charAt(i + 1) == ' '
-                        || (i == source.length() - 2
-                                && source.charAt(i - 1) == 'O'
-                                && source.charAt(i + 1) == 'E')) {
+                // Only copy a hyphen-minus if it is non-medial, or if it is
+                // the hyphen in U+1180 HANGUL JUNGSEONG O-E.
+                boolean medial;
+                if (0 == i || i == source.length() - 1) {
+                    medial = false; // Name-initial or name-final.
+                } else {
+                    final char preceding = Character.toUpperCase(source.charAt(i - 1));
+                    final char following = Character.toUpperCase(source.charAt(i + 1));
+                    medial =
+                            (('0' <= preceding && preceding <= '9')
+                                            || ('A' <= preceding && preceding <= 'Z'))
+                                    && (('0' <= following && following <= '9')
+                                            || ('A' <= following && following <= 'Z'));
+                }
+                boolean is1180 = false;
+                if (medial
+                        && i <= source.length() - 2
+                        && Character.toUpperCase(source.charAt(i + 1)) == 'E'
+                        && result.toString().equals("HANGULJUNGSEONGO")) {
+                    is1180 = true;
+                    for (int j = i + 2; j < source.length(); ++j) {
+                        if (source.charAt(j) != ' ' && source.charAt(j) != '_') {
+                            is1180 = false;
+                        }
+                    }
+                }
+                if (!medial || is1180) {
                     if (validate) {
                         System.out.println("****** EXCEPTION " + source);
                     }
