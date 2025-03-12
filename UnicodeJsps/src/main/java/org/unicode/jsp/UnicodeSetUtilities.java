@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import org.unicode.cldr.util.MultiComparator;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.PatternMatcher;
@@ -340,6 +342,15 @@ public class UnicodeSetUtilities {
                             }
                         }
                         set = prop.getSet(propertyValue);
+                        if (set.isEmpty()
+                                && prop instanceof IndexUnicodeProperties.IndexUnicodeProperty
+                                && prop.getName().equals("Name")) {
+                            set =
+                                    ((IndexUnicodeProperties.IndexUnicodeProperty) prop)
+                                            .getFactory()
+                                            .getProperty(UcdProperty.Name_Alias)
+                                            .getSet(propertyValue);
+                        }
                     }
                 } else if (isAge) {
                     set = new UnicodeSet();

@@ -685,7 +685,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     //        .get(toSkeleton(propertyAlias));
     //    }
 
-    class IndexUnicodeProperty extends UnicodeProperty.BaseProperty {
+    public class IndexUnicodeProperty extends UnicodeProperty.BaseProperty {
 
         private final UcdProperty prop;
         private final Map<String, PropertyNames> stringToNamedEnum;
@@ -723,6 +723,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 setMultivalued(true);
                 setDelimiter(SET_SEPARATOR);
             }
+        }
+
+        public IndexUnicodeProperties getFactory() {
+            return IndexUnicodeProperties.this;
         }
 
         @Override

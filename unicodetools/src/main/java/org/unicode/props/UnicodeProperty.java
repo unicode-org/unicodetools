@@ -739,8 +739,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return toNameSkeleton(a, false).compareTo(toNameSkeleton(b, false));
     }
 
-    /** Returns a representative of the equivalence class of source under UAX44-LM2.
-     * If validate=true, checks that source contains only characters allowed in character names.
+    /**
+     * Returns a representative of the equivalence class of source under UAX44-LM2. If
+     * validate=true, checks that source contains only characters allowed in character names.
      */
     public static String toNameSkeleton(String source, boolean validate) {
         if (source == null) return null;
