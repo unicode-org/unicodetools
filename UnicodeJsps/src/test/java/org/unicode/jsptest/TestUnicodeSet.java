@@ -33,11 +33,15 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.opentest4j.TestAbortedException;
 import org.unicode.jsp.CharEncoder;
 import org.unicode.jsp.Common;
+import org.unicode.jsp.UcdLoader;
 import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;
+import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.text.utility.Settings;
 
 public class TestUnicodeSet extends TestFmwk2 {
 
@@ -139,6 +143,14 @@ public class TestUnicodeSet extends TestFmwk2 {
         String derived = UnicodeUtilities.getPrettySet(source, false, false);
         assertTrue("contains 00A0", derived.contains("00A0"));
         logln(derived);
+    }
+
+    @Test
+    public void TestGeneralCategoryGroupings() {
+        IndexUnicodeProperties.useIncrementalProperties();
+        UcdLoader.setOldestLoadedUcd(VersionInfo.UNICODE_10_0);
+        checkSetsEqual("[\\p{U10:Lu}\\p{U10:Ll}\\p{U10:Lm}\\p{U10:Lt}\\p{U10:Lo}]", "\\p{U10:L}");
+        UcdLoader.setOldestLoadedUcd(Settings.LAST_VERSION_INFO);
     }
 
     //    public void TestAExemplars() {
