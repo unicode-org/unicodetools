@@ -9,6 +9,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 import java.text.ParsePosition;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -221,15 +222,15 @@ public class UnicodeSetUtilities {
             return status;
         }
 
-        private static String[][] COARSE_GENERAL_CATEGORIES = {
-            {"Other", "C", "Cc", "Cf", "Cn", "Co", "Cs"},
-            {"Letter", "L", "Ll", "Lm", "Lo", "Lt", "Lu"},
-            {"Cased_Letter", "LC", "Ll", "Lt", "Lu"},
-            {"Mark", "M", "Mc", "Me", "Mn"},
-            {"Number", "N", "Nd", "Nl", "No"},
-            {"Punctuation", "P", "Pc", "Pd", "Pe", "Pf", "Pi", "Po", "Ps"},
-            {"Symbol", "S", "Sc", "Sk", "Sm", "So"},
-            {"Separator", "Z", "Zl", "Zp", "Zs"},
+        private static String[][][] COARSE_GENERAL_CATEGORIES = {
+            {{"Other", "C"}, {"Cc", "Cf", "Cn", "Co", "Cs"}},
+            {{"Letter", "L"}, {"Ll", "Lm", "Lo", "Lt", "Lu"}},
+            {{"Cased_Letter", "LC"}, {"Ll", "Lt", "Lu"}},
+            {{"Mark", "M", "Combining_Mark"}, {"Mc", "Me", "Mn"}},
+            {{"Number", "N"}, {"Nd", "Nl", "No"}},
+            {{"Punctuation", "P"}, {"Pc", "Pd", "Pe", "Pf", "Pi", "Po", "Ps"}},
+            {{"Symbol", "S"}, {"Sc", "Sk", "Sm", "So"}},
+            {{"Separator", "Z"}, {"Zl", "Zp", "Zs"}},
         };
 
         // TODO(eggrobin): I think this function only ever returns true; might as well make it void.
@@ -304,13 +305,15 @@ public class UnicodeSetUtilities {
                                                 UnicodePropertySymbolTable::parseVersionInfoOrMax));
                     } else {
                         if (prop.getName().equals("General_Category")) {
-                            for (String[] coarseValue : COARSE_GENERAL_CATEGORIES) {
-                                final String longName = coarseValue[0];
-                                final String shortName = coarseValue[1];
-                                if (UnicodeProperty.equalNames(propertyValue, longName)
-                                        || UnicodeProperty.equalNames(propertyValue, shortName)) {
-                                    for (int i = 2; i < coarseValue.length; ++i) {
-                                        prop.getSet(coarseValue[i], result);
+                            for (String[][] coarseValue : COARSE_GENERAL_CATEGORIES) {
+                                final String[] aliases = coarseValue[0];
+                                if (Arrays.stream(aliases)
+                                        .anyMatch(
+                                                a ->
+                                                        UnicodeProperty.equalNames(
+                                                                propertyValue, a))) {
+                                    for (var value : coarseValue[1]) {
+                                        prop.getSet(value, result);
                                     }
                                     return true;
                                 }
