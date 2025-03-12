@@ -9,11 +9,12 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 import java.text.ParsePosition;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 import org.unicode.cldr.util.MultiComparator;
+import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.PatternMatcher;
 import org.unicode.props.UnicodePropertySymbolTable;
@@ -222,16 +223,25 @@ public class UnicodeSetUtilities {
             return status;
         }
 
-        private static String[][][] COARSE_GENERAL_CATEGORIES = {
-            {{"Other", "C"}, {"Cc", "Cf", "Cn", "Co", "Cs"}},
-            {{"Letter", "L"}, {"Ll", "Lm", "Lo", "Lt", "Lu"}},
-            {{"Cased_Letter", "LC"}, {"Ll", "Lt", "Lu"}},
-            {{"Mark", "M", "Combining_Mark"}, {"Mc", "Me", "Mn"}},
-            {{"Number", "N"}, {"Nd", "Nl", "No"}},
-            {{"Punctuation", "P"}, {"Pc", "Pd", "Pe", "Pf", "Pi", "Po", "Ps"}},
-            {{"Symbol", "S"}, {"Sc", "Sk", "Sm", "So"}},
-            {{"Separator", "Z"}, {"Zl", "Zp", "Zs"}},
-        };
+        private static Map<UcdPropertyValues.General_Category_Values, String[]>
+                COARSE_GENERAL_CATEGORIES =
+                        Map.of(
+                                UcdPropertyValues.General_Category_Values.Other,
+                                new String[] {"Cc", "Cf", "Cn", "Co", "Cs"},
+                                UcdPropertyValues.General_Category_Values.Letter,
+                                new String[] {"Ll", "Lm", "Lo", "Lt", "Lu"},
+                                UcdPropertyValues.General_Category_Values.Cased_Letter,
+                                new String[] {"Ll", "Lt", "Lu"},
+                                UcdPropertyValues.General_Category_Values.Mark,
+                                new String[] {"Mc", "Me", "Mn"},
+                                UcdPropertyValues.General_Category_Values.Number,
+                                new String[] {"Nd", "Nl", "No"},
+                                UcdPropertyValues.General_Category_Values.Punctuation,
+                                new String[] {"Pc", "Pd", "Pe", "Pf", "Pi", "Po", "Ps"},
+                                UcdPropertyValues.General_Category_Values.Symbol,
+                                new String[] {"Sc", "Sk", "Sm", "So"},
+                                UcdPropertyValues.General_Category_Values.Separator,
+                                new String[] {"Zl", "Zp", "Zs"});
 
         // TODO(eggrobin): I think this function only ever returns true; might as well make it void.
         private boolean applyPropertyAlias0(
@@ -315,14 +325,14 @@ public class UnicodeSetUtilities {
                                                 UnicodePropertySymbolTable::parseVersionInfoOrMax));
                     } else {
                         if (prop.getName().equals("General_Category")) {
-                            for (String[][] coarseValue : COARSE_GENERAL_CATEGORIES) {
-                                final String[] aliases = coarseValue[0];
-                                if (Arrays.stream(aliases)
+                            for (var entry : COARSE_GENERAL_CATEGORIES.entrySet()) {
+                                final var aliases = entry.getKey().getNames().getAllNames();
+                                if (aliases.stream()
                                         .anyMatch(
                                                 a ->
                                                         UnicodeProperty.equalNames(
                                                                 propertyValue, a))) {
-                                    for (var value : coarseValue[1]) {
+                                    for (var value : entry.getValue()) {
                                         prop.getSet(value, result);
                                     }
                                     return true;
