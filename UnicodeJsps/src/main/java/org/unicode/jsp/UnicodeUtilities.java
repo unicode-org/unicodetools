@@ -1398,9 +1398,13 @@ public class UnicodeUtilities {
 
         out.append("<div class='bigDiv'><table class='bigTable'>\n");
         out.append(
-                "<tr><td class='bigChar'>\u00A0"
+                "<tr><td class='bigChar'>"
+                        + "<svg width='1.16em' viewBox='0 0 116 116' overflow='visible'>"
+                        + "<path d='M   8,88 l 100,0' stroke='lightgrey'/>"
+                        + "<text y='88' x='0' textLength='116' font-size='100'>"
+                        + "\u00A0"
                         + toHTML.transliterate(text)
-                        + "\u00A0</td></tr>\n");
+                        + "\u00A0</text></svg></td></tr>\n");
         out.append("<tr><td class='bigCode'>" + hex + "</td></tr>\n");
         out.append("<tr><td class='bigName'>" + name + "</td></tr>\n");
         out.append("<tr><td class='bigName'>" + scriptCat + "</td></tr>\n");
