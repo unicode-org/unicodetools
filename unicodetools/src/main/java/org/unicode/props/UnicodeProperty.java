@@ -788,9 +788,6 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                     }
                 }
                 if (!medial || is1180) {
-                    if (validate) {
-                        System.out.println("****** EXCEPTION " + source);
-                    }
                     result.append(ch);
                 }
                 // otherwise don't copy
