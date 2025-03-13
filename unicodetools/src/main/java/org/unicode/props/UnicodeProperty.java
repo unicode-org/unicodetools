@@ -798,7 +798,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                 throw new IllegalArgumentException(
                         "Illegal Name Char: U+" + Utility.hex(ch) + ", " + ch);
             } else if (ch != '_') {
-                result.append(Character.toUpperCase(ch));
+                result.append(ch);
             }
         }
         return result.toString();
