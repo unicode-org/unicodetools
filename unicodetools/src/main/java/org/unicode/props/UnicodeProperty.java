@@ -767,13 +767,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                 if (0 == i || i == source.length() - 1) {
                     medial = false; // Name-initial or name-final.
                 } else {
-                    final char preceding = Character.toUpperCase(source.charAt(i - 1));
-                    final char following = Character.toUpperCase(source.charAt(i + 1));
                     medial =
-                            (('0' <= preceding && preceding <= '9')
-                                            || ('A' <= preceding && preceding <= 'Z'))
-                                    && (('0' <= following && following <= '9')
-                                            || ('A' <= following && following <= 'Z'));
+                            Character.isLetterOrDigit(source.charAt(i - 1))
+                                    && Character.isLetterOrDigit(source.charAt(i + 1));
                 }
                 boolean is1180 = false;
                 if (medial
