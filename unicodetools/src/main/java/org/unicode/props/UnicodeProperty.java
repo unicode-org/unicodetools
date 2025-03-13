@@ -448,7 +448,11 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                             ? NULL_MATCHER
                             : new SimpleMatcher(
                                     propertyValue,
-                                    isType(STRING_OR_MISC_MASK) ? null : PROPERTY_COMPARATOR),
+                                    getName().equals("Name") || getName().equals("Name_Alias")
+                                            ? CHARACTER_NAME_COMPARATOR
+                                            : isType(STRING_OR_MISC_MASK)
+                                                    ? null
+                                                    : PROPERTY_COMPARATOR),
                     result);
         }
     }
@@ -720,37 +724,81 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return skeletonBuffer.toString();
     }
 
-    /** Returns a representative of the equivalence class of source under UAX44-LM2. */
-    public static String toNameSkeleton(String source) {
+    public static final Comparator<String> CHARACTER_NAME_COMPARATOR =
+            new Comparator<String>() {
+                @Override
+                public int compare(String o1, String o2) {
+                    return compareCharacterNames(o1, o2);
+                }
+            };
+
+    public static int compareCharacterNames(String a, String b) {
+        if (a == b) return 0;
+        if (a == null) return -1;
+        if (b == null) return 1;
+        return toNameSkeleton(a, false).compareTo(toNameSkeleton(b, false));
+    }
+
+    /**
+     * Returns a representative of the equivalence class of source under UAX44-LM2. If
+     * validate=true, checks that source contains only characters allowed in character names.
+     */
+    public static String toNameSkeleton(String source, boolean validate) {
         if (source == null) return null;
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         // remove spaces, medial '-'
         // we can do this with char, since no surrogates are involved
         for (int i = 0; i < source.length(); ++i) {
             char ch = source.charAt(i);
+            final char uppercase = Character.toUpperCase(ch);
+            if (validate && uppercase != ch) {
+                throw new IllegalArgumentException(
+                        "Illegal Name Char: U+" + Utility.hex(ch) + ", " + ch);
+            }
+            ch = uppercase;
             if (('0' <= ch && ch <= '9') || ('A' <= ch && ch <= 'Z') || ch == '<' || ch == '>') {
                 result.append(ch);
             } else if (ch == ' ') {
                 // don't copy ever
             } else if (ch == '-') {
-                // only copy non-medials AND trailing O-E
-                if (0 == i
-                        || i == source.length() - 1
-                        || source.charAt(i - 1) == ' '
-                        || source.charAt(i + 1) == ' '
-                        || (i == source.length() - 2
-                                && source.charAt(i - 1) == 'O'
-                                && source.charAt(i + 1) == 'E')) {
-                    System.out.println("****** EXCEPTION " + source);
+                // Only copy a hyphen-minus if it is non-medial, or if it is
+                // the hyphen in U+1180 HANGUL JUNGSEONG O-E.
+                boolean medial;
+                if (0 == i || i == source.length() - 1) {
+                    medial = false; // Name-initial or name-final.
+                } else {
+                    medial =
+                            Character.isLetterOrDigit(source.charAt(i - 1))
+                                    && Character.isLetterOrDigit(source.charAt(i + 1));
+                }
+                boolean is1180 = false;
+                if (medial
+                        && i <= source.length() - 2
+                        && Character.toUpperCase(source.charAt(i + 1)) == 'E'
+                        && result.toString().equals("HANGULJUNGSEONGO")) {
+                    is1180 = true;
+                    for (int j = i + 2; j < source.length(); ++j) {
+                        if (source.charAt(j) != ' ' && source.charAt(j) != '_') {
+                            is1180 = false;
+                        }
+                    }
+                }
+                if (!medial || is1180) {
                     result.append(ch);
                 }
                 // otherwise don't copy
-            } else {
+            } else if (validate) {
                 throw new IllegalArgumentException(
                         "Illegal Name Char: U+" + Utility.hex(ch) + ", " + ch);
+            } else if (ch != '_') {
+                result.append(ch);
             }
         }
         return result.toString();
+    }
+
+    public static String toNameSkeleton(String source) {
+        return toNameSkeleton(source, true);
     }
 
     /**
