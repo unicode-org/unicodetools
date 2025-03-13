@@ -745,7 +745,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
      */
     public static String toNameSkeleton(String source, boolean validate) {
         if (source == null) return null;
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         // remove spaces, medial '-'
         // we can do this with char, since no surrogates are involved
         for (int i = 0; i < source.length(); ++i) {
