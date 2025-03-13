@@ -884,7 +884,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                         && indexUnicodeProperties.ucdVersion.compareTo(
                                                         VersionInfo.UNICODE_4_0)
                                                 <= 0
-                                ? new PropertyUtilities.Joiner("|")
+                                ? IndexUnicodeProperties.MULTIVALUED_JOINER
                                 : null;
                 final var originalMultivaluedSplit = propInfo.multivaluedSplit;
                 // The first version of kPrimaryNumeric had spaces in values.
@@ -995,7 +995,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     indexUnicodeProperties,
                     nextProperties,
                     propInfoSet,
-                    IndexUnicodeProperties.ALPHABETIC_JOINER,
+                    IndexUnicodeProperties.MULTIVALUED_JOINER,
                     false);
         }
     }

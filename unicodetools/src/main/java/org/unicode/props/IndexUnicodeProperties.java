@@ -196,6 +196,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     static final Transform<String, String> fromNumericPinyin =
             Transliterator.getInstance("NumericPinyin-Latin;nfc");
 
+    static final Merge<String> MULTIVALUED_JOINER = new PropertyUtilities.Joiner("|");
     static final Merge<String> ALPHABETIC_JOINER =
             new Merge<String>() {
                 TreeSet<String> sorted = new TreeSet<String>();
@@ -684,7 +685,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     //        .get(toSkeleton(propertyAlias));
     //    }
 
-    class IndexUnicodeProperty extends UnicodeProperty.BaseProperty {
+    public class IndexUnicodeProperty extends UnicodeProperty.BaseProperty {
 
         private final UcdProperty prop;
         private final Map<String, PropertyNames> stringToNamedEnum;
@@ -722,6 +723,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 setMultivalued(true);
                 setDelimiter(SET_SEPARATOR);
             }
+        }
+
+        public IndexUnicodeProperties getFactory() {
+            return IndexUnicodeProperties.this;
         }
 
         @Override
