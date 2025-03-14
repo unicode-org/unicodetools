@@ -1654,7 +1654,7 @@ public class UnicodeUtilities {
         class PropertyAssignment {
             VersionInfo first;
             VersionInfo last;
-            String value;
+            ArrayList<String> values;
         }
         final boolean isMultivalued = getFactory().getProperty(propName).isMultivalued();
         List<PropertyAssignment> history = new ArrayList<>();
@@ -1684,16 +1684,17 @@ public class UnicodeUtilities {
                 if (property == null) {
                     continue;
                 }
-                String value = property.getValue(codePoint);
+                ArrayList<String> values = new ArrayList<>();
+                for (String value : property.getValues(codePoint)) {
+                    values.add(value);
+                }
                 PropertyAssignment lastAssignment =
                         history.isEmpty() ? null : history.get(history.size() - 1);
-                if (lastAssignment == null
-                        || (value != null && !value.equals(lastAssignment.value))
-                        || (value == null && lastAssignment.value != null)) {
+                if (lastAssignment == null || (!values.equals(lastAssignment.values))) {
                     PropertyAssignment assignment = new PropertyAssignment();
                     assignment.first = version;
                     assignment.last = version;
-                    assignment.value = value;
+                    assignment.values = values;
                     history.add(assignment);
                 } else {
                     lastAssignment.last = version;
@@ -1704,7 +1705,10 @@ public class UnicodeUtilities {
             var current = new PropertyAssignment();
             current.first = Settings.LAST_VERSION_INFO;
             current.last = Settings.LAST_VERSION_INFO;
-            current.value = getFactory().getProperty(propName).getValue(codePoint);
+            current.values = new ArrayList<>();
+            for (String value : getFactory().getProperty(propName).getValues(codePoint)) {
+                current.values.add(value);
+            }
             history.add(current);
         }
         out.append(
@@ -1734,29 +1738,36 @@ public class UnicodeUtilities {
             boolean isNew = assignment.first == Settings.LATEST_VERSION_INFO;
             String versionRange =
                     (showVersion ? (isSingleVersion ? first : first + ".." + last) + ": " : "");
-            if (assignment.value == null) {
-                out.append("<td" + defaultClass + ">" + versionRange + "<i>null</i></td>");
-            } else {
-                String hValue = toHTML.transliterate(assignment.value);
-                out.append(
-                        "<td"
-                                + defaultClass
-                                + ">"
-                                + (isMultivalued
-                                        ? "<span" + (isNew ? " class='changed'" : "") + ">"
-                                        : ("<a target='u' "
-                                                + (isNew ? "class='changed' " : "")
-                                                + "href='list-unicodeset.jsp?a=[:"
-                                                + (isCurrent ? "" : "U" + last + ":")
-                                                + propName
-                                                + "="
-                                                + hValue
-                                                + ":]'>"))
-                                + versionRange
-                                + hValue
-                                + (isMultivalued ? "</span>" : "</a>")
-                                + "</td>");
+            var htmlValue = new StringBuilder();
+            for (int i = 0; i < assignment.values.size(); ++i) {
+                if (i > 0) {
+                    htmlValue.append("<wbr>|");
+                }
+                String value = assignment.values.get(i);
+                if (value == null) {
+                    htmlValue.append("<i>null</i>");
+                } else {
+                    htmlValue.append(toHTML.transliterate(value));
+                }
             }
+            out.append(
+                    "<td"
+                            + defaultClass
+                            + ">"
+                            + (isMultivalued
+                                    ? "<span" + (isNew ? " class='changed'" : "") + ">"
+                                    : ("<a target='u' "
+                                            + (isNew ? "class='changed' " : "")
+                                            + "href='list-unicodeset.jsp?a=[:"
+                                            + (isCurrent ? "" : "U" + last + ":")
+                                            + propName
+                                            + "="
+                                            + htmlValue.toString()
+                                            + ":]'>"))
+                            + versionRange
+                            + htmlValue.toString()
+                            + (isMultivalued ? "</span>" : "</a>")
+                            + "</td>");
         }
         out.append("</tr>");
     }
