@@ -1397,10 +1397,18 @@ public class UnicodeUtilities {
         String hex = com.ibm.icu.impl.Utility.hex(cp, 4);
 
         out.append("<div class='bigDiv'><table class='bigTable'>\n");
+        String display = toHTML.transliterate(text);
         out.append(
-                "<tr><td class='bigChar'>\u00A0"
-                        + toHTML.transliterate(text)
-                        + "\u00A0</td></tr>\n");
+                "<tr><td class='bigChar'>"
+                        + (display.contains("<")
+                                ? "\u00A0" + display + "\u00A0"
+                                : "<svg width='1.16em' viewBox='0 0 116 116' overflow='visible'>"
+                                        + "<path d='M   8,88 l 100,0' stroke='lightgrey'/>"
+                                        + "<text y='88' x='0' textLength='116' font-size='100'>"
+                                        + "\u00A0"
+                                        + display
+                                        + "\u00A0</text></svg>")
+                        + "</td></tr>\n");
         out.append("<tr><td class='bigCode'>" + hex + "</td></tr>\n");
         out.append("<tr><td class='bigName'>" + name + "</td></tr>\n");
         out.append("<tr><td class='bigName'>" + scriptCat + "</td></tr>\n");
