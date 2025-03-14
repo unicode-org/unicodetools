@@ -1743,7 +1743,7 @@ public class UnicodeUtilities {
                                 + defaultClass
                                 + ">"
                                 + (isMultivalued
-                                        ? ""
+                                        ? "<span" + (isNew ? " class='changed'" : "") + ">"
                                         : ("<a target='u' "
                                                 + (isNew ? "class='changed' " : "")
                                                 + "href='list-unicodeset.jsp?a=[:"
@@ -1754,7 +1754,7 @@ public class UnicodeUtilities {
                                                 + ":]'>"))
                                 + versionRange
                                 + hValue
-                                + (isMultivalued ? "" : "</a>")
+                                + (isMultivalued ? "</span>" : "</a>")
                                 + "</td>");
             }
         }
