@@ -82,7 +82,7 @@ public class GenerateEnums {
         final List<String> others;
         final Map<String, PropName> subnames = new TreeMap<String, PropName>();
 
-        PropName(PropertyType type, OverrideChoice override, String... strings) {
+        PropName(PropertyType type, String... strings) {
             shortName = strings[0];
             longName = strings[1];
             propertyType =
@@ -97,11 +97,9 @@ public class GenerateEnums {
                 final List<String> temp = Arrays.asList(strings);
                 others = Collections.unmodifiableList(temp.subList(2, strings.length));
             }
-            if (override != OverrideChoice.allow) {
-                for (final String name : strings) {
-                    if (lookup.containsKey(name)) {
-                        throw new UnicodePropertyException("Duplicate propName");
-                    }
+            for (final String name : strings) {
+                if (lookup.containsKey(name)) {
+                    throw new UnicodePropertyException("Duplicate propName " + name);
                 }
             }
             for (final String name : strings) {
@@ -166,11 +164,6 @@ public class GenerateEnums {
                 }
             };
 
-    enum OverrideChoice {
-        allow,
-        disallow
-    }
-
     public static void main(String[] args) throws IOException {
 
         final Map<PropName, Set<String[]>> values = new TreeMap<PropName, Set<String[]>>();
@@ -180,12 +173,9 @@ public class GenerateEnums {
                 FileUtilities.in(
                         "",
                         Utility.getMostRecentUnicodeDataFile(
-                                "PropertyAliases", ENUM_VERSION, true, true)),
-                OverrideChoice.disallow);
+                                "PropertyAliases", ENUM_VERSION, true, true)));
         addPropertyAliases(
-                values,
-                FileUtilities.in(GenerateEnums.class, "ExtraPropertyAliases.txt"),
-                OverrideChoice.allow);
+                values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyAliases.txt"));
 
         writeMainUcdFile();
 
@@ -646,7 +636,7 @@ public class GenerateEnums {
     }
 
     public static void addPropertyAliases(
-            Map<PropName, Set<String[]>> values, Iterable<String> lines, OverrideChoice override) {
+            Map<PropName, Set<String[]>> values, Iterable<String> lines) {
         final Matcher propType =
                 Pattern.compile("#\\s+(\\p{Alpha}+)\\s+Properties\\s*").matcher("");
         PropertyType type = null;
@@ -659,7 +649,7 @@ public class GenerateEnums {
             if (parts == null) {
                 continue;
             }
-            final PropName propName = new PropName(type, override, parts);
+            final PropName propName = new PropName(type, parts);
             values.put(
                     propName,
                     propName.longName.equals("Age")
