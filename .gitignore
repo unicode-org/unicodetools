@@ -43,6 +43,7 @@ perf-*.xml
 test-*.xml
 
 # Directories
+.idea/
 .settings/
 .vs/
 .vscode/

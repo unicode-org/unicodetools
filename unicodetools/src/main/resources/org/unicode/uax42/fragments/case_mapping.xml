@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="casing properties" id='schema.properties'>
+  code-point-attributes &amp;=
+    attribute uc { "#" | one-or-more-code-points }?
+
+  code-point-attributes &amp;=
+    attribute lc { "#" | one-or-more-code-points }?
+
+  code-point-attributes &amp;=
+    attribute tc { "#" | one-or-more-code-points }?
+</ucdxml:block>

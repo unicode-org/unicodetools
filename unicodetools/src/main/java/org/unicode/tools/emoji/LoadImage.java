@@ -891,7 +891,8 @@ public class LoadImage extends Component {
         //                try {
         //                    copy(new URL(url), new File(outputDir + "/sb","sb_" + code + ".gif"));
         ////                    BufferedImage sourceImage = ImageIO.read(new URL(url));
-        ////                    writeImage(sourceImage,outputDir + "/sb","sb_" + code, "gif");
+        ////                    writeImage(sourceImage,outputDir + "/sb","sb_" + code,
+        // "gif");
         //                    System.out.println(code);
         //                } catch (Exception e) {
         //                    System.out.println("Skipping " + code);

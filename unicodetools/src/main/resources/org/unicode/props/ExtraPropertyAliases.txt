@@ -67,6 +67,7 @@ CJKR ; CJK_Radical
 EDCM ; Emoji_DCM
 EKDDI ; Emoji_KDDI
 ESB ; Emoji_SB
+EVS ; emoji_variation_sequence
 NS ; Named_Sequences
 NSP ; Named_Sequences_Prov
 SV ; Standardized_Variant
@@ -160,6 +161,9 @@ cjkJoyoKanji ; kJoyoKanji
 cjkKoreanEducationHanja ; kKoreanEducationHanja
 cjkKoreanName ; kKoreanName
 cjkTGH ; kTGH
+ncCorrected ; NC_Corrected
+ncOriginal ; NC_Original
+ncVersion ; NC_Version
 # 13.0
 cjkSpoofingVariant       ; kSpoofingVariant
 cjkTGHZ2013              ; kTGHZ2013
