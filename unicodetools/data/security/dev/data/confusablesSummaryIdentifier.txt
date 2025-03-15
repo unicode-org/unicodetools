@@ -1,11 +1,11 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2024-05-31, 21:12:55 GMT
-# © 2024 Unicode®, Inc.
+# Date: 2025-03-14, 17:24:02 GMT
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 16.0.0
+# Version: 17.0.0
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr39
 #
@@ -1721,6 +1721,10 @@
 	(‎ 値 ‎)	5024	 CJK UNIFIED IDEOGRAPH-5024
 ←	(‎ 值 ‎)	503C	 CJK UNIFIED IDEOGRAPH-503C
 
+#	𖿳	兒
+	(‎ 兒 ‎)	5152	 CJK UNIFIED IDEOGRAPH-5152
+←	(‎ 𖿳 ‎)	16FF3	 CHINESE SMALL TRADITIONAL ER
+
 #	啓	啟
 	(‎ 啓 ‎)	5553	 CJK UNIFIED IDEOGRAPH-5553
 ←	(‎ 啟 ‎)	555F	 CJK UNIFIED IDEOGRAPH-555F
@@ -1845,5 +1849,5 @@
 	(‎ 鹂 ‎)	9E42	 CJK UNIFIED IDEOGRAPH-9E42
 ←	(‎ 鹃 ‎)	9E43	 CJK UNIFIED IDEOGRAPH-9E43
 
-# total : 638
+# total : 639
 
