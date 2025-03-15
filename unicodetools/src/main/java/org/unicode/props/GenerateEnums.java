@@ -80,11 +80,13 @@ public class GenerateEnums {
         final String shortName;
         final String longName;
         final List<String> others;
+        final DerivedPropertyStatus status;
         final Map<String, PropName> subnames = new TreeMap<String, PropName>();
 
-        PropName(PropertyType type, String... strings) {
+        PropName(PropertyType type, DerivedPropertyStatus status, String... strings) {
             shortName = strings[0];
             longName = strings[1];
+            this.status = status;
             propertyType =
                     longName.equals("Script_Extensions") ? PropertyType.Catalog : type; // HACK
             final String badName = isProperLongName(longName, PROPERTY_LONG_NAME, true);
@@ -173,9 +175,10 @@ public class GenerateEnums {
                 FileUtilities.in(
                         "",
                         Utility.getMostRecentUnicodeDataFile(
-                                "PropertyAliases", ENUM_VERSION, true, true)));
+                                "PropertyAliases", ENUM_VERSION, true, true)),
+                DerivedPropertyStatus.Approved);
         addPropertyAliases(
-                values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyAliases.txt"));
+                values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyAliases.txt"), null);
 
         writeMainUcdFile();
 
@@ -516,6 +519,7 @@ public class GenerateEnums {
         output.println(
                 "\n"
                         + "private final PropertyType type;\n"
+                        + "    private final DerivedPropertyStatus status;"
                         + "    private final PropertyNames<UcdProperty> names;\n"
                         + "    // for enums\n"
                         + "    private final NameMatcher name2enum;\n"
@@ -534,11 +538,13 @@ public class GenerateEnums {
                         + "\n"
                         + "    private UcdProperty(\n"
                         + "            PropertyType type,\n"
+                        + "            DerivedPropertyStatus status,\n"
                         + "            Class classItem,\n"
                         + "            ValueCardinality _cardinality,\n"
                         + "            String shortName,\n"
                         + "            String... otherNames) {\n"
                         + "        this.type = type;\n"
+                        + "        this.status = status;\n"
                         + "        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"
                         + "        cardinality = _cardinality == null ? ValueCardinality.Singleton : _cardinality;\n"
                         + "        if (classItem == null) {\n"
@@ -562,6 +568,10 @@ public class GenerateEnums {
                         + "\n"
                         + "    public PropertyType getType() {\n"
                         + "        return type;\n"
+                        + "    }\n"
+                        + "\n"
+                        + "    public DerivedPropertyStatus getDerivedStatus() {\n"
+                        + "        return status;\n"
                         + "    }\n"
                         + "\n"
                         + "    public PropertyNames<UcdProperty> getNames() {\n"
@@ -636,7 +646,9 @@ public class GenerateEnums {
     }
 
     public static void addPropertyAliases(
-            Map<PropName, Set<String[]>> values, Iterable<String> lines) {
+            Map<PropName, Set<String[]>> values,
+            Iterable<String> lines,
+            DerivedPropertyStatus fileStatus) {
         final Matcher propType =
                 Pattern.compile("#\\s+(\\p{Alpha}+)\\s+Properties\\s*").matcher("");
         PropertyType type = null;
@@ -645,11 +657,16 @@ public class GenerateEnums {
             if (propType.reset(line).matches()) {
                 type = PropertyType.valueOf(propType.group(1));
             }
-            final String[] parts = FileUtilities.cleanSemiFields(line);
+            String[] parts = FileUtilities.cleanSemiFields(line);
             if (parts == null) {
                 continue;
             }
-            final PropName propName = new PropName(type, parts);
+            var status = fileStatus;
+            if (status == null) {
+                status = DerivedPropertyStatus.valueOf(parts[parts.length - 1]);
+                parts = Arrays.copyOf(parts, parts.length - 1);
+            }
+            final PropName propName = new PropName(type, status, parts);
             values.put(
                     propName,
                     propName.longName.equals("Age")

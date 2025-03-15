@@ -378,6 +378,7 @@ public enum UcdProperty {
 ;
 
     private final PropertyType type;
+    private final DerivedPropertyStatus status;
     private final PropertyNames<UcdProperty> names;
     // for enums
     private final NameMatcher name2enum;
@@ -396,11 +397,13 @@ public enum UcdProperty {
 
     private UcdProperty(
             PropertyType type,
+            DerivedPropertyStatus status,
             Class classItem,
             ValueCardinality _cardinality,
             String shortName,
             String... otherNames) {
         this.type = type;
+        this.status = status;
         names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);
         cardinality = _cardinality == null ? ValueCardinality.Singleton : _cardinality;
         if (classItem == null) {
@@ -424,6 +427,10 @@ public enum UcdProperty {
 
     public PropertyType getType() {
         return type;
+    }
+
+    public DerivedPropertyStatus getDerivedStatus() {
+        return status;
     }
 
     public PropertyNames<UcdProperty> getNames() {
