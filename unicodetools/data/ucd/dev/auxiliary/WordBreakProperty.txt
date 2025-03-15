@@ -1,5 +1,5 @@
 # WordBreakProperty-17.0.0.txt
-# Date: 2025-01-27, 18:09:43 GMT
+# Date: 2025-02-24, 14:12:47 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -944,7 +944,7 @@ FF71..FF9D    ; Katakana # Lo  [45] HALFWIDTH KATAKANA LETTER A..HALFWIDTH KATAK
 1FF6..1FFC    ; ALetter # L&   [7] GREEK SMALL LETTER OMEGA WITH PERISPOMENI..GREEK CAPITAL LETTER OMEGA WITH PROSGEGRAMMENI
 2071          ; ALetter # Lm       SUPERSCRIPT LATIN SMALL LETTER I
 207F          ; ALetter # Lm       SUPERSCRIPT LATIN SMALL LETTER N
-2090..209C    ; ALetter # Lm  [13] LATIN SUBSCRIPT SMALL LETTER A..LATIN SUBSCRIPT SMALL LETTER T
+208F..209C    ; ALetter # Lm  [14] MODIFIER LETTER HIGH AND LOW VERTICAL LINE..LATIN SUBSCRIPT SMALL LETTER T
 2102          ; ALetter # L&       DOUBLE-STRUCK CAPITAL C
 2107          ; ALetter # L&       EULER CONSTANT
 210A..2113    ; ALetter # L&  [10] SCRIPT SMALL G..SCRIPT SMALL L
@@ -1383,7 +1383,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 34004
+# Total code points: 34005
 
 # ================================================
 
