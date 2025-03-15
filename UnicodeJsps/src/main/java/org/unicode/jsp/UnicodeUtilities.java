@@ -50,6 +50,8 @@ import org.unicode.idna.Idna2008;
 import org.unicode.idna.IdnaTypes;
 import org.unicode.idna.Punycode;
 import org.unicode.idna.Uts46;
+import org.unicode.props.DerivedPropertyStatus;
+import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
@@ -1439,6 +1441,44 @@ public class UnicodeUtilities {
 
         String kRSUnicode = getFactory().getProperty("kRSUnicode").getValue(cp);
         boolean isUnihan = kRSUnicode != null;
+        List<UcdProperty> indexedProperties =
+                sortedProps.stream().map(UcdProperty::forString).filter(p -> p != null).toList();
+        List<UcdProperty> approvedProperties =
+                indexedProperties.stream()
+                        .filter(p -> p.getDerivedStatus() == DerivedPropertyStatus.Approved)
+                        .toList();
+        List<UcdProperty> provisionalProperties =
+                indexedProperties.stream()
+                        .filter(p -> p.getDerivedStatus() == DerivedPropertyStatus.Provisional)
+                        .toList();
+        List<UcdProperty> nonUCDProperties =
+                indexedProperties.stream()
+                        .filter(p -> p.getDerivedStatus() == DerivedPropertyStatus.NonUCDProperty)
+                        .toList();
+        List<UcdProperty> ucdNonProperties =
+                indexedProperties.stream()
+                        .filter(p -> p.getDerivedStatus() == DerivedPropertyStatus.NonUCDProperty)
+                        .toList();
+        // Non-UCD non-properties, and things added directly in the tools.
+        List<String> others =
+                sortedProps.stream()
+                        .filter(
+                                p ->
+                                        UcdProperty.forString(p) == null
+                                                || UcdProperty.forString(p).getDerivedStatus()
+                                                        == DerivedPropertyStatus.NonUCDNonProperty)
+                        .toList();
+
+        List<UcdProperty> cjkApprovedProperties =
+                approvedProperties.stream()
+                        .filter(p -> p.getNames().getShortName().startsWith("cjk"))
+                        .toList();
+        List<UcdProperty> cjkProvisionalProperties =
+                provisionalProperties.stream()
+                        .filter(p -> p.getNames().getShortName().startsWith("cjk"))
+                        .toList();
+        approvedProperties.removeIf(p -> p.getNames().getShortName().startsWith("cjk"));
+        provisionalProperties.removeIf(p -> p.getNames().getShortName().startsWith("cjk"));
 
         Age_Values age = Age_Values.forName(getFactory().getProperty("Age").getValue(cp));
         VersionInfo minVersion =
@@ -1455,26 +1495,93 @@ public class UnicodeUtilities {
                             + "</p>");
         }
 
+        VersionInfo maxVersion =
+                showDevProperties ? Settings.LATEST_VERSION_INFO : Settings.LAST_VERSION_INFO;
+
+        showProperties(
+                approvedProperties.stream().map(UcdProperty::toString).toList(),
+                (isUnihan ? "Non-Unihan " : "")
+                        + "Normative, Informative, and Contributory UCD properties for U+"
+                        + hex,
+                cp,
+                minVersion,
+                maxVersion,
+                showDevProperties,
+                out);
+        showProperties(
+                provisionalProperties.stream().map(UcdProperty::toString).toList(),
+                (isUnihan ? "Non-Unihan " : "") + "Provisional UCD properties for U+" + hex,
+                cp,
+                minVersion,
+                maxVersion,
+                showDevProperties,
+                out);
+        showProperties(
+                nonUCDProperties.stream().map(UcdProperty::toString).toList(),
+                "Non-UCD properties for U+" + hex,
+                cp,
+                minVersion,
+                maxVersion,
+                showDevProperties,
+                out);
+        showProperties(
+                ucdNonProperties.stream().map(UcdProperty::toString).toList(),
+                "Other " + (isUnihan ? "non-Unihan " : "") + "UCD data for U+" + hex,
+                cp,
+                minVersion,
+                maxVersion,
+                showDevProperties,
+                out);
+        if (isUnihan) {
+            showProperties(
+                    approvedProperties.stream().map(UcdProperty::toString).toList(),
+                    (isUnihan ? "Non-Unihan " : "")
+                            + "Normative and Informative Unihan properties for U+"
+                            + hex,
+                    cp,
+                    minVersion,
+                    maxVersion,
+                    showDevProperties,
+                    out);
+            showProperties(
+                    provisionalProperties.stream().map(UcdProperty::toString).toList(),
+                    (isUnihan ? "Non-Unihan " : "") + "Provisional Unihan properties for U+" + hex,
+                    cp,
+                    minVersion,
+                    maxVersion,
+                    showDevProperties,
+                    out);
+        }
+        showProperties(
+                ucdNonProperties.stream().map(UcdProperty::toString).toList(),
+                "Other information on U+" + hex,
+                cp,
+                minVersion,
+                maxVersion,
+                showDevProperties,
+                out);
+    }
+
+    private static void showProperties(
+            List<String> properties,
+            String title,
+            int cp,
+            VersionInfo minVersion,
+            VersionInfo maxVersion,
+            boolean showDevProperties,
+            Appendable out)
+            throws IOException {
         out.append(
                 "<table class='propTable'>"
                         + "<caption>"
-                        + (isUnihan ? "non-Unihan properties for U+" : "Properties for U+")
-                        + hex
+                        + title
                         + "</caption>"
                         + "<tr><th>With Non-Default Values</th><th>With Default Values</th></tr>"
                         + "<tr><td width='50%'>\n");
         out.append("<table width='100%'>\n");
-
-        List<String> unihanProperties = new ArrayList<>();
-        VersionInfo maxVersion =
-                showDevProperties ? Settings.LATEST_VERSION_INFO : Settings.LAST_VERSION_INFO;
-        for (String propName : sortedProps) {
+        for (String propName : properties) {
             UnicodeProperty prop = getFactory().getProperty(propName);
             if (prop.getName().equals("confusable")) continue;
-            if (prop.getFirstNameAlias().startsWith("cjk")) {
-                unihanProperties.add(propName);
-                continue;
-            }
 
             boolean isDefault = prop.isDefault(cp);
             if (isDefault) continue;
@@ -1485,41 +1592,15 @@ public class UnicodeUtilities {
         out.append("</td><td width='50%'>\n");
 
         out.append("<table width='100%'>\n");
-        for (String propName : sortedProps) {
+        for (String propName : properties) {
             UnicodeProperty prop = getFactory().getProperty(propName);
             if (prop.getName().equals("confusable")) continue;
-            if (prop.getFirstNameAlias().startsWith("cjk")) {
-                continue;
-            }
 
             boolean isDefault = prop.isDefault(cp);
             if (!isDefault) continue;
             showPropertyValue(propName, cp, minVersion, maxVersion, isDefault, out);
         }
         out.append("</table>\n");
-
-        out.append("</td></tr></table>\n");
-        if (isUnihan) {
-            out.append(
-                    "<table class='propTable'>"
-                            + "<caption>"
-                            + "Unihan properties for U+"
-                            + hex
-                            + "</caption>"
-                            + "<tr><td width='50%'>\n");
-            out.append("<table width='100%'>\n");
-            for (int i = 0; i < unihanProperties.size() / 2; ++i) {
-                showPropertyValue(unihanProperties.get(i), cp, minVersion, maxVersion, false, out);
-            }
-            out.append("</table>\n");
-            out.append("</td><td width='50%'>\n");
-            out.append("<table width='100%'>\n");
-            for (int i = unihanProperties.size() / 2; i < unihanProperties.size(); ++i) {
-                showPropertyValue(unihanProperties.get(i), cp, minVersion, maxVersion, false, out);
-            }
-            out.append("</table>\n");
-            out.append("</td></tr></table>\n");
-        }
     }
 
     private static StringBuilder displayConfusables(int codepoint) {
