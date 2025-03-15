@@ -41,6 +41,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
@@ -1654,7 +1655,7 @@ public class UnicodeUtilities {
         class PropertyAssignment {
             VersionInfo first;
             VersionInfo last;
-            String value;
+            ArrayList<String> values;
         }
         final boolean isMultivalued = getFactory().getProperty(propName).isMultivalued();
         List<PropertyAssignment> history = new ArrayList<>();
@@ -1684,16 +1685,15 @@ public class UnicodeUtilities {
                 if (property == null) {
                     continue;
                 }
-                String value = property.getValue(codePoint);
+                ArrayList<String> values = new ArrayList<>();
+                property.getValues(codePoint).forEach(values::add);
                 PropertyAssignment lastAssignment =
                         history.isEmpty() ? null : history.get(history.size() - 1);
-                if (lastAssignment == null
-                        || (value != null && !value.equals(lastAssignment.value))
-                        || (value == null && lastAssignment.value != null)) {
+                if (lastAssignment == null || (!values.equals(lastAssignment.values))) {
                     PropertyAssignment assignment = new PropertyAssignment();
                     assignment.first = version;
                     assignment.last = version;
-                    assignment.value = value;
+                    assignment.values = values;
                     history.add(assignment);
                 } else {
                     lastAssignment.last = version;
@@ -1704,7 +1704,8 @@ public class UnicodeUtilities {
             var current = new PropertyAssignment();
             current.first = Settings.LAST_VERSION_INFO;
             current.last = Settings.LAST_VERSION_INFO;
-            current.value = getFactory().getProperty(propName).getValue(codePoint);
+            current.values = new ArrayList<>();
+            getFactory().getProperty(propName).getValues(codePoint).forEach(current.values::add);
             history.add(current);
         }
         out.append(
@@ -1734,29 +1735,28 @@ public class UnicodeUtilities {
             boolean isNew = assignment.first == Settings.LATEST_VERSION_INFO;
             String versionRange =
                     (showVersion ? (isSingleVersion ? first : first + ".." + last) + ": " : "");
-            if (assignment.value == null) {
-                out.append("<td" + defaultClass + ">" + versionRange + "<i>null</i></td>");
-            } else {
-                String hValue = toHTML.transliterate(assignment.value);
-                out.append(
-                        "<td"
-                                + defaultClass
-                                + ">"
-                                + (isMultivalued
-                                        ? ""
-                                        : ("<a target='u' "
-                                                + (isNew ? "class='changed' " : "")
-                                                + "href='list-unicodeset.jsp?a=[:"
-                                                + (isCurrent ? "" : "U" + last + ":")
-                                                + propName
-                                                + "="
-                                                + hValue
-                                                + ":]'>"))
-                                + versionRange
-                                + hValue
-                                + (isMultivalued ? "" : "</a>")
-                                + "</td>");
-            }
+            String htmlValue =
+                    assignment.values.stream()
+                            .map(v -> v == null ? "<i>null</i>" : toHTML.transliterate(v))
+                            .collect(Collectors.joining("<wbr>|"));
+            out.append(
+                    "<td"
+                            + defaultClass
+                            + ">"
+                            + (isMultivalued || htmlValue.contains("<")
+                                    ? "<span" + (isNew ? " class='changed'" : "") + ">"
+                                    : ("<a target='u' "
+                                            + (isNew ? "class='changed' " : "")
+                                            + "href='list-unicodeset.jsp?a=[:"
+                                            + (isCurrent ? "" : "U" + last + ":")
+                                            + propName
+                                            + "="
+                                            + htmlValue
+                                            + ":]'>"))
+                            + versionRange
+                            + htmlValue
+                            + (isMultivalued || htmlValue.contains("<") ? "</span>" : "</a>")
+                            + "</td>");
         }
         out.append("</tr>");
     }
