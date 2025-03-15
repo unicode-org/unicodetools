@@ -505,7 +505,13 @@ public class GenerateEnums {
                         break; // leave classItem = null
                 }
                 writeOtherNames(
-                        output, type, classItem, cardinality, pname.shortName, pname.others);
+                        output,
+                        type,
+                        pname.status,
+                        classItem,
+                        cardinality,
+                        pname.shortName,
+                        pname.others);
                 output.print(",\n");
             }
         }
@@ -527,8 +533,12 @@ public class GenerateEnums {
                         + "    private final Class enumClass;\n"
                         + "    private final ValueCardinality cardinality;\n"
                         + "    \n"
-                        + "    private UcdProperty(PropertyType type, String shortName, String... otherNames) {\n"
+                        + "    private UcdProperty(PropertyType type,\n"
+                        + "                        DerivedPropertyStatus status,\n"
+                        + "                        String shortName,\n"
+                        + "                        String... otherNames) {\n"
                         + "        this.type = type;\n"
+                        + "        this.status = status;\n"
                         + "        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"
                         + "        name2enum = null;\n"
                         + "        enums = null;\n"
@@ -605,6 +615,7 @@ public class GenerateEnums {
     public static void writeOtherNames(
             PrintWriter output,
             String type,
+            DerivedPropertyStatus status,
             String classItem,
             ValueCardinality cardinality,
             String shortName,
@@ -612,6 +623,8 @@ public class GenerateEnums {
         output.print("(");
         // if (shortName != null) {
         output.print(type);
+        output.print(", DerivedPropertyStatus.");
+        output.print(status);
         if (classItem != null || cardinality != ValueCardinality.Singleton) {
             output.print(
                     ", "
