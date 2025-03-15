@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="boolean" id='schema.boolean'>
+  boolean = "Y" | "N"
+</ucdxml:block>
