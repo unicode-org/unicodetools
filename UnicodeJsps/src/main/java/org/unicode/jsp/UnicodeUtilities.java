@@ -41,6 +41,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
@@ -1685,9 +1686,7 @@ public class UnicodeUtilities {
                     continue;
                 }
                 ArrayList<String> values = new ArrayList<>();
-                for (String value : property.getValues(codePoint)) {
-                    values.add(value);
-                }
+                property.getValues(codePoint).forEach(values::add);
                 PropertyAssignment lastAssignment =
                         history.isEmpty() ? null : history.get(history.size() - 1);
                 if (lastAssignment == null || (!values.equals(lastAssignment.values))) {
@@ -1706,9 +1705,7 @@ public class UnicodeUtilities {
             current.first = Settings.LAST_VERSION_INFO;
             current.last = Settings.LAST_VERSION_INFO;
             current.values = new ArrayList<>();
-            for (String value : getFactory().getProperty(propName).getValues(codePoint)) {
-                current.values.add(value);
-            }
+            getFactory().getProperty(propName).getValues(codePoint).forEach(current.values::add);
             history.add(current);
         }
         out.append(
@@ -1738,23 +1735,15 @@ public class UnicodeUtilities {
             boolean isNew = assignment.first == Settings.LATEST_VERSION_INFO;
             String versionRange =
                     (showVersion ? (isSingleVersion ? first : first + ".." + last) + ": " : "");
-            var htmlValue = new StringBuilder();
-            for (int i = 0; i < assignment.values.size(); ++i) {
-                if (i > 0) {
-                    htmlValue.append("<wbr>|");
-                }
-                String value = assignment.values.get(i);
-                if (value == null) {
-                    htmlValue.append("<i>null</i>");
-                } else {
-                    htmlValue.append(toHTML.transliterate(value));
-                }
-            }
+            String htmlValue =
+                    assignment.values.stream()
+                            .map(v -> v == null ? "<i>null</i>" : toHTML.transliterate(v))
+                            .collect(Collectors.joining("<wbr>|"));
             out.append(
                     "<td"
                             + defaultClass
                             + ">"
-                            + (isMultivalued
+                            + (isMultivalued || htmlValue.contains("<")
                                     ? "<span" + (isNew ? " class='changed'" : "") + ">"
                                     : ("<a target='u' "
                                             + (isNew ? "class='changed' " : "")
@@ -1762,10 +1751,10 @@ public class UnicodeUtilities {
                                             + (isCurrent ? "" : "U" + last + ":")
                                             + propName
                                             + "="
-                                            + htmlValue.toString()
+                                            + htmlValue
                                             + ":]'>"))
                             + versionRange
-                            + htmlValue.toString()
+                            + htmlValue
                             + (isMultivalued ? "</span>" : "</a>")
                             + "</td>");
         }
