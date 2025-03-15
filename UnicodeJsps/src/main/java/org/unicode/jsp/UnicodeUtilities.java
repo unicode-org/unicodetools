@@ -1755,7 +1755,7 @@ public class UnicodeUtilities {
                                             + ":]'>"))
                             + versionRange
                             + htmlValue
-                            + (isMultivalued ? "</span>" : "</a>")
+                            + (isMultivalued || htmlValue.contains("<") ? "</span>" : "</a>")
                             + "</td>");
         }
         out.append("</tr>");
