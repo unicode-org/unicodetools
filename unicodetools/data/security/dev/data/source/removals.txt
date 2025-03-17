@@ -846,3 +846,20 @@ AB68; Technical
 # UTC-179-C39: Change the Identifier_Type of A9CF to Limited_Use Uncommon_Use, removing Exclusion.
 # (A code fix removed Exclusion from Limited_Use characters, but adding Uncommon_Use needs an override.)
 A9CF; Limited_Use Uncommon_Use
+
+# Unicode 17
+09FF; Technical
+0B53..0B54; Uncommon_Use
+0C5C; Obsolete
+0CDC; Obsolete
+1ACF..1ADD; Technical
+1AE0..1AEA; Technical
+A7CE..A7CF; Uncommon_Use
+A7D2; Obsolete
+A7D4; Obsolete
+10EC5..10EC6; Technical
+10EC7; Uncommon_Use
+10EFB; Technical
+16FF2..16FF6; Technical
+2B73A..2B73E; Uncommon_Use# L2/25-031
+\p{block=CJK_Unified_Ideographs_Extension_J}; Uncommon_Use # L2/25-031

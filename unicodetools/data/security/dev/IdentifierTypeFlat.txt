@@ -1,5 +1,5 @@
 # IdentifierTypeFlat.txt
-# Date: 2025-03-14, 17:23:59 GMT
+# Date: 2025-03-17, 16:54:52 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -455,7 +455,7 @@
 09FC          ; Obsolete                       # 10.0       BENGALI LETTER VEDIC ANUSVARA
 09FD          ; Not_XID                        # 10.0       BENGALI ABBREVIATION SIGN
 09FE          ; Recommended                    # 11.0       BENGALI SANDHI MARK
-09FF          ; Recommended                    # 17.0       BENGALI LETTER SANSKRIT BA
+09FF          ; Technical                      # 17.0       BENGALI LETTER SANSKRIT BA
 0A01          ; Recommended                    # 4.0        GURMUKHI SIGN ADAK BINDI
 0A02          ; Recommended                    # 1.1        GURMUKHI SIGN BINDI
 0A03          ; Recommended                    # 4.0        GURMUKHI SIGN VISARGA
@@ -511,7 +511,7 @@
 0B44          ; Uncommon_Use                   # 5.1        ORIYA VOWEL SIGN VOCALIC RR
 0B47..0B48    ; Recommended                    # 1.1    [2] ORIYA VOWEL SIGN E..ORIYA VOWEL SIGN AI
 0B4B..0B4D    ; Recommended                    # 1.1    [3] ORIYA VOWEL SIGN O..ORIYA SIGN VIRAMA
-0B53..0B54    ; Recommended                    # 17.0   [2] ORIYA SIGN DOT ABOVE..ORIYA SIGN DOUBLE DOT ABOVE
+0B53..0B54    ; Uncommon_Use                   # 17.0   [2] ORIYA SIGN DOT ABOVE..ORIYA SIGN DOUBLE DOT ABOVE
 0B55          ; Recommended                    # 13.0       ORIYA SIGN OVERLINE
 0B56..0B57    ; Recommended                    # 1.1    [2] ORIYA AI LENGTH MARK..ORIYA AU LENGTH MARK
 0B5C..0B5D    ; Not_NFKC                       # 1.1    [2] ORIYA LETTER RRA..ORIYA LETTER RHA
@@ -559,7 +559,7 @@
 0C55..0C56    ; Recommended                    # 1.1    [2] TELUGU LENGTH MARK..TELUGU AI LENGTH MARK
 0C58..0C59    ; Obsolete                       # 5.1    [2] TELUGU LETTER TSA..TELUGU LETTER DZA
 0C5A          ; Uncommon_Use                   # 8.0        TELUGU LETTER RRRA
-0C5C          ; Recommended                    # 17.0       TELUGU ARCHAIC SHRII
+0C5C          ; Obsolete                       # 17.0       TELUGU ARCHAIC SHRII
 0C5D          ; Recommended                    # 14.0       TELUGU LETTER NAKAARA POLLU
 0C60..0C61    ; Recommended                    # 1.1    [2] TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C62..0C63    ; Uncommon_Use                   # 5.1    [2] TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
@@ -580,7 +580,7 @@
 0CC6..0CC8    ; Recommended                    # 1.1    [3] KANNADA VOWEL SIGN E..KANNADA VOWEL SIGN AI
 0CCA..0CCD    ; Recommended                    # 1.1    [4] KANNADA VOWEL SIGN O..KANNADA SIGN VIRAMA
 0CD5..0CD6    ; Recommended                    # 1.1    [2] KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
-0CDC          ; Recommended                    # 17.0       KANNADA ARCHAIC SHRII
+0CDC          ; Obsolete                       # 17.0       KANNADA ARCHAIC SHRII
 0CDD          ; Recommended                    # 14.0       KANNADA LETTER NAKAARA POLLU
 0CDE          ; Obsolete                       # 1.1        KANNADA LETTER FA
 0CE0..0CE1    ; Recommended                    # 1.1    [2] KANNADA LETTER VOCALIC RR..KANNADA LETTER VOCALIC LL
@@ -907,9 +907,8 @@
 1ABE          ; Not_XID                        # 7.0        COMBINING PARENTHESES OVERLAY
 1ABF..1AC0    ; Technical                      # 13.0   [2] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER TURNED W BELOW
 1AC1..1ACE    ; Uncommon_Use                   # 14.0  [14] COMBINING LEFT PARENTHESIS ABOVE LEFT..COMBINING LATIN SMALL LETTER INSULAR T
-1ACF..1ADD    ; Recommended                    # 17.0  [15] COMBINING DOUBLE CARON..COMBINING DOT-AND-RING BELOW
-1AE0..1AEA    ; Recommended                    # 17.0  [11] COMBINING LEFT TACK ABOVE..COMBINING UPWARDS ARROW ABOVE
-1AEB          ; Technical                      # 17.0       COMBINING DOUBLE RIGHTWARDS ARROW ABOVE
+1ACF..1ADD    ; Technical                      # 17.0  [15] COMBINING DOUBLE CARON..COMBINING DOT-AND-RING BELOW
+1AE0..1AEB    ; Technical                      # 17.0  [12] COMBINING LEFT TACK ABOVE..COMBINING DOUBLE RIGHTWARDS ARROW ABOVE
 1B00..1B4B    ; Limited_Use                    # 5.0   [76] BALINESE SIGN ULU RICEM..BALINESE LETTER ASYURA SASAK
 1B4C          ; Limited_Use                    # 14.0       BALINESE LETTER ARCHAIC JNYA
 1B4E..1B4F    ; Limited_Use Not_XID            # 16.0   [2] BALINESE INVERTED CARIK SIKI..BALINESE INVERTED CARIK PAREREN
@@ -1484,11 +1483,11 @@ A7C0..A7C1    ; Recommended                    # 14.0   [2] LATIN CAPITAL LETTER
 A7C2..A7C6    ; Recommended                    # 12.0   [5] LATIN CAPITAL LETTER ANGLICANA W..LATIN CAPITAL LETTER Z WITH PALATAL HOOK
 A7C7..A7CA    ; Recommended                    # 13.0   [4] LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY..LATIN SMALL LETTER S WITH SHORT STROKE OVERLAY
 A7CB..A7CD    ; Uncommon_Use                   # 16.0   [3] LATIN CAPITAL LETTER RAMS HORN..LATIN SMALL LETTER S WITH DIAGONAL STROKE
-A7CE..A7CF    ; Recommended                    # 17.0   [2] LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE..LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIVE
+A7CE..A7CF    ; Uncommon_Use                   # 17.0   [2] LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE..LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIVE
 A7D0..A7D1    ; Recommended                    # 14.0   [2] LATIN CAPITAL LETTER CLOSED INSULAR G..LATIN SMALL LETTER CLOSED INSULAR G
-A7D2          ; Recommended                    # 17.0       LATIN CAPITAL LETTER DOUBLE THORN
+A7D2          ; Obsolete                       # 17.0       LATIN CAPITAL LETTER DOUBLE THORN
 A7D3          ; Recommended                    # 14.0       LATIN SMALL LETTER DOUBLE THORN
-A7D4          ; Recommended                    # 17.0       LATIN CAPITAL LETTER DOUBLE WYNN
+A7D4          ; Obsolete                       # 17.0       LATIN CAPITAL LETTER DOUBLE WYNN
 A7D5..A7D9    ; Recommended                    # 14.0   [5] LATIN SMALL LETTER DOUBLE WYNN..LATIN SMALL LETTER SIGMOID S
 A7DA..A7DC    ; Uncommon_Use                   # 16.0   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER LAMBDA WITH STROKE
 A7F1          ; Not_NFKC                       # 17.0       MODIFIER LETTER CAPITAL S
@@ -1771,9 +1770,11 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 10EAD         ; Exclusion Not_XID              # 13.0       YEZIDI HYPHENATION MARK
 10EB0..10EB1  ; Exclusion                      # 13.0   [2] YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
 10EC2..10EC4  ; Uncommon_Use                   # 16.0   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
-10EC5..10EC7  ; Recommended                    # 17.0   [3] ARABIC SMALL YEH BARREE WITH TWO DOTS BELOW..ARABIC LETTER YEH WITH FOUR DOTS BELOW
+10EC5..10EC6  ; Technical                      # 17.0   [2] ARABIC SMALL YEH BARREE WITH TWO DOTS BELOW..ARABIC LETTER THIN NOON
+10EC7         ; Uncommon_Use                   # 17.0       ARABIC LETTER YEH WITH FOUR DOTS BELOW
 10ED0..10ED8  ; Not_XID                        # 17.0   [9] ARABIC BIBLICAL END OF VERSE..ARABIC LIGATURE NAWWARA ALLAAHU MARQADAH
-10EFA..10EFB  ; Uncommon_Use                   # 17.0   [2] ARABIC DOUBLE VERTICAL BAR BELOW..ARABIC SMALL LOW NOON
+10EFA         ; Uncommon_Use                   # 17.0       ARABIC DOUBLE VERTICAL BAR BELOW
+10EFB         ; Uncommon_Use Technical         # 17.0       ARABIC SMALL LOW NOON
 10EFC         ; Uncommon_Use                   # 16.0       ARABIC COMBINING ALEF OVERLAY
 10EFD..10EFF  ; Uncommon_Use                   # 15.0   [3] ARABIC SMALL LOW WORD SAKTA..ARABIC SMALL LOW WORD MADDA
 10F00..10F1C  ; Exclusion                      # 11.0  [29] OLD SOGDIAN LETTER ALEPH..OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
@@ -2025,7 +2026,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 16FE3         ; Obsolete                       # 12.0       OLD CHINESE ITERATION MARK
 16FE4         ; Exclusion                      # 13.0       KHITAN SMALL SCRIPT FILLER
 16FF0..16FF1  ; Recommended                    # 13.0   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
-16FF2..16FF6  ; Recommended                    # 17.0   [5] CHINESE SMALL SIMPLIFIED ER..YANGQIN SIGN SLOW TWO BEATS
+16FF2..16FF6  ; Technical                      # 17.0   [5] CHINESE SMALL SIMPLIFIED ER..YANGQIN SIGN SLOW TWO BEATS
 17000..187EC  ; Exclusion                      # 9.0 [6125] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187EC
 187ED..187F1  ; Exclusion                      # 11.0   [5] TANGUT IDEOGRAPH-187ED..TANGUT IDEOGRAPH-187F1
 187F2..187F7  ; Exclusion                      # 12.0   [6] TANGUT IDEOGRAPH-187F2..TANGUT IDEOGRAPH-187F7
@@ -2453,7 +2454,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 2A700..2B734  ; Recommended                    # 5.2 [4149] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
 2B735..2B738  ; Recommended                    # 14.0   [4] CJK UNIFIED IDEOGRAPH-2B735..CJK UNIFIED IDEOGRAPH-2B738
 2B739         ; Recommended                    # 15.0       CJK UNIFIED IDEOGRAPH-2B739
-2B73A..2B73E  ; Recommended                    # 17.0   [5] CJK UNIFIED IDEOGRAPH-2B73A..CJK UNIFIED IDEOGRAPH-2B73E
+2B73A..2B73E  ; Uncommon_Use                   # 17.0   [5] CJK UNIFIED IDEOGRAPH-2B73A..CJK UNIFIED IDEOGRAPH-2B73E
 2B740..2B81D  ; Recommended                    # 6.0  [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B820..2CEA1  ; Recommended                    # 8.0 [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEB0..2EBE0  ; Recommended                    # 10.0 [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
@@ -2461,7 +2462,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 2F800..2FA1D  ; Not_NFKC                       # 3.1  [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; Recommended                    # 13.0 [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Recommended                    # 15.0 [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
-323B0..33479  ; Recommended                    # 17.0 [4298] CJK UNIFIED IDEOGRAPH-323B0..CJK UNIFIED IDEOGRAPH-33479
+323B0..33479  ; Uncommon_Use                   # 17.0 [4298] CJK UNIFIED IDEOGRAPH-323B0..CJK UNIFIED IDEOGRAPH-33479
 E0001         ; Deprecated                     # 3.1        LANGUAGE TAG
 E0020..E007F  ; Default_Ignorable              # 3.1   [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Default_Ignorable              # 4.0  [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
