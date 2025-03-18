@@ -67,7 +67,7 @@ public enum UcdProperty {
     Confusable_SL(PropertyType.String, DerivedPropertyStatus.NonUCDNonProperty, "ConfSL"),
     Decomposition_Mapping(PropertyType.String, DerivedPropertyStatus.Approved, "dm"),
     Do_Not_Emit_Preferred(
-            PropertyType.String, DerivedPropertyStatus.NonUCDNonProperty, "Do_Not_Emit_Preferred"),
+            PropertyType.String, DerivedPropertyStatus.UCDNonProperty, "Do_Not_Emit_Preferred"),
     Equivalent_Unified_Ideograph(PropertyType.String, DerivedPropertyStatus.Approved, "EqUIdeo"),
     FC_NFKC_Closure(PropertyType.String, DerivedPropertyStatus.Approved, "FC_NFKC"),
     Idn_Mapping(PropertyType.String, DerivedPropertyStatus.NonUCDNonProperty, "idnm"),

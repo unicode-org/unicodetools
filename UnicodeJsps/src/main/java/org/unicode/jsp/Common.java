@@ -7,9 +7,7 @@ import com.ibm.icu.text.Normalizer.Mode;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ULocale;
 import java.util.Arrays;
 import java.util.List;
 import org.unicode.jsp.XPropertyFactory.HanType.HanTypeValues;
@@ -47,14 +45,7 @@ public class Common {
             };
 
     static List<String> XPROPERTY_NAMES =
-            Arrays.asList(
-                    new String[] {
-                        "toNFC",
-                        "toNFD",
-                        "toNFKC",
-                        "toNFKD",
-                        "subhead"
-                    });
+            Arrays.asList(new String[] {"toNFC", "toNFD", "toNFKC", "toNFKD", "subhead"});
     static final int XSTRING_START = UProperty.STRING_LIMIT;
 
     public static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice) {

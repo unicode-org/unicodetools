@@ -50,7 +50,7 @@ ConfMA ; Confusable_MA ; Confusable ; NonUCDNonProperty
 cjkSimplifiedVariant ; kSimplifiedVariant ; Provisional
 cjkTraditionalVariant ; kTraditionalVariant ; Provisional
 
-Do_Not_Emit_Preferred ; Do_Not_Emit_Preferred ; NonUCDNonProperty
+Do_Not_Emit_Preferred ; Do_Not_Emit_Preferred ; UCDNonProperty
 
 # ================================================
 # Miscellaneous Properties
