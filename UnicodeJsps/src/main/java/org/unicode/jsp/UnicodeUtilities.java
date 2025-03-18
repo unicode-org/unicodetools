@@ -52,7 +52,6 @@ import org.unicode.idna.IdnaTypes;
 import org.unicode.idna.Punycode;
 import org.unicode.idna.Uts46;
 import org.unicode.props.DerivedPropertyStatus;
-import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
@@ -1450,7 +1449,11 @@ public class UnicodeUtilities {
                         .collect(Collectors.toList());
         List<UcdProperty> ucdProperties =
                 indexedProperties.stream()
-                        .filter(p -> p.getDerivedStatus() == DerivedPropertyStatus.Approved || p.getDerivedStatus() == DerivedPropertyStatus.Provisional)
+                        .filter(
+                                p ->
+                                        p.getDerivedStatus() == DerivedPropertyStatus.Approved
+                                                || p.getDerivedStatus()
+                                                        == DerivedPropertyStatus.Provisional)
                         .collect(Collectors.toList());
         List<UcdProperty> nonUCDProperties =
                 indexedProperties.stream()
@@ -1522,12 +1525,8 @@ public class UnicodeUtilities {
                 out);
         if (isUnihan) {
             showProperties(
-                    cjkProperties.stream()
-                            .map(UcdProperty::toString)
-                            .collect(Collectors.toList()),
-                    (isUnihan ? "Non-Unihan " : "")
-                            + "Normative, Informative, and (Provisional) properties for U+"
-                            + hex,
+                    cjkProperties.stream().map(UcdProperty::toString).collect(Collectors.toList()),
+                    "Unihan Normative, Informative, and (Provisional) properties for U+" + hex,
                     cp,
                     minVersion,
                     maxVersion,
@@ -1554,10 +1553,7 @@ public class UnicodeUtilities {
             boolean showDevProperties,
             Appendable out)
             throws IOException {
-        out.append("<tr><th colspan=2>"
-                        + title
-                        + "</th></tr>"
-                        + "<tr><td width='50%'>\n");
+        out.append("<tr><th colspan=2>" + title + "</th></tr>" + "<tr><td width='50%'>\n");
         out.append("<table width='100%'>\n");
         for (int i = 0; i < properties.size() / 2; ++i) {
             UnicodeProperty prop = getFactory().getProperty(properties.get(i));
@@ -1707,9 +1703,12 @@ public class UnicodeUtilities {
             VersionInfo maxVersion,
             Appendable out)
             throws IOException {
-        String defaultClass = getFactory().getProperty(propName).isDefault(codePoint) ? " class='default'" : "";
+        String defaultClass =
+                getFactory().getProperty(propName).isDefault(codePoint) ? " class='default'" : "";
         var indexedProperty = UcdProperty.forString(propName);
-        final boolean provisional = indexedProperty != null && indexedProperty.getDerivedStatus() == DerivedPropertyStatus.Provisional;
+        final boolean provisional =
+                indexedProperty != null
+                        && indexedProperty.getDerivedStatus() == DerivedPropertyStatus.Provisional;
         class PropertyAssignment {
             VersionInfo first;
             VersionInfo last;
