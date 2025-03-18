@@ -52,6 +52,7 @@ import org.unicode.idna.IdnaTypes;
 import org.unicode.idna.Punycode;
 import org.unicode.idna.Uts46;
 import org.unicode.props.DerivedPropertyStatus;
+import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
@@ -1447,13 +1448,9 @@ public class UnicodeUtilities {
                         .map(UcdProperty::forString)
                         .filter(p -> p != null)
                         .collect(Collectors.toList());
-        List<UcdProperty> approvedProperties =
+        List<UcdProperty> ucdProperties =
                 indexedProperties.stream()
-                        .filter(p -> p.getDerivedStatus() == DerivedPropertyStatus.Approved)
-                        .collect(Collectors.toList());
-        List<UcdProperty> provisionalProperties =
-                indexedProperties.stream()
-                        .filter(p -> p.getDerivedStatus() == DerivedPropertyStatus.Provisional)
+                        .filter(p -> p.getDerivedStatus() == DerivedPropertyStatus.Approved || p.getDerivedStatus() == DerivedPropertyStatus.Provisional)
                         .collect(Collectors.toList());
         List<UcdProperty> nonUCDProperties =
                 indexedProperties.stream()
@@ -1473,16 +1470,11 @@ public class UnicodeUtilities {
                                                         == DerivedPropertyStatus.NonUCDNonProperty)
                         .collect(Collectors.toList());
 
-        List<UcdProperty> cjkApprovedProperties =
-                approvedProperties.stream()
+        List<UcdProperty> cjkProperties =
+                ucdProperties.stream()
                         .filter(p -> p.getNames().getShortName().startsWith("cjk"))
                         .collect(Collectors.toList());
-        List<UcdProperty> cjkProvisionalProperties =
-                provisionalProperties.stream()
-                        .filter(p -> p.getNames().getShortName().startsWith("cjk"))
-                        .collect(Collectors.toList());
-        approvedProperties.removeIf(p -> p.getNames().getShortName().startsWith("cjk"));
-        provisionalProperties.removeIf(p -> p.getNames().getShortName().startsWith("cjk"));
+        ucdProperties.removeIf(p -> p.getNames().getShortName().startsWith("cjk"));
 
         Age_Values age = Age_Values.forName(getFactory().getProperty("Age").getValue(cp));
         VersionInfo minVersion =
@@ -1503,20 +1495,10 @@ public class UnicodeUtilities {
                 showDevProperties ? Settings.LATEST_VERSION_INFO : Settings.LAST_VERSION_INFO;
         out.append("<table class='propTable'>");
         showProperties(
-                approvedProperties.stream().map(UcdProperty::toString).collect(Collectors.toList()),
+                ucdProperties.stream().map(UcdProperty::toString).collect(Collectors.toList()),
                 (isUnihan ? "Non-Unihan " : "")
-                        + "Normative, Informative, Contributory, UCD properties for U+"
+                        + "Normative, Informative, Contributory, and (Provisional) UCD properties for U+"
                         + hex,
-                cp,
-                minVersion,
-                maxVersion,
-                showDevProperties,
-                out);
-        showProperties(
-                provisionalProperties.stream()
-                        .map(UcdProperty::toString)
-                        .collect(Collectors.toList()),
-                (isUnihan ? "Non-Unihan " : "") + "Provisional UCD properties for U+" + hex,
                 cp,
                 minVersion,
                 maxVersion,
@@ -1540,22 +1522,12 @@ public class UnicodeUtilities {
                 out);
         if (isUnihan) {
             showProperties(
-                    cjkApprovedProperties.stream()
+                    cjkProperties.stream()
                             .map(UcdProperty::toString)
                             .collect(Collectors.toList()),
                     (isUnihan ? "Non-Unihan " : "")
-                            + "Normative and Informative properties for U+"
+                            + "Normative, Informative, and (Provisional) properties for U+"
                             + hex,
-                    cp,
-                    minVersion,
-                    maxVersion,
-                    showDevProperties,
-                    out);
-            showProperties(
-                    cjkProvisionalProperties.stream()
-                            .map(UcdProperty::toString)
-                            .collect(Collectors.toList()),
-                    (isUnihan ? "Non-Unihan " : "") + "Provisional properties for U+" + hex,
                     cp,
                     minVersion,
                     maxVersion,
@@ -1582,9 +1554,9 @@ public class UnicodeUtilities {
             boolean showDevProperties,
             Appendable out)
             throws IOException {
-        out.append("<caption>"
+        out.append("<tr><th colspan=2>"
                         + title
-                        + "</caption>"
+                        + "</th></tr>"
                         + "<tr><td width='50%'>\n");
         out.append("<table width='100%'>\n");
         for (int i = 0; i < properties.size() / 2; ++i) {
@@ -1735,8 +1707,9 @@ public class UnicodeUtilities {
             VersionInfo maxVersion,
             Appendable out)
             throws IOException {
-        String defaultClass =
-                getFactory().getProperty(propName).isDefault(codePoint) ? " class='default'" : "";
+        String defaultClass = getFactory().getProperty(propName).isDefault(codePoint) ? " class='default'" : "";
+        var indexedProperty = UcdProperty.forString(propName);
+        final boolean provisional = indexedProperty != null && indexedProperty.getDerivedStatus() == DerivedPropertyStatus.Provisional;
         class PropertyAssignment {
             VersionInfo first;
             VersionInfo last;
@@ -1794,12 +1767,14 @@ public class UnicodeUtilities {
             history.add(current);
         }
         out.append(
-                "<tr><th><a target='c' href='properties.jsp?a="
+                "<tr><th width='50%'><a target='c' href='properties.jsp?a="
                         + propName
                         + "#"
                         + propName
                         + "'>"
+                        + (provisional ? "(" : "")
                         + propName
+                        + (provisional ? ")" : "")
                         + "</a></th>");
         for (PropertyAssignment assignment : history) {
             String first =
