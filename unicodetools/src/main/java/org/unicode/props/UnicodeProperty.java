@@ -265,9 +265,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     }
 
     public Iterable<String> getValues(int codepoint) {
-        return isMultivalued
-                ? delimiterSplitter.split(getValue(codepoint))
-                : Collections.singleton(getValue(codepoint));
+        String value = getValue(codepoint);
+        return isMultivalued && value != null
+                ? delimiterSplitter.split(value)
+                : Collections.singleton(value);
     }
 
     public String getValue(int codepoint) {
