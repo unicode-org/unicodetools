@@ -10,7 +10,6 @@ RETS ; RGI_Emoji_Tag_Sequence ; Emoji_Tag_Sequence ; NonUCDNonProperty
 REZS ; RGI_Emoji_Zwj_Sequence ; Emoji_Zwj_Sequence ; NonUCDNonProperty
 # TODO(egg): Add this.
 # RE ; RGI_Emoji ; NonUCDProperty
-# RGI_Emoji_Qualification ; RGI_Emoji_Qualification ; NonUCDProperty
 
 # ================================================
 # Enumerated Properties
@@ -31,6 +30,9 @@ Other_Joining_Type ; Other_Joining_Type ; UCDNonProperty
 Do_Not_Emit_Type ; Do_Not_Emit_Type ; UCDNonProperty
 
 kEH_Core                 ; kEH_Core ; Provisional
+
+# TODO(egg): Add this.
+# RGI_Emoji_Qualification ; RGI_Emoji_Qualification ; NonUCDProperty
 
 # ================================================
 # String Properties
