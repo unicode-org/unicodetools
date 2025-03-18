@@ -53,10 +53,6 @@ public class Common {
                         "toNFD",
                         "toNFKC",
                         "toNFKD",
-                        "toCasefold",
-                        "toLowercase",
-                        "toUppercase",
-                        "toTitlecase",
                         "subhead"
                     });
     static final int XSTRING_START = UProperty.STRING_LIMIT;
