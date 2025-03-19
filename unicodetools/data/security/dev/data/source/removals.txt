@@ -585,7 +585,7 @@ A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
 2054 ; uncommon-use # ( ⁔ ) INVERTED UNDERTIE
 
 [[:sc=Hebr:]&[:gc=Mn:]] ; uncommon-use # Hebrew — Cantillation marks
-[[:sc=Arab:]&[:gc=Mn:]-[\u064B-\u0655]] ; uncommon-use # Arabic
+[[:sc=Arab:]&[:gc=Mn:]-[\u064B-\u0655\U00010EFB]] ; uncommon-use # Arabic nonspacing marks (some exceptions)
 2DE0..2DFF ; historic # Old Church Slavonic combining letters
 [:ccc=Double_Above:] ; technical # specialized use
 [:ccc=Double_Below:] ; technical # specialized use

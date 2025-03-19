@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2025-03-17, 16:54:52 GMT
+# Date: 2025-03-19, 18:32:26 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -902,9 +902,8 @@ AB60..AB63    ; Uncommon_Use                   # 8.0    [4] LATIN SMALL LETTER S
 0DF3          ; Uncommon_Use Technical         # 3.0        SINHALA VOWEL SIGN DIGA GAYANUKITTA
 FB1E          ; Uncommon_Use Technical         # 1.1        HEBREW POINT JUDEO-SPANISH VARIKA
 FE2E..FE2F    ; Uncommon_Use Technical         # 8.0    [2] COMBINING CYRILLIC TITLO LEFT HALF..COMBINING CYRILLIC TITLO RIGHT HALF
-10EFB         ; Uncommon_Use Technical         # 17.0       ARABIC SMALL LOW NOON
 
-# Total code points: 21
+# Total code points: 20
 
 #	Identifier_Type:	Uncommon_Use Technical Not_XID
 
@@ -1040,6 +1039,7 @@ FE24..FE26    ; Technical                      # 5.1    [3] COMBINING MACRON LEF
 FE27..FE2D    ; Technical                      # 7.0    [7] COMBINING LIGATURE LEFT HALF BELOW..COMBINING CONJOINING MACRON BELOW
 FE73          ; Technical                      # 3.2        ARABIC TAIL FRAGMENT
 10EC5..10EC6  ; Technical                      # 17.0   [2] ARABIC SMALL YEH BARREE WITH TWO DOTS BELOW..ARABIC LETTER THIN NOON
+10EFB         ; Technical                      # 17.0       ARABIC SMALL LOW NOON
 16FF2..16FF6  ; Technical                      # 17.0   [5] CHINESE SMALL SIMPLIFIED ER..YANGQIN SIGN SLOW TWO BEATS
 1CF00..1CF2D  ; Technical                      # 14.0  [46] ZNAMENNY COMBINING MARK GORAZDO NIZKO S KRYZHEM ON LEFT..ZNAMENNY COMBINING MARK KRYZH ON LEFT
 1CF30..1CF46  ; Technical                      # 14.0  [23] ZNAMENNY COMBINING TONAL RANGE MARK MRACHNO..ZNAMENNY PRIZNAK MODIFIER ROG
@@ -1049,7 +1049,7 @@ FE73          ; Technical                      # 3.2        ARABIC TAIL FRAGMENT
 1D185..1D18B  ; Technical                      # 3.1    [7] MUSICAL SYMBOL COMBINING DOIT..MUSICAL SYMBOL COMBINING TRIPLE TONGUE
 1D1AA..1D1AD  ; Technical                      # 3.1    [4] MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 
-# Total code points: 536
+# Total code points: 537
 
 #	Identifier_Type:	Technical Exclusion
 
