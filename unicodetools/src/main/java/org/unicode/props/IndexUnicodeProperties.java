@@ -33,6 +33,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
@@ -89,7 +90,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         NONE(null),
         CODE_POINT(null),
         Script(UcdProperty.Script),
-        Script_Extensions(UcdProperty.Script_Extensions),
         Simple_Lowercase_Mapping(UcdProperty.Simple_Lowercase_Mapping),
         Simple_Titlecase_Mapping(UcdProperty.Simple_Titlecase_Mapping),
         Simple_Uppercase_Mapping(UcdProperty.Simple_Uppercase_Mapping);
@@ -737,6 +737,24 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                             && _getRawUnicodeMap()
                                     .keySet(_getRawUnicodeMap().getValue(0))
                                     .equals(UnicodeSet.ALL_CODE_POINTS));
+        }
+
+        @Override
+        public boolean isDefault(int codePoint) {
+            String defaultValue = getDefaultValue(prop, ucdVersion);
+            String value = getValue(codePoint);
+            var defaultValueType = DefaultValueType.forString(defaultValue);
+            switch (defaultValueType) {
+                case CODE_POINT:
+                    return Character.toString(codePoint).equals(value);
+                case NONE:
+                    return value == null;
+                case LITERAL:
+                    return Objects.equals(defaultValue, value);
+                default:
+                    return Objects.equals(
+                            getProperty(defaultValueType.property).getValue(codePoint), value);
+            }
         }
 
         @Override

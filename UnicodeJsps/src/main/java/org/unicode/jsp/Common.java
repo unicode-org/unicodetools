@@ -7,9 +7,7 @@ import com.ibm.icu.text.Normalizer.Mode;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ULocale;
 import java.util.Arrays;
 import java.util.List;
 import org.unicode.jsp.XPropertyFactory.HanType.HanTypeValues;
@@ -47,18 +45,7 @@ public class Common {
             };
 
     static List<String> XPROPERTY_NAMES =
-            Arrays.asList(
-                    new String[] {
-                        "toNFC",
-                        "toNFD",
-                        "toNFKC",
-                        "toNFKD",
-                        "toCasefold",
-                        "toLowercase",
-                        "toUppercase",
-                        "toTitlecase",
-                        "subhead"
-                    });
+            Arrays.asList(new String[] {"toNFC", "toNFD", "toNFKC", "toNFKD", "subhead"});
     static final int XSTRING_START = UProperty.STRING_LIMIT;
 
     public static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice) {
@@ -72,14 +59,6 @@ public class Common {
                 return Common.MyNormalize(codepoint, Normalizer.NFKC);
             case Common.TO_NFKD:
                 return Common.MyNormalize(codepoint, Normalizer.NFKD);
-            case Common.TO_CASEFOLD:
-                return UCharacter.foldCase(UTF16.valueOf(codepoint), true);
-            case Common.TO_LOWERCASE:
-                return UCharacter.toLowerCase(ULocale.ROOT, UTF16.valueOf(codepoint));
-            case Common.TO_UPPERCASE:
-                return UCharacter.toUpperCase(ULocale.ROOT, UTF16.valueOf(codepoint));
-            case Common.TO_TITLECASE:
-                return UCharacter.toTitleCase(ULocale.ROOT, UTF16.valueOf(codepoint), null);
             case Common.SUBHEAD:
                 return UnicodeUtilities.getSubheader().getSubheader(codepoint);
         }
@@ -120,11 +99,7 @@ public class Common {
     static final int TO_NFD = UProperty.STRING_LIMIT + 1;
     static final int TO_NFKC = UProperty.STRING_LIMIT + 2;
     static final int TO_NFKD = UProperty.STRING_LIMIT + 3;
-    static final int TO_CASEFOLD = UProperty.STRING_LIMIT + 4;
-    static final int TO_LOWERCASE = UProperty.STRING_LIMIT + 5;
-    static final int TO_UPPERCASE = UProperty.STRING_LIMIT + 6;
-    static final int TO_TITLECASE = UProperty.STRING_LIMIT + 7;
-    public static final int SUBHEAD = TO_TITLECASE + 1;
+    public static final int SUBHEAD = TO_NFKD + 1;
     static final int XSTRING_LIMIT = SUBHEAD + 1;
     //    static UnicodeSet       isCaseFolded  = new UnicodeSet();
     //    static UnicodeSet       isLowercase   = new UnicodeSet();
