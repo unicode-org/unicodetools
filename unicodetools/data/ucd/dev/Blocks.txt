@@ -139,6 +139,7 @@
 2E00..2E7F; Supplemental Punctuation
 2E80..2EFF; CJK Radicals Supplement
 2F00..2FDF; Kangxi Radicals
+2FE0..2FEF; Punctuation Extended-A
 2FF0..2FFF; Ideographic Description Characters
 3000..303F; CJK Symbols and Punctuation
 3040..309F; Hiragana
@@ -240,6 +241,7 @@ FFF0..FFFF; Specials
 10B60..10B7F; Inscriptional Pahlavi
 10B80..10BAF; Psalter Pahlavi
 10C00..10C4F; Old Turkic
+10C50..10C7F; Xaini
 10C80..10CFF; Old Hungarian
 10D00..10D3F; Hanifi Rohingya
 10D40..10D8F; Garay
@@ -326,6 +328,7 @@ FFF0..FFFF; Specials
 1CC00..1CEBF; Symbols for Legacy Computing Supplement
 1CEC0..1CEFF; Miscellaneous Symbols Supplement
 1CF00..1CFCF; Znamenny Musical Notation
+1CFD0..1CFFF; Kana Extended-C
 1D000..1D0FF; Byzantine Musical Symbols
 1D100..1D1FF; Musical Symbols
 1D200..1D24F; Ancient Greek Musical Notation
