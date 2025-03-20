@@ -848,19 +848,19 @@ AB68; Technical
 A9CF; Limited_Use Uncommon_Use
 
 # Unicode 17
-09FF; Technical # L2/24-013
-0B53..0B54; Uncommon_Use # L2/24-068
+09FF; Technical # L2/22-268R
+0B53..0B54; Uncommon_Use # L2/24-106R
 0C5C; Obsolete # L2/22-006
 0CDC; Obsolete # L2/22-006
-1ACF..1ADD; Technical # L2/24-105, L2/23-188, L2/23-208, L2/23-206, L2/23-238
+1ACF..1ADD; Technical # L2/24-105, L2/23-188, L2/23-208, L2/23-206
 1AE0..1AEA; Technical # L2/24-080
 A7CE..A7CF; Uncommon_Use # L2/23-219
 A7D2; Obsolete # L2/23-135
 A7D4; Obsolete # L2/23-135
-10EC5; Technical # L2/23-019
+10EC5; Technical # L2/22-281R
 10EC6; Technical # L2/23-121
 10EC7; Uncommon_Use # L2/24-055
 10EFB; Technical # L2/22-281R
-16FF2..16FF6; Technical # L2/23-284
+16FF2..16FF6; Technical # L2/24-071R3
 2B73A..2B73E; Uncommon_Use # L2/25-031
 \p{block=CJK_Unified_Ideographs_Extension_J}; Uncommon_Use # L2/25-031
