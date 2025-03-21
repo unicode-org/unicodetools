@@ -206,9 +206,9 @@ kReading ;                    SINGLE_VALUED ;                [a-z]{1,6}[1-6]+
 kRSTUnicode ;                 SINGLE_VALUED ;                [0-9]+\.[0-9]+
 kTGT_MergedSrc ;              SINGLE_VALUED ;                L2008-[0-9A-F]{4,5}(-[0-9]{4,5})?
 
-NC_Original ;                 SINGLE_VALUED ;                [0-9A-F]{4,5}
-NC_Corrected ;                SINGLE_VALUED ;                [0-9A-F]{4,5}
-NC_Version ;                  SINGLE_VALUED ;                [0-9]\.[0-9]\.[0-9]
+normalization_correction_original ;  SINGLE_VALUED ;         [0-9A-F]{4,5}
+normalization_correction_corrected ; SINGLE_VALUED ;         [0-9A-F]{4,5}
+normalization_correction_version ;   SINGLE_VALUED ;         [0-9]\.[0-9]\.[0-9]
 
 # =============================
 # Catalog/Enum/Binary Properties

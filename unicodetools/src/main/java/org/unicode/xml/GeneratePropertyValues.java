@@ -111,7 +111,7 @@ public class GeneratePropertyValues {
     private static final UOption[] options = {
         UOption.HELP_H(),
         UOption.create("ucdversion", 'v', UOption.OPTIONAL_ARG),
-        UOption.create("outputfolder", 'f', UOption.REQUIRES_ARG)
+        UOption.create("outputfolder", 'f', UOption.OPTIONAL_ARG)
     };
 
     private static final int HELP = 0, UCDVERSION = 1, OUTPUTFOLDER = 2;
@@ -141,32 +141,18 @@ public class GeneratePropertyValues {
             } else {
                 ucdVersion = VersionInfo.getInstance(Settings.latestVersion);
             }
-            if (options[OUTPUTFOLDER].doesOccur) {
-                try {
-                    destinationFolder = new File(options[OUTPUTFOLDER].value);
-                    if (!destinationFolder.exists()) {
-                        if (!destinationFolder.mkdirs()) {
-                            throw new IOException();
-                        }
+            destinationFolder =
+                    options[OUTPUTFOLDER].doesOccur
+                            ? new File(options[OUTPUTFOLDER].value)
+                            : new File(Settings.Output.GEN_DIR + "uax42/fragments/");
+            try {
+                if (!destinationFolder.exists()) {
+                    if (!destinationFolder.mkdirs()) {
+                        throw new IOException();
                     }
-                } catch (Exception e) {
-                    throw new IllegalArgumentException(
-                            "Could not find or create " + options[OUTPUTFOLDER].value);
                 }
-            } else {
-                try {
-                    destinationFolder = new File(Settings.Output.GEN_DIR + "uax42\\fragments\\");
-                    if (!destinationFolder.exists()) {
-                        if (!destinationFolder.mkdirs()) {
-                            throw new IOException();
-                        }
-                    }
-                } catch (Exception e) {
-                    throw new IllegalArgumentException(
-                            "Could not find or create "
-                                    + Settings.Output.GEN_DIR
-                                    + "uax42\\fragments\\");
-                }
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Could not find or create " + destinationFolder);
             }
 
         } catch (Exception e) {

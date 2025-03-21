@@ -160,7 +160,9 @@ public class UCDSectionDetail {
                     UcdSection.NORMALIZATIONCORRECTIONS,
                     new UCDSectionComponent[] {
                         new UCDSectionComponent(
-                                VersionInfo.getInstance(1, 1, 0), null, UcdProperty.NC_Original)
+                                VersionInfo.getInstance(1, 1, 0),
+                                null,
+                                UcdProperty.normalization_correction_original)
                     },
                     2);
     public static UCDSectionDetail StandardizedVariants_Detail =

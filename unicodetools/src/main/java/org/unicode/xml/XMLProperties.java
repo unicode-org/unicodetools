@@ -280,7 +280,7 @@ public class XMLProperties {
                                         + " version: "
                                         + attributes.get("version");
                         cps = Utility.fromHex(attributes.get("cp"));
-                        appendProp(cps, UcdProperty.NC_Original, correction);
+                        appendProp(cps, UcdProperty.normalization_correction_original, correction);
                         break;
                     case INSTEAD:
                         final String instead =

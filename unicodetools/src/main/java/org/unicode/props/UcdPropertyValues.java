@@ -1669,9 +1669,6 @@ public class UcdPropertyValues {
     // Name_Alias
     // Named_Sequences
     // Named_Sequences_Prov
-    // NC_Corrected
-    // NC_Original
-    // NC_Version
     public enum NFC_Quick_Check_Values implements Named {
         Maybe("M"),
         No("N"),
@@ -1792,6 +1789,9 @@ public class UcdPropertyValues {
         }
     }
 
+    // normalization_correction_corrected
+    // normalization_correction_original
+    // normalization_correction_version
     public enum Numeric_Type_Values implements Named {
         Decimal("De"),
         Digit("Di"),

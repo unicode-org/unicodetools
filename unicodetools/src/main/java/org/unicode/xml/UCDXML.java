@@ -135,43 +135,25 @@ public class UCDXML {
                                     + " to one of [FLAT|GROUPED]");
                 }
             }
-            if (options[OUTPUTFOLDER].doesOccur) {
-                try {
-                    destinationFolder =
-                            new File(
+            destinationFolder =
+                    options[OUTPUTFOLDER].doesOccur
+                            ? new File(
                                     options[OUTPUTFOLDER].value
                                             + ucdVersion.getVersionString(3, 3)
-                                            + "/");
-                    if (!destinationFolder.exists()) {
-                        if (!destinationFolder.mkdirs()) {
-                            throw new IOException();
-                        }
-                    }
-                } catch (Exception e) {
-                    throw new IllegalArgumentException(
-                            "Could not find or create " + options[OUTPUTFOLDER].value);
-                }
-            } else {
-                try {
-                    destinationFolder =
-                            new File(
+                                            + "/")
+                            : new File(
                                     Settings.Output.GEN_DIR
-                                            + "ucdxml\\"
+                                            + "ucdxml/"
                                             + ucdVersion.getVersionString(3, 3)
-                                            + "\\");
-                    if (!destinationFolder.exists()) {
-                        if (!destinationFolder.mkdirs()) {
-                            throw new IOException();
-                        }
+                                            + "/");
+            try {
+                if (!destinationFolder.exists()) {
+                    if (!destinationFolder.mkdirs()) {
+                        throw new IOException();
                     }
-                } catch (Exception e) {
-                    throw new IllegalArgumentException(
-                            "Could not find or create "
-                                    + Settings.Output.GEN_DIR
-                                    + "ucdxml\\"
-                                    + ucdVersion.getVersionString(3, 3)
-                                    + "\\");
                 }
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Could not find or create " + destinationFolder);
             }
 
         } catch (Exception e) {

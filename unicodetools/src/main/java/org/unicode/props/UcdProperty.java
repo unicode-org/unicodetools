@@ -85,16 +85,13 @@ public enum UcdProperty {
     Emoji_SB(PropertyType.Miscellaneous, "ESB"),
     ISO_Comment(PropertyType.Miscellaneous, "isc"),
     Jamo_Short_Name(PropertyType.Miscellaneous, "JSN"),
-    NC_Corrected(PropertyType.Miscellaneous, "ncCorrected"),
-    NC_Original(PropertyType.Miscellaneous, "ncOriginal"),
-    NC_Version(PropertyType.Miscellaneous, "ncVersion"),
     Name(PropertyType.Miscellaneous, "na"),
     Name_Alias(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "Name_Alias"),
     Named_Sequences(PropertyType.Miscellaneous, "NS"),
     Named_Sequences_Prov(PropertyType.Miscellaneous, "NSP"),
     Standardized_Variant(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "SV"),
     Unicode_1_Name(PropertyType.Miscellaneous, "na1"),
-    emoji_variation_sequence(PropertyType.Miscellaneous, "EVS"),
+    emoji_variation_sequence(PropertyType.Miscellaneous, "emoji_variation_sequence"),
     kAlternateHanYu(PropertyType.Miscellaneous, "cjkAlternateHanYu"),
     kAlternateJEF(PropertyType.Miscellaneous, "cjkAlternateJEF"),
     kAlternateKangXi(PropertyType.Miscellaneous, "cjkAlternateKangXi"),
@@ -246,6 +243,12 @@ public enum UcdProperty {
     kZhuang(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkZhuang"),
     kZhuangNumeric(
             PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkZhuangNumeric"),
+    normalization_correction_corrected(
+            PropertyType.Miscellaneous, "normalization_correction_corrected"),
+    normalization_correction_original(
+            PropertyType.Miscellaneous, "normalization_correction_original"),
+    normalization_correction_version(
+            PropertyType.Miscellaneous, "normalization_correction_version"),
 
     // Catalog
     Age(PropertyType.Catalog, Age_Values.class, null, "age"),

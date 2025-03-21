@@ -328,9 +328,9 @@ NushuSources ; kReading
 TangutSources ; kRSTUnicode
 TangutSources ; kTGT_MergedSrc
 
-NormalizationCorrections ; NC_Original
-NormalizationCorrections ; NC_Corrected
-NormalizationCorrections ; NC_Version
+NormalizationCorrections ; normalization_correction_original
+NormalizationCorrections ; normalization_correction_corrected
+NormalizationCorrections ; normalization_correction_version
 
 # Properties removed from Unihan before 5.1.
 # Point to a nonexistent file so that we don’t try to read them from the most recent monolithic
