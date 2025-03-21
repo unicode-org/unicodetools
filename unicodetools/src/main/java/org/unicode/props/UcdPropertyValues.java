@@ -766,6 +766,7 @@ public class UcdPropertyValues {
     // Emoji_DCM
     // Emoji_KDDI
     // Emoji_SB
+    // emoji_variation_sequence
     // Equivalent_Unified_Ideograph
     // FC_NFKC_Closure
     public enum General_Category_Values implements Named {
@@ -1789,6 +1790,9 @@ public class UcdPropertyValues {
         }
     }
 
+    // normalization_correction_corrected
+    // normalization_correction_original
+    // normalization_correction_version
     public enum Numeric_Type_Values implements Named {
         Decimal("De"),
         Digit("Di"),

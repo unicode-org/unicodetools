@@ -36,6 +36,8 @@ FileType ; Unihan_OtherMappings ; PropertyValue
 FileType ; Unihan_RadicalStrokeCounts ; PropertyValue
 FileType ; Unihan_Readings ; PropertyValue
 FileType ; Unihan_Variants ; PropertyValue
+FileType ; NushuSources ; PropertyValue
+FileType ; TangutSources ; PropertyValue
 
 # NameAliases File Type
 # Contains a multivalued property, where successive values are not in the same line, but are divided out on successive lines with the same code point
@@ -43,6 +45,7 @@ FileType ; Unihan_Variants ; PropertyValue
 FileType ; NameAliases ; NameAliases
 FileType ; NameAliasesProv ; NameAliases
 FileType ; StandardizedVariants ; StandardizedVariants
+FileType ; emoji-variation-sequences ; StandardizedVariants
 
 # CJKRadicals File Type
 
@@ -320,6 +323,15 @@ Unihan_Variants ; kSpoofingVariant
 Unihan_Variants ; kTraditionalVariant
 Unihan_Variants ; kZVariant
 
+NushuSources ; kSrc_NushuDuben
+NushuSources ; kReading
+TangutSources ; kRSTUnicode
+TangutSources ; kTGT_MergedSrc
+
+NormalizationCorrections ; normalization_correction_original
+NormalizationCorrections ; normalization_correction_corrected
+NormalizationCorrections ; normalization_correction_version
+
 # Properties removed from Unihan before 5.1.
 # Point to a nonexistent file so that we don’t try to read them from the most recent monolithic
 # Unihan, as we would then get confused by the other (still-extant) properties in that file.
@@ -438,6 +450,7 @@ EmojiSources ; Emoji_SB ; 3
 NamedSequences ; Named_Sequences
 NamedSequencesProv ; Named_Sequences_Prov
 StandardizedVariants ; Standardized_Variant
+emoji-variation-sequences ; emoji-variation-sequence
 DoNotEmit ; Do_Not_Emit_Preferred ; 1
 DoNotEmit ; Do_Not_Emit_Type ; 2
 
@@ -487,15 +500,6 @@ emoji/*/emoji-sequences; RGI_Emoji_Tag_Sequence
 emoji/*/emoji-zwj-sequences; RGI_Emoji_Zwj_Sequence
 
 #emoji/*/emoji-test ; Emoji_Short_Name
-
-
-FileType ; TangutSources ; PropertyValue
-TangutSources ; kTGT_MergedSrc
-TangutSources ; kRSTUnicode
-
-FileType ; NushuSources ; PropertyValue
-NushuSources ; kSrc_NushuDuben
-NushuSources ; kReading
 
 FileType ; Unikemet ; PropertyValue
 Unikemet ; kEH_Cat

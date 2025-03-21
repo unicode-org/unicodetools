@@ -91,6 +91,7 @@ public enum UcdProperty {
     Named_Sequences_Prov(PropertyType.Miscellaneous, "NSP"),
     Standardized_Variant(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "SV"),
     Unicode_1_Name(PropertyType.Miscellaneous, "na1"),
+    emoji_variation_sequence(PropertyType.Miscellaneous, "emoji_variation_sequence"),
     kAlternateHanYu(PropertyType.Miscellaneous, "cjkAlternateHanYu"),
     kAlternateJEF(PropertyType.Miscellaneous, "cjkAlternateJEF"),
     kAlternateKangXi(PropertyType.Miscellaneous, "cjkAlternateKangXi"),
@@ -242,6 +243,12 @@ public enum UcdProperty {
     kZhuang(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkZhuang"),
     kZhuangNumeric(
             PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkZhuangNumeric"),
+    normalization_correction_corrected(
+            PropertyType.Miscellaneous, "normalization_correction_corrected"),
+    normalization_correction_original(
+            PropertyType.Miscellaneous, "normalization_correction_original"),
+    normalization_correction_version(
+            PropertyType.Miscellaneous, "normalization_correction_version"),
 
     // Catalog
     Age(PropertyType.Catalog, Age_Values.class, null, "age"),
