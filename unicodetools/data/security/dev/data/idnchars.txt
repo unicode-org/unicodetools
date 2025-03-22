@@ -1,11 +1,11 @@
 # idnchars.txt
-# Date: 2024-08-14, 23:39:58 GMT
-# © 2024 Unicode®, Inc.
+# Date: 2025-03-19, 22:50:25 GMT
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 16.0.0
+# Version: 17.0.0
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr39
 #
@@ -235,7 +235,7 @@
 06EE..06FF    ; output # [18] (ۮ..ۿ)  ARABIC LETTER DAL WITH INVERTED V..ARABIC LETTER HEH WITH INVERTED V
 0750..07B1    ; output # [98] (ݐ..ޱ)  ARABIC LETTER BEH WITH THREE DOTS HORIZONTALLY BELOW..THAANA LETTER NAA
 0870..0887    ; output # [24] (ࡰ..ࢇ)  ARABIC LETTER ALEF WITH ATTACHED FATHA..ARABIC BASELINE ROUND DOT
-0889..088E    ; output #  [6] (ࢉ..ࢎ)  ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC VERTICAL TAIL
+0889..088F    ; output #  [7] (ࢉ..࢏)  ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC LETTER NOON WITH RING ABOVE
 08A0..08AC    ; output # [13] (ࢠ..ࢬ)  ARABIC LETTER BEH WITH SMALL V BELOW..ARABIC LETTER ROHINGYA YEH
 08B2          ; output #      (ࢲ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE
 08B5..08C9    ; output # [21] (ࢵ..ࣉ)  ARABIC LETTER QAF WITH DOT BELOW AND NO DOTS ABOVE..ARABIC SMALL FARSI YEH
@@ -665,7 +665,7 @@ FA27..FA29    ; output #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK 
 30000..3134A  ; output # [4939] (𰀀..𱍊)  CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; output # [4192] (𱍐..𲎯)  CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 112110
+# Total code points: 112111
 
 # Not allowed at start of identifier
 

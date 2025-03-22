@@ -1,11 +1,11 @@
 # IdentifierType.txt
-# Date: 2024-08-14, 23:39:57 GMT
-# © 2024 Unicode®, Inc.
+# Date: 2025-03-19, 22:50:24 GMT
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 16.0.0
+# Version: 17.0.0
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr39
 #
@@ -141,6 +141,7 @@
 07B1          ; Recommended                    # 3.2        THAANA LETTER NAA
 0870..0887    ; Recommended                    # 14.0  [24] ARABIC LETTER ALEF WITH ATTACHED FATHA..ARABIC BASELINE ROUND DOT
 0889..088E    ; Recommended                    # 14.0   [6] ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC VERTICAL TAIL
+088F          ; Recommended                    # 17.0       ARABIC LETTER NOON WITH RING ABOVE
 08A0          ; Recommended                    # 6.1        ARABIC LETTER BEH WITH SMALL V BELOW
 08A1          ; Recommended                    # 7.0        ARABIC LETTER BEH WITH HAMZA ABOVE
 08A2..08AC    ; Recommended                    # 6.1   [11] ARABIC LETTER JEEM WITH TWO DOTS ABOVE..ARABIC LETTER ROHINGYA YEH
@@ -580,7 +581,7 @@ FA27..FA29    ; Recommended                    # 1.1    [3] CJK COMPATIBILITY ID
 30000..3134A  ; Recommended                    # 13.0 [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Recommended                    # 15.0 [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 112761
+# Total code points: 112762
 
 #	Identifier_Type:	Inclusion
 
@@ -848,6 +849,7 @@ ABEB          ; Limited_Use Not_XID            # 5.2        MEETEI MAYEK CHEIKHE
 0A75          ; Uncommon_Use                   # 5.1        GURMUKHI SIGN YAKASH
 0AF9          ; Uncommon_Use                   # 8.0        GUJARATI LETTER ZHA
 0B44          ; Uncommon_Use                   # 5.1        ORIYA VOWEL SIGN VOCALIC RR
+0B53..0B54    ; Uncommon_Use                   # 17.0   [2] ORIYA SIGN DOT ABOVE..ORIYA SIGN DOUBLE DOT ABOVE
 0B62..0B63    ; Uncommon_Use                   # 5.1    [2] ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
 0C5A          ; Uncommon_Use                   # 8.0        TELUGU LETTER RRRA
 0C62..0C63    ; Uncommon_Use                   # 5.1    [2] TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
@@ -865,18 +867,23 @@ A78F          ; Uncommon_Use                   # 8.0        LATIN LETTER SINOLOG
 A7B2..A7B7    ; Uncommon_Use                   # 8.0    [6] LATIN CAPITAL LETTER J WITH CROSSED-TAIL..LATIN SMALL LETTER OMEGA
 A7B8..A7B9    ; Uncommon_Use                   # 11.0   [2] LATIN CAPITAL LETTER U WITH STROKE..LATIN SMALL LETTER U WITH STROKE
 A7CB..A7CD    ; Uncommon_Use                   # 16.0   [3] LATIN CAPITAL LETTER RAMS HORN..LATIN SMALL LETTER S WITH DIAGONAL STROKE
+A7CE..A7CF    ; Uncommon_Use                   # 17.0   [2] LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE..LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIVE
 A7DA..A7DC    ; Uncommon_Use                   # 16.0   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER LAMBDA WITH STROKE
 AB60..AB63    ; Uncommon_Use                   # 8.0    [4] LATIN SMALL LETTER SAKHA YAT..LATIN SMALL LETTER UO
 10780         ; Uncommon_Use                   # 14.0       MODIFIER LETTER SMALL CAPITAL AA
 10EC2..10EC4  ; Uncommon_Use                   # 16.0   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+10EC7         ; Uncommon_Use                   # 17.0       ARABIC LETTER YEH WITH FOUR DOTS BELOW
+10EFA         ; Uncommon_Use                   # 17.0       ARABIC DOUBLE VERTICAL BAR BELOW
 10EFC         ; Uncommon_Use                   # 16.0       ARABIC COMBINING ALEF OVERLAY
 10EFD..10EFF  ; Uncommon_Use                   # 15.0   [3] ARABIC SMALL LOW WORD SAKTA..ARABIC SMALL LOW WORD MADDA
 116D0..116E3  ; Uncommon_Use                   # 16.0  [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
 1AFF0..1AFF3  ; Uncommon_Use                   # 14.0   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF5..1AFFB  ; Uncommon_Use                   # 14.0   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; Uncommon_Use                   # 14.0   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
+2B73A..2B73E  ; Uncommon_Use                   # 17.0   [5] CJK UNIFIED IDEOGRAPH-2B73A..CJK UNIFIED IDEOGRAPH-2B73E
+323B0..33479  ; Uncommon_Use                   # 17.0 [4298] CJK UNIFIED IDEOGRAPH-323B0..CJK UNIFIED IDEOGRAPH-33479
 
-# Total code points: 346
+# Total code points: 4655
 
 #	Identifier_Type:	Uncommon_Use Technical
 
@@ -980,10 +987,13 @@ A8FC          ; Uncommon_Use Obsolete Not_XID  # 8.0        DEVANAGARI SIGN SIDD
 0560          ; Technical                      # 11.0       ARMENIAN SMALL LETTER TURNED AYB
 0588          ; Technical                      # 11.0       ARMENIAN SMALL LETTER YI WITH STROKE
 0953..0954    ; Technical                      # 1.1    [2] DEVANAGARI GRAVE ACCENT..DEVANAGARI ACUTE ACCENT
+09FF          ; Technical                      # 17.0       BENGALI LETTER SANSKRIT BA
 0D81          ; Technical                      # 13.0       SINHALA SIGN CANDRABINDU
 0F18..0F19    ; Technical                      # 2.0    [2] TIBETAN ASTROLOGICAL SIGN -KHYUD PA..TIBETAN ASTROLOGICAL SIGN SDONG TSHUGS
 17CE..17CF    ; Technical                      # 3.0    [2] KHMER SIGN KAKABAT..KHMER SIGN AHSDA
 1ABF..1AC0    ; Technical                      # 13.0   [2] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER TURNED W BELOW
+1ACF..1ADD    ; Technical                      # 17.0  [15] COMBINING DOUBLE CARON..COMBINING DOT-AND-RING BELOW
+1AE0..1AEB    ; Technical                      # 17.0  [12] COMBINING LEFT TACK ABOVE..COMBINING DOUBLE RIGHTWARDS ARROW ABOVE
 1D00..1D2B    ; Technical                      # 4.0   [44] LATIN LETTER SMALL CAPITAL A..CYRILLIC LETTER SMALL CAPITAL EL
 1D2F          ; Technical                      # 4.0        MODIFIER LETTER CAPITAL BARRED B
 1D3B          ; Technical                      # 4.0        MODIFIER LETTER CAPITAL REVERSED N
@@ -1028,6 +1038,9 @@ FE20..FE23    ; Technical                      # 1.1    [4] COMBINING LIGATURE L
 FE24..FE26    ; Technical                      # 5.1    [3] COMBINING MACRON LEFT HALF..COMBINING CONJOINING MACRON
 FE27..FE2D    ; Technical                      # 7.0    [7] COMBINING LIGATURE LEFT HALF BELOW..COMBINING CONJOINING MACRON BELOW
 FE73          ; Technical                      # 3.2        ARABIC TAIL FRAGMENT
+10EC5..10EC6  ; Technical                      # 17.0   [2] ARABIC SMALL YEH BARREE WITH TWO DOTS BELOW..ARABIC LETTER THIN NOON
+10EFB         ; Technical                      # 17.0       ARABIC SMALL LOW NOON
+16FF2..16FF6  ; Technical                      # 17.0   [5] CHINESE SMALL SIMPLIFIED ER..YANGQIN SIGN SLOW TWO BEATS
 1CF00..1CF2D  ; Technical                      # 14.0  [46] ZNAMENNY COMBINING MARK GORAZDO NIZKO S KRYZHEM ON LEFT..ZNAMENNY COMBINING MARK KRYZH ON LEFT
 1CF30..1CF46  ; Technical                      # 14.0  [23] ZNAMENNY COMBINING TONAL RANGE MARK MRACHNO..ZNAMENNY PRIZNAK MODIFIER ROG
 1D165..1D169  ; Technical                      # 3.1    [5] MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING TREMOLO-3
@@ -1036,7 +1049,7 @@ FE73          ; Technical                      # 3.2        ARABIC TAIL FRAGMENT
 1D185..1D18B  ; Technical                      # 3.1    [7] MUSICAL SYMBOL COMBINING DOIT..MUSICAL SYMBOL COMBINING TRIPLE TONGUE
 1D1AA..1D1AD  ; Technical                      # 3.1    [4] MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 
-# Total code points: 501
+# Total code points: 537
 
 #	Identifier_Type:	Technical Exclusion
 
@@ -1089,8 +1102,11 @@ A722..A72F    ; Technical Obsolete             # 5.1   [14] LATIN CAPITAL LETTER
 A708..A716    ; Technical Not_XID              # 4.1   [15] MODIFIER LETTER EXTRA-HIGH DOTTED TONE BAR..MODIFIER LETTER EXTRA-LOW LEFT-STEM TONE BAR
 FBB2..FBC1    ; Technical Not_XID              # 6.0   [16] ARABIC SYMBOL DOT ABOVE..ARABIC SYMBOL SMALL TAH BELOW
 FBC2          ; Technical Not_XID              # 14.0       ARABIC SYMBOL WASLA ABOVE
+FBC3..FBD2    ; Technical Not_XID              # 17.0  [16] ARABIC LIGATURE JALLA WA-ALAA..ARABIC LIGATURE ALAYHI AR-RAHMAH
 FD3E..FD3F    ; Technical Not_XID              # 1.1    [2] ORNATE LEFT PARENTHESIS..ORNATE RIGHT PARENTHESIS
 FD40..FD4F    ; Technical Not_XID              # 14.0  [16] ARABIC LIGATURE RAHIMAHU ALLAAH..ARABIC LIGATURE RAHIMAHUM ALLAAH
+FD90..FD91    ; Technical Not_XID              # 17.0   [2] ARABIC LIGATURE RAHMATU ALLAAHI ALAYH..ARABIC LIGATURE RAHMATU ALLAAHI ALAYHAA
+FDC8..FDCE    ; Technical Not_XID              # 17.0   [7] ARABIC LIGATURE RAHIMAHU ALLAAH TAAALAA..ARABIC LIGATURE KARRAMA ALLAAHU WAJHAH
 FDCF          ; Technical Not_XID              # 14.0       ARABIC LIGATURE SALAAMUHU ALAYNAA
 FDFD          ; Technical Not_XID              # 4.0        ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM
 FDFE..FDFF    ; Technical Not_XID              # 14.0   [2] ARABIC LIGATURE SUBHAANAHU WA TAAALAA..ARABIC LIGATURE AZZA WA JALL
@@ -1108,7 +1124,7 @@ FE45..FE46    ; Technical Not_XID              # 3.2    [2] SESAME DOT..WHITE SE
 1D1E9..1D1EA  ; Technical Not_XID              # 14.0   [2] MUSICAL SYMBOL SORI..MUSICAL SYMBOL KORON
 1D300..1D356  ; Technical Not_XID              # 4.0   [87] MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
 
-# Total code points: 1025
+# Total code points: 1050
 
 #	Identifier_Type:	Exclusion
 
@@ -1194,6 +1210,7 @@ A930..A953    ; Exclusion                      # 5.1   [36] REJANG LETTER KA..RE
 108F4..108F5  ; Exclusion                      # 8.0    [2] HATRAN LETTER SHIN..HATRAN LETTER TAW
 10900..10915  ; Exclusion                      # 5.0   [22] PHOENICIAN LETTER ALF..PHOENICIAN LETTER TAU
 10920..10939  ; Exclusion                      # 5.1   [26] LYDIAN LETTER A..LYDIAN LETTER C
+10940..1095C  ; Exclusion                      # 17.0  [29] SIDETIC LETTER N01..SIDETIC LETTER N29
 10980..109B7  ; Exclusion                      # 6.1   [56] MEROITIC HIEROGLYPHIC LETTER A..MEROITIC CURSIVE LETTER DA
 109BE..109BF  ; Exclusion                      # 6.1    [2] MEROITIC CURSIVE LOGOGRAM RMT..MEROITIC CURSIVE LOGOGRAM IMN
 10A00..10A03  ; Exclusion                      # 4.1    [4] KHAROSHTHI LETTER A..KHAROSHTHI VOWEL SIGN VOCALIC R
@@ -1319,6 +1336,7 @@ A930..A953    ; Exclusion                      # 5.1   [36] REJANG LETTER KA..RE
 11A86..11A99  ; Exclusion                      # 10.0  [20] SOYOMBO CLUSTER-INITIAL LETTER RA..SOYOMBO SUBJOINER
 11A9D         ; Exclusion                      # 11.0       SOYOMBO MARK PLUTA
 11AC0..11AF8  ; Exclusion                      # 7.0   [57] PAU CIN HAU LETTER PA..PAU CIN HAU GLOTTAL STOP FINAL
+11B60..11B67  ; Exclusion                      # 17.0   [8] SHARADA VOWEL SIGN OE..SHARADA VOWEL SIGN CANDRA O
 11BC0..11BE0  ; Exclusion                      # 16.0  [33] SUNUWAR LETTER DEVI..SUNUWAR LETTER KLOKO
 11BF0..11BF9  ; Exclusion                      # 16.0  [10] SUNUWAR DIGIT ZERO..SUNUWAR DIGIT NINE
 11C00..11C08  ; Exclusion                      # 9.0    [9] BHAIKSUKI LETTER A..BHAIKSUKI LETTER VOCALIC L
@@ -1335,6 +1353,8 @@ A930..A953    ; Exclusion                      # 5.1   [36] REJANG LETTER KA..RE
 11D3C..11D3D  ; Exclusion                      # 10.0   [2] MASARAM GONDI VOWEL SIGN AI..MASARAM GONDI VOWEL SIGN O
 11D3F..11D47  ; Exclusion                      # 10.0   [9] MASARAM GONDI VOWEL SIGN AU..MASARAM GONDI RA-KARA
 11D50..11D59  ; Exclusion                      # 10.0  [10] MASARAM GONDI DIGIT ZERO..MASARAM GONDI DIGIT NINE
+11DB0..11DDB  ; Exclusion                      # 17.0  [44] TOLONG SIKI LETTER I..TOLONG SIKI UNGGA
+11DE0..11DE9  ; Exclusion                      # 17.0  [10] TOLONG SIKI DIGIT ZERO..TOLONG SIKI DIGIT NINE
 11EE0..11EF6  ; Exclusion                      # 11.0  [23] MAKASAR LETTER KA..MAKASAR VOWEL SIGN O
 11F00..11F10  ; Exclusion                      # 15.0  [17] KAWI SIGN CANDRABINDU..KAWI LETTER O
 11F12..11F3A  ; Exclusion                      # 15.0  [41] KAWI LETTER KA..KAWI VOWEL SIGN VOCALIC R
@@ -1365,17 +1385,24 @@ A930..A953    ; Exclusion                      # 5.1   [36] REJANG LETTER KA..RE
 16B7D..16B8F  ; Exclusion                      # 7.0   [19] PAHAWH HMONG CLAN SIGN TSHEEJ..PAHAWH HMONG CLAN SIGN VWJ
 16D40..16D6C  ; Exclusion                      # 16.0  [45] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN SAAT
 16D70..16D79  ; Exclusion                      # 16.0  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
+16D80..16D9D  ; Exclusion                      # 17.0  [30] CHISOI LETTER A..CHISOI SIGN SISO
+16DA0..16DA9  ; Exclusion                      # 17.0  [10] CHISOI DIGIT ZERO..CHISOI DIGIT NINE
 16E40..16E7F  ; Exclusion                      # 11.0  [64] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN SMALL LETTER Y
+16EA0..16EB8  ; Exclusion                      # 17.0  [25] BERIA ERFE CAPITAL LETTER ARKAB..BERIA ERFE CAPITAL LETTER AY
+16EBB..16ED3  ; Exclusion                      # 17.0  [25] BERIA ERFE SMALL LETTER ARKAB..BERIA ERFE SMALL LETTER AY
 16FE0         ; Exclusion                      # 9.0        TANGUT ITERATION MARK
 16FE1         ; Exclusion                      # 10.0       NUSHU ITERATION MARK
 16FE4         ; Exclusion                      # 13.0       KHITAN SMALL SCRIPT FILLER
 17000..187EC  ; Exclusion                      # 9.0 [6125] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187EC
 187ED..187F1  ; Exclusion                      # 11.0   [5] TANGUT IDEOGRAPH-187ED..TANGUT IDEOGRAPH-187F1
 187F2..187F7  ; Exclusion                      # 12.0   [6] TANGUT IDEOGRAPH-187F2..TANGUT IDEOGRAPH-187F7
+187F8..187FF  ; Exclusion                      # 17.0   [8] TANGUT IDEOGRAPH-187F8..TANGUT IDEOGRAPH-187FF
 18800..18AF2  ; Exclusion                      # 9.0  [755] TANGUT COMPONENT-001..TANGUT COMPONENT-755
 18AF3..18CD5  ; Exclusion                      # 13.0 [483] TANGUT COMPONENT-756..KHITAN SMALL SCRIPT CHARACTER-18CD5
 18CFF         ; Exclusion                      # 16.0       KHITAN SMALL SCRIPT CHARACTER-18CFF
 18D00..18D08  ; Exclusion                      # 13.0   [9] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D08
+18D09..18D1E  ; Exclusion                      # 17.0  [22] TANGUT IDEOGRAPH-18D09..TANGUT IDEOGRAPH-18D1E
+18D80..18DF2  ; Exclusion                      # 17.0 [115] TANGUT COMPONENT-769..TANGUT COMPONENT-883
 1B170..1B2FB  ; Exclusion                      # 10.0 [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
 1BC00..1BC6A  ; Exclusion                      # 7.0  [107] DUPLOYAN LETTER H..DUPLOYAN LETTER VOCALIC M
 1BC70..1BC7C  ; Exclusion                      # 7.0   [13] DUPLOYAN AFFIX LEFT HORIZONTAL SECANT..DUPLOYAN AFFIX ATTACHED TANGENT HOOK
@@ -1396,10 +1423,13 @@ A930..A953    ; Exclusion                      # 5.1   [36] REJANG LETTER KA..RE
 1E290..1E2AE  ; Exclusion                      # 14.0  [31] TOTO LETTER PA..TOTO SIGN RISING TONE
 1E4D0..1E4F9  ; Exclusion                      # 15.0  [42] NAG MUNDARI LETTER O..NAG MUNDARI DIGIT NINE
 1E5D0..1E5FA  ; Exclusion                      # 16.0  [43] OL ONAL LETTER O..OL ONAL DIGIT NINE
+1E6C0..1E6DE  ; Exclusion                      # 17.0  [31] TAI YO LETTER LOW KO..TAI YO LETTER HIGH KVO
+1E6E0..1E6F5  ; Exclusion                      # 17.0  [22] TAI YO LETTER AA..TAI YO SIGN OM
+1E6FE..1E6FF  ; Exclusion                      # 17.0   [2] TAI YO SYMBOL MUEANG..TAI YO XAM LAI
 1E800..1E8C4  ; Exclusion                      # 7.0  [197] MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON
 1E8D0..1E8D6  ; Exclusion                      # 7.0    [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 20461
+# Total code points: 20842
 
 #	Identifier_Type:	Exclusion Not_XID
 
@@ -1551,7 +1581,9 @@ A95F          ; Exclusion Not_XID              # 5.1        REJANG SECTION MARK
 0C00          ; Obsolete                       # 7.0        TELUGU SIGN COMBINING CANDRABINDU ABOVE
 0C34          ; Obsolete                       # 7.0        TELUGU LETTER LLLA
 0C58..0C59    ; Obsolete                       # 5.1    [2] TELUGU LETTER TSA..TELUGU LETTER DZA
+0C5C          ; Obsolete                       # 17.0       TELUGU ARCHAIC SHRII
 0C81          ; Obsolete                       # 7.0        KANNADA SIGN CANDRABINDU
+0CDC          ; Obsolete                       # 17.0       KANNADA ARCHAIC SHRII
 0CDE          ; Obsolete                       # 1.1        KANNADA LETTER FA
 0D01          ; Obsolete                       # 7.0        MALAYALAM SIGN CANDRABINDU
 0D3B..0D3C    ; Obsolete                       # 10.0   [2] MALAYALAM SIGN VERTICAL BAR VIRAMA..MALAYALAM SIGN CIRCULAR VIRAMA
@@ -1602,6 +1634,8 @@ A794..A79F    ; Obsolete                       # 7.0   [12] LATIN SMALL LETTER C
 A7A0..A7A9    ; Obsolete                       # 6.0   [10] LATIN CAPITAL LETTER G WITH OBLIQUE STROKE..LATIN SMALL LETTER S WITH OBLIQUE STROKE
 A7AB..A7AD    ; Obsolete                       # 7.0    [3] LATIN CAPITAL LETTER REVERSED OPEN E..LATIN CAPITAL LETTER L WITH BELT
 A7B0..A7B1    ; Obsolete                       # 7.0    [2] LATIN CAPITAL LETTER TURNED K..LATIN CAPITAL LETTER TURNED T
+A7D2          ; Obsolete                       # 17.0       LATIN CAPITAL LETTER DOUBLE THORN
+A7D4          ; Obsolete                       # 17.0       LATIN CAPITAL LETTER DOUBLE WYNN
 A7F5..A7F6    ; Obsolete                       # 13.0   [2] LATIN CAPITAL LETTER REVERSED HALF H..LATIN SMALL LETTER REVERSED HALF H
 A7F7          ; Obsolete                       # 7.0        LATIN EPIGRAPHIC LETTER SIDEWAYS I
 A7FB..A7FF    ; Obsolete                       # 5.1    [5] LATIN EPIGRAPHIC LETTER REVERSED F..LATIN EPIGRAPHIC LETTER ARCHAIC M
@@ -1621,7 +1655,7 @@ D7CB..D7FB    ; Obsolete                       # 5.2   [49] HANGUL JONGSEONG NIE
 1B000..1B001  ; Obsolete                       # 6.0    [2] KATAKANA LETTER ARCHAIC E..HIRAGANA LETTER ARCHAIC YE
 1B002..1B11E  ; Obsolete                       # 10.0 [285] HENTAIGANA LETTER A-1..HENTAIGANA LETTER N-MU-MO-2
 
-# Total code points: 1341
+# Total code points: 1345
 
 #	Identifier_Type:	Obsolete Not_XID
 
@@ -1907,6 +1941,7 @@ A8F8..A8FA    ; Obsolete Not_XID               # 5.2    [3] DEVANAGARI SIGN PUSH
 2B55..2B59    ; Not_XID                        # 5.2    [5] HEAVY LARGE CIRCLE..HEAVY CIRCLED SALTIRE
 2B5A..2B73    ; Not_XID                        # 7.0   [26] SLANTED NORTH ARROW WITH HOOKED HEAD..DOWNWARDS TRIANGLE-HEADED ARROW TO BAR
 2B76..2B95    ; Not_XID                        # 7.0   [32] NORTH WEST TRIANGLE-HEADED ARROW TO BAR..RIGHTWARDS BLACK ARROW
+2B96          ; Not_XID                        # 17.0       EQUALS SIGN WITH INFINITY ABOVE
 2B97          ; Not_XID                        # 13.0       SYMBOL FOR TYPE A ELECTRONICS
 2B98..2BB9    ; Not_XID                        # 7.0   [34] THREE-D TOP-LIGHTED LEFTWARDS EQUILATERAL ARROWHEAD..UP ARROWHEAD IN A RECTANGLE BOX
 2BBA..2BBC    ; Not_XID                        # 11.0   [3] OVERLAPPING WHITE SQUARES..OVERLAPPING BLACK SQUARES
@@ -1968,13 +2003,17 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1019C         ; Not_XID                        # 13.0       ASCIA SYMBOL
 101A0         ; Not_XID                        # 7.0        GREEK SYMBOL TAU RHO
 10E60..10E7E  ; Not_XID                        # 5.2   [31] RUMI DIGIT ONE..RUMI FRACTION TWO THIRDS
+10ED0..10ED8  ; Not_XID                        # 17.0   [9] ARABIC BIBLICAL END OF VERSE..ARABIC LIGATURE NAWWARA ALLAAHU MARQADAH
 111E1..111F4  ; Not_XID                        # 7.0   [20] SINHALA ARCHAIC DIGIT ONE..SINHALA ARCHAIC NUMBER ONE THOUSAND
 11B00..11B09  ; Not_XID                        # 15.0  [10] DEVANAGARI HEAD MARK..DEVANAGARI SIGN MINDU
 11FC0..11FF1  ; Not_XID                        # 12.0  [50] TAMIL FRACTION ONE THREE-HUNDRED-AND-TWENTIETH..TAMIL SIGN VAKAIYARAA
 11FFF         ; Not_XID                        # 12.0       TAMIL PUNCTUATION END OF TEXT
 16FE2         ; Not_XID                        # 12.0       OLD CHINESE HOOK MARK
 1CC00..1CCD5  ; Not_XID                        # 16.0 [214] UP-POINTING GO-KART..LOWER RIGHT QUADRANT STANDING KNIGHT
+1CCFA..1CCFC  ; Not_XID                        # 17.0   [3] SNAKE SYMBOL..NOSE SYMBOL
 1CD00..1CEB3  ; Not_XID                        # 16.0 [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
+1CEBA..1CED0  ; Not_XID                        # 17.0  [23] FRAGILE SYMBOL..LEUKOTHEA
+1CEE0..1CEF0  ; Not_XID                        # 17.0  [17] GEOMANTIC FIGURE POPULUS..MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR
 1D2C0..1D2D3  ; Not_XID                        # 15.0  [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3  ; Not_XID                        # 11.0  [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
 1D360..1D371  ; Not_XID                        # 5.0   [18] COUNTING ROD UNIT DIGIT ONE..COUNTING ROD TENS DIGIT NINE
@@ -2086,6 +2125,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1F6D3..1F6D4  ; Not_XID                        # 10.0   [2] STUPA..PAGODA
 1F6D5         ; Not_XID                        # 12.0       HINDU TEMPLE
 1F6D6..1F6D7  ; Not_XID                        # 13.0   [2] HUT..ELEVATOR
+1F6D8         ; Not_XID                        # 17.0       LANDSLIDE
 1F6DC         ; Not_XID                        # 15.0       WIRELESS
 1F6DD..1F6DF  ; Not_XID                        # 14.0   [3] PLAYGROUND SLIDE..RING BUOY
 1F6E0..1F6EC  ; Not_XID                        # 7.0   [13] HAMMER AND WRENCH..AIRPLANE ARRIVING
@@ -2097,6 +2137,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1F6FB..1F6FC  ; Not_XID                        # 13.0   [2] PICKUP TRUCK..ROLLER SKATE
 1F700..1F773  ; Not_XID                        # 6.0  [116] ALCHEMICAL SYMBOL FOR QUINTESSENCE..ALCHEMICAL SYMBOL FOR HALF OUNCE
 1F774..1F776  ; Not_XID                        # 15.0   [3] LOT OF FORTUNE..LUNAR ECLIPSE
+1F777..1F77A  ; Not_XID                        # 17.0   [4] VESTA FORM TWO..PARTHENOPE FORM TWO
 1F77B..1F77F  ; Not_XID                        # 15.0   [5] HAUMEA..ORCUS
 1F780..1F7D4  ; Not_XID                        # 7.0   [85] BLACK LEFT-POINTING ISOSCELES RIGHT TRIANGLE..HEAVY TWELVE POINTED PINWHEEL STAR
 1F7D5..1F7D8  ; Not_XID                        # 11.0   [4] CIRCLED TRIANGLE..NEGATIVE CIRCLED SQUARE
@@ -2111,6 +2152,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1F8B0..1F8B1  ; Not_XID                        # 13.0   [2] ARROW POINTING UPWARDS THEN NORTH WEST..ARROW POINTING RIGHTWARDS THEN CURVING SOUTH WEST
 1F8B2..1F8BB  ; Not_XID                        # 16.0  [10] RIGHTWARDS ARROW WITH LOWER HOOK..SOUTH WEST ARROW FROM BAR
 1F8C0..1F8C1  ; Not_XID                        # 16.0   [2] LEFTWARDS ARROW FROM DOWNWARDS ARROW..RIGHTWARDS ARROW FROM DOWNWARDS ARROW
+1F8D0..1F8D8  ; Not_XID                        # 17.0   [9] LONG RIGHTWARDS ARROW OVER LONG LEFTWARDS ARROW..LONG LEFT RIGHT ARROW WITH DEPENDENT LOBE
 1F900..1F90B  ; Not_XID                        # 10.0  [12] CIRCLED CROSS FORMEE WITH FOUR DOTS..DOWNWARD FACING NOTCHED HOOK WITH DOT
 1F90C         ; Not_XID                        # 13.0       PINCHED FINGERS
 1F90D..1F90F  ; Not_XID                        # 12.0   [3] WHITE HEART..PINCHING HAND
@@ -2156,6 +2198,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1F9D0..1F9E6  ; Not_XID                        # 10.0  [23] FACE WITH MONOCLE..SOCKS
 1F9E7..1F9FF  ; Not_XID                        # 11.0  [25] RED GIFT ENVELOPE..NAZAR AMULET
 1FA00..1FA53  ; Not_XID                        # 12.0  [84] NEUTRAL CHESS KING..BLACK CHESS KNIGHT-BISHOP
+1FA54..1FA57  ; Not_XID                        # 17.0   [4] WHITE CHESS FERZ..BLACK CHESS ALFIL
 1FA60..1FA6D  ; Not_XID                        # 11.0  [14] XIANGQI RED GENERAL..XIANGQI BLACK SOLDIER
 1FA70..1FA73  ; Not_XID                        # 12.0   [4] BALLET SHOES..SHORTS
 1FA74         ; Not_XID                        # 13.0       THONG SANDAL
@@ -2166,6 +2209,8 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1FA83..1FA86  ; Not_XID                        # 13.0   [4] BOOMERANG..NESTING DOLLS
 1FA87..1FA88  ; Not_XID                        # 15.0   [2] MARACAS..FLUTE
 1FA89         ; Not_XID                        # 16.0       HARP
+1FA8A         ; Not_XID                        # 17.0       TROMBONE
+1FA8E         ; Not_XID                        # 17.0       TREASURE CHEST
 1FA8F         ; Not_XID                        # 16.0       SHOVEL
 1FA90..1FA95  ; Not_XID                        # 12.0   [6] RINGED PLANET..BANJO
 1FA96..1FAA8  ; Not_XID                        # 13.0  [19] MILITARY HELMET..ROCK
@@ -2179,22 +2224,28 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1FAC0..1FAC2  ; Not_XID                        # 13.0   [3] ANATOMICAL HEART..PEOPLE HUGGING
 1FAC3..1FAC5  ; Not_XID                        # 14.0   [3] PREGNANT MAN..PERSON WITH CROWN
 1FAC6         ; Not_XID                        # 16.0       FINGERPRINT
+1FAC8         ; Not_XID                        # 17.0       HAIRY CREATURE
+1FACD         ; Not_XID                        # 17.0       ORCA
 1FACE..1FACF  ; Not_XID                        # 15.0   [2] MOOSE..DONKEY
 1FAD0..1FAD6  ; Not_XID                        # 13.0   [7] BLUEBERRIES..TEAPOT
 1FAD7..1FAD9  ; Not_XID                        # 14.0   [3] POURING LIQUID..JAR
 1FADA..1FADB  ; Not_XID                        # 15.0   [2] GINGER ROOT..PEA POD
 1FADC         ; Not_XID                        # 16.0       ROOT VEGETABLE
+1FADD         ; Not_XID                        # 17.0       APPLE CORE
 1FADF         ; Not_XID                        # 16.0       SPLATTER
 1FAE0..1FAE7  ; Not_XID                        # 14.0   [8] MELTING FACE..BUBBLES
 1FAE8         ; Not_XID                        # 15.0       SHAKING FACE
 1FAE9         ; Not_XID                        # 16.0       FACE WITH BAGS UNDER EYES
+1FAEA         ; Not_XID                        # 17.0       DISTORTED FACE
+1FAEF         ; Not_XID                        # 17.0       FIGHT CLOUD
 1FAF0..1FAF6  ; Not_XID                        # 14.0   [7] HAND WITH INDEX FINGER AND THUMB CROSSED..HEART HANDS
 1FAF7..1FAF8  ; Not_XID                        # 15.0   [2] LEFTWARDS PUSHING HAND..RIGHTWARDS PUSHING HAND
 1FB00..1FB92  ; Not_XID                        # 13.0 [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK
 1FB94..1FBCA  ; Not_XID                        # 13.0  [55] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..WHITE UP-POINTING CHEVRON
 1FBCB..1FBEF  ; Not_XID                        # 16.0  [37] WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
+1FBFA         ; Not_XID                        # 17.0       ALARM BELL SYMBOL
 
-# Total code points: 6411
+# Total code points: 6490
 
 #	Identifier_Type:	Not_NFKC
 
@@ -2366,6 +2417,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 33FF          ; Not_NFKC                       # 4.0        SQUARE GAL
 A69C..A69D    ; Not_NFKC                       # 7.0    [2] MODIFIER LETTER CYRILLIC HARD SIGN..MODIFIER LETTER CYRILLIC SOFT SIGN
 A770          ; Not_NFKC                       # 5.1        MODIFIER LETTER US
+A7F1          ; Not_NFKC                       # 17.0       MODIFIER LETTER CAPITAL S
 A7F2..A7F4    ; Not_NFKC                       # 14.0   [3] MODIFIER LETTER CAPITAL C..MODIFIER LETTER CAPITAL Q
 A7F8..A7F9    ; Not_NFKC                       # 6.1    [2] MODIFIER LETTER CAPITAL H WITH STROKE..MODIFIER LETTER SMALL LIGATURE OE
 AB5C..AB5F    ; Not_NFKC                       # 7.0    [4] MODIFIER LETTER SMALL HENG..MODIFIER LETTER SMALL U WITH LEFT HOOK
@@ -2508,7 +2560,7 @@ FFE8..FFEE    ; Not_NFKC                       # 1.1    [7] HALFWIDTH FORMS LIGH
 1FBF0..1FBF9  ; Not_NFKC                       # 13.0  [10] SEGMENTED DIGIT ZERO..SEGMENTED DIGIT NINE
 2F800..2FA1D  ; Not_NFKC                       # 3.1  [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 4957
+# Total code points: 4958
 
 #	Identifier_Type:	Default_Ignorable
 
