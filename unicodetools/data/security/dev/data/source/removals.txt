@@ -861,6 +861,6 @@ A7D4; Obsolete # L2/23-135
 10EC6; Technical # L2/23-121
 10EC7; Uncommon_Use # L2/24-055
 10EFB; Technical # L2/22-281R
-16FF2..16FF6; Technical # L2/24-071R3
+16FF2..16FF6; Technical # L2/23-284, L2/24-071R3
 2B73A..2B73E; Uncommon_Use # L2/25-031
 \p{block=CJK_Unified_Ideographs_Extension_J}; Uncommon_Use # L2/25-031
