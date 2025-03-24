@@ -33,12 +33,12 @@ public class TestUnicodeMapParser extends TestFmwkMinusMinus {
                 new UnicodeMap<String>()
                         .put('a', " ")
                         .put('c', "d")
-                        .putAll(new UnicodeSet("[:whitespace:]"), "x");
+                        .putAll(new UnicodeSet("[:whitespace=true:]"), "x");
 
-        String test = "{\\u{61}=\\u{20},c=,[:whitespace:]=x}";
+        String test = "{\\u{61}=\\u{20},c=,[:whitespace=true:]=x}";
         check(ump, test, null, 17);
 
-        test = " { a = \\u{20} , c = d , [:whitespace:] = x } ";
+        test = " { a = \\u{20} , c = d , [:whitespace=true:] = x } ";
         check(ump, test, expected, -1);
 
         ValueParser<Integer> integerParser = new IntegerParser();
@@ -47,12 +47,12 @@ public class TestUnicodeMapParser extends TestFmwkMinusMinus {
                 new UnicodeMap<Integer>()
                         .put('a', 1)
                         .put('c', 2)
-                        .putAll(new UnicodeSet("[:whitespace:]"), 33);
+                        .putAll(new UnicodeSet("[:whitespace=true:]"), 33);
 
-        String test2 = "{a=1,c=2,[:whitespace:]=33}";
+        String test2 = "{a=1,c=2,[:whitespace=true:]=33}";
         check(ump2, test2, expected2, -1);
 
-        test2 = " { a = 1 , c = 2 , [:whitespace:] = 33 } ";
+        test2 = " { a = 1 , c = 2 , [:whitespace=true:] = 33 } ";
         check(ump2, test2, expected2, -1);
     }
 
