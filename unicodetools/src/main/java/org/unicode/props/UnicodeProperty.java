@@ -1003,12 +1003,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                     String propertyName, String propertyValue, UnicodeSet result) {
                 if (false) System.out.println(propertyName + "=" + propertyValue);
                 UnicodeProperty prop = getProperty(propertyName);
-                if (prop == null) {
-                    throw new IllegalArgumentException("No property " + propertyName);
-                }
+                if (prop == null) return false;
                 result.clear();
-                prop.getSet(propertyValue, result);
-                return true;
+                UnicodeSet x = prop.getSet(propertyValue, result);
+                return x.size() != 0;
             }
         }
 
