@@ -74,24 +74,29 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
         }
         propertyValue = propertyValue.trim();
         if (propertyValue.length() != 0) {
-            status = applyPropertyAlias0(propertyName, propertyValue, result);
+            applyPropertyAlias0(propertyName, propertyValue, result);
+            status = true;
         } else {
             try {
-                status = applyPropertyAlias0("gc", propertyName, result);
+                applyPropertyAlias0("gc", propertyName, result);
+                status = true;
             } catch (Exception e) {
             }
             if (!status) {
                 try {
-                    status = applyPropertyAlias0("sc", propertyName, result);
+                    applyPropertyAlias0("sc", propertyName, result);
+                    status = true;
                 } catch (Exception e) {
                 }
                 if (!status) {
                     try {
-                        status = applyPropertyAlias0(propertyName, "Yes", result);
+                        applyPropertyAlias0(propertyName, "Yes", result);
+                        status = true;
                     } catch (Exception e) {
                     }
                     if (!status) {
-                        status = applyPropertyAlias0(propertyName, "", result);
+                        applyPropertyAlias0(propertyName, "", result);
+                        status = true;
                     }
                 }
             }
@@ -99,7 +104,11 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
         if (status && invert) {
             result.complement();
         }
-        return status;
+        if (!status) {
+            throw new IllegalArgumentException(
+                    "Invalid query-expression " + propertyName + "=" + propertyValue);
+        }
+        return true;
     }
 
     static final HashMap<String, String[]> GC_REMAP = new HashMap();
@@ -131,8 +140,7 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
         GC_REMAP.put("separator", GC_REMAP.get("z"));
     }
 
-    public boolean applyPropertyAlias0(
-            String propertyName, String propertyValue, UnicodeSet result) {
+    public void applyPropertyAlias0(String propertyName, String propertyValue, UnicodeSet result) {
         result.clear();
         UnicodeProperty prop = factory.getProperty(propertyName);
         String canonicalName = prop.getName();
@@ -145,7 +153,7 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
                 for (String part : parts) {
                     prop.getSet(part, result);
                 }
-                return true;
+                return;
             }
         }
 
@@ -227,7 +235,7 @@ public class UnicodePropertySymbolTable extends UnicodeSet.XSymbolTable {
                 set = prop.getSet(patternMatcher);
             }
             result.addAll(set);
-            return true;
+            return;
         }
         throw new IllegalArgumentException("Illegal property: " + propertyName);
     }

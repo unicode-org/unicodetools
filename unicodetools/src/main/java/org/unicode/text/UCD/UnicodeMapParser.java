@@ -105,7 +105,8 @@ public class UnicodeMapParser<V> {
                     return true;
                 }
             }
-            return false;
+            throw new IllegalArgumentException(
+                    "Invalid UnicodeMap query-expression " + propertyName + "=" + propertyValue);
         }
     }
 

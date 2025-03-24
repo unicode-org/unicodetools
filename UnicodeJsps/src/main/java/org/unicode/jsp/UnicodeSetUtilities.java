@@ -195,34 +195,41 @@ public class UnicodeSetUtilities {
                 } else {
                     int debug = 0;
                 }
-                status = applyPropertyAlias0(prop, propertyValue, result, invert);
+                applyPropertyAlias0(prop, propertyValue, result, invert);
+                status = true;
             } else {
                 try {
-                    status = applyPropertyAlias0(gcProp, versionlessPropertyName, result, invert);
+                    applyPropertyAlias0(gcProp, versionlessPropertyName, result, invert);
+                    status = true;
                 } catch (Exception e) {
                 }
                 ;
                 if (!status) {
                     try {
-                        status =
-                                applyPropertyAlias0(
-                                        scProp, versionlessPropertyName, result, invert);
+                        applyPropertyAlias0(scProp, versionlessPropertyName, result, invert);
+                        status = true;
                     } catch (Exception e) {
                     }
                     if (!status) {
                         if (prop.isType(UnicodeProperty.BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
                             try {
-                                status = applyPropertyAlias0(prop, "No", result, !invert);
+                                applyPropertyAlias0(prop, "No", result, !invert);
+                                status = true;
                             } catch (Exception e) {
                             }
                         }
                         if (!status) {
-                            status = applyPropertyAlias0(prop, "", result, invert);
+                            applyPropertyAlias0(prop, "", result, invert);
+                            status = true;
                         }
                     }
                 }
             }
-            return status;
+            if (!status) {
+                throw new IllegalArgumentException(
+                        "Invalid query-expression " + propertyName + "=" + propertyValue);
+            }
+            return true;
         }
 
         private static Map<UcdPropertyValues.General_Category_Values, String[]>
@@ -245,8 +252,7 @@ public class UnicodeSetUtilities {
                                 UcdPropertyValues.General_Category_Values.Separator,
                                 new String[] {"Zl", "Zp", "Zs"});
 
-        // TODO(eggrobin): I think this function only ever returns true; might as well make it void.
-        private boolean applyPropertyAlias0(
+        private void applyPropertyAlias0(
                 UnicodeProperty prop, String propertyValue, UnicodeSet result, boolean invert) {
             result.clear();
             String propertyName = prop.getName();
@@ -337,7 +343,7 @@ public class UnicodeSetUtilities {
                                     for (var value : entry.getValue()) {
                                         prop.getSet(value, result);
                                     }
-                                    return true;
+                                    return;
                                 }
                             }
                         }
@@ -375,7 +381,7 @@ public class UnicodeSetUtilities {
                     }
                 }
                 result.addAll(set);
-                return true;
+                return;
             }
             throw new IllegalArgumentException("Illegal property: " + propertyName);
         }
