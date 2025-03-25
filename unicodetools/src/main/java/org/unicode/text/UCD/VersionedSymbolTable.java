@@ -48,8 +48,8 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                 switch (versionQualifier.charAt(0)) {
                     case 'R':
                         // Extension: we allow a version-qualifier starting with R for retroactive
-                        // properties, that
-                        // is, property derivations applied before the property existed.
+                        // properties, that is, property derivations applied before the property
+                        // existed.
                     case 'U':
                         break;
                     default:
@@ -159,10 +159,8 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         boolean interiorlyNegated = false;
         int posNotEqual = beforeEquals.indexOf('≠');
         // TODO(egg): We cannot distinguish \p{X=} from \p{X} in this API, both give us an empty
-        // string
-        // as afterEquals.  This is an @internal API, so we could change it to pass null in the
-        // unary
-        // case.
+        // string as afterEquals.  This is an @internal API, so we could change it to pass null in
+        // the unary case.
         if (posNotEqual >= 0) {
             propertyPredicate =
                     afterEquals.length() == 0
