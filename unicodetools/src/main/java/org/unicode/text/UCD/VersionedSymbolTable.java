@@ -2,7 +2,6 @@ package org.unicode.text.UCD;
 
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
-
 import java.util.Comparator;
 import java.util.Map;
 import org.unicode.props.IndexUnicodeProperties;
@@ -236,54 +235,75 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                                 + unqualifiedLeftHandSide);
             }
             final boolean isAge = queriedProperty.getName().equals("Age");
-            final boolean isGeneralCategory = queriedProperty.getName().equals("General_Category");
             final boolean isName = queriedProperty.getName().equals("Name");
-            final boolean isPropertyComparison = propertyPredicate.startsWith("@") && propertyPredicate.endsWith("@");
-            final boolean isRegularExpressionMatch = propertyPredicate.startsWith("/") && propertyPredicate.endsWith("/");
+            final boolean isPropertyComparison =
+                    propertyPredicate.startsWith("@") && propertyPredicate.endsWith("@");
+            final boolean isRegularExpressionMatch =
+                    propertyPredicate.startsWith("/") && propertyPredicate.endsWith("/");
             if (isPropertyComparison) {
-              if (isAge) {
-                throw new IllegalArgumentException(
-                        "Invalid binary-query-expression with property-comparison for Age");
-              }
-              final var unqualifiedRightHandSide = new StringBuilder(propertyPredicate.substring(1, propertyPredicate.length() - 1));
-              final var comparisonVersion = parseVersionQualifier(unqualifiedRightHandSide);
-              if (UnicodeProperty.equalNames(unqualifiedRightHandSide.toString(), "code point")) {
-                if (comparisonVersion != null) {
-                  throw new IllegalArgumentException(
-                          "Invalid binary-query-expression with comparison version on identity query");
+                if (isAge) {
+                    throw new IllegalArgumentException(
+                            "Invalid binary-query-expression with property-comparison for Age");
                 }
-                // TODO(egg): Return.
-              } else if (UnicodeProperty.equalNames(unqualifiedRightHandSide.toString(), "none")) {
-                if (comparisonVersion != null) {
-                throw new IllegalArgumentException(
-                        "Invalid binary-query-expression with comparison version on null query");
+                final var unqualifiedRightHandSide =
+                        new StringBuilder(
+                                propertyPredicate.substring(1, propertyPredicate.length() - 1));
+                final var comparisonVersion = parseVersionQualifier(unqualifiedRightHandSide);
+                if (UnicodeProperty.equalNames(unqualifiedRightHandSide.toString(), "code point")) {
+                    if (comparisonVersion != null) {
+                        throw new IllegalArgumentException(
+                                "Invalid binary-query-expression with comparison version on identity query");
+                    }
+                    if (!queriedProperty.isType(UnicodeProperty.STRING_MASK)) {
+                        throw new IllegalArgumentException(
+                                "Invalid binary-query-expression with identity query for "
+                                        + queriedProperty.getTypeName()
+                                        + " property");
+                    }
+                    final var result = new UnicodeSet();
+                    for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+                        if (UnicodeProperty.equals(cp, prop.getValue(cp))) {
+                            result.add(cp);
+                        }
+                    }
+                    return result;
+                } else if (UnicodeProperty.equalNames(
+                        unqualifiedRightHandSide.toString(), "none")) {
+                    if (comparisonVersion != null) {
+                        throw new IllegalArgumentException(
+                                "Invalid binary-query-expression with comparison version on null query");
+                    }
+                    if (!queriedProperty.isType(UnicodeProperty.STRING_OR_MISC_MASK)) {
+                        throw new IllegalArgumentException(
+                                "Invalid binary-query-expression with null query for "
+                                        + queriedProperty.getTypeName()
+                                        + " property");
+                    }
+                    return queriedProperty.getSet((String) null);
+                } else {
+                    // TODO(egg): comparison.
                 }
-                // TODO(egg): Return.
-              } else {
-                // TODO(egg): comparison.
-              }
             } else if (isRegularExpressionMatch) {
-              if (isAge) {
-                throw new IllegalArgumentException(
-                        "Invalid binary-query-expression with regular-expression-match for Age");
-              }
+                if (isAge) {
+                    throw new IllegalArgumentException(
+                            "Invalid binary-query-expression with regular-expression-match for Age");
+                }
             } else {
-              // TODO(egg): Validate against unescaped @ or : etc.
-              // TODO(egg): Unescape.
-              String propertyValue = propertyPredicate;
-              if (isAge) {
-                return queriedProperty.getSet(
-                                          new UnicodePropertySymbolTable.ComparisonMatcher<
-                                                  VersionInfo>(
-                                                  UnicodePropertySymbolTable.parseVersionInfoOrMax(
-                                                    propertyValue),
-                                                  UnicodePropertySymbolTable.Relation.geq,
-                                                  Comparator.nullsFirst(Comparator.naturalOrder()),
-                                                  UnicodePropertySymbolTable::parseVersionInfoOrMax));
-              }
-              if (isGeneralCategory) {
-                return getGeneralCategorySet(queriedProperties, propertyValue);
-              }
+                // TODO(egg): Validate against unescaped @ or : etc.
+                // TODO(egg): Check for valid values.
+                // TODO(egg): Unescape.
+                String propertyValue = propertyPredicate;
+                if (isAge) {
+                    return queriedProperty.getSet(
+                            new UnicodePropertySymbolTable.ComparisonMatcher<VersionInfo>(
+                                    UnicodePropertySymbolTable.parseVersionInfoOrMax(propertyValue),
+                                    UnicodePropertySymbolTable.Relation.geq,
+                                    Comparator.nullsFirst(Comparator.naturalOrder()),
+                                    UnicodePropertySymbolTable::parseVersionInfoOrMax));
+                }
+                if (queriedProperty.getName().equals("General_Category")) {
+                    return getGeneralCategorySet(queriedProperties, propertyValue);
+                }
             }
             return null;
         }
