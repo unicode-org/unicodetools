@@ -200,26 +200,31 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
             }
             UnicodeProperty queriedProperty =
                     queriedProperties.getProperty(unqualifiedLeftHandSide.toString());
-            if (queriedProperty != null) {
-                if (!queriedProperty.isType(UnicodeProperty.BINARY)) {
-                    if (queriedProperty.isType(UnicodeProperty.STRING_OR_MISC_MASK)) {
-                        return queriedProperty.getSet("");
-                    }
-                    throw new IllegalArgumentException(
-                            "Invalid unary-query-expression for non-binary property "
-                                    + queriedProperty.getName());
-                }
-                return queriedProperty.getSet(UcdPropertyValues.Binary.Yes);
+            if (queriedProperty == null && unversionedExtensions != null) {
+              queriedProperty = unversionedExtensions.getProperty(unqualifiedLeftHandSide.toString());
             }
-        } else {
             if (queriedProperty == null) {
-                propertyValue = propertyValue.trim();
-            } else if (prop.isTrimmable()) {
-                propertyValue = propertyValue.trim();
-            } else {
-                int debug = 0;
+              throw new IllegalArgumentException(
+                      "Invalid unary-query-expression; could not find property "
+                              + unqualifiedLeftHandSide);
             }
-            status = applyPropertyAlias0(prop, propertyValue, result, invert);
+            if (!queriedProperty.isType(UnicodeProperty.BINARY_MASK)) {
+                // TODO(egg): Remove when we can tell this is a unary query.
+                if (queriedProperty.isType(UnicodeProperty.STRING_OR_MISC_MASK)) {
+                    return queriedProperty.getSet("");
+                }
+                throw new IllegalArgumentException(
+                        "Invalid unary-query-expression for non-binary property "
+                                + queriedProperty.getName());
+            }
+            return queriedProperty.getSet(UcdPropertyValues.Binary.Yes);
+        } else {
+          // We have a binary-property-query.
+          UnicodeProperty queriedProperty =
+            queriedProperties.getProperty(unqualifiedLeftHandSide.toString());
+          if (queriedProperty == null && unversionedExtensions != null) {
+            queriedProperty = unversionedExtensions.getProperty(unqualifiedLeftHandSide.toString());
+          }
         }
         // TODO(egg):Something about a factory as a fallback;
     }
@@ -227,4 +232,5 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
     private VersionInfo implicitVersion;
     private VersionInfo previousVersion;
     private boolean requireSuffixForLatest;
+    private UnicodeProperty.Factory unversionedExtensions;
 }
