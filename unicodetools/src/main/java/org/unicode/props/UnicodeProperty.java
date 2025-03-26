@@ -952,6 +952,13 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             @Override
             public boolean applyPropertyAlias(
                     String propertyName, String propertyValue, UnicodeSet result) {
+                if (propertyName.equals("C") && propertyValue.isEmpty()) {
+                    // C matches isc=ISO_Comment, and we are not able to distinguish
+                    // \p{C} (=\p{General_Category=Other}) from \p{C=} (=\p{ISO_Comment=}) here.
+                    // Fall back to ICU, since this symbol table does not implement GC groupings.
+                    // TODO(egg): This symbol table needs to go, see #1073, #1074.
+                    return false;
+                }
                 if (false) System.out.println(propertyName + "=" + propertyValue);
                 UnicodeProperty prop = getProperty(propertyName);
                 if (prop == null) return false;
