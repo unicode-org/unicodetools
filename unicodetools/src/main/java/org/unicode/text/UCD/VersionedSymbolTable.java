@@ -2,11 +2,14 @@ package org.unicode.text.UCD;
 
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
+
+import java.util.Comparator;
 import java.util.Map;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.text.utility.Settings;
 
 /**
@@ -201,12 +204,13 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
             UnicodeProperty queriedProperty =
                     queriedProperties.getProperty(unqualifiedLeftHandSide.toString());
             if (queriedProperty == null && unversionedExtensions != null) {
-              queriedProperty = unversionedExtensions.getProperty(unqualifiedLeftHandSide.toString());
+                queriedProperty =
+                        unversionedExtensions.getProperty(unqualifiedLeftHandSide.toString());
             }
             if (queriedProperty == null) {
-              throw new IllegalArgumentException(
-                      "Invalid unary-query-expression; could not find property "
-                              + unqualifiedLeftHandSide);
+                throw new IllegalArgumentException(
+                        "Invalid unary-query-expression; could not find property "
+                                + unqualifiedLeftHandSide);
             }
             if (!queriedProperty.isType(UnicodeProperty.BINARY_MASK)) {
                 // TODO(egg): Remove when we can tell this is a unary query.
@@ -219,14 +223,70 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
             }
             return queriedProperty.getSet(UcdPropertyValues.Binary.Yes);
         } else {
-          // We have a binary-property-query.
-          UnicodeProperty queriedProperty =
-            queriedProperties.getProperty(unqualifiedLeftHandSide.toString());
-          if (queriedProperty == null && unversionedExtensions != null) {
-            queriedProperty = unversionedExtensions.getProperty(unqualifiedLeftHandSide.toString());
-          }
+            // We have a binary-property-query.
+            UnicodeProperty queriedProperty =
+                    queriedProperties.getProperty(unqualifiedLeftHandSide.toString());
+            if (queriedProperty == null && unversionedExtensions != null) {
+                queriedProperty =
+                        unversionedExtensions.getProperty(unqualifiedLeftHandSide.toString());
+            }
+            if (queriedProperty == null) {
+                throw new IllegalArgumentException(
+                        "Invalid binary-query-expression; could not find property "
+                                + unqualifiedLeftHandSide);
+            }
+            final boolean isAge = queriedProperty.getName().equals("Age");
+            final boolean isGeneralCategory = queriedProperty.getName().equals("General_Category");
+            final boolean isName = queriedProperty.getName().equals("Name");
+            final boolean isPropertyComparison = propertyPredicate.startsWith("@") && propertyPredicate.endsWith("@");
+            final boolean isRegularExpressionMatch = propertyPredicate.startsWith("/") && propertyPredicate.endsWith("/");
+            if (isPropertyComparison) {
+              if (isAge) {
+                throw new IllegalArgumentException(
+                        "Invalid binary-query-expression with property-comparison for Age");
+              }
+              final var unqualifiedRightHandSide = new StringBuilder(propertyPredicate.substring(1, propertyPredicate.length() - 1));
+              final var comparisonVersion = parseVersionQualifier(unqualifiedRightHandSide);
+              if (UnicodeProperty.equalNames(unqualifiedRightHandSide.toString(), "code point")) {
+                if (comparisonVersion != null) {
+                  throw new IllegalArgumentException(
+                          "Invalid binary-query-expression with comparison version on identity query");
+                }
+                // TODO(egg): Return.
+              } else if (UnicodeProperty.equalNames(unqualifiedRightHandSide.toString(), "none")) {
+                if (comparisonVersion != null) {
+                throw new IllegalArgumentException(
+                        "Invalid binary-query-expression with comparison version on null query");
+                }
+                // TODO(egg): Return.
+              } else {
+                // TODO(egg): comparison.
+              }
+            } else if (isRegularExpressionMatch) {
+              if (isAge) {
+                throw new IllegalArgumentException(
+                        "Invalid binary-query-expression with regular-expression-match for Age");
+              }
+            } else {
+              // TODO(egg): Validate against unescaped @ or : etc.
+              // TODO(egg): Unescape.
+              String propertyValue = propertyPredicate;
+              if (isAge) {
+                return queriedProperty.getSet(
+                                          new UnicodePropertySymbolTable.ComparisonMatcher<
+                                                  VersionInfo>(
+                                                  UnicodePropertySymbolTable.parseVersionInfoOrMax(
+                                                    propertyValue),
+                                                  UnicodePropertySymbolTable.Relation.geq,
+                                                  Comparator.nullsFirst(Comparator.naturalOrder()),
+                                                  UnicodePropertySymbolTable::parseVersionInfoOrMax));
+              }
+              if (isGeneralCategory) {
+                return getGeneralCategorySet(queriedProperties, propertyValue);
+              }
+            }
+            return null;
         }
-        // TODO(egg):Something about a factory as a fallback;
     }
 
     private VersionInfo implicitVersion;
