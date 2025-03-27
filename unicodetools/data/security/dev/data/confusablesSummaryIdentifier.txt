@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2025-03-19, 22:50:27 GMT
+# Date: 2025-03-27, 16:29:14 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -324,7 +324,7 @@
 
 #	bl	Ьl	Ь1	ЬІ	Ы
 	(‎ bl ‎)	0062 006C	 LATIN SMALL LETTER B, LATIN SMALL LETTER L
-←	(‎ Ьl ‎)	042C 006C	 CYRILLIC CAPITAL LETTER SOFT SIGN, LATIN SMALL LETTER L	# →ЬІ→→Ь1→
+←	(‎ Ьl ‎)	042C 006C	 CYRILLIC CAPITAL LETTER SOFT SIGN, LATIN SMALL LETTER L	# →Ь1→
 ←	(‎ Ь1 ‎)	042C 0031	 CYRILLIC CAPITAL LETTER SOFT SIGN, DIGIT ONE
 ←	(‎ ЬІ ‎)	042C 0406	 CYRILLIC CAPITAL LETTER SOFT SIGN, CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I	# →Ь1→
 ←	(‎ Ы ‎)	042B	 CYRILLIC CAPITAL LETTER YERU	# →ЬІ→→Ь1→
@@ -963,6 +963,11 @@
 #	ى̆̇	ࢺ
 	(‎ ى̆̇ ‎)	0649 0306 0307	 ARABIC LETTER ALEF MAKSURA, COMBINING BREVE, COMBINING DOT ABOVE
 ←	(‎ ࢺ ‎)	08BA	 ARABIC LETTER YEH WITH TWO DOTS BELOW AND SMALL NOON ABOVE	# →‎يۨ‎→
+
+#	ى̊	ں̊	࢏
+	(‎ ى̊ ‎)	0649 030A	 ARABIC LETTER ALEF MAKSURA, COMBINING RING ABOVE
+←	(‎ ں̊ ‎)	06BA 030A	 ARABIC LETTER NOON GHUNNA, COMBINING RING ABOVE
+←	(‎ ࢏ ‎)	088F	 ARABIC LETTER NOON WITH RING ABOVE	# →‎ں̊‎→
 
 #	ٹ	ڻ
 	(‎ ٹ ‎)	0679	 ARABIC LETTER TTEH
@@ -1845,5 +1850,5 @@
 	(‎ 鹂 ‎)	9E42	 CJK UNIFIED IDEOGRAPH-9E42
 ←	(‎ 鹃 ‎)	9E43	 CJK UNIFIED IDEOGRAPH-9E43
 
-# total : 638
+# total : 640
 
