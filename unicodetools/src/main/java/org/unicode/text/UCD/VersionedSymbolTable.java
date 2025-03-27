@@ -262,7 +262,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                     }
                     final var result = new UnicodeSet();
                     for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-                        if (UnicodeProperty.equals(cp, prop.getValue(cp))) {
+                        if (UnicodeProperty.equals(cp, queriedProperty.getValue(cp))) {
                             result.add(cp);
                         }
                     }
@@ -281,7 +281,50 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                     }
                     return queriedProperty.getSet((String) null);
                 } else {
-                    // TODO(egg): comparison.
+                    UnicodeProperty comparisonProperty =
+                            IndexUnicodeProperties.make(comparisonVersion)
+                                    .getProperty(unqualifiedRightHandSide.toString());
+                    if (comparisonProperty == null && unversionedExtensions != null) {
+                        comparisonProperty =
+                                unversionedExtensions.getProperty(
+                                        unqualifiedRightHandSide.toString());
+                    }
+                    if (comparisonProperty == null) {
+                        throw new IllegalArgumentException(
+                                "Invalid binary-query-expression; could not find comparison property "
+                                        + unqualifiedRightHandSide);
+                    }
+                    if (!((queriedProperty.isType(UnicodeProperty.BINARY_MASK)
+                                    && comparisonProperty.isType(UnicodeProperty.BINARY_MASK))
+                            || (queriedProperty.isType(UnicodeProperty.NUMERIC_MASK)
+                                    && comparisonProperty.isType(UnicodeProperty.NUMERIC_MASK))
+                            || (queriedProperty.isType(UnicodeProperty.STRING_MASK)
+                                    && comparisonProperty.isType(UnicodeProperty.STRING_MASK))
+                            || (queriedProperty.isType(UnicodeProperty.ENUMERATED_OR_CATALOG_MASK)
+                                    && comparisonProperty.isType(
+                                            UnicodeProperty.ENUMERATED_OR_CATALOG_MASK)
+                                    && queriedProperty
+                                            .getAvailableValues()
+                                            .equals(comparisonProperty.getAvailableValues()))
+                            || queriedProperty.getName().equals(comparisonProperty.getName()))) {
+                        throw new IllegalArgumentException(
+                                "Invalid property comparison between "
+                                        + queriedProperty.getTypeName()
+                                        + " property "
+                                        + queriedProperty.getName()
+                                        + " and "
+                                        + comparisonProperty.getTypeName()
+                                        + " property "
+                                        + comparisonProperty.getName());
+                    }
+                    final var result = new UnicodeSet();
+                    for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+                        if (UnicodeProperty.equals(
+                                queriedProperty.getValue(cp), comparisonProperty.getValue(cp))) {
+                            result.add(cp);
+                        }
+                    }
+                    return result;
                 }
             } else if (isRegularExpressionMatch) {
                 if (isAge) {

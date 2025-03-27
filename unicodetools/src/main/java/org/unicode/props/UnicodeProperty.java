@@ -198,6 +198,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             EXTENDED_MASK = 1,
             CORE_MASK = ~EXTENDED_MASK,
             BINARY_MASK = (1 << BINARY) | (1 << EXTENDED_BINARY),
+            NUMERIC_MASK = (1 << NUMERIC) | (1 << EXTENDED_NUMERIC),
             STRING_MASK = (1 << STRING) | (1 << EXTENDED_STRING),
             STRING_OR_MISC_MASK =
                     (1 << STRING) | (1 << EXTENDED_STRING) | (1 << MISC) | (1 << EXTENDED_MISC),
