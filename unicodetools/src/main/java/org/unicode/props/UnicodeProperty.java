@@ -32,6 +32,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+import org.unicode.cldr.util.Rational.RationalParser;
 import org.unicode.cldr.util.props.UnicodeLabel;
 
 public abstract class UnicodeProperty extends UnicodeLabel {
@@ -450,11 +451,14 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                             ? NULL_MATCHER
                             : new SimpleMatcher(
                                     propertyValue,
-                                    getName().equals("Name") || getName().equals("Name_Alias")
-                                            ? CHARACTER_NAME_COMPARATOR
-                                            : isType(STRING_OR_MISC_MASK)
-                                                    ? null
-                                                    : PROPERTY_COMPARATOR),
+                                    isType(NUMERIC_MASK)
+                                            ? RATIONAL_COMPARATOR
+                                            : getName().equals("Name")
+                                                            || getName().equals("Name_Alias")
+                                                    ? CHARACTER_NAME_COMPARATOR
+                                                    : isType(STRING_OR_MISC_MASK)
+                                                            ? null
+                                                            : PROPERTY_COMPARATOR),
                     result);
         }
     }
@@ -724,6 +728,21 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         }
         if (!gotOne) return source; // avoid string creation
         return skeletonBuffer.toString();
+    }
+
+    public static final Comparator<String> RATIONAL_COMPARATOR =
+            new Comparator<String>() {
+                @Override
+                public int compare(String x, String y) {
+                    return compareRationals(x, y);
+                }
+            };
+
+    public static int compareRationals(String a, String b) {
+        if (a == b) return 0;
+        if (a == null) return -1;
+        if (b == null) return 1;
+        return RationalParser.BASIC.parse(a).compareTo(RationalParser.BASIC.parse(b));
     }
 
     public static final Comparator<String> CHARACTER_NAME_COMPARATOR =
