@@ -4,6 +4,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import java.util.Comparator;
 import java.util.Map;
+import java.util.regex.Pattern;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -260,13 +261,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                                         + queriedProperty.getTypeName()
                                         + " property");
                     }
-                    final var result = new UnicodeSet();
-                    for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-                        if (UnicodeProperty.equals(cp, queriedProperty.getValue(cp))) {
-                            result.add(cp);
-                        }
-                    }
-                    return result;
+                    return getIdentitySet(queriedProperty);
                 } else if (UnicodeProperty.equalNames(
                         unqualifiedRightHandSide.toString(), "none")) {
                     if (comparisonVersion != null) {
@@ -282,7 +277,10 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                     return queriedProperty.getSet((String) null);
                 } else {
                     UnicodeProperty comparisonProperty =
-                            IndexUnicodeProperties.make(comparisonVersion)
+                            IndexUnicodeProperties.make(
+                                            comparisonVersion == null
+                                                    ? implicitVersion
+                                                    : comparisonVersion)
                                     .getProperty(unqualifiedRightHandSide.toString());
                     if (comparisonProperty == null && unversionedExtensions != null) {
                         comparisonProperty =
@@ -294,48 +292,64 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                                 "Invalid binary-query-expression; could not find comparison property "
                                         + unqualifiedRightHandSide);
                     }
-                    if (!((queriedProperty.isType(UnicodeProperty.BINARY_MASK)
-                                    && comparisonProperty.isType(UnicodeProperty.BINARY_MASK))
-                            || (queriedProperty.isType(UnicodeProperty.NUMERIC_MASK)
-                                    && comparisonProperty.isType(UnicodeProperty.NUMERIC_MASK))
-                            || (queriedProperty.isType(UnicodeProperty.STRING_MASK)
-                                    && comparisonProperty.isType(UnicodeProperty.STRING_MASK))
-                            || (queriedProperty.isType(UnicodeProperty.ENUMERATED_OR_CATALOG_MASK)
-                                    && comparisonProperty.isType(
-                                            UnicodeProperty.ENUMERATED_OR_CATALOG_MASK)
-                                    && queriedProperty
-                                            .getAvailableValues()
-                                            .equals(comparisonProperty.getAvailableValues()))
-                            || queriedProperty.getName().equals(comparisonProperty.getName()))) {
-                        throw new IllegalArgumentException(
-                                "Invalid property comparison between "
-                                        + queriedProperty.getTypeName()
-                                        + " property "
-                                        + queriedProperty.getName()
-                                        + " and "
-                                        + comparisonProperty.getTypeName()
-                                        + " property "
-                                        + comparisonProperty.getName());
-                    }
-                    final var result = new UnicodeSet();
-                    for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-                        if (UnicodeProperty.equals(
-                                queriedProperty.getValue(cp), comparisonProperty.getValue(cp))) {
-                            result.add(cp);
-                        }
-                    }
-                    return result;
+                    return compareProperties(queriedProperty, comparisonProperty);
                 }
             } else if (isRegularExpressionMatch) {
                 if (isAge) {
                     throw new IllegalArgumentException(
                             "Invalid binary-query-expression with regular-expression-match for Age");
                 }
+                return queriedProperty.getSet(
+                        new UnicodeProperty.RegexMatcher()
+                                .set(
+                                        propertyPredicate.substring(
+                                                1, propertyPredicate.length() - 1)));
             } else {
-                // TODO(egg): Validate against unescaped @ or : etc.
-                // TODO(egg): Check for valid values.
-                // TODO(egg): Unescape.
                 String propertyValue = propertyPredicate;
+                // Validation.  For Name, validation entails computing the query, so we return here.
+                if (isName) {
+                    var result = queriedProperty.getSet(propertyValue);
+                    if (result.isEmpty()) {
+                        result =
+                                queriedProperties
+                                        .getProperty(UcdProperty.Name_Alias)
+                                        .getSet(propertyValue);
+                    }
+                    if (result.isEmpty()) {
+                        throw new IllegalArgumentException(
+                                "No character name nor name alias matches " + propertyValue);
+                    }
+                } else if (queriedProperty.getName().equals("Name_Alias")) {
+                    var result = queriedProperty.getSet(propertyValue);
+                    if (result.isEmpty()) {
+                        throw new IllegalArgumentException(
+                                "No name alias matches " + propertyValue);
+                    }
+                    return result;
+                } else if (queriedProperty.isType(UnicodeProperty.NUMERIC_MASK)) {
+                    if (!RATIONAL_PATTERN.matcher(propertyValue).matches()) {
+                        throw new IllegalArgumentException(
+                                "Invalid value '"
+                                        + propertyValue
+                                        + "' for numeric property "
+                                        + queriedProperty.getName());
+                    }
+                } else if (queriedProperty.isType(
+                        UnicodeProperty.BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
+                    if (!queriedProperty.isValidValue(propertyValue)) {
+                        throw new IllegalArgumentException(
+                                "The value '"
+                                        + propertyValue
+                                        + "' is illegal. Values for "
+                                        + queriedProperty.getName()
+                                        + " must be in "
+                                        + queriedProperty.getAvailableValues()
+                                        + " or in "
+                                        + queriedProperty.getValueAliases());
+                    }
+                } else {
+                    // TODO(egg): Check for unescaped :, @, =, etc. and unescape.
+                }
                 if (isAge) {
                     return queriedProperty.getSet(
                             new UnicodePropertySymbolTable.ComparisonMatcher<VersionInfo>(
@@ -347,13 +361,58 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                 if (queriedProperty.getName().equals("General_Category")) {
                     return getGeneralCategorySet(queriedProperties, propertyValue);
                 }
+                return queriedProperty.getSet(propertyValue);
             }
-            return null;
         }
+    }
+
+    private static UnicodeSet getIdentitySet(UnicodeProperty queriedProperty) {
+        final var result = new UnicodeSet();
+        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+            if (UnicodeProperty.equals(cp, queriedProperty.getValue(cp))) {
+                result.add(cp);
+            }
+        }
+        return result;
+    }
+
+    private static UnicodeSet compareProperties(
+            UnicodeProperty queriedProperty, UnicodeProperty comparisonProperty) {
+        if (!((queriedProperty.isType(UnicodeProperty.BINARY_MASK)
+                        && comparisonProperty.isType(UnicodeProperty.BINARY_MASK))
+                || (queriedProperty.isType(UnicodeProperty.NUMERIC_MASK)
+                        && comparisonProperty.isType(UnicodeProperty.NUMERIC_MASK))
+                || (queriedProperty.isType(UnicodeProperty.STRING_MASK)
+                        && comparisonProperty.isType(UnicodeProperty.STRING_MASK))
+                || (queriedProperty.isType(UnicodeProperty.ENUMERATED_OR_CATALOG_MASK)
+                        && comparisonProperty.isType(UnicodeProperty.ENUMERATED_OR_CATALOG_MASK)
+                        && queriedProperty
+                                .getAvailableValues()
+                                .equals(comparisonProperty.getAvailableValues()))
+                || queriedProperty.getName().equals(comparisonProperty.getName()))) {
+            throw new IllegalArgumentException(
+                    "Invalid property comparison between "
+                            + queriedProperty.getTypeName()
+                            + " property "
+                            + queriedProperty.getName()
+                            + " and "
+                            + comparisonProperty.getTypeName()
+                            + " property "
+                            + comparisonProperty.getName());
+        }
+        final var result = new UnicodeSet();
+        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+            if (UnicodeProperty.equals(
+                    queriedProperty.getValue(cp), comparisonProperty.getValue(cp))) {
+                result.add(cp);
+            }
+        }
+        return result;
     }
 
     private VersionInfo implicitVersion;
     private VersionInfo previousVersion;
     private boolean requireSuffixForLatest;
     private UnicodeProperty.Factory unversionedExtensions;
+    private static Pattern RATIONAL_PATTERN = Pattern.compile("[+-]?[0-9]+(/[0-9]*[1-9][0-9]*)?");
 }
