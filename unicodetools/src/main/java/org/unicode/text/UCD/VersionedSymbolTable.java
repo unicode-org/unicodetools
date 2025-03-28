@@ -191,15 +191,13 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
 
         if (propertyPredicate.length() == 0) {
             // Either unary-property-query, or binary-property-query with an empty property-value.
-            try {
-                return queriedProperties
-                        .getProperty(UcdProperty.Script)
-                        .getSet(unqualifiedLeftHandSide.toString());
-            } catch (Exception e) {
+            final var script = queriedProperties.getProperty(UcdProperty.Script);
+            final var generalCategory = queriedProperties.getProperty(UcdProperty.General_Category);
+            if (script.isValidValue(unqualifiedLeftHandSide.toString())) {
+                return script.getSet(unqualifiedLeftHandSide.toString());
             }
-            try {
+            if (generalCategory.isValidValue(unqualifiedLeftHandSide.toString())) {
                 return getGeneralCategorySet(queriedProperties, unqualifiedLeftHandSide.toString());
-            } catch (Exception e) {
             }
             UnicodeProperty queriedProperty =
                     queriedProperties.getProperty(unqualifiedLeftHandSide.toString());
