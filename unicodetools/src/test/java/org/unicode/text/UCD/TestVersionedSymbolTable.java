@@ -157,6 +157,14 @@ public class TestVersionedSymbolTable {
         assertThatUnicodeSet("\\p{Script_Extensions=@Script@}").contains("A").doesNotContain("।");
     }
 
+    @Test
+    void testIdentityAndNullQueries() {
+        assertThatUnicodeSet("\\p{scf=@code point@}").contains("a").doesNotContain("A");
+        assertThatUnicodeSet("[:^kIRG_GSource=@none@:]").contains("喵").doesNotContain("𓃠");
+        assertThatUnicodeSet("\\p{Bidi_Paired_Bracket=@none@}")
+                .isEqualToUnicodeSet("\\p{Bidi_Paired_Bracket_Type=None}");
+    }
+
     /** Helper class for testing multiple properties of the same UnicodeSet. */
     private static class UnicodeSetTestFluent {
         UnicodeSetTestFluent(String expression) {
