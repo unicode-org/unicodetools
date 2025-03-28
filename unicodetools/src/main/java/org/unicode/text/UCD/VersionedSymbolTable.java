@@ -157,6 +157,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
 
     @Override
     public boolean applyPropertyAlias(String beforeEquals, String afterEquals, UnicodeSet result) {
+        result.clear();
         String leftHandSide = beforeEquals;
         String propertyPredicate = afterEquals;
         boolean interiorlyNegated = false;

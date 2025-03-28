@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ibm.icu.text.UnicodeSet;
+import java.text.ParsePosition;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,13 +28,33 @@ public class TestVersionedSymbolTable {
                 .contains("𒀀")
                 .doesNotContain("'")
                 .doesNotContain(",");
+        assertThatUnicodeSet("[\\p{lb=OP}-[\\p{ea=F}\\p{ea=W}\\p{ea=H}]]")
+                .contains("(")
+                .doesNotContain("【");
+        assertThatUnicodeSet(
+                        "[\\p{Other_ID_Start}\\p{Other_ID_Continue}"
+                                + "\\p{L}\\p{Nl}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}"
+                                + "-\\p{Pattern_Syntax}"
+                                + "-\\p{Pattern_White_Space}]")
+                .contains("A")
+                .contains("_")
+                .contains("᧚")
+                .doesNotContain("\u2E2F")
+                .doesNotContain("$");
+        assertThatUnicodeSet("[\\p{L}\\p{Nl}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}-[\\u2E2F]]")
+                .contains("A")
+                .contains("_")
+                .doesNotContain("᧚")
+                .doesNotContain("\u2E2F")
+                .doesNotContain("$");
     }
 
     /** Helper class for testing multiple properties of the same UnicodeSet. */
     private static class UnicodeSetTestFluent {
         UnicodeSetTestFluent(String expression) {
             this.expression = expression;
-            set = new UnicodeSet(expression);
+            ParsePosition parsePosition = new ParsePosition(0);
+            set = new UnicodeSet(expression, parsePosition, VersionedSymbolTable.forDevelopment());
             set.complement().complement();
         }
 
