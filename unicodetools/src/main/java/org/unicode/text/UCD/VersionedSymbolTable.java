@@ -59,7 +59,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                         throw new IllegalArgumentException(
                                 "Invalid version-qualifier " + versionQualifier);
                 }
-                String versionNumber = versionQualifier.substring(1, posColon + 1);
+                String versionNumber = versionQualifier.substring(1, posColon);
                 if (versionNumber.endsWith("dev")) {
                     versionNumber = versionNumber.substring(0, versionNumber.length() - 3);
                     if (!versionNumber.isEmpty()

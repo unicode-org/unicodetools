@@ -21,7 +21,7 @@ public class TestVersionedSymbolTable {
     }
 
     @Test
-    void testIntroductionExamples() {
+    void testIntroductionBasicExamples() {
         assertThatUnicodeSet("\\p{XID_Continue}")
                 .contains("a")
                 .contains("α")
@@ -49,12 +49,30 @@ public class TestVersionedSymbolTable {
                 .doesNotContain("$");
     }
 
+    @Test
+    void testIntroductionQueryLanguageExamples() {
+        assertThatUnicodeSet("\\p{Uppercase_Mapping≠@Simple_Uppercase_Mapping@}")
+                .contains("ß")
+                .doesNotContain("ſ");
+        assertThatUnicodeSet("\\p{U15.1:Simple_Case_Folding≠@U15.0:Simple_Case_Folding@}")
+                .consistsOf("ﬅ", "ΐ", "ΰ");
+        assertThatUnicodeSet("[\\p{cjkDefinition=/\\bcat\\b/} \\p{kEH_Desc=/\\bcat\\b/}]")
+                .contains("貓")
+                .contains("𓃠")
+                .doesNotContain("犬")
+                .doesNotContain("𓃡");
+        assertThatUnicodeSet("[\\p{Case_Folding≠@code point@}-\\p{Changes_When_Casefolded}]")
+                .contains("ǰ")
+                .doesNotContain("š")
+                .doesNotContain("ß");
+    }
+
     /** Helper class for testing multiple properties of the same UnicodeSet. */
     private static class UnicodeSetTestFluent {
         UnicodeSetTestFluent(String expression) {
             this.expression = expression;
             ParsePosition parsePosition = new ParsePosition(0);
-            set = new UnicodeSet(expression, parsePosition, VersionedSymbolTable.forDevelopment());
+            set = new UnicodeSet(expression);
             set.complement().complement();
         }
 
@@ -74,6 +92,17 @@ public class TestVersionedSymbolTable {
             assertTrue(
                     set.contains(element),
                     element + " ∈ " + expression + " = " + set.toPattern(true));
+            return this;
+        }
+
+        public UnicodeSetTestFluent consistsOf(CharSequence... elements) {
+            for (CharSequence element : elements) {
+                contains(element);
+            }
+            final var expectedElements = new UnicodeSet().addAll(elements);
+            assertTrue(
+                    expectedElements.containsAll(set),
+                    expectedElements + " ⊇ " + expression + " = " + set.toPattern(true));
             return this;
         }
 
