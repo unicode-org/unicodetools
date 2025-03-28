@@ -111,6 +111,39 @@ public class TestVersionedSymbolTable {
         assertThatUnicodeSet("\\p{Age=/1/}").isIllFormed("regular-expression-match for Age");
     }
 
+    @Test
+    void testPropertyComparisons() {
+        assertThatUnicodeSet("\\p{scf=@lc@}").contains("Σ").contains("σ").doesNotContain("ς");
+        assertThatUnicodeSet("\\p{U15.1:scf=@U15.1:lc@}")
+                .contains("Σ")
+                .contains("σ")
+                .doesNotContain("ς");
+        assertThatUnicodeSet("\\p{U15.0:Line_Break≠@U15.1:Line_Break@}")
+                .contains("ᯤ")
+                .doesNotContain("i");
+        assertThatUnicodeSet("\\p{kIRG_GSource=@none@}").contains("𒇽").doesNotContain("人");
+        assertThatUnicodeSet("\\p{case folding=@code point@}")
+                .contains("s")
+                .doesNotContain("S")
+                .doesNotContain("ſ")
+                .doesNotContain("ß");
+        assertThatUnicodeSet("\\p{kIRG_GSource=@U16:none@}")
+                .isIllFormed("comparison version on null query");
+        assertThatUnicodeSet("\\p{case folding=@U16:code point@}")
+                .isIllFormed("comparison version on identity query");
+
+        assertThatUnicodeSet("\\p{Decomposition_Mapping=@Ideographic@}")
+                .isIllFormed(
+                        "comparison between String property Decomposition_Mapping and"
+                                + " Binary property Ideographic");
+        assertThatUnicodeSet("\\p{Uppercase≠@Changes_When_Lowercased@}")
+                .isEqualToUnicodeSet(
+                        "[[\\p{Uppercase}\\p{Changes_When_Lowercased}]"
+                                + "-[\\p{Uppercase}&\\p{Changes_When_Lowercased}]]")
+                .contains("𝔄")
+                .doesNotContain("A");
+    }
+
     /** Helper class for testing multiple properties of the same UnicodeSet. */
     private static class UnicodeSetTestFluent {
         UnicodeSetTestFluent(String expression) {
