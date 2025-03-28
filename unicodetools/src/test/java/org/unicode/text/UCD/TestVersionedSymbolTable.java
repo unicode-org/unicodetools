@@ -113,6 +113,7 @@ public class TestVersionedSymbolTable {
 
     @Test
     void testPropertyComparisons() {
+        // From the first set of examples in the section.
         assertThatUnicodeSet("\\p{scf=@lc@}").contains("Σ").contains("σ").doesNotContain("ς");
         assertThatUnicodeSet("\\p{U15.1:scf=@U15.1:lc@}")
                 .contains("Σ")
@@ -132,6 +133,7 @@ public class TestVersionedSymbolTable {
         assertThatUnicodeSet("\\p{case folding=@U16:code point@}")
                 .isIllFormed("comparison version on identity query");
 
+        // From the third set of examples in the section.
         assertThatUnicodeSet("\\p{Decomposition_Mapping=@Ideographic@}")
                 .isIllFormed(
                         "comparison between String property Decomposition_Mapping and"
@@ -142,6 +144,17 @@ public class TestVersionedSymbolTable {
                                 + "-[\\p{Uppercase}&\\p{Changes_When_Lowercased}]]")
                 .contains("𝔄")
                 .doesNotContain("A");
+        assertThatUnicodeSet("\\p{scf≠@cf@}").contains("ß").doesNotContain("ς");
+        assertThatUnicodeSet("\\p{Numeric_Value=@kPrimaryNumeric@}")
+                .contains("A")
+                .contains("喵")
+                .contains("一")
+                .contains("五")
+                .doesNotContain("1")
+                .doesNotContain("伍");
+        // \p{U15.0:Line_Break≠@U15.1:Line_Break@} covered above.
+        assertThatUnicodeSet("\\p{U16.0:kPrimaryNumeric≠@U17.0:kPrimaryNumeric@}").consistsOf("兆");
+        assertThatUnicodeSet("\\p{Script_Extensions=@Script@}").contains("A").doesNotContain("।");
     }
 
     /** Helper class for testing multiple properties of the same UnicodeSet. */
