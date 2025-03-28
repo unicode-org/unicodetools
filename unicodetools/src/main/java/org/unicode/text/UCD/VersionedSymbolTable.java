@@ -318,6 +318,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                         throw new IllegalArgumentException(
                                 "No character name nor name alias matches " + propertyValue);
                     }
+                    return result;
                 } else if (queriedProperty.getName().equals("Name_Alias")) {
                     var result = queriedProperty.getSet(propertyValue);
                     if (result.isEmpty()) {

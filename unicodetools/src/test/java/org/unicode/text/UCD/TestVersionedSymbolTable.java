@@ -1,6 +1,7 @@
 package org.unicode.text.UCD;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ibm.icu.text.UnicodeSet;
@@ -67,17 +68,84 @@ public class TestVersionedSymbolTable {
                 .doesNotContain("ß");
     }
 
+    @Test
+    void testNegations() {
+        assertThatUnicodeSet("\\P{Cn}").contains("a").doesNotContain("\uFFFF");
+        assertThatUnicodeSet("[:^Cn:]").contains("a").doesNotContain("\uFFFF");
+        assertThatUnicodeSet("\\P{General_Category=Cn}").contains("a").doesNotContain("\uFFFF");
+        assertThatUnicodeSet("[:^General_Category=Cn:]").contains("a").doesNotContain("\uFFFF");
+        assertThatUnicodeSet("\\p{General_Category≠Cn}").contains("a").doesNotContain("\uFFFF");
+        assertThatUnicodeSet("[:General_Category≠Cn:]").contains("a").doesNotContain("\uFFFF");
+        assertThatUnicodeSet("[:^General_Category≠Cn:]").doesNotContain("a").contains("\uFFFF");
+        assertThatUnicodeSet("[:^General_Category≠Cn:]").doesNotContain("a").contains("\uFFFF");
+        assertThatUnicodeSet("[:^General_Category≠Cn:]").doesNotContain("a").contains("\uFFFF");
+
+        assertThatUnicodeSet("\\P{Decomposition_Type≠compat}")
+                .contains("∯")
+                .doesNotContain("∮")
+                .isEqualToUnicodeSet("\\p{Decomposition_Type=compat}");
+    }
+
+    @Test
+    void testNamedSingleton() {
+        assertThatUnicodeSet("\\N{SPACE}").consistsOf(" ");
+        assertThatUnicodeSet("\\N{THIS IS NOT A CHARACTER}")
+                .isIllFormed("No character name nor name alias matches");
+        assertThatUnicodeSet("\\N{PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET}")
+                .isEqualToUnicodeSet(
+                        "\\N{PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET}")
+                .consistsOf("︘");
+        assertThatUnicodeSet("\\N{Latin small ligature o-e}").consistsOf("œ");
+        assertThatUnicodeSet("\\N{Hangul jungseong O-E}").consistsOf("ᆀ");
+        assertThatUnicodeSet("\\N{Hangul jungseong OE}").consistsOf("ᅬ");
+    }
+
+    @Test
+    void testAge() {
+        assertThatUnicodeSet("\\p{Age=6.0}")
+                .contains("U")
+                .contains("𒌋")
+                .doesNotContain("𒎙")
+                .isEqualToUnicodeSet("[ \\P{U6:Cn} \\p{U6:Noncharacter_Code_Point} ]");
+        assertThatUnicodeSet("\\p{Age=@U6:Age@}").isIllFormed("property-comparison for Age");
+        assertThatUnicodeSet("\\p{Age=/1/}").isIllFormed("regular-expression-match for Age");
+    }
+
     /** Helper class for testing multiple properties of the same UnicodeSet. */
     private static class UnicodeSetTestFluent {
         UnicodeSetTestFluent(String expression) {
             this.expression = expression;
             ParsePosition parsePosition = new ParsePosition(0);
-            set = new UnicodeSet(expression);
-            set.complement().complement();
+            try {
+                set = new UnicodeSet(expression);
+                set.complement().complement();
+            } catch (Exception e) {
+                exception = e;
+            }
         }
 
-        public <T extends CharSequence> UnicodeSetTestFluent isEqualTo(UnicodeSet collection) {
-            assertTrue(set.equals(collection));
+        public void isIllFormed(String messageSubstring) {
+            assertNotNull(exception, expression + " is ill-formed");
+            assertTrue(
+                    exception.getMessage().contains(messageSubstring),
+                    "Error message '"
+                            + exception.getMessage()
+                            + "' for "
+                            + expression
+                            + " contains '"
+                            + messageSubstring
+                            + "'");
+        }
+
+        public <T extends CharSequence> UnicodeSetTestFluent isEqualToUnicodeSet(
+                String expectedExpression) {
+            final var expected = new UnicodeSet(expectedExpression);
+            assertTrue(
+                    set.containsAll(expected),
+                    expected + " ⊆ " + expression + " = " + set.toPattern(true));
+            assertTrue(
+                    expected.containsAll(set),
+                    expected + " ⊇ " + expression + " = " + set.toPattern(true));
             return this;
         }
 
@@ -108,6 +176,7 @@ public class TestVersionedSymbolTable {
 
         private UnicodeSet set;
         private String expression;
+        private Exception exception;
     }
 
     private UnicodeSetTestFluent assertThatUnicodeSet(String expression) {
