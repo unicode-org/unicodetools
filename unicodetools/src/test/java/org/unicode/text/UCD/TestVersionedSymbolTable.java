@@ -10,6 +10,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Notice to the maintainer: These tests check that the UnicodeSet property queries are correctly
+ * parsed. They are not here to test property assignments. Mostly they check, for every valid
+ * expression, that the set is nonempty, not equal to the entire code space, and that it appears
+ * reasonable. If they are broken by changes to property assignments, feel free to update them.
+ */
 public class TestVersionedSymbolTable {
     @BeforeEach
     void setUp() {
