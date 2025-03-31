@@ -238,7 +238,7 @@ public class TestVersionedSymbolTable {
         assertThatUnicodeSet("\\p{Script=/ Gondi/}").isEmpty();
         assertThatUnicodeSet("\\p{Script=/_Gondi/}").contains("𑴀").contains("𑵠");
         assertThatUnicodeSet("\\p{gc=/Cased_Letter/}").isEmpty();
-        assertThatUnicodeSet("\\p{gc=/Cased_Letter/}")
+        assertThatUnicodeSet("\\p{gc=Cased_Letter}")
                 .contains("a")
                 .contains("A")
                 .doesNotContain("𒀀");

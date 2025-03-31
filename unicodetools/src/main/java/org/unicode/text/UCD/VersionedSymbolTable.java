@@ -53,6 +53,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                         // Extension: we allow a version-qualifier starting with R for retroactive
                         // properties, that is, property derivations applied before the property
                         // existed.
+                        // TODO(egg): Actually support that.
                     case 'U':
                         break;
                     default:
@@ -137,8 +138,8 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
 
     /**
      * Similar to iup.getProperty(UcdProperty.General_Category).getSet(propertyValue), but takes the
-     * groupings into account. Implements both unary-query for a General_Category alias and
-     * binary-query with a property-value where the queried property is General_Category.
+     * groupings into account. Implements both unary-query-expression for a General_Category alias and
+     * binary-query-expression with a property-value where the queried property is General_Category.
      */
     private UnicodeSet getGeneralCategorySet(IndexUnicodeProperties iup, String propertyValue) {
         var gc = iup.getProperty(UcdProperty.General_Category);
