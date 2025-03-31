@@ -10,7 +10,7 @@
     <articleinfo>
         <unicode:tr number='42' class='uax' version='16.0.0'
                     stage='proposed-update'
-                    schema='rnc' prevrev='34'/>
+                    schema='rnc' prevrev='36'/>
         <copyright>
             <year>2025</year>
         </copyright>
@@ -21,6 +21,26 @@
             </author>
         </authors>
         <revhistory>
+            <revision revnumber="37" date="2025-03-28">
+                <changes>
+                    <change>New values for the <attr>blk</attr> attribute: <val>Beria_Erfe</val>, <val>Chisoi</val>,
+                        <val>CJK_Ext_J</val>, <val>Misc_Symbols_Sup</val>, <val>Sharada_Sup</val>, <val>Sidetic</val>,
+                        <val>Tai_Yo</val>, <val>Tangut_Components_Sup</val>, <val>Tolong_Siki</val>.
+                    </change>
+                    <change>New value for the <attr>jg</attr> attribute: <val>Thin_Noon</val>.
+                    </change>
+                    <change>New value for the <attr>lb</attr> attribute: <val>HH</val>.
+                    </change>
+                    <change>New values for the <attr>script</attr> attribute: <val>Berf</val>, <val>Chis</val>,
+                        <val>Sidt</val>, <val>Tayo</val>, <val>Tols</val>.
+                    </change>
+                    <change>New code point attributes for Unikemet: <attr>kEH_Cat</attr>, <attr>kEH_Core</attr>,
+                        <attr>kEH_Desc</attr>, <attr>kEH_Func</attr>, <attr>kEH_FVal</attr>, <attr>kEH_HG</attr>,
+                        <attr>kEH_IFAO</attr>, <attr>kEH_JSesh</attr>, <attr>kEH_NoMirror</attr>,
+                        <attr>kEH_NoRotate</attr>, <attr>kEH_UniK</attr>.
+                    </change>
+                </changes>
+            </revision>
             <revision revnumber="36" date="2024-09-02">
                 <changes>
                     <change>New value for the <attr>age</attr> attribute: <val>16.0</val>.
@@ -1194,6 +1214,28 @@
                 </para>
                 <xi:include href="./fragments/Emoji.xml"/>
             </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Unikemet properties</title>
+                <para>The Unikemet data are represented as attributes. The attribute <attr>kEH_Cat</attr>
+                    is a catalog entry corresponding to the IFAO-based taxonomy. The attribute <attr>kEH_Core</attr>
+                    determines whether an Egyptian hieroglyph is part of the 'Core' set, Legacy or None. The attribute
+                    <attr>kEH_Desc</attr> provides a detailed description of the appearance of the hieroglyph.
+                    The attribute <attr>kEH_Func</attr> represents  a function type representing a pictogram, a
+                    logogram, a phonemogram (or “phonogram”), a classifier (or “determinative”), a phono-repeater
+                    (sub-category of classifier), a radicogram or interpretant. The attribute <attr>kEH_FVal</attr>
+                    expresses the function type using the Gardiner 1957 convention for Egyptian hieroglyph
+                    transliteration. The attribute <attr>kEH_HG</attr> indicates the Hieroglyphica source. The
+                    attribute <attr>kEH_IFAO</attr> indicates the IFAO source value defined as page number and order
+                    in that page. The attribute <attr>kEH_JSesh</attr> indicates the JSesh source as specified in
+                    JSesh Documentation. The attribute <attr>kEH_NoMirror</attr> determines whether the hieroglyph
+                    does not mirror. The attribute <attr>kEH_NoRotate</attr> determines whether the hieroglyph
+                    does not rotate. The attribute <attr>kEH_UniK</attr> represent the original Unikemet catalog
+                    index used by the Egyptian Hieroglyph block.
+                </para>
+                <xi:include href="./fragments/Unikemet.xml"/>
+            </section>
         </section>
     </section>
 
@@ -1286,6 +1328,7 @@
       <ucdxml:include linkend='schema.properties' title='attributes'/>
       <ucdxml:include linkend='schema.tangut'/>
       <ucdxml:include linkend='schema.nushu'/>
+      <ucdxml:include linkend='schema.unikemet'/>
       <ucdxml:include linkend='schema.block'/>
       <ucdxml:include linkend='schema.named-sequences'/>
       <ucdxml:include linkend='schema.normalization-corrections'/>

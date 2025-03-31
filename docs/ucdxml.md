@@ -67,3 +67,9 @@ We'll use [jing-trang](https://github.com/relaxng/jing-trang) in this example.
    java -jar C:\_git\jing-trang\build\jing.jar -c UNICODETOOLS_REPO_DIR\uax\uax42\output\index.rnc <path to UAX xml file>
    ```
    Note that the UAX xml file has to be saved as NFD as the Unihan syntax regular expressions are expecting NFD.
+   
+   To convert to NFD, use ICU's uconv.exe:
+   ```
+   uconv.exe uconv -f utf8 -t utf8 -x nfd -o {outputfile} {originalfile}
+   ```
+

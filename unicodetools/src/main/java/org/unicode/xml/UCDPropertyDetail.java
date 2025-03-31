@@ -15,6 +15,8 @@ public class UCDPropertyDetail {
             new LinkedHashSet<UCDPropertyDetail>();
     private static LinkedHashSet<UCDPropertyDetail> cjkPropertyDetails =
             new LinkedHashSet<UCDPropertyDetail>();
+    private static LinkedHashSet<UCDPropertyDetail> unikemetPropertyDetails =
+            new LinkedHashSet<UCDPropertyDetail>();
     private static LinkedHashSet<UCDPropertyDetail> ucdxmlPropertyDetails =
             new LinkedHashSet<UCDPropertyDetail>();
     private static LinkedHashSet<UCDPropertyDetail> allPropertyDetails =
@@ -22,7 +24,7 @@ public class UCDPropertyDetail {
 
     public static UCDPropertyDetail Age_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.Age, VersionInfo.getInstance(3, 2, 0), 1, true, false, false, true);
+                    UcdProperty.Age, VersionInfo.getInstance(3, 2, 0), 1, true, false, false, true, false);
     public static UCDPropertyDetail Name_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Name,
@@ -31,7 +33,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Jamo_Short_Name_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Jamo_Short_Name,
@@ -40,7 +43,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail General_Category_Detail =
             new UCDPropertyDetail(
                     UcdProperty.General_Category,
@@ -49,7 +53,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Canonical_Combining_Class_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Canonical_Combining_Class,
@@ -58,7 +63,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Decomposition_Type_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Decomposition_Type,
@@ -67,7 +73,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Decomposition_Mapping_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Decomposition_Mapping,
@@ -76,7 +83,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Numeric_Type_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Numeric_Type,
@@ -85,7 +93,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Numeric_Value_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Numeric_Value,
@@ -94,7 +103,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Bidi_Class_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Bidi_Class,
@@ -103,7 +113,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Bidi_Paired_Bracket_Type_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Bidi_Paired_Bracket_Type,
@@ -112,7 +123,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Bidi_Paired_Bracket_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Bidi_Paired_Bracket,
@@ -121,7 +133,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Bidi_Mirrored_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Bidi_Mirrored,
@@ -130,7 +143,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Bidi_Mirroring_Glyph_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Bidi_Mirroring_Glyph,
@@ -139,7 +153,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Simple_Uppercase_Mapping_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Simple_Uppercase_Mapping,
@@ -148,7 +163,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Simple_Lowercase_Mapping_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Simple_Lowercase_Mapping,
@@ -157,7 +173,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Simple_Titlecase_Mapping_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Simple_Titlecase_Mapping,
@@ -166,7 +183,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Uppercase_Mapping_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Uppercase_Mapping,
@@ -175,7 +193,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Lowercase_Mapping_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Lowercase_Mapping,
@@ -184,7 +203,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Titlecase_Mapping_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Titlecase_Mapping,
@@ -193,11 +213,12 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
-    //        public static UcdPropertyDetail Special_Case_Condition_Detail = new UcdPropertyDetail
+                    true,
+                    false);
+    //        public static UCDPropertyDetail Special_Case_Condition_Detail = new UCDPropertyDetail
     // (
     //            UcdProperty.Special_Case_Condition, VersionInfo.getInstance(1,1,0), 21,
-    //            true, false, false, true);
+    //            true, false, false, true, false);
     public static UCDPropertyDetail Simple_Case_Folding_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Simple_Case_Folding,
@@ -206,7 +227,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Case_Folding_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Case_Folding,
@@ -215,7 +237,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Joining_Type_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Joining_Type,
@@ -224,7 +247,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Joining_Group_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Joining_Group,
@@ -233,7 +257,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail East_Asian_Width_Detail =
             new UCDPropertyDetail(
                     UcdProperty.East_Asian_Width,
@@ -242,7 +267,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Line_Break_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Line_Break,
@@ -251,7 +277,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Script_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Script,
@@ -260,7 +287,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Script_Extensions_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Script_Extensions,
@@ -269,7 +297,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Dash_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Dash,
@@ -278,7 +307,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail White_Space_Detail =
             new UCDPropertyDetail(
                     UcdProperty.White_Space,
@@ -287,7 +317,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Hyphen_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Hyphen,
@@ -296,7 +327,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Quotation_Mark_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Quotation_Mark,
@@ -305,7 +337,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Radical_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Radical,
@@ -314,7 +347,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Ideographic_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Ideographic,
@@ -323,7 +357,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Unified_Ideograph_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Unified_Ideograph,
@@ -332,7 +367,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail IDS_Binary_Operator_Detail =
             new UCDPropertyDetail(
                     UcdProperty.IDS_Binary_Operator,
@@ -341,7 +377,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail IDS_Trinary_Operator_Detail =
             new UCDPropertyDetail(
                     UcdProperty.IDS_Trinary_Operator,
@@ -350,7 +387,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Hangul_Syllable_Type_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Hangul_Syllable_Type,
@@ -359,7 +397,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Default_Ignorable_Code_Point_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Default_Ignorable_Code_Point,
@@ -368,7 +407,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Other_Default_Ignorable_Code_Point_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Other_Default_Ignorable_Code_Point,
@@ -377,7 +417,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Alphabetic_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Alphabetic,
@@ -386,7 +427,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Other_Alphabetic_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Other_Alphabetic,
@@ -395,7 +437,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Uppercase_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Uppercase,
@@ -404,7 +447,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Other_Uppercase_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Other_Uppercase,
@@ -413,7 +457,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Lowercase_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Lowercase,
@@ -422,7 +467,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Other_Lowercase_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Other_Lowercase,
@@ -431,7 +477,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Math_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Math,
@@ -440,7 +487,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Other_Math_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Other_Math,
@@ -449,7 +497,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Hex_Digit_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Hex_Digit,
@@ -458,7 +507,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail ASCII_Hex_Digit_Detail =
             new UCDPropertyDetail(
                     UcdProperty.ASCII_Hex_Digit,
@@ -467,7 +517,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Noncharacter_Code_Point_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Noncharacter_Code_Point,
@@ -476,7 +527,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Variation_Selector_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Variation_Selector,
@@ -485,7 +537,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Bidi_Control_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Bidi_Control,
@@ -494,7 +547,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Join_Control_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Join_Control,
@@ -503,7 +557,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Grapheme_Base_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Grapheme_Base,
@@ -512,7 +567,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Grapheme_Extend_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Grapheme_Extend,
@@ -521,7 +577,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Other_Grapheme_Extend_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Other_Grapheme_Extend,
@@ -530,7 +587,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Grapheme_Link_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Grapheme_Link,
@@ -539,7 +597,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Sentence_Terminal_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Sentence_Terminal,
@@ -548,7 +607,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Extender_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Extender,
@@ -557,7 +617,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Terminal_Punctuation_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Terminal_Punctuation,
@@ -566,7 +627,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Diacritic_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Diacritic,
@@ -575,7 +637,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Deprecated_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Deprecated,
@@ -584,7 +647,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail ID_Start_Detail =
             new UCDPropertyDetail(
                     UcdProperty.ID_Start,
@@ -593,7 +657,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Other_ID_Start_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Other_ID_Start,
@@ -602,7 +667,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail XID_Start_Detail =
             new UCDPropertyDetail(
                     UcdProperty.XID_Start,
@@ -611,7 +677,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail ID_Continue_Detail =
             new UCDPropertyDetail(
                     UcdProperty.ID_Continue,
@@ -620,7 +687,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Other_ID_Continue_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Other_ID_Continue,
@@ -629,7 +697,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail XID_Continue_Detail =
             new UCDPropertyDetail(
                     UcdProperty.XID_Continue,
@@ -638,7 +707,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Soft_Dotted_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Soft_Dotted,
@@ -647,7 +717,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Logical_Order_Exception_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Logical_Order_Exception,
@@ -656,7 +727,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Pattern_White_Space_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Pattern_White_Space,
@@ -665,7 +737,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Pattern_Syntax_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Pattern_Syntax,
@@ -674,7 +747,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Grapheme_Cluster_Break_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Grapheme_Cluster_Break,
@@ -683,7 +757,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Word_Break_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Word_Break,
@@ -692,7 +767,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Sentence_Break_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Sentence_Break,
@@ -701,7 +777,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Composition_Exclusion_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Composition_Exclusion,
@@ -710,7 +787,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Full_Composition_Exclusion_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Full_Composition_Exclusion,
@@ -719,7 +797,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail NFC_Quick_Check_Detail =
             new UCDPropertyDetail(
                     UcdProperty.NFC_Quick_Check,
@@ -728,7 +807,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail NFD_Quick_Check_Detail =
             new UCDPropertyDetail(
                     UcdProperty.NFD_Quick_Check,
@@ -737,7 +817,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail NFKC_Quick_Check_Detail =
             new UCDPropertyDetail(
                     UcdProperty.NFKC_Quick_Check,
@@ -746,7 +827,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail NFKD_Quick_Check_Detail =
             new UCDPropertyDetail(
                     UcdProperty.NFKD_Quick_Check,
@@ -755,7 +837,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Expands_On_NFC_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Expands_On_NFC,
@@ -764,7 +847,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Expands_On_NFD_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Expands_On_NFD,
@@ -773,7 +857,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Expands_On_NFKC_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Expands_On_NFKC,
@@ -782,7 +867,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Expands_On_NFKD_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Expands_On_NFKD,
@@ -791,7 +877,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail FC_NFC_Closure_Detail =
             new UCDPropertyDetail(
                     UcdProperty.FC_NFKC_Closure,
@@ -800,7 +887,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Case_Ignorable_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Case_Ignorable,
@@ -809,7 +897,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Cased_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Cased,
@@ -818,7 +907,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Changes_When_CaseFolded_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Changes_When_Casefolded,
@@ -827,7 +917,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Changes_When_CaseMapped_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Changes_When_Casemapped,
@@ -836,7 +927,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Changes_When_NFKC_Casefolded_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Changes_When_NFKC_Casefolded,
@@ -845,7 +937,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Changes_When_Lowercased_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Changes_When_Lowercased,
@@ -854,7 +947,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Changes_When_Titlecased_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Changes_When_Titlecased,
@@ -863,7 +957,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Changes_When_Uppercased_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Changes_When_Uppercased,
@@ -872,7 +967,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail NFKC_Casefold_Detail =
             new UCDPropertyDetail(
                     UcdProperty.NFKC_Casefold,
@@ -881,7 +977,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Indic_Syllabic_Category_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Indic_Syllabic_Category,
@@ -890,11 +987,12 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
-    //        public static UcdPropertyDetail Indic_Matra_Category_Detail = new UcdPropertyDetail (
+                    true,
+                    false);
+    //        public static UCDPropertyDetail Indic_Matra_Category_Detail = new UCDPropertyDetail (
     //            UcdProperty.Indic_Matra_Category, VersionInfo.getInstance(6,1,0),
     // VersionInfo.getInstance(7,0,0), 99,
-    //            true, false, false, true);
+    //            true, false, false, true, false);
     public static UCDPropertyDetail Indic_Positional_Category_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Indic_Positional_Category,
@@ -903,7 +1001,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kJa_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kJa,
@@ -912,7 +1011,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Prepended_Concatenation_Mark_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Prepended_Concatenation_Mark,
@@ -921,7 +1021,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Vertical_Orientation_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Vertical_Orientation,
@@ -930,7 +1031,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Regional_Indicator_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Regional_Indicator,
@@ -939,7 +1041,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Block_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Block,
@@ -948,7 +1051,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Equivalent_Unified_Ideograph_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Equivalent_Unified_Ideograph,
@@ -957,7 +1061,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kCompatibilityVariant_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kCompatibilityVariant,
@@ -966,7 +1071,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     true,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kRSUnicode_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kRSUnicode,
@@ -975,10 +1081,11 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
-    //        public static UcdPropertyDetail kIRG_RSIndex_Detail = new UcdPropertyDetail (
+                    true,
+                    false);
+    //        public static UCDPropertyDetail kIRG_RSIndex_Detail = new UCDPropertyDetail (
     //            UcdProperty.kIRG_RSIndex, VersionInfo.getInstance(11,0,0), 109,
-    //            false, true, false, true);
+    //            false, true, false, true, false);
     public static UCDPropertyDetail kIRG_GSource_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRG_GSource,
@@ -987,7 +1094,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     true,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIRG_TSource_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRG_TSource,
@@ -996,7 +1104,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     true,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIRG_JSource_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRG_JSource,
@@ -1005,7 +1114,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     true,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIRG_KSource_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRG_KSource,
@@ -1014,7 +1124,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     true,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIRG_KPSource_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRG_KPSource,
@@ -1023,7 +1134,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     true,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIRG_VSource_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRG_VSource,
@@ -1032,7 +1144,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     true,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIRG_HSource_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRG_HSource,
@@ -1041,7 +1154,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     true,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIRG_USource_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRG_USource,
@@ -1050,7 +1164,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     true,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIRG_MSource_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRG_MSource,
@@ -1059,7 +1174,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     true,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIRG_UKSource_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRG_UKSource,
@@ -1068,7 +1184,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     true,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIRG_SSource_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRG_SSource,
@@ -1077,7 +1194,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     true,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIICore_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIICore,
@@ -1086,7 +1204,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kUnihanCore2020_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kUnihanCore2020,
@@ -1095,7 +1214,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kGB0_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kGB0,
@@ -1104,7 +1224,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kGB1_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kGB1,
@@ -1113,7 +1234,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kGB3_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kGB3,
@@ -1122,7 +1244,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kGB5_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kGB5,
@@ -1131,7 +1254,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kGB7_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kGB7,
@@ -1140,7 +1264,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kGB8_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kGB8,
@@ -1149,7 +1274,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kCNS1986_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kCNS1986,
@@ -1158,7 +1284,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kCNS1992_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kCNS1992,
@@ -1167,7 +1294,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kJis0_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kJis0,
@@ -1176,7 +1304,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kJis1_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kJis1,
@@ -1185,7 +1314,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kJIS0213_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kJIS0213,
@@ -1194,7 +1324,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kKSC0_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kKSC0,
@@ -1204,7 +1335,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kKSC1_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kKSC1,
@@ -1214,7 +1346,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kKPS0_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kKPS0,
@@ -1224,7 +1357,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kKPS1_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kKPS1,
@@ -1234,7 +1368,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kHKSCS_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kHKSCS,
@@ -1244,7 +1379,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kCantonese_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kCantonese,
@@ -1253,7 +1389,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kHangul_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kHangul,
@@ -1262,7 +1399,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kDefinition_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kDefinition,
@@ -1271,7 +1409,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kHanYu_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kHanYu,
@@ -1280,11 +1419,18 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
-    //        public static UcdPropertyDetail kAlternateHanYu_Detail = new UcdPropertyDetail (
+                    true,
+                    false);
+    //        public static UCDPropertyDetail kAlternateHanYu_Detail = new UCDPropertyDetail (
     //            UcdProperty.kAlternateHanYu, VersionInfo.getInstance(2,0,0),
     // VersionInfo.getInstance(3,1,1), 143,
-    //            false, true, false, true);
+    //            false, true, false, true, false);
+    //
+    //        The following UcdProperty values were added via PR1026 to support generating pre-5.2 Unihan; however,
+    //        they weren't supported in previous versions of UCDXML.
+    //        kAlternateJEF
+    //        kJHJ
+    //        kRSMerged
     public static UCDPropertyDetail kMandarin_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kMandarin,
@@ -1293,7 +1439,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kCihaiT_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kCihaiT,
@@ -1302,7 +1449,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kSBGY_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kSBGY,
@@ -1311,7 +1459,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kNelson_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kNelson,
@@ -1320,7 +1469,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kCowles_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kCowles,
@@ -1329,7 +1479,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kMatthews_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kMatthews,
@@ -1338,7 +1489,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kOtherNumeric_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kOtherNumeric,
@@ -1347,7 +1499,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kPhonetic_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kPhonetic,
@@ -1356,7 +1509,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kGSR_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kGSR,
@@ -1365,7 +1519,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kFenn_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kFenn,
@@ -1374,7 +1529,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kFennIndex_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kFennIndex,
@@ -1383,7 +1539,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kKarlgren_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kKarlgren,
@@ -1392,7 +1549,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kCangjie_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kCangjie,
@@ -1401,7 +1559,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kMeyerWempe_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kMeyerWempe,
@@ -1410,7 +1569,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kSimplifiedVariant_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kSimplifiedVariant,
@@ -1419,7 +1579,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kTraditionalVariant_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kTraditionalVariant,
@@ -1428,7 +1589,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kSpecializedSemanticVariant_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kSpecializedSemanticVariant,
@@ -1437,7 +1599,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kSemanticVariant_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kSemanticVariant,
@@ -1446,7 +1609,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kVietnamese_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kVietnamese,
@@ -1455,7 +1619,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kLau_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kLau,
@@ -1464,7 +1629,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kTang_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kTang,
@@ -1473,7 +1639,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kZVariant_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kZVariant,
@@ -1482,7 +1649,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kJapaneseKun_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kJapaneseKun,
@@ -1491,7 +1659,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kJapaneseOn_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kJapaneseOn,
@@ -1500,7 +1669,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kKangXi_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kKangXi,
@@ -1509,11 +1679,12 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
-    //    public static UcdPropertyDetail kAlternateKangXi_Detail = new UcdPropertyDetail (
+                    true,
+                    false);
+    //    public static UCDPropertyDetail kAlternateKangXi_Detail = new UCDPropertyDetail (
     //            UcdProperty.kAlternateKangXi, VersionInfo.getInstance(2,0,0),
     // VersionInfo.getInstance(4,0,1), 169,
-    //            false, true, false, true);
+    //            false, true, false, true, false);
     public static UCDPropertyDetail kBigFive_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kBigFive,
@@ -1522,7 +1693,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kCCCII_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kCCCII,
@@ -1531,7 +1703,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kDaeJaweon_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kDaeJaweon,
@@ -1540,7 +1713,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kEACC_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kEACC,
@@ -1549,7 +1723,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kFrequency_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kFrequency,
@@ -1559,7 +1734,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kGradeLevel_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kGradeLevel,
@@ -1568,7 +1744,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kHDZRadBreak_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kHDZRadBreak,
@@ -1577,7 +1754,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kHKGlyph_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kHKGlyph,
@@ -1586,7 +1764,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kHanyuPinlu_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kHanyuPinlu,
@@ -1595,7 +1774,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kHanyuPinyin_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kHanyuPinyin,
@@ -1604,7 +1784,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIRGHanyuDaZidian_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRGHanyuDaZidian,
@@ -1613,7 +1794,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIRGKangXi_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRGKangXi,
@@ -1622,7 +1804,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIRGDaeJaweon_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRGDaeJaweon,
@@ -1631,7 +1814,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIRGDaiKanwaZiten_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIRGDaiKanwaZiten,
@@ -1641,7 +1825,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kKorean_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kKorean,
@@ -1650,7 +1835,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kMainlandTelegraph_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kMainlandTelegraph,
@@ -1659,7 +1845,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kMorohashi_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kMorohashi,
@@ -1668,11 +1855,12 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
-    //    public static UcdPropertyDetail kAlternateMorohashi_Detail = new UcdPropertyDetail (
+                    true,
+                    false);
+    //    public static UCDPropertyDetail kAlternateMorohashi_Detail = new UCDPropertyDetail (
     //            UcdProperty.kAlternateMorohashi, VersionInfo.getInstance(2,0,0),
     // VersionInfo.getInstance(4,0,1), 187,
-    //            false, true, false, true);
+    //            false, true, false, true, false);
     public static UCDPropertyDetail kPrimaryNumeric_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kPrimaryNumeric,
@@ -1681,7 +1869,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kTaiwanTelegraph_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kTaiwanTelegraph,
@@ -1690,7 +1879,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kXerox_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kXerox,
@@ -1699,7 +1889,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kPseudoGB1_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kPseudoGB1,
@@ -1708,7 +1899,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kIBMJapan_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kIBMJapan,
@@ -1717,7 +1909,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kAccountingNumeric_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kAccountingNumeric,
@@ -1726,7 +1919,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kCheungBauer_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kCheungBauer,
@@ -1735,7 +1929,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kCheungBauerIndex_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kCheungBauerIndex,
@@ -1744,7 +1939,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kFourCornerCode_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kFourCornerCode,
@@ -1753,10 +1949,11 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
-    //    public static UcdPropertyDetail kWubi_Detail = new UcdPropertyDetail (
+                    true,
+                    false);
+    //    public static UCDPropertyDetail kWubi_Detail = new UCDPropertyDetail (
     //            UcdProperty.kWubi, VersionInfo.getInstance(11,0,0), 197,
-    //            false, true, false, true);
+    //            false, true, false, true, false);
     public static UCDPropertyDetail kXHC1983_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kXHC1983,
@@ -1765,7 +1962,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kJinmeiyoKanji_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kJinmeiyoKanji,
@@ -1774,7 +1972,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kJoyoKanji_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kJoyoKanji,
@@ -1783,7 +1982,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kKoreanEducationHanja_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kKoreanEducationHanja,
@@ -1792,7 +1992,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kKoreanName_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kKoreanName,
@@ -1801,7 +2002,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kTGH_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kTGH,
@@ -1810,7 +2012,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kTGHZ2013_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kTGHZ2013,
@@ -1819,7 +2022,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kSpoofingVariant_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kSpoofingVariant,
@@ -1828,7 +2032,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kRSKanWa_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kRSKanWa,
@@ -1837,7 +2042,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kRSJapanese_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kRSJapanese,
@@ -1846,7 +2052,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kRSKorean_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kRSKorean,
@@ -1855,7 +2062,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kRSKangXi_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kRSKangXi,
@@ -1865,7 +2073,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kRSAdobe_Japan1_6_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kRSAdobe_Japan1_6,
@@ -1874,7 +2083,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kTotalStrokes_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kTotalStrokes,
@@ -1883,7 +2093,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kRSTUnicode_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kRSTUnicode,
@@ -1892,7 +2103,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kTGT_MergedSrc_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kTGT_MergedSrc,
@@ -1901,7 +2113,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kSrc_NushuDuben_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kSrc_NushuDuben,
@@ -1910,7 +2123,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kReading_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kReading,
@@ -1919,7 +2133,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail ISO_Comment_Detail =
             new UCDPropertyDetail(
                     UcdProperty.ISO_Comment,
@@ -1928,7 +2143,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Unicode_1_Name_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Unicode_1_Name,
@@ -1937,7 +2153,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Name_Alias_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Name_Alias,
@@ -1946,7 +2163,8 @@ public class UCDPropertyDetail {
                     false,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Emoji_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Emoji,
@@ -1955,7 +2173,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Emoji_Presentation_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Emoji_Presentation,
@@ -1964,7 +2183,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Emoji_Modifier_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Emoji_Modifier,
@@ -1973,7 +2193,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Emoji_Modifier_Base_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Emoji_Modifier_Base,
@@ -1982,7 +2203,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Emoji_Component_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Emoji_Component,
@@ -1991,7 +2213,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Extended_Pictographic_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Extended_Pictographic,
@@ -2000,7 +2223,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kStrange_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kStrange,
@@ -2009,7 +2233,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kAlternateTotalStrokes_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kAlternateTotalStrokes,
@@ -2018,7 +2243,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail NFKC_Simple_Casefold_Detail =
             new UCDPropertyDetail(
                     UcdProperty.NFKC_Simple_Casefold,
@@ -2027,7 +2253,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail ID_Compat_Math_Start_Detail =
             new UCDPropertyDetail(
                     UcdProperty.ID_Compat_Math_Start,
@@ -2036,7 +2263,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail ID_Compat_Math_Continue_Detail =
             new UCDPropertyDetail(
                     UcdProperty.ID_Compat_Math_Continue,
@@ -2045,7 +2273,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail IDS_Unary_Operator_Detail =
             new UCDPropertyDetail(
                     UcdProperty.IDS_Unary_Operator,
@@ -2054,7 +2283,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kJapanese_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kJapanese,
@@ -2063,7 +2293,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kMojiJoho_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kMojiJoho,
@@ -2072,7 +2303,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kSMSZD2003Index_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kSMSZD2003Index,
@@ -2081,7 +2313,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kSMSZD2003Readings_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kSMSZD2003Readings,
@@ -2090,7 +2323,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kVietnameseNumeric_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kVietnameseNumeric,
@@ -2099,7 +2333,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kZhuang_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kZhuang,
@@ -2108,7 +2343,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kZhuangNumeric_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kZhuangNumeric,
@@ -2117,7 +2353,8 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Indic_Conjunct_Break_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Indic_Conjunct_Break,
@@ -2126,7 +2363,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail Modifier_Combining_Mark_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Modifier_Combining_Mark,
@@ -2135,7 +2373,8 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     false,
-                    true);
+                    true,
+                    false);
     public static UCDPropertyDetail kFanqie_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kFanqie,
@@ -2144,29 +2383,141 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false,
+                    true,
+                    false);
+    public static UCDPropertyDetail kEH_Cat_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kEH_Cat,
+                    VersionInfo.getInstance(16, 0, 0),
+                    241,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true);
+    public static UCDPropertyDetail kEH_Core_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kEH_Core,
+                    VersionInfo.getInstance(16, 0, 0),
+                    242,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true);
+    public static UCDPropertyDetail kEH_Desc_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kEH_Desc,
+                    VersionInfo.getInstance(16, 0, 0),
+                    243,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true);
+    public static UCDPropertyDetail kEH_Func_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kEH_Func,
+                    VersionInfo.getInstance(16, 0, 0),
+                    244,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true);
+    public static UCDPropertyDetail kEH_FVal_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kEH_FVal,
+                    VersionInfo.getInstance(16, 0, 0),
+                    245,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true);
+    public static UCDPropertyDetail kEH_UniK_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kEH_UniK,
+                    VersionInfo.getInstance(16, 0, 0),
+                    246,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true);
+    public static UCDPropertyDetail kEH_JSesh_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kEH_JSesh,
+                    VersionInfo.getInstance(16, 0, 0),
+                    247,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true);
+    public static UCDPropertyDetail kEH_HG_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kEH_HG,
+                    VersionInfo.getInstance(16, 0, 0),
+                    248,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true);
+    public static UCDPropertyDetail kEH_IFAO_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kEH_IFAO,
+                    VersionInfo.getInstance(16, 0, 0),
+                    249,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true);
+    public static UCDPropertyDetail kEH_NoMirror_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kEH_NoMirror,
+                    VersionInfo.getInstance(16, 0, 0),
+                    250,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true);
+    public static UCDPropertyDetail kEH_NoRotate_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kEH_NoRotate,
+                    VersionInfo.getInstance(16, 0, 0),
+                    251,
+                    false,
+                    false,
+                    false,
+                    false,
                     true);
     public static UCDPropertyDetail Basic_Emoji_Detail =
-            new UCDPropertyDetail(UcdProperty.Basic_Emoji, -1, false, false, false, false);
+            new UCDPropertyDetail(UcdProperty.Basic_Emoji, -1, false, false, false, false, false);
     public static UCDPropertyDetail CJK_Radical_Detail =
-            new UCDPropertyDetail(UcdProperty.CJK_Radical, -2, false, false, false, false);
+            new UCDPropertyDetail(UcdProperty.CJK_Radical, -2, false, false, false, false, false);
     public static UCDPropertyDetail Confusable_MA_Detail =
-            new UCDPropertyDetail(UcdProperty.Confusable_MA, -3, false, false, false, false);
+            new UCDPropertyDetail(UcdProperty.Confusable_MA, -3, false, false, false, false, false);
     public static UCDPropertyDetail Confusable_ML_Detail =
-            new UCDPropertyDetail(UcdProperty.Confusable_ML, -4, false, false, false, false);
+            new UCDPropertyDetail(UcdProperty.Confusable_ML, -4, false, false, false, false, false);
     public static UCDPropertyDetail Confusable_SA_Detail =
-            new UCDPropertyDetail(UcdProperty.Confusable_SA, -5, false, false, false, false);
+            new UCDPropertyDetail(UcdProperty.Confusable_SA, -5, false, false, false, false, false);
     public static UCDPropertyDetail Confusable_SL_Detail =
-            new UCDPropertyDetail(UcdProperty.Confusable_SL, -6, false, false, false, false);
+            new UCDPropertyDetail(UcdProperty.Confusable_SL, -6, false, false, false, false, false);
     public static UCDPropertyDetail Do_Not_Emit_Preferred_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.Do_Not_Emit_Preferred, -7, false, false, false, false);
+                    UcdProperty.Do_Not_Emit_Preferred, -7, false, false, false, false, false);
     public static UCDPropertyDetail Do_Not_Emit_Type_Detail =
-            new UCDPropertyDetail(UcdProperty.Do_Not_Emit_Type, -8, false, false, false, false);
+            new UCDPropertyDetail(UcdProperty.Do_Not_Emit_Type, -8, false, false, false, false, false);
     public static UCDPropertyDetail Emoji_DCM_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Emoji_DCM,
                     VersionInfo.getInstance(6, 0, 0),
                     -9,
+                    false,
                     false,
                     false,
                     false,
@@ -2179,12 +2530,14 @@ public class UCDPropertyDetail {
                     false,
                     false,
                     false,
+                    false,
                     false);
     public static UCDPropertyDetail Emoji_SB_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Emoji_SB,
                     VersionInfo.getInstance(6, 0, 0),
                     -11,
+                    false,
                     false,
                     false,
                     false,
@@ -2197,6 +2550,7 @@ public class UCDPropertyDetail {
                     false,
                     false,
                     false,
+                    false,
                     false);
     public static UCDPropertyDetail Identifier_Type_Detail =
             new UCDPropertyDetail(
@@ -2206,38 +2560,39 @@ public class UCDPropertyDetail {
                     false,
                     false,
                     false,
+                    false,
                     false);
     public static UCDPropertyDetail Idn_2008_Detail =
-            new UCDPropertyDetail(UcdProperty.Idn_2008, -14, false, false, false, false);
+            new UCDPropertyDetail(UcdProperty.Idn_2008, -14, false, false, false, false, false);
     public static UCDPropertyDetail Idn_Mapping_Detail =
-            new UCDPropertyDetail(UcdProperty.Idn_Mapping, -15, false, false, false, false);
+            new UCDPropertyDetail(UcdProperty.Idn_Mapping, -15, false, false, false, false, false);
     public static UCDPropertyDetail Idn_Status_Detail =
-            new UCDPropertyDetail(UcdProperty.Idn_Status, -16, false, false, false, false);
+            new UCDPropertyDetail(UcdProperty.Idn_Status, -16, false, false, false, false, false);
     public static UCDPropertyDetail Named_Sequences_Detail =
-            new UCDPropertyDetail(UcdProperty.Named_Sequences, -17, false, false, false, false);
+            new UCDPropertyDetail(UcdProperty.Named_Sequences, -17, false, false, false, false, false);
     public static UCDPropertyDetail Named_Sequences_Prov_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.Named_Sequences_Prov, -18, false, false, false, false);
+                    UcdProperty.Named_Sequences_Prov, -18, false, false, false, false, false);
     public static UCDPropertyDetail Other_Joining_Type_Detail =
-            new UCDPropertyDetail(UcdProperty.Other_Joining_Type, -19, false, false, false, false);
+            new UCDPropertyDetail(UcdProperty.Other_Joining_Type, -19, false, false, false, false, false);
     public static UCDPropertyDetail RGI_Emoji_Flag_Sequence_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.RGI_Emoji_Flag_Sequence, -20, false, false, false, false);
+                    UcdProperty.RGI_Emoji_Flag_Sequence, -20, false, false, false, false, false);
     public static UCDPropertyDetail RGI_Emoji_Keycap_Sequence_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.RGI_Emoji_Keycap_Sequence, -21, false, false, false, false);
+                    UcdProperty.RGI_Emoji_Keycap_Sequence, -21, false, false, false, false, false);
     public static UCDPropertyDetail RGI_Emoji_Modifier_Sequence_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.RGI_Emoji_Modifier_Sequence, -22, false, false, false, false);
+                    UcdProperty.RGI_Emoji_Modifier_Sequence, -22, false, false, false, false, false);
     public static UCDPropertyDetail RGI_Emoji_Tag_Sequence_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.RGI_Emoji_Tag_Sequence, -23, false, false, false, false);
+                    UcdProperty.RGI_Emoji_Tag_Sequence, -23, false, false, false, false, false);
     public static UCDPropertyDetail RGI_Emoji_Zwj_Sequence_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.RGI_Emoji_Zwj_Sequence, -24, false, false, false, false);
+                    UcdProperty.RGI_Emoji_Zwj_Sequence, -24, false, false, false, false, false);
     public static UCDPropertyDetail Standardized_Variant_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.Standardized_Variant, -25, false, false, false, false);
+                    UcdProperty.Standardized_Variant, -25, false, false, false, false, false);
 
     private UcdProperty ucdProperty;
     private VersionInfo minVersion;
@@ -2247,7 +2602,7 @@ public class UCDPropertyDetail {
     private boolean isCJKAttribute;
     private boolean isCJKShowIfEmpty;
     private boolean isOrgUCDXMLAttribute;
-
+    private boolean isUnikemetAttribute;
     private UCDPropertyDetail(
             UcdProperty ucdProperty,
             VersionInfo minVersion,
@@ -2255,7 +2610,8 @@ public class UCDPropertyDetail {
             boolean isBaseAttribute,
             boolean isCJKAttribute,
             boolean isCJKShowIfEmpty,
-            boolean isOrgUCDXMLAttribute) {
+            boolean isOrgUCDXMLAttribute,
+            boolean isUnikemetAttribute) {
         this(
                 ucdProperty,
                 minVersion,
@@ -2264,7 +2620,8 @@ public class UCDPropertyDetail {
                 isBaseAttribute,
                 isCJKAttribute,
                 isCJKShowIfEmpty,
-                isOrgUCDXMLAttribute);
+                isOrgUCDXMLAttribute,
+                isUnikemetAttribute);
     }
 
     private UCDPropertyDetail(
@@ -2273,7 +2630,8 @@ public class UCDPropertyDetail {
             boolean isBaseAttribute,
             boolean isCJKAttribute,
             boolean isCJKShowIfEmpty,
-            boolean isOrgUCDXMLAttribute) {
+            boolean isOrgUCDXMLAttribute,
+            boolean isUnikemetAttribute) {
         this(
                 ucdProperty,
                 null,
@@ -2282,7 +2640,8 @@ public class UCDPropertyDetail {
                 isBaseAttribute,
                 isCJKAttribute,
                 isCJKShowIfEmpty,
-                isOrgUCDXMLAttribute);
+                isOrgUCDXMLAttribute,
+                isUnikemetAttribute);
     }
 
     private UCDPropertyDetail(
@@ -2293,7 +2652,8 @@ public class UCDPropertyDetail {
             boolean isBaseAttribute,
             boolean isCJKAttribute,
             boolean isCJKShowIfEmpty,
-            boolean isOrgUCDXMLAttribute) {
+            boolean isOrgUCDXMLAttribute,
+            boolean isUnikemetAttribute) {
         this.ucdProperty = ucdProperty;
         this.minVersion = minVersion;
         this.maxVersion = maxVersion;
@@ -2302,6 +2662,7 @@ public class UCDPropertyDetail {
         this.isCJKAttribute = isCJKAttribute;
         this.isCJKShowIfEmpty = isCJKShowIfEmpty;
         this.isOrgUCDXMLAttribute = isOrgUCDXMLAttribute;
+        this.isUnikemetAttribute = isUnikemetAttribute;
 
         allPropertyDetails.add(this);
         if (isBaseAttribute) {
@@ -2310,6 +2671,10 @@ public class UCDPropertyDetail {
         }
         if (isCJKAttribute) {
             cjkPropertyDetails.add(this);
+            ucdxmlPropertyDetails.add(this);
+        }
+        if (isUnikemetAttribute) {
+            unikemetPropertyDetails.add(this);
             ucdxmlPropertyDetails.add(this);
         }
     }
@@ -2328,6 +2693,10 @@ public class UCDPropertyDetail {
 
     public static Set<UCDPropertyDetail> ucdxmlValues() {
         return ucdxmlPropertyDetails;
+    }
+
+    public static Set<UCDPropertyDetail> unikemetPropertyDetails() {
+        return unikemetPropertyDetails;
     }
 
     public UcdProperty getUcdProperty() {
@@ -2356,5 +2725,9 @@ public class UCDPropertyDetail {
 
     public boolean isOrgUCDXMLAttribute() {
         return this.isOrgUCDXMLAttribute;
+    }
+
+    public boolean isUnikemetAttribute() {
+        return this.isUnikemetAttribute;
     }
 }
