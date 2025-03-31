@@ -212,6 +212,38 @@ public class TestVersionedSymbolTable {
                 .consistsOf("\n");
     }
 
+    @Test
+    void testRegularExpressionQueries() {
+        assertThatUnicodeSet("\\p{Name=/CAPITAL LETTER/}").contains("A").doesNotContain("a");
+        assertThatUnicodeSet("\\p{Block=/^Cyrillic/}")
+                .contains("и")
+                .contains("\u1C8B")
+                .contains("\u1C8F")
+                .contains("ꙮ")
+                .doesNotContain("k");
+        assertThatUnicodeSet("\\p{scx=/Gondi/}")
+                .isEqualToUnicodeSet("[\\p{scx=Gunjala_Gondi}\\p{scx=Masaram_Gondi}]")
+                .contains("𑴀")
+                .contains("𑵠")
+                .contains("।")
+                .doesNotContain("a");
+        assertThatUnicodeSet("\\p{gc=/^P/}")
+                .isEqualToUnicodeSet("[\\p{Punctuation} \\p{Private Use} \\u2029]");
+
+        assertThatUnicodeSet("\\p{Name=/NO BREAK SPACE/}").isEmpty();
+        assertThatUnicodeSet("\\p{Name=/NO-BREAK SPACE/}")
+                .contains("\u00A0")
+                .contains("\u202F")
+                .contains("\uFEFF");
+        assertThatUnicodeSet("\\p{Script=/ Gondi/}").isEmpty();
+        assertThatUnicodeSet("\\p{Script=/_Gondi/}").contains("𑴀").contains("𑵠");
+        assertThatUnicodeSet("\\p{gc=/Cased_Letter/}").isEmpty();
+        assertThatUnicodeSet("\\p{gc=/Cased_Letter/}")
+                .contains("a")
+                .contains("A")
+                .doesNotContain("𒀀");
+    }
+
     /** Helper class for testing multiple properties of the same UnicodeSet. */
     private static class UnicodeSetTestFluent {
         UnicodeSetTestFluent(String expression) {
