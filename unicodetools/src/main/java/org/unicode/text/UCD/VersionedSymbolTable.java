@@ -34,6 +34,11 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         return result;
     }
 
+    public VersionedSymbolTable setUnversionedExtensions(UnicodeProperty.Factory factory) {
+        unversionedExtensions = factory;
+        return this;
+    }
+
     /**
      * Parses a string prefixed with an optional-version-qualifier. If there is a version-qualifier,
      * returns the corresponding VersionInfo and removes the prefix from the given StringBuilder.
