@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 import org.unicode.props.PropertyParsingInfo;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.*;
+import org.unicode.props.ValueCardinality;
 import org.unicode.text.utility.Settings;
 
 /**
@@ -55,6 +56,7 @@ public class GeneratePropertyValues {
         TANGUT("tangut"),
         NUSHU("nushu"),
         EMOJI_DATA("emoji-data"),
+        UNIKEMET("unikemet"),
         // Manual
         BLOCK("block"),
         // Manual
@@ -372,6 +374,8 @@ public class GeneratePropertyValues {
         createPropertyFragment(
                 "Emoji.xml", "Emoji properties", SCHEMA.EMOJI_DATA, getFormattedEmojiProperties());
         createPropertyFragment(
+                "Unikemet.xml", "Unikemet data", SCHEMA.UNIKEMET, getFormattedUnikemetProperties());
+        createPropertyFragment(
                 "do-not-emit.xml",
                 "do-not-emit",
                 SCHEMA.DO_NOT_EMIT,
@@ -510,6 +514,9 @@ public class GeneratePropertyValues {
             case Do_Not_Emit_Type:
                 values = getDoNotEmitTypeValues();
                 break;
+            case kEH_Core:
+                values = getkEHCoreValues();
+                break;
 
             default:
                 throw new IllegalStateException(
@@ -637,23 +644,21 @@ public class GeneratePropertyValues {
                 // Ideally, should be obtained from a TR.
                 String kTGT_MergedSrc =
                         NEWLINE
-                                + "     { xsd:string {pattern=\"L2008-[0-9A-F]{4,5}(-[0-9]{4,5})?\"}"
+                                + "     { xsd:string {pattern=\"H2004-[AB]-\\d{4}\"}"
                                 + NEWLINE
-                                + "     | xsd:string {pattern=\"L2006-[0-9]{4}\"}"
+                                + "     | xsd:string {pattern=\"H2021-\\d{6}\"}"
                                 + NEWLINE
-                                + "     | xsd:string {pattern=\"L1997-[0-9]{4}\"}"
+                                + "     | xsd:string {pattern=\"L(19(86|97)|20(06|12))-\\d{4}\"}"
                                 + NEWLINE
-                                + "     | xsd:string {pattern=\"L1986-[0-9]{4}\"}"
+                                + "     | xsd:string {pattern=\"L2008-\\d{4}([AB]|-\\d{4})?\"}"
                                 + NEWLINE
-                                + "     | xsd:string {pattern=\"S1968-[0-9]{4}\"}"
+                                + "     | xsd:string {pattern=\"N1966-\\d{3}-\\d{2}[0-9A-Z]{1,2}\"}"
                                 + NEWLINE
-                                + "     | xsd:string {pattern=\"N1966-[0-9]{3}(-[0-9A-Z]{3,4})?\"}"
+                                + "     | xsd:string {pattern=\"N5217-\\d{2}\"}"
                                 + NEWLINE
-                                + "     | xsd:string {pattern=\"H2004-[A-Z]-[0-9]{4}\"}"
+                                + "     | xsd:string {pattern=\"S1968-\\d{4}\"}"
                                 + NEWLINE
-                                + "     | xsd:string {pattern=\"L2012-[0-9]{4}\"}"
-                                + NEWLINE
-                                + "     | xsd:string {pattern=\"UTN42-[0-9]{3}\"}"
+                                + "     | xsd:string {pattern=\"UTN42-\\d{3}\"}"
                                 + NEWLINE
                                 + "     }?";
                 formattedAttributeString = attributeString + kTGT_MergedSrc;
@@ -664,12 +669,34 @@ public class GeneratePropertyValues {
                 formattedAttributeString = attributeString + kReading;
                 break;
 
+            // Ideally, consume all of these directly from TR57
+            case kEH_Desc:
+            case kEH_Func:
+                String kEH_Desc_kEH_Func = "{ xsd:string { pattern=\'[^\\t\"]+\'} }?";
+                formattedAttributeString = attributeString + kEH_Desc_kEH_Func;
+                break;
+
+            // Currently, kEH_FVal is a Provisional property, and some of the values don't match the Syntax in
+            // UAX 57. Use this for now.
+            case kEH_FVal:
+                String kEH_FVal = "{ text }?";
+                formattedAttributeString = attributeString + kEH_FVal;
+                break;
+
             default:
-                formattedAttributeString =
-                        attributeString
-                                + "{ xsd:string { pattern=\""
-                                + cleanRegex(propInfo.getRegex().toString())
-                                + "\" } }?";
+                if(propInfo.getMultivalued() == ValueCardinality.Unordered
+                        || propInfo.getMultivalued() == ValueCardinality.Ordered) {
+                    formattedAttributeString =
+                            attributeString + "{ list { xsd:string { pattern=\"" +
+                                    cleanRegex(propInfo.getRegex().toString()) +"\" }+ } }?";
+                }
+                else {
+                        formattedAttributeString =
+                                attributeString
+                                        + "{ xsd:string { pattern=\""
+                                        + cleanRegex(propInfo.getRegex().toString())
+                                        + "\" } }?";
+                }
         }
         return "  code-point-attributes &amp;=" + NEWLINE + formattedAttributeString;
     }
@@ -1396,6 +1423,30 @@ public class GeneratePropertyValues {
                 + getFormattedBoolean(UcdProperty.Extended_Pictographic);
     }
 
+    private static String getFormattedUnikemetProperties() {
+        return getFormattedSyntax(UcdProperty.kEH_Cat)
+                + DOUBLELINE
+                + getFormattedAttribute(UcdProperty.kEH_Core, VALUESOUTPUTTYPE.MAX_LINE_LENGTH)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kEH_Desc)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kEH_Func)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kEH_FVal)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kEH_UniK)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kEH_JSesh)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kEH_HG)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kEH_IFAO)
+                + DOUBLELINE
+                + getFormattedBoolean(UcdProperty.kEH_NoMirror)
+                + DOUBLELINE
+                + getFormattedBoolean(UcdProperty.kEH_NoRotate);
+    }
+
     // ********************* Attribute values ********************//
 
     private static List<String> getBinaryValues() {
@@ -1712,6 +1763,15 @@ public class GeneratePropertyValues {
         List<String> values = new ArrayList<>();
         for (Do_Not_Emit_Type_Values doNotEmitTypeValues : Do_Not_Emit_Type_Values.values()) {
             values.add(doNotEmitTypeValues.getShortName());
+        }
+        Collections.sort(values);
+        return values;
+    }
+
+    private static List<String> getkEHCoreValues() {
+        List<String> values = new ArrayList<>();
+        for (kEH_Core_Values kEHCoreValues : kEH_Core_Values.values()) {
+            values.add(kEHCoreValues.getShortName());
         }
         Collections.sort(values);
         return values;
