@@ -171,6 +171,47 @@ public class TestVersionedSymbolTable {
                 .isEqualToUnicodeSet("\\p{Bidi_Paired_Bracket_Type=None}");
     }
 
+    @Test
+    void testValidValues() {
+        assertThatUnicodeSet("\\p{Name=THIS IS NOT A CHARACTER}")
+                .isIllFormed("No character name nor name alias matches");
+        assertThatUnicodeSet("\\p{Name      =CUNEIFORM SIGN A}").consistsOf("𒀀");
+        assertThatUnicodeSet("\\p{Name_Alias=CUNEIFORM SIGN A}")
+                .isIllFormed("No name alias matches");
+        assertThatUnicodeSet("\\p{Line_Break=Meow}").isIllFormed("The value 'Meow' is illegal.");
+        assertThatUnicodeSet("\\p{kDefinition=meow}").isEmpty();
+        assertThatUnicodeSet("\\p{Uppercase_Mapping=meow}").isEmpty();
+        assertThatUnicodeSet("\\p{Numeric_Value=MDCCXXIX}")
+                .isIllFormed("Invalid value 'MDCCXXIX' for numeric property");
+        assertThatUnicodeSet("\\p{Numeric_Value=1729}").isEmpty();
+    }
+
+    @Test
+    void testPropertyValueQueries() {
+        assertThatUnicodeSet("\\p{Uppercase=True}")
+                .isEqualToUnicodeSet("\\p{Uppercase}")
+                .contains("A")
+                .doesNotContain("a");
+        assertThatUnicodeSet("\\p{Uppercase=NO}")
+                .isEqualToUnicodeSet("\\P{Uppercase}")
+                .contains("a")
+                .doesNotContain("A");
+        assertThatUnicodeSet("\\p{Script_Extensions=Latin}")
+                .contains("A")
+                .contains("·")
+                .doesNotContain("𓃠")
+                .doesNotContain("।");
+        assertThatUnicodeSet("\\p{nv=2/12}")
+                .isEqualToUnicodeSet("\\p{Numeric_Value=1/6}")
+                .contains("⅙")
+                .contains("𐧷")
+                .doesNotContain("½")
+                .doesNotContain("X");
+        assertThatUnicodeSet("\\p{Name_Alias=New Line}")
+                .isEqualToUnicodeSet("\\p{Name=New Line}")
+                .consistsOf("\n");
+    }
+
     /** Helper class for testing multiple properties of the same UnicodeSet. */
     private static class UnicodeSetTestFluent {
         UnicodeSetTestFluent(String expression) {
@@ -231,6 +272,11 @@ public class TestVersionedSymbolTable {
             assertTrue(
                     expectedElements.containsAll(set),
                     expectedElements + " ⊇ " + expression + " = " + set.toPattern(true));
+            return this;
+        }
+
+        public UnicodeSetTestFluent isEmpty() {
+            assertTrue(set.isEmpty(), expression + " = " + set.toPattern(true) + " is empty");
             return this;
         }
 
