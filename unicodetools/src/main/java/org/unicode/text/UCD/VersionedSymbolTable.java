@@ -175,7 +175,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         // the unary case.
         if (posNotEqual >= 0) {
             propertyPredicate =
-                    afterEquals.length() == 0
+                    afterEquals.isEmpty()
                             ? beforeEquals.substring(posNotEqual + 1)
                             : beforeEquals.substring(posNotEqual + 1) + "=" + afterEquals;
             leftHandSide = beforeEquals.substring(0, posNotEqual);
@@ -198,7 +198,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
 
         final var queriedProperties = IndexUnicodeProperties.make(deducedQueriedVersion);
 
-        if (propertyPredicate.length() == 0) {
+        if (propertyPredicate.isEmpty()) {
             // Either unary-property-query, or binary-property-query with an empty property-value.
             final var script = queriedProperties.getProperty(UcdProperty.Script);
             final var generalCategory = queriedProperties.getProperty(UcdProperty.General_Category);
