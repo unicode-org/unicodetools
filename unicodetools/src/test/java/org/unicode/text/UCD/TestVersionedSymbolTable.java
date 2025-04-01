@@ -275,10 +275,28 @@ public class TestVersionedSymbolTable {
             final var expected = new UnicodeSet(expectedExpression);
             assertTrue(
                     set.containsAll(expected),
-                    expected + " ⊆ " + expression + " = " + set.toPattern(true));
+                    "Expected "
+                            + expected
+                            + " ⊆ "
+                            + expression
+                            + " = "
+                            + set.toPattern(true)
+                            + " but "
+                            + expression
+                            + " is missing "
+                            + expected.removeAll(set));
             assertTrue(
                     expected.containsAll(set),
-                    expected + " ⊇ " + expression + " = " + set.toPattern(true));
+                    "Expected "
+                            + expected
+                            + " ⊇ "
+                            + expression
+                            + " = "
+                            + set.toPattern(true)
+                            + " but "
+                            + expression
+                            + " contains unexpected "
+                            + set.removeAll(expected));
             return this;
         }
 
