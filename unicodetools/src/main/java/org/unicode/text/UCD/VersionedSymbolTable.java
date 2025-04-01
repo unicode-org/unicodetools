@@ -333,9 +333,8 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                     }
                     return result;
                 } else if (queriedProperty.isType(UnicodeProperty.NUMERIC_MASK)) {
-                    if (UnicodeProperty.equalNames(propertyValue, "NaN")) {
-                        propertyValue = "NaN";
-                    } else if (!RATIONAL_PATTERN.matcher(propertyValue).matches()) {
+                    if (UnicodeProperty.equalNames(propertyValue, "NaN") ||
+                        !RATIONAL_PATTERN.matcher(propertyValue).matches()) {
                         throw new IllegalArgumentException(
                                 "Invalid value '"
                                         + propertyValue

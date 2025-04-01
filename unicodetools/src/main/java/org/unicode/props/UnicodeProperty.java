@@ -740,8 +740,13 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     public static int compareRationals(String a, String b) {
         if (a == b) return 0;
-        if (a == null || a.equalsIgnoreCase("NaN")) return -1;
-        if (b == null || b.equalsIgnoreCase("NaN")) return 1;
+        if (a == null) return -1;
+        if (b == null) return 1;
+        final boolean aIsNaN = equalNames(a, "NaN");
+        final boolean bIsNaN = equalNames(b, "NaN");
+        if (aIsNaN && bIsNaN) return 0;
+        if (aIsNaN) return -1;
+        if (bIsNaN) return 1;
         return RationalParser.BASIC.parse(a).compareTo(RationalParser.BASIC.parse(b));
     }
 
