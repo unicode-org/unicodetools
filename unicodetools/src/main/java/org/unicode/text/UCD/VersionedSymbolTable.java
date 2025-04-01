@@ -259,6 +259,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
     /**
      * Parses a string prefixed with an optional-version-qualifier. If there is a version-qualifier,
      * returns the corresponding VersionInfo and removes the prefix from the given StringBuilder.
+     * Otherwise returns null.
      */
     private VersionInfo parseVersionQualifier(StringBuilder qualified) {
         int posColon = qualified.indexOf(":", 0);
