@@ -8,14 +8,21 @@ import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
+
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.function.Function;
+
 import org.junit.jupiter.api.Test;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.PropertyNames;
+import org.unicode.props.PropertyNames.Named;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
@@ -238,38 +245,64 @@ public class TestCodeInvariants {
 
     @Test
     void testPropertyAliasUniqueness() {
-        final Map<String, UcdProperty> propertiesByAlias =
+        testLM3NamespaceUniqueness(Arrays.asList(UcdProperty.values()), (property) -> property.getNames().getAllNames(), Set.of("Age"));
+        for (var property : UcdProperty.values()) {
+            if (IndexUnicodeProperties.make().getProperty(property).isType(UnicodeProperty.BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
+                noisy = property == UcdProperty.Decomposition_Type;
+                Set<String> expectedRedundant;
+                switch (property) {
+                    case Block:
+                        expectedRedundant = Set.of("Arabic_Presentation_Forms-A");
+                        break;
+                    case Decomposition_Type:
+                        expectedRedundant = Set.of("can", "com", "enc", "fin", "font", "fra", "init", "iso", "med", "nar", "nb", "none", "sml", "sqr", "sub", "sup", "vert", "wide");
+                        break;
+                
+                    default:
+                    expectedRedundant = Set.of();
+                        break;
+                }
+                testLM3NamespaceUniqueness(property.getEnums(), (value) -> ((Named)value).getNames().getAllNames(), expectedRedundant);
+            }
+        }
+    }
+
+    <T>
+    void testLM3NamespaceUniqueness(Iterable<T> namespace, Function<T, List<String>> getNames, Set<String> expectedRedundant) {
+        final Map<String, T> entitiesByAlias =
                 new TreeMap<>(UnicodeProperty.PROPERTY_COMPARATOR);
         final Map<String, String> aliasesByLM3Skeleton = new HashMap<>();
-        for (UcdProperty property : UcdProperty.values()) {
-            for (String alias : property.getNames().getAllNames()) {
-                final var matchingProperty = propertiesByAlias.get(alias);
+        for (T entity : namespace) {
+            for (String alias : getNames.apply(entity)) {
+                if(noisy)System.err.println(alias);
+                final var matchingEntity = entitiesByAlias.get(alias);
                 final var lm3Skeleton = UnicodeProperty.toSkeleton(alias);
                 final var matchingAlias = aliasesByLM3Skeleton.get(lm3Skeleton);
+                if(noisy)System.err.println("->"+matchingAlias);
+                if(noisy)System.err.println("=>"+matchingEntity);
                 assertTrue(
-                        matchingProperty == null || matchingProperty == property,
+                        matchingEntity == null || entity.equals(matchingEntity),
                         "!!Stability policy violation!! (Property Alias Uniqueness): alias "
                                 + alias
                                 + " for "
-                                + property
+                                + entity
                                 + " matches alias "
                                 + matchingAlias
                                 + " for "
-                                + propertiesByAlias.get(alias));
-                if (matchingProperty == property) {
-                    assertTrue(
-                            !alias.equals(matchingAlias),
-                            "Unusual (not a stability policy violation) aliases "
-                                    + alias
-                                    + " and "
-                                    + matchingAlias
-                                    + " for "
-                                    + property
+                                + entitiesByAlias.get(alias));
+                if (matchingEntity != null && !expectedRedundant.contains(alias)) {
+                    assertEquals(
+                            matchingAlias,
+                            alias,
+                            "Unusual (not a stability policy violation): distinct aliases for "
+                                    + entity
                                     + " match each other");
                 }
-                propertiesByAlias.put(alias, property);
+                entitiesByAlias.put(alias, entity);
                 aliasesByLM3Skeleton.put(lm3Skeleton, alias);
             }
         }
     }
+
+    static boolean noisy = false;
 }

@@ -127,8 +127,8 @@ idns ; ds3m  ; disallowed_STD3_mapped
 
 # @missing: 0000..10FFFF; Idn_2008     ; na
 
-idn8 ; nv8   ; NV8						
-idn8 ; xv8   ; XV8						
+idn8 ; nv8   ; nv8						
+idn8 ; xv8   ; xv8						
 idn8 ; na	 ; na
 
 # @missing: 0000..10FFFF; Idn_Mapping  ; <code point>
