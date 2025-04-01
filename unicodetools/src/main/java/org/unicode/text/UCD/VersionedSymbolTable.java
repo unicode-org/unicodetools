@@ -4,6 +4,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import java.util.Comparator;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -121,25 +122,25 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         }
     }
 
-    private static Map<UcdPropertyValues.General_Category_Values, String[]>
+    private static Map<UcdPropertyValues.General_Category_Values, Set<String>>
             COARSE_GENERAL_CATEGORIES =
                     Map.of(
                             UcdPropertyValues.General_Category_Values.Other,
-                            new String[] {"Cc", "Cf", "Cn", "Co", "Cs"},
+                            Set.of("Cc", "Cf", "Cn", "Co", "Cs"),
                             UcdPropertyValues.General_Category_Values.Letter,
-                            new String[] {"Ll", "Lm", "Lo", "Lt", "Lu"},
+                            Set.of("Ll", "Lm", "Lo", "Lt", "Lu"),
                             UcdPropertyValues.General_Category_Values.Cased_Letter,
-                            new String[] {"Ll", "Lt", "Lu"},
+                            Set.of("Ll", "Lt", "Lu"),
                             UcdPropertyValues.General_Category_Values.Mark,
-                            new String[] {"Mc", "Me", "Mn"},
+                            Set.of("Mc", "Me", "Mn"),
                             UcdPropertyValues.General_Category_Values.Number,
-                            new String[] {"Nd", "Nl", "No"},
+                            Set.of("Nd", "Nl", "No"),
                             UcdPropertyValues.General_Category_Values.Punctuation,
-                            new String[] {"Pc", "Pd", "Pe", "Pf", "Pi", "Po", "Ps"},
+                            Set.of("Pc", "Pd", "Pe", "Pf", "Pi", "Po", "Ps"),
                             UcdPropertyValues.General_Category_Values.Symbol,
-                            new String[] {"Sc", "Sk", "Sm", "So"},
+                            Set.of("Sc", "Sk", "Sm", "So"),
                             UcdPropertyValues.General_Category_Values.Separator,
-                            new String[] {"Zl", "Zp", "Zs"});
+                            Set.of("Zl", "Zp", "Zs"));
 
     /**
      * Similar to iup.getProperty(UcdProperty.General_Category).getSet(propertyValue), but takes the
