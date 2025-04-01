@@ -8,10 +8,13 @@ import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -244,7 +247,7 @@ public class TestCodeInvariants {
     void testPropertyAliasUniqueness() {
         testLM3NamespaceUniqueness(
                 Arrays.asList(UcdProperty.values()),
-                (property) -> property.getNames().getAllNames(),
+                property -> property.getNames().getAllNames(),
                 Set.of("Age"));
         for (var property : UcdProperty.values()) {
             if (IndexUnicodeProperties.make()
@@ -271,10 +274,22 @@ public class TestCodeInvariants {
                 }
                 testLM3NamespaceUniqueness(
                         property.getEnums(),
-                        (value) -> ((Named) value).getNames().getAllNames(),
+                        value -> ((Named) value).getNames().getAllNames(),
                         expectedRedundant);
             }
         }
+        Set<Object> propertiesAndGeneralCategoriesAndScripts = new HashSet<>();
+        propertiesAndGeneralCategoriesAndScripts.addAll(Arrays.asList(UcdProperty.values()));
+        propertiesAndGeneralCategoriesAndScripts.addAll(Arrays.asList(UcdPropertyValues.General_Category_Values.values()));
+        propertiesAndGeneralCategoriesAndScripts.addAll(Arrays.asList(UcdPropertyValues.Script_Values.values()));
+        propertiesAndGeneralCategoriesAndScripts.remove(UcdProperty.ISO_Comment);
+        propertiesAndGeneralCategoriesAndScripts.remove(UcdProperty.Case_Folding);
+        propertiesAndGeneralCategoriesAndScripts.remove(UcdProperty.Lowercase_Mapping);
+        propertiesAndGeneralCategoriesAndScripts.remove(UcdProperty.Script);
+        testLM3NamespaceUniqueness(
+                propertiesAndGeneralCategoriesAndScripts,
+                x -> x instanceof UcdProperty ? ((UcdProperty) x).getNames().getAllNames() : ((Named) x).getNames().getAllNames(),
+                Set.of("Age"));
     }
 
     <T> void testLM3NamespaceUniqueness(
