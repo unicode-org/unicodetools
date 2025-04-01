@@ -982,8 +982,8 @@ public class UcdPropertyValues {
     }
 
     public enum Idn_2008_Values implements Named {
-        NV8("nv8"),
-        XV8("xv8"),
+        nv8("nv8"),
+        xv8("xv8"),
         na("na");
         private final PropertyNames<Idn_2008_Values> names;
 
