@@ -445,27 +445,24 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (isMultivalued && propertyValue != null && propertyValue.contains(delimiter)) {
             throw new IllegalArgumentException(
                     "Multivalued property values can't contain the delimiter.");
-        } else {
-            Comparator<String> comparator;
-            if (isType(NUMERIC_MASK)) {
-                // UAX44-LM1.
-                comparator = RATIONAL_COMPARATOR;
-            } else if (getName().equals("Name") || getName().equals("Name_Alias")) {
-                // UAX44-LM2.
-                comparator = CHARACTER_NAME_COMPARATOR;
-            } else if (isType(BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
-                // UAX44-LM3
-                comparator = PROPERTY_COMPARATOR;
-            } else {
-                // String-valued or Miscellaneous property.
-                comparator = null;
-            }
-            return getSet(
-                    propertyValue == null
-                            ? NULL_MATCHER
-                            : new SimpleMatcher(propertyValue, comparator),
-                    result);
         }
+        Comparator<String> comparator;
+        if (isType(NUMERIC_MASK)) {
+            // UAX44-LM1.
+            comparator = RATIONAL_COMPARATOR;
+        } else if (getName().equals("Name") || getName().equals("Name_Alias")) {
+            // UAX44-LM2.
+            comparator = CHARACTER_NAME_COMPARATOR;
+        } else if (isType(BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
+            // UAX44-LM3
+            comparator = PROPERTY_COMPARATOR;
+        } else {
+            // String-valued or Miscellaneous property.
+            comparator = null;
+        }
+        return getSet(
+                propertyValue == null ? NULL_MATCHER : new SimpleMatcher(propertyValue, comparator),
+                result);
     }
 
     private UnicodeMap<String> unicodeMap = null;
