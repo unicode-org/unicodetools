@@ -284,7 +284,7 @@ public class TestVersionedSymbolTable {
                             + " but "
                             + expression
                             + " is missing "
-                            + expected.removeAll(set));
+                            + expected.cloneAsThawed().removeAll(set));
             assertTrue(
                     expected.containsAll(set),
                     "Expected "
@@ -296,7 +296,7 @@ public class TestVersionedSymbolTable {
                             + " but "
                             + expression
                             + " contains unexpected "
-                            + set.removeAll(expected));
+                            + set.cloneAsThawed().removeAll(expected));
             return this;
         }
 
