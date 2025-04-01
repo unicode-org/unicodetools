@@ -264,76 +264,72 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         int posColon = qualified.indexOf(":", 0);
         if (posColon < 0) {
             return null;
+        }
+        final String versionQualifier = qualified.substring(0, posColon + 1);
+        qualified.delete(0, posColon + 1);
+        if (versionQualifier.equals("U-1")) {
+            return previousVersion;
         } else {
-            final String versionQualifier = qualified.substring(0, posColon + 1);
-            qualified.delete(0, posColon + 1);
-            if (versionQualifier.equals("U-1")) {
-                return previousVersion;
+            switch (versionQualifier.charAt(0)) {
+                case 'R':
+                    // Extension: we allow a version-qualifier starting with R for retroactive
+                    // properties, that is, property derivations applied before the property
+                    // existed.
+                    // TODO(egg): Actually support that.
+                case 'U':
+                    break;
+                default:
+                    throw new IllegalArgumentException(
+                            "Invalid version-qualifier " + versionQualifier);
+            }
+            String versionNumber = versionQualifier.substring(1, posColon);
+            if (versionNumber.endsWith("dev")) {
+                versionNumber = versionNumber.substring(0, versionNumber.length() - 3);
+                if (!versionNumber.isEmpty()
+                        && VersionInfo.getInstance(versionNumber) != Settings.LATEST_VERSION_INFO) {
+                    throw new IllegalArgumentException(
+                            "Invalid version-qualifier "
+                                    + versionQualifier
+                                    + " with version-suffix dev: the current dev version is "
+                                    + Settings.latestVersion);
+                }
+                return Settings.LATEST_VERSION_INFO;
+            } else if (versionNumber.endsWith("α") || versionNumber.endsWith("β")) {
+                final String versionSuffix = versionNumber.substring(versionNumber.length() - 1);
+                versionNumber = versionNumber.substring(0, versionNumber.length() - 1);
+                if (versionSuffix != Settings.latestVersionPhase.toString()) {
+                    throw new IllegalArgumentException(
+                            "Invalid version-qualifier "
+                                    + versionQualifier
+                                    + " with version-suffix "
+                                    + versionSuffix
+                                    + ": the current stage is "
+                                    + Settings.latestVersionPhase);
+                }
+                if (!versionNumber.isEmpty()
+                        && VersionInfo.getInstance(versionNumber) != Settings.LATEST_VERSION_INFO) {
+                    throw new IllegalArgumentException(
+                            "Invalid version-qualifier "
+                                    + versionQualifier
+                                    + " with version-suffix "
+                                    + versionNumber
+                                    + ": the current "
+                                    + versionSuffix
+                                    + " version is "
+                                    + Settings.latestVersion);
+                }
+                return Settings.LATEST_VERSION_INFO;
             } else {
-                switch (versionQualifier.charAt(0)) {
-                    case 'R':
-                        // Extension: we allow a version-qualifier starting with R for retroactive
-                        // properties, that is, property derivations applied before the property
-                        // existed.
-                        // TODO(egg): Actually support that.
-                    case 'U':
-                        break;
-                    default:
-                        throw new IllegalArgumentException(
-                                "Invalid version-qualifier " + versionQualifier);
+                var result = VersionInfo.getInstance(versionNumber);
+                if (result == Settings.LATEST_VERSION_INFO && requireSuffixForLatest) {
+                    throw new IllegalArgumentException(
+                            "Invalid version-qualifier "
+                                    + versionQualifier
+                                    + " version-suffix "
+                                    + Settings.latestVersionPhase
+                                    + " required for unpublished version");
                 }
-                String versionNumber = versionQualifier.substring(1, posColon);
-                if (versionNumber.endsWith("dev")) {
-                    versionNumber = versionNumber.substring(0, versionNumber.length() - 3);
-                    if (!versionNumber.isEmpty()
-                            && VersionInfo.getInstance(versionNumber)
-                                    != Settings.LATEST_VERSION_INFO) {
-                        throw new IllegalArgumentException(
-                                "Invalid version-qualifier "
-                                        + versionQualifier
-                                        + " with version-suffix dev: the current dev version is "
-                                        + Settings.latestVersion);
-                    }
-                    return Settings.LATEST_VERSION_INFO;
-                } else if (versionNumber.endsWith("α") || versionNumber.endsWith("β")) {
-                    final String versionSuffix =
-                            versionNumber.substring(versionNumber.length() - 1);
-                    versionNumber = versionNumber.substring(0, versionNumber.length() - 1);
-                    if (versionSuffix != Settings.latestVersionPhase.toString()) {
-                        throw new IllegalArgumentException(
-                                "Invalid version-qualifier "
-                                        + versionQualifier
-                                        + " with version-suffix "
-                                        + versionSuffix
-                                        + ": the current stage is "
-                                        + Settings.latestVersionPhase);
-                    }
-                    if (!versionNumber.isEmpty()
-                            && VersionInfo.getInstance(versionNumber)
-                                    != Settings.LATEST_VERSION_INFO) {
-                        throw new IllegalArgumentException(
-                                "Invalid version-qualifier "
-                                        + versionQualifier
-                                        + " with version-suffix "
-                                        + versionNumber
-                                        + ": the current "
-                                        + versionSuffix
-                                        + " version is "
-                                        + Settings.latestVersion);
-                    }
-                    return Settings.LATEST_VERSION_INFO;
-                } else {
-                    var result = VersionInfo.getInstance(versionNumber);
-                    if (result == Settings.LATEST_VERSION_INFO && requireSuffixForLatest) {
-                        throw new IllegalArgumentException(
-                                "Invalid version-qualifier "
-                                        + versionQualifier
-                                        + " version-suffix "
-                                        + Settings.latestVersionPhase
-                                        + " required for unpublished version");
-                    }
-                    return result;
-                }
+                return result;
             }
         }
     }
