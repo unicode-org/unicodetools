@@ -446,19 +446,24 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             throw new IllegalArgumentException(
                     "Multivalued property values can't contain the delimiter.");
         } else {
+            Comparator<String> comparator;
+            if (isType(NUMERIC_MASK)) {
+                // UAX44-LM1.
+                comparator = RATIONAL_COMPARATOR;
+            } else if (getName().equals("Name") || getName().equals("Name_Alias")) {
+                // UAX44-LM2.
+                comparator = CHARACTER_NAME_COMPARATOR;
+            } else if (isType(BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
+                // UAX44-LM3
+                comparator = PROPERTY_COMPARATOR;
+            } else {
+                // String-valued or Miscellaneous property.
+                comparator = null;
+            }
             return getSet(
                     propertyValue == null
                             ? NULL_MATCHER
-                            : new SimpleMatcher(
-                                    propertyValue,
-                                    isType(NUMERIC_MASK)
-                                            ? RATIONAL_COMPARATOR
-                                            : getName().equals("Name")
-                                                            || getName().equals("Name_Alias")
-                                                    ? CHARACTER_NAME_COMPARATOR
-                                                    : isType(STRING_OR_MISC_MASK)
-                                                            ? null
-                                                            : PROPERTY_COMPARATOR),
+                            : new SimpleMatcher(propertyValue, comparator),
                     result);
         }
     }
