@@ -250,7 +250,6 @@ public class TestCodeInvariants {
             if (IndexUnicodeProperties.make()
                     .getProperty(property)
                     .isType(UnicodeProperty.BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
-                noisy = property == UcdProperty.Decomposition_Type;
                 Set<String> expectedRedundant;
                 switch (property) {
                     case Block:
@@ -263,7 +262,9 @@ public class TestCodeInvariants {
                                         "med", "nar", "nb", "none", "sml", "sqr", "sub", "sup",
                                         "vert", "wide");
                         break;
-
+                    case Sentence_Break:
+                        expectedRedundant = Set.of("Sp");
+                        break;
                     default:
                         expectedRedundant = Set.of();
                         break;
@@ -284,12 +285,9 @@ public class TestCodeInvariants {
         final Map<String, String> aliasesByLM3Skeleton = new HashMap<>();
         for (T entity : namespace) {
             for (String alias : getNames.apply(entity)) {
-                if (noisy) System.err.println(alias);
                 final var matchingEntity = entitiesByAlias.get(alias);
                 final var lm3Skeleton = UnicodeProperty.toSkeleton(alias);
                 final var matchingAlias = aliasesByLM3Skeleton.get(lm3Skeleton);
-                if (noisy) System.err.println("->" + matchingAlias);
-                if (noisy) System.err.println("=>" + matchingEntity);
                 assertTrue(
                         matchingEntity == null || entity.equals(matchingEntity),
                         "!!Stability policy violation!! (Property Alias Uniqueness): alias "
@@ -313,6 +311,4 @@ public class TestCodeInvariants {
             }
         }
     }
-
-    static boolean noisy = false;
 }
