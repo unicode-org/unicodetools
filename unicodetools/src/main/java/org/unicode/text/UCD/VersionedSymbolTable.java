@@ -143,8 +143,9 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
 
     /**
      * Similar to iup.getProperty(UcdProperty.General_Category).getSet(propertyValue), but takes the
-     * groupings into account. Implements both unary-query-expression for a General_Category alias and
-     * binary-query-expression with a property-value where the queried property is General_Category.
+     * groupings into account. Implements both unary-query-expression for a General_Category alias
+     * and binary-query-expression with a property-value where the queried property is
+     * General_Category.
      */
     private UnicodeSet getGeneralCategorySet(IndexUnicodeProperties iup, String propertyValue) {
         var gc = iup.getProperty(UcdProperty.General_Category);
@@ -333,8 +334,8 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                     }
                     return result;
                 } else if (queriedProperty.isType(UnicodeProperty.NUMERIC_MASK)) {
-                    if (UnicodeProperty.equalNames(propertyValue, "NaN") ||
-                        !RATIONAL_PATTERN.matcher(propertyValue).matches()) {
+                    if (UnicodeProperty.equalNames(propertyValue, "NaN")
+                            || !RATIONAL_PATTERN.matcher(propertyValue).matches()) {
                         throw new IllegalArgumentException(
                                 "Invalid value '"
                                         + propertyValue
