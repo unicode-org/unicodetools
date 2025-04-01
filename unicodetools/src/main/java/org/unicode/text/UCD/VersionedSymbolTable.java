@@ -376,6 +376,10 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
 
     private static UnicodeSet getIdentitySet(UnicodeProperty queriedProperty) {
         final var result = new UnicodeSet();
+        // Note that while UnicodeProperty, can return strings from getSet, which is an extension of
+        // the UnicodeSet property-query specification, identity queries exclude any strings of
+        // length other than 1, otherwise we would end up with infinite sets, e.g., the set of all
+        // strings that normalize to themselves.
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             if (UnicodeProperty.equals(cp, queriedProperty.getValue(cp))) {
                 result.add(cp);
@@ -409,6 +413,10 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                             + comparisonProperty.getName());
         }
         final var result = new UnicodeSet();
+        // Note that while UnicodeProperty, can return strings from getSet, which is an extension of
+        // the UnicodeSet property-query specification, property comparisons exclude any strings of
+        // length other than 1.  Extending them to include those leads to messy questions of
+        // defining the value of character properties for string (null?) and avoiding infinite sets.
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             if (UnicodeProperty.equals(
                     queriedProperty.getValue(cp), comparisonProperty.getValue(cp))) {
