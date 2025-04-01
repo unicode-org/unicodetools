@@ -40,130 +40,6 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         return this;
     }
 
-    /**
-     * Parses a string prefixed with an optional-version-qualifier. If there is a version-qualifier,
-     * returns the corresponding VersionInfo and removes the prefix from the given StringBuilder.
-     */
-    private VersionInfo parseVersionQualifier(StringBuilder qualified) {
-        int posColon = qualified.indexOf(":", 0);
-        if (posColon < 0) {
-            return null;
-        } else {
-            final String versionQualifier = qualified.substring(0, posColon + 1);
-            qualified.delete(0, posColon + 1);
-            if (versionQualifier.equals("U-1")) {
-                return previousVersion;
-            } else {
-                switch (versionQualifier.charAt(0)) {
-                    case 'R':
-                        // Extension: we allow a version-qualifier starting with R for retroactive
-                        // properties, that is, property derivations applied before the property
-                        // existed.
-                        // TODO(egg): Actually support that.
-                    case 'U':
-                        break;
-                    default:
-                        throw new IllegalArgumentException(
-                                "Invalid version-qualifier " + versionQualifier);
-                }
-                String versionNumber = versionQualifier.substring(1, posColon);
-                if (versionNumber.endsWith("dev")) {
-                    versionNumber = versionNumber.substring(0, versionNumber.length() - 3);
-                    if (!versionNumber.isEmpty()
-                            && VersionInfo.getInstance(versionNumber)
-                                    != Settings.LATEST_VERSION_INFO) {
-                        throw new IllegalArgumentException(
-                                "Invalid version-qualifier "
-                                        + versionQualifier
-                                        + " with version-suffix dev: the current dev version is "
-                                        + Settings.latestVersion);
-                    }
-                    return Settings.LATEST_VERSION_INFO;
-                } else if (versionNumber.endsWith("α") || versionNumber.endsWith("β")) {
-                    final String versionSuffix =
-                            versionNumber.substring(versionNumber.length() - 1);
-                    versionNumber = versionNumber.substring(0, versionNumber.length() - 1);
-                    if (versionSuffix != Settings.latestVersionPhase.toString()) {
-                        throw new IllegalArgumentException(
-                                "Invalid version-qualifier "
-                                        + versionQualifier
-                                        + " with version-suffix "
-                                        + versionSuffix
-                                        + ": the current stage is "
-                                        + Settings.latestVersionPhase);
-                    }
-                    if (!versionNumber.isEmpty()
-                            && VersionInfo.getInstance(versionNumber)
-                                    != Settings.LATEST_VERSION_INFO) {
-                        throw new IllegalArgumentException(
-                                "Invalid version-qualifier "
-                                        + versionQualifier
-                                        + " with version-suffix "
-                                        + versionNumber
-                                        + ": the current "
-                                        + versionSuffix
-                                        + " version is "
-                                        + Settings.latestVersion);
-                    }
-                    return Settings.LATEST_VERSION_INFO;
-                } else {
-                    var result = VersionInfo.getInstance(versionNumber);
-                    if (result == Settings.LATEST_VERSION_INFO && requireSuffixForLatest) {
-                        throw new IllegalArgumentException(
-                                "Invalid version-qualifier "
-                                        + versionQualifier
-                                        + " version-suffix "
-                                        + Settings.latestVersionPhase
-                                        + " required for unpublished version");
-                    }
-                    return result;
-                }
-            }
-        }
-    }
-
-    private static Map<UcdPropertyValues.General_Category_Values, Set<String>>
-            COARSE_GENERAL_CATEGORIES =
-                    Map.of(
-                            UcdPropertyValues.General_Category_Values.Other,
-                            Set.of("Cc", "Cf", "Cn", "Co", "Cs"),
-                            UcdPropertyValues.General_Category_Values.Letter,
-                            Set.of("Ll", "Lm", "Lo", "Lt", "Lu"),
-                            UcdPropertyValues.General_Category_Values.Cased_Letter,
-                            Set.of("Ll", "Lt", "Lu"),
-                            UcdPropertyValues.General_Category_Values.Mark,
-                            Set.of("Mc", "Me", "Mn"),
-                            UcdPropertyValues.General_Category_Values.Number,
-                            Set.of("Nd", "Nl", "No"),
-                            UcdPropertyValues.General_Category_Values.Punctuation,
-                            Set.of("Pc", "Pd", "Pe", "Pf", "Pi", "Po", "Ps"),
-                            UcdPropertyValues.General_Category_Values.Symbol,
-                            Set.of("Sc", "Sk", "Sm", "So"),
-                            UcdPropertyValues.General_Category_Values.Separator,
-                            Set.of("Zl", "Zp", "Zs"));
-
-    /**
-     * Similar to iup.getProperty(UcdProperty.General_Category).getSet(propertyValue), but takes the
-     * groupings into account. Implements both unary-query-expression for a General_Category alias
-     * and binary-query-expression with a property-value where the queried property is
-     * General_Category.
-     */
-    private static UnicodeSet getGeneralCategorySet(
-            IndexUnicodeProperties iup, String propertyValue) {
-        var gc = iup.getProperty(UcdProperty.General_Category);
-        for (var entry : COARSE_GENERAL_CATEGORIES.entrySet()) {
-            final var aliases = entry.getKey().getNames().getAllNames();
-            if (aliases.stream().anyMatch(a -> UnicodeProperty.equalNames(propertyValue, a))) {
-                UnicodeSet result = new UnicodeSet();
-                for (var value : entry.getValue()) {
-                    gc.getSet(value, result);
-                }
-                return result;
-            }
-        }
-        return gc.getSet(propertyValue);
-    }
-
     @Override
     public boolean applyPropertyAlias(String beforeEquals, String afterEquals, UnicodeSet result) {
         result.clear();
@@ -378,6 +254,130 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
             }
             return queriedProperty.getSet(propertyValue);
         }
+    }
+
+    /**
+     * Parses a string prefixed with an optional-version-qualifier. If there is a version-qualifier,
+     * returns the corresponding VersionInfo and removes the prefix from the given StringBuilder.
+     */
+    private VersionInfo parseVersionQualifier(StringBuilder qualified) {
+        int posColon = qualified.indexOf(":", 0);
+        if (posColon < 0) {
+            return null;
+        } else {
+            final String versionQualifier = qualified.substring(0, posColon + 1);
+            qualified.delete(0, posColon + 1);
+            if (versionQualifier.equals("U-1")) {
+                return previousVersion;
+            } else {
+                switch (versionQualifier.charAt(0)) {
+                    case 'R':
+                        // Extension: we allow a version-qualifier starting with R for retroactive
+                        // properties, that is, property derivations applied before the property
+                        // existed.
+                        // TODO(egg): Actually support that.
+                    case 'U':
+                        break;
+                    default:
+                        throw new IllegalArgumentException(
+                                "Invalid version-qualifier " + versionQualifier);
+                }
+                String versionNumber = versionQualifier.substring(1, posColon);
+                if (versionNumber.endsWith("dev")) {
+                    versionNumber = versionNumber.substring(0, versionNumber.length() - 3);
+                    if (!versionNumber.isEmpty()
+                            && VersionInfo.getInstance(versionNumber)
+                                    != Settings.LATEST_VERSION_INFO) {
+                        throw new IllegalArgumentException(
+                                "Invalid version-qualifier "
+                                        + versionQualifier
+                                        + " with version-suffix dev: the current dev version is "
+                                        + Settings.latestVersion);
+                    }
+                    return Settings.LATEST_VERSION_INFO;
+                } else if (versionNumber.endsWith("α") || versionNumber.endsWith("β")) {
+                    final String versionSuffix =
+                            versionNumber.substring(versionNumber.length() - 1);
+                    versionNumber = versionNumber.substring(0, versionNumber.length() - 1);
+                    if (versionSuffix != Settings.latestVersionPhase.toString()) {
+                        throw new IllegalArgumentException(
+                                "Invalid version-qualifier "
+                                        + versionQualifier
+                                        + " with version-suffix "
+                                        + versionSuffix
+                                        + ": the current stage is "
+                                        + Settings.latestVersionPhase);
+                    }
+                    if (!versionNumber.isEmpty()
+                            && VersionInfo.getInstance(versionNumber)
+                                    != Settings.LATEST_VERSION_INFO) {
+                        throw new IllegalArgumentException(
+                                "Invalid version-qualifier "
+                                        + versionQualifier
+                                        + " with version-suffix "
+                                        + versionNumber
+                                        + ": the current "
+                                        + versionSuffix
+                                        + " version is "
+                                        + Settings.latestVersion);
+                    }
+                    return Settings.LATEST_VERSION_INFO;
+                } else {
+                    var result = VersionInfo.getInstance(versionNumber);
+                    if (result == Settings.LATEST_VERSION_INFO && requireSuffixForLatest) {
+                        throw new IllegalArgumentException(
+                                "Invalid version-qualifier "
+                                        + versionQualifier
+                                        + " version-suffix "
+                                        + Settings.latestVersionPhase
+                                        + " required for unpublished version");
+                    }
+                    return result;
+                }
+            }
+        }
+    }
+
+    private static Map<UcdPropertyValues.General_Category_Values, Set<String>>
+            COARSE_GENERAL_CATEGORIES =
+                    Map.of(
+                            UcdPropertyValues.General_Category_Values.Other,
+                            Set.of("Cc", "Cf", "Cn", "Co", "Cs"),
+                            UcdPropertyValues.General_Category_Values.Letter,
+                            Set.of("Ll", "Lm", "Lo", "Lt", "Lu"),
+                            UcdPropertyValues.General_Category_Values.Cased_Letter,
+                            Set.of("Ll", "Lt", "Lu"),
+                            UcdPropertyValues.General_Category_Values.Mark,
+                            Set.of("Mc", "Me", "Mn"),
+                            UcdPropertyValues.General_Category_Values.Number,
+                            Set.of("Nd", "Nl", "No"),
+                            UcdPropertyValues.General_Category_Values.Punctuation,
+                            Set.of("Pc", "Pd", "Pe", "Pf", "Pi", "Po", "Ps"),
+                            UcdPropertyValues.General_Category_Values.Symbol,
+                            Set.of("Sc", "Sk", "Sm", "So"),
+                            UcdPropertyValues.General_Category_Values.Separator,
+                            Set.of("Zl", "Zp", "Zs"));
+
+    /**
+     * Similar to iup.getProperty(UcdProperty.General_Category).getSet(propertyValue), but takes the
+     * groupings into account. Implements both unary-query-expression for a General_Category alias
+     * and binary-query-expression with a property-value where the queried property is
+     * General_Category.
+     */
+    private static UnicodeSet getGeneralCategorySet(
+            IndexUnicodeProperties iup, String propertyValue) {
+        var gc = iup.getProperty(UcdProperty.General_Category);
+        for (var entry : COARSE_GENERAL_CATEGORIES.entrySet()) {
+            final var aliases = entry.getKey().getNames().getAllNames();
+            if (aliases.stream().anyMatch(a -> UnicodeProperty.equalNames(propertyValue, a))) {
+                UnicodeSet result = new UnicodeSet();
+                for (var value : entry.getValue()) {
+                    gc.getSet(value, result);
+                }
+                return result;
+            }
+        }
+        return gc.getSet(propertyValue);
     }
 
     private static UnicodeSet getIdentitySet(UnicodeProperty queriedProperty) {
