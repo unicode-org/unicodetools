@@ -122,7 +122,7 @@ public enum UcdProperty {
     kEH_HG(PropertyType.Miscellaneous, "kEH_HG"),
     kEH_IFAO(PropertyType.Miscellaneous, "kEH_IFAO"),
     kEH_JSesh(PropertyType.Miscellaneous, "kEH_JSesh"),
-    kEH_UniK(PropertyType.Miscellaneous, "kEH_UniK"),
+    kEH_UniK(PropertyType.Miscellaneous, "kEH_UniK", "isgc"),
     kFanqie(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkFanqie"),
     kFenn(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkFenn"),
     kFennIndex(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkFennIndex"),
