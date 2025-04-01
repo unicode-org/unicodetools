@@ -252,6 +252,18 @@ public class TestCodeInvariants {
                 property -> property.getNames().getAllNames(),
                 Set.of("Age"),
                 "!!Stability policy violation!! (Property Alias Uniqueness)");
+        Set<Object> propertyNamespace = new HashSet<>();
+        propertyNamespace.addAll(Arrays.asList(UcdProperty.values()));
+        propertyNamespace.add("code point");
+        propertyNamespace.add("none");
+        testLM3NamespaceUniqueness(
+                propertyNamespace,
+                x ->
+                        x instanceof String
+                                ? List.of((String) x)
+                                : ((UcdProperty) x).getNames().getAllNames(),
+                Set.of("Age"),
+                "Violation of UnicodeSet requirements: A property alias matches <code point> or <none>");
         for (var property : UcdProperty.values()) {
             if (IndexUnicodeProperties.make()
                     .getProperty(property)
