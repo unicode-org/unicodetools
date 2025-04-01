@@ -446,6 +446,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             throw new IllegalArgumentException(
                     "Multivalued property values can't contain the delimiter.");
         }
+        if (propertyValue == null) {
+            return getSet(NULL_MATCHER, result);
+        }
         Comparator<String> comparator;
         if (isType(NUMERIC_MASK)) {
             // UAX44-LM1.
@@ -460,9 +463,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             // String-valued or Miscellaneous property.
             comparator = null;
         }
-        return getSet(
-                propertyValue == null ? NULL_MATCHER : new SimpleMatcher(propertyValue, comparator),
-                result);
+        return getSet(new SimpleMatcher(propertyValue, comparator), result);
     }
 
     private UnicodeMap<String> unicodeMap = null;

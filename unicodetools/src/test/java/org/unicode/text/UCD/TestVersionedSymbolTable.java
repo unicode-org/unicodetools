@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import java.text.ParsePosition;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,17 +17,17 @@ import org.junit.jupiter.api.Test;
  * reasonable. If they are broken by changes to property assignments, feel free to update them.
  */
 public class TestVersionedSymbolTable {
-    XSymbolTable old_default;
+    UnicodeSet.XSymbolTable oldDefault;
 
     @BeforeEach
     void setUp() {
-        old_default = UnicodeSet.getDefaultXSymbolTable();
+        oldDefault = UnicodeSet.getDefaultXSymbolTable();
         UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
     }
 
     @AfterEach
     void tearDown() {
-        UnicodeSet.setDefaultXSymbolTable(old_default);
+        UnicodeSet.setDefaultXSymbolTable(oldDefault);
     }
 
     @Test
