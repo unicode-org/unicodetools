@@ -1,6 +1,7 @@
 package org.unicode.text.UCD;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Normalizer2;
@@ -9,7 +10,10 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import java.util.Collections;
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import org.junit.jupiter.api.Test;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -17,6 +21,7 @@ import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Utility;
 
 public class TestCodeInvariants {
@@ -229,5 +234,42 @@ public class TestCodeInvariants {
                 + UTF16.valueOf(codePoint)
                 + " ) "
                 + NAME.get(codePoint);
+    }
+
+    @Test
+    void testPropertyAliasUniqueness() {
+        final Map<String, UcdProperty> propertiesByAlias =
+                new TreeMap<>(UnicodeProperty.PROPERTY_COMPARATOR);
+        final Map<String, String> aliasesByLM3Skeleton = new HashMap<>();
+        for (UcdProperty property : UcdProperty.values()) {
+            for (String alias : property.getNames().getAllNames()) {
+                final var matchingProperty = propertiesByAlias.get(alias);
+                final var lm3Skeleton = UnicodeProperty.toSkeleton(alias);
+                final var matchingAlias = aliasesByLM3Skeleton.get(lm3Skeleton);
+                assertTrue(
+                        matchingProperty == null || matchingProperty == property,
+                        "!!Stability policy violation!! (Property Alias Uniqueness): alias "
+                                + alias
+                                + " for "
+                                + property
+                                + " matches alias "
+                                + matchingAlias
+                                + " for "
+                                + propertiesByAlias.get(alias));
+                if (matchingProperty == property) {
+                    assertTrue(
+                            !alias.equals(matchingAlias),
+                            "Unusual (not a stability policy violation) aliases "
+                                    + alias
+                                    + " and "
+                                    + matchingAlias
+                                    + " for "
+                                    + property
+                                    + " match each other");
+                }
+                propertiesByAlias.put(alias, property);
+                aliasesByLM3Skeleton.put(lm3Skeleton, alias);
+            }
+        }
     }
 }
