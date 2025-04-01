@@ -18,9 +18,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyNames.Named;
+import org.unicode.props.PropertyType;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
@@ -243,10 +245,13 @@ public class TestCodeInvariants {
 
     @Test
     void testPropertyAliasUniqueness() {
+        // All property aliases constitute a single namespace. Property aliases are
+        // guaranteed to be unique within this namespace.
         testLM3NamespaceUniqueness(
                 Arrays.asList(UcdProperty.values()),
                 property -> property.getNames().getAllNames(),
-                Set.of("Age"));
+                Set.of("Age"),
+                "!!Stability policy violation!! (Property Alias Uniqueness)");
         for (var property : UcdProperty.values()) {
             if (IndexUnicodeProperties.make()
                     .getProperty(property)
@@ -270,39 +275,58 @@ public class TestCodeInvariants {
                         expectedRedundant = Set.of();
                         break;
                 }
+                // For each property, all of its property value aliases constitute a separate
+                // namespace, one per property. Within each of these property value alias
+                // namespaces, property value aliases are guaranteed to be unique.
                 testLM3NamespaceUniqueness(
                         property.getEnums(),
                         value -> ((Named) value).getNames().getAllNames(),
-                        expectedRedundant);
+                        expectedRedundant,
+                        "!!Stability policy violation!! (Property Alias Uniqueness for value aliases of "
+                                + property
+                                + ")");
             }
         }
-        Set<Object> propertiesAndGeneralCategoriesAndScripts = new HashSet<>();
-        propertiesAndGeneralCategoriesAndScripts.addAll(Arrays.asList(UcdProperty.values()));
-        propertiesAndGeneralCategoriesAndScripts.addAll(
+        Set<Object> unicodeSetUnaryQueryNames =
+                Arrays.stream(UcdProperty.values())
+                        .filter(p -> p.getType() == PropertyType.Binary)
+                        .collect(Collectors.toCollection(() -> new HashSet<>()));
+        unicodeSetUnaryQueryNames.addAll(
                 Arrays.asList(UcdPropertyValues.General_Category_Values.values()));
-        propertiesAndGeneralCategoriesAndScripts.addAll(
-                Arrays.asList(UcdPropertyValues.Script_Values.values()));
-        propertiesAndGeneralCategoriesAndScripts.remove(
-                UcdProperty.ISO_Comment); // Collides with gc Other.
-        propertiesAndGeneralCategoriesAndScripts.remove(
-                UcdProperty.Case_Folding); // Collides with gc Format.
-        propertiesAndGeneralCategoriesAndScripts.remove(
-                UcdProperty.Lowercase_Mapping); // Collides with gc Cased_Letter.
-        propertiesAndGeneralCategoriesAndScripts.remove(
-                UcdProperty.Script); // Collides with gc Currency_Symbol.
+        unicodeSetUnaryQueryNames.addAll(Arrays.asList(UcdPropertyValues.Script_Values.values()));
         testLM3NamespaceUniqueness(
-                propertiesAndGeneralCategoriesAndScripts,
+                unicodeSetUnaryQueryNames,
                 x ->
                         x instanceof UcdProperty
                                 ? ((UcdProperty) x).getNames().getAllNames()
                                 : ((Named) x).getNames().getAllNames(),
-                Set.of("Age"));
+                Set.of("Age"),
+                "Violation of UnicodeSet requirements: gc-sc-binary property namespace collision");
+        Set<Object> nonCollidingProperties = new HashSet<>();
+        nonCollidingProperties.addAll(Arrays.asList(UcdProperty.values()));
+        nonCollidingProperties.addAll(
+                Arrays.asList(UcdPropertyValues.General_Category_Values.values()));
+        nonCollidingProperties.addAll(Arrays.asList(UcdPropertyValues.Script_Values.values()));
+        nonCollidingProperties.remove(UcdProperty.ISO_Comment); // Collides with gc Other.
+        nonCollidingProperties.remove(UcdProperty.Case_Folding); // Collides with gc Format.
+        nonCollidingProperties.remove(
+                UcdProperty.Lowercase_Mapping); // Collides with gc Cased_Letter.
+        nonCollidingProperties.remove(UcdProperty.Script); // Collides with gc Currency_Symbol.
+        testLM3NamespaceUniqueness(
+                nonCollidingProperties,
+                x ->
+                        x instanceof UcdProperty
+                                ? ((UcdProperty) x).getNames().getAllNames()
+                                : ((Named) x).getNames().getAllNames(),
+                Set.of("Age"),
+                "Unusual (not a violation of UnicodeSet requirement): New gc-sc-non-binary property namespace collision");
     }
 
     <T> void testLM3NamespaceUniqueness(
             Iterable<T> namespace,
             Function<T, List<String>> getNames,
-            Set<String> expectedRedundant) {
+            Set<String> expectedRedundant,
+            String message) {
         final Map<String, T> entitiesByAlias = new TreeMap<>(UnicodeProperty.PROPERTY_COMPARATOR);
         final Map<String, String> aliasesByLM3Skeleton = new HashMap<>();
         for (T entity : namespace) {
@@ -312,7 +336,8 @@ public class TestCodeInvariants {
                 final var matchingAlias = aliasesByLM3Skeleton.get(lm3Skeleton);
                 assertTrue(
                         matchingEntity == null || entity.equals(matchingEntity),
-                        "!!Stability policy violation!! (Property Alias Uniqueness): alias "
+                        message
+                                + ": alias "
                                 + alias
                                 + " for "
                                 + entity
