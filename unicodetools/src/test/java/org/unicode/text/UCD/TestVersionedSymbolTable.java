@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.XSymbolTable;
+
 import java.text.ParsePosition;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,14 +19,17 @@ import org.junit.jupiter.api.Test;
  * reasonable. If they are broken by changes to property assignments, feel free to update them.
  */
 public class TestVersionedSymbolTable {
+   XSymbolTable old_default;
+
     @BeforeEach
     void setUp() {
+        old_default = UnicodeSet.getDefaultXSymbolTable();
         UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
     }
 
     @AfterEach
     void tearDown() {
-        UnicodeSet.setDefaultXSymbolTable(NO_PROPS);
+        UnicodeSet.setDefaultXSymbolTable(old_default);
     }
 
     @Test
@@ -338,18 +343,4 @@ public class TestVersionedSymbolTable {
     private UnicodeSetTestFluent assertThatUnicodeSet(String expression) {
         return new UnicodeSetTestFluent(expression);
     }
-
-    static UnicodeSet.XSymbolTable NO_PROPS =
-            new UnicodeSet.XSymbolTable() {
-                @Override
-                public boolean applyPropertyAlias(
-                        String propertyName, String propertyValue, UnicodeSet result) {
-                    throw new IllegalArgumentException(
-                            "Don't use any ICU Unicode Properties! "
-                                    + propertyName
-                                    + "="
-                                    + propertyValue);
-                }
-                ;
-            };
 }
