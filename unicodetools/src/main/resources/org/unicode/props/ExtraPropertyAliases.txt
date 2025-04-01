@@ -191,4 +191,4 @@ kReading                 ; kReading
 
 kEH_Func                 ; kEH_Func
 kEH_FVal                 ; kEH_FVal
-kEH_UniK                 ; kEH_UniK
+kEH_UniK                 ; kEH_UniK ; isgc
