@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.XSymbolTable;
-
 import java.text.ParsePosition;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +18,7 @@ import org.junit.jupiter.api.Test;
  * reasonable. If they are broken by changes to property assignments, feel free to update them.
  */
 public class TestVersionedSymbolTable {
-   XSymbolTable old_default;
+    XSymbolTable old_default;
 
     @BeforeEach
     void setUp() {
