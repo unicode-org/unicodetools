@@ -8,8 +8,6 @@ import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -280,15 +278,24 @@ public class TestCodeInvariants {
         }
         Set<Object> propertiesAndGeneralCategoriesAndScripts = new HashSet<>();
         propertiesAndGeneralCategoriesAndScripts.addAll(Arrays.asList(UcdProperty.values()));
-        propertiesAndGeneralCategoriesAndScripts.addAll(Arrays.asList(UcdPropertyValues.General_Category_Values.values()));
-        propertiesAndGeneralCategoriesAndScripts.addAll(Arrays.asList(UcdPropertyValues.Script_Values.values()));
-        propertiesAndGeneralCategoriesAndScripts.remove(UcdProperty.ISO_Comment);
-        propertiesAndGeneralCategoriesAndScripts.remove(UcdProperty.Case_Folding);
-        propertiesAndGeneralCategoriesAndScripts.remove(UcdProperty.Lowercase_Mapping);
-        propertiesAndGeneralCategoriesAndScripts.remove(UcdProperty.Script);
+        propertiesAndGeneralCategoriesAndScripts.addAll(
+                Arrays.asList(UcdPropertyValues.General_Category_Values.values()));
+        propertiesAndGeneralCategoriesAndScripts.addAll(
+                Arrays.asList(UcdPropertyValues.Script_Values.values()));
+        propertiesAndGeneralCategoriesAndScripts.remove(
+                UcdProperty.ISO_Comment); // Collides with gc Other.
+        propertiesAndGeneralCategoriesAndScripts.remove(
+                UcdProperty.Case_Folding); // Collides with gc Format.
+        propertiesAndGeneralCategoriesAndScripts.remove(
+                UcdProperty.Lowercase_Mapping); // Collides with gc Cased_Letter.
+        propertiesAndGeneralCategoriesAndScripts.remove(
+                UcdProperty.Script); // Collides with gc Currency_Symbol.
         testLM3NamespaceUniqueness(
                 propertiesAndGeneralCategoriesAndScripts,
-                x -> x instanceof UcdProperty ? ((UcdProperty) x).getNames().getAllNames() : ((Named) x).getNames().getAllNames(),
+                x ->
+                        x instanceof UcdProperty
+                                ? ((UcdProperty) x).getNames().getAllNames()
+                                : ((Named) x).getNames().getAllNames(),
                 Set.of("Age"));
     }
 
