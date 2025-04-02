@@ -356,7 +356,7 @@ public class TestCodeInvariants {
                                 + " matches alias "
                                 + matchingAlias
                                 + " for "
-                                + entitiesByAlias.get(alias));
+                                + matchingEntity);
                 if (matchingEntity != null && !expectedRedundant.contains(alias)) {
                     assertEquals(
                             matchingAlias,
