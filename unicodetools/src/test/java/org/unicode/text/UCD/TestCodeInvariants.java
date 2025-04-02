@@ -365,8 +365,8 @@ public class TestCodeInvariants {
                                     + entity
                                     + " match each other");
                 }
-                entitiesByAlias.put(alias, entity);
-                aliasesByLM3Skeleton.put(lm3Skeleton, alias);
+                entitiesByAlias.putIfAbsent(alias, entity);
+                aliasesByLM3Skeleton.putIfAbsent(lm3Skeleton, alias);
             }
         }
     }
