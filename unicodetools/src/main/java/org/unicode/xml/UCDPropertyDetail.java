@@ -1256,16 +1256,16 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false);
-    public static UCDPropertyDetail kGB7_Detail =
-            new UCDPropertyDetail(
-                    UcdProperty.kGB7,
-                    VersionInfo.getInstance(2, 0, 0),
-                    127,
-                    false,
-                    true,
-                    false,
-                    true,
-                    false);
+//    public static UCDPropertyDetail kGB7_Detail =
+//            new UCDPropertyDetail(
+//                    UcdProperty.kGB7,
+//                    VersionInfo.getInstance(2, 0, 0),
+//                    127,
+//                    false,
+//                    true,
+//                    false,
+//                    true,
+//                    false);
     public static UCDPropertyDetail kGB8_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kGB8,
@@ -2695,7 +2695,7 @@ public class UCDPropertyDetail {
         return ucdxmlPropertyDetails;
     }
 
-    public static Set<UCDPropertyDetail> unikemetPropertyDetails() {
+    public static Set<UCDPropertyDetail> unikemetValues() {
         return unikemetPropertyDetails;
     }
 

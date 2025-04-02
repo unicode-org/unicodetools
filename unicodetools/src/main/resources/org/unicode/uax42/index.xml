@@ -23,6 +23,8 @@
         <revhistory>
             <revision revnumber="37" date="2025-03-28">
                 <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>17.0</val>.
+                    </change>
                     <change>New values for the <attr>blk</attr> attribute: <val>Beria_Erfe</val>, <val>Chisoi</val>,
                         <val>CJK_Ext_J</val>, <val>Misc_Symbols_Sup</val>, <val>Sharada_Sup</val>, <val>Sidetic</val>,
                         <val>Tai_Yo</val>, <val>Tangut_Components_Sup</val>, <val>Tolong_Siki</val>.
@@ -38,6 +40,9 @@
                         <attr>kEH_Desc</attr>, <attr>kEH_Func</attr>, <attr>kEH_FVal</attr>, <attr>kEH_HG</attr>,
                         <attr>kEH_IFAO</attr>, <attr>kEH_JSesh</attr>, <attr>kEH_NoMirror</attr>,
                         <attr>kEH_NoRotate</attr>, <attr>kEH_UniK</attr>.
+                    </change>
+                    <change>Unihan attributes are applied at the group where applicable, similar to how non-Unihan
+                        attributes are applied at the group.
                     </change>
                 </changes>
             </revision>
@@ -830,6 +835,9 @@
             <para>Groups cannot be nested. The motivation for this limitation is to make the life of consumers
                 easier: either a property is defined by the element for a code point, or it is defined by the
                 immediately enclosing <elem>group</elem> element.
+            </para>
+            <para>For UCDXML versions prior to 17.0, only non-Unihan attributes are applied to the <elem>group</elem>
+                elements. Starting with 17.0, Unihan attributes are also applied to the <elem>group</elem> elements.
             </para>
             <!--Manual--><xi:include href="./fragments/groups.xml"/>
         </section>
