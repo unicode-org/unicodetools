@@ -1000,7 +1000,7 @@
     attribute NChar { boolean }?
 
   code-point-attributes &= attribute kAccountingNumeric
-    { xsd:string { pattern="[0-9]+" } }?
+    { xsd:string { pattern="\d+" } }?
 
   code-point-attributes &= attribute kAlternateTotalStrokes
     { list { xsd:string { pattern="(\d+:[BHJKMPSUV]+)|-" }+ } }?
@@ -1018,13 +1018,13 @@
     { list { xsd:string { pattern="[0-9A-F]{6}" }+ } }?
 
   code-point-attributes &= attribute kCheungBauer
-    { list { xsd:string { pattern="[0-9]{3}/[0-9]{2};[A-Z]*;[a-z1-6\[\]/,]+" }+ } }?
+    { list { xsd:string { pattern="\d{3}/\d{2};[A-Z]*;[a-z1-6\[\]/,]+" }+ } }?
 
   code-point-attributes &= attribute kCheungBauerIndex
-    { list { xsd:string { pattern="[0-9]{3}\.[01][0-9]" }+ } }?
+    { list { xsd:string { pattern="\d{3}\.[01]\d" }+ } }?
 
   code-point-attributes &= attribute kCihaiT
-    { list { xsd:string { pattern="[1-9][0-9]{0,3}\.[0-9]{3}" }+ } }?
+    { list { xsd:string { pattern="[1-9]\d{0,3}\.\d{3}" }+ } }?
 
   code-point-attributes &= attribute kCNS1986
     { xsd:string { pattern="[12E]-[0-9A-F]{4}" } }?
@@ -1036,10 +1036,10 @@
     { "" | xsd:string { pattern="U\+[23]?[0-9A-F]{4}" } }?
 
   code-point-attributes &= attribute kCowles
-    { list { xsd:string { pattern="[0-9]{1,4}(\.[0-9]{1,2})?" }+ } }?
+    { list { xsd:string { pattern="\d{1,4}(\.\d{1,2})?" }+ } }?
 
   code-point-attributes &= attribute kDaeJaweon
-    { xsd:string { pattern="[0-9]{4}\.[0-9]{2}[01]" } }?
+    { xsd:string { pattern="\d{4}\.\d{2}[01]" } }?
 
   code-point-attributes &= attribute kDefinition
     { xsd:string { pattern='[^\t"]+' } }?
@@ -1051,55 +1051,52 @@
     { list { xsd:string { pattern="[\x{3400}-\x{4DBF}\x{4E00}-\x{9FFF}\x{20000}-\x{2A6DF}]{2}" }+ } }?
 
   code-point-attributes &= attribute kFenn
-    { list { xsd:string { pattern="[0-9]+a?[A-KP*]" }+ } }?
+    { list { xsd:string { pattern="\d+a?[A-KP*]" }+ } }?
 
   code-point-attributes &= attribute kFennIndex
-    { list { xsd:string { pattern="[0-9][0-9]{0,2}\.[01][0-9]" }+ } }?
+    { list { xsd:string { pattern="\d{1,3}\.[01]\d" }+ } }?
 
   code-point-attributes &= attribute kFourCornerCode
-    { list { xsd:string { pattern="[0-9]{4}(\.[0-9])?" }+ } }?
+    { list { xsd:string { pattern="\d{4}(\.\d)?" }+ } }?
 
   code-point-attributes &= attribute kGB0
-    { xsd:string { pattern="[0-9]{4}" } }?
+    { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &= attribute kGB1
-    { xsd:string { pattern="[0-9]{4}" } }?
+    { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &= attribute kGB3
-    { xsd:string { pattern="[0-9]{4}" } }?
+    { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &= attribute kGB5
-    { xsd:string { pattern="[0-9]{4}" } }?
-
-  code-point-attributes &= attribute kGB7
-    { xsd:string { pattern="[0-9]{4}" } }?
+    { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &= attribute kGB8
-    { xsd:string { pattern="[0-9]{4}" } }?
+    { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &= attribute kGradeLevel
     { xsd:string { pattern="[1-6]" } }?
 
   code-point-attributes &= attribute kGSR
-    { list { xsd:string { pattern="[0-9]{4}[a-vx-z]'?" }+ } }?
+    { list { xsd:string { pattern="\d{4}[a-vx-z]'?" }+ } }?
 
   code-point-attributes &= attribute kHangul
     { list { xsd:string { pattern="[\x{1100}-\x{1112}][\x{1161}-\x{1175}][\x{11A8}-\x{11C2}]?:[01ENX]{1,3}" }+ } }?
 
   code-point-attributes &= attribute kHanYu
-    { list { xsd:string { pattern="[1-8][0-9]{4}\.[0-3][0-9][0-3]" }+ } }?
+    { list { xsd:string { pattern="[1-8]\d{4}\.[0-3]\d[0-3]" }+ } }?
 
   code-point-attributes &= attribute kHanyuPinlu
-    { list { xsd:string { pattern="[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+\([0-9]+\)" }+ } }?
+    { list { xsd:string { pattern="[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+\(\d+\)" }+ } }?
 
   code-point-attributes &= attribute kHanyuPinyin
     { list { xsd:string { pattern="(\d{5}\.\d{2}0,)*\d{5}\.\d{2}0:([a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+,)*[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
 
   code-point-attributes &= attribute kHDZRadBreak
-    { xsd:string { pattern="[\x{2F00}-\x{2FD5}]\[U\+2F[0-9A-D][0-9A-F]\]:[1-8][0-9]{4}\.[0-3][0-9]0" } }?
+    { xsd:string { pattern="[\x{2F00}-\x{2FD5}]\[U\+2F[0-9A-D][0-9A-F]\]:[1-8]\d{4}\.[0-3]\d0" } }?
 
   code-point-attributes &= attribute kHKGlyph
-    { list { xsd:string { pattern="[0-9]{4}" }+ } }?
+    { list { xsd:string { pattern="\d{4}" }+ } }?
 
   code-point-attributes &= attribute kIBMJapan
     { list { xsd:string { pattern="F[ABC][0-9A-F]{2}" }+ } }?
@@ -1109,18 +1106,17 @@
 
   code-point-attributes &= attribute kIRG_GSource
     { "" | xsd:string { pattern="G[013578EKS]-[0-9A-F]{4}" }
-         | xsd:string { pattern="G4K(-\d{5})?" }
          | xsd:string { pattern="G(DZ|GH|RM|WZ|XC|XH|ZH)-\d{4}\.\d{2}" }
-         | xsd:string { pattern="G(BK|CH|CY|HC)(-\d{4}\.\d{2})?" }
          | xsd:string { pattern="GKX-\d{4}\.\d{2,3}" }
          | xsd:string { pattern="G(HZ|HZR)-\d{5}\.\d{2}" }
          | xsd:string { pattern="G(CE|FC|IDC23|OCD|XHZ)-\d{3}" }
          | xsd:string { pattern="G(H|HF|LGYJ|PGLG|T)-\d{4}" }
-         | xsd:string { pattern="G(CYY|DM|JZ|KJ|XM|ZFY|ZJW|ZYS)-\d{5}" }
+         | xsd:string { pattern="G(4K|CESI|CYY|DM|JZ|KJ|XM|ZFY|ZJW|ZYS)-\d{5}" }
          | xsd:string { pattern="G(FZ|IDC)-[0-9A-F]{4}" }
+         | xsd:string { pattern="GCA-[A-Z]\d{4}" }
          | xsd:string { pattern="GGFZ-\d{6}" }
-         | xsd:string { pattern="G(LK|Z)-\d{7}" }
-         | xsd:string { pattern="GU-[023][0-9A-F]{4}" }
+         | xsd:string { pattern="G(BK|LK|Z)-\d{7}" }
+         | xsd:string { pattern="G(CH|CY|HC|U)-[023][0-9A-F]{4}" }
          | xsd:string { pattern="GZA-[123467]\d{5}" }
     }?
 
@@ -1160,10 +1156,10 @@
     }?
 
   code-point-attributes &= attribute kIRG_SSource
-    { "" | xsd:string { pattern="SAT-\d{5}" } }?
+    { "" | xsd:string { pattern="SATM?-\d{5}" } }?
 
   code-point-attributes &= attribute kIRG_TSource
-    { "" | xsd:string { pattern="T([1-7A-F]|1[1-3])-[0-9A-F]{4}" }
+    { "" | xsd:string { pattern="T([1-79A-F]|1[1-3])-[0-9A-F]{4}" }
          | xsd:string { pattern="TU-[023][0-9A-F]{4}" }
     }?
 
@@ -1179,13 +1175,13 @@
     }?
 
   code-point-attributes &= attribute kIRGDaeJaweon
-    { list { xsd:string { pattern="[0-9]{4}\.[0-9]{2}[01]" }+ } }?
+    { list { xsd:string { pattern="\d{4}\.\d{2}[01]" }+ } }?
 
   code-point-attributes &= attribute kIRGHanyuDaZidian
-    { list { xsd:string { pattern="[1-8][0-9]{4}\.[0-3][0-9][01]" }+ } }?
+    { list { xsd:string { pattern="[1-8]\d{4}\.[0-3]\d[01]" }+ } }?
 
   code-point-attributes &= attribute kIRGKangXi
-    { list { xsd:string { pattern="[01][0-9]{3}\.[0-7][0-9][01]" }+ } }?
+    { list { xsd:string { pattern="[01]\d{3}\.[0-7]\d[01]" }+ } }?
 
   code-point-attributes &= attribute kJa
     { list { xsd:string { pattern="[0-9A-F]{4}S?" }+ } }?
@@ -1200,49 +1196,49 @@
     { list { xsd:string { pattern="[A-Z]+" }+ } }?
 
   code-point-attributes &= attribute kJinmeiyoKanji
-    { list { xsd:string { pattern="(20[0-9]{2})(:U\+[23]?[0-9A-F]{4})?" }+ } }?
+    { list { xsd:string { pattern="(20\d{2})(:U\+[23]?[0-9A-F]{4})?" }+ } }?
 
   code-point-attributes &= attribute kJis0
-    { list { xsd:string { pattern="[0-9]{4}" }+ } }?
+    { list { xsd:string { pattern="\d{4}" }+ } }?
 
   code-point-attributes &= attribute kJis1
-    { list { xsd:string { pattern="[0-9]{4}" }+ } }?
+    { list { xsd:string { pattern="\d{4}" }+ } }?
 
   code-point-attributes &= attribute kJIS0213
-    { list { xsd:string { pattern="[12],[0-9]{2},[0-9]{1,2}" }+ } }?
+    { list { xsd:string { pattern="[12],\d{2},\d{1,2}" }+ } }?
 
   code-point-attributes &= attribute kJoyoKanji
-    { list { xsd:string { pattern="(20[0-9]{2})|(U\+[23]?[0-9A-F]{4})" }+ } }?
+    { list { xsd:string { pattern="(20\d{2})|(U\+[23]?[0-9A-F]{4})" }+ } }?
 
   code-point-attributes &= attribute kKangXi
-    { list { xsd:string { pattern="[0-9]{4}\.[0-9]{2}[01]" }+ } }?
+    { list { xsd:string { pattern="\d{4}\.\d{2}[01]" }+ } }?
 
   code-point-attributes &= attribute kKarlgren
-    { list { xsd:string { pattern="[1-9][0-9]{0,3}[A*]?" }+ } }?
+    { list { xsd:string { pattern="[1-9]\d{0,3}[A*]?" }+ } }?
 
   code-point-attributes &= attribute kKorean
     { list { xsd:string { pattern="[A-Z]+" }+ } }?
 
   code-point-attributes &= attribute kKoreanEducationHanja
-    { list { xsd:string { pattern="20[0-9]{2}" }+ } }?
+    { list { xsd:string { pattern="20\d{2}" }+ } }?
 
   code-point-attributes &= attribute kKoreanName
-    { list { xsd:string { pattern="20[0-9]{2}" }+ } }?
+    { list { xsd:string { pattern="20\d{2}" }+ } }?
 
   code-point-attributes &= attribute kLau
-    { list { xsd:string { pattern="[1-9][0-9]{0,3}" }+ } }?
+    { list { xsd:string { pattern="[1-9]\d{0,3}" }+ } }?
 
   code-point-attributes &= attribute kMainlandTelegraph
-    { list { xsd:string { pattern="[0-9]{4}" }+ } }?
+    { list { xsd:string { pattern="\d{4}" }+ } }?
 
   code-point-attributes &= attribute kMandarin
     { list { xsd:string { pattern="[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
 
   code-point-attributes &= attribute kMatthews
-    { list { xsd:string { pattern="[1-9][0-9]{0,3}(a|\.5)?" }+ } }?
+    { list { xsd:string { pattern="[1-9]\d{0,3}(a|\.5)?" }+ } }?
 
   code-point-attributes &= attribute kMeyerWempe
-    { list { xsd:string { pattern="[1-9][0-9]{0,3}[a-t*]?" }+ } }?
+    { list { xsd:string { pattern="[1-9]\d{0,3}[a-t*]?" }+ } }?
 
   code-point-attributes &= attribute kMojiJoho
     { list { xsd:string { pattern="MJ\d{6}(:(FE0[01]|E01[01][0-9A-F]))?" }+ } }?
@@ -1251,28 +1247,28 @@
     { list { xsd:string { pattern="(\d{5}'{0,2}|H\d{3})(:(FE0[01]|E010[0-9A-F]))?" }+ } }?
 
   code-point-attributes &= attribute kNelson
-    { list { xsd:string { pattern="[0-9]{4}" }+ } }?
+    { list { xsd:string { pattern="\d{4}" }+ } }?
 
   code-point-attributes &= attribute kOtherNumeric
-    { list { xsd:string { pattern="[0-9]+" }+ } }?
+    { list { xsd:string { pattern="\d+" }+ } }?
 
   code-point-attributes &= attribute kPhonetic
-    { list { xsd:string { pattern="[1-9][0-9]{0,3}[A-D]?\*?" }+ } }?
+    { list { xsd:string { pattern="[1-9]\d{0,3}[A-D]?\*?" }+ } }?
 
   code-point-attributes &= attribute kPrimaryNumeric
-    { list { xsd:string { pattern="[0-9]+" }+ } }?
+    { list { xsd:string { pattern="\d+" }+ } }?
 
   code-point-attributes &= attribute kPseudoGB1
-    { xsd:string { pattern="[0-9]{4}" } }?
+    { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &= attribute kRSAdobe_Japan1_6
-    { list { xsd:string { pattern="[CV]\+[0-9]{1,5}\+[1-9][0-9]{0,2}\.[1-9][0-9]?\.[0-9]{1,2}" }+ } }?
+    { list { xsd:string { pattern="[CV]\+\d{1,5}\+[1-9]\d{0,2}\.[1-9]\d?\.\d{1,2}" }+ } }?
 
   code-point-attributes &= attribute kRSUnicode
-    { list { xsd:string { pattern="[1-9][0-9]{0,2}'{0,3}\.-?[0-9]{1,2}" }+ } }?
+    { list { xsd:string { pattern="[1-9]\d{0,2}'{0,3}\.-?\d{1,2}" }+ } }?
 
   code-point-attributes &= attribute kSBGY
-    { list { xsd:string { pattern="[0-9]{3}\.[0-7][0-9]" }+ } }?
+    { list { xsd:string { pattern="\d{3}\.[0-7]\d" }+ } }?
 
   code-point-attributes &= attribute kSemanticVariant
     { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}(<[ks][A-Za-z0-9_]+(:[TBZFJ]+)?(,[ks][A-Za-z0-9_]+(:[TBZFJ]+)?)*)?" }+ } }?
@@ -1296,26 +1292,26 @@
     { list { ( xsd:string { pattern="[ACU]" }
              | xsd:string { pattern="B:U\+31[0-2AB][0-9A-F]" }
              | xsd:string { pattern="[FMOR](:U\+[23]?[0-9A-F]{4})?" }
-             | xsd:string { pattern="H:U\+31[3-8][0-9A-F]" }
+             | xsd:string { pattern="H(:U\+31[3-8][0-9A-F])+" }
              | xsd:string { pattern="I(:U\+[23]?[0-9A-F]{4})*" }
              | xsd:string { pattern="K(:U\+30[A-F][0-9A-F])+" }
-             | xsd:string { pattern="S:[4-9][0-9]" }
+             | xsd:string { pattern="S:[4-9]\d" }
     )+}}?
 
   code-point-attributes &= attribute kTaiwanTelegraph
-    { list { xsd:string { pattern="[0-9]{4}" }+ } }?
+    { list { xsd:string { pattern="\d{4}" }+ } }?
 
   code-point-attributes &= attribute kTang
     { list { xsd:string { pattern="\*?[A-Za-z()\x{E6}\x{251}\x{259}\x{25B}\x{300}\x{30C}]+" }+ } }?
 
   code-point-attributes &= attribute kTGH
-    { list { xsd:string { pattern="20[0-9]{2}:[1-9][0-9]{0,3}" }+ } }?
+    { list { xsd:string { pattern="20\d{2}:[1-9]\d{0,3}" }+ } }?
 
   code-point-attributes &= attribute kTGHZ2013
-    { list { xsd:string { pattern="[0-9]{3}\.[0-9]{3}(,[0-9]{3}\.[0-9]{3})*:[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
+    { list { xsd:string { pattern="\d{3}\.\d{3}(,\d{3}\.\d{3})*:[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
 
   code-point-attributes &= attribute kTotalStrokes
-    { list { xsd:string { pattern="[1-9][0-9]{0,2}" }+ } }?
+    { list { xsd:string { pattern="[1-9]\d{0,2}" }+ } }?
 
   code-point-attributes &= attribute kTraditionalVariant
     { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?
@@ -1330,10 +1326,10 @@
     { list { xsd:string { pattern="\d+" }+ } }?
 
   code-point-attributes &= attribute kXerox
-    { list { xsd:string { pattern="[0-9]{3}:[0-9]{3}" }+ } }?
+    { list { xsd:string { pattern="\d{3}:\d{3}" }+ } }?
 
   code-point-attributes &= attribute kXHC1983
-    { list { xsd:string { pattern="[0-9]{4}\.[0-9]{3}\*?(,[0-9]{4}\.[0-9]{3}\*?)*:[a-z\x{300}\x{301}\x{304}\x{308}\x{30C}]+" }+ } }?
+    { list { xsd:string { pattern="\d{4}\.\d{3}\*?(,\d{4}\.\d{3}\*?)*:[a-z\x{300}\x{301}\x{304}\x{308}\x{30C}]+" }+ } }?
 
   code-point-attributes &= attribute kZhuang
     { list { xsd:string { pattern="[a-z]+\*?" }+ } }?
@@ -1368,32 +1364,34 @@
     attribute kReading { xsd:string }?
 
       
-  code-point-attributes &=
-    attribute kEH_Cat { xsd:string { pattern="([A-IK-Z]|AA)-[0-9]{2}-[0-9]{3}" } }?
+  code-point-attributes &= attribute kEH_Cat
+    { xsd:string { pattern="([A-IK-Z]|AA)-\d{2}-\d{3}" } }?
 
   code-point-attributes &=
     attribute kEH_Core { "C" | "L" | "N" }?
 
-  code-point-attributes &=
-    attribute kEH_Desc { xsd:string { pattern='[^\t"]+'} }?
+  code-point-attributes &= attribute kEH_Desc
+    { xsd:string { pattern='[^\t"]+' } }?
 
-  code-point-attributes &=
-    attribute kEH_Func { xsd:string { pattern='[^\t"]+'} }?
+  code-point-attributes &= attribute kEH_Func
+    { xsd:string { pattern='[^\t"]+' } }?
 
   code-point-attributes &=
     attribute kEH_FVal { text }?
 
-  code-point-attributes &=
-    attribute kEH_UniK { xsd:string { pattern="([A-IK-Z]|AA|NL|NU)[0-9]{3}[A-Z]{0,2}|HJ ([A-IK-Z]|AA)[0-9]{3}[A-Z]{0,2}" } }?
+  code-point-attributes &= attribute kEH_UniK
+    { xsd:string { pattern="([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}|HJ ([A-IK-Z]|AA)\d{3}[A-Z]{0,2}" } }?
 
-  code-point-attributes &=
-    attribute kEH_JSesh { list { xsd:string { pattern="([A-IK-Z]|Aa|NL|NU|Ff)[0-9]{1,3}[A-Za-z]{0,5}|(US1|US22|US248|US685)([A-IK-Z]|Aa|NL|NU)[0-9]{1,3}[A-Za-z]{0,5}" }+ } }?
+  code-point-attributes &= attribute kEH_JSesh
+    { list { ( xsd:string { pattern="([A-IK-Z]|Aa|NL|NU|Ff)\d{1,3}[A-Za-z]{0,5}" }
+             | xsd:string { pattern="(US1|US22|US248|US685)([A-IK-Z]|Aa|NL|NU)\d{1,3}[A-Za-z]{0,5}" }
+    )+}}?
 
-  code-point-attributes &=
-    attribute kEH_HG { list { xsd:string { pattern="([A-IK-Z]|AA)[0-9]{1,3}[A-Za-z]{0,2}" }+ } }?
+  code-point-attributes &= attribute kEH_HG
+    { list { xsd:string { pattern="([A-IK-Z]|AA)\d{1,3}[A-Za-z]{0,2}" }+ } }?
 
-  code-point-attributes &=
-    attribute kEH_IFAO { list { xsd:string { pattern="[0-9]{1,3},[0-9]{1,2}" }+ } }?
+  code-point-attributes &= attribute kEH_IFAO
+    { list { xsd:string { pattern="\d{1,3},\d{1,2}[ab]?" }+ } }?
 
   code-point-attributes &=
     attribute kEH_NoMirror { boolean }?
