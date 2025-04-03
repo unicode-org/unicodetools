@@ -37,6 +37,7 @@ import org.unicode.props.PropertyStatus;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodePropertyException;
 import org.unicode.props.UnicodeSetUtilities;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -327,6 +328,7 @@ public class CheckProperties {
                     }
                 }
             }
+            throw new UnicodePropertyException("There were data loading errors");
         }
 
         final Set<String> latestFiles = latest.getFileNames();
