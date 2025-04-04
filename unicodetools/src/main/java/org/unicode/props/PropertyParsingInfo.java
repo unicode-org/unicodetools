@@ -411,6 +411,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         if (item == null) {
             final String errorMessage = property + "\tBad enum value:\t" + string;
             IndexUnicodeProperties.getDataLoadingErrors().put(property, errorMessage);
+            throw new UnicodePropertyException(property + ": Bad enum value: " + string);
         } else {
             string = item.toString();
         }
