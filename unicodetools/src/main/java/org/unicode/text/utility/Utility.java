@@ -1468,9 +1468,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                 }
                 Path path = Settings.UnicodeTools.getDataPath(base, element);
                 if (path != null) {
-                    result = path.resolve(parts[2] + fileType).toString();
-                    if (!path.toFile().exists()) {
-                        result = null;
+                    var filePath = path.resolve(parts[2] + fileType);
+                    if (filePath.toFile().exists()) {
+                        result = path.resolve(parts[2] + fileType).toString();
                     }
                     break;
                 }
