@@ -1470,7 +1470,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                 if (path != null) {
                     var filePath = path.resolve(parts[2] + fileType);
                     if (filePath.toFile().exists()) {
-                        result = path.resolve(parts[2] + fileType).toString();
+                        result = filePath.toString();
                     }
                     break;
                 }
