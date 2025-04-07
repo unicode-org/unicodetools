@@ -752,6 +752,12 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             IndexUnicodeProperties indexUnicodeProperties,
             IndexUnicodeProperties nextProperties) {
         for (UcdLineParser.UcdLine line : parser) {
+            if (line.getOriginalLine().equals("U+")
+                    && filename.startsWith("Unihan")
+                    && indexUnicodeProperties.ucdVersion.getMajor() == 2) {
+                // Truncated Unihan-1.txt in Unicode 2.0.
+                return;
+            }
             String propName = line.getParts()[1];
             UcdProperty item = UcdProperty.forString(propName);
 

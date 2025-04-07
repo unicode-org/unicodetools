@@ -1471,7 +1471,21 @@ public class UcdPropertyValues {
         Yudh("Yudh"),
         Yudh_He("Yudh_He"),
         Zain("Zain"),
-        Zhain("Zhain");
+        Zhain("Zhain"),
+        BAA("BAA"),
+        FA("FA"),
+        HAA("HAA"),
+        HA_GOAL("HA_GOAL"),
+        HA("HA"),
+        CAF("CAF"),
+        KNOTTED_HA("KNOTTED_HA"),
+        RA("RA"),
+        SWASH_CAF("SWASH_CAF"),
+        HAMZAH_ON_HA_GOAL("HAMZAH_ON_HA_GOAL"),
+        TAA_MARBUTAH("TAA_MARBUTAH"),
+        YA_BARREE("YA_BARREE"),
+        YA("YA"),
+        ALEF_MAQSURAH("ALEF_MAQSURAH");
         private final PropertyNames<Joining_Group_Values> names;
 
         private Joining_Group_Values(String shortName, String... otherNames) {

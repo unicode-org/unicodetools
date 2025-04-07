@@ -200,6 +200,24 @@ ccc; 142; CCC142                      ; CCC142
 ccc; 143; CCC143                      ; CCC143
 ccc; 144; CCC144                      ; CCC144
 
+# Unicode 2 joining groups, named after Unicode 1 names.
+# These should probably be made extra aliases of the non-extra values, but the
+# tools do not support such a thing.
+jg; BAA ; BAA
+jg; FA ; FA
+jg; HAA ; HAA
+jg; HA_GOAL ; HA_GOAL
+jg; HA ; HA
+jg; CAF ; CAF
+jg; KNOTTED_HA ; KNOTTED_HA
+jg; RA ; RA
+jg; SWASH_CAF ; SWASH_CAF
+jg; HAMZAH_ON_HA_GOAL ; HAMZAH_ON_HA_GOAL
+jg; TAA_MARBUTAH ; TAA_MARBUTAH
+jg; YA_BARREE ; YA_BARREE
+jg; YA ; YA
+jg; ALEF_MAQSURAH ; ALEF_MAQSURAH
+
 # @missing: 0000..10FFFF; Lowercase_Mapping; <slc>
 # @missing: 0000..10FFFF; Uppercase_Mapping; <suc>
 # @missing: 0000..10FFFF; Titlecase_Mapping; <stc>
