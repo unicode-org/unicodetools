@@ -756,7 +756,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             UcdProperty item = UcdProperty.forString(propName);
 
             String extractedValue = null;
-            if (item == null) {
+            if (item == null
+                    && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_4_0) <= 0) {
                 // DerivedNormalizationProps Version 4.0 and earlier is highly irregular.
                 // It provides the NFMeow_QC assignments as a single field NFMEOW_Value,
                 // and calls FC_NFKC_Closure FNC.  Since we need special handling for the former,
@@ -766,10 +767,12 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     item = UcdProperty.forString(propName);
                 } else {
                     String[] parts = propName.split("_");
-                    if (parts.length == 2 && (parts[1].equals("NO") | parts[1].equals("MAYBE")) && (parts[0].startsWith("NF"))) {
-                    propName = parts[0] + "_QC";
-                    item = UcdProperty.forString(propName);
-                    extractedValue = parts[1];
+                    if (parts.length == 2
+                            && (parts[1].equals("NO") | parts[1].equals("MAYBE"))
+                            && (parts[0].startsWith("NF"))) {
+                        propName = parts[0] + "_QC";
+                        item = UcdProperty.forString(propName);
+                        extractedValue = parts[1];
                     }
                 }
             }
@@ -798,10 +801,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             //                    }
             String value;
             // The file emoji-sequences.txt has a comment-like field after the binary property.
-            if (extractedValue == null &&
-                (line.getParts().length == 2
-                    || filename.equals("emoji/*/emoji-sequences")
-                    || filename.equals("emoji/*/emoji-zwj-sequences"))) {
+            if (extractedValue == null
+                    && (line.getParts().length == 2
+                            || filename.equals("emoji/*/emoji-sequences")
+                            || filename.equals("emoji/*/emoji-zwj-sequences"))) {
                 if (propInfo.property.getType() != PropertyType.Binary) {
                     throw new IllegalArgumentException(
                             "Expected a value for "
@@ -812,6 +815,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 value = "Yes";
             } else {
                 value = extractedValue != null ? extractedValue : line.getParts()[2];
+                if (propInfo.property == UcdProperty.kJapaneseOn
+                        && indexUnicodeProperties.ucdVersion.equals(VersionInfo.UNICODE_3_1_0)
+                        && value.isEmpty()
+                        && line.getParts().length == 4) {
+                    // Extra tab in the kJapaneseOn record for U+4E00.
+                    value = line.getParts()[3];
+                }
                 if (propInfo.property.getType() == PropertyType.Binary) {
                     if (line.getType() == Contents.DATA
                             && UcdPropertyValues.Binary.forName(value)
@@ -843,7 +853,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         && !(propInfo.property == UcdProperty.NFKC_Casefold
                                 || propInfo.property == UcdProperty.NFKC_Simple_Casefold)) {
                     throw new IllegalArgumentException(
-                            "Unexpected empty value for property " + propName);
+                            "Unexpected empty value for property "
+                                    + propName
+                                    + ":  "
+                                    + line.getOriginalLine());
                 }
                 if (propInfo.property == UcdProperty.kMandarin) {
                     if (indexUnicodeProperties.oldVersion) {
@@ -1118,6 +1131,11 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 }
                 String value =
                         propInfo.fieldNumber >= parts.length ? null : parts[propInfo.fieldNumber];
+                if (propInfo.property == UcdProperty.Joining_Group
+                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_4_0) <= 0
+                        && value.equals("<no shaping>")) {
+                    value = "No_Joining_Group";
+                }
                 propInfo.put(
                         data,
                         line.getMissingSet(),
@@ -1178,16 +1196,21 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     IntRange range = new IntRange();
                     range.start = Utility.codePointFromHex(line.getParts()[0]);
                     range.end = Utility.codePointFromHex(line.getParts()[1]);
+                    // Unicode 2 puts FEFF both in Arabic Presentation Forms-B and in Specials.
+                    // We are not going to make Block multivalued for that, so we let the second
+                    // assignment win.
                     propInfo.put(
                             data,
                             line.getMissingSet(),
                             range,
                             line.getParts()[2],
-                            null,
+                            version.getMajor() == 2 ? new PropertyUtilities.Overrider() : null,
                             false,
                             nextVersion);
                     continue;
-                } else if (line.getParts().length != 2) {
+                } else if (line.getParts().length != 2
+                        && version.compareTo(VersionInfo.UNICODE_3_0) > 0) {
+                    // Unicode 3.0 and earlier had name comments as an extra field.
                     throw new IllegalArgumentException(
                             "Too many fields in " + line.getOriginalLine());
                 }
