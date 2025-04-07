@@ -947,26 +947,6 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     intRange,
                     parts[1],
                     nextProperties == null ? null : nextProperties.getProperty(propInfo.property));
-            intRange.set(parts[1]);
-            if (intRange.string == null) {
-                if (!data.containsKey(intRange.start)) {
-                    propInfo.put(
-                            data,
-                            intRange,
-                            parts[1],
-                            nextProperties == null
-                                    ? null
-                                    : nextProperties.getProperty(propInfo.property));
-                }
-            } else if (!intRange.string.isEmpty() && !data.containsKey(intRange.string)) {
-                propInfo.put(
-                        data,
-                        intRange,
-                        parts[1],
-                        nextProperties == null
-                                ? null
-                                : nextProperties.getProperty(propInfo.property));
-            }
         }
     }
 
