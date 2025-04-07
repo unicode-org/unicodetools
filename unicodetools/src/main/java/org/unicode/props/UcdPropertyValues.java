@@ -1041,7 +1041,7 @@ public class UcdPropertyValues {
     }
 
     public enum Identifier_Type_Values implements Named {
-        Not_Character("nc", "not_chars"),
+        Not_Character("nc", "not_chars", "Not_Characters"),
         Deprecated("d"),
         Default_Ignorable("di"),
         Not_NFKC("nn"),

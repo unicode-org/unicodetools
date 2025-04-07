@@ -249,7 +249,7 @@ ID_Status	; a	 ; Allowed
 # @missing: 0000..10FFFF; Identifier_Type    	; nc
 # @missing: 0000..10FFFF; Identifier_Type    	; rec ; v9.0
 
-ID_Type	; nc	; Not_Character ; not_chars				
+ID_Type	; nc	; Not_Character ; not_chars ; Not_Characters
 ID_Type	; d		; Deprecated		
 ID_Type	; di	; Default_Ignorable		
 ID_Type	; nn	; Not_NFKC				
