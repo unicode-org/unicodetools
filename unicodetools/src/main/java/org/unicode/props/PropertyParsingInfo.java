@@ -409,7 +409,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     public String checkEnum(String string) {
         final Enum item = string == null ? null : property.getEnum(string);
         if (item == null) {
-            throw new UnicodePropertyException("\tBad enum value for " + property + " :\t" + string);
+            throw new UnicodePropertyException(
+                    "\tBad enum value for " + property + " :\t" + string);
         } else {
             string = item.toString();
         }

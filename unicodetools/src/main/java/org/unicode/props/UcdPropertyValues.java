@@ -703,7 +703,8 @@ public class UcdPropertyValues {
         Precomposed_Form("Precomposed_Form"),
         Deprecated("Deprecated"),
         Discouraged("Discouraged"),
-        Preferred_Spelling("Preferred_Spelling");
+        Preferred_Spelling("Preferred_Spelling"),
+        Arabic_Tashkil("Arabic_Tashkil");
         private final PropertyNames<Do_Not_Emit_Type_Values> names;
 
         private Do_Not_Emit_Type_Values(String shortName, String... otherNames) {
