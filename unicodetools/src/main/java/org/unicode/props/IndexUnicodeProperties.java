@@ -925,11 +925,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 final var properties = IndexUnicodeProperties.make(age.getShortName());
                 for (UcdProperty property : UcdProperty.values()) {
                     if (property.getShortName().startsWith("cjk") == unihan) {
-                        try {
-                            properties.load(property, expectCacheHit);
-                        } catch (ICUException e) {
-                            e.printStackTrace();
-                        }
+                        properties.load(property, expectCacheHit);
                     }
                 }
                 System.out.println(

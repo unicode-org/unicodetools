@@ -1468,7 +1468,10 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                 }
                 Path path = Settings.UnicodeTools.getDataPath(base, element);
                 if (path != null) {
-                    result = path.resolve(parts[2] + fileType).toString();
+                    var filePath = path.resolve(parts[2] + fileType);
+                    if (filePath.toFile().exists()) {
+                        result = filePath.toString();
+                    }
                     break;
                 }
                 continue;
@@ -1480,9 +1483,6 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                 if (result != null) {
                     break;
                 }
-            }
-            if (versionString.startsWith("2.0") && filename.startsWith("Prop")) {
-                break; // skip bogus forms of Prop* files
             }
             if (show) {
                 tries.add(element);
@@ -1499,6 +1499,11 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                             + "*"
                             + fileType
                             + "'");
+        }
+        if ((versionString.startsWith("2.") || versionString.startsWith("3.0"))
+                && filename.startsWith("Prop")) {
+            // Ignore the property dumps for now, as we do not have parsing logic for them.
+            return null;
         }
         return result;
     }

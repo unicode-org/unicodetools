@@ -362,7 +362,12 @@ public enum UcdProperty {
     Quotation_Mark(PropertyType.Binary, Binary.class, null, "QMark"),
     RGI_Emoji_Flag_Sequence(PropertyType.Binary, Binary.class, null, "REFS", "Emoji_Flag_Sequence"),
     RGI_Emoji_Keycap_Sequence(
-            PropertyType.Binary, Binary.class, null, "REKS", "Emoji_Keycap_Sequence"),
+            PropertyType.Binary,
+            Binary.class,
+            null,
+            "REKS",
+            "Emoji_Keycap_Sequence",
+            "Emoji_Combining_Sequence"),
     RGI_Emoji_Modifier_Sequence(
             PropertyType.Binary, Binary.class, null, "REMS", "Emoji_Modifier_Sequence"),
     RGI_Emoji_Tag_Sequence(PropertyType.Binary, Binary.class, null, "RETS", "Emoji_Tag_Sequence"),

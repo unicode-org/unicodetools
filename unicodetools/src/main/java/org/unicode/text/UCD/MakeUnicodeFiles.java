@@ -1041,6 +1041,13 @@ public class MakeUnicodeFiles {
                             && !value.equals("Katakana_Or_Hiragana")) {
                         continue;
                     }
+                    if (propName.equals("Indic_Syllabic_Category")
+                            && value.equals("Consonant_Repha")) {
+                        continue;
+                    }
+                    if (propName.equals("Indic_Positional_Category") && value.equals("Invisible")) {
+                        continue;
+                    }
                     final List<String> l = up.getValueAliases(value);
                     // HACK
                     if (isJoiningGroup && value.equals("Hamzah_On_Ha_Goal")) {
@@ -1348,7 +1355,10 @@ public class MakeUnicodeFiles {
             aliases = temp2;
         }
         if (ps.roozbehFile) {
-            aliases.removeIf(alias -> UnicodeProperty.compareNames(alias, ps.skipValue) == 0);
+            aliases.removeIf(
+                    alias ->
+                            UnicodeProperty.compareNames(alias, ps.skipValue) == 0
+                                    || prop.getSet(alias).isEmpty());
             if (!Format.theFormat
                     .propertyToOrderedValues
                     .get(prop.getName())

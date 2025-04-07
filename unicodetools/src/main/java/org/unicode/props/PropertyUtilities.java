@@ -28,6 +28,15 @@ public class PropertyUtilities {
         }
     }
 
+    public static final class Overrider implements Merge<String> {
+        public Overrider() {}
+
+        @Override
+        public String merge(String first, String second) {
+            return second;
+        }
+    }
+
     static final <K, V, M extends Map<K, V>> M putNew(M map, K key, V value) {
         final V oldValue = map.get(key);
         if (oldValue != null) {
