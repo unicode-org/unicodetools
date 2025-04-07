@@ -1,17 +1,13 @@
 package org.unicode.jsp;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.utility.Settings;
 
 public class RebuildPropertyCache {
 
     public static void main(String[] args) throws IOException {
+        /*
         final var binDir = new File(Settings.Output.BIN_DIR);
         if (binDir.exists()) {
             final Queue<File> directories = new ArrayDeque<>();
@@ -46,9 +42,9 @@ public class RebuildPropertyCache {
                     System.err.println("Failed to delete " + f);
                 }
             }
-        }
+        }*/
 
-        IndexUnicodeProperties.loadUcdHistory(null, null, false);
+        IndexUnicodeProperties.loadUcdHistory(null, null, true);
         System.out.println("Rebuilt property cache in " + Settings.Output.BIN_DIR);
     }
 }

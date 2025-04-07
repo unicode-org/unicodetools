@@ -755,6 +755,25 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             String propName = line.getParts()[1];
             UcdProperty item = UcdProperty.forString(propName);
 
+            String extractedValue = null;
+            if (item == null) {
+                // DerivedNormalizationProps Version 4.0 and earlier is highly irregular.
+                // It provides the NFMeow_QC assignments as a single field NFMEOW_Value,
+                // and calls FC_NFKC_Closure FNC.  Since we need special handling for the former,
+                // we also deal with FNC here instead of making it an Extra alias.
+                if (propName.equals("FNC")) {
+                    propName = "FC_NFKC_Closure";
+                    item = UcdProperty.forString(propName);
+                } else {
+                    String[] parts = propName.split("_");
+                    if (parts.length == 2 && (parts[1].equals("NO") | parts[1].equals("MAYBE")) && (parts[0].startsWith("NF"))) {
+                    propName = parts[0] + "_QC";
+                    item = UcdProperty.forString(propName);
+                    extractedValue = parts[1];
+                    }
+                }
+            }
+
             if (item == null) {
                 throw new IllegalArgumentException(
                         "Missing property enum in UcdProperty for "
@@ -779,9 +798,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             //                    }
             String value;
             // The file emoji-sequences.txt has a comment-like field after the binary property.
-            if (line.getParts().length == 2
+            if (extractedValue == null &&
+                (line.getParts().length == 2
                     || filename.equals("emoji/*/emoji-sequences")
-                    || filename.equals("emoji/*/emoji-zwj-sequences")) {
+                    || filename.equals("emoji/*/emoji-zwj-sequences"))) {
                 if (propInfo.property.getType() != PropertyType.Binary) {
                     throw new IllegalArgumentException(
                             "Expected a value for "
@@ -791,7 +811,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 }
                 value = "Yes";
             } else {
-                value = line.getParts()[2];
+                value = extractedValue != null ? extractedValue : line.getParts()[2];
                 if (propInfo.property.getType() == PropertyType.Binary) {
                     if (line.getType() == Contents.DATA
                             && UcdPropertyValues.Binary.forName(value)
