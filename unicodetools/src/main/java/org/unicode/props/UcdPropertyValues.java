@@ -1192,7 +1192,8 @@ public class UcdPropertyValues {
         Top_And_Left("Top_And_Left"),
         Top_And_Left_And_Right("Top_And_Left_And_Right"),
         Top_And_Right("Top_And_Right"),
-        Visual_Order_Left("Visual_Order_Left");
+        Visual_Order_Left("Visual_Order_Left"),
+        Invisible("Invisible");
         private final PropertyNames<Indic_Positional_Category_Values> names;
 
         private Indic_Positional_Category_Values(String shortName, String... otherNames) {
@@ -1256,7 +1257,8 @@ public class UcdPropertyValues {
         Visarga("Visarga"),
         Vowel("Vowel"),
         Vowel_Dependent("Vowel_Dependent"),
-        Vowel_Independent("Vowel_Independent");
+        Vowel_Independent("Vowel_Independent"),
+        Consonant_Repha("Consonant_Repha");
         private final PropertyNames<Indic_Syllabic_Category_Values> names;
 
         private Indic_Syllabic_Category_Values(String shortName, String... otherNames) {

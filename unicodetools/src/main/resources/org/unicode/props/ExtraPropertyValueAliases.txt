@@ -307,6 +307,11 @@ Do_Not_Emit_Type ; Discouraged              ; Discouraged
 Do_Not_Emit_Type ; Preferred_Spelling       ; Preferred_Spelling
 Do_Not_Emit_Type ; Arabic_Tashkil           ; Arabic_Tashkil
 
+# Values from the old Provisional Indic_Matra_Category (identified with the Informative InPC in the
+# tools) and InSC.
+Indic_Positional_Category ; Invisible ; Invisible
+Indic_Syllabic_Category ; Consonant_Repha ; Consonant_Repha
+
 # @missing: 0000..10FFFF; kTGT_MergedSrc ; <none>
 # @missing: 0000..10FFFF; kRSTUnicode ; <none>
 
