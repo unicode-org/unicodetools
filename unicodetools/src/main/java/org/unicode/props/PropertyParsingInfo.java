@@ -1205,6 +1205,17 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     // Unicode 2 puts FEFF both in Arabic Presentation Forms-B and in Specials.
                     // We are not going to make Block multivalued for that, so we let the second
                     // assignment win.
+                    // This fits with assignments in Unicode 2.1.4..3.1.1 where
+                    // Arabic Presentation Forms-B ended on FEFE and Specials was a
+                    // split Block of FEFF & FFF0..FFFD.
+                    // Since Unicode 3.2, blocks were contiguous xxx0..yyyF:
+                    // https://www.unicode.org/reports/tr28/tr28-3.html#database
+                    // The normative blocks defined in Blocks.txt have been adjusted slightly,
+                    // in accordance with Unicode Technical Committee decisions.
+                    // - Every block starts and ends on a column boundary.
+                    //   That is, the last digit of the first code point in the block is always 0,
+                    //   and the last digit of the final code point in the block is always F.
+                    // - Every block is contiguous. [...]
                     propInfo.put(
                             data,
                             line.getMissingSet(),
