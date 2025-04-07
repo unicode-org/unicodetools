@@ -256,7 +256,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             Merge<String> merger,
             boolean hackHangul,
             UnicodeProperty nextVersion) {
-        // MEOW
+        if (value == null && property == UcdProperty.Idn_2008) {
+            // The IDNA2008 Status field of the IDNA mapping table is treated as an enumerated
+            // property by the tools, with an Extra @missing line with a value na.
+            // Unusually, the file has data lines with no IDNA2008 Status field; the default should
+            // apply to these ranges.
+            return;
+        }
         if (value != null
                 && value.isEmpty()
                 && property != UcdProperty.NFKC_Casefold
@@ -1111,7 +1117,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         throw new UnicodePropertyException();
                 }
                 String value =
-                        propInfo.fieldNumber >= parts.length ? "" : parts[propInfo.fieldNumber];
+                        propInfo.fieldNumber >= parts.length ? null : parts[propInfo.fieldNumber];
                 propInfo.put(
                         data,
                         line.getMissingSet(),
