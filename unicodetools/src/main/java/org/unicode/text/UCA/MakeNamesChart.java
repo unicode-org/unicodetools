@@ -771,7 +771,7 @@ public class MakeNamesChart {
         return result;
     }
 
-    // static final UnicodeSet noname = new UnicodeSet("[[:ascii:][:ideographic:]]");
+    // static final UnicodeSet noname = new UnicodeSet("[[:Block=ASCII:][:ideographic:]]");
     static final Map hasNoNameCan = new TreeMap();
     static final Map hasNameCan = new TreeMap();
     static final Map hasNoNameComp = new TreeMap();

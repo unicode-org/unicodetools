@@ -514,7 +514,7 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkProperties("[:isNFC=false:]", "[\u212B]", "[a]");
         checkProperties("[:toNFD=A\u0300:]", "[\u00C0]");
         checkProperties("[:toLowercase= /a/ :]", "[aA]");
-        checkProperties("[:ASCII:]", "[z]");
+        checkProperties("[:Block=ASCII:]", "[z]");
         checkProperties("[:lowercase:]", "[a]");
         checkProperties("[:toNFC=/\\./:]", "[.]");
         checkProperties("[:toNFKC=/\\./:]", "[\u2024]");
@@ -586,8 +586,8 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkProperties("[:subhead=/Syllables/:]", "[\u1200]");
         // showIcuEnums();
         checkProperties("\\p{ccc:0}", "\\p{ccc=0}", "[\u0308]");
-        checkProperties("\\p{isNFC}", "[:ASCII:]", "[\u212B]");
-        checkProperties("[:isNFC=no:]", "[\u212B]", "[:ASCII:]");
+        checkProperties("\\p{isNFC}", "[:Block=ASCII:]", "[\u212B]");
+        checkProperties("[:isNFC=no:]", "[\u212B]", "[:Block=ASCII:]");
         checkProperties("[:dt!=none:]&[:toNFD=/^\\p{ccc:0}/:]", "[\u00A0]", "[\u0340]");
         checkProperties("[:toLowercase!=@code point@:]", "[A-Z\u00C0]", "[abc]");
         checkProperties("[:toNfkc!=@toNfc@:]", "[\\u00A0]", "[abc]");

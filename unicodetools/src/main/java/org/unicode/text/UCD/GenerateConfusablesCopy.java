@@ -221,9 +221,9 @@ public class GenerateConfusablesCopy {
     private static final UnicodeSet LATIN = new UnicodeSet("[:script=latin:]").freeze();
     private static final UnicodeSet LATIN_PLUS =
             new UnicodeSet("[[:script=latin:][:script=common:][:script=inherited:]]").freeze();
-    private static final UnicodeSet ASCII = new UnicodeSet("[:ASCII:]").freeze();
+    private static final UnicodeSet ASCII = new UnicodeSet("[:Block=ASCII:]").freeze();
     private static final UnicodeSet MARKS_AND_ASCII =
-            new UnicodeSet("[[:mark:][:ASCII:]]").freeze();
+            new UnicodeSet("[[:mark:][:Block=ASCII:]]").freeze();
 
     private static void generateLatin() throws IOException {
         // pick out only those items where the source and target both have some latin, and no
