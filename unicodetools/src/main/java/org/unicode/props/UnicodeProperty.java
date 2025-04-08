@@ -516,13 +516,13 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                         partAliases.clear();
                         getValueAliases(part, partAliases);
                         for (String partAlias : partAliases) {
-                            if (matcher.test(partAlias) || matcher.test(toSkeleton(partAlias))) {
+                            if (matcher.test(partAlias)) {
                                 um.keySet(value, result);
                                 continue main;
                             }
                         }
                     }
-                } else if (matcher.test(valueAlias) || matcher.test(toSkeleton(valueAlias))) {
+                } else if (matcher.test(valueAlias)) {
                     um.keySet(value, result);
                     continue main;
                 }
@@ -713,7 +713,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         // we can do this with char, since no surrogates are involved
         for (int i = 0; i < source.length(); ++i) {
             char ch = source.charAt(i);
-            if (i > 0 && (ch == '_' || ch == ' ' || ch == '-')) {
+            if (ch == '_' || ch == ' ' || ch == '-') {
                 gotOne = true;
             } else {
                 char ch2 = Character.toLowerCase(ch);
@@ -1023,31 +1023,6 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
         public final SymbolTable getSymbolTable(String prefix) {
             return new PropertySymbolTable(prefix);
-        }
-
-        private class MyXSymbolTable extends UnicodeSet.XSymbolTable {
-            @Override
-            public boolean applyPropertyAlias(
-                    String propertyName, String propertyValue, UnicodeSet result) {
-                if ((propertyName.equals("C") || propertyName.equals("c"))
-                        && propertyValue.isEmpty()) {
-                    // C matches isc=ISO_Comment, and we are not able to distinguish
-                    // \p{C} (=\p{General_Category=Other}) from \p{C=} (=\p{ISO_Comment=}) here.
-                    // Fall back to ICU, since this symbol table does not implement GC groupings.
-                    // TODO(egg): This symbol table needs to go, see #1073, #1074.
-                    return false;
-                }
-                if (false) System.out.println(propertyName + "=" + propertyValue);
-                UnicodeProperty prop = getProperty(propertyName);
-                if (prop == null) return false;
-                result.clear();
-                UnicodeSet x = prop.getSet(propertyValue, result);
-                return x.size() != 0;
-            }
-        }
-
-        public final UnicodeSet.XSymbolTable getXSymbolTable() {
-            return new MyXSymbolTable();
         }
 
         private class PropertySymbolTable implements SymbolTable {

@@ -1,5 +1,6 @@
 package org.unicode.jsptest;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
@@ -189,14 +190,22 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkSetsEqual("\\p{Name=_HANGUL_JUNGSEONG_O-E_}", "[\\u1180]");
         checkSetsEqual("\\p{Name=HANGUL JUNGSEONG O-EO}", "[\\u117F]");
         checkSetsEqual("\\p{Name=HANGUL JUNGSEONG OE O}", "[\\u117F]");
-        checkSetsEqual("\\p{Name=HANGUL JUNGSEONG O -EO}", "[]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> UnicodeSetUtilities.parseUnicodeSet("\\p{Name=HANGUL JUNGSEONG O -EO}"));
         checkSetsEqual("\\p{Name=MARCHEN LETTER -A}", "[\\x{11C88}]");
         checkSetsEqual("\\p{Name=MARCHEN_LETTER_-A}", "[\\x{11C88}]");
         checkSetsEqual("\\p{Name=MARCHEN LETTER A}", "[\\x{11C8F}]");
         checkSetsEqual("\\p{Name=TIBETAN MARK TSA -PHRU}", "[\\u0F39]");
-        checkSetsEqual("\\p{Name=TIBETAN MARK TSA PHRU}", "[]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> UnicodeSetUtilities.parseUnicodeSet("\\p{Name=TIBETAN MARK TSA PHRU}"));
         checkSetsEqual("\\p{Name=TIBETAN MARK BKA- SHOG YIG MGO}", "[\\u0F0A]");
-        checkSetsEqual("\\p{Name=TIBETAN MARK BKA SHOG YIG MGO}", "[]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () ->
+                        UnicodeSetUtilities.parseUnicodeSet(
+                                "\\p{Name=TIBETAN MARK BKA SHOG YIG MGO}"));
         checkSetsEqual("\\p{Name_Alias=newline}", "[\\x0A]");
         checkSetsEqual("\\p{Name_Alias=NEW LINE}", "[\\x0A]");
         // The medial hyphen is only significant in HANGUL JUNGSEONG O-E, not in arbitrary O-E/OE.
@@ -213,9 +222,11 @@ public class TestUnicodeSet extends TestFmwk2 {
                 "\\p{Name=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET}", "[︘]");
         checkSetsEqual(
                 "\\p{Name=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET}", "[︘]");
-        checkSetsEqual(
-                "\\p{Name_Alias=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET}",
-                "[]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () ->
+                        UnicodeSetUtilities.parseUnicodeSet(
+                                "\\p{Name_Alias=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET}"));
         checkSetsEqual(
                 "\\p{Name_Alias=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET}",
                 "[︘]");
@@ -233,9 +244,9 @@ public class TestUnicodeSet extends TestFmwk2 {
         // Check that we are not falling into the trap described in
         // https://www.unicode.org/reports/tr44/#UAX44-LM3.
         checkProperties("\\p{lb=IS}", "[,.:;]");
-        // TODO(egg): This should perhaps be an error. But if it is not an error, it
-        // should be empty.
-        checkSetsEqual("\\p{lb=@none@}", "[]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> UnicodeSetUtilities.parseUnicodeSet("\\p{lb=@none@}"));
         checkSetsEqual("\\p{Bidi_Paired_Bracket=@none@}", "\\p{Bidi_Paired_Bracket_Type=Is_None}");
         checkSetsEqual("\\p{Bidi_Paired_Bracket≠@None@}", "\\p{Bidi_Paired_Bracket_Type≠None}");
     }
@@ -503,7 +514,7 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkProperties("[:isNFC=false:]", "[\u212B]", "[a]");
         checkProperties("[:toNFD=A\u0300:]", "[\u00C0]");
         checkProperties("[:toLowercase= /a/ :]", "[aA]");
-        checkProperties("[:ASCII:]", "[z]");
+        checkProperties("[:Block=ASCII:]", "[z]");
         checkProperties("[:lowercase:]", "[a]");
         checkProperties("[:toNFC=/\\./:]", "[.]");
         checkProperties("[:toNFKC=/\\./:]", "[\u2024]");
@@ -575,8 +586,8 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkProperties("[:subhead=/Syllables/:]", "[\u1200]");
         // showIcuEnums();
         checkProperties("\\p{ccc:0}", "\\p{ccc=0}", "[\u0308]");
-        checkProperties("\\p{isNFC}", "[:ASCII:]", "[\u212B]");
-        checkProperties("[:isNFC=no:]", "[\u212B]", "[:ASCII:]");
+        checkProperties("\\p{isNFC}", "[:Block=ASCII:]", "[\u212B]");
+        checkProperties("[:isNFC=no:]", "[\u212B]", "[:Block=ASCII:]");
         checkProperties("[:dt!=none:]&[:toNFD=/^\\p{ccc:0}/:]", "[\u00A0]", "[\u0340]");
         checkProperties("[:toLowercase!=@code point@:]", "[A-Z\u00C0]", "[abc]");
         checkProperties("[:toNfkc!=@toNfc@:]", "[\\u00A0]", "[abc]");

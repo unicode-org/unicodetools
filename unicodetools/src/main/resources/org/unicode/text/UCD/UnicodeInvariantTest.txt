@@ -1075,7 +1075,7 @@ Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 \p{lb=EM} = \p{Emoji_Modifier}
 
 # Recent pictographs with default emoji presentation are lb=ID, EB or EM:
-[\p{Emoji_Presentation} & [\p{age=7.0}\p{age=8.0}\p{age=9.0}\p{age=10.0}\p{age=11.0}\p{age=12.0}\p{age=13.0}\p{age=14.0}\p{age=15.0}]] ⊂ [\p{lb=ID} \p{lb=EB} \p{lb=EM}]
+[\p{Emoji_Presentation} - \p{age=6.0}] ⊂ [\p{lb=ID} \p{lb=EB} \p{lb=EM}]
 
 [\p{Emoji_Presentation} - \p{RI}] ⊂ \p{ea=W}
 
@@ -1335,7 +1335,7 @@ $unikemetScope ⊃ \P{kEH_Core=None}
 
 # DoNotEmit.txt.
 \p{Do_Not_Emit_Type=Deprecated} ⊆ \p{Deprecated}
-\p{Deprecated} ⊆ [\p{Do_Not_Emit_Type=Deprecated} \p{Do_Not_Emit_Type=@none@}]
+\p{Deprecated} ⊆ [\p{Do_Not_Emit_Type=Deprecated} \p{Do_Not_Emit_Type=None}]
 # The non-DI deprecated characters have replacements in DoNotEmit, except the angle brackets that
 # are ambiguous.
 \p{Do_Not_Emit_Type=Deprecated} = [ \p{Deprecated} - \p{Default_Ignorable_Code_Point} - \p{Name=/^(LEFT|RIGHT)-POINTING ANGLE BRACKET$/} ]

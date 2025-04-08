@@ -81,7 +81,7 @@ public class TestTestUnicodeInvariants {
                         () ->
                                 TestUnicodeInvariants.parseUnicodeSet(
                                         "TEST [\\N{MEOW}]", new ParsePosition(5)));
-        assertEquals("No character matching \\N escape", thrown.getMessage());
+        assertEquals("No character name nor name alias matches MEOW", thrown.getMessage());
         assertEquals("TEST [".length(), thrown.getErrorOffset());
         thrown =
                 assertThrows(

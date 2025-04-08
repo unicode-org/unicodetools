@@ -789,6 +789,7 @@ public class UcdPropertyValues {
 
     // Do_Not_Emit_Preferred
     public enum Do_Not_Emit_Type_Values implements Named {
+        None("None"),
         Indic_Atomic_Consonant("Indic_Atomic_Consonant"),
         Indic_Consonant_Conjunct("Indic_Consonant_Conjunct"),
         Indic_Vowel_Letter("Indic_Vowel_Letter"),
