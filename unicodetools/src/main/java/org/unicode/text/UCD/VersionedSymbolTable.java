@@ -514,4 +514,18 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
     private UnicodeProperty.Factory unversionedExtensions;
     private Supplier<VersionInfo> oldestLoadedUcd;
     private static Pattern RATIONAL_PATTERN = Pattern.compile("[+-]?[0-9]+(/[0-9]*[1-9][0-9]*)?");
+
+    public static UnicodeSet.XSymbolTable NO_PROPS =
+            new UnicodeSet.XSymbolTable() {
+                @Override
+                public boolean applyPropertyAlias(
+                        String propertyName, String propertyValue, UnicodeSet result) {
+                    throw new IllegalArgumentException(
+                            "Don't use any ICU Unicode Properties! "
+                                    + propertyName
+                                    + "="
+                                    + propertyValue);
+                }
+                ;
+            };
 }
