@@ -1025,31 +1025,6 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             return new PropertySymbolTable(prefix);
         }
 
-        private class MyXSymbolTable extends UnicodeSet.XSymbolTable {
-            @Override
-            public boolean applyPropertyAlias(
-                    String propertyName, String propertyValue, UnicodeSet result) {
-                if ((propertyName.equals("C") || propertyName.equals("c"))
-                        && propertyValue.isEmpty()) {
-                    // C matches isc=ISO_Comment, and we are not able to distinguish
-                    // \p{C} (=\p{General_Category=Other}) from \p{C=} (=\p{ISO_Comment=}) here.
-                    // Fall back to ICU, since this symbol table does not implement GC groupings.
-                    // TODO(egg): This symbol table needs to go, see #1073, #1074.
-                    return false;
-                }
-                if (false) System.out.println(propertyName + "=" + propertyValue);
-                UnicodeProperty prop = getProperty(propertyName);
-                if (prop == null) return false;
-                result.clear();
-                UnicodeSet x = prop.getSet(propertyValue, result);
-                return x.size() != 0;
-            }
-        }
-
-        public final UnicodeSet.XSymbolTable getXSymbolTable() {
-            return new MyXSymbolTable();
-        }
-
         private class PropertySymbolTable implements SymbolTable {
             static final boolean DEBUG = false;
 

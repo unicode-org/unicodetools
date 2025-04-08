@@ -35,6 +35,16 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         return result;
     }
 
+    public static VersionedSymbolTable frozenAt(VersionInfo version) {
+        var result = new VersionedSymbolTable();
+        result.requireSuffixForLatest = false;
+        result.implicitVersion = version;
+        // TODO(egg): We should have a programmatic “previous version of Unicode”.
+        // For now this ensures we fail.
+        result.previousVersion = VersionInfo.getInstance(0);
+        return result;
+    }
+
     public VersionedSymbolTable setUnversionedExtensions(UnicodeProperty.Factory factory) {
         unversionedExtensions = factory;
         return this;

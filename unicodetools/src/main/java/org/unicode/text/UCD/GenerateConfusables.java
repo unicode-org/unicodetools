@@ -131,8 +131,7 @@ public class GenerateConfusables {
             ToolUnicodePropertySource.make(version); // ICUPropertyFactory.make();
 
     static {
-        // USE the tool unicode set instead of ICU, which may not be using the latest version.
-        UnicodeSet.setDefaultXSymbolTable(ups.getXSymbolTable());
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
         UnicodeTransform.setFactory(TOOL_FACTORY);
     }
 
