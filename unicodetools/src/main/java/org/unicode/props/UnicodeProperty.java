@@ -32,6 +32,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+import org.unicode.cldr.util.Rational.RationalParser;
 import org.unicode.cldr.util.props.UnicodeLabel;
 
 public abstract class UnicodeProperty extends UnicodeLabel {
@@ -198,6 +199,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             EXTENDED_MASK = 1,
             CORE_MASK = ~EXTENDED_MASK,
             BINARY_MASK = (1 << BINARY) | (1 << EXTENDED_BINARY),
+            NUMERIC_MASK = (1 << NUMERIC) | (1 << EXTENDED_NUMERIC),
             STRING_MASK = (1 << STRING) | (1 << EXTENDED_STRING),
             STRING_OR_MISC_MASK =
                     (1 << STRING) | (1 << EXTENDED_STRING) | (1 << MISC) | (1 << EXTENDED_MISC),
@@ -443,19 +445,25 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (isMultivalued && propertyValue != null && propertyValue.contains(delimiter)) {
             throw new IllegalArgumentException(
                     "Multivalued property values can't contain the delimiter.");
-        } else {
-            return getSet(
-                    propertyValue == null
-                            ? NULL_MATCHER
-                            : new SimpleMatcher(
-                                    propertyValue,
-                                    getName().equals("Name") || getName().equals("Name_Alias")
-                                            ? CHARACTER_NAME_COMPARATOR
-                                            : isType(STRING_OR_MISC_MASK)
-                                                    ? null
-                                                    : PROPERTY_COMPARATOR),
-                    result);
         }
+        if (propertyValue == null) {
+            return getSet(NULL_MATCHER, result);
+        }
+        Comparator<String> comparator;
+        if (isType(NUMERIC_MASK)) {
+            // UAX44-LM1.
+            comparator = RATIONAL_COMPARATOR;
+        } else if (getName().equals("Name") || getName().equals("Name_Alias")) {
+            // UAX44-LM2.
+            comparator = CHARACTER_NAME_COMPARATOR;
+        } else if (isType(BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
+            // UAX44-LM3
+            comparator = PROPERTY_COMPARATOR;
+        } else {
+            // String-valued or Miscellaneous property.
+            comparator = null;
+        }
+        return getSet(new SimpleMatcher(propertyValue, comparator), result);
     }
 
     private UnicodeMap<String> unicodeMap = null;
@@ -508,13 +516,13 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                         partAliases.clear();
                         getValueAliases(part, partAliases);
                         for (String partAlias : partAliases) {
-                            if (matcher.test(partAlias) || matcher.test(toSkeleton(partAlias))) {
+                            if (matcher.test(partAlias)) {
                                 um.keySet(value, result);
                                 continue main;
                             }
                         }
                     }
-                } else if (matcher.test(valueAlias) || matcher.test(toSkeleton(valueAlias))) {
+                } else if (matcher.test(valueAlias)) {
                     um.keySet(value, result);
                     continue main;
                 }
@@ -705,7 +713,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         // we can do this with char, since no surrogates are involved
         for (int i = 0; i < source.length(); ++i) {
             char ch = source.charAt(i);
-            if (i > 0 && (ch == '_' || ch == ' ' || ch == '-')) {
+            if (ch == '_' || ch == ' ' || ch == '-') {
                 gotOne = true;
             } else {
                 char ch2 = Character.toLowerCase(ch);
@@ -723,6 +731,26 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         }
         if (!gotOne) return source; // avoid string creation
         return skeletonBuffer.toString();
+    }
+
+    public static final Comparator<String> RATIONAL_COMPARATOR =
+            new Comparator<String>() {
+                @Override
+                public int compare(String x, String y) {
+                    return compareRationals(x, y);
+                }
+            };
+
+    public static int compareRationals(String a, String b) {
+        if (a == b) return 0;
+        if (a == null) return -1;
+        if (b == null) return 1;
+        final boolean aIsNaN = equalNames(a, "NaN");
+        final boolean bIsNaN = equalNames(b, "NaN");
+        if (aIsNaN && bIsNaN) return 0;
+        if (aIsNaN) return -1;
+        if (bIsNaN) return 1;
+        return RationalParser.BASIC.parse(a).compareTo(RationalParser.BASIC.parse(b));
     }
 
     public static final Comparator<String> CHARACTER_NAME_COMPARATOR =
@@ -995,23 +1023,6 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
         public final SymbolTable getSymbolTable(String prefix) {
             return new PropertySymbolTable(prefix);
-        }
-
-        private class MyXSymbolTable extends UnicodeSet.XSymbolTable {
-            @Override
-            public boolean applyPropertyAlias(
-                    String propertyName, String propertyValue, UnicodeSet result) {
-                if (false) System.out.println(propertyName + "=" + propertyValue);
-                UnicodeProperty prop = getProperty(propertyName);
-                if (prop == null) return false;
-                result.clear();
-                UnicodeSet x = prop.getSet(propertyValue, result);
-                return x.size() != 0;
-            }
-        }
-
-        public final UnicodeSet.XSymbolTable getXSymbolTable() {
-            return new MyXSymbolTable();
         }
 
         private class PropertySymbolTable implements SymbolTable {

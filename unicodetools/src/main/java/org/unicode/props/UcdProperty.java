@@ -123,6 +123,10 @@ public enum UcdProperty {
             ValueCardinality.Unordered,
             "SV"),
     Unicode_1_Name(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "na1"),
+    emoji_variation_sequence(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "emoji_variation_sequence"),
     kAlternateHanYu(
             PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkAlternateHanYu"),
     kAlternateJEF(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkAlternateJEF"),
@@ -493,6 +497,18 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkZhuangNumeric"),
+    normalization_correction_corrected(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "normalization_correction_corrected"),
+    normalization_correction_original(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "normalization_correction_original"),
+    normalization_correction_version(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "normalization_correction_version"),
 
     // Catalog
     Age(PropertyType.Catalog, DerivedPropertyStatus.Approved, Age_Values.class, null, "age"),
@@ -805,7 +821,8 @@ public enum UcdProperty {
             Binary.class,
             null,
             "REKS",
-            "Emoji_Keycap_Sequence"),
+            "Emoji_Keycap_Sequence",
+            "Emoji_Combining_Sequence"),
     RGI_Emoji_Modifier_Sequence(
             PropertyType.Binary,
             DerivedPropertyStatus.NonUCDProperty,
