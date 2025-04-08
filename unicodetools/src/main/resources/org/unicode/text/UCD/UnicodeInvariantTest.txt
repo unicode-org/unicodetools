@@ -1335,7 +1335,7 @@ $unikemetScope ⊃ \P{kEH_Core=None}
 
 # DoNotEmit.txt.
 \p{Do_Not_Emit_Type=Deprecated} ⊆ \p{Deprecated}
-\p{Deprecated} ⊆ [\p{Do_Not_Emit_Type=Deprecated} \p{Do_Not_Emit_Type=@none@}]
+\p{Deprecated} ⊆ [\p{Do_Not_Emit_Type=Deprecated} \p{Do_Not_Emit_Type=None}]
 # The non-DI deprecated characters have replacements in DoNotEmit, except the angle brackets that
 # are ambiguous.
 \p{Do_Not_Emit_Type=Deprecated} = [ \p{Deprecated} - \p{Default_Ignorable_Code_Point} - \p{Name=/^(LEFT|RIGHT)-POINTING ANGLE BRACKET$/} ]
