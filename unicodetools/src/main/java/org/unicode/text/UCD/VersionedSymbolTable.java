@@ -287,7 +287,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         }
         final String versionQualifier = qualified.substring(0, posColon + 1);
         qualified.delete(0, posColon + 1);
-        if (versionQualifier.equals("U-1")) {
+        if (versionQualifier.equals("U-1:")) {
             return previousVersion;
         } else {
             switch (versionQualifier.charAt(0)) {
