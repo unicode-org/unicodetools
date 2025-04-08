@@ -201,7 +201,11 @@ public class TestUnicodeSet extends TestFmwk2 {
                 IllegalArgumentException.class,
                 () -> UnicodeSetUtilities.parseUnicodeSet("\\p{Name=TIBETAN MARK TSA PHRU}"));
         checkSetsEqual("\\p{Name=TIBETAN MARK BKA- SHOG YIG MGO}", "[\\u0F0A]");
-        checkSetsEqual("\\p{Name=TIBETAN MARK BKA SHOG YIG MGO}", "[]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () ->
+                        UnicodeSetUtilities.parseUnicodeSet(
+                                "\\p{Name=TIBETAN MARK BKA SHOG YIG MGO}"));
         checkSetsEqual("\\p{Name_Alias=newline}", "[\\x0A]");
         checkSetsEqual("\\p{Name_Alias=NEW LINE}", "[\\x0A]");
         // The medial hyphen is only significant in HANGUL JUNGSEONG O-E, not in arbitrary O-E/OE.
