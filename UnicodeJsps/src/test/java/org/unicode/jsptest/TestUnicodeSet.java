@@ -1,5 +1,6 @@
 package org.unicode.jsptest;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
@@ -189,7 +190,9 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkSetsEqual("\\p{Name=_HANGUL_JUNGSEONG_O-E_}", "[\\u1180]");
         checkSetsEqual("\\p{Name=HANGUL JUNGSEONG O-EO}", "[\\u117F]");
         checkSetsEqual("\\p{Name=HANGUL JUNGSEONG OE O}", "[\\u117F]");
-        checkSetsEqual("\\p{Name=HANGUL JUNGSEONG O -EO}", "[]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> UnicodeSetUtilities.parseUnicodeSet("\\p{Name=HANGUL JUNGSEONG O -EO}"));
         checkSetsEqual("\\p{Name=MARCHEN LETTER -A}", "[\\x{11C88}]");
         checkSetsEqual("\\p{Name=MARCHEN_LETTER_-A}", "[\\x{11C88}]");
         checkSetsEqual("\\p{Name=MARCHEN LETTER A}", "[\\x{11C8F}]");
@@ -233,9 +236,9 @@ public class TestUnicodeSet extends TestFmwk2 {
         // Check that we are not falling into the trap described in
         // https://www.unicode.org/reports/tr44/#UAX44-LM3.
         checkProperties("\\p{lb=IS}", "[,.:;]");
-        // TODO(egg): This should perhaps be an error. But if it is not an error, it
-        // should be empty.
-        checkSetsEqual("\\p{lb=@none@}", "[]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> UnicodeSetUtilities.parseUnicodeSet("\\p{lb=@none@}"));
         checkSetsEqual("\\p{Bidi_Paired_Bracket=@none@}", "\\p{Bidi_Paired_Bracket_Type=Is_None}");
         checkSetsEqual("\\p{Bidi_Paired_Bracket≠@None@}", "\\p{Bidi_Paired_Bracket_Type≠None}");
     }
