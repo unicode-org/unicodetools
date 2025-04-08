@@ -713,7 +713,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         // we can do this with char, since no surrogates are involved
         for (int i = 0; i < source.length(); ++i) {
             char ch = source.charAt(i);
-            if (i > 0 && (ch == '_' || ch == ' ' || ch == '-')) {
+            if (ch == '_' || ch == ' ' || ch == '-') {
                 gotOne = true;
             } else {
                 char ch2 = Character.toLowerCase(ch);
