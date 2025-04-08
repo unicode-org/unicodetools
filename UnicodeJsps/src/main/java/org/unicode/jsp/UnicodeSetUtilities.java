@@ -106,7 +106,12 @@ public class UnicodeSetUtilities {
         input = input.trim() + "]]]]]";
         String parseInput = "[" + input + "]]]]]";
         ParsePosition parsePosition = new ParsePosition(0);
-        UnicodeSet result = new UnicodeSet(parseInput, parsePosition, fullSymbolTable);
+        UnicodeSet result =
+                new UnicodeSet(
+                        parseInput,
+                        parsePosition,
+                        VersionedSymbolTable.forReview()
+                                .setUnversionedExtensions(XPropertyFactory.make()));
         int parseEnd = parsePosition.getIndex();
         if (parseEnd != parseInput.length()
                 && !UnicodeSetUtilities.OK_AT_END.containsAll(parseInput.substring(parseEnd))) {
@@ -121,7 +126,4 @@ public class UnicodeSetUtilities {
         }
         return result;
     }
-
-    static UnicodeSet.XSymbolTable fullSymbolTable =
-            VersionedSymbolTable.forReview().setUnversionedExtensions(XPropertyFactory.make());
 }
