@@ -516,13 +516,13 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                         partAliases.clear();
                         getValueAliases(part, partAliases);
                         for (String partAlias : partAliases) {
-                            if (matcher.test(partAlias) || matcher.test(toSkeleton(partAlias))) {
+                            if (matcher.test(partAlias)) {
                                 um.keySet(value, result);
                                 continue main;
                             }
                         }
                     }
-                } else if (matcher.test(valueAlias) || matcher.test(toSkeleton(valueAlias))) {
+                } else if (matcher.test(valueAlias)) {
                     um.keySet(value, result);
                     continue main;
                 }
