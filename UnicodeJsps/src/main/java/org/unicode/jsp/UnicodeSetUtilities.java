@@ -110,7 +110,7 @@ public class UnicodeSetUtilities {
                 new UnicodeSet(
                         parseInput,
                         parsePosition,
-                        VersionedSymbolTable.forReview()
+                        VersionedSymbolTable.forReview(UcdLoader::getOldestLoadedUcd)
                                 .setUnversionedExtensions(XPropertyFactory.make()));
         int parseEnd = parsePosition.getIndex();
         if (parseEnd != parseInput.length()

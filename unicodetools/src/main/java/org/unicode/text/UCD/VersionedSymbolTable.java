@@ -5,6 +5,7 @@ import com.ibm.icu.util.VersionInfo;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Supplier;
 import java.util.regex.Pattern;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -19,11 +20,12 @@ import org.unicode.text.utility.Settings;
 public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
     private VersionedSymbolTable() {}
 
-    public static VersionedSymbolTable forReview() {
+    public static VersionedSymbolTable forReview(Supplier<VersionInfo> oldestLoadedUcd) {
         var result = new VersionedSymbolTable();
         result.requireSuffixForLatest = true;
         result.implicitVersion = Settings.LAST_VERSION_INFO;
         result.previousVersion = Settings.LAST2_VERSION_INFO;
+        result.oldestLoadedUcd = oldestLoadedUcd;
         return result;
     }
 
@@ -40,8 +42,9 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         result.requireSuffixForLatest = false;
         result.implicitVersion = version;
         // TODO(egg): We should have a programmatic “previous version of Unicode”.
-        // For now this ensures we fail.
+        // For now this ensures we fail on U-1.
         result.previousVersion = VersionInfo.getInstance(0);
+        result.oldestLoadedUcd = () -> VersionInfo.UNICODE_1_1_0;
         return result;
     }
 
@@ -83,7 +86,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         final var queriedVersion = parseVersionQualifier(mutableLeftHandSide);
         final String unqualifiedLeftHandSide = mutableLeftHandSide.toString();
         final var deducedQueriedVersion = queriedVersion == null ? implicitVersion : queriedVersion;
-
+        checkLoaded(deducedQueriedVersion);
         final var queriedProperties = IndexUnicodeProperties.make(deducedQueriedVersion);
 
         if (propertyPredicate.isEmpty()) {
@@ -179,6 +182,9 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                 }
                 return queriedProperty.getSet((String) null);
             } else {
+                if (comparisonVersion != null) {
+                    checkLoaded(comparisonVersion);
+                }
                 UnicodeProperty comparisonProperty =
                         IndexUnicodeProperties.make(
                                         comparisonVersion == null
@@ -439,9 +445,24 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         return result;
     }
 
+    private void checkLoaded(VersionInfo version) {
+        if (oldestLoadedUcd != null) {
+            final VersionInfo oldestLoaded = oldestLoadedUcd.get();
+            if (version.compareTo(oldestLoaded) < 0) {
+                throw new IllegalStateException(
+                        "Requested version "
+                                + version
+                                + " is older than the oldest loaded version "
+                                + oldestLoaded
+                                + ". Try again later.");
+            }
+        }
+    }
+
     private VersionInfo implicitVersion;
     private VersionInfo previousVersion;
     private boolean requireSuffixForLatest;
     private UnicodeProperty.Factory unversionedExtensions;
+    private Supplier<VersionInfo> oldestLoadedUcd;
     private static Pattern RATIONAL_PATTERN = Pattern.compile("[+-]?[0-9]+(/[0-9]*[1-9][0-9]*)?");
 }
