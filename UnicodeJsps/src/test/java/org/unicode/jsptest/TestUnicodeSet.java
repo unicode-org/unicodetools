@@ -197,7 +197,9 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkSetsEqual("\\p{Name=MARCHEN_LETTER_-A}", "[\\x{11C88}]");
         checkSetsEqual("\\p{Name=MARCHEN LETTER A}", "[\\x{11C8F}]");
         checkSetsEqual("\\p{Name=TIBETAN MARK TSA -PHRU}", "[\\u0F39]");
-        checkSetsEqual("\\p{Name=TIBETAN MARK TSA PHRU}", "[]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> UnicodeSetUtilities.parseUnicodeSet("\\p{Name=TIBETAN MARK TSA PHRU}"));
         checkSetsEqual("\\p{Name=TIBETAN MARK BKA- SHOG YIG MGO}", "[\\u0F0A]");
         checkSetsEqual("\\p{Name=TIBETAN MARK BKA SHOG YIG MGO}", "[]");
         checkSetsEqual("\\p{Name_Alias=newline}", "[\\x0A]");
@@ -216,9 +218,11 @@ public class TestUnicodeSet extends TestFmwk2 {
                 "\\p{Name=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET}", "[︘]");
         checkSetsEqual(
                 "\\p{Name=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET}", "[︘]");
-        checkSetsEqual(
-                "\\p{Name_Alias=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET}",
-                "[]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () ->
+                        UnicodeSetUtilities.parseUnicodeSet(
+                                "\\p{Name_Alias=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET}"));
         checkSetsEqual(
                 "\\p{Name_Alias=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET}",
                 "[︘]");
