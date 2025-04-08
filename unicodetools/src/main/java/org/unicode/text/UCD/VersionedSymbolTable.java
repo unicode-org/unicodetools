@@ -1,10 +1,13 @@
 package org.unicode.text.UCD;
 
+import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
+import java.text.ParsePosition;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;
 import org.unicode.props.IndexUnicodeProperties;
@@ -457,6 +460,52 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                                 + ". Try again later.");
             }
         }
+    }
+
+    private static final Comparator<String> LONGEST_FIRST =
+            new Comparator<String>() {
+                @Override
+                public int compare(String o1, String o2) {
+                    final int len = o2.length() - o1.length();
+                    if (len != 0) {
+                        return len;
+                    }
+                    return o1.compareTo(o2);
+                }
+            };
+
+    Map<String, char[]> variables = new TreeMap<String, char[]>(LONGEST_FIRST);
+
+    public void addVariable(String variable, String value) {
+        if (variables.containsKey(variable)) {
+            throw new IllegalArgumentException("Attempt to reset variable " + variable);
+        }
+        variables.put(variable, value.toCharArray());
+    }
+
+    @Override
+    public char[] lookup(String s) {
+        return variables.get(s);
+    }
+
+    // Warning: this depends on pos being left alone unless a string is returned!!
+    @Override
+    public String parseReference(String text, ParsePosition pos, int limit) {
+        final int start = pos.getIndex();
+        int i = start;
+        while (i < limit) {
+            final char c = text.charAt(i);
+            if ((i == start && !UCharacter.isUnicodeIdentifierStart(c))
+                    || !UCharacter.isUnicodeIdentifierPart(c)) {
+                break;
+            }
+            ++i;
+        }
+        if (i == start) { // No valid name chars
+            return null;
+        }
+        pos.setIndex(i);
+        return text.substring(start, i);
     }
 
     private VersionInfo implicitVersion;
