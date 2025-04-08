@@ -1771,9 +1771,7 @@ public class UnicodeUtilities {
                         + "#"
                         + propName
                         + "'>"
-                        + (provisional ? "(" : "")
-                        + propName
-                        + (provisional ? ")" : "")
+                        + (provisional ? "(" + propName + ")" : propName)
                         + "</a></th>");
         for (PropertyAssignment assignment : history) {
             String first =
