@@ -37,6 +37,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -927,6 +928,32 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         "2.0.0",
         "1.1.0",
     };
+
+    public static final List<VersionInfo> UNICODE_VERSIONS =
+            Arrays.asList(searchPath).stream().map(VersionInfo::getInstance).toList();
+
+    public static VersionInfo getVersionPreceding(VersionInfo version) {
+        for (VersionInfo candidate : UNICODE_VERSIONS) {
+            if (candidate.compareTo(version) < 0) {
+                return candidate;
+            }
+        }
+        return null;
+    }
+
+    public static VersionInfo getVersionFollowing(VersionInfo version) {
+        VersionInfo result = null;
+        for (VersionInfo candidate : UNICODE_VERSIONS) {
+            if (candidate.compareTo(version) > 0) {
+                return result = candidate;
+            }
+        }
+        return result;
+    }
+
+    public static boolean isUnicodeVersion(VersionInfo version) {
+        return UNICODE_VERSIONS.contains(version);
+    }
 
     /*public static PrintWriter openPrintWriter(String filename) throws IOException {
         return openPrintWriter(filename, LATIN1_UNIX);

@@ -783,12 +783,26 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 }
             }
 
+            if (item == null
+                    && indexUnicodeProperties.ucdVersion == VersionInfo.UNICODE_3_1_1
+                    && propName.equals("297")) {
+                // Missing field 1 for in the record for U+64AC kPhonetic in Unihan 3.1.1.
+                // See UAX #38:
+                //   The Version 3.1.1 Unihan database file, Unihan-3.1.1.txt, includes the
+                //   following anomalous record at line 246,442: U+64AC 297.
+                extractedValue = propName;
+                propName = "kPhonetic";
+                item = UcdProperty.forString(propName);
+            }
+
             if (item == null) {
                 throw new IllegalArgumentException(
                         "Missing property enum in UcdProperty for "
                                 + propName
                                 + "\nSee "
-                                + NEW_UNICODE_PROPS_DOCS);
+                                + NEW_UNICODE_PROPS_DOCS
+                                + ". At:"
+                                + line.getOriginalLine());
             }
 
             PropertyParsingInfo propInfo;
@@ -1025,6 +1039,11 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         }
     }
 
+    static final Set<Integer> BROKEN_UNICODEDATA_LINES_IN_2_1_5 =
+            Set.of(
+                    0xFA0E, 0xFA0F, 0xFA11, 0xFA13, 0xFA14, 0xFA1F, 0xFA21, 0xFA23, 0xFA24, 0xFA27,
+                    0xFA28, 0xFA29);
+
     private static void parseUnicodeDataFile(
             UcdLineParser parser,
             IndexUnicodeProperties indexUnicodeProperties,
@@ -1074,6 +1093,15 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             if (!parts[5].isEmpty() && parts[5].indexOf('<') >= 0) {
                 // Decomposition_Mapping: Remove the decomposition type.
                 parts[5] = DECOMP_REMOVE.matcher(parts[5]).replaceAll("").trim();
+            }
+            if (indexUnicodeProperties.ucdVersion == VersionInfo.UNICODE_2_1_5
+                    && BROKEN_UNICODEDATA_LINES_IN_2_1_5.contains(line.getRange().start)) {
+                // These lines have the form
+                //   FA0E;CJK COMPATIBILITY IDEOGRAPH-FA0E;Lo;0;L;;;;N;;;;;;
+                // Contrast 2.1.8
+                //   FA0E;CJK COMPATIBILITY IDEOGRAPH-FA0E;Lo;0;L;;;;;N;;;;;
+                parts[9] = parts[8];
+                parts[8] = "";
             }
             parseFields(
                     line, indexUnicodeProperties, nextProperties, propInfoSet, null, hackHangul);
@@ -1138,9 +1166,29 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 String value =
                         propInfo.fieldNumber >= parts.length ? null : parts[propInfo.fieldNumber];
                 if (propInfo.property == UcdProperty.Joining_Group
-                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_4_0) <= 0
+                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_4_0_1)
+                                <= 0
                         && value.equals("<no shaping>")) {
                     value = "No_Joining_Group";
+                }
+                if (merger == null
+                        && propInfo.property == UcdProperty.Uppercase_Mapping
+                        && indexUnicodeProperties.ucdVersion == VersionInfo.UNICODE_2_1_8
+                        && line.getRange().start == 0x1F80
+                        && line.getRange().end == 0x1F80) {
+                    // The first version of SpecialCasing.txt, version 2.1.8 has *three* lines for
+                    // U+1F80:
+                    // 1F80; 1F80; 1F88; 1F00 03B9; # GREEK SMALL LETTER ALPHA WITH PSILI AND
+                    // YPOGEGRAMMENI
+                    // 1F80; 1F80; 1F88; 1F08 03B9; # GREEK SMALL LETTER ALPHA WITH PSILI AND
+                    // YPOGEGRAMMENI
+                    // 1F80; 1F80; 1F88; 1F08 03B9; # GREEK CAPITAL LETTER ALPHA WITH PSILI AND
+                    // PROSGEGRAMMENI
+                    // We let the last one win, as it is less incorrect than the first; in 2.1.9,
+                    // the line for U+1F80 is:
+                    // 1F80; 1F80; 1F88; 1F08 0399; # GREEK SMALL LETTER ALPHA WITH PSILI AND
+                    // YPOGEGRAMMENI
+                    merger = new PropertyUtilities.Overrider();
                 }
                 propInfo.put(
                         data,
@@ -1226,7 +1274,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             nextVersion);
                     continue;
                 } else if (line.getParts().length != 2
-                        && version.compareTo(VersionInfo.UNICODE_3_0) > 0) {
+                        && version.compareTo(VersionInfo.UNICODE_3_0_1) > 0) {
                     // Unicode 3.0 and earlier had name comments as an extra field.
                     throw new IllegalArgumentException(
                             "Too many fields in " + line.getOriginalLine());
