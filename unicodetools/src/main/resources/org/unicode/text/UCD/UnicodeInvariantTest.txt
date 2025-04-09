@@ -616,6 +616,14 @@ $combiningExclusions ⊇ [$singletons & \p{dt=canonical}]
 $combiningExclusions ⊇ [$nonstarter & \p{dt=canonical}]
 $combiningExclusions ⊇ [$firstNonStarter & \p{dt=canonical}]
 
+
+\p{normalization_correction_version≠@none@} = [陋 㛼 当 𤎫 竮 䗗]
+In \p{normalization_correction_version≠@none@}, normalization_correction_corrected =      Decomposition_Mapping
+In \p{normalization_correction_version≠@none@}, normalization_correction_corrected = U4.0:Decomposition_Mapping
+In \p{normalization_correction_version≠@none@}, normalization_correction_original  = U3.1:Decomposition_Mapping
+In \p{normalization_correction_version=3.2.0},  normalization_correction_corrected = U3.2:Decomposition_Mapping
+In \p{normalization_correction_version=4.0.0},  normalization_correction_corrected = U4.0:Decomposition_Mapping
+
 ##########################
 # Other Invariant Tests, not in Stability Policies
 ##########################
