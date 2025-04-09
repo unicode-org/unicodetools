@@ -1481,13 +1481,20 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             if (version != null && version.compareTo(currentVersion) < compValue) {
                 continue;
             }
-            if (version != null
-                    && version.compareTo(VersionInfo.UNICODE_4_1) >= 0
-                    && currentVersion.compareTo(version) < 0) {
-                // Do not look at earlier versions if we want Unicode 4.1 data or later.
-                // Unicode 4.0.1 is the last version for which unmodified files were not
-                // republished.
-                return null;
+            if (version != null && currentVersion.compareTo(version) < 0) {
+                if (version.compareTo(VersionInfo.UNICODE_4_1) >= 0) {
+                    // Do not look at earlier versions if we want Unicode 4.1 data or later.
+                    // Unicode 4.0.1 is the last version for which unmodified files were not
+                    // republished.
+                    return null;
+                } else {
+                    // Even back when files were not republished, we copy them.
+                    throw new IllegalStateException(
+                            "File "
+                                    + filename
+                                    + " should be copied to version directory "
+                                    + version);
+                }
             }
             // check the standard ucd directory
             if (filename.contains("/*/")) {
