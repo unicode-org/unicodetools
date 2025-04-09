@@ -1295,6 +1295,10 @@ Let $japaneseSimplifiedRadicals := \p{Name=/CJK RADICAL J-SIMPLIFIED/}
 In $chineseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ [\p{kRSUnicode=/^[0-9]+'\.0$/} $radicalsWithUnifiableSimplifications]
 In $japaneseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/^[0-9]+''\.0$/}
 
+# Check that removed properties do not persist.
+\p{U16:kGB7≠@none@}=[垯屃慭梾疭瘆筼臜荙诐跶轪辌酦镈镋镕饳馉鱽鱾鲃鲉鲌鲏鲪鲬鲯鲹鲾鳂鳈鳉鳑鳚鳡鳤鸻鸼鹟鹮鹲]
+\p{kGB7≠@none@}=[]
+
 # Tangut invariants
 
 Let $tangutSourcesScope := [\p{Block=/^Tangut(.Supplement)?$/} - \p{gc=Cn}]
