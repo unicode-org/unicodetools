@@ -799,7 +799,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         @Override
         protected boolean hasStrings() {
-            return _getRawUnicodeMap().stringKeys() != null && !_getRawUnicodeMap().stringKeys().isEmpty();
+            return _getRawUnicodeMap().stringKeys() != null
+                    && !_getRawUnicodeMap().stringKeys().isEmpty();
         }
 
         private UnicodeSet getDiffSet() {
@@ -840,8 +841,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
             // We only do the delta thing for code points; for strings, we need to do the lookup
             // directly (and clean whatever was added by walking through history).
-            if (baseVersionProperties != null
-                    && (result.hasStrings() || hasStrings())) {
+            if (baseVersionProperties != null && (result.hasStrings() || hasStrings())) {
                 result.removeAllStrings().addAll(super.getSet(matcher, new UnicodeSet()).strings());
             }
             return result;
