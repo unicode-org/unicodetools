@@ -94,6 +94,14 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkTraditionalVariant"),
+    normalization_correction_corrected(
+            PropertyType.String,
+            DerivedPropertyStatus.UCDNonProperty,
+            "normalization_correction_corrected"),
+    normalization_correction_original(
+            PropertyType.String,
+            DerivedPropertyStatus.UCDNonProperty,
+            "normalization_correction_original"),
 
     // Miscellaneous
     CJK_Radical(
@@ -497,14 +505,6 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkZhuangNumeric"),
-    normalization_correction_corrected(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.UCDNonProperty,
-            "normalization_correction_corrected"),
-    normalization_correction_original(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.UCDNonProperty,
-            "normalization_correction_original"),
     normalization_correction_version(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
