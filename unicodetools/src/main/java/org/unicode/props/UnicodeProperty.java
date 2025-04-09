@@ -470,10 +470,14 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     public static final String UNUSED = "??";
 
+    protected boolean hasStrings() {
+        return false;
+    }
+
     public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
         if (result == null) result = new UnicodeSet();
         boolean uniformUnassigned = hasUniformUnassigned();
-        if (isType(STRING_OR_MISC_MASK) && !isMultivalued) {
+        if (isType(STRING_OR_MISC_MASK) && !isMultivalued && !hasStrings()) {
             for (UnicodeSetIterator usi = getStuffToTest(uniformUnassigned);
                     usi.next(); ) { // int i = 0; i <= 0x10FFFF; ++i
                 int i = usi.codepoint;

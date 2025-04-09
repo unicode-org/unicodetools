@@ -616,6 +616,17 @@ $combiningExclusions ⊇ [$singletons & \p{dt=canonical}]
 $combiningExclusions ⊇ [$nonstarter & \p{dt=canonical}]
 $combiningExclusions ⊇ [$firstNonStarter & \p{dt=canonical}]
 
+
+\p{normalization_correction_version≠@none@} = [陋 㛼 当 𤎫 竮 䗗]
+# Everything is corrected now.
+In \p{normalization_correction_version≠@none@}, normalization_correction_corrected = Decomposition_Mapping
+# This all happened between 3.1 and 4.0.
+In \p{normalization_correction_version≠@none@}, normalization_correction_corrected = U4.0:Decomposition_Mapping
+In \p{normalization_correction_version≠@none@}, normalization_correction_original  = U3.1:Decomposition_Mapping
+# The version field tells us whether the 3.2 mapping was wrong.
+In \p{normalization_correction_version=3.2.0}, U3.2:Decomposition_Mapping = normalization_correction_corrected
+In \p{normalization_correction_version=4.0.0}, U3.2:Decomposition_Mapping = normalization_correction_original
+
 ##########################
 # Other Invariant Tests, not in Stability Policies
 ##########################
@@ -1097,6 +1108,11 @@ Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 # And nearly all emoji are Extended_Pictographic.
 [\p{Extended_Pictographic}-\p{gc=Cn}] = [\p{Emoji}-\p{Regional_Indicator}-\p{Emoji_Modifier}-\p{Block=Basic Latin}]
 
+# TODO(egg): We could check that the variation selectors are used consistently, but this would
+# require UnicodeProperty to support strings properly.
+\p{emoji_variation_sequence=text style} ⊃ [{♈︎}]
+\p{emoji_variation_sequence=emoji style} ⊃ [{♈️}]
+
 ##########################
 # POSIX Compatibility Properties (UTS#18)
 # http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html
@@ -1320,6 +1336,10 @@ $unikemetScope ⊃ \P{kEH_Core=None}
 \p{kEH_NoRotate} ⊂ $unikemetScope
 \p{kEH_Core=Legacy} ⊂ \p{Block=Egyptian Hieroglyphs}
 [\p{kEH_Core=None} & $unikemetScope] ⊂ \p{Block=Egyptian Hieroglyphs Extended-A}
+
+# TODO(egg): We could check that the variation selectors are used consistently, but this would
+# require UnicodeProperty to support strings properly.
+\p{Standardized_Variant=rotated 90 degrees} ⊃ [{𓏲\uFE00}]
 
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
