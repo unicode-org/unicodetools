@@ -42,6 +42,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD;
@@ -930,7 +931,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
     };
 
     public static final List<VersionInfo> UNICODE_VERSIONS =
-            Arrays.asList(searchPath).stream().map(VersionInfo::getInstance).toList();
+            Arrays.asList(searchPath).stream()
+                    .map(VersionInfo::getInstance)
+                    .collect(Collectors.toList());
 
     public static VersionInfo getVersionPreceding(VersionInfo version) {
         for (VersionInfo candidate : UNICODE_VERSIONS) {
