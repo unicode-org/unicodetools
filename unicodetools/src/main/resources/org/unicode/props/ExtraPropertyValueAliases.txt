@@ -326,6 +326,9 @@ Do_Not_Emit_Type ; Discouraged              ; Discouraged
 Do_Not_Emit_Type ; Preferred_Spelling       ; Preferred_Spelling
 Do_Not_Emit_Type ; Arabic_Tashkil           ; Arabic_Tashkil
 
+# @missing: 0000..10FFFF; normalization_correction_original; <none>
+# @missing: 0000..10FFFF; normalization_correction_corrected; <none>
+
 # Values from the old Provisional Indic_Matra_Category (identified with the Informative InPC in the
 # tools) and InSC.
 Indic_Positional_Category ; Invisible ; Invisible
