@@ -52,6 +52,9 @@ cjkTraditionalVariant ; kTraditionalVariant ; Provisional
 
 Do_Not_Emit_Preferred ; Do_Not_Emit_Preferred ; UCDNonProperty
 
+normalization_correction_original ; normalization_correction_original ; UCDNonProperty
+normalization_correction_corrected ; normalization_correction_corrected ; UCDNonProperty
+
 # ================================================
 # Miscellaneous Properties
 # ================================================
@@ -65,8 +68,6 @@ NS ; Named_Sequences ; UCDNonProperty
 NSP ; Named_Sequences_Prov ; UCDNonProperty
 SV ; Standardized_Variant ; UCDNonProperty
 
-normalization_correction_original ; normalization_correction_original ; UCDNonProperty
-normalization_correction_corrected ; normalization_correction_corrected ; UCDNonProperty
 normalization_correction_version ; normalization_correction_version ; UCDNonProperty
 
 emoji_variation_sequence ; emoji_variation_sequence ; UCDNonProperty
