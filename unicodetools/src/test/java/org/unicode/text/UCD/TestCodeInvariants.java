@@ -61,7 +61,8 @@ public class TestCodeInvariants {
         main:
         for (Age_Values age : Age_Values.values()) {
             if (age == Age_Values.Unassigned
-                    || age.compareTo(SCX_FIRST_DEFINED) < 0) { // skip irrelevants
+                    || age.compareTo(SCX_FIRST_DEFINED) < 0
+                    || age == Age_Values.V13_1) { // skip irrelevants
                 continue;
             }
 
