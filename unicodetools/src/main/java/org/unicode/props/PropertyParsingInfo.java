@@ -658,15 +658,34 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 case Simple_Lowercase_Mapping:
                 case Simple_Titlecase_Mapping:
                 case Simple_Uppercase_Mapping:
+                    final var otherMap =
+                            indexUnicodeProperties.load(propInfo.defaultValueType.property);
                     final UnicodeProperty otherProperty =
                             indexUnicodeProperties.getProperty(propInfo.defaultValueType.property);
+                    final UnicodeProperty baseVersionOfThisProperty =
+                            indexUnicodeProperties.baseVersionProperties != null
+                                    ? indexUnicodeProperties.baseVersionProperties.getProperty(
+                                            propInfo.property)
+                                    : null;
                     for (final int cp : nullValues.codePoints()) {
-                        // We cannot simply use the raw map for otherProperty, as it may use the
-                        // UNCHANGED_IN_BASE_VERSION placeholder.
+                        // We cannot simply use the raw map otherMap for otherProperty, as it may
+                        // use the UNCHANGED_IN_BASE_VERSION placeholder.
                         // If property X is defaulting to property Y, and property Y has the same
                         // assignment as its next version Y′, that does not mean that X has the same
-                        // assignment as its next version X′.
-                        data.put(cp, otherProperty.getValue(cp));
+                        // assignment as its next version X′.  If that happens though, we should use
+                        // UNCHANGED_IN_BASE_VERSION.
+                        if (otherMap.get(cp)
+                                .equals(IndexUnicodeProperties.UNCHANGED_IN_BASE_VERSION)) {
+                            if (Objects.equals(
+                                    otherProperty.getValue(cp),
+                                    baseVersionOfThisProperty.getValue(cp))) {
+                                data.put(cp, IndexUnicodeProperties.UNCHANGED_IN_BASE_VERSION);
+                            } else {
+                                data.put(cp, otherProperty.getValue(cp));
+                            }
+                        } else {
+                            data.put(cp, otherMap.getValue(cp));
+                        }
                     }
                     // propInfo.defaultValueType =
                     // property2PropertyInfo.get(sourceProp).defaultValueType; // reset to the type
