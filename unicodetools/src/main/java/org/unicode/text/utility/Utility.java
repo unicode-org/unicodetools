@@ -948,7 +948,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         VersionInfo result = null;
         for (VersionInfo candidate : UNICODE_VERSIONS) {
             if (candidate.compareTo(version) > 0) {
-                return result = candidate;
+                result = candidate;
             }
         }
         return result;
