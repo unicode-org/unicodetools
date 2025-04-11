@@ -658,11 +658,15 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 case Simple_Lowercase_Mapping:
                 case Simple_Titlecase_Mapping:
                 case Simple_Uppercase_Mapping:
-                    final UcdProperty sourceProp = propInfo.defaultValueType.property;
-                    final UnicodeMap<String> otherMap =
-                            indexUnicodeProperties.load(sourceProp); // recurse
-                    for (final String cp : nullValues) {
-                        data.put(cp, otherMap.get(cp));
+                    final UnicodeProperty otherProperty =
+                            indexUnicodeProperties.getProperty(propInfo.defaultValueType.property);
+                    for (final int cp : nullValues.codePoints()) {
+                        // We cannot simply use the raw map for otherProperty, as it may use the
+                        // UNCHANGED_IN_BASE_VERSION placeholder.
+                        // If property X is defaulting to property Y, and property Y has the same
+                        // assignment as its next version Y′, that does not mean that X has the same
+                        // assignment as its next version X′.
+                        data.put(cp, otherProperty.getValue(cp));
                     }
                     // propInfo.defaultValueType =
                     // property2PropertyInfo.get(sourceProp).defaultValueType; // reset to the type
