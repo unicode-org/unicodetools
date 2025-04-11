@@ -1451,6 +1451,14 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             if (version != null && version.compareTo(currentVersion) < compValue) {
                 continue;
             }
+            if (version != null
+                    && version.compareTo(VersionInfo.UNICODE_4_1) >= 0
+                    && currentVersion.compareTo(version) < 0) {
+                // Do not look at earlier versions if we want Unicode 4.1 data or later.
+                // Unicode 4.0.1 is the last version for which unmodified files were not
+                // republished.
+                return null;
+            }
             // check the standard ucd directory
             if (filename.contains("/*/")) {
                 // check the idna directory
@@ -1468,7 +1476,10 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                 }
                 Path path = Settings.UnicodeTools.getDataPath(base, element);
                 if (path != null) {
-                    result = path.resolve(parts[2] + fileType).toString();
+                    var filePath = path.resolve(parts[2] + fileType);
+                    if (filePath.toFile().exists()) {
+                        result = filePath.toString();
+                    }
                     break;
                 }
                 continue;
@@ -1480,9 +1491,6 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                 if (result != null) {
                     break;
                 }
-            }
-            if (versionString.startsWith("2.0") && filename.startsWith("Prop")) {
-                break; // skip bogus forms of Prop* files
             }
             if (show) {
                 tries.add(element);
@@ -1499,6 +1507,11 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                             + "*"
                             + fileType
                             + "'");
+        }
+        if ((versionString.startsWith("2.") || versionString.startsWith("3.0"))
+                && filename.startsWith("Prop")) {
+            // Ignore the property dumps for now, as we do not have parsing logic for them.
+            return null;
         }
         return result;
     }

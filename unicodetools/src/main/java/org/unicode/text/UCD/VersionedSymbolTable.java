@@ -1,10 +1,14 @@
 package org.unicode.text.UCD;
 
+import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
+import java.text.ParsePosition;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.function.Supplier;
 import java.util.regex.Pattern;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -19,11 +23,12 @@ import org.unicode.text.utility.Settings;
 public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
     private VersionedSymbolTable() {}
 
-    public static VersionedSymbolTable forReview() {
+    public static VersionedSymbolTable forReview(Supplier<VersionInfo> oldestLoadedUcd) {
         var result = new VersionedSymbolTable();
         result.requireSuffixForLatest = true;
         result.implicitVersion = Settings.LAST_VERSION_INFO;
         result.previousVersion = Settings.LAST2_VERSION_INFO;
+        result.oldestLoadedUcd = oldestLoadedUcd;
         return result;
     }
 
@@ -32,6 +37,17 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         result.requireSuffixForLatest = false;
         result.implicitVersion = Settings.LATEST_VERSION_INFO;
         result.previousVersion = Settings.LAST_VERSION_INFO;
+        return result;
+    }
+
+    public static VersionedSymbolTable frozenAt(VersionInfo version) {
+        var result = new VersionedSymbolTable();
+        result.requireSuffixForLatest = false;
+        result.implicitVersion = version;
+        // TODO(egg): We should have a programmatic “previous version of Unicode”.
+        // For now this ensures we fail on U-1.
+        result.previousVersion = VersionInfo.getInstance(0);
+        result.oldestLoadedUcd = () -> VersionInfo.UNICODE_1_1_0;
         return result;
     }
 
@@ -73,7 +89,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         final var queriedVersion = parseVersionQualifier(mutableLeftHandSide);
         final String unqualifiedLeftHandSide = mutableLeftHandSide.toString();
         final var deducedQueriedVersion = queriedVersion == null ? implicitVersion : queriedVersion;
-
+        checkLoaded(deducedQueriedVersion);
         final var queriedProperties = IndexUnicodeProperties.make(deducedQueriedVersion);
 
         if (propertyPredicate.isEmpty()) {
@@ -169,6 +185,9 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                 }
                 return queriedProperty.getSet((String) null);
             } else {
+                if (comparisonVersion != null) {
+                    checkLoaded(comparisonVersion);
+                }
                 UnicodeProperty comparisonProperty =
                         IndexUnicodeProperties.make(
                                         comparisonVersion == null
@@ -268,7 +287,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         }
         final String versionQualifier = qualified.substring(0, posColon + 1);
         qualified.delete(0, posColon + 1);
-        if (versionQualifier.equals("U-1")) {
+        if (versionQualifier.equals("U-1:")) {
             return previousVersion;
         } else {
             switch (versionQualifier.charAt(0)) {
@@ -429,9 +448,84 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         return result;
     }
 
+    private void checkLoaded(VersionInfo version) {
+        if (oldestLoadedUcd != null) {
+            final VersionInfo oldestLoaded = oldestLoadedUcd.get();
+            if (version.compareTo(oldestLoaded) < 0) {
+                throw new IllegalStateException(
+                        "Requested version "
+                                + version
+                                + " is older than the oldest loaded version "
+                                + oldestLoaded
+                                + ". Try again later.");
+            }
+        }
+    }
+
+    private static final Comparator<String> LONGEST_FIRST =
+            new Comparator<String>() {
+                @Override
+                public int compare(String o1, String o2) {
+                    final int len = o2.length() - o1.length();
+                    if (len != 0) {
+                        return len;
+                    }
+                    return o1.compareTo(o2);
+                }
+            };
+
+    Map<String, char[]> variables = new TreeMap<String, char[]>(LONGEST_FIRST);
+
+    public void addVariable(String variable, String value) {
+        if (variables.containsKey(variable)) {
+            throw new IllegalArgumentException("Attempt to reset variable " + variable);
+        }
+        variables.put(variable, value.toCharArray());
+    }
+
+    @Override
+    public char[] lookup(String s) {
+        return variables.get(s);
+    }
+
+    // Warning: this depends on pos being left alone unless a string is returned!!
+    @Override
+    public String parseReference(String text, ParsePosition pos, int limit) {
+        final int start = pos.getIndex();
+        int i = start;
+        while (i < limit) {
+            final char c = text.charAt(i);
+            if ((i == start && !UCharacter.isUnicodeIdentifierStart(c))
+                    || !UCharacter.isUnicodeIdentifierPart(c)) {
+                break;
+            }
+            ++i;
+        }
+        if (i == start) { // No valid name chars
+            return null;
+        }
+        pos.setIndex(i);
+        return text.substring(start, i);
+    }
+
     private VersionInfo implicitVersion;
     private VersionInfo previousVersion;
     private boolean requireSuffixForLatest;
     private UnicodeProperty.Factory unversionedExtensions;
+    private Supplier<VersionInfo> oldestLoadedUcd;
     private static Pattern RATIONAL_PATTERN = Pattern.compile("[+-]?[0-9]+(/[0-9]*[1-9][0-9]*)?");
+
+    public static UnicodeSet.XSymbolTable NO_PROPS =
+            new UnicodeSet.XSymbolTable() {
+                @Override
+                public boolean applyPropertyAlias(
+                        String propertyName, String propertyValue, UnicodeSet result) {
+                    throw new IllegalArgumentException(
+                            "Don't use any ICU Unicode Properties! "
+                                    + propertyName
+                                    + "="
+                                    + propertyValue);
+                }
+                ;
+            };
 }

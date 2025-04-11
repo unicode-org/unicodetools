@@ -1672,9 +1672,9 @@ public class WriteCollationData {
              * '9' || (c >= 0xA0 && !UCharacterProperty.isRuleWhiteSpace(c))
              */
             needsQuoting =
-                    new UnicodeSet("[[:whitespace:][:z:][:c:][:ascii:]-[a-zA-Z0-9]-[:cn:]]")
+                    new UnicodeSet("[[:whitespace:][:z:][:c:][:Block=ASCII:]-[a-zA-Z0-9]-[:cn:]]")
                             .addAll(cn); //
-            // "[[:ascii:]-[a-zA-Z0-9]-[:c:]-[:z:]]"); //
+            // "[[:Block=ASCII:]-[a-zA-Z0-9]-[:c:]-[:z:]]"); //
             // [:whitespace:][:c:][:z:]
             // for (int i = 0; i <= 0x10FFFF; ++i) {
             // if (UCharacterProperty.isRuleWhiteSpace(i)) needsQuoting.add(i);
