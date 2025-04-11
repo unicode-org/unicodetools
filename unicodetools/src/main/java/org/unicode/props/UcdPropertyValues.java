@@ -708,7 +708,8 @@ public class UcdPropertyValues {
         CCC141("141"),
         CCC142("142"),
         CCC143("143"),
-        CCC144("144");
+        CCC144("144"),
+        CCC145("145");
         private final PropertyNames<Canonical_Combining_Class_Values> names;
 
         private Canonical_Combining_Class_Values(String shortName, String... otherNames) {

@@ -16,6 +16,7 @@ import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Utility;
 
 /**
  * This class implements the semantics of property-query as defined in the UnicodeSet specification.
@@ -44,10 +45,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         var result = new VersionedSymbolTable();
         result.requireSuffixForLatest = false;
         result.implicitVersion = version;
-        // TODO(egg): We should have a programmatic “previous version of Unicode”.
-        // For now this ensures we fail on U-1.
-        result.previousVersion = VersionInfo.getInstance(0);
-        result.oldestLoadedUcd = () -> VersionInfo.UNICODE_1_1_0;
+        result.previousVersion = Utility.getVersionPreceding(version);
         return result;
     }
 

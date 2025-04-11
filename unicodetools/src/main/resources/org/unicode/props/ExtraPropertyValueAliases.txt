@@ -199,6 +199,7 @@ ccc; 141; CCC141                      ; CCC141
 ccc; 142; CCC142                      ; CCC142
 ccc; 143; CCC143                      ; CCC143
 ccc; 144; CCC144                      ; CCC144
+ccc; 145; CCC145                      ; CCC145
 
 # Unicode 2 joining groups, named after Unicode 1 names.
 # These should probably be made extra aliases of the non-extra values, but the

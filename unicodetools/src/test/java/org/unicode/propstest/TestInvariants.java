@@ -3,6 +3,7 @@ package org.unicode.propstest;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -47,7 +48,11 @@ public class TestInvariants extends TestFmwkMinusMinus {
             if (age == Age_Values.Unassigned) {
                 continue;
             }
-            IUPS.put(age, IndexUnicodeProperties.make(age.getShortName()));
+            IUPS.put(
+                    age,
+                    age == Age_Values.V2_1
+                            ? IndexUnicodeProperties.make(VersionInfo.UNICODE_2_1_2)
+                            : IndexUnicodeProperties.make(age.getShortName()));
         }
     }
 

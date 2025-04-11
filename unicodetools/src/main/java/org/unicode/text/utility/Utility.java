@@ -37,10 +37,12 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD;
@@ -928,6 +930,34 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         "1.1.0",
     };
 
+    public static final List<VersionInfo> UNICODE_VERSIONS =
+            Arrays.asList(searchPath).stream()
+                    .map(VersionInfo::getInstance)
+                    .collect(Collectors.toList());
+
+    public static VersionInfo getVersionPreceding(VersionInfo version) {
+        for (VersionInfo candidate : UNICODE_VERSIONS) {
+            if (candidate.compareTo(version) < 0) {
+                return candidate;
+            }
+        }
+        return null;
+    }
+
+    public static VersionInfo getVersionFollowing(VersionInfo version) {
+        VersionInfo result = null;
+        for (VersionInfo candidate : UNICODE_VERSIONS) {
+            if (candidate.compareTo(version) > 0) {
+                result = candidate;
+            }
+        }
+        return result;
+    }
+
+    public static boolean isUnicodeVersion(VersionInfo version) {
+        return UNICODE_VERSIONS.contains(version);
+    }
+
     /*public static PrintWriter openPrintWriter(String filename) throws IOException {
         return openPrintWriter(filename, LATIN1_UNIX);
     }
@@ -1452,8 +1482,8 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                 continue;
             }
             if (version != null
-                    && version.compareTo(VersionInfo.UNICODE_4_1) >= 0
-                    && currentVersion.compareTo(version) < 0) {
+                    && currentVersion.compareTo(version) < 0
+                    && version.compareTo(VersionInfo.UNICODE_4_1) >= 0) {
                 // Do not look at earlier versions if we want Unicode 4.1 data or later.
                 // Unicode 4.0.1 is the last version for which unmodified files were not
                 // republished.
@@ -1489,6 +1519,14 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                 // TODO: Consider generally switching from using File to using the newer Path.
                 result = searchDirectory(path.toFile(), filename, show, fileType);
                 if (result != null) {
+                    if (version != null && currentVersion.compareTo(version) < 0) {
+                        // Even back when files were not republished, we copy them.
+                        throw new IllegalStateException(
+                                "File "
+                                        + filename
+                                        + " should be copied to version directory "
+                                        + version);
+                    }
                     break;
                 }
             }

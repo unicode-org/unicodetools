@@ -2,7 +2,6 @@ package org.unicode.jsp;
 
 import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.Collator;
@@ -57,6 +56,7 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Utility;
 
 // For dependency management, it might be useful to split this omnibus class into
 // pieces by topic, such as collation utilities vs. IDNA utilities etc.
@@ -1719,11 +1719,8 @@ public class UnicodeUtilities {
         // TODO(eggrobin): TUP normalization chokes on sufficiently old versions, but this is not
         // worth debugging as we want to get rid of it.
         if (!propName.startsWith("toNF")) {
-            for (var a : Age_Values.values()) {
-                if (a == Age_Values.Unassigned) {
-                    break;
-                }
-                var version = VersionInfo.getInstance(a.getShortName());
+            for (int i = Utility.UNICODE_VERSIONS.size() - 1; i >= 0; --i) {
+                final var version = Utility.UNICODE_VERSIONS.get(i);
                 if (version.compareTo(minVersion) < 0) {
                     continue;
                 }
