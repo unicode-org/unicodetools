@@ -1546,11 +1546,6 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                             + fileType
                             + "'");
         }
-        if ((versionString.startsWith("2.") || versionString.startsWith("3.0"))
-                && filename.startsWith("Prop")) {
-            // Ignore the property dumps for now, as we do not have parsing logic for them.
-            return null;
-        }
         return result;
     }
 

@@ -27,6 +27,7 @@ import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
 import org.unicode.props.PropertyUtilities.Merge;
 import org.unicode.props.UcdLineParser.IntRange;
 import org.unicode.props.UcdLineParser.UcdLine.Contents;
+import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -463,7 +464,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         NamedSequences,
         NameAliases,
         StandardizedVariants,
-        Confusables
+        Confusables,
     }
 
     static Map<String, FileType> file2Type = new HashMap<String, FileType>();
@@ -561,11 +562,19 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             propInfoSet);
                     break;
                 case PropertyValue:
-                    parsePropertyValueFile(
-                            parser.withMissing(true),
-                            fileName,
+                    if (fileName.equals("PropList") && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_3_1_0) < 0) {
+                        parsePropertyDumpFile(
+                            fullFilename,
                             indexUnicodeProperties,
-                            nextProperties);
+                            nextProperties
+                        );
+                    } else {
+                        parsePropertyValueFile(
+                                parser.withMissing(true),
+                                fileName,
+                                indexUnicodeProperties,
+                                nextProperties);
+                    }
                     break;
                 case Confusables:
                     parseConfusablesFile(
@@ -765,6 +774,35 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         nextProperties == null
                                 ? null
                                 : nextProperties.getProperty(propInfo.property));
+            }
+        }
+    }
+
+    private static void parsePropertyDumpFile(
+            String fullFilename,
+            IndexUnicodeProperties indexUnicodeProperties,
+            IndexUnicodeProperties nextProperties) {
+        final var dumpHeading = Pattern.compile("Property dump for: 0x[0-9A-F]{8} \\(([^()]+)\\)");
+        final var dataLine = Pattern.compile("[0-9A-F]{4}(\\.\\.[0-9A-F]{4})?");
+        PropertyParsingInfo propInfo = null;
+        for (String line : FileUtilities.in("", fullFilename)) {
+            final var heading = dumpHeading.matcher(line);
+            if (heading.matches()) {
+                propInfo = property2PropertyInfo.get(UcdProperty.forString(heading.group(1)));
+                continue;
+            }
+            if (propInfo != null && dataLine.matcher(line).matches()) {
+                var range = new UcdLineParser.IntRange();
+                range.set(line.split(" ", 1)[0]);
+                final var data = indexUnicodeProperties.property2UnicodeMap.get(propInfo.property);
+                propInfo.put(
+                    data,
+                    range,
+                    "Yes",
+                    null,
+                    nextProperties == null
+                            ? null
+                            : nextProperties.getProperty(propInfo.property));
             }
         }
     }
