@@ -106,7 +106,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         this.special = special;
     }
 
-    static final Pattern VERSION = Pattern.compile("v\\d+\\.\\d+");
+    static final Pattern VERSION = Pattern.compile("v\\d+(\\.\\d+)+");
 
     private static void fromStrings(String... propertyInfo) {
         if (propertyInfo.length < 2 || propertyInfo.length > 4) {
@@ -783,12 +783,15 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             IndexUnicodeProperties indexUnicodeProperties,
             IndexUnicodeProperties nextProperties) {
         final var dumpHeading = Pattern.compile("Property dump for: 0x[0-9A-F]{8} \\(([^()]+)\\)");
-        final var dataLine = Pattern.compile("[0-9A-F]{4}(\\.\\.[0-9A-F]{4})?");
+        final var dataLine = Pattern.compile("[0-9A-F]{4,6}(\\.\\.[0-9A-F]{4,6} \\(\\d+ chars\\))?");
         PropertyParsingInfo propInfo = null;
         for (String line : FileUtilities.in("", fullFilename)) {
             final var heading = dumpHeading.matcher(line);
             if (heading.matches()) {
                 propInfo = property2PropertyInfo.get(UcdProperty.forString(heading.group(1)));
+                if (propInfo == null) {
+                    System.err.println("Unknown property in dump: " + heading.group(1));
+                }
                 continue;
             }
             if (propInfo != null && dataLine.matcher(line).matches()) {
