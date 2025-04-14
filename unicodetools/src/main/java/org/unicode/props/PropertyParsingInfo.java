@@ -783,7 +783,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             IndexUnicodeProperties nextProperties) {
         final var dumpHeading = Pattern.compile("Property dump for: 0x[0-9A-F]{8} \\(([^()]+)\\)");
         final var dataLine =
-                Pattern.compile("[0-9A-F]{4,6}(\\.\\.[0-9A-F]{4,6} \\(\\d+ chars\\))?");
+                Pattern.compile("[0-9A-F]{4,6}(\\.\\.[0-9A-F]{4,6} +\\(\\d+ chars\\))?");
         PropertyParsingInfo propInfo = null;
         for (String line : FileUtilities.in("", fullFilename)) {
             final var heading = dumpHeading.matcher(line);
