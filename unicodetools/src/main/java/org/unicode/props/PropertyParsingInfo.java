@@ -788,9 +788,15 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         for (String line : FileUtilities.in("", fullFilename)) {
             final var heading = dumpHeading.matcher(line);
             if (heading.matches()) {
-                propInfo = property2PropertyInfo.get(UcdProperty.forString(heading.group(1)));
+                String name = heading.group(1);
+                propInfo = property2PropertyInfo.get(UcdProperty.forString(name));
                 if (propInfo == null) {
-                    System.err.println("Unknown property in dump: " + heading.group(1));
+                    if (name.equals("Not a Character")) {
+                        // Appears in 3.0.1.  See also 84-M6 and 84-M7.
+                        propInfo = property2PropertyInfo.get(UcdProperty.Noncharacter_Code_Point);
+                    } else {
+                        System.err.println("Ignoring unknown property in dump: " + name);
+                    }
                 }
                 continue;
             }
