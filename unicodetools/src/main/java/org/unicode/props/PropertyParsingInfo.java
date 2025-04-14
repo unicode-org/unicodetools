@@ -562,12 +562,11 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             propInfoSet);
                     break;
                 case PropertyValue:
-                    if (fileName.equals("PropList") && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_3_1_0) < 0) {
-                        parsePropertyDumpFile(
-                            fullFilename,
-                            indexUnicodeProperties,
-                            nextProperties
-                        );
+                    if (fileName.equals("PropList")
+                            && indexUnicodeProperties.ucdVersion.compareTo(
+                                            VersionInfo.UNICODE_3_1_0)
+                                    < 0) {
+                        parsePropertyDumpFile(fullFilename, indexUnicodeProperties, nextProperties);
                     } else {
                         parsePropertyValueFile(
                                 parser.withMissing(true),
@@ -783,7 +782,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             IndexUnicodeProperties indexUnicodeProperties,
             IndexUnicodeProperties nextProperties) {
         final var dumpHeading = Pattern.compile("Property dump for: 0x[0-9A-F]{8} \\(([^()]+)\\)");
-        final var dataLine = Pattern.compile("[0-9A-F]{4,6}(\\.\\.[0-9A-F]{4,6} \\(\\d+ chars\\))?");
+        final var dataLine =
+                Pattern.compile("[0-9A-F]{4,6}(\\.\\.[0-9A-F]{4,6} \\(\\d+ chars\\))?");
         PropertyParsingInfo propInfo = null;
         for (String line : FileUtilities.in("", fullFilename)) {
             final var heading = dumpHeading.matcher(line);
@@ -805,13 +805,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 range.set(line.split(" ", 1)[0]);
                 final var data = indexUnicodeProperties.property2UnicodeMap.get(propInfo.property);
                 propInfo.put(
-                    data,
-                    range,
-                    "Yes",
-                    null,
-                    nextProperties == null
-                            ? null
-                            : nextProperties.getProperty(propInfo.property));
+                        data,
+                        range,
+                        "Yes",
+                        null,
+                        nextProperties == null
+                                ? null
+                                : nextProperties.getProperty(propInfo.property));
             }
         }
     }
