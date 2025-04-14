@@ -13,7 +13,7 @@ public class RebuildPropertyCache {
 
     public static void main(String[] args) throws IOException {
         final var binDir = new File(Settings.Output.BIN_DIR);
-        if (false && binDir.exists()) {
+        if (binDir.exists()) {
             final Queue<File> directories = new ArrayDeque<>();
             final List<File> directoriesToDelete = new ArrayList<>();
             final List<File> filesToDelete = new ArrayList<>();
