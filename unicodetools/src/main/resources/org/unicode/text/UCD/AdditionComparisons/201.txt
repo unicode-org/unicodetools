@@ -1,0 +1,20 @@
+# Cyrillic: 1C8B CYRILLIC SMALL LETTER YERU WITH CONNECTING BAR
+# https://github.com/unicode-org/utc-release-management/issues/[RMG ISSUE NUMBER]
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+
+Ignoring Block:
+Propertywise [
+  \x{1C8B}   \N{CYRILLIC SMALL LETTER YERU WITH CONNECTING BAR}
+  \x{1D2B} ᴫ \N{CYRILLIC LETTER SMALL CAPITAL EL}
+] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
