@@ -1,5 +1,5 @@
 # DerivedCoreProperties-17.0.0.txt
-# Date: 2025-04-15, 14:11:20 GMT
+# Date: 2025-04-15, 14:19:35 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -13207,6 +13207,7 @@ ABC0..ABDA    ; InCB; Consonant # Lo  [27] MEETEI MAYEK LETTER KOK..MEETEI MAYEK
 1138B         ; InCB; Consonant # Lo       TULU-TIGALARI LETTER EE
 1138E         ; InCB; Consonant # Lo       TULU-TIGALARI LETTER AI
 11390..113B5  ; InCB; Consonant # Lo  [38] TULU-TIGALARI LETTER OO..TULU-TIGALARI LETTER LLLA
+113DA         ; InCB; Consonant # Lo       TULU-TIGALARI LETTER ARCHAIC II
 11900..11906  ; InCB; Consonant # Lo   [7] DIVES AKURU LETTER A..DIVES AKURU LETTER E
 11909         ; InCB; Consonant # Lo       DIVES AKURU LETTER O
 1190C..11913  ; InCB; Consonant # Lo   [8] DIVES AKURU LETTER KA..DIVES AKURU LETTER JA
@@ -13219,7 +13220,7 @@ ABC0..ABDA    ; InCB; Consonant # Lo  [27] MEETEI MAYEK LETTER KOK..MEETEI MAYEK
 11F04..11F10  ; InCB; Consonant # Lo  [13] KAWI LETTER A..KAWI LETTER O
 11F12..11F33  ; InCB; Consonant # Lo  [34] KAWI LETTER KA..KAWI LETTER JNYA
 
-# Total code points: 912
+# Total code points: 913
 
 # ================================================
 
