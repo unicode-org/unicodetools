@@ -1,5 +1,5 @@
 # DerivedLineBreak-17.0.0.txt
-# Date: 2025-02-14, 17:30:22 GMT
+# Date: 2025-04-15, 14:11:22 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -70,8 +70,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 757136 code points not listed here.
-# Total code points: 894604
+# The above property value applies to 757135 code points not listed here.
+# Total code points: 894603
 
 # ================================================
 
@@ -3908,6 +3908,7 @@ A984..A9B2    ; AK # Lo  [47] JAVANESE LETTER A..JAVANESE LETTER HA
 11335..11339  ; AK # Lo   [5] GRANTHA LETTER VA..GRANTHA LETTER HA
 11360..11361  ; AK # Lo   [2] GRANTHA LETTER VOCALIC RR..GRANTHA LETTER VOCALIC LL
 11392..113B5  ; AK # Lo  [36] TULU-TIGALARI LETTER KA..TULU-TIGALARI LETTER LLLA
+113DA         ; AK # Lo       TULU-TIGALARI LETTER ARCHAIC II
 11900..11906  ; AK # Lo   [7] DIVES AKURU LETTER A..DIVES AKURU LETTER E
 11909         ; AK # Lo       DIVES AKURU LETTER O
 1190C..11913  ; AK # Lo   [8] DIVES AKURU LETTER KA..DIVES AKURU LETTER JA
@@ -3916,7 +3917,7 @@ A984..A9B2    ; AK # Lo  [47] JAVANESE LETTER A..JAVANESE LETTER HA
 11F04..11F10  ; AK # Lo  [13] KAWI LETTER A..KAWI LETTER O
 11F12..11F33  ; AK # Lo  [34] KAWI LETTER KA..KAWI LETTER JNYA
 
-# Total code points: 329
+# Total code points: 330
 
 # ================================================
 

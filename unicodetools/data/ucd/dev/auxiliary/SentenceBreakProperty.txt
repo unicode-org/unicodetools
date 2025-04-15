@@ -1,5 +1,5 @@
 # SentenceBreakProperty-17.0.0.txt
-# Date: 2025-01-27, 18:09:39 GMT
+# Date: 2025-04-15, 14:11:50 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2457,6 +2457,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 113B7         ; OLetter # Lo       TULU-TIGALARI SIGN AVAGRAHA
 113D1         ; OLetter # Lo       TULU-TIGALARI REPHA
 113D3         ; OLetter # Lo       TULU-TIGALARI SIGN PLUTA
+113DA         ; OLetter # Lo       TULU-TIGALARI LETTER ARCHAIC II
 11400..11434  ; OLetter # Lo  [53] NEWA LETTER A..NEWA LETTER HA
 11447..1144A  ; OLetter # Lo   [4] NEWA SIGN AVAGRAHA..NEWA SIDDHI
 1145F..11461  ; OLetter # Lo   [3] NEWA LETTER VEDIC ANUSVARA..NEWA SIGN UPADHMANIYA
@@ -2622,7 +2623,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 30000..3134A  ; OLetter # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..33479  ; OLetter # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 
-# Total code points: 141520
+# Total code points: 141521
 
 # ================================================
 

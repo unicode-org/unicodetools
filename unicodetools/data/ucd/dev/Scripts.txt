@@ -1,6 +1,5 @@
-113DA          ; Tulu_Tigalari
 # Scripts-17.0.0.txt
-# Date: 2025-01-27, 18:09:39 GMT
+# Date: 2025-04-15, 14:11:49 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3140,9 +3139,10 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 113D3         ; Tulu_Tigalari # Lo       TULU-TIGALARI SIGN PLUTA
 113D4..113D5  ; Tulu_Tigalari # Po   [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
 113D7..113D8  ; Tulu_Tigalari # Po   [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
+113DA         ; Tulu_Tigalari # Lo       TULU-TIGALARI LETTER ARCHAIC II
 113E1..113E2  ; Tulu_Tigalari # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 
-# Total code points: 80
+# Total code points: 81
 
 # ================================================
 
