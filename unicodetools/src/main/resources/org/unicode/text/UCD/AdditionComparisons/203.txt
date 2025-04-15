@@ -1,0 +1,28 @@
+# Tulu-Tigalari: 113DA TULU-TIGALARI LETTER ARCHAIC II
+# https://github.com/unicode-org/utc-release-management/issues/203
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+
+Propertywise [\x{113DA} \N{TULU-TIGALARI LETTER ARCHAIC II}]
+CorrespondTo [\x{11008} 𑀈 \N{BRAHMI LETTER II}]
+UpTo: Block                (Tulu_Tigalari vs Brahmi),
+      Script               (Tulu_Tigalari vs Brahmi),
+      Script_Extensions    (Tulu_Tigalari vs Brahmi),
+      Indic_Conjunct_Break (Consonant vs None)
+
+Propertywise [\x{113DA} \N{TULU-TIGALARI LETTER ARCHAIC II}]
+CorrespondTo [\x{0D5F} ൟ \N{MALAYALAM LETTER ARCHAIC II}]
+UpTo: Block                (Tulu_Tigalari vs Malayalam),
+      Script               (Tulu_Tigalari vs Malayalam),
+      Script_Extensions    (Tulu_Tigalari vs Malayalam),
+      Indic_Conjunct_Break (Consonant vs None)
+      Line_Break           (Aksara vs Alphabetic)
+
+end Ignoring;
+
+end Ignoring;
