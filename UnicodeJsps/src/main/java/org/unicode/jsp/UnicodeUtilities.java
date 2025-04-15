@@ -1785,7 +1785,8 @@ public class UnicodeUtilities {
                 boolean isCurrent =
                         assignment.first.compareTo(Settings.LAST_VERSION_INFO) <= 0
                                 && Settings.LAST_VERSION_INFO.compareTo(assignment.last) <= 0;
-                boolean showVersion = minVersion.compareTo(Settings.LAST_VERSION_INFO) < 0 || history.size() > 1;
+                boolean showVersion =
+                        minVersion.compareTo(Settings.LAST_VERSION_INFO) < 0 || history.size() > 1;
                 boolean isSingleVersion = assignment.first == assignment.last;
                 boolean isNew = assignment.first == Settings.LATEST_VERSION_INFO;
                 String versionRange =
