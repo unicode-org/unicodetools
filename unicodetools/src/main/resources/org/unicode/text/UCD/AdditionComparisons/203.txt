@@ -20,7 +20,7 @@ CorrespondTo [\x{0D5F} ൟ \N{MALAYALAM LETTER ARCHAIC II}]
 UpTo: Block                (Tulu_Tigalari vs Malayalam),
       Script               (Tulu_Tigalari vs Malayalam),
       Script_Extensions    (Tulu_Tigalari vs Malayalam),
-      Indic_Conjunct_Break (Consonant vs None)
+      Indic_Conjunct_Break (Consonant vs None),
       Line_Break           (Aksara vs Alphabetic)
 
 end Ignoring;
