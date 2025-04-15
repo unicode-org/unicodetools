@@ -802,7 +802,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             }
             if (propInfo != null && dataLine.matcher(line).matches()) {
                 var range = new UcdLineParser.IntRange();
-                range.set(line.split(" ", 1)[0]);
+                range.set(line.split(" ", 2)[0]);
                 final var data = indexUnicodeProperties.property2UnicodeMap.get(propInfo.property);
                 propInfo.put(
                         data,
