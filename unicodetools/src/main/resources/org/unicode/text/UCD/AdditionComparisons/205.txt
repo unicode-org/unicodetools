@@ -1,0 +1,17 @@
+# Tangut: 18D1F TANGUT IDEOGRAPH-18D1F
+# https://github.com/unicode-org/utc-release-management/issues/205
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+
+Ignoring kRSTUnicode kTGT_MergedSrc:
+Propertywise [\x{18D00}\x{18D1F}] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
