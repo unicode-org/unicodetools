@@ -927,7 +927,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         "2.1.5",
         "2.1.2",
         "2.0.0",
-        "1.1.0",
+        "1.1.0", // Really 1.1.5.
+        "1.0.1", // Reconstructed.
+        "1.0.0", // Reconstructed.
     };
 
     public static final List<VersionInfo> UNICODE_VERSIONS =

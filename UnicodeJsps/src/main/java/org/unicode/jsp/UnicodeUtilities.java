@@ -1484,7 +1484,7 @@ public class UnicodeUtilities {
                 history.equals("assigned") && age != Age_Values.Unassigned
                         ? VersionInfo.getInstance(age.getShortName())
                         : history.equals("full")
-                                ? VersionInfo.getInstance(Age_Values.V1_1.getShortName())
+                                ? Utility.UNICODE_VERSIONS.get(Utility.UNICODE_VERSIONS.size() - 1)
                                 : Settings.LAST_VERSION_INFO;
         if (minVersion.compareTo(UcdLoader.getOldestLoadedUcd()) < 0) {
             minVersion = UcdLoader.getOldestLoadedUcd();
