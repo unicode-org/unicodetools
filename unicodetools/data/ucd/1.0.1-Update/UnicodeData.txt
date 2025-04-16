@@ -6855,7 +6855,7 @@
 4E00;<CJK Ideograph, First>;Lo;0;L;;;;;N;;;;;
 9FA5;<CJK Ideograph, Last>;Lo;0;L;;;;;N;;;;;
 E000;<Private Use, First>;Co;0;L;;;;;N;;;;;
-F7FF;<Private Use, Last>;Co;0;L;;;;;N;;;;;
+F8FF;<Private Use, Last>;Co;0;L;;;;;N;;;;;
 F900;<CJK Compatibility Ideograph, First>;Lo;0;L;;;;;N;;;;;
 FA2D;<CJK Compatibility Ideograph, Last>;Lo;0;L;;;;;N;;;;;
 FE30;GLYPH FOR VERTICAL TWO DOT LEADER;So;0;ON;<vertical> 2025;;;;N;;;;;
