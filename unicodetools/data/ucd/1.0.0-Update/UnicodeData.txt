@@ -3,6 +3,7 @@
 # Author: Ken Whistler
 #
 # Updated February 23, 2012 to fix a minor typo.
+# Updated April 16, 2025 to fix several minor typos.
 #
 # Note: This is a completely artificially reconstituted
 # UnicodeData.txt file, projecting back to what UnicodeData-1.0.0.txt
