@@ -1385,7 +1385,6 @@ public class UnicodeUtilities {
         } else {
             name = toHTML.transliterate(name);
         }
-        boolean allowed = XIDModifications.isAllowed(cp);
 
         String scriptCat = getScriptCat("", cp);
         if (showDevProperties) {
@@ -1415,16 +1414,6 @@ public class UnicodeUtilities {
         out.append("<tr><td class='bigCode'>" + hex + "</td></tr>\n");
         out.append("<tr><td class='bigName'>" + name + "</td></tr>\n");
         out.append("<tr><td class='bigName'>" + scriptCat + "</td></tr>\n");
-        out.append("<tr><td class='bigName'><i>id:</i> ");
-        if (allowed) {
-            out.append("<span class='allowed'>allowed</span>");
-        } else {
-            out.append(
-                    "<span class='restricted' title='Restricted in identifiers: "
-                            + XIDModifications.getType(cp)
-                            + "'>restricted</span>");
-        }
-        out.append("</td></tr>\n");
         StringBuilder confusableString = displayConfusables(cp);
         out.append(
                 "<tr><td class='bigName'><span title='Confusable Characters'><i>confuse:</i> </span>");
@@ -1438,7 +1427,7 @@ public class UnicodeUtilities {
 
         List<String> availableNames = (List<String>) getFactory().getAvailableNames();
         TreeSet<String> sortedProps =
-                Builder.with(new TreeSet<String>(col)).addAll(availableNames).remove("Name").get();
+                Builder.with(new TreeSet<String>(col)).addAll(availableNames).get();
 
         String kRSUnicode = getFactory().getProperty("kRSUnicode").getValue(cp);
         boolean isUnihan = kRSUnicode != null;
@@ -1484,7 +1473,7 @@ public class UnicodeUtilities {
                 history.equals("assigned") && age != Age_Values.Unassigned
                         ? VersionInfo.getInstance(age.getShortName())
                         : history.equals("full")
-                                ? VersionInfo.getInstance(Age_Values.V1_1.getShortName())
+                                ? Utility.UNICODE_VERSIONS.get(Utility.UNICODE_VERSIONS.size() - 1)
                                 : Settings.LAST_VERSION_INFO;
         if (minVersion.compareTo(UcdLoader.getOldestLoadedUcd()) < 0) {
             minVersion = UcdLoader.getOldestLoadedUcd();

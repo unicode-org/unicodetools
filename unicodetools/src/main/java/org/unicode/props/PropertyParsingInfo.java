@@ -1153,6 +1153,51 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 } else if (parts[1].contains("Hangul Syllable")) {
                     parts[1] = CONSTRUCTED_NAME;
                     hackHangul = true;
+                } else if (parts[1].contains("CJK Compatibility Ideograph")) {
+                    // Unicode 2.0 through 2.1.2 have
+                    // F900;<CJK Compatibility Ideograph, First>;Lo;0;L;;;;;N;;;;;
+                    // FA2D;<CJK Compatibility Ideograph, Last>;Lo;0;L;;;;;N;;;;;
+                    // and this is replicated in the reconstructed 1.0.0 and 1.0.1 files.
+                    parts[1] = "CJK COMPATIBILITY IDEOGRAPH-#";
+                } else if (parts[1].equals("<CJK IDEOGRAPH REPRESENTATIVE>")) {
+                    // UnicodeData-1.1.5.txt does not have ranges yet, instead it has a
+                    // representative that is meant to apply to ranges defined elsewhere.
+                    // We inject these ranges here.
+                    parts[1] = "CJK UNIFIED IDEOGRAPH-#";
+                    // Start is already at 0x4E00, the representative.
+                    line.getRange().end = 0x9FA5;
+                    parseFields(
+                            line,
+                            indexUnicodeProperties,
+                            nextProperties,
+                            propInfoSet,
+                            null,
+                            hackHangul);
+                    line.getRange().start = 0xF900;
+                    line.getRange().end = 0xFA2D;
+                    parts[1] = "CJK COMPATIBILITY IDEOGRAPH-#";
+                    parseFields(
+                            line,
+                            indexUnicodeProperties,
+                            nextProperties,
+                            propInfoSet,
+                            null,
+                            hackHangul);
+                    // UnicodeData-1.1.5.txt is also missing the PUA, which was defined only in
+                    // wording.  Inject it here while we are doing surgery on the surrounding CJK
+                    // blocks.  Note that the PUA has its modern E000..F8FF in 1.1, see
+                    // https://www.unicode.org/versions/Unicode1.1.0/ch02.pdf.
+                    line.getRange().start = 0xE000;
+                    line.getRange().end = 0xF8FF;
+                    parts[1] = null;
+                    parts[2] = "Co";
+                    parseFields(
+                            line,
+                            indexUnicodeProperties,
+                            nextProperties,
+                            propInfoSet,
+                            null,
+                            hackHangul);
                 } else {
                     parts[1] = null;
                 }
