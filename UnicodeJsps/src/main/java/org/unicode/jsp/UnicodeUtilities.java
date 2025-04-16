@@ -1438,7 +1438,7 @@ public class UnicodeUtilities {
 
         List<String> availableNames = (List<String>) getFactory().getAvailableNames();
         TreeSet<String> sortedProps =
-                Builder.with(new TreeSet<String>(col)).addAll(availableNames).remove("Name").get();
+                Builder.with(new TreeSet<String>(col)).addAll(availableNames).get();
 
         String kRSUnicode = getFactory().getProperty("kRSUnicode").getValue(cp);
         boolean isUnihan = kRSUnicode != null;
