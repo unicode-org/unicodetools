@@ -49,22 +49,38 @@ Indic scripts only:
 - [ ] Commit
 
 ---
-- [ ] PropsList.txt — Add Other_Alphabetic, Other_Lowercase, Diacritic, and Extender to satisfy invariants, or to taste
-- [ ] Commit
-
----
 - [ ] UCD — [Regenerate](#regenerate-ucd)
 - [ ] Enums — [Regenerate](#generateenums)
 
 ---
+- [ ] In unicodetools/src/main/resources/org/unicode/text/UCD/AdditionComparisons,
+      copy template.txt to [RMG issue number].txt.
+- [ ] Comparison tests — Write
+  - Examples:
+    - [straightforward characters](https://github.com/unicode-org/unicodetools/blob/08748760e371d9dbdc6a0fc883c68dff944648e2/unicodetools/src/main/resources/org/unicode/text/UCD/AdditionComparisons/182.txt#L11-L18),
+    - [various Latin (lowercase-only, case pairs, modifiers)](https://github.com/unicode-org/unicodetools/blob/4f8a581c77fdda2d572a16b28e74d865a689108e/unicodetools/src/main/resources/org/unicode/text/UCD/AdditionComparisons/155.txt#L11-L72),
+    - [numeric characters](https://github.com/unicode-org/unicodetools/blob/84f6110737037e74c22a66d812b398f4e3adb5b7/unicodetools/src/main/resources/org/unicode/text/UCD/AdditionComparisons/175.txt#L11-L34),
+    - [characters decomposing to sequences](https://github.com/unicode-org/unicodetools/blob/5f6bc190766ed9104cebc828f1e193517f4d74ec/unicodetools/src/main/resources/org/unicode/text/UCD/AdditionComparisons/141.txt#L13-L20).
+  - Until tests pass:    
+    - [ ] Comparison tests — [Run](#run-comparison-tests)
+    - [ ] Correct properties (often in PropList.txt, but also VerticalOrientation.txt, East_Asian_Width.txt, etc.).
+    - [ ] Commit
+    - [ ] UCD — [Regenerate](#regenerate-ucd)
+
+---
 PR preparation:
-- [ ] If from SAH — Link SAH issue
-- [ ] If from ESC or CJK — Mention ESC or CJK in the PR description
-- [ ] When for a UTC decision — Cite in the format UTC-\d\d\d-[MC]\d+ or with a link.
-- [ ] Link RMG issue
-- [ ] Whenever there is a Proposal document — Cite L2 number in the format L2/yy-nnn
+- [ ] UTC decision — Cite if available
+  - Copy from the minutes (this includes a link), or, if unavailable, use the form UTC-\d\d\d-[MC]\d+.
+  - If there is no UTC decision but an L2 document is available, cite as L2/\d\d-\d+.
+- [ ] Working group — Mention:
+  - Proposals from SAH — Link SAH issue
+  - Proposals from ESC or CJK — Mention ESC or CJK in the PR description
+- [ ] RMG issue — Link
 - [ ] data-for-new — Set label
-- [ ] pipeline-* — Set label to **pipeline-recommended-to-UTC** if the characters are not yet in the pipeline, and **pipeline-provisionally-assigned**, or **pipeline-`<version>`** depending on their status in [the Pipeline](https://unicode.org/alloc/Pipeline.html#future).
+- [ ] pipeline-* — Set label:
+  - **pipeline-recommended-to-UTC** if the characters are not yet in the pipeline,
+  - **pipeline-provisionally-assigned**, or
+  - **pipeline-`<version>`** depending on their status in [the Pipeline](https://unicode.org/alloc/Pipeline.html#future).
 - [ ] PR button — Set to DRAFT pull request
   - unless approved for the upcoming version
 - [ ] PR button — Press
@@ -75,7 +91,24 @@ PR preparation:
     in the UCD invariants.
     UCA and security data issues are addressed later in the process,
     before the start of β review.
+- [ ] PAG review summary for the report — Write
+  - For proposals from SAH, use the following template in the SAH issue:
+    ```markdown
+    # PAG Review
 
+    [Name] drafted the UCD change in https://github.com/unicode-org/unicodetools/pull/[number].
+
+    ## PAG report
+
+    [Summarize the propertywise tests, omitting the uninteresting, _e.g._, differences in Block or
+    Unicode_1_Name, and calling out the nontrivial (in particular, any issues that were caught by
+    the tests).]
+    ```
+  - For proposals from CJK, file a PAG issue of type `Document`, citing the proposal.
+    Put the review in the `Background information / discussion` section, and link the pull request
+    in the `Internal` section. See, _e.g._, https://github.com/unicode-org/properties/issues/366.
+- [ ] PAG dashboard status of SAH or PAG issue — Set to `Review`
+- [ ] Pipeline dashboard PAG status of RMG issue — Set to `data review`
 ## Scripts
 
 There are a variety of setups for unicodetools, depending on OS, in-source vs. out-of-source, git practices, etc.
@@ -190,3 +223,12 @@ mvn spotless:apply
 git add *.java
 git commit -m GenerateEnums
 ```
+
+
+### Run comparison tests
+
+eggrobin (Windows, in-source).
+```powershell
+mvn test -am -pl unicodetools "-DCLDR_DIR=$(gl|split-path -parent)\cldr\"  "-DUNICODETOOLS_GEN_DIR=$(gl|split-path -parent)\unicodetools\Generated\"  "-DUNICODETOOLS_REPO_DIR=$(gl|split-path -parent)\unicodetools\" "-DUVERSION=17.0.0" "-Dtest=TestTestUnicodeInvariants#testAdditionComparisons" -DfailIfNoTests=false -DtrimStackTrace=false
+```
+Results are in Generated\UnicodeTestResults-addition-comparisons-[RMG issue number].html.

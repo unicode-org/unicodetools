@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="properties related to boundaries" id='schema.properties'>
+  code-point-attributes &amp;=
+    attribute Gr_Base { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Gr_Ext { boolean }?
+
+  code-point-attributes &amp;=
+    attribute OGr_Ext { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Gr_Link { boolean }?
+
+  code-point-attributes &amp;=
+    attribute GCB { "CN" | "CR"
+                  | "EB" | "EBG" | "EM" | "EX"
+                  | "GAZ"
+                  | "L" | "LF" | "LV" | "LVT"
+                  | "PP"
+                  | "RI"
+                  | "SM"
+                  | "T"
+                  | "V"
+                  | "XX"
+                  | "ZWJ"
+                  }?
+
+  code-point-attributes &amp;=
+    attribute WB { "CR"
+                 | "DQ"
+                 | "EB" | "EBG" | "EM" | "EX" | "Extend"
+                 | "FO"
+                 | "GAZ"
+                 | "HL"
+                 | "KA"
+                 | "LE" | "LF"
+                 | "MB" | "ML" | "MN"
+                 | "NL" | "NU"
+                 | "RI"
+                 | "SQ"
+                 | "WSegSpace"
+                 | "XX"
+                 | "ZWJ"
+                 }?
+
+  code-point-attributes &amp;=
+    attribute SB { "AT"
+                 | "CL" | "CR"
+                 | "EX"
+                 | "FO"
+                 | "LE" | "LF" | "LO"
+                 | "NU"
+                 | "SC" | "SE" | "SP" | "ST"
+                 | "UP"
+                 | "XX"
+                 }?
+</ucdxml:block>

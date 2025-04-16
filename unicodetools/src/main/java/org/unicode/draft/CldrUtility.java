@@ -702,7 +702,7 @@ public class CldrUtility {
                     "foo",
                     "([ \\- \\\\ \\[ \\] ]) > '\\' $1 ;"
                             //        + " ([:c:]) > &hex($1);"
-                            + " ([[:control:][[:z:]&[:ascii:]]]) > &hex($1);",
+                            + " ([[:control:][[:z:]&[:Block=ASCII:]]]) > &hex($1);",
                     Transliterator.FORWARD);
 
     /**

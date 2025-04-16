@@ -36,6 +36,8 @@ FileType ; Unihan_OtherMappings ; PropertyValue
 FileType ; Unihan_RadicalStrokeCounts ; PropertyValue
 FileType ; Unihan_Readings ; PropertyValue
 FileType ; Unihan_Variants ; PropertyValue
+FileType ; NushuSources ; PropertyValue
+FileType ; TangutSources ; PropertyValue
 
 # NameAliases File Type
 # Contains a multivalued property, where successive values are not in the same line, but are divided out on successive lines with the same code point
@@ -43,6 +45,7 @@ FileType ; Unihan_Variants ; PropertyValue
 FileType ; NameAliases ; NameAliases
 FileType ; NameAliasesProv ; NameAliases
 FileType ; StandardizedVariants ; StandardizedVariants
+FileType ; emoji-variation-sequences ; StandardizedVariants
 
 # CJKRadicals File Type
 
@@ -126,7 +129,9 @@ SpecialCasing ; Lowercase_Mapping ; 1 ; SkipAny4
 SpecialCasing ; Titlecase_Mapping ; 2 ; SkipAny4
 SpecialCasing ; Uppercase_Mapping ; 3 ; SkipAny4
 DerivedCoreProperties ; Lowercase
+PropList ; Lowercase ; v3.0.1
 DerivedCoreProperties ; Uppercase
+PropList ; Uppercase ; v3.0.1
 DerivedCoreProperties ; Cased
 DerivedCoreProperties ; Case_Ignorable
 DerivedCoreProperties ; Changes_When_Lowercased
@@ -135,6 +140,7 @@ DerivedCoreProperties ; Changes_When_Titlecased
 DerivedCoreProperties ; Changes_When_Casefolded
 DerivedCoreProperties ; Changes_When_Casemapped
 DerivedCoreProperties ; Alphabetic
+PropList ; Alphabetic ; v3.0.1
 DerivedCoreProperties ; Default_Ignorable_Code_Point
 DerivedCoreProperties ; Grapheme_Base
 DerivedCoreProperties ; Grapheme_Extend
@@ -142,6 +148,7 @@ DerivedCoreProperties ; Grapheme_Extend
 DerivedCoreProperties ; Grapheme_Link
 PropList ; Grapheme_Link ; v4.1
 DerivedCoreProperties ; Math
+PropList ; Math ; v3.0.1
 DerivedCoreProperties ; ID_Start
 DerivedCoreProperties ; ID_Continue
 DerivedCoreProperties ; XID_Start
@@ -320,6 +327,15 @@ Unihan_Variants ; kSpoofingVariant
 Unihan_Variants ; kTraditionalVariant
 Unihan_Variants ; kZVariant
 
+NushuSources ; kSrc_NushuDuben
+NushuSources ; kReading
+TangutSources ; kRSTUnicode
+TangutSources ; kTGT_MergedSrc
+
+NormalizationCorrections ; normalization_correction_original ; 1
+NormalizationCorrections ; normalization_correction_corrected ; 2
+NormalizationCorrections ; normalization_correction_version ; 3
+
 # Properties removed from Unihan before 5.1.
 # Point to a nonexistent file so that we don’t try to read them from the most recent monolithic
 # Unihan, as we would then get confused by the other (still-extant) properties in that file.
@@ -438,6 +454,7 @@ EmojiSources ; Emoji_SB ; 3
 NamedSequences ; Named_Sequences
 NamedSequencesProv ; Named_Sequences_Prov
 StandardizedVariants ; Standardized_Variant
+emoji-variation-sequences ; emoji-variation-sequence
 DoNotEmit ; Do_Not_Emit_Preferred ; 1
 DoNotEmit ; Do_Not_Emit_Type ; 2
 
@@ -487,15 +504,6 @@ emoji/*/emoji-sequences; RGI_Emoji_Tag_Sequence
 emoji/*/emoji-zwj-sequences; RGI_Emoji_Zwj_Sequence
 
 #emoji/*/emoji-test ; Emoji_Short_Name
-
-
-FileType ; TangutSources ; PropertyValue
-TangutSources ; kTGT_MergedSrc
-TangutSources ; kRSTUnicode
-
-FileType ; NushuSources ; PropertyValue
-NushuSources ; kSrc_NushuDuben
-NushuSources ; kReading
 
 FileType ; Unikemet ; PropertyValue
 Unikemet ; kEH_Cat

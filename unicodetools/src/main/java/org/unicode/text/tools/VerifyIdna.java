@@ -1,11 +1,7 @@
 package org.unicode.text.tools;
 
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.Normalizer;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.ParsePosition;
@@ -14,18 +10,12 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.BagFormatter;
-import org.unicode.props.UnicodeProperty;
-import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
-import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 
 public class VerifyIdna {
-
-    static final boolean USE_ICU = true;
-
     // 011B ; PVALID # LATIN SMALL LETTER E WITH CARON
     static final Matcher DATALINE =
             Pattern.compile(
@@ -187,101 +177,9 @@ public class VerifyIdna {
         return patrik;
     }
 
-    static class PropertySymbolTable extends UnicodeSet.XSymbolTable {
-        UnicodeProperty.Factory unicodePropertyFactory;
-        UnicodeSet isCaseFolded;
-
-        public PropertySymbolTable(UnicodeProperty.Factory unicodePropertyFactory) {
-            this.unicodePropertyFactory = unicodePropertyFactory;
-            final UnicodeProperty gc = unicodePropertyFactory.getProperty("gc");
-            final UnicodeProperty ideo = unicodePropertyFactory.getProperty("ideographic");
-            final UnicodeSet invariant =
-                    new UnicodeSet()
-                            .addAll(gc.getSet("cc"))
-                            .addAll(gc.getSet("cn"))
-                            .addAll(gc.getSet("co"))
-                            .addAll(gc.getSet("cs"))
-                    // .addAll(ideo.getSet("t"))
-                    ;
-            isCaseFolded = new UnicodeSet(invariant);
-
-            for (final UnicodeSetIterator it =
-                            new UnicodeSetIterator(new UnicodeSet(invariant).complement());
-                    it.nextRange(); ) {
-                for (int cp = it.codepoint; cp <= it.codepointEnd; ++cp) {
-                    final String s = UTF16.valueOf(cp);
-                    if (getNormalizedCaseFolded(getNormalizedCaseFolded(s)).equals(s)) {
-                        isCaseFolded.add(cp);
-                    }
-                }
-            }
-        }
-
-        private String getNormalizedCaseFolded(String s) {
-            if (USE_ICU) {
-                return Normalizer.normalize(
-                        UCharacter.foldCase(s, true), Normalizer.COMPOSE_COMPAT);
-            } else {
-                return Default.nfkc()
-                        .normalize(Default.ucd().getCase(s, UCD_Types.FULL, UCD_Types.FOLD));
-            }
-        }
-
-        @Override
-        public boolean applyPropertyAlias(
-                String propertyName, String propertyValue, UnicodeSet result) {
-            //    String trimmedPropertyValue = propertyValue.trim();
-            //    if (trimmedPropertyValue.startsWith("/") && trimmedPropertyValue.endsWith("/")) {
-            //    Matcher matcher = Pattern.compile(
-            //    trimmedPropertyValue.substring(1, trimmedPropertyValue.length() - 1)).matcher("");
-            //        UnicodeSet temp = unicodePropertyFactory.getSet(propertyName,);
-            //      }
-            result.clear();
-            if (propertyName.equals("isCaseFolded")) {
-                result.addAll(isCaseFolded);
-                return true;
-            }
-            UnicodeSet temp;
-            try {
-                if (propertyValue.length() != 0) {
-                    temp = getSet(propertyName, propertyValue);
-                } else {
-                    temp = getSet("gc", propertyValue);
-                    if (temp != null) {
-                        temp = getSet("sc", propertyValue);
-                        if (temp != null) {
-                            temp = getSet(propertyName, "t");
-                        }
-                    }
-                }
-            } catch (final RuntimeException e) {
-                System.out.println("Failed on " + propertyName + "=" + propertyValue);
-                e.printStackTrace();
-                throw e;
-            }
-            if (temp.size() == 0) {
-                System.out.println("NULL on " + propertyName + "=" + propertyValue);
-            }
-            result.addAll(temp);
-            return true;
-        }
-
-        private UnicodeSet getSet(String propertyName, String propertyValue) {
-            return unicodePropertyFactory.getSet(propertyName + "=" + propertyValue);
-        }
-    }
-    ;
-
-    static PropertySymbolTable myXSymbolTable = null;
-
     public static UnicodeSet parseUnicodeSet(String input) {
-        if (myXSymbolTable == null) {
-            if (USE_ICU) {
-                myXSymbolTable = new PropertySymbolTable(ICUPropertyFactory.make());
-            } else {
-                myXSymbolTable = new PropertySymbolTable(ToolUnicodePropertySource.make(""));
-            }
-        }
+        final var myXSymbolTable = VersionedSymbolTable.forDevelopment();
+        myXSymbolTable.setUnversionedExtensions(ToolUnicodePropertySource.make(""));
         input = input.trim();
         final ParsePosition parsePosition = new ParsePosition(0);
         final UnicodeSet result = new UnicodeSet(input, parsePosition, myXSymbolTable);
