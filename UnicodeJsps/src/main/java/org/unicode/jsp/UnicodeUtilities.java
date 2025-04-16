@@ -1385,7 +1385,6 @@ public class UnicodeUtilities {
         } else {
             name = toHTML.transliterate(name);
         }
-        boolean allowed = XIDModifications.isAllowed(cp);
 
         String scriptCat = getScriptCat("", cp);
         if (showDevProperties) {
@@ -1415,16 +1414,6 @@ public class UnicodeUtilities {
         out.append("<tr><td class='bigCode'>" + hex + "</td></tr>\n");
         out.append("<tr><td class='bigName'>" + name + "</td></tr>\n");
         out.append("<tr><td class='bigName'>" + scriptCat + "</td></tr>\n");
-        out.append("<tr><td class='bigName'><i>id:</i> ");
-        if (allowed) {
-            out.append("<span class='allowed'>allowed</span>");
-        } else {
-            out.append(
-                    "<span class='restricted' title='Restricted in identifiers: "
-                            + XIDModifications.getType(cp)
-                            + "'>restricted</span>");
-        }
-        out.append("</td></tr>\n");
         StringBuilder confusableString = displayConfusables(cp);
         out.append(
                 "<tr><td class='bigName'><span title='Confusable Characters'><i>confuse:</i> </span>");
