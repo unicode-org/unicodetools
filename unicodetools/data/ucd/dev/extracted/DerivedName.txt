@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2025-01-27, 18:09:14 GMT
+# Date: 2025-04-15, 12:40:14 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -6525,6 +6525,7 @@
 1C88          ; CYRILLIC SMALL LETTER UNBLENDED UK
 1C89          ; CYRILLIC CAPITAL LETTER TJE
 1C8A          ; CYRILLIC SMALL LETTER TJE
+1C8B          ; CYRILLIC SMALL LETTER YERU WITH CONNECTING BAR
 1C90          ; GEORGIAN MTAVRULI CAPITAL LETTER AN
 1C91          ; GEORGIAN MTAVRULI CAPITAL LETTER BAN
 1C92          ; GEORGIAN MTAVRULI CAPITAL LETTER GAN
@@ -45870,6 +45871,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 159834
+# Total code points: 159835
 
 # EOF
