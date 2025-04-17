@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 17.0.0
 @@@+	NamesList-17.0.0.txt
-@+	Generation Date: 2025-03-27, 11:06:09 GMT
+@+	Generation Date: 2025-04-10, 10:07:47 GMT
 	Unicode 17.0.0 names list.
 	Repertoire synched with UnicodeData-17.0.0d2.txt.
 	Synch with 7th edition CD; post UTC182 annotation updates for 17.0.
@@ -16,6 +16,8 @@
 	Added xrefs between 1AE2 and 0304.
 	Adjust notice at A7F1.
 	Correct placement of subhead for FD90.
+	Added annotations for 309F and 30FF.
+	Updates for Sidetic annotations.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -21199,6 +21201,7 @@
 	: 309D 3099
 @		Hiragana digraph
 309F	HIRAGANA DIGRAPH YORI
+	* represents the Japanese word "yori" (from or than)
 	* historically used in vertical contexts, but now found also in horizontal layout
 	# <vertical> 3088 308A
 @@	30A0	Katakana	30FF
@@ -21346,6 +21349,7 @@
 	: 30FD 3099
 @		Katakana digraph
 30FF	KATAKANA DIGRAPH KOTO
+	* represents the Japanese word "koto" (thing)
 	* historically used in vertical contexts, but now found also in horizontal layout
 	# <vertical> 30B3 30C8
 @@	3100	Bopomofo	312F
@@ -32562,16 +32566,16 @@ FFFF	<not a character>
 10943	SIDETIC LETTER N04
 	* vowel o
 10944	SIDETIC LETTER N05
-	* vowel
+	* vowel u
 10945	SIDETIC LETTER N06
-	* semivowel
+	* semivowel w
 10946	SIDETIC LETTER N07
-	* semivowel
+	* semivowel y
 @		Consonant letters
 10947	SIDETIC LETTER N08
 	* consonant p
 10948	SIDETIC LETTER N09
-	* consonant
+	* consonant d2
 10949	SIDETIC LETTER N10
 	* consonant m
 1094A	SIDETIC LETTER N11
@@ -32581,9 +32585,9 @@ FFFF	<not a character>
 1094C	SIDETIC LETTER N13
 	* consonant θ
 1094D	SIDETIC LETTER N14
-	* fricative consonant
+	* fricative consonant s
 1094E	SIDETIC LETTER N15
-	* fricative consonant
+	* fricative consonant s2
 1094F	SIDETIC LETTER N16
 	* consonant n
 10950	SIDETIC LETTER N17
@@ -32591,17 +32595,21 @@ FFFF	<not a character>
 10951	SIDETIC LETTER N18
 	* consonant
 10952	SIDETIC LETTER N19
+	* consonant g
 10953	SIDETIC LETTER N20
+	* Greek chi
 10954	SIDETIC LETTER N21
 	* consonant r
 10955	SIDETIC LETTER N22
+	* vowel
 10956	SIDETIC LETTER N23
-	* consonant
+	* consonant k
 10957	SIDETIC LETTER N24
-	* consonant
+	* consonant b
 10958	SIDETIC LETTER N25
+	* consonant n2
 10959	SIDETIC LETTER N26
-	* consonant
+	* consonant z
 1095A	SIDETIC LETTER N27
 1095B	SIDETIC LETTER N28
 1095C	SIDETIC LETTER N29
