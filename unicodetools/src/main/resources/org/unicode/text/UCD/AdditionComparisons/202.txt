@@ -1,0 +1,21 @@
+# Latin: 1DF83/1DF84 LATIN SMALL LETTTER N/R WITH DOUBLE MIDDLE TILDE
+# https://github.com/unicode-org/utc-release-management/issues/202
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+
+Ignoring Block:
+Propertywise [
+  \x{1DF83}   \N{LATIN SMALL LETTER N WITH DOUBLE MIDDLE TILDE}
+  \x{1DF84}   \N{LATIN SMALL LETTER R WITH DOUBLE MIDDLE TILDE}
+   \x{AB38} ꬸ \N{LATIN SMALL LETTER L WITH DOUBLE MIDDLE TILDE}
+] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

@@ -1,5 +1,5 @@
 # Scripts-17.0.0.txt
-# Date: 2025-01-27, 18:09:39 GMT
+# Date: 2025-04-15, 13:34:02 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -703,8 +703,9 @@ FF41..FF5A    ; Latin # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 1DF0A         ; Latin # Lo       LATIN LETTER RETROFLEX CLICK WITH RETROFLEX HOOK
 1DF0B..1DF1E  ; Latin # L&  [20] LATIN SMALL LETTER ESH WITH DOUBLE BAR..LATIN SMALL LETTER S WITH CURL
 1DF25..1DF2A  ; Latin # L&   [6] LATIN SMALL LETTER D WITH MID-HEIGHT LEFT HOOK..LATIN SMALL LETTER T WITH MID-HEIGHT LEFT HOOK
+1DF83..1DF84  ; Latin # L&   [2] LATIN SMALL LETTER N WITH DOUBLE MIDDLE TILDE..LATIN SMALL LETTER R WITH DOUBLE MIDDLE TILDE
 
-# Total code points: 1492
+# Total code points: 1494
 
 # ================================================
 
