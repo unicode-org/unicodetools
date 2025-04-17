@@ -1,5 +1,5 @@
 # DerivedCombiningClass-17.0.0.txt
-# Date: 2025-01-27, 18:09:10 GMT
+# Date: 2025-04-15, 14:11:19 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1602,6 +1602,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 113D3         ; 0 # Lo       TULU-TIGALARI SIGN PLUTA
 113D4..113D5  ; 0 # Po   [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
 113D7..113D8  ; 0 # Po   [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
+113DA         ; 0 # Lo       TULU-TIGALARI LETTER ARCHAIC II
 113E1..113E2  ; 0 # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 11400..11434  ; 0 # Lo  [53] NEWA LETTER A..NEWA LETTER HA
 11435..11437  ; 0 # Mc   [3] NEWA VOWEL SIGN AA..NEWA VOWEL SIGN II
@@ -2095,7 +2096,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 816745 code points not listed here.
+# The above property value applies to 816744 code points not listed here.
 # Total code points: 1113143
 
 # ================================================

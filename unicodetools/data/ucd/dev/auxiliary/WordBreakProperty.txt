@@ -1,5 +1,5 @@
 # WordBreakProperty-17.0.0.txt
-# Date: 2025-01-27, 18:09:43 GMT
+# Date: 2025-04-15, 14:11:52 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1201,6 +1201,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 113B7         ; ALetter # Lo       TULU-TIGALARI SIGN AVAGRAHA
 113D1         ; ALetter # Lo       TULU-TIGALARI REPHA
 113D3         ; ALetter # Lo       TULU-TIGALARI SIGN PLUTA
+113DA         ; ALetter # Lo       TULU-TIGALARI LETTER ARCHAIC II
 11400..11434  ; ALetter # Lo  [53] NEWA LETTER A..NEWA LETTER HA
 11447..1144A  ; ALetter # Lo   [4] NEWA SIGN AVAGRAHA..NEWA SIDDHI
 1145F..11461  ; ALetter # Lo   [3] NEWA LETTER VEDIC ANUSVARA..NEWA SIGN UPADHMANIYA
@@ -1383,7 +1384,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 34004
+# Total code points: 34005
 
 # ================================================
 
