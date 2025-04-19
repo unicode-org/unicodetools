@@ -1567,6 +1567,7 @@ public class UcdPropertyValues {
     // kDaeJaweon
     // kDefinition
     // kEACC
+    // kEH_AltSeq
     // kEH_Cat
     public enum kEH_Core_Values implements Named {
         Core("C"),

@@ -517,3 +517,4 @@ Unikemet ; kEH_IFAO
 Unikemet ; kEH_NoMirror
 Unikemet ; kEH_NoRotate
 Unikemet ; kEH_UniK
+Unikemet ; kEH_AltSeq

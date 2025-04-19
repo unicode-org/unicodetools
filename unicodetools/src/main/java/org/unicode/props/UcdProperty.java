@@ -82,6 +82,7 @@ public enum UcdProperty {
     Uppercase_Mapping(PropertyType.String, DerivedPropertyStatus.Approved, "uc"),
     kCompatibilityVariant(
             PropertyType.String, DerivedPropertyStatus.Approved, "cjkCompatibilityVariant"),
+    kEH_AltSeq(PropertyType.String, DerivedPropertyStatus.Provisional, "kEH_AltSeq"),
     kSimplifiedVariant(
             PropertyType.String,
             DerivedPropertyStatus.Provisional,

@@ -349,3 +349,4 @@ kEH_Core ; N ; None
 # @missing: 0000..10FFFF; kEH_Func ; <none>
 # @missing: 0000..10FFFF; kEH_FVal ; <none>
 # @missing: 0000..10FFFF; kEH_UniK ; <none>
+# @missing: 0000..10FFFF; kEH_AltSeq ; <none>
