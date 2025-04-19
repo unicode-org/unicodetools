@@ -1,5 +1,5 @@
 # Unikemet-16.0.0.txt
-# Date: 2025-04-17
+# Date: 2025-04-18
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -12520,7 +12520,7 @@ U+13686	kEH_UniK	A300H
 U+13687	kEH_Cat	A-28-055
 U+13687	kEH_Core	C
 U+13687	kEH_Desc	King, standing, with a long straight beard, wearing the white crown (S1), right arm forward, holding a stem of papyrus with a flowering bud (M127), of the height of the king, left arm hanging beside the body.
-U+13687	kEH_Func	Logogram (king of UE and land when occurirng together with red crown wearing variant forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy)
+U+13687	kEH_Func	Logogram (king of UE and land when occurring together with red crown wearing variant forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy)
 U+13687	kEH_FVal	n(.y)-sw.t & tꜣ
 U+13687	kEH_UniK	A300I
 U+13688	kEH_Cat	A-28-056
@@ -23546,7 +23546,7 @@ U+13C59	kEH_HG	G31B
 U+13C59	kEH_IFAO	181,11
 U+13C5A	kEH_Cat	G-11-077
 U+13C5A	kEH_Core	C
-U+13C5A	kEH_Desc	A gray heron (Ardea cinerea) with a downwards curve tip at the beak and two feathers on its head.
+U+13C5A	kEH_Desc	A gray heron (Ardea cinerea) with a downward curve tip at the beak and two feathers on its head.
 U+13C5A	kEH_Func	Phonemogram
 U+13C5A	kEH_FVal	tꜣ
 U+13C5A	kEH_UniK	G321
@@ -36162,7 +36162,7 @@ U+142F8	kEH_FVal	wnw.t
 U+142F8	kEH_UniK	U039T
 U+142F9	kEH_Cat	U-16-048
 U+142F9	kEH_Core	C
-U+142F9	kEH_Desc	A level, consisting of three beams in a shape, with a vertical line with a plummet coming from the top corner.
+U+142F9	kEH_Desc	A level, consisting of three beams in the shape of an A, with a vertical line with a plummet coming from the top corner.
 U+142F9	kEH_Func	Classifier length, width
 U+142F9	kEH_FVal	sḫḫ
 U+142F9	kEH_UniK	HJ U097
