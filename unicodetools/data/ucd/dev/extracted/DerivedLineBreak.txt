@@ -1,5 +1,5 @@
 # DerivedLineBreak-17.0.0.txt
-# Date: 2025-04-23, 11:24:08 GMT
+# Date: 2025-04-23, 11:35:31 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -70,8 +70,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 757136 code points not listed here.
-# Total code points: 894604
+# The above property value applies to 757139 code points not listed here.
+# Total code points: 894607
 
 # ================================================
 
@@ -1275,7 +1275,6 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 10920..10939  ; AL # Lo  [26] LYDIAN LETTER A..LYDIAN LETTER C
 1093F         ; AL # Po       LYDIAN TRIANGULAR MARK
 10940..10959  ; AL # Lo  [26] SIDETIC LETTER N01..SIDETIC LETTER N26
-1095A..1095C  ; AL # Cn   [3] <reserved-1095A>..<reserved-1095C>
 10980..109B7  ; AL # Lo  [56] MEROITIC HIEROGLYPHIC LETTER A..MEROITIC CURSIVE LETTER DA
 109BC..109BD  ; AL # No   [2] MEROITIC CURSIVE FRACTION ELEVEN TWELFTHS..MEROITIC CURSIVE FRACTION ONE HALF
 109BE..109BF  ; AL # Lo   [2] MEROITIC CURSIVE LOGOGRAM RMT..MEROITIC CURSIVE LOGOGRAM IMN
@@ -1642,7 +1641,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB94..1FBEF  ; AL # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; AL # So       ALARM BELL SYMBOL
 
-# Total code points: 26987
+# Total code points: 26984
 
 # ================================================
 
