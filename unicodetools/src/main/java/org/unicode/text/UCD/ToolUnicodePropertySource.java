@@ -2241,6 +2241,15 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     break;
                 }
                 if (ucdCache[i].isAllocated(codePoint)) {
+                    if (i == UCD_Types.AGE11 && !ucdCache[i + 1].isAllocated(codePoint)) {
+                        // Deallocations in Unicode 2.
+                        continue;
+                    }
+                    return UCD_Names.LONG_AGE[i];
+                } else if (i == UCD_Types.AGE11
+                        && ((codePoint >= 0xE000 && codePoint <= 0xF8FF)
+                                || (codePoint >= 0xF900 && codePoint <= 0xFA2D))) {
+                    // Private use and CJK compatibility ideographs, not overt in UnicodeData 1.1.5.
                     return UCD_Names.LONG_AGE[i];
                 }
             }

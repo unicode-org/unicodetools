@@ -94,7 +94,7 @@
 #    Miscellaneous characters and sequences discouraged in the
 #    Unicode Standard.
 # Preferred_Spelling:
-#    Miscellaneous characters and sequeences for which the Unicode Standard
+#    Miscellaneous characters and sequences for which the Unicode Standard
 #    specifies a preferred spelling.
 
 # ================================================

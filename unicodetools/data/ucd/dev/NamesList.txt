@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 17.0.0
 @@@+	NamesList-17.0.0.txt
-@+	Generation Date: 2025-02-11, 12:33:07 GMT
+@+	Generation Date: 2025-04-10, 10:07:47 GMT
 	Unicode 17.0.0 names list.
 	Repertoire synched with UnicodeData-17.0.0d2.txt.
 	Synch with 7th edition CD; post UTC182 annotation updates for 17.0.
@@ -10,6 +10,14 @@
 	Added Tajik to 01A3 per edcom issue #209.
 	Annotations added to Sidetic, per edcom issue #177.
 	Added informative aliases for Adlam letters, per edcom issue #186.
+	Adjusted annotations for 1DC4 and 1DC3.
+	Added xrefs between 00B1 and 22C7.
+	Added xrefs between 29D6 and 1F76E.
+	Added xrefs between 1AE2 and 0304.
+	Adjust notice at A7F1.
+	Correct placement of subhead for FD90.
+	Added annotations for 309F and 30FF.
+	Updates for Sidetic annotations.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -706,6 +714,7 @@
 00B1	PLUS-MINUS SIGN
 	= biquintile (astrological aspect: 144°)
 	x (minus-or-plus sign - 2213)
+	x (division times - 22C7)
 00B2	SUPERSCRIPT TWO
 	= squared
 	* other superscript digit characters: 2070-2079
@@ -2687,6 +2696,7 @@
 	* distinguish from the following
 	x (macron - 00AF)
 	x (modifier letter macron - 02C9)
+	x (combining minus sign above - 1AE2)
 0305	COMBINING OVERLINE
 	= overscore, vinculum
 	* connects on left and right
@@ -10761,9 +10771,8 @@
 1ACC	COMBINING LATIN SMALL LETTER INSULAR G
 1ACD	COMBINING LATIN SMALL LETTER INSULAR R
 1ACE	COMBINING LATIN SMALL LETTER INSULAR T
-@		Tone mark used in IPA
-1ACF	COMBINING DOUBLE CARON
 @		Compound tone diacritics
+1ACF	COMBINING DOUBLE CARON
 1AD0	COMBINING VERTICAL-LINE-ACUTE
 1AD1	COMBINING GRAVE-VERTICAL-LINE
 1AD2	COMBINING VERTICAL-LINE-GRAVE
@@ -10791,6 +10800,7 @@
 	x (combining cyrillic dasia pneumata - 0485)
 	x (coptic combining spiritus asper - 2CF0)
 1AE2	COMBINING MINUS SIGN ABOVE
+	x (combining macron - 0304)
 	x (combining minus sign below - 0320)
 1AE3	COMBINING INVERTED BRIDGE ABOVE
 	x (combining inverted bridge below - 033A)
@@ -11979,12 +11989,12 @@
 @		Miscellaneous marks
 1DC2	COMBINING SNAKE BELOW
 1DC3	COMBINING SUSPENSION MARK
-	* Glagolitic
+	* abbreviation mark in Glagolitic
 	x (combining breve - 0306)
 @		Contour tone marks
 1DC4	COMBINING MACRON-ACUTE
+	* also used to represent the Middle Vietnamese "apex" diacritic (dấu sóng)
 	x (combining tilde - 0303)
-	* also used to represent the Middle Vietnamese "apex" diacritic
 1DC5	COMBINING GRAVE-MACRON
 1DC6	COMBINING MACRON-GRAVE
 1DC7	COMBINING ACUTE-MACRON
@@ -14861,6 +14871,8 @@
 	x (black star - 2605)
 	x (white medium star - 2B50)
 22C7	DIVISION TIMES
+	* ambiguous sign conflating two operators
+	x (plus-minus sign - 00B1)
 	x (multiplication sign - 00D7)
 	x (division sign - 00F7)
 	x (multiplication x - 2715)
@@ -17993,6 +18005,7 @@
 	= vertical bowtie
 	= white framus
 	x (hourglass - 231B)
+	x (alchemical symbol for hour - 1F76E)
 29D7	BLACK HOURGLASS
 	x (upper and lower triangular half block - 1FB9A)
 @		Fences
@@ -21188,6 +21201,7 @@
 	: 309D 3099
 @		Hiragana digraph
 309F	HIRAGANA DIGRAPH YORI
+	* represents the Japanese word "yori" (from or than)
 	* historically used in vertical contexts, but now found also in horizontal layout
 	# <vertical> 3088 308A
 @@	30A0	Katakana	30FF
@@ -21335,6 +21349,7 @@
 	: 30FD 3099
 @		Katakana digraph
 30FF	KATAKANA DIGRAPH KOTO
+	* represents the Japanese word "koto" (thing)
 	* historically used in vertical contexts, but now found also in horizontal layout
 	# <vertical> 30B3 30C8
 @@	3100	Bopomofo	312F
@@ -25333,8 +25348,8 @@ A7DB	LATIN SMALL LETTER LAMBDA
 A7DC	LATIN CAPITAL LETTER LAMBDA WITH STROKE
 	* lowercase is 019B 
 @		Modifier letters for Chatino (México)
+@+		These characters are also used as phonetic and phonemic wildcards.
 A7F1	MODIFIER LETTER CAPITAL S
-	* also used as a phonetic and phonemic wildcard character
 	# <super> 0053
 A7F2	MODIFIER LETTER CAPITAL C
 	# <super> 0043
@@ -28932,8 +28947,6 @@ FD4D	ARABIC LIGATURE ALAYHAA AS-SALAAM
 FD4E	ARABIC LIGATURE TABAARAKA WA-TAAALAA
 FD4F	ARABIC LIGATURE RAHIMAHUM ALLAAH
 @		Ligatures (three elements)
-@		Honorific word ligatures
-@+		These word ligatures have no decompositions.
 FD50	ARABIC LIGATURE TEH WITH JEEM WITH MEEM INITIAL FORM
 	# <initial> 062A 062C 0645
 FD51	ARABIC LIGATURE TEH WITH HAH WITH JEEM FINAL FORM
@@ -29062,6 +29075,8 @@ FD8E	ARABIC LIGATURE MEEM WITH KHAH WITH JEEM INITIAL FORM
 	# <initial> 0645 062E 062C
 FD8F	ARABIC LIGATURE MEEM WITH KHAH WITH MEEM INITIAL FORM
 	# <initial> 0645 062E 0645
+@		Honorific word ligatures
+@+		These word ligatures have no decompositions.
 FD90	ARABIC LIGATURE RAHMATU ALLAAHI ALAYH
 FD91	ARABIC LIGATURE RAHMATU ALLAAHI ALAYHAA
 @		Ligatures (three elements)
@@ -32551,16 +32566,16 @@ FFFF	<not a character>
 10943	SIDETIC LETTER N04
 	* vowel o
 10944	SIDETIC LETTER N05
-	* vowel
+	* vowel u
 10945	SIDETIC LETTER N06
-	* semivowel
+	* semivowel w
 10946	SIDETIC LETTER N07
-	* semivowel
+	* semivowel y
 @		Consonant letters
 10947	SIDETIC LETTER N08
 	* consonant p
 10948	SIDETIC LETTER N09
-	* consonant
+	* consonant d2
 10949	SIDETIC LETTER N10
 	* consonant m
 1094A	SIDETIC LETTER N11
@@ -32570,9 +32585,9 @@ FFFF	<not a character>
 1094C	SIDETIC LETTER N13
 	* consonant θ
 1094D	SIDETIC LETTER N14
-	* fricative consonant
+	* fricative consonant s
 1094E	SIDETIC LETTER N15
-	* fricative consonant
+	* fricative consonant s2
 1094F	SIDETIC LETTER N16
 	* consonant n
 10950	SIDETIC LETTER N17
@@ -32580,17 +32595,21 @@ FFFF	<not a character>
 10951	SIDETIC LETTER N18
 	* consonant
 10952	SIDETIC LETTER N19
+	* consonant g
 10953	SIDETIC LETTER N20
+	* Greek chi
 10954	SIDETIC LETTER N21
 	* consonant r
 10955	SIDETIC LETTER N22
+	* vowel
 10956	SIDETIC LETTER N23
-	* consonant
+	* consonant k
 10957	SIDETIC LETTER N24
-	* consonant
+	* consonant b
 10958	SIDETIC LETTER N25
+	* consonant n2
 10959	SIDETIC LETTER N26
-	* consonant
+	* consonant z
 1095A	SIDETIC LETTER N27
 1095B	SIDETIC LETTER N28
 1095C	SIDETIC LETTER N29
@@ -63734,6 +63753,7 @@ FFFF	<not a character>
 @		Time
 1F76E	ALCHEMICAL SYMBOL FOR HOUR
 	x (hourglass - 231B)
+	x (white hourglass - 29D6)
 1F76F	ALCHEMICAL SYMBOL FOR NIGHT
 1F770	ALCHEMICAL SYMBOL FOR DAY-NIGHT
 1F771	ALCHEMICAL SYMBOL FOR MONTH

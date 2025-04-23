@@ -743,9 +743,9 @@ public class TestJsp extends TestFmwkMinusMinus {
         assertContains(sample, "abcd");
         sample = UnicodeJsp.showTransform("bc > CB; X > xx;", "Abcd");
         assertContains(sample, "ACBd");
-        sample = UnicodeJsp.showTransform("lower", "[[:ascii:]{Abcd}]");
+        sample = UnicodeJsp.showTransform("lower", "[[:Block=ASCII:]{Abcd}]");
         assertContains(sample, "\u00A0A\u00A0");
-        sample = UnicodeJsp.showTransform("bc > CB; X > xx;", "[[:ascii:]{Abcd}]");
+        sample = UnicodeJsp.showTransform("bc > CB; X > xx;", "[[:Block=ASCII:]{Abcd}]");
         assertContains(sample, "\u00A0ACBd\u00A0");
         sample = UnicodeJsp.showTransform("casefold", "[\\u0000-\\u00FF]");
         assertContains(sample, "\u00A0\u00E1\u00A0");
@@ -791,7 +791,7 @@ public class TestJsp extends TestFmwkMinusMinus {
             UnicodeJsp.showSet(
                     "sc gc",
                     "",
-                    new UnicodeSet("[[:ascii:]{123}{ab}{456}]"),
+                    new UnicodeSet("[[:Block=ASCII:]{123}{ab}{456}]"),
                     false,
                     true,
                     true,
@@ -912,7 +912,7 @@ public class TestJsp extends TestFmwkMinusMinus {
 
     @Test
     public void TestRegex() {
-        final String fix = UnicodeRegex.fix("ab[[:ascii:]&[:Ll:]]*c");
+        final String fix = UnicodeRegex.fix("ab[[:Block=ASCII:]&[:Ll:]]*c");
         assertEquals("", "ab[a-z]*c", fix);
         assertEquals(
                 "",
@@ -1028,7 +1028,7 @@ public class TestJsp extends TestFmwkMinusMinus {
                         + "host = \\/\\/ reserved+;\n"
                         + "query = [\\=reserved]+;\n"
                         + "fragment = reserved+;\n"
-                        + "reserved = [[:ascii:][:sc=grek:]&[:alphabetic:]];\n",
+                        + "reserved = [[:Block=ASCII:][:sc=grek:]&[:alphabetic:]];\n",
                 "http://αβγ?huh=hi#there"
             },
             //                {

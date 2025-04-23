@@ -1,5 +1,5 @@
 # WordBreakTest-17.0.0.txt
-# Date: 2025-01-27, 18:09:43 GMT
+# Date: 2025-03-24, 14:46:35 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1850,8 +1850,8 @@
 ÷ 1F476 × 1F3FF ÷ 1F476 ÷	#  ÷ [0.2] BABY (ExtPictmALetter) × [4.0] EMOJI MODIFIER FITZPATRICK TYPE-6 (Extend) ÷ [999.0] BABY (ExtPictmALetter) ÷ [0.3]
 ÷ 1F6D1 × 200D × 1F6D1 ÷	#  ÷ [0.2] OCTAGONAL SIGN (ExtPictmALetter) × [4.0] ZERO WIDTH JOINER (ZWJ) × [3.3] OCTAGONAL SIGN (ExtPictmALetter) ÷ [0.3]
 ÷ 0061 × 200D × 1F6D1 ÷	#  ÷ [0.2] LATIN SMALL LETTER A (ALettermExtPict) × [4.0] ZERO WIDTH JOINER (ZWJ) × [3.3] OCTAGONAL SIGN (ExtPictmALetter) ÷ [0.3]
-÷ 2701 × 200D × 2701 ÷	#  ÷ [0.2] UPPER BLADE SCISSORS (ExtPictmALetter) × [4.0] ZERO WIDTH JOINER (ZWJ) × [3.3] UPPER BLADE SCISSORS (ExtPictmALetter) ÷ [0.3]
-÷ 0061 × 200D × 2701 ÷	#  ÷ [0.2] LATIN SMALL LETTER A (ALettermExtPict) × [4.0] ZERO WIDTH JOINER (ZWJ) × [3.3] UPPER BLADE SCISSORS (ExtPictmALetter) ÷ [0.3]
+÷ 2701 × 200D ÷ 2701 ÷	#  ÷ [0.2] UPPER BLADE SCISSORS (XXmExtPict) × [4.0] ZERO WIDTH JOINER (ZWJ) ÷ [999.0] UPPER BLADE SCISSORS (XXmExtPict) ÷ [0.3]
+÷ 0061 × 200D ÷ 2701 ÷	#  ÷ [0.2] LATIN SMALL LETTER A (ALettermExtPict) × [4.0] ZERO WIDTH JOINER (ZWJ) ÷ [999.0] UPPER BLADE SCISSORS (XXmExtPict) ÷ [0.3]
 ÷ 1F476 × 1F3FF × 0308 × 200D × 1F476 × 1F3FF ÷	#  ÷ [0.2] BABY (ExtPictmALetter) × [4.0] EMOJI MODIFIER FITZPATRICK TYPE-6 (Extend) × [4.0] COMBINING DIAERESIS (Extend) × [4.0] ZERO WIDTH JOINER (ZWJ) × [3.3] BABY (ExtPictmALetter) × [4.0] EMOJI MODIFIER FITZPATRICK TYPE-6 (Extend) ÷ [0.3]
 ÷ 1F6D1 × 1F3FF ÷	#  ÷ [0.2] OCTAGONAL SIGN (ExtPictmALetter) × [4.0] EMOJI MODIFIER FITZPATRICK TYPE-6 (Extend) ÷ [0.3]
 ÷ 200D × 1F6D1 × 1F3FF ÷	#  ÷ [0.2] ZERO WIDTH JOINER (ZWJ) × [3.3] OCTAGONAL SIGN (ExtPictmALetter) × [4.0] EMOJI MODIFIER FITZPATRICK TYPE-6 (Extend) ÷ [0.3]

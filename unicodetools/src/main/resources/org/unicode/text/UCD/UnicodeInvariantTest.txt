@@ -616,6 +616,17 @@ $combiningExclusions ⊇ [$singletons & \p{dt=canonical}]
 $combiningExclusions ⊇ [$nonstarter & \p{dt=canonical}]
 $combiningExclusions ⊇ [$firstNonStarter & \p{dt=canonical}]
 
+
+\p{normalization_correction_version≠@none@} = [陋 㛼 当 𤎫 竮 䗗]
+# Everything is corrected now.
+In \p{normalization_correction_version≠@none@}, normalization_correction_corrected = Decomposition_Mapping
+# This all happened between 3.1 and 4.0.
+In \p{normalization_correction_version≠@none@}, normalization_correction_corrected = U4.0:Decomposition_Mapping
+In \p{normalization_correction_version≠@none@}, normalization_correction_original  = U3.1:Decomposition_Mapping
+# The version field tells us whether the 3.2 mapping was wrong.
+In \p{normalization_correction_version=3.2.0}, U3.2:Decomposition_Mapping = normalization_correction_corrected
+In \p{normalization_correction_version=4.0.0}, U3.2:Decomposition_Mapping = normalization_correction_original
+
 ##########################
 # Other Invariant Tests, not in Stability Policies
 ##########################
@@ -1075,7 +1086,7 @@ Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 \p{lb=EM} = \p{Emoji_Modifier}
 
 # Recent pictographs with default emoji presentation are lb=ID, EB or EM:
-[\p{Emoji_Presentation} & [\p{age=7.0}\p{age=8.0}\p{age=9.0}\p{age=10.0}\p{age=11.0}\p{age=12.0}\p{age=13.0}\p{age=14.0}\p{age=15.0}]] ⊂ [\p{lb=ID} \p{lb=EB} \p{lb=EM}]
+[\p{Emoji_Presentation} - \p{age=6.0}] ⊂ [\p{lb=ID} \p{lb=EB} \p{lb=EM}]
 
 [\p{Emoji_Presentation} - \p{RI}] ⊂ \p{ea=W}
 
@@ -1096,6 +1107,11 @@ Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 [\p{Extended_Pictographic}-\p{gc=Cn}] ⊆ \p{Emoji}
 # And nearly all emoji are Extended_Pictographic.
 [\p{Extended_Pictographic}-\p{gc=Cn}] = [\p{Emoji}-\p{Regional_Indicator}-\p{Emoji_Modifier}-\p{Block=Basic Latin}]
+
+# TODO(egg): We could check that the variation selectors are used consistently, but this would
+# require UnicodeProperty to support strings properly.
+\p{emoji_variation_sequence=text style} ⊃ [{♈︎}]
+\p{emoji_variation_sequence=emoji style} ⊃ [{♈️}]
 
 ##########################
 # POSIX Compatibility Properties (UTS#18)
@@ -1295,6 +1311,10 @@ Let $japaneseSimplifiedRadicals := \p{Name=/CJK RADICAL J-SIMPLIFIED/}
 In $chineseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ [\p{kRSUnicode=/^[0-9]+'\.0$/} $radicalsWithUnifiableSimplifications]
 In $japaneseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/^[0-9]+''\.0$/}
 
+# Check that removed properties do not persist.
+\p{U16:kGB7≠@none@}=[垯屃慭梾疭瘆筼臜荙诐跶轪辌酦镈镋镕饳馉鱽鱾鲃鲉鲌鲏鲪鲬鲯鲹鲾鳂鳈鳉鳑鳚鳡鳤鸻鸼鹟鹮鹲]
+\p{kGB7≠@none@}=[]
+
 # Tangut invariants
 
 Let $tangutSourcesScope := [\p{Block=/^Tangut(.Supplement)?$/} - \p{gc=Cn}]
@@ -1321,6 +1341,10 @@ $unikemetScope ⊃ \P{kEH_Core=None}
 \p{kEH_Core=Legacy} ⊂ \p{Block=Egyptian Hieroglyphs}
 [\p{kEH_Core=None} & $unikemetScope] ⊂ \p{Block=Egyptian Hieroglyphs Extended-A}
 
+# TODO(egg): We could check that the variation selectors are used consistently, but this would
+# require UnicodeProperty to support strings properly.
+\p{Standardized_Variant=rotated 90 degrees} ⊃ [{𓏲\uFE00}]
+
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
 \p{InPC=/(Left|Right)/} ⊆ [\p{gc=Mc}\p{gc=Lo}\p{gc=Lm}]
@@ -1335,7 +1359,7 @@ $unikemetScope ⊃ \P{kEH_Core=None}
 
 # DoNotEmit.txt.
 \p{Do_Not_Emit_Type=Deprecated} ⊆ \p{Deprecated}
-\p{Deprecated} ⊆ [\p{Do_Not_Emit_Type=Deprecated} \p{Do_Not_Emit_Type=@none@}]
+\p{Deprecated} ⊆ [\p{Do_Not_Emit_Type=Deprecated} \p{Do_Not_Emit_Type=None}]
 # The non-DI deprecated characters have replacements in DoNotEmit, except the angle brackets that
 # are ambiguous.
 \p{Do_Not_Emit_Type=Deprecated} = [ \p{Deprecated} - \p{Default_Ignorable_Code_Point} - \p{Name=/^(LEFT|RIGHT)-POINTING ANGLE BRACKET$/} ]

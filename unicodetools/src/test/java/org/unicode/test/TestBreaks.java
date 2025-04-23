@@ -1,22 +1,20 @@
 package org.unicode.test;
 
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.parse.EBNF;
 import org.unicode.parse.EBNF.Position;
 import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.UnicodePropertySymbolTable;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 
 public class TestBreaks {
     static final boolean DEBUG = true;
 
     static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(Settings.latestVersion);
-    static final XSymbolTable toolUPS = new UnicodePropertySymbolTable(IUP);
 
     static {
-        UnicodeSet.setDefaultXSymbolTable(toolUPS);
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
     }
 
     public static void main(String[] args) {
