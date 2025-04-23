@@ -3156,7 +3156,6 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 # ================================================
 
 10940..10959  ; Sidetic # Lo  [26] SIDETIC LETTER N01..SIDETIC LETTER N26
-1095A..1095C  ; Sidetic # Cn   [3] <reserved-1095A>..<reserved-1095C>
 
 # Total code points: 29
 
