@@ -1,5 +1,5 @@
 # VerticalOrientation-17.0.0.txt
-# Date: 2025-01-29
+# Date: 2025-04-23, 11:24:39 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1732,7 +1732,7 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1091F          ; R  # Po         PHOENICIAN WORD SEPARATOR
 10920..10939   ; R  # Lo    [26] LYDIAN LETTER A..LYDIAN LETTER C
 1093F          ; R  # Po         LYDIAN TRIANGULAR MARK
-10940..1095C   ; R  # Lo    [29] SIDETIC LETTER N01..SIDETIC LETTER N29
+10940..10959   ; R  # Lo    [26] SIDETIC LETTER N01..SIDETIC LETTER N26
 10980..1099F   ; U  # Lo    [32] MEROITIC HIEROGLYPHIC LETTER A..MEROITIC HIEROGLYPHIC SYMBOL VIDJ-2
 109A0..109B7   ; R  # Lo    [24] MEROITIC CURSIVE LETTER A..MEROITIC CURSIVE LETTER DA
 109BC..109BD   ; R  # No     [2] MEROITIC CURSIVE FRACTION ELEVEN TWELFTHS..MEROITIC CURSIVE FRACTION ONE HALF

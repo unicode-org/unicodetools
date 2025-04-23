@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-17.0.0.txt
-# Date: 2025-01-27, 18:09:13 GMT
+# Date: 2025-04-23, 11:24:06 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -400,7 +400,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 108F6..108FA  ; Cn #   [5] <reserved-108F6>..<reserved-108FA>
 1091C..1091E  ; Cn #   [3] <reserved-1091C>..<reserved-1091E>
 1093A..1093E  ; Cn #   [5] <reserved-1093A>..<reserved-1093E>
-1095D..1097F  ; Cn #  [35] <reserved-1095D>..<reserved-1097F>
+1095A..1097F  ; Cn #  [38] <reserved-1095A>..<reserved-1097F>
 109B8..109BB  ; Cn #   [4] <reserved-109B8>..<reserved-109BB>
 109D0..109D1  ; Cn #   [2] <reserved-109D0>..<reserved-109D1>
 10A04         ; Cn #       <reserved-10A04>
@@ -754,7 +754,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 814697
+# Total code points: 814700
 
 # ================================================
 
@@ -2522,7 +2522,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 108F4..108F5  ; Lo #   [2] HATRAN LETTER SHIN..HATRAN LETTER TAW
 10900..10915  ; Lo #  [22] PHOENICIAN LETTER ALF..PHOENICIAN LETTER TAU
 10920..10939  ; Lo #  [26] LYDIAN LETTER A..LYDIAN LETTER C
-10940..1095C  ; Lo #  [29] SIDETIC LETTER N01..SIDETIC LETTER N29
+10940..10959  ; Lo #  [26] SIDETIC LETTER N01..SIDETIC LETTER N26
 10980..109B7  ; Lo #  [56] MEROITIC HIEROGLYPHIC LETTER A..MEROITIC CURSIVE LETTER DA
 109BE..109BF  ; Lo #   [2] MEROITIC CURSIVE LOGOGRAM RMT..MEROITIC CURSIVE LOGOGRAM IMN
 10A00         ; Lo #       KHAROSHTHI LETTER A
@@ -2738,7 +2738,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..33479  ; Lo # [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 
-# Total code points: 141081
+# Total code points: 141078
 
 # ================================================
 

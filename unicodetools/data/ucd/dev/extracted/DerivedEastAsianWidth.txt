@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-17.0.0.txt
-# Date: 2025-01-27, 18:09:12 GMT
+# Date: 2025-04-23, 11:24:06 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1428,7 +1428,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 1091F         ; N # Po       PHOENICIAN WORD SEPARATOR
 10920..10939  ; N # Lo  [26] LYDIAN LETTER A..LYDIAN LETTER C
 1093F         ; N # Po       LYDIAN TRIANGULAR MARK
-10940..1095C  ; N # Lo  [29] SIDETIC LETTER N01..SIDETIC LETTER N29
+10940..10959  ; N # Lo  [26] SIDETIC LETTER N01..SIDETIC LETTER N26
 10980..109B7  ; N # Lo  [56] MEROITIC HIEROGLYPHIC LETTER A..MEROITIC CURSIVE LETTER DA
 109BC..109BD  ; N # No   [2] MEROITIC CURSIVE FRACTION ELEVEN TWELFTHS..MEROITIC CURSIVE FRACTION ONE HALF
 109BE..109BF  ; N # Lo   [2] MEROITIC CURSIVE LOGOGRAM RMT..MEROITIC CURSIVE LOGOGRAM IMN
@@ -2144,7 +2144,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 760566 code points not listed here.
+# The above property value applies to 760569 code points not listed here.
 # Total code points: 792267
 
 # ================================================
