@@ -1,18 +1,17 @@
-XML Representation of Unicode 16.0.0 UCD
+XML Representation of Unicode 17.0.0 UCD
 
 
-© 2024 Unicode®, Inc.
+© 2025 Unicode®, Inc.
 For terms of use, see https://www.unicode.org/terms_of_use.html
 
 
-This directory contains the representation in XML of Version 16.0.0 of
+This directory contains the representation in XML of Version 17.0.0 of
 the UCD, using the schema defined by UAX #42: Unicode Character
 Database in XML, at https://www.unicode.org/reports/tr42/
 
 While every effort has been made to ensure consistency of the 
 XML representation with the UCD files, there may be some errors;
 the UCD files are authoritative.
-
 
 There are six files, available in zip/jar format:
   - flat vs. grouped

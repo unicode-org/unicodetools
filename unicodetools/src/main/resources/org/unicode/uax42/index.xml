@@ -29,17 +29,33 @@
                         <val>CJK_Ext_J</val>, <val>Misc_Symbols_Sup</val>, <val>Sharada_Sup</val>, <val>Sidetic</val>,
                         <val>Tai_Yo</val>, <val>Tangut_Components_Sup</val>, <val>Tolong_Siki</val>.
                     </change>
-                    <change>New value for the <attr>jg</attr> attribute: <val>Thin_Noon</val>.
+                    <change>New value for the <attr>do-not-emit</attr> attribute: <val>None</val>.
+                    </change>
+                    <change>New values for the <attr>jg</attr> attribute: <val>Thin_Noon</val>, <val>BAA</val>,
+                        <val>FA</val>, <val>HAA</val>, <val>HA_GOAL</val>, <val>HA</val>, <val>CAF</val>,
+                        <val>KNOTTED_HA</val>, <val>RA</val>, <val>SWASH_CAF</val>, <val>HAMZAH_ON_HA_GOAL</val>,
+                        <val>TAA_MARBUTAH</val>, <val>YA_BARREE</val>, <val>YA</val>, <val>ALEF_MAQSURAH</val>.
                     </change>
                     <change>New value for the <attr>lb</attr> attribute: <val>HH</val>.
+                    </change>
+                    <change>New value for the <attr>InPC</attr> attribute: <val>Invisible</val>.
+                    </change>
+                    <change>New value for the <attr>InSC</attr> attribute: <val>Consonant_Repha</val>.
                     </change>
                     <change>New values for the <attr>script</attr> attribute: <val>Berf</val>, <val>Chis</val>,
                         <val>Sidt</val>, <val>Tayo</val>, <val>Tols</val>.
                     </change>
-                    <change>New code point attributes for Unikemet: <attr>kEH_Cat</attr>, <attr>kEH_Core</attr>,
-                        <attr>kEH_Desc</attr>, <attr>kEH_Func</attr>, <attr>kEH_FVal</attr>, <attr>kEH_HG</attr>,
-                        <attr>kEH_IFAO</attr>, <attr>kEH_JSesh</attr>, <attr>kEH_NoMirror</attr>,
+                    <change>New code point attributes for Unikemet: <attr>kEH_AltSeq</attr>, <attr>kEH_Cat</attr>,
+                        <attr>kEH_Core</attr>, <attr>kEH_Desc</attr>, <attr>kEH_Func</attr>, <attr>kEH_FVal</attr>,
+                        <attr>kEH_HG</attr>, <attr>kEH_IFAO</attr>, <attr>kEH_JSesh</attr>, <attr>kEH_NoMirror</attr>,
                         <attr>kEH_NoRotate</attr>, <attr>kEH_UniK</attr>.
+                    </change>
+                    <change>Removed attributes for deprecated properties: <attr>Gr_Link</attr>, <attr>Hyphen</attr>,
+                        <attr>isc</attr>, <attr>XO_NFC</attr>, <attr>XO_NFD</attr>, <attr>XO_NFKC</attr>,
+                        <attr>XO_NFKD</attr>, <attr>FC_NFKC</attr>.
+                    </change>
+                    <change>Removed elements that only contained historical information:
+                        <elem>normalization-corrections</elem>, <elem>emoji-sources</elem>.
                     </change>
                     <change>Unihan attributes are applied at the group where applicable, similar to how non-Unihan
                         attributes are applied at the group.
@@ -1090,14 +1106,6 @@
 
             <!--____________________________________________________________________-->
             <section>
-                <title>ISO Comment properties</title>
-                <para>The ISO 10646 comment field is represented by the <attr>isc</attr> attribute.
-                </para>
-                <xi:include href="./fragments/isc.xml"/>
-            </section>
-
-            <!--____________________________________________________________________-->
-            <section>
                 <title>Hangul properties</title>
                 <para>The property <prop>Hangul_Syllable_Type</prop> is represented by the <attr>hst</attr> attribute.
                 </para>
@@ -1142,7 +1150,7 @@
             <!--____________________________________________________________________-->
             <section>
                 <title>Properties related to function and graphic characteristics</title>
-                <para>The properties <prop>Dash</prop>, <prop>Hyphen</prop>, <prop>Quotation_Mark</prop>,
+                <para>The properties <prop>Dash</prop>, <prop>Quotation_Mark</prop>,
                     <prop>Terminal_Punctuation</prop>, <prop>Sentence_Terminal</prop>, <prop>Diacritic</prop>,
                     <prop>Extender</prop>, <prop>Soft_Dotted</prop>, <prop>Alphabetic</prop>,
                     <prop>Other_Alphabetic</prop>, <prop>Math</prop>, <prop>Other_Math</prop>, <prop>Hex_Digit</prop>,
@@ -1160,9 +1168,8 @@
             <section>
                 <title>Properties related to boundaries</title>
                 <para>The properties <prop>Grapheme_Base</prop>, <prop>Grapheme_Extend</prop>,
-                    <prop>Other_Grapheme_Extend</prop>, <prop>Grapheme_Link</prop>,
-                    <prop>Grapheme_Cluster_Break</prop>, <prop>Word_Break</prop>, and <prop>Sentence_Break</prop> each
-                    have a corresponding attribute:
+                    <prop>Other_Grapheme_Extend</prop>, <prop>Grapheme_Cluster_Break</prop>, <prop>Word_Break
+                    </prop>, and <prop>Sentence_Break</prop> each have a corresponding attribute:
                 </para>
                 <xi:include href="./fragments/boundaries.xml"/>
             </section>
@@ -1271,17 +1278,6 @@
 
     <!--========================================================================-->
     <section>
-        <title>Normalization Corrections</title>
-        <para>The <elem>normalization-corrections</elem> child of the <elem>ucd</elem> describes the normalization
-            corrections. It has one child <elem>normalization-correction</elem> element per correction, with
-            attributes to describe the code point affected, its old normalization, its new normalization and the
-            version of Unicode in which the correction was made.
-        </para>
-        <xi:include href="./fragments/normalization-corrections.xml"/>
-    </section>
-
-    <!--========================================================================-->
-    <section>
         <title>Standardized Variants</title>
         <para>The <elem>standardized-variants</elem> child of the <elem>ucd</elem> describes the standardized
             variant. It has one child element <elem>standardized-variant</elem> per variant. The attributes on that
@@ -1299,16 +1295,6 @@
             radical number, the corresponding CJK radical character, and the corresponding CJK unified ideograph.
         </para>
         <xi:include href="./fragments/cjk-radicals.xml"/>
-    </section>
-
-    <!--========================================================================-->
-    <section>
-        <title>Emoji sources</title>
-        <para>The <elem>emoji-sources</elem> child of the <elem>ucd</elem> describes the emoji sources.
-        </para>
-        <xi:include href="./fragments/emoji-sources.xml"/>
-
-        <xi:include href="./fragments/jis-code-point.xml"/>
     </section>
 
     <!--========================================================================-->
@@ -1339,10 +1325,8 @@
       <ucdxml:include linkend='schema.unikemet'/>
       <ucdxml:include linkend='schema.block'/>
       <ucdxml:include linkend='schema.named-sequences'/>
-      <ucdxml:include linkend='schema.normalization-corrections'/>
       <ucdxml:include linkend='schema.standardized-variants'/>
       <ucdxml:include linkend='schema.cjk-radicals'/>
-      <ucdxml:include linkend='schema.emoji-sources'/>
       <ucdxml:include linkend='schema.emoji-data'/>
       <ucdxml:include linkend='schema.do-not-emit'/>
 </ucdxml:schema>

@@ -49,5 +49,16 @@
                  | "Yeh" | "Yeh_Barree" | "Yeh_With_Tail" | "Yudh"
                  | "Yudh_He"
                  | "Zain" | "Zhain"
+                 | "BAA"
+                 | "FA"
+                 | "HAA" | "HA_GOAL" | "HA"
+                 | "CAF"
+                 | "KNOTTED_HA"
+                 | "RA"
+                 | "SWASH_CAF"
+                 | "HAMZAH_ON_HA_GOAL"
+                 | "TAA_MARBUTAH"
+                 | "YA_BARREE" | "YA"
+                 | "ALEF_MAQSURAH"
                  }?
 </ucdxml:block>

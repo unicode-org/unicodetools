@@ -38,5 +38,6 @@
                    | "Vowel"
                    | "Vowel_Dependent"
                    | "Vowel_Independent"
+                   | "Consonant_Repha"
                    }?
 </ucdxml:block>

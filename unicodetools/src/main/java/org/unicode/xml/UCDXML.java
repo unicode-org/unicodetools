@@ -236,12 +236,15 @@ public class UCDXML {
                 ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.BLOCKS);
                 ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.NAMEDSEQUENCES);
                 ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.PROVISIONALNAMEDSEQUENCES);
-                ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.NORMALIZATIONCORRECTIONS);
+                if (ucdVersion.compareTo(VersionInfo.getInstance(17, 0, 0)) < 0 ) {
+                    ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.NORMALIZATIONCORRECTIONS);
+                }
                 ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.STANDARDIZEDVARIANTS);
                 if (ucdVersion.compareTo(VersionInfo.getInstance(5, 2, 0)) >= 0) {
                     ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.CJKRADICALS);
                 }
-                if (ucdVersion.compareTo(VersionInfo.getInstance(6, 0, 0)) >= 0) {
+                if (ucdVersion.compareTo(VersionInfo.getInstance(6, 0, 0)) >= 0 &&
+                        ucdVersion.compareTo(VersionInfo.getInstance(17, 0, 0)) < 0 ) {
                     ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.EMOJISOURCES);
                 }
                 if (ucdVersion.compareTo(VersionInfo.getInstance(16, 0, 0)) >= 0) {

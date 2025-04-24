@@ -17,5 +17,6 @@
                    | "Top_And_Left_And_Right"
                    | "Top_And_Right"
                    | "Visual_Order_Left"
+                   | "Invisible"
                    }?
 </ucdxml:block>

@@ -307,10 +307,11 @@ public class GeneratePropertyValues {
                 "script properties",
                 SCHEMA.PROPERTIES,
                 getFormattedScriptProperties());
-        createPropertyFragment(
-                UcdProperty.ISO_Comment,
-                SCHEMA.PROPERTIES,
-                getFormattedSyntax(UcdProperty.ISO_Comment));
+//Deprecated
+//        createPropertyFragment(
+//                UcdProperty.ISO_Comment,
+//                SCHEMA.PROPERTIES,
+//                getFormattedSyntax(UcdProperty.ISO_Comment));
         createPropertyFragment(
                 UcdProperty.Hangul_Syllable_Type,
                 SCHEMA.PROPERTIES,
@@ -546,8 +547,10 @@ public class GeneratePropertyValues {
     private static String getFormattedSyntax(UcdProperty ucdProperty) {
         final PropertyParsingInfo propInfo = PropertyParsingInfo.getPropertyInfo(ucdProperty);
         if (propInfo.getRegex() == null) {
-            throw new NullPointerException(
-                    "Could not find syntax for " + ucdProperty.getShortName());
+            if(ucdProperty != UcdProperty.kEH_AltSeq) {
+                throw new NullPointerException(
+                        "Could not find syntax for " + ucdProperty.getShortName());
+            }
         }
 
         String attributeString =
@@ -589,7 +592,8 @@ public class GeneratePropertyValues {
                 break;
 
                 // { "#" | one-or-more-code-points }
-            case FC_NFKC_Closure:
+//Deprecated
+//            case FC_NFKC_Closure:
             case Uppercase_Mapping:
             case Lowercase_Mapping:
             case Titlecase_Mapping:
@@ -671,13 +675,18 @@ public class GeneratePropertyValues {
                 String kReading = "{ xsd:string }?";
                 formattedAttributeString = attributeString + kReading;
                 break;
-
             // Currently, kEH_FVal is a Provisional property, and some of the values don't match the Syntax in
             // UAX 57. Use this for now.
             case kEH_FVal:
                 String kEH_FVal = "{ text }?";
                 formattedAttributeString = attributeString + kEH_FVal;
                 break;
+            // Currently, kEH_AltSeq isn't listed in the proposed UAX 57. Use this for now.
+            case kEH_AltSeq:
+                String kEH_AltSeq = "{ text }?";
+                formattedAttributeString = attributeString + kEH_AltSeq;
+                break;
+
 
             default:
                 if(propInfo.getMultivalued() == ValueCardinality.Unordered
@@ -1003,17 +1012,18 @@ public class GeneratePropertyValues {
                         UcdProperty.NFKC_Quick_Check, VALUESOUTPUTTYPE.MAX_LINE_LENGTH)
                 + DOUBLELINE
                 + getFormattedAttribute(
-                        UcdProperty.NFKD_Quick_Check, VALUESOUTPUTTYPE.MAX_LINE_LENGTH)
-                + TRIPLELINE
-                + getFormattedBoolean(UcdProperty.Expands_On_NFC)
-                + DOUBLELINE
-                + getFormattedBoolean(UcdProperty.Expands_On_NFD)
-                + DOUBLELINE
-                + getFormattedBoolean(UcdProperty.Expands_On_NFKC)
-                + DOUBLELINE
-                + getFormattedBoolean(UcdProperty.Expands_On_NFKD)
-                + TRIPLELINE
-                + getFormattedSyntax(UcdProperty.FC_NFKC_Closure);
+                        UcdProperty.NFKD_Quick_Check, VALUESOUTPUTTYPE.MAX_LINE_LENGTH);
+//Deprecated
+//                + TRIPLELINE
+//                + getFormattedBoolean(UcdProperty.Expands_On_NFC)
+//                + DOUBLELINE
+//                + getFormattedBoolean(UcdProperty.Expands_On_NFD)
+//                + DOUBLELINE
+//                + getFormattedBoolean(UcdProperty.Expands_On_NFKC)
+//                + DOUBLELINE
+//                + getFormattedBoolean(UcdProperty.Expands_On_NFKD)
+//                + TRIPLELINE
+//                + getFormattedSyntax(UcdProperty.FC_NFKC_Closure);
     }
 
     private static String getFormattedNumericProperties() {
@@ -1118,8 +1128,9 @@ public class GeneratePropertyValues {
     private static String getFormattedFunctionGraphicProperties() {
         return getFormattedBoolean(UcdProperty.Dash)
                 + DOUBLELINE
-                + getFormattedBoolean(UcdProperty.Hyphen)
-                + DOUBLELINE
+//Deprecated
+//                + getFormattedBoolean(UcdProperty.Hyphen)
+//                + DOUBLELINE
                 + getFormattedBoolean(UcdProperty.Quotation_Mark)
                 + DOUBLELINE
                 + getFormattedBoolean(UcdProperty.Terminal_Punctuation)
@@ -1169,8 +1180,9 @@ public class GeneratePropertyValues {
                 + DOUBLELINE
                 + getFormattedBoolean(UcdProperty.Other_Grapheme_Extend)
                 + DOUBLELINE
-                + getFormattedBoolean(UcdProperty.Grapheme_Link)
-                + DOUBLELINE
+//Deprecated
+//                + getFormattedBoolean(UcdProperty.Grapheme_Link)
+//                + DOUBLELINE
                 + getFormattedAttribute(
                         UcdProperty.Grapheme_Cluster_Break, VALUESOUTPUTTYPE.ALPHABETICAL_GROUP)
                 + DOUBLELINE
@@ -1454,7 +1466,10 @@ public class GeneratePropertyValues {
                 + DOUBLELINE
                 + getFormattedBoolean(UcdProperty.kEH_NoMirror)
                 + DOUBLELINE
-                + getFormattedBoolean(UcdProperty.kEH_NoRotate);
+                + getFormattedBoolean(UcdProperty.kEH_NoRotate)
+                + DOUBLELINE
+                // Force kEH_AltSeq to text while under development.
+                + getFormattedSyntax(UcdProperty.kEH_AltSeq);
     }
 
     // ********************* Attribute values ********************//

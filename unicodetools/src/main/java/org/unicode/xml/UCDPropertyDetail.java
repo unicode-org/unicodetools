@@ -319,16 +319,17 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false);
-    public static UCDPropertyDetail Hyphen_Detail =
-            new UCDPropertyDetail(
-                    UcdProperty.Hyphen,
-                    VersionInfo.getInstance(2, 0, 0),
-                    32,
-                    true,
-                    false,
-                    false,
-                    true,
-                    false);
+// Deprecated
+//    public static UCDPropertyDetail Hyphen_Detail =
+//            new UCDPropertyDetail(
+//                    UcdProperty.Hyphen,
+//                    VersionInfo.getInstance(2, 0, 0),
+//                    32,
+//                    true,
+//                    false,
+//                    false,
+//                    true,
+//                    false);
     public static UCDPropertyDetail Quotation_Mark_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Quotation_Mark,
@@ -589,16 +590,17 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false);
-    public static UCDPropertyDetail Grapheme_Link_Detail =
-            new UCDPropertyDetail(
-                    UcdProperty.Grapheme_Link,
-                    VersionInfo.getInstance(3, 2, 0),
-                    59,
-                    true,
-                    false,
-                    false,
-                    true,
-                    false);
+// Deprecated
+//    public static UCDPropertyDetail Grapheme_Link_Detail =
+//            new UCDPropertyDetail(
+//                    UcdProperty.Grapheme_Link,
+//                    VersionInfo.getInstance(3, 2, 0),
+//                    59,
+//                    true,
+//                    false,
+//                    false,
+//                    true,
+//                    false);
     public static UCDPropertyDetail Sentence_Terminal_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Sentence_Terminal,
@@ -839,56 +841,57 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false);
-    public static UCDPropertyDetail Expands_On_NFC_Detail =
-            new UCDPropertyDetail(
-                    UcdProperty.Expands_On_NFC,
-                    VersionInfo.getInstance(3, 2, 0),
-                    84,
-                    true,
-                    false,
-                    false,
-                    true,
-                    false);
-    public static UCDPropertyDetail Expands_On_NFD_Detail =
-            new UCDPropertyDetail(
-                    UcdProperty.Expands_On_NFD,
-                    VersionInfo.getInstance(3, 2, 0),
-                    85,
-                    true,
-                    false,
-                    false,
-                    true,
-                    false);
-    public static UCDPropertyDetail Expands_On_NFKC_Detail =
-            new UCDPropertyDetail(
-                    UcdProperty.Expands_On_NFKC,
-                    VersionInfo.getInstance(3, 2, 0),
-                    86,
-                    true,
-                    false,
-                    false,
-                    true,
-                    false);
-    public static UCDPropertyDetail Expands_On_NFKD_Detail =
-            new UCDPropertyDetail(
-                    UcdProperty.Expands_On_NFKD,
-                    VersionInfo.getInstance(3, 2, 0),
-                    87,
-                    true,
-                    false,
-                    false,
-                    true,
-                    false);
-    public static UCDPropertyDetail FC_NFC_Closure_Detail =
-            new UCDPropertyDetail(
-                    UcdProperty.FC_NFKC_Closure,
-                    VersionInfo.getInstance(3, 1, 0),
-                    88,
-                    true,
-                    false,
-                    false,
-                    true,
-                    false);
+// Deprecated
+//    public static UCDPropertyDetail Expands_On_NFC_Detail =
+//            new UCDPropertyDetail(
+//                    UcdProperty.Expands_On_NFC,
+//                    VersionInfo.getInstance(3, 2, 0),
+//                    84,
+//                    true,
+//                    false,
+//                    false,
+//                    true,
+//                    false);
+//    public static UCDPropertyDetail Expands_On_NFD_Detail =
+//            new UCDPropertyDetail(
+//                    UcdProperty.Expands_On_NFD,
+//                    VersionInfo.getInstance(3, 2, 0),
+//                    85,
+//                    true,
+//                    false,
+//                    false,
+//                    true,
+//                    false);
+//    public static UCDPropertyDetail Expands_On_NFKC_Detail =
+//            new UCDPropertyDetail(
+//                    UcdProperty.Expands_On_NFKC,
+//                    VersionInfo.getInstance(3, 2, 0),
+//                    86,
+//                    true,
+//                    false,
+//                    false,
+//                    true,
+//                    false);
+//    public static UCDPropertyDetail Expands_On_NFKD_Detail =
+//            new UCDPropertyDetail(
+//                    UcdProperty.Expands_On_NFKD,
+//                    VersionInfo.getInstance(3, 2, 0),
+//                    87,
+//                    true,
+//                    false,
+//                    false,
+//                    true,
+//                    false);
+//    public static UCDPropertyDetail FC_NFC_Closure_Detail =
+//            new UCDPropertyDetail(
+//                    UcdProperty.FC_NFKC_Closure,
+//                    VersionInfo.getInstance(3, 1, 0),
+//                    88,
+//                    true,
+//                    false,
+//                    false,
+//                    true,
+//                    false);
     public static UCDPropertyDetail Case_Ignorable_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Case_Ignorable,
@@ -2135,16 +2138,17 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false);
-    public static UCDPropertyDetail ISO_Comment_Detail =
-            new UCDPropertyDetail(
-                    UcdProperty.ISO_Comment,
-                    VersionInfo.getInstance(11, 0, 0),
-                    216,
-                    true,
-                    false,
-                    false,
-                    true,
-                    false);
+// Deprecated
+//    public static UCDPropertyDetail ISO_Comment_Detail =
+//            new UCDPropertyDetail(
+//                    UcdProperty.ISO_Comment,
+//                    VersionInfo.getInstance(11, 0, 0),
+//                    216,
+//                    true,
+//                    false,
+//                    false,
+//                    true,
+//                    false);
     public static UCDPropertyDetail Unicode_1_Name_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Unicode_1_Name,
@@ -2490,6 +2494,16 @@ public class UCDPropertyDetail {
                     UcdProperty.kEH_NoRotate,
                     VersionInfo.getInstance(16, 0, 0),
                     251,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true);
+    public static UCDPropertyDetail kEH_AltSeq_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kEH_AltSeq,
+                    VersionInfo.getInstance(17, 0, 0),
+                    252,
                     false,
                     false,
                     false,
