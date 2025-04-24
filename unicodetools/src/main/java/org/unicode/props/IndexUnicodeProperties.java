@@ -47,7 +47,6 @@ import org.unicode.draft.UnicodeDataOutput;
 import org.unicode.draft.UnicodeDataOutput.ItemWriter;
 import org.unicode.props.PropertyNames.Named;
 import org.unicode.props.PropertyUtilities.Merge;
-import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
@@ -148,19 +147,16 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public static final synchronized IndexUnicodeProperties make(VersionInfo ucdVersion) {
         IndexUnicodeProperties newItem = version2IndexUnicodeProperties.get(ucdVersion);
         if (newItem == null) {
-            Age_Values nextAge = Age_Values.Unassigned;
-            for (int i = 0; i < Age_Values.values().length - 1; ++i) {
-                final var version = VersionInfo.getInstance(Age_Values.values()[i].getShortName());
-                if (version.equals(ucdVersion)) {
-                    nextAge = Age_Values.values()[i + 1];
-                }
+            if (!Utility.isUnicodeVersion(ucdVersion)) {
+                throw new IllegalArgumentException("Not a Unicode version: " + ucdVersion);
             }
+            VersionInfo nextVersion = Utility.getVersionFollowing(ucdVersion);
             IndexUnicodeProperties base =
                     !incrementalProperties || ucdVersion == Settings.LAST_VERSION_INFO
                             ? null
-                            : nextAge == Age_Values.Unassigned
+                            : nextVersion == null
                                     ? make(Settings.LAST_VERSION_INFO)
-                                    : make(nextAge);
+                                    : make(nextVersion);
             version2IndexUnicodeProperties.put(
                     ucdVersion, newItem = new IndexUnicodeProperties(ucdVersion, base));
         }
@@ -176,8 +172,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     public static final IndexUnicodeProperties make() {
-        final Age_Values[] values = Age_Values.values();
-        return make(values[values.length - 2]);
+        return make(Settings.LATEST_VERSION_INFO);
     }
 
     final VersionInfo ucdVersion;
@@ -927,22 +922,17 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         useIncrementalProperties();
         System.out.println(
                 "Loading back to " + (earliest == null ? "the dawn of time" : earliest) + "...");
-        Age_Values[] ages = Age_Values.values();
         final long overallStart = System.currentTimeMillis();
-        for (int i = ages.length - 2; i >= 0; --i) {
+        for (int i = 0; i < Utility.UNICODE_VERSIONS.size(); ++i) {
             // Load in the order last (released, the base), latest (dev), penultimate,
             // antepenultimate, etc.
-            final var age =
-                    ages[
-                            i == ages.length - 2
-                                    ? ages.length - 3
-                                    : i == ages.length - 3 ? ages.length - 2 : i];
+            final var version = Utility.UNICODE_VERSIONS.get(i == 0 ? 1 : i == 1 ? 0 : i);
             final long ucdStart = System.currentTimeMillis();
-            System.out.println("Loading UCD " + age.getShortName() + "...");
+            System.out.println("Loading UCD " + version + "...");
             for (boolean unihan : new boolean[] {false, true}) {
                 final long partStart = System.currentTimeMillis();
                 final String name = unihan ? "Unihan" : "non-Unihan properties";
-                final var properties = IndexUnicodeProperties.make(age.getShortName());
+                final var properties = IndexUnicodeProperties.make(version);
                 for (UcdProperty property : UcdProperty.values()) {
                     if (property.getShortName().startsWith("cjk") == unihan) {
                         properties.load(property, expectCacheHit);
@@ -952,18 +942,17 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                         "Loaded "
                                 + name
                                 + " for "
-                                + age.getShortName()
+                                + version
                                 + " ("
                                 + (System.currentTimeMillis() - partStart)
                                 + " ms)");
             }
             System.out.println(
                     "Loaded UCD "
-                            + age.getShortName()
+                            + version
                             + " in "
                             + (System.currentTimeMillis() - ucdStart)
                             + " ms");
-            var version = VersionInfo.getInstance(age.getShortName());
             if (notifyLoaded != null) {
                 notifyLoaded.accept(version);
             }

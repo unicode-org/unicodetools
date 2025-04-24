@@ -2,7 +2,6 @@ package org.unicode.jsp;
 
 import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.Collator;
@@ -17,7 +16,6 @@ import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedReader;
@@ -52,11 +50,13 @@ import org.unicode.idna.IdnaTypes;
 import org.unicode.idna.Punycode;
 import org.unicode.idna.Uts46;
 import org.unicode.props.DerivedPropertyStatus;
+import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Utility;
 
 // For dependency management, it might be useful to split this omnibus class into
 // pieces by topic, such as collation utilities vs. IDNA utilities etc.
@@ -1385,7 +1385,6 @@ public class UnicodeUtilities {
         } else {
             name = toHTML.transliterate(name);
         }
-        boolean allowed = XIDModifications.isAllowed(cp);
 
         String scriptCat = getScriptCat("", cp);
         if (showDevProperties) {
@@ -1415,16 +1414,6 @@ public class UnicodeUtilities {
         out.append("<tr><td class='bigCode'>" + hex + "</td></tr>\n");
         out.append("<tr><td class='bigName'>" + name + "</td></tr>\n");
         out.append("<tr><td class='bigName'>" + scriptCat + "</td></tr>\n");
-        out.append("<tr><td class='bigName'><i>id:</i> ");
-        if (allowed) {
-            out.append("<span class='allowed'>allowed</span>");
-        } else {
-            out.append(
-                    "<span class='restricted' title='Restricted in identifiers: "
-                            + XIDModifications.getType(cp)
-                            + "'>restricted</span>");
-        }
-        out.append("</td></tr>\n");
         StringBuilder confusableString = displayConfusables(cp);
         out.append(
                 "<tr><td class='bigName'><span title='Confusable Characters'><i>confuse:</i> </span>");
@@ -1438,7 +1427,7 @@ public class UnicodeUtilities {
 
         List<String> availableNames = (List<String>) getFactory().getAvailableNames();
         TreeSet<String> sortedProps =
-                Builder.with(new TreeSet<String>(col)).addAll(availableNames).remove("Name").get();
+                Builder.with(new TreeSet<String>(col)).addAll(availableNames).get();
 
         String kRSUnicode = getFactory().getProperty("kRSUnicode").getValue(cp);
         boolean isUnihan = kRSUnicode != null;
@@ -1484,7 +1473,7 @@ public class UnicodeUtilities {
                 history.equals("assigned") && age != Age_Values.Unassigned
                         ? VersionInfo.getInstance(age.getShortName())
                         : history.equals("full")
-                                ? VersionInfo.getInstance(Age_Values.V1_1.getShortName())
+                                ? Utility.UNICODE_VERSIONS.get(Utility.UNICODE_VERSIONS.size() - 1)
                                 : Settings.LAST_VERSION_INFO;
         if (minVersion.compareTo(UcdLoader.getOldestLoadedUcd()) < 0) {
             minVersion = UcdLoader.getOldestLoadedUcd();
@@ -1716,30 +1705,28 @@ public class UnicodeUtilities {
         }
         final boolean isMultivalued = getFactory().getProperty(propName).isMultivalued();
         List<PropertyAssignment> history = new ArrayList<>();
-        // TODO(eggrobin): TUP normalization chokes on sufficiently old versions, but this is not
-        // worth debugging as we want to get rid of it.
-        if (!propName.startsWith("toNF")) {
-            for (var a : Age_Values.values()) {
-                if (a == Age_Values.Unassigned) {
-                    break;
-                }
-                var version = VersionInfo.getInstance(a.getShortName());
+        if (getFactory().getProperty(propName)
+                instanceof IndexUnicodeProperties.IndexUnicodeProperty) {
+            for (int i = Utility.UNICODE_VERSIONS.size() - 1; i >= 0; --i) {
+                final var version = Utility.UNICODE_VERSIONS.get(i);
                 if (version.compareTo(minVersion) < 0) {
                     continue;
                 }
                 if (version.compareTo(maxVersion) > 0) {
                     break;
                 }
-                String versionPrefix =
-                        version == Settings.LATEST_VERSION_INFO
-                                ? "dev"
-                                : version.getVersionString(3, 3);
-                UnicodeProperty property = null;
-                try {
-                    property = getFactory().getProperty("U" + versionPrefix + ":" + propName);
-                } catch (ICUException e) {
+                if (version.equals(VersionInfo.getInstance(13, 1, 0))) {
+                    // Skip the infamous 13.1.0, which is missing most data files on account of not
+                    // existing.
+                    // See https://github.com/unicode-org/unicodetools/issues/100.
+                    continue;
                 }
-                if (property == null) {
+                final var property = IndexUnicodeProperties.make(version).getProperty(propName);
+                // Skip properties prior to their creation, as well as properties that no longer
+                // exist on the range minVersion..maxVersion.
+                if (property.isTrivial()
+                        && !property.getName().equals("ISO_Comment")
+                        && history.isEmpty()) {
                     continue;
                 }
                 ArrayList<String> values = new ArrayList<>();
@@ -1756,8 +1743,7 @@ public class UnicodeUtilities {
                     lastAssignment.last = version;
                 }
             }
-        }
-        if (history.isEmpty()) {
+        } else {
             var current = new PropertyAssignment();
             current.first = Settings.LAST_VERSION_INFO;
             current.last = Settings.LAST_VERSION_INFO;
@@ -1765,57 +1751,60 @@ public class UnicodeUtilities {
             getFactory().getProperty(propName).getValues(codePoint).forEach(current.values::add);
             history.add(current);
         }
-        out.append(
-                "<tr><th width='50%'><a target='c' href='properties.jsp?a="
-                        + propName
-                        + "#"
-                        + propName
-                        + "'>"
-                        + (provisional ? "(" + propName + ")" : propName)
-                        + "</a></th>");
-        for (PropertyAssignment assignment : history) {
-            String first =
-                    assignment.first.getVersionString(2, 4)
-                            + (assignment.first == Settings.LATEST_VERSION_INFO
-                                    ? Settings.latestVersionPhase.toString()
-                                    : "");
-            String last =
-                    assignment.last.getVersionString(2, 4)
-                            + (assignment.last == Settings.LATEST_VERSION_INFO
-                                    ? Settings.latestVersionPhase.toString()
-                                    : "");
-            boolean isCurrent =
-                    assignment.first.compareTo(Settings.LAST_VERSION_INFO) <= 0
-                            && Settings.LAST_VERSION_INFO.compareTo(assignment.last) <= 0;
-            boolean showVersion = !isCurrent || history.size() != 1;
-            boolean isSingleVersion = assignment.first == assignment.last;
-            boolean isNew = assignment.first == Settings.LATEST_VERSION_INFO;
-            String versionRange =
-                    (showVersion ? (isSingleVersion ? first : first + ".." + last) + ": " : "");
-            String htmlValue =
-                    assignment.values.stream()
-                            .map(v -> v == null ? "<i>null</i>" : toHTML.transliterate(v))
-                            .collect(Collectors.joining("<wbr>|"));
+        if (!history.isEmpty()) {
             out.append(
-                    "<td"
-                            + defaultClass
-                            + ">"
-                            + (isMultivalued || htmlValue.contains("<")
-                                    ? "<span" + (isNew ? " class='changed'" : "") + ">"
-                                    : ("<a target='u' "
-                                            + (isNew ? "class='changed' " : "")
-                                            + "href='list-unicodeset.jsp?a=[:"
-                                            + (isCurrent ? "" : "U" + last + ":")
-                                            + propName
-                                            + "="
-                                            + htmlValue
-                                            + ":]'>"))
-                            + versionRange
-                            + htmlValue
-                            + (isMultivalued || htmlValue.contains("<") ? "</span>" : "</a>")
-                            + "</td>");
+                    "<tr><th width='50%'><a target='c' href='properties.jsp?a="
+                            + propName
+                            + "#"
+                            + propName
+                            + "'>"
+                            + (provisional ? "(" + propName + ")" : propName)
+                            + "</a></th>");
+            for (PropertyAssignment assignment : history) {
+                String first =
+                        assignment.first.getVersionString(2, 4)
+                                + (assignment.first == Settings.LATEST_VERSION_INFO
+                                        ? Settings.latestVersionPhase.toString()
+                                        : "");
+                String last =
+                        assignment.last.getVersionString(2, 4)
+                                + (assignment.last == Settings.LATEST_VERSION_INFO
+                                        ? Settings.latestVersionPhase.toString()
+                                        : "");
+                boolean isCurrent =
+                        assignment.first.compareTo(Settings.LAST_VERSION_INFO) <= 0
+                                && Settings.LAST_VERSION_INFO.compareTo(assignment.last) <= 0;
+                boolean showVersion =
+                        minVersion.compareTo(Settings.LAST_VERSION_INFO) < 0 || history.size() > 1;
+                boolean isSingleVersion = assignment.first == assignment.last;
+                boolean isNew = assignment.first == Settings.LATEST_VERSION_INFO;
+                String versionRange =
+                        (showVersion ? (isSingleVersion ? first : first + ".." + last) + ": " : "");
+                String htmlValue =
+                        assignment.values.stream()
+                                .map(v -> v == null ? "<i>null</i>" : toHTML.transliterate(v))
+                                .collect(Collectors.joining("<wbr>|"));
+                out.append(
+                        "<td"
+                                + defaultClass
+                                + ">"
+                                + (isMultivalued || htmlValue.contains("<")
+                                        ? "<span" + (isNew ? " class='changed'" : "") + ">"
+                                        : ("<a target='u' "
+                                                + (isNew ? "class='changed' " : "")
+                                                + "href='list-unicodeset.jsp?a=[:"
+                                                + (isCurrent ? "" : "U" + last + ":")
+                                                + propName
+                                                + "="
+                                                + htmlValue
+                                                + ":]'>"))
+                                + versionRange
+                                + htmlValue
+                                + (isMultivalued || htmlValue.contains("<") ? "</span>" : "</a>")
+                                + "</td>");
+            }
+            out.append("</tr>");
         }
-        out.append("</tr>");
     }
 
     /*jsp*/

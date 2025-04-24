@@ -129,7 +129,9 @@ SpecialCasing ; Lowercase_Mapping ; 1 ; SkipAny4
 SpecialCasing ; Titlecase_Mapping ; 2 ; SkipAny4
 SpecialCasing ; Uppercase_Mapping ; 3 ; SkipAny4
 DerivedCoreProperties ; Lowercase
+PropList ; Lowercase ; v3.0.1
 DerivedCoreProperties ; Uppercase
+PropList ; Uppercase ; v3.0.1
 DerivedCoreProperties ; Cased
 DerivedCoreProperties ; Case_Ignorable
 DerivedCoreProperties ; Changes_When_Lowercased
@@ -138,6 +140,7 @@ DerivedCoreProperties ; Changes_When_Titlecased
 DerivedCoreProperties ; Changes_When_Casefolded
 DerivedCoreProperties ; Changes_When_Casemapped
 DerivedCoreProperties ; Alphabetic
+PropList ; Alphabetic ; v3.0.1
 DerivedCoreProperties ; Default_Ignorable_Code_Point
 DerivedCoreProperties ; Grapheme_Base
 DerivedCoreProperties ; Grapheme_Extend
@@ -145,6 +148,7 @@ DerivedCoreProperties ; Grapheme_Extend
 DerivedCoreProperties ; Grapheme_Link
 PropList ; Grapheme_Link ; v4.1
 DerivedCoreProperties ; Math
+PropList ; Math ; v3.0.1
 DerivedCoreProperties ; ID_Start
 DerivedCoreProperties ; ID_Continue
 DerivedCoreProperties ; XID_Start
@@ -513,3 +517,4 @@ Unikemet ; kEH_IFAO
 Unikemet ; kEH_NoMirror
 Unikemet ; kEH_NoRotate
 Unikemet ; kEH_UniK
+Unikemet ; kEH_AltSeq
