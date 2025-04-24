@@ -15,6 +15,7 @@
                           | "Indic_Consonant_Conjunct"
                           | "Indic_Vowel_Letter"
                           | "Malayalam_Chillu"
+                          | "None"
                           | "Precomposed_Form"
                           | "Precomposed_Hieroglyph"
                           | "Preferred_Spelling"

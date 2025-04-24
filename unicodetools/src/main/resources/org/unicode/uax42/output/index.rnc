@@ -14,8 +14,6 @@
   zero-or-more-code-points = list { single-code-point * }
   two-code-points = list { single-code-point, single-code-point }
 
-  jis-code-point = xsd:string { pattern = "[0-9A-F]{4}" }
-
       
   start =
     element ucd { ucd.content }
@@ -526,23 +524,6 @@
   code-point-attributes &=
     attribute NFKD_QC { "Y" | "N" }?
 
-
-  code-point-attributes &=
-    attribute XO_NFC { boolean }?
-
-  code-point-attributes &=
-    attribute XO_NFD { boolean }?
-
-  code-point-attributes &=
-    attribute XO_NFKC { boolean }?
-
-  code-point-attributes &=
-    attribute XO_NFKD { boolean }?
-
-
-  code-point-attributes &=
-    attribute FC_NFKC { "#" | one-or-more-code-points }?
-
   code-point-attributes &=
     attribute nt { "De" | "Di" | "Nu" | "None" }?
 
@@ -598,6 +579,17 @@
                  | "Yeh" | "Yeh_Barree" | "Yeh_With_Tail" | "Yudh"
                  | "Yudh_He"
                  | "Zain" | "Zhain"
+                 | "BAA"
+                 | "FA"
+                 | "HAA" | "HA_GOAL" | "HA"
+                 | "CAF"
+                 | "KNOTTED_HA"
+                 | "RA"
+                 | "SWASH_CAF"
+                 | "HAMZAH_ON_HA_GOAL"
+                 | "TAA_MARBUTAH"
+                 | "YA_BARREE" | "YA"
+                 | "ALEF_MAQSURAH"
                  }?
 
   code-point-attributes &=
@@ -743,9 +735,6 @@
     attribute scx { list { script + } }?
 
   code-point-attributes &=
-    attribute isc { text }?
-
-  code-point-attributes &=
     attribute hst { "L" | "LV" | "LVT" | "NA" | "T" | "V" }?
 
   code-point-attributes &=
@@ -789,6 +778,7 @@
                    | "Vowel"
                    | "Vowel_Dependent"
                    | "Vowel_Independent"
+                   | "Consonant_Repha"
                    }?
 
   code-point-attributes &=
@@ -808,6 +798,7 @@
                    | "Top_And_Left_And_Right"
                    | "Top_And_Right"
                    | "Visual_Order_Left"
+                   | "Invisible"
                    }?
 
   code-point-attributes &=
@@ -849,9 +840,6 @@
 
   code-point-attributes &=
     attribute Dash { boolean }?
-
-  code-point-attributes &=
-    attribute Hyphen { boolean }?
 
   code-point-attributes &=
     attribute QMark { boolean }?
@@ -921,9 +909,6 @@
 
   code-point-attributes &=
     attribute OGr_Ext { boolean }?
-
-  code-point-attributes &=
-    attribute Gr_Link { boolean }?
 
   code-point-attributes &=
     attribute GCB { "CN" | "CR"
@@ -1399,6 +1384,9 @@
   code-point-attributes &=
     attribute kEH_NoRotate { boolean }?
 
+  code-point-attributes &=
+    attribute kEH_AltSeq { text }?
+
       
   ucd.content &=
     element blocks {
@@ -1422,15 +1410,6 @@
 
       
   ucd.content &=
-    element normalization-corrections {
-      element normalization-correction {
-        attribute cp { single-code-point },
-        attribute old { one-or-more-code-points },
-        attribute new { one-or-more-code-points },
-        attribute version { text } }+ }?
-
-      
-  ucd.content &=
     element standardized-variants {
       element standardized-variant {
         attribute cps { two-code-points },
@@ -1444,15 +1423,6 @@
         attribute number { xsd:string {pattern="[0-9]{1,3}'{0,3}"}},
         attribute radical { single-code-point? },
         attribute ideograph { single-code-point } }+ }?
-
-      
-  ucd.content &=
-    element emoji-sources {
-      element emoji-source {
-        attribute unicode { one-or-more-code-points },
-        attribute docomo { jis-code-point? },
-        attribute kddi { jis-code-point? },
-        attribute softbank { jis-code-point? } }+ }?
 
       
   code-point-attributes &=
@@ -1489,6 +1459,7 @@
                           | "Indic_Consonant_Conjunct"
                           | "Indic_Vowel_Letter"
                           | "Malayalam_Chillu"
+                          | "None"
                           | "Precomposed_Form"
                           | "Precomposed_Hieroglyph"
                           | "Preferred_Spelling"

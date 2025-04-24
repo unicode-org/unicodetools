@@ -34,4 +34,7 @@
 
   code-point-attributes &amp;=
     attribute kEH_NoRotate { boolean }?
+
+  code-point-attributes &amp;=
+    attribute kEH_AltSeq { text }?
 </ucdxml:block>
