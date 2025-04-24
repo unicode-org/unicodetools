@@ -8,7 +8,7 @@
     <title>Unicode Character Database in XML</title>
 
     <articleinfo>
-        <unicode:tr number='42' class='uax' version='16.0.0'
+        <unicode:tr number='42' class='uax' version='17.0.0'
                     stage='proposed-update'
                     schema='rnc' prevrev='36'/>
         <copyright>
@@ -21,7 +21,7 @@
             </author>
         </authors>
         <revhistory>
-            <revision revnumber="37" date="2025-03-28">
+            <revision revnumber="37" date="2025-04-24">
                 <changes>
                     <change>New value for the <attr>age</attr> attribute: <val>17.0</val>.
                     </change>
