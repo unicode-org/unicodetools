@@ -800,6 +800,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 }
                 continue;
             }
+            if (line.trim().equals("Discrepancy B: UnicodeData but not Unilib")) {
+                // Unicode 2.1.8 includes a diff between Unilib properties used in 2.1.5 and 2.1.9
+                // and something resembling the derivations that would later be used in Unicode 3.1,
+                // but without the Other_* exceptions introduced in Unicode 3.1.
+                // We follow Unilib for continuity.
+                propInfo = null;
+            }
             if (propInfo != null && dataLine.matcher(line).matches()) {
                 var range = new UcdLineParser.IntRange();
                 range.set(line.split(" ", 2)[0]);
