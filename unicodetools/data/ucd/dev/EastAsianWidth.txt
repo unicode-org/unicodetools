@@ -1,5 +1,5 @@
 # EastAsianWidth-17.0.0.txt
-# Date: 2025-04-25, 15:39:58 GMT
+# Date: 2025-04-25, 16:57:11 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1904,7 +1904,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 1091F          ; N  # Po         PHOENICIAN WORD SEPARATOR
 10920..10939   ; N  # Lo    [26] LYDIAN LETTER A..LYDIAN LETTER C
 1093F          ; N  # Po         LYDIAN TRIANGULAR MARK
-10940..1095C   ; N  # Lo    [29] SIDETIC LETTER N01..SIDETIC LETTER N29
+10940..10959   ; N  # Lo    [26] SIDETIC LETTER N01..SIDETIC LETTER N26
 10980..1099F   ; N  # Lo    [32] MEROITIC HIEROGLYPHIC LETTER A..MEROITIC HIEROGLYPHIC SYMBOL VIDJ-2
 109A0..109B7   ; N  # Lo    [24] MEROITIC CURSIVE LETTER A..MEROITIC CURSIVE LETTER DA
 109BC..109BD   ; N  # No     [2] MEROITIC CURSIVE FRACTION ELEVEN TWELFTHS..MEROITIC CURSIVE FRACTION ONE HALF

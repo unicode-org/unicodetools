@@ -1,5 +1,5 @@
 # Scripts-17.0.0.txt
-# Date: 2025-04-25, 15:40:19 GMT
+# Date: 2025-04-25, 16:57:37 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3154,9 +3154,9 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 
 # ================================================
 
-10940..1095C  ; Sidetic # Lo  [29] SIDETIC LETTER N01..SIDETIC LETTER N29
+10940..10959  ; Sidetic # Lo  [26] SIDETIC LETTER N01..SIDETIC LETTER N26
 
-# Total code points: 29
+# Total code points: 26
 
 # ================================================
 
