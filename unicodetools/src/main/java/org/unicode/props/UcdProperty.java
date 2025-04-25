@@ -82,6 +82,7 @@ public enum UcdProperty {
     Uppercase_Mapping(PropertyType.String, DerivedPropertyStatus.Approved, "uc"),
     kCompatibilityVariant(
             PropertyType.String, DerivedPropertyStatus.Approved, "cjkCompatibilityVariant"),
+    kEH_AltSeq(PropertyType.String, DerivedPropertyStatus.Provisional, "kEH_AltSeq"),
     kSimplifiedVariant(
             PropertyType.String,
             DerivedPropertyStatus.Provisional,
@@ -347,7 +348,7 @@ public enum UcdProperty {
             PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkMainlandTelegraph"),
     kMandarin(
             PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Provisional,
+            DerivedPropertyStatus.Approved,
             null,
             ValueCardinality.Ordered,
             "cjkMandarin"),
@@ -467,12 +468,12 @@ public enum UcdProperty {
             "cjkTang"),
     kTotalStrokes(
             PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Provisional,
+            DerivedPropertyStatus.Approved,
             null,
             ValueCardinality.Ordered,
             "cjkTotalStrokes"),
     kUnihanCore2020(
-            PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkUnihanCore2020"),
+            PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "cjkUnihanCore2020"),
     kVietnamese(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,

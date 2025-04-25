@@ -1838,7 +1838,7 @@
 
 # L2/24-252, L2/14-173
 1F46F 1F3FF; L2/24-252, L2/14-173 # 2025 (👯🏿) people with bunny ears: dark skin tone
-1F93C 1F3FF; L2/24-252, L2/14-173 # 2016 (🤼🏿) people wrestling: dark skin tone
+1F93C 1F3FF; L2/24-252, L2/14-173 # 2025 (🤼🏿) people wrestling: dark skin tone
 
 # L2/24-252, L2/16‑160, L2/14-173
 1F46F 1F3FF 200D 2640; L2/24-252, L2/16‑160, L2/14-173 # 2025 (👯🏿‍♀️) women with bunny ears: dark skin tone

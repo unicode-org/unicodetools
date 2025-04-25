@@ -55,6 +55,8 @@ Do_Not_Emit_Preferred ; Do_Not_Emit_Preferred ; UCDNonProperty
 normalization_correction_original ; normalization_correction_original ; UCDNonProperty
 normalization_correction_corrected ; normalization_correction_corrected ; UCDNonProperty
 
+kEH_AltSeq               ; kEH_AltSeq ; Provisional
+
 # ================================================
 # Miscellaneous Properties
 # ================================================
@@ -110,7 +112,6 @@ cjkGradeLevel ; kGradeLevel ; Provisional
 cjkHDZRadBreak ; kHDZRadBreak ; Provisional
 cjkHKGlyph ; kHKGlyph ; Provisional
 cjkPhonetic ; kPhonetic ; Provisional
-cjkTotalStrokes ; kTotalStrokes ; Provisional
 cjkBigFive ; kBigFive ; Provisional
 cjkCCCII ; kCCCII ; Provisional
 cjkCNS1986 ; kCNS1986 ; Provisional
@@ -149,7 +150,6 @@ cjkHanyuPinyin ; kHanyuPinyin ; Provisional
 cjkJapaneseKun ; kJapaneseKun ; Provisional
 cjkJapaneseOn ; kJapaneseOn ; Provisional
 cjkKorean ; kKorean ; Provisional
-cjkMandarin ; kMandarin ; Provisional
 cjkTang ; kTang ; Provisional
 cjkVietnamese ; kVietnamese ; Provisional
 cjkXHC1983 ; kXHC1983 ; Provisional
@@ -164,7 +164,6 @@ cjkTGH ; kTGH ; Provisional
 # 13.0
 cjkSpoofingVariant       ; kSpoofingVariant ; Provisional
 cjkTGHZ2013              ; kTGHZ2013 ; Provisional
-cjkUnihanCore2020        ; kUnihanCore2020 ; Provisional
 # 14.0
 cjkStrange               ; kStrange ; Provisional
 # 15.0

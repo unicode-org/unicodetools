@@ -1,5 +1,5 @@
 # emoji-sequences.txt
-# Date: 2025-01-08, 04:57:12 GMT
+# Date: 2025-04-23, 17:41:13 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1324,11 +1324,11 @@
 1F939 1F3FD   ; RGI_Emoji_Modifier_Sequence  ; person juggling: medium skin tone                              # E3.0   [1] (🤹🏽)
 1F939 1F3FE   ; RGI_Emoji_Modifier_Sequence  ; person juggling: medium-dark skin tone                         # E3.0   [1] (🤹🏾)
 1F939 1F3FF   ; RGI_Emoji_Modifier_Sequence  ; person juggling: dark skin tone                                # E3.0   [1] (🤹🏿)
-1F93C 1F3FB   ; RGI_Emoji_Modifier_Sequence  ; people wrestling: light skin tone                              # E3.0   [1] (🤼🏻)
-1F93C 1F3FC   ; RGI_Emoji_Modifier_Sequence  ; people wrestling: medium-light skin tone                       # E3.0   [1] (🤼🏼)
-1F93C 1F3FD   ; RGI_Emoji_Modifier_Sequence  ; people wrestling: medium skin tone                             # E3.0   [1] (🤼🏽)
-1F93C 1F3FE   ; RGI_Emoji_Modifier_Sequence  ; people wrestling: medium-dark skin tone                        # E3.0   [1] (🤼🏾)
-1F93C 1F3FF   ; RGI_Emoji_Modifier_Sequence  ; people wrestling: dark skin tone                               # E3.0   [1] (🤼🏿)
+1F93C 1F3FB   ; RGI_Emoji_Modifier_Sequence  ; people wrestling: light skin tone                              # E17.0  [1] (🤼🏻)
+1F93C 1F3FC   ; RGI_Emoji_Modifier_Sequence  ; people wrestling: medium-light skin tone                       # E17.0  [1] (🤼🏼)
+1F93C 1F3FD   ; RGI_Emoji_Modifier_Sequence  ; people wrestling: medium skin tone                             # E17.0  [1] (🤼🏽)
+1F93C 1F3FE   ; RGI_Emoji_Modifier_Sequence  ; people wrestling: medium-dark skin tone                        # E17.0  [1] (🤼🏾)
+1F93C 1F3FF   ; RGI_Emoji_Modifier_Sequence  ; people wrestling: dark skin tone                               # E17.0  [1] (🤼🏿)
 1F93D 1F3FB   ; RGI_Emoji_Modifier_Sequence  ; person playing water polo: light skin tone                     # E3.0   [1] (🤽🏻)
 1F93D 1F3FC   ; RGI_Emoji_Modifier_Sequence  ; person playing water polo: medium-light skin tone              # E3.0   [1] (🤽🏼)
 1F93D 1F3FD   ; RGI_Emoji_Modifier_Sequence  ; person playing water polo: medium skin tone                    # E3.0   [1] (🤽🏽)
