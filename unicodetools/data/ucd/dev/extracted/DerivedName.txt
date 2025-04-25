@@ -1,5 +1,5 @@
 # DerivedName-17.0.0.txt
-# Date: 2025-03-20, 17:40:55 GMT
+# Date: 2025-04-25, 15:39:56 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -45525,9 +45525,8 @@ FFFD          ; REPLACEMENT CHARACTER
 1FBF9         ; SEGMENTED DIGIT NINE
 1FBFA         ; ALARM BELL SYMBOL
 20000..2A6DF  ; CJK UNIFIED IDEOGRAPH-*
-2A700..2B73E  ; CJK UNIFIED IDEOGRAPH-*
-2B740..2B81D  ; CJK UNIFIED IDEOGRAPH-*
-2B820..2CEA1  ; CJK UNIFIED IDEOGRAPH-*
+2A700..2B81D  ; CJK UNIFIED IDEOGRAPH-*
+2B820..2CEAD  ; CJK UNIFIED IDEOGRAPH-*
 2CEB0..2EBE0  ; CJK UNIFIED IDEOGRAPH-*
 2EBF0..2EE5D  ; CJK UNIFIED IDEOGRAPH-*
 2F800..2FA1D  ; CJK COMPATIBILITY IDEOGRAPH-*
@@ -45871,6 +45870,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 159835
+# Total code points: 159848
 
 # EOF
