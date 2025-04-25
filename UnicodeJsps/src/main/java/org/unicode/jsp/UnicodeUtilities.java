@@ -1702,9 +1702,12 @@ public class UnicodeUtilities {
             VersionInfo first;
             VersionInfo last;
             ArrayList<String> values;
+            int span;
         }
         final boolean isMultivalued = getFactory().getProperty(propName).isMultivalued();
         List<PropertyAssignment> history = new ArrayList<>();
+        int prehistoricSpan = 0;
+        int posthistoricSpan = 0;
         if (getFactory().getProperty(propName)
                 instanceof IndexUnicodeProperties.IndexUnicodeProperty) {
             for (int i = Utility.UNICODE_VERSIONS.size() - 1; i >= 0; --i) {
@@ -1724,9 +1727,12 @@ public class UnicodeUtilities {
                 final var property = IndexUnicodeProperties.make(version).getProperty(propName);
                 // Skip properties prior to their creation, as well as properties that no longer
                 // exist on the range minVersion..maxVersion.
-                if (property.isTrivial()
-                        && !property.getName().equals("ISO_Comment")
-                        && history.isEmpty()) {
+                if (property.isTrivial() && !property.getName().equals("ISO_Comment")) {
+                    if (history.isEmpty()) {
+                        ++prehistoricSpan;
+                    } else {
+                        ++posthistoricSpan;
+                    }
                     continue;
                 }
                 ArrayList<String> values = new ArrayList<>();
@@ -1738,9 +1744,11 @@ public class UnicodeUtilities {
                     assignment.first = version;
                     assignment.last = version;
                     assignment.values = values;
+                    assignment.span = 1;
                     history.add(assignment);
                 } else {
                     lastAssignment.last = version;
+                    ++lastAssignment.span;
                 }
             }
         } else {
@@ -1760,6 +1768,9 @@ public class UnicodeUtilities {
                             + "'>"
                             + (provisional ? "(" + propName + ")" : propName)
                             + "</a></th>");
+            if (prehistoricSpan > 0) {
+                out.append("<td class='nonexistent' colspan=" + prehistoricSpan + "></td>");
+            }
             for (PropertyAssignment assignment : history) {
                 String first =
                         assignment.first.getVersionString(2, 4)
@@ -1787,6 +1798,8 @@ public class UnicodeUtilities {
                 out.append(
                         "<td"
                                 + defaultClass
+                                + " colspan="
+                                + assignment.span
                                 + ">"
                                 + (isMultivalued || htmlValue.contains("<")
                                         ? "<span" + (isNew ? " class='changed'" : "") + ">"
@@ -1802,6 +1815,9 @@ public class UnicodeUtilities {
                                 + htmlValue
                                 + (isMultivalued || htmlValue.contains("<") ? "</span>" : "</a>")
                                 + "</td>");
+            }
+            if (posthistoricSpan > 0) {
+                out.append("<td class='nonexistent' colspan=" + posthistoricSpan + "></td>");
             }
             out.append("</tr>");
         }
