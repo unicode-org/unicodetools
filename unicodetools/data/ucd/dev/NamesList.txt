@@ -1,9 +1,9 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 17.0.0
 @@@+	NamesList-17.0.0.txt
-@+	Generation Date: 2025-04-22, 16:53:27 GMT
+@+	Generation Date: 2025-04-24, 11:27:50 GMT
 	Unicode 17.0.0 names list.
-	Repertoire synched with UnicodeData-17.0.0d3.txt.
+	Repertoire synched with UnicodeData-17.0.0d4.txt.
 	Synch with 7th edition CD2; post UTC183 annotation updates for 17.0.
 	Added 4 formal name aliases for Bamum: 16881, 1688E, 168DC, 1697D.
 	This file is semi-automatically derived from UnicodeData.txt and
@@ -13713,6 +13713,8 @@
 	* a cryptocurrency
 20C0	SOM SIGN
 	* Kyrgyzstan
+20C1	SAUDI RIYAL SIGN
+	* Saudi Arabia
 @@	20D0	Combining Diacritical Marks for Symbols	20FF
 @		Combining diacritical marks for symbols
 20D0	COMBINING LEFT HARPOON ABOVE
@@ -65235,9 +65237,9 @@ FFFF	<not a character>
 1FFFE	<not a character>
 1FFFF	<not a character>
 @@	20000	CJK Unified Ideographs Extension B	2A6DF
-@@	2A700	CJK Unified Ideographs Extension C	2B73E
+@@	2A700	CJK Unified Ideographs Extension C	2B73F
 @@	2B740	CJK Unified Ideographs Extension D	2B81D
-@@	2B820	CJK Unified Ideographs Extension E	2CEA1
+@@	2B820	CJK Unified Ideographs Extension E	2CEAD
 @@	2CEB0	CJK Unified Ideographs Extension F	2EBE0
 @@	2EBF0	CJK Unified Ideographs Extension I	2EE5D
 @@	2F800	CJK Compatibility Ideographs Supplement	2FA1F
