@@ -96,7 +96,10 @@ cjkIRG_TSource           ; kIRG_TSource
 cjkIRG_UKSource          ; kIRG_UKSource
 cjkIRG_USource           ; kIRG_USource
 cjkIRG_VSource           ; kIRG_VSource
+cjkMandarin              ; kMandarin
 cjkRSUnicode             ; kRSUnicode                  ; Unicode_Radical_Stroke; URS
+cjkTotalStrokes          ; kTotalStrokes
+cjkUnihanCore2020        ; kUnihanCore2020
 isc                      ; ISO_Comment
 JSN                      ; Jamo_Short_Name
 kEH_Cat                  ; kEH_Cat
