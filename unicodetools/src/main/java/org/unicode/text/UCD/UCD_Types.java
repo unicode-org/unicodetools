@@ -60,7 +60,7 @@ public interface UCD_Types {
             // 2A700;<CJK Ideograph Extension C, First>;Lo;0;L;;;;;N;;;;;
             // 2B734;<CJK Ideograph Extension C, Last>;Lo;0;L;;;;;N;;;;;
             CJK_C_BASE = 0x2A700,
-            CJK_C_LIMIT = 0x2B73E + 1, // last changed in Unicode 17
+            CJK_C_LIMIT = 0x2B73F + 1, // last changed in Unicode 17
 
             // 2B740;<CJK Ideograph Extension D, First>;Lo;0;L;;;;;N;;;;;
             // 2B81D;<CJK Ideograph Extension D, Last>;Lo;0;L;;;;;N;;;;;
@@ -70,7 +70,7 @@ public interface UCD_Types {
             // 2B820;<CJK Ideograph Extension E, First>;Lo;0;L;;;;;N;;;;;
             // 2CEA1;<CJK Ideograph Extension E, Last>;Lo;0;L;;;;;N;;;;;
             CJK_E_BASE = 0x2B820,
-            CJK_E_LIMIT = 0x2CEA1 + 1,
+            CJK_E_LIMIT = 0x2CEAD + 1, // last changed in Unicode 17
 
             // 2CEB0;<CJK Ideograph Extension F, First>;Lo;0;L;;;;;N;;;;;
             // 2EBE0;<CJK Ideograph Extension F, Last>;Lo;0;L;;;;;N;;;;;

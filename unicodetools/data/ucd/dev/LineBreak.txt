@@ -1,5 +1,5 @@
 # LineBreak-17.0.0.txt
-# Date: 2025-04-23, 11:35:34 GMT
+# Date: 2025-04-25, 16:57:14 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -971,7 +971,8 @@
 20BE           ; PO # Sc         LARI SIGN
 20BF           ; PR # Sc         BITCOIN SIGN
 20C0           ; PO # Sc         SOM SIGN
-20C1..20CF     ; PR # Cn    [15] <reserved-20C1>..<reserved-20CF>
+20C1           ; PR # Sc         SAUDI RIYAL SIGN
+20C2..20CF     ; PR # Cn    [14] <reserved-20C2>..<reserved-20CF>
 20D0..20DC     ; CM # Mn    [13] COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
 20DD..20E0     ; CM # Me     [4] COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
 20E1           ; CM # Mn         COMBINING LEFT RIGHT ARROW ABOVE
@@ -3689,12 +3690,10 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 1FC00..1FFFD   ; ID # Cn  [1022] <reserved-1FC00>..<reserved-1FFFD>
 20000..2A6DF   ; ID # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
 2A6E0..2A6FF   ; ID # Cn    [32] <reserved-2A6E0>..<reserved-2A6FF>
-2A700..2B73E   ; ID # Lo  [4159] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B73E
-2B73F          ; ID # Cn         <reserved-2B73F>
-2B740..2B81D   ; ID # Lo   [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
+2A700..2B81D   ; ID # Lo  [4382] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B81D
 2B81E..2B81F   ; ID # Cn     [2] <reserved-2B81E>..<reserved-2B81F>
-2B820..2CEA1   ; ID # Lo  [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
-2CEA2..2CEAF   ; ID # Cn    [14] <reserved-2CEA2>..<reserved-2CEAF>
+2B820..2CEAD   ; ID # Lo  [5774] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEAD
+2CEAE..2CEAF   ; ID # Cn     [2] <reserved-2CEAE>..<reserved-2CEAF>
 2CEB0..2EBE0   ; ID # Lo  [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2EBE1..2EBEF   ; ID # Cn    [15] <reserved-2EBE1>..<reserved-2EBEF>
 2EBF0..2EE5D   ; ID # Lo   [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D

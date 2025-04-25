@@ -1,5 +1,5 @@
 # DerivedBidiClass-17.0.0.txt
-# Date: 2025-04-23, 11:24:03 GMT
+# Date: 2025-04-25, 16:57:05 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1223,9 +1223,8 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 1F240..1F248  ; L # So   [9] TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-672C..TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-6557
 1F250..1F251  ; L # So   [2] CIRCLED IDEOGRAPH ADVANTAGE..CIRCLED IDEOGRAPH ACCEPT
 20000..2A6DF  ; L # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
-2A700..2B73E  ; L # Lo [4159] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B73E
-2B740..2B81D  ; L # Lo [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
-2B820..2CEA1  ; L # Lo [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
+2A700..2B81D  ; L # Lo [4382] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B81D
+2B820..2CEAD  ; L # Lo [5774] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEAD
 2CEB0..2EBE0  ; L # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2EBF0..2EE5D  ; L # Lo [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 2F800..2FA1D  ; L # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
@@ -1234,7 +1233,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 810584 code points not listed here.
+# The above property value applies to 810571 code points not listed here.
 # Total code points: 1095402
 
 # ================================================
@@ -1409,7 +1408,7 @@ FF0D          ; ES # Pd       FULLWIDTH HYPHEN-MINUS
 0E3F          ; ET # Sc       THAI CURRENCY SYMBOL BAHT
 17DB          ; ET # Sc       KHMER CURRENCY SYMBOL RIEL
 2030..2034    ; ET # Po   [5] PER MILLE SIGN..TRIPLE PRIME
-20A0..20C0    ; ET # Sc  [33] EURO-CURRENCY SIGN..SOM SIGN
+20A0..20C1    ; ET # Sc  [34] EURO-CURRENCY SIGN..SAUDI RIYAL SIGN
 212E          ; ET # So       ESTIMATED SYMBOL
 2213          ; ET # Sm       MINUS-OR-PLUS SIGN
 A838          ; ET # Sc       NORTH INDIC RUPEE MARK
@@ -1425,7 +1424,7 @@ FFE5..FFE6    ; ET # Sc   [2] FULLWIDTH YEN SIGN..FULLWIDTH WON SIGN
 11FDD..11FE0  ; ET # Sc   [4] TAMIL SIGN KAACU..TAMIL SIGN VARAAKAN
 1E2FF         ; ET # Sc       WANCHO NGUN SIGN
 
-# The above property value applies to 15 code points not listed here.
+# The above property value applies to 14 code points not listed here.
 # Total code points: 92
 
 # ================================================

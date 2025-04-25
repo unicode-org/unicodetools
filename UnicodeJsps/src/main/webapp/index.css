@@ -31,6 +31,7 @@ h3 {background-color: #EEEEEE}
 .L1 {background-color: #CCCCCC}
 .L0 {background-color: #C8C8C8} 
 .default           { background-color: #C8C8C8}
+.nonexistent       { background-color: #FFC8C8}
 .control {
   font-family: 'Last Resort'
 }
