@@ -1241,8 +1241,6 @@ public class GeneratePropertyValues {
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kGB5)
                 + DOUBLELINE
-//                + getFormattedTR38Syntax(UcdProperty.kGB7)
-//                + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kGB8)
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kGradeLevel)
