@@ -1066,6 +1066,8 @@
   code-point-attributes &= attribute kGB5
     { xsd:string { pattern="\d{4}" } }?
 
+
+
   code-point-attributes &= attribute kGB8
     { xsd:string { pattern="\d{4}" } }?
 

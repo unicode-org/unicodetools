@@ -72,7 +72,7 @@
   code-point-attributes &amp;= attribute kGB5
     { xsd:string { pattern="\d{4}" } }?
 
-<edit flag='removed'>    code-point-attributes &= attribute kGB7
+<edit flag='removed'>    code-point-attributes &amp;= attribute kGB7
     { xsd:string {pattern="[0-9A-F]{4}"} }?</edit>
 
   code-point-attributes &amp;= attribute kGB8
