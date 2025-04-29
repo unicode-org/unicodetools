@@ -466,6 +466,7 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkTang"),
+    kTayNumeric(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkTayNumeric"),
     kTotalStrokes(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Approved,
