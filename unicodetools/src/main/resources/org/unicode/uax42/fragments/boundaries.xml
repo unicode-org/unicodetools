@@ -9,6 +9,9 @@
   code-point-attributes &amp;=
     attribute OGr_Ext { boolean }?
 
+<edit flag='removed'>  code-point-attributes &amp;=
+    attribute Gr_Link { boolean }?</edit>
+
   code-point-attributes &amp;=
     attribute GCB { "CN" | "CR"
                   | "EB" | "EBG" | "EM" | "EX"

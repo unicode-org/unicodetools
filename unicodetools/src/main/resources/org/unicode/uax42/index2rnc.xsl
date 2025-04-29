@@ -20,26 +20,22 @@
     <xsl:apply-templates/>
   </xsl:template>
 
-  <xsl:template match='ucdxml:block[@revisionflag="deleted"]'/>
-
   <xsl:key name='block-key' match='ucdxml:block' use='@id'/>
 
   <xsl:template match='ucdxml:include'>
     <xsl:apply-templates select='key("block-key", @linkend)'/>
   </xsl:template>
 
-  <xsl:template match='phrase[@revisionflag="deleted"]'/>
+  <xsl:template match='revision[@edit="removed"]'/>
 
-  <xsl:template match='phrase[@revisionflag="added"]'>
-    <xsl:apply-templates/>
-  </xsl:template>
+  <xsl:template match='ucdxml:block[@edit="removed"]'/>
+
+  <xsl:template match='edit[@flag="removed"]'/>
 
   <xsl:template match='@* | node()'>
     <xsl:copy>
       <xsl:apply-templates select='@* | node()'/>
     </xsl:copy>
   </xsl:template>
-
-  <xsl:template match="JRW"/>
 
 </xsl:stylesheet>
