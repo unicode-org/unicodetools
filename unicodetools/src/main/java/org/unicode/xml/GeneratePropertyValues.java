@@ -307,11 +307,6 @@ public class GeneratePropertyValues {
                 "script properties",
                 SCHEMA.PROPERTIES,
                 getFormattedScriptProperties());
-//Deprecated
-//        createPropertyFragment(
-//                UcdProperty.ISO_Comment,
-//                SCHEMA.PROPERTIES,
-//                getFormattedSyntax(UcdProperty.ISO_Comment));
         createPropertyFragment(
                 UcdProperty.Hangul_Syllable_Type,
                 SCHEMA.PROPERTIES,
@@ -592,8 +587,6 @@ public class GeneratePropertyValues {
                 break;
 
                 // { "#" | one-or-more-code-points }
-//Deprecated
-//            case FC_NFKC_Closure:
             case Uppercase_Mapping:
             case Lowercase_Mapping:
             case Titlecase_Mapping:
@@ -1013,17 +1006,6 @@ public class GeneratePropertyValues {
                 + DOUBLELINE
                 + getFormattedAttribute(
                         UcdProperty.NFKD_Quick_Check, VALUESOUTPUTTYPE.MAX_LINE_LENGTH);
-//Deprecated
-//                + TRIPLELINE
-//                + getFormattedBoolean(UcdProperty.Expands_On_NFC)
-//                + DOUBLELINE
-//                + getFormattedBoolean(UcdProperty.Expands_On_NFD)
-//                + DOUBLELINE
-//                + getFormattedBoolean(UcdProperty.Expands_On_NFKC)
-//                + DOUBLELINE
-//                + getFormattedBoolean(UcdProperty.Expands_On_NFKD)
-//                + TRIPLELINE
-//                + getFormattedSyntax(UcdProperty.FC_NFKC_Closure);
     }
 
     private static String getFormattedNumericProperties() {
@@ -1128,9 +1110,6 @@ public class GeneratePropertyValues {
     private static String getFormattedFunctionGraphicProperties() {
         return getFormattedBoolean(UcdProperty.Dash)
                 + DOUBLELINE
-//Deprecated
-//                + getFormattedBoolean(UcdProperty.Hyphen)
-//                + DOUBLELINE
                 + getFormattedBoolean(UcdProperty.Quotation_Mark)
                 + DOUBLELINE
                 + getFormattedBoolean(UcdProperty.Terminal_Punctuation)
@@ -1180,9 +1159,6 @@ public class GeneratePropertyValues {
                 + DOUBLELINE
                 + getFormattedBoolean(UcdProperty.Other_Grapheme_Extend)
                 + DOUBLELINE
-//Deprecated
-//                + getFormattedBoolean(UcdProperty.Grapheme_Link)
-//                + DOUBLELINE
                 + getFormattedAttribute(
                         UcdProperty.Grapheme_Cluster_Break, VALUESOUTPUTTYPE.ALPHABETICAL_GROUP)
                 + DOUBLELINE
