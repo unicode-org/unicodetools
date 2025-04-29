@@ -1,3 +1,7 @@
+05A2 ; Diacritic
+05C5 ; Diacritic
+05C7 ; Diacritic
+
 # PropList-17.0.0.txt
 # Date: 2025-04-25, 15:40:08 GMT
 # © 2025 Unicode®, Inc.
