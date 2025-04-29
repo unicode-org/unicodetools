@@ -1799,6 +1799,13 @@ public class GeneratePropertyValues {
         Matcher matcher = syntaxPattern.matcher(stringBuilder.toString());
         while (matcher.find()) {
             String delimiter = matcher.group(2).trim();
+            if (delimiter.contains("</span>")) {
+                delimiter =
+                        delimiter
+                                .replaceAll("<span class=\"removed\">[^<]*</span>", "")
+                                .replaceAll("<span class=\"changed\">", "")
+                                .replaceAll("</span>", "");
+            }
             boolean isList = false;
             switch (delimiter) {
                 case "N/A":

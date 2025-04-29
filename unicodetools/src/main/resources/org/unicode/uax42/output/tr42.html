@@ -2137,7 +2137,7 @@
     { xsd:string { pattern="\d+" } }?
 
   code-point-attributes &amp;= attribute kAlternateTotalStrokes
-    { list { xsd:string { pattern="(\d+:[BHJKMPSUV]+)|-" }+ } }?
+    { list { xsd:string { pattern="(\d+:[BGHJKMPSTUV]+)|-" }+ } }?
 
   code-point-attributes &amp;= attribute kBigFive
     { xsd:string { pattern="[0-9A-F]{4}'?" } }?
@@ -2247,8 +2247,8 @@
          | xsd:string { pattern="GKX-\d{4}\.\d{2,3}" }
          | xsd:string { pattern="G(HZ|HZR)-\d{5}\.\d{2}" }
          | xsd:string { pattern="G(CE|FC|IDC23|OCD|XHZ)-\d{3}" }
-         | xsd:string { pattern="G(H|HF|LGYJ|PGLG|T)-\d{4}" }
-         | xsd:string { pattern="G(4K|CESI|CYY|DM|JZ|KJ|XM|ZFY|ZJW|ZYS)-\d{5}" }
+         | xsd:string { pattern="G(H|HF|LGYJ|PGLG|T|ZHSJ)-\d{4}" }
+         | xsd:string { pattern="G(4K|CESI|CYY|DM|GT|JZ|KJ|XM|WY|ZFY|ZJW|ZYS)-\d{5}" }
          | xsd:string { pattern="G(FZ|IDC)-[0-9A-F]{4}" }
          | xsd:string { pattern="GCA-[A-Z]\d{4}" }
          | xsd:string { pattern="GGFZ-\d{6}" }
@@ -2428,7 +2428,7 @@
   code-point-attributes &amp;= attribute kStrange
     { list { ( xsd:string { pattern="[ACU]" }
              | xsd:string { pattern="B:U\+31[0-2AB][0-9A-F]" }
-             | xsd:string { pattern="[FMOR](:U\+[23]?[0-9A-F]{4})?" }
+             | xsd:string { pattern="[MORY](:U\+[23]?[0-9A-F]{4})?" }
              | xsd:string { pattern="H(:U\+31[3-8][0-9A-F])+" }
              | xsd:string { pattern="I(:U\+[23]?[0-9A-F]{4})*" }
              | xsd:string { pattern="K(:U\+30[A-F][0-9A-F])+" }
@@ -2448,7 +2448,7 @@
     { list { xsd:string { pattern="\d{3}\.\d{3}(,\d{3}\.\d{3})*:[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
 
   code-point-attributes &amp;= attribute kTotalStrokes
-    { list { xsd:string { pattern="[1-9]\d{0,2}" }+ } }?
+    { xsd:string { pattern="[1-9]\d{0,2}" } }?
 
   code-point-attributes &amp;= attribute kTraditionalVariant
     { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?
@@ -2600,8 +2600,8 @@
   code-point-attributes &amp;= attribute kEH_Func
     { xsd:string { pattern='[^\t"]+' } }?
 
-  code-point-attributes &amp;= attribute kEH_FVal
-    { xsd:string { pattern="[bdf-hjkmnpr-twy\.,/\-\+=;?&gt;\&amp;\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A723}\x{A725}\x{A7BD}]+" } }?
+  code-point-attributes &amp;=
+    attribute kEH_FVal { text }?
 
   code-point-attributes &amp;= attribute kEH_UniK
     { xsd:string { pattern="([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}|HJ ([A-IK-Z]|AA)\d{3}[A-Z]{0,2}" } }?

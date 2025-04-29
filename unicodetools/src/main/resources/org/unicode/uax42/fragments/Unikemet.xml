@@ -12,8 +12,8 @@
   code-point-attributes &amp;= attribute kEH_Func
     { xsd:string { pattern='[^\t"]+' } }?
 
-  code-point-attributes &amp;= attribute kEH_FVal
-    { xsd:string { pattern="[bdf-hjkmnpr-twy\.,/\-\+=;?&gt;\&amp;\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A723}\x{A725}\x{A7BD}]+" } }?
+  code-point-attributes &amp;=
+    attribute kEH_FVal { text }?
 
   code-point-attributes &amp;= attribute kEH_UniK
     { xsd:string { pattern="([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}|HJ ([A-IK-Z]|AA)\d{3}[A-Z]{0,2}" } }?
