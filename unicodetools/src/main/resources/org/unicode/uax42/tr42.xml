@@ -51,8 +51,8 @@
                         <attr>kEH_NoRotate</attr>, <attr>kEH_UniK</attr>.
                     </change>
                     <change>Removed attributes for deprecated properties: <attr>Gr_Link</attr>, <attr>Hyphen</attr>,
-                        <attr>isc</attr>, <attr>XO_NFC</attr>, <attr>XO_NFD</attr>, <attr>XO_NFKC</attr>,
-                        <attr>XO_NFKD</attr>, <attr>FC_NFKC</attr>.
+                        <attr>isc</attr>, <attr>kGB7</attr>, <attr>XO_NFC</attr>, <attr>XO_NFD</attr>,
+                        <attr>XO_NFKC</attr>, <attr>XO_NFKD</attr>, <attr>FC_NFKC</attr>.
                     </change>
                     <change>Removed elements that only contained historical information:
                         <elem>normalization-corrections</elem>, <elem>emoji-sources</elem>.
