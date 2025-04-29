@@ -1397,7 +1397,7 @@
     attribute kEH_NoRotate { boolean }?
 
   code-point-attributes &=
-    attribute kEH_AltSeq { text }?e
+    attribute kEH_AltSeq { text }?
 
       
   ucd.content &=
