@@ -230,7 +230,8 @@ public class AttributeResolver {
                         return map_script.get(codepoint).getShortName();
                     case Script_Extensions:
                         StringBuilder extensionBuilder = new StringBuilder();
-                        String[] extensions = map_script_extensions.get(codepoint).split("\\" + SET_SEPARATOR, 0);
+                        String[] extensions =
+                                map_script_extensions.get(codepoint).split("\\" + SET_SEPARATOR, 0);
                         for (String extension : extensions) {
                             extensionBuilder.append(
                                     UcdPropertyValues.Script_Values.valueOf(extension)

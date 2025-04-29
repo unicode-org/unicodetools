@@ -542,7 +542,7 @@ public class GeneratePropertyValues {
     private static String getFormattedSyntax(UcdProperty ucdProperty) {
         final PropertyParsingInfo propInfo = PropertyParsingInfo.getPropertyInfo(ucdProperty);
         if (propInfo.getRegex() == null) {
-            if(ucdProperty != UcdProperty.kEH_AltSeq) {
+            if (ucdProperty != UcdProperty.kEH_AltSeq) {
                 throw new NullPointerException(
                         "Could not find syntax for " + ucdProperty.getShortName());
             }
@@ -668,32 +668,33 @@ public class GeneratePropertyValues {
                 String kReading = "{ xsd:string }?";
                 formattedAttributeString = attributeString + kReading;
                 break;
-            // Currently, kEH_FVal is a Provisional property, and some of the values don't match the Syntax in
-            // UAX 57. Use this for now.
+                // Currently, kEH_FVal is a Provisional property, and some of the values don't match
+                // the Syntax in
+                // UAX 57. Use this for now.
             case kEH_FVal:
                 String kEH_FVal = "{ text }?";
                 formattedAttributeString = attributeString + kEH_FVal;
                 break;
-            // Currently, kEH_AltSeq isn't listed in the proposed UAX 57. Use this for now.
+                // Currently, kEH_AltSeq isn't listed in the proposed UAX 57. Use this for now.
             case kEH_AltSeq:
                 String kEH_AltSeq = "{ text }?";
                 formattedAttributeString = attributeString + kEH_AltSeq;
                 break;
 
-
             default:
-                if(propInfo.getMultivalued() == ValueCardinality.Unordered
+                if (propInfo.getMultivalued() == ValueCardinality.Unordered
                         || propInfo.getMultivalued() == ValueCardinality.Ordered) {
                     formattedAttributeString =
-                            attributeString + "{ list { xsd:string { pattern=\"" +
-                                    cleanRegex(propInfo.getRegex().toString()) +"\" }+ } }?";
-                }
-                else {
-                        formattedAttributeString =
-                                attributeString
-                                        + "{ xsd:string { pattern=\""
-                                        + cleanRegex(propInfo.getRegex().toString())
-                                        + "\" } }?";
+                            attributeString
+                                    + "{ list { xsd:string { pattern=\""
+                                    + cleanRegex(propInfo.getRegex().toString())
+                                    + "\" }+ } }?";
+                } else {
+                    formattedAttributeString =
+                            attributeString
+                                    + "{ xsd:string { pattern=\""
+                                    + cleanRegex(propInfo.getRegex().toString())
+                                    + "\" } }?";
                 }
         }
         return "  code-point-attributes &amp;=" + NEWLINE + formattedAttributeString;
@@ -976,7 +977,9 @@ public class GeneratePropertyValues {
     }
 
     private static String cleanRegex(String regex) {
-        return regex.replaceAll("\\[-", "[\\\\-").replaceAll("\\\\/", "/").replaceAll("\\\\'", "'")
+        return regex.replaceAll("\\[-", "[\\\\-")
+                .replaceAll("\\\\/", "/")
+                .replaceAll("\\\\'", "'")
                 .replaceAll("\\t", "");
     }
 
@@ -1778,7 +1781,8 @@ public class GeneratePropertyValues {
 
     // ********************* Utility methods ********************//
 
-    private static HashMap<String, TRDetails> parseTR(String url) throws IOException, URISyntaxException {
+    private static HashMap<String, TRDetails> parseTR(String url)
+            throws IOException, URISyntaxException {
         HashMap<String, TRDetails> syntaxTR = new HashMap<>();
         URI uri = new URI(url);
         StringBuilder stringBuilder = new StringBuilder();
@@ -1799,8 +1803,9 @@ public class GeneratePropertyValues {
             switch (delimiter) {
                 case "N/A":
                     break;
-                // The next two are to support two Provisional attributes in Unikemet. We'll process these as
-                // exceptions for now
+                    // The next two are to support two Provisional attributes in Unikemet. We'll
+                    // process these as
+                    // exceptions for now
                 case "/ (see description)": // kEH_Func
                 case "/ or | (see description)": // kEH_FVal
                     break;
@@ -1814,10 +1819,14 @@ public class GeneratePropertyValues {
                                     + delimiter);
             }
             TRDetails trDetails =
-                    new TRDetails(isList, matcher.group(3).trim().replaceAll("<br>", "")
-                            .replaceAll("<span class=\"removed\">.*?</span>", "")
-                            .replaceAll("<span class=\"changed\">", "")
-                            .replaceAll("</span>", ""));
+                    new TRDetails(
+                            isList,
+                            matcher.group(3)
+                                    .trim()
+                                    .replaceAll("<br>", "")
+                                    .replaceAll("<span class=\"removed\">.*?</span>", "")
+                                    .replaceAll("<span class=\"changed\">", "")
+                                    .replaceAll("</span>", ""));
             syntaxTR.put(matcher.group(1).trim(), trDetails);
         }
         return syntaxTR;

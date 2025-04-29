@@ -24,7 +24,14 @@ public class UCDPropertyDetail {
 
     public static UCDPropertyDetail Age_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.Age, VersionInfo.getInstance(3, 2, 0), 1, true, false, false, true, false);
+                    UcdProperty.Age,
+                    VersionInfo.getInstance(3, 2, 0),
+                    1,
+                    true,
+                    false,
+                    false,
+                    true,
+                    false);
     public static UCDPropertyDetail Name_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Name,
@@ -1434,7 +1441,8 @@ public class UCDPropertyDetail {
     // VersionInfo.getInstance(3,1,1), 143,
     //            false, true, false, true, false);
     //
-    //        The following UcdProperty values were added via PR1026 to support generating pre-5.2 Unihan; however,
+    //        The following UcdProperty values were added via PR1026 to support generating pre-5.2
+    // Unihan; however,
     //        they weren't supported in previous versions of UCDXML.
     //        kAlternateJEF
     //        kJHJ
@@ -2530,7 +2538,8 @@ public class UCDPropertyDetail {
             new UCDPropertyDetail(
                     UcdProperty.Do_Not_Emit_Preferred, -7, false, false, false, false, false);
     public static UCDPropertyDetail Do_Not_Emit_Type_Detail =
-            new UCDPropertyDetail(UcdProperty.Do_Not_Emit_Type, -8, false, false, false, false, false);
+            new UCDPropertyDetail(
+                    UcdProperty.Do_Not_Emit_Type, -8, false, false, false, false, false);
     public static UCDPropertyDetail Emoji_DCM_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Emoji_DCM,
@@ -2588,12 +2597,14 @@ public class UCDPropertyDetail {
     public static UCDPropertyDetail Idn_Status_Detail =
             new UCDPropertyDetail(UcdProperty.Idn_Status, -16, false, false, false, false, false);
     public static UCDPropertyDetail Named_Sequences_Detail =
-            new UCDPropertyDetail(UcdProperty.Named_Sequences, -17, false, false, false, false, false);
+            new UCDPropertyDetail(
+                    UcdProperty.Named_Sequences, -17, false, false, false, false, false);
     public static UCDPropertyDetail Named_Sequences_Prov_Detail =
             new UCDPropertyDetail(
                     UcdProperty.Named_Sequences_Prov, -18, false, false, false, false, false);
     public static UCDPropertyDetail Other_Joining_Type_Detail =
-            new UCDPropertyDetail(UcdProperty.Other_Joining_Type, -19, false, false, false, false, false);
+            new UCDPropertyDetail(
+                    UcdProperty.Other_Joining_Type, -19, false, false, false, false, false);
     public static UCDPropertyDetail RGI_Emoji_Flag_Sequence_Detail =
             new UCDPropertyDetail(
                     UcdProperty.RGI_Emoji_Flag_Sequence, -20, false, false, false, false, false);
@@ -2602,7 +2613,13 @@ public class UCDPropertyDetail {
                     UcdProperty.RGI_Emoji_Keycap_Sequence, -21, false, false, false, false, false);
     public static UCDPropertyDetail RGI_Emoji_Modifier_Sequence_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.RGI_Emoji_Modifier_Sequence, -22, false, false, false, false, false);
+                    UcdProperty.RGI_Emoji_Modifier_Sequence,
+                    -22,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false);
     public static UCDPropertyDetail RGI_Emoji_Tag_Sequence_Detail =
             new UCDPropertyDetail(
                     UcdProperty.RGI_Emoji_Tag_Sequence, -23, false, false, false, false, false);
@@ -2622,6 +2639,7 @@ public class UCDPropertyDetail {
     private boolean isCJKShowIfEmpty;
     private boolean isOrgUCDXMLAttribute;
     private boolean isUnikemetAttribute;
+
     private UCDPropertyDetail(
             UcdProperty ucdProperty,
             VersionInfo minVersion,
