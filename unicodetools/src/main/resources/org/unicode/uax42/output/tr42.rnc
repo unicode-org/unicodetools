@@ -14,6 +14,8 @@
   zero-or-more-code-points = list { single-code-point * }
   two-code-points = list { single-code-point, single-code-point }
 
+
+
       
   start =
     element ucd { ucd.content }
@@ -524,6 +526,8 @@
   code-point-attributes &=
     attribute NFKD_QC { "Y" | "N" }?
 
+
+
   code-point-attributes &=
     attribute nt { "De" | "Di" | "Nu" | "None" }?
 
@@ -734,6 +738,8 @@
   code-point-attributes &=
     attribute scx { list { script + } }?
 
+  
+
   code-point-attributes &=
     attribute hst { "L" | "LV" | "LVT" | "NA" | "T" | "V" }?
 
@@ -755,6 +761,7 @@
                    | "Consonant_Placeholder"
                    | "Consonant_Preceding_Repha"
                    | "Consonant_Prefixed"
+                   | "Consonant_Repha"
                    | "Consonant_Subjoined"
                    | "Consonant_Succeeding_Repha"
                    | "Consonant_With_Stacker"
@@ -778,13 +785,13 @@
                    | "Vowel"
                    | "Vowel_Dependent"
                    | "Vowel_Independent"
-                   | "Consonant_Repha"
                    }?
 
   code-point-attributes &=
     attribute InPC { "Bottom"
                    | "Bottom_And_Left"
                    | "Bottom_And_Right"
+                   | "Invisible"
                    | "Left"
                    | "Left_And_Right"
                    | "NA"
@@ -798,7 +805,6 @@
                    | "Top_And_Left_And_Right"
                    | "Top_And_Right"
                    | "Visual_Order_Left"
-                   | "Invisible"
                    }?
 
   code-point-attributes &=
@@ -840,6 +846,8 @@
 
   code-point-attributes &=
     attribute Dash { boolean }?
+
+
 
   code-point-attributes &=
     attribute QMark { boolean }?
@@ -909,6 +917,8 @@
 
   code-point-attributes &=
     attribute OGr_Ext { boolean }?
+
+
 
   code-point-attributes &=
     attribute GCB { "CN" | "CR"
@@ -1361,8 +1371,8 @@
   code-point-attributes &= attribute kEH_Func
     { xsd:string { pattern='[^\t"]+' } }?
 
-  code-point-attributes &=
-    attribute kEH_FVal { text }?
+  code-point-attributes &= attribute kEH_FVal
+    { xsd:string { pattern="[bdf-hjkmnpr-twy\.,/\-\+=;?>\&\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A723}\x{A725}\x{A7BD}]+" } }?
 
   code-point-attributes &= attribute kEH_UniK
     { xsd:string { pattern="([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}|HJ ([A-IK-Z]|AA)\d{3}[A-Z]{0,2}" } }?
@@ -1385,7 +1395,7 @@
     attribute kEH_NoRotate { boolean }?
 
   code-point-attributes &=
-    attribute kEH_AltSeq { text }?
+    attribute kEH_AltSeq { text }?e
 
       
   ucd.content &=
@@ -1409,6 +1419,7 @@
         attribute name { text } }+ }?
 
       
+      
   ucd.content &=
     element standardized-variants {
       element standardized-variant {
@@ -1424,6 +1435,7 @@
         attribute radical { single-code-point? },
         attribute ideograph { single-code-point } }+ }?
 
+      
       
   code-point-attributes &=
     attribute Emoji { boolean }?

@@ -28,7 +28,7 @@
                   | "Bassa_Vah"
                   | "Batak"
                   | "Bengali"
-                  | "Beria_Erfe"
+                  | <edit flag='changed'>"Beria_Erfe"</edit>
                   | "Bhaiksuki"
                   | "Block_Elements"
                   | "Bopomofo"
@@ -46,7 +46,7 @@
                   | "Cherokee"
                   | "Cherokee_Sup"
                   | "Chess_Symbols"
-                  | "Chisoi"
+                  | <edit flag='changed'>"Chisoi"</edit>
                   | "Chorasmian"
                   | "CJK"
                   | "CJK_Compat"
@@ -62,7 +62,7 @@
                   | "CJK_Ext_G"
                   | "CJK_Ext_H"
                   | "CJK_Ext_I"
-                  | "CJK_Ext_J"
+                  | <edit flag='changed'>"CJK_Ext_J"</edit>
                   | "CJK_Radicals_Sup"
                   | "CJK_Strokes"
                   | "CJK_Symbols"
@@ -212,7 +212,7 @@
                   | "Misc_Math_Symbols_B"
                   | "Misc_Pictographs"
                   | "Misc_Symbols"
-                  | "Misc_Symbols_Sup"
+                  | <edit flag='changed'>"Misc_Symbols_Sup"</edit>
                   | "Misc_Technical"
                   | "Modi"
                   | "Modifier_Letters"
@@ -272,11 +272,11 @@
                   | "Samaritan"
                   | "Saurashtra"
                   | "Sharada"
-                  | "Sharada_Sup"
+                  | <edit flag='changed'>"Sharada_Sup"</edit>
                   | "Shavian"
                   | "Shorthand_Format_Controls"
                   | "Siddham"
-                  | "Sidetic"
+                  | <edit flag='changed'>"Sidetic"</edit>
                   | "Sinhala"
                   | "Sinhala_Archaic_Numbers"
                   | "Small_Forms"
@@ -311,14 +311,14 @@
                   | "Tai_Tham"
                   | "Tai_Viet"
                   | "Tai_Xuan_Jing"
-                  | "Tai_Yo"
+                  | <edit flag='changed'>"Tai_Yo"</edit>
                   | "Takri"
                   | "Tamil"
                   | "Tamil_Sup"
                   | "Tangsa"
                   | "Tangut"
                   | "Tangut_Components"
-                  | "Tangut_Components_Sup"
+                  | <edit flag='changed'>"Tangut_Components_Sup"</edit>
                   | "Tangut_Sup"
                   | "Telugu"
                   | "Thaana"
@@ -327,7 +327,7 @@
                   | "Tifinagh"
                   | "Tirhuta"
                   | "Todhri"
-                  | "Tolong_Siki"
+                  | <edit flag='changed'>"Tolong_Siki"</edit>
                   | "Toto"
                   | "Transport_And_Map"
                   | "Tulu_Tigalari"

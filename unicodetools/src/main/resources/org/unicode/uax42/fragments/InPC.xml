@@ -4,6 +4,7 @@
     attribute InPC { "Bottom"
                    | "Bottom_And_Left"
                    | "Bottom_And_Right"
+                   | <edit flag='changed'>"Invisible"</edit>
                    | "Left"
                    | "Left_And_Right"
                    | "NA"
@@ -17,6 +18,5 @@
                    | "Top_And_Left_And_Right"
                    | "Top_And_Right"
                    | "Visual_Order_Left"
-                   | "Invisible"
                    }?
 </ucdxml:block>

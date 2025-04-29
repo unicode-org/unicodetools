@@ -8,7 +8,7 @@
     <title>Unicode Character Database in XML</title>
 
     <articleinfo>
-        <unicode:tr number='42' class='uax' version='17.0.0'
+        <unicode:tr number='42' class='uax' version='17.0.0 (draft 1)'
                     stage='proposed-update'
                     schema='rnc' prevrev='36'/>
         <copyright>
@@ -1011,9 +1011,10 @@
                 </para>
                 <xi:include href="./fragments/composition.xml"/>
                 <para>The properties <prop>NFC_Quick_Check</prop>, <prop>NFD_Quick_Check</prop>,
-                    <prop>NFKC_Quick_Check</prop>, <prop>NFKD_Quick_Check</prop>, <prop>Expands_On_NFC</prop>,
-                    <prop>Expands_On_NFD</prop>, <prop>Expands_On_NFKC</prop>, <prop>Expands_On_NKFD</prop>,
-                    <prop>FC_NFKC_Closure</prop> have corresponding attributes.
+                    <prop>NFKC_Quick_Check</prop>, <prop>NFKD_Quick_Check</prop>,
+                    <edit flag="removed"><prop>Expands_On_NFC</prop>, <prop>Expands_On_NFD</prop>,
+                    <prop>Expands_On_NFKC</prop>, <prop>Expands_On_NKFD</prop>, <prop>FC_NFKC_Closure</prop></edit> have
+                    corresponding attributes.
                 </para>
                 <xi:include href="./fragments/quickcheck.xml"/>
             </section>
@@ -1106,6 +1107,14 @@
 
             <!--____________________________________________________________________-->
             <section>
+                <title><edit flag="removed">ISO Comment properties</edit></title>
+                <para><edit flag="removed">The ISO 10646 comment field is represented by the <attr>isc</attr> attribute.
+                </edit></para>
+                <xi:include href="./fragments/isc.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
                 <title>Hangul properties</title>
                 <para>The property <prop>Hangul_Syllable_Type</prop> is represented by the <attr>hst</attr> attribute.
                 </para>
@@ -1150,9 +1159,9 @@
             <!--____________________________________________________________________-->
             <section>
                 <title>Properties related to function and graphic characteristics</title>
-                <para>The properties <prop>Dash</prop>, <prop>Quotation_Mark</prop>,
-                    <prop>Terminal_Punctuation</prop>, <prop>Sentence_Terminal</prop>, <prop>Diacritic</prop>,
-                    <prop>Extender</prop>, <prop>Soft_Dotted</prop>, <prop>Alphabetic</prop>,
+                <para>The properties <prop>Dash</prop>, <edit flag='removed'><prop>Hyphen</prop>,</edit>
+                    <prop>Quotation_Mark</prop>, <prop>Terminal_Punctuation</prop>, <prop>Sentence_Terminal</prop>,
+                    <prop>Diacritic</prop>, <prop>Extender</prop>, <prop>Soft_Dotted</prop>, <prop>Alphabetic</prop>,
                     <prop>Other_Alphabetic</prop>, <prop>Math</prop>, <prop>Other_Math</prop>, <prop>Hex_Digit</prop>,
                     <prop>ASCII_Hex_Digit</prop>, <prop>Default_Ignorable_Code_Point</prop>,
                     <prop>Other_Default_Ignorable_Code_Point</prop>, <prop>Logical_Order_Exception</prop>,
@@ -1168,8 +1177,10 @@
             <section>
                 <title>Properties related to boundaries</title>
                 <para>The properties <prop>Grapheme_Base</prop>, <prop>Grapheme_Extend</prop>,
-                    <prop>Other_Grapheme_Extend</prop>, <prop>Grapheme_Cluster_Break</prop>, <prop>Word_Break
-                    </prop>, and <prop>Sentence_Break</prop> each have a corresponding attribute:
+                    <prop>Other_Grapheme_Extend</prop>,
+                    <edit flag='removed'><prop>Grapheme_Link</prop>,</edit>
+                    <prop>Grapheme_Cluster_Break</prop>, <prop>Word_Break</prop>, and <prop>Sentence_Break</prop>
+                    each have a corresponding attribute:
                 </para>
                 <xi:include href="./fragments/boundaries.xml"/>
             </section>
@@ -1232,8 +1243,8 @@
 
             <!--____________________________________________________________________-->
             <section>
-                <title>Unikemet properties</title>
-                <para>The Unikemet data are represented as attributes. The attribute <attr>kEH_Cat</attr>
+                <title><edit flag="changed">Unikemet properties</edit></title>
+                <para><edit flag="changed">The Unikemet data are represented as attributes. The attribute <attr>kEH_Cat</attr>
                     is a catalog entry corresponding to the IFAO-based taxonomy. The attribute <attr>kEH_Core</attr>
                     determines whether an Egyptian hieroglyph is part of the 'Core' set, Legacy or None. The attribute
                     <attr>kEH_Desc</attr> provides a detailed description of the appearance of the hieroglyph.
@@ -1247,7 +1258,7 @@
                     JSesh Documentation. The attribute <attr>kEH_NoMirror</attr> determines whether the hieroglyph
                     does not mirror. The attribute <attr>kEH_NoRotate</attr> determines whether the hieroglyph
                     does not rotate. The attribute <attr>kEH_UniK</attr> represent the original Unikemet catalog
-                    index used by the Egyptian Hieroglyph block.
+                    index used by the Egyptian Hieroglyph block.</edit>
                 </para>
                 <xi:include href="./fragments/Unikemet.xml"/>
             </section>
@@ -1278,6 +1289,17 @@
 
     <!--========================================================================-->
     <section>
+        <title><edit flag="removed">Normalization Corrections</edit></title>
+        <para><edit flag="removed">The <elem>normalization-corrections</elem> child of the <elem>ucd</elem> describes the normalization
+            corrections. It has one child <elem>normalization-correction</elem> element per correction, with
+            attributes to describe the code point affected, its old normalization, its new normalization and the
+            version of Unicode in which the correction was made.
+        </edit></para>
+        <xi:include href="./fragments/normalization-corrections.xml"/>
+    </section>
+
+    <!--========================================================================-->
+    <section>
         <title>Standardized Variants</title>
         <para>The <elem>standardized-variants</elem> child of the <elem>ucd</elem> describes the standardized
             variant. It has one child element <elem>standardized-variant</elem> per variant. The attributes on that
@@ -1299,10 +1321,19 @@
 
     <!--========================================================================-->
     <section>
+        <title><edit flag="removed">Emoji sources</edit></title>
+        <para><edit flag="removed">The <elem>emoji-sources</elem> child of the <elem>ucd</elem> describes the emoji sources.
+        </edit></para>
+        <xi:include href="./fragments/emoji-sources.xml"/>
+
+        <xi:include href="./fragments/jis-code-point.xml"/>
+    </section>
+
+    <!--========================================================================-->
+    <section>
         <title>Do Not Emit</title>
-        <para><phrase revisionflag='added'>The <elem>do-not-emit</elem> child of the <elem>ucd</elem> describes the
+        <para>The <elem>do-not-emit</elem> child of the <elem>ucd</elem> describes the
             character sequences that should not be emitted or generated in newly authored texts.
-            </phrase>
         </para>
         <xi:include href="./fragments/do-not-emit.xml"/>
     </section>
@@ -1325,8 +1356,10 @@
       <ucdxml:include linkend='schema.unikemet'/>
       <ucdxml:include linkend='schema.block'/>
       <ucdxml:include linkend='schema.named-sequences'/>
+      <edit flag="removed"><ucdxml:include linkend='schema.normalization-corrections'/></edit>
       <ucdxml:include linkend='schema.standardized-variants'/>
       <ucdxml:include linkend='schema.cjk-radicals'/>
+      <edit flag="removed"><ucdxml:include linkend='schema.emoji-sources'/></edit>
       <ucdxml:include linkend='schema.emoji-data'/>
       <ucdxml:include linkend='schema.do-not-emit'/>
 </ucdxml:schema>

@@ -1804,9 +1804,9 @@ public class GeneratePropertyValues {
 
     // ********************* Utility methods ********************//
 
-    private static HashMap<String, TRDetails> parseTR(String Url) throws IOException, URISyntaxException {
+    private static HashMap<String, TRDetails> parseTR(String url) throws IOException, URISyntaxException {
         HashMap<String, TRDetails> syntaxTR = new HashMap<>();
-        URI uri = new URI(Url);
+        URI uri = new URI(url);
         StringBuilder stringBuilder = new StringBuilder();
         try (InputStream is = uri.toURL().openStream()) {
             int ptr = 0;

@@ -3,6 +3,9 @@
   code-point-attributes &amp;=
     attribute Dash { boolean }?
 
+<edit flag='removed'>  code-point-attributes &amp;=
+    attribute Hyphen { boolean }?</edit>
+
   code-point-attributes &amp;=
     attribute QMark { boolean }?
 
