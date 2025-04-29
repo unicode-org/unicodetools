@@ -10,8 +10,8 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 17.0.0 draft 2 (Unicode Version: 17.0.0)
-# based on Unicode data file UnicodeData-17.0.0d2.txt
+# Version 17.0.0 draft 3 (Unicode Version: 17.0.0)
+# based on Unicode data file UnicodeData-17.0.0d3.txt
 # Ordering for Unicode 17.0
 #
 # Fields:
@@ -34441,9 +34441,6 @@ A4F7;LISU LETTER OE;Lo;;;;;;
 10957;SIDETIC LETTER N24;Lo;;;;;;
 10958;SIDETIC LETTER N25;Lo;;;;;;
 10959;SIDETIC LETTER N26;Lo;;;;;;
-1095A;SIDETIC LETTER N27;Lo;;;;;;
-1095B;SIDETIC LETTER N28;Lo;;;;;;
-1095C;SIDETIC LETTER N29;Lo;;;;;;
 
 # Old Italic script starts here.
 
