@@ -1,5 +1,5 @@
 # unidata-17.0.0.txt
-# Date: 2025-01-22, 00:00:00 GMT [KW]
+# Date: 2025-04-24, 00:00:00 GMT [KW]
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/copyright.html
@@ -10,8 +10,8 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 17.0.0 draft 3 (Unicode Version: 17.0.0)
-# based on Unicode data file UnicodeData-17.0.0d3.txt
+# Version 17.0.0 draft 4 (Unicode Version: 17.0.0)
+# based on Unicode data file UnicodeData-17.0.0d4.txt
 # Ordering for Unicode 17.0
 #
 # Fields:
@@ -12001,6 +12001,7 @@ FFE6;FULLWIDTH WON SIGN;Sc;<wide> 20A9;;;;;
 20BE;LARI SIGN;Sc;;;;;;
 20BF;BITCOIN SIGN;Sc;;;;;;
 20C0;SOM SIGN;Sc;;;;;;
+20C1;SAUDI RIYAL SIGN;Sc;;;;;;
 
 # *********************************************************
 
@@ -31113,7 +31114,7 @@ FF9D;HALFWIDTH KATAKANA LETTER N;Lo;<narrow> 30F3;;;;;
 # Note that the CJK Ideograph extensions do not need to
 # be processed by the sifter, as all weights are assigned
 # by the UCA algorithm. The following list is old and
-# incomplete.
+# incomplete. It does not need to be maintained here.
 
 3400;<CJK Ideograph Extension A, First>;Lo;;;;;;
 4DB5;<CJK Ideograph Extension A, Last>;Lo;;;;;;
