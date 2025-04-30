@@ -178,6 +178,8 @@ cjkZhuangNumeric         ; kZhuangNumeric ; Provisional
 # 16.0
 cjkFanqie                ; kFanqie ; Provisional
 cjkZhuang                ; kZhuang ; Provisional
+# 17.0
+cjkTayNumeric            ; kTayNumeric ; Provisional
 
 kTGT_MergedSrc           ; kTGT_MergedSrc ; UCDNonProperty
 kRSTUnicode              ; kRSTUnicode ; UCDNonProperty
