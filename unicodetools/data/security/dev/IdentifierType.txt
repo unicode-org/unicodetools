@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2025-03-19, 22:50:24 GMT
+# Date: 2025-04-29, 02:17:33 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -42,11 +42,18 @@
 0134..013E    ; Recommended                    # 1.1   [11] LATIN CAPITAL LETTER J WITH CIRCUMFLEX..LATIN SMALL LETTER L WITH CARON
 0141..0148    ; Recommended                    # 1.1    [8] LATIN CAPITAL LETTER L WITH STROKE..LATIN SMALL LETTER N WITH CARON
 014A..017E    ; Recommended                    # 1.1   [53] LATIN CAPITAL LETTER ENG..LATIN SMALL LETTER Z WITH CARON
-018F          ; Recommended                    # 1.1        LATIN CAPITAL LETTER SCHWA
+0181          ; Recommended                    # 1.1        LATIN CAPITAL LETTER B WITH HOOK
+0186          ; Recommended                    # 1.1        LATIN CAPITAL LETTER OPEN O
+0189..018A    ; Recommended                    # 1.1    [2] LATIN CAPITAL LETTER AFRICAN D..LATIN CAPITAL LETTER D WITH HOOK
+018E..0192    ; Recommended                    # 1.1    [5] LATIN CAPITAL LETTER REVERSED E..LATIN SMALL LETTER F WITH HOOK
+0194          ; Recommended                    # 1.1        LATIN CAPITAL LETTER GAMMA
+0196..0199    ; Recommended                    # 1.1    [4] LATIN CAPITAL LETTER IOTA..LATIN SMALL LETTER K WITH HOOK
+019D          ; Recommended                    # 1.1        LATIN CAPITAL LETTER N WITH LEFT HOOK
 01A0..01A1    ; Recommended                    # 1.1    [2] LATIN CAPITAL LETTER O WITH HORN..LATIN SMALL LETTER O WITH HORN
 01AF..01B0    ; Recommended                    # 1.1    [2] LATIN CAPITAL LETTER U WITH HORN..LATIN SMALL LETTER U WITH HORN
-01CD..01DC    ; Recommended                    # 1.1   [16] LATIN CAPITAL LETTER A WITH CARON..LATIN SMALL LETTER U WITH DIAERESIS AND GRAVE
-01DE..01E3    ; Recommended                    # 1.1    [6] LATIN CAPITAL LETTER A WITH DIAERESIS AND MACRON..LATIN SMALL LETTER AE WITH MACRON
+01B2..01B4    ; Recommended                    # 1.1    [3] LATIN CAPITAL LETTER V WITH HOOK..LATIN SMALL LETTER Y WITH HOOK
+01B7          ; Recommended                    # 1.1        LATIN CAPITAL LETTER EZH
+01CD..01E3    ; Recommended                    # 1.1   [23] LATIN CAPITAL LETTER A WITH CARON..LATIN SMALL LETTER AE WITH MACRON
 01E6..01F0    ; Recommended                    # 1.1   [11] LATIN CAPITAL LETTER G WITH CARON..LATIN SMALL LETTER J WITH CARON
 01F4..01F5    ; Recommended                    # 1.1    [2] LATIN CAPITAL LETTER G WITH ACUTE..LATIN SMALL LETTER G WITH ACUTE
 01F8..01F9    ; Recommended                    # 3.0    [2] LATIN CAPITAL LETTER N WITH GRAVE..LATIN SMALL LETTER N WITH GRAVE
@@ -54,7 +61,18 @@
 0218..021B    ; Recommended                    # 3.0    [4] LATIN CAPITAL LETTER S WITH COMMA BELOW..LATIN SMALL LETTER T WITH COMMA BELOW
 021E..021F    ; Recommended                    # 3.0    [2] LATIN CAPITAL LETTER H WITH CARON..LATIN SMALL LETTER H WITH CARON
 0226..0233    ; Recommended                    # 3.0   [14] LATIN CAPITAL LETTER A WITH DOT ABOVE..LATIN SMALL LETTER Y WITH MACRON
+0244          ; Recommended                    # 5.0        LATIN CAPITAL LETTER U BAR
+024C..024D    ; Recommended                    # 5.0    [2] LATIN CAPITAL LETTER R WITH STROKE..LATIN SMALL LETTER R WITH STROKE
+0253..0254    ; Recommended                    # 1.1    [2] LATIN SMALL LETTER B WITH HOOK..LATIN SMALL LETTER OPEN O
+0256..0257    ; Recommended                    # 1.1    [2] LATIN SMALL LETTER D WITH TAIL..LATIN SMALL LETTER D WITH HOOK
 0259          ; Recommended                    # 1.1        LATIN SMALL LETTER SCHWA
+025B          ; Recommended                    # 1.1        LATIN SMALL LETTER OPEN E
+0263          ; Recommended                    # 1.1        LATIN SMALL LETTER GAMMA
+0268..0269    ; Recommended                    # 1.1    [2] LATIN SMALL LETTER I WITH STROKE..LATIN SMALL LETTER IOTA
+0272          ; Recommended                    # 1.1        LATIN SMALL LETTER N WITH LEFT HOOK
+0289          ; Recommended                    # 1.1        LATIN SMALL LETTER U BAR
+028B          ; Recommended                    # 1.1        LATIN SMALL LETTER V WITH HOOK
+0292          ; Recommended                    # 1.1        LATIN SMALL LETTER EZH
 02BB..02BC    ; Recommended                    # 1.1    [2] MODIFIER LETTER TURNED COMMA..MODIFIER LETTER APOSTROPHE
 02EC          ; Recommended                    # 3.0        MODIFIER LETTER VOICING
 0300..0304    ; Recommended                    # 1.1    [5] COMBINING GRAVE ACCENT..COMBINING MACRON
@@ -120,8 +138,7 @@
 0660..0669    ; Recommended                    # 1.1   [10] ARABIC-INDIC DIGIT ZERO..ARABIC-INDIC DIGIT NINE
 0670..0672    ; Recommended                    # 1.1    [3] ARABIC LETTER SUPERSCRIPT ALEF..ARABIC LETTER ALEF WITH WAVY HAMZA ABOVE
 0674          ; Recommended                    # 1.1        ARABIC LETTER HIGH HAMZA
-0679..068D    ; Recommended                    # 1.1   [21] ARABIC LETTER TTEH..ARABIC LETTER DDAHAL
-068F..06A0    ; Recommended                    # 1.1   [18] ARABIC LETTER DAL WITH THREE DOTS ABOVE DOWNWARDS..ARABIC LETTER AIN WITH THREE DOTS ABOVE
+0679..06A0    ; Recommended                    # 1.1   [40] ARABIC LETTER TTEH..ARABIC LETTER AIN WITH THREE DOTS ABOVE
 06A2..06B7    ; Recommended                    # 1.1   [22] ARABIC LETTER FEH WITH DOT MOVED BELOW..ARABIC LETTER LAM WITH THREE DOTS ABOVE
 06B8..06B9    ; Recommended                    # 3.0    [2] ARABIC LETTER LAM WITH THREE DOTS BELOW..ARABIC LETTER NOON WITH DOT BELOW
 06BA..06BE    ; Recommended                    # 1.1    [5] ARABIC LETTER NOON GHUNNA..ARABIC LETTER HEH DOACHASHMEE
@@ -306,8 +323,7 @@
 0D82..0D83    ; Recommended                    # 3.0    [2] SINHALA SIGN ANUSVARAYA..SINHALA SIGN VISARGAYA
 0D85..0D8E    ; Recommended                    # 3.0   [10] SINHALA LETTER AYANNA..SINHALA LETTER IRUUYANNA
 0D91..0D96    ; Recommended                    # 3.0    [6] SINHALA LETTER EYANNA..SINHALA LETTER AUYANNA
-0D9A..0DA5    ; Recommended                    # 3.0   [12] SINHALA LETTER ALPAPRAANA KAYANNA..SINHALA LETTER TAALUJA SANYOOGA NAAKSIKYAYA
-0DA7..0DB1    ; Recommended                    # 3.0   [11] SINHALA LETTER ALPAPRAANA TTAYANNA..SINHALA LETTER DANTAJA NAYANNA
+0D9A..0DB1    ; Recommended                    # 3.0   [24] SINHALA LETTER ALPAPRAANA KAYANNA..SINHALA LETTER DANTAJA NAYANNA
 0DB3..0DBB    ; Recommended                    # 3.0    [9] SINHALA LETTER SANYAKA DAYANNA..SINHALA LETTER RAYANNA
 0DBD          ; Recommended                    # 3.0        SINHALA LETTER DANTAJA LAYANNA
 0DC0..0DC6    ; Recommended                    # 3.0    [7] SINHALA LETTER VAYANNA..SINHALA LETTER FAYANNA
@@ -574,14 +590,16 @@ FA27..FA29    ; Recommended                    # 1.1    [3] CJK COMPATIBILITY ID
 2A700..2B734  ; Recommended                    # 5.2 [4149] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
 2B735..2B738  ; Recommended                    # 14.0   [4] CJK UNIFIED IDEOGRAPH-2B735..CJK UNIFIED IDEOGRAPH-2B738
 2B739         ; Recommended                    # 15.0       CJK UNIFIED IDEOGRAPH-2B739
+2B73F         ; Recommended                    # 17.0       CJK UNIFIED IDEOGRAPH-2B73F
 2B740..2B81D  ; Recommended                    # 6.0  [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B820..2CEA1  ; Recommended                    # 8.0 [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
+2CEA2..2CEAD  ; Recommended                    # 17.0  [12] CJK UNIFIED IDEOGRAPH-2CEA2..CJK UNIFIED IDEOGRAPH-2CEAD
 2CEB0..2EBE0  ; Recommended                    # 10.0 [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2EBF0..2EE5D  ; Recommended                    # 15.1 [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 30000..3134A  ; Recommended                    # 13.0 [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Recommended                    # 15.0 [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 112762
+# Total code points: 112811
 
 #	Identifier_Type:	Inclusion
 
@@ -794,20 +812,27 @@ ABEB          ; Limited_Use Not_XID            # 5.2        MEETEI MAYEK CHEIKHE
 
 #	Identifier_Type:	Uncommon_Use
 
-0181..018C    ; Uncommon_Use                   # 1.1   [12] LATIN CAPITAL LETTER B WITH HOOK..LATIN SMALL LETTER D WITH TOPBAR
-018E          ; Uncommon_Use                   # 1.1        LATIN CAPITAL LETTER REVERSED E
-0190..019F    ; Uncommon_Use                   # 1.1   [16] LATIN CAPITAL LETTER OPEN E..LATIN CAPITAL LETTER O WITH MIDDLE TILDE
+0182..0185    ; Uncommon_Use                   # 1.1    [4] LATIN CAPITAL LETTER B WITH TOPBAR..LATIN SMALL LETTER TONE SIX
+0187..0188    ; Uncommon_Use                   # 1.1    [2] LATIN CAPITAL LETTER C WITH HOOK..LATIN SMALL LETTER C WITH HOOK
+018B..018C    ; Uncommon_Use                   # 1.1    [2] LATIN CAPITAL LETTER D WITH TOPBAR..LATIN SMALL LETTER D WITH TOPBAR
+0193          ; Uncommon_Use                   # 1.1        LATIN CAPITAL LETTER G WITH HOOK
+0195          ; Uncommon_Use                   # 1.1        LATIN SMALL LETTER HV
+019A..019C    ; Uncommon_Use                   # 1.1    [3] LATIN SMALL LETTER L WITH BAR..LATIN CAPITAL LETTER TURNED M
+019E..019F    ; Uncommon_Use                   # 1.1    [2] LATIN SMALL LETTER N WITH LONG RIGHT LEG..LATIN CAPITAL LETTER O WITH MIDDLE TILDE
 01A2..01A9    ; Uncommon_Use                   # 1.1    [8] LATIN CAPITAL LETTER OI..LATIN CAPITAL LETTER ESH
 01AC..01AE    ; Uncommon_Use                   # 1.1    [3] LATIN CAPITAL LETTER T WITH HOOK..LATIN CAPITAL LETTER T WITH RETROFLEX HOOK
-01B1..01B8    ; Uncommon_Use                   # 1.1    [8] LATIN CAPITAL LETTER UPSILON..LATIN CAPITAL LETTER EZH REVERSED
+01B1          ; Uncommon_Use                   # 1.1        LATIN CAPITAL LETTER UPSILON
+01B5..01B6    ; Uncommon_Use                   # 1.1    [2] LATIN CAPITAL LETTER Z WITH STROKE..LATIN SMALL LETTER Z WITH STROKE
+01B8          ; Uncommon_Use                   # 1.1        LATIN CAPITAL LETTER EZH REVERSED
 01BC..01BD    ; Uncommon_Use                   # 1.1    [2] LATIN CAPITAL LETTER TONE FIVE..LATIN SMALL LETTER TONE FIVE
-01DD          ; Uncommon_Use                   # 1.1        LATIN SMALL LETTER TURNED E
 01E4..01E5    ; Uncommon_Use                   # 1.1    [2] LATIN CAPITAL LETTER G WITH STROKE..LATIN SMALL LETTER G WITH STROKE
 0220          ; Uncommon_Use                   # 3.2        LATIN CAPITAL LETTER N WITH LONG RIGHT LEG
 0221          ; Uncommon_Use                   # 4.0        LATIN SMALL LETTER D WITH CURL
 0222..0225    ; Uncommon_Use                   # 3.0    [4] LATIN CAPITAL LETTER OU..LATIN SMALL LETTER Z WITH HOOK
 0237..0241    ; Uncommon_Use                   # 4.1   [11] LATIN SMALL LETTER DOTLESS J..LATIN CAPITAL LETTER GLOTTAL STOP
-0242..024F    ; Uncommon_Use                   # 5.0   [14] LATIN SMALL LETTER GLOTTAL STOP..LATIN SMALL LETTER Y WITH STROKE
+0242..0243    ; Uncommon_Use                   # 5.0    [2] LATIN SMALL LETTER GLOTTAL STOP..LATIN CAPITAL LETTER B WITH STROKE
+0245..024B    ; Uncommon_Use                   # 5.0    [7] LATIN CAPITAL LETTER TURNED V..LATIN SMALL LETTER Q WITH HOOK TAIL
+024E..024F    ; Uncommon_Use                   # 5.0    [2] LATIN CAPITAL LETTER Y WITH STROKE..LATIN SMALL LETTER Y WITH STROKE
 0305          ; Uncommon_Use                   # 1.1        COMBINING OVERLINE
 030D          ; Uncommon_Use                   # 1.1        COMBINING VERTICAL LINE ABOVE
 0316          ; Uncommon_Use                   # 1.1        COMBINING GRAVE ACCENT BELOW
@@ -883,27 +908,18 @@ AB60..AB63    ; Uncommon_Use                   # 8.0    [4] LATIN SMALL LETTER S
 2B73A..2B73E  ; Uncommon_Use                   # 17.0   [5] CJK UNIFIED IDEOGRAPH-2B73A..CJK UNIFIED IDEOGRAPH-2B73E
 323B0..33479  ; Uncommon_Use                   # 17.0 [4298] CJK UNIFIED IDEOGRAPH-323B0..CJK UNIFIED IDEOGRAPH-33479
 
-# Total code points: 4655
+# Total code points: 4633
 
 #	Identifier_Type:	Uncommon_Use Technical
 
-0253..0254    ; Uncommon_Use Technical         # 1.1    [2] LATIN SMALL LETTER B WITH HOOK..LATIN SMALL LETTER OPEN O
-0256..0257    ; Uncommon_Use Technical         # 1.1    [2] LATIN SMALL LETTER D WITH TAIL..LATIN SMALL LETTER D WITH HOOK
-025B          ; Uncommon_Use Technical         # 1.1        LATIN SMALL LETTER OPEN E
-0263          ; Uncommon_Use Technical         # 1.1        LATIN SMALL LETTER GAMMA
-0268..0269    ; Uncommon_Use Technical         # 1.1    [2] LATIN SMALL LETTER I WITH STROKE..LATIN SMALL LETTER IOTA
-0272          ; Uncommon_Use Technical         # 1.1        LATIN SMALL LETTER N WITH LEFT HOOK
-0289          ; Uncommon_Use Technical         # 1.1        LATIN SMALL LETTER U BAR
-0292          ; Uncommon_Use Technical         # 1.1        LATIN SMALL LETTER EZH
 05C7          ; Uncommon_Use Technical         # 4.1        HEBREW POINT QAMATS QATAN
 0D8F..0D90    ; Uncommon_Use Technical         # 3.0    [2] SINHALA LETTER ILUYANNA..SINHALA LETTER ILUUYANNA
-0DA6          ; Uncommon_Use Technical         # 3.0        SINHALA LETTER SANYAKA JAYANNA
 0DDF          ; Uncommon_Use Technical         # 3.0        SINHALA VOWEL SIGN GAYANUKITTA
 0DF3          ; Uncommon_Use Technical         # 3.0        SINHALA VOWEL SIGN DIGA GAYANUKITTA
 FB1E          ; Uncommon_Use Technical         # 1.1        HEBREW POINT JUDEO-SPANISH VARIKA
 FE2E..FE2F    ; Uncommon_Use Technical         # 8.0    [2] COMBINING CYRILLIC TITLO LEFT HALF..COMBINING CYRILLIC TITLO RIGHT HALF
 
-# Total code points: 20
+# Total code points: 8
 
 #	Identifier_Type:	Uncommon_Use Technical Not_XID
 
@@ -957,7 +973,8 @@ A8FC          ; Uncommon_Use Obsolete Not_XID  # 8.0        DEVANAGARI SIGN SIDD
 0273..0276    ; Technical                      # 1.1    [4] LATIN SMALL LETTER N WITH RETROFLEX HOOK..LATIN LETTER SMALL CAPITAL OE
 0278..027B    ; Technical                      # 1.1    [4] LATIN SMALL LETTER PHI..LATIN SMALL LETTER TURNED R WITH HOOK
 027D..0288    ; Technical                      # 1.1   [12] LATIN SMALL LETTER R WITH TAIL..LATIN SMALL LETTER T WITH RETROFLEX HOOK
-028A..0291    ; Technical                      # 1.1    [8] LATIN SMALL LETTER UPSILON..LATIN SMALL LETTER Z WITH CURL
+028A          ; Technical                      # 1.1        LATIN SMALL LETTER UPSILON
+028C..0291    ; Technical                      # 1.1    [6] LATIN SMALL LETTER TURNED V..LATIN SMALL LETTER Z WITH CURL
 0293..029D    ; Technical                      # 1.1   [11] LATIN SMALL LETTER EZH WITH CURL..LATIN SMALL LETTER J WITH CROSSED-TAIL
 029F..02A8    ; Technical                      # 1.1   [10] LATIN LETTER SMALL CAPITAL L..LATIN SMALL LETTER TC DIGRAPH WITH CURL
 02A9..02AD    ; Technical                      # 3.0    [5] LATIN SMALL LETTER FENG DIGRAPH..LATIN LETTER BIDENTAL PERCUSSIVE
@@ -1049,7 +1066,7 @@ FE73          ; Technical                      # 3.2        ARABIC TAIL FRAGMENT
 1D185..1D18B  ; Technical                      # 3.1    [7] MUSICAL SYMBOL COMBINING DOIT..MUSICAL SYMBOL COMBINING TRIPLE TONGUE
 1D1AA..1D1AD  ; Technical                      # 3.1    [4] MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 
-# Total code points: 537
+# Total code points: 536
 
 #	Identifier_Type:	Technical Exclusion
 
@@ -1210,7 +1227,7 @@ A930..A953    ; Exclusion                      # 5.1   [36] REJANG LETTER KA..RE
 108F4..108F5  ; Exclusion                      # 8.0    [2] HATRAN LETTER SHIN..HATRAN LETTER TAW
 10900..10915  ; Exclusion                      # 5.0   [22] PHOENICIAN LETTER ALF..PHOENICIAN LETTER TAU
 10920..10939  ; Exclusion                      # 5.1   [26] LYDIAN LETTER A..LYDIAN LETTER C
-10940..1095C  ; Exclusion                      # 17.0  [29] SIDETIC LETTER N01..SIDETIC LETTER N29
+10940..10959  ; Exclusion                      # 17.0  [26] SIDETIC LETTER N01..SIDETIC LETTER N26
 10980..109B7  ; Exclusion                      # 6.1   [56] MEROITIC HIEROGLYPHIC LETTER A..MEROITIC CURSIVE LETTER DA
 109BE..109BF  ; Exclusion                      # 6.1    [2] MEROITIC CURSIVE LOGOGRAM RMT..MEROITIC CURSIVE LOGOGRAM IMN
 10A00..10A03  ; Exclusion                      # 4.1    [4] KHAROSHTHI LETTER A..KHAROSHTHI VOWEL SIGN VOCALIC R
@@ -1429,7 +1446,7 @@ A930..A953    ; Exclusion                      # 5.1   [36] REJANG LETTER KA..RE
 1E800..1E8C4  ; Exclusion                      # 7.0  [197] MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON
 1E8D0..1E8D6  ; Exclusion                      # 7.0    [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 20842
+# Total code points: 20839
 
 #	Identifier_Type:	Exclusion Not_XID
 
@@ -1570,7 +1587,6 @@ A95F          ; Exclusion Not_XID              # 5.1        REJANG SECTION MARK
 052A..052D    ; Obsolete                       # 7.0    [4] CYRILLIC CAPITAL LETTER DZZHE..CYRILLIC SMALL LETTER DCHE
 0640          ; Obsolete                       # 1.1        ARABIC TATWEEL
 066E..066F    ; Obsolete                       # 3.2    [2] ARABIC LETTER DOTLESS BEH..ARABIC LETTER DOTLESS QAF
-068E          ; Obsolete                       # 1.1        ARABIC LETTER DUL
 06A1          ; Obsolete                       # 1.1        ARABIC LETTER DOTLESS FEH
 08AD..08B1    ; Obsolete                       # 7.0    [5] ARABIC LETTER LOW ALEF..ARABIC LETTER STRAIGHT WAW
 094E          ; Obsolete                       # 5.2        DEVANAGARI VOWEL SIGN PRISHTHAMATRA E
@@ -1655,7 +1671,7 @@ D7CB..D7FB    ; Obsolete                       # 5.2   [49] HANGUL JONGSEONG NIE
 1B000..1B001  ; Obsolete                       # 6.0    [2] KATAKANA LETTER ARCHAIC E..HIRAGANA LETTER ARCHAIC YE
 1B002..1B11E  ; Obsolete                       # 10.0 [285] HENTAIGANA LETTER A-1..HENTAIGANA LETTER N-MU-MO-2
 
-# Total code points: 1345
+# Total code points: 1344
 
 #	Identifier_Type:	Obsolete Not_XID
 
@@ -1820,6 +1836,7 @@ A8F8..A8FA    ; Obsolete Not_XID               # 5.2    [3] DEVANAGARI SIGN PUSH
 20BE          ; Not_XID                        # 8.0        LARI SIGN
 20BF          ; Not_XID                        # 10.0       BITCOIN SIGN
 20C0          ; Not_XID                        # 14.0       SOM SIGN
+20C1          ; Not_XID                        # 17.0       SAUDI RIYAL SIGN
 2104          ; Not_XID                        # 1.1        CENTRE LINE SYMBOL
 2108          ; Not_XID                        # 1.1        SCRUPLE
 2114          ; Not_XID                        # 1.1        L B BAR SYMBOL
@@ -2245,7 +2262,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1FBCB..1FBEF  ; Not_XID                        # 16.0  [37] WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; Not_XID                        # 17.0       ALARM BELL SYMBOL
 
-# Total code points: 6490
+# Total code points: 6491
 
 #	Identifier_Type:	Not_NFKC
 
