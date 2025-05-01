@@ -1884,9 +1884,9 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     true);
-    public static UCDPropertyDetail kRSTUnicode_Detail =
+    public static UCDPropertyDetail kTGT_RSUnicode_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.kRSTUnicode,
+                    UcdProperty.kTGT_RSUnicode,
                     VersionInfo.getInstance(9, 0, 0),
                     212,
                     false,
@@ -1902,18 +1902,18 @@ public class UCDPropertyDetail {
                     true,
                     false,
                     true);
-    public static UCDPropertyDetail kSrc_NushuDuben_Detail =
+    public static UCDPropertyDetail kNSHU_DubenSrc_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.kSrc_NushuDuben,
+                    UcdProperty.kNSHU_DubenSrc,
                     VersionInfo.getInstance(10, 0, 0),
                     214,
                     false,
                     true,
                     false,
                     true);
-    public static UCDPropertyDetail kReading_Detail =
+    public static UCDPropertyDetail kNSHU_Reading_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.kReading,
+                    UcdProperty.kNSHU_Reading,
                     VersionInfo.getInstance(10, 0, 0),
                     215,
                     false,
