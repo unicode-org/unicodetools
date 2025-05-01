@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2025-03-27, 16:29:14 GMT
+# Date: 2025-05-01, 22:18:56 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -5522,13 +5522,18 @@
 ←	(‎ ͂ ‎)	0342	 COMBINING GREEK PERISPOMENI
 ←	(‎ ٓ ‎)	0653	 ARABIC MADDAH ABOVE
 
-#	̄	̅	ٙ	߫	᳒	꛱
+#	̄	᫢	̅	ٙ	߫	᳒	꛱
 	(‎ ̄ ‎)	0304	 COMBINING MACRON
+←	(‎ ᫢ ‎)	1AE2	 COMBINING MINUS SIGN ABOVE
 ←	(‎ ̅ ‎)	0305	 COMBINING OVERLINE
 ←	(‎ ٙ ‎)	0659	 ARABIC ZWARAKAY
 ←	(‎ ߫ ‎)	07EB	 NKO COMBINING SHORT HIGH TONE
 ←	(‎ ᳒ ‎)	1CD2	 VEDIC TONE PRENKHA
 ←	(‎ ꛱ ‎)	A6F1	 BAMUM COMBINING MARK TUKWENTIS
+
+#	̄̄	᫨
+	(‎ ̄̄ ‎)	0304 0304	 COMBINING MACRON, COMBINING MACRON
+←	(‎ ᫨ ‎)	1AE8	 COMBINING EQUALS SIGN ABOVE
 
 #	̆	̌	ͮ	٘	ٚ	꙼
 	(‎ ̆ ‎)	0306	 COMBINING BREVE
@@ -5551,8 +5556,9 @@
 ←	(‎ ഁ ‎)	0D01	 MALAYALAM SIGN CANDRABINDU	# →ँ→→̐→
 ←	(‎ 𑒿 ‎)	114BF	 TIRHUTA SIGN CANDRABINDU	# →ঁ→→̐→
 
-#	̇	ं	ਂ	ં	்	͘	ֹ	ֺ	ׁ	ׂ	ׄ	۬	݀	݁	߭	࣪
+#	̇	୓	ं	ਂ	ં	்	͘	ֹ	ֺ	ׁ	ׂ	ׄ	۬	݀	݁	߭	࣪
 	(‎ ̇ ‎)	0307	 COMBINING DOT ABOVE
+←	(‎ ୓ ‎)	0B53	 ORIYA SIGN DOT ABOVE
 ←	(‎ ं ‎)	0902	 DEVANAGARI SIGN ANUSVARA
 ←	(‎ ਂ ‎)	0A02	 GURMUKHI SIGN BINDI
 ←	(‎ ં ‎)	0A82	 GUJARATI SIGN ANUSVARA
@@ -5569,8 +5575,9 @@
 ←	(‎ ߭ ‎)	07ED	 NKO COMBINING SHORT RISING TONE
 ←	(‎ ࣪ ‎)	08EA	 ARABIC TONE ONE DOT ABOVE
 
-#	̈	߳	࣫
+#	̈	୔	߳	࣫
 	(‎ ̈ ‎)	0308	 COMBINING DIAERESIS
+←	(‎ ୔ ‎)	0B54	 ORIYA SIGN DOUBLE DOT ABOVE
 ←	(‎ ߳ ‎)	07F3	 NKO COMBINING DOUBLE DOT ABOVE
 ←	(‎ ࣫ ‎)	08EB	 ARABIC TONE TWO DOTS ABOVE
 
@@ -5641,6 +5648,10 @@
 	(‎ ̗ ‎)	0317	 COMBINING ACUTE ACCENT BELOW
 ←	(‎ ِ ‎)	0650	 ARABIC KASRA
 ←	(‎ ؚ ‎)	061A	 ARABIC SMALL KASRA	# →ِ→
+
+#	᫩	̚
+	(‎ ̚ ‎)	031A	 COMBINING LEFT ANGLE ABOVE
+←	(‎ ᫩ ‎)	1AE9	 COMBINING LEFT ANGLE CENTRED ABOVE
 
 #	̱	̠	॒
 	(‎ ̠ ‎)	0320	 COMBINING MINUS SIGN BELOW
@@ -5713,6 +5724,10 @@
 #	̸	̷
 	(‎ ̷ ‎)	0337	 COMBINING SHORT SOLIDUS OVERLAY
 ←	(‎ ̸ ‎)	0338	 COMBINING LONG SOLIDUS OVERLAY
+
+#	𐻺	͈
+	(‎ ͈ ‎)	0348	 COMBINING DOUBLE VERTICAL LINE BELOW
+←	(‎ 𐻺 ‎)	10EFA	 ARABIC DOUBLE VERTICAL BAR BELOW
 
 #	͐	͗	ࣸ	ࣿ
 	(‎ ͐ ‎)	0350	 COMBINING RIGHT ARROWHEAD ABOVE
@@ -8422,8 +8437,9 @@
 ←	(‎ आॆ ‎)	0906 0946	 DEVANAGARI LETTER AA, DEVANAGARI VOWEL SIGN SHORT E
 ←	(‎ ऒ ‎)	0912	 DEVANAGARI LETTER SHORT O	# →अॊ→→आॆ→
 
-#	अाे	अो	आे	ओ
+#	अाे	अा𑭤	अो	आे	ओ
 	(‎ अाे ‎)	0905 093E 0947	 DEVANAGARI LETTER A, DEVANAGARI VOWEL SIGN AA, DEVANAGARI VOWEL SIGN E
+←	(‎ अा𑭤 ‎)	0905 093E 11B64	 DEVANAGARI LETTER A, DEVANAGARI VOWEL SIGN AA, SHARADA VOWEL SIGN SHORT E	# →आे→
 ←	(‎ अो ‎)	0905 094B	 DEVANAGARI LETTER A, DEVANAGARI VOWEL SIGN O	# →आे→
 ←	(‎ आे ‎)	0906 0947	 DEVANAGARI LETTER AA, DEVANAGARI VOWEL SIGN E
 ←	(‎ ओ ‎)	0913	 DEVANAGARI LETTER O	# →अो→→आे→
@@ -8442,20 +8458,23 @@
 	(‎ ई ‎)	0908	 DEVANAGARI LETTER II
 ←	(‎ र्इ ‎)	0930 094D 0907	 DEVANAGARI LETTER RA, DEVANAGARI SIGN VIRAMA, DEVANAGARI LETTER I
 
-#	एॅ	ऍ
+#	एॅ	ए𑭦	ऍ
 	(‎ ऍ ‎)	090D	 DEVANAGARI LETTER CANDRA E
 ←	(‎ एॅ ‎)	090F 0945	 DEVANAGARI LETTER E, DEVANAGARI VOWEL SIGN CANDRA E
+←	(‎ ए𑭦 ‎)	090F 11B66	 DEVANAGARI LETTER E, SHARADA VOWEL SIGN CANDRA E	# →एॅ→
 
 #	एॆ	ऎ
 	(‎ ऎ ‎)	090E	 DEVANAGARI LETTER SHORT E
 ←	(‎ एॆ ‎)	090F 0946	 DEVANAGARI LETTER E, DEVANAGARI VOWEL SIGN SHORT E
 
-#	एे	ऐ
+#	एे	ए𑭤	ऐ
 	(‎ एे ‎)	090F 0947	 DEVANAGARI LETTER E, DEVANAGARI VOWEL SIGN E
+←	(‎ ए𑭤 ‎)	090F 11B64	 DEVANAGARI LETTER E, SHARADA VOWEL SIGN SHORT E
 ←	(‎ ऐ ‎)	0910	 DEVANAGARI LETTER AI
 
-#	ऺ	𑇋
+#	ऺ	𑭠	𑇋
 	(‎ ऺ ‎)	093A	 DEVANAGARI VOWEL SIGN OE
+←	(‎ 𑭠 ‎)	11B60	 SHARADA VOWEL SIGN OE
 ←	(‎ 𑇋 ‎)	111CB	 SHARADA VOWEL MODIFIER MARK
 
 #	ऽ	ઽ
@@ -8470,14 +8489,30 @@
 	(‎ ू ‎)	0942	 DEVANAGARI VOWEL SIGN UU
 ←	(‎ ૂ ‎)	0AC2	 GUJARATI VOWEL SIGN UU
 
+#	𑭦	ॅ
+	(‎ ॅ ‎)	0945	 DEVANAGARI VOWEL SIGN CANDRA E
+←	(‎ 𑭦 ‎)	11B66	 SHARADA VOWEL SIGN CANDRA E
+
 #	ॆ	ੋ
 	(‎ ॆ ‎)	0946	 DEVANAGARI VOWEL SIGN SHORT E
 ←	(‎ ੋ ‎)	0A4B	 GURMUKHI VOWEL SIGN OO
+
+#	𑭤	े
+	(‎ े ‎)	0947	 DEVANAGARI VOWEL SIGN E
+←	(‎ 𑭤 ‎)	11B64	 SHARADA VOWEL SIGN SHORT E
 
 #	्	੍	્
 	(‎ ् ‎)	094D	 DEVANAGARI SIGN VIRAMA
 ←	(‎ ੍ ‎)	0A4D	 GURMUKHI SIGN VIRAMA
 ←	(‎ ્ ‎)	0ACD	 GUJARATI SIGN VIRAMA
+
+#	𑭢	ॖ
+	(‎ ॖ ‎)	0956	 DEVANAGARI VOWEL SIGN UE
+←	(‎ 𑭢 ‎)	11B62	 SHARADA VOWEL SIGN UE
+
+#	𑭣	ॗ
+	(‎ ॗ ‎)	0957	 DEVANAGARI VOWEL SIGN UUE
+←	(‎ 𑭣 ‎)	11B63	 SHARADA VOWEL SIGN UUE
 
 #	।	꠰
 	(‎ । ‎)	0964	 DEVANAGARI DANDA
@@ -8635,8 +8670,9 @@
 	(‎ ৌ ‎)	09CC	 BENGALI VOWEL SIGN AU
 ←	(‎ 𑒾 ‎)	114BE	 TIRHUTA VOWEL SIGN AU
 
-#	্	𑓂
+#	্	𖶝	𑓂
 	(‎ ্ ‎)	09CD	 BENGALI SIGN VIRAMA
+←	(‎ 𖶝 ‎)	16D9D	 CHISOI SIGN SISO
 ←	(‎ 𑓂 ‎)	114C2	 TIRHUTA SIGN VIRAMA
 
 #	ৗ	𑒽
@@ -11505,6 +11541,22 @@
 #	᪪᪨	᪫
 	(‎ ᪪᪨ ‎)	1AAA 1AA8	 TAI THAM SIGN SATKAAN, TAI THAM SIGN KAAN
 ←	(‎ ᪫ ‎)	1AAB	 TAI THAM SIGN SATKAANKUU
+
+#	᫆	᫙
+	(‎ ᫆ ‎)	1AC6	 COMBINING NUMBER SIGN ABOVE
+←	(‎ ᫙ ‎)	1AD9	 COMBINING SHARP SIGN
+
+#	᫈	𞛮
+	(‎ ᫈ ‎)	1AC8	 COMBINING PLUS SIGN ABOVE
+←	(‎ 𞛮 ‎)	1E6EE	 TAI YO SIGN AY
+
+#	᫚	ᷨ
+	(‎ ᫚ ‎)	1ADA	 COMBINING FLAT SIGN
+←	(‎ ᷨ ‎)	1DE8	 COMBINING LATIN SMALL LETTER B
+
+#	᫛	ⷮ
+	(‎ ᫛ ‎)	1ADB	 COMBINING DOWN TACK ABOVE
+←	(‎ ⷮ ‎)	2DEE	 COMBINING CYRILLIC LETTER TE
 
 #	᫥	᫧
 	(‎ ᫥ ‎)	1AE5	 COMBINING SEAGULL ABOVE
@@ -17419,5 +17471,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 7374
+# total : 7393
 

@@ -1,5 +1,5 @@
 # idnchars.txt
-# Date: 2025-03-19, 22:50:25 GMT
+# Date: 2025-05-01, 22:18:54 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -658,14 +658,14 @@ FA27..FA29    ; output #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK 
 1E7F0..1E7FE  ; output # [15] (𞟰..𞟾)  ETHIOPIC SYLLABLE GURAGE QWI..ETHIOPIC SYLLABLE GURAGE PWEE
 20000..2A6DF  ; output # [42720] (𠀀..𪛟)  CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
 2A700..2B739  ; output # [4154] (𪜀..𫜹)  CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B739
-2B740..2B81D  ; output # [222] (𫝀..𫠝)  CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
-2B820..2CEA1  ; output # [5762] (𫠠..𬺡)  CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
+2B73F..2B81D  ; output # [223] (𫜿..𫠝)  CJK UNIFIED IDEOGRAPH-2B73F..CJK UNIFIED IDEOGRAPH-2B81D
+2B820..2CEAD  ; output # [5774] (𫠠..𬺭)  CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEAD
 2CEB0..2EBE0  ; output # [7473] (𬺰..𮯠)  CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2EBF0..2EE5D  ; output # [622] (𮯰..𮹝)  CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 30000..3134A  ; output # [4939] (𰀀..𱍊)  CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; output # [4192] (𱍐..𲎯)  CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 112111
+# Total code points: 112124
 
 # Not allowed at start of identifier
 
