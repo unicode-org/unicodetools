@@ -366,6 +366,16 @@ public enum UcdProperty {
             ValueCardinality.Unordered,
             "cjkMojiJoho"),
     kMorohashi(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkMorohashi"),
+    kNSHU_DubenSrc(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "kNSHU_DubenSrc",
+            "kSrc_NushuDuben"),
+    kNSHU_Reading(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "kNSHU_Reading",
+            "kReading"),
     kNelson(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,
@@ -390,7 +400,6 @@ public enum UcdProperty {
     kRSKangXi(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkRSKangXi"),
     kRSKorean(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkRSKorean"),
     kRSMerged(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkRSMerged"),
-    kRSTUnicode(PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "kRSTUnicode"),
     kRSUnicode(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Approved,
@@ -399,7 +408,6 @@ public enum UcdProperty {
             "cjkRSUnicode",
             "Unicode_Radical_Stroke",
             "URS"),
-    kReading(PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "kReading"),
     kSBGY(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,
@@ -436,8 +444,6 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkSpoofingVariant"),
-    kSrc_NushuDuben(
-            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "kSrc_NushuDuben"),
     kStrange(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,
@@ -458,6 +464,11 @@ public enum UcdProperty {
             "cjkTGHZ2013"),
     kTGT_MergedSrc(
             PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "kTGT_MergedSrc"),
+    kTGT_RSUnicode(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "kTGT_RSUnicode",
+            "kRSTUnicode"),
     kTaiwanTelegraph(
             PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkTaiwanTelegraph"),
     kTang(

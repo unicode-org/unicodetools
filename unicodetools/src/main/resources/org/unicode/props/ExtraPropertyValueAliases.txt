@@ -336,10 +336,10 @@ Indic_Positional_Category ; Invisible ; Invisible
 Indic_Syllabic_Category ; Consonant_Repha ; Consonant_Repha
 
 # @missing: 0000..10FFFF; kTGT_MergedSrc ; <none>
-# @missing: 0000..10FFFF; kRSTUnicode ; <none>
+# @missing: 0000..10FFFF; kTGT_RSUnicode ; <none>
 
-# @missing: 0000..10FFFF; kSrc_NushuDuben ; <none>
-# @missing: 0000..10FFFF; kReading ; <none>
+# @missing: 0000..10FFFF; kNSHU_DubenSrc ; <none>
+# @missing: 0000..10FFFF; kNSHU_Reading ; <none>
 
 # @missing: 0000..10FFFF; kEH_Core  ;  N
 kEH_Core ; C ; Core

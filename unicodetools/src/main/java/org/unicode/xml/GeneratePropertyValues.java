@@ -658,7 +658,7 @@ public class GeneratePropertyValues {
                                 + "     }?";
                 formattedAttributeString = attributeString + kTGT_MergedSrc;
                 break;
-            case kReading:
+            case kNSHU_Reading:
                 // Ideally, should be obtained from a TR.
                 String kReading = "{ xsd:string }?";
                 formattedAttributeString = attributeString + kReading;
@@ -1371,15 +1371,15 @@ public class GeneratePropertyValues {
     }
 
     private static String getFormattedTangutProperties() {
-        return getFormattedSyntax(UcdProperty.kRSTUnicode)
+        return getFormattedSyntax(UcdProperty.kTGT_RSUnicode)
                 + DOUBLELINE
                 + getFormattedSyntax(UcdProperty.kTGT_MergedSrc);
     }
 
     private static String getFormattedNushuProperties() {
-        return getFormattedSyntax(UcdProperty.kSrc_NushuDuben)
+        return getFormattedSyntax(UcdProperty.kNSHU_DubenSrc)
                 + DOUBLELINE
-                + getFormattedSyntax(UcdProperty.kReading);
+                + getFormattedSyntax(UcdProperty.kNSHU_Reading);
     }
 
     private static String getFormattedEmojiProperties() {
