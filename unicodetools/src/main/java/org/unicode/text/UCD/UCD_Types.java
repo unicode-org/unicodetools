@@ -621,12 +621,13 @@ public interface UCD_Types {
             Sunuwar = 170,
             Todhri = 171,
             Tulu_Tigalari = 172,
-            // Provisionally assigned or proposed
+            // Unicode 17
             Chisoi = 173,
             Sidetic = 174,
             Tai_Yo = 175,
             Tolong_Siki = 176,
             Beria_Erfe = 177,
+            // Provisionally assigned or proposed
             Jurchen = 178,
             Proto_Cuneiform = 179,
             LIMIT_SCRIPT = Proto_Cuneiform + 1;
