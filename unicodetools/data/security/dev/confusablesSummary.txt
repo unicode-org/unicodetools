@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2025-04-29, 02:17:35 GMT
+# Date: 2025-05-01, 03:09:29 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -44,15 +44,15 @@
 	(‎ !? ‎)	0021 003F	 EXCLAMATION MARK, QUESTION MARK
 ←	(‎ ⁉ ‎)	2049	 EXCLAMATION QUESTION MARK
 
-#	''	יי	′′	‵‵	"	ײ	ʺ	ˮ	״	˶	᳓	“	”	‟	〃	˝	″	‶	＂
+#	''	יי	′′	‵‵	"	ʺ	ˮ	ײ	״	˶	᳓	“	”	‟	〃	˝	″	‶	＂
 	(‎ " ‎)	0022	 QUOTATION MARK
 ←	(‎ '' ‎)	0027 0027	 APOSTROPHE, APOSTROPHE
 ←	(‎ יי ‎)	05D9 05D9	 HEBREW LETTER YOD, HEBREW LETTER YOD	# →''→
 ←	(‎ ′′ ‎)	2032 2032	 PRIME, PRIME	# →″→
 ←	(‎ ‵‵ ‎)	2035 2035	 REVERSED PRIME, REVERSED PRIME	# →''→
-←	(‎ ײ ‎)	05F2	 HEBREW LIGATURE YIDDISH DOUBLE YOD	# →‎יי‎→→''→
 ←	(‎ ʺ ‎)	02BA	 MODIFIER LETTER DOUBLE PRIME
 ←	(‎ ˮ ‎)	02EE	 MODIFIER LETTER DOUBLE APOSTROPHE	# →″→
+←	(‎ ײ ‎)	05F2	 HEBREW LIGATURE YIDDISH DOUBLE YOD	# →‎יי‎→→''→
 ←	(‎ ״ ‎)	05F4	 HEBREW PUNCTUATION GERSHAYIM
 ←	(‎ ˶ ‎)	02F6	 MODIFIER LETTER MIDDLE DOUBLE ACUTE ACCENT	# →˝→
 ←	(‎ ᳓ ‎)	1CD3	 VEDIC SIGN NIHSHVASA	# →″→
@@ -935,20 +935,20 @@
 	(‎ /̄ ‎)	002F 0304	 SOLIDUS, COMBINING MACRON
 ←	(‎ ⧶ ‎)	29F6	 SOLIDUS WITH OVERBAR
 
-#	O	𑷠	𖶠	0	০	ଠ	୦	ዐ	〇	Ο	О	Օ	߀	Ⲟ	ⵔ	ꓳ	𐊒	𐊫	𐐄	𐔖	𑓐	𑢵	𑣠	𐓂	🯰	𜳰	𜳤	Ｏ	𝐎	𝑂	𝑶	𝒪	𝓞	𝔒	𝕆	𝕺	𝖮	𝗢	𝘖	𝙊	𝙾	𝚶	𝛰	𝜪	𝝤	𝞞	𝟎	𝟘	𝟢	𝟬	𝟶
+#	O	𑷠	𖶠	0	০	ଠ	ዐ	〇	Ο	О	Օ	߀	୦	Ⲟ	ⵔ	ꓳ	𐊒	𐊫	𐐄	𐔖	𑓐	𑢵	𑣠	𐓂	🯰	𜳰	𜳤	Ｏ	𝐎	𝑂	𝑶	𝒪	𝓞	𝔒	𝕆	𝕺	𝖮	𝗢	𝘖	𝙊	𝙾	𝚶	𝛰	𝜪	𝝤	𝞞	𝟎	𝟘	𝟢	𝟬	𝟶
 	(‎ 0 ‎)	0030	 DIGIT ZERO
 ←	(‎ O ‎)	004F	 LATIN CAPITAL LETTER O
 ←	(‎ 𑷠 ‎)	11DE0	 TOLONG SIKI DIGIT ZERO
 ←	(‎ 𖶠 ‎)	16DA0	 CHISOI DIGIT ZERO
 ←	(‎ ০ ‎)	09E6	 BENGALI DIGIT ZERO
 ←	(‎ ଠ ‎)	0B20	 ORIYA LETTER TTHA	# →୦→
-←	(‎ ୦ ‎)	0B66	 ORIYA DIGIT ZERO
 ←	(‎ ዐ ‎)	12D0	 ETHIOPIC SYLLABLE PHARYNGEAL A	# →Օ→→О→
 ←	(‎ 〇 ‎)	3007	 IDEOGRAPHIC NUMBER ZERO	# →O→
 ←	(‎ Ο ‎)	039F	 GREEK CAPITAL LETTER OMICRON
 ←	(‎ О ‎)	041E	 CYRILLIC CAPITAL LETTER O
 ←	(‎ Օ ‎)	0555	 ARMENIAN CAPITAL LETTER OH	# →О→
 ←	(‎ ߀ ‎)	07C0	 NKO DIGIT ZERO
+←	(‎ ୦ ‎)	0B66	 ORIYA DIGIT ZERO
 ←	(‎ Ⲟ ‎)	2C9E	 COPTIC CAPITAL LETTER O	# →О→
 ←	(‎ ⵔ ‎)	2D54	 TIFINAGH LETTER YAR	# →О→
 ←	(‎ ꓳ ‎)	A4F3	 LISU LETTER O	# →O→
@@ -1712,13 +1712,13 @@
 	(‎ 7点 ‎)	0037 70B9	 DIGIT SEVEN, CJK UNIFIED IDEOGRAPH-70B9
 ←	(‎ ㍟ ‎)	335F	 IDEOGRAPHIC TELEGRAPH SYMBOL FOR HOUR SEVEN
 
-#	8	Ȣ	ȣ	৪	੪	ଃ	𐌚	𞣋	🯸	𜳸	𝟖	𝟠	𝟪	𝟴	𝟾
+#	8	Ȣ	ȣ	৪	ଃ	੪	𐌚	𞣋	🯸	𜳸	𝟖	𝟠	𝟪	𝟴	𝟾
 	(‎ 8 ‎)	0038	 DIGIT EIGHT
 ←	(‎ Ȣ ‎)	0222	 LATIN CAPITAL LETTER OU
 ←	(‎ ȣ ‎)	0223	 LATIN SMALL LETTER OU
 ←	(‎ ৪ ‎)	09EA	 BENGALI DIGIT FOUR
-←	(‎ ੪ ‎)	0A6A	 GURMUKHI DIGIT FOUR
 ←	(‎ ଃ ‎)	0B03	 ORIYA SIGN VISARGA
+←	(‎ ੪ ‎)	0A6A	 GURMUKHI DIGIT FOUR
 ←	(‎ 𐌚 ‎)	1031A	 OLD ITALIC LETTER EF
 ←	(‎ 𞣋 ‎)	1E8CB	 MENDE KIKAKUI DIGIT FIVE
 ←	(‎ 🯸 ‎)	1FBF8	 SEGMENTED DIGIT EIGHT
@@ -3719,7 +3719,7 @@
 	(‎ n̴ ‎)	006E 0334	 LATIN SMALL LETTER N, COMBINING TILDE OVERLAY
 ←	(‎ ᵰ ‎)	1D70	 LATIN SMALL LETTER N WITH MIDDLE TILDE
 
-#	o	ᴏ	ᴑ	ο	σ	о	օ	ס	ه	٥	ھ	ہ	ە	۵	०	੦	૦	௦	ం	౦	ಂ	೦	ം	ഠ	൦	ං	๐	໐	ဝ	၀	ჿ	ⲟ	𐐬	ꬽ	𑣈	𑣗	𐓪	ｏ	ℴ	𞸤	𞹤	𞺄	ﮦ	ﮧ	ﮨ	ﮩ	ﮪ	ﮫ	ﮬ	ﮭ	ﻩ	ﻪ	ﻫ	ﻬ	𝐨	𝑜	𝒐	𝓸	𝔬	𝕠	𝖔	𝗈	𝗼	𝘰	𝙤	𝚘	𝛐	𝛔	𝜊	𝜎	𝝄	𝝈	𝝾	𝞂	𝞸	𝞼
+#	o	ᴏ	ᴑ	ο	σ	о	օ	ס	ه	٥	ھ	ہ	ە	۵	०	૦	ం	ಂ	೦	ം	ഠ	ං	๐	໐	ဝ	၀	ჿ	੦	௦	౦	൦	ⲟ	𐐬	ꬽ	𑣈	𑣗	𐓪	ｏ	ℴ	𞸤	𞹤	𞺄	ﮦ	ﮧ	ﮨ	ﮩ	ﮪ	ﮫ	ﮬ	ﮭ	ﻩ	ﻪ	ﻫ	ﻬ	𝐨	𝑜	𝒐	𝓸	𝔬	𝕠	𝖔	𝗈	𝗼	𝘰	𝙤	𝚘	𝛐	𝛔	𝜊	𝜎	𝝄	𝝈	𝝾	𝞂	𝞸	𝞼
 	(‎ o ‎)	006F	 LATIN SMALL LETTER O
 ←	(‎ ᴏ ‎)	1D0F	 LATIN LETTER SMALL CAPITAL O
 ←	(‎ ᴑ ‎)	1D11	 LATIN SMALL LETTER SIDEWAYS O
@@ -3735,22 +3735,22 @@
 ←	(‎ ە ‎)	06D5	 ARABIC LETTER AE	# →‎ه‎→
 ←	(‎ ۵ ‎)	06F5	 EXTENDED ARABIC-INDIC DIGIT FIVE	# →‎٥‎→
 ←	(‎ ० ‎)	0966	 DEVANAGARI DIGIT ZERO
-←	(‎ ੦ ‎)	0A66	 GURMUKHI DIGIT ZERO
 ←	(‎ ૦ ‎)	0AE6	 GUJARATI DIGIT ZERO
-←	(‎ ௦ ‎)	0BE6	 TAMIL DIGIT ZERO
 ←	(‎ ం ‎)	0C02	 TELUGU SIGN ANUSVARA
-←	(‎ ౦ ‎)	0C66	 TELUGU DIGIT ZERO
 ←	(‎ ಂ ‎)	0C82	 KANNADA SIGN ANUSVARA
 ←	(‎ ೦ ‎)	0CE6	 KANNADA DIGIT ZERO	# →౦→
 ←	(‎ ം ‎)	0D02	 MALAYALAM SIGN ANUSVARA
 ←	(‎ ഠ ‎)	0D20	 MALAYALAM LETTER TTHA
-←	(‎ ൦ ‎)	0D66	 MALAYALAM DIGIT ZERO
 ←	(‎ ං ‎)	0D82	 SINHALA SIGN ANUSVARAYA
 ←	(‎ ๐ ‎)	0E50	 THAI DIGIT ZERO
 ←	(‎ ໐ ‎)	0ED0	 LAO DIGIT ZERO
 ←	(‎ ဝ ‎)	101D	 MYANMAR LETTER WA
 ←	(‎ ၀ ‎)	1040	 MYANMAR DIGIT ZERO
 ←	(‎ ჿ ‎)	10FF	 GEORGIAN LETTER LABIAL SIGN
+←	(‎ ੦ ‎)	0A66	 GURMUKHI DIGIT ZERO
+←	(‎ ௦ ‎)	0BE6	 TAMIL DIGIT ZERO
+←	(‎ ౦ ‎)	0C66	 TELUGU DIGIT ZERO
+←	(‎ ൦ ‎)	0D66	 MALAYALAM DIGIT ZERO
 ←	(‎ ⲟ ‎)	2C9F	 COPTIC SMALL LETTER O
 ←	(‎ 𐐬 ‎)	1042C	 DESERET SMALL LETTER LONG O
 ←	(‎ ꬽ ‎)	AB3D	 LATIN SMALL LETTER BLACKLETTER O
@@ -5077,7 +5077,7 @@
 	(‎ Ţ ‎)	0162	 LATIN CAPITAL LETTER T WITH CEDILLA
 ←	(‎ Ț ‎)	021A	 LATIN CAPITAL LETTER T WITH COMMA BELOW
 
-#	ƫ	Ꮏ	ţ	ț
+#	ƫ	Ꮏ	ț	ţ
 	(‎ ţ ‎)	0163	 LATIN SMALL LETTER T WITH CEDILLA
 ←	(‎ ƫ ‎)	01AB	 LATIN SMALL LETTER T WITH PALATAL HOOK
 ←	(‎ Ꮏ ‎)	13BF	 CHEROKEE LETTER HNA	# →ƫ→
@@ -5543,14 +5543,14 @@
 ←	(‎ ٚ ‎)	065A	 ARABIC VOWEL SIGN SMALL V ABOVE	# →̌→
 ←	(‎ ꙼ ‎)	A67C	 COMBINING CYRILLIC KAVYKA
 
-#	̆̇	̐	ँ	ঁ	ઁ	ଁ	ۨ	ఀ	ಁ	ഁ	𑒿
+#	̆̇	̐	ँ	ঁ	ଁ	ۨ	ઁ	ఀ	ಁ	ഁ	𑒿
 	(‎ ̆̇ ‎)	0306 0307	 COMBINING BREVE, COMBINING DOT ABOVE
 ←	(‎ ̐ ‎)	0310	 COMBINING CANDRABINDU
 ←	(‎ ँ ‎)	0901	 DEVANAGARI SIGN CANDRABINDU	# →̐→
 ←	(‎ ঁ ‎)	0981	 BENGALI SIGN CANDRABINDU	# →̐→
-←	(‎ ઁ ‎)	0A81	 GUJARATI SIGN CANDRABINDU	# →̐→
 ←	(‎ ଁ ‎)	0B01	 ORIYA SIGN CANDRABINDU	# →̐→
 ←	(‎ ۨ ‎)	06E8	 ARABIC SMALL HIGH NOON	# →̐→
+←	(‎ ઁ ‎)	0A81	 GUJARATI SIGN CANDRABINDU	# →̐→
 ←	(‎ ఀ ‎)	0C00	 TELUGU SIGN COMBINING CANDRABINDU ABOVE	# →ँ→→̐→
 ←	(‎ ಁ ‎)	0C81	 KANNADA SIGN CANDRABINDU	# →ँ→→̐→
 ←	(‎ ഁ ‎)	0D01	 MALAYALAM SIGN CANDRABINDU	# →ँ→→̐→
@@ -5670,14 +5670,14 @@
 ←	(‎ ͅ ‎)	0345	 COMBINING GREEK YPOGEGRAMMENI	# →̨→
 ←	(‎ ᪷ ‎)	1AB7	 COMBINING OPEN MARK BELOW	# →̨→
 
-#	̣	ִ	़	়	਼	઼	଼	ׅ	ٜ	࣭	᳝	𐨺	𑓃	𑇊
+#	̣	़	়	਼	઼	଼	ִ	ׅ	ٜ	࣭	᳝	𐨺	𑓃	𑇊
 	(‎ ̣ ‎)	0323	 COMBINING DOT BELOW
-←	(‎ ִ ‎)	05B4	 HEBREW POINT HIRIQ
 ←	(‎ ़ ‎)	093C	 DEVANAGARI SIGN NUKTA
 ←	(‎ ় ‎)	09BC	 BENGALI SIGN NUKTA
 ←	(‎ ਼ ‎)	0A3C	 GURMUKHI SIGN NUKTA
 ←	(‎ ઼ ‎)	0ABC	 GUJARATI SIGN NUKTA
 ←	(‎ ଼ ‎)	0B3C	 ORIYA SIGN NUKTA
+←	(‎ ִ ‎)	05B4	 HEBREW POINT HIRIQ
 ←	(‎ ׅ ‎)	05C5	 HEBREW MARK LOWER DOT
 ←	(‎ ٜ ‎)	065C	 ARABIC VOWEL SIGN DOT BELOW
 ←	(‎ ࣭ ‎)	08ED	 ARABIC TONE ONE DOT BELOW
@@ -8545,15 +8545,15 @@
 ←	(‎ 𑂻 ‎)	110BB	 KAITHI ABBREVIATION SIGN
 ←	(‎ 𑇇 ‎)	111C7	 SHARADA ABBREVIATION SIGN
 
-#	ঃ	𖶜	ਃ	ః	ಃ	ഃ	ඃ	း	𑓁
+#	ঃ	𖶜	ః	ಃ	ഃ	ඃ	း	ਃ	𑓁
 	(‎ ঃ ‎)	0983	 BENGALI SIGN VISARGA
 ←	(‎ 𖶜 ‎)	16D9C	 CHISOI LETTER JARAHA
-←	(‎ ਃ ‎)	0A03	 GURMUKHI SIGN VISARGA
 ←	(‎ ః ‎)	0C03	 TELUGU SIGN VISARGA	# →ਃ→
 ←	(‎ ಃ ‎)	0C83	 KANNADA SIGN VISARGA	# →ః→→ਃ→
 ←	(‎ ഃ ‎)	0D03	 MALAYALAM SIGN VISARGA	# →ಃ→→ః→→ਃ→
 ←	(‎ ඃ ‎)	0D83	 SINHALA SIGN VISARGAYA	# →ഃ→→ಃ→→ః→→ਃ→
 ←	(‎ း ‎)	1038	 MYANMAR SIGN VISARGA	# →ඃ→→ഃ→→ಃ→→ః→→ਃ→
+←	(‎ ਃ ‎)	0A03	 GURMUKHI SIGN VISARGA
 ←	(‎ 𑓁 ‎)	114C1	 TIRHUTA SIGN VISARGA
 
 #	অা	আ
@@ -8784,10 +8784,10 @@
 ←	(‎ ரு ‎)	0BB0 0BC1	 TAMIL LETTER RA, TAMIL VOWEL SIGN U
 ←	(‎ ௫ ‎)	0BEB	 TAMIL DIGIT FIVE	# →ரு→
 
-#	உ	௨	ഉ
+#	உ	ഉ	௨
 	(‎ உ ‎)	0B89	 TAMIL LETTER U
-←	(‎ ௨ ‎)	0BE8	 TAMIL DIGIT TWO
 ←	(‎ ഉ ‎)	0D09	 MALAYALAM LETTER U
+←	(‎ ௨ ‎)	0BE8	 TAMIL DIGIT TWO
 
 #	உள	ஊ
 	(‎ உள ‎)	0B89 0BB3	 TAMIL LETTER U, TAMIL LETTER LLA
@@ -9011,7 +9011,7 @@
 	(‎ ഇൗ ‎)	0D07 0D57	 MALAYALAM LETTER I, MALAYALAM AU LENGTH MARK
 ←	(‎ ഈ ‎)	0D08	 MALAYALAM LETTER II
 
-#	നു	ഌ	ങ	൹
+#	നു	ങ	ഌ	൹
 	(‎ ഌ ‎)	0D0C	 MALAYALAM LETTER VOCALIC L
 ←	(‎ നു ‎)	0D28 0D41	 MALAYALAM LETTER NA, MALAYALAM VOWEL SIGN U
 ←	(‎ ങ ‎)	0D19	 MALAYALAM LETTER NGA
@@ -9038,10 +9038,10 @@
 	(‎ ദ്ര ‎)	0D26 0D4D 0D30	 MALAYALAM LETTER DA, MALAYALAM SIGN VIRAMA, MALAYALAM LETTER RA
 ←	(‎ ൫ ‎)	0D6B	 MALAYALAM DIGIT FIVE
 
-#	ന്	൯	ൻ
+#	ന്	ൻ	൯
 	(‎ ന് ‎)	0D28 0D4D	 MALAYALAM LETTER NA, MALAYALAM SIGN VIRAMA
-←	(‎ ൯ ‎)	0D6F	 MALAYALAM DIGIT NINE
 ←	(‎ ൻ ‎)	0D7B	 MALAYALAM LETTER CHILLU N	# →൯→
+←	(‎ ൯ ‎)	0D6F	 MALAYALAM DIGIT NINE
 
 #	ന്ന	൬
 	(‎ ന്ന ‎)	0D28 0D4D 0D28	 MALAYALAM LETTER NA, MALAYALAM SIGN VIRAMA, MALAYALAM LETTER NA
@@ -9055,10 +9055,10 @@
 	(‎ ര ‎)	0D30	 MALAYALAM LETTER RA
 ←	(‎ റ ‎)	0D31	 MALAYALAM LETTER RRA
 
-#	ര്	൪	ർ
+#	ര്	ർ	൪
 	(‎ ര് ‎)	0D30 0D4D	 MALAYALAM LETTER RA, MALAYALAM SIGN VIRAMA
-←	(‎ ൪ ‎)	0D6A	 MALAYALAM DIGIT FOUR
 ←	(‎ ർ ‎)	0D7C	 MALAYALAM LETTER CHILLU RR	# →൪→
+←	(‎ ൪ ‎)	0D6A	 MALAYALAM DIGIT FOUR
 
 #	വ്ര	വ്	൮
 	(‎ വ് ‎)	0D35 0D4D	 MALAYALAM LETTER VA, MALAYALAM SIGN VIRAMA
