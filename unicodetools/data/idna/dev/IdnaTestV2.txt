@@ -1,5 +1,5 @@
 # IdnaTestV2.txt
-# Date: 2025-01-29, 22:06:01 GMT
+# Date: 2025-05-01, 19:36:55 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -5427,9 +5427,9 @@ xn--h79w4z99a.xn--6-tfo; 񣭻񌥁.≠6; [V7]; xn--h79w4z99a.xn--6-tfo; ; ;  # .�
 󠅊ᡭ\u200D.𐥡; ᡭ\u200D.𐥡; [B6, C2, V7]; xn--98e810b.xn--om9c; ; xn--98e.xn--om9c; [V7] # ᡭ.
 xn--98e.xn--om9c; ᡭ.𐥡; [V7]; xn--98e.xn--om9c; ; ;  # ᡭ.
 xn--98e810b.xn--om9c; ᡭ\u200D.𐥡; [B6, C2, V7]; xn--98e810b.xn--om9c; ; ;  # ᡭ.
-\u0C40\u0855𐥛𑄴．󭰵; \u0C40\u0855𐥛𑄴.󭰵; [B1, V6, V7]; xn--kwb91r5112avtg.xn--o580f; ; ;  # ీࡕ𐥛𑄴.
-\u0C40\u0855𐥛𑄴.󭰵; ; [B1, V6, V7]; xn--kwb91r5112avtg.xn--o580f; ; ;  # ీࡕ𐥛𑄴.
-xn--kwb91r5112avtg.xn--o580f; \u0C40\u0855𐥛𑄴.󭰵; [B1, V6, V7]; xn--kwb91r5112avtg.xn--o580f; ; ;  # ీࡕ𐥛𑄴.
+\u0C40\u0855𐥛𑄴．󭰵; \u0C40\u0855𐥛𑄴.󭰵; [B1, V6, V7]; xn--kwb91r5112avtg.xn--o580f; ; ;  # ీࡕ𑄴.
+\u0C40\u0855𐥛𑄴.󭰵; ; [B1, V6, V7]; xn--kwb91r5112avtg.xn--o580f; ; ;  # ీࡕ𑄴.
+xn--kwb91r5112avtg.xn--o580f; \u0C40\u0855𐥛𑄴.󭰵; [B1, V6, V7]; xn--kwb91r5112avtg.xn--o580f; ; ;  # ీࡕ𑄴.
 𞤮。𑇊\u200C≯\u1CE6; 𞤮.𑇊\u200C≯\u1CE6; [B1, C1, V6]; xn--me6h.xn--z6f16kn9b2642b; ; xn--me6h.xn--z6fz8ueq2v; [B1, V6] # 𞤮.𑇊≯᳦
 𞤮。𑇊\u200C>\u0338\u1CE6; 𞤮.𑇊\u200C≯\u1CE6; [B1, C1, V6]; xn--me6h.xn--z6f16kn9b2642b; ; xn--me6h.xn--z6fz8ueq2v; [B1, V6] # 𞤮.𑇊≯᳦
 𞤌。𑇊\u200C>\u0338\u1CE6; 𞤮.𑇊\u200C≯\u1CE6; [B1, C1, V6]; xn--me6h.xn--z6f16kn9b2642b; ; xn--me6h.xn--z6fz8ueq2v; [B1, V6] # 𞤮.𑇊≯᳦
