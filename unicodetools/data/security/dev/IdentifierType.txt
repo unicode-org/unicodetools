@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2025-03-19, 22:50:24 GMT
+# Date: 2025-05-01, 22:18:53 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -574,14 +574,16 @@ FA27..FA29    ; Recommended                    # 1.1    [3] CJK COMPATIBILITY ID
 2A700..2B734  ; Recommended                    # 5.2 [4149] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
 2B735..2B738  ; Recommended                    # 14.0   [4] CJK UNIFIED IDEOGRAPH-2B735..CJK UNIFIED IDEOGRAPH-2B738
 2B739         ; Recommended                    # 15.0       CJK UNIFIED IDEOGRAPH-2B739
+2B73F         ; Recommended                    # 17.0       CJK UNIFIED IDEOGRAPH-2B73F
 2B740..2B81D  ; Recommended                    # 6.0  [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B820..2CEA1  ; Recommended                    # 8.0 [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
+2CEA2..2CEAD  ; Recommended                    # 17.0  [12] CJK UNIFIED IDEOGRAPH-2CEA2..CJK UNIFIED IDEOGRAPH-2CEAD
 2CEB0..2EBE0  ; Recommended                    # 10.0 [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2EBF0..2EE5D  ; Recommended                    # 15.1 [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 30000..3134A  ; Recommended                    # 13.0 [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Recommended                    # 15.0 [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 112762
+# Total code points: 112775
 
 #	Identifier_Type:	Inclusion
 
@@ -1210,7 +1212,7 @@ A930..A953    ; Exclusion                      # 5.1   [36] REJANG LETTER KA..RE
 108F4..108F5  ; Exclusion                      # 8.0    [2] HATRAN LETTER SHIN..HATRAN LETTER TAW
 10900..10915  ; Exclusion                      # 5.0   [22] PHOENICIAN LETTER ALF..PHOENICIAN LETTER TAU
 10920..10939  ; Exclusion                      # 5.1   [26] LYDIAN LETTER A..LYDIAN LETTER C
-10940..1095C  ; Exclusion                      # 17.0  [29] SIDETIC LETTER N01..SIDETIC LETTER N29
+10940..10959  ; Exclusion                      # 17.0  [26] SIDETIC LETTER N01..SIDETIC LETTER N26
 10980..109B7  ; Exclusion                      # 6.1   [56] MEROITIC HIEROGLYPHIC LETTER A..MEROITIC CURSIVE LETTER DA
 109BE..109BF  ; Exclusion                      # 6.1    [2] MEROITIC CURSIVE LOGOGRAM RMT..MEROITIC CURSIVE LOGOGRAM IMN
 10A00..10A03  ; Exclusion                      # 4.1    [4] KHAROSHTHI LETTER A..KHAROSHTHI VOWEL SIGN VOCALIC R
@@ -1429,7 +1431,7 @@ A930..A953    ; Exclusion                      # 5.1   [36] REJANG LETTER KA..RE
 1E800..1E8C4  ; Exclusion                      # 7.0  [197] MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON
 1E8D0..1E8D6  ; Exclusion                      # 7.0    [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 20842
+# Total code points: 20839
 
 #	Identifier_Type:	Exclusion Not_XID
 
@@ -1820,6 +1822,7 @@ A8F8..A8FA    ; Obsolete Not_XID               # 5.2    [3] DEVANAGARI SIGN PUSH
 20BE          ; Not_XID                        # 8.0        LARI SIGN
 20BF          ; Not_XID                        # 10.0       BITCOIN SIGN
 20C0          ; Not_XID                        # 14.0       SOM SIGN
+20C1          ; Not_XID                        # 17.0       SAUDI RIYAL SIGN
 2104          ; Not_XID                        # 1.1        CENTRE LINE SYMBOL
 2108          ; Not_XID                        # 1.1        SCRUPLE
 2114          ; Not_XID                        # 1.1        L B BAR SYMBOL
@@ -2245,7 +2248,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1FBCB..1FBEF  ; Not_XID                        # 16.0  [37] WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; Not_XID                        # 17.0       ALARM BELL SYMBOL
 
-# Total code points: 6490
+# Total code points: 6491
 
 #	Identifier_Type:	Not_NFKC
 
