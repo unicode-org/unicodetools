@@ -21,6 +21,7 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.Rational;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.idna.Regexes;
 import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
@@ -40,7 +41,6 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         Skip1FT,
         Skip1ST,
         SkipAny4,
-        Rational
     }
 
     private static final String NEW_UNICODE_PROPS_DOCS =
@@ -1255,18 +1255,6 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 switch (propInfo.special) {
                     case None:
                         break;
-                    case Rational:
-                        //                            int slashPos = string.indexOf('/');
-                        //                            double rational;
-                        //                            if (slashPos < 0) {
-                        //                                rational = Double.parseDouble(string);
-                        //                            } else {
-                        //                                rational =
-                        // Double.parseDouble(string.substring(0,slashPos)) /
-                        // Double.parseDouble(string.substring(slashPos+1));
-                        //                            }
-                        //                            string = Double.toString(rational);
-                        break;
                     case Skip1ST:
                         if ("ST".contains(parts[1])) {
                             continue;
@@ -1311,6 +1299,60 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     // 1F80; 1F80; 1F88; 1F08 0399; # GREEK SMALL LETTER ALPHA WITH PSILI AND
                     // YPOGEGRAMMENI
                     merger = new PropertyUtilities.Overrider();
+                }
+                if (propInfo.property == UcdProperty.Numeric_Value) {
+                    for (int cp = line.getRange().start; cp <= line.getRange().end; ++cp) {
+                        String unicodeDataValue =
+                                indexUnicodeProperties
+                                        .getProperty(UcdProperty.Non_Unihan_Numeric_Value)
+                                        .getValue(cp);
+                        var range = new IntRange();
+                        range.start = cp;
+                        range.end = cp;
+                        if (unicodeDataValue == null) {
+                            if (!value.endsWith(".0")) {
+                                throw new IllegalArgumentException(
+                                        "Non-integer numeric value extracted from Unihan for "
+                                                + Utility.hex(cp)
+                                                + ": "
+                                                + value);
+                            }
+                            propInfo.put(
+                                    data,
+                                    line.getMissingSet(),
+                                    range,
+                                    value.substring(0, value.length() - 2),
+                                    null,
+                                    false,
+                                    nextProperties == null
+                                            ? null
+                                            : nextProperties.getProperty(propInfo.property));
+                        } else {
+                            // The file DerivedNumericValues.txt gives a number of decimal digits
+                            // consistent with binary32 floating-point.
+                            if (Float.parseFloat(value)
+                                    != Rational.of(unicodeDataValue).floatValue()) {
+                                throw new IllegalArgumentException(
+                                        "Inconsistent extracted and normative numeric values for "
+                                                + Utility.hex(cp)
+                                                + ": "
+                                                + value
+                                                + " vs. "
+                                                + unicodeDataValue);
+                            }
+                            propInfo.put(
+                                    data,
+                                    line.getMissingSet(),
+                                    range,
+                                    unicodeDataValue,
+                                    null,
+                                    false,
+                                    nextProperties == null
+                                            ? null
+                                            : nextProperties.getProperty(propInfo.property));
+                        }
+                    }
+                    return;
                 }
                 propInfo.put(
                         data,

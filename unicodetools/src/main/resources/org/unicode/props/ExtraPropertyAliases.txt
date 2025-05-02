@@ -27,6 +27,8 @@ idn8 ; Idn_2008 ; NonUCDNonProperty
 # Unofficial contributory property used in the derivation of Joining_Type.
 Other_Joining_Type ; Other_Joining_Type ; UCDNonProperty
 
+Non_Unihan_Numeric_Value ; Non_Unihan_Numeric_Value ; UCDNonProperty
+
 Do_Not_Emit_Type ; Do_Not_Emit_Type ; UCDNonProperty
 
 kEH_Core                 ; kEH_Core ; Provisional
