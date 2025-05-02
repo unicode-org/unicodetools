@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2025-01-29, 21:57:34 GMT
+# Date: 2025-05-01, 19:32:55 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2473,7 +2473,8 @@
 20BE          ; valid      ;      ; NV8    # 8.0  LARI SIGN
 20BF          ; valid      ;      ; NV8    # 10.0 BITCOIN SIGN
 20C0          ; valid      ;      ; NV8    # 14.0 SOM SIGN
-20C1..20CF    ; disallowed                 # NA   <reserved-20C1>..<reserved-20CF>
+20C1          ; valid      ;      ; NV8    # 17.0 SAUDI RIYAL SIGN
+20C2..20CF    ; disallowed                 # NA   <reserved-20C2>..<reserved-20CF>
 20D0..20E1    ; valid      ;      ; NV8    # 1.1  COMBINING LEFT HARPOON ABOVE..COMBINING LEFT RIGHT ARROW ABOVE
 20E2..20E3    ; valid      ;      ; NV8    # 3.0  COMBINING ENCLOSING SCREEN..COMBINING ENCLOSING KEYCAP
 20E4..20EA    ; valid      ;      ; NV8    # 3.2  COMBINING ENCLOSING UPWARD POINTING TRIANGLE..COMBINING LEFTWARDS ARROW OVERLAY
@@ -6139,8 +6140,8 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 10920..10939  ; valid                      # 5.1  LYDIAN LETTER A..LYDIAN LETTER C
 1093A..1093E  ; disallowed                 # NA   <reserved-1093A>..<reserved-1093E>
 1093F         ; valid      ;      ; NV8    # 5.1  LYDIAN TRIANGULAR MARK
-10940..1095C  ; valid                      # 17.0 SIDETIC LETTER N01..SIDETIC LETTER N29
-1095D..1097F  ; disallowed                 # NA   <reserved-1095D>..<reserved-1097F>
+10940..10959  ; valid                      # 17.0 SIDETIC LETTER N01..SIDETIC LETTER N26
+1095A..1097F  ; disallowed                 # NA   <reserved-1095A>..<reserved-1097F>
 10980..109B7  ; valid                      # 6.1  MEROITIC HIEROGLYPHIC LETTER A..MEROITIC CURSIVE LETTER DA
 109B8..109BB  ; disallowed                 # NA   <reserved-109B8>..<reserved-109BB>
 109BC..109BD  ; valid      ;      ; NV8    # 8.0  MEROITIC CURSIVE FRACTION ELEVEN TWELFTHS..MEROITIC CURSIVE FRACTION ONE HALF
@@ -8695,12 +8696,12 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 2A700..2B734  ; valid                      # 5.2  CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
 2B735..2B738  ; valid                      # 14.0 CJK UNIFIED IDEOGRAPH-2B735..CJK UNIFIED IDEOGRAPH-2B738
 2B739         ; valid                      # 15.0 CJK UNIFIED IDEOGRAPH-2B739
-2B73A..2B73E  ; valid                      # 17.0 CJK UNIFIED IDEOGRAPH-2B73A..CJK UNIFIED IDEOGRAPH-2B73E
-2B73F         ; disallowed                 # NA   <reserved-2B73F>
+2B73A..2B73F  ; valid                      # 17.0 CJK UNIFIED IDEOGRAPH-2B73A..CJK UNIFIED IDEOGRAPH-2B73F
 2B740..2B81D  ; valid                      # 6.0  CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B81E..2B81F  ; disallowed                 # NA   <reserved-2B81E>..<reserved-2B81F>
 2B820..2CEA1  ; valid                      # 8.0  CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
-2CEA2..2CEAF  ; disallowed                 # NA   <reserved-2CEA2>..<reserved-2CEAF>
+2CEA2..2CEAD  ; valid                      # 17.0 CJK UNIFIED IDEOGRAPH-2CEA2..CJK UNIFIED IDEOGRAPH-2CEAD
+2CEAE..2CEAF  ; disallowed                 # NA   <reserved-2CEAE>..<reserved-2CEAF>
 2CEB0..2EBE0  ; valid                      # 10.0 CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2EBE1..2EBEF  ; disallowed                 # NA   <reserved-2EBE1>..<reserved-2EBEF>
 2EBF0..2EE5D  ; valid                      # 15.1 CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D

@@ -1670,18 +1670,18 @@ public class UcdPropertyValues {
     // kMojiJoho
     // kMorohashi
     // kNelson
+    // kNSHU_DubenSrc
+    // kNSHU_Reading
     // kOtherNumeric
     // kPhonetic
     // kPrimaryNumeric
     // kPseudoGB1
-    // kReading
     // kRSAdobe_Japan1_6
     // kRSJapanese
     // kRSKangXi
     // kRSKanWa
     // kRSKorean
     // kRSMerged
-    // kRSTUnicode
     // kRSUnicode
     // kSBGY
     // kSemanticVariant
@@ -1690,13 +1690,14 @@ public class UcdPropertyValues {
     // kSMSZD2003Readings
     // kSpecializedSemanticVariant
     // kSpoofingVariant
-    // kSrc_NushuDuben
     // kStrange
     // kTaiwanTelegraph
     // kTang
+    // kTayNumeric
     // kTGH
     // kTGHZ2013
     // kTGT_MergedSrc
+    // kTGT_RSUnicode
     // kTotalStrokes
     // kTraditionalVariant
     // kUnihanCore2020

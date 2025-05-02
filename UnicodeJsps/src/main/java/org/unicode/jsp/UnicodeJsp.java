@@ -184,6 +184,9 @@ public class UnicodeJsp {
             a_out = UnicodeUtilities.getPrettySet(a, abbreviate, escape);
         } catch (Exception e) {
             a_out = e.getMessage();
+            for (Throwable cause = e; cause != null; cause = cause.getCause()) {
+                cause.printStackTrace();
+            }
         }
         return a_out;
     }

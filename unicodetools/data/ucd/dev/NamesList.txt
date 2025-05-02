@@ -1,11 +1,13 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 17.0.0
 @@@+	NamesList-17.0.0.txt
-@+	Generation Date: 2025-04-24, 11:27:50 GMT
+@+	Generation Date: 2025-05-02, 10:07:34 GMT
 	Unicode 17.0.0 names list.
-	Repertoire synched with UnicodeData-17.0.0d4.txt.
+	Repertoire synched with UnicodeData-17.0.0d5.txt.
 	Synch with 7th edition CD2; post UTC183 annotation updates for 17.0.
 	Added 4 formal name aliases for Bamum: 16881, 1688E, 168DC, 1697D.
+	Add annotation to 1AB3.
+	Various updates re legacy hieroglyphs. See L2/25-110 for reference.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -10707,6 +10709,8 @@
 1AB1	COMBINING DIAERESIS-RING
 1AB2	COMBINING INFINITY
 1AB3	COMBINING DOWNWARDS ARROW
+	* originally a misconstrual of a caron-acute sequence in Croatian dialectology
+	* for Croatian dialectology use the sequence 030C 0301, instead
 1AB4	COMBINING TRIPLE DOT
 1AB5	COMBINING X-X BELOW
 1AB6	COMBINING WIGGLY LINE BELOW
@@ -38775,6 +38779,7 @@ FFFF	<not a character>
 	* classifier breast : mnḏ
 	~ 13091 FE00 rotated 90 degrees
 13092	EGYPTIAN HIEROGLYPH D027A
+	* variant of 13091
 13093	EGYPTIAN HIEROGLYPH D028
 	* logogram (spirit, essence) : kꜣ
 	~ 13093 FE01 rotated 180 degrees
@@ -38993,7 +38998,7 @@ FFFF	<not a character>
 130F9	EGYPTIAN HIEROGLYPH E034
 	* phonemogram : wn
 130FA	EGYPTIAN HIEROGLYPH E034A
-	* stylistic variant, use of 130F9 is preferred
+	* variant of 130F9
 130FB	EGYPTIAN HIEROGLYPH E036
 	* logogram (Thot) : ḏḥwty
 130FC	EGYPTIAN HIEROGLYPH E037
@@ -39031,7 +39036,7 @@ FFFF	<not a character>
 1310B	EGYPTIAN HIEROGLYPH F013
 	* phonemogram : wp
 1310C	EGYPTIAN HIEROGLYPH F013A
-	* stylistic variant, use of 1310B is preferred
+	* variant of 1310B
 1310D	EGYPTIAN HIEROGLYPH F014
 	* logogram (new years day) : wp-rnp.t
 1310E	EGYPTIAN HIEROGLYPH F015
@@ -39246,11 +39251,11 @@ FFFF	<not a character>
 13168	EGYPTIAN HIEROGLYPH G036
 	* phonemogram : wr
 13169	EGYPTIAN HIEROGLYPH G036A
-	* stylistic variant, use of 13168 is preferred
+	* variant of 13168
 1316A	EGYPTIAN HIEROGLYPH G037
 	* classifier negative, bad : ꞽsf.t
 1316B	EGYPTIAN HIEROGLYPH G037A
-	* stylistic variant, use of 1316A is preferred
+	* variant of 1316A
 1316C	EGYPTIAN HIEROGLYPH G038
 	* goose
 	* phonemogram : gb
@@ -39624,7 +39629,7 @@ FFFF	<not a character>
 13209	EGYPTIAN HIEROGLYPH N025
 	* classifier foreign land, desert : ḫꜣs.t
 1320A	EGYPTIAN HIEROGLYPH N025A
-	* stylistic variant, use of 13209 is preferred
+	* variant of 13209
 1320B	EGYPTIAN HIEROGLYPH N026
 	* phonemogram : ḏw
 1320C	EGYPTIAN HIEROGLYPH N027
@@ -39653,7 +39658,7 @@ FFFF	<not a character>
 13214	EGYPTIAN HIEROGLYPH N034
 	* classifier metal objects : ꞽḳḥ.w
 13215	EGYPTIAN HIEROGLYPH N034A
-	* stylistic variant, use of 13214 is preferred
+	* variant of 13214
 	* logogram (metal) : bꞽꜣ
 13216	EGYPTIAN HIEROGLYPH N035
 	* phonemogram : n
@@ -39845,6 +39850,7 @@ FFFF	<not a character>
 1326F	EGYPTIAN HIEROGLYPH O020
 	* classifier sanctuary, shrine : ꞽtr.ty
 13270	EGYPTIAN HIEROGLYPH O020A
+	* variant of 1326F
 13271	EGYPTIAN HIEROGLYPH O021
 	* logogram (pavilion, hall, booth) : sḥ
 13272	EGYPTIAN HIEROGLYPH O022
@@ -39870,7 +39876,7 @@ FFFF	<not a character>
 	~ 1327B FE00 rotated 90 degrees
 	~ 1327B FE02 rotated 270 degrees
 1327C	EGYPTIAN HIEROGLYPH O029A
-	* rotated variant of 1327B
+	* rotated version of 1327B
 	* phonemogram : ꜥꜣ
 1327D	EGYPTIAN HIEROGLYPH O030
 	* not to be confused with 13361
@@ -39937,8 +39943,8 @@ FFFF	<not a character>
 13297	EGYPTIAN HIEROGLYPH O050
 	* classifier treshing floor : sp.t
 13298	EGYPTIAN HIEROGLYPH O050A
+	* mirrored version of 13299
 13299	EGYPTIAN HIEROGLYPH O050B
-	* mirrored version of 13298
 	* phono-repeater/classifier (time, occasion) : sp
 1329A	EGYPTIAN HIEROGLYPH O051
 	* logogram (granary) : šnw.t
@@ -40128,6 +40134,7 @@ FFFF	<not a character>
 	* not to be confused with 13200, 133D4, or 133F3
 	* logogram (loincloth, garment) : dꜣꞽ.w
 132F1	EGYPTIAN HIEROGLYPH S026B
+	* variant of 132F0
 132F2	EGYPTIAN HIEROGLYPH S027
 	* logogram (clothing) : mnḫ.t
 132F3	EGYPTIAN HIEROGLYPH S028
@@ -40309,14 +40316,13 @@ FFFF	<not a character>
 	~ 13338 FE03 rotated approximately 30 degrees
 	~ 13338 FE06 rotated approximately 320 degrees [horizontal]
 13339	EGYPTIAN HIEROGLYPH U006A
-	* stylistic variant of 13338
+	* rotated version of 13338
 1333A	EGYPTIAN HIEROGLYPH U006B
 	* mirrored version of 13339
 1333B	EGYPTIAN HIEROGLYPH U007
-	* variant of 13338
+	* rotated version of 13338
 	* phonemogram : mr
 1333C	EGYPTIAN HIEROGLYPH U008
-	* variant of 1333B
 	* phonemogram : ḥn
 	~ 1333C FE00 rotated 90 degrees
 1333D	EGYPTIAN HIEROGLYPH U009
@@ -40555,13 +40561,13 @@ FFFF	<not a character>
 1339F	EGYPTIAN HIEROGLYPH V030
 	* phonemogram : nb
 133A0	EGYPTIAN HIEROGLYPH V030A
-	* stylistic variant, use of 1339F is preferred
+	* variant of 1339F
 133A1	EGYPTIAN HIEROGLYPH V031
 	x (hebrew letter kaf - 05DB)
 	x (arabic letter kaf - 0643)
 	* phonemogram : k
 133A2	EGYPTIAN HIEROGLYPH V031A
-	* from hieratic
+	* mirrored version of 133A1
 	* phonemogram : k
 133A3	EGYPTIAN HIEROGLYPH V032
 	* phonemogram : msn
@@ -40601,7 +40607,7 @@ FFFF	<not a character>
 133B1	EGYPTIAN HIEROGLYPH W003
 	* logogram (festival) : ḥ(ꜣ)b
 133B2	EGYPTIAN HIEROGLYPH W003A
-	* stylistic variant, use of 133B1 is preferred
+	* variant of 133B1
 133B3	EGYPTIAN HIEROGLYPH W004
 	* logogram (festival) : h(ꜣ)b
 133B4	EGYPTIAN HIEROGLYPH W005
@@ -40686,6 +40692,7 @@ FFFF	<not a character>
 133D6	EGYPTIAN HIEROGLYPH X006
 	* classifier offering, cake, loaf : t-ꜣsr
 133D7	EGYPTIAN HIEROGLYPH X006A
+	* variant of 133D6
 133D8	EGYPTIAN HIEROGLYPH X007
 	* not to be confused with 1320E
 	* classifier food : gs
@@ -40700,7 +40707,7 @@ FFFF	<not a character>
 	* classifier abstract words : sspd.w
 	~ 133DB FE02 rotated 270 degrees
 133DC	EGYPTIAN HIEROGLYPH Y001A
-	* rotated variant of 133DB
+	* rotated version of 133DB
 	* logogram (papyrus scroll, book) : mḏꜣ.t
 133DD	EGYPTIAN HIEROGLYPH Y002
 	* older variant of 133DB
@@ -40738,24 +40745,21 @@ FFFF	<not a character>
 	* classifier plural
 	~ 133E8 FE01 rotated 180 degrees
 133E9	EGYPTIAN HIEROGLYPH Z002D
-	* variant of 133E8
+	* rotated version of 133E8
 	* classifier plural
 133EA	EGYPTIAN HIEROGLYPH Z003
 	* variant of 133E5
 	* classifier plural
 133EB	EGYPTIAN HIEROGLYPH Z003A
-	* variant of 133EA
+	* rotated version of 133E5
 	* classifier plural
 133EC	EGYPTIAN HIEROGLYPH Z003B
-	* variant of 133E7
+	* rotated version of 133E7
 133ED	EGYPTIAN HIEROGLYPH Z004
 	* classifier 'dual'
 	x (egyptian hieroglyph m017a - 131CC)
 	* phonemogram : y
 133EE	EGYPTIAN HIEROGLYPH Z004A
-	* variant of 133ED
-	* classifier 'dual'
-	* transliterated as y
 	* not to be confused with 133FB
 	* logogram (2) : sn.w
 	~ 133EE FE00 rotated 90 degrees [= 270 degrees]
@@ -40814,6 +40818,7 @@ FFFF	<not a character>
 13402	EGYPTIAN HIEROGLYPH Z015H
 	* logogram (nine) : psḏ
 13403	EGYPTIAN HIEROGLYPH Z015I
+	* variant of 133FE
 	* logogram (five) : dꞽw
 13404	EGYPTIAN HIEROGLYPH Z016
 	* logogram (one, sole) : wꜥ

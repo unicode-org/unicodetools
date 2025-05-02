@@ -1003,6 +1003,7 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false);
+    //Indic_Matra_Category was renamed to Indic_Positional_Category in Unicode 8.0
     //        public static UCDPropertyDetail Indic_Matra_Category_Detail = new UCDPropertyDetail (
     //            UcdProperty.Indic_Matra_Category, VersionInfo.getInstance(6,1,0),
     // VersionInfo.getInstance(7,0,0), 99,
@@ -2111,10 +2112,22 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false);
-    public static UCDPropertyDetail kRSTUnicode_Detail =
+    //kRSTUnicode_Detail was renamed to kTGT_RSUnicode_Detail in Unicode 17
+//    public static UCDPropertyDetail kRSTUnicode_Detail =
+//            new UCDPropertyDetail(
+//                    UcdProperty.kTGT_RSUnicode,
+//                    VersionInfo.getInstance(9, 0, 0),
+//                    VersionInfo.getInstance(16, 0, 0),
+//                    212,
+//                    false,
+//                    true,
+//                    false,
+//                    true,
+//                    false);
+    public static UCDPropertyDetail kTGT_RSUnicode_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.kRSTUnicode,
-                    VersionInfo.getInstance(9, 0, 0),
+                    UcdProperty.kTGT_RSUnicode,
+                    VersionInfo.getInstance(17, 0, 0),
                     212,
                     false,
                     true,
@@ -2131,20 +2144,44 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false);
-    public static UCDPropertyDetail kSrc_NushuDuben_Detail =
+    //kSrc_NushuDuben_Detail was renamed to kNSHU_DubenSrc_Detail in Unicode 17
+//    public static UCDPropertyDetail kSrc_NushuDuben_Detail =
+//            new UCDPropertyDetail(
+//                    UcdProperty.kNSHU_DubenSrc,
+//                    VersionInfo.getInstance(10, 0, 0),
+//                    VersionInfo.getInstance(16, 0, 0),
+//                    214,
+//                    false,
+//                    true,
+//                    false,
+//                    true,
+//                    false);
+    public static UCDPropertyDetail kNSHU_DubenSrc_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.kSrc_NushuDuben,
-                    VersionInfo.getInstance(10, 0, 0),
+                    UcdProperty.kNSHU_DubenSrc,
+                    VersionInfo.getInstance(17, 0, 0),
                     214,
                     false,
                     true,
                     false,
                     true,
                     false);
-    public static UCDPropertyDetail kReading_Detail =
+    //kReading_Detail was renamed to kNSHU_Reading_Detail in Unicode 17
+//    public static UCDPropertyDetail kNSHU_Reading_Detail =
+//            new UCDPropertyDetail(
+//                    UcdProperty.kNSHU_Reading,
+//                    VersionInfo.getInstance(10, 0, 0),
+//                    VersionInfo.getInstance(16, 0, 0),
+//                    215,
+//                    false,
+//                    true,
+//                    false,
+//                    true,
+//                    false);
+    public static UCDPropertyDetail kNSHU_Reading_Detail =
             new UCDPropertyDetail(
-                    UcdProperty.kReading,
-                    VersionInfo.getInstance(10, 0, 0),
+                    UcdProperty.kNSHU_Reading,
+                    VersionInfo.getInstance(17, 0, 0),
                     215,
                     false,
                     true,
