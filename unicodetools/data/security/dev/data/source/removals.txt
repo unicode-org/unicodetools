@@ -864,3 +864,32 @@ A7D4; Obsolete # L2/23-135
 16FF2..16FF6; Technical # L2/23-284, L2/24-071R3
 2B73A..2B73E; Uncommon_Use # L2/25-031
 \p{block=CJK_Unified_Ideographs_Extension_J}; Uncommon_Use # L2/25-031
+
+# Unicode 17
+# UTC-183-C33: Change Identifier_Type for 40 characters listed in L2/25-032R to Recommended.
+0181; Recommended
+0186; Recommended
+0189..018A; Recommended
+018E; Recommended
+0190..0192; Recommended
+0194; Recommended
+0196..0199; Recommended
+019D; Recommended
+01B2..01B4; Recommended
+01B7; Recommended
+01DD; Recommended
+0244; Recommended
+024C..024D; Recommended
+0253..0254; Recommended
+0256..0257; Recommended
+025B; Recommended
+0263; Recommended
+0268..0269; Recommended
+0272; Recommended
+0289; Recommended
+028B; Recommended
+0292; Recommended
+068E; Recommended
+0DA6; Recommended
+17CB..17CD; Recommended
+17D0; Recommended
