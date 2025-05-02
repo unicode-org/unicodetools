@@ -89,7 +89,10 @@ UnicodeData; Decomposition_Mapping ; 5
 # Handle the lack of rational Numeric_Value in older DerivedNumericValues by
 # reading it from UnicodeData via an unofficial contributory property.
 UnicodeData; Non_Unihan_Numeric_Value ; 8
-DerivedNumericValues; Numeric_Value ; 1 ; Integer
+DerivedNumericValues; Numeric_Value ; 1
+# Prior to 3.1, there is no DerivedNumericValues.txt. But prior to 4.0, Unihan does not contribute
+# to Numeric_Value, so we can straightforwardly read Numeric_Value off of UnicodeData.
+UnicodeData; Numeric_Value ; 8 ; v3.0.1
 DerivedNumericType; Numeric_Type
 UnicodeData; Bidi_Mirrored; 9
 UnicodeData; Simple_Uppercase_Mapping ; 12
