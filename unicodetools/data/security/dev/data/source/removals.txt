@@ -653,7 +653,7 @@ A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
 06FE; inclusion     # ARABIC SIGN SINDHI POSTPOSITION MEN
 0375; inclusion   # GREEK LOWER NUMERAL SIGN (KERAIA)
 
-[\u037F \u0528-\u052F \u08A1 \u08AD-\u08B2 \u0978 \u0980 \u0C00 \u0C34 \u0C81 \u0D01 \u0DE6-\u0DEF \u1AB0-\u1ABD \uA698-\uA69B \uA794-\uA79F \uA7AB-\uA7AD \uA7B0 \uA7B1 \uA7F7 \uA9E0-\uA9FE \uAA7C-\uAA7F \uAB30-\uAB5A \uAB64 \uAB65 \U000102E0] ; historic
+[\u037F \u0528-\u052F \u08AD-\u08B2 \u0978 \u0980 \u0C00 \u0C34 \u0C81 \u0D01 \u1AB0-\u1ABD \uA698-\uA69B \uA794-\uA79F \uA7AB-\uA7AD \uA7B0 \uA7B1 \uA7F7 \uA9E0-\uA9FE \uAA7C-\uAA7F \uAB30-\uAB5A \uAB64 \uAB65 \U000102E0] ; historic
 
 
 16A40..16A5E ; uncommon-use
@@ -674,12 +674,10 @@ A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
 # Other overrides
 
 1EBF ; recommended; override # LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE
-05B4 ; recommended; override # HEBREW POINT HIRIQ
 0259 ; recommended; override # LATIN SMALL LETTER SCHWA
 
 0528..0529 ; recommended; override
 052E..052F ; recommended; override
-08A1 ; recommended; override
 08B2 ; recommended; override
 A9E7..A9FE ; recommended; override
 AA7C..AA7F ; recommended; override
@@ -823,7 +821,6 @@ A674..A67B ; Obsolete # like the other combining Cyrillic letters
 A69E..A69F ; Obsolete # like the other combining Cyrillic letters
 A790..A791 ; Obsolete # LATIN CAPITAL/SMALL LETTER N WITH DESCENDER
 A7A0..A7A9 ; Obsolete # obsolete Latvian letters
-06A1 ; Obsolete # ARABIC LETTER DOTLESS FEH, like 066E ARABIC LETTER DOTLESS BEH
 
 \p{block=Coptic_Epact_Numbers}; Obsolete
 1B002..1B11E; Obsolete # HIRAGANA LETTER ARCHAIC...
@@ -893,3 +890,121 @@ A7D4; Obsolete # L2/23-135
 0DA6; Recommended
 17CB..17CD; Recommended
 17D0; Recommended
+
+# Unicode 17
+# UTC-183-C34: Change Identifier_Type of 392 characters marked Proposed:Uncommon_Use,
+# Proposed:Technical or Proposed:Obsolete in document L2/25-034R4 to Uncommon_Use,
+# Technical, or Obsolete, respectively
+0671; Technical
+0690; Obsolete
+090C; Obsolete
+0C8C; Obsolete
+0CB1; Obsolete
+0D9E; Obsolete
+0114..0115; Uncommon_Use
+012C..012D; Uncommon_Use
+014E..014F; Uncommon_Use
+0156..0157; Uncommon_Use
+0162..0163; Uncommon_Use
+01D5..01DC; Uncommon_Use
+01DE..01E3; Uncommon_Use
+01EA..01ED; Uncommon_Use
+01F0; Uncommon_Use
+01F4..01F5; Uncommon_Use
+01FA..01FF; Uncommon_Use
+021E..021F; Uncommon_Use
+0226..0233; Uncommon_Use
+0400; Uncommon_Use
+040D; Uncommon_Use
+0450; Uncommon_Use
+045D; Uncommon_Use
+04C1..04C2; Uncommon_Use
+04CB..04CC; Uncommon_Use
+04DA..04DB; Uncommon_Use
+04EA..04ED; Uncommon_Use
+05B4; Uncommon_Use
+05F0..05F2; Uncommon_Use
+069B..069E; Uncommon_Use
+06A1; Uncommon_Use
+06A3; Uncommon_Use
+06B2; Uncommon_Use
+06B4; Uncommon_Use
+06B8..06B9; Uncommon_Use
+06BF; Uncommon_Use
+06FA..06FC; Uncommon_Use
+0750; Uncommon_Use
+0753..0755; Uncommon_Use
+0757..075F; Uncommon_Use
+0761; Uncommon_Use
+0764..0765; Uncommon_Use
+0769; Uncommon_Use
+076B..076D; Uncommon_Use
+0772..077D; Uncommon_Use
+08A1; Uncommon_Use
+08AA..08AC; Uncommon_Use
+0904; Uncommon_Use
+0929; Uncommon_Use
+0934; Uncommon_Use
+0944; Uncommon_Use
+0979..097A; Uncommon_Use
+098C; Uncommon_Use
+09D7; Uncommon_Use
+0A03; Uncommon_Use
+0A66..0A6F; Uncommon_Use
+0A72..0A73; Uncommon_Use
+0A81; Uncommon_Use
+0B0C; Uncommon_Use
+0B35; Uncommon_Use
+0B57; Uncommon_Use
+0B66..0B6F; Uncommon_Use
+0BD7; Uncommon_Use
+0BE6..0BEF; Uncommon_Use
+0C0C; Uncommon_Use
+0C31; Uncommon_Use
+0C55..0C56; Uncommon_Use
+0C66..0C6F; Uncommon_Use
+0CBC; Uncommon_Use
+0CC4; Uncommon_Use
+0CD5..0CD6; Uncommon_Use
+0D0C; Uncommon_Use
+0D29; Uncommon_Use
+0D66..0D6F; Uncommon_Use
+0D8E; Uncommon_Use
+0DE6..0DEF; Uncommon_Use
+0E4E; Uncommon_Use
+0EDE..0EDF; Uncommon_Use
+108B..108D; Uncommon_Use
+1090..1099; Uncommon_Use
+10F7..10F8; Uncommon_Use
+1207; Uncommon_Use
+1287; Uncommon_Use
+12AF; Uncommon_Use
+12F8..12FF; Uncommon_Use
+130F; Uncommon_Use
+131F; Uncommon_Use
+1347; Uncommon_Use
+135A; Uncommon_Use
+135D..135F; Uncommon_Use
+179D..179E; Uncommon_Use
+17A9; Uncommon_Use
+17D7; Uncommon_Use
+1E02..1E0B; Uncommon_Use
+1E0E..1E11; Uncommon_Use
+1E14..1E17; Uncommon_Use
+1E1C..1E1F; Uncommon_Use
+1E22..1E23; Uncommon_Use
+1E26..1E29; Uncommon_Use
+1E2E..1E35; Uncommon_Use
+1E38..1E3B; Uncommon_Use
+1E40..1E41; Uncommon_Use
+1E4C..1E59; Uncommon_Use
+1E5C..1E61; Uncommon_Use
+1E64..1E6B; Uncommon_Use
+1E6E..1E6F; Uncommon_Use
+1E78..1E8B; Uncommon_Use
+1E8E..1E91; Uncommon_Use
+1E94..1E99; Uncommon_Use
+2D80..2D96; Uncommon_Use
+A7B9; Uncommon_Use
+AB01..AB06; Uncommon_Use
+AB09..AB0E; Uncommon_Use
