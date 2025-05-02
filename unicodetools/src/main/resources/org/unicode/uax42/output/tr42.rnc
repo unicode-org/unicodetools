@@ -1180,8 +1180,7 @@
   code-point-attributes &= attribute kIRGKangXi
     { list { xsd:string { pattern="[01]\d{3}\.[0-7]\d[01]" }+ } }?
 
-  code-point-attributes &= attribute kJa
-    { list { xsd:string { pattern="[0-9A-F]{4}S?" }+ } }?
+
 
   code-point-attributes &= attribute kJapanese
     { list { xsd:string { pattern="[\x{3041}-\x{3096}\x{3099}\x{309A}\x{30A1}-\x{30FA}\x{30FC}]+" }+ } }?
@@ -1301,6 +1300,9 @@
   code-point-attributes &= attribute kTang
     { list { xsd:string { pattern="\*?[A-Za-z()\x{E6}\x{251}\x{259}\x{25B}\x{300}\x{30C}]+" }+ } }?
 
+    code-point-attributes &= attribute kTayNumeric
+    { list { xsd:string { pattern="\d+" }+ } }?
+
   code-point-attributes &= attribute kTGH
     { list { xsd:string { pattern="20\d{2}:[1-9]\d{0,3}" }+ } }?
 
@@ -1339,7 +1341,7 @@
 
       
   code-point-attributes &=
-    attribute kRSTUnicode { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
+    attribute kTGT_RSUnicode { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
 
   code-point-attributes &=
     attribute kTGT_MergedSrc 
@@ -1355,10 +1357,10 @@
 
       
   code-point-attributes &=
-    attribute kSrc_NushuDuben { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
+    attribute kNSHU_DubenSrc { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
 
   code-point-attributes &=
-    attribute kReading { xsd:string }?
+    attribute kNSHU_Reading { xsd:string }?
 
       
   code-point-attributes &= attribute kEH_Cat

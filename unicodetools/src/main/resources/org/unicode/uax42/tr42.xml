@@ -50,8 +50,10 @@
                         <attr>kEH_HG</attr>, <attr>kEH_IFAO</attr>, <attr>kEH_JSesh</attr>, <attr>kEH_NoMirror</attr>,
                         <attr>kEH_NoRotate</attr>, <attr>kEH_UniK</attr>.
                     </change>
+                    <change>New attribute for the <attr>kTayNumeric</attr> property.
+                    </change>
                     <change>Removed attributes for deprecated properties: <attr>Gr_Link</attr>, <attr>Hyphen</attr>,
-                        <attr>isc</attr>, <attr>kGB7</attr>, <attr>XO_NFC</attr>, <attr>XO_NFD</attr>,
+                        <attr>isc</attr>, <attr>kGB7</attr>, <attr>kJa</attr>, <attr>XO_NFC</attr>, <attr>XO_NFD</attr>,
                         <attr>XO_NFKC</attr>, <attr>XO_NFKD</attr>, <attr>FC_NFKC</attr>.
                     </change>
                     <change>Removed elements that only contained historical information:
@@ -1216,7 +1218,9 @@
             <!--____________________________________________________________________-->
             <section>
                 <title>Tangut data</title>
-                <para>The Tangut data are represented as attributes. The attribute <attr>kRSTUnicode</attr>
+                <para>The Tangut data are represented as attributes. The attribute <edit
+                        flag="removed"><attr>kRSTUnicode</attr></edit><edit
+                        flag="changed"><attr>kTGT_RSUnicode</attr></edit>
                     represents the radical stroke index. The attribute <attr>kTGT_MergedSrc</attr> indicates the
                     source reference for the character.
                 </para>
@@ -1226,9 +1230,13 @@
             <!--____________________________________________________________________-->
             <section>
                 <title>Nushu data</title>
-                <para>The Nushu data are represented as attributes. The attribute <attr>kSrc_NushuDuben</attr>
+                <para>The Nushu data are represented as attributes. The attribute <edit
+                        flag="removed"><attr>kSrc_NushuDuben</attr></edit><edit
+                        flag="changed"><attr>kNSHU_DubenSrc</attr></edit>
                     indicates the page number and order of the item from the NushuDuben reference source. Nushu common
-                    reading is represented as <attr>kReading</attr>.</para>
+                    reading is represented as <edit
+                            flag="removed"><attr>kReading</attr></edit><edit
+                            flag="changed"><attr>kNSHU_Reading</attr></edit>.</para>
                 <xi:include href="./fragments/Nushu.xml"/>
             </section>
 

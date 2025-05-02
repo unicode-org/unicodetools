@@ -1294,8 +1294,6 @@ public class GeneratePropertyValues {
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kIRGKangXi)
                 + DOUBLELINE
-                + getFormattedTR38Syntax(UcdProperty.kJa)
-                + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kJapanese)
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kJapaneseKun)
@@ -1369,6 +1367,8 @@ public class GeneratePropertyValues {
                 + getFormattedTR38Syntax(UcdProperty.kTaiwanTelegraph)
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kTang)
+                + DOUBLELINE
+                + getFormattedTR38Syntax(UcdProperty.kTayNumeric)
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kTGH)
                 + DOUBLELINE

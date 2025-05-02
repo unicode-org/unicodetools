@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="Tangut data" id='schema.tangut'>
   code-point-attributes &amp;=
-    attribute kRSTUnicode { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
+    attribute <edit flag='removed'>kRSTUnicode</edit><edit flag='changed'>kTGT_RSUnicode</edit> { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
 
   code-point-attributes &amp;=
     attribute kTGT_MergedSrc 

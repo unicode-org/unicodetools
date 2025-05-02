@@ -1003,7 +1003,7 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false);
-    //Indic_Matra_Category was renamed to Indic_Positional_Category in Unicode 8.0
+    // Indic_Matra_Category was renamed to Indic_Positional_Category in Unicode 8.0
     //        public static UCDPropertyDetail Indic_Matra_Category_Detail = new UCDPropertyDetail (
     //            UcdProperty.Indic_Matra_Category, VersionInfo.getInstance(6,1,0),
     // VersionInfo.getInstance(7,0,0), 99,
@@ -1022,6 +1022,7 @@ public class UCDPropertyDetail {
             new UCDPropertyDetail(
                     UcdProperty.kJa,
                     VersionInfo.getInstance(8, 0, 0),
+                    VersionInfo.getInstance(16, 0, 0),
                     101,
                     false,
                     true,
@@ -2112,18 +2113,18 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false);
-    //kRSTUnicode_Detail was renamed to kTGT_RSUnicode_Detail in Unicode 17
-//    public static UCDPropertyDetail kRSTUnicode_Detail =
-//            new UCDPropertyDetail(
-//                    UcdProperty.kTGT_RSUnicode,
-//                    VersionInfo.getInstance(9, 0, 0),
-//                    VersionInfo.getInstance(16, 0, 0),
-//                    212,
-//                    false,
-//                    true,
-//                    false,
-//                    true,
-//                    false);
+    // kRSTUnicode_Detail was renamed to kTGT_RSUnicode_Detail in Unicode 17
+    //    public static UCDPropertyDetail kRSTUnicode_Detail =
+    //            new UCDPropertyDetail(
+    //                    UcdProperty.kTGT_RSUnicode,
+    //                    VersionInfo.getInstance(9, 0, 0),
+    //                    VersionInfo.getInstance(16, 0, 0),
+    //                    212,
+    //                    false,
+    //                    true,
+    //                    false,
+    //                    true,
+    //                    false);
     public static UCDPropertyDetail kTGT_RSUnicode_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kTGT_RSUnicode,
@@ -2144,18 +2145,18 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false);
-    //kSrc_NushuDuben_Detail was renamed to kNSHU_DubenSrc_Detail in Unicode 17
-//    public static UCDPropertyDetail kSrc_NushuDuben_Detail =
-//            new UCDPropertyDetail(
-//                    UcdProperty.kNSHU_DubenSrc,
-//                    VersionInfo.getInstance(10, 0, 0),
-//                    VersionInfo.getInstance(16, 0, 0),
-//                    214,
-//                    false,
-//                    true,
-//                    false,
-//                    true,
-//                    false);
+    // kSrc_NushuDuben_Detail was renamed to kNSHU_DubenSrc_Detail in Unicode 17
+    //    public static UCDPropertyDetail kSrc_NushuDuben_Detail =
+    //            new UCDPropertyDetail(
+    //                    UcdProperty.kNSHU_DubenSrc,
+    //                    VersionInfo.getInstance(10, 0, 0),
+    //                    VersionInfo.getInstance(16, 0, 0),
+    //                    214,
+    //                    false,
+    //                    true,
+    //                    false,
+    //                    true,
+    //                    false);
     public static UCDPropertyDetail kNSHU_DubenSrc_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kNSHU_DubenSrc,
@@ -2166,18 +2167,18 @@ public class UCDPropertyDetail {
                     false,
                     true,
                     false);
-    //kReading_Detail was renamed to kNSHU_Reading_Detail in Unicode 17
-//    public static UCDPropertyDetail kNSHU_Reading_Detail =
-//            new UCDPropertyDetail(
-//                    UcdProperty.kNSHU_Reading,
-//                    VersionInfo.getInstance(10, 0, 0),
-//                    VersionInfo.getInstance(16, 0, 0),
-//                    215,
-//                    false,
-//                    true,
-//                    false,
-//                    true,
-//                    false);
+    // kReading_Detail was renamed to kNSHU_Reading_Detail in Unicode 17
+    //    public static UCDPropertyDetail kNSHU_Reading_Detail =
+    //            new UCDPropertyDetail(
+    //                    UcdProperty.kNSHU_Reading,
+    //                    VersionInfo.getInstance(10, 0, 0),
+    //                    VersionInfo.getInstance(16, 0, 0),
+    //                    215,
+    //                    false,
+    //                    true,
+    //                    false,
+    //                    true,
+    //                    false);
     public static UCDPropertyDetail kNSHU_Reading_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kNSHU_Reading,
@@ -2559,6 +2560,16 @@ public class UCDPropertyDetail {
                     false,
                     false,
                     true);
+    public static UCDPropertyDetail kTayNumeric =
+            new UCDPropertyDetail(
+                    UcdProperty.kTayNumeric,
+                    VersionInfo.getInstance(17, 0, 0),
+                    253,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false);
     public static UCDPropertyDetail Basic_Emoji_Detail =
             new UCDPropertyDetail(UcdProperty.Basic_Emoji, -1, false, false, false, false, false);
     public static UCDPropertyDetail CJK_Radical_Detail =
