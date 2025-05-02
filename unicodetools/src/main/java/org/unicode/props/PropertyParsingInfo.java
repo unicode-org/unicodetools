@@ -240,6 +240,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
     public int getFieldNumber(VersionInfo ucdVersionRequested) {
         int fieldNumber = 0;
+        if (fieldNumbers.size() == 1) {
+            return fieldNumbers.values().iterator().next();
+        }
         for (final var entry : fieldNumbers.entrySet()) {
             if (ucdVersionRequested.compareTo(entry.getKey()) <= 0) {
                 fieldNumber = entry.getValue();
