@@ -21,7 +21,6 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.Rational;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.idna.Regexes;
 import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
@@ -50,9 +49,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     public final SpecialProperty special;
 
     /**
-     * Maps from Unicode versions to field number. A property whose field number depends on the version has more
-     * than one entry. A particular field number applies to the Unicode versions after the previous-version
-     * entry, up to and including its own version.
+     * Maps from Unicode versions to field number. A property whose field number depends on the
+     * version has more than one entry. A particular field number applies to the Unicode versions
+     * after the previous-version entry, up to and including its own version.
      */
     TreeMap<VersionInfo, Integer> fieldNumbers;
 
@@ -130,7 +129,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         String last = propertyInfo[propertyInfo.length - 1];
 
         int temp = 1;
-        if (propertyInfo.length > 2 && !propertyInfo[2].isEmpty() && !VERSION.matcher(propertyInfo[2]).matches()) {
+        if (propertyInfo.length > 2
+                && !propertyInfo[2].isEmpty()
+                && !VERSION.matcher(propertyInfo[2]).matches()) {
             temp = Integer.parseInt(propertyInfo[2]);
         }
         int _fieldNumber = temp;
@@ -209,7 +210,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         if (0 != (result = property.toString().compareTo(arg0.property.toString()))) {
             return result;
         }
-        return fieldNumbers.get(Settings.LATEST_VERSION_INFO) - arg0.fieldNumbers.get(Settings.LATEST_VERSION_INFO);
+        return fieldNumbers.get(Settings.LATEST_VERSION_INFO)
+                - arg0.fieldNumbers.get(Settings.LATEST_VERSION_INFO);
     }
 
     public static String getFullFileName(UcdProperty prop, VersionInfo ucdVersion) {
@@ -1293,7 +1295,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         throw new UnicodePropertyException();
                 }
                 String value =
-                        propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion) >= parts.length ? null : parts[propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion)];
+                        propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion) >= parts.length
+                                ? null
+                                : parts[propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion)];
                 if (propInfo.property == UcdProperty.Joining_Group
                         && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_4_0_1)
                                 <= 0
@@ -1333,7 +1337,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         } else {
             for (final PropertyParsingInfo propInfo : propInfoSet) {
                 final String value =
-                        propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion) < parts.length ? parts[propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion)] : null;
+                        propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion) < parts.length
+                                ? parts[propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion)]
+                                : null;
                 setPropDefault(
                         propInfo.property,
                         value,
@@ -1467,6 +1473,24 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         false,
                         nextVersion);
             } else {
+                if (propInfo.property == UcdProperty.Numeric_Value
+                        && line.getParts().length == 3
+                        && line.getParts()[1].isEmpty()
+                        && line.getParts()[2].equals("NaN")) {
+                    // 5.1..6.1 have an improper line
+                    // # @missing: 0000..10FFFF; ; NaN
+                    // compare 6.2 and 6.3
+                    // # @missing: 0000..10FFFF; NaN; ; NaN
+                    // This causes the default for field 1 (which we use as the key for
+                    // Numeric_Value, with some
+                    // subsequent chicanery to actually get the data from UnicodeData) to be the
+                    // empty string, rather
+                    // than NaN.
+                    // Before 5.1, there is no @missing line. After 6.3, the @missing line is in
+                    // PropertyValueAliases,
+                    // where it is independent of the format of the file specifying the property.
+                    line.getParts()[1] = "NaN";
+                }
                 setPropDefault(
                         propInfo.property,
                         line.getParts()[1],
