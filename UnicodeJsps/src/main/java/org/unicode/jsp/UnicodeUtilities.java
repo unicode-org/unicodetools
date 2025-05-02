@@ -1692,8 +1692,6 @@ public class UnicodeUtilities {
             VersionInfo maxVersion,
             Appendable out)
             throws IOException {
-        String defaultClass =
-                getFactory().getProperty(propName).isDefault(codePoint) ? " class='default'" : "";
         var indexedProperty = UcdProperty.forString(propName);
         final boolean provisional =
                 indexedProperty != null
@@ -1701,13 +1699,14 @@ public class UnicodeUtilities {
         class PropertyAssignment {
             VersionInfo first;
             VersionInfo last;
+            // The field `values` is null if the property does not exist in that range of versions.
+            // If the property has the value null (<none>), `values` is a one-element list whose
+            // sole element is null.
             ArrayList<String> values;
             int span;
         }
         final boolean isMultivalued = getFactory().getProperty(propName).isMultivalued();
         List<PropertyAssignment> history = new ArrayList<>();
-        int prehistoricSpan = 0;
-        int posthistoricSpan = 0;
         if (getFactory().getProperty(propName)
                 instanceof IndexUnicodeProperties.IndexUnicodeProperty) {
             for (int i = Utility.UNICODE_VERSIONS.size() - 1; i >= 0; --i) {
@@ -1725,21 +1724,16 @@ public class UnicodeUtilities {
                     continue;
                 }
                 final var property = IndexUnicodeProperties.make(version).getProperty(propName);
-                // Skip properties prior to their creation, as well as properties that no longer
-                // exist on the range minVersion..maxVersion.
+                ArrayList<String> values;
                 if (property.isTrivial() && !property.getName().equals("ISO_Comment")) {
-                    if (history.isEmpty()) {
-                        ++prehistoricSpan;
-                    } else {
-                        ++posthistoricSpan;
-                    }
-                    continue;
+                    values = null;
+                } else {
+                    values = new ArrayList<>();
+                    property.getValues(codePoint).forEach(values::add);
                 }
-                ArrayList<String> values = new ArrayList<>();
-                property.getValues(codePoint).forEach(values::add);
                 PropertyAssignment lastAssignment =
                         history.isEmpty() ? null : history.get(history.size() - 1);
-                if (lastAssignment == null || (!values.equals(lastAssignment.values))) {
+                if (lastAssignment == null || (!Objects.equals(values, lastAssignment.values))) {
                     PropertyAssignment assignment = new PropertyAssignment();
                     assignment.first = version;
                     assignment.last = version;
@@ -1759,7 +1753,7 @@ public class UnicodeUtilities {
             getFactory().getProperty(propName).getValues(codePoint).forEach(current.values::add);
             history.add(current);
         }
-        if (!history.isEmpty()) {
+        if (history.get(0).values != null || history.size() > 1) {
             out.append(
                     "<tr><th width='50%'><a target='c' href='properties.jsp?a="
                             + propName
@@ -1768,9 +1762,6 @@ public class UnicodeUtilities {
                             + "'>"
                             + (provisional ? "(" + propName + ")" : propName)
                             + "</a></th>");
-            if (prehistoricSpan > 0) {
-                out.append("<td class='nonexistent' colspan=" + prehistoricSpan + "></td>");
-            }
             for (PropertyAssignment assignment : history) {
                 String first =
                         assignment.first.getVersionString(2, 4)
@@ -1786,38 +1777,57 @@ public class UnicodeUtilities {
                         assignment.first.compareTo(Settings.LAST_VERSION_INFO) <= 0
                                 && Settings.LAST_VERSION_INFO.compareTo(assignment.last) <= 0;
                 boolean showVersion =
-                        minVersion.compareTo(Settings.LAST_VERSION_INFO) < 0 || history.size() > 1;
+                        indexedProperty != null
+                                && (minVersion.compareTo(Settings.LAST_VERSION_INFO) < 0
+                                        || history.size() > 1);
                 boolean isSingleVersion = assignment.first == assignment.last;
                 boolean isNew = assignment.first == Settings.LATEST_VERSION_INFO;
                 String versionRange =
                         (showVersion ? (isSingleVersion ? first : first + ".." + last) + ": " : "");
                 String htmlValue =
-                        assignment.values.stream()
-                                .map(v -> v == null ? "<i>null</i>" : toHTML.transliterate(v))
-                                .collect(Collectors.joining("<wbr>|"));
+                        assignment.values == null
+                                ? null
+                                : assignment.values.stream()
+                                        .map(
+                                                v ->
+                                                        v == null
+                                                                ? "<i>null</i>"
+                                                                : toHTML.transliterate(v))
+                                        .collect(Collectors.joining("<wbr>|"));
+                String tdClass = "";
+                if (assignment.values == null) {
+                    tdClass = "class='nonexistent'";
+                } else if (getFactory().getProperty(propName).isDefault(codePoint)) {
+                    tdClass = "class='default'";
+                }
                 out.append(
-                        "<td"
-                                + defaultClass
+                        "<td "
+                                + tdClass
                                 + " colspan="
                                 + assignment.span
                                 + ">"
-                                + (isMultivalued || htmlValue.contains("<")
-                                        ? "<span" + (isNew ? " class='changed'" : "") + ">"
-                                        : ("<a target='u' "
-                                                + (isNew ? "class='changed' " : "")
-                                                + "href='list-unicodeset.jsp?a=[:"
-                                                + (isCurrent ? "" : "U" + last + ":")
-                                                + propName
-                                                + "="
+                                + (assignment.values != null
+                                        ? (isMultivalued || htmlValue.contains("<")
+                                                        ? "<span"
+                                                                + (isNew ? " class='changed'" : "")
+                                                                + ">"
+                                                        : ("<a target='u' "
+                                                                + (isNew ? "class='changed' " : "")
+                                                                + "href='list-unicodeset.jsp?a=[:"
+                                                                + (isCurrent
+                                                                        ? ""
+                                                                        : "U" + last + ":")
+                                                                + propName
+                                                                + "="
+                                                                + htmlValue
+                                                                + ":]'>"))
+                                                + versionRange
                                                 + htmlValue
-                                                + ":]'>"))
-                                + versionRange
-                                + htmlValue
-                                + (isMultivalued || htmlValue.contains("<") ? "</span>" : "</a>")
+                                                + (isMultivalued || htmlValue.contains("<")
+                                                        ? "</span>"
+                                                        : "</a>")
+                                        : "")
                                 + "</td>");
-            }
-            if (posthistoricSpan > 0) {
-                out.append("<td class='nonexistent' colspan=" + posthistoricSpan + "></td>");
             }
             out.append("</tr>");
         }
