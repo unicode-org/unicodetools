@@ -29,7 +29,6 @@ import org.unicode.props.UcdPropertyValues.NFC_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.NFD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.NFKC_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
-import org.unicode.props.UcdPropertyValues.Non_Unihan_Numeric_Value_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Other_Joining_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
@@ -126,6 +125,10 @@ public enum UcdProperty {
             "Name_Alias"),
     Named_Sequences(PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "NS"),
     Named_Sequences_Prov(PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "NSP"),
+    Non_Unihan_Numeric_Value(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "Non_Unihan_Numeric_Value"),
     Standardized_Variant(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
@@ -674,12 +677,6 @@ public enum UcdProperty {
             NFKD_Quick_Check_Values.class,
             null,
             "NFKD_QC"),
-    Non_Unihan_Numeric_Value(
-            PropertyType.Enumerated,
-            DerivedPropertyStatus.UCDNonProperty,
-            Non_Unihan_Numeric_Value_Values.class,
-            null,
-            "Non_Unihan_Numeric_Value"),
     Numeric_Type(
             PropertyType.Enumerated,
             DerivedPropertyStatus.Approved,
