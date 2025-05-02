@@ -315,7 +315,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
             } else if (versionNumber.endsWith("α") || versionNumber.endsWith("β")) {
                 final String versionSuffix = versionNumber.substring(versionNumber.length() - 1);
                 versionNumber = versionNumber.substring(0, versionNumber.length() - 1);
-                if (versionSuffix != Settings.latestVersionPhase.toString()) {
+                if (!versionSuffix.equals(Settings.latestVersionPhase.toString())) {
                     throw new IllegalArgumentException(
                             "Invalid version-qualifier "
                                     + versionQualifier
