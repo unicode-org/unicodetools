@@ -1703,6 +1703,7 @@ public class UnicodeUtilities {
             // If the property has the value null (<none>), `values` is a one-element list whose
             // sole element is null.
             ArrayList<String> values;
+            boolean isDefault;
             int span;
         }
         final boolean isMultivalued = getFactory().getProperty(propName).isMultivalued();
@@ -1738,6 +1739,7 @@ public class UnicodeUtilities {
                     assignment.first = version;
                     assignment.last = version;
                     assignment.values = values;
+                    assignment.isDefault = property.isDefault(codePoint);
                     assignment.span = 1;
                     history.add(assignment);
                 } else {
@@ -1797,7 +1799,7 @@ public class UnicodeUtilities {
                 String tdClass = "";
                 if (assignment.values == null) {
                     tdClass = "class='nonexistent'";
-                } else if (getFactory().getProperty(propName).isDefault(codePoint)) {
+                } else if (assignment.isDefault) {
                     tdClass = "class='default'";
                 }
                 out.append(
