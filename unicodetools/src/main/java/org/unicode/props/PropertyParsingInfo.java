@@ -1440,7 +1440,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             // Prior to Unicode 5.1, DerivedNumericValues.txt is useless for getting
                             // numeric values whose denominator is not a small power of two, as it
                             // only provides field 1, which is decimal with *mystery rounding* (in
-                            // particular, enough digits to disambiguate between binary32 values).
+                            // particular, not enough digits to disambiguate between binary32
+                            // values).
                             // It is not normative either, so we use the value from UnicodeData.
                             // We use the values from DerivedNumericValues.txt when they are
                             // extracted from Unihan, as this avoids having to reconstruct old
@@ -1482,13 +1483,11 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     // compare 6.2 and 6.3
                     // # @missing: 0000..10FFFF; NaN; ; NaN
                     // This causes the default for field 1 (which we use as the key for
-                    // Numeric_Value, with some
-                    // subsequent chicanery to actually get the data from UnicodeData) to be the
-                    // empty string, rather
-                    // than NaN.
+                    // Numeric_Value, with some subsequent chicanery to actually get the data from
+                    // UnicodeData) to be the empty string, rather than NaN.
                     // Before 5.1, there is no @missing line. After 6.3, the @missing line is in
-                    // PropertyValueAliases,
-                    // where it is independent of the format of the file specifying the property.
+                    // PropertyValueAliases, where it is independent of the format of the file
+                    // specifying the property.
                     line.getParts()[1] = "NaN";
                 }
                 setPropDefault(
