@@ -324,8 +324,33 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     } else {
                         insertedValue = value;
                     }
-                    if (nextVersion != null && Objects.equals(insertedValue, nextValue)) {
-                        insertedValue = IndexUnicodeProperties.UNCHANGED_IN_BASE_VERSION;
+                    if (nextVersion != null) {
+                        if (merger != null) {
+                            var oldValue = data.get(codepoint);
+                            if (oldValue != null) {
+                                // If there is a merger and it is about to do something something,
+                                // we need to do the merging ourselves, to resolve the references
+                                // before merging and check for collapsibility after merging.
+                                if (oldValue.equals(
+                                        IndexUnicodeProperties.UNCHANGED_IN_BASE_VERSION)) {
+                                    oldValue = nextValue;
+                                }
+                                String mergedValue = merger.merge(oldValue, insertedValue);
+                                if (Objects.equals(mergedValue, nextValue)) {
+                                    mergedValue = IndexUnicodeProperties.UNCHANGED_IN_BASE_VERSION;
+                                }
+                                PropertyUtilities.putNew(
+                                        data,
+                                        missingSet,
+                                        codepoint,
+                                        mergedValue,
+                                        new PropertyUtilities.Overrider());
+                                return;
+                            }
+                        }
+                        if (Objects.equals(insertedValue, nextValue)) {
+                            insertedValue = IndexUnicodeProperties.UNCHANGED_IN_BASE_VERSION;
+                        }
                     }
                     PropertyUtilities.putNew(data, missingSet, codepoint, insertedValue, merger);
                 } catch (final Exception e) {

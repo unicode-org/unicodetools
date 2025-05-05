@@ -781,7 +781,6 @@ public class TestJsp extends TestFmwkMinusMinus {
     public void TestStuff() throws IOException {
         // int script = UScript.getScript(0xA6E6);
         // int script2 = UCharacter.getIntPropertyValue(0xA6E6, UProperty.SCRIPT);
-        String propValue = Common.getXStringPropertyValue(Common.SUBHEAD, 0xA6E6, NameChoice.LONG);
         // logln(propValue);
 
         // logln("Script for A6E6: " + script + ", " + UScript.getName(script) + ", " + script2);
