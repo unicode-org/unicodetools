@@ -490,6 +490,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         NameAliases,
         StandardizedVariants,
         Confusables,
+        NamesList,
     }
 
     static Map<String, FileType> file2Type = new HashMap<String, FileType>();
@@ -615,6 +616,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 case HackField:
                     parseUnicodeDataFile(
                             parser, indexUnicodeProperties, nextProperties, propInfoSet);
+                    break;
+                case NamesList:
+                    parseNamesListFile(
+                            FileUtilities.in("", fullFilename),
+                            indexUnicodeProperties,
+                            nextProperties,
+                            propInfoSet);
                     break;
                 case Field:
                     if (propInfoSet.size() == 1
@@ -750,6 +758,122 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             if (IndexUnicodeProperties.FILE_CACHE) {
                 indexUnicodeProperties.internalStoreCachedMap(
                         Settings.Output.BIN_DIR, propInfo.property, data);
+            }
+        }
+    }
+
+    private static void parseNamesListFile(
+            Iterable<String> lines,
+            IndexUnicodeProperties indexUnicodeProperties,
+            IndexUnicodeProperties nextProperties,
+            Set<PropertyParsingInfo> propInfoSet) {
+        final var namesListChar = Pattern.compile("[0-9A-F]{4,6}");
+        final var subheaderPropInfo = property2PropertyInfo.get(UcdProperty.Names_List_Subheader);
+        final var nextSubheader =
+                nextProperties == null
+                        ? null
+                        : nextProperties.getProperty(UcdProperty.Names_List_Subheader);
+        final UnicodeMap<String> subheaderData =
+                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Subheader);
+        final var subheaderNoticePropInfo =
+                property2PropertyInfo.get(UcdProperty.Names_List_Subheader_Notice);
+        final var nextSubheaderNotice =
+                nextProperties == null
+                        ? null
+                        : nextProperties.getProperty(UcdProperty.Names_List_Subheader_Notice);
+        final UnicodeMap<String> subheaderNoticeData =
+                indexUnicodeProperties.property2UnicodeMap.get(
+                        UcdProperty.Names_List_Subheader_Notice);
+        final var crossReferencePropInfo =
+                property2PropertyInfo.get(UcdProperty.Names_List_Cross_Ref);
+        final var nextCrossReference =
+                nextProperties == null
+                        ? null
+                        : nextProperties.getProperty(UcdProperty.Names_List_Cross_Ref);
+        final UnicodeMap<String> crossReferenceData =
+                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Cross_Ref);
+        final var commentPropInfo = property2PropertyInfo.get(UcdProperty.Names_List_Comment);
+        final var nextComment =
+                nextProperties == null
+                        ? null
+                        : nextProperties.getProperty(UcdProperty.Names_List_Comment);
+        final UnicodeMap<String> commentData =
+                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Comment);
+        final var aliasPropInfo = property2PropertyInfo.get(UcdProperty.Names_List_Alias);
+        final var nextAlias =
+                nextProperties == null
+                        ? null
+                        : nextProperties.getProperty(UcdProperty.Names_List_Alias);
+        final UnicodeMap<String> aliasData =
+                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Alias);
+
+        aliasPropInfo.multivaluedSplit = NO_SPLIT;
+        commentPropInfo.multivaluedSplit = NO_SPLIT;
+
+        String subheader = null;
+        String subheaderNotice = null;
+        IntRange codePoint = null;
+        for (String line : lines) {
+            String[] parts = line.split("\t+");
+            if (parts.length == 2 && namesListChar.matcher(parts[0]).matches()) {
+                codePoint = new IntRange();
+                codePoint.set(parts[0]);
+                if (subheader != null) {
+                    subheaderPropInfo.put(subheaderData, codePoint, subheader, nextSubheader);
+                }
+                if (subheaderNotice != null) {
+                    subheaderNoticePropInfo.put(
+                            subheaderNoticeData, codePoint, subheaderNotice, nextSubheaderNotice);
+                }
+            } else if (codePoint != null
+                    && parts.length == 2
+                    && (parts[0].isEmpty()
+                            || (parts[0].equals("@+") && parts[1].startsWith("* ")))) {
+                if (parts[1].startsWith("x ")) {
+                    String crossReference;
+                    if (parts[1].charAt(2) == '(') {
+                        crossReference = parts[1].split(" \\- |\\)")[1];
+                    } else {
+                        crossReference = parts[1].split(" ")[1];
+                    }
+                    crossReferencePropInfo.put(
+                            crossReferenceData,
+                            codePoint,
+                            crossReference,
+                            IndexUnicodeProperties.MULTIVALUED_JOINER,
+                            nextCrossReference);
+                } else if (parts[1].startsWith("* ")) {
+                    commentPropInfo.put(
+                            commentData,
+                            codePoint,
+                            parts[1].substring(2),
+                            IndexUnicodeProperties.MULTIVALUED_JOINER,
+                            nextComment);
+                } else if (parts[1].startsWith("= ")) {
+                    aliasPropInfo.put(
+                            aliasData,
+                            codePoint,
+                            parts[1].substring(2),
+                            IndexUnicodeProperties.MULTIVALUED_JOINER,
+                            nextAlias);
+                }
+            }
+            if (parts.length == 2 && parts[0].equals("@")) {
+                subheader = parts[1];
+                subheaderNotice = null;
+                codePoint = null;
+            }
+            if (parts.length == 4 && parts[0].equals("@@")) {
+                // New block header, clear the current subheader.
+                subheader = null;
+                subheaderNotice = null;
+                codePoint = null;
+            }
+            if (parts.length == 2
+                    && parts[0].equals("@+")
+                    && codePoint == null
+                    && subheader != null) {
+                subheaderNotice = parts[1];
             }
         }
     }

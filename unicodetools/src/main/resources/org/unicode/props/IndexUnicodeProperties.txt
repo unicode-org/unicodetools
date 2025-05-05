@@ -61,6 +61,7 @@ FileType ; CJKRadicals ; CJKRadicals
 FileType ; NamedSequences ; NamedSequences
 FileType ; NamedSequencesProv ; NamedSequences
 
+FileType ; NamesList ; NamesList
 
 # =======================================
 # FILES FOR PROPERTIES
@@ -523,3 +524,9 @@ Unikemet ; kEH_NoMirror
 Unikemet ; kEH_NoRotate
 Unikemet ; kEH_UniK
 Unikemet ; kEH_AltSeq
+
+NamesList ; Names_List_Alias
+NamesList ; Names_List_Cross_Ref
+NamesList ; Names_List_Comment
+NamesList ; Names_List_Subheader
+NamesList ; Names_List_Subheader_Notice

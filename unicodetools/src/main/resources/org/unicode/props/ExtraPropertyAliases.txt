@@ -57,6 +57,8 @@ normalization_correction_corrected ; normalization_correction_corrected ; UCDNon
 
 kEH_AltSeq               ; kEH_AltSeq ; Provisional
 
+Names_List_Cross_Ref ; Names_List_Cross_Ref ; UCDNonProperty
+
 # ================================================
 # Miscellaneous Properties
 # ================================================
@@ -202,3 +204,8 @@ kEH_UniK                 ; kEH_UniK ; Provisional
 # Contributory non-property matching exactly field 8 of UnicodeData.txt.
 # Mostly useful as a helper to diachronically parse Numeric_Value.
 Non_Unihan_Numeric_Value ; Non_Unihan_Numeric_Value ; UCDNonProperty
+
+Names_List_Subheader        ; Names_List_Subheader ; subhead ; UCDNonProperty
+Names_List_Subheader_Notice ; Names_List_Subheader_Notice    ; UCDNonProperty
+Names_List_Alias            ; Names_List_Alias               ; UCDNonProperty
+Names_List_Comment          ; Names_List_Comment             ; UCDNonProperty
