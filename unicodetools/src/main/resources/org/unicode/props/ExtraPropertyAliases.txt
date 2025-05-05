@@ -198,3 +198,7 @@ kNSHU_Reading            ; kNSHU_Reading ; kReading ; UCDNonProperty
 kEH_Func                 ; kEH_Func ; Provisional
 kEH_FVal                 ; kEH_FVal ; Provisional
 kEH_UniK                 ; kEH_UniK ; Provisional
+
+# Contributory non-property matching exactly field 8 of UnicodeData.txt.
+# Mostly useful as a helper to diachronically parse Numeric_Value.
+Non_Unihan_Numeric_Value ; Non_Unihan_Numeric_Value ; UCDNonProperty

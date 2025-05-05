@@ -1909,6 +1909,7 @@ public class UcdPropertyValues {
         }
     }
 
+    // Non_Unihan_Numeric_Value
     // normalization_correction_corrected
     // normalization_correction_original
     // normalization_correction_version
