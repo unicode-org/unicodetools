@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2025-05-02, 14:36:23 GMT
+# Date: 2025-05-06, 01:45:15 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1190,10 +1190,6 @@
 	(‎ 二 ‎)	4E8C	 CJK UNIFIED IDEOGRAPH-4E8C
 ←	(‎ ニ ‎)	30CB	 KATAKANA LETTER NI
 
-#	儿	ㄦ
-	(‎ 儿 ‎)	513F	 CJK UNIFIED IDEOGRAPH-513F
-←	(‎ ㄦ ‎)	3126	 BOPOMOFO LETTER ER
-
 #	八	ハ
 	(‎ 八 ‎)	516B	 CJK UNIFIED IDEOGRAPH-516B
 ←	(‎ ハ ‎)	30CF	 KATAKANA LETTER HA
@@ -1415,5 +1411,5 @@
 	(‎ 鹂 ‎)	9E42	 CJK UNIFIED IDEOGRAPH-9E42
 ←	(‎ 鹃 ‎)	9E43	 CJK UNIFIED IDEOGRAPH-9E43
 
-# total : 481
+# total : 480
 

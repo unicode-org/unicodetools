@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2025-05-02, 14:36:21 GMT
+# Date: 2025-05-06, 01:45:13 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -404,12 +404,6 @@
 309D..309E    ; Recommended                    # 1.1    [2] HIRAGANA ITERATION MARK..HIRAGANA VOICED ITERATION MARK
 30A1..30FA    ; Recommended                    # 1.1   [90] KATAKANA LETTER SMALL A..KATAKANA LETTER VO
 30FC..30FE    ; Recommended                    # 1.1    [3] KATAKANA-HIRAGANA PROLONGED SOUND MARK..KATAKANA VOICED ITERATION MARK
-3105..312C    ; Recommended                    # 1.1   [40] BOPOMOFO LETTER B..BOPOMOFO LETTER GN
-312D          ; Recommended                    # 5.1        BOPOMOFO LETTER IH
-312F          ; Recommended                    # 11.0       BOPOMOFO LETTER NN
-31A0..31B7    ; Recommended                    # 3.0   [24] BOPOMOFO LETTER BU..BOPOMOFO FINAL LETTER H
-31B8..31BA    ; Recommended                    # 6.0    [3] BOPOMOFO LETTER GH..BOPOMOFO LETTER ZY
-31BB..31BF    ; Recommended                    # 13.0   [5] BOPOMOFO FINAL LETTER G..BOPOMOFO LETTER AH
 3400..4DB5    ; Recommended                    # 3.0 [6582] CJK UNIFIED IDEOGRAPH-3400..CJK UNIFIED IDEOGRAPH-4DB5
 4DB6..4DBF    ; Recommended                    # 13.0  [10] CJK UNIFIED IDEOGRAPH-4DB6..CJK UNIFIED IDEOGRAPH-4DBF
 4E00..9FA5    ; Recommended                    # 1.1 [20902] CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FA5
@@ -456,7 +450,7 @@ FA27..FA29    ; Recommended                    # 1.1    [3] CJK COMPATIBILITY ID
 30000..3134A  ; Recommended                    # 13.0 [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Recommended                    # 15.0 [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 111701
+# Total code points: 111627
 
 #	Identifier_Type:	Inclusion
 
@@ -525,6 +519,12 @@ FA27..FA29    ; Recommended                    # 1.1    [3] CJK COMPATIBILITY ID
 2D30..2D65    ; Limited_Use                    # 4.1   [54] TIFINAGH LETTER YA..TIFINAGH LETTER YAZZ
 2D66..2D67    ; Limited_Use                    # 6.1    [2] TIFINAGH LETTER YE..TIFINAGH LETTER YO
 2D7F          ; Limited_Use                    # 6.0        TIFINAGH CONSONANT JOINER
+3105..312C    ; Limited_Use                    # 1.1   [40] BOPOMOFO LETTER B..BOPOMOFO LETTER GN
+312D          ; Limited_Use                    # 5.1        BOPOMOFO LETTER IH
+312F          ; Limited_Use                    # 11.0       BOPOMOFO LETTER NN
+31A0..31B7    ; Limited_Use                    # 3.0   [24] BOPOMOFO LETTER BU..BOPOMOFO FINAL LETTER H
+31B8..31BA    ; Limited_Use                    # 6.0    [3] BOPOMOFO LETTER GH..BOPOMOFO LETTER ZY
+31BB..31BF    ; Limited_Use                    # 13.0   [5] BOPOMOFO FINAL LETTER G..BOPOMOFO LETTER AH
 A000..A48C    ; Limited_Use                    # 3.0 [1165] YI SYLLABLE IT..YI SYLLABLE YYR
 A4D0..A4FD    ; Limited_Use                    # 5.2   [46] LISU LETTER BA..LISU LETTER TONE MYA JEU
 A500..A60C    ; Limited_Use                    # 5.1  [269] VAI SYLLABLE EE..VAI SYLLABLE LENGTHENER
@@ -586,7 +586,7 @@ ABF0..ABF9    ; Limited_Use                    # 5.2   [10] MEETEI MAYEK DIGIT Z
 1E94B         ; Limited_Use                    # 12.0       ADLAM NASALIZATION MARK
 1E950..1E959  ; Limited_Use                    # 9.0   [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 
-# Total code points: 5033
+# Total code points: 5107
 
 #	Identifier_Type:	Limited_Use Uncommon_Use
 
@@ -606,13 +606,15 @@ A9CF          ; Limited_Use Uncommon_Use       # 5.2        JAVANESE PANGRANGKEP
 
 07E8..07EA    ; Limited_Use Obsolete           # 5.0    [3] NKO LETTER JONA JA..NKO LETTER JONA RA
 07FA          ; Limited_Use Obsolete           # 5.0        NKO LAJANYALAN
+312E          ; Limited_Use Obsolete           # 10.0       BOPOMOFO LETTER O WITH DOT ABOVE
 A610..A612    ; Limited_Use Obsolete           # 5.1    [3] VAI SYLLABLE NDOLE FA..VAI SYLLABLE NDOLE SOO
 A62A..A62B    ; Limited_Use Obsolete           # 5.1    [2] VAI SYLLABLE NDOLE MA..VAI SYLLABLE NDOLE DO
 
-# Total code points: 9
+# Total code points: 10
 
 #	Identifier_Type:	Limited_Use Not_XID
 
+02EA..02EB    ; Limited_Use Not_XID            # 3.0    [2] MODIFIER LETTER YIN DEPARTING TONE MARK..MODIFIER LETTER YANG DEPARTING TONE MARK
 0700..070D    ; Limited_Use Not_XID            # 3.0   [14] SYRIAC END OF PARAGRAPH..SYRIAC HARKLEAN ASTERISCUS
 070F          ; Limited_Use Not_XID            # 3.0        SYRIAC ABBREVIATION MARK
 07F6..07F9    ; Limited_Use Not_XID            # 5.0    [4] NKO SYMBOL OO DENNEN..NKO EXCLAMATION MARK
@@ -665,7 +667,7 @@ ABEB          ; Limited_Use Not_XID            # 5.2        MEETEI MAYEK CHEIKHE
 1E2FF         ; Limited_Use Not_XID            # 12.0       WANCHO NGUN SIGN
 1E95E..1E95F  ; Limited_Use Not_XID            # 9.0    [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 
-# Total code points: 207
+# Total code points: 209
 
 #	Identifier_Type:	Uncommon_Use
 
@@ -1770,7 +1772,6 @@ A95F          ; Exclusion Not_XID              # 5.1        REJANG SECTION MARK
 2C7E..2C7F    ; Obsolete                       # 5.2    [2] LATIN CAPITAL LETTER S WITH SWASH TAIL..LATIN CAPITAL LETTER Z WITH SWASH TAIL
 2D00..2D25    ; Obsolete                       # 4.1   [38] GEORGIAN SMALL LETTER AN..GEORGIAN SMALL LETTER HOE
 2DE0..2DFF    ; Obsolete                       # 5.1   [32] COMBINING CYRILLIC LETTER BE..COMBINING CYRILLIC LETTER IOTIFIED BIG YUS
-312E          ; Obsolete                       # 10.0       BOPOMOFO LETTER O WITH DOT ABOVE
 31F0..31FF    ; Obsolete                       # 3.2   [16] KATAKANA LETTER SMALL KU..KATAKANA LETTER SMALL RO
 A640..A65F    ; Obsolete                       # 5.1   [32] CYRILLIC CAPITAL LETTER ZEMLYA..CYRILLIC SMALL LETTER YN
 A660..A661    ; Obsolete                       # 6.0    [2] CYRILLIC CAPITAL LETTER REVERSED TSE..CYRILLIC SMALL LETTER REVERSED TSE
@@ -1819,7 +1820,7 @@ D7CB..D7FB    ; Obsolete                       # 5.2   [49] HANGUL JONGSEONG NIE
 1B164..1B167  ; Obsolete                       # 12.0   [4] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL N
 1E08F         ; Obsolete                       # 15.0       COMBINING CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
 
-# Total code points: 1638
+# Total code points: 1637
 
 #	Identifier_Type:	Obsolete Not_XID
 
@@ -1875,7 +1876,6 @@ A8F8..A8FA    ; Obsolete Not_XID               # 5.2    [3] DEVANAGARI SIGN PUSH
 02DE          ; Not_XID                        # 1.1        MODIFIER LETTER RHOTIC HOOK
 02DF          ; Not_XID                        # 3.0        MODIFIER LETTER CROSS ACCENT
 02E5..02E9    ; Not_XID                        # 1.1    [5] MODIFIER LETTER EXTRA-HIGH TONE BAR..MODIFIER LETTER EXTRA-LOW TONE BAR
-02EA..02EB    ; Not_XID                        # 3.0    [2] MODIFIER LETTER YIN DEPARTING TONE MARK..MODIFIER LETTER YANG DEPARTING TONE MARK
 02ED          ; Not_XID                        # 3.0        MODIFIER LETTER UNASPIRATED
 02EF..02FF    ; Not_XID                        # 4.0   [17] MODIFIER LETTER LOW DOWN ARROWHEAD..MODIFIER LETTER LOW LEFT ARROW
 03F6          ; Not_XID                        # 3.2        GREEK REVERSED LUNATE EPSILON SYMBOL
@@ -2409,7 +2409,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1FBCB..1FBEF  ; Not_XID                        # 16.0  [37] WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; Not_XID                        # 17.0       ALARM BELL SYMBOL
 
-# Total code points: 6490
+# Total code points: 6488
 
 #	Identifier_Type:	Not_NFKC
 

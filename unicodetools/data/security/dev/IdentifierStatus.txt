@@ -1,5 +1,5 @@
 # IdentifierStatus.txt
-# Date: 2025-05-02, 14:36:22 GMT
+# Date: 2025-05-06, 01:45:13 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -412,12 +412,6 @@
 309D..309E    ; Allowed    # 1.1    [2] HIRAGANA ITERATION MARK..HIRAGANA VOICED ITERATION MARK
 30A0          ; Allowed    # 3.2        KATAKANA-HIRAGANA DOUBLE HYPHEN
 30A1..30FE    ; Allowed    # 1.1   [94] KATAKANA LETTER SMALL A..KATAKANA VOICED ITERATION MARK
-3105..312C    ; Allowed    # 1.1   [40] BOPOMOFO LETTER B..BOPOMOFO LETTER GN
-312D          ; Allowed    # 5.1        BOPOMOFO LETTER IH
-312F          ; Allowed    # 11.0       BOPOMOFO LETTER NN
-31A0..31B7    ; Allowed    # 3.0   [24] BOPOMOFO LETTER BU..BOPOMOFO FINAL LETTER H
-31B8..31BA    ; Allowed    # 6.0    [3] BOPOMOFO LETTER GH..BOPOMOFO LETTER ZY
-31BB..31BF    ; Allowed    # 13.0   [5] BOPOMOFO FINAL LETTER G..BOPOMOFO LETTER AH
 3400..4DB5    ; Allowed    # 3.0 [6582] CJK UNIFIED IDEOGRAPH-3400..CJK UNIFIED IDEOGRAPH-4DB5
 4DB6..4DBF    ; Allowed    # 13.0  [10] CJK UNIFIED IDEOGRAPH-4DB6..CJK UNIFIED IDEOGRAPH-4DBF
 4E00..9FA5    ; Allowed    # 1.1 [20902] CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FA5
@@ -464,4 +458,4 @@ FA27..FA29    ; Allowed    # 1.1    [3] CJK COMPATIBILITY IDEOGRAPH-FA27..CJK CO
 30000..3134A  ; Allowed    # 13.0 [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Allowed    # 15.0 [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 111719
+# Total code points: 111645
