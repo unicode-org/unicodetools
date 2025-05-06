@@ -328,9 +328,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         if (merger != null) {
                             var oldValue = data.get(codepoint);
                             if (oldValue != null) {
-                                // If there is a merger and it is about to do something something,
-                                // we need to do the merging ourselves, to resolve the references
-                                // before merging and check for collapsibility after merging.
+                                // If there is a merger and it is about to do something, we need to
+                                // do the merging ourselves, to resolve the references before
+                                // merging and check for collapsibility after merging.
                                 if (oldValue.equals(
                                         IndexUnicodeProperties.UNCHANGED_IN_BASE_VERSION)) {
                                     oldValue = nextValue;
