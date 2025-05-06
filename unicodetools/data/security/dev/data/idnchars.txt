@@ -1,5 +1,5 @@
 # idnchars.txt
-# Date: 2025-05-02, 14:36:22 GMT
+# Date: 2025-05-06, 01:45:14 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -454,9 +454,6 @@
 3041..3096    ; output # [86] (ぁ..ゖ)  HIRAGANA LETTER SMALL A..HIRAGANA LETTER SMALL KE
 309D..309E    ; output #  [2] (ゝ..ゞ)  HIRAGANA ITERATION MARK..HIRAGANA VOICED ITERATION MARK
 30A0..30FE    ; output # [95] (゠..ヾ)  KATAKANA-HIRAGANA DOUBLE HYPHEN..KATAKANA VOICED ITERATION MARK
-3105..312D    ; output # [41] (ㄅ..ㄭ)  BOPOMOFO LETTER B..BOPOMOFO LETTER IH
-312F          ; output #      (ㄯ)  BOPOMOFO LETTER NN
-31A0..31BF    ; output # [32] (ㆠ..ㆿ)  BOPOMOFO LETTER BU..BOPOMOFO LETTER AH
 3400..4DBF    ; output # [6592] (㐀..䶿)  CJK UNIFIED IDEOGRAPH-3400..CJK UNIFIED IDEOGRAPH-4DBF
 4E00..9FFF    ; output # [20992] (一..鿿)  CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FFF
 AA7B          ; output #      (ꩻ)  MYANMAR SIGN PAO KAREN TONE
@@ -485,7 +482,7 @@ FA27..FA29    ; output #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK 
 30000..3134A  ; output # [4939] (𰀀..𱍊)  CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; output # [4192] (𱍐..𲎯)  CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 111265
+# Total code points: 111191
 
 # Not allowed at start of identifier
 
