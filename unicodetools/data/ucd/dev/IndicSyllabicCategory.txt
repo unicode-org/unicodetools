@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-17.0.0.txt
-# Date: 2025-01-27, 18:09:16 GMT
+# Date: 2025-05-06, 10:28:01 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -791,6 +791,8 @@ A926..A92A    ; Vowel # Mn   [5] KAYAH LI VOWEL UE..KAYAH LI VOWEL O
 # Indic script layout (NBSP and dotted circle), as well as a few script-
 # specific vowel-holder characters which are not technically
 # consonants, but serve instead as bases for placement of vowel marks.
+# Vowel carriers that are null consonants instead have the
+# Indic_Syllabic_Category Consonant.
 
 # [Not derivable]
 
@@ -814,7 +816,14 @@ AA74..AA76    ; Consonant_Placeholder # Lo   [3] MYANMAR LOGOGRAM KHAMTI OAY..MY
 
 # Indic_Syllabic_Category=Consonant
 
-# Consonant (ordinary abugida consonants, with inherent vowels)
+# Consonant
+# This includes ordinary abugida consonants with inherent vowels.
+# In scripts that do not have distinct independent vowel characters, but instead
+# form independent vowels by adding dependent vowels to a vowel carrier which
+# otherwise represents the inherent vowel, that vowel carrier has the
+# Indic_Syllabic_Category Consonant, as a null consonant. Such vowel carriers
+# can often also be analyzed as glottal stops with inherent vowels.
+# An example is U+0F68 ཨ TIBETAN LETTER A.
 
 # [Not derivable]
 
