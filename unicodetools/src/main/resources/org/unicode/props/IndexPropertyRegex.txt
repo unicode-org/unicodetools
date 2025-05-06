@@ -210,6 +210,10 @@ normalization_correction_original ;  SINGLE_VALUED ;         [0-9A-F]{4,5}
 normalization_correction_corrected ; SINGLE_VALUED ;         [0-9A-F]{4,5}
 normalization_correction_version ;   SINGLE_VALUED ;         [0-9]\.[0-9]\.[0-9]
 
+Names_List_Alias     ; MULTI_VALUED ; .*
+Names_List_Comment   ; MULTI_VALUED ; .*
+Names_List_Cross_Ref ; MULTI_VALUED ; .*
+
 # =============================
 # Catalog/Enum/Binary Properties
 # All not listed are SINGLE_VALUED ; null

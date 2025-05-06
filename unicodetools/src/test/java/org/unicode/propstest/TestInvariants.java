@@ -162,7 +162,11 @@ public class TestInvariants extends TestFmwkMinusMinus {
                         UcdProperty.Noncharacter_Code_Point,
                         UcdProperty.Pattern_Syntax,
                         UcdProperty.Vertical_Orientation,
-                        UcdProperty.Extended_Pictographic));
+                        UcdProperty.Extended_Pictographic,
+                        UcdProperty.Names_List_Cross_Ref,
+                        UcdProperty.Names_List_Comment,
+                        UcdProperty.Names_List_Subheader,
+                        UcdProperty.Names_List_Subheader_Notice));
         exceptions.putAll(
                 General_Category_Values.Private_Use,
                 Arrays.asList(UcdProperty.Age, UcdProperty.Block));

@@ -45,7 +45,7 @@ public class Common {
             };
 
     static List<String> XPROPERTY_NAMES =
-            Arrays.asList(new String[] {"toNFC", "toNFD", "toNFKC", "toNFKD", "subhead"});
+            Arrays.asList(new String[] {"toNFC", "toNFD", "toNFKC", "toNFKD"});
     static final int XSTRING_START = UProperty.STRING_LIMIT;
 
     public static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice) {
@@ -59,8 +59,6 @@ public class Common {
                 return Common.MyNormalize(codepoint, Normalizer.NFKC);
             case Common.TO_NFKD:
                 return Common.MyNormalize(codepoint, Normalizer.NFKD);
-            case Common.SUBHEAD:
-                return UnicodeUtilities.getSubheader().getSubheader(codepoint);
         }
         return UCharacter.getStringPropertyValue(propertyEnum, codepoint, nameChoice);
     }
@@ -99,8 +97,7 @@ public class Common {
     static final int TO_NFD = UProperty.STRING_LIMIT + 1;
     static final int TO_NFKC = UProperty.STRING_LIMIT + 2;
     static final int TO_NFKD = UProperty.STRING_LIMIT + 3;
-    public static final int SUBHEAD = TO_NFKD + 1;
-    static final int XSTRING_LIMIT = SUBHEAD + 1;
+    static final int XSTRING_LIMIT = TO_NFKD + 1;
     //    static UnicodeSet       isCaseFolded  = new UnicodeSet();
     //    static UnicodeSet       isLowercase   = new UnicodeSet();
     //    static UnicodeSet       isUppercase   = new UnicodeSet();

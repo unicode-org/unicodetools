@@ -1789,6 +1789,11 @@ public class UcdPropertyValues {
     // Name_Alias
     // Named_Sequences
     // Named_Sequences_Prov
+    // Names_List_Alias
+    // Names_List_Comment
+    // Names_List_Cross_Ref
+    // Names_List_Subheader
+    // Names_List_Subheader_Notice
     public enum NFC_Quick_Check_Values implements Named {
         Maybe("M"),
         No("N"),
