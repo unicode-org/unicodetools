@@ -1191,3 +1191,8 @@ AB20..AB26; Uncommon_Use
 AB28..AB2E; Uncommon_Use
 AB66..AB67; Uncommon_Use
 1133B; Uncommon_Use
+
+# Unicode 17.0
+# UTC-183-A79 Update Identifier_Status and Identifier_Type properties according to
+# the change of status of Bopomofo to “Limited Use”
+\p{Script=Bopomofo}; Limited_Use
