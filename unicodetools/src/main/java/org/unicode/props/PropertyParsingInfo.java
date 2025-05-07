@@ -1477,6 +1477,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     merger = new PropertyUtilities.Overrider();
                 }
                 if (indexUnicodeProperties.ucdVersion == VersionInfo.UNICODE_1_1_0) {
+                    if (propInfo.property.getShortName().startsWith("cjk") && value.equals("*")) {
+                        continue;
+                    }
                     // Some CJKXREF fields combine multiple Unihan properties.
                     if (Pattern.matches("k(GB|Jis|KSC)[0-9]|kIBMJapan", propInfo.property.name())) {
                         String[] valueParts = value.split("-");
