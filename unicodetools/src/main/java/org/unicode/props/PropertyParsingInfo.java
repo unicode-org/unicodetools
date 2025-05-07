@@ -1481,8 +1481,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     if (Pattern.matches("k(GB|Jis|KSC)[0-9]|kIBMJapan", propInfo.property.name())) {
                         String[] valueParts = value.split("-");
                         if (propInfo.property.name().endsWith(valueParts[0])
-                                || propInfo.property == UcdProperty.kIBMJapan
-                                        && valueParts[0].equals("I")) {
+                                || (propInfo.property == UcdProperty.kIBMJapan
+                                        && valueParts[0].equals("I"))) {
                             value = valueParts[1];
                         } else {
                             return;
