@@ -498,6 +498,7 @@
 
   <xsl:template match="revision">
     <div>
+      <xsl:apply-templates select="@edit"/>
       <p>
         <b>Revision <xsl:value-of select="@revnumber"/></b>
       </p>
