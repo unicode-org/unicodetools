@@ -1485,7 +1485,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                         && valueParts[0].equals("I")) {
                             value = valueParts[1];
                         } else {
-                            return;
+                            continue;
                         }
                     }
                 }
