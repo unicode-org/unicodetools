@@ -1476,6 +1476,19 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     // YPOGEGRAMMENI
                     merger = new PropertyUtilities.Overrider();
                 }
+                if (indexUnicodeProperties.ucdVersion == VersionInfo.UNICODE_1_1_0) {
+                    // Some CJKXREF fields combine multiple Unihan properties.
+                    if (Pattern.matches("k(GB|Jis|KSC)[0-9]|kIBMJapan", propInfo.property.name())) {
+                        String[] valueParts = value.split("-");
+                        if (propInfo.property.name().endsWith(valueParts[0])
+                                || propInfo.property == UcdProperty.kIBMJapan
+                                        && valueParts[0].equals("I")) {
+                            value = valueParts[2];
+                        } else {
+                            return;
+                        }
+                    }
+                }
                 propInfo.put(
                         data,
                         line.getMissingSet(),
