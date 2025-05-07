@@ -74,8 +74,6 @@ public class UnicodeUtilities {
                     .removeAll(new UnicodeSet("[:whitespace:]"))
                     .freeze();
 
-    private static Subheader subheader = null;
-
     static Transliterator toHTML;
     static Transliterator toHTMLInput;
     static String HTML_RULES_CONTROLS;
@@ -449,17 +447,26 @@ public class UnicodeUtilities {
                                             + "}'>"
                                             + block
                                             + "</a>";
-                    String newSubhead = getSubheader().getSubheader(s);
-                    if (newSubhead == null) {
-                        newSubhead = "<u>no subhead</u>";
-                    } else {
-                        newSubhead =
-                                "<a href='list-unicodeset.jsp?a=\\p{subhead="
-                                        + newSubhead
-                                        + "}'>"
-                                        + newSubhead
-                                        + "</a>";
-                    }
+                    String devSubhead =
+                            getFactory().getProperty("Udev:Names_List_Subheader").getValue(s);
+                    String subhead = getFactory().getProperty("Names_List_Subheader").getValue(s);
+                    String newSubhead =
+                            showDevProperties && devSubhead != null && !devSubhead.equals(subhead)
+                                    ? "<a class='changed' href='list-unicodeset.jsp?a=\\p{U"
+                                            + Settings.latestVersion
+                                            + Settings.latestVersionPhase
+                                            + ":Names_List_Subheader="
+                                            + devSubhead
+                                            + "}'>"
+                                            + devSubhead
+                                            + "</a>"
+                                    : subhead != null
+                                            ? "<a href='list-unicodeset.jsp?a=\\p{Names_List_Subheader="
+                                                    + subhead
+                                                    + "}'>"
+                                                    + subhead
+                                                    + "</a>"
+                                            : "<u>no subheader</u>";
                     newBlock = newBlock + " \u2014 <i>" + newSubhead + "</i>";
                     UnicodeSet set = items.get(newBlock);
                     if (set == null) items.put(newBlock, set = new UnicodeSet());
@@ -2015,31 +2022,6 @@ public class UnicodeUtilities {
                             + "</a>)";
         }
         return result;
-    }
-
-    static Subheader getSubheader() {
-        if (subheader == null) {
-            // /home/users/jakarta/apache-tomcat-6.0.14/bin
-            // /home/users/jakarta/apache-tomcat-6.0.14/webapps/cldr/utility
-            subheader = new Subheader(UnicodeUtilities.class.getResourceAsStream("NamesList.txt"));
-            //      try {
-            //        final String unicodeDataDirectory = "../webapps/cldr/utility/";
-            //        //System.out.println(canonicalPath);
-            //        subheader = new Subheader(unicodeDataDirectory);
-            //      } catch (IOException e) {
-            //        try {
-            //          final String unicodeDataDirectory = "./jsp/";
-            //          subheader = new Subheader(unicodeDataDirectory);
-            //        } catch (IOException e2) {
-            //          final String[] list = new File("home").list();
-            //          String currentDirectory = list == null ? null : new
-            // TreeSet<String>(Arrays.asList(list)).toString();
-            //          throw (RuntimeException) new IllegalArgumentException("Can't find file
-            // starting from: <" + currentDirectory + ">").initCause(e);
-            //        }
-            //      }
-        }
-        return subheader;
     }
 
     // static IdnaLabelTester tester = null;

@@ -61,6 +61,7 @@ FileType ; CJKRadicals ; CJKRadicals
 FileType ; NamedSequences ; NamedSequences
 FileType ; NamedSequencesProv ; NamedSequences
 
+FileType ; NamesList ; NamesList
 
 # =======================================
 # FILES FOR PROPERTIES
@@ -73,7 +74,6 @@ FileType ; NamedSequencesProv ; NamedSequences
 # Field1 : property name
 # Field2 : field number in file (default is 1)
 # Field3 : special handling
-#   Rational : Value is a rational number
 #   Skip1FT  : Skip line if field 1 is F or T
 #   Skip1ST  : Skip line if field 1 is S or T
 #   SkipAny4 : Skip line if field 4 is not empty
@@ -86,10 +86,16 @@ UnicodeData; General_Category ; 2
 UnicodeData; Canonical_Combining_Class ; 3
 DerivedBidiClass; Bidi_Class ; 1
 DerivedDecompositionType; Decomposition_Type ; 1
-UnicodeData; Decomposition_Mapping ; 5 
-UnicodeData; Bidi_Mirrored; 9
-DerivedNumericValues; Numeric_Value ; 3 ; Rational
+UnicodeData; Decomposition_Mapping ; 5
+# Handle the lack of rational Numeric_Value in older DerivedNumericValues by
+# reading it from UnicodeData via an unofficial contributory property.
+UnicodeData; Non_Unihan_Numeric_Value ; 8
+DerivedNumericValues; Numeric_Value ; 1
+# Prior to 3.1, there is no DerivedNumericValues.txt. But prior to 4.0, Unihan does not contribute
+# to Numeric_Value, so we can straightforwardly read Numeric_Value off of UnicodeData.
+UnicodeData; Numeric_Value ; 8 ; v3.0.1
 DerivedNumericType; Numeric_Type
+UnicodeData; Bidi_Mirrored; 9
 UnicodeData; Simple_Uppercase_Mapping ; 12
 UnicodeData; Simple_Lowercase_Mapping ; 13
 UnicodeData; Simple_Titlecase_Mapping ; 14
@@ -444,6 +450,23 @@ Unihan ; kXerox ; v5.1
 Unihan ; kXHC1983 ; v5.1
 Unihan ; kZVariant ; v5.1
 
+CJKXREF ; kGB0      ; 1 ; v1.1.5
+CJKXREF ; kGB1      ; 1 ; v1.1.5
+CJKXREF ; kGB3      ; 1 ; v1.1.5
+CJKXREF ; kGB5      ; 1 ; v1.1.5
+CJKXREF ; kGB7      ; 1 ; v1.1.5
+CJKXREF ; kGB8      ; 1 ; v1.1.5
+CJKXREF ; kBigFive  ; 2 ; v1.1.5
+CJKXREF ; kCNS1986  ; 3 ; v1.1.5
+CJKXREF ; kJis0     ; 4 ; v1.1.5
+CJKXREF ; kJis1     ; 4 ; v1.1.5
+CJKXREF ; kIBMJapan ; 4 ; v1.1.5
+CJKXREF ; kKSC0     ; 5 ; v1.1.5
+CJKXREF ; kKSC1     ; 5 ; v1.1.5
+CJKXREF ; kEACC     ; 6 ; v1.1.5
+CJKXREF ; kCCCII    ; 7 ; v1.1.5
+CJKXREF ; kXerox    ; 8 ; v1.1.5
+
 # Extras
 
 ScriptExtensions ; Script_Extensions
@@ -518,3 +541,9 @@ Unikemet ; kEH_NoMirror
 Unikemet ; kEH_NoRotate
 Unikemet ; kEH_UniK
 Unikemet ; kEH_AltSeq
+
+NamesList ; Names_List_Alias
+NamesList ; Names_List_Cross_Ref
+NamesList ; Names_List_Comment
+NamesList ; Names_List_Subheader
+NamesList ; Names_List_Subheader_Notice

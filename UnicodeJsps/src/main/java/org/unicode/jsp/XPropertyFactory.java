@@ -163,17 +163,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                         .setMain("isNFM", "isNFM", UnicodeProperty.BINARY, "1.1"));
 
         add(
-                new CodepointTransformProperty(
-                                new Transform<Integer, String>() {
-                                    @Override
-                                    public String transform(Integer source) {
-                                        return UnicodeUtilities.getSubheader().getSubheader(source);
-                                    }
-                                },
-                                false)
-                        .setMain("subhead", "subhead", UnicodeProperty.STRING, "1.1"));
-
-        add(
                 new UnicodeSetProperty()
                         .set("[:^nfcqc=n:]")
                         .setMain("isNFC", "isNFC", UnicodeProperty.BINARY, "1.1"));
