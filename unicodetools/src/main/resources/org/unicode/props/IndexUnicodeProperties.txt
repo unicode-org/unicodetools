@@ -450,6 +450,23 @@ Unihan ; kXerox ; v5.1
 Unihan ; kXHC1983 ; v5.1
 Unihan ; kZVariant ; v5.1
 
+CJKXREF ; kGB0      ; 1 ; v1.1.5
+CJKXREF ; kGB1      ; 1 ; v1.1.5
+CJKXREF ; kGB3      ; 1 ; v1.1.5
+CJKXREF ; kGB5      ; 1 ; v1.1.5
+CJKXREF ; kGB7      ; 1 ; v1.1.5
+CJKXREF ; kGB8      ; 1 ; v1.1.5
+CJKXREF ; kBigFive  ; 2 ; v1.1.5
+CJKXREF ; kCNS1986  ; 3 ; v1.1.5
+CJKXREF ; kJis0     ; 4 ; v1.1.5
+CJKXREF ; kJis1     ; 4 ; v1.1.5
+CJKXREF ; kIBMJapan ; 4 ; v1.1.5
+CJKXREF ; kKSC0     ; 5 ; v1.1.5
+CJKXREF ; kKSC1     ; 5 ; v1.1.5
+CJKXREF ; kEACC     ; 6 ; v1.1.5
+CJKXREF ; kCCCII    ; 7 ; v1.1.5
+CJKXREF ; kXerox    ; 8 ; v1.1.5
+
 # Extras
 
 ScriptExtensions ; Script_Extensions

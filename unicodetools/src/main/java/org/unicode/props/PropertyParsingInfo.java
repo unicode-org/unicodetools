@@ -587,6 +587,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             indexUnicodeProperties.getFileNames().add(fullFilename);
             UcdLineParser parser = new UcdLineParser(FileUtilities.in("", fullFilename));
             if (fileName.startsWith("Unihan")
+                    || fileName.equals("CJKXREF")
                     || fileName.startsWith("Unikemet")
                     || (fileName.endsWith("Sources") && !fileName.startsWith("Emoji"))
                     || fileName.startsWith("k")) {
@@ -1474,6 +1475,22 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     // 1F80; 1F80; 1F88; 1F08 0399; # GREEK SMALL LETTER ALPHA WITH PSILI AND
                     // YPOGEGRAMMENI
                     merger = new PropertyUtilities.Overrider();
+                }
+                if (indexUnicodeProperties.ucdVersion == VersionInfo.UNICODE_1_1_0) {
+                    if (propInfo.property.getShortName().startsWith("cjk") && value.equals("*")) {
+                        continue;
+                    }
+                    // Some CJKXREF fields combine multiple Unihan properties.
+                    if (Pattern.matches("k(GB|Jis|KSC)[0-9]|kIBMJapan", propInfo.property.name())) {
+                        String[] valueParts = value.split("-");
+                        if (propInfo.property.name().endsWith(valueParts[0])
+                                || (propInfo.property == UcdProperty.kIBMJapan
+                                        && valueParts[0].equals("I"))) {
+                            value = valueParts[1];
+                        } else {
+                            continue;
+                        }
+                    }
                 }
                 propInfo.put(
                         data,
