@@ -1483,7 +1483,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         if (propInfo.property.name().endsWith(valueParts[0])
                                 || propInfo.property == UcdProperty.kIBMJapan
                                         && valueParts[0].equals("I")) {
-                            value = valueParts[2];
+                            value = valueParts[1];
                         } else {
                             return;
                         }
