@@ -1036,8 +1036,10 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 111C2..111C3  ; Consonant_Prefixed # Lo   [2] SHARADA SIGN JIHVAMULIYA..SHARADA SIGN UPADHMANIYA
 1193F         ; Consonant_Prefixed # Lo       DIVES AKURU PREFIXED NASAL SIGN
-11A3A         ; Consonant_Prefixed # Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
-11A84..11A89  ; Consonant_Prefixed # Lo   [6] SOYOMBO SIGN JIHVAMULIYA..SOYOMBO CLUSTER-INITIAL LETTER SA
+11A3A         ; Consonant_With_Stacker # Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
+11A84..11A85  ; Consonant_Prefixed # Lo   [6] SOYOMBO SIGN JIHVAMULIYA..
+11A86         ; Consonant_Preceding_Repha
+11A87..11A89  ; Consonant_Prefixed # Lo   [6] ..SOYOMBO CLUSTER-INITIAL LETTER SA
 
 # ================================================
 
