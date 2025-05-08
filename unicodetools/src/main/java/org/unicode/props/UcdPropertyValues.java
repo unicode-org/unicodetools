@@ -1147,6 +1147,38 @@ public class UcdPropertyValues {
         }
     }
 
+    public enum IDNA2008_Category_Values implements Named {
+        Protocol_Valid("PVALID"),
+        Contextual_Rule_Required_Join_Controls("CONTEXTJ"),
+        Contextual_Rule_Required_Other("CONTEXTO"),
+        Disallowed("DISALLOWED"),
+        Unassigned("UNASSIGNED");
+        private final PropertyNames<IDNA2008_Category_Values> names;
+
+        private IDNA2008_Category_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<IDNA2008_Category_Values>(
+                            IDNA2008_Category_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<IDNA2008_Category_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<IDNA2008_Category_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(IDNA2008_Category_Values.class);
+
+        public static IDNA2008_Category_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     public enum Indic_Conjunct_Break_Values implements Named {
         Consonant("Consonant"),
         Extend("Extend"),

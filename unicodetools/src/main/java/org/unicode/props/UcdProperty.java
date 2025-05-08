@@ -15,6 +15,7 @@ import org.unicode.props.UcdPropertyValues.East_Asian_Width_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.props.UcdPropertyValues.Hangul_Syllable_Type_Values;
+import org.unicode.props.UcdPropertyValues.IDNA2008_Category_Values;
 import org.unicode.props.UcdPropertyValues.Identifier_Status_Values;
 import org.unicode.props.UcdPropertyValues.Identifier_Type_Values;
 import org.unicode.props.UcdPropertyValues.Idn_2008_Values;
@@ -621,6 +622,12 @@ public enum UcdProperty {
             Hangul_Syllable_Type_Values.class,
             null,
             "hst"),
+    IDNA2008_Category(
+            PropertyType.Enumerated,
+            DerivedPropertyStatus.NonUCDProperty,
+            IDNA2008_Category_Values.class,
+            null,
+            "IDNA2008_Category"),
     Identifier_Status(
             PropertyType.Enumerated,
             DerivedPropertyStatus.NonUCDProperty,
