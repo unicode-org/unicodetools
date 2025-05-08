@@ -163,6 +163,7 @@ public class TestInvariants extends TestFmwkMinusMinus {
                         UcdProperty.Pattern_Syntax,
                         UcdProperty.Vertical_Orientation,
                         UcdProperty.Extended_Pictographic,
+                        UcdProperty.IDNA2008_Category, // Noncharacters are disallowed.
                         UcdProperty.Names_List_Cross_Ref,
                         UcdProperty.Names_List_Comment,
                         UcdProperty.Names_List_Subheader,
