@@ -284,6 +284,8 @@ public class TestCodeInvariants {
                     case Sentence_Break:
                         expectedRedundant = Set.of("Sp");
                         break;
+                    case IDNA2008_Category:
+                        expectedRedundant = Set.of("Disallowed");
                     default:
                         expectedRedundant = Set.of();
                         break;
