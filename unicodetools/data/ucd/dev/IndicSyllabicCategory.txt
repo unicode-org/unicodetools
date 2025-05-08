@@ -473,8 +473,8 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 11909         ; Vowel_Independent # Lo       DIVES AKURU LETTER O
 119A0..119A7  ; Vowel_Independent # Lo   [8] NANDINAGARI LETTER A..NANDINAGARI LETTER VOCALIC RR
 119AA..119AD  ; Vowel_Independent # Lo   [4] NANDINAGARI LETTER E..NANDINAGARI LETTER AU
-11A00         ; Vowel_Independent # Lo       ZANABAZAR SQUARE LETTER A
-11A50         ; Vowel_Independent # Lo       SOYOMBO LETTER A
+11A00         ; Consonant # Lo       ZANABAZAR SQUARE LETTER A
+11A50         ; Consonant # Lo       SOYOMBO LETTER A
 11C00..11C08  ; Vowel_Independent # Lo   [9] BHAIKSUKI LETTER A..BHAIKSUKI LETTER VOCALIC L
 11C0A..11C0D  ; Vowel_Independent # Lo   [4] BHAIKSUKI LETTER E..BHAIKSUKI LETTER AU
 11D00..11D06  ; Vowel_Independent # Lo   [7] MASARAM GONDI LETTER A..MASARAM GONDI LETTER E
@@ -803,7 +803,7 @@ A926..A92A    ; Vowel # Mn   [5] KAYAH LI VOWEL UE..KAYAH LI VOWEL O
 0A72..0A73    ; Consonant_Placeholder # Lo   [2] GURMUKHI IRI..GURMUKHI URA
 104B          ; Consonant_Placeholder # Po       MYANMAR SIGN SECTION
 104E          ; Consonant_Placeholder # Po       MYANMAR SYMBOL AFOREMENTIONED
-1900          ; Consonant_Placeholder # Lo       LIMBU VOWEL-CARRIER LETTER
+1900          ; Consonant # Lo       LIMBU VOWEL-CARRIER LETTER
 1CFA          ; Consonant_Placeholder # Lo       VEDIC SIGN DOUBLE ANUSVARA ANTARGOMUKHA
 2010..2014    ; Consonant_Placeholder # Pd   [5] HYPHEN..EM DASH
 25CC          ; Consonant_Placeholder # So       DOTTED CIRCLE
