@@ -1120,8 +1120,8 @@ public class TestJsp extends TestFmwkMinusMinus {
     public void TestSimpleSet() {
         checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{idna2003=valid}");
         checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{idna=valid}");
-        checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{uts46=valid}");
-        checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{idna2008=PVALID}");
+        checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{Idn_Status=valid}");
+        checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{IDNA2008_Category=PVALID}");
         checkUnicodeSetParse("[\\u1234\\uABCD-\\uAC00]", "U+1234 U+ABCD-U+AC00");
         checkUnicodeSetParse("[\\u1234\\uABCD-\\uAC00]", "U+1234 U+ABCD..U+AC00");
     }
