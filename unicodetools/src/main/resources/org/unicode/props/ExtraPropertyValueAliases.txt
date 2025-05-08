@@ -356,6 +356,11 @@ kEH_Core ; N ; None
 # @missing: 0000..10FFFF; RGI_Emoji_Qualification ; None
 RGI_Emoji_Qualification ; None ; None
 # Value aliases from UTS #51.
-RGI_Emoji_Qualification ; FQE ; Fully_Qualified
-RGI_Emoji_Qualification ; MQE ; Minimally_Qualified
-RGI_Emoji_Qualification ; UQE ; Unqualified
+RGI_Emoji_Qualification ; FQE       ; Fully_Qualified
+RGI_Emoji_Qualification ; MQE       ; Minimally_Qualified
+RGI_Emoji_Qualification ; UQE       ; Unqualified
+# [181-C56] Consensus: In UTS #51 ED-28, add a new property value with long name
+# "Standalone_Component" and short name "component" corresponding to the
+# "component" field value in the associated data file. For Unicode Version 17.0.
+# See L2/24-224 item 9.1.
+RGI_Emoji_Qualification ; component ; Standalone_Component
