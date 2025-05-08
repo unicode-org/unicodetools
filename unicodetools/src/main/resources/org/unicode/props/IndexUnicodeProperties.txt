@@ -529,6 +529,14 @@ emoji/*/emoji-sequences; RGI_Emoji_Tag_Sequence
 emoji/*/emoji-zwj-sequences; RGI_Emoji_Zwj_Sequence
 
 emoji/*/emoji-test ; RGI_Emoji_Qualification ; 1
+# This binary property is defined by a derivation, but not provided directly in
+# data files.  The derivation depends on multiple files, which is highly
+# inconvenient for the index.  Instead we use a simpler alternate derivation and
+# verify in the invariant tests that they are equivalent.
+# The simpler derivation is
+#   \p{RGI_Emoji} := [\p{RGI_Emoji_Qualification=Fully_Qualified}
+#                     \p{RGI_Emoji_Qualification=Standalone_Component}].
+emoji/*/emoji-test ; RGI_Emoji ; 1
 
 FileType ; Unikemet ; PropertyValue
 Unikemet ; kEH_Cat

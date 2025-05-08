@@ -77,6 +77,7 @@
 # @missing: 0000..10FFFF; RGI_Emoji_Modifier_Sequence  ;  No
 # @missing: 0000..10FFFF; RGI_Emoji_Tag_Sequence  ;  No
 # @missing: 0000..10FFFF; RGI_Emoji_Zwj_Sequence  ;  No
+# @missing: 0000..10FFFF; RGI_Emoji ; No
 
 # @missing: 0000..10FFFF; Emoji  	; No
 # @missing: 0000..10FFFF; Emoji_Presentation  	; No
