@@ -1506,13 +1506,25 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                         return null;
                     }
                 }
-                Path path = Settings.UnicodeTools.getDataPath(base, element);
-                if (path != null) {
-                    var filePath = path.resolve(parts[2] + fileType);
-                    if (filePath.toFile().exists()) {
-                        result = filePath.toString();
+                if (parts[2].equals("Idna2008")
+                        && currentVersion.compareTo(VersionInfo.UNICODE_16_0) <= 0) {
+                    Path path = Settings.UnicodeTools.getDataPath(base, "idna2008derived");
+                    if (path != null) {
+                        var filePath = path.resolve(parts[2] + "-" + element + fileType);
+                        if (filePath.toFile().exists()) {
+                            result = filePath.toString();
+                        }
+                        break;
                     }
-                    break;
+                } else {
+                    Path path = Settings.UnicodeTools.getDataPath(base, element);
+                    if (path != null) {
+                        var filePath = path.resolve(parts[2] + fileType);
+                        if (filePath.toFile().exists()) {
+                            result = filePath.toString();
+                        }
+                        break;
+                    }
                 }
                 continue;
             }

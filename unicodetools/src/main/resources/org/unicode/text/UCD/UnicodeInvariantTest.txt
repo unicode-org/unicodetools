@@ -1113,6 +1113,109 @@ Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 \p{emoji_variation_sequence=text style} ⊃ [{♈︎}]
 \p{emoji_variation_sequence=emoji style} ⊃ [{♈️}]
 
+# The file emoji-test.txt states that
+# • The RGI set is covered by the listed fully-qualified emoji.
+# RGI_Emoji is defined by a derivation, but not provided directly in data files;
+# and the derivation depends on multiple files, which is problematic for the
+# tools.  It is therefore easier to get it from emoji-test than by the
+# derivation, but we must check that the two match.
+# It turns out that the statement in emoji-test.txt is not quite right:
+# Since Unicode 12.0, the RGI set is the union of the sets of fully-qualified
+# emoji and of components.
+# We test every Unicode version until 16.0, because this test was not added
+# until 17.0β.   Going forward the versionless test will take care of this.
+# We do not test Emoji version 13.1, because it does not really work in the
+# tools.  See https://github.com/unicode-org/unicodetools/issues/100.
+# There is no definition of the RGI set prior to Unicode 11.0, only the RGI
+# sequence set is defined:
+# https://www.unicode.org/reports/tr51/tr51-14.html#def_rgi_sequences;
+# Compare Unicode 12.0:
+# https://www.unicode.org/reports/tr51/tr51-16.html#def_rgi_set,
+# (In 11.0 there is also no data file for Basic_Emoji.)
+[
+  \p{U12.0:Basic_Emoji}
+  \p{U12.0:RGI_Emoji_Keycap_Sequence}
+  \p{U12.0:RGI_Emoji_Modifier_Sequence}
+  \p{U12.0:RGI_Emoji_Flag_Sequence}
+  \p{U12.0:RGI_Emoji_Tag_Sequence}
+  \p{U12.0:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U12.0:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U12.0:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U13.0:Basic_Emoji}
+  \p{U13.0:RGI_Emoji_Keycap_Sequence}
+  \p{U13.0:RGI_Emoji_Modifier_Sequence}
+  \p{U13.0:RGI_Emoji_Flag_Sequence}
+  \p{U13.0:RGI_Emoji_Tag_Sequence}
+  \p{U13.0:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U13.0:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U13.0:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U14:Basic_Emoji}
+  \p{U14:RGI_Emoji_Keycap_Sequence}
+  \p{U14:RGI_Emoji_Modifier_Sequence}
+  \p{U14:RGI_Emoji_Flag_Sequence}
+  \p{U14:RGI_Emoji_Tag_Sequence}
+  \p{U14:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U14:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U14:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U15:Basic_Emoji}
+  \p{U15:RGI_Emoji_Keycap_Sequence}
+  \p{U15:RGI_Emoji_Modifier_Sequence}
+  \p{U15:RGI_Emoji_Flag_Sequence}
+  \p{U15:RGI_Emoji_Tag_Sequence}
+  \p{U15:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U15:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U15:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U15.1:Basic_Emoji}
+  \p{U15.1:RGI_Emoji_Keycap_Sequence}
+  \p{U15.1:RGI_Emoji_Modifier_Sequence}
+  \p{U15.1:RGI_Emoji_Flag_Sequence}
+  \p{U15.1:RGI_Emoji_Tag_Sequence}
+  \p{U15.1:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U15.1:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U15.1:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U16.0:Basic_Emoji}
+  \p{U16.0:RGI_Emoji_Keycap_Sequence}
+  \p{U16.0:RGI_Emoji_Modifier_Sequence}
+  \p{U16.0:RGI_Emoji_Flag_Sequence}
+  \p{U16.0:RGI_Emoji_Tag_Sequence}
+  \p{U16.0:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U16.0:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U16.0:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{Basic_Emoji}
+  \p{RGI_Emoji_Keycap_Sequence}
+  \p{RGI_Emoji_Modifier_Sequence}
+  \p{RGI_Emoji_Flag_Sequence}
+  \p{RGI_Emoji_Tag_Sequence}
+  \p{RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{RGI_Emoji_Qualification=Fully_Qualified}
+  \p{RGI_Emoji_Qualification=Standalone_Component}
+]
+
 ##########################
 # POSIX Compatibility Properties (UTS#18)
 # http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html

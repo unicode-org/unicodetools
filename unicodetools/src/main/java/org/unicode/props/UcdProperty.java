@@ -15,6 +15,7 @@ import org.unicode.props.UcdPropertyValues.East_Asian_Width_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.props.UcdPropertyValues.Hangul_Syllable_Type_Values;
+import org.unicode.props.UcdPropertyValues.IDNA2008_Category_Values;
 import org.unicode.props.UcdPropertyValues.Identifier_Status_Values;
 import org.unicode.props.UcdPropertyValues.Identifier_Type_Values;
 import org.unicode.props.UcdPropertyValues.Idn_2008_Values;
@@ -31,6 +32,7 @@ import org.unicode.props.UcdPropertyValues.NFKC_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Other_Joining_Type_Values;
+import org.unicode.props.UcdPropertyValues.RGI_Emoji_Qualification_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UcdPropertyValues.Sentence_Break_Values;
 import org.unicode.props.UcdPropertyValues.Vertical_Orientation_Values;
@@ -620,6 +622,12 @@ public enum UcdProperty {
             Hangul_Syllable_Type_Values.class,
             null,
             "hst"),
+    IDNA2008_Category(
+            PropertyType.Enumerated,
+            DerivedPropertyStatus.NonUCDProperty,
+            IDNA2008_Category_Values.class,
+            null,
+            "IDNA2008_Category"),
     Identifier_Status(
             PropertyType.Enumerated,
             DerivedPropertyStatus.NonUCDProperty,
@@ -716,6 +724,12 @@ public enum UcdProperty {
             Other_Joining_Type_Values.class,
             null,
             "Other_Joining_Type"),
+    RGI_Emoji_Qualification(
+            PropertyType.Enumerated,
+            DerivedPropertyStatus.NonUCDProperty,
+            RGI_Emoji_Qualification_Values.class,
+            null,
+            "RGI_Emoji_Qualification"),
     Sentence_Break(
             PropertyType.Enumerated,
             DerivedPropertyStatus.Approved,
@@ -852,6 +866,12 @@ public enum UcdProperty {
             PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "PCM"),
     Quotation_Mark(
             PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "QMark"),
+    RGI_Emoji(
+            PropertyType.Binary,
+            DerivedPropertyStatus.NonUCDProperty,
+            Binary.class,
+            null,
+            "RGI_Emoji"),
     RGI_Emoji_Flag_Sequence(
             PropertyType.Binary,
             DerivedPropertyStatus.NonUCDProperty,
