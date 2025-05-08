@@ -1989,7 +1989,8 @@ public class UcdPropertyValues {
         Fully_Qualified("FQE"),
         Minimally_Qualified("MQE"),
         Unqualified("UQE"),
-        Standalone_Component("component");
+        Standalone_Component("component"),
+        Non_Fully_Qualified("Non_Fully_Qualified");
         private final PropertyNames<RGI_Emoji_Qualification_Values> names;
 
         private RGI_Emoji_Qualification_Values(String shortName, String... otherNames) {
