@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2025-05-07, 04:01:07 GMT
+# Date: 2025-05-08, 21:27:26 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -906,12 +906,12 @@
 	(‎ ... ‎)	002E 002E 002E	 FULL STOP, FULL STOP, FULL STOP
 ←	(‎ … ‎)	2026	 HORIZONTAL ELLIPSIS
 
-#	/	ノ	丿	Ⳇ	〳	᜵	⁁	⁄	∕	╱	⟋	⧸	㇓	𝈺	⼃
+#	/	ノ	Ⳇ	〳	丿	᜵	⁁	⁄	∕	╱	⟋	⧸	㇓	𝈺	⼃
 	(‎ / ‎)	002F	 SOLIDUS
 ←	(‎ ノ ‎)	30CE	 KATAKANA LETTER NO	# →⼃→
-←	(‎ 丿 ‎)	4E3F	 CJK UNIFIED IDEOGRAPH-4E3F	# →⼃→
 ←	(‎ Ⳇ ‎)	2CC6	 COPTIC CAPITAL LETTER OLD COPTIC ESH
 ←	(‎ 〳 ‎)	3033	 VERTICAL KANA REPEAT MARK UPPER HALF
+←	(‎ 丿 ‎)	4E3F	 CJK UNIFIED IDEOGRAPH-4E3F	# →⼃→
 ←	(‎ ᜵ ‎)	1735	 PHILIPPINE SINGLE PUNCTUATION
 ←	(‎ ⁁ ‎)	2041	 CARET INSERTION POINT
 ←	(‎ ⁄ ‎)	2044	 FRACTION SLASH
@@ -9271,6 +9271,14 @@
 	(‎ ཹ ‎)	0F79	 TIBETAN VOWEL SIGN VOCALIC LL
 ←	(‎ ླཱྀ ‎)	0FB3 0F71 0F80	 TIBETAN SUBJOINED LETTER LA, TIBETAN VOWEL SIGN AA, TIBETAN VOWEL SIGN REVERSED I
 
+#	ེེ	ཻ
+	(‎ ེེ ‎)	0F7A 0F7A	 TIBETAN VOWEL SIGN E, TIBETAN VOWEL SIGN E
+←	(‎ ཻ ‎)	0F7B	 TIBETAN VOWEL SIGN EE
+
+#	ོོ	ཽ
+	(‎ ོོ ‎)	0F7C 0F7C	 TIBETAN VOWEL SIGN O, TIBETAN VOWEL SIGN O
+←	(‎ ཽ ‎)	0F7D	 TIBETAN VOWEL SIGN OO
+
 #	卐	࿕
 	(‎ ࿕ ‎)	0FD5	 RIGHT-FACING SVASTI SIGN
 ←	(‎ 卐 ‎)	5350	 CJK UNIFIED IDEOGRAPH-5350
@@ -10600,7 +10608,7 @@
 ←	(‎ ᆔ ‎)	1194	 HANGUL JUNGSEONG YU-I
 ←	(‎ ㆌ ‎)	318C	 HANGUL LETTER YU-I	# →ᆔ→
 
-#	ー	一	ᅳ	—	―	─	━	㇐	ꟷ	ㅡ	⼀	－
+#	ー	ᅳ	一	—	―	─	━	㇐	ꟷ	ㅡ	⼀	－
 	(‎ ᅳ ‎)	1173	 HANGUL JUNGSEONG EU
 ←	(‎ ー ‎)	30FC	 KATAKANA-HIRAGANA PROLONGED SOUND MARK	# →一→→—→→ㅡ→
 ←	(‎ 一 ‎)	4E00	 CJK UNIFIED IDEOGRAPH-4E00	# →—→→ㅡ→
@@ -17489,5 +17497,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 7408
+# total : 7410
 
