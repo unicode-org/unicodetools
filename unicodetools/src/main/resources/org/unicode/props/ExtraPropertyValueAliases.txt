@@ -258,6 +258,14 @@ idn8 ; NV8   ; NV8
 idn8 ; XV8   ; XV8
 idn8 ; na	 ; na
 
+# @missing: 0000..10FFFF; IDNA2008_Category ; Unassigned
+# Long names after the text of https://www.rfc-editor.org/rfc/rfc5892.txt.
+IDNA2008_Category ; PVALID     ; Protocol_Valid
+IDNA2008_Category ; CONTEXTJ   ; Contextual_Rule_Required_Join_Controls
+IDNA2008_Category ; CONTEXTO   ; Contextual_Rule_Required_Other
+IDNA2008_Category ; DISALLOWED ; Disallowed
+IDNA2008_Category ; UNASSIGNED ; Unassigned
+
 # @missing: 0000..10FFFF; Idn_Mapping  ; <code point>
 
 # @missing: 0000..10FFFF; Identifier_Status  	; r

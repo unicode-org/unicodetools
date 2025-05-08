@@ -21,8 +21,7 @@ ID_Type ; Identifier_Type ; NonUCDProperty
 idns ; Idn_Status ; NonUCDNonProperty
 idn8 ; Idn_2008 ; NonUCDNonProperty
 
-# TODO(egg): Add this.
-# IDNA2008_Category ; IDNA2008_Category ; NonUCDProperty
+IDNA2008_Category ; IDNA2008_Category ; NonUCDProperty
 
 # Unofficial contributory property used in the derivation of Joining_Type.
 Other_Joining_Type ; Other_Joining_Type ; UCDNonProperty
