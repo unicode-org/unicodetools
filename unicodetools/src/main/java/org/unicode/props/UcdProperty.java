@@ -866,6 +866,12 @@ public enum UcdProperty {
             PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "PCM"),
     Quotation_Mark(
             PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "QMark"),
+    RGI_Emoji(
+            PropertyType.Binary,
+            DerivedPropertyStatus.NonUCDProperty,
+            Binary.class,
+            null,
+            "RGI_Emoji"),
     RGI_Emoji_Flag_Sequence(
             PropertyType.Binary,
             DerivedPropertyStatus.NonUCDProperty,

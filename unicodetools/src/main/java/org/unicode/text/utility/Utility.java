@@ -1506,7 +1506,8 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                         return null;
                     }
                 }
-                if (parts[2].equals("Idna2008") && currentVersion.compareTo(VersionInfo.UNICODE_16_0) <= 0) {
+                if (parts[2].equals("Idna2008")
+                        && currentVersion.compareTo(VersionInfo.UNICODE_16_0) <= 0) {
                     Path path = Settings.UnicodeTools.getDataPath(base, "idna2008derived");
                     if (path != null) {
                         var filePath = path.resolve(parts[2] + "-" + element + fileType);
