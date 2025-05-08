@@ -1,5 +1,5 @@
 # formatted-source.txt
-# Date: 2025-05-07, 04:01:06 GMT
+# Date: 2025-05-08, 21:27:25 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2335,6 +2335,10 @@
 0F60 0F74 0F82 0F7F ;	0F02	# ( འུྂཿ ~ ༂ ) TIBETAN LETTER -A, TIBETAN VOWEL SIGN U, TIBETAN SIGN NYI ZLA NAA DA, TIBETAN SIGN RNAM BCAD ~ TIBETAN MARK GTER YIG MGO -UM RNAM BCAD MA
 
 0F68 0F7C 0F7E ;	0F00	# ( ཨོཾ ~ ༀ ) TIBETAN LETTER A, TIBETAN VOWEL SIGN O, TIBETAN SIGN RJES SU NGA RO ~ TIBETAN SYLLABLE OM
+
+0F7A 0F7A ;	0F7B	# ( ེེ ~ ཻ ) TIBETAN VOWEL SIGN E, TIBETAN VOWEL SIGN E ~ TIBETAN VOWEL SIGN EE
+
+0F7C 0F7C ;	0F7D	# ( ོོ ~ ཽ ) TIBETAN VOWEL SIGN O, TIBETAN VOWEL SIGN O ~ TIBETAN VOWEL SIGN OO
 
 1002 102C ;	1000	# ( ဂာ ~ က ) MYANMAR LETTER GA, MYANMAR VOWEL SIGN AA ~ MYANMAR LETTER KA
 

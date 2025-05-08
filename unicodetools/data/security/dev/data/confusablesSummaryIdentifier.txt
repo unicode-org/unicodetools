@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2025-05-07, 21:39:36 GMT
+# Date: 2025-05-08, 21:27:26 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1144,6 +1144,14 @@
 	(‎ ๋ ‎)	0E4B	 THAI CHARACTER MAI CHATTAWA
 ←	(‎ ໋ ‎)	0ECB	 LAO TONE MAI CATAWA
 
+#	ེེ	ཻ
+	(‎ ེེ ‎)	0F7A 0F7A	 TIBETAN VOWEL SIGN E, TIBETAN VOWEL SIGN E
+←	(‎ ཻ ‎)	0F7B	 TIBETAN VOWEL SIGN EE
+
+#	ོོ	ཽ
+	(‎ ོོ ‎)	0F7C 0F7C	 TIBETAN VOWEL SIGN O, TIBETAN VOWEL SIGN O
+←	(‎ ཽ ‎)	0F7D	 TIBETAN VOWEL SIGN OO
+
 #	ဂာ	က
 	(‎ က ‎)	1000	 MYANMAR LETTER KA
 ←	(‎ ဂာ ‎)	1002 102C	 MYANMAR LETTER GA, MYANMAR VOWEL SIGN AA
@@ -1173,5 +1181,5 @@
 	(‎ へ ‎)	3078	 HIRAGANA LETTER HE
 ←	(‎ ヘ ‎)	30D8	 KATAKANA LETTER HE
 
-# total : 419
+# total : 421
 
