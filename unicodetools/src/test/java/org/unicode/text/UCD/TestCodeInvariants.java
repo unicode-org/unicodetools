@@ -285,7 +285,7 @@ public class TestCodeInvariants {
                         expectedRedundant = Set.of("Sp");
                         break;
                     case IDNA2008_Category:
-                        expectedRedundant = Set.of("Disallowed");
+                        expectedRedundant = Set.of("Disallowed", "Unassigned");
                         break;
                     default:
                         expectedRedundant = Set.of();
