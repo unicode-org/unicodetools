@@ -1984,6 +1984,37 @@ public class UcdPropertyValues {
         }
     }
 
+    public enum RGI_Emoji_Qualification_Values implements Named {
+        None("None"),
+        Fully_Qualified("FQE"),
+        Minimally_Qualified("MQE"),
+        Unqualified("UQE");
+        private final PropertyNames<RGI_Emoji_Qualification_Values> names;
+
+        private RGI_Emoji_Qualification_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<RGI_Emoji_Qualification_Values>(
+                            RGI_Emoji_Qualification_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<RGI_Emoji_Qualification_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<RGI_Emoji_Qualification_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(RGI_Emoji_Qualification_Values.class);
+
+        public static RGI_Emoji_Qualification_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     public enum Script_Values implements Named {
         Adlam("Adlm"),
         Caucasian_Albanian("Aghb"),

@@ -31,6 +31,7 @@ import org.unicode.props.UcdPropertyValues.NFKC_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Other_Joining_Type_Values;
+import org.unicode.props.UcdPropertyValues.RGI_Emoji_Qualification_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UcdPropertyValues.Sentence_Break_Values;
 import org.unicode.props.UcdPropertyValues.Vertical_Orientation_Values;
@@ -716,6 +717,12 @@ public enum UcdProperty {
             Other_Joining_Type_Values.class,
             null,
             "Other_Joining_Type"),
+    RGI_Emoji_Qualification(
+            PropertyType.Enumerated,
+            DerivedPropertyStatus.NonUCDProperty,
+            RGI_Emoji_Qualification_Values.class,
+            null,
+            "RGI_Emoji_Qualification"),
     Sentence_Break(
             PropertyType.Enumerated,
             DerivedPropertyStatus.Approved,
