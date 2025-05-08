@@ -31,8 +31,7 @@ Do_Not_Emit_Type ; Do_Not_Emit_Type ; UCDNonProperty
 
 kEH_Core                 ; kEH_Core ; Provisional
 
-# TODO(egg): Add this.
-# RGI_Emoji_Qualification ; RGI_Emoji_Qualification ; NonUCDProperty
+RGI_Emoji_Qualification ; RGI_Emoji_Qualification ; NonUCDProperty
 
 # ================================================
 # String Properties

@@ -526,7 +526,7 @@ emoji/*/emoji-sequences; RGI_Emoji_Keycap_Sequence
 emoji/*/emoji-sequences; RGI_Emoji_Tag_Sequence
 emoji/*/emoji-zwj-sequences; RGI_Emoji_Zwj_Sequence
 
-#emoji/*/emoji-test ; Emoji_Short_Name
+emoji/*/emoji-test ; RGI_Emoji_Qualification ; 1
 
 FileType ; Unikemet ; PropertyValue
 Unikemet ; kEH_Cat

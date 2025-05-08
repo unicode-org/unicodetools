@@ -352,3 +352,10 @@ kEH_Core ; N ; None
 # @missing: 0000..10FFFF; kEH_AltSeq ; <none>
 
 # @missing: 0000..10FFFF; Names_List_Cross_Ref ; <none>
+
+# @missing: 0000..10FFFF; RGI_Emoji_Qualification ; None
+RGI_Emoji_Qualification ; None ; None
+# Value aliases from UTS #51.
+RGI_Emoji_Qualification ; FQE ; Fully_Qualified
+RGI_Emoji_Qualification ; MQE ; Minimally_Qualified
+RGI_Emoji_Qualification ; UQE ; Unqualified
