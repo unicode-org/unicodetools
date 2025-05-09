@@ -1492,6 +1492,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         }
                     }
                 }
+                if (propInfo.property == UcdProperty.RGI_Emoji) {
+                    if (value.equals("fully-qualified") || value.equals("component")) {
+                        value = "Yes";
+                    } else {
+                        value = "No";
+                    }
+                }
                 propInfo.put(
                         data,
                         line.getMissingSet(),

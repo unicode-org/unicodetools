@@ -1,5 +1,5 @@
 # confusables.txt
-# Date: 2025-05-07, 04:01:07 GMT
+# Date: 2025-05-08, 21:27:26 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -6034,6 +6034,10 @@ FE19 ;	2D57 ;	MA	#* ( ︙ → ⵗ ) PRESENTATION FORM FOR VERTICAL HORIZONTAL EL
 
 0F79 ;	0FB3 0F71 0F80 ;	MA	# ( ཹ → ླཱྀ ) TIBETAN VOWEL SIGN VOCALIC LL → TIBETAN SUBJOINED LETTER LA, TIBETAN VOWEL SIGN AA, TIBETAN VOWEL SIGN REVERSED I	# 
 
+0F7B ;	0F7A 0F7A ;	MA	# ( ཻ → ེེ ) TIBETAN VOWEL SIGN EE → TIBETAN VOWEL SIGN E, TIBETAN VOWEL SIGN E	# 
+
+0F7D ;	0F7C 0F7C ;	MA	# ( ཽ → ོོ ) TIBETAN VOWEL SIGN OO → TIBETAN VOWEL SIGN O, TIBETAN VOWEL SIGN O	# 
+
 11CB2 ;	11CAA ;	MA	# ( 𑲲 → 𑲪 ) MARCHEN VOWEL SIGN U → MARCHEN SUBJOINED LETTER RA	# 
 
 1734 ;	1715 ;	MA	# ( ᜴ → ᜕ ) HANUNOO SIGN PAMUDPOD → TAGALOG SIGN PAMUDPOD	# 
@@ -9810,5 +9814,5 @@ A7CF ;	A7CE ;	MA	# ( ꟏ → ꟎ ) LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIV
 
 6138 ;	2B73F ;	MA	# ( 愸 → 𫜿 ) CJK UNIFIED IDEOGRAPH-6138 → CJK UNIFIED IDEOGRAPH-2B73F	# 
 
-# total: 6445
+# total: 6447
 

@@ -8,8 +8,7 @@ REFS ; RGI_Emoji_Flag_Sequence ; Emoji_Flag_Sequence ; NonUCDProperty
 REKS ; RGI_Emoji_Keycap_Sequence ; Emoji_Keycap_Sequence ; Emoji_Combining_Sequence ; NonUCDProperty
 RETS ; RGI_Emoji_Tag_Sequence ; Emoji_Tag_Sequence ; NonUCDProperty
 REZS ; RGI_Emoji_Zwj_Sequence ; Emoji_Zwj_Sequence ; NonUCDProperty
-# TODO(egg): Add this.
-# RE ; RGI_Emoji ; NonUCDProperty
+RGI_Emoji ; RGI_Emoji ; NonUCDProperty
 
 # ================================================
 # Enumerated Properties
@@ -21,8 +20,7 @@ ID_Type ; Identifier_Type ; NonUCDProperty
 idns ; Idn_Status ; NonUCDNonProperty
 idn8 ; Idn_2008 ; NonUCDNonProperty
 
-# TODO(egg): Add this.
-# IDNA2008_Category ; IDNA2008_Category ; NonUCDProperty
+IDNA2008_Category ; IDNA2008_Category ; NonUCDProperty
 
 # Unofficial contributory property used in the derivation of Joining_Type.
 Other_Joining_Type ; Other_Joining_Type ; UCDNonProperty
@@ -31,8 +29,7 @@ Do_Not_Emit_Type ; Do_Not_Emit_Type ; UCDNonProperty
 
 kEH_Core                 ; kEH_Core ; Provisional
 
-# TODO(egg): Add this.
-# RGI_Emoji_Qualification ; RGI_Emoji_Qualification ; NonUCDProperty
+RGI_Emoji_Qualification ; RGI_Emoji_Qualification ; NonUCDProperty
 
 # ================================================
 # String Properties
