@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="Tangut data" id='schema.tangut'>
   code-point-attributes &amp;=
-    attribute kRSTUnicode { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
+    attribute <edit flag='removed'>kRSTUnicode</edit><edit flag='changed'>kTGT_RSUnicode</edit> { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
 
   code-point-attributes &amp;=
     attribute kTGT_MergedSrc 
-     { xsd:string {pattern="L2008-[0-9A-F]{4,5}(-[0-9]{4,5})?"}
-     | xsd:string {pattern="L2006-[0-9]{4}"}
-     | xsd:string {pattern="L1997-[0-9]{4}"}
-     | xsd:string {pattern="L1986-[0-9]{4}"}
-     | xsd:string {pattern="S1968-[0-9]{4}"}
-     | xsd:string {pattern="N1966-[0-9]{3}(-[0-9A-Z]{3,4})?"}
-     | xsd:string {pattern="H2004-[A-Z]-[0-9]{4}"}
-     | xsd:string {pattern="L2012-[0-9]{4}"}
-     | xsd:string {pattern="UTN42-[0-9]{3}"}
+     { xsd:string {pattern="H2004-[AB]-\d{4}"}
+     | xsd:string {pattern="H2021-\d{6}"}
+     | xsd:string {pattern="L(19(86|97)|20(06|12))-\d{4}"}
+     | xsd:string {pattern="L2008-\d{4}([AB]|-\d{4})?"}
+     | xsd:string {pattern="N1966-\d{3}-\d{2}[0-9A-Z]{1,2}"}
+     | xsd:string {pattern="N5217-\d{2}"}
+     | xsd:string {pattern="S1968-\d{4}"}
+     | xsd:string {pattern="UTN42-\d{3}"}
      }?
 </ucdxml:block>

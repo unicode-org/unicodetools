@@ -32,7 +32,7 @@
 							<dir>${project.basedir}</dir>
 							<xincludeAware>true</xincludeAware>
 							<includes>
-								<include>index.xml</include>
+								<include>tr42.xml</include>
 							</includes>
 							<stylesheet>index2html.xsl</stylesheet>
 							<outputDir>${outputdir}</outputDir>
@@ -46,7 +46,7 @@
 							<dir>${project.basedir}</dir>
 							<xincludeAware>true</xincludeAware>
 							<includes>
-								<include>index.xml</include>
+								<include>tr42.xml</include>
 							</includes>
 							<stylesheet>index2rnc.xsl</stylesheet>
 							<outputDir>${outputdir}</outputDir>

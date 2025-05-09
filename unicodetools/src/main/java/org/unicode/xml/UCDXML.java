@@ -194,6 +194,10 @@ public class UCDXML {
         // Tangut
         // int lowCodePoint = 0x17000;
         // int highCodePoint = 0x1B2FB;
+        // Unikemet
+        // int lowCodePoint = 0x13000;
+        // int highCodePoint = 0x143FA;
+        // Last code point
         // 0x10FFFF
 
         File tempFile = new File(destinationFolder, "temp.xml");
@@ -232,12 +236,16 @@ public class UCDXML {
                 ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.BLOCKS);
                 ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.NAMEDSEQUENCES);
                 ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.PROVISIONALNAMEDSEQUENCES);
-                ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.NORMALIZATIONCORRECTIONS);
+                if (ucdVersion.compareTo(VersionInfo.getInstance(17, 0, 0)) < 0) {
+                    ucdDataResolver.buildSection(
+                            UCDSectionDetail.UcdSection.NORMALIZATIONCORRECTIONS);
+                }
                 ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.STANDARDIZEDVARIANTS);
                 if (ucdVersion.compareTo(VersionInfo.getInstance(5, 2, 0)) >= 0) {
                     ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.CJKRADICALS);
                 }
-                if (ucdVersion.compareTo(VersionInfo.getInstance(6, 0, 0)) >= 0) {
+                if (ucdVersion.compareTo(VersionInfo.getInstance(6, 0, 0)) >= 0
+                        && ucdVersion.compareTo(VersionInfo.getInstance(17, 0, 0)) < 0) {
                     ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.EMOJISOURCES);
                 }
                 if (ucdVersion.compareTo(VersionInfo.getInstance(16, 0, 0)) >= 0) {
@@ -662,6 +670,7 @@ public class UCDXML {
                         getIsAttributeIncluded(
                                 attrValue,
                                 attributeResolver.isUnihanAttributeRange(CodePoint),
+                                attributeResolver.isUnikemetAttributeRange(CodePoint),
                                 propDetail,
                                 prop,
                                 outputRange);
@@ -731,6 +740,7 @@ public class UCDXML {
                             getIsAttributeIncluded(
                                     bestAttrValue,
                                     attributeResolver.isUnihanAttributeRange(lowCodePoint),
+                                    attributeResolver.isUnikemetAttributeRange(lowCodePoint),
                                     propDetail,
                                     prop,
                                     outputRange);
@@ -751,6 +761,7 @@ public class UCDXML {
     private static boolean getIsAttributeIncluded(
             String attrValue,
             boolean isUnihanAttributeRange,
+            boolean isUnikemetAttributeRange,
             UCDPropertyDetail propDetail,
             UcdProperty prop,
             UCDXMLOUTPUTRANGE outputRange) {
@@ -774,6 +785,9 @@ public class UCDXML {
             if (propDetail.isCJKShowIfEmpty()) {
                 return true;
             }
+        }
+        if (propDetail.isUnikemetAttribute() && !isUnikemetAttributeRange) {
+            return false;
         }
         if (propDetail.isBaseAttribute()) {
             return true;

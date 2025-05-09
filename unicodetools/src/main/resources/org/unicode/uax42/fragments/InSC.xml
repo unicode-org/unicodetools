@@ -15,6 +15,7 @@
                    | "Consonant_Placeholder"
                    | "Consonant_Preceding_Repha"
                    | "Consonant_Prefixed"
+                   | <edit flag='changed'>"Consonant_Repha"</edit>
                    | "Consonant_Subjoined"
                    | "Consonant_Succeeding_Repha"
                    | "Consonant_With_Stacker"

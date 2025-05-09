@@ -4,6 +4,7 @@
     attribute InPC { "Bottom"
                    | "Bottom_And_Left"
                    | "Bottom_And_Right"
+                   | <edit flag='changed'>"Invisible"</edit>
                    | "Left"
                    | "Left_And_Right"
                    | "NA"

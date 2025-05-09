@@ -5,7 +5,8 @@
       element instead {
         attribute of { one-or-more-code-points },
         attribute use { one-or-more-code-points },
-        attribute because { "Bengali_Khanda_Ta"
+        attribute because { "Arabic_Tashkil"
+                          | "Bengali_Khanda_Ta"
                           | "Deprecated"
                           | "Discouraged"
                           | "Dotless_Form"
@@ -14,6 +15,7 @@
                           | "Indic_Consonant_Conjunct"
                           | "Indic_Vowel_Letter"
                           | "Malayalam_Chillu"
+                          | <edit flag='changed'>"None"</edit>
                           | "Precomposed_Form"
                           | "Precomposed_Hieroglyph"
                           | "Preferred_Spelling"

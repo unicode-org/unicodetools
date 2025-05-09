@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 import org.unicode.props.PropertyParsingInfo;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.*;
+import org.unicode.props.ValueCardinality;
 import org.unicode.text.utility.Settings;
 
 /**
@@ -55,6 +56,7 @@ public class GeneratePropertyValues {
         TANGUT("tangut"),
         NUSHU("nushu"),
         EMOJI_DATA("emoji-data"),
+        UNIKEMET("unikemet"),
         // Manual
         BLOCK("block"),
         // Manual
@@ -80,11 +82,11 @@ public class GeneratePropertyValues {
         }
     }
 
-    private static final class TR38Details {
+    private static final class TRDetails {
         boolean isList;
         String syntax;
 
-        public TR38Details(boolean isList, String syntax) {
+        public TRDetails(boolean isList, String syntax) {
             this.isList = isList;
             this.syntax = syntax;
         }
@@ -105,9 +107,11 @@ public class GeneratePropertyValues {
             System.lineSeparator() + System.lineSeparator() + System.lineSeparator();
     private static File destinationFolder = null;
 
-    private static HashMap<String, TR38Details> syntaxTR38;
+    private static HashMap<String, TRDetails> syntaxTR38;
+    private static HashMap<String, TRDetails> syntaxTR57;
     private static final String NAMESPACE = "http://unicode.org/ns/2001/ucdxml";
-    private static final String TR38URL = "https://www.unicode.org/reports/tr38";
+    private static final String TR38URL = "https://www.unicode.org/reports/tr38/proposed.html";
+    private static final String TR57URL = "https://www.unicode.org/reports/tr57/proposed.html";
     private static final UOption[] options = {
         UOption.HELP_H(),
         UOption.create("ucdversion", 'v', UOption.OPTIONAL_ARG),
@@ -174,7 +178,8 @@ public class GeneratePropertyValues {
             // It would be nice to be able to generate values by ucdVersion. Leaving this here for
             // now...
             VersionInfo ucdVersion) throws IOException, URISyntaxException {
-        syntaxTR38 = parseTR38();
+        syntaxTR38 = parseTR(TR38URL);
+        syntaxTR57 = parseTR(TR57URL);
 
         createPropertyFragment(
                 SCHEMA.BOOLEAN,
@@ -303,10 +308,6 @@ public class GeneratePropertyValues {
                 SCHEMA.PROPERTIES,
                 getFormattedScriptProperties());
         createPropertyFragment(
-                UcdProperty.ISO_Comment,
-                SCHEMA.PROPERTIES,
-                getFormattedSyntax(UcdProperty.ISO_Comment));
-        createPropertyFragment(
                 UcdProperty.Hangul_Syllable_Type,
                 SCHEMA.PROPERTIES,
                 getFormattedAttribute(
@@ -371,6 +372,8 @@ public class GeneratePropertyValues {
                 "Nushu.xml", "Nushu data", SCHEMA.NUSHU, getFormattedNushuProperties());
         createPropertyFragment(
                 "Emoji.xml", "Emoji properties", SCHEMA.EMOJI_DATA, getFormattedEmojiProperties());
+        createPropertyFragment(
+                "Unikemet.xml", "Unikemet data", SCHEMA.UNIKEMET, getFormattedUnikemetProperties());
         createPropertyFragment(
                 "do-not-emit.xml",
                 "do-not-emit",
@@ -510,6 +513,9 @@ public class GeneratePropertyValues {
             case Do_Not_Emit_Type:
                 values = getDoNotEmitTypeValues();
                 break;
+            case kEH_Core:
+                values = getkEHCoreValues();
+                break;
 
             default:
                 throw new IllegalStateException(
@@ -536,8 +542,10 @@ public class GeneratePropertyValues {
     private static String getFormattedSyntax(UcdProperty ucdProperty) {
         final PropertyParsingInfo propInfo = PropertyParsingInfo.getPropertyInfo(ucdProperty);
         if (propInfo.getRegex() == null) {
-            throw new NullPointerException(
-                    "Could not find syntax for " + ucdProperty.getShortName());
+            if (ucdProperty != UcdProperty.kEH_AltSeq) {
+                throw new NullPointerException(
+                        "Could not find syntax for " + ucdProperty.getShortName());
+            }
         }
 
         String attributeString =
@@ -579,7 +587,6 @@ public class GeneratePropertyValues {
                 break;
 
                 // { "#" | one-or-more-code-points }
-            case FC_NFKC_Closure:
             case Uppercase_Mapping:
             case Lowercase_Mapping:
             case Titlecase_Mapping:
@@ -637,23 +644,21 @@ public class GeneratePropertyValues {
                 // Ideally, should be obtained from a TR.
                 String kTGT_MergedSrc =
                         NEWLINE
-                                + "     { xsd:string {pattern=\"L2008-[0-9A-F]{4,5}(-[0-9]{4,5})?\"}"
+                                + "     { xsd:string {pattern=\"H2004-[AB]-\\d{4}\"}"
                                 + NEWLINE
-                                + "     | xsd:string {pattern=\"L2006-[0-9]{4}\"}"
+                                + "     | xsd:string {pattern=\"H2021-\\d{6}\"}"
                                 + NEWLINE
-                                + "     | xsd:string {pattern=\"L1997-[0-9]{4}\"}"
+                                + "     | xsd:string {pattern=\"L(19(86|97)|20(06|12))-\\d{4}\"}"
                                 + NEWLINE
-                                + "     | xsd:string {pattern=\"L1986-[0-9]{4}\"}"
+                                + "     | xsd:string {pattern=\"L2008-\\d{4}([AB]|-\\d{4})?\"}"
                                 + NEWLINE
-                                + "     | xsd:string {pattern=\"S1968-[0-9]{4}\"}"
+                                + "     | xsd:string {pattern=\"N1966-\\d{3}-\\d{2}[0-9A-Z]{1,2}\"}"
                                 + NEWLINE
-                                + "     | xsd:string {pattern=\"N1966-[0-9]{3}(-[0-9A-Z]{3,4})?\"}"
+                                + "     | xsd:string {pattern=\"N5217-\\d{2}\"}"
                                 + NEWLINE
-                                + "     | xsd:string {pattern=\"H2004-[A-Z]-[0-9]{4}\"}"
+                                + "     | xsd:string {pattern=\"S1968-\\d{4}\"}"
                                 + NEWLINE
-                                + "     | xsd:string {pattern=\"L2012-[0-9]{4}\"}"
-                                + NEWLINE
-                                + "     | xsd:string {pattern=\"UTN42-[0-9]{3}\"}"
+                                + "     | xsd:string {pattern=\"UTN42-\\d{3}\"}"
                                 + NEWLINE
                                 + "     }?";
                 formattedAttributeString = attributeString + kTGT_MergedSrc;
@@ -663,13 +668,34 @@ public class GeneratePropertyValues {
                 String kReading = "{ xsd:string }?";
                 formattedAttributeString = attributeString + kReading;
                 break;
+                // Currently, kEH_FVal is a Provisional property, and some of the values don't match
+                // the Syntax in
+                // UAX 57. Use this for now.
+            case kEH_FVal:
+                String kEH_FVal = "{ text }?";
+                formattedAttributeString = attributeString + kEH_FVal;
+                break;
+                // Currently, kEH_AltSeq isn't listed in the proposed UAX 57. Use this for now.
+            case kEH_AltSeq:
+                String kEH_AltSeq = "{ text }?";
+                formattedAttributeString = attributeString + kEH_AltSeq;
+                break;
 
             default:
-                formattedAttributeString =
-                        attributeString
-                                + "{ xsd:string { pattern=\""
-                                + cleanRegex(propInfo.getRegex().toString())
-                                + "\" } }?";
+                if (propInfo.getMultivalued() == ValueCardinality.Unordered
+                        || propInfo.getMultivalued() == ValueCardinality.Ordered) {
+                    formattedAttributeString =
+                            attributeString
+                                    + "{ list { xsd:string { pattern=\""
+                                    + cleanRegex(propInfo.getRegex().toString())
+                                    + "\" }+ } }?";
+                } else {
+                    formattedAttributeString =
+                            attributeString
+                                    + "{ xsd:string { pattern=\""
+                                    + cleanRegex(propInfo.getRegex().toString())
+                                    + "\" } }?";
+                }
         }
         return "  code-point-attributes &amp;=" + NEWLINE + formattedAttributeString;
     }
@@ -685,12 +711,24 @@ public class GeneratePropertyValues {
         }
 
         String attributeString = " attribute " + ucdProperty.getShortName().substring(2);
-        TR38Details tr38Details = syntaxTR38.get(ucdProperty.name());
-        if (tr38Details == null) {
+        TRDetails trDetails = syntaxTR38.get(ucdProperty.name());
+        if (trDetails == null) {
             throw new NullPointerException(
                     "Could not locate details for " + ucdProperty.name() + " in " + TR38URL);
         }
-        String formattedSyntax = formatTR38Syntax(tr38Details, isShowIfEmpty);
+        String formattedSyntax = formatTRSyntax(trDetails, isShowIfEmpty);
+
+        return "  code-point-attributes &amp;=" + attributeString + NEWLINE + formattedSyntax;
+    }
+
+    private static String getFormattedTR57Syntax(UcdProperty ucdProperty) {
+        String attributeString = " attribute " + ucdProperty.getShortName();
+        TRDetails trDetails = syntaxTR57.get(ucdProperty.name());
+        if (trDetails == null) {
+            throw new NullPointerException(
+                    "Could not locate details for " + ucdProperty.name() + " in " + TR57URL);
+        }
+        String formattedSyntax = formatTRSyntax(trDetails, false);
 
         return "  code-point-attributes &amp;=" + attributeString + NEWLINE + formattedSyntax;
     }
@@ -759,11 +797,11 @@ public class GeneratePropertyValues {
                 + "      } }+ }?";
     }
 
-    private static String formatTR38Syntax(TR38Details tr38Details, boolean isShowIfEmpty) {
+    private static String formatTRSyntax(TRDetails trDetails, boolean isShowIfEmpty) {
         // TODO: We should determine whether we still want to show empty values in the XML files.
         // TODO: See org.unicode.xml.UcdPropertyDetail.isCJKShowIfEmpty()
-        boolean isList = tr38Details.isList();
-        String syntax = cleanRegex(tr38Details.getSyntax());
+        boolean isList = trDetails.isList();
+        String syntax = cleanRegex(trDetails.getSyntax());
         // This is a kludge as it depends on only having single OR double quotes in the syntax. If
         // we have both, we'll
         // need to do more investigation on what RELAXNG Compact supports.
@@ -939,7 +977,10 @@ public class GeneratePropertyValues {
     }
 
     private static String cleanRegex(String regex) {
-        return regex.replaceAll("\\[-", "[\\\\-").replaceAll("\\\\/", "/").replaceAll("\\\\'", "'");
+        return regex.replaceAll("\\[-", "[\\\\-")
+                .replaceAll("\\\\/", "/")
+                .replaceAll("\\\\'", "'")
+                .replaceAll("\\t", "");
     }
 
     // ********************* Combined properties ********************//
@@ -967,17 +1008,7 @@ public class GeneratePropertyValues {
                         UcdProperty.NFKC_Quick_Check, VALUESOUTPUTTYPE.MAX_LINE_LENGTH)
                 + DOUBLELINE
                 + getFormattedAttribute(
-                        UcdProperty.NFKD_Quick_Check, VALUESOUTPUTTYPE.MAX_LINE_LENGTH)
-                + TRIPLELINE
-                + getFormattedBoolean(UcdProperty.Expands_On_NFC)
-                + DOUBLELINE
-                + getFormattedBoolean(UcdProperty.Expands_On_NFD)
-                + DOUBLELINE
-                + getFormattedBoolean(UcdProperty.Expands_On_NFKC)
-                + DOUBLELINE
-                + getFormattedBoolean(UcdProperty.Expands_On_NFKD)
-                + TRIPLELINE
-                + getFormattedSyntax(UcdProperty.FC_NFKC_Closure);
+                        UcdProperty.NFKD_Quick_Check, VALUESOUTPUTTYPE.MAX_LINE_LENGTH);
     }
 
     private static String getFormattedNumericProperties() {
@@ -1082,8 +1113,6 @@ public class GeneratePropertyValues {
     private static String getFormattedFunctionGraphicProperties() {
         return getFormattedBoolean(UcdProperty.Dash)
                 + DOUBLELINE
-                + getFormattedBoolean(UcdProperty.Hyphen)
-                + DOUBLELINE
                 + getFormattedBoolean(UcdProperty.Quotation_Mark)
                 + DOUBLELINE
                 + getFormattedBoolean(UcdProperty.Terminal_Punctuation)
@@ -1132,8 +1161,6 @@ public class GeneratePropertyValues {
                 + getFormattedBoolean(UcdProperty.Grapheme_Extend)
                 + DOUBLELINE
                 + getFormattedBoolean(UcdProperty.Other_Grapheme_Extend)
-                + DOUBLELINE
-                + getFormattedBoolean(UcdProperty.Grapheme_Link)
                 + DOUBLELINE
                 + getFormattedAttribute(
                         UcdProperty.Grapheme_Cluster_Break, VALUESOUTPUTTYPE.ALPHABETICAL_GROUP)
@@ -1217,8 +1244,6 @@ public class GeneratePropertyValues {
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kGB5)
                 + DOUBLELINE
-                + getFormattedTR38Syntax(UcdProperty.kGB7)
-                + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kGB8)
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kGradeLevel)
@@ -1268,8 +1293,6 @@ public class GeneratePropertyValues {
                 + getFormattedTR38Syntax(UcdProperty.kIRGHanyuDaZidian)
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kIRGKangXi)
-                + DOUBLELINE
-                + getFormattedTR38Syntax(UcdProperty.kJa)
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kJapanese)
                 + DOUBLELINE
@@ -1345,6 +1368,8 @@ public class GeneratePropertyValues {
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kTang)
                 + DOUBLELINE
+                + getFormattedTR38Syntax(UcdProperty.kTayNumeric)
+                + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kTGH)
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kTGHZ2013)
@@ -1394,6 +1419,34 @@ public class GeneratePropertyValues {
                 + getFormattedBoolean(UcdProperty.Emoji_Component)
                 + DOUBLELINE
                 + getFormattedBoolean(UcdProperty.Extended_Pictographic);
+    }
+
+    private static String getFormattedUnikemetProperties() {
+        return getFormattedTR57Syntax(UcdProperty.kEH_Cat)
+                + DOUBLELINE
+                + getFormattedAttribute(UcdProperty.kEH_Core, VALUESOUTPUTTYPE.MAX_LINE_LENGTH)
+                + DOUBLELINE
+                + getFormattedTR57Syntax(UcdProperty.kEH_Desc)
+                + DOUBLELINE
+                + getFormattedTR57Syntax(UcdProperty.kEH_Func)
+                + DOUBLELINE
+                // Force kEH_FVal to text while under development.
+                + getFormattedSyntax(UcdProperty.kEH_FVal)
+                + DOUBLELINE
+                + getFormattedTR57Syntax(UcdProperty.kEH_UniK)
+                + DOUBLELINE
+                + getFormattedTR57Syntax(UcdProperty.kEH_JSesh)
+                + DOUBLELINE
+                + getFormattedTR57Syntax(UcdProperty.kEH_HG)
+                + DOUBLELINE
+                + getFormattedTR57Syntax(UcdProperty.kEH_IFAO)
+                + DOUBLELINE
+                + getFormattedBoolean(UcdProperty.kEH_NoMirror)
+                + DOUBLELINE
+                + getFormattedBoolean(UcdProperty.kEH_NoRotate)
+                + DOUBLELINE
+                // Force kEH_AltSeq to text while under development.
+                + getFormattedSyntax(UcdProperty.kEH_AltSeq);
     }
 
     // ********************* Attribute values ********************//
@@ -1717,11 +1770,21 @@ public class GeneratePropertyValues {
         return values;
     }
 
+    private static List<String> getkEHCoreValues() {
+        List<String> values = new ArrayList<>();
+        for (kEH_Core_Values kEHCoreValues : kEH_Core_Values.values()) {
+            values.add(kEHCoreValues.getShortName());
+        }
+        Collections.sort(values);
+        return values;
+    }
+
     // ********************* Utility methods ********************//
 
-    private static HashMap<String, TR38Details> parseTR38() throws IOException, URISyntaxException {
-        HashMap<String, TR38Details> syntaxTR38 = new HashMap<>();
-        URI uri = new URI(TR38URL);
+    private static HashMap<String, TRDetails> parseTR(String url)
+            throws IOException, URISyntaxException {
+        HashMap<String, TRDetails> syntaxTR = new HashMap<>();
+        URI uri = new URI(url);
         StringBuilder stringBuilder = new StringBuilder();
         try (InputStream is = uri.toURL().openStream()) {
             int ptr = 0;
@@ -1736,9 +1799,22 @@ public class GeneratePropertyValues {
         Matcher matcher = syntaxPattern.matcher(stringBuilder.toString());
         while (matcher.find()) {
             String delimiter = matcher.group(2).trim();
+            if (delimiter.contains("</span>")) {
+                delimiter =
+                        delimiter
+                                .replaceAll("<span class=\"removed\">[^<]*</span>", "")
+                                .replaceAll("<span class=\"changed\">", "")
+                                .replaceAll("</span>", "");
+            }
             boolean isList = false;
             switch (delimiter) {
                 case "N/A":
+                    break;
+                    // The next two are to support two Provisional attributes in Unikemet. We'll
+                    // process these as
+                    // exceptions for now
+                case "/ (see description)": // kEH_Func
+                case "/ or | (see description)": // kEH_FVal
                     break;
                 case "space":
                     isList = true;
@@ -1749,10 +1825,17 @@ public class GeneratePropertyValues {
                                     + " Found: "
                                     + delimiter);
             }
-            TR38Details tr38Details =
-                    new TR38Details(isList, matcher.group(3).trim().replaceAll("<br>", ""));
-            syntaxTR38.put(matcher.group(1).trim(), tr38Details);
+            TRDetails trDetails =
+                    new TRDetails(
+                            isList,
+                            matcher.group(3)
+                                    .trim()
+                                    .replaceAll("<br>", "")
+                                    .replaceAll("<span class=\"removed\">.*?</span>", "")
+                                    .replaceAll("<span class=\"changed\">", "")
+                                    .replaceAll("</span>", ""));
+            syntaxTR.put(matcher.group(1).trim(), trDetails);
         }
-        return syntaxTR38;
+        return syntaxTR;
     }
 }

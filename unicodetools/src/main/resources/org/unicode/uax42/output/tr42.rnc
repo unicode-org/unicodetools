@@ -1,0 +1,1484 @@
+
+    # Copyright © 2025 Unicode, Inc.
+
+    
+      
+  default namespace ucd = "http://www.unicode.org/ns/2003/ucd/1.0"
+
+      
+  # default; datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+  single-code-point = xsd:string { pattern = "(|[1-9A-F]|(10))[0-9A-F]{4}" }
+
+  one-or-more-code-points = list { single-code-point + }
+  zero-or-more-code-points = list { single-code-point * }
+  two-code-points = list { single-code-point, single-code-point }
+
+
+
+      
+  start =
+    element ucd { ucd.content }
+
+      
+  boolean = "Y" | "N"
+
+      
+  ucd.content &=
+    element description { text }?
+
+      
+  ucd.content &=
+    element repertoire { (code-point | group) + }?
+
+  set-of-code-points =
+     attribute cp { single-code-point }
+   | ( attribute first-cp { single-code-point },
+       attribute last-cp  { single-code-point } )
+
+  code-point |=
+    element reserved {
+      set-of-code-points,
+      code-point-attributes }
+
+  code-point |=
+    element noncharacter {
+      set-of-code-points,
+      code-point-attributes }
+
+  code-point |=
+    element surrogate {
+      set-of-code-points,
+      code-point-attributes }
+
+  code-point |=
+    element char {
+      set-of-code-points,
+      code-point-attributes }
+
+  group =
+    element group {
+      code-point-attributes,
+      code-point* }
+
+      
+  code-point-attributes &=
+    attribute age { "1.1"
+                  | "2.0" | "2.1"
+                  | "3.0" | "3.1" | "3.2"
+                  | "4.0" | "4.1"
+                  | "5.0" | "5.1" | "5.2"
+                  | "6.0" | "6.1" | "6.2" | "6.3"
+                  | "7.0"
+                  | "8.0"
+                  | "9.0"
+                  | "10.0"
+                  | "11.0"
+                  | "12.0" | "12.1"
+                  | "13.0"
+                  | "14.0"
+                  | "15.0" | "15.1"
+                  | "16.0"
+                  | "17.0"
+                  | "unassigned"
+                  }?
+
+  code-point-attributes &=
+    attribute na { "" |
+                   "CJK UNIFIED IDEOGRAPH-#" |
+                   "CJK COMPATIBILITY IDEOGRAPH-#" |
+                   "EGYPTIAN HIEROGLYPH-#" |
+                   "TANGUT IDEOGRAPH-#" |
+                   "KHITAN SMALL SCRIPT CHARACTER-#" |
+                   "NUSHU CHARACTER-#" |
+                   xsd:string { pattern="[a-zA-Z0-9]+(( -|- |[\-_ ])[a-zA-Z0-9]+)*" }
+                 }?
+
+  code-point-attributes &=
+    attribute na1 { "" | xsd:string { pattern="[a-zA-Z0-9]+([\-_ ][a-zA-Z0-9]+)*( \(.*\))?" } }?
+
+  code-point-attributes &=
+    element name-alias {
+      attribute alias { xsd:string { pattern="[a-zA-Z0-9]+(( -|- |[\-_ ])[a-zA-Z0-9]+)*" } }?,
+      attribute type  { "abbreviation" | "alternate"
+                      | "control" | "correction"
+                      | "figment"
+                      }? } *
+
+  code-point-attributes &=
+    attribute blk { "Adlam"
+                  | "Aegean_Numbers"
+                  | "Ahom"
+                  | "Alchemical"
+                  | "Alphabetic_PF"
+                  | "Anatolian_Hieroglyphs"
+                  | "Ancient_Greek_Music"
+                  | "Ancient_Greek_Numbers"
+                  | "Ancient_Symbols"
+                  | "Arabic"
+                  | "Arabic_Ext_A"
+                  | "Arabic_Ext_B"
+                  | "Arabic_Ext_C"
+                  | "Arabic_Math"
+                  | "Arabic_PF_A"
+                  | "Arabic_PF_B"
+                  | "Arabic_Sup"
+                  | "Armenian"
+                  | "Arrows"
+                  | "ASCII"
+                  | "Avestan"
+                  | "Balinese"
+                  | "Bamum"
+                  | "Bamum_Sup"
+                  | "Bassa_Vah"
+                  | "Batak"
+                  | "Bengali"
+                  | "Beria_Erfe"
+                  | "Bhaiksuki"
+                  | "Block_Elements"
+                  | "Bopomofo"
+                  | "Bopomofo_Ext"
+                  | "Box_Drawing"
+                  | "Brahmi"
+                  | "Braille"
+                  | "Buginese"
+                  | "Buhid"
+                  | "Byzantine_Music"
+                  | "Carian"
+                  | "Caucasian_Albanian"
+                  | "Chakma"
+                  | "Cham"
+                  | "Cherokee"
+                  | "Cherokee_Sup"
+                  | "Chess_Symbols"
+                  | "Chisoi"
+                  | "Chorasmian"
+                  | "CJK"
+                  | "CJK_Compat"
+                  | "CJK_Compat_Forms"
+                  | "CJK_Compat_Ideographs"
+                  | "CJK_Compat_Ideographs_Sup"
+                  | "CJK_Ext_A"
+                  | "CJK_Ext_B"
+                  | "CJK_Ext_C"
+                  | "CJK_Ext_D"
+                  | "CJK_Ext_E"
+                  | "CJK_Ext_F"
+                  | "CJK_Ext_G"
+                  | "CJK_Ext_H"
+                  | "CJK_Ext_I"
+                  | "CJK_Ext_J"
+                  | "CJK_Radicals_Sup"
+                  | "CJK_Strokes"
+                  | "CJK_Symbols"
+                  | "Compat_Jamo"
+                  | "Control_Pictures"
+                  | "Coptic"
+                  | "Coptic_Epact_Numbers"
+                  | "Counting_Rod"
+                  | "Cuneiform"
+                  | "Cuneiform_Numbers"
+                  | "Currency_Symbols"
+                  | "Cypriot_Syllabary"
+                  | "Cypro_Minoan"
+                  | "Cyrillic"
+                  | "Cyrillic_Ext_A"
+                  | "Cyrillic_Ext_B"
+                  | "Cyrillic_Ext_C"
+                  | "Cyrillic_Ext_D"
+                  | "Cyrillic_Sup"
+                  | "Deseret"
+                  | "Devanagari"
+                  | "Devanagari_Ext"
+                  | "Devanagari_Ext_A"
+                  | "Diacriticals"
+                  | "Diacriticals_Ext"
+                  | "Diacriticals_For_Symbols"
+                  | "Diacriticals_Sup"
+                  | "Dingbats"
+                  | "Dives_Akuru"
+                  | "Dogra"
+                  | "Domino"
+                  | "Duployan"
+                  | "Early_Dynastic_Cuneiform"
+                  | "Egyptian_Hieroglyph_Format_Controls"
+                  | "Egyptian_Hieroglyphs"
+                  | "Egyptian_Hieroglyphs_Ext_A"
+                  | "Elbasan"
+                  | "Elymaic"
+                  | "Emoticons"
+                  | "Enclosed_Alphanum"
+                  | "Enclosed_Alphanum_Sup"
+                  | "Enclosed_CJK"
+                  | "Enclosed_Ideographic_Sup"
+                  | "Ethiopic"
+                  | "Ethiopic_Ext"
+                  | "Ethiopic_Ext_A"
+                  | "Ethiopic_Ext_B"
+                  | "Ethiopic_Sup"
+                  | "Garay"
+                  | "Geometric_Shapes"
+                  | "Geometric_Shapes_Ext"
+                  | "Georgian"
+                  | "Georgian_Ext"
+                  | "Georgian_Sup"
+                  | "Glagolitic"
+                  | "Glagolitic_Sup"
+                  | "Gothic"
+                  | "Grantha"
+                  | "Greek"
+                  | "Greek_Ext"
+                  | "Gujarati"
+                  | "Gunjala_Gondi"
+                  | "Gurmukhi"
+                  | "Gurung_Khema"
+                  | "Half_And_Full_Forms"
+                  | "Half_Marks"
+                  | "Hangul"
+                  | "Hanifi_Rohingya"
+                  | "Hanunoo"
+                  | "Hatran"
+                  | "Hebrew"
+                  | "High_PU_Surrogates"
+                  | "High_Surrogates"
+                  | "Hiragana"
+                  | "IDC"
+                  | "Ideographic_Symbols"
+                  | "Imperial_Aramaic"
+                  | "Indic_Number_Forms"
+                  | "Indic_Siyaq_Numbers"
+                  | "Inscriptional_Pahlavi"
+                  | "Inscriptional_Parthian"
+                  | "IPA_Ext"
+                  | "Jamo"
+                  | "Jamo_Ext_A"
+                  | "Jamo_Ext_B"
+                  | "Javanese"
+                  | "Kaithi"
+                  | "Kaktovik_Numerals"
+                  | "Kana_Ext_A"
+                  | "Kana_Ext_B"
+                  | "Kana_Sup"
+                  | "Kanbun"
+                  | "Kangxi"
+                  | "Kannada"
+                  | "Katakana"
+                  | "Katakana_Ext"
+                  | "Kawi"
+                  | "Kayah_Li"
+                  | "Kharoshthi"
+                  | "Khitan_Small_Script"
+                  | "Khmer"
+                  | "Khmer_Symbols"
+                  | "Khojki"
+                  | "Khudawadi"
+                  | "Kirat_Rai"
+                  | "Lao"
+                  | "Latin_1_Sup"
+                  | "Latin_Ext_A"
+                  | "Latin_Ext_Additional"
+                  | "Latin_Ext_B"
+                  | "Latin_Ext_C"
+                  | "Latin_Ext_D"
+                  | "Latin_Ext_E"
+                  | "Latin_Ext_F"
+                  | "Latin_Ext_G"
+                  | "Lepcha"
+                  | "Letterlike_Symbols"
+                  | "Limbu"
+                  | "Linear_A"
+                  | "Linear_B_Ideograms"
+                  | "Linear_B_Syllabary"
+                  | "Lisu"
+                  | "Lisu_Sup"
+                  | "Low_Surrogates"
+                  | "Lycian"
+                  | "Lydian"
+                  | "Mahajani"
+                  | "Mahjong"
+                  | "Makasar"
+                  | "Malayalam"
+                  | "Mandaic"
+                  | "Manichaean"
+                  | "Marchen"
+                  | "Masaram_Gondi"
+                  | "Math_Alphanum"
+                  | "Math_Operators"
+                  | "Mayan_Numerals"
+                  | "Medefaidrin"
+                  | "Meetei_Mayek"
+                  | "Meetei_Mayek_Ext"
+                  | "Mende_Kikakui"
+                  | "Meroitic_Cursive"
+                  | "Meroitic_Hieroglyphs"
+                  | "Miao"
+                  | "Misc_Arrows"
+                  | "Misc_Math_Symbols_A"
+                  | "Misc_Math_Symbols_B"
+                  | "Misc_Pictographs"
+                  | "Misc_Symbols"
+                  | "Misc_Symbols_Sup"
+                  | "Misc_Technical"
+                  | "Modi"
+                  | "Modifier_Letters"
+                  | "Modifier_Tone_Letters"
+                  | "Mongolian"
+                  | "Mongolian_Sup"
+                  | "Mro"
+                  | "Multani"
+                  | "Music"
+                  | "Myanmar"
+                  | "Myanmar_Ext_A"
+                  | "Myanmar_Ext_B"
+                  | "Myanmar_Ext_C"
+                  | "Nabataean"
+                  | "Nag_Mundari"
+                  | "Nandinagari"
+                  | "NB"
+                  | "New_Tai_Lue"
+                  | "Newa"
+                  | "NKo"
+                  | "Number_Forms"
+                  | "Nushu"
+                  | "Nyiakeng_Puachue_Hmong"
+                  | "OCR"
+                  | "Ogham"
+                  | "Ol_Chiki"
+                  | "Ol_Onal"
+                  | "Old_Hungarian"
+                  | "Old_Italic"
+                  | "Old_North_Arabian"
+                  | "Old_Permic"
+                  | "Old_Persian"
+                  | "Old_Sogdian"
+                  | "Old_South_Arabian"
+                  | "Old_Turkic"
+                  | "Old_Uyghur"
+                  | "Oriya"
+                  | "Ornamental_Dingbats"
+                  | "Osage"
+                  | "Osmanya"
+                  | "Ottoman_Siyaq_Numbers"
+                  | "Pahawh_Hmong"
+                  | "Palmyrene"
+                  | "Pau_Cin_Hau"
+                  | "Phags_Pa"
+                  | "Phaistos"
+                  | "Phoenician"
+                  | "Phonetic_Ext"
+                  | "Phonetic_Ext_Sup"
+                  | "Playing_Cards"
+                  | "Psalter_Pahlavi"
+                  | "PUA"
+                  | "Punctuation"
+                  | "Rejang"
+                  | "Rumi"
+                  | "Runic"
+                  | "Samaritan"
+                  | "Saurashtra"
+                  | "Sharada"
+                  | "Sharada_Sup"
+                  | "Shavian"
+                  | "Shorthand_Format_Controls"
+                  | "Siddham"
+                  | "Sidetic"
+                  | "Sinhala"
+                  | "Sinhala_Archaic_Numbers"
+                  | "Small_Forms"
+                  | "Small_Kana_Ext"
+                  | "Sogdian"
+                  | "Sora_Sompeng"
+                  | "Soyombo"
+                  | "Specials"
+                  | "Sundanese"
+                  | "Sundanese_Sup"
+                  | "Sunuwar"
+                  | "Sup_Arrows_A"
+                  | "Sup_Arrows_B"
+                  | "Sup_Arrows_C"
+                  | "Sup_Math_Operators"
+                  | "Sup_PUA_A"
+                  | "Sup_PUA_B"
+                  | "Sup_Punctuation"
+                  | "Sup_Symbols_And_Pictographs"
+                  | "Super_And_Sub"
+                  | "Sutton_SignWriting"
+                  | "Syloti_Nagri"
+                  | "Symbols_And_Pictographs_Ext_A"
+                  | "Symbols_For_Legacy_Computing"
+                  | "Symbols_For_Legacy_Computing_Sup"
+                  | "Syriac"
+                  | "Syriac_Sup"
+                  | "Tagalog"
+                  | "Tagbanwa"
+                  | "Tags"
+                  | "Tai_Le"
+                  | "Tai_Tham"
+                  | "Tai_Viet"
+                  | "Tai_Xuan_Jing"
+                  | "Tai_Yo"
+                  | "Takri"
+                  | "Tamil"
+                  | "Tamil_Sup"
+                  | "Tangsa"
+                  | "Tangut"
+                  | "Tangut_Components"
+                  | "Tangut_Components_Sup"
+                  | "Tangut_Sup"
+                  | "Telugu"
+                  | "Thaana"
+                  | "Thai"
+                  | "Tibetan"
+                  | "Tifinagh"
+                  | "Tirhuta"
+                  | "Todhri"
+                  | "Tolong_Siki"
+                  | "Toto"
+                  | "Transport_And_Map"
+                  | "Tulu_Tigalari"
+                  | "UCAS"
+                  | "UCAS_Ext"
+                  | "UCAS_Ext_A"
+                  | "Ugaritic"
+                  | "Vai"
+                  | "Vedic_Ext"
+                  | "Vertical_Forms"
+                  | "Vithkuqi"
+                  | "VS"
+                  | "VS_Sup"
+                  | "Wancho"
+                  | "Warang_Citi"
+                  | "Yezidi"
+                  | "Yi_Radicals"
+                  | "Yi_Syllables"
+                  | "Yijing"
+                  | "Zanabazar_Square"
+                  | "Znamenny_Music"
+                  }?
+
+  code-point-attributes &=
+    attribute gc { "Cc" | "Cf" | "Cn" | "Co" | "Cs"
+                 | "Ll" | "Lm" | "Lo" | "Lt" | "Lu"
+                 | "Mc" | "Me" | "Mn"
+                 | "Nd" | "Nl" | "No"
+                 | "Pc" | "Pd" | "Pe" | "Pf" | "Pi" | "Po" | "Ps"
+                 | "Sc" | "Sk" | "Sm" | "So"
+                 | "Zl" | "Zp" | "Zs"
+                 }?
+
+  code-point-attributes &=
+    attribute ccc { xsd:integer { minInclusive="0" maxInclusive="254" } }?
+
+  code-point-attributes &=
+    attribute bc { "AL" | "AN"
+                 | "B" | "BN"
+                 | "CS"
+                 | "EN" | "ES" | "ET"
+                 | "FSI"
+                 | "L" | "LRE" | "LRI" | "LRO"
+                 | "NSM"
+                 | "ON"
+                 | "PDF" | "PDI"
+                 | "R" | "RLE" | "RLI" | "RLO"
+                 | "S"
+                 | "WS"
+                 }?
+
+  code-point-attributes &=
+    attribute Bidi_M { boolean }?
+
+  code-point-attributes &=
+    attribute bmg { "" | single-code-point }?
+
+  code-point-attributes &=
+    attribute Bidi_C { boolean }?
+
+  code-point-attributes &=
+    attribute bpt { "o" | "c" | "n" }?
+
+  code-point-attributes &=
+    attribute bpb { "#" | single-code-point }?
+
+  code-point-attributes &=
+    attribute dt { "can" | "com" | "enc" | "fin" | "font" | "fra"
+                 | "init" | "iso" | "med" | "nar" | "nb" | "sml"
+                 | "sqr" | "sub" | "sup" | "vert" | "wide" | "none"
+                 }?
+
+  code-point-attributes &=
+    attribute dm { "#" | zero-or-more-code-points }?
+
+  code-point-attributes &=
+    attribute CE { boolean }?
+
+  code-point-attributes &=
+    attribute Comp_Ex { boolean }?
+
+  code-point-attributes &=
+    attribute NFC_QC { "Y" | "N" | "M" }?
+
+  code-point-attributes &=
+    attribute NFD_QC { "Y" | "N" }?
+
+  code-point-attributes &=
+    attribute NFKC_QC { "Y" | "N" | "M" }?
+
+  code-point-attributes &=
+    attribute NFKD_QC { "Y" | "N" }?
+
+
+
+  code-point-attributes &=
+    attribute nt { "De" | "Di" | "Nu" | "None" }?
+
+  code-point-attributes &=
+    attribute nv { "NaN" | xsd:string { pattern="-?[0-9]+(/[0-9]+)?" } }?
+
+  code-point-attributes &=
+    attribute jt { "C" | "D" | "L" | "R" | "T" | "U" }?
+
+  code-point-attributes &=
+    attribute jg { "African_Feh" | "African_Noon" | "African_Qaf"
+                 | "Ain" | "Alaph" | "Alef"
+                 | "Beh" | "Beth" | "Burushaski_Yeh_Barree"
+                 | "Dal" | "Dalath_Rish"
+                 | "E"
+                 | "Farsi_Yeh" | "Fe" | "Feh" | "Final_Semkath"
+                 | "Gaf" | "Gamal"
+                 | "Hah" | "Hanifi_Rohingya_Kinna_Ya"
+                 | "Hanifi_Rohingya_Pa" | "He" | "Heh" | "Heh_Goal"
+                 | "Heth"
+                 | "Kaf" | "Kaph" | "Kashmiri_Yeh" | "Khaph"
+                 | "Knotted_Heh"
+                 | "Lam" | "Lamadh"
+                 | "Malayalam_Bha" | "Malayalam_Ja" | "Malayalam_Lla"
+                 | "Malayalam_Llla" | "Malayalam_Nga"
+                 | "Malayalam_Nna" | "Malayalam_Nnna"
+                 | "Malayalam_Nya" | "Malayalam_Ra" | "Malayalam_Ssa"
+                 | "Malayalam_Tta" | "Manichaean_Aleph"
+                 | "Manichaean_Ayin" | "Manichaean_Beth"
+                 | "Manichaean_Daleth" | "Manichaean_Dhamedh"
+                 | "Manichaean_Five" | "Manichaean_Gimel"
+                 | "Manichaean_Heth" | "Manichaean_Hundred"
+                 | "Manichaean_Kaph" | "Manichaean_Lamedh"
+                 | "Manichaean_Mem" | "Manichaean_Nun"
+                 | "Manichaean_One" | "Manichaean_Pe"
+                 | "Manichaean_Qoph" | "Manichaean_Resh"
+                 | "Manichaean_Sadhe" | "Manichaean_Samekh"
+                 | "Manichaean_Taw" | "Manichaean_Ten"
+                 | "Manichaean_Teth" | "Manichaean_Thamedh"
+                 | "Manichaean_Twenty" | "Manichaean_Waw"
+                 | "Manichaean_Yodh" | "Manichaean_Zayin" | "Meem"
+                 | "Mim"
+                 | "No_Joining_Group" | "Noon" | "Nun" | "Nya"
+                 | "Pe"
+                 | "Qaf" | "Qaph"
+                 | "Reh" | "Reversed_Pe" | "Rohingya_Yeh"
+                 | "Sad" | "Sadhe" | "Seen" | "Semkath" | "Shin"
+                 | "Straight_Waw" | "Swash_Kaf" | "Syriac_Waw"
+                 | "Tah" | "Taw" | "Teh_Marbuta" | "Teh_Marbuta_Goal"
+                 | "Teth" | "Thin_Noon" | "Thin_Yeh"
+                 | "Vertical_Tail"
+                 | "Waw"
+                 | "Yeh" | "Yeh_Barree" | "Yeh_With_Tail" | "Yudh"
+                 | "Yudh_He"
+                 | "Zain" | "Zhain"
+                 | "BAA"
+                 | "FA"
+                 | "HAA" | "HA_GOAL" | "HA"
+                 | "CAF"
+                 | "KNOTTED_HA"
+                 | "RA"
+                 | "SWASH_CAF"
+                 | "HAMZAH_ON_HA_GOAL"
+                 | "TAA_MARBUTAH"
+                 | "YA_BARREE" | "YA"
+                 | "ALEF_MAQSURAH"
+                 }?
+
+  code-point-attributes &=
+    attribute Join_C { boolean }?
+
+  code-point-attributes &=
+    attribute lb { "AI" | "AK" | "AL" | "AP" | "AS"
+                 | "B2" | "BA" | "BB" | "BK"
+                 | "CB" | "CJ" | "CL" | "CM" | "CP" | "CR"
+                 | "EB" | "EM" | "EX"
+                 | "GL"
+                 | "H2" | "H3" | "HH" | "HL" | "HY"
+                 | "ID" | "IN" | "IS"
+                 | "JL" | "JT" | "JV"
+                 | "LF"
+                 | "NL" | "NS" | "NU"
+                 | "OP"
+                 | "PO" | "PR"
+                 | "QU"
+                 | "RI"
+                 | "SA" | "SG" | "SP" | "SY"
+                 | "VF" | "VI"
+                 | "WJ"
+                 | "XX"
+                 | "ZW" | "ZWJ"
+                 }?
+
+  code-point-attributes &=
+    attribute ea { "A" | "F" | "H" | "N" | "Na" | "W" }?
+
+  code-point-attributes &=
+    attribute Upper { boolean }?
+
+  code-point-attributes &=
+    attribute Lower { boolean }?
+
+  code-point-attributes &=
+    attribute OUpper { boolean }?
+
+  code-point-attributes &=
+    attribute OLower { boolean }?
+
+  code-point-attributes &=
+    attribute suc { "#" | single-code-point }?
+
+  code-point-attributes &=
+    attribute slc { "#" | single-code-point }?
+
+  code-point-attributes &=
+    attribute stc { "#" | single-code-point }?
+
+  code-point-attributes &=
+    attribute uc { "#" | one-or-more-code-points }?
+
+  code-point-attributes &=
+    attribute lc { "#" | one-or-more-code-points }?
+
+  code-point-attributes &=
+    attribute tc { "#" | one-or-more-code-points }?
+
+  code-point-attributes &=
+    attribute scf { "#" | single-code-point }?
+
+  code-point-attributes &=
+    attribute cf { "#" | one-or-more-code-points }?
+
+  code-point-attributes &=
+    attribute CI { boolean }?
+
+  code-point-attributes &=
+    attribute Cased { boolean }?
+
+  code-point-attributes &=
+    attribute CWCF { boolean }?
+
+  code-point-attributes &=
+    attribute CWCM { boolean }?
+
+  code-point-attributes &=
+    attribute CWL { boolean }?
+
+  code-point-attributes &=
+    attribute CWKCF { boolean }?
+
+  code-point-attributes &=
+    attribute CWT { boolean }?
+
+  code-point-attributes &=
+    attribute CWU { boolean }?
+
+  code-point-attributes &=
+    attribute NFKC_CF { "#" | zero-or-more-code-points }?
+
+  code-point-attributes &=
+    attribute NFKC_SCF { "#" | zero-or-more-code-points }?
+
+  script = "Adlm" | "Aghb" | "Ahom" | "Arab" | "Armi" | "Armn"
+           | "Avst"
+           | "Bali" | "Bamu" | "Bass" | "Batk" | "Beng" | "Berf"
+           | "Bhks" | "Bopo" | "Brah" | "Brai" | "Bugi" | "Buhd"
+           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | "Chis"
+           | "Chrs" | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
+           | "Deva" | "Diak" | "Dogr" | "Dsrt" | "Dupl"
+           | "Egyp" | "Elba" | "Elym" | "Ethi"
+           | "Gara" | "Geor" | "Glag" | "Gong" | "Gonm" | "Goth"
+           | "Gran" | "Grek" | "Gujr" | "Gukh" | "Guru"
+           | "Hang" | "Hani" | "Hano" | "Hatr" | "Hebr" | "Hira"
+           | "Hluw" | "Hmng" | "Hmnp" | "Hrkt" | "Hung"
+           | "Ital"
+           | "Java"
+           | "Kali" | "Kana" | "Kawi" | "Khar" | "Khmr" | "Khoj"
+           | "Kits" | "Knda" | "Krai" | "Kthi"
+           | "Lana" | "Laoo" | "Latn" | "Lepc" | "Limb" | "Lina"
+           | "Linb" | "Lisu" | "Lyci" | "Lydi"
+           | "Mahj" | "Maka" | "Mand" | "Mani" | "Marc" | "Medf"
+           | "Mend" | "Merc" | "Mero" | "Mlym" | "Modi" | "Mong"
+           | "Mroo" | "Mtei" | "Mult" | "Mymr"
+           | "Nagm" | "Nand" | "Narb" | "Nbat" | "Newa" | "Nkoo"
+           | "Nshu"
+           | "Ogam" | "Olck" | "Onao" | "Orkh" | "Orya" | "Osge"
+           | "Osma" | "Ougr"
+           | "Palm" | "Pauc" | "Perm" | "Phag" | "Phli" | "Phlp"
+           | "Phnx" | "Plrd" | "Prti"
+           | "Rjng" | "Rohg" | "Runr"
+           | "Samr" | "Sarb" | "Saur" | "Sgnw" | "Shaw" | "Shrd"
+           | "Sidd" | "Sidt" | "Sind" | "Sinh" | "Sogd" | "Sogo"
+           | "Sora" | "Soyo" | "Sund" | "Sunu" | "Sylo" | "Syrc"
+           | "Tagb" | "Takr" | "Tale" | "Talu" | "Taml" | "Tang"
+           | "Tavt" | "Tayo" | "Telu" | "Tfng" | "Tglg" | "Thaa"
+           | "Thai" | "Tibt" | "Tirh" | "Tnsa" | "Todr" | "Tols"
+           | "Toto" | "Tutg"
+           | "Ugar"
+           | "Vaii" | "Vith"
+           | "Wara" | "Wcho"
+           | "Xpeo" | "Xsux"
+           | "Yezi" | "Yiii"
+           | "Zanb" | "Zinh" | "Zyyy" | "Zzzz"
+
+  code-point-attributes &=
+    attribute sc { script }?
+
+  code-point-attributes &=
+    attribute scx { list { script + } }?
+
+  
+
+  code-point-attributes &=
+    attribute hst { "L" | "LV" | "LVT" | "NA" | "T" | "V" }?
+
+  code-point-attributes &=
+    attribute JSN { xsd:string { pattern="[A-Z]{0,3}" } }?
+
+  code-point-attributes &=
+    attribute InSC { "Avagraha"
+                   | "Bindu"
+                   | "Brahmi_Joining_Number"
+                   | "Cantillation_Mark"
+                   | "Consonant"
+                   | "Consonant_Dead"
+                   | "Consonant_Final"
+                   | "Consonant_Head_Letter"
+                   | "Consonant_Initial_Postfixed"
+                   | "Consonant_Killer"
+                   | "Consonant_Medial"
+                   | "Consonant_Placeholder"
+                   | "Consonant_Preceding_Repha"
+                   | "Consonant_Prefixed"
+                   | "Consonant_Repha"
+                   | "Consonant_Subjoined"
+                   | "Consonant_Succeeding_Repha"
+                   | "Consonant_With_Stacker"
+                   | "Gemination_Mark"
+                   | "Invisible_Stacker"
+                   | "Joiner"
+                   | "Modifying_Letter"
+                   | "Non_Joiner"
+                   | "Nukta"
+                   | "Number"
+                   | "Number_Joiner"
+                   | "Other"
+                   | "Pure_Killer"
+                   | "Register_Shifter"
+                   | "Reordering_Killer"
+                   | "Syllable_Modifier"
+                   | "Tone_Letter"
+                   | "Tone_Mark"
+                   | "Virama"
+                   | "Visarga"
+                   | "Vowel"
+                   | "Vowel_Dependent"
+                   | "Vowel_Independent"
+                   }?
+
+  code-point-attributes &=
+    attribute InPC { "Bottom"
+                   | "Bottom_And_Left"
+                   | "Bottom_And_Right"
+                   | "Invisible"
+                   | "Left"
+                   | "Left_And_Right"
+                   | "NA"
+                   | "Overstruck"
+                   | "Right"
+                   | "Top"
+                   | "Top_And_Bottom"
+                   | "Top_And_Bottom_And_Left"
+                   | "Top_And_Bottom_And_Right"
+                   | "Top_And_Left"
+                   | "Top_And_Left_And_Right"
+                   | "Top_And_Right"
+                   | "Visual_Order_Left"
+                   }?
+
+  code-point-attributes &=
+    attribute InCB { "Consonant"
+                   | "Extend"
+                   | "Linker"
+                   | "None"
+                   }?
+
+  code-point-attributes &=
+    attribute IDS { boolean }?
+
+  code-point-attributes &=
+    attribute OIDS { boolean }?
+
+  code-point-attributes &=
+    attribute XIDS { boolean }?
+
+  code-point-attributes &=
+    attribute IDC { boolean }?
+
+  code-point-attributes &=
+    attribute OIDC { boolean }?
+
+  code-point-attributes &=
+    attribute XIDC { boolean }?
+
+  code-point-attributes &=
+    attribute ID_Compat_Math_Start { boolean }?
+
+  code-point-attributes &=
+    attribute ID_Compat_Math_Continue { boolean }?
+
+  code-point-attributes &=
+    attribute Pat_Syn { boolean }?
+
+  code-point-attributes &=
+    attribute Pat_WS { boolean }?
+
+  code-point-attributes &=
+    attribute Dash { boolean }?
+
+
+
+  code-point-attributes &=
+    attribute QMark { boolean }?
+
+  code-point-attributes &=
+    attribute Term { boolean }?
+
+  code-point-attributes &=
+    attribute STerm { boolean }?
+
+  code-point-attributes &=
+    attribute Dia { boolean }?
+
+  code-point-attributes &=
+    attribute Ext { boolean }?
+
+  code-point-attributes &=
+    attribute SD { boolean }?
+
+  code-point-attributes &=
+    attribute Alpha { boolean }?
+
+  code-point-attributes &=
+    attribute OAlpha { boolean }?
+
+  code-point-attributes &=
+    attribute Math { boolean }?
+
+  code-point-attributes &=
+    attribute OMath { boolean }?
+
+  code-point-attributes &=
+    attribute Hex { boolean }?
+
+  code-point-attributes &=
+    attribute AHex { boolean }?
+
+  code-point-attributes &=
+    attribute DI { boolean }?
+
+  code-point-attributes &=
+    attribute ODI { boolean }?
+
+  code-point-attributes &=
+    attribute LOE { boolean }?
+
+  code-point-attributes &=
+    attribute PCM { boolean }?
+
+  code-point-attributes &=
+    attribute MCM { boolean }?
+
+  code-point-attributes &=
+    attribute WSpace { boolean }?
+
+  code-point-attributes &=
+    attribute vo { "R" | "Tr" | "Tu" | "U" }?
+
+  code-point-attributes &=
+    attribute RI { boolean }?
+
+  code-point-attributes &=
+    attribute Gr_Base { boolean }?
+
+  code-point-attributes &=
+    attribute Gr_Ext { boolean }?
+
+  code-point-attributes &=
+    attribute OGr_Ext { boolean }?
+
+
+
+  code-point-attributes &=
+    attribute GCB { "CN" | "CR"
+                  | "EB" | "EBG" | "EM" | "EX"
+                  | "GAZ"
+                  | "L" | "LF" | "LV" | "LVT"
+                  | "PP"
+                  | "RI"
+                  | "SM"
+                  | "T"
+                  | "V"
+                  | "XX"
+                  | "ZWJ"
+                  }?
+
+  code-point-attributes &=
+    attribute WB { "CR"
+                 | "DQ"
+                 | "EB" | "EBG" | "EM" | "EX" | "Extend"
+                 | "FO"
+                 | "GAZ"
+                 | "HL"
+                 | "KA"
+                 | "LE" | "LF"
+                 | "MB" | "ML" | "MN"
+                 | "NL" | "NU"
+                 | "RI"
+                 | "SQ"
+                 | "WSegSpace"
+                 | "XX"
+                 | "ZWJ"
+                 }?
+
+  code-point-attributes &=
+    attribute SB { "AT"
+                 | "CL" | "CR"
+                 | "EX"
+                 | "FO"
+                 | "LE" | "LF" | "LO"
+                 | "NU"
+                 | "SC" | "SE" | "SP" | "ST"
+                 | "UP"
+                 | "XX"
+                 }?
+
+  code-point-attributes &=
+    attribute Ideo { boolean }?
+
+  code-point-attributes &=
+    attribute UIdeo { boolean }?
+
+  code-point-attributes &=
+    attribute EqUIdeo { single-code-point }?
+
+  code-point-attributes &=
+    attribute IDSB { boolean }?
+
+  code-point-attributes &=
+    attribute IDST { boolean }?
+
+  code-point-attributes &=
+    attribute IDSU { boolean }?
+
+  code-point-attributes &=
+    attribute Radical { boolean }?
+
+  code-point-attributes &=
+    attribute Dep { boolean }?
+
+  code-point-attributes &=
+    attribute VS { boolean }?
+
+  code-point-attributes &=
+    attribute NChar { boolean }?
+
+  code-point-attributes &= attribute kAccountingNumeric
+    { xsd:string { pattern="\d+" } }?
+
+  code-point-attributes &= attribute kAlternateTotalStrokes
+    { list { xsd:string { pattern="(\d+:[BGHJKMPSTUV]+)|-" }+ } }?
+
+  code-point-attributes &= attribute kBigFive
+    { xsd:string { pattern="[0-9A-F]{4}'?" } }?
+
+  code-point-attributes &= attribute kCangjie
+    { xsd:string { pattern="[A-Z]+" } }?
+
+  code-point-attributes &= attribute kCantonese
+    { list { xsd:string { pattern="[a-z]{1,6}[1-6]" }+ } }?
+
+  code-point-attributes &= attribute kCCCII
+    { list { xsd:string { pattern="[0-9A-F]{6}" }+ } }?
+
+  code-point-attributes &= attribute kCheungBauer
+    { list { xsd:string { pattern="\d{3}/\d{2};[A-Z]*;[a-z1-6\[\]/,]+" }+ } }?
+
+  code-point-attributes &= attribute kCheungBauerIndex
+    { list { xsd:string { pattern="\d{3}\.[01]\d" }+ } }?
+
+  code-point-attributes &= attribute kCihaiT
+    { list { xsd:string { pattern="[1-9]\d{0,3}\.\d{3}" }+ } }?
+
+  code-point-attributes &= attribute kCNS1986
+    { xsd:string { pattern="[12E]-[0-9A-F]{4}" } }?
+
+  code-point-attributes &= attribute kCNS1992
+    { xsd:string { pattern="[1-9]-[0-9A-F]{4}" } }?
+
+  code-point-attributes &= attribute kCompatibilityVariant
+    { "" | xsd:string { pattern="U\+[23]?[0-9A-F]{4}" } }?
+
+  code-point-attributes &= attribute kCowles
+    { list { xsd:string { pattern="\d{1,4}(\.\d{1,2})?" }+ } }?
+
+  code-point-attributes &= attribute kDaeJaweon
+    { xsd:string { pattern="\d{4}\.\d{2}[01]" } }?
+
+  code-point-attributes &= attribute kDefinition
+    { xsd:string { pattern='[^\t"]+' } }?
+
+  code-point-attributes &= attribute kEACC
+    { xsd:string { pattern="[0-9A-F]{6}" } }?
+
+  code-point-attributes &= attribute kFanqie
+    { list { xsd:string { pattern="[\x{3400}-\x{4DBF}\x{4E00}-\x{9FFF}\x{20000}-\x{2A6DF}]{2}" }+ } }?
+
+  code-point-attributes &= attribute kFenn
+    { list { xsd:string { pattern="\d+a?[A-KP*]" }+ } }?
+
+  code-point-attributes &= attribute kFennIndex
+    { list { xsd:string { pattern="\d{1,3}\.[01]\d" }+ } }?
+
+  code-point-attributes &= attribute kFourCornerCode
+    { list { xsd:string { pattern="\d{4}(\.\d)?" }+ } }?
+
+  code-point-attributes &= attribute kGB0
+    { xsd:string { pattern="\d{4}" } }?
+
+  code-point-attributes &= attribute kGB1
+    { xsd:string { pattern="\d{4}" } }?
+
+  code-point-attributes &= attribute kGB3
+    { xsd:string { pattern="\d{4}" } }?
+
+  code-point-attributes &= attribute kGB5
+    { xsd:string { pattern="\d{4}" } }?
+
+
+
+  code-point-attributes &= attribute kGB8
+    { xsd:string { pattern="\d{4}" } }?
+
+  code-point-attributes &= attribute kGradeLevel
+    { xsd:string { pattern="[1-6]" } }?
+
+  code-point-attributes &= attribute kGSR
+    { list { xsd:string { pattern="\d{4}[a-vx-z]'?" }+ } }?
+
+  code-point-attributes &= attribute kHangul
+    { list { xsd:string { pattern="[\x{1100}-\x{1112}][\x{1161}-\x{1175}][\x{11A8}-\x{11C2}]?:[01ENX]{1,3}" }+ } }?
+
+  code-point-attributes &= attribute kHanYu
+    { list { xsd:string { pattern="[1-8]\d{4}\.[0-3]\d[0-3]" }+ } }?
+
+  code-point-attributes &= attribute kHanyuPinlu
+    { list { xsd:string { pattern="[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+\(\d+\)" }+ } }?
+
+  code-point-attributes &= attribute kHanyuPinyin
+    { list { xsd:string { pattern="(\d{5}\.\d{2}0,)*\d{5}\.\d{2}0:([a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+,)*[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
+
+  code-point-attributes &= attribute kHDZRadBreak
+    { xsd:string { pattern="[\x{2F00}-\x{2FD5}]\[U\+2F[0-9A-D][0-9A-F]\]:[1-8]\d{4}\.[0-3]\d0" } }?
+
+  code-point-attributes &= attribute kHKGlyph
+    { list { xsd:string { pattern="\d{4}" }+ } }?
+
+  code-point-attributes &= attribute kIBMJapan
+    { list { xsd:string { pattern="F[ABC][0-9A-F]{2}" }+ } }?
+
+  code-point-attributes &= attribute kIICore
+    { list { xsd:string { pattern="[ABC][GHJKMPT]{1,7}" }+ } }?
+
+  code-point-attributes &= attribute kIRG_GSource
+    { "" | xsd:string { pattern="G[013578EKS]-[0-9A-F]{4}" }
+         | xsd:string { pattern="G(DZ|GH|RM|WZ|XC|XH|ZH)-\d{4}\.\d{2}" }
+         | xsd:string { pattern="GKX-\d{4}\.\d{2,3}" }
+         | xsd:string { pattern="G(HZ|HZR)-\d{5}\.\d{2}" }
+         | xsd:string { pattern="G(CE|FC|IDC23|OCD|XHZ)-\d{3}" }
+         | xsd:string { pattern="G(H|HF|LGYJ|PGLG|T|ZHSJ)-\d{4}" }
+         | xsd:string { pattern="G(4K|CESI|CYY|DM|GT|JZ|KJ|XM|WY|ZFY|ZJW|ZYS)-\d{5}" }
+         | xsd:string { pattern="G(FZ|IDC)-[0-9A-F]{4}" }
+         | xsd:string { pattern="GCA-[A-Z]\d{4}" }
+         | xsd:string { pattern="GGFZ-\d{6}" }
+         | xsd:string { pattern="G(BK|LK|Z)-\d{7}" }
+         | xsd:string { pattern="G(CH|CY|HC|U)-[023][0-9A-F]{4}" }
+         | xsd:string { pattern="GZA-[123467]\d{5}" }
+    }?
+
+  code-point-attributes &= attribute kIRG_HSource
+    { "" | xsd:string { pattern="H-[0-9A-F]{4}" }
+         | xsd:string { pattern="H(B[012])-[0-9A-F]{4}" }
+         | xsd:string { pattern="HD-[23]?[0-9A-F]{4}" }
+         | xsd:string { pattern="HU-[023][0-9A-F]{4}" }
+    }?
+
+  code-point-attributes &= attribute kIRG_JSource
+    { "" | xsd:string { pattern="J[014]-[0-9A-F]{4}" }
+         | xsd:string { pattern="J3A?-[0-9A-F]{4}" }
+         | xsd:string { pattern="J13A?-[0-9A-F]{4}" }
+         | xsd:string { pattern="J14-[0-9A-F]{4}" }
+         | xsd:string { pattern="JA[34]?-[0-9A-F]{4}" }
+         | xsd:string { pattern="JARIB-[0-9A-F]{4}" }
+         | xsd:string { pattern="JH-(JT[ABC][0-9A-F]{3}S?|IB\d{4}|\d{6})" }
+         | xsd:string { pattern="JK-\d{5}" }
+         | xsd:string { pattern="JMJ-\d{6}" }
+    }?
+
+  code-point-attributes &= attribute kIRG_KPSource
+    { "" | xsd:string { pattern="KP([01]-[0-9A-F]{4}|U-[023][0-9A-F]{4})" } }?
+
+  code-point-attributes &= attribute kIRG_KSource
+    { "" | xsd:string { pattern="K[0-6]-[0-9A-F]{4}" }
+         | xsd:string { pattern="KC-\d{5}" }
+         | xsd:string { pattern="KU-[023][0-9A-F]{4}" }
+    }?
+
+  code-point-attributes &= attribute kIRG_MSource
+    { "" | xsd:string { pattern="MA-[0-9A-F]{4}" }
+         | xsd:string { pattern="MB[12]-[0-9A-F]{4}" }
+         | xsd:string { pattern="MC-\d{5}" }
+         | xsd:string { pattern="MDH?-[23]?[0-9A-F]{4}" }
+    }?
+
+  code-point-attributes &= attribute kIRG_SSource
+    { "" | xsd:string { pattern="SATM?-\d{5}" } }?
+
+  code-point-attributes &= attribute kIRG_TSource
+    { "" | xsd:string { pattern="T([1-79A-F]|1[1-3])-[0-9A-F]{4}" }
+         | xsd:string { pattern="TU-[023][0-9A-F]{4}" }
+    }?
+
+  code-point-attributes &= attribute kIRG_UKSource
+    { "" | xsd:string { pattern="UK-\d{5}" } }?
+
+  code-point-attributes &= attribute kIRG_USource
+    { "" | xsd:string { pattern="UTC-\d{5}" } }?
+
+  code-point-attributes &= attribute kIRG_VSource
+    { "" | xsd:string { pattern="V[0-4]-[0-9A-F]{4}" }
+         | xsd:string { pattern="VN-[023F][0-9A-F]{4}" }
+    }?
+
+  code-point-attributes &= attribute kIRGDaeJaweon
+    { list { xsd:string { pattern="\d{4}\.\d{2}[01]" }+ } }?
+
+  code-point-attributes &= attribute kIRGHanyuDaZidian
+    { list { xsd:string { pattern="[1-8]\d{4}\.[0-3]\d[01]" }+ } }?
+
+  code-point-attributes &= attribute kIRGKangXi
+    { list { xsd:string { pattern="[01]\d{3}\.[0-7]\d[01]" }+ } }?
+
+
+
+  code-point-attributes &= attribute kJapanese
+    { list { xsd:string { pattern="[\x{3041}-\x{3096}\x{3099}\x{309A}\x{30A1}-\x{30FA}\x{30FC}]+" }+ } }?
+
+  code-point-attributes &= attribute kJapaneseKun
+    { list { xsd:string { pattern="[A-Z]+" }+ } }?
+
+  code-point-attributes &= attribute kJapaneseOn
+    { list { xsd:string { pattern="[A-Z]+" }+ } }?
+
+  code-point-attributes &= attribute kJinmeiyoKanji
+    { list { xsd:string { pattern="(20\d{2})(:U\+[23]?[0-9A-F]{4})?" }+ } }?
+
+  code-point-attributes &= attribute kJis0
+    { list { xsd:string { pattern="\d{4}" }+ } }?
+
+  code-point-attributes &= attribute kJis1
+    { list { xsd:string { pattern="\d{4}" }+ } }?
+
+  code-point-attributes &= attribute kJIS0213
+    { list { xsd:string { pattern="[12],\d{2},\d{1,2}" }+ } }?
+
+  code-point-attributes &= attribute kJoyoKanji
+    { list { xsd:string { pattern="(20\d{2})|(U\+[23]?[0-9A-F]{4})" }+ } }?
+
+  code-point-attributes &= attribute kKangXi
+    { list { xsd:string { pattern="\d{4}\.\d{2}[01]" }+ } }?
+
+  code-point-attributes &= attribute kKarlgren
+    { list { xsd:string { pattern="[1-9]\d{0,3}[A*]?" }+ } }?
+
+  code-point-attributes &= attribute kKorean
+    { list { xsd:string { pattern="[A-Z]+" }+ } }?
+
+  code-point-attributes &= attribute kKoreanEducationHanja
+    { list { xsd:string { pattern="20\d{2}" }+ } }?
+
+  code-point-attributes &= attribute kKoreanName
+    { list { xsd:string { pattern="20\d{2}" }+ } }?
+
+  code-point-attributes &= attribute kLau
+    { list { xsd:string { pattern="[1-9]\d{0,3}" }+ } }?
+
+  code-point-attributes &= attribute kMainlandTelegraph
+    { list { xsd:string { pattern="\d{4}" }+ } }?
+
+  code-point-attributes &= attribute kMandarin
+    { list { xsd:string { pattern="[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
+
+  code-point-attributes &= attribute kMatthews
+    { list { xsd:string { pattern="[1-9]\d{0,3}(a|\.5)?" }+ } }?
+
+  code-point-attributes &= attribute kMeyerWempe
+    { list { xsd:string { pattern="[1-9]\d{0,3}[a-t*]?" }+ } }?
+
+  code-point-attributes &= attribute kMojiJoho
+    { list { xsd:string { pattern="MJ\d{6}(:(FE0[01]|E01[01][0-9A-F]))?" }+ } }?
+
+  code-point-attributes &= attribute kMorohashi
+    { list { xsd:string { pattern="(\d{5}'{0,2}|H\d{3})(:(FE0[01]|E010[0-9A-F]))?" }+ } }?
+
+  code-point-attributes &= attribute kNelson
+    { list { xsd:string { pattern="\d{4}" }+ } }?
+
+  code-point-attributes &= attribute kOtherNumeric
+    { list { xsd:string { pattern="\d+" }+ } }?
+
+  code-point-attributes &= attribute kPhonetic
+    { list { xsd:string { pattern="[1-9]\d{0,3}[A-D]?\*?" }+ } }?
+
+  code-point-attributes &= attribute kPrimaryNumeric
+    { list { xsd:string { pattern="\d+" }+ } }?
+
+  code-point-attributes &= attribute kPseudoGB1
+    { xsd:string { pattern="\d{4}" } }?
+
+  code-point-attributes &= attribute kRSAdobe_Japan1_6
+    { list { xsd:string { pattern="[CV]\+\d{1,5}\+[1-9]\d{0,2}\.[1-9]\d?\.\d{1,2}" }+ } }?
+
+  code-point-attributes &= attribute kRSUnicode
+    { list { xsd:string { pattern="[1-9]\d{0,2}'{0,3}\.-?\d{1,2}" }+ } }?
+
+  code-point-attributes &= attribute kSBGY
+    { list { xsd:string { pattern="\d{3}\.[0-7]\d" }+ } }?
+
+  code-point-attributes &= attribute kSemanticVariant
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}(<[ks][A-Za-z0-9_]+(:[TBZFJ]+)?(,[ks][A-Za-z0-9_]+(:[TBZFJ]+)?)*)?" }+ } }?
+
+  code-point-attributes &= attribute kSimplifiedVariant
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?
+
+  code-point-attributes &= attribute kSMSZD2003Index
+    { list { xsd:string { pattern="\d{1,3}\.\d{2}" }+ } }?
+
+  code-point-attributes &= attribute kSMSZD2003Readings
+    { list { xsd:string { pattern="[a-z\x{300}\x{301}\x{302}\x{304}\x{308}\x{30C}]+(,[a-z\x{300}\x{301}\x{302}\x{304}\x{308}\x{30C}]+)*\x{7CB5}[a-z]+[1-6]([a-z]+[1-6])?(,[a-z]+[1-6]([a-z]+[1-6])?)*" }+ } }?
+
+  code-point-attributes &= attribute kSpecializedSemanticVariant
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}(<[ks][A-Za-z0-9_]+(:[TBZFJ]+)?(,[ks][A-Za-z0-9_]+(:[TBZFJ]+)?)*)?" }+ } }?
+
+  code-point-attributes &= attribute kSpoofingVariant
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?
+
+  code-point-attributes &= attribute kStrange
+    { list { ( xsd:string { pattern="[ACU]" }
+             | xsd:string { pattern="B:U\+31[0-2AB][0-9A-F]" }
+             | xsd:string { pattern="[MORY](:U\+[23]?[0-9A-F]{4})?" }
+             | xsd:string { pattern="H(:U\+31[3-8][0-9A-F])+" }
+             | xsd:string { pattern="I(:U\+[23]?[0-9A-F]{4})*" }
+             | xsd:string { pattern="K(:U\+30[A-F][0-9A-F])+" }
+             | xsd:string { pattern="S:[4-9]\d" }
+    )+}}?
+
+  code-point-attributes &= attribute kTaiwanTelegraph
+    { list { xsd:string { pattern="\d{4}" }+ } }?
+
+  code-point-attributes &= attribute kTang
+    { list { xsd:string { pattern="\*?[A-Za-z()\x{E6}\x{251}\x{259}\x{25B}\x{300}\x{30C}]+" }+ } }?
+
+    code-point-attributes &= attribute kTayNumeric
+    { list { xsd:string { pattern="\d+" }+ } }?
+
+  code-point-attributes &= attribute kTGH
+    { list { xsd:string { pattern="20\d{2}:[1-9]\d{0,3}" }+ } }?
+
+  code-point-attributes &= attribute kTGHZ2013
+    { list { xsd:string { pattern="\d{3}\.\d{3}(,\d{3}\.\d{3})*:[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
+
+  code-point-attributes &= attribute kTotalStrokes
+    { xsd:string { pattern="[1-9]\d{0,2}" } }?
+
+  code-point-attributes &= attribute kTraditionalVariant
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?
+
+  code-point-attributes &= attribute kUnihanCore2020
+    { xsd:string { pattern="[GHJKMPT]{1,7}" } }?
+
+  code-point-attributes &= attribute kVietnamese
+    { list { xsd:string { pattern="[A-Za-z\x{110}\x{111}\x{300}-\x{303}\x{306}\x{309}\x{31B}\x{323}]+" }+ } }?
+
+  code-point-attributes &= attribute kVietnameseNumeric
+    { list { xsd:string { pattern="\d+" }+ } }?
+
+  code-point-attributes &= attribute kXerox
+    { list { xsd:string { pattern="\d{3}:\d{3}" }+ } }?
+
+  code-point-attributes &= attribute kXHC1983
+    { list { xsd:string { pattern="\d{4}\.\d{3}\*?(,\d{4}\.\d{3}\*?)*:[a-z\x{300}\x{301}\x{304}\x{308}\x{30C}]+" }+ } }?
+
+  code-point-attributes &= attribute kZhuang
+    { list { xsd:string { pattern="[a-z]+\*?" }+ } }?
+
+  code-point-attributes &= attribute kZhuangNumeric
+    { list { xsd:string { pattern="\d+" }+ } }?
+
+  code-point-attributes &= attribute kZVariant
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}(<[ks][A-Za-z0-9_]+(:[TBZ]+)?(,[ks][A-Za-z0-9_]+(:[TBZ]+)?)*)?" }+ } }?
+
+      
+  code-point-attributes &=
+    attribute kTGT_RSUnicode { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
+
+  code-point-attributes &=
+    attribute kTGT_MergedSrc 
+     { xsd:string {pattern="H2004-[AB]-\d{4}"}
+     | xsd:string {pattern="H2021-\d{6}"}
+     | xsd:string {pattern="L(19(86|97)|20(06|12))-\d{4}"}
+     | xsd:string {pattern="L2008-\d{4}([AB]|-\d{4})?"}
+     | xsd:string {pattern="N1966-\d{3}-\d{2}[0-9A-Z]{1,2}"}
+     | xsd:string {pattern="N5217-\d{2}"}
+     | xsd:string {pattern="S1968-\d{4}"}
+     | xsd:string {pattern="UTN42-\d{3}"}
+     }?
+
+      
+  code-point-attributes &=
+    attribute kNSHU_DubenSrc { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
+
+  code-point-attributes &=
+    attribute kNSHU_Reading { xsd:string }?
+
+      
+  code-point-attributes &= attribute kEH_Cat
+    { xsd:string { pattern="([A-IK-Z]|AA)-\d{2}-\d{3}" } }?
+
+  code-point-attributes &=
+    attribute kEH_Core { "C" | "L" | "N" }?
+
+  code-point-attributes &= attribute kEH_Desc
+    { xsd:string { pattern='[^\t"]+' } }?
+
+  code-point-attributes &= attribute kEH_Func
+    { xsd:string { pattern='[^\t"]+' } }?
+
+  code-point-attributes &=
+    attribute kEH_FVal { text }?
+
+  code-point-attributes &= attribute kEH_UniK
+    { xsd:string { pattern="([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}|HJ ([A-IK-Z]|AA)\d{3}[A-Z]{0,2}" } }?
+
+  code-point-attributes &= attribute kEH_JSesh
+    { list { ( xsd:string { pattern="([A-IK-Z]|Aa|NL|NU|Ff)\d{1,3}[A-Za-z]{0,5}" }
+             | xsd:string { pattern="(US1|US22|US248|US685)([A-IK-Z]|Aa|NL|NU)\d{1,3}[A-Za-z]{0,5}" }
+    )+}}?
+
+  code-point-attributes &= attribute kEH_HG
+    { list { xsd:string { pattern="([A-IK-Z]|AA)\d{1,3}[A-Za-z]{0,2}" }+ } }?
+
+  code-point-attributes &= attribute kEH_IFAO
+    { list { xsd:string { pattern="\d{1,3},\d{1,2}[ab]?" }+ } }?
+
+  code-point-attributes &=
+    attribute kEH_NoMirror { boolean }?
+
+  code-point-attributes &=
+    attribute kEH_NoRotate { boolean }?
+
+  code-point-attributes &=
+    attribute kEH_AltSeq { text }?
+
+      
+  ucd.content &=
+    element blocks {
+      element block {
+        attribute first-cp { single-code-point },
+        attribute last-cp { single-code-point },
+        attribute name { text } }+ }?
+
+      
+  ucd.content &=
+    element named-sequences {
+      element named-sequence {
+        attribute cps { one-or-more-code-points },
+        attribute name { text } }+ }?
+
+  ucd.content &=
+    element provisional-named-sequences {
+      element named-sequence {
+        attribute cps { one-or-more-code-points },
+        attribute name { text } }+ }?
+
+      
+      
+  ucd.content &=
+    element standardized-variants {
+      element standardized-variant {
+        attribute cps { two-code-points },
+        attribute desc { text },
+        attribute when { text } }+ }?
+
+      
+  ucd.content &=
+    element cjk-radicals {
+      element cjk-radical {
+        attribute number { xsd:string {pattern="[0-9]{1,3}'{0,3}"}},
+        attribute radical { single-code-point? },
+        attribute ideograph { single-code-point } }+ }?
+
+      
+      
+  code-point-attributes &=
+    attribute Emoji { boolean }?
+
+  code-point-attributes &=
+    attribute EPres { boolean }?
+
+  code-point-attributes &=
+    attribute EMod { boolean }?
+
+  code-point-attributes &=
+    attribute EBase { boolean }?
+
+  code-point-attributes &=
+    attribute EComp { boolean }?
+
+  code-point-attributes &=
+    attribute ExtPict { boolean }?
+
+      
+  ucd.content &=
+    element do-not-emit {
+      element instead {
+        attribute of { one-or-more-code-points },
+        attribute use { one-or-more-code-points },
+        attribute because { "Arabic_Tashkil"
+                          | "Bengali_Khanda_Ta"
+                          | "Deprecated"
+                          | "Discouraged"
+                          | "Dotless_Form"
+                          | "Hamza_Form"
+                          | "Indic_Atomic_Consonant"
+                          | "Indic_Consonant_Conjunct"
+                          | "Indic_Vowel_Letter"
+                          | "Malayalam_Chillu"
+                          | "None"
+                          | "Precomposed_Form"
+                          | "Precomposed_Hieroglyph"
+                          | "Preferred_Spelling"
+                          | "Tamil_Shrii"
+      } }+ }?
+
