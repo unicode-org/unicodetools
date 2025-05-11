@@ -77,6 +77,7 @@
 # @missing: 0000..10FFFF; RGI_Emoji_Modifier_Sequence  ;  No
 # @missing: 0000..10FFFF; RGI_Emoji_Tag_Sequence  ;  No
 # @missing: 0000..10FFFF; RGI_Emoji_Zwj_Sequence  ;  No
+# @missing: 0000..10FFFF; RGI_Emoji ; No
 
 # @missing: 0000..10FFFF; Emoji  	; No
 # @missing: 0000..10FFFF; Emoji_Presentation  	; No
@@ -91,6 +92,133 @@
 # End of binary properties.
 
 # @missing: 0000..10FFFF; Canonical_Combining_Class; Not_Reordered
+# Fixed position classes no longer in use; see
+# https://www.unicode.org/versions/Unicode2.0.0/ch04.pdf.
+ccc;  37; CCC37                      ; CCC37
+ccc;  38; CCC38                      ; CCC38
+ccc;  39; CCC39                      ; CCC39
+ccc;  40; CCC40                      ; CCC40
+ccc;  41; CCC41                      ; CCC41
+ccc;  42; CCC42                      ; CCC42
+ccc;  43; CCC43                      ; CCC43
+ccc;  44; CCC44                      ; CCC44
+ccc;  45; CCC45                      ; CCC45
+ccc;  46; CCC46                      ; CCC46
+ccc;  47; CCC47                      ; CCC47
+ccc;  48; CCC48                      ; CCC48
+ccc;  49; CCC49                      ; CCC49
+ccc;  50; CCC50                      ; CCC50
+ccc;  51; CCC51                      ; CCC51
+ccc;  52; CCC52                      ; CCC52
+ccc;  53; CCC53                      ; CCC53
+ccc;  54; CCC54                      ; CCC54
+ccc;  55; CCC55                      ; CCC55
+ccc;  56; CCC56                      ; CCC56
+ccc;  57; CCC57                      ; CCC57
+ccc;  58; CCC58                      ; CCC58
+ccc;  59; CCC59                      ; CCC59
+ccc;  60; CCC60                      ; CCC60
+ccc;  61; CCC61                      ; CCC61
+ccc;  62; CCC62                      ; CCC62
+ccc;  63; CCC63                      ; CCC63
+ccc;  64; CCC64                      ; CCC64
+ccc;  65; CCC65                      ; CCC65
+ccc;  66; CCC66                      ; CCC66
+ccc;  67; CCC67                      ; CCC67
+ccc;  68; CCC68                      ; CCC68
+ccc;  69; CCC69                      ; CCC69
+ccc;  70; CCC70                      ; CCC70
+ccc;  71; CCC71                      ; CCC71
+ccc;  72; CCC72                      ; CCC72
+ccc;  73; CCC73                      ; CCC73
+ccc;  74; CCC74                      ; CCC74
+ccc;  75; CCC75                      ; CCC75
+ccc;  76; CCC76                      ; CCC76
+ccc;  77; CCC77                      ; CCC77
+ccc;  78; CCC78                      ; CCC78
+ccc;  79; CCC79                      ; CCC79
+ccc;  80; CCC80                      ; CCC80
+ccc;  81; CCC81                      ; CCC81
+ccc;  82; CCC82                      ; CCC82
+ccc;  83; CCC83                      ; CCC83
+# CCC=84 remains in PropertyValueAliases.txt.
+ccc;  85; CCC85                      ; CCC85
+ccc;  86; CCC86                      ; CCC86
+ccc;  87; CCC87                      ; CCC87
+ccc;  88; CCC88                      ; CCC88
+ccc;  89; CCC89                      ; CCC89
+ccc;  90; CCC90                      ; CCC90
+# CCC=91 remains in PropertyValueAliases.txt.
+ccc;  92; CCC92                      ; CCC92
+ccc;  93; CCC93                      ; CCC93
+ccc;  94; CCC94                      ; CCC94
+ccc;  95; CCC95                      ; CCC95
+ccc;  96; CCC96                      ; CCC96
+ccc;  97; CCC97                      ; CCC97
+ccc;  98; CCC98                      ; CCC98
+ccc;  99; CCC99                      ; CCC99
+ccc; 100; CCC100                      ; CCC100
+ccc; 101; CCC101                      ; CCC101
+ccc; 102; CCC102                      ; CCC102
+# CCC=103 remains in PropertyValueAliases.txt.
+ccc; 104; CCC104                      ; CCC104
+ccc; 105; CCC105                      ; CCC105
+ccc; 106; CCC106                      ; CCC106
+# CCC=107 remains in PropertyValueAliases.txt.
+ccc; 108; CCC108                      ; CCC108
+ccc; 109; CCC109                      ; CCC109
+ccc; 110; CCC110                      ; CCC110
+ccc; 111; CCC111                      ; CCC111
+ccc; 112; CCC112                      ; CCC112
+ccc; 113; CCC113                      ; CCC113
+ccc; 114; CCC114                      ; CCC114
+ccc; 115; CCC115                      ; CCC115
+ccc; 116; CCC116                      ; CCC116
+ccc; 117; CCC117                      ; CCC117
+# CCC=118 remains in PropertyValueAliases.txt.
+ccc; 119; CCC119                      ; CCC119
+ccc; 120; CCC120                      ; CCC120
+ccc; 121; CCC121                      ; CCC121
+# CCC=122 remains in PropertyValueAliases.txt.
+ccc; 123; CCC123                      ; CCC123
+ccc; 124; CCC124                      ; CCC124
+ccc; 125; CCC125                      ; CCC125
+ccc; 126; CCC126                      ; CCC126
+ccc; 127; CCC127                      ; CCC127
+ccc; 128; CCC128                      ; CCC128
+# CCC=129..130 remain in PropertyValueAliases.txt.
+ccc; 131; CCC131                      ; CCC131
+# CCC=132..133 remain in PropertyValueAliases.txt.
+ccc; 134; CCC134                      ; CCC134
+ccc; 135; CCC135                      ; CCC135
+ccc; 136; CCC136                      ; CCC136
+ccc; 137; CCC137                      ; CCC137
+ccc; 138; CCC138                      ; CCC138
+ccc; 139; CCC139                      ; CCC139
+ccc; 140; CCC140                      ; CCC140
+ccc; 141; CCC141                      ; CCC141
+ccc; 142; CCC142                      ; CCC142
+ccc; 143; CCC143                      ; CCC143
+ccc; 144; CCC144                      ; CCC144
+ccc; 145; CCC145                      ; CCC145
+
+# Unicode 2 joining groups, named after Unicode 1 names.
+# These should probably be made extra aliases of the non-extra values, but the
+# tools do not support such a thing.
+jg; BAA ; BAA
+jg; FA ; FA
+jg; HAA ; HAA
+jg; HA_GOAL ; HA_GOAL
+jg; HA ; HA
+jg; CAF ; CAF
+jg; KNOTTED_HA ; KNOTTED_HA
+jg; RA ; RA
+jg; SWASH_CAF ; SWASH_CAF
+jg; HAMZAH_ON_HA_GOAL ; HAMZAH_ON_HA_GOAL
+jg; TAA_MARBUTAH ; TAA_MARBUTAH
+jg; YA_BARREE ; YA_BARREE
+jg; YA ; YA
+jg; ALEF_MAQSURAH ; ALEF_MAQSURAH
 
 # @missing: 0000..10FFFF; Lowercase_Mapping; <slc>
 # @missing: 0000..10FFFF; Uppercase_Mapping; <suc>
@@ -127,9 +255,17 @@ idns ; ds3m  ; disallowed_STD3_mapped
 
 # @missing: 0000..10FFFF; Idn_2008     ; na
 
-idn8 ; nv8   ; NV8						
-idn8 ; xv8   ; XV8						
+idn8 ; NV8   ; NV8
+idn8 ; XV8   ; XV8
 idn8 ; na	 ; na
+
+# @missing: 0000..10FFFF; IDNA2008_Category ; Unassigned
+# Long names after the text of https://www.rfc-editor.org/rfc/rfc5892.txt.
+IDNA2008_Category ; PVALID     ; Protocol_Valid
+IDNA2008_Category ; CONTEXTJ   ; Contextual_Rule_Required_Join_Controls
+IDNA2008_Category ; CONTEXTO   ; Contextual_Rule_Required_Other
+IDNA2008_Category ; DISALLOWED ; Disallowed
+IDNA2008_Category ; UNASSIGNED ; Unassigned
 
 # @missing: 0000..10FFFF; Idn_Mapping  ; <code point>
 
@@ -141,7 +277,7 @@ ID_Status	; a	 ; Allowed
 # @missing: 0000..10FFFF; Identifier_Type    	; nc
 # @missing: 0000..10FFFF; Identifier_Type    	; rec ; v9.0
 
-ID_Type	; nc	; Not_Character ; not_chars				
+ID_Type	; nc	; Not_Character ; not_chars ; Not_Characters
 ID_Type	; d		; Deprecated		
 ID_Type	; di	; Default_Ignorable		
 ID_Type	; nn	; Not_NFKC				
@@ -183,7 +319,8 @@ Other_Joining_Type ; Deduce_From_General_Category     ; Deduce_From_General_Cate
 
 # @missing: 0000..10FFFF; Do_Not_Emit_Preferred ; <none>
 
-# @missing: 0000..10FFFF; Do_Not_Emit_Type ; <none>
+# @missing: 0000..10FFFF; Do_Not_Emit_Type ; None
+Do_Not_Emit_Type ; None                     ; None
 Do_Not_Emit_Type ; Indic_Atomic_Consonant   ; Indic_Atomic_Consonant
 Do_Not_Emit_Type ; Indic_Consonant_Conjunct ; Indic_Consonant_Conjunct
 Do_Not_Emit_Type ; Indic_Vowel_Letter       ; Indic_Vowel_Letter
@@ -197,12 +334,21 @@ Do_Not_Emit_Type ; Precomposed_Form         ; Precomposed_Form
 Do_Not_Emit_Type ; Deprecated               ; Deprecated
 Do_Not_Emit_Type ; Discouraged              ; Discouraged
 Do_Not_Emit_Type ; Preferred_Spelling       ; Preferred_Spelling
+Do_Not_Emit_Type ; Arabic_Tashkil           ; Arabic_Tashkil
+
+# @missing: 0000..10FFFF; normalization_correction_original; <none>
+# @missing: 0000..10FFFF; normalization_correction_corrected; <none>
+
+# Values from the old Provisional Indic_Matra_Category (identified with the Informative InPC in the
+# tools) and InSC.
+Indic_Positional_Category ; Invisible ; Invisible
+Indic_Syllabic_Category ; Consonant_Repha ; Consonant_Repha
 
 # @missing: 0000..10FFFF; kTGT_MergedSrc ; <none>
-# @missing: 0000..10FFFF; kRSTUnicode ; <none>
+# @missing: 0000..10FFFF; kTGT_RSUnicode ; <none>
 
-# @missing: 0000..10FFFF; kSrc_NushuDuben ; <none>
-# @missing: 0000..10FFFF; kReading ; <none>
+# @missing: 0000..10FFFF; kNSHU_DubenSrc ; <none>
+# @missing: 0000..10FFFF; kNSHU_Reading ; <none>
 
 # @missing: 0000..10FFFF; kEH_Core  ;  N
 kEH_Core ; C ; Core
@@ -212,3 +358,20 @@ kEH_Core ; N ; None
 # @missing: 0000..10FFFF; kEH_Func ; <none>
 # @missing: 0000..10FFFF; kEH_FVal ; <none>
 # @missing: 0000..10FFFF; kEH_UniK ; <none>
+# @missing: 0000..10FFFF; kEH_AltSeq ; <none>
+
+# @missing: 0000..10FFFF; Names_List_Cross_Ref ; <none>
+
+# @missing: 0000..10FFFF; RGI_Emoji_Qualification ; None
+RGI_Emoji_Qualification ; None                ; None
+# Value aliases from UTS #51.
+RGI_Emoji_Qualification ; FQE                 ; Fully_Qualified
+RGI_Emoji_Qualification ; MQE                 ; Minimally_Qualified
+RGI_Emoji_Qualification ; UQE                 ; Unqualified
+# [181-C56] Consensus: In UTS #51 ED-28, add a new property value with long name
+# "Standalone_Component" and short name "component" corresponding to the
+# "component" field value in the associated data file. For Unicode Version 17.0.
+# See L2/24-224 item 9.1.
+RGI_Emoji_Qualification ; component           ; Standalone_Component
+# Value used in 11.0 and earlier, refined in 12.0.
+RGI_Emoji_Qualification ; Non_Fully_Qualified ; Non_Fully_Qualified

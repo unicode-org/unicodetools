@@ -6,5 +6,9 @@
 
 This directory contains PUB_STATUS data files for version UNI_VER of
 UTS #46, Unicode IDNA Compatibility Processing.
- 
+
+It also contains the data file Idna2008.txt listing the 
+IDNA2008_Category Property for the same version.
+The listing matches the "IDNA Derived Property" as defined in RFC 5892.
+
 https://www.unicode.org/reports/tr46/

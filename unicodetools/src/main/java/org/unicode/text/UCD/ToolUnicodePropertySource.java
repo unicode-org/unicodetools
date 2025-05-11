@@ -1,7 +1,7 @@
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.NumberFormat;
@@ -309,6 +309,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 "cjkIRG_VSource",
                 "cjkIRG_VSource",
                 "kIRG_VSource");
+        add(iup.getProperty("kMandarin"));
+        add(iup.getProperty("kTotalStrokes"));
+        add(iup.getProperty("kUnihanCore2020"));
         add(iup.getProperty("kEH_Cat"));
         add(iup.getProperty("kEH_Desc"));
         add(iup.getProperty("kEH_HG"));
@@ -1175,23 +1178,56 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             // Indic_Conjunct_Break. The definition depends on GCB derived just above.
             final UnicodeProperty script = getProperty("Script");
             final UnicodeProperty gcb = getProperty("Grapheme_Cluster_Break");
-            final UnicodeProperty ccc = getProperty("Canonical_Combining_Class");
-            // if (true) throw new IllegalAccessError(ccc.getSet("0").toString());
-            final UnicodeSet conjunctLinkingScripts =
-                    script.getSet("Gujr")
-                            .addAll(script.getSet("Telu"))
+            final UnicodeSet viramaScripts =
+                    new UnicodeSet()
+                            .addAll(script.getSet("Bali"))
+                            .addAll(script.getSet("Beng"))
+                            .addAll(script.getSet("Deva"))
+                            .addAll(script.getSet("Gujr"))
+                            .addAll(script.getSet("Java"))
                             .addAll(script.getSet("Mlym"))
                             .addAll(script.getSet("Orya"))
-                            .addAll(script.getSet("Beng"))
-                            .addAll(script.getSet("Deva"));
+                            .addAll(script.getSet("Telu"))
+                            .freeze();
+            final UnicodeSet invisibleStackerScripts =
+                    new UnicodeSet()
+                            .addAll(script.getSet("Cakm"))
+                            .addAll(script.getSet("Diak"))
+                            .addAll(script.getSet("Kawi"))
+                            .addAll(script.getSet("Khar"))
+                            .addAll(script.getSet("Khmr"))
+                            .addAll(script.getSet("Lana"))
+                            .addAll(script.getSet("Mtei"))
+                            .addAll(script.getSet("Mymr"))
+                            .addAll(script.getSet("Soyo"))
+                            .addAll(script.getSet("Sund"))
+                            .addAll(script.getSet("Tutg"))
+                            .addAll(script.getSet("Zanb"))
+                            .freeze();
+            final UnicodeSet conjunctLinkingScripts =
+                    viramaScripts.cloneAsThawed().addAll(invisibleStackerScripts).freeze();
             final UnicodeSet incbLinker =
                     conjunctLinkingScripts
                             .cloneAsThawed()
-                            .retainAll(isc.getSet(Indic_Syllabic_Category_Values.Virama));
+                            .retainAll(
+                                    isc.getSet(Indic_Syllabic_Category_Values.Virama)
+                                            .addAll(
+                                                    isc.getSet(
+                                                            Indic_Syllabic_Category_Values
+                                                                    .Invisible_Stacker)));
             final UnicodeSet incbConsonant =
                     conjunctLinkingScripts
                             .cloneAsThawed()
-                            .retainAll(isc.getSet(Indic_Syllabic_Category_Values.Consonant));
+                            .retainAll(isc.getSet(Indic_Syllabic_Category_Values.Consonant))
+                            .addAll(
+                                    invisibleStackerScripts
+                                            .cloneAsThawed()
+                                            .retainAll(
+                                                    isc.getSet(
+                                                            Indic_Syllabic_Category_Values
+                                                                    .Vowel_Independent)))
+                            .add(0x1B0B)
+                            .add(0x1B0C);
             final UnicodeMap<String> incbDefinition =
                     new UnicodeMap<String>()
                             .setErrorOnReset(true)
@@ -2208,6 +2244,15 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     break;
                 }
                 if (ucdCache[i].isAllocated(codePoint)) {
+                    if (i == UCD_Types.AGE11 && !ucdCache[i + 1].isAllocated(codePoint)) {
+                        // Deallocations in Unicode 2.
+                        continue;
+                    }
+                    return UCD_Names.LONG_AGE[i];
+                } else if (i == UCD_Types.AGE11
+                        && ((codePoint >= 0xE000 && codePoint <= 0xF8FF)
+                                || (codePoint >= 0xF900 && codePoint <= 0xFA2D))) {
+                    // Private use and CJK compatibility ideographs, not overt in UnicodeData 1.1.5.
                     return UCD_Names.LONG_AGE[i];
                 }
             }

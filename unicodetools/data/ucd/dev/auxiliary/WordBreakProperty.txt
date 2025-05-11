@@ -1,6 +1,6 @@
 # WordBreakProperty-17.0.0.txt
-# Date: 2024-11-16, 01:53:17 GMT
-# © 2024 Unicode®, Inc.
+# Date: 2025-04-25, 16:57:39 GMT
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -1126,7 +1126,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 108F4..108F5  ; ALetter # Lo   [2] HATRAN LETTER SHIN..HATRAN LETTER TAW
 10900..10915  ; ALetter # Lo  [22] PHOENICIAN LETTER ALF..PHOENICIAN LETTER TAU
 10920..10939  ; ALetter # Lo  [26] LYDIAN LETTER A..LYDIAN LETTER C
-10940..1095C  ; ALetter # Lo  [29] SIDETIC LETTER N01..SIDETIC LETTER N29
+10940..10959  ; ALetter # Lo  [26] SIDETIC LETTER N01..SIDETIC LETTER N26
 10980..109B7  ; ALetter # Lo  [56] MEROITIC HIEROGLYPHIC LETTER A..MEROITIC CURSIVE LETTER DA
 109BE..109BF  ; ALetter # Lo   [2] MEROITIC CURSIVE LOGOGRAM RMT..MEROITIC CURSIVE LOGOGRAM IMN
 10A00         ; ALetter # Lo       KHAROSHTHI LETTER A
@@ -1383,7 +1383,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 34004
+# Total code points: 34001
 
 # ================================================
 

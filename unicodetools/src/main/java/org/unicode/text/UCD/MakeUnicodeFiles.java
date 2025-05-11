@@ -1,8 +1,8 @@
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R3;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.RuleBasedCollator;
@@ -370,7 +370,10 @@ public class MakeUnicodeFiles {
             try {
                 br =
                         Utility.openReadFile(
-                                Settings.SRC_UCD_DIR + "MakeUnicodeFiles.txt", Utility.UTF8);
+                                MakeUnicodeFiles.class
+                                        .getResource("MakeUnicodeFiles.txt")
+                                        .getPath(),
+                                Utility.UTF8);
                 String file = null, property = null, value = "", comments = "";
                 while (true) {
                     String line = br.readLine();
@@ -1038,6 +1041,13 @@ public class MakeUnicodeFiles {
                             && !value.equals("Katakana_Or_Hiragana")) {
                         continue;
                     }
+                    if (propName.equals("Indic_Syllabic_Category")
+                            && value.equals("Consonant_Repha")) {
+                        continue;
+                    }
+                    if (propName.equals("Indic_Positional_Category") && value.equals("Invisible")) {
+                        continue;
+                    }
                     final List<String> l = up.getValueAliases(value);
                     // HACK
                     if (isJoiningGroup && value.equals("Hamzah_On_Ha_Goal")) {
@@ -1345,7 +1355,10 @@ public class MakeUnicodeFiles {
             aliases = temp2;
         }
         if (ps.roozbehFile) {
-            aliases.removeIf(alias -> UnicodeProperty.compareNames(alias, ps.skipValue) == 0);
+            aliases.removeIf(
+                    alias ->
+                            UnicodeProperty.compareNames(alias, ps.skipValue) == 0
+                                    || prop.getSet(alias).isEmpty());
             if (!Format.theFormat
                     .propertyToOrderedValues
                     .get(prop.getName())

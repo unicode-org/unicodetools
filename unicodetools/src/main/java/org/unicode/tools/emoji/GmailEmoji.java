@@ -2,7 +2,7 @@ package org.unicode.tools.emoji;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.ComparisonChain;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.IOException;

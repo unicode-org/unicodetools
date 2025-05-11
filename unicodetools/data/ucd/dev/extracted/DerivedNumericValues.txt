@@ -1,6 +1,6 @@
 # DerivedNumericValues-17.0.0.txt
-# Date: 2024-11-15, 15:06:30 GMT
-# © 2024 Unicode®, Inc.
+# Date: 2025-02-17, 15:40:34 GMT
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -342,11 +342,12 @@ A831          ; 0.5 ; ; 1/2 # No       NORTH INDIC FRACTION ONE HALF
 10E7B         ; 0.5 ; ; 1/2 # No       RUMI FRACTION ONE HALF
 10F26         ; 0.5 ; ; 1/2 # No       OLD SOGDIAN FRACTION ONE HALF
 11FD1..11FD2  ; 0.5 ; ; 1/2 # No   [2] TAMIL FRACTION ONE HALF-1..TAMIL FRACTION ONE HALF-2
+12226         ; 0.5 ; ; 1/2 # Lo       CUNEIFORM SIGN MASH
 12464         ; 0.5 ; ; 1/2 # Nl       CUNEIFORM NUMERIC SIGN ONE HALF GUR
 1ECAE         ; 0.5 ; ; 1/2 # No       INDIC SIYAQ FRACTION ONE HALF
 1ED3C         ; 0.5 ; ; 1/2 # No       OTTOMAN SIYAQ FRACTION ONE HALF
 
-# Total code points: 19
+# Total code points: 20
 
 # ================================================
 
@@ -534,6 +535,9 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 11DA1         ; 1.0 ; ; 1 # Nd       GUNJALA GONDI DIGIT ONE
 11DE1         ; 1.0 ; ; 1 # Nd       TOLONG SIKI DIGIT ONE
 11F51         ; 1.0 ; ; 1 # Nd       KAWI DIGIT ONE
+12038..12039  ; 1.0 ; ; 1 # Lo   [2] CUNEIFORM SIGN ASH..CUNEIFORM SIGN ASH ZIDA TENU
+12079         ; 1.0 ; ; 1 # Lo       CUNEIFORM SIGN DISH
+1230B         ; 1.0 ; ; 1 # Lo       CUNEIFORM SIGN U
 12415         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE GESH2
 1241E         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE GESHU
 1242C         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE SHARU
@@ -574,7 +578,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1FBF1         ; 1.0 ; ; 1 # Nd       SEGMENTED DIGIT ONE
 2092A         ; 1.0 ; ; 1 # Lo       CJK UNIFIED IDEOGRAPH-2092A
 
-# Total code points: 155
+# Total code points: 159
 
 # ================================================
 
@@ -696,6 +700,8 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 11DA2         ; 2.0 ; ; 2 # Nd       GUNJALA GONDI DIGIT TWO
 11DE2         ; 2.0 ; ; 2 # Nd       TOLONG SIKI DIGIT TWO
 11F52         ; 2.0 ; ; 2 # Nd       KAWI DIGIT TWO
+1222B         ; 2.0 ; ; 2 # Lo       CUNEIFORM SIGN MIN
+12399         ; 2.0 ; ; 2 # Lo       CUNEIFORM SIGN U U
 12400         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO ASH
 12416         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO GESH2
 1241F         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO GESHU
@@ -740,7 +746,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 1FBF2         ; 2.0 ; ; 2 # Nd       SEGMENTED DIGIT TWO
 22390         ; 2.0 ; ; 2 # Lo       CJK UNIFIED IDEOGRAPH-22390
 
-# Total code points: 157
+# Total code points: 159
 
 # ================================================
 
@@ -852,6 +858,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 11DA3         ; 3.0 ; ; 3 # Nd       GUNJALA GONDI DIGIT THREE
 11DE3         ; 3.0 ; ; 3 # Nd       TOLONG SIKI DIGIT THREE
 11F53         ; 3.0 ; ; 3 # Nd       KAWI DIGIT THREE
+1230D         ; 3.0 ; ; 3 # Lo       CUNEIFORM SIGN U U U
 12401         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE ASH
 12408         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE DISH
 12417         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE GESH2
@@ -898,7 +905,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 22998         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-22998
 23B1B         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-23B1B
 
-# Total code points: 154
+# Total code points: 155
 
 # ================================================
 
@@ -2685,10 +2692,9 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 
 # ================================================
 
-5146          ; 1000000.0 ; ; 1000000 # Lo       CJK UNIFIED IDEOGRAPH-5146
 16B5E         ; 1000000.0 ; ; 1000000 # No       PAHAWH HMONG NUMBER MILLIONS
 
-# Total code points: 2
+# Total code points: 1
 
 # ================================================
 
@@ -2724,9 +2730,10 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 
 # ================================================
 
+5146          ; 1000000000000.0 ; ; 1000000000000 # Lo       CJK UNIFIED IDEOGRAPH-5146
 16B61         ; 1000000000000.0 ; ; 1000000000000 # No       PAHAWH HMONG NUMBER TRILLIONS
 
-# Total code points: 1
+# Total code points: 2
 
 # ================================================
 

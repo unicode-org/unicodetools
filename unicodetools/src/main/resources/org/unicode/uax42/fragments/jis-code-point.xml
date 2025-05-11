@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Manual-->
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="datatype for code points" id='schema.datatypes'>
+<edit flag='removed'>  jis-code-point = xsd:string { pattern = "[0-9A-F]{4}" }</edit>
+</ucdxml:block>

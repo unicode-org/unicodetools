@@ -1,7 +1,7 @@
 package org.unicode.idna;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.DateFormat;
@@ -9,7 +9,6 @@ import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import com.ibm.icu.util.ULocale;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,11 +26,10 @@ import org.unicode.idna.LoadIdnaTest.TestLine;
 import org.unicode.idna.Uts46.Errors;
 import org.unicode.idna.Uts46.IdnaChoice;
 import org.unicode.props.UnicodeProperty;
-import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.ToolUnicodeTransformFactory;
 import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeTransform;
 import org.unicode.text.utility.Utility;
@@ -82,10 +80,7 @@ public class GenerateIdnaTest {
     public static void setUnicodeVersion() {
         Default.setUCD(Settings.latestVersion);
         UnicodeTransform.setFactory(new ToolUnicodeTransformFactory());
-        final ToolUnicodePropertySource toolUPS1 =
-                ToolUnicodePropertySource.make(Default.ucdVersion());
-        final XSymbolTable toolUPS = new UnicodePropertySymbolTable(toolUPS1);
-        UnicodeSet.setDefaultXSymbolTable(toolUPS);
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
         UnicodeProperty.ResetCacheProperties();
     }
 

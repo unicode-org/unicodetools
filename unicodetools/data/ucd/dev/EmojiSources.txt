@@ -14,7 +14,7 @@
 # mappings to similar but not equivalent symbols in either mapping direction.
 #
 # Created for Unicode 6.0 by Markus Scherer.
-# Updated for subsequent versions by Ken Whistler (no changes to mappings).
+# No mappings have been changed or added since then. No mapping changes or additions are anticipated.
 #
 # Format: Semicolon-delimited file with a fixed number of fields.
 # Note that the format, including the number of fields, may change in the future.

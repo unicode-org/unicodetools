@@ -1,5 +1,5 @@
 Generate: .
-CopyrightYear: 2024
+CopyrightYear: 2025
 
 File: extra/ScriptNfkc
 Property: SPECIAL
@@ -1168,10 +1168,19 @@ Value: Consonant_Placeholder
 # Indic script layout (NBSP and dotted circle), as well as a few script-
 # specific vowel-holder characters which are not technically
 # consonants, but serve instead as bases for placement of vowel marks.
+# Vowel carriers that are null consonants instead have the
+# Indic_Syllabic_Category Consonant.
 
 # [Not derivable]
 Value: Consonant
-# Consonant (ordinary abugida consonants, with inherent vowels)
+# Consonant
+# This includes ordinary abugida consonants with inherent vowels.
+# In scripts that do not have distinct independent vowel characters, but instead
+# form independent vowels by adding dependent vowels to a vowel carrier which
+# otherwise represents the inherent vowel, that vowel carrier has the
+# Indic_Syllabic_Category Consonant, as a null consonant. Such vowel carriers
+# can often also be analyzed as glottal stops with inherent vowels.
+# An example is U+0F68 ཨ TIBETAN LETTER A.
 
 # [Not derivable]
 Value: Consonant_Dead

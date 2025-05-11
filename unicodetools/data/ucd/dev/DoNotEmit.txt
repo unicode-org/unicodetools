@@ -1,6 +1,6 @@
 # DoNotEmit-17.0.0.txt
-# Date: 2024-07-30, 19:30:00 GMT
-# © 2024 Unicode®, Inc.
+# Date: 2025-02-19, 08:01:00 GMT
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -80,6 +80,8 @@
 # Dotless_Form:
 #    Dotless forms of lowercase Latin i and j followed by a
 #    combining dot above.
+# Arabic_Tashkil:
+#    Arabic tashkil combinations that should be avoided.
 # Hamza_Form:
 #    Sequences containing Arabic hamza above, which should be avoided.
 # Precomposed_Form:
@@ -92,7 +94,7 @@
 #    Miscellaneous characters and sequences discouraged in the
 #    Unicode Standard.
 # Preferred_Spelling:
-#    Miscellaneous characters and sequeences for which the Unicode Standard
+#    Miscellaneous characters and sequences for which the Unicode Standard
 #    specifies a preferred spelling.
 
 # ================================================
@@ -429,6 +431,8 @@
 
 # Arabic, from text of Section 9.2 and the NamesList
 0649 0654; 0626; Hamza_Form # ARABIC LETTER ALEF MAKSURA, ARABIC HAMZA ABOVE; ARABIC LETTER YEH WITH HAMZA ABOVE
+064E 064E; 064B; Arabic_Tashkil # ARABIC FATHA, ARABIC FATHA; ARABIC FATHATAN
+0650 0650; 064D; Arabic_Tashkil # ARABIC KASRA, ARABIC KASRA; ARABIC KASRATAN
 0673; 0627 065F; Deprecated # ARABIC LETTER ALEF WITH WAVY HAMZA BELOW; ARABIC LETTER ALEF, ARABIC WAVY HAMZA BELOW
 0675; 0674 0627; Preferred_Spelling # ARABIC LETTER HIGH HAMZA ALEF; ARABIC LETTER HIGH HAMZA, ARABIC LETTER ALEF
 0676; 0674 0648; Preferred_Spelling # ARABIC LETTER HIGH HAMZA WAW; ARABIC LETTER HIGH HAMZA, ARABIC LETTER WAW

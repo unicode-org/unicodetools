@@ -616,6 +616,17 @@ $combiningExclusions ⊇ [$singletons & \p{dt=canonical}]
 $combiningExclusions ⊇ [$nonstarter & \p{dt=canonical}]
 $combiningExclusions ⊇ [$firstNonStarter & \p{dt=canonical}]
 
+
+\p{normalization_correction_version≠@none@} = [陋 㛼 当 𤎫 竮 䗗]
+# Everything is corrected now.
+In \p{normalization_correction_version≠@none@}, normalization_correction_corrected = Decomposition_Mapping
+# This all happened between 3.1 and 4.0.
+In \p{normalization_correction_version≠@none@}, normalization_correction_corrected = U4.0:Decomposition_Mapping
+In \p{normalization_correction_version≠@none@}, normalization_correction_original  = U3.1:Decomposition_Mapping
+# The version field tells us whether the 3.2 mapping was wrong.
+In \p{normalization_correction_version=3.2.0}, U3.2:Decomposition_Mapping = normalization_correction_corrected
+In \p{normalization_correction_version=4.0.0}, U3.2:Decomposition_Mapping = normalization_correction_original
+
 ##########################
 # Other Invariant Tests, not in Stability Policies
 ##########################
@@ -1075,7 +1086,7 @@ Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 \p{lb=EM} = \p{Emoji_Modifier}
 
 # Recent pictographs with default emoji presentation are lb=ID, EB or EM:
-[\p{Emoji_Presentation} & [\p{age=7.0}\p{age=8.0}\p{age=9.0}\p{age=10.0}\p{age=11.0}\p{age=12.0}\p{age=13.0}\p{age=14.0}\p{age=15.0}]] ⊂ [\p{lb=ID} \p{lb=EB} \p{lb=EM}]
+[\p{Emoji_Presentation} - \p{age=6.0}] ⊂ [\p{lb=ID} \p{lb=EB} \p{lb=EM}]
 
 [\p{Emoji_Presentation} - \p{RI}] ⊂ \p{ea=W}
 
@@ -1089,6 +1100,121 @@ Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 # (which was not actually a Unicode version, so we cannot look at U13.1:Emoji).
 \p{U13.1:RGI_Emoji_Zwj_Sequence} ⊃ \p{U13:RGI_Emoji_Zwj_Sequence}
 [\p{U13.1:RGI_Emoji_Zwj_Sequence} - \p{U13:RGI_Emoji_Zwj_Sequence}] ⊃ [{😵‍💫}]
+
+# [182-C20] Consensus: Unassign the Extended_Pictographic property from the 672 assigned characters
+#           that do not have the Emoji property. For Unicode Version 17.0. See L2/25-006 item 5.1.
+# The only assigned characters that are Extended_Pictographic are Emoji.
+[\p{Extended_Pictographic}-\p{gc=Cn}] ⊆ \p{Emoji}
+# And nearly all emoji are Extended_Pictographic.
+[\p{Extended_Pictographic}-\p{gc=Cn}] = [\p{Emoji}-\p{Regional_Indicator}-\p{Emoji_Modifier}-\p{Block=Basic Latin}]
+
+# TODO(egg): We could check that the variation selectors are used consistently, but this would
+# require UnicodeProperty to support strings properly.
+\p{emoji_variation_sequence=text style} ⊃ [{♈︎}]
+\p{emoji_variation_sequence=emoji style} ⊃ [{♈️}]
+
+# The file emoji-test.txt states that
+# • The RGI set is covered by the listed fully-qualified emoji.
+# RGI_Emoji is defined by a derivation, but not provided directly in data files;
+# and the derivation depends on multiple files, which is problematic for the
+# tools.  It is therefore easier to get it from emoji-test than by the
+# derivation, but we must check that the two match.
+# It turns out that the statement in emoji-test.txt is not quite right:
+# Since Unicode 12.0, the RGI set is the union of the sets of fully-qualified
+# emoji and of components.
+# We test every Unicode version until 16.0, because this test was not added
+# until 17.0β.   Going forward the versionless test will take care of this.
+# We do not test Emoji version 13.1, because it does not really work in the
+# tools.  See https://github.com/unicode-org/unicodetools/issues/100.
+# There is no definition of the RGI set prior to Unicode 11.0, only the RGI
+# sequence set is defined:
+# https://www.unicode.org/reports/tr51/tr51-14.html#def_rgi_sequences;
+# Compare Unicode 12.0:
+# https://www.unicode.org/reports/tr51/tr51-16.html#def_rgi_set,
+# (In 11.0 there is also no data file for Basic_Emoji.)
+[
+  \p{U12.0:Basic_Emoji}
+  \p{U12.0:RGI_Emoji_Keycap_Sequence}
+  \p{U12.0:RGI_Emoji_Modifier_Sequence}
+  \p{U12.0:RGI_Emoji_Flag_Sequence}
+  \p{U12.0:RGI_Emoji_Tag_Sequence}
+  \p{U12.0:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U12.0:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U12.0:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U13.0:Basic_Emoji}
+  \p{U13.0:RGI_Emoji_Keycap_Sequence}
+  \p{U13.0:RGI_Emoji_Modifier_Sequence}
+  \p{U13.0:RGI_Emoji_Flag_Sequence}
+  \p{U13.0:RGI_Emoji_Tag_Sequence}
+  \p{U13.0:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U13.0:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U13.0:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U14:Basic_Emoji}
+  \p{U14:RGI_Emoji_Keycap_Sequence}
+  \p{U14:RGI_Emoji_Modifier_Sequence}
+  \p{U14:RGI_Emoji_Flag_Sequence}
+  \p{U14:RGI_Emoji_Tag_Sequence}
+  \p{U14:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U14:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U14:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U15:Basic_Emoji}
+  \p{U15:RGI_Emoji_Keycap_Sequence}
+  \p{U15:RGI_Emoji_Modifier_Sequence}
+  \p{U15:RGI_Emoji_Flag_Sequence}
+  \p{U15:RGI_Emoji_Tag_Sequence}
+  \p{U15:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U15:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U15:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U15.1:Basic_Emoji}
+  \p{U15.1:RGI_Emoji_Keycap_Sequence}
+  \p{U15.1:RGI_Emoji_Modifier_Sequence}
+  \p{U15.1:RGI_Emoji_Flag_Sequence}
+  \p{U15.1:RGI_Emoji_Tag_Sequence}
+  \p{U15.1:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U15.1:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U15.1:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U16.0:Basic_Emoji}
+  \p{U16.0:RGI_Emoji_Keycap_Sequence}
+  \p{U16.0:RGI_Emoji_Modifier_Sequence}
+  \p{U16.0:RGI_Emoji_Flag_Sequence}
+  \p{U16.0:RGI_Emoji_Tag_Sequence}
+  \p{U16.0:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U16.0:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U16.0:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{Basic_Emoji}
+  \p{RGI_Emoji_Keycap_Sequence}
+  \p{RGI_Emoji_Modifier_Sequence}
+  \p{RGI_Emoji_Flag_Sequence}
+  \p{RGI_Emoji_Tag_Sequence}
+  \p{RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{RGI_Emoji_Qualification=Fully_Qualified}
+  \p{RGI_Emoji_Qualification=Standalone_Component}
+]
 
 ##########################
 # POSIX Compatibility Properties (UTS#18)
@@ -1288,6 +1414,10 @@ Let $japaneseSimplifiedRadicals := \p{Name=/CJK RADICAL J-SIMPLIFIED/}
 In $chineseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ [\p{kRSUnicode=/^[0-9]+'\.0$/} $radicalsWithUnifiableSimplifications]
 In $japaneseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/^[0-9]+''\.0$/}
 
+# Check that removed properties do not persist.
+\p{U16:kGB7≠@none@}=[垯屃慭梾疭瘆筼臜荙诐跶轪辌酦镈镋镕饳馉鱽鱾鲃鲉鲌鲏鲪鲬鲯鲹鲾鳂鳈鳉鳑鳚鳡鳤鸻鸼鹟鹮鹲]
+\p{kGB7≠@none@}=[]
+
 # Tangut invariants
 
 Let $tangutSourcesScope := [\p{Block=/^Tangut(.Supplement)?$/} - \p{gc=Cn}]
@@ -1314,6 +1444,10 @@ $unikemetScope ⊃ \P{kEH_Core=None}
 \p{kEH_Core=Legacy} ⊂ \p{Block=Egyptian Hieroglyphs}
 [\p{kEH_Core=None} & $unikemetScope] ⊂ \p{Block=Egyptian Hieroglyphs Extended-A}
 
+# TODO(egg): We could check that the variation selectors are used consistently, but this would
+# require UnicodeProperty to support strings properly.
+\p{Standardized_Variant=rotated 90 degrees} ⊃ [{𓏲\uFE00}]
+
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
 \p{InPC=/(Left|Right)/} ⊆ [\p{gc=Mc}\p{gc=Lo}\p{gc=Lm}]
@@ -1328,7 +1462,7 @@ $unikemetScope ⊃ \P{kEH_Core=None}
 
 # DoNotEmit.txt.
 \p{Do_Not_Emit_Type=Deprecated} ⊆ \p{Deprecated}
-\p{Deprecated} ⊆ [\p{Do_Not_Emit_Type=Deprecated} \p{Do_Not_Emit_Type=@none@}]
+\p{Deprecated} ⊆ [\p{Do_Not_Emit_Type=Deprecated} \p{Do_Not_Emit_Type=None}]
 # The non-DI deprecated characters have replacements in DoNotEmit, except the angle brackets that
 # are ambiguous.
 \p{Do_Not_Emit_Type=Deprecated} = [ \p{Deprecated} - \p{Default_Ignorable_Code_Point} - \p{Name=/^(LEFT|RIGHT)-POINTING ANGLE BRACKET$/} ]

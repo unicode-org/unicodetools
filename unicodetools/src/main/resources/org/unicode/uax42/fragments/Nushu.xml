@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="Nushu data" id='schema.nushu'>
+  code-point-attributes &amp;=
+    attribute <edit flag='removed'>kSrc_NushuDuben</edit><edit flag='changed'>kNSHU_DubenSrc</edit> { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
+
+  code-point-attributes &amp;=
+    attribute <edit flag='removed'>kReading</edit><edit flag='changed'>kNSHU_Reading</edit> { xsd:string }?
+</ucdxml:block>

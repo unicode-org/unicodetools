@@ -1,6 +1,6 @@
 package org.unicode.props;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.Collection;
 import java.util.Map;
@@ -25,6 +25,15 @@ public class PropertyUtilities {
         @Override
         public String merge(String first, String second) {
             return first + separator + second;
+        }
+    }
+
+    public static final class Overrider implements Merge<String> {
+        public Overrider() {}
+
+        @Override
+        public String merge(String first, String second) {
+            return second;
         }
     }
 

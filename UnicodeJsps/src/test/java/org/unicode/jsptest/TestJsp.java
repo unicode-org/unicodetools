@@ -1,6 +1,6 @@
 package org.unicode.jsptest;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
@@ -743,9 +743,9 @@ public class TestJsp extends TestFmwkMinusMinus {
         assertContains(sample, "abcd");
         sample = UnicodeJsp.showTransform("bc > CB; X > xx;", "Abcd");
         assertContains(sample, "ACBd");
-        sample = UnicodeJsp.showTransform("lower", "[[:ascii:]{Abcd}]");
+        sample = UnicodeJsp.showTransform("lower", "[[:Block=ASCII:]{Abcd}]");
         assertContains(sample, "\u00A0A\u00A0");
-        sample = UnicodeJsp.showTransform("bc > CB; X > xx;", "[[:ascii:]{Abcd}]");
+        sample = UnicodeJsp.showTransform("bc > CB; X > xx;", "[[:Block=ASCII:]{Abcd}]");
         assertContains(sample, "\u00A0ACBd\u00A0");
         sample = UnicodeJsp.showTransform("casefold", "[\\u0000-\\u00FF]");
         assertContains(sample, "\u00A0\u00E1\u00A0");
@@ -781,7 +781,6 @@ public class TestJsp extends TestFmwkMinusMinus {
     public void TestStuff() throws IOException {
         // int script = UScript.getScript(0xA6E6);
         // int script2 = UCharacter.getIntPropertyValue(0xA6E6, UProperty.SCRIPT);
-        String propValue = Common.getXStringPropertyValue(Common.SUBHEAD, 0xA6E6, NameChoice.LONG);
         // logln(propValue);
 
         // logln("Script for A6E6: " + script + ", " + UScript.getName(script) + ", " + script2);
@@ -791,7 +790,7 @@ public class TestJsp extends TestFmwkMinusMinus {
             UnicodeJsp.showSet(
                     "sc gc",
                     "",
-                    new UnicodeSet("[[:ascii:]{123}{ab}{456}]"),
+                    new UnicodeSet("[[:Block=ASCII:]{123}{ab}{456}]"),
                     false,
                     true,
                     true,
@@ -912,7 +911,7 @@ public class TestJsp extends TestFmwkMinusMinus {
 
     @Test
     public void TestRegex() {
-        final String fix = UnicodeRegex.fix("ab[[:ascii:]&[:Ll:]]*c");
+        final String fix = UnicodeRegex.fix("ab[[:Block=ASCII:]&[:Ll:]]*c");
         assertEquals("", "ab[a-z]*c", fix);
         assertEquals(
                 "",
@@ -1028,7 +1027,7 @@ public class TestJsp extends TestFmwkMinusMinus {
                         + "host = \\/\\/ reserved+;\n"
                         + "query = [\\=reserved]+;\n"
                         + "fragment = reserved+;\n"
-                        + "reserved = [[:ascii:][:sc=grek:]&[:alphabetic:]];\n",
+                        + "reserved = [[:Block=ASCII:][:sc=grek:]&[:alphabetic:]];\n",
                 "http://αβγ?huh=hi#there"
             },
             //                {
@@ -1121,8 +1120,8 @@ public class TestJsp extends TestFmwkMinusMinus {
     public void TestSimpleSet() {
         checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{idna2003=valid}");
         checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{idna=valid}");
-        checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{uts46=valid}");
-        checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{idna2008=PVALID}");
+        checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{Idn_Status=valid}");
+        checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{IDNA2008_Category=PVALID}");
         checkUnicodeSetParse("[\\u1234\\uABCD-\\uAC00]", "U+1234 U+ABCD-U+AC00");
         checkUnicodeSetParse("[\\u1234\\uABCD-\\uAC00]", "U+1234 U+ABCD..U+AC00");
     }

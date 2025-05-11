@@ -10,7 +10,7 @@
 package org.unicode.text.utility;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Replaceable;
 import com.ibm.icu.text.Transliterator;
@@ -37,10 +37,12 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD;
@@ -925,8 +927,38 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         "2.1.5",
         "2.1.2",
         "2.0.0",
-        "1.1.0",
+        "1.1.0", // Really 1.1.5.
+        "1.0.1", // Reconstructed.
+        "1.0.0", // Reconstructed.
     };
+
+    public static final List<VersionInfo> UNICODE_VERSIONS =
+            Arrays.asList(searchPath).stream()
+                    .map(VersionInfo::getInstance)
+                    .collect(Collectors.toList());
+
+    public static VersionInfo getVersionPreceding(VersionInfo version) {
+        for (VersionInfo candidate : UNICODE_VERSIONS) {
+            if (candidate.compareTo(version) < 0) {
+                return candidate;
+            }
+        }
+        return null;
+    }
+
+    public static VersionInfo getVersionFollowing(VersionInfo version) {
+        VersionInfo result = null;
+        for (VersionInfo candidate : UNICODE_VERSIONS) {
+            if (candidate.compareTo(version) > 0) {
+                result = candidate;
+            }
+        }
+        return result;
+    }
+
+    public static boolean isUnicodeVersion(VersionInfo version) {
+        return UNICODE_VERSIONS.contains(version);
+    }
 
     /*public static PrintWriter openPrintWriter(String filename) throws IOException {
         return openPrintWriter(filename, LATIN1_UNIX);
@@ -1451,6 +1483,14 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             if (version != null && version.compareTo(currentVersion) < compValue) {
                 continue;
             }
+            if (version != null
+                    && currentVersion.compareTo(version) < 0
+                    && version.compareTo(VersionInfo.UNICODE_4_1) >= 0) {
+                // Do not look at earlier versions if we want Unicode 4.1 data or later.
+                // Unicode 4.0.1 is the last version for which unmodified files were not
+                // republished.
+                return null;
+            }
             // check the standard ucd directory
             if (filename.contains("/*/")) {
                 // check the idna directory
@@ -1466,10 +1506,25 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                         return null;
                     }
                 }
-                Path path = Settings.UnicodeTools.getDataPath(base, element);
-                if (path != null) {
-                    result = path.resolve(parts[2] + fileType).toString();
-                    break;
+                if (parts[2].equals("Idna2008")
+                        && currentVersion.compareTo(VersionInfo.UNICODE_16_0) <= 0) {
+                    Path path = Settings.UnicodeTools.getDataPath(base, "idna2008derived");
+                    if (path != null) {
+                        var filePath = path.resolve(parts[2] + "-" + element + fileType);
+                        if (filePath.toFile().exists()) {
+                            result = filePath.toString();
+                        }
+                        break;
+                    }
+                } else {
+                    Path path = Settings.UnicodeTools.getDataPath(base, element);
+                    if (path != null) {
+                        var filePath = path.resolve(parts[2] + fileType);
+                        if (filePath.toFile().exists()) {
+                            result = filePath.toString();
+                        }
+                        break;
+                    }
                 }
                 continue;
             }
@@ -1478,11 +1533,16 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                 // TODO: Consider generally switching from using File to using the newer Path.
                 result = searchDirectory(path.toFile(), filename, show, fileType);
                 if (result != null) {
+                    if (version != null && currentVersion.compareTo(version) < 0) {
+                        // Even back when files were not republished, we copy them.
+                        throw new IllegalStateException(
+                                "File "
+                                        + filename
+                                        + " should be copied to version directory "
+                                        + version);
+                    }
                     break;
                 }
-            }
-            if (versionString.startsWith("2.0") && filename.startsWith("Prop")) {
-                break; // skip bogus forms of Prop* files
             }
             if (show) {
                 tries.add(element);

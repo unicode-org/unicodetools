@@ -1,6 +1,6 @@
 # CaseFolding-17.0.0.txt
-# Date: 2024-11-14, 20:19:39 GMT
-# © 2024 Unicode®, Inc.
+# Date: 2025-05-02, 21:48:45 GMT
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -18,7 +18,7 @@
 # The data supports both implementations that require simple case foldings
 # (where string lengths don't change), and implementations that allow full case folding
 # (where string lengths may grow). Note that where they can be supported, the
-# full case foldings are superior: for example, they allow "MASSE" and "Maße" to match.
+# full case foldings are superior: for example, they allow "FUSS" and "Fuß" to match.
 #
 # All code points not listed in this file map to themselves.
 #

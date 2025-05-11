@@ -1,0 +1,1429 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<article xmlns:unicode="http://unicode.org/ns/2001"
+         xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+>
+
+    <title>Unicode Character Database in XML</title>
+
+    <articleinfo>
+        <unicode:tr number='42' class='uax' version='17.0.0 (draft 1)'
+                    stage='proposed-update'
+                    schema='rnc' prevrev='36'/>
+        <copyright>
+            <year>2025</year>
+        </copyright>
+        <authors>
+            <author>
+                <surname>Wilcock</surname>
+                <firstname>John</firstname>
+            </author>
+        </authors>
+        <revhistory>
+            <revision revnumber="37" date="2025-04-24" edit="changed">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>17.0</val>.
+                    </change>
+                    <change>New values for the <attr>blk</attr> attribute: <val>Beria_Erfe</val>, <val>Chisoi</val>,
+                        <val>CJK_Ext_J</val>, <val>Misc_Symbols_Sup</val>, <val>Sharada_Sup</val>, <val>Sidetic</val>,
+                        <val>Tai_Yo</val>, <val>Tangut_Components_Sup</val>, <val>Tolong_Siki</val>.
+                    </change>
+                    <change>New value for the <attr>do-not-emit</attr> attribute: <val>None</val>.
+                    </change>
+                    <change>New values for the <attr>jg</attr> attribute: <val>Thin_Noon</val>, <val>BAA</val>,
+                        <val>FA</val>, <val>HAA</val>, <val>HA_GOAL</val>, <val>HA</val>, <val>CAF</val>,
+                        <val>KNOTTED_HA</val>, <val>RA</val>, <val>SWASH_CAF</val>, <val>HAMZAH_ON_HA_GOAL</val>,
+                        <val>TAA_MARBUTAH</val>, <val>YA_BARREE</val>, <val>YA</val>, <val>ALEF_MAQSURAH</val>.
+                    </change>
+                    <change>New value for the <attr>lb</attr> attribute: <val>HH</val>.
+                    </change>
+                    <change>New value for the <attr>InPC</attr> attribute: <val>Invisible</val>.
+                    </change>
+                    <change>New value for the <attr>InSC</attr> attribute: <val>Consonant_Repha</val>.
+                    </change>
+                    <change>New values for the <attr>script</attr> attribute: <val>Berf</val>, <val>Chis</val>,
+                        <val>Sidt</val>, <val>Tayo</val>, <val>Tols</val>.
+                    </change>
+                    <change>New code point attributes for Unikemet: <attr>kEH_AltSeq</attr>, <attr>kEH_Cat</attr>,
+                        <attr>kEH_Core</attr>, <attr>kEH_Desc</attr>, <attr>kEH_Func</attr>, <attr>kEH_FVal</attr>,
+                        <attr>kEH_HG</attr>, <attr>kEH_IFAO</attr>, <attr>kEH_JSesh</attr>, <attr>kEH_NoMirror</attr>,
+                        <attr>kEH_NoRotate</attr>, <attr>kEH_UniK</attr>.
+                    </change>
+                    <change>New attribute for the <attr>kTayNumeric</attr> property.
+                    </change>
+                    <change>Removed attributes for deprecated properties: <attr>Gr_Link</attr>, <attr>Hyphen</attr>,
+                        <attr>isc</attr>, <attr>kGB7</attr>, <attr>kJa</attr>, <attr>XO_NFC</attr>, <attr>XO_NFD</attr>,
+                        <attr>XO_NFKC</attr>, <attr>XO_NFKD</attr>, <attr>FC_NFKC</attr>.
+                    </change>
+                    <change>Removed elements that only contained historical information:
+                        <elem>normalization-corrections</elem>, <elem>emoji-sources</elem>.
+                    </change>
+                    <change>Unihan attributes are applied at the group where applicable, similar to how non-Unihan
+                        attributes are applied at the group.
+                    </change>
+                </changes>
+            </revision>
+            <revision revnumber="36" date="2024-09-02">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>16.0</val>.
+                    </change>
+                    <change>New values for the <attr>blk</attr> attribute: <val>Egyptian_Hieroglyphs_Ext_A</val>, <val>
+                        Garay</val>, <val>Gurung_Khema</val>, <val>Kirat_Rai</val>, <val>Myanmar_Ext_C</val>, <val>
+                        Ol_Onal</val>, <val>Sunuwar</val>, <val>Symbols_for_Legacy_Computing_Sup</val>, <val>
+                        Todhri</val>, <val>Tulu_Tigalari</val>.
+                    </change>
+                    <change>New values for the <attr>script</attr> attribute: <val>Gara</val>, <val>Gukh</val>, <val>
+                        Krai</val>, <val>Onao</val>, <val>Sunu</val>, <val>Todr</val>, <val>Tutg</val>.
+                    </change>
+                    <change>New value for the <attr>jg</attr> attribute: <val>Kashmiri_Yeh</val>.</change>
+                    <change>New value for the <attr>InSC</attr> attribute: <val>Reordering_Killer</val>.
+                    </change>
+                    <change>New attributes: <attr>MCM</attr>, <attr>kFanqie</attr>, <attr>kZhuang</attr>.
+                    </change>
+                    <change>Modified patterns for the <attr>cjk-radical/@number</attr>, <attr>kRSUnicode</attr> and <attr>
+                        kIRG_GSource
+                    </attr> attributes.
+                    </change>
+                    <change>Added the <elem>do-not-emit</elem> element.
+                    </change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 35 being a proposed update, only changes between revisions 34 and 36 are
+                noted here.
+            </proposed_update>
+            <revision revnumber="34" date="2023-08-27">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>15.1</val>.
+                    </change>
+                    <change>New value for the <attr>blk</attr> attribute: <val>CJK_Ext_I</val>.
+                    </change>
+                    <change>New values for the <attr>lb</attr> attribute: <val>AK</val>, <val>AP</val>, <val>
+                        AS</val>, <val>VF</val>, <val>VI</val>.
+                    </change>
+                    <change>Modified values for the <attr>number</attr>, <attr>radical</attr> attributes of the <elem>
+                        cjk-radical
+                    </elem> element.
+                    </change>
+                    <change>Changed single value into list for the <attr>nv</attr> code point attribute.
+                    </change>
+                    <change>New code point attributes: <attr>ID_Compat_Math_Continue</attr>, <attr>
+                        ID_Compat_Math_Start</attr>, <attr>IDSU</attr>, <attr>NFKC_SCF</attr>, <attr>InCB</attr>.
+                    </change>
+                    <change>Modified patterns for the <attr>kBigFive</attr>, <attr>kIRG_GSource</attr>, <attr>
+                        kMorohashi</attr>, <attr>kRSUnicode</attr> attributes.
+                    </change>
+                    <change>Changed single values into lists for the <attr>kMorohashi</attr>, <attr>kPrimaryNumeric
+                    </attr> Unihan attributes.
+                    </change>
+                    <change>New Unihan attributes: <attr>kJapanese</attr>, <attr>kMojiJoho</attr>, <attr>
+                        kSMSZD2003Index</attr>, <attr>kSMSZD2003Readings</attr>, <attr>kVietnameseNumeric</attr>, <attr>
+                        kZhuangNumeric</attr>.
+                    </change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 33 being a proposed update, only changes between revisions 32 and 34 are
+                noted here.
+            </proposed_update>
+            <revision revnumber="32" date="2022-09-04">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>15.0</val>.
+                    </change>
+                    <change>New values for the <attr>blk</attr> attribute: <val>Arabic_Ext_C</val>, <val>CJK_Ext_H</val>, <val>
+                        Cyrillic_Ext_D</val>, <val>Devanagari_Ext_A</val>, <val>Kaktovik_Numerals</val>, <val>Kawi</val>, <val>
+                        Nag_Mundari</val>.
+                    </change>
+                    <change>New values for the <attr>script</attr> attribute: <val>Kawi</val>, <val>Nagm</val>.
+                    </change>
+                    <change>New Unihan attribute: <val>kAlternateTotalStrokes</val>.
+                    </change>
+                    <change>Modified patterns for the <attr>kIRG_GSource</attr>, <attr>kIRG_HSource</attr>, <attr>
+                        kIRG_TSource</attr>, <attr>kSemanticVariant</attr>, <attr>kSpecializedSemanticVariant</attr>, <attr>
+                        kZVariant
+                    </attr> attributes.
+                    </change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 31 being a proposed update, only changes between revisions 30 and 32 are
+                noted here.
+            </proposed_update>
+            <revision revnumber="30" date="2021-08-12">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>14.0</val>.
+                    </change>
+                    <change>New values for the <attr>blk</attr> attribute: <val>Arabic_Ext_B</val>, <val>
+                        Cypro_Minoan</val>, <val>Ethiopic_Ext_B</val>, <val>Kana_Ext_B</val>, <val>
+                        Latin_Ext_F</val>, <val>Latin_Ext_G</val>, <val>Old_Uyghur</val>, <val>Tangsa</val>, <val>
+                        Toto</val>, <val>UCAS_Ext_A</val>, <val>Vithkuqi</val>, <val>Znamenny_Music</val>.
+                    </change>
+                    <change>New values for the <attr>script</attr> attribute: <val>Cpmn</val>, <val>Ougr</val>, <val>
+                        Tnsa</val>, <val>Toto</val>, <val>Vith</val>.
+                    </change>
+                    <change>New values for the <attr>jg</attr> attribute: <val>Thin_Yeh</val>, <val>Vertical_Tail</val>.
+                    </change>
+                    <change>New Unihan attribute: <val>kStrange</val>.
+                    </change>
+                    <change>Modified patterns for the <attr>kIRG_GSource</attr>, <attr>kIRG_MSource</attr>, <attr>
+                        kIRG_VSource</attr>, <attr>kPhonetic</attr>, <attr>kSpoofingVariant</attr> attributes.
+                    </change>
+                    <change>Removal of the <attr>kWubi</attr> attribute, which has never been present in
+                        released versions of the UCD.
+                    </change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 29 being a proposed update, only changes between revisions 28 and 30 are
+                noted here.
+            </proposed_update>
+            <revision revnumber="28" date="2020-02-21">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>13.0</val>.
+                    </change>
+                    <change>New values for the <attr>blk</attr> attribute: <val>Chorasmian</val>, <val>CJK_Ext_G</val>, <val>
+                        Dives_Akuru</val>, <val>Khitan_Small_Script</val>, <val>Lisu_Sup</val>, <val>
+                        Symbols_For_Legacy_Computing</val>, <val>Tangut_Sup</val>, <val>Yezidi</val>.
+                    </change>
+                    <change>New values for the <attr>script</attr> attribute: <val>Chrs</val>, <val>Diak</val>, <val>
+                        Kits</val>, <val>Yezi</val>.
+                    </change>
+                    <change>New value for the <attr>InPC</attr> attribute: <val>Top_And_Bottom_And_Left</val>.
+                    </change>
+                    <change>New Unihan attributes <attr>kSpoofingVariant</attr>, <attr>kUnihanCore2020</attr>, <attr>
+                        kIRG_SSource</attr>, <attr>kIRG_UKSource</attr>, <attr>kTGHZ2013</attr>.
+                    </change>
+                    <change>New Emoji attributes <attr>Emoji</attr>, <attr>EPres</attr>, <attr>EMod</attr>, <attr>
+                        EBase</attr>, <attr>EComp</attr>, <attr>ExtPict</attr>.
+                    </change>
+                    <change>Modified patterns for the <attr>kIRG_GSource</attr>, <attr>kIRG_HSource</attr>, <attr>
+                        kIRG_KPSource</attr>, <attr>kIRG_KSource</attr>, <attr>kIRG_TSource</attr>, <attr>kKangXi</attr>, <attr>
+                        kSemanticVariant</attr>, <attr>kSimplifiedVariant</attr>, <attr>
+                        kSpecializedSemanticVariant</attr>, <attr>kTraditionalVariant</attr> attributes.
+                    </change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 27 being a proposed update, only changes between revisions 26 and 28 are
+                noted here.
+            </proposed_update>
+            <revision revnumber="26" date="2019-05-06">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>12.1</val>.
+                    </change>
+                </changes>
+            </revision>
+            <revision revnumber="25" date="2019-02-18">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>12.0</val>.
+                    </change>
+                    <change>New values for the <attr>script</attr> attribute: <val>Elym</val>, <val>Hmnp</val>, <val>
+                        Nand</val>, <val>Wcho</val>.
+                    </change>
+                    <change>New values for the <attr>blk</attr> attribute: <val>
+                        Egyptian_Hieroglyph_Format_Controls</val>, <val>Elymaic</val>, <val>Nandinagari</val>, <val>
+                        Nyiakeng_Puachue_Hmong</val>, <val>Ottoman_Siyaq_Numbers</val>, <val>Small_Kana_Ext</val>, <val>
+                        Symbols_And_Pictographs_Ext_A</val>, <val>Tamil_Sup</val>, <val>Wancho</val>.
+                    </change>
+                    <change>Modified patterns for the <attr>kIRG_GSource</attr>, <attr>kIRG_KSource</attr>, <attr>
+                        kIRG_TSource</attr>, <attr>kTaiwanTelegraph</attr> attributes.
+                    </change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 24 being a proposed update, only changes between revisions 23 and 25 are
+                noted here.
+            </proposed_update>
+            <revision revnumber="23" date="2018-05-31">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>11.0</val>.
+                    </change>
+                    <change>New values for the <attr>blk</attr> attribute: <val>Chess_Symbols</val>, <val>
+                        Dogra</val>, <val>Georgian_Ext</val>, <val>Gunjala_Gondi</val>, <val>
+                        Hanifi_Rohingya</val>, <val>Indic_Siyaq_Numbers</val>, <val>Makasar</val>, <val>
+                        Mayan_Numerals</val>, <val>Medefaidrin</val>, <val>Old_Sogdian</val>, <val>Sogdian</val>.
+                    </change>
+                    <change>New values for the <attr>script</attr> attribute: <val>Dogr</val>, <val>Gong</val>, <val>
+                        Maka</val>, <val>Medf</val>, <val>Rohg</val>, <val>Sogd</val>, <val>Sogo</val>.
+                    </change>
+                    <change>New values for the <attr>jg</attr> attribute: <val>Hanifi_Rohingya_Kinna_Ya</val>, <val>
+                        Hanifi_Rohingya_Pa</val>.
+                    </change>
+                    <change>New value for the <attr>wb</attr> attribute: <val>WSegSpace</val>.
+                    </change>
+                    <change>New values for the <attr>InSC</attr> attribute: <val>Consonant_Initial_Postfixed</val>.
+                    </change>
+                    <change>New attributes: <attr>EqUIdeo</attr>, <attr>kJinmeiyoKanji</attr>, <attr>kJoyoKanji</attr>, <attr>
+                        kKoreanEducationHanja</attr>, <attr>kKoreanName</attr>, <attr>kTGH</attr>.
+                    </change>
+                    <change>Modified patterns for the <attr>kTGT_MergedSrc</attr> attribute.
+                    </change>
+                    <change>Modified patterns for the <attr>kIRG_GSource</attr>, <attr>kIRG_HSource</attr> and <attr>
+                        kIRG_VSource
+                    </attr> attributes.
+                    </change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 22 being a proposed update, only changes between revisions 21 and 23 are
+                noted here.
+            </proposed_update>
+            <revision revnumber="21" date="2017-06-17">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>10.0</val>.
+                    </change>
+                    <change>New values for the <attr>blk</attr> attribute: <val>CJK_Ext_F</val>, <val>Kana_Ext_A</val>, <val>
+                        Masaram_Gondi</val>, <val>Nushu</val>, <val>Soyombo</val>, <val>Syriac_Sup</val>, <val>
+                        Zanabazar_Square</val>.
+                    </change>
+                    <change>New values for the <attr>sc</attr> attribute: <val>Gonm</val>, <val>Nshu</val>, <val>
+                        Soyo</val>, <val>Zanb</val>.
+                    </change>
+                    <change>New values for the <attr>jg</attr> attribute: <val>Malayalam_Nga</val>, <val>
+                        Malayalam_Ja</val>, <val>Malayalam_Nya</val>, <val>Malayalam_Tta</val>, <val>Malayalam_Nna</val>, <val>
+                        Malayalam_Nnna</val>, <val>Malayalam_Bha</val>, <val>Malayalam_Ra</val>, <val>
+                        Malayalam_Lla</val>, <val>Malayalam_Llla</val>, <val>Malayalam_Ssa</val>.
+                    </change>
+                    <change>New value for the <attr>InPC</attr> attribute: <val>Bottom_And_Left</val>.
+                    </change>
+                    <change>Modified patterns for the <attr>kIRG_GSource</attr>, <attr>kIRG_JSource</attr>, <attr>
+                        kIRG_KSource
+                    </attr> attributes.
+                    </change>
+                    <change>New code point attributes: <attr>vo</attr>,
+                        <attr>RI</attr>
+                    </change>
+                    <change>New code point attributes for Nushu data: <attr>kSrc_NushuDuben</attr> and <attr>
+                        kReading</attr>.
+                    </change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 20 being a proposed update, only changes between revisions 19 and 21 are
+                noted here.
+            </proposed_update>
+            <revision revnumber="19" date="2016-05-30">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>9.0</val>.
+                    </change>
+                    <change>New values for the <attr>sc</attr> attribute: <val>Adlm</val>, <val>Bhks</val>, <val>
+                        Marc</val>, <val>Newa</val>, <val>Osge</val>, <val>Tang</val>.
+                    </change>
+                    <change>New values for the <attr>blk</attr> attribute: <val>Adlam</val>, <val>Bhaiksuki</val>, <val>
+                        Cyrillic_Ext_C</val>, <val>Glagolitic_Sup</val>, <val>Ideographic_Symbols</val>, <val>
+                        Marchen</val>, <val>Mongolian_Sup</val>, <val>Newa</val>, <val>Osage</val>, <val>
+                        Tangut</val>, <val>Tangut_Components</val>.
+                    </change>
+                    <change>New values for the <attr>gcb</attr> attribute: <val>EB</val>, <val>EBG</val>, <val>EM</val>, <val>
+                        GAZ</val>, <val>ZWJ</val>.
+                    </change>
+                    <change>New values for the <attr>wb</attr> attribute: <val>EB</val>, <val>EBG</val>, <val>EM</val>, <val>
+                        GAZ</val>, <val>ZWJ</val>.
+                    </change>
+                    <change>New values for the <attr>lb</attr> attribute: <val>EB</val>, <val>EM</val>, <val>ZWJ</val>.
+                    </change>
+                    <change>New values for the <attr>jg</attr> attribute: <val>African_Feh</val>, <val>
+                        African_Noon</val>, <val>African_Qaf</val>.
+                    </change>
+                    <change>New code point attributes: <attr>PCM</attr>, <attr>kRSTUnicode</attr> and <attr>
+                        kTGT_MergedSrc</attr>.
+                    </change>
+                    <change>Modified patterns for the <attr>kRSUnicode</attr>, <attr>kRSKangXi</attr>, <attr>
+                        kMandarin</attr>, <attr>kIRG_JSource</attr>, <attr>kIRG_USource</attr> and <attr>kFennIndex
+                    </attr> attributes.
+                    </change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 18 being a proposed update, only changes between revisions 17 and 19 are
+                noted here.
+            </proposed_update>
+            <revision revnumber="17" date="2015-05-29">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>8.0</val>.
+                    </change>
+                    <change>New values for the <attr>sc</attr> attribute: <val>Ahom</val>, <val>Hatr</val>, <val>
+                        Hluw</val>, <val>Hung</val>, <val>Mult</val>, <val>Sgnw</val>.
+                    </change>
+                    <change>New values for the <attr>blk</attr> attribute: <val>Ahom</val>, <val>
+                        Anatolian_Hieroglyphs</val>, <val>Cherokee_Sup</val>, <val>CJK_Ext_E</val>, <val>
+                        Early_Dynastic_Cuneiform</val>, <val>Hatran</val>, <val>Multani</val>, <val>Old_Hungarian</val>, <val>
+                        Sup_Symbols_And_Pictographs</val>, <val>Sutton_SignWriting</val>.
+                    </change>
+                    <change>New values for the <attr>InSC</attr> attribute: <val>Consonant_Killer</val>, <val>
+                        Consonant_Prefixed</val>, <val>Consonant_With_Stacker</val>, <val>Syllable_Modifier</val>.
+                    </change>
+                    <change>New code point attributes: <attr>InPC</attr>, <attr>kJa</attr>.
+                    </change>
+                    <change>New patterns for the <attr>kIRG_GSource</attr> attribute: <val>GFC-</val>, <val>GGFZ-</val>.
+                    </change>
+                    <change>Switched the reference to ISO 19757 from :2003 and :2003 Amd1 to :2008.</change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 16 being a proposed update, only changes between revisions 15 and 17 are
+                noted here.
+            </proposed_update>
+            <revision revnumber="15" date="2014-05-29">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>7.0</val>.
+                    </change>
+                    <change>New values for the <attr>jg</attr> attribute.
+                    </change>
+                    <change>New values for the <attr>sc</attr> attribute.
+                    </change>
+                    <change>New values for the <attr>blk</attr> attribute.
+                    </change>
+                    <change>New values for the <attr>InSC</attr> attribute.
+                    </change>
+                    <change>New values for the <attr>kIICore</attr> attribute.
+                    </change>
+                    <change>New values for the <attr>kIRG_GSource</attr> attribute.
+                    </change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 14 being a proposed update, only changes between revisions 13 and 15 are
+                noted here.
+            </proposed_update>
+            <revision revnumber="13" date="2013-08-09">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>6.3</val>.
+                    </change>
+                    <change>New values <val>DQ</val>, <val>HL</val>, <val>SQ</val> for the <attr>WB</attr> attribute(forUnicode6.3).
+                    </change>
+                    <change>New code point attributes <attr>bpt</attr> and <attr>bpb</attr> (for Unicode 6.3).
+                    </change>
+                    <change>New values for the <attr>bc</attr> attribute: <val>LRI</val>, <val>RLI</val>, <val>FSI</val>, <val>
+                        PDI
+                    </val> (for Unicode 6.3).
+                    </change>
+                    <change>Updated the patterns for <attr>kHanyuPinlu</attr> and <attr>kTotalStrokes</attr> (for
+                        Unicode6.3).
+                    </change>
+                    <change>Updated the patterns for <attr>kIRG_HSource</attr> and <attr>kIRG_HSource</attr> (for
+                        Unicode6.2).
+                    </change>
+                    <change>Clarified that the child elements list-like elements are in no particular order.</change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 12 being a proposed update, only changes between revisions 11 and 13 are
+                noted here.
+            </proposed_update>
+            <revision revnumber="11" date="2012-09-17">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>6.2</val>.
+                    </change>
+                    <change>New value for the <attr>gcb</attr>, <attr>wb</attr> and <attr>lb</attr> attributes:<val>
+                        RI
+                    </val> (for Unicode 6.2).
+                    </change>
+                    <change>Updated the patterns for <attr>kIRG_GSource</attr> and <attr>kIRG_HSource</attr> (for
+                        Unicode 6.2).
+                    </change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 10 being a proposed update, only changes between revisions 9 and 11 are
+                noted here.
+            </proposed_update>
+            <revision revnumber="9" date="2012-01-25">
+                <changes>
+                    <change>Clarified the default values.</change>
+                    <change>Indicate that property values may change from one release to the next.</change>
+                    <change>Introduced the <attr>blk</attr> attributes, for the <prop>Block</prop> property.
+                    </change>
+                    <change>Introduced the <attr>scx</attr> attribute, for the <prop>ScriptExtensions</prop> property.
+                    </change>
+                    <change>Introduced the <elem>name-alias</elem> element, for the <prop>Name_Alias</prop> property.
+                    </change>
+                    <change>New value for the <attr>age</attr> attribute: <val>6.1</val>.
+                    </change>
+                    <change>New values for the <attr>script</attr> attribute: <val>Cakm</val>, <val>Merc</val>, <val>
+                        Mero</val>, <val>Plrd</val>, <val>Shrd</val>, <val>Sora</val>, <val>Takr</val>.
+                    </change>
+                    <change>New values for the <attr>lb</attr> attribute: <val>HL</val> and <val>CJ</val>.
+                    </change>
+                    <change>New value for the <attr>jg</attr> attribute: <val>Rohingya_Yeh</val>.
+                    </change>
+                    <change>The value of the <attr>fc_nfkc</attr> attribute must now be either # or <val>
+                        one-or-more-code-points</val>.
+                    </change>
+                    <change>For the <attr>nv</attr> attribute, the absence of a numeric value is now represented by<val>
+                        NaN
+                    </val> rather than by the empty string.
+                    </change>
+                    <change>The values of the <tattrt>ccc</tattrt> are now restricted to 0..254, instead of 0..255.
+                    </change>
+                    <change>Updated the patterns for <attr>kSemanticVariant</attr>, <attr>
+                        kSpecializedSemanticVariant</attr>, <attr>kIRG_USource</attr>, and <attr>kMandarin</attr>.
+                    </change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 8 being a proposed update, only changes between revisions 7 and 9 are noted
+                here.
+            </proposed_update>
+            <revision revnumber="7" date="2010-10-08">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>6.0</val>.
+                    </change>
+                    <change>New value for the <attr>jg</attr> attribute:
+                        <val>Teh_Marbuta_Goal</val>
+                    </change>
+                    <change>New values for the <attr>script</attr> attribute: <val>Batk</val>, <val>Brah</val>, <val>
+                        Mand</val>.
+                    </change>
+                    <change>Updated the patterns for <attr>kIRG_GSource</attr>, <attr>kIRG_HSource</attr>, <attr>
+                        kIRG_JSource</attr>, <attr>kIRG_KSource</attr>, <attr>kIRG_MSource</attr>, <attr>
+                        kIRG_TSource</attr>, <attr>kIRG_VSource</attr>.
+                    </change>
+                    <change>Added the <elem>InSC</elem> and <elem>InMC</elem> elements.
+                    </change>
+                    <change>Added the <elem>emoji-sources</elem> element.
+                    </change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 6 being a proposed update, only changes between revisions 5 and 7 are noted
+                here.
+            </proposed_update>
+            <revision revnumber="5" date="2009-09-17">
+                <changes>
+                    <change>Changed the type of <attr>block/@first-cp</attr>, <attr>block/@last-cp</attr> and <attr>
+                        normalization-corrections/@cp
+                    </attr> from <val>text</val> to
+                        <val>single-code-point</val>
+                    </change>
+                    <change>Changed the type of <attr>named-sequence/@cps</attr>, <attr>
+                        provisional-named-sequences/@cps</attr>, <attr>normalization-correction/@old</attr> and <attr>
+                        normalization-correction/@new
+                    </attr> from <val>text</val> to <val>one-or-more-code-points</val>.
+                    </change>
+                    <change>Changed the type of <attr>standardized-variants/@cps</attr> from <val>text</val> to <val>
+                        two-code-points</val>.
+                    </change>
+                    <change>New values for the <attr>jg</attr> attribute: <val>Farsi_Yeh</val> and <val>Nya</val>.
+                    </change>
+                    <change>New value for the <attr>age</attr> attribute: <val>5.2</val>.
+                    </change>
+                    <change>New values for the <attr>sc</attr> attribute: <val>Lana</val>, <val>Tavt</val>, <val>
+                        Avst</val>, <val>Egyp</val>, <val>Samr</val>, <val>Lisu</val>, <val>Bamu</val>, <val>Java</val>, <val>
+                        Mtei</val>, <val>Armi</val>, <val>Sarb</val>, <val>Prti</val>, <val>Phli</val>, <val>Orkh</val>, <val>
+                        Kthi</val>.
+                    </change>
+                    <change>New value for the <attr>lb</attr> attribute: <val>CP</val>.
+                    </change>
+                    <change>New value for the <attr>sc</attr> attribute: <val>Zinh</val>.
+                    </change>
+                    <change>New code point attributes <tattrt>CI</tattrt>, <attr>Cased</attr>, <attr>CWCF</attr>, <attr>
+                        CWCM</attr>, <attr>CWL</attr>, <attr>CWKCF</attr>, <attr>CWT</attr>, <attr>CWU</attr>, <attr>
+                        NFKC_CF</attr>.
+                    </change>
+                    <change>New attributes <attr>kHanyuPinyin</attr> and <attr>kIRG_MSource</attr>.
+                    </change>
+                    <change>New element
+                        <elem>cjk-radicals</elem>
+                    </change>
+                    <change>Updated the patterns for <attr>kIRG_GSource</attr>, <attr>kIRG_JSource</attr>, <attr>
+                        kIRG_KPSource</attr>, <attr>kIRG_KSource</attr>, <attr>kIRG_TSource</attr>, <attr>
+                        kIRG_VSource</attr>, <attr>kHanyuPinlu</attr>, <attr>kMandarin</attr>, <attr>
+                        kSemanticVariant</attr>, <attr>kSpecializedSemanticVariant</attr>, <attr>
+                        kVietnamese</attr>, <attr>kZVariant</attr>.
+                    </change>
+                    <change>Point out that Relax NG schemas do not modify or augment the infoset, and that it ispossible
+                        to convert mechanically our schema to other schema languages.
+                    </change>
+                </changes>
+            </revision>
+            <proposed_update>Revision 4 being a proposed update, only changes between revisions 3 and 5 are noted
+                here.
+            </proposed_update>
+            <revision revnumber="3" date="2008-04-01">
+                <changes>
+                    <change>First approved version, for Unicode 5.1.0.</change>
+                    <change>For optional elements which acts as collections, such as <elem>repertoire</elem> and <elem>
+                        named-sequences</elem>, impose that there be at least one element in the collection.
+                    </change>
+                    <change>Remove the constraint that the value <attr>jg</attr> is limited when <attr>jt</attr> has
+                        certainvalues; similarly for <attr>bmg</attr> / <attr>Bidi_M</attr> and for <attr>nv</attr> /
+                        <attr>nt</attr>.
+                    </change>
+                    <change>Value <val>NL</val> added to the <attr>WB</attr> attribute (for Unicode 5.1).
+                    </change>
+                    <change>Value <val>PP</val> added to the <attr>GCB</attr> attribute (for Unicode 5.1).
+                    </change>
+                    <change>Corrected the <val>Vai</val> script value to <val>Vaii</val>.
+                    </change>
+                    <change>Removed the discussion of elements or attributes in different namespace.</change>
+                    <change>Removed the <elem>code-point</elem> element.
+                    </change>
+                </changes>
+            </revision>
+            <revision revnumber="2" date="2007-12-14">
+                <changes>
+                    <change>Promoted to Draft UAX.</change>
+                    <change>Changed the title from "An XML representation of the UCD"</change>
+                    <change>Value <val>5.1</val> added to the <attr>age</attr> attribute (for Unicode 5.1).
+                    </change>
+                    <change>Value <val>SM</val> added to the <attr>gcb</attr> attribute (for Unicode 5.1).
+                    </change>
+                    <change>Values <val>CR</val>, <val>Extend</val>, <val>LF</val>, <val>MB</val> added to the <attr>
+                        WB
+                    </attr> attribute(forUnicode5.1).
+                    </change>
+                    <change>Values <val>CR</val>, <val>EX</val>, <val>LF</val>, <val>SC</val> added to the <attr>SB
+                    </attr> attribute(forUnicode5.1).
+                    </change>
+                    <change>Value <val>Burushaski_Yeh_Barree</val> added to the <attr>jg</attr> attribute (for
+                        Unicode5.1).
+                    </change>
+                    <change>Value <val>Alef_Maqsurah</val> added to the <attr>jg</attr> attribute (for Unicode 2.x).
+                    </change>
+                    <change>Values <val>Cari</val>, <val>Cham</val>, <val>Kali</val>, <val>Lepc</val>, <val>
+                        Lyci</val>, <val>Lydi</val>, <val>Olck</val>, <val>Rjng</val>, <val>Saur</val>, <val>Sund</val> and <val>
+                        Vai
+                    </val> added to the <attr>sc</attr> attribute (forUnicode5.0).
+                    </change>
+                    <change>
+                        <attr>jamo</attr>
+                        attribute renamed to
+                        <attr>JSN</attr>
+                    </change>
+                    <change>
+                        <attr>sfc</attr>
+                        attribute renamed to
+                        <attr>scf</attr>
+                    </change>
+                    <change>Attribute <attr>kXHC1983</attr> added (for Unicode 5.1.0).
+                    </change>
+                    <change>Pattern for attribute <attr>kIRG_USource</attr> extended (for Unicode 5.1.0).
+                    </change>
+                    <change>Element <elem>provisional-named-sequences</elem> added (for Unicode 5.0)
+                    </change>
+                </changes>
+            </revision>
+            <revision revnumber="1" date="2007-04-21">
+                <changes>
+                    <change>First working draft.</change>
+                </changes>
+            </revision>
+        </revhistory>
+    </articleinfo>
+
+    <abstract>
+        <para>This annex describes an XML representation of the Unicode Character Database.</para>
+    </abstract>
+
+
+    <!--========================================================================-->
+    <section>
+        <title>Introduction</title>
+        <para>In working on Unicode implementations, it is often useful to access the full content of the Unicode
+            Character Database (UCD). For example, in establishing mappings from characters to glyphs in fonts, it is
+            convenient to see the character scalar value, the character name, the character East Asian width, along with
+            the shape and metrics of the proposed glyph to map to; looking at all this data simultaneously helps in
+            evaluating the mapping.
+        </para>
+        <para>Directly accessing the data files that constitute the UCD is sometimes a daunting proposition. The data is
+            dispersed in a number of files of various formats, and there are just enough peculiarities (all justified by
+            the processing power available at the time the UCD representation was designed) to require a fairly intimate
+            knowledge of the data format itself, in addition to the meaning of the data.
+        </para>
+        <para>Many programming environments (for example, Java or ICU) do give access to the UCD. However, those
+            environments tend to lag behind releases of the standard, or support only some of the UCD content.
+        </para>
+        <para>Unibook is a wonderful tool to explore the UCD and in many cases is just the ticket; however, it is
+            difficult to use when the task at hand has not been built-in, or when non-UCD data is to be displayed as
+            well.
+        </para>
+        <para>This annex presents an alternative representation of the UCD, which is meant to overcome these
+            difficulties. We have chosen an XML representation, because parsing becomes a non-issue: there are a number
+            of XML parsers freely available, and using them is often fairly easy. In addition, there are freely
+            available tools that can perform powerful operations on XML data; for example, XPATH and XQUERY engines can
+            be thought of as a &#x201C;grep&#x201D; for XML data and XSLT engines can be thought of as
+            &#x201C;awk&#x201D; for XML data.
+        </para>
+        <para>It is important to note that we are interested in exploring the content of the UCD, rather than in using
+            the UCD data to process character streams. Thus, we are not concerned so much by the speed of processing or
+            the size of our representation.
+        </para>
+        <para>Our representation supports the creation of documents that represent only parts of the UCD, either by not
+            representing all the characters, or by not representing all the properties. This can be useful when only
+            some of the data is needed.
+        </para>
+        <para>This annex presents only the XML representation format of the UCD. The data itself is part of the <ulink
+                url='https://www.unicode.org/reports/tr41/tr41-34.html#UCD'>Unicode
+            Character Database</ulink>.
+        </para>
+    </section>
+
+
+    <!--========================================================================-->
+    <section>
+        <title>Overall schema</title>
+        <!--______________________________________________________________________-->
+        <section>
+            <title>General principles</title>
+            <para>Our schema can be used to create and validate documents which are intended to represent properties of
+                Unicode code points, blocks, named sequences, normalization corrections, standardized variants, CJK
+                radicals and emoji sources. A document may represent the values actually assigned in a given version of
+                the UCD, or it may represent a draft version of the UCD, or a private agreement on Private Use
+                characters. The validity of a XML document with respect to the schema defined in this annex does not
+                assert anything about the correctness of the values.
+            </para>
+            <para>Valid documents may provide values for only some of the code points, or some of the Unicode
+                properties. Furthermore, they may also incorporate non-Unicode properties.
+            </para>
+            <para>Our schema is defined using English. However, a useful subset of the validity constraints can be
+                captured using a schema language, thereby simplifying the task of validating documents. We have chosen
+                Relax NG [<ulink url='https://www.unicode.org/reports/tr41/tr41-34.html#ISO19757'>ISO 19757</ulink>],
+                in the compact syntax , as the schema language. It is important to stress that the schema which is
+                defined in English imposes more constraints on the documents than can be validated with the Relax NG
+                schema.
+            </para>
+            <para>An important characteristic of Relax NG is that its schemas do not modify or augment the infoset of
+                the documents. Therefore, it is possible to process our XML representation without using the schema.
+                Also, the schema is relatively straightforward and can be converted mechanically to other schema
+                languages.
+            </para>
+            <para>While our XML representation is not intended to be used during processing of characters and strings,
+                it is still a design principle for our schema to support the relatively efficient representation of the
+                UCD. This is achieved by an inheritance mechanism, similar to property inheritance in CSS or in XSL:FO
+                (see section <link linkend='group'>4.3 Group</link>).
+            </para>
+            <para>Many invariants impose constraints on the values of the different properties for a given code point.
+                For example, if the value of the <prop>Numeric Type</prop> property is None, then the value of the
+                <prop>Numeric Value</prop> property should be the empty string; and if the value of the <prop>Other
+                Alphabetic</prop> property is true, then the value of the <prop>Alphabetic</prop> property should be
+                true. Those invariants are not captured in the schema.
+            </para>
+        </section>
+
+        <!--______________________________________________________________________-->
+        <section>
+            <title>Namespace</title>
+            <para>The namespace for our elements is &#x201C;http://www.unicode.org/ns/2003/ucd/1.0&#x201D;. Our
+                attributes are in the empty namespace.
+            </para>
+            <!--Manual--><xi:include href="./fragments/namespace.xml"/>
+            <para>In all our examples, we assume that this namespace is the default one.
+            </para>
+        </section>
+
+        <!--______________________________________________________________________-->
+        <section>
+            <title>Datatypes</title>
+            <para>We use a standard XML Schema datatypes:</para>
+            <!--Manual--><xi:include href="./fragments/datatypes.xml"/>
+            <para>Characters are pervasive in the UCD, and will need to be represented. Representing characters directly
+                by themselves would seem the most obvious choice; for example, we could express that the decomposition
+                of U+00E8 is &#x201c;&amp;#x0065;&amp;#x0300;&#x201d;, that is have exactly two characters in (the
+                infoset of) the XML document. However, the current XML specification limits the set of characters
+                that can be part of a document. Another problem is that the various tools (XML parser, XPATH engine,
+                etc.) may equate U+00E8 with U+0065 U+0300, thus making it difficult to figure out which of the two
+                sequences is contained in the database (which is sometimes important for our purposes). Therefore, we
+                chose instead to represent characters by their code points; we follow the usual convention of four to
+                six hexadecimal digits (uppercase) and code points in a sequence separated by space; for example, the
+                decomposition of U+00E8 will be represented by the nine characters &#x201c;0065 0300&#x201d; in the
+                infoset.
+            </para>
+            <!--Manual--><xi:include href="./fragments/datatypes_code_points.xml"/>
+        </section>
+
+        <!--______________________________________________________________________-->
+        <section>
+            <title>Root Element</title>
+            <para>The root element of valid documents is a <elem>ucd</elem>.
+            </para>
+            <!--Manual--><xi:include href="./fragments/start.xml"/>
+        </section>
+
+        <!--______________________________________________________________________-->
+        <section>
+            <title>Common attributes</title>
+            <para>A large number of properties are boolean. We uniformly use the values <val>Y</val> and
+                <val>N</val> for those:
+            </para>
+            <xi:include href="./fragments/boolean.xml"/>
+        </section>
+
+        <!--______________________________________________________________________-->
+        <section>
+            <title>Ordering of elements</title>
+            <para>In elements that hold lists of child elements, such as <elem>repertoire</elem>,
+                <elem>group</elem>, or <elem>standardized-variants</elem>, the schema does not require that the
+                child elements be in any particular order.
+            </para>
+        </section>
+    </section>
+
+    <!--========================================================================-->
+    <section>
+        <title>Description</title>
+        <para>The root element may have a <elem>description</elem> child element, which in turn contains any string,
+            which is meant to describe what the XML document purports to describe.
+        </para>
+        <para>It is recommended that if the document purports to represent the UCD of some Unicode version, the
+            <elem>description</elem> be selected in accord with the rules listed in <ulink
+                    url='https://www.unicode.org/reports/tr41/tr41-34.html#Versions'>[Versions]</ulink>; and
+            conversely, that documents which do not purport to represent the UCD be described as such.
+        </para>
+        <!--Manual--><xi:include href="./fragments/description.xml"/>
+    </section>
+
+    <!--========================================================================-->
+    <section>
+        <title>Repertoire</title>
+        <para>The <elem>repertoire</elem> child element of the <elem>ucd</elem> element describes the code points and
+            their properties. As we will see shortly, code points can be described individually or as part of a group:
+        </para>
+        <!--Manual--><xi:include href="./fragments/repertoire.xml"/>
+
+        <!--______________________________________________________________________-->
+        <section>
+            <title>Sets of code points</title>
+            <para>It is often the case that successive code points have the same property values, for a given set of
+                properties. The most striking example is that of an unallocated plane, where all but the last two
+                code points are reserved and have the same property values. Another example is the URO (U+4E00
+                .. U+9FA5) where all the code points have the same property values if we ignore their name and their
+                Unihan properties.
+            </para>
+            <!--Manual--><xi:include href="./fragments/Set_of_code_points.xml"/>
+            <para>This observation suggests that it is profitable to represent sets of code points which share the
+                same properties, rather than individual code points. To make the representation of the sets simple,
+                we restrict them to be segments in the code point space, that is a set is defined by the first and
+                last code point it contains. Those are captured by the attributes <attr>first-cp</attr> and <attr>
+                    last-cp</attr>. The attribute <attr>cp</attr> is a shorthand notation for the case where the set
+                has a single code point.
+            </para>
+            <para>In the <elem>repertoire</elem>, there must be at most one <elem>code-point</elem>
+                element for a given code point.
+            </para>
+        </section>
+
+        <!--______________________________________________________________________-->
+        <section>
+            <title>Code point types</title>
+            <para>When thinking about Unicode code points, it is useful to split them into four types:
+            </para>
+            <itemizedlist>
+                <listitem>those assigned to abstract characters (PUA or not)</listitem>
+                <listitem>the noncharacters</listitem>
+                <listitem>the surrogate code points</listitem>
+                <listitem>the reserved code points</listitem>
+            </itemizedlist>
+            <para>This leads to four elements to describe sets of code points:
+            </para>
+            <!--Manual--><xi:include href="./fragments/repertoire_Code_points.xml"/>
+        </section>
+
+        <!--______________________________________________________________________-->
+        <section>
+            <title>Group</title>
+            <para>While we already recognized the situation where a set of code points have exactly the same set of
+                property values, another common situation is that of code points which have almost all the same
+                property values.
+            </para>
+            <para>For example, the characters U+1740 BUHID LETTER A .. U+1753 BUHID VOWEL SIGN U all have the age
+                &#x201C;3.2&#x201D;, and all have the script &#x201C;Buhd&#x201D;. On the one hand, it is convenient
+                to support data files in which those properties are explicitly listed with every code point, at this
+                makes answering questions like &#x201C;what is the age of U+1749?&#x201D; easier, because that data
+                is expressed right there. On the other hand, this leads to rather large data files, and it also tends
+                to obscure the differences between similar characters.
+            </para>
+
+            <para>Our representation accounts for this situation with the notion of groups. A
+                <elem>group</elem> element is simply a container of code points that also holds default values for
+                the properties. If a code point inside a <elem>group</elem> does not list explicitly a property but the
+                <elem>group</elem> lists it, then the code point inherits that property from its
+                <elem>group</elem>. For example, the fragment with explicit properties:
+            </para>
+            <codeblock>
+    &lt;char cp="1740" age="3.2" na="BUHID LETTER A" gc="Lo" sc="Buhd"/>
+    &lt;char cp="1741" age="3.2" na="BUHID LETTER I" gc="Lo" sc="Buhd"/>
+    &lt;char cp="1752" age="3.2" na="BUHID VOWEL SIGN I" gc="Mn" sc="Buhd"/>
+    &lt;char cp="1820" age="3.0" na="MONGOLIAN LETTER A" gc="Lo" sc="Mong"/></codeblock>
+            <para>is equivalent to this fragment which uses a <elem>group</elem>:
+            </para>
+            <codeblock>
+    &lt;group age="3.2" gc="Lo" sc="Buhd">
+        &lt;char cp="1740" na="BUHID LETTER A"/>
+        &lt;char cp="1741" na="BUHID LETTER I"/>
+        &lt;char cp="1752" na="BUHID VOWEL SIGN I" gc="Mn"/>
+        &lt;char cp="1820" age="3.0" na="MONGOLIAN LETTER A" sc="Mong"/>
+    &lt;/group></codeblock>
+            <para>The element for U+1740 does not have the <attr>age</attr> attribute, and it therefore inherits it
+                from its enclosing <elem>group</elem> element, that is &#x201C;3.2&#x201D;. On the other hand,
+                the element for U+1820 does have this attribute, so the value is &#x201C;3.0&#x201D;.
+            </para>
+            <para>As this example illustrates, the notion of <elem>group</elem> does not necessarily align with the
+                notion of Unicode block. It is entirely defined and limited to our representation. In particular, the
+                value of a property for a code point can always be determined from the XML document alone, assuming
+                that this property and this code point are expressed at all. Of course, one may create an XML
+                representation where the groups happen to coincide with the Unicode blocks.
+            </para>
+            <para>Groups cannot be nested. The motivation for this limitation is to make the life of consumers
+                easier: either a property is defined by the element for a code point, or it is defined by the
+                immediately enclosing <elem>group</elem> element.
+            </para>
+            <para>For UCDXML versions prior to 17.0, only non-Unihan attributes are applied to the <elem>group</elem>
+                elements. Starting with 17.0, Unihan attributes are also applied to the <elem>group</elem> elements.
+            </para>
+            <!--Manual--><xi:include href="./fragments/groups.xml"/>
+        </section>
+
+        <!--========================================================================-->
+        <section>
+            <title>Properties</title>
+            <para>Each property, except for the <prop>Special_Case_Condition</prop> and <prop>Name_Alias</prop>
+                properties, is represented by an attribute. In an XML data file, the absence of an attribute (may be
+                only on some <codephrase>code-point</codephrase>s) means that the document does not express the value
+                of the corresponding property. Conversely, the presence of an attribute is an expression of the
+                corresponding property value; the implied null value is represented by the empty string.
+            </para>
+            <para>The <prop>Name_Alias</prop> property is represented by zero or more <elem>name-alias</elem> child
+                elements. Unlike the situation for properties represented by attributes, it is not possible to determine
+                whether all the aliases have been represented in a data file by inspecting that data file.
+            </para>
+            <para>The name of an attribute is the abbreviated name of the property as given in the file
+                PropertyAliases.txt in the corresponding version of the UCD. For the Unihan
+                properties, the name is that given in the various versions of the Unihan database.
+            </para>
+            <para>For catalog and enumerated properties, the values are those listed in the file
+                PropertyValueAliases.txt in the corresponding version of the UCD; if there is an abbreviated
+                name, it is used, otherwise the long name is used.
+            </para>
+            <para>Note that the set of possible values for a property captured in this schema may change from one
+                version to the next.
+            </para>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Age property</title>
+                <para>The <elem>age</elem> attribute captures the version of Unicode in which a code point was
+                    assigned to an abstract character, or made a surrogate or non-character.
+                </para>
+                <xi:include href="./fragments/age.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Name properties</title>
+                <para>There are two name properties: the name given by the current version of the standard
+                    (<elem>na</elem>), and possibly the name this character had in version 1.0 of the standard
+                    (<elem>na1</elem>).
+                </para>
+                <xi:include href="./fragments/na.xml"/>
+                <xi:include href="./fragments/na1.xml"/>
+                <para>The majority of the characters in Unicode have a name which is of the form CJK UNIFIED
+                    IDEOGRAPH-<codephrase>&lt;code point&gt;</codephrase>. It also happens that character names cannot
+                    contain the character U+0023 &#x0023; NUMBER SIGN, so we adopted the following convention: if a
+                    code point has the attribute <attr>na</attr> (either directly or by inheritance from an enclosing
+                    group), then occurrences of the character # in the name are to be interpreted as the value of the
+                    code point. For example:
+                </para>
+                <codeblock>
+    &lt;char cp="3400" na="CJK UNIFIED IDEOGRAPH-3400"/></codeblock>
+                <para>and</para>
+                <codeblock>
+    &lt;char cp="3400" na="CJK UNIFIED IDEOGRAPH-#"/></codeblock>
+                <para>are equivalent. The # can be in any position in the value of the <attr>na</attr>
+                    attribute. The convention also applies just as well to a set of multiple code points:
+                </para>
+                <codeblock>
+    &lt;char cp="3400" na="CJK UNIFIED IDEOGRAPH-3400"/>
+    &lt;char cp="3401" na="CJK UNIFIED IDEOGRAPH-3401"/></codeblock>
+                <para>is equivalent to</para>
+                <codeblock>
+    &lt;char cp="3400" na="CJK UNIFIED IDEOGRAPH-#"/>
+    &lt;char cp="3401" na="CJK UNIFIED IDEOGRAPH-#"/></codeblock>
+                <para>which in turn is equivalent to:</para>
+                <codeblock>
+    &lt;char first-cp="3400" last-cp="3401" na="CJK UNIFIED IDEOGRAPH-#"/></codeblock>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Name Alias properties</title>
+                <para>The <prop>Name_Alias</prop> property is represented by zero or more <elem>name-alias</elem>
+                    child elements:
+                </para>
+                <xi:include href="./fragments/Name_Alias.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Block property</title>
+                <para>The <prop>Block</prop> property is represented by the <attr>blk</attr> attribute:
+                </para>
+                <xi:include href="./fragments/blk.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>General Category</title>
+                <para>The general category is represented by the <attr>gc</attr> attribute.
+                </para>
+                <xi:include href="./fragments/gc.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Combining properties</title>
+                <para>The combining class is represented by the <attr>ccc</attr> attribute, which holds the decimal
+                    representation of the combining class.
+                </para>
+                <para>Because the set of values that this property has taken across the various versions of the UCD
+                    is rather large, our schema does not restrict the possible values to those actually used.
+                </para>
+                <!--Manual--><xi:include href="./fragments/ccc.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Bidirectionality properties</title>
+                <para>The bidirectional class is represented by the <attr>bc</attr> attribute.
+                </para>
+                <xi:include href="./fragments/bc.xml"/>
+                <para>The mirrored property is represented by the <attr>Bidi_M</attr> attribute, which takes a
+                    boolean value.
+                </para>
+                <xi:include href="./fragments/Bidi_M.xml"/>
+                <para>The <attr>bmg</attr> attribute is the code point of a character whose glyph is typically
+                    a mirrored image of the glyph for the current character.
+                </para>
+                <xi:include href="./fragments/bmg.xml"/>
+                <para>Note that we do not express the &#x201c;Best Fit&#x201d; element recorded in BidiMirroring.txt.
+                    For one thing, it is not meant to be machine readable. More importantly, the idea underlying the
+                    mirrored glyph is delicate to use, since it makes assumptions about the design of the fonts, and
+                    the best fit goes even farther.
+                </para>
+                <para>The <prop>Bidi_Control</prop> property is represented by the <attr>Bidi_C</attr> attribute.
+                </para>
+                <xi:include href="./fragments/Bidi_C.xml"/>
+                <para>The bidi paired bracket type and bidi paired bracket properties are represented by the
+                    <attr>bpt</attr> and <attr>bpb</attr> attributes respectively.
+                </para>
+                <xi:include href="./fragments/bpt.xml"/>
+                <xi:include href="./fragments/bpb.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Decomposition properties</title>
+                <para>The decomposition type and decomposition mapping properties are represented by the <attr>dt</attr>
+                    and <attr>dm</attr> attributes.
+                </para>
+                <para>Most characters have a decomposition mapping to themselves. This is very similar to the
+                    situation we encountered with names, and we adopted a similar convention: if the value of a
+                    decomposition mapping is the character itself, we use the attribute value # (U+0023 &#x0023;
+                    NUMBER SIGN) as a shorthand notation; this enables those attributes to be captured in groups.
+                </para>
+                <xi:include href="./fragments/decomposition.xml"/>
+                <para>The properties <prop>Composition_Exclusion</prop> and <prop>Full_Composition_Exclusion</prop> are
+                    represented by the attributes <attr>CE</attr> and <attr>Comp_Ex</attr>:
+                </para>
+                <xi:include href="./fragments/composition.xml"/>
+                <para>The properties <prop>NFC_Quick_Check</prop>, <prop>NFD_Quick_Check</prop>,
+                    <prop>NFKC_Quick_Check</prop>, <prop>NFKD_Quick_Check</prop>,
+                    <edit flag="removed"><prop>Expands_On_NFC</prop>, <prop>Expands_On_NFD</prop>,
+                    <prop>Expands_On_NFKC</prop>, <prop>Expands_On_NKFD</prop>, <prop>FC_NFKC_Closure</prop></edit> have
+                    corresponding attributes.
+                </para>
+                <xi:include href="./fragments/quickcheck.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Numeric Properties</title>
+                <para>The numeric type is represented by the <attr>nt</attr> attribute.
+                </para>
+                <para>The numeric value is represented by the <attr>nv</attr> attribute, represented as a whole
+                    number or a fraction.
+                </para>
+                <xi:include href="./fragments/numeric.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Joining properties</title>
+                <para>The joining class of a character is represented by the <attr>jt</attr> attribute.
+                </para>
+                <para>The <attr>jg</attr> attribute is the joining group of the character.
+                </para>
+                <xi:include href="./fragments/joining.xml"/>
+                <para>The <prop>Join_Control</prop> property is represented by the <attr>Join_C</attr> attribute.
+                </para>
+                <xi:include href="./fragments/Join_C.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Linebreak properties</title>
+                <para>The <prop>Line_Break</prop> property is represented by the <attr>lb</attr> attribute.
+                </para>
+                <xi:include href="./fragments/lb.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>East Asian Width property</title>
+                <para>The East Asian width property is represented by the <attr>ea</attr> attribute.
+                </para>
+                <xi:include href="./fragments/ea.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Case properties</title>
+                <para>The <prop>Uppercase</prop>, <prop>Lowercase</prop>, <prop>Other_Uppercase</prop> and
+                    <prop>Other_Lowercase</prop> properties are represented by corresponding attributes.
+                </para>
+                <xi:include href="./fragments/casing.xml"/>
+                <para>Most characters have a case mapping and case folding properties that simply map or fold to
+                    themselves. This is very similar to the situation we encountered with names, and we adopted a
+                    similar convention: if the value of a case mapping or case folding property is the character
+                    itself, we use the attribute value # (U+0023 &#x0023; NUMBER SIGN) as a shorthand notation; this
+                    enables those attributes to be captured in groups.
+                </para>
+                <para>The simple case mappings are recorded in the <attr>suc</attr>, <attr>slc</attr>, <attr>stc</attr>
+                    attributes.
+                </para>
+                <xi:include href="./fragments/simple_case_mapping.xml"/>
+                <para>The non-simple casing are recorded in the <attr>uc</attr>, <attr>lc</attr> and <attr>tc</attr>
+                    attributes.
+                </para>
+                <xi:include href="./fragments/case_mapping.xml"/>
+                <para>The <prop>Simple_Case_Folding</prop> and <prop>Case_Folding</prop> properties are recorded in the
+                    <attr>scf</attr> and <attr>cf</attr> attributes respectively.
+                </para>
+                <xi:include href="./fragments/case_folding.xml"/>
+                <para>The <prop>Case_Ignorable</prop>, <prop>Cased</prop>, <prop>Changes_When_Casefolded</prop>,
+                    <prop>Changes_When_Casemapped</prop>, <prop>Changes_When_Lowercased</prop>,
+                    <prop>Changes_When_NFKC_Casefolded</prop>, <prop>Changes_When_Titlecased</prop>,
+                    <prop>Changes_When_Uppercased</prop>, <prop>NFKC_Casefold</prop>, and
+                    <prop>NFKC_Simple_Casefold</prop> properties are recorded in these attributes:
+                </para>
+                <xi:include href="./fragments/case_other.xml"/>
+                <para>Note that the UCD records more information about case folding than is expressed in the
+                    properties, specifically the entries in CaseFolding.txt with status T.
+                </para>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Script properties</title>
+                <para>The script and script extension properties are represented by the <attr>sc</attr> and
+                    <attr>scx</attr> attributes respectively.
+                </para>
+                <xi:include href="./fragments/script.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title><edit flag="removed">ISO Comment properties</edit></title>
+                <para><edit flag="removed">The ISO 10646 comment field is represented by the <attr>isc</attr> attribute.
+                </edit></para>
+                <xi:include href="./fragments/isc.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Hangul properties</title>
+                <para>The property <prop>Hangul_Syllable_Type</prop> is represented by the <attr>hst</attr> attribute.
+                </para>
+                <xi:include href="./fragments/hst.xml"/>
+                <para>The property <prop>Jamo_Short_Name</prop> is represented by the <attr>JSN</attr> attribute:
+                </para>
+                <xi:include href="./fragments/JSN.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Indic properties</title>
+                <para>The property <prop>Indic_Syllabic_Category</prop> is represented by the <attr>InSC</attr>
+                    attribute.
+                </para>
+                <xi:include href="./fragments/InSC.xml"/>
+                <para>The property <prop>Indic_Positional_Category</prop> is represented by the <attr>InPC</attr>
+                    attribute:
+                </para>
+                <xi:include href="./fragments/InPC.xml"/>
+                <para>The property <prop>Indic_Conjunct_Break</prop> is represented by the <attr>InCB</attr> attribute:
+                </para>
+                <xi:include href="./fragments/InCB.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Identifier and Pattern and programming language properties</title>
+
+                <para>The properties <prop>ID_Start</prop>, <prop>Other_ID_Start</prop>, <prop>XID_Start</prop>,
+                    <prop>ID_Continue</prop>, <prop>Other_ID_Continue</prop>, <prop>XID_Continue</prop>,
+                    <prop>ID_Compat_Math_Start</prop>, and <prop>ID_Compat_Math_Continue</prop> are represented by
+                    corresponding attributes:
+                </para>
+                <xi:include href="./fragments/identifier.xml"/>
+                <para>The properties <prop>Pattern_Syntax</prop> and <prop>Pattern_White_Space</prop> are represented
+                    by corresponding attributes:
+                </para>
+                <xi:include href="./fragments/pattern.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Properties related to function and graphic characteristics</title>
+                <para>The properties <prop>Dash</prop>, <edit flag='removed'><prop>Hyphen</prop>,</edit>
+                    <prop>Quotation_Mark</prop>, <prop>Terminal_Punctuation</prop>, <prop>Sentence_Terminal</prop>,
+                    <prop>Diacritic</prop>, <prop>Extender</prop>, <prop>Soft_Dotted</prop>, <prop>Alphabetic</prop>,
+                    <prop>Other_Alphabetic</prop>, <prop>Math</prop>, <prop>Other_Math</prop>, <prop>Hex_Digit</prop>,
+                    <prop>ASCII_Hex_Digit</prop>, <prop>Default_Ignorable_Code_Point</prop>,
+                    <prop>Other_Default_Ignorable_Code_Point</prop>, <prop>Logical_Order_Exception</prop>,
+                    <prop>Prepended_Concatenation_Mark</prop>, <prop>Modifier_Combining_Mark</prop>,
+                    <prop>White_Space</prop>, <prop>Vertical_Orientation</prop>, and <prop>Regional_Indicator</prop>
+                    describe the function or graphic characteristic of a character, and have each a corresponding
+                    attribute.
+                </para>
+                <xi:include href="./fragments/function_graphic.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Properties related to boundaries</title>
+                <para>The properties <prop>Grapheme_Base</prop>, <prop>Grapheme_Extend</prop>,
+                    <prop>Other_Grapheme_Extend</prop>,
+                    <edit flag='removed'><prop>Grapheme_Link</prop>,</edit>
+                    <prop>Grapheme_Cluster_Break</prop>, <prop>Word_Break</prop>, and <prop>Sentence_Break</prop>
+                    each have a corresponding attribute:
+                </para>
+                <xi:include href="./fragments/boundaries.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Properties related to ideographs</title>
+                <para>The properties <prop>Ideographic</prop>, <prop>Unified_Ideograph</prop>,
+                    <prop>Equivalent_Unified_Ideograph</prop>, <prop>IDS_Binary_Operator</prop>,
+                    <prop>IDS_Trinary_Operator</prop>, <prop>IDS_Unary_Operator</prop>, and  <prop>Radical</prop> have
+                    corresponding attributes:
+                </para>
+                <xi:include href="./fragments/ideographs.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Miscellaneous properties</title>
+                <para>The properties <prop>Deprecated</prop>, <prop>Variation_Selector</prop>, and
+                    <prop>Noncharacter_Code_Point</prop> have corresponding attributes:
+                </para>
+                <xi:include href="./fragments/miscellaneous.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Unihan properties</title>
+                <para>The Unihan properties (from the Unihan database) are represented as attributes.
+                </para>
+                <xi:include href="./fragments/Unihan.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Tangut data</title>
+                <para>The Tangut data are represented as attributes. The attribute <edit
+                        flag="removed"><attr>kRSTUnicode</attr></edit><edit
+                        flag="changed"><attr>kTGT_RSUnicode</attr></edit>
+                    represents the radical stroke index. The attribute <attr>kTGT_MergedSrc</attr> indicates the
+                    source reference for the character.
+                </para>
+                <xi:include href="./fragments/Tangut.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Nushu data</title>
+                <para>The Nushu data are represented as attributes. The attribute <edit
+                        flag="removed"><attr>kSrc_NushuDuben</attr></edit><edit
+                        flag="changed"><attr>kNSHU_DubenSrc</attr></edit>
+                    indicates the page number and order of the item from the NushuDuben reference source. Nushu common
+                    reading is represented as <edit
+                            flag="removed"><attr>kReading</attr></edit><edit
+                            flag="changed"><attr>kNSHU_Reading</attr></edit>.</para>
+                <xi:include href="./fragments/Nushu.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Emoji properties</title>
+                <para>The properties <prop>Emoji</prop>, <prop>EPres</prop>, <prop>EMod</prop>, <prop>EBase</prop>,
+                    <prop>EComp</prop>, and <prop>ExtPict</prop> have corresponding attributes:
+                </para>
+                <xi:include href="./fragments/Emoji.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title><edit flag="changed">Unikemet properties</edit></title>
+                <para><edit flag="changed">The Unikemet data are represented as attributes. The attribute <attr>kEH_Cat</attr>
+                    is a catalog entry corresponding to the IFAO-based taxonomy. The attribute <attr>kEH_Core</attr>
+                    determines whether an Egyptian hieroglyph is part of the 'Core' set, Legacy or None. The attribute
+                    <attr>kEH_Desc</attr> provides a detailed description of the appearance of the hieroglyph.
+                    The attribute <attr>kEH_Func</attr> represents  a function type representing a pictogram, a
+                    logogram, a phonemogram (or “phonogram”), a classifier (or “determinative”), a phono-repeater
+                    (sub-category of classifier), a radicogram or interpretant. The attribute <attr>kEH_FVal</attr>
+                    expresses the function type using the Gardiner 1957 convention for Egyptian hieroglyph
+                    transliteration. The attribute <attr>kEH_HG</attr> indicates the Hieroglyphica source. The
+                    attribute <attr>kEH_IFAO</attr> indicates the IFAO source value defined as page number and order
+                    in that page. The attribute <attr>kEH_JSesh</attr> indicates the JSesh source as specified in
+                    JSesh Documentation. The attribute <attr>kEH_NoMirror</attr> determines whether the hieroglyph
+                    does not mirror. The attribute <attr>kEH_NoRotate</attr> determines whether the hieroglyph
+                    does not rotate. The attribute <attr>kEH_UniK</attr> represent the original Unikemet catalog
+                    index used by the Egyptian Hieroglyph block.</edit>
+                </para>
+                <xi:include href="./fragments/Unikemet.xml"/>
+            </section>
+        </section>
+    </section>
+
+    <!--========================================================================-->
+    <section>
+        <title>Blocks</title>
+        <para>The <elem>blocks</elem> child of the <elem>ucd</elem> describes the blocks. It has one child
+            <elem>block</elem> element per block, with attributes to describe the extent and name of the block.
+        </para>
+        <xi:include href="./fragments/block.xml"/>
+    </section>
+
+    <!--========================================================================-->
+    <section>
+        <title>Named Sequences</title>
+        <para>The <elem>named-sequences</elem> child of the <elem>ucd</elem> describes the named sequences. It has one
+            child <elem>named-sequence</elem> element per named sequence, with attributes to describe the name and
+            sequence.
+        </para>
+        <para>Similarly, the <elem>provisional-named-sequences</elem> child of the <elem>ucd</elem> describes the
+            provisional named sequences.
+        </para>
+        <xi:include href="./fragments/named-sequences.xml"/>
+    </section>
+
+    <!--========================================================================-->
+    <section>
+        <title><edit flag="removed">Normalization Corrections</edit></title>
+        <para><edit flag="removed">The <elem>normalization-corrections</elem> child of the <elem>ucd</elem> describes the normalization
+            corrections. It has one child <elem>normalization-correction</elem> element per correction, with
+            attributes to describe the code point affected, its old normalization, its new normalization and the
+            version of Unicode in which the correction was made.
+        </edit></para>
+        <xi:include href="./fragments/normalization-corrections.xml"/>
+    </section>
+
+    <!--========================================================================-->
+    <section>
+        <title>Standardized Variants</title>
+        <para>The <elem>standardized-variants</elem> child of the <elem>ucd</elem> describes the standardized
+            variant. It has one child element <elem>standardized-variant</elem> per variant. The attributes on that
+            last element capture the variation sequence, the description of the desired appearance, and the shaping
+            environment under which the appearance is different.
+        </para>
+        <xi:include href="./fragments/standardized-variants.xml"/>
+    </section>
+
+    <!--========================================================================-->
+    <section>
+        <title>CJK Radicals</title>
+        <para>The <elem>cjk-radicals</elem> child of the <elem>ucd</elem> describes the CJK radicals. It has one
+            child element <elem>cjk-radical</elem> per radical. The attributes on that last element capture the
+            radical number, the corresponding CJK radical character, and the corresponding CJK unified ideograph.
+        </para>
+        <xi:include href="./fragments/cjk-radicals.xml"/>
+    </section>
+
+    <!--========================================================================-->
+    <section>
+        <title><edit flag="removed">Emoji sources</edit></title>
+        <para><edit flag="removed">The <elem>emoji-sources</elem> child of the <elem>ucd</elem> describes the emoji sources.
+        </edit></para>
+        <xi:include href="./fragments/emoji-sources.xml"/>
+
+        <xi:include href="./fragments/jis-code-point.xml"/>
+    </section>
+
+    <!--========================================================================-->
+    <section>
+        <title>Do Not Emit</title>
+        <para>The <elem>do-not-emit</elem> child of the <elem>ucd</elem> describes the
+            character sequences that should not be emitted or generated in newly authored texts.
+        </para>
+        <xi:include href="./fragments/do-not-emit.xml"/>
+    </section>
+
+    <!--========================================================================-->
+    <section>
+        <title>The full schema</title>
+        <para>Our schema is just the accumulation of the pieces we have described so far:
+        </para>
+        <ucdxml:schema title='UCD RelaxNG schema' file='ucd.rnc' method='text'>
+      <ucdxml:include linkend='schema.namespace'/>
+      <ucdxml:include linkend='schema.datatypes' title='datatypes'/>
+      <ucdxml:include linkend='schema.start'/>
+      <ucdxml:include linkend='schema.boolean'/>
+      <ucdxml:include linkend='schema.description'/>
+      <ucdxml:include linkend='schema.repertoire' title='repertoire'/>
+      <ucdxml:include linkend='schema.properties' title='attributes'/>
+      <ucdxml:include linkend='schema.tangut'/>
+      <ucdxml:include linkend='schema.nushu'/>
+      <ucdxml:include linkend='schema.unikemet'/>
+      <ucdxml:include linkend='schema.block'/>
+      <ucdxml:include linkend='schema.named-sequences'/>
+      <edit flag="removed"><ucdxml:include linkend='schema.normalization-corrections'/></edit>
+      <ucdxml:include linkend='schema.standardized-variants'/>
+      <ucdxml:include linkend='schema.cjk-radicals'/>
+      <edit flag="removed"><ucdxml:include linkend='schema.emoji-sources'/></edit>
+      <ucdxml:include linkend='schema.emoji-data'/>
+      <ucdxml:include linkend='schema.do-not-emit'/>
+</ucdxml:schema>
+        <para>An expanded version is linked from the top of this document.</para>
+    </section>
+
+    <!--========================================================================-->
+    <section>
+        <title>Examples</title>
+        <para>Here is a fragment of the UCD for a few representative
+            characters (only some of the properties are represented):
+        </para>
+
+        <codeblock>
+            <![CDATA[
+  <ucd xmlns="http://www.unicode.org/ns/2003/ucd/1.0">
+    <repertoire>
+      <char cp="001F" age="1.1" na="&lt;control&gt;" na1="UNIT SEPARATOR"
+            gc="Cc" bc="S" lb="CM"/>
+
+      <char cp="0020" age="1.1" na="SPACE" gc="Zs" bc="WS" ea="Na" lb="SP"/>
+
+      <char cp="0026" age="1.1" na="AMPERSAND" gc="Po" bc="ON" ea="Na"/>
+
+      <char cp="0028" age="1.1" na="LEFT PARENTHESIS" na1="OPENING PARENTHESIS"
+            gc="Ps" bc="ON" Bidi_M="y" bmg="0029" ea="Na" lb="OP"/>
+
+      <char cp="0041" age="1.1" na="LATIN CAPITAL LETTER A"
+            gc="Lu" slc="0061" ea="Na" sc="Latn"/>
+
+      <char cp="AC00" age="2.0" na="HANGUL SYLLABLE GA" gc="Lo"
+            dt="can" dm="1100 1161" ea="W" lb="ID" sc="Hang"/>
+
+      <char cp="20094" age="3.1" na="CJK UNIFIED IDEOGRAPH-20094"
+            gc="Lo" ea="W" lb="ID" sc="Hani" kIRG_GSource="KX"
+            kIRGHanyuDaZidian="10036.060" kIRG_TSource="5-214E"
+           kRSUnicode="4.3" kIRGKangXi="0082.090"/>
+
+      <group age="3.2" gc="Lo" sc="Buhd">
+        <char cp="1740" na="BUHID LETTER A"/>
+        <char cp="1741" na="BUHID LETTER I"/>
+        <char cp="1752" na="BUHID VOWEL SIGN I" gc="Mn"/>
+        <char cp="1820" age="3.0" na="MONGOLIAN LETTER A" sc="Mong"/>
+      </group>
+    </repertoire>
+  </ucd>
+]]>
+</codeblock>
+    </section>
+
+    <!--========================================================================-->
+    <acknowledgments>
+        <title>Acknowledgments</title>
+        <para>Thanks to Markus Scherer and Mark Davis for their help developing this XML representation. Thanks to
+            the reviewers: Julie Allen, Ernest van den Boogaard, Daniel B&#x00FC;nzli, John Cowan, Asmus Freytag,
+            Felix Sasaki, Andrew West. Special thanks to Eric Muller and Laurențiu Iancu.
+        </para>
+    </acknowledgments>
+</article>

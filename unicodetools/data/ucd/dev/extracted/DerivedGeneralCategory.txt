@@ -1,6 +1,6 @@
 # DerivedGeneralCategory-17.0.0.txt
-# Date: 2024-11-16, 02:53:06 GMT
-# © 2024 Unicode®, Inc.
+# Date: 2025-04-25, 16:57:08 GMT
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -257,7 +257,7 @@
 2072..2073    ; Cn #   [2] <reserved-2072>..<reserved-2073>
 208F          ; Cn #       <reserved-208F>
 209D..209F    ; Cn #   [3] <reserved-209D>..<reserved-209F>
-20C1..20CF    ; Cn #  [15] <reserved-20C1>..<reserved-20CF>
+20C2..20CF    ; Cn #  [14] <reserved-20C2>..<reserved-20CF>
 20F1..20FF    ; Cn #  [15] <reserved-20F1>..<reserved-20FF>
 218C..218F    ; Cn #   [4] <reserved-218C>..<reserved-218F>
 242A..243F    ; Cn #  [22] <reserved-242A>..<reserved-243F>
@@ -400,7 +400,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 108F6..108FA  ; Cn #   [5] <reserved-108F6>..<reserved-108FA>
 1091C..1091E  ; Cn #   [3] <reserved-1091C>..<reserved-1091E>
 1093A..1093E  ; Cn #   [5] <reserved-1093A>..<reserved-1093E>
-1095D..1097F  ; Cn #  [35] <reserved-1095D>..<reserved-1097F>
+1095A..1097F  ; Cn #  [38] <reserved-1095A>..<reserved-1097F>
 109B8..109BB  ; Cn #   [4] <reserved-109B8>..<reserved-109BB>
 109D0..109D1  ; Cn #   [2] <reserved-109D0>..<reserved-109D1>
 10A04         ; Cn #       <reserved-10A04>
@@ -740,9 +740,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1FB93         ; Cn #       <reserved-1FB93>
 1FBFB..1FFFF  ; Cn # [1029] <reserved-1FBFB>..<noncharacter-1FFFF>
 2A6E0..2A6FF  ; Cn #  [32] <reserved-2A6E0>..<reserved-2A6FF>
-2B73F         ; Cn #       <reserved-2B73F>
 2B81E..2B81F  ; Cn #   [2] <reserved-2B81E>..<reserved-2B81F>
-2CEA2..2CEAF  ; Cn #  [14] <reserved-2CEA2>..<reserved-2CEAF>
+2CEAE..2CEAF  ; Cn #   [2] <reserved-2CEAE>..<reserved-2CEAF>
 2EBE1..2EBEF  ; Cn #  [15] <reserved-2EBE1>..<reserved-2EBEF>
 2EE5E..2F7FF  ; Cn # [2466] <reserved-2EE5E>..<reserved-2F7FF>
 2FA1E..2FFFF  ; Cn # [1506] <reserved-2FA1E>..<noncharacter-2FFFF>
@@ -754,7 +753,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 814697
+# Total code points: 814686
 
 # ================================================
 
@@ -2522,7 +2521,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 108F4..108F5  ; Lo #   [2] HATRAN LETTER SHIN..HATRAN LETTER TAW
 10900..10915  ; Lo #  [22] PHOENICIAN LETTER ALF..PHOENICIAN LETTER TAU
 10920..10939  ; Lo #  [26] LYDIAN LETTER A..LYDIAN LETTER C
-10940..1095C  ; Lo #  [29] SIDETIC LETTER N01..SIDETIC LETTER N29
+10940..10959  ; Lo #  [26] SIDETIC LETTER N01..SIDETIC LETTER N26
 10980..109B7  ; Lo #  [56] MEROITIC HIEROGLYPHIC LETTER A..MEROITIC CURSIVE LETTER DA
 109BE..109BF  ; Lo #   [2] MEROITIC CURSIVE LOGOGRAM RMT..MEROITIC CURSIVE LOGOGRAM IMN
 10A00         ; Lo #       KHAROSHTHI LETTER A
@@ -2729,16 +2728,15 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 1EEA5..1EEA9  ; Lo #   [5] ARABIC MATHEMATICAL DOUBLE-STRUCK WAW..ARABIC MATHEMATICAL DOUBLE-STRUCK YEH
 1EEAB..1EEBB  ; Lo #  [17] ARABIC MATHEMATICAL DOUBLE-STRUCK LAM..ARABIC MATHEMATICAL DOUBLE-STRUCK GHAIN
 20000..2A6DF  ; Lo # [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
-2A700..2B73E  ; Lo # [4159] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B73E
-2B740..2B81D  ; Lo # [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
-2B820..2CEA1  ; Lo # [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
+2A700..2B81D  ; Lo # [4382] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B81D
+2B820..2CEAD  ; Lo # [5774] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEAD
 2CEB0..2EBE0  ; Lo # [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2EBF0..2EE5D  ; Lo # [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 2F800..2FA1D  ; Lo # [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..33479  ; Lo # [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 
-# Total code points: 141081
+# Total code points: 141091
 
 # ================================================
 
@@ -4089,7 +4087,7 @@ FFE9..FFEC    ; Sm #   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS ARROW
 0BF9          ; Sc #       TAMIL RUPEE SIGN
 0E3F          ; Sc #       THAI CURRENCY SYMBOL BAHT
 17DB          ; Sc #       KHMER CURRENCY SYMBOL RIEL
-20A0..20C0    ; Sc #  [33] EURO-CURRENCY SIGN..SOM SIGN
+20A0..20C1    ; Sc #  [34] EURO-CURRENCY SIGN..SAUDI RIYAL SIGN
 A838          ; Sc #       NORTH INDIC RUPEE MARK
 FDFC          ; Sc #       RIAL SIGN
 FE69          ; Sc #       SMALL DOLLAR SIGN
@@ -4100,7 +4098,7 @@ FFE5..FFE6    ; Sc #   [2] FULLWIDTH YEN SIGN..FULLWIDTH WON SIGN
 1E2FF         ; Sc #       WANCHO NGUN SIGN
 1ECB0         ; Sc #       INDIC SIYAQ RUPEE MARK
 
-# Total code points: 63
+# Total code points: 64
 
 # ================================================
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Manual-->
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="emoji sources" id='schema.emoji-sources'>
+<edit flag='removed'>  ucd.content &amp;=
+    element emoji-sources {
+      element emoji-source {
+        attribute unicode { one-or-more-code-points },
+        attribute docomo { jis-code-point? },
+        attribute kddi { jis-code-point? },
+        attribute softbank { jis-code-point? } }+ }?</edit>
+</ucdxml:block>

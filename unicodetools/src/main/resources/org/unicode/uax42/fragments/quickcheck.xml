@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="quick check properties" id='schema.properties'>
+  code-point-attributes &amp;=
+    attribute NFC_QC { "Y" | "N" | "M" }?
+
+  code-point-attributes &amp;=
+    attribute NFD_QC { "Y" | "N" }?
+
+  code-point-attributes &amp;=
+    attribute NFKC_QC { "Y" | "N" | "M" }?
+
+  code-point-attributes &amp;=
+    attribute NFKD_QC { "Y" | "N" }?
+
+
+<edit flag='removed'>  code-point-attributes &amp;=
+    attribute XO_NFC { boolean }?
+
+  code-point-attributes &amp;=
+    attribute XO_NFD { boolean }?
+
+  code-point-attributes &amp;=
+    attribute XO_NFKC { boolean }?
+
+  code-point-attributes &amp;=
+    attribute XO_NFKD { boolean }?
+
+
+  code-point-attributes &amp;=
+    attribute FC_NFKC { "#" | one-or-more-code-points }?</edit></ucdxml:block>

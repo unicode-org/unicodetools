@@ -4,7 +4,7 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.locale.XCldrStub.ImmutableSet;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -436,13 +436,9 @@ public class IdentifierInfo {
                 }
                 final String codelist = pieces[0].trim();
                 if (UnicodeSet.resemblesPattern(pieces[0], 0)) {
-                    // TODO(macchiati): Weird dependency on ChainedSymbolTable which we probably
-                    // do not need.
                     sources =
                             VersionedProperty.parseUnicodeSet(
-                                    codelist,
-                                    new TestUnicodeInvariants
-                                            .ChainedSymbolTable()); // .retainAll(allocated);
+                                    codelist, VersionedSymbolTable.forDevelopment());
                     if (sources.contains("ᢰ")) {
                         int x = 0;
                     }

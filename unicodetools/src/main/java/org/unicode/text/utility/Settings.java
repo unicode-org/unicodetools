@@ -41,7 +41,7 @@ public class Settings {
         }
     };
 
-    public static final ReleasePhase latestVersionPhase = ReleasePhase.DEV;
+    public static final ReleasePhase latestVersionPhase = ReleasePhase.BETA;
 
     public static final String lastVersion = "16.0.0"; // last released version
 
@@ -317,13 +317,4 @@ public class Settings {
             }
         }
     }
-
-    public static final String SRC_DIR =
-            Utility.fixFileName(UnicodeTools.UNICODETOOLS_RSRC_DIR + "org/unicode/text") + "/";
-
-    /** Used for data files */
-    public static final String SRC_UCA_DIR = SRC_DIR + "UCA/";
-
-    /** Used for data files */
-    public static final String SRC_UCD_DIR = SRC_DIR + "UCD/";
 }

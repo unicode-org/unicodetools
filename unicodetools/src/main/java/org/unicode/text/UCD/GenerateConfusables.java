@@ -11,9 +11,9 @@
 package org.unicode.text.UCD;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.impl.Relation;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Transform;
@@ -131,8 +131,7 @@ public class GenerateConfusables {
             ToolUnicodePropertySource.make(version); // ICUPropertyFactory.make();
 
     static {
-        // USE the tool unicode set instead of ICU, which may not be using the latest version.
-        UnicodeSet.setDefaultXSymbolTable(ups.getXSymbolTable());
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
         UnicodeTransform.setFactory(TOOL_FACTORY);
     }
 
@@ -272,9 +271,9 @@ public class GenerateConfusables {
     private static final UnicodeSet LATIN = new UnicodeSet("[:script=latin:]").freeze();
     private static final UnicodeSet LATIN_PLUS =
             new UnicodeSet("[[:script=latin:][:script=common:][:script=inherited:]]").freeze();
-    private static final UnicodeSet ASCII = new UnicodeSet("[:ASCII:]").freeze();
+    private static final UnicodeSet ASCII = new UnicodeSet("[:Block=ASCII:]").freeze();
     private static final UnicodeSet MARKS_AND_ASCII =
-            new UnicodeSet("[[:mark:][:ASCII:]]").freeze();
+            new UnicodeSet("[[:mark:][:Block=ASCII:]]").freeze();
 
     private static void generateLatin() throws IOException {
         // pick out only those items where the source and target both have some latin, and no
@@ -1421,7 +1420,7 @@ public class GenerateConfusables {
             if (appendFile) {
                 final String[] replacements = {"%date%", Default.getDate()};
                 Utility.appendFile(
-                        Settings.SRC_UCD_DIR + "confusablesHeader.txt",
+                        GenerateConfusables.class.getResource("confusablesHeader.txt").getPath(),
                         Utility.UTF8_WINDOWS,
                         out,
                         replacements);

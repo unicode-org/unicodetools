@@ -1,6 +1,6 @@
 # IndicPositionalCategory-17.0.0.txt
-# Date: 2024-11-14, 19:48:32 GMT
-# © 2024 Unicode®, Inc.
+# Date: 2025-01-27, 18:09:16 GMT
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -591,7 +591,6 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11A01         ; Top # Mn       ZANABAZAR SQUARE VOWEL SIGN I
 11A04..11A09  ; Top # Mn   [6] ZANABAZAR SQUARE VOWEL SIGN E..ZANABAZAR SQUARE VOWEL SIGN REVERSED I
 11A35..11A38  ; Top # Mn   [4] ZANABAZAR SQUARE SIGN CANDRABINDU..ZANABAZAR SQUARE SIGN ANUSVARA
-11A3A         ; Top # Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
 11A51         ; Top # Mn       SOYOMBO VOWEL SIGN I
 11A54..11A56  ; Top # Mn   [3] SOYOMBO VOWEL SIGN E..SOYOMBO VOWEL SIGN OE
 11A84..11A89  ; Top # Lo   [6] SOYOMBO SIGN JIHVAMULIYA..SOYOMBO CLUSTER-INITIAL LETTER SA
