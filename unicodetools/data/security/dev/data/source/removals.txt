@@ -1,50 +1,9 @@
 ﻿# New Source file for idnchars/confusables
-# $Revision: 1509 $
-# $Date: 2012-05-06 22:55:50 -0700 (Sun, 06 May 2012) $
 
 # High-Level exclusions
 [:^xid-continue:]; not-xid
 
-# Remove combining marks that are not used in normal languages.
-
-# PAG meeting 2024-04-18 before Unicode 16 beta:
-# [Mark]: Policy is that by default
-# new characters in scripts that are not Excluded or Limited Use,
-# are marked as Uncommon_Use & communicate to SEW
-# to ask if there are any exceptions (needed in customary modern widespread use).
-# ----
-# https://www.unicode.org/reports/tr31/#Table_Recommended_Scripts
-# ----
-# TODO: We should work our way backwards to
-# review Recommended characters added at least in Unicode 13, 14, 15, 15.1.
-
-# Possible data sources:
-# - character encoding proposal docs
-# - EGIDS = https://en.wikipedia.org/wiki/Expanded_Graded_Intergenerational_Disruption_Scale
-#   For ICANN work, according to Asmus:
-#   We found level 4, which has some institutional support,
-#   a good cutoff for assuming that the language (and therefore its writing system)
-#   is in everyday use in the community.
-#   However, for any language at that boundary, we always look for additional info,
-#   sometimes making exceptions for level 5.
-#   (Sometimes, research shows a language, while vigorous, is only used orally,
-#   so then we downgrade it for domain names).
-# - Data from icann.org/idn under Root Zone LGR (look for "proposal documents").
-#   Each proposal evaluates which languages written in the script are common enough to
-#   support top-level domain names.
-#   A machine readable version is found in the XML files for the current version of the RZ-LGR
-#  (each character is annotated with a reference identifying the language that requires it).
-# - ethnologue.com
-#
-# Asmus recommends for characters to be Recommended to look for positive evidence of
-# - large population
-# - stable, well supported language
-# - evidence it's (commonly) written in that script
-# - digitally supported
-# - not a specialized use in the writing system
-# One or the other factor, except 5, may be offset by other factors.
-# Consider whether the community conducts its business in writing in that language,
-# and if so, in that script.
+# Do read https://github.com/unicode-org/unicodetools/blob/main/docs/security/id_type.md
 
 035C..0362 ; technical # subhead=Double diacritics
 
