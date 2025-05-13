@@ -1,5 +1,5 @@
 # DoNotEmit-17.0.0.txt
-# Date: 2025-02-19, 08:01:00 GMT
+# Date: 2025-05-13, 04:43:00 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -38,6 +38,9 @@
 # to U+03A9 GREEK CAPITAL LETTER OMEGA is not explicitly listed, since it is
 # expected that conforming Unicode processes would discover the relation
 # between the two characters.
+#
+# Sequences for Egyptian Hieroglyphs are not listed here. See
+# the kEH_AltSeq property in UAX #57 for that information.
 #
 # Note that some sequences could be considered recursive, in the way that
 # the preferred sequence to use may be a subsequence of the "Do Not Emit"
