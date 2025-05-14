@@ -22,6 +22,8 @@ There are three separate processes for generating and validating UCDXML files an
 
 ### Windows
 
+Run these from the unicodetools repo root. Adjust the CLDR_DIR as needed.
+
 ```
 mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range ALL --output FLAT"' -DCLDR_DIR=$(cd ../cldr; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
 mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range UNIHAN --output FLAT"' -DCLDR_DIR=$(cd ../cldr; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
@@ -35,13 +37,15 @@ mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="
 
 Including commands for zipping the XML files for publication.
 
+Run these from the unicodetools repo root. Adjust the CLDR_DIR as needed.
+
 ```
-mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range ALL --output FLAT" -DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
-mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range UNIHAN --output FLAT" -DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
-mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range NOUNIHAN --output FLAT" -DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
-mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range ALL --output GROUPED" -DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
-mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range UNIHAN --output GROUPED" -DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
-mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range NOUNIHAN --output GROUPED" -DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
+mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range ALL --output FLAT" -DCLDR_DIR=$(cd ~/cldr/uni/src; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
+mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range UNIHAN --output FLAT" -DCLDR_DIR=$(cd ~/cldr/uni/src; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
+mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range NOUNIHAN --output FLAT" -DCLDR_DIR=$(cd ~/cldr/uni/src; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
+mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range ALL --output GROUPED" -DCLDR_DIR=$(cd ~/cldr/uni/src; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
+mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range UNIHAN --output GROUPED" -DCLDR_DIR=$(cd ~/cldr/uni/src; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
+mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range NOUNIHAN --output GROUPED" -DCLDR_DIR=$(cd ~/cldr/uni/src; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
 
 cd ../Generated/ucdxml/17.0.0/
 
