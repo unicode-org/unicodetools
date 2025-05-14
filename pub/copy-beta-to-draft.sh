@@ -56,8 +56,8 @@ find $DRAFT -name '*ReadMe.txt' | xargs sed -i -f $DRAFT/sed-readmes.txt
 rm $DRAFT/ucd/UCD.zip
 (cd $DRAFT/ucd; zip -r UCD.zip *)
 
-rm $DRAFT/UCA/CollationTest.zip
-(cd $DRAFT/UCA; zip -r CollationTest.zip CollationTest && rm -r CollationTest)
+rm $DRAFT/uca/CollationTest.zip
+(cd $DRAFT/uca; zip -r CollationTest.zip CollationTest && rm -r CollationTest)
 
 rm $DRAFT/security/*.zip
 (cd $DRAFT/security; zip -r uts39-data-$UNI_VER.zip *)

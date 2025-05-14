@@ -20,7 +20,7 @@ files for the Unicode Collation Algorithm.
 
 If you accessed this file via
 
-https://www.unicode.org/Public/draft/UCA/ReadMe.txt
+https://www.unicode.org/Public/draft/uca/ReadMe.txt
 
 then you are looking at a draft for the next version of the UCA.
 
