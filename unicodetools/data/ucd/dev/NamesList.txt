@@ -1,13 +1,14 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 17.0.0
 @@@+	NamesList-17.0.0.txt
-@+	Generation Date: 2025-05-02, 10:07:34 GMT
+@+	Generation Date: 2025-05-14, 08:55:45 GMT
 	Unicode 17.0.0 names list.
 	Repertoire synched with UnicodeData-17.0.0d5.txt.
 	Synch with 7th edition CD2; post UTC183 annotation updates for 17.0.
 	Added 4 formal name aliases for Bamum: 16881, 1688E, 168DC, 1697D.
 	Add annotation to 1AB3.
 	Various updates re legacy hieroglyphs. See L2/25-110 for reference.
+	Corrected location of subhead for 1244A.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -38106,9 +38107,9 @@ FFFF	<not a character>
 12446	CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU
 12447	CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU3
 12448	CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU4
+12449	CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU A
 @		Slanted numerals
 @+		These are used in multiple Early Dynastic metrological systems, as well as Ur III dates and subtractive notations.
-12449	CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU A
 1244A	CUNEIFORM NUMERIC SIGN TWO ASH TENU
 	= 2 diš tenû
 	x (cuneiform sign ash zida tenu - 12039)
