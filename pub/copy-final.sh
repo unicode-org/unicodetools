@@ -64,8 +64,8 @@ find $DEST -name '*ReadMe.txt' | xargs sed -i -f $DEST/sed-readmes.txt
 rm $DEST/$UNI_VER/ucd/UCD.zip
 (cd $DEST/$UNI_VER/ucd; zip -r UCD.zip * && mv UCD.zip $DEST/zipped/$UNI_VER)
 
-rm $DEST/UCA/$UNI_VER/CollationTest.zip
-(cd $DEST/UCA/$UNI_VER; zip -r CollationTest.zip CollationTest && rm -r CollationTest)
+rm $DEST/uca/$UNI_VER/CollationTest.zip
+(cd $DEST/uca/$UNI_VER; zip -r CollationTest.zip CollationTest && rm -r CollationTest)
 
 rm $DEST/security/$UNI_VER/*.zip
 (cd $DEST/security/$UNI_VER; zip -r uts39-data-$UNI_VER.zip *)
