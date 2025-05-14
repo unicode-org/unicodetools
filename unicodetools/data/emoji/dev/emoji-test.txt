@@ -1,5 +1,5 @@
 # emoji-test.txt
-# Date: 2025-04-23, 17:41:13 GMT
+# Date: 2025-05-14, 17:23:51 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -14,16 +14,16 @@
 #     Code points — list of one or more hex code points, separated by spaces
 #     Status
 #       component           — an Emoji_Component,
-#                             excluding Regional_Indicators, ASCII, and non-Emoji.
+#                             excluding Regional_Indicator, ASCII, and non-Emoji
 #       fully-qualified     — a fully-qualified emoji (see ED-18 in UTS #51),
 #                             excluding Emoji_Component
 #       minimally-qualified — a minimally-qualified emoji (see ED-18a in UTS #51)
-#       unqualified         — a unqualified emoji (See ED-19 in UTS #51)
+#       unqualified         — an unqualified emoji (see ED-19 in UTS #51)
 # Notes:
 #   • This includes the emoji components that need emoji presentation (skin tone and hair)
 #     when isolated, but omits the components that need not have an emoji
-#     presentation when isolated.
-#   • The RGI set is covered by the listed fully-qualified emoji. 
+#     presentation when isolated. See ED-20 in UTS #51 for further information.
+#   • The RGI set is composed of the listed component and fully-qualified emoji.
 #   • The listed minimally-qualified and unqualified cover all cases where an
 #     element of the RGI set is missing one or more emoji presentation selectors.
 #   • The file is in CLDR order, not codepoint order. This is recommended (but not required!) for keyboard palettes.
