@@ -20,6 +20,10 @@ There are three separate processes for generating and validating UCDXML files an
   - the Unihan code points
   - code points that are not Unihan code points
 
+### Windows
+
+Run these from the unicodetools repo root. Adjust the CLDR_DIR as needed.
+
 ```
 mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range ALL --output FLAT"' -DCLDR_DIR=$(cd ../cldr; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
 mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range UNIHAN --output FLAT"' -DCLDR_DIR=$(cd ../cldr; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
@@ -27,6 +31,30 @@ mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="
 mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range ALL --output GROUPED"' -DCLDR_DIR=$(cd ../cldr; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
 mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range UNIHAN --output GROUPED"' -DCLDR_DIR=$(cd ../cldr; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
 mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range NOUNIHAN --output GROUPED"' -DCLDR_DIR=$(cd ../cldr; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
+```
+
+### Linux
+
+Including commands for zipping the XML files for publication.
+
+Run these from the unicodetools repo root. Adjust the CLDR_DIR as needed.
+
+```
+mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range ALL --output FLAT" -DCLDR_DIR=$(cd ~/cldr/uni/src; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
+mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range UNIHAN --output FLAT" -DCLDR_DIR=$(cd ~/cldr/uni/src; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
+mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range NOUNIHAN --output FLAT" -DCLDR_DIR=$(cd ~/cldr/uni/src; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
+mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range ALL --output GROUPED" -DCLDR_DIR=$(cd ~/cldr/uni/src; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
+mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range UNIHAN --output GROUPED" -DCLDR_DIR=$(cd ~/cldr/uni/src; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
+mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range NOUNIHAN --output GROUPED" -DCLDR_DIR=$(cd ~/cldr/uni/src; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
+
+cd ../Generated/ucdxml/17.0.0/
+
+zip -9 ucd.all.flat.zip ucd.all.flat.xml
+zip -9 ucd.all.grouped.zip ucd.all.grouped.xml
+zip -9 ucd.nounihan.flat.zip ucd.nounihan.flat.xml
+zip -9 ucd.nounihan.grouped.zip ucd.nounihan.grouped.xml
+zip -9 ucd.unihan.flat.zip ucd.unihan.flat.xml
+zip -9 ucd.unihan.grouped.zip ucd.unihan.grouped.xml
 ```
 
 ## Compare UCDXML files
