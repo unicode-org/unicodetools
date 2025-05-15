@@ -21,7 +21,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.xml.transform.TransformerConfigurationException;
 import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.PropertyType;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.text.utility.Settings;
@@ -408,7 +407,12 @@ public class UCDXML {
                                         outputRange);
                             } else {
                                 buildUngroupedRange(
-                                        writer, attributeResolver, ucdVersion, range, rangeType, outputRange);
+                                        writer,
+                                        attributeResolver,
+                                        ucdVersion,
+                                        range,
+                                        rangeType,
+                                        outputRange);
                             }
                         }
                         range.clear();
@@ -430,7 +434,12 @@ public class UCDXML {
                                     outputRange);
                         } else {
                             buildUngroupedRange(
-                                    writer, attributeResolver, ucdVersion, range, rangeType, outputRange);
+                                    writer,
+                                    attributeResolver,
+                                    ucdVersion,
+                                    range,
+                                    rangeType,
+                                    outputRange);
                         }
                     }
                     range.clear();
@@ -457,9 +466,16 @@ public class UCDXML {
             if (outputRange != UCDXMLOUTPUTRANGE.UNIHAN) {
                 if (outputType == UCDXMLOUTPUTTYPE.GROUPED) {
                     buildGroupedRange(
-                            writer, attributeResolver, ucdVersion, range, rangeType, groupAttrs, outputRange);
+                            writer,
+                            attributeResolver,
+                            ucdVersion,
+                            range,
+                            rangeType,
+                            groupAttrs,
+                            outputRange);
                 } else {
-                    buildUngroupedRange(writer, attributeResolver, ucdVersion, range, rangeType, outputRange);
+                    buildUngroupedRange(
+                            writer, attributeResolver, ucdVersion, range, rangeType, outputRange);
                 }
             }
         }
@@ -802,7 +818,9 @@ public class UCDXML {
     }
 
     private static AttributesImpl getReservedAttributes(
-            VersionInfo version, AttributeResolver attributeResolver, ArrayList<Integer> range,
+            VersionInfo version,
+            AttributeResolver attributeResolver,
+            ArrayList<Integer> range,
             UCDXMLOUTPUTRANGE outputRange) {
         AttributesImpl attributes = new AttributesImpl();
 
@@ -841,7 +859,11 @@ public class UCDXML {
                                 outputRange);
                 if (isAttributeIncluded) {
                     attributes.addAttribute(
-                            NAMESPACE, prop.getShortName(), prop.getShortName(), "CDATA", attrValue);
+                            NAMESPACE,
+                            prop.getShortName(),
+                            prop.getShortName(),
+                            "CDATA",
+                            attrValue);
                 }
             }
         }
