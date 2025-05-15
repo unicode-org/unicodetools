@@ -1830,7 +1830,9 @@ public class GeneratePropertyValues {
                             isList,
                             matcher.group(3)
                                     .trim()
-                                    .replaceAll("<br>", "")
+                                    .replaceAll("\r", "")
+                                    .replaceAll("<br>", "\n")
+                                    .replaceAll("\n\n", "\n")
                                     .replaceAll("<span class=\"removed\">.*?</span>", "")
                                     .replaceAll("<span class=\"changed\">", "")
                                     .replaceAll("</span>", ""));
