@@ -385,17 +385,8 @@ public class MakeNamesChart {
                 }
             }
             finishItem(out);
-            out.println(
-                    "</table>\n"
-                            + "\n"
-                            + "<hr width=\"50%\">\n"
-                            + "\n"
-                            + "<p class=\"copyright\">© 2003–2024 Unicode, Inc.\n"
-                            + "Unicode and the Unicode Logo are registered trademarks of Unicode, Inc.,\n"
-                            + "in the U.S. and other countries. See "
-                            + "<a href=\"https://www.unicode.org/copyright.html\">Terms of Use</a>.</p>\n"
-                            + "</body>\n"
-                            + "</html>");
+            out.println("</table>\n");
+            WriteCharts.printCopyrightFooter(out);
             out.close();
         }
         blockInfo.in.close();
