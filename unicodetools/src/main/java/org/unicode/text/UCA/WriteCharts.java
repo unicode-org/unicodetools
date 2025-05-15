@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -1068,19 +1069,23 @@ public class WriteCharts implements UCD_Types {
         }
         indexFile.println("<a href = '" + indexAttributes + "'>" + indexAnchorText + "</a><br>\n");
         indexHasNew = false;
+        output.println("</table>\n");
+        printCopyrightFooter(output);
+        output.close();
+    }
+
+    static void printCopyrightFooter(PrintWriter output) {
         output.println(
-                "</table>\n"
-                        + "\n"
-                        + "<hr width=\"50%\">\n"
-                        + "\n"
-                        + "<p class=\"copyright\">© 2003–2025 Unicode, Inc.\n"
+                "<hr width=\"50%\">\n\n"
+                        + "<p class=\"copyright\">© 2003–"
+                        + Year.now()
+                        + " Unicode, Inc.\n"
                         + "Unicode and the Unicode Logo are registered trademarks of Unicode, Inc.,\n"
-                        + "in the U.S. and other countries. "
+                        + "in the U.S. and other countries.\n"
                         + "For terms of use and license, "
                         + "see <a href=\"https://www.unicode.org/terms_of_use.html\">https://www.unicode.org/terms_of_use.html</a>.</p>\n"
                         + "</body>\n"
                         + "</html>");
-        output.close();
     }
 
     static final int NULL_ORDER = -7,
