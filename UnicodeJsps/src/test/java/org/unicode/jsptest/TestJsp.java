@@ -868,7 +868,7 @@ public class TestJsp extends TestFmwkMinusMinus {
     }
 
     public void TestIdentifiers() throws IOException {
-        String out = UnicodeUtilities.getIdentifier("Latin", false);
+        String out = UnicodeUtilities.getIdentifier("Latin", false, List.of());
         assertTrue("identifier info", out.toString().contains("U+016F"));
         logln(out.toString());
         // logln(out);
