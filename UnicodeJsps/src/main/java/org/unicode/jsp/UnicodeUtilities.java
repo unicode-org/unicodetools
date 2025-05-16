@@ -90,7 +90,7 @@ public class UnicodeUtilities {
 
         String CONTENT_RULES = "'>' > '&gt;' ;";
 
-        String HTML_RULES = BASE_RULES + CONTENT_RULES + "'\"' > '&quot;' ; ";
+        String HTML_RULES = BASE_RULES + CONTENT_RULES + "'\"' > '&quot;' ; '' > '&apos;'";
 
         toHTMLInput = Transliterator.createFromRules("any-xml", HTML_RULES, Transliterator.FORWARD);
 
@@ -658,6 +658,10 @@ public class UnicodeUtilities {
             showString(string, separator, out);
         }
 
+        private List<String> args() {
+            return showDevProperties ? List.of("showDevProperties=1") : List.of();
+        }
+
         private void showString(final String string, String separator, Appendable out)
                 throws IOException {
             if (doTable) {
@@ -683,7 +687,7 @@ public class UnicodeUtilities {
                                 + literal
                                 + "\u00A0</td>"
                                 + "<td width='7m'>"
-                                + UnicodeUtilities.getHex(string, separator, ucdFormat)
+                                + UnicodeUtilities.getHex(string, separator, ucdFormat, args())
                                 + "</td>"
                                 + "<td"
                                 + (restricted ? " class='redName'" : "")
@@ -691,7 +695,10 @@ public class UnicodeUtilities {
                                 + name
                                 + "</td>");
             } else if (ucdFormat) {
-                out.append(UnicodeUtilities.getHex(string, separator, ucdFormat) + " ;\t" + name);
+                out.append(
+                        UnicodeUtilities.getHex(string, separator, ucdFormat, args())
+                                + " ;\t"
+                                + name);
             } else {
                 // out.append("<div class='cx'>\u00A0" + literal + "\u00A0</div>" +
                 // UnicodeUtilities.getHex(string, separator, ucdFormat) + " \t" + name);
@@ -699,7 +706,7 @@ public class UnicodeUtilities {
                         "\u00A0"
                                 + literal
                                 + "\u00A0\t"
-                                + UnicodeUtilities.getHex(string, separator, ucdFormat)
+                                + UnicodeUtilities.getHex(string, separator, ucdFormat, args())
                                 + " \t"
                                 + name);
                 if (hasJoiner) {
@@ -773,7 +780,8 @@ public class UnicodeUtilities {
                         codePointShower.showCodePoint(end, out);
                     } else {
                         if (codePointShower.ucdFormat) {
-                            out.append(UnicodeUtilities.getHex(s, codePointShower.ucdFormat));
+                            out.append(
+                                    UnicodeUtilities.getHex(s, codePointShower.ucdFormat, args()));
                             out.append("..");
                             codePointShower.showCodePoint(end, out);
                         } else {
@@ -874,25 +882,32 @@ public class UnicodeUtilities {
         return result.toString();
     }
 
-    private static String getHex(int codePoint, boolean ucdFormat) {
+    private static String getHex(
+            int codePoint, boolean ucdFormat, List<String> additionalParameters) {
         String hex = com.ibm.icu.impl.Utility.hex(codePoint, 4);
         final String string =
                 "<code>"
-                        + ("<a target='c' href='character.jsp?a=" + hex + "'>")
+                        + ("<a target='c' href='character.jsp?a="
+                                + hex
+                                + additionalParameters.stream()
+                                        .map(p -> "&" + p)
+                                        .collect(Collectors.joining())
+                                + "'>")
                         + (ucdFormat ? "" : "U+")
                         + hex
                         + "</a></code>";
         return string;
     }
 
-    private static String getHex(String string, String separator, boolean ucdFormat) {
+    private static String getHex(
+            String string, String separator, boolean ucdFormat, List<String> additionalParameters) {
         StringBuilder result = new StringBuilder();
         int cp;
         for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
             if (i != 0) {
                 result.append(separator);
             }
-            result.append(getHex(cp = UTF16.charAt(string, i), ucdFormat));
+            result.append(getHex(cp = UTF16.charAt(string, i), ucdFormat, additionalParameters));
         }
         return result.toString();
     }
@@ -1501,6 +1516,7 @@ public class UnicodeUtilities {
                 cp,
                 minVersion,
                 maxVersion,
+                history,
                 showDevProperties,
                 out);
         showProperties(
@@ -1509,6 +1525,7 @@ public class UnicodeUtilities {
                 cp,
                 minVersion,
                 maxVersion,
+                history,
                 showDevProperties,
                 out);
         showProperties(
@@ -1517,6 +1534,7 @@ public class UnicodeUtilities {
                 cp,
                 minVersion,
                 maxVersion,
+                history,
                 showDevProperties,
                 out);
         if (isUnihan) {
@@ -1526,6 +1544,7 @@ public class UnicodeUtilities {
                     cp,
                     minVersion,
                     maxVersion,
+                    history,
                     showDevProperties,
                     out);
         }
@@ -1535,6 +1554,7 @@ public class UnicodeUtilities {
                 cp,
                 minVersion,
                 maxVersion,
+                history,
                 showDevProperties,
                 out);
         out.append("</table>\n");
@@ -1546,6 +1566,7 @@ public class UnicodeUtilities {
             int cp,
             VersionInfo minVersion,
             VersionInfo maxVersion,
+            String historyParameter,
             boolean showDevProperties,
             Appendable out)
             throws IOException {
@@ -1555,7 +1576,14 @@ public class UnicodeUtilities {
             UnicodeProperty prop = getFactory().getProperty(properties.get(i));
             if (prop.getName().equals("confusable")) continue;
 
-            showPropertyValue(properties.get(i), cp, minVersion, maxVersion, out);
+            showPropertyValue(
+                    properties.get(i),
+                    cp,
+                    minVersion,
+                    maxVersion,
+                    historyParameter,
+                    showDevProperties,
+                    out);
         }
         out.append("</table>\n");
 
@@ -1566,7 +1594,14 @@ public class UnicodeUtilities {
             UnicodeProperty prop = getFactory().getProperty(properties.get(i));
             if (prop.getName().equals("confusable")) continue;
 
-            showPropertyValue(properties.get(i), cp, minVersion, maxVersion, out);
+            showPropertyValue(
+                    properties.get(i),
+                    cp,
+                    minVersion,
+                    maxVersion,
+                    historyParameter,
+                    showDevProperties,
+                    out);
         }
         out.append("</table>\n");
         out.append("</td></tr>\n");
@@ -1697,6 +1732,8 @@ public class UnicodeUtilities {
             int codePoint,
             VersionInfo minVersion,
             VersionInfo maxVersion,
+            String historyParameter,
+            boolean showDevProperties,
             Appendable out)
             throws IOException {
         var indexedProperty = UcdProperty.forString(propName);
@@ -1714,6 +1751,8 @@ public class UnicodeUtilities {
             int span;
         }
         final boolean isMultivalued = getFactory().getProperty(propName).isMultivalued();
+        final boolean isStringValued =
+                getFactory().getProperty(propName).isType(UnicodeProperty.STRING_MASK);
         List<PropertyAssignment> history = new ArrayList<>();
         if (getFactory().getProperty(propName)
                 instanceof IndexUnicodeProperties.IndexUnicodeProperty) {
@@ -1764,13 +1803,9 @@ public class UnicodeUtilities {
         }
         if (history.get(0).values != null || history.size() > 1) {
             out.append(
-                    "<tr><th width='50%'><a target='c' href='properties.jsp?a="
-                            + propName
-                            + "#"
-                            + propName
-                            + "'>"
+                    "<tr><th width='50%'>"
                             + (provisional ? "(" + propName + ")" : propName)
-                            + "</a></th>");
+                            + "</th>");
             for (PropertyAssignment assignment : history) {
                 String first =
                         assignment.first.getVersionString(2, 4)
@@ -1793,7 +1828,7 @@ public class UnicodeUtilities {
                 boolean isNew = assignment.first == Settings.LATEST_VERSION_INFO;
                 String versionRange =
                         (showVersion ? (isSingleVersion ? first : first + ".." + last) + ": " : "");
-                String htmlValue =
+                List<String> htmlValues =
                         assignment.values == null
                                 ? null
                                 : assignment.values.stream()
@@ -1802,13 +1837,51 @@ public class UnicodeUtilities {
                                                         v == null
                                                                 ? "<i>null</i>"
                                                                 : toHTML.transliterate(v))
-                                        .collect(Collectors.joining("<wbr>|"));
+                                        .toList();
                 String tdClass = "";
                 if (assignment.values == null) {
                     tdClass = "class='nonexistent'";
                 } else if (assignment.isDefault) {
                     tdClass = "class='default'";
                 }
+                String htmlEscapedPropertyPredicate = null;
+                if (!isMultivalued && htmlValues != null) {
+                    // The HTML value can contain a < even if it is not <i>null</i>, in the case of
+                    // control characters.  Since we do not yet support escapes in property
+                    // predicates, just don’t give a link in that case.
+                    if (!htmlValues.get(0).contains("<")) {
+                        htmlEscapedPropertyPredicate = htmlValues.get(0);
+                    } else if (assignment.values.get(0) == null) {
+                        htmlEscapedPropertyPredicate = "@none@";
+                    }
+                }
+                List<String> displayedValues = htmlValues;
+                if (isStringValued) {
+                    List<String> args = new ArrayList<>();
+                    if (!historyParameter.isEmpty()) {
+                        args.add("history=" + historyParameter);
+                    }
+                    if (showDevProperties) {
+                        args.add("showDevProperties=1");
+                    }
+                    displayedValues = new ArrayList<>();
+                    for (int i = 0; i < assignment.values.size(); ++i) {
+                        displayedValues.add(
+                                htmlValues.get(i)
+                                        + " &lt;"
+                                        + getHex(assignment.values.get(i), ", ", false, args)
+                                        + "&gt;");
+                    }
+                }
+                final String href =
+                        htmlEscapedPropertyPredicate == null
+                                ? null
+                                : "list-unicodeset.jsp?a=[:"
+                                        + (isCurrent ? "" : "U" + last + ":")
+                                        + propName
+                                        + "="
+                                        + htmlEscapedPropertyPredicate
+                                        + ":]";
                 out.append(
                         "<td "
                                 + tdClass
@@ -1816,25 +1889,19 @@ public class UnicodeUtilities {
                                 + assignment.span
                                 + ">"
                                 + (assignment.values != null
-                                        ? (isMultivalued || htmlValue.contains("<")
+                                        ? (href == null
                                                         ? "<span"
                                                                 + (isNew ? " class='changed'" : "")
                                                                 + ">"
                                                         : ("<a target='u' "
                                                                 + (isNew ? "class='changed' " : "")
-                                                                + "href='list-unicodeset.jsp?a=[:"
-                                                                + (isCurrent
-                                                                        ? ""
-                                                                        : "U" + last + ":")
-                                                                + propName
-                                                                + "="
-                                                                + htmlValue
-                                                                + ":]'>"))
+                                                                + "href='"
+                                                                + href
+                                                                + "'>"))
                                                 + versionRange
-                                                + htmlValue
-                                                + (isMultivalued || htmlValue.contains("<")
-                                                        ? "</span>"
-                                                        : "</a>")
+                                                + displayedValues.stream()
+                                                        .collect(Collectors.joining("<wbr>|"))
+                                                + (href == null ? "</span>" : "</a>")
                                         : "")
                                 + "</td>");
             }
