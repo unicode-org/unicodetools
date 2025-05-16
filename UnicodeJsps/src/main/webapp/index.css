@@ -22,14 +22,14 @@ span.break   { border-right: 1px solid red;}
 .q { color: blue;}
 .esc { color: gray;}
 .ltgreen {background-color: #EEFFEE}
-.mono {font-family:monospace} 
-.i46 {background-color: #FFFFDD} 
-h3 {background-color: #EEEEEE} 
+.mono {font-family:monospace}
+.i46 {background-color: #FFFFDD}
+h3 {background-color: #EEEEEE}
 .L4 {background-color: #E8E8E8}
 .L3 {background-color: #DDDDDD}
 .L2 {background-color: #D8D8D8}
 .L1 {background-color: #CCCCCC}
-.L0 {background-color: #C8C8C8} 
+.L0 {background-color: #C8C8C8}
 .default           { background-color: #C8C8C8}
 .nonexistent       { background-color: #FFC8C8}
 .control {
@@ -91,11 +91,19 @@ caption {font-size:150%; font-weight: bold; }
 .char {display:inline; border:1px solid #EEEEFF;}
 .redName {color:#C00}
 .charCell {text-align:center;white-space:nowrap;}
-.cx { 
+.cx {
     display: inline-block;
     width: 3em;
     text-align: center;
 }
 .g-recaptcha {
 	display: none;
+}
+footer {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-top: 0.5em solid #eeeefe;
+  font-size: smaller;
 }
