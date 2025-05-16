@@ -355,6 +355,6 @@ public class AttributeResolver {
     }
 
     public boolean isUnikemetAttributeRange(int codepoint) {
-        return !getAttributeValue(UcdProperty.kEH_Cat, codepoint).isEmpty();
+        return getAttributeValue(UcdProperty.Block, codepoint).startsWith("Egyptian_Hieroglyph");
     }
 }
