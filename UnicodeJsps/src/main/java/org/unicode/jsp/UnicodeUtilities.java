@@ -40,6 +40,8 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
@@ -90,7 +92,7 @@ public class UnicodeUtilities {
 
         String CONTENT_RULES = "'>' > '&gt;' ;";
 
-        String HTML_RULES = BASE_RULES + CONTENT_RULES + "'\"' > '&quot;' ; '' > '&apos;'";
+        String HTML_RULES = BASE_RULES + CONTENT_RULES + "'\"' > '&quot;' ; '' > '&apos;' ;";
 
         toHTMLInput = Transliterator.createFromRules("any-xml", HTML_RULES, Transliterator.FORWARD);
 
@@ -514,7 +516,8 @@ public class UnicodeUtilities {
         }
     }
 
-    public static String getIdentifier(String script, boolean showDevProperties) {
+    public static String getIdentifier(
+            String script, boolean showDevProperties, List<String> originalParameters) {
         StringBuilder result = new StringBuilder();
         UnicodeProperty scriptProp = getFactory().getProperty("sc");
         UnicodeSet scriptSet;
@@ -560,7 +563,8 @@ public class UnicodeUtilities {
                 showSet(
                         allowed,
                         showDevProperties,
-                        new CodePointShower("", "", showDevProperties, true, false, false),
+                        new CodePointShower(
+                                "", "", showDevProperties, true, false, false, originalParameters),
                         result);
             }
 
@@ -580,7 +584,14 @@ public class UnicodeUtilities {
                         showSet(
                                 items,
                                 showDevProperties,
-                                new CodePointShower("", "", showDevProperties, true, false, false)
+                                new CodePointShower(
+                                                "",
+                                                "",
+                                                showDevProperties,
+                                                true,
+                                                false,
+                                                false,
+                                                originalParameters)
                                         .setRestricted(true),
                                 result);
                     }
@@ -628,6 +639,7 @@ public class UnicodeUtilities {
         public final boolean collate;
         public final List<UnicodeProperty> groupingProps;
         public final List<UnicodeProperty> infoProps;
+        public final List<String> originalParameters;
 
         public boolean restricted;
 
@@ -642,7 +654,8 @@ public class UnicodeUtilities {
                 boolean showDevProperties,
                 boolean abbreviate,
                 boolean ucdFormat,
-                boolean collate) {
+                boolean collate,
+                List<String> originalParameters) {
             this.groupingProps = getProps(grouping);
             this.infoProps = getProps(info);
             this.doTable = true; // !infoProps.isEmpty();
@@ -650,16 +663,13 @@ public class UnicodeUtilities {
             this.abbreviate = abbreviate;
             this.ucdFormat = ucdFormat;
             this.collate = collate;
+            this.originalParameters = originalParameters;
         }
 
         void showCodePoint(int codePoint, Appendable out) throws IOException {
             final String string = UTF16.valueOf(codePoint);
             String separator = ", ";
             showString(string, separator, out);
-        }
-
-        private List<String> args() {
-            return showDevProperties ? List.of("showDevProperties=1") : List.of();
         }
 
         private void showString(final String string, String separator, Appendable out)
@@ -687,7 +697,8 @@ public class UnicodeUtilities {
                                 + literal
                                 + "\u00A0</td>"
                                 + "<td width='7m'>"
-                                + UnicodeUtilities.getHex(string, separator, ucdFormat, args())
+                                + UnicodeUtilities.getHex(
+                                        string, separator, ucdFormat, originalParameters)
                                 + "</td>"
                                 + "<td"
                                 + (restricted ? " class='redName'" : "")
@@ -696,7 +707,7 @@ public class UnicodeUtilities {
                                 + "</td>");
             } else if (ucdFormat) {
                 out.append(
-                        UnicodeUtilities.getHex(string, separator, ucdFormat, args())
+                        UnicodeUtilities.getHex(string, separator, ucdFormat, originalParameters)
                                 + " ;\t"
                                 + name);
             } else {
@@ -706,7 +717,8 @@ public class UnicodeUtilities {
                         "\u00A0"
                                 + literal
                                 + "\u00A0\t"
-                                + UnicodeUtilities.getHex(string, separator, ucdFormat, args())
+                                + UnicodeUtilities.getHex(
+                                        string, separator, ucdFormat, originalParameters)
                                 + " \t"
                                 + name);
                 if (hasJoiner) {
@@ -781,7 +793,8 @@ public class UnicodeUtilities {
                     } else {
                         if (codePointShower.ucdFormat) {
                             out.append(
-                                    UnicodeUtilities.getHex(s, codePointShower.ucdFormat, args()));
+                                    UnicodeUtilities.getHex(
+                                            s, codePointShower.ucdFormat, originalParameters));
                             out.append("..");
                             codePointShower.showCodePoint(end, out);
                         } else {
@@ -1392,7 +1405,12 @@ public class UnicodeUtilities {
     }
 
     public static void showProperties(
-            int cp, String history, boolean showDevProperties, Appendable out) throws IOException {
+            int cp,
+            String history,
+            boolean showDevProperties,
+            List<String> originalParameters,
+            Appendable out)
+            throws IOException {
         String text = UTF16.valueOf(cp);
 
         String name = getFactory().getProperty("Name").getValue(cp);
@@ -1516,8 +1534,7 @@ public class UnicodeUtilities {
                 cp,
                 minVersion,
                 maxVersion,
-                history,
-                showDevProperties,
+                originalParameters,
                 out);
         showProperties(
                 nonUCDProperties.stream().map(UcdProperty::toString).collect(Collectors.toList()),
@@ -1525,8 +1542,7 @@ public class UnicodeUtilities {
                 cp,
                 minVersion,
                 maxVersion,
-                history,
-                showDevProperties,
+                originalParameters,
                 out);
         showProperties(
                 ucdNonProperties.stream().map(UcdProperty::toString).collect(Collectors.toList()),
@@ -1534,8 +1550,7 @@ public class UnicodeUtilities {
                 cp,
                 minVersion,
                 maxVersion,
-                history,
-                showDevProperties,
+                originalParameters,
                 out);
         if (isUnihan) {
             showProperties(
@@ -1544,8 +1559,7 @@ public class UnicodeUtilities {
                     cp,
                     minVersion,
                     maxVersion,
-                    history,
-                    showDevProperties,
+                    originalParameters,
                     out);
         }
         showProperties(
@@ -1554,8 +1568,7 @@ public class UnicodeUtilities {
                 cp,
                 minVersion,
                 maxVersion,
-                history,
-                showDevProperties,
+                originalParameters,
                 out);
         out.append("</table>\n");
     }
@@ -1566,8 +1579,7 @@ public class UnicodeUtilities {
             int cp,
             VersionInfo minVersion,
             VersionInfo maxVersion,
-            String historyParameter,
-            boolean showDevProperties,
+            List<String> originalParameters,
             Appendable out)
             throws IOException {
         out.append("<tr><th colspan=2>" + title + "</th></tr>" + "<tr><td width='50%'>\n");
@@ -1577,13 +1589,7 @@ public class UnicodeUtilities {
             if (prop.getName().equals("confusable")) continue;
 
             showPropertyValue(
-                    properties.get(i),
-                    cp,
-                    minVersion,
-                    maxVersion,
-                    historyParameter,
-                    showDevProperties,
-                    out);
+                    properties.get(i), cp, minVersion, maxVersion, originalParameters, out);
         }
         out.append("</table>\n");
 
@@ -1595,13 +1601,7 @@ public class UnicodeUtilities {
             if (prop.getName().equals("confusable")) continue;
 
             showPropertyValue(
-                    properties.get(i),
-                    cp,
-                    minVersion,
-                    maxVersion,
-                    historyParameter,
-                    showDevProperties,
-                    out);
+                    properties.get(i), cp, minVersion, maxVersion, originalParameters, out);
         }
         out.append("</table>\n");
         out.append("</td></tr>\n");
@@ -1732,8 +1732,7 @@ public class UnicodeUtilities {
             int codePoint,
             VersionInfo minVersion,
             VersionInfo maxVersion,
-            String historyParameter,
-            boolean showDevProperties,
+            List<String> originalParameters,
             Appendable out)
             throws IOException {
         var indexedProperty = UcdProperty.forString(propName);
@@ -1855,24 +1854,6 @@ public class UnicodeUtilities {
                         htmlEscapedPropertyPredicate = "@none@";
                     }
                 }
-                List<String> displayedValues = htmlValues;
-                if (isStringValued) {
-                    List<String> args = new ArrayList<>();
-                    if (!historyParameter.isEmpty()) {
-                        args.add("history=" + historyParameter);
-                    }
-                    if (showDevProperties) {
-                        args.add("showDevProperties=1");
-                    }
-                    displayedValues = new ArrayList<>();
-                    for (int i = 0; i < assignment.values.size(); ++i) {
-                        displayedValues.add(
-                                htmlValues.get(i)
-                                        + " &lt;"
-                                        + getHex(assignment.values.get(i), ", ", false, args)
-                                        + "&gt;");
-                    }
-                }
                 final String href =
                         htmlEscapedPropertyPredicate == null
                                 ? null
@@ -1882,26 +1863,42 @@ public class UnicodeUtilities {
                                         + "="
                                         + htmlEscapedPropertyPredicate
                                         + ":]";
+                final String aTag = href == null ? null : "<a target='u' href='" + href + "'>";
+                Stream<String> displayedValues = null;
+                if (assignment.values != null) {
+                    if (isStringValued && assignment.values.get(0) != null) {
+                        displayedValues =
+                                IntStream.range(0, assignment.values.size())
+                                        .mapToObj(
+                                                i ->
+                                                        (aTag == null ? "" : aTag)
+                                                                + htmlValues.get(i)
+                                                                + (aTag == null ? "" : "</a>")
+                                                                + "&nbsp;&lt;"
+                                                                + getHex(
+                                                                        assignment.values.get(i),
+                                                                        ", ",
+                                                                        false,
+                                                                        originalParameters)
+                                                                + "&gt;");
+                    } else {
+                        displayedValues =
+                                htmlValues.stream().map(x -> aTag == null ? x : aTag + x + "</a>");
+                    }
+                }
                 out.append(
                         "<td "
                                 + tdClass
                                 + " colspan="
                                 + assignment.span
                                 + ">"
-                                + (assignment.values != null
-                                        ? (href == null
-                                                        ? "<span"
-                                                                + (isNew ? " class='changed'" : "")
-                                                                + ">"
-                                                        : ("<a target='u' "
-                                                                + (isNew ? "class='changed' " : "")
-                                                                + "href='"
-                                                                + href
-                                                                + "'>"))
+                                + (displayedValues != null
+                                        ? (isNew ? "<span class='changed'>" : "")
                                                 + versionRange
-                                                + displayedValues.stream()
-                                                        .collect(Collectors.joining("<wbr>|"))
-                                                + (href == null ? "</span>" : "</a>")
+                                                + (isStringValued && href != null ? "</a>" : "")
+                                                + displayedValues.collect(
+                                                        Collectors.joining("<wbr>|&#x2060;"))
+                                                + (isNew ? "</span>" : "")
                                         : "")
                                 + "</td>");
             }
