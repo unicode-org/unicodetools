@@ -1836,7 +1836,7 @@ public class UnicodeUtilities {
                                                         v == null
                                                                 ? "<i>null</i>"
                                                                 : toHTML.transliterate(v))
-                                        .toList();
+                                        .collect(Collectors.toList());
                 String tdClass = "";
                 if (assignment.values == null) {
                     tdClass = "class='nonexistent'";
