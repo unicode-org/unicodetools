@@ -266,7 +266,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new UnicodeProperty.UnicodeMapProperty()
                         .set(unicodeMap)
-                        .setMain(propertyName, propertyAbbreviation, UnicodeProperty.STRING, "1.1")
+                        .setMain(propertyName, propertyAbbreviation, UnicodeProperty.MISC, "1.1")
                         .addValueAliases(locales, AliasAddAction.ADD_MAIN_ALIAS)
                         .setMultivalued(true));
     }
