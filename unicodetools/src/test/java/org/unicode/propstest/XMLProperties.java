@@ -318,7 +318,7 @@ public class XMLProperties {
                         cps = Utility.fromHex(attributes.get("of"));
                         setProp(cps, UcdProperty.Do_Not_Emit_Preferred, attributes.get("use"));
                         leavesNotHandled.add("do-not-emit type=");
-                        //setProp(cps, UcdProperty.Do_Not_Emit_Type, attributes.get("because"));
+                        // setProp(cps, UcdProperty.Do_Not_Emit_Type, attributes.get("because"));
                         break;
                     case REPERTOIRE:
                     case BLOCKS:

@@ -2,6 +2,9 @@ package org.unicode.propstest;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import org.unicode.cldr.util.Timer;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -9,10 +12,6 @@ import org.unicode.props.UnicodeProperty;
 import org.unicode.props.ValueCardinality;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class CheckXmlProperties {
     /**
@@ -112,15 +111,14 @@ public class CheckXmlProperties {
                     // just for debugging
                     final String xx = XMLProperties.getXmlResolved(prop, i, xmap.get(i));
                     final String ii = iup.getResolvedValue(prop, i);
-                    //UCDXML only contains cjkNumeric values when they are not null/NaN.
+                    // UCDXML only contains cjkNumeric values when they are not null/NaN.
                     switch (prop) {
                         case kAccountingNumeric:
                         case kOtherNumeric:
                         case kPrimaryNumeric:
                             if (upval != null && upval.equals("NaN") && xval == null) {
                                 empty.add(i);
-                            }
-                            else {
+                            } else {
                                 errorMap.put(
                                         i,
                                         " codepoints where up=\t"
@@ -130,10 +128,11 @@ public class CheckXmlProperties {
                             }
                             break;
                         case Name_Alias:
-                            //Name_Alias is sorted for display in UCDXML.
+                            // Name_Alias is sorted for display in UCDXML.
                             List<String> xList = Arrays.asList(xval.split("; "));
-                            List<String> upList = (ii != null ? Arrays.asList(ii.split("\\|")): null);
-                            //Collections.sort(xList);
+                            List<String> upList =
+                                    (ii != null ? Arrays.asList(ii.split("\\|")) : null);
+                            // Collections.sort(xList);
                             Collections.sort(upList);
                             if (!xList.equals(upList)) {
                                 errorMap.put(
@@ -147,8 +146,7 @@ public class CheckXmlProperties {
                         case kEH_Core:
                             if (upval != null && upval.equals("None") && xval == null) {
                                 empty.add(i);
-                            }
-                            else {
+                            } else {
                                 errorMap.put(
                                         i,
                                         " codepoints where up=\t"
@@ -161,8 +159,7 @@ public class CheckXmlProperties {
                         case kEH_NoRotate:
                             if (upval != null && upval.equals("No") && xval == null) {
                                 empty.add(i);
-                            }
-                            else {
+                            } else {
                                 errorMap.put(
                                         i,
                                         " codepoints where up=\t"
@@ -172,8 +169,12 @@ public class CheckXmlProperties {
                             }
                             break;
                         default:
-                            if ((xval == null || xval.isEmpty() || xval.equals(Character.toString(i)))
-                                    && (upval == null || upval.isEmpty() || upval.equals(Character.toString(i)))) {
+                            if ((xval == null
+                                            || xval.isEmpty()
+                                            || xval.equals(Character.toString(i)))
+                                    && (upval == null
+                                            || upval.isEmpty()
+                                            || upval.equals(Character.toString(i)))) {
                                 empty.add(i);
                             } else {
                                 errorMap.put(

@@ -627,7 +627,8 @@ public class UCDXML {
 
     private static boolean isWritableCodePoint(
             int CodePoint, UCDXMLOUTPUTRANGE outputRange, AttributeResolver attributeResolver) {
-        return outputRange == UCDXMLOUTPUTRANGE.ALL || outputRange == UCDXMLOUTPUTRANGE.NOUNIHAN
+        return outputRange == UCDXMLOUTPUTRANGE.ALL
+                || outputRange == UCDXMLOUTPUTRANGE.NOUNIHAN
                 || (outputRange == UCDXMLOUTPUTRANGE.UNIHAN
                         && attributeResolver.isUnihanAttributeRange(CodePoint));
     }
