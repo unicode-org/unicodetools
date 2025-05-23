@@ -10,6 +10,10 @@ import org.unicode.props.ValueCardinality;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class CheckXmlProperties {
     /**
      * TODO Known problems
@@ -108,16 +112,77 @@ public class CheckXmlProperties {
                     // just for debugging
                     final String xx = XMLProperties.getXmlResolved(prop, i, xmap.get(i));
                     final String ii = iup.getResolvedValue(prop, i);
-
-                    if ((xval == null || xval.isEmpty()) && (upval == null || upval.isEmpty())) {
-                        empty.add(i);
-                    } else {
-                        errorMap.put(
-                                i,
-                                " codepoints where up=\t"
-                                        + XMLProperties.show(upval)
-                                        + "\t& xml=\t"
-                                        + XMLProperties.show(xval));
+                    //UCDXML only contains cjkNumeric values when they are not null/NaN.
+                    switch (prop) {
+                        case kAccountingNumeric:
+                        case kOtherNumeric:
+                        case kPrimaryNumeric:
+                            if (upval != null && upval.equals("NaN") && xval == null) {
+                                empty.add(i);
+                            }
+                            else {
+                                errorMap.put(
+                                        i,
+                                        " codepoints where up=\t"
+                                                + XMLProperties.show(upval)
+                                                + "\t& xml=\t"
+                                                + XMLProperties.show(xval));
+                            }
+                            break;
+                        case Name_Alias:
+                            //Name_Alias is sorted for display in UCDXML.
+                            List<String> xList = Arrays.asList(xval.split("; "));
+                            List<String> upList = (ii != null ? Arrays.asList(ii.split("\\|")): null);
+                            //Collections.sort(xList);
+                            Collections.sort(upList);
+                            if (!xList.equals(upList)) {
+                                errorMap.put(
+                                        i,
+                                        " codepoints where up=\t"
+                                                + XMLProperties.show(upval)
+                                                + "\t& xml=\t"
+                                                + XMLProperties.show(xval));
+                            }
+                            break;
+                        case kEH_Core:
+                            if (upval != null && upval.equals("None") && xval == null) {
+                                empty.add(i);
+                            }
+                            else {
+                                errorMap.put(
+                                        i,
+                                        " codepoints where up=\t"
+                                                + XMLProperties.show(upval)
+                                                + "\t& xml=\t"
+                                                + XMLProperties.show(xval));
+                            }
+                            break;
+                        case kEH_NoMirror:
+                        case kEH_NoRotate:
+                            if (upval != null && upval.equals("No") && xval == null) {
+                                empty.add(i);
+                            }
+                            else {
+                                errorMap.put(
+                                        i,
+                                        " codepoints where up=\t"
+                                                + XMLProperties.show(upval)
+                                                + "\t& xml=\t"
+                                                + XMLProperties.show(xval));
+                            }
+                            break;
+                        default:
+                            if ((xval == null || xval.isEmpty() || xval.equals(Character.toString(i)))
+                                    && (upval == null || upval.isEmpty() || upval.equals(Character.toString(i)))) {
+                                empty.add(i);
+                            } else {
+                                errorMap.put(
+                                        i,
+                                        " codepoints where up=\t"
+                                                + XMLProperties.show(upval)
+                                                + "\t& xml=\t"
+                                                + XMLProperties.show(xval));
+                            }
                     }
                 }
             }
@@ -138,7 +203,7 @@ public class CheckXmlProperties {
                     int showCount = 0;
                     for (String value : errorMap.values()) {
                         System.out.println(
-                                "\t" + value + "\t: " + errorMap.getSet(value).toPattern(false));
+                                "\t" + value + "\t: " + errorMap.getSet(value).toString());
                         if (++showCount > MAX_SHOW) {
                             System.out.println("… " + (errorMap.size() - MAX_SHOW) + " more");
                             break;

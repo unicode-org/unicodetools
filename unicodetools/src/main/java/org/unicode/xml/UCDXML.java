@@ -627,11 +627,9 @@ public class UCDXML {
 
     private static boolean isWritableCodePoint(
             int CodePoint, UCDXMLOUTPUTRANGE outputRange, AttributeResolver attributeResolver) {
-        return outputRange == UCDXMLOUTPUTRANGE.ALL
+        return outputRange == UCDXMLOUTPUTRANGE.ALL || outputRange == UCDXMLOUTPUTRANGE.NOUNIHAN
                 || (outputRange == UCDXMLOUTPUTRANGE.UNIHAN
-                        && attributeResolver.isUnihanAttributeRange(CodePoint))
-                || (outputRange == UCDXMLOUTPUTRANGE.NOUNIHAN
-                        && !attributeResolver.isUnifiedIdeograph(CodePoint));
+                        && attributeResolver.isUnihanAttributeRange(CodePoint));
     }
 
     private static Range getRangeType(AttributeResolver attributeResolver, int CodePoint) {
