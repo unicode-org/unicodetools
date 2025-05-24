@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -95,6 +96,7 @@ public class Indexer {
                     comment, // kEHDesc
                 };
         final var wordBreak = BreakIterator.getWordInstance();
+        final Set<String> lemmatizations = new HashSet<>();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             for (var prop : properties) {
                 final var propertyLeaves = leaves.computeIfAbsent(prop, k -> new TreeMap<>());
@@ -117,9 +119,13 @@ public class Indexer {
                             end != BreakIterator.DONE;
                             start = end, end = wordBreak.next()) {
                         if (wordBreak.getRuleStatus() >= BreakIterator.WORD_LETTER) {
-                            // TODO(egg): properly lemmatize, casefold, etc.
-                            String word = lemmatize(key.substring(start, end).toLowerCase());
-                            propertyWordIndex.computeIfAbsent(word, k -> new TreeSet<>()).add(key);
+                            String word = key.substring(start, end).toLowerCase();
+                            String lemma = lemmatize(word);
+                            if (false && !lemmatizations.contains(word) && !lemma.equals(word)) {
+                                System.out.println(word + " < " + lemma);
+                                lemmatizations.add(word);
+                            }
+                            propertyWordIndex.computeIfAbsent(lemma, k -> new TreeSet<>()).add(key);
                         }
                     }
                 }
@@ -145,6 +151,9 @@ public class Indexer {
             if (queryWords.length == 0) {
                 return;
             }
+            for (int i = 0; i < queryWords.length; ++i) {
+                queryWords[i] = lemmatize(queryWords[i]);
+            }
 
             final var covered = new UnicodeSet();
             final TreeSet<String> mutableEmpty = new TreeSet<>();
@@ -168,9 +177,6 @@ public class Indexer {
                 }
                 for (String leaf : resultLeaves) {
                     final int position = findWord(queryWords[0], leaf);
-                    if (position == -1) {
-                        continue;
-                    }
                     final UnicodeSet leafSet = propertyLeaves.get(leaf);
                     if (!covered.containsAll(leafSet)) {
                         String tail = leaf.substring(position);
@@ -219,9 +225,12 @@ public class Indexer {
     }
 
     static String lemmatize(String word) {
-        // TODO(egg): casefolding, proper lemmatization.
+        // TODO(egg): collation folding, proper lemmatization.
         String lemma = word.toLowerCase();
-        if (lemma.endsWith("s") && lemma.length() > 2) {
+        lemma = lemma.replace("š", "sh");
+        if (lemma.endsWith("ses") && lemma.length() > 4) {
+            lemma = lemma.substring(0, lemma.length() - 2);
+        } else if (lemma.endsWith("s") && !lemma.endsWith("ss") && lemma.length() > 2) {
             lemma = lemma.substring(0, lemma.length() - 1);
         }
         return lemma;
