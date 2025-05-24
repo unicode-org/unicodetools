@@ -8,7 +8,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -116,10 +118,7 @@ public class Indexer {
                             start = end, end = wordBreak.next()) {
                         if (wordBreak.getRuleStatus() >= BreakIterator.WORD_LETTER) {
                             // TODO(egg): properly lemmatize, casefold, etc.
-                            String word = key.substring(start, end).toLowerCase();
-                            if (word.endsWith("s")) {
-                                word = word.substring(0, word.length() - 1);
-                            }
+                            String word = lemmatize(key.substring(start, end).toLowerCase());
                             propertyWordIndex.computeIfAbsent(word, k -> new TreeSet<>()).add(key);
                         }
                     }
@@ -151,41 +150,53 @@ public class Indexer {
             final TreeSet<String> mutableEmpty = new TreeSet<>();
             for (var property : properties) {
                 final var propertyLeaves = leaves.get(property);
-                final var resultLeaves =
-                        new TreeSet<>(
-                                wordIndices
-                                        .get(property)
-                                        .getOrDefault(queryWords[0], mutableEmpty));
+                class KwocComparator implements Comparator<String> {
+                    @Override
+                    public int compare(String left, String right) {
+                        final int lpos = findWord(queryWords[0], left);
+                        final int rpos = findWord(queryWords[0], right);
+                        return (left.substring(lpos) + left.substring(0, lpos))
+                                .compareTo(right.substring(rpos) + right.substring(0, rpos));
+                    }
+                }
+                final var resultLeaves = new TreeSet<>(new KwocComparator());
+                resultLeaves.addAll(
+                        wordIndices.get(property).getOrDefault(queryWords[0], mutableEmpty));
                 for (int i = 1; i < queryWords.length; ++i) {
                     resultLeaves.retainAll(
                             wordIndices.get(property).getOrDefault(queryWords[i], mutableEmpty));
                 }
                 for (String leaf : resultLeaves) {
-                    final int position = leaf.toLowerCase().indexOf(queryWords[0]);
+                    final int position = findWord(queryWords[0], leaf);
                     if (position == -1) {
                         continue;
                     }
                     final UnicodeSet leafSet = propertyLeaves.get(leaf);
                     if (!covered.containsAll(leafSet)) {
-                        final String tail =
-                                leaf.substring(position)
-                                        .substring(0, Math.min(72, leaf.length() - position));
-                        final String head = leaf.substring(Math.max(position - 72, 0), position);
+                        String tail = leaf.substring(position);
+                        if (tail.length() > 72) {
+                            tail = tail.substring(0, 72) + "…";
+                        }
+                        String head = leaf.substring(0, position);
+                        if (head.length() > 40) {
+                            head = "…" + head.substring(head.length() - 40);
+                        }
                         final String kwoc =
                                 tail
                                         + (position > 0
-                                                ? (tail.endsWith(".") ? "    " : "❟   ") + head
+                                                ? (tail.endsWith(".") ? " " : "❟")
+                                                        + (tail.length() > 40 ? "\n    " : "   ")
+                                                        + head
                                                 : "");
-                        System.out.println(
-                                kwoc
-                                        + " ("
-                                        + leafSet.size()
-                                        + (property == block
-                                                ? "-character block"
-                                                : " characters in "
-                                                        + blockCount(leafSet)
-                                                        + " blocks")
-                                        + ")");
+                        System.out.println(kwoc);
+                        for (var subEntry :
+                                subEntries(
+                                        property == subheader,
+                                        property == subheader_notice,
+                                        property != name,
+                                        leafSet)) {
+                            System.out.println(subEntry);
+                        }
                         covered.addAll(leafSet);
                     }
                 }
@@ -205,6 +216,129 @@ public class Indexer {
             remainder.removeAll(block.getSet(block.getValue(remainder.charAt(0))));
         }
         return count;
+    }
+
+    static String lemmatize(String word) {
+        // TODO(egg): casefolding, proper lemmatization.
+        String lemma = word.toLowerCase();
+        if (lemma.endsWith("s") && lemma.length() > 2) {
+            lemma = lemma.substring(0, lemma.length() - 1);
+        }
+        return lemma;
+    }
+
+    static int findWord(String needle, String haystack) {
+        final var wordBreak = BreakIterator.getWordInstance();
+        wordBreak.setText(haystack);
+        int start = 0;
+        int position = -1;
+        for (int end = wordBreak.next();
+                end != BreakIterator.DONE;
+                start = end, end = wordBreak.next()) {
+            if (wordBreak.getRuleStatus() >= BreakIterator.WORD_LETTER) {
+                String word = lemmatize(haystack.substring(start, end));
+                if (word.equals(needle)) {
+                    position = start;
+                }
+            }
+        }
+        return position;
+    }
+
+    static class IndexSubEntry {
+        String block;
+        String subheader;
+        String chartLink;
+        String ranges;
+        int characterCount;
+        String propertiesLink;
+
+        @Override
+        public String toString() {
+            StringBuilder result = new StringBuilder("        ");
+            if (subheader != null) {
+                result.append(subheader + ". ");
+            }
+            if (block != null) {
+                result.append("In " + block + ": ");
+            }
+            result.append(ranges);
+            if (characterCount > 1) {
+                result.append("(" + characterCount + ")");
+            }
+            return result.toString();
+        }
+    }
+    ;
+
+    static List<IndexSubEntry> subEntries(
+            boolean showBlock, boolean showSubheader, boolean showName, UnicodeSet characters) {
+        List<IndexSubEntry> result = new ArrayList<>();
+        final var iup = IndexUnicodeProperties.make();
+        final var block = iup.getProperty(UcdProperty.Block);
+        final var subheader = iup.getProperty(UcdProperty.Names_List_Subheader);
+        final var name = iup.getProperty(UcdProperty.Name);
+        final boolean showBlocks =
+                showBlock
+                        || showSubheader
+                        || !block.getSet(block.getValue(characters.charAt(0)))
+                                .containsAll(characters);
+        if (!showBlocks) {
+            result.add(new IndexSubEntry());
+        }
+        for (var range : characters.ranges()) {
+            if (range.codepointEnd == range.codepoint) {
+                final int blockStart =
+                        block.getSet(block.getValue(range.codepoint)).getRangeStart(0);
+                if (showBlocks) {
+                    result.add(new IndexSubEntry());
+                    result.get(result.size() - 1).block = block.getValue(range.codepoint);
+                }
+                final var currentSubEntry = result.get(result.size() - 1);
+                if (showSubheader) {
+                    currentSubEntry.subheader = subheader.getValue(range.codepoint);
+                }
+                currentSubEntry.chartLink =
+                        "https://www.unicode.org/charts/PDF/U" + Utility.hex(blockStart) + ".pdf";
+                final String characterName = name.getValue(range.codepoint);
+                currentSubEntry.ranges =
+                        "U+"
+                                + Utility.hex(range.codepoint)
+                                + "\u00A0"
+                                + Character.toString(range.codepoint)
+                                + (showName && name != null ? " " + characterName : "");
+                currentSubEntry.propertiesLink =
+                        "https://util.unicode.org/UnicodeJsps/character.jsp?a="
+                                + Utility.hex(range.codepoint);
+                currentSubEntry.characterCount = 1;
+            } else {
+                UnicodeSet remainder = new UnicodeSet(range.codepoint, range.codepointEnd);
+                while (!remainder.isEmpty()) {
+                    final var currentBlock = block.getSet(block.getValue(remainder.charAt(0)));
+                    if (showBlocks) {
+                        result.add(new IndexSubEntry());
+                        result.get(result.size() - 1).block = block.getValue(remainder.charAt(0));
+                    }
+                    final int blockStart = currentBlock.getRangeStart(0);
+                    final var subrange = remainder.cloneAsThawed().retainAll(currentBlock);
+                    remainder.removeAll(currentBlock);
+                    final var currentSubEntry = result.get(result.size() - 1);
+                    if (showSubheader) {
+                        currentSubEntry.subheader = subheader.getValue(range.codepoint);
+                    }
+                    currentSubEntry.chartLink =
+                            "https://www.unicode.org/charts/PDF/U"
+                                    + Utility.hex(blockStart)
+                                    + ".pdf";
+                    currentSubEntry.ranges =
+                            "U+"
+                                    + Utility.hex(subrange.getRangeStart(0))
+                                    + "..U+"
+                                    + Utility.hex(subrange.getRangeEnd(0));
+                }
+            }
+        }
+        return result;
     }
 
     public static String htmlIndexValue(UnicodeSet characters) {
