@@ -5,6 +5,7 @@ import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -135,6 +136,53 @@ public class Indexer {
             }
         }
 
+        var file = new PrintStream(new File("index.html"));
+        file.println("<head>");
+        file.println("<script>");
+        file.println("let wordIndices = new Map([");
+        for (var property : properties) {
+          final var propertyIndex = wordIndices.get(property);
+          file.println("  ['" + property.getName() + "', new Map([");
+          for (var wordIndex : propertyIndex.entrySet()) {
+            file.println("    ['" + wordIndex.getKey().replace("'", "\\'") + "', new Set([");
+            for (String leaf : wordIndex.getValue()) {
+              file.println("      '" + leaf.replace("'", "\\'") + "',");
+            }
+            file.println(    "])],");
+          }
+          file.println("  ])],");
+        }
+        file.println("]);");
+        file.println("let leaves = new Map([");
+        for (var property : properties) {
+          final var propertyLeaves = leaves.get(property);
+          file.println("  ['" + property.getName() + "', new Map([");
+          for (var leaf : propertyLeaves.entrySet()) {
+            file.println("    ['" + leaf.getKey().replace("'", "\\'") + "', [");
+            for (var range : leaf.getValue().ranges()) {
+              file.println("      [0x" + Utility.hex(range.codepoint) + ", 0x" + Utility.hex(range.codepointEnd) + "],");
+            }
+            file.println(    "]],");
+          }
+          file.println("  ])],");
+        }
+        file.println("]);");
+        final var js = new BufferedReader(new FileReader(new File("index_search.js")));
+        for (String line = js.readLine(); line != null; line = js.readLine()) {
+          if (line.contains("GENERATED LINE")) {
+            continue;
+          }
+          file.println(line);
+        }
+        js.close();
+        file.println("</script>");
+        file.println("</head>");
+        file.println("<body>");
+        file.println("<input type='search' placeholder='Search terms, e.g., [arrow], [click], [sanskrit]…' oninput='updateResults(event)'>");
+        file.println("<table id='results'></table>");
+        file.println("</body>");
+        file.close();
+
         for (var property : properties) {
             System.out.println(
                     property.getName() + ": " + wordIndices.get(property).size() + " words");
@@ -208,8 +256,6 @@ public class Indexer {
                 }
             }
         }
-        var file = new PrintStream(new File("index.html"));
-        file.close();
     }
 
     static int blockCount(UnicodeSet characters) {
