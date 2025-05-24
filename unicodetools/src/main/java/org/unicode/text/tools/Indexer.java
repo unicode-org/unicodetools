@@ -11,6 +11,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.unicode.props.IndexUnicodeProperties;
@@ -109,7 +110,7 @@ public class Indexer {
       }
       var file = new PrintStream(new File("index.html"));
       file.println("<table>");
-      Map<String, UnicodeSet> wordIndex = new TreeMap<>(Collator.getInstance());
+      Map<String, TreeSet<IndexKey>> wordIndex = new TreeMap<>(Collator.getInstance());
       final var wordBreak = BreakIterator.getWordInstance();
       for (var entry : index.entrySet()) {
         //System.out.println(entry.getKey().key);
@@ -121,13 +122,17 @@ public class Indexer {
              start = end, end = wordBreak.next()) {
           if (wordBreak.getRuleStatus() >= BreakIterator.WORD_LETTER) {
             wordIndex.computeIfAbsent(entry.getKey().key.substring(start, end),
-            k-> new UnicodeSet()).addAll(entry.getValue());
+            k -> new TreeSet<>(new IndexKeyComparator())).add(entry.getKey());
           }
         }
       }
       System.err.println("Exctracted words");
       for (var entry : wordIndex.entrySet().stream().sorted((left, right) -> Integer.compare(left.getValue().size(), right.getValue().size())).toList()) {
-        System.err.println(entry.getKey() + " " + entry.getValue().size() + " characters in " + blockCount(entry.getValue()) + " blocks");
+        final var s = new UnicodeSet();
+        for (var leaf : entry.getValue()) {
+            s.addAll(index.get(leaf));
+        }
+        System.err.println(entry.getKey() + " " + entry.getValue().size() + " leaves (" + s.size() + " characters in " + blockCount(s) + " blocks)");
       }
       file.println("</table>");
       file.close();
