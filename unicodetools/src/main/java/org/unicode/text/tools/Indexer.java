@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 public class Indexer {
@@ -96,16 +97,16 @@ public class Indexer {
         public String toHTML() {
             final var subEntries = subEntries();
             final String singleEntry = subEntries.size() == 1 ? subEntries.get(0).toHTML() : null;
-            return "<li style='overflow:hidden'>"
+            return "<li><div style='overflow:hidden'>"
                     + toHTML.transform(key)
                     + (singleEntry != null
                             ? (singleEntry.startsWith("In") ? " — " : "") + singleEntry
-                            : "<ul><li>"
+                            : "<ul><li><div style='overflow:hidden'>"
                                     + subEntries().stream()
                                             .map(e -> e.toHTML())
-                                            .collect(Collectors.joining("</li><li>"))
-                                    + "</li></ul>")
-                    + "</li>";
+                                            .collect(Collectors.joining("</div></li><li><div style='overflow:hidden'>"))
+                                    + "</div></li></ul>")
+                    + "</div></li>";
         }
     }
 
@@ -124,10 +125,10 @@ public class Indexer {
                 new UnicodeProperty[] {
                     block,
                     subheader,
-                    subheader_notice,
                     name,
                     nameAlias,
                     informalAlias,
+                    subheader_notice,
                     comment, // kEHDesc
                 };
         final var wordBreak = BreakIterator.getWordInstance();
@@ -233,7 +234,12 @@ public class Indexer {
         file.println("</head>");
         file.println("<body>");
         file.println(
-                "<input style='width:100%;max-width:60em' type='search' placeholder='Search terms, e.g., [arrow], [click], [sanskrit]…' oninput='updateResults(event)'>");
+                "<h1>Character names list index "
+                        + Settings.latestVersion
+                        + Settings.latestVersionPhase
+                        + "</h1>");
+        file.println(
+                "<input style='width:100%;max-width:60em' type='search' placeholder='Search terms, e.g., [arrow], [click], [contour integral], [cyrillic o], [queen card], [sanskrit]…' oninput='updateResults(event)'>");
         file.println("<p id='info'></p>");
         file.println(
                 "<ul style='max-width:60em;list-style:none;padding-inline-start:0' id='results'></ul>");
