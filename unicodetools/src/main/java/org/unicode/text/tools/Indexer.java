@@ -98,9 +98,14 @@ public class Indexer {
             final String singleEntry = subEntries.size() == 1 ? subEntries.get(0).toHTML() : null;
             return "<li style='overflow:hidden'>"
                     + toHTML.transform(key)
-                    +(singleEntry != null ? (singleEntry.startsWith("In") ? " — " : "") + singleEntry : "<ul><li>"
-                    + subEntries().stream().map(e -> e.toHTML()).collect(Collectors.joining("</li><li>"))
-                    + "</li></ul>") + "</li>";
+                    + (singleEntry != null
+                            ? (singleEntry.startsWith("In") ? " — " : "") + singleEntry
+                            : "<ul><li>"
+                                    + subEntries().stream()
+                                            .map(e -> e.toHTML())
+                                            .collect(Collectors.joining("</li><li>"))
+                                    + "</li></ul>")
+                    + "</li>";
         }
     }
 
@@ -230,7 +235,8 @@ public class Indexer {
         file.println(
                 "<input style='width:100%;max-width:60em' type='search' placeholder='Search terms, e.g., [arrow], [click], [sanskrit]…' oninput='updateResults(event)'>");
         file.println("<p id='info'></p>");
-        file.println("<ul style='max-width:60em;list-style:none;padding-inline-start:0' id='results'></ul>");
+        file.println(
+                "<ul style='max-width:60em;list-style:none;padding-inline-start:0' id='results'></ul>");
         file.println("</body>");
         file.close();
 
