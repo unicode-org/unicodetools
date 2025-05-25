@@ -11,12 +11,14 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
@@ -27,6 +29,17 @@ public class Indexer {
     static Transliterator toHTML;
     static Transliterator toHTMLInput;
     static String HTML_RULES_CONTROLS;
+
+    static final IndexUnicodeProperties iup = IndexUnicodeProperties.make();
+    static final UnicodeProperty name = iup.getProperty(UcdProperty.Name);
+    static final UnicodeProperty nameAlias = iup.getProperty(UcdProperty.Name_Alias);
+    static final UnicodeProperty informalAlias = iup.getProperty(UcdProperty.Names_List_Alias);
+    static final UnicodeProperty block = iup.getProperty(UcdProperty.Block);
+    static final UnicodeProperty subheader = iup.getProperty(UcdProperty.Names_List_Subheader);
+    static final UnicodeProperty subheader_notice =
+            iup.getProperty(UcdProperty.Names_List_Subheader_Notice);
+    static final UnicodeProperty comment = iup.getProperty(UcdProperty.Names_List_Comment);
+    static final Map<String, UnicodeSet> blockSet = new HashMap<>();
 
     static {
         String BASE_RULES =
@@ -50,41 +63,57 @@ public class Indexer {
                         + "[\\uD800-\\uDB7F] > '<span class=\"high-surrogate\"><span>'\uFFFD'</span></span>' ; "
                         + "[\\uDB80-\\uDBFF] > '<span class=\"private-surrogate\"><span>'\uFFFD'</span></span>' ; "
                         + "[\\uDC00-\\uDFFF] > '<span class=\"low-surrogate\"><span>'\uFFFD'</span></span>' ; "
-                        + "([[:cn:][:co:][:cc:]-[:White_Space:]]) > '<span class=\"control\">'$1'</span>' ; ";
+                        + "([[:cn:][:co:][:cc:]-[:White_Space:]]) > '<span class=\"control\">'$1'</span>' ; "
+                        + "([[:cc:]&[:White_Space:]]) > '<span class=\"control\">'\uFFFD'</span>' ; ";
         toHTML =
                 Transliterator.createFromRules(
                         "any-xml", HTML_RULES_CONTROLS, Transliterator.FORWARD);
+
+        for (String blockName : block.getAvailableValues()) {
+            blockSet.put(blockName, block.getSet(blockName));
+        }
+    }
+
+    static class Leaf {
+        Leaf(String key, UnicodeProperty property) {
+            this.key = key;
+            this.property = property;
+            characters = new UnicodeSet();
+        }
+
+        List<IndexSubEntry> subEntries() {
+            return Indexer.subEntries(
+                    property == subheader,
+                    property == subheader_notice,
+                    property != name,
+                    characters);
+        }
+
+        String key;
+        UnicodeProperty property;
+        UnicodeSet characters;
+
+        public String toHTML() {
+            final var subEntries = subEntries();
+            final String singleEntry = subEntries.size() == 1 ? subEntries.get(0).toHTML() : null;
+            return "<li style='overflow:hidden'>"
+                    + toHTML.transform(key)
+                    +(singleEntry != null ? (singleEntry.startsWith("In") ? " — " : "") + singleEntry : "<ul><li>"
+                    + subEntries().stream().map(e -> e.toHTML()).collect(Collectors.joining("</li><li>"))
+                    + "</li></ul>") + "</li>";
+        }
     }
 
     public static void main(String[] args) throws IOException {
-        class IndexKey {
-            IndexKey(String key, UnicodeProperty source) {
-                this.key = key;
-                this.source = source;
-            }
-
-            String key;
-            UnicodeProperty source;
-        }
-        ;
         class PropertyComparator implements Comparator<UnicodeProperty> {
             @Override
             public int compare(UnicodeProperty left, UnicodeProperty right) {
                 return left.getName().compareTo(right.getName());
             }
         }
-        final var iup = IndexUnicodeProperties.make();
-        Map<UnicodeProperty, Map<String, UnicodeSet>> leaves =
-                new TreeMap<>(new PropertyComparator());
+        Map<UnicodeProperty, Map<String, Leaf>> leaves = new TreeMap<>(new PropertyComparator());
         Map<UnicodeProperty, Map<String, Set<String>>> wordIndices =
                 new TreeMap<>(new PropertyComparator());
-        final var name = iup.getProperty(UcdProperty.Name);
-        final var nameAlias = iup.getProperty(UcdProperty.Name_Alias);
-        final var informalAlias = iup.getProperty(UcdProperty.Names_List_Alias);
-        final var block = iup.getProperty(UcdProperty.Block);
-        final var subheader = iup.getProperty(UcdProperty.Names_List_Subheader);
-        final var subheader_notice = iup.getProperty(UcdProperty.Names_List_Subheader_Notice);
-        final var comment = iup.getProperty(UcdProperty.Names_List_Comment);
         // final var kEHDesc = iup.getProperty(UcdProperty.kEH_Desc);
         final var properties =
                 new UnicodeProperty[] {
@@ -113,7 +142,11 @@ public class Indexer {
                     if (prop == block) {
                         key = key.replace("_", " ");
                     }
-                    propertyLeaves.computeIfAbsent(key, k -> new UnicodeSet()).add(cp);
+                    final String leafKey = key;
+                    propertyLeaves
+                            .computeIfAbsent(key, k -> new Leaf(leafKey, prop))
+                            .characters
+                            .add(cp);
                     wordBreak.setText(key);
                     int start = 0;
                     for (int end = wordBreak.next();
@@ -136,50 +169,68 @@ public class Indexer {
             }
         }
 
+        System.out.println("Writing index.html...");
         var file = new PrintStream(new File("index.html"));
         file.println("<head>");
         file.println("<script>");
         file.println("let wordIndices = new Map([");
+        System.out.println("wordIndices...");
         for (var property : properties) {
-          final var propertyIndex = wordIndices.get(property);
-          file.println("  ['" + property.getName() + "', new Map([");
-          for (var wordIndex : propertyIndex.entrySet()) {
-            file.println("    ['" + wordIndex.getKey().replace("'", "\\'") + "', new Set([");
-            for (String leaf : wordIndex.getValue()) {
-              file.println("      '" + leaf.replace("'", "\\'") + "',");
+            final var propertyIndex = wordIndices.get(property);
+            file.println("  ['" + property.getName() + "', new Map([");
+            for (var wordIndex : propertyIndex.entrySet()) {
+                file.println("    ['" + wordIndex.getKey().replace("'", "\\'") + "', new Set([");
+                for (String leaf : wordIndex.getValue()) {
+                    file.println("      '" + leaf.replace("'", "\\'") + "',");
+                }
+                file.println("])],");
             }
-            file.println(    "])],");
-          }
-          file.println("  ])],");
+            file.println("  ])],");
         }
         file.println("]);");
+        System.out.println("leaves...");
         file.println("let leaves = new Map([");
         for (var property : properties) {
-          final var propertyLeaves = leaves.get(property);
-          file.println("  ['" + property.getName() + "', new Map([");
-          for (var leaf : propertyLeaves.entrySet()) {
-            file.println("    ['" + leaf.getKey().replace("'", "\\'") + "', [");
-            for (var range : leaf.getValue().ranges()) {
-              file.println("      [0x" + Utility.hex(range.codepoint) + ", 0x" + Utility.hex(range.codepointEnd) + "],");
+            System.out.println(property.getName() + "...");
+            final var propertyLeaves = leaves.get(property);
+            file.println("  ['" + property.getName() + "', new Map([");
+            int i = 0;
+            for (var leaf : propertyLeaves.values()) {
+                if (++i % 1000 == 0) {
+                    System.out.println(i + "/" + propertyLeaves.size() + "...");
+                }
+                file.println("    ['" + leaf.key.replace("'", "\\'") + "', {");
+                file.println("       html: \"" + leaf.toHTML().replace("\"", "\\\"") + "\",");
+                file.println("       characters: [");
+                for (var range : leaf.characters.ranges()) {
+                    file.println(
+                            "         [0x"
+                                    + Utility.hex(range.codepoint)
+                                    + ", 0x"
+                                    + Utility.hex(range.codepointEnd)
+                                    + "],");
+                }
+                file.println("      ],");
+                file.println("    }],");
             }
-            file.println(    "]],");
-          }
-          file.println("  ])],");
+            file.println("  ])],");
         }
         file.println("]);");
         final var js = new BufferedReader(new FileReader(new File("index_search.js")));
         for (String line = js.readLine(); line != null; line = js.readLine()) {
-          if (line.contains("GENERATED LINE")) {
-            continue;
-          }
-          file.println(line);
+            if (line.contains("GENERATED LINE")) {
+                continue;
+            }
+            file.println(line);
         }
         js.close();
         file.println("</script>");
         file.println("</head>");
         file.println("<body>");
-        file.println("<input type='search' placeholder='Search terms, e.g., [arrow], [click], [sanskrit]…' oninput='updateResults(event)'>");
-        file.println("<table id='results'></table>");
+        file.println(
+                "<input style='width:100%;max-width:60em' type='search' placeholder='Search terms, e.g., [arrow], [click], [sanskrit]…' oninput='updateResults(event)'>");
+        file.println("<p id='info'></p>");
+        file.println("<ul style='max-width:60em;list-style:none;padding-inline-start:0' id='results'></ul>");
         file.println("</body>");
         file.close();
 
@@ -225,7 +276,8 @@ public class Indexer {
                 }
                 for (String leaf : resultLeaves) {
                     final int position = findWord(queryWords[0], leaf);
-                    final UnicodeSet leafSet = propertyLeaves.get(leaf);
+                    final var entry = propertyLeaves.get(leaf);
+                    final UnicodeSet leafSet = entry.characters;
                     if (!covered.containsAll(leafSet)) {
                         String tail = leaf.substring(position);
                         if (tail.length() > 72) {
@@ -243,12 +295,7 @@ public class Indexer {
                                                         + head
                                                 : "");
                         System.out.println(kwoc);
-                        for (var subEntry :
-                                subEntries(
-                                        property == subheader,
-                                        property == subheader_notice,
-                                        property != name,
-                                        leafSet)) {
+                        for (var subEntry : entry.subEntries()) {
                             System.out.println(subEntry);
                         }
                         covered.addAll(leafSet);
@@ -259,13 +306,11 @@ public class Indexer {
     }
 
     static int blockCount(UnicodeSet characters) {
-        final var iup = IndexUnicodeProperties.make();
-        final var block = iup.getProperty(UcdProperty.Block);
         UnicodeSet remainder = characters.cloneAsThawed();
         int count = 0;
         while (!remainder.isEmpty()) {
             ++count;
-            remainder.removeAll(block.getSet(block.getValue(remainder.charAt(0))));
+            remainder.removeAll(blockSet.get(block.getValue(remainder.charAt(0))));
         }
         return count;
     }
@@ -305,7 +350,6 @@ public class Indexer {
         String subheader;
         String chartLink;
         String ranges;
-        int characterCount;
         String propertiesLink;
 
         @Override
@@ -318,25 +362,35 @@ public class Indexer {
                 result.append("In " + block + ": ");
             }
             result.append(ranges);
-            if (characterCount > 1) {
-                result.append("(" + characterCount + ")");
+            return result.toString();
+        }
+
+        public String toHTML() {
+            StringBuilder result = new StringBuilder();
+            if (subheader != null) {
+                result.append(toHTML.transform(subheader) + ". ");
             }
+            if (block != null) {
+                result.append("In " + block + ": ");
+            }
+            result.append("<span style='float:right'><a href='" + chartLink + "'>");
+            result.append(toHTML.transform(ranges));
+            result.append("</a>");
+            if (propertiesLink != null) {
+                result.append(" (<a href='" + propertiesLink + "'>properties</a>)");
+            }
+            result.append("</span>");
             return result.toString();
         }
     }
-    ;
 
     static List<IndexSubEntry> subEntries(
             boolean showBlock, boolean showSubheader, boolean showName, UnicodeSet characters) {
         List<IndexSubEntry> result = new ArrayList<>();
-        final var iup = IndexUnicodeProperties.make();
-        final var block = iup.getProperty(UcdProperty.Block);
-        final var subheader = iup.getProperty(UcdProperty.Names_List_Subheader);
-        final var name = iup.getProperty(UcdProperty.Name);
         final boolean showBlocks =
                 showBlock
                         || showSubheader
-                        || !block.getSet(block.getValue(characters.charAt(0)))
+                        || !blockSet.get(block.getValue(characters.charAt(0)))
                                 .containsAll(characters);
         if (!showBlocks) {
             result.add(new IndexSubEntry());
@@ -344,7 +398,7 @@ public class Indexer {
         for (var range : characters.ranges()) {
             if (range.codepointEnd == range.codepoint) {
                 final int blockStart =
-                        block.getSet(block.getValue(range.codepoint)).getRangeStart(0);
+                        blockSet.get(block.getValue(range.codepoint)).getRangeStart(0);
                 if (showBlocks) {
                     result.add(new IndexSubEntry());
                     result.get(result.size() - 1).block = block.getValue(range.codepoint);
@@ -354,22 +408,23 @@ public class Indexer {
                     currentSubEntry.subheader = subheader.getValue(range.codepoint);
                 }
                 currentSubEntry.chartLink =
-                        "https://www.unicode.org/charts/PDF/U" + Utility.hex(blockStart) + ".pdf";
+                        "https://www.unicode.org/Public/draft/charts/blocks/U"
+                                + Utility.hex(blockStart)
+                                + ".pdf";
                 final String characterName = name.getValue(range.codepoint);
                 currentSubEntry.ranges =
                         "U+"
                                 + Utility.hex(range.codepoint)
                                 + "\u00A0"
                                 + Character.toString(range.codepoint)
-                                + (showName && name != null ? " " + characterName : "");
+                                + (showName && characterName != null ? " " + characterName : "");
                 currentSubEntry.propertiesLink =
                         "https://util.unicode.org/UnicodeJsps/character.jsp?a="
                                 + Utility.hex(range.codepoint);
-                currentSubEntry.characterCount = 1;
             } else {
                 UnicodeSet remainder = new UnicodeSet(range.codepoint, range.codepointEnd);
                 while (!remainder.isEmpty()) {
-                    final var currentBlock = block.getSet(block.getValue(remainder.charAt(0)));
+                    final var currentBlock = blockSet.get(block.getValue(remainder.charAt(0)));
                     if (showBlocks) {
                         result.add(new IndexSubEntry());
                         result.get(result.size() - 1).block = block.getValue(remainder.charAt(0));
@@ -382,7 +437,7 @@ public class Indexer {
                         currentSubEntry.subheader = subheader.getValue(range.codepoint);
                     }
                     currentSubEntry.chartLink =
-                            "https://www.unicode.org/charts/PDF/U"
+                            "https://www.unicode.org/Public/draft/charts/blocks/U"
                                     + Utility.hex(blockStart)
                                     + ".pdf";
                     currentSubEntry.ranges =
@@ -397,10 +452,8 @@ public class Indexer {
     }
 
     public static String htmlIndexValue(UnicodeSet characters) {
-        final var iup = IndexUnicodeProperties.make();
-        final var block = iup.getProperty(UcdProperty.Block);
         final boolean showBlocks =
-                !block.getSet(block.getValue(characters.charAt(0))).containsAll(characters);
+                !blockSet.get(block.getValue(characters.charAt(0))).containsAll(characters);
         var result = new StringBuilder();
         if (showBlocks) {
             result.append("<ul>");
@@ -408,7 +461,7 @@ public class Indexer {
         for (var range : characters.ranges()) {
             if (range.codepointEnd == range.codepoint) {
                 final int blockStart =
-                        block.getSet(block.getValue(range.codepoint)).getRangeStart(0);
+                        blockSet.get(block.getValue(range.codepoint)).getRangeStart(0);
                 if (showBlocks) {
                     result.append("<li>In " + block.getValue(range.codepoint) + ": ");
                 }
@@ -428,7 +481,7 @@ public class Indexer {
             } else {
                 UnicodeSet remainder = new UnicodeSet(range.codepoint, range.codepointEnd);
                 while (!remainder.isEmpty()) {
-                    final var currentBlock = block.getSet(block.getValue(remainder.charAt(0)));
+                    final var currentBlock = blockSet.get(block.getValue(remainder.charAt(0)));
                     if (showBlocks) {
                         result.append("<li>In " + block.getValue(remainder.charAt(0)) + ": ");
                     }

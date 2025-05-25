@@ -1,12 +1,17 @@
 /**@type {Map<string, Map<string, Set<String>>>}*/
 let wordIndices/*= GENERATED LINE*/;
-/**@type {Map<string, Map<string, [number, number][]>>}*/
+/**@type {Map<string, Map<string, {characters: [number, number][]}>>}*/
 let leaves/*= GENERATED LINE*/;
 
 function updateResults(event) {
   /**@type {string}*/
   let query = event.target.value;
   let leaves = search(query);
+  if (leaves.length >= 100) {
+    document.getElementById("info").innerHTML = "Showing first 100 results";
+  } else {
+    document.getElementById("info").innerHTML = leaves.length + " results";
+  }
   document.getElementById("results").innerHTML = "<tr><td>" + leaves.join("</tr></tr><tr><td>") + "</td></tr>";
 }
 function search(/**@type {string}*/ query) {
@@ -25,13 +30,14 @@ function search(/**@type {string}*/ query) {
     }
     /**@type {[number, number][]}*/
     for (let leaf of resultLeaves) {
-      let leafSet = propertyLeaves.get(leaf);
+      let entry = propertyLeaves.get(leaf);
+      let leafSet = entry.characters;
       if (superset(covered, leafSet)) {
         continue;
       }
       covered = covered.concat(leafSet);
-      result.push(leaf);
-      if (result.length > 1000) {
+      result.push(entry.html);
+      if (result.length >= 100) {
         return result;
       }
     }
