@@ -98,9 +98,9 @@ public class Indexer {
             final var subEntries = subEntries();
             final String singleEntry = subEntries.size() == 1 ? subEntries.get(0).toHTML() : null;
             return "<li><div style='overflow:hidden'>"
-                    + toHTML.transform(key)
+                    + "[RESULT TEXT]"
                     + (singleEntry != null
-                            ? (singleEntry.startsWith("In") ? " — " : "") + singleEntry
+                            ? "<span class=ranges>" + singleEntry.replace("<span class=ranges>", "")
                             : "<ul><li><div style='overflow:hidden'>"
                                     + subEntries().stream()
                                             .map(e -> e.toHTML())
@@ -118,7 +118,7 @@ public class Indexer {
             }
         }
         Map<UnicodeProperty, Map<String, Leaf>> leaves = new TreeMap<>(new PropertyComparator());
-        Map<UnicodeProperty, Map<String, Set<String>>> wordIndices =
+        Map<UnicodeProperty, Map<String, Map<String, Integer>>> wordIndices =
                 new TreeMap<>(new PropertyComparator());
         // final var kEHDesc = iup.getProperty(UcdProperty.kEH_Desc);
         final var properties =
@@ -165,7 +165,7 @@ public class Indexer {
                                 System.out.println(word + " < " + lemma);
                                 lemmatizations.add(word);
                             }
-                            propertyWordIndex.computeIfAbsent(lemma, k -> new TreeSet<>()).add(key);
+                            propertyWordIndex.computeIfAbsent(lemma, k -> new TreeMap<>()).putIfAbsent(key, start);
                         }
                     }
                 }
@@ -178,6 +178,13 @@ public class Indexer {
         System.out.println("Writing index.html...");
         var file = new PrintStream(new File("index.html"));
         file.println("<head>");
+        file.println("<style>");
+        final var css = new BufferedReader(new FileReader(new File("index.css")));
+        for (String line = css.readLine(); line != null; line = css.readLine()) {
+            file.println(line);
+        }
+        css.close();
+        file.println("</style>");
         file.println("<script>");
         file.println("let wordIndices = new Map([");
         System.out.println("wordIndices...");
@@ -185,9 +192,9 @@ public class Indexer {
             final var propertyIndex = wordIndices.get(property);
             file.println("  ['" + property.getName() + "', new Map([");
             for (var wordIndex : propertyIndex.entrySet()) {
-                file.println("    ['" + wordIndex.getKey().replace("'", "\\'") + "', new Set([");
-                for (String leaf : wordIndex.getValue()) {
-                    file.println("      '" + leaf.replace("'", "\\'") + "',");
+                file.println("    ['" + wordIndex.getKey().replace("'", "\\'") + "', new Map([");
+                for (var leaf : wordIndex.getValue().entrySet()) {
+                    file.println("      ['" + leaf.getKey().replace("'", "\\'") + "', " + leaf.getValue() + "],");
                 }
                 file.println("])],");
             }
@@ -239,10 +246,10 @@ public class Indexer {
                         + Settings.latestVersionPhase
                         + "</h1>");
         file.println(
-                "<input style='width:100%;max-width:60em' type='search' placeholder='Search terms, e.g., [arrow], [click], [contour integral], [cyrillic o], [queen card], [sanskrit]…' oninput='updateResults(event)'>");
+                "<input type='search' placeholder='Search terms, e.g., [arrow], [click], [cyrillic o], [italic], [queen card], [sanskrit]…' oninput='updateResults(event)'>");
         file.println("<p id='info'></p>");
         file.println(
-                "<ul style='max-width:60em;list-style:none;padding-inline-start:0' id='results'></ul>");
+                "<ul id='results'></ul>");
         file.println("</body>");
         file.close();
 
@@ -267,27 +274,32 @@ public class Indexer {
             }
 
             final var covered = new UnicodeSet();
-            final TreeSet<String> mutableEmpty = new TreeSet<>();
             for (var property : properties) {
                 final var propertyLeaves = leaves.get(property);
+                final Map<String, Integer> leafPivots = 
+                    wordIndices.get(property).getOrDefault(queryWords[0], Map.of());
                 class KwocComparator implements Comparator<String> {
                     @Override
                     public int compare(String left, String right) {
-                        final int lpos = findWord(queryWords[0], left);
-                        final int rpos = findWord(queryWords[0], right);
+                        final int lpos = leafPivots.get(left);
+                        final int rpos = leafPivots.get(right);
                         return (left.substring(lpos) + left.substring(0, lpos))
                                 .compareTo(right.substring(rpos) + right.substring(0, rpos));
                     }
                 }
-                final var resultLeaves = new TreeSet<>(new KwocComparator());
+                TreeSet<String> resultLeaves = new TreeSet<>(new KwocComparator());
                 resultLeaves.addAll(
-                        wordIndices.get(property).getOrDefault(queryWords[0], mutableEmpty));
+                        wordIndices.get(property).getOrDefault(queryWords[0], Map.of()).keySet());
                 for (int i = 1; i < queryWords.length; ++i) {
-                    resultLeaves.retainAll(
-                            wordIndices.get(property).getOrDefault(queryWords[i], mutableEmpty));
+                    final var wordLeaves = wordIndices.get(property).get(queryWords[i]);
+                    if (wordLeaves == null) {
+                        resultLeaves.clear();
+                        break;
+                    }
+                    resultLeaves.retainAll(wordLeaves.keySet());
                 }
                 for (String leaf : resultLeaves) {
-                    final int position = findWord(queryWords[0], leaf);
+                    final int position = leafPivots.get(leaf);
                     final var entry = propertyLeaves.get(leaf);
                     final UnicodeSet leafSet = entry.characters;
                     if (!covered.containsAll(leafSet)) {
@@ -385,7 +397,7 @@ public class Indexer {
             if (block != null) {
                 result.append("In " + block + ": ");
             }
-            result.append("<span style='float:right'><a href='" + chartLink + "'>");
+            result.append("<span class=ranges><a href='" + chartLink + "'>");
             result.append(toHTML.transform(ranges));
             result.append("</a>");
             if (propertiesLink != null) {

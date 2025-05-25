@@ -1,4 +1,4 @@
-/**@type {Map<string, Map<string, Set<String>>>}*/
+/**@type {Map<string, Map<string, Map<String, number>>>}*/
 let wordIndices/*= GENERATED LINE*/;
 /**@type {Map<string, Map<string, {characters: [number, number][]}>>}*/
 let leaves/*= GENERATED LINE*/;
@@ -20,14 +20,26 @@ function search(/**@type {string}*/ query) {
   var covered = [];
   /**@type {string[]}*/
   var result = [];
-  let emptySet = new Set([]);
   for (let [property, wordIndex] of wordIndices) {
     let propertyLeaves = leaves.get(property);
     /**@type {Set<string>}*/
-    var resultLeaves = new Set(wordIndex.get(queryWords[0]) ?? []);
+    var resultLeaves = new Set(wordIndex.get(queryWords[0])?.keys() ?? []);
     for (var i = 1; i < queryWords.length; ++i) {
-      resultLeaves = resultLeaves.intersection(wordIndex.get(queryWords[i]) ?? emptySet);
+      resultLeaves = resultLeaves.intersection(
+          new Set(wordIndex.get(queryWords[i])?.keys() ?? []));
     }
+    let pivots = wordIndex.get(queryWords[0]) || new Map([]);
+    let collator = new Intl.Collator("en");
+    resultLeaves = Array.from(resultLeaves).sort(
+      (left, right) => collator.compare(
+        left.substring(pivots.get(left)) +
+                       (pivots.get(left) > 0
+                          ? ' \uFFFF ' + left.substring(0, pivots.get(left))
+                          : ""),
+        right.substring(pivots.get(right)) +
+                        (pivots.get(right) > 0
+                            ? ' \uFFFF ' + right.substring(0, pivots.get(right))
+                            : "")));
     /**@type {[number, number][]}*/
     for (let leaf of resultLeaves) {
       let entry = propertyLeaves.get(leaf);
@@ -36,13 +48,31 @@ function search(/**@type {string}*/ query) {
         continue;
       }
       covered = covered.concat(leafSet);
-      result.push(entry.html);
+      let pivot = pivots.get(leaf);
+      let tail = leaf.substring(pivot);
+      result.push(entry.html.replace(
+        "[RESULT TEXT]",
+        "<span class=tail" +
+        (leaf.includes(",") ? " style=width:100%" : "") + ">" +
+        toHTML(tail) +
+        (pivot > 0 && !tail.endsWith(".") ? "," : "") +
+        "</span> " +
+          (pivot > 0 ? "<span class=head>" +
+                       toHTML(leaf.substring(0, pivot)) +
+                       "</span>"
+                     : "")));
       if (result.length >= 100) {
         return result;
       }
     }
   }
   return result;
+}
+
+function toHTML(/**@type {string}*/ plain) {
+  return plain.replaceAll("&", "&amp;")
+              .replaceAll("<", "&lt;")
+              .replaceAll(">", "&gt;")
 }
 
 function superset(/**@type {[number, number][]}*/left, /**@type {[number, number][]}*/right) {
