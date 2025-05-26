@@ -33,13 +33,11 @@ function search(/**@type {string}*/ query) {
     resultLeaves = Array.from(resultLeaves).sort(
       (left, right) => collator.compare(
         left.substring(pivots.get(left)) +
-                       (pivots.get(left) > 0
-                          ? ' \uFFFF ' + left.substring(0, pivots.get(left))
-                          : ""),
+                       ' \uFFFE ' +
+                       left.substring(0, pivots.get(left)),
         right.substring(pivots.get(right)) +
-                        (pivots.get(right) > 0
-                            ? ' \uFFFF ' + right.substring(0, pivots.get(right))
-                            : "")));
+                        ' \uFFFE ' +
+                        right.substring(0, pivots.get(right))));
     /**@type {[number, number][]}*/
     for (let leaf of resultLeaves) {
       let entry = propertyLeaves.get(leaf);
