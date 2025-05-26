@@ -104,7 +104,9 @@ public class Indexer {
                             : "<ul><li><div style='overflow:hidden'>"
                                     + subEntries().stream()
                                             .map(e -> e.toHTML())
-                                            .collect(Collectors.joining("</div></li><li><div style='overflow:hidden'>"))
+                                            .collect(
+                                                    Collectors.joining(
+                                                            "</div></li><li><div style='overflow:hidden'>"))
                                     + "</div></li></ul>")
                     + "</div></li>";
         }
@@ -162,7 +164,9 @@ public class Indexer {
                                 System.out.println(word + " < " + lemma);
                                 lemmatizations.add(word);
                             }
-                            wordIndex.computeIfAbsent(lemma, k -> new TreeMap<>()).putIfAbsent(key, start);
+                            wordIndex
+                                    .computeIfAbsent(lemma, k -> new TreeMap<>())
+                                    .putIfAbsent(key, start);
                         }
                     }
                 }
@@ -193,7 +197,12 @@ public class Indexer {
                 }
                 file.println("    ['" + wordLeaves.getKey().replace("'", "\\'") + "', new Map([");
                 for (var leaf : wordLeaves.getValue().entrySet()) {
-                    file.println("      ['" + leaf.getKey().replace("'", "\\'") + "', " + leaf.getValue() + "],");
+                    file.println(
+                            "      ['"
+                                    + leaf.getKey().replace("'", "\\'")
+                                    + "', "
+                                    + leaf.getValue()
+                                    + "],");
                 }
                 file.println("])],");
             }
@@ -246,8 +255,7 @@ public class Indexer {
         file.println(
                 "<input type='search' placeholder='Search terms, e.g., [arrow], [click], [cyrillic o], [italic], [queen card], [sanskrit]…' oninput='updateResults(event)'>");
         file.println("<p id='info'></p>");
-        file.println(
-                "<ul id='results'></ul>");
+        file.println("<ul id='results'></ul>");
         file.println("</body>");
         file.close();
 
@@ -269,28 +277,26 @@ public class Indexer {
             }
 
             final var covered = new UnicodeSet();
-                final Map<String, Integer> leafPivots = 
-                    wordIndex.getOrDefault(queryWords[0], Map.of());
-                class KwocComparator implements Comparator<String> {
-                    @Override
-                    public int compare(String left, String right) {
-                        final int lpos = leafPivots.get(left);
-                        final int rpos = leafPivots.get(right);
-                        return (left.substring(lpos) + left.substring(0, lpos))
-                                .compareTo(right.substring(rpos) + right.substring(0, rpos));
-                    }
+            final Map<String, Integer> leafPivots = wordIndex.getOrDefault(queryWords[0], Map.of());
+            class KwocComparator implements Comparator<String> {
+                @Override
+                public int compare(String left, String right) {
+                    final int lpos = leafPivots.get(left);
+                    final int rpos = leafPivots.get(right);
+                    return (left.substring(lpos) + left.substring(0, lpos))
+                            .compareTo(right.substring(rpos) + right.substring(0, rpos));
                 }
-                TreeSet<String> resultLeaves = new TreeSet<>(new KwocComparator());
-                resultLeaves.addAll(
-                        wordIndex.getOrDefault(queryWords[0], Map.of()).keySet());
-                for (int i = 1; i < queryWords.length; ++i) {
-                    final var wordLeaves = wordIndex.get(queryWords[i]);
-                    if (wordLeaves == null) {
-                        resultLeaves.clear();
-                        break;
-                    }
-                    resultLeaves.retainAll(wordLeaves.keySet());
+            }
+            TreeSet<String> resultLeaves = new TreeSet<>(new KwocComparator());
+            resultLeaves.addAll(wordIndex.getOrDefault(queryWords[0], Map.of()).keySet());
+            for (int i = 1; i < queryWords.length; ++i) {
+                final var wordLeaves = wordIndex.get(queryWords[i]);
+                if (wordLeaves == null) {
+                    resultLeaves.clear();
+                    break;
                 }
+                resultLeaves.retainAll(wordLeaves.keySet());
+            }
             for (var property : properties) {
                 final var propertyLeaves = leaves.get(property);
                 for (String leaf : resultLeaves) {
