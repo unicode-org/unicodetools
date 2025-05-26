@@ -1,5 +1,5 @@
-/**@type {Map<string, Map<string, Map<String, number>>>}*/
-let wordIndices/*= GENERATED LINE*/;
+/**@type {Map<string, Map<String, number>>}*/
+let wordIndex/*= GENERATED LINE*/;
 /**@type {Map<string, Map<string, {characters: [number, number][]}>>}*/
 let leaves/*= GENERATED LINE*/;
 
@@ -16,37 +16,62 @@ function updateResults(event) {
 }
 function search(/**@type {string}*/ query) {
   let wordBreak = new Intl.Segmenter("en", { granularity: "word" });
-  let queryWords = Array.from(wordBreak.segment(query)).filter(s => s.isWordLike).map(s => lemmatize(s.segment));
+  let queryWords = Array.from(wordBreak.segment(query)).filter(s => s.isWordLike).map(s => s.segment);
+  let queryLemmata = queryWords.map(lemmatize);
   var covered = [];
   /**@type {string[]}*/
   var result = [];
-  for (let [property, wordIndex] of wordIndices) {
-    let propertyLeaves = leaves.get(property);
-    /**@type {Set<string>}*/
-    var resultLeaves = new Set(wordIndex.get(queryWords[0])?.keys() ?? []);
-    for (var i = 1; i < queryWords.length; ++i) {
-      resultLeaves = resultLeaves.intersection(
-          new Set(wordIndex.get(queryWords[i])?.keys() ?? []));
+  /**@type {Set<string>}*/
+  var resultLeaves = new Set(wordIndex.get(queryLemmata[0])?.keys() ?? []);
+  let firstLemmata = [queryLemmata[0]];
+  if (resultLeaves.size === 0 && queryLemmata.length == 1) {
+    let prefix = queryWords.at(-1);
+    for (let [completion, leaves] of wordIndex) {
+      if (completion.startsWith(prefix)) {
+        firstLemmata.push(completion);
+        resultLeaves = resultLeaves.union(leaves);
+      }
     }
-    let pivots = wordIndex.get(queryWords[0]) || new Map([]);
-    let collator = new Intl.Collator("en");
-    resultLeaves = Array.from(resultLeaves).sort(
-      (left, right) => collator.compare(
-        left.substring(pivots.get(left)) +
-                       ' \uFFFE ' +
-                       left.substring(0, pivots.get(left)),
-        right.substring(pivots.get(right)) +
-                        ' \uFFFE ' +
-                        right.substring(0, pivots.get(right))));
+  }
+  for (var i = 1; i < queryLemmata.length; ++i) {
+    var rhs = new Set(wordIndex.get(queryLemmata[i])?.keys() ?? []);
+    let intersection = resultLeaves.intersection(rhs);
+    if (intersection.size === 0 && i == queryLemmata.length - 1) {
+      let prefix = queryWords.at(-1);
+      for (let [completion, leaves] of wordIndex) {
+        if (completion.startsWith(prefix)) {
+          rhs = rhs.union(leaves);
+        }
+      }
+      resultLeaves = resultLeaves.intersection(rhs);
+    } else {
+      resultLeaves = intersection;
+    }
+  }
+  let pivots = firstLemmata.map(l => wordIndex.get(l)).filter(x => !!x);
+  let getPivot = (/**@type {string}*/s) => pivots.map(p => p.get(s)).filter(x => x !== undefined)[0];
+  let collator = new Intl.Collator("en");
+  resultLeaves = Array.from(resultLeaves).sort(
+    (left, right) => collator.compare(
+      left.substring(getPivot(left)) +
+                      ' \uFFFE ' +
+                      left.substring(0, getPivot(left)),
+      right.substring(getPivot(right)) +
+                      ' \uFFFE ' +
+                      right.substring(0, getPivot(right))));
+  for (let [property, propertyLeaves] of leaves) {
     /**@type {[number, number][]}*/
     for (let leaf of resultLeaves) {
       let entry = propertyLeaves.get(leaf);
+      if (!entry) {
+        continue;
+      }
       let leafSet = entry.characters;
       if (superset(covered, leafSet)) {
         continue;
       }
       covered = covered.concat(leafSet);
-      let pivot = pivots.get(leaf);
+      let pivot = getPivot(leaf);
       let tail = leaf.substring(pivot);
       result.push(entry.html.replace(
         "[RESULT TEXT]",

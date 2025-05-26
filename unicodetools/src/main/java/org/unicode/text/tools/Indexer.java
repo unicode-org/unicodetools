@@ -118,8 +118,7 @@ public class Indexer {
             }
         }
         Map<UnicodeProperty, Map<String, Leaf>> leaves = new TreeMap<>(new PropertyComparator());
-        Map<UnicodeProperty, Map<String, Map<String, Integer>>> wordIndices =
-                new TreeMap<>(new PropertyComparator());
+        Map<String, Map<String, Integer>> wordIndex = new TreeMap<>();
         // final var kEHDesc = iup.getProperty(UcdProperty.kEH_Desc);
         final var properties =
                 new UnicodeProperty[] {
@@ -136,8 +135,6 @@ public class Indexer {
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             for (var prop : properties) {
                 final var propertyLeaves = leaves.computeIfAbsent(prop, k -> new TreeMap<>());
-                final var propertyWordIndex =
-                        wordIndices.computeIfAbsent(prop, k -> new TreeMap<>());
                 for (String key : prop.getValues(cp)) {
                     if (key == null) {
                         continue;
@@ -165,7 +162,7 @@ public class Indexer {
                                 System.out.println(word + " < " + lemma);
                                 lemmatizations.add(word);
                             }
-                            propertyWordIndex.computeIfAbsent(lemma, k -> new TreeMap<>()).putIfAbsent(key, start);
+                            wordIndex.computeIfAbsent(lemma, k -> new TreeMap<>()).putIfAbsent(key, start);
                         }
                     }
                 }
@@ -186,19 +183,20 @@ public class Indexer {
         css.close();
         file.println("</style>");
         file.println("<script>");
-        file.println("let wordIndices = new Map([");
-        System.out.println("wordIndices...");
-        for (var property : properties) {
-            final var propertyIndex = wordIndices.get(property);
-            file.println("  ['" + property.getName() + "', new Map([");
-            for (var wordIndex : propertyIndex.entrySet()) {
-                file.println("    ['" + wordIndex.getKey().replace("'", "\\'") + "', new Map([");
-                for (var leaf : wordIndex.getValue().entrySet()) {
+        file.println("let wordIndex = new Map([");
+        System.out.println("wordIndex...");
+        {
+            int i = 0;
+            for (var wordLeaves : wordIndex.entrySet()) {
+                if (++i % 1000 == 0) {
+                    System.out.println(i + "/" + wordIndex.size() + "...");
+                }
+                file.println("    ['" + wordLeaves.getKey().replace("'", "\\'") + "', new Map([");
+                for (var leaf : wordLeaves.getValue().entrySet()) {
                     file.println("      ['" + leaf.getKey().replace("'", "\\'") + "', " + leaf.getValue() + "],");
                 }
                 file.println("])],");
             }
-            file.println("  ])],");
         }
         file.println("]);");
         System.out.println("leaves...");
@@ -253,10 +251,7 @@ public class Indexer {
         file.println("</body>");
         file.close();
 
-        for (var property : properties) {
-            System.out.println(
-                    property.getName() + ": " + wordIndices.get(property).size() + " words");
-        }
+        System.out.println(wordIndex.size() + " words");
 
         final var input = new BufferedReader(new InputStreamReader(System.in));
         for (; ; ) {
@@ -274,10 +269,8 @@ public class Indexer {
             }
 
             final var covered = new UnicodeSet();
-            for (var property : properties) {
-                final var propertyLeaves = leaves.get(property);
                 final Map<String, Integer> leafPivots = 
-                    wordIndices.get(property).getOrDefault(queryWords[0], Map.of());
+                    wordIndex.getOrDefault(queryWords[0], Map.of());
                 class KwocComparator implements Comparator<String> {
                     @Override
                     public int compare(String left, String right) {
@@ -289,18 +282,23 @@ public class Indexer {
                 }
                 TreeSet<String> resultLeaves = new TreeSet<>(new KwocComparator());
                 resultLeaves.addAll(
-                        wordIndices.get(property).getOrDefault(queryWords[0], Map.of()).keySet());
+                        wordIndex.getOrDefault(queryWords[0], Map.of()).keySet());
                 for (int i = 1; i < queryWords.length; ++i) {
-                    final var wordLeaves = wordIndices.get(property).get(queryWords[i]);
+                    final var wordLeaves = wordIndex.get(queryWords[i]);
                     if (wordLeaves == null) {
                         resultLeaves.clear();
                         break;
                     }
                     resultLeaves.retainAll(wordLeaves.keySet());
                 }
+            for (var property : properties) {
+                final var propertyLeaves = leaves.get(property);
                 for (String leaf : resultLeaves) {
                     final int position = leafPivots.get(leaf);
                     final var entry = propertyLeaves.get(leaf);
+                    if (entry == null) {
+                        continue;
+                    }
                     final UnicodeSet leafSet = entry.characters;
                     if (!covered.containsAll(leafSet)) {
                         String tail = leaf.substring(position);
