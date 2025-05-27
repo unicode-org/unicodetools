@@ -1291,7 +1291,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .remove(0x200D)
                             .remove(0x200B)
                             .removeAll(tags)
-                            // 174-CXX.
+                            // 175-C24.
                             .removeAll(gcb.getSet("Prepend")),
                     "Format");
             unicodeMap.putAll(
@@ -1324,8 +1324,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             // Armenian punctuation marks that occur within words; see
                             // http://www.unicode.org/L2/L2018/18115.htm#155-C3
                             .addAll(new UnicodeSet("[\\u055B\\u055C\\u055E]"))
-                            // 174-CXX.
-                            .add(0x070F),
+                            // 175-C24.
+                            .add(0x070F)
+                            // https://github.com/unicode-org/properties/issues/400.
+                            .add(0x00B8),
                     "ALetter");
             unicodeMap.putAll(
                     new UnicodeSet("[\\u00B7\\u0387\\u05F4\\u2027\\u003A\\uFE13\\uFE55\\uFF1A]"),
