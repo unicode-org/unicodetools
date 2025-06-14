@@ -212,6 +212,7 @@ public class AttributeResolver {
                         }
                         return Optional.ofNullable(resolvedValue).orElse("");
                     case kDefinition:
+                    case kEH_FVal:
                         return resolvedValue;
                     default:
                         if (resolvedValue != null) {
