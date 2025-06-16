@@ -217,7 +217,12 @@ public enum UcdProperty {
     kEACC(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkEACC"),
     kEH_Cat(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kEH_Cat"),
     kEH_Desc(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kEH_Desc"),
-    kEH_FVal(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kEH_FVal"),
+    kEH_FVal(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.Provisional,
+            null,
+            ValueCardinality.Unordered,
+            "kEH_FVal"),
     kEH_Func(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,

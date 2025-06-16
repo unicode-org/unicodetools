@@ -220,7 +220,7 @@ kEH_Cat ;                     SINGLE_VALUED ;                ([A-IK-Z]|AA)-\d{2}
 kEH_Desc ;                    SINGLE_VALUED ;                [^\t"]+
 kEH_Func ;                    MULTI_VALUED ;                 [^\t"]+
 # Revisit once the spec settles down.
-kEH_FVal ;                    SINGLE_VALUED ;                [^\t"]+
+kEH_FVal ;                    MULTI_VALUED ;                 [bdf-hjkmnpr-twy\.,\/\-\+=;?>\&\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A723}\x{A725}\x{A7BD}]+
 kEH_HG ;                      MULTI_VALUED ;                 ([A-IK-Z]|AA)\d{1,3}[A-Za-z]{0,2}
 kEH_IFAO ;                    MULTI_VALUED ;                 \d{1,3},\d{1,2}[ab]?
 kEH_JSesh ;                   MULTI_VALUED ;                 ([A-IK-Z]|Aa|NL|NU|Ff)\d{1,3}[A-Za-z]{0,5}|(US1|US22|US248|US685)([A-IK-Z]|Aa|NL|NU)\d{1,3}[A-Za-z]{0,5}
