@@ -215,7 +215,7 @@ public class AttributeResolver {
                         return resolvedValue;
                     case kEH_FVal:
                         if (resolvedValue != null) {
-                            return resolvedValue.replaceAll("[\\|]+", " | ");
+                            return resolvedValue.replaceAll("[|]+", " | ");
                         }
                     default:
                         if (resolvedValue != null) {
