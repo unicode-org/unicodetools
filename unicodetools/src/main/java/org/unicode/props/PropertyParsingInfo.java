@@ -538,6 +538,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         if (property == UcdProperty.Name_Alias || property == UcdProperty.Standardized_Variant) {
             multivaluedSplit = NO_SPLIT;
         }
+        if (property == UcdProperty.kEH_FVal) {
+            multivaluedSplit = Pattern.compile(" [\\|/] ");
+        }
         if (multivalued2.endsWith("_COMMA")) {
             multivaluedSplit = COMMA;
             multivalued = ValueCardinality.Unordered;

@@ -212,8 +212,11 @@ public class AttributeResolver {
                         }
                         return Optional.ofNullable(resolvedValue).orElse("");
                     case kDefinition:
-                    case kEH_FVal:
                         return resolvedValue;
+                    case kEH_FVal:
+                        if (resolvedValue != null) {
+                            return resolvedValue.replaceAll("[\\|]+", " | ");
+                        }
                     default:
                         if (resolvedValue != null) {
                             return resolvedValue.replaceAll("\\" + SET_SEPARATOR, " ");
