@@ -2619,10 +2619,10 @@
     { xsd:string { pattern='[^\t"]+' } }?
 
   code-point-attributes &amp;= attribute kEH_Func
-    { xsd:string { pattern='[^\t"]+' } }?
+    { list { ("/" | xsd:string { pattern='[^\t"]+' } )+} }?
 
-  code-point-attributes &amp;=
-    attribute kEH_FVal { text }?
+  code-point-attributes &amp;= attribute kEH_FVal
+    { list { ("|" | xsd:string { pattern="[bdf-hjkmnpr-twy\.,/\-\+=;?&gt;&amp;\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A723}\x{A725}\x{A7BD}]+" } )+} }?
 
   code-point-attributes &amp;= attribute kEH_UniK
     { xsd:string { pattern="([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}" }
@@ -2646,8 +2646,8 @@
   code-point-attributes &amp;=
     attribute kEH_NoRotate { boolean }?
 
-  code-point-attributes &amp;=
-    attribute kEH_AltSeq { text }?</span>
+  code-point-attributes &amp;= attribute kEH_AltSeq
+    { xsd:string { pattern="[0-9A-F]{5}(\s[0-9A-F]{4,5})*" } }?</span>
             </tt>
          </p>
          <h2>

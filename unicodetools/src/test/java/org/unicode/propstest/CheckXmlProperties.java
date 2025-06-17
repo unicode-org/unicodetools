@@ -104,8 +104,16 @@ public class CheckXmlProperties {
                     }
                 }
                 if (prop.getCardinality() != ValueCardinality.Singleton
-                        && prop != UcdProperty.Script_Extensions) {
+                        && prop != UcdProperty.Script_Extensions
+                        && prop != UcdProperty.kEH_Func
+                        && prop != UcdProperty.kEH_FVal) {
                     upval = upval == null ? null : upval.replace('|', ' ');
+                }
+                if (prop == UcdProperty.kEH_Func) {
+                    xval = xval == null ? null : xval.replace("/", "|");
+                }
+                if (prop == UcdProperty.kEH_FVal) {
+                    xval = xval == null ? null : xval.replaceAll("\\s*\\|\\s*", "|");
                 }
                 if (!UnicodeProperty.equals(xval, upval)) {
                     // just for debugging

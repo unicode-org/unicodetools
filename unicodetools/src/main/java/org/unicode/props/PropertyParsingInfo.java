@@ -92,6 +92,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     public static final Pattern SPACE = Pattern.compile("\\s+");
     public static final Pattern EQUALS = Pattern.compile("\\s*=\\s*");
     public static final Pattern COMMA = Pattern.compile("\\s*,\\s*");
+    public static final Pattern SLASH = Pattern.compile("\\s*/\\s*");
     public static final Pattern PIPE_SLASH = Pattern.compile("\\s*[|/]\\s*");
     public static final Pattern DECOMP_REMOVE = Pattern.compile("\\{[^}]+\\}|\\<[^>]+\\>");
 
@@ -536,11 +537,17 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     }
 
     public void setMultiValued(String multivalued2) {
-        if (property == UcdProperty.Name_Alias || property == UcdProperty.Standardized_Variant) {
-            multivaluedSplit = NO_SPLIT;
-        }
-        if (property == UcdProperty.kEH_FVal) {
-            multivaluedSplit = PIPE_SLASH;
+        switch (property) {
+            case Name_Alias:
+            case Standardized_Variant:
+                multivaluedSplit = NO_SPLIT;
+                break;
+            case kEH_FVal:
+                multivaluedSplit = PIPE_SLASH;
+                break;
+            case kEH_Func:
+                multivaluedSplit = SLASH;
+                break;
         }
         if (multivalued2.endsWith("_COMMA")) {
             multivaluedSplit = COMMA;

@@ -542,10 +542,8 @@ public class GeneratePropertyValues {
     private static String getFormattedSyntax(UcdProperty ucdProperty) {
         final PropertyParsingInfo propInfo = PropertyParsingInfo.getPropertyInfo(ucdProperty);
         if (propInfo.getRegex() == null) {
-            if (ucdProperty != UcdProperty.kEH_AltSeq) {
-                throw new NullPointerException(
-                        "Could not find syntax for " + ucdProperty.getShortName());
-            }
+            throw new NullPointerException(
+                    "Could not find syntax for " + ucdProperty.getShortName());
         }
 
         String attributeString =
@@ -668,19 +666,6 @@ public class GeneratePropertyValues {
                 String kReading = "{ xsd:string }?";
                 formattedAttributeString = attributeString + kReading;
                 break;
-                // Currently, kEH_FVal is a Provisional property, and some of the values don't match
-                // the Syntax in
-                // UAX 57. Use this for now.
-            case kEH_FVal:
-                String kEH_FVal = "{ text }?";
-                formattedAttributeString = attributeString + kEH_FVal;
-                break;
-                // Currently, kEH_AltSeq isn't listed in the proposed UAX 57. Use this for now.
-            case kEH_AltSeq:
-                String kEH_AltSeq = "{ text }?";
-                formattedAttributeString = attributeString + kEH_AltSeq;
-                break;
-
             default:
                 if (propInfo.getMultivalued() == ValueCardinality.Unordered
                         || propInfo.getMultivalued() == ValueCardinality.Ordered) {
@@ -722,13 +707,17 @@ public class GeneratePropertyValues {
     }
 
     private static String getFormattedTR57Syntax(UcdProperty ucdProperty) {
+        return getFormattedTR57Syntax(ucdProperty, null);
+    }
+
+    private static String getFormattedTR57Syntax(UcdProperty ucdProperty, String delimiter) {
         String attributeString = " attribute " + ucdProperty.getShortName();
         TRDetails trDetails = syntaxTR57.get(ucdProperty.name());
         if (trDetails == null) {
             throw new NullPointerException(
                     "Could not locate details for " + ucdProperty.name() + " in " + TR57URL);
         }
-        String formattedSyntax = formatTRSyntax(trDetails, false);
+        String formattedSyntax = formatTRSyntax(trDetails, false, delimiter);
 
         return "  code-point-attributes &amp;=" + attributeString + NEWLINE + formattedSyntax;
     }
@@ -798,6 +787,11 @@ public class GeneratePropertyValues {
     }
 
     private static String formatTRSyntax(TRDetails trDetails, boolean isShowIfEmpty) {
+        return formatTRSyntax(trDetails, isShowIfEmpty, null);
+    }
+
+    private static String formatTRSyntax(
+            TRDetails trDetails, boolean isShowIfEmpty, String delimiter) {
         // TODO: We should determine whether we still want to show empty values in the XML files.
         // TODO: See org.unicode.xml.UcdPropertyDetail.isCJKShowIfEmpty()
         boolean isList = trDetails.isList();
@@ -852,6 +846,15 @@ public class GeneratePropertyValues {
             return formattedSyntaxBuilder.toString();
 
         } else {
+            if (delimiter != null) {
+                return "    { list { (\""
+                        + delimiter
+                        + "\" | xsd:string { pattern="
+                        + QUOTMARK
+                        + syntax
+                        + QUOTMARK
+                        + " } )+} }?";
+            }
             if (isShowIfEmpty) {
                 if (isList) {
                     return "    { \"\" | list { xsd:string { pattern="
@@ -980,6 +983,8 @@ public class GeneratePropertyValues {
         return regex.replaceAll("\\[-", "[\\\\-")
                 .replaceAll("\\\\/", "/")
                 .replaceAll("\\\\'", "'")
+                .replaceAll("&gt;", ">")
+                .replaceAll("\\\\&amp;", "&amp;")
                 .replaceAll("\\t", "");
     }
 
@@ -1428,10 +1433,9 @@ public class GeneratePropertyValues {
                 + DOUBLELINE
                 + getFormattedTR57Syntax(UcdProperty.kEH_Desc)
                 + DOUBLELINE
-                + getFormattedTR57Syntax(UcdProperty.kEH_Func)
+                + getFormattedTR57Syntax(UcdProperty.kEH_Func, "/")
                 + DOUBLELINE
-                // Force kEH_FVal to text while under development.
-                + getFormattedSyntax(UcdProperty.kEH_FVal)
+                + getFormattedTR57Syntax(UcdProperty.kEH_FVal, "|")
                 + DOUBLELINE
                 + getFormattedTR57Syntax(UcdProperty.kEH_UniK)
                 + DOUBLELINE
@@ -1445,8 +1449,7 @@ public class GeneratePropertyValues {
                 + DOUBLELINE
                 + getFormattedBoolean(UcdProperty.kEH_NoRotate)
                 + DOUBLELINE
-                // Force kEH_AltSeq to text while under development.
-                + getFormattedSyntax(UcdProperty.kEH_AltSeq);
+                + getFormattedTR57Syntax(UcdProperty.kEH_AltSeq);
     }
 
     // ********************* Attribute values ********************//
