@@ -1,19 +1,26 @@
 # SerializationTest.txt
-# Date: 2025-01-09
-# © 2024-2025 Unicode®, Inc.
+# Date: 2025-06-27
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr58/
 #
-# Field 0: Path
-# Field 1: Query
-# Field 2: Fragment
+# Field 0: Pre-Path portion of URL
+# Field 1: Path
+# Field 2: Query
+# Field 3: Fragment
 # Field 4: Expected result
 #
+# The input is 4 separate fields, 0..4. It represents the internal form of a URL, pre-escaping.
+# The result is an escaped string for output.
+#
+# The reason the input is represented as 4 different fields is that the algorithm applies different escaping
+# to each piece. 
+#
 # Notes: 
-# - The # character only begins a comment if it is the first character on a line.
-# - Leading and trailing spaces in a field are to be omitted, but interior spaces retained
+# - The # character is represented by \x{23} when it is part of a field (instead of introducing a comment in the data file)
+# - Leading and trailing spaces in a field are to be omitted, but interior spaces are retained
 
 # Path only
 https://example.com;	α;	;	;	                        https://example.com/α
@@ -31,7 +38,7 @@ https://example.com;	αβγ/δεζ;	θ=ικλ&μ=γξο;	πρς;	  https://examp
 https://example.com;	α?μπ;	;	;	                      https://example.com/α%3Fμπ	
 
 # Escape # in Path/Query
-https://example.com;	α#β;	γ=δ#ε;	;	                https://example.com/α%23β?γ=δ%23ε	
+https://example.com;	α\x{23}β;	γ=δ\x{23}ε;	;	                https://example.com/α%23β?γ=δ%23ε	
 
 # Escape hard (' ')
 https://example.com;	αβ γ/δεζ;	θ=ικ λ&=γξο;	πρ σ;	  https://example.com/αβ%20γ/δεζ?θ=ικ%20λ&=γξο#πρ%20σ	

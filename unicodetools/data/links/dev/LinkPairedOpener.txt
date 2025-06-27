@@ -1,6 +1,6 @@
 # LinkPairedOpener.txt
-# Date: 2025-01-09
-# © 2024-2025 Unicode®, Inc.
+# Date: 2025-06-27
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -12,9 +12,9 @@
 # else if cp == ">" then Link_Paired_Opener(cp) = "<"
 # else Link_Paired_Opener(cp) = \x{0}
 
-# Property:	Link_Paired_Opener
-
 # @missing: 0000..10FFFF; <none>
+
+# Property:	Link_Paired_Opener
 
 0029;   0028	# “)” RIGHT PARENTHESIS 🡆  “(” LEFT PARENTHESIS
 003E;   003C	# “>” GREATER-THAN SIGN 🡆  “<” LESS-THAN SIGN

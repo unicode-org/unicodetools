@@ -6,4 +6,4 @@
 # See https://www.unicode.org/reports/tr58/ for documentation.
 
 This directory contains data files for version 17.0.0
-of UTS #48 Link Detection and Serialization.
+of UTS #58 Link Detection and Serialization.

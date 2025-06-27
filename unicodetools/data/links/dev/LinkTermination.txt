@@ -1,15 +1,15 @@
 # LinkTermination.txt
-# Date: 2025-01-09
-# © 2024-2025 Unicode®, Inc.
+# Date: 2025-06-27
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr58/
 #
 
-# Property:	Link_Termination=Include
-
 @missing: 0000..10FFFF; Include
+
+# Property:	Link_Termination=Include
 
 #	Link_Termination=Hard
 #   derived from [\p{whitespace}\p{NChar}[\p{C}-\p{Cf}]\p{deprecated}]
