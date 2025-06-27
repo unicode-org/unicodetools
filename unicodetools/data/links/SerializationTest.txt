@@ -1,0 +1,43 @@
+# SerializationTest.txt
+# Date: 2025-01-09
+# © 2024-2025 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
+#
+# For documentation and usage, see https://www.unicode.org/reports/tr58/
+#
+# Field 0: Path
+# Field 1: Query
+# Field 2: Fragment
+# Field 4: Expected result
+#
+# Notes: 
+# - The # character only begins a comment if it is the first character on a line.
+# - Leading and trailing spaces in a field are to be omitted, but interior spaces retained
+
+# Path only
+https://example.com;	α;	;	;	                        https://example.com/α
+
+# Query only
+https://example.com;	;	α;	;	                        https://example.com?α	
+
+# Fragment only
+https://example.com;	;	;	α;	                        https://example.com#α	
+
+# All parts
+https://example.com;	αβγ/δεζ;	θ=ικλ&μ=γξο;	πρς;	  https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο#πρς	
+
+# Escape ? in Path
+https://example.com;	α?μπ;	;	;	                      https://example.com/α%3Fμπ	
+
+# Escape # in Path/Query
+https://example.com;	α#β;	γ=δ#ε;	;	                https://example.com/α%23β?γ=δ%23ε	
+
+# Escape hard (' ')
+https://example.com;	αβ γ/δεζ;	θ=ικ λ&=γξο;	πρ σ;	  https://example.com/αβ%20γ/δεζ?θ=ικ%20λ&=γξο#πρ%20σ	
+
+# Escape soft ('.') unless followed by include
+https://example.com;	αβγ./δεζ.;	θ=ικ.λ&=γξο.;	πρς.;	https://example.com/αβγ./δεζ.?θ=ικ.λ&=γξο.#πρς%2E	
+
+# Escape unmatched brackets
+https://example.com;	α(β));	γ(δ));	ε(ζ));	        https://example.com/α(β)%29?γ(δ)%29#ε(ζ)%29	
