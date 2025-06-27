@@ -12,7 +12,9 @@
 # else if cp == ">" then Link_Paired_Opener(cp) = "<"
 # else Link_Paired_Opener(cp) = \x{0}
 
-#	Link_Paired_Opener
+# Property:	Link_Paired_Opener
+
+# @missing: 0000..10FFFF; <none>
 
 0029;   0028	# “)” RIGHT PARENTHESIS 🡆  “(” LEFT PARENTHESIS
 003E;   003C	# “>” GREATER-THAN SIGN 🡆  “<” LESS-THAN SIGN
