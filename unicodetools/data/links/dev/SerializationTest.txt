@@ -12,7 +12,7 @@
 # Field 3: Fragment
 # Field 4: Expected result
 #
-# The input is 4 separate fields, 0..4. It represents the internal form of a URL, pre-escaping.
+# The input is 4 separate fields, 0..3. It represents the internal form of a URL, pre-escaping.
 # The result is an escaped string for output.
 #
 # The reason the input is represented as 4 different fields is that the algorithm applies different escaping
