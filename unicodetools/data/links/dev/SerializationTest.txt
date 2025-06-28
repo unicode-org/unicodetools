@@ -29,10 +29,10 @@ https://example.com;	α;	;	;	                        https://example.com/α
 https://example.com;	;	α;	;	                        https://example.com?α	
 
 # Fragment only
-https://example.com;	;	;	α;	                        https://example.com#α	
+https://example.com;	;	;	α;	                        https://example.com\x{23}α	
 
 # All parts
-https://example.com;	αβγ/δεζ;	θ=ικλ&μ=γξο;	πρς;	  https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο#πρς	
+https://example.com;	αβγ/δεζ;	θ=ικλ&μ=γξο;	πρς;	  https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο\x{23}πρς	
 
 # Escape ? in Path
 https://example.com;	α?μπ;	;	;	                      https://example.com/α%3Fμπ	
@@ -41,10 +41,10 @@ https://example.com;	α?μπ;	;	;	                      https://example.com/α%3
 https://example.com;	α\x{23}β;	γ=δ\x{23}ε;	;	                https://example.com/α%23β?γ=δ%23ε	
 
 # Escape hard (' ')
-https://example.com;	αβ γ/δεζ;	θ=ικ λ&=γξο;	πρ σ;	  https://example.com/αβ%20γ/δεζ?θ=ικ%20λ&=γξο#πρ%20σ	
+https://example.com;	αβ γ/δεζ;	θ=ικ λ&=γξο;	πρ σ;	  https://example.com/αβ%20γ/δεζ?θ=ικ%20λ&=γξο\x{23}πρ%20σ	
 
 # Escape soft ('.') unless followed by include
-https://example.com;	αβγ./δεζ.;	θ=ικ.λ&=γξο.;	πρς.;	https://example.com/αβγ./δεζ.?θ=ικ.λ&=γξο.#πρς%2E	
+https://example.com;	αβγ./δεζ.;	θ=ικ.λ&=γξο.;	πρς.;	https://example.com/αβγ./δεζ.?θ=ικ.λ&=γξο.\x{23}πρς%2E	
 
 # Escape unmatched brackets
-https://example.com;	α(β));	γ(δ));	ε(ζ));	        https://example.com/α(β)%29?γ(δ)%29#ε(ζ)%29	
+https://example.com;	α(β));	γ(δ));	ε(ζ));	        https://example.com/α(β)%29?γ(δ)%29\x{23}ε(ζ)%29	
