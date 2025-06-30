@@ -1,5 +1,5 @@
 # EastAsianWidth-17.0.0.txt
-# Date: 2025-06-30, 06:18:50 GMT
+# Date: 2025-06-30, 06:20:23 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -391,7 +391,6 @@
 09FC           ; N  # Lo         BENGALI LETTER VEDIC ANUSVARA
 09FD           ; N  # Po         BENGALI ABBREVIATION SIGN
 09FE           ; N  # Mn         BENGALI SANDHI MARK
-09FF           ; N  # Lo         BENGALI LETTER SANSKRIT BA
 0A01..0A02     ; N  # Mn     [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A03           ; N  # Mc         GURMUKHI SIGN VISARGA
 0A05..0A0A     ; N  # Lo     [6] GURMUKHI LETTER A..GURMUKHI LETTER UU
