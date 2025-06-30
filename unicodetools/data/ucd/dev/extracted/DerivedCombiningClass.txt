@@ -1,5 +1,5 @@
 # DerivedCombiningClass-17.0.0.txt
-# Date: 2025-04-25, 16:57:06 GMT
+# Date: 2025-06-30, 06:16:02 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1840,10 +1840,6 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 16D6B..16D6C  ; 0 # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
 16D6D..16D6F  ; 0 # Po   [3] KIRAT RAI SIGN YUPI..KIRAT RAI DOUBLE DANDA
 16D70..16D79  ; 0 # Nd  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
-16D80..16D97  ; 0 # Lo  [24] CHISOI LETTER A..CHISOI LETTER PA
-16D98         ; 0 # Mn       CHISOI SIGN ANUSVARA
-16D99..16D9C  ; 0 # Lo   [4] CHISOI LETTER YA..CHISOI LETTER JARAHA
-16DA0..16DA9  ; 0 # Nd  [10] CHISOI DIGIT ZERO..CHISOI DIGIT NINE
 16E40..16E7F  ; 0 # L&  [64] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN SMALL LETTER Y
 16E80..16E96  ; 0 # No  [23] MEDEFAIDRIN DIGIT ZERO..MEDEFAIDRIN DIGIT THREE ALTERNATE FORM
 16E97..16E9A  ; 0 # Po   [4] MEDEFAIDRIN COMMA..MEDEFAIDRIN EXCLAMATION OH
@@ -2094,8 +2090,8 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 816734 code points not listed here.
-# Total code points: 1113143
+# The above property value applies to 816774 code points not listed here.
+# Total code points: 1113144
 
 # ================================================
 
@@ -2232,9 +2228,8 @@ ABED          ; 9 # Mn       MEETEI MAYEK APUN IYEK
 11F41         ; 9 # Mc       KAWI SIGN KILLER
 11F42         ; 9 # Mn       KAWI CONJOINER
 1612F         ; 9 # Mn       GURUNG KHEMA SIGN THOLHOMA
-16D9D         ; 9 # Mn       CHISOI SIGN SISO
 
-# Total code points: 70
+# Total code points: 69
 
 # ================================================
 
