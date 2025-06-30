@@ -1,5 +1,5 @@
 # DerivedJoiningType-17.0.0.txt
-# Date: 2025-01-27, 18:09:13 GMT
+# Date: 2025-06-30, 06:16:05 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -550,8 +550,6 @@ FFF9..FFFB    ; T # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTATI
 1612D..1612F  ; T # Mn   [3] GURUNG KHEMA SIGN ANUSVARA..GURUNG KHEMA SIGN THOLHOMA
 16AF0..16AF4  ; T # Mn   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
 16B30..16B36  ; T # Mn   [7] PAHAWH HMONG MARK CIM TUB..PAHAWH HMONG MARK CIM TAUM
-16D98         ; T # Mn       CHISOI SIGN ANUSVARA
-16D9D         ; T # Mn       CHISOI SIGN SISO
 16F4F         ; T # Mn       MIAO SIGN CONSONANT MODIFIER BAR
 16F8F..16F92  ; T # Mn   [4] MIAO TONE RIGHT..MIAO TONE BELOW
 16FE4         ; T # Mn       KHITAN SMALL SCRIPT FILLER
@@ -593,6 +591,6 @@ E0001         ; T # Cf       LANGUAGE TAG
 E0020..E007F  ; T # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; T # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2228
+# Total code points: 2226
 
 # EOF
