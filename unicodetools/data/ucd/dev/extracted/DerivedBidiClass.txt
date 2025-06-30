@@ -1,5 +1,5 @@
 # DerivedBidiClass-17.0.0.txt
-# Date: 2025-06-30, 06:16:00 GMT
+# Date: 2025-06-30, 06:18:44 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1230,8 +1230,8 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 810611 code points not listed here.
-# Total code points: 1095404
+# The above property value applies to 810613 code points not listed here.
+# Total code points: 1095406
 
 # ================================================
 
@@ -2133,7 +2133,7 @@ FFFFE..FFFFF  ; BN # Cn   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 0B3F          ; NSM # Mn       ORIYA VOWEL SIGN I
 0B41..0B44    ; NSM # Mn   [4] ORIYA VOWEL SIGN U..ORIYA VOWEL SIGN VOCALIC RR
 0B4D          ; NSM # Mn       ORIYA SIGN VIRAMA
-0B53..0B56    ; NSM # Mn   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
+0B55..0B56    ; NSM # Mn   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
 0B62..0B63    ; NSM # Mn   [2] ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
 0B82          ; NSM # Mn       TAMIL SIGN ANUSVARA
 0BC0          ; NSM # Mn       TAMIL VOWEL SIGN II
@@ -2442,7 +2442,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 1E944..1E94A  ; NSM # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; NSM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2069
+# Total code points: 2067
 
 # ================================================
 
