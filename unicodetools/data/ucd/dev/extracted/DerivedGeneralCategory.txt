@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-17.0.0.txt
-# Date: 2025-04-25, 16:57:08 GMT
+# Date: 2025-06-30, 06:20:20 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -50,7 +50,7 @@
 09D8..09DB    ; Cn #   [4] <reserved-09D8>..<reserved-09DB>
 09DE          ; Cn #       <reserved-09DE>
 09E4..09E5    ; Cn #   [2] <reserved-09E4>..<reserved-09E5>
-0A00          ; Cn #       <reserved-0A00>
+09FF..0A00    ; Cn #   [2] <reserved-09FF>..<reserved-0A00>
 0A04          ; Cn #       <reserved-0A04>
 0A0B..0A0E    ; Cn #   [4] <reserved-0A0B>..<reserved-0A0E>
 0A11..0A12    ; Cn #   [2] <reserved-0A11>..<reserved-0A12>
@@ -90,7 +90,7 @@
 0B3A..0B3B    ; Cn #   [2] <reserved-0B3A>..<reserved-0B3B>
 0B45..0B46    ; Cn #   [2] <reserved-0B45>..<reserved-0B46>
 0B49..0B4A    ; Cn #   [2] <reserved-0B49>..<reserved-0B4A>
-0B4E..0B52    ; Cn #   [5] <reserved-0B4E>..<reserved-0B52>
+0B4E..0B54    ; Cn #   [7] <reserved-0B4E>..<reserved-0B54>
 0B58..0B5B    ; Cn #   [4] <reserved-0B58>..<reserved-0B5B>
 0B5E          ; Cn #       <reserved-0B5E>
 0B64..0B65    ; Cn #   [2] <reserved-0B64>..<reserved-0B65>
@@ -569,9 +569,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 16B62         ; Cn #       <reserved-16B62>
 16B78..16B7C  ; Cn #   [5] <reserved-16B78>..<reserved-16B7C>
 16B90..16D3F  ; Cn # [432] <reserved-16B90>..<reserved-16D3F>
-16D7A..16D7F  ; Cn #   [6] <reserved-16D7A>..<reserved-16D7F>
-16D9E..16D9F  ; Cn #   [2] <reserved-16D9E>..<reserved-16D9F>
-16DAA..16E3F  ; Cn # [150] <reserved-16DAA>..<reserved-16E3F>
+16D7A..16E3F  ; Cn # [198] <reserved-16D7A>..<reserved-16E3F>
 16E9B..16E9F  ; Cn #   [5] <reserved-16E9B>..<reserved-16E9F>
 16EB9..16EBA  ; Cn #   [2] <reserved-16EB9>..<reserved-16EBA>
 16ED4..16EFF  ; Cn #  [44] <reserved-16ED4>..<reserved-16EFF>
@@ -753,7 +751,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 814686
+# Total code points: 814729
 
 # ================================================
 
@@ -2238,7 +2236,6 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 09DF..09E1    ; Lo #   [3] BENGALI LETTER YYA..BENGALI LETTER VOCALIC LL
 09F0..09F1    ; Lo #   [2] BENGALI LETTER RA WITH MIDDLE DIAGONAL..BENGALI LETTER RA WITH LOWER DIAGONAL
 09FC          ; Lo #       BENGALI LETTER VEDIC ANUSVARA
-09FF          ; Lo #       BENGALI LETTER SANSKRIT BA
 0A05..0A0A    ; Lo #   [6] GURMUKHI LETTER A..GURMUKHI LETTER UU
 0A0F..0A10    ; Lo #   [2] GURMUKHI LETTER EE..GURMUKHI LETTER AI
 0A13..0A28    ; Lo #  [22] GURMUKHI LETTER OO..GURMUKHI LETTER NA
@@ -2658,8 +2655,6 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 16B63..16B77  ; Lo #  [21] PAHAWH HMONG SIGN VOS LUB..PAHAWH HMONG SIGN CIM NRES TOS
 16B7D..16B8F  ; Lo #  [19] PAHAWH HMONG CLAN SIGN TSHEEJ..PAHAWH HMONG CLAN SIGN VWJ
 16D43..16D6A  ; Lo #  [40] KIRAT RAI LETTER A..KIRAT RAI VOWEL SIGN AU
-16D80..16D97  ; Lo #  [24] CHISOI LETTER A..CHISOI LETTER PA
-16D99..16D9C  ; Lo #   [4] CHISOI LETTER YA..CHISOI LETTER JARAHA
 16F00..16F4A  ; Lo #  [75] MIAO LETTER PA..MIAO LETTER RTE
 16F50         ; Lo #       MIAO LETTER NASALIZATION
 17000..18CD5  ; Lo # [7382] TANGUT IDEOGRAPH-17000..KHITAN SMALL SCRIPT CHARACTER-18CD5
@@ -2736,7 +2731,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..33479  ; Lo # [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 
-# Total code points: 141091
+# Total code points: 141062
 
 # ================================================
 
@@ -2801,7 +2796,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 0B3F          ; Mn #       ORIYA VOWEL SIGN I
 0B41..0B44    ; Mn #   [4] ORIYA VOWEL SIGN U..ORIYA VOWEL SIGN VOCALIC RR
 0B4D          ; Mn #       ORIYA SIGN VIRAMA
-0B53..0B56    ; Mn #   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
+0B55..0B56    ; Mn #   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
 0B62..0B63    ; Mn #   [2] ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
 0B82          ; Mn #       TAMIL SIGN ANUSVARA
 0BC0          ; Mn #       TAMIL VOWEL SIGN II
@@ -3072,8 +3067,6 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1612D..1612F  ; Mn #   [3] GURUNG KHEMA SIGN ANUSVARA..GURUNG KHEMA SIGN THOLHOMA
 16AF0..16AF4  ; Mn #   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
 16B30..16B36  ; Mn #   [7] PAHAWH HMONG MARK CIM TUB..PAHAWH HMONG MARK CIM TAUM
-16D98         ; Mn #       CHISOI SIGN ANUSVARA
-16D9D         ; Mn #       CHISOI SIGN SISO
 16F4F         ; Mn #       MIAO SIGN CONSONANT MODIFIER BAR
 16F8F..16F92  ; Mn #   [4] MIAO TONE RIGHT..MIAO TONE BELOW
 16FE4         ; Mn #       KHITAN SMALL SCRIPT FILLER
@@ -3110,7 +3103,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2063
+# Total code points: 2059
 
 # ================================================
 
@@ -3392,7 +3385,6 @@ FF10..FF19    ; Nd #  [10] FULLWIDTH DIGIT ZERO..FULLWIDTH DIGIT NINE
 16AC0..16AC9  ; Nd #  [10] TANGSA DIGIT ZERO..TANGSA DIGIT NINE
 16B50..16B59  ; Nd #  [10] PAHAWH HMONG DIGIT ZERO..PAHAWH HMONG DIGIT NINE
 16D70..16D79  ; Nd #  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
-16DA0..16DA9  ; Nd #  [10] CHISOI DIGIT ZERO..CHISOI DIGIT NINE
 1CCF0..1CCF9  ; Nd #  [10] OUTLINED DIGIT ZERO..OUTLINED DIGIT NINE
 1D7CE..1D7FF  ; Nd #  [50] MATHEMATICAL BOLD DIGIT ZERO..MATHEMATICAL MONOSPACE DIGIT NINE
 1E140..1E149  ; Nd #  [10] NYIAKENG PUACHUE HMONG DIGIT ZERO..NYIAKENG PUACHUE HMONG DIGIT NINE
@@ -3402,7 +3394,7 @@ FF10..FF19    ; Nd #  [10] FULLWIDTH DIGIT ZERO..FULLWIDTH DIGIT NINE
 1E950..1E959  ; Nd #  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 1FBF0..1FBF9  ; Nd #  [10] SEGMENTED DIGIT ZERO..SEGMENTED DIGIT NINE
 
-# Total code points: 780
+# Total code points: 770
 
 # ================================================
 
