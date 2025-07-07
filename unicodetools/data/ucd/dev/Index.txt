@@ -873,7 +873,6 @@ chinese third tone, mandarin	02C7
 Chinese XiangQi Chess Symbols	1FA60
 Chinese, Corner Tone Marks for	A700
 CHIPMUNK	1F43F
-Chisoi	16D80
 choice, dijkstra	2AFE
 choice, n-ary dijkstra	2AFF
 Chorasmian	10FB0
@@ -3519,6 +3518,7 @@ MINUS-OR-PLUS SIGN	2213
 minutes	2032
 MINY	29FF
 Miscellaneous Symbols	2600
+Miscellaneous Symbols	1CEC0
 Miscellaneous Symbols	1F940
 Mkhedruli, Georgian	10D0
 mmsp	205F
