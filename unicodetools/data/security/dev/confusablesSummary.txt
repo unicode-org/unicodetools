@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2025-05-08, 21:27:26 GMT
+# Date: 2025-07-07, 20:15:34 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -91,7 +91,7 @@
 ←	(‎ ʽ ‎)	02BD	 MODIFIER LETTER REVERSED COMMA	# →‘→
 ←	(‎ ʾ ‎)	02BE	 MODIFIER LETTER RIGHT HALF RING	# →ʼ→→′→
 ←	(‎ ˈ ‎)	02C8	 MODIFIER LETTER VERTICAL LINE
-←	(‎ ˊ ‎)	02CA	 MODIFIER LETTER ACUTE ACCENT	# →΄→→ʹ→
+←	(‎ ˊ ‎)	02CA	 MODIFIER LETTER ACUTE ACCENT	# →ʹ→→′→
 ←	(‎ ˋ ‎)	02CB	 MODIFIER LETTER GRAVE ACCENT	# →｀→→‘→
 ←	(‎ ߴ ‎)	07F4	 NKO HIGH TONE APOSTROPHE	# →’→
 ←	(‎ ߵ ‎)	07F5	 NKO LOW TONE APOSTROPHE	# →‘→
@@ -935,11 +935,10 @@
 	(‎ /̄ ‎)	002F 0304	 SOLIDUS, COMBINING MACRON
 ←	(‎ ⧶ ‎)	29F6	 SOLIDUS WITH OVERBAR
 
-#	O	𑷠	𖶠	0	০	ଠ	ዐ	〇	Ο	О	Օ	߀	୦	Ⲟ	ⵔ	ꓳ	𐊒	𐊫	𐐄	𐔖	𑓐	𑢵	𑣠	𐓂	🯰	𜳰	𜳤	Ｏ	𝐎	𝑂	𝑶	𝒪	𝓞	𝔒	𝕆	𝕺	𝖮	𝗢	𝘖	𝙊	𝙾	𝚶	𝛰	𝜪	𝝤	𝞞	𝟎	𝟘	𝟢	𝟬	𝟶
+#	O	𑷠	0	০	ଠ	ዐ	〇	Ο	О	Օ	߀	୦	Ⲟ	ⵔ	ꓳ	𐊒	𐊫	𐐄	𐔖	𑓐	𑢵	𑣠	𐓂	🯰	𜳰	𜳤	Ｏ	𝐎	𝑂	𝑶	𝒪	𝓞	𝔒	𝕆	𝕺	𝖮	𝗢	𝘖	𝙊	𝙾	𝚶	𝛰	𝜪	𝝤	𝞞	𝟎	𝟘	𝟢	𝟬	𝟶
 	(‎ 0 ‎)	0030	 DIGIT ZERO
 ←	(‎ O ‎)	004F	 LATIN CAPITAL LETTER O
 ←	(‎ 𑷠 ‎)	11DE0	 TOLONG SIKI DIGIT ZERO
-←	(‎ 𖶠 ‎)	16DA0	 CHISOI DIGIT ZERO
 ←	(‎ ০ ‎)	09E6	 BENGALI DIGIT ZERO
 ←	(‎ ଠ ‎)	0B20	 ORIYA LETTER TTHA	# →୦→
 ←	(‎ ዐ ‎)	12D0	 ETHIOPIC SYLLABLE PHARYNGEAL A	# →Օ→→О→
@@ -1000,13 +999,12 @@
 ←	(‎ 𑷠. ‎)	11DE0 002E	 TOLONG SIKI DIGIT ZERO, FULL STOP
 ←	(‎ 🄀 ‎)	1F100	 DIGIT ZERO FULL STOP
 
-#	O̵	𑷠̵	O̶	0̵	О̵	𖶒	Ɵ	Ꝋ	θ	Θ	Ө	Ѳ	Ꮎ	Ꮻ	ⴱ	⊖	⊝	⍬	𝈚	🜔	ϴ	ϑ	𝚯	𝚹	𝛉	𝛝	𝛩	𝛳	𝜃	𝜗	𝜣	𝜭	𝜽	𝝑	𝝝	𝝧	𝝷	𝞋	𝞗	𝞡	𝞱	𝟅
+#	O̵	𑷠̵	O̶	0̵	О̵	Ɵ	Ꝋ	θ	Θ	Ө	Ѳ	Ꮎ	Ꮻ	ⴱ	⊖	⊝	⍬	𝈚	🜔	ϴ	ϑ	𝚯	𝚹	𝛉	𝛝	𝛩	𝛳	𝜃	𝜗	𝜣	𝜭	𝜽	𝝑	𝝝	𝝧	𝝷	𝞋	𝞗	𝞡	𝞱	𝟅
 	(‎ 0̵ ‎)	0030 0335	 DIGIT ZERO, COMBINING SHORT STROKE OVERLAY
 ←	(‎ O̵ ‎)	004F 0335	 LATIN CAPITAL LETTER O, COMBINING SHORT STROKE OVERLAY	# →О̵→
 ←	(‎ 𑷠̵ ‎)	11DE0 0335	 TOLONG SIKI DIGIT ZERO, COMBINING SHORT STROKE OVERLAY
 ←	(‎ O̶ ‎)	004F 0336	 LATIN CAPITAL LETTER O, COMBINING LONG STROKE OVERLAY	# →O̵→→О̵→
 ←	(‎ О̵ ‎)	041E 0335	 CYRILLIC CAPITAL LETTER O, COMBINING SHORT STROKE OVERLAY
-←	(‎ 𖶒 ‎)	16D92	 CHISOI LETTER O	# →Ѳ→→О̵→
 ←	(‎ Ɵ ‎)	019F	 LATIN CAPITAL LETTER O WITH MIDDLE TILDE	# →Ѳ→→О̵→
 ←	(‎ Ꝋ ‎)	A74A	 LATIN CAPITAL LETTER O WITH LONG STROKE OVERLAY	# →O̶→→O̵→→О̵→
 ←	(‎ θ ‎)	03B8	 GREEK SMALL LETTER THETA	# →Ꮎ→→O̵→→О̵→
@@ -1380,12 +1378,12 @@
 ←	(‎ ﺃ ‎)	FE83	 ARABIC LETTER ALEF WITH HAMZA ABOVE ISOLATED FORM	# →‎ٵ‎→→‎اٴ‎→
 ←	(‎ ﺄ ‎)	FE84	 ARABIC LETTER ALEF WITH HAMZA ABOVE FINAL FORM	# →‎أ‎→→‎ٵ‎→→‎اٴ‎→
 
-#	l·	𖶆·	L·	lᐧ	1ᐧ	ᒪ·	ᒪᐧ	ᒷ	Ŀ	ŀ
+#	l·	L·	lᐧ	1ᐧ	Ꮮ·	ᒪ·	ᒪᐧ	ᒷ	Ŀ	ŀ
 	(‎ 1ᐧ ‎)	0031 1427	 DIGIT ONE, CANADIAN SYLLABICS FINAL MIDDLE DOT
 ←	(‎ l· ‎)	006C 00B7	 LATIN SMALL LETTER L, MIDDLE DOT
-←	(‎ 𖶆· ‎)	16D86 00B7	 CHISOI LETTER E, MIDDLE DOT	# →ᒪ·→→ᒪᐧ→→ᒷ→
 ←	(‎ L· ‎)	004C 00B7	 LATIN CAPITAL LETTER L, MIDDLE DOT	# →ᒪ·→→ᒪᐧ→→ᒷ→
 ←	(‎ lᐧ ‎)	006C 1427	 LATIN SMALL LETTER L, CANADIAN SYLLABICS FINAL MIDDLE DOT
+←	(‎ Ꮮ· ‎)	13DE 00B7	 CHEROKEE LETTER TLE, MIDDLE DOT	# →ᒪ·→→ᒪᐧ→→ᒷ→
 ←	(‎ ᒪ· ‎)	14AA 00B7	 CANADIAN SYLLABICS MA, MIDDLE DOT	# →ᒪᐧ→→ᒷ→
 ←	(‎ ᒪᐧ ‎)	14AA 1427	 CANADIAN SYLLABICS MA, CANADIAN SYLLABICS FINAL MIDDLE DOT	# →ᒷ→
 ←	(‎ ᒷ ‎)	14B7	 CANADIAN SYLLABICS WEST-CREE MWA
@@ -2404,9 +2402,8 @@
 ←	(‎ Ҟ ‎)	049E	 CYRILLIC CAPITAL LETTER KA WITH STROKE	# →К̵→
 ←	(‎ ₭ ‎)	20AD	 KIP SIGN	# →K̶→
 
-#	L	𖶆	Ꮮ	ᒪ	Ⳑ	ꓡ	𐐛	𖼖	𝈪	𐔦	𑢣	𑢲	𜳡	Ⅼ	ℒ	𝐋	𝐿	𝑳	𝓛	𝔏	𝕃	𝕷	𝖫	𝗟	𝘓	𝙇	𝙻
+#	L	Ꮮ	ᒪ	Ⳑ	ꓡ	𐐛	𖼖	𝈪	𐔦	𑢣	𑢲	𜳡	Ⅼ	ℒ	𝐋	𝐿	𝑳	𝓛	𝔏	𝕃	𝕷	𝖫	𝗟	𝘓	𝙇	𝙻
 	(‎ L ‎)	004C	 LATIN CAPITAL LETTER L
-←	(‎ 𖶆 ‎)	16D86	 CHISOI LETTER E
 ←	(‎ Ꮮ ‎)	13DE	 CHEROKEE LETTER TLE
 ←	(‎ ᒪ ‎)	14AA	 CANADIAN SYLLABICS MA
 ←	(‎ Ⳑ ‎)	2CD0	 COPTIC CAPITAL LETTER L-SHAPED HA
@@ -2446,9 +2443,8 @@
 ←	(‎ L̸ ‎)	004C 0338	 LATIN CAPITAL LETTER L, COMBINING LONG SOLIDUS OVERLAY
 ←	(‎ Ł ‎)	0141	 LATIN CAPITAL LETTER L WITH STROKE
 
-#	M	𖶈	Μ	М	Ϻ	Ꮇ	ᗰ	ᛖ	Ⲙ	ꓟ	𐊰	𐌑	𜳢	Ⅿ	Ｍ	ℳ	𝐌	𝑀	𝑴	𝓜	𝔐	𝕄	𝕸	𝖬	𝗠	𝘔	𝙈	𝙼	𝚳	𝛭	𝜧	𝝡	𝞛
+#	M	Μ	М	Ϻ	Ꮇ	ᗰ	ᛖ	Ⲙ	ꓟ	𐊰	𐌑	𜳢	Ⅿ	Ｍ	ℳ	𝐌	𝑀	𝑴	𝓜	𝔐	𝕄	𝕸	𝖬	𝗠	𝘔	𝙈	𝙼	𝚳	𝛭	𝜧	𝝡	𝞛
 	(‎ M ‎)	004D	 LATIN CAPITAL LETTER M
-←	(‎ 𖶈 ‎)	16D88	 CHISOI LETTER NA
 ←	(‎ Μ ‎)	039C	 GREEK CAPITAL LETTER MU
 ←	(‎ М ‎)	041C	 CYRILLIC CAPITAL LETTER EM
 ←	(‎ Ϻ ‎)	03FA	 GREEK CAPITAL LETTER SAN
@@ -2761,9 +2757,8 @@
 ←	(‎ Т⃫ ‎)	0422 20EB	 CYRILLIC CAPITAL LETTER TE, COMBINING LONG DOUBLE SOLIDUS OVERLAY
 ←	(‎ ₮ ‎)	20AE	 TUGRIK SIGN	# →Т⃫→
 
-#	U	𖶨	ሀ	Ս	ᑌ	ꓴ	𖽂	∪	⋃	𑢸	𐓎	𜳪	𝐔	𝑈	𝑼	𝒰	𝓤	𝔘	𝕌	𝖀	𝖴	𝗨	𝘜	𝙐	𝚄
+#	U	ሀ	Ս	ᑌ	ꓴ	𖽂	∪	⋃	𑢸	𐓎	𜳪	𝐔	𝑈	𝑼	𝒰	𝓤	𝔘	𝕌	𝖀	𝖴	𝗨	𝘜	𝙐	𝚄
 	(‎ U ‎)	0055	 LATIN CAPITAL LETTER U
-←	(‎ 𖶨 ‎)	16DA8	 CHISOI DIGIT EIGHT
 ←	(‎ ሀ ‎)	1200	 ETHIOPIC SYLLABLE HA	# →Ս→
 ←	(‎ Ս ‎)	054D	 ARMENIAN CAPITAL LETTER SEH
 ←	(‎ ᑌ ‎)	144C	 CANADIAN SYLLABICS TE
@@ -2788,10 +2783,10 @@
 ←	(‎ 𝙐 ‎)	1D650	 MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL U
 ←	(‎ 𝚄 ‎)	1D684	 MATHEMATICAL MONOSPACE CAPITAL U
 
-#	U'	𖶨'	ᑌᑊ	ᑌ'	ᑧ
+#	U'	ᑌᑊ	ሀ'	ᑌ'	ᑧ
 	(‎ U' ‎)	0055 0027	 LATIN CAPITAL LETTER U, APOSTROPHE
-←	(‎ 𖶨' ‎)	16DA8 0027	 CHISOI DIGIT EIGHT, APOSTROPHE	# →ᑌ'→
 ←	(‎ ᑌᑊ ‎)	144C 144A	 CANADIAN SYLLABICS TE, CANADIAN SYLLABICS WEST-CREE P	# →ᑌ'→
+←	(‎ ሀ' ‎)	1200 0027	 ETHIOPIC SYLLABLE HA, APOSTROPHE	# →ᑌ'→
 ←	(‎ ᑌ' ‎)	144C 0027	 CANADIAN SYLLABICS TE, APOSTROPHE
 ←	(‎ ᑧ ‎)	1467	 CANADIAN SYLLABICS TTE	# →ᑌᑊ→→ᑌ'→
 
@@ -2799,9 +2794,9 @@
 	(‎ U+= ‎)	0055 002B 003D	 LATIN CAPITAL LETTER U, PLUS SIGN, EQUALS SIGN
 ←	(‎ U+〓 ‎)	0055 002B 3013	 LATIN CAPITAL LETTER U, PLUS SIGN, GETA MARK
 
-#	U·	𖶨·	ᑌ·	ᑌᐧ	ᑘ
+#	U·	ሀ·	ᑌ·	ᑌᐧ	ᑘ
 	(‎ U· ‎)	0055 00B7	 LATIN CAPITAL LETTER U, MIDDLE DOT
-←	(‎ 𖶨· ‎)	16DA8 00B7	 CHISOI DIGIT EIGHT, MIDDLE DOT	# →ᑌ·→
+←	(‎ ሀ· ‎)	1200 00B7	 ETHIOPIC SYLLABLE HA, MIDDLE DOT	# →ᑌ·→
 ←	(‎ ᑌ· ‎)	144C 00B7	 CANADIAN SYLLABICS TE, MIDDLE DOT
 ←	(‎ ᑌᐧ ‎)	144C 1427	 CANADIAN SYLLABICS TE, CANADIAN SYLLABICS FINAL MIDDLE DOT	# →ᑌ·→
 ←	(‎ ᑘ ‎)	1458	 CANADIAN SYLLABICS WEST-CREE TWE	# →ᑌᐧ→→ᑌ·→
@@ -3341,9 +3336,8 @@
 ←	(‎ đ̱ ‎)	0111 0331	 LATIN SMALL LETTER D WITH STROKE, COMBINING MACRON BELOW
 ←	(‎ ₫ ‎)	20AB	 DONG SIGN	# →đ̱→
 
-#	e	𖶦	е	ҽ	℮	ꬲ	ｅ	ℯ	ⅇ	𝐞	𝑒	𝒆	𝓮	𝔢	𝕖	𝖊	𝖾	𝗲	𝘦	𝙚	𝚎
+#	e	е	ҽ	℮	ꬲ	ｅ	ℯ	ⅇ	𝐞	𝑒	𝒆	𝓮	𝔢	𝕖	𝖊	𝖾	𝗲	𝘦	𝙚	𝚎
 	(‎ e ‎)	0065	 LATIN SMALL LETTER E
-←	(‎ 𖶦 ‎)	16DA6	 CHISOI DIGIT SIX
 ←	(‎ е ‎)	0435	 CYRILLIC SMALL LETTER IE
 ←	(‎ ҽ ‎)	04BD	 CYRILLIC SMALL LETTER ABKHASIAN CHE
 ←	(‎ ℮ ‎)	212E	 ESTIMATED SYMBOL
@@ -3888,9 +3882,8 @@
 	(‎ oᴇ ‎)	006F 1D07	 LATIN SMALL LETTER O, LATIN LETTER SMALL CAPITAL E
 ←	(‎ ɶ ‎)	0276	 LATIN LETTER SMALL CAPITAL OE
 
-#	p	𖶧	ρ	р	ⲣ	⍴	ｐ	ϱ	𝐩	𝑝	𝒑	𝓅	𝓹	𝔭	𝕡	𝖕	𝗉	𝗽	𝘱	𝙥	𝚙	𝛒	𝛠	𝜌	𝜚	𝝆	𝝔	𝞀	𝞎	𝞺	𝟈
+#	p	ρ	р	ⲣ	⍴	ｐ	ϱ	𝐩	𝑝	𝒑	𝓅	𝓹	𝔭	𝕡	𝖕	𝗉	𝗽	𝘱	𝙥	𝚙	𝛒	𝛠	𝜌	𝜚	𝝆	𝝔	𝞀	𝞎	𝞺	𝟈
 	(‎ p ‎)	0070	 LATIN SMALL LETTER P
-←	(‎ 𖶧 ‎)	16DA7	 CHISOI DIGIT SEVEN	# →ρ→
 ←	(‎ ρ ‎)	03C1	 GREEK SMALL LETTER RHO
 ←	(‎ р ‎)	0440	 CYRILLIC SMALL LETTER ER
 ←	(‎ ⲣ ‎)	2CA3	 COPTIC SMALL LETTER RO	# →ρ→
@@ -4474,10 +4467,10 @@
 ←	(‎ ᐧᒍ ‎)	1427 148D	 CANADIAN SYLLABICS FINAL MIDDLE DOT, CANADIAN SYLLABICS CO
 ←	(‎ ᒘ ‎)	1498	 CANADIAN SYLLABICS CWO	# →ᐧᒍ→
 
-#	·L	·𖶆	ᐧL	·ᒪ	ᐧᒪ	ᒶ
+#	·L	ᐧL	·Ꮮ	·ᒪ	ᐧᒪ	ᒶ
 	(‎ ·L ‎)	00B7 004C	 MIDDLE DOT, LATIN CAPITAL LETTER L
-←	(‎ ·𖶆 ‎)	00B7 16D86	 MIDDLE DOT, CHISOI LETTER E	# →·ᒪ→→ᐧᒪ→→ᒶ→→ᐧL→
 ←	(‎ ᐧL ‎)	1427 004C	 CANADIAN SYLLABICS FINAL MIDDLE DOT, LATIN CAPITAL LETTER L
+←	(‎ ·Ꮮ ‎)	00B7 13DE	 MIDDLE DOT, CHEROKEE LETTER TLE	# →·ᒪ→→ᐧᒪ→→ᒶ→→ᐧL→
 ←	(‎ ·ᒪ ‎)	00B7 14AA	 MIDDLE DOT, CANADIAN SYLLABICS MA	# →ᐧᒪ→→ᒶ→→ᐧL→
 ←	(‎ ᐧᒪ ‎)	1427 14AA	 CANADIAN SYLLABICS FINAL MIDDLE DOT, CANADIAN SYLLABICS MA	# →ᒶ→→ᐧL→
 ←	(‎ ᒶ ‎)	14B6	 CANADIAN SYLLABICS MWA	# →ᐧL→
@@ -4488,9 +4481,9 @@
 ←	(‎ ᐧᑭ ‎)	1427 146D	 CANADIAN SYLLABICS FINAL MIDDLE DOT, CANADIAN SYLLABICS KI
 ←	(‎ ᑶ ‎)	1476	 CANADIAN SYLLABICS KWI	# →ᐧᑭ→
 
-#	·U	·𖶨	·ᑌ	ᐧᑌ	ᑗ
+#	·U	·ሀ	·ᑌ	ᐧᑌ	ᑗ
 	(‎ ·U ‎)	00B7 0055	 MIDDLE DOT, LATIN CAPITAL LETTER U
-←	(‎ ·𖶨 ‎)	00B7 16DA8	 MIDDLE DOT, CHISOI DIGIT EIGHT	# →·ᑌ→
+←	(‎ ·ሀ ‎)	00B7 1200	 MIDDLE DOT, ETHIOPIC SYLLABLE HA	# →·ᑌ→
 ←	(‎ ·ᑌ ‎)	00B7 144C	 MIDDLE DOT, CANADIAN SYLLABICS TE
 ←	(‎ ᐧᑌ ‎)	1427 144C	 CANADIAN SYLLABICS FINAL MIDDLE DOT, CANADIAN SYLLABICS TE	# →·ᑌ→
 ←	(‎ ᑗ ‎)	1457	 CANADIAN SYLLABICS TWE	# →ᐧᑌ→→·ᑌ→
@@ -5554,9 +5547,8 @@
 ←	(‎ ഁ ‎)	0D01	 MALAYALAM SIGN CANDRABINDU	# →ँ→→̐→
 ←	(‎ 𑒿 ‎)	114BF	 TIRHUTA SIGN CANDRABINDU	# →ঁ→→̐→
 
-#	̇	୓	ं	ਂ	ં	்	͘	ֹ	ֺ	ׁ	ׂ	ׄ	۬	݀	݁	߭	࣪
+#	̇	ं	ਂ	ં	்	͘	ֹ	ֺ	ׁ	ׂ	ׄ	۬	݀	݁	߭	࣪
 	(‎ ̇ ‎)	0307	 COMBINING DOT ABOVE
-←	(‎ ୓ ‎)	0B53	 ORIYA SIGN DOT ABOVE
 ←	(‎ ं ‎)	0902	 DEVANAGARI SIGN ANUSVARA
 ←	(‎ ਂ ‎)	0A02	 GURMUKHI SIGN BINDI
 ←	(‎ ં ‎)	0A82	 GUJARATI SIGN ANUSVARA
@@ -5573,9 +5565,8 @@
 ←	(‎ ߭ ‎)	07ED	 NKO COMBINING SHORT RISING TONE
 ←	(‎ ࣪ ‎)	08EA	 ARABIC TONE ONE DOT ABOVE
 
-#	̈	୔	߳	࣫
+#	̈	߳	࣫
 	(‎ ̈ ‎)	0308	 COMBINING DIAERESIS
-←	(‎ ୔ ‎)	0B54	 ORIYA SIGN DOUBLE DOT ABOVE
 ←	(‎ ߳ ‎)	07F3	 NKO COMBINING DOUBLE DOT ABOVE
 ←	(‎ ࣫ ‎)	08EB	 ARABIC TONE TWO DOTS ABOVE
 
@@ -6013,9 +6004,8 @@
 ←	(‎ 𝞇 ‎)	1D787	 MATHEMATICAL SANS-SERIF BOLD SMALL PSI
 ←	(‎ 𝟁 ‎)	1D7C1	 MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL PSI
 
-#	ω	𖶩	ⲱ	ꙍ	⍵	ꞷ	𝛚	𝜔	𝝎	𝞈	𝟂
+#	ω	ⲱ	ꙍ	⍵	ꞷ	𝛚	𝜔	𝝎	𝞈	𝟂
 	(‎ ω ‎)	03C9	 GREEK SMALL LETTER OMEGA
-←	(‎ 𖶩 ‎)	16DA9	 CHISOI DIGIT NINE
 ←	(‎ ⲱ ‎)	2CB1	 COPTIC SMALL LETTER OOU
 ←	(‎ ꙍ ‎)	A64D	 CYRILLIC SMALL LETTER BROAD OMEGA	# →ꞷ→
 ←	(‎ ⍵ ‎)	2375	 APL FUNCTIONAL SYMBOL OMEGA
@@ -6074,10 +6064,6 @@
 #	Ж̩	Җ
 	(‎ Ж̩ ‎)	0416 0329	 CYRILLIC CAPITAL LETTER ZHE, COMBINING VERTICAL LINE BELOW
 ←	(‎ Җ ‎)	0496	 CYRILLIC CAPITAL LETTER ZHE WITH DESCENDER
-
-#	𖶌	Ч
-	(‎ Ч ‎)	0427	 CYRILLIC CAPITAL LETTER CHE
-←	(‎ 𖶌 ‎)	16D8C	 CHISOI LETTER MA
 
 #	Ш	Ⲽ
 	(‎ Ш ‎)	0428	 CYRILLIC CAPITAL LETTER SHA
@@ -8544,9 +8530,8 @@
 ←	(‎ 𑂻 ‎)	110BB	 KAITHI ABBREVIATION SIGN
 ←	(‎ 𑇇 ‎)	111C7	 SHARADA ABBREVIATION SIGN
 
-#	ঃ	𖶜	ః	ಃ	ഃ	ඃ	း	ਃ	𑓁
+#	ঃ	ః	ಃ	ഃ	ඃ	း	ਃ	𑓁
 	(‎ ঃ ‎)	0983	 BENGALI SIGN VISARGA
-←	(‎ 𖶜 ‎)	16D9C	 CHISOI LETTER JARAHA
 ←	(‎ ః ‎)	0C03	 TELUGU SIGN VISARGA	# →ਃ→
 ←	(‎ ಃ ‎)	0C83	 KANNADA SIGN VISARGA	# →ః→→ਃ→
 ←	(‎ ഃ ‎)	0D03	 MALAYALAM SIGN VISARGA	# →ಃ→→ః→→ਃ→
@@ -8669,35 +8654,25 @@
 	(‎ ৌ ‎)	09CC	 BENGALI VOWEL SIGN AU
 ←	(‎ 𑒾 ‎)	114BE	 TIRHUTA VOWEL SIGN AU
 
-#	্	𖶝	𑓂
+#	্	𑓂
 	(‎ ্ ‎)	09CD	 BENGALI SIGN VIRAMA
-←	(‎ 𖶝 ‎)	16D9D	 CHISOI SIGN SISO
 ←	(‎ 𑓂 ‎)	114C2	 TIRHUTA SIGN VIRAMA
 
 #	ৗ	𑒽
 	(‎ ৗ ‎)	09D7	 BENGALI AU LENGTH MARK
 ←	(‎ 𑒽 ‎)	114BD	 TIRHUTA VOWEL SIGN SHORT O
 
-#	১	𖶡	𑓑
+#	১	𑓑
 	(‎ ১ ‎)	09E7	 BENGALI DIGIT ONE
-←	(‎ 𖶡 ‎)	16DA1	 CHISOI DIGIT ONE
 ←	(‎ 𑓑 ‎)	114D1	 TIRHUTA DIGIT ONE
 
 #	২	𑓒
 	(‎ ২ ‎)	09E8	 BENGALI DIGIT TWO
 ←	(‎ 𑓒 ‎)	114D2	 TIRHUTA DIGIT TWO
 
-#	𖶣	৩
-	(‎ ৩ ‎)	09E9	 BENGALI DIGIT THREE
-←	(‎ 𖶣 ‎)	16DA3	 CHISOI DIGIT THREE
-
 #	৬	𑓖
 	(‎ ৬ ‎)	09EC	 BENGALI DIGIT SIX
 ←	(‎ 𑓖 ‎)	114D6	 TIRHUTA DIGIT SIX
-
-#	৿	ৰ
-	(‎ ৰ ‎)	09F0	 BENGALI LETTER RA WITH MIDDLE DIAGONAL
-←	(‎ ৿ ‎)	09FF	 BENGALI LETTER SANSKRIT BA
 
 #	ਅਾ	ਆ
 	(‎ ਅਾ ‎)	0A05 0A3E	 GURMUKHI LETTER A, GURMUKHI VOWEL SIGN AA
@@ -17497,5 +17472,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 7410
+# total : 7394
 
