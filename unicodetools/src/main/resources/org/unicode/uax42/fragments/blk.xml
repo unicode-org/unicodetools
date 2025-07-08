@@ -46,7 +46,6 @@
                   | "Cherokee"
                   | "Cherokee_Sup"
                   | "Chess_Symbols"
-                  | <edit flag='changed'>"Chisoi"</edit>
                   | "Chorasmian"
                   | "CJK"
                   | "CJK_Compat"

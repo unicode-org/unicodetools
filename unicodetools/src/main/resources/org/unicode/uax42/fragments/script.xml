@@ -4,8 +4,8 @@
            | "Avst"
            | "Bali" | "Bamu" | "Bass" | "Batk" | "Beng" | <edit flag='changed'>"Berf"</edit>
            | "Bhks" | "Bopo" | "Brah" | "Brai" | "Bugi" | "Buhd"
-           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | <edit flag='changed'>"Chis"</edit>
-           | "Chrs" | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
+           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | "Chrs"
+           | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
            | "Deva" | "Diak" | "Dogr" | "Dsrt" | "Dupl"
            | "Egyp" | "Elba" | "Elym" | "Ethi"
            | "Gara" | "Geor" | "Glag" | "Gong" | "Gonm" | "Goth"
