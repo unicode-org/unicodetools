@@ -10,7 +10,7 @@
     <articleinfo>
         <unicode:tr number='42' class='uax' version='17.0.0 (draft 2)'
                     stage='proposed-update'
-                    schema='rnc' prevrev='37'/>
+                    schema='rnc' prevrev='36'/>
         <copyright>
             <year>2025</year>
         </copyright>
@@ -21,21 +21,13 @@
             </author>
         </authors>
         <revhistory>
-            <revision revnumber="38" date="2025-07-08" edit="changed">
-                <changes>
-                    <change>Remove <val>Chisoi</val> from the <attr>blk</attr> attribute
-                    </change>
-                    <change>Remove <val>Chis</val> from the <attr>script</attr> attribute
-                    </change>
-                </changes>
-            </revision>
             <revision revnumber="37" date="2025-04-24" edit="changed">
                 <changes>
                     <change>New value for the <attr>age</attr> attribute: <val>17.0</val>.
                     </change>
-                    <change>New values for the <attr>blk</attr> attribute: <val>Beria_Erfe</val>, <val>Chisoi</val>,
-                        <val>CJK_Ext_J</val>, <val>Misc_Symbols_Sup</val>, <val>Sharada_Sup</val>, <val>Sidetic</val>,
-                        <val>Tai_Yo</val>, <val>Tangut_Components_Sup</val>, <val>Tolong_Siki</val>.
+                    <change>New values for the <attr>blk</attr> attribute: <val>Beria_Erfe</val>, <val>CJK_Ext_J</val>,
+                        <val>Misc_Symbols_Sup</val>, <val>Sharada_Sup</val>, <val>Sidetic</val>, <val>Tai_Yo</val>,
+                        <val>Tangut_Components_Sup</val>, <val>Tolong_Siki</val>.
                     </change>
                     <change>New value for the <attr>do-not-emit</attr> attribute: <val>None</val>.
                     </change>
@@ -50,8 +42,8 @@
                     </change>
                     <change>New value for the <attr>InSC</attr> attribute: <val>Consonant_Repha</val>.
                     </change>
-                    <change>New values for the <attr>script</attr> attribute: <val>Berf</val>, <val>Chis</val>,
-                        <val>Sidt</val>, <val>Tayo</val>, <val>Tols</val>.
+                    <change>New values for the <attr>script</attr> attribute: <val>Berf</val>, <val>Sidt</val>,
+                        <val>Tayo</val>, <val>Tols</val>.
                     </change>
                     <change>New code point attributes for Unikemet: <attr>kEH_AltSeq</attr>, <attr>kEH_Cat</attr>,
                         <attr>kEH_Core</attr>, <attr>kEH_Desc</attr>, <attr>kEH_Func</attr>, <attr>kEH_FVal</attr>,
