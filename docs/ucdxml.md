@@ -47,7 +47,11 @@ mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--r
 mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range UNIHAN --output GROUPED" -DCLDR_DIR=$(cd ~/cldr/uni/src; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
 mvn compile exec:java -Dexec.mainClass="org.unicode.xml.UCDXML" -Dexec.args="--range NOUNIHAN --output GROUPED" -DCLDR_DIR=$(cd ~/cldr/uni/src; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -am -pl unicodetools
 
-cd ../Generated/ucdxml/17.0.0/
+ls -l ../Generated/ucdxml/17.0.0
+rm ../Generated/ucdxml/17.0.0/*.zip
+meld unicodetools/data/ucdxml/dev ../Generated/ucdxml/17.0.0
+
+cd ../Generated/ucdxml/17.0.0
 
 zip -9 ucd.all.flat.zip ucd.all.flat.xml
 zip -9 ucd.all.grouped.zip ucd.all.grouped.xml
