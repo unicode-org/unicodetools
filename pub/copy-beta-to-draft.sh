@@ -46,6 +46,9 @@ cp $UNITOOLS_DATA/idna/dev/* $DRAFT/idna
 mkdir -p $DRAFT/security
 cp $UNITOOLS_DATA/security/dev/* $DRAFT/security
 
+mkdir -p $DRAFT/links
+cp $UNITOOLS_DATA/links/dev/* $DRAFT/links
+
 # Fix permissions. Everyone can read, and search directories.
 chmod a+rX -R $DRAFT
 
