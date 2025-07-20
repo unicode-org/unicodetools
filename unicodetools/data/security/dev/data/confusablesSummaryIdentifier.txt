@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2025-05-08, 21:27:26 GMT
+# Date: 2025-07-13, 16:46:41 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -600,6 +600,10 @@
 ←	(‎ يٴ ‎)	064A 0674	 ARABIC LETTER YEH, ARABIC LETTER HIGH HAMZA	# →‎ٸ‎→
 ←	(‎ ٴى ‎)	0674 0649	 ARABIC LETTER HIGH HAMZA, ARABIC LETTER ALEF MAKSURA	# →‎ٸ‎→
 
+#	ت̆	ࢿ
+	(‎ ت̆ ‎)	062A 0306	 ARABIC LETTER TEH, COMBINING BREVE
+←	(‎ ࢿ ‎)	08BF	 ARABIC LETTER TEH WITH SMALL V	# →‎تٚ‎→
+
 #	ث	پ	ڽ	ۑ
 	(‎ ث ‎)	062B	 ARABIC LETTER THEH
 ←	(‎ پ ‎)	067E	 ARABIC LETTER PEH	# →‎ڽ‎→→‎ںۛ‎→→‎ىۛ‎→→‎ٮۛ‎→
@@ -634,6 +638,10 @@
 	(‎ ك ‎)	0643	 ARABIC LETTER KAF
 ←	(‎ ک ‎)	06A9	 ARABIC LETTER KEHEH
 ←	(‎ ڪ ‎)	06AA	 ARABIC LETTER SWASH KAF
+
+#	ك̆	ࣂ
+	(‎ ك̆ ‎)	0643 0306	 ARABIC LETTER KAF, COMBINING BREVE
+←	(‎ ࣂ ‎)	08C2	 ARABIC LETTER KEHEH WITH SMALL V	# →‎کٚ‎→
 
 #	ڭ	ݣ
 	(‎ ڭ ‎)	06AD	 ARABIC LETTER NG
@@ -686,6 +694,10 @@
 ←	(‎ ئ ‎)	064A 0654	 ARABIC LETTER YEH, ARABIC HAMZA ABOVE
 ←	(‎ ࢨ ‎)	08A8	 ARABIC LETTER YEH WITH TWO DOTS BELOW AND HAMZA ABOVE	# →‎ئ‎→
 
+#	پ̆	ࢾ
+	(‎ پ̆ ‎)	067E 0306	 ARABIC LETTER PEH, COMBINING BREVE
+←	(‎ ࢾ ‎)	08BE	 ARABIC LETTER PEH WITH SMALL V	# →‎پٚ‎→
+
 #	٢	۲
 	(‎ ٢ ‎)	0662	 ARABIC-INDIC DIGIT TWO
 ←	(‎ ۲ ‎)	06F2	 EXTENDED ARABIC-INDIC DIGIT TWO
@@ -718,6 +730,10 @@
 #	ٻ	ې
 	(‎ ٻ ‎)	067B	 ARABIC LETTER BEEH
 ←	(‎ ې ‎)	06D0	 ARABIC LETTER E
+
+#	چ̆	ࣁ
+	(‎ چ̆ ‎)	0686 0306	 ARABIC LETTER TCHEH, COMBINING BREVE
+←	(‎ ࣁ ‎)	08C1	 ARABIC LETTER TCHEH WITH SMALL V	# →‎چٚ‎→
 
 #	ۀ	ۂ
 	(‎ ۀ ‎)	06C0	 ARABIC LETTER HEH WITH YEH ABOVE
@@ -1181,5 +1197,5 @@
 	(‎ へ ‎)	3078	 HIRAGANA LETTER HE
 ←	(‎ ヘ ‎)	30D8	 KATAKANA LETTER HE
 
-# total : 421
+# total : 425
 
