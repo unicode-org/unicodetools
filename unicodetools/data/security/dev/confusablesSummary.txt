@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2025-07-20, 16:05:37 GMT
+# Date: 2025-07-20, 16:09:22 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -8450,6 +8450,11 @@
 ←	(‎ अॅ ‎)	0905 0945	 DEVANAGARI LETTER A, DEVANAGARI VOWEL SIGN CANDRA E
 ←	(‎ ॲ ‎)	0972	 DEVANAGARI LETTER CANDRA A	# →अॅ→
 
+#	अाऺ	अऻ	ॴ
+	(‎ अऻ ‎)	0905 093B	 DEVANAGARI LETTER A, DEVANAGARI VOWEL SIGN OOE
+←	(‎ अाऺ ‎)	0905 093E 093A	 DEVANAGARI LETTER A, DEVANAGARI VOWEL SIGN AA, DEVANAGARI VOWEL SIGN OE
+←	(‎ ॴ ‎)	0974	 DEVANAGARI LETTER OOE
+
 #	अा	आ
 	(‎ अा ‎)	0905 093E	 DEVANAGARI LETTER A, DEVANAGARI VOWEL SIGN AA
 ←	(‎ आ ‎)	0906	 DEVANAGARI LETTER AA
@@ -8501,6 +8506,10 @@
 	(‎ ऺ ‎)	093A	 DEVANAGARI VOWEL SIGN OE
 ←	(‎ 𑭠 ‎)	11B60	 SHARADA VOWEL SIGN OE
 ←	(‎ 𑇋 ‎)	111CB	 SHARADA VOWEL MODIFIER MARK
+
+#	ाऺ	ऻ
+	(‎ ऻ ‎)	093B	 DEVANAGARI VOWEL SIGN OOE
+←	(‎ ाऺ ‎)	093E 093A	 DEVANAGARI VOWEL SIGN AA, DEVANAGARI VOWEL SIGN OE
 
 #	ऽ	ઽ
 	(‎ ऽ ‎)	093D	 DEVANAGARI SIGN AVAGRAHA
@@ -8851,6 +8860,11 @@
 	(‎ ண ‎)	0BA3	 TAMIL LETTER NNA
 ←	(‎ ണ ‎)	0D23	 MALAYALAM LETTER NNA
 
+#	ண്	ണ്	ൺ
+	(‎ ண് ‎)	0BA3 0D4D	 TAMIL LETTER NNA, MALAYALAM SIGN VIRAMA
+←	(‎ ണ് ‎)	0D23 0D4D	 MALAYALAM LETTER NNA, MALAYALAM SIGN VIRAMA
+←	(‎ ൺ ‎)	0D7A	 MALAYALAM LETTER CHILLU NN	# →ണ്→
+
 #	நீ	௺
 	(‎ நீ ‎)	0BA8 0BC0	 TAMIL LETTER NA, TAMIL VOWEL SIGN II
 ←	(‎ ௺ ‎)	0BFA	 TAMIL NUMBER SIGN
@@ -9075,6 +9089,14 @@
 	(‎ ര് ‎)	0D30 0D4D	 MALAYALAM LETTER RA, MALAYALAM SIGN VIRAMA
 ←	(‎ ർ ‎)	0D7C	 MALAYALAM LETTER CHILLU RR	# →൪→
 ←	(‎ ൪ ‎)	0D6A	 MALAYALAM DIGIT FOUR
+
+#	ല്	ൽ
+	(‎ ല് ‎)	0D32 0D4D	 MALAYALAM LETTER LA, MALAYALAM SIGN VIRAMA
+←	(‎ ൽ ‎)	0D7D	 MALAYALAM LETTER CHILLU L
+
+#	ള്	ൾ
+	(‎ ള് ‎)	0D33 0D4D	 MALAYALAM LETTER LLA, MALAYALAM SIGN VIRAMA
+←	(‎ ൾ ‎)	0D7E	 MALAYALAM LETTER CHILLU LL
 
 #	വ്ര	വ്	൮
 	(‎ വ് ‎)	0D35 0D4D	 MALAYALAM LETTER VA, MALAYALAM SIGN VIRAMA
@@ -17522,5 +17544,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 7420
+# total : 7427
 
