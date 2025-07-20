@@ -5675,3 +5675,8 @@ A7F1 ; 02E2  # ( ꟱ → ˢ ) MODIFIER LETTER CAPITAL S → MODIFIER LETTER SMAL
 4E1B ; 110A 1173
 4E15 ; 110C 1169
 9577 ; 1110 1173 11AC
+
+# An analysis of confusable sequences mentioned in L2/22-081 (PAG ref #418)
+256A ; 01C2
+0582 ; 0131
+04CF ; 0049
