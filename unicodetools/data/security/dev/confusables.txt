@@ -1,5 +1,5 @@
 # confusables.txt
-# Date: 2025-07-20, 17:08:53 GMT
+# Date: 2025-07-20, 17:12:46 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -7234,6 +7234,8 @@ D7C6 ;	119E 1165 4E28 ;	MA	# ( ퟆ → ᆞᅥ丨 ) HANGUL JUNGSEONG ARAEA-E → 
 2341 ;	303C ;	MA	#* ( ⍁ → 〼 ) APL FUNCTIONAL SYMBOL QUAD SLASH → MASU MARK	# →⧄→
 29C4 ;	303C ;	MA	#* ( ⧄ → 〼 ) SQUARED RISING DIAGONAL SLASH → MASU MARK	# 
 
+4E8E ;	1B122 ;	MA	# ( 于 → 𛄢 ) CJK UNIFIED IDEOGRAPH-4E8E → KATAKANA LETTER ARCHAIC WU	# 
+
 A49E ;	A04A ;	MA	#* ( ꒞ → ꁊ ) YI RADICAL PUT → YI SYLLABLE PUT	# 
 
 A4AC ;	A050 ;	MA	#* ( ꒬ → ꁐ ) YI RADICAL PYT → YI SYLLABLE PYT	# 
@@ -9977,5 +9979,5 @@ A7CF ;	A7CE ;	MA	# ( ꟏ → ꟎ ) LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIV
 
 6138 ;	2B73F ;	MA	# ( 愸 → 𫜿 ) CJK UNIFIED IDEOGRAPH-6138 → CJK UNIFIED IDEOGRAPH-2B73F	# 
 
-# total: 6566
+# total: 6567
 

@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2025-07-20, 17:08:53 GMT
+# Date: 2025-07-20, 17:12:46 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -14044,6 +14044,10 @@
 	(‎ 了 ‎)	4E86	 CJK UNIFIED IDEOGRAPH-4E86
 ←	(‎ 了 ‎)	F9BA	 CJK COMPATIBILITY IDEOGRAPH-F9BA
 
+#	𛄢	于
+	(‎ 于 ‎)	4E8E	 CJK UNIFIED IDEOGRAPH-4E8E
+←	(‎ 𛄢 ‎)	1B122	 KATAKANA LETTER ARCHAIC WU
+
 #	亮	亮
 	(‎ 亮 ‎)	4EAE	 CJK UNIFIED IDEOGRAPH-4EAE
 ←	(‎ 亮 ‎)	F977	 CJK COMPATIBILITY IDEOGRAPH-F977
@@ -17820,5 +17824,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 7601
+# total : 7602
 

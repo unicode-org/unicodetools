@@ -1,5 +1,5 @@
 # formatted-source.txt
-# Date: 2025-07-20, 17:08:52 GMT
+# Date: 2025-07-20, 17:12:46 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -4590,6 +4590,8 @@ AB51 ;	1E43	# ( ꭑ ~ ṃ ) LATIN SMALL LETTER TURNED UI ~ LATIN SMALL LETTER M 
 16F26 ;	2142	# ( 𖼦 ~ ⅂ ) MIAO LETTER HA ~ TURNED SANS-SERIF CAPITAL L
 
 16FF3 ;	5152	# ( 𖿳 ~ 兒 ) CHINESE SMALL TRADITIONAL ER ~ CJK UNIFIED IDEOGRAPH-5152
+
+1B122 ;	4E8E	# ( 𛄢 ~ 于 ) KATAKANA LETTER ARCHAIC WU ~ CJK UNIFIED IDEOGRAPH-4E8E
 
 1CCFA ;	1F40D	#* ( 𜳺 ~ 🐍 ) SNAKE SYMBOL ~ SNAKE
 
