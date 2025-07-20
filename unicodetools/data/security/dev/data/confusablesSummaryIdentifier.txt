@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2025-07-20, 16:30:34 GMT
+# Date: 2025-07-20, 16:56:42 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -91,11 +91,17 @@
 ←	(‎ တ ‎)	1010	 MYANMAR LETTER TA	# →ဝာ→
 ←	(‎ თ ‎)	10D7	 GEORGIAN LETTER TAN	# →တ→→ဝာ→
 
-#	l	I	1	|	ו	ן	ا	١	۱	Ι	І	Ӏ
+#	l	i	I	1	|	ı	ι	і	ӏ	ւ	ו	ן	ا	١	۱	Ι	І	Ӏ
 	(‎ 1 ‎)	0031	 DIGIT ONE
 ←	(‎ l ‎)	006C	 LATIN SMALL LETTER L
+←	(‎ i ‎)	0069	 LATIN SMALL LETTER I	# →ı→→ӏ→→I→
 ←	(‎ I ‎)	0049	 LATIN CAPITAL LETTER I
 ←	(‎ | ‎)	007C	 VERTICAL LINE	# →l→
+←	(‎ ı ‎)	0131	 LATIN SMALL LETTER DOTLESS I	# →ӏ→→I→
+←	(‎ ι ‎)	03B9	 GREEK SMALL LETTER IOTA	# →ı→→ӏ→→I→
+←	(‎ і ‎)	0456	 CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I	# →i→→ı→→ӏ→→I→
+←	(‎ ӏ ‎)	04CF	 CYRILLIC SMALL LETTER PALOCHKA	# →I→
+←	(‎ ւ ‎)	0582	 ARMENIAN SMALL LETTER YIWN	# →ı→→ӏ→→I→
 ←	(‎ ו ‎)	05D5	 HEBREW LETTER VAV	# →l→
 ←	(‎ ן ‎)	05DF	 HEBREW LETTER FINAL NUN	# →l→
 ←	(‎ ا ‎)	0627	 ARABIC LETTER ALEF
@@ -340,13 +346,6 @@
 	(‎ ħ ‎)	0127	 LATIN SMALL LETTER H WITH STROKE
 ←	(‎ ћ ‎)	045B	 CYRILLIC SMALL LETTER TSHE
 
-#	i	ı	ι	і	ӏ
-	(‎ i ‎)	0069	 LATIN SMALL LETTER I
-←	(‎ ı ‎)	0131	 LATIN SMALL LETTER DOTLESS I
-←	(‎ ι ‎)	03B9	 GREEK SMALL LETTER IOTA
-←	(‎ і ‎)	0456	 CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
-←	(‎ ӏ ‎)	04CF	 CYRILLIC SMALL LETTER PALOCHKA	# →ı→
-
 #	j	ј
 	(‎ j ‎)	006A	 LATIN SMALL LETTER J
 ←	(‎ ј ‎)	0458	 CYRILLIC SMALL LETTER JE
@@ -467,8 +466,9 @@
 	(‎ ŭ ‎)	016D	 LATIN SMALL LETTER U WITH BREVE
 ←	(‎ ǔ ‎)	01D4	 LATIN SMALL LETTER U WITH CARON
 
-#	ьi	ьı	ы
+#	ьi	ьl	ьı	ы
 	(‎ ьi ‎)	044C 0069	 CYRILLIC SMALL LETTER SOFT SIGN, LATIN SMALL LETTER I
+←	(‎ ьl ‎)	044C 006C	 CYRILLIC SMALL LETTER SOFT SIGN, LATIN SMALL LETTER L
 ←	(‎ ьı ‎)	044C 0131	 CYRILLIC SMALL LETTER SOFT SIGN, LATIN SMALL LETTER DOTLESS I
 ←	(‎ ы ‎)	044B	 CYRILLIC SMALL LETTER YERU	# →ьı→
 
@@ -1466,5 +1466,5 @@
 	(‎ へ ‎)	3078	 HIRAGANA LETTER HE
 ←	(‎ ヘ ‎)	30D8	 KATAKANA LETTER HE
 
-# total : 523
+# total : 526
 
