@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2025-07-20, 16:56:42 GMT
+# Date: 2025-07-20, 17:08:53 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -837,9 +837,10 @@
 ←	(‎ ‚ ‎)	201A	 SINGLE LOW-9 QUOTATION MARK
 ←	(‎ ¸ ‎)	00B8	 CEDILLA
 
-#	-	Ⲻ	‐	˗	۔	‒	–	⁃	−	➖	‑	﹘
+#	-	Ⲻ	ⲻ	‐	˗	۔	‒	–	⁃	−	➖	‑	﹘
 	(‎ - ‎)	002D	 HYPHEN-MINUS
 ←	(‎ Ⲻ ‎)	2CBA	 COPTIC CAPITAL LETTER DIALECT-P NI	# →‒→
+←	(‎ ⲻ ‎)	2CBB	 COPTIC SMALL LETTER DIALECT-P NI	# →−→
 ←	(‎ ‐ ‎)	2010	 HYPHEN
 ←	(‎ ˗ ‎)	02D7	 MODIFIER LETTER MINUS SIGN
 ←	(‎ ۔ ‎)	06D4	 ARABIC FULL STOP	# →‐→
@@ -855,9 +856,12 @@
 	(‎ -. ‎)	002D 002E	 HYPHEN-MINUS, FULL STOP
 ←	(‎ ꓾ ‎)	A4FE	 LISU PUNCTUATION COMMA
 
-#	-̇	−̇	∸	﬩
+#	-̇	ⲻ̇	−̇	Ⲳ	ⲳ	∸	﬩
 	(‎ -̇ ‎)	002D 0307	 HYPHEN-MINUS, COMBINING DOT ABOVE
+←	(‎ ⲻ̇ ‎)	2CBB 0307	 COPTIC SMALL LETTER DIALECT-P NI, COMBINING DOT ABOVE	# →−̇→
 ←	(‎ −̇ ‎)	2212 0307	 MINUS SIGN, COMBINING DOT ABOVE
+←	(‎ Ⲳ ‎)	2CB2	 COPTIC CAPITAL LETTER DIALECT-P ALEF	# →﬩→→∸→→−̇→
+←	(‎ ⲳ ‎)	2CB3	 COPTIC SMALL LETTER DIALECT-P ALEF	# →﬩→→∸→→−̇→
 ←	(‎ ∸ ‎)	2238	 DOT MINUS	# →−̇→
 ←	(‎ ﬩ ‎)	FB29	 HEBREW LETTER ALTERNATIVE PLUS SIGN	# →∸→→−̇→
 
@@ -865,13 +869,15 @@
 	(‎ -̈ ‎)	002D 0308	 HYPHEN-MINUS, COMBINING DIAERESIS
 ←	(‎ ⸚ ‎)	2E1A	 HYPHEN WITH DIAERESIS
 
-#	-̓	−̓	⨩
+#	-̓	ⲻ̓	−̓	⨩
 	(‎ -̓ ‎)	002D 0313	 HYPHEN-MINUS, COMBINING COMMA ABOVE
+←	(‎ ⲻ̓ ‎)	2CBB 0313	 COPTIC SMALL LETTER DIALECT-P NI, COMBINING COMMA ABOVE	# →−̓→
 ←	(‎ −̓ ‎)	2212 0313	 MINUS SIGN, COMBINING COMMA ABOVE
 ←	(‎ ⨩ ‎)	2A29	 MINUS SIGN WITH COMMA ABOVE	# →−̓→
 
-#	-̣	−̣	⨪
+#	-̣	ⲻ̣	−̣	⨪
 	(‎ -̣ ‎)	002D 0323	 HYPHEN-MINUS, COMBINING DOT BELOW
+←	(‎ ⲻ̣ ‎)	2CBB 0323	 COPTIC SMALL LETTER DIALECT-P NI, COMBINING DOT BELOW	# →−̣→
 ←	(‎ −̣ ‎)	2212 0323	 MINUS SIGN, COMBINING DOT BELOW
 ←	(‎ ⨪ ‎)	2A2A	 MINUS SIGN WITH DOT BELOW	# →−̣→
 
@@ -900,10 +906,11 @@
 	(‎ ... ‎)	002E 002E 002E	 FULL STOP, FULL STOP, FULL STOP
 ←	(‎ … ‎)	2026	 HORIZONTAL ELLIPSIS
 
-#	/	ノ	Ⳇ	〳	丿	᜵	⁁	⁄	∕	╱	⟋	⧸	㇓	𝈺	⼃
+#	/	ノ	Ⳇ	ⳇ	〳	丿	᜵	⁁	⁄	∕	╱	⟋	⧸	㇓	𝈺	⼃
 	(‎ / ‎)	002F	 SOLIDUS
 ←	(‎ ノ ‎)	30CE	 KATAKANA LETTER NO	# →⼃→
 ←	(‎ Ⳇ ‎)	2CC6	 COPTIC CAPITAL LETTER OLD COPTIC ESH
+←	(‎ ⳇ ‎)	2CC7	 COPTIC SMALL LETTER OLD COPTIC ESH
 ←	(‎ 〳 ‎)	3033	 VERTICAL KANA REPEAT MARK UPPER HALF
 ←	(‎ 丿 ‎)	4E3F	 CJK UNIFIED IDEOGRAPH-4E3F	# →⼃→
 ←	(‎ ᜵ ‎)	1735	 PHILIPPINE SINGLE PUNCTUATION
@@ -929,7 +936,7 @@
 	(‎ /̄ ‎)	002F 0304	 SOLIDUS, COMBINING MACRON
 ←	(‎ ⧶ ‎)	29F6	 SOLIDUS WITH OVERBAR
 
-#	o	O	𑷠	0	ᴏ	ᴑ	ο	σ	о	օ	ס	ه	٥	ھ	ہ	ە	۵	०	০	૦	ଠ	ం	ಂ	೦	ം	ഠ	ං	๐	໐	ဝ	၀	ዐ	០	〇	Ο	О	Օ	߀	੦	୦	௦	౦	൦	ჿ	Ⲟ	ⲟ	ⵔ	ꓳ	𐊒	𐊫	𐐄	𐐬	ꬽ	𐔖	𑓐	𑢵	𑣈	𑣗	𑣠	𐓂	𐓪	🯰	𜳰	𜳤	Ｏ	ｏ	ℴ	𞸤	𞹤	𞺄	ﮦ	ﮧ	ﮨ	ﮩ	ﮪ	ﮫ	ﮬ	ﮭ	ﻩ	ﻪ	ﻫ	ﻬ	𝐎	𝐨	𝑂	𝑜	𝑶	𝒐	𝒪	𝓞	𝓸	𝔒	𝔬	𝕆	𝕠	𝕺	𝖔	𝖮	𝗈	𝗢	𝗼	𝘖	𝘰	𝙊	𝙤	𝙾	𝚘	𝚶	𝛐	𝛔	𝛰	𝜊	𝜎	𝜪	𝝄	𝝈	𝝤	𝝾	𝞂	𝞞	𝞸	𝞼	𝟎	𝟘	𝟢	𝟬	𝟶
+#	o	O	𑷠	0	ᴏ	ᴑ	ο	σ	о	օ	ס	ه	٥	ھ	ہ	ە	۵	०	০	૦	ଠ	ం	ಂ	೦	ം	ഠ	ං	๐	໐	ဝ	၀	ዐ	០	〇	Ο	О	Օ	ϭ	߀	੦	୦	௦	౦	൦	ჿ	Ⲟ	ⲟ	ⵔ	ꓳ	𐊒	𐊫	𐐄	𐐬	ꬽ	𐔖	𑓐	𑢵	𑣈	𑣗	𑣠	𐓂	𐓪	🯰	𜳰	𜳤	Ｏ	ｏ	ℴ	𞸤	𞹤	𞺄	ﮦ	ﮧ	ﮨ	ﮩ	ﮪ	ﮫ	ﮬ	ﮭ	ﻩ	ﻪ	ﻫ	ﻬ	𝐎	𝐨	𝑂	𝑜	𝑶	𝒐	𝒪	𝓞	𝓸	𝔒	𝔬	𝕆	𝕠	𝕺	𝖔	𝖮	𝗈	𝗢	𝗼	𝘖	𝘰	𝙊	𝙤	𝙾	𝚘	𝚶	𝛐	𝛔	𝛰	𝜊	𝜎	𝜪	𝝄	𝝈	𝝤	𝝾	𝞂	𝞞	𝞸	𝞼	𝟎	𝟘	𝟢	𝟬	𝟶
 	(‎ 0 ‎)	0030	 DIGIT ZERO
 ←	(‎ o ‎)	006F	 LATIN SMALL LETTER O	# →০→
 ←	(‎ O ‎)	004F	 LATIN CAPITAL LETTER O
@@ -967,6 +974,7 @@
 ←	(‎ Ο ‎)	039F	 GREEK CAPITAL LETTER OMICRON
 ←	(‎ О ‎)	041E	 CYRILLIC CAPITAL LETTER O
 ←	(‎ Օ ‎)	0555	 ARMENIAN CAPITAL LETTER OH	# →О→
+←	(‎ ϭ ‎)	03ED	 COPTIC SMALL LETTER SHIMA	# →σ→→o→→০→
 ←	(‎ ߀ ‎)	07C0	 NKO DIGIT ZERO
 ←	(‎ ੦ ‎)	0A66	 GURMUKHI DIGIT ZERO	# →o→→০→
 ←	(‎ ୦ ‎)	0B66	 ORIYA DIGIT ZERO
@@ -1068,7 +1076,7 @@
 ←	(‎ o. ‎)	006F 002E	 LATIN SMALL LETTER O, FULL STOP
 ←	(‎ 🄀 ‎)	1F100	 DIGIT ZERO FULL STOP
 
-#	O̵	o̵	O̶	o̶	0̵	О̵	о̵	Ɵ	ɵ	Ꝋ	ꝋ	θ	ө	Θ	Ө	Ѳ	ѳ	Ꮎ	Ꮻ	ⴱ	⊖	⊝	⍬	𝈚	🜔	ꮎ	ꮻ	ϴ	ϑ	𝚯	𝚹	𝛉	𝛝	𝛩	𝛳	𝜃	𝜗	𝜣	𝜭	𝜽	𝝑	𝝝	𝝧	𝝷	𝞋	𝞗	𝞡	𝞱	𝟅
+#	O̵	o̵	O̶	o̶	0̵	О̵	о̵	Ɵ	ɵ	Ꝋ	ꝋ	θ	ө	Θ	Ө	Ѳ	ѳ	Ꮎ	Ꮻ	Ⲑ	ⲑ	ⴱ	⊖	⊝	⍬	𝈚	🜔	ꮎ	ꮻ	ϴ	ϑ	𝚯	𝚹	𝛉	𝛝	𝛩	𝛳	𝜃	𝜗	𝜣	𝜭	𝜽	𝝑	𝝝	𝝧	𝝷	𝞋	𝞗	𝞡	𝞱	𝟅
 	(‎ 0̵ ‎)	0030 0335	 DIGIT ZERO, COMBINING SHORT STROKE OVERLAY
 ←	(‎ O̵ ‎)	004F 0335	 LATIN CAPITAL LETTER O, COMBINING SHORT STROKE OVERLAY	# →o̵→→О̵→
 ←	(‎ o̵ ‎)	006F 0335	 LATIN SMALL LETTER O, COMBINING SHORT STROKE OVERLAY	# →О̵→
@@ -1088,6 +1096,8 @@
 ←	(‎ ѳ ‎)	0473	 CYRILLIC SMALL LETTER FITA	# →o̵→→О̵→
 ←	(‎ Ꮎ ‎)	13BE	 CHEROKEE LETTER NA	# →O̵→→o̵→→О̵→
 ←	(‎ Ꮻ ‎)	13EB	 CHEROKEE LETTER WI	# →Ѳ→→О̵→
+←	(‎ Ⲑ ‎)	2C90	 COPTIC CAPITAL LETTER THETHE	# →ϴ→→Ѳ→→О̵→
+←	(‎ ⲑ ‎)	2C91	 COPTIC SMALL LETTER THETHE	# →ɵ→→o̵→→О̵→
 ←	(‎ ⴱ ‎)	2D31	 TIFINAGH LETTER YAB	# →ϴ→→Ѳ→→О̵→
 ←	(‎ ⊖ ‎)	2296	 CIRCLED MINUS	# →Θ→→Ѳ→→О̵→
 ←	(‎ ⊝ ‎)	229D	 CIRCLED DASH	# →⊖→→Θ→→Ѳ→→О̵→
@@ -1185,7 +1195,7 @@
 ←	(‎ o点 ‎)	006F 70B9	 LATIN SMALL LETTER O, CJK UNIFIED IDEOGRAPH-70B9
 ←	(‎ ㍘ ‎)	3358	 IDEOGRAPHIC TELEGRAPH SYMBOL FOR HOUR ZERO
 
-#	l	i	𑷚	𑷡	𖺪	I	1	|	ı	Ɩ	ǀ	ɩ	ɪ	ι	і	ӏ	ւ	ו	ן	ا	١	۱	Ι	І	Ӏ	ߊ	Ꭵ	ᛁ	Ⲓ	ⵏ	ꓲ	ꙇ	𐊊	𐌉	𖼨	׀	∣	⍳	𐌠	𑣃	𞣇	ꭵ	⏽	🯱	𜳱	𜳞	Ⅰ	ⅰ	ⅼ	Ｉ	ｉ	ｌ	ι	ℐ	ℑ	ℓ	ℹ	ⅈ	𞸀	𞺀	ﺍ	ﺎ	𝐈	𝐢	𝐥	𝐼	𝑖	𝑙	𝑰	𝒊	𝒍	𝒾	𝓁	𝓘	𝓲	𝓵	𝔦	𝔩	𝕀	𝕚	𝕝	𝕴	𝖎	𝖑	𝖨	𝗂	𝗅	𝗜	𝗶	𝗹	𝘐	𝘪	𝘭	𝙄	𝙞	𝙡	𝙸	𝚒	𝚕	𝚤	𝚰	𝛊	𝛪	𝜄	𝜤	𝜾	𝝞	𝝸	𝞘	𝞲	𝟏	𝟙	𝟣	𝟭	𝟷	˛	ͺ	￨
+#	l	i	𑷚	𑷡	𖺪	I	1	|	ı	Ɩ	ǀ	ɩ	ɪ	ι	і	ӏ	ւ	ו	ן	ا	١	۱	Ι	І	Ӏ	ߊ	Ꭵ	ᛁ	Ⲓ	ⲓ	ⵏ	ꓲ	ꙇ	𐊊	𐌉	𖼨	׀	∣	⍳	𐌠	𑣃	𞣇	ꭵ	⏽	🯱	𜳱	𜳞	Ⅰ	ⅰ	ⅼ	Ｉ	ｉ	ｌ	ι	ℐ	ℑ	ℓ	ℹ	ⅈ	𞸀	𞺀	ﺍ	ﺎ	𝐈	𝐢	𝐥	𝐼	𝑖	𝑙	𝑰	𝒊	𝒍	𝒾	𝓁	𝓘	𝓲	𝓵	𝔦	𝔩	𝕀	𝕚	𝕝	𝕴	𝖎	𝖑	𝖨	𝗂	𝗅	𝗜	𝗶	𝗹	𝘐	𝘪	𝘭	𝙄	𝙞	𝙡	𝙸	𝚒	𝚕	𝚤	𝚰	𝛊	𝛪	𝜄	𝜤	𝜾	𝝞	𝝸	𝞘	𝞲	𝟏	𝟙	𝟣	𝟭	𝟷	˛	ͺ	￨
 	(‎ 1 ‎)	0031	 DIGIT ONE
 ←	(‎ l ‎)	006C	 LATIN SMALL LETTER L
 ←	(‎ i ‎)	0069	 LATIN SMALL LETTER I	# →ı→→ӏ→→I→
@@ -1215,6 +1225,7 @@
 ←	(‎ Ꭵ ‎)	13A5	 CHEROKEE LETTER V	# →i→→ı→→ӏ→→I→
 ←	(‎ ᛁ ‎)	16C1	 RUNIC LETTER ISAZ IS ISS I	# →I→
 ←	(‎ Ⲓ ‎)	2C92	 COPTIC CAPITAL LETTER IAUDA	# →I→
+←	(‎ ⲓ ‎)	2C93	 COPTIC SMALL LETTER IAUDA	# →ı→→ӏ→→I→
 ←	(‎ ⵏ ‎)	2D4F	 TIFINAGH LETTER YAN	# →I→
 ←	(‎ ꓲ ‎)	A4F2	 LISU LETTER I	# →I→
 ←	(‎ ꙇ ‎)	A647	 CYRILLIC SMALL LETTER IOTA	# →ι→→ı→→ӏ→→I→
@@ -1692,7 +1703,7 @@
 	(‎ 2点 ‎)	0032 70B9	 DIGIT TWO, CJK UNIFIED IDEOGRAPH-70B9
 ←	(‎ ㍚ ‎)	335A	 IDEOGRAPHIC TELEGRAPH SYMBOL FOR HOUR TWO
 
-#	3	३	Ʒ	Ȝ	Ꝫ	૩	З	Ӡ	Ⳍ	𖼻	𝈆	Ɜ	𑣊	🯳	𜳳	𝟑	𝟛	𝟥	𝟯	𝟹
+#	3	३	Ʒ	Ȝ	Ꝫ	૩	З	Ӡ	Ⲝ	Ⳅ	Ⳍ	𖼻	𝈆	Ɜ	𑣊	🯳	𜳳	𝟑	𝟛	𝟥	𝟯	𝟹
 	(‎ 3 ‎)	0033	 DIGIT THREE
 ←	(‎ ३ ‎)	0969	 DEVANAGARI DIGIT THREE	# →૩→
 ←	(‎ Ʒ ‎)	01B7	 LATIN CAPITAL LETTER EZH
@@ -1701,6 +1712,8 @@
 ←	(‎ ૩ ‎)	0AE9	 GUJARATI DIGIT THREE
 ←	(‎ З ‎)	0417	 CYRILLIC CAPITAL LETTER ZE
 ←	(‎ Ӡ ‎)	04E0	 CYRILLIC CAPITAL LETTER ABKHASIAN DZE	# →Ʒ→
+←	(‎ Ⲝ ‎)	2C9C	 COPTIC CAPITAL LETTER KSI	# →Ʒ→
+←	(‎ Ⳅ ‎)	2CC4	 COPTIC CAPITAL LETTER OLD COPTIC SHEI	# →Ʒ→
 ←	(‎ Ⳍ ‎)	2CCC	 COPTIC CAPITAL LETTER OLD COPTIC HORI	# →Ȝ→→Ʒ→
 ←	(‎ 𖼻 ‎)	16F3B	 MIAO LETTER ZA	# →Ʒ→
 ←	(‎ 𝈆 ‎)	1D206	 GREEK VOCAL NOTATION SYMBOL-7
@@ -1819,11 +1832,14 @@
 	(‎ 5点 ‎)	0035 70B9	 DIGIT FIVE, CJK UNIFIED IDEOGRAPH-70B9
 ←	(‎ ㍝ ‎)	335D	 IDEOGRAPHIC TELEGRAPH SYMBOL FOR HOUR FIVE
 
-#	6	б	Ꮾ	Ⳓ	𑣕	🯶	𜳶	𝟔	𝟞	𝟨	𝟲	𝟼
+#	6	Ϭ	б	Ꮾ	Ⳓ	ⳓ	Ⳝ	𑣕	🯶	𜳶	𝟔	𝟞	𝟨	𝟲	𝟼
 	(‎ 6 ‎)	0036	 DIGIT SIX
+←	(‎ Ϭ ‎)	03EC	 COPTIC CAPITAL LETTER SHIMA
 ←	(‎ б ‎)	0431	 CYRILLIC SMALL LETTER BE
 ←	(‎ Ꮾ ‎)	13EE	 CHEROKEE LETTER WV
 ←	(‎ Ⳓ ‎)	2CD2	 COPTIC CAPITAL LETTER OLD COPTIC HEI
+←	(‎ ⳓ ‎)	2CD3	 COPTIC SMALL LETTER OLD COPTIC HEI
+←	(‎ Ⳝ ‎)	2CDC	 COPTIC CAPITAL LETTER OLD NUBIAN SHIMA	# →Ϭ→
 ←	(‎ 𑣕 ‎)	118D5	 WARANG CITI SMALL LETTER AT
 ←	(‎ 🯶 ‎)	1FBF6	 SEGMENTED DIGIT SIX
 ←	(‎ 𜳶 ‎)	1CCF6	 OUTLINED DIGIT SIX
@@ -1923,7 +1939,7 @@
 	(‎ 8点 ‎)	0038 70B9	 DIGIT EIGHT, CJK UNIFIED IDEOGRAPH-70B9
 ←	(‎ ㍠ ‎)	3360	 IDEOGRAPHIC TELEGRAPH SYMBOL FOR HOUR EIGHT
 
-#	9	Ꝯ	৭	੧	୨	൭	Ⳋ	𑢬	𑣌	𑣖	🯹	𜳹	𝟗	𝟡	𝟫	𝟵	𝟿
+#	9	Ꝯ	৭	੧	୨	൭	Ⳋ	ⳋ	𑢬	𑣌	𑣖	🯹	𜳹	𝟗	𝟡	𝟫	𝟵	𝟿
 	(‎ 9 ‎)	0039	 DIGIT NINE
 ←	(‎ Ꝯ ‎)	A76E	 LATIN CAPITAL LETTER CON
 ←	(‎ ৭ ‎)	09ED	 BENGALI DIGIT SEVEN
@@ -1931,6 +1947,7 @@
 ←	(‎ ୨ ‎)	0B68	 ORIYA DIGIT TWO
 ←	(‎ ൭ ‎)	0D6D	 MALAYALAM DIGIT SEVEN
 ←	(‎ Ⳋ ‎)	2CCA	 COPTIC CAPITAL LETTER DIALECT-P HORI
+←	(‎ ⳋ ‎)	2CCB	 COPTIC SMALL LETTER DIALECT-P HORI
 ←	(‎ 𑢬 ‎)	118AC	 WARANG CITI CAPITAL LETTER KO
 ←	(‎ 𑣌 ‎)	118CC	 WARANG CITI SMALL LETTER KO
 ←	(‎ 𑣖 ‎)	118D6	 WARANG CITI SMALL LETTER AM
@@ -2012,12 +2029,13 @@
 	(‎ <<< ‎)	003C 003C 003C	 LESS-THAN SIGN, LESS-THAN SIGN, LESS-THAN SIGN
 ←	(‎ ⋘ ‎)	22D8	 VERY MUCH LESS-THAN
 
-#	<·	ᐸᐧ	<ᐧ	ᑅ	Ⲵ	⋖
+#	<·	ᐸᐧ	<ᐧ	ᑅ	Ⲵ	ⲵ	⋖
 	(‎ <· ‎)	003C 00B7	 LESS-THAN SIGN, MIDDLE DOT
 ←	(‎ ᐸᐧ ‎)	1438 1427	 CANADIAN SYLLABICS PA, CANADIAN SYLLABICS FINAL MIDDLE DOT
 ←	(‎ <ᐧ ‎)	003C 1427	 LESS-THAN SIGN, CANADIAN SYLLABICS FINAL MIDDLE DOT	# →ᐸᐧ→
 ←	(‎ ᑅ ‎)	1445	 CANADIAN SYLLABICS WEST-CREE PWA	# →ᐸᐧ→
 ←	(‎ Ⲵ ‎)	2CB4	 COPTIC CAPITAL LETTER OLD COPTIC AIN	# →ᑅ→→ᐸᐧ→
+←	(‎ ⲵ ‎)	2CB5	 COPTIC SMALL LETTER OLD COPTIC AIN	# →⋖→→ᑅ→→ᐸᐧ→
 ←	(‎ ⋖ ‎)	22D6	 LESS-THAN WITH DOT	# →ᑅ→→ᐸᐧ→
 
 #	=	゠	᐀	꓿	⹀
@@ -2174,12 +2192,13 @@
 	(‎ AY ‎)	0041 0059	 LATIN CAPITAL LETTER A, LATIN CAPITAL LETTER Y
 ←	(‎ Ꜽ ‎)	A73C	 LATIN CAPITAL LETTER AY
 
-#	B	Β	В	Ᏼ	ᗷ	ꓐ	𐊂	𐊡	𐌁	Ꞵ	𜳗	Ｂ	ℬ	𝐁	𝐵	𝑩	𝓑	𝔅	𝔹	𝕭	𝖡	𝗕	𝘉	𝘽	𝙱	𝚩	𝛣	𝜝	𝝗	𝞑
+#	B	Β	В	Ᏼ	ᗷ	Ⲃ	ꓐ	𐊂	𐊡	𐌁	Ꞵ	𜳗	Ｂ	ℬ	𝐁	𝐵	𝑩	𝓑	𝔅	𝔹	𝕭	𝖡	𝗕	𝘉	𝘽	𝙱	𝚩	𝛣	𝜝	𝝗	𝞑
 	(‎ B ‎)	0042	 LATIN CAPITAL LETTER B
 ←	(‎ Β ‎)	0392	 GREEK CAPITAL LETTER BETA
 ←	(‎ В ‎)	0412	 CYRILLIC CAPITAL LETTER VE
 ←	(‎ Ᏼ ‎)	13F4	 CHEROKEE LETTER YV
 ←	(‎ ᗷ ‎)	15F7	 CANADIAN SYLLABICS CARRIER KHE
+←	(‎ Ⲃ ‎)	2C82	 COPTIC CAPITAL LETTER VIDA
 ←	(‎ ꓐ ‎)	A4D0	 LISU LETTER BA
 ←	(‎ 𐊂 ‎)	10282	 LYCIAN LETTER B
 ←	(‎ 𐊡 ‎)	102A1	 CARIAN LETTER P2
@@ -2759,13 +2778,14 @@
 ←	(‎ ó̸ ‎)	006F 0338 0301	 LATIN SMALL LETTER O, COMBINING LONG SOLIDUS OVERLAY, COMBINING ACUTE ACCENT
 ←	(‎ Ǿ ‎)	01FE	 LATIN CAPITAL LETTER O WITH STROKE AND ACUTE
 
-#	P	Ρ	Р	Ꮲ	ᑭ	Ⲣ	ꓑ	𐊕	𜳥	Ｐ	ℙ	𝐏	𝑃	𝑷	𝒫	𝓟	𝔓	𝕻	𝖯	𝗣	𝘗	𝙋	𝙿	𝚸	𝛲	𝜬	𝝦	𝞠
+#	P	Ρ	Р	Ꮲ	ᑭ	Ⲣ	Ⳏ	ꓑ	𐊕	𜳥	Ｐ	ℙ	𝐏	𝑃	𝑷	𝒫	𝓟	𝔓	𝕻	𝖯	𝗣	𝘗	𝙋	𝙿	𝚸	𝛲	𝜬	𝝦	𝞠
 	(‎ P ‎)	0050	 LATIN CAPITAL LETTER P
 ←	(‎ Ρ ‎)	03A1	 GREEK CAPITAL LETTER RHO
 ←	(‎ Р ‎)	0420	 CYRILLIC CAPITAL LETTER ER
 ←	(‎ Ꮲ ‎)	13E2	 CHEROKEE LETTER TLV
 ←	(‎ ᑭ ‎)	146D	 CANADIAN SYLLABICS KI
 ←	(‎ Ⲣ ‎)	2CA2	 COPTIC CAPITAL LETTER RO
+←	(‎ Ⳏ ‎)	2CCE	 COPTIC CAPITAL LETTER OLD COPTIC HA
 ←	(‎ ꓑ ‎)	A4D1	 LISU LETTER PA
 ←	(‎ 𐊕 ‎)	10295	 LYCIAN LETTER R
 ←	(‎ 𜳥 ‎)	1CCE5	 OUTLINED LATIN CAPITAL LETTER P
@@ -3863,7 +3883,7 @@
 	(‎ oᴇ ‎)	006F 1D07	 LATIN SMALL LETTER O, LATIN LETTER SMALL CAPITAL E
 ←	(‎ ɶ ‎)	0276	 LATIN LETTER SMALL CAPITAL OE
 
-#	p	þ	ƿ	ρ	р	ϸ	ⲣ	⍴	ｐ	ϱ	𝐩	𝑝	𝒑	𝓅	𝓹	𝔭	𝕡	𝖕	𝗉	𝗽	𝘱	𝙥	𝚙	𝛒	𝛠	𝜌	𝜚	𝝆	𝝔	𝞀	𝞎	𝞺	𝟈
+#	p	þ	ƿ	ρ	р	ϸ	ⲣ	ⳏ	⍴	ｐ	ϱ	𝐩	𝑝	𝒑	𝓅	𝓹	𝔭	𝕡	𝖕	𝗉	𝗽	𝘱	𝙥	𝚙	𝛒	𝛠	𝜌	𝜚	𝝆	𝝔	𝞀	𝞎	𝞺	𝟈
 	(‎ p ‎)	0070	 LATIN SMALL LETTER P
 ←	(‎ þ ‎)	00FE	 LATIN SMALL LETTER THORN	# →ƿ→
 ←	(‎ ƿ ‎)	01BF	 LATIN LETTER WYNN
@@ -3871,6 +3891,7 @@
 ←	(‎ р ‎)	0440	 CYRILLIC SMALL LETTER ER
 ←	(‎ ϸ ‎)	03F8	 GREEK SMALL LETTER SHO	# →þ→→ƿ→
 ←	(‎ ⲣ ‎)	2CA3	 COPTIC SMALL LETTER RO	# →ρ→
+←	(‎ ⳏ ‎)	2CCF	 COPTIC SMALL LETTER OLD COPTIC HA
 ←	(‎ ⍴ ‎)	2374	 APL FUNCTIONAL SYMBOL RHO	# →ρ→
 ←	(‎ ｐ ‎)	FF50	 FULLWIDTH LATIN SMALL LETTER P	# →р→
 ←	(‎ ϱ ‎)	03F1	 GREEK RHO SYMBOL	# →ρ→
@@ -4244,7 +4265,7 @@
 ←	(‎ ×̇ ‎)	00D7 0307	 MULTIPLICATION SIGN, COMBINING DOT ABOVE
 ←	(‎ ⨰ ‎)	2A30	 MULTIPLICATION SIGN WITH DOT ABOVE	# →×̇→
 
-#	y	ɣ	ʏ	ᶌ	ỿ	γ	у	ү	ყ	ꭚ	𑣜	ｙ	ℽ	𝐲	𝑦	𝒚	𝓎	𝔂	𝔶	𝕪	𝖞	𝗒	𝘆	𝘺	𝙮	𝚢	𝛄	𝛾	𝜸	𝝲	𝞬
+#	y	ɣ	ʏ	ᶌ	ỿ	γ	у	ү	ყ	ⲩ	ꭚ	𑣜	ｙ	ℽ	𝐲	𝑦	𝒚	𝓎	𝔂	𝔶	𝕪	𝖞	𝗒	𝘆	𝘺	𝙮	𝚢	𝛄	𝛾	𝜸	𝝲	𝞬
 	(‎ y ‎)	0079	 LATIN SMALL LETTER Y
 ←	(‎ ɣ ‎)	0263	 LATIN SMALL LETTER GAMMA	# →γ→
 ←	(‎ ʏ ‎)	028F	 LATIN LETTER SMALL CAPITAL Y	# →ү→→γ→
@@ -4254,6 +4275,7 @@
 ←	(‎ у ‎)	0443	 CYRILLIC SMALL LETTER U
 ←	(‎ ү ‎)	04AF	 CYRILLIC SMALL LETTER STRAIGHT U	# →γ→
 ←	(‎ ყ ‎)	10E7	 GEORGIAN LETTER QAR
+←	(‎ ⲩ ‎)	2CA9	 COPTIC SMALL LETTER UA	# →γ→
 ←	(‎ ꭚ ‎)	AB5A	 LATIN SMALL LETTER Y WITH SHORT RIGHT LEG
 ←	(‎ 𑣜 ‎)	118DC	 WARANG CITI SMALL LETTER HAR	# →ɣ→→γ→
 ←	(‎ ｙ ‎)	FF59	 FULLWIDTH LATIN SMALL LETTER Y	# →у→
@@ -5177,12 +5199,13 @@
 	(‎ Ƕ ‎)	01F6	 LATIN CAPITAL LETTER HWAIR
 ←	(‎ Ԋ ‎)	050A	 CYRILLIC CAPITAL LETTER KOMI NJE
 
-#	ȝ	ʒ	ꝫ	ӡ	ჳ	ⳍ
+#	ȝ	ʒ	ꝫ	ӡ	ჳ	ⳅ	ⳍ
 	(‎ ȝ ‎)	021D	 LATIN SMALL LETTER YOGH
 ←	(‎ ʒ ‎)	0292	 LATIN SMALL LETTER EZH
 ←	(‎ ꝫ ‎)	A76B	 LATIN SMALL LETTER ET
 ←	(‎ ӡ ‎)	04E1	 CYRILLIC SMALL LETTER ABKHASIAN DZE	# →ʒ→
 ←	(‎ ჳ ‎)	10F3	 GEORGIAN LETTER WE	# →ʒ→
+←	(‎ ⳅ ‎)	2CC5	 COPTIC SMALL LETTER OLD COPTIC SHEI	# →ʒ→
 ←	(‎ ⳍ ‎)	2CCD	 COPTIC SMALL LETTER OLD COPTIC HORI
 
 #	ȷ	յ	𝚥
@@ -5302,15 +5325,21 @@
 ←	(‎ պ ‎)	057A	 ARMENIAN SMALL LETTER PEH
 ←	(‎ ሣ ‎)	1223	 ETHIOPIC SYLLABLE SZAA	# →պ→
 
+#	ɴ	ⲛ
+	(‎ ɴ ‎)	0274	 LATIN LETTER SMALL CAPITAL N
+←	(‎ ⲛ ‎)	2C9B	 COPTIC SMALL LETTER NI
+
 #	ɷ	𐐿
 	(‎ ɷ ‎)	0277	 LATIN SMALL LETTER CLOSED OMEGA
 ←	(‎ 𐐿 ‎)	1043F	 DESERET SMALL LETTER KAY
 
-#	ɸ	φ	ф	ⲫ	ϕ	𝛗	𝛟	𝜑	𝜙	𝝋	𝝓	𝞅	𝞍	𝞿	𝟇
+#	ɸ	φ	ф	ⲫ	Ⳡ	ⳡ	ϕ	𝛗	𝛟	𝜑	𝜙	𝝋	𝝓	𝞅	𝞍	𝞿	𝟇
 	(‎ ɸ ‎)	0278	 LATIN SMALL LETTER PHI
 ←	(‎ φ ‎)	03C6	 GREEK SMALL LETTER PHI
 ←	(‎ ф ‎)	0444	 CYRILLIC SMALL LETTER EF
 ←	(‎ ⲫ ‎)	2CAB	 COPTIC SMALL LETTER FI	# →ϕ→
+←	(‎ Ⳡ ‎)	2CE0	 COPTIC CAPITAL LETTER OLD NUBIAN NYI	# →φ→
+←	(‎ ⳡ ‎)	2CE1	 COPTIC SMALL LETTER OLD NUBIAN NYI	# →φ→
 ←	(‎ ϕ ‎)	03D5	 GREEK PHI SYMBOL
 ←	(‎ 𝛗 ‎)	1D6D7	 MATHEMATICAL BOLD SMALL PHI	# →φ→
 ←	(‎ 𝛟 ‎)	1D6DF	 MATHEMATICAL BOLD PHI SYMBOL	# →φ→
@@ -5360,15 +5389,17 @@
 	(‎ ʊ̵ ‎)	028A 0335	 LATIN SMALL LETTER UPSILON, COMBINING SHORT STROKE OVERLAY
 ←	(‎ ᵿ ‎)	1D7F	 LATIN SMALL LETTER UPSILON WITH STROKE
 
-#	ʌ	ᴧ	𐓘
+#	ʌ	ᴧ	ⲗ	𐓘
 	(‎ ʌ ‎)	028C	 LATIN SMALL LETTER TURNED V
 ←	(‎ ᴧ ‎)	1D27	 GREEK LETTER SMALL CAPITAL LAMDA
+←	(‎ ⲗ ‎)	2C97	 COPTIC SMALL LETTER LAULA
 ←	(‎ 𐓘 ‎)	104D8	 OSAGE SMALL LETTER A
 
-#	ʍ	ᴍ	м	ꮇ
+#	ʍ	ᴍ	м	ⲙ	ꮇ
 	(‎ ʍ ‎)	028D	 LATIN SMALL LETTER TURNED W
 ←	(‎ ᴍ ‎)	1D0D	 LATIN LETTER SMALL CAPITAL M	# →м→
 ←	(‎ м ‎)	043C	 CYRILLIC SMALL LETTER EM
+←	(‎ ⲙ ‎)	2C99	 COPTIC SMALL LETTER MI	# →ᴍ→→м→
 ←	(‎ ꮇ ‎)	AB87	 CHEROKEE SMALL LETTER LU	# →ᴍ→→м→
 
 #	ʍ̦	м̦	м̡	ӎ
@@ -5376,6 +5407,10 @@
 ←	(‎ м̦ ‎)	043C 0326	 CYRILLIC SMALL LETTER EM, COMBINING COMMA BELOW	# →м̡→
 ←	(‎ м̡ ‎)	043C 0321	 CYRILLIC SMALL LETTER EM, COMBINING PALATALIZED HOOK BELOW
 ←	(‎ ӎ ‎)	04CE	 CYRILLIC SMALL LETTER EM WITH TAIL	# →м̡→
+
+#	ʓ	ⲝ
+	(‎ ʓ ‎)	0293	 LATIN SMALL LETTER EZH WITH CURL
+←	(‎ ⲝ ‎)	2C9D	 COPTIC SMALL LETTER KSI
 
 #	꟎	꟏	ʕ
 	(‎ ʕ ‎)	0295	 LATIN LETTER PHARYNGEAL VOICED FRICATIVE
@@ -5391,9 +5426,10 @@
 ←	(‎ ⨀ ‎)	2A00	 N-ARY CIRCLED DOT OPERATOR	# →⊙→
 ←	(‎ 𐓃 ‎)	104C3	 OSAGE CAPITAL LETTER OIN	# →Ꙩ→
 
-#	ʙ	в	ᏼ
+#	ʙ	в	ⲃ	ᏼ
 	(‎ ʙ ‎)	0299	 LATIN LETTER SMALL CAPITAL B
 ←	(‎ в ‎)	0432	 CYRILLIC SMALL LETTER VE
+←	(‎ ⲃ ‎)	2C83	 COPTIC SMALL LETTER VIDA	# →в→
 ←	(‎ ᏼ ‎)	13FC	 CHEROKEE SMALL LETTER YV
 
 #	ʚ	𐐪	ꞝ
@@ -5401,9 +5437,10 @@
 ←	(‎ 𐐪 ‎)	1042A	 DESERET SMALL LETTER LONG A
 ←	(‎ ꞝ ‎)	A79D	 LATIN SMALL LETTER VOLAPUK OE
 
-#	ʜ	н	ꮋ
+#	ʜ	н	ⲏ	ꮋ
 	(‎ ʜ ‎)	029C	 LATIN LETTER SMALL CAPITAL H
 ←	(‎ н ‎)	043D	 CYRILLIC SMALL LETTER EN
+←	(‎ ⲏ ‎)	2C8F	 COPTIC SMALL LETTER HATE	# →н→
 ←	(‎ ꮋ ‎)	AB8B	 CHEROKEE SMALL LETTER MI
 
 #	ʜ̦	н̦	н̡	ӈ	ӊ
@@ -5843,8 +5880,10 @@
 ←	(‎ ᐃᐠ ‎)	1403 1420	 CANADIAN SYLLABICS I, CANADIAN SYLLABICS FINAL GRAVE
 ←	(‎ ᐬ ‎)	142C	 CANADIAN SYLLABICS IN	# →ᐃᐠ→
 
-#	Ξ	𝚵	𝛯	𝜩	𝝣	𝞝
+#	Ξ	Ⲷ	☰	𝚵	𝛯	𝜩	𝝣	𝞝
 	(‎ Ξ ‎)	039E	 GREEK CAPITAL LETTER XI
+←	(‎ Ⲷ ‎)	2CB6	 COPTIC CAPITAL LETTER CRYPTOGRAMMIC EIE
+←	(‎ ☰ ‎)	2630	 TRIGRAM FOR HEAVEN	# →Ⲷ→
 ←	(‎ 𝚵 ‎)	1D6B5	 MATHEMATICAL BOLD CAPITAL XI
 ←	(‎ 𝛯 ‎)	1D6EF	 MATHEMATICAL ITALIC CAPITAL XI
 ←	(‎ 𝜩 ‎)	1D729	 MATHEMATICAL BOLD ITALIC CAPITAL XI
@@ -5904,11 +5943,12 @@
 ←	(‎ 𝝮 ‎)	1D76E	 MATHEMATICAL SANS-SERIF BOLD CAPITAL OMEGA
 ←	(‎ 𝞨 ‎)	1D7A8	 MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL OMEGA
 
-#	ẟ	δ	ծ	ᕷ	⸹	𝛅	𝛿	𝜹	𝝳	𝞭
+#	ẟ	δ	ծ	ᕷ	ⳝ	⸹	𝛅	𝛿	𝜹	𝝳	𝞭
 	(‎ δ ‎)	03B4	 GREEK SMALL LETTER DELTA
 ←	(‎ ẟ ‎)	1E9F	 LATIN SMALL LETTER DELTA
 ←	(‎ ծ ‎)	056E	 ARMENIAN SMALL LETTER CA
 ←	(‎ ᕷ ‎)	1577	 CANADIAN SYLLABICS NUNAVIK HO
+←	(‎ ⳝ ‎)	2CDD	 COPTIC SMALL LETTER OLD NUBIAN SHIMA
 ←	(‎ ⸹ ‎)	2E39	 TOP HALF SECTION SIGN
 ←	(‎ 𝛅 ‎)	1D6C5	 MATHEMATICAL BOLD SMALL DELTA
 ←	(‎ 𝛿 ‎)	1D6FF	 MATHEMATICAL ITALIC SMALL DELTA
@@ -5948,11 +5988,12 @@
 ←	(‎ 𝝽 ‎)	1D77D	 MATHEMATICAL SANS-SERIF BOLD SMALL XI
 ←	(‎ 𝞷 ‎)	1D7B7	 MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL XI
 
-#	π	𖻁	п	ᴨ	ℼ	ϖ	𝛑	𝛡	𝜋	𝜛	𝝅	𝝕	𝝿	𝞏	𝞹	𝟉
+#	π	𖻁	п	ᴨ	ⲡ	ℼ	ϖ	𝛑	𝛡	𝜋	𝜛	𝝅	𝝕	𝝿	𝞏	𝞹	𝟉
 	(‎ π ‎)	03C0	 GREEK SMALL LETTER PI
 ←	(‎ 𖻁 ‎)	16EC1	 BERIA ERFE SMALL LETTER HIRDEABO	# →п→
 ←	(‎ п ‎)	043F	 CYRILLIC SMALL LETTER PE
 ←	(‎ ᴨ ‎)	1D28	 GREEK LETTER SMALL CAPITAL PI	# →п→
+←	(‎ ⲡ ‎)	2CA1	 COPTIC SMALL LETTER PI	# →п→
 ←	(‎ ℼ ‎)	213C	 DOUBLE-STRUCK SMALL PI
 ←	(‎ ϖ ‎)	03D6	 GREEK PI SYMBOL
 ←	(‎ 𝛑 ‎)	1D6D1	 MATHEMATICAL BOLD SMALL PI
@@ -5966,19 +6007,21 @@
 ←	(‎ 𝞹 ‎)	1D7B9	 MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL PI
 ←	(‎ 𝟉 ‎)	1D7C9	 MATHEMATICAL SANS-SERIF BOLD ITALIC PI SYMBOL
 
-#	ς	ϛ	𝛓	𝜍	𝝇	𝞁	𝞻
+#	ς	ϛ	ⲋ	𝛓	𝜍	𝝇	𝞁	𝞻
 	(‎ ς ‎)	03C2	 GREEK SMALL LETTER FINAL SIGMA
 ←	(‎ ϛ ‎)	03DB	 GREEK SMALL LETTER STIGMA
+←	(‎ ⲋ ‎)	2C8B	 COPTIC SMALL LETTER SOU
 ←	(‎ 𝛓 ‎)	1D6D3	 MATHEMATICAL BOLD SMALL FINAL SIGMA
 ←	(‎ 𝜍 ‎)	1D70D	 MATHEMATICAL ITALIC SMALL FINAL SIGMA
 ←	(‎ 𝝇 ‎)	1D747	 MATHEMATICAL BOLD ITALIC SMALL FINAL SIGMA
 ←	(‎ 𝞁 ‎)	1D781	 MATHEMATICAL SANS-SERIF BOLD SMALL FINAL SIGMA
 ←	(‎ 𝞻 ‎)	1D7BB	 MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL FINAL SIGMA
 
-#	ᴛ	τ	т	ꭲ	𝛕	𝜏	𝝉	𝞃	𝞽
+#	ᴛ	τ	т	ⲧ	ꭲ	𝛕	𝜏	𝝉	𝞃	𝞽
 	(‎ τ ‎)	03C4	 GREEK SMALL LETTER TAU
 ←	(‎ ᴛ ‎)	1D1B	 LATIN LETTER SMALL CAPITAL T
 ←	(‎ т ‎)	0442	 CYRILLIC SMALL LETTER TE
+←	(‎ ⲧ ‎)	2CA7	 COPTIC SMALL LETTER TAU	# →т→
 ←	(‎ ꭲ ‎)	AB72	 CHEROKEE SMALL LETTER I	# →ᴛ→
 ←	(‎ 𝛕 ‎)	1D6D5	 MATHEMATICAL BOLD SMALL TAU
 ←	(‎ 𝜏 ‎)	1D70F	 MATHEMATICAL ITALIC SMALL TAU
@@ -5997,9 +6040,10 @@
 ←	(‎ 𝞆 ‎)	1D786	 MATHEMATICAL SANS-SERIF BOLD SMALL CHI
 ←	(‎ 𝟀 ‎)	1D7C0	 MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL CHI
 
-#	ψ	ѱ	𐓹	𝛙	𝜓	𝝍	𝞇	𝟁
+#	ψ	ѱ	ⲯ	𐓹	𝛙	𝜓	𝝍	𝞇	𝟁
 	(‎ ψ ‎)	03C8	 GREEK SMALL LETTER PSI
 ←	(‎ ѱ ‎)	0471	 CYRILLIC SMALL LETTER PSI
+←	(‎ ⲯ ‎)	2CAF	 COPTIC SMALL LETTER PSI
 ←	(‎ 𐓹 ‎)	104F9	 OSAGE SMALL LETTER GHA
 ←	(‎ 𝛙 ‎)	1D6D9	 MATHEMATICAL BOLD SMALL PSI
 ←	(‎ 𝜓 ‎)	1D713	 MATHEMATICAL ITALIC SMALL PSI
@@ -6036,9 +6080,19 @@
 	(‎ ϝ ‎)	03DD	 GREEK SMALL LETTER DIGAMMA
 ←	(‎ 𝟋 ‎)	1D7CB	 MATHEMATICAL BOLD SMALL DIGAMMA
 
-#	Ϭ	Ⳝ
-	(‎ Ϭ ‎)	03EC	 COPTIC CAPITAL LETTER SHIMA
-←	(‎ Ⳝ ‎)	2CDC	 COPTIC CAPITAL LETTER OLD NUBIAN SHIMA
+#	Ч	Ϥ
+	(‎ Ϥ ‎)	03E4	 COPTIC CAPITAL LETTER FEI
+←	(‎ Ч ‎)	0427	 CYRILLIC CAPITAL LETTER CHE
+
+#	ч	પ	૫	ϥ
+	(‎ ϥ ‎)	03E5	 COPTIC SMALL LETTER FEI
+←	(‎ ч ‎)	0447	 CYRILLIC SMALL LETTER CHE
+←	(‎ પ ‎)	0AAA	 GUJARATI LETTER PA	# →૫→→ч→
+←	(‎ ૫ ‎)	0AEB	 GUJARATI DIGIT FIVE	# →ч→
+
+#	ϼ	ⳁ
+	(‎ ϼ ‎)	03FC	 GREEK RHO WITH STROKE SYMBOL
+←	(‎ ⳁ ‎)	2CC1	 COPTIC SMALL LETTER SAMPI
 
 #	Ꜿ	Ͽ
 	(‎ Ͽ ‎)	03FF	 GREEK CAPITAL REVERSED DOTTED LUNATE SIGMA SYMBOL
@@ -6108,11 +6162,6 @@
 	(‎ т̩ ‎)	0442 0329	 CYRILLIC SMALL LETTER TE, COMBINING VERTICAL LINE BELOW
 ←	(‎ ᴛ̩ ‎)	1D1B 0329	 LATIN LETTER SMALL CAPITAL T, COMBINING VERTICAL LINE BELOW
 ←	(‎ ҭ ‎)	04AD	 CYRILLIC SMALL LETTER TE WITH DESCENDER
-
-#	ч	પ	૫
-	(‎ ч ‎)	0447	 CYRILLIC SMALL LETTER CHE
-←	(‎ પ ‎)	0AAA	 GUJARATI LETTER PA	# →૫→
-←	(‎ ૫ ‎)	0AEB	 GUJARATI DIGIT FIVE
 
 #	ᴙ	я
 	(‎ я ‎)	044F	 CYRILLIC SMALL LETTER YA
@@ -6199,9 +6248,12 @@
 	(‎ Ռ ‎)	054C	 ARMENIAN CAPITAL LETTER RA
 ←	(‎ ቡ ‎)	1261	 ETHIOPIC SYLLABLE BU
 
-#	Ք	₽
+#	Ք	⳨	Ⳁ	₽	𐆠
 	(‎ Ք ‎)	0554	 ARMENIAN CAPITAL LETTER KEH
+←	(‎ ⳨ ‎)	2CE8	 COPTIC SYMBOL TAU RO	# →₽→
+←	(‎ Ⳁ ‎)	2CC0	 COPTIC CAPITAL LETTER SAMPI	# →₽→
 ←	(‎ ₽ ‎)	20BD	 RUBLE SIGN
+←	(‎ 𐆠 ‎)	101A0	 GREEK SYMBOL TAU RHO	# →⳨→→₽→
 
 #	եւ	եl	ե1	և
 	(‎ ե1 ‎)	0565 0031	 ARMENIAN SMALL LETTER ECH, DIGIT ONE
@@ -12099,8 +12151,9 @@
 ←	(‎ ♎ ‎)	264E	 LIBRA
 ←	(‎ 🝞 ‎)	1F75E	 ALCHEMICAL SYMBOL FOR SUBLIMATION	# →♎→
 
-#	≡	≣
+#	≡	ⲷ	≣
 	(‎ ≡ ‎)	2261	 IDENTICAL TO
+←	(‎ ⲷ ‎)	2CB7	 COPTIC SMALL LETTER CRYPTOGRAMMIC EIE
 ←	(‎ ≣ ‎)	2263	 STRICTLY EQUIVALENT TO
 
 #	⊍	⨃
@@ -12385,10 +12438,6 @@
 	(‎ ☩ ‎)	2629	 CROSS OF JERUSALEM
 ←	(‎ 🜊 ‎)	1F70A	 ALCHEMICAL SYMBOL FOR VINEGAR
 
-#	Ⲷ	☰
-	(‎ ☰ ‎)	2630	 TRIGRAM FOR HEAVEN
-←	(‎ Ⲷ ‎)	2CB6	 COPTIC CAPITAL LETTER CRYPTOGRAMMIC EIE
-
 #	☽	🌒	🌙
 	(‎ ☽ ‎)	263D	 FIRST QUARTER MOON
 ←	(‎ 🌒 ‎)	1F312	 WAXING CRESCENT MOON SYMBOL
@@ -12446,6 +12495,14 @@
 	(‎ ⰿ ‎)	2C3F	 GLAGOLITIC SMALL LETTER MYSLITE
 ←	(‎ ꦒ ‎)	A992	 JAVANESE LETTER GA
 
+#	Ⱬ	Ⲍ
+	(‎ Ⱬ ‎)	2C6B	 LATIN CAPITAL LETTER Z WITH DESCENDER
+←	(‎ Ⲍ ‎)	2C8C	 COPTIC CAPITAL LETTER ZATA
+
+#	ⱬ	ⲍ
+	(‎ ⱬ ‎)	2C6C	 LATIN SMALL LETTER Z WITH DESCENDER
+←	(‎ ⲍ ‎)	2C8D	 COPTIC SMALL LETTER ZATA
+
 #	Ɒ	𐐟
 	(‎ Ɒ ‎)	2C70	 LATIN CAPITAL LETTER TURNED ALPHA
 ←	(‎ 𐐟 ‎)	1041F	 DESERET CAPITAL LETTER ESH
@@ -12454,9 +12511,10 @@
 	(‎ ⱶ ‎)	2C76	 LATIN SMALL LETTER HALF H
 ←	(‎ ꮀ ‎)	AB80	 CHEROKEE SMALL LETTER HO
 
-#	⳨	𐆠
-	(‎ ⳨ ‎)	2CE8	 COPTIC SYMBOL TAU RO
-←	(‎ 𐆠 ‎)	101A0	 GREEK SYMBOL TAU RHO
+#	Ꙍ	Ⲱ	Ꞷ
+	(‎ Ⲱ ‎)	2CB0	 COPTIC CAPITAL LETTER OOU
+←	(‎ Ꙍ ‎)	A64C	 CYRILLIC CAPITAL LETTER BROAD OMEGA
+←	(‎ Ꞷ ‎)	A7B6	 LATIN CAPITAL LETTER OMEGA	# →Ꙍ→
 
 #	ⵀ	𐊸
 	(‎ ⵀ ‎)	2D40	 TIFINAGH LETTER YAH
@@ -17012,10 +17070,6 @@
 	(‎ ꓤ ‎)	A4E4	 LISU LETTER ZA
 ←	(‎ Ꞟ ‎)	A79E	 LATIN CAPITAL LETTER VOLAPUK UE
 
-#	Ꙍ	Ꞷ
-	(‎ Ꙍ ‎)	A64C	 CYRILLIC CAPITAL LETTER BROAD OMEGA
-←	(‎ Ꞷ ‎)	A7B6	 LATIN CAPITAL LETTER OMEGA
-
 #	Ꙙ	𖼜	🜁
 	(‎ Ꙙ ‎)	A658	 CYRILLIC CAPITAL LETTER CLOSED LITTLE YUS
 ←	(‎ 𖼜 ‎)	16F1C	 MIAO LETTER TLHYA
@@ -17766,5 +17820,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 7556
+# total : 7601
 
