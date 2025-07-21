@@ -5598,9 +5598,9 @@ A7F1 ; 02E2  # ( ꟱ → ˢ ) MODIFIER LETTER CAPITAL S → MODIFIER LETTER SMAL
 0D7E ; 0D33 0D4D
 
 # New confusable data based on L2/22-114 (PAG ref #417)
-09E6 ; 006F
-0B66 ; 006F
-0CE6 ; 004F
+# 09E6 ; 006F  # unintended side-effects; temporarily removed (21 July 2025)
+# 0B66 ; 006F  # unintended side-effects; temporarily removed (21 July 2025)
+# 0CE6 ; 004F  # unintended side-effects; temporarily removed (21 July 2025)
 17E0 ; 006F
 0AE9 ; 0033
 1004 ; 0063
