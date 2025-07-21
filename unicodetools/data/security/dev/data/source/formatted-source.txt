@@ -1,5 +1,5 @@
 # formatted-source.txt
-# Date: 2025-07-21, 14:56:53 GMT
+# Date: 2025-07-21, 18:09:09 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -327,7 +327,6 @@
 
 0048 0335 ;	0126	# ( H̵ ~ Ħ ) LATIN CAPITAL LETTER H, COMBINING SHORT STROKE OVERLAY ~ LATIN CAPITAL LETTER H WITH STROKE
 
-0049 ;	04CF	# ( I ~ ӏ ) LATIN CAPITAL LETTER I ~ CYRILLIC SMALL LETTER PALOCHKA
 0049 ;	0399	# ( I ~ Ι ) LATIN CAPITAL LETTER I ~ GREEK CAPITAL LETTER IOTA
 0049 ;	0406	# ( I ~ І ) LATIN CAPITAL LETTER I ~ CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
 0049 ;	04C0	# ( I ~ Ӏ ) LATIN CAPITAL LETTER I ~ CYRILLIC LETTER PALOCHKA
