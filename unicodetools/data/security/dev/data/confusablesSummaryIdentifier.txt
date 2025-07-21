@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2025-07-20, 16:56:42 GMT
+# Date: 2025-07-21, 14:56:54 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -38,58 +38,21 @@
 	(‎ / ‎)	002F	 SOLIDUS
 ←	(‎ ノ ‎)	30CE	 KATAKANA LETTER NO	# →⼃→
 
-#	o	O	0	ο	σ	о	օ	ס	ه	٥	ھ	ہ	ە	۵	०	০	૦	ଠ	ం	ಂ	೦	ം	ഠ	ං	๐	໐	ဝ	၀	ዐ	០	〇	Ο	О	Օ
+#	O	0	০	ଠ	ዐ	〇	Ο	О	Օ
 	(‎ 0 ‎)	0030	 DIGIT ZERO
-←	(‎ o ‎)	006F	 LATIN SMALL LETTER O	# →০→
 ←	(‎ O ‎)	004F	 LATIN CAPITAL LETTER O
-←	(‎ ο ‎)	03BF	 GREEK SMALL LETTER OMICRON	# →o→→০→
-←	(‎ σ ‎)	03C3	 GREEK SMALL LETTER SIGMA	# →o→→০→
-←	(‎ о ‎)	043E	 CYRILLIC SMALL LETTER O	# →o→→০→
-←	(‎ օ ‎)	0585	 ARMENIAN SMALL LETTER OH	# →o→→০→
-←	(‎ ס ‎)	05E1	 HEBREW LETTER SAMEKH	# →o→→০→
-←	(‎ ه ‎)	0647	 ARABIC LETTER HEH	# →o→→০→
-←	(‎ ٥ ‎)	0665	 ARABIC-INDIC DIGIT FIVE	# →o→→০→
-←	(‎ ھ ‎)	06BE	 ARABIC LETTER HEH DOACHASHMEE	# →‎ه‎→→o→→০→
-←	(‎ ہ ‎)	06C1	 ARABIC LETTER HEH GOAL	# →‎ه‎→→o→→০→
-←	(‎ ە ‎)	06D5	 ARABIC LETTER AE	# →‎ه‎→→o→→০→
-←	(‎ ۵ ‎)	06F5	 EXTENDED ARABIC-INDIC DIGIT FIVE	# →‎٥‎→→o→→০→
-←	(‎ ० ‎)	0966	 DEVANAGARI DIGIT ZERO	# →o→→০→
 ←	(‎ ০ ‎)	09E6	 BENGALI DIGIT ZERO
-←	(‎ ૦ ‎)	0AE6	 GUJARATI DIGIT ZERO	# →o→→০→
 ←	(‎ ଠ ‎)	0B20	 ORIYA LETTER TTHA	# →୦→
-←	(‎ ం ‎)	0C02	 TELUGU SIGN ANUSVARA	# →o→→০→
-←	(‎ ಂ ‎)	0C82	 KANNADA SIGN ANUSVARA	# →o→→০→
-←	(‎ ೦ ‎)	0CE6	 KANNADA DIGIT ZERO	# →O→
-←	(‎ ം ‎)	0D02	 MALAYALAM SIGN ANUSVARA	# →o→→০→
-←	(‎ ഠ ‎)	0D20	 MALAYALAM LETTER TTHA	# →o→→০→
-←	(‎ ං ‎)	0D82	 SINHALA SIGN ANUSVARAYA	# →o→→০→
-←	(‎ ๐ ‎)	0E50	 THAI DIGIT ZERO	# →o→→০→
-←	(‎ ໐ ‎)	0ED0	 LAO DIGIT ZERO	# →o→→০→
-←	(‎ ဝ ‎)	101D	 MYANMAR LETTER WA	# →o→→০→
-←	(‎ ၀ ‎)	1040	 MYANMAR DIGIT ZERO	# →o→→০→
 ←	(‎ ዐ ‎)	12D0	 ETHIOPIC SYLLABLE PHARYNGEAL A	# →Օ→→О→
-←	(‎ ០ ‎)	17E0	 KHMER DIGIT ZERO	# →o→→০→
 ←	(‎ 〇 ‎)	3007	 IDEOGRAPHIC NUMBER ZERO	# →O→
 ←	(‎ Ο ‎)	039F	 GREEK CAPITAL LETTER OMICRON
 ←	(‎ О ‎)	041E	 CYRILLIC CAPITAL LETTER O
 ←	(‎ Օ ‎)	0555	 ARMENIAN CAPITAL LETTER OH	# →О→
 
-#	θ	ө	Θ	Ө
+#	θ	Θ	Ө
 	(‎ θ ‎)	03B8	 GREEK SMALL LETTER THETA
-←	(‎ ө ‎)	04E9	 CYRILLIC SMALL LETTER BARRED O	# →ѳ→→o̵→→O̵→→Ꮎ→
 ←	(‎ Θ ‎)	0398	 GREEK CAPITAL LETTER THETA	# →⊖→
 ←	(‎ Ө ‎)	04E8	 CYRILLIC CAPITAL LETTER BARRED O	# →Ѳ→→Θ→→⊖→
-
-#	ô	ۿ
-	(‎ ô ‎)	006F 0302	 LATIN SMALL LETTER O, COMBINING CIRCUMFLEX ACCENT
-←	(‎ ۿ ‎)	06FF	 ARABIC LETTER HEH WITH INVERTED V	# →‎ھٛ‎→
-
-#	oာ	0ာ	ဝာ	တ	თ
-	(‎ 0ာ ‎)	0030 102C	 DIGIT ZERO, MYANMAR VOWEL SIGN AA
-←	(‎ oာ ‎)	006F 102C	 LATIN SMALL LETTER O, MYANMAR VOWEL SIGN AA	# →ဝာ→
-←	(‎ ဝာ ‎)	101D 102C	 MYANMAR LETTER WA, MYANMAR VOWEL SIGN AA
-←	(‎ တ ‎)	1010	 MYANMAR LETTER TA	# →ဝာ→
-←	(‎ თ ‎)	10D7	 GEORGIAN LETTER TAN	# →တ→→ဝာ→
 
 #	l	i	I	1	|	ı	ι	і	ӏ	ւ	ו	ן	ا	١	۱	Ι	І	Ӏ
 	(‎ 1 ‎)	0031	 DIGIT ONE
@@ -200,9 +163,9 @@
 ←	(‎ Η ‎)	0397	 GREEK CAPITAL LETTER ETA
 ←	(‎ Н ‎)	041D	 CYRILLIC CAPITAL LETTER EN
 
-#	lo	IO	Ю
+#	lO	IO	Ю
 	(‎ IO ‎)	0049 004F	 LATIN CAPITAL LETTER I, LATIN CAPITAL LETTER O
-←	(‎ lo ‎)	006C 006F	 LATIN SMALL LETTER L, LATIN SMALL LETTER O
+←	(‎ lO ‎)	006C 004F	 LATIN SMALL LETTER L, LATIN CAPITAL LETTER O
 ←	(‎ Ю ‎)	042E	 CYRILLIC CAPITAL LETTER YU
 
 #	J	Ј
@@ -224,22 +187,14 @@
 	(‎ N ‎)	004E	 LATIN CAPITAL LETTER N
 ←	(‎ Ν ‎)	039D	 GREEK CAPITAL LETTER NU
 
-#	O'	o'	oʼ	Oʼ	ơ	Ơ
+#	O'	Oʼ	Ơ
 	(‎ O' ‎)	004F 0027	 LATIN CAPITAL LETTER O, APOSTROPHE
-←	(‎ o' ‎)	006F 0027	 LATIN SMALL LETTER O, APOSTROPHE	# →Oʼ→
-←	(‎ oʼ ‎)	006F 02BC	 LATIN SMALL LETTER O, MODIFIER LETTER APOSTROPHE	# →o'→→Oʼ→
 ←	(‎ Oʼ ‎)	004F 02BC	 LATIN CAPITAL LETTER O, MODIFIER LETTER APOSTROPHE
-←	(‎ ơ ‎)	01A1	 LATIN SMALL LETTER O WITH HORN	# →oʼ→→o'→→Oʼ→
 ←	(‎ Ơ ‎)	01A0	 LATIN CAPITAL LETTER O WITH HORN	# →Oʼ→
 
-#	OE	oE	Œ
+#	OE	Œ
 	(‎ OE ‎)	004F 0045	 LATIN CAPITAL LETTER O, LATIN CAPITAL LETTER E
-←	(‎ oE ‎)	006F 0045	 LATIN SMALL LETTER O, LATIN CAPITAL LETTER E
 ←	(‎ Œ ‎)	0152	 LATIN CAPITAL LIGATURE OE
-
-#	ø	Ø
-	(‎ ø ‎)	00F8	 LATIN SMALL LETTER O WITH STROKE
-←	(‎ Ø ‎)	00D8	 LATIN CAPITAL LETTER O WITH STROKE	# →O̸→→o̸→→o̷→
 
 #	P	Ρ	Р
 	(‎ P ‎)	0050	 LATIN CAPITAL LETTER P
@@ -364,9 +319,51 @@
 ←	(‎ η ‎)	03B7	 GREEK SMALL LETTER ETA
 ←	(‎ ղ ‎)	0572	 ARMENIAN SMALL LETTER GHAD	# →η→
 
+#	o	ο	σ	о	օ	ס	ه	٥	ھ	ہ	ە	۵	०	૦	ం	ಂ	೦	ം	ഠ	ං	๐	໐	ဝ	၀	០
+	(‎ o ‎)	006F	 LATIN SMALL LETTER O
+←	(‎ ο ‎)	03BF	 GREEK SMALL LETTER OMICRON
+←	(‎ σ ‎)	03C3	 GREEK SMALL LETTER SIGMA
+←	(‎ о ‎)	043E	 CYRILLIC SMALL LETTER O
+←	(‎ օ ‎)	0585	 ARMENIAN SMALL LETTER OH
+←	(‎ ס ‎)	05E1	 HEBREW LETTER SAMEKH
+←	(‎ ه ‎)	0647	 ARABIC LETTER HEH
+←	(‎ ٥ ‎)	0665	 ARABIC-INDIC DIGIT FIVE
+←	(‎ ھ ‎)	06BE	 ARABIC LETTER HEH DOACHASHMEE	# →‎ه‎→
+←	(‎ ہ ‎)	06C1	 ARABIC LETTER HEH GOAL	# →‎ه‎→
+←	(‎ ە ‎)	06D5	 ARABIC LETTER AE	# →‎ه‎→
+←	(‎ ۵ ‎)	06F5	 EXTENDED ARABIC-INDIC DIGIT FIVE	# →‎٥‎→
+←	(‎ ० ‎)	0966	 DEVANAGARI DIGIT ZERO
+←	(‎ ૦ ‎)	0AE6	 GUJARATI DIGIT ZERO
+←	(‎ ం ‎)	0C02	 TELUGU SIGN ANUSVARA
+←	(‎ ಂ ‎)	0C82	 KANNADA SIGN ANUSVARA
+←	(‎ ೦ ‎)	0CE6	 KANNADA DIGIT ZERO	# →౦→
+←	(‎ ം ‎)	0D02	 MALAYALAM SIGN ANUSVARA
+←	(‎ ഠ ‎)	0D20	 MALAYALAM LETTER TTHA
+←	(‎ ං ‎)	0D82	 SINHALA SIGN ANUSVARAYA
+←	(‎ ๐ ‎)	0E50	 THAI DIGIT ZERO
+←	(‎ ໐ ‎)	0ED0	 LAO DIGIT ZERO
+←	(‎ ဝ ‎)	101D	 MYANMAR LETTER WA
+←	(‎ ၀ ‎)	1040	 MYANMAR DIGIT ZERO
+←	(‎ ០ ‎)	17E0	 KHMER DIGIT ZERO
+
+#	o'	oʼ	ơ
+	(‎ o' ‎)	006F 0027	 LATIN SMALL LETTER O, APOSTROPHE
+←	(‎ oʼ ‎)	006F 02BC	 LATIN SMALL LETTER O, MODIFIER LETTER APOSTROPHE
+←	(‎ ơ ‎)	01A1	 LATIN SMALL LETTER O WITH HORN	# →oʼ→
+
 #	oe	œ
 	(‎ oe ‎)	006F 0065	 LATIN SMALL LETTER O, LATIN SMALL LETTER E
 ←	(‎ œ ‎)	0153	 LATIN SMALL LIGATURE OE
+
+#	ô	ۿ
+	(‎ ô ‎)	006F 0302	 LATIN SMALL LETTER O, COMBINING CIRCUMFLEX ACCENT
+←	(‎ ۿ ‎)	06FF	 ARABIC LETTER HEH WITH INVERTED V	# →‎ھٛ‎→
+
+#	oာ	ဝာ	တ	თ
+	(‎ oာ ‎)	006F 102C	 LATIN SMALL LETTER O, MYANMAR VOWEL SIGN AA
+←	(‎ ဝာ ‎)	101D 102C	 MYANMAR LETTER WA, MYANMAR VOWEL SIGN AA
+←	(‎ တ ‎)	1010	 MYANMAR LETTER TA	# →ဝာ→
+←	(‎ თ ‎)	10D7	 GEORGIAN LETTER TAN	# →တ→→ဝာ→
 
 #	p	þ	ρ	р
 	(‎ p ‎)	0070	 LATIN SMALL LETTER P
@@ -1466,5 +1463,5 @@
 	(‎ へ ‎)	3078	 HIRAGANA LETTER HE
 ←	(‎ ヘ ‎)	30D8	 KATAKANA LETTER HE
 
-# total : 526
+# total : 520
 
