@@ -5679,7 +5679,7 @@ A7F1 ; 02E2  # ( ꟱ → ˢ ) MODIFIER LETTER CAPITAL S → MODIFIER LETTER SMAL
 # An analysis of confusable sequences mentioned in L2/22-081 (PAG ref #418)
 256A ; 01C2
 0582 ; 0131
-04CF ; 0049
+# 04CF ; 0049  # unintended side-effects; temporarily removed (21 July 2025)
 
 # Missing Coptic confusables (PAG ref #419)
 03E4 ; 0427
