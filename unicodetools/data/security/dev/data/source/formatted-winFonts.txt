@@ -1,5 +1,5 @@
 # formatted-winFonts.txt
-# Date: 2025-05-02, 14:36:22 GMT
+# Date: 2025-07-22, 05:49:36 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -654,8 +654,6 @@
 07F4 ;	055A	# ( ‎ߴ‎ ~ ՚ ) NKO HIGH TONE APOSTROPHE ~ ARMENIAN APOSTROPHE
 
 07F5 ;	2018	# ( ‎ߵ‎ ~ ‘ ) NKO LOW TONE APOSTROPHE ~ LEFT SINGLE QUOTATION MARK
-
-0B20 ;	0B66	# ( ଠ ~ ୦ ) ORIYA LETTER TTHA ~ ORIYA DIGIT ZERO
 
 0B85 ;	0BEE	# ( அ ~ ௮ ) TAMIL LETTER A ~ TAMIL DIGIT EIGHT
 

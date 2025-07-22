@@ -39,7 +39,6 @@
 0259 ; 04D9 #  schwa ; schwa
 0068 ; 04BB #  h ; shha
 0069 ; 0456 #  i ; i
-026A ; 04CF #  smallcap i ; small palochka (arguable)
 03B9 ; 0269 # iota ; iota 
 03F3 ; 006A ; 0458 # yot ; j ; je
 0138 ; 043A #  kra ; ka
