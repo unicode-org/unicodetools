@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2025-07-21, 18:09:10 GMT
+# Date: 2025-07-22, 05:49:37 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -942,19 +942,18 @@
 	(‎ /̄ ‎)	002F 0304	 SOLIDUS, COMBINING MACRON
 ←	(‎ ⧶ ‎)	29F6	 SOLIDUS WITH OVERBAR
 
-#	O	𑷠	0	০	ଠ	ዐ	〇	Ο	О	Օ	߀	୦	Ⲟ	ⵔ	ꓳ	𐊒	𐊫	𐐄	𐔖	𑓐	𑢵	𑣠	𐓂	🯰	𜳰	𜳤	Ｏ	𝐎	𝑂	𝑶	𝒪	𝓞	𝔒	𝕆	𝕺	𝖮	𝗢	𝘖	𝙊	𝙾	𝚶	𝛰	𝜪	𝝤	𝞞	𝟎	𝟘	𝟢	𝟬	𝟶
+#	O	𑷠	0	ଠ	೦	ዐ	〇	Ο	О	Օ	߀	Ⲟ	ⵔ	ꓳ	𐊒	𐊫	𐐄	𐔖	𑢵	𑣠	𐓂	🯰	𜳰	𜳤	Ｏ	𝐎	𝑂	𝑶	𝒪	𝓞	𝔒	𝕆	𝕺	𝖮	𝗢	𝘖	𝙊	𝙾	𝚶	𝛰	𝜪	𝝤	𝞞	𝟎	𝟘	𝟢	𝟬	𝟶
 	(‎ 0 ‎)	0030	 DIGIT ZERO
 ←	(‎ O ‎)	004F	 LATIN CAPITAL LETTER O
 ←	(‎ 𑷠 ‎)	11DE0	 TOLONG SIKI DIGIT ZERO
-←	(‎ ০ ‎)	09E6	 BENGALI DIGIT ZERO
-←	(‎ ଠ ‎)	0B20	 ORIYA LETTER TTHA	# →୦→
+←	(‎ ଠ ‎)	0B20	 ORIYA LETTER TTHA	# →O→
+←	(‎ ೦ ‎)	0CE6	 KANNADA DIGIT ZERO	# →O→
 ←	(‎ ዐ ‎)	12D0	 ETHIOPIC SYLLABLE PHARYNGEAL A	# →Օ→→О→
 ←	(‎ 〇 ‎)	3007	 IDEOGRAPHIC NUMBER ZERO	# →O→
 ←	(‎ Ο ‎)	039F	 GREEK CAPITAL LETTER OMICRON
 ←	(‎ О ‎)	041E	 CYRILLIC CAPITAL LETTER O
 ←	(‎ Օ ‎)	0555	 ARMENIAN CAPITAL LETTER OH	# →О→
 ←	(‎ ߀ ‎)	07C0	 NKO DIGIT ZERO
-←	(‎ ୦ ‎)	0B66	 ORIYA DIGIT ZERO
 ←	(‎ Ⲟ ‎)	2C9E	 COPTIC CAPITAL LETTER O	# →О→
 ←	(‎ ⵔ ‎)	2D54	 TIFINAGH LETTER YAR	# →О→
 ←	(‎ ꓳ ‎)	A4F3	 LISU LETTER O	# →O→
@@ -962,7 +961,6 @@
 ←	(‎ 𐊫 ‎)	102AB	 CARIAN LETTER O	# →O→
 ←	(‎ 𐐄 ‎)	10404	 DESERET CAPITAL LETTER LONG O	# →O→
 ←	(‎ 𐔖 ‎)	10516	 ELBASAN LETTER O	# →O→
-←	(‎ 𑓐 ‎)	114D0	 TIRHUTA DIGIT ZERO	# →০→
 ←	(‎ 𑢵 ‎)	118B5	 WARANG CITI CAPITAL LETTER AT	# →O→
 ←	(‎ 𑣠 ‎)	118E0	 WARANG CITI DIGIT ZERO
 ←	(‎ 𐓂 ‎)	104C2	 OSAGE CAPITAL LETTER O	# →O→
@@ -1056,7 +1054,7 @@
 ←	(‎ 𑷠点 ‎)	11DE0 70B9	 TOLONG SIKI DIGIT ZERO, CJK UNIFIED IDEOGRAPH-70B9
 ←	(‎ ㍘ ‎)	3358	 IDEOGRAPHIC TELEGRAPH SYMBOL FOR HOUR ZERO
 
-#	l	𑷚	𑷡	𖺪	I	1	|	Ɩ	ǀ	ו	ן	ا	١	۱	Ι	І	Ӏ	ߊ	ᛁ	Ⲓ	ⵏ	ꓲ	𐊊	𐌉	𖼨	׀	∣	𐌠	𞣇	⏽	🯱	𜳱	𜳞	Ⅰ	ⅼ	Ｉ	ｌ	ℐ	ℑ	ℓ	𞸀	𞺀	ﺍ	ﺎ	𝐈	𝐥	𝐼	𝑙	𝑰	𝒍	𝓁	𝓘	𝓵	𝔩	𝕀	𝕝	𝕴	𝖑	𝖨	𝗅	𝗜	𝗹	𝘐	𝘭	𝙄	𝙡	𝙸	𝚕	𝚰	𝛪	𝜤	𝝞	𝞘	𝟏	𝟙	𝟣	𝟭	𝟷	￨
+#	l	𑷚	𑷡	𖺪	I	1	|	Ɩ	ǀ	ӏ	ו	ן	ا	١	۱	Ι	І	Ӏ	ߊ	ᛁ	Ⲓ	ⵏ	ꓲ	𐊊	𐌉	𖼨	׀	∣	𐌠	𞣇	⏽	🯱	𜳱	𜳞	Ⅰ	ⅼ	Ｉ	ｌ	ℐ	ℑ	ℓ	𞸀	𞺀	ﺍ	ﺎ	𝐈	𝐥	𝐼	𝑙	𝑰	𝒍	𝓁	𝓘	𝓵	𝔩	𝕀	𝕝	𝕴	𝖑	𝖨	𝗅	𝗜	𝗹	𝘐	𝘭	𝙄	𝙡	𝙸	𝚕	𝚰	𝛪	𝜤	𝝞	𝞘	𝟏	𝟙	𝟣	𝟭	𝟷	￨
 	(‎ 1 ‎)	0031	 DIGIT ONE
 ←	(‎ l ‎)	006C	 LATIN SMALL LETTER L
 ←	(‎ 𑷚 ‎)	11DDA	 TOLONG SIKI SIGN HECAKA	# →|→→l→
@@ -1066,6 +1064,7 @@
 ←	(‎ | ‎)	007C	 VERTICAL LINE	# →l→
 ←	(‎ Ɩ ‎)	0196	 LATIN CAPITAL LETTER IOTA	# →I→
 ←	(‎ ǀ ‎)	01C0	 LATIN LETTER DENTAL CLICK	# →I→
+←	(‎ ӏ ‎)	04CF	 CYRILLIC SMALL LETTER PALOCHKA	# →I→
 ←	(‎ ו ‎)	05D5	 HEBREW LETTER VAV	# →l→
 ←	(‎ ן ‎)	05DF	 HEBREW LETTER FINAL NUN	# →l→
 ←	(‎ ا ‎)	0627	 ARABIC LETTER ALEF
@@ -3390,8 +3389,9 @@
 ←	(‎ e̸ ‎)	0065 0338	 LATIN SMALL LETTER E, COMBINING LONG SOLIDUS OVERLAY
 ←	(‎ ɇ ‎)	0247	 LATIN SMALL LETTER E WITH STROKE
 
-#	f	ẝ	ք	ꞙ	ꬵ	ſ	𝐟	𝑓	𝒇	𝒻	𝓯	𝔣	𝕗	𝖋	𝖿	𝗳	𝘧	𝙛	𝚏
+#	f	ƒ	ẝ	ք	ꞙ	ꬵ	ſ	𝐟	𝑓	𝒇	𝒻	𝓯	𝔣	𝕗	𝖋	𝖿	𝗳	𝘧	𝙛	𝚏
 	(‎ f ‎)	0066	 LATIN SMALL LETTER F
+←	(‎ ƒ ‎)	0192	 LATIN SMALL LETTER F WITH HOOK
 ←	(‎ ẝ ‎)	1E9D	 LATIN SMALL LETTER LONG S WITH HIGH STROKE
 ←	(‎ ք ‎)	0584	 ARMENIAN SMALL LETTER KEH
 ←	(‎ ꞙ ‎)	A799	 LATIN SMALL LETTER F WITH STROKE
@@ -3435,11 +3435,6 @@
 	(‎ fn̩ ‎)	0066 006E 0329	 LATIN SMALL LETTER F, LATIN SMALL LETTER N, COMBINING VERTICAL LINE BELOW
 ←	(‎ fŋ ‎)	0066 014B	 LATIN SMALL LETTER F, LATIN SMALL LETTER ENG
 ←	(‎ ʩ ‎)	02A9	 LATIN SMALL LETTER FENG DIGRAPH	# →fŋ→
-
-#	f̦	f̡	ƒ
-	(‎ f̡ ‎)	0066 0321	 LATIN SMALL LETTER F, COMBINING PALATALIZED HOOK BELOW
-←	(‎ f̦ ‎)	0066 0326	 LATIN SMALL LETTER F, COMBINING COMMA BELOW
-←	(‎ ƒ ‎)	0192	 LATIN SMALL LETTER F WITH HOOK
 
 #	f̴	ᵮ
 	(‎ f̴ ‎)	0066 0334	 LATIN SMALL LETTER F, COMBINING TILDE OVERLAY
@@ -3507,14 +3502,13 @@
 ←	(‎ ћ ‎)	045B	 CYRILLIC SMALL LETTER TSHE	# →ħ→
 ←	(‎ ℏ ‎)	210F	 PLANCK CONSTANT OVER TWO PI	# →ħ→
 
-#	i	ı	ɩ	ɪ	ι	і	ӏ	ւ	Ꭵ	ⲓ	ꙇ	⍳	𑣃	ꭵ	ⅰ	ｉ	ι	ℹ	ⅈ	𝐢	𝑖	𝒊	𝒾	𝓲	𝔦	𝕚	𝖎	𝗂	𝗶	𝘪	𝙞	𝚒	𝚤	𝛊	𝜄	𝜾	𝝸	𝞲	˛	ͺ
+#	i	ı	ɩ	ɪ	ι	і	ւ	Ꭵ	ⲓ	ꙇ	⍳	𑣃	ꭵ	ⅰ	ｉ	ι	ℹ	ⅈ	𝐢	𝑖	𝒊	𝒾	𝓲	𝔦	𝕚	𝖎	𝗂	𝗶	𝘪	𝙞	𝚒	𝚤	𝛊	𝜄	𝜾	𝝸	𝞲	˛	ͺ
 	(‎ i ‎)	0069	 LATIN SMALL LETTER I
 ←	(‎ ı ‎)	0131	 LATIN SMALL LETTER DOTLESS I
 ←	(‎ ɩ ‎)	0269	 LATIN SMALL LETTER IOTA
 ←	(‎ ɪ ‎)	026A	 LATIN LETTER SMALL CAPITAL I	# →ı→
 ←	(‎ ι ‎)	03B9	 GREEK SMALL LETTER IOTA
 ←	(‎ і ‎)	0456	 CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
-←	(‎ ӏ ‎)	04CF	 CYRILLIC SMALL LETTER PALOCHKA	# →ı→
 ←	(‎ ւ ‎)	0582	 ARMENIAN SMALL LETTER YIWN	# →ı→
 ←	(‎ Ꭵ ‎)	13A5	 CHEROKEE LETTER V
 ←	(‎ ⲓ ‎)	2C93	 COPTIC SMALL LETTER IAUDA	# →ı→
@@ -3739,7 +3733,7 @@
 	(‎ n̴ ‎)	006E 0334	 LATIN SMALL LETTER N, COMBINING TILDE OVERLAY
 ←	(‎ ᵰ ‎)	1D70	 LATIN SMALL LETTER N WITH MIDDLE TILDE
 
-#	o	ᴏ	ᴑ	ο	σ	о	օ	ס	ه	٥	ھ	ہ	ە	۵	०	૦	ం	ಂ	೦	ം	ഠ	ං	๐	໐	ဝ	၀	០	ϭ	੦	௦	౦	൦	ჿ	ⲟ	𐐬	ꬽ	𑣈	𑣗	𐓪	ｏ	ℴ	𞸤	𞹤	𞺄	ﮦ	ﮧ	ﮨ	ﮩ	ﮪ	ﮫ	ﮬ	ﮭ	ﻩ	ﻪ	ﻫ	ﻬ	𝐨	𝑜	𝒐	𝓸	𝔬	𝕠	𝖔	𝗈	𝗼	𝘰	𝙤	𝚘	𝛐	𝛔	𝜊	𝜎	𝝄	𝝈	𝝾	𝞂	𝞸	𝞼
+#	o	ᴏ	ᴑ	ο	σ	о	օ	ס	ه	٥	ھ	ہ	ە	۵	०	০	૦	ం	ಂ	ം	ഠ	ං	๐	໐	ဝ	၀	០	ϭ	੦	୦	௦	౦	൦	ჿ	ⲟ	𐐬	ꬽ	𑓐	𑣈	𑣗	𐓪	ｏ	ℴ	𞸤	𞹤	𞺄	ﮦ	ﮧ	ﮨ	ﮩ	ﮪ	ﮫ	ﮬ	ﮭ	ﻩ	ﻪ	ﻫ	ﻬ	𝐨	𝑜	𝒐	𝓸	𝔬	𝕠	𝖔	𝗈	𝗼	𝘰	𝙤	𝚘	𝛐	𝛔	𝜊	𝜎	𝝄	𝝈	𝝾	𝞂	𝞸	𝞼
 	(‎ o ‎)	006F	 LATIN SMALL LETTER O
 ←	(‎ ᴏ ‎)	1D0F	 LATIN LETTER SMALL CAPITAL O
 ←	(‎ ᴑ ‎)	1D11	 LATIN SMALL LETTER SIDEWAYS O
@@ -3755,10 +3749,10 @@
 ←	(‎ ە ‎)	06D5	 ARABIC LETTER AE	# →‎ه‎→
 ←	(‎ ۵ ‎)	06F5	 EXTENDED ARABIC-INDIC DIGIT FIVE	# →‎٥‎→
 ←	(‎ ० ‎)	0966	 DEVANAGARI DIGIT ZERO
+←	(‎ ০ ‎)	09E6	 BENGALI DIGIT ZERO
 ←	(‎ ૦ ‎)	0AE6	 GUJARATI DIGIT ZERO
 ←	(‎ ం ‎)	0C02	 TELUGU SIGN ANUSVARA
 ←	(‎ ಂ ‎)	0C82	 KANNADA SIGN ANUSVARA
-←	(‎ ೦ ‎)	0CE6	 KANNADA DIGIT ZERO	# →౦→
 ←	(‎ ം ‎)	0D02	 MALAYALAM SIGN ANUSVARA
 ←	(‎ ഠ ‎)	0D20	 MALAYALAM LETTER TTHA
 ←	(‎ ං ‎)	0D82	 SINHALA SIGN ANUSVARAYA
@@ -3769,6 +3763,7 @@
 ←	(‎ ០ ‎)	17E0	 KHMER DIGIT ZERO
 ←	(‎ ϭ ‎)	03ED	 COPTIC SMALL LETTER SHIMA	# →σ→
 ←	(‎ ੦ ‎)	0A66	 GURMUKHI DIGIT ZERO
+←	(‎ ୦ ‎)	0B66	 ORIYA DIGIT ZERO
 ←	(‎ ௦ ‎)	0BE6	 TAMIL DIGIT ZERO
 ←	(‎ ౦ ‎)	0C66	 TELUGU DIGIT ZERO
 ←	(‎ ൦ ‎)	0D66	 MALAYALAM DIGIT ZERO
@@ -3776,6 +3771,7 @@
 ←	(‎ ⲟ ‎)	2C9F	 COPTIC SMALL LETTER O
 ←	(‎ 𐐬 ‎)	1042C	 DESERET SMALL LETTER LONG O
 ←	(‎ ꬽ ‎)	AB3D	 LATIN SMALL LETTER BLACKLETTER O
+←	(‎ 𑓐 ‎)	114D0	 TIRHUTA DIGIT ZERO	# →০→
 ←	(‎ 𑣈 ‎)	118C8	 WARANG CITI SMALL LETTER E
 ←	(‎ 𑣗 ‎)	118D7	 WARANG CITI SMALL LETTER BU
 ←	(‎ 𐓪 ‎)	104EA	 OSAGE SMALL LETTER O
@@ -17840,5 +17836,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 7576
+# total : 7575
 

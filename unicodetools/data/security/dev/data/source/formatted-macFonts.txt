@@ -1,5 +1,5 @@
 # formatted-macFonts.txt
-# Date: 2025-05-02, 14:36:22 GMT
+# Date: 2025-07-22, 05:49:36 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -283,7 +283,6 @@
 
 0131 ;	026A	# ( ı ~ ɪ ) LATIN SMALL LETTER DOTLESS I ~ LATIN LETTER SMALL CAPITAL I
 0131 ;	03B9	# ( ı ~ ι ) LATIN SMALL LETTER DOTLESS I ~ GREEK SMALL LETTER IOTA
-0131 ;	04CF	# ( ı ~ ӏ ) LATIN SMALL LETTER DOTLESS I ~ CYRILLIC SMALL LETTER PALOCHKA
 
 0138 ;	1D0B	# ( ĸ ~ ᴋ ) LATIN SMALL LETTER KRA ~ LATIN LETTER SMALL CAPITAL K
 0138 ;	03BA	# ( ĸ ~ κ ) LATIN SMALL LETTER KRA ~ GREEK SMALL LETTER KAPPA

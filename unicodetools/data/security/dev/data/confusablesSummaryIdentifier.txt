@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2025-07-21, 18:09:10 GMT
+# Date: 2025-07-22, 05:49:37 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -38,11 +38,11 @@
 	(‎ / ‎)	002F	 SOLIDUS
 ←	(‎ ノ ‎)	30CE	 KATAKANA LETTER NO	# →⼃→
 
-#	O	0	০	ଠ	ዐ	〇	Ο	О	Օ
+#	O	0	ଠ	೦	ዐ	〇	Ο	О	Օ
 	(‎ 0 ‎)	0030	 DIGIT ZERO
 ←	(‎ O ‎)	004F	 LATIN CAPITAL LETTER O
-←	(‎ ০ ‎)	09E6	 BENGALI DIGIT ZERO
-←	(‎ ଠ ‎)	0B20	 ORIYA LETTER TTHA	# →୦→
+←	(‎ ଠ ‎)	0B20	 ORIYA LETTER TTHA	# →O→
+←	(‎ ೦ ‎)	0CE6	 KANNADA DIGIT ZERO	# →O→
 ←	(‎ ዐ ‎)	12D0	 ETHIOPIC SYLLABLE PHARYNGEAL A	# →Օ→→О→
 ←	(‎ 〇 ‎)	3007	 IDEOGRAPHIC NUMBER ZERO	# →O→
 ←	(‎ Ο ‎)	039F	 GREEK CAPITAL LETTER OMICRON
@@ -54,11 +54,12 @@
 ←	(‎ Θ ‎)	0398	 GREEK CAPITAL LETTER THETA	# →⊖→
 ←	(‎ Ө ‎)	04E8	 CYRILLIC CAPITAL LETTER BARRED O	# →Ѳ→→Θ→→⊖→
 
-#	l	I	1	|	ו	ן	ا	١	۱	Ι	І	Ӏ
+#	l	I	1	|	ӏ	ו	ן	ا	١	۱	Ι	І	Ӏ
 	(‎ 1 ‎)	0031	 DIGIT ONE
 ←	(‎ l ‎)	006C	 LATIN SMALL LETTER L
 ←	(‎ I ‎)	0049	 LATIN CAPITAL LETTER I
 ←	(‎ | ‎)	007C	 VERTICAL LINE	# →l→
+←	(‎ ӏ ‎)	04CF	 CYRILLIC SMALL LETTER PALOCHKA	# →I→
 ←	(‎ ו ‎)	05D5	 HEBREW LETTER VAV	# →l→
 ←	(‎ ן ‎)	05DF	 HEBREW LETTER FINAL NUN	# →l→
 ←	(‎ ا ‎)	0627	 ARABIC LETTER ALEF
@@ -295,12 +296,11 @@
 	(‎ ħ ‎)	0127	 LATIN SMALL LETTER H WITH STROKE
 ←	(‎ ћ ‎)	045B	 CYRILLIC SMALL LETTER TSHE
 
-#	i	ı	ι	і	ӏ	ւ
+#	i	ı	ι	і	ւ
 	(‎ i ‎)	0069	 LATIN SMALL LETTER I
 ←	(‎ ı ‎)	0131	 LATIN SMALL LETTER DOTLESS I
 ←	(‎ ι ‎)	03B9	 GREEK SMALL LETTER IOTA
 ←	(‎ і ‎)	0456	 CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
-←	(‎ ӏ ‎)	04CF	 CYRILLIC SMALL LETTER PALOCHKA	# →ı→
 ←	(‎ ւ ‎)	0582	 ARMENIAN SMALL LETTER YIWN	# →ı→
 
 #	j	ј
@@ -321,7 +321,7 @@
 ←	(‎ η ‎)	03B7	 GREEK SMALL LETTER ETA
 ←	(‎ ղ ‎)	0572	 ARMENIAN SMALL LETTER GHAD	# →η→
 
-#	o	ο	σ	о	օ	ס	ه	٥	ھ	ہ	ە	۵	०	૦	ం	ಂ	೦	ം	ഠ	ං	๐	໐	ဝ	၀	០
+#	o	ο	σ	о	օ	ס	ه	٥	ھ	ہ	ە	۵	०	০	૦	ం	ಂ	ം	ഠ	ං	๐	໐	ဝ	၀	០
 	(‎ o ‎)	006F	 LATIN SMALL LETTER O
 ←	(‎ ο ‎)	03BF	 GREEK SMALL LETTER OMICRON
 ←	(‎ σ ‎)	03C3	 GREEK SMALL LETTER SIGMA
@@ -335,10 +335,10 @@
 ←	(‎ ە ‎)	06D5	 ARABIC LETTER AE	# →‎ه‎→
 ←	(‎ ۵ ‎)	06F5	 EXTENDED ARABIC-INDIC DIGIT FIVE	# →‎٥‎→
 ←	(‎ ० ‎)	0966	 DEVANAGARI DIGIT ZERO
+←	(‎ ০ ‎)	09E6	 BENGALI DIGIT ZERO
 ←	(‎ ૦ ‎)	0AE6	 GUJARATI DIGIT ZERO
 ←	(‎ ం ‎)	0C02	 TELUGU SIGN ANUSVARA
 ←	(‎ ಂ ‎)	0C82	 KANNADA SIGN ANUSVARA
-←	(‎ ೦ ‎)	0CE6	 KANNADA DIGIT ZERO	# →౦→
 ←	(‎ ം ‎)	0D02	 MALAYALAM SIGN ANUSVARA
 ←	(‎ ഠ ‎)	0D20	 MALAYALAM LETTER TTHA
 ←	(‎ ං ‎)	0D82	 SINHALA SIGN ANUSVARAYA
