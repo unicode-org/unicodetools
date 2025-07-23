@@ -1,5 +1,5 @@
 # Scripts-17.0.0.txt
-# Date: 2025-06-30, 06:20:47 GMT
+# Date: 2025-07-23, 01:37:34 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3140,6 +3140,16 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 113E1..113E2  ; Tulu_Tigalari # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 
 # Total code points: 80
+
+# ================================================
+
+16D80..16D97  ; Chisoi # Lo  [24] CHISOI LETTER A..CHISOI LETTER PA
+16D98         ; Chisoi # Mn       CHISOI SIGN ANUSVARA
+16D99..16D9C  ; Chisoi # Lo   [4] CHISOI LETTER YA..CHISOI LETTER JARAHA
+16D9D         ; Chisoi # Mn       CHISOI SIGN SISO
+16DA0..16DA9  ; Chisoi # Nd  [10] CHISOI DIGIT ZERO..CHISOI DIGIT NINE
+
+# Total code points: 40
 
 # ================================================
 
