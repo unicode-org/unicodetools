@@ -1,5 +1,5 @@
 # DerivedCombiningClass-17.0.0.txt
-# Date: 2025-06-30, 06:20:18 GMT
+# Date: 2025-07-24, 00:12:46 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2068,7 +2068,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1FA80..1FA8A  ; 0 # So  [11] YO-YO..TROMBONE
 1FA8E..1FAC6  ; 0 # So  [57] TREASURE CHEST..FINGERPRINT
 1FAC8         ; 0 # So       HAIRY CREATURE
-1FACD..1FADD  ; 0 # So  [17] ORCA..APPLE CORE
+1FACD..1FADC  ; 0 # So  [16] ORCA..ROOT VEGETABLE
 1FADF..1FAEA  ; 0 # So  [12] SPLATTER..DISTORTED FACE
 1FAEF..1FAF8  ; 0 # So  [10] FIGHT CLOUD..RIGHTWARDS PUSHING HAND
 1FB00..1FB92  ; 0 # So [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK
@@ -2089,7 +2089,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 816777 code points not listed here.
+# The above property value applies to 816778 code points not listed here.
 # Total code points: 1113144
 
 # ================================================

@@ -1,5 +1,5 @@
 # VerticalOrientation-17.0.0.txt
-# Date: 2025-06-30, 06:20:49 GMT
+# Date: 2025-07-24, 00:13:33 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2513,8 +2513,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1FAC7          ; U  # Cn         <reserved-1FAC7>
 1FAC8          ; U  # So         HAIRY CREATURE
 1FAC9..1FACC   ; U  # Cn     [4] <reserved-1FAC9>..<reserved-1FACC>
-1FACD..1FADD   ; U  # So    [17] ORCA..APPLE CORE
-1FADE          ; U  # Cn         <reserved-1FADE>
+1FACD..1FADC   ; U  # So    [16] ORCA..ROOT VEGETABLE
+1FADD..1FADE   ; U  # Cn     [2] <reserved-1FADD>..<reserved-1FADE>
 1FADF..1FAEA   ; U  # So    [12] SPLATTER..DISTORTED FACE
 1FAEB..1FAEE   ; U  # Cn     [4] <reserved-1FAEB>..<reserved-1FAEE>
 1FAEF..1FAF8   ; U  # So    [10] FIGHT CLOUD..RIGHTWARDS PUSHING HAND

@@ -1,5 +1,5 @@
 # EastAsianWidth-17.0.0.txt
-# Date: 2025-06-30, 06:20:23 GMT
+# Date: 2025-07-24, 00:12:54 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2688,7 +2688,8 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 1FA80..1FA8A   ; W  # So    [11] YO-YO..TROMBONE
 1FA8E..1FAC6   ; W  # So    [57] TREASURE CHEST..FINGERPRINT
 1FAC8          ; W  # So         HAIRY CREATURE
-1FACD..1FADD   ; W  # So    [17] ORCA..APPLE CORE
+1FACD..1FADC   ; W  # So    [16] ORCA..ROOT VEGETABLE
+1FADD          ; W  # Cn         <reserved-1FADD>
 1FADF..1FAEA   ; W  # So    [12] SPLATTER..DISTORTED FACE
 1FAEF..1FAF8   ; W  # So    [10] FIGHT CLOUD..RIGHTWARDS PUSHING HAND
 1FB00..1FB92   ; N  # So   [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK

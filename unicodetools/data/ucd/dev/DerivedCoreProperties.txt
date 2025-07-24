@@ -1,5 +1,5 @@
 # DerivedCoreProperties-17.0.0.txt
-# Date: 2025-06-30, 06:20:18 GMT
+# Date: 2025-07-24, 00:12:47 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -12964,7 +12964,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 1FA80..1FA8A  ; Grapheme_Base # So  [11] YO-YO..TROMBONE
 1FA8E..1FAC6  ; Grapheme_Base # So  [57] TREASURE CHEST..FINGERPRINT
 1FAC8         ; Grapheme_Base # So       HAIRY CREATURE
-1FACD..1FADD  ; Grapheme_Base # So  [17] ORCA..APPLE CORE
+1FACD..1FADC  ; Grapheme_Base # So  [16] ORCA..ROOT VEGETABLE
 1FADF..1FAEA  ; Grapheme_Base # So  [12] SPLATTER..DISTORTED FACE
 1FAEF..1FAF8  ; Grapheme_Base # So  [10] FIGHT CLOUD..RIGHTWARDS PUSHING HAND
 1FB00..1FB92  ; Grapheme_Base # So [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK
@@ -12980,7 +12980,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 30000..3134A  ; Grapheme_Base # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..33479  ; Grapheme_Base # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 
-# Total code points: 157495
+# Total code points: 157494
 
 # ================================================
 

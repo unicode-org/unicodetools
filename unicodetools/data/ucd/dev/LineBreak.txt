@@ -1,5 +1,5 @@
 # LineBreak-17.0.0.txt
-# Date: 2025-06-30, 06:20:25 GMT
+# Date: 2025-07-24, 00:12:58 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3670,8 +3670,8 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 1FAC7          ; ID # Cn         <reserved-1FAC7>
 1FAC8          ; ID # So         HAIRY CREATURE
 1FAC9..1FACC   ; ID # Cn     [4] <reserved-1FAC9>..<reserved-1FACC>
-1FACD..1FADD   ; ID # So    [17] ORCA..APPLE CORE
-1FADE          ; ID # Cn         <reserved-1FADE>
+1FACD..1FADC   ; ID # So    [16] ORCA..ROOT VEGETABLE
+1FADD..1FADE   ; ID # Cn     [2] <reserved-1FADD>..<reserved-1FADE>
 1FADF..1FAEA   ; ID # So    [12] SPLATTER..DISTORTED FACE
 1FAEB..1FAEE   ; ID # Cn     [4] <reserved-1FAEB>..<reserved-1FAEE>
 1FAEF          ; ID # So         FIGHT CLOUD
