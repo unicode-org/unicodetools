@@ -1,5 +1,5 @@
 # StandardizedVariants-17.0.0.txt
-# Date: 2025-01-23, 00:00:00 GMT [KW]
+# Date: 2025-07-23, 00:00:00 GMT [KW]
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -49,7 +49,7 @@
 #
 # =============================
 
-# Mathematical
+# Mathematical and other symbols
 
 0030 FE00; short diagonal stroke form; # DIGIT ZERO
 2205 FE00; zero with long diagonal stroke overlay form; # EMPTY SET
@@ -76,6 +76,7 @@
 229C FE00; with equal sign touching the circle; # CIRCLED EQUALS
 22DA FE00; with slanted equal; # LESS-THAN EQUAL TO OR GREATER-THAN
 22DB FE00; with slanted equal; # GREATER-THAN EQUAL TO OR LESS-THAN
+29B7 FE00; with parallel lines touching the circle; # CIRCLED PARALLEL
 2A3C FE00; tall variant with narrow foot; # INTERIOR PRODUCT
 2A3D FE00; tall variant with narrow foot; # RIGHTHAND INTERIOR PRODUCT
 2A9D FE00; with similar following the slant of the upper leg; # SIMILAR OR LESS-THAN
