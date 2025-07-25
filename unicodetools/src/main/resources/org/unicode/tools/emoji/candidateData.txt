@@ -366,12 +366,6 @@ Name=ballet dancer: medium-dark skin tone
 U+1F9D1 U+1F3FF U+200D U+1FA70
 Name=ballet dancer: dark skin tone
 
-Proposal=L2/24-253
-After=🥥
-U+1FADD
-Name=apple core
-Keywords=compost | eaten | food | rotten | garbage
-
 Proposal=L2/24-249
 After=🦪
 U+1FACD
