@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2025-07-07, 20:15:34 GMT
+# Date: 2025-07-25, 18:31:31 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -4900,7 +4900,6 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1FAD7..1FAD9  ; Not_XID                        # 14.0   [3] POURING LIQUID..JAR
 1FADA..1FADB  ; Not_XID                        # 15.0   [2] GINGER ROOT..PEA POD
 1FADC         ; Not_XID                        # 16.0       ROOT VEGETABLE
-1FADD         ; Not_XID                        # 17.0       APPLE CORE
 1FADF         ; Not_XID                        # 16.0       SPLATTER
 1FAE0..1FAE7  ; Not_XID                        # 14.0   [8] MELTING FACE..BUBBLES
 1FAE8         ; Not_XID                        # 15.0       SHAKING FACE
@@ -4914,7 +4913,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1FBCB..1FBEF  ; Not_XID                        # 16.0  [37] WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; Not_XID                        # 17.0       ALARM BELL SYMBOL
 
-# Total code points: 6488
+# Total code points: 6487
 
 #	Identifier_Type:	Not_NFKC
 
