@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2025-07-07, 21:33:55 GMT
+# Date: 2025-07-25, 18:08:44 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -8654,8 +8654,7 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 1FAD7..1FAD9  ; valid      ;      ; NV8    # 14.0 POURING LIQUID..JAR
 1FADA..1FADB  ; valid      ;      ; NV8    # 15.0 GINGER ROOT..PEA POD
 1FADC         ; valid      ;      ; NV8    # 16.0 ROOT VEGETABLE
-1FADD         ; valid      ;      ; NV8    # 17.0 APPLE CORE
-1FADE         ; disallowed                 # NA   <reserved-1FADE>
+1FADD..1FADE  ; disallowed                 # NA   <reserved-1FADD>..<reserved-1FADE>
 1FADF         ; valid      ;      ; NV8    # 16.0 SPLATTER
 1FAE0..1FAE7  ; valid      ;      ; NV8    # 14.0 MELTING FACE..BUBBLES
 1FAE8         ; valid      ;      ; NV8    # 15.0 SHAKING FACE

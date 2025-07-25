@@ -1,5 +1,5 @@
 # DerivedAge-17.0.0.txt
-# Date: 2025-06-30, 06:20:00 GMT
+# Date: 2025-07-24, 00:12:18 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2106,7 +2106,6 @@ FDC8..FDCE    ; 17.0 #   [7] ARABIC LIGATURE RAHIMAHU ALLAAH TAAALAA..ARABIC LIG
 1FA8E         ; 17.0 #       TREASURE CHEST
 1FAC8         ; 17.0 #       HAIRY CREATURE
 1FACD         ; 17.0 #       ORCA
-1FADD         ; 17.0 #       APPLE CORE
 1FAEA         ; 17.0 #       DISTORTED FACE
 1FAEF         ; 17.0 #       FIGHT CLOUD
 1FBFA         ; 17.0 #       ALARM BELL SYMBOL
@@ -2114,6 +2113,6 @@ FDC8..FDCE    ; 17.0 #   [7] ARABIC LIGATURE RAHIMAHU ALLAAH TAAALAA..ARABIC LIG
 2CEA2..2CEAD  ; 17.0 #  [12] CJK UNIFIED IDEOGRAPH-2CEA2..CJK UNIFIED IDEOGRAPH-2CEAD
 323B0..33479  ; 17.0 # [4298] CJK UNIFIED IDEOGRAPH-323B0..CJK UNIFIED IDEOGRAPH-33479
 
-# Total code points: 4804
+# Total code points: 4803
 
 # EOF

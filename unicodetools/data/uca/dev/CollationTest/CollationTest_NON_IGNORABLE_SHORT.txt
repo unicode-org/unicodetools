@@ -1,5 +1,5 @@
 # CollationTest_NON_IGNORABLE_SHORT.txt
-# Date: 2025-07-07, 21:59:35 GMT
+# Date: 2025-07-25, 18:48:04 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -40941,11 +40941,6 @@ A4C6 0062
 1FADC 0061
 1FADC 0041
 1FADC 0062
-1FADD 0021
-1FADD 003F
-1FADD 0061
-1FADD 0041
-1FADD 0062
 1FADF 0021
 1FADF 003F
 1FADF 0061
