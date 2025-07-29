@@ -49,4 +49,8 @@
 
 # ================================================================================
 # Unconditional mappings
+# The mappings in this section are not language-sensitive nor context-sensitive.
+#
+# Note that comments provide additional information but
+# do not modify the case mapping algorithms in the core specification, chapter 3.
 # ================================================================================
