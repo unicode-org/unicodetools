@@ -1,5 +1,5 @@
 # LineBreak-17.0.0.txt
-# Date: 2025-07-24, 00:12:58 GMT
+# Date: 2025-07-29, 13:52:18 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1276,8 +1276,8 @@
 27EE           ; OP # Ps         MATHEMATICAL LEFT FLATTENED PARENTHESIS
 27EF           ; CL # Pe         MATHEMATICAL RIGHT FLATTENED PARENTHESIS
 27F0..27FF     ; AL # Sm    [16] UPWARDS QUADRUPLE ARROW..LONG RIGHTWARDS SQUIGGLE ARROW
-2800 ; BA
-2801..28FF     ; AL # So   [256] BRAILLE PATTERN BLANK..BRAILLE PATTERN DOTS-12345678
+2800           ; BA # So         BRAILLE PATTERN BLANK
+2801..28FF     ; AL # So   [255] BRAILLE PATTERN DOTS-1..BRAILLE PATTERN DOTS-12345678
 2900..297F     ; AL # Sm   [128] RIGHTWARDS TWO-HEADED ARROW WITH VERTICAL STROKE..DOWN FISH TAIL
 2980..2982     ; AL # Sm     [3] TRIPLE VERTICAL BAR DELIMITER..Z NOTATION TYPE COLON
 2983           ; OP # Ps         LEFT WHITE CURLY BRACKET
