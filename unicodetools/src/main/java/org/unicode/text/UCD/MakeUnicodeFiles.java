@@ -1281,10 +1281,7 @@ public class MakeUnicodeFiles {
                 }
                 pwProp.println(ps.roozbehFile ? "#" : "");
                 pwProp.println("#  All code points not explicitly listed for " + prop.getName());
-                pwProp.println(
-                        "#  have the value "
-                                + v
-                                + (ps.roozbehFile && v.equals("NA") ? " (not applicable)." : "."));
+                pwProp.println("#  have the value " + v + ".");
             }
 
             if (!ps.interleaveValues && prop.isType(UnicodeProperty.BINARY_MASK)) {
