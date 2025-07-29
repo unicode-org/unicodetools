@@ -1215,7 +1215,7 @@ public class UcdPropertyValues {
         Bottom_And_Right("Bottom_And_Right"),
         Left("Left"),
         Left_And_Right("Left_And_Right"),
-        NA("NA"),
+        Not_Applicable("NA"),
         Overstruck("Overstruck"),
         Right("Right"),
         Top("Top"),
