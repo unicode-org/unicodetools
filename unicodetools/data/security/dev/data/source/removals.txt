@@ -1210,3 +1210,8 @@ AB66..AB67; Uncommon_Use
 [麭-麰麲-黫黭-黰黲-鼂鼄-鼐鼒鼓鼕-鼥鼧-齄齆-齒齔-齬齮-龠龢龤龥𠜎𠜱𠝹𠱓𠱸𠲖𠳏𠳕𠴕𠵼𠵿𠸎𠸏𠹷𠺝𠺢𠻗𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪]; Recommended
 [𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂𢴈𢵌𢵧𢺳𣲷𤓓𤶸𤷪𥄫𦉘𦟌𦧲𦧺𧨾𨅝𨈇𨋢𨳊𨳍𨳒𩶘]; Recommended
 
+# Unicode 17.0
+# UTC-184-A72 ... Change the Identifier_Type of U+08C9 ARABIC SMALL FARSI YEH from Recommended to Technical, and of 
+# U+16FF0 and U+16FF1 VIETNAMESE ALTERNATE READING MARK CA and NHAY from Recommended to Obsolete.
+08C9; Technical
+16FF0..16FF1; Obsolete

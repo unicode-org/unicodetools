@@ -1,5 +1,5 @@
 # IdentifierStatus.txt
-# Date: 2025-05-07, 21:39:39 GMT
+# Date: 2025-07-29, 02:36:52 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -149,7 +149,6 @@
 08BB..08BD    ; Allowed    # 9.0    [3] ARABIC LETTER AFRICAN FEH..ARABIC LETTER AFRICAN NOON
 08BE..08C2    ; Allowed    # 13.0   [5] ARABIC LETTER PEH WITH SMALL V..ARABIC LETTER KEHEH WITH SMALL V
 08C7          ; Allowed    # 13.0       ARABIC LETTER LAM WITH SMALL ARABIC LETTER TAH ABOVE
-08C9          ; Allowed    # 14.0       ARABIC SMALL FARSI YEH
 0901..0903    ; Allowed    # 1.1    [3] DEVANAGARI SIGN CANDRABINDU..DEVANAGARI SIGN VISARGA
 0905..090B    ; Allowed    # 1.1    [7] DEVANAGARI LETTER A..DEVANAGARI LETTER VOCALIC R
 090D..0928    ; Allowed    # 1.1   [28] DEVANAGARI LETTER CANDRA E..DEVANAGARI LETTER NA
@@ -1617,7 +1616,6 @@ AC00..D7A3    ; Allowed    # 2.0 [11172] HANGUL SYLLABLE GA..HANGUL SYLLABLE HIH
 11301         ; Allowed    # 7.0        GRANTHA SIGN CANDRABINDU
 11303         ; Allowed    # 7.0        GRANTHA SIGN VISARGA
 1133C         ; Allowed    # 7.0        GRANTHA SIGN NUKTA
-16FF0..16FF1  ; Allowed    # 13.0   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 1E7E0..1E7E6  ; Allowed    # 14.0   [7] ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
 1E7E8..1E7EB  ; Allowed    # 14.0   [4] ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE
 1E7ED..1E7EE  ; Allowed    # 14.0   [2] ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
@@ -1681,4 +1679,4 @@ AC00..D7A3    ; Allowed    # 2.0 [11172] HANGUL SYLLABLE GA..HANGUL SYLLABLE HIH
 28CD2         ; Allowed    # 3.1        CJK UNIFIED IDEOGRAPH-28CD2
 29D98         ; Allowed    # 3.1        CJK UNIFIED IDEOGRAPH-29D98
 
-# Total code points: 33794
+# Total code points: 33791
