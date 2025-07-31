@@ -1,21 +1,11 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 17.0.0
 @@@+	NamesList-17.0.0.txt
-@+	Generation Date: 2025-07-23, 11:22:16 GMT
+@+	Generation Date: 2025-07-30, 17:12:45 GMT
 	Unicode 17.0.0 names list.
-	Repertoire synched with UnicodeData-17.0.0d6.txt.
-	Synch with 7th edition CD3; post UTC183 annotation updates for 17.0.
-	Added 4 formal name aliases for Bamum: 16881, 1688E, 168DC, 1697D.
-	Add annotation to 1AB3.
-	Various updates re legacy hieroglyphs. See L2/25-110 for reference.
-	Corrected location of subhead for 1244A.
-	Adjusted annotation for 06C0.
-	Corrected alias for 3026.
-	Removed Chisoi heading, subheads and annotations.
-	Removed annotations for 09FF, 0B53, 0B54.
-	Corrections for Egyptian hieroglyph subheads.
-	Correction for Tangut component subheads, re 18AA4 stroke count.
-	Adjusted subhead for Tai Yo 1E6E0.
+	Repertoire synched with UnicodeData-17.0.0d7.txt.
+	Synch with 7th edition CD3; post UTC184 annotation updates for 17.0.
+	Adjusted notice at 0B00.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -5948,7 +5938,7 @@
 0AFE	GUJARATI SIGN CIRCLE NUKTA ABOVE
 0AFF	GUJARATI SIGN TWO-CIRCLE NUKTA ABOVE
 @@	0B00	Oriya	0B7F
-@+		As of 2012, the name "Oriya" for this script and language is officially spelled "Odia" in India. That change in spelling does not affect the Unicode block or character names, which are constrained by stability guarantees.
+@+		As of 2012, the name "Oriya" for this script and language is officially spelled "Odia" in India. That change in spelling does not affect the block or character names, which are constrained by stability guarantees.
 @		Various signs
 0B01	ORIYA SIGN CANDRABINDU
 0B02	ORIYA SIGN ANUSVARA
@@ -18090,7 +18080,7 @@
 	x (plus sign - 002B)
 29FF	MINY
 	x (minus sign - 2212)
-@~	!
+@~	Standardized Variation Sequences
 @@	2A00	Supplemental Mathematical Operators	2AFF
 @		N-ary operators
 2A00	N-ARY CIRCLED DOT OPERATOR
