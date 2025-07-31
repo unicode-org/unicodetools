@@ -39,8 +39,8 @@
 #
 # A language ID is defined by BCP 47, with '-' and '_' treated equivalently.
 #
-# A casing context for a character is defined by Section 3.13 Default Case Algorithms
-# of The Unicode Standard.
+# A casing context for a character is defined in the
+# "Conformance" / "Default Case Algorithms" section of the core specification.
 #
 # Parsers of this file must be prepared to deal with future additions to this format:
 #  * Additional contexts

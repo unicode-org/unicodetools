@@ -10,7 +10,7 @@ File: extracted/DerivedName
 #
 # This file lists the values of the Name property.
 # This property is specified by the derivation documented in
-# Section 4.8 of the Unicode Standard, Version 13.0,
+# the "Character Properties" / "Name" section of the core specification,
 # based on the Name field in UnicodeData.txt,
 # the Jamo_Short_Name property in Jamo.txt,
 # and a specified list of pattern strings used to derive names
@@ -284,31 +284,36 @@ Property:   Case_Ignorable
 Property:   Changes_When_Lowercased
 # Derived Property:   Changes_When_Lowercased (CWL)
 #  Characters whose normalized forms are not stable under a toLowercase mapping.
-#  For more information, see D139 in Section 3.13, "Default Case Algorithms". 
+#  For more information, see the definition of "isLowercase(X)"
+#  in the "Conformance" / "Default Case Algorithms" section of the core specification.
 #  Changes_When_Lowercased(X) is true when toLowercase(toNFD(X)) != toNFD(X)
 
 Property:   Changes_When_Uppercased
 # Derived Property:   Changes_When_Uppercased (CWU)
 #  Characters whose normalized forms are not stable under a toUppercase mapping.
-#  For more information, see D140 in Section 3.13, "Default Case Algorithms". 
+#  For more information, see the definition of "isUppercase(X)"
+#  in the "Conformance" / "Default Case Algorithms" section of the core specification.
 #  Changes_When_Uppercased(X) is true when toUppercase(toNFD(X)) != toNFD(X)
 
 Property:   Changes_When_Titlecased
 # Derived Property:   Changes_When_Titlecased (CWT)
 #  Characters whose normalized forms are not stable under a toTitlecase mapping.
-#  For more information, see D141 in Section 3.13, "Default Case Algorithms". 
+#  For more information, see the definition of "isTitlecase(X)"
+#  in the "Conformance" / "Default Case Algorithms" section of the core specification.
 #  Changes_When_Titlecased(X) is true when toTitlecase(toNFD(X)) != toNFD(X)
 
 Property:   Changes_When_Casefolded
 # Derived Property:   Changes_When_Casefolded (CWCF)
 #  Characters whose normalized forms are not stable under case folding.
-#  For more information, see D142 in Section 3.13, "Default Case Algorithms". 
+#  For more information, see the definition of "isCasefolded(X)"
+#  in the "Conformance" / "Default Case Algorithms" section of the core specification.
 #  Changes_When_Casefolded(X) is true when toCasefold(toNFD(X)) != toNFD(X)
 
 Property:   Changes_When_Casemapped
 # Derived Property:   Changes_When_Casemapped (CWCM)
 #  Characters whose normalized forms are not stable under case mapping.
-#  For more information, see D143 in Section 3.13, "Default Case Algorithms". 
+#  For more information, see the definition of "isCased(X)"
+#  in the "Conformance" / "Default Case Algorithms" section of the core specification.
 #  Changes_When_Casemapped(X) is true when CWL(X), or CWT(X), or CWU(X)
 
 Property:	ID_Start

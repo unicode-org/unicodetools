@@ -1,5 +1,5 @@
 # TangutSources-17.0.0.txt
-# Date: 2025-06-30 [MS, KW]
+# Date: 2025-07-30 [MS, KW]
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -53,8 +53,7 @@
 #UTN42 = Andrew West and Viacheslav Zaytsev, Tangut Character Additions and Glyph Corrections,
 # Unicode Technical Note #42. 2019-12-21.
 #
-#	For more information, see Section 18.11, Tangut, of the
-#	core specification.
+#	For more information, see the "Tangut" section of the core specification.
 #
 U+17000	kTGT_MergedSrc	L2008-0008
 U+17000	kTGT_RSUnicode	1.6

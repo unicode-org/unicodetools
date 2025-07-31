@@ -1,5 +1,5 @@
 # DoNotEmit-17.0.0.txt
-# Date: 2025-05-13, 04:43:00 GMT
+# Date: 2025-07-30
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -332,7 +332,7 @@
 # Deprecated characters and other discouraged characters and sequences
 # ================================================
 
-# Latin, from text of Section 7.1, the NamesList, and the uppercase mapping
+# Latin, from text in the "Latin" section of the core specification, the NamesList, and the uppercase mapping
 0140; 006C 00B7; Preferred_Spelling # LATIN SMALL LETTER L WITH MIDDLE DOT; LATIN SMALL LETTER L, MIDDLE DOT
 0149; 2019 006E; Deprecated # LATIN SMALL LETTER N PRECEDED BY APOSTROPHE; RIGHT SINGLE QUOTATION MARK, LATIN SMALL LETTER N
 0131 0307; 0069 0307; Dotless_Form # LATIN SMALL LETTER DOTLESS I, COMBINING DOT ABOVE; LATIN SMALL LETTER I, COMBINING DOT ABOVE
@@ -432,7 +432,7 @@
 107A6 0322; 107A7; Precomposed_Form # MODIFIER LETTER SMALL TURNED R WITH LONG LEG, COMBINING RETROFLEX HOOK BELOW; MODIFIER LETTER SMALL TURNED R WITH LONG LEG AND RETROFLEX HOOK
 107AC 0322; 107AD; Precomposed_Form # MODIFIER LETTER SMALL TS DIGRAPH, COMBINING RETROFLEX HOOK BELOW; MODIFIER LETTER SMALL TS DIGRAPH WITH RETROFLEX HOOK
 
-# Arabic, from text of Section 9.2 and the NamesList
+# Arabic, from text in the "Arabic" section of the core specification, and the NamesList
 0649 0654; 0626; Hamza_Form # ARABIC LETTER ALEF MAKSURA, ARABIC HAMZA ABOVE; ARABIC LETTER YEH WITH HAMZA ABOVE
 064E 064E; 064B; Arabic_Tashkil # ARABIC FATHA, ARABIC FATHA; ARABIC FATHATAN
 0650 0650; 064D; Arabic_Tashkil # ARABIC KASRA, ARABIC KASRA; ARABIC KASRATAN
@@ -442,11 +442,11 @@
 0677; 0674 06C7; Preferred_Spelling # ARABIC LETTER U WITH HAMZA ABOVE; ARABIC LETTER HIGH HAMZA, ARABIC LETTER U
 0678; 0674 0649; Preferred_Spelling # ARABIC LETTER HIGH HAMZA YEH; ARABIC LETTER HIGH HAMZA, ARABIC LETTER ALEF MAKSURA
 
-# Devanagari, from Section 12.1 and the NamesList
+# Devanagari, from the "Devanagari" section of the core specification, and the NamesList
 0953; 0300; Discouraged # DEVANAGARI GRAVE ACCENT; COMBINING GRAVE ACCENT
 0954; 0301; Discouraged # DEVANAGARI ACUTE ACCENT; COMBINING ACUTE ACCENT
 
-# Bengali, from Section 12.2
+# Bengali, from the "Bengali (Bangla)" section of the core specification
 09A4 09CD 200D; 09CE; Bengali_Khanda_Ta # BENGALI LETTER TA, BENGALI SIGN VIRAMA, ZERO WIDTH JOINER; BENGALI LETTER KHANDA TA
 
 # Gujarati, from the NamesList
@@ -462,11 +462,11 @@
 0D32 0D4D 200D; 0D7D; Malayalam_Chillu # MALAYALAM LETTER LA, MALAYALAM SIGN VIRAMA, ZERO WIDTH JOINER; MALAYALAM LETTER CHILLU L
 0D33 0D4D 200D; 0D7E; Malayalam_Chillu # MALAYALAM LETTER LLA, MALAYALAM SIGN VIRAMA, ZERO WIDTH JOINER; MALAYALAM LETTER CHILLU LL
 
-# Tibetan, from text of Section 13.4, the NamesList, and the decompositions
+# Tibetan, from text in the "Tibetan" section of the core specification, the NamesList, and the decompositions
 0F77; 0FB2 0F71 0F80; Deprecated # TIBETAN VOWEL SIGN VOCALIC RR; TIBETAN SUBJOINED LETTER RA, TIBETAN VOWEL SIGN AA, TIBETAN VOWEL SIGN REVERSED I
 0F79; 0FB3 0F71 0F80; Deprecated # TIBETAN VOWEL SIGN VOCALIC LL; TIBETAN SUBJOINED LETTER LA, TIBETAN VOWEL SIGN AA, TIBETAN VOWEL SIGN REVERSED I
 
-# Khmer, from text of Section 16.4 and the NamesList
+# Khmer, from text in the "Khmer" section of the core specification, and the NamesList
 17A3; 17A2; Deprecated # KHMER INDEPENDENT VOWEL QAQ; KHMER LETTER QA
 17A4; 17A2 17B6; Deprecated # KHMER INDEPENDENT VOWEL QAA; KHMER LETTER QA, KHMER VOWEL SIGN AA
 17D8; 17D4 179B 17D4; Discouraged # KHMER SIGN BEYYAL; KHMER SIGN KHAN, KHMER LETTER LO, KHMER SIGN KHAN
