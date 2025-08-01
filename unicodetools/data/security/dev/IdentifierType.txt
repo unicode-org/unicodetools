@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2025-07-29, 02:36:51 GMT
+# Date: 2025-08-01, 18:11:44 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -12,7 +12,10 @@
 # Format
 #
 # Field 0: code point
-# Field 1: set of Identifier_Type values (see Table 1 of http://www.unicode.org/reports/tr39)
+# Field 1: set of Identifier_Type values
+#          See the "Identifier_Status and Identifier_Type" table of UTS #39:
+#          https://www.unicode.org/reports/tr39/#Identifier_Status_and_Type
+
 #
 # For the purpose of regular expressions, the property Identifier_Type is defined as
 # mapping each code point to a set of enumerated values.

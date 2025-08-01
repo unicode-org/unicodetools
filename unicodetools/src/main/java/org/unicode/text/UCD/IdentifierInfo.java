@@ -1066,10 +1066,12 @@ public class IdentifierInfo {
                         filename,
                         "Security Profile for General Identifiers: " + propName)) {
             out2.println(
-                    "# Format"
-                            + "\n#"
-                            + "\n# Field 0: code point"
-                            + "\n# Field 1: set of Identifier_Type values (see Table 1 of http://www.unicode.org/reports/tr39)");
+                    "# Format\n"
+                            + "#\n"
+                            + "# Field 0: code point\n"
+                            + "# Field 1: set of Identifier_Type values\n"
+                            + "#          See the \"Identifier_Status and Identifier_Type\" table of UTS #39:\n"
+                            + "#          https://www.unicode.org/reports/tr39/#Identifier_Status_and_Type\n");
 
             out2.println(
                     "#\n"
@@ -1137,10 +1139,12 @@ public class IdentifierInfo {
                         "IdentifierStatus.txt",
                         "Security Profile for General Identifiers: " + propName)) {
             out2.println(
-                    "# Format"
-                            + "\n#"
-                            + "\n# Field 0: code point"
-                            + "\n# Field 1: Identifier_Status value (see Table 1 of http://www.unicode.org/reports/tr39)");
+                    "# Format\n"
+                            + "#\n"
+                            + "# Field 0: code point\n"
+                            + "# Field 1: Identifier_Status value\n"
+                            + "#          See the \"Identifier_Status and Identifier_Type\" table of UTS #39:\n"
+                            + "#          https://www.unicode.org/reports/tr39/#Identifier_Status_and_Type\n");
 
             out2.println(
                     "#\n"
