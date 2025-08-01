@@ -1,5 +1,5 @@
 # USourceData-17.0.0.txt
-# Date: 2025-04-13, 00:00:00 GMT [KL]
+# Date: 2025-07-24, 00:00:00 GMT [KL]
 #
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
@@ -375,7 +375,7 @@ UTC-00331;URO;U+4F4A;9.5;;⿰亻皮;kCheungBauerIndex 339.07;;7;
 UTC-00332;Variant;U+5557;30.7;;⿰口𥁀;kLau 458a;;;
 UTC-00333;ExtE;U+2BF6E;64.10;;⿰扌党;kLau 599b kFennIndex 497.06;;13;
 UTC-00334;Variant;U+7BA1;87.8;;⿱爫官;kLau 1074a;;;
-UTC-00335;Variant;U+4E80;5.9;;⿱𠮥⿻日乚;kLau 1028a kCowles 2059*kMeyerWempe 1368*kFennIndex 272.04;;;
+UTC-00335;ExtE;U+2CE9E;213'.0;;⿱𠮥⿻日乚;kLau 1028 kCowles 2059 kMeyerWempe 1368* kFennIndex 272.04;;10;0
 UTC-00336;NoAction;;18.4;;;kLau 1027a;;;
 UTC-00337;UTC-00355;;181.10;;⿰⿱日亚頁;kLau 1177a;;;
 UTC-00338;UTC-01029;U+70B8;86.1;;⿰火乚;kLau 1272b;;;2
@@ -628,7 +628,7 @@ UTC-00584;ExtE;U+2BB1C;30.15;;⿰口擒;kCheungBauerIndex 391.02;;18;1
 UTC-00585;ExtE;U+2BB1D;30.16;;⿰口霎;kCheungBauerIndex 391.08;;19;1
 UTC-00586;ExtE;U+2BB27;30.16;;⿰口篩;kCheungBauerIndex 391.09;;19;3
 UTC-00587;ExtE;U+2BB1E;30.16;;⿰口醒;kCheungBauerIndex 391.11;;19;1
-UTC-00588;Rejected;;119.23;;⿰米戀;kFennIndex 321.10,325.08;;;3
+UTC-00588;ExtJ;U+32DE8;119.23;;⿰米戀;kFennIndex 321.10,325.08;;29;4
 UTC-00589;ExtE;U+2BB35;30.17;;⿰口濟;kCheungBauerIndex 392.05;;20;4
 UTC-00590;ExtE;U+2BB2C;30.17;;⿰口擠;kCheungBauerIndex 392.04;;20;1
 UTC-00591;ExtE;U+2BB37;30.18;;⿰口騎;kCheungBauerIndex 392.07;;21;1
@@ -1485,7 +1485,7 @@ UK-01437;NoAction;;40.6;;⿱宀汝;UTCDoc L2/15-260 125;;9;4
 UK-01438;ExtG;U+30CEC;144.7;;⿲彳步亍;UTCDoc L2/15-260 126;;131;2
 UK-01439;ExtG;U+30366;41.12;;⿰寻某;UTCDoc L2/15-260 127;;15;5
 UK-01440;ExtG;U+30343;40.8;;⿱宀卹;UTCDoc L2/15-260 128;;11;3
-UK-01441;NoAction;;38.6;;⿰女回;UTCDoc L2/15-260 129;;9;2
+UK-01441;ExtI;U+2EC43;38.6;;⿰女回;UTCDoc L2/15-260 129;;9;2
 UK-01442;ExtG;U+305F0;75.7;;⿲木己木;UTCDoc L2/15-260 130;;11;5
 UK-01443;ExtG;U+303D0;49.8;;⿱林己;UTCDoc L2/15-260 131;;11;1
 UK-01444;ExtG;U+30012;1.9;;⿱丙丙;UTCDoc L2/15-260 132;;10;2
@@ -3359,7 +3359,7 @@ UTC-03304;WS-2024;;24.11;;⿰南太;UTCDoc L2/22-206 7;;13;2
 UTC-03305;WS-2024;;26.6;;〾⿱[P5-02]五;UTCDoc L2/22-206 8;;8;3
 UTC-03306;WS-2024;;30.11;;⿰古南;UTCDoc L2/22-206 9;;4;1
 UTC-03307;WS-2024;;38.6;;⿳一巛𠕷;UTCDoc L2/22-206 10;;9;1
-UTC-03308;WS-2024;;38.6;;⿱爪𠕷;UTCDoc L2/22-206 11;;9;3
+UTC-03308;WS-2024;;38.6;;⿱爫𠕷;UTCDoc L2/22-206 11;;9;3
 UTC-03309;WS-2024;;53.4;;⿸广五;UTCDoc L2/22-206 12;;7;1
 UTC-03310;WS-2024;;59.2;;⿰⿱丿彳一;UTCDoc L2/22-206 13;;5;2
 UTC-03311;WS-2024;;59.2;;⿰⿱丿彳乙;UTCDoc L2/22-206 14;;5;2
