@@ -1,5 +1,5 @@
 # ScriptExtensions-17.0.0.txt
-# Date: 2025-08-01, 03:01:00 GMT
+# Date: 2025-08-01, 21:42:00 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -50,14 +50,13 @@
 0310          ; Latn Sunu                      # Mn      COMBINING CANDRABINDU
 0311          ; Cyrl Latn Todr                 # Mn      COMBINING INVERTED BREVE
 0313          ; Grek Latn Perm Todr            # Mn      COMBINING COMMA ABOVE
-0320          ; Latn Syrc                      # Mn      COMBINING MINUS SIGN BELOW
 0323          ; Cher Dupl Kana Latn Syrc Tfng  # Mn      COMBINING DOT BELOW
 0324          ; Cher Dupl Latn Syrc            # Mn      COMBINING DIAERESIS BELOW
 0325          ; Latn Syrc                      # Mn      COMBINING RING BELOW
 032D          ; Latn Sunu Syrc                 # Mn      COMBINING CIRCUMFLEX ACCENT BELOW
 032E          ; Latn Syrc                      # Mn      COMBINING BREVE BELOW
 0330          ; Cher Latn Syrc                 # Mn      COMBINING TILDE BELOW
-0331          ; Aghb Cher Goth Latn Sunu Thai  # Mn      COMBINING MACRON BELOW
+0331          ; Aghb Cher Goth Latn Sunu Syrc Thai #Mn   COMBINING MACRON BELOW
 0342          ; Grek                           # Mn      COMBINING GREEK PERISPOMENI
 0345          ; Grek                           # Mn      COMBINING GREEK YPOGEGRAMMENI
 0358          ; Latn Osge                      # Mn      COMBINING DOT ABOVE RIGHT
