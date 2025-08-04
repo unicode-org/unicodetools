@@ -439,9 +439,6 @@ public class IdentifierInfo {
                     sources =
                             VersionedProperty.parseUnicodeSet(
                                     codelist, VersionedSymbolTable.forDevelopment());
-                    if (sources.contains("ᢰ")) {
-                        int x = 0;
-                    }
                 } else {
                     final String[] codes = Utility.split(codelist, ' ');
                     for (final String code : codes) {
@@ -513,12 +510,8 @@ public class IdentifierInfo {
         UnicodeSet hasRecommendedScript = new UnicodeSet();
         Set<String> scripts = LATEST.load(UcdProperty.Script).values();
         for (final String script : scripts) {
-            String shortName = UcdPropertyValues.Script_Values.forName(script).getShortName();
-            Info scriptInfo = ScriptMetadata.getInfo(shortName);
-            if (scriptInfo == null) {
-                System.out.println("No script metadata info for: " + script);
-            }
-            if (scriptInfo != null && scriptInfo.idUsage == IdUsage.RECOMMENDED) {
+            IdUsage idUsage = getScriptUsage(script);
+            if (idUsage == IdUsage.RECOMMENDED) {
                 final UnicodeSet us = ScriptInfo.IDENTIFIER_INFO.getSetWith(script);
                 if (us != null) {
                     hasRecommendedScript.addAll(us);
@@ -528,9 +521,7 @@ public class IdentifierInfo {
         hasRecommendedScript.freeze();
 
         for (final String script : scripts) {
-            String shortName = UcdPropertyValues.Script_Values.forName(script).getShortName();
-            Info scriptInfo = ScriptMetadata.getInfo(shortName);
-            final IdUsage idUsage = scriptInfo != null ? scriptInfo.idUsage : IdUsage.EXCLUSION;
+            final IdUsage idUsage = getScriptUsage(script);
             IdentifierInfo.Identifier_Type status;
             switch (idUsage) {
                     //            case ASPIRATIONAL:
@@ -671,6 +662,38 @@ public class IdentifierInfo {
         //      }
         //      br.close();
 
+    }
+
+    private IdUsage getScriptUsage(String longScriptName) {
+        String shortName = UcdPropertyValues.Script_Values.forName(longScriptName).getShortName();
+        Info scriptInfo = ScriptMetadata.getInfo(shortName);
+        IdUsage idUsage;
+        if (scriptInfo == null) {
+            System.out.println("No script metadata info for: " + longScriptName);
+            idUsage = IdUsage.EXCLUSION;
+        } else {
+            idUsage = scriptInfo.idUsage;
+        }
+        // Sometimes UAX #31 and CLDR script metadata are updated but the Unicode Tools still
+        // depend on an older version.
+        // We temporarily override ID Usage values here.
+        // See https://github.com/unicode-org/unicodetools/pull/1185 for an example.
+        switch (longScriptName) {
+            case "Gunjala_Gondi":
+                // [184-C33] Consensus: Change the Identifier_Type values for
+                //     Gunjala Gondi characters (sc=Gong) from Limited_Use to Excluded,
+                //     to match the UAX31 classification of the script.
+                //     For Unicode Version 17.0. See L2/25-183 item 6.4.
+                // [184-A76] Action Item for Josh Hadley, PAG:
+                //     Derive the Identifier_Type values for Gunjala Gondi characters from
+                //     the UAX31 classification of the script as specified.
+                //     For Unicode Version 17.0. See L2/25-183 item 6.4.
+                System.out.println(
+                        "TODO: Replace Gunjala_Gondi=Excluded override with CLDR update");
+                return IdUsage.EXCLUSION;
+            default:
+                return idUsage;
+        }
     }
 
     private void addToRemovalSets(

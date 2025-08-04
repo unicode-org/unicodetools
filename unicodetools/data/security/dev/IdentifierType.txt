@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2025-08-01, 18:11:44 GMT
+# Date: 2025-08-04, 21:58:43 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1787,12 +1787,6 @@ ABF0..ABF9    ; Limited_Use                    # 5.2   [10] MEETEI MAYEK DIGIT Z
 1145F         ; Limited_Use                    # 12.0       NEWA LETTER VEDIC ANUSVARA
 11460..11461  ; Limited_Use                    # 13.0   [2] NEWA SIGN JIHVAMULIYA..NEWA SIGN UPADHMANIYA
 11AB0..11ABF  ; Limited_Use                    # 14.0  [16] CANADIAN SYLLABICS NATTILIK HI..CANADIAN SYLLABICS SPA
-11D60..11D65  ; Limited_Use                    # 11.0   [6] GUNJALA GONDI LETTER A..GUNJALA GONDI LETTER UU
-11D67..11D68  ; Limited_Use                    # 11.0   [2] GUNJALA GONDI LETTER EE..GUNJALA GONDI LETTER AI
-11D6A..11D8E  ; Limited_Use                    # 11.0  [37] GUNJALA GONDI LETTER OO..GUNJALA GONDI VOWEL SIGN UU
-11D90..11D91  ; Limited_Use                    # 11.0   [2] GUNJALA GONDI VOWEL SIGN EE..GUNJALA GONDI VOWEL SIGN AI
-11D93..11D98  ; Limited_Use                    # 11.0   [6] GUNJALA GONDI VOWEL SIGN OO..GUNJALA GONDI OM
-11DA0..11DA9  ; Limited_Use                    # 11.0  [10] GUNJALA GONDI DIGIT ZERO..GUNJALA GONDI DIGIT NINE
 11FB0         ; Limited_Use                    # 13.0       LISU LETTER YHA
 16800..16A38  ; Limited_Use                    # 6.0  [569] BAMUM LETTER PHASE-A NGKUE MFON..BAMUM LETTER PHASE-F VUEQ
 16F00..16F44  ; Limited_Use                    # 6.1   [69] MIAO LETTER PA..MIAO LETTER HHA
@@ -1810,7 +1804,7 @@ ABF0..ABF9    ; Limited_Use                    # 5.2   [10] MEETEI MAYEK DIGIT Z
 1E94B         ; Limited_Use                    # 12.0       ADLAM NASALIZATION MARK
 1E950..1E959  ; Limited_Use                    # 9.0   [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 
-# Total code points: 5107
+# Total code points: 5044
 
 #	Identifier_Type:	Limited_Use Uncommon_Use
 
@@ -3945,6 +3939,12 @@ A930..A953    ; Exclusion                      # 5.1   [36] REJANG LETTER KA..RE
 11D3C..11D3D  ; Exclusion                      # 10.0   [2] MASARAM GONDI VOWEL SIGN AI..MASARAM GONDI VOWEL SIGN O
 11D3F..11D47  ; Exclusion                      # 10.0   [9] MASARAM GONDI VOWEL SIGN AU..MASARAM GONDI RA-KARA
 11D50..11D59  ; Exclusion                      # 10.0  [10] MASARAM GONDI DIGIT ZERO..MASARAM GONDI DIGIT NINE
+11D60..11D65  ; Exclusion                      # 11.0   [6] GUNJALA GONDI LETTER A..GUNJALA GONDI LETTER UU
+11D67..11D68  ; Exclusion                      # 11.0   [2] GUNJALA GONDI LETTER EE..GUNJALA GONDI LETTER AI
+11D6A..11D8E  ; Exclusion                      # 11.0  [37] GUNJALA GONDI LETTER OO..GUNJALA GONDI VOWEL SIGN UU
+11D90..11D91  ; Exclusion                      # 11.0   [2] GUNJALA GONDI VOWEL SIGN EE..GUNJALA GONDI VOWEL SIGN AI
+11D93..11D98  ; Exclusion                      # 11.0   [6] GUNJALA GONDI VOWEL SIGN OO..GUNJALA GONDI OM
+11DA0..11DA9  ; Exclusion                      # 11.0  [10] GUNJALA GONDI DIGIT ZERO..GUNJALA GONDI DIGIT NINE
 11DB0..11DDB  ; Exclusion                      # 17.0  [44] TOLONG SIKI LETTER I..TOLONG SIKI UNGGA
 11DE0..11DE9  ; Exclusion                      # 17.0  [10] TOLONG SIKI DIGIT ZERO..TOLONG SIKI DIGIT NINE
 11EE0..11EF6  ; Exclusion                      # 11.0  [23] MAKASAR LETTER KA..MAKASAR VOWEL SIGN O
@@ -4019,7 +4019,7 @@ A930..A953    ; Exclusion                      # 5.1   [36] REJANG LETTER KA..RE
 1E800..1E8C4  ; Exclusion                      # 7.0  [197] MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON
 1E8D0..1E8D6  ; Exclusion                      # 7.0    [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 20799
+# Total code points: 20862
 
 #	Identifier_Type:	Exclusion Not_XID
 
