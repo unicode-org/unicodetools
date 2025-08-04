@@ -1215,7 +1215,3 @@ AB66..AB67; Uncommon_Use
 # U+16FF0 and U+16FF1 VIETNAMESE ALTERNATE READING MARK CA and NHAY from Recommended to Obsolete.
 08C9; Technical
 16FF0..16FF1; Obsolete
-
-# Unicode 17.0
-# UTC-184-A76 ... Derive the Identifier_Type values for Gunjala Gondi characters from the UAX31 classification of the script as specified.
-\p{Script=Gunjala_Gondi}; Exclusion
