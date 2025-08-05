@@ -1,0 +1,10 @@
+Ignoring Name Age LineBreak:
+
+# U+20C3 is the UAE Dirham sign, similar to other currency symbols:
+# TODO: current comparison is probably wrong because the line break properties differ:
+# PO for SAUDI RIYAL SIGN
+# AL for UAE DIRHAM SIGN
+Propertywise [\N{SAUDI RIYAL SIGN-20C1}
+              \N{UAE DIRHAM SIGN-20C3}] AreAlike
+
+end Ignoring;

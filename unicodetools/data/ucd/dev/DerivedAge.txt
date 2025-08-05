@@ -1,5 +1,5 @@
-# DerivedAge-17.0.0.txt
-# Date: 2025-07-30, 23:54:38 GMT
+# DerivedAge-18.0.0.txt
+# Date: 2025-08-05, 22:20:00 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2115,5 +2115,15 @@ FDC8..FDCE    ; 17.0 #   [7] ARABIC LIGATURE RAHIMAHU ALLAAH TAAALAA..ARABIC LIG
 323B0..33479  ; 17.0 # [4298] CJK UNIFIED IDEOGRAPH-323B0..CJK UNIFIED IDEOGRAPH-33479
 
 # Total code points: 4803
+
+# ================================================
+
+# Age=V18_0
+
+# Newly assigned in Unicode 18.0.0 (September, 2026)
+
+20C3          ; 18.0 #       UAE DIRHAM SIGN
+
+# Total code points: 1
 
 # EOF

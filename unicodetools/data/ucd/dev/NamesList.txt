@@ -13711,6 +13711,8 @@
 	* Kyrgyzstan
 20C1	SAUDI RIYAL SIGN
 	* Saudi Arabia
+20C3	UAE DIRHAM SIGN
+	* United Arab Emirates
 @@	20D0	Combining Diacritical Marks for Symbols	20FF
 @		Combining diacritical marks for symbols
 20D0	COMBINING LEFT HARPOON ABOVE
