@@ -1,5 +1,5 @@
 # DoNotEmit-17.0.0.txt
-# Date: 2025-07-30
+# Date: 2025-08-04
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -41,6 +41,16 @@
 #
 # Sequences for Egyptian Hieroglyphs are not listed here. See
 # the kEH_AltSeq property in UAX #57 for that information.
+#
+# CJK compatibility ideographs are not listed here either. Most of the CJK
+# compatibility ideographs are canonically equivalent to a CJK unified
+# ideograph, which means that distinctions between compatibility ideographs
+# and the unified ideographs that they are canonically equivalent to would
+# be lost in normalization. The preferred form for applications that intend
+# to keep such distinctions is using a standardized variation sequence
+# instead of a CJK compatibility ideograph. For a comprehensive list of
+# these standardized variation sequences, see the section "CJK
+# compatibility ideographs" in StandardizedVariants.txt.
 #
 # Note that some sequences could be considered recursive, in the way that
 # the preferred sequence to use may be a subsequence of the "Do Not Emit"
