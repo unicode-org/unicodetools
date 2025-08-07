@@ -1,5 +1,5 @@
 # File: MathClass.txt
-# Revision: 17.0
+# Revision: 16.0
 # Date: 2025-07-01
 #
 # © 2025 Unicode®, Inc.
@@ -52,7 +52,7 @@
 # This is indicated in 24 special purpose comments.
 #
 # The character repertoire of this revision is the repertoire of Unicode
-# Version 17.0. For more information see Revision 17 or later of UTR #25.
+# Version 17.0. For more information see Revision 16 or later of UTR #25.
 # ------------------------------------------------
 
 #code point;class

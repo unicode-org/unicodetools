@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mathchars SYSTEM "MathClassEx.dtd">
-<mathchars unicode="17.0" tr25="17">
+<mathchars unicode="17.0" tr25="16">
    <char cp="0020" mathclass="S"/>
    <char cp="0021" mathclass="C" note="Factorial spacing"/>
    <char cp="0023" mathclass="N"/>
