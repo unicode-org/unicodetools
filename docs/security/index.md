@@ -195,4 +195,4 @@ with reason `[[arabic]] plus [[arabic]→&#x1eef0;, [arabic]]`
 
 ## Posting
 
-The security files are published together with other data files for beta & final, see <../data-workflow.md>.
+The security files are published together with other data files for beta & final, see [Data Files Workflow](../data-workflow.md).
