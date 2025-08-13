@@ -29,6 +29,7 @@ import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.Level;
+import org.unicode.cldr.util.NameGetter;
 import org.unicode.cldr.util.Organization;
 import org.unicode.cldr.util.StandardCodes;
 import org.unicode.cldr.util.With;
@@ -195,6 +196,7 @@ public class GenerateMissingAnnotations {
             }
         }
 
+        NameGetter nameGetter = config.getEnglish().nameGetter();
         Set<String> skipped = new LinkedHashSet<>();
         Map<String, Counts> countMap = new TreeMap<>();
         Counts totals = new Counts();
@@ -214,7 +216,7 @@ public class GenerateMissingAnnotations {
             Counts counts = new Counts();
             final String fileName = s + ".tsv";
             try (PrintWriter out = FileUtilities.openUTF8Writer(annotationDir, fileName)) {
-                System.out.println(s + "\t" + config.getEnglish().getName(s));
+                System.out.println(s + "\t" + nameGetter.getNameFromIdentifier(s));
                 doAnnotations(s, out, SORTED_EMOJI, counts);
             }
             if (counts.isEmpty()) {
@@ -230,13 +232,13 @@ public class GenerateMissingAnnotations {
                     "Skipping "
                             + skip
                             + " ("
-                            + config.getEnglish().getName(skip)
+                            + nameGetter.getNameFromIdentifier(skip)
                             + "), no current CLDR annotation data");
         }
         for (Entry<String, Counts> entry : countMap.entrySet()) {
             String locale = entry.getKey();
             System.out.println(
-                    locale + "\t" + config.getEnglish().getName(locale) + "\t" + entry.getValue());
+                    locale + "\t" + nameGetter.getNameFromIdentifier(locale) + "\t" + entry.getValue());
         }
         System.out.println("Totals:\t\t" + totals);
     }
