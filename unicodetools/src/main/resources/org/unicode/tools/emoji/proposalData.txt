@@ -603,7 +603,7 @@
 1F9CD 200D 2642; L2/18-091 # 2019 (🧍‍♂️) man standing
 1F9CD 1F3FF; L2/18-091 # 2019 (🧍🏿) person standing: dark skin tone
 1F9CD 1F3FF 200D 2640; L2/18-091 # 2019 (🧍🏿‍♀️) woman standing: dark skin tone
-1F9CD 1F3FF 200D 2642; L2/18-091 # 2019 (🧍‍♂️) man standing: dark skin tone
+1F9CD 1F3FF 200D 2642; L2/18-091 # 2019 (🧍🏿‍♂️) man standing: dark skin tone
 1F9CE 200D 2640; L2/18-091 # 2019 (🧎‍♀️) woman kneeling
 1F9CE 200D 2642; L2/18-091 # 2019 (🧎‍♂️) man kneeling
 1F9CE 1F3FF; L2/18-091 # 2019 (🧎🏿) person kneeling: dark skin tone
