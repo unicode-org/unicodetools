@@ -66,7 +66,6 @@
         <div class="body">
           <h2 style="text-align:center">
             <xsl:call-template name="display-stage"/>
-            <xsl:text> </xsl:text>
             <xsl:choose>
               <xsl:when test="articleinfo/unicode:tr/@class='uax'">
                 <xsl:text>Unicode® Standard Annex</xsl:text>
@@ -106,10 +105,10 @@
   <xsl:template name="display-stage">
     <xsl:choose>
       <xsl:when test="articleinfo/unicode:tr/@stage='working-draft'">
-        <span style="background-color: #ffff00; border-style:dotted; border-width:1px"><xsl:text>Working draft</xsl:text></span>
+        <span><xsl:attribute name="class">changed</xsl:attribute><xsl:text>Working draft </xsl:text></span>
       </xsl:when>
       <xsl:when test="articleinfo/unicode:tr/@stage='proposed-update'">
-        <span style="background-color: #ffff00; border-style:dotted; border-width:1px"><xsl:text>Proposed Update</xsl:text></span>
+        <span><xsl:attribute name="class">changed</xsl:attribute><xsl:text>Proposed Update </xsl:text></span>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -497,21 +496,29 @@
   <!-- Revision history aka. Modifications -->
 
   <xsl:template match="revision">
-    <div>
-      <xsl:apply-templates select="@edit"/>
-      <p>
-        <b>Revision <xsl:value-of select="@revnumber"/></b>
-      </p>
-      <xsl:apply-templates/>
-    </div>
+    <xsl:choose>
+      <xsl:when test="@edit">
+        <div>
+          <xsl:apply-templates select="@edit"/>
+          <p>
+            <b>Revision <xsl:value-of select="@revnumber"/></b>
+          </p>
+          <xsl:apply-templates/>
+        </div>
+      </xsl:when>
+      <xsl:otherwise>
+        <p>
+          <b>Revision <xsl:value-of select="@revnumber"/></b>
+        </p>
+        <xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="proposed_update">
-    <div>
-      <p>
-        <xsl:apply-templates/>
-      </p>
-    </div>
+    <p>
+      <xsl:apply-templates/>
+    </p>
   </xsl:template>
 
   <xsl:template match="changes">
@@ -524,6 +531,10 @@
     <li>
       <xsl:apply-templates/>
     </li>
+  </xsl:template>
+
+  <xsl:template match="reissued">
+    <b><xsl:apply-templates/></b>
   </xsl:template>
 
   <!-- Copyright -->

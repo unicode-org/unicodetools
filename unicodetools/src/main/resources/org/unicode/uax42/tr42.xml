@@ -10,7 +10,7 @@
     <articleinfo>
         <unicode:tr number='42' class='uax' version='17.0.0'
                     stage='approved'
-                    schema='rnc' prevrev='37'/>
+                    schema='rnc' prevrev='36'/>
         <copyright>
             <year>2025</year>
         </copyright>
@@ -23,6 +23,8 @@
         <revhistory>
             <revision revnumber="38" date="2025-08-13">
                 <changes>
+                    <change><reissued>Reissued</reissued> for Unicode 17.0.0.
+                    </change>
                     <change>New value for the <attr>age</attr> attribute: <val>17.0</val>.
                     </change>
                     <change>New values for the <attr>blk</attr> attribute: <val>Beria_Erfe</val>, <val>CJK_Ext_J</val>,
@@ -643,7 +645,7 @@
             some of the data is needed.
         </para>
         <para>This annex presents only the XML representation format of the UCD. The data itself is part of the <ulink
-                url='https://www.unicode.org/reports/tr41/#UCD'>Unicode Character Database</ulink>.
+                url='https://www.unicode.org/reports/tr41/tr41-36.html#UCD'>Unicode Character Database</ulink>.
         </para>
     </section>
 
@@ -666,7 +668,7 @@
             </para>
             <para>Our schema is defined using English. However, a useful subset of the validity constraints can be
                 captured using a schema language, thereby simplifying the task of validating documents. We have chosen
-                Relax NG [<ulink url='https://www.unicode.org/reports/tr41/#ISO19757'>ISO 19757</ulink>],
+                Relax NG [<ulink url='https://www.unicode.org/reports/tr41/tr41-36.html#ISO19757'>ISO 19757</ulink>],
                 in the compact syntax , as the schema language. It is important to stress that the schema which is
                 defined in English imposes more constraints on the documents than can be validated with the Relax NG
                 schema.
@@ -755,7 +757,7 @@
         </para>
         <para>It is recommended that if the document purports to represent the UCD of some Unicode version, the
             <elem>description</elem> be selected in accord with the rules listed in <ulink
-                    url='https://www.unicode.org/reports/tr41/#Versions'>[Versions]</ulink>; and
+                    url='https://www.unicode.org/reports/tr41/tr41-36.html#Versions'>[Versions]</ulink>; and
             conversely, that documents which do not purport to represent the UCD be described as such.
         </para>
         <!--Manual--><xi:include href="./fragments/description.xml"/>
