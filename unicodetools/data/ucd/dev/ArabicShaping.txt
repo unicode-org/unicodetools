@@ -1,5 +1,5 @@
 # ArabicShaping-17.0.0.txt
-# Date: 2025-03-21, 02:39:00 GMT
+# Date: 2025-08-14
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -12,22 +12,22 @@
 # shaping, repeating in machine readable form the information
 # exemplified in various tables of The Unicode Standard core specification.
 #
-# This file also defines Joining_Type values for
-# Mongolian, Phags-pa, Psalter Pahlavi, Sogdian, Old Uyghur, Chorasmian, 
-# and Adlam positional shaping,
-# and Joining_Type and Joining_Group values for Hanifi Rohingya positional shaping,
-# which are not listed in tables in the core specification.
+# This file also defines Joining_Type values for Mongolian, Phags-pa,
+# Psalter Pahlavi, Sogdian, Old Uyghur, Chorasmian, and Adlam positional
+# shaping, and Joining_Type and Joining_Group values for Hanifi Rohingya
+# positional shaping, which are not listed in tables in the core
+# specification.
 #
 # Script          Section  Table(s)
 #
-# Arabic           9.2      9-3, 9-4, 9-5, 9-7, 9-8, 9-9, 9-10, 9-11
+# Arabic           9.2      9-3, 9-4, 9-5, 9-7, 9-8, 9-9, 9-10, 9-11, 9-13
 # Syriac           9.3      9-15, 9-16, 9-17, 9-18, 9-19
-# Mandaic          9.5      9-21, 9-22
+# Mandaic          9.5      9-22, 9-23
 # Manichaean      10.5      10-4, 10-5, 10-6, 10-7
 # Psalter Pahlavi 10.6      --
 # Chorasmian      10.8      --
 # Mongolian       13.5      --
-# Phags-pa        14.4      --
+# Phags-pa        14.4      14-7
 # Sogdian         14.10     --
 # Old Uyghur      14.11     --
 # Hanifi Rohingya 16.14     --
