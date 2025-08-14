@@ -563,8 +563,14 @@
       <xsl:when test="../@id">
         <xsl:value-of select="../@id"/>
       </xsl:when>
+      <xsl:when test="@id">
+        <xsl:value-of select="@id"/>
+      </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="generate-id()"/>
+        <xsl:variable name="currentText" select="descendant::text()"/>
+        <xsl:value-of
+                select="replace(lower-case(descendant::text()), ' ', '_')"/><xsl:text>_</xsl:text><xsl:value-of
+              select="count(preceding::title[descendant::text() = $currentText])"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

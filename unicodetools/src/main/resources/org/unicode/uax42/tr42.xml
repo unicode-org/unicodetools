@@ -8,9 +8,9 @@
     <title>Unicode Character Database in XML</title>
 
     <articleinfo>
-        <unicode:tr number='42' class='uax' version='17.0.0 (draft 2)'
-                    stage='proposed-update'
-                    schema='rnc' prevrev='36'/>
+        <unicode:tr number='42' class='uax' version='17.0.0'
+                    stage='approved'
+                    schema='rnc' prevrev='37'/>
         <copyright>
             <year>2025</year>
         </copyright>
@@ -21,7 +21,7 @@
             </author>
         </authors>
         <revhistory>
-            <revision revnumber="37" date="2025-07-09" edit="changed">
+            <revision revnumber="38" date="2025-08-13">
                 <changes>
                     <change>New value for the <attr>age</attr> attribute: <val>17.0</val>.
                     </change>
@@ -64,6 +64,9 @@
                     </change>
                 </changes>
             </revision>
+            <proposed_update>Revision 37 being a proposed update, only changes between revisions 36 and 38 are
+                noted here.
+            </proposed_update>
             <revision revnumber="36" date="2024-09-02">
                 <changes>
                     <change>New value for the <attr>age</attr> attribute: <val>16.0</val>.
@@ -640,8 +643,7 @@
             some of the data is needed.
         </para>
         <para>This annex presents only the XML representation format of the UCD. The data itself is part of the <ulink
-                url='https://www.unicode.org/reports/tr41/tr41-34.html#UCD'>Unicode
-            Character Database</ulink>.
+                url='https://www.unicode.org/reports/tr41/#UCD'>Unicode Character Database</ulink>.
         </para>
     </section>
 
@@ -653,18 +655,18 @@
         <section>
             <title>General principles</title>
             <para>Our schema can be used to create and validate documents which are intended to represent properties of
-                Unicode code points, blocks, named sequences, normalization corrections, standardized variants, CJK
-                radicals and emoji sources. A document may represent the values actually assigned in a given version of
-                the UCD, or it may represent a draft version of the UCD, or a private agreement on Private Use
-                characters. The validity of a XML document with respect to the schema defined in this annex does not
-                assert anything about the correctness of the values.
+                Unicode code points, blocks, named sequences, standardized variants, CJK radicals and emoji sources.
+                A document may represent the values actually assigned in a given version of the UCD, or it may
+                represent a draft version of the UCD, or a private agreement on Private Use characters. The validity of
+                a XML document with respect to the schema defined in this annex does not assert anything about the
+                correctness of the values.
             </para>
             <para>Valid documents may provide values for only some of the code points, or some of the Unicode
                 properties. Furthermore, they may also incorporate non-Unicode properties.
             </para>
             <para>Our schema is defined using English. However, a useful subset of the validity constraints can be
                 captured using a schema language, thereby simplifying the task of validating documents. We have chosen
-                Relax NG [<ulink url='https://www.unicode.org/reports/tr41/tr41-34.html#ISO19757'>ISO 19757</ulink>],
+                Relax NG [<ulink url='https://www.unicode.org/reports/tr41/#ISO19757'>ISO 19757</ulink>],
                 in the compact syntax , as the schema language. It is important to stress that the schema which is
                 defined in English imposes more constraints on the documents than can be validated with the Relax NG
                 schema.
@@ -753,7 +755,7 @@
         </para>
         <para>It is recommended that if the document purports to represent the UCD of some Unicode version, the
             <elem>description</elem> be selected in accord with the rules listed in <ulink
-                    url='https://www.unicode.org/reports/tr41/tr41-34.html#Versions'>[Versions]</ulink>; and
+                    url='https://www.unicode.org/reports/tr41/#Versions'>[Versions]</ulink>; and
             conversely, that documents which do not purport to represent the UCD be described as such.
         </para>
         <!--Manual--><xi:include href="./fragments/description.xml"/>
@@ -1013,10 +1015,7 @@
                 </para>
                 <xi:include href="./fragments/composition.xml"/>
                 <para>The properties <prop>NFC_Quick_Check</prop>, <prop>NFD_Quick_Check</prop>,
-                    <prop>NFKC_Quick_Check</prop>, <prop>NFKD_Quick_Check</prop>,
-                    <edit flag="removed"><prop>Expands_On_NFC</prop>, <prop>Expands_On_NFD</prop>,
-                    <prop>Expands_On_NFKC</prop>, <prop>Expands_On_NKFD</prop>, <prop>FC_NFKC_Closure</prop></edit> have
-                    corresponding attributes.
+                    <prop>NFKC_Quick_Check</prop>, and <prop>NFKD_Quick_Check</prop> have corresponding attributes.
                 </para>
                 <xi:include href="./fragments/quickcheck.xml"/>
             </section>
@@ -1109,14 +1108,6 @@
 
             <!--____________________________________________________________________-->
             <section>
-                <title><edit flag="removed">ISO Comment properties</edit></title>
-                <para><edit flag="removed">The ISO 10646 comment field is represented by the <attr>isc</attr> attribute.
-                </edit></para>
-                <xi:include href="./fragments/isc.xml"/>
-            </section>
-
-            <!--____________________________________________________________________-->
-            <section>
                 <title>Hangul properties</title>
                 <para>The property <prop>Hangul_Syllable_Type</prop> is represented by the <attr>hst</attr> attribute.
                 </para>
@@ -1161,7 +1152,7 @@
             <!--____________________________________________________________________-->
             <section>
                 <title>Properties related to function and graphic characteristics</title>
-                <para>The properties <prop>Dash</prop>, <edit flag='removed'><prop>Hyphen</prop>,</edit>
+                <para>The properties <prop>Dash</prop>,
                     <prop>Quotation_Mark</prop>, <prop>Terminal_Punctuation</prop>, <prop>Sentence_Terminal</prop>,
                     <prop>Diacritic</prop>, <prop>Extender</prop>, <prop>Soft_Dotted</prop>, <prop>Alphabetic</prop>,
                     <prop>Other_Alphabetic</prop>, <prop>Math</prop>, <prop>Other_Math</prop>, <prop>Hex_Digit</prop>,
@@ -1180,7 +1171,6 @@
                 <title>Properties related to boundaries</title>
                 <para>The properties <prop>Grapheme_Base</prop>, <prop>Grapheme_Extend</prop>,
                     <prop>Other_Grapheme_Extend</prop>,
-                    <edit flag='removed'><prop>Grapheme_Link</prop>,</edit>
                     <prop>Grapheme_Cluster_Break</prop>, <prop>Word_Break</prop>, and <prop>Sentence_Break</prop>
                     each have a corresponding attribute:
                 </para>
@@ -1218,9 +1208,7 @@
             <!--____________________________________________________________________-->
             <section>
                 <title>Tangut data</title>
-                <para>The Tangut data are represented as attributes. The attribute <edit
-                        flag="removed"><attr>kRSTUnicode</attr></edit><edit
-                        flag="changed"><attr>kTGT_RSUnicode</attr></edit>
+                <para>The Tangut data are represented as attributes. The attribute <attr>kTGT_RSUnicode</attr>
                     represents the radical stroke index. The attribute <attr>kTGT_MergedSrc</attr> indicates the
                     source reference for the character.
                 </para>
@@ -1230,13 +1218,9 @@
             <!--____________________________________________________________________-->
             <section>
                 <title>Nushu data</title>
-                <para>The Nushu data are represented as attributes. The attribute <edit
-                        flag="removed"><attr>kSrc_NushuDuben</attr></edit><edit
-                        flag="changed"><attr>kNSHU_DubenSrc</attr></edit>
+                <para>The Nushu data are represented as attributes. The attribute <attr>kNSHU_DubenSrc</attr>
                     indicates the page number and order of the item from the NushuDuben reference source. Nushu common
-                    reading is represented as <edit
-                            flag="removed"><attr>kReading</attr></edit><edit
-                            flag="changed"><attr>kNSHU_Reading</attr></edit>.</para>
+                    reading is represented as <attr>kNSHU_Reading</attr>.</para>
                 <xi:include href="./fragments/Nushu.xml"/>
             </section>
 
@@ -1251,8 +1235,8 @@
 
             <!--____________________________________________________________________-->
             <section>
-                <title><edit flag="changed">Unikemet properties</edit></title>
-                <para><edit flag="changed">The Unikemet data are represented as attributes. The attribute <attr>kEH_Cat</attr>
+                <title>Unikemet properties</title>
+                <para>The Unikemet data are represented as attributes. The attribute <attr>kEH_Cat</attr>
                     is a catalog entry corresponding to the IFAO-based taxonomy. The attribute <attr>kEH_Core</attr>
                     determines whether an Egyptian hieroglyph is part of the 'Core' set, Legacy or None. The attribute
                     <attr>kEH_Desc</attr> provides a detailed description of the appearance of the hieroglyph.
@@ -1266,7 +1250,7 @@
                     JSesh Documentation. The attribute <attr>kEH_NoMirror</attr> determines whether the hieroglyph
                     does not mirror. The attribute <attr>kEH_NoRotate</attr> determines whether the hieroglyph
                     does not rotate. The attribute <attr>kEH_UniK</attr> represent the original Unikemet catalog
-                    index used by the Egyptian Hieroglyph block.</edit>
+                    index used by the Egyptian Hieroglyph block.
                 </para>
                 <xi:include href="./fragments/Unikemet.xml"/>
             </section>
@@ -1297,17 +1281,6 @@
 
     <!--========================================================================-->
     <section>
-        <title><edit flag="removed">Normalization Corrections</edit></title>
-        <para><edit flag="removed">The <elem>normalization-corrections</elem> child of the <elem>ucd</elem> describes the normalization
-            corrections. It has one child <elem>normalization-correction</elem> element per correction, with
-            attributes to describe the code point affected, its old normalization, its new normalization and the
-            version of Unicode in which the correction was made.
-        </edit></para>
-        <xi:include href="./fragments/normalization-corrections.xml"/>
-    </section>
-
-    <!--========================================================================-->
-    <section>
         <title>Standardized Variants</title>
         <para>The <elem>standardized-variants</elem> child of the <elem>ucd</elem> describes the standardized
             variant. It has one child element <elem>standardized-variant</elem> per variant. The attributes on that
@@ -1325,16 +1298,6 @@
             radical number, the corresponding CJK radical character, and the corresponding CJK unified ideograph.
         </para>
         <xi:include href="./fragments/cjk-radicals.xml"/>
-    </section>
-
-    <!--========================================================================-->
-    <section>
-        <title><edit flag="removed">Emoji sources</edit></title>
-        <para><edit flag="removed">The <elem>emoji-sources</elem> child of the <elem>ucd</elem> describes the emoji sources.
-        </edit></para>
-        <xi:include href="./fragments/emoji-sources.xml"/>
-
-        <xi:include href="./fragments/jis-code-point.xml"/>
     </section>
 
     <!--========================================================================-->
@@ -1364,10 +1327,8 @@
       <ucdxml:include linkend='schema.unikemet'/>
       <ucdxml:include linkend='schema.block'/>
       <ucdxml:include linkend='schema.named-sequences'/>
-      <edit flag="removed"><ucdxml:include linkend='schema.normalization-corrections'/></edit>
       <ucdxml:include linkend='schema.standardized-variants'/>
       <ucdxml:include linkend='schema.cjk-radicals'/>
-      <edit flag="removed"><ucdxml:include linkend='schema.emoji-sources'/></edit>
       <ucdxml:include linkend='schema.emoji-data'/>
       <ucdxml:include linkend='schema.do-not-emit'/>
 </ucdxml:schema>

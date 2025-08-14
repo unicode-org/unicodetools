@@ -11,20 +11,4 @@
 
   code-point-attributes &amp;=
     attribute NFKD_QC { "Y" | "N" }?
-
-
-<edit flag='removed'>  code-point-attributes &amp;=
-    attribute XO_NFC { boolean }?
-
-  code-point-attributes &amp;=
-    attribute XO_NFD { boolean }?
-
-  code-point-attributes &amp;=
-    attribute XO_NFKC { boolean }?
-
-  code-point-attributes &amp;=
-    attribute XO_NFKD { boolean }?
-
-
-  code-point-attributes &amp;=
-    attribute FC_NFKC { "#" | one-or-more-code-points }?</edit></ucdxml:block>
+</ucdxml:block>
