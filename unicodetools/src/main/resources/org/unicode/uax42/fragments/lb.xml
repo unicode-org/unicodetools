@@ -6,7 +6,7 @@
                  | "CB" | "CJ" | "CL" | "CM" | "CP" | "CR"
                  | "EB" | "EM" | "EX"
                  | "GL"
-                 | "H2" | "H3" | <edit flag='changed'>"HH"</edit> | "HL" | "HY"
+                 | "H2" | "H3" | "HH" | "HL" | "HY"
                  | "ID" | "IN" | "IS"
                  | "JL" | "JT" | "JV"
                  | "LF"
