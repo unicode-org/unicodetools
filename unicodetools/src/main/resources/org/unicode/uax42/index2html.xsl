@@ -462,15 +462,21 @@
         </xsl:choose>
         <xsl:text>: </xsl:text>
         <xsl:for-each select="key('ucdxml-key',@linkend)">
-          <a href="#ucdxml:{generate-id ()}"><xsl:number count="ucdxml:block" level="any"/></a>
+          <xsl:variable name="link"><xsl:value-of
+                  select="replace(lower-case(@title), ' ', '_')"/><xsl:text>_</xsl:text><xsl:number
+                  count="ucdxml:block" level="any"/></xsl:variable>
+          <a href="#ucdxml:{$link}"><xsl:number count="ucdxml:block" level="any"/></a>
           <xsl:if test="position() != last ()">, </xsl:if></xsl:for-each><xsl:text>]</xsl:text>
     </i>
   </xsl:template>
 
   <xsl:template match="ucdxml:block">
+    <xsl:variable name="link"><xsl:value-of
+            select="replace(lower-case(@title), ' ', '_')"/><xsl:text>_</xsl:text><xsl:number
+            count="ucdxml:block" level="any"/></xsl:variable>
     <p>
       <xsl:apply-templates select="@edit"/>
-      <i><a name="ucdxml:{generate-id()}">[<xsl:value-of select="@title"/>,
+      <i><a name="ucdxml:{$link}">[<xsl:value-of select="@title"/>,
         <xsl:number count="ucdxml:block" level="any"/>]
       </a>
         =</i>
@@ -481,8 +487,10 @@
   </xsl:template>
 
   <xsl:template match="ucdxml:schema">
+    <xsl:variable name="link"><xsl:value-of
+            select="replace(lower-case(@title), ' ', '_')"/></xsl:variable>
     <p>
-      <i><a name="ucdxml:{generate-id()}">[<xsl:value-of select="@title"/>]
+      <i><a name="ucdxml:{$link}">[<xsl:value-of select="@title"/>]
       </a>
         =</i>
       <xsl:apply-templates/>
