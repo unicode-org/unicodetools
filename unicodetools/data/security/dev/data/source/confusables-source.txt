@@ -5724,3 +5724,7 @@ A7F1 ; 02E2  # ( ꟱ → ˢ ) MODIFIER LETTER CAPITAL S → MODIFIER LETTER SMAL
 
 # Confusable Katakana-Han pair (PAG ref #442)
 1B122 ; 4E8E
+
+# Confusables for Devanagari UE and UUE (PAG ref #449)
+0956 ; 032E
+0957 ; 032E 032E

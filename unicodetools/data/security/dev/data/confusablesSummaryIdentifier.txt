@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2025-07-22, 05:49:37 GMT
+# Date: 2025-08-11, 18:24:57 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -546,6 +546,14 @@
 ←	(‎ ઼ ‎)	0ABC	 GUJARATI SIGN NUKTA
 ←	(‎ ଼ ‎)	0B3C	 ORIYA SIGN NUKTA
 
+#	ॖ	ੁ
+	(‎ ॖ ‎)	0956	 DEVANAGARI VOWEL SIGN UE
+←	(‎ ੁ ‎)	0A41	 GURMUKHI VOWEL SIGN U
+
+#	ॗ	ੂ
+	(‎ ॗ ‎)	0957	 DEVANAGARI VOWEL SIGN UUE
+←	(‎ ੂ ‎)	0A42	 GURMUKHI VOWEL SIGN UU
+
 #	Γ	Г
 	(‎ Γ ‎)	0393	 GREEK CAPITAL LETTER GAMMA
 ←	(‎ Г ‎)	0413	 CYRILLIC CAPITAL LETTER GHE
@@ -918,14 +926,6 @@
 	(‎ ् ‎)	094D	 DEVANAGARI SIGN VIRAMA
 ←	(‎ ੍ ‎)	0A4D	 GURMUKHI SIGN VIRAMA
 ←	(‎ ્ ‎)	0ACD	 GUJARATI SIGN VIRAMA
-
-#	ॖ	ੁ
-	(‎ ॖ ‎)	0956	 DEVANAGARI VOWEL SIGN UE
-←	(‎ ੁ ‎)	0A41	 GURMUKHI VOWEL SIGN U
-
-#	ॗ	ੂ
-	(‎ ॗ ‎)	0957	 DEVANAGARI VOWEL SIGN UUE
-←	(‎ ੂ ‎)	0A42	 GURMUKHI VOWEL SIGN UU
 
 #	२	ર	૨
 	(‎ २ ‎)	0968	 DEVANAGARI DIGIT TWO
