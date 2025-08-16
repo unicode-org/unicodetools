@@ -1,5 +1,5 @@
 # VerticalOrientation-17.0.0.txt
-# Date: 2025-07-24, 00:13:33 GMT
+# Date: 2025-08-08, 21:15:09 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2487,11 +2487,12 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1F6FD..1F6FF   ; U  # Cn     [3] <reserved-1F6FD>..<reserved-1F6FF>
 1F700..1F77F   ; U  # So   [128] ALCHEMICAL SYMBOL FOR QUINTESSENCE..ORCUS
 1F780..1F7D9   ; U  # So    [90] BLACK LEFT-POINTING ISOSCELES RIGHT TRIANGLE..NINE POINTED WHITE STAR
-1F7DA..1F7DF   ; U  # Cn     [6] <reserved-1F7DA>..<reserved-1F7DF>
+1F7DA          ; U  # Cn         <reserved-1F7DA>
+1F7DB          ; U  # So         BULLET IN DOUBLE CIRCLE
+1F7DC..1F7DF   ; U  # Cn     [4] <reserved-1F7DC>..<reserved-1F7DF>
 1F7E0..1F7EB   ; U  # So    [12] LARGE ORANGE CIRCLE..LARGE BROWN SQUARE
 1F7EC..1F7EF   ; U  # Cn     [4] <reserved-1F7EC>..<reserved-1F7EF>
-1F7F0          ; U  # So         HEAVY EQUALS SIGN
-1F7F1..1F7FF   ; U  # Cn    [15] <reserved-1F7F1>..<reserved-1F7FF>
+1F7F0..1F7FF   ; U  # So    [16] HEAVY EQUALS SIGN..RHOMBUS
 1F800..1F80B   ; R  # So    [12] LEFTWARDS ARROW WITH SMALL TRIANGLE ARROWHEAD..DOWNWARDS ARROW WITH LARGE TRIANGLE ARROWHEAD
 1F810..1F847   ; R  # So    [56] LEFTWARDS ARROW WITH SMALL EQUILATERAL ARROWHEAD..DOWNWARDS HEAVY ARROW
 1F850..1F859   ; R  # So    [10] LEFTWARDS SANS-SERIF ARROW..UP DOWN SANS-SERIF ARROW

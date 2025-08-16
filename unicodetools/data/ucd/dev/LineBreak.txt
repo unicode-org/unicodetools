@@ -1,5 +1,5 @@
 # LineBreak-17.0.0.txt
-# Date: 2025-07-29, 13:52:18 GMT
+# Date: 2025-08-08, 21:14:43 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3619,11 +3619,12 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 1F77B..1F77F   ; ID # So     [5] HAUMEA..ORCUS
 1F780..1F7D4   ; AL # So    [85] BLACK LEFT-POINTING ISOSCELES RIGHT TRIANGLE..HEAVY TWELVE POINTED PINWHEEL STAR
 1F7D5..1F7D9   ; ID # So     [5] CIRCLED TRIANGLE..NINE POINTED WHITE STAR
-1F7DA..1F7DF   ; ID # Cn     [6] <reserved-1F7DA>..<reserved-1F7DF>
+1F7DA          ; ID # Cn         <reserved-1F7DA>
+1F7DB          ; ID # So         BULLET IN DOUBLE CIRCLE
+1F7DC..1F7DF   ; ID # Cn     [4] <reserved-1F7DC>..<reserved-1F7DF>
 1F7E0..1F7EB   ; ID # So    [12] LARGE ORANGE CIRCLE..LARGE BROWN SQUARE
 1F7EC..1F7EF   ; ID # Cn     [4] <reserved-1F7EC>..<reserved-1F7EF>
-1F7F0          ; ID # So         HEAVY EQUALS SIGN
-1F7F1..1F7FF   ; ID # Cn    [15] <reserved-1F7F1>..<reserved-1F7FF>
+1F7F0..1F7FF   ; ID # So    [16] HEAVY EQUALS SIGN..RHOMBUS
 1F800..1F80B   ; AL # So    [12] LEFTWARDS ARROW WITH SMALL TRIANGLE ARROWHEAD..DOWNWARDS ARROW WITH LARGE TRIANGLE ARROWHEAD
 1F810..1F847   ; AL # So    [56] LEFTWARDS ARROW WITH SMALL EQUILATERAL ARROWHEAD..DOWNWARDS HEAVY ARROW
 1F850..1F859   ; AL # So    [10] LEFTWARDS SANS-SERIF ARROW..UP DOWN SANS-SERIF ARROW
