@@ -2,7 +2,7 @@
 
 package org.unicode.jsptest;
 
-import com.ibm.icu.dev.test.TestFmwk.TestGroup;
+import org.unicode.cldr.icu.dev.test.TestFmwk.TestGroup;
 
 /** Top level test used to run all other tests as a batch. */
 public class TestAll extends TestGroup {
