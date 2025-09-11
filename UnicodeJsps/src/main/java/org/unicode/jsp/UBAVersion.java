@@ -19,7 +19,8 @@ public class UBAVersion {
                     Age_Values.V14_0,
                     Age_Values.V15_0,
                     Age_Values.V15_1,
-                    Age_Values.V16_0
+                    Age_Values.V16_0,
+                    Age_Values.V17_0
                     // FIX_FOR_NEW_VERSION
                     /* Current version is always last */
                     );

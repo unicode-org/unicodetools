@@ -228,6 +228,9 @@ Value:  V16_0
 Value:  V17_0
 # Newly assigned in Unicode 17.0.0 (September, 2025)
 
+Value:  V18_0
+# Newly assigned in Unicode 18.0.0 (September, 2025)
+
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
 # Bidi Class (listing UnicodeData.txt, field 4: see UAX #44: https://www.unicode.org/reports/tr44/)
