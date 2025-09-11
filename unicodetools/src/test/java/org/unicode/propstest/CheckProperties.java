@@ -858,6 +858,9 @@ public class CheckProperties {
         }
         // Unicode 15.1+: A character may have multiple Unihan numeric values.
         int pos = a.indexOf(' ');
+        if (pos < 0) {
+            pos = a.indexOf('|');
+        }
         if (pos >= 0) {
             a = a.substring(0, pos);
         }
