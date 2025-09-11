@@ -69,6 +69,7 @@ public class UcdPropertyValues {
         V15_1("15.1"),
         V16_0("16.0"),
         V17_0("17.0"),
+        V18_0("18.0"),
         Unassigned("NA");
         private final PropertyNames<Age_Values> names;
 
