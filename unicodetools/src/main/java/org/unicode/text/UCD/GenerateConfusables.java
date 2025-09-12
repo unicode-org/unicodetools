@@ -506,7 +506,7 @@ public class GenerateConfusables {
 
     private static Map gatheredNFKD = new TreeMap();
     private static UnicodeMap nfcMap;
-    private static UnicodeMap nfkcMap;
+    private static UnicodeMap nfkdMap;
 
     private static Comparator codepointComparator = new UTF16.StringComparator(true, false, 0);
     static Comparator UCAComparator =
@@ -686,7 +686,7 @@ public class GenerateConfusables {
 
     private static UnicodeSet getSkipNFKD() {
         nfcMap = new UnicodeMap();
-        nfkcMap = new UnicodeMap();
+        nfkdMap = new UnicodeMap();
         if (_skipNFKD == null) {
             _skipNFKD = new UnicodeSet();
 
@@ -729,9 +729,9 @@ public class GenerateConfusables {
                     if (kmapped.startsWith(" ") || kmapped.startsWith("\u0640")) {
                         if (DEBUG) System.out.println("?? " + DEFAULT_UCD.getCodeAndName(cp));
                         if (DEBUG) System.out.println("\t" + DEFAULT_UCD.getCodeAndName(kmapped));
-                        kmapped = getModifiedNFKC(source); // for debugging
+                        kmapped = getModifiedNFKD(source); // for debugging
                     }
-                    nfkcMap.put(cp, kmapped);
+                    nfkdMap.put(cp, kmapped);
                 }
                 if (mapped.equals(source)) {
                     continue;
@@ -745,8 +745,8 @@ public class GenerateConfusables {
         }
         nfcMap.setMissing("");
         nfcMap.freeze();
-        nfkcMap.setMissing("");
-        nfkcMap.freeze();
+        nfkdMap.setMissing("");
+        nfkdMap.freeze();
         return _skipNFKD;
     }
 
@@ -2314,9 +2314,9 @@ public class GenerateConfusables {
 
         total.checkChar("ſ");
         ds = new DataSet();
-        if (DEBUG) System.out.println(nfkcMap.get('ſ'));
+        if (DEBUG) System.out.println(nfkdMap.get('ſ'));
 
-        ds.addUnicodeMap(nfkcMap, "nfkc", "nfkc");
+        ds.addUnicodeMap(nfkdMap, "nfkd", "nfkd");
         // if (DEBUG) System.out.println(ds);
         ds.checkChar("ſ");
         ds.close("*");
