@@ -1,11 +1,11 @@
 # formatted-macFonts.txt
-# Date: 2025-07-22, 05:49:36 GMT
+# Date: 2025-09-12, 01:35:58 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 17.0.0
+# Version: 18.0.0
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr39
 #

@@ -1,11 +1,11 @@
 # formatted-source.txt
-# Date: 2025-07-22, 05:49:36 GMT
+# Date: 2025-09-12, 01:35:58 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 17.0.0
+# Version: 18.0.0
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr39
 #
@@ -140,8 +140,8 @@
 0035 ;	01BC	# ( 5 ~ Ƽ ) DIGIT FIVE ~ LATIN CAPITAL LETTER TONE FIVE
 0035 ;	118BB	# ( 5 ~ 𑢻 ) DIGIT FIVE ~ WARANG CITI CAPITAL LETTER HORR
 
-0036 ;	03EC	# ( 6 ~ Ϭ ) DIGIT SIX ~ COPTIC CAPITAL LETTER SHIMA
 0036 ;	0431	# ( 6 ~ б ) DIGIT SIX ~ CYRILLIC SMALL LETTER BE
+0036 ;	03EC	# ( 6 ~ Ϭ ) DIGIT SIX ~ COPTIC CAPITAL LETTER SHIMA
 0036 ;	2CD3	# ( 6 ~ ⳓ ) DIGIT SIX ~ COPTIC SMALL LETTER OLD COPTIC HEI
 0036 ;	118D5	# ( 6 ~ 𑣕 ) DIGIT SIX ~ WARANG CITI SMALL LETTER AT
 
@@ -830,9 +830,9 @@
 0076 ;	118C0	# ( v ~ 𑣀 ) LATIN SMALL LETTER V ~ WARANG CITI SMALL LETTER NGAA
 0076 ;	11706	# ( v ~ 𑜆 ) LATIN SMALL LETTER V ~ AHOM LETTER PA
 
-0077 ;	0448	# ( w ~ ш ) LATIN SMALL LETTER W ~ CYRILLIC SMALL LETTER SHA
 0077 ;	026F	# ( w ~ ɯ ) LATIN SMALL LETTER W ~ LATIN SMALL LETTER TURNED M
 0077 ;	1D21	# ( w ~ ᴡ ) LATIN SMALL LETTER W ~ LATIN LETTER SMALL CAPITAL W
+0077 ;	0448	# ( w ~ ш ) LATIN SMALL LETTER W ~ CYRILLIC SMALL LETTER SHA
 0077 ;	1170A	# ( w ~ 𑜊 ) LATIN SMALL LETTER W ~ AHOM LETTER JA
 0077 ;	1170E	# ( w ~ 𑜎 ) LATIN SMALL LETTER W ~ AHOM LETTER LA
 0077 ;	1170F	# ( w ~ 𑜏 ) LATIN SMALL LETTER W ~ AHOM LETTER SA

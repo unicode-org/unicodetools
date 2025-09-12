@@ -189,9 +189,9 @@ public class IdentifierInfo {
         // the output set
         for (final UnicodeSetIterator usi = new UnicodeSetIterator(remainingInputSet1);
                 usi.next(); ) {
-            final String nss = GenerateConfusables.getModifiedNKFC(usi.getString());
+            final String nss = GenerateConfusables.getModifiedNFKC(usi.getString());
             final String cf = DEFAULT_UCD.getCase(nss, UCD_Types.FULL, UCD_Types.FOLD);
-            final String cf2 = GenerateConfusables.getModifiedNKFC(cf);
+            final String cf2 = GenerateConfusables.getModifiedNFKC(cf);
             if (remainingOutputSet.containsAll(cf2)) {
                 remainingInputSet.add(usi.codepoint);
             } else {
@@ -203,7 +203,7 @@ public class IdentifierInfo {
         for (final UnicodeSetIterator usi = new UnicodeSetIterator(remainingInputSet);
                 usi.next(); ) {
             final String ss = usi.getString();
-            final String nss = GenerateConfusables.getModifiedNKFC(ss);
+            final String nss = GenerateConfusables.getModifiedNFKC(ss);
             final String cf = DEFAULT_UCD.getCase(ss, UCD_Types.FULL, UCD_Types.FOLD);
             if (DEBUG && (usi.codepoint == 0x2126 || usi.codepoint == 0x212B)) {
                 System.out.println("check");
