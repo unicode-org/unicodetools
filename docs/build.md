@@ -106,7 +106,7 @@ via a Github token, even when you are only reading artifacts.
 > If you run into this issue, then:
 > 
 > 1. revisit the [CLDR Maven setup link](http://cldr.unicode.org/development/maven)
-to ensure that you have created the correct type of Github access token and that you have granted the correct permissions to it
+to ensure that you have created the correct type of Github access token: classic, _not_ fine-grained—with a fine-grained token, you will get a 403 rather than a 401—; and that you have granted the correct permissions to it.
 > 2. if you are copy-and-pasting any of the example Unicode Tools task Maven commands from the instructions below and/or from the CI workflow files,
 then you must *remove* the `-s .github/workflows/mvn-settings.xml` that is needed only for CI.
 Removing the `-s` option will use the settings in your default local settings file at `~/.m2/settings.xml`.
