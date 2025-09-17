@@ -103,14 +103,14 @@ public class TestMultivalued extends TestFmwkMinusMinus {
         assertFalse("\\p{exem=el} contains 0", exem3.contains(0x0000));
         assertTrue("\\p{exem=el} contains α", exem3.contains('α'));
 
-        String unicodeSetString = "[\\p{Greek}&\\p{exem}]";
+        String unicodeSetString = "[\\p{Greek}&\\p{exem=}]";
         UnicodeSet parsed = UnicodeSetUtilities.parseUnicodeSet(unicodeSetString);
 
         String first = parsed.iterator().next();
         String firstValue = exemplarProp.getValue(first.codePointAt(0));
         assertEquals(unicodeSetString, "", firstValue);
 
-        String unicodeSetString2 = "[\\p{Greek}&\\P{exem}]";
+        String unicodeSetString2 = "[\\p{Greek}&\\P{exem=}]";
         UnicodeSet parsed2 = UnicodeSetUtilities.parseUnicodeSet(unicodeSetString2);
 
         String first2 = parsed2.iterator().next();
