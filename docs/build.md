@@ -10,20 +10,19 @@ can be used to:
 *   build 4 chart folders on the unicode site.
 *   build files for ICU (collation, NFSkippable)
 
-**WARNING!!**
-
-*   This is NOT production level code, and should never be used in programs.
-*   The API is subject to change without notice, and will not be maintained.
-*   The source is uncommented, and has many warts; since it is not production
-    code, it has not been worth the time to clean it up.
-*   It will probably need some adjustments on Unix or Windows, such as changing
-    the file separator.
-*   Currently it uses hard-coded directory names.
-*   The contents of multiple versions of the UCD must be copied to a local
-    directory, as described below.
-*   ***It will be useful to look at the history of the files in git to see the
-    kinds of rule changes that are made!***
-    *   Unfortunately, we lost some change history of about 1.5 years(?) leading up to April 2020.
+> [!CAUTION]
+> *   This is NOT production level code, and should never be used in programs.
+> *   The API is subject to change without notice, and will not be maintained.
+> *   The source is uncommented, and has many warts; since it is not production
+>     code, it has not been worth the time to clean it up.
+> *   It will probably need some adjustments on Unix or Windows, such as changing
+>     the file separator.
+> *   Currently it uses hard-coded directory names.
+> *   The contents of multiple versions of the UCD must be copied to a local
+>     directory, as described below.
+> *   ***It will be useful to look at the history of the files in git to see the
+>     kinds of rule changes that are made!***
+>     *   Unfortunately, we lost some change history of about 1.5 years(?) leading up to April 2020.
 
 ## Instructions
 
@@ -86,6 +85,31 @@ Currently, some tests run on the generated output files of a tool (ex: in order 
 | UNICODETOOLS_GEN_DIR    | /usr/local/google/home/mscherer/unitools/mine/Generated        |
 | UVERSION                | 14.0.0                                                         |
 
+#### Github Maven artifacts and authentication
+
+If you have not correctly configured your local settings file according to <http://cldr.unicode.org/development/maven>,
+then you will likely see error messages when your Maven build tries to access (including just reading)
+the Maven dependency artifacts such as:
+
+```
+[ERROR] Failed to execute goal on project unicodetools-testutils: Could not collect dependencies for project org.unicode.unicodetools:unicodetools-testutils:jar:1.0.0
+[ERROR] Failed to read artifact descriptor for com.ibm.icu:icu4j:jar:78.0.1-SNAPSHOT
+[ERROR]         Caused by: The following artifacts could not be resolved: com.ibm.icu:icu4j:pom:78.0.1-20250916.173842-8 (present, but unavailable): Could not transfer artifact com.ibm.icu:icu4j:pom:78.0.1-20250916.173842-8 from/to github (https://maven.pkg.github.com/unicode-org/cldr): authentication failed for https://maven.pkg.github.com/unicode-org/cldr/com/ibm/icu/icu4j/78.0.1-SNAPSHOT/icu4j-78.0.1-20250916.173842-8.pom, status: 401 Unauthorized
+[ERROR] Failed to read artifact descriptor for org.unicode.cldr:cldr-code:jar:0.0.0-SNAPSHOT-3404124632
+[ERROR]         Caused by: The following artifacts could not be resolved: org.unicode.cldr:cldr-code:pom:0.0.0-SNAPSHOT-3404124632 (present, but unavailable): Could not transfer artifact org.unicode.cldr:cldr-code:pom:0.0.0-SNAPSHOT-3404124632 from/to github (https://maven.pkg.github.com/unicode-org/cldr): authentication failed for https://maven.pkg.github.com/unicode-org/cldr/org/unicode/cldr/cldr-code/0.0.0-SNAPSHOT-3404124632/cldr-code-0.0.0-SNAPSHOT-3404124632.pom, status: 401 Unauthorized
+```
+
+This happens because [Github's Maven artifact registry requires authentication](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry), 
+via a Github token, even when you are only reading artifacts.
+
+> [!IMPORTANT]
+> If you run into this issue, then:
+> 
+> 1. revisit the [CLDR Maven setup link](http://cldr.unicode.org/development/maven)
+to ensure that you have created the correct type of Github access token and that you have granted the correct permissions to it
+> 2. if you are copy-and-pasting any of the example Unicode Tools task Maven commands from the instructions below and/or from the CI workflow files,
+then you must *remove* the `-s .github/workflows/mvn-settings.xml` that is needed only for CI.
+Removing the `-s` option will use the settings in your default local settings file at `~/.m2/settings.xml`.
 
 ### Editing and tool execution setup
 
