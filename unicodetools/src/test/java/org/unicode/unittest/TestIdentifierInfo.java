@@ -17,9 +17,9 @@ import org.unicode.props.UcdPropertyValues.Identifier_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 
 public class TestIdentifierInfo extends TestFmwkMinusMinus {
-    static final IndexUnicodeProperties uip = IndexUnicodeProperties.make("12.0");
+    static final IndexUnicodeProperties iup = IndexUnicodeProperties.make();
     static final UnicodeSet NotCharacter =
-            uip.loadEnumSet(UcdProperty.General_Category, General_Category_Values.Unassigned);
+            iup.loadEnumSet(UcdProperty.General_Category, General_Category_Values.Unassigned);
 
     static final UnicodeSet SpecialExclusions =
             new UnicodeSet(
@@ -42,7 +42,7 @@ public class TestIdentifierInfo extends TestFmwkMinusMinus {
                         Identifier_Type_Values.Exclusion, Identifier_Type_Values.Limited_Use);
 
         UnicodeMap<Set<Identifier_Type_Values>> idType =
-                uip.loadEnumSet(UcdProperty.Identifier_Type, Identifier_Type_Values.class);
+                iup.loadEnumSet(UcdProperty.Identifier_Type, Identifier_Type_Values.class);
 
         UnicodeMap<String> mismatch = new UnicodeMap<>();
 
@@ -83,7 +83,7 @@ public class TestIdentifierInfo extends TestFmwkMinusMinus {
     private UnicodeMap<Identifier_Type_Values> getScriptUsage() {
         UnicodeMap<Identifier_Type_Values> results = new UnicodeMap<>();
         UnicodeMap<Set<Script_Values>> scriptExtensions =
-                uip.loadEnumSet(UcdProperty.Script_Extensions, Script_Values.class);
+                iup.loadEnumSet(UcdProperty.Script_Extensions, Script_Values.class);
         for (Set<Script_Values> scriptSet : scriptExtensions.values()) {
             Identifier_Type_Values u31 = getValues(scriptSet);
             if (u31 != null) {
