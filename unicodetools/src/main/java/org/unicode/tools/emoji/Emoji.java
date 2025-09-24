@@ -200,7 +200,7 @@ public class Emoji {
 
     public static final VersionInfo VERSION_TO_GENERATE_UNICODE = VERSION_BETA_UNICODE;
     public static final String VERSION_UNICODE_STRING =
-            VERSION_TO_GENERATE_UNICODE.getVersionString(2, 4);
+            VERSION_TO_GENERATE_UNICODE.getVersionString(3, 4);
 
     public static final String EMOJI_DIR =
             Settings.Output.GEN_DIR + "emoji/" + (Emoji.ABBR ? "🏴" : "");
@@ -211,9 +211,9 @@ public class Emoji {
     public static final String RELEASE_CHARTS_DIR =
             EMOJI_DIR + "charts-" + VERSION_LAST_RELEASED_STRING + "/";
 
-    public static final String DATA_DIR_PRODUCTION_BASE = "https://unicode.org/Public/emoji/";
+    public static final String DATA_DIR_PRODUCTION_BASE = "https://www.unicode.org/Public/";
     public static final String DATA_DIR_PRODUCTION =
-            DATA_DIR_PRODUCTION_BASE + VERSION_STRING + "/";
+            DATA_DIR_PRODUCTION_BASE + VERSION_UNICODE_STRING + "/emoji/";
 
     public static final String IMAGES_SOURCE_DIR_SVG = Settings.UnicodeTools.DATA_DIR + "images/";
     // TODO: This should be relative to GEN_DIR, not using "../../" to maybe get out of the repo
