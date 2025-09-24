@@ -26,6 +26,7 @@ mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git -f UnicodeJsps/target/cld
 ```
 Powershell:
 ```powershell
+rm .\Generated\* -recurse -force;
 mvn compile exec:java '-Dexec.mainClass="org.unicode.jsp.RebuildPropertyCache"' -am -pl unicodetools   "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=." "-DCLDR_DIR=..\cldr\"
 ```
 WSL:
