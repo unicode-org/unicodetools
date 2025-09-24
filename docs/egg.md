@@ -14,11 +14,13 @@ Powershell:
 ```powershell
 mvn -B package -am -pl UnicodeJsps -DskipTests=true
 $CLDR_REF = $(mvn help:evaluate "-Dexpression=cldr.version" -q -DforceStdout).Split("-")[2]
-if (-not Test-Path cldr) {
+if (-not (Test-Path cldr)) {
   git clone https://github.com/unicode-org/cldr.git "--reference=..\cldr"
 }
-Set-Location cldr
+Push-Location cldr
+git fetch
 git reset --hard $CLDR_REF
+Pop-Location
 ```
 WSL:
 ```bash
