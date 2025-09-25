@@ -83,6 +83,7 @@ public class Emoji {
     // situation)
 
     // Constants for versions
+    public static final VersionInfo VERSION18 = VersionInfo.getInstance(18);
     public static final VersionInfo VERSION17 = VersionInfo.getInstance(17);
     public static final VersionInfo VERSION16 = VersionInfo.getInstance(16);
     public static final VersionInfo VERSION15_1 = VersionInfo.getInstance(15, 1);
@@ -136,6 +137,7 @@ public class Emoji {
 
     public static final Map<VersionInfo, String> EMOJI_TO_DATE =
             ImmutableMap.<VersionInfo, String>builder()
+                    .put(VERSION18, "2026-09-15")
                     .put(VERSION17, "2025-09-09")
                     .put(VERSION16, "2024-09-10")
                     .put(VERSION15_1, "2023-09-12")
