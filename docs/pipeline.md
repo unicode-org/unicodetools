@@ -164,13 +164,13 @@ git merge main
 git checkout main unicodetools/data/ucd/dev/Derived*
 git checkout main unicodetools/data/ucd/dev/extracted/*
 git checkout main unicodetools/data/ucd/dev/auxiliary/*
-rm -r ../Generated/BIN/17.0.0.0/
-rm -r ../Generated/BIN/UCD_Data17.0.0.bin
-mvn -s ~/.m2/settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 17.0.0 build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=17.0.0
+rm -r ../Generated/BIN/18.0.0.0/
+rm -r ../Generated/BIN/UCD_Data18.0.0.bin
+mvn -s ~/.m2/settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 18.0.0 build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=18.0.0
 # fix merge conflicts in unicodetools/src/main/java/org/unicode/text/UCD/UCD_Types.java
 #   and in UCD_Names.java
 # rerun mvn
-cp -r ../Generated/UCD/17.0.0/* unicodetools/data/ucd/dev
+cp -r ../Generated/UCD/18.0.0/* unicodetools/data/ucd/dev
 rm unicodetools/data/ucd/dev/ZZZ-UNCHANGED-*
 rm unicodetools/data/ucd/dev/*/ZZZ-UNCHANGED-*
 rm unicodetools/data/ucd/dev/extra/*
@@ -195,7 +195,7 @@ eggrobin (Windows, in-source).
 ```powershell
 rm .\Generated\* -recurse -force
 mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.Main"'  '-Dexec.args="build MakeUnicodeFiles"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
-cp .\Generated\UCD\17.0.0\* .\unicodetools\data\ucd\dev -recurse -force
+cp .\Generated\UCD\18.0.0\* .\unicodetools\data\ucd\dev -recurse -force
 rm unicodetools\data\ucd\dev\zzz-unchanged-*
 rm unicodetools\data\ucd\dev\*\zzz-unchanged-*
 rm .\unicodetools\data\ucd\dev\extra\*
@@ -211,7 +211,7 @@ eggrobin (Windows, in-source).
 ```powershell
 rm .\Generated\* -recurse -force
 mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.Main"'  '-Dexec.args="build MakeUnicodeFiles"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
-cp .\Generated\UCD\17.0.0\LineBreak.txt .\unicodetools\data\ucd\dev
+cp .\Generated\UCD\18.0.0\LineBreak.txt .\unicodetools\data\ucd\dev
 ```
 
 ### GenerateEnums
@@ -229,6 +229,6 @@ git commit -m GenerateEnums
 
 eggrobin (Windows, in-source).
 ```powershell
-mvn test -am -pl unicodetools "-DCLDR_DIR=$(gl|split-path -parent)\cldr\"  "-DUNICODETOOLS_GEN_DIR=$(gl|split-path -parent)\unicodetools\Generated\"  "-DUNICODETOOLS_REPO_DIR=$(gl|split-path -parent)\unicodetools\" "-DUVERSION=17.0.0" "-Dtest=TestTestUnicodeInvariants#testAdditionComparisons" -DfailIfNoTests=false -DtrimStackTrace=false
+mvn test -am -pl unicodetools "-DCLDR_DIR=$(gl|split-path -parent)\cldr\"  "-DUNICODETOOLS_GEN_DIR=$(gl|split-path -parent)\unicodetools\Generated\"  "-DUNICODETOOLS_REPO_DIR=$(gl|split-path -parent)\unicodetools\" "-DUVERSION=18.0.0" "-Dtest=TestTestUnicodeInvariants#testAdditionComparisons" -DfailIfNoTests=false -DtrimStackTrace=false
 ```
 Results are in Generated\UnicodeTestResults-addition-comparisons-[RMG issue number].html.
