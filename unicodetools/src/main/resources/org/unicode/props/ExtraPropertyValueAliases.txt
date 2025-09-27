@@ -375,3 +375,21 @@ RGI_Emoji_Qualification ; UQE                 ; Unqualified
 RGI_Emoji_Qualification ; component           ; Standalone_Component
 # Value used in 11.0 and earlier, refined in 12.0.
 RGI_Emoji_Qualification ; Non_Fully_Qualified ; Non_Fully_Qualified
+
+# @missing: 0000..10FFFF; Math_Class ; None
+Math_Class ; None ; None
+Math_Class ; N    ; Normal
+Math_Class ; A    ; Alphabetic
+Math_Class ; B    ; Binary
+Math_Class ; C    ; Closing
+Math_Class ; D    ; Diacritic
+Math_Class ; F    ; Fence
+Math_Class ; G    ; Glyph_Part
+Math_Class ; L    ; Large
+Math_Class ; O    ; Opening
+Math_Class ; P    ; Punctuation
+Math_Class ; R    ; Relation
+Math_Class ; S    ; Space
+Math_Class ; U    ; Unary
+Math_Class ; V    ; Vary
+Math_Class ; X    ; Special

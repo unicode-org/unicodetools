@@ -1478,6 +1478,9 @@ In [\p{Block=Hangul Syllables} - \p{gc=Cn}], (prepend HANGUL SYLLABLE ) * (strin
 # https://www.unicode.org/review/pri497/feedback.html#ID20240216135149.
 In \p{Decomposition_Type=font}, Bidi_Class = Bidi_Class * Decomposition_Mapping
 
+\p{U9:Math} ⊂ \P{U9:Math_Class=None}
+\p{Math}    ⊂ \P{Math_Class=None}
+
 # Basic Propertywise tests.
 Ignoring Name:
 

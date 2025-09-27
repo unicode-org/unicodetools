@@ -538,6 +538,11 @@ emoji/*/emoji-test ; RGI_Emoji_Qualification ; 1
 #                     \p{RGI_Emoji_Qualification=Standalone_Component}].
 emoji/*/emoji-test ; RGI_Emoji ; 1
 
+math/*/MathClass ; Math_Class ; 1
+math/*/MathClassEx ; Math_Entity_Name ; 2
+math/*/MathClassEx ; Math_Entity_Set ; 3
+math/*/MathClassEx ; Math_Descriptive_Comments ; 4
+
 FileType ; Unikemet ; PropertyValue
 Unikemet ; kEH_Cat
 Unikemet ; kEH_Core

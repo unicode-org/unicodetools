@@ -1817,6 +1817,52 @@ public class UcdPropertyValues {
     }
 
     // Lowercase_Mapping
+    public enum Math_Class_Values implements Named {
+        None("None"),
+        Normal("N"),
+        Alphabetic("A"),
+        Binary("B"),
+        Closing("C"),
+        Diacritic("D"),
+        Fence("F"),
+        Glyph_Part("G"),
+        Large("L"),
+        Opening("O"),
+        Punctuation("P"),
+        Relation("R"),
+        Space("S"),
+        Unary("U"),
+        Vary("V"),
+        Special("X");
+        private final PropertyNames<Math_Class_Values> names;
+
+        private Math_Class_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Math_Class_Values>(
+                            Math_Class_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Math_Class_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Math_Class_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Math_Class_Values.class);
+
+        public static Math_Class_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
+    // Math_Descriptive_Comments
+    // Math_Entity_Name
+    // Math_Entity_Set
     // Name
     // Name_Alias
     // Named_Sequences
