@@ -251,3 +251,5 @@ Confusable_MA ;               SINGLE_VALUED ;                $codePoints
 #Emoji_Modifier ;              SINGLE_VALUED ;                <enum>
 #Emoji_Modifier_Base ;         SINGLE_VALUED ;                <enum>
 
+Math_Entity_Name ; MULTI_VALUED ; .*
+Math_Entity_Set  ; MULTI_VALUED ; .*

@@ -230,7 +230,7 @@
 Let $foo := \p{ccc=9}
 Let $fii := \p{toNFD=/$foo/}
 
-Let $codepoints := [\u0000-\U0010FFFF]
+Let $code_points := [\u0000-\U0010FFFF]
 
 Let $gcAllPunctuation := \p{gc=/_Punctuation/}
 $gcAllPunctuation = [
@@ -413,7 +413,7 @@ In \p{sc=Cher}, scf = suc
 # Simple and full case foldings define the same equivalence classes on code points.
 # This used not to be true, but was rectified by
 # https://www.unicode.org/cgi-bin/GetL2Ref.pl?175-C19.
-OnPairsOf $codepoints, EqualityOf Case_Folding ⇔ EqualityOf Simple_Case_Folding
+OnPairsOf $code_points, EqualityOf Case_Folding ⇔ EqualityOf Simple_Case_Folding
 
 # Stability: All characters with the Lowercase property and all characters with the Uppercase property have the Alphabetic property. 
 \p{Alphabetic} ⊃ [\p{Uppercase} \p{Lowercase}]
@@ -1478,8 +1478,16 @@ In [\p{Block=Hangul Syllables} - \p{gc=Cn}], (prepend HANGUL SYLLABLE ) * (strin
 # https://www.unicode.org/review/pri497/feedback.html#ID20240216135149.
 In \p{Decomposition_Type=font}, Bidi_Class = Bidi_Class * Decomposition_Mapping
 
-\p{U9:Math} ⊂ \P{U9:Math_Class=None}
 \p{Math}    ⊂ \P{Math_Class=None}
+\p{U9:Math} ⊂ \P{U9:Math_Class=None}
+
+In $codepoints, Math_Class      = Math_Class_Ex
+In $codepoints, U9:Math_Class   = U9:Math_Class_Ex
+In $codepoints, U7:Math_Class   = U7:Math_Class_Ex
+In $codepoints, U6.1:Math_Class = U6.1:Math_Class_Ex
+In $codepoints, U6.0:Math_Class = U6.0:Math_Class_Ex
+In $codepoints, U5.1:Math_Class = U5.1:Math_Class_Ex
+\p{U5:Math} ⊂ \P{U5:Math_Class=None}
 
 # Basic Propertywise tests.
 Ignoring Name:

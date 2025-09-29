@@ -1,5 +1,6 @@
 package org.unicode.props;
 
+import com.google.common.base.Objects;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.Collection;
@@ -34,6 +35,34 @@ public class PropertyUtilities {
         @Override
         public String merge(String first, String second) {
             return second;
+        }
+    }
+
+    public static final class NullIgnorer implements Merge<String> {
+        public NullIgnorer() {}
+
+        @Override
+        public String merge(String first, String second) {
+            if (second == null) {
+                return first;
+            } else {
+                throw new UnicodePropertyException(
+                        "Key already present in UnicodeMap:\told: " + first + ",\tnew: " + second);
+            }
+        }
+    }
+
+    public static final class RedundancyIgnorer implements Merge<String> {
+        public RedundancyIgnorer() {}
+
+        @Override
+        public String merge(String first, String second) {
+            if (Objects.equal(first, second)) {
+                return first;
+            } else {
+                throw new UnicodePropertyException(
+                        "Key already present in UnicodeMap:\told: " + first + ",\tnew: " + second);
+            }
         }
     }
 

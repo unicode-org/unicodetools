@@ -666,6 +666,33 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             && (propInfo = propInfoSet.iterator().next()).special
                                     == SpecialProperty.None
                             && propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion) == 1) {
+                        if (fileName.equals("math/*/MathClass")
+                                && indexUnicodeProperties.ucdVersion.compareTo(
+                                                VersionInfo.UNICODE_6_3)
+                                        <= 0) {
+                            parser =
+                                    parser.withLinePreprocessor(
+                                            s ->
+                                                    s.startsWith("1D455=210E;")
+                                                                    || s.equals("code point;class")
+                                                                    // MathClass-11 had conflicting
+                                                                    // assignments for these two
+                                                                    // characters.
+                                                                    // instead of making Math_Class
+                                                                    // multivalued, keep the one
+                                                                    // that stayed.
+                                                                    || s.startsWith("2020;N")
+                                                                    || s.startsWith("2021;N")
+                                                                    // Missing value
+                                                                    || s.equals("21EA..21F3;")
+                                                                    // MathClass-9 had the same
+                                                                    // problem for U+0021 ! as well.
+                                                                    || s.startsWith("0021;\tP")
+                                                                    || s.startsWith("2020;\tN")
+                                                                    || s.startsWith("2021;\tN")
+                                                            ? "#" + s
+                                                            : s);
+                        }
                         parseSimpleFieldFile(
                                 parser.withMissing(true),
                                 propInfo,
@@ -674,6 +701,24 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                         ? null
                                         : nextProperties.getProperty(propInfo.property));
                     } else {
+                        if (fileName.equals("math/*/MathClassEx")
+                                && indexUnicodeProperties.ucdVersion.compareTo(
+                                                VersionInfo.UNICODE_6_3)
+                                        <= 0) {
+                            parser =
+                                    parser.withLinePreprocessor(
+                                            s ->
+                                                    s.startsWith("FE61-FE68;")
+                                                            ? s.replaceFirst(
+                                                                    "FE61-FE68;", "FE61..FE68;")
+                                                            : s.startsWith("21EA..21F3;;")
+                                                                            || s.startsWith(
+                                                                                    "27CA;;")
+                                                                    ? s.replaceFirst(";;", ";None;")
+                                                                    : s.startsWith("1D455=210E;")
+                                                                            ? "#" + s
+                                                                            : s);
+                        }
                         parseFieldFile(
                                 parser.withMissing(true),
                                 indexUnicodeProperties,
@@ -1509,6 +1554,29 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     } else {
                         value = "No";
                     }
+                }
+                if ((propInfo.property == UcdProperty.Math_Entity_Name
+                                || propInfo.property == UcdProperty.Math_Entity_Set)
+                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_16_0)
+                                <= 0) {
+                    merger = IndexUnicodeProperties.MULTIVALUED_JOINER;
+                }
+                if (propInfo.property == UcdProperty.Math_Descriptive_Comments
+                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_16_0)
+                                <= 0) {
+                    merger = new PropertyUtilities.NullIgnorer();
+                }
+                if (propInfo.property == UcdProperty.Math_Class_Ex
+                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_16_0)
+                                <= 0) {
+                    merger = new PropertyUtilities.RedundancyIgnorer();
+                }
+                if (propInfo.property == UcdProperty.Math_Class_Ex
+                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_5_2) <= 0
+                        && (line.getRange().start == 0x2020 || line.getRange().start == 0x2021)
+                        && line.getRange().end == line.getRange().start
+                        && value.equals("N")) {
+                    value = "R";
                 }
                 propInfo.put(
                         data,

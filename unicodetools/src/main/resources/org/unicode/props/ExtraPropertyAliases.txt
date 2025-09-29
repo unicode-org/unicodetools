@@ -32,6 +32,7 @@ kEH_Core                 ; kEH_Core ; Provisional
 RGI_Emoji_Qualification ; RGI_Emoji_Qualification ; NonUCDProperty
 
 Math_Class ; Math_Class ; NonUCDProperty
+Math_Class_Ex ; Math_Class_Ex ; NonUCDProperty
 
 # ================================================
 # String Properties

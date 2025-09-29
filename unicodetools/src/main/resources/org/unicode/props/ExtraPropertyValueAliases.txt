@@ -385,11 +385,30 @@ Math_Class ; C    ; Closing
 Math_Class ; D    ; Diacritic
 Math_Class ; F    ; Fence
 Math_Class ; G    ; Glyph_Part
+Math_Class ; I    ; Invisible
 Math_Class ; L    ; Large
 Math_Class ; O    ; Opening
 Math_Class ; P    ; Punctuation
-Math_Class ; R    ; Relation
+Math_Class ; R    ; Relation    ; R?
 Math_Class ; S    ; Space
 Math_Class ; U    ; Unary
 Math_Class ; V    ; Vary
 Math_Class ; X    ; Special
+
+# @missing: 0000..10FFFF; Math_Class_Ex ; None
+Math_Class_Ex ; None ; None
+Math_Class_Ex ; N    ; Normal
+Math_Class_Ex ; A    ; Alphabetic
+Math_Class_Ex ; B    ; Binary
+Math_Class_Ex ; C    ; Closing
+Math_Class_Ex ; D    ; Diacritic
+Math_Class_Ex ; F    ; Fence
+Math_Class_Ex ; G    ; Glyph_Part
+Math_Class_Ex ; L    ; Large
+Math_Class_Ex ; O    ; Opening
+Math_Class_Ex ; P    ; Punctuation
+Math_Class_Ex ; R    ; Relation     ; R?
+Math_Class_Ex ; S    ; Space
+Math_Class_Ex ; U    ; Unary
+Math_Class_Ex ; V    ; Vary
+Math_Class_Ex ; X    ; Special

@@ -4,6 +4,7 @@ import com.ibm.icu.text.UnicodeSet;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.cldr.util.RegexUtilities;
@@ -85,18 +86,21 @@ public final class UcdLineParser implements Iterable<UcdLineParser.UcdLine> {
         private final ArrayList<String> partsList = new ArrayList<>();
         private String[] parts = null;
         private final IntRange intRange = new IntRange();
+        private final Function<String, String> linePreprocessor;
 
         UcdLine(
                 Pattern splitPattern,
                 boolean withRange,
                 boolean withMissing,
                 Iterator<String> rawLines,
-                UcdFileStats stats) {
+                UcdFileStats stats,
+                Function<String, String> linePreprocessor) {
             splitter = splitPattern.matcher("");
             this.withRange = withRange;
             this.withMissing = withMissing;
             this.rawLines = rawLines;
             this.stats = stats;
+            this.linePreprocessor = linePreprocessor;
         }
 
         @Override
@@ -116,6 +120,9 @@ public final class UcdLineParser implements Iterable<UcdLineParser.UcdLine> {
                             || line.startsWith("=======")
                             || line.startsWith(">>>>>>>")) {
                         line2 = "";
+                    }
+                    if (linePreprocessor != null) {
+                        line2 = linePreprocessor.apply(line2);
                     }
                     ++stats.lineCount;
                     final int hashPos = line2.indexOf('#');
@@ -223,6 +230,7 @@ public final class UcdLineParser implements Iterable<UcdLineParser.UcdLine> {
     private boolean withTabs = false;
     private boolean withRange = true;
     private boolean withMissing = false;
+    private Function<String, String> linePreprocessor;
     private final Iterable<String> rawLines;
     private final UcdFileStats stats = new UcdFileStats();
 
@@ -245,10 +253,20 @@ public final class UcdLineParser implements Iterable<UcdLineParser.UcdLine> {
         return this;
     }
 
+    public UcdLineParser withLinePreprocessor(Function<String, String> f) {
+        linePreprocessor = f;
+        return this;
+    }
+
     @Override
     public Iterator<UcdLine> iterator() {
         return new UcdLine(
-                withTabs ? TAB : SEMICOLON, withRange, withMissing, rawLines.iterator(), stats);
+                withTabs ? TAB : SEMICOLON,
+                withRange,
+                withMissing,
+                rawLines.iterator(),
+                stats,
+                linePreprocessor);
     }
 
     public int getLineCount() {

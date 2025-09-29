@@ -1826,10 +1826,11 @@ public class UcdPropertyValues {
         Diacritic("D"),
         Fence("F"),
         Glyph_Part("G"),
+        Invisible("I"),
         Large("L"),
         Opening("O"),
         Punctuation("P"),
-        Relation("R"),
+        Relation("R", "R?"),
         Space("S"),
         Unary("U"),
         Vary("V"),
@@ -1856,6 +1857,49 @@ public class UcdPropertyValues {
                 PropertyNames.getNameToEnums(Math_Class_Values.class);
 
         public static Math_Class_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
+    public enum Math_Class_Ex_Values implements Named {
+        None("None"),
+        Normal("N"),
+        Alphabetic("A"),
+        Binary("B"),
+        Closing("C"),
+        Diacritic("D"),
+        Fence("F"),
+        Glyph_Part("G"),
+        Large("L"),
+        Opening("O"),
+        Punctuation("P"),
+        Relation("R", "R?"),
+        Space("S"),
+        Unary("U"),
+        Vary("V"),
+        Special("X");
+        private final PropertyNames<Math_Class_Ex_Values> names;
+
+        private Math_Class_Ex_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Math_Class_Ex_Values>(
+                            Math_Class_Ex_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Math_Class_Ex_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Math_Class_Ex_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Math_Class_Ex_Values.class);
+
+        public static Math_Class_Ex_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
