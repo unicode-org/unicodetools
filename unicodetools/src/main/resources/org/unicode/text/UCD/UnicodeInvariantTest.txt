@@ -1497,6 +1497,12 @@ In [^ \u21EA-\u21F2       ], U6.1:Math_Class = U6.1:Math_Class_Ex
 In [^ \u21EA-\u21F2 \u27CA], U6.0:Math_Class = U6.0:Math_Class_Ex
 In $code_points,             U5.1:Math_Class = U5.1:Math_Class_Ex
 
+# MathClassEx was just missing some assignments that were in MathClass:
+In \P{U6.1:Math_Class_Ex=None}, U6.1:Math_Class = U6.1:Math_Class_Ex
+In \P{U6.0:Math_Class_Ex=None}, U6.0:Math_Class = U6.0:Math_Class_Ex
+\p{U6.1:Math_Class=None} ⊂ \p{U6.1:Math_Class_Ex=None}
+\p{U6.0:Math_Class=None} ⊂ \p{U6.0:Math_Class_Ex=None}
+
 # Basic Propertywise tests.
 Ignoring Name:
 

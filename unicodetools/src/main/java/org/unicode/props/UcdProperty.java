@@ -739,7 +739,7 @@ public enum UcdProperty {
             "Math_Class"),
     Math_Class_Ex(
             PropertyType.Enumerated,
-            DerivedPropertyStatus.NonUCDProperty,
+            DerivedPropertyStatus.NonUCDNonProperty,
             Math_Class_Ex_Values.class,
             null,
             "Math_Class_Ex"),
