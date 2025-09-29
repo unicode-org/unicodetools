@@ -32,7 +32,10 @@ kEH_Core                 ; kEH_Core ; Provisional
 RGI_Emoji_Qualification ; RGI_Emoji_Qualification ; NonUCDProperty
 
 Math_Class ; Math_Class ; NonUCDProperty
-Math_Class_Ex ; Math_Class_Ex ; NonUCDProperty
+# The first field of MathClassEx is supposed to be the Math_Class property,
+# identical to the assignment in MathClass.  In practice there are a few
+# characters for which it historically lagged behind the value in MathClass.
+Math_Class_Ex ; Math_Class_Ex ; NonUCDNonProperty
 
 # ================================================
 # String Properties

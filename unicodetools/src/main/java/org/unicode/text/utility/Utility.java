@@ -1516,7 +1516,6 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                     if (currentVersion.compareTo(VersionInfo.UNICODE_16_0) <= 0) {
                         parts[2] = parts[2] + "-" + revision;
                     }
-                    System.err.println(base + "///" + element + "///" + parts[2]);
                 }
                 if (parts[2].equals("Idna2008")
                         && currentVersion.compareTo(VersionInfo.UNICODE_16_0) <= 0) {
@@ -1530,7 +1529,6 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                     }
                 } else {
                     Path path = Settings.UnicodeTools.getDataPath(base, element);
-                    System.err.println("path=" + path);
                     if (path != null) {
                         var filePath = path.resolve(parts[2] + fileType);
                         if (filePath.toFile().exists()) {
@@ -1624,7 +1622,6 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                 result = Integer.toString(i);
             }
         }
-        System.err.println(versionInfo + " -> math " + result);
         return result;
     }
 
