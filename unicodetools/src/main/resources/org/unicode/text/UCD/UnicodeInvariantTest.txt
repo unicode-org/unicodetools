@@ -169,7 +169,7 @@
 # script, but behave regularly.  See the examples below.
 #
 #   Examples:
-            Ignoring Name Unicode_1_Name Confusable_MA:
+            Ignoring Name Unicode_1_Name Confusable_MA Math_Class Math_Class_Ex Math_Entity_Name Math_Entity_Set Math_Descriptive_Comments:
 #       The basic Greek and Latin scripts behave the same, except that they are different scripts,
 #       encoded in different blocks, and that Latin is ea=Narrow (because fullwidth Latin exists)
 #       whereas Greek is ea=Ambiguous.
@@ -568,7 +568,7 @@ $Unicode_6_1_Decompositions ⊆ [\p{Name=/^CHAKMA VOWEL SIGN /}]
 # decomposition will also be in canonical order. 
 # Note: We really mean the fixed point of Decomposition_Mapping on the
 # left-hand side here.
-In $codepoints, Decomposition_Mapping * Decomposition_Mapping * Decomposition_Mapping = toNFKD
+In $code_points, Decomposition_Mapping * Decomposition_Mapping * Decomposition_Mapping = toNFKD
 
 # Stability: Canonical mappings (Decomposition_Mapping property values) are
 # always limited either to a single value or to a pair. The second character in
@@ -1478,16 +1478,24 @@ In [\p{Block=Hangul Syllables} - \p{gc=Cn}], (prepend HANGUL SYLLABLE ) * (strin
 # https://www.unicode.org/review/pri497/feedback.html#ID20240216135149.
 In \p{Decomposition_Type=font}, Bidi_Class = Bidi_Class * Decomposition_Mapping
 
-\p{Math}    ⊂ \P{Math_Class=None}
+# All Math characters should be covered by Math_Class.
+# (But right now, they are not because of Unicode 16 & 17 additions.)
+[\p{Math} - \P{Math_Class=None}] = [
+  \x{10D8E}\x{10D8F}   # Garay
+  \x{1CEF0}            # Standard state
+  \x{1F8D0}-\x{1F8D8}  # Arrows
+]
 \p{U9:Math} ⊂ \P{U9:Math_Class=None}
+[\p{U5:Math} - \P{U5:Math_Class=None}] = [ \u237C \u27CA ]
 
-In $codepoints, Math_Class      = Math_Class_Ex
-In $codepoints, U9:Math_Class   = U9:Math_Class_Ex
-In $codepoints, U7:Math_Class   = U7:Math_Class_Ex
-In $codepoints, U6.1:Math_Class = U6.1:Math_Class_Ex
-In $codepoints, U6.0:Math_Class = U6.0:Math_Class_Ex
-In $codepoints, U5.1:Math_Class = U5.1:Math_Class_Ex
-\p{U5:Math} ⊂ \P{U5:Math_Class=None}
+# Math_Class values in MathClass and MathClassEx should be consistent,
+# but they have not always been.
+In $code_points,             Math_Class      = Math_Class_Ex
+In $code_points,             U9:Math_Class   = U9:Math_Class_Ex
+In $code_points,             U7:Math_Class   = U7:Math_Class_Ex
+In [^ \u21EA-\u21F2       ], U6.1:Math_Class = U6.1:Math_Class_Ex
+In [^ \u21EA-\u21F2 \u27CA], U6.0:Math_Class = U6.0:Math_Class_Ex
+In $code_points,             U5.1:Math_Class = U5.1:Math_Class_Ex
 
 # Basic Propertywise tests.
 Ignoring Name:
@@ -1496,6 +1504,8 @@ Propertywise [𐛪 𐛫] AreAlike
 
 Ignoring Unicode_1_Name Confusable_MA:
     Propertywise [ي ۑ] AreAlike
+
+Ignoring Math_Class Math_Class_Ex Math_Entity_Name Math_Entity_Set Math_Descriptive_Comments:
 
     Propertywise [[β-ω] - [ς]] : [[Β-Ω] - \p{gc=Cn}]
     CorrespondTo [α]           :  [Α]
@@ -1506,6 +1516,8 @@ Ignoring Unicode_1_Name Confusable_MA:
               Script            (Greek            vs Latin),
               Script_Extensions (Greek            vs Latin),
               East_Asian_Width  (Ambiguous        vs Narrow)
+
+end Ignoring;
 
     Propertywise [ʳʷʸ] : [rwy] : [RWY]
     CorrespondTo [ʰ]   : [h]   : [H]
