@@ -111,7 +111,7 @@ public class GeneratePropertyValues {
     private static HashMap<String, TRDetails> syntaxTR57;
     private static final String NAMESPACE = "http://unicode.org/ns/2001/ucdxml";
     private static final String TR38URL = "https://www.unicode.org/reports/tr38/proposed.html";
-    private static final String TR57URL = "https://www.unicode.org/reports/tr57/proposed.html";
+    private static final String TR57URL = "https://www.unicode.org/reports/tr57/tr57-5d1.html";
     private static final UOption[] options = {
         UOption.HELP_H(),
         UOption.create("ucdversion", 'v', UOption.OPTIONAL_ARG),

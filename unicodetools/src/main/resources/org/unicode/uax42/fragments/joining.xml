@@ -43,13 +43,13 @@
                  | "Sad" | "Sadhe" | "Seen" | "Semkath" | "Shin"
                  | "Straight_Waw" | "Swash_Kaf" | "Syriac_Waw"
                  | "Tah" | "Taw" | "Teh_Marbuta" | "Teh_Marbuta_Goal"
-                 | "Teth" | <edit flag='changed'>"Thin_Noon"</edit> | "Thin_Yeh"
+                 | "Teth" | "Thin_Noon" | "Thin_Yeh"
                  | "Vertical_Tail"
                  | "Waw"
                  | "Yeh" | "Yeh_Barree" | "Yeh_With_Tail" | "Yudh"
                  | "Yudh_He"
                  | "Zain" | "Zhain"
-                 | <edit flag='changed'>"BAA"
+                 | "BAA"
                  | "FA"
                  | "HAA" | "HA_GOAL" | "HA"
                  | "CAF"
@@ -59,6 +59,6 @@
                  | "HAMZAH_ON_HA_GOAL"
                  | "TAA_MARBUTAH"
                  | "YA_BARREE" | "YA"
-                 | "ALEF_MAQSURAH"</edit>
+                 | "ALEF_MAQSURAH"
                  }?
 </ucdxml:block>
