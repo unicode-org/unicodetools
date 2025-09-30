@@ -1488,8 +1488,9 @@ In \p{Decomposition_Type=font}, Bidi_Class = Bidi_Class * Decomposition_Mapping
 \p{U9:Math} ⊂ \P{U9:Math_Class=None}
 [\p{U5:Math} - \P{U5:Math_Class=None}] = [ \u237C \u27CA ]
 
-# Math_Class values in MathClass and MathClassEx should be consistent,
-# but they have not always been.
+# Math_Class values in files MathClass and MathClassEx should be consistent, but
+# they have not always been.  Here Math_Class_Ex is field 1 of MathClassEx, and
+# Math_Class is field 1 of MathClass.
 In $code_points,             Math_Class      = Math_Class_Ex
 In $code_points,             U9:Math_Class   = U9:Math_Class_Ex
 In $code_points,             U7:Math_Class   = U7:Math_Class_Ex
@@ -1497,7 +1498,8 @@ In [^ \u21EA-\u21F2       ], U6.1:Math_Class = U6.1:Math_Class_Ex
 In [^ \u21EA-\u21F2 \u27CA], U6.0:Math_Class = U6.0:Math_Class_Ex
 In $code_points,             U5.1:Math_Class = U5.1:Math_Class_Ex
 
-# MathClassEx was just missing some assignments that were in MathClass:
+# MathClassEx was just missing some assignments that were in MathClass, so we
+# can safely use MathClass as our source of truth for the property Math_Class.
 In \P{U6.1:Math_Class_Ex=None}, U6.1:Math_Class = U6.1:Math_Class_Ex
 In \P{U6.0:Math_Class_Ex=None}, U6.0:Math_Class = U6.0:Math_Class_Ex
 \p{U6.1:Math_Class=None} ⊂ \p{U6.1:Math_Class_Ex=None}

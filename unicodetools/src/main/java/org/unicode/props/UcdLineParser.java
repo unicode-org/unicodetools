@@ -253,6 +253,10 @@ public final class UcdLineParser implements Iterable<UcdLineParser.UcdLine> {
         return this;
     }
 
+    // Sets a line preprocessor to which the line is set before uncommenting.
+    // This makes it possible to correct lines with ill-formed ranges.
+    // For corrections affecting only subsequent fields rather than the range,
+    // prefer handling in PropertyParsingInfo.
     public UcdLineParser withLinePreprocessor(Function<String, String> f) {
         linePreprocessor = f;
         return this;

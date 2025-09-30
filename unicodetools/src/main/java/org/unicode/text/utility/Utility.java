@@ -1592,6 +1592,10 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         return null;
     }
 
+    // This will may turn out to be 17, but for now set it to Latest (currently 18) so that it
+    // doesn’t show up as published in the online tools.
+    public static final VersionInfo UTR25_REVISION_16 = Settings.LATEST_VERSION_INFO;
+
     // UTR #25 is not synchronized, but its releases correspond to the preceding
     // version of Unicode (or, in the case of revision 12, to the following
     // day’s version of Unicode).
@@ -1613,7 +1617,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             /* 13, 2012-04-02 */ VersionInfo.UNICODE_6_1, // 2012 January 31
             /* 14, 2015-07-31 */ VersionInfo.UNICODE_7_0, // 2014 June 16
             /* 15, 2017-05-30 */ VersionInfo.UNICODE_9_0, // 2016 June 21
-            /* 16, WIP        */ Settings.LAST_VERSION_INFO,
+            /* 16, WIP        */ UTR25_REVISION_16,
         };
         String result = null;
         for (int i = 0; i < mathToSubsequentUnicodeVersion.length; ++i) {

@@ -675,21 +675,6 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                             s ->
                                                     s.startsWith("1D455=210E;")
                                                                     || s.equals("code point;class")
-                                                                    // MathClass-11 had conflicting
-                                                                    // assignments for these two
-                                                                    // characters.
-                                                                    // instead of making Math_Class
-                                                                    // multivalued, keep the one
-                                                                    // that stayed.
-                                                                    || s.startsWith("2020;N")
-                                                                    || s.startsWith("2021;N")
-                                                                    // Missing value
-                                                                    || s.equals("21EA..21F3;")
-                                                                    // MathClass-9 had the same
-                                                                    // problem for U+0021 ! as well.
-                                                                    || s.startsWith("0021;\tP")
-                                                                    || s.startsWith("2020;\tN")
-                                                                    || s.startsWith("2021;\tN")
                                                             ? "#" + s
                                                             : s);
                         }
@@ -711,13 +696,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                                     s.startsWith("FE61-FE68;")
                                                             ? s.replaceFirst(
                                                                     "FE61-FE68;", "FE61..FE68;")
-                                                            : s.startsWith("21EA..21F3;;")
-                                                                            || s.startsWith(
-                                                                                    "27CA;;")
-                                                                    ? s.replaceFirst(";;", ";None;")
-                                                                    : s.startsWith("1D455=210E;")
-                                                                            ? "#" + s
-                                                                            : s);
+                                                            : s.startsWith("1D455=210E;")
+                                                                    ? "#" + s
+                                                                    : s);
                         }
                         parseFieldFile(
                                 parser.withMissing(true),
@@ -1572,11 +1553,20 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     merger = new PropertyUtilities.RedundancyIgnorer();
                 }
                 if (propInfo.property == UcdProperty.Math_Class_Ex
-                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_5_2) <= 0
+                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_6_0) < 0
                         && (line.getRange().start == 0x2020 || line.getRange().start == 0x2021)
                         && line.getRange().end == line.getRange().start
                         && value.equals("N")) {
                     value = "R";
+                }
+                if (propInfo.property == UcdProperty.Math_Class_Ex
+                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_6_1) < 0
+                        && value.isEmpty()) {
+                    // MathClassEx-12 has
+                    // 27CA;;;;;;VERTICAL BAR WITH HORIZONTAL STROKE
+                    // MathClassEx-11 has
+                    // 21EA..21F3;;⇪..⇳;;;; 21EA-21F3 are keyboard
+                    value = "None";
                 }
                 propInfo.put(
                         data,
@@ -1714,6 +1704,27 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         }
                     }
                     continue;
+                } else if (propInfo.property == UcdProperty.Math_Class
+                        && version.compareTo(VersionInfo.UNICODE_6_0) < 0) {
+                    // MathClass-11 had conflicting assignments for these two characters.  Instead
+                    // of making Math_Class multivalued, keep the one that stayed (R), and discard
+                    // the N.
+                    if ((line.getRange().start == 0x2020 || line.getRange().start == 0x2021)
+                            && line.getRange().start == line.getRange().end
+                            && line.getParts()[1].equals("N")) {
+                        continue;
+                    }
+                    // MathClass-9 had the same problem for U+0021 ! as well.
+                    if (version.compareTo(VersionInfo.UNICODE_5_1) < 0
+                            && line.getRange().start == 0x0021
+                            && line.getRange().start == line.getRange().end
+                            && line.getParts()[1].equals("P")) {
+                        continue;
+                    }
+                    // MathClass-11 had a line without a value, 21EA..21F3;
+                    if (line.getParts()[1].isEmpty()) {
+                        line.getParts()[1] = "None";
+                    }
                 } else if (line.getParts().length != 2
                         && version.compareTo(VersionInfo.UNICODE_3_0_1) > 0) {
                     // Unicode 3.0 and earlier had name comments as an extra field.
