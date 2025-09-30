@@ -257,7 +257,7 @@ public final class UcdLineParser implements Iterable<UcdLineParser.UcdLine> {
     // splitting fields, and decoding ranges.
     // This makes it possible to correct lines with ill-formed ranges.
     // For corrections affecting only subsequent fields rather than the range,
-    // prefer handling in PropertyParsingInfo.
+    // prefer handling in the parse* functions in PropertyParsingInfo.
     public UcdLineParser withLinePreprocessor(Function<String, String> f) {
         linePreprocessor = f;
         return this;
