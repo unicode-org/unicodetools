@@ -1513,7 +1513,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                         return null;
                     }
                     element = "revision-" + revision;
-                    if (currentVersion.compareTo(VersionInfo.UNICODE_16_0) <= 0) {
+                    if (currentVersion.compareTo(UTR25_REVISION_16) < 0) {
                         parts[2] = parts[2] + "-" + revision;
                     }
                 }
