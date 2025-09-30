@@ -385,16 +385,23 @@ Math_Class ; C    ; Closing
 Math_Class ; D    ; Diacritic
 Math_Class ; F    ; Fence
 Math_Class ; G    ; Glyph_Part
+# Only in MathClass-9 for U+2061..U+2063.  These then become
+# Binary (U+2061 and U+2062) and Special (U+2063).
 Math_Class ; I    ; Invisible
 Math_Class ; L    ; Large
 Math_Class ; O    ; Opening
 Math_Class ; P    ; Punctuation
+# MathClass-11 and MathClassEx-11 had R? for U+2B00..U+2B11.
+# These turned out to be R in revision 12.
 Math_Class ; R    ; Relation    ; R?
 Math_Class ; S    ; Space
 Math_Class ; U    ; Unary
 Math_Class ; V    ; Vary
 Math_Class ; X    ; Special
 
+# This is field 1 of MathClassEx.  We distinguish it from Math_Class because it was missing a few
+# assignments in early versions, but it really has the same type as Math_Class (and should now have
+# the same values).
 # @missing: 0000..10FFFF; Math_Class_Ex ; None
 Math_Class_Ex ; None ; None
 Math_Class_Ex ; N    ; Normal
