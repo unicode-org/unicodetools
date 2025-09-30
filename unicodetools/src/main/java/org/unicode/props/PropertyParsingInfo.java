@@ -1538,18 +1538,18 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 }
                 if ((propInfo.property == UcdProperty.Math_Entity_Name
                                 || propInfo.property == UcdProperty.Math_Entity_Set)
-                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_16_0)
-                                <= 0) {
+                        && indexUnicodeProperties.ucdVersion.compareTo(Utility.UTR25_REVISION_16)
+                                < 0) {
                     merger = IndexUnicodeProperties.MULTIVALUED_JOINER;
                 }
                 if (propInfo.property == UcdProperty.Math_Descriptive_Comments
-                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_16_0)
-                                <= 0) {
+                        && indexUnicodeProperties.ucdVersion.compareTo(Utility.UTR25_REVISION_16)
+                                < 0) {
                     merger = new PropertyUtilities.NullIgnorer();
                 }
                 if (propInfo.property == UcdProperty.Math_Class_Ex
-                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_16_0)
-                                <= 0) {
+                        && indexUnicodeProperties.ucdVersion.compareTo(Utility.UTR25_REVISION_16)
+                                < 0) {
                     merger = new PropertyUtilities.RedundancyIgnorer();
                 }
                 if (propInfo.property == UcdProperty.Math_Class_Ex
