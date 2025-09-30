@@ -1,5 +1,5 @@
 # emoji-data.txt
-# Date: 2025-09-30, 15:27:22 GMT
+# Date: 2025-09-30, 16:32:47 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1175,7 +1175,8 @@ E0020..E007F  ; Emoji_Component      # E0.0  [96] (󠀠..󠁿)      tag space..c
 1F6FA         ; Extended_Pictographic# E12.0  [1] (🛺)       auto rickshaw
 1F6FB..1F6FC  ; Extended_Pictographic# E13.0  [2] (🛻..🛼)    pickup truck..roller skate
 1F6FD..1F6FF  ; Extended_Pictographic# E0.0   [3] (🛽..🛿)    <reserved-1F6FD>..<reserved-1F6FF>
-1F7DA..1F7DF  ; Extended_Pictographic# E0.0   [6] (🟚..🟟)    <reserved-1F7DA>..<reserved-1F7DF>
+1F7DA         ; Extended_Pictographic# E0.0   [1] (🟚)       <reserved-1F7DA>
+1F7DC..1F7DF  ; Extended_Pictographic# E0.0   [4] (🟜..🟟)    <reserved-1F7DC>..<reserved-1F7DF>
 1F7E0..1F7EB  ; Extended_Pictographic# E12.0 [12] (🟠..🟫)    orange circle..brown square
 1F7EC..1F7EF  ; Extended_Pictographic# E0.0   [4] (🟬..🟯)    <reserved-1F7EC>..<reserved-1F7EF>
 1F7F0         ; Extended_Pictographic# E14.0  [1] (🟰)       heavy equals sign
@@ -1282,6 +1283,6 @@ E0020..E007F  ; Emoji_Component      # E0.0  [96] (󠀠..󠁿)      tag space..c
 1FAF9..1FAFF  ; Extended_Pictographic# E0.0   [7] (🫹..🫿)    <reserved-1FAF9>..<reserved-1FAFF>
 1FC00..1FFFD  ; Extended_Pictographic# E0.0[1022] (🰀..🿽)    <reserved-1FC00>..<reserved-1FFFD>
 
-# Total elements: 2833
+# Total elements: 2832
 
 #EOF
