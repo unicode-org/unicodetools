@@ -1557,6 +1557,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         && (line.getRange().start == 0x2020 || line.getRange().start == 0x2021)
                         && line.getRange().end == line.getRange().start
                         && value.equals("N")) {
+                    // MathClassEx-11 had conflicting assignments for these two characters.  Instead
+                    // of making Math_Class multivalued, keep the one that stayed (R), and discard
+                    // the N.
                     value = "R";
                 }
                 if (propInfo.property == UcdProperty.Math_Class_Ex
