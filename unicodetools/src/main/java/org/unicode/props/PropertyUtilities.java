@@ -6,7 +6,6 @@ import com.ibm.icu.text.UnicodeSet;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
-
 import org.unicode.text.utility.Utility;
 
 public class PropertyUtilities {
