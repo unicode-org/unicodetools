@@ -1,5 +1,5 @@
-# Scripts-17.0.0.txt
-# Date: 2025-09-02, 17:14:50 GMT
+# Scripts-18.0.0.txt
+# Date: 2025-10-02, 22:16:48 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -155,6 +155,7 @@
 208D          ; Common # Ps       SUBSCRIPT LEFT PARENTHESIS
 208E          ; Common # Pe       SUBSCRIPT RIGHT PARENTHESIS
 20A0..20C1    ; Common # Sc  [34] EURO-CURRENCY SIGN..SAUDI RIYAL SIGN
+20C3          ; Common # Sc       UAE DIRHAM SIGN
 2100..2101    ; Common # So   [2] ACCOUNT OF..ADDRESSED TO THE SUBJECT
 2102          ; Common # L&       DOUBLE-STRUCK CAPITAL C
 2103..2106    ; Common # So   [4] DEGREE CELSIUS..CADA UNA
@@ -638,7 +639,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 9139
+# Total code points: 9140
 
 # ================================================
 

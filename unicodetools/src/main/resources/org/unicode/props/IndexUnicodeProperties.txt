@@ -538,6 +538,19 @@ emoji/*/emoji-test ; RGI_Emoji_Qualification ; 1
 #                     \p{RGI_Emoji_Qualification=Standalone_Component}].
 emoji/*/emoji-test ; RGI_Emoji ; 1
 
+# Get Math_Class from MathClass.txt, which exists since revision 9.
+math/*/MathClass ; Math_Class ; 1
+
+# Should be the same as Math_Class, but isn’t.
+math/*/MathClassEx ; Math_Class_Ex             ; 1
+math/*/MathClassEx ; Math_Entity_Name          ; 2
+math/*/MathClassEx ; Math_Entity_Set           ; 3
+math/*/MathClassEx ; Math_Descriptive_Comments ; 4
+# Field 2 used to be the character itself.
+math/*/MathClassEx ; Math_Entity_Name          ; 3 ; v17.0
+math/*/MathClassEx ; Math_Entity_Set           ; 4 ; v17.0
+math/*/MathClassEx ; Math_Descriptive_Comments ; 5 ; v17.0
+
 FileType ; Unikemet ; PropertyValue
 Unikemet ; kEH_Cat
 Unikemet ; kEH_Core

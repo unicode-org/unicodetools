@@ -31,6 +31,12 @@ kEH_Core                 ; kEH_Core ; Provisional
 
 RGI_Emoji_Qualification ; RGI_Emoji_Qualification ; NonUCDProperty
 
+Math_Class ; Math_Class ; NonUCDProperty
+# The first field of MathClassEx is supposed to be the Math_Class property,
+# identical to the assignment in MathClass.  In practice there are a few
+# characters for which it historically lagged behind the value in MathClass.
+Math_Class_Ex ; Math_Class_Ex ; NonUCDNonProperty
+
 # ================================================
 # String Properties
 # ================================================
@@ -206,3 +212,7 @@ Names_List_Subheader        ; Names_List_Subheader ; subhead ; UCDNonProperty
 Names_List_Subheader_Notice ; Names_List_Subheader_Notice    ; UCDNonProperty
 Names_List_Alias            ; Names_List_Alias               ; UCDNonProperty
 Names_List_Comment          ; Names_List_Comment             ; UCDNonProperty
+
+Math_Entity_Name          ; Math_Entity_Name          ; NonUCDNonProperty
+Math_Entity_Set           ; Math_Entity_Set           ; NonUCDNonProperty
+Math_Descriptive_Comments ; Math_Descriptive_Comments ; NonUCDNonProperty

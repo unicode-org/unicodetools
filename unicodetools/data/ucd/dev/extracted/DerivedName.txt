@@ -1,5 +1,5 @@
-# DerivedName-17.0.0.txt
-# Date: 2025-08-08, 21:14:39 GMT
+# DerivedName-18.0.0.txt
+# Date: 2025-10-02, 22:16:20 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -7551,6 +7551,7 @@
 20BF          ; BITCOIN SIGN
 20C0          ; SOM SIGN
 20C1          ; SAUDI RIYAL SIGN
+20C3          ; UAE DIRHAM SIGN
 20D0          ; COMBINING LEFT HARPOON ABOVE
 20D1          ; COMBINING RIGHT HARPOON ABOVE
 20D2          ; COMBINING LONG VERTICAL LINE OVERLAY
@@ -45839,6 +45840,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 159817
+# Total code points: 159818
 
 # EOF
