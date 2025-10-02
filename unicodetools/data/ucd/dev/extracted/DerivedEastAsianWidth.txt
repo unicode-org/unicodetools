@@ -1,5 +1,5 @@
-# DerivedEastAsianWidth-17.0.0.txt
-# Date: 2025-08-06, 15:35:28 GMT
+# DerivedEastAsianWidth-18.0.0.txt
+# Date: 2025-10-02, 22:16:19 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2117,7 +2117,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 1F6E0..1F6EA  ; N # So  [11] HAMMER AND WRENCH..NORTHEAST-POINTING AIRPLANE
 1F6F0..1F6F3  ; N # So   [4] SATELLITE..PASSENGER SHIP
 1F700..1F7D9  ; N # So [218] ALCHEMICAL SYMBOL FOR QUINTESSENCE..NINE POINTED WHITE STAR
-1F800..1F80B  ; N # So  [12] LEFTWARDS ARROW WITH SMALL TRIANGLE ARROWHEAD..DOWNWARDS ARROW WITH LARGE TRIANGLE ARROWHEAD
+1F7DB         ; N # So       BULLET IN DOUBLE CIRCLE
+1F7F1..1F80B  ; N # So  [27] CIRCLE WITH DOUBLE VERTICAL AND HORIZONTAL LINE..DOWNWARDS ARROW WITH LARGE TRIANGLE ARROWHEAD
 1F810..1F847  ; N # So  [56] LEFTWARDS ARROW WITH SMALL EQUILATERAL ARROWHEAD..DOWNWARDS HEAVY ARROW
 1F850..1F859  ; N # So  [10] LEFTWARDS SANS-SERIF ARROW..UP DOWN SANS-SERIF ARROW
 1F860..1F887  ; N # So  [40] WIDE-HEADED LEFTWARDS LIGHT BARB ARROW..WIDE-HEADED SOUTH WEST VERY HEAVY BARB ARROW
@@ -2137,7 +2138,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 760611 code points not listed here.
+# The above property value applies to 760595 code points not listed here.
 # Total code points: 792263
 
 # ================================================
