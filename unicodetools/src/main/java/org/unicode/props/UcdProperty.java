@@ -26,6 +26,8 @@ import org.unicode.props.UcdPropertyValues.Indic_Syllabic_Category_Values;
 import org.unicode.props.UcdPropertyValues.Joining_Group_Values;
 import org.unicode.props.UcdPropertyValues.Joining_Type_Values;
 import org.unicode.props.UcdPropertyValues.Line_Break_Values;
+import org.unicode.props.UcdPropertyValues.Math_Class_Ex_Values;
+import org.unicode.props.UcdPropertyValues.Math_Class_Values;
 import org.unicode.props.UcdPropertyValues.NFC_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.NFD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.NFKC_Quick_Check_Values;
@@ -124,6 +126,22 @@ public enum UcdProperty {
     Emoji_SB(PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "ESB"),
     ISO_Comment(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "isc"),
     Jamo_Short_Name(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "JSN"),
+    Math_Descriptive_Comments(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            "Math_Descriptive_Comments"),
+    Math_Entity_Name(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            null,
+            ValueCardinality.Unordered,
+            "Math_Entity_Name"),
+    Math_Entity_Set(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            null,
+            ValueCardinality.Unordered,
+            "Math_Entity_Set"),
     Name(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "na"),
     Name_Alias(
             PropertyType.Miscellaneous,
@@ -713,6 +731,18 @@ public enum UcdProperty {
             Line_Break_Values.class,
             null,
             "lb"),
+    Math_Class(
+            PropertyType.Enumerated,
+            DerivedPropertyStatus.NonUCDProperty,
+            Math_Class_Values.class,
+            ValueCardinality.Ordered,
+            "Math_Class"),
+    Math_Class_Ex(
+            PropertyType.Enumerated,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            Math_Class_Ex_Values.class,
+            ValueCardinality.Ordered,
+            "Math_Class_Ex"),
     NFC_Quick_Check(
             PropertyType.Enumerated,
             DerivedPropertyStatus.Approved,

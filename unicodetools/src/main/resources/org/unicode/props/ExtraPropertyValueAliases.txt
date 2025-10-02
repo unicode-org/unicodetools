@@ -375,3 +375,47 @@ RGI_Emoji_Qualification ; UQE                 ; Unqualified
 RGI_Emoji_Qualification ; component           ; Standalone_Component
 # Value used in 11.0 and earlier, refined in 12.0.
 RGI_Emoji_Qualification ; Non_Fully_Qualified ; Non_Fully_Qualified
+
+# @missing: 0000..10FFFF; Math_Class ; None
+Math_Class ; None ; None
+Math_Class ; N    ; Normal
+Math_Class ; A    ; Alphabetic
+Math_Class ; B    ; Binary
+Math_Class ; C    ; Closing
+Math_Class ; D    ; Diacritic
+Math_Class ; F    ; Fence
+Math_Class ; G    ; Glyph_Part
+# Only in MathClass-9 for U+2061..U+2063.  These then become
+# Binary (U+2061 and U+2062) and Special (U+2063).
+Math_Class ; I    ; Invisible
+Math_Class ; L    ; Large
+Math_Class ; O    ; Opening
+Math_Class ; P    ; Punctuation
+# MathClass-11 and MathClassEx-11 had R? for U+2B00..U+2B11.
+# These turned out to be R in revision 12.
+Math_Class ; R    ; Relation    ; R?
+Math_Class ; S    ; Space
+Math_Class ; U    ; Unary
+Math_Class ; V    ; Vary
+Math_Class ; X    ; Special
+
+# This is field 1 of MathClassEx.  We distinguish it from Math_Class because it was missing a few
+# assignments in early versions, but it really has the same type as Math_Class (and should now have
+# the same values).
+# @missing: 0000..10FFFF; Math_Class_Ex ; None
+Math_Class_Ex ; None ; None
+Math_Class_Ex ; N    ; Normal
+Math_Class_Ex ; A    ; Alphabetic
+Math_Class_Ex ; B    ; Binary
+Math_Class_Ex ; C    ; Closing
+Math_Class_Ex ; D    ; Diacritic
+Math_Class_Ex ; F    ; Fence
+Math_Class_Ex ; G    ; Glyph_Part
+Math_Class_Ex ; L    ; Large
+Math_Class_Ex ; O    ; Opening
+Math_Class_Ex ; P    ; Punctuation
+Math_Class_Ex ; R    ; Relation     ; R?
+Math_Class_Ex ; S    ; Space
+Math_Class_Ex ; U    ; Unary
+Math_Class_Ex ; V    ; Vary
+Math_Class_Ex ; X    ; Special

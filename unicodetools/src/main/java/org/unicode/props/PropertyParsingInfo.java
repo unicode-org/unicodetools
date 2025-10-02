@@ -666,6 +666,18 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             && (propInfo = propInfoSet.iterator().next()).special
                                     == SpecialProperty.None
                             && propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion) == 1) {
+                        if (fileName.equals("math/*/MathClass")
+                                && indexUnicodeProperties.ucdVersion.compareTo(
+                                                VersionInfo.UNICODE_6_3)
+                                        <= 0) {
+                            parser =
+                                    parser.withLinePreprocessor(
+                                            s ->
+                                                    s.startsWith("1D455=210E;")
+                                                                    || s.equals("code point;class")
+                                                            ? "#" + s
+                                                            : s);
+                        }
                         parseSimpleFieldFile(
                                 parser.withMissing(true),
                                 propInfo,
@@ -674,6 +686,23 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                         ? null
                                         : nextProperties.getProperty(propInfo.property));
                     } else {
+                        if (fileName.equals("math/*/MathClassEx")
+                                && indexUnicodeProperties.ucdVersion.compareTo(
+                                                VersionInfo.UNICODE_6_3)
+                                        <= 0) {
+                            // Old versions of MathClassEx had a malformed range and a line that
+                            // should have been commented out.  Search for those specifically and
+                            // fix them; we don’t want to generally allow a new range syntax.
+                            parser =
+                                    parser.withLinePreprocessor(
+                                            s ->
+                                                    s.startsWith("FE61-FE68;")
+                                                            ? s.replaceFirst(
+                                                                    "FE61-FE68;", "FE61..FE68;")
+                                                            : s.startsWith("1D455=210E;")
+                                                                    ? "#" + s
+                                                                    : s);
+                        }
                         parseFieldFile(
                                 parser.withMissing(true),
                                 indexUnicodeProperties,
@@ -1510,6 +1539,27 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         value = "No";
                     }
                 }
+                if ((propInfo.property == UcdProperty.Math_Entity_Name
+                                || propInfo.property == UcdProperty.Math_Entity_Set
+                                || propInfo.property == UcdProperty.Math_Class_Ex)
+                        && indexUnicodeProperties.ucdVersion.compareTo(Utility.UTR25_REVISION_16)
+                                < 0) {
+                    merger = new PropertyUtilities.RedundancyIgnoringMultivaluedJoiner();
+                }
+                if (propInfo.property == UcdProperty.Math_Descriptive_Comments
+                        && indexUnicodeProperties.ucdVersion.compareTo(Utility.UTR25_REVISION_16)
+                                < 0) {
+                    merger = new PropertyUtilities.NullIgnorer();
+                }
+                if (propInfo.property == UcdProperty.Math_Class_Ex
+                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_6_1) < 0
+                        && value.isEmpty()) {
+                    // MathClassEx-12 has
+                    // 27CA;;;;;;VERTICAL BAR WITH HORIZONTAL STROKE
+                    // MathClassEx-11 has
+                    // 21EA..21F3;;⇪..⇳;;;; 21EA-21F3 are keyboard
+                    value = "None";
+                }
                 propInfo.put(
                         data,
                         line.getMissingSet(),
@@ -1569,6 +1619,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                 propInfo.property, defaultValue, "hardcoded", false, version);
                     }
                 }
+                Merge<String> merger = null;
                 if (line.getParts().length == 3 && propInfo.property == UcdProperty.Block) {
                     // The old Blocks files had First; Last; Block.
                     IntRange range = new IntRange();
@@ -1646,6 +1697,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         }
                     }
                     continue;
+                } else if (propInfo.property == UcdProperty.Math_Class
+                        && version.compareTo(VersionInfo.UNICODE_6_0) < 0) {
+                    merger = new PropertyUtilities.RedundancyIgnoringMultivaluedJoiner();
+                    // MathClass-11 had a line without a value, 21EA..21F3;
+                    if (line.getParts()[1].isEmpty()) {
+                        line.getParts()[1] = "None";
+                    }
                 } else if (line.getParts().length != 2
                         && version.compareTo(VersionInfo.UNICODE_3_0_1) > 0) {
                     // Unicode 3.0 and earlier had name comments as an extra field.
@@ -1657,7 +1715,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         line.getMissingSet(),
                         line.getRange(),
                         line.getParts()[1],
-                        null,
+                        merger,
                         false,
                         nextVersion);
             } else {
