@@ -26,6 +26,9 @@ import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.TransliteratorUtilities;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 public class UrlUtilities {
@@ -34,7 +37,8 @@ public class UrlUtilities {
     public static final boolean USE_CLDR = false;
 
     public static final String RESOURCE_DIR =
-            "/Users/markdavis/github/unicodetools/unicodetools/src/main/resources/org/unicode/tools/";
+            Settings.UnicodeTools.UNICODETOOLS_REPO_DIR
+                    + "/unicodetools/src/main/resources/org/unicode/tools/";
 
     public static final Splitter SPLIT_COMMA = Splitter.on(',');
     public static final Splitter SPLIT_TAB = Splitter.on('\t');
@@ -165,6 +169,51 @@ public class UrlUtilities {
         public String unescape(String substring) {
             return UrlUtilities.unescape(substring, extraQuoted);
         }
+    }
+
+    static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
+    static final Pattern protocol = Pattern.compile("[a-z]+://");
+    static final UnicodeSet validHost =
+            new UnicodeSet(IUP.getSet("Idn_Status=" + Idn_Status_Values.valid))
+                    .addAll(IUP.getSet("Idn_Status=" + Idn_Status_Values.mapped))
+                    .add('.')
+                    .freeze();
+
+    public static final class StringRange {
+        final int start;
+        final int limit;
+
+        public StringRange(int start, int limit) {
+            super();
+            this.start = start;
+            this.limit = limit;
+        }
+    }
+
+    /**
+     * Parses a restricted set of URLs, for testing the PathQueryFragment portion. That is, it is of
+     * the form [a-z]+://<domain_name><pathqueryfragment>?
+     *
+     * @param source
+     * @param codePointOffset
+     * @return
+     */
+    public static StringRange parseURL(String source, int startCodePointOffset) {
+        Matcher findStartMatcher = protocol.matcher(source);
+        findStartMatcher.region(startCodePointOffset, source.length());
+        if (!findStartMatcher.find()) {
+            return null;
+        }
+        int start = findStartMatcher.start();
+        // dumb search for end of host, doesn't handle .. or edge cases, but this does not have to
+        // be production-quality
+        int current = findStartMatcher.end();
+        int current2 = validHost.span(source, start, SpanCondition.CONTAINED);
+        if (current == current2) {
+            return null;
+        }
+        int limit = parsePathQueryFragment(source, current2);
+        return new StringRange(start, limit);
     }
 
     /**
@@ -435,7 +484,7 @@ public class UrlUtilities {
             UnicodeSet value = LinkTermination.Property.getSet(lt);
             String name = lt.toString();
             System.out.println("\n#\tLink_Termination=" + name);
-            if (lt == lt.Include) {
+            if (lt == LinkTermination.Include) {
                 System.out.println("#   " + "(All code points without other values)");
                 continue;
             } else {

@@ -41,6 +41,10 @@ public class TestUrl extends TestFmwk {
     public static final char LINKIFY_START = '⸠';
     public static final char LINKIFY_END = '⸡';
 
+    public static void main(String[] args) {
+        new TestUrl().run(args);
+    }
+
     public void testLinkification() {
         String[][] tests = {
             {"!", "!"},
@@ -124,24 +128,16 @@ public class TestUrl extends TestFmwk {
         null, Transliterator.getInstance("[a-z] Latin-Greek/UNGEGN")
     };
 
-    public static void main(String[] args) {
-        new TestUrl().run(args);
-        //            checkParts();
-        //            checkUnescape();
-        //            checkTestFile();
-        //            checkMinimumEscaping();
-
-    }
-
-    private static void show(String functionName, Counter<Boolean> counter) {
-        System.out.println(
-                UrlUtilities.JOIN_TAB.join(
-                        "Summary",
-                        functionName,
-                        "error:",
-                        counter.get(Boolean.FALSE),
-                        "ok:",
-                        counter.get(Boolean.TRUE)));
+    private void show(String functionName, Counter<Boolean> counter) {
+        if (isVerbose())
+            System.out.println(
+                    UrlUtilities.JOIN_TAB.join(
+                            "Summary",
+                            functionName,
+                            "error:",
+                            counter.get(Boolean.FALSE),
+                            "ok:",
+                            counter.get(Boolean.TRUE)));
     }
 
     public void testkMinimumEscaping() {
@@ -254,7 +250,8 @@ public class TestUrl extends TestFmwk {
      * Or use a query in wikidata to get them. <br>
      * Will have to add unescaping to the Part.getParts method.
      */
-    public void testTestFile() throws IOException {
+    public void testWikipediaUrls() throws IOException {
+        warnln("Use -e10 to check all the examples");
         final boolean shortTest = getInclusion() < 10;
         MutableLong items = new MutableLong();
         UnicodeMap<Counter<String>> allEscaped = new UnicodeMap<>();
@@ -267,7 +264,7 @@ public class TestUrl extends TestFmwk {
                     if (x.startsWith("#")) {
                         return;
                     }
-                    if (shortTest && items.value++ > 30) {
+                    if (shortTest && items.value++ > 1000) {
                         throw new Bail();
                     }
 
@@ -341,23 +338,26 @@ public class TestUrl extends TestFmwk {
                 }
             }
         }
-        unseen.stream()
-                .forEach(
-                        x -> {
-                            System.out.println(
-                                    UrlUtilities.JOIN_TAB.join("MISSING", x, getLanguageName(x)));
-                        });
+        if (!unseen.isEmpty()) {
+            System.out.println(
+                    "No URL available: " + unseen.stream().collect(Collectors.joining(", ")));
+        }
     }
 
-    public String getLanguageName(String localeCode) {
+    public String getLanguageCodeAndName(String localeId) {
+        String langName = getLanguageName(localeId);
+        return langName == null ? localeId : langName + " (" + localeId + ")";
+    }
+
+    public String getLanguageName(String localeId) {
         try {
             if (UrlUtilities.USE_CLDR) {
-                return UrlUtilities.ENGLISH.getName(localeCode);
+                return UrlUtilities.ENGLISH.getName(localeId);
             } else {
-                return ULocale.getDisplayCountry(localeCode, "en");
+                return ULocale.getDisplayName(localeId, "en");
             }
         } catch (Exception e1) {
-            return "BAD LANGUAGE CODE";
+            return null;
         }
     }
 
@@ -427,7 +427,7 @@ public class TestUrl extends TestFmwk {
         return result.toString();
     }
 
-    void testOverlap() {
+    public void testOverlap() {
         for (LinkTermination lt : LinkTermination.values()) {
             if (lt == lt.Include) {
                 continue;
@@ -439,9 +439,9 @@ public class TestUrl extends TestFmwk {
         }
     }
 
-    private static final String SPLIT1 = "\t"; // for debugging, "\n";
-
-    private static final boolean VERBOSE_ASSERT = false;
+    //    private static final String SPLIT1 = "\t"; // for debugging, "\n";
+    //
+    //    private static final boolean VERBOSE_ASSERT = false;
 
     //    public static <T> boolean tempAssertEquals(String message, T expected, T actual) {
     //        final boolean areEqual = Objects.equal(expected, actual);
