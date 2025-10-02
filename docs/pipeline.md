@@ -49,6 +49,14 @@ Indic scripts only:
 - [ ] Commit
 
 ---
+If the change affects emoji properties, including reserved Extended_Pictographic codepoints that should no longer be 
+reserved:
+- [ ] [GenerateEmojiData](#generateemojidata)
+- [ ] Merge changes from the temporary files that are generated in unicodetools/data/ucd.
+- [ ] Delete the temporary files that aren't needed from unicodetools/data/ucd and unicodetools/data/emoji.
+- [ ] Commit
+
+---
 - [ ] UCD — [Regenerate](#regenerate-ucd)
 - [ ] Enums — [Regenerate](#generateenums)
 
@@ -212,6 +220,14 @@ eggrobin (Windows, in-source).
 rm .\Generated\* -recurse -force
 mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.Main"'  '-Dexec.args="build MakeUnicodeFiles"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
 cp .\Generated\UCD\18.0.0\LineBreak.txt .\unicodetools\data\ucd\dev
+```
+
+### GenerateEmojiData
+
+jowilco (Windows, in-source).
+<!--FIX_FOR_NEW_VERSION-->
+```powershell
+mvn compile exec:java '-Dexec.mainClass="org.unicode.tools.emoji.GenerateEmojiData"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
 ```
 
 ### GenerateEnums
