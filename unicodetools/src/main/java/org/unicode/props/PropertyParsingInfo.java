@@ -690,6 +690,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                 && indexUnicodeProperties.ucdVersion.compareTo(
                                                 VersionInfo.UNICODE_6_3)
                                         <= 0) {
+                            // Old versions of MathClassEx had a malformed range and a line that
+                            // should have been commented out.  Search for those specifically and
+                            // fix them; we don’t want to generally allow a new range syntax.
                             parser =
                                     parser.withLinePreprocessor(
                                             s ->

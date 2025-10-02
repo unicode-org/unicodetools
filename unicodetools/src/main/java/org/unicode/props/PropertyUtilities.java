@@ -73,6 +73,9 @@ public class PropertyUtilities {
 
         @Override
         public String merge(String first, String second) {
+            if (first == null) {
+                return second;
+            }
             final Set<String> oldValues = Set.of(first.split("\\|"));
             if (second == null || oldValues.contains(second)) {
                 return first;
