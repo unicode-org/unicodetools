@@ -5,6 +5,8 @@ import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
+
 import org.unicode.text.utility.Utility;
 
 public class PropertyUtilities {
@@ -62,6 +64,20 @@ public class PropertyUtilities {
             } else {
                 throw new UnicodePropertyException(
                         "Key already present in UnicodeMap:\told: " + first + ",\tnew: " + second);
+            }
+        }
+    }
+
+    public static final class RedundancyIgnoringMultivaluedJoiner implements Merge<String> {
+        public RedundancyIgnoringMultivaluedJoiner() {}
+
+        @Override
+        public String merge(String first, String second) {
+            final Set<String> oldValues = Set.of(first.split("\\|"));
+            if (second == null || oldValues.contains(second)) {
+                return first;
+            } else {
+                return first + "|" + second;
             }
         }
     }

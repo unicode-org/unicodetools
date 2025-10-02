@@ -1537,30 +1537,16 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     }
                 }
                 if ((propInfo.property == UcdProperty.Math_Entity_Name
-                                || propInfo.property == UcdProperty.Math_Entity_Set)
+                                || propInfo.property == UcdProperty.Math_Entity_Set
+                                || propInfo.property == UcdProperty.Math_Class_Ex)
                         && indexUnicodeProperties.ucdVersion.compareTo(Utility.UTR25_REVISION_16)
                                 < 0) {
-                    merger = IndexUnicodeProperties.MULTIVALUED_JOINER;
+                    merger = new PropertyUtilities.RedundancyIgnoringMultivaluedJoiner();
                 }
                 if (propInfo.property == UcdProperty.Math_Descriptive_Comments
                         && indexUnicodeProperties.ucdVersion.compareTo(Utility.UTR25_REVISION_16)
                                 < 0) {
                     merger = new PropertyUtilities.NullIgnorer();
-                }
-                if (propInfo.property == UcdProperty.Math_Class_Ex
-                        && indexUnicodeProperties.ucdVersion.compareTo(Utility.UTR25_REVISION_16)
-                                < 0) {
-                    merger = new PropertyUtilities.RedundancyIgnorer();
-                }
-                if (propInfo.property == UcdProperty.Math_Class_Ex
-                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_6_0) < 0
-                        && (line.getRange().start == 0x2020 || line.getRange().start == 0x2021)
-                        && line.getRange().end == line.getRange().start
-                        && value.equals("N")) {
-                    // MathClassEx-11 had conflicting assignments for these two characters.  Instead
-                    // of making Math_Class multivalued, keep the one that stayed (R), and discard
-                    // the N.
-                    value = "R";
                 }
                 if (propInfo.property == UcdProperty.Math_Class_Ex
                         && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_6_1) < 0
@@ -1630,6 +1616,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                 propInfo.property, defaultValue, "hardcoded", false, version);
                     }
                 }
+                Merge<String> merger = null;
                 if (line.getParts().length == 3 && propInfo.property == UcdProperty.Block) {
                     // The old Blocks files had First; Last; Block.
                     IntRange range = new IntRange();
@@ -1709,21 +1696,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     continue;
                 } else if (propInfo.property == UcdProperty.Math_Class
                         && version.compareTo(VersionInfo.UNICODE_6_0) < 0) {
-                    // MathClass-11 had conflicting assignments for these two characters.  Instead
-                    // of making Math_Class multivalued, keep the one that stayed (R), and discard
-                    // the N.
-                    if ((line.getRange().start == 0x2020 || line.getRange().start == 0x2021)
-                            && line.getRange().start == line.getRange().end
-                            && line.getParts()[1].equals("N")) {
-                        continue;
-                    }
-                    // MathClass-9 had the same problem for U+0021 ! as well.
-                    if (version.compareTo(VersionInfo.UNICODE_5_1) < 0
-                            && line.getRange().start == 0x0021
-                            && line.getRange().start == line.getRange().end
-                            && line.getParts()[1].equals("P")) {
-                        continue;
-                    }
+                    merger = new PropertyUtilities.RedundancyIgnoringMultivaluedJoiner();
                     // MathClass-11 had a line without a value, 21EA..21F3;
                     if (line.getParts()[1].isEmpty()) {
                         line.getParts()[1] = "None";
@@ -1739,7 +1712,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         line.getMissingSet(),
                         line.getRange(),
                         line.getParts()[1],
-                        null,
+                        merger,
                         false,
                         nextVersion);
             } else {

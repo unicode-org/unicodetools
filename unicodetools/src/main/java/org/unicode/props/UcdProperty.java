@@ -735,13 +735,13 @@ public enum UcdProperty {
             PropertyType.Enumerated,
             DerivedPropertyStatus.NonUCDProperty,
             Math_Class_Values.class,
-            null,
+            ValueCardinality.Ordered,
             "Math_Class"),
     Math_Class_Ex(
             PropertyType.Enumerated,
             DerivedPropertyStatus.NonUCDNonProperty,
             Math_Class_Ex_Values.class,
-            null,
+            ValueCardinality.Ordered,
             "Math_Class_Ex"),
     NFC_Quick_Check(
             PropertyType.Enumerated,
