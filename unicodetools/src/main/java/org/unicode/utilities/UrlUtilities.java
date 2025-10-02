@@ -176,18 +176,23 @@ public class UrlUtilities {
     static final UnicodeSet validHost =
             new UnicodeSet(IUP.getSet("Idn_Status=" + Idn_Status_Values.valid))
                     .addAll(IUP.getSet("Idn_Status=" + Idn_Status_Values.mapped))
-                    .add('.')
+                    .removeAll(new UnicodeSet("[:ascii:]"))
+                    .addAll(new UnicodeSet("[a-zA-Z0-9.]"))
                     .freeze();
 
     public static final class StringRange {
-        final int start;
-        final int limit;
+        public final int start;
+        public final int limit;
 
         public StringRange(int start, int limit) {
             super();
             this.start = start;
             this.limit = limit;
         }
+
+		public String substring(String source) {
+			return source.substring(start, limit);
+		}
     }
 
     /**
@@ -207,12 +212,12 @@ public class UrlUtilities {
         int start = findStartMatcher.start();
         // dumb search for end of host, doesn't handle .. or edge cases, but this does not have to
         // be production-quality
-        int current = findStartMatcher.end();
-        int current2 = validHost.span(source, start, SpanCondition.CONTAINED);
-        if (current == current2) {
+        int protocolLimit = findStartMatcher.end();
+        int hostLimit = validHost.span(source, protocolLimit, SpanCondition.CONTAINED);
+        if (protocolLimit == hostLimit) {
             return null;
         }
-        int limit = parsePathQueryFragment(source, current2);
+        int limit = parsePathQueryFragment(source, hostLimit);
         return new StringRange(start, limit);
     }
 

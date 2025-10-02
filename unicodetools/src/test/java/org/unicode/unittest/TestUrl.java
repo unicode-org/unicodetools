@@ -33,6 +33,7 @@ import org.unicode.text.utility.Utility;
 import org.unicode.utilities.UrlUtilities;
 import org.unicode.utilities.UrlUtilities.LinkTermination;
 import org.unicode.utilities.UrlUtilities.Part;
+import org.unicode.utilities.UrlUtilities.StringRange;
 
 /** The following is very temporary, just during the spec development. */
 public class TestUrl extends TestFmwk {
@@ -439,6 +440,15 @@ public class TestUrl extends TestFmwk {
         }
     }
 
+    public void testParseUrl() {
+    	String source = "See http://example.com/foobar and http://a.us/foobar!";
+		StringRange position = UrlUtilities.parseURL(source, 0);
+		assertEquals(source, "http://example.com/foobar", position.substring(source));
+		
+		position = UrlUtilities.parseURL(source, position.limit);
+		assertEquals(source, "http://a.us/foobar", position.substring(source));
+
+    }
     //    private static final String SPLIT1 = "\t"; // for debugging, "\n";
     //
     //    private static final boolean VERBOSE_ASSERT = false;
