@@ -140,6 +140,7 @@ public class IdentifierInfo {
 
     private static final class ModifiedNFKC {
         private static Normalizer INSTANCE;
+
         static String normalize(String cf) {
             if (INSTANCE == null) {
                 INSTANCE = new Normalizer(UCD_Types.NFKC, Default.ucdVersion());

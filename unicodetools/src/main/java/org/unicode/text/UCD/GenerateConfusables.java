@@ -2639,6 +2639,7 @@ public class GenerateConfusables {
 
     private static final class ModifiedNFKD {
         private static Normalizer INSTANCE;
+
         static String normalize(String cf) {
             if (INSTANCE == null) {
                 INSTANCE = new Normalizer(UCD_Types.NFKD, Default.ucdVersion());
