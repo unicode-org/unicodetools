@@ -592,7 +592,7 @@ public class GenerateConfusables {
             out.println("");
             for (final UnicodeSetIterator usi = new UnicodeSetIterator(s); usi.next(); ) {
                 final String source = usi.getString();
-                final String target = getModifiedNFKD(source);
+                final String target = ModifiedNFKD.normalize(source);
                 writeSourceTargetLine(out, source, "N", target, value, ARROW);
             }
             // bf.showSetNames(out, s);
@@ -724,12 +724,12 @@ public class GenerateConfusables {
                 }
                 final String source = UTF16.valueOf(cp);
                 final String mapped = NFKD.normalize(cp);
-                String kmapped = getModifiedNFKD(source);
+                String kmapped = ModifiedNFKD.normalize(source);
                 if (!kmapped.equals(source) && !kmapped.equals(nfc)) {
                     if (kmapped.startsWith(" ") || kmapped.startsWith("\u0640")) {
                         if (DEBUG) System.out.println("?? " + DEFAULT_UCD.getCodeAndName(cp));
                         if (DEBUG) System.out.println("\t" + DEFAULT_UCD.getCodeAndName(kmapped));
-                        kmapped = getModifiedNFKD(source); // for debugging
+                        kmapped = ModifiedNFKD.normalize(source); // for debugging
                     }
                     nfkdMap.put(cp, kmapped);
                 }
@@ -2637,24 +2637,15 @@ public class GenerateConfusables {
         return type.substring(dash + 1, period);
     }
 
-    private static Normalizer modNFKD;
-
-    static String getModifiedNFKD(String cf) {
-        if (modNFKD == null) {
-            modNFKD = new Normalizer(UCD_Types.NFKD, Default.ucdVersion());
-            modNFKD.setSpacingSubstitute();
+    private static final class ModifiedNFKD {
+        private static Normalizer INSTANCE;
+        static String normalize(String cf) {
+            if (INSTANCE == null) {
+                INSTANCE = new Normalizer(UCD_Types.NFKD, Default.ucdVersion());
+                INSTANCE.setSpacingSubstitute();
+            }
+            return ModifiedNFKD.INSTANCE.normalize(cf);
         }
-        return modNFKD.normalize(cf);
-    }
-
-    private static Normalizer modNFKC;
-
-    static String getModifiedNFKC(String cf) {
-        if (modNFKC == null) {
-            modNFKC = new Normalizer(UCD_Types.NFKC, Default.ucdVersion());
-            modNFKC.setSpacingSubstitute();
-        }
-        return modNFKC.normalize(cf);
     }
 
     static PrintWriter openAndWriteHeader(String dir, String filename, String title)
