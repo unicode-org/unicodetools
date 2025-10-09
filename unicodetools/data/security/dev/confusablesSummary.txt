@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2025-10-09, 03:26:38 GMT
+# Date: 2025-10-09, 06:52:01 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -4450,12 +4450,23 @@
 ←	(‎ ˉb ‎)	02C9 0062	 MODIFIER LETTER MACRON, LATIN SMALL LETTER B
 ←	(‎ ъ ‎)	044A	 CYRILLIC SMALL LETTER HARD SIGN
 
-#	°	∘	○	◦	⸰	˚
+#	°	॰	৽	𑠻	𞗿	૰	∘	○	◦	⚬	⸰	𑂻	𑈽	𑓆	𑙃	𑑏	˚
 	(‎ ° ‎)	00B0	 DEGREE SIGN
+←	(‎ ॰ ‎)	0970	 DEVANAGARI ABBREVIATION SIGN
+←	(‎ ৽ ‎)	09FD	 BENGALI ABBREVIATION SIGN	# →॰→
+←	(‎ 𑠻 ‎)	1183B	 DOGRA ABBREVIATION SIGN	# →॰→
+←	(‎ 𞗿 ‎)	1E5FF	 OL ONAL ABBREVIATION SIGN	# →॰→
+←	(‎ ૰ ‎)	0AF0	 GUJARATI ABBREVIATION SIGN	# →॰→
 ←	(‎ ∘ ‎)	2218	 RING OPERATOR
 ←	(‎ ○ ‎)	25CB	 WHITE CIRCLE	# →◦→→∘→
 ←	(‎ ◦ ‎)	25E6	 WHITE BULLET	# →∘→
+←	(‎ ⚬ ‎)	26AC	 MEDIUM SMALL WHITE CIRCLE	# →॰→
 ←	(‎ ⸰ ‎)	2E30	 RING POINT	# →∘→
+←	(‎ 𑂻 ‎)	110BB	 KAITHI ABBREVIATION SIGN	# →॰→
+←	(‎ 𑈽 ‎)	1123D	 KHOJKI ABBREVIATION SIGN	# →॰→
+←	(‎ 𑓆 ‎)	114C6	 TIRHUTA ABBREVIATION SIGN	# →॰→
+←	(‎ 𑙃 ‎)	11643	 MODI ABBREVIATION SIGN	# →॰→
+←	(‎ 𑑏 ‎)	1144F	 NEWA ABBREVIATION SIGN	# →॰→
 ←	(‎ ˚ ‎)	02DA	 RING ABOVE
 
 #	°C	℃
@@ -4491,8 +4502,10 @@
 	(‎ ¶ ‎)	00B6	 PILCROW SIGN
 ←	(‎ ⸿ ‎)	2E3F	 CAPITULUM
 
-#	·	・	ᐧ	‧	᛫	•	∙	⋅	⸱	𐄁	ꞏ	·	･
+#	·	੶	𑚹	・	ᐧ	‧	᛫	•	∙	⋅	⸱	𐄁	𑇇	𑅴	ꞏ	·	･
 	(‎ · ‎)	00B7	 MIDDLE DOT
+←	(‎ ੶ ‎)	0A76	 GURMUKHI ABBREVIATION SIGN
+←	(‎ 𑚹 ‎)	116B9	 TAKRI ABBREVIATION SIGN	# →੶→
 ←	(‎ ・ ‎)	30FB	 KATAKANA MIDDLE DOT	# →•→
 ←	(‎ ᐧ ‎)	1427	 CANADIAN SYLLABICS FINAL MIDDLE DOT
 ←	(‎ ‧ ‎)	2027	 HYPHENATION POINT
@@ -4502,6 +4515,8 @@
 ←	(‎ ⋅ ‎)	22C5	 DOT OPERATOR
 ←	(‎ ⸱ ‎)	2E31	 WORD SEPARATOR MIDDLE DOT
 ←	(‎ 𐄁 ‎)	10101	 AEGEAN WORD SEPARATOR DOT
+←	(‎ 𑇇 ‎)	111C7	 SHARADA ABBREVIATION SIGN	# →੶→
+←	(‎ 𑅴 ‎)	11174	 MAHAJANI ABBREVIATION SIGN	# →੶→
 ←	(‎ ꞏ ‎)	A78F	 LATIN LETTER SINOLOGICAL DOT
 ←	(‎ · ‎)	0387	 GREEK ANO TELEIA
 ←	(‎ ･ ‎)	FF65	 HALFWIDTH KATAKANA MIDDLE DOT	# →•→
@@ -8718,13 +8733,6 @@
 #	८	૮
 	(‎ ८ ‎)	096E	 DEVANAGARI DIGIT EIGHT
 ←	(‎ ૮ ‎)	0AEE	 GUJARATI DIGIT EIGHT
-
-#	॰	૰	⚬	𑂻	𑇇
-	(‎ ॰ ‎)	0970	 DEVANAGARI ABBREVIATION SIGN
-←	(‎ ૰ ‎)	0AF0	 GUJARATI ABBREVIATION SIGN
-←	(‎ ⚬ ‎)	26AC	 MEDIUM SMALL WHITE CIRCLE
-←	(‎ 𑂻 ‎)	110BB	 KAITHI ABBREVIATION SIGN
-←	(‎ 𑇇 ‎)	111C7	 SHARADA ABBREVIATION SIGN
 
 #	ঃ	ః	ಃ	ഃ	ඃ	း	ਃ	𑓁
 	(‎ ঃ ‎)	0983	 BENGALI SIGN VISARGA
@@ -17834,5 +17842,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 7582
+# total : 7593
 
