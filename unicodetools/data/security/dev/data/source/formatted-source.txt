@@ -1,5 +1,5 @@
 # formatted-source.txt
-# Date: 2025-09-12, 03:24:47 GMT
+# Date: 2025-10-09, 03:26:35 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1265,7 +1265,10 @@
 
 032D ;	1CD9	# ( ̭ ~ ᳙ ) COMBINING CIRCUMFLEX ACCENT BELOW ~ VEDIC TONE YAJURVEDIC KATHAKA INDEPENDENT SVARITA SCHROEDER
 
+032E ;	0956	# ( ̮ ~ ॖ ) COMBINING BREVE BELOW ~ DEVANAGARI VOWEL SIGN UE
 032E ;	1CD8	# ( ̮ ~ ᳘ ) COMBINING BREVE BELOW ~ VEDIC TONE CANDRA BELOW
+
+032E 032E ;	0957	# ( ̮̮ ~ ॗ ) COMBINING BREVE BELOW, COMBINING BREVE BELOW ~ DEVANAGARI VOWEL SIGN UUE
 
 0331 ;	0320	# ( ̱ ~ ̠ ) COMBINING MACRON BELOW ~ COMBINING MINUS SIGN BELOW
 0331 ;	0952	# ( ̱ ~ ॒ ) COMBINING MACRON BELOW ~ DEVANAGARI STRESS SIGN ANUDATTA

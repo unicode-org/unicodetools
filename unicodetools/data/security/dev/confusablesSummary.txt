@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2025-09-12, 03:24:49 GMT
+# Date: 2025-10-09, 03:26:38 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -5778,9 +5778,19 @@
 	(‎ ̭ ‎)	032D	 COMBINING CIRCUMFLEX ACCENT BELOW
 ←	(‎ ᳙ ‎)	1CD9	 VEDIC TONE YAJURVEDIC KATHAKA INDEPENDENT SVARITA SCHROEDER
 
-#	̮	᳘
+#	𑭢	̮	ॖ	ੁ	᳘
 	(‎ ̮ ‎)	032E	 COMBINING BREVE BELOW
+←	(‎ 𑭢 ‎)	11B62	 SHARADA VOWEL SIGN UE	# →ॖ→
+←	(‎ ॖ ‎)	0956	 DEVANAGARI VOWEL SIGN UE
+←	(‎ ੁ ‎)	0A41	 GURMUKHI VOWEL SIGN U	# →ॖ→
 ←	(‎ ᳘ ‎)	1CD8	 VEDIC TONE CANDRA BELOW
+
+#	𑭢𑭢	̮̮	𑭣	ॗ	ੂ
+	(‎ ̮̮ ‎)	032E 032E	 COMBINING BREVE BELOW, COMBINING BREVE BELOW
+←	(‎ 𑭢𑭢 ‎)	11B62 11B62	 SHARADA VOWEL SIGN UE, SHARADA VOWEL SIGN UE
+←	(‎ 𑭣 ‎)	11B63	 SHARADA VOWEL SIGN UUE	# →ॗ→
+←	(‎ ॗ ‎)	0957	 DEVANAGARI VOWEL SIGN UUE
+←	(‎ ੂ ‎)	0A42	 GURMUKHI VOWEL SIGN UU	# →ॗ→
 
 #	̳	͇
 	(‎ ̳ ‎)	0333	 COMBINING DOUBLE LOW LINE
@@ -8688,16 +8698,6 @@
 ←	(‎ ੍ ‎)	0A4D	 GURMUKHI SIGN VIRAMA
 ←	(‎ ્ ‎)	0ACD	 GUJARATI SIGN VIRAMA
 
-#	𑭢	ॖ	ੁ
-	(‎ ॖ ‎)	0956	 DEVANAGARI VOWEL SIGN UE
-←	(‎ 𑭢 ‎)	11B62	 SHARADA VOWEL SIGN UE
-←	(‎ ੁ ‎)	0A41	 GURMUKHI VOWEL SIGN U
-
-#	𑭣	ॗ	ੂ
-	(‎ ॗ ‎)	0957	 DEVANAGARI VOWEL SIGN UUE
-←	(‎ 𑭣 ‎)	11B63	 SHARADA VOWEL SIGN UUE
-←	(‎ ੂ ‎)	0A42	 GURMUKHI VOWEL SIGN UU
-
 #	।	꠰
 	(‎ । ‎)	0964	 DEVANAGARI DANDA
 ←	(‎ ꠰ ‎)	A830	 NORTH INDIC FRACTION ONE QUARTER
@@ -8885,9 +8885,9 @@
 ←	(‎ ੳ𑭢 ‎)	0A73 11B62	 GURMUKHI URA, SHARADA VOWEL SIGN UE	# →ੳੁ→
 ←	(‎ ੳੁ ‎)	0A73 0A41	 GURMUKHI URA, GURMUKHI VOWEL SIGN U
 
-#	ੳ𑭣	ੳੂ	ਊ
+#	ੳ𑭢𑭢	ੳੂ	ਊ
 	(‎ ਊ ‎)	0A0A	 GURMUKHI LETTER UU
-←	(‎ ੳ𑭣 ‎)	0A73 11B63	 GURMUKHI URA, SHARADA VOWEL SIGN UUE	# →ੳੂ→
+←	(‎ ੳ𑭢𑭢 ‎)	0A73 11B62 11B62	 GURMUKHI URA, SHARADA VOWEL SIGN UE, SHARADA VOWEL SIGN UE	# →ੳੂ→
 ←	(‎ ੳੂ ‎)	0A73 0A42	 GURMUKHI URA, GURMUKHI VOWEL SIGN UU
 
 #	અા	આ
@@ -17834,5 +17834,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 7579
+# total : 7582
 
