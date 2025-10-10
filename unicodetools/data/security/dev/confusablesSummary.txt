@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2025-10-10, 03:57:09 GMT
+# Date: 2025-10-10, 06:51:43 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -5666,11 +5666,7 @@
 ←	(‎ ߳ ‎)	07F3	 NKO COMBINING DOUBLE DOT ABOVE
 ←	(‎ ࣫ ‎)	08EB	 ARABIC TONE TWO DOTS ABOVE
 
-#	̉	〬
-	(‎ ̉ ‎)	0309	 COMBINING HOOK ABOVE
-←	(‎ 〬 ‎)	302C	 IDEOGRAPHIC DEPARTING TONE MARK
-
-#	̊	ْ	ํ	ໍ	ံ	ំ	ͦ	֯	۟	ஂ	៓	ⷪ	゚	𑌀
+#	̊	ْ	ํ	ໍ	ံ	ំ	ͦ	֯	۟	ஂ	៓	ⷪ	〬	゚	𑌀
 	(‎ ̊ ‎)	030A	 COMBINING RING ABOVE
 ←	(‎ ْ ‎)	0652	 ARABIC SUKUN
 ←	(‎ ํ ‎)	0E4D	 THAI CHARACTER NIKHAHIT
@@ -5683,6 +5679,7 @@
 ←	(‎ ஂ ‎)	0B82	 TAMIL SIGN ANUSVARA
 ←	(‎ ៓ ‎)	17D3	 KHMER SIGN BATHAMASAT
 ←	(‎ ⷪ ‎)	2DEA	 COMBINING CYRILLIC LETTER O	# →ͦ→
+←	(‎ 〬 ‎)	302C	 IDEOGRAPHIC DEPARTING TONE MARK	# →゚→
 ←	(‎ ゚ ‎)	309A	 COMBINING KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK
 ←	(‎ 𑌀 ‎)	11300	 GRANTHA SIGN COMBINING ANUSVARA ABOVE	# →ஂ→
 

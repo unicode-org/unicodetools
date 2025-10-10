@@ -1,5 +1,5 @@
 # formatted-source.txt
-# Date: 2025-10-10, 01:52:21 GMT
+# Date: 2025-10-10, 06:51:41 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1200,8 +1200,6 @@
 
 0308 ;	07F3	# ( ̈ ~ ߳ ) COMBINING DIAERESIS ~ NKO COMBINING DOUBLE DOT ABOVE
 0308 ;	08EB	# ( ̈ ~ ࣫ ) COMBINING DIAERESIS ~ ARABIC TONE TWO DOTS ABOVE
-
-0309 ;	302C	# ( ̉ ~ 〬 ) COMBINING HOOK ABOVE ~ IDEOGRAPHIC DEPARTING TONE MARK
 
 030A ;	0652	# ( ̊ ~ ْ ) COMBINING RING ABOVE ~ ARABIC SUKUN
 030A ;	0E4D	# ( ̊ ~ ํ ) COMBINING RING ABOVE ~ THAI CHARACTER NIKHAHIT
@@ -4288,6 +4286,8 @@
 3015 ;	FF3D	#* ( 〕 ~ ］ ) RIGHT TORTOISE SHELL BRACKET ~ FULLWIDTH RIGHT SQUARE BRACKET
 
 301C ;	FF5E	#* ( 〜 ~ ～ ) WAVE DASH ~ FULLWIDTH TILDE
+
+302C ;	309A	# ( 〬 ~ ゚ ) IDEOGRAPHIC DEPARTING TONE MARK ~ COMBINING KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK
 
 303C ;	29C4	# ( 〼 ~ ⧄ ) MASU MARK ~ SQUARED RISING DIAGONAL SLASH
 
