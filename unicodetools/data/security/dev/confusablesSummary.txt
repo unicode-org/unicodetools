@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2025-10-09, 06:52:01 GMT
+# Date: 2025-10-10, 03:57:09 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -10,11 +10,12 @@
 # For documentation and usage, see https://www.unicode.org/reports/tr39
 #
 
-#	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
+#	 	 	 	 	⠀	 	 	 	 	 	 	 	 	 	 	 	 	 	 
 	(‎   ‎)	0020	 SPACE
 ←	(‎   ‎)	1680	 OGHAM SPACE MARK
 ←	(‎   ‎)	2028	 LINE SEPARATOR
 ←	(‎   ‎)	2029	 PARAGRAPH SEPARATOR
+←	(‎ ⠀ ‎)	2800	 BRAILLE PATTERN BLANK
 ←	(‎   ‎)	00A0	 NO-BREAK SPACE
 ←	(‎   ‎)	2000	 EN QUAD
 ←	(‎   ‎)	2001	 EM QUAD
@@ -17842,5 +17843,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 7593
+# total : 7594
 

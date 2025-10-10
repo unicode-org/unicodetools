@@ -1,5 +1,5 @@
 # formatted-source.txt
-# Date: 2025-10-09, 06:52:00 GMT
+# Date: 2025-10-10, 01:52:21 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -12,6 +12,7 @@
 0020 ;	1680	#* (   ~   ) SPACE ~ OGHAM SPACE MARK
 0020 ;	2028	#* (   ~  ) SPACE ~ LINE SEPARATOR
 0020 ;	2029	#* (   ~  ) SPACE ~ PARAGRAPH SEPARATOR
+0020 ;	2800	#* (   ~ ⠀ ) SPACE ~ BRAILLE PATTERN BLANK
 
 0021 ;	01C3	#* ( ! ~ ǃ ) EXCLAMATION MARK ~ LATIN LETTER RETROFLEX CLICK
 0021 ;	2D51	#* ( ! ~ ⵑ ) EXCLAMATION MARK ~ TIFINAGH LETTER TUAREG YANG

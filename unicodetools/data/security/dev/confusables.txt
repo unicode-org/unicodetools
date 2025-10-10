@@ -1,5 +1,5 @@
 # confusables.txt
-# Date: 2025-10-09, 06:52:02 GMT
+# Date: 2025-10-10, 03:57:09 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -261,6 +261,7 @@ A66F ;	20E9 ;	MA	# ( ꙯ → ⃩ ) COMBINING CYRILLIC VZMET → COMBINING WIDE B
 00A0 ;	0020 ;	MA	#* (   →   ) NO-BREAK SPACE → SPACE	# 
 2007 ;	0020 ;	MA	#* (   →   ) FIGURE SPACE → SPACE	# 
 202F ;	0020 ;	MA	#* (   →   ) NARROW NO-BREAK SPACE → SPACE	# 
+2800 ;	0020 ;	MA	#* ( ⠀ →   ) BRAILLE PATTERN BLANK → SPACE	# 
 
 07FA ;	005F ;	MA	# ( ‎ߺ‎ → _ ) NKO LAJANYALAN → LOW LINE	# 
 FE4D ;	005F ;	MA	# ( ﹍ → _ ) DASHED LOW LINE → LOW LINE	# 
@@ -9999,5 +10000,5 @@ FACE ;	9F9C ;	MA	# ( 龜 → 龜 ) CJK COMPATIBILITY IDEOGRAPH-FACE → CJK UNIF
 
 2FD5 ;	9FA0 ;	MA	#* ( ⿕ → 龠 ) KANGXI RADICAL FLUTE → CJK UNIFIED IDEOGRAPH-9FA0	# 
 
-# total: 6578
+# total: 6579
 
