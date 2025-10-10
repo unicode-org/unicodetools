@@ -2273,7 +2273,8 @@ public class GenerateConfusables {
             if (new File(indir, names[i]).isDirectory()) {
                 continue;
             }
-            if (!names[i].startsWith("confusables-")) {
+            // Skip files not matching "confusables-*.txt"
+            if (!names[i].startsWith("confusables-") || !names[i].endsWith(".txt")) {
                 continue;
             }
             if (DEBUG) System.out.println(names[i]);
