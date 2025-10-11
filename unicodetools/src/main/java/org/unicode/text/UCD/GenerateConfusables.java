@@ -682,7 +682,7 @@ public class GenerateConfusables {
     }
 
     private static UnicodeSet SKIP_EXCEPTIONS =
-            new UnicodeSet().add(0x1E9A).add('ſ').add('ﬅ').add('ẛ').add("Ϲ").add("ϲ").freeze();
+            new UnicodeSet().add('ſ').add('ﬅ').add('ẛ').add("Ϲ").add("ϲ").freeze();
 
     private static UnicodeSet getSkipNFKD() {
         nfcMap = new UnicodeMap();

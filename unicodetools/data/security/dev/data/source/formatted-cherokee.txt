@@ -1,5 +1,5 @@
 # formatted-cherokee.txt
-# Date: 2025-09-12, 03:24:48 GMT
+# Date: 2025-10-11, 02:30:36 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -31,6 +31,8 @@
 004B ;	13E6	# ( K ~ Ꮶ ) LATIN CAPITAL LETTER K ~ CHEROKEE LETTER TSO
 
 004D ;	13B7	# ( M ~ Ꮇ ) LATIN CAPITAL LETTER M ~ CHEROKEE LETTER LU
+
+004F 031B ;	13A4	# ( Ơ ~ Ꭴ ) LATIN CAPITAL LETTER O, COMBINING HORN ~ CHEROKEE LETTER U
 
 0050 ;	13E2	# ( P ~ Ꮲ ) LATIN CAPITAL LETTER P ~ CHEROKEE LETTER TLV
 
@@ -85,10 +87,6 @@
 0460 ;	13C7	# ( Ѡ ~ Ꮗ ) CYRILLIC CAPITAL LETTER OMEGA ~ CHEROKEE LETTER QUE
 
 0472 ;	13EB	# ( Ѳ ~ Ꮻ ) CYRILLIC CAPITAL LETTER FITA ~ CHEROKEE LETTER WI
-
-13A4 ;	01A0	# ( Ꭴ ~ Ơ ) CHEROKEE LETTER U ~ LATIN CAPITAL LETTER O WITH HORN
-
-13EF ;	1FF6	# ( Ꮿ ~ ῶ ) CHEROKEE LETTER YA ~ GREEK SMALL LETTER OMEGA WITH PERISPOMENI
 
 2C75 ;	13B0	# ( Ⱶ ~ Ꮀ ) LATIN CAPITAL LETTER HALF H ~ CHEROKEE LETTER HO
 
