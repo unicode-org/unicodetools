@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2025-10-11, 01:53:24 GMT
+# Date: 2025-10-11, 02:19:11 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3524,7 +3524,7 @@
 ←	(‎ ћ ‎)	045B	 CYRILLIC SMALL LETTER TSHE	# →ħ→
 ←	(‎ ℏ ‎)	210F	 PLANCK CONSTANT OVER TWO PI	# →ħ→
 
-#	i	ı	ɩ	ɪ	ι	і	ւ	Ꭵ	ⲓ	ꙇ	⍳	𑣃	ꭵ	ⅰ	ｉ	ι	ℹ	ⅈ	𝐢	𝑖	𝒊	𝒾	𝓲	𝔦	𝕚	𝖎	𝗂	𝗶	𝘪	𝙞	𝚒	𝚤	𝛊	𝜄	𝜾	𝝸	𝞲	˛	ͺ
+#	i	ı	ɩ	ɪ	ι	і	ւ	Ꭵ	ⲓ	ꙇ	¡	⍳	𑣃	ꭵ	ⅰ	ｉ	ι	ℹ	ⅈ	𝐢	𝑖	𝒊	𝒾	𝓲	𝔦	𝕚	𝖎	𝗂	𝗶	𝘪	𝙞	𝚒	𝚤	𝛊	𝜄	𝜾	𝝸	𝞲	˛	ͺ
 	(‎ i ‎)	0069	 LATIN SMALL LETTER I
 ←	(‎ ı ‎)	0131	 LATIN SMALL LETTER DOTLESS I
 ←	(‎ ɩ ‎)	0269	 LATIN SMALL LETTER IOTA
@@ -3535,6 +3535,7 @@
 ←	(‎ Ꭵ ‎)	13A5	 CHEROKEE LETTER V
 ←	(‎ ⲓ ‎)	2C93	 COPTIC SMALL LETTER IAUDA	# →ı→
 ←	(‎ ꙇ ‎)	A647	 CYRILLIC SMALL LETTER IOTA	# →ι→
+←	(‎ ¡ ‎)	00A1	 INVERTED EXCLAMATION MARK
 ←	(‎ ⍳ ‎)	2373	 APL FUNCTIONAL SYMBOL IOTA	# →ɩ→
 ←	(‎ 𑣃 ‎)	118C3	 WARANG CITI SMALL LETTER YU	# →ι→
 ←	(‎ ꭵ ‎)	AB75	 CHEROKEE SMALL LETTER V
@@ -17921,5 +17922,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 7645
+# total : 7646
 

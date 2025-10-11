@@ -1,5 +1,5 @@
 # confusables.txt
-# Date: 2025-10-11, 01:53:24 GMT
+# Date: 2025-10-11, 02:19:11 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2468,6 +2468,7 @@ A6B1 ;	2C75 ;	MA	# ( ꚱ → Ⱶ ) BAMUM LETTER NDAA → LATIN CAPITAL LETTER HA
 
 A795 ;	A727 ;	MA	# ( ꞕ → ꜧ ) LATIN SMALL LETTER H WITH PALATAL HOOK → LATIN SMALL LETTER HENG	# 
 
+00A1 ;	0069 ;	MA	#* ( ¡ → i ) INVERTED EXCLAMATION MARK → LATIN SMALL LETTER I	# 
 02DB ;	0069 ;	MA	#* ( ˛ → i ) OGONEK → LATIN SMALL LETTER I	# →ͺ→→ι→→ι→
 2373 ;	0069 ;	MA	#* ( ⍳ → i ) APL FUNCTIONAL SYMBOL IOTA → LATIN SMALL LETTER I	# →ɩ→
 FF49 ;	0069 ;	MA	# ( ｉ → i ) FULLWIDTH LATIN SMALL LETTER I → LATIN SMALL LETTER I	# →і→
@@ -10031,5 +10032,5 @@ FACE ;	9F9C ;	MA	# ( 龜 → 龜 ) CJK COMPATIBILITY IDEOGRAPH-FACE → CJK UNIF
 
 2FD5 ;	9FA0 ;	MA	#* ( ⿕ → 龠 ) KANGXI RADICAL FLUTE → CJK UNIFIED IDEOGRAPH-9FA0	# 
 
-# total: 6601
+# total: 6602
 
