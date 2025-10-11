@@ -1,5 +1,5 @@
 # formatted-source.txt
-# Date: 2025-10-11, 01:53:22 GMT
+# Date: 2025-10-11, 02:19:08 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -651,6 +651,7 @@
 0069 ;	03B9	# ( i ~ ι ) LATIN SMALL LETTER I ~ GREEK SMALL LETTER IOTA
 0069 ;	0456	# ( i ~ і ) LATIN SMALL LETTER I ~ CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
 0069 ;	13A5	# ( i ~ Ꭵ ) LATIN SMALL LETTER I ~ CHEROKEE LETTER V
+0069 ;	00A1	# ( i ~ ¡ ) LATIN SMALL LETTER I ~ INVERTED EXCLAMATION MARK
 0069 ;	AB75	# ( i ~ ꭵ ) LATIN SMALL LETTER I ~ CHEROKEE SMALL LETTER V
 
 0069 0335 ;	0268	# ( i̵ ~ ɨ ) LATIN SMALL LETTER I, COMBINING SHORT STROKE OVERLAY ~ LATIN SMALL LETTER I WITH STROKE
