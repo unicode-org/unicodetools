@@ -2,24 +2,35 @@ package org.unicode.utilities;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
+import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedMap;
+import com.google.common.util.concurrent.UncheckedExecutionException;
+import com.ibm.icu.impl.IDNA2003;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
+import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
+import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NavigableMap;
 import java.util.Set;
 import java.util.Stack;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.cldr.util.CLDRConfig;
@@ -49,6 +60,7 @@ public class UrlUtilities {
 
     public static final CLDRFile ENGLISH = USE_CLDR ? CLDRConfig.getInstance().getEnglish() : null;
 
+    /** Defines the LinkTermination property TODO: use IUP instead of ICU properties */
     public enum LinkTermination {
         Include("[\\p{ANY}]"), // overridden by following
         Hard("[\\p{whitespace}\\p{NChar}[\\p{C}-\\p{Cf}]\\p{deprecated}]"),
@@ -73,19 +85,20 @@ public class UrlUtilities {
         }
     }
 
-    public String getGeneralCategory(int property, int codePoint, int nameChoice) {
+    private static String getGeneralCategory(int property, int codePoint, int nameChoice) {
         return UCharacter.getPropertyValueName(
                 property, UCharacter.getIntPropertyValue(codePoint, property), nameChoice);
     }
 
-    static String quote(String s) {
+    private static String quote(String s) {
         return TransliteratorUtilities.toHTML.transform(s);
     }
 
-    public static int getOpening(int cp) {
+    private static int getOpening(int cp) {
         return cp == '>' ? '<' : UCharacter.getBidiPairedBracket(cp);
     }
 
+    /** Parallels the spec parts table */
     public enum Part {
         PROTOCOL('\u0000', "[{//}]", "[]", "[]"),
         HOST('\u0000', "[/?#]", "[]", "[]"),
@@ -134,7 +147,7 @@ public class UrlUtilities {
             for (Part part : Part.values()) {
                 switch (part) {
                     case PROTOCOL:
-                        partEnd = source.indexOf("://");
+                        partEnd = source.indexOf("://"); // TODO fix for mailto
                         if (partEnd > 0) {
                             partEnd += 3;
                             result.put(Part.PROTOCOL, source.substring(0, partEnd));
@@ -172,53 +185,106 @@ public class UrlUtilities {
     }
 
     static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
-    static final Pattern protocol = Pattern.compile("[a-z]+://");
-    static final UnicodeSet validHost =
-            new UnicodeSet(IUP.getSet("Idn_Status=" + Idn_Status_Values.valid))
-                    .addAll(IUP.getSet("Idn_Status=" + Idn_Status_Values.mapped))
+    private static final UnicodeSet idnMapped =
+            IUP.getSet("Idn_Status=" + Idn_Status_Values.mapped);
+    private static final UnicodeSet idnValid = IUP.getSet("Idn_Status=" + Idn_Status_Values.valid);
+    static final Pattern protocol = Pattern.compile("(https?://|mailto:)");
+    public static final UnicodeSet validHost =
+            new UnicodeSet(idnValid)
+                    .addAll(idnMapped)
                     .removeAll(new UnicodeSet("[:ascii:]"))
                     .addAll(new UnicodeSet("[a-zA-Z0-9.]"))
                     .freeze();
+    public static final UnicodeSet validHostNoDot =
+            new UnicodeSet("[.]").addAll(validHost).freeze();
 
-    public static final class StringRange {
+    /** Status of link found. Note that if the link is imputed, https or mailto will be returned. */
+    enum LinkStatus {
+        bogus,
+        http,
+        https,
+        mailto,
+        tld
+    }
+
+    /** Immutable class for returning the start/end of link that is found, plus some information */
+    public static final class LinkFound {
         public final int start;
         public final int limit;
+        public final LinkStatus linkStatus;
 
-        public StringRange(int start, int limit) {
-            super();
+        public LinkFound(int start, int limit, LinkStatus linkStatus) {
             this.start = start;
             this.limit = limit;
+            this.linkStatus = linkStatus;
         }
 
-		public String substring(String source) {
-			return source.substring(start, limit);
-		}
+        public String substring(String source) {
+            return source.substring(start, limit);
+        }
     }
 
     /**
      * Parses a restricted set of URLs, for testing the PathQueryFragment portion. That is, it is of
-     * the form [a-z]+://<domain_name><pathqueryfragment>?
+     * the form <host><domain_name><pathqueryfragment>? <br>
+     * The host is currently just http, https, and mailto. <br>
+     * The domain_name is just approximated for testing.
      *
-     * @param source
-     * @param codePointOffset
-     * @return
+     * @return null if we run out of string, otherwise a LinkFound. If what is found is malformed in
+     *     some way, indicate with LinkFound.bogus.
      */
-    public static StringRange parseURL(String source, int startCodePointOffset) {
+    public static LinkFound parseLink(String source, int startCodePointOffset) {
         Matcher findStartMatcher = protocol.matcher(source);
+
         findStartMatcher.region(startCodePointOffset, source.length());
         if (!findStartMatcher.find()) {
-            return null;
+            return null; // we are at the end
         }
+        // if we found something, and there was a character before it,
+        // and that character was not soft, then exit
         int start = findStartMatcher.start();
+        int protocolEnd = findStartMatcher.end();
+        if (start != 0) {
+            LinkTermination lt =
+                    LinkTermination.Property.get(UCharacter.codePointBefore(source, start));
+            if (lt == LinkTermination.Include) {
+                return new LinkFound(start, protocolEnd, LinkStatus.bogus);
+            }
+        }
+
+        String protocolValue = findStartMatcher.group(1);
+        if (protocolValue.equals("mailto")) {
+            return parseRestOfMailto(source, start, protocolEnd);
+        }
+
         // dumb search for end of host, doesn't handle .. or edge cases, but this does not have to
         // be production-quality
-        int protocolLimit = findStartMatcher.end();
-        int hostLimit = validHost.span(source, protocolLimit, SpanCondition.CONTAINED);
-        if (protocolLimit == hostLimit) {
-            return null;
+        int hostLimit = findEndOfDomain(source, protocolEnd);
+        if (protocolEnd == hostLimit) {
+            return new LinkFound(start, protocolEnd, LinkStatus.bogus);
         }
         int limit = parsePathQueryFragment(source, hostLimit);
-        return new StringRange(start, limit);
+        return new LinkFound(
+                start, limit, LinkStatus.valueOf(source.substring(start, protocolEnd)));
+    }
+
+    private static LinkFound parseRestOfMailto(String source, int start, int hostStart) {
+        // basic implementation at first
+        int atPosition = source.indexOf('@', hostStart);
+        if (atPosition == -1) {
+            return new LinkFound(start, hostStart, LinkStatus.bogus);
+        }
+        // TBD we could be in the middle of a quoted string, check for that later
+
+        // see if what is in front of the @ looks ok
+
+        int limit = parsePathQueryFragment(source, atPosition + 1);
+        return new LinkFound(start, limit, LinkStatus.mailto);
+    }
+
+    // Simple implementation for testing, since the spec doesn't define the content
+    private static int findEndOfDomain(String source, int protocolLimit) {
+        return validHost.span(source, protocolLimit, SpanCondition.CONTAINED);
     }
 
     /**
@@ -239,10 +305,14 @@ public class UrlUtilities {
      * Otherwise, stop linkification and return lastSafe<br>
      */
     public static int parsePathQueryFragment(String source, int codePointOffset) {
+        // For simplicity, and to match the spec, we just get the code points
+        // Production code would be optimized, of course.
+
         int[] codePoints = source.codePoints().toArray();
         int lastSafe = codePointOffset;
         Part part = null;
         Stack<Integer> openingStack = new Stack<>();
+        LinkTermination lt = LinkTermination.Soft;
         for (int i = codePointOffset; i < codePoints.length; ++i) {
             int cp = codePoints[i];
             if (part == null) {
@@ -254,7 +324,7 @@ public class UrlUtilities {
                 continue;
             }
 
-            LinkTermination lt = LinkTermination.Property.get(cp);
+            lt = LinkTermination.Property.get(cp);
             switch (lt) {
                 case Include:
                     if (part.terminators.contains(cp)) {
@@ -287,7 +357,8 @@ public class UrlUtilities {
                     return lastSafe;
             }
         }
-        return codePoints.length;
+        // if we hit the end, it acts like we hit a hard character ***
+        return lt == LinkTermination.Soft ? lastSafe : codePoints.length;
     }
 
     /**
@@ -386,9 +457,10 @@ public class UrlUtilities {
         }
     }
 
+    /** Regex for percent escaping */
     public static final Pattern escapedSequence = Pattern.compile("(%[a-fA-F0-9][a-fA-F0-9])+");
 
-    /** Unescape a string; however, code points in toEscape are escaped back */
+    /** Unescape a string; however, code points in toEscape are escaped back. */
     public static String unescape(String stringWithEscapes, UnicodeSet toEscape) {
         StringBuilder result = new StringBuilder();
         Matcher matcher = escapedSequence.matcher(stringWithEscapes);
@@ -442,6 +514,7 @@ public class UrlUtilities {
     }
 
     /**
+     * The wikipedia languages are not all BCP47. Convert the ones that are not. See:<br>
      * https://meta.wikimedia.org/wiki/Special_language_codes <br>
      * https://meta.wikimedia.org/wiki/List_of_Wikipedias#Nonstandard_language_codes
      *
@@ -479,11 +552,13 @@ public class UrlUtilities {
         }
     }
 
+    /** Hard-coded list of wikilanguages, for testing */
     public static Set<String> WIKI_LANGUAGES =
             ImmutableSet.copyOf(
                     SPLIT_COMMA.splitToList(
                             "en,ceb,de,fr,sv,nl,ru,es,it,pl,arz,zh,ja,uk,vi,war,ar,pt,fa,ca,id,sr,ko,no,tr,ce,fi,cs,hu,tt,ro,sh,eu,zh-min-nan,ms,he,eo,hy,da,bg,uz,cy,simple,sk,et,be,azb,el,kk,min,hr,lt,gl,ur,az,sl,lld,ka,nn,ta,th,hi,bn,mk,zh-yue,la,ast,lv,af,tg,my,te,sq,mr,mg,bs,oc,be-tarask,ku,br,sw,ml,nds,ky,lmo,jv,pnb,ckb,new,ht,vec,pms,lb,ba,su,ga,is,szl,cv,pa,fy,io,ha,tl,an,mzn,wuu,diq,vo,ig,yo,sco,kn,ne,als,gu,ia,avk,crh,bar,ban,scn,bpy,mn,qu,nv,si,xmf,frr,ps,os,or,tum,sd,bcl,bat-smg,sah,cdo,gd,bug,glk,yi,ilo,am,li,nap,gor,as,fo,mai,hsb,map-bms,shn,zh-classical,eml,ace,ie,wa,sa,hyw,sat,zu,sn,mhr,lij,hif,km,bjn,mrj,mni,dag,ary,hak,pam,rue,roa-tara,ug,zgh,bh,nso,co,tly,so,vls,nds-nl,mi,se,myv,rw,kaa,sc,bo,kw,vep,mt,tk,mdf,kab,gv,gan,fiu-vro,ff,zea,ab,skr,smn,ks,gn,frp,pcd,udm,kv,csb,ay,nrm,lo,ang,fur,olo,lfn,lez,ln,pap,nah,mwl,tw,stq,rm,ext,lad,gom,dty,av,tyv,koi,dsb,lg,cbk-zam,dv,ksh,za,bxr,blk,gag,pfl,bew,szy,haw,tay,pag,pi,awa,tcy,krc,inh,gpe,xh,kge,fon,atj,to,pdc,mnw,arc,shi,om,tn,dga,ki,nia,jam,kbp,wo,xal,nov,kbd,anp,nqo,bi,kg,roa-rup,tpi,tet,guw,jbo,mad,fj,lbe,kcg,pcm,cu,ty,trv,dtp,sm,ami,st,iba,srn,btm,alt,ltg,gcr,ny,kus,mos,ss,chr,ee,ts,got,bbc,gur,bm,pih,ve,rmy,fat,chy,rn,igl,ik,guc,ch,ady,pnt,iu,ann,rsk,pwn,dz,ti,sg,din,tdd,kl,bdr,nr,cr"));
 
+    /** Show termination values, for generating property files */
     void showLinkTermination() {
         for (LinkTermination lt : LinkTermination.values()) {
             UnicodeSet value = LinkTermination.Property.getSet(lt);
@@ -536,6 +611,7 @@ public class UrlUtilities {
         }
     }
 
+    /** Show paired openers, for generating property files */
     public void showLinkPairedOpeners() {
         UnicodeSet value = LinkTermination.Property.getSet(LinkTermination.Close);
 
@@ -563,6 +639,180 @@ public class UrlUtilities {
                             + quote(UTF16.valueOf(value2))
                             + "” "
                             + UCharacter.getExtendedName(value2));
+        }
+    }
+
+    /**
+     * Regex to scan for possible TLDs. The result needs to be checked that there is no
+     * validHostNoDot before and after
+     */
+    public static final Pattern TLD_SCANNER;
+
+    private static final Comparator<String> LENGTH_FIRST =
+            new Comparator<>() {
+
+                @Override
+                public int compare(String o1, String o2) {
+                    return ComparisonChain.start()
+                            .compare(o2.length(), o1.length())
+                            .compare(o1, o2)
+                            .result();
+                }
+            };
+
+    static {
+        try {
+            final Path filePath =
+                    Path.of(UrlUtilities.RESOURCE_DIR + "tlds-alpha-by-domain.txt").toRealPath();
+            List<String> allLines = Files.readAllLines(filePath);
+            Set<String> core = new TreeSet<>(LENGTH_FIRST);
+            allLines.stream()
+                    .filter(x -> !x.startsWith("#"))
+                    .forEach(
+                            x -> {
+                                core.add(x);
+                                String y = toUnicode2(x);
+                                if (!x.equals(y)) {
+                                    core.add(y);
+                                }
+                            });
+
+            String pattern = "[.](" + Joiner.on('|').join(core) + ")";
+            TLD_SCANNER = Pattern.compile(pattern, Pattern.UNICODE_CASE);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    private static String toUnicode2(String x) {
+        try {
+            x = x.toLowerCase(Locale.ROOT);
+            if (x.startsWith("xn--")) {
+                x = IDNA2003.convertIDNToUnicode(x, 0).toString();
+            }
+            return x;
+        } catch (StringPrepParseException e) {
+            throw new UncheckedExecutionException(e);
+        }
+    }
+
+    /**
+     * Scan backwards from limit to the first character that uset::contains != doesContain. Returns
+     * the offset *after* that character. Stops at start;
+     */
+    public static int scanBackward(
+            UnicodeSet uset, boolean doesContain, String source, int start, int limit) {
+        while (limit > start) {
+            int cp = source.codePointBefore(limit);
+            if (uset.contains(cp) != doesContain) {
+                break;
+            }
+            limit -= UCharacter.charCount(cp);
+        }
+        return limit;
+    }
+
+    /** Scans a string for links */
+    public static class LinkScanner {
+        private final String source;
+        private final Matcher m;
+        private final int limit;
+        private int hardStart; // ::next can't backup before this value
+        private int linkStart;
+        private int linkEnd;
+
+        public LinkScanner(String source, int start, int limit) {
+            this.source = source;
+            this.hardStart = start;
+            this.limit = limit;
+            // Note: this regex pattern doesn't check for validHost, because
+            // it is messy to add huge UnicodeSet patterns to regular expressions
+            m = UrlUtilities.TLD_SCANNER.matcher(source);
+            m.region(start, limit);
+        }
+
+        /** call only if next() is true */
+        public int getLinkStart() {
+            return linkStart;
+        }
+
+        /** call only if next() is true */
+        public int getLinkEnd() {
+            return linkEnd;
+        }
+
+        /**
+         * check for next item. If there is one, the result is true, and getLinkStart/getLinkEnd are
+         * set to valid offsets
+         */
+        public boolean next() {
+            while (true) {
+                // scan forward until we reach what might be a TLD
+                if (!m.find()) {
+                    return false;
+                }
+                // we found something of the form ".com", so check for longer label
+                // it is ok to have trailing dot after TLD (Fully Qualified Domain Name), but
+                // bad cases are .comx or .com.x
+                linkEnd = m.end();
+                if (linkEnd < limit) {
+                    int nextCp = source.codePointAt(linkEnd);
+                    if (nextCp == '.') {
+                        linkEnd++;
+                        nextCp = linkEnd < limit ? source.codePointAt(linkEnd) : 0;
+                        // 0 is just after the end of the string, makes the logic simpler
+                    }
+                    if (validHost.contains(nextCp)) {
+                        // scan again. We found something like ".comx", which could be part of a
+                        // domain name
+                        continue;
+                    }
+                }
+                // the linkEnd is ok, scan backwards to get the start of the domain name
+                int domainStart =
+                        UrlUtilities.scanBackward(validHost, true, source, hardStart, m.start());
+                if (m.start() - domainStart < 1) {
+                    // we don't have enough for a link
+                    continue;
+                }
+                // TBD, check edge conditions like abc..def.com
+
+                if (domainStart > hardStart) {
+                    int cpBefore = source.codePointBefore(domainStart);
+                    if (cpBefore == '@') {
+                        // TBD do dumb parse backwards; fix later
+                        // scan backwards to start of local-part
+                        int mailToStart =
+                                UrlUtilities.scanBackward(
+                                        validHost, true, source, hardStart, domainStart - 1);
+
+                        // check for mailto: beforehand
+                        linkStart = backupIfAfter("mailto:", mailToStart);
+                        hardStart = linkEnd; // prepare for next next()
+                        return true;
+                    }
+                }
+
+                // we are either http or https
+
+                int temp = backupIfAfter("https://", domainStart);
+                linkStart = temp != domainStart ? temp : backupIfAfter("http://", domainStart);
+                // Extend end for path, query, etc.
+                linkEnd = parsePathQueryFragment(source, linkEnd);
+
+                hardStart = linkEnd; // prepare for next next()
+                return true;
+            }
+        }
+
+        private int backupIfAfter(String string, int currentPosition) {
+            int len = string.length();
+            if (hardStart <= currentPosition - len) {
+                if (source.regionMatches(currentPosition - len, string, 0, len)) {
+                    currentPosition -= len;
+                }
+            }
+            return currentPosition;
         }
     }
 }

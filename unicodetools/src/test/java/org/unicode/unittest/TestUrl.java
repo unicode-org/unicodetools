@@ -31,9 +31,10 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Rational.MutableLong;
 import org.unicode.text.utility.Utility;
 import org.unicode.utilities.UrlUtilities;
+import org.unicode.utilities.UrlUtilities.LinkFound;
+import org.unicode.utilities.UrlUtilities.LinkScanner;
 import org.unicode.utilities.UrlUtilities.LinkTermination;
 import org.unicode.utilities.UrlUtilities.Part;
-import org.unicode.utilities.UrlUtilities.StringRange;
 
 /** The following is very temporary, just during the spec development. */
 public class TestUrl extends TestFmwk {
@@ -441,30 +442,119 @@ public class TestUrl extends TestFmwk {
     }
 
     public void testParseUrl() {
-    	String source = "See http://example.com/foobar and http://a.us/foobar!";
-		StringRange position = UrlUtilities.parseURL(source, 0);
-		assertEquals(source, "http://example.com/foobar", position.substring(source));
-		
-		position = UrlUtilities.parseURL(source, position.limit);
-		assertEquals(source, "http://a.us/foobar", position.substring(source));
-
+        String[][] tests = {
+            {
+                "See http://example.com/foobar, and https://a.ca/ω!!!!",
+                "http://example.com/foobar",
+                "https://a.ca/ω"
+            },
+            {"abc http://a.ca/ωπροϛ! ", "http://a.ca/ωπροϛ"},
+            {"abch ttp://a.ca/ωπροϛ! ", null},
+            {"abchttp://a.ca/ωπροϛ! ", null},
+            {"See http://example.com/ωπροϛ and", "http://example.com/ωπροϛ"},
+            {
+                "See http://example.com/foobar, and http://example.com/ωπροϛ!",
+                "http://example.com/foobar",
+                "http://example.com/ωπροϛ"
+            },
+        };
+        int caseNumber = 0;
+        for (String[] test : tests) {
+            ++caseNumber;
+            String source = test[0];
+            // String source = "See http://example.com/foobar and http://a.us/foobar!";
+            int offset = 0;
+            for (int i = 1; i < test.length; ++i) {
+                LinkFound position = UrlUtilities.parseLink(source, offset);
+                String expected = test[i];
+                String actual = position == null ? null : position.substring(source);
+                assertEquals(caseNumber + "." + i + ") «" + source + "»", expected, actual);
+                if (position == null) {
+                    break;
+                }
+                offset = position.limit;
+            }
+        }
     }
-    //    private static final String SPLIT1 = "\t"; // for debugging, "\n";
-    //
-    //    private static final boolean VERBOSE_ASSERT = false;
 
-    //    public static <T> boolean tempAssertEquals(String message, T expected, T actual) {
-    //        final boolean areEqual = Objects.equal(expected, actual);
-    //        if (!areEqual || VERBOSE_ASSERT) {
-    //            System.out.println(
-    //                    CheckLinkification.JOIN_TAB.join(
-    //                            (areEqual ? "OK" : "ERROR"),
-    //                            message,
-    //                            "expected:",
-    //                            expected,
-    //                            "actual:",
-    //                            actual));
-    //        }
-    //        return areEqual;
-    //    }
+    public void testScanForTLD() {
+        String[][] tests = {
+            {"abc.com deΩ.uk .fr abc.ukx, foo.accountants foo.香港", "com uk accountants 香港"},
+            {"abc.com/d/e?xyz#w def.uk", "com uk"},
+            {"abc.XN--11B4C3D", "abc.XN--11B4C3D"} // punycode TLD is ok
+        };
+        int caseNumber = 0;
+        for (String[] test : tests) {
+            ++caseNumber;
+            String source = test[0];
+            String expected = test[1];
+            Matcher m = UrlUtilities.TLD_SCANNER.matcher(source);
+            List<String> list = new ArrayList<>();
+            while (true) {
+                if (!m.find()) {
+                    break;
+                }
+                String temp = m.group(); // for debugging
+                int start = m.start();
+                int limit = m.end();
+                if (start > 0
+                        && UrlUtilities.validHostNoDot.contains(
+                                UCharacter.codePointBefore(source, start))
+                        && (limit == source.length()
+                                || !UrlUtilities.validHostNoDot.contains(
+                                        UCharacter.codePointAt(source, limit)))) {
+                    list.add(m.group(1));
+                }
+            }
+            String actual = Joiner.on(' ').join(list);
+            assertEquals(caseNumber + ") «" + source + "»", expected, actual);
+        }
+    }
+
+    public void testLinkScanner() {
+        String[][] tests = {
+            {"foo.uk.com junk", "foo.uk.com"},
+            {".uk", ""}, // missing lower levels
+            {"foo@abc.com huh mailto:foo@abc.com", "foo@abc.com mailto:foo@abc.com"},
+            {
+                "abc.com/def/ghi?jkl#mno! huh https://abc.com/def/ghi?jkl#mno! ",
+                "abc.com/def/ghi?jkl#mno https://abc.com/def/ghi?jkl#mno"
+            },
+            {
+                "abc.com deΩ.uk .fr abc.ukx, foo.accountants foo.香港",
+                "abc.com deΩ.uk foo.accountants foo.香港"
+            },
+        };
+        int caseNumber = 0;
+        for (String[] test : tests) {
+            ++caseNumber;
+            String source = test[0];
+            String expected = test[1];
+            LinkScanner ls = new LinkScanner(source, 0, source.length());
+            List<String> list = new ArrayList<>();
+            while (ls.next()) {
+                list.add(source.substring(ls.getLinkStart(), ls.getLinkEnd()));
+            }
+            String actual = Joiner.on(' ').join(list);
+            assertEquals(caseNumber + ") «" + source + "»", expected, actual);
+        }
+        //    private static final String SPLIT1 = "\t"; // for debugging, "\n";
+        //
+        //    private static final boolean VERBOSE_ASSERT = false;
+
+        //    public static <T> boolean tempAssertEquals(String message, T expected, T actual) {
+        //        final boolean areEqual = Objects.equal(expected, actual);
+        //        if (!areEqual || VERBOSE_ASSERT) {
+        //            System.out.println(
+        //                    CheckLinkification.JOIN_TAB.join(
+        //                            (areEqual ? "OK" : "ERROR"),
+        //                            message,
+        //                            "expected:",
+        //                            expected,
+        //                            "actual:",
+        //                            actual));
+        //        }
+        //        return areEqual;
+        //    }
+    }
 }
