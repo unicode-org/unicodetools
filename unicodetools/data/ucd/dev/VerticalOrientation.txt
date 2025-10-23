@@ -1,5 +1,5 @@
-# VerticalOrientation-17.0.0.txt
-# Date: 2025-08-06, 15:36:00 GMT
+# VerticalOrientation-18.0.0.txt
+# Date: 2025-10-23, 17:46:00 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2218,8 +2218,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 16FF7..16FFF   ; U  # Cn     [9] <reserved-16FF7>..<reserved-16FFF>
 17000..187FF   ; U  # Lo  [6144] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187FF
 18800..18AFF   ; U  # Lo   [768] TANGUT COMPONENT-001..TANGUT COMPONENT-768
-18B00..18CD5   ; U  # Lo   [470] KHITAN SMALL SCRIPT CHARACTER-18B00..KHITAN SMALL SCRIPT CHARACTER-18CD5
-18CD6..18CFE   ; U  # Cn    [41] <reserved-18CD6>..<reserved-18CFE>
+18B00..18CDA   ; U  # Lo   [475] KHITAN SMALL SCRIPT CHARACTER-18B00..KHITAN SMALL SCRIPT CHARACTER-18CDA
+18CDB..18CFE   ; U  # Cn    [36] <reserved-18CDB>..<reserved-18CFE>
 18CFF          ; U  # Lo         KHITAN SMALL SCRIPT CHARACTER-18CFF
 18D00..18D1E   ; U  # Lo    [31] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D1E
 18D1F..18D7F   ; U  # Cn    [97] <reserved-18D1F>..<reserved-18D7F>
