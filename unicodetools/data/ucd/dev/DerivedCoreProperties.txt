@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2025-10-02, 22:16:18 GMT
+# Date: 2025-10-23, 16:02:40 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -11786,8 +11786,7 @@ E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELE
 208D          ; Grapheme_Base # Ps       SUBSCRIPT LEFT PARENTHESIS
 208E          ; Grapheme_Base # Pe       SUBSCRIPT RIGHT PARENTHESIS
 2090..209C    ; Grapheme_Base # Lm  [13] LATIN SUBSCRIPT SMALL LETTER A..LATIN SUBSCRIPT SMALL LETTER T
-20A0..20C1    ; Grapheme_Base # Sc  [34] EURO-CURRENCY SIGN..SAUDI RIYAL SIGN
-20C3          ; Grapheme_Base # Sc       UAE DIRHAM SIGN
+20A0..20C3    ; Grapheme_Base # Sc  [36] EURO-CURRENCY SIGN..UAE DIRHAM SIGN
 2100..2101    ; Grapheme_Base # So   [2] ACCOUNT OF..ADDRESSED TO THE SUBJECT
 2102          ; Grapheme_Base # L&       DOUBLE-STRUCK CAPITAL C
 2103..2106    ; Grapheme_Base # So   [4] DEGREE CELSIUS..CADA UNA
@@ -12986,7 +12985,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 30000..3134A  ; Grapheme_Base # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..33479  ; Grapheme_Base # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 
-# Total code points: 157511
+# Total code points: 157512
 
 # ================================================
 
