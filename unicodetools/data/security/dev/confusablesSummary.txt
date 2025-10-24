@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2025-10-11, 02:30:37 GMT
+# Date: 2025-10-17, 00:06:13 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1057,9 +1057,12 @@
 ←	(‎ 𑷠点 ‎)	11DE0 70B9	 TOLONG SIKI DIGIT ZERO, CJK UNIFIED IDEOGRAPH-70B9
 ←	(‎ ㍘ ‎)	3358	 IDEOGRAPHIC TELEGRAPH SYMBOL FOR HOUR ZERO
 
-#	l	𑷚	𑷡	𖺪	I	1	|	Ɩ	ǀ	ӏ	ו	ן	ا	١	۱	Ι	І	Ӏ	ߊ	ᛁ	Ⲓ	ⵏ	ꓲ	𐊊	𐌉	𖼨	׀	∣	𐌠	𞣇	⏽	🯱	𜳱	𜳞	Ⅰ	ⅼ	Ｉ	ｌ	ℐ	ℑ	ℓ	𞸀	𞺀	ﺍ	ﺎ	𝐈	𝐥	𝐼	𝑙	𝑰	𝒍	𝓁	𝓘	𝓵	𝔩	𝕀	𝕝	𝕴	𝖑	𝖨	𝗅	𝗜	𝗹	𝘐	𝘭	𝙄	𝙡	𝙸	𝚕	𝚰	𝛪	𝜤	𝝞	𝞘	𝟏	𝟙	𝟣	𝟭	𝟷	￨
+#	l	।	𖵣	𑏔	𑷚	𑷡	𖺪	I	1	|	Ɩ	ǀ	ӏ	ו	ן	ا	١	۱	Ι	І	Ӏ	ߊ	ᛁ	Ⲓ	ⵏ	ꓲ	𐊊	𐌉	𖼨	׀	၊	∣	꠰	꣎	꩝	𐌠	𑁇	𑃀	𑅁	𑇅	𑗅	𑙁	𞣇	⏽	𑑋	𑱁	🯱	𜳱	𜳞	Ⅰ	ⅼ	Ｉ	ｌ	ℐ	ℑ	ℓ	𞸀	𞺀	ﺍ	ﺎ	𝐈	𝐥	𝐼	𝑙	𝑰	𝒍	𝓁	𝓘	𝓵	𝔩	𝕀	𝕝	𝕴	𝖑	𝖨	𝗅	𝗜	𝗹	𝘐	𝘭	𝙄	𝙡	𝙸	𝚕	𝚰	𝛪	𝜤	𝝞	𝞘	𝟏	𝟙	𝟣	𝟭	𝟷	￨
 	(‎ 1 ‎)	0031	 DIGIT ONE
 ←	(‎ l ‎)	006C	 LATIN SMALL LETTER L
+←	(‎ । ‎)	0964	 DEVANAGARI DANDA	# →|→→l→
+←	(‎ 𖵣 ‎)	16D63	 KIRAT RAI VOWEL SIGN AA	# →|→→l→
+←	(‎ 𑏔 ‎)	113D4	 TULU-TIGALARI DANDA	# →|→→l→
 ←	(‎ 𑷚 ‎)	11DDA	 TOLONG SIKI SIGN HECAKA	# →|→→l→
 ←	(‎ 𑷡 ‎)	11DE1	 TOLONG SIKI DIGIT ONE	# →|→→l→
 ←	(‎ 𖺪 ‎)	16EAA	 BERIA ERFE CAPITAL LETTER LAKKO	# →I→
@@ -1085,10 +1088,22 @@
 ←	(‎ 𐌉 ‎)	10309	 OLD ITALIC LETTER I	# →I→
 ←	(‎ 𖼨 ‎)	16F28	 MIAO LETTER GHA	# →I→
 ←	(‎ ׀ ‎)	05C0	 HEBREW PUNCTUATION PASEQ	# →|→→l→
+←	(‎ ၊ ‎)	104A	 MYANMAR SIGN LITTLE SECTION	# →|→→l→
 ←	(‎ ∣ ‎)	2223	 DIVIDES	# →ǀ→→I→
+←	(‎ ꠰ ‎)	A830	 NORTH INDIC FRACTION ONE QUARTER	# →।→→|→→l→
+←	(‎ ꣎ ‎)	A8CE	 SAURASHTRA DANDA	# →|→→l→
+←	(‎ ꩝ ‎)	AA5D	 CHAM PUNCTUATION DANDA	# →|→→l→
 ←	(‎ 𐌠 ‎)	10320	 OLD ITALIC NUMERAL ONE	# →𐌉→→I→
+←	(‎ 𑁇 ‎)	11047	 BRAHMI DANDA	# →|→→l→
+←	(‎ 𑃀 ‎)	110C0	 KAITHI DANDA	# →|→→l→
+←	(‎ 𑅁 ‎)	11141	 CHAKMA DANDA	# →|→→l→
+←	(‎ 𑇅 ‎)	111C5	 SHARADA DANDA	# →|→→l→
+←	(‎ 𑗅 ‎)	115C5	 SIDDHAM SEPARATOR BAR	# →|→→l→
+←	(‎ 𑙁 ‎)	11641	 MODI DANDA	# →|→→l→
 ←	(‎ 𞣇 ‎)	1E8C7	 MENDE KIKAKUI DIGIT ONE	# →l→
 ←	(‎ ⏽ ‎)	23FD	 POWER ON SYMBOL	# →I→
+←	(‎ 𑑋 ‎)	1144B	 NEWA DANDA	# →|→→l→
+←	(‎ 𑱁 ‎)	11C41	 BHAIKSUKI DANDA	# →|→→l→
 ←	(‎ 🯱 ‎)	1FBF1	 SEGMENTED DIGIT ONE
 ←	(‎ 𜳱 ‎)	1CCF1	 OUTLINED DIGIT ONE
 ←	(‎ 𜳞 ‎)	1CCDE	 OUTLINED LATIN CAPITAL LETTER I	# →I→
@@ -1179,17 +1194,32 @@
 ←	(‎ l𑷠点 ‎)	006C 11DE0 70B9	 LATIN SMALL LETTER L, TOLONG SIKI DIGIT ZERO, CJK UNIFIED IDEOGRAPH-70B9
 ←	(‎ ㍢ ‎)	3362	 IDEOGRAPHIC TELEGRAPH SYMBOL FOR HOUR TEN
 
-#	ll	𑷚𑷚	II	11	||	וו	ǁ	װ	‖	∥	Ⅱ
+#	ll	।।	၊၊	𑙁𑙁	𑑋𑑋	𑱁𑱁	II	11	||	וו	𑏕	ǁ	װ	॥	။	‖	∥	꣏	𑁈	𑃁	𑅂	𑇆	𑙂	𑑌	𑱂	Ⅱ
 	(‎ 11 ‎)	0031 0031	 DIGIT ONE, DIGIT ONE
 ←	(‎ ll ‎)	006C 006C	 LATIN SMALL LETTER L, LATIN SMALL LETTER L	# →‎וו‎→
-←	(‎ 𑷚𑷚 ‎)	11DDA 11DDA	 TOLONG SIKI SIGN HECAKA, TOLONG SIKI SIGN HECAKA	# →||→→ll→→‎וו‎→
+←	(‎ ।। ‎)	0964 0964	 DEVANAGARI DANDA, DEVANAGARI DANDA	# →॥→→||→→ll→→‎וו‎→
+←	(‎ ၊၊ ‎)	104A 104A	 MYANMAR SIGN LITTLE SECTION, MYANMAR SIGN LITTLE SECTION	# →။→→||→→ll→→‎וו‎→
+←	(‎ 𑙁𑙁 ‎)	11641 11641	 MODI DANDA, MODI DANDA	# →𑙂→→||→→ll→→‎וו‎→
+←	(‎ 𑑋𑑋 ‎)	1144B 1144B	 NEWA DANDA, NEWA DANDA	# →𑑌→→||→→ll→→‎וו‎→
+←	(‎ 𑱁𑱁 ‎)	11C41 11C41	 BHAIKSUKI DANDA, BHAIKSUKI DANDA	# →𑱂→→||→→ll→→‎וו‎→
 ←	(‎ II ‎)	0049 0049	 LATIN CAPITAL LETTER I, LATIN CAPITAL LETTER I	# →ll→→‎וו‎→
 ←	(‎ || ‎)	007C 007C	 VERTICAL LINE, VERTICAL LINE	# →ll→→‎וו‎→
 ←	(‎ וו ‎)	05D5 05D5	 HEBREW LETTER VAV, HEBREW LETTER VAV
+←	(‎ 𑏕 ‎)	113D5	 TULU-TIGALARI DOUBLE DANDA	# →||→→ll→→‎וו‎→
 ←	(‎ ǁ ‎)	01C1	 LATIN LETTER LATERAL CLICK	# →‖→→∥→→||→→ll→→‎וו‎→
 ←	(‎ װ ‎)	05F0	 HEBREW LIGATURE YIDDISH DOUBLE VAV	# →‎וו‎→
+←	(‎ ॥ ‎)	0965	 DEVANAGARI DOUBLE DANDA	# →||→→ll→→‎וו‎→
+←	(‎ ။ ‎)	104B	 MYANMAR SIGN SECTION	# →||→→ll→→‎וו‎→
 ←	(‎ ‖ ‎)	2016	 DOUBLE VERTICAL LINE	# →∥→→||→→ll→→‎וו‎→
 ←	(‎ ∥ ‎)	2225	 PARALLEL TO	# →||→→ll→→‎וו‎→
+←	(‎ ꣏ ‎)	A8CF	 SAURASHTRA DOUBLE DANDA	# →||→→ll→→‎וו‎→
+←	(‎ 𑁈 ‎)	11048	 BRAHMI DOUBLE DANDA	# →||→→ll→→‎וו‎→
+←	(‎ 𑃁 ‎)	110C1	 KAITHI DOUBLE DANDA	# →||→→ll→→‎וו‎→
+←	(‎ 𑅂 ‎)	11142	 CHAKMA DOUBLE DANDA	# →||→→ll→→‎וו‎→
+←	(‎ 𑇆 ‎)	111C6	 SHARADA DOUBLE DANDA	# →||→→ll→→‎וו‎→
+←	(‎ 𑙂 ‎)	11642	 MODI DOUBLE DANDA	# →||→→ll→→‎וו‎→
+←	(‎ 𑑌 ‎)	1144C	 NEWA DOUBLE DANDA	# →||→→ll→→‎וו‎→
+←	(‎ 𑱂 ‎)	11C42	 BHAIKSUKI DOUBLE DANDA	# →||→→ll→→‎וו‎→
 ←	(‎ Ⅱ ‎)	2161	 ROMAN NUMERAL TWO	# →II→→ll→→‎וו‎→
 
 #	ll.	11.	⒒
@@ -8738,14 +8768,6 @@
 ←	(‎ ੍ ‎)	0A4D	 GURMUKHI SIGN VIRAMA
 ←	(‎ ્ ‎)	0ACD	 GUJARATI SIGN VIRAMA
 
-#	।	꠰
-	(‎ । ‎)	0964	 DEVANAGARI DANDA
-←	(‎ ꠰ ‎)	A830	 NORTH INDIC FRACTION ONE QUARTER
-
-#	।।	॥
-	(‎ ।। ‎)	0964 0964	 DEVANAGARI DANDA, DEVANAGARI DANDA
-←	(‎ ॥ ‎)	0965	 DEVANAGARI DOUBLE DANDA
-
 #	२	ર	૨
 	(‎ २ ‎)	0968	 DEVANAGARI DIGIT TWO
 ←	(‎ ર ‎)	0AB0	 GUJARATI LETTER RA	# →૨→
@@ -9630,10 +9652,6 @@
 #	၁	ၥ
 	(‎ ၁ ‎)	1041	 MYANMAR DIGIT ONE
 ←	(‎ ၥ ‎)	1065	 MYANMAR LETTER WESTERN PWO KAREN THA
-
-#	၊၊	။
-	(‎ ၊၊ ‎)	104A 104A	 MYANMAR SIGN LITTLE SECTION, MYANMAR SIGN LITTLE SECTION
-←	(‎ ။ ‎)	104B	 MYANMAR SIGN SECTION
 
 #	ၽှ	ၾ
 	(‎ ၽှ ‎)	107D 103E	 MYANMAR LETTER SHAN PHA, MYANMAR CONSONANT SIGN MEDIAL HA
@@ -17243,10 +17261,6 @@
 	(‎ 𑐯 ‎)	1142F	 NEWA LETTER LHA
 ←	(‎ 𑐴𑑂𑐮 ‎)	11434 11442 1142E	 NEWA LETTER HA, NEWA SIGN VIRAMA, NEWA LETTER LA
 
-#	𑑋𑑋	𑑌
-	(‎ 𑑋𑑋 ‎)	1144B 1144B	 NEWA DANDA, NEWA DANDA
-←	(‎ 𑑌 ‎)	1144C	 NEWA DOUBLE DANDA
-
 #	𑖂	𑗘	𑗙
 	(‎ 𑖂 ‎)	11582	 SIDDHAM LETTER I
 ←	(‎ 𑗘 ‎)	115D8	 SIDDHAM LETTER THREE-CIRCLE ALTERNATE I
@@ -17267,10 +17281,6 @@
 #	𑖳	𑗝
 	(‎ 𑖳 ‎)	115B3	 SIDDHAM VOWEL SIGN UU
 ←	(‎ 𑗝 ‎)	115DD	 SIDDHAM VOWEL SIGN ALTERNATE UU
-
-#	𑙁𑙁	𑙂
-	(‎ 𑙁𑙁 ‎)	11641 11641	 MODI DANDA, MODI DANDA
-←	(‎ 𑙂 ‎)	11642	 MODI DOUBLE DANDA
 
 #	𑫥𑫥	𑫨
 	(‎ 𑫥𑫥 ‎)	11AE5 11AE5	 PAU CIN HAU RISING TONE LONG, PAU CIN HAU RISING TONE LONG
@@ -17328,10 +17338,6 @@
 	(‎ 𑫳𑫳𑫰 ‎)	11AF3 11AF3 11AF0	 PAU CIN HAU LOW-FALLING TONE LONG, PAU CIN HAU LOW-FALLING TONE LONG, PAU CIN HAU GLOTTAL STOP VARIANT
 ←	(‎ 𑫳𑫵 ‎)	11AF3 11AF5	 PAU CIN HAU LOW-FALLING TONE LONG, PAU CIN HAU GLOTTAL STOP
 ←	(‎ 𑫸 ‎)	11AF8	 PAU CIN HAU GLOTTAL STOP FINAL	# →𑫳𑫵→
-
-#	𑱁𑱁	𑱂
-	(‎ 𑱁𑱁 ‎)	11C41 11C41	 BHAIKSUKI DANDA, BHAIKSUKI DANDA
-←	(‎ 𑱂 ‎)	11C42	 BHAIKSUKI DOUBLE DANDA
 
 #	𑲪	𑲲
 	(‎ 𑲪 ‎)	11CAA	 MARCHEN SUBJOINED LETTER RA
@@ -17798,5 +17804,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 7606
+# total : 7630
 
