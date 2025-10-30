@@ -1,0 +1,16 @@
+# Symbol: RUFIYAA SIGN (20C2)
+# https://github.com/unicode-org/utc-release-management/issues/245
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Propertywise [\x{20C1} \N{SAUDI RIYAL SIGN}
+              \x{20C2} \N{RUFIYAA SIGN}] AreAlike
+
+end Ignoring;
+
+end Ignoring;
