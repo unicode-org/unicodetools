@@ -52727,6 +52727,21 @@ FFFF	<not a character>
 18CD3	KHITAN SMALL SCRIPT CHARACTER-18CD3
 18CD4	KHITAN SMALL SCRIPT CHARACTER-18CD4
 18CD5	KHITAN SMALL SCRIPT CHARACTER-18CD5
+@ Jurchen Small Script characters
+@+ Characters tentatively identified as Jurchen Small Script, encoded in
+ the Khitan Small Script block due to similar clustering structure and
+ limited evidence. This set also includes 18C3E.
+ x (khitan small script character-18c3e - 18C3E)
+18CD6 KHITAN SMALL SCRIPT CHARACTER-18CD6
+ * used in Jurchen Small Script
+18CD7 KHITAN SMALL SCRIPT CHARACTER-18CD7
+ * used in Jurchen Small Script
+18CD8 KHITAN SMALL SCRIPT CHARACTER-18CD8
+ * used in Jurchen Small Script
+18CD9 KHITAN SMALL SCRIPT CHARACTER-18CD9
+ * used in Jurchen Small Script
+18CDA KHITAN SMALL SCRIPT CHARACTER-18CDA
+ * used in Jurchen Small Script
 @		Indication of missing character
 18CFF	KHITAN SMALL SCRIPT CHARACTER-18CFF
 	* represents a lost or illegible character
