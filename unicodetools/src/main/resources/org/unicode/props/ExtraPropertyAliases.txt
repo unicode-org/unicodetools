@@ -194,7 +194,6 @@ kTGT_MergedSrc           ; kTGT_MergedSrc ; UCDNonProperty
 kTGT_RSUnicode           ; kTGT_RSUnicode ; kRSTUnicode ; UCDNonProperty
 
 kJURC_RSUnicode ; kJURC_RSUnicode ; Provisional
-kJURC_Src       ; kJURC_Src       ; Provisional # TODO(egg): Normative, move to PropertyAliases.
 kJURC_NCReading ; kJURC_NCReading ; Provisional
 kJURC_Numeric   ; kJURC_Numeric   ; Provisional
 
