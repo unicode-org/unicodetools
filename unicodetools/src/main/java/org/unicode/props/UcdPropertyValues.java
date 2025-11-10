@@ -2141,6 +2141,7 @@ public class UcdPropertyValues {
     }
 
     public enum Script_Values implements Named {
+        Seal("Seal"),
         Adlam("Adlm"),
         Caucasian_Albanian("Aghb"),
         Ahom("Ahom"),

@@ -1320,6 +1320,7 @@ RI ; Y                                ; Yes                              ; T    
 
 # Script (sc)
 
+sc ; Seal ; Seal
 sc ; Adlm                             ; Adlam
 sc ; Aghb                             ; Caucasian_Albanian
 sc ; Ahom                             ; Ahom
