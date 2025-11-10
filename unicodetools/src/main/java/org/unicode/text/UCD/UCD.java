@@ -1581,7 +1581,7 @@ public final class UCD implements UCD_Types {
             case 0x4E00: // CJK Ideograph
             case TANGUT_BASE: // Tangut Ideograph
             case TANGUT_SUP_BASE: // Tangut Ideograph Supplement
-            case SEAL_BASE:  // Seal
+            case SEAL_BASE: // Seal
             case 0x20000: // Extension B
             case 0x2A700: // Extension C
             case 0x2B740: // Extension D

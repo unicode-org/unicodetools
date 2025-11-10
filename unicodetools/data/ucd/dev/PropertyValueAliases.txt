@@ -154,6 +154,7 @@ bpt; o                                ; Open
 
 # Block (blk)
 
+blk; Seal ; Seal
 blk; Adlam                            ; Adlam
 blk; Aegean_Numbers                   ; Aegean_Numbers
 blk; Ahom                             ; Ahom

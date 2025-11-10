@@ -211,8 +211,7 @@ public class AttributeResolver {
                                 && resolvedValue.startsWith("EGYPTIAN HIEROGLYPH-")) {
                             return "EGYPTIAN HIEROGLYPH-#";
                         }
-                        if (resolvedValue != null
-                                && resolvedValue.startsWith("SEAL CHARACTER-")) {
+                        if (resolvedValue != null && resolvedValue.startsWith("SEAL CHARACTER-")) {
                             return "SEAL CHARACTER-#";
                         }
                         return Optional.ofNullable(resolvedValue).orElse("");
