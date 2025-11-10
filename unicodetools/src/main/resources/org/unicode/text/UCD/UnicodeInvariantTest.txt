@@ -1431,10 +1431,10 @@ $tangutSourcesScope = \P{kRSTUnicode=@none@}
 
 Let $jurchenSourcesScope := [\p{Block=/^Jurchen(.Supplement)?$/} - \p{gc=Cn}]
 $jurchenSourcesScope = [ [\p{gc=Lo} & \p{sc=Jurchen}] - \p{name=/^JURCHEN RADICAL-/} ]
-$jurchenSourcesScope = \P{kJUR_Src=@none@}
-$jurchenSourcesScope = \P{kRSJUnicode=@none@}
-$jurchenSourcesScope ⊃ \P{kJurchenNumeric=@none@}
-$jurchenSourcesScope ⊃ \P{kJUR_NCReading=@none@}
+$jurchenSourcesScope = \P{kJURC_Src=@none@}
+$jurchenSourcesScope = \P{kJURC_RSUnicode=@none@}
+$jurchenSourcesScope ⊃ \P{kJURC_Numeric=@none@}
+$jurchenSourcesScope ⊃ \P{kJURC_NCReading=@none@}
 
 # Nüshu invariants
 

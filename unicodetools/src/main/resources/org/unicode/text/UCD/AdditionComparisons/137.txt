@@ -6,9 +6,9 @@
 Ignoring Name Age:
 
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
-Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
-Ignoring kRSTUnicode kTGT_MergedSrc kJUR_NCReading kJurchenNumeric kRSJUnicode kJUR_Src:
+Ignoring kRSTUnicode kTGT_MergedSrc kJURC_NCReading kJURC_Numeric kJURC_RSUnicode kJURC_Src:
 Propertywise [\x{18E00}-\x{19191}] CorrespondTo [\x{17000}]
     UpTo: Block             (Jurchen vs Tangut),
           Script            (Jurchen vs Tangut),
