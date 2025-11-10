@@ -1727,6 +1727,15 @@ kEH_NoRotate; Y                       ; Yes                              ; T    
 
 # @missing: 0000..10FFFF; kMandarin; <none>
 
+# kSEAL_THXSrc (kSEAL_THXSrc)
+# @missing: 0000..10FFFF; kSEAL_THXSrc; <none>
+# kSEAL_CCZSrc (kSEAL_CCZSrc)
+# @missing: 0000..10FFFF; kSEAL_CCZSrc; <none>
+# kSEAL_QJZSrc (kSEAL_QJZSrc)
+# @missing: 0000..10FFFF; kSEAL_QJZSrc; <none>
+# kSEAL_DYCSrc (kSEAL_DYCSrc)
+# @missing: 0000..10FFFF; kSEAL_DYCSrc; <none>
+
 # kTotalStrokes (cjkTotalStrokes)
 
 # @missing: 0000..10FFFF; kTotalStrokes; <none>
