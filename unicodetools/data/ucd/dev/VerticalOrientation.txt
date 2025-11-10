@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2025-11-10, 23:09:45 GMT
+# Date: 2025-11-10, 23:13:29 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2226,7 +2226,7 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 18D1F..18D7F   ; U  # Cn    [97] <reserved-18D1F>..<reserved-18D7F>
 18D80..18DF2   ; U  # Lo   [115] TANGUT COMPONENT-769..TANGUT COMPONENT-883
 18DF3..18DFF   ; U  # Cn    [13] <reserved-18DF3>..<reserved-18DFF>
-18E00..19191   ; U  # Lo   [914] JURCHEN IDEOGRAPH-18E00..JURCHEN IDEOGRAPH-19191
+18E00..19191   ; U  # Lo   [914] JURCHEN CHARACTER-18E00..JURCHEN CHARACTER-19191
 19192..1919F   ; U  # Cn    [14] <reserved-19192>..<reserved-1919F>
 191A0..191D2   ; U  # Lo    [51] JURCHEN RADICAL-01..JURCHEN RADICAL-51
 191D3..191DF   ; U  # Cn    [13] <reserved-191D3>..<reserved-191DF>

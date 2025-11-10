@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2025-11-10, 23:09:04 GMT
+# Date: 2025-11-10, 23:12:50 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -38058,7 +38058,7 @@ FFFD          ; REPLACEMENT CHARACTER
 18DF0         ; TANGUT COMPONENT-881
 18DF1         ; TANGUT COMPONENT-882
 18DF2         ; TANGUT COMPONENT-883
-18E00..19191  ; JURCHEN IDEOGRAPH-*
+18E00..19191  ; JURCHEN CHARACTER-*
 191A0         ; JURCHEN RADICAL-01
 191A1         ; JURCHEN RADICAL-02
 191A2         ; JURCHEN RADICAL-03
