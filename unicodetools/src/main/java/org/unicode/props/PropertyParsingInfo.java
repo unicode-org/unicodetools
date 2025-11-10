@@ -1371,6 +1371,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     parts[1] = "CJK UNIFIED IDEOGRAPH-#";
                 } else if (parts[1].contains("Tangut Ideograph")) {
                     parts[1] = "TANGUT IDEOGRAPH-#";
+                } else if (parts[1].contains("Seal Character")) {
+                    parts[1] = "SEAL CHARACTER-#";
                 } else if (parts[1].contains("Hangul Syllable")) {
                     parts[1] = CONSTRUCTED_NAME;
                     hackHangul = true;
