@@ -14,6 +14,7 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.ICUException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.ParsePosition;
@@ -754,7 +755,16 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (aIsNaN && bIsNaN) return 0;
         if (aIsNaN) return -1;
         if (bIsNaN) return 1;
-        return RationalParser.BASIC.parse(a).compareTo(RationalParser.BASIC.parse(b));
+        try {
+            return RationalParser.BASIC.parse(a).compareTo(RationalParser.BASIC.parse(b));
+        } catch (ICUException e) {
+            // If either string fails to parse as a rational, compare the strings.
+            // This is nonsense, but we do such comparisons with the UNCHANGED_IN_BASE_VERSION
+            // placeholder string when operating on the chronologically compressed maps (we then
+            // ignore the result by intersecting with the set where the UNCHANGED_IN_BASE_VERSION
+            // placeholder does not appear).
+            return a.compareTo(b);
+        }
     }
 
     public static final Comparator<String> CHARACTER_NAME_COMPARATOR =

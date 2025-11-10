@@ -66,7 +66,6 @@
         <div class="body">
           <h2 style="text-align:center">
             <xsl:call-template name="display-stage"/>
-            <xsl:text> </xsl:text>
             <xsl:choose>
               <xsl:when test="articleinfo/unicode:tr/@class='uax'">
                 <xsl:text>Unicode® Standard Annex</xsl:text>
@@ -106,10 +105,10 @@
   <xsl:template name="display-stage">
     <xsl:choose>
       <xsl:when test="articleinfo/unicode:tr/@stage='working-draft'">
-        <span style="background-color: #ffff00; border-style:dotted; border-width:1px"><xsl:text>Working draft</xsl:text></span>
+        <span><xsl:attribute name="class">changed</xsl:attribute><xsl:text>Working draft </xsl:text></span>
       </xsl:when>
       <xsl:when test="articleinfo/unicode:tr/@stage='proposed-update'">
-        <span style="background-color: #ffff00; border-style:dotted; border-width:1px"><xsl:text>Proposed Update</xsl:text></span>
+        <span><xsl:attribute name="class">changed</xsl:attribute><xsl:text>Proposed Update </xsl:text></span>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -169,11 +168,9 @@
         <tr>
           <td valign="top" width="20%">Version</td>
           <td valign="top">
+            <xsl:call-template name="apply-draft-highlighting"/>
             <xsl:if test="//article/articleinfo/unicode:tr/@class='uax'">Unicode </xsl:if>
-            <span>
-              <xsl:call-template name="apply-draft-highlighting"/>
-              <xsl:value-of select="articleinfo/unicode:tr/@version"/>
-            </span>
+            <xsl:value-of select="articleinfo/unicode:tr/@version"/>
           </td>
         </tr>
         <tr>
@@ -194,19 +191,15 @@
         <tr>
           <td valign="top">Date</td>
           <td valign="top">
-            <span>
-              <xsl:call-template name="apply-draft-highlighting"/>
-              <xsl:value-of select="articleinfo/revhistory/revision[1]/@date"/>
-            </span>
+            <xsl:call-template name="apply-draft-highlighting"/>
+            <xsl:value-of select="articleinfo/revhistory/revision[1]/@date"/>
           </td>
         </tr>
         <tr>
           <td valign="top">This Version</td>
           <td valign="top">
-            <span>
-              <xsl:call-template name="apply-draft-highlighting"/>
-              <a href="{$thisurl}"><xsl:value-of select="$thisurl"/></a>
-            </span>
+            <xsl:call-template name="apply-draft-highlighting"/>
+            <a href="{$thisurl}"><xsl:value-of select="$thisurl"/></a>
           </td>
         </tr>
         <tr>
@@ -217,10 +210,8 @@
                 <xsl:text>n/a</xsl:text>
               </xsl:when>
               <xsl:otherwise>
-                <span>
-                  <xsl:call-template name="apply-draft-highlighting"/>
-                  <a href="{$prevurl}"><xsl:value-of select="$prevurl"/></a>
-                </span>
+                <xsl:call-template name="apply-draft-highlighting"/>
+                <a href="{$prevurl}"><xsl:value-of select="$prevurl"/></a>
               </xsl:otherwise>
             </xsl:choose>
           </td>
@@ -241,21 +232,17 @@
           <tr>
             <td valign="top">Schema</td>
             <td valign="top">
-              <span>
-                <xsl:call-template name="apply-draft-highlighting"/>
-                <a href="{$thisschema}"><xsl:value-of select="$thisschema"/></a>
-              </span>
+              <xsl:call-template name="apply-draft-highlighting"/>
+              <a href="{$thisschema}"><xsl:value-of select="$thisschema"/></a>
             </td>
           </tr>
         </xsl:if>
         <tr>
           <td valign="top">Revision</td>
           <td valign="top">
+            <xsl:call-template name="apply-draft-highlighting"/>
             <a href="#Modifications">
-              <span>
-                <xsl:call-template name="apply-draft-highlighting"/>
-                <xsl:value-of select="$thisrev"/>
-              </span>
+              <xsl:value-of select="$thisrev"/>
             </a>
           </td>
         </tr>
@@ -403,7 +390,6 @@
   <xsl:template match="*|text()" mode="toc"/>
 
   <!-- Sections -->
-
   <xsl:template match="section/title">
     <xsl:param name="id">
       <xsl:call-template name="parentid"/>
@@ -476,14 +462,21 @@
         </xsl:choose>
         <xsl:text>: </xsl:text>
         <xsl:for-each select="key('ucdxml-key',@linkend)">
-          <a href="#ucdxml:{generate-id ()}"><xsl:number count="ucdxml:block" level="any"/></a>
+          <xsl:variable name="link"><xsl:value-of
+                  select="replace(lower-case(@title), ' ', '_')"/><xsl:text>_</xsl:text><xsl:number
+                  count="ucdxml:block" level="any"/></xsl:variable>
+          <a href="#ucdxml:{$link}"><xsl:number count="ucdxml:block" level="any"/></a>
           <xsl:if test="position() != last ()">, </xsl:if></xsl:for-each><xsl:text>]</xsl:text>
     </i>
   </xsl:template>
 
   <xsl:template match="ucdxml:block">
+    <xsl:variable name="link"><xsl:value-of
+            select="replace(lower-case(@title), ' ', '_')"/><xsl:text>_</xsl:text><xsl:number
+            count="ucdxml:block" level="any"/></xsl:variable>
     <p>
-      <i><a name="ucdxml:{generate-id()}">[<xsl:value-of select="@title"/>,
+      <xsl:apply-templates select="@edit"/>
+      <i><a name="ucdxml:{$link}">[<xsl:value-of select="@title"/>,
         <xsl:number count="ucdxml:block" level="any"/>]
       </a>
         =</i>
@@ -494,8 +487,10 @@
   </xsl:template>
 
   <xsl:template match="ucdxml:schema">
+    <xsl:variable name="link"><xsl:value-of
+            select="replace(lower-case(@title), ' ', '_')"/></xsl:variable>
     <p>
-      <i><a name="ucdxml:{generate-id()}">[<xsl:value-of select="@title"/>]
+      <i><a name="ucdxml:{$link}">[<xsl:value-of select="@title"/>]
       </a>
         =</i>
       <xsl:apply-templates/>
@@ -509,20 +504,29 @@
   <!-- Revision history aka. Modifications -->
 
   <xsl:template match="revision">
-    <div>
-      <p>
-        <b>Revision <xsl:value-of select="@revnumber"/></b>
-      </p>
-      <xsl:apply-templates/>
-    </div>
+    <xsl:choose>
+      <xsl:when test="@edit">
+        <div>
+          <xsl:apply-templates select="@edit"/>
+          <p>
+            <b>Revision <xsl:value-of select="@revnumber"/></b>
+          </p>
+          <xsl:apply-templates/>
+        </div>
+      </xsl:when>
+      <xsl:otherwise>
+        <p>
+          <b>Revision <xsl:value-of select="@revnumber"/></b>
+        </p>
+        <xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="proposed_update">
-    <div>
-      <p>
-        <xsl:apply-templates/>
-      </p>
-    </div>
+    <p>
+      <xsl:apply-templates/>
+    </p>
   </xsl:template>
 
   <xsl:template match="changes">
@@ -535,6 +539,10 @@
     <li>
       <xsl:apply-templates/>
     </li>
+  </xsl:template>
+
+  <xsl:template match="reissued">
+    <b><xsl:apply-templates/></b>
   </xsl:template>
 
   <!-- Copyright -->
@@ -565,7 +573,7 @@
 
   <xsl:template name="apply-draft-highlighting">
     <xsl:if test="//article/articleinfo/unicode:tr/@stage='proposed-update'">
-      <xsl:attribute name="style">background-color: #ffff00; border-style:dotted; border-width:1px</xsl:attribute>
+      <xsl:attribute name="class">changed</xsl:attribute>
     </xsl:if>
   </xsl:template>
 
@@ -574,8 +582,14 @@
       <xsl:when test="../@id">
         <xsl:value-of select="../@id"/>
       </xsl:when>
+      <xsl:when test="@id">
+        <xsl:value-of select="@id"/>
+      </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="generate-id()"/>
+        <xsl:variable name="currentText" select="descendant::text()"/>
+        <xsl:value-of
+                select="replace(lower-case(descendant::text()), ' ', '_')"/><xsl:text>_</xsl:text><xsl:value-of
+              select="count(preceding::title[descendant::text() = $currentText])"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -596,16 +610,13 @@
     <tt><xsl:apply-templates/></tt>
   </xsl:template>
 
-  <xsl:template match="phrase[@revisionflag='added']">
-    <span style="background-color: #ffff00; border-style:dotted; border-width:1px">
-      <xsl:apply-templates/>
-    </span>
+  <xsl:template match="@edit">
+    <xsl:attribute name="class"><xsl:value-of select="."/></xsl:attribute>
   </xsl:template>
 
-  <xsl:template match="phrase[@revisionflag='modified']">
-    <span style="background-color: #ffff00; border-style:dotted; border-width:1px">
-      <xsl:apply-templates/>
-    </span>
+  <xsl:template match="edit">
+    <span><xsl:attribute name="class"><xsl:value-of select="@flag"/></xsl:attribute><xsl:apply-templates/></span>
   </xsl:template>
+
 
 </xsl:stylesheet>

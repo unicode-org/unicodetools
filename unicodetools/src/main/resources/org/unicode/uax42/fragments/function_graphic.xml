@@ -4,9 +4,6 @@
     attribute Dash { boolean }?
 
   code-point-attributes &amp;=
-    attribute Hyphen { boolean }?
-
-  code-point-attributes &amp;=
     attribute QMark { boolean }?
 
   code-point-attributes &amp;=

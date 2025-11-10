@@ -169,7 +169,7 @@
 # script, but behave regularly.  See the examples below.
 #
 #   Examples:
-            Ignoring Name Unicode_1_Name Confusable_MA:
+            Ignoring Name Unicode_1_Name Confusable_MA Math_Class Math_Class_Ex Math_Entity_Name Math_Entity_Set Math_Descriptive_Comments:
 #       The basic Greek and Latin scripts behave the same, except that they are different scripts,
 #       encoded in different blocks, and that Latin is ea=Narrow (because fullwidth Latin exists)
 #       whereas Greek is ea=Ambiguous.
@@ -230,7 +230,7 @@
 Let $foo := \p{ccc=9}
 Let $fii := \p{toNFD=/$foo/}
 
-Let $codepoints := [\u0000-\U0010FFFF]
+Let $code_points := [\u0000-\U0010FFFF]
 
 Let $gcAllPunctuation := \p{gc=/_Punctuation/}
 $gcAllPunctuation = [
@@ -413,7 +413,7 @@ In \p{sc=Cher}, scf = suc
 # Simple and full case foldings define the same equivalence classes on code points.
 # This used not to be true, but was rectified by
 # https://www.unicode.org/cgi-bin/GetL2Ref.pl?175-C19.
-OnPairsOf $codepoints, EqualityOf Case_Folding ⇔ EqualityOf Simple_Case_Folding
+OnPairsOf $code_points, EqualityOf Case_Folding ⇔ EqualityOf Simple_Case_Folding
 
 # Stability: All characters with the Lowercase property and all characters with the Uppercase property have the Alphabetic property. 
 \p{Alphabetic} ⊃ [\p{Uppercase} \p{Lowercase}]
@@ -568,7 +568,7 @@ $Unicode_6_1_Decompositions ⊆ [\p{Name=/^CHAKMA VOWEL SIGN /}]
 # decomposition will also be in canonical order. 
 # Note: We really mean the fixed point of Decomposition_Mapping on the
 # left-hand side here.
-In $codepoints, Decomposition_Mapping * Decomposition_Mapping * Decomposition_Mapping = toNFKD
+In $code_points, Decomposition_Mapping * Decomposition_Mapping * Decomposition_Mapping = toNFKD
 
 # Stability: Canonical mappings (Decomposition_Mapping property values) are
 # always limited either to a single value or to a pair. The second character in
@@ -711,7 +711,6 @@ Let $nonAlphabeticBindus := []
 
 Let $nonAlphabeticDependentVowels := [
     \N{ORIYA SIGN OVERLINE}
-    \p{Name=/^ORIYA SIGN (DOUBLE )?DOT ABOVE$/}  # L2/24-106R, related to the overline.
     \N{THAI CHARACTER MAITAIKHU}
     \N{LIMBU SIGN KEMPHRENG}
     \N{SHARADA VOWEL MODIFIER MARK}
@@ -926,6 +925,8 @@ Let $uax31table3 := [\u0027\u002D\u002E\u003A\u00B7\u058A\u05F3\u05F4\u0F0B\u200
 
 Let $WBRemovals := [\u0387\u0604\u2018\u2024\u202F\u2E2F\uFE13\uFE52\uFE55\uFF07\uFF0E\uFF1A\u200c\u200d'.\:\u00AD\u00B7\u05F3\u05F4\u0600-\u0603\u06DD\u070F\u17B4\u17B5\u200E\u200F\u2019\u2027\u202A-\u202E\u2060-\u2064\u206A-\u206F\uFEFF\uFFF9-\uFFFB\u02C2-\u02C5\u02D2-\u02D6\u02DE-\u02DF\u02ED\u02EF-\u02FF\uA720-\uA721\uA789-\uA78A\uAB5B\u055B\u055C\u055E\U000110BD\U0001D173-\U0001D17A\U000E0001\U000E0020-\U000E007F\p{gc=Cf}\p{Block=Enclosed Alphanumerics}[\u02D7\u0605\u061C\u180E\u2066-\u2069\U0001BCA0-\U0001BCA3\U0001F130-\U0001F149\U0001F150-\U0001F169\U0001F170-\U0001F189\U0001F3FB-\U0001F3FF]]
 Let $WBRemovals13 := [\u02E5-\u02EB\u055A\u058A\uA708-\uA716\u055F]
+Let $WBRemoval17 := [\u00B8]
+
 # 9.0 corrected \p{gc=Cf} and added 202F
 # 10.0 added 34 characters which were absorbed into WB=LE (see http://www.unicode.org/reports/tr29/tr29-30d2.html#ALetter)
 # 11.0 added 5 skin tone modifiers which were absorbed into WB=Extend
@@ -936,7 +937,7 @@ Let $WBRemovals13 := [\u02E5-\u02EB\u055A\u058A\uA708-\uA716\u055F]
 Let $Uax31Removals := [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F\u17B4-\u17B5]
 # 6.1.0 adjust SAMVAT, KHMER VOWEL INHERENT*
 
-[\p{Alpha}\p{WB=Extend}\p{WB=FO}\p{WB=LE}\p{WB=ML}\p{WB=MB}\p{WB=EX}-$WBRemovals-$WBRemovals13] = [$gcAllLetters $gcAllMarks \p{gc=Nl}\p{gc=Pc}-$Uax31Removals]
+[\p{Alpha}\p{WB=Extend}\p{WB=FO}\p{WB=LE}\p{WB=ML}\p{WB=MB}\p{WB=EX}-$WBRemovals-$WBRemovals13-$WBRemoval17] = [$gcAllLetters $gcAllMarks \p{gc=Nl}\p{gc=Pc}-$Uax31Removals]
 
 # Don’t break words after GCB=Prepend characters (that would be within a
 # grapheme cluster).
@@ -1112,6 +1113,109 @@ Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 # require UnicodeProperty to support strings properly.
 \p{emoji_variation_sequence=text style} ⊃ [{♈︎}]
 \p{emoji_variation_sequence=emoji style} ⊃ [{♈️}]
+
+# The file emoji-test.txt states that
+# • The RGI set is covered by the listed fully-qualified emoji.
+# RGI_Emoji is defined by a derivation, but not provided directly in data files;
+# and the derivation depends on multiple files, which is problematic for the
+# tools.  It is therefore easier to get it from emoji-test than by the
+# derivation, but we must check that the two match.
+# It turns out that the statement in emoji-test.txt is not quite right:
+# Since Unicode 12.0, the RGI set is the union of the sets of fully-qualified
+# emoji and of components.
+# We test every Unicode version until 16.0, because this test was not added
+# until 17.0β.   Going forward the versionless test will take care of this.
+# We do not test Emoji version 13.1, because it does not really work in the
+# tools.  See https://github.com/unicode-org/unicodetools/issues/100.
+# There is no definition of the RGI set prior to Unicode 11.0, only the RGI
+# sequence set is defined:
+# https://www.unicode.org/reports/tr51/tr51-14.html#def_rgi_sequences;
+# Compare Unicode 12.0:
+# https://www.unicode.org/reports/tr51/tr51-16.html#def_rgi_set,
+# (In 11.0 there is also no data file for Basic_Emoji.)
+[
+  \p{U12.0:Basic_Emoji}
+  \p{U12.0:RGI_Emoji_Keycap_Sequence}
+  \p{U12.0:RGI_Emoji_Modifier_Sequence}
+  \p{U12.0:RGI_Emoji_Flag_Sequence}
+  \p{U12.0:RGI_Emoji_Tag_Sequence}
+  \p{U12.0:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U12.0:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U12.0:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U13.0:Basic_Emoji}
+  \p{U13.0:RGI_Emoji_Keycap_Sequence}
+  \p{U13.0:RGI_Emoji_Modifier_Sequence}
+  \p{U13.0:RGI_Emoji_Flag_Sequence}
+  \p{U13.0:RGI_Emoji_Tag_Sequence}
+  \p{U13.0:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U13.0:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U13.0:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U14:Basic_Emoji}
+  \p{U14:RGI_Emoji_Keycap_Sequence}
+  \p{U14:RGI_Emoji_Modifier_Sequence}
+  \p{U14:RGI_Emoji_Flag_Sequence}
+  \p{U14:RGI_Emoji_Tag_Sequence}
+  \p{U14:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U14:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U14:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U15:Basic_Emoji}
+  \p{U15:RGI_Emoji_Keycap_Sequence}
+  \p{U15:RGI_Emoji_Modifier_Sequence}
+  \p{U15:RGI_Emoji_Flag_Sequence}
+  \p{U15:RGI_Emoji_Tag_Sequence}
+  \p{U15:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U15:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U15:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U15.1:Basic_Emoji}
+  \p{U15.1:RGI_Emoji_Keycap_Sequence}
+  \p{U15.1:RGI_Emoji_Modifier_Sequence}
+  \p{U15.1:RGI_Emoji_Flag_Sequence}
+  \p{U15.1:RGI_Emoji_Tag_Sequence}
+  \p{U15.1:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U15.1:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U15.1:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{U16.0:Basic_Emoji}
+  \p{U16.0:RGI_Emoji_Keycap_Sequence}
+  \p{U16.0:RGI_Emoji_Modifier_Sequence}
+  \p{U16.0:RGI_Emoji_Flag_Sequence}
+  \p{U16.0:RGI_Emoji_Tag_Sequence}
+  \p{U16.0:RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{U16.0:RGI_Emoji_Qualification=Fully_Qualified}
+  \p{U16.0:RGI_Emoji_Qualification=Standalone_Component}
+]
+
+[
+  \p{Basic_Emoji}
+  \p{RGI_Emoji_Keycap_Sequence}
+  \p{RGI_Emoji_Modifier_Sequence}
+  \p{RGI_Emoji_Flag_Sequence}
+  \p{RGI_Emoji_Tag_Sequence}
+  \p{RGI_Emoji_ZWJ_Sequence}
+] = [
+  \p{RGI_Emoji_Qualification=Fully_Qualified}
+  \p{RGI_Emoji_Qualification=Standalone_Component}
+]
 
 ##########################
 # POSIX Compatibility Properties (UTS#18)
@@ -1374,6 +1478,33 @@ In [\p{Block=Hangul Syllables} - \p{gc=Cn}], (prepend HANGUL SYLLABLE ) * (strin
 # https://www.unicode.org/review/pri497/feedback.html#ID20240216135149.
 In \p{Decomposition_Type=font}, Bidi_Class = Bidi_Class * Decomposition_Mapping
 
+# All Math characters should be covered by Math_Class.
+# (But right now, they are not because of Unicode 16 & 17 additions.)
+[\p{Math} - \P{Math_Class=None}] = [
+  \x{10D8E}\x{10D8F}   # Garay
+  \x{1CEF0}            # Standard state
+  \x{1F8D0}-\x{1F8D8}  # Arrows
+]
+\p{U9:Math} ⊂ \P{U9:Math_Class=None}
+[\p{U5:Math} - \P{U5:Math_Class=None}] = [ \u237C \u27CA ]
+
+# Math_Class values in files MathClass and MathClassEx should be consistent, but
+# they have not always been.  Here Math_Class_Ex is field 1 of MathClassEx, and
+# Math_Class is field 1 of MathClass.
+In $code_points,             Math_Class      = Math_Class_Ex
+In $code_points,             U9:Math_Class   = U9:Math_Class_Ex
+In $code_points,             U7:Math_Class   = U7:Math_Class_Ex
+In [^ \u21EA-\u21F2       ], U6.1:Math_Class = U6.1:Math_Class_Ex
+In [^ \u21EA-\u21F2 \u27CA], U6.0:Math_Class = U6.0:Math_Class_Ex
+In $code_points,             U5.1:Math_Class = U5.1:Math_Class_Ex
+
+# MathClassEx was just missing some assignments that were in MathClass, so we
+# can safely use MathClass as our source of truth for the property Math_Class.
+In \P{U6.1:Math_Class_Ex=None}, U6.1:Math_Class = U6.1:Math_Class_Ex
+In \P{U6.0:Math_Class_Ex=None}, U6.0:Math_Class = U6.0:Math_Class_Ex
+\p{U6.1:Math_Class=None} ⊂ \p{U6.1:Math_Class_Ex=None}
+\p{U6.0:Math_Class=None} ⊂ \p{U6.0:Math_Class_Ex=None}
+
 # Basic Propertywise tests.
 Ignoring Name:
 
@@ -1381,6 +1512,8 @@ Propertywise [𐛪 𐛫] AreAlike
 
 Ignoring Unicode_1_Name Confusable_MA:
     Propertywise [ي ۑ] AreAlike
+
+Ignoring Math_Class Math_Class_Ex Math_Entity_Name Math_Entity_Set Math_Descriptive_Comments:
 
     Propertywise [[β-ω] - [ς]] : [[Β-Ω] - \p{gc=Cn}]
     CorrespondTo [α]           :  [Α]
@@ -1391,6 +1524,8 @@ Ignoring Unicode_1_Name Confusable_MA:
               Script            (Greek            vs Latin),
               Script_Extensions (Greek            vs Latin),
               East_Asian_Width  (Ambiguous        vs Narrow)
+
+end Ignoring;
 
     Propertywise [ʳʷʸ] : [rwy] : [RWY]
     CorrespondTo [ʰ]   : [h]   : [H]

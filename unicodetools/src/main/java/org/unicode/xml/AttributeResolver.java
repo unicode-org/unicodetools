@@ -22,6 +22,7 @@ import org.unicode.props.UnicodeProperty;
  */
 public class AttributeResolver {
 
+    static final String SET_SEPARATOR = "|";
     private final IndexUnicodeProperties indexUnicodeProperties;
     private final UnicodeMap<UcdPropertyValues.Age_Values> map_age;
     private final UnicodeMap<UcdPropertyValues.Block_Values> map_block;
@@ -147,6 +148,9 @@ public class AttributeResolver {
                     case kOtherNumeric:
                     case kPrimaryNumeric:
                     case kAccountingNumeric:
+                        if (resolvedValue != null) {
+                            resolvedValue = resolvedValue.replaceAll("\\" + SET_SEPARATOR, " ");
+                        }
                         return (resolvedValue.equals("NaN")) ? null : resolvedValue;
                     default:
                         return Optional.ofNullable(resolvedValue).orElse("NaN");
@@ -154,8 +158,9 @@ public class AttributeResolver {
             case String:
                 switch (prop) {
                     case Equivalent_Unified_Ideograph:
-                        String EqUIdeo = getMappingValue(codepoint, resolvedValue, false, "");
-                        return (EqUIdeo.equals("#")) ? null : EqUIdeo;
+                    case kEH_AltSeq:
+                        String ignoreHash = getMappingValue(codepoint, resolvedValue, false, "");
+                        return (ignoreHash.equals("#")) ? null : ignoreHash;
                     case kCompatibilityVariant:
                         String kCompatibilityVariant =
                                 getMappingValue(codepoint, resolvedValue, false, "U+");
@@ -209,9 +214,17 @@ public class AttributeResolver {
                         return Optional.ofNullable(resolvedValue).orElse("");
                     case kDefinition:
                         return resolvedValue;
+                    case kEH_Func:
+                        if (resolvedValue != null) {
+                            return resolvedValue.replaceAll("[|]+", "/");
+                        }
+                    case kEH_FVal:
+                        if (resolvedValue != null) {
+                            return resolvedValue.replaceAll("[|]+", " | ");
+                        }
                     default:
                         if (resolvedValue != null) {
-                            return resolvedValue.replaceAll("\\|", " ");
+                            return resolvedValue.replaceAll("\\" + SET_SEPARATOR, " ");
                         }
                         return "";
                 }
@@ -226,7 +239,8 @@ public class AttributeResolver {
                         return map_script.get(codepoint).getShortName();
                     case Script_Extensions:
                         StringBuilder extensionBuilder = new StringBuilder();
-                        String[] extensions = map_script_extensions.get(codepoint).split("\\|", 0);
+                        String[] extensions =
+                                map_script_extensions.get(codepoint).split("\\" + SET_SEPARATOR, 0);
                         for (String extension : extensions) {
                             extensionBuilder.append(
                                     UcdPropertyValues.Script_Values.valueOf(extension)
@@ -347,5 +361,9 @@ public class AttributeResolver {
     public boolean isUnifiedIdeograph(int codepoint) {
         return getAttributeValue(UcdProperty.Unified_Ideograph, codepoint).equals("Y")
                 && getAttributeValue(UcdProperty.Name, codepoint).equals("CJK UNIFIED IDEOGRAPH-#");
+    }
+
+    public boolean isUnikemetAttributeRange(int codepoint) {
+        return getAttributeValue(UcdProperty.Block, codepoint).startsWith("Egyptian_Hieroglyph");
     }
 }
