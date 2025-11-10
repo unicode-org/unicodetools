@@ -1,5 +1,5 @@
-# TangutSources-17.0.0.txt
-# Date: 2025-07-30 [MS, KW]
+# TangutSources-18.0.0.txt
+# Date: 2025-10-30 [MS, KW]
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -28,6 +28,7 @@
 #
 #	Tangut Merged source: kTGT_MergedSrc
 #	Radical-Stroke indexes: kTGT_RSUnicode
+#   Numeric value of the character: kTGT_Numeric
 #
 # The following abbreviations are used in kTGT_MergedSrc:
 #
@@ -48,12 +49,15 @@
 # In 西夏語の研 究 (Seikago no kenkyū) [A Study of the Hsi-Hsia Language] (1964-1966) vol.2. Tokyo, 1966.
 #N5217 = Andrew West, Proposal to encode 2 Tangut components and 28 Tangut ideographs,
 # WG2 N5217 = L2/23-149. 2023-10-02.
+#N5314 = Andrew West, Proposal to encode one newly-identified Tangut ideograph,
+# WG2 N5314 = L2/25-165. 2025-05-26.
 #S1968 = Sofronov M. V. (М. В. Софронов), Грамматика тангутского языка (Grammatika tangutskogo jazyka)
 # [Grammar of the Tangut Language]. Moscow, 1968.
 #UTN42 = Andrew West and Viacheslav Zaytsev, Tangut Character Additions and Glyph Corrections,
 # Unicode Technical Note #42. 2019-12-21.
 #
-#	For more information, see the "Tangut" section of the core specification.
+#	For more information, see Section 18.11, Tangut, of the
+#	core specification.
 #
 U+17000	kTGT_MergedSrc	L2008-0008
 U+17000	kTGT_RSUnicode	1.6
@@ -1807,6 +1811,7 @@ U+1736A	kTGT_MergedSrc	L2008-4029
 U+1736A	kTGT_RSUnicode	46.8
 U+1736B	kTGT_MergedSrc	L2008-4027
 U+1736B	kTGT_RSUnicode	46.9
+U+1736B	kTGT_Numeric	2
 U+1736C	kTGT_MergedSrc	L2008-4048
 U+1736C	kTGT_RSUnicode	46.9
 U+1736D	kTGT_MergedSrc	L2008-4088
@@ -1979,6 +1984,7 @@ U+173C0	kTGT_MergedSrc	L2008-2723
 U+173C0	kTGT_RSUnicode	65.9
 U+173C1	kTGT_MergedSrc	L2008-1999
 U+173C1	kTGT_RSUnicode	65.10
+U+173C1	kTGT_Numeric	5
 U+173C2	kTGT_MergedSrc	L2008-1995
 U+173C2	kTGT_RSUnicode	65.11
 U+173C3	kTGT_MergedSrc	L2008-2722
@@ -2475,6 +2481,7 @@ U+174B8	kTGT_MergedSrc	L2008-4949
 U+174B8	kTGT_RSUnicode	75.13
 U+174B9	kTGT_MergedSrc	L2008-4778
 U+174B9	kTGT_RSUnicode	75.13
+U+174B9	kTGT_Numeric	7
 U+174BA	kTGT_MergedSrc	L2008-4801
 U+174BA	kTGT_RSUnicode	75.13
 U+174BB	kTGT_MergedSrc	L2008-4791
@@ -2779,6 +2786,7 @@ U+17550	kTGT_MergedSrc	L2008-1252
 U+17550	kTGT_RSUnicode	79.9
 U+17551	kTGT_MergedSrc	L2008-0966
 U+17551	kTGT_RSUnicode	79.10
+U+17551	kTGT_Numeric	10000
 U+17552	kTGT_MergedSrc	L2008-1089
 U+17552	kTGT_RSUnicode	79.10
 U+17553	kTGT_MergedSrc	L2008-1244
@@ -4341,6 +4349,7 @@ U+1785D	kTGT_MergedSrc	L2008-4620
 U+1785D	kTGT_RSUnicode	112.18
 U+1785E	kTGT_MergedSrc	L2008-0359
 U+1785E	kTGT_RSUnicode	113.9
+U+1785E	kTGT_Numeric	1000
 U+1785F	kTGT_MergedSrc	L2008-0534
 U+1785F	kTGT_RSUnicode	113.9
 U+17860	kTGT_MergedSrc	L2008-0271
@@ -4499,6 +4508,7 @@ U+178AC	kTGT_MergedSrc	L2008-2063
 U+178AC	kTGT_RSUnicode	141.7
 U+178AD	kTGT_MergedSrc	L2008-3113
 U+178AD	kTGT_RSUnicode	141.7
+U+178AD	kTGT_Numeric	9
 U+178AE	kTGT_MergedSrc	L2008-3178
 U+178AE	kTGT_RSUnicode	141.7
 U+178AF	kTGT_MergedSrc	L2008-3190
@@ -4667,6 +4677,7 @@ U+17900	kTGT_MergedSrc	L2008-3139
 U+17900	kTGT_RSUnicode	141.10
 U+17901	kTGT_MergedSrc	L2008-3200
 U+17901	kTGT_RSUnicode	141.10
+U+17901	kTGT_Numeric	6
 U+17902	kTGT_MergedSrc	L2008-3201
 U+17902	kTGT_RSUnicode	141.10
 U+17903	kTGT_MergedSrc	L2008-2189
@@ -4799,6 +4810,7 @@ U+17942	kTGT_MergedSrc	L2008-3215
 U+17942	kTGT_RSUnicode	141.11
 U+17943	kTGT_MergedSrc	L2008-2205
 U+17943	kTGT_RSUnicode	141.11
+U+17943	kTGT_Numeric	4
 U+17944	kTGT_MergedSrc	L2008-2630
 U+17944	kTGT_RSUnicode	141.11
 U+17945	kTGT_MergedSrc	L2008-2610
@@ -5021,6 +5033,7 @@ U+179B1	kTGT_MergedSrc	L2008-3680
 U+179B1	kTGT_RSUnicode	141.12
 U+179B2	kTGT_MergedSrc	L2008-2618
 U+179B2	kTGT_RSUnicode	141.12
+U+179B2	kTGT_Numeric	100000000
 U+179B3	kTGT_MergedSrc	L2008-3266
 U+179B3	kTGT_RSUnicode	141.12
 U+179B4	kTGT_MergedSrc	L2008-3333
@@ -6247,6 +6260,7 @@ U+17C16	kTGT_MergedSrc	L2008-0478
 U+17C16	kTGT_RSUnicode	177.9
 U+17C17	kTGT_MergedSrc	L2008-1084
 U+17C17	kTGT_RSUnicode	177.9
+U+17C17	kTGT_Numeric	10
 U+17C18	kTGT_MergedSrc	L2008-1097
 U+17C18	kTGT_RSUnicode	177.10
 U+17C19	kTGT_MergedSrc	L2008-0174
@@ -7267,6 +7281,7 @@ U+17E14	kTGT_MergedSrc	L2008-0887
 U+17E14	kTGT_RSUnicode	224.19
 U+17E15	kTGT_MergedSrc	L2008-0074
 U+17E15	kTGT_RSUnicode	225.5
+U+17E15	kTGT_Numeric	0.5
 U+17E16	kTGT_MergedSrc	L2008-0555
 U+17E16	kTGT_RSUnicode	225.9
 U+17E17	kTGT_MergedSrc	L2008-0528
@@ -9355,6 +9370,7 @@ U+18228	kTGT_MergedSrc	L2008-1747
 U+18228	kTGT_RSUnicode	357.12
 U+18229	kTGT_MergedSrc	L2008-0100
 U+18229	kTGT_RSUnicode	362.6
+U+18229	kTGT_Numeric	1
 U+1822A	kTGT_MergedSrc	L2008-1863
 U+1822A	kTGT_RSUnicode	362.11
 U+1822B	kTGT_MergedSrc	L2008-0546
@@ -9423,6 +9439,7 @@ U+1824A	kTGT_MergedSrc	L2008-4666
 U+1824A	kTGT_RSUnicode	375.14
 U+1824B	kTGT_MergedSrc	L2008-4602
 U+1824B	kTGT_RSUnicode	376.6
+U+1824B	kTGT_Numeric	8
 U+1824C	kTGT_MergedSrc	L2008-4607
 U+1824C	kTGT_RSUnicode	376.7
 U+1824D	kTGT_MergedSrc	L2008-4573
@@ -9587,6 +9604,7 @@ U+1829C	kTGT_MergedSrc	L2008-2269
 U+1829C	kTGT_RSUnicode	387.12
 U+1829D	kTGT_MergedSrc	L2008-2798
 U+1829D	kTGT_RSUnicode	387.13
+U+1829D	kTGT_Numeric	100
 U+1829E	kTGT_MergedSrc	L2008-3567
 U+1829E	kTGT_RSUnicode	387.13
 U+1829F	kTGT_MergedSrc	L2008-3572
@@ -10979,6 +10997,7 @@ U+18554	kTGT_MergedSrc	L2008-5923
 U+18554	kTGT_RSUnicode	516.12
 U+18555	kTGT_MergedSrc	L2008-5865
 U+18555	kTGT_RSUnicode	516.13
+U+18555	kTGT_Numeric	3
 U+18556	kTGT_MergedSrc	L2008-5974
 U+18556	kTGT_RSUnicode	516.13
 U+18557	kTGT_MergedSrc	L2008-5930
@@ -12405,4 +12424,8 @@ U+18D1D	kTGT_MergedSrc	H2021-309801
 U+18D1D	kTGT_RSUnicode	106.13
 U+18D1E	kTGT_MergedSrc	H2021-834001
 U+18D1E	kTGT_RSUnicode	579.15
+U+18D1F	kTGT_MergedSrc	H2021-509604
+U+18D1F	kTGT_RSUnicode	210.14
+U+18D20	kTGT_MergedSrc	N5314-01
+U+18D20	kTGT_RSUnicode	108.9
 # EOF
