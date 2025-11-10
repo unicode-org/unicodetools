@@ -69,17 +69,19 @@ public class MakeNamesChart {
         isWhiteSpace = new UnicodeSet(up.getSet("whitespace=Yes"));
 
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "nameslist_index.html",
+                MakeNamesChart.class.getResource("nameslist_index.html").getPath(),
                 Utility.UTF8,
                 NAMESLIST_DIR + "index.html");
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, NAMESLIST_DIR + "charts.css");
+                MakeNamesChart.class.getResource("charts.css").getPath(),
+                Utility.LATIN1,
+                NAMESLIST_DIR + "charts.css");
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "nameslist_help.html",
+                MakeNamesChart.class.getResource("nameslist_help.html").getPath(),
                 Utility.UTF8,
                 NAMESLIST_DIR + "help.html");
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "nameslist.css",
+                MakeNamesChart.class.getResource("nameslist.css").getPath(),
                 Utility.LATIN1,
                 NAMESLIST_DIR + "nameslist.css");
 
@@ -383,17 +385,8 @@ public class MakeNamesChart {
                 }
             }
             finishItem(out);
-            out.println(
-                    "</table>\n"
-                            + "\n"
-                            + "<hr width=\"50%\">\n"
-                            + "\n"
-                            + "<p class=\"copyright\">© 2003–2024 Unicode, Inc.\n"
-                            + "Unicode and the Unicode Logo are registered trademarks of Unicode, Inc.,\n"
-                            + "in the U.S. and other countries. See "
-                            + "<a href=\"https://www.unicode.org/copyright.html\">Terms of Use</a>.</p>\n"
-                            + "</body>\n"
-                            + "</html>");
+            out.println("</table>\n");
+            WriteCharts.printCopyrightFooter(out);
             out.close();
         }
         blockInfo.in.close();
@@ -769,7 +762,7 @@ public class MakeNamesChart {
         return result;
     }
 
-    // static final UnicodeSet noname = new UnicodeSet("[[:ascii:][:ideographic:]]");
+    // static final UnicodeSet noname = new UnicodeSet("[[:Block=ASCII:][:ideographic:]]");
     static final Map hasNoNameCan = new TreeMap();
     static final Map hasNameCan = new TreeMap();
     static final Map hasNoNameComp = new TreeMap();
