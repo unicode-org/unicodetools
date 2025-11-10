@@ -6,7 +6,7 @@
 Ignoring Name Age:
 
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
-Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
 Ignoring Block:
 
@@ -23,6 +23,9 @@ end Ignoring;
 Propertywise [
                \N{ARABIC NORTHEAST POINTING ARROWHEAD ABOVE}
       \x{0657} \N{ARABIC INVERTED DAMMA}
+] AreAlike
+
+Propertywise [
                \N{ARABIC SMALL CIRCLE ABOVE}
                \N{ARABIC LARGE CIRCLE ABOVE}
       \x{06E0} \N{ARABIC SMALL HIGH UPRIGHT RECTANGULAR ZERO}
