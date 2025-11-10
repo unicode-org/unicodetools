@@ -60,6 +60,8 @@ normalization_correction_corrected ; normalization_correction_corrected ; UCDNon
 
 kEH_AltSeq               ; kEH_AltSeq ; Provisional
 
+kSEAL_MCJK ; kSEAL_MCJK ; Provisional
+
 Names_List_Cross_Ref ; Names_List_Cross_Ref ; UCDNonProperty
 
 # ================================================
@@ -199,6 +201,8 @@ kTGT_RSUnicode           ; kTGT_RSUnicode ; kRSTUnicode ; UCDNonProperty
 # (Changed between 17 alpha and beta.)
 kNSHU_DubenSrc           ; kNSHU_DubenSrc ; kSrc_NushuDuben ; UCDNonProperty
 kNSHU_Reading            ; kNSHU_Reading ; kReading ; UCDNonProperty
+
+kSEAL_Rad ; kSEAL_Rad ; Provisional
 
 kEH_Func                 ; kEH_Func ; Provisional
 kEH_FVal                 ; kEH_FVal ; Provisional

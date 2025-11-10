@@ -110,6 +110,10 @@ kEH_Desc                 ; kEH_Desc
 kEH_HG                   ; kEH_HG
 kEH_IFAO                 ; kEH_IFAO
 kEH_JSesh                ; kEH_JSesh
+kSEAL_THXSrc             ; kSEAL_THXSrc
+kSEAL_CCZSrc             ; kSEAL_CCZSrc
+kSEAL_QJZSrc             ; kSEAL_QJZSrc
+kSEAL_DYCSrc             ; kSEAL_DYCSrc
 na                       ; Name
 na1                      ; Unicode_1_Name
 Name_Alias               ; Name_Alias

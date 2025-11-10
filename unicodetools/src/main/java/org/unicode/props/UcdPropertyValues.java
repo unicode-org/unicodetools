@@ -178,7 +178,6 @@ public class UcdPropertyValues {
     }
 
     public enum Block_Values implements Named {
-        Seal("Seal"),
         Adlam("Adlam"),
         Aegean_Numbers("Aegean_Numbers"),
         Ahom("Ahom"),
@@ -449,6 +448,7 @@ public class UcdPropertyValues {
         Runic("Runic"),
         Samaritan("Samaritan"),
         Saurashtra("Saurashtra"),
+        Seal("Seal"),
         Sharada("Sharada"),
         Sharada_Supplement("Sharada_Sup"),
         Shavian("Shavian"),
@@ -1717,6 +1717,12 @@ public class UcdPropertyValues {
     // kRSMerged
     // kRSUnicode
     // kSBGY
+    // kSEAL_CCZSrc
+    // kSEAL_DYCSrc
+    // kSEAL_MCJK
+    // kSEAL_QJZSrc
+    // kSEAL_Rad
+    // kSEAL_THXSrc
     // kSemanticVariant
     // kSimplifiedVariant
     // kSMSZD2003Index
@@ -2141,7 +2147,6 @@ public class UcdPropertyValues {
     }
 
     public enum Script_Values implements Named {
-        Seal("Seal"),
         Adlam("Adlm"),
         Caucasian_Albanian("Aghb"),
         Ahom("Ahom"),
@@ -2270,6 +2275,7 @@ public class UcdPropertyValues {
         Samaritan("Samr"),
         Old_South_Arabian("Sarb"),
         Saurashtra("Saur"),
+        Seal("Seal"),
         SignWriting("Sgnw"),
         Shavian("Shaw"),
         Sharada("Shrd"),
