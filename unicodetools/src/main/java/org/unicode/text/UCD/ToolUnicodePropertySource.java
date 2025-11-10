@@ -319,6 +319,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         add(iup.getProperty("kEH_JSesh"));
         add(iup.getProperty("kEH_NoMirror"));
         add(iup.getProperty("kEH_NoRotate"));
+        add(iup.getProperty("kJURC_Src"));
         add(iup.getProperty("Emoji"));
         add(iup.getProperty("Emoji_Presentation"));
         add(iup.getProperty("Emoji_Modifier"));

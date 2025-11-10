@@ -1,0 +1,25 @@
+# Jurchen ideographs and radicals (18E00..19191, 191A0..191D2)
+# https://github.com/unicode-org/utc-release-management/issues/137
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring kRSTUnicode kTGT_MergedSrc kJURC_NCReading kJURC_Numeric kJURC_RSUnicode kJURC_Src:
+Propertywise [\x{18E00}-\x{19191}] CorrespondTo [\x{17000}]
+    UpTo: Block             (Jurchen vs Tangut),
+          Script            (Jurchen vs Tangut),
+          Script_Extensions (Jurchen vs Tangut)
+end Ignoring;
+
+Propertywise [\x{191A0}-\x{191D2}] CorrespondTo [\x{18800}]
+    UpTo: Block             (Jurchen_Radicals vs Tangut_Components),
+          Script            (Jurchen vs Tangut),
+          Script_Extensions (Jurchen vs Tangut)
+
+end Ignoring;
+
+end Ignoring;
