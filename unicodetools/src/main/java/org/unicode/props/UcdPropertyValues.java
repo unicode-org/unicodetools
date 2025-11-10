@@ -1531,9 +1531,10 @@ public class UcdPropertyValues {
     // kJis1
     // kJIS0213
     // kJoyoKanji
-    // kJUR_NCReading
-    // kJUR_Src
-    // kJurchenNumeric
+    // kJURC_NCReading
+    // kJURC_Numeric
+    // kJURC_RSUnicode
+    // kJURC_Src
     // kKangXi
     // kKarlgren
     // kKorean
@@ -1558,7 +1559,6 @@ public class UcdPropertyValues {
     // kReading
     // kRSAdobe_Japan1_6
     // kRSJapanese
-    // kRSJUnicode
     // kRSKangXi
     // kRSKanWa
     // kRSKorean
