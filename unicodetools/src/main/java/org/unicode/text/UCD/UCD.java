@@ -1320,6 +1320,10 @@ public final class UCD implements UCD_Types {
                     // Unicode 17 added TANGUT IDEOGRAPH-18D1D..TANGUT IDEOGRAPH-18D1E.
                     return TANGUT_SUP_BASE;
                 }
+                if (ch <= 0x18D1F && rCompositeVersion >= 0x120000) {
+                    // Unicode 18 added TANGUT IDEOGRAPH-18D1F.
+                    return TANGUT_SUP_BASE;
+                }
             }
 
             // 20000..2A6DF; CJK Unified Ideographs Extension B
