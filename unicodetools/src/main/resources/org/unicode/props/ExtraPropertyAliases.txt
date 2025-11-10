@@ -2,40 +2,40 @@
 # Binary Properties
 # ================================================
 
-Emoji ; Emoji
-EPres ; Emoji_Presentation
-EMod ; Emoji_Modifier
-EBase ; Emoji_Modifier_Base
-EComp ; Emoji_Component
-ExtPict ; Extended_Pictographic
-
-BE  ; Basic_Emoji
-REMS ; RGI_Emoji_Modifier_Sequence ; Emoji_Modifier_Sequence
-REFS ; RGI_Emoji_Flag_Sequence ; Emoji_Flag_Sequence
-REKS ; RGI_Emoji_Keycap_Sequence ; Emoji_Keycap_Sequence
-RETS ; RGI_Emoji_Tag_Sequence ; Emoji_Tag_Sequence
-REZS ; RGI_Emoji_Zwj_Sequence ; Emoji_Zwj_Sequence
-# RE ; RGI_Emoji
-
-kEH_NoMirror             ; kEH_NoMirror
-kEH_NoRotate             ; kEH_NoRotate
+BE  ; Basic_Emoji ; NonUCDProperty
+REMS ; RGI_Emoji_Modifier_Sequence ; Emoji_Modifier_Sequence ; NonUCDProperty
+REFS ; RGI_Emoji_Flag_Sequence ; Emoji_Flag_Sequence ; NonUCDProperty
+REKS ; RGI_Emoji_Keycap_Sequence ; Emoji_Keycap_Sequence ; Emoji_Combining_Sequence ; NonUCDProperty
+RETS ; RGI_Emoji_Tag_Sequence ; Emoji_Tag_Sequence ; NonUCDProperty
+REZS ; RGI_Emoji_Zwj_Sequence ; Emoji_Zwj_Sequence ; NonUCDProperty
+RGI_Emoji ; RGI_Emoji ; NonUCDProperty
 
 # ================================================
 # Enumerated Properties
 # ================================================
 
-ID_Status ; Identifier_Status
-ID_Type ; Identifier_Type
+ID_Status ; Identifier_Status ; NonUCDProperty
+ID_Type ; Identifier_Type ; NonUCDProperty
 
-idns ; Idn_Status
-idn8 ; Idn_2008
+idns ; Idn_Status ; NonUCDNonProperty
+idn8 ; Idn_2008 ; NonUCDNonProperty
+
+IDNA2008_Category ; IDNA2008_Category ; NonUCDProperty
 
 # Unofficial contributory property used in the derivation of Joining_Type.
-Other_Joining_Type ; Other_Joining_Type
+Other_Joining_Type ; Other_Joining_Type ; UCDNonProperty
 
-Do_Not_Emit_Type ; Do_Not_Emit_Type
+Do_Not_Emit_Type ; Do_Not_Emit_Type ; UCDNonProperty
 
-kEH_Core                 ; kEH_Core
+kEH_Core                 ; kEH_Core ; Provisional
+
+RGI_Emoji_Qualification ; RGI_Emoji_Qualification ; NonUCDProperty
+
+Math_Class ; Math_Class ; NonUCDProperty
+# The first field of MathClassEx is supposed to be the Math_Class property,
+# identical to the assignment in MathClass.  In practice there are a few
+# characters for which it historically lagged behind the value in MathClass.
+Math_Class_Ex ; Math_Class_Ex ; NonUCDNonProperty
 
 # ================================================
 # String Properties
@@ -43,137 +43,176 @@ kEH_Core                 ; kEH_Core
 
 #ESN ; Emoji_Short_Name
 
-idnm ; Idn_Mapping
+idnm ; Idn_Mapping ; NonUCDNonProperty
 
-ConfSL ; Confusable_SL
-ConfSA ; Confusable_SA
-ConfML ; Confusable_ML
-ConfMA ; Confusable_MA ; Confusable
+ConfSL ; Confusable_SL ; NonUCDNonProperty
+ConfSA ; Confusable_SA ; NonUCDNonProperty
+ConfML ; Confusable_ML ; NonUCDNonProperty
+ConfMA ; Confusable_MA ; Confusable ; NonUCDNonProperty
 
-bmg                      ; Bidi_Mirroring_Glyph
-bpb                      ; Bidi_Paired_Bracket
+cjkSimplifiedVariant ; kSimplifiedVariant ; Provisional
+cjkTraditionalVariant ; kTraditionalVariant ; Provisional
 
-cjkSimplifiedVariant ; kSimplifiedVariant
-cjkTraditionalVariant ; kTraditionalVariant
+Do_Not_Emit_Preferred ; Do_Not_Emit_Preferred ; UCDNonProperty
 
-Do_Not_Emit_Preferred ; Do_Not_Emit_Preferred
+normalization_correction_original ; normalization_correction_original ; UCDNonProperty
+normalization_correction_corrected ; normalization_correction_corrected ; UCDNonProperty
+
+kEH_AltSeq               ; kEH_AltSeq ; Provisional
+
+Names_List_Cross_Ref ; Names_List_Cross_Ref ; UCDNonProperty
 
 # ================================================
 # Miscellaneous Properties
 # ================================================
 
-CJKR ; CJK_Radical
+CJKR ; CJK_Radical ; UCDNonProperty
 
-EDCM ; Emoji_DCM
-EKDDI ; Emoji_KDDI
-ESB ; Emoji_SB
-NS ; Named_Sequences
-NSP ; Named_Sequences_Prov
-SV ; Standardized_Variant
+EDCM ; Emoji_DCM ; UCDNonProperty
+EKDDI ; Emoji_KDDI ; UCDNonProperty
+ESB ; Emoji_SB ; UCDNonProperty
+NS ; Named_Sequences ; UCDNonProperty
+NSP ; Named_Sequences_Prov ; UCDNonProperty
+SV ; Standardized_Variant ; UCDNonProperty
 
-cjkCheungBauerIndex ; kCheungBauerIndex
-cjkCowles ; kCowles
-cjkDaeJaweon ; kDaeJaweon
-cjkFennIndex ; kFennIndex
-cjkGSR ; kGSR
-cjkHanYu ; kHanYu
-cjkIRGDaeJaweon ; kIRGDaeJaweon
-cjkIRGDaiKanwaZiten ; kIRGDaiKanwaZiten
-cjkIRGHanyuDaZidian ; kIRGHanyuDaZidian
-cjkIRGKangXi ; kIRGKangXi
-cjkKangXi ; kKangXi
-cjkKarlgren ; kKarlgren
-cjkLau ; kLau
-cjkMatthews ; kMatthews
-cjkMeyerWempe ; kMeyerWempe
-cjkMorohashi ; kMorohashi
-cjkNelson ; kNelson
-cjkSBGY ; kSBGY
-cjkCangjie ; kCangjie
-cjkCheungBauer ; kCheungBauer
-cjkCihaiT ; kCihaiT
-cjkFenn ; kFenn
-cjkFourCornerCode ; kFourCornerCode
-cjkFrequency ; kFrequency
-cjkGradeLevel ; kGradeLevel
-cjkHDZRadBreak ; kHDZRadBreak
-cjkHKGlyph ; kHKGlyph
-cjkPhonetic ; kPhonetic
-cjkTotalStrokes ; kTotalStrokes
-cjkBigFive ; kBigFive
-cjkCCCII ; kCCCII
-cjkCNS1986 ; kCNS1986
-cjkCNS1992 ; kCNS1992
-cjkEACC ; kEACC
-cjkGB0 ; kGB0
-cjkGB1 ; kGB1
-cjkGB3 ; kGB3
-cjkGB5 ; kGB5
-cjkGB7 ; kGB7
-cjkGB8 ; kGB8
-cjkHKSCS ; kHKSCS
-cjkIBMJapan ; kIBMJapan
-cjkJa ; kJa
-cjkJis0 ; kJis0
-cjkJis1 ; kJis1
-cjkJIS0213 ; kJIS0213
-cjkKPS0 ; kKPS0
-cjkKPS1 ; kKPS1
-cjkKSC0 ; kKSC0
-cjkKSC1 ; kKSC1
-cjkMainlandTelegraph ; kMainlandTelegraph
-cjkPseudoGB1 ; kPseudoGB1
-cjkTaiwanTelegraph ; kTaiwanTelegraph
-cjkXerox ; kXerox
-cjkRSAdobe_Japan1_6 ; kRSAdobe_Japan1_6
-cjkRSJapanese ; kRSJapanese
-cjkRSKangXi ; kRSKangXi
-cjkRSKanWa ; kRSKanWa
-cjkRSKorean ; kRSKorean
-cjkCantonese ; kCantonese
-cjkDefinition ; kDefinition
-cjkHangul ; kHangul
-cjkHanyuPinlu ; kHanyuPinlu
-cjkHanyuPinyin ; kHanyuPinyin
-cjkJapaneseKun ; kJapaneseKun
-cjkJapaneseOn ; kJapaneseOn
-cjkKorean ; kKorean
-cjkMandarin ; kMandarin
-cjkTang ; kTang
-cjkVietnamese ; kVietnamese
-cjkXHC1983 ; kXHC1983
-cjkSemanticVariant ; kSemanticVariant
-cjkSpecializedSemanticVariant ; kSpecializedSemanticVariant
-cjkZVariant ; kZVariant
-cjkJinmeiyoKanji ; kJinmeiyoKanji
-cjkJoyoKanji ; kJoyoKanji
-cjkKoreanEducationHanja ; kKoreanEducationHanja
-cjkKoreanName ; kKoreanName
-cjkTGH ; kTGH
+normalization_correction_version ; normalization_correction_version ; UCDNonProperty
+
+emoji_variation_sequence ; emoji_variation_sequence ; UCDNonProperty
+
+# 2.0 .. 3.1.1
+cjkAlternateHanYu ; kAlternateHanYu ; Provisional
+# 3.0
+cjkAlternateJEF ; kAlternateJEF ; Provisional
+cjkJHJ ; kJHJ ; Provisional
+cjkRSMerged ; kRSMerged ; Provisional
+# 2.0 .. 4.0.1
+cjkAlternateKangXi ; kAlternateKangXi ; Provisional
+cjkAlternateMorohashi ; kAlternateMorohashi ; Provisional
+
+cjkCheungBauerIndex ; kCheungBauerIndex ; Provisional
+cjkCowles ; kCowles ; Provisional
+cjkDaeJaweon ; kDaeJaweon ; Provisional
+cjkFennIndex ; kFennIndex ; Provisional
+cjkGSR ; kGSR ; Provisional
+cjkHanYu ; kHanYu ; Provisional
+cjkIRGDaeJaweon ; kIRGDaeJaweon ; Provisional
+cjkIRGDaiKanwaZiten ; kIRGDaiKanwaZiten ; Provisional
+cjkIRGHanyuDaZidian ; kIRGHanyuDaZidian ; Provisional
+cjkIRGKangXi ; kIRGKangXi ; Provisional
+cjkKangXi ; kKangXi ; Provisional
+cjkKarlgren ; kKarlgren ; Provisional
+cjkLau ; kLau ; Provisional
+cjkMatthews ; kMatthews ; Provisional
+cjkMeyerWempe ; kMeyerWempe ; Provisional
+cjkMorohashi ; kMorohashi ; Provisional
+cjkNelson ; kNelson ; Provisional
+cjkSBGY ; kSBGY ; Provisional
+cjkCangjie ; kCangjie ; Provisional
+cjkCheungBauer ; kCheungBauer ; Provisional
+cjkCihaiT ; kCihaiT ; Provisional
+cjkFenn ; kFenn ; Provisional
+cjkFourCornerCode ; kFourCornerCode ; Provisional
+cjkFrequency ; kFrequency ; Provisional
+cjkGradeLevel ; kGradeLevel ; Provisional
+cjkHDZRadBreak ; kHDZRadBreak ; Provisional
+cjkHKGlyph ; kHKGlyph ; Provisional
+cjkPhonetic ; kPhonetic ; Provisional
+cjkBigFive ; kBigFive ; Provisional
+cjkCCCII ; kCCCII ; Provisional
+cjkCNS1986 ; kCNS1986 ; Provisional
+cjkCNS1992 ; kCNS1992 ; Provisional
+cjkEACC ; kEACC ; Provisional
+cjkGB0 ; kGB0 ; Provisional
+cjkGB1 ; kGB1 ; Provisional
+cjkGB3 ; kGB3 ; Provisional
+cjkGB5 ; kGB5 ; Provisional
+cjkGB7 ; kGB7 ; Provisional
+cjkGB8 ; kGB8 ; Provisional
+cjkHKSCS ; kHKSCS ; Provisional
+cjkIBMJapan ; kIBMJapan ; Provisional
+cjkJa ; kJa ; Provisional
+cjkJis0 ; kJis0 ; Provisional
+cjkJis1 ; kJis1 ; Provisional
+cjkJIS0213 ; kJIS0213 ; Provisional
+cjkKPS0 ; kKPS0 ; Provisional
+cjkKPS1 ; kKPS1 ; Provisional
+cjkKSC0 ; kKSC0 ; Provisional
+cjkKSC1 ; kKSC1 ; Provisional
+cjkMainlandTelegraph ; kMainlandTelegraph ; Provisional
+cjkPseudoGB1 ; kPseudoGB1 ; Provisional
+cjkTaiwanTelegraph ; kTaiwanTelegraph ; Provisional
+cjkXerox ; kXerox ; Provisional
+cjkRSAdobe_Japan1_6 ; kRSAdobe_Japan1_6 ; Provisional
+cjkRSJapanese ; kRSJapanese ; Provisional
+cjkRSKangXi ; kRSKangXi ; Provisional
+cjkRSKanWa ; kRSKanWa ; Provisional
+cjkRSKorean ; kRSKorean ; Provisional
+cjkCantonese ; kCantonese ; Provisional
+cjkDefinition ; kDefinition ; Provisional
+cjkHangul ; kHangul ; Provisional
+cjkHanyuPinlu ; kHanyuPinlu ; Provisional
+cjkHanyuPinyin ; kHanyuPinyin ; Provisional
+cjkJapaneseKun ; kJapaneseKun ; Provisional
+cjkJapaneseOn ; kJapaneseOn ; Provisional
+cjkKorean ; kKorean ; Provisional
+cjkTang ; kTang ; Provisional
+cjkVietnamese ; kVietnamese ; Provisional
+cjkXHC1983 ; kXHC1983 ; Provisional
+cjkSemanticVariant ; kSemanticVariant ; Provisional
+cjkSpecializedSemanticVariant ; kSpecializedSemanticVariant ; Provisional
+cjkZVariant ; kZVariant ; Provisional
+cjkJinmeiyoKanji ; kJinmeiyoKanji ; Provisional
+cjkJoyoKanji ; kJoyoKanji ; Provisional
+cjkKoreanEducationHanja ; kKoreanEducationHanja ; Provisional
+cjkKoreanName ; kKoreanName ; Provisional
+cjkTGH ; kTGH ; Provisional
 # 13.0
-cjkSpoofingVariant       ; kSpoofingVariant
-cjkTGHZ2013              ; kTGHZ2013
-cjkUnihanCore2020        ; kUnihanCore2020
+cjkSpoofingVariant       ; kSpoofingVariant ; Provisional
+cjkTGHZ2013              ; kTGHZ2013 ; Provisional
 # 14.0
-cjkStrange               ; kStrange
+cjkStrange               ; kStrange ; Provisional
 # 15.0
-cjkAlternateTotalStrokes ; kAlternateTotalStrokes
+cjkAlternateTotalStrokes ; kAlternateTotalStrokes ; Provisional
 # 15.1
-cjkJapanese              ; kJapanese
-cjkMojiJoho              ; kMojiJoho
-cjkSMSZD2003Index        ; kSMSZD2003Index
-cjkSMSZD2003Readings     ; kSMSZD2003Readings
-cjkVietnameseNumeric     ; kVietnameseNumeric
-cjkZhuangNumeric         ; kZhuangNumeric
+cjkJapanese              ; kJapanese ; Provisional
+cjkMojiJoho              ; kMojiJoho ; Provisional
+cjkSMSZD2003Index        ; kSMSZD2003Index ; Provisional
+cjkSMSZD2003Readings     ; kSMSZD2003Readings ; Provisional
+cjkVietnameseNumeric     ; kVietnameseNumeric ; Provisional
+cjkZhuangNumeric         ; kZhuangNumeric ; Provisional
 # 16.0
-cjkFanqie                ; kFanqie
+cjkFanqie                ; kFanqie ; Provisional
+cjkZhuang                ; kZhuang ; Provisional
+# 17.0
+cjkTayNumeric            ; kTayNumeric ; Provisional
 
-kTGT_MergedSrc           ; kTGT_MergedSrc
-kRSTUnicode              ; kRSTUnicode
+# [183-C29] Consensus: In TangutSources.txt,
+# change the tag kRSTUnicode to kTGT_RSUnicode.
+# For Unicode Version 17.0. See L2/25-087 item 1.9.
+# (Changed between 17 alpha and beta.)
+kTGT_MergedSrc           ; kTGT_MergedSrc ; UCDNonProperty
+kTGT_RSUnicode           ; kTGT_RSUnicode ; kRSTUnicode ; UCDNonProperty
 
-kSrc_NushuDuben          ; kSrc_NushuDuben
-kReading                 ; kReading
+# [183-C30] Consensus: In NushuSources.txt,
+# change the tag kSrc_NushuDuben to kNSHU_DubenSrc, and change the tag kReading to kNSHU_Reading.
+# For Unicode Version 17.0. See L2/25-087 item 1.9.
+# (Changed between 17 alpha and beta.)
+kNSHU_DubenSrc           ; kNSHU_DubenSrc ; kSrc_NushuDuben ; UCDNonProperty
+kNSHU_Reading            ; kNSHU_Reading ; kReading ; UCDNonProperty
 
-kEH_Func                 ; kEH_Func
-kEH_FVal                 ; kEH_FVal
-kEH_UniK                 ; kEH_UniK
+kEH_Func                 ; kEH_Func ; Provisional
+kEH_FVal                 ; kEH_FVal ; Provisional
+kEH_UniK                 ; kEH_UniK ; Provisional
+
+# Contributory non-property matching exactly field 8 of UnicodeData.txt.
+# Mostly useful as a helper to diachronically parse Numeric_Value.
+Non_Unihan_Numeric_Value ; Non_Unihan_Numeric_Value ; UCDNonProperty
+
+Names_List_Subheader        ; Names_List_Subheader ; subhead ; UCDNonProperty
+Names_List_Subheader_Notice ; Names_List_Subheader_Notice    ; UCDNonProperty
+Names_List_Alias            ; Names_List_Alias               ; UCDNonProperty
+Names_List_Comment          ; Names_List_Comment             ; UCDNonProperty
+
+Math_Entity_Name          ; Math_Entity_Name          ; NonUCDNonProperty
+Math_Entity_Set           ; Math_Entity_Set           ; NonUCDNonProperty
+Math_Descriptive_Comments ; Math_Descriptive_Comments ; NonUCDNonProperty

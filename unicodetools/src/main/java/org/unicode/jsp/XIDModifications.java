@@ -3,6 +3,9 @@ package org.unicode.jsp;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 
+// TODO(egg): This class seems to be based on an antique version of UTS #39 data, and also to return
+// inverted results (allowed for disallowed and vice-versa).  Consider deleting now that we just
+// show real UTS #39 data in the tools.
 public class XIDModifications {
     private static UnicodeMap<String> allowed = new UnicodeMap(); // "[:XID_Continue:]");
     private static UnicodeMap<String> reasons = new UnicodeMap<String>();

@@ -1,5 +1,5 @@
 Generate: .
-CopyrightYear: 2024
+CopyrightYear: 2025
 
 File: extra/ScriptNfkc
 Property: SPECIAL
@@ -10,7 +10,7 @@ File: extracted/DerivedName
 #
 # This file lists the values of the Name property.
 # This property is specified by the derivation documented in
-# Section 4.8 of the Unicode Standard, Version 13.0,
+# the "Character Properties" / "Name" section of the core specification,
 # based on the Name field in UnicodeData.txt,
 # the Jamo_Short_Name property in Jamo.txt,
 # and a specified list of pattern strings used to derive names
@@ -228,6 +228,9 @@ Value:  V16_0
 Value:  V17_0
 # Newly assigned in Unicode 17.0.0 (September, 2025)
 
+Value:  V18_0
+# Newly assigned in Unicode 18.0.0 (September, 2025)
+
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
 # Bidi Class (listing UnicodeData.txt, field 4: see UAX #44: https://www.unicode.org/reports/tr44/)
@@ -284,31 +287,36 @@ Property:   Case_Ignorable
 Property:   Changes_When_Lowercased
 # Derived Property:   Changes_When_Lowercased (CWL)
 #  Characters whose normalized forms are not stable under a toLowercase mapping.
-#  For more information, see D139 in Section 3.13, "Default Case Algorithms". 
+#  For more information, see the definition of "isLowercase(X)"
+#  in the "Conformance" / "Default Case Algorithms" section of the core specification.
 #  Changes_When_Lowercased(X) is true when toLowercase(toNFD(X)) != toNFD(X)
 
 Property:   Changes_When_Uppercased
 # Derived Property:   Changes_When_Uppercased (CWU)
 #  Characters whose normalized forms are not stable under a toUppercase mapping.
-#  For more information, see D140 in Section 3.13, "Default Case Algorithms". 
+#  For more information, see the definition of "isUppercase(X)"
+#  in the "Conformance" / "Default Case Algorithms" section of the core specification.
 #  Changes_When_Uppercased(X) is true when toUppercase(toNFD(X)) != toNFD(X)
 
 Property:   Changes_When_Titlecased
 # Derived Property:   Changes_When_Titlecased (CWT)
 #  Characters whose normalized forms are not stable under a toTitlecase mapping.
-#  For more information, see D141 in Section 3.13, "Default Case Algorithms". 
+#  For more information, see the definition of "isTitlecase(X)"
+#  in the "Conformance" / "Default Case Algorithms" section of the core specification.
 #  Changes_When_Titlecased(X) is true when toTitlecase(toNFD(X)) != toNFD(X)
 
 Property:   Changes_When_Casefolded
 # Derived Property:   Changes_When_Casefolded (CWCF)
 #  Characters whose normalized forms are not stable under case folding.
-#  For more information, see D142 in Section 3.13, "Default Case Algorithms". 
+#  For more information, see the definition of "isCasefolded(X)"
+#  in the "Conformance" / "Default Case Algorithms" section of the core specification.
 #  Changes_When_Casefolded(X) is true when toCasefold(toNFD(X)) != toNFD(X)
 
 Property:   Changes_When_Casemapped
 # Derived Property:   Changes_When_Casemapped (CWCM)
 #  Characters whose normalized forms are not stable under case mapping.
-#  For more information, see D143 in Section 3.13, "Default Case Algorithms". 
+#  For more information, see the definition of "isCased(X)"
+#  in the "Conformance" / "Default Case Algorithms" section of the core specification.
 #  Changes_When_Casemapped(X) is true when CWL(X), or CWT(X), or CWU(X)
 
 Property:	ID_Start
@@ -1019,7 +1027,7 @@ File:	IndicPositionalCategory
 #   * U+119D2 NANDINAGARI VOWEL SIGN I has stylistically variable placement
 #     in Nandinagari.
 Property: Indic_Positional_Category
-Format:	roozbehFile separateValues=false valueStyle=short skipValue=NA
+Format:	roozbehFile separateValues=false valueStyle=short skipValue=Not_Applicable
 Value: Right
 Value: Left
 Value: Visual_Order_Left
@@ -1168,10 +1176,19 @@ Value: Consonant_Placeholder
 # Indic script layout (NBSP and dotted circle), as well as a few script-
 # specific vowel-holder characters which are not technically
 # consonants, but serve instead as bases for placement of vowel marks.
+# Vowel carriers that are null consonants instead have the
+# Indic_Syllabic_Category Consonant.
 
 # [Not derivable]
 Value: Consonant
-# Consonant (ordinary abugida consonants, with inherent vowels)
+# Consonant
+# This includes ordinary abugida consonants with inherent vowels.
+# In scripts that do not have distinct independent vowel characters, but instead
+# form independent vowels by adding dependent vowels to a vowel carrier which
+# otherwise represents the inherent vowel, that vowel carrier has the
+# Indic_Syllabic_Category Consonant, as a null consonant. Such vowel carriers
+# can often also be analyzed as glottal stops with inherent vowels.
+# An example is U+0F68 TIBETAN LETTER A.
 
 # [Not derivable]
 Value: Consonant_Dead
@@ -1179,26 +1196,29 @@ Value: Consonant_Dead
 
 # [Not derivable]
 Value: Consonant_With_Stacker
-# Consonants that may make stacked ligatures with the next consonant
-# without the use of a virama
+# Consonants that may cause conjunct formation or consonant stacking with the
+# next consonant, without the use of a stacker
 
 # [Not derivable]
 Value: Consonant_Prefixed
-# Cluster-initial consonants
+# Other consonants that behave like a Consonant_Preceding_Repha
 
 # [Not derivable]
 Value: Consonant_Preceding_Repha
-# Repha Form of RA (reanalyzed in some scripts), when preceding the main
-# consonant.
+# Cluster-initial "r" consonants in the form of a dependent sign (also known as
+# "repha") that precede the base character in the encoding order, but are
+# reordered in text rendering to be somewhere after the base. Reanalyzed in
+# some orthographies to be a final consonant.
 
 # [Not derivable]
 Value: Consonant_Initial_Postfixed
-# Consonants that succeed the main consonant in character sequences, but are
-# pronounced before it.
+# Other consonants that behave like a Consonant_Succeeding_Repha
 
 # [Not derivable]
 Value: Consonant_Succeeding_Repha
-# Repha Form of RA (reanalyzed in some scripts), when succeeding the main
+# Cluster-initial "r" consonants that behave like a Consonant_Preceding_Repha
+# but succeed the base character in the encoding order, and are thus not
+# reordered in text rendering. Reanalyzed in some orthographies to be a final
 # consonant.
 
 # [Not derivable]

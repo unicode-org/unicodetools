@@ -1,6 +1,6 @@
-# PropertyValueAliases-17.0.0.txt
-# Date: 2024-11-16, 02:53:28 GMT
-# © 2024 Unicode®, Inc.
+# PropertyValueAliases-18.0.0.txt
+# Date: 2025-09-11, 13:53:01 GMT
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -94,6 +94,7 @@ age; 15.0                             ; V15_0
 age; 15.1                             ; V15_1
 age; 16.0                             ; V16_0
 age; 17.0                             ; V17_0
+age; 18.0                             ; V18_0
 age; NA                               ; Unassigned
 
 # Alphabetic (Alpha)
@@ -198,7 +199,6 @@ blk; Cham                             ; Cham
 blk; Cherokee                         ; Cherokee
 blk; Cherokee_Sup                     ; Cherokee_Supplement
 blk; Chess_Symbols                    ; Chess_Symbols
-blk; Chisoi                           ; Chisoi
 blk; Chorasmian                       ; Chorasmian
 blk; CJK                              ; CJK_Unified_Ideographs
 blk; CJK_Compat                       ; CJK_Compatibility
@@ -888,7 +888,7 @@ InPC; Bottom_And_Left                 ; Bottom_And_Left
 InPC; Bottom_And_Right                ; Bottom_And_Right
 InPC; Left                            ; Left
 InPC; Left_And_Right                  ; Left_And_Right
-InPC; NA                              ; NA
+InPC; NA                              ; Not_Applicable
 InPC; Overstruck                      ; Overstruck
 InPC; Right                           ; Right
 InPC; Top                             ; Top
@@ -1142,6 +1142,7 @@ lb ; EX                               ; Exclamation
 lb ; GL                               ; Glue
 lb ; H2                               ; H2
 lb ; H3                               ; H3
+lb ; HH                               ; Unambiguous_Hyphen
 lb ; HL                               ; Hebrew_Letter
 lb ; HY                               ; Hyphen
 lb ; ID                               ; Ideographic
@@ -1342,7 +1343,6 @@ sc ; Cans                             ; Canadian_Aboriginal
 sc ; Cari                             ; Carian
 sc ; Cham                             ; Cham
 sc ; Cher                             ; Cherokee
-sc ; Chis                             ; Chisoi
 sc ; Chrs                             ; Chorasmian
 sc ; Copt                             ; Coptic                           ; Qaac
 sc ; Cpmn                             ; Cypro_Minoan
@@ -1720,5 +1720,17 @@ kEH_NoMirror; Y                       ; Yes                              ; T    
 
 kEH_NoRotate; N                       ; No                               ; F                                ; False
 kEH_NoRotate; Y                       ; Yes                              ; T                                ; True
+
+# kMandarin (cjkMandarin)
+
+# @missing: 0000..10FFFF; kMandarin; <none>
+
+# kTotalStrokes (cjkTotalStrokes)
+
+# @missing: 0000..10FFFF; kTotalStrokes; <none>
+
+# kUnihanCore2020 (cjkUnihanCore2020)
+
+# @missing: 0000..10FFFF; kUnihanCore2020; <none>
 
 # EOF

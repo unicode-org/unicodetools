@@ -21,3 +21,9 @@ following:
 Common to many of the utilities is the use of UnicodeSet. For more information,
 see [list-unicodeset - Manipulate sets of Unicode
 characters](list-unicodeset.md)
+
+The Unicode Utilities are open source. See <https://github.com/unicode-org/unicodetools>
+
+-----
+
+© 2001-2025 Unicode, Inc. Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries. See [Terms of Use](https://www.unicode.org/copyright.html).
