@@ -201,10 +201,10 @@ Do_Not_Emit_Type ; Preferred_Spelling       ; Preferred_Spelling
 # @missing: 0000..10FFFF; kTGT_MergedSrc ; <none>
 # @missing: 0000..10FFFF; kRSTUnicode ; <none>
 
-# @missing: 0000..10FFFF; kRSJUnicode ; <none>
-# @missing: 0000..10FFFF; kJUR_Src ; <none>
-# @missing: 0000..10FFFF; kJUR_NCReading ; <none>
-# @missing: 0000..10FFFF; kJurchenNumeric ; <none>
+# @missing: 0000..10FFFF; kJURC_RSUnicode ; <none>
+# @missing: 0000..10FFFF; kJURC_Src ; <none>
+# @missing: 0000..10FFFF; kJURC_NCReading ; <none>
+# @missing: 0000..10FFFF; kJURC_Numeric ; <none>
 
 # @missing: 0000..10FFFF; kSrc_NushuDuben ; <none>
 # @missing: 0000..10FFFF; kReading ; <none>

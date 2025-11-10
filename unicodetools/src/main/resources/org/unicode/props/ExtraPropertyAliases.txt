@@ -171,10 +171,10 @@ cjkFanqie                ; kFanqie
 kTGT_MergedSrc           ; kTGT_MergedSrc
 kRSTUnicode              ; kRSTUnicode
 
-kRSJUnicode              ; kRSJUnicode
-kJUR_Src                 ; kJUR_Src
-kJUR_NCReading           ; kJUR_NCReading
-kJurchenNumeric          ; kJurchenNumeric
+kJURC_RSUnicode ; kJURC_RSUnicode
+kJURC_Src       ; kJURC_Src
+kJURC_NCReading ; kJURC_NCReading
+kJURC_Numeric   ; kJURC_Numeric
 
 kSrc_NushuDuben          ; kSrc_NushuDuben
 kReading                 ; kReading
