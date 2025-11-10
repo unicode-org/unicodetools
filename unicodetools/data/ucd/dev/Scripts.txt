@@ -1,3 +1,4 @@
+3D000..3FC3F; Seal
 # Scripts-18.0.0.txt
 # Date: 2025-10-02, 22:16:48 GMT
 # © 2025 Unicode®, Inc.
