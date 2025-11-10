@@ -1,5 +1,5 @@
 # PropertyValueAliases-18.0.0.txt
-# Date: 2025-09-11, 13:53:01 GMT
+# Date: 2025-11-10, 23:18:54 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1723,6 +1723,10 @@ kEH_NoMirror; Y                       ; Yes                              ; T    
 
 kEH_NoRotate; N                       ; No                               ; F                                ; False
 kEH_NoRotate; Y                       ; Yes                              ; T                                ; True
+
+# kJURC_Src (kJURC_Src)
+
+# @missing: 0000..10FFFF; kJURC_Src; <none>
 
 # kMandarin (cjkMandarin)
 
