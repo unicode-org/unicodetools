@@ -540,6 +540,7 @@ public enum UcdProperty {
             "cjkTGHZ2013"),
     kTGT_MergedSrc(
             PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "kTGT_MergedSrc"),
+    kTGT_Numeric(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kTGT_Numeric"),
     kTGT_RSUnicode(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
