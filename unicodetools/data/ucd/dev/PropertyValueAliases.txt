@@ -1,5 +1,5 @@
 # PropertyValueAliases-18.0.0.txt
-# Date: 2025-09-11, 13:53:01 GMT
+# Date: 2025-11-10, 11:53:24 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -154,7 +154,6 @@ bpt; o                                ; Open
 
 # Block (blk)
 
-blk; Seal ; Seal
 blk; Adlam                            ; Adlam
 blk; Aegean_Numbers                   ; Aegean_Numbers
 blk; Ahom                             ; Ahom
@@ -424,6 +423,7 @@ blk; Rumi                             ; Rumi_Numeral_Symbols
 blk; Runic                            ; Runic
 blk; Samaritan                        ; Samaritan
 blk; Saurashtra                       ; Saurashtra
+blk; Seal                             ; Seal
 blk; Sharada                          ; Sharada
 blk; Sharada_Sup                      ; Sharada_Supplement
 blk; Shavian                          ; Shavian
@@ -1320,7 +1320,6 @@ RI ; Y                                ; Yes                              ; T    
 
 # Script (sc)
 
-sc ; Seal ; Seal
 sc ; Adlm                             ; Adlam
 sc ; Aghb                             ; Caucasian_Albanian
 sc ; Ahom                             ; Ahom
@@ -1449,6 +1448,7 @@ sc ; Runr                             ; Runic
 sc ; Samr                             ; Samaritan
 sc ; Sarb                             ; Old_South_Arabian
 sc ; Saur                             ; Saurashtra
+sc ; Seal                             ; Seal
 sc ; Sgnw                             ; SignWriting
 sc ; Shaw                             ; Shavian
 sc ; Shrd                             ; Sharada

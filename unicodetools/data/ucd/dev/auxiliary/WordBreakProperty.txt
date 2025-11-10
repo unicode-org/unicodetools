@@ -1,5 +1,5 @@
-# WordBreakProperty-17.0.0.txt
-# Date: 2025-06-30, 06:20:49 GMT
+# WordBreakProperty-18.0.0.txt
+# Date: 2025-11-10, 11:53:39 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1378,8 +1378,9 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F130..1F149  ; ALetter # So  [26] SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
+3D000..3FC3F  ; ALetter # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 33973
+# Total code points: 45301
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2025-10-02, 22:16:20 GMT
+# Date: 2025-11-10, 11:53:09 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -45502,6 +45502,7 @@ FFFD          ; REPLACEMENT CHARACTER
 2F800..2FA1D  ; CJK COMPATIBILITY IDEOGRAPH-*
 30000..3134A  ; CJK UNIFIED IDEOGRAPH-*
 31350..33479  ; CJK UNIFIED IDEOGRAPH-*
+3D000..3FC3F  ; SEAL CHARACTER-*
 E0001         ; LANGUAGE TAG
 E0020         ; TAG SPACE
 E0021         ; TAG EXCLAMATION MARK
@@ -45840,6 +45841,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 159818
+# Total code points: 171146
 
 # EOF

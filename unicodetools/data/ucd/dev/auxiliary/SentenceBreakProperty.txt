@@ -1,5 +1,5 @@
-# SentenceBreakProperty-17.0.0.txt
-# Date: 2025-06-30, 06:20:48 GMT
+# SentenceBreakProperty-18.0.0.txt
+# Date: 2025-11-10, 11:53:38 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2615,8 +2615,9 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 2F800..2FA1D  ; OLetter # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; OLetter # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..33479  ; OLetter # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
+3D000..3FC3F  ; OLetter # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 141501
+# Total code points: 152829
 
 # ================================================
 
