@@ -970,9 +970,7 @@
 20BE           ; PO # Sc         LARI SIGN
 20BF           ; PR # Sc         BITCOIN SIGN
 20C0           ; PO # Sc         SOM SIGN
-20C1           ; PR # Sc         SAUDI RIYAL SIGN
-20C2           ; PR # Cn         <reserved-20C2>
-20C3           ; PR # Sc         UAE DIRHAM SIGN
+20C1..20C3     ; PR # Sc     [3] SAUDI RIYAL SIGN..UAE DIRHAM SIGN
 20C4..20CF     ; PR # Cn    [12] <reserved-20C4>..<reserved-20CF>
 20D0..20DC     ; CM # Mn    [13] COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
 20DD..20E0     ; CM # Me     [4] COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
