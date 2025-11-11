@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2025-11-30, 16:57:28 GMT
+# Date: 2025-11-30, 20:46:30 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2433,6 +2433,7 @@
 09FC          ; BENGALI LETTER VEDIC ANUSVARA
 09FD          ; BENGALI ABBREVIATION SIGN
 09FE          ; BENGALI SANDHI MARK
+09FF          ; BENGALI LETTER SANSKRIT BA
 0A01          ; GURMUKHI SIGN ADAK BINDI
 0A02          ; GURMUKHI SIGN BINDI
 0A03          ; GURMUKHI SIGN VISARGA
@@ -46544,6 +46545,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172770
+# Total code points: 172771
 
 # EOF
