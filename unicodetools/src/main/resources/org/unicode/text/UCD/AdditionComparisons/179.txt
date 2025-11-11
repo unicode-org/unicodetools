@@ -6,7 +6,7 @@
 Ignoring Name Age:
 
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
-Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
 Propertywise [
     \x{2E60}   \N{WIGGLY EXCLAMATION MARK}
@@ -14,11 +14,15 @@ Propertywise [
     \x{2E2E} ⸮ \N{REVERSED QUESTION MARK}
 ] AreAlike
 
+Ignoring Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set Math_Class Math_Class_Ex:
+
 Propertywise [\x{2E60}   \N{WIGGLY EXCLAMATION MARK}
               \x{2E61}   \N{INVERTED WIGGLY EXCLAMATION MARK}]
 CorrespondTo [\x{0021} ! \N{EXCLAMATION MARK}]
     UpTo: East_Asian_Width (Neutral                  vs Narrow),
           Block            (Supplemental_Punctuation vs Basic_Latin)
+
+end Ignoring;
 
 Propertywise [\x{2E62}   \N{LEFT PARENTHESIS WITH MIDDLE RING}]
            : [\x{2E63}   \N{RIGHT PARENTHESIS WITH MIDDLE RING}]
@@ -35,7 +39,6 @@ end Ignoring;
 Propertywise [\x{1DF68} \N{LATIN CAPITAL LETTER PHONOTYPIC A WITH SWASH}
               \x{1DF6A} \N{LATIN CAPITAL LETTER PHONOTYPIC ROUNDTOP A}
               \x{1DF6C} \N{LATIN CAPITAL LETTER REVERSED SCRUPLE}
-              \x{1DF6E} \N{LATIN CAPITAL LETTER PHONOTYPIC DIPHTHONG AI}
               \x{1DF72} \N{LATIN CAPITAL LETTER O WITH CURL}
               \x{1DF74} \N{LATIN CAPITAL LETTER CLOSED OMEGA WITH LONG STEM}
               \x{1DF76} \N{LATIN CAPITAL LETTER TURNED CLOSED OMEGA}
@@ -46,7 +49,6 @@ Propertywise [\x{1DF68} \N{LATIN CAPITAL LETTER PHONOTYPIC A WITH SWASH}
            : [\x{1DF69} \N{LATIN SMALL LETTER PHONOTYPIC A WITH SWASH}
               \x{1DF6B} \N{LATIN SMALL LETTER PHONOTYPIC ROUNDTOP A}
               \x{1DF6D} \N{LATIN SMALL LETTER REVERSED SCRUPLE}
-              \x{1DF6F} \N{LATIN SMALL LETTER PHONOTYPIC DIPHTHONG AI}
               \x{1DF73} \N{LATIN SMALL LETTER O WITH CURL}
               \x{1DF75} \N{LATIN SMALL LETTER CLOSED OMEGA WITH LONG STEM}
               \x{1DF77} \N{LATIN SMALL LETTER TURNED CLOSED OMEGA}
@@ -58,10 +60,17 @@ CorrespondTo [\x{A79A} Ꞛ \N{LATIN CAPITAL LETTER VOLAPUK AE}]
            : [\x{A79B} ꞛ \N{LATIN SMALL LETTER VOLAPUK AE}]
     UpTo: Block (Latin_Extended_G vs Latin_Extended_D)
 
+Ignoring Block Unicode_1_Name:
+Propertywise [\x{1DF6F} \N{LATIN SMALL LETTER PHONOTYPIC DIPHTHONG AI}]
+           : [\x{1DF6E} \N{LATIN CAPITAL LETTER PHONOTYPIC DIPHTHONG AI}]
+CorrespondTo [\x{029D} ʝ \N{LATIN SMALL LETTER J WITH CROSSED-TAIL}]
+           : [\x{A7B2} Ʝ \N{LATIN CAPITAL LETTER J WITH CROSSED-TAIL}]
+end Ignoring;
+
 Propertywise [
     \x{1DF70}   \N{LATIN SMALL LETTER I WITH PIGTAIL AT BOTTOM}
     \x{1DF71}   \N{LATIN SMALL LETTER STRETCHED I}
-    \x{1DF03} 𝼃 \N{LATIN SMALL LETTER REVERSED K}
+    \x{1DF1A} 𝼚 \N{LATIN SMALL LETTER I WITH STROKE AND RETROFLEX HOOK}
 ] AreAlike
 
 Ignoring Block:
