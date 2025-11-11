@@ -1,8 +1,8 @@
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R3;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.RuleBasedCollator;
@@ -370,7 +370,10 @@ public class MakeUnicodeFiles {
             try {
                 br =
                         Utility.openReadFile(
-                                Settings.SRC_UCD_DIR + "MakeUnicodeFiles.txt", Utility.UTF8);
+                                MakeUnicodeFiles.class
+                                        .getResource("MakeUnicodeFiles.txt")
+                                        .getPath(),
+                                Utility.UTF8);
                 String file = null, property = null, value = "", comments = "";
                 while (true) {
                     String line = br.readLine();
@@ -724,6 +727,7 @@ public class MakeUnicodeFiles {
         final BagFormatter bf = new BagFormatter();
         bf.setHexValue(false)
                 .setMergeRanges(true)
+                .setRangeBreakSource(null)
                 .setNoSpacesBeforeSemicolon()
                 .setMinSpacesAfterSemicolon(0)
                 .setUnicodeDataStyleRanges(true)
@@ -865,7 +869,11 @@ public class MakeUnicodeFiles {
                 final String propAlias = it.next();
 
                 final UnicodeProperty up = ups.getProperty(propAlias);
-                final List<String> aliases = up.getNameAliases();
+                final List<String> aliases =
+                        up instanceof IndexUnicodeProperties.IndexUnicodeProperty
+                                ? ((IndexUnicodeProperties.IndexUnicodeProperty) up)
+                                        .getApprovedNameAliases()
+                                : up.getNameAliases();
                 String firstAlias = aliases.get(0).toString();
                 if (firstAlias.isEmpty()) {
                     throw new IllegalArgumentException("Internal error");
@@ -1035,6 +1043,13 @@ public class MakeUnicodeFiles {
                     if (propName.equals("Script")
                             && up.getSet(value).isEmpty()
                             && !value.equals("Katakana_Or_Hiragana")) {
+                        continue;
+                    }
+                    if (propName.equals("Indic_Syllabic_Category")
+                            && value.equals("Consonant_Repha")) {
+                        continue;
+                    }
+                    if (propName.equals("Indic_Positional_Category") && value.equals("Invisible")) {
                         continue;
                     }
                     final List<String> l = up.getValueAliases(value);
@@ -1270,10 +1285,7 @@ public class MakeUnicodeFiles {
                 }
                 pwProp.println(ps.roozbehFile ? "#" : "");
                 pwProp.println("#  All code points not explicitly listed for " + prop.getName());
-                pwProp.println(
-                        "#  have the value "
-                                + v
-                                + (ps.roozbehFile && v.equals("NA") ? " (not applicable)." : "."));
+                pwProp.println("#  have the value " + v + ".");
             }
 
             if (!ps.interleaveValues && prop.isType(UnicodeProperty.BINARY_MASK)) {
@@ -1344,7 +1356,10 @@ public class MakeUnicodeFiles {
             aliases = temp2;
         }
         if (ps.roozbehFile) {
-            aliases.removeIf(alias -> UnicodeProperty.compareNames(alias, ps.skipValue) == 0);
+            aliases.removeIf(
+                    alias ->
+                            UnicodeProperty.compareNames(alias, ps.skipValue) == 0
+                                    || prop.getSet(alias).isEmpty());
             if (!Format.theFormat
                     .propertyToOrderedValues
                     .get(prop.getName())
@@ -1682,7 +1697,7 @@ public class MakeUnicodeFiles {
         // where Cn ranges are allowed to extend from the unassigned part of one block into the
         // No_Block void beyond.
         Map<String, String> ignoreBlocksInCJKVPlanes = new HashMap<String, String>();
-        for (char ext = 'B'; ext <= 'I'; ++ext) {
+        for (char ext = 'B'; ext <= 'J'; ++ext) {
             ignoreBlocksInCJKVPlanes.put("CJK_Ext_" + ext, "NB");
         }
         UnicodeProperty blockOrIdeographicPlane =

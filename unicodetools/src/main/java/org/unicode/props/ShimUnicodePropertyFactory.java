@@ -1,6 +1,6 @@
 package org.unicode.props;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.locale.XCldrStub.Splitter;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UTF16;

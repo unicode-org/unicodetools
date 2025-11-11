@@ -9,8 +9,8 @@ on:
     - '*'
 
 env:
-  CURRENT_UVERSION: 17.0.0  # FIX_FOR_NEW_VERSION
-  PREVIOUS_UVERSION: 16.0.0
+  CURRENT_UVERSION: 18.0.0  # FIX_FOR_NEW_VERSION
+  PREVIOUS_UVERSION: 17.0.0
 
 jobs:
 
@@ -45,7 +45,7 @@ jobs:
       - name: Verify CLDR checkout ref
         run: echo CLDR_REF="${{ steps.cldr_ref.outputs.CLDR_REF }}" && [ "${{ steps.cldr_ref.outputs.CLDR_REF }}x" != "x" ] # fail if empty
       - name: Cache CLDR repository
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: cldr
           key: cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
@@ -71,7 +71,7 @@ jobs:
         with:
           java-version: 11
       - name: Cache local Maven repository
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -113,7 +113,7 @@ jobs:
       - name: Verify CLDR checkout ref
         run: echo CLDR_REF="${{ steps.cldr_ref.outputs.CLDR_REF }}" && [ "${{ steps.cldr_ref.outputs.CLDR_REF }}x" != "x" ] # fail if empty
       - name: Cache CLDR repository
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: cldr/mine/src
           key: cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
@@ -133,7 +133,7 @@ jobs:
         with:
           java-version: 11
       - name: Cache local Maven repository
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -176,7 +176,7 @@ jobs:
 
       - name: Upload UnicodeTestResults artifact
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: unicode-test-results
           path: |
@@ -297,7 +297,7 @@ jobs:
       - name: Verify CLDR checkout ref
         run: echo CLDR_REF="${{ steps.cldr_ref.outputs.CLDR_REF }}" && [ "${{ steps.cldr_ref.outputs.CLDR_REF }}x" != "x" ] # fail if empty
       - name: Cache CLDR repository
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: cldr/mine/src
           key: cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
@@ -317,7 +317,7 @@ jobs:
         with:
           java-version: 11
       - name: Cache local Maven repository
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -375,7 +375,7 @@ jobs:
       - name: Verify CLDR checkout ref
         run: echo CLDR_REF="${{ steps.cldr_ref.outputs.CLDR_REF }}" && [ "${{ steps.cldr_ref.outputs.CLDR_REF }}x" != "x" ] # fail if empty
       - name: Cache CLDR repository
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: cldr/mine/src
           key: cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
@@ -395,7 +395,7 @@ jobs:
         with:
           java-version: 11
       - name: Cache local Maven repository
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
