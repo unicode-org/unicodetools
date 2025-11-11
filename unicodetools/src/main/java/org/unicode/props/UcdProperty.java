@@ -362,7 +362,7 @@ public enum UcdProperty {
     kJURC_Numeric(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kJURC_Numeric"),
     kJURC_RSUnicode(
             PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kJURC_RSUnicode"),
-    kJURC_Src(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kJURC_Src"),
+    kJURC_Src(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kJURC_Src"),
     kJa(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJa"),
     kJapanese(
             PropertyType.Miscellaneous,
