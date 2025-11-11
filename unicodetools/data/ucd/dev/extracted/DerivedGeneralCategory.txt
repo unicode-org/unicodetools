@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-10, 23:51:40 GMT
+# Date: 2025-11-11, 17:10:15 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -257,7 +257,6 @@
 2072..2073    ; Cn #   [2] <reserved-2072>..<reserved-2073>
 208F          ; Cn #       <reserved-208F>
 209D..209F    ; Cn #   [3] <reserved-209D>..<reserved-209F>
-20C2          ; Cn #       <reserved-20C2>
 20C4..20CF    ; Cn #  [12] <reserved-20C4>..<reserved-20CF>
 20F1..20FF    ; Cn #  [15] <reserved-20F1>..<reserved-20FF>
 218C..218F    ; Cn #   [4] <reserved-218C>..<reserved-218F>
@@ -752,7 +751,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 814711
+# Total code points: 814710
 
 # ================================================
 
@@ -4080,8 +4079,7 @@ FFE9..FFEC    ; Sm #   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS ARROW
 0BF9          ; Sc #       TAMIL RUPEE SIGN
 0E3F          ; Sc #       THAI CURRENCY SYMBOL BAHT
 17DB          ; Sc #       KHMER CURRENCY SYMBOL RIEL
-20A0..20C1    ; Sc #  [34] EURO-CURRENCY SIGN..SAUDI RIYAL SIGN
-20C3          ; Sc #       UAE DIRHAM SIGN
+20A0..20C3    ; Sc #  [36] EURO-CURRENCY SIGN..UAE DIRHAM SIGN
 A838          ; Sc #       NORTH INDIC RUPEE MARK
 FDFC          ; Sc #       RIAL SIGN
 FE69          ; Sc #       SMALL DOLLAR SIGN
@@ -4092,7 +4090,7 @@ FFE5..FFE6    ; Sc #   [2] FULLWIDTH YEN SIGN..FULLWIDTH WON SIGN
 1E2FF         ; Sc #       WANCHO NGUN SIGN
 1ECB0         ; Sc #       INDIC SIYAQ RUPEE MARK
 
-# Total code points: 65
+# Total code points: 66
 
 # ================================================
 
