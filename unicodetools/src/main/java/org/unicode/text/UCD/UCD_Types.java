@@ -627,10 +627,11 @@ public interface UCD_Types {
             Tai_Yo = 175,
             Tolong_Siki = 176,
             Beria_Erfe = 177,
-            // Provisionally assigned or proposed
+            // Unicode 18
             Jurchen = 178,
             Proto_Cuneiform = 179,
-            LIMIT_SCRIPT = Proto_Cuneiform + 1;
+            Seal = 180,
+            LIMIT_SCRIPT = Seal + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte BPT_N = 0, BPT_O = 1, BPT_C = 2, LIMIT_BPT = 3;

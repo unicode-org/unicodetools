@@ -869,7 +869,11 @@ public class MakeUnicodeFiles {
                 final String propAlias = it.next();
 
                 final UnicodeProperty up = ups.getProperty(propAlias);
-                final List<String> aliases = up.getNameAliases();
+                final List<String> aliases =
+                        up instanceof IndexUnicodeProperties.IndexUnicodeProperty
+                                ? ((IndexUnicodeProperties.IndexUnicodeProperty) up)
+                                        .getApprovedNameAliases()
+                                : up.getNameAliases();
                 String firstAlias = aliases.get(0).toString();
                 if (firstAlias.isEmpty()) {
                     throw new IllegalArgumentException("Internal error");

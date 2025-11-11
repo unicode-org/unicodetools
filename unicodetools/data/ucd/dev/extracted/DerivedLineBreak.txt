@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2025-10-23, 18:15:38 GMT
+# Date: 2025-11-11, 17:40:26 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -70,8 +70,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 757177 code points not listed here.
-# Total code points: 894645
+# The above property value applies to 757175 code points not listed here.
+# Total code points: 894643
 
 # ================================================
 
@@ -438,8 +438,7 @@ FF1F          ; EX # Po       FULLWIDTH QUESTION MARK
 20B7..20BA    ; PR # Sc   [4] SPESMILO SIGN..TURKISH LIRA SIGN
 20BC..20BD    ; PR # Sc   [2] MANAT SIGN..RUBLE SIGN
 20BF          ; PR # Sc       BITCOIN SIGN
-20C1          ; PR # Sc       SAUDI RIYAL SIGN
-20C3          ; PR # Sc       UAE DIRHAM SIGN
+20C1..20C3    ; PR # Sc   [3] SAUDI RIYAL SIGN..UAE DIRHAM SIGN
 2116          ; PR # So       NUMERO SIGN
 2212..2213    ; PR # Sm   [2] MINUS SIGN..MINUS-OR-PLUS SIGN
 FE69          ; PR # Sc       SMALL DOLLAR SIGN
@@ -448,7 +447,7 @@ FFE1          ; PR # Sc       FULLWIDTH POUND SIGN
 FFE5..FFE6    ; PR # Sc   [2] FULLWIDTH YEN SIGN..FULLWIDTH WON SIGN
 1E2FF         ; PR # Sc       WANCHO NGUN SIGN
 
-# The above property value applies to 13 code points not listed here.
+# The above property value applies to 12 code points not listed here.
 # Total code points: 67
 
 # ================================================
@@ -1790,7 +1789,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 11F45..11F4F  ; ID # Po  [11] KAWI PUNCTUATION SECTION MARKER..KAWI PUNCTUATION CLOSING SPIRAL
 16FF4..16FF6  ; ID # Nl   [3] YANGQIN SIGN SLOW ONE BEAT..YANGQIN SIGN SLOW TWO BEATS
 17000..18AFF  ; ID # Lo [6912] TANGUT IDEOGRAPH-17000..TANGUT COMPONENT-768
-18D00..18D1E  ; ID # Lo  [31] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D1E
+18D00..18D20  ; ID # Lo  [33] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D20
 18D80..18DF2  ; ID # Lo [115] TANGUT COMPONENT-769..TANGUT COMPONENT-883
 1B000..1B122  ; ID # Lo [291] KATAKANA LETTER ARCHAIC E..KATAKANA LETTER ARCHAIC WU
 1B170..1B2FB  ; ID # Lo [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
@@ -1882,7 +1881,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 31350..33479  ; ID # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 
 # The above property value applies to 57518 code points not listed here.
-# Total code points: 172561
+# Total code points: 172563
 
 # ================================================
 

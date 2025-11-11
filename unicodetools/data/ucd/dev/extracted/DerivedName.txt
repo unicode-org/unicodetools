@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2025-10-23, 18:15:39 GMT
+# Date: 2025-11-11, 17:40:26 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -7551,6 +7551,7 @@
 20BF          ; BITCOIN SIGN
 20C0          ; SOM SIGN
 20C1          ; SAUDI RIYAL SIGN
+20C2          ; RUFIYAA SIGN
 20C3          ; UAE DIRHAM SIGN
 20D0          ; COMBINING LEFT HARPOON ABOVE
 20D1          ; COMBINING RIGHT HARPOON ABOVE
@@ -37942,7 +37943,7 @@ FFFD          ; REPLACEMENT CHARACTER
 18AFF         ; TANGUT COMPONENT-768
 18B00..18CDA  ; KHITAN SMALL SCRIPT CHARACTER-*
 18CFF         ; KHITAN SMALL SCRIPT CHARACTER-*
-18D00..18D1E  ; TANGUT IDEOGRAPH-*
+18D00..18D20  ; TANGUT IDEOGRAPH-*
 18D80         ; TANGUT COMPONENT-769
 18D81         ; TANGUT COMPONENT-770
 18D82         ; TANGUT COMPONENT-771
@@ -45840,6 +45841,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 159823
+# Total code points: 159826
 
 # EOF

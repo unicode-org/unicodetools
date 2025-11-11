@@ -431,9 +431,10 @@ public final class UCD_Names implements UCD_Types {
         "Tai_Yo",
         "Tolong_Siki",
         "Beria_Erfe",
-        // Provisionally assigned
+        // Unicode 18
         "Jurchen",
         "Proto_Cuneiform",
+        "Seal",
     };
 
     public static final Relation<String, String> EXTRA_SCRIPT =
@@ -632,9 +633,10 @@ public final class UCD_Names implements UCD_Types {
         "Tayo",
         "Tols",
         "Berf", // Beria Erfe
-        // Provisionally assigned
+        // Unicode 18
         "Jurc",
         "Pcun",
+        "Seal",
     };
 
     static final String[] SHORT_AGE = {

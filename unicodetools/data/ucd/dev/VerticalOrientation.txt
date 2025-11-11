@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2025-10-23, 17:46:00 GMT
+# Date: 2025-11-10, 23:52:18 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -903,8 +903,7 @@
 208D           ; R  # Ps         SUBSCRIPT LEFT PARENTHESIS
 208E           ; R  # Pe         SUBSCRIPT RIGHT PARENTHESIS
 2090..209C     ; R  # Lm    [13] LATIN SUBSCRIPT SMALL LETTER A..LATIN SUBSCRIPT SMALL LETTER T
-20A0..20C1     ; R  # Sc    [34] EURO-CURRENCY SIGN..SAUDI RIYAL SIGN
-20C3           ; R  # Sc         UAE DIRHAM SIGN
+20A0..20C3     ; R  # Sc    [36] EURO-CURRENCY SIGN..UAE DIRHAM SIGN
 20D0..20DC     ; R  # Mn    [13] COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
 20DD..20E0     ; U  # Me     [4] COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
 20E1           ; R  # Mn         COMBINING LEFT RIGHT ARROW ABOVE
@@ -2221,8 +2220,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 18B00..18CDA   ; U  # Lo   [475] KHITAN SMALL SCRIPT CHARACTER-18B00..KHITAN SMALL SCRIPT CHARACTER-18CDA
 18CDB..18CFE   ; U  # Cn    [36] <reserved-18CDB>..<reserved-18CFE>
 18CFF          ; U  # Lo         KHITAN SMALL SCRIPT CHARACTER-18CFF
-18D00..18D1E   ; U  # Lo    [31] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D1E
-18D1F..18D7F   ; U  # Cn    [97] <reserved-18D1F>..<reserved-18D7F>
+18D00..18D20   ; U  # Lo    [33] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D20
+18D21..18D7F   ; U  # Cn    [95] <reserved-18D21>..<reserved-18D7F>
 18D80..18DF2   ; U  # Lo   [115] TANGUT COMPONENT-769..TANGUT COMPONENT-883
 18DF3..18DFF   ; U  # Cn    [13] <reserved-18DF3>..<reserved-18DFF>
 1AFF0..1AFF3   ; U  # Lm     [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
