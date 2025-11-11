@@ -1,0 +1,39 @@
+# LinkificationTest.txt
+# Date: 2025-06-27
+# © 2025 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
+#
+# For documentation and usage, see https://www.unicode.org/reports/tr58/
+#
+# Field 0: Source
+# Field 1: Expected Linkification, where:
+#	   ⸠ is at the start, and 
+#	   ⸡ is at the end
+#
+# Notes: 
+# - The # character only begins a comment if it is the first character on a line.
+# - Leading and trailing spaces in a field are to be omitted, but interior spaces retained
+
+See example.com! on…;	                   See ⸠example.com⸡! on…
+See example.com/αβγ on…;	               See ⸠example.com/αβγ⸡ on…
+See example.com?αβγ on…;	               See ⸠example.com?αβγ⸡ on…
+See example.com\x{23}αβγ on…;	               See ⸠example.com\x{23}αβγ⸡ on…
+See example.com/αβγ/δεζ?θικ\x{23}λμν on…;	   See ⸠example.com/αβγ/δεζ?θικ\x{23}λμν⸡ on…
+See example.com/αβγ/δεζ?δ.εφ\x{23}λμν on…;	   See ⸠example.com/αβγ/δεζ?δ.εφ\x{23}λμν⸡ on…
+
+# Break on hard (' ')
+See example.com/αβγ/δεζ?δ εφ\x{23}λμν on…;	   See ⸠example.com/αβγ/δεζ?δ⸡ εφ\x{23}λμν on…
+
+# Break on soft ('.') followed by hard (' ')
+See example.com/αβγ/δεζ?δ. εφ\x{23}λμν on…;	 See ⸠example.com/αβγ/δεζ?δ⸡. εφ\x{23}λμν on…	     
+See example.com/α/βγ?δ/ε?ζ\x{23}λ/μ?ν\x{23}π on…;  See ⸠example.com/α/βγ?δ/ε?ζ\x{23}λ/μ?ν\x{23}π⸡ on…
+
+# Break on unmatched bracket
+See example.com/αβ) on…;	               See ⸠example.com/αβ⸡) on…	   
+
+# Include matched bracket
+See example.com/α(β) on…;                See ⸠example.com/α(β)⸡ on…
+
+# Disallow matching across interior syntax
+See example.com/αβ(γ/δ)ρς?θικ\x{23}λμν on…;   See ⸠example.com/αβ(γ/δ⸡)ρς?θικ\x{23}λμν on…	      

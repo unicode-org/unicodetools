@@ -1,5 +1,5 @@
-# PropertyAliases-17.0.0.txt
-# Date: 2025-01-27, 18:09:29 GMT
+# PropertyAliases-18.0.0.txt
+# Date: 2025-11-11, 02:15:48 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -48,8 +48,11 @@
 #
 # The combination of property value and property name is, however, unique.
 #
-# For more information, see UAX #44, Unicode Character Database, and
-# UTS #18, Unicode Regular Expressions.
+# For more information, see:
+# - UAX #44, Unicode Character Database;
+# - UAX #38, Unicode Han Database (Unihan);
+# - UAX #57, Unicode Egyptian Hieroglyph Database (Unikemet);
+# - UTS #18, Unicode Regular Expressions.
 # ================================================
 
 
@@ -96,7 +99,10 @@ cjkIRG_TSource           ; kIRG_TSource
 cjkIRG_UKSource          ; kIRG_UKSource
 cjkIRG_USource           ; kIRG_USource
 cjkIRG_VSource           ; kIRG_VSource
+cjkMandarin              ; kMandarin
 cjkRSUnicode             ; kRSUnicode                  ; Unicode_Radical_Stroke; URS
+cjkTotalStrokes          ; kTotalStrokes
+cjkUnihanCore2020        ; kUnihanCore2020
 isc                      ; ISO_Comment
 JSN                      ; Jamo_Short_Name
 kEH_Cat                  ; kEH_Cat
@@ -104,6 +110,8 @@ kEH_Desc                 ; kEH_Desc
 kEH_HG                   ; kEH_HG
 kEH_IFAO                 ; kEH_IFAO
 kEH_JSesh                ; kEH_JSesh
+kNSHU_DubenSrc           ; kNSHU_DubenSrc
+kTGT_MergedSrc           ; kTGT_MergedSrc
 na                       ; Name
 na1                      ; Unicode_1_Name
 Name_Alias               ; Name_Alias
@@ -220,6 +228,6 @@ XO_NFKC                  ; Expands_On_NFKC
 XO_NFKD                  ; Expands_On_NFKD
 
 # ================================================
-# Total:    142
+# Total:    147
 
 # EOF
