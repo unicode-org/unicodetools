@@ -855,6 +855,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
         }
 
+        public List<String> getApprovedNameAliases() {
+            var result = new ArrayList<String>();
+            result.add(prop.getShortName());
+            result.add(prop.getNames().getLongName());
+            result.addAll(prop.getNames().getOtherNames());
+            return result;
+        }
+
         @Override
         public List<String> _getNameAliases(List result) {
             result.addAll(prop.getNames().getAllNames());
