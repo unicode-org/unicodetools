@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2025-11-11, 12:28:22 GMT
+# Date: 2025-11-11, 12:32:09 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -30329,7 +30329,7 @@ FFFD          ; REPLACEMENT CHARACTER
 10EEC         ; ARABIC CROWN LETTER NOON
 10EED         ; ARABIC CROWN LETTER HEH
 10EEE         ; ARABIC CROWN LETTER YEH
-10EF9         ; ARABIC CROWN
+10EF9         ; ARABIC MARK CROWN
 10EFA         ; ARABIC DOUBLE VERTICAL BAR BELOW
 10EFB         ; ARABIC SMALL LOW NOON
 10EFC         ; ARABIC COMBINING ALEF OVERLAY

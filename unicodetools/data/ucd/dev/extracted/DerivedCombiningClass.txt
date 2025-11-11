@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2025-11-11, 12:28:18 GMT
+# Date: 2025-11-11, 12:32:04 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2814,7 +2814,7 @@ FE2E..FE2F    ; 230 # Mn   [2] COMBINING CYRILLIC TITLO LEFT HALF..COMBINING CYR
 10D24..10D27  ; 230 # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
 10D69..10D6D  ; 230 # Mn   [5] GARAY VOWEL SIGN E..GARAY CONSONANT NASALIZATION MARK
 10EAB..10EAC  ; 230 # Mn   [2] YEZIDI COMBINING HAMZA MARK..YEZIDI COMBINING MADDA MARK
-10EF9         ; 230 # Mn       ARABIC CROWN
+10EF9         ; 230 # Mn       ARABIC MARK CROWN
 10F48..10F4A  ; 230 # Mn   [3] SOGDIAN COMBINING DOT ABOVE..SOGDIAN COMBINING CURVE ABOVE
 10F4C         ; 230 # Mn       SOGDIAN COMBINING HOOK ABOVE
 10F82         ; 230 # Mn       OLD UYGHUR COMBINING DOT ABOVE
