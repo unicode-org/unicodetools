@@ -444,12 +444,15 @@ public enum UcdProperty {
     kMorohashi(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkMorohashi"),
     kNSHU_DubenSrc(
             PropertyType.Miscellaneous,
-            DerivedPropertyStatus.UCDNonProperty,
+            DerivedPropertyStatus.Approved,
             "kNSHU_DubenSrc",
-            "kSrc_NushuDuben"),
+            new String[] {},
+            new String[] {
+                "kSrc_NushuDuben",
+            }),
     kNSHU_Reading(
             PropertyType.Miscellaneous,
-            DerivedPropertyStatus.UCDNonProperty,
+            DerivedPropertyStatus.Provisional,
             "kNSHU_Reading",
             "kReading"),
     kNelson(
@@ -538,8 +541,7 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkTGHZ2013"),
-    kTGT_MergedSrc(
-            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "kTGT_MergedSrc"),
+    kTGT_MergedSrc(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kTGT_MergedSrc"),
     kTGT_Numeric(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kTGT_Numeric"),
     kTGT_RSUnicode(
             PropertyType.Miscellaneous,
@@ -1010,6 +1012,23 @@ public enum UcdProperty {
     private final EnumSet enums;
     private final Class enumClass;
     private final ValueCardinality cardinality;
+
+    private UcdProperty(
+            PropertyType type,
+            DerivedPropertyStatus status,
+            String shortName,
+            String[] otherNames,
+            String[] extraNames) {
+        this.type = type;
+        this.status = status;
+        names =
+                new PropertyNames<UcdProperty>(
+                        UcdProperty.class, this, shortName, otherNames, extraNames);
+        name2enum = null;
+        enums = null;
+        enumClass = null;
+        cardinality = ValueCardinality.Singleton;
+    }
 
     private UcdProperty(
             PropertyType type,

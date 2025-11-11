@@ -190,7 +190,6 @@ cjkTayNumeric            ; kTayNumeric ; Provisional
 # change the tag kRSTUnicode to kTGT_RSUnicode.
 # For Unicode Version 17.0. See L2/25-087 item 1.9.
 # (Changed between 17 alpha and beta.)
-kTGT_MergedSrc           ; kTGT_MergedSrc ; UCDNonProperty
 kTGT_RSUnicode           ; kTGT_RSUnicode ; kRSTUnicode ; UCDNonProperty
 
 # [185-C37] Consensus: Add a new provisional property, kTGT_Numeric to the
@@ -204,8 +203,8 @@ kTGT_Numeric ; kTGT_Numeric ; Provisional
 # change the tag kSrc_NushuDuben to kNSHU_DubenSrc, and change the tag kReading to kNSHU_Reading.
 # For Unicode Version 17.0. See L2/25-087 item 1.9.
 # (Changed between 17 alpha and beta.)
-kNSHU_DubenSrc           ; kNSHU_DubenSrc ; kSrc_NushuDuben ; UCDNonProperty
-kNSHU_Reading            ; kNSHU_Reading ; kReading ; UCDNonProperty
+kNSHU_DubenSrc           ; kNSHU_DubenSrc ; kSrc_NushuDuben ; ExtraAliases
+kNSHU_Reading            ; kNSHU_Reading ; kReading ; Provisional
 
 kEH_Func                 ; kEH_Func ; Provisional
 kEH_FVal                 ; kEH_FVal ; Provisional
