@@ -1658,7 +1658,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         var range = new IntRange();
                         range.start = cp;
                         range.end = cp;
-                        if (unicodeDataValue == null) {
+                        if (unicodeDataValue.equals("NaN")) {
                             if (!extractedValue.endsWith(".0")) {
                                 throw new IllegalArgumentException(
                                         "Non-integer numeric value extracted from Unihan for "
