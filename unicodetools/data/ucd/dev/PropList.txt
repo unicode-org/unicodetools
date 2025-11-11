@@ -1,3 +1,8 @@
+1DF6F ; Soft_Dotted
+1DF70 ; Soft_Dotted
+1DF71 ; Soft_Dotted
+
+
 # PropList-18.0.0.txt
 # Date: 2025-11-11, 13:03:33 GMT
 # © 2025 Unicode®, Inc.
