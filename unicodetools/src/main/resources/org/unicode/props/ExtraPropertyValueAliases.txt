@@ -419,3 +419,9 @@ Math_Class_Ex ; S    ; Space
 Math_Class_Ex ; U    ; Unary
 Math_Class_Ex ; V    ; Vary
 Math_Class_Ex ; X    ; Special
+
+# @missing: 0000..10FFFF; kVietnameseNumeric ; NaN
+# @missing: 0000..10FFFF; kZhuangNumeric ; NaN
+# @missing: 0000..10FFFF; kTayNumeric ; NaN
+# @missing: 0000..10FFFF; kTGT_Numeric ; NaN
+# @missing: 0000..10FFFF; Non_Unihan_Numeric_Value ; NaN
