@@ -9,7 +9,7 @@
  */
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -522,41 +522,28 @@ public final class UCD implements UCD_Types {
     }
 
     private void populateHanExceptions(UnicodeProperty numeric) {
-        for (String value : numeric.getAvailableValues()) {
-            if (value == null || value.equals("NaN")) {
-                continue;
-            }
-            String propertyValue = Utility.replace(value, ",", "");
-            final int hack = propertyValue.indexOf(' ');
-            if (hack >= 0) {
-                Utility.fixDot();
-                if (SHOW_LOADING) {
-                    System.out.println("BAD NUMBER: " + value);
-                }
-                propertyValue = propertyValue.substring(0, hack);
+        for (final int code : numeric.getSet("NaN").complement().codePoints()) {
+            // Unicode 15.1:
+            // This code had these two exceptions, but now U+4EAC actually has value
+            // 10000000000000000
+            // and we want to see that in DerivedNumericValues.txt,
+            // so we stop making these exceptions.
+            // NOTE(egg): These two exceptions (we are in a function called exceptions, so these are
+            // exceptions to the broader exception that is Han numeric values) were made irrelevant
+            // sometime before Unicode 5.2.  See L2/03-094 for background.
+            if (compositeVersion < 0xf0100 && (code == 0x5793 || code == 0x4EAC)) {
+                continue; // two exceptions!!
             }
 
-            for (String s : numeric.getSet(value)) {
-                final int code = s.codePointAt(0);
-                // Unicode 15.1:
-                // This code had these two exceptions, but now U+4EAC actually has value
-                // 10000000000000000
-                // and we want to see that in DerivedNumericValues.txt,
-                // so we stop making these exceptions.
-                if (compositeVersion < 0xf0100 && (code == 0x5793 || code == 0x4EAC)) {
-                    continue; // two exceptions!!
-                }
-
-                HanException except = (HanException) hanExceptions.get(code);
-                if (except != null) {
-                    throw new IllegalArgumentException(
-                            "Duplicate Numeric Value for U+" + Utility.hex(code));
-                }
-                except = new HanException();
-                hanExceptions.put(code, except);
-                except.numericValue = Double.parseDouble(propertyValue);
-                except.numericType = NUMERIC;
+            HanException except = (HanException) hanExceptions.get(code);
+            if (except != null && false) {
+                throw new IllegalArgumentException(
+                        "Duplicate Numeric Value for U+" + Utility.hex(code));
             }
+            except = new HanException();
+            hanExceptions.put(code, except);
+            except.numericValue = Double.parseDouble(numeric.getValues(code).iterator().next());
+            except.numericType = NUMERIC;
         }
     }
 
@@ -1309,6 +1296,10 @@ public final class UCD implements UCD_Types {
                     // Unicode 12 added TANGUT IDEOGRAPH-187F2..TANGUT IDEOGRAPH-187F7.
                     return TANGUT_BASE;
                 }
+                if (ch <= 0x187FF && rCompositeVersion >= 0x110000) {
+                    // Unicode 17 added TANGUT IDEOGRAPH-187F8..TANGUT IDEOGRAPH-187FF.
+                    return TANGUT_BASE;
+                }
             }
 
             if (rCompositeVersion >= 0xd0000) {
@@ -1320,6 +1311,18 @@ public final class UCD implements UCD_Types {
                 }
                 if (ch <= 0x18D08) {
                     return TANGUT_SUP_BASE; // 18D00..18D08 Tangut Ideograph Supplement
+                }
+                if (ch <= 0x18D1C && rCompositeVersion >= 0x110000) {
+                    // Unicode 17 added TANGUT IDEOGRAPH-18D09..TANGUT IDEOGRAPH-18D1C.
+                    return TANGUT_SUP_BASE;
+                }
+                if (ch <= 0x18D1E && rCompositeVersion >= 0x110000) {
+                    // Unicode 17 added TANGUT IDEOGRAPH-18D1D..TANGUT IDEOGRAPH-18D1E.
+                    return TANGUT_SUP_BASE;
+                }
+                if (ch <= 0x18D20 && rCompositeVersion >= 0x120000) {
+                    // Unicode 18 added TANGUT IDEOGRAPH-18D1F and TANGUT IDEOGRAPH-18D20.
+                    return TANGUT_SUP_BASE;
                 }
             }
 
@@ -1350,6 +1353,9 @@ public final class UCD implements UCD_Types {
                 if (ch <= 0x2B739 && rCompositeVersion >= 0xf0000) {
                     return CJK_C_BASE;
                 }
+                if (ch <= 0x2B73F && rCompositeVersion >= 0x110000) {
+                    return CJK_C_BASE;
+                }
             }
             // 2B740..2B81F; CJK Unified Ideographs Extension D
             if (rCompositeVersion >= 0x60000) {
@@ -1365,7 +1371,10 @@ public final class UCD implements UCD_Types {
                 if (ch <= CJK_E_BASE) {
                     return ch; // Extension E first char
                 }
-                if (ch < CJK_E_LIMIT) {
+                if (ch <= 0x2CEA1) {
+                    return CJK_E_BASE;
+                }
+                if (ch <= 0x2CEAD && rCompositeVersion >= 0x110000) {
                     return CJK_E_BASE;
                 }
             }
@@ -1403,6 +1412,15 @@ public final class UCD implements UCD_Types {
                 }
                 if (ch < CJK_H_LIMIT) {
                     return CJK_H_BASE;
+                }
+            }
+            // 323B0..33479; CJK Unified Ideographs Extension H
+            if (rCompositeVersion >= 0x110000) {
+                if (ch <= CJK_J_BASE) {
+                    return ch; // Extension J first char
+                }
+                if (ch < CJK_J_LIMIT) {
+                    return CJK_J_BASE;
                 }
             }
 
@@ -1659,6 +1677,7 @@ public final class UCD implements UCD_Types {
             case CJK_I_BASE:
             case CJK_G_BASE: // Extension G
             case CJK_H_BASE:
+            case CJK_J_BASE:
                 if (fixStrings) {
                     constructedName = "CJK UNIFIED IDEOGRAPH-" + Utility.hex(codePoint, 4);
                 }

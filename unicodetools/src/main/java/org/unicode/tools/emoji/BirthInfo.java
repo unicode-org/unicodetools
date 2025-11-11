@@ -1,7 +1,7 @@
 package org.unicode.tools.emoji;
 
 import com.google.common.collect.ImmutableMap;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import java.util.Collections;
@@ -103,7 +103,7 @@ public class BirthInfo implements Comparable<BirthInfo> {
                     continue;
                 }
                 int year = -1;
-                if (s.equals("☝🏻")) {
+                if (s.equals("👯🏿")) {
                     int debug = 0;
                 }
                 VersionInfo versionInfo = Emoji.VERSION1;
@@ -125,6 +125,13 @@ public class BirthInfo implements Comparable<BirthInfo> {
                     // Handshake is E3.0 but mods were not added until E14.0
                     year = 2021;
                     versionInfo = Emoji.VERSION14;
+                } else if ((s.codePointAt(0) == EmojiData.BUNNY_DANCERS
+                                || s.codePointAt(0) == EmojiData.WRESTLERS)
+                        && s.length() > 2
+                        && EmojiData.MODIFIERS.contains(s.codePointAt(2))) {
+                    // Mods were added to these in E17.0
+                    year = 2025;
+                    versionInfo = Emoji.VERSION17;
                 } else {
                     for (Entry<VersionInfo, Integer> entry :
                             Emoji.EMOJI_VERSION_TO_YEAR.entrySet()) {

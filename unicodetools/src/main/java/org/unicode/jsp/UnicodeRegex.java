@@ -164,7 +164,7 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
      * host = // reserved+;
      * query = [\\=reserved]+;
      * fragment = reserved+;
-     * reserved = [[:ascii:][:alphabetic:]];
+     * reserved = [[:Block=ASCII:][:alphabetic:]];
      * </pre>
      *
      * <p>Caveats: at this point the parsing is simple; for example, # cannot be quoted (use

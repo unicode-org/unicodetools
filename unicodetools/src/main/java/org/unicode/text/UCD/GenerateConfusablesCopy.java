@@ -11,10 +11,10 @@
 package org.unicode.text.UCD;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Transform;
@@ -90,8 +90,7 @@ public class GenerateConfusablesCopy {
             ToolUnicodePropertySource.make(version); // ICUPropertyFactory.make();
 
     static {
-        // USE the tool unicode set instead of ICU, which may not be using the latest version.
-        UnicodeSet.setDefaultXSymbolTable(ups.getXSymbolTable());
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
         UnicodeTransform.setFactory(TOOL_FACTORY);
     }
 
@@ -222,9 +221,9 @@ public class GenerateConfusablesCopy {
     private static final UnicodeSet LATIN = new UnicodeSet("[:script=latin:]").freeze();
     private static final UnicodeSet LATIN_PLUS =
             new UnicodeSet("[[:script=latin:][:script=common:][:script=inherited:]]").freeze();
-    private static final UnicodeSet ASCII = new UnicodeSet("[:ASCII:]").freeze();
+    private static final UnicodeSet ASCII = new UnicodeSet("[:Block=ASCII:]").freeze();
     private static final UnicodeSet MARKS_AND_ASCII =
-            new UnicodeSet("[[:mark:][:ASCII:]]").freeze();
+            new UnicodeSet("[[:mark:][:Block=ASCII:]]").freeze();
 
     private static void generateLatin() throws IOException {
         // pick out only those items where the source and target both have some latin, and no
@@ -779,13 +778,9 @@ public class GenerateConfusablesCopy {
                     final String codelist = pieces[0].trim();
                     final Reason reasons = Reason.fromString(pieces[1]);
                     if (pieces[0].startsWith("[")) {
-                        // TODO(macchiati): Weird dependency on ChainedSymbolTable which we probably
-                        // do not need.
                         sources =
                                 VersionedProperty.parseUnicodeSet(
-                                        codelist,
-                                        new TestUnicodeInvariants
-                                                .ChainedSymbolTable()); // .retainAll(allocated);
+                                        codelist, VersionedSymbolTable.forDevelopment());
                     } else {
                         final String[] codes = Utility.split(codelist, ' ');
                         for (final String code : codes) {
@@ -2125,7 +2120,9 @@ public class GenerateConfusablesCopy {
             if (appendFile) {
                 final String[] replacements = {"%date%", Default.getDate()};
                 Utility.appendFile(
-                        Settings.SRC_UCD_DIR + "confusablesHeader.txt",
+                        GenerateConfusablesCopy.class
+                                .getResource("confusablesHeader.txt")
+                                .getPath(),
                         Utility.UTF8_WINDOWS,
                         out,
                         replacements);
