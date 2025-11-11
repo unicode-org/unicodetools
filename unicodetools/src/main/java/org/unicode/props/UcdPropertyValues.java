@@ -1729,6 +1729,7 @@ public class UcdPropertyValues {
     // kTGH
     // kTGHZ2013
     // kTGT_MergedSrc
+    // kTGT_Numeric
     // kTGT_RSUnicode
     // kTotalStrokes
     // kTraditionalVariant

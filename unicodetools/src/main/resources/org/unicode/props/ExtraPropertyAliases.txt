@@ -190,15 +190,21 @@ cjkTayNumeric            ; kTayNumeric ; Provisional
 # change the tag kRSTUnicode to kTGT_RSUnicode.
 # For Unicode Version 17.0. See L2/25-087 item 1.9.
 # (Changed between 17 alpha and beta.)
-kTGT_MergedSrc           ; kTGT_MergedSrc ; UCDNonProperty
 kTGT_RSUnicode           ; kTGT_RSUnicode ; kRSTUnicode ; UCDNonProperty
+
+# [185-C37] Consensus: Add a new provisional property, kTGT_Numeric to the
+# Tangut data files, based on L2/25-055, for Unicode Version 18.0.
+# [Ref. 5.2 in L2/25-232R]
+kTGT_Numeric ; kTGT_Numeric ; Provisional
+
+# TODO(egg): This file somehow classifies all provisional numeric properties as miscellaneous.
 
 # [183-C30] Consensus: In NushuSources.txt,
 # change the tag kSrc_NushuDuben to kNSHU_DubenSrc, and change the tag kReading to kNSHU_Reading.
 # For Unicode Version 17.0. See L2/25-087 item 1.9.
 # (Changed between 17 alpha and beta.)
-kNSHU_DubenSrc           ; kNSHU_DubenSrc ; kSrc_NushuDuben ; UCDNonProperty
-kNSHU_Reading            ; kNSHU_Reading ; kReading ; UCDNonProperty
+kNSHU_DubenSrc           ; kNSHU_DubenSrc ; kSrc_NushuDuben ; ExtraAliases
+kNSHU_Reading            ; kNSHU_Reading ; kReading ; Provisional
 
 kEH_Func                 ; kEH_Func ; Provisional
 kEH_FVal                 ; kEH_FVal ; Provisional

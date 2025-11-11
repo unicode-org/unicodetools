@@ -31,7 +31,21 @@ public class PropertyNames<T extends Enum> {
     private final NameMatcher name2enum;
     private final String shortName;
     private final List<String> otherNames;
+    private List<String> extraNames = null;
     private final T enumItem;
+
+    public PropertyNames(
+            Class<T> classItem,
+            T enumItem,
+            String shortName,
+            String[] otherNames,
+            String[] extraNames) {
+        this(classItem, enumItem, shortName, otherNames);
+        this.extraNames = Arrays.asList(extraNames);
+        for (final String extra : extraNames) {
+            this.name2enum.put(extra, enumItem);
+        }
+    }
 
     public PropertyNames(Class<T> classItem, T enumItem, String shortName, String... otherNames) {
         this.enumItem = enumItem;
@@ -58,6 +72,10 @@ public class PropertyNames<T extends Enum> {
         return shortName;
     }
 
+    public String getLongName() {
+        return enumItem.toString();
+    }
+
     public List<String> getOtherNames() {
         return otherNames;
     }
@@ -67,6 +85,9 @@ public class PropertyNames<T extends Enum> {
         result.add(shortName); // UCD code expects the first name to be the short one
         result.add(enumItem.toString());
         result.addAll(otherNames);
+        if (extraNames != null) {
+            result.addAll(extraNames);
+        }
         return ImmutableList.copyOf(result);
     }
 
