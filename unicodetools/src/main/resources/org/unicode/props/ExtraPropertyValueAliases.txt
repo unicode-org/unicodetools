@@ -226,6 +226,7 @@ jg; ALEF_MAQSURAH ; ALEF_MAQSURAH
 
 # @missing: 0000..10FFFF; kSimplifiedVariant ; <none>
 # @missing: 0000..10FFFF; kTraditionalVariant ; <none>
+# @missing: 0000..10FFFF; kSpoofingVariant ; <none>
 
 # @missing: 0000..10FFFF; Joining_Group ; No_Joining_Group
 
