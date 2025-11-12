@@ -87,6 +87,8 @@ Names_List_Cross_Ref ; Names_List_Cross_Ref ; UCDNonProperty
 # Miscellaneous Properties
 # ================================================
 
+Arabic_Shaping_Schematic_Name ; Arabic_Shaping_Schematic_Name ; UCDNonProperty
+
 CJKR ; CJK_Radical ; UCDNonProperty
 
 EDCM ; Emoji_DCM ; UCDNonProperty
