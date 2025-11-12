@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-18.0.0.txt
-# Date: 2025-11-11, 12:32:06 GMT
+# Date: 2025-11-12, 22:35:10 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -841,8 +841,7 @@
 2090..209C    ; N # Lm  [13] LATIN SUBSCRIPT SMALL LETTER A..LATIN SUBSCRIPT SMALL LETTER T
 20A0..20A8    ; N # Sc   [9] EURO-CURRENCY SIGN..RUPEE SIGN
 20AA..20AB    ; N # Sc   [2] NEW SHEQEL SIGN..DONG SIGN
-20AD..20C1    ; N # Sc  [21] KIP SIGN..SAUDI RIYAL SIGN
-20C3          ; N # Sc       UAE DIRHAM SIGN
+20AD..20C3    ; N # Sc  [23] KIP SIGN..UAE DIRHAM SIGN
 20D0..20DC    ; N # Mn  [13] COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
 20DD..20E0    ; N # Me   [4] COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
 20E1          ; N # Mn       COMBINING LEFT RIGHT ARROW ABOVE
@@ -2139,8 +2138,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 760570 code points not listed here.
-# Total code points: 792261
+# The above property value applies to 760564 code points not listed here.
+# Total code points: 792256
 
 # ================================================
 
@@ -2546,7 +2545,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 16FF0..16FF1  ; W # Mc   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 16FF2..16FF3  ; W # Lm   [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
 16FF4..16FF6  ; W # Nl   [3] YANGQIN SIGN SLOW ONE BEAT..YANGQIN SIGN SLOW TWO BEATS
-17000..18CD5  ; W # Lo [7382] TANGUT IDEOGRAPH-17000..KHITAN SMALL SCRIPT CHARACTER-18CD5
+17000..18CDA  ; W # Lo [7387] TANGUT IDEOGRAPH-17000..KHITAN SMALL SCRIPT CHARACTER-18CDA
 18CFF..18D20  ; W # Lo  [34] KHITAN SMALL SCRIPT CHARACTER-18CFF..TANGUT IDEOGRAPH-18D20
 18D80..18DF2  ; W # Lo [115] TANGUT COMPONENT-769..TANGUT COMPONENT-883
 1AFF0..1AFF3  ; W # Lm   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
@@ -2618,7 +2617,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 31350..33479  ; W # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 
 # The above property value applies to 56166 code points not listed here.
-# Total code points: 182774
+# Total code points: 182779
 
 # ================================================
 

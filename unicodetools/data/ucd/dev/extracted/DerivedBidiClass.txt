@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2025-11-11, 12:32:02 GMT
+# Date: 2025-11-12, 22:35:06 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1112,7 +1112,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 16FF0..16FF1  ; L # Mc   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 16FF2..16FF3  ; L # Lm   [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
 16FF4..16FF6  ; L # Nl   [3] YANGQIN SIGN SLOW ONE BEAT..YANGQIN SIGN SLOW TWO BEATS
-17000..18CD5  ; L # Lo [7382] TANGUT IDEOGRAPH-17000..KHITAN SMALL SCRIPT CHARACTER-18CD5
+17000..18CDA  ; L # Lo [7387] TANGUT IDEOGRAPH-17000..KHITAN SMALL SCRIPT CHARACTER-18CDA
 18CFF..18D20  ; L # Lo  [34] KHITAN SMALL SCRIPT CHARACTER-18CFF..TANGUT IDEOGRAPH-18D20
 18D80..18DF2  ; L # Lo [115] TANGUT COMPONENT-769..TANGUT COMPONENT-883
 1AFF0..1AFF3  ; L # Lm   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
@@ -1229,7 +1229,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 810597 code points not listed here.
+# The above property value applies to 810592 code points not listed here.
 # Total code points: 1095391
 
 # ================================================
@@ -1404,8 +1404,7 @@ FF0D          ; ES # Pd       FULLWIDTH HYPHEN-MINUS
 0E3F          ; ET # Sc       THAI CURRENCY SYMBOL BAHT
 17DB          ; ET # Sc       KHMER CURRENCY SYMBOL RIEL
 2030..2034    ; ET # Po   [5] PER MILLE SIGN..TRIPLE PRIME
-20A0..20C1    ; ET # Sc  [34] EURO-CURRENCY SIGN..SAUDI RIYAL SIGN
-20C3          ; ET # Sc       UAE DIRHAM SIGN
+20A0..20C3    ; ET # Sc  [36] EURO-CURRENCY SIGN..UAE DIRHAM SIGN
 212E          ; ET # So       ESTIMATED SYMBOL
 2213          ; ET # Sm       MINUS-OR-PLUS SIGN
 A838          ; ET # Sc       NORTH INDIC RUPEE MARK
@@ -1421,7 +1420,7 @@ FFE5..FFE6    ; ET # Sc   [2] FULLWIDTH YEN SIGN..FULLWIDTH WON SIGN
 11FDD..11FE0  ; ET # Sc   [4] TAMIL SIGN KAACU..TAMIL SIGN VARAAKAN
 1E2FF         ; ET # Sc       WANCHO NGUN SIGN
 
-# The above property value applies to 13 code points not listed here.
+# The above property value applies to 12 code points not listed here.
 # Total code points: 92
 
 # ================================================

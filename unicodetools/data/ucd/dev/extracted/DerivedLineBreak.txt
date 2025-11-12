@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2025-11-11, 12:32:08 GMT
+# Date: 2025-11-12, 22:35:12 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -70,8 +70,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 757157 code points not listed here.
-# Total code points: 894625
+# The above property value applies to 757152 code points not listed here.
+# Total code points: 894620
 
 # ================================================
 
@@ -438,8 +438,7 @@ FF1F          ; EX # Po       FULLWIDTH QUESTION MARK
 20B7..20BA    ; PR # Sc   [4] SPESMILO SIGN..TURKISH LIRA SIGN
 20BC..20BD    ; PR # Sc   [2] MANAT SIGN..RUBLE SIGN
 20BF          ; PR # Sc       BITCOIN SIGN
-20C1          ; PR # Sc       SAUDI RIYAL SIGN
-20C3          ; PR # Sc       UAE DIRHAM SIGN
+20C1..20C3    ; PR # Sc   [3] SAUDI RIYAL SIGN..UAE DIRHAM SIGN
 2116          ; PR # So       NUMERO SIGN
 2212..2213    ; PR # Sm   [2] MINUS SIGN..MINUS-OR-PLUS SIGN
 FE69          ; PR # Sc       SMALL DOLLAR SIGN
@@ -448,7 +447,7 @@ FFE1          ; PR # Sc       FULLWIDTH POUND SIGN
 FFE5..FFE6    ; PR # Sc   [2] FULLWIDTH YEN SIGN..FULLWIDTH WON SIGN
 1E2FF         ; PR # Sc       WANCHO NGUN SIGN
 
-# The above property value applies to 13 code points not listed here.
+# The above property value applies to 12 code points not listed here.
 # Total code points: 67
 
 # ================================================
@@ -1457,7 +1456,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 16F00..16F4A  ; AL # Lo  [75] MIAO LETTER PA..MIAO LETTER RTE
 16F50         ; AL # Lo       MIAO LETTER NASALIZATION
 16F93..16F9F  ; AL # Lm  [13] MIAO LETTER TONE-2..MIAO LETTER REFORMED TONE-8
-18B00..18CD5  ; AL # Lo [470] KHITAN SMALL SCRIPT CHARACTER-18B00..KHITAN SMALL SCRIPT CHARACTER-18CD5
+18B00..18CDA  ; AL # Lo [475] KHITAN SMALL SCRIPT CHARACTER-18B00..KHITAN SMALL SCRIPT CHARACTER-18CDA
 18CFF         ; AL # Lo       KHITAN SMALL SCRIPT CHARACTER-18CFF
 1AFF0..1AFF3  ; AL # Lm   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF5..1AFFB  ; AL # Lm   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
@@ -1640,7 +1639,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB94..1FBEF  ; AL # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; AL # So       ALARM BELL SYMBOL
 
-# Total code points: 26976
+# Total code points: 26981
 
 # ================================================
 

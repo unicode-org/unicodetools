@@ -154,8 +154,7 @@
 208A..208C    ; Common # Sm   [3] SUBSCRIPT PLUS SIGN..SUBSCRIPT EQUALS SIGN
 208D          ; Common # Ps       SUBSCRIPT LEFT PARENTHESIS
 208E          ; Common # Pe       SUBSCRIPT RIGHT PARENTHESIS
-20A0..20C1    ; Common # Sc  [34] EURO-CURRENCY SIGN..SAUDI RIYAL SIGN
-20C3          ; Common # Sc       UAE DIRHAM SIGN
+20A0..20C3    ; Common # Sc  [36] EURO-CURRENCY SIGN..UAE DIRHAM SIGN
 2100..2101    ; Common # So   [2] ACCOUNT OF..ADDRESSED TO THE SUBJECT
 2102          ; Common # L&       DOUBLE-STRUCK CAPITAL C
 2103..2106    ; Common # So   [4] DEGREE CELSIUS..CADA UNA
@@ -639,7 +638,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 9140
+# Total code points: 9141
 
 # ================================================
 
@@ -2975,10 +2974,10 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 # ================================================
 
 16FE4         ; Khitan_Small_Script # Mn       KHITAN SMALL SCRIPT FILLER
-18B00..18CD5  ; Khitan_Small_Script # Lo [470] KHITAN SMALL SCRIPT CHARACTER-18B00..KHITAN SMALL SCRIPT CHARACTER-18CD5
+18B00..18CDA  ; Khitan_Small_Script # Lo [475] KHITAN SMALL SCRIPT CHARACTER-18B00..KHITAN SMALL SCRIPT CHARACTER-18CDA
 18CFF         ; Khitan_Small_Script # Lo       KHITAN SMALL SCRIPT CHARACTER-18CFF
 
-# Total code points: 472
+# Total code points: 477
 
 # ================================================
 
