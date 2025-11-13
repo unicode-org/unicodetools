@@ -385,7 +385,10 @@ public class TestProperties extends TestFmwkMinusMinus {
                         UcdPropertyValues.Joining_Group_Values.Rohingya_Yeh, new Dots(2, BELOW),
                         UcdPropertyValues.Joining_Group_Values.Teh_Marbuta, new Dots(2, ABOVE),
                         UcdPropertyValues.Joining_Group_Values.Teh_Marbuta_Goal, new Dots(2, ABOVE),
-                        UcdPropertyValues.Joining_Group_Values.Yeh, new Dots(2, BELOW));
+                        UcdPropertyValues.Joining_Group_Values.Yeh, new Dots(2, BELOW),
+                        // New dotted groups not in L2/11-092:
+                        UcdPropertyValues.Joining_Group_Values.Crown_Beh, new Dots(1, BELOW),
+                        UcdPropertyValues.Joining_Group_Values.Crown_Feh, new Dots(1, ABOVE));
         final Pattern prefix = Pattern.compile("HIGH HAMZA (?<remainder>.*)");
         final Pattern suffixPart = Pattern.compile(" WITH (?<remainder>.*)");
         final Pattern patternLocation =
