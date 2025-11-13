@@ -1223,8 +1223,19 @@ public final class UCD_Names implements UCD_Types {
         "VERTICAL_TAIL",
         // Unicode 16
         "KASHMIRI_YEH",
-        // Unicode n > 16
+        // Unicode 17
         "THIN_NOON",
+        // Unicode 18
+        "CROWN_BEH",
+        "CROWN_HAH",
+        "CROWN_SEEN",
+        "CROWN_SAD",
+        "CROWN_TAH",
+        "CROWN_AIN",
+        "CROWN_FEH",
+        "CROWN_KAF",
+        "CROWN_MEEM",
+        "CROWN_HEH",
     };
 
     static {
