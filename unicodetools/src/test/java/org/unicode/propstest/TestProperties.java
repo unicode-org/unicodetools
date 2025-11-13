@@ -398,11 +398,16 @@ public class TestProperties extends TestFmwkMinusMinus {
         final Pattern patternUnit =
                 Pattern.compile(
                         "("
-                                + "(?<dots>DOT"
-                                + "|(VERTICAL )?2 DOTS"
-                                + "|(INVERTED |HORIZONTAL )?3 DOTS"
-                                // DIAMOND not in L2/11-092:
-                                + "|(DIAMOND )?4 DOTS)"
+                                // We split the unqualified dots to check for non-minimal
+                                // representations, e.g., DOTLESS BEH WITH DOT BELOW.
+                                + "(?<dots>(?<plainDots>DOT"
+                                + "|2 DOTS"
+                                + "|3 DOTS"
+                                + "|4 DOTS)"
+                                + "|VERTICAL 2 DOTS"
+                                + "|(INVERTED|HORIZONTAL) 3 DOTS"
+                                // DIAMOND 4 DOTS not in L2/11-092:
+                                + "|DIAMOND 4 DOTS)"
                                 // ELONGATED not in L2/11-092:
                                 + "|(WAVY |ELONGATED )?HAMZA"
                                 + "|ALEF|DAMMA|MADDA|TAH|WASLA"
@@ -413,7 +418,6 @@ public class TestProperties extends TestFmwkMinusMinus {
                                 + "|COMMA|MEEM|TEH|NOON"
                                 + "|ATTACHED ROUND DOT"
                                 + "|STROKE"
-                                + ""
                                 + ")\\b(?<remainder>.*)");
         // The laterally-located-pattern-unit is a post L2/11-092 innovation.
         // These pattern-units do not take a location (ABOVE, BELOW, or WITHIN).
@@ -555,6 +559,8 @@ public class TestProperties extends TestFmwkMinusMinus {
                     } else {
                         // We must have a pattern.
                         String fromStartOfPattern = remainder;
+                        boolean anyDots = false;
+                        Integer plainDots = null;
                         patternUnits:
                         for (; ; ) {
                             matcher = patternUnit.matcher(remainder);
@@ -573,6 +579,21 @@ public class TestProperties extends TestFmwkMinusMinus {
                                                 + ": Expected "
                                                 + remainder
                                                 + " to occur before any LOOP or BAR");
+                            }
+                            anyDots |= matcher.group("dots") != null;
+                            if (matcher.group("plainDots") != null) {
+                                if (plainDots != null) {
+                                    errln(
+                                            "Schematic name of U+"
+                                                    + Utility.hex(codePoint)
+                                                    + ": Multiple plain dots in "
+                                                    + fromStartOfPattern);
+                                }
+                                plainDots =
+                                        matcher.group("plainDots").equals("DOT")
+                                                ? 1
+                                                : Integer.parseInt(
+                                                        matcher.group("plainDots").split(" ")[0]);
                             }
                             remainder = matcher.group("remainder");
                             matcher = coordinator.matcher(remainder);
@@ -601,14 +622,34 @@ public class TestProperties extends TestFmwkMinusMinus {
                                                         + ": Multiple suffix-units "
                                                         + lastLocation);
                                     }
-                                    if (implicitDots != null
-                                            && implicitDots.location == location
-                                            && !dotless) {
+                                }
+                                if (implicitDots != null
+                                        && implicitDots.location.equals(location)) {
+                                    // This would catch BEH WITH 2 DOTS BELOW AND DOT ABOVE.
+                                    if (anyDots && !dotless) {
                                         errln(
                                                 "Schematic name of U+"
                                                         + Utility.hex(codePoint)
-                                                        + ": Expected DOTLESS with pattern "
-                                                        + location);
+                                                        + ": "
+                                                        + joiningGroup
+                                                        + " with dots "
+                                                        + location
+                                                        + " should be DOTLESS");
+                                    }
+                                    // This would catch DOTLESS BEH WITH DOT BELOW AND 3 DOTS
+                                    // ABOVE, given as an example in L2/11-092.
+                                    if (plainDots != null && plainDots == implicitDots.count) {
+                                        errln(
+                                                "Schematic name of U+"
+                                                        + Utility.hex(codePoint)
+                                                        + ": DOTLESS "
+                                                        + joiningGroup
+                                                        + " with "
+                                                        + plainDots
+                                                        + " dots "
+                                                        + location
+                                                        + " should be plain "
+                                                        + joiningGroup);
                                     }
                                 }
                                 lastLocation = location;
