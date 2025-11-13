@@ -137,6 +137,10 @@ public enum UcdProperty {
             "normalization_correction_original"),
 
     // Miscellaneous
+    Arabic_Shaping_Schematic_Name(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "Arabic_Shaping_Schematic_Name"),
     CJK_Radical(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,

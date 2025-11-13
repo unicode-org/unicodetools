@@ -95,6 +95,7 @@ public class UcdPropertyValues {
         }
     }
 
+    // Arabic_Shaping_Schematic_Name
     public enum Bidi_Class_Values implements Named {
         Arabic_Letter("AL"),
         Arabic_Number("AN"),
