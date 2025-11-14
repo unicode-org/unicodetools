@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2025-11-12, 22:35:12 GMT
+# Date: 2025-11-14, 13:43:12 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -60,6 +60,7 @@
 # 30000..3134F CJK_Unified_Ideographs_Extension_G
 # 31350..323AF CJK_Unified_Ideographs_Extension_H
 # 323B0..3347F CJK_Unified_Ideographs_Extension_J
+# 3D000..3FC3F Seal
 # @missing: 30000..3FFFD; Ideographic
 
 # ================================================
@@ -1880,8 +1881,9 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 2F800..2FA1D  ; ID # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; ID # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..33479  ; ID # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
+3D000..3FC3F  ; ID # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# The above property value applies to 57518 code points not listed here.
+# The above property value applies to 46190 code points not listed here.
 # Total code points: 172563
 
 # ================================================

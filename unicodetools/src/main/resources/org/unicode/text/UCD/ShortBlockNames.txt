@@ -266,6 +266,7 @@ Rumi	;	Rumi_Numeral_Symbols
 Runic	;	Runic
 Samaritan	;	Samaritan
 Saurashtra	;	Saurashtra
+Seal	;	Seal
 Sharada	;	Sharada
 Sharada_Sup	;	Sharada_Supplement
 Shavian	;	Shavian

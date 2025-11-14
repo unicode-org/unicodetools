@@ -1,5 +1,5 @@
 # Scripts-18.0.0.txt
-# Date: 2025-11-11, 12:32:49 GMT
+# Date: 2025-11-14, 13:43:46 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3179,5 +3179,11 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 16EBB..16ED3  ; Beria_Erfe # L&  [25] BERIA ERFE SMALL LETTER ARKAB..BERIA ERFE SMALL LETTER AY
 
 # Total code points: 50
+
+# ================================================
+
+3D000..3FC3F  ; Seal # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
+
+# Total code points: 11328
 
 # EOF

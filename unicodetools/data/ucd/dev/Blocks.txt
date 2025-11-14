@@ -375,6 +375,7 @@ FFF0..FFFF; Specials
 30000..3134F; CJK Unified Ideographs Extension G
 31350..323AF; CJK Unified Ideographs Extension H
 323B0..3347F; CJK Unified Ideographs Extension J
+3D000..3FC3F; Seal
 E0000..E007F; Tags
 E0100..E01EF; Variation Selectors Supplement
 F0000..FFFFF; Supplementary Private Use Area-A
