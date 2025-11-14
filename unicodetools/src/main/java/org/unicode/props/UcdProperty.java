@@ -49,6 +49,8 @@ import org.unicode.props.UcdPropertyValues.kEH_Core_Values;
 public enum UcdProperty {
 
     // Numeric
+    Non_Unihan_Numeric_Value(
+            PropertyType.Numeric, DerivedPropertyStatus.UCDNonProperty, "Non_Unihan_Numeric_Value"),
     Numeric_Value(PropertyType.Numeric, DerivedPropertyStatus.Approved, "nv"),
     kAccountingNumeric(
             PropertyType.Numeric, DerivedPropertyStatus.Approved, "cjkAccountingNumeric"),
@@ -59,6 +61,20 @@ public enum UcdProperty {
             null,
             ValueCardinality.Ordered,
             "cjkPrimaryNumeric"),
+    kTGT_Numeric(PropertyType.Numeric, DerivedPropertyStatus.Provisional, "kTGT_Numeric"),
+    kTayNumeric(PropertyType.Numeric, DerivedPropertyStatus.Provisional, "cjkTayNumeric"),
+    kVietnameseNumeric(
+            PropertyType.Numeric,
+            DerivedPropertyStatus.Provisional,
+            null,
+            ValueCardinality.Unordered,
+            "cjkVietnameseNumeric"),
+    kZhuangNumeric(
+            PropertyType.Numeric,
+            DerivedPropertyStatus.Provisional,
+            null,
+            ValueCardinality.Unordered,
+            "cjkZhuangNumeric"),
 
     // String
     Bidi_Mirroring_Glyph(PropertyType.String, DerivedPropertyStatus.Approved, "bmg"),
@@ -100,6 +116,12 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkSimplifiedVariant"),
+    kSpoofingVariant(
+            PropertyType.String,
+            DerivedPropertyStatus.Provisional,
+            null,
+            ValueCardinality.Unordered,
+            "cjkSpoofingVariant"),
     kTraditionalVariant(
             PropertyType.String,
             DerivedPropertyStatus.Provisional,
@@ -116,6 +138,10 @@ public enum UcdProperty {
             "normalization_correction_original"),
 
     // Miscellaneous
+    Arabic_Shaping_Schematic_Name(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "Arabic_Shaping_Schematic_Name"),
     CJK_Radical(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
@@ -173,10 +199,6 @@ public enum UcdProperty {
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
             "Names_List_Subheader_Notice"),
-    Non_Unihan_Numeric_Value(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.UCDNonProperty,
-            "Non_Unihan_Numeric_Value"),
     Standardized_Variant(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
@@ -445,12 +467,15 @@ public enum UcdProperty {
     kMorohashi(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkMorohashi"),
     kNSHU_DubenSrc(
             PropertyType.Miscellaneous,
-            DerivedPropertyStatus.UCDNonProperty,
+            DerivedPropertyStatus.Approved,
             "kNSHU_DubenSrc",
-            "kSrc_NushuDuben"),
+            new String[] {},
+            new String[] {
+                "kSrc_NushuDuben",
+            }),
     kNSHU_Reading(
             PropertyType.Miscellaneous,
-            DerivedPropertyStatus.UCDNonProperty,
+            DerivedPropertyStatus.Provisional,
             "kNSHU_Reading",
             "kReading"),
     kNelson(
@@ -520,12 +545,6 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkSpecializedSemanticVariant"),
-    kSpoofingVariant(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "cjkSpoofingVariant"),
     kStrange(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,
@@ -544,8 +563,7 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkTGHZ2013"),
-    kTGT_MergedSrc(
-            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "kTGT_MergedSrc"),
+    kTGT_MergedSrc(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kTGT_MergedSrc"),
     kTGT_RSUnicode(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
@@ -559,7 +577,6 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkTang"),
-    kTayNumeric(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkTayNumeric"),
     kTotalStrokes(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Approved,
@@ -574,12 +591,6 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkVietnamese"),
-    kVietnameseNumeric(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "cjkVietnameseNumeric"),
     kXHC1983(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,
@@ -594,12 +605,6 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkZhuang"),
-    kZhuangNumeric(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "cjkZhuangNumeric"),
     normalization_correction_version(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
@@ -1015,6 +1020,23 @@ public enum UcdProperty {
     private final EnumSet enums;
     private final Class enumClass;
     private final ValueCardinality cardinality;
+
+    private UcdProperty(
+            PropertyType type,
+            DerivedPropertyStatus status,
+            String shortName,
+            String[] otherNames,
+            String[] extraNames) {
+        this.type = type;
+        this.status = status;
+        names =
+                new PropertyNames<UcdProperty>(
+                        UcdProperty.class, this, shortName, otherNames, extraNames);
+        name2enum = null;
+        enums = null;
+        enumClass = null;
+        cardinality = ValueCardinality.Singleton;
+    }
 
     private UcdProperty(
             PropertyType type,

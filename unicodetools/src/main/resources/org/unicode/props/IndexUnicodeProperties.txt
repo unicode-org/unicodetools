@@ -102,6 +102,7 @@ UnicodeData; Simple_Lowercase_Mapping ; 13
 UnicodeData; Simple_Titlecase_Mapping ; 14
 UnicodeData; Unicode_1_Name ; 10
 UnicodeData; ISO_Comment ; 11
+ArabicShaping; Arabic_Shaping_Schematic_Name; 1
 # Handle the complex default of ArabicShaping.txt by introducing an unofficial
 # contributory property, to be used when deriving Joining_Type.
 ArabicShaping; Other_Joining_Type; 2
@@ -338,6 +339,8 @@ NushuSources ; kSrc_NushuDuben
 NushuSources ; kReading
 TangutSources ; kRSTUnicode
 TangutSources ; kTGT_MergedSrc
+TangutSources ; kTGT_Numeric
+
 SealSources ; kSEAL_THXSrc
 SealSources ; kSEAL_CCZSrc
 SealSources ; kSEAL_QJZSrc

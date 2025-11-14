@@ -312,6 +312,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         add(iup.getProperty("kMandarin"));
         add(iup.getProperty("kTotalStrokes"));
         add(iup.getProperty("kUnihanCore2020"));
+        add(iup.getProperty("kTGT_MergedSrc"));
+        add(iup.getProperty("kNSHU_DubenSrc"));
         add(iup.getProperty("kEH_Cat"));
         add(iup.getProperty("kEH_Desc"));
         add(iup.getProperty("kEH_HG"));

@@ -155,7 +155,7 @@ git checkout la-vache/main unicodetools/data/ucd/dev/extracted/*;
 git checkout la-vache/main unicodetools/data/ucd/dev/auxiliary/*;
 rm .\Generated\* -recurse -force;
 mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.Main"'  '-Dexec.args="build MakeUnicodeFiles"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
-cp .\Generated\UCD\17.0.0\* .\unicodetools\data\ucd\dev -recurse -force;
+cp .\Generated\UCD\18.0.0\* .\unicodetools\data\ucd\dev -recurse -force;
 rm unicodetools\data\ucd\dev\zzz-unchanged-*;
 rm unicodetools\data\ucd\dev\*\zzz-unchanged-*;
 rm .\unicodetools\data\ucd\dev\extra\*;

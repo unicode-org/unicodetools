@@ -1,5 +1,5 @@
 # Scripts-18.0.0.txt
-# Date: 2025-11-10, 11:53:37 GMT
+# Date: 2025-11-14, 13:43:46 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -154,8 +154,7 @@
 208A..208C    ; Common # Sm   [3] SUBSCRIPT PLUS SIGN..SUBSCRIPT EQUALS SIGN
 208D          ; Common # Ps       SUBSCRIPT LEFT PARENTHESIS
 208E          ; Common # Pe       SUBSCRIPT RIGHT PARENTHESIS
-20A0..20C1    ; Common # Sc  [34] EURO-CURRENCY SIGN..SAUDI RIYAL SIGN
-20C3          ; Common # Sc       UAE DIRHAM SIGN
+20A0..20C3    ; Common # Sc  [36] EURO-CURRENCY SIGN..UAE DIRHAM SIGN
 2100..2101    ; Common # So   [2] ACCOUNT OF..ADDRESSED TO THE SUBJECT
 2102          ; Common # L&       DOUBLE-STRUCK CAPITAL C
 2103..2106    ; Common # So   [4] DEGREE CELSIUS..CADA UNA
@@ -639,7 +638,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 9140
+# Total code points: 9141
 
 # ================================================
 
@@ -899,7 +898,8 @@ FE76..FEFC    ; Arabic # Lo [135] ARABIC FATHA ISOLATED FORM..ARABIC LIGATURE LA
 10EC6..10EC7  ; Arabic # Lo   [2] ARABIC LETTER THIN NOON..ARABIC LETTER YEH WITH FOUR DOTS BELOW
 10ED0         ; Arabic # Po       ARABIC BIBLICAL END OF VERSE
 10ED1..10ED8  ; Arabic # So   [8] ARABIC LIGATURE ALAYHAA AS-SALAATU WAS-SALAAM..ARABIC LIGATURE NAWWARA ALLAAHU MARQADAH
-10EFA..10EFF  ; Arabic # Mn   [6] ARABIC DOUBLE VERTICAL BAR BELOW..ARABIC SMALL LOW WORD MADDA
+10ED9..10EEE  ; Arabic # Lo  [22] ARABIC CROWN LETTER BEH..ARABIC CROWN LETTER YEH
+10EF9..10EFF  ; Arabic # Mn   [7] ARABIC MARK CROWN..ARABIC SMALL LOW WORD MADDA
 1EE00..1EE03  ; Arabic # Lo   [4] ARABIC MATHEMATICAL ALEF..ARABIC MATHEMATICAL DAL
 1EE05..1EE1F  ; Arabic # Lo  [27] ARABIC MATHEMATICAL WAW..ARABIC MATHEMATICAL DOTLESS QAF
 1EE21..1EE22  ; Arabic # Lo   [2] ARABIC MATHEMATICAL INITIAL BEH..ARABIC MATHEMATICAL INITIAL JEEM
@@ -935,7 +935,7 @@ FE76..FEFC    ; Arabic # Lo [135] ARABIC FATHA ISOLATED FORM..ARABIC LIGATURE LA
 1EEAB..1EEBB  ; Arabic # Lo  [17] ARABIC MATHEMATICAL DOUBLE-STRUCK LAM..ARABIC MATHEMATICAL DOUBLE-STRUCK GHAIN
 1EEF0..1EEF1  ; Arabic # Sm   [2] ARABIC MATHEMATICAL OPERATOR MEEM WITH HAH WITH TATWEEL..ARABIC MATHEMATICAL OPERATOR HAH WITH DAL
 
-# Total code points: 1413
+# Total code points: 1436
 
 # ================================================
 
@@ -2774,10 +2774,10 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 
 16FE0         ; Tangut # Lm       TANGUT ITERATION MARK
 17000..18AFF  ; Tangut # Lo [6912] TANGUT IDEOGRAPH-17000..TANGUT COMPONENT-768
-18D00..18D1E  ; Tangut # Lo  [31] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D1E
+18D00..18D20  ; Tangut # Lo  [33] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D20
 18D80..18DF2  ; Tangut # Lo [115] TANGUT COMPONENT-769..TANGUT COMPONENT-883
 
-# Total code points: 7059
+# Total code points: 7061
 
 # ================================================
 
@@ -2974,10 +2974,10 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 # ================================================
 
 16FE4         ; Khitan_Small_Script # Mn       KHITAN SMALL SCRIPT FILLER
-18B00..18CD5  ; Khitan_Small_Script # Lo [470] KHITAN SMALL SCRIPT CHARACTER-18B00..KHITAN SMALL SCRIPT CHARACTER-18CD5
+18B00..18CDA  ; Khitan_Small_Script # Lo [475] KHITAN SMALL SCRIPT CHARACTER-18B00..KHITAN SMALL SCRIPT CHARACTER-18CDA
 18CFF         ; Khitan_Small_Script # Lo       KHITAN SMALL SCRIPT CHARACTER-18CFF
 
-# Total code points: 472
+# Total code points: 477
 
 # ================================================
 

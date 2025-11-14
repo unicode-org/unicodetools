@@ -137,7 +137,7 @@
                 Propertywise [𐛪 𐛫] AreAlike
 #       Yeh (with two dots) and yeh with three dots behave the same, except for confusability and
 #       their name in Unicode 1 (both had one that differs from their current name).
-                Ignoring Unicode_1_Name Confusable_MA:
+                Ignoring Unicode_1_Name Arabic_Shaping_Schematic_Name Confusable_MA:
                     Propertywise [ي ۑ] AreAlike
                 end Ignoring;
             end Ignoring;
@@ -1519,7 +1519,7 @@ Ignoring Name:
 
 Propertywise [𐛪 𐛫] AreAlike
 
-Ignoring Unicode_1_Name Confusable_MA:
+Ignoring Unicode_1_Name Arabic_Shaping_Schematic_Name Confusable_MA:
     Propertywise [ي ۑ] AreAlike
 
 Ignoring Math_Class Math_Class_Ex Math_Entity_Name Math_Entity_Set Math_Descriptive_Comments:

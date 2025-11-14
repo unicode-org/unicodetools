@@ -1660,7 +1660,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         var range = new IntRange();
                         range.start = cp;
                         range.end = cp;
-                        if (unicodeDataValue == null) {
+                        if (unicodeDataValue.equals("NaN")) {
                             if (!extractedValue.endsWith(".0")) {
                                 throw new IllegalArgumentException(
                                         "Non-integer numeric value extracted from Unihan for "
@@ -1893,6 +1893,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
     static void init() {
         final Matcher semicolon = SEMICOLON.matcher("");
+        // Populate property2PropertyInfo, first from the index, then from our split Unihan
+        // implicitly.
         for (final String line :
                 FileUtilities.in(IndexUnicodeProperties.class, "IndexUnicodeProperties.txt")) {
             if (line.startsWith("#") || line.isEmpty()) {
@@ -1908,6 +1910,17 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 fromStrings(parts);
             }
         }
+
+        // Starting with Unicode 13, we preprocess the Unihan data using the
+        // <Unicode Tools>/py/splitunihan.py script.
+        // It parses the small number of large, multi-property Unihan*.txt files
+        // and writes many smaller, single-property files like kTotalStrokes.txt.
+        for (UcdProperty prop : UcdProperty.values()) {
+            if (prop.getShortName().startsWith("cjk")) {
+                fromUnihanProperty(prop);
+            }
+        }
+
         // DO THESE FIRST (overrides values in files!)
         parseMissingFromValueAliases(
                 FileUtilities.in(IndexUnicodeProperties.class, "ExtraPropertyAliases.txt"));
@@ -1943,16 +1956,6 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         //            if (property2PropertyInfo.containsKey(x.toString())) continue;
         //            if (SHOW_PROP_INFO) System.out.println("Missing: " + x);
         //        }
-
-        // Starting with Unicode 13, we preprocess the Unihan data using the
-        // <Unicode Tools>/py/splitunihan.py script.
-        // It parses the small number of large, multi-property Unihan*.txt files
-        // and writes many smaller, single-property files like kTotalStrokes.txt.
-        for (UcdProperty prop : UcdProperty.values()) {
-            if (prop.getShortName().startsWith("cjk")) {
-                fromUnihanProperty(prop);
-            }
-        }
     }
 
     private static void parseMissingFromValueAliases(Iterable<String> aliasesLines) {
