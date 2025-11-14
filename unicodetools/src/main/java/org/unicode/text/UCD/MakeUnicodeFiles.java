@@ -43,6 +43,7 @@ import org.unicode.props.BagFormatter;
 import org.unicode.props.DefaultValues;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.East_Asian_Width_Values;
@@ -609,6 +610,9 @@ public class MakeUnicodeFiles {
                 case "UnicodeData":
                     generateUnicodeData(filename);
                     break;
+                case "ArabicShaping":
+                    generateArabicShaping(filename);
+                    break;
                 default:
                     generatePropertyFile(filename);
                     break;
@@ -715,6 +719,40 @@ public class MakeUnicodeFiles {
             pw.println(bf.showSetNames(uset));
         }
 
+        udf.close();
+    }
+
+    private static void generateArabicShaping(String filename) throws IOException {
+        final UnicodeDataFile udf =
+                UnicodeDataFile.openAndWriteHeader("UCD/" + Default.ucdVersion() + '/', filename);
+        final PrintWriter pw = udf.out;
+        Format.theFormat.printFileComments(pw, filename);
+        final var iup = IndexUnicodeProperties.make();
+        final var schematicName = iup.getProperty(UcdProperty.Arabic_Shaping_Schematic_Name);
+        // Other_Joining_Type is the Joining_Type value actually listed in ArabicShaping; characters
+        // not listed have the value Deduce_From_General_Category.
+        final var otherJoiningType = iup.getProperty(UcdProperty.Other_Joining_Type);
+        final var joiningGroup = iup.getProperty(UcdProperty.Joining_Group);
+        final var block = iup.getProperty(UcdProperty.Block);
+
+        final var scope = otherJoiningType.getSet("Deduce_From_General_Category").complement();
+        String lastBlock = null;
+        for (int codePoint : scope.codePoints()) {
+            String currentBlock = block.getValue(codePoint);
+            if (!currentBlock.equals(lastBlock)) {
+                pw.println();
+                if (Block_Values.forName(currentBlock) == Block_Values.General_Punctuation) {
+                    pw.println("# Other");
+                } else {
+                    pw.println("# " + currentBlock.replace("_", " ") + " Characters");
+                }
+                pw.println();
+                lastBlock = currentBlock;
+            }
+            pw.println(Utility.hex(codePoint) + "; " + schematicName.getValue(codePoint) + "; " + otherJoiningType.getFirstValueAlias(otherJoiningType.getValue(codePoint)) + "; " + joiningGroup.getValue(codePoint));
+        }
+        pw.println();
+        pw.println("# EOF");
         udf.close();
     }
 
