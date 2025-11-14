@@ -431,11 +431,10 @@ public class TestProperties extends TestFmwkMinusMinus {
         final Pattern laterallyLocatedPatternUnit =
                 Pattern.compile(
                         "("
-                                + "(?<right>ATTACHED (TOP RIGHT FATHA|BOTTOM RIGHT KASRA)"
+                                + "(?<right>ATTACHED TOP RIGHT FATHA"
                                 + "|RIGHT MIDDLE STROKE"
-                                + "|BOTTOM RIGHT KASRA"
+                                + "|(ATTACHED )?BOTTOM RIGHT KASRA"
                                 + "|(ATTACHED )?RIGHT ROUND DOT"
-                                + "|RIGHT MIDDLE STROKE"
                                 + "|(ATTACHED )?RIGHT HAMZA"
                                 + ")"
                                 + "|(?<left>ATTACHED LEFT HAMZA"
