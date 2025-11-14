@@ -560,7 +560,7 @@ public enum UcdProperty {
     kTGT_MergedSrc(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kTGT_MergedSrc"),
     kTGT_RSUnicode(
             PropertyType.Miscellaneous,
-            DerivedPropertyStatus.UCDNonProperty,
+            DerivedPropertyStatus.Provisional,
             "kTGT_RSUnicode",
             "kRSTUnicode"),
     kTaiwanTelegraph(
