@@ -1,5 +1,5 @@
 # PropertyAliases-18.0.0.txt
-# Date: 2025-11-11, 02:15:48 GMT
+# Date: 2025-11-14, 13:43:31 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -111,6 +111,10 @@ kEH_HG                   ; kEH_HG
 kEH_IFAO                 ; kEH_IFAO
 kEH_JSesh                ; kEH_JSesh
 kNSHU_DubenSrc           ; kNSHU_DubenSrc
+kSEAL_CCZSrc             ; kSEAL_CCZSrc
+kSEAL_DYCSrc             ; kSEAL_DYCSrc
+kSEAL_QJZSrc             ; kSEAL_QJZSrc
+kSEAL_THXSrc             ; kSEAL_THXSrc
 kTGT_MergedSrc           ; kTGT_MergedSrc
 na                       ; Name
 na1                      ; Unicode_1_Name
@@ -228,6 +232,6 @@ XO_NFKC                  ; Expands_On_NFKC
 XO_NFKD                  ; Expands_On_NFKD
 
 # ================================================
-# Total:    147
+# Total:    151
 
 # EOF

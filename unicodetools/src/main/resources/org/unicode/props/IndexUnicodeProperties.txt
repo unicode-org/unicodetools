@@ -38,6 +38,7 @@ FileType ; Unihan_Readings ; PropertyValue
 FileType ; Unihan_Variants ; PropertyValue
 FileType ; NushuSources ; PropertyValue
 FileType ; TangutSources ; PropertyValue
+FileType ; SealSources ; PropertyValue
 
 # NameAliases File Type
 # Contains a multivalued property, where successive values are not in the same line, but are divided out on successive lines with the same code point
@@ -101,6 +102,7 @@ UnicodeData; Simple_Lowercase_Mapping ; 13
 UnicodeData; Simple_Titlecase_Mapping ; 14
 UnicodeData; Unicode_1_Name ; 10
 UnicodeData; ISO_Comment ; 11
+ArabicShaping; Arabic_Shaping_Schematic_Name; 1
 # Handle the complex default of ArabicShaping.txt by introducing an unofficial
 # contributory property, to be used when deriving Joining_Type.
 ArabicShaping; Other_Joining_Type; 2
@@ -338,6 +340,13 @@ NushuSources ; kReading
 TangutSources ; kRSTUnicode
 TangutSources ; kTGT_MergedSrc
 TangutSources ; kTGT_Numeric
+
+SealSources ; kSEAL_THXSrc
+SealSources ; kSEAL_CCZSrc
+SealSources ; kSEAL_QJZSrc
+SealSources ; kSEAL_DYCSrc
+SealSources ; kSEAL_MCJK
+SealSources ; kSEAL_Rad
 
 NormalizationCorrections ; normalization_correction_original ; 1
 NormalizationCorrections ; normalization_correction_corrected ; 2

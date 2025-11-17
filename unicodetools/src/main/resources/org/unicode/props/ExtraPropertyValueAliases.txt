@@ -226,6 +226,7 @@ jg; ALEF_MAQSURAH ; ALEF_MAQSURAH
 
 # @missing: 0000..10FFFF; kSimplifiedVariant ; <none>
 # @missing: 0000..10FFFF; kTraditionalVariant ; <none>
+# @missing: 0000..10FFFF; kSpoofingVariant ; <none>
 
 # @missing: 0000..10FFFF; Joining_Group ; No_Joining_Group
 
@@ -350,6 +351,9 @@ Indic_Syllabic_Category ; Consonant_Repha ; Consonant_Repha
 # @missing: 0000..10FFFF; kNSHU_DubenSrc ; <none>
 # @missing: 0000..10FFFF; kNSHU_Reading ; <none>
 
+# @missing: 0000..10FFFF; kSEAL_MCJK ; <none>
+# @missing: 0000..10FFFF; kSEAL_Rad ; <none>
+
 # @missing: 0000..10FFFF; kEH_Core  ;  N
 kEH_Core ; C ; Core
 kEH_Core ; L ; Legacy
@@ -419,3 +423,9 @@ Math_Class_Ex ; S    ; Space
 Math_Class_Ex ; U    ; Unary
 Math_Class_Ex ; V    ; Vary
 Math_Class_Ex ; X    ; Special
+
+# @missing: 0000..10FFFF; kVietnameseNumeric ; NaN
+# @missing: 0000..10FFFF; kZhuangNumeric ; NaN
+# @missing: 0000..10FFFF; kTayNumeric ; NaN
+# @missing: 0000..10FFFF; kTGT_Numeric ; NaN
+# @missing: 0000..10FFFF; Non_Unihan_Numeric_Value ; NaN

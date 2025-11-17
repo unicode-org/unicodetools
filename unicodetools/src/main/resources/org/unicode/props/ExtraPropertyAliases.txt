@@ -38,6 +38,25 @@ Math_Class ; Math_Class ; NonUCDProperty
 Math_Class_Ex ; Math_Class_Ex ; NonUCDNonProperty
 
 # ================================================
+# Numeric Properties
+# ================================================
+
+# 15.1
+cjkVietnameseNumeric     ; kVietnameseNumeric ; Provisional
+cjkZhuangNumeric         ; kZhuangNumeric ; Provisional
+# 17.0
+cjkTayNumeric            ; kTayNumeric ; Provisional
+
+# [185-C37] Consensus: Add a new provisional property, kTGT_Numeric to the
+# Tangut data files, based on L2/25-055, for Unicode Version 18.0.
+# [Ref. 5.2 in L2/25-232R]
+kTGT_Numeric ; kTGT_Numeric ; Provisional
+
+# Contributory non-property matching exactly field 8 of UnicodeData.txt.
+# Mostly useful as a helper to diachronically parse Numeric_Value.
+Non_Unihan_Numeric_Value ; Non_Unihan_Numeric_Value ; UCDNonProperty
+
+# ================================================
 # String Properties
 # ================================================
 
@@ -52,6 +71,8 @@ ConfMA ; Confusable_MA ; Confusable ; NonUCDNonProperty
 
 cjkSimplifiedVariant ; kSimplifiedVariant ; Provisional
 cjkTraditionalVariant ; kTraditionalVariant ; Provisional
+# 13.0
+cjkSpoofingVariant       ; kSpoofingVariant ; Provisional
 
 Do_Not_Emit_Preferred ; Do_Not_Emit_Preferred ; UCDNonProperty
 
@@ -60,11 +81,15 @@ normalization_correction_corrected ; normalization_correction_corrected ; UCDNon
 
 kEH_AltSeq               ; kEH_AltSeq ; Provisional
 
+kSEAL_MCJK ; kSEAL_MCJK ; Provisional
+
 Names_List_Cross_Ref ; Names_List_Cross_Ref ; UCDNonProperty
 
 # ================================================
 # Miscellaneous Properties
 # ================================================
+
+Arabic_Shaping_Schematic_Name ; Arabic_Shaping_Schematic_Name ; UCDNonProperty
 
 CJKR ; CJK_Radical ; UCDNonProperty
 
@@ -167,7 +192,6 @@ cjkKoreanEducationHanja ; kKoreanEducationHanja ; Provisional
 cjkKoreanName ; kKoreanName ; Provisional
 cjkTGH ; kTGH ; Provisional
 # 13.0
-cjkSpoofingVariant       ; kSpoofingVariant ; Provisional
 cjkTGHZ2013              ; kTGHZ2013 ; Provisional
 # 14.0
 cjkStrange               ; kStrange ; Provisional
@@ -178,26 +202,15 @@ cjkJapanese              ; kJapanese ; Provisional
 cjkMojiJoho              ; kMojiJoho ; Provisional
 cjkSMSZD2003Index        ; kSMSZD2003Index ; Provisional
 cjkSMSZD2003Readings     ; kSMSZD2003Readings ; Provisional
-cjkVietnameseNumeric     ; kVietnameseNumeric ; Provisional
-cjkZhuangNumeric         ; kZhuangNumeric ; Provisional
 # 16.0
 cjkFanqie                ; kFanqie ; Provisional
 cjkZhuang                ; kZhuang ; Provisional
-# 17.0
-cjkTayNumeric            ; kTayNumeric ; Provisional
 
 # [183-C29] Consensus: In TangutSources.txt,
 # change the tag kRSTUnicode to kTGT_RSUnicode.
 # For Unicode Version 17.0. See L2/25-087 item 1.9.
 # (Changed between 17 alpha and beta.)
-kTGT_RSUnicode           ; kTGT_RSUnicode ; kRSTUnicode ; UCDNonProperty
-
-# [185-C37] Consensus: Add a new provisional property, kTGT_Numeric to the
-# Tangut data files, based on L2/25-055, for Unicode Version 18.0.
-# [Ref. 5.2 in L2/25-232R]
-kTGT_Numeric ; kTGT_Numeric ; Provisional
-
-# TODO(egg): This file somehow classifies all provisional numeric properties as miscellaneous.
+kTGT_RSUnicode           ; kTGT_RSUnicode ; kRSTUnicode ; Provisional
 
 # [183-C30] Consensus: In NushuSources.txt,
 # change the tag kSrc_NushuDuben to kNSHU_DubenSrc, and change the tag kReading to kNSHU_Reading.
@@ -206,13 +219,11 @@ kTGT_Numeric ; kTGT_Numeric ; Provisional
 kNSHU_DubenSrc           ; kNSHU_DubenSrc ; kSrc_NushuDuben ; ExtraAliases
 kNSHU_Reading            ; kNSHU_Reading ; kReading ; Provisional
 
+kSEAL_Rad ; kSEAL_Rad ; Provisional
+
 kEH_Func                 ; kEH_Func ; Provisional
 kEH_FVal                 ; kEH_FVal ; Provisional
 kEH_UniK                 ; kEH_UniK ; Provisional
-
-# Contributory non-property matching exactly field 8 of UnicodeData.txt.
-# Mostly useful as a helper to diachronically parse Numeric_Value.
-Non_Unihan_Numeric_Value ; Non_Unihan_Numeric_Value ; UCDNonProperty
 
 Names_List_Subheader        ; Names_List_Subheader ; subhead ; UCDNonProperty
 Names_List_Subheader_Notice ; Names_List_Subheader_Notice    ; UCDNonProperty

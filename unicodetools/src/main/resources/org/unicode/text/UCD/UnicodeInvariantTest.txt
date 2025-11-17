@@ -137,7 +137,7 @@
                 Propertywise [𐛪 𐛫] AreAlike
 #       Yeh (with two dots) and yeh with three dots behave the same, except for confusability and
 #       their name in Unicode 1 (both had one that differs from their current name).
-                Ignoring Unicode_1_Name Confusable_MA:
+                Ignoring Unicode_1_Name Arabic_Shaping_Schematic_Name Confusable_MA:
                     Propertywise [ي ۑ] AreAlike
                 end Ignoring;
             end Ignoring;
@@ -1348,6 +1348,7 @@ $CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
             \p{Script=Tangut}
             \p{Script=Nushu}
             \p{Script=Khitan_Small_Script}
+            \p{Script=Seal}
         ]
     ]
 ]
@@ -1433,6 +1434,14 @@ $nüshuSourcesScope = [\p{gc=Lo} & \p{sc=Nushu}]
 $nüshuSourcesScope = \P{kSrc_NushuDuben=@none@}
 $nüshuSourcesScope = \P{kReading=@none@}
 
+# Seal invariants
+
+Let $sealSourcesScope := \p{Block=Seal}
+$sealSourcesScope = \P{kSEAL_THXSrc=@none@}
+$sealSourcesScope ⊃ [\P{kSEAL_CCZSrc=@none@}\P{kSEAL_QJZSrc=@none@}\P{kSEAL_DYCSrc=@none@}]
+In [\P{kSEAL_MCJK=@none@}], Script * kSEAL_MCJK = (constant Han)
+$sealSourcesScope = \P{kSEAL_Rad=@none@}
+
 # Egyptian hieroglyph invariants
 
 Let $unikemetScope := [\p{Block=/^Egyptian.Hieroglyphs/} - \p{gc=Cn}]
@@ -1510,7 +1519,7 @@ Ignoring Name:
 
 Propertywise [𐛪 𐛫] AreAlike
 
-Ignoring Unicode_1_Name Confusable_MA:
+Ignoring Unicode_1_Name Arabic_Shaping_Schematic_Name Confusable_MA:
     Propertywise [ي ۑ] AreAlike
 
 Ignoring Math_Class Math_Class_Ex Math_Entity_Name Math_Entity_Set Math_Descriptive_Comments:

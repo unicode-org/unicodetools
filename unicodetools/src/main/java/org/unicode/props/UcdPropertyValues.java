@@ -95,6 +95,7 @@ public class UcdPropertyValues {
         }
     }
 
+    // Arabic_Shaping_Schematic_Name
     public enum Bidi_Class_Values implements Named {
         Arabic_Letter("AL"),
         Arabic_Number("AN"),
@@ -448,6 +449,7 @@ public class UcdPropertyValues {
         Runic("Runic"),
         Samaritan("Samaritan"),
         Saurashtra("Saurashtra"),
+        Seal("Seal"),
         Sharada("Sharada"),
         Sharada_Supplement("Sharada_Sup"),
         Shavian("Shavian"),
@@ -1409,6 +1411,16 @@ public class UcdPropertyValues {
         Beh("Beh"),
         Beth("Beth"),
         Burushaski_Yeh_Barree("Burushaski_Yeh_Barree"),
+        Crown_Ain("Crown_Ain"),
+        Crown_Beh("Crown_Beh"),
+        Crown_Feh("Crown_Feh"),
+        Crown_Hah("Crown_Hah"),
+        Crown_Heh("Crown_Heh"),
+        Crown_Kaf("Crown_Kaf"),
+        Crown_Meem("Crown_Meem"),
+        Crown_Sad("Crown_Sad"),
+        Crown_Seen("Crown_Seen"),
+        Crown_Tah("Crown_Tah"),
         Dal("Dal"),
         Dalath_Rish("Dalath_Rish"),
         E("E"),
@@ -1716,6 +1728,12 @@ public class UcdPropertyValues {
     // kRSMerged
     // kRSUnicode
     // kSBGY
+    // kSEAL_CCZSrc
+    // kSEAL_DYCSrc
+    // kSEAL_MCJK
+    // kSEAL_QJZSrc
+    // kSEAL_Rad
+    // kSEAL_THXSrc
     // kSemanticVariant
     // kSimplifiedVariant
     // kSMSZD2003Index
@@ -2269,6 +2287,7 @@ public class UcdPropertyValues {
         Samaritan("Samr"),
         Old_South_Arabian("Sarb"),
         Saurashtra("Saur"),
+        Seal("Seal"),
         SignWriting("Sgnw"),
         Shavian("Shaw"),
         Sharada("Shrd"),
