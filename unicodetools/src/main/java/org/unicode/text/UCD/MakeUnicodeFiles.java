@@ -869,7 +869,11 @@ public class MakeUnicodeFiles {
                 final String propAlias = it.next();
 
                 final UnicodeProperty up = ups.getProperty(propAlias);
-                final List<String> aliases = up.getNameAliases();
+                final List<String> aliases =
+                        up instanceof IndexUnicodeProperties.IndexUnicodeProperty
+                                ? ((IndexUnicodeProperties.IndexUnicodeProperty) up)
+                                        .getApprovedNameAliases()
+                                : up.getNameAliases();
                 String firstAlias = aliases.get(0).toString();
                 if (firstAlias.isEmpty()) {
                     throw new IllegalArgumentException("Internal error");
@@ -1039,6 +1043,13 @@ public class MakeUnicodeFiles {
                     if (propName.equals("Script")
                             && up.getSet(value).isEmpty()
                             && !value.equals("Katakana_Or_Hiragana")) {
+                        continue;
+                    }
+                    if (propName.equals("Indic_Syllabic_Category")
+                            && value.equals("Consonant_Repha")) {
+                        continue;
+                    }
+                    if (propName.equals("Indic_Positional_Category") && value.equals("Invisible")) {
                         continue;
                     }
                     final List<String> l = up.getValueAliases(value);
@@ -1274,10 +1285,7 @@ public class MakeUnicodeFiles {
                 }
                 pwProp.println(ps.roozbehFile ? "#" : "");
                 pwProp.println("#  All code points not explicitly listed for " + prop.getName());
-                pwProp.println(
-                        "#  have the value "
-                                + v
-                                + (ps.roozbehFile && v.equals("NA") ? " (not applicable)." : "."));
+                pwProp.println("#  have the value " + v + ".");
             }
 
             if (!ps.interleaveValues && prop.isType(UnicodeProperty.BINARY_MASK)) {
@@ -1348,7 +1356,10 @@ public class MakeUnicodeFiles {
             aliases = temp2;
         }
         if (ps.roozbehFile) {
-            aliases.removeIf(alias -> UnicodeProperty.compareNames(alias, ps.skipValue) == 0);
+            aliases.removeIf(
+                    alias ->
+                            UnicodeProperty.compareNames(alias, ps.skipValue) == 0
+                                    || prop.getSet(alias).isEmpty());
             if (!Format.theFormat
                     .propertyToOrderedValues
                     .get(prop.getName())
@@ -2024,6 +2035,7 @@ public class MakeUnicodeFiles {
             rangeBlocks.put("Private_Use_Area", "Private Use");
             rangeBlocks.put("Tangut", "Tangut Ideograph");
             rangeBlocks.put("Tangut_Supplement", "Tangut Ideograph Supplement");
+            rangeBlocks.put("Seal", "Seal Character");
             rangeBlocks.put("Supplementary_Private_Use_Area_A", "Plane 15 Private Use");
             rangeBlocks.put("Supplementary_Private_Use_Area_B", "Plane 16 Private Use");
         }

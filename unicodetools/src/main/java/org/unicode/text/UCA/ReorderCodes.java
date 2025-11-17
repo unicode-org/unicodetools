@@ -145,23 +145,7 @@ public class ReorderCodes {
             switch (reorderCode) {
                     //            case UCD_Types.Old_Hungarian:
                     //                return "𐲡";
-                    // Approved for Unicode 16:
-                case UCD_Types.Garay:
-                    return "\uD803\uDD5D";
-                case UCD_Types.Gurung_Khema:
-                    return "\uD818\uDD1C";
-                case UCD_Types.Kirat_Rai:
-                    return "\uD81B\uDD45";
-                case UCD_Types.Ol_Onal:
-                    return "\uD839\uDDD0";
-                case UCD_Types.Sunuwar:
-                    return "\uD806\uDFC4";
-                case UCD_Types.Todhri:
-                    return "\uD801\uDDC2";
-                case UCD_Types.Tulu_Tigalari:
-                    return "\uD804\uDF92";
-
-                    // Provisionally assigned so far:
+                    // Approved for Unicode 17:
                 case UCD_Types.Chisoi:
                     return "\uD81B\uDD93";
                 case UCD_Types.Sidetic:
@@ -170,8 +154,14 @@ public class ReorderCodes {
                     return "\uD839\uDED5";
                 case UCD_Types.Tolong_Siki:
                     return "\uD807\uDDC6";
+                case UCD_Types.Beria_Erfe:
+                    return Character.toString(0x16EA1);
+                    // Provisionally assigned so far:
+                    // (none of these needed right now)
                 default:
-                    throw new UnsupportedOperationException("unknown reorderCode " + reorderCode);
+                    throw new UnsupportedOperationException(
+                            "ReorderCodes.getSampleCharacter() for unknown reorderCode "
+                                    + reorderCode);
             }
         } else {
             return SPECIAL_SAMPLES[reorderCode - FIRST];

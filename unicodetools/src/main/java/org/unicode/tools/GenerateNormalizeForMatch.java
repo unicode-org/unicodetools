@@ -41,6 +41,7 @@ import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeRelation;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.tools.NormalizeForMatch.SpecialReason;
 
@@ -66,22 +67,8 @@ public class GenerateNormalizeForMatch {
     private static final IndexUnicodeProperties iup =
             IndexUnicodeProperties.make(Default.ucdVersion());
 
-    static UnicodeSet.XSymbolTable NO_PROPS =
-            new UnicodeSet.XSymbolTable() {
-                @Override
-                public boolean applyPropertyAlias(
-                        String propertyName, String propertyValue, UnicodeSet result) {
-                    throw new IllegalArgumentException(
-                            "Don't use any ICU Unicode Properties! "
-                                    + propertyName
-                                    + "="
-                                    + propertyValue);
-                }
-                ;
-            };
-
     static {
-        UnicodeSet.setDefaultXSymbolTable(NO_PROPS);
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.NO_PROPS);
     }
 
     private static final UnicodeMap<General_Category_Values> GC =

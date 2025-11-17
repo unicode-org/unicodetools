@@ -27,26 +27,14 @@ import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.text.UCA.UCA;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.VersionedSymbolTable;
 
 public class CollatorEquivalencesNew {
     private static final IndexUnicodeProperties iup =
             IndexUnicodeProperties.make(Default.ucdVersion());
-    static UnicodeSet.XSymbolTable NO_PROPS =
-            new UnicodeSet.XSymbolTable() {
-                @Override
-                public boolean applyPropertyAlias(
-                        String propertyName, String propertyValue, UnicodeSet result) {
-                    throw new IllegalArgumentException(
-                            "Don't use any ICU Unicode Properties! "
-                                    + propertyName
-                                    + "="
-                                    + propertyValue);
-                }
-                ;
-            };
 
     static {
-        UnicodeSet.setDefaultXSymbolTable(NO_PROPS);
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.NO_PROPS);
     }
 
     static interface BaseCollatorKey extends Comparable<BaseCollatorKey> {}
