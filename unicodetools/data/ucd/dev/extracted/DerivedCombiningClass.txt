@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2025-11-17, 15:19:19 GMT
+# Date: 2025-11-17, 15:45:37 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2237,7 +2237,7 @@ ABED          ; 9 # Mn       MEETEI MAYEK APUN IYEK
 # Canonical_Combining_Class=CCC10
 
 05B0          ; 10 # Mn       HEBREW POINT SHEVA
-05C8          ; 10 # Mn       HEBREW POINT HEAVY SHEVA
+05C8          ; 10 # Mn       HEBREW POINT HEBREW POINT SHEVA NA MUDGASH
 
 # Total code points: 2
 

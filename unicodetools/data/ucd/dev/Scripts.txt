@@ -1,5 +1,5 @@
 # Scripts-18.0.0.txt
-# Date: 2025-11-17, 15:19:58 GMT
+# Date: 2025-11-17, 15:46:14 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -819,7 +819,7 @@ FB13..FB17    ; Armenian # L&   [5] ARMENIAN SMALL LIGATURE MEN NOW..ARMENIAN SM
 05C3          ; Hebrew # Po       HEBREW PUNCTUATION SOF PASUQ
 05C4..05C5    ; Hebrew # Mn   [2] HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
 05C6          ; Hebrew # Po       HEBREW PUNCTUATION NUN HAFUKHA
-05C7..05C8    ; Hebrew # Mn   [2] HEBREW POINT QAMATS QATAN..HEBREW POINT HEAVY SHEVA
+05C7..05C8    ; Hebrew # Mn   [2] HEBREW POINT QAMATS QATAN..HEBREW POINT HEBREW POINT SHEVA NA MUDGASH
 05D0..05EA    ; Hebrew # Lo  [27] HEBREW LETTER ALEF..HEBREW LETTER TAV
 05EF..05F2    ; Hebrew # Lo   [4] HEBREW YOD TRIANGLE..HEBREW LIGATURE YIDDISH DOUBLE YOD
 05F3..05F4    ; Hebrew # Po   [2] HEBREW PUNCTUATION GERESH..HEBREW PUNCTUATION GERSHAYIM
