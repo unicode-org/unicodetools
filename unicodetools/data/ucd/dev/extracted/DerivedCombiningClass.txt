@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2025-11-12, 22:35:07 GMT
+# Date: 2025-11-17, 14:52:55 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2077,7 +2077,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1FBF0..1FBF9  ; 0 # Nd  [10] SEGMENTED DIGIT ZERO..SEGMENTED DIGIT NINE
 1FBFA         ; 0 # So       ALARM BELL SYMBOL
 20000..2A6DF  ; 0 # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
-2A700..2B81D  ; 0 # Lo [4382] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B81D
+2A700..2B81E  ; 0 # Lo [4383] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B81E
 2B820..2CEAD  ; 0 # Lo [5774] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEAD
 2CEB0..2EBE0  ; 0 # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2EBF0..2EE5D  ; 0 # Lo [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
@@ -2090,7 +2090,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 816730 code points not listed here.
+# The above property value applies to 816729 code points not listed here.
 # Total code points: 1113143
 
 # ================================================

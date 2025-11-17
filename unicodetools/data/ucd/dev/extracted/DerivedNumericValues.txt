@@ -1,5 +1,5 @@
-# DerivedNumericValues-17.0.0.txt
-# Date: 2025-06-30, 06:20:22 GMT
+# DerivedNumericValues-18.0.0.txt
+# Date: 2025-11-17, 14:53:01 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2201,8 +2201,9 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 1D36D         ; 50.0 ; ; 50 # No       COUNTING ROD TENS DIGIT FIVE
 1EC7E         ; 50.0 ; ; 50 # No       INDIC SIYAQ NUMBER FIFTY
 1ED0E         ; 50.0 ; ; 50 # No       OTTOMAN SIYAQ NUMBER FIFTY
+324DF         ; 50.0 ; ; 50 # Lo       CJK UNIFIED IDEOGRAPH-324DF
 
-# Total code points: 29
+# Total code points: 30
 
 # ================================================
 
@@ -2323,8 +2324,9 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 10E73         ; 200.0 ; ; 200 # No       RUMI NUMBER TWO HUNDRED
 1EC84         ; 200.0 ; ; 200 # No       INDIC SIYAQ NUMBER TWO HUNDRED
 1ED14         ; 200.0 ; ; 200 # No       OTTOMAN SIYAQ NUMBER TWO HUNDRED
+32403         ; 200.0 ; ; 200 # Lo       CJK UNIFIED IDEOGRAPH-32403
 
-# Total code points: 7
+# Total code points: 8
 
 # ================================================
 
