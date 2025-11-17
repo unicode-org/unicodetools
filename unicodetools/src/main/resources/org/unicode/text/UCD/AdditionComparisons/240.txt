@@ -1,0 +1,17 @@
+# Kana: Alternate katakana letters (1B127..1B128)
+# https://github.com/unicode-org/utc-release-management/issues/240
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Propertywise [\x{1B122}   \N{KATAKANA LETTER ARCHAIC WU}
+              \x{1B127}   \N{KATAKANA LETTER ALTERNATE NE}
+              \x{1B128}   \N{KATAKANA LETTER ALTERNATE WI}] AreAlike
+
+end Ignoring;
+
+end Ignoring;
