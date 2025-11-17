@@ -1,5 +1,5 @@
-# DerivedNumericType-17.0.0.txt
-# Date: 2025-06-30, 06:20:22 GMT
+# DerivedNumericType-18.0.0.txt
+# Date: 2025-11-17, 14:57:46 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -199,8 +199,10 @@ F9FD          ; Numeric # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 23B1B         ; Numeric # Lo       CJK UNIFIED IDEOGRAPH-23B1B
 2626D         ; Numeric # Lo       CJK UNIFIED IDEOGRAPH-2626D
 2F890         ; Numeric # Lo       CJK COMPATIBILITY IDEOGRAPH-2F890
+32403         ; Numeric # Lo       CJK UNIFIED IDEOGRAPH-32403
+324DF         ; Numeric # Lo       CJK UNIFIED IDEOGRAPH-324DF
 
-# Total code points: 1125
+# Total code points: 1127
 
 # ================================================
 

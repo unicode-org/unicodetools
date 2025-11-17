@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2025-11-14, 13:43:49 GMT
+# Date: 2025-11-17, 14:58:22 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2527,8 +2527,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1FBFA          ; R  # So         ALARM BELL SYMBOL
 20000..2A6DF   ; U  # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
 2A6E0..2A6FF   ; U  # Cn    [32] <reserved-2A6E0>..<reserved-2A6FF>
-2A700..2B81D   ; U  # Lo  [4382] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B81D
-2B81E..2B81F   ; U  # Cn     [2] <reserved-2B81E>..<reserved-2B81F>
+2A700..2B81E   ; U  # Lo  [4383] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B81E
+2B81F          ; U  # Cn         <reserved-2B81F>
 2B820..2CEAD   ; U  # Lo  [5774] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEAD
 2CEAE..2CEAF   ; U  # Cn     [2] <reserved-2CEAE>..<reserved-2CEAF>
 2CEB0..2EBE0   ; U  # Lo  [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
