@@ -39,6 +39,10 @@ public interface UCD_Types {
     // 18D00;<Tangut Ideograph Supplement, First>;Lo;0;L;;;;;N;;;;;
     // 18D1C;<Tangut Ideograph Supplement, Last>;Lo;0;L;;;;;N;;;;;
 
+    // Unicode 18.
+    public static final int SEAL_BASE = 0x3D000;
+    public static final int SEAL_LIMIT = 0x3FC3F + 1;
+
     public static final int
             // 4E00;<CJK Ideograph, First>;Lo;0;L;;;;;N;;;;;
             // 9FFC;<CJK Ideograph, Last>;Lo;0;L;;;;;N;;;;;

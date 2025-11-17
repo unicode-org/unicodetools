@@ -81,6 +81,8 @@ normalization_correction_corrected ; normalization_correction_corrected ; UCDNon
 
 kEH_AltSeq               ; kEH_AltSeq ; Provisional
 
+kSEAL_MCJK ; kSEAL_MCJK ; Provisional
+
 Names_List_Cross_Ref ; Names_List_Cross_Ref ; UCDNonProperty
 
 # ================================================
@@ -208,7 +210,7 @@ cjkZhuang                ; kZhuang ; Provisional
 # change the tag kRSTUnicode to kTGT_RSUnicode.
 # For Unicode Version 17.0. See L2/25-087 item 1.9.
 # (Changed between 17 alpha and beta.)
-kTGT_RSUnicode           ; kTGT_RSUnicode ; kRSTUnicode ; UCDNonProperty
+kTGT_RSUnicode           ; kTGT_RSUnicode ; kRSTUnicode ; Provisional
 
 # [183-C30] Consensus: In NushuSources.txt,
 # change the tag kSrc_NushuDuben to kNSHU_DubenSrc, and change the tag kReading to kNSHU_Reading.
@@ -216,6 +218,8 @@ kTGT_RSUnicode           ; kTGT_RSUnicode ; kRSTUnicode ; UCDNonProperty
 # (Changed between 17 alpha and beta.)
 kNSHU_DubenSrc           ; kNSHU_DubenSrc ; kSrc_NushuDuben ; ExtraAliases
 kNSHU_Reading            ; kNSHU_Reading ; kReading ; Provisional
+
+kSEAL_Rad ; kSEAL_Rad ; Provisional
 
 kEH_Func                 ; kEH_Func ; Provisional
 kEH_FVal                 ; kEH_FVal ; Provisional

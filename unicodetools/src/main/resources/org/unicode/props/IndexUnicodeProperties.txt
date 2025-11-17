@@ -38,6 +38,7 @@ FileType ; Unihan_Readings ; PropertyValue
 FileType ; Unihan_Variants ; PropertyValue
 FileType ; NushuSources ; PropertyValue
 FileType ; TangutSources ; PropertyValue
+FileType ; SealSources ; PropertyValue
 
 # NameAliases File Type
 # Contains a multivalued property, where successive values are not in the same line, but are divided out on successive lines with the same code point
@@ -339,6 +340,13 @@ NushuSources ; kReading
 TangutSources ; kRSTUnicode
 TangutSources ; kTGT_MergedSrc
 TangutSources ; kTGT_Numeric
+
+SealSources ; kSEAL_THXSrc
+SealSources ; kSEAL_CCZSrc
+SealSources ; kSEAL_QJZSrc
+SealSources ; kSEAL_DYCSrc
+SealSources ; kSEAL_MCJK
+SealSources ; kSEAL_Rad
 
 NormalizationCorrections ; normalization_correction_original ; 1
 NormalizationCorrections ; normalization_correction_corrected ; 2
