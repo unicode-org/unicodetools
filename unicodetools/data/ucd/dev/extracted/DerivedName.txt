@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2025-11-17, 14:57:44 GMT
+# Date: 2025-11-17, 20:22:28 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1330,6 +1330,7 @@
 0554          ; ARMENIAN CAPITAL LETTER KEH
 0555          ; ARMENIAN CAPITAL LETTER OH
 0556          ; ARMENIAN CAPITAL LETTER FEH
+0558          ; MODIFIER LETTER ARMENIAN SMALL EH
 0559          ; ARMENIAN MODIFIER LETTER LEFT HALF RING
 055A          ; ARMENIAN APOSTROPHE
 055B          ; ARMENIAN EMPHASIS MARK
@@ -1380,6 +1381,8 @@
 0588          ; ARMENIAN SMALL LETTER YI WITH STROKE
 0589          ; ARMENIAN FULL STOP
 058A          ; ARMENIAN HYPHEN
+058B          ; MODIFIER LETTER ARMENIAN SMALL INI
+058C          ; MODIFIER LETTER ARMENIAN SMALL YI
 058D          ; RIGHT-FACING ARMENIAN ETERNITY SIGN
 058E          ; LEFT-FACING ARMENIAN ETERNITY SIGN
 058F          ; ARMENIAN DRAM SIGN
@@ -45865,6 +45868,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 171178
+# Total code points: 171181
 
 # EOF

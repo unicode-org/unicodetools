@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-18.0.0.txt
-# Date: 2025-11-17, 14:57:42 GMT
+# Date: 2025-11-17, 20:22:26 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -139,11 +139,12 @@
 0488..0489    ; N # Me   [2] COMBINING CYRILLIC HUNDRED THOUSANDS SIGN..COMBINING CYRILLIC MILLIONS SIGN
 048A..052F    ; N # L& [166] CYRILLIC CAPITAL LETTER SHORT I WITH TAIL..CYRILLIC SMALL LETTER EL WITH DESCENDER
 0531..0556    ; N # L&  [38] ARMENIAN CAPITAL LETTER AYB..ARMENIAN CAPITAL LETTER FEH
-0559          ; N # Lm       ARMENIAN MODIFIER LETTER LEFT HALF RING
+0558..0559    ; N # Lm   [2] MODIFIER LETTER ARMENIAN SMALL EH..ARMENIAN MODIFIER LETTER LEFT HALF RING
 055A..055F    ; N # Po   [6] ARMENIAN APOSTROPHE..ARMENIAN ABBREVIATION MARK
 0560..0588    ; N # L&  [41] ARMENIAN SMALL LETTER TURNED AYB..ARMENIAN SMALL LETTER YI WITH STROKE
 0589          ; N # Po       ARMENIAN FULL STOP
 058A          ; N # Pd       ARMENIAN HYPHEN
+058B..058C    ; N # Lm   [2] MODIFIER LETTER ARMENIAN SMALL INI..MODIFIER LETTER ARMENIAN SMALL YI
 058D..058E    ; N # So   [2] RIGHT-FACING ARMENIAN ETERNITY SIGN..LEFT-FACING ARMENIAN ETERNITY SIGN
 058F          ; N # Sc       ARMENIAN DRAM SIGN
 0591..05BD    ; N # Mn  [45] HEBREW ACCENT ETNAHTA..HEBREW POINT METEG
@@ -2139,7 +2140,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 760564 code points not listed here.
+# The above property value applies to 760561 code points not listed here.
 # Total code points: 792256
 
 # ================================================

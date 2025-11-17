@@ -1,5 +1,5 @@
 # PropList-18.0.0.txt
-# Date: 2025-11-17, 14:58:02 GMT
+# Date: 2025-11-17, 20:22:45 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -926,7 +926,8 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 037A          ; Diacritic # Lm       GREEK YPOGEGRAMMENI
 0384..0385    ; Diacritic # Sk   [2] GREEK TONOS..GREEK DIALYTIKA TONOS
 0483..0487    ; Diacritic # Mn   [5] COMBINING CYRILLIC TITLO..COMBINING CYRILLIC POKRYTIE
-0559          ; Diacritic # Lm       ARMENIAN MODIFIER LETTER LEFT HALF RING
+0558..0559    ; Diacritic # Lm   [2] MODIFIER LETTER ARMENIAN SMALL EH..ARMENIAN MODIFIER LETTER LEFT HALF RING
+058B..058C    ; Diacritic # Lm   [2] MODIFIER LETTER ARMENIAN SMALL INI..MODIFIER LETTER ARMENIAN SMALL YI
 0591..05BD    ; Diacritic # Mn  [45] HEBREW ACCENT ETNAHTA..HEBREW POINT METEG
 05BF          ; Diacritic # Mn       HEBREW POINT RAFE
 05C1..05C2    ; Diacritic # Mn   [2] HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
@@ -1168,7 +1169,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1247
+# Total code points: 1250
 
 # ================================================
 
@@ -1228,6 +1229,8 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 02E0..02E4    ; Other_Lowercase # Lm   [5] MODIFIER LETTER SMALL GAMMA..MODIFIER LETTER SMALL REVERSED GLOTTAL STOP
 0345          ; Other_Lowercase # Mn       COMBINING GREEK YPOGEGRAMMENI
 037A          ; Other_Lowercase # Lm       GREEK YPOGEGRAMMENI
+0558          ; Other_Lowercase # Lm       MODIFIER LETTER ARMENIAN SMALL EH
+058B..058C    ; Other_Lowercase # Lm   [2] MODIFIER LETTER ARMENIAN SMALL INI..MODIFIER LETTER ARMENIAN SMALL YI
 10FC          ; Other_Lowercase # Lm       MODIFIER LETTER GEORGIAN NAR
 1D2C..1D6A    ; Other_Lowercase # Lm  [63] MODIFIER LETTER CAPITAL A..GREEK SUBSCRIPT SMALL LETTER CHI
 1D78          ; Other_Lowercase # Lm       MODIFIER LETTER CYRILLIC EN
@@ -1250,7 +1253,7 @@ AB69          ; Other_Lowercase # Lm       MODIFIER LETTER SMALL TURNED W
 107B2..107BA  ; Other_Lowercase # Lm   [9] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL S WITH CURL
 1E030..1E06D  ; Other_Lowercase # Lm  [62] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
 
-# Total code points: 312
+# Total code points: 315
 
 # ================================================
 
