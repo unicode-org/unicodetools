@@ -10,7 +10,7 @@ Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping 
 
 Propertywise [
     \x{05B0}\N{HEBREW POINT SHEVA}
-    \x{05C8}\N{HEBREW POINT HEAVY SHEVA}
+    \x{05C8}\N{HEBREW POINT SHEVA NA MUDGASH}
 ] AreAlike
 
 end Ignoring;
