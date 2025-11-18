@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2025-11-17, 15:45:41 GMT
+# Date: 2025-11-18, 13:19:22 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1921,7 +1921,7 @@ FE19          ; IN # Po       PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS
 05BF          ; CM # Mn       HEBREW POINT RAFE
 05C1..05C2    ; CM # Mn   [2] HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
 05C4..05C5    ; CM # Mn   [2] HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
-05C7..05C8    ; CM # Mn   [2] HEBREW POINT QAMATS QATAN..HEBREW POINT HEBREW POINT SHEVA NA MUDGASH
+05C7..05C8    ; CM # Mn   [2] HEBREW POINT QAMATS QATAN..HEBREW POINT SHEVA NA MUDGASH
 0610..061A    ; CM # Mn  [11] ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..ARABIC SMALL KASRA
 061C          ; CM # Cf       ARABIC LETTER MARK
 064B..065F    ; CM # Mn  [21] ARABIC FATHATAN..ARABIC WAVY HAMZA BELOW
