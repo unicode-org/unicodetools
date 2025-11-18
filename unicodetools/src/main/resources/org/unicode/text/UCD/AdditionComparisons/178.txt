@@ -5,8 +5,8 @@
 # Age always differs since these tests are comparing additions to pre-existing characters.
 Ignoring Name Age:
 
-# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
-Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+# Ignore the security and IDNA properties, as these are not yet included until β.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
 Propertywise [
     \x{05B0}\N{HEBREW POINT SHEVA}
