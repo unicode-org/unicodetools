@@ -3,8 +3,8 @@ package org.unicode.tools.emoji;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.LocaleDisplayNames;
@@ -83,6 +83,8 @@ public class Emoji {
     // situation)
 
     // Constants for versions
+    public static final VersionInfo VERSION18 = VersionInfo.getInstance(18);
+    public static final VersionInfo VERSION17 = VersionInfo.getInstance(17);
     public static final VersionInfo VERSION16 = VersionInfo.getInstance(16);
     public static final VersionInfo VERSION15_1 = VersionInfo.getInstance(15, 1);
     public static final VersionInfo VERSION15 = VersionInfo.getInstance(15, 0);
@@ -135,6 +137,8 @@ public class Emoji {
 
     public static final Map<VersionInfo, String> EMOJI_TO_DATE =
             ImmutableMap.<VersionInfo, String>builder()
+                    .put(VERSION18, "2026-09-15")
+                    .put(VERSION17, "2025-09-09")
                     .put(VERSION16, "2024-09-10")
                     .put(VERSION15_1, "2023-09-12")
                     .put(VERSION15, "2022-09-13")
@@ -198,7 +202,7 @@ public class Emoji {
 
     public static final VersionInfo VERSION_TO_GENERATE_UNICODE = VERSION_BETA_UNICODE;
     public static final String VERSION_UNICODE_STRING =
-            VERSION_TO_GENERATE_UNICODE.getVersionString(2, 4);
+            VERSION_TO_GENERATE_UNICODE.getVersionString(3, 4);
 
     public static final String EMOJI_DIR =
             Settings.Output.GEN_DIR + "emoji/" + (Emoji.ABBR ? "🏴" : "");
@@ -209,9 +213,9 @@ public class Emoji {
     public static final String RELEASE_CHARTS_DIR =
             EMOJI_DIR + "charts-" + VERSION_LAST_RELEASED_STRING + "/";
 
-    public static final String DATA_DIR_PRODUCTION_BASE = "https://unicode.org/Public/emoji/";
+    public static final String DATA_DIR_PRODUCTION_BASE = "https://www.unicode.org/Public/";
     public static final String DATA_DIR_PRODUCTION =
-            DATA_DIR_PRODUCTION_BASE + VERSION_STRING + "/";
+            DATA_DIR_PRODUCTION_BASE + VERSION_UNICODE_STRING + "/emoji/";
 
     public static final String IMAGES_SOURCE_DIR_SVG = Settings.UnicodeTools.DATA_DIR + "images/";
     // TODO: This should be relative to GEN_DIR, not using "../../" to maybe get out of the repo

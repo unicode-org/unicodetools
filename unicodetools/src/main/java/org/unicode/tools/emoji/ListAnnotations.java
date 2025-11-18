@@ -1,6 +1,6 @@
 package org.unicode.tools.emoji;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import java.util.Set;
 import java.util.TreeSet;
 import org.unicode.cldr.util.Annotations;

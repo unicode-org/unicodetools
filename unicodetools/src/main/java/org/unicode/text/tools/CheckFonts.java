@@ -1,7 +1,7 @@
 package org.unicode.text.tools;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import com.ibm.icu.text.UnicodeSet;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
