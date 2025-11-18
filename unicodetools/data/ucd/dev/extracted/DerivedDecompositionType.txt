@@ -1,5 +1,5 @@
-# DerivedDecompositionType-17.0.0.txt
-# Date: 2025-01-27, 18:09:12 GMT
+# DerivedDecompositionType-18.0.0.txt
+# Date: 2025-11-17, 20:22:26 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -851,6 +851,8 @@ FEFB          ; Isolated # Lo       ARABIC LIGATURE LAM WITH ALEF ISOLATED FORM
 00BA          ; Super # Lo       MASCULINE ORDINAL INDICATOR
 02B0..02B8    ; Super # Lm   [9] MODIFIER LETTER SMALL H..MODIFIER LETTER SMALL Y
 02E0..02E4    ; Super # Lm   [5] MODIFIER LETTER SMALL GAMMA..MODIFIER LETTER SMALL REVERSED GLOTTAL STOP
+0558          ; Super # Lm       MODIFIER LETTER ARMENIAN SMALL EH
+058B..058C    ; Super # Lm   [2] MODIFIER LETTER ARMENIAN SMALL INI..MODIFIER LETTER ARMENIAN SMALL YI
 10FC          ; Super # Lm       MODIFIER LETTER GEORGIAN NAR
 1D2C..1D2E    ; Super # Lm   [3] MODIFIER LETTER CAPITAL A..MODIFIER LETTER CAPITAL B
 1D30..1D3A    ; Super # Lm  [11] MODIFIER LETTER CAPITAL D..MODIFIER LETTER CAPITAL N
@@ -884,7 +886,7 @@ AB69          ; Super # Lm       MODIFIER LETTER SMALL TURNED W
 1E06B..1E06D  ; Super # Lm   [3] MODIFIER LETTER CYRILLIC SMALL ES WITH DESCENDER..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
 1F16A..1F16C  ; Super # So   [3] RAISED MC SIGN..RAISED MR SIGN
 
-# Total code points: 250
+# Total code points: 253
 
 # ================================================
 

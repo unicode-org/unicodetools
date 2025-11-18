@@ -1362,7 +1362,10 @@ public final class UCD implements UCD_Types {
                 if (ch <= CJK_D_BASE) {
                     return ch; // Extension D first char
                 }
-                if (ch < CJK_D_LIMIT) {
+                if (ch <= 0x2B81D) {
+                    return CJK_D_BASE;
+                }
+                if (ch <= 0x2B81E && rCompositeVersion >= 0x120000) {
                     return CJK_D_BASE;
                 }
             }

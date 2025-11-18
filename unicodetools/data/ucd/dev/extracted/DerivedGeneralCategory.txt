@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-18, 13:19:20 GMT
+# Date: 2025-11-18, 13:21:23 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -21,8 +21,7 @@
 038D          ; Cn #       <reserved-038D>
 03A2          ; Cn #       <reserved-03A2>
 0530          ; Cn #       <reserved-0530>
-0557..0558    ; Cn #   [2] <reserved-0557>..<reserved-0558>
-058B..058C    ; Cn #   [2] <reserved-058B>..<reserved-058C>
+0557          ; Cn #       <reserved-0557>
 0590          ; Cn #       <reserved-0590>
 05C9..05CF    ; Cn #   [7] <reserved-05C9>..<reserved-05CF>
 05EB..05EE    ; Cn #   [4] <reserved-05EB>..<reserved-05EE>
@@ -738,7 +737,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1FB93         ; Cn #       <reserved-1FB93>
 1FBFB..1FFFF  ; Cn # [1029] <reserved-1FBFB>..<noncharacter-1FFFF>
 2A6E0..2A6FF  ; Cn #  [32] <reserved-2A6E0>..<reserved-2A6FF>
-2B81E..2B81F  ; Cn #   [2] <reserved-2B81E>..<reserved-2B81F>
+2B81F         ; Cn #       <reserved-2B81F>
 2CEAE..2CEAF  ; Cn #   [2] <reserved-2CEAE>..<reserved-2CEAF>
 2EBE1..2EBEF  ; Cn #  [15] <reserved-2EBE1>..<reserved-2EBEF>
 2EE5E..2F7FF  ; Cn # [2466] <reserved-2EE5E>..<reserved-2F7FF>
@@ -752,7 +751,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 803353
+# Total code points: 803349
 
 # ================================================
 
@@ -2115,7 +2114,8 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 02EE          ; Lm #       MODIFIER LETTER DOUBLE APOSTROPHE
 0374          ; Lm #       GREEK NUMERAL SIGN
 037A          ; Lm #       GREEK YPOGEGRAMMENI
-0559          ; Lm #       ARMENIAN MODIFIER LETTER LEFT HALF RING
+0558..0559    ; Lm #   [2] MODIFIER LETTER ARMENIAN SMALL EH..ARMENIAN MODIFIER LETTER LEFT HALF RING
+058B..058C    ; Lm #   [2] MODIFIER LETTER ARMENIAN SMALL INI..MODIFIER LETTER ARMENIAN SMALL YI
 0640          ; Lm #       ARABIC TATWEEL
 06E5..06E6    ; Lm #   [2] ARABIC SMALL WAW..ARABIC SMALL YEH
 07F4..07F5    ; Lm #   [2] NKO HIGH TONE APOSTROPHE..NKO LOW TONE APOSTROPHE
@@ -2188,7 +2188,7 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 1E6FF         ; Lm #       TAI YO XAM LAI
 1E94B         ; Lm #       ADLAM NASALIZATION MARK
 
-# Total code points: 410
+# Total code points: 413
 
 # ================================================
 
@@ -2725,7 +2725,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 1EEA5..1EEA9  ; Lo #   [5] ARABIC MATHEMATICAL DOUBLE-STRUCK WAW..ARABIC MATHEMATICAL DOUBLE-STRUCK YEH
 1EEAB..1EEBB  ; Lo #  [17] ARABIC MATHEMATICAL DOUBLE-STRUCK LAM..ARABIC MATHEMATICAL DOUBLE-STRUCK GHAIN
 20000..2A6DF  ; Lo # [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
-2A700..2B81D  ; Lo # [4382] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B81D
+2A700..2B81E  ; Lo # [4383] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B81E
 2B820..2CEAD  ; Lo # [5774] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEAD
 2CEB0..2EBE0  ; Lo # [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2EBF0..2EE5D  ; Lo # [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
@@ -2734,7 +2734,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 31350..33479  ; Lo # [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Lo # [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 152419
+# Total code points: 152420
 
 # ================================================
 
