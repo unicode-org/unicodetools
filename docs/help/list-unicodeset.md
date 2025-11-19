@@ -113,7 +113,7 @@ There is a special property "cp" that returns the code point itself. For
 example:
 
 *   Find the characters whose lowercase is different:
-    [`\p{toLowercase!=@cp@}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5Cp%7BtoLowercase!%3D%40cp%40%7D&g=)
+    [`\p{toLowercase!=@code point@}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5Cp%7BtoLowercase!%3D%40code%20point%40%7D&g=)
 
 ## **Available Properties**
 
@@ -157,7 +157,7 @@ then set the Group By box to the property name.
     1.  uca (the primary UCA weight -- after the CLDR transforms),
     2.  uca2 (the primary and secondary weights)
 
-Normally, \\p{isX} is equivalent to `\p{toX=@cp@}`. There are some exceptions and
+Normally, \\p{isX} is equivalent to `\p{toX=@code point@}`. There are some exceptions and
 missing cases.
 
 Note: The Unassigned, Surrogate, and Private Use code points are skipped in the
