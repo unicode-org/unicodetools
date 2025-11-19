@@ -1,5 +1,5 @@
 # PropList-18.0.0.txt
-# Date: 2025-11-18, 12:24:03 GMT
+# Date: 2025-11-19, 08:12:55 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -444,7 +444,7 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 05BF          ; Other_Alphabetic # Mn       HEBREW POINT RAFE
 05C1..05C2    ; Other_Alphabetic # Mn   [2] HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
 05C4..05C5    ; Other_Alphabetic # Mn   [2] HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
-05C7          ; Other_Alphabetic # Mn       HEBREW POINT QAMATS QATAN
+05C7..05C8    ; Other_Alphabetic # Mn   [2] HEBREW POINT QAMATS QATAN..HEBREW POINT SHEVA NA MUDGASH
 0610..061A    ; Other_Alphabetic # Mn  [11] ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..ARABIC SMALL KASRA
 064B..0657    ; Other_Alphabetic # Mn  [13] ARABIC FATHATAN..ARABIC INVERTED DAMMA
 0659..065F    ; Other_Alphabetic # Mn   [7] ARABIC ZWARAKAY..ARABIC WAVY HAMZA BELOW
@@ -869,7 +869,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1511
+# Total code points: 1512
 
 # ================================================
 
@@ -933,7 +933,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 05BF          ; Diacritic # Mn       HEBREW POINT RAFE
 05C1..05C2    ; Diacritic # Mn   [2] HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
 05C4..05C5    ; Diacritic # Mn   [2] HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
-05C7          ; Diacritic # Mn       HEBREW POINT QAMATS QATAN
+05C7..05C8    ; Diacritic # Mn   [2] HEBREW POINT QAMATS QATAN..HEBREW POINT SHEVA NA MUDGASH
 064B..0652    ; Diacritic # Mn   [8] ARABIC FATHATAN..ARABIC SUKUN
 0657..0658    ; Diacritic # Mn   [2] ARABIC INVERTED DAMMA..ARABIC MARK NOON GHUNNA
 06DF..06E0    ; Diacritic # Mn   [2] ARABIC SMALL HIGH ROUNDED ZERO..ARABIC SMALL HIGH UPRIGHT RECTANGULAR ZERO
@@ -1170,7 +1170,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1250
+# Total code points: 1251
 
 # ================================================
 
