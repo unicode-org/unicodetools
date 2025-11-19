@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="do-not-emit" id='schema.do-not-emit'>
+  ucd.content &amp;=
+    element do-not-emit {
+      element instead {
+        attribute of { one-or-more-code-points },
+        attribute use { one-or-more-code-points },
+        attribute because { "Arabic_Tashkil"
+                          | "Bengali_Khanda_Ta"
+                          | "Deprecated"
+                          | "Discouraged"
+                          | "Dotless_Form"
+                          | "Hamza_Form"
+                          | "Indic_Atomic_Consonant"
+                          | "Indic_Consonant_Conjunct"
+                          | "Indic_Vowel_Letter"
+                          | "Malayalam_Chillu"
+                          | "None"
+                          | "Precomposed_Form"
+                          | "Precomposed_Hieroglyph"
+                          | "Preferred_Spelling"
+                          | "Tamil_Shrii"
+      } }+ }?
+</ucdxml:block>

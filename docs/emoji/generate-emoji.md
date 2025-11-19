@@ -92,4 +92,8 @@ be updated as well. In particular, they need to be added to
 
 ## Final Candidates
 
+In many respects Final is not much different from Draft. One notable difference
+is that new code points lose their "X" prefix in emoji-released.html, so if you
+are still seeing those it is a sign that this Stage has not been reached.
+
 Moving from final candidates involves a number of changes.

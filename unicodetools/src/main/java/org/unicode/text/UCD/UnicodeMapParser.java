@@ -80,33 +80,6 @@ public class UnicodeMapParser<V> {
             }
             return null;
         }
-
-        public ChainedXSymbolTable getXSymbolTable() {
-            return new ChainedXSymbolTable(factories);
-        }
-    }
-
-    public static class ChainedXSymbolTable extends XSymbolTable {
-        private final XSymbolTable[] xSymbolTables;
-
-        public ChainedXSymbolTable(Factory... factories) {
-            xSymbolTables = new XSymbolTable[factories.length];
-            int i = 0;
-            for (Factory factory : factories) {
-                xSymbolTables[i++] = factory.getXSymbolTable();
-            }
-        }
-
-        @Override
-        public boolean applyPropertyAlias(
-                String propertyName, String propertyValue, UnicodeSet result) {
-            for (XSymbolTable xSymbolTable : xSymbolTables) {
-                if (xSymbolTable.applyPropertyAlias(propertyName, propertyValue, result)) {
-                    return true;
-                }
-            }
-            return false;
-        }
     }
 
     private UnicodeMapParser(
@@ -116,7 +89,7 @@ public class UnicodeMapParser<V> {
         this.valueParser = valueParser;
         this.unicodePropertyFactory = unicodePropertyFactory;
         this.oldUnicodePropertyFactory = oldUnicodePropertyFactory;
-        xSymbolTable = unicodePropertyFactory.getXSymbolTable();
+        xSymbolTable = VersionedSymbolTable.forDevelopment();
     }
 
     private UnicodeMapParser(
@@ -130,7 +103,7 @@ public class UnicodeMapParser<V> {
                                 ? ToolUnicodePropertySource.make("")
                                 : unicodePropertyFactory);
         this.oldUnicodePropertyFactory = new ChainedFactory(oldUnicodePropertyFactory);
-        xSymbolTable = unicodePropertyFactory.getXSymbolTable();
+        xSymbolTable = VersionedSymbolTable.forDevelopment();
     }
 
     public static <V> UnicodeMapParser<V> create(

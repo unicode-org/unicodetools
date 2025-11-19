@@ -11,9 +11,9 @@ DEST=$2
 UNITOOLS_DATA=$UNICODETOOLS/unicodetools/data
 
 # Adjust the following for each year and version as needed.
-COPY_YEAR=2024
-UNI_VER=17.0.0
-EMOJI_VER=17.0
+COPY_YEAR=2025
+UNI_VER=18.0.0
+EMOJI_VER=18.0
 
 TODAY=`date --iso-8601`
 
@@ -25,34 +25,26 @@ s/PUB_DATE/$TODAY/
 s/PUB_STATUS/final/
 s/UNI_VER/$UNI_VER/
 s/EMOJI_VER/$EMOJI_VER/
-
-s%PUBLIC_EMOJI%Public/emoji/$EMOJI_VER%
+s%PUBLIC_EMOJI%Public/$UNI_VER/emoji%
 s%PUBLIC_UCD%Public/$UNI_VER%
 eof
 
-mkdir -p $DEST/$UNI_VER/ucd
-mkdir -p $DEST/zipped/$UNI_VER
-cp -r $UNITOOLS_DATA/ucd/dev/* $DEST/$UNI_VER/ucd
-rm -r $DEST/$UNI_VER/ucd/Unihan
-mv $DEST/$UNI_VER/ucd/version-ReadMe.txt $DEST/$UNI_VER/ReadMe.txt
-mv $DEST/$UNI_VER/ucd/zipped-ReadMe.txt $DEST/zipped/$UNI_VER/ReadMe.txt
+mkdir -p $DEST/ucd
+cp -r $UNITOOLS_DATA/ucd/dev/* $DEST/ucd
+rm -r $DEST/ucd/Unihan
+mv $DEST/ucd/version-ReadMe.txt $DEST/ReadMe.txt
 
-mkdir -p $DEST/UCA/$UNI_VER
-cp -r $UNITOOLS_DATA/uca/dev/* $DEST/UCA/$UNI_VER
+mkdir -p $DEST/uca
+cp -r $UNITOOLS_DATA/uca/dev/* $DEST/uca
 
-mkdir -p $DEST/emoji/$EMOJI_VER
-cp $UNITOOLS_DATA/emoji/dev/* $DEST/emoji/$EMOJI_VER
+mkdir -p $DEST/emoji
+cp $UNITOOLS_DATA/emoji/dev/* $DEST/emoji
 
-mkdir -p $DEST/idna/$UNI_VER
-cp $UNITOOLS_DATA/idna/dev/* $DEST/idna/$UNI_VER
+mkdir -p $DEST/idna
+cp $UNITOOLS_DATA/idna/dev/* $DEST/idna
 
-mkdir -p $DEST/idna/idna2008derived
-rm $DEST/idna/idna2008derived/*
-cp $UNITOOLS_DATA/idna/idna2008derived/Idna2008-$UNI_VER.txt $DEST/idna/idna2008derived
-cp $UNITOOLS_DATA/idna/idna2008derived/ReadMe.txt $DEST/idna/idna2008derived
-
-mkdir -p $DEST/security/$UNI_VER
-cp $UNITOOLS_DATA/security/dev/* $DEST/security/$UNI_VER
+mkdir -p $DEST/security
+cp $UNITOOLS_DATA/security/dev/* $DEST/security
 
 # Fix permissions. Everyone can read, and search directories.
 chmod a+rX -R $DEST
@@ -61,14 +53,14 @@ chmod a+rX -R $DEST
 find $DEST -name '*ReadMe.txt' | xargs sed -i -f $DEST/sed-readmes.txt
 
 # Zip files for some types of data, after fixing permissions
-rm $DEST/$UNI_VER/ucd/UCD.zip
-(cd $DEST/$UNI_VER/ucd; zip -r UCD.zip * && mv UCD.zip $DEST/zipped/$UNI_VER)
+rm $DEST/ucd/UCD.zip
+(cd $DEST/ucd; zip -r UCD.zip *)
 
-rm $DEST/UCA/$UNI_VER/CollationTest.zip
-(cd $DEST/UCA/$UNI_VER; zip -r CollationTest.zip CollationTest && rm -r CollationTest)
+rm $DEST/uca/CollationTest.zip
+(cd $DEST/uca; zip -r CollationTest.zip CollationTest && rm -r CollationTest)
 
-rm $DEST/security/$UNI_VER/*.zip
-(cd $DEST/security/$UNI_VER; zip -r uts39-data-$UNI_VER.zip *)
+rm $DEST/security/*.zip
+(cd $DEST/security; zip -r uts39-data-$UNI_VER.zip *)
 
 # Fix permissions again to catch the zip files
 chmod a+rX -R $DEST
@@ -82,8 +74,7 @@ rm $DEST/final.zip
 
 echo "--------------------"
 echo "Copy files from elsewhere:"
-echo "- Unihan.zip to $DEST/$UNI_VER/ucd"
-echo "- Unihan.zip to $DEST/zipped/$UNI_VER"
-echo "- UCDXML files to $DEST/$UNI_VER/ucdxml"
-echo "- final charts to $DEST/$UNI_VER/charts"
+echo "- Unihan.zip to $DEST/ucd"
+echo "- UCDXML files to $DEST/ucdxml"
+echo "- final charts to $DEST/charts"
 

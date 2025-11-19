@@ -1,5 +1,5 @@
-# DerivedNumericValues-17.0.0.txt
-# Date: 2025-01-27, 18:26:38 GMT
+# DerivedNumericValues-18.0.0.txt
+# Date: 2025-11-17, 14:57:46 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -117,7 +117,6 @@ FF10          ; 0.0 ; ; 0 # Nd       FULLWIDTH DIGIT ZERO
 16AC0         ; 0.0 ; ; 0 # Nd       TANGSA DIGIT ZERO
 16B50         ; 0.0 ; ; 0 # Nd       PAHAWH HMONG DIGIT ZERO
 16D70         ; 0.0 ; ; 0 # Nd       KIRAT RAI DIGIT ZERO
-16DA0         ; 0.0 ; ; 0 # Nd       CHISOI DIGIT ZERO
 16E80         ; 0.0 ; ; 0 # No       MEDEFAIDRIN DIGIT ZERO
 1CCF0         ; 0.0 ; ; 0 # Nd       OUTLINED DIGIT ZERO
 1D2C0         ; 0.0 ; ; 0 # No       KAKTOVIK NUMERAL ZERO
@@ -136,7 +135,7 @@ FF10          ; 0.0 ; ; 0 # Nd       FULLWIDTH DIGIT ZERO
 1F10B..1F10C  ; 0.0 ; ; 0 # No   [2] DINGBAT CIRCLED SANS-SERIF DIGIT ZERO..DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO
 1FBF0         ; 0.0 ; ; 0 # Nd       SEGMENTED DIGIT ZERO
 
-# Total code points: 98
+# Total code points: 97
 
 # ================================================
 
@@ -342,11 +341,12 @@ A831          ; 0.5 ; ; 1/2 # No       NORTH INDIC FRACTION ONE HALF
 10E7B         ; 0.5 ; ; 1/2 # No       RUMI FRACTION ONE HALF
 10F26         ; 0.5 ; ; 1/2 # No       OLD SOGDIAN FRACTION ONE HALF
 11FD1..11FD2  ; 0.5 ; ; 1/2 # No   [2] TAMIL FRACTION ONE HALF-1..TAMIL FRACTION ONE HALF-2
+12226         ; 0.5 ; ; 1/2 # Lo       CUNEIFORM SIGN MASH
 12464         ; 0.5 ; ; 1/2 # Nl       CUNEIFORM NUMERIC SIGN ONE HALF GUR
 1ECAE         ; 0.5 ; ; 1/2 # No       INDIC SIYAQ FRACTION ONE HALF
 1ED3C         ; 0.5 ; ; 1/2 # No       OTTOMAN SIYAQ FRACTION ONE HALF
 
-# Total code points: 19
+# Total code points: 20
 
 # ================================================
 
@@ -534,6 +534,9 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 11DA1         ; 1.0 ; ; 1 # Nd       GUNJALA GONDI DIGIT ONE
 11DE1         ; 1.0 ; ; 1 # Nd       TOLONG SIKI DIGIT ONE
 11F51         ; 1.0 ; ; 1 # Nd       KAWI DIGIT ONE
+12038..12039  ; 1.0 ; ; 1 # Lo   [2] CUNEIFORM SIGN ASH..CUNEIFORM SIGN ASH ZIDA TENU
+12079         ; 1.0 ; ; 1 # Lo       CUNEIFORM SIGN DISH
+1230B         ; 1.0 ; ; 1 # Lo       CUNEIFORM SIGN U
 12415         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE GESH2
 1241E         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE GESHU
 1242C         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE SHARU
@@ -545,7 +548,6 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 16AC1         ; 1.0 ; ; 1 # Nd       TANGSA DIGIT ONE
 16B51         ; 1.0 ; ; 1 # Nd       PAHAWH HMONG DIGIT ONE
 16D71         ; 1.0 ; ; 1 # Nd       KIRAT RAI DIGIT ONE
-16DA1         ; 1.0 ; ; 1 # Nd       CHISOI DIGIT ONE
 16E81         ; 1.0 ; ; 1 # No       MEDEFAIDRIN DIGIT ONE
 16E94         ; 1.0 ; ; 1 # No       MEDEFAIDRIN DIGIT ONE ALTERNATE FORM
 16FF4         ; 1.0 ; ; 1 # Nl       YANGQIN SIGN SLOW ONE BEAT
@@ -574,7 +576,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1FBF1         ; 1.0 ; ; 1 # Nd       SEGMENTED DIGIT ONE
 2092A         ; 1.0 ; ; 1 # Lo       CJK UNIFIED IDEOGRAPH-2092A
 
-# Total code points: 155
+# Total code points: 158
 
 # ================================================
 
@@ -696,6 +698,8 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 11DA2         ; 2.0 ; ; 2 # Nd       GUNJALA GONDI DIGIT TWO
 11DE2         ; 2.0 ; ; 2 # Nd       TOLONG SIKI DIGIT TWO
 11F52         ; 2.0 ; ; 2 # Nd       KAWI DIGIT TWO
+1222B         ; 2.0 ; ; 2 # Lo       CUNEIFORM SIGN MIN
+12399         ; 2.0 ; ; 2 # Lo       CUNEIFORM SIGN U U
 12400         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO ASH
 12416         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO GESH2
 1241F         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO GESHU
@@ -711,7 +715,6 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 16AC2         ; 2.0 ; ; 2 # Nd       TANGSA DIGIT TWO
 16B52         ; 2.0 ; ; 2 # Nd       PAHAWH HMONG DIGIT TWO
 16D72         ; 2.0 ; ; 2 # Nd       KIRAT RAI DIGIT TWO
-16DA2         ; 2.0 ; ; 2 # Nd       CHISOI DIGIT TWO
 16E82         ; 2.0 ; ; 2 # No       MEDEFAIDRIN DIGIT TWO
 16E95         ; 2.0 ; ; 2 # No       MEDEFAIDRIN DIGIT TWO ALTERNATE FORM
 16FF6         ; 2.0 ; ; 2 # Nl       YANGQIN SIGN SLOW TWO BEATS
@@ -740,7 +743,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 1FBF2         ; 2.0 ; ; 2 # Nd       SEGMENTED DIGIT TWO
 22390         ; 2.0 ; ; 2 # Lo       CJK UNIFIED IDEOGRAPH-22390
 
-# Total code points: 157
+# Total code points: 158
 
 # ================================================
 
@@ -852,6 +855,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 11DA3         ; 3.0 ; ; 3 # Nd       GUNJALA GONDI DIGIT THREE
 11DE3         ; 3.0 ; ; 3 # Nd       TOLONG SIKI DIGIT THREE
 11F53         ; 3.0 ; ; 3 # Nd       KAWI DIGIT THREE
+1230D         ; 3.0 ; ; 3 # Lo       CUNEIFORM SIGN U U U
 12401         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE ASH
 12408         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE DISH
 12417         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE GESH2
@@ -868,7 +872,6 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 16AC3         ; 3.0 ; ; 3 # Nd       TANGSA DIGIT THREE
 16B53         ; 3.0 ; ; 3 # Nd       PAHAWH HMONG DIGIT THREE
 16D73         ; 3.0 ; ; 3 # Nd       KIRAT RAI DIGIT THREE
-16DA3         ; 3.0 ; ; 3 # Nd       CHISOI DIGIT THREE
 16E83         ; 3.0 ; ; 3 # No       MEDEFAIDRIN DIGIT THREE
 16E96         ; 3.0 ; ; 3 # No       MEDEFAIDRIN DIGIT THREE ALTERNATE FORM
 1CCF3         ; 3.0 ; ; 3 # Nd       OUTLINED DIGIT THREE
@@ -1021,7 +1024,6 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 16AC4         ; 4.0 ; ; 4 # Nd       TANGSA DIGIT FOUR
 16B54         ; 4.0 ; ; 4 # Nd       PAHAWH HMONG DIGIT FOUR
 16D74         ; 4.0 ; ; 4 # Nd       KIRAT RAI DIGIT FOUR
-16DA4         ; 4.0 ; ; 4 # Nd       CHISOI DIGIT FOUR
 16E84         ; 4.0 ; ; 4 # No       MEDEFAIDRIN DIGIT FOUR
 1CCF4         ; 4.0 ; ; 4 # Nd       OUTLINED DIGIT FOUR
 1D2C4         ; 4.0 ; ; 4 # No       KAKTOVIK NUMERAL FOUR
@@ -1049,7 +1051,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 200E2         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-200E2
 2626D         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-2626D
 
-# Total code points: 145
+# Total code points: 144
 
 # ================================================
 
@@ -1175,7 +1177,6 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 16AC5         ; 5.0 ; ; 5 # Nd       TANGSA DIGIT FIVE
 16B55         ; 5.0 ; ; 5 # Nd       PAHAWH HMONG DIGIT FIVE
 16D75         ; 5.0 ; ; 5 # Nd       KIRAT RAI DIGIT FIVE
-16DA5         ; 5.0 ; ; 5 # Nd       CHISOI DIGIT FIVE
 16E85         ; 5.0 ; ; 5 # No       MEDEFAIDRIN DIGIT FIVE
 1CCF5         ; 5.0 ; ; 5 # Nd       OUTLINED DIGIT FIVE
 1D2C5         ; 5.0 ; ; 5 # No       KAKTOVIK NUMERAL FIVE
@@ -1202,7 +1203,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 1FBF5         ; 5.0 ; ; 5 # Nd       SEGMENTED DIGIT FIVE
 20121         ; 5.0 ; ; 5 # Lo       CJK UNIFIED IDEOGRAPH-20121
 
-# Total code points: 143
+# Total code points: 142
 
 # ================================================
 
@@ -1315,7 +1316,6 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 16AC6         ; 6.0 ; ; 6 # Nd       TANGSA DIGIT SIX
 16B56         ; 6.0 ; ; 6 # Nd       PAHAWH HMONG DIGIT SIX
 16D76         ; 6.0 ; ; 6 # Nd       KIRAT RAI DIGIT SIX
-16DA6         ; 6.0 ; ; 6 # Nd       CHISOI DIGIT SIX
 16E86         ; 6.0 ; ; 6 # No       MEDEFAIDRIN DIGIT SIX
 1CCF6         ; 6.0 ; ; 6 # Nd       OUTLINED DIGIT SIX
 1D2C6         ; 6.0 ; ; 6 # No       KAKTOVIK NUMERAL SIX
@@ -1340,7 +1340,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 1FBF6         ; 6.0 ; ; 6 # Nd       SEGMENTED DIGIT SIX
 20AEA         ; 6.0 ; ; 6 # Lo       CJK UNIFIED IDEOGRAPH-20AEA
 
-# Total code points: 127
+# Total code points: 126
 
 # ================================================
 
@@ -1451,7 +1451,6 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 16AC7         ; 7.0 ; ; 7 # Nd       TANGSA DIGIT SEVEN
 16B57         ; 7.0 ; ; 7 # Nd       PAHAWH HMONG DIGIT SEVEN
 16D77         ; 7.0 ; ; 7 # Nd       KIRAT RAI DIGIT SEVEN
-16DA7         ; 7.0 ; ; 7 # Nd       CHISOI DIGIT SEVEN
 16E87         ; 7.0 ; ; 7 # No       MEDEFAIDRIN DIGIT SEVEN
 1CCF7         ; 7.0 ; ; 7 # Nd       OUTLINED DIGIT SEVEN
 1D2C7         ; 7.0 ; ; 7 # No       KAKTOVIK NUMERAL SEVEN
@@ -1476,7 +1475,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 1FBF7         ; 7.0 ; ; 7 # Nd       SEGMENTED DIGIT SEVEN
 20001         ; 7.0 ; ; 7 # Lo       CJK UNIFIED IDEOGRAPH-20001
 
-# Total code points: 127
+# Total code points: 126
 
 # ================================================
 
@@ -1584,7 +1583,6 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 16AC8         ; 8.0 ; ; 8 # Nd       TANGSA DIGIT EIGHT
 16B58         ; 8.0 ; ; 8 # Nd       PAHAWH HMONG DIGIT EIGHT
 16D78         ; 8.0 ; ; 8 # Nd       KIRAT RAI DIGIT EIGHT
-16DA8         ; 8.0 ; ; 8 # Nd       CHISOI DIGIT EIGHT
 16E88         ; 8.0 ; ; 8 # No       MEDEFAIDRIN DIGIT EIGHT
 1CCF8         ; 8.0 ; ; 8 # Nd       OUTLINED DIGIT EIGHT
 1D2C8         ; 8.0 ; ; 8 # No       KAKTOVIK NUMERAL EIGHT
@@ -1608,7 +1606,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 1F109         ; 8.0 ; ; 8 # No       DIGIT EIGHT COMMA
 1FBF8         ; 8.0 ; ; 8 # Nd       SEGMENTED DIGIT EIGHT
 
-# Total code points: 122
+# Total code points: 121
 
 # ================================================
 
@@ -1719,7 +1717,6 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 16AC9         ; 9.0 ; ; 9 # Nd       TANGSA DIGIT NINE
 16B59         ; 9.0 ; ; 9 # Nd       PAHAWH HMONG DIGIT NINE
 16D79         ; 9.0 ; ; 9 # Nd       KIRAT RAI DIGIT NINE
-16DA9         ; 9.0 ; ; 9 # Nd       CHISOI DIGIT NINE
 16E89         ; 9.0 ; ; 9 # No       MEDEFAIDRIN DIGIT NINE
 1CCF9         ; 9.0 ; ; 9 # Nd       OUTLINED DIGIT NINE
 1D2C9         ; 9.0 ; ; 9 # No       KAKTOVIK NUMERAL NINE
@@ -1744,7 +1741,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 1FBF9         ; 9.0 ; ; 9 # Nd       SEGMENTED DIGIT NINE
 2F890         ; 9.0 ; ; 9 # Lo       CJK COMPATIBILITY IDEOGRAPH-2F890
 
-# Total code points: 128
+# Total code points: 127
 
 # ================================================
 
@@ -2204,8 +2201,9 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 1D36D         ; 50.0 ; ; 50 # No       COUNTING ROD TENS DIGIT FIVE
 1EC7E         ; 50.0 ; ; 50 # No       INDIC SIYAQ NUMBER FIFTY
 1ED0E         ; 50.0 ; ; 50 # No       OTTOMAN SIYAQ NUMBER FIFTY
+324DF         ; 50.0 ; ; 50 # Lo       CJK UNIFIED IDEOGRAPH-324DF
 
-# Total code points: 29
+# Total code points: 30
 
 # ================================================
 
@@ -2326,8 +2324,9 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 10E73         ; 200.0 ; ; 200 # No       RUMI NUMBER TWO HUNDRED
 1EC84         ; 200.0 ; ; 200 # No       INDIC SIYAQ NUMBER TWO HUNDRED
 1ED14         ; 200.0 ; ; 200 # No       OTTOMAN SIYAQ NUMBER TWO HUNDRED
+32403         ; 200.0 ; ; 200 # Lo       CJK UNIFIED IDEOGRAPH-32403
 
-# Total code points: 7
+# Total code points: 8
 
 # ================================================
 
