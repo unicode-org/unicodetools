@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2025-11-18, 13:21:21 GMT
+# Date: 2025-11-19, 08:12:38 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -371,6 +371,7 @@ FFE9..FFEC    ; Math # Sm   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS A
 0972..0980    ; Alphabetic # Lo  [15] DEVANAGARI LETTER CANDRA A..BENGALI ANJI
 0981          ; Alphabetic # Mn       BENGALI SIGN CANDRABINDU
 0982..0983    ; Alphabetic # Mc   [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
+0984          ; Alphabetic # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 0985..098C    ; Alphabetic # Lo   [8] BENGALI LETTER A..BENGALI LETTER VOCALIC L
 098F..0990    ; Alphabetic # Lo   [2] BENGALI LETTER E..BENGALI LETTER AI
 0993..09A8    ; Alphabetic # Lo  [22] BENGALI LETTER O..BENGALI LETTER NA
@@ -1469,7 +1470,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 31350..33479  ; Alphabetic # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Alphabetic # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 158783
+# Total code points: 158784
 
 # ================================================
 
@@ -3116,6 +3117,7 @@ FF41..FF5A    ; Cased # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 0962..0963    ; Case_Ignorable # Mn   [2] DEVANAGARI VOWEL SIGN VOCALIC L..DEVANAGARI VOWEL SIGN VOCALIC LL
 0971          ; Case_Ignorable # Lm       DEVANAGARI SIGN HIGH SPACING DOT
 0981          ; Case_Ignorable # Mn       BENGALI SIGN CANDRABINDU
+0984          ; Case_Ignorable # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 09BC          ; Case_Ignorable # Mn       BENGALI SIGN NUKTA
 09C1..09C4    ; Case_Ignorable # Mn   [4] BENGALI VOWEL SIGN U..BENGALI VOWEL SIGN VOCALIC RR
 09CD          ; Case_Ignorable # Mn       BENGALI SIGN VIRAMA
@@ -3555,7 +3557,7 @@ E0001         ; Case_Ignorable # Cf       LANGUAGE TAG
 E0020..E007F  ; Case_Ignorable # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Case_Ignorable # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2799
+# Total code points: 2800
 
 # ================================================
 
@@ -7182,6 +7184,7 @@ FFDA..FFDC    ; ID_Start # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL
 0972..0980    ; ID_Continue # Lo  [15] DEVANAGARI LETTER CANDRA A..BENGALI ANJI
 0981          ; ID_Continue # Mn       BENGALI SIGN CANDRABINDU
 0982..0983    ; ID_Continue # Mc   [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
+0984          ; ID_Continue # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 0985..098C    ; ID_Continue # Lo   [8] BENGALI LETTER A..BENGALI LETTER VOCALIC L
 098F..0990    ; ID_Continue # Lo   [2] BENGALI LETTER E..BENGALI LETTER AI
 0993..09A8    ; ID_Continue # Lo  [22] BENGALI LETTER O..BENGALI LETTER NA
@@ -8485,7 +8488,7 @@ FFDA..FFDC    ; ID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 3D000..3FC3F  ; ID_Continue # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 E0100..E01EF  ; ID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 160603
+# Total code points: 160604
 
 # ================================================
 
@@ -9408,6 +9411,7 @@ FFDA..FFDC    ; XID_Start # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGU
 0972..0980    ; XID_Continue # Lo  [15] DEVANAGARI LETTER CANDRA A..BENGALI ANJI
 0981          ; XID_Continue # Mn       BENGALI SIGN CANDRABINDU
 0982..0983    ; XID_Continue # Mc   [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
+0984          ; XID_Continue # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 0985..098C    ; XID_Continue # Lo   [8] BENGALI LETTER A..BENGALI LETTER VOCALIC L
 098F..0990    ; XID_Continue # Lo   [2] BENGALI LETTER E..BENGALI LETTER AI
 0993..09A8    ; XID_Continue # Lo  [22] BENGALI LETTER O..BENGALI LETTER NA
@@ -10716,7 +10720,7 @@ FFDA..FFDC    ; XID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HA
 3D000..3FC3F  ; XID_Continue # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 E0100..E01EF  ; XID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 160584
+# Total code points: 160585
 
 # ================================================
 
@@ -10811,6 +10815,7 @@ E01F0..E0FFF  ; Default_Ignorable_Code_Point # Cn [3600] <reserved-E01F0>..<rese
 0951..0957    ; Grapheme_Extend # Mn   [7] DEVANAGARI STRESS SIGN UDATTA..DEVANAGARI VOWEL SIGN UUE
 0962..0963    ; Grapheme_Extend # Mn   [2] DEVANAGARI VOWEL SIGN VOCALIC L..DEVANAGARI VOWEL SIGN VOCALIC LL
 0981          ; Grapheme_Extend # Mn       BENGALI SIGN CANDRABINDU
+0984          ; Grapheme_Extend # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 09BC          ; Grapheme_Extend # Mn       BENGALI SIGN NUKTA
 09BE          ; Grapheme_Extend # Mc       BENGALI VOWEL SIGN AA
 09C1..09C4    ; Grapheme_Extend # Mn   [4] BENGALI VOWEL SIGN U..BENGALI VOWEL SIGN VOCALIC RR
@@ -11196,7 +11201,7 @@ FF9E..FF9F    ; Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK.
 E0020..E007F  ; Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2234
+# Total code points: 2235
 
 # ================================================
 
@@ -13243,6 +13248,7 @@ ABC0..ABDA    ; InCB; Consonant # Lo  [27] MEETEI MAYEK LETTER KOK..MEETEI MAYEK
 0951..0957    ; InCB; Extend # Mn   [7] DEVANAGARI STRESS SIGN UDATTA..DEVANAGARI VOWEL SIGN UUE
 0962..0963    ; InCB; Extend # Mn   [2] DEVANAGARI VOWEL SIGN VOCALIC L..DEVANAGARI VOWEL SIGN VOCALIC LL
 0981          ; InCB; Extend # Mn       BENGALI SIGN CANDRABINDU
+0984          ; InCB; Extend # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 09BC          ; InCB; Extend # Mn       BENGALI SIGN NUKTA
 09BE          ; InCB; Extend # Mc       BENGALI VOWEL SIGN AA
 09C1..09C4    ; InCB; Extend # Mn   [4] BENGALI VOWEL SIGN U..BENGALI VOWEL SIGN VOCALIC RR
@@ -13619,6 +13625,6 @@ FF9E..FF9F    ; InCB; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HA
 E0020..E007F  ; InCB; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; InCB; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2219
+# Total code points: 2220
 
 # EOF

@@ -1,5 +1,5 @@
 # SentenceBreakProperty-18.0.0.txt
-# Date: 2025-11-18, 13:22:02 GMT
+# Date: 2025-11-19, 08:13:09 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,6 +71,7 @@
 0962..0963    ; Extend # Mn   [2] DEVANAGARI VOWEL SIGN VOCALIC L..DEVANAGARI VOWEL SIGN VOCALIC LL
 0981          ; Extend # Mn       BENGALI SIGN CANDRABINDU
 0982..0983    ; Extend # Mc   [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
+0984          ; Extend # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 09BC          ; Extend # Mn       BENGALI SIGN NUKTA
 09BE..09C0    ; Extend # Mc   [3] BENGALI VOWEL SIGN AA..BENGALI VOWEL SIGN II
 09C1..09C4    ; Extend # Mn   [4] BENGALI VOWEL SIGN U..BENGALI VOWEL SIGN VOCALIC RR
@@ -597,7 +598,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2645
+# Total code points: 2646
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-18, 13:21:23 GMT
+# Date: 2025-11-19, 08:12:40 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -36,7 +36,6 @@
 085F          ; Cn #       <reserved-085F>
 086B..086F    ; Cn #   [5] <reserved-086B>..<reserved-086F>
 0892..0896    ; Cn #   [5] <reserved-0892>..<reserved-0896>
-0984          ; Cn #       <reserved-0984>
 098D..098E    ; Cn #   [2] <reserved-098D>..<reserved-098E>
 0991..0992    ; Cn #   [2] <reserved-0991>..<reserved-0992>
 09A9          ; Cn #       <reserved-09A9>
@@ -751,7 +750,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 803349
+# Total code points: 803348
 
 # ================================================
 
@@ -2774,6 +2773,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 0951..0957    ; Mn #   [7] DEVANAGARI STRESS SIGN UDATTA..DEVANAGARI VOWEL SIGN UUE
 0962..0963    ; Mn #   [2] DEVANAGARI VOWEL SIGN VOCALIC L..DEVANAGARI VOWEL SIGN VOCALIC LL
 0981          ; Mn #       BENGALI SIGN CANDRABINDU
+0984          ; Mn #       BENGALI SIGN COMBINING ANUSVARA ABOVE
 09BC          ; Mn #       BENGALI SIGN NUKTA
 09C1..09C4    ; Mn #   [4] BENGALI VOWEL SIGN U..BENGALI VOWEL SIGN VOCALIC RR
 09CD          ; Mn #       BENGALI SIGN VIRAMA
@@ -3106,7 +3106,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2061
+# Total code points: 2062
 
 # ================================================
 

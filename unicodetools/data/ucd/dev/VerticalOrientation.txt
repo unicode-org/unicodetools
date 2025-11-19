@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2025-11-18, 13:22:04 GMT
+# Date: 2025-11-19, 08:13:11 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -301,6 +301,7 @@
 0980           ; R  # Lo         BENGALI ANJI
 0981           ; R  # Mn         BENGALI SIGN CANDRABINDU
 0982..0983     ; R  # Mc     [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
+0984           ; R  # Mn         BENGALI SIGN COMBINING ANUSVARA ABOVE
 0985..098C     ; R  # Lo     [8] BENGALI LETTER A..BENGALI LETTER VOCALIC L
 098F..0990     ; R  # Lo     [2] BENGALI LETTER E..BENGALI LETTER AI
 0993..09A8     ; R  # Lo    [22] BENGALI LETTER O..BENGALI LETTER NA

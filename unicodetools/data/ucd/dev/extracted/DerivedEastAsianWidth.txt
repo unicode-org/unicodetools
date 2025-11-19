@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-18.0.0.txt
-# Date: 2025-11-18, 13:21:23 GMT
+# Date: 2025-11-19, 08:12:39 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -256,6 +256,7 @@
 0972..0980    ; N # Lo  [15] DEVANAGARI LETTER CANDRA A..BENGALI ANJI
 0981          ; N # Mn       BENGALI SIGN CANDRABINDU
 0982..0983    ; N # Mc   [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
+0984          ; N # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 0985..098C    ; N # Lo   [8] BENGALI LETTER A..BENGALI LETTER VOCALIC L
 098F..0990    ; N # Lo   [2] BENGALI LETTER E..BENGALI LETTER AI
 0993..09A8    ; N # Lo  [22] BENGALI LETTER O..BENGALI LETTER NA
@@ -2140,7 +2141,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 760560 code points not listed here.
+# The above property value applies to 760559 code points not listed here.
 # Total code points: 792256
 
 # ================================================

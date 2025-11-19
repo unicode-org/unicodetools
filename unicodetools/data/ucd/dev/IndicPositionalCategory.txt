@@ -1,5 +1,5 @@
-# IndicPositionalCategory-17.0.0.txt
-# Date: 2025-07-29, 13:35:52 GMT
+# IndicPositionalCategory-18.0.0.txt
+# Date: 2025-11-18, 12:23:51 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -415,6 +415,7 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 0951          ; Top # Mn       DEVANAGARI STRESS SIGN UDATTA
 0955          ; Top # Mn       DEVANAGARI VOWEL SIGN CANDRA LONG E
 0981          ; Top # Mn       BENGALI SIGN CANDRABINDU
+0984          ; Top # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 09FE          ; Top # Mn       BENGALI SANDHI MARK
 0A01..0A02    ; Top # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A47..0A48    ; Top # Mn   [2] GURMUKHI VOWEL SIGN EE..GURMUKHI VOWEL SIGN AI

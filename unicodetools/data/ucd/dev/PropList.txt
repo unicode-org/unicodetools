@@ -1,5 +1,5 @@
 # PropList-18.0.0.txt
-# Date: 2025-11-18, 13:21:43 GMT
+# Date: 2025-11-19, 08:12:55 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -475,6 +475,7 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 0962..0963    ; Other_Alphabetic # Mn   [2] DEVANAGARI VOWEL SIGN VOCALIC L..DEVANAGARI VOWEL SIGN VOCALIC LL
 0981          ; Other_Alphabetic # Mn       BENGALI SIGN CANDRABINDU
 0982..0983    ; Other_Alphabetic # Mc   [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
+0984          ; Other_Alphabetic # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 09BE..09C0    ; Other_Alphabetic # Mc   [3] BENGALI VOWEL SIGN AA..BENGALI VOWEL SIGN II
 09C1..09C4    ; Other_Alphabetic # Mn   [4] BENGALI VOWEL SIGN U..BENGALI VOWEL SIGN VOCALIC RR
 09C7..09C8    ; Other_Alphabetic # Mc   [2] BENGALI VOWEL SIGN E..BENGALI VOWEL SIGN AI
@@ -868,7 +869,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1511
+# Total code points: 1512
 
 # ================================================
 

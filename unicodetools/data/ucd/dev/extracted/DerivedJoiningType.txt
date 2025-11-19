@@ -1,5 +1,5 @@
 # DerivedJoiningType-18.0.0.txt
-# Date: 2025-11-18, 13:21:24 GMT
+# Date: 2025-11-19, 08:12:41 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -243,6 +243,7 @@ A872          ; L # Lo       PHAGS-PA SUPERFIXED LETTER RA
 0951..0957    ; T # Mn   [7] DEVANAGARI STRESS SIGN UDATTA..DEVANAGARI VOWEL SIGN UUE
 0962..0963    ; T # Mn   [2] DEVANAGARI VOWEL SIGN VOCALIC L..DEVANAGARI VOWEL SIGN VOCALIC LL
 0981          ; T # Mn       BENGALI SIGN CANDRABINDU
+0984          ; T # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 09BC          ; T # Mn       BENGALI SIGN NUKTA
 09C1..09C4    ; T # Mn   [4] BENGALI VOWEL SIGN U..BENGALI VOWEL SIGN VOCALIC RR
 09CD          ; T # Mn       BENGALI SIGN VIRAMA
@@ -592,6 +593,6 @@ E0001         ; T # Cf       LANGUAGE TAG
 E0020..E007F  ; T # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; T # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2226
+# Total code points: 2227
 
 # EOF
