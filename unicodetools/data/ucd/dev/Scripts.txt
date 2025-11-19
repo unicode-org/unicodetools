@@ -1,5 +1,5 @@
 # Scripts-18.0.0.txt
-# Date: 2025-11-19, 08:13:08 GMT
+# Date: 2025-11-19, 17:29:49 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1922,8 +1922,10 @@ A82C          ; Syloti_Nagri # Mn       SYLOTI NAGRI SIGN ALTERNATE HASANTA
 12400..1246E  ; Cuneiform # Nl [111] CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN NINE U VARIANT FORM
 12470..12474  ; Cuneiform # Po   [5] CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
 12480..12543  ; Cuneiform # Lo [196] CUNEIFORM SIGN AB TIMES NUN TENU..CUNEIFORM SIGN ZU5 TIMES THREE DISH TENU
+12550..125A7  ; Cuneiform # Nl  [88] CUNEIFORM NUMERIC SIGN ONE N01..CUNEIFORM NUMERIC SIGN FIVE N54
+1264C..12686  ; Cuneiform # Nl  [59] CUNEIFORM NUMERIC SIGN ONE N01 FLAT..CUNEIFORM NUMERIC SIGN ONE N36 FLAT
 
-# Total code points: 1234
+# Total code points: 1381
 
 # ================================================
 
@@ -3181,6 +3183,12 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 16EBB..16ED3  ; Beria_Erfe # L&  [25] BERIA ERFE SMALL LETTER ARKAB..BERIA ERFE SMALL LETTER AY
 
 # Total code points: 50
+
+# ================================================
+
+125A8..1264B  ; Proto_Cuneiform # Nl [164] CUNEIFORM NUMERIC SIGN ONE N56..CUNEIFORM NUMERIC SIGN THREE N07B
+
+# Total code points: 164
 
 # ================================================
 
