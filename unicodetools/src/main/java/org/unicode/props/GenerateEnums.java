@@ -80,11 +80,14 @@ public class GenerateEnums {
         final String shortName;
         final String longName;
         final List<String> others;
+        List<String> extra;
+        final DerivedPropertyStatus status;
         final Map<String, PropName> subnames = new TreeMap<String, PropName>();
 
-        PropName(PropertyType type, OverrideChoice override, String... strings) {
+        PropName(PropertyType type, DerivedPropertyStatus status, String... strings) {
             shortName = strings[0];
             longName = strings[1];
+            this.status = status;
             propertyType =
                     longName.equals("Script_Extensions") ? PropertyType.Catalog : type; // HACK
             final String badName = isProperLongName(longName, PROPERTY_LONG_NAME, true);
@@ -97,11 +100,9 @@ public class GenerateEnums {
                 final List<String> temp = Arrays.asList(strings);
                 others = Collections.unmodifiableList(temp.subList(2, strings.length));
             }
-            if (override != OverrideChoice.allow) {
-                for (final String name : strings) {
-                    if (lookup.containsKey(name)) {
-                        throw new UnicodePropertyException("Duplicate propName");
-                    }
+            for (final String name : strings) {
+                if (lookup.containsKey(name)) {
+                    throw new UnicodePropertyException("Duplicate propName " + name);
                 }
             }
             for (final String name : strings) {
@@ -166,11 +167,6 @@ public class GenerateEnums {
                 }
             };
 
-    enum OverrideChoice {
-        allow,
-        disallow
-    }
-
     public static void main(String[] args) throws IOException {
 
         final Map<PropName, Set<String[]>> values = new TreeMap<PropName, Set<String[]>>();
@@ -181,11 +177,9 @@ public class GenerateEnums {
                         "",
                         Utility.getMostRecentUnicodeDataFile(
                                 "PropertyAliases", ENUM_VERSION, true, true)),
-                OverrideChoice.disallow);
+                DerivedPropertyStatus.Approved);
         addPropertyAliases(
-                values,
-                FileUtilities.in(GenerateEnums.class, "ExtraPropertyAliases.txt"),
-                OverrideChoice.allow);
+                values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyAliases.txt"), null);
 
         writeMainUcdFile();
 
@@ -512,7 +506,14 @@ public class GenerateEnums {
                         break; // leave classItem = null
                 }
                 writeOtherNames(
-                        output, type, classItem, cardinality, pname.shortName, pname.others);
+                        output,
+                        type,
+                        pname.status,
+                        classItem,
+                        cardinality,
+                        pname.shortName,
+                        pname.others,
+                        pname.extra);
                 output.print(",\n");
             }
         }
@@ -526,6 +527,7 @@ public class GenerateEnums {
         output.println(
                 "\n"
                         + "private final PropertyType type;\n"
+                        + "    private final DerivedPropertyStatus status;"
                         + "    private final PropertyNames<UcdProperty> names;\n"
                         + "    // for enums\n"
                         + "    private final NameMatcher name2enum;\n"
@@ -533,8 +535,27 @@ public class GenerateEnums {
                         + "    private final Class enumClass;\n"
                         + "    private final ValueCardinality cardinality;\n"
                         + "    \n"
-                        + "    private UcdProperty(PropertyType type, String shortName, String... otherNames) {\n"
+                        + "    private UcdProperty(PropertyType type,\n"
+                        + "                        DerivedPropertyStatus status,\n"
+                        + "                        String shortName,\n"
+                        + "                        String[] otherNames,\n"
+                        + "                        String[] extraNames) {\n"
                         + "        this.type = type;\n"
+                        + "        this.status = status;\n"
+                        + "        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames, extraNames);\n"
+                        + "        name2enum = null;\n"
+                        + "        enums = null;\n"
+                        + "        enumClass = null;\n"
+                        + "        cardinality = ValueCardinality.Singleton;\n"
+                        + "    }\n"
+                        + "\n"
+                        + "    \n"
+                        + "    private UcdProperty(PropertyType type,\n"
+                        + "                        DerivedPropertyStatus status,\n"
+                        + "                        String shortName,\n"
+                        + "                        String... otherNames) {\n"
+                        + "        this.type = type;\n"
+                        + "        this.status = status;\n"
                         + "        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"
                         + "        name2enum = null;\n"
                         + "        enums = null;\n"
@@ -544,11 +565,13 @@ public class GenerateEnums {
                         + "\n"
                         + "    private UcdProperty(\n"
                         + "            PropertyType type,\n"
+                        + "            DerivedPropertyStatus status,\n"
                         + "            Class classItem,\n"
                         + "            ValueCardinality _cardinality,\n"
                         + "            String shortName,\n"
                         + "            String... otherNames) {\n"
                         + "        this.type = type;\n"
+                        + "        this.status = status;\n"
                         + "        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"
                         + "        cardinality = _cardinality == null ? ValueCardinality.Singleton : _cardinality;\n"
                         + "        if (classItem == null) {\n"
@@ -572,6 +595,10 @@ public class GenerateEnums {
                         + "\n"
                         + "    public PropertyType getType() {\n"
                         + "        return type;\n"
+                        + "    }\n"
+                        + "\n"
+                        + "    public DerivedPropertyStatus getDerivedStatus() {\n"
+                        + "        return status;\n"
                         + "    }\n"
                         + "\n"
                         + "    public PropertyNames<UcdProperty> getNames() {\n"
@@ -605,13 +632,17 @@ public class GenerateEnums {
     public static void writeOtherNames(
             PrintWriter output,
             String type,
+            DerivedPropertyStatus status,
             String classItem,
             ValueCardinality cardinality,
             String shortName,
-            List<String> otherNames) {
+            List<String> otherNames,
+            List<String> extraNames) {
         output.print("(");
         // if (shortName != null) {
         output.print(type);
+        output.print(", DerivedPropertyStatus.");
+        output.print(status);
         if (classItem != null || cardinality != ValueCardinality.Singleton) {
             output.print(
                     ", "
@@ -622,8 +653,20 @@ public class GenerateEnums {
                                     : "ValueCardinality." + cardinality.toString()));
         }
         output.print(", \"" + shortName + "\"");
-        for (final String otherName : otherNames) {
-            output.print(", \"" + otherName + "\"");
+        if (extraNames == null) {
+            for (final String otherName : otherNames) {
+                output.print(", \"" + otherName + "\"");
+            }
+        } else {
+            output.print(", new String[]{");
+            for (final String otherName : otherNames) {
+                output.print("\"" + otherName + "\", ");
+            }
+            output.print("}, new String[]{");
+            for (final String extraName : extraNames) {
+                output.print("\"" + extraName + "\", ");
+            }
+            output.print("}");
         }
         output.print(")");
     }
@@ -646,7 +689,9 @@ public class GenerateEnums {
     }
 
     public static void addPropertyAliases(
-            Map<PropName, Set<String[]>> values, Iterable<String> lines, OverrideChoice override) {
+            Map<PropName, Set<String[]>> values,
+            Iterable<String> lines,
+            DerivedPropertyStatus fileStatus) {
         final Matcher propType =
                 Pattern.compile("#\\s+(\\p{Alpha}+)\\s+Properties\\s*").matcher("");
         PropertyType type = null;
@@ -655,17 +700,47 @@ public class GenerateEnums {
             if (propType.reset(line).matches()) {
                 type = PropertyType.valueOf(propType.group(1));
             }
-            final String[] parts = FileUtilities.cleanSemiFields(line);
+            String[] parts = FileUtilities.cleanSemiFields(line);
             if (parts == null) {
                 continue;
             }
-            final PropName propName = new PropName(type, override, parts);
-            values.put(
-                    propName,
-                    propName.longName.equals("Age")
-                            ? new TreeSet<>(ARRAY_SORT)
-                            : new LinkedHashSet<>());
-            System.out.println(propName);
+            var status = fileStatus;
+            if (status == null) {
+                if (!parts[parts.length - 1].equals("ExtraAliases")) {
+                    status = DerivedPropertyStatus.valueOf(parts[parts.length - 1]);
+                }
+                parts = Arrays.copyOf(parts, parts.length - 1);
+            }
+            if (status == null) {
+                for (var key : values.keySet()) {
+                    if (key.shortName.equals(parts[0]) || key.longName.equals(parts[1])) {
+                        if (!(key.shortName.equals(parts[0]) && key.longName.equals(parts[1]))) {
+                            throw new IllegalArgumentException(
+                                    "Partial match for (short, long) on ExtraAliases: "
+                                            + key.shortName
+                                            + " "
+                                            + key.longName);
+                        }
+                        if (key.status != DerivedPropertyStatus.Approved) {
+                            throw new IllegalArgumentException(
+                                    "ExtraAliases for unapproved property "
+                                            + key.shortName
+                                            + " "
+                                            + key.longName);
+                        }
+                        key.extra = Arrays.asList(parts).subList(2, parts.length);
+                        break;
+                    }
+                }
+            } else {
+                final PropName propName = new PropName(type, status, parts);
+                values.put(
+                        propName,
+                        propName.longName.equals("Age")
+                                ? new TreeSet<>(ARRAY_SORT)
+                                : new LinkedHashSet<>());
+                System.out.println(propName);
+            }
             //            if (!Locations.contains(propName.longName)) {
             //                System.out.println("Missing file: " + propName.longName);
             //            }

@@ -2,10 +2,12 @@ package org.unicode.unittest;
 
 import com.ibm.icu.impl.UnicodeRegex;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
+import java.util.Comparator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
-import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
+import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.text.utility.UnicodeSetParser;
 import org.unicode.text.utility.Utility;
 
@@ -13,12 +15,12 @@ public class TestUnicodeSet extends TestFmwkMinusMinus {
 
     @Test
     public void TestAge() {
-        checkOrder("3.1", "3.2", -1);
-        checkOrder("3.2", "3.2", 0);
-        checkOrder("4.0", "3.2", 1);
-        checkOrder("10.0", "3.2", 1);
-        checkOrder("11.0", "3.2", 1);
-        checkOrder("NA", "11.0", 1);
+        checkOrder("3.1", "3.2", Comparison.SMALLER);
+        checkOrder("3.2", "3.2", Comparison.EQUAL);
+        checkOrder("4.0", "3.2", Comparison.GREATER);
+        checkOrder("10.0", "3.2", Comparison.GREATER);
+        checkOrder("11.0", "3.2", Comparison.GREATER);
+        checkOrder("NA", "11.0", Comparison.GREATER);
 
         final UnicodeSet U32 = new UnicodeSet("[:age=3.2:]").freeze();
         if (!U32.contains(0x01F6) || !U32.contains(0x0220)) {
@@ -29,15 +31,37 @@ public class TestUnicodeSet extends TestFmwkMinusMinus {
         }
     }
 
-    private void checkOrder(String d1, String d2, int expected) {
+    private static enum Comparison {
+        EQUAL,
+        GREATER,
+        SMALLER;
+
+        public Comparison opposite() {
+            return this == GREATER ? SMALLER : this == SMALLER ? GREATER : this;
+        }
+
+        public static Comparison fromCompareResult(int compareResult) {
+            return compareResult == 0 ? EQUAL : compareResult > 0 ? GREATER : SMALLER;
+        }
+    }
+
+    private void checkOrder(String d1, String d2, Comparison expected) {
         assertEquals(
                 d1 + " ?< " + d2,
                 expected,
-                UnicodePropertySymbolTable.DOUBLE_STRING_COMPARATOR.compare(d1, d2));
+                Comparison.fromCompareResult(
+                        Comparator.nullsFirst(Comparator.<VersionInfo>naturalOrder())
+                                .compare(
+                                        UnicodePropertySymbolTable.parseVersionInfoOrMax(d1),
+                                        UnicodePropertySymbolTable.parseVersionInfoOrMax(d2))));
         assertEquals(
                 d2 + " ?< " + d1,
-                -expected,
-                UnicodePropertySymbolTable.DOUBLE_STRING_COMPARATOR.compare(d2, d1));
+                expected.opposite(),
+                Comparison.fromCompareResult(
+                        Comparator.nullsFirst(Comparator.<VersionInfo>naturalOrder())
+                                .compare(
+                                        UnicodePropertySymbolTable.parseVersionInfoOrMax(d2),
+                                        UnicodePropertySymbolTable.parseVersionInfoOrMax(d1))));
     }
 
     @Test

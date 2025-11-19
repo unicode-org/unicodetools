@@ -136,7 +136,8 @@ class GeneratePickerData {
 
     static Comparator<String> buttonComparator =
             new MultilevelComparator(
-                    // new UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[:ascii:]")),
+                    // new
+                    // UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[:Block=ASCII:]")),
                     // new
                     // UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[[:Letter:]&[:^NFKC_QuickCheck=N:]]")),
                     new UnicodeSetInclusionFirst(

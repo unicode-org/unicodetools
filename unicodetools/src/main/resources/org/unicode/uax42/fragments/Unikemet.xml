@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="Unikemet data" id='schema.unikemet'>
+  code-point-attributes &amp;= attribute kEH_Cat
+    { xsd:string { pattern="([A-IK-Z]|AA)-\d{2}-\d{3}" } }?
+
+  code-point-attributes &amp;=
+    attribute kEH_Core { "C" | "L" | "N" }?
+
+  code-point-attributes &amp;= attribute kEH_Desc
+    { xsd:string { pattern='[^\t"]+' } }?
+
+  code-point-attributes &amp;= attribute kEH_Func
+    { list { ("/" | xsd:string { pattern='[^\t]+' } )+} }?
+
+  code-point-attributes &amp;= attribute kEH_FVal
+    { list { ("|" | xsd:string { pattern="[BDF-HJKMNPR-TWY-bdf-hjkmnpr-twy\.,/\-\+=;?>&amp;\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A722}\x{A723}\x{A724}\x{A725}\x{A7BC}\x{A7BD}]+" } )+} }?
+
+  code-point-attributes &amp;= attribute kEH_UniK
+    { xsd:string { pattern="([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}" }
+     | xsd:string { pattern="HJ ([A-IK-Z]|AA)\d{3}[A-Z]{0,2}" }
+    }?
+
+  code-point-attributes &amp;= attribute kEH_JSesh
+    { list { ( xsd:string { pattern="([A-IK-Z]|Aa|NL|NU|Ff)\d{1,3}[A-Za-z]{0,5}" }
+             | xsd:string { pattern="(US1|US22|US248|US685)([A-IK-Z]|Aa|NL|NU)\d{1,3}[A-Za-z]{0,5}" }
+    )+}}?
+
+  code-point-attributes &amp;= attribute kEH_HG
+    { list { xsd:string { pattern="([A-IK-Z]|AA)\d{1,3}[A-Za-z]{0,2}" }+ } }?
+
+  code-point-attributes &amp;= attribute kEH_IFAO
+    { list { xsd:string { pattern="\d{1,3},\d{1,2}[ab]?" }+ } }?
+
+  code-point-attributes &amp;=
+    attribute kEH_NoMirror { boolean }?
+
+  code-point-attributes &amp;=
+    attribute kEH_NoRotate { boolean }?
+
+  code-point-attributes &amp;= attribute kEH_AltSeq
+    { xsd:string { pattern="[0-9A-F]{5}(\s[0-9A-F]{4,5})*" } }?
+</ucdxml:block>
