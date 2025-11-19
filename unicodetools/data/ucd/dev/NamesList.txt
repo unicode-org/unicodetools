@@ -1,17 +1,15 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 17.0.0
 @@@+	NamesList-17.0.0.txt
-@+	Generation Date: 2024-11-14, 11:05:33 GMT
-	Unicode 17.0.0 names list.
-	Repertoire synched with UnicodeData-17.0.0d1.txt.
-	Synch with 7th edition CD; post UTC181 annotation updates for 17.0.
+@+	Generation Date: 2025-07-30, 17:12:45 GMT
+	Unicode 17.0.0 final names list.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
 	for this process are aimed at readability for the human reader,
 	at the expense of some details; therefore, this file should not
 	be parsed for machine-readable information.
-@+		© 2024 Unicode®, Inc.
+@+		© 2025 Unicode®, Inc.
 	For terms of use and license, see https://www.unicode.org/terms_of_use.html
 @@	0000	C0 Controls and Basic Latin (Basic Latin)	007F
 @@+
@@ -701,6 +699,7 @@
 00B1	PLUS-MINUS SIGN
 	= biquintile (astrological aspect: 144°)
 	x (minus-or-plus sign - 2213)
+	x (division times - 22C7)
 00B2	SUPERSCRIPT TWO
 	= squared
 	* other superscript digit characters: 2070-2079
@@ -1519,7 +1518,7 @@
 	% LATIN CAPITAL LETTER GHA
 01A3	LATIN SMALL LETTER OI
 	% LATIN SMALL LETTER GHA
-	* Pan-Turkic Latin alphabets
+	* Pan-Turkic Latin alphabets, Tajik
 01A4	LATIN CAPITAL LETTER P WITH HOOK
 01A5	LATIN SMALL LETTER P WITH HOOK
 	* African
@@ -2682,6 +2681,7 @@
 	* distinguish from the following
 	x (macron - 00AF)
 	x (modifier letter macron - 02C9)
+	x (combining minus sign above - 1AE2)
 0305	COMBINING OVERLINE
 	= overscore, vinculum
 	* connects on left and right
@@ -2890,7 +2890,7 @@
 @		Additions for Greek
 0342	COMBINING GREEK PERISPOMENI
 	* Greek-specific form of circumflex for rising-falling accent
-	* alternative glyph is similar to an inverted breve
+	* alternative glyphs may be similar to an inverted breve, a circumflex, a tilde, or occasionally a macron
 	x (combining tilde - 0303)
 	x (combining inverted breve - 0311)
 0343	COMBINING GREEK KORONIS
@@ -4308,6 +4308,7 @@
 0674	ARABIC LETTER HIGH HAMZA
 	* Kazakh, Jawi
 	* forms digraphs
+	* in Jawi this character uses the fullsize hamza shape positioned at three-quarter height
 @		Digraphic letters for Kazakh
 @+		These characters were encoded for Kazakh digraphs, but their compatibility decompositions do not reflect the preferred order of representation. Accordingly, the representation of these Kazakh digraphs should instead use the preferred two-character spellings with the correct order of elements.
 0675	ARABIC LETTER HIGH HAMZA ALEF
@@ -4475,7 +4476,7 @@
 06BF	ARABIC LETTER TCHEH WITH DOT ABOVE
 06C0	ARABIC LETTER HEH WITH YEH ABOVE
 	= arabic letter hamzah on ha (1.0)
-	* for ezafe, use 0654 over the language-appropriate base letter
+	* for Persian ezafe, Urdu izāfat, or similar cases, instead use 0654 over the language-appropriate base letter
 	* actually a ligature, not an independent letter
 	: 06D5 0654
 06C1	ARABIC LETTER HEH GOAL
@@ -5689,8 +5690,6 @@
 	x (bengali sign avagraha - 09BD)
 	x (sharada sandhi mark - 111C9)
 	x (newa sandhi mark - 1145E)
-@		Addition for Sanskrit
-09FF	BENGALI LETTER SANSKRIT BA
 @@	0A00	Gurmukhi	0A7F
 @		Various signs
 0A01	GURMUKHI SIGN ADAK BINDI
@@ -5936,7 +5935,7 @@
 0AFE	GUJARATI SIGN CIRCLE NUKTA ABOVE
 0AFF	GUJARATI SIGN TWO-CIRCLE NUKTA ABOVE
 @@	0B00	Oriya	0B7F
-@+		As of 2012, the name "Oriya" for this script and language is officially spelled "Odia" in India. That change in spelling does not affect the Unicode block or character names, which are constrained by stability guarantees.
+@+		As of 2012, the name "Oriya" for this script and language is officially spelled "Odia" in India. That change in spelling does not affect the block or character names, which are constrained by stability guarantees.
 @		Various signs
 0B01	ORIYA SIGN CANDRABINDU
 0B02	ORIYA SIGN ANUSVARA
@@ -6019,10 +6018,6 @@
 @		Virama
 0B4D	ORIYA SIGN VIRAMA
 @		Various signs
-0B53	ORIYA SIGN DOT ABOVE
-	* Kui
-0B54	ORIYA SIGN DOUBLE DOT ABOVE
-	* Kui
 0B55	ORIYA SIGN OVERLINE
 	* Kuvi, Kui
 0B56	ORIYA AI LENGTH MARK
@@ -10703,6 +10698,8 @@
 1AB1	COMBINING DIAERESIS-RING
 1AB2	COMBINING INFINITY
 1AB3	COMBINING DOWNWARDS ARROW
+	* originally a misconstrual of a caron-acute sequence in Croatian dialectology
+	* for Croatian dialectology use the sequence 030C 0301, instead
 1AB4	COMBINING TRIPLE DOT
 1AB5	COMBINING X-X BELOW
 1AB6	COMBINING WIGGLY LINE BELOW
@@ -10755,9 +10752,8 @@
 1ACC	COMBINING LATIN SMALL LETTER INSULAR G
 1ACD	COMBINING LATIN SMALL LETTER INSULAR R
 1ACE	COMBINING LATIN SMALL LETTER INSULAR T
-@		Tone mark used in IPA
-1ACF	COMBINING DOUBLE CARON
 @		Compound tone diacritics
+1ACF	COMBINING DOUBLE CARON
 1AD0	COMBINING VERTICAL-LINE-ACUTE
 1AD1	COMBINING GRAVE-VERTICAL-LINE
 1AD2	COMBINING VERTICAL-LINE-GRAVE
@@ -10785,6 +10781,7 @@
 	x (combining cyrillic dasia pneumata - 0485)
 	x (coptic combining spiritus asper - 2CF0)
 1AE2	COMBINING MINUS SIGN ABOVE
+	x (combining macron - 0304)
 	x (combining minus sign below - 0320)
 1AE3	COMBINING INVERTED BRIDGE ABOVE
 	x (combining inverted bridge below - 033A)
@@ -11973,12 +11970,12 @@
 @		Miscellaneous marks
 1DC2	COMBINING SNAKE BELOW
 1DC3	COMBINING SUSPENSION MARK
-	* Glagolitic
+	* abbreviation mark in Glagolitic
 	x (combining breve - 0306)
 @		Contour tone marks
 1DC4	COMBINING MACRON-ACUTE
+	* also used to represent the Middle Vietnamese "apex" diacritic (dấu sóng)
 	x (combining tilde - 0303)
-	* also used to represent the Middle Vietnamese "apex" diacritic
 1DC5	COMBINING GRAVE-MACRON
 1DC6	COMBINING MACRON-GRAVE
 1DC7	COMBINING ACUTE-MACRON
@@ -13191,6 +13188,7 @@
 	x (heavy single turned comma quotation mark ornament - 275B)
 	~ 2018 FE00 non-fullwidth form
 	~ 2018 FE01 right-justified fullwidth form
+	~ 2018 FE02 Sibe form
 2019	RIGHT SINGLE QUOTATION MARK
 	= single comma quotation mark
 	* this is the preferred character to use for apostrophe
@@ -13199,6 +13197,7 @@
 	x (heavy single comma quotation mark ornament - 275C)
 	~ 2019 FE00 non-fullwidth form
 	~ 2019 FE01 left-justified fullwidth form
+	~ 2019 FE02 Sibe form
 201A	SINGLE LOW-9 QUOTATION MARK
 	= low single comma quotation mark
 	* used as opening single quotation mark in some languages
@@ -13214,6 +13213,7 @@
 	x (reversed double prime quotation mark - 301D)
 	~ 201C FE00 non-fullwidth form
 	~ 201C FE01 right-justified fullwidth form
+	~ 201C FE02 Sibe form
 201D	RIGHT DOUBLE QUOTATION MARK
 	= double comma quotation mark
 	x (quotation mark - 0022)
@@ -13222,6 +13222,7 @@
 	x (double prime quotation mark - 301E)
 	~ 201D FE00 non-fullwidth form
 	~ 201D FE01 left-justified fullwidth form
+	~ 201D FE02 Sibe form
 201E	DOUBLE LOW-9 QUOTATION MARK
 	= low double comma quotation mark
 	* used as opening double quotation mark in some languages
@@ -13705,6 +13706,8 @@
 	* a cryptocurrency
 20C0	SOM SIGN
 	* Kyrgyzstan
+20C1	SAUDI RIYAL SIGN
+	* Saudi Arabia
 @@	20D0	Combining Diacritical Marks for Symbols	20FF
 @		Combining diacritical marks for symbols
 20D0	COMBINING LEFT HARPOON ABOVE
@@ -14851,6 +14854,8 @@
 	x (black star - 2605)
 	x (white medium star - 2B50)
 22C7	DIVISION TIMES
+	* ambiguous sign conflating two operators
+	x (plus-minus sign - 00B1)
 	x (multiplication sign - 00D7)
 	x (division sign - 00F7)
 	x (multiplication x - 2715)
@@ -17928,6 +17933,7 @@
 29B6	CIRCLED VERTICAL BAR
 	x (alchemical symbol for nitre - 1F715)
 29B7	CIRCLED PARALLEL
+	~ 29B7 FE00 with parallel lines touching the circle
 29B8	CIRCLED REVERSE SOLIDUS
 29B9	CIRCLED PERPENDICULAR
 29BA	CIRCLE DIVIDED BY HORIZONTAL BAR AND TOP HALF DIVIDED BY VERTICAL BAR
@@ -17983,6 +17989,7 @@
 	= vertical bowtie
 	= white framus
 	x (hourglass - 231B)
+	x (alchemical symbol for hour - 1F76E)
 29D7	BLACK HOURGLASS
 	x (upper and lower triangular half block - 1FB9A)
 @		Fences
@@ -18070,6 +18077,7 @@
 	x (plus sign - 002B)
 29FF	MINY
 	x (minus sign - 2212)
+@~	Standardized Variation Sequences
 @@	2A00	Supplemental Mathematical Operators	2AFF
 @		N-ary operators
 2A00	N-ARY CIRCLED DOT OPERATOR
@@ -20986,7 +20994,7 @@
 3024	HANGZHOU NUMERAL FOUR
 3025	HANGZHOU NUMERAL FIVE
 3026	HANGZHOU NUMERAL SIX
-	= yangqin sign slow one
+	= yangqin sign slow one half beat
 	* represents one half beat in the yangqin tempo marking system
 	x (yangqin sign slow one beat - 16FF4)
 3027	HANGZHOU NUMERAL SEVEN
@@ -21178,6 +21186,7 @@
 	: 309D 3099
 @		Hiragana digraph
 309F	HIRAGANA DIGRAPH YORI
+	* represents the Japanese word "yori" (from or than)
 	* historically used in vertical contexts, but now found also in horizontal layout
 	# <vertical> 3088 308A
 @@	30A0	Katakana	30FF
@@ -21325,6 +21334,7 @@
 	: 30FD 3099
 @		Katakana digraph
 30FF	KATAKANA DIGRAPH KOTO
+	* represents the Japanese word "koto" (thing)
 	* historically used in vertical contexts, but now found also in horizontal layout
 	# <vertical> 30B3 30C8
 @@	3100	Bopomofo	312F
@@ -25323,8 +25333,8 @@ A7DB	LATIN SMALL LETTER LAMBDA
 A7DC	LATIN CAPITAL LETTER LAMBDA WITH STROKE
 	* lowercase is 019B 
 @		Modifier letters for Chatino (México)
+@+		These characters are also used as phonetic and phonemic wildcards.
 A7F1	MODIFIER LETTER CAPITAL S
-	* also used as a phonetic and phonemic wildcard character
 	# <super> 0053
 A7F2	MODIFIER LETTER CAPITAL C
 	# <super> 0043
@@ -28149,7 +28159,7 @@ FBC7	ARABIC LIGATURE RAHMATU ALLAAHI ALAYHIMAA
 FBC8	ARABIC LIGATURE RAHIMAHUM ALLAAHU TAAALAA
 FBC9	ARABIC LIGATURE RAHIMAHUMAA ALLAAH
 FBCA	ARABIC LIGATURE RAHIMAHUMAA ALLAAHU TAAALAA
-FBCB	ARABIC LIGATURE RADI ALLAHU TAAALAA ANHUM
+FBCB	ARABIC LIGATURE RADI ALLAAHU TAAALAA ANHUM
 FBCC	ARABIC LIGATURE HAFIZAHU ALLAAH
 FBCD	ARABIC LIGATURE HAFIZAHU ALLAAHU TAAALAA
 FBCE	ARABIC LIGATURE HAFIZAHUM ALLAAHU TAAALAA
@@ -28922,8 +28932,6 @@ FD4D	ARABIC LIGATURE ALAYHAA AS-SALAAM
 FD4E	ARABIC LIGATURE TABAARAKA WA-TAAALAA
 FD4F	ARABIC LIGATURE RAHIMAHUM ALLAAH
 @		Ligatures (three elements)
-@		Honorific word ligatures
-@+		These word ligatures have no decompositions.
 FD50	ARABIC LIGATURE TEH WITH JEEM WITH MEEM INITIAL FORM
 	# <initial> 062A 062C 0645
 FD51	ARABIC LIGATURE TEH WITH HAH WITH JEEM FINAL FORM
@@ -29052,6 +29060,8 @@ FD8E	ARABIC LIGATURE MEEM WITH KHAH WITH JEEM INITIAL FORM
 	# <initial> 0645 062E 062C
 FD8F	ARABIC LIGATURE MEEM WITH KHAH WITH MEEM INITIAL FORM
 	# <initial> 0645 062E 0645
+@		Honorific word ligatures
+@+		These word ligatures have no decompositions.
 FD90	ARABIC LIGATURE RAHMATU ALLAAHI ALAYH
 FD91	ARABIC LIGATURE RAHMATU ALLAAHI ALAYHAA
 @		Ligatures (three elements)
@@ -32530,36 +32540,61 @@ FFFF	<not a character>
 @		Punctuation
 1093F	LYDIAN TRIANGULAR MARK
 @@	10940	Sidetic	1095F
-@		Letters
+@+		The phonetic values of many Sidetic letters are not well-determined.
+@		Vowel and semivowel letters
 10940	SIDETIC LETTER N01
+	* vowel a
 10941	SIDETIC LETTER N02
+	* vowel e
 10942	SIDETIC LETTER N03
+	* vowel i
 10943	SIDETIC LETTER N04
+	* vowel o
 10944	SIDETIC LETTER N05
+	* vowel u
 10945	SIDETIC LETTER N06
+	* semivowel w
 10946	SIDETIC LETTER N07
+	* semivowel y
+@		Consonant letters
 10947	SIDETIC LETTER N08
+	* consonant p
 10948	SIDETIC LETTER N09
+	* consonant d2
 10949	SIDETIC LETTER N10
+	* consonant m
 1094A	SIDETIC LETTER N11
+	* consonant t
 1094B	SIDETIC LETTER N12
+	* consonant d
 1094C	SIDETIC LETTER N13
+	* consonant θ
 1094D	SIDETIC LETTER N14
+	* fricative consonant s
 1094E	SIDETIC LETTER N15
+	* fricative consonant s2
 1094F	SIDETIC LETTER N16
+	* consonant n
 10950	SIDETIC LETTER N17
+	* consonant l
 10951	SIDETIC LETTER N18
+	* consonant
 10952	SIDETIC LETTER N19
+	* consonant g
 10953	SIDETIC LETTER N20
+	* Greek chi
 10954	SIDETIC LETTER N21
+	* consonant r
 10955	SIDETIC LETTER N22
+	* vowel
 10956	SIDETIC LETTER N23
+	* consonant k
 10957	SIDETIC LETTER N24
+	* consonant b
 10958	SIDETIC LETTER N25
+	* consonant n2
 10959	SIDETIC LETTER N26
-1095A	SIDETIC LETTER N27
-1095B	SIDETIC LETTER N28
-1095C	SIDETIC LETTER N29
+	* consonant z
 @@	10980	Meroitic Hieroglyphs	1099F
 @		Vowel letters
 10980	MEROITIC HIEROGLYPHIC LETTER A
@@ -33806,8 +33841,8 @@ FFFF	<not a character>
 10ED2	ARABIC LIGATURE ALAYHIM AS-SALAATU WAS-SALAAM
 10ED3	ARABIC LIGATURE ALAYHIMAA AS-SALAATU WAS-SALAAM
 10ED4	ARABIC LIGATURE QADDASA ALLAAHU SIRRAH
-10ED5	ARABIC LIGATURE QUDDISA SIRRAHUM
-10ED6	ARABIC LIGATURE QUDDISA SIRRAHUMAA
+10ED5	ARABIC LIGATURE QUDDISA SIRRUHUM
+10ED6	ARABIC LIGATURE QUDDISA SIRRUHUMAA
 10ED7	ARABIC LIGATURE QUDDISAT ASRAARUHUM
 10ED8	ARABIC LIGATURE NAWWARA ALLAAHU MARQADAH
 @		Tanween mark used in Old Sindhi
@@ -38062,9 +38097,9 @@ FFFF	<not a character>
 12446	CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU
 12447	CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU3
 12448	CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU4
+12449	CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU A
 @		Slanted numerals
 @+		These are used in multiple Early Dynastic metrological systems, as well as Ur III dates and subtractive notations.
-12449	CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU A
 1244A	CUNEIFORM NUMERIC SIGN TWO ASH TENU
 	= 2 diš tenû
 	x (cuneiform sign ash zida tenu - 12039)
@@ -38502,7 +38537,7 @@ FFFF	<not a character>
 13020	EGYPTIAN HIEROGLYPH A028
 	* logogram (to be high) : ḳꜣꞽ
 13021	EGYPTIAN HIEROGLYPH A029
-	* classifier upside down : sḫd
+	* classifier upside-down : sḫd
 13022	EGYPTIAN HIEROGLYPH A030
 	* classifier adoration
 13023	EGYPTIAN HIEROGLYPH A031
@@ -38537,9 +38572,9 @@ FFFF	<not a character>
 13032	EGYPTIAN HIEROGLYPH A043
 	* classifier king
 13033	EGYPTIAN HIEROGLYPH A043A
-	* logogram (king of UE) : n.y-sw.t
+	* logogram (king of Upper Egypt) : n.y-sw.t
 13034	EGYPTIAN HIEROGLYPH A044
-	* classsifier king : n.y-sw.t
+	* classifier king : n.y-sw.t
 13035	EGYPTIAN HIEROGLYPH A045
 	* classifier king : bꞽ.ty
 13036	EGYPTIAN HIEROGLYPH A045A
@@ -38549,7 +38584,7 @@ FFFF	<not a character>
 13038	EGYPTIAN HIEROGLYPH A047
 	* logogram (to guard) : sꜣw
 13039	EGYPTIAN HIEROGLYPH A048
-	* logogram (relating to; belonging to) : ꞽr.y
+	* logogram (relating to, belonging to) : ꞽr.y
 1303A	EGYPTIAN HIEROGLYPH A049
 	* classifier foreigner
 1303B	EGYPTIAN HIEROGLYPH A050
@@ -38605,7 +38640,7 @@ FFFF	<not a character>
 13054	EGYPTIAN HIEROGLYPH B005
 	* classifier nursing, rearing : rnn
 13055	EGYPTIAN HIEROGLYPH B005A
-	* logogram weaver or  nurse : ? | mnḫ.t
+	* logogram weaver or nurse : ? | mnḫ.t
 13056	EGYPTIAN HIEROGLYPH B006
 	* classifier nursing, rearing : rnn
 13057	EGYPTIAN HIEROGLYPH B007
@@ -38693,7 +38728,7 @@ FFFF	<not a character>
 1307F	EGYPTIAN HIEROGLYPH D009
 	* logogram (to weep) : rmꞽ
 13080	EGYPTIAN HIEROGLYPH D010
-	* logogram (Udjat eye) : wḏꜣ.t
+	* logogram (udjat eye) : wḏꜣ.t
 13081	EGYPTIAN HIEROGLYPH D011
 	* logogram 1/2
 13082	EGYPTIAN HIEROGLYPH D012
@@ -38735,6 +38770,7 @@ FFFF	<not a character>
 	* classifier breast : mnḏ
 	~ 13091 FE00 rotated 90 degrees
 13092	EGYPTIAN HIEROGLYPH D027A
+	* variant of 13091
 13093	EGYPTIAN HIEROGLYPH D028
 	* logogram (spirit, essence) : kꜣ
 	~ 13093 FE01 rotated 180 degrees
@@ -38953,9 +38989,9 @@ FFFF	<not a character>
 130F9	EGYPTIAN HIEROGLYPH E034
 	* phonemogram : wn
 130FA	EGYPTIAN HIEROGLYPH E034A
-	* stylistic variant, use of 130F9 is preferred
+	* variant of 130F9
 130FB	EGYPTIAN HIEROGLYPH E036
-	* classifier monkey (divinity) : wpt
+	* logogram (Thot) : ḏḥwty
 130FC	EGYPTIAN HIEROGLYPH E037
 	* logogram (symbol of the cycle of time) : wnšb
 130FD	EGYPTIAN HIEROGLYPH E038
@@ -38991,11 +39027,11 @@ FFFF	<not a character>
 1310B	EGYPTIAN HIEROGLYPH F013
 	* phonemogram : wp
 1310C	EGYPTIAN HIEROGLYPH F013A
-	* stylistic variant, use of 1310B is preferred
+	* variant of 1310B
 1310D	EGYPTIAN HIEROGLYPH F014
-	* logogram (new years day) : wp-rnp.t
+	* logogram (New Year's Day) : wp-rnp.t
 1310E	EGYPTIAN HIEROGLYPH F015
-	* logogram (new years day) : wp-rnp.t
+	* logogram (New Year's Day) : wp-rnp.t
 1310F	EGYPTIAN HIEROGLYPH F016
 	* logogram (horn) : ꜥb
 	~ 1310F FE00 rotated 90 degrees
@@ -39206,11 +39242,11 @@ FFFF	<not a character>
 13168	EGYPTIAN HIEROGLYPH G036
 	* phonemogram : wr
 13169	EGYPTIAN HIEROGLYPH G036A
-	* stylistic variant, use of 13168 is preferred
+	* variant of 13168
 1316A	EGYPTIAN HIEROGLYPH G037
 	* classifier negative, bad : ꞽsf.t
 1316B	EGYPTIAN HIEROGLYPH G037A
-	* stylistic variant, use of 1316A is preferred
+	* variant of 1316A
 1316C	EGYPTIAN HIEROGLYPH G038
 	* goose
 	* phonemogram : gb
@@ -39340,9 +39376,9 @@ FFFF	<not a character>
 131A3	EGYPTIAN HIEROGLYPH L001
 	* logogram (to become) : ḫpr
 131A4	EGYPTIAN HIEROGLYPH L002
-	* logogram (king of LE) : bꞽ.ty
+	* logogram (king of Lower Egypt) : bꞽ.ty
 131A5	EGYPTIAN HIEROGLYPH L002A
-	* logogram (King of UE and LE) : n(.y)-sw.t-bꞽ.ty
+	* logogram (king of Upper Egypt and Lower Egypt) : n(.y)-sw.t-bꞽ.ty
 131A6	EGYPTIAN HIEROGLYPH L003
 	x (egyptian hieroglyph-13DEE - 13DEE)
 131A7	EGYPTIAN HIEROGLYPH L004
@@ -39449,7 +39485,7 @@ FFFF	<not a character>
 131D2	EGYPTIAN HIEROGLYPH M022A
 	* phonemogram : nn
 131D3	EGYPTIAN HIEROGLYPH M023
-	* logogram (King of UE) : n(.y)-sw.t
+	* logogram (king of Upper Egypt) : n(.y)-sw.t
 131D4	EGYPTIAN HIEROGLYPH M024
 	* phonemogram : rsw/rsy
 131D5	EGYPTIAN HIEROGLYPH M024A
@@ -39461,7 +39497,7 @@ FFFF	<not a character>
 131D8	EGYPTIAN HIEROGLYPH M027
 	* logogram (Upper Egypt) : šmꜥ.w
 131D9	EGYPTIAN HIEROGLYPH M028
-	* logogram (the 10 of UE) : mḏ-šmꜥ.w
+	* logogram (the 10 of Upper Egypt) : mḏ-šmꜥ.w
 131DA	EGYPTIAN HIEROGLYPH M028A
 	* logogram (Upper Egypt) : šmꜥ.w
 131DB	EGYPTIAN HIEROGLYPH M029
@@ -39584,7 +39620,7 @@ FFFF	<not a character>
 13209	EGYPTIAN HIEROGLYPH N025
 	* classifier foreign land, desert : ḫꜣs.t
 1320A	EGYPTIAN HIEROGLYPH N025A
-	* stylistic variant, use of 13209 is preferred
+	* variant of 13209
 1320B	EGYPTIAN HIEROGLYPH N026
 	* phonemogram : ḏw
 1320C	EGYPTIAN HIEROGLYPH N027
@@ -39613,7 +39649,7 @@ FFFF	<not a character>
 13214	EGYPTIAN HIEROGLYPH N034
 	* classifier metal objects : ꞽḳḥ.w
 13215	EGYPTIAN HIEROGLYPH N034A
-	* stylistic variant, use of 13214 is preferred
+	* variant of 13214
 	* logogram (metal) : bꞽꜣ
 13216	EGYPTIAN HIEROGLYPH N035
 	* phonemogram : n
@@ -39649,55 +39685,55 @@ FFFF	<not a character>
 13221	EGYPTIAN HIEROGLYPH NL002
 	* logogram (2nd nome of Lower Egypt) : ḫm/ḫpš/ꞽwꜥ
 13222	EGYPTIAN HIEROGLYPH NL003
-	* logogram (West, 3rd nome of LE) : ꞽmn.tt
+	* logogram (West, 3rd nome of Lower Egypt) : ꞽmn.tt
 13223	EGYPTIAN HIEROGLYPH NL004
-	* logogram (Neith-south, 4th nome LE) : n.t-rs.yt
+	* logogram (Neith-South, 4th nome of Lower Egypt) : n.t-rs.yt
 13224	EGYPTIAN HIEROGLYPH NL005
-	* logogram (Neith-north, 5th nome of LE) : n.t-mḥ.yt
+	* logogram (Neith-North, 5th nome of Lower Egypt) : n.t-mḥ.yt
 13225	EGYPTIAN HIEROGLYPH NL005A
-	* logogram (Neith-north, 5th nome of LE) : n.t-mḥ.yt
+	* logogram (Neith-North, 5th nome of Lower Egypt) : n.t-mḥ.yt
 13226	EGYPTIAN HIEROGLYPH NL006
-	* logogram (6th nome of LE) : ḫꜣsw.w
+	* logogram (6th nome of Lower Egypt) : ḫꜣsw.w
 13227	EGYPTIAN HIEROGLYPH NL007
 	* logogram (7th nome of Lower Egypt) : wꜥ-m-ḥww-ꞽmn.ty
 13228	EGYPTIAN HIEROGLYPH NL008
 	* logogram (8th nome of Lower Egypt) : wꜥ-m-ḥww-ꞽꜣb.ty
 13229	EGYPTIAN HIEROGLYPH NL009
-	* logogram (9th nome of UE) : ꜥnḏ.ty 
+	* logogram (9th nome of Lower Egypt) : ꜥnḏ.ty 
 1322A	EGYPTIAN HIEROGLYPH NL010
-	* logogram (10th nome of LE) : km-wr
+	* logogram (10th nome of Lower Egypt) : km-wr
 1322B	EGYPTIAN HIEROGLYPH NL011
-	* logogram (11th nome of LE) : ḥsbw
+	* logogram (11th nome of Lower Egypt) : ḥsbw
 1322C	EGYPTIAN HIEROGLYPH NL012
-	* logogram (12th nome of LE) : ṯb-nṯr
+	* logogram (12th nome of Lower Egypt) : ṯb-nṯr
 1322D	EGYPTIAN HIEROGLYPH NL013
-	* logogram (13th Lower Egyptian nome) : ḥḳꜣ-ꜥnḏ.w
+	* logogram (13th nome of Lower Egypt) : ḥḳꜣ-ꜥnḏ.w
 1322E	EGYPTIAN HIEROGLYPH NL014
-	* logogram (14th upper Egyptian nome) : ḫnt.y-ꞽꜣb.ty
+	* logogram (14th nome of Upper Egypt) : ḫnt.y-ꞽꜣb.ty
 1322F	EGYPTIAN HIEROGLYPH NL015
-	* logogram (Thot nome, 15th nome of LE) : ḏhwty
+	* logogram (Thot nome, 15th nome of Lower Egypt) : ḏhwty
 13230	EGYPTIAN HIEROGLYPH NL016
-	* logogram (First-of-fishes nome (16th nome of LE)) : ḥꜣ.t-mḥ.yt
+	* logogram (First-of-fishes nome (16th nome of Lower Egypt)) : ḥꜣ.t-mḥ.yt
 13231	EGYPTIAN HIEROGLYPH NL017
-	* logogram (Behdet, 17th Lower Egyptian nome) : bḥd.t
+	* logogram (Behdet, 17th nome of Lower Egypt) : bḥd.t
 13232	EGYPTIAN HIEROGLYPH NL017A
-	* logogram (17th Lower Egyptian nome (Diospolis)) : smꜣ-bḥd.t
+	* logogram (17th nome of Lower Egypt (Diospolis)) : smꜣ-bḥd.t
 13233	EGYPTIAN HIEROGLYPH NL018
 13234	EGYPTIAN HIEROGLYPH NL019
 13235	EGYPTIAN HIEROGLYPH NL020
 @		NU. Nomes of Upper Egypt
 13236	EGYPTIAN HIEROGLYPH NU001
-	* logogram (Nubia, 1st Upper Egyptian nome) : tꜣ-sty
+	* logogram (Nubia, 1st nome of Upper Egypt) : tꜣ-sty
 13237	EGYPTIAN HIEROGLYPH NU002
-	* logogram (Throne of Horus (Edfu, 2nd nome of UE)) : wṯs-ḥr
+	* logogram (Throne of Horus (Edfu, 2nd nome of Upper Egypt)) : wṯs-ḥr
 13238	EGYPTIAN HIEROGLYPH NU003
 	* logogram (3rd nome of Upper Egypt) : nḫn
 13239	EGYPTIAN HIEROGLYPH NU004
 	* logogram (Thebes) : wꜣs.t
 1323A	EGYPTIAN HIEROGLYPH NU005
-	* logogram (The two gods, 5th nome of UE) : nṯr.wy
+	* logogram (The two gods, 5th nome of Upper Egypt) : nṯr.wy
 1323B	EGYPTIAN HIEROGLYPH NU006
-	* logogram (Iqer, 6th nome of UE) : ꞽḳr
+	* logogram (Iqer, 6th nome of Upper Egypt) : ꞽḳr
 1323C	EGYPTIAN HIEROGLYPH NU007
 	* logogram (Bat (7th nome of Upper Egypt)) : bꜣ.t
 1323D	EGYPTIAN HIEROGLYPH NU008
@@ -39705,34 +39741,34 @@ FFFF	<not a character>
 1323E	EGYPTIAN HIEROGLYPH NU009
 	* logogram (9th nome of Upper Egypt) : mnw
 1323F	EGYPTIAN HIEROGLYPH NU010
-	* logogram (Wadjet, 10th nome of UE) : wꜣḏ.t
+	* logogram (Wadjet, 10th nome of Upper Egypt) : wꜣḏ.t
 13240	EGYPTIAN HIEROGLYPH NU010A
-	* logogram (Wadjet, 10th nome of UE) : wꜣḏ.t
+	* logogram (Wadjet, 10th nome of Upper Egypt) : wꜣḏ.t
 13241	EGYPTIAN HIEROGLYPH NU011
 	* logogram (11th nome of Upper Egypt) : šꜣ/stẖ/stš
 13242	EGYPTIAN HIEROGLYPH NU011A
-	* logogram (11th Upper Egyptian nome (commonly under stẖ/stš/šꜣ) : ḥw-n.t
+	* logogram (11th nome of Upper Egypt (commonly under stẖ/stš/šꜣ) : ḥw-n.t
 13243	EGYPTIAN HIEROGLYPH NU012
-	* logogram (12th Upper Egyptian nome) : ꜣtf.t
+	* logogram (12th nome of Upper Egypt) : ꜣtf.t
 13244	EGYPTIAN HIEROGLYPH NU013
-	* logogram (13th Upper Egyptian nome) : nḏf.t-ḫnt.t
+	* logogram (13th nome of Upper Egypt) : nḏf.t-ḫnt.t
 13245	EGYPTIAN HIEROGLYPH NU014
-	* logogram (14th Upper Egyptian nome) : nḏf.t-pḥ.t
+	* logogram (14th nome of Upper Egypt) : nḏf.t-pḥ.t
 13246	EGYPTIAN HIEROGLYPH NU015
-	* logogram (Hermopolis magna, 15th nome of UE) : wnw.t
+	* logogram (Hermopolis magna, 15th nome of Upper Egypt) : wnw.t
 13247	EGYPTIAN HIEROGLYPH NU016
 	* logogram (Oryx nome, 16th nome of Upper Egypt) : mꜣ-ḥḏ
 13248	EGYPTIAN HIEROGLYPH NU017
 	* logogram (Anubis nome (17th nome of Upper Egypt)) : ꞽnpw.t
 13249	EGYPTIAN HIEROGLYPH NU018
-	* logogram (18th nome of UE (known as nmty as well)) : dwn-ꜥn.wy
+	* logogram (18th nome of Upper Egypt (known as nmty as well)) : dwn-ꜥn.wy
 1324A	EGYPTIAN HIEROGLYPH NU018A
 1324B	EGYPTIAN HIEROGLYPH NU019
 	* logogram (place of Igai, 19th nome of Upper Egypt) : bw-ꞽgꜣꞽ
 1324C	EGYPTIAN HIEROGLYPH NU020
-	* logogram (20th Upper Egyptian nome) : nꜥr.t-ḫnt.t
+	* logogram (20th nome of Upper Egypt) : nꜥr.t-ḫnt.t
 1324D	EGYPTIAN HIEROGLYPH NU021
-	* logogram (21th Upper Egyptian nome) : nꜥr.t-ph.t
+	* logogram (21th nome of Upper Egypt) : nꜥr.t-ph.t
 1324E	EGYPTIAN HIEROGLYPH NU022
 	* logogram (22th nome of Upper Egypt) : mdnꞽ.t
 1324F	EGYPTIAN HIEROGLYPH NU022A
@@ -39805,6 +39841,7 @@ FFFF	<not a character>
 1326F	EGYPTIAN HIEROGLYPH O020
 	* classifier sanctuary, shrine : ꞽtr.ty
 13270	EGYPTIAN HIEROGLYPH O020A
+	* variant of 1326F
 13271	EGYPTIAN HIEROGLYPH O021
 	* logogram (pavilion, hall, booth) : sḥ
 13272	EGYPTIAN HIEROGLYPH O022
@@ -39830,7 +39867,7 @@ FFFF	<not a character>
 	~ 1327B FE00 rotated 90 degrees
 	~ 1327B FE02 rotated 270 degrees
 1327C	EGYPTIAN HIEROGLYPH O029A
-	* rotated variant of 1327B
+	* rotated version of 1327B
 	* phonemogram : ꜥꜣ
 1327D	EGYPTIAN HIEROGLYPH O030
 	* not to be confused with 13361
@@ -39897,8 +39934,8 @@ FFFF	<not a character>
 13297	EGYPTIAN HIEROGLYPH O050
 	* classifier treshing floor : sp.t
 13298	EGYPTIAN HIEROGLYPH O050A
+	* mirrored version of 13299
 13299	EGYPTIAN HIEROGLYPH O050B
-	* mirrored version of 13298
 	* phono-repeater/classifier (time, occasion) : sp
 1329A	EGYPTIAN HIEROGLYPH O051
 	* logogram (granary) : šnw.t
@@ -40037,7 +40074,7 @@ FFFF	<not a character>
 132D9	EGYPTIAN HIEROGLYPH S007
 	* classifier crown : ḫprš
 132DA	EGYPTIAN HIEROGLYPH S008
-	* logogram (Atef-crown) : ꜣtf
+	* logogram (Atef crown) : ꜣtf
 132DB	EGYPTIAN HIEROGLYPH S009
 	* logogram (double plumes/two feather crown) : šw.ty
 132DC	EGYPTIAN HIEROGLYPH S010
@@ -40088,6 +40125,7 @@ FFFF	<not a character>
 	* not to be confused with 13200, 133D4, or 133F3
 	* logogram (loincloth, garment) : dꜣꞽ.w
 132F1	EGYPTIAN HIEROGLYPH S026B
+	* variant of 132F0
 132F2	EGYPTIAN HIEROGLYPH S027
 	* logogram (clothing) : mnḫ.t
 132F3	EGYPTIAN HIEROGLYPH S028
@@ -40269,14 +40307,13 @@ FFFF	<not a character>
 	~ 13338 FE03 rotated approximately 30 degrees
 	~ 13338 FE06 rotated approximately 320 degrees [horizontal]
 13339	EGYPTIAN HIEROGLYPH U006A
-	* stylistic variant of 13338
+	* rotated version of 13338
 1333A	EGYPTIAN HIEROGLYPH U006B
 	* mirrored version of 13339
 1333B	EGYPTIAN HIEROGLYPH U007
-	* variant of 13338
+	* rotated version of 13338
 	* phonemogram : mr
 1333C	EGYPTIAN HIEROGLYPH U008
-	* variant of 1333B
 	* phonemogram : ḥn
 	~ 1333C FE00 rotated 90 degrees
 1333D	EGYPTIAN HIEROGLYPH U009
@@ -40515,13 +40552,13 @@ FFFF	<not a character>
 1339F	EGYPTIAN HIEROGLYPH V030
 	* phonemogram : nb
 133A0	EGYPTIAN HIEROGLYPH V030A
-	* stylistic variant, use of 1339F is preferred
+	* variant of 1339F
 133A1	EGYPTIAN HIEROGLYPH V031
 	x (hebrew letter kaf - 05DB)
 	x (arabic letter kaf - 0643)
 	* phonemogram : k
 133A2	EGYPTIAN HIEROGLYPH V031A
-	* from hieratic
+	* mirrored version of 133A1
 	* phonemogram : k
 133A3	EGYPTIAN HIEROGLYPH V032
 	* phonemogram : msn
@@ -40561,7 +40598,7 @@ FFFF	<not a character>
 133B1	EGYPTIAN HIEROGLYPH W003
 	* logogram (festival) : ḥ(ꜣ)b
 133B2	EGYPTIAN HIEROGLYPH W003A
-	* stylistic variant, use of 133B1 is preferred
+	* variant of 133B1
 133B3	EGYPTIAN HIEROGLYPH W004
 	* logogram (festival) : h(ꜣ)b
 133B4	EGYPTIAN HIEROGLYPH W005
@@ -40630,7 +40667,7 @@ FFFF	<not a character>
 	* variant of 133D0
 	* classifier bread/food
 133D2	EGYPTIAN HIEROGLYPH X004
-	* classifier Festival
+	* classifier festival
 133D3	EGYPTIAN HIEROGLYPH X004A
 	* variant of 133D2
 	* phonemogram : t
@@ -40638,7 +40675,7 @@ FFFF	<not a character>
 133D4	EGYPTIAN HIEROGLYPH X004B
 	* variant of 133D2
 	* not to be confused with 13200, 132F0, or 133F3
-	* classifier bread, Festival; Phonemogram t; Logogram t (bread); Phono-repeater: sn, fḳꜣ : t | sn, fḳꜣ
+	* classifier bread, festival; Phonemogram t; Logogram t (bread); Phono-repeater: sn, fḳꜣ : t | sn, fḳꜣ
 133D5	EGYPTIAN HIEROGLYPH X005
 	* hieratic
 	* variant of 133D4
@@ -40646,6 +40683,7 @@ FFFF	<not a character>
 133D6	EGYPTIAN HIEROGLYPH X006
 	* classifier offering, cake, loaf : t-ꜣsr
 133D7	EGYPTIAN HIEROGLYPH X006A
+	* variant of 133D6
 133D8	EGYPTIAN HIEROGLYPH X007
 	* not to be confused with 1320E
 	* classifier food : gs
@@ -40660,7 +40698,7 @@ FFFF	<not a character>
 	* classifier abstract words : sspd.w
 	~ 133DB FE02 rotated 270 degrees
 133DC	EGYPTIAN HIEROGLYPH Y001A
-	* rotated variant of 133DB
+	* rotated version of 133DB
 	* logogram (papyrus scroll, book) : mḏꜣ.t
 133DD	EGYPTIAN HIEROGLYPH Y002
 	* older variant of 133DB
@@ -40698,26 +40736,23 @@ FFFF	<not a character>
 	* classifier plural
 	~ 133E8 FE01 rotated 180 degrees
 133E9	EGYPTIAN HIEROGLYPH Z002D
-	* variant of 133E8
+	* rotated version of 133E8
 	* classifier plural
 133EA	EGYPTIAN HIEROGLYPH Z003
 	* variant of 133E5
 	* classifier plural
 133EB	EGYPTIAN HIEROGLYPH Z003A
-	* variant of 133EA
+	* rotated version of 133E5
 	* classifier plural
 133EC	EGYPTIAN HIEROGLYPH Z003B
-	* variant of 133E7
+	* rotated version of 133E7
 133ED	EGYPTIAN HIEROGLYPH Z004
 	* classifier 'dual'
 	x (egyptian hieroglyph m017a - 131CC)
 	* phonemogram : y
 133EE	EGYPTIAN HIEROGLYPH Z004A
-	* variant of 133ED
-	* classifier 'dual'
-	* transliterated as y
 	* not to be confused with 133FB
-	* logogram (2) : sn.w
+	* logogram (two) : sn.w
 	~ 133EE FE00 rotated 90 degrees [= 270 degrees]
 133EF	EGYPTIAN HIEROGLYPH Z005
 	* substitute for dangerous signs
@@ -40774,6 +40809,7 @@ FFFF	<not a character>
 13402	EGYPTIAN HIEROGLYPH Z015H
 	* logogram (nine) : psḏ
 13403	EGYPTIAN HIEROGLYPH Z015I
+	* variant of 133FE
 	* logogram (five) : dꞽw
 13404	EGYPTIAN HIEROGLYPH Z016
 	* logogram (one, sole) : wꜥ
@@ -41029,9 +41065,9 @@ FFFF	<not a character>
 @		A02. Man standing empty handed
 13488	EGYPTIAN HIEROGLYPH-13488
 13489	EGYPTIAN HIEROGLYPH-13489
-	* classifier  to totter : mss
+	* classifier to totter : mss
 1348A	EGYPTIAN HIEROGLYPH-1348A
-	* classifier foreigner (nubian) : nḥs.y
+	* classifier foreigner (Nubian) : nḥs.y
 1348B	EGYPTIAN HIEROGLYPH-1348B
 	* logogram (to fraternize) : snsn
 1348C	EGYPTIAN HIEROGLYPH-1348C
@@ -41075,7 +41111,7 @@ FFFF	<not a character>
 134A1	EGYPTIAN HIEROGLYPH-134A1
 	* classifier bowing : ksw
 134A2	EGYPTIAN HIEROGLYPH-134A2
-	* logogram (Sem priest)? : sm
+	* logogram (sem-priest)? : sm
 134A3	EGYPTIAN HIEROGLYPH-134A3
 	* classifier bald : ꞽꜣs
 134A4	EGYPTIAN HIEROGLYPH-134A4
@@ -41145,7 +41181,7 @@ FFFF	<not a character>
 134C6	EGYPTIAN HIEROGLYPH-134C6
 	* logogram (official, noble) : sr
 134C7	EGYPTIAN HIEROGLYPH-134C7
-	* logogram (9th nome of UE) : ꜥnḏ.ty
+	* logogram (9th nome of Lower Egypt) : ꜥnḏ.ty
 134C8	EGYPTIAN HIEROGLYPH-134C8
 	* classifier statue : twt
 134C9	EGYPTIAN HIEROGLYPH-134C9
@@ -41415,7 +41451,7 @@ FFFF	<not a character>
 13550	EGYPTIAN HIEROGLYPH-13550
 	* classifier herdsman : nr
 13551	EGYPTIAN HIEROGLYPH-13551
-	* classifier foreigner (asiatic) : ꜥꜣm
+	* classifier foreigner (Asiatic) : ꜥꜣm
 13552	EGYPTIAN HIEROGLYPH-13552
 	* logogram (relating to, belonging to) : ꞽr.y
 13553	EGYPTIAN HIEROGLYPH-13553
@@ -41477,9 +41513,9 @@ FFFF	<not a character>
 1356F	EGYPTIAN HIEROGLYPH-1356F
 	* logogram (to erect) : sꜥḥꜥ
 13570	EGYPTIAN HIEROGLYPH-13570
-	* logogram (to erect the Djed pillar) : sꜥḥꜥ-ḏd
+	* logogram (to erect the djed pillar) : sꜥḥꜥ-ḏd
 13571	EGYPTIAN HIEROGLYPH-13571
-	* classifier erecting the djed-pillar (group classifier for sꜥḥꜥ-ḏd-ꞽn-ꞽr.yw-ḫt-n(y)-sw.t) : sꜥḥꜥ-ḏd-ꞽn-ꞽr.yw-ḫt-n(y)-sw.t
+	* classifier erecting the djed pillar (group classifier for sꜥḥꜥ-ḏd-ꞽn-ꞽr.yw-ḫt-n(y)-sw.t) : sꜥḥꜥ-ḏd-ꞽn-ꞽr.yw-ḫt-n(y)-sw.t
 13572	EGYPTIAN HIEROGLYPH-13572
 	* classifier erecting : sꜥḥꜥ
 13573	EGYPTIAN HIEROGLYPH-13573
@@ -41491,7 +41527,7 @@ FFFF	<not a character>
 13576	EGYPTIAN HIEROGLYPH-13576
 	* classifier divinity : ꞽwn-mw.t=f
 13577	EGYPTIAN HIEROGLYPH-13577
-	* logogram (Sem-priest) : sm
+	* logogram (sem-priest) : sm
 13578	EGYPTIAN HIEROGLYPH-13578
 	* logogram (to be strong) : nḫt
 13579	EGYPTIAN HIEROGLYPH-13579
@@ -41646,7 +41682,7 @@ FFFF	<not a character>
 135C7	EGYPTIAN HIEROGLYPH-135C7
 	* classifier rebel, enemy : ẖꜣk-ꞽb
 135C8	EGYPTIAN HIEROGLYPH-135C8
-	* classifier foes, hostile forces` : kꞽ.wy
+	* classifier foes, hostile forces : kꞽ.wy
 135C9	EGYPTIAN HIEROGLYPH-135C9
 	* classifier enemy : šnṯ
 135CA	EGYPTIAN HIEROGLYPH-135CA
@@ -41719,7 +41755,7 @@ FFFF	<not a character>
 135EE	EGYPTIAN HIEROGLYPH-135EE
 	* logogram (the great god) : nṯr-ꜥꜣ
 135EF	EGYPTIAN HIEROGLYPH-135EF
-	* logogram (the King of Lower Egypt) : bꞽ.ty
+	* logogram (the king of Lower Egypt) : bꞽ.ty
 135F0	EGYPTIAN HIEROGLYPH-135F0
 	* classifier divinity : ꞽḥy
 135F1	EGYPTIAN HIEROGLYPH-135F1
@@ -41729,7 +41765,7 @@ FFFF	<not a character>
 135F3	EGYPTIAN HIEROGLYPH-135F3
 	* logogram (the great god) : nṯr-ꜥꜣ
 135F4	EGYPTIAN HIEROGLYPH-135F4
-	* logogram (King of UE) : n(y)-sw.t
+	* logogram (king of Upper Egypt) : n(y)-sw.t
 135F5	EGYPTIAN HIEROGLYPH-135F5
 	* logogram (the great god) : nṯr-ꜥꜣ
 135F6	EGYPTIAN HIEROGLYPH-135F6
@@ -41827,9 +41863,9 @@ FFFF	<not a character>
 	* phonemogram : ꜥb
 13624	EGYPTIAN HIEROGLYPH-13624
 13625	EGYPTIAN HIEROGLYPH-13625
-	* logogram (Son of Re) : sꜣ-rꜥ
+	* logogram (son of Re) : sꜣ-rꜥ
 13626	EGYPTIAN HIEROGLYPH-13626
-	* logogram (Son of Re) : sꜣ-rꜥ
+	* logogram (son of Re) : sꜣ-rꜥ
 13627	EGYPTIAN HIEROGLYPH-13627
 	* phonemogram : r + ḫ
 13628	EGYPTIAN HIEROGLYPH-13628
@@ -41945,7 +41981,7 @@ FFFF	<not a character>
 13662	EGYPTIAN HIEROGLYPH-13662
 	* logogram (to rule) : ḥḳꜣ
 13663	EGYPTIAN HIEROGLYPH-13663
-	* logogram (ruler of the 9th nome of UE) : ḥḳꜣ-ꜥnḏ.ty
+	* logogram (ruler of the 9th nome of Lower Egypt) : ḥḳꜣ-ꜥnḏ.ty
 13664	EGYPTIAN HIEROGLYPH-13664
 	* logogram (ruler) : ḥḳꜣ
 13665	EGYPTIAN HIEROGLYPH-13665
@@ -41968,37 +42004,37 @@ FFFF	<not a character>
 	* classifier praying, worshipping : smnḥ
 @		A28. King or god wearing the white crown
 1366F	EGYPTIAN HIEROGLYPH-1366F
-	* classsifier king : n.y-sw.t
+	* classifier king : n.y-sw.t
 13670	EGYPTIAN HIEROGLYPH-13670
 	* classifier divinity : kꜣ-ḥtp
 13671	EGYPTIAN HIEROGLYPH-13671
-	* classsifier king : n.y-sw.t
+	* classifier king : n.y-sw.t
 13672	EGYPTIAN HIEROGLYPH-13672
 	* classifier divinity : ḫnt.y-ꞽmn.tyw
 13673	EGYPTIAN HIEROGLYPH-13673
-	* classsifier king : n.y-sw.t
+	* classifier king : n.y-sw.t
 13674	EGYPTIAN HIEROGLYPH-13674
-	* classsifier king : n.y-sw.t
+	* classifier king : n.y-sw.t
 13675	EGYPTIAN HIEROGLYPH-13675
 	* classifier divinity : nṯr
 13676	EGYPTIAN HIEROGLYPH-13676
-	* logogram (king of UE) : n.y-sw.t
+	* logogram (king of Upper Egypt) : n.y-sw.t
 13677	EGYPTIAN HIEROGLYPH-13677
-	* classsifier king : n.y-sw.t
+	* classifier king : n.y-sw.t
 13678	EGYPTIAN HIEROGLYPH-13678
-	* classsifier king : n.y-sw.t
+	* classifier king : n.y-sw.t
 13679	EGYPTIAN HIEROGLYPH-13679
 	* classifier divinity : ḫnt.y-ꞽmn.tyw
 1367A	EGYPTIAN HIEROGLYPH-1367A
-	* logogram (king of UE) : n.y-sw.t
+	* logogram (king of Upper Egypt) : n.y-sw.t
 1367B	EGYPTIAN HIEROGLYPH-1367B
-	* logogram (king of UE) : n.y-sw.t
+	* logogram (king of Upper Egypt) : n.y-sw.t
 1367C	EGYPTIAN HIEROGLYPH-1367C
-	* logogram (king of UE) : n.y-sw.t
+	* logogram (king of Upper Egypt) : n.y-sw.t
 1367D	EGYPTIAN HIEROGLYPH-1367D
 	* logogram (majesty) : ḥm
 1367E	EGYPTIAN HIEROGLYPH-1367E
-	* logogram (he of heliopolis) : ꞽwn.y
+	* logogram (he of Heliopolis) : ꞽwn.y
 1367F	EGYPTIAN HIEROGLYPH-1367F
 	* logogram (the white crown) : ḥḏ.t
 13680	EGYPTIAN HIEROGLYPH-13680
@@ -42006,45 +42042,45 @@ FFFF	<not a character>
 13681	EGYPTIAN HIEROGLYPH-13681
 	* classifier Osiris : wsꞽr
 13682	EGYPTIAN HIEROGLYPH-13682
-	* classsifier king : n.y-sw.t
+	* classifier king : n.y-sw.t
 13683	EGYPTIAN HIEROGLYPH-13683
 13684	EGYPTIAN HIEROGLYPH-13684
-	* logogram (king of UE) : n.y-sw.t
+	* logogram (king of Upper Egypt) : n.y-sw.t
 13685	EGYPTIAN HIEROGLYPH-13685
-	* logogram (king of UE) : n.y-sw.t
+	* logogram (king of Upper Egypt) : n.y-sw.t
 13686	EGYPTIAN HIEROGLYPH-13686
-	* logogram (king of UE and land, when occuring together with king of LE forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : n(.y)-sw.t & tꜣ
+	* logogram (king of Upper Egypt and land, when occurring together with king of Lower Egypt forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : n(.y)-sw.t & tꜣ
 13687	EGYPTIAN HIEROGLYPH-13687
-	* logogram (king of UE and land when occuring together with red crown wearing variant forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : n(.y)-sw.t & tꜣ
+	* logogram (king of Upper Egypt and land when occurring together with red crown wearing variant forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : n(.y)-sw.t & tꜣ
 13688	EGYPTIAN HIEROGLYPH-13688
-	* logogram (King of UE) : n(.y)-sw.t
+	* logogram (king of Upper Egypt) : n(.y)-sw.t
 13689	EGYPTIAN HIEROGLYPH-13689
 	* logogram (Osiris) : wsꞽr
 @		A29. King or god wearing the red crown
 1368A	EGYPTIAN HIEROGLYPH-1368A
-	* logogram (king of LE) : bꞽ.ty
+	* logogram (king of Lower Egypt) : bꞽ.ty
 1368B	EGYPTIAN HIEROGLYPH-1368B
-	* logogram (king of LE) : bꞽ.ty
+	* logogram (king of Lower Egypt) : bꞽ.ty
 1368C	EGYPTIAN HIEROGLYPH-1368C
-	* logogram (king of LE) : bꞽ.ty
+	* logogram (king of Lower Egypt) : bꞽ.ty
 1368D	EGYPTIAN HIEROGLYPH-1368D
-	* logogram (king of LE) : bꞽ.ty
+	* logogram (king of Lower Egypt) : bꞽ.ty
 1368E	EGYPTIAN HIEROGLYPH-1368E
-	* logogram (king of LE) : bꞽ.ty
+	* logogram (king of Lower Egypt) : bꞽ.ty
 1368F	EGYPTIAN HIEROGLYPH-1368F
 	* classifier king : n(y)-sw.t
 13690	EGYPTIAN HIEROGLYPH-13690
-	* logogram (king of LE) : bꞽ.ty
+	* logogram (king of Lower Egypt) : bꞽ.ty
 13691	EGYPTIAN HIEROGLYPH-13691
 	* classifier sovereign : ꞽt.y
 13692	EGYPTIAN HIEROGLYPH-13692
 	* classifier king : n.y-sw.t
 13693	EGYPTIAN HIEROGLYPH-13693
-	* logogram (King of LE and land, when occuring together with King of UE forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : bꞽ.ty tꜣ
+	* logogram (king of Lower Egypt and land, when occurring together with king of Upper Egypt forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : bꞽ.ty tꜣ
 13694	EGYPTIAN HIEROGLYPH-13694
-	* logogram (King of LE and land, when occuring together with a white crown variant forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : bꞽ.ty tꜣ
+	* logogram (king of Lower Egypt and land, when occurring together with a white crown variant forms n(.y)-sw.t-bꞽ.ty nb tꜣ.wy) : bꞽ.ty tꜣ
 13695	EGYPTIAN HIEROGLYPH-13695
-	* logogram (King of UE) : n(.y)-sw.t
+	* logogram (king of Upper Egypt) : n(.y)-sw.t
 13696	EGYPTIAN HIEROGLYPH-13696
 	* logogram (to run) : pḥrr
 13697	EGYPTIAN HIEROGLYPH-13697
@@ -42057,7 +42093,7 @@ FFFF	<not a character>
 1369A	EGYPTIAN HIEROGLYPH-1369A
 	* logogram (first person singular) : ꞽ
 1369B	EGYPTIAN HIEROGLYPH-1369B
-	* logogram (king of ULE) : n(y)-sw.t-bꞽ.ty
+	* logogram (king of Upper and Lower Egypt) : n(y)-sw.t-bꞽ.ty
 1369C	EGYPTIAN HIEROGLYPH-1369C
 	* classifier king/divinity : pꜣ-nṯr-mnḫ
 1369D	EGYPTIAN HIEROGLYPH-1369D
@@ -42071,10 +42107,10 @@ FFFF	<not a character>
 136A1	EGYPTIAN HIEROGLYPH-136A1
 	* classifier sovereign : ꞽt.y
 136A2	EGYPTIAN HIEROGLYPH-136A2
-	* logogram (king of ULE) : n(y)-sw.t-bꞽ.ty
+	* logogram (king of Upper and Lower Egypt) : n(y)-sw.t-bꞽ.ty
 136A3	EGYPTIAN HIEROGLYPH-136A3
 136A4	EGYPTIAN HIEROGLYPH-136A4
-	* pictogram prostate offering a vase of myrrh
+	* pictogram prostrate offering a vase of myrrh
 136A5	EGYPTIAN HIEROGLYPH-136A5
 	* logogram (sovereign) : ꞽt.y
 136A6	EGYPTIAN HIEROGLYPH-136A6
@@ -42090,7 +42126,7 @@ FFFF	<not a character>
 136AC	EGYPTIAN HIEROGLYPH-136AC
 	* logogram/phonemogram (in ꜥnḏ.ty (Busiris)) : ꜥnḏ
 136AD	EGYPTIAN HIEROGLYPH-136AD
-	* logogram (9th nome of UE) : ꜥnḏ.ty
+	* logogram (9th nome of Lower Egypt) : ꜥnḏ.ty
 136AE	EGYPTIAN HIEROGLYPH-136AE
 	* classifier majesty (specifically referring to Shu) : ḥm
 136AF	EGYPTIAN HIEROGLYPH-136AF
@@ -42171,7 +42207,7 @@ FFFF	<not a character>
 136D5	EGYPTIAN HIEROGLYPH-136D5
 	* logogram (majesty) : ḥm.t
 136D6	EGYPTIAN HIEROGLYPH-136D6
-	* logogram (femine first person singular) : ꞽ
+	* logogram (feminine first person singular) : ꞽ
 136D7	EGYPTIAN HIEROGLYPH-136D7
 	* classifier divinity : n.t
 136D8	EGYPTIAN HIEROGLYPH-136D8
@@ -42321,7 +42357,7 @@ FFFF	<not a character>
 13723	EGYPTIAN HIEROGLYPH-13723
 	* logogram (sovereign) : ꞽt.yt
 13724	EGYPTIAN HIEROGLYPH-13724
-	* phonemogram (cryptography) : t; r
+	* phonemogram (cryptography) : t/r
 13725	EGYPTIAN HIEROGLYPH-13725
 	* classifier mourner : ḥꜣy.t
 13726	EGYPTIAN HIEROGLYPH-13726
@@ -42342,7 +42378,7 @@ FFFF	<not a character>
 1372D	EGYPTIAN HIEROGLYPH-1372D
 1372E	EGYPTIAN HIEROGLYPH-1372E
 1372F	EGYPTIAN HIEROGLYPH-1372F
-	* logogram (king of UE) : n.y-sw.t
+	* logogram (king of Upper Egypt) : n.y-sw.t
 13730	EGYPTIAN HIEROGLYPH-13730
 	* phonemogram : b
 13731	EGYPTIAN HIEROGLYPH-13731
@@ -42412,7 +42448,7 @@ FFFF	<not a character>
 13752	EGYPTIAN HIEROGLYPH-13752
 	* logogram (the utterance, divinity) : ḥw
 13753	EGYPTIAN HIEROGLYPH-13753
-	* logogram (perception/knowledge (divinity) : sꞽꜣ
+	* logogram (perception/knowledge (divinity)) : sꞽꜣ
 13754	EGYPTIAN HIEROGLYPH-13754
 	* logogram (perception/knowledge (divinity)) : sꞽꜣ
 13755	EGYPTIAN HIEROGLYPH-13755
@@ -42576,7 +42612,7 @@ FFFF	<not a character>
 137A8	EGYPTIAN HIEROGLYPH-137A8
 	* logogram (of Re) : n rꜥ
 137A9	EGYPTIAN HIEROGLYPH-137A9
-	* logogram (Son of Re) : sꜣ-rꜥ
+	* logogram (son of Re) : sꜣ-rꜥ
 137AA	EGYPTIAN HIEROGLYPH-137AA
 	* classifier statue/likeness : sšm(.w)
 137AB	EGYPTIAN HIEROGLYPH-137AB
@@ -42598,7 +42634,7 @@ FFFF	<not a character>
 137B3	EGYPTIAN HIEROGLYPH-137B3
 	* logogram (god) : nṯr
 137B4	EGYPTIAN HIEROGLYPH-137B4
-	* logogram (Beloved of Horus) : mr.y-ḥr
+	* logogram (beloved of Horus) : mr.y-ḥr
 137B5	EGYPTIAN HIEROGLYPH-137B5
 	* classifier Sokar (divinity)
 137B6	EGYPTIAN HIEROGLYPH-137B6
@@ -42663,7 +42699,7 @@ FFFF	<not a character>
 137D6	EGYPTIAN HIEROGLYPH-137D6
 	* classifier divinity : ꞽn-ḥr.t
 137D7	EGYPTIAN HIEROGLYPH-137D7
-	* logogram (lord of the two lands, when used in connection with a seth headed figure) : nb-tꜣ.wy
+	* logogram (lord of the two lands, when used in connection with a Seth-headed figure) : nb-tꜣ.wy
 137D8	EGYPTIAN HIEROGLYPH-137D8
 	* classifier harpooner : ꞽ(ꜣ)w.ty
 137D9	EGYPTIAN HIEROGLYPH-137D9
@@ -42877,7 +42913,7 @@ FFFF	<not a character>
 13843	EGYPTIAN HIEROGLYPH-13843
 	* logogram (Re) : rꜥ
 13844	EGYPTIAN HIEROGLYPH-13844
-	* classifier King of UE : n(.y)-sw.t
+	* classifier king of Upper Egypt : n(.y)-sw.t
 13845	EGYPTIAN HIEROGLYPH-13845
 	* logogram (Re) : rꜥ
 13846	EGYPTIAN HIEROGLYPH-13846
@@ -42967,7 +43003,7 @@ FFFF	<not a character>
 13870	EGYPTIAN HIEROGLYPH-13870
 @		C32. Gods, varia
 13871	EGYPTIAN HIEROGLYPH-13871
-	* logogram (Son of Re) : sꜣ-rꜥ
+	* logogram (son of Re) : sꜣ-rꜥ
 13872	EGYPTIAN HIEROGLYPH-13872
 	* classifier earth-god : ꜣkr
 13873	EGYPTIAN HIEROGLYPH-13873
@@ -42997,7 +43033,7 @@ FFFF	<not a character>
 1387E	EGYPTIAN HIEROGLYPH-1387E
 	* logogram (Isis) : ꜣs.t
 1387F	EGYPTIAN HIEROGLYPH-1387F
-	* classifier female divinity (Usually associated with Hathor)
+	* classifier female divinity (usually associated with Hathor)
 13880	EGYPTIAN HIEROGLYPH-13880
 	* logogram : nb
 13881	EGYPTIAN HIEROGLYPH-13881
@@ -43090,7 +43126,7 @@ FFFF	<not a character>
 138AF	EGYPTIAN HIEROGLYPH-138AF
 	* logogram (Sekhmet) : sḫm.t
 138B0	EGYPTIAN HIEROGLYPH-138B0
-	* classifie leonid divinity (female) : sḫm.t
+	* classifier leonid divinity (female) : sḫm.t
 138B1	EGYPTIAN HIEROGLYPH-138B1
 138B2	EGYPTIAN HIEROGLYPH-138B2
 	* classifier leonid divinity (male) : ḥḏ-ḥtp
@@ -43150,7 +43186,7 @@ FFFF	<not a character>
 138CF	EGYPTIAN HIEROGLYPH-138CF
 	* classifier truth : mꜥꜣ.t
 138D0	EGYPTIAN HIEROGLYPH-138D0
-	* logogram/phonemogram  (whom truth/Maat loves) : mr(.y)-mꜣꜥ.t
+	* logogram/phonemogram (whom truth/Maat loves) : mr(.y)-mꜣꜥ.t
 138D1	EGYPTIAN HIEROGLYPH-138D1
 	* logogram (Maat) : mꜣꜥ.t
 138D2	EGYPTIAN HIEROGLYPH-138D2
@@ -43160,7 +43196,7 @@ FFFF	<not a character>
 138D4	EGYPTIAN HIEROGLYPH-138D4
 	* logogram (in name Ramses II) : wsr-mꜣꜥ.t
 138D5	EGYPTIAN HIEROGLYPH-138D5
-	* logogram (Gate which gives truth) : rw.t-dꞽ(.t)-mꜣꜥ.t
+	* logogram (gate which gives truth) : rw.t-dꞽ(.t)-mꜣꜥ.t
 138D6	EGYPTIAN HIEROGLYPH-138D6
 	* logogram (to be hidden) : štꜣ
 @		C38. Meret
@@ -43208,7 +43244,7 @@ FFFF	<not a character>
 138EB	EGYPTIAN HIEROGLYPH-138EB
 	* phonemogram : n(.t)
 138EC	EGYPTIAN HIEROGLYPH-138EC
-	* logogram (king of LE) : bꞽ.ty
+	* logogram (king of Lower Egypt) : bꞽ.ty
 138ED	EGYPTIAN HIEROGLYPH-138ED
 	* phonemogram : nt
 138EE	EGYPTIAN HIEROGLYPH-138EE
@@ -43267,7 +43303,7 @@ FFFF	<not a character>
 13906	EGYPTIAN HIEROGLYPH-13906
 @		C47. Goddesses, varia
 13907	EGYPTIAN HIEROGLYPH-13907
-	* classifier Bovid divinity : ḥsꜣ.t
+	* classifier bovid divinity : ḥsꜣ.t
 13908	EGYPTIAN HIEROGLYPH-13908
 	* logogram/phonemogram (lord) : nb
 13909	EGYPTIAN HIEROGLYPH-13909
@@ -43315,7 +43351,7 @@ FFFF	<not a character>
 1391E	EGYPTIAN HIEROGLYPH-1391E
 	* logogram (moon)? : ꞽꜥḥ
 1391F	EGYPTIAN HIEROGLYPH-1391F
-	* classifier (Sekhet, goddes of the marshlands) : sḫ.t
+	* classifier (Sekhet, goddess of the marshlands) : sḫ.t
 13920	EGYPTIAN HIEROGLYPH-13920
 	* classifier divinity : ḏd.t
 13921	EGYPTIAN HIEROGLYPH-13921
@@ -43386,7 +43422,7 @@ FFFF	<not a character>
 13941	EGYPTIAN HIEROGLYPH-13941
 	* classifier dwarf/pigmy : dng
 13942	EGYPTIAN HIEROGLYPH-13942
-	* classsifier (to bow, to attack) : ꞽkꞽ
+	* classifier (to bow, to attack) : ꞽkꞽ
 13943	EGYPTIAN HIEROGLYPH-13943
 	* classifier to fall : sḫr
 13944	EGYPTIAN HIEROGLYPH-13944
@@ -43401,7 +43437,7 @@ FFFF	<not a character>
 13949	EGYPTIAN HIEROGLYPH-13949
 	* logogram (Heh, divinity) : ḥḥ
 1394A	EGYPTIAN HIEROGLYPH-1394A
-	* classifier upside down : sḫdḫd
+	* classifier upside-down : sḫdḫd
 1394B	EGYPTIAN HIEROGLYPH-1394B
 	* classifier to swim : mḥꞽ
 1394C	EGYPTIAN HIEROGLYPH-1394C
@@ -43478,7 +43514,7 @@ FFFF	<not a character>
 	* classifier hairlock : ḥnsk.t
 @		D05. Eye
 13973	EGYPTIAN HIEROGLYPH-13973
-	* logogram (to see) : Mꜥꜥ
+	* logogram (to see) : mꜥꜥ
 13974	EGYPTIAN HIEROGLYPH-13974
 	* classifier eye-paint : smd.t
 13975	EGYPTIAN HIEROGLYPH-13975
@@ -43527,14 +43563,14 @@ FFFF	<not a character>
 	* classifier weeping/crying : rmꞽ
 1398B	EGYPTIAN HIEROGLYPH-1398B
 	* classifier eye related actions : dgꞽ
-@		D08. Eye oudjat
+@		D08. Udjat eye
 1398C	EGYPTIAN HIEROGLYPH-1398C
-	* logogram (The dazzling eye (=Egypt)) : bꜣḳ.t
+	* logogram (the ""dazzling-eye"" (Egypt)) : bꜣḳ.t
 1398D	EGYPTIAN HIEROGLYPH-1398D
 	* logogram (eye) : ꞽr.t
 1398E	EGYPTIAN HIEROGLYPH-1398E
 	* logogram (the eye of Re) : ꞽr.t-rꜥ
-@		D09. Eye oudjat components
+@		D09. Udjat eye components
 1398F	EGYPTIAN HIEROGLYPH-1398F
 	* logogram (to see) : mꜣꜣ
 @		D10. Ear
@@ -43781,7 +43817,7 @@ FFFF	<not a character>
 13A05	EGYPTIAN HIEROGLYPH-13A05
 	* phono-repeater : fꜥg
 13A06	EGYPTIAN HIEROGLYPH-13A06
-	* logogram (Prospopite nome) : mtr
+	* logogram (Prosopopite nome) : mtr
 @		D31. Male genitals
 13A07	EGYPTIAN HIEROGLYPH-13A07
 	* classifier copulating : nk
@@ -43815,7 +43851,7 @@ FFFF	<not a character>
 13A15	EGYPTIAN HIEROGLYPH-13A15
 	* classifier to spread : pšš
 13A16	EGYPTIAN HIEROGLYPH-13A16
-	* classifier to be upside down : sḫd
+	* classifier to be upside-down : sḫd
 13A17	EGYPTIAN HIEROGLYPH-13A17
 	* interpretant r and classifier movement : prꞽ
 13A18	EGYPTIAN HIEROGLYPH-13A18
@@ -43950,7 +43986,7 @@ FFFF	<not a character>
 13A5C	EGYPTIAN HIEROGLYPH-13A5C
 	* logogram (Oryx nome, 16th nome of Upper Egypt) : mꜣ-ḥḏ
 13A5D	EGYPTIAN HIEROGLYPH-13A5D
-	* logogram (Oryx nome, 16th nome of Upper Egypt : mꜣ-ḥḏ
+	* logogram (Oryx nome, 16th nome of Upper Egypt) : mꜣ-ḥḏ
 13A5E	EGYPTIAN HIEROGLYPH-13A5E
 	* classifier oryx : mꜣ-ḥḏ
 13A5F	EGYPTIAN HIEROGLYPH-13A5F
@@ -43974,7 +44010,7 @@ FFFF	<not a character>
 13A68	EGYPTIAN HIEROGLYPH-13A68
 	* logogram (rams) : bꜣ.w
 13A69	EGYPTIAN HIEROGLYPH-13A69
-	* logogram (Son of Re) : sꜣ-rꜥ
+	* logogram (son of Re) : sꜣ-rꜥ
 13A6A	EGYPTIAN HIEROGLYPH-13A6A
 	* logogram (he of Edfu) : bḥd.ty
 13A6B	EGYPTIAN HIEROGLYPH-13A6B
@@ -44108,9 +44144,9 @@ FFFF	<not a character>
 13AAD	EGYPTIAN HIEROGLYPH-13AAD
 @		E13. Griffin
 13AAE	EGYPTIAN HIEROGLYPH-13AAE
-	* logogram (griffin) : ꜥḫḫ
-13AAF	EGYPTIAN HIEROGLYPH-13AAF
 	* classifier griffin : ꜥḫḫ
+13AAF	EGYPTIAN HIEROGLYPH-13AAF
+	* logogram (griffin) : ꜥḫḫ
 @		E14. Hippopotamus
 13AB0	EGYPTIAN HIEROGLYPH-13AB0
 	* logogram (triomphator) : dwn.ty
@@ -44132,7 +44168,7 @@ FFFF	<not a character>
 13AB9	EGYPTIAN HIEROGLYPH-13AB9
 	* logogram (to rejoice) : bnhm
 13ABA	EGYPTIAN HIEROGLYPH-13ABA
-	* logogram (first person signular, referring to Nut) : ꞽ
+	* logogram (first person singular, referring to Nut) : ꞽ
 @		E15. Hyena
 13ABB	EGYPTIAN HIEROGLYPH-13ABB
 	* classifier jackal : wnš.w
@@ -44143,7 +44179,7 @@ FFFF	<not a character>
 13ABE	EGYPTIAN HIEROGLYPH-13ABE
 	* phonemogram : wn
 13ABF	EGYPTIAN HIEROGLYPH-13ABF
-	* logogram (Hermopolis magna, 15th nome of UE) : wnw.t 
+	* logogram (Hermopolis magna, 15th nome of Upper Egypt) : wnw.t 
 13AC0	EGYPTIAN HIEROGLYPH-13AC0
 @		E17. Lion
 13AC1	EGYPTIAN HIEROGLYPH-13AC1
@@ -44175,7 +44211,7 @@ FFFF	<not a character>
 13ACF	EGYPTIAN HIEROGLYPH-13ACF
 	* logogram (to present) : šms
 13AD0	EGYPTIAN HIEROGLYPH-13AD0
-	* logogram/phonemogram (King of UE and LE, lord) : n(.y)-sw.t-bꞽ.ty nb
+	* logogram/phonemogram (king of Upper Egypt and Lower Egypt, lord) : n(.y)-sw.t-bꞽ.ty nb
 13AD1	EGYPTIAN HIEROGLYPH-13AD1
 	* logogram (in the construction sꜣ-rꜥ nb ḫꜥ.w) : rꜥ + nb
 13AD2	EGYPTIAN HIEROGLYPH-13AD2
@@ -44200,9 +44236,9 @@ FFFF	<not a character>
 	* logogram (Re) : rꜥ
 13ADC	EGYPTIAN HIEROGLYPH-13ADC
 13ADD	EGYPTIAN HIEROGLYPH-13ADD
-	* logogram (Matit, Goddess of 12th nome of Upper Egypt) : mꜣt.yt
+	* logogram (Matit, goddess of 12th nome of Upper Egypt) : mꜣt.yt
 13ADE	EGYPTIAN HIEROGLYPH-13ADE
-	* logogram (door-bolt) : ḥkn
+	* logogram (door bolt) : ḥkn
 13ADF	EGYPTIAN HIEROGLYPH-13ADF
 	* logogram (every day) : rꜥ-nb
 13AE0	EGYPTIAN HIEROGLYPH-13AE0
@@ -44225,11 +44261,11 @@ FFFF	<not a character>
 	* logogram (Tefrer, geographical location) : tfrr
 @		E20. Monkey
 13AE8	EGYPTIAN HIEROGLYPH-13AE8
-	* logogram (Thot) : ḏḥwty
+	* classifier monkey (divinity) : wpt
 13AE9	EGYPTIAN HIEROGLYPH-13AE9
 	* logogram (Thot) : ḏḥwty
 13AEA	EGYPTIAN HIEROGLYPH-13AEA
-	* logogram (King (of UE)) : n(.y)-sw.t
+	* logogram (king (of Upper Egypt)) : n(.y)-sw.t
 13AEB	EGYPTIAN HIEROGLYPH-13AEB
 	* phonemogram : bsꜣ
 13AEC	EGYPTIAN HIEROGLYPH-13AEC
@@ -44239,7 +44275,7 @@ FFFF	<not a character>
 13AEE	EGYPTIAN HIEROGLYPH-13AEE
 	* logogram (to write, to inscribe) : spẖr
 13AEF	EGYPTIAN HIEROGLYPH-13AEF
-	* logogram (new years day) : wp-rnp.t
+	* logogram (New Year's Day) : wp-rnp.t
 13AF0	EGYPTIAN HIEROGLYPH-13AF0
 	* logogram (to speak words, to recite) : ḏd-mdw
 13AF1	EGYPTIAN HIEROGLYPH-13AF1
@@ -44285,7 +44321,7 @@ FFFF	<not a character>
 	* logogram (good year) : rnp.t-nfr.t
 13B09	EGYPTIAN HIEROGLYPH-13B09
 13B0A	EGYPTIAN HIEROGLYPH-13B0A
-	* logogram (new years day) : wp-rnp.t
+	* logogram (New Year's Day) : wp-rnp.t
 13B0B	EGYPTIAN HIEROGLYPH-13B0B
 	* phonemogram : nfr
 13B0C	EGYPTIAN HIEROGLYPH-13B0C
@@ -44314,7 +44350,7 @@ FFFF	<not a character>
 13B17	EGYPTIAN HIEROGLYPH-13B17
 	* logogram rꜥ and nb (in sꜣ-rꜥ nb ḫꜥ.w) : rꜥ nb
 13B18	EGYPTIAN HIEROGLYPH-13B18
-	* logogram (King of UE and LE, lord) : n(.y)-sw.t-bꞽ.ty-nb
+	* logogram (king of Upper Egypt and Lower Egypt, lord) : n(.y)-sw.t-bꞽ.ty-nb
 13B19	EGYPTIAN HIEROGLYPH-13B19
 	* logogram (lord of the two lands) : nb-tꜣ.wy
 13B1A	EGYPTIAN HIEROGLYPH-13B1A
@@ -44335,16 +44371,16 @@ FFFF	<not a character>
 13B22	EGYPTIAN HIEROGLYPH-13B22
 	* logogram (presenting myrrh) : šms ꜥntyw
 13B23	EGYPTIAN HIEROGLYPH-13B23
-	* logogram (image, refering to the king) : šsp
+	* logogram (image, referring to the king) : šsp
 13B24	EGYPTIAN HIEROGLYPH-13B24
 13B25	EGYPTIAN HIEROGLYPH-13B25
 	* logogram (image) : šsp
 13B26	EGYPTIAN HIEROGLYPH-13B26
 	* logogram (lord) : nb
 13B27	EGYPTIAN HIEROGLYPH-13B27
-	* classifier Divinity Aker : ꜣkr
+	* classifier divinity Aker : ꜣkr
 13B28	EGYPTIAN HIEROGLYPH-13B28
-	* classifier Divinity Aker : ꜣkr
+	* classifier divinity Aker : ꜣkr
 @		E23. Bovid
 13B29	EGYPTIAN HIEROGLYPH-13B29
 13B2A	EGYPTIAN HIEROGLYPH-13B2A
@@ -44385,15 +44421,15 @@ FFFF	<not a character>
 	* classifier prepare to attack : ṯwn
 13B3D	EGYPTIAN HIEROGLYPH-13B3D
 13B3E	EGYPTIAN HIEROGLYPH-13B3E
-	* logogram (11th nome of LE) : ḥsbw
+	* logogram (11th nome of Lower Egypt) : ḥsbw
 13B3F	EGYPTIAN HIEROGLYPH-13B3F
-	* logogram (6th nome of LE) : ḫꜣsw.w
+	* logogram (6th nome of Lower Egypt) : ḫꜣsw.w
 13B40	EGYPTIAN HIEROGLYPH-13B40
-	* logogram (6th nome of LE) : ḫꜣsw.w
+	* logogram (6th nome of Lower Egypt) : ḫꜣsw.w
 13B41	EGYPTIAN HIEROGLYPH-13B41
 	* logogram (Cynopolis nome) : sꜣkꜣ
 13B42	EGYPTIAN HIEROGLYPH-13B42
-	* logogram (12th nome of LE) : ṯb-nṯr
+	* logogram (12th nome of Lower Egypt) : ṯb-nṯr
 13B43	EGYPTIAN HIEROGLYPH-13B43
 	* classifier divinity : nsr-msr
 13B44	EGYPTIAN HIEROGLYPH-13B44
@@ -44414,7 +44450,7 @@ FFFF	<not a character>
 13B4C	EGYPTIAN HIEROGLYPH-13B4C
 	* logogram (cattle) : wnḏw
 13B4D	EGYPTIAN HIEROGLYPH-13B4D
-	* logogram (King of UE and LE, lord) : n(.y)-sw.t bꞽ.ty nb
+	* logogram (king of Upper Egypt and Lower Egypt, lord) : n(.y)-sw.t bꞽ.ty nb
 13B4E	EGYPTIAN HIEROGLYPH-13B4E
 	* classifier cow divinity : ḥs(ꜣ).t
 13B4F	EGYPTIAN HIEROGLYPH-13B4F
@@ -44427,15 +44463,15 @@ FFFF	<not a character>
 13B53	EGYPTIAN HIEROGLYPH-13B53
 	* phonemogram (in km-wr) : wr
 13B54	EGYPTIAN HIEROGLYPH-13B54
-	* logogram (10th nome of LE) : km-wr
+	* logogram (10th nome of Lower Egypt) : km-wr
 13B55	EGYPTIAN HIEROGLYPH-13B55
 13B56	EGYPTIAN HIEROGLYPH-13B56
-	* logogram (12th nome of LE) : ṯb-nṯr
+	* logogram (12th nome of Lower Egypt) : ṯb-nṯr
 @		E25. Calf
 13B57	EGYPTIAN HIEROGLYPH-13B57
 	* classifier (bull) : kꜣ
 13B58	EGYPTIAN HIEROGLYPH-13B58
-	* logogram (bull, beef) : Kꜥ/ꞽḥ
+	* logogram (bull, beef) : kꜥ/ꞽḥ
 @		E26. Mammals, varia
 13B59	EGYPTIAN HIEROGLYPH-13B59
 	* classifier divinity (Ash-spitter) : ꜣš-ssf
@@ -44463,7 +44499,7 @@ FFFF	<not a character>
 13B64	EGYPTIAN HIEROGLYPH-13B64
 	* logogram (worth, dignity, renown) : šf.yt
 13B65	EGYPTIAN HIEROGLYPH-13B65
-	* classifier (atef crown) : ꜣtf
+	* classifier (Atef crown) : ꜣtf
 13B66	EGYPTIAN HIEROGLYPH-13B66
 	* logogram (worth, dignity, renown) : šf.yt
 13B67	EGYPTIAN HIEROGLYPH-13B67
@@ -44486,7 +44522,7 @@ FFFF	<not a character>
 13B6F	EGYPTIAN HIEROGLYPH-13B6F
 	* classifier : ḫtn
 13B70	EGYPTIAN HIEROGLYPH-13B70
-	* classifier Ursa Major constelation : msḫt.yw
+	* classifier Ursa Major constellation : msḫt.yw
 13B71	EGYPTIAN HIEROGLYPH-13B71
 	* logogram (bull) : kꜣ
 13B72	EGYPTIAN HIEROGLYPH-13B72
@@ -44552,7 +44588,7 @@ FFFF	<not a character>
 13B90	EGYPTIAN HIEROGLYPH-13B90
 	* phonemogram : pꜣḫt
 13B91	EGYPTIAN HIEROGLYPH-13B91
-	* logogram (to distinguish) and  (beginning, front) : ṯnꞽ ḥꜣ.t
+	* logogram (to distinguish) and (beginning, front) : ṯnꞽ ḥꜣ.t
 13B92	EGYPTIAN HIEROGLYPH-13B92
 	* logogram (beginning, front) : ḥꜣ.t
 13B93	EGYPTIAN HIEROGLYPH-13B93
@@ -44562,7 +44598,7 @@ FFFF	<not a character>
 13B95	EGYPTIAN HIEROGLYPH-13B95
 	* classifier strength : ꜣ.t
 13B96	EGYPTIAN HIEROGLYPH-13B96
-@		F09. Donkey and horse protome
+@		F09. Donkey and horse protomes
 13B97	EGYPTIAN HIEROGLYPH-13B97
 	* phonemogram : ḫntš
 13B98	EGYPTIAN HIEROGLYPH-13B98
@@ -44590,9 +44626,9 @@ FFFF	<not a character>
 	* logogram (rage) : nšn
 @		F11. Bovidae horns
 13BA4	EGYPTIAN HIEROGLYPH-13BA4
-	* logogram (new years day) : wp-rnp.t
+	* logogram (New Year's Day) : wp-rnp.t
 13BA5	EGYPTIAN HIEROGLYPH-13BA5
-	* logogram (new years day) : wp-rnp.t
+	* logogram (New Year's Day) : wp-rnp.t
 13BA6	EGYPTIAN HIEROGLYPH-13BA6
 	* phonemogram (commonly in wp-rnp.t) : wp
 13BA7	EGYPTIAN HIEROGLYPH-13BA7
@@ -44810,7 +44846,7 @@ FFFF	<not a character>
 13C0D	EGYPTIAN HIEROGLYPH-13C0D
 @		G04. Duck
 13C0E	EGYPTIAN HIEROGLYPH-13C0E
-	* logogram (to tremble : sdꜣ
+	* logogram (to tremble) : sdꜣ
 13C0F	EGYPTIAN HIEROGLYPH-13C0F
 	* classifier to tremble : sd(ꜣ)d(ꜣ)
 13C10	EGYPTIAN HIEROGLYPH-13C10
@@ -45026,7 +45062,7 @@ FFFF	<not a character>
 13C7F	EGYPTIAN HIEROGLYPH-13C7F
 	* logogram (west) : ꞽmn.t
 13C80	EGYPTIAN HIEROGLYPH-13C80
-	* logogram (West, 3rd nome of LE) : ꞽmn.tt
+	* logogram (West, 3rd nome of Lower Egypt) : ꞽmn.tt
 13C81	EGYPTIAN HIEROGLYPH-13C81
 	* logogram (high quality (red) linen) : ꞽdmꞽ
 13C82	EGYPTIAN HIEROGLYPH-13C82
@@ -45038,7 +45074,7 @@ FFFF	<not a character>
 13C85	EGYPTIAN HIEROGLYPH-13C85
 	* classifier divinity (Min) : mnw
 13C86	EGYPTIAN HIEROGLYPH-13C86
-	* logogram (May he live, the god) : ꜥnḫ-nṯr
+	* logogram (may he live, the god) : ꜥnḫ-nṯr
 13C87	EGYPTIAN HIEROGLYPH-13C87
 	* logogram (majesty) : ḥm
 13C88	EGYPTIAN HIEROGLYPH-13C88
@@ -45049,7 +45085,7 @@ FFFF	<not a character>
 13C8B	EGYPTIAN HIEROGLYPH-13C8B
 	* logogram (Harsomtus) : ḥr-smꜣ-tꜣ.wy
 13C8C	EGYPTIAN HIEROGLYPH-13C8C
-	* logogram (The two gods, 5th nome of UE) : nṯr.wy
+	* logogram (The two gods, 5th nome of Upper Egypt) : nṯr.wy
 13C8D	EGYPTIAN HIEROGLYPH-13C8D
 	* logogram (Throne of Horus (Edfu)) : wṯs-ḥr
 13C8E	EGYPTIAN HIEROGLYPH-13C8E
@@ -45057,7 +45093,7 @@ FFFF	<not a character>
 13C8F	EGYPTIAN HIEROGLYPH-13C8F
 	* logogram (Throne of Horus (Edfu)) : wṯs-ḥr
 13C90	EGYPTIAN HIEROGLYPH-13C90
-	* logogram (Throne of Horus (Edfu, 2nd nome of UE)) : wṯs-ḥr
+	* logogram (Throne of Horus (Edfu, 2nd nome of Upper Egypt)) : wṯs-ḥr
 13C91	EGYPTIAN HIEROGLYPH-13C91
 	* logogram (Horus who is on the palace façade) : ḥr-ḥr.y-srḫ
 13C92	EGYPTIAN HIEROGLYPH-13C92
@@ -45065,7 +45101,7 @@ FFFF	<not a character>
 13C93	EGYPTIAN HIEROGLYPH-13C93
 	* classifier the one who is on the palace façade : ḥr.y-srḫ
 13C94	EGYPTIAN HIEROGLYPH-13C94
-	* logogram (The living falcon who is on the palace façade) : bꞽk ꜥnḫ ḥr.y srḫ
+	* logogram (the living falcon who is on the palace façade) : bꞽk ꜥnḫ ḥr.y srḫ
 13C95	EGYPTIAN HIEROGLYPH-13C95
 	* logogram (throne, palace façade) : srḫ
 13C96	EGYPTIAN HIEROGLYPH-13C96
@@ -45280,7 +45316,7 @@ FFFF	<not a character>
 13D03	EGYPTIAN HIEROGLYPH-13D03
 	* logogram (Nekhbet (divinity)) : nḫb.t
 13D04	EGYPTIAN HIEROGLYPH-13D04
-	* classifier divinity  (Nekhbet) : nḫb.t
+	* classifier divinity (Nekhbet) : nḫb.t
 13D05	EGYPTIAN HIEROGLYPH-13D05
 	* logogram (Mut (divinity)) : mw.t
 13D06	EGYPTIAN HIEROGLYPH-13D06
@@ -45386,15 +45422,15 @@ FFFF	<not a character>
 13D33	EGYPTIAN HIEROGLYPH-13D33
 	* logogram (Sobek (divinity)) : sbk
 13D34	EGYPTIAN HIEROGLYPH-13D34
-	* logogram (Iqer, 6th nome of UE) : ꞽḳr
+	* logogram (Iqer, 6th nome of Upper Egypt) : ꞽḳr
 13D35	EGYPTIAN HIEROGLYPH-13D35
 	* classifier divinity (Sobek) : sbk
 13D36	EGYPTIAN HIEROGLYPH-13D36
-	* logogram (Iqer, 6th nome of UE) : ꞽḳr
+	* logogram (Iqer, 6th nome of Upper Egypt) : ꞽḳr
 13D37	EGYPTIAN HIEROGLYPH-13D37
 	* logogram (Medinet Habu) : ṯꜣm.t
 13D38	EGYPTIAN HIEROGLYPH-13D38
-	* logogram (Iqer, 6th nome of UE) : ꞽḳr
+	* logogram (Iqer, 6th nome of Upper Egypt) : ꞽḳr
 13D39	EGYPTIAN HIEROGLYPH-13D39
 	* classifier water animal : ꞽm.yw-mw
 13D3A	EGYPTIAN HIEROGLYPH-13D3A
@@ -45536,7 +45572,7 @@ FFFF	<not a character>
 13D7C	EGYPTIAN HIEROGLYPH-13D7C
 	* logogram (fire, flame) : nsr.t
 13D7D	EGYPTIAN HIEROGLYPH-13D7D
-	* classifier the two Udjat eyes : wḏꜣ.ty
+	* classifier the two udjat eyes : wḏꜣ.ty
 13D7E	EGYPTIAN HIEROGLYPH-13D7E
 	* logogram (goddesses) : nṯr.wt
 13D7F	EGYPTIAN HIEROGLYPH-13D7F
@@ -45568,7 +45604,7 @@ FFFF	<not a character>
 13D8E	EGYPTIAN HIEROGLYPH-13D8E
 	* logogram (goddess) : nṯr.t
 13D8F	EGYPTIAN HIEROGLYPH-13D8F
-	* logogram (Renenoutet) : rnn.wtt
+	* logogram (Renenutet) : rnn.wtt
 13D90	EGYPTIAN HIEROGLYPH-13D90
 	* phonemogram/logogram (to encircle with) : mḥn
 13D91	EGYPTIAN HIEROGLYPH-13D91
@@ -45582,7 +45618,7 @@ FFFF	<not a character>
 13D95	EGYPTIAN HIEROGLYPH-13D95
 	* logogram (lady (in nb.ty)) : nb.t
 13D96	EGYPTIAN HIEROGLYPH-13D96
-	* logogram (Renenoutet) : rnn.wtt
+	* logogram (Renenutet) : rnn.wtt
 13D97	EGYPTIAN HIEROGLYPH-13D97
 	* logogram (uraeus) : mḥn.t
 13D98	EGYPTIAN HIEROGLYPH-13D98
@@ -45612,7 +45648,7 @@ FFFF	<not a character>
 	* phonemogram/logogram (to not know) : n rḫ
 13DA6	EGYPTIAN HIEROGLYPH-13DA6
 13DA7	EGYPTIAN HIEROGLYPH-13DA7
-	* logogram (Renenoutet) : rnn.wtt
+	* logogram (Renenutet) : rnn.wtt
 13DA8	EGYPTIAN HIEROGLYPH-13DA8
 	* phonemogram : (ꞽ)ḫr
 13DA9	EGYPTIAN HIEROGLYPH-13DA9
@@ -45685,11 +45721,11 @@ FFFF	<not a character>
 13DCD	EGYPTIAN HIEROGLYPH-13DCD
 	* phonemogram : ẖꜣ
 13DCE	EGYPTIAN HIEROGLYPH-13DCE
-	* logogram (canal of the two fishes (in the second nome of UE)) : ꜥꜣḏ.wy
+	* logogram (canal of the Two Fishes (in the second nome of Upper Egypt)) : ꜥꜣḏ.wy
 13DCF	EGYPTIAN HIEROGLYPH-13DCF
 	* phonemogram : ꞽn
 13DD0	EGYPTIAN HIEROGLYPH-13DD0
-	* phonemogram/logogram (Shenes (geographical location)) : šns
+	* phonemogram/logogram (Shenes (geographical location)) : Šns
 13DD1	EGYPTIAN HIEROGLYPH-13DD1
 	* logogram (Re) : rꜥ
 13DD2	EGYPTIAN HIEROGLYPH-13DD2
@@ -45697,7 +45733,7 @@ FFFF	<not a character>
 13DD3	EGYPTIAN HIEROGLYPH-13DD3
 	* phonemogram : ẖꜣ
 13DD4	EGYPTIAN HIEROGLYPH-13DD4
-	* logogram (First-of-fishes nome (16th nome of LE)) : ḥꜣ.t-mḥ.yt
+	* logogram (First-of-fishes nome (16th nome of Lower Egypt)) : ḥꜣ.t-mḥ.yt
 13DD5	EGYPTIAN HIEROGLYPH-13DD5
 	* phonemogram : ẖꜣ
 13DD6	EGYPTIAN HIEROGLYPH-13DD6
@@ -45765,9 +45801,9 @@ FFFF	<not a character>
 13DF4	EGYPTIAN HIEROGLYPH-13DF4
 	* classifier Serket/Selkis : srḳ.t
 13DF5	EGYPTIAN HIEROGLYPH-13DF5
-	* logogram (Serket/Selkis (divinity) : srḳ.t
+	* logogram (Serket/Selkis (divinity)) : srḳ.t
 13DF6	EGYPTIAN HIEROGLYPH-13DF6
-	* logogram (Serket/Selkis (divinity) : srḳ.t
+	* logogram (Serket/Selkis (divinity)) : srḳ.t
 @		L07. Insects, varia
 13DF7	EGYPTIAN HIEROGLYPH-13DF7
 	* classifier tiny insect : ꜥpšꜣy.t
@@ -45784,15 +45820,15 @@ FFFF	<not a character>
 13DFD	EGYPTIAN HIEROGLYPH-13DFD
 	* logogram (rain (divinity)) : ḥw.t
 13DFE	EGYPTIAN HIEROGLYPH-13DFE
-	* logogram (Neith, 4-5th nome of LE) : n.t
+	* logogram (Neith, 4th and 5th nomes of Lower Egypt) : n.t
 13DFF	EGYPTIAN HIEROGLYPH-13DFF
-	* logogram (14th nome of UE) : nḏf.t-pḥ.t
+	* logogram (14th nome of Upper Egypt) : nḏf.t-pḥ.t
 13E00	EGYPTIAN HIEROGLYPH-13E00
-	* logogram (20-21st nome of UE) : nꜥr.t
+	* logogram (20th and 21st nomes of Upper Egypt) : nꜥr.t
 13E01	EGYPTIAN HIEROGLYPH-13E01
-	* logogram (20-21st nome of UE) : nꜥr.t
+	* logogram (20th and 21st nomes of Upper Egypt) : nꜥr.t
 13E02	EGYPTIAN HIEROGLYPH-13E02
-	* logogram (13th nome of UE) : nḏf.t-ḫnt.t
+	* logogram (13th nome of Upper Egypt) : nḏf.t-ḫnt.t
 13E03	EGYPTIAN HIEROGLYPH-13E03
 	* classifier tamarisk wood : ꞽsr.t
 13E04	EGYPTIAN HIEROGLYPH-13E04
@@ -45806,9 +45842,9 @@ FFFF	<not a character>
 13E08	EGYPTIAN HIEROGLYPH-13E08
 	* classifier costly wood : s(s)ḏ(m)
 13E09	EGYPTIAN HIEROGLYPH-13E09
-	* classifier dom-palm : mꜣmꜣ
+	* classifier doum palm : mꜣmꜣ
 13E0A	EGYPTIAN HIEROGLYPH-13E0A
-	* classifier dom-palm : mꜣmꜣ
+	* classifier doum palm : mꜣmꜣ
 @		M03. Clump type 1
 13E0B	EGYPTIAN HIEROGLYPH-13E0B
 	* logogram (true of voice) : mꜣꜥ-ḫrw
@@ -45989,7 +46025,7 @@ FFFF	<not a character>
 13E68	EGYPTIAN HIEROGLYPH-13E68
 13E69	EGYPTIAN HIEROGLYPH-13E69
 13E6A	EGYPTIAN HIEROGLYPH-13E6A
-	* logogram (lower Egypt) : mḥ.w
+	* logogram (Lower Egypt) : mḥ.w
 13E6B	EGYPTIAN HIEROGLYPH-13E6B
 	* phonemogram : ḥs
 13E6C	EGYPTIAN HIEROGLYPH-13E6C
@@ -46020,7 +46056,7 @@ FFFF	<not a character>
 13E79	EGYPTIAN HIEROGLYPH-13E79
 	* phonemogram : ḥꜣ
 13E7A	EGYPTIAN HIEROGLYPH-13E7A
-	* radicogram (grain of LE) : mḥ.w
+	* radicogram (grain of Lower Egypt) : mḥ.w
 13E7B	EGYPTIAN HIEROGLYPH-13E7B
 	* logogram (Upper Egypt) : šmꜥ.w
 13E7C	EGYPTIAN HIEROGLYPH-13E7C
@@ -46084,7 +46120,7 @@ FFFF	<not a character>
 13E99	EGYPTIAN HIEROGLYPH-13E99
 	* phonemogram : nḫb
 13E9A	EGYPTIAN HIEROGLYPH-13E9A
-	* logogram (King of UE) : n(.y)-sw.t
+	* logogram (king of Upper Egypt) : n(.y)-sw.t
 13E9B	EGYPTIAN HIEROGLYPH-13E9B
 	* phonemogram : šmꜥ
 13E9C	EGYPTIAN HIEROGLYPH-13E9C
@@ -46095,7 +46131,7 @@ FFFF	<not a character>
 	* classifier braided lock of hair : ḥnsk.t
 @		M18. Root
 13E9F	EGYPTIAN HIEROGLYPH-13E9F
-	* classifier succesfull, fortunate : mꜥr
+	* classifier succesful, fortunate : mꜥr
 13EA0	EGYPTIAN HIEROGLYPH-13EA0
 	* logogram (succesful, fortunate) : mꜥr
 13EA1	EGYPTIAN HIEROGLYPH-13EA1
@@ -46200,23 +46236,23 @@ FFFF	<not a character>
 @		N02. Sun
 13ED2	EGYPTIAN HIEROGLYPH-13ED2
 	* classifier time : nḥḥ
-@		N03. Sun with Uraeus
+@		N03. Sun with uraeus
 13ED3	EGYPTIAN HIEROGLYPH-13ED3
 	* classifier divinity : ḥr
 13ED4	EGYPTIAN HIEROGLYPH-13ED4
-	* logogram (King of UE and LE) : n(.y)-sw.t-bꞽ.ty
+	* logogram (king of Upper Egypt and Lower Egypt) : n(.y)-sw.t-bꞽ.ty
 13ED5	EGYPTIAN HIEROGLYPH-13ED5
-	* logogram (King of UE and LE) : n(.y)-sw.t-bꞽ.ty
+	* logogram (king of Upper Egypt and Lower Egypt) : n(.y)-sw.t-bꞽ.ty
 13ED6	EGYPTIAN HIEROGLYPH-13ED6
-	* logogram (King of UE and LE) : n(.y)-sw.t-bꞽ.ty
+	* logogram (king of Upper Egypt and Lower Egypt) : n(.y)-sw.t-bꞽ.ty
 13ED7	EGYPTIAN HIEROGLYPH-13ED7
-	* logogram (King of UE and LE) : n(.y)-sw.t-bꞽ.ty
+	* logogram (king of Upper Egypt and Lower Egypt) : n(.y)-sw.t-bꞽ.ty
 13ED8	EGYPTIAN HIEROGLYPH-13ED8
-	* logogram (King of UE and LE) : n(.y)-sw.t-bꞽ.ty
+	* logogram (king of Upper Egypt and Lower Egypt) : n(.y)-sw.t-bꞽ.ty
 13ED9	EGYPTIAN HIEROGLYPH-13ED9
-	* logogram (King of UE and LE) : n(.y)-sw.t-bꞽ.ty
+	* logogram (king of Upper Egypt and Lower Egypt) : n(.y)-sw.t-bꞽ.ty
 13EDA	EGYPTIAN HIEROGLYPH-13EDA
-	* logogram (King of UE and LE) : n(.y)-sw.t-bꞽ.ty
+	* logogram (king of Upper Egypt and Lower Egypt) : n(.y)-sw.t-bꞽ.ty
 @		N04. Sun, radiant, with rays
 13EDB	EGYPTIAN HIEROGLYPH-13EDB
 	* classifier to scatter light, to illuminate : wpš
@@ -46244,23 +46280,23 @@ FFFF	<not a character>
 13EE7	EGYPTIAN HIEROGLYPH-13EE7
 	* classifier to spread out : ḥdy
 13EE8	EGYPTIAN HIEROGLYPH-13EE8
-	* logogram (the winged scarab/sundisk) : ꜥpy
+	* logogram (the winged scarab or sun disk) : ꜥpy
 13EE9	EGYPTIAN HIEROGLYPH-13EE9
 	* classifier Horus of Edfu : bḥd.ty
 13EEA	EGYPTIAN HIEROGLYPH-13EEA
 	* logogram (to go forth) : prꞽ
 13EEB	EGYPTIAN HIEROGLYPH-13EEB
-	* classsifier divinity : ḏḥwty
+	* classifier divinity : ḏḥwty
 13EEC	EGYPTIAN HIEROGLYPH-13EEC
-	* classsifier divinity : ḏḥwty
+	* classifier divinity : ḏḥwty
 13EED	EGYPTIAN HIEROGLYPH-13EED
-	* logogram (King of UE and LE) : n(.y)-sw.t-bꞽ.ty
+	* logogram (king of Upper Egypt and Lower Egypt) : n(.y)-sw.t-bꞽ.ty
 13EEE	EGYPTIAN HIEROGLYPH-13EEE
-	* logogram (King of UE and LE) : n(.y)-sw.t-bꞽ.ty
+	* logogram (king of Upper Egypt and Lower Egypt) : n(.y)-sw.t-bꞽ.ty
 13EEF	EGYPTIAN HIEROGLYPH-13EEF
 	* logogram (to rise, to shine) : wbn
 13EF0	EGYPTIAN HIEROGLYPH-13EF0
-	* classifier winged sun-disk : ꜥpy
+	* classifier winged sun disk : ꜥpy
 13EF1	EGYPTIAN HIEROGLYPH-13EF1
 	* logogram (to rise, to shine) : wbn
 13EF2	EGYPTIAN HIEROGLYPH-13EF2
@@ -46310,7 +46346,7 @@ FFFF	<not a character>
 	* logogram (nome, district) : spꜣ.t
 13F07	EGYPTIAN HIEROGLYPH-13F07
 13F08	EGYPTIAN HIEROGLYPH-13F08
-	* logogram (9th nome of LE) : wꜥ-m-ḥww
+	* logogram (9th nome of Lower Egypt) : wꜥ-m-ḥww
 13F09	EGYPTIAN HIEROGLYPH-13F09
 13F0A	EGYPTIAN HIEROGLYPH-13F0A
 	* classifier garden : ḥsp
@@ -46318,22 +46354,22 @@ FFFF	<not a character>
 13F0C	EGYPTIAN HIEROGLYPH-13F0C
 	* logogram (Prosopite Nome) : mtr
 13F0D	EGYPTIAN HIEROGLYPH-13F0D
-	* logogram (9th nome of UE) : ꜥnḏ.ty
+	* logogram (9th nome of Lower Egypt) : ꜥnḏ.ty
 13F0E	EGYPTIAN HIEROGLYPH-13F0E
-	* logogram (20-21st nome of UE) : nꜥr.t
+	* logogram (20th and 21st nomes of Upper Egypt) : nꜥr.t
 13F0F	EGYPTIAN HIEROGLYPH-13F0F
-	* logogram (14th Upper Egyptian nome) : nḏf.t-pḥ.t
+	* logogram (14th nome of Upper Egypt) : nḏf.t-pḥ.t
 13F10	EGYPTIAN HIEROGLYPH-13F10
-	* logogram (21th Upper Egyptian nome) : nꜥr.t-pḥ.t
+	* logogram (21th nome of Upper Egypt) : nꜥr.t-pḥ.t
 13F11	EGYPTIAN HIEROGLYPH-13F11
-	* logogram (14th Upper Egyptian nome) : nḏf.t-pḥ.t
+	* logogram (14th nome of Upper Egypt) : nḏf.t-pḥ.t
 13F12	EGYPTIAN HIEROGLYPH-13F12
-	* logogram (14th upper Egyptian nome) : ḫnt.y-ꞽꜣb.ty
+	* logogram (14th nome of Upper Egypt) : ḫnt.y-ꞽꜣb.ty
 13F13	EGYPTIAN HIEROGLYPH-13F13
-	* logogram (18th Lower Egyptain nome (Pelusium)) : ꞽm.ty-ḫnt.y
+	* logogram (18th nome of Lower Egypt) : ꞽm.ty-ḫnt.y
 @		N13. Mountain range (desert)
 13F14	EGYPTIAN HIEROGLYPH-13F14
-	* logogram (12th Upper Egyptian nome) : ꜣtf.t
+	* logogram (12th nome of Upper Egypt) : ꜣtf.t
 13F15	EGYPTIAN HIEROGLYPH-13F15
 	* logogram (Ha (divinity)) : ḥꜣ
 13F16	EGYPTIAN HIEROGLYPH-13F16
@@ -46349,9 +46385,9 @@ FFFF	<not a character>
 13F1B	EGYPTIAN HIEROGLYPH-13F1B
 	* logogram (the evil one) : ḏw-ḳd
 13F1C	EGYPTIAN HIEROGLYPH-13F1C
-	* logogram (12th Upper Egyptian nome) : ꜣtf.t
+	* logogram (12th nome of Upper Egypt) : ꜣtf.t
 13F1D	EGYPTIAN HIEROGLYPH-13F1D
-	* logogram (12th Upper Egyptian nome) : ꜣtf.t
+	* logogram (12th nome of Upper Egypt) : ꜣtf.t
 13F1E	EGYPTIAN HIEROGLYPH-13F1E
 	* logogram (Ha (divinity)) : ḥꜣ
 @		N14. Sand
@@ -46397,7 +46433,7 @@ FFFF	<not a character>
 13F31	EGYPTIAN HIEROGLYPH-13F31
 	* phonemogram : n
 13F32	EGYPTIAN HIEROGLYPH-13F32
-	* logogram (island (in ꞽw-ḏsḏs (el-Bahriya oasis)) : ꞽw
+	* logogram (island (in ꞽw-ḏsḏs (El-Bahriya oasis))) : ꞽw
 13F33	EGYPTIAN HIEROGLYPH-13F33
 	* logogram (Dendera) : ꞽꜣ.t-dꞽ
 @		N20. Canal and pool
@@ -46407,7 +46443,7 @@ FFFF	<not a character>
 13F36	EGYPTIAN HIEROGLYPH-13F36
 	* classifier time : ꜥḥꜥ.w
 13F37	EGYPTIAN HIEROGLYPH-13F37
-	* classifier bank (river, fortress : ꞽḫm.t)
+	* classifier bank (river, fortress) : ꞽḫm.t
 13F38	EGYPTIAN HIEROGLYPH-13F38
 	* classifier waters, rivers, lakes : mr-n-ḫꜣ
 13F39	EGYPTIAN HIEROGLYPH-13F39
@@ -46455,7 +46491,7 @@ FFFF	<not a character>
 13F4F	EGYPTIAN HIEROGLYPH-13F4F
 	* logogram (temple) : gs-pr
 13F50	EGYPTIAN HIEROGLYPH-13F50
-	* logogram temple) : gs.w-pr.w 
+	* logogram (temple) : gs.w-pr.w 
 13F51	EGYPTIAN HIEROGLYPH-13F51
 	* logogram (temple) : gs.w-pr.w
 13F52	EGYPTIAN HIEROGLYPH-13F52
@@ -46662,7 +46698,7 @@ FFFF	<not a character>
 	* phonemogram (in ꜥrḳ-wr) : ꜥrḳ
 13FBF	EGYPTIAN HIEROGLYPH-13FBF
 	* phonemogram : ꜥrḳ
-@		O11. Double platform (sed festival)
+@		O11. Double platform (sed-festival)
 13FC0	EGYPTIAN HIEROGLYPH-13FC0
 	* logogram (jubilee, sed-festival) : ḥb-sd
 13FC1	EGYPTIAN HIEROGLYPH-13FC1
@@ -46746,15 +46782,15 @@ FFFF	<not a character>
 13FEA	EGYPTIAN HIEROGLYPH-13FEA
 	* phonemogram : šnꜥ
 13FEB	EGYPTIAN HIEROGLYPH-13FEB
-	* classifier Pillar : ꞽwn
+	* classifier pillar : ꞽwn
 13FEC	EGYPTIAN HIEROGLYPH-13FEC
 	* logogram (face, sight) : ḥr
 13FED	EGYPTIAN HIEROGLYPH-13FED
 @		O18. Door bolt
 13FEE	EGYPTIAN HIEROGLYPH-13FEE
-	* classifier door-bolt : ḥkn
+	* classifier door bolt : ḥkn
 13FEF	EGYPTIAN HIEROGLYPH-13FEF
-	* classifier door-bolt : kfꜣ/pḥ-ꜥḥꜥ
+	* classifier door bolt : kfꜣ/pḥ-ꜥḥꜥ
 13FF0	EGYPTIAN HIEROGLYPH-13FF0
 	* classifier door bolt : ḳꜣn
 13FF1	EGYPTIAN HIEROGLYPH-13FF1
@@ -46814,7 +46850,7 @@ FFFF	<not a character>
 1400C	EGYPTIAN HIEROGLYPH-1400C
 	* logogram (office, rank, function) : ꞽꜣw.t
 1400D	EGYPTIAN HIEROGLYPH-1400D
-	* classifier Harim, inner chamber : ꞽp.t
+	* classifier harim, inner chamber : ꞽp.t
 1400E	EGYPTIAN HIEROGLYPH-1400E
 	* phonemogram : ꞽp.t
 1400F	EGYPTIAN HIEROGLYPH-1400F
@@ -46949,7 +46985,7 @@ FFFF	<not a character>
 	* classifier bark/boat : (m)skt.t
 14055	EGYPTIAN HIEROGLYPH-14055
 14056	EGYPTIAN HIEROGLYPH-14056
-	* logogram (Bark of the two divine falcons) : nṯr.wy
+	* logogram (bark of the two divine falcons) : nṯr.wy
 14057	EGYPTIAN HIEROGLYPH-14057
 	* classifier bark : skt.t
 14058	EGYPTIAN HIEROGLYPH-14058
@@ -47153,7 +47189,7 @@ FFFF	<not a character>
 	* classifier box : hn(w)
 140BE	EGYPTIAN HIEROGLYPH-140BE
 140BF	EGYPTIAN HIEROGLYPH-140BF
-	* logogram (crocodopolis) : šd.t
+	* logogram (Crocodilopolis) : Šd.t
 140C0	EGYPTIAN HIEROGLYPH-140C0
 140C1	EGYPTIAN HIEROGLYPH-140C1
 	* classifier burial : ḳrs
@@ -47279,7 +47315,7 @@ FFFF	<not a character>
 	* logogram (god and goddess) : nṯr-nṯr.t
 14103	EGYPTIAN HIEROGLYPH-14103
 14104	EGYPTIAN HIEROGLYPH-14104
-	* logogram (Natron) : ḥsmn
+	* logogram (natron) : ḥsmn
 14105	EGYPTIAN HIEROGLYPH-14105
 	* logogram (necropolis) : ẖr.t-nṯr
 14106	EGYPTIAN HIEROGLYPH-14106
@@ -47303,7 +47339,7 @@ FFFF	<not a character>
 14110	EGYPTIAN HIEROGLYPH-14110
 	* logogram (necropolis) : ẖr.t-nṯr
 14111	EGYPTIAN HIEROGLYPH-14111
-	* logogram (18th UE nome) : nmt.y
+	* logogram (18th nome of Upper Egypt) : nmt.y
 @		R08. Reed column
 14112	EGYPTIAN HIEROGLYPH-14112
 	* phonemogram : ḏd-kꜣ-ꞽmn
@@ -47414,7 +47450,7 @@ FFFF	<not a character>
 	* classifier document holder : mks
 @		R22. Shedet emblem
 14149	EGYPTIAN HIEROGLYPH-14149
-	* logogram/Classifier (the one of Shedet (i.e., Sobek) : šd.ty
+	* logogram/Classifier (the one of Shedet (i.e., Sobek)) : šd.ty
 @		R23. Temple furniture, varia
 1414A	EGYPTIAN HIEROGLYPH-1414A
 1414B	EGYPTIAN HIEROGLYPH-1414B
@@ -47480,17 +47516,17 @@ FFFF	<not a character>
 	* classifier crown : ḫꜥ.w
 14167	EGYPTIAN HIEROGLYPH-14167
 14168	EGYPTIAN HIEROGLYPH-14168
-	* logogram (Atef-crown) : ꜣtf
+	* logogram (Atef crown) : ꜣtf
 14169	EGYPTIAN HIEROGLYPH-14169
-	* logogram (Atef-crown) : ꜣtf
+	* logogram (Atef crown) : ꜣtf
 1416A	EGYPTIAN HIEROGLYPH-1416A
 @		S08. Hemhem crown
 1416B	EGYPTIAN HIEROGLYPH-1416B
-	* logogram (Hemhem-crown) : hmhm
+	* logogram (Hemhem crown) : hmhm
 1416C	EGYPTIAN HIEROGLYPH-1416C
-	* logogram (Hemhem-crown) : hmhm
+	* logogram (Hemhem crown) : hmhm
 1416D	EGYPTIAN HIEROGLYPH-1416D
-	* logogram (Hemhem-crown) : hmhm
+	* logogram (Hemhem crown) : hmhm
 @		S09. Double plumes headdress
 1416E	EGYPTIAN HIEROGLYPH-1416E
 	* logogram (double plumes/two feather crown) : šw.ty
@@ -47513,7 +47549,7 @@ FFFF	<not a character>
 14178	EGYPTIAN HIEROGLYPH-14178
 	* phonemogram : ṯn
 14179	EGYPTIAN HIEROGLYPH-14179
-	* logogram (Elkab) : nḫb
+	* logogram (Elkab) : Nḫb
 1417A	EGYPTIAN HIEROGLYPH-1417A
 	* phonemogram : ṯn
 1417B	EGYPTIAN HIEROGLYPH-1417B
@@ -47523,7 +47559,7 @@ FFFF	<not a character>
 1417D	EGYPTIAN HIEROGLYPH-1417D
 	* logogram (3rd nome of Upper Egypt) : nḫn
 1417E	EGYPTIAN HIEROGLYPH-1417E
-	* classifier two halfs : p(s)š.ty
+	* classifier two halves : p(s)š.ty
 1417F	EGYPTIAN HIEROGLYPH-1417F
 	* phonemogram : ṯn
 14180	EGYPTIAN HIEROGLYPH-14180
@@ -47663,7 +47699,7 @@ FFFF	<not a character>
 141C5	EGYPTIAN HIEROGLYPH-141C5
 	* classifier time : nḥḥ
 141C6	EGYPTIAN HIEROGLYPH-141C6
-	* classifier Ankh vessel : ꜥnḫ
+	* classifier ankh vessel : ꜥnḫ
 141C7	EGYPTIAN HIEROGLYPH-141C7
 	* logogram (stability and life) : ḏd-ꜥnḫ
 141C8	EGYPTIAN HIEROGLYPH-141C8
@@ -47816,7 +47852,7 @@ FFFF	<not a character>
 1420D	EGYPTIAN HIEROGLYPH-1420D
 	* phonemogram : swn
 1420E	EGYPTIAN HIEROGLYPH-1420E
-	* logogram (Synene (Aswan)) : swn.w
+	* logogram (Syene (Aswan)) : Swn.w
 1420F	EGYPTIAN HIEROGLYPH-1420F
 	* phono-repeater : swn
 14210	EGYPTIAN HIEROGLYPH-14210
@@ -47827,22 +47863,22 @@ FFFF	<not a character>
 14213	EGYPTIAN HIEROGLYPH-14213
 	* logogram (Neith) : n.t
 14214	EGYPTIAN HIEROGLYPH-14214
-	* logogram (Neith, 4-5th nome of LE) : n.t
+	* logogram (Neith, 4th and 5th nomes of Lower Egypt) : n.t
 14215	EGYPTIAN HIEROGLYPH-14215
-	* logogram (Neith, 4-5th nome of LE) : n.t
+	* logogram (Neith, 4th and 5th nomes of Lower Egypt) : n.t
 14216	EGYPTIAN HIEROGLYPH-14216
-	* logogram (Neith, 4-5th nome of LE) : n.t
+	* logogram (Neith, 4th and 5th nomes of Lower Egypt) : n.t
 14217	EGYPTIAN HIEROGLYPH-14217
-	* logogram (Neith, 4-5th nome of LE) : n.t
+	* logogram (Neith, 4th and 5th nomes of Lower Egypt) : n.t
 14218	EGYPTIAN HIEROGLYPH-14218
-	* logogram (Neith-north, 5th nome of LE) : n.t-mḥ.yt
+	* logogram (Neith-North, 5th nome of Lower Egypt) : n.t-mḥ.yt
 14219	EGYPTIAN HIEROGLYPH-14219
-	* logogram (Neith-south, 4th nome LE) : n.t-rs.yt
+	* logogram (Neith-South, 4th nome of Lower Egypt) : n.t-rs.yt
 1421A	EGYPTIAN HIEROGLYPH-1421A
 1421B	EGYPTIAN HIEROGLYPH-1421B
-	* logogram (Neith-south, 4th nome LE) : n.t-rs.yt
+	* logogram (Neith-South, 4th nome of Lower Egypt) : n.t-rs.yt
 1421C	EGYPTIAN HIEROGLYPH-1421C
-	* logogram (Neith-south, 4th nome LE) : n.t-rs.yt
+	* logogram (Neith-South, 4th nome of Lower Egypt) : n.t-rs.yt
 1421D	EGYPTIAN HIEROGLYPH-1421D
 	* phonemogram : ḥms.t
 1421E	EGYPTIAN HIEROGLYPH-1421E
@@ -47876,7 +47912,7 @@ FFFF	<not a character>
 	* phonemogram/logogram (strife) : šnt.t
 1422C	EGYPTIAN HIEROGLYPH-1422C
 1422D	EGYPTIAN HIEROGLYPH-1422D
-	* logogram/phonemogram (meter canal) : mtr
+	* logogram/phonemogram (Meter canal) : Mtr
 1422E	EGYPTIAN HIEROGLYPH-1422E
 	* phonemogram : rs-wḏꜣ
 @		T10. Scimitar
@@ -47885,11 +47921,11 @@ FFFF	<not a character>
 14230	EGYPTIAN HIEROGLYPH-14230
 	* logogram (valour, strength) : ḳn.t
 14231	EGYPTIAN HIEROGLYPH-14231
-	* logogram (Khopesh sword/scimitar) : ḫpš
+	* logogram (khopesh sword/scimitar) : ḫpš
 14232	EGYPTIAN HIEROGLYPH-14232
 	* classifier to be strong, brave, capable : ḳn
 14233	EGYPTIAN HIEROGLYPH-14233
-	* logogram (Khopesh sword/scimitar) : ḫpš
+	* logogram (khopesh sword/scimitar) : ḫpš
 14234	EGYPTIAN HIEROGLYPH-14234
 	* logogram (to be strong, brave, capable) : ḳnꞽ
 @		T12. Crook with package
@@ -47945,9 +47981,9 @@ FFFF	<not a character>
 1424E	EGYPTIAN HIEROGLYPH-1424E
 1424F	EGYPTIAN HIEROGLYPH-1424F
 14250	EGYPTIAN HIEROGLYPH-14250
-	* logogram (7-8th nome of Lower Egypt) : wꜥ-m-ḥww
+	* logogram (7th and 8th nomes of Lower Egypt) : wꜥ-m-ḥww
 14251	EGYPTIAN HIEROGLYPH-14251
-	* logogram (7-8th nome of Lower Egypt) : wꜥ-m-ḥww
+	* logogram (7th and 8th nomes of Lower Egypt) : wꜥ-m-ḥww
 14252	EGYPTIAN HIEROGLYPH-14252
 14253	EGYPTIAN HIEROGLYPH-14253
 	* logogram (7th nome of Lower Egypt) : wꜥ-m-ḥww-ꞽmn.ty
@@ -47974,7 +48010,7 @@ FFFF	<not a character>
 	* classifier catching, netting : ꞽḥ.t
 14260	EGYPTIAN HIEROGLYPH-14260
 	* classifier fish-trap : ḥꜥd
-@		T15. Reed float (Object db.)
+@		T15. Reed float
 14261	EGYPTIAN HIEROGLYPH-14261
 	* phonemogram : ḏbꜣ
 14262	EGYPTIAN HIEROGLYPH-14262
@@ -48088,9 +48124,9 @@ FFFF	<not a character>
 14297	EGYPTIAN HIEROGLYPH-14297
 	* classifier grain/barley : npt
 14298	EGYPTIAN HIEROGLYPH-14298
-	* classifier grain : Mh.w
+	* classifier grain : mh.w
 14299	EGYPTIAN HIEROGLYPH-14299
-	* classifier grain : Mh.w | šmꜥ.w | wꜣḥ.yt
+	* classifier grain : mh.w | šmꜥ.w | wꜣḥ.yt
 1429A	EGYPTIAN HIEROGLYPH-1429A
 	* classifier grain : np(r)
 1429B	EGYPTIAN HIEROGLYPH-1429B
@@ -48237,7 +48273,7 @@ FFFF	<not a character>
 142E2	EGYPTIAN HIEROGLYPH-142E2
 	* classifier balance, scale : mḫꜣ.t
 142E3	EGYPTIAN HIEROGLYPH-142E3
-	* logogram (balance; in mḫꜣ.t-tꜣ.wy) : mḫꜣ.t
+	* logogram (balance (in mḫꜣ.t-tꜣ.wy)) : mḫꜣ.t
 142E4	EGYPTIAN HIEROGLYPH-142E4
 	* classifier balance, scale : mḫꜣ.t
 142E5	EGYPTIAN HIEROGLYPH-142E5
@@ -48256,7 +48292,7 @@ FFFF	<not a character>
 	* classifier lifting, carrying : ṯs
 142ED	EGYPTIAN HIEROGLYPH-142ED
 142EE	EGYPTIAN HIEROGLYPH-142EE
-	* classifier to raise to lift up : sṯsꞽ
+	* classifier to raise, to lift up : sṯsꞽ
 142EF	EGYPTIAN HIEROGLYPH-142EF
 	* classifier measuring tool? : ḫꜥ.y
 142F0	EGYPTIAN HIEROGLYPH-142F0
@@ -48292,7 +48328,7 @@ FFFF	<not a character>
 142FF	EGYPTIAN HIEROGLYPH-142FF
 	* logogram (potter's wheel) : nḥp
 14300	EGYPTIAN HIEROGLYPH-14300
-	* classifier potters wheel : nḥb
+	* classifier potter's wheel : nḥb
 @		U18. Press (wine, oil), warp extended between poles
 14301	EGYPTIAN HIEROGLYPH-14301
 14302	EGYPTIAN HIEROGLYPH-14302
@@ -48323,7 +48359,7 @@ FFFF	<not a character>
 	* phonemogram : sš
 @		U19. Riddle (coarse sieve)
 14313	EGYPTIAN HIEROGLYPH-14313
-	* classifier gold-dust : nḳr
+	* classifier gold dust : nḳr
 14314	EGYPTIAN HIEROGLYPH-14314
 	* classifier cage : štb
 14315	EGYPTIAN HIEROGLYPH-14315
@@ -48342,7 +48378,7 @@ FFFF	<not a character>
 1431B	EGYPTIAN HIEROGLYPH-1431B
 	* classifier saw : tfꜣ
 1431C	EGYPTIAN HIEROGLYPH-1431C
-	* classifier (upright of an ladder) : mꜥꜣꜥ
+	* classifier (upright of a ladder) : mꜥꜣꜥ
 1431D	EGYPTIAN HIEROGLYPH-1431D
 	* phonemogram : ḳd
 @		V01. Rope and rope coils
@@ -48620,7 +48656,7 @@ FFFF	<not a character>
 143A2	EGYPTIAN HIEROGLYPH-143A2
 	* classifier (to wash) : ꞽꜥꞽ
 143A3	EGYPTIAN HIEROGLYPH-143A3
-	* logogram (Nemset vase) : nms.t
+	* logogram (nemset vase) : nms.t
 143A4	EGYPTIAN HIEROGLYPH-143A4
 	* classifier vessel : ḏwj.w
 143A5	EGYPTIAN HIEROGLYPH-143A5
@@ -48642,7 +48678,7 @@ FFFF	<not a character>
 143AF	EGYPTIAN HIEROGLYPH-143AF
 	* classifier milk : ꞽrṯ.t
 143B0	EGYPTIAN HIEROGLYPH-143B0
-	* classifier vessel (which might be some type of oil) : bꜥ/bꜥꜥ
+	* classifier vessel (possibly for oil) : bꜥ/bꜥꜥ
 143B1	EGYPTIAN HIEROGLYPH-143B1
 143B2	EGYPTIAN HIEROGLYPH-143B2
 143B3	EGYPTIAN HIEROGLYPH-143B3
@@ -50030,6 +50066,7 @@ FFFF	<not a character>
 1687F	BAMUM LETTER PHASE-B MONTIEEN
 16880	BAMUM LETTER PHASE-B NYAEMAE
 16881	BAMUM LETTER PHASE-B PUNGAAM
+	% BAMUM LETTER PHASE-B PUNGGAAM
 16882	BAMUM LETTER PHASE-B MEUT NGGEET
 16883	BAMUM LETTER PHASE-B FEUX
 16884	BAMUM LETTER PHASE-B MBUOQ
@@ -50043,6 +50080,7 @@ FFFF	<not a character>
 1688C	BAMUM LETTER PHASE-B MA
 1688D	BAMUM LETTER PHASE-B KIQ
 1688E	BAMUM LETTER PHASE-B NGOM
+	% BAMUM LETTER PHASE-B NGGOM
 @		Characters found through Phase C
 1688F	BAMUM LETTER PHASE-C NGKUE MAEMBA
 16890	BAMUM LETTER PHASE-C NZA
@@ -50123,6 +50161,7 @@ FFFF	<not a character>
 168DA	BAMUM LETTER PHASE-C NDAP
 168DB	BAMUM LETTER PHASE-C SHUEQ
 168DC	BAMUM LETTER PHASE-C SETFON
+	% BAMUM LETTER PHASE-C SHETFON
 168DD	BAMUM LETTER PHASE-C MBI
 168DE	BAMUM LETTER PHASE-C MAEMBA
 168DF	BAMUM LETTER PHASE-C MBANYI
@@ -50299,6 +50338,7 @@ FFFF	<not a character>
 1697B	BAMUM LETTER PHASE-E LOM
 1697C	BAMUM LETTER PHASE-E NSHIEE
 1697D	BAMUM LETTER PHASE-E NGOP
+	% BAMUM LETTER PHASE-E NGGOP
 1697E	BAMUM LETTER PHASE-E MAEM
 1697F	BAMUM LETTER PHASE-E NGKEUX
 16980	BAMUM LETTER PHASE-E NGOQ
@@ -50978,51 +51018,6 @@ FFFF	<not a character>
 16D77	KIRAT RAI DIGIT SEVEN
 16D78	KIRAT RAI DIGIT EIGHT
 16D79	KIRAT RAI DIGIT NINE
-@@	16D80	Chisoi	16DAF
-@		Letters
-16D80	CHISOI LETTER A
-16D81	CHISOI LETTER BA
-16D82	CHISOI LETTER AI
-16D83	CHISOI LETTER AA
-16D84	CHISOI LETTER GA
-16D85	CHISOI LETTER TA
-16D86	CHISOI LETTER E
-16D87	CHISOI LETTER SA
-16D88	CHISOI LETTER NA
-16D89	CHISOI LETTER I
-16D8A	CHISOI LETTER KA
-16D8B	CHISOI LETTER RA
-16D8C	CHISOI LETTER MA
-16D8D	CHISOI LETTER HA
-16D8E	CHISOI LETTER RRA
-16D8F	CHISOI LETTER U
-16D90	CHISOI LETTER DA
-16D91	CHISOI LETTER LA
-16D92	CHISOI LETTER O
-16D93	CHISOI LETTER NYA
-16D94	CHISOI LETTER NGA
-16D95	CHISOI LETTER CA
-16D96	CHISOI LETTER JA
-16D97	CHISOI LETTER PA
-16D98	CHISOI SIGN ANUSVARA
-16D99	CHISOI LETTER YA
-16D9A	CHISOI LETTER DDA
-16D9B	CHISOI LETTER TTA
-16D9C	CHISOI LETTER JARAHA
-@		Sign
-16D9D	CHISOI SIGN SISO
-	* vowel killer
-@		Digits
-16DA0	CHISOI DIGIT ZERO
-16DA1	CHISOI DIGIT ONE
-16DA2	CHISOI DIGIT TWO
-16DA3	CHISOI DIGIT THREE
-16DA4	CHISOI DIGIT FOUR
-16DA5	CHISOI DIGIT FIVE
-16DA6	CHISOI DIGIT SIX
-16DA7	CHISOI DIGIT SEVEN
-16DA8	CHISOI DIGIT EIGHT
-16DA9	CHISOI DIGIT NINE
 @@	16E40	Medefaidrin	16E9F
 @		Uppercase letters
 16E40	MEDEFAIDRIN CAPITAL LETTER M
@@ -52125,7 +52120,9 @@ FFFF	<not a character>
 18AA1	TANGUT COMPONENT-674
 18AA2	TANGUT COMPONENT-675
 18AA3	TANGUT COMPONENT-676
+@		Ten-stroke component
 18AA4	TANGUT COMPONENT-677
+@		Nine-stroke components
 18AA5	TANGUT COMPONENT-678
 18AA6	TANGUT COMPONENT-679
 18AA7	TANGUT COMPONENT-680
@@ -52730,6 +52727,21 @@ FFFF	<not a character>
 18CD3	KHITAN SMALL SCRIPT CHARACTER-18CD3
 18CD4	KHITAN SMALL SCRIPT CHARACTER-18CD4
 18CD5	KHITAN SMALL SCRIPT CHARACTER-18CD5
+@ Jurchen Small Script characters
+@+ Characters tentatively identified as Jurchen Small Script, encoded in
+ the Khitan Small Script block due to similar clustering structure and
+ limited evidence. This set also includes 18C3E.
+ x (khitan small script character-18c3e - 18C3E)
+18CD6 KHITAN SMALL SCRIPT CHARACTER-18CD6
+ * used in Jurchen Small Script
+18CD7 KHITAN SMALL SCRIPT CHARACTER-18CD7
+ * used in Jurchen Small Script
+18CD8 KHITAN SMALL SCRIPT CHARACTER-18CD8
+ * used in Jurchen Small Script
+18CD9 KHITAN SMALL SCRIPT CHARACTER-18CD9
+ * used in Jurchen Small Script
+18CDA KHITAN SMALL SCRIPT CHARACTER-18CDA
+ * used in Jurchen Small Script
 @		Indication of missing character
 18CFF	KHITAN SMALL SCRIPT CHARACTER-18CFF
 	* represents a lost or illegible character
@@ -59766,7 +59778,7 @@ FFFF	<not a character>
 1E6DC	TAI YO LETTER QO
 1E6DD	TAI YO LETTER LOW KVO
 1E6DE	TAI YO LETTER HIGH KVO
-@		Vowels
+@		Vowel letters and rhyme signs
 1E6E0	TAI YO LETTER AA
 1E6E1	TAI YO LETTER I
 1E6E2	TAI YO LETTER UE
@@ -60124,13 +60136,20 @@ FFFF	<not a character>
 @@	1E900	Adlam	1E95F
 @		Capital letters
 1E900	ADLAM CAPITAL LETTER ALIF
+	= a
 1E901	ADLAM CAPITAL LETTER DAALI
+	= da
 1E902	ADLAM CAPITAL LETTER LAAM
+	= la
 1E903	ADLAM CAPITAL LETTER MIIM
+	= ma
 1E904	ADLAM CAPITAL LETTER BA
 1E905	ADLAM CAPITAL LETTER SINNYIIYHE
+	= sa
 1E906	ADLAM CAPITAL LETTER PE
+	= pa
 1E907	ADLAM CAPITAL LETTER BHE
+	= bha
 1E908	ADLAM CAPITAL LETTER RA
 1E909	ADLAM CAPITAL LETTER E
 1E90A	ADLAM CAPITAL LETTER FA
@@ -60138,25 +60157,36 @@ FFFF	<not a character>
 1E90C	ADLAM CAPITAL LETTER O
 1E90D	ADLAM CAPITAL LETTER DHA
 1E90E	ADLAM CAPITAL LETTER YHE
+	= yha
 1E90F	ADLAM CAPITAL LETTER WAW
+	= wa
 1E910	ADLAM CAPITAL LETTER NUN
+	= na
 1E911	ADLAM CAPITAL LETTER KAF
+	= ka
 1E912	ADLAM CAPITAL LETTER YA
 1E913	ADLAM CAPITAL LETTER U
 1E914	ADLAM CAPITAL LETTER JIIM
+	= ja
 1E915	ADLAM CAPITAL LETTER CHI
+	= tcha
 1E916	ADLAM CAPITAL LETTER HA
 1E917	ADLAM CAPITAL LETTER QAAF
+	= qa
 1E918	ADLAM CAPITAL LETTER GA
 1E919	ADLAM CAPITAL LETTER NYA
 1E91A	ADLAM CAPITAL LETTER TU
+	= ta
 1E91B	ADLAM CAPITAL LETTER NHA
 @		Supplementary capital letters
 1E91C	ADLAM CAPITAL LETTER VA
 1E91D	ADLAM CAPITAL LETTER KHA
 1E91E	ADLAM CAPITAL LETTER GBE
+	= gba
 1E91F	ADLAM CAPITAL LETTER ZAL
+	= za
 1E920	ADLAM CAPITAL LETTER KPO
+	= kpa
 1E921	ADLAM CAPITAL LETTER SHA
 @		Small letters
 1E922	ADLAM SMALL LETTER ALIF
@@ -60205,7 +60235,7 @@ FFFF	<not a character>
 	* called hoortobbhere when drawn above and lestobbhere when drawn below the base character
 @		Modifier letter
 1E94B	ADLAM NASALIZATION MARK
-	* indicates prenasalization of succeeding consonant letter
+	* indicates preceding nasal consonant prenasalizes subsequent consonant letter
 @		Digits
 1E950	ADLAM DIGIT ZERO
 1E951	ADLAM DIGIT ONE
@@ -63682,6 +63712,7 @@ FFFF	<not a character>
 @		Time
 1F76E	ALCHEMICAL SYMBOL FOR HOUR
 	x (hourglass - 231B)
+	x (white hourglass - 29D6)
 1F76F	ALCHEMICAL SYMBOL FOR NIGHT
 1F770	ALCHEMICAL SYMBOL FOR DAY-NIGHT
 1F771	ALCHEMICAL SYMBOL FOR MONTH
@@ -64776,7 +64807,6 @@ FFFF	<not a character>
 1FADA	GINGER ROOT
 1FADB	PEA POD
 1FADC	ROOT VEGETABLE
-1FADD	APPLE CORE
 @		Miscellaneous
 1FADF	SPLATTER
 @		Faces
@@ -65174,9 +65204,9 @@ FFFF	<not a character>
 1FFFE	<not a character>
 1FFFF	<not a character>
 @@	20000	CJK Unified Ideographs Extension B	2A6DF
-@@	2A700	CJK Unified Ideographs Extension C	2B73E
+@@	2A700	CJK Unified Ideographs Extension C	2B73F
 @@	2B740	CJK Unified Ideographs Extension D	2B81D
-@@	2B820	CJK Unified Ideographs Extension E	2CEA1
+@@	2B820	CJK Unified Ideographs Extension E	2CEAD
 @@	2CEB0	CJK Unified Ideographs Extension F	2EBE0
 @@	2EBF0	CJK Unified Ideographs Extension I	2EE5D
 @@	2F800	CJK Compatibility Ideographs Supplement	2FA1F

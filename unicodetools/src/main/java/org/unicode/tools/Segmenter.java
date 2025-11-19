@@ -35,8 +35,8 @@ import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
-import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.tools.Segmenter.Builder.NamedRefinedSet;
 import org.unicode.tools.Segmenter.SegmentationRule.Breaks;
 
@@ -283,6 +283,8 @@ public class Segmenter {
         }
 
         public abstract String toCppOldMonkeyString();
+
+        public abstract String toJavaOldMonkeyString();
     }
 
     /** A « treat as » rule. */
@@ -390,6 +392,17 @@ public class Segmenter {
                     + replacement
                     + ")\")";
         }
+
+        @Override
+        public String toJavaOldMonkeyString() {
+            return "new RemapRule(\""
+                    + name.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\", \""
+                    + patternDefinition.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\", \""
+                    + replacement.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\")";
+        }
     }
 
     /** A rule that determines the status of an offset. */
@@ -485,6 +498,19 @@ public class Segmenter {
                     + "', uR\"("
                     + afterDefinition.replaceAll("&", "&&").replaceAll("-", "--")
                     + ")\")";
+        }
+
+        @Override
+        public String toJavaOldMonkeyString() {
+            return "new RegexRule(\""
+                    + name.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\", \""
+                    + beforeDefinition.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\", Resolution."
+                    + breaks.name()
+                    + ", \""
+                    + afterDefinition.replace("\\", "\\\\").replace("\"", "\\\"")
+                    + "\")";
         }
 
         // ============== Internals ================
@@ -745,9 +771,7 @@ public class Segmenter {
                     parsePosition.setIndex(0);
                     UnicodeSet valueSet =
                             new UnicodeSet(
-                                    value,
-                                    parsePosition,
-                                    IndexUnicodeProperties.make().getXSymbolTable());
+                                    value, parsePosition, VersionedSymbolTable.forDevelopment());
                     if (parsePosition.getIndex() != value.length()) {
                         if (SHOW_SAMPLES)
                             System.out.println(
@@ -978,9 +1002,7 @@ public class Segmenter {
                     parsePosition.setIndex(i);
                     UnicodeSet temp =
                             new UnicodeSet(
-                                    result,
-                                    parsePosition,
-                                    IndexUnicodeProperties.make().getXSymbolTable());
+                                    result, parsePosition, VersionedSymbolTable.forDevelopment());
                     String insert = getInsertablePattern(temp);
                     result =
                             result.substring(0, i)

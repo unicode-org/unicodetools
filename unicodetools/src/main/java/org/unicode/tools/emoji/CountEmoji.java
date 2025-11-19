@@ -382,7 +382,7 @@ public class CountEmoji {
         zwj("Ⓩ"),
         gender(Emoji.FEMALE),
         role(Emoji.WOMAN_STR),
-        family(Emoji.NEUTRAL_FAMILY),
+        family(Emoji.NEUTRAL_FAMILY, "group"),
         hair("🦰"),
         singleton("Ⓒ"),
         dup("🧑"),
@@ -390,9 +390,15 @@ public class CountEmoji {
         ;
 
         private final String label;
+        private final String title;
 
         private Attribute(String label) {
+            this(label, null);
+        }
+
+        private Attribute(String label, String title) {
             this.label = label;
+            this.title = title;
         }
     }
 
@@ -463,7 +469,7 @@ public class CountEmoji {
                         sbLong.append(" + ");
                     }
                     sb.append(a.label);
-                    sbLong.append(a.toString());
+                    sbLong.append(a.title != null ? a.title : a.toString());
                 }
                 if (attributes.contains(Attribute.zwj) && attributes.size() == 1) {
                     sb.append(NNBSP + "‧" + NNBSP).append(Attribute.singleton.label);

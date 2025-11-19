@@ -15,6 +15,7 @@ Arabic_Math	;	Arabic_Mathematical_Alphabetic_Symbols
 Arabic_PF_A	;	Arabic_Presentation_Forms_A
 Arabic_PF_B	;	Arabic_Presentation_Forms_B
 Arabic_Sup	;	Arabic_Supplement
+Archaic_Cuneiform_Numerals	;	Archaic_Cuneiform_Numerals
 Armenian	;	Armenian
 Arrows	;	Arrows
 Avestan	;	Avestan
@@ -43,7 +44,6 @@ Cham	;	Cham
 Cherokee	;	Cherokee
 Cherokee_Sup	;	Cherokee_Supplement
 Chess_Symbols	;	Chess_Symbols
-Chisoi	;	Chisoi
 Chorasmian	;	Chorasmian
 CJK_Compat	;	CJK_Compatibility
 CJK_Compat_Forms	;	CJK_Compatibility_Forms
@@ -267,6 +267,7 @@ Rumi	;	Rumi_Numeral_Symbols
 Runic	;	Runic
 Samaritan	;	Samaritan
 Saurashtra	;	Saurashtra
+Seal	;	Seal
 Sharada	;	Sharada
 Sharada_Sup	;	Sharada_Supplement
 Shavian	;	Shavian
