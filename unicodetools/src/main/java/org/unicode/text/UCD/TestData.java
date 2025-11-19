@@ -9,7 +9,7 @@
  */
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.DecimalFormat;
@@ -247,7 +247,7 @@ public class TestData implements UCD_Types {
         /*showSet();
          */
         final String x =
-                "[[[:s:][:p:]&[:ascii:]] | [\\u2190-\\u2BFF] | "
+                "[[[:s:][:p:]&[:Block=ASCII:]] | [\\u2190-\\u2BFF] | "
                         + "[[:s:][:p:]"
                         //     + "&[:decompositiontype=none:]"
                         // + "- [:id_continue:]"
