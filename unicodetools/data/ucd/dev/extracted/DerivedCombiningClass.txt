@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2025-11-17, 20:22:23 GMT
+# Date: 2025-11-18, 13:21:20 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2092,8 +2092,8 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 805398 code points not listed here.
-# Total code points: 1113143
+# The above property value applies to 805397 code points not listed here.
+# Total code points: 1113142
 
 # ================================================
 
@@ -2238,8 +2238,9 @@ ABED          ; 9 # Mn       MEETEI MAYEK APUN IYEK
 # Canonical_Combining_Class=CCC10
 
 05B0          ; 10 # Mn       HEBREW POINT SHEVA
+05C8          ; 10 # Mn       HEBREW POINT SHEVA NA MUDGASH
 
-# Total code points: 1
+# Total code points: 2
 
 # ================================================
 

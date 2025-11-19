@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2025-11-17, 20:22:22 GMT
+# Date: 2025-11-18, 13:21:19 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1345,8 +1345,8 @@ FB46..FB4F    ; R # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW LIGATURE AL
 1E950..1E959  ; R # Nd  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 1E95E..1E95F  ; R # Po   [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 
-# The above property value applies to 2061 code points not listed here.
-# Total code points: 3631
+# The above property value applies to 2060 code points not listed here.
+# Total code points: 3630
 
 # ================================================
 
@@ -2081,7 +2081,7 @@ FFFFE..FFFFF  ; BN # Cn   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 05BF          ; NSM # Mn       HEBREW POINT RAFE
 05C1..05C2    ; NSM # Mn   [2] HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
 05C4..05C5    ; NSM # Mn   [2] HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
-05C7          ; NSM # Mn       HEBREW POINT QAMATS QATAN
+05C7..05C8    ; NSM # Mn   [2] HEBREW POINT QAMATS QATAN..HEBREW POINT SHEVA NA MUDGASH
 0610..061A    ; NSM # Mn  [11] ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..ARABIC SMALL KASRA
 064B..065F    ; NSM # Mn  [21] ARABIC FATHATAN..ARABIC WAVY HAMZA BELOW
 0670          ; NSM # Mn       ARABIC LETTER SUPERSCRIPT ALEF
@@ -2443,7 +2443,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 1E944..1E94A  ; NSM # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; NSM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2068
+# Total code points: 2069
 
 # ================================================
 

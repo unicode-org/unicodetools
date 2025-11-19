@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-17, 20:22:26 GMT
+# Date: 2025-11-18, 13:21:23 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -23,7 +23,7 @@
 0530          ; Cn #       <reserved-0530>
 0557          ; Cn #       <reserved-0557>
 0590          ; Cn #       <reserved-0590>
-05C8..05CF    ; Cn #   [8] <reserved-05C8>..<reserved-05CF>
+05C9..05CF    ; Cn #   [7] <reserved-05C9>..<reserved-05CF>
 05EB..05EE    ; Cn #   [4] <reserved-05EB>..<reserved-05EE>
 05F5..05FF    ; Cn #  [11] <reserved-05F5>..<reserved-05FF>
 070E          ; Cn #       <reserved-070E>
@@ -751,7 +751,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 803350
+# Total code points: 803349
 
 # ================================================
 
@@ -2746,7 +2746,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 05BF          ; Mn #       HEBREW POINT RAFE
 05C1..05C2    ; Mn #   [2] HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
 05C4..05C5    ; Mn #   [2] HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
-05C7          ; Mn #       HEBREW POINT QAMATS QATAN
+05C7..05C8    ; Mn #   [2] HEBREW POINT QAMATS QATAN..HEBREW POINT SHEVA NA MUDGASH
 0610..061A    ; Mn #  [11] ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..ARABIC SMALL KASRA
 064B..065F    ; Mn #  [21] ARABIC FATHATAN..ARABIC WAVY HAMZA BELOW
 0670          ; Mn #       ARABIC LETTER SUPERSCRIPT ALEF
@@ -3106,7 +3106,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2060
+# Total code points: 2061
 
 # ================================================
 
