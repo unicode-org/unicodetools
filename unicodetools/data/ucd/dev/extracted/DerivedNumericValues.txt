@@ -1,5 +1,5 @@
 # DerivedNumericValues-18.0.0.txt
-# Date: 2025-11-19, 17:29:27 GMT
+# Date: 2025-11-19, 18:14:43 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -548,6 +548,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 12434         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE BURU
 1244F         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE BAN2
 12458         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE ESHE3
+12477         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES ONE DISH TENU
 12550         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE N01
 12559         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE N08
 12562         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE N14
@@ -629,7 +630,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1FBF1         ; 1.0 ; ; 1 # Nd       SEGMENTED DIGIT ONE
 2092A         ; 1.0 ; ; 1 # Lo       CJK UNIFIED IDEOGRAPH-2092A
 
-# Total code points: 237
+# Total code points: 238
 
 # ================================================
 
@@ -763,6 +764,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 12450         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO BAN2
 12456         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN NIGIDAMIN
 12459         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO ESHE3
+12478         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES TWO DISH TENU
 12551         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO N01
 1255A         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO N08
 12563         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO N14
@@ -843,7 +845,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 1FBF2         ; 2.0 ; ; 2 # Nd       SEGMENTED DIGIT TWO
 22390         ; 2.0 ; ; 2 # Lo       CJK UNIFIED IDEOGRAPH-22390
 
-# Total code points: 205
+# Total code points: 206
 
 # ================================================
 
@@ -967,6 +969,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 1244B         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE ASH TENU
 12451         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE BAN2
 12457         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN NIGIDAESH
+12479         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES THREE DISH TENU
 12552         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE N01
 1255B         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE N08
 12564         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE N14
@@ -1040,7 +1043,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 22998         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-22998
 23B1B         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-23B1B
 
-# Total code points: 193
+# Total code points: 194
 
 # ================================================
 
@@ -1158,6 +1161,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 1244C         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN FOUR ASH TENU
 12452..12453  ; 4.0 ; ; 4 # Nl   [2] CUNEIFORM NUMERIC SIGN FOUR BAN2..CUNEIFORM NUMERIC SIGN FOUR BAN2 VARIANT FORM
 12469         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN FOUR U VARIANT FORM
+1247A         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES FOUR DISH TENU
 12553         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN FOUR N01
 1255C         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN FOUR N08
 12565         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN FOUR N14
@@ -1227,7 +1231,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 200E2         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-200E2
 2626D         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-2626D
 
-# Total code points: 181
+# Total code points: 182
 
 # ================================================
 
@@ -1348,6 +1352,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 1244D         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN FIVE ASH TENU
 12454..12455  ; 5.0 ; ; 5 # Nl   [2] CUNEIFORM NUMERIC SIGN FIVE BAN2..CUNEIFORM NUMERIC SIGN FIVE BAN2 VARIANT FORM
 1246A         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN FIVE U VARIANT FORM
+1247B         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES FIVE DISH TENU
 12554         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN FIVE N01
 1255D         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN FIVE N08
 12566         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN FIVE N14
@@ -1409,7 +1414,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 1FBF5         ; 5.0 ; ; 5 # Nd       SEGMENTED DIGIT FIVE
 20121         ; 5.0 ; ; 5 # Lo       CJK UNIFIED IDEOGRAPH-20121
 
-# Total code points: 172
+# Total code points: 173
 
 # ================================================
 
@@ -1517,6 +1522,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 12440         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX VARIANT FORM ASH9
 1244E         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX ASH TENU
 1246B         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX U VARIANT FORM
+1247C         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES SIX DISH TENU
 12555         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX N01
 1255E         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX N08
 12567         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX N14
@@ -1564,7 +1570,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 1FBF6         ; 6.0 ; ; 6 # Nd       SEGMENTED DIGIT SIX
 20AEA         ; 6.0 ; ; 6 # Lo       CJK UNIFIED IDEOGRAPH-20AEA
 
-# Total code points: 144
+# Total code points: 145
 
 # ================================================
 
@@ -1670,6 +1676,8 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 12429         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN SHAR2
 12441..12443  ; 7.0 ; ; 7 # Nl   [3] CUNEIFORM NUMERIC SIGN SEVEN VARIANT FORM IMIN3..CUNEIFORM NUMERIC SIGN SEVEN VARIANT FORM IMIN B
 1246C         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN U VARIANT FORM
+1246F         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN ASH TENU
+1247D         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES SEVEN DISH TENU
 12556         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN N01
 1255F         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN N08
 12568         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN N14
@@ -1717,7 +1725,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 1FBF7         ; 7.0 ; ; 7 # Nd       SEGMENTED DIGIT SEVEN
 20001         ; 7.0 ; ; 7 # Lo       CJK UNIFIED IDEOGRAPH-20001
 
-# Total code points: 144
+# Total code points: 146
 
 # ================================================
 
@@ -1820,6 +1828,8 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 1242A         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT SHAR2
 12444..12445  ; 8.0 ; ; 8 # Nl   [2] CUNEIFORM NUMERIC SIGN EIGHT VARIANT FORM USSU..CUNEIFORM NUMERIC SIGN EIGHT VARIANT FORM USSU3
 1246D         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT U VARIANT FORM
+12475         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT ASH TENU
+1247E         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES EIGHT DISH TENU
 12557         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT N01
 12560         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT N08
 12569         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT N14
@@ -1866,7 +1876,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 1F109         ; 8.0 ; ; 8 # No       DIGIT EIGHT COMMA
 1FBF8         ; 8.0 ; ; 8 # Nd       SEGMENTED DIGIT EIGHT
 
-# Total code points: 139
+# Total code points: 141
 
 # ================================================
 
@@ -1972,6 +1982,8 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 1242B         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE SHAR2
 12446..12449  ; 9.0 ; ; 9 # Nl   [4] CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU..CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU A
 1246E         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE U VARIANT FORM
+12476         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE ASH TENU
+1247F         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN ASH TIMES NINE DISH TENU
 12558         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE N01
 12561         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE N08
 1256A         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE N14
@@ -2019,7 +2031,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 1FBF9         ; 9.0 ; ; 9 # Nd       SEGMENTED DIGIT NINE
 2F890         ; 9.0 ; ; 9 # Lo       CJK COMPATIBILITY IDEOGRAPH-2F890
 
-# Total code points: 145
+# Total code points: 147
 
 # ================================================
 
