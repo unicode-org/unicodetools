@@ -69,6 +69,7 @@ public class UcdPropertyValues {
         V15_1("15.1"),
         V16_0("16.0"),
         V17_0("17.0"),
+        V18_0("18.0"),
         Unassigned("NA");
         private final PropertyNames<Age_Values> names;
 
@@ -94,6 +95,7 @@ public class UcdPropertyValues {
         }
     }
 
+    // Arabic_Shaping_Schematic_Name
     public enum Bidi_Class_Values implements Named {
         Arabic_Letter("AL"),
         Arabic_Number("AN"),
@@ -194,6 +196,7 @@ public class UcdPropertyValues {
         Arabic_Presentation_Forms_A("Arabic_PF_A", "Arabic_Presentation_Forms-A"),
         Arabic_Presentation_Forms_B("Arabic_PF_B"),
         Arabic_Supplement("Arabic_Sup"),
+        Archaic_Cuneiform_Numerals("Archaic_Cuneiform_Numerals"),
         Armenian("Armenian"),
         Arrows("Arrows"),
         Basic_Latin("ASCII"),
@@ -448,6 +451,7 @@ public class UcdPropertyValues {
         Runic("Runic"),
         Samaritan("Samaritan"),
         Saurashtra("Saurashtra"),
+        Seal("Seal"),
         Sharada("Sharada"),
         Sharada_Supplement("Sharada_Sup"),
         Shavian("Shavian"),
@@ -1216,7 +1220,7 @@ public class UcdPropertyValues {
         Bottom_And_Right("Bottom_And_Right"),
         Left("Left"),
         Left_And_Right("Left_And_Right"),
-        NA("NA"),
+        Not_Applicable("NA"),
         Overstruck("Overstruck"),
         Right("Right"),
         Top("Top"),
@@ -1409,6 +1413,16 @@ public class UcdPropertyValues {
         Beh("Beh"),
         Beth("Beth"),
         Burushaski_Yeh_Barree("Burushaski_Yeh_Barree"),
+        Crown_Ain("Crown_Ain"),
+        Crown_Beh("Crown_Beh"),
+        Crown_Feh("Crown_Feh"),
+        Crown_Hah("Crown_Hah"),
+        Crown_Heh("Crown_Heh"),
+        Crown_Kaf("Crown_Kaf"),
+        Crown_Meem("Crown_Meem"),
+        Crown_Sad("Crown_Sad"),
+        Crown_Seen("Crown_Seen"),
+        Crown_Tah("Crown_Tah"),
         Dal("Dal"),
         Dalath_Rish("Dalath_Rish"),
         E("E"),
@@ -1716,6 +1730,12 @@ public class UcdPropertyValues {
     // kRSMerged
     // kRSUnicode
     // kSBGY
+    // kSEAL_CCZSrc
+    // kSEAL_DYCSrc
+    // kSEAL_MCJK
+    // kSEAL_QJZSrc
+    // kSEAL_Rad
+    // kSEAL_THXSrc
     // kSemanticVariant
     // kSimplifiedVariant
     // kSMSZD2003Index
@@ -1729,6 +1749,7 @@ public class UcdPropertyValues {
     // kTGH
     // kTGHZ2013
     // kTGT_MergedSrc
+    // kTGT_Numeric
     // kTGT_RSUnicode
     // kTotalStrokes
     // kTraditionalVariant
@@ -1817,6 +1838,96 @@ public class UcdPropertyValues {
     }
 
     // Lowercase_Mapping
+    public enum Math_Class_Values implements Named {
+        None("None"),
+        Normal("N"),
+        Alphabetic("A"),
+        Binary("B"),
+        Closing("C"),
+        Diacritic("D"),
+        Fence("F"),
+        Glyph_Part("G"),
+        Invisible("I"),
+        Large("L"),
+        Opening("O"),
+        Punctuation("P"),
+        Relation("R", "R?"),
+        Space("S"),
+        Unary("U"),
+        Vary("V"),
+        Special("X");
+        private final PropertyNames<Math_Class_Values> names;
+
+        private Math_Class_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Math_Class_Values>(
+                            Math_Class_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Math_Class_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Math_Class_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Math_Class_Values.class);
+
+        public static Math_Class_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
+    public enum Math_Class_Ex_Values implements Named {
+        None("None"),
+        Normal("N"),
+        Alphabetic("A"),
+        Binary("B"),
+        Closing("C"),
+        Diacritic("D"),
+        Fence("F"),
+        Glyph_Part("G"),
+        Large("L"),
+        Opening("O"),
+        Punctuation("P"),
+        Relation("R", "R?"),
+        Space("S"),
+        Unary("U"),
+        Vary("V"),
+        Special("X");
+        private final PropertyNames<Math_Class_Ex_Values> names;
+
+        private Math_Class_Ex_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Math_Class_Ex_Values>(
+                            Math_Class_Ex_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Math_Class_Ex_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Math_Class_Ex_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Math_Class_Ex_Values.class);
+
+        public static Math_Class_Ex_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
+    // Math_Descriptive_Comments
+    // Math_Entity_Name
+    // Math_Entity_Set
     // Name
     // Name_Alias
     // Named_Sequences
@@ -2166,6 +2277,7 @@ public class UcdPropertyValues {
         Old_Uyghur("Ougr"),
         Palmyrene("Palm"),
         Pau_Cin_Hau("Pauc"),
+        Proto_Cuneiform("Pcun"),
         Old_Permic("Perm"),
         Phags_Pa("Phag"),
         Inscriptional_Pahlavi("Phli"),
@@ -2179,6 +2291,7 @@ public class UcdPropertyValues {
         Samaritan("Samr"),
         Old_South_Arabian("Sarb"),
         Saurashtra("Saur"),
+        Seal("Seal"),
         SignWriting("Sgnw"),
         Shavian("Shaw"),
         Sharada("Shrd"),

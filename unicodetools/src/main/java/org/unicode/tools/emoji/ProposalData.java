@@ -102,19 +102,8 @@ public class ProposalData {
                             CandidateData.getInstance().getProposal(source),
                             Collections.emptySet()));
         }
-        if (output.isEmpty()) {
-            // hack skin color
-            if (source.contains(SKIN_REPRESENTATIVE)) {
-                source = source.replaceAll(SKIN_REPRESENTATIVE, "");
-                Set<String> other = getProposals(source);
-                if (!other.isEmpty()) {
-                    output.addAll(other);
-                    output.add("L2/14‑173");
-                }
-            }
-            if (output.isEmpty()) { // for debugging
-                Set<String> foo = CandidateData.getInstance().getProposal(source);
-            }
+        if (output.isEmpty()) { // for debugging
+            Set<String> foo = CandidateData.getInstance().getProposal(source);
         }
         return output;
     }
@@ -171,8 +160,8 @@ public class ProposalData {
 
     static UnicodeMap<Set<String>> load(StringBuffer header) {
         UnicodeMap<Set<String>> builder = new UnicodeMap<>();
-        Set<String> skinProposals = ImmutableSet.<String>builder().add("L2/14-173").build();
-        Set<String> genProposals = ImmutableSet.<String>builder().add("L2/16-160").build();
+        Set<String> skinProposals = ImmutableSet.<String>builder().build();
+        Set<String> genProposals = ImmutableSet.<String>builder().build();
 
         boolean haveData = false;
         for (String line : FileUtilities.in(ProposalData.class, "proposalData.txt")) {

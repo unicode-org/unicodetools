@@ -1,5 +1,5 @@
 # unidata-17.0.0.txt
-# Date: 2025-07-03, 00:00:00 GMT [KW]
+# Date: 2025-07-23, 00:00:00 GMT [KW]
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/copyright.html
@@ -10,8 +10,8 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 17.0.0 draft 5 (Unicode Version: 17.0.0)
-# based on Unicode data file UnicodeData-17.0.0d6.txt
+# Version 17.0.0 draft 7 (Unicode Version: 17.0.0)
+# based on Unicode data file UnicodeData-17.0.0d7.txt
 # Ordering for Unicode 17.0
 #
 # Fields:
@@ -9806,7 +9806,6 @@ DEFAULT
 1FADA;GINGER ROOT;So;;;;;;
 1FADB;PEA POD;So;;;;;;
 1FADC;ROOT VEGETABLE;So;;;;;;
-1FADD;APPLE CORE;So;;;;;;
 1FADF;SPLATTER;So;;;;;;
 1FAE0;MELTING FACE;So;;;;;;
 1FAE1;SALUTING FACE;So;;;;;;

@@ -1,5 +1,5 @@
-# IndicSyllabicCategory-17.0.0.txt
-# Date: 2025-07-23, 01:44:19 GMT
+# IndicSyllabicCategory-18.0.0.txt
+# Date: 2025-11-20, 23:16:53 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -72,6 +72,7 @@
 0900..0902    ; Bindu # Mn   [3] DEVANAGARI SIGN INVERTED CANDRABINDU..DEVANAGARI SIGN ANUSVARA
 0981          ; Bindu # Mn       BENGALI SIGN CANDRABINDU
 0982          ; Bindu # Mc       BENGALI SIGN ANUSVARA
+0984          ; Bindu # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 09FC          ; Bindu # Lo       BENGALI LETTER VEDIC ANUSVARA
 0A01..0A02    ; Bindu # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A70          ; Bindu # Mn       GURMUKHI TIPPI
@@ -820,7 +821,7 @@ AA74..AA76    ; Consonant_Placeholder # Lo   [3] MYANMAR LOGOGRAM KHAMTI OAY..MY
 # otherwise represents the inherent vowel, that vowel carrier has the
 # Indic_Syllabic_Category Consonant, as a null consonant. Such vowel carriers
 # can often also be analyzed as glottal stops with inherent vowels.
-# An example is U+0F68 ཨ TIBETAN LETTER A.
+# An example is U+0F68 TIBETAN LETTER A.
 
 # [Not derivable]
 
@@ -1014,8 +1015,8 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 # Indic_Syllabic_Category=Consonant_With_Stacker
 
-# Consonants that may make stacked ligatures with the next consonant
-# without the use of a virama
+# Consonants that may cause conjunct formation or consonant stacking with the
+# next consonant, without the use of a stacker
 
 # [Not derivable]
 
@@ -1029,7 +1030,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 # Indic_Syllabic_Category=Consonant_Prefixed
 
-# Cluster-initial consonants
+# Other consonants that behave like a Consonant_Preceding_Repha
 
 # [Not derivable]
 
@@ -1042,8 +1043,10 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 # Indic_Syllabic_Category=Consonant_Preceding_Repha
 
-# Repha Form of RA (reanalyzed in some scripts), when preceding the main
-# consonant.
+# Cluster-initial "r" consonants in the form of a dependent sign (also known as
+# "repha") that precede the base character in the encoding order, but are
+# reordered in text rendering to be somewhere after the base. Reanalyzed in
+# some orthographies to be a final consonant.
 
 # [Not derivable]
 
@@ -1058,8 +1061,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 # Indic_Syllabic_Category=Consonant_Initial_Postfixed
 
-# Consonants that succeed the main consonant in character sequences, but are
-# pronounced before it.
+# Other consonants that behave like a Consonant_Succeeding_Repha
 
 # [Not derivable]
 
@@ -1069,7 +1071,9 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 # Indic_Syllabic_Category=Consonant_Succeeding_Repha
 
-# Repha Form of RA (reanalyzed in some scripts), when succeeding the main
+# Cluster-initial "r" consonants that behave like a Consonant_Preceding_Repha
+# but succeed the base character in the encoding order, and are thus not
+# reordered in text rendering. Reanalyzed in some orthographies to be a final
 # consonant.
 
 # [Not derivable]

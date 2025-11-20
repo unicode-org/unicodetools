@@ -1,11 +1,11 @@
 # idnchars.txt
-# Date: 2025-05-07, 21:39:41 GMT
+# Date: 2025-09-12, 03:25:00 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 17.0.0
+# Version: 18.0.0
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr39
 #
@@ -178,7 +178,6 @@
 08A2..08A9    ; output #  [8] (ࢢ..ࢩ)  ARABIC LETTER JEEM WITH TWO DOTS ABOVE..ARABIC LETTER YEH WITH TWO DOTS BELOW AND DOT ABOVE
 08BB..08C2    ; output #  [8] (ࢻ..ࣂ)  ARABIC LETTER AFRICAN FEH..ARABIC LETTER KEHEH WITH SMALL V
 08C7          ; output #      (ࣇ)  ARABIC LETTER LAM WITH SMALL ARABIC LETTER TAH ABOVE
-08C9          ; output #      (ࣉ)  ARABIC SMALL FARSI YEH
 0901..0903    ; output #  [3] (ँ..ः)  DEVANAGARI SIGN CANDRABINDU..DEVANAGARI SIGN VISARGA
 0905..090B    ; output #  [7] (अ..ऋ)  DEVANAGARI LETTER A..DEVANAGARI LETTER VOCALIC R
 090D..0928    ; output # [28] (ऍ..न)  DEVANAGARI LETTER CANDRA E..DEVANAGARI LETTER NA
@@ -459,13 +458,12 @@ AC00..D7A3    ; output # [11172] (가..힣)  HANGUL SYLLABLE GA..HANGUL SYLLABLE
 11301         ; output #      (𑌁)  GRANTHA SIGN CANDRABINDU
 11303         ; output #      (𑌃)  GRANTHA SIGN VISARGA
 1133C         ; output #      (𑌼)  GRANTHA SIGN NUKTA
-16FF0..16FF1  ; output #  [2] (𖿰..𖿱)  VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 1E7E0..1E7E6  ; output #  [7] (𞟠..𞟦)  ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
 1E7E8..1E7EB  ; output #  [4] (𞟨..𞟫)  ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE
 1E7ED..1E7EE  ; output #  [2] (𞟭..𞟮)  ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
 1E7F0..1E7FE  ; output # [15] (𞟰..𞟾)  ETHIOPIC SYLLABLE GURAGE QWI..ETHIOPIC SYLLABLE GURAGE PWEE
 
-# Total code points: 13498
+# Total code points: 13495
 
 # Not allowed at start of identifier
 
@@ -557,6 +555,5 @@ AA7B          ; nonstarting #      (ꩻ)  MYANMAR SIGN PAO KAREN TONE
 11301         ; nonstarting #      (𑌁)  GRANTHA SIGN CANDRABINDU
 11303         ; nonstarting #      (𑌃)  GRANTHA SIGN VISARGA
 1133C         ; nonstarting #      (𑌼)  GRANTHA SIGN NUKTA
-16FF0..16FF1  ; nonstarting #  [2] (𖿰..𖿱)  VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 
-# Total code points: 351
+# Total code points: 349

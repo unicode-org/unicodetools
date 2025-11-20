@@ -666,6 +666,18 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             && (propInfo = propInfoSet.iterator().next()).special
                                     == SpecialProperty.None
                             && propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion) == 1) {
+                        if (fileName.equals("math/*/MathClass")
+                                && indexUnicodeProperties.ucdVersion.compareTo(
+                                                VersionInfo.UNICODE_6_3)
+                                        <= 0) {
+                            parser =
+                                    parser.withLinePreprocessor(
+                                            s ->
+                                                    s.startsWith("1D455=210E;")
+                                                                    || s.equals("code point;class")
+                                                            ? "#" + s
+                                                            : s);
+                        }
                         parseSimpleFieldFile(
                                 parser.withMissing(true),
                                 propInfo,
@@ -674,6 +686,23 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                         ? null
                                         : nextProperties.getProperty(propInfo.property));
                     } else {
+                        if (fileName.equals("math/*/MathClassEx")
+                                && indexUnicodeProperties.ucdVersion.compareTo(
+                                                VersionInfo.UNICODE_6_3)
+                                        <= 0) {
+                            // Old versions of MathClassEx had a malformed range and a line that
+                            // should have been commented out.  Search for those specifically and
+                            // fix them; we don’t want to generally allow a new range syntax.
+                            parser =
+                                    parser.withLinePreprocessor(
+                                            s ->
+                                                    s.startsWith("FE61-FE68;")
+                                                            ? s.replaceFirst(
+                                                                    "FE61-FE68;", "FE61..FE68;")
+                                                            : s.startsWith("1D455=210E;")
+                                                                    ? "#" + s
+                                                                    : s);
+                        }
                         parseFieldFile(
                                 parser.withMissing(true),
                                 indexUnicodeProperties,
@@ -1342,6 +1371,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     parts[1] = "CJK UNIFIED IDEOGRAPH-#";
                 } else if (parts[1].contains("Tangut Ideograph")) {
                     parts[1] = "TANGUT IDEOGRAPH-#";
+                } else if (parts[1].contains("Seal Character")) {
+                    parts[1] = "SEAL CHARACTER-#";
                 } else if (parts[1].contains("Hangul Syllable")) {
                     parts[1] = CONSTRUCTED_NAME;
                     hackHangul = true;
@@ -1510,6 +1541,27 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         value = "No";
                     }
                 }
+                if ((propInfo.property == UcdProperty.Math_Entity_Name
+                                || propInfo.property == UcdProperty.Math_Entity_Set
+                                || propInfo.property == UcdProperty.Math_Class_Ex)
+                        && indexUnicodeProperties.ucdVersion.compareTo(Utility.UTR25_REVISION_16)
+                                < 0) {
+                    merger = new PropertyUtilities.RedundancyIgnoringMultivaluedJoiner();
+                }
+                if (propInfo.property == UcdProperty.Math_Descriptive_Comments
+                        && indexUnicodeProperties.ucdVersion.compareTo(Utility.UTR25_REVISION_16)
+                                < 0) {
+                    merger = new PropertyUtilities.NullIgnorer();
+                }
+                if (propInfo.property == UcdProperty.Math_Class_Ex
+                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_6_1) < 0
+                        && value.isEmpty()) {
+                    // MathClassEx-12 has
+                    // 27CA;;;;;;VERTICAL BAR WITH HORIZONTAL STROKE
+                    // MathClassEx-11 has
+                    // 21EA..21F3;;⇪..⇳;;;; 21EA-21F3 are keyboard
+                    value = "None";
+                }
                 propInfo.put(
                         data,
                         line.getMissingSet(),
@@ -1569,6 +1621,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                 propInfo.property, defaultValue, "hardcoded", false, version);
                     }
                 }
+                Merge<String> merger = null;
                 if (line.getParts().length == 3 && propInfo.property == UcdProperty.Block) {
                     // The old Blocks files had First; Last; Block.
                     IntRange range = new IntRange();
@@ -1607,7 +1660,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         var range = new IntRange();
                         range.start = cp;
                         range.end = cp;
-                        if (unicodeDataValue == null) {
+                        if (unicodeDataValue.equals("NaN")) {
                             if (!extractedValue.endsWith(".0")) {
                                 throw new IllegalArgumentException(
                                         "Non-integer numeric value extracted from Unihan for "
@@ -1646,6 +1699,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         }
                     }
                     continue;
+                } else if (propInfo.property == UcdProperty.Math_Class
+                        && version.compareTo(VersionInfo.UNICODE_6_0) < 0) {
+                    merger = new PropertyUtilities.RedundancyIgnoringMultivaluedJoiner();
+                    // MathClass-11 had a line without a value, 21EA..21F3;
+                    if (line.getParts()[1].isEmpty()) {
+                        line.getParts()[1] = "None";
+                    }
                 } else if (line.getParts().length != 2
                         && version.compareTo(VersionInfo.UNICODE_3_0_1) > 0) {
                     // Unicode 3.0 and earlier had name comments as an extra field.
@@ -1657,7 +1717,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         line.getMissingSet(),
                         line.getRange(),
                         line.getParts()[1],
-                        null,
+                        merger,
                         false,
                         nextVersion);
             } else {
@@ -1833,6 +1893,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
     static void init() {
         final Matcher semicolon = SEMICOLON.matcher("");
+        // Populate property2PropertyInfo, first from the index, then from our split Unihan
+        // implicitly.
         for (final String line :
                 FileUtilities.in(IndexUnicodeProperties.class, "IndexUnicodeProperties.txt")) {
             if (line.startsWith("#") || line.isEmpty()) {
@@ -1848,6 +1910,17 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 fromStrings(parts);
             }
         }
+
+        // Starting with Unicode 13, we preprocess the Unihan data using the
+        // <Unicode Tools>/py/splitunihan.py script.
+        // It parses the small number of large, multi-property Unihan*.txt files
+        // and writes many smaller, single-property files like kTotalStrokes.txt.
+        for (UcdProperty prop : UcdProperty.values()) {
+            if (prop.getShortName().startsWith("cjk")) {
+                fromUnihanProperty(prop);
+            }
+        }
+
         // DO THESE FIRST (overrides values in files!)
         parseMissingFromValueAliases(
                 FileUtilities.in(IndexUnicodeProperties.class, "ExtraPropertyAliases.txt"));
@@ -1883,16 +1956,6 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         //            if (property2PropertyInfo.containsKey(x.toString())) continue;
         //            if (SHOW_PROP_INFO) System.out.println("Missing: " + x);
         //        }
-
-        // Starting with Unicode 13, we preprocess the Unihan data using the
-        // <Unicode Tools>/py/splitunihan.py script.
-        // It parses the small number of large, multi-property Unihan*.txt files
-        // and writes many smaller, single-property files like kTotalStrokes.txt.
-        for (UcdProperty prop : UcdProperty.values()) {
-            if (prop.getShortName().startsWith("cjk")) {
-                fromUnihanProperty(prop);
-            }
-        }
     }
 
     private static void parseMissingFromValueAliases(Iterable<String> aliasesLines) {

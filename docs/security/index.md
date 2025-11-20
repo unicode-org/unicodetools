@@ -15,17 +15,7 @@ source/confusables-winFonts.txt. The main file is confusables-source.txt.
 results. Sometimes you may get an unexpected union of two equivalence sets.
 Look at Testing below for help.***
 
-Look at the following spreadsheets / bugs to see if there are any additional
-suggestions.
-
-*   **[Confusable
-    Suggestions](https://docs.google.com/spreadsheet/ccc?key=0ArRWBHdd5mx-dHRXelRVbXRYSVp2QTNDdTBlV1I5X1E&usp=drive_web#gid=0)**
-*   **[Identifier Restriction
-    Suggestions](https://docs.google.com/spreadsheet/ccc?key=0ArRWBHdd5mx-dEJJWkdzZzk4cDRYbEVLTmhraGN0Q3c&usp=drive_web#gid=0)**
-*   *[Sample PRs](https://github.com/unicode-org/unicodetools/pull/841)
-
-If so, assess and add to unicodetools/data/security/{version}/data/source/confusables-source.txt — *if needed.*
-Then in the spreadsheets, move the "new stuff" line to the end.
+[Sample PR for confusables changes](https://github.com/unicode-org/unicodetools/pull/841)
 
 ### File Format
 There is a brief description of the file format at the top. 
@@ -61,6 +51,9 @@ http://cldr.unicode.org/development/updating-codes/updating-script-metadata
 
 The identifier type & status take this data into account.
 
+We need a recent CLDR repo snapshot, and update our Maven dependency to use that.
+When there is a blocker for updating our CLDR dependency, we sometimes need to hack new script data into our tools code.
+
 ## Generating
 
 Fix the version string (which will appear inside GenerateConfusables.java) and
@@ -78,7 +71,7 @@ Run GenerateConfusables -c -b to generate the files. They will appear in two pla
 The TestSecurity.java test is part of the unit test suite, run by a github CI.
 It verifies that the confusable mappings are idempotent.
 
-Copy the following from the output directory to the top level of the revision directory, and check in.
+Copy the following from the output directory to the top level of the revision directory, and check in. Omit files where only the time stamp changes, unless this is the first set of files in a year.
 
 *   confusables.txt
 *   confusablesSummary.txt
@@ -109,7 +102,7 @@ Markus 2020-feb-07 for Unicode 13.0:
 
 You may see Identifier_Type=Recommended for characters/scripts/blocks that should not be recommended.
 For example, the initial generation for Unicode 14 "recommended" Znamenny combining marks.
-Add these to unicodetools/data/security/{version}/data/source/removals.txt.
+Add these to unicodetools/data/security/dev/data/source/removals.txt.
 You can use block properties like
 ```
 \p{block=Znamenny_Musical_Notation} ; technical
@@ -202,14 +195,4 @@ with reason `[[arabic]] plus [[arabic]→&#x1eef0;, [arabic]]`
 
 ## Posting
 
-Once you've resolved all the problems, copy certain generated files to
-https://www.unicode.org/Public/security/{version}/
-
-*   confusables.txt
-*   confusablesSummary.txt
-*   confusablesWholeScript.txt
-*   intentional.txt
-*   ReadMe.txt
-*   xidmodifications.txt
-
-Check that the files are copied to https://www.unicode.org/Public/security/{version}/.
+The security files are published together with other data files for beta & final, see [Data Files Workflow](../data-workflow.md).

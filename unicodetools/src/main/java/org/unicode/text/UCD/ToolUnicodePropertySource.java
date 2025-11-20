@@ -312,6 +312,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         add(iup.getProperty("kMandarin"));
         add(iup.getProperty("kTotalStrokes"));
         add(iup.getProperty("kUnihanCore2020"));
+        add(iup.getProperty("kTGT_MergedSrc"));
+        add(iup.getProperty("kNSHU_DubenSrc"));
         add(iup.getProperty("kEH_Cat"));
         add(iup.getProperty("kEH_Desc"));
         add(iup.getProperty("kEH_HG"));
@@ -319,6 +321,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         add(iup.getProperty("kEH_JSesh"));
         add(iup.getProperty("kEH_NoMirror"));
         add(iup.getProperty("kEH_NoRotate"));
+        add(iup.getProperty("kSEAL_THXSrc"));
+        add(iup.getProperty("kSEAL_CCZSrc"));
+        add(iup.getProperty("kSEAL_DYCSrc"));
+        add(iup.getProperty("kSEAL_QJZSrc"));
         add(iup.getProperty("Emoji"));
         add(iup.getProperty("Emoji_Presentation"));
         add(iup.getProperty("Emoji_Modifier"));

@@ -38,6 +38,7 @@ FileType ; Unihan_Readings ; PropertyValue
 FileType ; Unihan_Variants ; PropertyValue
 FileType ; NushuSources ; PropertyValue
 FileType ; TangutSources ; PropertyValue
+FileType ; SealSources ; PropertyValue
 
 # NameAliases File Type
 # Contains a multivalued property, where successive values are not in the same line, but are divided out on successive lines with the same code point
@@ -101,6 +102,7 @@ UnicodeData; Simple_Lowercase_Mapping ; 13
 UnicodeData; Simple_Titlecase_Mapping ; 14
 UnicodeData; Unicode_1_Name ; 10
 UnicodeData; ISO_Comment ; 11
+ArabicShaping; Arabic_Shaping_Schematic_Name; 1
 # Handle the complex default of ArabicShaping.txt by introducing an unofficial
 # contributory property, to be used when deriving Joining_Type.
 ArabicShaping; Other_Joining_Type; 2
@@ -337,6 +339,14 @@ NushuSources ; kSrc_NushuDuben
 NushuSources ; kReading
 TangutSources ; kRSTUnicode
 TangutSources ; kTGT_MergedSrc
+TangutSources ; kTGT_Numeric
+
+SealSources ; kSEAL_THXSrc
+SealSources ; kSEAL_CCZSrc
+SealSources ; kSEAL_QJZSrc
+SealSources ; kSEAL_DYCSrc
+SealSources ; kSEAL_MCJK
+SealSources ; kSEAL_Rad
 
 NormalizationCorrections ; normalization_correction_original ; 1
 NormalizationCorrections ; normalization_correction_corrected ; 2
@@ -537,6 +547,19 @@ emoji/*/emoji-test ; RGI_Emoji_Qualification ; 1
 #   \p{RGI_Emoji} := [\p{RGI_Emoji_Qualification=Fully_Qualified}
 #                     \p{RGI_Emoji_Qualification=Standalone_Component}].
 emoji/*/emoji-test ; RGI_Emoji ; 1
+
+# Get Math_Class from MathClass.txt, which exists since revision 9.
+math/*/MathClass ; Math_Class ; 1
+
+# Should be the same as Math_Class, but isn’t.
+math/*/MathClassEx ; Math_Class_Ex             ; 1
+math/*/MathClassEx ; Math_Entity_Name          ; 2
+math/*/MathClassEx ; Math_Entity_Set           ; 3
+math/*/MathClassEx ; Math_Descriptive_Comments ; 4
+# Field 2 used to be the character itself.
+math/*/MathClassEx ; Math_Entity_Name          ; 3 ; v17.0
+math/*/MathClassEx ; Math_Entity_Set           ; 4 ; v17.0
+math/*/MathClassEx ; Math_Descriptive_Comments ; 5 ; v17.0
 
 FileType ; Unikemet ; PropertyValue
 Unikemet ; kEH_Cat
