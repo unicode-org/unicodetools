@@ -86,7 +86,7 @@ public class TestRandomIDNA {
         invalid_char_found
     };
 
-    static final UnicodeSet ASCII = new UnicodeSet("[:ASCII:]");
+    static final UnicodeSet ASCII = new UnicodeSet("[:Block=ASCII:]");
     static final UnicodeSet LMN = new UnicodeSet("[[:L:][:M:][:N:]\\-]");
     static final UnicodeSet UNASSIGNED = new UnicodeSet("[:cn:]");
 

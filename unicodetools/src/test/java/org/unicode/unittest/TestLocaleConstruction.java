@@ -377,7 +377,8 @@ public class TestLocaleConstruction extends TestFmwkMinusMinus {
     ////        AliasesFull aliases = new AliasesFull(dataType);
     ////        Output<Collection<ExceptionInfo>> exception = new Output<>();
     ////
-    ////        for (Entry<Datasubtype, ValiditySet> entry : validityInfo.get(dataType).entrySet())
+    ////        for (Entry<Datasubtype, ValiditySet> entry :
+    // validityInfo.get(dataType).entrySet())
     // {
     ////            for (String code : entry.getValue().regularData) {
     ////                String replacement = aliases.getCanonical(
@@ -388,7 +389,8 @@ public class TestLocaleConstruction extends TestFmwkMinusMinus {
     ////                if (replacement != null) {
     ////                    if (DEBUG) System.out.println(code + " ==> " + replacement);
     ////                } else if (exception.value != null){
-    ////                    if (DEBUG) System.out.println(code + " ==> " + exception.toString());
+    ////                    if (DEBUG) System.out.println(code + " ==> " +
+    // exception.toString());
     ////                }
     ////            }
     ////        }
