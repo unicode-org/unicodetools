@@ -1,5 +1,5 @@
-# IndicSyllabicCategory-17.0.0.txt
-# Date: 2025-02-11, 18:11:22 GMT
+# IndicSyllabicCategory-18.0.0.txt
+# Date: 2025-11-21, 09:36:59 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -72,6 +72,7 @@
 0900..0902    ; Bindu # Mn   [3] DEVANAGARI SIGN INVERTED CANDRABINDU..DEVANAGARI SIGN ANUSVARA
 0981          ; Bindu # Mn       BENGALI SIGN CANDRABINDU
 0982          ; Bindu # Mc       BENGALI SIGN ANUSVARA
+0984          ; Bindu # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 09FC          ; Bindu # Lo       BENGALI LETTER VEDIC ANUSVARA
 0A01..0A02    ; Bindu # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A70          ; Bindu # Mn       GURMUKHI TIPPI
@@ -473,8 +474,6 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 11909         ; Vowel_Independent # Lo       DIVES AKURU LETTER O
 119A0..119A7  ; Vowel_Independent # Lo   [8] NANDINAGARI LETTER A..NANDINAGARI LETTER VOCALIC RR
 119AA..119AD  ; Vowel_Independent # Lo   [4] NANDINAGARI LETTER E..NANDINAGARI LETTER AU
-11A00         ; Vowel_Independent # Lo       ZANABAZAR SQUARE LETTER A
-11A50         ; Vowel_Independent # Lo       SOYOMBO LETTER A
 11C00..11C08  ; Vowel_Independent # Lo   [9] BHAIKSUKI LETTER A..BHAIKSUKI LETTER VOCALIC L
 11C0A..11C0D  ; Vowel_Independent # Lo   [4] BHAIKSUKI LETTER E..BHAIKSUKI LETTER AU
 11D00..11D06  ; Vowel_Independent # Lo   [7] MASARAM GONDI LETTER A..MASARAM GONDI LETTER E
@@ -527,7 +526,7 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 0B41..0B44    ; Vowel_Dependent # Mn   [4] ORIYA VOWEL SIGN U..ORIYA VOWEL SIGN VOCALIC RR
 0B47..0B48    ; Vowel_Dependent # Mc   [2] ORIYA VOWEL SIGN E..ORIYA VOWEL SIGN AI
 0B4B..0B4C    ; Vowel_Dependent # Mc   [2] ORIYA VOWEL SIGN O..ORIYA VOWEL SIGN AU
-0B53..0B56    ; Vowel_Dependent # Mn   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
+0B55..0B56    ; Vowel_Dependent # Mn   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
 0B57          ; Vowel_Dependent # Mc       ORIYA AU LENGTH MARK
 0B62..0B63    ; Vowel_Dependent # Mn   [2] ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
 0BBE..0BBF    ; Vowel_Dependent # Mc   [2] TAMIL VOWEL SIGN AA..TAMIL VOWEL SIGN I
@@ -776,7 +775,7 @@ A922..A925    ; Vowel # Lo   [4] KAYAH LI LETTER A..KAYAH LI LETTER OO
 A926..A92A    ; Vowel # Mn   [5] KAYAH LI VOWEL UE..KAYAH LI VOWEL O
 11150..11154  ; Vowel # Lo   [5] MAHAJANI LETTER A..MAHAJANI LETTER O
 16D80         ; Vowel # Lo       CHISOI LETTER A
-16D82..16D83  ; Vowel # Lo   [2] CHISOI LETTER AI..CHISOI LETTER AA
+16D82..16D83  ; Vowel # Lo   [2] CHISOI LETTER AAI..CHISOI LETTER AA
 16D86         ; Vowel # Lo       CHISOI LETTER E
 16D89         ; Vowel # Lo       CHISOI LETTER I
 16D8F         ; Vowel # Lo       CHISOI LETTER U
@@ -791,6 +790,8 @@ A926..A92A    ; Vowel # Mn   [5] KAYAH LI VOWEL UE..KAYAH LI VOWEL O
 # Indic script layout (NBSP and dotted circle), as well as a few script-
 # specific vowel-holder characters which are not technically
 # consonants, but serve instead as bases for placement of vowel marks.
+# Vowel carriers that are null consonants instead have the
+# Indic_Syllabic_Category Consonant.
 
 # [Not derivable]
 
@@ -801,7 +802,6 @@ A926..A92A    ; Vowel # Mn   [5] KAYAH LI VOWEL UE..KAYAH LI VOWEL O
 0A72..0A73    ; Consonant_Placeholder # Lo   [2] GURMUKHI IRI..GURMUKHI URA
 104B          ; Consonant_Placeholder # Po       MYANMAR SIGN SECTION
 104E          ; Consonant_Placeholder # Po       MYANMAR SYMBOL AFOREMENTIONED
-1900          ; Consonant_Placeholder # Lo       LIMBU VOWEL-CARRIER LETTER
 1CFA          ; Consonant_Placeholder # Lo       VEDIC SIGN DOUBLE ANUSVARA ANTARGOMUKHA
 2010..2014    ; Consonant_Placeholder # Pd   [5] HYPHEN..EM DASH
 25CC          ; Consonant_Placeholder # So       DOTTED CIRCLE
@@ -814,7 +814,14 @@ AA74..AA76    ; Consonant_Placeholder # Lo   [3] MYANMAR LOGOGRAM KHAMTI OAY..MY
 
 # Indic_Syllabic_Category=Consonant
 
-# Consonant (ordinary abugida consonants, with inherent vowels)
+# Consonant
+# This includes ordinary abugida consonants with inherent vowels.
+# In scripts that do not have distinct independent vowel characters, but instead
+# form independent vowels by adding dependent vowels to a vowel carrier which
+# otherwise represents the inherent vowel, that vowel carrier has the
+# Indic_Syllabic_Category Consonant, as a null consonant. Such vowel carriers
+# can often also be analyzed as glottal stops with inherent vowels.
+# An example is U+0F68 TIBETAN LETTER A.
 
 # [Not derivable]
 
@@ -828,7 +835,6 @@ AA74..AA76    ; Consonant_Placeholder # Lo   [3] MYANMAR LOGOGRAM KHAMTI OAY..MY
 09DC..09DD    ; Consonant # Lo   [2] BENGALI LETTER RRA..BENGALI LETTER RHA
 09DF          ; Consonant # Lo       BENGALI LETTER YYA
 09F0..09F1    ; Consonant # Lo   [2] BENGALI LETTER RA WITH MIDDLE DIAGONAL..BENGALI LETTER RA WITH LOWER DIAGONAL
-09FF          ; Consonant # Lo       BENGALI LETTER SANSKRIT BA
 0A15..0A28    ; Consonant # Lo  [20] GURMUKHI LETTER KA..GURMUKHI LETTER NA
 0A2A..0A30    ; Consonant # Lo   [7] GURMUKHI LETTER PA..GURMUKHI LETTER RA
 0A32..0A33    ; Consonant # Lo   [2] GURMUKHI LETTER LA..GURMUKHI LETTER LLA
@@ -893,7 +899,7 @@ AA74..AA76    ; Consonant_Placeholder # Lo   [3] MYANMAR LOGOGRAM KHAMTI OAY..MY
 1763..176C    ; Consonant # Lo  [10] TAGBANWA LETTER KA..TAGBANWA LETTER YA
 176E..1770    ; Consonant # Lo   [3] TAGBANWA LETTER LA..TAGBANWA LETTER SA
 1780..17A2    ; Consonant # Lo  [35] KHMER LETTER KA..KHMER LETTER QA
-1901..191E    ; Consonant # Lo  [30] LIMBU LETTER KA..LIMBU LETTER TRA
+1900..191E    ; Consonant # Lo  [31] LIMBU VOWEL-CARRIER LETTER..LIMBU LETTER TRA
 1950..1962    ; Consonant # Lo  [19] TAI LE LETTER KA..TAI LE LETTER NA
 1980..19AB    ; Consonant # Lo  [44] NEW TAI LUE LETTER HIGH QA..NEW TAI LUE LETTER LOW SUA
 1A00..1A16    ; Consonant # Lo  [23] BUGINESE LETTER KA..BUGINESE LETTER HA
@@ -970,7 +976,9 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 11915..11916  ; Consonant # Lo   [2] DIVES AKURU LETTER NYA..DIVES AKURU LETTER TTA
 11918..1192F  ; Consonant # Lo  [24] DIVES AKURU LETTER DDA..DIVES AKURU LETTER ZA
 119AE..119D0  ; Consonant # Lo  [35] NANDINAGARI LETTER KA..NANDINAGARI LETTER RRA
+11A00         ; Consonant # Lo       ZANABAZAR SQUARE LETTER A
 11A0B..11A32  ; Consonant # Lo  [40] ZANABAZAR SQUARE LETTER KA..ZANABAZAR SQUARE LETTER KSSA
+11A50         ; Consonant # Lo       SOYOMBO LETTER A
 11A5C..11A83  ; Consonant # Lo  [40] SOYOMBO LETTER KA..SOYOMBO LETTER KSSA
 11B0A         ; Consonant # Lo       DEVANAGARI LETTER ALTERNATE DDDA
 11C0E..11C2E  ; Consonant # Lo  [33] BHAIKSUKI LETTER KA..BHAIKSUKI LETTER HA
@@ -1008,8 +1016,8 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 # Indic_Syllabic_Category=Consonant_With_Stacker
 
-# Consonants that may make stacked ligatures with the next consonant
-# without the use of a virama
+# Consonants that may cause conjunct formation or consonant stacking with the
+# next consonant, without the use of a stacker
 
 # [Not derivable]
 
@@ -1017,32 +1025,36 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 1CF5..1CF6    ; Consonant_With_Stacker # Lo   [2] VEDIC SIGN JIHVAMULIYA..VEDIC SIGN UPADHMANIYA
 11003..11004  ; Consonant_With_Stacker # Lo   [2] BRAHMI SIGN JIHVAMULIYA..BRAHMI SIGN UPADHMANIYA
 11460..11461  ; Consonant_With_Stacker # Lo   [2] NEWA SIGN JIHVAMULIYA..NEWA SIGN UPADHMANIYA
+11A3A         ; Consonant_With_Stacker # Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
 
 # ================================================
 
 # Indic_Syllabic_Category=Consonant_Prefixed
 
-# Cluster-initial consonants
+# Other consonants that behave like a Consonant_Preceding_Repha
 
 # [Not derivable]
 
 111C2..111C3  ; Consonant_Prefixed # Lo   [2] SHARADA SIGN JIHVAMULIYA..SHARADA SIGN UPADHMANIYA
 1193F         ; Consonant_Prefixed # Lo       DIVES AKURU PREFIXED NASAL SIGN
-11A3A         ; Consonant_Prefixed # Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
-11A84..11A89  ; Consonant_Prefixed # Lo   [6] SOYOMBO SIGN JIHVAMULIYA..SOYOMBO CLUSTER-INITIAL LETTER SA
+11A84..11A85  ; Consonant_Prefixed # Lo   [2] SOYOMBO SIGN JIHVAMULIYA..SOYOMBO SIGN UPADHMANIYA
+11A87..11A89  ; Consonant_Prefixed # Lo   [3] SOYOMBO CLUSTER-INITIAL LETTER LA..SOYOMBO CLUSTER-INITIAL LETTER SA
 
 # ================================================
 
 # Indic_Syllabic_Category=Consonant_Preceding_Repha
 
-# Repha Form of RA (reanalyzed in some scripts), when preceding the main
-# consonant.
+# Cluster-initial "r" consonants in the form of a dependent sign (also known as
+# "repha") that precede the base character in the encoding order, but are
+# reordered in text rendering to be somewhere after the base. Reanalyzed in
+# some orthographies to be a final consonant.
 
 # [Not derivable]
 
 0D4E          ; Consonant_Preceding_Repha # Lo       MALAYALAM LETTER DOT REPH
 113D1         ; Consonant_Preceding_Repha # Lo       TULU-TIGALARI REPHA
 11941         ; Consonant_Preceding_Repha # Lo       DIVES AKURU INITIAL RA
+11A86         ; Consonant_Preceding_Repha # Lo       SOYOMBO CLUSTER-INITIAL LETTER RA
 11D46         ; Consonant_Preceding_Repha # Lo       MASARAM GONDI REPHA
 11F02         ; Consonant_Preceding_Repha # Lo       KAWI SIGN REPHA
 
@@ -1050,8 +1062,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 # Indic_Syllabic_Category=Consonant_Initial_Postfixed
 
-# Consonants that succeed the main consonant in character sequences, but are
-# pronounced before it.
+# Other consonants that behave like a Consonant_Succeeding_Repha
 
 # [Not derivable]
 
@@ -1061,7 +1072,9 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 # Indic_Syllabic_Category=Consonant_Succeeding_Repha
 
-# Repha Form of RA (reanalyzed in some scripts), when succeeding the main
+# Cluster-initial "r" consonants that behave like a Consonant_Preceding_Repha
+# but succeed the base character in the encoding order, and are thus not
+# reordered in text rendering. Reanalyzed in some orthographies to be a final
 # consonant.
 
 # [Not derivable]

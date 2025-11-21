@@ -131,8 +131,7 @@ public class GenerateConfusables {
             ToolUnicodePropertySource.make(version); // ICUPropertyFactory.make();
 
     static {
-        // USE the tool unicode set instead of ICU, which may not be using the latest version.
-        UnicodeSet.setDefaultXSymbolTable(ups.getXSymbolTable());
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
         UnicodeTransform.setFactory(TOOL_FACTORY);
     }
 
@@ -272,9 +271,9 @@ public class GenerateConfusables {
     private static final UnicodeSet LATIN = new UnicodeSet("[:script=latin:]").freeze();
     private static final UnicodeSet LATIN_PLUS =
             new UnicodeSet("[[:script=latin:][:script=common:][:script=inherited:]]").freeze();
-    private static final UnicodeSet ASCII = new UnicodeSet("[:ASCII:]").freeze();
+    private static final UnicodeSet ASCII = new UnicodeSet("[:Block=ASCII:]").freeze();
     private static final UnicodeSet MARKS_AND_ASCII =
-            new UnicodeSet("[[:mark:][:ASCII:]]").freeze();
+            new UnicodeSet("[[:mark:][:Block=ASCII:]]").freeze();
 
     private static void generateLatin() throws IOException {
         // pick out only those items where the source and target both have some latin, and no
@@ -507,7 +506,7 @@ public class GenerateConfusables {
 
     private static Map gatheredNFKD = new TreeMap();
     private static UnicodeMap nfcMap;
-    private static UnicodeMap nfkcMap;
+    private static UnicodeMap nfkdMap;
 
     private static Comparator codepointComparator = new UTF16.StringComparator(true, false, 0);
     static Comparator UCAComparator =
@@ -593,7 +592,7 @@ public class GenerateConfusables {
             out.println("");
             for (final UnicodeSetIterator usi = new UnicodeSetIterator(s); usi.next(); ) {
                 final String source = usi.getString();
-                final String target = getModifiedNKFC(source);
+                final String target = ModifiedNFKD.normalize(source);
                 writeSourceTargetLine(out, source, "N", target, value, ARROW);
             }
             // bf.showSetNames(out, s);
@@ -683,11 +682,11 @@ public class GenerateConfusables {
     }
 
     private static UnicodeSet SKIP_EXCEPTIONS =
-            new UnicodeSet().add(0x1E9A).add('ſ').add('ﬅ').add('ẛ').add("Ϲ").add("ϲ").freeze();
+            new UnicodeSet().add('ſ').add('ﬅ').add('ẛ').add("Ϲ").add("ϲ").freeze();
 
     private static UnicodeSet getSkipNFKD() {
         nfcMap = new UnicodeMap();
-        nfkcMap = new UnicodeMap();
+        nfkdMap = new UnicodeMap();
         if (_skipNFKD == null) {
             _skipNFKD = new UnicodeSet();
 
@@ -725,14 +724,14 @@ public class GenerateConfusables {
                 }
                 final String source = UTF16.valueOf(cp);
                 final String mapped = NFKD.normalize(cp);
-                String kmapped = getModifiedNKFC(source);
+                String kmapped = ModifiedNFKD.normalize(source);
                 if (!kmapped.equals(source) && !kmapped.equals(nfc)) {
                     if (kmapped.startsWith(" ") || kmapped.startsWith("\u0640")) {
                         if (DEBUG) System.out.println("?? " + DEFAULT_UCD.getCodeAndName(cp));
                         if (DEBUG) System.out.println("\t" + DEFAULT_UCD.getCodeAndName(kmapped));
-                        kmapped = getModifiedNKFC(source); // for debugging
+                        kmapped = ModifiedNFKD.normalize(source); // for debugging
                     }
-                    nfkcMap.put(cp, kmapped);
+                    nfkdMap.put(cp, kmapped);
                 }
                 if (mapped.equals(source)) {
                     continue;
@@ -746,8 +745,8 @@ public class GenerateConfusables {
         }
         nfcMap.setMissing("");
         nfcMap.freeze();
-        nfkcMap.setMissing("");
-        nfkcMap.freeze();
+        nfkdMap.setMissing("");
+        nfkdMap.freeze();
         return _skipNFKD;
     }
 
@@ -2274,7 +2273,8 @@ public class GenerateConfusables {
             if (new File(indir, names[i]).isDirectory()) {
                 continue;
             }
-            if (!names[i].startsWith("confusables-")) {
+            // Skip files not matching "confusables-*.txt"
+            if (!names[i].startsWith("confusables-") || !names[i].endsWith(".txt")) {
                 continue;
             }
             if (DEBUG) System.out.println(names[i]);
@@ -2315,9 +2315,9 @@ public class GenerateConfusables {
 
         total.checkChar("ſ");
         ds = new DataSet();
-        if (DEBUG) System.out.println(nfkcMap.get('ſ'));
+        if (DEBUG) System.out.println(nfkdMap.get('ſ'));
 
-        ds.addUnicodeMap(nfkcMap, "nfkc", "nfkc");
+        ds.addUnicodeMap(nfkdMap, "nfkd", "nfkd");
         // if (DEBUG) System.out.println(ds);
         ds.checkChar("ſ");
         ds.close("*");
@@ -2638,14 +2638,16 @@ public class GenerateConfusables {
         return type.substring(dash + 1, period);
     }
 
-    private static Normalizer modNFKC;
+    private static final class ModifiedNFKD {
+        private static Normalizer INSTANCE;
 
-    static String getModifiedNKFC(String cf) {
-        if (modNFKC == null) {
-            modNFKC = new Normalizer(UCD_Types.NFKC, Default.ucdVersion());
-            modNFKC.setSpacingSubstitute();
+        static String normalize(String cf) {
+            if (INSTANCE == null) {
+                INSTANCE = new Normalizer(UCD_Types.NFKD, Default.ucdVersion());
+                INSTANCE.setSpacingSubstitute();
+            }
+            return ModifiedNFKD.INSTANCE.normalize(cf);
         }
-        return modNFKC.normalize(cf);
     }
 
     static PrintWriter openAndWriteHeader(String dir, String filename, String title)

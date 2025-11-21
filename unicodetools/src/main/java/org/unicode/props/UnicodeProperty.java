@@ -14,6 +14,7 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.ICUException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.ParsePosition;
@@ -32,6 +33,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+import org.unicode.cldr.util.Rational.RationalParser;
 import org.unicode.cldr.util.props.UnicodeLabel;
 
 public abstract class UnicodeProperty extends UnicodeLabel {
@@ -198,6 +200,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             EXTENDED_MASK = 1,
             CORE_MASK = ~EXTENDED_MASK,
             BINARY_MASK = (1 << BINARY) | (1 << EXTENDED_BINARY),
+            NUMERIC_MASK = (1 << NUMERIC) | (1 << EXTENDED_NUMERIC),
             STRING_MASK = (1 << STRING) | (1 << EXTENDED_STRING),
             STRING_OR_MISC_MASK =
                     (1 << STRING) | (1 << EXTENDED_STRING) | (1 << MISC) | (1 << EXTENDED_MISC),
@@ -265,9 +268,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     }
 
     public Iterable<String> getValues(int codepoint) {
-        return isMultivalued
-                ? delimiterSplitter.split(getValue(codepoint))
-                : Collections.singleton(getValue(codepoint));
+        String value = getValue(codepoint);
+        return isMultivalued && value != null
+                ? delimiterSplitter.split(value)
+                : Collections.singleton(value);
     }
 
     public String getValue(int codepoint) {
@@ -442,25 +446,39 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (isMultivalued && propertyValue != null && propertyValue.contains(delimiter)) {
             throw new IllegalArgumentException(
                     "Multivalued property values can't contain the delimiter.");
-        } else {
-            return getSet(
-                    propertyValue == null
-                            ? NULL_MATCHER
-                            : new SimpleMatcher(
-                                    propertyValue,
-                                    isType(STRING_OR_MISC_MASK) ? null : PROPERTY_COMPARATOR),
-                    result);
         }
+        if (propertyValue == null) {
+            return getSet(NULL_MATCHER, result);
+        }
+        Comparator<String> comparator;
+        if (isType(NUMERIC_MASK)) {
+            // UAX44-LM1.
+            comparator = RATIONAL_COMPARATOR;
+        } else if (getName().equals("Name") || getName().equals("Name_Alias")) {
+            // UAX44-LM2.
+            comparator = CHARACTER_NAME_COMPARATOR;
+        } else if (isType(BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
+            // UAX44-LM3
+            comparator = PROPERTY_COMPARATOR;
+        } else {
+            // String-valued or Miscellaneous property.
+            comparator = null;
+        }
+        return getSet(new SimpleMatcher(propertyValue, comparator), result);
     }
 
     private UnicodeMap<String> unicodeMap = null;
 
     public static final String UNUSED = "??";
 
+    protected boolean hasStrings() {
+        return false;
+    }
+
     public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
         if (result == null) result = new UnicodeSet();
         boolean uniformUnassigned = hasUniformUnassigned();
-        if (isType(STRING_OR_MISC_MASK) && !isMultivalued) {
+        if (isType(STRING_OR_MISC_MASK) && !isMultivalued && !hasStrings()) {
             for (UnicodeSetIterator usi = getStuffToTest(uniformUnassigned);
                     usi.next(); ) { // int i = 0; i <= 0x10FFFF; ++i
                 int i = usi.codepoint;
@@ -503,13 +521,13 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                         partAliases.clear();
                         getValueAliases(part, partAliases);
                         for (String partAlias : partAliases) {
-                            if (matcher.test(partAlias) || matcher.test(toSkeleton(partAlias))) {
+                            if (matcher.test(partAlias)) {
                                 um.keySet(value, result);
                                 continue main;
                             }
                         }
                     }
-                } else if (matcher.test(valueAlias) || matcher.test(toSkeleton(valueAlias))) {
+                } else if (matcher.test(valueAlias)) {
                     um.keySet(value, result);
                     continue main;
                 }
@@ -691,8 +709,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return toSkeleton(a).compareTo(toSkeleton(b));
     }
 
-    /** Utility for managing property & non-string value aliases */
-    // TODO account for special names, tibetan, hangul
+    /** Returns a representative of the equivalence class of source under UAX44-LM3. */
     public static String toSkeleton(String source) {
         if (source == null) return null;
         StringBuffer skeletonBuffer = new StringBuffer();
@@ -701,7 +718,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         // we can do this with char, since no surrogates are involved
         for (int i = 0; i < source.length(); ++i) {
             char ch = source.charAt(i);
-            if (i > 0 && (ch == '_' || ch == ' ' || ch == '-')) {
+            if (ch == '_' || ch == ' ' || ch == '-') {
                 gotOne = true;
             } else {
                 char ch2 = Character.toLowerCase(ch);
@@ -713,41 +730,118 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                 }
             }
         }
+        while (skeletonBuffer.length() >= 2 && skeletonBuffer.subSequence(0, 2).equals("is")) {
+            gotOne = true;
+            skeletonBuffer.delete(0, 2);
+        }
         if (!gotOne) return source; // avoid string creation
         return skeletonBuffer.toString();
     }
 
-    // get the name skeleton
-    public static String toNameSkeleton(String source) {
+    public static final Comparator<String> RATIONAL_COMPARATOR =
+            new Comparator<String>() {
+                @Override
+                public int compare(String x, String y) {
+                    return compareRationals(x, y);
+                }
+            };
+
+    public static int compareRationals(String a, String b) {
+        if (a == b) return 0;
+        if (a == null) return -1;
+        if (b == null) return 1;
+        final boolean aIsNaN = equalNames(a, "NaN");
+        final boolean bIsNaN = equalNames(b, "NaN");
+        if (aIsNaN && bIsNaN) return 0;
+        if (aIsNaN) return -1;
+        if (bIsNaN) return 1;
+        try {
+            return RationalParser.BASIC.parse(a).compareTo(RationalParser.BASIC.parse(b));
+        } catch (ICUException e) {
+            // If either string fails to parse as a rational, compare the strings.
+            // This is nonsense, but we do such comparisons with the UNCHANGED_IN_BASE_VERSION
+            // placeholder string when operating on the chronologically compressed maps (we then
+            // ignore the result by intersecting with the set where the UNCHANGED_IN_BASE_VERSION
+            // placeholder does not appear).
+            return a.compareTo(b);
+        }
+    }
+
+    public static final Comparator<String> CHARACTER_NAME_COMPARATOR =
+            new Comparator<String>() {
+                @Override
+                public int compare(String o1, String o2) {
+                    return compareCharacterNames(o1, o2);
+                }
+            };
+
+    public static int compareCharacterNames(String a, String b) {
+        if (a == b) return 0;
+        if (a == null) return -1;
+        if (b == null) return 1;
+        return toNameSkeleton(a, false).compareTo(toNameSkeleton(b, false));
+    }
+
+    /**
+     * Returns a representative of the equivalence class of source under UAX44-LM2. If
+     * validate=true, checks that source contains only characters allowed in character names.
+     */
+    public static String toNameSkeleton(String source, boolean validate) {
         if (source == null) return null;
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         // remove spaces, medial '-'
         // we can do this with char, since no surrogates are involved
         for (int i = 0; i < source.length(); ++i) {
             char ch = source.charAt(i);
+            final char uppercase = Character.toUpperCase(ch);
+            if (validate && uppercase != ch) {
+                throw new IllegalArgumentException(
+                        "Illegal Name Char: U+" + Utility.hex(ch) + ", " + ch);
+            }
+            ch = uppercase;
             if (('0' <= ch && ch <= '9') || ('A' <= ch && ch <= 'Z') || ch == '<' || ch == '>') {
                 result.append(ch);
             } else if (ch == ' ') {
                 // don't copy ever
             } else if (ch == '-') {
-                // only copy non-medials AND trailing O-E
-                if (0 == i
-                        || i == source.length() - 1
-                        || source.charAt(i - 1) == ' '
-                        || source.charAt(i + 1) == ' '
-                        || (i == source.length() - 2
-                                && source.charAt(i - 1) == 'O'
-                                && source.charAt(i + 1) == 'E')) {
-                    System.out.println("****** EXCEPTION " + source);
+                // Only copy a hyphen-minus if it is non-medial, or if it is
+                // the hyphen in U+1180 HANGUL JUNGSEONG O-E.
+                boolean medial;
+                if (0 == i || i == source.length() - 1) {
+                    medial = false; // Name-initial or name-final.
+                } else {
+                    medial =
+                            Character.isLetterOrDigit(source.charAt(i - 1))
+                                    && Character.isLetterOrDigit(source.charAt(i + 1));
+                }
+                boolean is1180 = false;
+                if (medial
+                        && i <= source.length() - 2
+                        && Character.toUpperCase(source.charAt(i + 1)) == 'E'
+                        && result.toString().equals("HANGULJUNGSEONGO")) {
+                    is1180 = true;
+                    for (int j = i + 2; j < source.length(); ++j) {
+                        if (source.charAt(j) != ' ' && source.charAt(j) != '_') {
+                            is1180 = false;
+                        }
+                    }
+                }
+                if (!medial || is1180) {
                     result.append(ch);
                 }
                 // otherwise don't copy
-            } else {
+            } else if (validate) {
                 throw new IllegalArgumentException(
                         "Illegal Name Char: U+" + Utility.hex(ch) + ", " + ch);
+            } else if (ch != '_') {
+                result.append(ch);
             }
         }
         return result.toString();
+    }
+
+    public static String toNameSkeleton(String source) {
+        return toNameSkeleton(source, true);
     }
 
     /**
@@ -943,23 +1037,6 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
         public final SymbolTable getSymbolTable(String prefix) {
             return new PropertySymbolTable(prefix);
-        }
-
-        private class MyXSymbolTable extends UnicodeSet.XSymbolTable {
-            @Override
-            public boolean applyPropertyAlias(
-                    String propertyName, String propertyValue, UnicodeSet result) {
-                if (false) System.out.println(propertyName + "=" + propertyValue);
-                UnicodeProperty prop = getProperty(propertyName);
-                if (prop == null) return false;
-                result.clear();
-                UnicodeSet x = prop.getSet(propertyValue, result);
-                return x.size() != 0;
-            }
-        }
-
-        public final UnicodeSet.XSymbolTable getXSymbolTable() {
-            return new MyXSymbolTable();
         }
 
         private class PropertySymbolTable implements SymbolTable {

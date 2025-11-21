@@ -46,6 +46,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.East_Asian_Width_Values;
+import org.unicode.props.UcdPropertyValues.Joining_Group_Values;
 import org.unicode.props.UcdPropertyValues.Line_Break_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.MakeUnicodeFiles.Format.PrintStyle;
@@ -609,6 +610,9 @@ public class MakeUnicodeFiles {
                 case "UnicodeData":
                     generateUnicodeData(filename);
                     break;
+                case "ArabicShaping":
+                    generateArabicShaping(filename);
+                    break;
                 default:
                     generatePropertyFile(filename);
                     break;
@@ -715,6 +719,83 @@ public class MakeUnicodeFiles {
             pw.println(bf.showSetNames(uset));
         }
 
+        udf.close();
+    }
+
+    private static void generateArabicShaping(String filename) throws IOException {
+        final UnicodeDataFile udf =
+                UnicodeDataFile.openAndWriteHeader("UCD/" + Default.ucdVersion() + '/', filename);
+        final PrintWriter pw = udf.out;
+        Format.theFormat.printFileComments(pw, filename);
+        pw.println();
+        pw.println("# Unicode; Schematic Name; Joining Type; Joining Group");
+        final var iup = IndexUnicodeProperties.make();
+        final var schematicName = iup.getProperty(UcdProperty.Arabic_Shaping_Schematic_Name);
+        // Other_Joining_Type is the Joining_Type value actually listed in ArabicShaping; characters
+        // not listed have the value Deduce_From_General_Category.
+        final var otherJoiningType = iup.getProperty(UcdProperty.Other_Joining_Type);
+        final var joiningGroup = iup.getProperty(UcdProperty.Joining_Group);
+        final var block = iup.getProperty(UcdProperty.Block);
+
+        final var scope = otherJoiningType.getSet("Deduce_From_General_Category").complement();
+        String lastBlock = null;
+        for (int codePoint : scope.codePoints()) {
+            String blk =
+                    block.getValue(codePoint)
+                            .replace('_', ' ')
+                            .replaceAll("\\b(Extended) ([A-Z])$", "$1-$2");
+            if (!blk.equals(lastBlock)) {
+                String section;
+                String[] comments = {};
+                switch (Block_Values.forName(blk)) {
+                    case General_Punctuation:
+                        section = "Other";
+                        break;
+                    case Phags_Pa:
+                        section = "Phags-Pa Characters";
+                        break;
+                    case NKo:
+                        section = "N'Ko Characters";
+                        break;
+                    case Kaithi:
+                        section = "Kaithi Number Signs";
+                        // TODO(egg): These comments should probably live in MakeUnicodeFiles.txt,
+                        // but since they are a one-off it is not yet worth defining a syntax for
+                        // that.
+                        comments =
+                                new String[] {
+                                    "These are prepended concatenation marks, comparable",
+                                    "to the number signs in the Arabic script.",
+                                    "Listed here for consistency in property values."
+                                };
+                        break;
+                    default:
+                        section = blk + " Characters";
+                }
+                pw.println();
+                pw.println("# " + section);
+                for (String line : comments) {
+                    pw.println("# " + line);
+                }
+                pw.println();
+                lastBlock = blk;
+            }
+            String jg = joiningGroup.getValue(codePoint);
+            if (Joining_Group_Values.forName(jg) != Joining_Group_Values.No_Joining_Group) {
+                jg = jg.toUpperCase().replace('_', ' ');
+            }
+            pw.println(
+                    Utility.hex(codePoint)
+                            + "; "
+                            + schematicName.getValue(codePoint)
+                            + "; "
+                            + otherJoiningType.getFirstValueAlias(
+                                    otherJoiningType.getValue(codePoint))
+                            + "; "
+                            + jg);
+        }
+        pw.println();
+        pw.println("# EOF");
         udf.close();
     }
 
@@ -869,7 +950,11 @@ public class MakeUnicodeFiles {
                 final String propAlias = it.next();
 
                 final UnicodeProperty up = ups.getProperty(propAlias);
-                final List<String> aliases = up.getNameAliases();
+                final List<String> aliases =
+                        up instanceof IndexUnicodeProperties.IndexUnicodeProperty
+                                ? ((IndexUnicodeProperties.IndexUnicodeProperty) up)
+                                        .getApprovedNameAliases()
+                                : up.getNameAliases();
                 String firstAlias = aliases.get(0).toString();
                 if (firstAlias.isEmpty()) {
                     throw new IllegalArgumentException("Internal error");
@@ -1039,6 +1124,13 @@ public class MakeUnicodeFiles {
                     if (propName.equals("Script")
                             && up.getSet(value).isEmpty()
                             && !value.equals("Katakana_Or_Hiragana")) {
+                        continue;
+                    }
+                    if (propName.equals("Indic_Syllabic_Category")
+                            && value.equals("Consonant_Repha")) {
+                        continue;
+                    }
+                    if (propName.equals("Indic_Positional_Category") && value.equals("Invisible")) {
                         continue;
                     }
                     final List<String> l = up.getValueAliases(value);
@@ -1274,10 +1366,7 @@ public class MakeUnicodeFiles {
                 }
                 pwProp.println(ps.roozbehFile ? "#" : "");
                 pwProp.println("#  All code points not explicitly listed for " + prop.getName());
-                pwProp.println(
-                        "#  have the value "
-                                + v
-                                + (ps.roozbehFile && v.equals("NA") ? " (not applicable)." : "."));
+                pwProp.println("#  have the value " + v + ".");
             }
 
             if (!ps.interleaveValues && prop.isType(UnicodeProperty.BINARY_MASK)) {
@@ -1348,7 +1437,10 @@ public class MakeUnicodeFiles {
             aliases = temp2;
         }
         if (ps.roozbehFile) {
-            aliases.removeIf(alias -> UnicodeProperty.compareNames(alias, ps.skipValue) == 0);
+            aliases.removeIf(
+                    alias ->
+                            UnicodeProperty.compareNames(alias, ps.skipValue) == 0
+                                    || prop.getSet(alias).isEmpty());
             if (!Format.theFormat
                     .propertyToOrderedValues
                     .get(prop.getName())
@@ -2024,6 +2116,7 @@ public class MakeUnicodeFiles {
             rangeBlocks.put("Private_Use_Area", "Private Use");
             rangeBlocks.put("Tangut", "Tangut Ideograph");
             rangeBlocks.put("Tangut_Supplement", "Tangut Ideograph Supplement");
+            rangeBlocks.put("Seal", "Seal Character");
             rangeBlocks.put("Supplementary_Private_Use_Area_A", "Plane 15 Private Use");
             rangeBlocks.put("Supplementary_Private_Use_Area_B", "Plane 16 Private Use");
         }

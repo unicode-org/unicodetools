@@ -188,7 +188,7 @@ public final class UCD_Names implements UCD_Types {
         "XX", "OP", "CL", "QU", "GL", "NS", "EX", "SY", "IS", "PR", "PO", "NU", "AL", "ID", "IN",
         "HY", "CM", "BB", "BA", "SP", "BK", "CR", "LF", "CB", "SA", "AI", "B2", "SG", "ZW", "NL",
         "WJ", "JL", "JV", "JT", "H2", "H3", "CP", "HL", "CJ", "RI", "EB", "EM", "ZWJ", "AK", "AP",
-        "AS", "VI", "VF"
+        "AS", "VI", "VF", "HH",
     };
 
     static final String[] LONG_LINE_BREAK = {
@@ -240,6 +240,7 @@ public final class UCD_Names implements UCD_Types {
         "Aksara_Start",
         "Virama",
         "Virama_Final",
+        "Unambiguous_Hyphen",
     };
 
     public static final String[] LONG_SCRIPT = {
@@ -430,9 +431,10 @@ public final class UCD_Names implements UCD_Types {
         "Tai_Yo",
         "Tolong_Siki",
         "Beria_Erfe",
-        // Provisionally assigned
+        // Unicode 18
         "Jurchen",
         "Proto_Cuneiform",
+        "Seal",
     };
 
     public static final Relation<String, String> EXTRA_SCRIPT =
@@ -631,15 +633,16 @@ public final class UCD_Names implements UCD_Types {
         "Tayo",
         "Tols",
         "Berf", // Beria Erfe
-        // Provisionally assigned
+        // Unicode 18
         "Jurc",
         "Pcun",
+        "Seal",
     };
 
     static final String[] SHORT_AGE = {
         "NA", "1.1", "2.0", "2.1", "3.0", "3.1", "3.2", "4.0", "4.1", "5.0", "5.1", "5.2", "6.0",
         "6.1", "6.2", "6.3", "7.0", "8.0", "9.0", "10.0", "11.0", "12.0", "12.1", "13.0", "14.0",
-        "15.0", "15.1", "16.0", "17.0",
+        "15.0", "15.1", "16.0", "17.0", "18.0",
         // FIX_FOR_NEW_VERSION
     };
 
@@ -673,6 +676,7 @@ public final class UCD_Names implements UCD_Types {
         "V15_1",
         "V16_0",
         "V17_0",
+        "V18_0",
         // FIX_FOR_NEW_VERSION
     };
 
@@ -744,17 +748,6 @@ public final class UCD_Names implements UCD_Types {
         // on usage)
         "FinalPunctuation" // = Punctuation, Final quote 30 (may behave like Ps or Pe dependingon
         // usage)
-    };
-
-    static final String[][] SUPER_CATEGORIES = {
-        {"L", "Letter", null, "Ll | Lm | Lo | Lt | Lu"},
-        {"M", "Mark", "Combining_Mark", "Mc | Me | Mn"},
-        {"N", "Number", null, "Nd | Nl | No"},
-        {"Z", "Separator", null, "Zl | Zp | Zs"},
-        {"C", "Other", "cntrl", "Cc | Cf | Cn | Co | Cs"},
-        {"S", "Symbol", null, "Sc | Sk | Sm | So"},
-        {"P", "Punctuation", "punct", "Pc | Pd | Pe | Pf | Pi | Po | Ps"},
-        {"LC", "Cased Letter", null, "Ll | Lt | Lu"},
     };
 
     public static final Relation<String, String> EXTRA_GENERAL_CATEGORY =
@@ -1230,8 +1223,19 @@ public final class UCD_Names implements UCD_Types {
         "VERTICAL_TAIL",
         // Unicode 16
         "KASHMIRI_YEH",
-        // Unicode n > 16
+        // Unicode 17
         "THIN_NOON",
+        // Unicode 18
+        "CROWN_BEH",
+        "CROWN_HAH",
+        "CROWN_SEEN",
+        "CROWN_SAD",
+        "CROWN_TAH",
+        "CROWN_AIN",
+        "CROWN_FEH",
+        "CROWN_KAF",
+        "CROWN_MEEM",
+        "CROWN_HEH",
     };
 
     static {
