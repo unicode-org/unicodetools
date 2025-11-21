@@ -1,5 +1,6 @@
 package org.unicode.jsptest;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
@@ -27,17 +28,21 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.opentest4j.TestAbortedException;
 import org.unicode.jsp.CharEncoder;
 import org.unicode.jsp.Common;
+import org.unicode.jsp.UcdLoader;
 import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;
+import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.utility.Settings;
 
 public class TestUnicodeSet extends TestFmwk2 {
 
@@ -139,6 +144,111 @@ public class TestUnicodeSet extends TestFmwk2 {
         String derived = UnicodeUtilities.getPrettySet(source, false, false);
         assertTrue("contains 00A0", derived.contains("00A0"));
         logln(derived);
+    }
+
+    @Test
+    @EnabledIfSystemProperty(
+            named = "UNICODETOOLS_TEST_WITH_INCREMENTAL_PROPERTIES",
+            matches = ".*",
+            disabledReason = "Tests with incremental properties must be run separately")
+    public void TestGeneralCategoryGroupingsWithIncrementalProperties() {
+        IndexUnicodeProperties.useIncrementalProperties();
+        UcdLoader.setOldestLoadedUcd(VersionInfo.UNICODE_10_0);
+        checkSetsEqual("[\\p{U10:Lu}\\p{U10:Ll}\\p{U10:Lm}\\p{U10:Lt}\\p{U10:Lo}]", "\\p{U10:L}");
+        UcdLoader.setOldestLoadedUcd(Settings.LAST_VERSION_INFO);
+    }
+
+    @Test
+    public void TestGeneralCategoryGroupings() {
+        checkSetsEqual("[\\p{Lu}\\p{Ll}\\p{Lm}\\p{Lt}\\p{Lo}]", "\\p{L}");
+        checkSetsEqual("[\\p{Mc}\\p{Me}\\p{Mn}]", "\\p{gc=Combining_Mark}");
+    }
+
+    @Test
+    public void TestInteriorlyNegatedComparison() {
+        checkProperties("\\p{Uppercase≠@Changes_When_Lowercased@}", "[𝕬-𝖅]");
+        checkSetsEqual(
+                "\\p{Uppercase≠@Changes_When_Lowercased@}",
+                "\\P{Uppercase=@Changes_When_Lowercased@}");
+
+        checkSetsEqual(
+                "\\p{Is_Uppercase≠@Changes_When_Lowercased@}",
+                "[[\\p{Uppercase}\\p{Changes_When_Lowercased}]-[\\p{Uppercase}&\\p{Changes_When_Lowercased}]]");
+    }
+
+    @Test
+    public void TestNameMatching() {
+        // UAX44-LM2 for both Name and Name_Alias.
+        checkSetsEqual("\\p{Name=NO-BREAK SPACE}", "[\\xA0]");
+        checkSetsEqual("\\p{Name=no break space}", "[\\xA0]");
+        checkSetsEqual("\\p{Name=HANGUL JUNGSEONG O-E}", "[\\u1180]");
+        checkSetsEqual("\\p{Name=HANGUL JUNGSEONG OE}", "[\\u116C]");
+        checkSetsEqual("\\p{Name=Hangul jungseong o-e}", "[\\u1180]");
+        checkSetsEqual("\\p{Name=Hangul jungseong oe}", "[\\u116C]");
+        checkSetsEqual("\\p{Name=HANGUL JUNGSEONG O -E}", "[\\u1180]");
+        checkSetsEqual("\\p{Name= HANGUL JUNGSEONG O-E }", "[\\u1180]");
+        checkSetsEqual("\\p{Name=_HANGUL_JUNGSEONG_O-E_}", "[\\u1180]");
+        checkSetsEqual("\\p{Name=HANGUL JUNGSEONG O-EO}", "[\\u117F]");
+        checkSetsEqual("\\p{Name=HANGUL JUNGSEONG OE O}", "[\\u117F]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> UnicodeSetUtilities.parseUnicodeSet("\\p{Name=HANGUL JUNGSEONG O -EO}"));
+        checkSetsEqual("\\p{Name=MARCHEN LETTER -A}", "[\\x{11C88}]");
+        checkSetsEqual("\\p{Name=MARCHEN_LETTER_-A}", "[\\x{11C88}]");
+        checkSetsEqual("\\p{Name=MARCHEN LETTER A}", "[\\x{11C8F}]");
+        checkSetsEqual("\\p{Name=TIBETAN MARK TSA -PHRU}", "[\\u0F39]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> UnicodeSetUtilities.parseUnicodeSet("\\p{Name=TIBETAN MARK TSA PHRU}"));
+        checkSetsEqual("\\p{Name=TIBETAN MARK BKA- SHOG YIG MGO}", "[\\u0F0A]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () ->
+                        UnicodeSetUtilities.parseUnicodeSet(
+                                "\\p{Name=TIBETAN MARK BKA SHOG YIG MGO}"));
+        checkSetsEqual("\\p{Name_Alias=newline}", "[\\x0A]");
+        checkSetsEqual("\\p{Name_Alias=NEW LINE}", "[\\x0A]");
+        // The medial hyphen is only significant in HANGUL JUNGSEONG O-E, not in arbitrary O-E/OE.
+        checkSetsEqual("\\p{Name=twoemdash}", "⸺");
+        checkSetsEqual("\\p{Name=SeeNoEvil_Monkey}", "🙈");
+        checkSetsEqual("\\p{Name=BALLET S-H-O-E-S}", "🩰");
+        checkSetsEqual("[\\p{Name=LATIN SMALL LIGATURE O-E}uf]", "[œuf]");
+    }
+
+    @Test
+    public void TestNameAliases() {
+        // Name_Alias values behave as aliases for Name, but not vice-versa.
+        checkSetsEqual(
+                "\\p{Name=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET}", "[︘]");
+        checkSetsEqual(
+                "\\p{Name=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET}", "[︘]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () ->
+                        UnicodeSetUtilities.parseUnicodeSet(
+                                "\\p{Name_Alias=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET}"));
+        checkSetsEqual(
+                "\\p{Name_Alias=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET}",
+                "[︘]");
+        checkProperties("\\p{Name_Alias=@none@}", "[a-z]");
+    }
+
+    @Test
+    public void TestIdentityQuery() {
+        checkSetsEqual("\\p{NFKC_Casefold=@code point@}", "\\P{Changes_When_NFKC_Casefolded}");
+        checkSetsEqual("\\p{NFKC_Casefold≠@Code_Point@}", "\\p{Changes_When_NFKC_Casefolded}");
+    }
+
+    @Test
+    public void TestNullQuery() {
+        // Check that we are not falling into the trap described in
+        // https://www.unicode.org/reports/tr44/#UAX44-LM3.
+        checkProperties("\\p{lb=IS}", "[,.:;]");
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> UnicodeSetUtilities.parseUnicodeSet("\\p{lb=@none@}"));
+        checkSetsEqual("\\p{Bidi_Paired_Bracket=@none@}", "\\p{Bidi_Paired_Bracket_Type=Is_None}");
+        checkSetsEqual("\\p{Bidi_Paired_Bracket≠@None@}", "\\p{Bidi_Paired_Bracket_Type≠None}");
     }
 
     //    public void TestAExemplars() {
@@ -380,7 +490,7 @@ public class TestUnicodeSet extends TestFmwk2 {
     public void TestNF() {
         for (String nf : new String[] {"d", "c", "kd", "kc"}) {
             checkSetsEqual("[:isnf" + nf + ":]", "[:nf" + nf + "qc!=N:]");
-            checkSetsEqual("[:isnf" + nf + ":]", "[:tonf" + nf + "=@cp@:]");
+            checkSetsEqual("[:isnf" + nf + ":]", "[:tonf" + nf + "=@code point@:]");
         }
     }
 
@@ -404,7 +514,7 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkProperties("[:isNFC=false:]", "[\u212B]", "[a]");
         checkProperties("[:toNFD=A\u0300:]", "[\u00C0]");
         checkProperties("[:toLowercase= /a/ :]", "[aA]");
-        checkProperties("[:ASCII:]", "[z]");
+        checkProperties("[:Block=ASCII:]", "[z]");
         checkProperties("[:lowercase:]", "[a]");
         checkProperties("[:toNFC=/\\./:]", "[.]");
         checkProperties("[:toNFKC=/\\./:]", "[\u2024]");
@@ -476,10 +586,10 @@ public class TestUnicodeSet extends TestFmwk2 {
         checkProperties("[:subhead=/Syllables/:]", "[\u1200]");
         // showIcuEnums();
         checkProperties("\\p{ccc:0}", "\\p{ccc=0}", "[\u0308]");
-        checkProperties("\\p{isNFC}", "[:ASCII:]", "[\u212B]");
-        checkProperties("[:isNFC=no:]", "[\u212B]", "[:ASCII:]");
+        checkProperties("\\p{isNFC}", "[:Block=ASCII:]", "[\u212B]");
+        checkProperties("[:isNFC=no:]", "[\u212B]", "[:Block=ASCII:]");
         checkProperties("[:dt!=none:]&[:toNFD=/^\\p{ccc:0}/:]", "[\u00A0]", "[\u0340]");
-        checkProperties("[:toLowercase!=@cp@:]", "[A-Z\u00C0]", "[abc]");
+        checkProperties("[:toLowercase!=@code point@:]", "[A-Z\u00C0]", "[abc]");
         checkProperties("[:toNfkc!=@toNfc@:]", "[\\u00A0]", "[abc]");
 
         String trans1 = Common.NFKC_CF.transform("\u2065");

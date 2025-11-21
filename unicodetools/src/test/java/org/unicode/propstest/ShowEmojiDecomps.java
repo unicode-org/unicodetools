@@ -11,7 +11,7 @@ public class ShowEmojiDecomps {
         Normalizer2 nfkd = Normalizer2.getNFKDInstance();
         IndexUnicodeProperties iup = IndexUnicodeProperties.make();
         UnicodeSet emoji = iup.loadBinary(UcdProperty.Emoji);
-        UnicodeSet ASCII = new UnicodeSet("[[:ascii:]\\uFE0F]").freeze();
+        UnicodeSet ASCII = new UnicodeSet("[[:Block=ASCII:]\\uFE0F]").freeze();
         for (String s : emoji) {
             String norm = nfkd.normalize(s);
             if (norm.contains("!")) {
