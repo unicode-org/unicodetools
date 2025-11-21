@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2025-11-21, 17:54:34 GMT
+# Date: 2025-11-21, 19:15:00 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,8 +71,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 756754 code points not listed here.
-# Total code points: 894222
+# The above property value applies to 756747 code points not listed here.
+# Total code points: 894215
 
 # ================================================
 
@@ -2094,8 +2094,8 @@ FE19          ; IN # Po       PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS
 1A7F          ; CM # Mn       TAI THAM COMBINING CRYPTOGRAMMIC DOT
 1AB0..1ABD    ; CM # Mn  [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
 1ABE          ; CM # Me       COMBINING PARENTHESES OVERLAY
-1ABF..1ADD    ; CM # Mn  [31] COMBINING LATIN SMALL LETTER W BELOW..COMBINING DOT-AND-RING BELOW
-1AE0..1AEA    ; CM # Mn  [11] COMBINING LEFT TACK ABOVE..COMBINING UPWARDS ARROW ABOVE
+1ABF..1AEA    ; CM # Mn  [44] COMBINING LATIN SMALL LETTER W BELOW..COMBINING UPWARDS ARROW ABOVE
+1AEC..1AF0    ; CM # Mn   [5] COMBINING CARON-ACUTE..COMBINING DOUBLE COMMA ABOVE
 1B00..1B03    ; CM # Mn   [4] BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
 1B04          ; CM # Mc       BALINESE SIGN BISAH
 1B34          ; CM # Mn       BALINESE SIGN REREKAN
@@ -2440,7 +2440,7 @@ E0001         ; CM # Cf       LANGUAGE TAG
 E0020..E007F  ; CM # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; CM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2517
+# Total code points: 2524
 
 # ================================================
 
