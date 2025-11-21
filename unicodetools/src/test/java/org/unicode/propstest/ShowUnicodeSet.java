@@ -2,7 +2,7 @@ package org.unicode.propstest;
 
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Ordering;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.locale.XCldrStub.Splitter;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.Transliterator;
