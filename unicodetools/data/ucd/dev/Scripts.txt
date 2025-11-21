@@ -1,5 +1,5 @@
 # Scripts-18.0.0.txt
-# Date: 2025-11-19, 10:27:00 GMT
+# Date: 2025-11-21, 17:55:04 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -991,14 +991,16 @@ A8FC          ; Devanagari # Po       DEVANAGARI SIGN SIDDHAM
 A8FD..A8FE    ; Devanagari # Lo   [2] DEVANAGARI JAIN OM..DEVANAGARI LETTER AY
 A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 11B00..11B09  ; Devanagari # Po  [10] DEVANAGARI HEAD MARK..DEVANAGARI SIGN MINDU
+11B0A         ; Devanagari # Lo       DEVANAGARI LETTER ALTERNATE DDDA
 
-# Total code points: 164
+# Total code points: 165
 
 # ================================================
 
 0980          ; Bengali # Lo       BENGALI ANJI
 0981          ; Bengali # Mn       BENGALI SIGN CANDRABINDU
 0982..0983    ; Bengali # Mc   [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
+0984          ; Bengali # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 0985..098C    ; Bengali # Lo   [8] BENGALI LETTER A..BENGALI LETTER VOCALIC L
 098F..0990    ; Bengali # Lo   [2] BENGALI LETTER E..BENGALI LETTER AI
 0993..09A8    ; Bengali # Lo  [22] BENGALI LETTER O..BENGALI LETTER NA
@@ -1027,7 +1029,7 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 09FD          ; Bengali # Po       BENGALI ABBREVIATION SIGN
 09FE          ; Bengali # Mn       BENGALI SANDHI MARK
 
-# Total code points: 96
+# Total code points: 97
 
 # ================================================
 
@@ -1920,11 +1922,14 @@ A82C          ; Syloti_Nagri # Mn       SYLOTI NAGRI SIGN ALTERNATE HASANTA
 # ================================================
 
 12000..12399  ; Cuneiform # Lo [922] CUNEIFORM SIGN A..CUNEIFORM SIGN U U
-12400..1246E  ; Cuneiform # Nl [111] CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN NINE U VARIANT FORM
+12400..1246F  ; Cuneiform # Nl [112] CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN SEVEN ASH TENU
 12470..12474  ; Cuneiform # Po   [5] CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
+12475..1247F  ; Cuneiform # Nl  [11] CUNEIFORM NUMERIC SIGN EIGHT ASH TENU..CUNEIFORM NUMERIC SIGN ASH TIMES NINE DISH TENU
 12480..12543  ; Cuneiform # Lo [196] CUNEIFORM SIGN AB TIMES NUN TENU..CUNEIFORM SIGN ZU5 TIMES THREE DISH TENU
+12550..125A7  ; Cuneiform # Nl  [88] CUNEIFORM NUMERIC SIGN ONE N01..CUNEIFORM NUMERIC SIGN FIVE N54
+1264C..12686  ; Cuneiform # Nl  [59] CUNEIFORM NUMERIC SIGN ONE N01 FLAT..CUNEIFORM NUMERIC SIGN ONE N36 FLAT
 
-# Total code points: 1234
+# Total code points: 1393
 
 # ================================================
 
@@ -3147,6 +3152,16 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 
 # ================================================
 
+16D80..16D97  ; Chisoi # Lo  [24] CHISOI LETTER A..CHISOI LETTER PA
+16D98         ; Chisoi # Mn       CHISOI SIGN ANUSVARA
+16D99..16D9C  ; Chisoi # Lo   [4] CHISOI LETTER YA..CHISOI LETTER JARAHA
+16D9D         ; Chisoi # Mn       CHISOI SIGN SISO
+16DA0..16DA9  ; Chisoi # Nd  [10] CHISOI DIGIT ZERO..CHISOI DIGIT NINE
+
+# Total code points: 40
+
+# ================================================
+
 10940..10959  ; Sidetic # Lo  [26] SIDETIC LETTER N01..SIDETIC LETTER N26
 
 # Total code points: 26
@@ -3182,6 +3197,12 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 16EBB..16ED3  ; Beria_Erfe # L&  [25] BERIA ERFE SMALL LETTER ARKAB..BERIA ERFE SMALL LETTER AY
 
 # Total code points: 50
+
+# ================================================
+
+125A8..1264B  ; Proto_Cuneiform # Nl [164] CUNEIFORM NUMERIC SIGN ONE N56..CUNEIFORM NUMERIC SIGN THREE N07B
+
+# Total code points: 164
 
 # ================================================
 
