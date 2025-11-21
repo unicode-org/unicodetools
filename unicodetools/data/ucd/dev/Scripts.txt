@@ -1,5 +1,5 @@
 # Scripts-18.0.0.txt
-# Date: 2025-11-20, 23:17:15 GMT
+# Date: 2025-11-21, 09:37:53 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -989,8 +989,9 @@ A8FC          ; Devanagari # Po       DEVANAGARI SIGN SIDDHAM
 A8FD..A8FE    ; Devanagari # Lo   [2] DEVANAGARI JAIN OM..DEVANAGARI LETTER AY
 A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 11B00..11B09  ; Devanagari # Po  [10] DEVANAGARI HEAD MARK..DEVANAGARI SIGN MINDU
+11B0A         ; Devanagari # Lo       DEVANAGARI LETTER ALTERNATE DDDA
 
-# Total code points: 164
+# Total code points: 165
 
 # ================================================
 

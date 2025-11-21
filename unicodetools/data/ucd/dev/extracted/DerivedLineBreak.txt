@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2025-11-20, 23:16:49 GMT
+# Date: 2025-11-21, 09:36:53 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,8 +71,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 756784 code points not listed here.
-# Total code points: 894252
+# The above property value applies to 756783 code points not listed here.
+# Total code points: 894251
 
 # ================================================
 
@@ -1399,6 +1399,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 11A5C..11A89  ; AL # Lo  [46] SOYOMBO LETTER KA..SOYOMBO CLUSTER-INITIAL LETTER SA
 11A9D         ; AL # Lo       SOYOMBO MARK PLUTA
 11AB0..11AF8  ; AL # Lo  [73] CANADIAN SYLLABICS NATTILIK HI..PAU CIN HAU GLOTTAL STOP FINAL
+11B0A         ; AL # Lo       DEVANAGARI LETTER ALTERNATE DDDA
 11BC0..11BE0  ; AL # Lo  [33] SUNUWAR LETTER DEVI..SUNUWAR LETTER KLOKO
 11BE1         ; AL # Po       SUNUWAR SIGN PVO
 11C00..11C08  ; AL # Lo   [9] BHAIKSUKI LETTER A..BHAIKSUKI LETTER VOCALIC L
@@ -1646,7 +1647,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB94..1FBEF  ; AL # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; AL # So       ALARM BELL SYMBOL
 
-# Total code points: 27335
+# Total code points: 27336
 
 # ================================================
 
