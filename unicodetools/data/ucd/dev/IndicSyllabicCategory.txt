@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-18.0.0.txt
-# Date: 2025-11-18, 12:23:51 GMT
+# Date: 2025-11-20, 23:16:53 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -141,6 +141,7 @@ A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 11F00..11F01  ; Bindu # Mn   [2] KAWI SIGN CANDRABINDU..KAWI SIGN ANUSVARA
 1612D         ; Bindu # Mn       GURUNG KHEMA SIGN ANUSVARA
 16D40..16D41  ; Bindu # Lm   [2] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN TONPI
+16D98         ; Bindu # Mn       CHISOI SIGN ANUSVARA
 
 # ================================================
 
@@ -339,6 +340,7 @@ ABED          ; Pure_Killer # Mn       MEETEI MAYEK APUN IYEK
 11F41         ; Pure_Killer # Mc       KAWI SIGN KILLER
 1612F         ; Pure_Killer # Mn       GURUNG KHEMA SIGN THOLHOMA
 16D6B..16D6C  ; Pure_Killer # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
+16D9D         ; Pure_Killer # Mn       CHISOI SIGN SISO
 
 # ================================================
 
@@ -772,6 +774,12 @@ A866          ; Vowel # Lo       PHAGS-PA LETTER EE
 A922..A925    ; Vowel # Lo   [4] KAYAH LI LETTER A..KAYAH LI LETTER OO
 A926..A92A    ; Vowel # Mn   [5] KAYAH LI VOWEL UE..KAYAH LI VOWEL O
 11150..11154  ; Vowel # Lo   [5] MAHAJANI LETTER A..MAHAJANI LETTER O
+16D80         ; Vowel # Lo       CHISOI LETTER A
+16D82..16D83  ; Vowel # Lo   [2] CHISOI LETTER AAI..CHISOI LETTER AA
+16D86         ; Vowel # Lo       CHISOI LETTER E
+16D89         ; Vowel # Lo       CHISOI LETTER I
+16D8F         ; Vowel # Lo       CHISOI LETTER U
+16D92         ; Vowel # Lo       CHISOI LETTER O
 
 # ================================================
 
@@ -980,6 +988,13 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 11F12..11F33  ; Consonant # Lo  [34] KAWI LETTER KA..KAWI LETTER JNYA
 16101..1611D  ; Consonant # Lo  [29] GURUNG KHEMA LETTER KA..GURUNG KHEMA LETTER SA
 16D43..16D62  ; Consonant # Lo  [32] KIRAT RAI LETTER A..KIRAT RAI LETTER HA
+16D81         ; Consonant # Lo       CHISOI LETTER BA
+16D84..16D85  ; Consonant # Lo   [2] CHISOI LETTER GA..CHISOI LETTER TA
+16D87..16D88  ; Consonant # Lo   [2] CHISOI LETTER SA..CHISOI LETTER NA
+16D8A..16D8E  ; Consonant # Lo   [5] CHISOI LETTER KA..CHISOI LETTER RRA
+16D90..16D91  ; Consonant # Lo   [2] CHISOI LETTER DA..CHISOI LETTER LA
+16D93..16D97  ; Consonant # Lo   [5] CHISOI LETTER NYA..CHISOI LETTER PA
+16D99..16D9C  ; Consonant # Lo   [4] CHISOI LETTER YA..CHISOI LETTER JARAHA
 
 # ================================================
 
@@ -1399,6 +1414,7 @@ ABF0..ABF9    ; Number # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NI
 11F50..11F59  ; Number # Nd  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
 16130..16139  ; Number # Nd  [10] GURUNG KHEMA DIGIT ZERO..GURUNG KHEMA DIGIT NINE
 16D70..16D79  ; Number # Nd  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
+16DA0..16DA9  ; Number # Nd  [10] CHISOI DIGIT ZERO..CHISOI DIGIT NINE
 
 # ================================================
 

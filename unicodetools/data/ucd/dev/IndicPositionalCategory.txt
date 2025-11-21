@@ -1,5 +1,5 @@
 # IndicPositionalCategory-18.0.0.txt
-# Date: 2025-11-18, 12:23:51 GMT
+# Date: 2025-11-20, 23:16:53 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -619,6 +619,7 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11F5A         ; Top # Mn       KAWI SIGN NUKTA
 1611E..16129  ; Top # Mn  [12] GURUNG KHEMA VOWEL SIGN AA..GURUNG KHEMA VOWEL LENGTH MARK
 1612D         ; Top # Mn       GURUNG KHEMA SIGN ANUSVARA
+16D98         ; Top # Mn       CHISOI SIGN ANUSVARA
 
 # Indic_Positional_Category=Bottom
 
@@ -774,6 +775,7 @@ ABED          ; Bottom # Mn       MEETEI MAYEK APUN IYEK
 11EF4         ; Bottom # Mn       MAKASAR VOWEL SIGN U
 11F38..11F3A  ; Bottom # Mn   [3] KAWI VOWEL SIGN U..KAWI VOWEL SIGN VOCALIC R
 1612E..1612F  ; Bottom # Mn   [2] GURUNG KHEMA CONSONANT SIGN MEDIAL RA..GURUNG KHEMA SIGN THOLHOMA
+16D9D         ; Bottom # Mn       CHISOI SIGN SISO
 
 # Indic_Positional_Category=Top_And_Bottom
 
