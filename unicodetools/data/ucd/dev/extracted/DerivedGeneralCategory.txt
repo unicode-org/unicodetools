@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-21, 23:57:31 GMT
+# Date: 2025-11-22, 08:55:41 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -631,7 +631,6 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1DA8C..1DA9A  ; Cn #  [15] <reserved-1DA8C>..<reserved-1DA9A>
 1DAA0         ; Cn #       <reserved-1DAA0>
 1DAB0..1DEFF  ; Cn # [1104] <reserved-1DAB0>..<reserved-1DEFF>
-1DF2D..1DF3A  ; Cn #  [14] <reserved-1DF2D>..<reserved-1DF3A>
 1DF3E..1DF3F  ; Cn #   [2] <reserved-1DF3E>..<reserved-1DF3F>
 1DF57..1DFD1  ; Cn # [123] <reserved-1DF57>..<reserved-1DFD1>
 1DFD8..1DFFF  ; Cn #  [40] <reserved-1DFD8>..<reserved-1DFFF>
@@ -752,7 +751,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 802937
+# Total code points: 802923
 
 # ================================================
 
@@ -2086,8 +2085,7 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1D7C4..1D7C9  ; Ll #   [6] MATHEMATICAL SANS-SERIF BOLD ITALIC EPSILON SYMBOL..MATHEMATICAL SANS-SERIF BOLD ITALIC PI SYMBOL
 1D7CB         ; Ll #       MATHEMATICAL BOLD SMALL DIGAMMA
 1DF00..1DF09  ; Ll #  [10] LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER T WITH HOOK AND RETROFLEX HOOK
-1DF0B..1DF2C  ; Ll #  [34] LATIN SMALL LETTER ESH WITH DOUBLE BAR..LATIN SMALL LETTER TESH DIGRAPH WITH CURL
-1DF3B..1DF3D  ; Ll #   [3] LATIN SMALL LETTER BETA WITH PALATAL HOOK..LATIN SMALL LETTER CHI WITH PALATAL HOOK
+1DF0B..1DF3D  ; Ll #  [51] LATIN SMALL LETTER ESH WITH DOUBLE BAR..LATIN SMALL LETTER CHI WITH PALATAL HOOK
 1DF41..1DF47  ; Ll #   [7] LATIN SMALL LETTER BARRED A..LATIN SMALL LETTER BARRED H WITH HOOK
 1DF49         ; Ll #       LATIN SMALL LETTER BARRED K
 1DF4B..1DF4C  ; Ll #   [2] LATIN SMALL LETTER BARRED M..LATIN SMALL LETTER BARRED M WITH HOOK
@@ -2095,7 +2093,7 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1DF52..1DF56  ; Ll #   [5] LATIN SMALL LETTER BARRED V..LATIN LETTER GLOTTAL STOP WITH DOUBLE STROKE
 1E922..1E943  ; Ll #  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2312
+# Total code points: 2326
 
 # ================================================
 
