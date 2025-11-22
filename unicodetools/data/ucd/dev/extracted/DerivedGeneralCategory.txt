@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-22, 18:10:38 GMT
+# Date: 2025-11-22, 22:11:19 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -632,7 +632,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1DAA0         ; Cn #       <reserved-1DAA0>
 1DAB0..1DEFF  ; Cn # [1104] <reserved-1DAB0>..<reserved-1DEFF>
 1DF57..1DFD1  ; Cn # [123] <reserved-1DF57>..<reserved-1DFD1>
-1DFE9..1DFFF  ; Cn #  [23] <reserved-1DFE9>..<reserved-1DFFF>
+1DFF3..1DFFF  ; Cn #  [13] <reserved-1DFF3>..<reserved-1DFFF>
 1E007         ; Cn #       <reserved-1E007>
 1E019..1E01A  ; Cn #   [2] <reserved-1E019>..<reserved-1E01A>
 1E022         ; Cn #       <reserved-1E022>
@@ -750,7 +750,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 802904
+# Total code points: 802894
 
 # ================================================
 
@@ -2190,14 +2190,14 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 1AFF0..1AFF3  ; Lm #   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF5..1AFFB  ; Lm #   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; Lm #   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
-1DFD2..1DFE8  ; Lm #  [23] MODIFIER LETTER SMALL B WITH STROKE..MODIFIER LETTER SMALL CAPITAL D
+1DFD2..1DFF2  ; Lm #  [33] MODIFIER LETTER SMALL B WITH STROKE..MODIFIER LETTER SMALL T WITH CURL
 1E030..1E06D  ; Lm #  [62] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
 1E137..1E13D  ; Lm #   [7] NYIAKENG PUACHUE HMONG SIGN FOR PERSON..NYIAKENG PUACHUE HMONG SYLLABLE LENGTHENER
 1E4EB         ; Lm #       NAG MUNDARI SIGN OJOD
 1E6FF         ; Lm #       TAI YO XAM LAI
 1E94B         ; Lm #       ADLAM NASALIZATION MARK
 
-# Total code points: 436
+# Total code points: 446
 
 # ================================================
 
