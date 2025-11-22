@@ -1,0 +1,38 @@
+# Cuneiform: Twelve tenû numerals
+# https://github.com/unicode-org/utc-release-management/issues/175
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+# Comparing with 𒑊 rather than 𒀹, as the latter has different properties because of its non-numeric usage.
+Propertywise [
+    \N{CUNEIFORM NUMERIC SIGN SEVEN ASH TENU}
+    \N{CUNEIFORM NUMERIC SIGN EIGHT ASH TENU}
+    \N{CUNEIFORM NUMERIC SIGN NINE ASH TENU}
+] : [ 789 ]
+CorrespondTo [
+    \x{1244A} 𒑊 \N{CUNEIFORM NUMERIC SIGN TWO ASH TENU}
+] : [ 2 ]
+
+Propertywise [
+    \N{CUNEIFORM NUMERIC SIGN ASH TIMES ONE DISH TENU}
+    \N{CUNEIFORM NUMERIC SIGN ASH TIMES TWO DISH TENU}
+    \N{CUNEIFORM NUMERIC SIGN ASH TIMES THREE DISH TENU}
+    \N{CUNEIFORM NUMERIC SIGN ASH TIMES FOUR DISH TENU}
+    \N{CUNEIFORM NUMERIC SIGN ASH TIMES FIVE DISH TENU}
+    \N{CUNEIFORM NUMERIC SIGN ASH TIMES SIX DISH TENU}
+    \N{CUNEIFORM NUMERIC SIGN ASH TIMES SEVEN DISH TENU}
+    \N{CUNEIFORM NUMERIC SIGN ASH TIMES EIGHT DISH TENU}
+    \N{CUNEIFORM NUMERIC SIGN ASH TIMES NINE DISH TENU}
+] : [ 123456789 ]
+CorrespondTo [
+    \x{1244A} 𒑊 \N{CUNEIFORM NUMERIC SIGN TWO ASH TENU}
+] : [ 2 ]
+
+end Ignoring;
+
+end Ignoring;

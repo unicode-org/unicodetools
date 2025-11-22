@@ -20,11 +20,6 @@
 			<groupId>com.ibm.icu</groupId>
 			<artifactId>icu4j</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>com.ibm.icu</groupId>
-			<artifactId>utilities-for-cldr</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.unicode.cldr</groupId>
 			<artifactId>cldr-code</artifactId>

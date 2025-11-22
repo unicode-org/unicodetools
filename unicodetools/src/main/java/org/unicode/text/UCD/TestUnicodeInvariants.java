@@ -2,8 +2,7 @@ package org.unicode.text.UCD;
 
 import com.google.common.base.Strings;
 import com.ibm.icu.dev.tool.UOption;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
@@ -17,7 +16,6 @@ import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -25,7 +23,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.Stack;
-import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
@@ -488,6 +485,9 @@ public class TestUnicodeInvariants {
         final var iup = IndexUnicodeProperties.make(Settings.latestVersion);
         final List<String> errorMessageLines = new ArrayList<>();
         for (var p : UcdProperty.values()) {
+            if (p.name().startsWith("Names_List_")) {
+                continue;
+            }
             final var property = iup.getProperty(p);
             if (property.getNameAliases().stream()
                     .anyMatch(alias -> ignoredProperties.contains(alias))) {
@@ -656,6 +656,9 @@ public class TestUnicodeInvariants {
             } while (Lookahead.oneToken(pp, source).accept(","));
         }
         for (var p : UcdProperty.values()) {
+            if (p.name().startsWith("Names_List_")) {
+                continue;
+            }
             final var property = iup.getProperty(p);
             if (property.getNameAliases().stream()
                     .anyMatch(alias -> ignoredProperties.contains(alias))) {
@@ -1443,7 +1446,7 @@ public class TestUnicodeInvariants {
         final UnicodeSet valueSet = parseUnicodeSet(source, pp);
         valueSet.complement().complement();
 
-        symbolTable.add(variable, valueSet.toPattern(false));
+        symbolTable.addVariable(variable, valueSet.toPattern(false));
         final String value = source.substring(valueStart, pp.getIndex());
         if (DEBUG) {
             System.out.println("Added variable: <" + variable + "><" + value + ">");
@@ -1884,7 +1887,10 @@ public class TestUnicodeInvariants {
     private static int parseErrorCount;
     private static BagFormatter errorLister;
     private static BagFormatter showLister;
-    private static ChainedSymbolTable symbolTable = new ChainedSymbolTable();
+    private static VersionedSymbolTable symbolTable =
+            VersionedSymbolTable.forDevelopment()
+                    .setUnversionedExtensions(
+                            ToolUnicodePropertySource.make(Settings.latestVersion));
     private static boolean doRange;
 
     private static void println(String line) {
@@ -1978,82 +1984,6 @@ public class TestUnicodeInvariants {
 
     private static Factory getProperties(final String version) {
         return ICU_VERSION ? ICUPropertyFactory.make() : ToolUnicodePropertySource.make(version);
-    }
-
-    static class ChainedSymbolTable extends UnicodeSet.XSymbolTable {
-
-        private static final Comparator<String> LONGEST_FIRST =
-                new Comparator<String>() {
-                    @Override
-                    public int compare(String o1, String o2) {
-                        final int len = o2.length() - o1.length();
-                        if (len != 0) {
-                            return len;
-                        }
-                        return o1.compareTo(o2);
-                    }
-                };
-
-        Map<String, char[]> variables = new TreeMap<String, char[]>(LONGEST_FIRST);
-
-        public void add(String variable, String value) {
-            if (variables.containsKey(variable)) {
-                throw new IllegalArgumentException("Attempt to reset variable " + variable);
-            }
-            variables.put(variable, value.toCharArray());
-        }
-
-        @Override
-        public char[] lookup(String s) {
-            if (SHOW_LOOKUP) {
-                System.out.println(
-                        "\tlookup: " + s + "\treturns\t" + String.valueOf(variables.get(s)));
-            }
-            return variables.get(s);
-        }
-
-        // Warning: this depends on pos being left alone unless a string is returned!!
-        @Override
-        public String parseReference(String text, ParsePosition pos, int limit) {
-            //      for (String variable : variables.keySet()) {
-            //        final int index = pos.getIndex();
-            //        if (text.regionMatches(index, variable, 0, variable.length())) {
-            //          pos.setIndex(index + variable.length());
-            //          System.out.println("parseReference: " + variable + "\t in\t" + text);
-            //          return variable;
-            //        }
-            //      }
-            //      System.out.println("parseReference: missing" + "\t in\t" + text);
-            //      return null;
-            final int start = pos.getIndex();
-            int i = start;
-            while (i < limit) {
-                final char c = text.charAt(i);
-                if ((i == start && !UCharacter.isUnicodeIdentifierStart(c))
-                        || !UCharacter.isUnicodeIdentifierPart(c)) {
-                    break;
-                }
-                ++i;
-            }
-            if (i == start) { // No valid name chars
-                return null;
-            }
-            pos.setIndex(i);
-            return text.substring(start, i);
-        }
-
-        final VersionedProperty propertyVersion = VersionedProperty.forInvariantTesting();
-
-        @Override
-        public boolean applyPropertyAlias(
-                String propertyName2, String propertyValue, UnicodeSet result) {
-            result.clear();
-            result.addAll(
-                    propertyVersion
-                            .set(propertyName2)
-                            .getSet(propertyValue, symbolTable, symbolTable.variables));
-            return true;
-        }
     }
 
     // Some of our parse exceptions are thrown with a parse position before the problem.

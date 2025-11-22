@@ -2,7 +2,7 @@ package org.unicode.text.tools;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.LinkedHashMultimap;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;

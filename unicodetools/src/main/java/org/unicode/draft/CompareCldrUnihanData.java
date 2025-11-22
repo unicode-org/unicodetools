@@ -2,7 +2,7 @@ package org.unicode.draft;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.List;
 import java.util.TreeSet;

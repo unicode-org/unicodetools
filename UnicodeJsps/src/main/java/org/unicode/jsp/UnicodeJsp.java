@@ -13,6 +13,7 @@ import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -131,8 +132,15 @@ public class UnicodeJsp {
 
     public static void showProperties(
             int cp, String history, boolean showDevProperties, Appendable out) throws IOException {
+        List<String> originalParameters = new ArrayList<>();
+        if (!history.isEmpty()) {
+            originalParameters.add("history=" + history);
+        }
+        if (showDevProperties) {
+            originalParameters.add("showDevProperties=1");
+        }
         showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
-        UnicodeUtilities.showProperties(cp, history, showDevProperties, out);
+        UnicodeUtilities.showProperties(cp, history, showDevProperties, originalParameters, out);
     }
 
     static String defaultIdnaInput =
@@ -166,11 +174,27 @@ public class UnicodeJsp {
         String a_out;
         a.clear();
         try {
+            if (setA.length() > 4
+                    && setA.startsWith("[:k")
+                    && setA.endsWith(":]")
+                    && setA.contains("=")
+                    && !setA.substring(2, setA.length() - 2).contains(":]")
+                    && XPropertyFactory.make()
+                            .getProperty(setA.substring(2, setA.indexOf("=")))
+                            .isMultivalued()) {
+                throw new Exception(
+                        "POSIX-style queries for multivalued Unihan properties are temporarily disabled.  Try \\p{"
+                                + setA.substring(2, setA.length() - 2)
+                                + "}");
+            }
             // setA = UnicodeSetUtilities.MyNormalize(setA, Normalizer.NFC);
             a.addAll(UnicodeSetUtilities.parseUnicodeSet(setA));
             a_out = UnicodeUtilities.getPrettySet(a, abbreviate, escape);
         } catch (Exception e) {
             a_out = e.getMessage();
+            for (Throwable cause = e; cause != null; cause = cause.getCause()) {
+                cause.printStackTrace();
+            }
         }
         return a_out;
     }
@@ -185,10 +209,18 @@ public class UnicodeJsp {
             boolean collate,
             Appendable out)
             throws IOException {
+        List<String> originalParameters =
+                showDevProperties ? List.of("showDevProperties=1") : List.of();
         showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
         CodePointShower codePointShower =
                 new CodePointShower(
-                        grouping, info, showDevProperties, abbreviate, ucdFormat, collate);
+                        grouping,
+                        info,
+                        showDevProperties,
+                        abbreviate,
+                        ucdFormat,
+                        collate,
+                        originalParameters);
         UnicodeUtilities.showSetMain(a, showDevProperties, codePointShower, out);
     }
 
@@ -400,8 +432,10 @@ public class UnicodeJsp {
     }
 
     public static String getIdentifier(String script, boolean showDevProperties) {
+        List<String> originalParameters =
+                showDevProperties ? List.of("showDevProperties=1") : List.of();
         showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
-        return UnicodeUtilities.getIdentifier(script, showDevProperties);
+        return UnicodeUtilities.getIdentifier(script, showDevProperties, originalParameters);
     }
 
     static final String VERSIONS =
