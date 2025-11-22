@@ -1,5 +1,5 @@
 # PropList-18.0.0.txt
-# Date: 2025-11-22, 22:53:12 GMT
+# Date: 2025-11-22, 23:42:30 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1162,7 +1162,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1D17B..1D182  ; Diacritic # Mn   [8] MUSICAL SYMBOL COMBINING ACCENT..MUSICAL SYMBOL COMBINING LOURE
 1D185..1D18B  ; Diacritic # Mn   [7] MUSICAL SYMBOL COMBINING DOIT..MUSICAL SYMBOL COMBINING TRIPLE TONGUE
 1D1AA..1D1AD  ; Diacritic # Mn   [4] MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
-1DFD2..1DFF2  ; Diacritic # Lm  [33] MODIFIER LETTER SMALL B WITH STROKE..MODIFIER LETTER SMALL T WITH CURL
+1DFD1..1DFF2  ; Diacritic # Lm  [34] MODIFIER LETTER SMALL CAPITAL P..MODIFIER LETTER SMALL T WITH CURL
 1E030..1E06D  ; Diacritic # Lm  [62] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
 1E130..1E136  ; Diacritic # Mn   [7] NYIAKENG PUACHUE HMONG TONE-B..NYIAKENG PUACHUE HMONG TONE-D
 1E2AE         ; Diacritic # Mn       TOTO SIGN RISING TONE
@@ -1172,7 +1172,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1292
+# Total code points: 1293
 
 # ================================================
 
