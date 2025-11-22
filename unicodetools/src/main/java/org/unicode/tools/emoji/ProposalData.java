@@ -1,12 +1,11 @@
 package org.unicode.tools.emoji;
 
 import com.google.common.base.Splitter;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -103,19 +102,8 @@ public class ProposalData {
                             CandidateData.getInstance().getProposal(source),
                             Collections.emptySet()));
         }
-        if (output.isEmpty()) {
-            // hack skin color
-            if (source.contains(SKIN_REPRESENTATIVE)) {
-                source = source.replaceAll(SKIN_REPRESENTATIVE, "");
-                Set<String> other = getProposals(source);
-                if (!other.isEmpty()) {
-                    output.addAll(other);
-                    output.add("L2/14‑173");
-                }
-            }
-            if (output.isEmpty()) { // for debugging
-                Set<String> foo = CandidateData.getInstance().getProposal(source);
-            }
+        if (output.isEmpty()) { // for debugging
+            Set<String> foo = CandidateData.getInstance().getProposal(source);
         }
         return output;
     }
@@ -172,8 +160,8 @@ public class ProposalData {
 
     static UnicodeMap<Set<String>> load(StringBuffer header) {
         UnicodeMap<Set<String>> builder = new UnicodeMap<>();
-        Set<String> skinProposals = ImmutableSet.<String>builder().add("L2/14-173").build();
-        Set<String> genProposals = ImmutableSet.<String>builder().add("L2/16‑160").build();
+        Set<String> skinProposals = ImmutableSet.<String>builder().build();
+        Set<String> genProposals = ImmutableSet.<String>builder().build();
 
         boolean haveData = false;
         for (String line : FileUtilities.in(ProposalData.class, "proposalData.txt")) {
@@ -313,26 +301,27 @@ public class ProposalData {
         return ImmutableSet.copyOf(result);
     }
 
-    static final Map<String, String> SHORTEST_SKELETON =
-            ImmutableMap.<String, String>builder()
-                    .put("🧑🏿‍❤️‍💋‍🧑🏿", "💏🏿")
-                    .put("🧑🏿‍❤️‍🧑🏿", "💑🏿")
-                    .build();
-
-    //    static {
-    //        for (Entry<String, String> entry : SHORTEST_SKELETON.entrySet()) {
-    //            System.out.println(".put(\"" + entry.getKey() + "\",\"" + entry.getValue() + "\")"
-    //                    + "\t// " + Utility.hex(entry.getKey()) + " => " +
-    // Utility.hex(entry.getValue()));
-    //        }
-    //    }
-
     private static String shortestForm(String s) {
-        String result = SHORTEST_SKELETON.get(s);
-        if (result == null) {
-            return s;
+        if (EmojiData.EMOJI_DATA_BETA.isHandshake(s)) {
+            // All handshake sequences have the same proposal.
+            return EmojiData.HANDSHAKE_STRING;
         }
-        return result;
+
+        // Use the existing mapping maintained by EmojiData,
+        // adding emoji variants for sequences containing ❤️.
+        String withoutTone = EmojiData.SKIN_SPANNER.deleteFrom(s);
+        String standardized = EmojiData.EMOJI_DATA_BETA.addEmojiVariants(withoutTone);
+        String couple = EmojiData.MAP_TO_COUPLES.get(standardized);
+        if (couple != null) {
+            if (s.indexOf(SKIN_REPRESENTATIVE) >= 0) {
+                // The provided string has normalized skin tone(s) and
+                // the result is a single code point, re-add the tone.
+                couple += SKIN_REPRESENTATIVE;
+            }
+            return couple;
+        }
+
+        return s;
     }
 
     public static String removeEmojiVariant(String s) {

@@ -4,7 +4,7 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.locale.XCldrStub.ImmutableSet;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -138,6 +138,18 @@ public class IdentifierInfo {
         info.printIDNStuff();
     }
 
+    private static final class ModifiedNFKC {
+        private static Normalizer INSTANCE;
+
+        static String normalize(String cf) {
+            if (INSTANCE == null) {
+                INSTANCE = new Normalizer(UCD_Types.NFKC, Default.ucdVersion());
+                INSTANCE.setSpacingSubstitute();
+            }
+            return ModifiedNFKC.INSTANCE.normalize(cf);
+        }
+    }
+
     private IdentifierInfo() throws IOException {
         isCaseFolded = new UnicodeSet();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
@@ -189,9 +201,9 @@ public class IdentifierInfo {
         // the output set
         for (final UnicodeSetIterator usi = new UnicodeSetIterator(remainingInputSet1);
                 usi.next(); ) {
-            final String nss = GenerateConfusables.getModifiedNKFC(usi.getString());
+            final String nss = ModifiedNFKC.normalize(usi.getString());
             final String cf = DEFAULT_UCD.getCase(nss, UCD_Types.FULL, UCD_Types.FOLD);
-            final String cf2 = GenerateConfusables.getModifiedNKFC(cf);
+            final String cf2 = ModifiedNFKC.normalize(cf);
             if (remainingOutputSet.containsAll(cf2)) {
                 remainingInputSet.add(usi.codepoint);
             } else {
@@ -203,7 +215,7 @@ public class IdentifierInfo {
         for (final UnicodeSetIterator usi = new UnicodeSetIterator(remainingInputSet);
                 usi.next(); ) {
             final String ss = usi.getString();
-            final String nss = GenerateConfusables.getModifiedNKFC(ss);
+            final String nss = ModifiedNFKC.normalize(ss);
             final String cf = DEFAULT_UCD.getCase(ss, UCD_Types.FULL, UCD_Types.FOLD);
             if (DEBUG && (usi.codepoint == 0x2126 || usi.codepoint == 0x212B)) {
                 System.out.println("check");
@@ -436,16 +448,9 @@ public class IdentifierInfo {
                 }
                 final String codelist = pieces[0].trim();
                 if (UnicodeSet.resemblesPattern(pieces[0], 0)) {
-                    // TODO(macchiati): Weird dependency on ChainedSymbolTable which we probably
-                    // do not need.
                     sources =
                             VersionedProperty.parseUnicodeSet(
-                                    codelist,
-                                    new TestUnicodeInvariants
-                                            .ChainedSymbolTable()); // .retainAll(allocated);
-                    if (sources.contains("ᢰ")) {
-                        int x = 0;
-                    }
+                                    codelist, VersionedSymbolTable.forDevelopment());
                 } else {
                     final String[] codes = Utility.split(codelist, ' ');
                     for (final String code : codes) {
@@ -517,12 +522,8 @@ public class IdentifierInfo {
         UnicodeSet hasRecommendedScript = new UnicodeSet();
         Set<String> scripts = LATEST.load(UcdProperty.Script).values();
         for (final String script : scripts) {
-            String shortName = UcdPropertyValues.Script_Values.forName(script).getShortName();
-            Info scriptInfo = ScriptMetadata.getInfo(shortName);
-            if (scriptInfo == null) {
-                System.out.println("No script metadata info for: " + script);
-            }
-            if (scriptInfo != null && scriptInfo.idUsage == IdUsage.RECOMMENDED) {
+            IdUsage idUsage = getScriptUsage(script);
+            if (idUsage == IdUsage.RECOMMENDED) {
                 final UnicodeSet us = ScriptInfo.IDENTIFIER_INFO.getSetWith(script);
                 if (us != null) {
                     hasRecommendedScript.addAll(us);
@@ -532,9 +533,7 @@ public class IdentifierInfo {
         hasRecommendedScript.freeze();
 
         for (final String script : scripts) {
-            String shortName = UcdPropertyValues.Script_Values.forName(script).getShortName();
-            Info scriptInfo = ScriptMetadata.getInfo(shortName);
-            final IdUsage idUsage = scriptInfo != null ? scriptInfo.idUsage : IdUsage.EXCLUSION;
+            final IdUsage idUsage = getScriptUsage(script);
             IdentifierInfo.Identifier_Type status;
             switch (idUsage) {
                     //            case ASPIRATIONAL:
@@ -677,6 +676,38 @@ public class IdentifierInfo {
 
     }
 
+    private IdUsage getScriptUsage(String longScriptName) {
+        String shortName = UcdPropertyValues.Script_Values.forName(longScriptName).getShortName();
+        Info scriptInfo = ScriptMetadata.getInfo(shortName);
+        IdUsage idUsage;
+        if (scriptInfo == null) {
+            System.out.println("No script metadata info for: " + longScriptName);
+            idUsage = IdUsage.EXCLUSION;
+        } else {
+            idUsage = scriptInfo.idUsage;
+        }
+        // Sometimes UAX #31 and CLDR script metadata are updated but the Unicode Tools still
+        // depend on an older version.
+        // We temporarily override ID Usage values here.
+        // See https://github.com/unicode-org/unicodetools/pull/1185 for an example.
+        switch (longScriptName) {
+            case "Gunjala_Gondi":
+                // [184-C33] Consensus: Change the Identifier_Type values for
+                //     Gunjala Gondi characters (sc=Gong) from Limited_Use to Excluded,
+                //     to match the UAX31 classification of the script.
+                //     For Unicode Version 17.0. See L2/25-183 item 6.4.
+                // [184-A76] Action Item for Josh Hadley, PAG:
+                //     Derive the Identifier_Type values for Gunjala Gondi characters from
+                //     the UAX31 classification of the script as specified.
+                //     For Unicode Version 17.0. See L2/25-183 item 6.4.
+                System.out.println(
+                        "TODO: Replace Gunjala_Gondi=Excluded override with CLDR update");
+                return IdUsage.EXCLUSION;
+            default:
+                return idUsage;
+        }
+    }
+
     private void addToRemovalSets(
             String codepoint, final IdentifierInfo.Identifier_Type identifierType) {
         Set<Identifier_Type> oldSet = identifierTypesMap.get(codepoint);
@@ -692,14 +723,8 @@ public class IdentifierInfo {
         }
     }
 
-    enum Style {
-        flat,
-        byValue
-    };
-
     void printIDNStuff() throws IOException {
-        printIdentifierTypes(Style.byValue);
-        printIdentifierTypes(Style.flat);
+        printIdentifierTypes();
         printIdentifierStatus();
 
         printModificationsInternal();
@@ -1033,7 +1058,7 @@ public class IdentifierInfo {
         out.close();
     }
 
-    private void printIdentifierTypes(Style status) throws IOException {
+    private void printIdentifierTypes() throws IOException {
         final UnicodeMap<String> tempMap = new UnicodeMap<String>();
         final Map<String, Set<Identifier_Type>> sortingMap = new HashMap<>();
         for (Set<Identifier_Type> value : identifierTypesMap.values()) {
@@ -1062,18 +1087,19 @@ public class IdentifierInfo {
         bf2.setLabelSource(age);
 
         final String propName = "Identifier_Type";
-        final String filename =
-                status == Style.byValue ? "IdentifierType.txt" : "IdentifierTypeFlat.txt";
+        final String filename = "IdentifierType.txt";
         try (PrintWriter out2 =
                 GenerateConfusables.openAndWriteHeader(
                         GenerateConfusables.GEN_SECURITY_DIR,
                         filename,
                         "Security Profile for General Identifiers: " + propName)) {
             out2.println(
-                    "# Format"
-                            + "\n#"
-                            + "\n# Field 0: code point"
-                            + "\n# Field 1: set of Identifier_Type values (see Table 1 of http://www.unicode.org/reports/tr39)");
+                    "# Format\n"
+                            + "#\n"
+                            + "# Field 0: code point\n"
+                            + "# Field 1: set of Identifier_Type values\n"
+                            + "#          See the \"Identifier_Status and Identifier_Type\" table of UTS #39:\n"
+                            + "#          https://www.unicode.org/reports/tr39/#Identifier_Status_and_Type\n");
 
             out2.println(
                     "#\n"
@@ -1099,20 +1125,8 @@ public class IdentifierInfo {
                     (new UnicodeProperty.UnicodeMapProperty() {})
                             .set(tempMap)
                             .setMain(propName, "IDT", UnicodeProperty.EXTENDED_MISC, "1.0"));
-            if (status == Style.byValue) {
-                TreeSet<String> sorted = new TreeSet<>(tempComp);
-                sorted.addAll(tempMap.values());
-
-                for (String value : sorted) {
-                    out2.println("");
-                    out2.println("#\t" + propName + ":\t" + value);
-                    out2.println("");
-                    bf2.showSetNames(out2, tempMap.getSet(value));
-                }
-            } else {
-                out2.println("");
-                bf2.showSetNames(out2, tempMap.keySet());
-            }
+            out2.println("");
+            bf2.showSetNames(out2, tempMap.keySet());
         }
     }
 
@@ -1141,10 +1155,12 @@ public class IdentifierInfo {
                         "IdentifierStatus.txt",
                         "Security Profile for General Identifiers: " + propName)) {
             out2.println(
-                    "# Format"
-                            + "\n#"
-                            + "\n# Field 0: code point"
-                            + "\n# Field 1: Identifier_Status value (see Table 1 of http://www.unicode.org/reports/tr39)");
+                    "# Format\n"
+                            + "#\n"
+                            + "# Field 0: code point\n"
+                            + "# Field 1: Identifier_Status value\n"
+                            + "#          See the \"Identifier_Status and Identifier_Type\" table of UTS #39:\n"
+                            + "#          https://www.unicode.org/reports/tr39/#Identifier_Status_and_Type\n");
 
             out2.println(
                     "#\n"

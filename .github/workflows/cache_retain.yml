@@ -30,6 +30,10 @@ jobs:
   retain-maven-cache:
     name: Run all tests with Maven
     runs-on: ubuntu-latest
+    # Only run this on the upstream repo. Otherwise, running in a personal fork will cause
+    # Github to disable the personal fork copy of the workflow
+    # (Github complains about running a scheduled workflow on a repo with > 60 days of inactivity)
+    if: github.ref == 'refs/heads/main' && github.repository == 'unicode-org/unicodetools'
     steps:
       - name: Checkout and setup
         uses: actions/checkout@v2
@@ -38,7 +42,7 @@ jobs:
         with:
           java-version: 11
       - name: Cache local Maven repository
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}

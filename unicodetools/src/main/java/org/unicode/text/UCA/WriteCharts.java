@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -107,18 +108,27 @@ public class WriteCharts implements UCD_Types {
         final String folder = GEN_CHARTS_DIR + "collation/";
 
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "index.html",
+                WriteCharts.class.getResource("index.html").getPath(),
                 Utility.UTF8,
                 folder + "index.html",
                 replacement);
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, folder + "charts.css", null);
+                WriteCharts.class.getResource("charts.css").getPath(),
+                Utility.LATIN1,
+                folder + "charts.css",
+                null);
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "help.html", Utility.UTF8, folder + "help.html", null);
+                WriteCharts.class.getResource("help.html").getPath(),
+                Utility.UTF8,
+                folder + "help.html",
+                null);
 
         indexFile = Utility.openPrintWriter(folder, "index_list.html", Utility.UTF8_WINDOWS);
         Utility.appendFile(
-                Settings.SRC_UCA_DIR + "index_header.html", Utility.UTF8, indexFile, replacement);
+                WriteCharts.class.getResource("index_header.html").getPath(),
+                Utility.UTF8,
+                indexFile,
+                replacement);
 
         /*
         indexFile.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
@@ -319,18 +329,25 @@ public class WriteCharts implements UCD_Types {
         // System.out.println("File: " + new File(".").getCanonicalPath());
 
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "index.html",
+                WriteCharts.class.getResource("index.html").getPath(),
                 Utility.UTF8,
                 folder + "index.html",
                 replacement);
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, folder + "charts.css");
+                WriteCharts.class.getResource("charts.css").getPath(),
+                Utility.LATIN1,
+                folder + "charts.css");
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "norm_help.html", Utility.UTF8, folder + "help.html");
+                WriteCharts.class.getResource("norm_help.html").getPath(),
+                Utility.UTF8,
+                folder + "help.html");
 
         indexFile = Utility.openPrintWriter(folder, "index_list.html", Utility.UTF8_WINDOWS);
         Utility.appendFile(
-                Settings.SRC_UCA_DIR + "index_header.html", Utility.UTF8, indexFile, replacement);
+                WriteCharts.class.getResource("index_header.html").getPath(),
+                Utility.UTF8,
+                indexFile,
+                replacement);
 
         /*
         indexFile.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
@@ -447,18 +464,27 @@ public class WriteCharts implements UCD_Types {
         final String folder = GEN_CHARTS_DIR + "case/";
 
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "index.html",
+                WriteCharts.class.getResource("index.html").getPath(),
                 Utility.UTF8,
                 folder + "index.html",
                 replacement);
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, folder + "charts.css", null);
+                WriteCharts.class.getResource("charts.css").getPath(),
+                Utility.LATIN1,
+                folder + "charts.css",
+                null);
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "case_help.html", Utility.UTF8, folder + "help.html", null);
+                WriteCharts.class.getResource("case_help.html").getPath(),
+                Utility.UTF8,
+                folder + "help.html",
+                null);
 
         indexFile = Utility.openPrintWriter(folder, "index_list.html", Utility.UTF8_WINDOWS);
         Utility.appendFile(
-                Settings.SRC_UCA_DIR + "index_header.html", Utility.UTF8, indexFile, replacement);
+                WriteCharts.class.getResource("index_header.html").getPath(),
+                Utility.UTF8,
+                indexFile,
+                replacement);
 
         /*
         indexFile.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
@@ -574,18 +600,22 @@ public class WriteCharts implements UCD_Types {
         final String folder = GEN_CHARTS_DIR + "script/";
 
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "index.html",
+                WriteCharts.class.getResource("index.html").getPath(),
                 Utility.UTF8,
                 folder + "index.html",
                 replacement);
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, folder + "charts.css");
+                WriteCharts.class.getResource("charts.css").getPath(),
+                Utility.LATIN1,
+                folder + "charts.css");
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "script_help.html", Utility.UTF8, folder + "help.html");
+                WriteCharts.class.getResource("script_help.html").getPath(),
+                Utility.UTF8,
+                folder + "help.html");
 
         indexFile = Utility.openPrintWriter(folder, "index_list.html", Utility.UTF8_WINDOWS);
         Utility.appendFile(
-                Settings.SRC_UCA_DIR + "script_index_header.html",
+                WriteCharts.class.getResource("script_index_header.html").getPath(),
                 Utility.UTF8,
                 indexFile,
                 replacement);
@@ -724,18 +754,25 @@ public class WriteCharts implements UCD_Types {
         final String folder = GEN_CHARTS_DIR + "name/";
 
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "index.html",
+                WriteCharts.class.getResource("index.html").getPath(),
                 Utility.UTF8,
                 folder + "index.html",
                 replacement);
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, folder + "charts.css");
+                WriteCharts.class.getResource("charts.css").getPath(),
+                Utility.LATIN1,
+                folder + "charts.css");
         Utility.copyTextFile(
-                Settings.SRC_UCA_DIR + "name_help.html", Utility.UTF8, folder + "help.html");
+                WriteCharts.class.getResource("name_help.html").getPath(),
+                Utility.UTF8,
+                folder + "help.html");
 
         indexFile = Utility.openPrintWriter(folder, "index_list.html", Utility.UTF8_WINDOWS);
         Utility.appendFile(
-                Settings.SRC_UCA_DIR + "index_header.html", Utility.UTF8, indexFile, replacement);
+                WriteCharts.class.getResource("index_header.html").getPath(),
+                Utility.UTF8,
+                indexFile,
+                replacement);
 
         int columnCount = 0;
         char lastInitial = 0;
@@ -1032,18 +1069,23 @@ public class WriteCharts implements UCD_Types {
         }
         indexFile.println("<a href = '" + indexAttributes + "'>" + indexAnchorText + "</a><br>\n");
         indexHasNew = false;
+        output.println("</table>\n");
+        printCopyrightFooter(output);
+        output.close();
+    }
+
+    static void printCopyrightFooter(PrintWriter output) {
         output.println(
-                "</table>\n"
-                        + "\n"
-                        + "<hr width=\"50%\">\n"
-                        + "\n"
-                        + "<p class=\"copyright\">© 2003–2024 Unicode, Inc.\n"
+                "<hr width=\"50%\">\n\n"
+                        + "<p class=\"copyright\">© 2003–"
+                        + Year.now()
+                        + " Unicode, Inc.\n"
                         + "Unicode and the Unicode Logo are registered trademarks of Unicode, Inc.,\n"
-                        + "in the U.S. and other countries. "
-                        + "See <a href=\"https://www.unicode.org/copyright.html\">Terms of Use</a>.</p>\n"
+                        + "in the U.S. and other countries.\n"
+                        + "For terms of use and license, "
+                        + "see <a href=\"https://www.unicode.org/terms_of_use.html\">https://www.unicode.org/terms_of_use.html</a>.</p>\n"
                         + "</body>\n"
                         + "</html>");
-        output.close();
     }
 
     static final int NULL_ORDER = -7,

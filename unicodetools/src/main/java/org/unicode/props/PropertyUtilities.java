@@ -1,9 +1,11 @@
 package org.unicode.props;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.google.common.base.Objects;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 import org.unicode.text.utility.Utility;
 
 public class PropertyUtilities {
@@ -28,9 +30,66 @@ public class PropertyUtilities {
         }
     }
 
+    public static final class Overrider implements Merge<String> {
+        public Overrider() {}
+
+        @Override
+        public String merge(String first, String second) {
+            return second;
+        }
+    }
+
+    public static final class NullIgnorer implements Merge<String> {
+        public NullIgnorer() {}
+
+        @Override
+        public String merge(String first, String second) {
+            if (second == null) {
+                return first;
+            } else {
+                throw new UnicodePropertyException(
+                        "Key already present in UnicodeMap:\told: " + first + ",\tnew: " + second);
+            }
+        }
+    }
+
+    public static final class RedundancyIgnorer implements Merge<String> {
+        public RedundancyIgnorer() {}
+
+        @Override
+        public String merge(String first, String second) {
+            if (Objects.equal(first, second)) {
+                return first;
+            } else {
+                throw new UnicodePropertyException(
+                        "Key already present in UnicodeMap:\told: " + first + ",\tnew: " + second);
+            }
+        }
+    }
+
+    public static final class RedundancyIgnoringMultivaluedJoiner implements Merge<String> {
+        public RedundancyIgnoringMultivaluedJoiner() {}
+
+        @Override
+        public String merge(String first, String second) {
+            if (first == null) {
+                return second;
+            }
+            final Set<String> oldValues = Set.of(first.split("\\|"));
+            if (second == null || oldValues.contains(second)) {
+                return first;
+            } else {
+                return first + "|" + second;
+            }
+        }
+    }
+
     static final <K, V, M extends Map<K, V>> M putNew(M map, K key, V value) {
         final V oldValue = map.get(key);
         if (oldValue != null) {
+            if (oldValue.equals(value)) {
+                return map;
+            }
             throw new UnicodePropertyException(
                     "Key already present in Map: "
                             + key
@@ -48,6 +107,9 @@ public class PropertyUtilities {
         final V oldValue = map.get(key);
         if (oldValue != null && (missingSet == null || !missingSet.contains(key))) {
             if (merger == null) {
+                if (oldValue.equals(value)) {
+                    return map;
+                }
                 throw new UnicodePropertyException(
                         "Key already present in UnicodeMap: "
                                 + Utility.hex(key)
