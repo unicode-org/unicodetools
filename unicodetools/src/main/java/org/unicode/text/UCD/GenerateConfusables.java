@@ -682,7 +682,15 @@ public class GenerateConfusables {
     }
 
     private static UnicodeSet SKIP_EXCEPTIONS =
-            new UnicodeSet().add('ſ').add('ﬅ').add('ẛ').add("Ϲ").add("ϲ").freeze();
+            new UnicodeSet()
+                    .add('ſ') // U+017F
+                    .add('ﬅ') // U+FB05
+                    .add('ẛ') // U+1E9B
+                    .add("Ϲ") // U+03F9
+                    .add("ϲ") // U+03F2
+                    .add('\u2000')
+                    .add('\u2001')
+                    .freeze();
 
     private static UnicodeSet getSkipNFKD() {
         nfcMap = new UnicodeMap();
@@ -2307,16 +2315,11 @@ public class GenerateConfusables {
         //            ds.foo();
         //        }
         getSkipNFKD();
-        DataSet ds = new DataSet();
-        ds.addUnicodeMap(nfcMap, "nfc", "nfc");
-        ds.close("*");
-        total.addAll(ds);
-        total.close("*");
 
         total.checkChar("ſ");
-        ds = new DataSet();
         if (DEBUG) System.out.println(nfkdMap.get('ſ'));
 
+        DataSet ds = new DataSet();
         ds.addUnicodeMap(nfkdMap, "nfkd", "nfkd");
         // if (DEBUG) System.out.println(ds);
         ds.checkChar("ſ");
