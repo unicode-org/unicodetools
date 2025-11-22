@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class IdnaTypes {
 
     public static final UnicodeSet OTHER_DOT_SET = new UnicodeSet("[． 。｡]").freeze();
-    public static final UnicodeSet ASCII = new UnicodeSet("[:ASCII:]").freeze();
+    public static final UnicodeSet ASCII = new UnicodeSet("[:Block=ASCII:]").freeze();
     public static final UnicodeSet LABEL_ASCII = new UnicodeSet("[\\-0-9a-zA-Z]").freeze();
     public static final Pattern DOT = Pattern.compile("[.]");
     public static final Pattern DOTS = Pattern.compile("[.． 。｡]");

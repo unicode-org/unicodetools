@@ -23,6 +23,7 @@ import java.util.TreeSet;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.util.With;
+import org.unicode.text.UCD.VersionedSymbolTable;
 
 public class ScriptCategories2 {
 
@@ -522,78 +523,7 @@ public class ScriptCategories2 {
     // @formatter:on
 
     // UnicodeSet override
-    static UnicodeSet.XSymbolTable myXSymbolTable =
-            new UnicodeSet.XSymbolTable() {
-                public boolean applyPropertyAlias(
-                        String propertyName, String propertyValue, UnicodeSet result) {
-                    int propEnum = -1;
-                    int valueEnum = -1;
-                    if (propertyValue.trim().length() != 0) {
-                        propEnum = UCharacter.getPropertyEnum(propertyName);
-                    } else {
-                        try {
-                            propEnum = UProperty.GENERAL_CATEGORY_MASK;
-                            valueEnum = UCharacter.getPropertyValueEnum(propEnum, propertyName);
-                            propertyValue =
-                                    UCharacter.getPropertyValueName(
-                                            propEnum, valueEnum, UProperty.NameChoice.LONG);
-                        } catch (IllegalArgumentException e) {
-                            try {
-                                propEnum = UProperty.SCRIPT;
-                                valueEnum = UCharacter.getPropertyValueEnum(propEnum, propertyName);
-                                propertyValue =
-                                        UCharacter.getPropertyValueName(
-                                                propEnum, valueEnum, UProperty.NameChoice.LONG);
-                            } catch (Exception e1) {
-                                return false;
-                            }
-                        }
-                    }
-
-                    String pvalue;
-                    UnicodeSet result2;
-                    UnicodeSet additions;
-                    switch (propEnum) {
-                        case UProperty.SCRIPT:
-                            pvalue =
-                                    getFixedPropertyValue(
-                                            propEnum, propertyValue, UProperty.NameChoice.LONG);
-                            result2 =
-                                    new UnicodeSet()
-                                            .applyIntPropertyValue(
-                                                    propEnum,
-                                                    UCharacter.getPropertyValueEnum(
-                                                            propEnum, pvalue))
-                                            .removeAll(SCRIPT_CHANGED);
-                            additions = SCRIPT_NEW.get(pvalue);
-                            if (additions != null) {
-                                result2.addAll(additions);
-                            }
-                            result.set(result2);
-                            return true;
-                        case UProperty.GENERAL_CATEGORY_MASK:
-                        case UProperty.GENERAL_CATEGORY:
-                            // TODO: fix Mask
-                            pvalue =
-                                    getFixedPropertyValue(
-                                            propEnum, propertyValue, UProperty.NameChoice.LONG);
-                            result2 =
-                                    new UnicodeSet()
-                                            .applyIntPropertyValue(
-                                                    propEnum,
-                                                    UCharacter.getPropertyValueEnum(
-                                                            propEnum, pvalue))
-                                            .removeAll(CATEGORY_CHANGED);
-                            additions = CATEGORY_NEW.get(pvalue);
-                            if (additions != null) {
-                                result2.addAll(additions);
-                            }
-                            result.set(result2);
-                            return true;
-                    }
-                    return false;
-                }
-            };
+    static UnicodeSet.XSymbolTable myXSymbolTable = VersionedSymbolTable.forDevelopment();
 
     public static UnicodeSet parseUnicodeSet(String input) {
         String parseInput = input.trim();

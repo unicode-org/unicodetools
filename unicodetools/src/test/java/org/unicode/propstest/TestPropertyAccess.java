@@ -1,6 +1,6 @@
 package org.unicode.propstest;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import java.util.Collection;
 import org.junit.jupiter.api.Test;
 import org.unicode.props.GenerateEnums;

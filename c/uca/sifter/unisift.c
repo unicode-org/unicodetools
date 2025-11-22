@@ -2,7 +2,7 @@
 // License & terms of use: https://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2023 - 2024
+**      Copyright 2023 - 2025
 **      Ken Whistler, All rights reserved.
 */
 
@@ -55,6 +55,10 @@
  *               to match change in Unicode 14.0.
  *   2024-Mar-29 Change main sift to treat non-Nd numerics as non-variables.
  *   2024-Apr-05 Fixed botched edit in comment.
+ *   2025-Jan-09 Updates for Unicode 17.0.
+ *               Change implicit weights for Tangut ideographs vs. components.
+ *   2025-Feb-19 Tweak dumpTimeStamp to use it for the CTT as well.
+ *   2025-Apr-24 Updates for Unicode 17.0 -- CJK range changes.
  */
 
 /*
@@ -154,7 +158,7 @@
  *       basekeys.txt, compkeys.txt, and ctrckeys.txt in one file.
  *       This is the file now used for UCA data releases.
  *
- *    ctt14651.txt
+ *    ctt.txt
  *
  *       Generated only when started with the -s flag flag.
  *       This is 14651 table dump of the weightings,
@@ -179,15 +183,15 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 16.0.0d4, 2024-04-05\n";
+static char versionString[] = "Sifter version 17.0.0d4, 2025-04-24\n";
 
-static char unidatafilename[] = "unidata-16.0.0.txt";
-static char allkeysfilename[] = "allkeys-16.0.0.txt";
-static char decompsfilename[] = "decomps-16.0.0.txt";
+static char unidatafilename[] = "unidata-17.0.0.txt";
+static char allkeysfilename[] = "allkeys-17.0.0.txt";
+static char decompsfilename[] = "decomps-17.0.0.txt";
 
-static char versionstring[] = "@version 16.0.0\n\n";
+static char versionstring[] = "@version 17.0.0\n\n";
 
-#define COPYRIGHTYEAR (2024)
+#define COPYRIGHTYEAR (2025)
 
 #define defaultInfile "unidata.txt"
 
@@ -195,7 +199,7 @@ char infile[PATHNAMELEN];
 char outfile1[] = "basekeys.txt"; /* sortable list of base keys */
 char outfile2[] = "compkeys.txt"; /* sortable list of composite keys */
 char outfile3[] = "decomps.txt";  /* formatted list of full decompositions */
-char outfile5[] = "ctt14651.txt"; /* symbolic weight strings for ISO 14651 */
+char outfile5[] = "ctt.txt";      /* CTT table: symbolic weight strings for ISO 14651 */
 char outfile7[] = "ctrckeys.txt"; /* sortable list of contracted keys */
 char outfile8[] = "allkeys.txt";  /* sorted list of all keys */
 
@@ -285,11 +289,11 @@ int digitsInitialized;
 #define CJK_EXTB_FIRST (0x20000)
 #define CJK_EXTB_LAST  (0x2A6DF)
 #define CJK_EXTC_FIRST (0x2A700)
-#define CJK_EXTC_LAST  (0x2B739)
+#define CJK_EXTC_LAST  (0x2B73F)
 #define CJK_EXTD_FIRST (0x2B740)
 #define CJK_EXTD_LAST  (0x2B81D)
 #define CJK_EXTE_FIRST (0x2B820)
-#define CJK_EXTE_LAST  (0x2CEA1)
+#define CJK_EXTE_LAST  (0x2CEAD)
 #define CJK_EXTF_FIRST (0x2CEB0)
 #define CJK_EXTF_LAST  (0x2EBE0)
 #define CJK_EXTI_FIRST (0x2EBF0)
@@ -298,19 +302,23 @@ int digitsInitialized;
 #define CJK_EXTG_LAST  (0x3134A)
 #define CJK_EXTH_FIRST (0x31350)
 #define CJK_EXTH_LAST  (0x323AF)
+#define CJK_EXTJ_FIRST (0x323B0)
+#define CJK_EXTJ_LAST  (0x33479)
 
 /*
  * Constants defining other ideographic ranges for implicit weights.
  */
 
 #define TANGUT_FIRST      (0x17000)
-#define TANGUT_LAST       (0x187F7)
+#define TANGUT_LAST       (0x187FF)
 #define TANGUT_COMP_FIRST (0x18800)
 #define TANGUT_COMP_LAST  (0x18AFF)
 #define KHITAN_FIRST      (0x18B00)
 #define KHITAN_LAST       (0x18CD5)
 #define TANGUT_SUP_FIRST  (0x18D00)
-#define TANGUT_SUP_LAST   (0x18D08)
+#define TANGUT_SUP_LAST   (0x18D1E)
+#define TANGUT_COMP_SUP_FIRST (0x18D80)
+#define TANGUT_COMP_SUP_LAST  (0x18DF2)
 #define NUSHU_FIRST       (0x1B170)
 #define NUSHU_LAST        (0x1B2FB)
 
@@ -533,6 +541,14 @@ WALNUTPTR getSiftDataPtr ( UInt32 i )
     {
         return ( &handata );
     }
+    else if ( i < TANGUT_COMP_SUP_FIRST )
+    {
+        return ( &(planes01[i] ) );
+    }
+    else if ( i <= TANGUT_COMP_SUP_LAST )
+    {
+        return ( &handata );
+    }
     else if ( i < NUSHU_FIRST )
     {
         return ( &(planes01[i] ) );
@@ -578,6 +594,10 @@ WALNUTPTR getSiftDataPtr ( UInt32 i )
         return ( &handata );
     }
     else if ( i <= CJK_EXTH_LAST )
+    {
+        return ( &handata );
+    }
+    else if ( i <= CJK_EXTJ_LAST )
     {
         return ( &handata );
     }
@@ -642,14 +662,16 @@ char localbuf[20];
              ( ( c >= CJK_EXTF_FIRST ) && ( c <= CJK_EXTF_LAST ) ) ||
              ( ( c >= CJK_EXTI_FIRST ) && ( c <= CJK_EXTI_LAST ) ) ||
              ( ( c >= CJK_EXTG_FIRST ) && ( c <= CJK_EXTG_LAST ) ) ||
-             ( ( c >= CJK_EXTH_FIRST ) && ( c <= CJK_EXTH_LAST ) ) )
+             ( ( c >= CJK_EXTH_FIRST ) && ( c <= CJK_EXTH_LAST ) ) ||
+             ( ( c >= CJK_EXTJ_FIRST ) && ( c <= CJK_EXTJ_LAST ) ) )
         {
             sprintf ( localbuf, "HAN%04X", c );
             strcpy ( dp, localbuf );
         }
         else if ( ( ( c >= TANGUT_FIRST ) && ( c <= TANGUT_LAST ) ) ||
                     ( ( c >= TANGUT_COMP_FIRST ) && ( c <= TANGUT_COMP_LAST ) ) ||
-                    ( ( c >= TANGUT_SUP_FIRST ) && ( c <= TANGUT_SUP_LAST ) ) )
+                    ( ( c >= TANGUT_SUP_FIRST ) && ( c <= TANGUT_SUP_LAST ) ) ||
+                    ( ( c >= TANGUT_COMP_SUP_FIRST ) && ( c <= TANGUT_COMP_SUP_LAST ) ) )
         {
             sprintf ( localbuf, "TANGUT%04X", c );
             strcpy ( dp, localbuf );
@@ -1190,23 +1212,28 @@ UShort16 base;
               ( ( i >= CJK_EXTF_FIRST ) && ( i <= CJK_EXTF_LAST ) ) ||
               ( ( i >= CJK_EXTI_FIRST ) && ( i <= CJK_EXTI_LAST ) ) ||
               ( ( i >= CJK_EXTG_FIRST ) && ( i <= CJK_EXTG_LAST ) ) || 
-              ( ( i >= CJK_EXTH_FIRST ) && ( i <= CJK_EXTH_LAST ) ) )
+              ( ( i >= CJK_EXTH_FIRST ) && ( i <= CJK_EXTH_LAST ) ) || 
+              ( ( i >= CJK_EXTJ_FIRST ) && ( i <= CJK_EXTJ_LAST ) ) )
     {
-        base = 0xFB80; /* Tangut ideographs and Tangut components */
+        base = 0xFB80; /* Other CJK ideographs */
     }
     else if ( ( ( i >= TANGUT_FIRST ) && ( i <= TANGUT_LAST ) ) ||
-              ( ( i >= TANGUT_COMP_FIRST ) && ( i <= TANGUT_COMP_LAST ) ) || 
               ( ( i >= TANGUT_SUP_FIRST ) && ( i <= TANGUT_SUP_LAST ) ) )
     {
-        base = 0xFB00; /* Tangut */
+        base = 0xFB00; /* Tangut ideographs */
+    }
+    else if ( ( ( i >= TANGUT_COMP_FIRST ) && ( i <= TANGUT_COMP_LAST ) ) || 
+              ( ( i >= TANGUT_COMP_SUP_FIRST ) && ( i <= TANGUT_COMP_SUP_LAST ) ) )
+    {
+        base = 0xFB01; /* Tangut components */
     }
     else if ( ( i >= NUSHU_FIRST ) && ( i <= NUSHU_LAST ) )
     {
-        base = 0xFB01; /* Nushu */
+        base = 0xFB02; /* Nushu */
     }
     else if ( ( i >= KHITAN_FIRST ) && ( i <= KHITAN_LAST ) )
     {
-        base = 0xFB02; /* Khitan Small Script */
+        base = 0xFB03; /* Khitan Small Script */
     }
     else
     {
@@ -1467,6 +1494,10 @@ static int unisift_ForceToSecondary ( UInt32 c )
     {
         return ( 1 );
     }
+    if ( ( c == 0x10EFA ) )
+    {
+        return ( 1 );
+    }
     switch ( c )
     {
 /* iota-subscript */
@@ -1672,6 +1703,31 @@ char buffer[128];
     fputs ( "#\n", fd );
 }
 
+void dumpTimeStamp ( FILE *fd, char *commentchar )
+{
+char localbuf[128];
+time_t tempt;
+struct tm *temptptr; 
+
+    time ( &tempt );
+    temptptr = localtime ( &tempt );
+    fputs ( commentchar, fd );
+    strftime ( localbuf, 56, " Date: %Y-%m-%d, %H:%M:%S GMT\n", temptptr );
+    fputs ( localbuf, fd );
+}
+
+void dumpCopyrightAndLicense ( FILE *fd )
+{
+char localbuf[128];
+
+    sprintf ( localbuf, "# Copyright %d Unicode®, Inc.\n", COPYRIGHTYEAR );
+    fputs ( localbuf, fd );
+    sprintf ( localbuf, "# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.\n" );
+    fputs ( localbuf, fd );
+    sprintf ( localbuf, "# For terms of use and license, see https://www.unicode.org/copyright.html\n#\n" );
+    fputs ( localbuf, fd );
+}
+
 /*
  * Print a standard header at the top of allkeys.txt.
  */
@@ -1679,19 +1735,11 @@ char buffer[128];
 void dumpUCAProlog ( FILE *fd )
 {
 char localbuf[128];
-time_t tempt;
-struct tm *temptptr; 
 
     sprintf ( localbuf, "# %s\n", allkeysfilename );
     fputs ( localbuf, fd );
-    time ( &tempt );
-    temptptr = localtime ( &tempt );
-    strftime ( localbuf, 56, "# Date: %Y-%m-%d, %H:%M:%S GMT [KW]\n", temptptr );
-    fputs ( localbuf, fd );
-    sprintf ( localbuf, "# Copyright %d Unicode, Inc.\n", COPYRIGHTYEAR );
-    fputs ( localbuf, fd );
-    sprintf ( localbuf, "# For terms of use, see https://www.unicode.org/terms_of_use.html\n#\n" );
-    fputs ( localbuf, fd );
+    dumpTimeStamp ( fd, "#" );
+    dumpCopyrightAndLicense ( fd );
     sprintf ( localbuf, "# This file defines the Default Unicode Collation Element Table\n" );
     fputs ( localbuf, fd );
     sprintf ( localbuf, "#   (DUCET) for the Unicode Collation Algorithm\n#\n" );
@@ -1701,13 +1749,17 @@ struct tm *temptptr;
     printDiagnosticsInHeader ( fd );
     fputs ( versionstring, fd );
     /* UCA 9.0 new syntax: add @implicitweights for each new ideographic range */
-    sprintf ( localbuf, "@implicitweights 17000..18AFF; FB00 # Tangut and Tangut Components\n\n" );
+    sprintf ( localbuf, "@implicitweights 17000..187FF; FB00 # Tangut\n\n" );
+    fputs ( localbuf, fd );
+    sprintf ( localbuf, "@implicitweights 18800..18AFF; FB01 # Tangut Components\n\n" );
     fputs ( localbuf, fd );
     sprintf ( localbuf, "@implicitweights 18D00..18D7F; FB00 # Tangut Supplement\n\n" );
     fputs ( localbuf, fd );
-    sprintf ( localbuf, "@implicitweights 1B170..1B2FF; FB01 # Nushu\n\n" );
+    sprintf ( localbuf, "@implicitweights 18D80..18DFF; FB01 # Tangut Components Supplement\n\n" );
     fputs ( localbuf, fd );
-    sprintf ( localbuf, "@implicitweights 18B00..18CFF; FB02 # Khitan Small Script\n\n" );
+    sprintf ( localbuf, "@implicitweights 1B170..1B2FF; FB02 # Nushu\n\n" );
+    fputs ( localbuf, fd );
+    sprintf ( localbuf, "@implicitweights 18B00..18CFF; FB03 # Khitan Small Script\n\n" );
     fputs ( localbuf, fd );
 }
 
@@ -1722,20 +1774,12 @@ struct tm *temptptr;
 int dumpDecompsFileProlog ( FILE *fd )
 {
 char localbuf[128];
-time_t tempt;
-struct tm *temptptr; 
 FILE *fdi;
 
     sprintf ( localbuf, "# %s\n", decompsfilename );
     fputs ( localbuf, fd );
-    time ( &tempt );
-    temptptr = localtime ( &tempt );
-    strftime ( localbuf, 56, "# Date: %Y-%m-%d, %H:%M:%S GMT [KW]\n", temptptr );
-    fputs ( localbuf, fd );
-    sprintf ( localbuf, "# Copyright %d Unicode, Inc.\n", COPYRIGHTYEAR );
-    fputs ( localbuf, fd );
-    sprintf ( localbuf, "# For terms of use, see https://www.unicode.org/terms_of_use.html\n#\n" );
-    fputs ( localbuf, fd );
+    dumpTimeStamp ( fd, "#" );
+    dumpCopyrightAndLicense ( fd );
     sprintf ( localbuf, "# This file lists decompositions used in generating the Default Unicode Collation Element Table\n" );
     fputs ( localbuf, fd );
     sprintf ( localbuf, "#   (DUCET) for the Unicode Collation Algorithm\n#\n" );
@@ -4246,7 +4290,8 @@ int doTrace;
     // Turn SIFT_TRACE(p) on for certain characters.
     // For example, doTrace = uvalue == 0xA700;
     // Turn off via doTrace = FALSE;
-    doTrace = uvalue == 0x16FF0;
+    doTrace = uvalue == 0x0670;
+    // doTrace = 0;
 
 /*
  * Autogenerate primary key weightings for base letters and
@@ -4325,6 +4370,11 @@ int doTrace;
  * at the 4th level, but are still tagged as "ignorable". These
  * are U+0600..U+0603, U+06DD, and U+2061..U+2063, handled by
  * an explicit exceptions.
+ *
+ * 2025-Jan-05 note: The isIgnorableException test seems to be
+ * moot at this point, because the generation of allkeys.txt no
+ * longer depends on the level4 weight. Consider removing it
+ * completely.
  *
  * This branch also picks up miscellaneous ISO control codes, which are
  * also marked ignorable.
@@ -4478,6 +4528,9 @@ int doTrace;
  * Next test for the IGNOREOFF directive flag, to allow overriding
  * the ignorable status of any of the rest of the characters, including
  * whitespace, a few format characters, and punctuation.
+ *
+ * unidata.txt no longer contains any instances using this pragma, but leave
+ * this test in place, in case it needs to be used in the future.
  */
         else if ( ignoreOff )
         {
@@ -4854,6 +4907,11 @@ WALNUTS temp;
 
     t = getSiftDataPtr ( i );
 
+    if ( t == NULL )
+    {
+        return;
+    }
+
     if ( t->haveData )
     {
         if ( t->decompType == Implicit )
@@ -4990,9 +5048,9 @@ int i;
         CrackWalnuts ( i );
     }
 /*
- * Skip the Tangut & Khitan ranges (17000..18D7F), which are treated like CJK.
+ * Skip the Tangut & Khitan ranges (17000..18DFF), which are treated like CJK.
  */
-    for ( i = 0x18D80 ; i <= 0x1B16F; i++ )
+    for ( i = 0x18E00 ; i <= 0x1B16F; i++ )
     {
         CrackWalnuts ( i );
     }
