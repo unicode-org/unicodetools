@@ -6,7 +6,7 @@
 Ignoring Name Age:
 
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
-Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
 Ignoring Block:
 # The range \N{MODIFIER LETTER SMALL CAPITAL A}-\N{MODIFIER LETTER SMALL T WITH CURL} is split in
