@@ -1,6 +1,6 @@
 package org.unicode.propstest;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -51,7 +51,9 @@ public class XMLProperties {
         NORMALIZATION_CORRECTIONS,
         STANDARDIZED_VARIANTS,
         CJK_RADICALS,
-        EMOJI_SOURCES;
+        EMOJI_SOURCES,
+        DO_NOT_EMIT,
+        INSTEAD;
         static final XmlLeaf GREATEST_LEAF = NAME_ALIAS;
         static final XmlLeaf GREATEST_BOTH = CHAR;
 
@@ -310,10 +312,19 @@ public class XMLProperties {
                         setProp(cps, UcdProperty.Emoji_KDDI, attributes.get("kddi"));
                         setProp(cps, UcdProperty.Emoji_SB, attributes.get("softbank"));
                         break;
+                    case INSTEAD:
+                        // ucd/do-not-emit/instead[@of="0905 0946"]
+                        // [@use="0904"][@because="Indic_Vowel_Letter"]
+                        cps = Utility.fromHex(attributes.get("of"));
+                        setProp(cps, UcdProperty.Do_Not_Emit_Preferred, attributes.get("use"));
+                        leavesNotHandled.add("do-not-emit type=");
+                        // setProp(cps, UcdProperty.Do_Not_Emit_Type, attributes.get("because"));
+                        break;
                     case REPERTOIRE:
                     case BLOCKS:
                     case CJK_RADICALS:
                     case EMOJI_SOURCES:
+                    case DO_NOT_EMIT:
                     case NAMED_SEQUENCES:
                     case NORMALIZATION_CORRECTIONS:
                     case STANDARDIZED_VARIANTS:

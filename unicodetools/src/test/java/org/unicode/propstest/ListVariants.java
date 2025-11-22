@@ -1,7 +1,7 @@
 package org.unicode.propstest;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 import org.unicode.cldr.util.With;

@@ -2,7 +2,7 @@ package org.unicode.tools.emoji;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.LocaleDisplayNames;
 import com.ibm.icu.text.LocaleDisplayNames.DialectHandling;
 import com.ibm.icu.text.UnicodeSet;
