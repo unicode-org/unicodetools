@@ -30,7 +30,7 @@ public class ListFonts {
         String fonts[] = LOCAL_GRAPHICS_ENVIRONMENT.getAvailableFontFamilyNames();
         System.out.print("#fonts:\t" + fonts.length);
         UnicodeRelation<String> fontsForChars = new UnicodeRelation<>();
-        UnicodeSet ascii = new UnicodeSet("[:ascii:]").freeze();
+        UnicodeSet ascii = new UnicodeSet("[:Block=ASCII:]").freeze();
         try (PrintWriter out = FileUtilities.openUTF8Writer(GEN_FONTS_DIR, "fontContents.txt")) {
             for (int i = 0; i < fonts.length; i++) {
                 Font font = new Font(fonts[i], 0, 24);

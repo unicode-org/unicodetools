@@ -45,14 +45,20 @@ public class Implicit {
     /**
      * Range of implicit weights for siniform ideographic scripts.
      * Can be discontiguous.
-     * Corresponds to allkeys.txt:
+     * Starting with Unicode 17, ranges for different lead primaries can alternate.
+     * Corresponds to allkeys.txt: (examples from Unicode 17)
      * <pre>
-     * @implicitweights 17000..18AFF; FB00 # Tangut and Tangut Components
-     * @implicitweights 18D00..18D8F; FB00 # Tangut Supplement
-     * </pre>
-     * or
-     * <pre>
-     * @implicitweights 1B170..1B2FF; FB01 # Nushu
+     * @implicitweights 17000..187FF; FB00 # Tangut
+     *
+     * @implicitweights 18800..18AFF; FB01 # Tangut Components
+     *
+     * @implicitweights 18D00..18D7F; FB00 # Tangut Supplement
+     *
+     * @implicitweights 18D80..18DFF; FB01 # Tangut Components Supplement
+     *
+     * @implicitweights 1B170..1B2FF; FB02 # Nushu
+     *
+     * @implicitweights 18B00..18CFF; FB03 # Khitan Small Script
      * </pre>
      */
     static final class Range {

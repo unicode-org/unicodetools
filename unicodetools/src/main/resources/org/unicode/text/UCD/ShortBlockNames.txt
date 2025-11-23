@@ -15,6 +15,7 @@ Arabic_Math	;	Arabic_Mathematical_Alphabetic_Symbols
 Arabic_PF_A	;	Arabic_Presentation_Forms_A
 Arabic_PF_B	;	Arabic_Presentation_Forms_B
 Arabic_Sup	;	Arabic_Supplement
+Archaic_Cuneiform_Numerals	;	Archaic_Cuneiform_Numerals
 Armenian	;	Armenian
 Arrows	;	Arrows
 Avestan	;	Avestan
@@ -25,6 +26,7 @@ ASCII	;	Basic_Latin
 Bassa_Vah	;	Bassa_Vah
 Batak	;	Batak
 Bengali	;	Bengali
+Beria_Erfe  ;   Beria_Erfe
 Bhaiksuki	;	Bhaiksuki
 Block_Elements	;	Block_Elements
 Bopomofo	;	Bopomofo
@@ -42,6 +44,7 @@ Cham	;	Cham
 Cherokee	;	Cherokee
 Cherokee_Sup	;	Cherokee_Supplement
 Chess_Symbols	;	Chess_Symbols
+Chisoi	;	Chisoi
 Chorasmian	;	Chorasmian
 CJK_Compat	;	CJK_Compatibility
 CJK_Compat_Forms	;	CJK_Compatibility_Forms
@@ -60,6 +63,7 @@ CJK_Ext_F	;	CJK_Unified_Ideographs_Extension_F
 CJK_Ext_G	;	CJK_Unified_Ideographs_Extension_G
 CJK_Ext_H	;	CJK_Unified_Ideographs_Extension_H
 CJK_Ext_I	;	CJK_Unified_Ideographs_Extension_I
+CJK_Ext_J	;	CJK_Unified_Ideographs_Extension_J
 Diacriticals	;	Combining_Diacritical_Marks
 Diacriticals_Ext	;	Combining_Diacritical_Marks_Extended
 Diacriticals_For_Symbols	;	Combining_Diacritical_Marks_For_Symbols
@@ -205,6 +209,7 @@ Miao	;	Miao
 Misc_Math_Symbols_A	;	Miscellaneous_Mathematical_Symbols_A
 Misc_Math_Symbols_B	;	Miscellaneous_Mathematical_Symbols_B
 Misc_Symbols	;	Miscellaneous_Symbols
+Misc_Symbols_Sup	;	Miscellaneous_Symbols_Supplement
 Misc_Arrows	;	Miscellaneous_Symbols_And_Arrows
 Misc_Pictographs	;	Miscellaneous_Symbols_And_Pictographs
 Misc_Technical	;	Miscellaneous_Technical
@@ -263,10 +268,13 @@ Rumi	;	Rumi_Numeral_Symbols
 Runic	;	Runic
 Samaritan	;	Samaritan
 Saurashtra	;	Saurashtra
+Seal	;	Seal
 Sharada	;	Sharada
+Sharada_Sup	;	Sharada_Supplement
 Shavian	;	Shavian
 Shorthand_Format_Controls	;	Shorthand_Format_Controls
 Siddham	;	Siddham
+Sidetic ;	Sidetic
 Sinhala	;	Sinhala
 Sinhala_Archaic_Numbers	;	Sinhala_Archaic_Numbers
 Small_Forms	;	Small_Form_Variants
@@ -302,12 +310,14 @@ Tai_Le	;	Tai_Le
 Tai_Tham	;	Tai_Tham
 Tai_Viet	;	Tai_Viet
 Tai_Xuan_Jing	;	Tai_Xuan_Jing_Symbols
+Tai_Yo	;	Tai_Yo
 Tangsa  ;   Tangsa
 Takri	;	Takri
 Tamil	;	Tamil
 Tamil_Sup	;	Tamil_Supplement
 Tangut	;	Tangut
 Tangut_Components	;	Tangut_Components
+Tangut_Components_Sup	;	Tangut_Components_Supplement
 Tangut_Sup	;	Tangut_Supplement
 Telugu	;	Telugu
 Thaana	;	Thaana
@@ -316,6 +326,7 @@ Tibetan	;	Tibetan
 Tifinagh	;	Tifinagh
 Tirhuta	;	Tirhuta
 Todhri	;	Todhri
+Tolong_Siki	;	Tolong_Siki
 Toto    ;   Toto
 Tulu_Tigalari   ;   Tulu_Tigalari
 Transport_And_Map	;	Transport_And_Map_Symbols

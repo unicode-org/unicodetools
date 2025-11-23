@@ -1,7 +1,7 @@
 // Obsolete code. Moved here from org.unicode.text.UCA on 2014-apr-23 after svn r642.
 package org.unicode.unused;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;

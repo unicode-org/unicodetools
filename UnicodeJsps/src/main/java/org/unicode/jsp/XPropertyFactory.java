@@ -3,8 +3,7 @@ package org.unicode.jsp;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.CollationElementIterator;
 import com.ibm.icu.text.Normalizer;
@@ -87,8 +86,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         }
 
         add(new IDNA2003());
-        add(new UTS46());
-        add(new IDNA2008());
         add(new IDNA2008c());
         // add(new Usage());
         add(new HanType());
@@ -145,48 +142,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                                 },
                                 false)
                         .setMain("toNFKD", "toNFKD", UnicodeProperty.STRING, "1.1"));
-
-        add(
-                new StringTransformProperty(
-                                new StringTransform() {
-                                    @Override
-                                    public String transform(String source) {
-                                        return UCharacter.foldCase(source, true);
-                                    }
-                                },
-                                false)
-                        .setMain("toCasefold", "toCF", UnicodeProperty.STRING, "1.1"));
-        add(
-                new StringTransformProperty(
-                                new StringTransform() {
-                                    @Override
-                                    public String transform(String source) {
-                                        return UCharacter.toLowerCase(ULocale.ROOT, source);
-                                    }
-                                },
-                                false)
-                        .setMain("toLowercase", "toLC", UnicodeProperty.STRING, "1.1"));
-        add(
-                new StringTransformProperty(
-                                new StringTransform() {
-                                    @Override
-                                    public String transform(String source) {
-                                        return UCharacter.toUpperCase(ULocale.ROOT, source);
-                                    }
-                                },
-                                false)
-                        .setMain("toUppercase", "toUC", UnicodeProperty.STRING, "1.1"));
-        add(
-                new StringTransformProperty(
-                                new StringTransform() {
-                                    @Override
-                                    public String transform(String source) {
-                                        return UCharacter.toTitleCase(ULocale.ROOT, source, null);
-                                    }
-                                },
-                                false)
-                        .setMain("toTitlecase", "toTC", UnicodeProperty.STRING, "1.1"));
-
         add(
                 new StringTransformProperty(
                                 new StringTransform() {
@@ -204,17 +159,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                 new UnicodeSetProperty()
                         .set(NFM.nfm.getSet(null))
                         .setMain("isNFM", "isNFM", UnicodeProperty.BINARY, "1.1"));
-
-        add(
-                new CodepointTransformProperty(
-                                new Transform<Integer, String>() {
-                                    @Override
-                                    public String transform(Integer source) {
-                                        return UnicodeUtilities.getSubheader().getSubheader(source);
-                                    }
-                                },
-                                false)
-                        .setMain("subhead", "subhead", UnicodeProperty.STRING, "1.1"));
 
         add(
                 new UnicodeSetProperty()
@@ -250,37 +194,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         addExamplarProperty(LocaleData.ES_STANDARD, "exem", "exemplar");
         addExamplarProperty(LocaleData.ES_AUXILIARY, "exema", "exemplar_aux");
         addExamplarProperty(LocaleData.ES_PUNCTUATION, "exemp", "exemplar_punct");
-
-        UnicodeSet Basic_Emoji =
-                getProperty("Basic_Emoji").getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet Emoji_Keycap_Sequence =
-                getProperty("RGI_Emoji_Keycap_Sequence")
-                        .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Modifier_Sequence =
-                getProperty("RGI_Emoji_Modifier_Sequence")
-                        .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Tag_Sequence =
-                getProperty("RGI_Emoji_Tag_Sequence")
-                        .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Flag_Sequence =
-                getProperty("RGI_Emoji_Flag_Sequence")
-                        .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Zwj_Sequence =
-                getProperty("RGI_Emoji_Zwj_Sequence")
-                        .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji =
-                new UnicodeSet()
-                        .add(Basic_Emoji)
-                        .add(Emoji_Keycap_Sequence)
-                        .add(RGI_Emoji_Modifier_Sequence)
-                        .add(RGI_Emoji_Flag_Sequence)
-                        .add(RGI_Emoji_Tag_Sequence)
-                        .add(RGI_Emoji_Zwj_Sequence)
-                        .freeze();
-        add(
-                new UnicodeSetProperty()
-                        .set(RGI_Emoji)
-                        .setMain("RGI_Emoji", "RGI_Emoji", UnicodeProperty.BINARY, "13.0"));
     }
 
     private void addExamplarProperty(
@@ -353,7 +266,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new UnicodeProperty.UnicodeMapProperty()
                         .set(unicodeMap)
-                        .setMain(propertyName, propertyAbbreviation, UnicodeProperty.STRING, "1.1")
+                        .setMain(propertyName, propertyAbbreviation, UnicodeProperty.MISC, "1.1")
                         .addValueAliases(locales, AliasAddAction.ADD_MAIN_ALIAS)
                         .setMultivalued(true));
     }
@@ -588,17 +501,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         }
     }
 
-    private static class IDNA2008 extends XEnumUnicodeProperty {
-        public IDNA2008() {
-            super("idna2008", Idna2008.Idna2008Type.values());
-        }
-
-        @Override
-        protected String _getValue(int codepoint) {
-            return Idna2008.getTypeMapping().get(codepoint).toString();
-        }
-    }
-
     private static class IDNA2008c extends XEnumUnicodeProperty {
         public IDNA2008c() {
             super("idna2008c", IdnaType.values());
@@ -609,89 +511,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             return Idna2008.SINGLETON.getType(codepoint).toString();
         }
     }
-
-    private static class IcuEnumProperty extends XEnumUnicodeProperty {
-        final int propNum;
-
-        public IcuEnumProperty(int propNum) {
-            super(
-                    UCharacter.getPropertyName(propNum, NameChoice.LONG),
-                    getValues(propNum).toArray());
-            this.propNum = propNum;
-        }
-
-        private static List<String> getValues(int propNum) {
-            List<String> valueList = new ArrayList<String>();
-            for (int i = UCharacter.getIntPropertyMinValue(propNum);
-                    i <= UCharacter.getIntPropertyMaxValue(propNum);
-                    ++i) {
-                valueList.add(UCharacter.getPropertyValueName(propNum, i, NameChoice.LONG));
-            }
-            return valueList;
-        }
-
-        @Override
-        protected String _getValue(int codepoint) {
-            int propValue = UCharacter.getIntPropertyValue(codepoint, propNum);
-            try {
-                return UCharacter.getPropertyValueName(propNum, propValue, NameChoice.LONG);
-            } catch (Exception e) {
-                return "n/a";
-            }
-        }
-    }
-
-    //    private static class IcuBidiPairedBracket extends SimpleProperty {
-    //        final int propNum;
-    //        public IcuBidiPairedBracket() {
-    //            setName(UCharacter.getPropertyName(UProperty.BIDI_PAIRED_BRACKET,
-    // NameChoice.LONG));
-    //            this.propNum = UProperty.BIDI_PAIRED_BRACKET;
-    //        }
-    //        @Override
-    //        public List _getNameAliases(List result) {
-    //            return Arrays.asList(UCharacter.getPropertyName(propNum, NameChoice.LONG),
-    // UCharacter.getPropertyName(propNum, NameChoice.SHORT));
-    //        }
-    //
-    //        @Override
-    //        protected String _getValue(int codepoint) {
-    //            return UTF16.valueOf(UCharacter.getBidiPairedBracket(codepoint));
-    //        }
-    //        @Override
-    //        protected UnicodeMap _getUnicodeMap() {
-    //            // TODO Auto-generated method stub
-    //            return super._getUnicodeMap();
-    //        }
-    //    }
-
-    //    private static class Usage extends XEnumUnicodeProperty {
-    //        enum UsageValues {common, historic, deprecated, liturgical, limited, symbol,
-    // punctuation, na;
-    //        public static UsageValues getValue(int codepoint) {
-    //            if (UnicodeProperty.SPECIALS.contains(codepoint)) return na;
-    //            if (UnicodeUtilities.DEPRECATED.contains(codepoint)) return deprecated;
-    //            if (UnicodeUtilities.LITURGICAL.contains(codepoint)) return liturgical;
-    //            //if (ScriptCategoriesCopy.ARCHAIC.contains(codepoint)) return historic;
-    //            //if (UnicodeUtilities.LIM.contains(codepoint)) return archaic;
-    //            if (UnicodeUtilities.COMMON_USE_SCRIPTS.contains(codepoint)) {
-    //                if (UnicodeUtilities.SYMBOL.contains(codepoint)) return symbol;
-    //                if (UnicodeUtilities.PUNCTUATION.contains(codepoint)) return punctuation;
-    //                return common;
-    //            }
-    //            return limited;
-    //        }
-    //        }
-    //        public Usage() {
-    //            super("Usage", UsageValues.values());
-    //            setType(UnicodeProperty.EXTENDED_ENUMERATED);
-    //        }
-    //
-    //        @Override
-    //        protected String _getValue(int codepoint) {
-    //            return UsageValues.getValue(codepoint).toString();
-    //        }
-    //    }
 
     static class HanType extends XEnumUnicodeProperty {
         enum HanTypeValues {

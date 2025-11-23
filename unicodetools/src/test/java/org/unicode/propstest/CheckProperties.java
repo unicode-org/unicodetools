@@ -1,10 +1,10 @@
 package org.unicode.propstest;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -858,6 +858,9 @@ public class CheckProperties {
         }
         // Unicode 15.1+: A character may have multiple Unihan numeric values.
         int pos = a.indexOf(' ');
+        if (pos < 0) {
+            pos = a.indexOf('|');
+        }
         if (pos >= 0) {
             a = a.substring(0, pos);
         }
