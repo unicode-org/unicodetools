@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2025-11-22, 22:11:20 GMT
+# Date: 2025-11-22, 22:52:53 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -42289,6 +42289,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1DF54         ; LATIN SMALL LETTER BARRED CHI
 1DF55         ; LATIN SMALL LETTER Y WITH LOW STROKE
 1DF56         ; LATIN LETTER GLOTTAL STOP WITH DOUBLE STROKE
+1DFD1         ; MODIFIER LETTER SMALL CAPITAL P
 1DFD2         ; MODIFIER LETTER SMALL B WITH STROKE
 1DFD3         ; MODIFIER LETTER SMALL D WITH STROKE
 1DFD4         ; MODIFIER LETTER SMALL G WITH STROKE
@@ -46324,6 +46325,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 171637
+# Total code points: 171638
 
 # EOF

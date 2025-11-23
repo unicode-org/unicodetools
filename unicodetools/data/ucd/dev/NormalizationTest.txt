@@ -1,5 +1,5 @@
 # NormalizationTest-18.0.0.txt
-# Date: 2025-11-22, 22:11:31 GMT
+# Date: 2025-11-22, 22:53:07 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -16288,6 +16288,7 @@ FFEE;FFEE;FFEE;25CB;25CB; # (￮; ￮; ￮; ○; ○; ) HALFWIDTH WHITE CIRCLE
 1D7FD;1D7FD;1D7FD;0037;0037; # (𝟽; 𝟽; 𝟽; 7; 7; ) MATHEMATICAL MONOSPACE DIGIT SEVEN
 1D7FE;1D7FE;1D7FE;0038;0038; # (𝟾; 𝟾; 𝟾; 8; 8; ) MATHEMATICAL MONOSPACE DIGIT EIGHT
 1D7FF;1D7FF;1D7FF;0039;0039; # (𝟿; 𝟿; 𝟿; 9; 9; ) MATHEMATICAL MONOSPACE DIGIT NINE
+1DFD1;1DFD1;1DFD1;1D18;1D18; # (𝿑; 𝿑; 𝿑; ᴘ; ᴘ; ) MODIFIER LETTER SMALL CAPITAL P
 1DFD2;1DFD2;1DFD2;0180;0180; # (𝿒; 𝿒; 𝿒; ƀ; ƀ; ) MODIFIER LETTER SMALL B WITH STROKE
 1DFD3;1DFD3;1DFD3;0111;0111; # (𝿓; 𝿓; 𝿓; đ; đ; ) MODIFIER LETTER SMALL D WITH STROKE
 1DFD4;1DFD4;1DFD4;01E5;01E5; # (𝿔; 𝿔; 𝿔; ǥ; ǥ; ) MODIFIER LETTER SMALL G WITH STROKE
