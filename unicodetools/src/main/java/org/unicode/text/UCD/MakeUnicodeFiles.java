@@ -817,16 +817,17 @@ public class MakeUnicodeFiles {
         final var iup = IndexUnicodeProperties.make();
         final var name = iup.getProperty(UcdProperty.Name);
         final var script = iup.getProperty(UcdProperty.Script);
+        final var block = iup.getProperty(UcdProperty.Block);
         final var type = iup.getProperty(UcdProperty.Do_Not_Emit_Type);
         final var preferred = iup.getProperty(UcdProperty.Do_Not_Emit_Preferred);
         final var scope = new UnicodeSet();
         final var covered = new UnicodeSet();
-        final var remainder = scope.clone();
         for (var value : UcdPropertyValues.Do_Not_Emit_Type_Values.values()) {
             if (value != Do_Not_Emit_Type_Values.None) {
                 scope.addAll(type.getSet(value.toString()));
             }
         }
+        final var remainder = scope.clone();
         class DoNotEmitSubsubsection {
             DoNotEmitSubsubsection(String header, String unicodeSet) {
                 this(header, unicodeSet, null);
@@ -836,19 +837,24 @@ public class MakeUnicodeFiles {
                     String header,
                     String unicodeSet,
                     Predicate<String> dispreferredStringPredicate) {
+                this(
+                        header,
+                        new UnicodeSet(
+                                unicodeSet,
+                                new ParsePosition(0),
+                                VersionedSymbolTable.forDevelopment()),
+                        dispreferredStringPredicate);
+            }
+
+            DoNotEmitSubsubsection(
+                    String header,
+                    UnicodeSet unicodeSet,
+                    Predicate<String> dispreferredStringPredicate) {
                 if (dispreferredStringPredicate == null) {
-                    this.dispreferredStrings =
-                            new UnicodeSet(
-                                    unicodeSet,
-                                    new ParsePosition(0),
-                                    VersionedSymbolTable.forDevelopment());
+                    this.dispreferredStrings = unicodeSet;
                 } else {
                     this.dispreferredStrings = new UnicodeSet();
-                    for (final String dispreferred :
-                            new UnicodeSet(
-                                    unicodeSet,
-                                    new ParsePosition(0),
-                                    VersionedSymbolTable.forDevelopment())) {
+                    for (final String dispreferred : unicodeSet) {
                         if (dispreferredStringPredicate.test(dispreferred)) {
                             this.dispreferredStrings.add(dispreferred);
                         }
@@ -872,6 +878,13 @@ public class MakeUnicodeFiles {
             DoNotEmitSubsection(
                     String header,
                     String unicodeSet,
+                    Predicate<String> dispreferredStringPredicate) {
+                super(header, unicodeSet, dispreferredStringPredicate);
+            }
+
+            DoNotEmitSubsection(
+                    String header,
+                    UnicodeSet unicodeSet,
                     Predicate<String> dispreferredStringPredicate) {
                 super(header, unicodeSet, dispreferredStringPredicate);
             }
@@ -900,7 +913,12 @@ public class MakeUnicodeFiles {
                             "\"Do Not Use\" tables from the Core Specification",
                             new DoNotEmitSubsection(
                                     "Devanagari, from Table 12-1",
-                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]"),
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Devanagari),
                             new DoNotEmitSubsection(
                                     "Devanagari, from Table 12-2",
                                     "[:Do_Not_Emit_Type=Indic_Atomic_Consonant:]"),
@@ -989,7 +1007,7 @@ public class MakeUnicodeFiles {
                                                     == UcdPropertyValues.Script_Values.Brahmi),
                             new DoNotEmitSubsection(
                                     "Sharada, from Table 15-1",
-                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    "[[:Do_Not_Emit_Type=Indic_Vowel_Letter:][:Do_Not_Emit_Type=Discouraged:]]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
                                                             script.getValue(
@@ -1057,12 +1075,12 @@ public class MakeUnicodeFiles {
                                     dispreferred -> dispreferred.contains("\u0322")),
                             new DoNotEmitSubsection(
                                     "Arabic, from text in the \"Arabic\" section of the core specification, and the NamesList",
-                                    "[:^Do_Not_Emit_Type=None:]",
+                                    scope,
                                     dispreferred ->
-                                            UcdPropertyValues.Script_Values.forName(
-                                                            script.getValue(
+                                            UcdPropertyValues.Block_Values.forName(
+                                                            block.getValue(
                                                                     dispreferred.codePointAt(0)))
-                                                    == Script_Values.Arabic),
+                                                    == UcdPropertyValues.Block_Values.Arabic),
                             new DoNotEmitSubsection(
                                     "Devanagari, from the \"Devanagari\" section of the core specification, and the NamesList",
                                     "[\u0953\u0954]"),
@@ -1080,7 +1098,7 @@ public class MakeUnicodeFiles {
                                     "[\u0F77\u0F79]"),
                             new DoNotEmitSubsection(
                                     "Khmer, from text in the \"Khmer\" section of the core specification, and the NamesList",
-                                    "[:^Do_Not_Emit_Type=None:]",
+                                    scope,
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
                                                             script.getValue(
@@ -1104,6 +1122,7 @@ public class MakeUnicodeFiles {
                     throw new IllegalArgumentException(
                             "Sequences appear in multiple sections: " + duplicates);
                 }
+                covered.addAll(subsection.dispreferredStrings);
                 remainder.removeAll(subsection.dispreferredStrings);
                 for (final String dispreferredString : subsection.dispreferredStrings) {
                     final String preferredString = preferred.getValue(dispreferredString);
