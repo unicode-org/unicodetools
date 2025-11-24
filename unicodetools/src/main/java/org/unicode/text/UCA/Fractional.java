@@ -238,9 +238,8 @@ public final class Fractional {
                 FIRST_IGNORABLE_TER_ASSIGNED, FIRST_IGNORABLE_TER_RESERVED, 0x40, numWeights, 20);
     }
 
-    public static void hexBytes(long x, StringBuffer result) {
+    static StringBuilder hexBytes(long x, StringBuilder result) {
         final int oldLength = result.length();
-        // byte lastb = 1;
         for (int shift = 24; shift >= 0; shift -= 8) {
             final byte b = (byte) (x >>> shift);
             if (b != 0) {
@@ -248,16 +247,30 @@ public final class Fractional {
                     result.append(" ");
                 }
                 result.append(Utility.hex(b));
-                // if (lastb == 0) System.err.println(" bad zero byte: " + result);
             }
-            // lastb = b;
         }
+        return result;
     }
 
-    public static String hexBytes(long x) {
-        final StringBuffer temp = new StringBuffer();
-        hexBytes(x, temp);
-        return temp.toString();
+    static StringBuilder blankedHexBytes(long x, String blanked, StringBuilder result) {
+        if (result == null) {
+            result = new StringBuilder();
+        }
+        final int oldLength = result.length();
+        for (int shift = 24; shift >= 0; shift -= 8) {
+            final byte b = (byte) (x >>> shift);
+            if (b != 0) {
+                if (result.length() != oldLength) {
+                    result.append(" ");
+                }
+                result.append(blanked);
+            }
+        }
+        return result;
+    }
+
+    static String hexBytes(long x) {
+        return hexBytes(x, new StringBuilder()).toString();
     }
 
     /* package */ static short getFixedScript(int ch) {

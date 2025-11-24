@@ -1,0 +1,22 @@
+# DEVANAGARI LETTER ALTERNATE DDDA (11B0A)
+# https://github.com/unicode-org/utc-release-management/issues/182
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block:
+Propertywise [
+     \x{0921} द \N{DEVANAGARI LETTER DA}
+     \x{0926} ड \N{DEVANAGARI LETTER DDA}
+     \x{097E} ॾ \N{DEVANAGARI LETTER DDDA}
+    \x{11B0A}   \N{DEVANAGARI LETTER ALTERNATE DDDA}
+] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

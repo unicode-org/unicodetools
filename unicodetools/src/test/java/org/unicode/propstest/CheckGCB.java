@@ -2,7 +2,7 @@ package org.unicode.propstest;
 
 import com.google.common.collect.ImmutableBiMap;
 import com.google.common.collect.ImmutableSet;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.locale.XCldrStub.ImmutableMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;

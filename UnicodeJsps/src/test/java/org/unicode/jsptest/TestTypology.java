@@ -1,6 +1,5 @@
 package org.unicode.jsptest;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Row.R3;
@@ -20,13 +19,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.icu.dev.test.TestFmwk;
 import org.unicode.cldr.util.MultiComparator;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
-import org.unicode.jsp.Subheader;
 import org.unicode.jsp.Typology;
 
 /** Was commented out of TestAll. Status? */
@@ -375,12 +373,6 @@ public class TestTypology extends TestFmwk {
                 }
             }
         }
-        for (String subhead : subheader) {
-            UnicodeSet uset = subheader.getUnicodeSet(subhead);
-            String alias = "subhead";
-
-            addProps(props, skip, subhead, uset, alias);
-        }
         return props;
     }
 
@@ -409,7 +401,6 @@ public class TestTypology extends TestFmwk {
     static final int LIMIT = 80;
     static final Pattern BREAK_AFTER = Pattern.compile("([_/])");
     final String unicodeDataDirectory = "../jsp/";
-    Subheader subheader = new Subheader(Typology.class.getResourceAsStream("NamesList.txt"));
 
     enum LabelStyle {
         title,
@@ -437,13 +428,10 @@ public class TestTypology extends TestFmwk {
             cell = "th";
         } else if (subhead == LabelStyle.subhead) {
             cell = "td";
-            Map<String, Double> subheads = getSubheadInfo(usets[0]);
             setString =
                     formatUnicodeSet(usets)
                             + "<p>"
-                            + Typology.label_parent_uset.get(labelName).keySet()
-                            + "<p>"
-                            + join(subheads, labelName);
+                            + Typology.label_parent_uset.get(labelName).keySet();
 
             sizeString = usets.length == 0 ? "" : usets[0].size() + "";
             labelName = BREAK_AFTER.matcher(labelName).replaceAll("$1\u200B");
@@ -497,24 +485,6 @@ public class TestTypology extends TestFmwk {
         String href =
                 "<a href='http://unicode.org/cldr/utility/list-unicodeset.jsp?a=" + uset2 + "'>";
         return "<span class='b'>" + href + setString + "</a></span>";
-    }
-
-    private Map<String, Double> getSubheadInfo(UnicodeSet uset) {
-        Map<String, Double> subheads = new TreeMap<String, Double>();
-        for (String s : uset) {
-            String subheadString = subheader.getSubheader(s.codePointAt(0));
-            double percent;
-            if (subheadString == null) {
-                subheadString = "?";
-                percent = 0d;
-            } else {
-                UnicodeSet other = subheader.getUnicodeSet(subheadString);
-                UnicodeSet overlap = new UnicodeSet(other).retainAll(uset);
-                percent = overlap.size() / (double) other.size();
-            }
-            subheads.put(subheadString, percent);
-        }
-        return subheads;
     }
 
     public static String join(Map<String, Double> map, String label) {
