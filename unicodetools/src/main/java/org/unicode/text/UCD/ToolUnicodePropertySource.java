@@ -1830,6 +1830,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         }
 
         @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         protected List<String> _getNameAliases(List<String> result) {
             addUnique(ucdProperty.getName(UCD_Types.SHORT), result);
             final String name = getName();
@@ -2233,6 +2238,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             }
             throw new IllegalArgumentException(
                     "Failed to find " + up.getName() + " value for " + Utility.hex(codepoint));
+        }
+
+        @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
         }
 
         public String getAge(int codePoint) {

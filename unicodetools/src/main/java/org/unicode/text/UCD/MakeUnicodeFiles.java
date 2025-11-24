@@ -20,6 +20,7 @@ import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -34,8 +35,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.props.UnicodeLabel;
@@ -43,11 +46,14 @@ import org.unicode.props.BagFormatter;
 import org.unicode.props.DefaultValues;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
 import org.unicode.props.UcdPropertyValues.Block_Values;
+import org.unicode.props.UcdPropertyValues.Do_Not_Emit_Type_Values;
 import org.unicode.props.UcdPropertyValues.East_Asian_Width_Values;
 import org.unicode.props.UcdPropertyValues.Joining_Group_Values;
 import org.unicode.props.UcdPropertyValues.Line_Break_Values;
+import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.MakeUnicodeFiles.Format.PrintStyle;
 import org.unicode.text.utility.ChainException;
@@ -613,6 +619,9 @@ public class MakeUnicodeFiles {
                 case "ArabicShaping":
                     generateArabicShaping(filename);
                     break;
+                case "DoNotEmit":
+                    generateDoNotEmit(filename);
+                    break;
                 default:
                     generatePropertyFile(filename);
                     break;
@@ -794,6 +803,334 @@ public class MakeUnicodeFiles {
                             + "; "
                             + jg);
         }
+        pw.println();
+        pw.println("# EOF");
+        udf.close();
+    }
+
+    private static void generateDoNotEmit(String filename) throws IOException {
+        final UnicodeDataFile udf =
+                UnicodeDataFile.openAndWriteHeader("UCD/" + Default.ucdVersion() + '/', filename);
+        final PrintWriter pw = udf.out;
+        Format.theFormat.printFileComments(pw, filename);
+
+        final var iup = IndexUnicodeProperties.make();
+        final var name = iup.getProperty(UcdProperty.Name);
+        final var script = iup.getProperty(UcdProperty.Script);
+        final var type = iup.getProperty(UcdProperty.Do_Not_Emit_Type);
+        final var preferred = iup.getProperty(UcdProperty.Do_Not_Emit_Preferred);
+        final var scope = new UnicodeSet();
+        final var covered = new UnicodeSet();
+        final var remainder = scope.clone();
+        for (var value : UcdPropertyValues.Do_Not_Emit_Type_Values.values()) {
+            if (value != Do_Not_Emit_Type_Values.None) {
+                scope.addAll(type.getSet(value.toString()));
+            }
+        }
+        class DoNotEmitSubsubsection {
+            DoNotEmitSubsubsection(String header, String unicodeSet) {
+                this(header, unicodeSet, null);
+            }
+
+            DoNotEmitSubsubsection(
+                    String header,
+                    String unicodeSet,
+                    Predicate<String> dispreferredStringPredicate) {
+                if (dispreferredStringPredicate == null) {
+                    this.dispreferredStrings =
+                            new UnicodeSet(
+                                    unicodeSet,
+                                    new ParsePosition(0),
+                                    VersionedSymbolTable.forDevelopment());
+                } else {
+                    this.dispreferredStrings = new UnicodeSet();
+                    for (final String dispreferred :
+                            new UnicodeSet(
+                                    unicodeSet,
+                                    new ParsePosition(0),
+                                    VersionedSymbolTable.forDevelopment())) {
+                        if (dispreferredStringPredicate.test(dispreferred)) {
+                            this.dispreferredStrings.add(dispreferred);
+                        }
+                    }
+                }
+                this.header = header;
+            }
+
+            void printHeader() {
+                pw.println("# " + header.replace("\n", "\n# "));
+            }
+
+            UnicodeSet dispreferredStrings;
+            String header;
+        }
+        class DoNotEmitSubsection extends DoNotEmitSubsubsection {
+            DoNotEmitSubsection(String header, String unicodeSet) {
+                super(header, unicodeSet, null);
+            }
+
+            DoNotEmitSubsection(
+                    String header,
+                    String unicodeSet,
+                    Predicate<String> dispreferredStringPredicate) {
+                super(header, unicodeSet, dispreferredStringPredicate);
+            }
+
+            @Override
+            void printHeader() {
+                pw.println();
+                super.printHeader();
+            }
+        }
+        class DoNotEmitSection {
+            DoNotEmitSection(String header, DoNotEmitSubsubsection... subsections) {
+                this.subsections = subsections;
+                this.header = header;
+            }
+
+            DoNotEmitSubsubsection[] subsections;
+            String header;
+        }
+        // TODO(egg): These sections seem like an unmaintainable mess (complete with numbered
+        // references to core specification tables).  Can we come up with something a little more
+        // systematic?
+        DoNotEmitSection[] sections =
+                new DoNotEmitSection[] {
+                    new DoNotEmitSection(
+                            "\"Do Not Use\" tables from the Core Specification",
+                            new DoNotEmitSubsection(
+                                    "Devanagari, from Table 12-1",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]"),
+                            new DoNotEmitSubsection(
+                                    "Devanagari, from Table 12-2",
+                                    "[:Do_Not_Emit_Type=Indic_Atomic_Consonant:]"),
+                            new DoNotEmitSubsection(
+                                    "Devanagari, from Table 12-3",
+                                    "[:Do_Not_Emit_Type=Indic_Consonant_Conjunct:]"),
+                            new DoNotEmitSubsection(
+                                    "Bengali (Bangla), from Table 12-11",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Bengali),
+                            new DoNotEmitSubsection(
+                                    "Gurmukhi, from Table 12-16",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Gurmukhi),
+                            new DoNotEmitSubsection(
+                                    "Gujarati, from Table 12-20",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Gujarati),
+                            new DoNotEmitSubsection(
+                                    "Oriya (Odia), from Table 12-22",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Oriya),
+                            new DoNotEmitSubsection(
+                                    "Tamil, from Table 12-27",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Tamil),
+                            new DoNotEmitSubsection(
+                                    "Telugu, from Table 12-31",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Telugu),
+                            new DoNotEmitSubsection(
+                                    "Kannada, from Table 12-32",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Kannada),
+                            new DoNotEmitSubsection(
+                                    "Malayalam, from Table 12-34",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Malayalam),
+                            new DoNotEmitSubsection(
+                                    "Sinhala, from Table 13-2",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Sinhala),
+                            new DoNotEmitSubsection(
+                                    "Brahmi, from Table 14-1",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Brahmi),
+                            new DoNotEmitSubsection(
+                                    "Sharada, from Table 15-1",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Sharada),
+                            new DoNotEmitSubsection(
+                                    "Takri, from Table 15-2",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Takri),
+                            new DoNotEmitSubsection(
+                                    "Khojki, from Table 15-4",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Khojki),
+                            new DoNotEmitSubsection(
+                                    "Khudawadi, from Table 15-5",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Khudawadi),
+                            new DoNotEmitSubsection(
+                                    "Tirhuta, from Table 15-7",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Tirhuta),
+                            new DoNotEmitSubsection(
+                                    "Modi, from Table 15-8",
+                                    "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == UcdPropertyValues.Script_Values.Modi)),
+                    new DoNotEmitSection(
+                            "Deprecated characters and other discouraged characters and sequences",
+                            new DoNotEmitSubsection(
+                                    "Latin, from text in the \"Latin\" section of the core specification, the NamesList, and the uppercase mapping",
+                                    "[\u0140\u0149{\u0131\u0307}{\u0237\u0307}]"),
+                            new DoNotEmitSubsubsection(
+                                    "Characters with overstruck tilde for which a precomposed form exists,\n"
+                                            + "but the sequences are not canonically equivalent",
+                                    "[:Do_Not_Emit_Type=Precomposed_Form:]",
+                                    dispreferred -> dispreferred.contains("\u0334")),
+                            new DoNotEmitSubsubsection(
+                                    "Characters with palatalized hook for which a precomposed form exists,\n"
+                                            + "but the sequences are not canonically equivalent",
+                                    "[:Do_Not_Emit_Type=Precomposed_Form:]",
+                                    dispreferred -> dispreferred.contains("\u0321")),
+                            new DoNotEmitSubsubsection(
+                                    "Characters with retroflex hook for which a precomposed form exists,\n"
+                                            + "but the sequences are not canonically equivalent",
+                                    "[:Do_Not_Emit_Type=Precomposed_Form:]",
+                                    dispreferred -> dispreferred.contains("\u0322")),
+                            new DoNotEmitSubsection(
+                                    "Arabic, from text in the \"Arabic\" section of the core specification, and the NamesList",
+                                    "[:^Do_Not_Emit_Type=None:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == Script_Values.Arabic),
+                            new DoNotEmitSubsection(
+                                    "Devanagari, from the \"Devanagari\" section of the core specification, and the NamesList",
+                                    "[\u0953\u0954]"),
+                            new DoNotEmitSubsection(
+                                    "Bengali (Bangla), from the \"Bengali (Bangla)\" section of the core specification",
+                                    "[{\u09A4\u09CD\u200D}]"),
+                            new DoNotEmitSubsection("Gujarati, from the NamesList", "[\u0AF1]"),
+                            new DoNotEmitSubsection(
+                                    "Tamil ligature shri", "[{\u0BB8\u0BCD\u0BB0\u0BC0}]"),
+                            new DoNotEmitSubsection(
+                                    "Malayalam Chillus, from Table 12-42",
+                                    "[:Do_Not_Emit_Type=Malayalam_Chillu:]"),
+                            new DoNotEmitSubsection(
+                                    "Tibetan, from text in the \"Tibetan\" section of the core specification, the NamesList, and the decompositions",
+                                    "[\u0F77\u0F79]"),
+                            new DoNotEmitSubsection(
+                                    "Khmer, from text in the \"Khmer\" section of the core specification, and the NamesList",
+                                    "[:^Do_Not_Emit_Type=None:]",
+                                    dispreferred ->
+                                            UcdPropertyValues.Script_Values.forName(
+                                                            script.getValue(
+                                                                    dispreferred.codePointAt(0)))
+                                                    == Script_Values.Khmer))
+                };
+        for (final var section : sections) {
+            pw.println();
+            pw.println("# ================================================");
+            pw.println("# " + section.header);
+            pw.println("# ================================================");
+            for (final var subsection : section.subsections) {
+                subsection.printHeader();
+                if (!scope.containsAll(subsection.dispreferredStrings)) {
+                    throw new IllegalArgumentException(
+                            "Section contains non-do-not-emit sequences: "
+                                    + subsection.dispreferredStrings.clone().removeAll(scope));
+                }
+                final var duplicates = subsection.dispreferredStrings.clone().retainAll(covered);
+                if (!duplicates.isEmpty()) {
+                    throw new IllegalArgumentException(
+                            "Sequences appear in multiple sections: " + duplicates);
+                }
+                remainder.removeAll(subsection.dispreferredStrings);
+                for (final String dispreferredString : subsection.dispreferredStrings) {
+                    final String preferredString = preferred.getValue(dispreferredString);
+                    pw.println(
+                            Utility.hex(dispreferredString)
+                                    + "; "
+                                    + Utility.hex(preferredString)
+                                    + "; "
+                                    + type.getValue(dispreferredString)
+                                    + " # "
+                                    + dispreferredString
+                                            .codePoints()
+                                            .mapToObj(cp -> name.getValue(cp))
+                                            .collect(Collectors.joining(", "))
+                                    + "; "
+                                    + preferredString
+                                            .codePoints()
+                                            .mapToObj(cp -> name.getValue(cp))
+                                            .collect(Collectors.joining(", ")));
+                }
+            }
+        }
+        if (!remainder.isEmpty()) {
+            throw new IllegalArgumentException(
+                    "Could not find a matching section for do-not-emit sequences: " + remainder);
+        }
+
         pw.println();
         pw.println("# EOF");
         udf.close();

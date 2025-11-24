@@ -512,6 +512,11 @@ public class TestUtility {
             return (String) map.getValue(codepoint);
         }
 
+        @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
+        }
+
         /** */
         private void make() {
             try {

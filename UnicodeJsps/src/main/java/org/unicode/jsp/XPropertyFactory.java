@@ -424,6 +424,11 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         }
 
         @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         protected List _getValueAliases(String valueAlias, List result) {
             addUnique("<string>", result);
             return result;
@@ -464,6 +469,11 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                 addUnique(valueAlias, result);
             }
             return result;
+        }
+
+        @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
         }
 
         @Override
@@ -640,6 +650,11 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         @Override
         protected String _getValue(int codepoint) {
             return YESNO_ARRAY[unicodeSet.contains(codepoint) ? 0 : 1];
+        }
+
+        @Override
+        protected String _getValue(String string) {
+            return YESNO_ARRAY[unicodeSet.contains(string) ? 0 : 1];
         }
 
         @Override
