@@ -896,12 +896,17 @@ public class MakeUnicodeFiles {
             }
         }
         class DoNotEmitSection {
-            DoNotEmitSection(String header, DoNotEmitSubsubsection... subsections) {
+            DoNotEmitSection(
+                    String header,
+                    Comparator<String> compareDispreferredSequences,
+                    DoNotEmitSubsubsection... subsections) {
                 this.subsections = subsections;
+                this.compareDispreferredSequences = compareDispreferredSequences;
                 this.header = header;
             }
 
             DoNotEmitSubsubsection[] subsections;
+            Comparator<String> compareDispreferredSequences;
             String header;
         }
         // TODO(egg): These sections seem like an unmaintainable mess (complete with numbered
@@ -911,6 +916,28 @@ public class MakeUnicodeFiles {
                 new DoNotEmitSection[] {
                     new DoNotEmitSection(
                             "\"Do Not Use\" tables from the Core Specification",
+                            (l, r) -> {
+                                final int preferredComparison =
+                                        preferred.getValue(l).compareTo(preferred.getValue(r));
+                                if (preferredComparison != 0) {
+                                    return preferredComparison;
+                                }
+                                final int startsWithPreferredComparison =
+                                        -Boolean.compare(
+                                                l.startsWith(preferred.getValue(l)),
+                                                r.startsWith(preferred.getValue(r)));
+                                if (startsWithPreferredComparison != 0) {
+                                    return startsWithPreferredComparison;
+                                }
+                                final int zwjlessLengthComparison =
+                                        Integer.compare(
+                                                l.replace("\u200D", "").length(),
+                                                r.replace("\u200D", "").length());
+                                if (zwjlessLengthComparison != 0) {
+                                    return zwjlessLengthComparison;
+                                }
+                                return l.compareTo(r);
+                            },
                             new DoNotEmitSubsection(
                                     "Devanagari, from Table 12-1",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
@@ -923,7 +950,7 @@ public class MakeUnicodeFiles {
                                     "Devanagari, from Table 12-2",
                                     "[:Do_Not_Emit_Type=Indic_Atomic_Consonant:]"),
                             new DoNotEmitSubsection(
-                                    "Devanagari, from Table 12-3",
+                                    "Devanagari, from Table 12-3\nNote: This list may be incomplete.",
                                     "[:Do_Not_Emit_Type=Indic_Consonant_Conjunct:]"),
                             new DoNotEmitSubsection(
                                     "Bengali (Bangla), from Table 12-11",
@@ -1055,6 +1082,7 @@ public class MakeUnicodeFiles {
                                                     == UcdPropertyValues.Script_Values.Modi)),
                     new DoNotEmitSection(
                             "Deprecated characters and other discouraged characters and sequences",
+                            null,
                             new DoNotEmitSubsection(
                                     "Latin, from text in the \"Latin\" section of the core specification, the NamesList, and the uppercase mapping",
                                     "[\u0140\u0149{\u0131\u0307}{\u0237\u0307}]"),
@@ -1124,7 +1152,17 @@ public class MakeUnicodeFiles {
                 }
                 covered.addAll(subsection.dispreferredStrings);
                 remainder.removeAll(subsection.dispreferredStrings);
-                for (final String dispreferredString : subsection.dispreferredStrings) {
+                Iterable<String> sortedSubsection;
+                if (section.compareDispreferredSequences == null) {
+                    sortedSubsection = subsection.dispreferredStrings;
+                } else {
+                    final var sorted = new TreeSet<String>(section.compareDispreferredSequences);
+                    for (final String dispreferred : subsection.dispreferredStrings) {
+                        sorted.add(dispreferred);
+                    }
+                    sortedSubsection = sorted;
+                }
+                for (final String dispreferredString : sortedSubsection) {
                     final String preferredString = preferred.getValue(dispreferredString);
                     pw.println(
                             Utility.hex(dispreferredString)
