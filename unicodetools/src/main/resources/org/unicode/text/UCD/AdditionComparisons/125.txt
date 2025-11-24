@@ -12,7 +12,6 @@ Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping 
 # order (Latin Extended D vs. Phonetic Extensions Supplement for [ᶁᶇᶊᶎ]).
 # Modifier ᶎ separately because Ᶎ exists.
 Ignoring Block Unicode_1_Name:
-Ignoring Diacritic:  # TODO(egg): Remove if https://github.com/unicode-org/properties/issues/315 is accepted.
 Propertywise [\N{MODIFIER LETTER SMALL D WITH PALATAL HOOK}
               \N{MODIFIER LETTER SMALL N WITH PALATAL HOOK}
               \N{MODIFIER LETTER SMALL S WITH PALATAL HOOK}]
@@ -21,7 +20,6 @@ CorrespondTo [ᶪ] : [ᶅ]
 Propertywise [\N{MODIFIER LETTER SMALL H WITH PALATAL HOOK}]
            : [ꞕ]
 CorrespondTo [ᶪ] : [ᶅ]
-end Ignoring;
 Propertywise [\N{MODIFIER LETTER SMALL Z WITH PALATAL HOOK}]
            : [ᶎ] : [Ᶎ]
 CorrespondTo [ʱ] : [ɦ] : [Ɦ]
