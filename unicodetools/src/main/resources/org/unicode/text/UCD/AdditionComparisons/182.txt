@@ -12,8 +12,7 @@ Ignoring Block:
 # U+097E is associated with a strange DoNotEmit sequence.
 # TODO(egg): That sequence looks spurious, since U+097E does not have a vertical stem on the right
 # and does not have a half form.
-# One would expect a different DoNotEmit sequence involving U+0952, and a similar one for the new
-# ALTERNATE DDDA.
+# See also L2/12-289.
 Ignoring Do_Not_Emit_Dispreferred Do_Not_Emit_Dispreferred_Type:
 Propertywise [
      \x{0921} द \N{DEVANAGARI LETTER DA}
