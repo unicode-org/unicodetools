@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-23, 08:16:15 GMT
+# Date: 2025-11-24, 16:11:41 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -632,7 +632,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1DAA0         ; Cn #       <reserved-1DAA0>
 1DAB0..1DEFF  ; Cn # [1104] <reserved-1DAB0>..<reserved-1DEFF>
 1DF57..1DFD0  ; Cn # [122] <reserved-1DF57>..<reserved-1DFD0>
-1DFF3..1DFF9  ; Cn #   [7] <reserved-1DFF3>..<reserved-1DFF9>
+1DFF3..1DFF4  ; Cn #   [2] <reserved-1DFF3>..<reserved-1DFF4>
 1E007         ; Cn #       <reserved-1E007>
 1E019..1E01A  ; Cn #   [2] <reserved-1E019>..<reserved-1E01A>
 1E022         ; Cn #       <reserved-1E022>
@@ -750,7 +750,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 802887
+# Total code points: 802882
 
 # ================================================
 
@@ -2191,14 +2191,14 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 1AFF5..1AFFB  ; Lm #   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; Lm #   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
 1DFD1..1DFF2  ; Lm #  [34] MODIFIER LETTER SMALL CAPITAL P..MODIFIER LETTER SMALL T WITH CURL
-1DFFA..1DFFF  ; Lm #   [6] MODIFIER LETTER SMALL C WITH HOOK..MODIFIER LETTER SMALL T WITH HOOK AND RETROFLEX HOOK
+1DFF5..1DFFF  ; Lm #  [11] MODIFIER LETTER SMALL D WITH PALATAL HOOK..MODIFIER LETTER SMALL T WITH HOOK AND RETROFLEX HOOK
 1E030..1E06D  ; Lm #  [62] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
 1E137..1E13D  ; Lm #   [7] NYIAKENG PUACHUE HMONG SIGN FOR PERSON..NYIAKENG PUACHUE HMONG SYLLABLE LENGTHENER
 1E4EB         ; Lm #       NAG MUNDARI SIGN OJOD
 1E6FF         ; Lm #       TAI YO XAM LAI
 1E94B         ; Lm #       ADLAM NASALIZATION MARK
 
-# Total code points: 453
+# Total code points: 458
 
 # ================================================
 

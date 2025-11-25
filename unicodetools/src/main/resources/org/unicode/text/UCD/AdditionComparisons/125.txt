@@ -1,0 +1,30 @@
+# IPA: Modifier letters with palatal hook
+# https://github.com/unicode-org/utc-release-management/issues/125
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+# Modifier ꞕ separately below because its non-modifier counterpart is out of
+# order (Latin Extended D vs. Phonetic Extensions Supplement for [ᶁᶇᶊᶎ]).
+# Modifier ᶎ separately because Ᶎ exists.
+Ignoring Block Unicode_1_Name:
+Propertywise [\N{MODIFIER LETTER SMALL D WITH PALATAL HOOK}
+              \N{MODIFIER LETTER SMALL N WITH PALATAL HOOK}
+              \N{MODIFIER LETTER SMALL S WITH PALATAL HOOK}]
+           : [ᶁᶇᶊ]
+CorrespondTo [ᶪ] : [ᶅ]
+Propertywise [\N{MODIFIER LETTER SMALL H WITH PALATAL HOOK}]
+           : [ꞕ]
+CorrespondTo [ᶪ] : [ᶅ]
+Propertywise [\N{MODIFIER LETTER SMALL Z WITH PALATAL HOOK}]
+           : [ᶎ] : [Ᶎ]
+CorrespondTo [ʱ] : [ɦ] : [Ɦ]
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
