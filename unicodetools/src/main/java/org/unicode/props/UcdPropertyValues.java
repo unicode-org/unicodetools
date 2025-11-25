@@ -792,6 +792,52 @@ public class UcdPropertyValues {
         }
     }
 
+    // Do_Not_Emit_Dispreferred
+    public enum Do_Not_Emit_Dispreferred_Type_Values implements Named {
+        None("None"),
+        Indic_Atomic_Consonant("Indic_Atomic_Consonant"),
+        Indic_Consonant_Conjunct("Indic_Consonant_Conjunct"),
+        Indic_Vowel_Letter("Indic_Vowel_Letter"),
+        Bengali_Khanda_Ta("Bengali_Khanda_Ta"),
+        Malayalam_Chillu("Malayalam_Chillu"),
+        Tamil_Shrii("Tamil_Shrii"),
+        Dotless_Form("Dotless_Form"),
+        Hamza_Form("Hamza_Form"),
+        Precomposed_Hieroglyph("Precomposed_Hieroglyph"),
+        Precomposed_Form("Precomposed_Form"),
+        Deprecated("Deprecated"),
+        Discouraged("Discouraged"),
+        Preferred_Spelling("Preferred_Spelling"),
+        Arabic_Tashkil("Arabic_Tashkil");
+        private final PropertyNames<Do_Not_Emit_Dispreferred_Type_Values> names;
+
+        private Do_Not_Emit_Dispreferred_Type_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Do_Not_Emit_Dispreferred_Type_Values>(
+                            Do_Not_Emit_Dispreferred_Type_Values.class,
+                            this,
+                            shortName,
+                            otherNames);
+        }
+
+        @Override
+        public PropertyNames<Do_Not_Emit_Dispreferred_Type_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Do_Not_Emit_Dispreferred_Type_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Do_Not_Emit_Dispreferred_Type_Values.class);
+
+        public static Do_Not_Emit_Dispreferred_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     // Do_Not_Emit_Preferred
     public enum Do_Not_Emit_Type_Values implements Named {
         None("None"),

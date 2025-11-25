@@ -489,6 +489,8 @@ NamedSequencesProv ; Named_Sequences_Prov
 StandardizedVariants ; Standardized_Variant
 emoji-variation-sequences ; emoji-variation-sequence
 DoNotEmit ; Do_Not_Emit_Preferred ; 1
+DoNotEmit ; Do_Not_Emit_Dispreferred ; 1 ↦ 0
+DoNotEmit ; Do_Not_Emit_Dispreferred_Type ; 1 ↦ 2
 DoNotEmit ; Do_Not_Emit_Type ; 2
 
 idna/*/IdnaMappingTable; Idn_Status;
