@@ -9,6 +9,11 @@ Ignoring Name Age:
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
 Ignoring Block:
+# U+097E is associated with a strange DoNotEmit sequence.
+# TODO(egg): That sequence looks spurious, since U+097E does not have a vertical stem on the right
+# and does not have a half form.
+# One would expect a different DoNotEmit sequence involving U+0952, and a similar one for the new
+# ALTERNATE DDDA.
 Ignoring Do_Not_Emit_Dispreferred Do_Not_Emit_Dispreferred_Type:
 Propertywise [
      \x{0921} द \N{DEVANAGARI LETTER DA}
