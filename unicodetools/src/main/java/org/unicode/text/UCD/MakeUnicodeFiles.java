@@ -828,6 +828,9 @@ public class MakeUnicodeFiles {
             }
         }
         final var remainder = scope.clone();
+        // DoNotEmitSections have headers enclosed in # ===… boxes.
+        // The headers of Subsections are separated from previous data lines by a blank line.
+        // Subsubsections immediately follow data lines of the preceding Sub(sub)section.
         class DoNotEmitSubsubsection {
             DoNotEmitSubsubsection(String header, String unicodeSet) {
                 this(header, unicodeSet, null);
@@ -912,32 +915,18 @@ public class MakeUnicodeFiles {
         // TODO(egg): These sections seem like an unmaintainable mess (complete with numbered
         // references to core specification tables).  Can we come up with something a little more
         // systematic?
+        Comparator<String> doNotUseTableComparator =
+                Comparator.<String, String>comparing(preferred::getValue)
+                        .thenComparing(
+                                dispreferred ->
+                                        !dispreferred.startsWith(preferred.getValue(dispreferred)))
+                        .thenComparing(dispreferred -> dispreferred.replace("\u200D", "").length())
+                        .thenComparing(Comparator.naturalOrder());
         DoNotEmitSection[] sections =
                 new DoNotEmitSection[] {
                     new DoNotEmitSection(
                             "\"Do Not Use\" tables from the Core Specification",
-                            (l, r) -> {
-                                final int preferredComparison =
-                                        preferred.getValue(l).compareTo(preferred.getValue(r));
-                                if (preferredComparison != 0) {
-                                    return preferredComparison;
-                                }
-                                final int startsWithPreferredComparison =
-                                        -Boolean.compare(
-                                                l.startsWith(preferred.getValue(l)),
-                                                r.startsWith(preferred.getValue(r)));
-                                if (startsWithPreferredComparison != 0) {
-                                    return startsWithPreferredComparison;
-                                }
-                                final int zwjlessLengthComparison =
-                                        Integer.compare(
-                                                l.replace("\u200D", "").length(),
-                                                r.replace("\u200D", "").length());
-                                if (zwjlessLengthComparison != 0) {
-                                    return zwjlessLengthComparison;
-                                }
-                                return l.compareTo(r);
-                            },
+                            doNotUseTableComparator,
                             new DoNotEmitSubsection(
                                     "Devanagari, from Table 12-1",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
@@ -1082,7 +1071,7 @@ public class MakeUnicodeFiles {
                                                     == UcdPropertyValues.Script_Values.Modi)),
                     new DoNotEmitSection(
                             "Deprecated characters and other discouraged characters and sequences",
-                            null,
+                            Comparator.naturalOrder(),
                             new DoNotEmitSubsection(
                                     "Latin, from text in the \"Latin\" section of the core specification, the NamesList, and the uppercase mapping",
                                     "[\u0140\u0149{\u0131\u0307}{\u0237\u0307}]"),
@@ -1152,16 +1141,9 @@ public class MakeUnicodeFiles {
                 }
                 covered.addAll(subsection.dispreferredStrings);
                 remainder.removeAll(subsection.dispreferredStrings);
-                Iterable<String> sortedSubsection;
-                if (section.compareDispreferredSequences == null) {
-                    sortedSubsection = subsection.dispreferredStrings;
-                } else {
-                    final var sorted = new TreeSet<String>(section.compareDispreferredSequences);
-                    for (final String dispreferred : subsection.dispreferredStrings) {
-                        sorted.add(dispreferred);
-                    }
-                    sortedSubsection = sorted;
-                }
+                final var sortedSubsection =
+                        new TreeSet<String>(section.compareDispreferredSequences);
+                subsection.dispreferredStrings.stream().forEach(sortedSubsection::add);
                 for (final String dispreferredString : sortedSubsection) {
                     final String preferredString = preferred.getValue(dispreferredString);
                     pw.println(
