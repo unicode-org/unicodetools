@@ -9,15 +9,15 @@ Ignoring Name Age:
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
 Ignoring Block:
-Propertywise [ \N{LATIN SMALL LETTER BETA WITH PALATAL HOOK}
-               \N{LATIN SMALL LETTER CHI WITH PALATAL HOOK} ]
-           ⧴ [ {\N{LATIN SMALL LETTER BETA}\N{COMBINING PALATALIZED HOOK BELOW}}
-               {\N{LATIN SMALL LETTER CHI}\N{COMBINING PALATALIZED HOOK BELOW}} ]
-CorrespondTo [ᶀ\N{LATIN SMALL LETTER B WITH PALATAL HOOK}]
-           ⧴ [{b\N{COMBINING PALATALIZED HOOK BELOW}}]
 
-Propertywise [\N{LATIN SMALL LETTER THETA WITH PALATAL HOOK}]
-           ⧴ [{\N{GREEK SMALL LETTER THETA}\N{COMBINING PALATALIZED HOOK BELOW}}]
+# Note that the corresponding dispreferred sequences use Greek rather than Latin beta and chi,
+# since these are the letters used in the IPA (see https://unicode.org/charts/PDF/U0250.pdf).
+Propertywise [ \N{LATIN SMALL LETTER BETA WITH PALATAL HOOK}
+               \N{LATIN SMALL LETTER THETA WITH PALATAL HOOK}
+               \N{LATIN SMALL LETTER CHI WITH PALATAL HOOK} ]
+           ⧴ [{β\u0321} {\N{GREEK SMALL LETTER BETA}\N{COMBINING PALATALIZED HOOK BELOW}}
+              {θ\u0321} {\N{GREEK SMALL LETTER THETA}\N{COMBINING PALATALIZED HOOK BELOW}}
+              {χ\u0321} {\N{GREEK SMALL LETTER CHI}\N{COMBINING PALATALIZED HOOK BELOW}} ]
 CorrespondTo [ᶀ\N{LATIN SMALL LETTER B WITH PALATAL HOOK}]
            ⧴ [{b\N{COMBINING PALATALIZED HOOK BELOW}}]
 
