@@ -708,11 +708,15 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             propInfoSet);
                     break;
                 case Field:
-                    final var mapping = propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion);
+                    FieldMapping mapping;
                     if (propInfoSet.size() == 1
                             && (propInfo = propInfoSet.iterator().next()).special
                                     == SpecialProperty.None
-                            && mapping.keyField == 0
+                            && (mapping =
+                                                    propInfo.getFieldMapping(
+                                                            indexUnicodeProperties.ucdVersion))
+                                            .keyField
+                                    == 0
                             && mapping.valueField == 1) {
                         if (fileName.equals("math/*/MathClass")
                                 && indexUnicodeProperties.ucdVersion.compareTo(
