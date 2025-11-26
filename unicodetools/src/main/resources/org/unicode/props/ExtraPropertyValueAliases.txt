@@ -319,6 +319,7 @@ Other_Joining_Type ; U                                ; Non_Joining
 Other_Joining_Type ; Deduce_From_General_Category     ; Deduce_From_General_Category
 
 # @missing: 0000..10FFFF; Do_Not_Emit_Preferred ; <none>
+# @missing: 0000..10FFFF; Do_Not_Emit_Dispreferred ; <none>
 
 # @missing: 0000..10FFFF; Do_Not_Emit_Type ; None
 Do_Not_Emit_Type ; None                     ; None
