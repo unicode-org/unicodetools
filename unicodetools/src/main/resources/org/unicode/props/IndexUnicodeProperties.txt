@@ -45,6 +45,7 @@ FileType ; SealSources ; PropertyValue
 
 FileType ; NameAliases ; NameAliases
 FileType ; NameAliasesProv ; NameAliases
+# TODO(egg): These probably want to be somehow associated with their base character.
 FileType ; StandardizedVariants ; StandardizedVariants
 FileType ; emoji-variation-sequences ; StandardizedVariants
 
@@ -58,6 +59,8 @@ FileType ; CJKRadicals ; CJKRadicals
 # NamedSequences File Type
 # The code point is not in field 0, but instead in field 1.
 # The value is in field 0
+# TODO(egg): This could be handled with a field mapping 1 ↦ 0 instead of a
+# dedicated file type.
 
 FileType ; NamedSequences ; NamedSequences
 FileType ; NamedSequencesProv ; NamedSequences
@@ -70,11 +73,21 @@ FileType ; NamesList ; NamesList
 # =======================================
 
 # Files where particular properties can be found, and in which field
-# The format is:
-# Field0 : file name
-# Field1 : property name
-# Field2 : field number in file (default is 1)
-# Field3 : special handling
+# The format of these property location lines is:
+# <file name without extension>
+#    ; <property alias>
+#  [ ; <field mapping> [ ; <special handling> ] ]
+#  [ ; <version> ]
+# Where <field mapping> is <key field index> ↦ <value field index>
+# or <value field index> (with the key field being field 0 by default).
+# If the <field mapping> is omitted, it is 0 ↦ 1 by default.
+# No <field mapping> is given for files whose type determine the field mapping,
+# such as PropertyValue: in a PropertyValue file, the key is always
+# field 0, the value field 2, and field 1 determines the property.
+# <version> has the form v<n>[.<n>.[.<n>]]; it determines the latest applicable
+# version for a past location of the property.  If it is omitted, the location
+# is still current.
+# The <special handling> is only used for SpecialCasing:
 #   Skip1FT  : Skip line if field 1 is F or T
 #   Skip1ST  : Skip line if field 1 is S or T
 #   SkipAny4 : Skip line if field 4 is not empty

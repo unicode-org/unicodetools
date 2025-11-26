@@ -49,7 +49,14 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     public final UcdProperty property;
     public final SpecialProperty special;
 
+    /**
+     * Represents a mapping from one field of a UCD file to another. For instance, given the data
+     * line ABCD ; Value ; 1234 FieldMapping(1) maps U+ABCD to Value, FieldMapping(2) maps U+ABCD to
+     * 1234 (which may be interpreted as U+1234) depending on the property type, and FieldMapping(2,
+     * 1) maps U+1234 to Value.
+     */
     public static class FieldMapping implements Comparable<FieldMapping> {
+        /** A mapping from field 0 to field `valueField`. This is the most common case. */
         FieldMapping(int valueField) {
             this(0, valueField);
         }
@@ -61,15 +68,20 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
         @Override
         public int compareTo(FieldMapping other) {
-            return Comparator.<FieldMapping>comparingInt(m -> m.keyField)
-                    .thenComparing(m -> m.valueField)
-                    .compare(this, other);
+            return comparator.compare(this, other);
+        }
+
+        @Override
+        public String toString() {
+            return keyField + " ↦ " + valueField;
         }
 
         final int keyField;
         final int valueField;
+        static final Comparator<FieldMapping> comparator =
+                Comparator.<FieldMapping>comparingInt(m -> m.keyField)
+                        .thenComparing(m -> m.valueField);
     }
-    ;
 
     /**
      * Maps from Unicode versions to field mapping. A property whose field mapping depends on the
@@ -696,14 +708,12 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             propInfoSet);
                     break;
                 case Field:
+                    final var mapping = propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion);
                     if (propInfoSet.size() == 1
                             && (propInfo = propInfoSet.iterator().next()).special
                                     == SpecialProperty.None
-                            && propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion).keyField
-                                    == 0
-                            && propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion)
-                                            .valueField
-                                    == 1) {
+                            && mapping.keyField == 0
+                            && mapping.valueField == 1) {
                         if (fileName.equals("math/*/MathClass")
                                 && indexUnicodeProperties.ucdVersion.compareTo(
                                                 VersionInfo.UNICODE_6_3)
