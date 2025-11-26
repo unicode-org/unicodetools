@@ -22,10 +22,18 @@ CorrespondTo [ \x{A740} Ꝁ \N{LATIN CAPITAL LETTER K WITH STROKE}]
            : [ \x{A741} ꝁ \N{LATIN SMALL LETTER K WITH STROKE}]
 UpTo: Block (Latin_Extended_G vs Latin_Extended_D)
 
+Propertywise [\x{1DF45}   \N{LATIN SMALL LETTER G WITH STROKE AND PALATAL HOOK}]
+           ⧴ [{\u01E5\u0321}
+                       {ǥ\u0321}
+                         {\N{LATIN SMALL LETTER G WITH STROKE}\N{COMBINING PALATALIZED HOOK BELOW}}]
+CorrespondTo [\x{1DF13} 𝼓 \N{LATIN SMALL LETTER L WITH BELT AND PALATAL HOOK}]
+           ⧴ [{\u026C\u0321}
+                       {ɬ\u0321}
+                         {\N{LATIN SMALL LETTER L WITH BELT}\N{COMBINING PALATALIZED HOOK BELOW}}]
+
 Propertywise [\x{1DF42}   \N{LATIN SMALL LETTER BARRED OPEN O}
               \x{1DF43}   \N{LATIN LETTER SMALL CAPITAL BARRED E}
               \x{1DF44}   \N{LATIN SMALL LETTER BARRED OPEN E}
-              \x{1DF45}   \N{LATIN SMALL LETTER G WITH STROKE AND PALATAL HOOK}
               \x{1DF46}   \N{LATIN SMALL LETTER BARRED H}
               \x{1DF47}   \N{LATIN SMALL LETTER BARRED H WITH HOOK}
               \x{1DF4C}   \N{LATIN SMALL LETTER BARRED M WITH HOOK}

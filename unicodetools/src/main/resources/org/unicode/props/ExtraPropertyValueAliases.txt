@@ -319,6 +319,7 @@ Other_Joining_Type ; U                                ; Non_Joining
 Other_Joining_Type ; Deduce_From_General_Category     ; Deduce_From_General_Category
 
 # @missing: 0000..10FFFF; Do_Not_Emit_Preferred ; <none>
+# @missing: 0000..10FFFF; Do_Not_Emit_Dispreferred ; <none>
 
 # @missing: 0000..10FFFF; Do_Not_Emit_Type ; None
 Do_Not_Emit_Type ; None                     ; None
@@ -336,6 +337,24 @@ Do_Not_Emit_Type ; Deprecated               ; Deprecated
 Do_Not_Emit_Type ; Discouraged              ; Discouraged
 Do_Not_Emit_Type ; Preferred_Spelling       ; Preferred_Spelling
 Do_Not_Emit_Type ; Arabic_Tashkil           ; Arabic_Tashkil
+
+# TODO(egg): This is really the same enumeration as Do_Not_Emit_Type, cf. Script and Script_Extensions.
+# @missing: 0000..10FFFF; Do_Not_Emit_Dispreferred_Type ; None
+Do_Not_Emit_Dispreferred_Type ; None                     ; None
+Do_Not_Emit_Dispreferred_Type ; Indic_Atomic_Consonant   ; Indic_Atomic_Consonant
+Do_Not_Emit_Dispreferred_Type ; Indic_Consonant_Conjunct ; Indic_Consonant_Conjunct
+Do_Not_Emit_Dispreferred_Type ; Indic_Vowel_Letter       ; Indic_Vowel_Letter
+Do_Not_Emit_Dispreferred_Type ; Bengali_Khanda_Ta        ; Bengali_Khanda_Ta
+Do_Not_Emit_Dispreferred_Type ; Malayalam_Chillu         ; Malayalam_Chillu
+Do_Not_Emit_Dispreferred_Type ; Tamil_Shrii              ; Tamil_Shrii
+Do_Not_Emit_Dispreferred_Type ; Dotless_Form             ; Dotless_Form
+Do_Not_Emit_Dispreferred_Type ; Hamza_Form               ; Hamza_Form
+Do_Not_Emit_Dispreferred_Type ; Precomposed_Hieroglyph   ; Precomposed_Hieroglyph
+Do_Not_Emit_Dispreferred_Type ; Precomposed_Form         ; Precomposed_Form
+Do_Not_Emit_Dispreferred_Type ; Deprecated               ; Deprecated
+Do_Not_Emit_Dispreferred_Type ; Discouraged              ; Discouraged
+Do_Not_Emit_Dispreferred_Type ; Preferred_Spelling       ; Preferred_Spelling
+Do_Not_Emit_Dispreferred_Type ; Arabic_Tashkil           ; Arabic_Tashkil
 
 # @missing: 0000..10FFFF; normalization_correction_original; <none>
 # @missing: 0000..10FFFF; normalization_correction_corrected; <none>

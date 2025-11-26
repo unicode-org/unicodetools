@@ -10,6 +10,7 @@ import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.Canonical_Combining_Class_Values;
 import org.unicode.props.UcdPropertyValues.Decomposition_Type_Values;
+import org.unicode.props.UcdPropertyValues.Do_Not_Emit_Dispreferred_Type_Values;
 import org.unicode.props.UcdPropertyValues.Do_Not_Emit_Type_Values;
 import org.unicode.props.UcdPropertyValues.East_Asian_Width_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
@@ -86,6 +87,12 @@ public enum UcdProperty {
     Confusable_SA(PropertyType.String, DerivedPropertyStatus.NonUCDNonProperty, "ConfSA"),
     Confusable_SL(PropertyType.String, DerivedPropertyStatus.NonUCDNonProperty, "ConfSL"),
     Decomposition_Mapping(PropertyType.String, DerivedPropertyStatus.Approved, "dm"),
+    Do_Not_Emit_Dispreferred(
+            PropertyType.String,
+            DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Unordered,
+            "Do_Not_Emit_Dispreferred"),
     Do_Not_Emit_Preferred(
             PropertyType.String, DerivedPropertyStatus.UCDNonProperty, "Do_Not_Emit_Preferred"),
     Equivalent_Unified_Ideograph(PropertyType.String, DerivedPropertyStatus.Approved, "EqUIdeo"),
@@ -646,6 +653,12 @@ public enum UcdProperty {
             Decomposition_Type_Values.class,
             null,
             "dt"),
+    Do_Not_Emit_Dispreferred_Type(
+            PropertyType.Enumerated,
+            DerivedPropertyStatus.UCDNonProperty,
+            Do_Not_Emit_Dispreferred_Type_Values.class,
+            ValueCardinality.Unordered,
+            "Do_Not_Emit_Dispreferred_Type"),
     Do_Not_Emit_Type(
             PropertyType.Enumerated,
             DerivedPropertyStatus.UCDNonProperty,
