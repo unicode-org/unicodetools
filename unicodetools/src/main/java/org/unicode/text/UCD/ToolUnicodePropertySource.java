@@ -309,6 +309,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 "cjkIRG_VSource",
                 "cjkIRG_VSource",
                 "kIRG_VSource");
+        add(iup.getProperty("kMandarin"));
+        add(iup.getProperty("kTotalStrokes"));
+        add(iup.getProperty("kUnihanCore2020"));
+        add(iup.getProperty("kTGT_MergedSrc"));
+        add(iup.getProperty("kNSHU_DubenSrc"));
         add(iup.getProperty("kEH_Cat"));
         add(iup.getProperty("kEH_Desc"));
         add(iup.getProperty("kEH_HG"));
@@ -316,6 +321,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         add(iup.getProperty("kEH_JSesh"));
         add(iup.getProperty("kEH_NoMirror"));
         add(iup.getProperty("kEH_NoRotate"));
+        add(iup.getProperty("kSEAL_THXSrc"));
+        add(iup.getProperty("kSEAL_CCZSrc"));
+        add(iup.getProperty("kSEAL_DYCSrc"));
+        add(iup.getProperty("kSEAL_QJZSrc"));
         add(iup.getProperty("Emoji"));
         add(iup.getProperty("Emoji_Presentation"));
         add(iup.getProperty("Emoji_Modifier"));
@@ -1288,7 +1297,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .remove(0x200D)
                             .remove(0x200B)
                             .removeAll(tags)
-                            // 174-CXX.
+                            // 175-C24.
                             .removeAll(gcb.getSet("Prepend")),
                     "Format");
             unicodeMap.putAll(
@@ -1321,8 +1330,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             // Armenian punctuation marks that occur within words; see
                             // http://www.unicode.org/L2/L2018/18115.htm#155-C3
                             .addAll(new UnicodeSet("[\\u055B\\u055C\\u055E]"))
-                            // 174-CXX.
-                            .add(0x070F),
+                            // 175-C24.
+                            .add(0x070F)
+                            // https://github.com/unicode-org/properties/issues/400.
+                            .add(0x00B8),
                     "ALetter");
             unicodeMap.putAll(
                     new UnicodeSet("[\\u00B7\\u0387\\u05F4\\u2027\\u003A\\uFE13\\uFE55\\uFF1A]"),
@@ -1819,6 +1830,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         }
 
         @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         protected List<String> _getNameAliases(List<String> result) {
             addUnique(ucdProperty.getName(UCD_Types.SHORT), result);
             final String name = getName();
@@ -2224,6 +2240,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     "Failed to find " + up.getName() + " value for " + Utility.hex(codepoint));
         }
 
+        @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
+        }
+
         public String getAge(int codePoint) {
             if (needAgeCache) {
                 for (int i = UCD_Types.AGE11; i < UCD_Types.LIMIT_AGE; ++i) {
@@ -2241,6 +2262,15 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     break;
                 }
                 if (ucdCache[i].isAllocated(codePoint)) {
+                    if (i == UCD_Types.AGE11 && !ucdCache[i + 1].isAllocated(codePoint)) {
+                        // Deallocations in Unicode 2.
+                        continue;
+                    }
+                    return UCD_Names.LONG_AGE[i];
+                } else if (i == UCD_Types.AGE11
+                        && ((codePoint >= 0xE000 && codePoint <= 0xF8FF)
+                                || (codePoint >= 0xF900 && codePoint <= 0xFA2D))) {
+                    // Private use and CJK compatibility ideographs, not overt in UnicodeData 1.1.5.
                     return UCD_Names.LONG_AGE[i];
                 }
             }

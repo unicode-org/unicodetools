@@ -158,6 +158,11 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
             return null;
         }
 
+        @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
+        }
+
         private String getAge(int codePoint) {
             String temp = UCharacter.getAge(codePoint).toString();
             if (temp.equals("0.0.0.0")) return "unassigned";

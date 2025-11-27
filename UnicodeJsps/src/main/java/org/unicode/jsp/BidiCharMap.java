@@ -48,7 +48,7 @@ class BidiCharMap {
 
         for (UnicodeSetIterator it =
                         new UnicodeSetIterator(
-                                new UnicodeSet("[[:ascii:]-[[:cc:]-[:whitespace:]]]"));
+                                new UnicodeSet("[[:Block=ASCII:]-[[:cc:]-[:whitespace:]]]"));
                 it.next(); ) {
             asciiHackMap.put(
                     it.codepoint,

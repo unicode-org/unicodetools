@@ -392,7 +392,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             .getSet(variable)
                             .equals(
                                     new UnicodeSet(
-                                            value, new ParsePosition(0), IUP.getXSymbolTable()))) {
+                                            value,
+                                            new ParsePosition(0),
+                                            VersionedSymbolTable.forDevelopment()))) {
                 continue;
             }
             out.println("<li>");
