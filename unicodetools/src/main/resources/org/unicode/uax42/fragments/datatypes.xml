@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Manual-->
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="datatypes declaration" id='schema.datatypes'>
+  # default; datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+</ucdxml:block>

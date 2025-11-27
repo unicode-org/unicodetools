@@ -6,9 +6,9 @@
  */
 package org.unicode.jsp;
 
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.Normalizer;
@@ -156,6 +156,11 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
                 // TODO: Fix HACK -- API deficient
             }
             return null;
+        }
+
+        @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
         }
 
         private String getAge(int codePoint) {

@@ -4,8 +4,8 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.Transform;
@@ -28,10 +28,12 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
@@ -45,7 +47,6 @@ import org.unicode.draft.UnicodeDataOutput;
 import org.unicode.draft.UnicodeDataOutput.ItemWriter;
 import org.unicode.props.PropertyNames.Named;
 import org.unicode.props.PropertyUtilities.Merge;
-import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
@@ -88,7 +89,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         NONE(null),
         CODE_POINT(null),
         Script(UcdProperty.Script),
-        Script_Extensions(UcdProperty.Script_Extensions),
         Simple_Lowercase_Mapping(UcdProperty.Simple_Lowercase_Mapping),
         Simple_Titlecase_Mapping(UcdProperty.Simple_Titlecase_Mapping),
         Simple_Uppercase_Mapping(UcdProperty.Simple_Uppercase_Mapping);
@@ -147,19 +147,16 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public static final synchronized IndexUnicodeProperties make(VersionInfo ucdVersion) {
         IndexUnicodeProperties newItem = version2IndexUnicodeProperties.get(ucdVersion);
         if (newItem == null) {
-            Age_Values nextAge = Age_Values.Unassigned;
-            for (int i = 0; i < Age_Values.values().length - 1; ++i) {
-                final var version = VersionInfo.getInstance(Age_Values.values()[i].getShortName());
-                if (version.equals(ucdVersion)) {
-                    nextAge = Age_Values.values()[i + 1];
-                }
+            if (!Utility.isUnicodeVersion(ucdVersion)) {
+                throw new IllegalArgumentException("Not a Unicode version: " + ucdVersion);
             }
+            VersionInfo nextVersion = Utility.getVersionFollowing(ucdVersion);
             IndexUnicodeProperties base =
                     !incrementalProperties || ucdVersion == Settings.LAST_VERSION_INFO
                             ? null
-                            : nextAge == Age_Values.Unassigned
+                            : nextVersion == null
                                     ? make(Settings.LAST_VERSION_INFO)
-                                    : make(nextAge);
+                                    : make(nextVersion);
             version2IndexUnicodeProperties.put(
                     ucdVersion, newItem = new IndexUnicodeProperties(ucdVersion, base));
         }
@@ -175,8 +172,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     public static final IndexUnicodeProperties make() {
-        final Age_Values[] values = Age_Values.values();
-        return make(values[values.length - 2]);
+        return make(Settings.LATEST_VERSION_INFO);
     }
 
     final VersionInfo ucdVersion;
@@ -195,6 +191,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     static final Transform<String, String> fromNumericPinyin =
             Transliterator.getInstance("NumericPinyin-Latin;nfc");
 
+    static final Merge<String> MULTIVALUED_JOINER = new PropertyUtilities.Joiner("|");
     static final Merge<String> ALPHABETIC_JOINER =
             new Merge<String>() {
                 TreeSet<String> sorted = new TreeSet<String>();
@@ -263,7 +260,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                             || prop2 == UcdProperty.kAccountingNumeric
                             || prop2 == UcdProperty.kOtherNumeric) {
                         // Unicode 15.1+: A character may have multiple Unihan numeric values.
-                        pos = v.indexOf(' ');
+                        pos = v.indexOf('|');
                         if (pos >= 0) {
                             v = value.substring(0, pos);
                         }
@@ -683,7 +680,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     //        .get(toSkeleton(propertyAlias));
     //    }
 
-    class IndexUnicodeProperty extends UnicodeProperty.BaseProperty {
+    public class IndexUnicodeProperty extends UnicodeProperty.BaseProperty {
 
         private final UcdProperty prop;
         private final Map<String, PropertyNames> stringToNamedEnum;
@@ -723,14 +720,35 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
         }
 
+        public IndexUnicodeProperties getFactory() {
+            return IndexUnicodeProperties.this;
+        }
+
         @Override
         public boolean isTrivial() {
             return _getRawUnicodeMap().isEmpty()
-                    || ((_getRawUnicodeMap().stringKeys() == null
-                                    || _getRawUnicodeMap().stringKeys().isEmpty())
+                    || (!hasStrings()
                             && _getRawUnicodeMap()
                                     .keySet(_getRawUnicodeMap().getValue(0))
                                     .equals(UnicodeSet.ALL_CODE_POINTS));
+        }
+
+        @Override
+        public boolean isDefault(int codePoint) {
+            String defaultValue = getDefaultValue(prop, ucdVersion);
+            String value = getValue(codePoint);
+            var defaultValueType = DefaultValueType.forString(defaultValue);
+            switch (defaultValueType) {
+                case CODE_POINT:
+                    return Character.toString(codePoint).equals(value);
+                case NONE:
+                    return value == null;
+                case LITERAL:
+                    return Objects.equals(defaultValue, value);
+                default:
+                    return Objects.equals(
+                            getProperty(defaultValueType.property).getValue(codePoint), value);
+            }
         }
 
         @Override
@@ -774,6 +792,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             return load(prop);
         }
 
+        @Override
+        protected boolean hasStrings() {
+            return _getRawUnicodeMap().stringKeys() != null
+                    && !_getRawUnicodeMap().stringKeys().isEmpty();
+        }
+
         private UnicodeSet getDiffSet() {
             if (diffSet == null) {
                 diffSet =
@@ -789,19 +813,26 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         @Override
+        protected String _getValue(String string) {
+            return _getRawUnicodeMap().get(string);
+        }
+
+        @Override
         public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
             if (baseVersionProperties == null) {
                 return super.getSet(matcher, result);
             }
             final long start = System.currentTimeMillis();
-            final UnicodeSet baseSet =
-                    baseVersionProperties.getProperty(prop).getSet(matcher, result);
+            final UnicodeSet baseSet = baseVersionProperties.getProperty(prop).getSet(matcher);
             final UnicodeSet matchingInThisVersion =
                     super.getSet(matcher, null).retainAll(getDiffSet());
-            result =
-                    baseSet.addAll(matchingInThisVersion)
-                            .removeAll(
-                                    getDiffSet().cloneAsThawed().removeAll(matchingInThisVersion));
+            baseSet.addAll(matchingInThisVersion)
+                    .removeAll(getDiffSet().cloneAsThawed().removeAll(matchingInThisVersion));
+            if (result == null) {
+                result = baseSet;
+            } else {
+                result.addAll(baseSet);
+            }
             final long stop = System.currentTimeMillis();
             final long Δt_in_ms = stop - start;
             if (Δt_in_ms > 100) {
@@ -810,10 +841,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
             // We only do the delta thing for code points; for strings, we need to do the lookup
             // directly (and clean whatever was added by walking through history).
-            if (baseVersionProperties != null
-                    && (result.hasStrings()
-                            || (_getRawUnicodeMap().stringKeys() != null
-                                    && !_getRawUnicodeMap().stringKeys().isEmpty()))) {
+            if (baseVersionProperties != null && (result.hasStrings() || hasStrings())) {
                 result.removeAllStrings().addAll(super.getSet(matcher, new UnicodeSet()).strings());
             }
             return result;
@@ -832,6 +860,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
         }
 
+        public List<String> getApprovedNameAliases() {
+            var result = new ArrayList<String>();
+            result.add(prop.getShortName());
+            result.add(prop.getNames().getLongName());
+            result.addAll(prop.getNames().getOtherNames());
+            return result;
+        }
+
         @Override
         public List<String> _getNameAliases(List result) {
             result.addAll(prop.getNames().getAllNames());
@@ -839,9 +875,19 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         @Override
-        protected List<String> _getAvailableValues(List result) {
+        protected List<String> _getAvailableValues(List<String> result) {
             if (stringToNamedEnum != null) {
                 result.addAll(enumValueNames);
+                return result;
+            }
+            if (isMultivalued()) {
+                HashSet<String> valueSet = new HashSet<>();
+                for (var value : _getUnicodeMap().getAvailableValues()) {
+                    for (var part : delimiterSplitter.split(value)) {
+                        valueSet.add(part);
+                    }
+                }
+                result.addAll(valueSet);
                 return result;
             }
             return _getUnicodeMap().getAvailableValues(result);
@@ -889,47 +935,37 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         useIncrementalProperties();
         System.out.println(
                 "Loading back to " + (earliest == null ? "the dawn of time" : earliest) + "...");
-        Age_Values[] ages = Age_Values.values();
         final long overallStart = System.currentTimeMillis();
-        for (int i = ages.length - 2; i >= 0; --i) {
+        for (int i = 0; i < Utility.UNICODE_VERSIONS.size(); ++i) {
             // Load in the order last (released, the base), latest (dev), penultimate,
             // antepenultimate, etc.
-            final var age =
-                    ages[
-                            i == ages.length - 2
-                                    ? ages.length - 3
-                                    : i == ages.length - 3 ? ages.length - 2 : i];
+            final var version = Utility.UNICODE_VERSIONS.get(i == 0 ? 1 : i == 1 ? 0 : i);
             final long ucdStart = System.currentTimeMillis();
-            System.out.println("Loading UCD " + age.getShortName() + "...");
+            System.out.println("Loading UCD " + version + "...");
             for (boolean unihan : new boolean[] {false, true}) {
                 final long partStart = System.currentTimeMillis();
                 final String name = unihan ? "Unihan" : "non-Unihan properties";
-                final var properties = IndexUnicodeProperties.make(age.getShortName());
+                final var properties = IndexUnicodeProperties.make(version);
                 for (UcdProperty property : UcdProperty.values()) {
                     if (property.getShortName().startsWith("cjk") == unihan) {
-                        try {
-                            properties.load(property, expectCacheHit);
-                        } catch (ICUException e) {
-                            e.printStackTrace();
-                        }
+                        properties.load(property, expectCacheHit);
                     }
                 }
                 System.out.println(
                         "Loaded "
                                 + name
                                 + " for "
-                                + age.getShortName()
+                                + version
                                 + " ("
                                 + (System.currentTimeMillis() - partStart)
                                 + " ms)");
             }
             System.out.println(
                     "Loaded UCD "
-                            + age.getShortName()
+                            + version
                             + " in "
                             + (System.currentTimeMillis() - ucdStart)
                             + " ms");
-            var version = VersionInfo.getInstance(age.getShortName());
             if (notifyLoaded != null) {
                 notifyLoaded.accept(version);
             }
