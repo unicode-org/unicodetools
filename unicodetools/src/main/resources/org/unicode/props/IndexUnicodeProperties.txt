@@ -38,6 +38,7 @@ FileType ; Unihan_Readings ; PropertyValue
 FileType ; Unihan_Variants ; PropertyValue
 FileType ; NushuSources ; PropertyValue
 FileType ; TangutSources ; PropertyValue
+FileType ; JurchenSources ; PropertyValue
 FileType ; SealSources ; PropertyValue
 
 # NameAliases File Type
@@ -360,6 +361,11 @@ SealSources ; kSEAL_QJZSrc
 SealSources ; kSEAL_DYCSrc
 SealSources ; kSEAL_MCJK
 SealSources ; kSEAL_Rad
+
+JurchenSources ; kJURC_RSUnicode
+JurchenSources ; kJURC_Src
+JurchenSources ; kJURC_NCReading
+JurchenSources ; kJURC_Numeric
 
 NormalizationCorrections ; normalization_correction_original ; 1
 NormalizationCorrections ; normalization_correction_corrected ; 2

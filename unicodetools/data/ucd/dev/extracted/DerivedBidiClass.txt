@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2025-11-27, 17:49:34 GMT
+# Date: 2025-11-27, 18:35:33 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1122,6 +1122,8 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 17000..18CDA  ; L # Lo [7387] TANGUT IDEOGRAPH-17000..KHITAN SMALL SCRIPT CHARACTER-18CDA
 18CFF..18D20  ; L # Lo  [34] KHITAN SMALL SCRIPT CHARACTER-18CFF..TANGUT IDEOGRAPH-18D20
 18D80..18DF2  ; L # Lo [115] TANGUT COMPONENT-769..TANGUT COMPONENT-883
+18E00..19191  ; L # Lo [914] JURCHEN CHARACTER-18E00..JURCHEN CHARACTER-19191
+191A0..191D2  ; L # Lo  [51] JURCHEN RADICAL-01..JURCHEN RADICAL-51
 1AFF0..1AFF3  ; L # Lm   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF5..1AFFB  ; L # Lm   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; L # Lm   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
@@ -1237,7 +1239,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 798781 code points not listed here.
+# The above property value applies to 797816 code points not listed here.
 # Total code points: 1095380
 
 # ================================================

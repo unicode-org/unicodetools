@@ -387,6 +387,12 @@ public enum UcdProperty {
     kIRG_VSource(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "cjkIRG_VSource"),
     kJHJ(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJHJ"),
     kJIS0213(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJIS0213"),
+    kJURC_NCReading(
+            PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kJURC_NCReading"),
+    kJURC_Numeric(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kJURC_Numeric"),
+    kJURC_RSUnicode(
+            PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kJURC_RSUnicode"),
+    kJURC_Src(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kJURC_Src"),
     kJa(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJa"),
     kJapanese(
             PropertyType.Miscellaneous,

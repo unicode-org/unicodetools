@@ -329,6 +329,8 @@ public class UcdPropertyValues {
         Hangul_Jamo_Extended_A("Jamo_Ext_A"),
         Hangul_Jamo_Extended_B("Jamo_Ext_B"),
         Javanese("Javanese"),
+        Jurchen("Jurchen"),
+        Jurchen_Radicals("Jurchen_Radicals"),
         Kaithi("Kaithi"),
         Kaktovik_Numerals("Kaktovik_Numerals"),
         Kana_Extended_A("Kana_Ext_A"),
@@ -1745,6 +1747,10 @@ public class UcdPropertyValues {
     // kJis1
     // kJIS0213
     // kJoyoKanji
+    // kJURC_NCReading
+    // kJURC_Numeric
+    // kJURC_RSUnicode
+    // kJURC_Src
     // kKangXi
     // kKarlgren
     // kKorean
@@ -2270,6 +2276,7 @@ public class UcdPropertyValues {
         Old_Hungarian("Hung"),
         Old_Italic("Ital"),
         Javanese("Java"),
+        Jurchen("Jurc"),
         Kayah_Li("Kali"),
         Katakana("Kana"),
         Kawi("Kawi"),

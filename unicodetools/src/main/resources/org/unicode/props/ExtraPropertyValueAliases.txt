@@ -367,6 +367,10 @@ Indic_Syllabic_Category ; Consonant_Repha ; Consonant_Repha
 # @missing: 0000..10FFFF; kTGT_MergedSrc ; <none>
 # @missing: 0000..10FFFF; kTGT_RSUnicode ; <none>
 
+# @missing: 0000..10FFFF; kJURC_RSUnicode ; <none>
+# @missing: 0000..10FFFF; kJURC_NCReading ; <none>
+# @missing: 0000..10FFFF; kJURC_Numeric ; <none>
+
 # @missing: 0000..10FFFF; kNSHU_DubenSrc ; <none>
 # @missing: 0000..10FFFF; kNSHU_Reading ; <none>
 

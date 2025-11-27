@@ -1,5 +1,5 @@
 # PropList-18.0.0.txt
-# Date: 2025-11-27, 17:49:58 GMT
+# Date: 2025-11-27, 18:35:54 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -888,6 +888,8 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 17000..18CDA  ; Ideographic # Lo [7387] TANGUT IDEOGRAPH-17000..KHITAN SMALL SCRIPT CHARACTER-18CDA
 18CFF..18D20  ; Ideographic # Lo  [34] KHITAN SMALL SCRIPT CHARACTER-18CFF..TANGUT IDEOGRAPH-18D20
 18D80..18DF2  ; Ideographic # Lo [115] TANGUT COMPONENT-769..TANGUT COMPONENT-883
+18E00..19191  ; Ideographic # Lo [914] JURCHEN CHARACTER-18E00..JURCHEN CHARACTER-19191
+191A0..191D2  ; Ideographic # Lo  [51] JURCHEN RADICAL-01..JURCHEN RADICAL-51
 1B170..1B2FB  ; Ideographic # Lo [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
 20000..2A6DF  ; Ideographic # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
 2A700..2B81E  ; Ideographic # Lo [4383] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B81E
@@ -899,7 +901,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 31350..33479  ; Ideographic # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Ideographic # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 122279
+# Total code points: 123244
 
 # ================================================
 

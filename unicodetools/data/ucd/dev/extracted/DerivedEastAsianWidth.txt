@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-18.0.0.txt
-# Date: 2025-11-27, 17:49:38 GMT
+# Date: 2025-11-27, 18:35:37 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2148,8 +2148,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 760081 code points not listed here.
-# Total code points: 792256
+# The above property value applies to 759116 code points not listed here.
+# Total code points: 791291
 
 # ================================================
 
@@ -2558,6 +2558,8 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 17000..18CDA  ; W # Lo [7387] TANGUT IDEOGRAPH-17000..KHITAN SMALL SCRIPT CHARACTER-18CDA
 18CFF..18D20  ; W # Lo  [34] KHITAN SMALL SCRIPT CHARACTER-18CFF..TANGUT IDEOGRAPH-18D20
 18D80..18DF2  ; W # Lo [115] TANGUT COMPONENT-769..TANGUT COMPONENT-883
+18E00..19191  ; W # Lo [914] JURCHEN CHARACTER-18E00..JURCHEN CHARACTER-19191
+191A0..191D2  ; W # Lo  [51] JURCHEN RADICAL-01..JURCHEN RADICAL-51
 1AFF0..1AFF3  ; W # Lm   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF5..1AFFB  ; W # Lm   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; W # Lm   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
@@ -2628,7 +2630,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 3D000..3FC3F  ; W # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
 # The above property value applies to 44837 code points not listed here.
-# Total code points: 182779
+# Total code points: 183744
 
 # ================================================
 
