@@ -1313,6 +1313,227 @@ Value: Brahmi_Joining_Number
 File:	UnicodeData
 Property: SPECIAL
 
+File:	ArabicShaping
+#
+# This file is a normative contributory data file in the
+# Unicode Character Database.
+#
+# This file defines the Joining_Type and Joining_Group property
+# values for Arabic, Syriac, N'Ko, Mandaic, and Manichaean positional
+# shaping, repeating in machine readable form the information
+# exemplified in various tables of The Unicode Standard core specification.
+#
+# This file also defines Joining_Type values for Mongolian, Phags-pa,
+# Psalter Pahlavi, Sogdian, Old Uyghur, Chorasmian, and Adlam positional
+# shaping, and Joining_Type and Joining_Group values for Hanifi Rohingya
+# positional shaping, which are not listed in tables in the core
+# specification.
+#
+# Script          Section  Table(s)
+#
+# Arabic           9.2      9-3, 9-4, 9-5, 9-7, 9-8, 9-9, 9-10, 9-11, 9-13
+# Syriac           9.3      9-15, 9-16, 9-17, 9-18, 9-19
+# Mandaic          9.5      9-22, 9-23
+# Manichaean      10.5      10-4, 10-5, 10-6, 10-7
+# Psalter Pahlavi 10.6      --
+# Chorasmian      10.8      --
+# Mongolian       13.5      --
+# Phags-pa        14.4      14-7
+# Sogdian         14.10     --
+# Old Uyghur      14.11     --
+# Hanifi Rohingya 16.14     --
+# N'Ko            19.4      19-5
+# Adlam           19.9      --
+#
+# Each line contains four fields, separated by a semicolon.
+#
+# Field 0: the code point of a character, in hexadecimal form.
+#
+# Field 1: gives a short schematic name for that character.
+#   The schematic name is descriptive of the shape, based as
+#   consistently as possible on a name for the skeleton and
+#   then the diacritic marks applied to the skeleton, if any.
+#   Note that this schematic name is considered a comment,
+#   and does not constitute a formal property value.
+#
+# Field 2: defines the joining type (property name: Joining_Type)
+#   R Right_Joining
+#   L Left_Joining
+#   D Dual_Joining
+#   C Join_Causing
+#   U Non_Joining
+#   T Transparent
+#
+# See Section 9.2, Arabic for more information on these joining types.
+# Note that for cursive joining scripts which are typically rendered
+# top-to-bottom, rather than right-to-left, Joining_Type=L conventionally
+# refers to bottom joining, and Joining_Type=R conventionally refers
+# to top joining. See Section 14.4, Phags-pa for more information on the
+# interpretation of joining types in vertical layout.
+#
+# Field 3: defines the joining group (property name: Joining_Group)
+#
+# The values of the joining group are based schematically on character
+# names. Where a schematic character name consists of two or more parts
+# separated by spaces, the formal Joining_Group property value, as specified in
+# PropertyValueAliases.txt, consists of the same name parts joined by
+# underscores. Hence, the entry:
+#
+#   0629; TEH MARBUTA; R; TEH MARBUTA
+#
+# corresponds to [Joining_Group = Teh_Marbuta].
+#
+# Note: The property value now designated [Joining_Group = Teh_Marbuta_Goal]
+#   used to apply to both of the following characters
+#   in earlier versions of the standard:
+#
+#   U+06C2 ARABIC LETTER HEH GOAL WITH HAMZA ABOVE
+#   U+06C3 ARABIC LETTER TEH MARBUTA GOAL
+#
+#   However, it currently applies only to U+06C3, and *not* to U+06C2.
+#   To avoid destabilizing existing Joining_Group property aliases, the
+#   prior Joining_Group value for U+06C3 (Hamza_On_Heh_Goal) has been
+#   retained as a property value alias, despite the fact that it
+#   no longer applies to its namesake character, U+06C2.
+#   See PropertyValueAliases.txt.
+#
+# When other cursive scripts are added to the Unicode Standard in the
+# future, the joining group value of all its letters will default to
+# jg=No_Joining_Group in this data file. Other, more specific
+# joining group values will be defined only if an explicit proposal
+# to define those values exactly has been approved by the UTC. This
+# is the convention exemplified by the N'Ko, Mandaic, Mongolian,
+# Phags-pa, Psalter Pahlavi, Sogdian, Old Uyghur, Chorasmian, and Adlam scripts.
+# Only the Arabic, Manichaean, and Syriac scripts currently have
+# explicit joining group values defined for all characters, including
+# those which have only a single character in a particular Joining_Group
+# class. Hanifi Rohingya has explicit Joining_Group values assigned only for
+# the few characters which share a particular Joining_Group class, but
+# assigns jg=No_Joining_Group to all the singletons.
+#
+# Note: Code points that are not explicitly listed in this file are
+# either of Joining_Type T or U:
+#
+# - Those that are not explicitly listed and that are of General_Category Mn, Me, or Cf
+#   are Joining_Type=T.
+# - All others not explicitly listed are Joining_Type=U.
+#
+# For an explicit listing of all characters of Joining_Type=T, see
+# the derived property file DerivedJoiningType.txt.
+# For an implementation that needs to parse for the values of
+# Joining_Type, it is recommended to use DerivedJoiningType.txt
+# instead of ArabicShaping.txt, to avoid the separate required step of
+# calculating the set for Joining_Type=T based on General_Category values.
+#
+# #############################################################
+Property: SPECIAL
+
+File: DoNotEmit
+#
+# Do_Not_Emit
+#
+# This file is part of the Unicode Character Database. It does not define
+# any properties, but rather provides additional information about
+# characters or character sequences that should not be emitted or generated
+# in newly authored text. Applications such as input methods could use this
+# information to replace "Do Not Emit" sequences input by users with an
+# acceptable alternative. Other applications may use the information in
+# this file to consider certain sequences similar to each other for display,
+# collation, or searching purposes. (This is an addition to canonical
+# equivalence, which is defined elsewhere in the standard.)
+#
+# Note that the discouraged sequences listed in this file should not be
+# considered invalid input to text display implementations. When received
+# by an implementation, the sequences are not required to be displayed with
+# a visual indication of an error (such as dotted circles). Implementation
+# should try their best to display them as normal text, perhaps in the same
+# way or very similar to the way their alternative sequence is displayed.
+#
+# Only characters and character sequences for which a suitable alternative
+# sequence exists are provided. For example, deprecated characters for
+# which no suitable alternative exists are not listed. (For a list of
+# deprecated characters see the "Deprecated" property defined in the Unicode
+# Character Database file "PropList.txt".)
+#
+# Also, canonically equivalent sequences are not listed, even if one
+# sequence is specified to be discouraged or deprecated in the Unicode
+# Standard. For example, U+2126 OHM SIGN, which is canonically equivalent
+# to U+03A9 GREEK CAPITAL LETTER OMEGA is not explicitly listed, since it is
+# expected that conforming Unicode processes would discover the relation
+# between the two characters.
+#
+# Sequences for Egyptian Hieroglyphs are not listed here. See
+# the kEH_AltSeq property in UAX #57 for that information.
+#
+# CJK compatibility ideographs are not listed here either. Most of the CJK
+# compatibility ideographs are canonically equivalent to a CJK unified
+# ideograph, which means that distinctions between compatibility ideographs
+# and the unified ideographs that they are canonically equivalent to would
+# be lost in normalization. The preferred form for applications that intend
+# to keep such distinctions is using a standardized variation sequence
+# instead of a CJK compatibility ideograph. For a comprehensive list of
+# these standardized variation sequences, see the section "CJK
+# compatibility ideographs" in StandardizedVariants.txt.
+#
+# Note that some sequences could be considered recursive, in the way that
+# the preferred sequence to use may be a subsequence of the "Do Not Emit"
+# sequence. This may have implications for some implementations who may want
+# to treat the original sequence and its alternative as similar.
+#
+# This file should not be considered to be comprehensive. It is expected
+# that new sequences and categories may be added to or removed from the file
+# as the Unicode Standard goes through new releases.
+#
+# Format:
+#    Field 0  A sequence of Unicode code point values
+#    Field 1  A replacement sequence of Unicode code point values
+#    Field 2  DoNotEmit type of the original character sequence
+#
+# Field 2 is followed by an optional human-readable comment field.
+#
+# These are the values used for Field 2:
+# Indic_Atomic_Consonant:
+#    Sequences that look like an Indic consonant but should be avoided
+#    in representing that consonant. For now, these are limited to
+#    Devanagari.
+# Indic_Consonant_Conjunct:
+#    Sequences that look like an Indic conjunct but should be avoided
+#    in representing that conjunct. For now, these are limited to
+#    Devanagari.
+# Indic_Vowel_Letter:
+#    Sequences that look like an Indic vowel letter but should be avoided
+#    in representing that vowel letter.
+# Bengali_Khanda_Ta:
+#    Legacy representation of Bengali khanda ta prior to
+#    Unicode Version 4.1.
+# Malayalam_Chillu:
+#    Legacy representation of Malayalam chillus prior to
+#    Unicode Version 5.1. Note that the sequence in Field 0 may appear
+#    in legitimate Malayalam sequences not related to chillus.
+# Tamil_Shrii:
+#    Legacy representation of Tamil ligature shri prior to
+#    Unicode Version 4.1.
+# Dotless_Form:
+#    Dotless forms of lowercase Latin i and j followed by a
+#    combining dot above.
+# Arabic_Tashkil:
+#    Arabic tashkil combinations that should be avoided.
+# Hamza_Form:
+#    Sequences containing Arabic hamza above, which should be avoided.
+# Precomposed_Form:
+#    Sequences for which a precomposed form exists, but without canonical
+#    equivalence.
+# Deprecated:
+#    Characters that are identified in the Unicode Standard as
+#    deprecated for which a replacement sequence exists.
+# Discouraged:
+#    Miscellaneous characters and sequences discouraged in the
+#    Unicode Standard.
+# Preferred_Spelling:
+#    Miscellaneous characters and sequences for which the Unicode Standard
+#    specifies a preferred spelling.
+Property: SPECIAL
+
 File:	SpecialCasing
 Property: SPECIAL
 
@@ -1362,7 +1583,6 @@ HackName:
 FinalComments
 Note that PropertyAliases sorts by the long name, while PropertyValueAliases
 sorts by the short name
-ArabicShaping
 BidiMirroring
 CompositionExclusions
 StandardizedVariants
