@@ -1,5 +1,5 @@
 # NormalizationTest-18.0.0.txt
-# Date: 2025-11-27, 13:29:13 GMT
+# Date: 2025-11-27, 16:49:40 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -16327,6 +16327,8 @@ FFEE;FFEE;FFEE;25CB;25CB; # (￮; ￮; ￮; ○; ○; ) HALFWIDTH WHITE CIRCLE
 1DFF0;1DFF0;1DFF0;0234;0234; # (𝿰; 𝿰; 𝿰; ȴ; ȴ; ) MODIFIER LETTER SMALL L WITH CURL
 1DFF1;1DFF1;1DFF1;0235;0235; # (𝿱; 𝿱; 𝿱; ȵ; ȵ; ) MODIFIER LETTER SMALL N WITH CURL
 1DFF2;1DFF2;1DFF2;0236;0236; # (𝿲; 𝿲; 𝿲; ȶ; ȶ; ) MODIFIER LETTER SMALL T WITH CURL
+1DFF3;1DFF3;1DFF3;03C8;03C8; # (𝿳; 𝿳; 𝿳; ψ; ψ; ) MODIFIER LETTER SMALL GREEK PSI
+1DFF4;1DFF4;1DFF4;03C9;03C9; # (𝿴; 𝿴; 𝿴; ω; ω; ) MODIFIER LETTER SMALL GREEK OMEGA
 1DFF5;1DFF5;1DFF5;1D81;1D81; # (𝿵; 𝿵; 𝿵; ᶁ; ᶁ; ) MODIFIER LETTER SMALL D WITH PALATAL HOOK
 1DFF6;1DFF6;1DFF6;A795;A795; # (𝿶; 𝿶; 𝿶; ꞕ; ꞕ; ) MODIFIER LETTER SMALL H WITH PALATAL HOOK
 1DFF7;1DFF7;1DFF7;1D87;1D87; # (𝿷; 𝿷; 𝿷; ᶇ; ᶇ; ) MODIFIER LETTER SMALL N WITH PALATAL HOOK

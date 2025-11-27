@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2025-11-27, 13:29:01 GMT
+# Date: 2025-11-27, 16:49:28 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -42328,6 +42328,8 @@ FFFD          ; REPLACEMENT CHARACTER
 1DFF0         ; MODIFIER LETTER SMALL L WITH CURL
 1DFF1         ; MODIFIER LETTER SMALL N WITH CURL
 1DFF2         ; MODIFIER LETTER SMALL T WITH CURL
+1DFF3         ; MODIFIER LETTER SMALL GREEK PSI
+1DFF4         ; MODIFIER LETTER SMALL GREEK OMEGA
 1DFF5         ; MODIFIER LETTER SMALL D WITH PALATAL HOOK
 1DFF6         ; MODIFIER LETTER SMALL H WITH PALATAL HOOK
 1DFF7         ; MODIFIER LETTER SMALL N WITH PALATAL HOOK
@@ -46341,6 +46343,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 171654
+# Total code points: 171656
 
 # EOF
