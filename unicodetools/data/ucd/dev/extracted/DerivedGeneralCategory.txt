@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-27, 17:33:30 GMT
+# Date: 2025-11-27, 17:49:38 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -252,7 +252,6 @@
 1FFF          ; Cn #       <reserved-1FFF>
 2065          ; Cn #       <reserved-2065>
 2072..2073    ; Cn #   [2] <reserved-2072>..<reserved-2073>
-208F          ; Cn #       <reserved-208F>
 20C4..20CF    ; Cn #  [12] <reserved-20C4>..<reserved-20CF>
 20F1..20FF    ; Cn #  [15] <reserved-20F1>..<reserved-20FF>
 218C..218F    ; Cn #   [4] <reserved-218C>..<reserved-218F>
@@ -748,7 +747,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 802871
+# Total code points: 802870
 
 # ================================================
 
@@ -2143,7 +2142,7 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1D9B..1DBF    ; Lm #  [37] MODIFIER LETTER SMALL TURNED ALPHA..MODIFIER LETTER SMALL THETA
 2071          ; Lm #       SUPERSCRIPT LATIN SMALL LETTER I
 207F          ; Lm #       SUPERSCRIPT LATIN SMALL LETTER N
-2090..209F    ; Lm #  [16] LATIN SUBSCRIPT SMALL LETTER A..LATIN SUBSCRIPT SMALL LETTER Z
+208F..209F    ; Lm #  [17] MODIFIER LETTER HIGH AND LOW VERTICAL LINE..LATIN SUBSCRIPT SMALL LETTER Z
 2C7C..2C7D    ; Lm #   [2] LATIN SUBSCRIPT SMALL LETTER J..MODIFIER LETTER CAPITAL V
 2D6F          ; Lm #       TIFINAGH MODIFIER LETTER LABIALIZATION MARK
 2E2F          ; Lm #       VERTICAL TILDE
@@ -2195,7 +2194,7 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 1E6FF         ; Lm #       TAI YO XAM LAI
 1E94B         ; Lm #       ADLAM NASALIZATION MARK
 
-# Total code points: 469
+# Total code points: 470
 
 # ================================================
 

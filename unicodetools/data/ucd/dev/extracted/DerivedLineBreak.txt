@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2025-11-27, 17:33:31 GMT
+# Date: 2025-11-27, 17:49:40 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,8 +71,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 756670 code points not listed here.
-# Total code points: 894138
+# The above property value applies to 756669 code points not listed here.
+# Total code points: 894137
 
 # ================================================
 
@@ -2458,6 +2458,7 @@ E0100..E01EF  ; CM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 0FD3          ; BB # Po       TIBETAN MARK INITIAL BRDA RNYING YIG MGO MDUN MA
 1806          ; BB # Pd       MONGOLIAN TODO SOFT HYPHEN
 1FFD          ; BB # Sk       GREEK OXIA
+208F          ; BB # Lm       MODIFIER LETTER HIGH AND LOW VERTICAL LINE
 A874..A875    ; BB # Po   [2] PHAGS-PA SINGLE HEAD MARK..PHAGS-PA DOUBLE HEAD MARK
 A8FC          ; BB # Po       DEVANAGARI SIGN SIDDHAM
 11175         ; BB # Po       MAHAJANI SECTION MARK
@@ -2471,7 +2472,7 @@ A8FC          ; BB # Po       DEVANAGARI SIGN SIDDHAM
 11B00..11B09  ; BB # Po  [10] DEVANAGARI HEAD MARK..DEVANAGARI SIGN MINDU
 11C70         ; BB # Po       MARCHEN HEAD MARK
 
-# Total code points: 55
+# Total code points: 56
 
 # ================================================
 
