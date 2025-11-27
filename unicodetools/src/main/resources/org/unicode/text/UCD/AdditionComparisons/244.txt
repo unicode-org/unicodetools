@@ -1,0 +1,25 @@
+# Seal script
+# https://github.com/unicode-org/utc-release-management/issues/244
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring kSEAL_CCZSrc kSEAL_DYCSrc kSEAL_QJZSrc kSEAL_THXSrc kSEAL_MCJK kSEAL_Rad:
+
+Ignoring Block Script Script_Extensions kTGT_MergedSrc kTGT_RSUnicode:
+Propertywise [
+  \N{TANGUT IDEOGRAPH-17000}
+  \N{SEAL CHARACTER-3D000}] AreAlike
+end Ignoring;
+
+Propertywise [\N{SEAL CHARACTER-3D000}-\N{SEAL CHARACTER-3FC3F}] AreAlike
+
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
