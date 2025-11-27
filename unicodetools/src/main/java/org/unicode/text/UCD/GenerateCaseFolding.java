@@ -872,7 +872,11 @@ public class GenerateCaseFolding implements UCD_Types {
                         break;
                     case 6:
                         Utility.appendFile(
-                                Settings.SRC_UCD_DIR + "SpecialCasingIota.txt", Utility.UTF8, out);
+                                GenerateCaseFolding.class
+                                        .getResource("SpecialCasingIota.txt")
+                                        .getPath(),
+                                Utility.UTF8,
+                                out);
                         break;
                     case 7:
                         out.println(
@@ -888,7 +892,10 @@ public class GenerateCaseFolding implements UCD_Types {
             }
             out.println(line);
         }
-        Utility.appendFile(Settings.SRC_UCD_DIR + "SpecialCasingFooter.txt", Utility.UTF8, out);
+        Utility.appendFile(
+                GenerateCaseFolding.class.getResource("SpecialCasingFooter.txt").getPath(),
+                Utility.UTF8,
+                out);
         udf.close();
         // Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
     }

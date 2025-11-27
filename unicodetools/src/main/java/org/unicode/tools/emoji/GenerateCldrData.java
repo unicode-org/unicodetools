@@ -3,7 +3,7 @@ package org.unicode.tools.emoji;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.locale.XCldrStub.ImmutableSet;
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.NumberFormat;

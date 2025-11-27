@@ -52,7 +52,6 @@ public final class PrimariesToFractional {
 
     private static final class ScriptOptions {
         final int reorderCode;
-        Implicit.Range implicitRange;
 
         boolean beginsByte;
         boolean endsByte;
@@ -154,9 +153,11 @@ public final class PrimariesToFractional {
 
         private int fractionalPrimary;
 
+        Implicit.Range implicitRange;
+
         /**
          * Stores fractional primaries for a siniform ideographic range, otherwise null. Offset by
-         * options.implicitRange.startCP. 0 for unassigned code points.
+         * implicitRange.startCP. 0 for unassigned code points.
          */
         private int[] rangePrimaries;
 
@@ -227,7 +228,7 @@ public final class PrimariesToFractional {
         }
 
         public int getSiniformRangeFractionalPrimary(int c) {
-            return rangePrimaries[c - options.implicitRange.startCP];
+            return rangePrimaries[c - implicitRange.startCP];
         }
 
         /**
@@ -703,8 +704,8 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.CANADIAN_ABORIGINAL_SCRIPT).newByte();
         // Limited Use Script, avoid lead byte overflow.
         setOptionsForScript(UCD_Types.Vai).newByte();
-        // Limited Use Script, avoid lead byte overflow.
-        setOptionsForScript(UCD_Types.Adlam).newByte();
+        // Excluded Script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.Beria_Erfe).newByte();
         // Hangul uses one lead byte, with two-byte primaries for conjoining Jamo L/V/T.
         setOptionsForScript(UCD_Types.HANGUL_SCRIPT)
                 .wholeByte()
@@ -718,14 +719,18 @@ public final class PrimariesToFractional {
                 .wholeByte();
         // Recommended Script, some characters have variants.
         setOptionsForScript(UCD_Types.BOPOMOFO_SCRIPT).newByte().twoBytePrimaries();
-        // Minor script, avoid lead byte overflow.
-        setOptionsForScript(UCD_Types.DESERET_SCRIPT).newByte();
+        // Excluded script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.Pau_Cin_Hau).newByte();
         // Extinct script, use three-byte primaries although it is cased.
         setOptionsForScript(UCD_Types.Vithkuqi).noTwoBytePrimariesIfVariants();
         // Extinct script, use three-byte primaries for the few characters with variants.
         setOptionsForScript(UCD_Types.Elymaic).noTwoBytePrimariesIfVariants();
+        // Excluded Script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.Yezidi).newByte();
         // Large Excluded Script, minimal gaps.
-        setOptionsForScript(UCD_Types.Egyptian_Hieroglyphs).newByte().minimalGap3();
+        setOptionsForScript(UCD_Types.Cuneiform).minimalGap3();
+        // Large Excluded Script, minimal gaps.
+        setOptionsForScript(UCD_Types.Egyptian_Hieroglyphs).minimalGap3();
         // Register the scripts as aliases.
         setOptionsForScripts(UCD_Types.Meroitic_Cursive, UCD_Types.Meroitic_Hieroglyphs);
         // Large Excluded Script, minimal gaps.
@@ -809,11 +814,17 @@ public final class PrimariesToFractional {
                 UCA.Primary up = regularPrimaries.next();
                 primary = up.primary;
                 nextPrimary = up.nextPrimary;
+                if (primary >= 0xfffd) {
+                    // Special UCA primary FFFD for U+FFFD, gets a hardcoded fractional CE.
+                    // Other special high primaries might get added.
+                    // CLDR already hardcodes one for U+FFFF.
+                    continue;
+                }
                 representativeCP = Character.codePointAt(up.getRepresentative(), 0);
                 props = getOrCreateProps(primary);
             } else if (siniformRanges.hasNext()) {
                 props = siniformRanges.next();
-                implicitRange = props.options.implicitRange;
+                implicitRange = props.implicitRange;
                 primary = implicitRange.leadPrimary;
                 nextPrimary = -1;
                 representativeCP = implicitRange.firstCP;
@@ -1223,7 +1234,12 @@ public final class PrimariesToFractional {
             if (script == UCD_Types.COMMON_SCRIPT
                     || script == UCD_Types.INHERITED_SCRIPT
                     || script == UCD_Types.Unknown_Script) {
-                // Not a real script, keep current options.
+                if (primary == 0xfffd) {
+                    // Special UCA primary FFFD for U+FFFD, gets a hardcoded fractional CE.
+                    // Do not include it in the last regular script.
+                    options = null;
+                }
+                // Otherwise: Not a real script, keep current options.
             } else if (script != options.reorderCode) {
                 ScriptOptions newOptions = getOrCreateOptionsForScript(script);
                 if (newOptions.firstPrimary == 0) {
@@ -1264,8 +1280,11 @@ public final class PrimariesToFractional {
                     && script != UCD_Types.Unknown_Script;
             PrimaryToFractional props = getOrCreateProps(r.leadPrimary);
             props.options = getOrCreateOptionsForScript(script);
-            props.options.firstPrimary = r.leadPrimary;
-            props.options.implicitRange = r;
+            // A script may have multiple implicit ranges. Example: Tangut
+            if (props.options.firstPrimary == 0) {
+                props.options.firstPrimary = r.leadPrimary;
+            }
+            props.implicitRange = r;
         }
 
         PrimaryToFractional hanProps = getOrCreateProps(Implicit.CJK_BASE);
