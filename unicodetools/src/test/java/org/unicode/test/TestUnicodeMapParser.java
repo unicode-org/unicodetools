@@ -1,7 +1,7 @@
 package org.unicode.test;
 
 import com.google.common.base.Objects;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import java.text.ParsePosition;
 import org.junit.jupiter.api.Disabled;
