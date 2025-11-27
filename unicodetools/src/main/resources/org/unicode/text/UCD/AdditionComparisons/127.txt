@@ -8,7 +8,7 @@ Ignoring Name Age:
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
-Ignoring Block:
+Ignoring Block Math_Entity_Name:
 Propertywise [ \N{MODIFIER LETTER SMALL GREEK PSI} \N{MODIFIER LETTER SMALL GREEK OMEGA}]
            : [ψ\N{GREEK SMALL LETTER PSI}         ω\N{GREEK SMALL LETTER OMEGA}]
            : [Ψ\N{GREEK CAPITAL LETTER PSI}       Ω\N{GREEK CAPITAL LETTER OMEGA}]
