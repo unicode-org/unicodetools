@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2025-11-24, 16:11:43 GMT
+# Date: 2025-11-27, 13:29:00 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,8 +71,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 756681 code points not listed here.
-# Total code points: 894149
+# The above property value applies to 756676 code points not listed here.
+# Total code points: 894144
 
 # ================================================
 
@@ -1256,7 +1256,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 10760..10767  ; AL # Lo   [8] LINEAR A SIGN A800..LINEAR A SIGN A807
 10780..10785  ; AL # Lm   [6] MODIFIER LETTER SMALL CAPITAL AA..MODIFIER LETTER SMALL B WITH HOOK
 10787..107B0  ; AL # Lm  [42] MODIFIER LETTER SMALL DZ DIGRAPH..MODIFIER LETTER SMALL V WITH RIGHT HOOK
-107B2..107BA  ; AL # Lm   [9] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL S WITH CURL
+107B2..107BF  ; AL # Lm  [14] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL ESH WITH DOUBLE BAR
 10800..10805  ; AL # Lo   [6] CYPRIOT SYLLABLE A..CYPRIOT SYLLABLE JA
 10808         ; AL # Lo       CYPRIOT SYLLABLE JO
 1080A..10835  ; AL # Lo  [44] CYPRIOT SYLLABLE KA..CYPRIOT SYLLABLE WO
@@ -1648,7 +1648,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB94..1FBEF  ; AL # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; AL # So       ALARM BELL SYMBOL
 
-# Total code points: 27431
+# Total code points: 27436
 
 # ================================================
 

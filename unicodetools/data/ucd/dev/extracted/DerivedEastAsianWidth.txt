@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-18.0.0.txt
-# Date: 2025-11-24, 16:11:41 GMT
+# Date: 2025-11-27, 13:28:59 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1407,7 +1407,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 10760..10767  ; N # Lo   [8] LINEAR A SIGN A800..LINEAR A SIGN A807
 10780..10785  ; N # Lm   [6] MODIFIER LETTER SMALL CAPITAL AA..MODIFIER LETTER SMALL B WITH HOOK
 10787..107B0  ; N # Lm  [42] MODIFIER LETTER SMALL DZ DIGRAPH..MODIFIER LETTER SMALL V WITH RIGHT HOOK
-107B2..107BA  ; N # Lm   [9] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL S WITH CURL
+107B2..107BF  ; N # Lm  [14] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL ESH WITH DOUBLE BAR
 10800..10805  ; N # Lo   [6] CYPRIOT SYLLABLE A..CYPRIOT SYLLABLE JA
 10808         ; N # Lo       CYPRIOT SYLLABLE JO
 1080A..10835  ; N # Lo  [44] CYPRIOT SYLLABLE KA..CYPRIOT SYLLABLE WO
@@ -2149,7 +2149,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 760093 code points not listed here.
+# The above property value applies to 760088 code points not listed here.
 # Total code points: 792256
 
 # ================================================
