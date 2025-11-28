@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2025-11-27, 18:35:39 GMT
+# Date: 2025-11-27, 20:44:52 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -38832,6 +38832,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1B165         ; KATAKANA LETTER SMALL WE
 1B166         ; KATAKANA LETTER SMALL WO
 1B167         ; KATAKANA LETTER SMALL N
+1B168         ; KATAKANA LETTER SMALL ARCHAIC YE
 1B170..1B2FB  ; NUSHU CHARACTER-*
 1BC00         ; DUPLOYAN LETTER H
 1BC01         ; DUPLOYAN LETTER X
@@ -46400,6 +46401,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172626
+# Total code points: 172627
 
 # EOF

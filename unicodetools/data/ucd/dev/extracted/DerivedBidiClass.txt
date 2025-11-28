@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2025-11-27, 18:35:33 GMT
+# Date: 2025-11-27, 20:44:47 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1131,7 +1131,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 1B132         ; L # Lo       HIRAGANA LETTER SMALL KO
 1B150..1B152  ; L # Lo   [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
 1B155         ; L # Lo       KATAKANA LETTER SMALL KO
-1B164..1B167  ; L # Lo   [4] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL N
+1B164..1B168  ; L # Lo   [5] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL ARCHAIC YE
 1B170..1B2FB  ; L # Lo [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
 1BC00..1BC6A  ; L # Lo [107] DUPLOYAN LETTER H..DUPLOYAN LETTER VOCALIC M
 1BC70..1BC7C  ; L # Lo  [13] DUPLOYAN AFFIX LEFT HORIZONTAL SECANT..DUPLOYAN AFFIX ATTACHED TANGENT HOOK
@@ -1239,7 +1239,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 797816 code points not listed here.
+# The above property value applies to 797815 code points not listed here.
 # Total code points: 1095380
 
 # ================================================

@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-27, 18:35:37 GMT
+# Date: 2025-11-27, 20:44:51 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -586,7 +586,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1B133..1B14F  ; Cn #  [29] <reserved-1B133>..<reserved-1B14F>
 1B153..1B154  ; Cn #   [2] <reserved-1B153>..<reserved-1B154>
 1B156..1B163  ; Cn #  [14] <reserved-1B156>..<reserved-1B163>
-1B168..1B16F  ; Cn #   [8] <reserved-1B168>..<reserved-1B16F>
+1B169..1B16F  ; Cn #   [7] <reserved-1B169>..<reserved-1B16F>
 1B2FC..1BBFF  ; Cn # [2308] <reserved-1B2FC>..<reserved-1BBFF>
 1BC6B..1BC6F  ; Cn #   [5] <reserved-1BC6B>..<reserved-1BC6F>
 1BC7D..1BC7F  ; Cn #   [3] <reserved-1BC7D>..<reserved-1BC7F>
@@ -749,7 +749,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801905
+# Total code points: 801904
 
 # ================================================
 
@@ -2679,7 +2679,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 1B132         ; Lo #       HIRAGANA LETTER SMALL KO
 1B150..1B152  ; Lo #   [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
 1B155         ; Lo #       KATAKANA LETTER SMALL KO
-1B164..1B167  ; Lo #   [4] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL N
+1B164..1B168  ; Lo #   [5] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL ARCHAIC YE
 1B170..1B2FB  ; Lo # [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
 1BC00..1BC6A  ; Lo # [107] DUPLOYAN LETTER H..DUPLOYAN LETTER VOCALIC M
 1BC70..1BC7C  ; Lo #  [13] DUPLOYAN AFFIX LEFT HORIZONTAL SECANT..DUPLOYAN AFFIX ATTACHED TANGENT HOOK
@@ -2747,7 +2747,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 31350..33479  ; Lo # [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Lo # [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 153414
+# Total code points: 153415
 
 # ================================================
 

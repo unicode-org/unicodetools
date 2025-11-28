@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2025-11-27, 18:35:38 GMT
+# Date: 2025-11-27, 20:44:52 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,8 +71,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 755704 code points not listed here.
-# Total code points: 893172
+# The above property value applies to 755703 code points not listed here.
+# Total code points: 893171
 
 # ================================================
 
@@ -3827,9 +3827,9 @@ FF70          ; CJ # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK
 1B132         ; CJ # Lo       HIRAGANA LETTER SMALL KO
 1B150..1B152  ; CJ # Lo   [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
 1B155         ; CJ # Lo       KATAKANA LETTER SMALL KO
-1B164..1B167  ; CJ # Lo   [4] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL N
+1B164..1B168  ; CJ # Lo   [5] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL ARCHAIC YE
 
-# Total code points: 60
+# Total code points: 61
 
 # ================================================
 

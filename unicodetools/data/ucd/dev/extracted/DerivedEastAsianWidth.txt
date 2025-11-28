@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-18.0.0.txt
-# Date: 2025-11-27, 18:35:37 GMT
+# Date: 2025-11-27, 20:44:50 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2148,8 +2148,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 759116 code points not listed here.
-# Total code points: 791291
+# The above property value applies to 759115 code points not listed here.
+# Total code points: 791290
 
 # ================================================
 
@@ -2567,7 +2567,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 1B132         ; W # Lo       HIRAGANA LETTER SMALL KO
 1B150..1B152  ; W # Lo   [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
 1B155         ; W # Lo       KATAKANA LETTER SMALL KO
-1B164..1B167  ; W # Lo   [4] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL N
+1B164..1B168  ; W # Lo   [5] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL ARCHAIC YE
 1B170..1B2FB  ; W # Lo [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
 1D300..1D356  ; W # So  [87] MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
 1D360..1D376  ; W # No  [23] COUNTING ROD UNIT DIGIT ONE..IDEOGRAPHIC TALLY MARK FIVE
@@ -2630,7 +2630,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 3D000..3FC3F  ; W # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
 # The above property value applies to 44837 code points not listed here.
-# Total code points: 183744
+# Total code points: 183745
 
 # ================================================
 

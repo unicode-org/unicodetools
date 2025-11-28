@@ -1,5 +1,5 @@
 # LineBreak-18.0.0.txt
-# Date: 2025-11-27, 18:35:43 GMT
+# Date: 2025-11-27, 20:44:57 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3317,7 +3317,7 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 1B132          ; CJ # Lo         HIRAGANA LETTER SMALL KO
 1B150..1B152   ; CJ # Lo     [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
 1B155          ; CJ # Lo         KATAKANA LETTER SMALL KO
-1B164..1B167   ; CJ # Lo     [4] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL N
+1B164..1B168   ; CJ # Lo     [5] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL ARCHAIC YE
 1B170..1B2FB   ; ID # Lo   [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
 1BC00..1BC6A   ; AL # Lo   [107] DUPLOYAN LETTER H..DUPLOYAN LETTER VOCALIC M
 1BC70..1BC7C   ; AL # Lo    [13] DUPLOYAN AFFIX LEFT HORIZONTAL SECANT..DUPLOYAN AFFIX ATTACHED TANGENT HOOK
