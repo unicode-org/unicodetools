@@ -1,5 +1,5 @@
 # DerivedDecompositionType-18.0.0.txt
-# Date: 2025-11-28, 15:46:57 GMT
+# Date: 2025-11-28, 16:10:13 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -932,9 +932,9 @@ FE43          ; Vertical # Ps       PRESENTATION FORM FOR VERTICAL LEFT WHITE CO
 FE44          ; Vertical # Pe       PRESENTATION FORM FOR VERTICAL RIGHT WHITE CORNER BRACKET
 FE47          ; Vertical # Ps       PRESENTATION FORM FOR VERTICAL LEFT SQUARE BRACKET
 FE48          ; Vertical # Pe       PRESENTATION FORM FOR VERTICAL RIGHT SQUARE BRACKET
-1B123..1B125  ; Vertical # Lo   [3] HIRAGANA DIGRAPH KOTO..KATAKANA DIGRAPH TOTE
+1B123..1B126  ; Vertical # Lo   [4] HIRAGANA DIGRAPH KOTO..KATAKANA DIGRAPH YORI
 
-# Total code points: 38
+# Total code points: 39
 
 # ================================================
 

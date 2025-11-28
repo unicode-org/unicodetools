@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2025-11-28, 15:46:53 GMT
+# Date: 2025-11-28, 16:10:10 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1127,8 +1127,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 1AFF0..1AFF3  ; L # Lm   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF5..1AFFB  ; L # Lm   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; L # Lm   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
-1B000..1B125  ; L # Lo [294] KATAKANA LETTER ARCHAIC E..KATAKANA DIGRAPH TOTE
-1B127..1B128  ; L # Lo   [2] KATAKANA LETTER ALTERNATE NE..KATAKANA LETTER ALTERNATE WI
+1B000..1B128  ; L # Lo [297] KATAKANA LETTER ARCHAIC E..KATAKANA LETTER ALTERNATE WI
 1B132         ; L # Lo       HIRAGANA LETTER SMALL KO
 1B150..1B152  ; L # Lo   [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
 1B155         ; L # Lo       KATAKANA LETTER SMALL KO
@@ -1240,7 +1239,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 797810 code points not listed here.
+# The above property value applies to 797809 code points not listed here.
 # Total code points: 1095380
 
 # ================================================
