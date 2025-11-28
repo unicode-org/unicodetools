@@ -1,5 +1,5 @@
 # PropertyValueAliases-18.0.0.txt
-# Date: 2025-11-14, 13:43:31 GMT
+# Date: 2025-11-27, 18:35:56 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -171,6 +171,7 @@ blk; Arabic_Math                      ; Arabic_Mathematical_Alphabetic_Symbols
 blk; Arabic_PF_A                      ; Arabic_Presentation_Forms_A      ; Arabic_Presentation_Forms-A
 blk; Arabic_PF_B                      ; Arabic_Presentation_Forms_B
 blk; Arabic_Sup                       ; Arabic_Supplement
+blk; Archaic_Cuneiform_Numerals       ; Archaic_Cuneiform_Numerals
 blk; Armenian                         ; Armenian
 blk; Arrows                           ; Arrows
 blk; ASCII                            ; Basic_Latin
@@ -199,6 +200,7 @@ blk; Cham                             ; Cham
 blk; Cherokee                         ; Cherokee
 blk; Cherokee_Sup                     ; Cherokee_Supplement
 blk; Chess_Symbols                    ; Chess_Symbols
+blk; Chisoi                           ; Chisoi
 blk; Chorasmian                       ; Chorasmian
 blk; CJK                              ; CJK_Unified_Ideographs
 blk; CJK_Compat                       ; CJK_Compatibility
@@ -301,6 +303,8 @@ blk; Jamo                             ; Hangul_Jamo
 blk; Jamo_Ext_A                       ; Hangul_Jamo_Extended_A
 blk; Jamo_Ext_B                       ; Hangul_Jamo_Extended_B
 blk; Javanese                         ; Javanese
+blk; Jurchen                          ; Jurchen
+blk; Jurchen_Radicals                 ; Jurchen_Radicals
 blk; Kaithi                           ; Kaithi
 blk; Kaktovik_Numerals                ; Kaktovik_Numerals
 blk; Kana_Ext_A                       ; Kana_Extended_A
@@ -1354,6 +1358,7 @@ sc ; Cans                             ; Canadian_Aboriginal
 sc ; Cari                             ; Carian
 sc ; Cham                             ; Cham
 sc ; Cher                             ; Cherokee
+sc ; Chis                             ; Chisoi
 sc ; Chrs                             ; Chorasmian
 sc ; Copt                             ; Coptic                           ; Qaac
 sc ; Cpmn                             ; Cypro_Minoan
@@ -1392,6 +1397,7 @@ sc ; Hrkt                             ; Katakana_Or_Hiragana
 sc ; Hung                             ; Old_Hungarian
 sc ; Ital                             ; Old_Italic
 sc ; Java                             ; Javanese
+sc ; Jurc                             ; Jurchen
 sc ; Kali                             ; Kayah_Li
 sc ; Kana                             ; Katakana
 sc ; Kawi                             ; Kawi
@@ -1445,6 +1451,7 @@ sc ; Osma                             ; Osmanya
 sc ; Ougr                             ; Old_Uyghur
 sc ; Palm                             ; Palmyrene
 sc ; Pauc                             ; Pau_Cin_Hau
+sc ; Pcun                             ; Proto_Cuneiform
 sc ; Perm                             ; Old_Permic
 sc ; Phag                             ; Phags_Pa
 sc ; Phli                             ; Inscriptional_Pahlavi
@@ -1732,6 +1739,10 @@ kEH_NoMirror; Y                       ; Yes                              ; T    
 
 kEH_NoRotate; N                       ; No                               ; F                                ; False
 kEH_NoRotate; Y                       ; Yes                              ; T                                ; True
+
+# kJURC_Src (kJURC_Src)
+
+# @missing: 0000..10FFFF; kJURC_Src; <none>
 
 # kMandarin (cjkMandarin)
 
