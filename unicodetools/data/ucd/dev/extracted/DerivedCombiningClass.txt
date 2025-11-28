@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2025-11-28, 13:24:14 GMT
+# Date: 2025-11-28, 15:46:54 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1874,7 +1874,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1AFF0..1AFF3  ; 0 # Lm   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF5..1AFFB  ; 0 # Lm   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; 0 # Lm   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
-1B000..1B122  ; 0 # Lo [291] KATAKANA LETTER ARCHAIC E..KATAKANA LETTER ARCHAIC WU
+1B000..1B125  ; 0 # Lo [294] KATAKANA LETTER ARCHAIC E..KATAKANA DIGRAPH TOTE
 1B127..1B128  ; 0 # Lo   [2] KATAKANA LETTER ALTERNATE NE..KATAKANA LETTER ALTERNATE WI
 1B132         ; 0 # Lo       HIRAGANA LETTER SMALL KO
 1B150..1B152  ; 0 # Lo   [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
@@ -2103,7 +2103,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 803950 code points not listed here.
+# The above property value applies to 803947 code points not listed here.
 # Total code points: 1113134
 
 # ================================================

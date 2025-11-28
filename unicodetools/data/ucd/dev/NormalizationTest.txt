@@ -1,5 +1,5 @@
 # NormalizationTest-18.0.0.txt
-# Date: 2025-11-27, 17:33:43 GMT
+# Date: 2025-11-28, 15:47:10 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -15251,6 +15251,9 @@ FFEE;FFEE;FFEE;25CB;25CB; # (￮; ￮; ￮; ○; ○; ) HALFWIDTH WHITE CIRCLE
 16D68;16D68;16D67 16D67;16D68;16D67 16D67; # (𖵨; 𖵨; 𖵨; 𖵨; 𖵨; ) KIRAT RAI VOWEL SIGN AI
 16D69;16D69;16D63 16D67;16D69;16D63 16D67; # (𖵩; 𖵩; 𖵩; 𖵩; 𖵩; ) KIRAT RAI VOWEL SIGN O
 16D6A;16D6A;16D63 16D67 16D67;16D6A;16D63 16D67 16D67; # (𖵪; 𖵪; 𖵪; 𖵪; 𖵪; ) KIRAT RAI VOWEL SIGN AU
+1B123;1B123;1B123;3053 3068;3053 3068; # (𛄣; 𛄣; 𛄣; こと; こと; ) HIRAGANA DIGRAPH KOTO
+1B124;1B124;1B124;30C8 30AD;30C8 30AD; # (𛄤; 𛄤; 𛄤; トキ; トキ; ) KATAKANA DIGRAPH TOKI
+1B125;1B125;1B125;30C8 30C6;30C8 30C6; # (𛄥; 𛄥; 𛄥; トテ; トテ; ) KATAKANA DIGRAPH TOTE
 1CCD6;1CCD6;1CCD6;0041;0041; # (𜳖; 𜳖; 𜳖; A; A; ) OUTLINED LATIN CAPITAL LETTER A
 1CCD7;1CCD7;1CCD7;0042;0042; # (𜳗; 𜳗; 𜳗; B; B; ) OUTLINED LATIN CAPITAL LETTER B
 1CCD8;1CCD8;1CCD8;0043;0043; # (𜳘; 𜳘; 𜳘; C; C; ) OUTLINED LATIN CAPITAL LETTER C
