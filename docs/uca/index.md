@@ -115,10 +115,19 @@ Judgment call. See Cherokee, Deseret, Osage, Vithkuqi for examples.
 
 After running the tool, diff the main mapping file and look for bad changes
 (for example, more bytes per weight for common characters).
+
+A good way for checking changes to both
+the sort order and the number of bytes in collation elements
+is to "blank" most of the non-zero weights in FractionalUCA.txt.
+There is a Python script for that (see below).
+Starting in 2025-may, the output of the Java tool directly includes
+FractionalUCA_blanked.txt which is nearly identical to running the Python script
+over FractionalUCA.txt.
+
 ```
-~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ~/cldr/uni/src/common/uca/FractionalUCA.txt > ../frac-14.0.txt
-~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ../Generated/UCA/15.0.0/CollationAuxiliary/FractionalUCA.txt > ../frac-15.0.txt
-~/unitools/mine/src$ meld ../frac-14.0.txt ../frac-15.0.txt
+~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ~/cldr/uni/src/common/uca/FractionalUCA.txt > ../frac-16.0.txt
+~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ../Generated/UCA/17.0.0/CollationAuxiliary/FractionalUCA.txt > ../frac-17.0.txt
+~/unitools/mine/src$ meld ../frac-16.0.txt ../frac-17.0.txt
 ```
 
 CLDR root data files are checked into $CLDR_SRC/common/uca/

@@ -1,7 +1,7 @@
 package org.unicode.tools.emoji;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
@@ -164,10 +164,7 @@ public class GenerateEmojiData {
                                 .asPath(Emoji.VERSION_TO_GENERATE_UNICODE)
                                 .toString()
                         + "/emoji";
-        String versionTextForUCD =
-                "Used with Emoji Version "
-                        + Emoji.VERSION_UNICODE_STRING
-                        + " and subsequent minor revisions (if any)";
+        String versionTextForUCD = "Version: " + Emoji.VERSION_UNICODE_STRING;
         UnicodeSet emojiMultiPersonGroupings = emojiDataSource.getMultiPersonGroupings();
 
         PropPrinter printer = new PropPrinter().set(emojiDataSource);

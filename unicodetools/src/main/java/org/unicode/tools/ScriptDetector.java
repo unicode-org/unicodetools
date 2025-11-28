@@ -1,7 +1,7 @@
 package org.unicode.tools;
 
 import com.google.common.base.Joiner;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.Collections;

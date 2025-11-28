@@ -186,7 +186,9 @@ public final class GenerateStandardizedVariants implements UCD_Types {
         };
 
         Utility.appendFile(
-                Settings.SRC_UCD_DIR + "StandardizedVariants-Template.html",
+                GenerateStandardizedVariants.class
+                        .getResource("StandardizedVariants-Template.html")
+                        .getPath(),
                 Utility.UTF8,
                 out,
                 replacementList);

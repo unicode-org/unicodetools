@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Manual-->
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="datatype for code points" id='schema.datatypes'>
+  single-code-point = xsd:string { pattern = "(|[1-9A-F]|(10))[0-9A-F]{4}" }
+
+  one-or-more-code-points = list { single-code-point + }
+  zero-or-more-code-points = list { single-code-point * }
+  two-code-points = list { single-code-point, single-code-point }
+</ucdxml:block>
