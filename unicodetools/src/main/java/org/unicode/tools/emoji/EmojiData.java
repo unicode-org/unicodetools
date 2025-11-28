@@ -7,7 +7,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.BreakIterator;
@@ -58,6 +58,8 @@ public class EmojiData implements EmojiDataSource {
             new UnicodeSet("[👯 🤼 👫-👭 💏 💑 👪 🤝]").freeze();
     private static final UnicodeSet EXPLICIT_HAIR = new UnicodeSet("[👱]").freeze();
 
+    static final int BUNNY_DANCERS = 0x1f46f;
+    static final int WRESTLERS = 0x1f93c;
     static final int HANDSHAKE = 0x1f91d;
     static final String HANDSHAKE_STRING = UTF16.valueOf(0x1f91d);
     public static final String NEUTRAL_HOLDING = "🧑‍🤝‍🧑";
@@ -2249,6 +2251,12 @@ public class EmojiData implements EmojiDataSource {
                     .put("👩‍🤝‍👩", "👭")
                     .put("🧑‍❤️‍💋‍🧑", "💏")
                     .put("🧑‍❤️‍🧑", "💑")
+                    .put("🧑‍🐰‍🧑", "👯")
+                    .put("👨‍🐰‍👨", "👯")
+                    .put("👩‍🐰‍👩", "👯")
+                    .put("🧑‍🫯‍🧑", "🤼")
+                    .put("👨‍🫯‍👨", "🤼")
+                    .put("👩‍🫯‍👩", "🤼")
                     .build();
 
     public static final Map<String, String> COUPLES_TO_HANDSHAKE_VERSION =
@@ -2280,6 +2288,16 @@ public class EmojiData implements EmojiDataSource {
     public boolean isHandshake(String s) {
         if (version.compareTo(Emoji.VERSION14) >= 0) {
             return getBaseRemovingModsGender(s).equals(EmojiData.SHAKING_HANDS);
+        }
+        return false;
+    }
+
+    public boolean isOtherGroup(String s) {
+        if (version.compareTo(Emoji.VERSION17) >= 0) {
+            String base = getBaseRemovingModsGender(s);
+            if (base == UTF16.valueOf(0x1F430) || base == UTF16.valueOf(0x1FAEF)) {
+                return true;
+            }
         }
         return false;
     }

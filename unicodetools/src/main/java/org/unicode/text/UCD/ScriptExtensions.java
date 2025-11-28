@@ -1,7 +1,7 @@
 package org.unicode.text.UCD;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.BitSet;
 import java.util.Collection;
