@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-18.0.0.txt
-# Date: 2025-11-27, 20:44:50 GMT
+# Date: 2025-11-28, 13:24:16 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2148,8 +2148,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 759115 code points not listed here.
-# Total code points: 791290
+# The above property value applies to 759113 code points not listed here.
+# Total code points: 791288
 
 # ================================================
 
@@ -2564,6 +2564,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 1AFF5..1AFFB  ; W # Lm   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; W # Lm   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
 1B000..1B122  ; W # Lo [291] KATAKANA LETTER ARCHAIC E..KATAKANA LETTER ARCHAIC WU
+1B127..1B128  ; W # Lo   [2] KATAKANA LETTER ALTERNATE NE..KATAKANA LETTER ALTERNATE WI
 1B132         ; W # Lo       HIRAGANA LETTER SMALL KO
 1B150..1B152  ; W # Lo   [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
 1B155         ; W # Lo       KATAKANA LETTER SMALL KO
@@ -2630,7 +2631,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 3D000..3FC3F  ; W # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
 # The above property value applies to 44837 code points not listed here.
-# Total code points: 183745
+# Total code points: 183747
 
 # ================================================
 

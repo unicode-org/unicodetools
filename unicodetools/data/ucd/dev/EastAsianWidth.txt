@@ -1,5 +1,5 @@
 # EastAsianWidth-18.0.0.txt
-# Date: 2025-11-27, 20:44:56 GMT
+# Date: 2025-11-28, 13:24:22 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2401,6 +2401,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 1AFFD..1AFFE   ; W  # Lm     [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
 1B000..1B0FF   ; W  # Lo   [256] KATAKANA LETTER ARCHAIC E..HENTAIGANA LETTER RE-2
 1B100..1B122   ; W  # Lo    [35] HENTAIGANA LETTER RE-3..KATAKANA LETTER ARCHAIC WU
+1B127..1B128   ; W  # Lo     [2] KATAKANA LETTER ALTERNATE NE..KATAKANA LETTER ALTERNATE WI
 1B132          ; W  # Lo         HIRAGANA LETTER SMALL KO
 1B150..1B152   ; W  # Lo     [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
 1B155          ; W  # Lo         KATAKANA LETTER SMALL KO

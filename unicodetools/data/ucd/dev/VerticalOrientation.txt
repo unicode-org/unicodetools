@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2025-11-27, 20:45:28 GMT
+# Date: 2025-11-28, 13:24:53 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2247,7 +2247,9 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1AFFF          ; U  # Cn         <reserved-1AFFF>
 1B000..1B0FF   ; U  # Lo   [256] KATAKANA LETTER ARCHAIC E..HENTAIGANA LETTER RE-2
 1B100..1B122   ; U  # Lo    [35] HENTAIGANA LETTER RE-3..KATAKANA LETTER ARCHAIC WU
-1B123..1B12F   ; U  # Cn    [13] <reserved-1B123>..<reserved-1B12F>
+1B123..1B126   ; U  # Cn     [4] <reserved-1B123>..<reserved-1B126>
+1B127..1B128   ; U  # Lo     [2] KATAKANA LETTER ALTERNATE NE..KATAKANA LETTER ALTERNATE WI
+1B129..1B12F   ; U  # Cn     [7] <reserved-1B129>..<reserved-1B12F>
 1B130..1B131   ; U  # Cn     [2] <reserved-1B130>..<reserved-1B131>
 1B132          ; Tu # Lo         HIRAGANA LETTER SMALL KO
 1B133..1B14F   ; U  # Cn    [29] <reserved-1B133>..<reserved-1B14F>

@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2025-11-27, 20:44:52 GMT
+# Date: 2025-11-28, 13:24:18 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -38823,6 +38823,8 @@ FFFD          ; REPLACEMENT CHARACTER
 1B120         ; KATAKANA LETTER ARCHAIC YI
 1B121         ; KATAKANA LETTER ARCHAIC YE
 1B122         ; KATAKANA LETTER ARCHAIC WU
+1B127         ; KATAKANA LETTER ALTERNATE NE
+1B128         ; KATAKANA LETTER ALTERNATE WI
 1B132         ; HIRAGANA LETTER SMALL KO
 1B150         ; HIRAGANA LETTER SMALL WI
 1B151         ; HIRAGANA LETTER SMALL WE
@@ -46401,6 +46403,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172627
+# Total code points: 172629
 
 # EOF

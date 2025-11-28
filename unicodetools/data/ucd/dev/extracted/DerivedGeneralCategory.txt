@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-27, 20:44:51 GMT
+# Date: 2025-11-28, 13:24:17 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -582,7 +582,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1AFF4         ; Cn #       <reserved-1AFF4>
 1AFFC         ; Cn #       <reserved-1AFFC>
 1AFFF         ; Cn #       <reserved-1AFFF>
-1B123..1B131  ; Cn #  [15] <reserved-1B123>..<reserved-1B131>
+1B123..1B126  ; Cn #   [4] <reserved-1B123>..<reserved-1B126>
+1B129..1B131  ; Cn #   [9] <reserved-1B129>..<reserved-1B131>
 1B133..1B14F  ; Cn #  [29] <reserved-1B133>..<reserved-1B14F>
 1B153..1B154  ; Cn #   [2] <reserved-1B153>..<reserved-1B154>
 1B156..1B163  ; Cn #  [14] <reserved-1B156>..<reserved-1B163>
@@ -749,7 +750,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801904
+# Total code points: 801902
 
 # ================================================
 
@@ -2676,6 +2677,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 18E00..19191  ; Lo # [914] JURCHEN CHARACTER-18E00..JURCHEN CHARACTER-19191
 191A0..191D2  ; Lo #  [51] JURCHEN RADICAL-01..JURCHEN RADICAL-51
 1B000..1B122  ; Lo # [291] KATAKANA LETTER ARCHAIC E..KATAKANA LETTER ARCHAIC WU
+1B127..1B128  ; Lo #   [2] KATAKANA LETTER ALTERNATE NE..KATAKANA LETTER ALTERNATE WI
 1B132         ; Lo #       HIRAGANA LETTER SMALL KO
 1B150..1B152  ; Lo #   [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
 1B155         ; Lo #       KATAKANA LETTER SMALL KO
@@ -2747,7 +2749,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 31350..33479  ; Lo # [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Lo # [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 153415
+# Total code points: 153417
 
 # ================================================
 
