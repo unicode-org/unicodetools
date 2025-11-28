@@ -1,22 +1,34 @@
 package org.unicode.text.UCD;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.PropertyNames.Named;
+import org.unicode.props.PropertyType;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Utility;
 
 public class TestCodeInvariants {
@@ -49,7 +61,8 @@ public class TestCodeInvariants {
         main:
         for (Age_Values age : Age_Values.values()) {
             if (age == Age_Values.Unassigned
-                    || age.compareTo(SCX_FIRST_DEFINED) < 0) { // skip irrelevants
+                    || age.compareTo(SCX_FIRST_DEFINED) < 0
+                    || age == Age_Values.V13_1) { // skip irrelevants
                 continue;
             }
 
@@ -229,5 +242,136 @@ public class TestCodeInvariants {
                 + UTF16.valueOf(codePoint)
                 + " ) "
                 + NAME.get(codePoint);
+    }
+
+    @Test
+    void testPropertyAliasUniqueness() {
+        // All property aliases constitute a single namespace. Property aliases are
+        // guaranteed to be unique within this namespace.
+        testLM3NamespaceUniqueness(
+                Arrays.asList(UcdProperty.values()),
+                property -> property.getNames().getAllNames(),
+                Set.of("Age"),
+                "!!Stability policy violation!! (Property Alias Uniqueness)");
+        Set<Object> propertyNamespace = new HashSet<>();
+        propertyNamespace.addAll(Arrays.asList(UcdProperty.values()));
+        propertyNamespace.add("code point");
+        propertyNamespace.add("none");
+        testLM3NamespaceUniqueness(
+                propertyNamespace,
+                x ->
+                        x instanceof String
+                                ? List.of((String) x)
+                                : ((UcdProperty) x).getNames().getAllNames(),
+                Set.of("Age"),
+                "Violation of UnicodeSet requirements: A property alias matches <code point> or <none>");
+        for (var property : UcdProperty.values()) {
+            if (IndexUnicodeProperties.make()
+                    .getProperty(property)
+                    .isType(UnicodeProperty.BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
+                Set<String> expectedRedundant;
+                switch (property) {
+                    case Block:
+                        expectedRedundant = Set.of("Arabic_Presentation_Forms-A");
+                        break;
+                    case Decomposition_Type:
+                        expectedRedundant =
+                                Set.of(
+                                        "can", "com", "enc", "fin", "font", "fra", "init", "iso",
+                                        "med", "nar", "nb", "none", "sml", "sqr", "sub", "sup",
+                                        "vert", "wide");
+                        break;
+                    case Sentence_Break:
+                        expectedRedundant = Set.of("Sp");
+                        break;
+                    case IDNA2008_Category:
+                        expectedRedundant = Set.of("Disallowed", "Unassigned");
+                        break;
+                    default:
+                        expectedRedundant = Set.of();
+                        break;
+                }
+                // For each property, all of its property value aliases constitute a separate
+                // namespace, one per property. Within each of these property value alias
+                // namespaces, property value aliases are guaranteed to be unique.
+                testLM3NamespaceUniqueness(
+                        property.getEnums(),
+                        value -> ((Named) value).getNames().getAllNames(),
+                        expectedRedundant,
+                        "!!Stability policy violation!! (Property Alias Uniqueness for value aliases of "
+                                + property
+                                + ")");
+            }
+        }
+        Set<Object> unicodeSetUnaryQueryNames =
+                Arrays.stream(UcdProperty.values())
+                        .filter(p -> p.getType() == PropertyType.Binary)
+                        .collect(Collectors.toCollection(() -> new HashSet<>()));
+        unicodeSetUnaryQueryNames.addAll(
+                Arrays.asList(UcdPropertyValues.General_Category_Values.values()));
+        unicodeSetUnaryQueryNames.addAll(Arrays.asList(UcdPropertyValues.Script_Values.values()));
+        testLM3NamespaceUniqueness(
+                unicodeSetUnaryQueryNames,
+                x ->
+                        x instanceof UcdProperty
+                                ? ((UcdProperty) x).getNames().getAllNames()
+                                : ((Named) x).getNames().getAllNames(),
+                Set.of("Age"),
+                "Violation of UnicodeSet requirements: gc-sc-binary property namespace collision");
+        Set<Object> nonCollidingProperties = new HashSet<>();
+        nonCollidingProperties.addAll(Arrays.asList(UcdProperty.values()));
+        nonCollidingProperties.addAll(
+                Arrays.asList(UcdPropertyValues.General_Category_Values.values()));
+        nonCollidingProperties.addAll(Arrays.asList(UcdPropertyValues.Script_Values.values()));
+        nonCollidingProperties.remove(UcdProperty.ISO_Comment); // Collides with gc Other.
+        nonCollidingProperties.remove(UcdProperty.Case_Folding); // Collides with gc Format.
+        nonCollidingProperties.remove(
+                UcdProperty.Lowercase_Mapping); // Collides with gc Cased_Letter.
+        nonCollidingProperties.remove(UcdProperty.Script); // Collides with gc Currency_Symbol.
+        testLM3NamespaceUniqueness(
+                nonCollidingProperties,
+                x ->
+                        x instanceof UcdProperty
+                                ? ((UcdProperty) x).getNames().getAllNames()
+                                : ((Named) x).getNames().getAllNames(),
+                Set.of("Age"),
+                "Unusual (not a violation of UnicodeSet requirement): New gc-sc-non-binary property namespace collision");
+    }
+
+    <T> void testLM3NamespaceUniqueness(
+            Iterable<T> namespace,
+            Function<T, List<String>> getNames,
+            Set<String> expectedRedundant,
+            String message) {
+        final Map<String, T> entitiesByAlias = new TreeMap<>(UnicodeProperty.PROPERTY_COMPARATOR);
+        final Map<String, String> aliasesByLM3Skeleton = new HashMap<>();
+        for (T entity : namespace) {
+            for (String alias : getNames.apply(entity)) {
+                final var matchingEntity = entitiesByAlias.get(alias);
+                final var lm3Skeleton = UnicodeProperty.toSkeleton(alias);
+                final var matchingAlias = aliasesByLM3Skeleton.get(lm3Skeleton);
+                assertTrue(
+                        matchingEntity == null || entity.equals(matchingEntity),
+                        message
+                                + ": alias "
+                                + alias
+                                + " for "
+                                + entity
+                                + " matches alias "
+                                + matchingAlias
+                                + " for "
+                                + matchingEntity);
+                if (matchingEntity != null && !expectedRedundant.contains(alias)) {
+                    assertEquals(
+                            matchingAlias,
+                            alias,
+                            "Unusual (not a stability policy violation): distinct aliases for "
+                                    + entity
+                                    + " match each other");
+                }
+                entitiesByAlias.putIfAbsent(alias, entity);
+                aliasesByLM3Skeleton.putIfAbsent(lm3Skeleton, alias);
+            }
+        }
     }
 }

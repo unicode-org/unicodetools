@@ -1,0 +1,20 @@
+# LATIN CAPITAL LETTER SCRIPT R/LATIN CAPITAL LETTER SCRIPT R WITH RING
+# https://github.com/unicode-org/utc-release-management/issues/148
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block Unicode_1_Name:
+Propertywise [\x{AB4B} ꭋ \N{LATIN SMALL LETTER SCRIPT R}   \x{AB4C} ꭌ \N{LATIN SMALL LETTER SCRIPT R WITH RING}]
+           : [\x{AB6C}   \N{LATIN CAPITAL LETTER SCRIPT R} \x{AB6D}   \N{LATIN CAPITAL LETTER SCRIPT R WITH RING}]
+CorrespondTo [\x{019B} ƛ \N{LATIN SMALL LETTER LAMBDA WITH STROKE}]
+           : [\x{A7DC} Ƛ \N{LATIN CAPITAL LETTER LAMBDA WITH STROKE}]
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

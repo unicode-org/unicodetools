@@ -36,13 +36,19 @@ FileType ; Unihan_OtherMappings ; PropertyValue
 FileType ; Unihan_RadicalStrokeCounts ; PropertyValue
 FileType ; Unihan_Readings ; PropertyValue
 FileType ; Unihan_Variants ; PropertyValue
+FileType ; NushuSources ; PropertyValue
+FileType ; TangutSources ; PropertyValue
+FileType ; JurchenSources ; PropertyValue
+FileType ; SealSources ; PropertyValue
 
 # NameAliases File Type
 # Contains a multivalued property, where successive values are not in the same line, but are divided out on successive lines with the same code point
 
 FileType ; NameAliases ; NameAliases
 FileType ; NameAliasesProv ; NameAliases
+# TODO(egg): These probably want to be somehow associated with their base character.
 FileType ; StandardizedVariants ; StandardizedVariants
+FileType ; emoji-variation-sequences ; StandardizedVariants
 
 # CJKRadicals File Type
 
@@ -54,10 +60,13 @@ FileType ; CJKRadicals ; CJKRadicals
 # NamedSequences File Type
 # The code point is not in field 0, but instead in field 1.
 # The value is in field 0
+# TODO(egg): This could be handled with a field mapping 1 ↦ 0 instead of a
+# dedicated file type.
 
 FileType ; NamedSequences ; NamedSequences
 FileType ; NamedSequencesProv ; NamedSequences
 
+FileType ; NamesList ; NamesList
 
 # =======================================
 # FILES FOR PROPERTIES
@@ -65,12 +74,21 @@ FileType ; NamedSequencesProv ; NamedSequences
 # =======================================
 
 # Files where particular properties can be found, and in which field
-# The format is:
-# Field0 : file name
-# Field1 : property name
-# Field2 : field number in file (default is 1)
-# Field3 : special handling
-#   Rational : Value is a rational number
+# The format of these property location lines is:
+# <file name without extension>
+#    ; <property alias>
+#  [ ; <field mapping> [ ; <special handling> ] ]
+#  [ ; <version> ]
+# Where <field mapping> is <key field index> ↦ <value field index>
+# or <value field index> (with the key field being field 0 by default).
+# If the <field mapping> is omitted, it is 0 ↦ 1 by default.
+# No <field mapping> is given for files whose type determine the field mapping,
+# such as PropertyValue: in a PropertyValue file, the key is always
+# field 0, the value field 2, and field 1 determines the property.
+# <version> has the form v<n>[.<n>.[.<n>]]; it determines the latest applicable
+# version for a past location of the property.  If it is omitted, the location
+# is still current.
+# The <special handling> is only used for SpecialCasing:
 #   Skip1FT  : Skip line if field 1 is F or T
 #   Skip1ST  : Skip line if field 1 is S or T
 #   SkipAny4 : Skip line if field 4 is not empty
@@ -83,15 +101,22 @@ UnicodeData; General_Category ; 2
 UnicodeData; Canonical_Combining_Class ; 3
 DerivedBidiClass; Bidi_Class ; 1
 DerivedDecompositionType; Decomposition_Type ; 1
-UnicodeData; Decomposition_Mapping ; 5 
-UnicodeData; Bidi_Mirrored; 9
-DerivedNumericValues; Numeric_Value ; 3 ; Rational
+UnicodeData; Decomposition_Mapping ; 5
+# Handle the lack of rational Numeric_Value in older DerivedNumericValues by
+# reading it from UnicodeData via an unofficial contributory property.
+UnicodeData; Non_Unihan_Numeric_Value ; 8
+DerivedNumericValues; Numeric_Value ; 1
+# Prior to 3.1, there is no DerivedNumericValues.txt. But prior to 4.0, Unihan does not contribute
+# to Numeric_Value, so we can straightforwardly read Numeric_Value off of UnicodeData.
+UnicodeData; Numeric_Value ; 8 ; v3.0.1
 DerivedNumericType; Numeric_Type
+UnicodeData; Bidi_Mirrored; 9
 UnicodeData; Simple_Uppercase_Mapping ; 12
 UnicodeData; Simple_Lowercase_Mapping ; 13
 UnicodeData; Simple_Titlecase_Mapping ; 14
 UnicodeData; Unicode_1_Name ; 10
 UnicodeData; ISO_Comment ; 11
+ArabicShaping; Arabic_Shaping_Schematic_Name; 1
 # Handle the complex default of ArabicShaping.txt by introducing an unofficial
 # contributory property, to be used when deriving Joining_Type.
 ArabicShaping; Other_Joining_Type; 2
@@ -126,7 +151,9 @@ SpecialCasing ; Lowercase_Mapping ; 1 ; SkipAny4
 SpecialCasing ; Titlecase_Mapping ; 2 ; SkipAny4
 SpecialCasing ; Uppercase_Mapping ; 3 ; SkipAny4
 DerivedCoreProperties ; Lowercase
+PropList ; Lowercase ; v3.0.1
 DerivedCoreProperties ; Uppercase
+PropList ; Uppercase ; v3.0.1
 DerivedCoreProperties ; Cased
 DerivedCoreProperties ; Case_Ignorable
 DerivedCoreProperties ; Changes_When_Lowercased
@@ -135,6 +162,7 @@ DerivedCoreProperties ; Changes_When_Titlecased
 DerivedCoreProperties ; Changes_When_Casefolded
 DerivedCoreProperties ; Changes_When_Casemapped
 DerivedCoreProperties ; Alphabetic
+PropList ; Alphabetic ; v3.0.1
 DerivedCoreProperties ; Default_Ignorable_Code_Point
 DerivedCoreProperties ; Grapheme_Base
 DerivedCoreProperties ; Grapheme_Extend
@@ -142,6 +170,7 @@ DerivedCoreProperties ; Grapheme_Extend
 DerivedCoreProperties ; Grapheme_Link
 PropList ; Grapheme_Link ; v4.1
 DerivedCoreProperties ; Math
+PropList ; Math ; v3.0.1
 DerivedCoreProperties ; ID_Start
 DerivedCoreProperties ; ID_Continue
 DerivedCoreProperties ; XID_Start
@@ -217,6 +246,7 @@ Unihan_DictionaryIndices ; kMeyerWempe
 Unihan_DictionaryIndices ; kMorohashi
 Unihan_DictionaryIndices ; kNelson
 Unihan_DictionaryIndices ; kSBGY
+Unihan_DictionaryIndices ; kSMSZD2003Index
 Unihan_DictionaryLikeData ; kCangjie
 Unihan_DictionaryLikeData ; kCheungBauer
 Unihan_DictionaryLikeData ; kCihaiT
@@ -228,6 +258,9 @@ Unihan_DictionaryLikeData ; kHDZRadBreak
 Unihan_DictionaryLikeData ; kHKGlyph
 Unihan_DictionaryLikeData ; kPhonetic
 Unihan_DictionaryLikeData ; kUnihanCore2020
+Unihan_DictionaryLikeData ; kAlternateTotalStrokes
+Unihan_DictionaryLikeData ; kStrange
+Unihan_DictionaryLikeData ; kMojiJoho
 Unihan_IRGSources ; kIICore
 Unihan_IRGSources ; kIRG_GSource
 Unihan_IRGSources ; kIRG_HSource
@@ -252,6 +285,8 @@ Unihan_DictionaryLikeData ; kTotalStrokes ; v12.1
 Unihan_NumericValues ; kAccountingNumeric
 Unihan_NumericValues ; kOtherNumeric
 Unihan_NumericValues ; kPrimaryNumeric
+Unihan_NumericValues ; kVietnameseNumeric
+Unihan_NumericValues ; kZhuangNumeric
 Unihan_OtherMappings ; kBigFive
 Unihan_OtherMappings ;  kCCCII
 Unihan_OtherMappings ;  kCNS1986
@@ -302,6 +337,10 @@ Unihan_Readings ; kTang
 Unihan_Readings ; kTGHZ2013
 Unihan_Readings ; kVietnamese
 Unihan_Readings ; kXHC1983
+Unihan_Readings ; kJapanese
+Unihan_Readings ; kSMSZD2003Readings
+Unihan_Readings ; kFanqie
+Unihan_Readings ; kZhuang
 Unihan_Variants ; kCompatibilityVariant	; v6.3
 Unihan_Variants ; kSemanticVariant
 Unihan_Variants ; kSimplifiedVariant
@@ -309,6 +348,153 @@ Unihan_Variants ; kSpecializedSemanticVariant
 Unihan_Variants ; kSpoofingVariant
 Unihan_Variants ; kTraditionalVariant
 Unihan_Variants ; kZVariant
+
+NushuSources ; kSrc_NushuDuben
+NushuSources ; kReading
+TangutSources ; kRSTUnicode
+TangutSources ; kTGT_MergedSrc
+TangutSources ; kTGT_Numeric
+
+SealSources ; kSEAL_THXSrc
+SealSources ; kSEAL_CCZSrc
+SealSources ; kSEAL_QJZSrc
+SealSources ; kSEAL_DYCSrc
+SealSources ; kSEAL_MCJK
+SealSources ; kSEAL_Rad
+
+JurchenSources ; kJURC_RSUnicode
+JurchenSources ; kJURC_Src
+JurchenSources ; kJURC_NCReading
+JurchenSources ; kJURC_Numeric
+
+NormalizationCorrections ; normalization_correction_original ; 1
+NormalizationCorrections ; normalization_correction_corrected ; 2
+NormalizationCorrections ; normalization_correction_version ; 3
+
+# Properties removed from Unihan before 5.1.
+# Point to a nonexistent file so that we don’t try to read them from the most recent monolithic
+# Unihan, as we would then get confused by the other (still-extant) properties in that file.
+
+Unihan_Removed ; kAlternateHanYu
+Unihan_Removed ; kAlternateJEF
+Unihan_Removed ; kAlternateKangXi
+Unihan_Removed ; kAlternateMorohashi
+Unihan_Removed ; kRSMerged
+Unihan_Removed ; kJHJ
+
+# Unihan in one big file, Unicode 2.0..5.1.
+FileType ; Unihan ; PropertyValue
+Unihan ; kAccountingNumeric ; v5.1
+Unihan ; kAlternateHanYu ; v5.1
+Unihan ; kAlternateJEF ; v5.1
+Unihan ; kAlternateKangXi ; v5.1
+Unihan ; kAlternateMorohashi ; v5.1
+Unihan ; kBigFive ; v5.1
+Unihan ; kCangjie ; v5.1
+Unihan ; kCantonese ; v5.1
+Unihan ; kCCCII ; v5.1
+Unihan ; kCheungBauer ; v5.1
+Unihan ; kCheungBauerIndex ; v5.1
+Unihan ; kCihaiT ; v5.1
+Unihan ; kCNS1986 ; v5.1
+Unihan ; kCNS1992 ; v5.1
+Unihan ; kCompatibilityVariant ; v5.1
+Unihan ; kCowles ; v5.1
+Unihan ; kDaeJaweon ; v5.1
+Unihan ; kDefinition ; v5.1
+Unihan ; kEACC ; v5.1
+Unihan ; kFenn ; v5.1
+Unihan ; kFennIndex ; v5.1
+Unihan ; kFourCornerCode ; v5.1
+Unihan ; kFrequency ; v5.1
+Unihan ; kGB0 ; v5.1
+Unihan ; kGB1 ; v5.1
+Unihan ; kGB3 ; v5.1
+Unihan ; kGB5 ; v5.1
+Unihan ; kGB7 ; v5.1
+Unihan ; kGB8 ; v5.1
+Unihan ; kGradeLevel ; v5.1
+Unihan ; kGSR ; v5.1
+Unihan ; kHangul ; v5.1
+Unihan ; kHanYu ; v5.1
+Unihan ; kHanyuPinlu ; v5.1
+Unihan ; kHDZRadBreak ; v5.1
+Unihan ; kHKGlyph ; v5.1
+Unihan ; kHKSCS ; v5.1
+Unihan ; kIBMJapan ; v5.1
+Unihan ; kIICore ; v5.1
+Unihan ; kIRG_GSource ; v5.1
+Unihan ; kIRG_HSource ; v5.1
+Unihan ; kIRG_JSource ; v5.1
+Unihan ; kIRG_KPSource ; v5.1
+Unihan ; kIRG_KSource ; v5.1
+Unihan ; kIRG_TSource ; v5.1
+Unihan ; kIRG_USource ; v5.1
+Unihan ; kIRG_VSource ; v5.1
+Unihan ; kIRGDaeJaweon ; v5.1
+Unihan ; kIRGDaiKanwaZiten ; v5.1
+Unihan ; kIRGHanyuDaZidian ; v5.1
+Unihan ; kIRGKangXi ; v5.1
+Unihan ; kJapaneseKun ; v5.1
+Unihan ; kJapaneseOn ; v5.1
+Unihan ; kJHJ ; v5.1
+Unihan ; kJis0 ; v5.1
+Unihan ; kJis1 ; v5.1
+Unihan ; kJIS0213 ; v5.1
+Unihan ; kKangXi ; v5.1
+Unihan ; kKarlgren ; v5.1
+Unihan ; kKorean ; v5.1
+Unihan ; kKPS0 ; v5.1
+Unihan ; kKPS1 ; v5.1
+Unihan ; kKSC0 ; v5.1
+Unihan ; kKSC1 ; v5.1
+Unihan ; kLau ; v5.1
+Unihan ; kMainlandTelegraph ; v5.1
+Unihan ; kMandarin ; v5.1
+Unihan ; kMatthews ; v5.1
+Unihan ; kMeyerWempe ; v5.1
+Unihan ; kMorohashi ; v5.1
+Unihan ; kNelson ; v5.1
+Unihan ; kOtherNumeric ; v5.1
+Unihan ; kPhonetic ; v5.1
+Unihan ; kPrimaryNumeric ; v5.1
+Unihan ; kPseudoGB1 ; v5.1
+Unihan ; kRSAdobe_Japan1_6 ; v5.1
+Unihan ; kRSJapanese ; v5.1
+Unihan ; kRSKangXi ; v5.1
+Unihan ; kRSKanWa ; v5.1
+Unihan ; kRSKorean ; v5.1
+Unihan ; kRSMerged ; v5.1
+Unihan ; kRSUnicode ; v5.1
+Unihan ; kSBGY ; v5.1
+Unihan ; kSemanticVariant ; v5.1
+Unihan ; kSimplifiedVariant ; v5.1
+Unihan ; kSpecializedSemanticVariant ; v5.1
+Unihan ; kTaiwanTelegraph ; v5.1
+Unihan ; kTang ; v5.1
+Unihan ; kTotalStrokes ; v5.1
+Unihan ; kTraditionalVariant ; v5.1
+Unihan ; kVietnamese ; v5.1
+Unihan ; kXerox ; v5.1
+Unihan ; kXHC1983 ; v5.1
+Unihan ; kZVariant ; v5.1
+
+CJKXREF ; kGB0      ; 1 ; v1.1.5
+CJKXREF ; kGB1      ; 1 ; v1.1.5
+CJKXREF ; kGB3      ; 1 ; v1.1.5
+CJKXREF ; kGB5      ; 1 ; v1.1.5
+CJKXREF ; kGB7      ; 1 ; v1.1.5
+CJKXREF ; kGB8      ; 1 ; v1.1.5
+CJKXREF ; kBigFive  ; 2 ; v1.1.5
+CJKXREF ; kCNS1986  ; 3 ; v1.1.5
+CJKXREF ; kJis0     ; 4 ; v1.1.5
+CJKXREF ; kJis1     ; 4 ; v1.1.5
+CJKXREF ; kIBMJapan ; 4 ; v1.1.5
+CJKXREF ; kKSC0     ; 5 ; v1.1.5
+CJKXREF ; kKSC1     ; 5 ; v1.1.5
+CJKXREF ; kEACC     ; 6 ; v1.1.5
+CJKXREF ; kCCCII    ; 7 ; v1.1.5
+CJKXREF ; kXerox    ; 8 ; v1.1.5
 
 # Extras
 
@@ -320,12 +506,17 @@ EmojiSources ; Emoji_SB ; 3
 NamedSequences ; Named_Sequences
 NamedSequencesProv ; Named_Sequences_Prov
 StandardizedVariants ; Standardized_Variant
+emoji-variation-sequences ; emoji-variation-sequence
 DoNotEmit ; Do_Not_Emit_Preferred ; 1
+DoNotEmit ; Do_Not_Emit_Dispreferred ; 1 ↦ 0
+DoNotEmit ; Do_Not_Emit_Dispreferred_Type ; 1 ↦ 2
 DoNotEmit ; Do_Not_Emit_Type ; 2
 
 idna/*/IdnaMappingTable; Idn_Status;
 idna/*/IdnaMappingTable; Idn_Mapping; 2
 idna/*/IdnaMappingTable; Idn_2008; 3
+
+idna/*/Idna2008; IDNA2008_Category ; 1
 
 security/*/IdentifierStatus; Identifier_Status;
 security/*/IdentifierType; Identifier_Type
@@ -368,16 +559,28 @@ emoji/*/emoji-sequences; RGI_Emoji_Keycap_Sequence
 emoji/*/emoji-sequences; RGI_Emoji_Tag_Sequence
 emoji/*/emoji-zwj-sequences; RGI_Emoji_Zwj_Sequence
 
-#emoji/*/emoji-test ; Emoji_Short_Name
+emoji/*/emoji-test ; RGI_Emoji_Qualification ; 1
+# This binary property is defined by a derivation, but not provided directly in
+# data files.  The derivation depends on multiple files, which is highly
+# inconvenient for the index.  Instead we use a simpler alternate derivation and
+# verify in the invariant tests that they are equivalent.
+# The simpler derivation is
+#   \p{RGI_Emoji} := [\p{RGI_Emoji_Qualification=Fully_Qualified}
+#                     \p{RGI_Emoji_Qualification=Standalone_Component}].
+emoji/*/emoji-test ; RGI_Emoji ; 1
 
+# Get Math_Class from MathClass.txt, which exists since revision 9.
+math/*/MathClass ; Math_Class ; 1
 
-FileType ; TangutSources ; PropertyValue
-TangutSources ; kTGT_MergedSrc
-TangutSources ; kRSTUnicode
-
-FileType ; NushuSources ; PropertyValue
-NushuSources ; kSrc_NushuDuben
-NushuSources ; kReading
+# Should be the same as Math_Class, but isn’t.
+math/*/MathClassEx ; Math_Class_Ex             ; 1
+math/*/MathClassEx ; Math_Entity_Name          ; 2
+math/*/MathClassEx ; Math_Entity_Set           ; 3
+math/*/MathClassEx ; Math_Descriptive_Comments ; 4
+# Field 2 used to be the character itself.
+math/*/MathClassEx ; Math_Entity_Name          ; 3 ; v17.0
+math/*/MathClassEx ; Math_Entity_Set           ; 4 ; v17.0
+math/*/MathClassEx ; Math_Descriptive_Comments ; 5 ; v17.0
 
 FileType ; Unikemet ; PropertyValue
 Unikemet ; kEH_Cat
@@ -391,3 +594,10 @@ Unikemet ; kEH_IFAO
 Unikemet ; kEH_NoMirror
 Unikemet ; kEH_NoRotate
 Unikemet ; kEH_UniK
+Unikemet ; kEH_AltSeq
+
+NamesList ; Names_List_Alias
+NamesList ; Names_List_Cross_Ref
+NamesList ; Names_List_Comment
+NamesList ; Names_List_Subheader
+NamesList ; Names_List_Subheader_Notice
