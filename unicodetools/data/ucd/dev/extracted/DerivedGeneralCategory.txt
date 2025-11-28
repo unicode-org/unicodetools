@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-28, 16:35:44 GMT
+# Date: 2025-11-28, 16:58:14 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -288,7 +288,8 @@ A48D..A48F    ; Cn #   [3] <reserved-A48D>..<reserved-A48F>
 A4C7..A4CF    ; Cn #   [9] <reserved-A4C7>..<reserved-A4CF>
 A62C..A63F    ; Cn #  [20] <reserved-A62C>..<reserved-A63F>
 A6F8..A6FF    ; Cn #   [8] <reserved-A6F8>..<reserved-A6FF>
-A7DD..A7F0    ; Cn #  [20] <reserved-A7DD>..<reserved-A7F0>
+A7DD..A7E1    ; Cn #   [5] <reserved-A7DD>..<reserved-A7E1>
+A7E3..A7F0    ; Cn #  [14] <reserved-A7E3>..<reserved-A7F0>
 A82D..A82F    ; Cn #   [3] <reserved-A82D>..<reserved-A82F>
 A83A..A83F    ; Cn #   [6] <reserved-A83A>..<reserved-A83F>
 A878..A87F    ; Cn #   [8] <reserved-A878>..<reserved-A87F>
@@ -749,7 +750,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801896
+# Total code points: 801895
 
 # ================================================
 
@@ -1365,6 +1366,7 @@ A7D6          ; Lu #       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; Lu #       LATIN CAPITAL LETTER SIGMOID S
 A7DA          ; Lu #       LATIN CAPITAL LETTER LAMBDA
 A7DC          ; Lu #       LATIN CAPITAL LETTER LAMBDA WITH STROKE
+A7E2          ; Lu #       LATIN CAPITAL LETTER R WITH LONG LEG
 A7F5          ; Lu #       LATIN CAPITAL LETTER REVERSED HALF H
 AB6C..AB6D    ; Lu #   [2] LATIN CAPITAL LETTER SCRIPT R..LATIN CAPITAL LETTER SCRIPT R WITH RING
 FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAPITAL LETTER Z
@@ -1417,7 +1419,7 @@ FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAP
 1DF51         ; Lu #       LATIN CAPITAL LETTER BARRED V
 1E900..1E921  ; Lu #  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 
-# Total code points: 1893
+# Total code points: 1894
 
 # ================================================
 

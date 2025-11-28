@@ -1,5 +1,5 @@
 # CaseFolding-18.0.0.txt
-# Date: 2025-11-28, 16:35:16 GMT
+# Date: 2025-11-28, 16:57:47 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1251,6 +1251,7 @@ A7D6; C; A7D7; # LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8; C; A7D9; # LATIN CAPITAL LETTER SIGMOID S
 A7DA; C; A7DB; # LATIN CAPITAL LETTER LAMBDA
 A7DC; C; 019B; # LATIN CAPITAL LETTER LAMBDA WITH STROKE
+A7E2; C; 027C; # LATIN CAPITAL LETTER R WITH LONG LEG
 A7F5; C; A7F6; # LATIN CAPITAL LETTER REVERSED HALF H
 AB6C; C; AB4B; # LATIN CAPITAL LETTER SCRIPT R
 AB6D; C; AB4C; # LATIN CAPITAL LETTER SCRIPT R WITH RING
