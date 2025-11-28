@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2025-11-28, 16:10:10 GMT
+# Date: 2025-11-28, 16:35:40 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -751,6 +751,7 @@ AB5B          ; L # Sk       MODIFIER BREVE WITH INVERTED BREVE
 AB5C..AB5F    ; L # Lm   [4] MODIFIER LETTER SMALL HENG..MODIFIER LETTER SMALL U WITH LEFT HOOK
 AB60..AB68    ; L # L&   [9] LATIN SMALL LETTER SAKHA YAT..LATIN SMALL LETTER TURNED R WITH MIDDLE TILDE
 AB69          ; L # Lm       MODIFIER LETTER SMALL TURNED W
+AB6C..AB6D    ; L # L&   [2] LATIN CAPITAL LETTER SCRIPT R..LATIN CAPITAL LETTER SCRIPT R WITH RING
 AB70..ABBF    ; L # L&  [80] CHEROKEE SMALL LETTER A..CHEROKEE SMALL LETTER YA
 ABC0..ABE2    ; L # Lo  [35] MEETEI MAYEK LETTER KOK..MEETEI MAYEK LETTER I LONSUM
 ABE3..ABE4    ; L # Mc   [2] MEETEI MAYEK VOWEL SIGN ONAP..MEETEI MAYEK VOWEL SIGN INAP
@@ -1239,7 +1240,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 797809 code points not listed here.
+# The above property value applies to 797807 code points not listed here.
 # Total code points: 1095380
 
 # ================================================

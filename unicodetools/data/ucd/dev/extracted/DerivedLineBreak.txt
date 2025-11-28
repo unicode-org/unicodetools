@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2025-11-28, 16:10:15 GMT
+# Date: 2025-11-28, 16:35:46 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,8 +71,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 755697 code points not listed here.
-# Total code points: 893165
+# The above property value applies to 755695 code points not listed here.
+# Total code points: 893163
 
 # ================================================
 
@@ -1183,6 +1183,7 @@ AB5C..AB5F    ; AL # Lm   [4] MODIFIER LETTER SMALL HENG..MODIFIER LETTER SMALL 
 AB60..AB68    ; AL # L&   [9] LATIN SMALL LETTER SAKHA YAT..LATIN SMALL LETTER TURNED R WITH MIDDLE TILDE
 AB69          ; AL # Lm       MODIFIER LETTER SMALL TURNED W
 AB6A..AB6B    ; AL # Sk   [2] MODIFIER LETTER LEFT TACK..MODIFIER LETTER RIGHT TACK
+AB6C..AB6D    ; AL # L&   [2] LATIN CAPITAL LETTER SCRIPT R..LATIN CAPITAL LETTER SCRIPT R WITH RING
 AB70..ABBF    ; AL # L&  [80] CHEROKEE SMALL LETTER A..CHEROKEE SMALL LETTER YA
 ABC0..ABE2    ; AL # Lo  [35] MEETEI MAYEK LETTER KOK..MEETEI MAYEK LETTER I LONSUM
 FB00..FB06    ; AL # L&   [7] LATIN SMALL LIGATURE FF..LATIN SMALL LIGATURE ST
@@ -1647,7 +1648,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB94..1FBEF  ; AL # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; AL # So       ALARM BELL SYMBOL
 
-# Total code points: 27442
+# Total code points: 27444
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # WordBreakProperty-18.0.0.txt
-# Date: 2025-11-28, 16:10:51 GMT
+# Date: 2025-11-28, 16:36:24 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1054,6 +1054,7 @@ AB5B          ; ALetter # Sk       MODIFIER BREVE WITH INVERTED BREVE
 AB5C..AB5F    ; ALetter # Lm   [4] MODIFIER LETTER SMALL HENG..MODIFIER LETTER SMALL U WITH LEFT HOOK
 AB60..AB68    ; ALetter # L&   [9] LATIN SMALL LETTER SAKHA YAT..LATIN SMALL LETTER TURNED R WITH MIDDLE TILDE
 AB69          ; ALetter # Lm       MODIFIER LETTER SMALL TURNED W
+AB6C..AB6D    ; ALetter # L&   [2] LATIN CAPITAL LETTER SCRIPT R..LATIN CAPITAL LETTER SCRIPT R WITH RING
 AB70..ABBF    ; ALetter # L&  [80] CHEROKEE SMALL LETTER A..CHEROKEE SMALL LETTER YA
 ABC0..ABE2    ; ALetter # Lo  [35] MEETEI MAYEK LETTER KOK..MEETEI MAYEK LETTER I LONSUM
 AC00..D7A3    ; ALetter # Lo [11172] HANGUL SYLLABLE GA..HANGUL SYLLABLE HIH
@@ -1389,7 +1390,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 34457
+# Total code points: 34459
 
 # ================================================
 

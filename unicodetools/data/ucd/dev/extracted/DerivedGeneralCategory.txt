@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-28, 16:10:14 GMT
+# Date: 2025-11-28, 16:35:44 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -309,7 +309,7 @@ AB0F..AB10    ; Cn #   [2] <reserved-AB0F>..<reserved-AB10>
 AB17..AB1F    ; Cn #   [9] <reserved-AB17>..<reserved-AB1F>
 AB27          ; Cn #       <reserved-AB27>
 AB2F          ; Cn #       <reserved-AB2F>
-AB6C..AB6F    ; Cn #   [4] <reserved-AB6C>..<reserved-AB6F>
+AB6E..AB6F    ; Cn #   [2] <reserved-AB6E>..<reserved-AB6F>
 ABEE..ABEF    ; Cn #   [2] <reserved-ABEE>..<reserved-ABEF>
 ABFA..ABFF    ; Cn #   [6] <reserved-ABFA>..<reserved-ABFF>
 D7A4..D7AF    ; Cn #  [12] <reserved-D7A4>..<reserved-D7AF>
@@ -749,7 +749,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801898
+# Total code points: 801896
 
 # ================================================
 
@@ -1366,6 +1366,7 @@ A7D8          ; Lu #       LATIN CAPITAL LETTER SIGMOID S
 A7DA          ; Lu #       LATIN CAPITAL LETTER LAMBDA
 A7DC          ; Lu #       LATIN CAPITAL LETTER LAMBDA WITH STROKE
 A7F5          ; Lu #       LATIN CAPITAL LETTER REVERSED HALF H
+AB6C..AB6D    ; Lu #   [2] LATIN CAPITAL LETTER SCRIPT R..LATIN CAPITAL LETTER SCRIPT R WITH RING
 FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAPITAL LETTER Z
 10400..10427  ; Lu #  [40] DESERET CAPITAL LETTER LONG I..DESERET CAPITAL LETTER EW
 104B0..104D3  ; Lu #  [36] OSAGE CAPITAL LETTER A..OSAGE CAPITAL LETTER ZHA
@@ -1416,7 +1417,7 @@ FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAP
 1DF51         ; Lu #       LATIN CAPITAL LETTER BARRED V
 1E900..1E921  ; Lu #  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 
-# Total code points: 1891
+# Total code points: 1893
 
 # ================================================
 

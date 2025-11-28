@@ -1,5 +1,5 @@
 # DerivedNormalizationProps-18.0.0.txt
-# Date: 2025-11-28, 16:10:16 GMT
+# Date: 2025-11-28, 16:35:46 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -5485,6 +5485,8 @@ AB5D          ; NFKC_CF; AB37           # Lm       MODIFIER LETTER SMALL L WITH 
 AB5E          ; NFKC_CF; 026B           # Lm       MODIFIER LETTER SMALL L WITH MIDDLE TILDE
 AB5F          ; NFKC_CF; AB52           # Lm       MODIFIER LETTER SMALL U WITH LEFT HOOK
 AB69          ; NFKC_CF; 028D           # Lm       MODIFIER LETTER SMALL TURNED W
+AB6C          ; NFKC_CF; AB4B           # L&       LATIN CAPITAL LETTER SCRIPT R
+AB6D          ; NFKC_CF; AB4C           # L&       LATIN CAPITAL LETTER SCRIPT R WITH RING
 AB70          ; NFKC_CF; 13A0           # L&       CHEROKEE SMALL LETTER A
 AB71          ; NFKC_CF; 13A1           # L&       CHEROKEE SMALL LETTER E
 AB72          ; NFKC_CF; 13A2           # L&       CHEROKEE SMALL LETTER I
@@ -9256,7 +9258,7 @@ E0080..E00FF  ; NFKC_CF;                # Cn [128] <reserved-E0080>..<reserved-E
 E0100..E01EF  ; NFKC_CF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_CF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10651
+# Total code points: 10653
 
 # ================================================
 
@@ -11716,6 +11718,8 @@ AB5D          ; NFKC_SCF; AB37           # Lm       MODIFIER LETTER SMALL L WITH
 AB5E          ; NFKC_SCF; 026B           # Lm       MODIFIER LETTER SMALL L WITH MIDDLE TILDE
 AB5F          ; NFKC_SCF; AB52           # Lm       MODIFIER LETTER SMALL U WITH LEFT HOOK
 AB69          ; NFKC_SCF; 028D           # Lm       MODIFIER LETTER SMALL TURNED W
+AB6C          ; NFKC_SCF; AB4B           # L&       LATIN CAPITAL LETTER SCRIPT R
+AB6D          ; NFKC_SCF; AB4C           # L&       LATIN CAPITAL LETTER SCRIPT R WITH RING
 AB70          ; NFKC_SCF; 13A0           # L&       CHEROKEE SMALL LETTER A
 AB71          ; NFKC_SCF; 13A1           # L&       CHEROKEE SMALL LETTER E
 AB72          ; NFKC_SCF; 13A2           # L&       CHEROKEE SMALL LETTER I
@@ -15487,7 +15491,7 @@ E0080..E00FF  ; NFKC_SCF;                # Cn [128] <reserved-E0080>..<reserved-
 E0100..E01EF  ; NFKC_SCF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_SCF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10613
+# Total code points: 10615
 
 # ================================================
 
@@ -16272,6 +16276,7 @@ A7F5          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER REV
 A7F8..A7F9    ; Changes_When_NFKC_Casefolded # Lm   [2] MODIFIER LETTER CAPITAL H WITH STROKE..MODIFIER LETTER SMALL LIGATURE OE
 AB5C..AB5F    ; Changes_When_NFKC_Casefolded # Lm   [4] MODIFIER LETTER SMALL HENG..MODIFIER LETTER SMALL U WITH LEFT HOOK
 AB69          ; Changes_When_NFKC_Casefolded # Lm       MODIFIER LETTER SMALL TURNED W
+AB6C..AB6D    ; Changes_When_NFKC_Casefolded # L&   [2] LATIN CAPITAL LETTER SCRIPT R..LATIN CAPITAL LETTER SCRIPT R WITH RING
 AB70..ABBF    ; Changes_When_NFKC_Casefolded # L&  [80] CHEROKEE SMALL LETTER A..CHEROKEE SMALL LETTER YA
 F900..FA0D    ; Changes_When_NFKC_Casefolded # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIBILITY IDEOGRAPH-FA0D
 FA10          ; Changes_When_NFKC_Casefolded # Lo       CJK COMPATIBILITY IDEOGRAPH-FA10
@@ -16518,6 +16523,6 @@ E0080..E00FF  ; Changes_When_NFKC_Casefolded # Cn [128] <reserved-E0080>..<reser
 E0100..E01EF  ; Changes_When_NFKC_Casefolded # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; Changes_When_NFKC_Casefolded # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10651
+# Total code points: 10653
 
 # EOF
