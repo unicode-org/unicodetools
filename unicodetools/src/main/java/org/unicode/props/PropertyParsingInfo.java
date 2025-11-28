@@ -8,6 +8,7 @@ import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -49,11 +50,45 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     public final SpecialProperty special;
 
     /**
-     * Maps from Unicode versions to field number. A property whose field number depends on the
-     * version has more than one entry. A particular field number applies to the Unicode versions
+     * Represents a mapping from one field of a UCD file to another. For instance, given the data
+     * line ABCD ; Value ; 1234 FieldMapping(1) maps U+ABCD to Value, FieldMapping(2) maps U+ABCD to
+     * 1234 (which may be interpreted as U+1234) depending on the property type, and FieldMapping(2,
+     * 1) maps U+1234 to Value.
+     */
+    public static class FieldMapping implements Comparable<FieldMapping> {
+        /** A mapping from field 0 to field `valueField`. This is the most common case. */
+        FieldMapping(int valueField) {
+            this(0, valueField);
+        }
+
+        FieldMapping(int keyField, int valueField) {
+            this.keyField = keyField;
+            this.valueField = valueField;
+        }
+
+        @Override
+        public int compareTo(FieldMapping other) {
+            return comparator.compare(this, other);
+        }
+
+        @Override
+        public String toString() {
+            return keyField + " ↦ " + valueField;
+        }
+
+        final int keyField;
+        final int valueField;
+        static final Comparator<FieldMapping> comparator =
+                Comparator.<FieldMapping>comparingInt(m -> m.keyField)
+                        .thenComparing(m -> m.valueField);
+    }
+
+    /**
+     * Maps from Unicode versions to field mapping. A property whose field mapping depends on the
+     * version has more than one entry. A particular field mapping applies to the Unicode versions
      * after the previous-version entry, up to and including its own version.
      */
-    TreeMap<VersionInfo, Integer> fieldNumbers;
+    TreeMap<VersionInfo, FieldMapping> fieldMappings;
 
     /**
      * Maps from Unicode versions to files. A property whose file depends on the version has more
@@ -105,16 +140,17 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             Relation.of(new HashMap<String, Set<PropertyParsingInfo>>(), HashSet.class);
 
     public PropertyParsingInfo(
-            String file, UcdProperty property, int fieldNumber, SpecialProperty special) {
+            String file, UcdProperty property, FieldMapping fieldMapping, SpecialProperty special) {
         this.files = new TreeMap<>();
         files.put(Settings.LATEST_VERSION_INFO, file);
         this.property = property;
-        this.fieldNumbers = new TreeMap<>();
-        fieldNumbers.put(Settings.LATEST_VERSION_INFO, fieldNumber);
+        this.fieldMappings = new TreeMap<>();
+        fieldMappings.put(Settings.LATEST_VERSION_INFO, fieldMapping);
         this.special = special;
     }
 
     static final Pattern VERSION = Pattern.compile("v\\d+(\\.\\d+)+");
+    static final Pattern FIELD_MAPPING = Pattern.compile("(\\d+)\\s*↦\\s*(\\d+)");
 
     private static void fromStrings(String... propertyInfo) {
         if (propertyInfo.length < 2 || propertyInfo.length > 4) {
@@ -130,13 +166,20 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
         String last = propertyInfo[propertyInfo.length - 1];
 
-        int temp = 1;
+        var fieldMapping = new FieldMapping(1);
         if (propertyInfo.length > 2
                 && !propertyInfo[2].isEmpty()
                 && !VERSION.matcher(propertyInfo[2]).matches()) {
-            temp = Integer.parseInt(propertyInfo[2]);
+            final var matcher = FIELD_MAPPING.matcher(propertyInfo[2]);
+            if (matcher.matches()) {
+                fieldMapping =
+                        new FieldMapping(
+                                Integer.parseInt(matcher.group(1)),
+                                Integer.parseInt(matcher.group(2)));
+            } else {
+                fieldMapping = new FieldMapping(Integer.parseInt(propertyInfo[2]));
+            }
         }
-        int _fieldNumber = temp;
 
         if (VERSION.matcher(last).matches()) {
             propertyInfo[propertyInfo.length - 1] = "";
@@ -146,7 +189,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         "No modern info for property with old file record: " + propName);
             }
             result.files.put(VersionInfo.getInstance(last.substring(1)), _file);
-            result.fieldNumbers.put(VersionInfo.getInstance(last.substring(1)), _fieldNumber);
+            result.fieldMappings.put(VersionInfo.getInstance(last.substring(1)), fieldMapping);
             file2PropertyInfoSet.put(_file, result);
             return;
         }
@@ -156,7 +199,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         ? SpecialProperty.None
                         : SpecialProperty.valueOf(propertyInfo[3]);
         PropertyParsingInfo result =
-                new PropertyParsingInfo(_file, _property, _fieldNumber, _special);
+                new PropertyParsingInfo(_file, _property, fieldMapping, _special);
 
         try {
             PropertyUtilities.putNew(property2PropertyInfo, _property, result);
@@ -173,7 +216,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         }
         PropertyParsingInfo info = property2PropertyInfo.get(prop);
         if (info == null) {
-            info = new PropertyParsingInfo(filename, prop, 1, SpecialProperty.None);
+            info =
+                    new PropertyParsingInfo(
+                            filename, prop, new FieldMapping(1), SpecialProperty.None);
             property2PropertyInfo.put(prop, info);
         }
         file2PropertyInfoSet.put(filename, info);
@@ -185,7 +230,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 + " ;\t"
                 + property
                 + " ;\t"
-                + fieldNumbers
+                + fieldMappings
                 + " ;\t"
                 + special
                 + " ;\t"
@@ -212,8 +257,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         if (0 != (result = property.toString().compareTo(arg0.property.toString()))) {
             return result;
         }
-        return fieldNumbers.get(Settings.LATEST_VERSION_INFO)
-                - arg0.fieldNumbers.get(Settings.LATEST_VERSION_INFO);
+        return fieldMappings
+                .get(Settings.LATEST_VERSION_INFO)
+                .compareTo(arg0.fieldMappings.get(Settings.LATEST_VERSION_INFO));
     }
 
     public static String getFullFileName(UcdProperty prop, VersionInfo ucdVersion) {
@@ -240,18 +286,18 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         }
     }
 
-    public int getFieldNumber(VersionInfo ucdVersionRequested) {
-        int fieldNumber = 0;
-        if (fieldNumbers.size() == 1) {
-            return fieldNumbers.values().iterator().next();
+    public FieldMapping getFieldMapping(VersionInfo ucdVersionRequested) {
+        FieldMapping fieldMapping = null;
+        if (fieldMappings.size() == 1) {
+            return fieldMappings.values().iterator().next();
         }
-        for (final var entry : fieldNumbers.entrySet()) {
+        for (final var entry : fieldMappings.entrySet()) {
             if (ucdVersionRequested.compareTo(entry.getKey()) <= 0) {
-                fieldNumber = entry.getValue();
+                fieldMapping = entry.getValue();
                 break;
             }
         }
-        return fieldNumber;
+        return fieldMapping;
     }
 
     private static final VersionInfo V13 = VersionInfo.getInstance(13);
@@ -662,10 +708,16 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             propInfoSet);
                     break;
                 case Field:
+                    FieldMapping mapping;
                     if (propInfoSet.size() == 1
                             && (propInfo = propInfoSet.iterator().next()).special
                                     == SpecialProperty.None
-                            && propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion) == 1) {
+                            && (mapping =
+                                                    propInfo.getFieldMapping(
+                                                            indexUnicodeProperties.ucdVersion))
+                                            .keyField
+                                    == 0
+                            && mapping.valueField == 1) {
                         if (fileName.equals("math/*/MathClass")
                                 && indexUnicodeProperties.ucdVersion.compareTo(
                                                 VersionInfo.UNICODE_6_3)
@@ -1490,9 +1542,12 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         throw new UnicodePropertyException();
                 }
                 String value =
-                        propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion) >= parts.length
+                        propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion).valueField
+                                        >= parts.length
                                 ? null
-                                : parts[propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion)];
+                                : parts[
+                                        propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion)
+                                                .valueField];
                 if (propInfo.property == UcdProperty.Joining_Group
                         && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_4_0_1)
                                 <= 0
@@ -1562,22 +1617,43 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     // 21EA..21F3;;⇪..⇳;;;; 21EA-21F3 are keyboard
                     value = "None";
                 }
-                propInfo.put(
-                        data,
-                        line.getMissingSet(),
-                        line.getRange(),
-                        value,
-                        merger,
-                        hackHangul && propInfo.property == UcdProperty.Decomposition_Mapping,
-                        nextProperties == null
-                                ? null
-                                : nextProperties.getProperty(propInfo.property));
+                if (propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion).keyField == 0) {
+                    propInfo.put(
+                            data,
+                            line.getMissingSet(),
+                            line.getRange(),
+                            value,
+                            merger,
+                            hackHangul && propInfo.property == UcdProperty.Decomposition_Mapping,
+                            nextProperties == null
+                                    ? null
+                                    : nextProperties.getProperty(propInfo.property));
+                } else {
+                    final var key = new IntRange();
+                    key.set(
+                            parts[
+                                    propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion)
+                                            .keyField]);
+                    propInfo.put(
+                            data,
+                            line.getMissingSet(),
+                            key,
+                            value,
+                            IndexUnicodeProperties.MULTIVALUED_JOINER,
+                            hackHangul && propInfo.property == UcdProperty.Decomposition_Mapping,
+                            nextProperties == null
+                                    ? null
+                                    : nextProperties.getProperty(propInfo.property));
+                }
             }
         } else {
             for (final PropertyParsingInfo propInfo : propInfoSet) {
                 final String value =
-                        propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion) < parts.length
-                                ? parts[propInfo.getFieldNumber(indexUnicodeProperties.ucdVersion)]
+                        propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion).valueField
+                                        < parts.length
+                                ? parts[
+                                        propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion)
+                                                .valueField]
                                 : null;
                 setPropDefault(
                         propInfo.property,

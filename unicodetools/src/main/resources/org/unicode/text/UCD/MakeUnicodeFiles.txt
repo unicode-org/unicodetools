@@ -882,6 +882,7 @@ Format: kenFile skipValue=Rotated
 #         Ideographic Symbols & Tangut:      U+16FE0..U+18AFF
 #         Khitan Small Script & Tangut Sup:  U+18B00..U+18D7F
 #         Tangut Components Supplement:      U+18D80..U+18DFF
+#         Jurchen & Jurchen Radicals:        U+18E00..U+191DF
 #         Kana Extended-B:                   U+1AFF0..U+1AFFF
 #         Kana Extended-A & Small Kana Ext:  U+1B100..U+1B16F
 #         Nushu:                             U+1B170..U+1B2FF
@@ -1425,6 +1426,112 @@ File:	ArabicShaping
 # calculating the set for Joining_Type=T based on General_Category values.
 #
 # #############################################################
+Property: SPECIAL
+
+File: DoNotEmit
+#
+# Do_Not_Emit
+#
+# This file is part of the Unicode Character Database. It does not define
+# any properties, but rather provides additional information about
+# characters or character sequences that should not be emitted or generated
+# in newly authored text. Applications such as input methods could use this
+# information to replace "Do Not Emit" sequences input by users with an
+# acceptable alternative. Other applications may use the information in
+# this file to consider certain sequences similar to each other for display,
+# collation, or searching purposes. (This is an addition to canonical
+# equivalence, which is defined elsewhere in the standard.)
+#
+# Note that the discouraged sequences listed in this file should not be
+# considered invalid input to text display implementations. When received
+# by an implementation, the sequences are not required to be displayed with
+# a visual indication of an error (such as dotted circles). Implementation
+# should try their best to display them as normal text, perhaps in the same
+# way or very similar to the way their alternative sequence is displayed.
+#
+# Only characters and character sequences for which a suitable alternative
+# sequence exists are provided. For example, deprecated characters for
+# which no suitable alternative exists are not listed. (For a list of
+# deprecated characters see the "Deprecated" property defined in the Unicode
+# Character Database file "PropList.txt".)
+#
+# Also, canonically equivalent sequences are not listed, even if one
+# sequence is specified to be discouraged or deprecated in the Unicode
+# Standard. For example, U+2126 OHM SIGN, which is canonically equivalent
+# to U+03A9 GREEK CAPITAL LETTER OMEGA is not explicitly listed, since it is
+# expected that conforming Unicode processes would discover the relation
+# between the two characters.
+#
+# Sequences for Egyptian Hieroglyphs are not listed here. See
+# the kEH_AltSeq property in UAX #57 for that information.
+#
+# CJK compatibility ideographs are not listed here either. Most of the CJK
+# compatibility ideographs are canonically equivalent to a CJK unified
+# ideograph, which means that distinctions between compatibility ideographs
+# and the unified ideographs that they are canonically equivalent to would
+# be lost in normalization. The preferred form for applications that intend
+# to keep such distinctions is using a standardized variation sequence
+# instead of a CJK compatibility ideograph. For a comprehensive list of
+# these standardized variation sequences, see the section "CJK
+# compatibility ideographs" in StandardizedVariants.txt.
+#
+# Note that some sequences could be considered recursive, in the way that
+# the preferred sequence to use may be a subsequence of the "Do Not Emit"
+# sequence. This may have implications for some implementations who may want
+# to treat the original sequence and its alternative as similar.
+#
+# This file should not be considered to be comprehensive. It is expected
+# that new sequences and categories may be added to or removed from the file
+# as the Unicode Standard goes through new releases.
+#
+# Format:
+#    Field 0  A sequence of Unicode code point values
+#    Field 1  A replacement sequence of Unicode code point values
+#    Field 2  DoNotEmit type of the original character sequence
+#
+# Field 2 is followed by an optional human-readable comment field.
+#
+# These are the values used for Field 2:
+# Indic_Atomic_Consonant:
+#    Sequences that look like an Indic consonant but should be avoided
+#    in representing that consonant. For now, these are limited to
+#    Devanagari.
+# Indic_Consonant_Conjunct:
+#    Sequences that look like an Indic conjunct but should be avoided
+#    in representing that conjunct. For now, these are limited to
+#    Devanagari.
+# Indic_Vowel_Letter:
+#    Sequences that look like an Indic vowel letter but should be avoided
+#    in representing that vowel letter.
+# Bengali_Khanda_Ta:
+#    Legacy representation of Bengali khanda ta prior to
+#    Unicode Version 4.1.
+# Malayalam_Chillu:
+#    Legacy representation of Malayalam chillus prior to
+#    Unicode Version 5.1. Note that the sequence in Field 0 may appear
+#    in legitimate Malayalam sequences not related to chillus.
+# Tamil_Shrii:
+#    Legacy representation of Tamil ligature shri prior to
+#    Unicode Version 4.1.
+# Dotless_Form:
+#    Dotless forms of lowercase Latin i and j followed by a
+#    combining dot above.
+# Arabic_Tashkil:
+#    Arabic tashkil combinations that should be avoided.
+# Hamza_Form:
+#    Sequences containing Arabic hamza above, which should be avoided.
+# Precomposed_Form:
+#    Sequences for which a precomposed form exists, but without canonical
+#    equivalence.
+# Deprecated:
+#    Characters that are identified in the Unicode Standard as
+#    deprecated for which a replacement sequence exists.
+# Discouraged:
+#    Miscellaneous characters and sequences discouraged in the
+#    Unicode Standard.
+# Preferred_Spelling:
+#    Miscellaneous characters and sequences for which the Unicode Standard
+#    specifies a preferred spelling.
 Property: SPECIAL
 
 File:	SpecialCasing

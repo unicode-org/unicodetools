@@ -1,0 +1,49 @@
+# IPA: Modifier Sinological extensions to IPA
+# https://github.com/unicode-org/utc-release-management/issues/128
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block:
+# The range \N{MODIFIER LETTER SMALL CAPITAL A}-\N{MODIFIER LETTER SMALL T WITH CURL} is split in
+# three tests because the modifiers are encoded in the order (small capitals, fishhooks, curls), but
+# the non-modifiers are in code point order (curls, fishhooks, small capitals).
+Propertywise [ \N{MODIFIER LETTER SMALL CAPITAL A}
+               \N{MODIFIER LETTER SMALL CAPITAL E}]
+           : [ᴀ\N{LATIN LETTER SMALL CAPITAL A}
+              ᴇ\N{LATIN LETTER SMALL CAPITAL E}]
+CorrespondTo [ʶ\N{MODIFIER LETTER SMALL CAPITAL INVERTED R}]
+           : [ʁ\N{LATIN LETTER SMALL CAPITAL INVERTED R}]
+
+Ignoring Unicode_1_Name:  # ɿ has a Unicode_1_Name (FISHHOOK R instead of R WITH FISHHOOK).
+Propertywise [ \N{MODIFIER LETTER SMALL REVERSED R WITH FISHHOOK}
+               \N{MODIFIER LETTER SMALL SQUAT REVERSED ESH}
+               \N{MODIFIER LETTER SMALL TURNED H WITH FISHHOOK}
+               \N{MODIFIER LETTER SMALL TURNED H WITH FISHHOOK AND TAIL}]
+           : [ɿ\N{LATIN SMALL LETTER REVERSED R WITH FISHHOOK}
+              ʅ\N{LATIN SMALL LETTER SQUAT REVERSED ESH}
+              ʮ\N{LATIN SMALL LETTER TURNED H WITH FISHHOOK}
+              ʯ\N{LATIN SMALL LETTER TURNED H WITH FISHHOOK AND TAIL}]
+CorrespondTo [ʶ\N{MODIFIER LETTER SMALL CAPITAL INVERTED R}]
+           : [ʁ\N{LATIN LETTER SMALL CAPITAL INVERTED R}]
+end Ignoring;
+
+Propertywise [ \N{MODIFIER LETTER SMALL D WITH CURL}
+               \N{MODIFIER LETTER SMALL L WITH CURL}
+               \N{MODIFIER LETTER SMALL N WITH CURL}
+               \N{MODIFIER LETTER SMALL T WITH CURL}]
+           : [ȡ\N{LATIN SMALL LETTER D WITH CURL}
+              ȴ\N{LATIN SMALL LETTER L WITH CURL}
+              ȵ\N{LATIN SMALL LETTER N WITH CURL}
+              ȶ\N{LATIN SMALL LETTER T WITH CURL}]
+CorrespondTo [ʶ\N{MODIFIER LETTER SMALL CAPITAL INVERTED R}]
+           : [ʁ\N{LATIN LETTER SMALL CAPITAL INVERTED R}]
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

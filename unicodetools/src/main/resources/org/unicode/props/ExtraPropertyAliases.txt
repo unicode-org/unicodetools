@@ -26,6 +26,7 @@ IDNA2008_Category ; IDNA2008_Category ; NonUCDProperty
 Other_Joining_Type ; Other_Joining_Type ; UCDNonProperty
 
 Do_Not_Emit_Type ; Do_Not_Emit_Type ; UCDNonProperty
+Do_Not_Emit_Dispreferred_Type ; Do_Not_Emit_Dispreferred_Type ; UCDNonProperty
 
 kEH_Core                 ; kEH_Core ; Provisional
 
@@ -75,6 +76,7 @@ cjkTraditionalVariant ; kTraditionalVariant ; Provisional
 cjkSpoofingVariant       ; kSpoofingVariant ; Provisional
 
 Do_Not_Emit_Preferred ; Do_Not_Emit_Preferred ; UCDNonProperty
+Do_Not_Emit_Dispreferred ; Do_Not_Emit_Dispreferred ; UCDNonProperty
 
 normalization_correction_original ; normalization_correction_original ; UCDNonProperty
 normalization_correction_corrected ; normalization_correction_corrected ; UCDNonProperty
@@ -211,6 +213,10 @@ cjkZhuang                ; kZhuang ; Provisional
 # For Unicode Version 17.0. See L2/25-087 item 1.9.
 # (Changed between 17 alpha and beta.)
 kTGT_RSUnicode           ; kTGT_RSUnicode ; kRSTUnicode ; Provisional
+
+kJURC_RSUnicode ; kJURC_RSUnicode ; Provisional
+kJURC_NCReading ; kJURC_NCReading ; Provisional
+kJURC_Numeric   ; kJURC_Numeric   ; Provisional
 
 # [183-C30] Consensus: In NushuSources.txt,
 # change the tag kSrc_NushuDuben to kNSHU_DubenSrc, and change the tag kReading to kNSHU_Reading.

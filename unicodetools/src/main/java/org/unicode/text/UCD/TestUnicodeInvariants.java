@@ -1428,6 +1428,11 @@ public class TestUnicodeInvariants {
         }
 
         @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         protected List<String> _getValueAliases(String valueAlias, List<String> result) {
             return propOrFilters.get(0).prop.getAvailableValues(result);
         }
