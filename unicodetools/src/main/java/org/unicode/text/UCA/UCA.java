@@ -281,7 +281,12 @@ public final class UCA implements Comparator<String>, UCA_Types {
     }
 
     int getLastRegularPrimary() {
-        return getStatistics().getPrimarySet().length() - 1;
+        UCA_Statistics.RoBitSet set = getStatistics().getPrimarySet();
+        int last = set.length() - 1;
+        while (last >= 0xfffd) {
+            last = set.previousSetBit(last - 1);
+        }
+        return last;
     }
 
     public Normalizer getNFDNormalizer() {

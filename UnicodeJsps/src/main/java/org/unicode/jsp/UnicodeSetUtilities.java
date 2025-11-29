@@ -7,15 +7,11 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
-import com.ibm.icu.util.VersionInfo;
 import java.text.ParsePosition;
 import java.util.Comparator;
-import java.util.List;
 import java.util.regex.Pattern;
 import org.unicode.cldr.util.MultiComparator;
-import org.unicode.props.UnicodeProperty;
-import org.unicode.props.UnicodeProperty.PatternMatcher;
-import org.unicode.props.UnicodePropertySymbolTable;
+import org.unicode.text.UCD.VersionedSymbolTable;
 
 public class UnicodeSetUtilities {
 
@@ -110,7 +106,12 @@ public class UnicodeSetUtilities {
         input = input.trim() + "]]]]]";
         String parseInput = "[" + input + "]]]]]";
         ParsePosition parsePosition = new ParsePosition(0);
-        UnicodeSet result = new UnicodeSet(parseInput, parsePosition, fullSymbolTable);
+        UnicodeSet result =
+                new UnicodeSet(
+                        parseInput,
+                        parsePosition,
+                        VersionedSymbolTable.forReview(UcdLoader::getOldestLoadedUcd)
+                                .setUnversionedExtensions(XPropertyFactory.make()));
         int parseEnd = parsePosition.getIndex();
         if (parseEnd != parseInput.length()
                 && !UnicodeSetUtilities.OK_AT_END.containsAll(parseInput.substring(parseEnd))) {
@@ -124,233 +125,5 @@ public class UnicodeSetUtilities {
                             + input.substring(parseEnd, Math.min(input.length(), parseEnd + 10)));
         }
         return result;
-    }
-
-    static UnicodeSet.XSymbolTable fullSymbolTable = new MySymbolTable();
-
-    private static class MySymbolTable extends UnicodeSet.XSymbolTable {
-        UnicodeRegex unicodeRegex;
-        XPropertyFactory factory;
-
-        public MySymbolTable() {
-            unicodeRegex = new UnicodeRegex().setSymbolTable(this);
-        }
-
-        //    public boolean applyPropertyAlias0(String propertyName,
-        //            String propertyValue, UnicodeSet result) {
-        //      if (!propertyName.contains("*")) {
-        //        return applyPropertyAlias(propertyName, propertyValue, result);
-        //      }
-        //      String[] propertyNames = propertyName.split("[*]");
-        //      for (int i = propertyNames.length - 1; i >= 0; ++i) {
-        //        String pname = propertyNames[i];
-        //
-        //      }
-        //      return null;
-        //    }
-
-        @Override
-        public boolean applyPropertyAlias(
-                String propertyName, String propertyValue, UnicodeSet result) {
-            boolean status = false;
-            boolean invert = false;
-            int posNotEqual = propertyName.indexOf('\u2260');
-            if (posNotEqual >= 0) {
-                propertyValue =
-                        propertyValue.length() == 0
-                                ? propertyName.substring(posNotEqual + 1)
-                                : propertyName.substring(posNotEqual + 1) + "=" + propertyValue;
-                propertyName = propertyName.substring(0, posNotEqual);
-                invert = true;
-            }
-            if (propertyName.endsWith("!")) {
-                propertyName = propertyName.substring(0, propertyName.length() - 1);
-                invert = !invert;
-            }
-            int posColon = propertyName.indexOf(':');
-            String versionPrefix = "";
-            String versionlessPropertyName = propertyName;
-            if (posColon >= 0) {
-                versionPrefix = propertyName.substring(0, posColon + 1);
-                versionlessPropertyName = propertyName.substring(posColon + 1);
-            }
-
-            if (factory == null) {
-                factory = XPropertyFactory.make();
-            }
-
-            var gcProp = factory.getProperty(versionPrefix + "gc");
-            var scProp = factory.getProperty(versionPrefix + "sc");
-
-            UnicodeProperty prop = factory.getProperty(propertyName);
-            if (propertyValue.length() != 0) {
-                if (prop == null) {
-                    propertyValue = propertyValue.trim();
-                } else if (prop.isTrimmable()) {
-                    propertyValue = propertyValue.trim();
-                } else {
-                    int debug = 0;
-                }
-                status = applyPropertyAlias0(prop, propertyValue, result, invert);
-            } else {
-                try {
-                    status = applyPropertyAlias0(gcProp, versionlessPropertyName, result, invert);
-                } catch (Exception e) {
-                }
-                ;
-                if (!status) {
-                    try {
-                        status =
-                                applyPropertyAlias0(
-                                        scProp, versionlessPropertyName, result, invert);
-                    } catch (Exception e) {
-                    }
-                    if (!status) {
-                        if (prop.isType(UnicodeProperty.BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
-                            try {
-                                status = applyPropertyAlias0(prop, "No", result, !invert);
-                            } catch (Exception e) {
-                            }
-                        }
-                        if (!status) {
-                            status = applyPropertyAlias0(prop, "", result, invert);
-                        }
-                    }
-                }
-            }
-            return status;
-        }
-
-        private static String[][] COARSE_GENERAL_CATEGORIES = {
-            {"Other", "C", "Cc", "Cf", "Cn", "Co", "Cs"},
-            {"Letter", "L", "Ll", "Lm", "Lo", "Lt", "Lu"},
-            {"Cased_Letter", "LC", "Ll", "Lt", "Lu"},
-            {"Mark", "M", "Mc", "Me", "Mn"},
-            {"Number", "N", "Nd", "Nl", "No"},
-            {"Punctuation", "P", "Pc", "Pd", "Pe", "Pf", "Pi", "Po", "Ps"},
-            {"Symbol", "S", "Sc", "Sk", "Sm", "So"},
-            {"Separator", "Z", "Zl", "Zp", "Zs"},
-        };
-
-        // TODO(eggrobin): I think this function only ever returns true; might as well make it void.
-        private boolean applyPropertyAlias0(
-                UnicodeProperty prop, String propertyValue, UnicodeSet result, boolean invert) {
-            result.clear();
-            String propertyName = prop.getName();
-            String trimmedPropertyValue = propertyValue.trim();
-            PatternMatcher patternMatcher = null;
-            if (trimmedPropertyValue.length() > 1
-                    && trimmedPropertyValue.startsWith("/")
-                    && trimmedPropertyValue.endsWith("/")) {
-                String fixedRegex =
-                        unicodeRegex.transform(
-                                trimmedPropertyValue.substring(
-                                        1, trimmedPropertyValue.length() - 1));
-                patternMatcher = new UnicodeProperty.RegexMatcher().set(fixedRegex);
-            }
-            UnicodeProperty otherProperty = null;
-            boolean testCp = false;
-            if (trimmedPropertyValue.length() > 1
-                    && trimmedPropertyValue.startsWith("@")
-                    && trimmedPropertyValue.endsWith("@")) {
-                String otherPropName =
-                        trimmedPropertyValue.substring(1, trimmedPropertyValue.length() - 1).trim();
-                if ("cp".equalsIgnoreCase(otherPropName)) {
-                    testCp = true;
-                } else {
-                    otherProperty = factory.getProperty(otherPropName);
-                }
-            }
-            boolean isAge = UnicodeProperty.equalNames("age", propertyName);
-            if (prop != null) {
-                UnicodeSet set;
-                if (testCp) {
-                    set = new UnicodeSet();
-                    for (int i = 0; i <= 0x10FFFF; ++i) {
-                        if (invert != UnicodeProperty.equals(i, prop.getValue(i))) {
-                            set.add(i);
-                        }
-                    }
-                } else if (otherProperty != null) {
-                    set = new UnicodeSet();
-                    for (int i = 0; i <= 0x10FFFF; ++i) {
-                        String v1 = prop.getValue(i);
-                        String v2 = otherProperty.getValue(i);
-                        if (invert != UnicodeProperty.equals(v1, v2)) {
-                            set.add(i);
-                        }
-                    }
-                } else if (patternMatcher == null) {
-                    if (!isValid(prop, propertyValue)) {
-                        throw new IllegalArgumentException(
-                                "The value '"
-                                        + propertyValue
-                                        + "' is illegal. Values for "
-                                        + propertyName
-                                        + " must be in "
-                                        + prop.getAvailableValues()
-                                        + " or in "
-                                        + prop.getValueAliases());
-                    }
-                    if (isAge) {
-                        set =
-                                prop.getSet(
-                                        new UnicodePropertySymbolTable.ComparisonMatcher<
-                                                VersionInfo>(
-                                                UnicodePropertySymbolTable.parseVersionInfoOrMax(
-                                                        propertyValue),
-                                                UnicodePropertySymbolTable.Relation.geq,
-                                                Comparator.nullsFirst(Comparator.naturalOrder()),
-                                                UnicodePropertySymbolTable::parseVersionInfoOrMax));
-                    } else {
-                        if (prop.getName().equals("General_Category")) {
-                            for (String[] coarseValue : COARSE_GENERAL_CATEGORIES) {
-                                final String longName = coarseValue[0];
-                                final String shortName = coarseValue[1];
-                                if (UnicodeProperty.equalNames(propertyValue, longName)
-                                        || UnicodeProperty.equalNames(propertyValue, shortName)) {
-                                    for (int i = 2; i < coarseValue.length; ++i) {
-                                        prop.getSet(coarseValue[i], result);
-                                    }
-                                    return true;
-                                }
-                            }
-                        }
-                        set = prop.getSet(propertyValue);
-                    }
-                } else if (isAge) {
-                    set = new UnicodeSet();
-                    List<String> values = prop.getAvailableValues();
-                    for (String value : values) {
-                        if (patternMatcher.test(value)) {
-                            for (String other : values) {
-                                if (other.compareTo(value) <= 0) {
-                                    set.addAll(prop.getSet(other));
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    set = prop.getSet(patternMatcher);
-                }
-                if (invert) {
-                    if (isAge) {
-                        set.complement();
-                    } else {
-                        set = prop.getUnicodeMap().keySet().removeAll(set);
-                    }
-                }
-                result.addAll(set);
-                return true;
-            }
-            throw new IllegalArgumentException("Illegal property: " + propertyName);
-        }
-
-        private boolean isValid(UnicodeProperty prop, String propertyValue) {
-            //      if (prop.getName().equals("General_Category")) {
-            //        if (propertyValue)
-            //      }
-            return prop.isValidValue(propertyValue);
-        }
     }
 }

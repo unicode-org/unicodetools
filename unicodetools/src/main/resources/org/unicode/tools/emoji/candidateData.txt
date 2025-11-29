@@ -14,7 +14,7 @@
 # Then run ProposalData.java to generate an updated version of proposalData.txt that incorporates all the proposal data from this file.
 
 #================================
-Status=Draft Candidate
+Status=Final Candidate
 #================================
 
 Proposal=L2/24-250
@@ -365,12 +365,6 @@ U+1F9D1 U+1F3FE U+200D U+1FA70
 Name=ballet dancer: medium-dark skin tone
 U+1F9D1 U+1F3FF U+200D U+1FA70
 Name=ballet dancer: dark skin tone
-
-Proposal=L2/24-253
-After=🥥
-U+1FADD
-Name=apple core
-Keywords=compost | eaten | food | rotten | garbage
 
 Proposal=L2/24-249
 After=🦪

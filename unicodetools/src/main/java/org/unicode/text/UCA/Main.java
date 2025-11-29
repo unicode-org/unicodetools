@@ -136,7 +136,7 @@ public class Main {
             } else if (arg.equalsIgnoreCase("writeContractions")) {
                 WriteCollationData.writeContractions();
             } else if (arg.equalsIgnoreCase("writeFractionalUCA")) {
-                FractionalUCA.writeFractionalUCA("FractionalUCA");
+                FractionalUCA.writeFractionalUCA();
             } else if (arg.equalsIgnoreCase("WriteAllKeys")) {
                 WriteAllkeys.writeAllkeys("allkeys", CollatorType.cldr);
             } else if (arg.equalsIgnoreCase("WriteAllKeysDucet")) {
