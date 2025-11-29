@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-29, 19:40:00 GMT
+# Date: 2025-11-29, 20:17:36 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -207,7 +207,7 @@
 17EA..17EF    ; Cn #   [6] <reserved-17EA>..<reserved-17EF>
 17FA..17FF    ; Cn #   [6] <reserved-17FA>..<reserved-17FF>
 181A..181F    ; Cn #   [6] <reserved-181A>..<reserved-181F>
-1879..187F    ; Cn #   [7] <reserved-1879>..<reserved-187F>
+187A..187F    ; Cn #   [6] <reserved-187A>..<reserved-187F>
 18AB..18AF    ; Cn #   [5] <reserved-18AB>..<reserved-18AF>
 18F6..18FF    ; Cn #  [10] <reserved-18F6>..<reserved-18FF>
 191F          ; Cn #       <reserved-191F>
@@ -751,7 +751,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801844
+# Total code points: 801843
 
 # ================================================
 
@@ -2399,7 +2399,7 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 1780..17B3    ; Lo #  [52] KHMER LETTER KA..KHMER INDEPENDENT VOWEL QAU
 17DC          ; Lo #       KHMER SIGN AVAKRAHASANYA
 1820..1842    ; Lo #  [35] MONGOLIAN LETTER A..MONGOLIAN LETTER CHI
-1844..1878    ; Lo #  [53] MONGOLIAN LETTER TODO E..MONGOLIAN LETTER CHA WITH TWO DOTS
+1844..1879    ; Lo #  [54] MONGOLIAN LETTER TODO E..MONGOLIAN LETTER ALTERNATE UE
 1880..1884    ; Lo #   [5] MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER ALI GALI INVERTED UBADAMA
 1887..18A8    ; Lo #  [34] MONGOLIAN LETTER ALI GALI A..MONGOLIAN LETTER MANCHU ALI GALI BHA
 18AA          ; Lo #       MONGOLIAN LETTER MANCHU ALI GALI LHA
@@ -2774,7 +2774,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 31350..33479  ; Lo # [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Lo # [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 153423
+# Total code points: 153424
 
 # ================================================
 

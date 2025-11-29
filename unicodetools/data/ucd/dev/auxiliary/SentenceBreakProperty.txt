@@ -1,5 +1,5 @@
 # SentenceBreakProperty-18.0.0.txt
-# Date: 2025-11-29, 19:40:38 GMT
+# Date: 2025-11-29, 20:18:11 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2233,7 +2233,7 @@ FF21..FF3A    ; Upper # L&  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LAT
 17DC          ; OLetter # Lo       KHMER SIGN AVAKRAHASANYA
 1820..1842    ; OLetter # Lo  [35] MONGOLIAN LETTER A..MONGOLIAN LETTER CHI
 1843          ; OLetter # Lm       MONGOLIAN LETTER TODO LONG VOWEL SIGN
-1844..1878    ; OLetter # Lo  [53] MONGOLIAN LETTER TODO E..MONGOLIAN LETTER CHA WITH TWO DOTS
+1844..1879    ; OLetter # Lo  [54] MONGOLIAN LETTER TODO E..MONGOLIAN LETTER ALTERNATE UE
 1880..1884    ; OLetter # Lo   [5] MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER ALI GALI INVERTED UBADAMA
 1887..18A8    ; OLetter # Lo  [34] MONGOLIAN LETTER ALI GALI A..MONGOLIAN LETTER MANCHU ALI GALI BHA
 18AA          ; OLetter # Lo       MONGOLIAN LETTER MANCHU ALI GALI LHA
@@ -2665,7 +2665,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 31350..33479  ; OLetter # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; OLetter # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 154186
+# Total code points: 154187
 
 # ================================================
 

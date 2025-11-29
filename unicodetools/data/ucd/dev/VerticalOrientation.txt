@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2025-11-29, 19:40:41 GMT
+# Date: 2025-11-29, 20:18:13 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -692,7 +692,7 @@
 1810..1819     ; R  # Nd    [10] MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
 1820..1842     ; R  # Lo    [35] MONGOLIAN LETTER A..MONGOLIAN LETTER CHI
 1843           ; R  # Lm         MONGOLIAN LETTER TODO LONG VOWEL SIGN
-1844..1878     ; R  # Lo    [53] MONGOLIAN LETTER TODO E..MONGOLIAN LETTER CHA WITH TWO DOTS
+1844..1879     ; R  # Lo    [54] MONGOLIAN LETTER TODO E..MONGOLIAN LETTER ALTERNATE UE
 1880..1884     ; R  # Lo     [5] MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER ALI GALI INVERTED UBADAMA
 1885..1886     ; R  # Mn     [2] MONGOLIAN LETTER ALI GALI BALUDA..MONGOLIAN LETTER ALI GALI THREE BALUDA
 1887..18A8     ; R  # Lo    [34] MONGOLIAN LETTER ALI GALI A..MONGOLIAN LETTER MANCHU ALI GALI BHA

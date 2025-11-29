@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2025-11-29, 19:39:55 GMT
+# Date: 2025-11-29, 20:17:32 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -454,7 +454,7 @@
 1810..1819    ; L # Nd  [10] MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
 1820..1842    ; L # Lo  [35] MONGOLIAN LETTER A..MONGOLIAN LETTER CHI
 1843          ; L # Lm       MONGOLIAN LETTER TODO LONG VOWEL SIGN
-1844..1878    ; L # Lo  [53] MONGOLIAN LETTER TODO E..MONGOLIAN LETTER CHA WITH TWO DOTS
+1844..1879    ; L # Lo  [54] MONGOLIAN LETTER TODO E..MONGOLIAN LETTER ALTERNATE UE
 1880..1884    ; L # Lo   [5] MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER ALI GALI INVERTED UBADAMA
 1887..18A8    ; L # Lo  [34] MONGOLIAN LETTER ALI GALI A..MONGOLIAN LETTER MANCHU ALI GALI BHA
 18AA          ; L # Lo       MONGOLIAN LETTER MANCHU ALI GALI LHA
@@ -1242,7 +1242,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 797755 code points not listed here.
+# The above property value applies to 797754 code points not listed here.
 # Total code points: 1095376
 
 # ================================================
