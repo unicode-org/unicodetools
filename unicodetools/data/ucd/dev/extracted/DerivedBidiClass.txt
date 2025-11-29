@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2025-11-29, 22:15:22 GMT
+# Date: 2025-11-29, 22:36:28 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1152,7 +1152,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 1D183..1D184  ; L # So   [2] MUSICAL SYMBOL ARPEGGIATO UP..MUSICAL SYMBOL ARPEGGIATO DOWN
 1D18C..1D1A9  ; L # So  [30] MUSICAL SYMBOL RINFORZANDO..MUSICAL SYMBOL DEGREE SLASH
 1D1AE..1D1E8  ; L # So  [59] MUSICAL SYMBOL PEDAL MARK..MUSICAL SYMBOL KIEVAN FLAT SIGN
-1D1F7..1D1FE  ; L # So   [8] MUSICAL SYMBOL DIGIT TWO WITH STROKE..MUSICAL SYMBOL DIGIT SEVEN WITH LOW STROKE
+1D1EB..1D1FE  ; L # So  [20] MUSICAL SYMBOL HALF SHARP..MUSICAL SYMBOL DIGIT SEVEN WITH LOW STROKE
 1D250..1D252  ; L # Mc   [3] MUSICAL SYMBOL COMBINING FLAG-6..MUSICAL SYMBOL COMBINING FLAG-8
 1D253..1D255  ; L # So   [3] MUSICAL SYMBOL TWO HUNDRED FIFTY-SIXTH REST..MUSICAL SYMBOL ONE THOUSAND TWENTY-FOURTH REST
 1D25D..1D25E  ; L # So   [2] MUSICAL SYMBOL FINGERED TREMOLO-4..MUSICAL SYMBOL FINGERED TREMOLO-5
@@ -1247,7 +1247,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 797735 code points not listed here.
+# The above property value applies to 797723 code points not listed here.
 # Total code points: 1095374
 
 # ================================================
