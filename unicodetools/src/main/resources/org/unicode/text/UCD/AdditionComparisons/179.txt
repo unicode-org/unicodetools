@@ -67,11 +67,13 @@ CorrespondTo [\x{029D} ʝ \N{LATIN SMALL LETTER J WITH CROSSED-TAIL}]
            : [\x{A7B2} Ʝ \N{LATIN CAPITAL LETTER J WITH CROSSED-TAIL}]
 end Ignoring;
 
+Ignoring Do_Not_Emit_Dispreferred Do_Not_Emit_Dispreferred_Type:
 Propertywise [
     \x{1DF70}   \N{LATIN SMALL LETTER I WITH PIGTAIL AT BOTTOM}
     \x{1DF71}   \N{LATIN SMALL LETTER STRETCHED I}
     \x{1DF1A} 𝼚 \N{LATIN SMALL LETTER I WITH STROKE AND RETROFLEX HOOK}
 ] AreAlike
+end Ignoring;
 
 Ignoring Block:
 Propertywise [
