@@ -9,6 +9,8 @@ import java.text.ParsePosition;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 
 /**
  * Notice to the maintainer: These tests check that the UnicodeSet property queries are correctly
@@ -175,6 +177,8 @@ public class TestVersionedSymbolTable {
         System.err.println("testIdentityAndNullQueries: kIRG_GSource");
         assertThatUnicodeSet("[:^kIRG_GSource=@none@:]").contains("喵").doesNotContain("𓃠");
         System.err.println("testIdentityAndNullQueries: bpb…");
+        System.err.println("bpb(U+2E62) = " + IndexUnicodeProperties.make().getProperty("Bidi_Paired_Bracket").getValue(0x2E62));
+        System.err.println(((VersionedSymbolTable)UnicodeSet.getDefaultXSymbolTable()).implicitVersion);
         assertThatUnicodeSet("\\p{Bidi_Paired_Bracket=@none@}")
                 .isEqualToUnicodeSet("\\p{Bidi_Paired_Bracket_Type=None}");
         System.err.println("testIdentityAndNullQueries: done.");

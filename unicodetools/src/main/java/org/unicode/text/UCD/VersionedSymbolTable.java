@@ -498,7 +498,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         return text.substring(start, i);
     }
 
-    private VersionInfo implicitVersion;
+    public VersionInfo implicitVersion;
     private VersionInfo previousVersion;
     private boolean requireSuffixForLatest;
     private UnicodeProperty.Factory unversionedExtensions;
