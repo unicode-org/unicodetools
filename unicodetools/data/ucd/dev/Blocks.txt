@@ -332,6 +332,7 @@ FFF0..FFFF; Specials
 1D000..1D0FF; Byzantine Musical Symbols
 1D100..1D1FF; Musical Symbols
 1D200..1D24F; Ancient Greek Musical Notation
+1D250..1D28F; Musical Symbols Supplement
 1D2C0..1D2DF; Kaktovik Numerals
 1D2E0..1D2FF; Mayan Numerals
 1D300..1D35F; Tai Xuan Jing Symbols
