@@ -9,7 +9,6 @@ import java.text.ParsePosition;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
 
 /**
@@ -24,7 +23,6 @@ public class TestVersionedSymbolTable {
     @BeforeEach
     void setUp() {
         oldDefault = UnicodeSet.getDefaultXSymbolTable();
-        System.err.println("Setting default XSymbolTable to VersionedSymbolTable.forDevelopment…");
         UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
         UnicodeProperty.ResetCacheProperties();
     }
@@ -33,7 +31,6 @@ public class TestVersionedSymbolTable {
     void tearDown() {
         UnicodeSet.setDefaultXSymbolTable(oldDefault);
         UnicodeProperty.ResetCacheProperties();
-        System.err.println("Restored default XSymbolTable.");
     }
 
     @Test
@@ -174,16 +171,10 @@ public class TestVersionedSymbolTable {
 
     @Test
     void testIdentityAndNullQueries() {
-        System.err.println("testIdentityAndNullQueries: scf…");
         assertThatUnicodeSet("\\p{scf=@code point@}").contains("a").doesNotContain("A");
-        System.err.println("testIdentityAndNullQueries: kIRG_GSource");
         assertThatUnicodeSet("[:^kIRG_GSource=@none@:]").contains("喵").doesNotContain("𓃠");
-        System.err.println("testIdentityAndNullQueries: bpb…");
-        System.err.println("bpb(U+2E62) = " + IndexUnicodeProperties.make().getProperty("Bidi_Paired_Bracket").getValue(0x2E62));
-        System.err.println(((VersionedSymbolTable)UnicodeSet.getDefaultXSymbolTable()).implicitVersion);
         assertThatUnicodeSet("\\p{Bidi_Paired_Bracket=@none@}")
                 .isEqualToUnicodeSet("\\p{Bidi_Paired_Bracket_Type=None}");
-        System.err.println("testIdentityAndNullQueries: done.");
     }
 
     @Test
@@ -262,7 +253,6 @@ public class TestVersionedSymbolTable {
     /** Helper class for testing multiple properties of the same UnicodeSet. */
     private static class UnicodeSetTestFluent {
         UnicodeSetTestFluent(String expression) {
-            System.err.println("Constructing tested UnicodeSet from expression " + expression);
             this.expression = expression;
             ParsePosition parsePosition = new ParsePosition(0);
             try {
@@ -271,7 +261,6 @@ public class TestVersionedSymbolTable {
             } catch (Exception e) {
                 exception = e;
             }
-            System.err.println("Tested UnicodeSet is " + set);
         }
 
         public void isIllFormed(String messageSubstring) {
@@ -289,9 +278,7 @@ public class TestVersionedSymbolTable {
 
         public <T extends CharSequence> UnicodeSetTestFluent isEqualToUnicodeSet(
                 String expectedExpression) {
-            System.err.println("Constructing comparison UnicodeSet from expression " + expectedExpression);
             final var expected = new UnicodeSet(expectedExpression);
-            System.err.println("Comparison UnicodeSet is " + expected.cloneAsThawed().complement().complement());
             assertTrue(
                     set.containsAll(expected),
                     "Expected "
