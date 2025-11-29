@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2025-11-29, 01:41:56 GMT
+# Date: 2025-11-29, 18:39:41 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -42368,6 +42368,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1DF57         ; LATIN SMALL LETTER TURNED R WITH MID-HEIGHT LEFT HOOK
 1DF58         ; LATIN SMALL LETTER SPLIT O
 1DF59         ; LATIN SMALL LETTER SPLIT U
+1DF67         ; LATIN SMALL LETTER LEZH WITH CURL
 1DF68         ; LATIN CAPITAL LETTER PHONOTYPIC A WITH SWASH
 1DF69         ; LATIN SMALL LETTER PHONOTYPIC A WITH SWASH
 1DF6A         ; LATIN CAPITAL LETTER PHONOTYPIC ROUNDTOP A
@@ -46447,6 +46448,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172673
+# Total code points: 172674
 
 # EOF

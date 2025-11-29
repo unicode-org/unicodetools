@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-29, 01:41:54 GMT
+# Date: 2025-11-29, 18:39:40 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -633,7 +633,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1DA8C..1DA9A  ; Cn #  [15] <reserved-1DA8C>..<reserved-1DA9A>
 1DAA0         ; Cn #       <reserved-1DAA0>
 1DAB0..1DEFF  ; Cn # [1104] <reserved-1DAB0>..<reserved-1DEFF>
-1DF5A..1DF67  ; Cn #  [14] <reserved-1DF5A>..<reserved-1DF67>
+1DF5A..1DF66  ; Cn #  [13] <reserved-1DF5A>..<reserved-1DF66>
 1DF82..1DFCC  ; Cn #  [75] <reserved-1DF82>..<reserved-1DFCC>
 1E007         ; Cn #       <reserved-1E007>
 1E019..1E01A  ; Cn #   [2] <reserved-1E019>..<reserved-1E01A>
@@ -752,7 +752,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801858
+# Total code points: 801857
 
 # ================================================
 
@@ -2105,6 +2105,7 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1DF4B..1DF4C  ; Ll #   [2] LATIN SMALL LETTER BARRED M..LATIN SMALL LETTER BARRED M WITH HOOK
 1DF4E..1DF50  ; Ll #   [3] LATIN SMALL LETTER BARRED N..LATIN SMALL LETTER TURNED R WITH STROKE
 1DF52..1DF59  ; Ll #   [8] LATIN SMALL LETTER BARRED V..LATIN SMALL LETTER SPLIT U
+1DF67         ; Ll #       LATIN SMALL LETTER LEZH WITH CURL
 1DF69         ; Ll #       LATIN SMALL LETTER PHONOTYPIC A WITH SWASH
 1DF6B         ; Ll #       LATIN SMALL LETTER PHONOTYPIC ROUNDTOP A
 1DF6D         ; Ll #       LATIN SMALL LETTER REVERSED SCRUPLE
@@ -2118,7 +2119,7 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1DF7F         ; Ll #       LATIN SMALL LETTER REVERSED U
 1E922..1E943  ; Ll #  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2344
+# Total code points: 2345
 
 # ================================================
 
