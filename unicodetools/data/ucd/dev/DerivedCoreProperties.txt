@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2025-11-29, 21:13:50 GMT
+# Date: 2025-11-29, 22:15:24 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -13027,6 +13027,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 1D183..1D184  ; Grapheme_Base # So   [2] MUSICAL SYMBOL ARPEGGIATO UP..MUSICAL SYMBOL ARPEGGIATO DOWN
 1D18C..1D1A9  ; Grapheme_Base # So  [30] MUSICAL SYMBOL RINFORZANDO..MUSICAL SYMBOL DEGREE SLASH
 1D1AE..1D1EA  ; Grapheme_Base # So  [61] MUSICAL SYMBOL PEDAL MARK..MUSICAL SYMBOL KORON
+1D1F7..1D1FE  ; Grapheme_Base # So   [8] MUSICAL SYMBOL DIGIT TWO WITH STROKE..MUSICAL SYMBOL DIGIT SEVEN WITH LOW STROKE
 1D200..1D241  ; Grapheme_Base # So  [66] GREEK VOCAL NOTATION SYMBOL-1..GREEK INSTRUMENTAL NOTATION SYMBOL-54
 1D245         ; Grapheme_Base # So       GREEK MUSICAL LEIMMA
 1D253..1D255  ; Grapheme_Base # So   [3] MUSICAL SYMBOL TWO HUNDRED FIFTY-SIXTH REST..MUSICAL SYMBOL ONE THOUSAND TWENTY-FOURTH REST
@@ -13215,7 +13216,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 31350..33479  ; Grapheme_Base # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Grapheme_Base # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 170374
+# Total code points: 170382
 
 # ================================================
 
