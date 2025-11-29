@@ -723,14 +723,8 @@ public class IdentifierInfo {
         }
     }
 
-    enum Style {
-        flat,
-        byValue
-    };
-
     void printIDNStuff() throws IOException {
-        printIdentifierTypes(Style.byValue);
-        printIdentifierTypes(Style.flat);
+        printIdentifierTypes();
         printIdentifierStatus();
 
         printModificationsInternal();
@@ -1064,7 +1058,7 @@ public class IdentifierInfo {
         out.close();
     }
 
-    private void printIdentifierTypes(Style status) throws IOException {
+    private void printIdentifierTypes() throws IOException {
         final UnicodeMap<String> tempMap = new UnicodeMap<String>();
         final Map<String, Set<Identifier_Type>> sortingMap = new HashMap<>();
         for (Set<Identifier_Type> value : identifierTypesMap.values()) {
@@ -1093,8 +1087,7 @@ public class IdentifierInfo {
         bf2.setLabelSource(age);
 
         final String propName = "Identifier_Type";
-        final String filename =
-                status == Style.byValue ? "IdentifierType.txt" : "IdentifierTypeFlat.txt";
+        final String filename = "IdentifierType.txt";
         try (PrintWriter out2 =
                 GenerateConfusables.openAndWriteHeader(
                         GenerateConfusables.GEN_SECURITY_DIR,
@@ -1132,20 +1125,8 @@ public class IdentifierInfo {
                     (new UnicodeProperty.UnicodeMapProperty() {})
                             .set(tempMap)
                             .setMain(propName, "IDT", UnicodeProperty.EXTENDED_MISC, "1.0"));
-            if (status == Style.byValue) {
-                TreeSet<String> sorted = new TreeSet<>(tempComp);
-                sorted.addAll(tempMap.values());
-
-                for (String value : sorted) {
-                    out2.println("");
-                    out2.println("#\t" + propName + ":\t" + value);
-                    out2.println("");
-                    bf2.showSetNames(out2, tempMap.getSet(value));
-                }
-            } else {
-                out2.println("");
-                bf2.showSetNames(out2, tempMap.keySet());
-            }
+            out2.println("");
+            bf2.showSetNames(out2, tempMap.keySet());
         }
     }
 

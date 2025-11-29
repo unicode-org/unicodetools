@@ -10,7 +10,7 @@ Ignoring Name Age:
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
 
-Ignoring Block Unicode_1_Name:
+Ignoring Block Unicode_1_Name Arabic_Shaping_Schematic_Name:
 
 # « Another ن, propertywise like the others. ».
 

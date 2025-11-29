@@ -95,6 +95,7 @@ public class UcdPropertyValues {
         }
     }
 
+    // Arabic_Shaping_Schematic_Name
     public enum Bidi_Class_Values implements Named {
         Arabic_Letter("AL"),
         Arabic_Number("AN"),
@@ -195,6 +196,7 @@ public class UcdPropertyValues {
         Arabic_Presentation_Forms_A("Arabic_PF_A", "Arabic_Presentation_Forms-A"),
         Arabic_Presentation_Forms_B("Arabic_PF_B"),
         Arabic_Supplement("Arabic_Sup"),
+        Archaic_Cuneiform_Numerals("Archaic_Cuneiform_Numerals"),
         Armenian("Armenian"),
         Arrows("Arrows"),
         Basic_Latin("ASCII"),
@@ -223,6 +225,7 @@ public class UcdPropertyValues {
         Cherokee("Cherokee"),
         Cherokee_Supplement("Cherokee_Sup"),
         Chess_Symbols("Chess_Symbols"),
+        Chisoi("Chisoi"),
         Chorasmian("Chorasmian"),
         CJK_Unified_Ideographs("CJK"),
         CJK_Compatibility("CJK_Compat"),
@@ -326,6 +329,8 @@ public class UcdPropertyValues {
         Hangul_Jamo_Extended_A("Jamo_Ext_A"),
         Hangul_Jamo_Extended_B("Jamo_Ext_B"),
         Javanese("Javanese"),
+        Jurchen("Jurchen"),
+        Jurchen_Radicals("Jurchen_Radicals"),
         Kaithi("Kaithi"),
         Kaktovik_Numerals("Kaktovik_Numerals"),
         Kana_Extended_A("Kana_Ext_A"),
@@ -448,6 +453,7 @@ public class UcdPropertyValues {
         Runic("Runic"),
         Samaritan("Samaritan"),
         Saurashtra("Saurashtra"),
+        Seal("Seal"),
         Sharada("Sharada"),
         Sharada_Supplement("Sharada_Sup"),
         Shavian("Shavian"),
@@ -784,6 +790,52 @@ public class UcdPropertyValues {
                 PropertyNames.getNameToEnums(Decomposition_Type_Values.class);
 
         public static Decomposition_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
+    // Do_Not_Emit_Dispreferred
+    public enum Do_Not_Emit_Dispreferred_Type_Values implements Named {
+        None("None"),
+        Indic_Atomic_Consonant("Indic_Atomic_Consonant"),
+        Indic_Consonant_Conjunct("Indic_Consonant_Conjunct"),
+        Indic_Vowel_Letter("Indic_Vowel_Letter"),
+        Bengali_Khanda_Ta("Bengali_Khanda_Ta"),
+        Malayalam_Chillu("Malayalam_Chillu"),
+        Tamil_Shrii("Tamil_Shrii"),
+        Dotless_Form("Dotless_Form"),
+        Hamza_Form("Hamza_Form"),
+        Precomposed_Hieroglyph("Precomposed_Hieroglyph"),
+        Precomposed_Form("Precomposed_Form"),
+        Deprecated("Deprecated"),
+        Discouraged("Discouraged"),
+        Preferred_Spelling("Preferred_Spelling"),
+        Arabic_Tashkil("Arabic_Tashkil");
+        private final PropertyNames<Do_Not_Emit_Dispreferred_Type_Values> names;
+
+        private Do_Not_Emit_Dispreferred_Type_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Do_Not_Emit_Dispreferred_Type_Values>(
+                            Do_Not_Emit_Dispreferred_Type_Values.class,
+                            this,
+                            shortName,
+                            otherNames);
+        }
+
+        @Override
+        public PropertyNames<Do_Not_Emit_Dispreferred_Type_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Do_Not_Emit_Dispreferred_Type_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Do_Not_Emit_Dispreferred_Type_Values.class);
+
+        public static Do_Not_Emit_Dispreferred_Type_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
@@ -1409,6 +1461,16 @@ public class UcdPropertyValues {
         Beh("Beh"),
         Beth("Beth"),
         Burushaski_Yeh_Barree("Burushaski_Yeh_Barree"),
+        Crown_Ain("Crown_Ain"),
+        Crown_Beh("Crown_Beh"),
+        Crown_Feh("Crown_Feh"),
+        Crown_Hah("Crown_Hah"),
+        Crown_Heh("Crown_Heh"),
+        Crown_Kaf("Crown_Kaf"),
+        Crown_Meem("Crown_Meem"),
+        Crown_Sad("Crown_Sad"),
+        Crown_Seen("Crown_Seen"),
+        Crown_Tah("Crown_Tah"),
         Dal("Dal"),
         Dalath_Rish("Dalath_Rish"),
         E("E"),
@@ -1685,6 +1747,10 @@ public class UcdPropertyValues {
     // kJis1
     // kJIS0213
     // kJoyoKanji
+    // kJURC_NCReading
+    // kJURC_Numeric
+    // kJURC_RSUnicode
+    // kJURC_Src
     // kKangXi
     // kKarlgren
     // kKorean
@@ -1716,6 +1782,12 @@ public class UcdPropertyValues {
     // kRSMerged
     // kRSUnicode
     // kSBGY
+    // kSEAL_CCZSrc
+    // kSEAL_DYCSrc
+    // kSEAL_MCJK
+    // kSEAL_QJZSrc
+    // kSEAL_Rad
+    // kSEAL_THXSrc
     // kSemanticVariant
     // kSimplifiedVariant
     // kSMSZD2003Index
@@ -2165,6 +2237,7 @@ public class UcdPropertyValues {
         Carian("Cari"),
         Cham("Cham"),
         Cherokee("Cher"),
+        Chisoi("Chis"),
         Chorasmian("Chrs"),
         Coptic("Copt", "Qaac"),
         Cypro_Minoan("Cpmn"),
@@ -2203,6 +2276,7 @@ public class UcdPropertyValues {
         Old_Hungarian("Hung"),
         Old_Italic("Ital"),
         Javanese("Java"),
+        Jurchen("Jurc"),
         Kayah_Li("Kali"),
         Katakana("Kana"),
         Kawi("Kawi"),
@@ -2256,6 +2330,7 @@ public class UcdPropertyValues {
         Old_Uyghur("Ougr"),
         Palmyrene("Palm"),
         Pau_Cin_Hau("Pauc"),
+        Proto_Cuneiform("Pcun"),
         Old_Permic("Perm"),
         Phags_Pa("Phag"),
         Inscriptional_Pahlavi("Phli"),
@@ -2269,6 +2344,7 @@ public class UcdPropertyValues {
         Samaritan("Samr"),
         Old_South_Arabian("Sarb"),
         Saurashtra("Saur"),
+        Seal("Seal"),
         SignWriting("Sgnw"),
         Shavian("Shaw"),
         Sharada("Shrd"),

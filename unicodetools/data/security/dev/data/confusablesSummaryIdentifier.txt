@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2025-10-25, 07:52:31 GMT
+# Date: 2025-11-13, 04:42:22 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -164,11 +164,10 @@
 	(‎ J ‎)	004A	 LATIN CAPITAL LETTER J
 ←	(‎ Ј ‎)	0408	 CYRILLIC CAPITAL LETTER JE
 
-#	K	Κ	К	K
+#	K	Κ	К
 	(‎ K ‎)	004B	 LATIN CAPITAL LETTER K
 ←	(‎ Κ ‎)	039A	 GREEK CAPITAL LETTER KAPPA
 ←	(‎ К ‎)	041A	 CYRILLIC CAPITAL LETTER KA
-←	(‎ K ‎)	212A	 KELVIN SIGN
 
 #	M	Μ	М
 	(‎ M ‎)	004D	 LATIN CAPITAL LETTER M
@@ -1012,10 +1011,6 @@
 ←	(‎ ஜ ‎)	0B9C	 TAMIL LETTER JA
 ←	(‎ ജ ‎)	0D1C	 MALAYALAM LETTER JA	# →ஜ→
 
-#	ஒள	ஔ
-	(‎ ஒள ‎)	0B92 0BB3	 TAMIL LETTER O, TAMIL LETTER LLA
-←	(‎ ஔ ‎)	0B94	 TAMIL LETTER AU
-
 #	ண	ണ
 	(‎ ண ‎)	0BA3	 TAMIL LETTER NNA
 ←	(‎ ണ ‎)	0D23	 MALAYALAM LETTER NNA
@@ -1461,5 +1456,5 @@
 	(‎ へ ‎)	3078	 HIRAGANA LETTER HE
 ←	(‎ ヘ ‎)	30D8	 KATAKANA LETTER HE
 
-# total : 524
+# total : 522
 

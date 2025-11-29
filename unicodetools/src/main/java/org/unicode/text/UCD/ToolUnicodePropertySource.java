@@ -321,6 +321,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         add(iup.getProperty("kEH_JSesh"));
         add(iup.getProperty("kEH_NoMirror"));
         add(iup.getProperty("kEH_NoRotate"));
+        add(iup.getProperty("kJURC_Src"));
+        add(iup.getProperty("kSEAL_THXSrc"));
+        add(iup.getProperty("kSEAL_CCZSrc"));
+        add(iup.getProperty("kSEAL_DYCSrc"));
+        add(iup.getProperty("kSEAL_QJZSrc"));
         add(iup.getProperty("Emoji"));
         add(iup.getProperty("Emoji_Presentation"));
         add(iup.getProperty("Emoji_Modifier"));
@@ -1826,6 +1831,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         }
 
         @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         protected List<String> _getNameAliases(List<String> result) {
             addUnique(ucdProperty.getName(UCD_Types.SHORT), result);
             final String name = getName();
@@ -2229,6 +2239,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             }
             throw new IllegalArgumentException(
                     "Failed to find " + up.getName() + " value for " + Utility.hex(codepoint));
+        }
+
+        @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
         }
 
         public String getAge(int codePoint) {

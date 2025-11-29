@@ -10,6 +10,7 @@ import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.Canonical_Combining_Class_Values;
 import org.unicode.props.UcdPropertyValues.Decomposition_Type_Values;
+import org.unicode.props.UcdPropertyValues.Do_Not_Emit_Dispreferred_Type_Values;
 import org.unicode.props.UcdPropertyValues.Do_Not_Emit_Type_Values;
 import org.unicode.props.UcdPropertyValues.East_Asian_Width_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
@@ -49,6 +50,8 @@ import org.unicode.props.UcdPropertyValues.kEH_Core_Values;
 public enum UcdProperty {
 
     // Numeric
+    Non_Unihan_Numeric_Value(
+            PropertyType.Numeric, DerivedPropertyStatus.UCDNonProperty, "Non_Unihan_Numeric_Value"),
     Numeric_Value(PropertyType.Numeric, DerivedPropertyStatus.Approved, "nv"),
     kAccountingNumeric(
             PropertyType.Numeric, DerivedPropertyStatus.Approved, "cjkAccountingNumeric"),
@@ -59,6 +62,20 @@ public enum UcdProperty {
             null,
             ValueCardinality.Ordered,
             "cjkPrimaryNumeric"),
+    kTGT_Numeric(PropertyType.Numeric, DerivedPropertyStatus.Provisional, "kTGT_Numeric"),
+    kTayNumeric(PropertyType.Numeric, DerivedPropertyStatus.Provisional, "cjkTayNumeric"),
+    kVietnameseNumeric(
+            PropertyType.Numeric,
+            DerivedPropertyStatus.Provisional,
+            null,
+            ValueCardinality.Unordered,
+            "cjkVietnameseNumeric"),
+    kZhuangNumeric(
+            PropertyType.Numeric,
+            DerivedPropertyStatus.Provisional,
+            null,
+            ValueCardinality.Unordered,
+            "cjkZhuangNumeric"),
 
     // String
     Bidi_Mirroring_Glyph(PropertyType.String, DerivedPropertyStatus.Approved, "bmg"),
@@ -70,6 +87,12 @@ public enum UcdProperty {
     Confusable_SA(PropertyType.String, DerivedPropertyStatus.NonUCDNonProperty, "ConfSA"),
     Confusable_SL(PropertyType.String, DerivedPropertyStatus.NonUCDNonProperty, "ConfSL"),
     Decomposition_Mapping(PropertyType.String, DerivedPropertyStatus.Approved, "dm"),
+    Do_Not_Emit_Dispreferred(
+            PropertyType.String,
+            DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Unordered,
+            "Do_Not_Emit_Dispreferred"),
     Do_Not_Emit_Preferred(
             PropertyType.String, DerivedPropertyStatus.UCDNonProperty, "Do_Not_Emit_Preferred"),
     Equivalent_Unified_Ideograph(PropertyType.String, DerivedPropertyStatus.Approved, "EqUIdeo"),
@@ -93,12 +116,19 @@ public enum UcdProperty {
     kCompatibilityVariant(
             PropertyType.String, DerivedPropertyStatus.Approved, "cjkCompatibilityVariant"),
     kEH_AltSeq(PropertyType.String, DerivedPropertyStatus.Provisional, "kEH_AltSeq"),
+    kSEAL_MCJK(PropertyType.String, DerivedPropertyStatus.Provisional, "kSEAL_MCJK"),
     kSimplifiedVariant(
             PropertyType.String,
             DerivedPropertyStatus.Provisional,
             null,
             ValueCardinality.Unordered,
             "cjkSimplifiedVariant"),
+    kSpoofingVariant(
+            PropertyType.String,
+            DerivedPropertyStatus.Provisional,
+            null,
+            ValueCardinality.Unordered,
+            "cjkSpoofingVariant"),
     kTraditionalVariant(
             PropertyType.String,
             DerivedPropertyStatus.Provisional,
@@ -115,6 +145,10 @@ public enum UcdProperty {
             "normalization_correction_original"),
 
     // Miscellaneous
+    Arabic_Shaping_Schematic_Name(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "Arabic_Shaping_Schematic_Name"),
     CJK_Radical(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
@@ -172,10 +206,6 @@ public enum UcdProperty {
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
             "Names_List_Subheader_Notice"),
-    Non_Unihan_Numeric_Value(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.UCDNonProperty,
-            "Non_Unihan_Numeric_Value"),
     Standardized_Variant(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
@@ -357,6 +387,12 @@ public enum UcdProperty {
     kIRG_VSource(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "cjkIRG_VSource"),
     kJHJ(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJHJ"),
     kJIS0213(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJIS0213"),
+    kJURC_NCReading(
+            PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kJURC_NCReading"),
+    kJURC_Numeric(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kJURC_Numeric"),
+    kJURC_RSUnicode(
+            PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kJURC_RSUnicode"),
+    kJURC_Src(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kJURC_Src"),
     kJa(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJa"),
     kJapanese(
             PropertyType.Miscellaneous,
@@ -493,6 +529,11 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkSBGY"),
+    kSEAL_CCZSrc(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kSEAL_CCZSrc"),
+    kSEAL_DYCSrc(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kSEAL_DYCSrc"),
+    kSEAL_QJZSrc(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kSEAL_QJZSrc"),
+    kSEAL_Rad(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kSEAL_Rad"),
+    kSEAL_THXSrc(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kSEAL_THXSrc"),
     kSMSZD2003Index(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,
@@ -517,12 +558,6 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkSpecializedSemanticVariant"),
-    kSpoofingVariant(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "cjkSpoofingVariant"),
     kStrange(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,
@@ -542,10 +577,9 @@ public enum UcdProperty {
             ValueCardinality.Unordered,
             "cjkTGHZ2013"),
     kTGT_MergedSrc(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kTGT_MergedSrc"),
-    kTGT_Numeric(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kTGT_Numeric"),
     kTGT_RSUnicode(
             PropertyType.Miscellaneous,
-            DerivedPropertyStatus.UCDNonProperty,
+            DerivedPropertyStatus.Provisional,
             "kTGT_RSUnicode",
             "kRSTUnicode"),
     kTaiwanTelegraph(
@@ -556,7 +590,6 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkTang"),
-    kTayNumeric(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkTayNumeric"),
     kTotalStrokes(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Approved,
@@ -571,12 +604,6 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkVietnamese"),
-    kVietnameseNumeric(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "cjkVietnameseNumeric"),
     kXHC1983(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,
@@ -591,12 +618,6 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkZhuang"),
-    kZhuangNumeric(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "cjkZhuangNumeric"),
     normalization_correction_version(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
@@ -638,6 +659,12 @@ public enum UcdProperty {
             Decomposition_Type_Values.class,
             null,
             "dt"),
+    Do_Not_Emit_Dispreferred_Type(
+            PropertyType.Enumerated,
+            DerivedPropertyStatus.UCDNonProperty,
+            Do_Not_Emit_Dispreferred_Type_Values.class,
+            ValueCardinality.Unordered,
+            "Do_Not_Emit_Dispreferred_Type"),
     Do_Not_Emit_Type(
             PropertyType.Enumerated,
             DerivedPropertyStatus.UCDNonProperty,
