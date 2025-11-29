@@ -269,6 +269,7 @@ public class TestVersionedSymbolTable {
             } catch (Exception e) {
                 exception = e;
             }
+            System.err.println("Tested UnicodeSet is " + set);
         }
 
         public void isIllFormed(String messageSubstring) {
@@ -286,8 +287,9 @@ public class TestVersionedSymbolTable {
 
         public <T extends CharSequence> UnicodeSetTestFluent isEqualToUnicodeSet(
                 String expectedExpression) {
-            System.err.println("Constructing comparison UnicodeSet from expression " + expression);
+            System.err.println("Constructing comparison UnicodeSet from expression " + expectedExpression);
             final var expected = new UnicodeSet(expectedExpression);
+            System.err.println("Comparison UnicodeSet is " + expected);
             assertTrue(
                     set.containsAll(expected),
                     "Expected "
