@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-29, 22:36:32 GMT
+# Date: 2025-11-29, 22:53:06 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -607,7 +607,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1D1FF         ; Cn #       <reserved-1D1FF>
 1D246..1D24F  ; Cn #  [10] <reserved-1D246>..<reserved-1D24F>
 1D256..1D25A  ; Cn #   [5] <reserved-1D256>..<reserved-1D25A>
-1D260..1D2BF  ; Cn #  [96] <reserved-1D260>..<reserved-1D2BF>
+1D261..1D2BF  ; Cn #  [95] <reserved-1D261>..<reserved-1D2BF>
 1D2D4..1D2DF  ; Cn #  [12] <reserved-1D2D4>..<reserved-1D2DF>
 1D2F4..1D2FF  ; Cn #  [12] <reserved-1D2F4>..<reserved-1D2FF>
 1D357..1D35F  ; Cn #   [9] <reserved-1D357>..<reserved-1D35F>
@@ -753,7 +753,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801812
+# Total code points: 801811
 
 # ================================================
 
@@ -4338,6 +4338,7 @@ FFFC..FFFD    ; So #   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1D245         ; So #       GREEK MUSICAL LEIMMA
 1D253..1D255  ; So #   [3] MUSICAL SYMBOL TWO HUNDRED FIFTY-SIXTH REST..MUSICAL SYMBOL ONE THOUSAND TWENTY-FOURTH REST
 1D25D..1D25E  ; So #   [2] MUSICAL SYMBOL FINGERED TREMOLO-4..MUSICAL SYMBOL FINGERED TREMOLO-5
+1D260         ; So #       MUSICAL SYMBOL TRIPLE FLAT
 1D300..1D356  ; So #  [87] MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
 1D800..1D9FF  ; So # [512] SIGNWRITING HAND-FIST INDEX..SIGNWRITING HEAD
 1DA37..1DA3A  ; So #   [4] SIGNWRITING AIR BLOW SMALL ROTATIONS..SIGNWRITING BREATH EXHALE
@@ -4386,7 +4387,7 @@ FFFC..FFFD    ; So #   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1FB94..1FBEF  ; So #  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; So #       ALARM BELL SYMBOL
 
-# Total code points: 7509
+# Total code points: 7510
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2025-11-29, 22:36:30 GMT
+# Date: 2025-11-29, 22:53:04 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -13031,6 +13031,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 1D245         ; Grapheme_Base # So       GREEK MUSICAL LEIMMA
 1D253..1D255  ; Grapheme_Base # So   [3] MUSICAL SYMBOL TWO HUNDRED FIFTY-SIXTH REST..MUSICAL SYMBOL ONE THOUSAND TWENTY-FOURTH REST
 1D25D..1D25E  ; Grapheme_Base # So   [2] MUSICAL SYMBOL FINGERED TREMOLO-4..MUSICAL SYMBOL FINGERED TREMOLO-5
+1D260         ; Grapheme_Base # So       MUSICAL SYMBOL TRIPLE FLAT
 1D2C0..1D2D3  ; Grapheme_Base # No  [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3  ; Grapheme_Base # No  [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
 1D300..1D356  ; Grapheme_Base # So  [87] MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
@@ -13215,7 +13216,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 31350..33479  ; Grapheme_Base # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Grapheme_Base # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 170394
+# Total code points: 170395
 
 # ================================================
 

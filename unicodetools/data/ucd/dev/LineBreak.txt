@@ -1,5 +1,5 @@
 # LineBreak-18.0.0.txt
-# Date: 2025-11-29, 22:36:38 GMT
+# Date: 2025-11-29, 22:53:13 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3365,6 +3365,7 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 1D25B..1D25C   ; CM # Mn     [2] MUSICAL SYMBOL COMBINING TREMOLO-4..MUSICAL SYMBOL COMBINING TREMOLO-5
 1D25D..1D25E   ; AL # So     [2] MUSICAL SYMBOL FINGERED TREMOLO-4..MUSICAL SYMBOL FINGERED TREMOLO-5
 1D25F          ; CM # Mc         MUSICAL SYMBOL COMBINING BUZZ ROLL STEM
+1D260          ; AL # So         MUSICAL SYMBOL TRIPLE FLAT
 1D2C0..1D2D3   ; AL # No    [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3   ; AL # No    [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
 1D300..1D356   ; AL # So    [87] MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
