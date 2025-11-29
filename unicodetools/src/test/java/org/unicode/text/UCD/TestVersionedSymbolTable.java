@@ -22,14 +22,14 @@ public class TestVersionedSymbolTable {
     @BeforeEach
     void setUp() {
         oldDefault = UnicodeSet.getDefaultXSymbolTable();
-        System.out.println("Setting default XSymbolTable to VersionedSymbolTable.forDevelopment…");
+        System.err.println("Setting default XSymbolTable to VersionedSymbolTable.forDevelopment…");
         UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
     }
 
     @AfterEach
     void tearDown() {
         UnicodeSet.setDefaultXSymbolTable(oldDefault);
-        System.out.println("Restored default XSymbolTable.");
+        System.err.println("Restored default XSymbolTable.");
     }
 
     @Test
@@ -170,10 +170,14 @@ public class TestVersionedSymbolTable {
 
     @Test
     void testIdentityAndNullQueries() {
+        System.err.println("testIdentityAndNullQueries: scf…");
         assertThatUnicodeSet("\\p{scf=@code point@}").contains("a").doesNotContain("A");
+        System.err.println("testIdentityAndNullQueries: kIRG_GSource");
         assertThatUnicodeSet("[:^kIRG_GSource=@none@:]").contains("喵").doesNotContain("𓃠");
+        System.err.println("testIdentityAndNullQueries: bpb…");
         assertThatUnicodeSet("\\p{Bidi_Paired_Bracket=@none@}")
                 .isEqualToUnicodeSet("\\p{Bidi_Paired_Bracket_Type=None}");
+        System.err.println("testIdentityAndNullQueries: done.");
     }
 
     @Test
