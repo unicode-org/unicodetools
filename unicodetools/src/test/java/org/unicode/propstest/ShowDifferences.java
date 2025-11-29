@@ -1,8 +1,8 @@
 package org.unicode.propstest;
 
 import com.google.common.base.Objects;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
