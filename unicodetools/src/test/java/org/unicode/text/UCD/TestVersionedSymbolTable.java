@@ -10,7 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.UcdProperty;
+import org.unicode.props.UnicodeProperty;
 
 /**
  * Notice to the maintainer: These tests check that the UnicodeSet property queries are correctly
@@ -26,11 +26,13 @@ public class TestVersionedSymbolTable {
         oldDefault = UnicodeSet.getDefaultXSymbolTable();
         System.err.println("Setting default XSymbolTable to VersionedSymbolTable.forDevelopment…");
         UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
+        UnicodeProperty.ResetCacheProperties();
     }
 
     @AfterEach
     void tearDown() {
         UnicodeSet.setDefaultXSymbolTable(oldDefault);
+        UnicodeProperty.ResetCacheProperties();
         System.err.println("Restored default XSymbolTable.");
     }
 
