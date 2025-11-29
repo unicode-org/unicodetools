@@ -1,0 +1,17 @@
+# Tangut: TANGUT IDEOGRAPH-18D20
+# https://github.com/unicode-org/utc-release-management/issues/230
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring kRSTUnicode kTGT_MergedSrc:
+Propertywise [\x{18D00}\x{18D20}] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

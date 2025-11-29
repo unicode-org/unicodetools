@@ -16,19 +16,15 @@ $V=\p{Grapheme_Cluster_Break=V}
 $T=\p{Grapheme_Cluster_Break=T}
 $LV=\p{Grapheme_Cluster_Break=LV}
 $LVT=\p{Grapheme_Cluster_Break=LVT}
-# Note: The following may overlap with the above
-# Note: ConjunctLinkingScripts is not used anymore, instead that list exists in the derivation of Indic_Conjunct_Break.
-# It is kept here so that the diff of the generated test cases compared to the Unicode 15.1 β is minimal.
-# TODO(egg): Consider removing in Unicode 16.0.
-$ConjunctLinkingScripts=[\p{Gujr}\p{sc=Telu}\p{sc=Mlym}\p{sc=Orya}\p{sc=Beng}\p{sc=Deva}]
 $ConjunctLinker=\p{Indic_Conjunct_Break=Linker}
 $LinkingConsonant=\p{Indic_Conjunct_Break=Consonant}
 ##	$E_Base=\p{Grapheme_Cluster_Break=E_Base}
 ##	$E_Modifier=\p{Grapheme_Cluster_Break=E_Modifier}
-$ExtPict=\p{Extended_Pictographic}
-$ExtCccZwj=[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
+$ExtPict=\p{Extended_Pictographic=True}
+$ConjunctExtender=[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
 ##	$EBG=\p{Grapheme_Cluster_Break=E_Base_GAZ}
 ##	$Glue_After_Zwj=\p{Grapheme_Cluster_Break=Glue_After_Zwj}
+$XX = \p{Grapheme_Cluster_Break=Other}
 
 # RULES
 
@@ -47,7 +43,7 @@ $ExtCccZwj=[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
 # Only for extended grapheme clusters: Do not break before SpacingMarks, or after Prepend characters.
 9.1) × 	$SpacingMark
 9.2) $Prepend  ×
-9.3) $LinkingConsonant $ExtCccZwj* $ConjunctLinker $ExtCccZwj*  × $LinkingConsonant
+9.3) $LinkingConsonant $ConjunctExtender* $ConjunctLinker $ConjunctExtender*  × $LinkingConsonant
 ## Do not break within emoji modifier sequences or emoji zwj sequences.
 ##	10) $E_Base $Extend* × $E_Modifier
 11) $ExtPict $Extend* $ZWJ × $ExtPict
@@ -62,7 +58,7 @@ $ExtCccZwj=[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
 
 $AI=\p{Line_Break=Ambiguous}
 $AK=\p{Line_Break=Aksara}
-$AL=\p{Line_Break=Alphabetic}
+$ALorig=\p{Line_Break=Alphabetic}
 $AP=\p{Line_Break=Aksara_Prebase}
 $AS=\p{Line_Break=Aksara_Start}
 $B2=\p{Line_Break=Break_Both}
@@ -72,12 +68,13 @@ $BK=\p{Line_Break=Mandatory_Break}
 $CB=\p{Line_Break=Contingent_Break}
 $CL=\p{Line_Break=Close_Punctuation}
 $CP=\p{Line_Break=CP}
-$CM1=\p{Line_Break=Combining_Mark}
+$CMorig=\p{Line_Break=Combining_Mark}
 $CR=\p{Line_Break=Carriage_Return}
 $EX=\p{Line_Break=Exclamation}
 $GL=\p{Line_Break=Glue}
 $H2=\p{Line_Break=H2}
 $H3=\p{Line_Break=H3}
+$HH=\p{Line_Break=Unambiguous_Hyphen}
 $HL=\p{Line_Break=HL}
 $HY=\p{Line_Break=Hyphen}
 $ID=\p{Line_Break=Ideographic}
@@ -88,13 +85,15 @@ $JT=\p{Line_Break=JT}
 $JV=\p{Line_Break=JV}
 $LF=\p{Line_Break=Line_Feed}
 $NL=\p{Line_Break=Next_Line}
-$NS=\p{Line_Break=Nonstarter}
+$NSorig=\p{Line_Break=Nonstarter}
 $NU=\p{Line_Break=Numeric}
 $OP=\p{Line_Break=Open_Punctuation}
 $PO=\p{Line_Break=Postfix_Numeric}
 $PR=\p{Line_Break=Prefix_Numeric}
 $QU=\p{Line_Break=Quotation}
-$SA=\p{Line_Break=Complex_Context}
+$SA_Mn=[\p{Line_Break=Complex_Context}&\p{gc=Mn}]
+$SA_Mc=[\p{Line_Break=Complex_Context}&\p{gc=Mc}]
+$SAmMnmMc=[\p{Line_Break=Complex_Context}-\p{gc=Mn}-\p{gc=Mc}]
 $SG=\p{Line_Break=Surrogate}
 $SP=\p{Line_Break=Space}
 $SY=\p{Line_Break=Break_Symbols}
@@ -107,25 +106,25 @@ $CJ=\p{Line_Break=Conditional_Japanese_Starter}
 $RI=\p{Line_Break=Regional_Indicator}
 $EB=\p{Line_Break=E_Base}
 $EM=\p{Line_Break=E_Modifier}
-$ZWJ_O=\p{Line_Break=ZWJ}
 $ZWJ=\p{Line_Break=ZWJ}
 
-$QU_Pi=[$QU & \p{gc=Pi}]
-$QU_Pf=[$QU & \p{gc=Pf}]
+$Pi = \p{gc=Pi}
+$Pf = \p{gc=Pf}
 
-$QUmPi=[$QU - \p{gc=Pi}]
-$QUmPf=[$QU - \p{gc=Pf}]
+$QU_Pi=[$QU & $Pi]
+$QU_Pf=[$QU & $Pf]
 
-$NotEastAsian   = [^\p{ea=F}\p{ea=W}\p{ea=H}]
-$NonEastAsianBA = [$BA & $NotEastAsian]
+$QUmPi=[$QU - $Pi]
+$QUmPf=[$QU - $Pf]
 
-$DottedCircle = ◌
-$Hyphen = [\u2010]
+$EastAsian   = [\p{ea=F}\p{ea=W}\p{ea=H}]
 
-$CP30=[$CP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
-$OP30=[$OP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
+$DottedCircle = [◌]
 
-$ExtPictUnassigned=[\p{Extended_Pictographic}&\p{gc=Cn}]
+$CPmEastAsian=[$CP-$EastAsian]
+$OPmEastAsian=[$OP-$EastAsian]
+
+$ExtPictUnassigned=[\p{Extended_Pictographic=True}&\p{gc=Cn}]
 
 # Some rules refer to the start and end of text.  We could just use a literal ^ for sot, but naming
 # it as in the spec makes it easier to compare.  The parser will eat (and choke on) $, so we play a
@@ -135,93 +134,13 @@ $eot=(?!.)
 
 # SPECIAL EXTENSIONS
 
-$CM=[$CM1 $ZWJ]
 # LB 1  Assign a line breaking class to each code point of the input. 
 # Resolve AI, CB, SA, SG, and XX into other line breaking classes depending on criteria outside the scope of this algorithm.
-# NOTE: CB is ok to fall through, but must handle others here.
-##	show $AL
-$AL=[$AI $AL $SG $XX $SA]
-$NS=[$NS $CJ]
-##	show $AL
-##	$oldAL=$AL // for debugging
-# WARNING: Fixes for Rule 9
-# Treat X (CM|ZWJ* as if it were X.
-# Where X is any line break class except SP, BK, CR, LF, NL or ZW.
-$X=$CM*
-
-# MACROS
-
-$Spec1_=[$SP $BK $CR $LF $NL $ZW]
-$Spec2_=[^ $SP $BK $CR $LF $NL $ZW]
-$Spec3a_=[^ $SP $BA $HY $CM]
-$Spec3b_=[^ $BA $HY $CM]
-$Spec4_=[^ $NU $CM]
-
-# SPECIAL EXTENSIONS
-
-$AI=($AI $X)
-$AK=($AK $X)
-$AL=($AL $X)
-$AP=($AP $X)
-$AS=($AS $X)
-$B2=($B2 $X)
-$BA=($BA $X)
-$BB=($BB $X)
-$CB=($CB $X)
-$CL=($CL $X)
-$CP=($CP $X)
-$CM=($CM $X)
-##	$CM=($CM $X)
-$EX=($EX $X)
-$GL=($GL $X)
-$H2=($H2 $X)
-$H3=($H3 $X)
-$HL=($HL $X)
-$HY=($HY $X)
-$ID=($ID $X)
-$IN=($IN $X)
-$IS=($IS $X)
-$JL=($JL $X)
-$JT=($JT $X)
-$JV=($JV $X)
-$NS=($NS $X)
-$NU=($NU $X)
-$OP=($OP $X)
-$PO=($PO $X)
-$PR=($PR $X)
-$QU=($QU $X)
-$SA=($SA $X)
-$SG=($SG $X)
-$SY=($SY $X)
-$VF=($VF $X)
-$VI=($VI $X)
-$WJ=($WJ $X)
-$XX=($XX $X)
-$RI=($RI $X)
-$EB=($EB $X)
-$EM=($EM $X)
-$ZWJ=($ZWJ $X)
-
-$QU_Pi=($QU_Pi $X)
-$QU_Pf=($QU_Pf $X)
-
-$QUmPi=($QUmPi $X)
-$QUmPf=($QUmPf $X)
-
-$NotEastAsian=( $NotEastAsian | [$NotEastAsian - $Spec1_] $X)
-$NonEastAsianBA=(NonEastAsianBA $X)
-
-$DottedCircle=($DottedCircle $X)
-$Hyphen=($Hyphen $X)
-
-$CP30=($CP30 $X)
-$OP30=($OP30 $X)
-
-# OUT OF ORDER ON PURPOSE
-
-# LB 10  Treat any remaining combining mark as AL and non-$EastAsian.
-$AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
-$NotEastAsian=( $NotEastAsian | ^ $CM | (?<=$Spec1_) $CM )
+# In the absence of such criteria all characters with a specific combination of
+# original class and General_Category property value are resolved as follows:
+$AL=[$AI $ALorig $SG $XX $SAmMnmMc]
+$CM=[$CMorig $SA_Mn $SA_Mc]
+$NS=[$NSorig $CJ]
 
 # RULES
 
@@ -240,20 +159,19 @@ $NotEastAsian=( $NotEastAsian | ^ $CM | (?<=$Spec1_) $CM )
 # LB 8  Break before any character following a zero-width space, even if one or more spaces intervene.
 8) $ZW $SP* ÷
 # LB 8a  Don't break between ZWJ and IDs (for use in Emoji ZWJ sequences)
-8.1) $ZWJ_O ×
-# LB 9  Do not break a combining character sequence; treat it as if it has the LB class of the base character
-# in all of the following rules. (Where X is any line break class except SP, BK, CR, LF, NL or ZW.)
-9) $Spec2_ × $CM
-##WARNING: this is done by modifying the variable values for all but SP.... That is, $AL is really ($AI $CM*)!
+8.1) $ZWJ ×
+# LB 9  Do not break a combining character sequence; treat it as if it has the line breaking class
+# of the base character in all of the following rules. Treat ZWJ as if it were CM.
+9) (?<X>[^$BK $CR $LF $NL $SP $ZW]) ( $CM | $ZWJ )* → ${X}
+# LB10 Treat any remaining combining mark or ZWJ as AL.
+10) ( $CM | $ZWJ ) → A
 ## LB 11  Do not break before or after WORD JOINER and related characters.
 11.01) × $WJ
 11.02) $WJ ×
 # LB 12  Do not break after NBSP and related characters.
-##	12.01) [^$SP] × $GL
 12) $GL ×
-12.1) $Spec3a_ × $GL
-12.2) $Spec3b_ $CM+ × $GL
-12.3) ^ $CM+ × $GL
+# LB 12a Do not break before NBSP and related characters, except after spaces and hyphens.
+12.1) [^ $SP $BA $HY $HH] × $GL
 # LB 13  Do not break before \u2018]\u2019 or \u2018!\u2019 or \u2018;\u2019 or \u2018/\u2019, even after spaces.
 13.01) × $EX
 13.02) × $CL
@@ -264,7 +182,7 @@ $NotEastAsian=( $NotEastAsian | ^ $CM | (?<=$Spec1_) $CM )
 # LB 15a Do not break after an unresolved initial punctuation that lies at the start of the line,
 # after a space, after opening punctuation, or after an unresolved quotation mark, even after
 # spaces.
-15.11) ( $sot | $BK | $CR | $LF | $NL | $OP | $QU | $GL | $SP | $ZW ) $QU_Pi $SP* ×
+15.11) ( $BK | $CR | $LF | $NL | $OP | $QU | $GL | $SP | $ZW | $sot ) $QU_Pi $SP* ×
 # LB 15b Do not break before an unresolved final punctuation that lies at the end of the line, before
 # a space, before a prohibited break, or before an unresolved quotation mark, even before spaces.
 15.21) × $QU_Pf ( $SP | $GL | $WJ | $CL | $QU | $CP | $EX | $IS | $SY | $BK | $CR | $LF | $NL | $ZW | $eot )
@@ -282,22 +200,23 @@ $NotEastAsian=( $NotEastAsian | ^ $CM | (?<=$Spec1_) $CM )
 19.01) × $QUmPi
 19.02) $QUmPf ×
 # LB 19a Unless surrounded by East Asian Characters, do not break either side of any unresolved quotation marks.
-19.10) $NotEastAsian × $QU
-19.11) × $QU ( $NotEastAsian | $eot )
-19.12) $QU × $NotEastAsian
-19.13) ( $sot | $NotEastAsian ) $QU ×
+19.10) [^$EastAsian] × $QU
+19.11) × $QU ( [^$EastAsian] | $eot )
+19.12) $QU × [^$EastAsian]
+19.13) ( [^$EastAsian] | $sot ) $QU ×
 # LB 20  Break before and after unresolved CB.
 20.01)  ÷ $CB
 20.02) $CB ÷
 # LB 20a Do not break after a hyphen that follows break opportunity, a space, or the start of text.
-20.10) ( $sot | $BK | $CR | $LF | $NL | $SP | $ZW | $CB | $GL ) ( $HY | $Hyphen ) × $AL
+20.10) ( $BK | $CR | $LF | $NL | $SP | $ZW | $CB | $GL | $sot ) ( $HY | $HH ) × ( $AL | $HL )
 # LB 21  Do not break before hyphen-minus, other hyphens, fixed-width spaces, small kana and other non-starters, or after acute accents.
 21.01) × $BA
-21.02) × $HY
-21.03) × $NS
-21.04) $BB ×
+21.02) × $HH
+21.03) × $HY
+21.04) × $NS
+21.05) $BB ×
 # LB 21a Do not break after the hyphen in Hebrew-hyphen-non-Hebrew.
-21.1) $HL ($HY | $NonEastAsianBA) × [^$HL]
+21.1) $HL ($HY | $HH) × [^$HL]
 # LB 21b Don’t break between Solidus and Hebrew letters.
 21.2) $SY × $HL
 # LB 22  Do not break before ellipses.
@@ -346,8 +265,8 @@ $NotEastAsian=( $NotEastAsian | ^ $CM | (?<=$Spec1_) $CM )
 # LB 29  Do not break between numeric punctuation and alphabetics (\"e.g.\").
 29) $IS × ($AL | $HL)
 # LB 30  Do not break between letters, numbers or ordinary symbols and opening or closing punctuation.
-30.01) ($AL | $HL | $NU) × $OP30
-30.02) $CP30 × ($AL | $HL | $NU)
+30.01) ($AL | $HL | $NU) × $OPmEastAsian
+30.02) $CPmEastAsian × ($AL | $HL | $NU)
 # LB 30a  Break between two Regional Indicators if and only if there is an even number of them before the point being considered.
 30.11) $sot ($RI $RI)* $RI × $RI
 30.12) [^$RI] ($RI $RI)* $RI × $RI
@@ -374,6 +293,7 @@ $ATerm=\p{Sentence_Break=ATerm}
 $STerm=\p{Sentence_Break=STerm}
 $Close=\p{Sentence_Break=Close}
 $SContinue=\p{Sentence_Break=SContinue}
+$XX=\p{Sentence_Break=Other}
 $Any=.
 
 # SPECIAL EXTENSIONS
@@ -383,27 +303,10 @@ $Any=.
 ## Expresses the negation in rule 8; can't do this with normal regex, but works with UnicodeSet, which is all we need.
 ##	$NotStuff=[^$OLetter $Upper $Lower $Sep]
 ##	# $ATerm and $Sterm are temporary, to match ICU until UTC decides.
-
-# WARNING: For Rule 5, now add format and extend to everything but Sep, Format, and Extend
-
-$FE=[$Format $Extend]
-$NotPreLower_=[^ $OLetter $Upper $Lower $Sep $CR $LF $STerm $ATerm]
-##	$NotSep_=[^ $Sep $CR $LF]
-##	$FE=$Extend* $Format*
-$Sp=($Sp $FE*)
-$Lower=($Lower $FE*)
-$Upper=($Upper $FE*)
-$OLetter=($OLetter $FE*)
-$Numeric=($Numeric $FE*)
-$ATerm=($ATerm $FE*)
-$STerm=($STerm $FE*)
-$Close=($Close $FE*)
-$SContinue=($SContinue $FE*)
-
 # MACROS
 
-$ParaSep = ($Sep | $CR | $LF)
-$SATerm = ($STerm | $ATerm)
+$ParaSep = [$Sep $CR $LF]
+$SATerm = [$STerm $ATerm]
 
 # RULES
 
@@ -414,18 +317,16 @@ $SATerm = ($STerm | $ATerm)
 4) $ParaSep  	÷
 ##	3.4) ( $Control | $CR | $LF ) 	÷
 ##	3.5) ÷ 	( $Control | $CR | $LF )
-# Ignore Format and Extend characters, except after sot, ParaSep, and within CRLF. (See Section 6.2, Replacing Ignore Rules.) This also has the effect of: Any × (Format | Extend)
-# WARNING: Implemented as don't break before format (except after linebreaks),
-# AND add format and extend in all variables definitions that appear after this point!
-##	3.91) [^$Control | $CR | $LF] × 	$Extend
-5) × [$Format $Extend]
+# Ignore Format and Extend characters, except after sot, ParaSep, and within CRLF. (See Section 6.2, Replacing Ignore Rules.)
+# This also has the effect of: Any × (Format | Extend)
+5) (?<X>[^$ParaSep]) ( $Extend | $Format )* → ${X}
 # Do not break after full stop in certain contexts. [See note below.]
 # Do not break after ambiguous terminators like period, if immediately followed by a number or lowercase letter,
 # is between uppercase letters, or if the first following letter (optionally after certain punctuation) is lowercase.
 # For example, a period may be an abbreviation or numeric period, and not mark the end of a sentence.
 6) $ATerm 	× 	$Numeric
 7) ($Upper | $Lower) $ATerm 	× 	$Upper
-8) $ATerm $Close* $Sp* 	× 	$NotPreLower_* $Lower
+8) $ATerm $Close* $Sp* 	× 	[^ $OLetter $Upper $Lower $ParaSep $SATerm]* $Lower
 8.1) $SATerm $Close* $Sp* 	× 	($SContinue | $SATerm)
 # Break after sentence terminators, but include closing punctuation, trailing spaces, and any paragraph separator. [See note below.] Include closing punctuation, trailing spaces, and (optionally) a paragraph separator.
 9) $SATerm $Close* 	× 	( $Close | $Sp | $ParaSep )
@@ -463,44 +364,19 @@ $Single_Quote=\p{Word_Break=Single_Quote}
 ##	$E_Modifier=\p{Word_Break=E_Modifier}
 $ZWJ=\p{Word_Break=ZWJ}
 # Note: The following may overlap with the above
-$ExtPict=\p{Extended_Pictographic}
+$ExtPict=\p{Extended_Pictographic=True}
 ##	$EBG=\p{Word_Break=E_Base_GAZ}
 ##	$Glue_After_Zwj=\p{Word_Break=Glue_After_Zwj}
 $WSegSpace=\p{Word_Break=WSegSpace}
+$XX=\p{Word_Break=Other}
 
 # MACROS
 
-$AHLetter=($ALetter | $Hebrew_Letter)
-$MidNumLetQ=($MidNumLet | $Single_Quote)
+$AHLetter=[$ALetter $Hebrew_Letter]
+$MidNumLetQ=[$MidNumLet $Single_Quote]
 ## WARNING: For Rule 4: Fixes for GC, Format
 ##	# Subtract Format from Control, since we don't want to break before/after
 ##	$Control=[$Control-$Format]
-
-# SPECIAL EXTENSIONS
-
-# Add format and extend to everything
-$FE=[$Format $Extend $ZWJ]
-
-$NotBreak_=[^ $Newline $CR $LF ]
-##	$FE= ($Extend | $Format)*
-$Katakana=($Katakana $FE*)
-$ALetter=($ALetter $FE*)
-$MidLetter=($MidLetter $FE*)
-$MidNum=($MidNum $FE*)
-$MidNumLet=($MidNumLet $FE*)
-$Numeric=($Numeric $FE*)
-$ExtendNumLet=($ExtendNumLet $FE*)
-$RI=($RI $FE*)
-$Hebrew_Letter=($Hebrew_Letter $FE*)
-$Double_Quote=($Double_Quote $FE*)
-$Single_Quote=($Single_Quote $FE*)
-##	$E_Base=($E_Base $FE*)
-##	$E_Modifier=($E_Modifier $FE*)
-##	$ZWJ=($ZWJ $FE*) # don't do this one!
-##	$Glue_After_Zwj=($Glue_After_Zwj $FE*)
-##	$EBG=($EBG $FE*)
-$AHLetter=($AHLetter $FE*)
-$MidNumLetQ=($MidNumLetQ $FE*)
 
 # RULES
 
@@ -517,11 +393,9 @@ $MidNumLetQ=($MidNumLetQ $FE*)
 ##	3.5) ÷ 	( $Control | $CR | $LF )
 ##	3.9) × 	$Extend
 ##	3.91) [^$Control | $CR | $LF] × 	$Extend
-# Ignore Format and Extend characters, except after sot, CR, LF, and Newline. (See Section 6.2, Replacing Ignore Rules.) This also has the effect of: Any × (Format | Extend)
-# WARNING: Implemented as don't break before format (except after linebreaks),
-# AND add format and extend in all variables definitions that appear after this point!
-##	4) × [$Format $Extend]
-4) $NotBreak_ × [$Format $Extend $ZWJ]
+# Ignore Format and Extend characters, except after sot, CR, LF, and Newline. (See Section 6.2, Replacing Ignore Rules.)
+# This also has the effect of: Any × (Format | Extend)
+4) (?<X>[^$CR $LF $Newline]) ($Extend | $Format | $ZWJ)* → ${X}
 
 # VANILLA RULES
 

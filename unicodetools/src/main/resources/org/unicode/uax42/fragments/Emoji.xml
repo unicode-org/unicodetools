@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="Emoji properties" id='schema.emoji-data'>
+  code-point-attributes &amp;=
+    attribute Emoji { boolean }?
+
+  code-point-attributes &amp;=
+    attribute EPres { boolean }?
+
+  code-point-attributes &amp;=
+    attribute EMod { boolean }?
+
+  code-point-attributes &amp;=
+    attribute EBase { boolean }?
+
+  code-point-attributes &amp;=
+    attribute EComp { boolean }?
+
+  code-point-attributes &amp;=
+    attribute ExtPict { boolean }?
+</ucdxml:block>
