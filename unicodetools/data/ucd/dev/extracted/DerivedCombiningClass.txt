@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2025-11-29, 20:48:35 GMT
+# Date: 2025-11-29, 21:13:50 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1913,6 +1913,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1D1AE..1D1EA  ; 0 # So  [61] MUSICAL SYMBOL PEDAL MARK..MUSICAL SYMBOL KORON
 1D200..1D241  ; 0 # So  [66] GREEK VOCAL NOTATION SYMBOL-1..GREEK INSTRUMENTAL NOTATION SYMBOL-54
 1D245         ; 0 # So       GREEK MUSICAL LEIMMA
+1D253..1D255  ; 0 # So   [3] MUSICAL SYMBOL TWO HUNDRED FIFTY-SIXTH REST..MUSICAL SYMBOL ONE THOUSAND TWENTY-FOURTH REST
 1D25D..1D25E  ; 0 # So   [2] MUSICAL SYMBOL FINGERED TREMOLO-4..MUSICAL SYMBOL FINGERED TREMOLO-5
 1D2C0..1D2D3  ; 0 # No  [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3  ; 0 # No  [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
@@ -2109,8 +2110,8 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 803886 code points not listed here.
-# Total code points: 1113131
+# The above property value applies to 803880 code points not listed here.
+# Total code points: 1113128
 
 # ================================================
 
@@ -2576,9 +2577,10 @@ FB1E          ; 26 # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 0F39          ; 216 # Mn       TIBETAN MARK TSA -PHRU
 1D165..1D166  ; 216 # Mc   [2] MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
 1D16E..1D172  ; 216 # Mc   [5] MUSICAL SYMBOL COMBINING FLAG-1..MUSICAL SYMBOL COMBINING FLAG-5
+1D250..1D252  ; 216 # Mc   [3] MUSICAL SYMBOL COMBINING FLAG-6..MUSICAL SYMBOL COMBINING FLAG-8
 1D25F         ; 216 # Mc       MUSICAL SYMBOL COMBINING BUZZ ROLL STEM
 
-# Total code points: 10
+# Total code points: 13
 
 # ================================================
 

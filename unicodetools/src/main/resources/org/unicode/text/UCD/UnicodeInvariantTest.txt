@@ -687,7 +687,8 @@ Let $AlphaExclusions := [
     \uABEC
     \U0001D165
     \U0001D166
-    \U0001D16D-\U0001D172
+    \U0001D16D
+    \p{Name=/^MUSICAL SYMBOL COMBINING FLAG-/}
     \U0001D25F
     [[:gc=mc:]&[:ccc=9:]]
     \u302E\u302F

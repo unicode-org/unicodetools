@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-29, 20:48:38 GMT
+# Date: 2025-11-29, 21:13:52 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -605,7 +605,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1D0F6..1D0FF  ; Cn #  [10] <reserved-1D0F6>..<reserved-1D0FF>
 1D127..1D128  ; Cn #   [2] <reserved-1D127>..<reserved-1D128>
 1D1EB..1D1FF  ; Cn #  [21] <reserved-1D1EB>..<reserved-1D1FF>
-1D246..1D25A  ; Cn #  [21] <reserved-1D246>..<reserved-1D25A>
+1D246..1D24F  ; Cn #  [10] <reserved-1D246>..<reserved-1D24F>
+1D256..1D25A  ; Cn #   [5] <reserved-1D256>..<reserved-1D25A>
 1D260..1D2BF  ; Cn #  [96] <reserved-1D260>..<reserved-1D2BF>
 1D2D4..1D2DF  ; Cn #  [12] <reserved-1D2D4>..<reserved-1D2DF>
 1D2F4..1D2FF  ; Cn #  [12] <reserved-1D2F4>..<reserved-1D2FF>
@@ -752,7 +753,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801838
+# Total code points: 801832
 
 # ================================================
 
@@ -3361,9 +3362,10 @@ ABEC          ; Mc #       MEETEI MAYEK LUM IYEK
 16FF0..16FF1  ; Mc #   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 1D165..1D166  ; Mc #   [2] MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
 1D16D..1D172  ; Mc #   [6] MUSICAL SYMBOL COMBINING AUGMENTATION DOT..MUSICAL SYMBOL COMBINING FLAG-5
+1D250..1D252  ; Mc #   [3] MUSICAL SYMBOL COMBINING FLAG-6..MUSICAL SYMBOL COMBINING FLAG-8
 1D25F         ; Mc #       MUSICAL SYMBOL COMBINING BUZZ ROLL STEM
 
-# Total code points: 472
+# Total code points: 475
 
 # ================================================
 
@@ -4334,6 +4336,7 @@ FFFC..FFFD    ; So #   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1D1AE..1D1EA  ; So #  [61] MUSICAL SYMBOL PEDAL MARK..MUSICAL SYMBOL KORON
 1D200..1D241  ; So #  [66] GREEK VOCAL NOTATION SYMBOL-1..GREEK INSTRUMENTAL NOTATION SYMBOL-54
 1D245         ; So #       GREEK MUSICAL LEIMMA
+1D253..1D255  ; So #   [3] MUSICAL SYMBOL TWO HUNDRED FIFTY-SIXTH REST..MUSICAL SYMBOL ONE THOUSAND TWENTY-FOURTH REST
 1D25D..1D25E  ; So #   [2] MUSICAL SYMBOL FINGERED TREMOLO-4..MUSICAL SYMBOL FINGERED TREMOLO-5
 1D300..1D356  ; So #  [87] MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
 1D800..1D9FF  ; So # [512] SIGNWRITING HAND-FIST INDEX..SIGNWRITING HEAD
@@ -4383,7 +4386,7 @@ FFFC..FFFD    ; So #   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1FB94..1FBEF  ; So #  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; So #       ALARM BELL SYMBOL
 
-# Total code points: 7486
+# Total code points: 7489
 
 # ================================================
 
