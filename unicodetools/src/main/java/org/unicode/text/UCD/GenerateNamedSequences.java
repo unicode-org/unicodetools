@@ -160,7 +160,7 @@ public final class GenerateNamedSequences implements UCD_Types {
         };
 
         Utility.appendFile(
-                Settings.SRC_UCD_DIR + "NamedSequences-Template.html",
+                GenerateNamedSequences.class.getResource("NamedSequences-Template.html").getPath(),
                 Utility.UTF8,
                 out,
                 replacementList);

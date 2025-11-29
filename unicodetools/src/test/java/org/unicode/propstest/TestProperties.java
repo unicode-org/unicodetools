@@ -1,13 +1,14 @@
 package org.unicode.propstest;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.VersionInfo;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -632,7 +633,10 @@ public class TestProperties extends TestFmwkMinusMinus {
             }
             final PropertyNames<Age_Values> names = age.getNames();
             // logln(names.getShortName());
-            final IndexUnicodeProperties props = IndexUnicodeProperties.make(names.getShortName());
+            final IndexUnicodeProperties props =
+                    age == Age_Values.V2_1
+                            ? IndexUnicodeProperties.make(VersionInfo.UNICODE_2_1_2)
+                            : IndexUnicodeProperties.make(names.getShortName());
             final UnicodeMap<String> gc = props.load(UcdProperty.General_Category);
             final UnicodeMap<String> nt = props.load(UcdProperty.Numeric_Type);
             final UnicodeSet gcNum =

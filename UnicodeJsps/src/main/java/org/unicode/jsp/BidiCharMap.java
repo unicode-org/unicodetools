@@ -1,7 +1,7 @@
 /** */
 package org.unicode.jsp;
 
-import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.UnicodeSet;
@@ -48,7 +48,7 @@ class BidiCharMap {
 
         for (UnicodeSetIterator it =
                         new UnicodeSetIterator(
-                                new UnicodeSet("[[:ascii:]-[[:cc:]-[:whitespace:]]]"));
+                                new UnicodeSet("[[:Block=ASCII:]-[[:cc:]-[:whitespace:]]]"));
                 it.next(); ) {
             asciiHackMap.put(
                     it.codepoint,

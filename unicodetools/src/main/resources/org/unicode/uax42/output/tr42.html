@@ -1,0 +1,3428 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml">
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+      <link rel="stylesheet"
+            type="text/css"
+            href="https://www.unicode.org/reports/reports-v2.css"/>
+      <title>UAX #42: Unicode Character Database in XML</title>
+   </head>
+   <body style="background-color:#ffffff">
+      <table class="header" cellpadding="0" cellspacing="0" width="100%">
+         <tbody>
+            <tr>
+               <td class="icon">
+                  <a href="https://www.unicode.org/">
+                     <img style="vertical-align:middle;border:0"
+                          alt="[Unicode]"
+                          src="https://www.unicode.org/webscripts/logo60s2.gif"
+                          height="33"
+                          width="34"/>
+                  </a> <a class="bar" href="https://www.unicode.org/reports/">Technical Reports</a>
+               </td>
+            </tr>
+            <tr>
+               <td class="gray"> </td>
+            </tr>
+         </tbody>
+      </table>
+      <div class="body">
+         <h2 style="text-align:center">Unicode® Standard Annex #42</h2>
+         <h1 style="text-align:center">Unicode Character Database in XML</h1>
+         <table class="simple" width="90%">
+            <tbody>
+               <tr>
+                  <td valign="top" width="20%">Version</td>
+                  <td valign="top">Unicode 17.0.0</td>
+               </tr>
+               <tr>
+                  <td valign="top">
+                Editor
+              </td>
+                  <td valign="top">
+            John Wilcock<br/>
+                  </td>
+               </tr>
+               <tr>
+                  <td valign="top">Date</td>
+                  <td valign="top">2025-08-13</td>
+               </tr>
+               <tr>
+                  <td valign="top">This Version</td>
+                  <td valign="top">
+                     <a href="https://www.unicode.org/reports/tr42/tr42-38.html">https://www.unicode.org/reports/tr42/tr42-38.html</a>
+                  </td>
+               </tr>
+               <tr>
+                  <td valign="top">Previous Version</td>
+                  <td valign="top">
+                     <a href="https://www.unicode.org/reports/tr42/tr42-36.html">https://www.unicode.org/reports/tr42/tr42-36.html</a>
+                  </td>
+               </tr>
+               <tr>
+                  <td valign="top">Latest Version</td>
+                  <td valign="top">
+                     <a href="https://www.unicode.org/reports/tr42/">https://www.unicode.org/reports/tr42/</a>
+                  </td>
+               </tr>
+               <tr>
+                  <td valign="top">Latest Proposed Update</td>
+                  <td valign="top">
+                     <a href="https://www.unicode.org/reports/tr42/proposed.html">https://www.unicode.org/reports/tr42/proposed.html</a>
+                  </td>
+               </tr>
+               <tr>
+                  <td valign="top">Schema</td>
+                  <td valign="top">
+                     <a href="https://www.unicode.org/reports/tr42/tr42-38.rnc">https://www.unicode.org/reports/tr42/tr42-38.rnc</a>
+                  </td>
+               </tr>
+               <tr>
+                  <td valign="top">Revision</td>
+                  <td valign="top">
+                     <a href="#Modifications">38</a>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <h4 style="margin-top: 1em;">Summary</h4>
+         <p>
+            <i>This annex describes an XML representation of the Unicode Character Database.</i>
+         </p>
+         <h4>
+            <i>Status</i>
+         </h4>
+         <p>
+            <i>This document has been reviewed by Unicode members and other interested parties, and has been
+          approved for publication by the Unicode Consortium. This is a stable document and may be used as reference
+          material or cited as a normative reference by other specifications.</i>
+         </p>
+         <blockquote>
+            <p>
+               <i>
+                  <b>A Unicode Standard Annex (UAX)</b> forms an integral part of the Unicode Standard, but is
+            published online as a separate document. The Unicode Standard may require conformance to normative
+            content in a Unicode Standard Annex, if so specified in the Conformance chapter of that version of the
+            Unicode Standard. The version number of a UAX document corresponds to the version of the Unicode Standard
+            of which it forms a part.</i>
+            </p>
+         </blockquote>
+         <p>
+            <i>Please submit corrigenda and other comments with the online reporting form [<a href="https://www.unicode.org/reporting.html">Feedback</a>]. Related information that is useful in
+          understanding this annex is found in Unicode Standard Annex #41, “<a href="https://www.unicode.org/reports/tr41/tr41-32.html">Common References for Unicode Standard
+            Annexes.</a>” For the latest version of the Unicode Standard, see [<a href="https://www.unicode.org/versions/latest/">Unicode</a>]. For a list of current Unicode
+          Technical Reports, see [<a href="https://www.unicode.org/reports/">Reports</a>]. For more information about
+          versions of the Unicode Standard, see [<a href="https://www.unicode.org/versions/">Versions</a>]. For any
+          errata which may apply to this annex, see [<a href="https://www.unicode.org/errata/">Errata</a>].</i>
+         </p>
+         <h4>Contents</h4>
+         <ul class="toc">
+            <li>1    <a href="#introduction_0">Introduction</a>
+            </li>
+            <li>2    <a href="#overall_schema_0">Overall schema</a>
+               <ul class="toc">
+                  <li>2.1    <a href="#general_principles_0">General principles</a>
+                  </li>
+                  <li>2.2    <a href="#namespace_0">Namespace</a>
+                  </li>
+                  <li>2.3    <a href="#datatypes_0">Datatypes</a>
+                  </li>
+                  <li>2.4    <a href="#root_element_0">Root Element</a>
+                  </li>
+                  <li>2.5    <a href="#common_attributes_0">Common attributes</a>
+                  </li>
+                  <li>2.6    <a href="#ordering_of_elements_0">Ordering of elements</a>
+                  </li>
+               </ul>
+            </li>
+            <li>3    <a href="#description_0">Description</a>
+            </li>
+            <li>4    <a href="#repertoire_0">Repertoire</a>
+               <ul class="toc">
+                  <li>4.1    <a href="#sets_of_code_points_0">Sets of code points</a>
+                  </li>
+                  <li>4.2    <a href="#code_point_types_0">Code point types</a>
+                  </li>
+                  <li>4.3    <a href="#group_0">Group</a>
+                  </li>
+                  <li>4.4    <a href="#properties_0">Properties</a>
+                     <ul class="toc">
+                        <li>4.4.1    <a href="#age_property_0">Age property</a>
+                        </li>
+                        <li>4.4.2    <a href="#name_properties_0">Name properties</a>
+                        </li>
+                        <li>4.4.3    <a href="#name_alias_properties_0">Name Alias properties</a>
+                        </li>
+                        <li>4.4.4    <a href="#block_property_0">Block property</a>
+                        </li>
+                        <li>4.4.5    <a href="#general_category_0">General Category</a>
+                        </li>
+                        <li>4.4.6    <a href="#combining_properties_0">Combining properties</a>
+                        </li>
+                        <li>4.4.7    <a href="#bidirectionality_properties_0">Bidirectionality properties</a>
+                        </li>
+                        <li>4.4.8    <a href="#decomposition_properties_0">Decomposition properties</a>
+                        </li>
+                        <li>4.4.9    <a href="#numeric_properties_0">Numeric Properties</a>
+                        </li>
+                        <li>4.4.10    <a href="#joining_properties_0">Joining properties</a>
+                        </li>
+                        <li>4.4.11    <a href="#linebreak_properties_0">Linebreak properties</a>
+                        </li>
+                        <li>4.4.12    <a href="#east_asian_width_property_0">East Asian Width property</a>
+                        </li>
+                        <li>4.4.13    <a href="#case_properties_0">Case properties</a>
+                        </li>
+                        <li>4.4.14    <a href="#script_properties_0">Script properties</a>
+                        </li>
+                        <li>4.4.15    <a href="#hangul_properties_0">Hangul properties</a>
+                        </li>
+                        <li>4.4.16    <a href="#indic_properties_0">Indic properties</a>
+                        </li>
+                        <li>4.4.17    <a href="#identifier_and_pattern_and_programming_language_properties_0">Identifier and Pattern and programming language properties</a>
+                        </li>
+                        <li>4.4.18    <a href="#properties_related_to_function_and_graphic_characteristics_0">Properties related to function and graphic characteristics</a>
+                        </li>
+                        <li>4.4.19    <a href="#properties_related_to_boundaries_0">Properties related to boundaries</a>
+                        </li>
+                        <li>4.4.20    <a href="#properties_related_to_ideographs_0">Properties related to ideographs</a>
+                        </li>
+                        <li>4.4.21    <a href="#miscellaneous_properties_0">Miscellaneous properties</a>
+                        </li>
+                        <li>4.4.22    <a href="#unihan_properties_0">Unihan properties</a>
+                        </li>
+                        <li>4.4.23    <a href="#tangut_data_0">Tangut data</a>
+                        </li>
+                        <li>4.4.24    <a href="#nushu_data_0">Nushu data</a>
+                        </li>
+                        <li>4.4.25    <a href="#emoji_properties_0">Emoji properties</a>
+                        </li>
+                        <li>4.4.26    <a href="#unikemet_properties_0">Unikemet properties</a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </li>
+            <li>5    <a href="#blocks_0">Blocks</a>
+            </li>
+            <li>6    <a href="#named_sequences_0">Named Sequences</a>
+            </li>
+            <li>7    <a href="#standardized_variants_0">Standardized Variants</a>
+            </li>
+            <li>8    <a href="#cjk_radicals_0">CJK Radicals</a>
+            </li>
+            <li>9    <a href="#do_not_emit_0">Do Not Emit</a>
+            </li>
+            <li>10    <a href="#the_full_schema_0">The full schema</a>
+            </li>
+            <li>11    <a href="#examples_0">Examples</a>
+            </li>
+            <li>
+               <a href="#acknowledgments_0">Acknowledgments</a>
+            </li>
+            <li>
+               <a href="#Modifications">Modifications</a>
+            </li>
+         </ul>
+         <hr/>
+         <h2>
+            <a name="introduction_0">1 Introduction</a>
+         </h2>
+         <p>In working on Unicode implementations, it is often useful to access the full content of the Unicode
+            Character Database (UCD). For example, in establishing mappings from characters to glyphs in fonts, it is
+            convenient to see the character scalar value, the character name, the character East Asian width, along with
+            the shape and metrics of the proposed glyph to map to; looking at all this data simultaneously helps in
+            evaluating the mapping.
+        </p>
+         <p>Directly accessing the data files that constitute the UCD is sometimes a daunting proposition. The data is
+            dispersed in a number of files of various formats, and there are just enough peculiarities (all justified by
+            the processing power available at the time the UCD representation was designed) to require a fairly intimate
+            knowledge of the data format itself, in addition to the meaning of the data.
+        </p>
+         <p>Many programming environments (for example, Java or ICU) do give access to the UCD. However, those
+            environments tend to lag behind releases of the standard, or support only some of the UCD content.
+        </p>
+         <p>Unibook is a wonderful tool to explore the UCD and in many cases is just the ticket; however, it is
+            difficult to use when the task at hand has not been built-in, or when non-UCD data is to be displayed as
+            well.
+        </p>
+         <p>This annex presents an alternative representation of the UCD, which is meant to overcome these
+            difficulties. We have chosen an XML representation, because parsing becomes a non-issue: there are a number
+            of XML parsers freely available, and using them is often fairly easy. In addition, there are freely
+            available tools that can perform powerful operations on XML data; for example, XPATH and XQUERY engines can
+            be thought of as a “grep” for XML data and XSLT engines can be thought of as
+            “awk” for XML data.
+        </p>
+         <p>It is important to note that we are interested in exploring the content of the UCD, rather than in using
+            the UCD data to process character streams. Thus, we are not concerned so much by the speed of processing or
+            the size of our representation.
+        </p>
+         <p>Our representation supports the creation of documents that represent only parts of the UCD, either by not
+            representing all the characters, or by not representing all the properties. This can be useful when only
+            some of the data is needed.
+        </p>
+         <p>This annex presents only the XML representation format of the UCD. The data itself is part of the <a href="https://www.unicode.org/reports/tr41/tr41-36.html#UCD">Unicode Character Database</a>.
+        </p>
+         <h2>
+            <a name="overall_schema_0">2 Overall schema</a>
+         </h2>
+         <h3>
+            <a name="general_principles_0">2.1 General principles</a>
+         </h3>
+         <p>Our schema can be used to create and validate documents which are intended to represent properties of
+                Unicode code points, blocks, named sequences, standardized variants, CJK radicals and emoji sources.
+                A document may represent the values actually assigned in a given version of the UCD, or it may
+                represent a draft version of the UCD, or a private agreement on Private Use characters. The validity of
+                a XML document with respect to the schema defined in this annex does not assert anything about the
+                correctness of the values.
+            </p>
+         <p>Valid documents may provide values for only some of the code points, or some of the Unicode
+                properties. Furthermore, they may also incorporate non-Unicode properties.
+            </p>
+         <p>Our schema is defined using English. However, a useful subset of the validity constraints can be
+                captured using a schema language, thereby simplifying the task of validating documents. We have chosen
+                Relax NG [<a href="https://www.unicode.org/reports/tr41/tr41-36.html#ISO19757">ISO 19757</a>],
+                in the compact syntax , as the schema language. It is important to stress that the schema which is
+                defined in English imposes more constraints on the documents than can be validated with the Relax NG
+                schema.
+            </p>
+         <p>An important characteristic of Relax NG is that its schemas do not modify or augment the infoset of
+                the documents. Therefore, it is possible to process our XML representation without using the schema.
+                Also, the schema is relatively straightforward and can be converted mechanically to other schema
+                languages.
+            </p>
+         <p>While our XML representation is not intended to be used during processing of characters and strings,
+                it is still a design principle for our schema to support the relatively efficient representation of the
+                UCD. This is achieved by an inheritance mechanism, similar to property inheritance in CSS or in XSL:FO
+                (see section 4.3 Group).
+            </p>
+         <p>Many invariants impose constraints on the values of the different properties for a given code point.
+                For example, if the value of the Numeric Type property is None, then the value of the
+                Numeric Value property should be the empty string; and if the value of the Other
+                Alphabetic property is true, then the value of the Alphabetic property should be
+                true. Those invariants are not captured in the schema.
+            </p>
+         <h3>
+            <a name="namespace_0">2.2 Namespace</a>
+         </h3>
+         <p>The namespace for our elements is “http://www.unicode.org/ns/2003/ucd/1.0”. Our
+                attributes are in the empty namespace.
+            </p>
+         <p>
+            <i>
+               <a name="ucdxml:namespace_declaration_1">[namespace declaration,
+        1]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  default namespace ucd = "http://www.unicode.org/ns/2003/ucd/1.0"
+</tt>
+         </p>
+         <p>In all our examples, we assume that this namespace is the default one.
+            </p>
+         <h3>
+            <a name="datatypes_0">2.3 Datatypes</a>
+         </h3>
+         <p>We use a standard XML Schema datatypes:</p>
+         <p>
+            <i>
+               <a name="ucdxml:datatypes_declaration_2">[datatypes declaration,
+        2]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  # default; datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+</tt>
+         </p>
+         <p>Characters are pervasive in the UCD, and will need to be represented. Representing characters directly
+                by themselves would seem the most obvious choice; for example, we could express that the decomposition
+                of U+00E8 is “&amp;#x0065;&amp;#x0300;”, that is have exactly two characters in (the
+                infoset of) the XML document. However, the current XML specification limits the set of characters
+                that can be part of a document. Another problem is that the various tools (XML parser, XPATH engine,
+                etc.) may equate U+00E8 with U+0065 U+0300, thus making it difficult to figure out which of the two
+                sequences is contained in the database (which is sometimes important for our purposes). Therefore, we
+                chose instead to represent characters by their code points; we follow the usual convention of four to
+                six hexadecimal digits (uppercase) and code points in a sequence separated by space; for example, the
+                decomposition of U+00E8 will be represented by the nine characters “0065 0300” in the
+                infoset.
+            </p>
+         <p>
+            <i>
+               <a name="ucdxml:datatype_for_code_points_3">[datatype for code points,
+        3]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  single-code-point = xsd:string { pattern = "(|[1-9A-F]|(10))[0-9A-F]{4}" }
+
+  one-or-more-code-points = list { single-code-point + }
+  zero-or-more-code-points = list { single-code-point * }
+  two-code-points = list { single-code-point, single-code-point }
+</tt>
+         </p>
+         <h3>
+            <a name="root_element_0">2.4 Root Element</a>
+         </h3>
+         <p>The root element of valid documents is a <tt>ucd</tt>.
+            </p>
+         <p>
+            <i>
+               <a name="ucdxml:schema_start_4">[schema start,
+        4]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  start =
+    element ucd { ucd.content }
+</tt>
+         </p>
+         <h3>
+            <a name="common_attributes_0">2.5 Common attributes</a>
+         </h3>
+         <p>A large number of properties are boolean. We uniformly use the values <tt>Y</tt> and
+                <tt>N</tt> for those:
+            </p>
+         <p>
+            <i>
+               <a name="ucdxml:boolean_5">[boolean,
+        5]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  boolean = "Y" | "N"
+</tt>
+         </p>
+         <h3>
+            <a name="ordering_of_elements_0">2.6 Ordering of elements</a>
+         </h3>
+         <p>In elements that hold lists of child elements, such as <tt>repertoire</tt>,
+                <tt>group</tt>, or <tt>standardized-variants</tt>, the schema does not require that the
+                child elements be in any particular order.
+            </p>
+         <h2>
+            <a name="description_0">3 Description</a>
+         </h2>
+         <p>The root element may have a <tt>description</tt> child element, which in turn contains any string,
+            which is meant to describe what the XML document purports to describe.
+        </p>
+         <p>It is recommended that if the document purports to represent the UCD of some Unicode version, the
+            <tt>description</tt> be selected in accord with the rules listed in <a href="https://www.unicode.org/reports/tr41/tr41-36.html#Versions">[Versions]</a>; and
+            conversely, that documents which do not purport to represent the UCD be described as such.
+        </p>
+         <p>
+            <i>
+               <a name="ucdxml:description_6">[description,
+        6]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  ucd.content &amp;=
+    element description { text }?
+</tt>
+         </p>
+         <h2>
+            <a name="repertoire_0">4 Repertoire</a>
+         </h2>
+         <p>The <tt>repertoire</tt> child element of the <tt>ucd</tt> element describes the code points and
+            their properties. As we will see shortly, code points can be described individually or as part of a group:
+        </p>
+         <p>
+            <i>
+               <a name="ucdxml:repertoire_7">[repertoire,
+        7]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  ucd.content &amp;=
+    element repertoire { (code-point | group) + }?
+</tt>
+         </p>
+         <h3>
+            <a name="sets_of_code_points_0">4.1 Sets of code points</a>
+         </h3>
+         <p>It is often the case that successive code points have the same property values, for a given set of
+                properties. The most striking example is that of an unallocated plane, where all but the last two
+                code points are reserved and have the same property values. Another example is the URO (U+4E00
+                .. U+9FA5) where all the code points have the same property values if we ignore their name and their
+                Unihan properties.
+            </p>
+         <p>
+            <i>
+               <a name="ucdxml:set_of_code_points_8">[Set of code points,
+        8]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  set-of-code-points =
+     attribute cp { single-code-point }
+   | ( attribute first-cp { single-code-point },
+       attribute last-cp  { single-code-point } )
+</tt>
+         </p>
+         <p>This observation suggests that it is profitable to represent sets of code points which share the
+                same properties, rather than individual code points. To make the representation of the sets simple,
+                we restrict them to be segments in the code point space, that is a set is defined by the first and
+                last code point it contains. Those are captured by the attributes <tt>first-cp</tt> and <tt>
+                    last-cp</tt>. The attribute <tt>cp</tt> is a shorthand notation for the case where the set
+                has a single code point.
+            </p>
+         <p>In the <tt>repertoire</tt>, there must be at most one <tt>code-point</tt>
+                element for a given code point.
+            </p>
+         <h3>
+            <a name="code_point_types_0">4.2 Code point types</a>
+         </h3>
+         <p>When thinking about Unicode code points, it is useful to split them into four types:
+            </p>
+                those assigned to abstract characters (PUA or not)
+                the noncharacters
+                the surrogate code points
+                the reserved code points
+            <p>This leads to four elements to describe sets of code points:
+            </p>
+         <p>
+            <i>
+               <a name="ucdxml:code_points_9">[Code points,
+        9]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point |=
+    element reserved {
+      set-of-code-points,
+      code-point-attributes }
+
+  code-point |=
+    element noncharacter {
+      set-of-code-points,
+      code-point-attributes }
+
+  code-point |=
+    element surrogate {
+      set-of-code-points,
+      code-point-attributes }
+
+  code-point |=
+    element char {
+      set-of-code-points,
+      code-point-attributes }
+</tt>
+         </p>
+         <h3>
+            <a name="group_0">4.3 Group</a>
+         </h3>
+         <p>While we already recognized the situation where a set of code points have exactly the same set of
+                property values, another common situation is that of code points which have almost all the same
+                property values.
+            </p>
+         <p>For example, the characters U+1740 BUHID LETTER A .. U+1753 BUHID VOWEL SIGN U all have the age
+                “3.2”, and all have the script “Buhd”. On the one hand, it is convenient
+                to support data files in which those properties are explicitly listed with every code point, at this
+                makes answering questions like “what is the age of U+1749?” easier, because that data
+                is expressed right there. On the other hand, this leads to rather large data files, and it also tends
+                to obscure the differences between similar characters.
+            </p>
+         <p>Our representation accounts for this situation with the notion of groups. A
+                <tt>group</tt> element is simply a container of code points that also holds default values for
+                the properties. If a code point inside a <tt>group</tt> does not list explicitly a property but the
+                <tt>group</tt> lists it, then the code point inherits that property from its
+                <tt>group</tt>. For example, the fragment with explicit properties:
+            </p>
+         <pre>
+    &lt;char cp="1740" age="3.2" na="BUHID LETTER A" gc="Lo" sc="Buhd"/&gt;
+    &lt;char cp="1741" age="3.2" na="BUHID LETTER I" gc="Lo" sc="Buhd"/&gt;
+    &lt;char cp="1752" age="3.2" na="BUHID VOWEL SIGN I" gc="Mn" sc="Buhd"/&gt;
+    &lt;char cp="1820" age="3.0" na="MONGOLIAN LETTER A" gc="Lo" sc="Mong"/&gt;</pre>
+         <p>is equivalent to this fragment which uses a <tt>group</tt>:
+            </p>
+         <pre>
+    &lt;group age="3.2" gc="Lo" sc="Buhd"&gt;
+        &lt;char cp="1740" na="BUHID LETTER A"/&gt;
+        &lt;char cp="1741" na="BUHID LETTER I"/&gt;
+        &lt;char cp="1752" na="BUHID VOWEL SIGN I" gc="Mn"/&gt;
+        &lt;char cp="1820" age="3.0" na="MONGOLIAN LETTER A" sc="Mong"/&gt;
+    &lt;/group&gt;</pre>
+         <p>The element for U+1740 does not have the <tt>age</tt> attribute, and it therefore inherits it
+                from its enclosing <tt>group</tt> element, that is “3.2”. On the other hand,
+                the element for U+1820 does have this attribute, so the value is “3.0”.
+            </p>
+         <p>As this example illustrates, the notion of <tt>group</tt> does not necessarily align with the
+                notion of Unicode block. It is entirely defined and limited to our representation. In particular, the
+                value of a property for a code point can always be determined from the XML document alone, assuming
+                that this property and this code point are expressed at all. Of course, one may create an XML
+                representation where the groups happen to coincide with the Unicode blocks.
+            </p>
+         <p>Groups cannot be nested. The motivation for this limitation is to make the life of consumers
+                easier: either a property is defined by the element for a code point, or it is defined by the
+                immediately enclosing <tt>group</tt> element.
+            </p>
+         <p>For UCDXML versions prior to 17.0, only non-Unihan attributes are applied to the <tt>group</tt>
+                elements. Starting with 17.0, Unihan attributes are also applied to the <tt>group</tt> elements.
+            </p>
+         <p>
+            <i>
+               <a name="ucdxml:groups_10">[groups,
+        10]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  group =
+    element group {
+      code-point-attributes,
+      code-point* }
+</tt>
+         </p>
+         <h3>
+            <a name="properties_0">4.4 Properties</a>
+         </h3>
+         <p>Each property, except for the Special_Case_Condition and Name_Alias
+                properties, is represented by an attribute. In an XML data file, the absence of an attribute (may be
+                only on some <code>code-point</code>s) means that the document does not express the value
+                of the corresponding property. Conversely, the presence of an attribute is an expression of the
+                corresponding property value; the implied null value is represented by the empty string.
+            </p>
+         <p>The Name_Alias property is represented by zero or more <tt>name-alias</tt> child
+                elements. Unlike the situation for properties represented by attributes, it is not possible to determine
+                whether all the aliases have been represented in a data file by inspecting that data file.
+            </p>
+         <p>The name of an attribute is the abbreviated name of the property as given in the file
+                PropertyAliases.txt in the corresponding version of the UCD. For the Unihan
+                properties, the name is that given in the various versions of the Unihan database.
+            </p>
+         <p>For catalog and enumerated properties, the values are those listed in the file
+                PropertyValueAliases.txt in the corresponding version of the UCD; if there is an abbreviated
+                name, it is used, otherwise the long name is used.
+            </p>
+         <p>Note that the set of possible values for a property captured in this schema may change from one
+                version to the next.
+            </p>
+         <h4>
+            <a name="age_property_0">4.4.1 Age property</a>
+         </h4>
+         <p>The <tt>age</tt> attribute captures the version of Unicode in which a code point was
+                    assigned to an abstract character, or made a surrogate or non-character.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:age_attribute_11">[age attribute,
+        11]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute age { "1.1"
+                  | "2.0" | "2.1"
+                  | "3.0" | "3.1" | "3.2"
+                  | "4.0" | "4.1"
+                  | "5.0" | "5.1" | "5.2"
+                  | "6.0" | "6.1" | "6.2" | "6.3"
+                  | "7.0"
+                  | "8.0"
+                  | "9.0"
+                  | "10.0"
+                  | "11.0"
+                  | "12.0" | "12.1"
+                  | "13.0"
+                  | "14.0"
+                  | "15.0" | "15.1"
+                  | "16.0"
+                  | "17.0"
+                  | "unassigned"
+                  }?
+</tt>
+         </p>
+         <h4>
+            <a name="name_properties_0">4.4.2 Name properties</a>
+         </h4>
+         <p>There are two name properties: the name given by the current version of the standard
+                    (<tt>na</tt>), and possibly the name this character had in version 1.0 of the standard
+                    (<tt>na1</tt>).
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:na_attribute_12">[na attribute,
+        12]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute na { "" |
+                   "CJK UNIFIED IDEOGRAPH-#" |
+                   "CJK COMPATIBILITY IDEOGRAPH-#" |
+                   "EGYPTIAN HIEROGLYPH-#" |
+                   "TANGUT IDEOGRAPH-#" |
+                   "KHITAN SMALL SCRIPT CHARACTER-#" |
+                   "NUSHU CHARACTER-#" |
+                   xsd:string { pattern="[a-zA-Z0-9]+(( -|- |[\-_ ])[a-zA-Z0-9]+)*" }
+                 }?
+</tt>
+         </p>
+         <p>
+            <i>
+               <a name="ucdxml:na1_attribute_13">[na1 attribute,
+        13]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute na1 { "" | xsd:string { pattern="[a-zA-Z0-9]+([\-_ ][a-zA-Z0-9]+)*( \(.*\))?" } }?
+</tt>
+         </p>
+         <p>The majority of the characters in Unicode have a name which is of the form CJK UNIFIED
+                    IDEOGRAPH-<code>&lt;code point&gt;</code>. It also happens that character names cannot
+                    contain the character U+0023 # NUMBER SIGN, so we adopted the following convention: if a
+                    code point has the attribute <tt>na</tt> (either directly or by inheritance from an enclosing
+                    group), then occurrences of the character # in the name are to be interpreted as the value of the
+                    code point. For example:
+                </p>
+         <pre>
+    &lt;char cp="3400" na="CJK UNIFIED IDEOGRAPH-3400"/&gt;</pre>
+         <p>and</p>
+         <pre>
+    &lt;char cp="3400" na="CJK UNIFIED IDEOGRAPH-#"/&gt;</pre>
+         <p>are equivalent. The # can be in any position in the value of the <tt>na</tt>
+                    attribute. The convention also applies just as well to a set of multiple code points:
+                </p>
+         <pre>
+    &lt;char cp="3400" na="CJK UNIFIED IDEOGRAPH-3400"/&gt;
+    &lt;char cp="3401" na="CJK UNIFIED IDEOGRAPH-3401"/&gt;</pre>
+         <p>is equivalent to</p>
+         <pre>
+    &lt;char cp="3400" na="CJK UNIFIED IDEOGRAPH-#"/&gt;
+    &lt;char cp="3401" na="CJK UNIFIED IDEOGRAPH-#"/&gt;</pre>
+         <p>which in turn is equivalent to:</p>
+         <pre>
+    &lt;char first-cp="3400" last-cp="3401" na="CJK UNIFIED IDEOGRAPH-#"/&gt;</pre>
+         <h4>
+            <a name="name_alias_properties_0">4.4.3 Name Alias properties</a>
+         </h4>
+         <p>The Name_Alias property is represented by zero or more <tt>name-alias</tt>
+                    child elements:
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:name-alias_element_14">[name-alias element,
+        14]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    element name-alias {
+      attribute alias { xsd:string { pattern="[a-zA-Z0-9]+(( -|- |[\-_ ])[a-zA-Z0-9]+)*" } }?,
+      attribute type  { "abbreviation" | "alternate"
+                      | "control" | "correction"
+                      | "figment"
+                      }? } *
+</tt>
+         </p>
+         <h4>
+            <a name="block_property_0">4.4.4 Block property</a>
+         </h4>
+         <p>The Block property is represented by the <tt>blk</tt> attribute:
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:blk_attribute_15">[blk attribute,
+        15]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute blk { "Adlam"
+                  | "Aegean_Numbers"
+                  | "Ahom"
+                  | "Alchemical"
+                  | "Alphabetic_PF"
+                  | "Anatolian_Hieroglyphs"
+                  | "Ancient_Greek_Music"
+                  | "Ancient_Greek_Numbers"
+                  | "Ancient_Symbols"
+                  | "Arabic"
+                  | "Arabic_Ext_A"
+                  | "Arabic_Ext_B"
+                  | "Arabic_Ext_C"
+                  | "Arabic_Math"
+                  | "Arabic_PF_A"
+                  | "Arabic_PF_B"
+                  | "Arabic_Sup"
+                  | "Armenian"
+                  | "Arrows"
+                  | "ASCII"
+                  | "Avestan"
+                  | "Balinese"
+                  | "Bamum"
+                  | "Bamum_Sup"
+                  | "Bassa_Vah"
+                  | "Batak"
+                  | "Bengali"
+                  | "Beria_Erfe"
+                  | "Bhaiksuki"
+                  | "Block_Elements"
+                  | "Bopomofo"
+                  | "Bopomofo_Ext"
+                  | "Box_Drawing"
+                  | "Brahmi"
+                  | "Braille"
+                  | "Buginese"
+                  | "Buhid"
+                  | "Byzantine_Music"
+                  | "Carian"
+                  | "Caucasian_Albanian"
+                  | "Chakma"
+                  | "Cham"
+                  | "Cherokee"
+                  | "Cherokee_Sup"
+                  | "Chess_Symbols"
+                  | "Chorasmian"
+                  | "CJK"
+                  | "CJK_Compat"
+                  | "CJK_Compat_Forms"
+                  | "CJK_Compat_Ideographs"
+                  | "CJK_Compat_Ideographs_Sup"
+                  | "CJK_Ext_A"
+                  | "CJK_Ext_B"
+                  | "CJK_Ext_C"
+                  | "CJK_Ext_D"
+                  | "CJK_Ext_E"
+                  | "CJK_Ext_F"
+                  | "CJK_Ext_G"
+                  | "CJK_Ext_H"
+                  | "CJK_Ext_I"
+                  | "CJK_Ext_J"
+                  | "CJK_Radicals_Sup"
+                  | "CJK_Strokes"
+                  | "CJK_Symbols"
+                  | "Compat_Jamo"
+                  | "Control_Pictures"
+                  | "Coptic"
+                  | "Coptic_Epact_Numbers"
+                  | "Counting_Rod"
+                  | "Cuneiform"
+                  | "Cuneiform_Numbers"
+                  | "Currency_Symbols"
+                  | "Cypriot_Syllabary"
+                  | "Cypro_Minoan"
+                  | "Cyrillic"
+                  | "Cyrillic_Ext_A"
+                  | "Cyrillic_Ext_B"
+                  | "Cyrillic_Ext_C"
+                  | "Cyrillic_Ext_D"
+                  | "Cyrillic_Sup"
+                  | "Deseret"
+                  | "Devanagari"
+                  | "Devanagari_Ext"
+                  | "Devanagari_Ext_A"
+                  | "Diacriticals"
+                  | "Diacriticals_Ext"
+                  | "Diacriticals_For_Symbols"
+                  | "Diacriticals_Sup"
+                  | "Dingbats"
+                  | "Dives_Akuru"
+                  | "Dogra"
+                  | "Domino"
+                  | "Duployan"
+                  | "Early_Dynastic_Cuneiform"
+                  | "Egyptian_Hieroglyph_Format_Controls"
+                  | "Egyptian_Hieroglyphs"
+                  | "Egyptian_Hieroglyphs_Ext_A"
+                  | "Elbasan"
+                  | "Elymaic"
+                  | "Emoticons"
+                  | "Enclosed_Alphanum"
+                  | "Enclosed_Alphanum_Sup"
+                  | "Enclosed_CJK"
+                  | "Enclosed_Ideographic_Sup"
+                  | "Ethiopic"
+                  | "Ethiopic_Ext"
+                  | "Ethiopic_Ext_A"
+                  | "Ethiopic_Ext_B"
+                  | "Ethiopic_Sup"
+                  | "Garay"
+                  | "Geometric_Shapes"
+                  | "Geometric_Shapes_Ext"
+                  | "Georgian"
+                  | "Georgian_Ext"
+                  | "Georgian_Sup"
+                  | "Glagolitic"
+                  | "Glagolitic_Sup"
+                  | "Gothic"
+                  | "Grantha"
+                  | "Greek"
+                  | "Greek_Ext"
+                  | "Gujarati"
+                  | "Gunjala_Gondi"
+                  | "Gurmukhi"
+                  | "Gurung_Khema"
+                  | "Half_And_Full_Forms"
+                  | "Half_Marks"
+                  | "Hangul"
+                  | "Hanifi_Rohingya"
+                  | "Hanunoo"
+                  | "Hatran"
+                  | "Hebrew"
+                  | "High_PU_Surrogates"
+                  | "High_Surrogates"
+                  | "Hiragana"
+                  | "IDC"
+                  | "Ideographic_Symbols"
+                  | "Imperial_Aramaic"
+                  | "Indic_Number_Forms"
+                  | "Indic_Siyaq_Numbers"
+                  | "Inscriptional_Pahlavi"
+                  | "Inscriptional_Parthian"
+                  | "IPA_Ext"
+                  | "Jamo"
+                  | "Jamo_Ext_A"
+                  | "Jamo_Ext_B"
+                  | "Javanese"
+                  | "Kaithi"
+                  | "Kaktovik_Numerals"
+                  | "Kana_Ext_A"
+                  | "Kana_Ext_B"
+                  | "Kana_Sup"
+                  | "Kanbun"
+                  | "Kangxi"
+                  | "Kannada"
+                  | "Katakana"
+                  | "Katakana_Ext"
+                  | "Kawi"
+                  | "Kayah_Li"
+                  | "Kharoshthi"
+                  | "Khitan_Small_Script"
+                  | "Khmer"
+                  | "Khmer_Symbols"
+                  | "Khojki"
+                  | "Khudawadi"
+                  | "Kirat_Rai"
+                  | "Lao"
+                  | "Latin_1_Sup"
+                  | "Latin_Ext_A"
+                  | "Latin_Ext_Additional"
+                  | "Latin_Ext_B"
+                  | "Latin_Ext_C"
+                  | "Latin_Ext_D"
+                  | "Latin_Ext_E"
+                  | "Latin_Ext_F"
+                  | "Latin_Ext_G"
+                  | "Lepcha"
+                  | "Letterlike_Symbols"
+                  | "Limbu"
+                  | "Linear_A"
+                  | "Linear_B_Ideograms"
+                  | "Linear_B_Syllabary"
+                  | "Lisu"
+                  | "Lisu_Sup"
+                  | "Low_Surrogates"
+                  | "Lycian"
+                  | "Lydian"
+                  | "Mahajani"
+                  | "Mahjong"
+                  | "Makasar"
+                  | "Malayalam"
+                  | "Mandaic"
+                  | "Manichaean"
+                  | "Marchen"
+                  | "Masaram_Gondi"
+                  | "Math_Alphanum"
+                  | "Math_Operators"
+                  | "Mayan_Numerals"
+                  | "Medefaidrin"
+                  | "Meetei_Mayek"
+                  | "Meetei_Mayek_Ext"
+                  | "Mende_Kikakui"
+                  | "Meroitic_Cursive"
+                  | "Meroitic_Hieroglyphs"
+                  | "Miao"
+                  | "Misc_Arrows"
+                  | "Misc_Math_Symbols_A"
+                  | "Misc_Math_Symbols_B"
+                  | "Misc_Pictographs"
+                  | "Misc_Symbols"
+                  | "Misc_Symbols_Sup"
+                  | "Misc_Technical"
+                  | "Modi"
+                  | "Modifier_Letters"
+                  | "Modifier_Tone_Letters"
+                  | "Mongolian"
+                  | "Mongolian_Sup"
+                  | "Mro"
+                  | "Multani"
+                  | "Music"
+                  | "Myanmar"
+                  | "Myanmar_Ext_A"
+                  | "Myanmar_Ext_B"
+                  | "Myanmar_Ext_C"
+                  | "Nabataean"
+                  | "Nag_Mundari"
+                  | "Nandinagari"
+                  | "NB"
+                  | "New_Tai_Lue"
+                  | "Newa"
+                  | "NKo"
+                  | "Number_Forms"
+                  | "Nushu"
+                  | "Nyiakeng_Puachue_Hmong"
+                  | "OCR"
+                  | "Ogham"
+                  | "Ol_Chiki"
+                  | "Ol_Onal"
+                  | "Old_Hungarian"
+                  | "Old_Italic"
+                  | "Old_North_Arabian"
+                  | "Old_Permic"
+                  | "Old_Persian"
+                  | "Old_Sogdian"
+                  | "Old_South_Arabian"
+                  | "Old_Turkic"
+                  | "Old_Uyghur"
+                  | "Oriya"
+                  | "Ornamental_Dingbats"
+                  | "Osage"
+                  | "Osmanya"
+                  | "Ottoman_Siyaq_Numbers"
+                  | "Pahawh_Hmong"
+                  | "Palmyrene"
+                  | "Pau_Cin_Hau"
+                  | "Phags_Pa"
+                  | "Phaistos"
+                  | "Phoenician"
+                  | "Phonetic_Ext"
+                  | "Phonetic_Ext_Sup"
+                  | "Playing_Cards"
+                  | "Psalter_Pahlavi"
+                  | "PUA"
+                  | "Punctuation"
+                  | "Rejang"
+                  | "Rumi"
+                  | "Runic"
+                  | "Samaritan"
+                  | "Saurashtra"
+                  | "Sharada"
+                  | "Sharada_Sup"
+                  | "Shavian"
+                  | "Shorthand_Format_Controls"
+                  | "Siddham"
+                  | "Sidetic"
+                  | "Sinhala"
+                  | "Sinhala_Archaic_Numbers"
+                  | "Small_Forms"
+                  | "Small_Kana_Ext"
+                  | "Sogdian"
+                  | "Sora_Sompeng"
+                  | "Soyombo"
+                  | "Specials"
+                  | "Sundanese"
+                  | "Sundanese_Sup"
+                  | "Sunuwar"
+                  | "Sup_Arrows_A"
+                  | "Sup_Arrows_B"
+                  | "Sup_Arrows_C"
+                  | "Sup_Math_Operators"
+                  | "Sup_PUA_A"
+                  | "Sup_PUA_B"
+                  | "Sup_Punctuation"
+                  | "Sup_Symbols_And_Pictographs"
+                  | "Super_And_Sub"
+                  | "Sutton_SignWriting"
+                  | "Syloti_Nagri"
+                  | "Symbols_And_Pictographs_Ext_A"
+                  | "Symbols_For_Legacy_Computing"
+                  | "Symbols_For_Legacy_Computing_Sup"
+                  | "Syriac"
+                  | "Syriac_Sup"
+                  | "Tagalog"
+                  | "Tagbanwa"
+                  | "Tags"
+                  | "Tai_Le"
+                  | "Tai_Tham"
+                  | "Tai_Viet"
+                  | "Tai_Xuan_Jing"
+                  | "Tai_Yo"
+                  | "Takri"
+                  | "Tamil"
+                  | "Tamil_Sup"
+                  | "Tangsa"
+                  | "Tangut"
+                  | "Tangut_Components"
+                  | "Tangut_Components_Sup"
+                  | "Tangut_Sup"
+                  | "Telugu"
+                  | "Thaana"
+                  | "Thai"
+                  | "Tibetan"
+                  | "Tifinagh"
+                  | "Tirhuta"
+                  | "Todhri"
+                  | "Tolong_Siki"
+                  | "Toto"
+                  | "Transport_And_Map"
+                  | "Tulu_Tigalari"
+                  | "UCAS"
+                  | "UCAS_Ext"
+                  | "UCAS_Ext_A"
+                  | "Ugaritic"
+                  | "Vai"
+                  | "Vedic_Ext"
+                  | "Vertical_Forms"
+                  | "Vithkuqi"
+                  | "VS"
+                  | "VS_Sup"
+                  | "Wancho"
+                  | "Warang_Citi"
+                  | "Yezidi"
+                  | "Yi_Radicals"
+                  | "Yi_Syllables"
+                  | "Yijing"
+                  | "Zanabazar_Square"
+                  | "Znamenny_Music"
+                  }?
+</tt>
+         </p>
+         <h4>
+            <a name="general_category_0">4.4.5 General Category</a>
+         </h4>
+         <p>The general category is represented by the <tt>gc</tt> attribute.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:gc_attribute_16">[gc attribute,
+        16]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute gc { "Cc" | "Cf" | "Cn" | "Co" | "Cs"
+                 | "Ll" | "Lm" | "Lo" | "Lt" | "Lu"
+                 | "Mc" | "Me" | "Mn"
+                 | "Nd" | "Nl" | "No"
+                 | "Pc" | "Pd" | "Pe" | "Pf" | "Pi" | "Po" | "Ps"
+                 | "Sc" | "Sk" | "Sm" | "So"
+                 | "Zl" | "Zp" | "Zs"
+                 }?
+</tt>
+         </p>
+         <h4>
+            <a name="combining_properties_0">4.4.6 Combining properties</a>
+         </h4>
+         <p>The combining class is represented by the <tt>ccc</tt> attribute, which holds the decimal
+                    representation of the combining class.
+                </p>
+         <p>Because the set of values that this property has taken across the various versions of the UCD
+                    is rather large, our schema does not restrict the possible values to those actually used.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:ccc_attribute_17">[ccc attribute,
+        17]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute ccc { xsd:integer { minInclusive="0" maxInclusive="254" } }?
+</tt>
+         </p>
+         <h4>
+            <a name="bidirectionality_properties_0">4.4.7 Bidirectionality properties</a>
+         </h4>
+         <p>The bidirectional class is represented by the <tt>bc</tt> attribute.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:bc_attribute_18">[bc attribute,
+        18]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute bc { "AL" | "AN"
+                 | "B" | "BN"
+                 | "CS"
+                 | "EN" | "ES" | "ET"
+                 | "FSI"
+                 | "L" | "LRE" | "LRI" | "LRO"
+                 | "NSM"
+                 | "ON"
+                 | "PDF" | "PDI"
+                 | "R" | "RLE" | "RLI" | "RLO"
+                 | "S"
+                 | "WS"
+                 }?
+</tt>
+         </p>
+         <p>The mirrored property is represented by the <tt>Bidi_M</tt> attribute, which takes a
+                    boolean value.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:bidi_m_attribute_19">[Bidi_M attribute,
+        19]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute Bidi_M { boolean }?
+</tt>
+         </p>
+         <p>The <tt>bmg</tt> attribute is the code point of a character whose glyph is typically
+                    a mirrored image of the glyph for the current character.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:bmg_attribute_20">[bmg attribute,
+        20]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute bmg { "" | single-code-point }?
+</tt>
+         </p>
+         <p>Note that we do not express the “Best Fit” element recorded in BidiMirroring.txt.
+                    For one thing, it is not meant to be machine readable. More importantly, the idea underlying the
+                    mirrored glyph is delicate to use, since it makes assumptions about the design of the fonts, and
+                    the best fit goes even farther.
+                </p>
+         <p>The Bidi_Control property is represented by the <tt>Bidi_C</tt> attribute.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:bidi_c_attribute_21">[Bidi_C attribute,
+        21]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute Bidi_C { boolean }?
+</tt>
+         </p>
+         <p>The bidi paired bracket type and bidi paired bracket properties are represented by the
+                    <tt>bpt</tt> and <tt>bpb</tt> attributes respectively.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:bpt_attribute_22">[bpt attribute,
+        22]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute bpt { "o" | "c" | "n" }?
+</tt>
+         </p>
+         <p>
+            <i>
+               <a name="ucdxml:bpb_attribute_23">[bpb attribute,
+        23]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute bpb { "#" | single-code-point }?
+</tt>
+         </p>
+         <h4>
+            <a name="decomposition_properties_0">4.4.8 Decomposition properties</a>
+         </h4>
+         <p>The decomposition type and decomposition mapping properties are represented by the <tt>dt</tt>
+                    and <tt>dm</tt> attributes.
+                </p>
+         <p>Most characters have a decomposition mapping to themselves. This is very similar to the
+                    situation we encountered with names, and we adopted a similar convention: if the value of a
+                    decomposition mapping is the character itself, we use the attribute value # (U+0023 #
+                    NUMBER SIGN) as a shorthand notation; this enables those attributes to be captured in groups.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:decomposition_properties_24">[decomposition properties,
+        24]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute dt { "can" | "com" | "enc" | "fin" | "font" | "fra"
+                 | "init" | "iso" | "med" | "nar" | "nb" | "sml"
+                 | "sqr" | "sub" | "sup" | "vert" | "wide" | "none"
+                 }?
+
+  code-point-attributes &amp;=
+    attribute dm { "#" | zero-or-more-code-points }?
+</tt>
+         </p>
+         <p>The properties Composition_Exclusion and Full_Composition_Exclusion are
+                    represented by the attributes <tt>CE</tt> and <tt>Comp_Ex</tt>:
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:composition_properties_25">[composition properties,
+        25]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute CE { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Comp_Ex { boolean }?
+</tt>
+         </p>
+         <p>The properties NFC_Quick_Check, NFD_Quick_Check,
+                    NFKC_Quick_Check, and NFKD_Quick_Check have corresponding attributes.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:quick_check_properties_26">[quick check properties,
+        26]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute NFC_QC { "Y" | "N" | "M" }?
+
+  code-point-attributes &amp;=
+    attribute NFD_QC { "Y" | "N" }?
+
+  code-point-attributes &amp;=
+    attribute NFKC_QC { "Y" | "N" | "M" }?
+
+  code-point-attributes &amp;=
+    attribute NFKD_QC { "Y" | "N" }?
+</tt>
+         </p>
+         <h4>
+            <a name="numeric_properties_0">4.4.9 Numeric Properties</a>
+         </h4>
+         <p>The numeric type is represented by the <tt>nt</tt> attribute.
+                </p>
+         <p>The numeric value is represented by the <tt>nv</tt> attribute, represented as a whole
+                    number or a fraction.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:numeric_properties_27">[numeric properties,
+        27]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute nt { "De" | "Di" | "Nu" | "None" }?
+
+  code-point-attributes &amp;=
+    attribute nv { "NaN" | xsd:string { pattern="-?[0-9]+(/[0-9]+)?" } }?
+</tt>
+         </p>
+         <h4>
+            <a name="joining_properties_0">4.4.10 Joining properties</a>
+         </h4>
+         <p>The joining class of a character is represented by the <tt>jt</tt> attribute.
+                </p>
+         <p>The <tt>jg</tt> attribute is the joining group of the character.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:joining_properties_28">[joining properties,
+        28]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute jt { "C" | "D" | "L" | "R" | "T" | "U" }?
+
+  code-point-attributes &amp;=
+    attribute jg { "African_Feh" | "African_Noon" | "African_Qaf"
+                 | "Ain" | "Alaph" | "Alef"
+                 | "Beh" | "Beth" | "Burushaski_Yeh_Barree"
+                 | "Dal" | "Dalath_Rish"
+                 | "E"
+                 | "Farsi_Yeh" | "Fe" | "Feh" | "Final_Semkath"
+                 | "Gaf" | "Gamal"
+                 | "Hah" | "Hanifi_Rohingya_Kinna_Ya"
+                 | "Hanifi_Rohingya_Pa" | "He" | "Heh" | "Heh_Goal"
+                 | "Heth"
+                 | "Kaf" | "Kaph" | "Kashmiri_Yeh" | "Khaph"
+                 | "Knotted_Heh"
+                 | "Lam" | "Lamadh"
+                 | "Malayalam_Bha" | "Malayalam_Ja" | "Malayalam_Lla"
+                 | "Malayalam_Llla" | "Malayalam_Nga"
+                 | "Malayalam_Nna" | "Malayalam_Nnna"
+                 | "Malayalam_Nya" | "Malayalam_Ra" | "Malayalam_Ssa"
+                 | "Malayalam_Tta" | "Manichaean_Aleph"
+                 | "Manichaean_Ayin" | "Manichaean_Beth"
+                 | "Manichaean_Daleth" | "Manichaean_Dhamedh"
+                 | "Manichaean_Five" | "Manichaean_Gimel"
+                 | "Manichaean_Heth" | "Manichaean_Hundred"
+                 | "Manichaean_Kaph" | "Manichaean_Lamedh"
+                 | "Manichaean_Mem" | "Manichaean_Nun"
+                 | "Manichaean_One" | "Manichaean_Pe"
+                 | "Manichaean_Qoph" | "Manichaean_Resh"
+                 | "Manichaean_Sadhe" | "Manichaean_Samekh"
+                 | "Manichaean_Taw" | "Manichaean_Ten"
+                 | "Manichaean_Teth" | "Manichaean_Thamedh"
+                 | "Manichaean_Twenty" | "Manichaean_Waw"
+                 | "Manichaean_Yodh" | "Manichaean_Zayin" | "Meem"
+                 | "Mim"
+                 | "No_Joining_Group" | "Noon" | "Nun" | "Nya"
+                 | "Pe"
+                 | "Qaf" | "Qaph"
+                 | "Reh" | "Reversed_Pe" | "Rohingya_Yeh"
+                 | "Sad" | "Sadhe" | "Seen" | "Semkath" | "Shin"
+                 | "Straight_Waw" | "Swash_Kaf" | "Syriac_Waw"
+                 | "Tah" | "Taw" | "Teh_Marbuta" | "Teh_Marbuta_Goal"
+                 | "Teth" | "Thin_Noon" | "Thin_Yeh"
+                 | "Vertical_Tail"
+                 | "Waw"
+                 | "Yeh" | "Yeh_Barree" | "Yeh_With_Tail" | "Yudh"
+                 | "Yudh_He"
+                 | "Zain" | "Zhain"
+                 | "BAA"
+                 | "FA"
+                 | "HAA" | "HA_GOAL" | "HA"
+                 | "CAF"
+                 | "KNOTTED_HA"
+                 | "RA"
+                 | "SWASH_CAF"
+                 | "HAMZAH_ON_HA_GOAL"
+                 | "TAA_MARBUTAH"
+                 | "YA_BARREE" | "YA"
+                 | "ALEF_MAQSURAH"
+                 }?
+</tt>
+         </p>
+         <p>The Join_Control property is represented by the <tt>Join_C</tt> attribute.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:joining_properties_29">[joining properties,
+        29]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute Join_C { boolean }?
+</tt>
+         </p>
+         <h4>
+            <a name="linebreak_properties_0">4.4.11 Linebreak properties</a>
+         </h4>
+         <p>The Line_Break property is represented by the <tt>lb</tt> attribute.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:lb_attribute_30">[lb attribute,
+        30]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute lb { "AI" | "AK" | "AL" | "AP" | "AS"
+                 | "B2" | "BA" | "BB" | "BK"
+                 | "CB" | "CJ" | "CL" | "CM" | "CP" | "CR"
+                 | "EB" | "EM" | "EX"
+                 | "GL"
+                 | "H2" | "H3" | "HH" | "HL" | "HY"
+                 | "ID" | "IN" | "IS"
+                 | "JL" | "JT" | "JV"
+                 | "LF"
+                 | "NL" | "NS" | "NU"
+                 | "OP"
+                 | "PO" | "PR"
+                 | "QU"
+                 | "RI"
+                 | "SA" | "SG" | "SP" | "SY"
+                 | "VF" | "VI"
+                 | "WJ"
+                 | "XX"
+                 | "ZW" | "ZWJ"
+                 }?
+</tt>
+         </p>
+         <h4>
+            <a name="east_asian_width_property_0">4.4.12 East Asian Width property</a>
+         </h4>
+         <p>The East Asian width property is represented by the <tt>ea</tt> attribute.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:ea_attribute_31">[ea attribute,
+        31]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute ea { "A" | "F" | "H" | "N" | "Na" | "W" }?
+</tt>
+         </p>
+         <h4>
+            <a name="case_properties_0">4.4.13 Case properties</a>
+         </h4>
+         <p>The Uppercase, Lowercase, Other_Uppercase and
+                    Other_Lowercase properties are represented by corresponding attributes.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:casing_properties_32">[casing properties,
+        32]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute Upper { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Lower { boolean }?
+
+  code-point-attributes &amp;=
+    attribute OUpper { boolean }?
+
+  code-point-attributes &amp;=
+    attribute OLower { boolean }?
+</tt>
+         </p>
+         <p>Most characters have a case mapping and case folding properties that simply map or fold to
+                    themselves. This is very similar to the situation we encountered with names, and we adopted a
+                    similar convention: if the value of a case mapping or case folding property is the character
+                    itself, we use the attribute value # (U+0023 # NUMBER SIGN) as a shorthand notation; this
+                    enables those attributes to be captured in groups.
+                </p>
+         <p>The simple case mappings are recorded in the <tt>suc</tt>, <tt>slc</tt>, <tt>stc</tt>
+                    attributes.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:casing_properties_33">[casing properties,
+        33]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute suc { "#" | single-code-point }?
+
+  code-point-attributes &amp;=
+    attribute slc { "#" | single-code-point }?
+
+  code-point-attributes &amp;=
+    attribute stc { "#" | single-code-point }?
+</tt>
+         </p>
+         <p>The non-simple casing are recorded in the <tt>uc</tt>, <tt>lc</tt> and <tt>tc</tt>
+                    attributes.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:casing_properties_34">[casing properties,
+        34]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute uc { "#" | one-or-more-code-points }?
+
+  code-point-attributes &amp;=
+    attribute lc { "#" | one-or-more-code-points }?
+
+  code-point-attributes &amp;=
+    attribute tc { "#" | one-or-more-code-points }?
+</tt>
+         </p>
+         <p>The Simple_Case_Folding and Case_Folding properties are recorded in the
+                    <tt>scf</tt> and <tt>cf</tt> attributes respectively.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:casing_properties_35">[casing properties,
+        35]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute scf { "#" | single-code-point }?
+
+  code-point-attributes &amp;=
+    attribute cf { "#" | one-or-more-code-points }?
+</tt>
+         </p>
+         <p>The Case_Ignorable, Cased, Changes_When_Casefolded,
+                    Changes_When_Casemapped, Changes_When_Lowercased,
+                    Changes_When_NFKC_Casefolded, Changes_When_Titlecased,
+                    Changes_When_Uppercased, NFKC_Casefold, and
+                    NFKC_Simple_Casefold properties are recorded in these attributes:
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:casing_properties_36">[casing properties,
+        36]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute CI { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Cased { boolean }?
+
+  code-point-attributes &amp;=
+    attribute CWCF { boolean }?
+
+  code-point-attributes &amp;=
+    attribute CWCM { boolean }?
+
+  code-point-attributes &amp;=
+    attribute CWL { boolean }?
+
+  code-point-attributes &amp;=
+    attribute CWKCF { boolean }?
+
+  code-point-attributes &amp;=
+    attribute CWT { boolean }?
+
+  code-point-attributes &amp;=
+    attribute CWU { boolean }?
+
+  code-point-attributes &amp;=
+    attribute NFKC_CF { "#" | zero-or-more-code-points }?
+
+  code-point-attributes &amp;=
+    attribute NFKC_SCF { "#" | zero-or-more-code-points }?
+</tt>
+         </p>
+         <p>Note that the UCD records more information about case folding than is expressed in the
+                    properties, specifically the entries in CaseFolding.txt with status T.
+                </p>
+         <h4>
+            <a name="script_properties_0">4.4.14 Script properties</a>
+         </h4>
+         <p>The script and script extension properties are represented by the <tt>sc</tt> and
+                    <tt>scx</tt> attributes respectively.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:script_properties_37">[script properties,
+        37]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  script = "Adlm" | "Aghb" | "Ahom" | "Arab" | "Armi" | "Armn"
+           | "Avst"
+           | "Bali" | "Bamu" | "Bass" | "Batk" | "Beng" | "Berf"
+           | "Bhks" | "Bopo" | "Brah" | "Brai" | "Bugi" | "Buhd"
+           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | "Chrs"
+           | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
+           | "Deva" | "Diak" | "Dogr" | "Dsrt" | "Dupl"
+           | "Egyp" | "Elba" | "Elym" | "Ethi"
+           | "Gara" | "Geor" | "Glag" | "Gong" | "Gonm" | "Goth"
+           | "Gran" | "Grek" | "Gujr" | "Gukh" | "Guru"
+           | "Hang" | "Hani" | "Hano" | "Hatr" | "Hebr" | "Hira"
+           | "Hluw" | "Hmng" | "Hmnp" | "Hrkt" | "Hung"
+           | "Ital"
+           | "Java"
+           | "Kali" | "Kana" | "Kawi" | "Khar" | "Khmr" | "Khoj"
+           | "Kits" | "Knda" | "Krai" | "Kthi"
+           | "Lana" | "Laoo" | "Latn" | "Lepc" | "Limb" | "Lina"
+           | "Linb" | "Lisu" | "Lyci" | "Lydi"
+           | "Mahj" | "Maka" | "Mand" | "Mani" | "Marc" | "Medf"
+           | "Mend" | "Merc" | "Mero" | "Mlym" | "Modi" | "Mong"
+           | "Mroo" | "Mtei" | "Mult" | "Mymr"
+           | "Nagm" | "Nand" | "Narb" | "Nbat" | "Newa" | "Nkoo"
+           | "Nshu"
+           | "Ogam" | "Olck" | "Onao" | "Orkh" | "Orya" | "Osge"
+           | "Osma" | "Ougr"
+           | "Palm" | "Pauc" | "Perm" | "Phag" | "Phli" | "Phlp"
+           | "Phnx" | "Plrd" | "Prti"
+           | "Rjng" | "Rohg" | "Runr"
+           | "Samr" | "Sarb" | "Saur" | "Sgnw" | "Shaw" | "Shrd"
+           | "Sidd" | "Sidt" | "Sind" | "Sinh" | "Sogd" | "Sogo"
+           | "Sora" | "Soyo" | "Sund" | "Sunu" | "Sylo" | "Syrc"
+           | "Tagb" | "Takr" | "Tale" | "Talu" | "Taml" | "Tang"
+           | "Tavt" | "Tayo" | "Telu" | "Tfng" | "Tglg" | "Thaa"
+           | "Thai" | "Tibt" | "Tirh" | "Tnsa" | "Todr" | "Tols"
+           | "Toto" | "Tutg"
+           | "Ugar"
+           | "Vaii" | "Vith"
+           | "Wara" | "Wcho"
+           | "Xpeo" | "Xsux"
+           | "Yezi" | "Yiii"
+           | "Zanb" | "Zinh" | "Zyyy" | "Zzzz"
+
+  code-point-attributes &amp;=
+    attribute sc { script }?
+
+  code-point-attributes &amp;=
+    attribute scx { list { script + } }?
+</tt>
+         </p>
+         <h4>
+            <a name="hangul_properties_0">4.4.15 Hangul properties</a>
+         </h4>
+         <p>The property Hangul_Syllable_Type is represented by the <tt>hst</tt> attribute.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:hst_attribute_38">[hst attribute,
+        38]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute hst { "L" | "LV" | "LVT" | "NA" | "T" | "V" }?
+</tt>
+         </p>
+         <p>The property Jamo_Short_Name is represented by the <tt>JSN</tt> attribute:
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:jsn_attribute_39">[JSN attribute,
+        39]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute JSN { xsd:string { pattern="[A-Z]{0,3}" } }?
+</tt>
+         </p>
+         <h4>
+            <a name="indic_properties_0">4.4.16 Indic properties</a>
+         </h4>
+         <p>The property Indic_Syllabic_Category is represented by the <tt>InSC</tt>
+                    attribute.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:insc_attribute_40">[InSC attribute,
+        40]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute InSC { "Avagraha"
+                   | "Bindu"
+                   | "Brahmi_Joining_Number"
+                   | "Cantillation_Mark"
+                   | "Consonant"
+                   | "Consonant_Dead"
+                   | "Consonant_Final"
+                   | "Consonant_Head_Letter"
+                   | "Consonant_Initial_Postfixed"
+                   | "Consonant_Killer"
+                   | "Consonant_Medial"
+                   | "Consonant_Placeholder"
+                   | "Consonant_Preceding_Repha"
+                   | "Consonant_Prefixed"
+                   | "Consonant_Repha"
+                   | "Consonant_Subjoined"
+                   | "Consonant_Succeeding_Repha"
+                   | "Consonant_With_Stacker"
+                   | "Gemination_Mark"
+                   | "Invisible_Stacker"
+                   | "Joiner"
+                   | "Modifying_Letter"
+                   | "Non_Joiner"
+                   | "Nukta"
+                   | "Number"
+                   | "Number_Joiner"
+                   | "Other"
+                   | "Pure_Killer"
+                   | "Register_Shifter"
+                   | "Reordering_Killer"
+                   | "Syllable_Modifier"
+                   | "Tone_Letter"
+                   | "Tone_Mark"
+                   | "Virama"
+                   | "Visarga"
+                   | "Vowel"
+                   | "Vowel_Dependent"
+                   | "Vowel_Independent"
+                   }?
+</tt>
+         </p>
+         <p>The property Indic_Positional_Category is represented by the <tt>InPC</tt>
+                    attribute:
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:inpc_attribute_41">[InPC attribute,
+        41]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute InPC { "Bottom"
+                   | "Bottom_And_Left"
+                   | "Bottom_And_Right"
+                   | "Invisible"
+                   | "Left"
+                   | "Left_And_Right"
+                   | "NA"
+                   | "Overstruck"
+                   | "Right"
+                   | "Top"
+                   | "Top_And_Bottom"
+                   | "Top_And_Bottom_And_Left"
+                   | "Top_And_Bottom_And_Right"
+                   | "Top_And_Left"
+                   | "Top_And_Left_And_Right"
+                   | "Top_And_Right"
+                   | "Visual_Order_Left"
+                   }?
+</tt>
+         </p>
+         <p>The property Indic_Conjunct_Break is represented by the <tt>InCB</tt> attribute:
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:incb_attribute_42">[InCB attribute,
+        42]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute InCB { "Consonant"
+                   | "Extend"
+                   | "Linker"
+                   | "None"
+                   }?
+</tt>
+         </p>
+         <h4>
+            <a name="identifier_and_pattern_and_programming_language_properties_0">4.4.17 Identifier and Pattern and programming language properties</a>
+         </h4>
+         <p>The properties ID_Start, Other_ID_Start, XID_Start,
+                    ID_Continue, Other_ID_Continue, XID_Continue,
+                    ID_Compat_Math_Start, and ID_Compat_Math_Continue are represented by
+                    corresponding attributes:
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:identifier_properties_43">[identifier properties,
+        43]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute IDS { boolean }?
+
+  code-point-attributes &amp;=
+    attribute OIDS { boolean }?
+
+  code-point-attributes &amp;=
+    attribute XIDS { boolean }?
+
+  code-point-attributes &amp;=
+    attribute IDC { boolean }?
+
+  code-point-attributes &amp;=
+    attribute OIDC { boolean }?
+
+  code-point-attributes &amp;=
+    attribute XIDC { boolean }?
+
+  code-point-attributes &amp;=
+    attribute ID_Compat_Math_Start { boolean }?
+
+  code-point-attributes &amp;=
+    attribute ID_Compat_Math_Continue { boolean }?
+</tt>
+         </p>
+         <p>The properties Pattern_Syntax and Pattern_White_Space are represented
+                    by corresponding attributes:
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:pattern_properties_44">[pattern properties,
+        44]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute Pat_Syn { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Pat_WS { boolean }?
+</tt>
+         </p>
+         <h4>
+            <a name="properties_related_to_function_and_graphic_characteristics_0">4.4.18 Properties related to function and graphic characteristics</a>
+         </h4>
+         <p>The properties Dash,
+                    Quotation_Mark, Terminal_Punctuation, Sentence_Terminal,
+                    Diacritic, Extender, Soft_Dotted, Alphabetic,
+                    Other_Alphabetic, Math, Other_Math, Hex_Digit,
+                    ASCII_Hex_Digit, Default_Ignorable_Code_Point,
+                    Other_Default_Ignorable_Code_Point, Logical_Order_Exception,
+                    Prepended_Concatenation_Mark, Modifier_Combining_Mark,
+                    White_Space, Vertical_Orientation, and Regional_Indicator
+                    describe the function or graphic characteristic of a character, and have each a corresponding
+                    attribute.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:properties_related_to_function_and_graphic_characteristics_45">[properties related to function and graphic characteristics,
+        45]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute Dash { boolean }?
+
+  code-point-attributes &amp;=
+    attribute QMark { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Term { boolean }?
+
+  code-point-attributes &amp;=
+    attribute STerm { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Dia { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Ext { boolean }?
+
+  code-point-attributes &amp;=
+    attribute SD { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Alpha { boolean }?
+
+  code-point-attributes &amp;=
+    attribute OAlpha { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Math { boolean }?
+
+  code-point-attributes &amp;=
+    attribute OMath { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Hex { boolean }?
+
+  code-point-attributes &amp;=
+    attribute AHex { boolean }?
+
+  code-point-attributes &amp;=
+    attribute DI { boolean }?
+
+  code-point-attributes &amp;=
+    attribute ODI { boolean }?
+
+  code-point-attributes &amp;=
+    attribute LOE { boolean }?
+
+  code-point-attributes &amp;=
+    attribute PCM { boolean }?
+
+  code-point-attributes &amp;=
+    attribute MCM { boolean }?
+
+  code-point-attributes &amp;=
+    attribute WSpace { boolean }?
+
+  code-point-attributes &amp;=
+    attribute vo { "R" | "Tr" | "Tu" | "U" }?
+
+  code-point-attributes &amp;=
+    attribute RI { boolean }?
+</tt>
+         </p>
+         <h4>
+            <a name="properties_related_to_boundaries_0">4.4.19 Properties related to boundaries</a>
+         </h4>
+         <p>The properties Grapheme_Base, Grapheme_Extend,
+                    Other_Grapheme_Extend,
+                    Grapheme_Cluster_Break, Word_Break, and Sentence_Break
+                    each have a corresponding attribute:
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:properties_related_to_boundaries_46">[properties related to boundaries,
+        46]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute Gr_Base { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Gr_Ext { boolean }?
+
+  code-point-attributes &amp;=
+    attribute OGr_Ext { boolean }?
+
+  code-point-attributes &amp;=
+    attribute GCB { "CN" | "CR"
+                  | "EB" | "EBG" | "EM" | "EX"
+                  | "GAZ"
+                  | "L" | "LF" | "LV" | "LVT"
+                  | "PP"
+                  | "RI"
+                  | "SM"
+                  | "T"
+                  | "V"
+                  | "XX"
+                  | "ZWJ"
+                  }?
+
+  code-point-attributes &amp;=
+    attribute WB { "CR"
+                 | "DQ"
+                 | "EB" | "EBG" | "EM" | "EX" | "Extend"
+                 | "FO"
+                 | "GAZ"
+                 | "HL"
+                 | "KA"
+                 | "LE" | "LF"
+                 | "MB" | "ML" | "MN"
+                 | "NL" | "NU"
+                 | "RI"
+                 | "SQ"
+                 | "WSegSpace"
+                 | "XX"
+                 | "ZWJ"
+                 }?
+
+  code-point-attributes &amp;=
+    attribute SB { "AT"
+                 | "CL" | "CR"
+                 | "EX"
+                 | "FO"
+                 | "LE" | "LF" | "LO"
+                 | "NU"
+                 | "SC" | "SE" | "SP" | "ST"
+                 | "UP"
+                 | "XX"
+                 }?
+</tt>
+         </p>
+         <h4>
+            <a name="properties_related_to_ideographs_0">4.4.20 Properties related to ideographs</a>
+         </h4>
+         <p>The properties Ideographic, Unified_Ideograph,
+                    Equivalent_Unified_Ideograph, IDS_Binary_Operator,
+                    IDS_Trinary_Operator, IDS_Unary_Operator, and  Radical have
+                    corresponding attributes:
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:properties_related_to_ideographs_47">[properties related to ideographs,
+        47]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute Ideo { boolean }?
+
+  code-point-attributes &amp;=
+    attribute UIdeo { boolean }?
+
+  code-point-attributes &amp;=
+    attribute EqUIdeo { single-code-point }?
+
+  code-point-attributes &amp;=
+    attribute IDSB { boolean }?
+
+  code-point-attributes &amp;=
+    attribute IDST { boolean }?
+
+  code-point-attributes &amp;=
+    attribute IDSU { boolean }?
+
+  code-point-attributes &amp;=
+    attribute Radical { boolean }?
+</tt>
+         </p>
+         <h4>
+            <a name="miscellaneous_properties_0">4.4.21 Miscellaneous properties</a>
+         </h4>
+         <p>The properties Deprecated, Variation_Selector, and
+                    Noncharacter_Code_Point have corresponding attributes:
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:miscellaneous_properties_48">[miscellaneous properties,
+        48]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute Dep { boolean }?
+
+  code-point-attributes &amp;=
+    attribute VS { boolean }?
+
+  code-point-attributes &amp;=
+    attribute NChar { boolean }?
+</tt>
+         </p>
+         <h4>
+            <a name="unihan_properties_0">4.4.22 Unihan properties</a>
+         </h4>
+         <p>The Unihan properties (from the Unihan database) are represented as attributes.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:unihan_properties_49">[Unihan properties,
+        49]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;= attribute kAccountingNumeric
+    { xsd:string { pattern="\d+" } }?
+
+  code-point-attributes &amp;= attribute kAlternateTotalStrokes
+    { list { xsd:string { pattern="(\d+:[BGHJKMPSTUV]+)|-" }+ } }?
+
+  code-point-attributes &amp;= attribute kBigFive
+    { xsd:string { pattern="[0-9A-F]{4}'?" } }?
+
+  code-point-attributes &amp;= attribute kCangjie
+    { xsd:string { pattern="[A-Z]+" } }?
+
+  code-point-attributes &amp;= attribute kCantonese
+    { list { xsd:string { pattern="[a-z]{1,6}[1-6]" }+ } }?
+
+  code-point-attributes &amp;= attribute kCCCII
+    { list { xsd:string { pattern="[0-9A-F]{6}" }+ } }?
+
+  code-point-attributes &amp;= attribute kCheungBauer
+    { list { xsd:string { pattern="\d{3}/\d{2};[A-Z]*;[a-z1-6\[\]/,]+" }+ } }?
+
+  code-point-attributes &amp;= attribute kCheungBauerIndex
+    { list { xsd:string { pattern="\d{3}\.[01]\d" }+ } }?
+
+  code-point-attributes &amp;= attribute kCihaiT
+    { list { xsd:string { pattern="[1-9]\d{0,3}\.\d{3}" }+ } }?
+
+  code-point-attributes &amp;= attribute kCNS1986
+    { xsd:string { pattern="[12E]-[0-9A-F]{4}" } }?
+
+  code-point-attributes &amp;= attribute kCNS1992
+    { xsd:string { pattern="[1-9]-[0-9A-F]{4}" } }?
+
+  code-point-attributes &amp;= attribute kCompatibilityVariant
+    { "" | xsd:string { pattern="U\+[23]?[0-9A-F]{4}" } }?
+
+  code-point-attributes &amp;= attribute kCowles
+    { list { xsd:string { pattern="\d{1,4}(\.\d{1,2})?" }+ } }?
+
+  code-point-attributes &amp;= attribute kDaeJaweon
+    { xsd:string { pattern="\d{4}\.\d{2}[01]" } }?
+
+  code-point-attributes &amp;= attribute kDefinition
+    { xsd:string { pattern='[^\t"]+' } }?
+
+  code-point-attributes &amp;= attribute kEACC
+    { xsd:string { pattern="[0-9A-F]{6}" } }?
+
+  code-point-attributes &amp;= attribute kFanqie
+    { list { xsd:string { pattern="[\x{3400}-\x{4DBF}\x{4E00}-\x{9FFF}\x{20000}-\x{2A6DF}]{2}" }+ } }?
+
+  code-point-attributes &amp;= attribute kFenn
+    { list { xsd:string { pattern="\d+a?[A-KP*]" }+ } }?
+
+  code-point-attributes &amp;= attribute kFennIndex
+    { list { xsd:string { pattern="\d{1,3}\.[01]\d" }+ } }?
+
+  code-point-attributes &amp;= attribute kFourCornerCode
+    { list { xsd:string { pattern="\d{4}(\.\d)?" }+ } }?
+
+  code-point-attributes &amp;= attribute kGB0
+    { xsd:string { pattern="\d{4}" } }?
+
+  code-point-attributes &amp;= attribute kGB1
+    { xsd:string { pattern="\d{4}" } }?
+
+  code-point-attributes &amp;= attribute kGB3
+    { xsd:string { pattern="\d{4}" } }?
+
+  code-point-attributes &amp;= attribute kGB5
+    { xsd:string { pattern="\d{4}" } }?
+
+  code-point-attributes &amp;= attribute kGB8
+    { xsd:string { pattern="\d{4}" } }?
+
+  code-point-attributes &amp;= attribute kGradeLevel
+    { xsd:string { pattern="[1-6]" } }?
+
+  code-point-attributes &amp;= attribute kGSR
+    { list { xsd:string { pattern="\d{4}[a-vx-z]'?" }+ } }?
+
+  code-point-attributes &amp;= attribute kHangul
+    { list { xsd:string { pattern="[\x{1100}-\x{1112}][\x{1161}-\x{1175}][\x{11A8}-\x{11C2}]?:[01ENX]{1,3}" }+ } }?
+
+  code-point-attributes &amp;= attribute kHanYu
+    { list { xsd:string { pattern="[1-8]\d{4}\.[0-3]\d[0-3]" }+ } }?
+
+  code-point-attributes &amp;= attribute kHanyuPinlu
+    { list { xsd:string { pattern="[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+\(\d+\)" }+ } }?
+
+  code-point-attributes &amp;= attribute kHanyuPinyin
+    { list { xsd:string { pattern="(\d{5}\.\d{2}0,)*\d{5}\.\d{2}0:([a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+,)*[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
+
+  code-point-attributes &amp;= attribute kHDZRadBreak
+    { xsd:string { pattern="[\x{2F00}-\x{2FD5}]\[U\+2F[0-9A-D][0-9A-F]\]:[1-8]\d{4}\.[0-3]\d0" } }?
+
+  code-point-attributes &amp;= attribute kHKGlyph
+    { list { xsd:string { pattern="\d{4}" }+ } }?
+
+  code-point-attributes &amp;= attribute kIBMJapan
+    { list { xsd:string { pattern="F[ABC][0-9A-F]{2}" }+ } }?
+
+  code-point-attributes &amp;= attribute kIICore
+    { list { xsd:string { pattern="[ABC][GHJKMPT]{1,7}" }+ } }?
+
+  code-point-attributes &amp;= attribute kIRG_GSource
+    { "" | xsd:string { pattern="G[013578EKS]-[0-9A-F]{4}" }
+         | xsd:string { pattern="G(DZ|GH|RM|WZ|XC|XH|ZH)-\d{4}\.\d{2}" }
+         | xsd:string { pattern="GKX-\d{4}\.\d{2,3}" }
+         | xsd:string { pattern="G(HZ|HZR)-\d{5}\.\d{2}" }
+         | xsd:string { pattern="G(CE|FC|IDC23|OCD|XHZ)-\d{3}" }
+         | xsd:string { pattern="G(H|HF|LGYJ|PGLG|T|ZHSJ)-\d{4}" }
+         | xsd:string { pattern="G(4K|CESI|CYY|DM|GT|JZ|KJ|XM|WY|ZFY|ZJW|ZYS)-\d{5}" }
+         | xsd:string { pattern="G(FZ|IDC)-[0-9A-F]{4}" }
+         | xsd:string { pattern="GCA-[A-Z]\d{4}" }
+         | xsd:string { pattern="GGFZ-\d{6}" }
+         | xsd:string { pattern="G(BK|LK|Z)-\d{7}" }
+         | xsd:string { pattern="G(CH|CY|HC|U)-[023][0-9A-F]{4}" }
+         | xsd:string { pattern="GZA-[123467]\d{5}" }
+    }?
+
+  code-point-attributes &amp;= attribute kIRG_HSource
+    { "" | xsd:string { pattern="H-[0-9A-F]{4}" }
+         | xsd:string { pattern="H(B[012])-[0-9A-F]{4}" }
+         | xsd:string { pattern="HD-[23]?[0-9A-F]{4}" }
+         | xsd:string { pattern="HU-[023][0-9A-F]{4}" }
+    }?
+
+  code-point-attributes &amp;= attribute kIRG_JSource
+    { "" | xsd:string { pattern="J[014]-[0-9A-F]{4}" }
+         | xsd:string { pattern="J3A?-[0-9A-F]{4}" }
+         | xsd:string { pattern="J13A?-[0-9A-F]{4}" }
+         | xsd:string { pattern="J14-[0-9A-F]{4}" }
+         | xsd:string { pattern="JA[34]?-[0-9A-F]{4}" }
+         | xsd:string { pattern="JARIB-[0-9A-F]{4}" }
+         | xsd:string { pattern="JH-(JT[ABC][0-9A-F]{3}S?|IB\d{4}|\d{6})" }
+         | xsd:string { pattern="JK-\d{5}" }
+         | xsd:string { pattern="JMJ-\d{6}" }
+    }?
+
+  code-point-attributes &amp;= attribute kIRG_KPSource
+    { "" | xsd:string { pattern="KP([01]-[0-9A-F]{4}|U-[023][0-9A-F]{4})" } }?
+
+  code-point-attributes &amp;= attribute kIRG_KSource
+    { "" | xsd:string { pattern="K[0-6]-[0-9A-F]{4}" }
+         | xsd:string { pattern="KC-\d{5}" }
+         | xsd:string { pattern="KU-[023][0-9A-F]{4}" }
+    }?
+
+  code-point-attributes &amp;= attribute kIRG_MSource
+    { "" | xsd:string { pattern="MA-[0-9A-F]{4}" }
+         | xsd:string { pattern="MB[12]-[0-9A-F]{4}" }
+         | xsd:string { pattern="MC-\d{5}" }
+         | xsd:string { pattern="MDH?-[23]?[0-9A-F]{4}" }
+    }?
+
+  code-point-attributes &amp;= attribute kIRG_SSource
+    { "" | xsd:string { pattern="SATM?-\d{5}" } }?
+
+  code-point-attributes &amp;= attribute kIRG_TSource
+    { "" | xsd:string { pattern="T([1-79A-F]|1[1-3])-[0-9A-F]{4}" }
+         | xsd:string { pattern="TU-[023][0-9A-F]{4}" }
+    }?
+
+  code-point-attributes &amp;= attribute kIRG_UKSource
+    { "" | xsd:string { pattern="UK-\d{5}" } }?
+
+  code-point-attributes &amp;= attribute kIRG_USource
+    { "" | xsd:string { pattern="UTC-\d{5}" } }?
+
+  code-point-attributes &amp;= attribute kIRG_VSource
+    { "" | xsd:string { pattern="V[0-4]-[0-9A-F]{4}" }
+         | xsd:string { pattern="VN-[023F][0-9A-F]{4}" }
+    }?
+
+  code-point-attributes &amp;= attribute kIRGDaeJaweon
+    { list { xsd:string { pattern="\d{4}\.\d{2}[01]" }+ } }?
+
+  code-point-attributes &amp;= attribute kIRGHanyuDaZidian
+    { list { xsd:string { pattern="[1-8]\d{4}\.[0-3]\d[01]" }+ } }?
+
+  code-point-attributes &amp;= attribute kIRGKangXi
+    { list { xsd:string { pattern="[01]\d{3}\.[0-7]\d[01]" }+ } }?
+
+  code-point-attributes &amp;= attribute kJapanese
+    { list { xsd:string { pattern="[\x{3041}-\x{3096}\x{3099}\x{309A}\x{30A1}-\x{30FA}\x{30FC}]+" }+ } }?
+
+  code-point-attributes &amp;= attribute kJapaneseKun
+    { list { xsd:string { pattern="[A-Z]+" }+ } }?
+
+  code-point-attributes &amp;= attribute kJapaneseOn
+    { list { xsd:string { pattern="[A-Z]+" }+ } }?
+
+  code-point-attributes &amp;= attribute kJinmeiyoKanji
+    { list { xsd:string { pattern="(20\d{2})(:U\+[23]?[0-9A-F]{4})?" }+ } }?
+
+  code-point-attributes &amp;= attribute kJis0
+    { list { xsd:string { pattern="\d{4}" }+ } }?
+
+  code-point-attributes &amp;= attribute kJis1
+    { list { xsd:string { pattern="\d{4}" }+ } }?
+
+  code-point-attributes &amp;= attribute kJIS0213
+    { list { xsd:string { pattern="[12],\d{2},\d{1,2}" }+ } }?
+
+  code-point-attributes &amp;= attribute kJoyoKanji
+    { list { xsd:string { pattern="(20\d{2})|(U\+[23]?[0-9A-F]{4})" }+ } }?
+
+  code-point-attributes &amp;= attribute kKangXi
+    { list { xsd:string { pattern="\d{4}\.\d{2}[01]" }+ } }?
+
+  code-point-attributes &amp;= attribute kKarlgren
+    { list { xsd:string { pattern="[1-9]\d{0,3}[A*]?" }+ } }?
+
+  code-point-attributes &amp;= attribute kKorean
+    { list { xsd:string { pattern="[A-Z]+" }+ } }?
+
+  code-point-attributes &amp;= attribute kKoreanEducationHanja
+    { list { xsd:string { pattern="20\d{2}" }+ } }?
+
+  code-point-attributes &amp;= attribute kKoreanName
+    { list { xsd:string { pattern="20\d{2}" }+ } }?
+
+  code-point-attributes &amp;= attribute kLau
+    { list { xsd:string { pattern="[1-9]\d{0,3}" }+ } }?
+
+  code-point-attributes &amp;= attribute kMainlandTelegraph
+    { list { xsd:string { pattern="\d{4}" }+ } }?
+
+  code-point-attributes &amp;= attribute kMandarin
+    { list { xsd:string { pattern="[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
+
+  code-point-attributes &amp;= attribute kMatthews
+    { list { xsd:string { pattern="[1-9]\d{0,3}(a|\.5)?" }+ } }?
+
+  code-point-attributes &amp;= attribute kMeyerWempe
+    { list { xsd:string { pattern="[1-9]\d{0,3}[a-t*]?" }+ } }?
+
+  code-point-attributes &amp;= attribute kMojiJoho
+    { list { xsd:string { pattern="MJ\d{6}(:(FE0[01]|E01[01][0-9A-F]))?" }+ } }?
+
+  code-point-attributes &amp;= attribute kMorohashi
+    { list { xsd:string { pattern="(\d{5}'{0,2}|H\d{3})(:(FE0[01]|E010[0-9A-F]))?" }+ } }?
+
+  code-point-attributes &amp;= attribute kNelson
+    { list { xsd:string { pattern="\d{4}" }+ } }?
+
+  code-point-attributes &amp;= attribute kOtherNumeric
+    { list { xsd:string { pattern="\d+" }+ } }?
+
+  code-point-attributes &amp;= attribute kPhonetic
+    { list { xsd:string { pattern="[1-9]\d{0,3}[A-D]?\*?" }+ } }?
+
+  code-point-attributes &amp;= attribute kPrimaryNumeric
+    { list { xsd:string { pattern="\d+" }+ } }?
+
+  code-point-attributes &amp;= attribute kPseudoGB1
+    { xsd:string { pattern="\d{4}" } }?
+
+  code-point-attributes &amp;= attribute kRSAdobe_Japan1_6
+    { list { xsd:string { pattern="[CV]\+\d{1,5}\+[1-9]\d{0,2}\.[1-9]\d?\.\d{1,2}" }+ } }?
+
+  code-point-attributes &amp;= attribute kRSUnicode
+    { list { xsd:string { pattern="[1-9]\d{0,2}'{0,3}\.-?\d{1,2}" }+ } }?
+
+  code-point-attributes &amp;= attribute kSBGY
+    { list { xsd:string { pattern="\d{3}\.[0-7]\d" }+ } }?
+
+  code-point-attributes &amp;= attribute kSemanticVariant
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}(&lt;[ks][A-Za-z0-9_]+(:[TBZFJ]+)?(,[ks][A-Za-z0-9_]+(:[TBZFJ]+)?)*)?" }+ } }?
+
+  code-point-attributes &amp;= attribute kSimplifiedVariant
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?
+
+  code-point-attributes &amp;= attribute kSMSZD2003Index
+    { list { xsd:string { pattern="\d{1,3}\.\d{2}" }+ } }?
+
+  code-point-attributes &amp;= attribute kSMSZD2003Readings
+    { list { xsd:string { pattern="[a-z\x{300}\x{301}\x{302}\x{304}\x{308}\x{30C}]+(,[a-z\x{300}\x{301}\x{302}\x{304}\x{308}\x{30C}]+)*\x{7CB5}[a-z]+[1-6]([a-z]+[1-6])?(,[a-z]+[1-6]([a-z]+[1-6])?)*" }+ } }?
+
+  code-point-attributes &amp;= attribute kSpecializedSemanticVariant
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}(&lt;[ks][A-Za-z0-9_]+(:[TBZFJ]+)?(,[ks][A-Za-z0-9_]+(:[TBZFJ]+)?)*)?" }+ } }?
+
+  code-point-attributes &amp;= attribute kSpoofingVariant
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?
+
+  code-point-attributes &amp;= attribute kStrange
+    { list { ( xsd:string { pattern="[ACU]" }
+             | xsd:string { pattern="B:U\+31[0-2AB][0-9A-F]" }
+             | xsd:string { pattern="[MORY](:U\+[23]?[0-9A-F]{4})?" }
+             | xsd:string { pattern="H(:U\+31[3-8][0-9A-F])+" }
+             | xsd:string { pattern="I(:U\+[23]?[0-9A-F]{4})*" }
+             | xsd:string { pattern="K(:U\+30[A-F][0-9A-F])+" }
+             | xsd:string { pattern="S:[4-9]\d" }
+    )+}}?
+
+  code-point-attributes &amp;= attribute kTaiwanTelegraph
+    { list { xsd:string { pattern="\d{4}" }+ } }?
+
+  code-point-attributes &amp;= attribute kTang
+    { list { xsd:string { pattern="\*?[A-Za-z()\x{E6}\x{251}\x{259}\x{25B}\x{300}\x{30C}]+" }+ } }?
+
+  code-point-attributes &amp;= attribute kTayNumeric
+    { list { xsd:string { pattern="\d+" }+ } }?
+
+  code-point-attributes &amp;= attribute kTGH
+    { list { xsd:string { pattern="20\d{2}:[1-9]\d{0,3}" }+ } }?
+
+  code-point-attributes &amp;= attribute kTGHZ2013
+    { list { xsd:string { pattern="\d{3}\.\d{3}(,\d{3}\.\d{3})*:[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
+
+  code-point-attributes &amp;= attribute kTotalStrokes
+    { xsd:string { pattern="[1-9]\d{0,2}" } }?
+
+  code-point-attributes &amp;= attribute kTraditionalVariant
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?
+
+  code-point-attributes &amp;= attribute kUnihanCore2020
+    { xsd:string { pattern="[GHJKMPT]{1,7}" } }?
+
+  code-point-attributes &amp;= attribute kVietnamese
+    { list { xsd:string { pattern="[A-Za-z\x{110}\x{111}\x{300}-\x{303}\x{306}\x{309}\x{31B}\x{323}]+" }+ } }?
+
+  code-point-attributes &amp;= attribute kVietnameseNumeric
+    { list { xsd:string { pattern="\d+" }+ } }?
+
+  code-point-attributes &amp;= attribute kXerox
+    { list { xsd:string { pattern="\d{3}:\d{3}" }+ } }?
+
+  code-point-attributes &amp;= attribute kXHC1983
+    { list { xsd:string { pattern="\d{4}\.\d{3}\*?(,\d{4}\.\d{3}\*?)*:[a-z\x{300}\x{301}\x{304}\x{308}\x{30C}]+" }+ } }?
+
+  code-point-attributes &amp;= attribute kZhuang
+    { list { xsd:string { pattern="[a-z]+\*?" }+ } }?
+
+  code-point-attributes &amp;= attribute kZhuangNumeric
+    { list { xsd:string { pattern="\d+" }+ } }?
+
+  code-point-attributes &amp;= attribute kZVariant
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}(&lt;[ks][A-Za-z0-9_]+(:[TBZ]+)?(,[ks][A-Za-z0-9_]+(:[TBZ]+)?)*)?" }+ } }?
+</tt>
+         </p>
+         <h4>
+            <a name="tangut_data_0">4.4.23 Tangut data</a>
+         </h4>
+         <p>The Tangut data are represented as attributes. The attribute <tt>kTGT_RSUnicode</tt>
+                    represents the radical stroke index. The attribute <tt>kTGT_MergedSrc</tt> indicates the
+                    source reference for the character.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:tangut_data_50">[Tangut data,
+        50]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute kTGT_RSUnicode { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
+
+  code-point-attributes &amp;=
+    attribute kTGT_MergedSrc 
+     { xsd:string {pattern="H2004-[AB]-\d{4}"}
+     | xsd:string {pattern="H2021-\d{6}"}
+     | xsd:string {pattern="L(19(86|97)|20(06|12))-\d{4}"}
+     | xsd:string {pattern="L2008-\d{4}([AB]|-\d{4})?"}
+     | xsd:string {pattern="N1966-\d{3}-\d{2}[0-9A-Z]{1,2}"}
+     | xsd:string {pattern="N5217-\d{2}"}
+     | xsd:string {pattern="S1968-\d{4}"}
+     | xsd:string {pattern="UTN42-\d{3}"}
+     }?
+</tt>
+         </p>
+         <h4>
+            <a name="nushu_data_0">4.4.24 Nushu data</a>
+         </h4>
+         <p>The Nushu data are represented as attributes. The attribute <tt>kNSHU_DubenSrc</tt>
+                    indicates the page number and order of the item from the NushuDuben reference source. Nushu common
+                    reading is represented as <tt>kNSHU_Reading</tt>.</p>
+         <p>
+            <i>
+               <a name="ucdxml:nushu_data_51">[Nushu data,
+        51]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute kNSHU_DubenSrc { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
+
+  code-point-attributes &amp;=
+    attribute kNSHU_Reading { xsd:string }?
+</tt>
+         </p>
+         <h4>
+            <a name="emoji_properties_0">4.4.25 Emoji properties</a>
+         </h4>
+         <p>The properties Emoji, EPres, EMod, EBase,
+                    EComp, and ExtPict have corresponding attributes:
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:emoji_properties_52">[Emoji properties,
+        52]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute Emoji { boolean }?
+
+  code-point-attributes &amp;=
+    attribute EPres { boolean }?
+
+  code-point-attributes &amp;=
+    attribute EMod { boolean }?
+
+  code-point-attributes &amp;=
+    attribute EBase { boolean }?
+
+  code-point-attributes &amp;=
+    attribute EComp { boolean }?
+
+  code-point-attributes &amp;=
+    attribute ExtPict { boolean }?
+</tt>
+         </p>
+         <h4>
+            <a name="unikemet_properties_0">4.4.26 Unikemet properties</a>
+         </h4>
+         <p>The Unikemet data are represented as attributes. The attribute <tt>kEH_Cat</tt>
+                    is a catalog entry corresponding to the IFAO-based taxonomy. The attribute <tt>kEH_Core</tt>
+                    determines whether an Egyptian hieroglyph is part of the 'Core' set, Legacy or None. The attribute
+                    <tt>kEH_Desc</tt> provides a detailed description of the appearance of the hieroglyph.
+                    The attribute <tt>kEH_Func</tt> represents  a function type representing a pictogram, a
+                    logogram, a phonemogram (or “phonogram”), a classifier (or “determinative”), a phono-repeater
+                    (sub-category of classifier), a radicogram or interpretant. The attribute <tt>kEH_FVal</tt>
+                    expresses the function type using the Gardiner 1957 convention for Egyptian hieroglyph
+                    transliteration. The attribute <tt>kEH_HG</tt> indicates the Hieroglyphica source. The
+                    attribute <tt>kEH_IFAO</tt> indicates the IFAO source value defined as page number and order
+                    in that page. The attribute <tt>kEH_JSesh</tt> indicates the JSesh source as specified in
+                    JSesh Documentation. The attribute <tt>kEH_NoMirror</tt> determines whether the hieroglyph
+                    does not mirror. The attribute <tt>kEH_NoRotate</tt> determines whether the hieroglyph
+                    does not rotate. The attribute <tt>kEH_UniK</tt> represent the original Unikemet catalog
+                    index used by the Egyptian Hieroglyph block.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:unikemet_data_53">[Unikemet data,
+        53]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;= attribute kEH_Cat
+    { xsd:string { pattern="([A-IK-Z]|AA)-\d{2}-\d{3}" } }?
+
+  code-point-attributes &amp;=
+    attribute kEH_Core { "C" | "L" | "N" }?
+
+  code-point-attributes &amp;= attribute kEH_Desc
+    { xsd:string { pattern='[^\t"]+' } }?
+
+  code-point-attributes &amp;= attribute kEH_Func
+    { list { ("/" | xsd:string { pattern='[^\t]+' } )+} }?
+
+  code-point-attributes &amp;= attribute kEH_FVal
+    { list { ("|" | xsd:string { pattern="[BDF-HJKMNPR-TWY-bdf-hjkmnpr-twy\.,/\-\+=;?&gt;&amp;\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A722}\x{A723}\x{A724}\x{A725}\x{A7BC}\x{A7BD}]+" } )+} }?
+
+  code-point-attributes &amp;= attribute kEH_UniK
+    { xsd:string { pattern="([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}" }
+     | xsd:string { pattern="HJ ([A-IK-Z]|AA)\d{3}[A-Z]{0,2}" }
+    }?
+
+  code-point-attributes &amp;= attribute kEH_JSesh
+    { list { ( xsd:string { pattern="([A-IK-Z]|Aa|NL|NU|Ff)\d{1,3}[A-Za-z]{0,5}" }
+             | xsd:string { pattern="(US1|US22|US248|US685)([A-IK-Z]|Aa|NL|NU)\d{1,3}[A-Za-z]{0,5}" }
+    )+}}?
+
+  code-point-attributes &amp;= attribute kEH_HG
+    { list { xsd:string { pattern="([A-IK-Z]|AA)\d{1,3}[A-Za-z]{0,2}" }+ } }?
+
+  code-point-attributes &amp;= attribute kEH_IFAO
+    { list { xsd:string { pattern="\d{1,3},\d{1,2}[ab]?" }+ } }?
+
+  code-point-attributes &amp;=
+    attribute kEH_NoMirror { boolean }?
+
+  code-point-attributes &amp;=
+    attribute kEH_NoRotate { boolean }?
+
+  code-point-attributes &amp;= attribute kEH_AltSeq
+    { xsd:string { pattern="[0-9A-F]{5}(\s[0-9A-F]{4,5})*" } }?
+</tt>
+         </p>
+         <h2>
+            <a name="blocks_0">5 Blocks</a>
+         </h2>
+         <p>The <tt>blocks</tt> child of the <tt>ucd</tt> describes the blocks. It has one child
+            <tt>block</tt> element per block, with attributes to describe the extent and name of the block.
+        </p>
+         <p>
+            <i>
+               <a name="ucdxml:blocks_54">[blocks,
+        54]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  ucd.content &amp;=
+    element blocks {
+      element block {
+        attribute first-cp { single-code-point },
+        attribute last-cp { single-code-point },
+        attribute name { text } }+ }?
+</tt>
+         </p>
+         <h2>
+            <a name="named_sequences_0">6 Named Sequences</a>
+         </h2>
+         <p>The <tt>named-sequences</tt> child of the <tt>ucd</tt> describes the named sequences. It has one
+            child <tt>named-sequence</tt> element per named sequence, with attributes to describe the name and
+            sequence.
+        </p>
+         <p>Similarly, the <tt>provisional-named-sequences</tt> child of the <tt>ucd</tt> describes the
+            provisional named sequences.
+        </p>
+         <p>
+            <i>
+               <a name="ucdxml:named_sequences_55">[named sequences,
+        55]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  ucd.content &amp;=
+    element named-sequences {
+      element named-sequence {
+        attribute cps { one-or-more-code-points },
+        attribute name { text } }+ }?
+
+  ucd.content &amp;=
+    element provisional-named-sequences {
+      element named-sequence {
+        attribute cps { one-or-more-code-points },
+        attribute name { text } }+ }?
+</tt>
+         </p>
+         <h2>
+            <a name="standardized_variants_0">7 Standardized Variants</a>
+         </h2>
+         <p>The <tt>standardized-variants</tt> child of the <tt>ucd</tt> describes the standardized
+            variant. It has one child element <tt>standardized-variant</tt> per variant. The attributes on that
+            last element capture the variation sequence, the description of the desired appearance, and the shaping
+            environment under which the appearance is different.
+        </p>
+         <p>
+            <i>
+               <a name="ucdxml:standardized_variants_56">[standardized variants,
+        56]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  ucd.content &amp;=
+    element standardized-variants {
+      element standardized-variant {
+        attribute cps { two-code-points },
+        attribute desc { text },
+        attribute when { text } }+ }?
+</tt>
+         </p>
+         <h2>
+            <a name="cjk_radicals_0">8 CJK Radicals</a>
+         </h2>
+         <p>The <tt>cjk-radicals</tt> child of the <tt>ucd</tt> describes the CJK radicals. It has one
+            child element <tt>cjk-radical</tt> per radical. The attributes on that last element capture the
+            radical number, the corresponding CJK radical character, and the corresponding CJK unified ideograph.
+        </p>
+         <p>
+            <i>
+               <a name="ucdxml:cjk_radicals_57">[cjk radicals,
+        57]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  ucd.content &amp;=
+    element cjk-radicals {
+      element cjk-radical {
+        attribute number { xsd:string {pattern="[0-9]{1,3}'{0,3}"}},
+        attribute radical { single-code-point? },
+        attribute ideograph { single-code-point } }+ }?
+</tt>
+         </p>
+         <h2>
+            <a name="do_not_emit_0">9 Do Not Emit</a>
+         </h2>
+         <p>The <tt>do-not-emit</tt> child of the <tt>ucd</tt> describes the
+            character sequences that should not be emitted or generated in newly authored texts.
+        </p>
+         <p>
+            <i>
+               <a name="ucdxml:do-not-emit_58">[do-not-emit,
+        58]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  ucd.content &amp;=
+    element do-not-emit {
+      element instead {
+        attribute of { one-or-more-code-points },
+        attribute use { one-or-more-code-points },
+        attribute because { "Arabic_Tashkil"
+                          | "Bengali_Khanda_Ta"
+                          | "Deprecated"
+                          | "Discouraged"
+                          | "Dotless_Form"
+                          | "Hamza_Form"
+                          | "Indic_Atomic_Consonant"
+                          | "Indic_Consonant_Conjunct"
+                          | "Indic_Vowel_Letter"
+                          | "Malayalam_Chillu"
+                          | "None"
+                          | "Precomposed_Form"
+                          | "Precomposed_Hieroglyph"
+                          | "Preferred_Spelling"
+                          | "Tamil_Shrii"
+      } }+ }?
+</tt>
+         </p>
+         <h2>
+            <a name="the_full_schema_0">10 The full schema</a>
+         </h2>
+         <p>Our schema is just the accumulation of the pieces we have described so far:
+        </p>
+         <p>
+            <i>
+               <a name="ucdxml:ucd_relaxng_schema">[UCD RelaxNG schema]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[namespace declaration: <a href="#ucdxml:namespace_declaration_1">1</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[datatypes: <a href="#ucdxml:datatypes_declaration_2">2</a>, <a href="#ucdxml:datatype_for_code_points_3">3</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[schema start: <a href="#ucdxml:schema_start_4">4</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[boolean: <a href="#ucdxml:boolean_5">5</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[description: <a href="#ucdxml:description_6">6</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[repertoire: <a href="#ucdxml:repertoire_7">7</a>, <a href="#ucdxml:set_of_code_points_8">8</a>, <a href="#ucdxml:code_points_9">9</a>, <a href="#ucdxml:groups_10">10</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[attributes: <a href="#ucdxml:age_attribute_11">11</a>, <a href="#ucdxml:na_attribute_12">12</a>, <a href="#ucdxml:na1_attribute_13">13</a>, <a href="#ucdxml:name-alias_element_14">14</a>, <a href="#ucdxml:blk_attribute_15">15</a>, <a href="#ucdxml:gc_attribute_16">16</a>, <a href="#ucdxml:ccc_attribute_17">17</a>, <a href="#ucdxml:bc_attribute_18">18</a>, <a href="#ucdxml:bidi_m_attribute_19">19</a>, <a href="#ucdxml:bmg_attribute_20">20</a>, <a href="#ucdxml:bidi_c_attribute_21">21</a>, <a href="#ucdxml:bpt_attribute_22">22</a>, <a href="#ucdxml:bpb_attribute_23">23</a>, <a href="#ucdxml:decomposition_properties_24">24</a>, <a href="#ucdxml:composition_properties_25">25</a>, <a href="#ucdxml:quick_check_properties_26">26</a>, <a href="#ucdxml:numeric_properties_27">27</a>, <a href="#ucdxml:joining_properties_28">28</a>, <a href="#ucdxml:joining_properties_29">29</a>, <a href="#ucdxml:lb_attribute_30">30</a>, <a href="#ucdxml:ea_attribute_31">31</a>, <a href="#ucdxml:casing_properties_32">32</a>, <a href="#ucdxml:casing_properties_33">33</a>, <a href="#ucdxml:casing_properties_34">34</a>, <a href="#ucdxml:casing_properties_35">35</a>, <a href="#ucdxml:casing_properties_36">36</a>, <a href="#ucdxml:script_properties_37">37</a>, <a href="#ucdxml:hst_attribute_38">38</a>, <a href="#ucdxml:jsn_attribute_39">39</a>, <a href="#ucdxml:insc_attribute_40">40</a>, <a href="#ucdxml:inpc_attribute_41">41</a>, <a href="#ucdxml:incb_attribute_42">42</a>, <a href="#ucdxml:identifier_properties_43">43</a>, <a href="#ucdxml:pattern_properties_44">44</a>, <a href="#ucdxml:properties_related_to_function_and_graphic_characteristics_45">45</a>, <a href="#ucdxml:properties_related_to_boundaries_46">46</a>, <a href="#ucdxml:properties_related_to_ideographs_47">47</a>, <a href="#ucdxml:miscellaneous_properties_48">48</a>, <a href="#ucdxml:unihan_properties_49">49</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[Tangut data: <a href="#ucdxml:tangut_data_50">50</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[Nushu data: <a href="#ucdxml:nushu_data_51">51</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[Unikemet data: <a href="#ucdxml:unikemet_data_53">53</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[blocks: <a href="#ucdxml:blocks_54">54</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[named sequences: <a href="#ucdxml:named_sequences_55">55</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[standardized variants: <a href="#ucdxml:standardized_variants_56">56</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[cjk radicals: <a href="#ucdxml:cjk_radicals_57">57</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[Emoji properties: <a href="#ucdxml:emoji_properties_52">52</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[do-not-emit: <a href="#ucdxml:do-not-emit_58">58</a>]</i>
+            <tt style="white-space: pre;">
+</tt>
+         </p>
+         <p>An expanded version is linked from the top of this document.</p>
+         <h2>
+            <a name="examples_0">11 Examples</a>
+         </h2>
+         <p>Here is a fragment of the UCD for a few representative
+            characters (only some of the properties are represented):
+        </p>
+         <pre>
+            
+  &lt;ucd xmlns="http://www.unicode.org/ns/2003/ucd/1.0"&gt;
+    &lt;repertoire&gt;
+      &lt;char cp="001F" age="1.1" na="&amp;lt;control&amp;gt;" na1="UNIT SEPARATOR"
+            gc="Cc" bc="S" lb="CM"/&gt;
+
+      &lt;char cp="0020" age="1.1" na="SPACE" gc="Zs" bc="WS" ea="Na" lb="SP"/&gt;
+
+      &lt;char cp="0026" age="1.1" na="AMPERSAND" gc="Po" bc="ON" ea="Na"/&gt;
+
+      &lt;char cp="0028" age="1.1" na="LEFT PARENTHESIS" na1="OPENING PARENTHESIS"
+            gc="Ps" bc="ON" Bidi_M="y" bmg="0029" ea="Na" lb="OP"/&gt;
+
+      &lt;char cp="0041" age="1.1" na="LATIN CAPITAL LETTER A"
+            gc="Lu" slc="0061" ea="Na" sc="Latn"/&gt;
+
+      &lt;char cp="AC00" age="2.0" na="HANGUL SYLLABLE GA" gc="Lo"
+            dt="can" dm="1100 1161" ea="W" lb="ID" sc="Hang"/&gt;
+
+      &lt;char cp="20094" age="3.1" na="CJK UNIFIED IDEOGRAPH-20094"
+            gc="Lo" ea="W" lb="ID" sc="Hani" kIRG_GSource="KX"
+            kIRGHanyuDaZidian="10036.060" kIRG_TSource="5-214E"
+           kRSUnicode="4.3" kIRGKangXi="0082.090"/&gt;
+
+      &lt;group age="3.2" gc="Lo" sc="Buhd"&gt;
+        &lt;char cp="1740" na="BUHID LETTER A"/&gt;
+        &lt;char cp="1741" na="BUHID LETTER I"/&gt;
+        &lt;char cp="1752" na="BUHID VOWEL SIGN I" gc="Mn"/&gt;
+        &lt;char cp="1820" age="3.0" na="MONGOLIAN LETTER A" sc="Mong"/&gt;
+      &lt;/group&gt;
+    &lt;/repertoire&gt;
+  &lt;/ucd&gt;
+
+</pre>
+         <h2>
+            <a name="acknowledgments_0">Acknowledgments</a>
+         </h2>
+         <p>Thanks to Markus Scherer and Mark Davis for their help developing this XML representation. Thanks to
+            the reviewers: Julie Allen, Ernest van den Boogaard, Daniel Bünzli, John Cowan, Asmus Freytag,
+            Felix Sasaki, Andrew West. Special thanks to Eric Muller and Laurențiu Iancu.
+        </p>
+         <h2>
+            <a name="Modifications">Modifications</a>
+         </h2>
+         <p>This section indicates the changes introduced by each revision.</p>
+         <p>
+            <b>Revision 38</b>
+         </p>
+         <ul>
+            <li>
+               <b>Reissued</b> for Unicode 17.0.0.
+                    </li>
+            <li>New value for the <tt>age</tt> attribute: <tt>17.0</tt>.
+                    </li>
+            <li>New values for the <tt>blk</tt> attribute: <tt>Beria_Erfe</tt>, <tt>CJK_Ext_J</tt>,
+                        <tt>Misc_Symbols_Sup</tt>, <tt>Sharada_Sup</tt>, <tt>Sidetic</tt>, <tt>Tai_Yo</tt>,
+                        <tt>Tangut_Components_Sup</tt>, <tt>Tolong_Siki</tt>.
+                    </li>
+            <li>New value for the <tt>do-not-emit</tt> attribute: <tt>None</tt>.
+                    </li>
+            <li>New values for the <tt>jg</tt> attribute: <tt>Thin_Noon</tt>, <tt>BAA</tt>,
+                        <tt>FA</tt>, <tt>HAA</tt>, <tt>HA_GOAL</tt>, <tt>HA</tt>, <tt>CAF</tt>,
+                        <tt>KNOTTED_HA</tt>, <tt>RA</tt>, <tt>SWASH_CAF</tt>, <tt>HAMZAH_ON_HA_GOAL</tt>,
+                        <tt>TAA_MARBUTAH</tt>, <tt>YA_BARREE</tt>, <tt>YA</tt>, <tt>ALEF_MAQSURAH</tt>.
+                    </li>
+            <li>New value for the <tt>lb</tt> attribute: <tt>HH</tt>.
+                    </li>
+            <li>New value for the <tt>InPC</tt> attribute: <tt>Invisible</tt>.
+                    </li>
+            <li>New value for the <tt>InSC</tt> attribute: <tt>Consonant_Repha</tt>.
+                    </li>
+            <li>New values for the <tt>script</tt> attribute: <tt>Berf</tt>, <tt>Sidt</tt>,
+                        <tt>Tayo</tt>, <tt>Tols</tt>.
+                    </li>
+            <li>New code point attributes for Unikemet: <tt>kEH_AltSeq</tt>, <tt>kEH_Cat</tt>,
+                        <tt>kEH_Core</tt>, <tt>kEH_Desc</tt>, <tt>kEH_Func</tt>, <tt>kEH_FVal</tt>,
+                        <tt>kEH_HG</tt>, <tt>kEH_IFAO</tt>, <tt>kEH_JSesh</tt>, <tt>kEH_NoMirror</tt>,
+                        <tt>kEH_NoRotate</tt>, <tt>kEH_UniK</tt>.
+                    </li>
+            <li>New attribute for the <tt>kTayNumeric</tt> property.
+                    </li>
+            <li>Removed attributes for deprecated properties: <tt>Gr_Link</tt>, <tt>Hyphen</tt>,
+                        <tt>isc</tt>, <tt>kGB7</tt>, <tt>kJa</tt>, <tt>XO_NFC</tt>, <tt>XO_NFD</tt>,
+                        <tt>XO_NFKC</tt>, <tt>XO_NFKD</tt>, <tt>FC_NFKC</tt>.
+                    </li>
+            <li>Removed elements that only contained historical information:
+                        <tt>normalization-corrections</tt>, <tt>emoji-sources</tt>.
+                    </li>
+            <li>Unihan attributes are applied at the group where applicable, similar to how non-Unihan
+                        attributes are applied at the group.
+                    </li>
+         </ul>
+         <p>Revision 37 being a proposed update, only changes between revisions 36 and 38 are
+                noted here.
+            </p>
+         <p>
+            <b>Revision 36</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>16.0</tt>.
+                    </li>
+            <li>New values for the <tt>blk</tt> attribute: <tt>Egyptian_Hieroglyphs_Ext_A</tt>, <tt>
+                        Garay</tt>, <tt>Gurung_Khema</tt>, <tt>Kirat_Rai</tt>, <tt>Myanmar_Ext_C</tt>, <tt>
+                        Ol_Onal</tt>, <tt>Sunuwar</tt>, <tt>Symbols_for_Legacy_Computing_Sup</tt>, <tt>
+                        Todhri</tt>, <tt>Tulu_Tigalari</tt>.
+                    </li>
+            <li>New values for the <tt>script</tt> attribute: <tt>Gara</tt>, <tt>Gukh</tt>, <tt>
+                        Krai</tt>, <tt>Onao</tt>, <tt>Sunu</tt>, <tt>Todr</tt>, <tt>Tutg</tt>.
+                    </li>
+            <li>New value for the <tt>jg</tt> attribute: <tt>Kashmiri_Yeh</tt>.</li>
+            <li>New value for the <tt>InSC</tt> attribute: <tt>Reordering_Killer</tt>.
+                    </li>
+            <li>New attributes: <tt>MCM</tt>, <tt>kFanqie</tt>, <tt>kZhuang</tt>.
+                    </li>
+            <li>Modified patterns for the <tt>cjk-radical/@number</tt>, <tt>kRSUnicode</tt> and <tt>
+                        kIRG_GSource
+                    </tt> attributes.
+                    </li>
+            <li>Added the <tt>do-not-emit</tt> element.
+                    </li>
+         </ul>
+         <p>Revision 35 being a proposed update, only changes between revisions 34 and 36 are
+                noted here.
+            </p>
+         <p>
+            <b>Revision 34</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>15.1</tt>.
+                    </li>
+            <li>New value for the <tt>blk</tt> attribute: <tt>CJK_Ext_I</tt>.
+                    </li>
+            <li>New values for the <tt>lb</tt> attribute: <tt>AK</tt>, <tt>AP</tt>, <tt>
+                        AS</tt>, <tt>VF</tt>, <tt>VI</tt>.
+                    </li>
+            <li>Modified values for the <tt>number</tt>, <tt>radical</tt> attributes of the <tt>
+                        cjk-radical
+                    </tt> element.
+                    </li>
+            <li>Changed single value into list for the <tt>nv</tt> code point attribute.
+                    </li>
+            <li>New code point attributes: <tt>ID_Compat_Math_Continue</tt>, <tt>
+                        ID_Compat_Math_Start</tt>, <tt>IDSU</tt>, <tt>NFKC_SCF</tt>, <tt>InCB</tt>.
+                    </li>
+            <li>Modified patterns for the <tt>kBigFive</tt>, <tt>kIRG_GSource</tt>, <tt>
+                        kMorohashi</tt>, <tt>kRSUnicode</tt> attributes.
+                    </li>
+            <li>Changed single values into lists for the <tt>kMorohashi</tt>, <tt>kPrimaryNumeric
+                    </tt> Unihan attributes.
+                    </li>
+            <li>New Unihan attributes: <tt>kJapanese</tt>, <tt>kMojiJoho</tt>, <tt>
+                        kSMSZD2003Index</tt>, <tt>kSMSZD2003Readings</tt>, <tt>kVietnameseNumeric</tt>, <tt>
+                        kZhuangNumeric</tt>.
+                    </li>
+         </ul>
+         <p>Revision 33 being a proposed update, only changes between revisions 32 and 34 are
+                noted here.
+            </p>
+         <p>
+            <b>Revision 32</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>15.0</tt>.
+                    </li>
+            <li>New values for the <tt>blk</tt> attribute: <tt>Arabic_Ext_C</tt>, <tt>CJK_Ext_H</tt>, <tt>
+                        Cyrillic_Ext_D</tt>, <tt>Devanagari_Ext_A</tt>, <tt>Kaktovik_Numerals</tt>, <tt>Kawi</tt>, <tt>
+                        Nag_Mundari</tt>.
+                    </li>
+            <li>New values for the <tt>script</tt> attribute: <tt>Kawi</tt>, <tt>Nagm</tt>.
+                    </li>
+            <li>New Unihan attribute: <tt>kAlternateTotalStrokes</tt>.
+                    </li>
+            <li>Modified patterns for the <tt>kIRG_GSource</tt>, <tt>kIRG_HSource</tt>, <tt>
+                        kIRG_TSource</tt>, <tt>kSemanticVariant</tt>, <tt>kSpecializedSemanticVariant</tt>, <tt>
+                        kZVariant
+                    </tt> attributes.
+                    </li>
+         </ul>
+         <p>Revision 31 being a proposed update, only changes between revisions 30 and 32 are
+                noted here.
+            </p>
+         <p>
+            <b>Revision 30</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>14.0</tt>.
+                    </li>
+            <li>New values for the <tt>blk</tt> attribute: <tt>Arabic_Ext_B</tt>, <tt>
+                        Cypro_Minoan</tt>, <tt>Ethiopic_Ext_B</tt>, <tt>Kana_Ext_B</tt>, <tt>
+                        Latin_Ext_F</tt>, <tt>Latin_Ext_G</tt>, <tt>Old_Uyghur</tt>, <tt>Tangsa</tt>, <tt>
+                        Toto</tt>, <tt>UCAS_Ext_A</tt>, <tt>Vithkuqi</tt>, <tt>Znamenny_Music</tt>.
+                    </li>
+            <li>New values for the <tt>script</tt> attribute: <tt>Cpmn</tt>, <tt>Ougr</tt>, <tt>
+                        Tnsa</tt>, <tt>Toto</tt>, <tt>Vith</tt>.
+                    </li>
+            <li>New values for the <tt>jg</tt> attribute: <tt>Thin_Yeh</tt>, <tt>Vertical_Tail</tt>.
+                    </li>
+            <li>New Unihan attribute: <tt>kStrange</tt>.
+                    </li>
+            <li>Modified patterns for the <tt>kIRG_GSource</tt>, <tt>kIRG_MSource</tt>, <tt>
+                        kIRG_VSource</tt>, <tt>kPhonetic</tt>, <tt>kSpoofingVariant</tt> attributes.
+                    </li>
+            <li>Removal of the <tt>kWubi</tt> attribute, which has never been present in
+                        released versions of the UCD.
+                    </li>
+         </ul>
+         <p>Revision 29 being a proposed update, only changes between revisions 28 and 30 are
+                noted here.
+            </p>
+         <p>
+            <b>Revision 28</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>13.0</tt>.
+                    </li>
+            <li>New values for the <tt>blk</tt> attribute: <tt>Chorasmian</tt>, <tt>CJK_Ext_G</tt>, <tt>
+                        Dives_Akuru</tt>, <tt>Khitan_Small_Script</tt>, <tt>Lisu_Sup</tt>, <tt>
+                        Symbols_For_Legacy_Computing</tt>, <tt>Tangut_Sup</tt>, <tt>Yezidi</tt>.
+                    </li>
+            <li>New values for the <tt>script</tt> attribute: <tt>Chrs</tt>, <tt>Diak</tt>, <tt>
+                        Kits</tt>, <tt>Yezi</tt>.
+                    </li>
+            <li>New value for the <tt>InPC</tt> attribute: <tt>Top_And_Bottom_And_Left</tt>.
+                    </li>
+            <li>New Unihan attributes <tt>kSpoofingVariant</tt>, <tt>kUnihanCore2020</tt>, <tt>
+                        kIRG_SSource</tt>, <tt>kIRG_UKSource</tt>, <tt>kTGHZ2013</tt>.
+                    </li>
+            <li>New Emoji attributes <tt>Emoji</tt>, <tt>EPres</tt>, <tt>EMod</tt>, <tt>
+                        EBase</tt>, <tt>EComp</tt>, <tt>ExtPict</tt>.
+                    </li>
+            <li>Modified patterns for the <tt>kIRG_GSource</tt>, <tt>kIRG_HSource</tt>, <tt>
+                        kIRG_KPSource</tt>, <tt>kIRG_KSource</tt>, <tt>kIRG_TSource</tt>, <tt>kKangXi</tt>, <tt>
+                        kSemanticVariant</tt>, <tt>kSimplifiedVariant</tt>, <tt>
+                        kSpecializedSemanticVariant</tt>, <tt>kTraditionalVariant</tt> attributes.
+                    </li>
+         </ul>
+         <p>Revision 27 being a proposed update, only changes between revisions 26 and 28 are
+                noted here.
+            </p>
+         <p>
+            <b>Revision 26</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>12.1</tt>.
+                    </li>
+         </ul>
+         <p>
+            <b>Revision 25</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>12.0</tt>.
+                    </li>
+            <li>New values for the <tt>script</tt> attribute: <tt>Elym</tt>, <tt>Hmnp</tt>, <tt>
+                        Nand</tt>, <tt>Wcho</tt>.
+                    </li>
+            <li>New values for the <tt>blk</tt> attribute: <tt>
+                        Egyptian_Hieroglyph_Format_Controls</tt>, <tt>Elymaic</tt>, <tt>Nandinagari</tt>, <tt>
+                        Nyiakeng_Puachue_Hmong</tt>, <tt>Ottoman_Siyaq_Numbers</tt>, <tt>Small_Kana_Ext</tt>, <tt>
+                        Symbols_And_Pictographs_Ext_A</tt>, <tt>Tamil_Sup</tt>, <tt>Wancho</tt>.
+                    </li>
+            <li>Modified patterns for the <tt>kIRG_GSource</tt>, <tt>kIRG_KSource</tt>, <tt>
+                        kIRG_TSource</tt>, <tt>kTaiwanTelegraph</tt> attributes.
+                    </li>
+         </ul>
+         <p>Revision 24 being a proposed update, only changes between revisions 23 and 25 are
+                noted here.
+            </p>
+         <p>
+            <b>Revision 23</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>11.0</tt>.
+                    </li>
+            <li>New values for the <tt>blk</tt> attribute: <tt>Chess_Symbols</tt>, <tt>
+                        Dogra</tt>, <tt>Georgian_Ext</tt>, <tt>Gunjala_Gondi</tt>, <tt>
+                        Hanifi_Rohingya</tt>, <tt>Indic_Siyaq_Numbers</tt>, <tt>Makasar</tt>, <tt>
+                        Mayan_Numerals</tt>, <tt>Medefaidrin</tt>, <tt>Old_Sogdian</tt>, <tt>Sogdian</tt>.
+                    </li>
+            <li>New values for the <tt>script</tt> attribute: <tt>Dogr</tt>, <tt>Gong</tt>, <tt>
+                        Maka</tt>, <tt>Medf</tt>, <tt>Rohg</tt>, <tt>Sogd</tt>, <tt>Sogo</tt>.
+                    </li>
+            <li>New values for the <tt>jg</tt> attribute: <tt>Hanifi_Rohingya_Kinna_Ya</tt>, <tt>
+                        Hanifi_Rohingya_Pa</tt>.
+                    </li>
+            <li>New value for the <tt>wb</tt> attribute: <tt>WSegSpace</tt>.
+                    </li>
+            <li>New values for the <tt>InSC</tt> attribute: <tt>Consonant_Initial_Postfixed</tt>.
+                    </li>
+            <li>New attributes: <tt>EqUIdeo</tt>, <tt>kJinmeiyoKanji</tt>, <tt>kJoyoKanji</tt>, <tt>
+                        kKoreanEducationHanja</tt>, <tt>kKoreanName</tt>, <tt>kTGH</tt>.
+                    </li>
+            <li>Modified patterns for the <tt>kTGT_MergedSrc</tt> attribute.
+                    </li>
+            <li>Modified patterns for the <tt>kIRG_GSource</tt>, <tt>kIRG_HSource</tt> and <tt>
+                        kIRG_VSource
+                    </tt> attributes.
+                    </li>
+         </ul>
+         <p>Revision 22 being a proposed update, only changes between revisions 21 and 23 are
+                noted here.
+            </p>
+         <p>
+            <b>Revision 21</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>10.0</tt>.
+                    </li>
+            <li>New values for the <tt>blk</tt> attribute: <tt>CJK_Ext_F</tt>, <tt>Kana_Ext_A</tt>, <tt>
+                        Masaram_Gondi</tt>, <tt>Nushu</tt>, <tt>Soyombo</tt>, <tt>Syriac_Sup</tt>, <tt>
+                        Zanabazar_Square</tt>.
+                    </li>
+            <li>New values for the <tt>sc</tt> attribute: <tt>Gonm</tt>, <tt>Nshu</tt>, <tt>
+                        Soyo</tt>, <tt>Zanb</tt>.
+                    </li>
+            <li>New values for the <tt>jg</tt> attribute: <tt>Malayalam_Nga</tt>, <tt>
+                        Malayalam_Ja</tt>, <tt>Malayalam_Nya</tt>, <tt>Malayalam_Tta</tt>, <tt>Malayalam_Nna</tt>, <tt>
+                        Malayalam_Nnna</tt>, <tt>Malayalam_Bha</tt>, <tt>Malayalam_Ra</tt>, <tt>
+                        Malayalam_Lla</tt>, <tt>Malayalam_Llla</tt>, <tt>Malayalam_Ssa</tt>.
+                    </li>
+            <li>New value for the <tt>InPC</tt> attribute: <tt>Bottom_And_Left</tt>.
+                    </li>
+            <li>Modified patterns for the <tt>kIRG_GSource</tt>, <tt>kIRG_JSource</tt>, <tt>
+                        kIRG_KSource
+                    </tt> attributes.
+                    </li>
+            <li>New code point attributes: <tt>vo</tt>,
+                        <tt>RI</tt>
+            </li>
+            <li>New code point attributes for Nushu data: <tt>kSrc_NushuDuben</tt> and <tt>
+                        kReading</tt>.
+                    </li>
+         </ul>
+         <p>Revision 20 being a proposed update, only changes between revisions 19 and 21 are
+                noted here.
+            </p>
+         <p>
+            <b>Revision 19</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>9.0</tt>.
+                    </li>
+            <li>New values for the <tt>sc</tt> attribute: <tt>Adlm</tt>, <tt>Bhks</tt>, <tt>
+                        Marc</tt>, <tt>Newa</tt>, <tt>Osge</tt>, <tt>Tang</tt>.
+                    </li>
+            <li>New values for the <tt>blk</tt> attribute: <tt>Adlam</tt>, <tt>Bhaiksuki</tt>, <tt>
+                        Cyrillic_Ext_C</tt>, <tt>Glagolitic_Sup</tt>, <tt>Ideographic_Symbols</tt>, <tt>
+                        Marchen</tt>, <tt>Mongolian_Sup</tt>, <tt>Newa</tt>, <tt>Osage</tt>, <tt>
+                        Tangut</tt>, <tt>Tangut_Components</tt>.
+                    </li>
+            <li>New values for the <tt>gcb</tt> attribute: <tt>EB</tt>, <tt>EBG</tt>, <tt>EM</tt>, <tt>
+                        GAZ</tt>, <tt>ZWJ</tt>.
+                    </li>
+            <li>New values for the <tt>wb</tt> attribute: <tt>EB</tt>, <tt>EBG</tt>, <tt>EM</tt>, <tt>
+                        GAZ</tt>, <tt>ZWJ</tt>.
+                    </li>
+            <li>New values for the <tt>lb</tt> attribute: <tt>EB</tt>, <tt>EM</tt>, <tt>ZWJ</tt>.
+                    </li>
+            <li>New values for the <tt>jg</tt> attribute: <tt>African_Feh</tt>, <tt>
+                        African_Noon</tt>, <tt>African_Qaf</tt>.
+                    </li>
+            <li>New code point attributes: <tt>PCM</tt>, <tt>kRSTUnicode</tt> and <tt>
+                        kTGT_MergedSrc</tt>.
+                    </li>
+            <li>Modified patterns for the <tt>kRSUnicode</tt>, <tt>kRSKangXi</tt>, <tt>
+                        kMandarin</tt>, <tt>kIRG_JSource</tt>, <tt>kIRG_USource</tt> and <tt>kFennIndex
+                    </tt> attributes.
+                    </li>
+         </ul>
+         <p>Revision 18 being a proposed update, only changes between revisions 17 and 19 are
+                noted here.
+            </p>
+         <p>
+            <b>Revision 17</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>8.0</tt>.
+                    </li>
+            <li>New values for the <tt>sc</tt> attribute: <tt>Ahom</tt>, <tt>Hatr</tt>, <tt>
+                        Hluw</tt>, <tt>Hung</tt>, <tt>Mult</tt>, <tt>Sgnw</tt>.
+                    </li>
+            <li>New values for the <tt>blk</tt> attribute: <tt>Ahom</tt>, <tt>
+                        Anatolian_Hieroglyphs</tt>, <tt>Cherokee_Sup</tt>, <tt>CJK_Ext_E</tt>, <tt>
+                        Early_Dynastic_Cuneiform</tt>, <tt>Hatran</tt>, <tt>Multani</tt>, <tt>Old_Hungarian</tt>, <tt>
+                        Sup_Symbols_And_Pictographs</tt>, <tt>Sutton_SignWriting</tt>.
+                    </li>
+            <li>New values for the <tt>InSC</tt> attribute: <tt>Consonant_Killer</tt>, <tt>
+                        Consonant_Prefixed</tt>, <tt>Consonant_With_Stacker</tt>, <tt>Syllable_Modifier</tt>.
+                    </li>
+            <li>New code point attributes: <tt>InPC</tt>, <tt>kJa</tt>.
+                    </li>
+            <li>New patterns for the <tt>kIRG_GSource</tt> attribute: <tt>GFC-</tt>, <tt>GGFZ-</tt>.
+                    </li>
+            <li>Switched the reference to ISO 19757 from :2003 and :2003 Amd1 to :2008.</li>
+         </ul>
+         <p>Revision 16 being a proposed update, only changes between revisions 15 and 17 are
+                noted here.
+            </p>
+         <p>
+            <b>Revision 15</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>7.0</tt>.
+                    </li>
+            <li>New values for the <tt>jg</tt> attribute.
+                    </li>
+            <li>New values for the <tt>sc</tt> attribute.
+                    </li>
+            <li>New values for the <tt>blk</tt> attribute.
+                    </li>
+            <li>New values for the <tt>InSC</tt> attribute.
+                    </li>
+            <li>New values for the <tt>kIICore</tt> attribute.
+                    </li>
+            <li>New values for the <tt>kIRG_GSource</tt> attribute.
+                    </li>
+         </ul>
+         <p>Revision 14 being a proposed update, only changes between revisions 13 and 15 are
+                noted here.
+            </p>
+         <p>
+            <b>Revision 13</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>6.3</tt>.
+                    </li>
+            <li>New values <tt>DQ</tt>, <tt>HL</tt>, <tt>SQ</tt> for the <tt>WB</tt> attribute(forUnicode6.3).
+                    </li>
+            <li>New code point attributes <tt>bpt</tt> and <tt>bpb</tt> (for Unicode 6.3).
+                    </li>
+            <li>New values for the <tt>bc</tt> attribute: <tt>LRI</tt>, <tt>RLI</tt>, <tt>FSI</tt>, <tt>
+                        PDI
+                    </tt> (for Unicode 6.3).
+                    </li>
+            <li>Updated the patterns for <tt>kHanyuPinlu</tt> and <tt>kTotalStrokes</tt> (for
+                        Unicode6.3).
+                    </li>
+            <li>Updated the patterns for <tt>kIRG_HSource</tt> and <tt>kIRG_HSource</tt> (for
+                        Unicode6.2).
+                    </li>
+            <li>Clarified that the child elements list-like elements are in no particular order.</li>
+         </ul>
+         <p>Revision 12 being a proposed update, only changes between revisions 11 and 13 are
+                noted here.
+            </p>
+         <p>
+            <b>Revision 11</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>6.2</tt>.
+                    </li>
+            <li>New value for the <tt>gcb</tt>, <tt>wb</tt> and <tt>lb</tt> attributes:<tt>
+                        RI
+                    </tt> (for Unicode 6.2).
+                    </li>
+            <li>Updated the patterns for <tt>kIRG_GSource</tt> and <tt>kIRG_HSource</tt> (for
+                        Unicode 6.2).
+                    </li>
+         </ul>
+         <p>Revision 10 being a proposed update, only changes between revisions 9 and 11 are
+                noted here.
+            </p>
+         <p>
+            <b>Revision 9</b>
+         </p>
+         <ul>
+            <li>Clarified the default values.</li>
+            <li>Indicate that property values may change from one release to the next.</li>
+            <li>Introduced the <tt>blk</tt> attributes, for the Block property.
+                    </li>
+            <li>Introduced the <tt>scx</tt> attribute, for the ScriptExtensions property.
+                    </li>
+            <li>Introduced the <tt>name-alias</tt> element, for the Name_Alias property.
+                    </li>
+            <li>New value for the <tt>age</tt> attribute: <tt>6.1</tt>.
+                    </li>
+            <li>New values for the <tt>script</tt> attribute: <tt>Cakm</tt>, <tt>Merc</tt>, <tt>
+                        Mero</tt>, <tt>Plrd</tt>, <tt>Shrd</tt>, <tt>Sora</tt>, <tt>Takr</tt>.
+                    </li>
+            <li>New values for the <tt>lb</tt> attribute: <tt>HL</tt> and <tt>CJ</tt>.
+                    </li>
+            <li>New value for the <tt>jg</tt> attribute: <tt>Rohingya_Yeh</tt>.
+                    </li>
+            <li>The value of the <tt>fc_nfkc</tt> attribute must now be either # or <tt>
+                        one-or-more-code-points</tt>.
+                    </li>
+            <li>For the <tt>nv</tt> attribute, the absence of a numeric value is now represented by<tt>
+                        NaN
+                    </tt> rather than by the empty string.
+                    </li>
+            <li>The values of the ccc are now restricted to 0..254, instead of 0..255.
+                    </li>
+            <li>Updated the patterns for <tt>kSemanticVariant</tt>, <tt>
+                        kSpecializedSemanticVariant</tt>, <tt>kIRG_USource</tt>, and <tt>kMandarin</tt>.
+                    </li>
+         </ul>
+         <p>Revision 8 being a proposed update, only changes between revisions 7 and 9 are noted
+                here.
+            </p>
+         <p>
+            <b>Revision 7</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>6.0</tt>.
+                    </li>
+            <li>New value for the <tt>jg</tt> attribute:
+                        <tt>Teh_Marbuta_Goal</tt>
+            </li>
+            <li>New values for the <tt>script</tt> attribute: <tt>Batk</tt>, <tt>Brah</tt>, <tt>
+                        Mand</tt>.
+                    </li>
+            <li>Updated the patterns for <tt>kIRG_GSource</tt>, <tt>kIRG_HSource</tt>, <tt>
+                        kIRG_JSource</tt>, <tt>kIRG_KSource</tt>, <tt>kIRG_MSource</tt>, <tt>
+                        kIRG_TSource</tt>, <tt>kIRG_VSource</tt>.
+                    </li>
+            <li>Added the <tt>InSC</tt> and <tt>InMC</tt> elements.
+                    </li>
+            <li>Added the <tt>emoji-sources</tt> element.
+                    </li>
+         </ul>
+         <p>Revision 6 being a proposed update, only changes between revisions 5 and 7 are noted
+                here.
+            </p>
+         <p>
+            <b>Revision 5</b>
+         </p>
+         <ul>
+            <li>Changed the type of <tt>block/@first-cp</tt>, <tt>block/@last-cp</tt> and <tt>
+                        normalization-corrections/@cp
+                    </tt> from <tt>text</tt> to
+                        <tt>single-code-point</tt>
+            </li>
+            <li>Changed the type of <tt>named-sequence/@cps</tt>, <tt>
+                        provisional-named-sequences/@cps</tt>, <tt>normalization-correction/@old</tt> and <tt>
+                        normalization-correction/@new
+                    </tt> from <tt>text</tt> to <tt>one-or-more-code-points</tt>.
+                    </li>
+            <li>Changed the type of <tt>standardized-variants/@cps</tt> from <tt>text</tt> to <tt>
+                        two-code-points</tt>.
+                    </li>
+            <li>New values for the <tt>jg</tt> attribute: <tt>Farsi_Yeh</tt> and <tt>Nya</tt>.
+                    </li>
+            <li>New value for the <tt>age</tt> attribute: <tt>5.2</tt>.
+                    </li>
+            <li>New values for the <tt>sc</tt> attribute: <tt>Lana</tt>, <tt>Tavt</tt>, <tt>
+                        Avst</tt>, <tt>Egyp</tt>, <tt>Samr</tt>, <tt>Lisu</tt>, <tt>Bamu</tt>, <tt>Java</tt>, <tt>
+                        Mtei</tt>, <tt>Armi</tt>, <tt>Sarb</tt>, <tt>Prti</tt>, <tt>Phli</tt>, <tt>Orkh</tt>, <tt>
+                        Kthi</tt>.
+                    </li>
+            <li>New value for the <tt>lb</tt> attribute: <tt>CP</tt>.
+                    </li>
+            <li>New value for the <tt>sc</tt> attribute: <tt>Zinh</tt>.
+                    </li>
+            <li>New code point attributes CI, <tt>Cased</tt>, <tt>CWCF</tt>, <tt>
+                        CWCM</tt>, <tt>CWL</tt>, <tt>CWKCF</tt>, <tt>CWT</tt>, <tt>CWU</tt>, <tt>
+                        NFKC_CF</tt>.
+                    </li>
+            <li>New attributes <tt>kHanyuPinyin</tt> and <tt>kIRG_MSource</tt>.
+                    </li>
+            <li>New element
+                        <tt>cjk-radicals</tt>
+            </li>
+            <li>Updated the patterns for <tt>kIRG_GSource</tt>, <tt>kIRG_JSource</tt>, <tt>
+                        kIRG_KPSource</tt>, <tt>kIRG_KSource</tt>, <tt>kIRG_TSource</tt>, <tt>
+                        kIRG_VSource</tt>, <tt>kHanyuPinlu</tt>, <tt>kMandarin</tt>, <tt>
+                        kSemanticVariant</tt>, <tt>kSpecializedSemanticVariant</tt>, <tt>
+                        kVietnamese</tt>, <tt>kZVariant</tt>.
+                    </li>
+            <li>Point out that Relax NG schemas do not modify or augment the infoset, and that it ispossible
+                        to convert mechanically our schema to other schema languages.
+                    </li>
+         </ul>
+         <p>Revision 4 being a proposed update, only changes between revisions 3 and 5 are noted
+                here.
+            </p>
+         <p>
+            <b>Revision 3</b>
+         </p>
+         <ul>
+            <li>First approved version, for Unicode 5.1.0.</li>
+            <li>For optional elements which acts as collections, such as <tt>repertoire</tt> and <tt>
+                        named-sequences</tt>, impose that there be at least one element in the collection.
+                    </li>
+            <li>Remove the constraint that the value <tt>jg</tt> is limited when <tt>jt</tt> has
+                        certainvalues; similarly for <tt>bmg</tt> / <tt>Bidi_M</tt> and for <tt>nv</tt> /
+                        <tt>nt</tt>.
+                    </li>
+            <li>Value <tt>NL</tt> added to the <tt>WB</tt> attribute (for Unicode 5.1).
+                    </li>
+            <li>Value <tt>PP</tt> added to the <tt>GCB</tt> attribute (for Unicode 5.1).
+                    </li>
+            <li>Corrected the <tt>Vai</tt> script value to <tt>Vaii</tt>.
+                    </li>
+            <li>Removed the discussion of elements or attributes in different namespace.</li>
+            <li>Removed the <tt>code-point</tt> element.
+                    </li>
+         </ul>
+         <p>
+            <b>Revision 2</b>
+         </p>
+         <ul>
+            <li>Promoted to Draft UAX.</li>
+            <li>Changed the title from "An XML representation of the UCD"</li>
+            <li>Value <tt>5.1</tt> added to the <tt>age</tt> attribute (for Unicode 5.1).
+                    </li>
+            <li>Value <tt>SM</tt> added to the <tt>gcb</tt> attribute (for Unicode 5.1).
+                    </li>
+            <li>Values <tt>CR</tt>, <tt>Extend</tt>, <tt>LF</tt>, <tt>MB</tt> added to the <tt>
+                        WB
+                    </tt> attribute(forUnicode5.1).
+                    </li>
+            <li>Values <tt>CR</tt>, <tt>EX</tt>, <tt>LF</tt>, <tt>SC</tt> added to the <tt>SB
+                    </tt> attribute(forUnicode5.1).
+                    </li>
+            <li>Value <tt>Burushaski_Yeh_Barree</tt> added to the <tt>jg</tt> attribute (for
+                        Unicode5.1).
+                    </li>
+            <li>Value <tt>Alef_Maqsurah</tt> added to the <tt>jg</tt> attribute (for Unicode 2.x).
+                    </li>
+            <li>Values <tt>Cari</tt>, <tt>Cham</tt>, <tt>Kali</tt>, <tt>Lepc</tt>, <tt>
+                        Lyci</tt>, <tt>Lydi</tt>, <tt>Olck</tt>, <tt>Rjng</tt>, <tt>Saur</tt>, <tt>Sund</tt> and <tt>
+                        Vai
+                    </tt> added to the <tt>sc</tt> attribute (forUnicode5.0).
+                    </li>
+            <li>
+               <tt>jamo</tt>
+                        attribute renamed to
+                        <tt>JSN</tt>
+            </li>
+            <li>
+               <tt>sfc</tt>
+                        attribute renamed to
+                        <tt>scf</tt>
+            </li>
+            <li>Attribute <tt>kXHC1983</tt> added (for Unicode 5.1.0).
+                    </li>
+            <li>Pattern for attribute <tt>kIRG_USource</tt> extended (for Unicode 5.1.0).
+                    </li>
+            <li>Element <tt>provisional-named-sequences</tt> added (for Unicode 5.0)
+                    </li>
+         </ul>
+         <p>
+            <b>Revision 1</b>
+         </p>
+         <ul>
+            <li>First working draft.</li>
+         </ul>
+         <hr/>
+         <p class="copyright">© 2008–2025 Unicode, Inc. This
+      publication is protected by copyright, and permission must be obtained from Unicode, Inc. prior to any
+      reproduction, modification, or other use not permitted by the
+      <a href="https://www.unicode.org/copyright.html">Terms of Use</a>. Specifically, you may make copies of this
+      publication and may annotate and translate it solely for personal or internal business purposes and not for
+      public distribution, provided that any such permitted copies and modifications fully reproduce all copyright and
+      other legal notices contained in the original. You may not make copies of or modifications to this publication
+      for public distribution, or incorporate it in whole or in part into any product or publication without the
+      express written permission of Unicode.</p>
+         <p class="copyright">Use of all Unicode Products, including this publication, is governed by the Unicode
+      <a href="https://www.unicode.org/copyright.html">Terms of Use</a>. The authors, contributors, and publishers have
+      taken care in the preparation of this publication, but make no express or implied representation or warranty of
+      any kind and assume no responsibility or liability for errors or omissions or for consequential or incidental
+      damages that may arise therefrom. This publication is provided “AS-IS” without charge as a convenience to
+      users.</p>
+         <p class="copyright">Unicode and the Unicode Logo are registered trademarks of Unicode, Inc., in the United States
+      and other countries.</p>
+      </div>
+   </body>
+</html>

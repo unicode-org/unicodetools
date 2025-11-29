@@ -1,10 +1,9 @@
 package org.unicode.test;
 
 import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.Composer;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeMap.Composer;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -25,13 +24,13 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
-import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Segmenter;
 import org.unicode.tools.Segmenter.Builder;
-import org.unicode.tools.Segmenter.Rule;
+import org.unicode.tools.Segmenter.SegmentationRule;
 
 public class TestSegment {
 
@@ -333,8 +332,7 @@ public class TestSegment {
     }
 
     private static void testSegments() {
-        final XSymbolTable toolUPS = new UnicodePropertySymbolTable(IUP);
-        UnicodeSet.setDefaultXSymbolTable(toolUPS);
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
 
         TestSegment gc = new TestSegment("SegmentBnf" + "Ccs" + ".txt");
         gc.test(
@@ -398,8 +396,8 @@ public class TestSegment {
     }
 
     private static <T> void getExemplarStrings(UnicodeMap<T> exemplars, Builder segmenter) {
-        Map<Double, Rule> srules = segmenter.getProcessedRules();
-        for (Entry<Double, Rule> entry : srules.entrySet()) {
+        Map<Double, SegmentationRule> srules = segmenter.getProcessedRules();
+        for (Entry<Double, SegmentationRule> entry : srules.entrySet()) {
             System.out.println(entry.getKey() + "\t\t" + entry.getValue());
         }
     }

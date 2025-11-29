@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.MakeUnicodeFiles;
 import org.unicode.text.utility.Utility.RuntimeIOException;
 
 public class UnicodeDataFile {
@@ -70,7 +71,12 @@ public class UnicodeDataFile {
         }
         try {
             Utility.appendFile(
-                    Settings.SRC_UCD_DIR + filename + "Header" + fileType, Utility.UTF8_UNIX, out);
+                    MakeUnicodeFiles.class.getResource(".").getPath()
+                            + filename
+                            + "Header"
+                            + fileType,
+                    Utility.UTF8_UNIX,
+                    out);
         } catch (final RuntimeIOException e) {
             if (!(e.getCause() instanceof FileNotFoundException)) {
                 throw e;
