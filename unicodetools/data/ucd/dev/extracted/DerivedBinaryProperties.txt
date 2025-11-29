@@ -1,6 +1,6 @@
-# DerivedBinaryProperties-16.0.0.txt
-# Date: 2024-04-30, 21:48:15 GMT
-# © 2024 Unicode®, Inc.
+# DerivedBinaryProperties-18.0.0.txt
+# Date: 2025-11-29, 01:41:51 GMT
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -193,6 +193,8 @@
 2E5A          ; Bidi_Mirrored # Pe       TOP HALF RIGHT PARENTHESIS
 2E5B          ; Bidi_Mirrored # Ps       BOTTOM HALF LEFT PARENTHESIS
 2E5C          ; Bidi_Mirrored # Pe       BOTTOM HALF RIGHT PARENTHESIS
+2E62          ; Bidi_Mirrored # Ps       LEFT PARENTHESIS WITH MIDDLE RING
+2E63          ; Bidi_Mirrored # Pe       RIGHT PARENTHESIS WITH MIDDLE RING
 3008          ; Bidi_Mirrored # Ps       LEFT ANGLE BRACKET
 3009          ; Bidi_Mirrored # Pe       RIGHT ANGLE BRACKET
 300A          ; Bidi_Mirrored # Ps       LEFT DOUBLE ANGLE BRACKET
@@ -236,6 +238,6 @@ FF63          ; Bidi_Mirrored # Pe       HALFWIDTH RIGHT CORNER BRACKET
 1D789         ; Bidi_Mirrored # Sm       MATHEMATICAL SANS-SERIF BOLD PARTIAL DIFFERENTIAL
 1D7C3         ; Bidi_Mirrored # Sm       MATHEMATICAL SANS-SERIF BOLD ITALIC PARTIAL DIFFERENTIAL
 
-# Total code points: 554
+# Total code points: 556
 
 # EOF

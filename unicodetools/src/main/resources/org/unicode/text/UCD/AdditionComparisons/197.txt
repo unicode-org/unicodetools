@@ -1,0 +1,21 @@
+# IPA: compound stress mark (208F)
+# https://github.com/unicode-org/utc-release-management/issues/197
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block:
+Propertywise [
+  \x{02C8} ˈ \N{MODIFIER LETTER VERTICAL LINE}
+  \x{02CC} ˌ \N{MODIFIER LETTER LOW VERTICAL LINE}
+  \x{208F}   \N{MODIFIER LETTER HIGH AND LOW VERTICAL LINE}
+] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
