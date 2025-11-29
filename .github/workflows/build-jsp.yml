@@ -1,8 +1,8 @@
 name: Build JSP
 
 env:
-  CURRENT_UVERSION: 17.0.0 # FIX_FOR_NEW_VERSION
-  PREVIOUS_UVERSION: 16.0.0  # not used at present
+  CURRENT_UVERSION: 18.0.0 # FIX_FOR_NEW_VERSION
+  PREVIOUS_UVERSION: 17.0.0  # not used at present
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
@@ -29,7 +29,7 @@ jobs:
     - name: Verify CLDR checkout ref
       run: echo CLDR_REF="${{ steps.cldr_ref.outputs.CLDR_REF }}" && [ "${{ steps.cldr_ref.outputs.CLDR_REF }}x" != "x" ] # fail if empty
     - name: Cache CLDR repository
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: cldr
         key: cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
@@ -52,7 +52,7 @@ jobs:
       with:
         java-version: 11
     - name: Cache local Maven repository
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}

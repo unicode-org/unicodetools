@@ -1,0 +1,88 @@
+# Latin (and Punctuation): English Phonotypic Alphabet
+# https://github.com/unicode-org/utc-release-management/issues/179
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Propertywise [
+    \x{2E60}   \N{WIGGLY EXCLAMATION MARK}
+    \x{2E61}   \N{INVERTED WIGGLY EXCLAMATION MARK}
+    \x{2E2E} ⸮ \N{REVERSED QUESTION MARK}
+] AreAlike
+
+Ignoring Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set Math_Class Math_Class_Ex:
+
+Propertywise [\x{2E60}   \N{WIGGLY EXCLAMATION MARK}
+              \x{2E61}   \N{INVERTED WIGGLY EXCLAMATION MARK}]
+CorrespondTo [\x{0021} ! \N{EXCLAMATION MARK}]
+    UpTo: East_Asian_Width (Neutral                  vs Narrow),
+          Block            (Supplemental_Punctuation vs Basic_Latin)
+
+end Ignoring;
+
+Propertywise [\x{2E62}   \N{LEFT PARENTHESIS WITH MIDDLE RING}]
+           : [\x{2E63}   \N{RIGHT PARENTHESIS WITH MIDDLE RING}]
+CorrespondTo [\x{2E28} ⸨ \N{LEFT DOUBLE PARENTHESIS}]
+           : [\x{2E29} ⸩ \N{RIGHT DOUBLE PARENTHESIS}]
+
+Ignoring Unicode_1_Name:
+Propertywise [\x{A7DD}   \N{LATIN CAPITAL LETTER CLOSED OMEGA}]
+           : [\x{0277} ɷ \N{LATIN SMALL LETTER CLOSED OMEGA}]
+CorrespondTo [\x{A7AD} Ɬ \N{LATIN CAPITAL LETTER L WITH BELT}]
+           : [\x{026C} ɬ \N{LATIN SMALL LETTER L WITH BELT}]
+end Ignoring;
+
+Propertywise [\x{1DF68} \N{LATIN CAPITAL LETTER PHONOTYPIC A WITH SWASH}
+              \x{1DF6A} \N{LATIN CAPITAL LETTER PHONOTYPIC ROUNDTOP A}
+              \x{1DF6C} \N{LATIN CAPITAL LETTER REVERSED SCRUPLE}
+              \x{1DF72} \N{LATIN CAPITAL LETTER O WITH CURL}
+              \x{1DF74} \N{LATIN CAPITAL LETTER CLOSED OMEGA WITH LONG STEM}
+              \x{1DF76} \N{LATIN CAPITAL LETTER TURNED CLOSED OMEGA}
+              \x{1DF78} \N{LATIN CAPITAL LETTER PHONOTYPIC TH}
+              \x{1DF7A} \N{LATIN CAPITAL LETTER U WITH HOOK TAIL}
+              \x{1DF7C} \N{LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM}
+              \x{1DF7E} \N{LATIN CAPITAL LETTER REVERSED ENLARGED SMALL U}]
+           : [\x{1DF69} \N{LATIN SMALL LETTER PHONOTYPIC A WITH SWASH}
+              \x{1DF6B} \N{LATIN SMALL LETTER PHONOTYPIC ROUNDTOP A}
+              \x{1DF6D} \N{LATIN SMALL LETTER REVERSED SCRUPLE}
+              \x{1DF73} \N{LATIN SMALL LETTER O WITH CURL}
+              \x{1DF75} \N{LATIN SMALL LETTER CLOSED OMEGA WITH LONG STEM}
+              \x{1DF77} \N{LATIN SMALL LETTER TURNED CLOSED OMEGA}
+              \x{1DF79} \N{LATIN SMALL LETTER PHONOTYPIC TH}
+              \x{1DF7B} \N{LATIN SMALL LETTER U WITH HOOK TAIL}
+              \x{1DF7D} \N{LATIN SMALL LETTER U WITH NOTCH AT BOTTOM}
+              \x{1DF7F} \N{LATIN SMALL LETTER REVERSED U}]
+CorrespondTo [\x{A79A} Ꞛ \N{LATIN CAPITAL LETTER VOLAPUK AE}]
+           : [\x{A79B} ꞛ \N{LATIN SMALL LETTER VOLAPUK AE}]
+    UpTo: Block (Latin_Extended_G vs Latin_Extended_D)
+
+Ignoring Block Unicode_1_Name:
+Propertywise [\x{1DF6F} \N{LATIN SMALL LETTER PHONOTYPIC DIPHTHONG AI}]
+           : [\x{1DF6E} \N{LATIN CAPITAL LETTER PHONOTYPIC DIPHTHONG AI}]
+CorrespondTo [\x{029D} ʝ \N{LATIN SMALL LETTER J WITH CROSSED-TAIL}]
+           : [\x{A7B2} Ʝ \N{LATIN CAPITAL LETTER J WITH CROSSED-TAIL}]
+end Ignoring;
+
+Ignoring Do_Not_Emit_Dispreferred Do_Not_Emit_Dispreferred_Type:
+Propertywise [
+    \x{1DF70}   \N{LATIN SMALL LETTER I WITH PIGTAIL AT BOTTOM}
+    \x{1DF71}   \N{LATIN SMALL LETTER STRETCHED I}
+    \x{1DF1A} 𝼚 \N{LATIN SMALL LETTER I WITH STROKE AND RETROFLEX HOOK}
+] AreAlike
+end Ignoring;
+
+Ignoring Block:
+Propertywise [
+    \x{1DF80}  \N{LATIN CAPITAL LETTER A WITH TOPBAR}
+    \x{1DF81}  \N{LATIN CAPITAL LETTER E WITH BENT TOPBAR}
+    \x{A7FB} ꟻ \N{LATIN EPIGRAPHIC LETTER REVERSED F}
+] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

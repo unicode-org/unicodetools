@@ -39,6 +39,10 @@ public interface UCD_Types {
     // 18D00;<Tangut Ideograph Supplement, First>;Lo;0;L;;;;;N;;;;;
     // 18D1C;<Tangut Ideograph Supplement, Last>;Lo;0;L;;;;;N;;;;;
 
+    // Unicode 18.
+    public static final int SEAL_BASE = 0x3D000;
+    public static final int SEAL_LIMIT = 0x3FC3F + 1;
+
     public static final int
             // 4E00;<CJK Ideograph, First>;Lo;0;L;;;;;N;;;;;
             // 9FFC;<CJK Ideograph, Last>;Lo;0;L;;;;;N;;;;;
@@ -60,17 +64,17 @@ public interface UCD_Types {
             // 2A700;<CJK Ideograph Extension C, First>;Lo;0;L;;;;;N;;;;;
             // 2B734;<CJK Ideograph Extension C, Last>;Lo;0;L;;;;;N;;;;;
             CJK_C_BASE = 0x2A700,
-            CJK_C_LIMIT = 0x2B73E + 1, // last changed in Unicode 17
+            CJK_C_LIMIT = 0x2B73F + 1, // last changed in Unicode 17
 
             // 2B740;<CJK Ideograph Extension D, First>;Lo;0;L;;;;;N;;;;;
-            // 2B81D;<CJK Ideograph Extension D, Last>;Lo;0;L;;;;;N;;;;;
+            // 2B81E;<CJK Ideograph Extension D, Last>;Lo;0;L;;;;;N;;;;;
             CJK_D_BASE = 0x2B740,
-            CJK_D_LIMIT = 0x2B81D + 1,
+            CJK_D_LIMIT = 0x2B81E + 1, // last changed in Unicode 18
 
             // 2B820;<CJK Ideograph Extension E, First>;Lo;0;L;;;;;N;;;;;
             // 2CEA1;<CJK Ideograph Extension E, Last>;Lo;0;L;;;;;N;;;;;
             CJK_E_BASE = 0x2B820,
-            CJK_E_LIMIT = 0x2CEA1 + 1,
+            CJK_E_LIMIT = 0x2CEAD + 1, // last changed in Unicode 17
 
             // 2CEB0;<CJK Ideograph Extension F, First>;Lo;0;L;;;;;N;;;;;
             // 2EBE0;<CJK Ideograph Extension F, Last>;Lo;0;L;;;;;N;;;;;
@@ -355,7 +359,8 @@ public interface UCD_Types {
             LB_AS = 45,
             LB_VI = 46,
             LB_VF = 47,
-            LIMIT_LINE_BREAK = 48,
+            LB_HH = 48,
+            LIMIT_LINE_BREAK = 49,
             LB_LIMIT = LIMIT_LINE_BREAK;
 
     // east asian width
@@ -620,15 +625,17 @@ public interface UCD_Types {
             Sunuwar = 170,
             Todhri = 171,
             Tulu_Tigalari = 172,
-            // Provisionally assigned or proposed
+            // Unicode 17
             Chisoi = 173,
             Sidetic = 174,
             Tai_Yo = 175,
             Tolong_Siki = 176,
             Beria_Erfe = 177,
+            // Unicode 18
             Jurchen = 178,
             Proto_Cuneiform = 179,
-            LIMIT_SCRIPT = Proto_Cuneiform + 1;
+            Seal = 180,
+            LIMIT_SCRIPT = Seal + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte BPT_N = 0, BPT_O = 1, BPT_C = 2, LIMIT_BPT = 3;
@@ -665,12 +672,14 @@ public interface UCD_Types {
             AGE151 = 26,
             AGE160 = 27,
             AGE170 = 28,
-            LIMIT_AGE = AGE170 + 1; // + FIX_FOR_NEW_VERSION;
+            AGE180 = 29,
+            LIMIT_AGE = AGE180 + 1; // + FIX_FOR_NEW_VERSION;
 
     static final String[] AGE_VERSIONS = {
         "?", "1.1.0", "2.0.0", "2.1.2", "3.0.0", "3.1.0", "3.2.0", "4.0.0", "4.1.0", "5.0.0",
         "5.1.0", "5.2.0", "6.0.0", "6.1.0", "6.2.0", "6.3.0", "7.0.0", "8.0.0", "9.0.0", "10.0.0",
         "11.0.0", "12.0.0", "12.1.0", "13.0.0", "14.0.0", "15.0.0", "15.1.0", "16.0.0", "17.0.0",
+        "18.0.0",
         // FIX_FOR_NEW_VERSION
     };
 

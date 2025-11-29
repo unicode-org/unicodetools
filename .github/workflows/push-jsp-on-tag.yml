@@ -18,7 +18,7 @@ jobs:
     - name: Verify CLDR checkout ref
       run: echo CLDR_REF="${{ steps.cldr_ref.outputs.CLDR_REF }}" && [ "${{ steps.cldr_ref.outputs.CLDR_REF }}x" != "x" ] # fail if empty
     - name: Cache CLDR
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: cldr
         key: cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
@@ -37,7 +37,7 @@ jobs:
       run:
         mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git -f UnicodeJsps/target/cldr-unicodetools.tgz ./cldr ./unicodetools
     - name: Cache local Maven repository
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}

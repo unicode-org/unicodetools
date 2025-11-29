@@ -53,7 +53,6 @@ def ParseFile(in_file, root_path):
 
 
 def main():
-  global _prop_data
   root_path = sys.argv[1]
   pattern = os.path.join(root_path, "Unihan*.txt")
   paths = glob.glob(pattern)

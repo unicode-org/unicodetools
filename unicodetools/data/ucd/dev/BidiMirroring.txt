@@ -1,6 +1,6 @@
 # BidiMirroring-17.0.0.txt
-# Date: 2024-01-30
-# © 2024 Unicode®, Inc.
+# Date: 2025-08-01
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -463,6 +463,8 @@
 2E5A; 2E59 # TOP HALF RIGHT PARENTHESIS
 2E5B; 2E5C # BOTTOM HALF LEFT PARENTHESIS
 2E5C; 2E5B # BOTTOM HALF RIGHT PARENTHESIS
+2E62; 2E63 # LEFT PARENTHESIS WITH MIDDLE RING
+2E63; 2E62 # RIGHT PARENTHESIS WITH MIDDLE RING
 3008; 3009 # LEFT ANGLE BRACKET
 3009; 3008 # RIGHT ANGLE BRACKET
 300A; 300B # LEFT DOUBLE ANGLE BRACKET
