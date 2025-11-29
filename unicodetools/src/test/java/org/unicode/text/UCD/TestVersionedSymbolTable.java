@@ -22,12 +22,14 @@ public class TestVersionedSymbolTable {
     @BeforeEach
     void setUp() {
         oldDefault = UnicodeSet.getDefaultXSymbolTable();
+        System.out.println("Setting default XSymbolTable to VersionedSymbolTable.forDevelopment…");
         UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
     }
 
     @AfterEach
     void tearDown() {
         UnicodeSet.setDefaultXSymbolTable(oldDefault);
+        System.out.println("Restored default XSymbolTable.");
     }
 
     @Test
