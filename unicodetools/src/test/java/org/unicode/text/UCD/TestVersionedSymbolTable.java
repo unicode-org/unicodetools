@@ -260,6 +260,7 @@ public class TestVersionedSymbolTable {
     /** Helper class for testing multiple properties of the same UnicodeSet. */
     private static class UnicodeSetTestFluent {
         UnicodeSetTestFluent(String expression) {
+            System.err.println("Constructing tested UnicodeSet from expression " + expression);
             this.expression = expression;
             ParsePosition parsePosition = new ParsePosition(0);
             try {
@@ -285,6 +286,7 @@ public class TestVersionedSymbolTable {
 
         public <T extends CharSequence> UnicodeSetTestFluent isEqualToUnicodeSet(
                 String expectedExpression) {
+            System.err.println("Constructing comparison UnicodeSet from expression " + expression);
             final var expected = new UnicodeSet(expectedExpression);
             assertTrue(
                     set.containsAll(expected),
