@@ -69,6 +69,7 @@ public class UcdPropertyValues {
         V15_1("15.1"),
         V16_0("16.0"),
         V17_0("17.0"),
+        V18_0("18.0"),
         Unassigned("NA");
         private final PropertyNames<Age_Values> names;
 
@@ -94,6 +95,7 @@ public class UcdPropertyValues {
         }
     }
 
+    // Arabic_Shaping_Schematic_Name
     public enum Bidi_Class_Values implements Named {
         Arabic_Letter("AL"),
         Arabic_Number("AN"),
@@ -194,6 +196,7 @@ public class UcdPropertyValues {
         Arabic_Presentation_Forms_A("Arabic_PF_A", "Arabic_Presentation_Forms-A"),
         Arabic_Presentation_Forms_B("Arabic_PF_B"),
         Arabic_Supplement("Arabic_Sup"),
+        Archaic_Cuneiform_Numerals("Archaic_Cuneiform_Numerals"),
         Armenian("Armenian"),
         Arrows("Arrows"),
         Basic_Latin("ASCII"),
@@ -326,6 +329,8 @@ public class UcdPropertyValues {
         Hangul_Jamo_Extended_A("Jamo_Ext_A"),
         Hangul_Jamo_Extended_B("Jamo_Ext_B"),
         Javanese("Javanese"),
+        Jurchen("Jurchen"),
+        Jurchen_Radicals("Jurchen_Radicals"),
         Kaithi("Kaithi"),
         Kaktovik_Numerals("Kaktovik_Numerals"),
         Kana_Extended_A("Kana_Ext_A"),
@@ -448,6 +453,7 @@ public class UcdPropertyValues {
         Runic("Runic"),
         Samaritan("Samaritan"),
         Saurashtra("Saurashtra"),
+        Seal("Seal"),
         Sharada("Sharada"),
         Sharada_Supplement("Sharada_Sup"),
         Shavian("Shavian"),
@@ -610,7 +616,106 @@ public class UcdPropertyValues {
         Above_Right("232", "AR"),
         Double_Below("233", "DB"),
         Double_Above("234", "DA"),
-        Iota_Subscript("240", "IS");
+        Iota_Subscript("240", "IS"),
+        CCC37("37"),
+        CCC38("38"),
+        CCC39("39"),
+        CCC40("40"),
+        CCC41("41"),
+        CCC42("42"),
+        CCC43("43"),
+        CCC44("44"),
+        CCC45("45"),
+        CCC46("46"),
+        CCC47("47"),
+        CCC48("48"),
+        CCC49("49"),
+        CCC50("50"),
+        CCC51("51"),
+        CCC52("52"),
+        CCC53("53"),
+        CCC54("54"),
+        CCC55("55"),
+        CCC56("56"),
+        CCC57("57"),
+        CCC58("58"),
+        CCC59("59"),
+        CCC60("60"),
+        CCC61("61"),
+        CCC62("62"),
+        CCC63("63"),
+        CCC64("64"),
+        CCC65("65"),
+        CCC66("66"),
+        CCC67("67"),
+        CCC68("68"),
+        CCC69("69"),
+        CCC70("70"),
+        CCC71("71"),
+        CCC72("72"),
+        CCC73("73"),
+        CCC74("74"),
+        CCC75("75"),
+        CCC76("76"),
+        CCC77("77"),
+        CCC78("78"),
+        CCC79("79"),
+        CCC80("80"),
+        CCC81("81"),
+        CCC82("82"),
+        CCC83("83"),
+        CCC85("85"),
+        CCC86("86"),
+        CCC87("87"),
+        CCC88("88"),
+        CCC89("89"),
+        CCC90("90"),
+        CCC92("92"),
+        CCC93("93"),
+        CCC94("94"),
+        CCC95("95"),
+        CCC96("96"),
+        CCC97("97"),
+        CCC98("98"),
+        CCC99("99"),
+        CCC100("100"),
+        CCC101("101"),
+        CCC102("102"),
+        CCC104("104"),
+        CCC105("105"),
+        CCC106("106"),
+        CCC108("108"),
+        CCC109("109"),
+        CCC110("110"),
+        CCC111("111"),
+        CCC112("112"),
+        CCC113("113"),
+        CCC114("114"),
+        CCC115("115"),
+        CCC116("116"),
+        CCC117("117"),
+        CCC119("119"),
+        CCC120("120"),
+        CCC121("121"),
+        CCC123("123"),
+        CCC124("124"),
+        CCC125("125"),
+        CCC126("126"),
+        CCC127("127"),
+        CCC128("128"),
+        CCC131("131"),
+        CCC134("134"),
+        CCC135("135"),
+        CCC136("136"),
+        CCC137("137"),
+        CCC138("138"),
+        CCC139("139"),
+        CCC140("140"),
+        CCC141("141"),
+        CCC142("142"),
+        CCC143("143"),
+        CCC144("144"),
+        CCC145("145");
         private final PropertyNames<Canonical_Combining_Class_Values> names;
 
         private Canonical_Combining_Class_Values(String shortName, String... otherNames) {
@@ -689,8 +794,9 @@ public class UcdPropertyValues {
         }
     }
 
-    // Do_Not_Emit_Preferred
-    public enum Do_Not_Emit_Type_Values implements Named {
+    // Do_Not_Emit_Dispreferred
+    public enum Do_Not_Emit_Dispreferred_Type_Values implements Named {
+        None("None"),
         Indic_Atomic_Consonant("Indic_Atomic_Consonant"),
         Indic_Consonant_Conjunct("Indic_Consonant_Conjunct"),
         Indic_Vowel_Letter("Indic_Vowel_Letter"),
@@ -703,7 +809,54 @@ public class UcdPropertyValues {
         Precomposed_Form("Precomposed_Form"),
         Deprecated("Deprecated"),
         Discouraged("Discouraged"),
-        Preferred_Spelling("Preferred_Spelling");
+        Preferred_Spelling("Preferred_Spelling"),
+        Arabic_Tashkil("Arabic_Tashkil");
+        private final PropertyNames<Do_Not_Emit_Dispreferred_Type_Values> names;
+
+        private Do_Not_Emit_Dispreferred_Type_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Do_Not_Emit_Dispreferred_Type_Values>(
+                            Do_Not_Emit_Dispreferred_Type_Values.class,
+                            this,
+                            shortName,
+                            otherNames);
+        }
+
+        @Override
+        public PropertyNames<Do_Not_Emit_Dispreferred_Type_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Do_Not_Emit_Dispreferred_Type_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Do_Not_Emit_Dispreferred_Type_Values.class);
+
+        public static Do_Not_Emit_Dispreferred_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
+    // Do_Not_Emit_Preferred
+    public enum Do_Not_Emit_Type_Values implements Named {
+        None("None"),
+        Indic_Atomic_Consonant("Indic_Atomic_Consonant"),
+        Indic_Consonant_Conjunct("Indic_Consonant_Conjunct"),
+        Indic_Vowel_Letter("Indic_Vowel_Letter"),
+        Bengali_Khanda_Ta("Bengali_Khanda_Ta"),
+        Malayalam_Chillu("Malayalam_Chillu"),
+        Tamil_Shrii("Tamil_Shrii"),
+        Dotless_Form("Dotless_Form"),
+        Hamza_Form("Hamza_Form"),
+        Precomposed_Hieroglyph("Precomposed_Hieroglyph"),
+        Precomposed_Form("Precomposed_Form"),
+        Deprecated("Deprecated"),
+        Discouraged("Discouraged"),
+        Preferred_Spelling("Preferred_Spelling"),
+        Arabic_Tashkil("Arabic_Tashkil");
         private final PropertyNames<Do_Not_Emit_Type_Values> names;
 
         private Do_Not_Emit_Type_Values(String shortName, String... otherNames) {
@@ -766,6 +919,7 @@ public class UcdPropertyValues {
     // Emoji_DCM
     // Emoji_KDDI
     // Emoji_SB
+    // emoji_variation_sequence
     // Equivalent_Unified_Ideograph
     // FC_NFKC_Closure
     public enum General_Category_Values implements Named {
@@ -941,7 +1095,7 @@ public class UcdPropertyValues {
     }
 
     public enum Identifier_Type_Values implements Named {
-        Not_Character("nc", "not_chars"),
+        Not_Character("nc", "not_chars", "Not_Characters"),
         Deprecated("d"),
         Default_Ignorable("di"),
         Not_NFKC("nn"),
@@ -981,8 +1135,8 @@ public class UcdPropertyValues {
     }
 
     public enum Idn_2008_Values implements Named {
-        NV8("nv8"),
-        XV8("xv8"),
+        NV8("NV8"),
+        XV8("XV8"),
         na("na");
         private final PropertyNames<Idn_2008_Values> names;
 
@@ -1045,6 +1199,38 @@ public class UcdPropertyValues {
         }
     }
 
+    public enum IDNA2008_Category_Values implements Named {
+        Protocol_Valid("PVALID"),
+        Contextual_Rule_Required_Join_Controls("CONTEXTJ"),
+        Contextual_Rule_Required_Other("CONTEXTO"),
+        Disallowed("DISALLOWED"),
+        Unassigned("UNASSIGNED");
+        private final PropertyNames<IDNA2008_Category_Values> names;
+
+        private IDNA2008_Category_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<IDNA2008_Category_Values>(
+                            IDNA2008_Category_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<IDNA2008_Category_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<IDNA2008_Category_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(IDNA2008_Category_Values.class);
+
+        public static IDNA2008_Category_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     public enum Indic_Conjunct_Break_Values implements Named {
         Consonant("Consonant"),
         Extend("Extend"),
@@ -1082,7 +1268,7 @@ public class UcdPropertyValues {
         Bottom_And_Right("Bottom_And_Right"),
         Left("Left"),
         Left_And_Right("Left_And_Right"),
-        NA("NA"),
+        Not_Applicable("NA"),
         Overstruck("Overstruck"),
         Right("Right"),
         Top("Top"),
@@ -1092,7 +1278,8 @@ public class UcdPropertyValues {
         Top_And_Left("Top_And_Left"),
         Top_And_Left_And_Right("Top_And_Left_And_Right"),
         Top_And_Right("Top_And_Right"),
-        Visual_Order_Left("Visual_Order_Left");
+        Visual_Order_Left("Visual_Order_Left"),
+        Invisible("Invisible");
         private final PropertyNames<Indic_Positional_Category_Values> names;
 
         private Indic_Positional_Category_Values(String shortName, String... otherNames) {
@@ -1156,7 +1343,8 @@ public class UcdPropertyValues {
         Visarga("Visarga"),
         Vowel("Vowel"),
         Vowel_Dependent("Vowel_Dependent"),
-        Vowel_Independent("Vowel_Independent");
+        Vowel_Independent("Vowel_Independent"),
+        Consonant_Repha("Consonant_Repha");
         private final PropertyNames<Indic_Syllabic_Category_Values> names;
 
         private Indic_Syllabic_Category_Values(String shortName, String... otherNames) {
@@ -1273,6 +1461,16 @@ public class UcdPropertyValues {
         Beh("Beh"),
         Beth("Beth"),
         Burushaski_Yeh_Barree("Burushaski_Yeh_Barree"),
+        Crown_Ain("Crown_Ain"),
+        Crown_Beh("Crown_Beh"),
+        Crown_Feh("Crown_Feh"),
+        Crown_Hah("Crown_Hah"),
+        Crown_Heh("Crown_Heh"),
+        Crown_Kaf("Crown_Kaf"),
+        Crown_Meem("Crown_Meem"),
+        Crown_Sad("Crown_Sad"),
+        Crown_Seen("Crown_Seen"),
+        Crown_Tah("Crown_Tah"),
         Dal("Dal"),
         Dalath_Rish("Dalath_Rish"),
         E("E"),
@@ -1369,7 +1567,21 @@ public class UcdPropertyValues {
         Yudh("Yudh"),
         Yudh_He("Yudh_He"),
         Zain("Zain"),
-        Zhain("Zhain");
+        Zhain("Zhain"),
+        BAA("BAA"),
+        FA("FA"),
+        HAA("HAA"),
+        HA_GOAL("HA_GOAL"),
+        HA("HA"),
+        CAF("CAF"),
+        KNOTTED_HA("KNOTTED_HA"),
+        RA("RA"),
+        SWASH_CAF("SWASH_CAF"),
+        HAMZAH_ON_HA_GOAL("HAMZAH_ON_HA_GOAL"),
+        TAA_MARBUTAH("TAA_MARBUTAH"),
+        YA_BARREE("YA_BARREE"),
+        YA("YA"),
+        ALEF_MAQSURAH("ALEF_MAQSURAH");
         private final PropertyNames<Joining_Group_Values> names;
 
         private Joining_Group_Values(String shortName, String... otherNames) {
@@ -1449,6 +1661,7 @@ public class UcdPropertyValues {
     // kDaeJaweon
     // kDefinition
     // kEACC
+    // kEH_AltSeq
     // kEH_Cat
     public enum kEH_Core_Values implements Named {
         Core("C"),
@@ -1534,6 +1747,10 @@ public class UcdPropertyValues {
     // kJis1
     // kJIS0213
     // kJoyoKanji
+    // kJURC_NCReading
+    // kJURC_Numeric
+    // kJURC_RSUnicode
+    // kJURC_Src
     // kKangXi
     // kKarlgren
     // kKorean
@@ -1551,33 +1768,41 @@ public class UcdPropertyValues {
     // kMojiJoho
     // kMorohashi
     // kNelson
+    // kNSHU_DubenSrc
+    // kNSHU_Reading
     // kOtherNumeric
     // kPhonetic
     // kPrimaryNumeric
     // kPseudoGB1
-    // kReading
     // kRSAdobe_Japan1_6
     // kRSJapanese
     // kRSKangXi
     // kRSKanWa
     // kRSKorean
     // kRSMerged
-    // kRSTUnicode
     // kRSUnicode
     // kSBGY
+    // kSEAL_CCZSrc
+    // kSEAL_DYCSrc
+    // kSEAL_MCJK
+    // kSEAL_QJZSrc
+    // kSEAL_Rad
+    // kSEAL_THXSrc
     // kSemanticVariant
     // kSimplifiedVariant
     // kSMSZD2003Index
     // kSMSZD2003Readings
     // kSpecializedSemanticVariant
     // kSpoofingVariant
-    // kSrc_NushuDuben
     // kStrange
     // kTaiwanTelegraph
     // kTang
+    // kTayNumeric
     // kTGH
     // kTGHZ2013
     // kTGT_MergedSrc
+    // kTGT_Numeric
+    // kTGT_RSUnicode
     // kTotalStrokes
     // kTraditionalVariant
     // kUnihanCore2020
@@ -1610,6 +1835,7 @@ public class UcdPropertyValues {
         Glue("GL"),
         H2("H2"),
         H3("H3"),
+        Unambiguous_Hyphen("HH"),
         Hebrew_Letter("HL"),
         Hyphen("HY"),
         Ideographic("ID"),
@@ -1664,10 +1890,105 @@ public class UcdPropertyValues {
     }
 
     // Lowercase_Mapping
+    public enum Math_Class_Values implements Named {
+        None("None"),
+        Normal("N"),
+        Alphabetic("A"),
+        Binary("B"),
+        Closing("C"),
+        Diacritic("D"),
+        Fence("F"),
+        Glyph_Part("G"),
+        Invisible("I"),
+        Large("L"),
+        Opening("O"),
+        Punctuation("P"),
+        Relation("R", "R?"),
+        Space("S"),
+        Unary("U"),
+        Vary("V"),
+        Special("X");
+        private final PropertyNames<Math_Class_Values> names;
+
+        private Math_Class_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Math_Class_Values>(
+                            Math_Class_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Math_Class_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Math_Class_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Math_Class_Values.class);
+
+        public static Math_Class_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
+    public enum Math_Class_Ex_Values implements Named {
+        None("None"),
+        Normal("N"),
+        Alphabetic("A"),
+        Binary("B"),
+        Closing("C"),
+        Diacritic("D"),
+        Fence("F"),
+        Glyph_Part("G"),
+        Large("L"),
+        Opening("O"),
+        Punctuation("P"),
+        Relation("R", "R?"),
+        Space("S"),
+        Unary("U"),
+        Vary("V"),
+        Special("X");
+        private final PropertyNames<Math_Class_Ex_Values> names;
+
+        private Math_Class_Ex_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Math_Class_Ex_Values>(
+                            Math_Class_Ex_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Math_Class_Ex_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Math_Class_Ex_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Math_Class_Ex_Values.class);
+
+        public static Math_Class_Ex_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
+    // Math_Descriptive_Comments
+    // Math_Entity_Name
+    // Math_Entity_Set
     // Name
     // Name_Alias
     // Named_Sequences
     // Named_Sequences_Prov
+    // Names_List_Alias
+    // Names_List_Comment
+    // Names_List_Cross_Ref
+    // Names_List_Subheader
+    // Names_List_Subheader_Notice
     public enum NFC_Quick_Check_Values implements Named {
         Maybe("M"),
         No("N"),
@@ -1788,6 +2109,10 @@ public class UcdPropertyValues {
         }
     }
 
+    // Non_Unihan_Numeric_Value
+    // normalization_correction_corrected
+    // normalization_correction_original
+    // normalization_correction_version
     public enum Numeric_Type_Values implements Named {
         Decimal("De"),
         Digit("Di"),
@@ -1850,6 +2175,39 @@ public class UcdPropertyValues {
                 PropertyNames.getNameToEnums(Other_Joining_Type_Values.class);
 
         public static Other_Joining_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
+    public enum RGI_Emoji_Qualification_Values implements Named {
+        None("None"),
+        Fully_Qualified("FQE"),
+        Minimally_Qualified("MQE"),
+        Unqualified("UQE"),
+        Standalone_Component("component"),
+        Non_Fully_Qualified("Non_Fully_Qualified");
+        private final PropertyNames<RGI_Emoji_Qualification_Values> names;
+
+        private RGI_Emoji_Qualification_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<RGI_Emoji_Qualification_Values>(
+                            RGI_Emoji_Qualification_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<RGI_Emoji_Qualification_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<RGI_Emoji_Qualification_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(RGI_Emoji_Qualification_Values.class);
+
+        public static RGI_Emoji_Qualification_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
@@ -1918,6 +2276,7 @@ public class UcdPropertyValues {
         Old_Hungarian("Hung"),
         Old_Italic("Ital"),
         Javanese("Java"),
+        Jurchen("Jurc"),
         Kayah_Li("Kali"),
         Katakana("Kana"),
         Kawi("Kawi"),
@@ -1971,6 +2330,7 @@ public class UcdPropertyValues {
         Old_Uyghur("Ougr"),
         Palmyrene("Palm"),
         Pau_Cin_Hau("Pauc"),
+        Proto_Cuneiform("Pcun"),
         Old_Permic("Perm"),
         Phags_Pa("Phag"),
         Inscriptional_Pahlavi("Phli"),
@@ -1984,6 +2344,7 @@ public class UcdPropertyValues {
         Samaritan("Samr"),
         Old_South_Arabian("Sarb"),
         Saurashtra("Saur"),
+        Seal("Seal"),
         SignWriting("Sgnw"),
         Shavian("Shaw"),
         Sharada("Shrd"),
