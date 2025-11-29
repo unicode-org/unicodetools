@@ -289,7 +289,7 @@ public class TestVersionedSymbolTable {
                 String expectedExpression) {
             System.err.println("Constructing comparison UnicodeSet from expression " + expectedExpression);
             final var expected = new UnicodeSet(expectedExpression);
-            System.err.println("Comparison UnicodeSet is " + expected);
+            System.err.println("Comparison UnicodeSet is " + expected.cloneAsThawed().complement().complement());
             assertTrue(
                     set.containsAll(expected),
                     "Expected "

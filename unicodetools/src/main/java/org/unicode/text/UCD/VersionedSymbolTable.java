@@ -82,8 +82,10 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
             String leftHandSide, String propertyPredicate) {
         final var mutableLeftHandSide = new StringBuilder(leftHandSide);
         final var queriedVersion = parseVersionQualifier(mutableLeftHandSide);
+        System.err.println("queriedVersion = " + queriedVersion);
         final String unqualifiedLeftHandSide = mutableLeftHandSide.toString();
         final var deducedQueriedVersion = queriedVersion == null ? implicitVersion : queriedVersion;
+        System.err.println("deducedQueriedVersion = " + deducedQueriedVersion);
         checkLoaded(deducedQueriedVersion);
         final var queriedProperties = IndexUnicodeProperties.make(deducedQueriedVersion);
 
@@ -129,12 +131,14 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         UnicodeProperty queriedProperty = queriedProperties.getProperty(unqualifiedLeftHandSide);
         if (queriedProperty == null && unversionedExtensions != null) {
             queriedProperty = unversionedExtensions.getProperty(unqualifiedLeftHandSide);
+            System.err.println("Falling back to unversionedExtensions!");
         }
         if (queriedProperty == null) {
             throw new IllegalArgumentException(
                     "Invalid binary-query-expression; could not find property "
                             + unqualifiedLeftHandSide);
         }
+        System.err.println(unqualifiedLeftHandSide + "(U+2E62) = " + queriedProperty.getValue(0x2E62));
         final boolean isAge = queriedProperty.getName().equals("Age");
         final boolean isName = queriedProperty.getName().equals("Name");
         final boolean isPropertyComparison =
