@@ -813,6 +813,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         @Override
+        protected String _getValue(String string) {
+            return _getRawUnicodeMap().get(string);
+        }
+
+        @Override
         public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
             if (baseVersionProperties == null) {
                 return super.getSet(matcher, result);

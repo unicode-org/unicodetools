@@ -51,11 +51,15 @@ public class TestTestUnicodeInvariants {
                 continue;
             }
             final String nameWithoutExtension = filename.substring(0, filename.length() - 4);
-            rc +=
+            final int errors =
                     TestUnicodeInvariants.testInvariants(
                             "AdditionComparisons/" + filename,
                             "addition-comparisons-" + nameWithoutExtension,
                             true);
+            if (errors != 0) {
+                System.err.println(errors + " errors in " + filename);
+            }
+            rc += errors;
         }
         assertEquals(0, rc, "TestUnicodeInvariants.testInvariants(addition-comparisons) failed");
     }
