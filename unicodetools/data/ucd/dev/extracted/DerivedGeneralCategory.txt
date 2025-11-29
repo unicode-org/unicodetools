@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-28, 16:58:14 GMT
+# Date: 2025-11-28, 23:55:15 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -632,7 +632,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1DA8C..1DA9A  ; Cn #  [15] <reserved-1DA8C>..<reserved-1DA9A>
 1DAA0         ; Cn #       <reserved-1DAA0>
 1DAB0..1DEFF  ; Cn # [1104] <reserved-1DAB0>..<reserved-1DEFF>
-1DF57..1DFCF  ; Cn # [121] <reserved-1DF57>..<reserved-1DFCF>
+1DF5A..1DFCC  ; Cn # [115] <reserved-1DF5A>..<reserved-1DFCC>
 1E007         ; Cn #       <reserved-1E007>
 1E019..1E01A  ; Cn #   [2] <reserved-1E019>..<reserved-1E01A>
 1E022         ; Cn #       <reserved-1E022>
@@ -750,7 +750,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801895
+# Total code points: 801889
 
 # ================================================
 
@@ -2091,10 +2091,10 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1DF49         ; Ll #       LATIN SMALL LETTER BARRED K
 1DF4B..1DF4C  ; Ll #   [2] LATIN SMALL LETTER BARRED M..LATIN SMALL LETTER BARRED M WITH HOOK
 1DF4E..1DF50  ; Ll #   [3] LATIN SMALL LETTER BARRED N..LATIN SMALL LETTER TURNED R WITH STROKE
-1DF52..1DF56  ; Ll #   [5] LATIN SMALL LETTER BARRED V..LATIN LETTER GLOTTAL STOP WITH DOUBLE STROKE
+1DF52..1DF59  ; Ll #   [8] LATIN SMALL LETTER BARRED V..LATIN SMALL LETTER SPLIT U
 1E922..1E943  ; Ll #  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2328
+# Total code points: 2331
 
 # ================================================
 
@@ -2192,14 +2192,14 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 1AFF0..1AFF3  ; Lm #   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF5..1AFFB  ; Lm #   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; Lm #   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
-1DFD0..1DFFF  ; Lm #  [48] LATIN SUBSCRIPT SMALL LETTER GAMMA..MODIFIER LETTER SMALL T WITH HOOK AND RETROFLEX HOOK
+1DFCD..1DFFF  ; Lm #  [51] MODIFIER LETTER SMALL TURNED R WITH MID-HEIGHT LEFT HOOK..MODIFIER LETTER SMALL T WITH HOOK AND RETROFLEX HOOK
 1E030..1E06D  ; Lm #  [62] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
 1E137..1E13D  ; Lm #   [7] NYIAKENG PUACHUE HMONG SIGN FOR PERSON..NYIAKENG PUACHUE HMONG SYLLABLE LENGTHENER
 1E4EB         ; Lm #       NAG MUNDARI SIGN OJOD
 1E6FF         ; Lm #       TAI YO XAM LAI
 1E94B         ; Lm #       ADLAM NASALIZATION MARK
 
-# Total code points: 470
+# Total code points: 473
 
 # ================================================
 
