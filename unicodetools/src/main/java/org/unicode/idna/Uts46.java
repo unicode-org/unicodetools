@@ -92,7 +92,7 @@ public class Uts46 extends Idna {
     // UnicodeSetUtilities.parseUnicodeSet("[[:any:]" +
     // " - [:c:] - [:z:]" +
     // " - [:Block=Ideographic_Description_Characters:]" +
-    // "- [:ascii:] - [\uFFFC \uFFFD]" +
+    // "- [:Block=ASCII:] - [\uFFFC \uFFFD]" +
     // " [\\u002D\\u002Ea-zA-Z0-9]" +
     // "]", TableStyle.simple)
     // .freeze();

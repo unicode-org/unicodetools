@@ -1,0 +1,33 @@
+# Phonetic characters: Subscript w y z and ɣ
+# https://github.com/unicode-org/utc-release-management/issues/157
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Propertywise [\x{209D} \N{LATIN SUBSCRIPT SMALL LETTER W}
+              \x{209E} \N{LATIN SUBSCRIPT SMALL LETTER Y}
+              \x{209F} \N{LATIN SUBSCRIPT SMALL LETTER Z}]
+           : [wyz]
+           : [WYZ]
+CorrespondTo [\x{2093} ₓ \N{LATIN SUBSCRIPT SMALL LETTER X}]
+           : [x]
+           : [X]
+
+# Comparing against ₔ rather than ₓ so we don’t need to ignore the
+# East_Asian_Width of x (Narrow, whereas ə and ɣ are Neutral).
+Ignoring Block:
+Propertywise [\x{1DFD0}   \N{LATIN SUBSCRIPT SMALL LETTER GAMMA}]
+           : [ \x{0263} ɣ \N{LATIN SMALL LETTER GAMMA}]
+           : [ \x{0194} Ɣ \N{LATIN CAPITAL LETTER GAMMA}]
+CorrespondTo [\x{2094} ₔ \N{LATIN SUBSCRIPT SMALL LETTER SCHWA}]
+           : [\x{0259} ə \N{LATIN SMALL LETTER SCHWA}]
+           : [\x{018F} \N{LATIN CAPITAL LETTER SCHWA}]
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

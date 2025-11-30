@@ -1,6 +1,6 @@
-# IndicPositionalCategory-17.0.0.txt
-# Date: 2024-11-14, 19:48:32 GMT
-# © 2024 Unicode®, Inc.
+# IndicPositionalCategory-18.0.0.txt
+# Date: 2025-11-20, 23:16:53 GMT
+# © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -127,9 +127,9 @@
 # Property: Indic_Positional_Category
 #
 #  All code points not explicitly listed for Indic_Positional_Category
-#  have the value NA (not applicable).
+#  have the value Not_Applicable (NA).
 #
-# @missing: 0000..10FFFF; NA
+# @missing: 0000..10FFFF; Not_Applicable
 
 # ------------------------------------------------
 
@@ -415,6 +415,7 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 0951          ; Top # Mn       DEVANAGARI STRESS SIGN UDATTA
 0955          ; Top # Mn       DEVANAGARI VOWEL SIGN CANDRA LONG E
 0981          ; Top # Mn       BENGALI SIGN CANDRABINDU
+0984          ; Top # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 09FE          ; Top # Mn       BENGALI SANDHI MARK
 0A01..0A02    ; Top # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A47..0A48    ; Top # Mn   [2] GURMUKHI VOWEL SIGN EE..GURMUKHI VOWEL SIGN AI
@@ -426,7 +427,7 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 0AFA..0AFF    ; Top # Mn   [6] GUJARATI SIGN SUKUN..GUJARATI SIGN TWO-CIRCLE NUKTA ABOVE
 0B01          ; Top # Mn       ORIYA SIGN CANDRABINDU
 0B3F          ; Top # Mn       ORIYA VOWEL SIGN I
-0B53..0B56    ; Top # Mn   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
+0B55..0B56    ; Top # Mn   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
 0B82          ; Top # Mn       TAMIL SIGN ANUSVARA
 0BC0          ; Top # Mn       TAMIL VOWEL SIGN II
 0BCD          ; Top # Mn       TAMIL SIGN VIRAMA
@@ -591,7 +592,6 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11A01         ; Top # Mn       ZANABAZAR SQUARE VOWEL SIGN I
 11A04..11A09  ; Top # Mn   [6] ZANABAZAR SQUARE VOWEL SIGN E..ZANABAZAR SQUARE VOWEL SIGN REVERSED I
 11A35..11A38  ; Top # Mn   [4] ZANABAZAR SQUARE SIGN CANDRABINDU..ZANABAZAR SQUARE SIGN ANUSVARA
-11A3A         ; Top # Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
 11A51         ; Top # Mn       SOYOMBO VOWEL SIGN I
 11A54..11A56  ; Top # Mn   [3] SOYOMBO VOWEL SIGN E..SOYOMBO VOWEL SIGN OE
 11A84..11A89  ; Top # Lo   [6] SOYOMBO SIGN JIHVAMULIYA..SOYOMBO CLUSTER-INITIAL LETTER SA

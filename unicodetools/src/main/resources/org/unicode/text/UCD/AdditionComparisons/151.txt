@@ -1,0 +1,18 @@
+# TRIPLE FLAT (MUSIC SYMBOL)
+# https://github.com/unicode-org/utc-release-management/issues/151
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block:
+Propertywise [\x{1D260} \N{MUSICAL SYMBOL TRIPLE FLAT}
+              𝄫 \N{MUSICAL SYMBOL DOUBLE FLAT}] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
