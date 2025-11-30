@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2025-11-30, 03:21:17 GMT
+# Date: 2025-11-30, 04:10:58 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -43937,6 +43937,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1F1AB         ; SQUARED UHD
 1F1AC         ; SQUARED VOD
 1F1AD         ; MASK WORK SYMBOL
+1F1AE         ; TOMOBIKI SYMBOL
 1F1E6         ; REGIONAL INDICATOR SYMBOL LETTER A
 1F1E7         ; REGIONAL INDICATOR SYMBOL LETTER B
 1F1E8         ; REGIONAL INDICATOR SYMBOL LETTER C
@@ -45260,6 +45261,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1F7D7         ; CIRCLED SQUARE
 1F7D8         ; NEGATIVE CIRCLED SQUARE
 1F7D9         ; NINE POINTED WHITE STAR
+1F7DA         ; BLACK CIRCLE WITH WHITE VERTICAL BAR
 1F7DB         ; BULLET IN DOUBLE CIRCLE
 1F7E0         ; LARGE ORANGE CIRCLE
 1F7E1         ; LARGE YELLOW CIRCLE
@@ -46535,6 +46537,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172761
+# Total code points: 172763
 
 # EOF
