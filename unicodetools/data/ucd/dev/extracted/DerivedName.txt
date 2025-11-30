@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2025-11-30, 01:40:22 GMT
+# Date: 2025-11-30, 03:21:17 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -40499,6 +40499,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1D25E         ; MUSICAL SYMBOL FINGERED TREMOLO-5
 1D25F         ; MUSICAL SYMBOL COMBINING BUZZ ROLL STEM
 1D260         ; MUSICAL SYMBOL TRIPLE FLAT
+1D261         ; MUSICAL SYMBOL SUSPENSION
 1D262         ; MUSICAL SYMBOL HEAVY DOUBLE BARLINE
 1D263         ; MUSICAL SYMBOL SYSTEM DIVIDER
 1D264         ; MUSICAL SYMBOL NIENTE
@@ -46534,6 +46535,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172760
+# Total code points: 172761
 
 # EOF

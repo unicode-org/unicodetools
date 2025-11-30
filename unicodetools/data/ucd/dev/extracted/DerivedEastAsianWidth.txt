@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-18.0.0.txt
-# Date: 2025-11-30, 01:40:20 GMT
+# Date: 2025-11-30, 03:21:15 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1947,8 +1947,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 1D25B..1D25C  ; N # Mn   [2] MUSICAL SYMBOL COMBINING TREMOLO-4..MUSICAL SYMBOL COMBINING TREMOLO-5
 1D25D..1D25E  ; N # So   [2] MUSICAL SYMBOL FINGERED TREMOLO-4..MUSICAL SYMBOL FINGERED TREMOLO-5
 1D25F         ; N # Mc       MUSICAL SYMBOL COMBINING BUZZ ROLL STEM
-1D260         ; N # So       MUSICAL SYMBOL TRIPLE FLAT
-1D262..1D27F  ; N # So  [30] MUSICAL SYMBOL HEAVY DOUBLE BARLINE..MUSICAL SYMBOL ARPEGGIATO UP WITH ARROW
+1D260..1D27F  ; N # So  [32] MUSICAL SYMBOL TRIPLE FLAT..MUSICAL SYMBOL ARPEGGIATO UP WITH ARROW
 1D280..1D281  ; N # Mc   [2] MUSICAL SYMBOL COMBINING STEM BOW BEHIND BRIDGE..MUSICAL SYMBOL COMBINING STEM BOW ON TOP OF BRIDGE
 1D2C0..1D2D3  ; N # No  [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3  ; N # No  [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
@@ -2162,7 +2161,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 758982 code points not listed here.
+# The above property value applies to 758981 code points not listed here.
 # Total code points: 791284
 
 # ================================================
