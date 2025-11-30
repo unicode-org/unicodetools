@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2025-11-30, 00:04:02 GMT
+# Date: 2025-11-30, 00:23:45 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1158,6 +1158,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 1D25D..1D25E  ; L # So   [2] MUSICAL SYMBOL FINGERED TREMOLO-4..MUSICAL SYMBOL FINGERED TREMOLO-5
 1D25F         ; L # Mc       MUSICAL SYMBOL COMBINING BUZZ ROLL STEM
 1D260         ; L # So       MUSICAL SYMBOL TRIPLE FLAT
+1D280..1D281  ; L # Mc   [2] MUSICAL SYMBOL COMBINING STEM BOW BEHIND BRIDGE..MUSICAL SYMBOL COMBINING STEM BOW ON TOP OF BRIDGE
 1D2C0..1D2D3  ; L # No  [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3  ; L # No  [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
 1D360..1D378  ; L # No  [25] COUNTING ROD UNIT DIGIT ONE..TALLY MARK FIVE
@@ -1248,7 +1249,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 797714 code points not listed here.
+# The above property value applies to 797712 code points not listed here.
 # Total code points: 1095372
 
 # ================================================

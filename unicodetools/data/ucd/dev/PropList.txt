@@ -1,5 +1,5 @@
 # PropList-18.0.0.txt
-# Date: 2025-11-29, 21:14:10 GMT
+# Date: 2025-11-30, 00:24:11 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1351,9 +1351,10 @@ FF9E..FF9F    ; Other_Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND
 1D16D..1D172  ; Other_Grapheme_Extend # Mc   [6] MUSICAL SYMBOL COMBINING AUGMENTATION DOT..MUSICAL SYMBOL COMBINING FLAG-5
 1D250..1D252  ; Other_Grapheme_Extend # Mc   [3] MUSICAL SYMBOL COMBINING FLAG-6..MUSICAL SYMBOL COMBINING FLAG-8
 1D25F         ; Other_Grapheme_Extend # Mc       MUSICAL SYMBOL COMBINING BUZZ ROLL STEM
+1D280..1D281  ; Other_Grapheme_Extend # Mc   [2] MUSICAL SYMBOL COMBINING STEM BOW BEHIND BRIDGE..MUSICAL SYMBOL COMBINING STEM BOW ON TOP OF BRIDGE
 E0020..E007F  ; Other_Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 164
+# Total code points: 166
 
 # ================================================
 

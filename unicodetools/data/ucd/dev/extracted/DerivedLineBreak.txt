@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2025-11-30, 00:04:08 GMT
+# Date: 2025-11-30, 00:23:51 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,8 +71,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 755602 code points not listed here.
-# Total code points: 893070
+# The above property value applies to 755600 code points not listed here.
+# Total code points: 893068
 
 # ================================================
 
@@ -2425,6 +2425,7 @@ FFF9..FFFB    ; CM # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTAT
 1D250..1D252  ; CM # Mc   [3] MUSICAL SYMBOL COMBINING FLAG-6..MUSICAL SYMBOL COMBINING FLAG-8
 1D25B..1D25C  ; CM # Mn   [2] MUSICAL SYMBOL COMBINING TREMOLO-4..MUSICAL SYMBOL COMBINING TREMOLO-5
 1D25F         ; CM # Mc       MUSICAL SYMBOL COMBINING BUZZ ROLL STEM
+1D280..1D281  ; CM # Mc   [2] MUSICAL SYMBOL COMBINING STEM BOW BEHIND BRIDGE..MUSICAL SYMBOL COMBINING STEM BOW ON TOP OF BRIDGE
 1DA00..1DA36  ; CM # Mn  [55] SIGNWRITING HEAD RIM..SIGNWRITING AIR SUCKING IN
 1DA3B..1DA6C  ; CM # Mn  [50] SIGNWRITING MOUTH CLOSED NEUTRAL..SIGNWRITING EXCITEMENT
 1DA75         ; CM # Mn       SIGNWRITING UPPER BODY TILTING FROM HIP JOINTS
@@ -2452,7 +2453,7 @@ E0001         ; CM # Cf       LANGUAGE TAG
 E0020..E007F  ; CM # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; CM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2532
+# Total code points: 2534
 
 # ================================================
 
