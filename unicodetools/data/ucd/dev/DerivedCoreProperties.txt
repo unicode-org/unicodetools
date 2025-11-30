@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2025-11-29, 23:10:00 GMT
+# Date: 2025-11-30, 00:04:05 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -13032,7 +13032,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 1D18C..1D1A9  ; Grapheme_Base # So  [30] MUSICAL SYMBOL RINFORZANDO..MUSICAL SYMBOL DEGREE SLASH
 1D1AE..1D241  ; Grapheme_Base # So [148] MUSICAL SYMBOL PEDAL MARK..GREEK INSTRUMENTAL NOTATION SYMBOL-54
 1D245         ; Grapheme_Base # So       GREEK MUSICAL LEIMMA
-1D253..1D255  ; Grapheme_Base # So   [3] MUSICAL SYMBOL TWO HUNDRED FIFTY-SIXTH REST..MUSICAL SYMBOL ONE THOUSAND TWENTY-FOURTH REST
+1D253..1D25A  ; Grapheme_Base # So   [8] MUSICAL SYMBOL TWO HUNDRED FIFTY-SIXTH REST..MUSICAL SYMBOL SHARP WITH STROKE
 1D25D..1D25E  ; Grapheme_Base # So   [2] MUSICAL SYMBOL FINGERED TREMOLO-4..MUSICAL SYMBOL FINGERED TREMOLO-5
 1D260         ; Grapheme_Base # So       MUSICAL SYMBOL TRIPLE FLAT
 1D2C0..1D2D3  ; Grapheme_Base # No  [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
@@ -13219,7 +13219,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 31350..33479  ; Grapheme_Base # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Grapheme_Base # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 170396
+# Total code points: 170401
 
 # ================================================
 
