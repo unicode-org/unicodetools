@@ -8,6 +8,8 @@ Ignoring Name Age:
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
+Ignoring Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set Math_Class Math_Class_Ex:
+
 # The other 六曜 symbols [L2/24-151R, p. 1] are all propertywise alike.
 Propertywise [\x{25D0} ◐ \N{CIRCLE WITH LEFT HALF BLACK}
               \x{25D1} ◑ \N{CIRCLE WITH RIGHT HALF BLACK}
@@ -24,6 +26,8 @@ CorrespondTo [\x{25D0} ◐ \N{CIRCLE WITH LEFT HALF BLACK}]
           Math                  (No            vs Yes),
           Other_Math            (No            vs Yes),
           Pattern_Syntax        (No            vs Yes)
+
+end Ignoring;
 
 end Ignoring;
 
