@@ -1,5 +1,5 @@
 # Scripts-18.0.0.txt
-# Date: 2025-11-30, 04:11:28 GMT
+# Date: 2025-11-30, 15:59:33 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -531,7 +531,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 1CD00..1CEB3  ; Common # So [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
 1CEBA..1CED0  ; Common # So  [23] FRAGILE SYMBOL..LEUKOTHEA
 1CEE0..1CEEF  ; Common # So  [16] GEOMANTIC FIGURE POPULUS..GEOMANTIC FIGURE VIA
-1CEF0         ; Common # Sm       MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR
+1CEF0..1CEF5  ; Common # Sm   [6] MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR..LEIBNIZIAN FRACTION REDUCTION SIGN-2
 1CF50..1CFC3  ; Common # So [116] ZNAMENNY NEUME KRYUK..ZNAMENNY NEUME PAUK
 1D000..1D0F5  ; Common # So [246] BYZANTINE MUSICAL SYMBOL PSILI..BYZANTINE MUSICAL SYMBOL GORGON NEO KATO
 1D100..1D126  ; Common # So  [39] MUSICAL SYMBOL SINGLE BARLINE..MUSICAL SYMBOL DRUM CLEF-2
@@ -647,7 +647,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 9217
+# Total code points: 9222
 
 # ================================================
 

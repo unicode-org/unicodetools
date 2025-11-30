@@ -1517,11 +1517,12 @@ In [\p{Block=Hangul Syllables} - \p{gc=Cn}], (prepend HANGUL SYLLABLE ) * (strin
 In \p{Decomposition_Type=font}, Bidi_Class = Bidi_Class * Decomposition_Mapping
 
 # All Math characters should be covered by Math_Class.
-# (But right now, they are not because of Unicode 16 & 17 additions.)
+# (But right now, they are not because of Unicode 16+ additions.)
 [\p{Math} - \P{Math_Class=None}] = [
   \x{10D8E}\x{10D8F}   # Garay
   \x{1CEF0}            # Standard state
   \x{1F8D0}-\x{1F8D8}  # Arrows
+  \x{1CEF1}-\x{1CEF5}  # Leibnizian operators
 ]
 \p{U9:Math} ⊂ \P{U9:Math_Class=None}
 [\p{U5:Math} - \P{U5:Math_Class=None}] = [ \u237C \u27CA ]
