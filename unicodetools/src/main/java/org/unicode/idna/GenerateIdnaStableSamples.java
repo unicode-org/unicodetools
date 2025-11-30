@@ -1,12 +1,11 @@
 package org.unicode.idna;
 
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSet.XSymbolTable;
+import com.ibm.icu.util.VersionInfo;
 import org.unicode.props.UnicodeProperty;
-import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.ToolUnicodeTransformFactory;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.UnicodeTransform;
 
 public class GenerateIdnaStableSamples {
@@ -14,10 +13,7 @@ public class GenerateIdnaStableSamples {
 
         Default.setUCD("9.0.0");
         UnicodeTransform.setFactory(new ToolUnicodeTransformFactory());
-        final ToolUnicodePropertySource toolUPS1 =
-                ToolUnicodePropertySource.make(Default.ucdVersion());
-        final XSymbolTable toolUPS = new UnicodePropertySymbolTable(toolUPS1);
-        UnicodeSet.setDefaultXSymbolTable(toolUPS);
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.frozenAt(VersionInfo.UNICODE_9_0));
         UnicodeProperty.ResetCacheProperties();
 
         final String[] samples = {

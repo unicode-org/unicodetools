@@ -1,6 +1,5 @@
 package org.unicode.jsptest;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
@@ -15,6 +14,7 @@ import com.ibm.icu.util.ULocale;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.TreeSet;
+import org.unicode.cldr.icu.dev.test.TestFmwk;
 import org.unicode.cldr.util.props.BagFormatter;
 import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.idna.Idna;
