@@ -6,7 +6,7 @@
 Ignoring Name Age:
 
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
-Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
 # The other 六曜 symbols [L2/24-151R, p. 1] are all propertywise alike.
 Propertywise [\x{25D0} ◐ \N{CIRCLE WITH LEFT HALF BLACK}
