@@ -58,6 +58,8 @@ public class EmojiData implements EmojiDataSource {
             new UnicodeSet("[👯 🤼 👫-👭 💏 💑 👪 🤝]").freeze();
     private static final UnicodeSet EXPLICIT_HAIR = new UnicodeSet("[👱]").freeze();
 
+    static final int BUNNY_DANCERS = 0x1f46f;
+    static final int WRESTLERS = 0x1f93c;
     static final int HANDSHAKE = 0x1f91d;
     static final String HANDSHAKE_STRING = UTF16.valueOf(0x1f91d);
     public static final String NEUTRAL_HOLDING = "🧑‍🤝‍🧑";
@@ -2249,8 +2251,10 @@ public class EmojiData implements EmojiDataSource {
                     .put("👩‍🤝‍👩", "👭")
                     .put("🧑‍❤️‍💋‍🧑", "💏")
                     .put("🧑‍❤️‍🧑", "💑")
+                    .put("🧑‍🐰‍🧑", "👯")
                     .put("👨‍🐰‍👨", "👯")
                     .put("👩‍🐰‍👩", "👯")
+                    .put("🧑‍🫯‍🧑", "🤼")
                     .put("👨‍🫯‍👨", "🤼")
                     .put("👩‍🫯‍👩", "🤼")
                     .build();

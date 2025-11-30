@@ -20,7 +20,7 @@ $ConjunctLinker=\p{Indic_Conjunct_Break=Linker}
 $LinkingConsonant=\p{Indic_Conjunct_Break=Consonant}
 ##	$E_Base=\p{Grapheme_Cluster_Break=E_Base}
 ##	$E_Modifier=\p{Grapheme_Cluster_Break=E_Modifier}
-$ExtPict=\p{Extended_Pictographic}
+$ExtPict=\p{Extended_Pictographic=True}
 $ConjunctExtender=[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
 ##	$EBG=\p{Grapheme_Cluster_Break=E_Base_GAZ}
 ##	$Glue_After_Zwj=\p{Grapheme_Cluster_Break=Glue_After_Zwj}
@@ -124,7 +124,7 @@ $DottedCircle = [◌]
 $CPmEastAsian=[$CP-$EastAsian]
 $OPmEastAsian=[$OP-$EastAsian]
 
-$ExtPictUnassigned=[\p{Extended_Pictographic}&\p{gc=Cn}]
+$ExtPictUnassigned=[\p{Extended_Pictographic=True}&\p{gc=Cn}]
 
 # Some rules refer to the start and end of text.  We could just use a literal ^ for sot, but naming
 # it as in the spec makes it easier to compare.  The parser will eat (and choke on) $, so we play a
@@ -364,7 +364,7 @@ $Single_Quote=\p{Word_Break=Single_Quote}
 ##	$E_Modifier=\p{Word_Break=E_Modifier}
 $ZWJ=\p{Word_Break=ZWJ}
 # Note: The following may overlap with the above
-$ExtPict=\p{Extended_Pictographic}
+$ExtPict=\p{Extended_Pictographic=True}
 ##	$EBG=\p{Word_Break=E_Base_GAZ}
 ##	$Glue_After_Zwj=\p{Word_Break=Glue_After_Zwj}
 $WSegSpace=\p{Word_Break=WSegSpace}

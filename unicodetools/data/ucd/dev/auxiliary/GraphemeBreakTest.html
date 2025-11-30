@@ -6,8 +6,8 @@ td, th { vertical-align: top }
 </style></head>
 <body bgcolor='#FFFFFF'>
 <h2>Grapheme_Cluster_Break Chart</h2>
-<p><b>Unicode Version:</b> 17.0.0</p>
-<p><b>Date:</b> 2025-02-14, 00:14:44 GMT</p>
+<p><b>Unicode Version:</b> 18.0.0</p>
+<p><b>Date:</b> 2025-09-11, 13:52:53 GMT</p>
 <p>This page illustrates the application of the Grapheme_Cluster_Break specification. The material here is informative, not normative.</p> <p>The first chart shows where breaks would appear between different sample characters or strings. The sample characters are chosen mechanically to represent the different properties used by the specification.</p><p>Each cell shows the break-status for the position between the character(s) in its row header and the character(s) in its column header. The × symbol indicates no break, while the ÷ symbol indicates a break. The cells with × are also shaded to make it easier to scan the table. For example, in the cell at the intersection of the row headed by “CR” and the column headed by “LF”, there is a × symbol, indicating that there is no break between CR and LF.</p>
 <p>After the heavy blue line in the table are additional rows, either with different sample characters or for sequences. </p><p>In the row and column headers of the <a href='#table'>Table</a>, in the <a href='#rules'>Rules</a>, when hovering over characters in the <a href='#samples'>Samples</a>, and in the comments in the associated list of test cases <a href='GraphemeBreakTest.txt'>GraphemeBreakTest.txt</a>:</p>
 <ol><li>The following sets are used:<ul>
@@ -24,7 +24,7 @@ ConjunctLinker
 <li>
 ExtPict
 =
-\p{Extended_Pictographic}
+\p{Extended_Pictographic=True}
 </li>
 <li>
 LinkingConsonant
@@ -232,15 +232,15 @@ LinkingConsonant
 
 </font></td></tr>
 <tr><th style='text-align:right'><a href='#s23' name='s23'>23</a></th><td><font size='5'>
-<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+2701 UPPER BLADE SCISSORS (ExtPict)'>&#x2701;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
-<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='11.0'><span>&nbsp;</span>&nbsp;</span>
-<span title='U+2701 UPPER BLADE SCISSORS (ExtPict)'>&#x2701;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+2701 UPPER BLADE SCISSORS (XXmLinkingConsonantmExtPict)'>&#x2701;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+2701 UPPER BLADE SCISSORS (XXmLinkingConsonantmExtPict)'>&#x2701;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
 
 </font></td></tr>
 <tr><th style='text-align:right'><a href='#s24' name='s24'>24</a></th><td><font size='5'>
 <span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
 <span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
-<span title='U+2701 UPPER BLADE SCISSORS (ExtPict)'>&#x2701;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+2701 UPPER BLADE SCISSORS (XXmLinkingConsonantmExtPict)'>&#x2701;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
 
 </font></td></tr>
 <tr><th style='text-align:right'><a href='#s25' name='s25'>25</a></th><td><font size='5'>
