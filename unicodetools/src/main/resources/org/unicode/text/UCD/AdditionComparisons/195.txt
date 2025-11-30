@@ -6,7 +6,9 @@
 Ignoring Name Age:
 
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
-Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set Math_Class Math_Class_Ex:
 
 Ignoring Block Pattern_Syntax:
 Propertywise [
@@ -17,6 +19,8 @@ Propertywise [
     \x{1CEF4}  \N{LEIBNIZIAN FRACTION REDUCTION SIGN-1}
     \x{1CEF5}  \N{LEIBNIZIAN FRACTION REDUCTION SIGN-2}
 ] AreAlike
+end Ignoring;
+
 end Ignoring;
 
 end Ignoring;
