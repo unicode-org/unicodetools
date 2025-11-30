@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2025-11-30, 00:23:51 GMT
+# Date: 2025-11-30, 01:40:22 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,8 +71,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 755600 code points not listed here.
-# Total code points: 893068
+# The above property value applies to 755570 code points not listed here.
+# Total code points: 893038
 
 # ================================================
 
@@ -1497,6 +1497,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1D253..1D25A  ; AL # So   [8] MUSICAL SYMBOL TWO HUNDRED FIFTY-SIXTH REST..MUSICAL SYMBOL SHARP WITH STROKE
 1D25D..1D25E  ; AL # So   [2] MUSICAL SYMBOL FINGERED TREMOLO-4..MUSICAL SYMBOL FINGERED TREMOLO-5
 1D260         ; AL # So       MUSICAL SYMBOL TRIPLE FLAT
+1D262..1D27F  ; AL # So  [30] MUSICAL SYMBOL HEAVY DOUBLE BARLINE..MUSICAL SYMBOL ARPEGGIATO UP WITH ARROW
 1D2C0..1D2D3  ; AL # No  [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3  ; AL # No  [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
 1D300..1D356  ; AL # So  [87] MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
@@ -1655,7 +1656,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB94..1FBEF  ; AL # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; AL # So       ALARM BELL SYMBOL
 
-# Total code points: 27525
+# Total code points: 27555
 
 # ================================================
 
