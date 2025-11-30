@@ -1,5 +1,5 @@
-# PropertyValueAliases-17.0.0.txt
-# Date: 2025-04-16, 22:28:07 GMT
+# PropertyValueAliases-18.0.0.txt
+# Date: 2025-11-30, 01:40:43 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -94,6 +94,7 @@ age; 15.0                             ; V15_0
 age; 15.1                             ; V15_1
 age; 16.0                             ; V16_0
 age; 17.0                             ; V17_0
+age; 18.0                             ; V18_0
 age; NA                               ; Unassigned
 
 # Alphabetic (Alpha)
@@ -170,6 +171,7 @@ blk; Arabic_Math                      ; Arabic_Mathematical_Alphabetic_Symbols
 blk; Arabic_PF_A                      ; Arabic_Presentation_Forms_A      ; Arabic_Presentation_Forms-A
 blk; Arabic_PF_B                      ; Arabic_Presentation_Forms_B
 blk; Arabic_Sup                       ; Arabic_Supplement
+blk; Archaic_Cuneiform_Numerals       ; Archaic_Cuneiform_Numerals
 blk; Armenian                         ; Armenian
 blk; Arrows                           ; Arrows
 blk; ASCII                            ; Basic_Latin
@@ -301,6 +303,8 @@ blk; Jamo                             ; Hangul_Jamo
 blk; Jamo_Ext_A                       ; Hangul_Jamo_Extended_A
 blk; Jamo_Ext_B                       ; Hangul_Jamo_Extended_B
 blk; Javanese                         ; Javanese
+blk; Jurchen                          ; Jurchen
+blk; Jurchen_Radicals                 ; Jurchen_Radicals
 blk; Kaithi                           ; Kaithi
 blk; Kaktovik_Numerals                ; Kaktovik_Numerals
 blk; Kana_Ext_A                       ; Kana_Extended_A
@@ -424,6 +428,7 @@ blk; Rumi                             ; Rumi_Numeral_Symbols
 blk; Runic                            ; Runic
 blk; Samaritan                        ; Samaritan
 blk; Saurashtra                       ; Saurashtra
+blk; Seal                             ; Seal
 blk; Sharada                          ; Sharada
 blk; Sharada_Sup                      ; Sharada_Supplement
 blk; Shavian                          ; Shavian
@@ -889,7 +894,7 @@ InPC; Bottom_And_Left                 ; Bottom_And_Left
 InPC; Bottom_And_Right                ; Bottom_And_Right
 InPC; Left                            ; Left
 InPC; Left_And_Right                  ; Left_And_Right
-InPC; NA                              ; NA
+InPC; NA                              ; Not_Applicable
 InPC; Overstruck                      ; Overstruck
 InPC; Right                           ; Right
 InPC; Top                             ; Top
@@ -1013,6 +1018,16 @@ jg ; Alef                             ; Alef
 jg ; Beh                              ; Beh
 jg ; Beth                             ; Beth
 jg ; Burushaski_Yeh_Barree            ; Burushaski_Yeh_Barree
+jg ; Crown_Ain                        ; Crown_Ain
+jg ; Crown_Beh                        ; Crown_Beh
+jg ; Crown_Feh                        ; Crown_Feh
+jg ; Crown_Hah                        ; Crown_Hah
+jg ; Crown_Heh                        ; Crown_Heh
+jg ; Crown_Kaf                        ; Crown_Kaf
+jg ; Crown_Meem                       ; Crown_Meem
+jg ; Crown_Sad                        ; Crown_Sad
+jg ; Crown_Seen                       ; Crown_Seen
+jg ; Crown_Tah                        ; Crown_Tah
 jg ; Dal                              ; Dal
 jg ; Dalath_Rish                      ; Dalath_Rish
 jg ; E                                ; E
@@ -1383,6 +1398,7 @@ sc ; Hrkt                             ; Katakana_Or_Hiragana
 sc ; Hung                             ; Old_Hungarian
 sc ; Ital                             ; Old_Italic
 sc ; Java                             ; Javanese
+sc ; Jurc                             ; Jurchen
 sc ; Kali                             ; Kayah_Li
 sc ; Kana                             ; Katakana
 sc ; Kawi                             ; Kawi
@@ -1436,6 +1452,7 @@ sc ; Osma                             ; Osmanya
 sc ; Ougr                             ; Old_Uyghur
 sc ; Palm                             ; Palmyrene
 sc ; Pauc                             ; Pau_Cin_Hau
+sc ; Pcun                             ; Proto_Cuneiform
 sc ; Perm                             ; Old_Permic
 sc ; Phag                             ; Phags_Pa
 sc ; Phli                             ; Inscriptional_Pahlavi
@@ -1449,6 +1466,7 @@ sc ; Runr                             ; Runic
 sc ; Samr                             ; Samaritan
 sc ; Sarb                             ; Old_South_Arabian
 sc ; Saur                             ; Saurashtra
+sc ; Seal                             ; Seal
 sc ; Sgnw                             ; SignWriting
 sc ; Shaw                             ; Shavian
 sc ; Shrd                             ; Sharada
@@ -1722,5 +1740,45 @@ kEH_NoMirror; Y                       ; Yes                              ; T    
 
 kEH_NoRotate; N                       ; No                               ; F                                ; False
 kEH_NoRotate; Y                       ; Yes                              ; T                                ; True
+
+# kJURC_Src (kJURC_Src)
+
+# @missing: 0000..10FFFF; kJURC_Src; <none>
+
+# kMandarin (cjkMandarin)
+
+# @missing: 0000..10FFFF; kMandarin; <none>
+
+# kNSHU_DubenSrc (kNSHU_DubenSrc)
+
+# @missing: 0000..10FFFF; kNSHU_DubenSrc; <none>
+
+# kSEAL_CCZSrc (kSEAL_CCZSrc)
+
+# @missing: 0000..10FFFF; kSEAL_CCZSrc; <none>
+
+# kSEAL_DYCSrc (kSEAL_DYCSrc)
+
+# @missing: 0000..10FFFF; kSEAL_DYCSrc; <none>
+
+# kSEAL_QJZSrc (kSEAL_QJZSrc)
+
+# @missing: 0000..10FFFF; kSEAL_QJZSrc; <none>
+
+# kSEAL_THXSrc (kSEAL_THXSrc)
+
+# @missing: 0000..10FFFF; kSEAL_THXSrc; <none>
+
+# kTGT_MergedSrc (kTGT_MergedSrc)
+
+# @missing: 0000..10FFFF; kTGT_MergedSrc; <none>
+
+# kTotalStrokes (cjkTotalStrokes)
+
+# @missing: 0000..10FFFF; kTotalStrokes; <none>
+
+# kUnihanCore2020 (cjkUnihanCore2020)
+
+# @missing: 0000..10FFFF; kUnihanCore2020; <none>
 
 # EOF

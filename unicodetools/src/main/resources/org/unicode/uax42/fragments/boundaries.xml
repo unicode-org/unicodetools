@@ -10,9 +10,6 @@
     attribute OGr_Ext { boolean }?
 
   code-point-attributes &amp;=
-    attribute Gr_Link { boolean }?
-
-  code-point-attributes &amp;=
     attribute GCB { "CN" | "CR"
                   | "EB" | "EBG" | "EM" | "EX"
                   | "GAZ"

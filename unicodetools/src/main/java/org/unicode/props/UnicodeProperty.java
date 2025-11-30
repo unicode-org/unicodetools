@@ -14,6 +14,7 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.ICUException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.ParsePosition;
@@ -287,6 +288,26 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return _getValue(codepoint);
     }
 
+    public Iterable<String> getValues(String string) {
+        String value = _getValue(string);
+        return isMultivalued && value != null
+                ? delimiterSplitter.split(value)
+                : Collections.singleton(value);
+    }
+
+    public String getValue(String string) {
+        final var it = getValues(string).iterator();
+        final var result = it.next();
+        if (it.hasNext()) {
+            throw new IllegalArgumentException(
+                    name
+                            + ": getValue("
+                            + string
+                            + ") but the property is multivalued for that string");
+        }
+        return result;
+    }
+
     // public String getValue(int codepoint, boolean isShort) {
     // return getValue(codepoint);
     // }
@@ -329,6 +350,8 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     protected abstract String _getVersion();
 
     protected abstract String _getValue(int codepoint);
+
+    protected abstract String _getValue(String string);
 
     protected abstract List<String> _getNameAliases(List<String> result);
 
@@ -754,7 +777,16 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (aIsNaN && bIsNaN) return 0;
         if (aIsNaN) return -1;
         if (bIsNaN) return 1;
-        return RationalParser.BASIC.parse(a).compareTo(RationalParser.BASIC.parse(b));
+        try {
+            return RationalParser.BASIC.parse(a).compareTo(RationalParser.BASIC.parse(b));
+        } catch (ICUException e) {
+            // If either string fails to parse as a rational, compare the strings.
+            // This is nonsense, but we do such comparisons with the UNCHANGED_IN_BASE_VERSION
+            // placeholder string when operating on the chronologically compressed maps (we then
+            // ignore the result by intersecting with the set where the UNCHANGED_IN_BASE_VERSION
+            // placeholder does not appear).
+            return a.compareTo(b);
+        }
     }
 
     public static final Comparator<String> CHARACTER_NAME_COMPARATOR =
@@ -1196,6 +1228,11 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         }
 
         @Override
+        public String _getValue(String string) {
+            return filter.remap(property.getValue(string));
+        }
+
+        @Override
         public List<String> _getValueAliases(String valueAlias, List<String> result) {
             if (backmap == null) {
                 backmap = new HashMap<>(1);
@@ -1541,6 +1578,11 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             _ensureValueInAliases(item);
             addValueAlias(item, alias, AliasAddAction.REQUIRE_MAIN_ALIAS);
         }
+
+        @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
+        }
         /*        public String _getVersion() {
         return version;
         }
@@ -1590,6 +1632,11 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         @Override
         protected String _getValue(int codepoint) {
             return unicodeMap.getValue(codepoint);
+        }
+
+        @Override
+        public String _getValue(String string) {
+            return unicodeMap.getValue(string);
         }
 
         /* protected List _getValueAliases(String valueAlias, List result) {
@@ -1746,6 +1793,11 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         @Override
         protected String _getValue(int codepoint) {
             return YESNO_ARRAY[unicodeSet.contains(codepoint) ? 0 : 1];
+        }
+
+        @Override
+        public String _getValue(String string) {
+            return YESNO_ARRAY[unicodeSet.contains(string) ? 0 : 1];
         }
 
         @Override

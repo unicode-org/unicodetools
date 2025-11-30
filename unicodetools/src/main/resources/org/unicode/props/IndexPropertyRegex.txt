@@ -210,6 +210,25 @@ normalization_correction_original ;  SINGLE_VALUED ;         [0-9A-F]{4,5}
 normalization_correction_corrected ; SINGLE_VALUED ;         [0-9A-F]{4,5}
 normalization_correction_version ;   SINGLE_VALUED ;         [0-9]\.[0-9]\.[0-9]
 
+Names_List_Alias     ; MULTI_VALUED ; .*
+Names_List_Comment   ; MULTI_VALUED ; .*
+Names_List_Cross_Ref ; MULTI_VALUED ; .*
+
+Do_Not_Emit_Dispreferred ; MULTI_VALUED ; .*
+Do_Not_Emit_Dispreferred_Type ; MULTI_VALUED ; .*
+
+# Regex patterns from UAX #57
+
+kEH_Cat ;                     SINGLE_VALUED ;                ([A-IK-Z]|AA)-\d{2}-\d{3}
+kEH_Desc ;                    SINGLE_VALUED ;                [^\t"]+
+kEH_Func ;                    MULTI_VALUED ;                 [^\t"]+
+kEH_FVal ;                    MULTI_VALUED ;                 [bdf-hjkmnpr-twy\.,\/\-\+=;?>\&\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A723}\x{A725}\x{A7BD}]+
+kEH_HG ;                      MULTI_VALUED ;                 ([A-IK-Z]|AA)\d{1,3}[A-Za-z]{0,2}
+kEH_IFAO ;                    MULTI_VALUED ;                 \d{1,3},\d{1,2}[ab]?
+kEH_JSesh ;                   MULTI_VALUED ;                 ([A-IK-Z]|Aa|NL|NU|Ff)\d{1,3}[A-Za-z]{0,5}|(US1|US22|US248|US685)([A-IK-Z]|Aa|NL|NU)\d{1,3}[A-Za-z]{0,5}
+kEH_UniK ;                    SINGLE_VALUED ;                ([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}|HJ ([A-IK-Z]|AA)\d{3}[A-Z]{0,2}
+kEH_AltSeq ;                  SINGLE_VALUED ;                [0-9A-F]{5}(\s[0-9A-F]{5})*
+
 # =============================
 # Catalog/Enum/Binary Properties
 # All not listed are SINGLE_VALUED ; null
@@ -235,3 +254,7 @@ Confusable_MA ;               SINGLE_VALUED ;                $codePoints
 #Emoji_Modifier ;              SINGLE_VALUED ;                <enum>
 #Emoji_Modifier_Base ;         SINGLE_VALUED ;                <enum>
 
+Math_Class       ; ORDERED ; .*
+Math_Class_Ex    ; ORDERED ; .*
+Math_Entity_Name ; MULTI_VALUED ; .*
+Math_Entity_Set  ; MULTI_VALUED ; .*

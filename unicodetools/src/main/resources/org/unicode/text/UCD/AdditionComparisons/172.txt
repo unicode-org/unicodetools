@@ -15,7 +15,6 @@ Propertywise [
     \x{1FA8E}    \N{TREASURE CHEST}
     \x{1FAC8}    \N{HAIRY CREATURE}
     \x{1FACD}    \N{ORCA}
-    \x{1FADD}    \N{APPLE CORE}
     \x{1FAEA}    \N{DISTORTED FACE}
     \x{1FAEF}    \N{FIGHT CLOUD}
     \x{1FAE0} 🫠 \N{MELTING FACE}

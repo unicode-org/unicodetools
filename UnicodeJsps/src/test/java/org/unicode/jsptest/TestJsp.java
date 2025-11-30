@@ -781,7 +781,6 @@ public class TestJsp extends TestFmwkMinusMinus {
     public void TestStuff() throws IOException {
         // int script = UScript.getScript(0xA6E6);
         // int script2 = UCharacter.getIntPropertyValue(0xA6E6, UProperty.SCRIPT);
-        String propValue = Common.getXStringPropertyValue(Common.SUBHEAD, 0xA6E6, NameChoice.LONG);
         // logln(propValue);
 
         // logln("Script for A6E6: " + script + ", " + UScript.getName(script) + ", " + script2);
@@ -869,7 +868,7 @@ public class TestJsp extends TestFmwkMinusMinus {
     }
 
     public void TestIdentifiers() throws IOException {
-        String out = UnicodeUtilities.getIdentifier("Latin", false);
+        String out = UnicodeUtilities.getIdentifier("Latin", false, List.of());
         assertTrue("identifier info", out.toString().contains("U+016F"));
         logln(out.toString());
         // logln(out);
@@ -1121,8 +1120,8 @@ public class TestJsp extends TestFmwkMinusMinus {
     public void TestSimpleSet() {
         checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{idna2003=valid}");
         checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{idna=valid}");
-        checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{uts46=valid}");
-        checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{idna2008=PVALID}");
+        checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{Idn_Status=valid}");
+        checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{IDNA2008_Category=PVALID}");
         checkUnicodeSetParse("[\\u1234\\uABCD-\\uAC00]", "U+1234 U+ABCD-U+AC00");
         checkUnicodeSetParse("[\\u1234\\uABCD-\\uAC00]", "U+1234 U+ABCD..U+AC00");
     }

@@ -194,6 +194,10 @@ public class UCDXML {
         // Tangut
         // int lowCodePoint = 0x17000;
         // int highCodePoint = 0x1B2FB;
+        // Unikemet
+        // int lowCodePoint = 0x13000;
+        // int highCodePoint = 0x143FA;
+        // Last code point
         // 0x10FFFF
 
         File tempFile = new File(destinationFolder, "temp.xml");
@@ -232,12 +236,16 @@ public class UCDXML {
                 ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.BLOCKS);
                 ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.NAMEDSEQUENCES);
                 ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.PROVISIONALNAMEDSEQUENCES);
-                ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.NORMALIZATIONCORRECTIONS);
+                if (ucdVersion.compareTo(VersionInfo.getInstance(17, 0, 0)) < 0) {
+                    ucdDataResolver.buildSection(
+                            UCDSectionDetail.UcdSection.NORMALIZATIONCORRECTIONS);
+                }
                 ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.STANDARDIZEDVARIANTS);
                 if (ucdVersion.compareTo(VersionInfo.getInstance(5, 2, 0)) >= 0) {
                     ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.CJKRADICALS);
                 }
-                if (ucdVersion.compareTo(VersionInfo.getInstance(6, 0, 0)) >= 0) {
+                if (ucdVersion.compareTo(VersionInfo.getInstance(6, 0, 0)) >= 0
+                        && ucdVersion.compareTo(VersionInfo.getInstance(17, 0, 0)) < 0) {
                     ucdDataResolver.buildSection(UCDSectionDetail.UcdSection.EMOJISOURCES);
                 }
                 if (ucdVersion.compareTo(VersionInfo.getInstance(16, 0, 0)) >= 0) {
@@ -395,10 +403,16 @@ public class UCDXML {
                                         ucdVersion,
                                         range,
                                         rangeType,
-                                        groupAttrs);
+                                        groupAttrs,
+                                        outputRange);
                             } else {
                                 buildUngroupedRange(
-                                        writer, attributeResolver, ucdVersion, range, rangeType);
+                                        writer,
+                                        attributeResolver,
+                                        ucdVersion,
+                                        range,
+                                        rangeType,
+                                        outputRange);
                             }
                         }
                         range.clear();
@@ -416,10 +430,16 @@ public class UCDXML {
                                     ucdVersion,
                                     range,
                                     rangeType,
-                                    groupAttrs);
+                                    groupAttrs,
+                                    outputRange);
                         } else {
                             buildUngroupedRange(
-                                    writer, attributeResolver, ucdVersion, range, rangeType);
+                                    writer,
+                                    attributeResolver,
+                                    ucdVersion,
+                                    range,
+                                    rangeType,
+                                    outputRange);
                         }
                     }
                     range.clear();
@@ -446,9 +466,16 @@ public class UCDXML {
             if (outputRange != UCDXMLOUTPUTRANGE.UNIHAN) {
                 if (outputType == UCDXMLOUTPUTTYPE.GROUPED) {
                     buildGroupedRange(
-                            writer, attributeResolver, ucdVersion, range, rangeType, groupAttrs);
+                            writer,
+                            attributeResolver,
+                            ucdVersion,
+                            range,
+                            rangeType,
+                            groupAttrs,
+                            outputRange);
                 } else {
-                    buildUngroupedRange(writer, attributeResolver, ucdVersion, range, rangeType);
+                    buildUngroupedRange(
+                            writer, attributeResolver, ucdVersion, range, rangeType, outputRange);
                 }
             }
         }
@@ -536,10 +563,11 @@ public class UCDXML {
             VersionInfo ucdVersion,
             ArrayList<Integer> range,
             Range rangeType,
-            AttributesImpl groupAttrs)
+            AttributesImpl groupAttrs,
+            UCDXMLOUTPUTRANGE outputRange)
             throws SAXException {
         AttributesImpl orgRangeAttributes =
-                getReservedAttributes(ucdVersion, attributeResolver, range);
+                getReservedAttributes(ucdVersion, attributeResolver, range, outputRange);
         AttributesImpl rangeAttributes = new AttributesImpl();
         if (range.size() == 1) {
             rangeAttributes.addAttribute(
@@ -586,10 +614,11 @@ public class UCDXML {
             AttributeResolver attributeResolver,
             VersionInfo ucdVersion,
             ArrayList<Integer> range,
-            Range rangeType)
+            Range rangeType,
+            UCDXMLOUTPUTRANGE outputRange)
             throws SAXException {
         AttributesImpl rangeAttributes =
-                getReservedAttributes(ucdVersion, attributeResolver, range);
+                getReservedAttributes(ucdVersion, attributeResolver, range, outputRange);
         writer.startElement(rangeType.tag, rangeAttributes);
         {
             writer.endElement(rangeType.tag);
@@ -599,10 +628,9 @@ public class UCDXML {
     private static boolean isWritableCodePoint(
             int CodePoint, UCDXMLOUTPUTRANGE outputRange, AttributeResolver attributeResolver) {
         return outputRange == UCDXMLOUTPUTRANGE.ALL
+                || outputRange == UCDXMLOUTPUTRANGE.NOUNIHAN
                 || (outputRange == UCDXMLOUTPUTRANGE.UNIHAN
-                        && attributeResolver.isUnihanAttributeRange(CodePoint))
-                || (outputRange == UCDXMLOUTPUTRANGE.NOUNIHAN
-                        && !attributeResolver.isUnifiedIdeograph(CodePoint));
+                        && attributeResolver.isUnihanAttributeRange(CodePoint));
     }
 
     private static Range getRangeType(AttributeResolver attributeResolver, int CodePoint) {
@@ -662,6 +690,7 @@ public class UCDXML {
                         getIsAttributeIncluded(
                                 attrValue,
                                 attributeResolver.isUnihanAttributeRange(CodePoint),
+                                attributeResolver.isUnikemetAttributeRange(CodePoint),
                                 propDetail,
                                 prop,
                                 outputRange);
@@ -691,6 +720,7 @@ public class UCDXML {
                     && (propDetail.getMaxVersion() == null
                             || version.compareTo(propDetail.getMaxVersion()) < 0)) {
                 int totalCount = 0;
+                int unassignedCount = 0;
                 Map<String, Integer> counters = new LinkedHashMap<>();
 
                 for (int CodePoint = lowCodePoint; CodePoint <= highCodePoint; CodePoint++) {
@@ -731,6 +761,7 @@ public class UCDXML {
                             getIsAttributeIncluded(
                                     bestAttrValue,
                                     attributeResolver.isUnihanAttributeRange(lowCodePoint),
+                                    attributeResolver.isUnikemetAttributeRange(lowCodePoint),
                                     propDetail,
                                     prop,
                                     outputRange);
@@ -751,6 +782,7 @@ public class UCDXML {
     private static boolean getIsAttributeIncluded(
             String attrValue,
             boolean isUnihanAttributeRange,
+            boolean isUnikemetAttributeRange,
             UCDPropertyDetail propDetail,
             UcdProperty prop,
             UCDXMLOUTPUTRANGE outputRange) {
@@ -775,6 +807,9 @@ public class UCDXML {
                 return true;
             }
         }
+        if (propDetail.isUnikemetAttribute() && !isUnikemetAttributeRange) {
+            return false;
+        }
         if (propDetail.isBaseAttribute()) {
             return true;
         }
@@ -782,7 +817,10 @@ public class UCDXML {
     }
 
     private static AttributesImpl getReservedAttributes(
-            VersionInfo version, AttributeResolver attributeResolver, ArrayList<Integer> range) {
+            VersionInfo version,
+            AttributeResolver attributeResolver,
+            ArrayList<Integer> range,
+            UCDXMLOUTPUTRANGE outputRange) {
         AttributesImpl attributes = new AttributesImpl();
 
         if (range.size() == 1) {
@@ -802,7 +840,7 @@ public class UCDXML {
                     "CDATA",
                     attributeResolver.getHexString(range.get(range.size() - 1)));
         }
-        for (UCDPropertyDetail propDetail : UCDPropertyDetail.baseValues()) {
+        for (UCDPropertyDetail propDetail : UCDPropertyDetail.ucdxmlValues()) {
             UcdProperty prop = propDetail.getUcdProperty();
             if (version.compareTo(propDetail.getMinVersion()) >= 0
                     && (propDetail.getMaxVersion() == null
@@ -810,9 +848,22 @@ public class UCDXML {
                 String attrValue =
                         attributeResolver.getAttributeValue(
                                 propDetail.getUcdProperty(), range.get(0));
-
-                attributes.addAttribute(
-                        NAMESPACE, prop.getShortName(), prop.getShortName(), "CDATA", attrValue);
+                boolean isAttributeIncluded =
+                        getIsAttributeIncluded(
+                                attrValue,
+                                attributeResolver.isUnihanAttributeRange(range.get(0)),
+                                attributeResolver.isUnikemetAttributeRange(range.get(0)),
+                                propDetail,
+                                prop,
+                                outputRange);
+                if (isAttributeIncluded) {
+                    attributes.addAttribute(
+                            NAMESPACE,
+                            prop.getShortName(),
+                            prop.getShortName(),
+                            "CDATA",
+                            attrValue);
+                }
             }
         }
         return attributes;

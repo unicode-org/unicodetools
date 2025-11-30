@@ -1,0 +1,464 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
+<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<title>Grapheme Break Chart</title>
+<style type='text/css'>
+td, th { vertical-align: top }
+</style></head>
+<body bgcolor='#FFFFFF'>
+<h2>Grapheme_Cluster_Break Chart</h2>
+<p><b>Unicode Version:</b> 17.0.0</p>
+<p><b>Date:</b> 2025-03-24, 14:45:55 GMT</p>
+<p>This page illustrates the application of the Grapheme_Cluster_Break specification. The material here is informative, not normative.</p> <p>The first chart shows where breaks would appear between different sample characters or strings. The sample characters are chosen mechanically to represent the different properties used by the specification.</p><p>Each cell shows the break-status for the position between the character(s) in its row header and the character(s) in its column header. The × symbol indicates no break, while the ÷ symbol indicates a break. The cells with × are also shaded to make it easier to scan the table. For example, in the cell at the intersection of the row headed by “CR” and the column headed by “LF”, there is a × symbol, indicating that there is no break between CR and LF.</p>
+<p>After the heavy blue line in the table are additional rows, either with different sample characters or for sequences. </p><p>In the row and column headers of the <a href='#table'>Table</a>, in the <a href='#rules'>Rules</a>, when hovering over characters in the <a href='#samples'>Samples</a>, and in the comments in the associated list of test cases <a href='GraphemeBreakTest.txt'>GraphemeBreakTest.txt</a>:</p>
+<ol><li>The following sets are used:<ul>
+<li>
+ConjunctExtender
+=
+[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
+</li>
+<li>
+ConjunctLinker
+=
+\p{Indic_Conjunct_Break=Linker}
+</li>
+<li>
+ExtPict
+=
+\p{Extended_Pictographic=True}
+</li>
+<li>
+LinkingConsonant
+=
+\p{Indic_Conjunct_Break=Consonant}
+</li>
+</ul></li>
+<li>Any other name that is a short property value alias for the Grapheme_Cluster_Break property represents the set of characters with that property, e.g., LF=\p{Grapheme_Cluster_Break=LF}.</li>
+<li>The aforementioned sets are used to generate a partition of the code space in classes named X_Y for the intersection of X and Y and XmY for the  complement of Y in X.</li></ol>
+<p>Note that the resulting partition may be finer than needed for the algorithm.
+</p>
+<p>If your browser handles titles (tooltips), then hovering the mouse over the row header will show a sample character of that type. Hovering over a column header will show the sample character, plus its abbreviated general category and script. Hovering over the intersected cells shows the rule number that produces the break-status. For example, hovering over the cell at the intersection of LVT and T shows ×, with the rule 8.0. Checking below the table, rule 8.0 is “( LVT | T) × T”, which is the one that applies to that case. Note that a rule is invoked only when no lower-numbered rules have applied.</p>
+<h3><a href='#table' name='table'>Table</a></h3>
+<table border='1' cellspacing='0' width='100%'><tr><th width='5%'></th><th width='5%' class='lbclass' title='U+000D <CARRIAGE RETURN (CR)>, gc=Cc, sc=Zyyy'>CR</th><th width='5%' class='lbclass' title='U+000A <LINE FEED (LF)>, gc=Cc, sc=Zyyy'>LF</th><th width='5%' class='lbclass' title='U+0000 <NULL>, gc=Cc, sc=Zyyy'>Control</th><th width='5%' class='lbclass' title='U+094D DEVANAGARI SIGN VIRAMA, gc=Mn, sc=Deva'>Extend_ConjunctLinker</th><th width='5%' class='lbclass' title='U+0300 COMBINING GRAVE ACCENT, gc=Mn, sc=Zinh'>Extend_ConjunctExtendermConjunctLinker</th><th width='5%' class='lbclass' title='U+200C ZERO WIDTH NON-JOINER, gc=Cf, sc=Zinh'>ExtendmConjunctLinkermConjunctExtender</th><th width='5%' class='lbclass' title='U+200D ZERO WIDTH JOINER, gc=Cf, sc=Zinh'>ZWJ</th><th width='5%' class='lbclass' title='U+1F1E6 REGIONAL INDICATOR SYMBOL LETTER A, gc=So, sc=Zyyy'>RI</th><th width='5%' class='lbclass' title='U+06DD ARABIC END OF AYAH, gc=Cf, sc=Zyyy'>Prepend</th><th width='5%' class='lbclass' title='U+0903 DEVANAGARI SIGN VISARGA, gc=Mc, sc=Deva'>SpacingMark</th><th width='5%' class='lbclass' title='U+1100 HANGUL CHOSEONG KIYEOK, gc=Lo, sc=Hang'>L</th><th width='5%' class='lbclass' title='U+1160 HANGUL JUNGSEONG FILLER, gc=Lo, sc=Hang'>V</th><th width='5%' class='lbclass' title='U+11A8 HANGUL JONGSEONG KIYEOK, gc=Lo, sc=Hang'>T</th><th width='5%' class='lbclass' title='U+AC00 HANGUL SYLLABLE GA, gc=Lo, sc=Hang'>LV</th><th width='5%' class='lbclass' title='U+AC01 HANGUL SYLLABLE GAG, gc=Lo, sc=Hang'>LVT</th><th width='5%' class='lbclass' title='U+0915 DEVANAGARI LETTER KA, gc=Lo, sc=Deva'>LinkingConsonant</th><th width='5%' class='lbclass' title='U+00A9 COPYRIGHT SIGN, gc=So, sc=Zyyy'>ExtPict</th><th width='5%' class='lbclass' title='U+0020 SPACE, gc=Zs, sc=Zyyy'>XXmLinkingConsonantmExtPict</th></tr>
+<tr><th class='lbclass' title='U+000D <CARRIAGE RETURN (CR)>'>CR</th><th title='4.0' class='pairItem'>÷</th><th title='3.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+000A <LINE FEED (LF)>'>LF</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+0000 <NULL>'>Control</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th><th title='4.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+094D DEVANAGARI SIGN VIRAMA'>Extend_ConjunctLinker</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+0300 COMBINING GRAVE ACCENT'>Extend_ConjunctExtendermConjunctLinker</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+200C ZERO WIDTH NON-JOINER'>ExtendmConjunctLinkermConjunctExtender</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+200D ZERO WIDTH JOINER'>ZWJ</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+1F1E6 REGIONAL INDICATOR SYMBOL LETTER A'>RI</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='12.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+06DD ARABIC END OF AYAH'>Prepend</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.2' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.2' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.2' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.2' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.2' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.2' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.2' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.2' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.2' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.2' bgcolor='#CCCCFF' class='pairItem'>×</th></tr>
+<tr><th class='lbclass' title='U+0903 DEVANAGARI SIGN VISARGA'>SpacingMark</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+1100 HANGUL CHOSEONG KIYEOK'>L</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='6.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='6.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='6.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='6.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+1160 HANGUL JUNGSEONG FILLER'>V</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='7.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='7.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+11A8 HANGUL JONGSEONG KIYEOK'>T</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='8.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+AC00 HANGUL SYLLABLE GA'>LV</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='7.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='7.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+AC01 HANGUL SYLLABLE GAG'>LVT</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='8.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+0915 DEVANAGARI LETTER KA'>LinkingConsonant</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+00A9 COPYRIGHT SIGN'>ExtPict</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+<tr><th class='lbclass' title='U+0020 SPACE'>XXmLinkingConsonantmExtPict</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+<tr><td bgcolor='#0000FF' colSpan='19' style='font-size: 1px'>&nbsp;</td></tr>
+<tr><th class='lbclass' title='U+0378 <reserved-0378>'>XXmLinkingConsonantmExtPict</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='5.0' class='pairItem'>÷</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='9.0' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='9.1' bgcolor='#CCCCFF' class='pairItem'>×</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th><th title='999.0' class='pairItem'>÷</th></tr>
+</table>
+<h3><a href='#rules' name='rules'>Rules</a></h3>
+<p>This section shows the rules. They are mechanically modified for programmatic generation of the tables and test code, and thus do not match the UAX rules precisely. In particular:</p><ol><li>The rules are cast into a form that is more like regular expressions.</li><li>The rules “sot ÷”, “÷ eot”, and “÷ Any” are added mechanically, and have artificial numbers.</li><li>The rules are given decimal numbers using tenths, and are written without prefix. For example, rule GB9a is given the number 9.1.</li><li>Final rules like “Any ÷ Any” may be recast as the equivalent expression “÷ Any”.</li><li></li></ol><p>For the original rules, see UAX #29.</p>
+<table>
+<tr><th style='text-align:right'><a href='#r0.2' name='r0.2'>0.2</a></th><td style='text-align:right'>sot </td><td>÷</td><td></td></tr>
+<tr><th style='text-align:right'><a href='#r0.3' name='r0.3'>0.3</a></th><td style='text-align:right'></td><td>÷</td><td> eot</td></tr>
+<tr><th style='text-align:right'><a href='#r3.0' name='r3.0'>3.0</a></th><td style='text-align:right'>CR </td><td>×</td><td> LF</td></tr>
+<tr><th style='text-align:right'><a href='#r4.0' name='r4.0'>4.0</a></th><td style='text-align:right'>( Control | CR | LF ) </td><td>÷</td><td></td></tr>
+<tr><th style='text-align:right'><a href='#r5.0' name='r5.0'>5.0</a></th><td style='text-align:right'></td><td>÷</td><td> ( Control | CR | LF )</td></tr>
+<tr><th style='text-align:right'><a href='#r6.0' name='r6.0'>6.0</a></th><td style='text-align:right'>L </td><td>×</td><td> ( L | V | LV | LVT )</td></tr>
+<tr><th style='text-align:right'><a href='#r7.0' name='r7.0'>7.0</a></th><td style='text-align:right'>( LV | V ) </td><td>×</td><td> ( V | T )</td></tr>
+<tr><th style='text-align:right'><a href='#r8.0' name='r8.0'>8.0</a></th><td style='text-align:right'>( LVT | T) </td><td>×</td><td> T</td></tr>
+<tr><th style='text-align:right'><a href='#r9.0' name='r9.0'>9.0</a></th><td style='text-align:right'></td><td>×</td><td> (Extend | ZWJ)</td></tr>
+<tr><th style='text-align:right'><a href='#r9.1' name='r9.1'>9.1</a></th><td style='text-align:right'></td><td>×</td><td> SpacingMark</td></tr>
+<tr><th style='text-align:right'><a href='#r9.2' name='r9.2'>9.2</a></th><td style='text-align:right'>Prepend </td><td>×</td><td></td></tr>
+<tr><th style='text-align:right'><a href='#r9.3' name='r9.3'>9.3</a></th><td style='text-align:right'>LinkingConsonant ConjunctExtender* ConjunctLinker ConjunctExtender* </td><td>×</td><td> LinkingConsonant</td></tr>
+<tr><th style='text-align:right'><a href='#r11.0' name='r11.0'>11.0</a></th><td style='text-align:right'>ExtPict Extend* ZWJ </td><td>×</td><td> ExtPict</td></tr>
+<tr><th style='text-align:right'><a href='#r12.0' name='r12.0'>12.0</a></th><td style='text-align:right'>^ (RI RI)* RI </td><td>×</td><td> RI</td></tr>
+<tr><th style='text-align:right'><a href='#r13.0' name='r13.0'>13.0</a></th><td style='text-align:right'>[^RI] (RI RI)* RI </td><td>×</td><td> RI</td></tr>
+<tr><th style='text-align:right'><a href='#r999.0' name='r999.0'>999.0</a></th><td style='text-align:right'></td><td>÷</td><td> Any</td></tr>
+</table>
+<h3><a href='#samples' name='samples'>Sample Strings</a></h3>
+<p>The following samples illustrate the application of the rules. The blue lines indicate possible break points. If your browser supports titles (tooltips), then positioning the mouse over each character will show its name, while positioning between characters shows the number of the rule responsible for the break-status.</p>
+<table>
+<tr><th style='text-align:right'><a href='#s1' name='s1'>1</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+000D &lt;CARRIAGE RETURN (CR)&gt; (CR)'>&#x25A1;</span><span title='3.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+000A &lt;LINE FEED (LF)&gt; (LF)'>&#x25A1;</span><span title='4.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='5.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+000A &lt;LINE FEED (LF)&gt; (LF)'>&#x25A1;</span><span title='4.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0308 COMBINING DIAERESIS (Extend_ConjunctExtendermConjunctLinker)'>&#x25CC;&#x308;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s2' name='s2'>2</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0308 COMBINING DIAERESIS (Extend_ConjunctExtendermConjunctLinker)'>&#x25CC;&#x308;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s3' name='s3'>3</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0020 SPACE (XXmLinkingConsonantmExtPict)'> </span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0646 ARABIC LETTER NOON (XXmLinkingConsonantmExtPict)'>&#x646;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s4' name='s4'>4</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0646 ARABIC LETTER NOON (XXmLinkingConsonantmExtPict)'>&#x646;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0020 SPACE (XXmLinkingConsonantmExtPict)'> </span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s5' name='s5'>5</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+1100 HANGUL CHOSEONG KIYEOK (L)'>&#x1100;</span><span title='6.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1100 HANGUL CHOSEONG KIYEOK (L)'>&#x1100;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s6' name='s6'>6</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+AC00 HANGUL SYLLABLE GA (LV)'>&#xAC00;</span><span title='7.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+11A8 HANGUL JONGSEONG KIYEOK (T)'>&#x11A8;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1100 HANGUL CHOSEONG KIYEOK (L)'>&#x1100;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s7' name='s7'>7</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+AC01 HANGUL SYLLABLE GAG (LVT)'>&#xAC01;</span><span title='8.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+11A8 HANGUL JONGSEONG KIYEOK (T)'>&#x11A8;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1100 HANGUL CHOSEONG KIYEOK (L)'>&#x1100;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s8' name='s8'>8</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+1F1E6 REGIONAL INDICATOR SYMBOL LETTER A (RI)'>&#x1F1E6;</span><span title='12.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E7 REGIONAL INDICATOR SYMBOL LETTER B (RI)'>&#x1F1E7;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E8 REGIONAL INDICATOR SYMBOL LETTER C (RI)'>&#x1F1E8;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0062 LATIN SMALL LETTER B (XXmLinkingConsonantmExtPict)'>b</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s9' name='s9'>9</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E6 REGIONAL INDICATOR SYMBOL LETTER A (RI)'>&#x1F1E6;</span><span title='13.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E7 REGIONAL INDICATOR SYMBOL LETTER B (RI)'>&#x1F1E7;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E8 REGIONAL INDICATOR SYMBOL LETTER C (RI)'>&#x1F1E8;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0062 LATIN SMALL LETTER B (XXmLinkingConsonantmExtPict)'>b</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s10' name='s10'>10</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E6 REGIONAL INDICATOR SYMBOL LETTER A (RI)'>&#x1F1E6;</span><span title='13.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E7 REGIONAL INDICATOR SYMBOL LETTER B (RI)'>&#x1F1E7;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E8 REGIONAL INDICATOR SYMBOL LETTER C (RI)'>&#x1F1E8;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0062 LATIN SMALL LETTER B (XXmLinkingConsonantmExtPict)'>b</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s11' name='s11'>11</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E6 REGIONAL INDICATOR SYMBOL LETTER A (RI)'>&#x1F1E6;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E7 REGIONAL INDICATOR SYMBOL LETTER B (RI)'>&#x1F1E7;</span><span title='13.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E8 REGIONAL INDICATOR SYMBOL LETTER C (RI)'>&#x1F1E8;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0062 LATIN SMALL LETTER B (XXmLinkingConsonantmExtPict)'>b</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s12' name='s12'>12</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E6 REGIONAL INDICATOR SYMBOL LETTER A (RI)'>&#x1F1E6;</span><span title='13.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E7 REGIONAL INDICATOR SYMBOL LETTER B (RI)'>&#x1F1E7;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E8 REGIONAL INDICATOR SYMBOL LETTER C (RI)'>&#x1F1E8;</span><span title='13.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1F1E9 REGIONAL INDICATOR SYMBOL LETTER D (RI)'>&#x1F1E9;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0062 LATIN SMALL LETTER B (XXmLinkingConsonantmExtPict)'>b</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s13' name='s13'>13</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s14' name='s14'>14</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0308 COMBINING DIAERESIS (Extend_ConjunctExtendermConjunctLinker)'>&#x25CC;&#x308;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0062 LATIN SMALL LETTER B (XXmLinkingConsonantmExtPict)'>b</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s15' name='s15'>15</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='9.1'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0903 DEVANAGARI SIGN VISARGA (SpacingMark)'>&#x903;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0062 LATIN SMALL LETTER B (XXmLinkingConsonantmExtPict)'>b</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s16' name='s16'>16</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0600 ARABIC NUMBER SIGN (Prepend)'>&#x25A1;</span><span title='9.2'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0062 LATIN SMALL LETTER B (XXmLinkingConsonantmExtPict)'>b</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s17' name='s17'>17</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+1F476 BABY (ExtPict)'>&#x1F476;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1F3FF EMOJI MODIFIER FITZPATRICK TYPE-6 (Extend_ConjunctExtendermConjunctLinker)'>&#x1F3FF;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1F476 BABY (ExtPict)'>&#x1F476;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s18' name='s18'>18</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1F3FF EMOJI MODIFIER FITZPATRICK TYPE-6 (Extend_ConjunctExtendermConjunctLinker)'>&#x1F3FF;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1F476 BABY (ExtPict)'>&#x1F476;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s19' name='s19'>19</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1F3FF EMOJI MODIFIER FITZPATRICK TYPE-6 (Extend_ConjunctExtendermConjunctLinker)'>&#x1F3FF;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1F476 BABY (ExtPict)'>&#x1F476;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='11.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1F6D1 OCTAGONAL SIGN (ExtPict)'>&#x1F6D1;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s20' name='s20'>20</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+1F476 BABY (ExtPict)'>&#x1F476;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1F3FF EMOJI MODIFIER FITZPATRICK TYPE-6 (Extend_ConjunctExtendermConjunctLinker)'>&#x1F3FF;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0308 COMBINING DIAERESIS (Extend_ConjunctExtendermConjunctLinker)'>&#x25CC;&#x308;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='11.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1F476 BABY (ExtPict)'>&#x1F476;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1F3FF EMOJI MODIFIER FITZPATRICK TYPE-6 (Extend_ConjunctExtendermConjunctLinker)'>&#x1F3FF;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s21' name='s21'>21</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+1F6D1 OCTAGONAL SIGN (ExtPict)'>&#x1F6D1;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='11.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1F6D1 OCTAGONAL SIGN (ExtPict)'>&#x1F6D1;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s22' name='s22'>22</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1F6D1 OCTAGONAL SIGN (ExtPict)'>&#x1F6D1;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s23' name='s23'>23</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+2701 UPPER BLADE SCISSORS (XXmLinkingConsonantmExtPict)'>&#x2701;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+2701 UPPER BLADE SCISSORS (XXmLinkingConsonantmExtPict)'>&#x2701;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s24' name='s24'>24</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+2701 UPPER BLADE SCISSORS (XXmLinkingConsonantmExtPict)'>&#x2701;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s25' name='s25'>25</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0915 DEVANAGARI LETTER KA (LinkingConsonant)'>&#x915;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0924 DEVANAGARI LETTER TA (LinkingConsonant)'>&#x924;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s26' name='s26'>26</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0915 DEVANAGARI LETTER KA (LinkingConsonant)'>&#x915;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+094D DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x94D;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0924 DEVANAGARI LETTER TA (LinkingConsonant)'>&#x924;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s27' name='s27'>27</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0915 DEVANAGARI LETTER KA (LinkingConsonant)'>&#x915;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+094D DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x94D;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+094D DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x94D;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0924 DEVANAGARI LETTER TA (LinkingConsonant)'>&#x924;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s28' name='s28'>28</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0915 DEVANAGARI LETTER KA (LinkingConsonant)'>&#x915;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+094D DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x94D;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0924 DEVANAGARI LETTER TA (LinkingConsonant)'>&#x924;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s29' name='s29'>29</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0915 DEVANAGARI LETTER KA (LinkingConsonant)'>&#x915;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+093C DEVANAGARI SIGN NUKTA (Extend_ConjunctExtendermConjunctLinker)'>&#x25CC;&#x93C;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+094D DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x94D;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0924 DEVANAGARI LETTER TA (LinkingConsonant)'>&#x924;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s30' name='s30'>30</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0915 DEVANAGARI LETTER KA (LinkingConsonant)'>&#x915;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+093C DEVANAGARI SIGN NUKTA (Extend_ConjunctExtendermConjunctLinker)'>&#x25CC;&#x93C;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+094D DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x94D;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+200D ZERO WIDTH JOINER (ZWJ)'>&#x25A1;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0924 DEVANAGARI LETTER TA (LinkingConsonant)'>&#x924;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s31' name='s31'>31</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0915 DEVANAGARI LETTER KA (LinkingConsonant)'>&#x915;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+094D DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x94D;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0924 DEVANAGARI LETTER TA (LinkingConsonant)'>&#x924;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+094D DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x94D;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+092F DEVANAGARI LETTER YA (LinkingConsonant)'>&#x92F;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s32' name='s32'>32</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0915 DEVANAGARI LETTER KA (LinkingConsonant)'>&#x915;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+094D DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x94D;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s33' name='s33'>33</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0061 LATIN SMALL LETTER A (XXmLinkingConsonantmExtPict)'>a</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+094D DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x94D;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0924 DEVANAGARI LETTER TA (LinkingConsonant)'>&#x924;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s34' name='s34'>34</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+003F QUESTION MARK (XXmLinkingConsonantmExtPict)'>?</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+094D DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x94D;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+0924 DEVANAGARI LETTER TA (LinkingConsonant)'>&#x924;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s35' name='s35'>35</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0915 DEVANAGARI LETTER KA (LinkingConsonant)'>&#x915;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+094D DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x94D;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+094D DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x94D;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0924 DEVANAGARI LETTER TA (LinkingConsonant)'>&#x924;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s36' name='s36'>36</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+0AB8 GUJARATI LETTER SA (LinkingConsonant)'>&#xAB8;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0AFB GUJARATI SIGN SHADDA (Extend_ConjunctExtendermConjunctLinker)'>&#x25CC;&#xAFB;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0ACD GUJARATI SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#xACD;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0AB8 GUJARATI LETTER SA (LinkingConsonant)'>&#xAB8;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+0AFB GUJARATI SIGN SHADDA (Extend_ConjunctExtendermConjunctLinker)'>&#x25CC;&#xAFB;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s37' name='s37'>37</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+1019 MYANMAR LETTER MA (LinkingConsonant)'>&#x1019;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1039 MYANMAR SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x1039;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1018 MYANMAR LETTER BHA (LinkingConsonant)'>&#x1018;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+102C MYANMAR VOWEL SIGN AA (XXmLinkingConsonantmExtPict)'>&#x102C;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1037 MYANMAR SIGN DOT BELOW (Extend_ConjunctExtendermConjunctLinker)'>&#x25CC;&#x1037;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s38' name='s38'>38</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+1004 MYANMAR LETTER NGA (LinkingConsonant)'>&#x1004;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+103A MYANMAR SIGN ASAT (Extend_ConjunctExtendermConjunctLinker)'>&#x25CC;&#x103A;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1039 MYANMAR SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x1039;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1011 MYANMAR LETTER THA (LinkingConsonant)'>&#x1011;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1039 MYANMAR SIGN VIRAMA (Extend_ConjunctLinker)'>&#x25CC;&#x1039;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1011 MYANMAR LETTER THA (LinkingConsonant)'>&#x1011;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s39' name='s39'>39</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+1B12 BALINESE LETTER OKARA TEDUNG (XXmLinkingConsonantmExtPict)'>&#x1B12;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B01 BALINESE SIGN ULU CANDRA (Extend_ConjunctExtendermConjunctLinker)'>&#x25CC;&#x1B01;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1B32 BALINESE LETTER SA (LinkingConsonant)'>&#x1B32;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B44 BALINESE ADEG ADEG (Extend_ConjunctLinker)'>&#x1B44;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B2F BALINESE LETTER WA (LinkingConsonant)'>&#x1B2F;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1B32 BALINESE LETTER SA (LinkingConsonant)'>&#x1B32;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B44 BALINESE ADEG ADEG (Extend_ConjunctLinker)'>&#x1B44;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B22 BALINESE LETTER TA (LinkingConsonant)'>&#x1B22;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B44 BALINESE ADEG ADEG (Extend_ConjunctLinker)'>&#x1B44;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B2C BALINESE LETTER YA (LinkingConsonant)'>&#x1B2C;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1B32 BALINESE LETTER SA (LinkingConsonant)'>&#x1B32;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B44 BALINESE ADEG ADEG (Extend_ConjunctLinker)'>&#x1B44;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B22 BALINESE LETTER TA (LinkingConsonant)'>&#x1B22;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B38 BALINESE VOWEL SIGN SUKU (Extend_ConjunctExtendermConjunctLinker)'>&#x25CC;&#x1B38;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s40' name='s40'>40</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+179F KHMER LETTER SA (LinkingConsonant)'>&#x179F;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+17D2 KHMER SIGN COENG (Extend_ConjunctLinker)'>&#x25CC;&#x17D2;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+178F KHMER LETTER TA (LinkingConsonant)'>&#x178F;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+17D2 KHMER SIGN COENG (Extend_ConjunctLinker)'>&#x25CC;&#x17D2;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+179A KHMER LETTER RO (LinkingConsonant)'>&#x179A;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+17B8 KHMER VOWEL SIGN II (Extend_ConjunctExtendermConjunctLinker)'>&#x25CC;&#x17B8;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s41' name='s41'>41</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+1B26 BALINESE LETTER NA (LinkingConsonant)'>&#x1B26;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1B17 BALINESE LETTER NGA (LinkingConsonant)'>&#x1B17;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B44 BALINESE ADEG ADEG (Extend_ConjunctLinker)'>&#x1B44;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B13 BALINESE LETTER KA (LinkingConsonant)'>&#x1B13;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s42' name='s42'>42</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+1B27 BALINESE LETTER PA (LinkingConsonant)'>&#x1B27;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1B13 BALINESE LETTER KA (LinkingConsonant)'>&#x1B13;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B44 BALINESE ADEG ADEG (Extend_ConjunctLinker)'>&#x1B44;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B0B BALINESE LETTER RA REPA (LinkingConsonant)'>&#x1B0B;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1B0B BALINESE LETTER RA REPA (LinkingConsonant)'>&#x1B0B;</span><span title='9.1'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+1B04 BALINESE SIGN BISAH (SpacingMark)'>&#x1B04;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s43' name='s43'>43</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+1795 KHMER LETTER PHA (LinkingConsonant)'>&#x1795;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+17D2 KHMER SIGN COENG (Extend_ConjunctLinker)'>&#x25CC;&#x17D2;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+17AF KHMER INDEPENDENT VOWEL QE (LinkingConsonant)'>&#x17AF;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1798 KHMER LETTER MO (LinkingConsonant)'>&#x1798;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+<tr><th style='text-align:right'><a href='#s44' name='s44'>44</a></th><td><font size='5'>
+<span title='0.2'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+17A0 KHMER LETTER HA (LinkingConsonant)'>&#x17A0;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+17D2 KHMER SIGN COENG (Extend_ConjunctLinker)'>&#x25CC;&#x17D2;</span><span title='9.3'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+17AB KHMER INDEPENDENT VOWEL RY (LinkingConsonant)'>&#x17AB;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1791 KHMER LETTER TO (LinkingConsonant)'>&#x1791;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span>
+<span title='U+17D0 KHMER SIGN SAMYOK SANNYA (Extend_ConjunctExtendermConjunctLinker)'>&#x25CC;&#x17D0;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='U+1799 KHMER LETTER YO (LinkingConsonant)'>&#x1799;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+
+</font></td></tr>
+</table>
+<hr width='50%'>
+<div align='center'>
+<center>
+<table cellspacing='0' cellpadding='0' border='0'>
+<tr>
+<td><a href='https://www.unicode.org/copyright.html'>
+<img src='https://www.unicode.org/img/hb_notice.gif' border='0' alt='Access to Copyright and terms of use' width='216' height='50'></a></td>
+</tr>
+</table>
+</center>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

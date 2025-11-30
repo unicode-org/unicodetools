@@ -77,6 +77,7 @@
 # @missing: 0000..10FFFF; RGI_Emoji_Modifier_Sequence  ;  No
 # @missing: 0000..10FFFF; RGI_Emoji_Tag_Sequence  ;  No
 # @missing: 0000..10FFFF; RGI_Emoji_Zwj_Sequence  ;  No
+# @missing: 0000..10FFFF; RGI_Emoji ; No
 
 # @missing: 0000..10FFFF; Emoji  	; No
 # @missing: 0000..10FFFF; Emoji_Presentation  	; No
@@ -225,6 +226,7 @@ jg; ALEF_MAQSURAH ; ALEF_MAQSURAH
 
 # @missing: 0000..10FFFF; kSimplifiedVariant ; <none>
 # @missing: 0000..10FFFF; kTraditionalVariant ; <none>
+# @missing: 0000..10FFFF; kSpoofingVariant ; <none>
 
 # @missing: 0000..10FFFF; Joining_Group ; No_Joining_Group
 
@@ -257,6 +259,14 @@ idns ; ds3m  ; disallowed_STD3_mapped
 idn8 ; NV8   ; NV8
 idn8 ; XV8   ; XV8
 idn8 ; na	 ; na
+
+# @missing: 0000..10FFFF; IDNA2008_Category ; Unassigned
+# Long names after the text of https://www.rfc-editor.org/rfc/rfc5892.txt.
+IDNA2008_Category ; PVALID     ; Protocol_Valid
+IDNA2008_Category ; CONTEXTJ   ; Contextual_Rule_Required_Join_Controls
+IDNA2008_Category ; CONTEXTO   ; Contextual_Rule_Required_Other
+IDNA2008_Category ; DISALLOWED ; Disallowed
+IDNA2008_Category ; UNASSIGNED ; Unassigned
 
 # @missing: 0000..10FFFF; Idn_Mapping  ; <code point>
 
@@ -309,6 +319,7 @@ Other_Joining_Type ; U                                ; Non_Joining
 Other_Joining_Type ; Deduce_From_General_Category     ; Deduce_From_General_Category
 
 # @missing: 0000..10FFFF; Do_Not_Emit_Preferred ; <none>
+# @missing: 0000..10FFFF; Do_Not_Emit_Dispreferred ; <none>
 
 # @missing: 0000..10FFFF; Do_Not_Emit_Type ; None
 Do_Not_Emit_Type ; None                     ; None
@@ -327,6 +338,24 @@ Do_Not_Emit_Type ; Discouraged              ; Discouraged
 Do_Not_Emit_Type ; Preferred_Spelling       ; Preferred_Spelling
 Do_Not_Emit_Type ; Arabic_Tashkil           ; Arabic_Tashkil
 
+# TODO(egg): This is really the same enumeration as Do_Not_Emit_Type, cf. Script and Script_Extensions.
+# @missing: 0000..10FFFF; Do_Not_Emit_Dispreferred_Type ; None
+Do_Not_Emit_Dispreferred_Type ; None                     ; None
+Do_Not_Emit_Dispreferred_Type ; Indic_Atomic_Consonant   ; Indic_Atomic_Consonant
+Do_Not_Emit_Dispreferred_Type ; Indic_Consonant_Conjunct ; Indic_Consonant_Conjunct
+Do_Not_Emit_Dispreferred_Type ; Indic_Vowel_Letter       ; Indic_Vowel_Letter
+Do_Not_Emit_Dispreferred_Type ; Bengali_Khanda_Ta        ; Bengali_Khanda_Ta
+Do_Not_Emit_Dispreferred_Type ; Malayalam_Chillu         ; Malayalam_Chillu
+Do_Not_Emit_Dispreferred_Type ; Tamil_Shrii              ; Tamil_Shrii
+Do_Not_Emit_Dispreferred_Type ; Dotless_Form             ; Dotless_Form
+Do_Not_Emit_Dispreferred_Type ; Hamza_Form               ; Hamza_Form
+Do_Not_Emit_Dispreferred_Type ; Precomposed_Hieroglyph   ; Precomposed_Hieroglyph
+Do_Not_Emit_Dispreferred_Type ; Precomposed_Form         ; Precomposed_Form
+Do_Not_Emit_Dispreferred_Type ; Deprecated               ; Deprecated
+Do_Not_Emit_Dispreferred_Type ; Discouraged              ; Discouraged
+Do_Not_Emit_Dispreferred_Type ; Preferred_Spelling       ; Preferred_Spelling
+Do_Not_Emit_Dispreferred_Type ; Arabic_Tashkil           ; Arabic_Tashkil
+
 # @missing: 0000..10FFFF; normalization_correction_original; <none>
 # @missing: 0000..10FFFF; normalization_correction_corrected; <none>
 
@@ -336,10 +365,17 @@ Indic_Positional_Category ; Invisible ; Invisible
 Indic_Syllabic_Category ; Consonant_Repha ; Consonant_Repha
 
 # @missing: 0000..10FFFF; kTGT_MergedSrc ; <none>
-# @missing: 0000..10FFFF; kRSTUnicode ; <none>
+# @missing: 0000..10FFFF; kTGT_RSUnicode ; <none>
 
-# @missing: 0000..10FFFF; kSrc_NushuDuben ; <none>
-# @missing: 0000..10FFFF; kReading ; <none>
+# @missing: 0000..10FFFF; kJURC_RSUnicode ; <none>
+# @missing: 0000..10FFFF; kJURC_NCReading ; <none>
+# @missing: 0000..10FFFF; kJURC_Numeric ; <none>
+
+# @missing: 0000..10FFFF; kNSHU_DubenSrc ; <none>
+# @missing: 0000..10FFFF; kNSHU_Reading ; <none>
+
+# @missing: 0000..10FFFF; kSEAL_MCJK ; <none>
+# @missing: 0000..10FFFF; kSEAL_Rad ; <none>
 
 # @missing: 0000..10FFFF; kEH_Core  ;  N
 kEH_Core ; C ; Core
@@ -349,3 +385,70 @@ kEH_Core ; N ; None
 # @missing: 0000..10FFFF; kEH_Func ; <none>
 # @missing: 0000..10FFFF; kEH_FVal ; <none>
 # @missing: 0000..10FFFF; kEH_UniK ; <none>
+# @missing: 0000..10FFFF; kEH_AltSeq ; <none>
+
+# @missing: 0000..10FFFF; Names_List_Cross_Ref ; <none>
+
+# @missing: 0000..10FFFF; RGI_Emoji_Qualification ; None
+RGI_Emoji_Qualification ; None                ; None
+# Value aliases from UTS #51.
+RGI_Emoji_Qualification ; FQE                 ; Fully_Qualified
+RGI_Emoji_Qualification ; MQE                 ; Minimally_Qualified
+RGI_Emoji_Qualification ; UQE                 ; Unqualified
+# [181-C56] Consensus: In UTS #51 ED-28, add a new property value with long name
+# "Standalone_Component" and short name "component" corresponding to the
+# "component" field value in the associated data file. For Unicode Version 17.0.
+# See L2/24-224 item 9.1.
+RGI_Emoji_Qualification ; component           ; Standalone_Component
+# Value used in 11.0 and earlier, refined in 12.0.
+RGI_Emoji_Qualification ; Non_Fully_Qualified ; Non_Fully_Qualified
+
+# @missing: 0000..10FFFF; Math_Class ; None
+Math_Class ; None ; None
+Math_Class ; N    ; Normal
+Math_Class ; A    ; Alphabetic
+Math_Class ; B    ; Binary
+Math_Class ; C    ; Closing
+Math_Class ; D    ; Diacritic
+Math_Class ; F    ; Fence
+Math_Class ; G    ; Glyph_Part
+# Only in MathClass-9 for U+2061..U+2063.  These then become
+# Binary (U+2061 and U+2062) and Special (U+2063).
+Math_Class ; I    ; Invisible
+Math_Class ; L    ; Large
+Math_Class ; O    ; Opening
+Math_Class ; P    ; Punctuation
+# MathClass-11 and MathClassEx-11 had R? for U+2B00..U+2B11.
+# These turned out to be R in revision 12.
+Math_Class ; R    ; Relation    ; R?
+Math_Class ; S    ; Space
+Math_Class ; U    ; Unary
+Math_Class ; V    ; Vary
+Math_Class ; X    ; Special
+
+# This is field 1 of MathClassEx.  We distinguish it from Math_Class because it was missing a few
+# assignments in early versions, but it really has the same type as Math_Class (and should now have
+# the same values).
+# @missing: 0000..10FFFF; Math_Class_Ex ; None
+Math_Class_Ex ; None ; None
+Math_Class_Ex ; N    ; Normal
+Math_Class_Ex ; A    ; Alphabetic
+Math_Class_Ex ; B    ; Binary
+Math_Class_Ex ; C    ; Closing
+Math_Class_Ex ; D    ; Diacritic
+Math_Class_Ex ; F    ; Fence
+Math_Class_Ex ; G    ; Glyph_Part
+Math_Class_Ex ; L    ; Large
+Math_Class_Ex ; O    ; Opening
+Math_Class_Ex ; P    ; Punctuation
+Math_Class_Ex ; R    ; Relation     ; R?
+Math_Class_Ex ; S    ; Space
+Math_Class_Ex ; U    ; Unary
+Math_Class_Ex ; V    ; Vary
+Math_Class_Ex ; X    ; Special
+
+# @missing: 0000..10FFFF; kVietnameseNumeric ; NaN
+# @missing: 0000..10FFFF; kZhuangNumeric ; NaN
+# @missing: 0000..10FFFF; kTayNumeric ; NaN
+# @missing: 0000..10FFFF; kTGT_Numeric ; NaN
+# @missing: 0000..10FFFF; Non_Unihan_Numeric_Value ; NaN
