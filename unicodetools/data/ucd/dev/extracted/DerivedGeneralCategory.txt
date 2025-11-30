@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-30, 15:58:59 GMT
+# Date: 2025-11-30, 16:57:26 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -88,7 +88,7 @@
 0B3A..0B3B    ; Cn #   [2] <reserved-0B3A>..<reserved-0B3B>
 0B45..0B46    ; Cn #   [2] <reserved-0B45>..<reserved-0B46>
 0B49..0B4A    ; Cn #   [2] <reserved-0B49>..<reserved-0B4A>
-0B4E..0B54    ; Cn #   [7] <reserved-0B4E>..<reserved-0B54>
+0B4E..0B52    ; Cn #   [5] <reserved-0B4E>..<reserved-0B52>
 0B58..0B5B    ; Cn #   [4] <reserved-0B58>..<reserved-0B5B>
 0B5E          ; Cn #       <reserved-0B5E>
 0B64..0B65    ; Cn #   [2] <reserved-0B64>..<reserved-0B65>
@@ -749,7 +749,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801763
+# Total code points: 801761
 
 # ================================================
 
@@ -2838,7 +2838,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 0B3F          ; Mn #       ORIYA VOWEL SIGN I
 0B41..0B44    ; Mn #   [4] ORIYA VOWEL SIGN U..ORIYA VOWEL SIGN VOCALIC RR
 0B4D          ; Mn #       ORIYA SIGN VIRAMA
-0B55..0B56    ; Mn #   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
+0B53..0B56    ; Mn #   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
 0B62..0B63    ; Mn #   [2] ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
 0B82          ; Mn #       TAMIL SIGN ANUSVARA
 0BC0          ; Mn #       TAMIL VOWEL SIGN II
@@ -3148,7 +3148,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2075
+# Total code points: 2077
 
 # ================================================
 

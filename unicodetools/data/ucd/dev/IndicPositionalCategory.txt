@@ -1,5 +1,5 @@
 # IndicPositionalCategory-18.0.0.txt
-# Date: 2025-11-20, 23:16:53 GMT
+# Date: 2025-11-30, 16:57:32 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -427,7 +427,7 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 0AFA..0AFF    ; Top # Mn   [6] GUJARATI SIGN SUKUN..GUJARATI SIGN TWO-CIRCLE NUKTA ABOVE
 0B01          ; Top # Mn       ORIYA SIGN CANDRABINDU
 0B3F          ; Top # Mn       ORIYA VOWEL SIGN I
-0B55..0B56    ; Top # Mn   [2] ORIYA SIGN OVERLINE..ORIYA AI LENGTH MARK
+0B53..0B56    ; Top # Mn   [4] ORIYA SIGN DOT ABOVE..ORIYA AI LENGTH MARK
 0B82          ; Top # Mn       TAMIL SIGN ANUSVARA
 0BC0          ; Top # Mn       TAMIL VOWEL SIGN II
 0BCD          ; Top # Mn       TAMIL SIGN VIRAMA
