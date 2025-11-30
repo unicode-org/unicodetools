@@ -1320,6 +1320,10 @@ public final class UCD implements UCD_Types {
                     // Unicode 17 added TANGUT IDEOGRAPH-18D1D..TANGUT IDEOGRAPH-18D1E.
                     return TANGUT_SUP_BASE;
                 }
+                if (ch <= 0x18D20 && rCompositeVersion >= 0x120000) {
+                    // Unicode 18 added TANGUT IDEOGRAPH-18D1F and TANGUT IDEOGRAPH-18D20.
+                    return TANGUT_SUP_BASE;
+                }
             }
 
             // 20000..2A6DF; CJK Unified Ideographs Extension B
@@ -1349,7 +1353,7 @@ public final class UCD implements UCD_Types {
                 if (ch <= 0x2B739 && rCompositeVersion >= 0xf0000) {
                     return CJK_C_BASE;
                 }
-                if (ch <= 0x2B73E && rCompositeVersion >= 0x110000) {
+                if (ch <= 0x2B73F && rCompositeVersion >= 0x110000) {
                     return CJK_C_BASE;
                 }
             }
@@ -1358,7 +1362,10 @@ public final class UCD implements UCD_Types {
                 if (ch <= CJK_D_BASE) {
                     return ch; // Extension D first char
                 }
-                if (ch < CJK_D_LIMIT) {
+                if (ch <= 0x2B81D) {
+                    return CJK_D_BASE;
+                }
+                if (ch <= 0x2B81E && rCompositeVersion >= 0x120000) {
                     return CJK_D_BASE;
                 }
             }
@@ -1367,7 +1374,10 @@ public final class UCD implements UCD_Types {
                 if (ch <= CJK_E_BASE) {
                     return ch; // Extension E first char
                 }
-                if (ch < CJK_E_LIMIT) {
+                if (ch <= 0x2CEA1) {
+                    return CJK_E_BASE;
+                }
+                if (ch <= 0x2CEAD && rCompositeVersion >= 0x110000) {
                     return CJK_E_BASE;
                 }
             }
@@ -1414,6 +1424,15 @@ public final class UCD implements UCD_Types {
                 }
                 if (ch < CJK_J_LIMIT) {
                     return CJK_J_BASE;
+                }
+            }
+
+            if (rCompositeVersion >= 0x120000) {
+                if (ch <= SEAL_BASE) {
+                    return ch;
+                }
+                if (ch < SEAL_LIMIT) {
+                    return SEAL_BASE;
                 }
             }
 
@@ -1569,6 +1588,7 @@ public final class UCD implements UCD_Types {
             case 0x4E00: // CJK Ideograph
             case TANGUT_BASE: // Tangut Ideograph
             case TANGUT_SUP_BASE: // Tangut Ideograph Supplement
+            case SEAL_BASE: // Seal
             case 0x20000: // Extension B
             case 0x2A700: // Extension C
             case 0x2B740: // Extension D
@@ -1680,6 +1700,12 @@ public final class UCD implements UCD_Types {
             case TANGUT_SUP_BASE:
                 if (fixStrings) {
                     constructedName = "TANGUT IDEOGRAPH-" + Utility.hex(codePoint, 4);
+                }
+                isRemapped = true;
+                break;
+            case SEAL_BASE:
+                if (fixStrings) {
+                    constructedName = "SEAL CHARACTER-" + Utility.hex(codePoint, 4);
                 }
                 isRemapped = true;
                 break;

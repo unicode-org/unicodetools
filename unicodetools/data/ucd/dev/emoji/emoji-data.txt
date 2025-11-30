@@ -1,11 +1,11 @@
 # emoji-data.txt
-# Date: 2025-01-30, 21:48:29 GMT
+# Date: 2025-11-30, 13:51:54 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Emoji Data for UTS #51
-# Version: 17.0
+# Version: 18.0.0
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr51
 #
@@ -431,7 +431,6 @@
 1FAD7..1FAD9  ; Emoji                # E14.0  [3] (🫗..🫙)    pouring liquid..jar
 1FADA..1FADB  ; Emoji                # E15.0  [2] (🫚..🫛)    ginger root..pea pod
 1FADC         ; Emoji                # E16.0  [1] (🫜)       root vegetable
-1FADD         ; Emoji                # E17.0  [1] (🫝)       apple core
 1FADF         ; Emoji                # E16.0  [1] (🫟)       splatter
 1FAE0..1FAE7  ; Emoji                # E14.0  [8] (🫠..🫧)    melting face..bubbles
 1FAE8         ; Emoji                # E15.0  [1] (🫨)       shaking face
@@ -441,7 +440,7 @@
 1FAF0..1FAF6  ; Emoji                # E14.0  [7] (🫰..🫶)    hand with index finger and thumb crossed..heart hands
 1FAF7..1FAF8  ; Emoji                # E15.0  [2] (🫷..🫸)    leftwards pushing hand..rightwards pushing hand
 
-# Total elements: 1439
+# Total elements: 1438
 
 # ================================================
 
@@ -735,7 +734,6 @@
 1FAD7..1FAD9  ; Emoji_Presentation   # E14.0  [3] (🫗..🫙)    pouring liquid..jar
 1FADA..1FADB  ; Emoji_Presentation   # E15.0  [2] (🫚..🫛)    ginger root..pea pod
 1FADC         ; Emoji_Presentation   # E16.0  [1] (🫜)       root vegetable
-1FADD         ; Emoji_Presentation   # E17.0  [1] (🫝)       apple core
 1FADF         ; Emoji_Presentation   # E16.0  [1] (🫟)       splatter
 1FAE0..1FAE7  ; Emoji_Presentation   # E14.0  [8] (🫠..🫧)    melting face..bubbles
 1FAE8         ; Emoji_Presentation   # E15.0  [1] (🫨)       shaking face
@@ -745,7 +743,7 @@
 1FAF0..1FAF6  ; Emoji_Presentation   # E14.0  [7] (🫰..🫶)    hand with index finger and thumb crossed..heart hands
 1FAF7..1FAF8  ; Emoji_Presentation   # E15.0  [2] (🫷..🫸)    leftwards pushing hand..rightwards pushing hand
 
-# Total elements: 1220
+# Total elements: 1219
 
 # ================================================
 
@@ -956,7 +954,7 @@ E0020..E007F  ; Emoji_Component      # E0.0  [96] (󠀠..󠁿)      tag space..c
 1F17E..1F17F  ; Extended_Pictographic# E0.6   [2] (🅾️..🅿️)    O button (blood type)..P button
 1F18E         ; Extended_Pictographic# E0.6   [1] (🆎)       AB button (blood type)
 1F191..1F19A  ; Extended_Pictographic# E0.6  [10] (🆑..🆚)    CL button..VS button
-1F1AE..1F1E5  ; Extended_Pictographic# E0.0  [56] (🆮..🇥)    <reserved-1F1AE>..<reserved-1F1E5>
+1F1AF..1F1E5  ; Extended_Pictographic# E0.0  [55] (🆯..🇥)    <reserved-1F1AF>..<reserved-1F1E5>
 1F201..1F202  ; Extended_Pictographic# E0.6   [2] (🈁..🈂️)    Japanese “here” button..Japanese “service charge” button
 1F203..1F20F  ; Extended_Pictographic# E0.0  [13] (🈃..🈏)    <reserved-1F203>..<reserved-1F20F>
 1F21A         ; Extended_Pictographic# E0.6   [1] (🈚)       Japanese “free of charge” button
@@ -1177,11 +1175,10 @@ E0020..E007F  ; Emoji_Component      # E0.0  [96] (󠀠..󠁿)      tag space..c
 1F6FA         ; Extended_Pictographic# E12.0  [1] (🛺)       auto rickshaw
 1F6FB..1F6FC  ; Extended_Pictographic# E13.0  [2] (🛻..🛼)    pickup truck..roller skate
 1F6FD..1F6FF  ; Extended_Pictographic# E0.0   [3] (🛽..🛿)    <reserved-1F6FD>..<reserved-1F6FF>
-1F7DA..1F7DF  ; Extended_Pictographic# E0.0   [6] (🟚..🟟)    <reserved-1F7DA>..<reserved-1F7DF>
+1F7DC..1F7DF  ; Extended_Pictographic# E0.0   [4] (🟜..🟟)    <reserved-1F7DC>..<reserved-1F7DF>
 1F7E0..1F7EB  ; Extended_Pictographic# E12.0 [12] (🟠..🟫)    orange circle..brown square
 1F7EC..1F7EF  ; Extended_Pictographic# E0.0   [4] (🟬..🟯)    <reserved-1F7EC>..<reserved-1F7EF>
 1F7F0         ; Extended_Pictographic# E14.0  [1] (🟰)       heavy equals sign
-1F7F1..1F7FF  ; Extended_Pictographic# E0.0  [15] (🟱..🟿)    <reserved-1F7F1>..<reserved-1F7FF>
 1F80C..1F80F  ; Extended_Pictographic# E0.0   [4] (🠌..🠏)    <reserved-1F80C>..<reserved-1F80F>
 1F848..1F84F  ; Extended_Pictographic# E0.0   [8] (🡈..🡏)    <reserved-1F848>..<reserved-1F84F>
 1F85A..1F85F  ; Extended_Pictographic# E0.0   [6] (🡚..🡟)    <reserved-1F85A>..<reserved-1F85F>
@@ -1272,8 +1269,7 @@ E0020..E007F  ; Emoji_Component      # E0.0  [96] (󠀠..󠁿)      tag space..c
 1FAD7..1FAD9  ; Extended_Pictographic# E14.0  [3] (🫗..🫙)    pouring liquid..jar
 1FADA..1FADB  ; Extended_Pictographic# E15.0  [2] (🫚..🫛)    ginger root..pea pod
 1FADC         ; Extended_Pictographic# E16.0  [1] (🫜)       root vegetable
-1FADD         ; Extended_Pictographic# E17.0  [1] (🫝)       apple core
-1FADE         ; Extended_Pictographic# E0.0   [1] (🫞)       <reserved-1FADE>
+1FADD..1FADE  ; Extended_Pictographic# E0.0   [2] (🫝..🫞)    <reserved-1FADD>..<reserved-1FADE>
 1FADF         ; Extended_Pictographic# E16.0  [1] (🫟)       splatter
 1FAE0..1FAE7  ; Extended_Pictographic# E14.0  [8] (🫠..🫧)    melting face..bubbles
 1FAE8         ; Extended_Pictographic# E15.0  [1] (🫨)       shaking face
@@ -1286,6 +1282,6 @@ E0020..E007F  ; Emoji_Component      # E0.0  [96] (󠀠..󠁿)      tag space..c
 1FAF9..1FAFF  ; Extended_Pictographic# E0.0   [7] (🫹..🫿)    <reserved-1FAF9>..<reserved-1FAFF>
 1FC00..1FFFD  ; Extended_Pictographic# E0.0[1022] (🰀..🿽)    <reserved-1FC00>..<reserved-1FFFD>
 
-# Total elements: 2848
+# Total elements: 2830
 
 #EOF

@@ -247,7 +247,7 @@ public class TestData implements UCD_Types {
         /*showSet();
          */
         final String x =
-                "[[[:s:][:p:]&[:ascii:]] | [\\u2190-\\u2BFF] | "
+                "[[[:s:][:p:]&[:Block=ASCII:]] | [\\u2190-\\u2BFF] | "
                         + "[[:s:][:p:]"
                         //     + "&[:decompositiontype=none:]"
                         // + "- [:id_continue:]"
