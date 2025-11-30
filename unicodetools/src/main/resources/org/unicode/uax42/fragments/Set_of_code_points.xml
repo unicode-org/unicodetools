@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Manual-->
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="Set of code points" id='schema.repertoire'>
+  set-of-code-points =
+     attribute cp { single-code-point }
+   | ( attribute first-cp { single-code-point },
+       attribute last-cp  { single-code-point } )
+</ucdxml:block>

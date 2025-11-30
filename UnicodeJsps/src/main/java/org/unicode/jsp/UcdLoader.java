@@ -21,7 +21,7 @@ public class UcdLoader implements javax.servlet.Servlet {
         return oldestLoadedUcd;
     }
 
-    private static synchronized void setOldestLoadedUcd(VersionInfo v) {
+    public static synchronized void setOldestLoadedUcd(VersionInfo v) {
         if (v.compareTo(oldestLoadedUcd) < 0) {
             oldestLoadedUcd = v;
         }
