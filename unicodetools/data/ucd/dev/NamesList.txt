@@ -5690,6 +5690,8 @@
 	x (bengali sign avagraha - 09BD)
 	x (sharada sandhi mark - 111C9)
 	x (newa sandhi mark - 1145E)
+@		Addition for Sanskrit
+09FF	BENGALI LETTER SANSKRIT BA
 @@	0A00	Gurmukhi	0A7F
 @		Various signs
 0A01	GURMUKHI SIGN ADAK BINDI
