@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Log;
-import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.RandomStringGenerator;
 import org.unicode.props.UnicodeProperty;
 
@@ -67,7 +67,7 @@ public class TestSegments {
             args = new String[] {"GraphemeClusterBreak", "LineBreak", "SentenceBreak", "WordBreak"};
         List<String> testChoice = Arrays.asList(args);
 
-        UnicodeProperty.Factory propFactory = ICUPropertyFactory.make();
+        UnicodeProperty.Factory propFactory = IndexUnicodeProperties.make();
 
         // grab the rules, build a RuleList, and run against the test samples.
 

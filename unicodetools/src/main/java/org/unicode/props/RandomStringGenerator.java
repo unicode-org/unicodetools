@@ -14,7 +14,6 @@ import com.ibm.icu.text.UnicodeSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import org.unicode.jsp.ICUPropertyFactory;
 
 public class RandomStringGenerator {
 
@@ -58,7 +57,7 @@ public class RandomStringGenerator {
                 factory,
                 factory.getProperty(propertyName).getUnicodeMap(),
                 useShortName
-                        ? ICUPropertyFactory.make().getProperty(propertyName).getUnicodeMap(true)
+                        ? IndexUnicodeProperties.make().getProperty(propertyName).getUnicodeMap(true)
                         : null,
                 addGCStuff);
     }
