@@ -57,7 +57,9 @@ public class RandomStringGenerator {
                 factory,
                 factory.getProperty(propertyName).getUnicodeMap(),
                 useShortName
-                        ? IndexUnicodeProperties.make().getProperty(propertyName).getUnicodeMap(true)
+                        ? IndexUnicodeProperties.make()
+                                .getProperty(propertyName)
+                                .getUnicodeMap(true)
                         : null,
                 addGCStuff);
     }
