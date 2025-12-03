@@ -52,8 +52,6 @@ Indic scripts only:
 If the change affects emoji properties, including reserved Extended_Pictographic codepoints that should no longer be 
 reserved:
 - [ ] [GenerateEmojiData](#generateemojidata)
-- [ ] Merge changes from the temporary files that are generated in unicodetools/data/ucd.
-- [ ] Delete the temporary files that aren't needed from unicodetools/data/ucd and unicodetools/data/emoji.
 - [ ] Commit
 
 ---
