@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2025-12-03, 19:31:35 GMT
+# Date: 2025-12-03, 19:51:00 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -305,7 +305,7 @@ FFE9..FFEC    ; Math # Sm   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS A
 05BF          ; Alphabetic # Mn       HEBREW POINT RAFE
 05C1..05C2    ; Alphabetic # Mn   [2] HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
 05C4..05C5    ; Alphabetic # Mn   [2] HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
-05C7..05C8    ; Alphabetic # Mn   [2] HEBREW POINT QAMATS QATAN..HEBREW POINT SHEVA NA MUDGASH
+05C7..05C9    ; Alphabetic # Mn   [3] HEBREW POINT QAMATS QATAN..HEBREW POINT DAGESH HAZAQ MUDGASH
 05D0..05EA    ; Alphabetic # Lo  [27] HEBREW LETTER ALEF..HEBREW LETTER TAV
 05EF..05F2    ; Alphabetic # Lo   [4] HEBREW YOD TRIANGLE..HEBREW LIGATURE YIDDISH DOUBLE YOD
 0610..061A    ; Alphabetic # Mn  [11] ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..ARABIC SMALL KASRA
@@ -1482,7 +1482,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 31350..33479  ; Alphabetic # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Alphabetic # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 160268
+# Total code points: 160269
 
 # ================================================
 
