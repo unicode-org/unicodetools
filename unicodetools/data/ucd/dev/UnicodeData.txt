@@ -1,3 +1,4 @@
+05C9;HEBREW POINT HEAVY DAGESH;Mn;21;NSM;;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
