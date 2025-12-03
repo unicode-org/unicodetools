@@ -31,6 +31,7 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -1290,7 +1291,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                             + lines[1].substring(diff)
                             + "'");
         }
-        new File(newFile).renameTo(oldFile2);
+        Files.move(Path.of(newFile), Path.of(oldFile), StandardCopyOption.REPLACE_EXISTING);
         return true;
     }
 
