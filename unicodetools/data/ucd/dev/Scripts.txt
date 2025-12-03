@@ -1,3 +1,4 @@
+05C9; Hebrew
 # Scripts-18.0.0.txt
 # Date: 2025-11-30, 20:47:03 GMT
 # © 2025 Unicode®, Inc.
