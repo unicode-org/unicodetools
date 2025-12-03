@@ -21,7 +21,7 @@ import java.util.zip.GZIPOutputStream;
 import org.junit.jupiter.api.Test;
 import org.unicode.draft.UnicodeDataInput.StringReader;
 import org.unicode.draft.UnicodeDataOutput.StringWriter;
-import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
@@ -401,7 +401,7 @@ public class TestCompressed extends TestFmwkMinusMinus {
      */
     @Test
     public void TestUnicodePropAccess() throws IOException {
-        final UnicodeProperty.Factory f = ICUPropertyFactory.make();
+        final UnicodeProperty.Factory f = IndexUnicodeProperties.make();
         for (final String property : (Iterable<String>) f.getAvailableNames()) {
             final UnicodeProperty prop = f.getProperty(property);
             if (prop.isType(UnicodeProperty.STRING_OR_MISC_MASK)) {

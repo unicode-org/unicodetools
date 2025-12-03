@@ -31,7 +31,6 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.Tabber.HTMLTabber;
 import org.unicode.cldr.util.props.UnicodeLabel;
-import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
@@ -43,7 +42,6 @@ import org.unicode.text.utility.Settings;
 public class TestUnicodeInvariants {
     private static final boolean DEBUG = false;
 
-    private static final boolean ICU_VERSION = false; // ignore the versions if this is true
     private static final Factory LATEST_PROPS = getProperties(Settings.latestVersion);
     private static final boolean SHOW_LOOKUP = false;
     private static int showRangeLimit = 20;
@@ -1988,7 +1986,7 @@ public class TestUnicodeInvariants {
     }
 
     private static Factory getProperties(final String version) {
-        return ICU_VERSION ? ICUPropertyFactory.make() : ToolUnicodePropertySource.make(version);
+        return ToolUnicodePropertySource.make(version);
     }
 
     // Some of our parse exceptions are thrown with a parse position before the problem.
