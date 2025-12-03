@@ -8,10 +8,12 @@ Ignoring Name Age:
 # Ignore the security and IDNA properties, as these are not yet included until β.
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
+Ignoring Unicode_1_Name  # U+05BC was called HEBREW POINT DAGESH.
 Propertywise [
     \x{05BC}\N{HEBREW POINT DAGESH OR MAPIQ}
     \x{05C9}\N{HEBREW POINT DAGESH HAZAQ MUDGASH}
 ] AreAlike
+end Ignoring;
 
 end Ignoring;
 
