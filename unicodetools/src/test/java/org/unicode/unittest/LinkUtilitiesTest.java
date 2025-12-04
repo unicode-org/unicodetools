@@ -37,14 +37,14 @@ import org.unicode.utilities.LinkUtilities.LinkTermination;
 import org.unicode.utilities.LinkUtilities.Part;
 
 /** The following is very temporary, just during the spec development. */
-public class TestUrl extends TestFmwk {
+public class LinkUtilitiesTest extends TestFmwk {
 
     private static final Joiner JOIN_SEMI_TAB = Joiner.on(";\t");
     public static final char LINKIFY_START = '⸠';
     public static final char LINKIFY_END = '⸡';
 
     public static void main(String[] args) {
-        new TestUrl().run(args);
+        new LinkUtilitiesTest().run(args);
     }
 
     static final List<String> TEST_DETECTION_CASES = new ArrayList<>();
