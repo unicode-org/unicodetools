@@ -5,6 +5,7 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedMap;
+import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.UncheckedExecutionException;
 import com.ibm.icu.impl.IDNA2003;
 import com.ibm.icu.impl.UnicodeMap;
@@ -16,12 +17,15 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
+import com.ibm.icu.text.UnicodeSet.XSymbolTable;
+
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -38,11 +42,20 @@ import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 public class UrlUtilities {
+
+	// change UnicodeSet to use the current IndexUnicodeProperties
+    public static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
+	final static XSymbolTable IUP_XSYMBOL_TABLE = new UnicodePropertySymbolTable(IUP);
 
     public static final boolean DEBUG = false;
     public static final boolean USE_CLDR = false;
@@ -50,6 +63,11 @@ public class UrlUtilities {
     public static final String RESOURCE_DIR =
             Settings.UnicodeTools.UNICODETOOLS_REPO_DIR
                     + "/unicodetools/src/main/resources/org/unicode/tools/";
+
+    public static final String DATA_DIR =
+            Settings.UnicodeTools.UNICODETOOLS_REPO_DIR
+                    + "/unicodetools/data/links";
+   
 
     public static final Splitter SPLIT_COMMA = Splitter.on(',');
     public static final Splitter SPLIT_TAB = Splitter.on('\t');
@@ -59,32 +77,71 @@ public class UrlUtilities {
     public static final Joiner JOIN_EMPTY = Joiner.on("");
 
     public static final CLDRFile ENGLISH = USE_CLDR ? CLDRConfig.getInstance().getEnglish() : null;
+    
+    private static final UnicodeSet SOFAR = new UnicodeSet();
 
     /** Defines the LinkTermination property TODO: use IUP instead of ICU properties */
     public enum LinkTermination {
-        Include("[\\p{ANY}]"), // overridden by following
         Hard("[\\p{whitespace}\\p{NChar}[\\p{C}-\\p{Cf}]\\p{deprecated}]"),
         Soft("[\\p{Term}\\p{lb=qu}]"), // was [‘-‛ ‹ › \"“-‟ « »'] instead of \p{lb=qu}
-        Close("[\\p{Bidi_Paired_Bracket_Type=Close}[>]]"),
-        Open("[\\p{Bidi_Paired_Bracket_Type=Open}[<]]"),
+        Close("[\\p{Bidi_Paired_Bracket_Type=Close}[>]-\\p{deprecated}]"),
+        Open("[\\p{Bidi_Paired_Bracket_Type=Open}[<]-\\p{deprecated}]"),
+        Include(null), // all else
         ;
 
         public final UnicodeSet base;
+        
+        public UnicodeSet getBase() {
+			return base;
+		}
+
+        public static final Set<LinkTermination> NON_MISSING = ImmutableSet.copyOf(Sets.difference(EnumSet.allOf(LinkTermination.class), Set.of(Hard)));
 
         private LinkTermination(String uset) {
+        	// It would be cleaner if the UnicodeSet constructor from a string took an optional XSymbolTable
+        	if (uset == null) {
+        		this.base = SOFAR.complement().freeze();
+        	} else {
+        	final XSymbolTable previous = UnicodeSet.getDefaultXSymbolTable();
+        	UnicodeSet.setDefaultXSymbolTable(IUP_XSYMBOL_TABLE);
+        	
             this.base = new UnicodeSet(uset).freeze();
+            SOFAR.addAll(this.base);
+            
+        	UnicodeSet.setDefaultXSymbolTable(previous);
+        	}
         }
 
-        public static final UnicodeMap<LinkTermination> Property = new UnicodeMap<>();
-
+        public static final UnicodeMap<LinkTermination> PROPERTY_MAP = new UnicodeMap<>();
+        public static final UnicodeProperty PROPERTY;
+        
         static {
+        	// Verify consistency
+        	for (LinkTermination pv1 : values()) {
+        		for (LinkTermination pv2 : values()) {
+        			if (pv1.compareTo(pv2) <= 0) {
+        				continue;
+        			}
+        			if (pv1.base.containsSome(pv2.base)) {
+        				throw new IllegalArgumentException("Values in LinkTermination overlap! "
+        						+ pv1 + ", " + pv2 + ": " + new UnicodeSet(pv1.base).retainAll(pv2.base));
+        			}
+        		}
+        	}
             for (LinkTermination lt : values()) {
-                Property.putAll(lt.base, lt);
+                PROPERTY_MAP.putAll(lt.base, lt);
             }
-            Property.freeze();
+            PROPERTY_MAP.freeze();
+            com.ibm.icu.dev.util.UnicodeMap<String> temp = new com.ibm.icu.dev.util.UnicodeMap<>(); // ugly, that there are two different UnicodeMaps.
+            for (UnicodeMap.EntryRange<LinkTermination> entry : PROPERTY_MAP.entryRanges()) {
+            	temp.putAll(entry.codepoint, entry.codepointEnd, entry.value.toString());
+            }
+            PROPERTY = new UnicodeMapProperty().set(temp)
+            		.setMain(LinkTermination.class.getSimpleName(), "LinkTerm", UnicodeProperty.ENUMERATED, IUP.getUcdVersion().getVersionString(2, 2));
         }
     }
 
+    
     private static String getGeneralCategory(int property, int codePoint, int nameChoice) {
         return UCharacter.getPropertyValueName(
                 property, UCharacter.getIntPropertyValue(codePoint, property), nameChoice);
@@ -96,6 +153,17 @@ public class UrlUtilities {
 
     private static int getOpening(int cp) {
         return cp == '>' ? '<' : UCharacter.getBidiPairedBracket(cp);
+    }
+    
+    public static final UnicodeProperty LINK_PAIRED_OPENER;
+    static {
+    	com.ibm.icu.dev.util.UnicodeMap<String> temp = new com.ibm.icu.dev.util.UnicodeMap<>();
+    	for (int cp : LinkTermination.Close.base.codePoints()) {
+    		temp.put(cp, Utility.hex(getOpening(cp), 4));
+    	}
+    	
+    	LINK_PAIRED_OPENER = new UnicodeMapProperty().set(temp)
+    		.setMain("LinkPairedOpener", "LinkPO", UnicodeProperty.STRING, IUP.getUcdVersion().getVersionString(2, 2)); 
     }
 
     /** Parallels the spec parts table */
@@ -184,7 +252,6 @@ public class UrlUtilities {
         }
     }
 
-    static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
     private static final UnicodeSet idnMapped =
             IUP.getSet("Idn_Status=" + Idn_Status_Values.mapped);
     private static final UnicodeSet idnValid = IUP.getSet("Idn_Status=" + Idn_Status_Values.valid);
@@ -246,7 +313,7 @@ public class UrlUtilities {
         int protocolEnd = findStartMatcher.end();
         if (start != 0) {
             LinkTermination lt =
-                    LinkTermination.Property.get(UCharacter.codePointBefore(source, start));
+                    LinkTermination.PROPERTY_MAP.get(UCharacter.codePointBefore(source, start));
             if (lt == LinkTermination.Include) {
                 return new LinkFound(start, protocolEnd, LinkStatus.bogus);
             }
@@ -324,7 +391,7 @@ public class UrlUtilities {
                 continue;
             }
 
-            lt = LinkTermination.Property.get(cp);
+            lt = LinkTermination.PROPERTY_MAP.get(cp);
             switch (lt) {
                 case Include:
                     if (part.terminators.contains(cp)) {
@@ -399,7 +466,7 @@ public class UrlUtilities {
                 LinkTermination lt =
                         part.terminators.contains(cp)
                                 ? LinkTermination.Hard
-                                : LinkTermination.Property.get(cp);
+                                : LinkTermination.PROPERTY_MAP.get(cp);
                 switch (lt) {
                     case Include:
                         appendCodePointsBetween(output, cps, copiedAlready, i);
@@ -561,7 +628,7 @@ public class UrlUtilities {
     /** Show termination values, for generating property files */
     void showLinkTermination() {
         for (LinkTermination lt : LinkTermination.values()) {
-            UnicodeSet value = LinkTermination.Property.getSet(lt);
+            UnicodeSet value = LinkTermination.PROPERTY_MAP.getSet(lt);
             String name = lt.toString();
             System.out.println("\n#\tLink_Termination=" + name);
             if (lt == LinkTermination.Include) {
@@ -613,7 +680,7 @@ public class UrlUtilities {
 
     /** Show paired openers, for generating property files */
     public void showLinkPairedOpeners() {
-        UnicodeSet value = LinkTermination.Property.getSet(LinkTermination.Close);
+        UnicodeSet value = LinkTermination.PROPERTY_MAP.getSet(LinkTermination.Close);
 
         System.out.println("\n#\tLink_Paired_Opener");
         System.out.println(

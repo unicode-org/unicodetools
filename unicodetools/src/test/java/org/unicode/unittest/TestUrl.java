@@ -320,7 +320,7 @@ public class TestUrl extends TestFmwk {
         if (!allEscaped.isEmpty()) {
             final UnicodeSet keySet = allEscaped.keySet();
             for (String ch : keySet) {
-                LinkTermination prop2 = LinkTermination.Property.get(ch);
+                LinkTermination prop2 = LinkTermination.PROPERTY_MAP.get(ch);
                 Counter<String> escapedCounter = allEscaped.get(ch);
                 for (R2<Long, String> countAndSource :
                         escapedCounter.getEntrySetSortedByCount(false, null)) {
@@ -434,7 +434,7 @@ public class TestUrl extends TestFmwk {
             if (lt == lt.Include) {
                 continue;
             }
-            UnicodeSet propValue = lt.Property.getSet(lt);
+            UnicodeSet propValue = lt.PROPERTY_MAP.getSet(lt);
             if (!propValue.equals(lt.base)) {
                 errln("Overlap");
             }
