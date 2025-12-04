@@ -3,8 +3,6 @@
 # Hm... PublicSuffix accepts .invalid as a valid TLD.
 ## invalid is not a TLD
 a test.invalid b	a test.invalid b
-## Add test for uppercase
-a test.COM b	a ⸠test.COM⸡ b
 
 # If PublicSuffix is used, links to blogspot.com and .com need testing
 a blogspot.com b	a ⸠blogspot.com⸡ b

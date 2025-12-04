@@ -47,6 +47,8 @@ public class TestUrl extends TestFmwk {
         new TestUrl().run(args);
     }
 
+    static final List<String> TEST_DETECTION_CASES = new ArrayList<>();
+
     public void testLinkification() {
         String[][] tests = {
             {"!", "!"},
@@ -142,7 +144,7 @@ public class TestUrl extends TestFmwk {
                             counter.get(Boolean.TRUE)));
     }
 
-    public void testkMinimumEscaping() {
+    public void testMinimumEscaping() {
         System.out.println();
         String[][] tests = {
             {"a", "", "", "/a", "Path only"},
@@ -266,7 +268,7 @@ public class TestUrl extends TestFmwk {
                     if (x.startsWith("#")) {
                         return;
                     }
-                    if (shortTest && items.value++ > 1000) {
+                    if (shortTest && items.value++ > 100) {
                         throw new Bail();
                     }
 

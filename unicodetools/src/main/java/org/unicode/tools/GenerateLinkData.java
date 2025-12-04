@@ -85,6 +85,8 @@ class GenerateLinkData {
                             + "# • Create a copy of the line, with the characters ⸠ and ⸡ removed.\n"
                             + "# • Run link detection on the line, inserting ⸠ and ⸡ around each detected link.\n"
                             + "# • Report a failure if the result is not identical to the original line.\n"
+                            + "# Empty lines, and lines starting with # are ignored.\n"
+                            + "# Otherwise # is treated like any other character.\n"
                             + "# ================================================\n");
 
     static void writeTestHeader(PrintWriter out, String filename, String testName) {
@@ -140,6 +142,8 @@ class GenerateLinkData {
                 FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR, "LinkDetectionTest.txt"); ) {
             writeTestHeader(out, "LinkDetectionTest", "LinkDetectionTest");
 
+            out.println("# Test cases contributed by ICANN\n");
+
             Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "test_links_lt.txt"))
                     .forEach(
                             line -> {
@@ -164,6 +168,19 @@ class GenerateLinkData {
                                                     + actual);
                                     return;
                                 }
+                                out.println(actual);
+                            });
+
+            out.println("\n# Other test cases\n");
+
+            Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "test_links_plain.txt"))
+                    .forEach(
+                            line -> {
+                                if (line.startsWith("#") || line.isBlank()) {
+                                    out.println(line);
+                                    return;
+                                }
+                                String actual = addBraces(line);
                                 out.println(actual);
                             });
 

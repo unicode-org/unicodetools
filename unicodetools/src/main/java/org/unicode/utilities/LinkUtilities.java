@@ -48,8 +48,9 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 public class LinkUtilities {
+    private static final boolean SHOW_NON_ASCII_TLDS = true;
 
-    // change UnicodeSet to use the current IndexUnicodeProperties
+    // allow changing UnicodeSet to use the current IndexUnicodeProperties
     public static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
     static final XSymbolTable IUP_XSYMBOL_TABLE = new UnicodePropertySymbolTable(IUP);
 
@@ -77,7 +78,7 @@ public class LinkUtilities {
     /** Defines the LinkTermination property */
     public enum LinkTermination {
         Hard("[\\p{whitespace}\\p{NChar}[\\p{C}-\\p{Cf}]\\p{deprecated}]"),
-        Soft("[\\p{Term}\\p{lb=qu}]"), // was [‘-‛ ‹ › \"“-‟ « »'] instead of \p{lb=qu}
+        Soft("[\\p{Term}\\p{lb=qu}-\\p{deprecated}]"),
         Close("[\\p{Bidi_Paired_Bracket_Type=Close}[>]-\\p{deprecated}]"),
         Open("[\\p{Bidi_Paired_Bracket_Type=Open}[<]-\\p{deprecated}]"),
         Include(null), // all else
@@ -768,7 +769,7 @@ public class LinkUtilities {
                             });
             String pattern = "(?u)[.。](" + Joiner.on('|').join(core) + ")";
             TLD_SCANNER = Pattern.compile(pattern);
-            if (false) {
+            if (SHOW_NON_ASCII_TLDS) {
                 System.out.println(nonAscii);
             }
         } catch (IOException e) {
