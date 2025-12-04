@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-18.0.0.txt
-# Date: 2025-11-30, 20:46:28 GMT
+# Date: 2025-12-04, 00:42:58 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1853,6 +1853,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 12475..1247F  ; N # Nl  [11] CUNEIFORM NUMERIC SIGN EIGHT ASH TENU..CUNEIFORM NUMERIC SIGN ASH TIMES NINE DISH TENU
 12480..12543  ; N # Lo [196] CUNEIFORM SIGN AB TIMES NUN TENU..CUNEIFORM SIGN ZU5 TIMES THREE DISH TENU
 12550..12686  ; N # Nl [311] CUNEIFORM NUMERIC SIGN ONE N01..CUNEIFORM NUMERIC SIGN ONE N36 FLAT
+12690..12BE7  ; N # Lo [1368] PROTO-CUNEIFORM SIGN A..PROTO-CUNEIFORM SIGN ZATU859
+12BE8..12BFF  ; N # Nl  [24] PROTO-CUNEIFORM NUMERIC SIGN TWO LAGAB-A..PROTO-CUNEIFORM NUMERIC SIGN ONE N58 TENU
 12F90..12FF0  ; N # Lo  [97] CYPRO-MINOAN SIGN CM001..CYPRO-MINOAN SIGN CM114
 12FF1..12FF2  ; N # Po   [2] CYPRO-MINOAN SIGN CM301..CYPRO-MINOAN SIGN CM302
 13000..1342F  ; N # Lo [1072] EGYPTIAN HIEROGLYPH A001..EGYPTIAN HIEROGLYPH V011D
@@ -2162,7 +2164,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 758971 code points not listed here.
+# The above property value applies to 757579 code points not listed here.
 # Total code points: 791282
 
 # ================================================

@@ -1,5 +1,5 @@
 # DerivedNumericValues-18.0.0.txt
-# Date: 2025-11-20, 23:16:51 GMT
+# Date: 2025-12-04, 00:43:02 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -814,6 +814,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 12677         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO N04 FLAT
 1267C         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO N19 FLAT
 12685         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO N46 FLAT
+12BE8..12BFF  ; 2.0 ; ; 2 # Nl  [24] PROTO-CUNEIFORM NUMERIC SIGN TWO LAGAB-A..PROTO-CUNEIFORM NUMERIC SIGN ONE N58 TENU
 16132         ; 2.0 ; ; 2 # Nd       GURUNG KHEMA DIGIT TWO
 16A62         ; 2.0 ; ; 2 # Nd       MRO DIGIT TWO
 16AC2         ; 2.0 ; ; 2 # Nd       TANGSA DIGIT TWO
@@ -848,7 +849,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 1FBF2         ; 2.0 ; ; 2 # Nd       SEGMENTED DIGIT TWO
 22390         ; 2.0 ; ; 2 # Lo       CJK UNIFIED IDEOGRAPH-22390
 
-# Total code points: 207
+# Total code points: 231
 
 # ================================================
 
