@@ -30,11 +30,11 @@ import java.util.stream.Collectors;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Rational.MutableLong;
 import org.unicode.text.utility.Utility;
-import org.unicode.utilities.UrlUtilities;
-import org.unicode.utilities.UrlUtilities.LinkFound;
-import org.unicode.utilities.UrlUtilities.LinkScanner;
-import org.unicode.utilities.UrlUtilities.LinkTermination;
-import org.unicode.utilities.UrlUtilities.Part;
+import org.unicode.utilities.LinkUtilities;
+import org.unicode.utilities.LinkUtilities.LinkFound;
+import org.unicode.utilities.LinkUtilities.LinkScanner;
+import org.unicode.utilities.LinkUtilities.LinkTermination;
+import org.unicode.utilities.LinkUtilities.Part;
 
 /** The following is very temporary, just during the spec development. */
 public class TestUrl extends TestFmwk {
@@ -93,7 +93,7 @@ public class TestUrl extends TestFmwk {
 
                 String source = test[0];
                 String expected = test[1];
-                int parseResult = UrlUtilities.parsePathQueryFragment(source, 0);
+                int parseResult = LinkUtilities.parsePathQueryFragment(source, 0);
                 String actual =
                         parseResult == 0
                                 ? source
@@ -133,7 +133,7 @@ public class TestUrl extends TestFmwk {
     private void show(String functionName, Counter<Boolean> counter) {
         if (isVerbose())
             System.out.println(
-                    UrlUtilities.JOIN_TAB.join(
+                    LinkUtilities.JOIN_TAB.join(
                             "Summary",
                             functionName,
                             "error:",
@@ -199,7 +199,7 @@ public class TestUrl extends TestFmwk {
                 }
                 // check
                 final String expected = test[3];
-                final String actual = UrlUtilities.minimalEscape(source, false, null);
+                final String actual = LinkUtilities.minimalEscape(source, false, null);
                 counter.add(assertEquals(line + ") " + source.toString(), expected, actual), 1);
             }
         }
@@ -238,7 +238,7 @@ public class TestUrl extends TestFmwk {
             String expected = test[1];
             NavigableMap<Part, String> parts0 = Part.getParts(test0, false);
             assertEquals("checkParts", expected, parts0.toString());
-            String min0 = UrlUtilities.minimalEscape(parts0, false, null);
+            String min0 = LinkUtilities.minimalEscape(parts0, false, null);
         }
     }
 
@@ -260,7 +260,7 @@ public class TestUrl extends TestFmwk {
         Counter<Boolean> allOkCounter = new Counter<>();
         Counter<String> langToPageCount = new Counter<>();
         final Matcher wikiLanguageMatcher = WIKI_LANGUAGE.matcher("");
-        Set<String> unseen = new TreeSet<>(UrlUtilities.WIKI_LANGUAGES);
+        Set<String> unseen = new TreeSet<>(LinkUtilities.WIKI_LANGUAGES);
         final Consumer<? super String> action =
                 x -> {
                     if (x.startsWith("#")) {
@@ -270,7 +270,7 @@ public class TestUrl extends TestFmwk {
                         throw new Bail();
                     }
 
-                    List<String> urls = UrlUtilities.SPLIT_TAB.splitToList(x);
+                    List<String> urls = LinkUtilities.SPLIT_TAB.splitToList(x);
                     String source = urls.get(0);
                     String expected = urls.size() == 2 ? urls.get(1) : source;
                     Map<Part, String> parts = Part.getParts(source, false);
@@ -278,7 +278,7 @@ public class TestUrl extends TestFmwk {
                     String wikiLanguage = host;
                     if (wikiLanguageMatcher.reset(host).find()) {
                         final String rawWikiCode = wikiLanguageMatcher.group(1);
-                        wikiLanguage = UrlUtilities.fixWiki(rawWikiCode);
+                        wikiLanguage = LinkUtilities.fixWiki(rawWikiCode);
                         unseen.remove(rawWikiCode);
                     }
                     wikiLanguage += "\t" + getLanguageName(x);
@@ -286,7 +286,7 @@ public class TestUrl extends TestFmwk {
                     Counter<Integer> escapedCounter = new Counter<>();
 
                     String actual =
-                            UrlUtilities.minimalEscape(
+                            LinkUtilities.minimalEscape(
                                     new TreeMap<Part, String>(parts), false, escapedCounter);
                     okCounter.add(assertEquals(wikiLanguage, expected, actual), 1);
                     try {
@@ -309,7 +309,7 @@ public class TestUrl extends TestFmwk {
                     }
                     allOkCounter.addAll(okCounter);
                 };
-        final Path filePath = Path.of(UrlUtilities.RESOURCE_DIR + "testUrls.txt").toRealPath();
+        final Path filePath = Path.of(LinkUtilities.RESOURCE_DIR + "testUrls.txt").toRealPath();
         System.out.println(filePath);
         try {
             Files.lines(filePath).forEach(action);
@@ -328,7 +328,7 @@ public class TestUrl extends TestFmwk {
                     String source = countAndSource.get1();
                     long sourceCount = langToPageCount.get(source);
                     System.out.println(
-                            UrlUtilities.JOIN_TAB.join(
+                            LinkUtilities.JOIN_TAB.join(
                                     "ESCAPED",
                                     ch,
                                     Utility.hex(ch),
@@ -353,8 +353,8 @@ public class TestUrl extends TestFmwk {
 
     public String getLanguageName(String localeId) {
         try {
-            if (UrlUtilities.USE_CLDR) {
-                return UrlUtilities.ENGLISH.getName(localeId);
+            if (LinkUtilities.USE_CLDR) {
+                return LinkUtilities.ENGLISH.getName(localeId);
             } else {
                 return ULocale.getDisplayName(localeId, "en");
             }
@@ -390,9 +390,9 @@ public class TestUrl extends TestFmwk {
                                         url = prefix + url.substring(wikipos + 6);
                                         NavigableMap<Part, String> parts =
                                                 Part.getParts(url, false); // splits and unescapes
-                                        String raw = UrlUtilities.JOIN_EMPTY.join(parts.values());
+                                        String raw = LinkUtilities.JOIN_EMPTY.join(parts.values());
                                         String actual =
-                                                UrlUtilities.minimalEscape(parts, false, escaped);
+                                                LinkUtilities.minimalEscape(parts, false, escaped);
                                         counter.add(assertEquals(wikiLanguage, raw, actual), 1);
                                     }
                                 }
@@ -465,7 +465,7 @@ public class TestUrl extends TestFmwk {
             // String source = "See http://example.com/foobar and http://a.us/foobar!";
             int offset = 0;
             for (int i = 1; i < test.length; ++i) {
-                LinkFound position = UrlUtilities.parseLink(source, offset);
+                LinkFound position = LinkUtilities.parseLink(source, offset);
                 String expected = test[i];
                 String actual = position == null ? null : position.substring(source);
                 assertEquals(caseNumber + "." + i + ") «" + source + "»", expected, actual);
@@ -488,7 +488,7 @@ public class TestUrl extends TestFmwk {
             ++caseNumber;
             String source = test[0];
             String expected = test[1];
-            Matcher m = UrlUtilities.TLD_SCANNER.matcher(source);
+            Matcher m = LinkUtilities.TLD_SCANNER.matcher(source);
             List<String> list = new ArrayList<>();
             while (true) {
                 if (!m.find()) {
@@ -498,10 +498,10 @@ public class TestUrl extends TestFmwk {
                 int start = m.start();
                 int limit = m.end();
                 if (start > 0
-                        && UrlUtilities.validHostNoDot.contains(
+                        && LinkUtilities.validHostNoDot.contains(
                                 UCharacter.codePointBefore(source, start))
                         && (limit == source.length()
-                                || !UrlUtilities.validHostNoDot.contains(
+                                || !LinkUtilities.validHostNoDot.contains(
                                         UCharacter.codePointAt(source, limit)))) {
                     list.add(m.group(1));
                 }

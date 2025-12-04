@@ -48,7 +48,7 @@ import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-public class UrlUtilities {
+public class LinkUtilities {
 
     // change UnicodeSet to use the current IndexUnicodeProperties
     public static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
@@ -265,7 +265,7 @@ public class UrlUtilities {
          * @return
          */
         public String unescape(String substring) {
-            return UrlUtilities.unescape(substring, extraQuoted);
+            return LinkUtilities.unescape(substring, extraQuoted);
         }
     }
 
@@ -747,7 +747,7 @@ public class UrlUtilities {
     static {
         try {
             final Path filePath =
-                    Path.of(UrlUtilities.RESOURCE_DIR + "tlds-alpha-by-domain.txt").toRealPath();
+                    Path.of(LinkUtilities.RESOURCE_DIR + "tlds-alpha-by-domain.txt").toRealPath();
             List<String> allLines = Files.readAllLines(filePath);
             Set<String> core = new TreeSet<>(LENGTH_FIRST);
             allLines.stream()
@@ -811,7 +811,7 @@ public class UrlUtilities {
             this.limit = limit;
             // Note: this regex pattern doesn't check for validHost, because
             // it is messy to add huge UnicodeSet patterns to regular expressions
-            m = UrlUtilities.TLD_SCANNER.matcher(source);
+            m = LinkUtilities.TLD_SCANNER.matcher(source);
             m.region(start, limit);
         }
 
@@ -854,7 +854,7 @@ public class UrlUtilities {
                 }
                 // the linkEnd is ok, scan backwards to get the start of the domain name
                 int domainStart =
-                        UrlUtilities.scanBackward(validHost, true, source, hardStart, m.start());
+                        LinkUtilities.scanBackward(validHost, true, source, hardStart, m.start());
                 if (m.start() - domainStart < 1) {
                     // we don't have enough for a link
                     continue;
@@ -867,7 +867,7 @@ public class UrlUtilities {
                         // TBD do dumb parse backwards; fix later
                         // scan backwards to start of local-part
                         int mailToStart =
-                                UrlUtilities.scanBackward(
+                                LinkUtilities.scanBackward(
                                         validHost, true, source, hardStart, domainStart - 1);
 
                         // check for mailto: beforehand

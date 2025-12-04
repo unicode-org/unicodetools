@@ -14,6 +14,7 @@ import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
+import java.util.Locale;
 import java.util.NavigableMap;
 import java.util.function.Consumer;
 import org.unicode.cldr.draft.FileUtilities;
@@ -21,16 +22,16 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Rational.MutableLong;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.UcdProperty;
-import org.unicode.utilities.UrlUtilities;
-import org.unicode.utilities.UrlUtilities.LinkTermination;
-import org.unicode.utilities.UrlUtilities.Part;
+import org.unicode.utilities.LinkUtilities;
+import org.unicode.utilities.LinkUtilities.LinkTermination;
+import org.unicode.utilities.LinkUtilities.Part;
 
 /**
  * Generate UTS #58 property and test files
  *
  * @throws IOException
  */
-class GenerateUrlTestData {
+class GenerateLinkData {
 
     public static void main(String[] args) throws IOException {
         // processTestFile();
@@ -38,8 +39,8 @@ class GenerateUrlTestData {
     }
 
     static final long now = Instant.now().toEpochMilli();
-    static final DateFormat dt = new SimpleDateFormat("y-MM-dd HH:mm:ss 'GMT'");
-    static final DateFormat dty = new SimpleDateFormat("y");
+    static final DateFormat dt = new SimpleDateFormat("y-MM-dd HH:mm:ss 'GMT'", Locale.ENGLISH);
+    static final DateFormat dty = new SimpleDateFormat("y", Locale.ENGLISH);
 
     static final SimpleFormatter HEADER =
             SimpleFormatter.compile(
@@ -49,8 +50,7 @@ class GenerateUrlTestData {
                             + "# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.\n"
                             + "# For terms of use and license, see https://www.unicode.org/terms_of_use.html\n"
                             + "#\n"
-                            + "# Note that characters may change property values between releases.\n"
-                            + "# For more information, see: https://www.unicode.org/reports/tr58/\n"
+                            + "# The usage and stability of these values is covered in https://www.unicode.org/reports/tr58/\n"
                             + "#\n"
                             + "\n"
                             + "# ================================================\n"
@@ -74,15 +74,15 @@ class GenerateUrlTestData {
     /** Generate property data for the UTS */
     static void generateData() {
 
-        BagFormatter bf = new BagFormatter(UrlUtilities.IUP).setLineSeparator("\n");
+        BagFormatter bf = new BagFormatter(LinkUtilities.IUP).setLineSeparator("\n");
 
         // LinkTermination.txt
 
         bf.setValueSource(LinkTermination.PROPERTY);
-        bf.setLabelSource(UrlUtilities.IUP.getProperty(UcdProperty.Age));
+        bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
 
         try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(UrlUtilities.DATA_DIR, "LinkTermination.txt"); ) {
+                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR, "LinkTermination.txt"); ) {
             writeHeader(out, "LinkTermination", "LinkTermination", "Hard");
             for (LinkTermination propValue : LinkTermination.NON_MISSING) {
                 bf.showSetNames(out, propValue.base);
@@ -95,9 +95,9 @@ class GenerateUrlTestData {
         }
 
         // LinkPairedOpener.txt
-        bf.setValueSource(UrlUtilities.LINK_PAIRED_OPENER);
+        bf.setValueSource(LinkUtilities.LINK_PAIRED_OPENER);
         try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(UrlUtilities.DATA_DIR, "LinkPairedOpener.txt"); ) {
+                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR, "LinkPairedOpener.txt"); ) {
             writeHeader(out, "LinkPairedOpener", "LinkPairedOpener", "undefined");
             bf.showSetNames(out, LinkTermination.Close.base);
         } catch (IOException e) {
@@ -119,7 +119,7 @@ class GenerateUrlTestData {
         MutableLong included = new MutableLong();
         final UnicodeSet skipIfOnly = new UnicodeSet("\\p{ascii}").freeze(); // [a-zA-Z0-9:/?#]
         final Path sourcePath =
-                Path.of(UrlUtilities.RESOURCE_DIR + "wikipedia1000raw.tsv").toRealPath();
+                Path.of(LinkUtilities.RESOURCE_DIR + "wikipedia1000raw.tsv").toRealPath();
         final String toRemove = "http://www.wikidata.org/entity/Q";
         final Multimap<Long, String> output = TreeMultimap.create();
         final Counter<Integer> escaped = new Counter<>();
@@ -147,14 +147,14 @@ class GenerateUrlTestData {
                                 NavigableMap<Part, String> parts =
                                         Part.getParts(item, false); // splits and unescapes
                                 hostCounter.add(parts.get(Part.HOST), 1);
-                                url = UrlUtilities.minimalEscape(parts, true, escaped);
+                                url = LinkUtilities.minimalEscape(parts, true, escaped);
                                 break;
                         }
                     }
                     if (skipIfOnly.containsAll(url)) {
                         skippedAscii.value++;
                         return;
-                    } else if (UrlUtilities.DEBUG && url.startsWith("https://en.wiki")) {
+                    } else if (LinkUtilities.DEBUG && url.startsWith("https://en.wiki")) {
                         System.out.println("en non-ascii:\t" + url);
                     }
                     included.value++;
@@ -166,7 +166,7 @@ class GenerateUrlTestData {
         System.out.println("Lines read: " + lines + "\tLines generated: " + output.size());
         lines.value = 0;
         try (PrintWriter output2 =
-                FileUtilities.openUTF8Writer(UrlUtilities.RESOURCE_DIR, "testUrls.txt")) {
+                FileUtilities.openUTF8Writer(LinkUtilities.RESOURCE_DIR, "testUrls.txt")) {
             output2.println("# Test file using the the 1000 pages every wiki should have.");
             output2.println("# Included urls: " + included);
             output2.println("# Skipping all-ASCII urls: " + skippedAscii);
@@ -177,7 +177,7 @@ class GenerateUrlTestData {
                                 long qid = x.getKey();
                                 if (qid != lastQid.value) {
                                     output2.println(
-                                            UrlUtilities.JOIN_TAB.join(
+                                            LinkUtilities.JOIN_TAB.join(
                                                     "# Q" + qid,
                                                     nf.format(
                                                             lines.value / (double) output.size())));
@@ -189,7 +189,7 @@ class GenerateUrlTestData {
             output2.println("# EOF");
         }
         try (PrintWriter output2 =
-                FileUtilities.openUTF8Writer(UrlUtilities.RESOURCE_DIR, "testUrlsStats.txt")) {
+                FileUtilities.openUTF8Writer(LinkUtilities.RESOURCE_DIR, "testUrlsStats.txt")) {
             hostCounter.getKeysetSortedByKey().stream()
                     .forEach(x -> output2.println(hostCounter.get(x) + "\t" + x));
         }
