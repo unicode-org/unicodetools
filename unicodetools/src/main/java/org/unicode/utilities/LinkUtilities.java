@@ -27,7 +27,6 @@ import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NavigableMap;
@@ -277,10 +276,10 @@ public class LinkUtilities {
             new UnicodeSet(idnValid)
                     .addAll(idnMapped)
                     .removeAll(new UnicodeSet("[:ascii:]"))
-                    .addAll(new UnicodeSet("[a-zA-Z0-9.]"))
+                    .addAll(new UnicodeSet("[-a-zA-Z0-9..]"))
                     .freeze();
     public static final UnicodeSet validHostNoDot =
-            new UnicodeSet("[.]").addAll(validHost).freeze();
+            new UnicodeSet(validHost).remove('.').remove('.').freeze();
 
     /** Status of link found. Note that if the link is imputed, https or mailto will be returned. */
     enum LinkStatus {
@@ -745,24 +744,33 @@ public class LinkUtilities {
             };
 
     static {
+        final UnicodeSet ASCII_TLD = new UnicodeSet("[a-zA-Z]").freeze();
         try {
             final Path filePath =
                     Path.of(LinkUtilities.RESOURCE_DIR + "tlds-alpha-by-domain.txt").toRealPath();
             List<String> allLines = Files.readAllLines(filePath);
             Set<String> core = new TreeSet<>(LENGTH_FIRST);
+            Set<String> nonAscii = new TreeSet<>();
             allLines.stream()
                     .filter(x -> !x.startsWith("#"))
                     .forEach(
                             x -> {
+                                // For some reason, Java isn't honoring the (?u). So as a
+                                // workaround, add the lower cases
                                 core.add(x);
+                                core.add(UCharacter.toLowerCase(x));
                                 String y = toUnicode2(x);
                                 if (!x.equals(y)) {
                                     core.add(y);
+                                    core.add(UCharacter.toLowerCase(y));
+                                    nonAscii.add(y);
                                 }
                             });
-
-            String pattern = "[.](" + Joiner.on('|').join(core) + ")";
-            TLD_SCANNER = Pattern.compile(pattern, Pattern.UNICODE_CASE);
+            String pattern = "(?u)[.。](" + Joiner.on('|').join(core) + ")";
+            TLD_SCANNER = Pattern.compile(pattern);
+            if (false) {
+                System.out.println(nonAscii);
+            }
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
@@ -770,8 +778,7 @@ public class LinkUtilities {
 
     private static String toUnicode2(String x) {
         try {
-            x = x.toLowerCase(Locale.ROOT);
-            if (x.startsWith("xn--")) {
+            if (x.startsWith("XN--")) {
                 x = IDNA2003.convertIDNToUnicode(x, 0).toString();
             }
             return x;
@@ -798,6 +805,7 @@ public class LinkUtilities {
 
     /** Scans a string for links */
     public static class LinkScanner {
+        private static final UnicodeSet DIGITS = new UnicodeSet("[0-9]").freeze();
         private final String source;
         private final Matcher m;
         private final int limit;
@@ -849,7 +857,21 @@ public class LinkUtilities {
                     if (validHost.contains(nextCp)) {
                         // scan again. We found something like ".comx", which could be part of a
                         // domain name
+
                         continue;
+                    }
+                    if (nextCp == ':') {
+                        // ugly, we want to only go to limit. But for testing...
+                        int limitDigits = DIGITS.span(source, linkEnd + 1, SpanCondition.CONTAINED);
+                        if (limitDigits > linkEnd + 6) {
+                            // too long, scan again.
+                            continue;
+                        }
+                        int possiblePort = Integer.parseInt(source, linkEnd + 1, limitDigits, 10);
+                        if (possiblePort > 0xFFFF) {
+                            continue; // too big, scan again.
+                        }
+                        linkEnd = limitDigits;
                     }
                 }
                 // the linkEnd is ok, scan backwards to get the start of the domain name
@@ -881,8 +903,11 @@ public class LinkUtilities {
 
                 int temp = backupIfAfter("https://", domainStart);
                 linkStart = temp != domainStart ? temp : backupIfAfter("http://", domainStart);
-                // Extend end for path, query, etc.
-                linkEnd = parsePathQueryFragment(source, linkEnd);
+
+                // check for a port;
+                if (linkEnd < limit)
+                    // Extend end for path, query, etc.
+                    linkEnd = parsePathQueryFragment(source, linkEnd);
 
                 hardStart = linkEnd; // prepare for next next()
                 return true;

@@ -14,6 +14,7 @@ import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
+import java.util.List;
 import java.util.Locale;
 import java.util.NavigableMap;
 import java.util.function.Consumer;
@@ -23,6 +24,7 @@ import org.unicode.cldr.util.Rational.MutableLong;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.UcdProperty;
 import org.unicode.utilities.LinkUtilities;
+import org.unicode.utilities.LinkUtilities.LinkScanner;
 import org.unicode.utilities.LinkUtilities.LinkTermination;
 import org.unicode.utilities.LinkUtilities.Part;
 
@@ -33,25 +35,29 @@ import org.unicode.utilities.LinkUtilities.Part;
  */
 class GenerateLinkData {
 
+    private static final Splitter SPLIT_TABS = Splitter.on('\t').omitEmptyStrings();
+    private static final String HEADER_BASE =
+            "# {0}.txt\n"
+                    + "# Date: {1} \n"
+                    + "# © {2} Unicode®, Inc.\n"
+                    + "# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.\n"
+                    + "# For terms of use and license, see https://www.unicode.org/terms_of_use.html\n"
+                    + "#\n"
+                    + "# The usage and stability of these values is covered in https://www.unicode.org/reports/tr58/\n"
+                    + "#\n";
+
     public static void main(String[] args) throws IOException {
-        // processTestFile();
-        generateData();
+        generatePropertyData();
+        generateTestData();
     }
 
     static final long now = Instant.now().toEpochMilli();
     static final DateFormat dt = new SimpleDateFormat("y-MM-dd HH:mm:ss 'GMT'", Locale.ENGLISH);
     static final DateFormat dty = new SimpleDateFormat("y", Locale.ENGLISH);
 
-    static final SimpleFormatter HEADER =
+    static final SimpleFormatter HEADER_PROP =
             SimpleFormatter.compile(
-                    "# {0}.txt\n"
-                            + "# Date: {1} \n"
-                            + "# © {2} Unicode®, Inc.\n"
-                            + "# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.\n"
-                            + "# For terms of use and license, see https://www.unicode.org/terms_of_use.html\n"
-                            + "#\n"
-                            + "# The usage and stability of these values is covered in https://www.unicode.org/reports/tr58/\n"
-                            + "#\n"
+                    HEADER_BASE
                             + "\n"
                             + "# ================================================\n"
                             + "\n"
@@ -64,15 +70,29 @@ class GenerateLinkData {
                             + "\n"
                             + "# ================================================\n");
 
-    static void writeHeader(
+    static void writePropHeader(
             PrintWriter out, String filename, String propertyName, String missingValue) {
         out.println(
-                HEADER.format(
+                HEADER_PROP.format(
                         filename, dt.format(now), dty.format(now), propertyName, missingValue));
     }
 
+    static final SimpleFormatter HEADER_TEST =
+            SimpleFormatter.compile(
+                    HEADER_BASE
+                            + "# Format: each line contains zero or more marked links, such as ⸠abc.com⸡\n"
+                            + "# Operation: For each line.\n"
+                            + "# • Create a copy of the line, with the characters ⸠ and ⸡ removed.\n"
+                            + "# • Run link detection on the line, inserting ⸠ and ⸡ around each detected link.\n"
+                            + "# • Report a failure if the result is not identical to the original line.\n"
+                            + "# ================================================\n");
+
+    static void writeTestHeader(PrintWriter out, String filename, String testName) {
+        out.println(HEADER_TEST.format(filename, dt.format(now), dty.format(now), testName));
+    }
+
     /** Generate property data for the UTS */
-    static void generateData() {
+    static void generatePropertyData() {
 
         BagFormatter bf = new BagFormatter(LinkUtilities.IUP).setLineSeparator("\n");
 
@@ -83,7 +103,7 @@ class GenerateLinkData {
 
         try (final PrintWriter out =
                 FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR, "LinkTermination.txt"); ) {
-            writeHeader(out, "LinkTermination", "LinkTermination", "Hard");
+            writePropHeader(out, "LinkTermination", "LinkTermination", "Hard");
             for (LinkTermination propValue : LinkTermination.NON_MISSING) {
                 bf.showSetNames(out, propValue.base);
                 out.println("");
@@ -98,11 +118,90 @@ class GenerateLinkData {
         bf.setValueSource(LinkUtilities.LINK_PAIRED_OPENER);
         try (final PrintWriter out =
                 FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR, "LinkPairedOpener.txt"); ) {
-            writeHeader(out, "LinkPairedOpener", "LinkPairedOpener", "undefined");
+            writePropHeader(out, "LinkPairedOpener", "LinkPairedOpener", "undefined");
             bf.showSetNames(out, LinkTermination.Close.base);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
+    }
+
+    static void generateTestData() {
+
+        BagFormatter bf = new BagFormatter(LinkUtilities.IUP).setLineSeparator("\n");
+
+        // LinkTermination.txt
+
+        bf.setValueSource(LinkTermination.PROPERTY);
+        bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
+
+        // "/unicodetools/src/main/resources/org/unicode/tools/test_links_lt.txt"
+
+        try (final PrintWriter out =
+                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR, "LinkDetectionTest.txt"); ) {
+            writeTestHeader(out, "LinkDetectionTest", "LinkDetectionTest");
+
+            Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "test_links_lt.txt"))
+                    .forEach(
+                            line -> {
+                                if (line.startsWith("#") || line.isBlank()) {
+                                    return;
+                                }
+                                List<String> parts = SPLIT_TABS.splitToList(line);
+                                if (parts.size() != 2) {
+                                    System.out.println("* Malformed? " + line);
+                                    return;
+                                }
+                                String base = parts.get(0);
+                                String expected = parts.get(1);
+                                String actual = addBraces(base);
+                                if (!actual.equals(expected)) {
+                                    System.out.println(
+                                            "* mismatch "
+                                                    + base
+                                                    + "\nexpected:\t"
+                                                    + expected
+                                                    + "\nactual:  \t"
+                                                    + actual);
+                                    return;
+                                }
+                                out.println(actual);
+                            });
+
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+
+        //        // LinkPairedOpener.txt
+        //        bf.setValueSource(LinkUtilities.LINK_PAIRED_OPENER);
+        //        try (final PrintWriter out =
+        //                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR,
+        // "LinkFormattingTest.txt"); ) {
+        //            writeHeader(out, "LinkPairedOpener", "LinkPairedOpener", "undefined");
+        //            bf.showSetNames(out, LinkTermination.Close.base);
+        //        } catch (IOException e) {
+        //            throw new UncheckedIOException(e);
+        //        }
+    }
+
+    private static String addBraces(String base) {
+        LinkScanner ls = new LinkScanner(base, 0, base.length());
+        StringBuilder result = new StringBuilder();
+
+        int lastEnd = 0;
+        while (ls.next()) {
+            int start = ls.getLinkStart();
+            int end = ls.getLinkEnd();
+
+            result.append(base.substring(lastEnd, start))
+                    .append("⸠")
+                    .append(base.substring(start, end))
+                    .append("⸡");
+            lastEnd = end;
+        }
+
+        result.append(base.substring(lastEnd));
+
+        return result.toString();
     }
 
     /**

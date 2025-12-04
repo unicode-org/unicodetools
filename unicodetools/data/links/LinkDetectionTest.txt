@@ -1,0 +1,85 @@
+# LinkDetectionTest.txt
+# Date: 2025-12-03 22:08:24 GMT 
+# © 2025 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
+#
+# The usage and stability of these values is covered in https://www.unicode.org/reports/tr58/
+#
+# Format: each line contains zero or more marked links, such as ⸠abc.com⸡
+# Operation: For each line.
+# • Create a copy of the line, with the characters ⸠ and ⸡ removed.
+# • Run link detection on the line, inserting ⸠ and ⸡ around each detected link.
+# • Report a failure if the result is not identical to the original line.
+# ================================================
+
+a test.invalid b
+a ⸠test.COM⸡ b
+a ⸠blogspot.com⸡ b
+a com b
+a ⸠example.com:443⸡ b
+a ⸠example.com/123⸡ b
+a ⸠example.com?123⸡ b
+a ⸠example.com#123⸡ b
+a ⸠example.com/123?123#123⸡ b
+a (⸠example.com/123?123#123⸡) b
+a (⸠example.com/123?123#(123)⸡) b
+a ⸠example.com/123.html⸡ b
+a ⸠example.com/123⸡. HTML is great
+a ⸠example.com/123⸡... HTML is so great
+a ⸠example.com/123⸡.
+a ⸠xn-----ctdbabcfhu9c2b9l1acccr4c.xn--mgbah1a3hjkrd⸡ b
+Lorem ipsum ⸠universal-acceptance-test.international⸡ dolor sit amet
+Lorem ipsum ⸠universal-acceptance-test.icu⸡ dolor sit amet
+Lorem ipsum ⸠تجربة-القبول-الشامل.موريتانيا⸡ dolor sit amet
+Lorem ipsum ⸠համընդհանուր-ընկալում-թեստ.հայ⸡ dolor sit amet
+Lorem ipsum ⸠সর্বজনীন-স্বীকৃতির-পরীক্ষা.ভারত⸡ dolor sit amet
+Lorem ipsum ⸠универсальное-принятие-тест.москва⸡ dolor sit amet
+Lorem ipsum ⸠सार्वभौमिक-स्वीकृति-परीक्षण.संगठन⸡ dolor sit amet
+Lorem ipsum ⸠უნივერსალური-თავსობადობის-ტესტი.გე⸡ dolor sit amet
+Lorem ipsum ⸠καθολική-αποδοχή-δοκιμή.ευ⸡ dolor sit amet
+Lorem ipsum ⸠સાર્વત્રિક-સ્વીકૃતિ-પરીક્ષણ.ભારત⸡ dolor sit amet
+Lorem ipsum ⸠ਸਰਵਵਿਆਪਕ-ਪ੍ਰਵਾਨਗੀ-ਪਰਖ.ਭਾਰਤ⸡ dolor sit amet
+Lorem ipsum ⸠다국어도메인이용환경테스트.한국⸡ dolor sit amet
+Lorem ipsum ⸠מבחן-קבלה-אוניברסלי.קום⸡ dolor sit amet
+Lorem ipsum ⸠どこでもつかえる.みんな⸡ dolor sit amet
+Lorem ipsum ⸠ಸಾರ್ವತ್ರಿಕ-ಸ್ವೀಕಾರಾರ್ಹತೆ-ಪರೀಕ್ಷೆ.ಭಾರತ⸡ dolor sit amet
+Lorem ipsum ⸠ユニバーサルアクセプタンス.クラウド⸡ dolor sit amet
+Lorem ipsum ⸠ສາກົນ-ການຍອມຮັບ-ທົດລອງ.ລາວ⸡ dolor sit amet
+Lorem ipsum ⸠സാർവത്രിക-സ്വീകാര്യതാ-പരിശോധന.ഭാരതം⸡ dolor sit amet
+Lorem ipsum ⸠ଯୁନିଭରସାଲ-ଏକସେପ୍ଟନ୍ସ-ଟେଷ୍ଟ.ଭାରତ⸡ dolor sit amet
+Lorem ipsum ⸠විශ්ව-සම්මුති-පිරික්සුම.ලංකා⸡ dolor sit amet
+Lorem ipsum ⸠பொது-ஏற்பு-சோதனை.சிங்கப்பூர்⸡ dolor sit amet
+Lorem ipsum ⸠యూనివర్సల్-ఆమోదం-పరీక్ష.భారత్⸡ dolor sit amet
+Lorem ipsum ⸠ยูเอทดสอบ.ไทย⸡ dolor sit amet
+Lorem ipsum ⸠普遍适用测试.我爱你⸡ dolor sit amet
+Lorem ipsum ⸠普遍適用測試.台灣⸡ dolor sit amet
+Lorem ipsum ⸠ሁለንአቀፍ-ተቀባይነት-ሙከራ.com⸡ dolor sit amet
+Lorem ipsum ⸠ការសាកល្បងទទួលយកជាអន្តរជាតិ.com⸡ dolor sit amet
+Lorem ipsum ⸠အလုံးစုံလက်ခံမှုစမ်းသပ်ချက်.com⸡ dolor sit amet
+Lorem ipsum ⸠ދުނިޔެ-ގަބޫލުކުރާ-ޓެސްޓު.com⸡ dolor sit amet
+Lorem ipsum ⸠universal-acceptance-test.קום⸡ dolor sit amet
+Lorem ipsum ⸠épreuve-acceptation-universelle.org⸡ dolor sit amet
+Lorem ipsum ⸠ཡོངས་ཁྱབ་ངོས་ལེན་བརྟག་དཔྱད.com⸡ dolor sit amet
+Lorem ipsum ⸠Universales-Akzeptanz-Test.vermögensberatung⸡ dolor sit amet
+Lorem ipsum ⸠épreuve-acceptation-universelle.org⸡ dolor sit amet
+Lorem ipsum ⸠普遍适用测试。我爱你⸡ dolor sit amet
+Lorem ipsum موريتانيا.xn-----ctdbabcfhu9c2b9l1acccr4c dolor sit amet
+Lorem ipsum ⸠تجربة-القبول-الشامل.xn--mgbah1a3hjkrd⸡ dolor sit amet
+Lorem ipsum ⸠xn-----ctdbabcfhu9c2b9l1acccr4c.xn--mgbah1a3hjkrd⸡ dolor sit amet
+Lorem ipsum ⸠universal-acceptance-test.icu/测试⸡ dolor sit amet
+Lorem ipsum ⸠普遍适用测试.我爱你/测试⸡ dolor sit amet
+Lorem ipsum ⸠تجربة-القبول-الشامل.موريتانيا/تجربة⸡ dolor sit amet
+blah ⸠en.wikipedia.org/wiki/The_Lovemakers_(film)⸡ blah
+blah ⸠example.com/?foo[1]=a&amp;foo[2]=b⸡ blah
+Lorem ipsum ⸠comoyo.com/play/S(123)⸡ dolor sit amet
+Lorem ipsum ⸠example.com/knutsen_ludvigsen/ver(k)ste(d)/brilleslange.mp3⸡ dolor sit amet
+Lorem ipsum ⸠example.com/Bob_Marley/Rastaman_Vibration/11_Jah_Live_(originally_issued_as_Island_Single_(WIP_6265))_(bonus_track⸡ dolor sit amet
+Lorem ipsum ⸠business.timesonline.co.uk/article/0,,9065-2473189,00.html⸡ dolor sit amet
+Lorem ipsum ⸠www.mail-archive.com/ruby-talk@ruby-lang.org/⸡ dolor sit amet
+Lorem ipsum ⸠tools.ietf.org/html/rfc3986⸡ dolor sit amet
+Lorem ipsum ⸠www.amazon.com/Testing-Equal-Sign-In-Path/ref=pd_bbs_sr_1?ie=UTF8&s=books&qid=1198861734&sr=8-1⸡ dolor sit amet
+Lorem ipsum ⸠www.google.com/doku.php?id=gps:resource:scs:start⸡ dolor sit amet
+Lorem ipsum ⸠maps.google.co.uk/maps?f=q&q=the+london+eye&ie=UTF8&ll=51.503373,-0.11939&spn=0.007052,0.012767&z=16&iwloc=A⸡ dolor sit amet
+Lorem ipsum ⸠www.rubyonrails.com/foo.cgi?trailing_hyphen=value-⸡ dolor sit amet
+Lorem ipsum ⸠www.rubyonrails.com/foo.cgi?trailing_forward_slash=value⸡ dolor sit amet

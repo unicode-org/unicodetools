@@ -1,5 +1,10 @@
+## Original file is from ICANN
+## There are some modifications, after a ## comment explaining the reason
 # Hm... PublicSuffix accepts .invalid as a valid TLD.
-a test.invalid b	a ⸠test.invalid⸡ b
+## invalid is not a TLD
+a test.invalid b	a test.invalid b
+## Add test for uppercase
+a test.COM b	a ⸠test.COM⸡ b
 
 # If PublicSuffix is used, links to blogspot.com and .com need testing
 a blogspot.com b	a ⸠blogspot.com⸡ b
@@ -18,9 +23,11 @@ a (example.com/123?123#(123)) b	a (⸠example.com/123?123#(123)⸡) b
 
 # Full stops
 a example.com/123.html b	a ⸠example.com/123.html⸡ b
-a example.com/123. HTML is great  a ⸠example.com/123⸡. HTML is great
+## spaces instead of tabs
+a example.com/123. HTML is great	a ⸠example.com/123⸡. HTML is great
 a example.com/123... HTML is so great	a ⸠example.com/123⸡... HTML is so great
-a example.com/123.   a ⸠example.com/123⸡.
+## spaces instead of tabs
+a example.com/123.	a ⸠example.com/123⸡.
 
 # A TLD can contain digits
 a xn-----ctdbabcfhu9c2b9l1acccr4c.xn--mgbah1a3hjkrd b	a ⸠xn-----ctdbabcfhu9c2b9l1acccr4c.xn--mgbah1a3hjkrd⸡ b
@@ -35,7 +42,8 @@ Lorem ipsum universal-acceptance-test.international dolor sit amet	Lorem ipsum �
 #, 2, ASCII.ASCII, new-short, Short ASCII
 Lorem ipsum universal-acceptance-test.icu dolor sit amet	Lorem ipsum ⸠universal-acceptance-test.icu⸡ dolor sit amet
 #, 3, IDN.IDN, RTL, Arabic
-Lorem ipsum تجربة-القبول-الشامل.موريتانيا dolor sit amet	Lorem ipsum ⸠تجربة-القبول-الشامل.موريتانيا⸡⸡ dolor sit amet
+## duplicated ⸡ 
+Lorem ipsum تجربة-القبول-الشامل.موريتانيا dolor sit amet	Lorem ipsum ⸠تجربة-القبول-الشامل.موريتانيا⸡ dolor sit amet
 #, 4, IDN.IDN, , Armenian
 Lorem ipsum համընդհանուր-ընկալում-թեստ.հայ dolor sit amet	Lorem ipsum ⸠համընդհանուր-ընկալում-թեստ.հայ⸡ dolor sit amet
 #, 5, IDN.IDN, , Bengali Bangla
@@ -102,11 +110,13 @@ Lorem ipsum Universales-Akzeptanz-Test.vermögensberatung dolor sit amet	Lorem i
 #, 65, IDN.ASCII, not in NFC normalization form, Latin
 Lorem ipsum épreuve-acceptation-universelle.org dolor sit amet	Lorem ipsum ⸠épreuve-acceptation-universelle.org⸡ dolor sit amet
 #, 66, IDN.IDN, Ideographic Full Stop, Simplified Chinese
-Lorem ipsum 普遍适用测试。我爱你 dolor sit amet	Lorem ipsum ⸠普遍适用测试.我爱你⸡ dolor sit amet
+## don't modify the text, just add the boundaries
+Lorem ipsum 普遍适用测试。我爱你 dolor sit amet	Lorem ipsum ⸠普遍适用测试。我爱你⸡ dolor sit amet
 
 # TLD not delegated as of 2025
 #, 67, IDN.IDN, RTL; A-label.U-label, Arabic
-Lorem ipsum موريتانيا.xn-----ctdbabcfhu9c2b9l1acccr4c dolor sit amet	Lorem ipsum ⸠موريتانيا.xn-----ctdbabcfhu9c2b9l1acccr4c⸡ dolor sit amet
+## Invalid TLD
+Lorem ipsum موريتانيا.xn-----ctdbabcfhu9c2b9l1acccr4c dolor sit amet	Lorem ipsum موريتانيا.xn-----ctdbabcfhu9c2b9l1acccr4c dolor sit amet
 #, 68, IDN.IDN, RTL; U-label.A-label, Arabic
 Lorem ipsum تجربة-القبول-الشامل.xn--mgbah1a3hjkrd dolor sit amet	Lorem ipsum ⸠تجربة-القبول-الشامل.xn--mgbah1a3hjkrd⸡ dolor sit amet
 #, 69, IDN.IDN, RTL; A-label.A-label, Arabic
@@ -124,7 +134,8 @@ blah en.wikipedia.org/wiki/The_Lovemakers_(film) blah	blah ⸠en.wikipedia.org/w
 blah example.com/?foo[1]=a&amp;foo[2]=b blah	blah ⸠example.com/?foo[1]=a&amp;foo[2]=b⸡ blah
 
 # From various streaming sites
-Lorem ipsum comoyo.com/play/S(123) dolor sit amet	Lorem ipsum comoyo.com/play/S(123)⸡ dolor sit amet
+## Missing ⸠
+Lorem ipsum comoyo.com/play/S(123) dolor sit amet	Lorem ipsum ⸠comoyo.com/play/S(123)⸡ dolor sit amet
 Lorem ipsum example.com/knutsen_ludvigsen/ver(k)ste(d)/brilleslange.mp3 dolor sit amet	Lorem ipsum ⸠example.com/knutsen_ludvigsen/ver(k)ste(d)/brilleslange.mp3⸡ dolor sit amet
 Lorem ipsum example.com/Bob_Marley/Rastaman_Vibration/11_Jah_Live_(originally_issued_as_Island_Single_(WIP_6265))_(bonus_track dolor sit amet	Lorem ipsum ⸠example.com/Bob_Marley/Rastaman_Vibration/11_Jah_Live_(originally_issued_as_Island_Single_(WIP_6265))_(bonus_track⸡ dolor sit amet
 
