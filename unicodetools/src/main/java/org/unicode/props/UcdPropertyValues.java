@@ -179,6 +179,7 @@ public class UcdPropertyValues {
     }
 
     public enum Block_Values implements Named {
+        Proto_Cuneiform("Proto_Cuneiform"),
         Adlam("Adlam"),
         Aegean_Numbers("Aegean_Numbers"),
         Ahom("Ahom"),
