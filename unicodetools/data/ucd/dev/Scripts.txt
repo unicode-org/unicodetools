@@ -1,3 +1,4 @@
+12690..12BFF; Proto_Cuneiform
 # Scripts-18.0.0.txt
 # Date: 2025-11-30, 20:47:03 GMT
 # © 2025 Unicode®, Inc.
