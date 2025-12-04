@@ -15,13 +15,14 @@ CorrespondTo [\x{12000} 𒀀 \N{CUNEIFORM SIGN A}]
              Script            (Proto_Cuneiform vs Cuneiform),
              Script_Extensions (Proto_Cuneiform vs Cuneiform)
 
-Propertywise [\x{12BE8}                                    - \x{12BEB}
-              \N{PROTO-CUNEIFORM NUMERIC SIGN TWO LAGAB-A} - \N{PROTO-CUNEIFORM NUMERIC SIGN SIX LAGAB-A}]
+Propertywise [\x{12BE8}                                    - \x{12BEA}
+              \N{PROTO-CUNEIFORM NUMERIC SIGN TWO LAGAB-A} - \N{PROTO-CUNEIFORM NUMERIC SIGN FOUR LAGAB-A}
+              \x{12BEB} \N{PROTO-CUNEIFORM NUMERIC SIGN SIX LAGAB-A}]
            ⧴ [2-4 6]
 CorrespondTo [\x{125BF}
               \N{CUNEIFORM NUMERIC SIGN TWO N02}]
            ⧴ [2]
-       UpTo: Block             (Proto_Cuneiform vs Archaic_Cuneiform_Numerals)
+       UpTo: Block (Proto_Cuneiform vs Archaic_Cuneiform_Numerals)
 
 Propertywise [\x{12BEC}                                - \x{12BF5}
               \N{PROTO-CUNEIFORM NUMERIC SIGN ONE N57} - \N{PROTO-CUNEIFORM NUMERIC SIGN TEN N57}]
@@ -29,22 +30,25 @@ Propertywise [\x{12BEC}                                - \x{12BF5}
 CorrespondTo [\x{125BE}
               \N{CUNEIFORM NUMERIC SIGN ONE N02}]
            ⧴ [1]
-       UpTo: Block             (Proto_Cuneiform vs Archaic_Cuneiform_Numerals)
+       UpTo: Block (Proto_Cuneiform vs Archaic_Cuneiform_Numerals)
 
-Propertywise [\x{12BF6}                                - \x{12BFE}
-              \N{PROTO-CUNEIFORM NUMERIC SIGN ONE N58} - \N{PROTO-CUNEIFORM NUMERIC SIGN TWELVE N58}]
-           ⧴ [1-9 {10} {12}]
+Propertywise [\x{12BF6}                                  - \x{12BFA}
+              \N{PROTO-CUNEIFORM NUMERIC SIGN ONE N58}   - \N{PROTO-CUNEIFORM NUMERIC SIGN FIVE N58}
+              \x{12BFB}                                  - \x{12BFD}
+              \N{PROTO-CUNEIFORM NUMERIC SIGN EIGHT N58} - \N{PROTO-CUNEIFORM NUMERIC SIGN TEN N58}
+              \x{12BFE} \N{PROTO-CUNEIFORM NUMERIC SIGN TWELVE N58}]
+           ⧴ [1-5 8-9 {10} {12}]
 CorrespondTo [\x{125BE}
               \N{CUNEIFORM NUMERIC SIGN ONE N02}]
            ⧴ [1]
-       UpTo: Block             (Proto_Cuneiform vs Archaic_Cuneiform_Numerals)
+       UpTo: Block (Proto_Cuneiform vs Archaic_Cuneiform_Numerals)
 
 Propertywise [\x{12BFF} \N{PROTO-CUNEIFORM NUMERIC SIGN ONE N58 TENU}]
            ⧴ [1]
 CorrespondTo [\x{125BE}
               \N{CUNEIFORM NUMERIC SIGN ONE N02}]
            ⧴ [1]
-       UpTo: Block             (Proto_Cuneiform vs Archaic_Cuneiform_Numerals)
+       UpTo: Block (Proto_Cuneiform vs Archaic_Cuneiform_Numerals)
 
 end Ignoring;
 
