@@ -1,0 +1,55 @@
+# Proto-Cuneiform (12690..12BFF)
+# https://github.com/unicode-org/utc-release-management/issues/259
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Propertywise [\x{12690}                  - \x{12BE7}
+              \N{PROTO-CUNEIFORM SIGN A} - \N{PROTO-CUNEIFORM SIGN ZATU859}]
+CorrespondTo [\x{12000} 𒀀 \N{CUNEIFORM SIGN A}]
+       UpTo: Block             (Proto_Cuneiform vs Cuneiform),
+             Script            (Proto_Cuneiform vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform vs Cuneiform)
+
+Propertywise [\x{12BE8}                                    - \x{12BEA}
+              \N{PROTO-CUNEIFORM NUMERIC SIGN TWO LAGAB-A} - \N{PROTO-CUNEIFORM NUMERIC SIGN FOUR LAGAB-A}
+              \x{12BEB} \N{PROTO-CUNEIFORM NUMERIC SIGN SIX LAGAB-A}]
+           ⧴ [2-4 6]
+CorrespondTo [\x{125BF}
+              \N{CUNEIFORM NUMERIC SIGN TWO N02}]
+           ⧴ [2]
+       UpTo: Block (Proto_Cuneiform vs Archaic_Cuneiform_Numerals)
+
+Propertywise [\x{12BEC}                                - \x{12BF5}
+              \N{PROTO-CUNEIFORM NUMERIC SIGN ONE N57} - \N{PROTO-CUNEIFORM NUMERIC SIGN TEN N57}]
+           ⧴ [1-9 {10}]
+CorrespondTo [\x{125BE}
+              \N{CUNEIFORM NUMERIC SIGN ONE N02}]
+           ⧴ [1]
+       UpTo: Block (Proto_Cuneiform vs Archaic_Cuneiform_Numerals)
+
+Propertywise [\x{12BF6}                                  - \x{12BFA}
+              \N{PROTO-CUNEIFORM NUMERIC SIGN ONE N58}   - \N{PROTO-CUNEIFORM NUMERIC SIGN FIVE N58}
+              \x{12BFB}                                  - \x{12BFD}
+              \N{PROTO-CUNEIFORM NUMERIC SIGN EIGHT N58} - \N{PROTO-CUNEIFORM NUMERIC SIGN TEN N58}
+              \x{12BFE} \N{PROTO-CUNEIFORM NUMERIC SIGN TWELVE N58}]
+           ⧴ [1-5 8-9 {10} {12}]
+CorrespondTo [\x{125BE}
+              \N{CUNEIFORM NUMERIC SIGN ONE N02}]
+           ⧴ [1]
+       UpTo: Block (Proto_Cuneiform vs Archaic_Cuneiform_Numerals)
+
+Propertywise [\x{12BFF} \N{PROTO-CUNEIFORM NUMERIC SIGN ONE N58 TENU}]
+           ⧴ [1]
+CorrespondTo [\x{125BE}
+              \N{CUNEIFORM NUMERIC SIGN ONE N02}]
+           ⧴ [1]
+       UpTo: Block (Proto_Cuneiform vs Archaic_Cuneiform_Numerals)
+
+end Ignoring;
+
+end Ignoring;

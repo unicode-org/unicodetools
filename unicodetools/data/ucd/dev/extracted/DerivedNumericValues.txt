@@ -1,5 +1,5 @@
 # DerivedNumericValues-18.0.0.txt
-# Date: 2025-11-20, 23:16:51 GMT
+# Date: 2025-12-04, 01:20:25 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -598,6 +598,9 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1267B         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE N19 FLAT
 12684         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE N46 FLAT
 12686         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE N36 FLAT
+12BEC         ; 1.0 ; ; 1 # Nl       PROTO-CUNEIFORM NUMERIC SIGN ONE N57
+12BF6         ; 1.0 ; ; 1 # Nl       PROTO-CUNEIFORM NUMERIC SIGN ONE N58
+12BFF         ; 1.0 ; ; 1 # Nl       PROTO-CUNEIFORM NUMERIC SIGN ONE N58 TENU
 16131         ; 1.0 ; ; 1 # Nd       GURUNG KHEMA DIGIT ONE
 16A61         ; 1.0 ; ; 1 # Nd       MRO DIGIT ONE
 16AC1         ; 1.0 ; ; 1 # Nd       TANGSA DIGIT ONE
@@ -632,7 +635,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1FBF1         ; 1.0 ; ; 1 # Nd       SEGMENTED DIGIT ONE
 2092A         ; 1.0 ; ; 1 # Lo       CJK UNIFIED IDEOGRAPH-2092A
 
-# Total code points: 239
+# Total code points: 242
 
 # ================================================
 
@@ -814,6 +817,9 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 12677         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO N04 FLAT
 1267C         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO N19 FLAT
 12685         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO N46 FLAT
+12BE8         ; 2.0 ; ; 2 # Nl       PROTO-CUNEIFORM NUMERIC SIGN TWO LAGAB-A
+12BED         ; 2.0 ; ; 2 # Nl       PROTO-CUNEIFORM NUMERIC SIGN TWO N57
+12BF7         ; 2.0 ; ; 2 # Nl       PROTO-CUNEIFORM NUMERIC SIGN TWO N58
 16132         ; 2.0 ; ; 2 # Nd       GURUNG KHEMA DIGIT TWO
 16A62         ; 2.0 ; ; 2 # Nd       MRO DIGIT TWO
 16AC2         ; 2.0 ; ; 2 # Nd       TANGSA DIGIT TWO
@@ -848,7 +854,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 1FBF2         ; 2.0 ; ; 2 # Nd       SEGMENTED DIGIT TWO
 22390         ; 2.0 ; ; 2 # Lo       CJK UNIFIED IDEOGRAPH-22390
 
-# Total code points: 207
+# Total code points: 210
 
 # ================================================
 
@@ -1012,6 +1018,9 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 1266E         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE N51 FLAT
 12678         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE N04 FLAT
 1267D         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE N19 FLAT
+12BE9         ; 3.0 ; ; 3 # Nl       PROTO-CUNEIFORM NUMERIC SIGN THREE LAGAB-A
+12BEE         ; 3.0 ; ; 3 # Nl       PROTO-CUNEIFORM NUMERIC SIGN THREE N57
+12BF8         ; 3.0 ; ; 3 # Nl       PROTO-CUNEIFORM NUMERIC SIGN THREE N58
 16133         ; 3.0 ; ; 3 # Nd       GURUNG KHEMA DIGIT THREE
 16A63         ; 3.0 ; ; 3 # Nd       MRO DIGIT THREE
 16AC3         ; 3.0 ; ; 3 # Nd       TANGSA DIGIT THREE
@@ -1047,7 +1056,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 22998         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-22998
 23B1B         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-23B1B
 
-# Total code points: 195
+# Total code points: 198
 
 # ================================================
 
@@ -1203,6 +1212,9 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 1266F         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN FOUR N51 FLAT
 12679         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN FOUR N04 FLAT
 1267E         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN FOUR N19 FLAT
+12BEA         ; 4.0 ; ; 4 # Nl       PROTO-CUNEIFORM NUMERIC SIGN FOUR LAGAB-A
+12BEF         ; 4.0 ; ; 4 # Nl       PROTO-CUNEIFORM NUMERIC SIGN FOUR N57
+12BF9         ; 4.0 ; ; 4 # Nl       PROTO-CUNEIFORM NUMERIC SIGN FOUR N58
 16134         ; 4.0 ; ; 4 # Nd       GURUNG KHEMA DIGIT FOUR
 16A64         ; 4.0 ; ; 4 # Nd       MRO DIGIT FOUR
 16AC4         ; 4.0 ; ; 4 # Nd       TANGSA DIGIT FOUR
@@ -1236,7 +1248,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 200E2         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-200E2
 2626D         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-2626D
 
-# Total code points: 183
+# Total code points: 186
 
 # ================================================
 
@@ -1388,6 +1400,8 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 12670         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN FIVE N51 FLAT
 1267A         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN FIVE N04 FLAT
 1267F         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN FIVE N19 FLAT
+12BF0         ; 5.0 ; ; 5 # Nl       PROTO-CUNEIFORM NUMERIC SIGN FIVE N57
+12BFA         ; 5.0 ; ; 5 # Nl       PROTO-CUNEIFORM NUMERIC SIGN FIVE N58
 16135         ; 5.0 ; ; 5 # Nd       GURUNG KHEMA DIGIT FIVE
 16A65         ; 5.0 ; ; 5 # Nd       MRO DIGIT FIVE
 16AC5         ; 5.0 ; ; 5 # Nd       TANGSA DIGIT FIVE
@@ -1420,7 +1434,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 1FBF5         ; 5.0 ; ; 5 # Nd       SEGMENTED DIGIT FIVE
 20121         ; 5.0 ; ; 5 # Lo       CJK UNIFIED IDEOGRAPH-20121
 
-# Total code points: 174
+# Total code points: 176
 
 # ================================================
 
@@ -1547,6 +1561,8 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 12664         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX N34 FLAT
 12671         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX N51 FLAT
 12680         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX N19 FLAT
+12BEB         ; 6.0 ; ; 6 # Nl       PROTO-CUNEIFORM NUMERIC SIGN SIX LAGAB-A
+12BF1         ; 6.0 ; ; 6 # Nl       PROTO-CUNEIFORM NUMERIC SIGN SIX N57
 16136         ; 6.0 ; ; 6 # Nd       GURUNG KHEMA DIGIT SIX
 16A66         ; 6.0 ; ; 6 # Nd       MRO DIGIT SIX
 16AC6         ; 6.0 ; ; 6 # Nd       TANGSA DIGIT SIX
@@ -1577,7 +1593,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 1FBF6         ; 6.0 ; ; 6 # Nd       SEGMENTED DIGIT SIX
 20AEA         ; 6.0 ; ; 6 # Lo       CJK UNIFIED IDEOGRAPH-20AEA
 
-# Total code points: 146
+# Total code points: 148
 
 # ================================================
 
@@ -1703,6 +1719,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 12665         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN N34 FLAT
 12672         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN N51 FLAT
 12681         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN N19 FLAT
+12BF2         ; 7.0 ; ; 7 # Nl       PROTO-CUNEIFORM NUMERIC SIGN SEVEN N57
 16137         ; 7.0 ; ; 7 # Nd       GURUNG KHEMA DIGIT SEVEN
 16A67         ; 7.0 ; ; 7 # Nd       MRO DIGIT SEVEN
 16AC7         ; 7.0 ; ; 7 # Nd       TANGSA DIGIT SEVEN
@@ -1733,7 +1750,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 1FBF7         ; 7.0 ; ; 7 # Nd       SEGMENTED DIGIT SEVEN
 20001         ; 7.0 ; ; 7 # Lo       CJK UNIFIED IDEOGRAPH-20001
 
-# Total code points: 147
+# Total code points: 148
 
 # ================================================
 
@@ -1856,6 +1873,8 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 12666         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT N34 FLAT
 12673         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT N51 FLAT
 12682         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT N19 FLAT
+12BF3         ; 8.0 ; ; 8 # Nl       PROTO-CUNEIFORM NUMERIC SIGN EIGHT N57
+12BFB         ; 8.0 ; ; 8 # Nl       PROTO-CUNEIFORM NUMERIC SIGN EIGHT N58
 16138         ; 8.0 ; ; 8 # Nd       GURUNG KHEMA DIGIT EIGHT
 16A68         ; 8.0 ; ; 8 # Nd       MRO DIGIT EIGHT
 16AC8         ; 8.0 ; ; 8 # Nd       TANGSA DIGIT EIGHT
@@ -1885,7 +1904,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 1F109         ; 8.0 ; ; 8 # No       DIGIT EIGHT COMMA
 1FBF8         ; 8.0 ; ; 8 # Nd       SEGMENTED DIGIT EIGHT
 
-# Total code points: 142
+# Total code points: 144
 
 # ================================================
 
@@ -2011,6 +2030,8 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 12667         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE N34 FLAT
 12674         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE N51 FLAT
 12683         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE N19 FLAT
+12BF4         ; 9.0 ; ; 9 # Nl       PROTO-CUNEIFORM NUMERIC SIGN NINE N57
+12BFC         ; 9.0 ; ; 9 # Nl       PROTO-CUNEIFORM NUMERIC SIGN NINE N58
 16139         ; 9.0 ; ; 9 # Nd       GURUNG KHEMA DIGIT NINE
 16A69         ; 9.0 ; ; 9 # Nd       MRO DIGIT NINE
 16AC9         ; 9.0 ; ; 9 # Nd       TANGSA DIGIT NINE
@@ -2041,7 +2062,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 1FBF9         ; 9.0 ; ; 9 # Nd       SEGMENTED DIGIT NINE
 2F890         ; 9.0 ; ; 9 # Lo       CJK COMPATIBILITY IDEOGRAPH-2F890
 
-# Total code points: 148
+# Total code points: 150
 
 # ================================================
 
@@ -2096,6 +2117,8 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 1173A         ; 10.0 ; ; 10 # No       AHOM NUMBER TEN
 118EA         ; 10.0 ; ; 10 # No       WARANG CITI NUMBER TEN
 11C63         ; 10.0 ; ; 10 # No       BHAIKSUKI NUMBER TEN
+12BF5         ; 10.0 ; ; 10 # Nl       PROTO-CUNEIFORM NUMERIC SIGN TEN N57
+12BFD         ; 10.0 ; ; 10 # Nl       PROTO-CUNEIFORM NUMERIC SIGN TEN N58
 16B5B         ; 10.0 ; ; 10 # No       PAHAWH HMONG NUMBER TENS
 16E8A         ; 10.0 ; ; 10 # No       MEDEFAIDRIN NUMBER TEN
 1D2CA         ; 10.0 ; ; 10 # No       KAKTOVIK NUMERAL TEN
@@ -2105,7 +2128,7 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 1ED0A         ; 10.0 ; ; 10 # No       OTTOMAN SIYAQ NUMBER TEN
 1ED37         ; 10.0 ; ; 10 # No       OTTOMAN SIYAQ ALTERNATE NUMBER TEN
 
-# Total code points: 63
+# Total code points: 65
 
 # ================================================
 
@@ -2129,11 +2152,12 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 247F          ; 12.0 ; ; 12 # No       PARENTHESIZED NUMBER TWELVE
 2493          ; 12.0 ; ; 12 # No       NUMBER TWELVE FULL STOP
 24EC          ; 12.0 ; ; 12 # No       NEGATIVE CIRCLED NUMBER TWELVE
+12BFE         ; 12.0 ; ; 12 # Nl       PROTO-CUNEIFORM NUMERIC SIGN TWELVE N58
 16E8C         ; 12.0 ; ; 12 # No       MEDEFAIDRIN NUMBER TWELVE
 1D2CC         ; 12.0 ; ; 12 # No       KAKTOVIK NUMERAL TWELVE
 1D2EC         ; 12.0 ; ; 12 # No       MAYAN NUMERAL TWELVE
 
-# Total code points: 9
+# Total code points: 10
 
 # ================================================
 
