@@ -1,5 +1,5 @@
 # LinkPairedOpener.txt
-# Date: 2025-12-03 23:00:53 GMT 
+# Date: 2025-12-04 18:06:16 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -65,6 +65,7 @@
 2E58          ; 2E57 # 14.0       RIGHT SQUARE BRACKET WITH DOUBLE STROKE
 2E5A          ; 2E59 # 14.0       TOP HALF RIGHT PARENTHESIS
 2E5C          ; 2E5B # 14.0       BOTTOM HALF RIGHT PARENTHESIS
+2E63          ; 2E63 # 18.0       RIGHT PARENTHESIS WITH MIDDLE RING
 3009          ; 3008 # 1.1        RIGHT ANGLE BRACKET
 300B          ; 300A # 1.1        RIGHT DOUBLE ANGLE BRACKET
 300D          ; 300C # 1.1        RIGHT CORNER BRACKET
@@ -83,4 +84,4 @@ FF5D          ; FF5B # 1.1        FULLWIDTH RIGHT CURLY BRACKET
 FF60          ; FF5F # 3.2        FULLWIDTH RIGHT WHITE PARENTHESIS
 FF63          ; FF62 # 1.1        HALFWIDTH RIGHT CORNER BRACKET
 
-# Total code points: 64
+# Total code points: 65

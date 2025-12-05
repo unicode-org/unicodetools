@@ -1,23 +1,5 @@
 package org.unicode.utilities;
 
-import com.google.common.base.Joiner;
-import com.google.common.base.Splitter;
-import com.google.common.collect.ComparisonChain;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.ImmutableSortedMap;
-import com.google.common.collect.Sets;
-import com.google.common.util.concurrent.UncheckedExecutionException;
-import com.ibm.icu.impl.IDNA2003;
-import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.lang.UProperty.NameChoice;
-import com.ibm.icu.text.StringPrepParseException;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSet.EntryRange;
-import com.ibm.icu.text.UnicodeSet.SpanCondition;
-import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
@@ -35,6 +17,7 @@ import java.util.Stack;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Counter;
@@ -43,17 +26,36 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
-import org.unicode.props.UnicodePropertySymbolTable;
+import org.unicode.props.UnicodeSetUtilities;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
+import com.google.common.collect.ComparisonChain;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableSortedMap;
+import com.google.common.collect.Sets;
+import com.google.common.util.concurrent.UncheckedExecutionException;
+import com.ibm.icu.impl.IDNA2003;
+import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.lang.UProperty.NameChoice;
+import com.ibm.icu.text.StringPrepParseException;
+import com.ibm.icu.text.SymbolTable;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.EntryRange;
+import com.ibm.icu.text.UnicodeSet.SpanCondition;
+import com.ibm.icu.util.VersionInfo;
 
 public class LinkUtilities {
     private static final boolean SHOW_NON_ASCII_TLDS = true;
 
     // allow changing UnicodeSet to use the current IndexUnicodeProperties
     public static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
-    static final XSymbolTable IUP_XSYMBOL_TABLE = new UnicodePropertySymbolTable(IUP);
-
     public static final boolean DEBUG = false;
     public static final boolean USE_CLDR = false;
 
@@ -95,18 +97,12 @@ public class LinkUtilities {
                         Sets.difference(EnumSet.allOf(LinkTermination.class), Set.of(Hard)));
 
         private LinkTermination(String uset) {
-            // It would be cleaner if the UnicodeSet constructor from a string took an optional
-            // XSymbolTable
-            if (uset == null) {
+            if (uset == null) { // only called with Include, the "none of the above" option
                 this.base = SOFAR.complement().freeze();
             } else {
-                final XSymbolTable previous = UnicodeSet.getDefaultXSymbolTable();
-                UnicodeSet.setDefaultXSymbolTable(IUP_XSYMBOL_TABLE);
-
-                this.base = new UnicodeSet(uset).freeze();
+                java.text.ParsePosition parsePosition = new java.text.ParsePosition(0);
+				this.base = new UnicodeSet(uset, parsePosition, VersionedSymbolTable.frozenAt(VersionInfo.UNICODE_17_0)).freeze();
                 SOFAR.addAll(this.base);
-
-                UnicodeSet.setDefaultXSymbolTable(previous);
             }
         }
 
@@ -135,9 +131,8 @@ public class LinkUtilities {
                 PROPERTY_MAP.putAll(lt.base, lt);
             }
             PROPERTY_MAP.freeze();
-            com.ibm.icu.dev.util.UnicodeMap<String> temp =
-                    new com.ibm.icu.dev.util
-                            .UnicodeMap<>(); // ugly, that there are two different UnicodeMaps.
+            UnicodeMap<String> temp =
+                    new UnicodeMap<>(); // ugly, that there are two different UnicodeMaps.
             for (UnicodeMap.EntryRange<LinkTermination> entry : PROPERTY_MAP.entryRanges()) {
                 temp.putAll(entry.codepoint, entry.codepointEnd, entry.value.toString());
             }
@@ -168,7 +163,7 @@ public class LinkUtilities {
     public static final UnicodeProperty LINK_PAIRED_OPENER;
 
     static {
-        com.ibm.icu.dev.util.UnicodeMap<String> temp = new com.ibm.icu.dev.util.UnicodeMap<>();
+        UnicodeMap<String> temp = new UnicodeMap<>();
         for (int cp : LinkTermination.Close.base.codePoints()) {
             temp.put(cp, Utility.hex(getOpening(cp), 4));
         }

@@ -1361,7 +1361,7 @@ public class EmojiData implements EmojiDataSource {
             ANNOTATION_SET.getShortName(tToV, otherNameSource);
             if (!ALLOW_UNICODE_NAME) {
                 name = otherNameSource.transform(source);
-                throw new IllegalArgumentException(
+                System.err.println(
                         "no name for "
                                 + source
                                 + " "
