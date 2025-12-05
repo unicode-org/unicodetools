@@ -445,49 +445,50 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
         }
     }
 
-    @Test
-    public void testParseUrl() {
-        String[][] tests = {
-            {
-                "See http://example.com/foobar, and https://a.ca/ω!!!!",
-                "http://example.com/foobar",
-                "https://a.ca/ω"
-            },
-            {"abc http://a.ca/ωπροϛ! ", "http://a.ca/ωπροϛ"},
-            {"abch ttp://a.ca/ωπροϛ! ", null},
-            {"abchttp://a.ca/ωπροϛ! ", null},
-            {"See http://example.com/ωπροϛ and", "http://example.com/ωπροϛ"},
-            {
-                "See http://example.com/foobar, and http://example.com/ωπροϛ!",
-                "http://example.com/foobar",
-                "http://example.com/ωπροϛ"
-            },
-        };
-        int caseNumber = 0;
-        for (String[] test : tests) {
-            ++caseNumber;
-            String source = test[0];
-            // String source = "See http://example.com/foobar and http://a.us/foobar!";
-            int offset = 0;
-            for (int i = 1; i < test.length; ++i) {
-                LinkFound position = LinkUtilities.parseLink(source, offset);
-                String expected = test[i];
-                String actual = position == null ? null : position.substring(source);
-                assertEquals(caseNumber + "." + i + ") «" + source + "»", expected, actual);
-                if (position == null) {
-                    break;
-                }
-                offset = position.limit;
-            }
-        }
-    }
+// OLDER Code, leaving here for now, for comparison
+//    @Test
+//    public void testParseUrl() {
+//        String[][] tests = {
+//            {
+//                "See http://example.com/foobar, and https://a.ca/ω!!!!",
+//                "http://example.com/foobar",
+//                "https://a.ca/ω"
+//            },
+//            {"abc http://a.ca/ωπροϛ! ", "http://a.ca/ωπροϛ"},
+//            {"abch ttp://a.ca/ωπροϛ! ", null},
+//            {"abchttp://a.ca/ωπροϛ! ", null},
+//            {"See http://example.com/ωπροϛ and", "http://example.com/ωπροϛ"},
+//            {
+//                "See http://example.com/foobar, and http://example.com/ωπροϛ!",
+//                "http://example.com/foobar",
+//                "http://example.com/ωπροϛ"
+//            },
+//        };
+//        int caseNumber = 0;
+//        for (String[] test : tests) {
+//            ++caseNumber;
+//            String source = test[0];
+//            // String source = "See http://example.com/foobar and http://a.us/foobar!";
+//            int offset = 0;
+//            for (int i = 1; i < test.length; ++i) {
+//                LinkFound position = LinkUtilities.parseLink(source, offset);
+//                String expected = test[i];
+//                String actual = position == null ? null : position.substring(source);
+//                assertEquals(caseNumber + "." + i + ") «" + source + "»", expected, actual);
+//                if (position == null) {
+//                    break;
+//                }
+//                offset = position.limit;
+//            }
+//        }
+//    }
 
     @Test
     public void testScanForTLD() {
         String[][] tests = {
             {"abc.com deΩ.uk .fr abc.ukx, foo.accountants foo.香港", "com uk accountants 香港"},
             {"abc.com/d/e?xyz#w def.uk", "com uk"},
-            {"abc.XN--11B4C3D", "abc.XN--11B4C3D"} // punycode TLD is ok
+            {"abc.xn--mgbah1a3hjkrd", "xn--mgbah1a3hjkrd"} // punycode TLD is ok
         };
         int caseNumber = 0;
         for (String[] test : tests) {

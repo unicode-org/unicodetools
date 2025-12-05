@@ -51,7 +51,8 @@ public class LinkUtilities {
     private static final boolean SHOW_NON_ASCII_TLDS = true;
 
     // allow changing UnicodeSet to use the current IndexUnicodeProperties
-    public static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
+    public static final IndexUnicodeProperties IUP =
+            IndexUnicodeProperties.make(VersionInfo.UNICODE_17_0);
 
     public static final boolean DEBUG = false;
     public static final boolean USE_CLDR = false;
@@ -61,7 +62,7 @@ public class LinkUtilities {
                     + "/unicodetools/src/main/resources/org/unicode/tools/";
 
     public static final String DATA_DIR =
-            Settings.UnicodeTools.UNICODETOOLS_REPO_DIR + "/unicodetools/data/links";
+            Settings.UnicodeTools.UNICODETOOLS_REPO_DIR + "/unicodetools/data/linkification";
 
     public static final Splitter SPLIT_COMMA = Splitter.on(',');
     public static final Splitter SPLIT_TAB = Splitter.on('\t');
@@ -307,68 +308,69 @@ public class LinkUtilities {
         }
     }
 
-    /**
-     * Parses a restricted set of URLs, for testing the PathQueryFragment portion. That is, it is of
-     * the form <host><domain_name><pathqueryfragment>? <br>
-     * The host is currently just http, https, and mailto. <br>
-     * The domain_name is just approximated for testing.
-     *
-     * @return null if we run out of string, otherwise a LinkFound. If what is found is malformed in
-     *     some way, indicate with LinkFound.bogus.
-     */
-    public static LinkFound parseLink(String source, int startCodePointOffset) {
-        Matcher findStartMatcher = protocol.matcher(source);
-
-        findStartMatcher.region(startCodePointOffset, source.length());
-        if (!findStartMatcher.find()) {
-            return null; // we are at the end
-        }
-        // if we found something, and there was a character before it,
-        // and that character was not soft, then exit
-        int start = findStartMatcher.start();
-        int protocolEnd = findStartMatcher.end();
-        if (start != 0) {
-            LinkTermination lt =
-                    LinkTermination.PROPERTY_MAP.get(UCharacter.codePointBefore(source, start));
-            if (lt == LinkTermination.Include) {
-                return new LinkFound(start, protocolEnd, LinkStatus.bogus);
-            }
-        }
-
-        String protocolValue = findStartMatcher.group(1);
-        if (protocolValue.equals("mailto")) {
-            return parseRestOfMailto(source, start, protocolEnd);
-        }
-
-        // dumb search for end of host, doesn't handle .. or edge cases, but this does not have to
-        // be production-quality
-        int hostLimit = findEndOfDomain(source, protocolEnd);
-        if (protocolEnd == hostLimit) {
-            return new LinkFound(start, protocolEnd, LinkStatus.bogus);
-        }
-        int limit = parsePathQueryFragment(source, hostLimit);
-        return new LinkFound(
-                start, limit, LinkStatus.valueOf(source.substring(start, protocolEnd)));
-    }
-
-    private static LinkFound parseRestOfMailto(String source, int start, int hostStart) {
-        // basic implementation at first
-        int atPosition = source.indexOf('@', hostStart);
-        if (atPosition == -1) {
-            return new LinkFound(start, hostStart, LinkStatus.bogus);
-        }
-        // TBD we could be in the middle of a quoted string, check for that later
-
-        // see if what is in front of the @ looks ok
-
-        int limit = parsePathQueryFragment(source, atPosition + 1);
-        return new LinkFound(start, limit, LinkStatus.mailto);
-    }
-
-    // Simple implementation for testing, since the spec doesn't define the content
-    private static int findEndOfDomain(String source, int protocolLimit) {
-        return validHost.span(source, protocolLimit, SpanCondition.CONTAINED);
-    }
+// OLDER Code, leaving here for now, for comparison
+//    /**
+//     * Parses a restricted set of URLs, for testing the PathQueryFragment portion. That is, it is of
+//     * the form &lt;host>&lt;domain_name><pathqueryfragment>? <br>
+//     * The host is currently just http, https, and mailto. <br>
+//     * The domain_name is just approximated for testing.
+//     *
+//     * @return null if we run out of string, otherwise a LinkFound. If what is found is malformed in
+//     *     some way, indicate with LinkFound.bogus.
+//     */
+//    public static LinkFound parseLink(String source, int startCodePointOffset) {
+//        Matcher findStartMatcher = protocol.matcher(source);
+//
+//        findStartMatcher.region(startCodePointOffset, source.length());
+//        if (!findStartMatcher.find()) {
+//            return null; // we are at the end
+//        }
+//        // if we found something, and there was a character before it,
+//        // and that character was not soft, then exit
+//        int start = findStartMatcher.start();
+//        int protocolEnd = findStartMatcher.end();
+//        if (start != 0) {
+//            LinkTermination lt =
+//                    LinkTermination.PROPERTY_MAP.get(UCharacter.codePointBefore(source, start));
+//            if (lt == LinkTermination.Include) {
+//                return new LinkFound(start, protocolEnd, LinkStatus.bogus);
+//            }
+//        }
+//
+//        String protocolValue = findStartMatcher.group(1);
+//        if (protocolValue.equals("mailto")) {
+//            return parseRestOfMailto(source, start, protocolEnd);
+//        }
+//
+//        // dumb search for end of host, doesn't handle .. or edge cases, but this does not have to
+//        // be production-quality
+//        int hostLimit = findEndOfDomain(source, protocolEnd);
+//        if (protocolEnd == hostLimit) {
+//            return new LinkFound(start, protocolEnd, LinkStatus.bogus);
+//        }
+//        int limit = parsePathQueryFragment(source, hostLimit);
+//        return new LinkFound(
+//                start, limit, LinkStatus.valueOf(source.substring(start, protocolEnd)));
+//    }
+//
+//    private static LinkFound parseRestOfMailto(String source, int start, int hostStart) {
+//        // basic implementation at first
+//        int atPosition = source.indexOf('@', hostStart);
+//        if (atPosition == -1) {
+//            return new LinkFound(start, hostStart, LinkStatus.bogus);
+//        }
+//        // TBD we could be in the middle of a quoted string, check for that later
+//
+//        // see if what is in front of the @ looks ok
+//
+//        int limit = parsePathQueryFragment(source, atPosition + 1);
+//        return new LinkFound(start, limit, LinkStatus.mailto);
+//    }
+//
+//    // Simple implementation for testing, since the spec doesn't define the content
+//    private static int findEndOfDomain(String source, int protocolLimit) {
+//        return validHost.span(source, protocolLimit, SpanCondition.CONTAINED);
+//    }
 
     /**
      * Set lastSafe to 0 — this marks the last code point that is definitely included in the
