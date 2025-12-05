@@ -61,7 +61,7 @@ class GenerateLinkData {
                             + "\n"
                             + "# ================================================\n"
                             + "\n"
-                            + "# Property:	{3}\n"
+                            + "# Property:\t{3}\n"
                             + "\n"
                             + "#  All code points not explicitly listed for {3}\n"
                             + "#  have the value {4}.\n"
