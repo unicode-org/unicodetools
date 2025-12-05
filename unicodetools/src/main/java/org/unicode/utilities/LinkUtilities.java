@@ -17,7 +17,6 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
-import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -36,7 +35,6 @@ import java.util.Stack;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Counter;
@@ -48,26 +46,6 @@ import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-
-import com.google.common.base.Joiner;
-import com.google.common.base.Splitter;
-import com.google.common.collect.ComparisonChain;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.ImmutableSortedMap;
-import com.google.common.collect.Sets;
-import com.google.common.util.concurrent.UncheckedExecutionException;
-import com.ibm.icu.impl.IDNA2003;
-import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.lang.UProperty.NameChoice;
-import com.ibm.icu.text.StringPrepParseException;
-import com.ibm.icu.text.SymbolTable;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSet.EntryRange;
-import com.ibm.icu.text.UnicodeSet.SpanCondition;
-import com.ibm.icu.util.VersionInfo;
 
 public class LinkUtilities {
     private static final boolean SHOW_NON_ASCII_TLDS = true;
@@ -120,7 +98,12 @@ public class LinkUtilities {
                 this.base = SOFAR.complement().freeze();
             } else {
                 java.text.ParsePosition parsePosition = new java.text.ParsePosition(0);
-				this.base = new UnicodeSet(uset, parsePosition, VersionedSymbolTable.frozenAt(VersionInfo.UNICODE_17_0)).freeze();
+                this.base =
+                        new UnicodeSet(
+                                        uset,
+                                        parsePosition,
+                                        VersionedSymbolTable.frozenAt(VersionInfo.UNICODE_17_0))
+                                .freeze();
                 SOFAR.addAll(this.base);
             }
         }
