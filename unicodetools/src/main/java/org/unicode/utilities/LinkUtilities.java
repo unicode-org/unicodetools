@@ -18,6 +18,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
 import com.ibm.icu.text.UnicodeSet.XSymbolTable;
+import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
@@ -43,7 +44,7 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
-import org.unicode.props.UnicodePropertySymbolTable;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -52,7 +53,6 @@ public class LinkUtilities {
 
     // allow changing UnicodeSet to use the current IndexUnicodeProperties
     public static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
-    static final XSymbolTable IUP_XSYMBOL_TABLE = new UnicodePropertySymbolTable(IUP);
 
     public static final boolean DEBUG = false;
     public static final boolean USE_CLDR = false;
@@ -101,7 +101,8 @@ public class LinkUtilities {
                 this.base = SOFAR.complement().freeze();
             } else {
                 final XSymbolTable previous = UnicodeSet.getDefaultXSymbolTable();
-                UnicodeSet.setDefaultXSymbolTable(IUP_XSYMBOL_TABLE);
+                UnicodeSet.setDefaultXSymbolTable(
+                        VersionedSymbolTable.frozenAt(VersionInfo.UNICODE_17_0));
 
                 this.base = new UnicodeSet(uset).freeze();
                 SOFAR.addAll(this.base);
@@ -135,9 +136,7 @@ public class LinkUtilities {
                 PROPERTY_MAP.putAll(lt.base, lt);
             }
             PROPERTY_MAP.freeze();
-            com.ibm.icu.dev.util.UnicodeMap<String> temp =
-                    new com.ibm.icu.dev.util
-                            .UnicodeMap<>(); // ugly, that there are two different UnicodeMaps.
+            UnicodeMap<String> temp = new UnicodeMap<>();
             for (UnicodeMap.EntryRange<LinkTermination> entry : PROPERTY_MAP.entryRanges()) {
                 temp.putAll(entry.codepoint, entry.codepointEnd, entry.value.toString());
             }
@@ -165,22 +164,25 @@ public class LinkUtilities {
         return cp == '>' ? '<' : UCharacter.getBidiPairedBracket(cp);
     }
 
-    public static final UnicodeProperty LINK_PAIRED_OPENER;
+    private static UnicodeProperty LINK_PAIRED_OPENER;
 
-    static {
-        com.ibm.icu.dev.util.UnicodeMap<String> temp = new com.ibm.icu.dev.util.UnicodeMap<>();
-        for (int cp : LinkTermination.Close.base.codePoints()) {
-            temp.put(cp, Utility.hex(getOpening(cp), 4));
+    public static UnicodeProperty getLinkPairedOpener() {
+        if (LINK_PAIRED_OPENER == null) {
+            UnicodeMap<String> temp = new UnicodeMap<>();
+            for (int cp : LinkTermination.Close.base.codePoints()) {
+                temp.put(cp, Utility.hex(getOpening(cp), 4));
+            }
+
+            LINK_PAIRED_OPENER =
+                    new UnicodeMapProperty()
+                            .set(temp)
+                            .setMain(
+                                    "LinkPairedOpener",
+                                    "LinkPO",
+                                    UnicodeProperty.STRING,
+                                    IUP.getUcdVersion().getVersionString(2, 2));
         }
-
-        LINK_PAIRED_OPENER =
-                new UnicodeMapProperty()
-                        .set(temp)
-                        .setMain(
-                                "LinkPairedOpener",
-                                "LinkPO",
-                                UnicodeProperty.STRING,
-                                IUP.getUcdVersion().getVersionString(2, 2));
+        return LINK_PAIRED_OPENER;
     }
 
     /** Parallels the spec parts table */
@@ -276,7 +278,7 @@ public class LinkUtilities {
     public static final UnicodeSet validHost =
             new UnicodeSet(idnValid)
                     .addAll(idnMapped)
-                    .removeAll(new UnicodeSet("[:ascii:]"))
+                    .removeAll(new UnicodeSet("[:Block=Basic_Latin:]"))
                     .addAll(new UnicodeSet("[-a-zA-Z0-9..]"))
                     .freeze();
     public static final UnicodeSet validHostNoDot =

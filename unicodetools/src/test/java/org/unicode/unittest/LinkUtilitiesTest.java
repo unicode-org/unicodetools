@@ -1,7 +1,6 @@
 package org.unicode.unittest;
 
 import com.google.common.base.Joiner;
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
@@ -27,6 +26,7 @@ import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import org.junit.jupiter.api.Test;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Rational.MutableLong;
 import org.unicode.text.utility.Utility;
@@ -37,18 +37,15 @@ import org.unicode.utilities.LinkUtilities.LinkTermination;
 import org.unicode.utilities.LinkUtilities.Part;
 
 /** The following is very temporary, just during the spec development. */
-public class LinkUtilitiesTest extends TestFmwk {
+public class LinkUtilitiesTest extends TestFmwkMinusMinus {
 
     private static final Joiner JOIN_SEMI_TAB = Joiner.on(";\t");
     public static final char LINKIFY_START = '⸠';
     public static final char LINKIFY_END = '⸡';
 
-    public static void main(String[] args) {
-        new LinkUtilitiesTest().run(args);
-    }
-
     static final List<String> TEST_DETECTION_CASES = new ArrayList<>();
 
+    @Test
     public void testLinkification() {
         String[][] tests = {
             {"!", "!"},
@@ -144,6 +141,7 @@ public class LinkUtilitiesTest extends TestFmwk {
                             counter.get(Boolean.TRUE)));
     }
 
+    @Test
     public void testMinimumEscaping() {
         System.out.println();
         String[][] tests = {
@@ -224,6 +222,7 @@ public class LinkUtilitiesTest extends TestFmwk {
         }
     }
 
+    @Test
     public void testParts() {
         String[][] tests = {
             {
@@ -254,6 +253,7 @@ public class LinkUtilitiesTest extends TestFmwk {
      * Or use a query in wikidata to get them. <br>
      * Will have to add unescaping to the Part.getParts method.
      */
+    @Test
     public void testWikipediaUrls() throws IOException {
         warnln("Use -e10 to check all the examples");
         final boolean shortTest = getInclusion() < 10;
@@ -402,6 +402,7 @@ public class LinkUtilitiesTest extends TestFmwk {
         }
     }
 
+    @Test
     public void testUnescape() {
         String[][] tests = {
             {"PATH", "%3F%23%2F%3D%26av%C3%A7%C4%8B", "%3F%23%2F=&avçċ"},
@@ -431,18 +432,20 @@ public class LinkUtilitiesTest extends TestFmwk {
         return result.toString();
     }
 
+    @Test
     public void testOverlap() {
         for (LinkTermination lt : LinkTermination.values()) {
-            if (lt == lt.Include) {
+            if (lt == LinkTermination.Include) {
                 continue;
             }
-            UnicodeSet propValue = lt.PROPERTY_MAP.getSet(lt);
+            UnicodeSet propValue = LinkTermination.PROPERTY_MAP.getSet(lt);
             if (!propValue.equals(lt.base)) {
                 errln("Overlap");
             }
         }
     }
 
+    @Test
     public void testParseUrl() {
         String[][] tests = {
             {
@@ -479,6 +482,7 @@ public class LinkUtilitiesTest extends TestFmwk {
         }
     }
 
+    @Test
     public void testScanForTLD() {
         String[][] tests = {
             {"abc.com deΩ.uk .fr abc.ukx, foo.accountants foo.香港", "com uk accountants 香港"},
@@ -513,6 +517,7 @@ public class LinkUtilitiesTest extends TestFmwk {
         }
     }
 
+    @Test
     public void testLinkScanner() {
         String[][] tests = {
             {"foo.uk.com junk", "foo.uk.com"},

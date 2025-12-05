@@ -117,7 +117,7 @@ class GenerateLinkData {
         }
 
         // LinkPairedOpener.txt
-        bf.setValueSource(LinkUtilities.LINK_PAIRED_OPENER);
+        bf.setValueSource(LinkUtilities.getLinkPairedOpener());
         try (final PrintWriter out =
                 FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR, "LinkPairedOpener.txt"); ) {
             writePropHeader(out, "LinkPairedOpener", "LinkPairedOpener", "undefined");
