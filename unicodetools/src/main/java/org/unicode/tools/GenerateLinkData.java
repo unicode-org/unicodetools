@@ -30,6 +30,13 @@ import org.unicode.utilities.LinkUtilities.Part;
 /**
  * Generate UTS #58 property and test files
  *
+ * <ul>
+ *   <li>Generate the LinkFormatting.txt file. Use some static examples + testUrls.txt (see the
+ *       LinkUtilitiesTest.java file for code).
+ *   <li>Other fixes from props agenda
+ *   <li>…
+ * </ul>
+ *
  * @throws IOException
  */
 class GenerateLinkData {
@@ -228,8 +235,9 @@ class GenerateLinkData {
 
     /**
      * Use the query https://w.wiki/CKpG to create a file. Put it in RESOURCE_DIR as
-     * wikipedia1000raw.tsv, then run this class. It generates two new files, testUrls.txt and
-     * testUrlsStats.txt
+     * wikipedia1000raw.tsv, then run this class. It generates two new files, <br>
+     * • testUrls.txt <br>
+     * • testUrlsStats.txt
      *
      * <p>LinkificationTest.txt SerializationTest.txt
      *

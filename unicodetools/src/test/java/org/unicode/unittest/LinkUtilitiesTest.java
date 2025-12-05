@@ -247,7 +247,9 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
     /**
      * Check some examples of translated links of
      * https://en.wikipedia.org/wiki/Wikipedia:List_of_articles_every_Wikipedia_should_have <br>
-     * TODO <br>
+     * <br>
+     * Uses the file testUrls.txt <br>
+     * * TODO <br>
      * Open up each of these files and also check the links (href="[^"]*" | href='[^"]*'). <br>
      * Or use a query in wikidata to get them. <br>
      * Will have to add unescaping to the Part.getParts method.
