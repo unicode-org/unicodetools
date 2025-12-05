@@ -241,8 +241,8 @@ git commit -m GenerateEnums
 
 ### Run comparison tests
 
-eggrobin (Windows, in-source).
+eggrobin (Windows, in-source; replace $RMG_ISSUE by the RMG issue number, or define it as that number).
 ```powershell
-mvn test -am -pl unicodetools "-DCLDR_DIR=$(gl|split-path -parent)\cldr\"  "-DUNICODETOOLS_GEN_DIR=$(gl|split-path -parent)\unicodetools\Generated\"  "-DUNICODETOOLS_REPO_DIR=$(gl|split-path -parent)\unicodetools\" "-DUVERSION=18.0.0" "-Dtest=TestTestUnicodeInvariants#testAdditionComparisons" -DfailIfNoTests=false -DtrimStackTrace=false
+mvn test -am -pl unicodetools "-DCLDR_DIR=$(gl|split-path -parent)\cldr\"  "-DUNICODETOOLS_GEN_DIR=$(gl|split-path -parent)\unicodetools\Generated\"  "-DUNICODETOOLS_REPO_DIR=$(gl|split-path -parent)\unicodetools\" "-DUVERSION=18.0.0" "-Dtest=TestTestUnicodeInvariants#testAdditionComparisons" -DfailIfNoTests=false -DtrimStackTrace=false -DRMG_ISSUE=$RMG_ISSUE
 ```
 Results are in Generated\UnicodeTestResults-addition-comparisons-[RMG issue number].html.
