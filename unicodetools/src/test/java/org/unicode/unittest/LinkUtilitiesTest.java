@@ -31,7 +31,6 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Rational.MutableLong;
 import org.unicode.text.utility.Utility;
 import org.unicode.utilities.LinkUtilities;
-import org.unicode.utilities.LinkUtilities.LinkFound;
 import org.unicode.utilities.LinkUtilities.LinkScanner;
 import org.unicode.utilities.LinkUtilities.LinkTermination;
 import org.unicode.utilities.LinkUtilities.Part;
@@ -445,43 +444,43 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
         }
     }
 
-// OLDER Code, leaving here for now, for comparison
-//    @Test
-//    public void testParseUrl() {
-//        String[][] tests = {
-//            {
-//                "See http://example.com/foobar, and https://a.ca/ω!!!!",
-//                "http://example.com/foobar",
-//                "https://a.ca/ω"
-//            },
-//            {"abc http://a.ca/ωπροϛ! ", "http://a.ca/ωπροϛ"},
-//            {"abch ttp://a.ca/ωπροϛ! ", null},
-//            {"abchttp://a.ca/ωπροϛ! ", null},
-//            {"See http://example.com/ωπροϛ and", "http://example.com/ωπροϛ"},
-//            {
-//                "See http://example.com/foobar, and http://example.com/ωπροϛ!",
-//                "http://example.com/foobar",
-//                "http://example.com/ωπροϛ"
-//            },
-//        };
-//        int caseNumber = 0;
-//        for (String[] test : tests) {
-//            ++caseNumber;
-//            String source = test[0];
-//            // String source = "See http://example.com/foobar and http://a.us/foobar!";
-//            int offset = 0;
-//            for (int i = 1; i < test.length; ++i) {
-//                LinkFound position = LinkUtilities.parseLink(source, offset);
-//                String expected = test[i];
-//                String actual = position == null ? null : position.substring(source);
-//                assertEquals(caseNumber + "." + i + ") «" + source + "»", expected, actual);
-//                if (position == null) {
-//                    break;
-//                }
-//                offset = position.limit;
-//            }
-//        }
-//    }
+    // OLDER Code, leaving here for now, for comparison
+    //    @Test
+    //    public void testParseUrl() {
+    //        String[][] tests = {
+    //            {
+    //                "See http://example.com/foobar, and https://a.ca/ω!!!!",
+    //                "http://example.com/foobar",
+    //                "https://a.ca/ω"
+    //            },
+    //            {"abc http://a.ca/ωπροϛ! ", "http://a.ca/ωπροϛ"},
+    //            {"abch ttp://a.ca/ωπροϛ! ", null},
+    //            {"abchttp://a.ca/ωπροϛ! ", null},
+    //            {"See http://example.com/ωπροϛ and", "http://example.com/ωπροϛ"},
+    //            {
+    //                "See http://example.com/foobar, and http://example.com/ωπροϛ!",
+    //                "http://example.com/foobar",
+    //                "http://example.com/ωπροϛ"
+    //            },
+    //        };
+    //        int caseNumber = 0;
+    //        for (String[] test : tests) {
+    //            ++caseNumber;
+    //            String source = test[0];
+    //            // String source = "See http://example.com/foobar and http://a.us/foobar!";
+    //            int offset = 0;
+    //            for (int i = 1; i < test.length; ++i) {
+    //                LinkFound position = LinkUtilities.parseLink(source, offset);
+    //                String expected = test[i];
+    //                String actual = position == null ? null : position.substring(source);
+    //                assertEquals(caseNumber + "." + i + ") «" + source + "»", expected, actual);
+    //                if (position == null) {
+    //                    break;
+    //                }
+    //                offset = position.limit;
+    //            }
+    //        }
+    //    }
 
     @Test
     public void testScanForTLD() {

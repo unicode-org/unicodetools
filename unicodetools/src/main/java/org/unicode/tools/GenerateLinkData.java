@@ -3,9 +3,7 @@ package org.unicode.tools;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
-import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.SimpleFormatter;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.IOException;
@@ -14,8 +12,9 @@ import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 import java.util.NavigableMap;
 import java.util.function.Consumer;
 import org.unicode.cldr.draft.FileUtilities;
@@ -51,9 +50,13 @@ class GenerateLinkData {
         generateTestData();
     }
 
-    static final long now = Instant.now().toEpochMilli();
-    static final DateFormat dt = new SimpleDateFormat("y-MM-dd HH:mm:ss 'GMT'", Locale.ENGLISH);
-    static final DateFormat dty = new SimpleDateFormat("y", Locale.ENGLISH);
+    static final Instant now = Instant.now();
+    static final DateTimeFormatter dt =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm:ss' GMT'")
+                    .withZone(ZoneId.of("UTC")); // Explicitly set to UTC/GMT
+    static final DateTimeFormatter dty =
+            DateTimeFormatter.ofPattern("y")
+                    .withZone(ZoneId.of("UTC")); // Explicitly set to UTC/GMT
 
     static final SimpleFormatter HEADER_PROP =
             SimpleFormatter.compile(
@@ -104,7 +107,7 @@ class GenerateLinkData {
         bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
 
         try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR, "LinkTermination.txt"); ) {
+                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkTermination.txt"); ) {
             writePropHeader(out, "LinkTermination", "LinkTermination", "Hard");
             for (LinkTermination propValue : LinkTermination.NON_MISSING) {
                 bf.showSetNames(out, propValue.base);
@@ -119,7 +122,8 @@ class GenerateLinkData {
         // LinkPairedOpener.txt
         bf.setValueSource(LinkUtilities.getLinkPairedOpener());
         try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR, "LinkPairedOpener.txt"); ) {
+                FileUtilities.openUTF8Writer(
+                        LinkUtilities.DATA_DIR_DEV, "LinkPairedOpener.txt"); ) {
             writePropHeader(out, "LinkPairedOpener", "LinkPairedOpener", "undefined");
             bf.showSetNames(out, LinkTermination.Close.base);
         } catch (IOException e) {
@@ -139,7 +143,8 @@ class GenerateLinkData {
         // "/unicodetools/src/main/resources/org/unicode/tools/test_links_lt.txt"
 
         try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR, "LinkDetectionTest.txt"); ) {
+                FileUtilities.openUTF8Writer(
+                        LinkUtilities.DATA_DIR_DEV, "LinkDetectionTest.txt"); ) {
             writeTestHeader(out, "LinkDetectionTest", "LinkDetectionTest");
 
             out.println("# Test cases contributed by ICANN\n");
