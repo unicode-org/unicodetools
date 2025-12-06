@@ -72,6 +72,8 @@ public class LinkUtilities {
     public static final Joiner JOIN_LF = Joiner.on('\n');
     public static final Joiner JOIN_EMPTY = Joiner.on("");
 
+    static final UnicodeSet HEX = new UnicodeSet("[a-fA-F0-9]").freeze();
+
     public static final CLDRFile ENGLISH = USE_CLDR ? CLDRConfig.getInstance().getEnglish() : null;
 
     private static final UnicodeSet SOFAR = new UnicodeSet();
@@ -487,29 +489,34 @@ public class LinkUtilities {
             for (int i = 0; i < n; ++i) {
                 final int cp = cps[i];
                 switch (cp) {
-                    case '\\':
-                        {
-                            // append soft code points
-                            appendCodePointsBetween(output, cps, copiedAlready, i);
-                            if (i < n - 1) {
-                                // append next code point
-                                ++i;
-                                appendPercentEscaped(output, cps[i], escapedCounter);
-                                copiedAlready = i + 1;
-                            } else {
-                                // append '\' alone (at end)
-                                appendPercentEscaped(output, cp, escapedCounter);
-                                copiedAlready = i + 1;
-                            }
-                            continue;
+                    case '\\': // if we have \ followed by x, just emit the literal x; otherwise \
+                        // This is ONLY used for our test files;
+                        // in production the parts of the path/query
+                        // would be handled separately.
+
+                        // append soft code points
+                        appendCodePointsBetween(output, cps, copiedAlready, i);
+                        if (i < n - 1) {
+                            // append next code point
+                            ++i;
+                            appendPercentEscaped(output, cps[i], escapedCounter);
+                            copiedAlready = i + 1;
+                        } else {
+                            // append '\' alone (at end)
+                            appendPercentEscaped(output, cp, escapedCounter);
+                            copiedAlready = i + 1;
                         }
-                    case '%':
-                        {
+                        continue;
+
+                    case '%': // if we have %xy, and x and y are hex, escape the %
+                        if (i < n - 2 && HEX.contains(cps[i + 1]) && HEX.contains(cps[i + 2])) {
+                            // append soft code points
                             appendCodePointsBetween(output, cps, copiedAlready, i);
                             appendPercentEscaped(output, cp, escapedCounter);
                             copiedAlready = i + 1;
                             continue;
                         }
+                        break;
                 }
                 LinkTermination lt =
                         part.terminators.contains(cp)

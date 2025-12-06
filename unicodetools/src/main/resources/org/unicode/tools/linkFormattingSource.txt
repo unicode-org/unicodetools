@@ -13,7 +13,7 @@ https://;	example.com;	αβγ/δεζ;	θ=ικλ&μ=γξο;	πρς;	https://examp
 # Escape ? in Path					
 https://;	example.com;	α?μπ;	;	;	https://example.com/α%3Fμπ
 
-# Escape # in Path/Query					
+# Escape #, =, & in Path/Query					
 https://;	example.com;	α#β;	γ=δ#ε;	;	https://example.com/α%23β?γ=δ%23ε
 
 # Escape hard (' ')					
@@ -25,10 +25,17 @@ https://;	example.com;	αβγ./δεζ.;	θ=ικ.λ&=γξο.;	πρς.;	https://ex
 # Escape unmatched brackets					
 https://;	example.com;	α(β));	γ(δ));	ε(ζ));	https://example.com/α(β)%29?γ(δ)%29#ε(ζ)%29
 
-# Path with escapes (\/ is a literal /, % is escaped)
-https://;	example.com;	α/β\/γ%;	;	;	https://example.com/α/β%2Fγ%25
+# Path with escapes (\/ is a literal /, %xx is escaped)
+https://;	example.com;	α/β\/γ;	;	;	https://example.com/α/β%2Fγ
 
-# Query with escapes (\= is a literal =, so the left side is α=β and the right side is γ%δ)	
-https://;	example.com;	;	α\=β=γ%δ;	;	https://example.com?α%3Dβ=γ%25δ
+# Path with escapes (%xx is escaped iff x is hex)
+https://;	example.com;	α/βγ%δ%61ε%;	;	;	https://example.com/α/βγ%δ%2561ε%
 
-https://;	example.com;	;	α\&β=γ&δ=ε;	;	https://example.com?α%26β=γ&δ=ε
+# Query with escapes (& separates key-value pairs, so handle literal &)	
+https://;	example.com;	;	α\&=β&γ=\&δ;	;	https://example.com?α%26=β&γ=%26δ
+
+# Query with escapes (= separates keys and values, so handle literal &=)	
+https://;	example.com;	;	α\=β=γ\=δ;	;	https://example.com?α%3Dβ=γ%3Dδ
+
+# Query with escapes (%xx is escaped iff x is hex)	
+https://;	example.com;	;	α%β%3D=γ%δ%3D;	;	https://example.com?α%β%253D=γ%δ%253D
