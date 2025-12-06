@@ -1,0 +1,34 @@
+# Path only					
+https://;	example.com;	α;	;	;	https://example.com/α
+
+# Query only					
+https://;	example.com;	;	α;	;	https://example.com?α
+
+# Fragment only					
+https://;	example.com;	;	;	α;	https://example.com#α
+
+# All parts					
+https://;	example.com;	αβγ/δεζ;	θ=ικλ&μ=γξο;	πρς;	https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο#πρς
+
+# Escape ? in Path					
+https://;	example.com;	α?μπ;	;	;	https://example.com/α%3Fμπ
+
+# Escape # in Path/Query					
+https://;	example.com;	α#β;	γ=δ#ε;	;	https://example.com/α%23β?γ=δ%23ε
+
+# Escape hard (' ')					
+https://;	example.com;	αβ γ/δεζ;	θ=ικ λ&=γξο;	πρ σ;	https://example.com/αβ%20γ/δεζ?θ=ικ%20λ&=γξο#πρ%20σ
+
+# Escape soft ('.') unless followed by include					
+https://;	example.com;	αβγ./δεζ.;	θ=ικ.λ&=γξο.;	πρς.;	https://example.com/αβγ./δεζ.?θ=ικ.λ&=γξο.#πρς%2E
+
+# Escape unmatched brackets					
+https://;	example.com;	α(β));	γ(δ));	ε(ζ));	https://example.com/α(β)%29?γ(δ)%29#ε(ζ)%29
+
+# Path with escapes (\/ is a literal /, % is escaped)
+https://;	example.com;	α/β\/γ%;	;	;	https://example.com/α/β%2Fγ%25
+
+# Query with escapes (\= is a literal =, so the left side is α=β and the right side is γ%δ)	
+https://;	example.com;	;	α\=β=γ%δ;	;	https://example.com?α%3Dβ=γ%25δ
+
+https://;	example.com;	;	α\&β=γ&δ=ε;	;	https://example.com?α%26β=γ&δ=ε
