@@ -452,7 +452,7 @@ public class LinkUtilities {
     }
 
     /**
-     * Minimally escape. Presumes that the parts have had necessary interior quoting.<br>
+     * Minimally escape. Presumes that the parts use \ for interior quoting.<br>
      *
      * @param atEndOfText TODO
      * @param escapedCounter TODO
@@ -470,7 +470,7 @@ public class LinkUtilities {
             Part part = partEntry.getKey();
             final String string = partEntry.getValue();
             if (string.isEmpty()) {
-                throw new IllegalArgumentException();
+                continue;
             }
             if (part == Part.HOST || part == Part.PROTOCOL) {
                 output.append(string);
@@ -486,6 +486,31 @@ public class LinkUtilities {
             Stack<Integer> openingStack = new Stack<>();
             for (int i = 0; i < n; ++i) {
                 final int cp = cps[i];
+                switch (cp) {
+                    case '\\':
+                        {
+                            // append soft code points
+                            appendCodePointsBetween(output, cps, copiedAlready, i);
+                            if (i < n - 1) {
+                                // append next code point
+                                ++i;
+                                appendPercentEscaped(output, cps[i], escapedCounter);
+                                copiedAlready = i + 1;
+                            } else {
+                                // append '\' alone (at end)
+                                appendPercentEscaped(output, cp, escapedCounter);
+                                copiedAlready = i + 1;
+                            }
+                            continue;
+                        }
+                    case '%':
+                        {
+                            appendCodePointsBetween(output, cps, copiedAlready, i);
+                            appendPercentEscaped(output, cp, escapedCounter);
+                            copiedAlready = i + 1;
+                            continue;
+                        }
+                }
                 LinkTermination lt =
                         part.terminators.contains(cp)
                                 ? LinkTermination.Hard

@@ -1,11 +1,14 @@
 package org.unicode.tools;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableSortedMap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.SimpleFormatter;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.OutputInt;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UncheckedIOException;
@@ -14,6 +17,7 @@ import java.nio.file.Path;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.NavigableMap;
 import java.util.function.Consumer;
@@ -41,7 +45,10 @@ import org.unicode.utilities.LinkUtilities.Part;
  */
 class GenerateLinkData {
 
-    private static final Splitter SPLIT_TABS = Splitter.on('\t').omitEmptyStrings();
+    private static final Joiner JOIN_SEMI_SP = Joiner.on(" ;\t");
+    private static final Splitter SPLIT_TABS = Splitter.on('\t').omitEmptyStrings().trimResults();
+    private static final Splitter SPLIT_SEMI = Splitter.on(';').trimResults();
+
     private static final String HEADER_BASE =
             "# {0}.txt\n"
                     + "# Date: {1} \n"
@@ -54,7 +61,8 @@ class GenerateLinkData {
 
     public static void main(String[] args) throws IOException {
         generatePropertyData();
-        generateTestData();
+        generateDetectionTestData();
+        generateFormattingTestData();
     }
 
     static final Instant now = Instant.now();
@@ -87,7 +95,7 @@ class GenerateLinkData {
                         filename, dt.format(now), dty.format(now), propertyName, missingValue));
     }
 
-    static final SimpleFormatter HEADER_TEST =
+    static final SimpleFormatter HEADER_DETECT_TEST =
             SimpleFormatter.compile(
                     HEADER_BASE
                             + "# Format: each line contains zero or more marked links, such as ⸠abc.com⸡\n"
@@ -99,8 +107,26 @@ class GenerateLinkData {
                             + "# Otherwise # is treated like any other character.\n"
                             + "# ================================================\n");
 
-    static void writeTestHeader(PrintWriter out, String filename, String testName) {
-        out.println(HEADER_TEST.format(filename, dt.format(now), dty.format(now), testName));
+    static final SimpleFormatter HEADER_FORMAT_TEST =
+            SimpleFormatter.compile(
+                    HEADER_BASE
+                            + "# Format: Each line has the following fields:\n"
+                            + "# Scheme/host\n"
+                            + "# Path\n"
+                            + "# Query\n"
+                            + "# Fragment\n"
+                            + "# Result — with minimal escaping\n"
+                            + "#\n"
+                            + "# Empty lines, and lines starting with # are ignored.\n"
+                            + "# Otherwise # is treated like any other character.\n"
+                            + "#\n"
+                            + "# The Path, Query, and Fragment may contain backslash escapes when characters would otherwise be \n"
+                            + "# internal syntax characters in that part. For example, a literal / within a path segments would be \\/.\n"
+                            + "# ================================================\n");
+
+    static void writeTestHeader(
+            PrintWriter out, SimpleFormatter simpleFormatter, String filename, String testName) {
+        out.println(simpleFormatter.format(filename, dt.format(now), dty.format(now), testName));
     }
 
     /** Generate property data for the UTS */
@@ -138,21 +164,14 @@ class GenerateLinkData {
         }
     }
 
-    static void generateTestData() {
+    static void generateDetectionTestData() {
 
-        BagFormatter bf = new BagFormatter(LinkUtilities.IUP).setLineSeparator("\n");
-
-        // LinkTermination.txt
-
-        bf.setValueSource(LinkTermination.PROPERTY);
-        bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
-
-        // "/unicodetools/src/main/resources/org/unicode/tools/test_links_lt.txt"
+        OutputInt errorCount = new OutputInt();
 
         try (final PrintWriter out =
                 FileUtilities.openUTF8Writer(
                         LinkUtilities.DATA_DIR_DEV, "LinkDetectionTest.txt"); ) {
-            writeTestHeader(out, "LinkDetectionTest", "LinkDetectionTest");
+            writeTestHeader(out, HEADER_DETECT_TEST, "LinkDetectionTest", "LinkDetectionTest");
 
             out.println("# Test cases contributed by ICANN\n");
 
@@ -165,6 +184,7 @@ class GenerateLinkData {
                                 List<String> parts = SPLIT_TABS.splitToList(line);
                                 if (parts.size() != 2) {
                                     System.out.println("* Malformed? " + line);
+                                    ++errorCount.value;
                                     return;
                                 }
                                 String base = parts.get(0);
@@ -199,17 +219,9 @@ class GenerateLinkData {
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
-
-        //        // LinkPairedOpener.txt
-        //        bf.setValueSource(LinkUtilities.LINK_PAIRED_OPENER);
-        //        try (final PrintWriter out =
-        //                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR,
-        // "LinkFormattingTest.txt"); ) {
-        //            writeHeader(out, "LinkPairedOpener", "LinkPairedOpener", "undefined");
-        //            bf.showSetNames(out, LinkTermination.Close.base);
-        //        } catch (IOException e) {
-        //            throw new UncheckedIOException(e);
-        //        }
+        if (errorCount.value != 0) {
+            throw new IllegalArgumentException("Failures in writing test file: " + errorCount);
+        }
     }
 
     private static String addBraces(String base) {
@@ -231,6 +243,128 @@ class GenerateLinkData {
         result.append(base.substring(lastEnd));
 
         return result.toString();
+    }
+
+    static void generateFormattingTestData() {
+
+        OutputInt errorCount = new OutputInt();
+
+        //        // LinkPairedOpener.txt
+        //        bf.setValueSource(LinkUtilities.LINK_PAIRED_OPENER);
+        //        try (final PrintWriter out =
+        //                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR,
+        // "LinkFormattingTest.txt"); ) {
+        //            writeHeader(out, "LinkPairedOpener", "LinkPairedOpener", "undefined");
+        //            bf.showSetNames(out, LinkTermination.Close.base);
+        //        } catch (IOException e) {
+        //            throw new UncheckedIOException(e);
+        //        }
+
+        try (final PrintWriter out =
+                FileUtilities.openUTF8Writer(
+                        LinkUtilities.DATA_DIR_DEV, "LinkFormattingTest.txt"); ) {
+            writeTestHeader(out, HEADER_FORMAT_TEST, "LinkFormattingTest", "LinkFormattingTest");
+
+            out.println("\n# Selected test cases\n");
+
+            Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "linkFormattingSource.txt"))
+                    .forEach(
+                            line -> {
+                                if (line.startsWith("#") || line.isBlank()) {
+                                    out.println(line);
+                                    return;
+                                }
+                                List<String> parts = SPLIT_SEMI.splitToList(line);
+                                if (parts.size() < 5 || parts.size() > 6) {
+                                    System.out.println("* Malformed? " + line);
+                                    ++errorCount.value;
+                                    return;
+                                }
+                                EnumMap<Part, String> partMap = new EnumMap<>(Part.class);
+                                partMap.put(Part.PROTOCOL, parts.get(0));
+                                partMap.put(Part.HOST, parts.get(1));
+                                partMap.put(Part.PATH, parts.get(2));
+                                partMap.put(Part.QUERY, parts.get(3));
+                                partMap.put(Part.FRAGMENT, parts.get(4));
+                                ImmutableSortedMap<Part, String> temp =
+                                        ImmutableSortedMap.copyOf(partMap);
+
+                                String actual = LinkUtilities.minimalEscape(temp, false, null);
+
+                                String expected = parts.size() < 6 ? null : parts.get(5);
+                                if (expected != null && !actual.equals(expected)) {
+                                    System.out.println(
+                                            "* mismatch "
+                                                    + temp
+                                                    + "\nexpected:\t"
+                                                    + expected
+                                                    + "\nactual:  \t"
+                                                    + actual);
+                                    ++errorCount.value;
+                                    return;
+                                }
+                                out.println(
+                                        JOIN_SEMI_SP.join(
+                                                temp.get(Part.PROTOCOL),
+                                                temp.get(Part.HOST),
+                                                temp.get(Part.PATH),
+                                                temp.get(Part.QUERY),
+                                                temp.get(Part.FRAGMENT),
+                                                actual));
+                            });
+
+            //            out.println("\n# Wikipedia test cases\n");
+            //
+            //            Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "testUrls.txt"))
+            //                    .forEach(
+            //                            line -> {
+            //                                if (line.startsWith("#") || line.isBlank()) {
+            //                                    out.println(line);
+            //                                    return;
+            //                                }
+            //                                // Pick up escaped URL
+            //                                // Escape it
+            //                                String escapedLine = line;
+            //                                // Divide into parts
+            //                                NavigableMap<Part, String> parts =
+            //                                        Part.getParts(escapedLine, false);
+            //
+            //                                out.println(
+            //                                        showFormatted(
+            //                                                parts.get(Part.PROTOCOL) +
+            // parts.get(Part.HOST),
+            //                                                parts.get(Part.PATH),
+            //                                                parts.get(Part.QUERY),
+            //                                                parts.get(Part.FRAGMENT),
+            //                                                escapedLine));
+            //                            });
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+        if (errorCount.value != 0) {
+            throw new IllegalArgumentException("Failures in writing test file: " + errorCount);
+        }
+    }
+
+    private static String showFormatted(
+            String schemeAndHost, String path, String query, String fragment, String actual) {
+        return JOIN_SEMI_SP.join(
+                schemeAndHost,
+                escapeBSlashed(path),
+                escapeBSlashed(query),
+                escapeBSlashed(fragment),
+                actual);
+    }
+
+    private static String computeFormat(
+            String schemeAndHost, String path, String query, String fragment) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private static String escapeBSlashed(String path) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     /**

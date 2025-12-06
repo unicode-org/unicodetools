@@ -1,5 +1,5 @@
 # LinkFormattingTest.txt
-# Date: 2025-12-03 23:00:53 GMT 
+# Date: 2025-12-06, 18:24:23 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -16,43 +16,44 @@
 # Empty lines, and lines starting with # are ignored.
 # Otherwise # is treated like any other character.
 #
-# The Path, Query, and Fragment may contain escapes when characters would otherwise be 
-# syntax characters in that part. For example, a literal / within a path would be \/.
+# The Path, Query, and Fragment may contain backslash escapes when characters would otherwise be 
+# internal syntax characters in that part. For example, a literal / within a path segments would be \/.
 # ================================================
-Format:	
+
+
+# Selected test cases
 
 # Path only					
-https://example.com;	α;	;	;	https://example.com/α
+https:// ;	example.com ;	α ;	 ;	 ;	https://example.com/α
 
 # Query only					
-https://example.com;	;	α;	;	https://example.com?α
+https:// ;	example.com ;	 ;	α ;	 ;	https://example.com?α
 
 # Fragment only					
-https://example.com;	;	;	α;	https://example.com#α
+https:// ;	example.com ;	 ;	 ;	α ;	https://example.com#α
 
 # All parts					
-https://example.com;	αβγ/δεζ;	θ=ικλ&μ=γξο;	πρς;	https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο#πρς
+https:// ;	example.com ;	αβγ/δεζ ;	θ=ικλ&μ=γξο ;	πρς ;	https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο#πρς
 
 # Escape ? in Path					
-https://example.com;	α?μπ;	;	;	https://example.com/α%3Fμπ
+https:// ;	example.com ;	α?μπ ;	 ;	 ;	https://example.com/α%3Fμπ
 
 # Escape # in Path/Query					
-https://example.com;	α#β;	γ=δ#ε;	;	https://example.com/α%23β?γ=δ%23ε
+https:// ;	example.com ;	α#β ;	γ=δ#ε ;	 ;	https://example.com/α%23β?γ=δ%23ε
 
 # Escape hard (' ')					
-https://example.com;	αβ γ/δεζ;	θ=ικ λ&=γξο;	πρ σ;	https://example.com/αβ%20γ/δεζ?θ=ικ%20λ&=γξο#πρ%20σ
+https:// ;	example.com ;	αβ γ/δεζ ;	θ=ικ λ&=γξο ;	πρ σ ;	https://example.com/αβ%20γ/δεζ?θ=ικ%20λ&=γξο#πρ%20σ
 
 # Escape soft ('.') unless followed by include					
-https://example.com;	αβγ./δεζ.;	θ=ικ.λ&=γξο.;	πρς.;	https://example.com/αβγ./δεζ.?θ=ικ.λ&=γξο.#πρς%2E
+https:// ;	example.com ;	αβγ./δεζ. ;	θ=ικ.λ&=γξο. ;	πρς. ;	https://example.com/αβγ./δεζ.?θ=ικ.λ&=γξο.#πρς%2E
 
 # Escape unmatched brackets					
-https://example.com;	α(β));	γ(δ));	ε(ζ));	https://example.com/α(β)%29?γ(δ)%29#ε(ζ)%29
+https:// ;	example.com ;	α(β)) ;	γ(δ)) ;	ε(ζ)) ;	https://example.com/α(β)%29?γ(δ)%29#ε(ζ)%29
 
-# Query with escapes					
-https://example.com;	;	α\=\&=\=\&=%;	;	https://example.com?α%3D%26%=%3D%26%
+# Path with escapes (\/ is a literal /, % is escaped)
+https:// ;	example.com ;	α/β\/γ% ;	 ;	 ;	https://example.com/α/β%2Fγ%25
 
-# Path with escapes					
-https://example.com;	α/β\/γ;	;	;	https://example.com/α/β%2Fγ
+# Query with escapes (\= is a literal =, so the left side is α=β and the right side is γ%δ)	
+https:// ;	example.com ;	 ;	α\=β=γ%δ ;	 ;	https://example.com?α%3Dβ=γ%25δ
 
-# Query with escapes					
-https://example.com;	;	α\=\&%=\=\&=%;	;	https://example.com?α%3D%26%=%3D%26%
+https:// ;	example.com ;	 ;	α\&β=γ&δ=ε ;	 ;	https://example.com?α%26β=γ&δ=ε
