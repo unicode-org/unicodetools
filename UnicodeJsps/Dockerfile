@@ -2,7 +2,7 @@
 FROM alpine as cbuild
 WORKDIR /build
 RUN apk add --update wget make gcc musl-dev
-ARG CPATH=ftp://www.unicode.org/Public/PROGRAMS/BidiReferenceC/
+ARG CPATH=https://www.unicode.org/Public/PROGRAMS/BidiReferenceC/
 # FIX_FOR_NEW_VERSION
 ARG CVERSION=17.0.0
 RUN wget -np -nv --reject-regex='.*\.(lib|exe)$' --cut-dirs=4 -nH -r ${CPATH}${CVERSION}/
