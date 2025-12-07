@@ -1,5 +1,5 @@
 # LinkFormattingTest.txt
-# Date: 2025-12-07, 01:13:52 GMT 
+# Date: 2025-12-07, 01:19:07 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -104,6 +104,7 @@ https:// ;	wuu.wikipedia.org ;	/wiki/聖保羅（巴西） ;	 ;	 ;	https://wuu.w
 https:// ;	vep.wikipedia.org ;	/wiki/Brüssel' ;	 ;	 ;	https://vep.wikipedia.org/wiki/Brüssel%27
 https:// ;	tw.wikipedia.org ;	/wiki/Wiase_Nyinaa_Wɛbsaet_(_World_Wide_Web;_WWW_) ;	 ;	 ;	https://tw.wikipedia.org/wiki/Wiase_Nyinaa_Wɛbsaet_(_World_Wide_Web;_WWW_)
 https:// ;	ja.wikibooks.org ;	/wiki/植物学/植物とはどのような生き物か？ ;	 ;	 ;	https://ja.wikibooks.org/wiki/植物学/植物とはどのような生き物か%EF%BC%9F
+https:// ;	bn.wikibooks.org ;	/wiki/উইকিশৈশব:দেশসমূহ_(অ-হ)/ইসরায়েল ;	 ;	 ;	https://bn.wikibooks.org/wiki/উইকিশৈশব:দেশসমূহ_(অ-হ)/ইসরায়েল
 https:// ;	haw.wikipedia.org ;	/wiki/Puke_noi‘i_kū‘ikena ;	 ;	 ;	https://haw.wikipedia.org/wiki/Puke_noi‘i_kū‘ikena
 https:// ;	new.wikipedia.org ;	/wiki/विन्सेन्ट_भ्यान_ग: ;	 ;	 ;	https://new.wikipedia.org/wiki/विन्सेन्ट_भ्यान_ग%3A
 https:// ;	he.wikipedia.org ;	/wiki/נאט"ו ;	 ;	 ;	https://he.wikipedia.org/wiki/נאט"ו

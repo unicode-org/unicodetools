@@ -321,13 +321,14 @@ class GenerateLinkData {
                                 if (wikiStart < 0) {
                                     return;
                                 }
-                                String rest = line.substring(wikiStart + 6);
+                                int lastCodePoint = line.codePointBefore(line.length());
+                                String rest = line.substring(wikiStart + 6, line.length() - Character.charCount(lastCodePoint));
                                 // skip if we don't see any new characters
                                 int size = charactersSeen.size();
                                 charactersSeen.addAll(rest);
                                 
                                 int endSize = charactersSeenAtEnd.size();
-                                charactersSeenAtEnd.add(rest.codePointBefore(rest.length()));
+								charactersSeenAtEnd.add(lastCodePoint);
                                 
                                 if (charactersSeen.size() == size && charactersSeenAtEnd.size() == endSize) {
                                     return;
