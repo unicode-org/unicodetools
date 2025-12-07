@@ -307,6 +307,7 @@ class GenerateLinkData {
             out.println("\n# Wikipedia test cases\n");
             
             final UnicodeSet charactersSeen = new UnicodeSet(LinkTermination.Include.getBase());
+            final UnicodeSet charactersSeenAtEnd = new UnicodeSet(LinkTermination.Include.getBase());
             final TreeMap<Part,String> parts = new TreeMap<>();
             
             Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "testUrls.txt"))
@@ -324,7 +325,11 @@ class GenerateLinkData {
                                 // skip if we don't see any new characters
                                 int size = charactersSeen.size();
                                 charactersSeen.addAll(rest);
-                                if (charactersSeen.size() == size) {
+                                
+                                int endSize = charactersSeenAtEnd.size();
+                                charactersSeenAtEnd.add(rest.codePointBefore(rest.length()));
+                                
+                                if (charactersSeen.size() == size && charactersSeenAtEnd.size() == endSize) {
                                     return;
                                 }
                                 // Divide into parts
