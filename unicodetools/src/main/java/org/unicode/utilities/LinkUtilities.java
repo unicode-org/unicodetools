@@ -466,7 +466,13 @@ public class LinkUtilities {
         StringBuilder output = new StringBuilder();
         // get the last part
         List<Entry<Part, String>> ordered = List.copyOf(parts.entrySet());
-        Part lastPart = ordered.get(ordered.size() - 1).getKey();
+        Part lastPart = null;
+
+        for (Entry<Part, String> entry : ordered) {
+        	if (!entry.getValue().isEmpty()) {
+        		lastPart = entry.getKey();
+        	}
+        }
         // process all parts
         for (Entry<Part, String> partEntry : ordered) {
             Part part = partEntry.getKey();

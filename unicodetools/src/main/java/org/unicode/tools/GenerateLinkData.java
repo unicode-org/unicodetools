@@ -20,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.NavigableMap;
+import java.util.TreeMap;
 import java.util.function.Consumer;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
@@ -249,17 +250,6 @@ class GenerateLinkData {
 
         OutputInt errorCount = new OutputInt();
 
-        //        // LinkPairedOpener.txt
-        //        bf.setValueSource(LinkUtilities.LINK_PAIRED_OPENER);
-        //        try (final PrintWriter out =
-        //                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR,
-        // "LinkFormattingTest.txt"); ) {
-        //            writeHeader(out, "LinkPairedOpener", "LinkPairedOpener", "undefined");
-        //            bf.showSetNames(out, LinkTermination.Close.base);
-        //        } catch (IOException e) {
-        //            throw new UncheckedIOException(e);
-        //        }
-
         try (final PrintWriter out =
                 FileUtilities.openUTF8Writer(
                         LinkUtilities.DATA_DIR_DEV, "LinkFormattingTest.txt"); ) {
@@ -301,6 +291,7 @@ class GenerateLinkData {
                                                     + "\nactual:  \t"
                                                     + actual);
                                     ++errorCount.value;
+                                    LinkUtilities.minimalEscape(temp, false, null); // for debugging
                                     return;
                                 }
                                 out.println(
@@ -313,58 +304,52 @@ class GenerateLinkData {
                                                 actual));
                             });
 
-            //            out.println("\n# Wikipedia test cases\n");
-            //
-            //            Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "testUrls.txt"))
-            //                    .forEach(
-            //                            line -> {
-            //                                if (line.startsWith("#") || line.isBlank()) {
-            //                                    out.println(line);
-            //                                    return;
-            //                                }
-            //                                // Pick up escaped URL
-            //                                // Escape it
-            //                                String escapedLine = line;
-            //                                // Divide into parts
-            //                                NavigableMap<Part, String> parts =
-            //                                        Part.getParts(escapedLine, false);
-            //
-            //                                out.println(
-            //                                        showFormatted(
-            //                                                parts.get(Part.PROTOCOL) +
-            // parts.get(Part.HOST),
-            //                                                parts.get(Part.PATH),
-            //                                                parts.get(Part.QUERY),
-            //                                                parts.get(Part.FRAGMENT),
-            //                                                escapedLine));
-            //                            });
+            out.println("\n# Wikipedia test cases\n");
+            
+            final UnicodeSet charactersSeen = new UnicodeSet(LinkTermination.Include.getBase());
+            final TreeMap<Part,String> parts = new TreeMap<>();
+            
+            Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "testUrls.txt"))
+                    .forEach(
+                            line -> {
+                                if (line.startsWith("#") || line.isBlank()) {
+                                    return;
+                                }
+                                line = line.trim();
+                                int wikiStart = line.indexOf("/wiki/");
+                                if (wikiStart < 0) {
+                                    return;
+                                }
+                                String rest = line.substring(wikiStart + 6);
+                                // skip if we don't see any new characters
+                                int size = charactersSeen.size();
+                                charactersSeen.addAll(rest);
+                                if (charactersSeen.size() == size) {
+                                    return;
+                                }
+                                // Divide into parts
+                                parts.clear();
+                                parts.putAll(Part.getParts(line, false));
+                                parts.put(Part.QUERY, "");
+                                parts.put(Part.FRAGMENT, "");
+                                
+                                String actual = LinkUtilities.minimalEscape(parts, false, null);
+
+                                out.println(
+                                        JOIN_SEMI_SP.join(
+                                        		parts.get(Part.PROTOCOL),
+                                        		parts.get(Part.HOST),
+                                        		parts.get(Part.PATH),
+                                        		parts.get(Part.QUERY),
+                                        		parts.get(Part.FRAGMENT),
+                                                actual));
+                            });
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
         if (errorCount.value != 0) {
             throw new IllegalArgumentException("Failures in writing test file: " + errorCount);
         }
-    }
-
-    private static String showFormatted(
-            String schemeAndHost, String path, String query, String fragment, String actual) {
-        return JOIN_SEMI_SP.join(
-                schemeAndHost,
-                escapeBSlashed(path),
-                escapeBSlashed(query),
-                escapeBSlashed(fragment),
-                actual);
-    }
-
-    private static String computeFormat(
-            String schemeAndHost, String path, String query, String fragment) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    private static String escapeBSlashed(String path) {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     /**

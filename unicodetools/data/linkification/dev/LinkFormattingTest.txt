@@ -1,5 +1,5 @@
 # LinkFormattingTest.txt
-# Date: 2025-12-06, 23:14:43 GMT 
+# Date: 2025-12-07, 01:08:17 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -35,6 +35,15 @@ https:// ;	example.com ;	 ;	 ;	α ;	https://example.com#α
 # All parts					
 https:// ;	example.com ;	αβγ/δεζ ;	θ=ικλ&μ=γξο ;	πρς ;	https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο#πρς
 
+# Escape soft at end				
+https:// ;	example.com ;	αβγ/δεζ. ;	 ;	 ;	https://example.com/αβγ/δεζ%2E
+
+# Escape soft at end				
+https:// ;	example.com ;	αβγ/δεζ ;	θ=ικλ&μ=γξο. ;	 ;	https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο%2E
+
+# Escape soft at end				
+https:// ;	example.com ;	αβγ/δεζ ;	θ=ικλ&μ=γξο ;	πρς. ;	https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο#πρς%2E
+
 # Escape ? in Path					
 https:// ;	example.com ;	α?μπ ;	 ;	 ;	https://example.com/α%3Fμπ
 
@@ -48,7 +57,22 @@ https:// ;	example.com ;	αβ γ/δεζ ;	θ=ικ λ&=γξο ;	πρ σ ;	https:/
 https:// ;	example.com ;	αβγ./δεζ. ;	θ=ικ.λ&=γξο. ;	πρς. ;	https://example.com/αβγ./δεζ.?θ=ικ.λ&=γξο.#πρς%2E
 
 # Escape unmatched brackets					
-https:// ;	example.com ;	α(β)) ;	γ(δ)) ;	ε(ζ)) ;	https://example.com/α(β)%29?γ(δ)%29#ε(ζ)%29
+https:// ;	example.com ;	α(β) ;	γ(δ) ;	ε(ζ)) ;	https://example.com/α(β)?γ(δ)#ε(ζ)%29
+https:// ;	example.com ;	α(β) ;	γ(δ)) ;	 ;	https://example.com/α(β)?γ(δ)%29
+https:// ;	example.com ;	α(β) ;	 ;	ε(ζ)) ;	https://example.com/α(β)#ε(ζ)%29
+https:// ;	example.com ;	α(β)) ;	 ;	 ;	https://example.com/α(β)%29
+https:// ;	example.com ;	 ;	γ(δ) ;	ε(ζ)) ;	https://example.com?γ(δ)#ε(ζ)%29
+https:// ;	example.com ;	 ;	γ(δ)) ;	 ;	https://example.com?γ(δ)%29
+https:// ;	example.com ;	 ;	 ;	ε(ζ)) ;	https://example.com#ε(ζ)%29
+
+# No escape for matched brackets					
+https:// ;	example.com ;	α(β) ;	γ(δ) ;	ε(ζ) ;	https://example.com/α(β)?γ(δ)#ε(ζ)
+https:// ;	example.com ;	α(β) ;	γ(δ) ;	 ;	https://example.com/α(β)?γ(δ)
+https:// ;	example.com ;	α(β) ;	 ;	ε(ζ) ;	https://example.com/α(β)#ε(ζ)
+https:// ;	example.com ;	α(β) ;	 ;	 ;	https://example.com/α(β)
+https:// ;	example.com ;	 ;	γ(δ) ;	ε(ζ) ;	https://example.com?γ(δ)#ε(ζ)
+https:// ;	example.com ;	 ;	γ(δ) ;	 ;	https://example.com?γ(δ)
+https:// ;	example.com ;	 ;	 ;	ε(ζ) ;	https://example.com#ε(ζ)
 
 # Path with escapes (\/ is a literal /, %xx is escaped)
 https:// ;	example.com ;	α/β\/γ ;	 ;	 ;	https://example.com/α/β%2Fγ
@@ -63,3 +87,27 @@ https:// ;	example.com ;	 ;	α\&=β&γ=\&δ ;	 ;	https://example.com?α%26=β&γ
 https:// ;	example.com ;	 ;	α\=β=γ\=δ ;	 ;	https://example.com?α%3Dβ=γ%3Dδ
 
 # Query with escapes (%xx is escaped iff x is hex)	
+https:// ;	example.com ;	 ;	α%β%3D=γ%δ%3D ;	 ;	https://example.com?α%β%253D=γ%δ%253D
+
+# Wikipedia test cases
+
+https:// ;	ru.wikinews.org ;	/wiki/Категория:Вселенная ;	 ;	 ;	https://ru.wikinews.org/wiki/Категория:Вселенная
+https:// ;	av.wikipedia.org ;	/wiki/Ракь_(планета) ;	 ;	 ;	https://av.wikipedia.org/wiki/Ракь_(планета)
+https:// ;	bo.wikipedia.org ;	/wiki/སའི་གོ་ལ། ;	 ;	 ;	https://bo.wikipedia.org/wiki/སའི་གོ་ལ%E0%BC%8D
+https:// ;	fiu-vro.wikipedia.org ;	/wiki/Maa_(hod'otäht) ;	 ;	 ;	https://fiu-vro.wikipedia.org/wiki/Maa_(hod'otäht)
+https:// ;	ty.wikipedia.org ;	/wiki/’Afirita ;	 ;	 ;	https://ty.wikipedia.org/wiki/’Afirita
+https:// ;	ab.wikipedia.org ;	/wiki/Вашингтон,_Џьорџь ;	 ;	 ;	https://ab.wikipedia.org/wiki/Вашингтон,_Џьорџь
+https:// ;	mni.wikipedia.org ;	/wiki/ꯅ꯭ꯌꯨ_ꯌꯣꯔ꯭ꯛ_ꯁꯤꯇꯤꯒꯤ_ꯌꯨ.ꯑꯦꯁ. ;	 ;	 ;	https://mni.wikipedia.org/wiki/ꯅ꯭ꯌꯨ_ꯌꯣꯔ꯭ꯛ_ꯁꯤꯇꯤꯒꯤ_ꯌꯨ.ꯑꯦꯁ%2E
+https:// ;	azb.wikipedia.org ;	/wiki/واشینقتن،_دی.سی. ;	 ;	 ;	https://azb.wikipedia.org/wiki/واشینقتن،_دی.سی%2E
+https:// ;	wuu.wikipedia.org ;	/wiki/聖保羅（巴西） ;	 ;	 ;	https://wuu.wikipedia.org/wiki/聖保羅（巴西）
+https:// ;	tw.wikipedia.org ;	/wiki/Wiase_Nyinaa_Wɛbsaet_(_World_Wide_Web;_WWW_) ;	 ;	 ;	https://tw.wikipedia.org/wiki/Wiase_Nyinaa_Wɛbsaet_(_World_Wide_Web;_WWW_)
+https:// ;	ja.wikibooks.org ;	/wiki/植物学/植物とはどのような生き物か？ ;	 ;	 ;	https://ja.wikibooks.org/wiki/植物学/植物とはどのような生き物か%EF%BC%9F
+https:// ;	haw.wikipedia.org ;	/wiki/Puke_noi‘i_kū‘ikena ;	 ;	 ;	https://haw.wikipedia.org/wiki/Puke_noi‘i_kū‘ikena
+https:// ;	he.wikipedia.org ;	/wiki/נאט"ו ;	 ;	 ;	https://he.wikipedia.org/wiki/נאט"ו
+https:// ;	ks.wikipedia.org ;	/wiki/شارٕک۔ ;	 ;	 ;	https://ks.wikipedia.org/wiki/شارٕک%DB%94
+https:// ;	zh.wikipedia.org ;	/wiki/联合国教育、科学及文化组织 ;	 ;	 ;	https://zh.wikipedia.org/wiki/联合国教育、科学及文化组织
+https:// ;	am.wikipedia.org ;	/wiki/«የሰብዓዊ_መብት_አቀፋዊ_መግለጽ» ;	 ;	 ;	https://am.wikipedia.org/wiki/«የሰብዓዊ_መብት_አቀፋዊ_መግለጽ%C2%BB
+https:// ;	bo.wikipedia.org ;	/wiki/༼མ་ཧ་བ་ར་ཏ།༽ ;	 ;	 ;	https://bo.wikipedia.org/wiki/༼མ་ཧ་བ་ར་ཏ།༽
+https:// ;	am.wikipedia.org ;	/wiki/አፈ፡ታሪክ ;	 ;	 ;	https://am.wikipedia.org/wiki/አፈ፡ታሪክ
+https:// ;	it.wikibooks.org ;	/wiki/Questo_è_l'ebraismo! ;	 ;	 ;	https://it.wikibooks.org/wiki/Questo_è_l'ebraismo%21
+https:// ;	my.wikipedia.org ;	/wiki/ခို၊_ချိုးနှင့်_အလားတူငှက်များ ;	 ;	 ;	https://my.wikipedia.org/wiki/ခို၊_ချိုးနှင့်_အလားတူငှက်များ

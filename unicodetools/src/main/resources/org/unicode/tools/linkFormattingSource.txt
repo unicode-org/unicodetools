@@ -10,6 +10,15 @@ https://;	example.com;	;	;	α;	https://example.com#α
 # All parts					
 https://;	example.com;	αβγ/δεζ;	θ=ικλ&μ=γξο;	πρς;	https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο#πρς
 
+# Escape soft at end				
+https://;	example.com;	αβγ/δεζ.;	;	;	https://example.com/αβγ/δεζ%2E
+
+# Escape soft at end				
+https://;	example.com;	αβγ/δεζ;	θ=ικλ&μ=γξο.;	;	https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο%2E
+
+# Escape soft at end				
+https://;	example.com;	αβγ/δεζ;	θ=ικλ&μ=γξο;	πρς.;	https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο#πρς%2E
+
 # Escape ? in Path					
 https://;	example.com;	α?μπ;	;	;	https://example.com/α%3Fμπ
 
@@ -23,7 +32,22 @@ https://;	example.com;	αβ γ/δεζ;	θ=ικ λ&=γξο;	πρ σ;	https://exam
 https://;	example.com;	αβγ./δεζ.;	θ=ικ.λ&=γξο.;	πρς.;	https://example.com/αβγ./δεζ.?θ=ικ.λ&=γξο.#πρς%2E
 
 # Escape unmatched brackets					
-https://;	example.com;	α(β));	γ(δ));	ε(ζ));	https://example.com/α(β)%29?γ(δ)%29#ε(ζ)%29
+https://;	example.com;	α(β);	γ(δ);	ε(ζ));	https://example.com/α(β)?γ(δ)#ε(ζ)%29
+https://;	example.com;	α(β);	γ(δ));	;	https://example.com/α(β)?γ(δ)%29
+https://;	example.com;	α(β);	;	ε(ζ));	https://example.com/α(β)#ε(ζ)%29
+https://;	example.com;	α(β));	;	;	https://example.com/α(β)%29
+https://;	example.com;	;	γ(δ);	ε(ζ));	https://example.com?γ(δ)#ε(ζ)%29
+https://;	example.com;	;	γ(δ));	;	https://example.com?γ(δ)%29
+https://;	example.com;	;	;	ε(ζ));	https://example.com#ε(ζ)%29
+
+# No escape for matched brackets					
+https://;	example.com;	α(β);	γ(δ);	ε(ζ);	https://example.com/α(β)?γ(δ)#ε(ζ)
+https://;	example.com;	α(β);	γ(δ);	;	https://example.com/α(β)?γ(δ)
+https://;	example.com;	α(β);	;	ε(ζ);	https://example.com/α(β)#ε(ζ)
+https://;	example.com;	α(β);	;	;	https://example.com/α(β)
+https://;	example.com;	;	γ(δ);	ε(ζ);	https://example.com?γ(δ)#ε(ζ)
+https://;	example.com;	;	γ(δ);	;	https://example.com?γ(δ)
+https://;	example.com;	;	;	ε(ζ);	https://example.com#ε(ζ)
 
 # Path with escapes (\/ is a literal /, %xx is escaped)
 https://;	example.com;	α/β\/γ;	;	;	https://example.com/α/β%2Fγ
