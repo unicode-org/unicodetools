@@ -1,5 +1,5 @@
 # LinkDetectionTest.txt
-# Date: 2025-12-06, 18:24:23 GMT 
+# Date: 2025-12-09, 23:15:47 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -122,6 +122,12 @@ See ⸠example.com/αβ(γ/δ)ρς?θικ#λμν⸡ on…
 ⸠abc.com⸡ ⸠deΩ.uk⸡ .fr abc.ukx, ⸠foo.accountants⸡ ⸠foo.香港⸡ "com uk accountants 香港"
 ⸠abc.com/d/e?xyz#w⸡ ⸠def.uk⸡
 ⸠abc.XN--11B4C3D⸡
+
+a ⸠john.smith@example.com⸡ b
+a ⸠mailto:john.smith@example.com⸡ b
+a ⸠https://example.com/αβγ⸡ b
+a ⸠http://example.com/αβγ⸡ b
+a ⸠john.doe@example.com:1234⸡/forum/questions/?tag=new&order=newest#top b
 
 # Sample pages from https://meta.wikimedia.org/wiki/List_of_articles_every_Wikipedia_should_have
 

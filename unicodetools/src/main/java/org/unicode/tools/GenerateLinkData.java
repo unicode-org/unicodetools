@@ -27,6 +27,7 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Rational.MutableLong;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
 import org.unicode.utilities.LinkUtilities;
 import org.unicode.utilities.LinkUtilities.LinkScanner;
 import org.unicode.utilities.LinkUtilities.LinkTermination;
@@ -135,7 +136,7 @@ class GenerateLinkData {
 
         BagFormatter bf = new BagFormatter(LinkUtilities.IUP).setLineSeparator("\n");
 
-        // LinkTermination.txt
+        // LinkTerm.txt
 
         bf.setValueSource(LinkTermination.PROPERTY);
         bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
@@ -153,7 +154,7 @@ class GenerateLinkData {
             throw new UncheckedIOException(e);
         }
 
-        // LinkPairedOpener.txt
+        // LinkBracket.txt
         bf.setValueSource(LinkUtilities.getLinkPairedOpener());
         try (final PrintWriter out =
                 FileUtilities.openUTF8Writer(
@@ -163,6 +164,18 @@ class GenerateLinkData {
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
+        
+        // LinkEmail.txt
+        bf.setValueSource(LinkUtilities.LinkEmail);
+        try (final PrintWriter out =
+                FileUtilities.openUTF8Writer(
+                        LinkUtilities.DATA_DIR_DEV, "LinkEmail.txt"); ) {
+            writePropHeader(out, "LinkEmail", "Link_Email", UcdPropertyValues.Binary.No.toString());
+            bf.showSetNames(out, LinkUtilities.LinkEmail.getSet(UcdPropertyValues.Binary.Yes));
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+
     }
 
     static void generateDetectionTestData() {

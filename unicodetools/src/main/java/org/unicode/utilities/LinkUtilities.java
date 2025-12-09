@@ -43,6 +43,8 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.props.UnicodeProperty.UnicodeSetProperty;
+
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -184,6 +186,17 @@ public class LinkUtilities {
                                     IUP.getUcdVersion().getVersionString(2, 2));
         }
     }
+    
+    static final UnicodeSet EMAIL_EXCLUDES = new UnicodeSet("[\\u0020 ; \\: \" ( ) \\[ \\] @ \\\\ < >]");
+    public static final    UnicodeProperty         LinkEmail =
+            new UnicodeSetProperty()
+            .set(new UnicodeSet(LinkTermination.Include.getBase()).removeAll(EMAIL_EXCLUDES))
+            .setMain(
+                    "LinkEmail",
+                    "LinkEmail",
+                    UnicodeProperty.BINARY,
+                    IUP.getUcdVersion().getVersionString(2, 2));
+
 
     private static String getGeneralCategory(int property, int codePoint, int nameChoice) {
         return UCharacter.getPropertyValueName(
