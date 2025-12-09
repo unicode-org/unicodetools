@@ -141,8 +141,8 @@ class GenerateLinkData {
         bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
 
         try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkTermination.txt"); ) {
-            writePropHeader(out, "LinkTermination", "LinkTermination", "Hard");
+                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkTerm.txt"); ) {
+            writePropHeader(out, "LinkTerm", "Link_Term", "Hard");
             for (LinkTermination propValue : LinkTermination.NON_MISSING) {
                 bf.showSetNames(out, propValue.base);
                 out.println("");
@@ -157,8 +157,8 @@ class GenerateLinkData {
         bf.setValueSource(LinkUtilities.getLinkPairedOpener());
         try (final PrintWriter out =
                 FileUtilities.openUTF8Writer(
-                        LinkUtilities.DATA_DIR_DEV, "LinkPairedOpener.txt"); ) {
-            writePropHeader(out, "LinkPairedOpener", "LinkPairedOpener", "undefined");
+                        LinkUtilities.DATA_DIR_DEV, "LinkBracket.txt"); ) {
+            writePropHeader(out, "LinkBracket", "Link_Bracket", "undefined");
             bf.showSetNames(out, LinkTermination.Close.base);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
