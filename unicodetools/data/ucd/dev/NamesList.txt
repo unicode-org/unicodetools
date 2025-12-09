@@ -1,13 +1,15 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2025-12-06, 08:09:21 GMT
+@+	Generation Date: 2025-12-06, 10:51:02 GMT
 	Unicode 18.0.0 names list.
-	Repertoire synched with UnicodeData-18.0.0d1.txt.
+	Repertoire synched with UnicodeData-18.0.0d2.txt.
 	Post UTC185 annotation updates for 18.0.
 	Add xrefs to 6 CJK compatibility ideographs.
 	Adjust end of CJK Extension-D.
 	Resynch to 18.0.0 repertoire additions and CD3.
+	Update annotations to 1CEF1, 1CEF2.
+	Added Rokuyō annotations to 25CB, 25CF, 25D0, 25D1.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -16226,10 +16228,12 @@
 25CA	LOZENGE
 	x (white diamond suit - 2662)
 25CB	WHITE CIRCLE
+	* fifth day (taian) in a six-day annotation system (Rokuyō) used in Japanese traditional calendars
 	x (combining enclosing circle - 20DD)
 	x (large circle - 25EF)
 	x (heavy circle - 2B58)
 	x (ideographic number zero - 3007)
+	x (tomobiki symbol - 1F1AE)
 	x (full moon symbol - 1F315)
 25CC	DOTTED CIRCLE
 	* note that the reference glyph for this character is intentionally larger than the dotted circle glyph used to indicate combining characters in this standard; see, for example, 0300
@@ -16240,12 +16244,15 @@
 	x (direct hit - 1F3AF)
 	x (round target - 1F78B)
 25CF	BLACK CIRCLE
+	* fourth day (butsumetsu) in a six-day annotation system (Rokuyō) used in Japanese traditional calendars
 	x (black large circle - 2B24)
 	x (new moon symbol - 1F311)
 	x (large red circle - 1F534)
 25D0	CIRCLE WITH LEFT HALF BLACK
+	* first day (senshō) in a six-day annotation system (Rokuyō) used in Japanese traditional calendars
 	x (first quarter moon symbol - 1F313)
 25D1	CIRCLE WITH RIGHT HALF BLACK
+	* third day (sembu) in a six-day annotation system (Rokuyō) used in Japanese traditional calendars
 	x (last quarter moon symbol - 1F317)
 25D2	CIRCLE WITH LOWER HALF BLACK
 25D3	CIRCLE WITH UPPER HALF BLACK
@@ -55947,10 +55954,13 @@ FFFF	<not a character>
 	= division
 	x (division sign - 00F7)
 	x (division slash - 2215)
-	x (ratio - 2236)
+	x (metrical breve - 23D1)
+	x (lower half circle - 25E1)
 1CEF2	LEIBNIZIAN MULTIPLICATION SIGN
 	= multiplication
 	x (multiplication sign - 00D7)
+	x (arc - 2312)
+	x (upper half circle - 25E0)
 1CEF3	LEIBNIZIAN MULTIPLICATION-DIVISION SIGN
 	* ambiguous operator sign
 	x (plus-minus sign - 00B1)
