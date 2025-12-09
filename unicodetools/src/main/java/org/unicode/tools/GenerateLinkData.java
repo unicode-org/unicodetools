@@ -305,11 +305,12 @@ class GenerateLinkData {
                             });
 
             out.println("\n# Wikipedia test cases\n");
-            
+
             final UnicodeSet charactersSeen = new UnicodeSet(LinkTermination.Include.getBase());
-            final UnicodeSet charactersSeenAtEnd = new UnicodeSet(LinkTermination.Include.getBase());
-            final TreeMap<Part,String> parts = new TreeMap<>();
-            
+            final UnicodeSet charactersSeenAtEnd =
+                    new UnicodeSet(LinkTermination.Include.getBase());
+            final TreeMap<Part, String> parts = new TreeMap<>();
+
             Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "testUrls.txt"))
                     .forEach(
                             line -> {
@@ -322,15 +323,19 @@ class GenerateLinkData {
                                     return;
                                 }
                                 int lastCodePoint = line.codePointBefore(line.length());
-                                String rest = line.substring(wikiStart + 6, line.length() - Character.charCount(lastCodePoint));
+                                String rest =
+                                        line.substring(
+                                                wikiStart + 6,
+                                                line.length() - Character.charCount(lastCodePoint));
                                 // skip if we don't see any new characters
                                 int size = charactersSeen.size();
                                 charactersSeen.addAll(rest);
-                                
+
                                 int endSize = charactersSeenAtEnd.size();
-								charactersSeenAtEnd.add(lastCodePoint);
-                                
-                                if (charactersSeen.size() == size && charactersSeenAtEnd.size() == endSize) {
+                                charactersSeenAtEnd.add(lastCodePoint);
+
+                                if (charactersSeen.size() == size
+                                        && charactersSeenAtEnd.size() == endSize) {
                                     return;
                                 }
                                 // Divide into parts
@@ -338,16 +343,16 @@ class GenerateLinkData {
                                 parts.putAll(Part.getParts(line, false));
                                 parts.put(Part.QUERY, "");
                                 parts.put(Part.FRAGMENT, "");
-                                
+
                                 String actual = LinkUtilities.minimalEscape(parts, false, null);
 
                                 out.println(
                                         JOIN_SEMI_SP.join(
-                                        		parts.get(Part.PROTOCOL),
-                                        		parts.get(Part.HOST),
-                                        		parts.get(Part.PATH),
-                                        		parts.get(Part.QUERY),
-                                        		parts.get(Part.FRAGMENT),
+                                                parts.get(Part.PROTOCOL),
+                                                parts.get(Part.HOST),
+                                                parts.get(Part.PATH),
+                                                parts.get(Part.QUERY),
+                                                parts.get(Part.FRAGMENT),
                                                 actual));
                             });
         } catch (IOException e) {
