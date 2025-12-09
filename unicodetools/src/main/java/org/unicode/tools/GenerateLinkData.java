@@ -176,7 +176,7 @@ class GenerateLinkData {
 
             out.println("# Test cases contributed by ICANN\n");
 
-            Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "test_links_lt.txt"))
+            Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "LinkDetectionTestSourceICANN.txt"))
                     .forEach(
                             line -> {
                                 if (line.startsWith("#") || line.isBlank()) {
@@ -206,7 +206,7 @@ class GenerateLinkData {
 
             out.println("\n# Other test cases\n");
 
-            Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "test_links_plain.txt"))
+            Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "LinkDetectionTestSource.txt"))
                     .forEach(
                             line -> {
                                 if (line.startsWith("#") || line.isBlank()) {
@@ -257,7 +257,7 @@ class GenerateLinkData {
 
             out.println("\n# Selected test cases\n");
 
-            Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "linkFormattingSource.txt"))
+            Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "LinkFormattingTestSource.txt"))
                     .forEach(
                             line -> {
                                 if (line.startsWith("#") || line.isBlank()) {

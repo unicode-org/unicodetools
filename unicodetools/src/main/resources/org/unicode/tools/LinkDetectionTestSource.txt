@@ -32,6 +32,12 @@ abc.com deΩ.uk .fr abc.ukx, foo.accountants foo.香港 "com uk accountants 香�
 abc.com/d/e?xyz#w def.uk
 abc.XN--11B4C3D
 
+a john.smith@example.com b
+a mailto:john.smith@example.com b
+a https://example.com/αβγ b
+a http://example.com/αβγ b
+a john.doe@example.com:1234/forum/questions/?tag=new&order=newest#top b
+
 # Sample pages from https://meta.wikimedia.org/wiki/List_of_articles_every_Wikipedia_should_have
 
 https://als.wikipedia.org/wiki/Wikipedia:Artikel,_wos_i_allne_Wikipedene_gee_sött

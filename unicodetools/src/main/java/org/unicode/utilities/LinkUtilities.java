@@ -77,6 +77,23 @@ public class LinkUtilities {
     public static final CLDRFile ENGLISH = USE_CLDR ? CLDRConfig.getInstance().getEnglish() : null;
 
     private static final UnicodeSet SOFAR = new UnicodeSet();
+    
+    // https://url.spec.whatwg.org/#percent-encoded-bytes
+    
+    public enum WHATWG_PERCENT_ENCODED {
+    	C0(null, "[\\u0000-\\u001F\\u007E-\\u10FFFF]"),	// C0 controls and all code points greater than U+007E (~).
+    	FRAGMENT(C0, "[\\ \"<>`]"), 	// C0 and U+0020 SPACE, U+0022 ("), U+003C (<), U+003E (>), and U+0060 (`).
+    	QUERY(C0, "[\\ \"<>]"), 		// C0 and U+0020 SPACE, U+0022 ("), U+0023 (#), U+003C (<), and U+003E (>)
+    	SPECIAL_QUERY(QUERY, "[']"), 	// query percent-encode set and U+0027 (').
+    	PATH(QUERY, "[?^`\\{\\}]"), 	// query percent-encode set and U+003F (?), U+005E (^), U+0060 (`), U+007B ({), and U+007D (}).
+    	USERINFO(PATH, "[/:;=@\\[-\\]|]"),	// path and U+002F (/), U+003A (:), U+003B (;), U+003D (=), U+0040 (@), U+005B ([) to U+005D (]), inclusive, and U+007C (|).
+    	COMPONENT(USERINFO, "[\\$-&+,]")	// userinfo and U+0024 ($) to U+0026 (&), inclusive, U+002B (+), and U+002C (,).
+    	;
+    	final UnicodeSet set;
+    	private WHATWG_PERCENT_ENCODED(WHATWG_PERCENT_ENCODED base, String uset) {
+    		set = new UnicodeSet(uset).addAll(base == null ? UnicodeSet.EMPTY : base.set).freeze();
+    	}
+    }
 
     /** Defines the LinkTermination property */
     public enum LinkTermination {
