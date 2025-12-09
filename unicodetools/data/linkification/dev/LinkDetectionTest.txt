@@ -1,5 +1,5 @@
 # LinkDetectionTest.txt
-# Date: 2025-12-09, 23:15:47 GMT 
+# Date: 2025-12-09, 23:53:19 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -107,13 +107,17 @@ See ⸠example.com/αβγ/δεζ?δ.εφ#λμν⸡ on…
 
 # Break on hard (' ')
 See ⸠example.com/αβγ/δεζ?δ⸡ εφ#λμν on…
+
 # Break on soft ('.') followed by hard (' ')
 See ⸠example.com/αβγ/δεζ?δ⸡. εφ#λμν on…
 See ⸠example.com/α/βγ?δ/ε?ζ#λ/μ?ν#π⸡ on…
+
 # Break on unmatched bracket
 See ⸠example.com/αβ⸡) on…
+
 # Include matched bracket
 See ⸠example.com/α(β)⸡ on…
+
 # Include when matching across interior syntax
 See ⸠example.com/αβ(γ/δ)ρς?θικ#λμν⸡ on…
 
@@ -124,10 +128,18 @@ See ⸠example.com/αβ(γ/δ)ρς?θικ#λμν⸡ on…
 ⸠abc.XN--11B4C3D⸡
 
 a ⸠john.smith@example.com⸡ b
+a ⸠αβγ.δεζ@example.com⸡ b
 a ⸠mailto:john.smith@example.com⸡ b
+a ⸠mailto:αβγ.δεζ@example.com⸡ b
 a ⸠https://example.com/αβγ⸡ b
 a ⸠http://example.com/αβγ⸡ b
-a ⸠john.doe@example.com:1234⸡/forum/questions/?tag=new&order=newest#top b
+
+# Note that john.doe@example.com is ambiguous: it could be an email address, or it could be a URL with a userinfo
+# The latter, however, is extremely rare. So for consistency favor the email address.
+# (Even when the context would tip the balance towards the URL interpretation.)
+
+a ⸠example.com:1234/forum/questions/?tag=new&order=newest#top⸡ b
+a ⸠john.doe@example.com⸡:1234/forum/questions/?tag=new&order=newest#top b
 
 # Sample pages from https://meta.wikimedia.org/wiki/List_of_articles_every_Wikipedia_should_have
 

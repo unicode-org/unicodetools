@@ -44,7 +44,6 @@ import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.props.UnicodeProperty.UnicodeSetProperty;
-
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -186,17 +185,25 @@ public class LinkUtilities {
                                     IUP.getUcdVersion().getVersionString(2, 2));
         }
     }
-    
-    static final UnicodeSet EMAIL_EXCLUDES = new UnicodeSet("[\\u0020 ; \\: \" ( ) \\[ \\] @ \\\\ < >]");
-    public static final    UnicodeProperty         LinkEmail =
-            new UnicodeSetProperty()
-            .set(new UnicodeSet(LinkTermination.Include.getBase()).removeAll(EMAIL_EXCLUDES))
-            .setMain(
-                    "LinkEmail",
-                    "LinkEmail",
-                    UnicodeProperty.BINARY,
-                    IUP.getUcdVersion().getVersionString(2, 2));
 
+    // Note: the source standards are painful to read.
+    // https://en.wikipedia.org/wiki/Email_address#Local-part is much easier
+
+    static final UnicodeSet EMAIL_EXCLUDES =
+            new UnicodeSet("[\\u0020 ; \\: \" ( ) \\[ \\] @ \\\\ < >]").freeze();
+    static final UnicodeSet validEmailLocalPart =
+            new UnicodeSet(LinkTermination.Include.getBase())
+                    .removeAll(EMAIL_EXCLUDES)
+                    .add('.')
+                    .freeze();
+    public static final UnicodeProperty LinkEmail =
+            new UnicodeSetProperty()
+                    .set(validEmailLocalPart)
+                    .setMain(
+                            "LinkEmail",
+                            "LinkEmail",
+                            UnicodeProperty.BINARY,
+                            IUP.getUcdVersion().getVersionString(2, 2));
 
     private static String getGeneralCategory(int property, int codePoint, int nameChoice) {
         return UCharacter.getPropertyValueName(
@@ -938,6 +945,7 @@ public class LinkUtilities {
                 // it is ok to have trailing dot after TLD (Fully Qualified Domain Name), but
                 // bad cases are .comx or .com.x
                 linkEnd = m.end();
+                int emailEnd = linkEnd;
                 if (linkEnd < limit) {
                     int nextCp = source.codePointAt(linkEnd);
                     if (nextCp == '.') {
@@ -977,14 +985,22 @@ public class LinkUtilities {
                 if (domainStart > hardStart) {
                     int cpBefore = source.codePointBefore(domainStart);
                     if (cpBefore == '@') {
-                        // TBD do dumb parse backwards; fix later
-                        // scan backwards to start of local-part
+                        // Scan backwards to start of local-part
+                        // Avoid the strange cases in the tests, eg bob..jones@ .bob.jones@,
+                        // bob.jones.@
+                        // since we don't yet handle them
                         int mailToStart =
                                 LinkUtilities.scanBackward(
-                                        validHost, true, source, hardStart, domainStart - 1);
+                                        validEmailLocalPart,
+                                        true,
+                                        source,
+                                        hardStart,
+                                        domainStart - 1);
 
                         // check for mailto: beforehand
                         linkStart = backupIfAfter("mailto:", mailToStart);
+                        linkEnd = emailEnd; // do this so we don't include items after the domain
+                        // name.
                         hardStart = linkEnd; // prepare for next next()
                         return true;
                     }

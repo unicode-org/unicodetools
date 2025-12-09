@@ -157,25 +157,22 @@ class GenerateLinkData {
         // LinkBracket.txt
         bf.setValueSource(LinkUtilities.getLinkPairedOpener());
         try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(
-                        LinkUtilities.DATA_DIR_DEV, "LinkBracket.txt"); ) {
+                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkBracket.txt"); ) {
             writePropHeader(out, "LinkBracket", "Link_Bracket", "undefined");
             bf.showSetNames(out, LinkTermination.Close.base);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
-        
+
         // LinkEmail.txt
         bf.setValueSource(LinkUtilities.LinkEmail);
         try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(
-                        LinkUtilities.DATA_DIR_DEV, "LinkEmail.txt"); ) {
+                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkEmail.txt"); ) {
             writePropHeader(out, "LinkEmail", "Link_Email", UcdPropertyValues.Binary.No.toString());
             bf.showSetNames(out, LinkUtilities.LinkEmail.getSet(UcdPropertyValues.Binary.Yes));
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
-
     }
 
     static void generateDetectionTestData() {
