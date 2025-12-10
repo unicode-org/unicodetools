@@ -59,6 +59,8 @@ class GenerateLinkData {
                     + "# For terms of use and license, see https://www.unicode.org/terms_of_use.html\n"
                     + "#\n"
                     + "# The usage and stability of these values is covered in https://www.unicode.org/reports/tr58/\n"
+                    + "#\n"
+                    + "# ================================================\n"
                     + "#\n";
 
     public static void main(String[] args) throws IOException {
@@ -75,38 +77,90 @@ class GenerateLinkData {
             DateTimeFormatter.ofPattern("y")
                     .withZone(ZoneId.of("UTC")); // Explicitly set to UTC/GMT
 
-    static final SimpleFormatter HEADER_PROP =
+    static final SimpleFormatter HEADER_PROP_TERM =
             SimpleFormatter.compile(
                     HEADER_BASE
-                            + "\n"
-                            + "# ================================================\n"
-                            + "\n"
                             + "# Property:\t{3}\n"
-                            + "\n"
+                            + "# Format\n"
+                            + "#\n"
+                            + "# Field 0: code point range\n"
+                            + "# Field 1: a {3} value\n"
+                            + "#          For more information, see https://www.unicode.org/reports/tr58/#property-data. \n"
+                            + "#\n"
+                            + "# For the purpose of detection and formatting operations, the property {3} is defined as\n"
+                            + "# mapping each code point to a set of enumerated values.\n"
+                            + "# The short name of the property is the same as its long name.\n"
+                            + "# The possible values are:  Include, Hard, Soft, Close, Open\n" 
+                            + "#\n"
+                            + "# The short name of each value is the same as its long name.\n"
+                            + "#\n"
                             + "#  All code points not explicitly listed for {3}\n"
                             + "#  have the value {4}.\n"
-                            + "\n"
+                            + "#\n"
                             + "# @missing: 0000..10FFFF; {4}\n"
-                            + "\n"
+                            + "#\n"
                             + "# ================================================\n");
 
-    static void writePropHeader(
-            PrintWriter out, String filename, String propertyName, String missingValue) {
-        out.println(
-                HEADER_PROP.format(
-                        filename, dt.format(now), dty.format(now), propertyName, missingValue));
-    }
+
+    static final SimpleFormatter HEADER_PROP_STRING =
+            SimpleFormatter.compile(
+                    HEADER_BASE
+                            + "# Property:\t{3}\n"
+                            + "# Format\n"
+                            + "#\n"
+                            + "# Field 0: code point\n"
+                            + "# Field 1: code point\n"
+                            + "#          For more information, see https://www.unicode.org/reports/tr58/#property-data. \n"
+                            + "#\n"
+                            + "# For the purpose of link detection and formatting operations, the property {3} is defined as\n"
+                            + "# a string property whose value is either a single code point or is {4}.\n"
+                            + "#\n"
+                           + "# The short name of the property is the same as its long name.\n"
+                            + "#\n"
+                            + "#  All code points not explicitly listed for {3}\n"
+                            + "#  have the value {4}.\n"
+                            + "#\n"
+                            + "# @missing: 0000..10FFFF; {4}\n"
+                            + "#\n"
+                            + "# ================================================\n");
+
+
+    static final SimpleFormatter HEADER_PROP_BINARY =
+            SimpleFormatter.compile(
+                    HEADER_BASE
+                            + "# Property:\t{3}\n"
+                            + "# Format\n"
+                            + "#\n"
+                            + "# Field 0: code point range\n"
+                            + "# Field 1: binary value\n"
+                            + "#          For more information, see https://www.unicode.org/reports/tr58/#property-data. \n"
+                            + "#\n"
+                            + "# For the purpose of link detection and formatting operations, the property {3} is defined as\n"
+                            + "# a binary property.\n"
+                            + "#\n"
+                            + "# The short name of the property is the same as its long name.\n"
+                            + "#\n"
+                            + "#  All code points not explicitly listed for {3}\n"
+                            + "#  have the value {4}.\n"
+                            + "#\n"
+                            + "# @missing: 0000..10FFFF; {4}\n"
+                            + "#\n"
+                            + "# ================================================\n");
+
 
     static final SimpleFormatter HEADER_DETECT_TEST =
             SimpleFormatter.compile(
                     HEADER_BASE
-                            + "# Format: each line contains zero or more marked links, such as ⸠abc.com⸡\n"
-                            + "# Operation: For each line.\n"
-                            + "# • Create a copy of the line, with the characters ⸠ and ⸡ removed.\n"
-                            + "# • Run link detection on the line, inserting ⸠ and ⸡ around each detected link.\n"
-                            + "# • Report a failure if the result is not identical to the original line.\n"
-                            + "# Empty lines, and lines starting with # are ignored.\n"
-                            + "# Otherwise # is treated like any other character.\n"
+                            + "# Format:\n"
+                            + "#   Each line contains zero or more marked links, such as ⸠abc.com⸡\n"
+                            + "#\n"
+                            + "# Operation:"
+                            + "#   For each line.\n"
+                            + "#   • Create a copy of the line, with the characters ⸠ and ⸡ removed.\n"
+                            + "#   • Run link detection on the line, inserting ⸠ and ⸡ around each detected link.\n"
+                            + "#   • Report a failure if the result is not identical to the original line.\n"
+                            + "#   Empty lines, and lines starting with # are ignored.\n"
+                            + "#   Otherwise # is treated like any other character.\n"
                             + "# ================================================\n");
 
     static final SimpleFormatter HEADER_FORMAT_TEST =
@@ -126,7 +180,14 @@ class GenerateLinkData {
                             + "# internal syntax characters in that part. For example, a literal / within a path segments would be \\/.\n"
                             + "# ================================================\n");
 
-    static void writeTestHeader(
+    static void writePropHeader(
+            PrintWriter out, SimpleFormatter simpleFormatter, String filename, String propertyName, String missingValue) {
+        out.println(
+                simpleFormatter.format(
+                        filename, dt.format(now), dty.format(now), propertyName, missingValue));
+    }
+
+   static void writeTestHeader(
             PrintWriter out, SimpleFormatter simpleFormatter, String filename, String testName) {
         out.println(simpleFormatter.format(filename, dt.format(now), dty.format(now), testName));
     }
@@ -143,7 +204,7 @@ class GenerateLinkData {
 
         try (final PrintWriter out =
                 FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkTerm.txt"); ) {
-            writePropHeader(out, "LinkTerm", "Link_Term", "Hard");
+            writePropHeader(out, HEADER_PROP_TERM, "LinkTerm", "Link_Term", "Hard");
             for (LinkTermination propValue : LinkTermination.NON_MISSING) {
                 bf.showSetNames(out, propValue.base);
                 out.println("");
@@ -158,7 +219,7 @@ class GenerateLinkData {
         bf.setValueSource(LinkUtilities.getLinkPairedOpener());
         try (final PrintWriter out =
                 FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkBracket.txt"); ) {
-            writePropHeader(out, "LinkBracket", "Link_Bracket", "undefined");
+            writePropHeader(out, HEADER_PROP_STRING, "LinkBracket", "Link_Bracket", "undefined");
             bf.showSetNames(out, LinkTermination.Close.base);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
@@ -168,7 +229,7 @@ class GenerateLinkData {
         bf.setValueSource(LinkUtilities.LinkEmail);
         try (final PrintWriter out =
                 FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkEmail.txt"); ) {
-            writePropHeader(out, "LinkEmail", "Link_Email", UcdPropertyValues.Binary.No.toString());
+            writePropHeader(out, HEADER_PROP_BINARY, "LinkEmail", "Link_Email", UcdPropertyValues.Binary.No.toString());
             bf.showSetNames(out, LinkUtilities.LinkEmail.getSet(UcdPropertyValues.Binary.Yes));
         } catch (IOException e) {
             throw new UncheckedIOException(e);
