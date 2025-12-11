@@ -1,5 +1,5 @@
 # LinkDetectionTest.txt
-# Date: 2025-12-10, 02:01:57 GMT 
+# Date: 2025-12-11, 02:19:40 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -19,85 +19,24 @@
 #   Otherwise # is treated like any other character.
 # ================================================
 
-# Test cases contributed by ICANN
 
-a test.invalid b
-a ⸠blogspot.com⸡ b
-a com b
-a ⸠example.com:443⸡ b
-a ⸠example.com/123⸡ b
-a ⸠example.com?123⸡ b
-a ⸠example.com#123⸡ b
-a ⸠example.com/123?123#123⸡ b
-a (⸠example.com/123?123#123⸡) b
-a (⸠example.com/123?123#(123)⸡) b
-a ⸠example.com/123.html⸡ b
-a ⸠example.com/123⸡. HTML is great
-a ⸠example.com/123⸡... HTML is so great
-a ⸠example.com/123⸡.
-a ⸠xn-----ctdbabcfhu9c2b9l1acccr4c.xn--mgbah1a3hjkrd⸡ b
-Lorem ipsum ⸠universal-acceptance-test.international⸡ dolor sit amet
-Lorem ipsum ⸠universal-acceptance-test.icu⸡ dolor sit amet
-Lorem ipsum ⸠تجربة-القبول-الشامل.موريتانيا⸡ dolor sit amet
-Lorem ipsum ⸠համընդհանուր-ընկալում-թեստ.հայ⸡ dolor sit amet
-Lorem ipsum ⸠সর্বজনীন-স্বীকৃতির-পরীক্ষা.ভারত⸡ dolor sit amet
-Lorem ipsum ⸠универсальное-принятие-тест.москва⸡ dolor sit amet
-Lorem ipsum ⸠सार्वभौमिक-स्वीकृति-परीक्षण.संगठन⸡ dolor sit amet
-Lorem ipsum ⸠უნივერსალური-თავსობადობის-ტესტი.გე⸡ dolor sit amet
-Lorem ipsum ⸠καθολική-αποδοχή-δοκιμή.ευ⸡ dolor sit amet
-Lorem ipsum ⸠સાર્વત્રિક-સ્વીકૃતિ-પરીક્ષણ.ભારત⸡ dolor sit amet
-Lorem ipsum ⸠ਸਰਵਵਿਆਪਕ-ਪ੍ਰਵਾਨਗੀ-ਪਰਖ.ਭਾਰਤ⸡ dolor sit amet
-Lorem ipsum ⸠다국어도메인이용환경테스트.한국⸡ dolor sit amet
-Lorem ipsum ⸠מבחן-קבלה-אוניברסלי.קום⸡ dolor sit amet
-Lorem ipsum ⸠どこでもつかえる.みんな⸡ dolor sit amet
-Lorem ipsum ⸠ಸಾರ್ವತ್ರಿಕ-ಸ್ವೀಕಾರಾರ್ಹತೆ-ಪರೀಕ್ಷೆ.ಭಾರತ⸡ dolor sit amet
-Lorem ipsum ⸠ユニバーサルアクセプタンス.クラウド⸡ dolor sit amet
-Lorem ipsum ⸠ສາກົນ-ການຍອມຮັບ-ທົດລອງ.ລາວ⸡ dolor sit amet
-Lorem ipsum ⸠സാർവത്രിക-സ്വീകാര്യതാ-പരിശോധന.ഭാരതം⸡ dolor sit amet
-Lorem ipsum ⸠ଯୁନିଭରସାଲ-ଏକସେପ୍ଟନ୍ସ-ଟେଷ୍ଟ.ଭାରତ⸡ dolor sit amet
-Lorem ipsum ⸠විශ්ව-සම්මුති-පිරික්සුම.ලංකා⸡ dolor sit amet
-Lorem ipsum ⸠பொது-ஏற்பு-சோதனை.சிங்கப்பூர்⸡ dolor sit amet
-Lorem ipsum ⸠యూనివర్సల్-ఆమోదం-పరీక్ష.భారత్⸡ dolor sit amet
-Lorem ipsum ⸠ยูเอทดสอบ.ไทย⸡ dolor sit amet
-Lorem ipsum ⸠普遍适用测试.我爱你⸡ dolor sit amet
-Lorem ipsum ⸠普遍適用測試.台灣⸡ dolor sit amet
-Lorem ipsum ⸠ሁለንአቀፍ-ተቀባይነት-ሙከራ.com⸡ dolor sit amet
-Lorem ipsum ⸠ការសាកល្បងទទួលយកជាអន្តរជាតិ.com⸡ dolor sit amet
-Lorem ipsum ⸠အလုံးစုံလက်ခံမှုစမ်းသပ်ချက်.com⸡ dolor sit amet
-Lorem ipsum ⸠ދުނިޔެ-ގަބޫލުކުރާ-ޓެސްޓު.com⸡ dolor sit amet
-Lorem ipsum ⸠universal-acceptance-test.קום⸡ dolor sit amet
-Lorem ipsum ⸠épreuve-acceptation-universelle.org⸡ dolor sit amet
-Lorem ipsum ⸠ཡོངས་ཁྱབ་ངོས་ལེན་བརྟག་དཔྱད.com⸡ dolor sit amet
-Lorem ipsum ⸠Universales-Akzeptanz-Test.vermögensberatung⸡ dolor sit amet
-Lorem ipsum ⸠épreuve-acceptation-universelle.org⸡ dolor sit amet
-Lorem ipsum ⸠普遍适用测试。我爱你⸡ dolor sit amet
-Lorem ipsum موريتانيا.xn-----ctdbabcfhu9c2b9l1acccr4c dolor sit amet
-Lorem ipsum ⸠تجربة-القبول-الشامل.xn--mgbah1a3hjkrd⸡ dolor sit amet
-Lorem ipsum ⸠xn-----ctdbabcfhu9c2b9l1acccr4c.xn--mgbah1a3hjkrd⸡ dolor sit amet
-Lorem ipsum ⸠universal-acceptance-test.icu/测试⸡ dolor sit amet
-Lorem ipsum ⸠普遍适用测试.我爱你/测试⸡ dolor sit amet
-Lorem ipsum ⸠تجربة-القبول-الشامل.موريتانيا/تجربة⸡ dolor sit amet
-blah ⸠en.wikipedia.org/wiki/The_Lovemakers_(film)⸡ blah
-blah ⸠example.com/?foo[1]=a&amp;foo[2]=b⸡ blah
-Lorem ipsum ⸠comoyo.com/play/S(123)⸡ dolor sit amet
-Lorem ipsum ⸠example.com/knutsen_ludvigsen/ver(k)ste(d)/brilleslange.mp3⸡ dolor sit amet
-Lorem ipsum ⸠example.com/Bob_Marley/Rastaman_Vibration/11_Jah_Live_(originally_issued_as_Island_Single_(WIP_6265))_(bonus_track⸡ dolor sit amet
-Lorem ipsum ⸠business.timesonline.co.uk/article/0,,9065-2473189,00.html⸡ dolor sit amet
-Lorem ipsum ⸠www.mail-archive.com/ruby-talk@ruby-lang.org/⸡ dolor sit amet
-Lorem ipsum ⸠tools.ietf.org/html/rfc3986⸡ dolor sit amet
-Lorem ipsum ⸠www.amazon.com/Testing-Equal-Sign-In-Path/ref=pd_bbs_sr_1?ie=UTF8&s=books&qid=1198861734&sr=8-1⸡ dolor sit amet
-Lorem ipsum ⸠www.google.com/doku.php?id=gps:resource:scs:start⸡ dolor sit amet
-Lorem ipsum ⸠maps.google.co.uk/maps?f=q&q=the+london+eye&ie=UTF8&ll=51.503373,-0.11939&spn=0.007052,0.012767&z=16&iwloc=A⸡ dolor sit amet
-Lorem ipsum ⸠www.rubyonrails.com/foo.cgi?trailing_hyphen=value-⸡ dolor sit amet
-Lorem ipsum ⸠www.rubyonrails.com/foo.cgi?trailing_forward_slash=value⸡ dolor sit amet
+# Misc. test cases
 
-# Other test cases
+# Misc. test cases
 
 ## Sample uppercase
+See ⸠TEST.COM⸡ on…
+See ⸠FOO.VERMöGENSBERATER⸡ on…
+See ⸠FOO.VERMöGEN.com⸡ on…
 
-a ⸠TEST.COM⸡ b
-a ⸠FOO.VERMöGENSBERATER⸡ b
-a ⸠FOO.VERMöGEN.com⸡ b
+# Illegal domain names
+See http://.foo.example.com/αβγ on…
+See http://foo..example.com/αβγ on…
+See http://-foo.example-.com. on…
+
+# Legal but unusual. Because we might be at the end of a sentence, we don't include the . unless followed by [/$#]
+See ⸠http://foo.example.com⸡. on…
+See ⸠http://foo.example.com./αβγ⸡ on…
 
 # Various Path/Query/Fragment cases
 See ⸠example.com⸡! on…
@@ -106,13 +45,15 @@ See ⸠example.com?αβγ⸡ on…
 See ⸠example.com#αβγ⸡ on…
 See ⸠example.com/αβγ/δεζ?θικ#λμν⸡ on…
 See ⸠example.com/αβγ/δεζ?δ.εφ#λμν⸡ on…
+See ⸠https://example.com/αβγ⸡ on…
+See ⸠http://example.com/αβγ⸡ on…
 
 # Illustrations of Soft vs Hard, bracketing
 
-# Break on hard (' ')
+# Break on hard (such as ' ')
 See ⸠example.com/αβγ/δεζ?δ⸡ εφ#λμν on…
 
-# Break on soft ('.') followed by hard (' ')
+# Break on soft (such as '.') followed by hard (such as ' ')
 See ⸠example.com/αβγ/δεζ?δ⸡. εφ#λμν on…
 See ⸠example.com/α/βγ?δ/ε?ζ#λ/μ?ν#π⸡ on…
 
@@ -127,23 +68,24 @@ See ⸠example.com/αβ(γ/δ)ρς?θικ#λμν⸡ on…
 
 ⸠https://ja.wikipedia.org/wiki/フィンセント・ファン・ゴッホ⸡
 ⸠https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%B3%E3%82%BB%E3%83%B3%E3%83%88%E3%83%BB%E3%83%95%E3%82%A1%E3%83%B3%E3%83%BB%E3%82%B4%E3%83%83%E3%83%9B⸡
-⸠abc.com⸡ ⸠deΩ.uk⸡ .fr abc.ukx, ⸠foo.accountants⸡ ⸠foo.香港⸡ "com uk accountants 香港"
-⸠abc.com/d/e?xyz#w⸡ ⸠def.uk⸡
+⸠abc.com⸡ ⸠deΩ.uk⸡ .fr abc.ukx, ⸠foo.accountants⸡ ⸠foo.香港⸡
+⸠abc.com/d/e?xyz#w⸡
 ⸠abc.XN--11B4C3D⸡
 
-a ⸠john.smith@example.com⸡ b
-a ⸠αβγ.δεζ@example.com⸡ b
-a ⸠mailto:john.smith@example.com⸡ b
-a ⸠mailto:αβγ.δεζ@example.com⸡ b
-a ⸠https://example.com/αβγ⸡ b
-a ⸠http://example.com/αβγ⸡ b
+# Email addresses
+
+See ⸠αβγ.δεζ@example.com⸡ on…
+See ⸠mailto:αβγ.δεζ@example.com⸡ on…
+See mailto:αβγ.δεζ.@⸠example.com⸡ on…
+See mailto:αβγ..δεζ@⸠example.com⸡ on…
+See mailto:.αβγ.δεζ@⸠example.com⸡ on…
 
 # Note that john.doe@example.com is ambiguous: it could be an email address, or it could be a URL with a userinfo
-# The latter, however, is extremely rare. So for consistency favor the email address.
-# (Even when the context would tip the balance towards the URL interpretation.)
+# The latter, however, is extremely rare, so always favor the email address.
+# (Even when the context would tip the balance towards the URL interpretation, for consistency.)
 
-a ⸠example.com:1234/forum/questions/?tag=new&order=newest#top⸡ b
-a ⸠john.doe@example.com⸡:1234/forum/questions/?tag=new&order=newest#top b
+See ⸠example.com:1234/forum/questions/?tag=new&order=newest#top⸡ on…
+See ⸠john.doe@example.com⸡:1234/forum/questions/?tag=new&order=newest#top on…
 
 # Sample pages from https://meta.wikimedia.org/wiki/List_of_articles_every_Wikipedia_should_have
 
@@ -357,3 +299,75 @@ a ⸠john.doe@example.com⸡:1234/forum/questions/?tag=new&order=newest#top b
 ⸠https://zh-yue.wikipedia.org/wiki/Wikipedia:基礎文章⸡
 ⸠https://zh.wikipedia.org/wiki/Wikipedia:基礎條目⸡
 ⸠https://zu.wikipedia.org/wiki/Wikipedia:Vital_articles⸡
+
+# Test cases contributed by ICANN
+
+a test.invalid b
+a ⸠blogspot.com⸡ b
+a com b
+a ⸠example.com:443⸡ b
+a ⸠example.com/123⸡ b
+a ⸠example.com?123⸡ b
+a ⸠example.com#123⸡ b
+a ⸠example.com/123?123#123⸡ b
+a (⸠example.com/123?123#123⸡) b
+a (⸠example.com/123?123#(123)⸡) b
+a ⸠example.com/123.html⸡ b
+a ⸠example.com/123⸡. HTML is great
+a ⸠example.com/123⸡... HTML is so great
+a ⸠example.com/123⸡.
+a ⸠xn-----ctdbabcfhu9c2b9l1acccr4c.xn--mgbah1a3hjkrd⸡ b
+Lorem ipsum ⸠universal-acceptance-test.international⸡ dolor sit amet
+Lorem ipsum ⸠universal-acceptance-test.icu⸡ dolor sit amet
+Lorem ipsum ⸠تجربة-القبول-الشامل.موريتانيا⸡ dolor sit amet
+Lorem ipsum ⸠համընդհանուր-ընկալում-թեստ.հայ⸡ dolor sit amet
+Lorem ipsum ⸠সর্বজনীন-স্বীকৃতির-পরীক্ষা.ভারত⸡ dolor sit amet
+Lorem ipsum ⸠универсальное-принятие-тест.москва⸡ dolor sit amet
+Lorem ipsum ⸠सार्वभौमिक-स्वीकृति-परीक्षण.संगठन⸡ dolor sit amet
+Lorem ipsum ⸠უნივერსალური-თავსობადობის-ტესტი.გე⸡ dolor sit amet
+Lorem ipsum ⸠καθολική-αποδοχή-δοκιμή.ευ⸡ dolor sit amet
+Lorem ipsum ⸠સાર્વત્રિક-સ્વીકૃતિ-પરીક્ષણ.ભારત⸡ dolor sit amet
+Lorem ipsum ⸠ਸਰਵਵਿਆਪਕ-ਪ੍ਰਵਾਨਗੀ-ਪਰਖ.ਭਾਰਤ⸡ dolor sit amet
+Lorem ipsum ⸠다국어도메인이용환경테스트.한국⸡ dolor sit amet
+Lorem ipsum ⸠מבחן-קבלה-אוניברסלי.קום⸡ dolor sit amet
+Lorem ipsum ⸠どこでもつかえる.みんな⸡ dolor sit amet
+Lorem ipsum ⸠ಸಾರ್ವತ್ರಿಕ-ಸ್ವೀಕಾರಾರ್ಹತೆ-ಪರೀಕ್ಷೆ.ಭಾರತ⸡ dolor sit amet
+Lorem ipsum ⸠ユニバーサルアクセプタンス.クラウド⸡ dolor sit amet
+Lorem ipsum ⸠ສາກົນ-ການຍອມຮັບ-ທົດລອງ.ລາວ⸡ dolor sit amet
+Lorem ipsum ⸠സാർവത്രിക-സ്വീകാര്യതാ-പരിശോധന.ഭാരതം⸡ dolor sit amet
+Lorem ipsum ⸠ଯୁନିଭରସାଲ-ଏକସେପ୍ଟନ୍ସ-ଟେଷ୍ଟ.ଭାରତ⸡ dolor sit amet
+Lorem ipsum ⸠විශ්ව-සම්මුති-පිරික්සුම.ලංකා⸡ dolor sit amet
+Lorem ipsum ⸠பொது-ஏற்பு-சோதனை.சிங்கப்பூர்⸡ dolor sit amet
+Lorem ipsum ⸠యూనివర్సల్-ఆమోదం-పరీక్ష.భారత్⸡ dolor sit amet
+Lorem ipsum ⸠ยูเอทดสอบ.ไทย⸡ dolor sit amet
+Lorem ipsum ⸠普遍适用测试.我爱你⸡ dolor sit amet
+Lorem ipsum ⸠普遍適用測試.台灣⸡ dolor sit amet
+Lorem ipsum ⸠ሁለንአቀፍ-ተቀባይነት-ሙከራ.com⸡ dolor sit amet
+Lorem ipsum ⸠ការសាកល្បងទទួលយកជាអន្តរជាតិ.com⸡ dolor sit amet
+Lorem ipsum ⸠အလုံးစုံလက်ခံမှုစမ်းသပ်ချက်.com⸡ dolor sit amet
+Lorem ipsum ⸠ދުނިޔެ-ގަބޫލުކުރާ-ޓެސްޓު.com⸡ dolor sit amet
+Lorem ipsum ⸠universal-acceptance-test.קום⸡ dolor sit amet
+Lorem ipsum ⸠épreuve-acceptation-universelle.org⸡ dolor sit amet
+Lorem ipsum ⸠ཡོངས་ཁྱབ་ངོས་ལེན་བརྟག་དཔྱད.com⸡ dolor sit amet
+Lorem ipsum ⸠Universales-Akzeptanz-Test.vermögensberatung⸡ dolor sit amet
+Lorem ipsum ⸠épreuve-acceptation-universelle.org⸡ dolor sit amet
+Lorem ipsum ⸠普遍适用测试。我爱你⸡ dolor sit amet
+Lorem ipsum موريتانيا.xn-----ctdbabcfhu9c2b9l1acccr4c dolor sit amet
+Lorem ipsum ⸠تجربة-القبول-الشامل.xn--mgbah1a3hjkrd⸡ dolor sit amet
+Lorem ipsum ⸠xn-----ctdbabcfhu9c2b9l1acccr4c.xn--mgbah1a3hjkrd⸡ dolor sit amet
+Lorem ipsum ⸠universal-acceptance-test.icu/测试⸡ dolor sit amet
+Lorem ipsum ⸠普遍适用测试.我爱你/测试⸡ dolor sit amet
+Lorem ipsum ⸠تجربة-القبول-الشامل.موريتانيا/تجربة⸡ dolor sit amet
+blah ⸠en.wikipedia.org/wiki/The_Lovemakers_(film)⸡ blah
+blah ⸠example.com/?foo[1]=a&amp;foo[2]=b⸡ blah
+Lorem ipsum ⸠comoyo.com/play/S(123)⸡ dolor sit amet
+Lorem ipsum ⸠example.com/knutsen_ludvigsen/ver(k)ste(d)/brilleslange.mp3⸡ dolor sit amet
+Lorem ipsum ⸠example.com/Bob_Marley/Rastaman_Vibration/11_Jah_Live_(originally_issued_as_Island_Single_(WIP_6265))_(bonus_track⸡ dolor sit amet
+Lorem ipsum ⸠business.timesonline.co.uk/article/0,,9065-2473189,00.html⸡ dolor sit amet
+Lorem ipsum ⸠www.mail-archive.com/ruby-talk@ruby-lang.org/⸡ dolor sit amet
+Lorem ipsum ⸠tools.ietf.org/html/rfc3986⸡ dolor sit amet
+Lorem ipsum ⸠www.amazon.com/Testing-Equal-Sign-In-Path/ref=pd_bbs_sr_1?ie=UTF8&s=books&qid=1198861734&sr=8-1⸡ dolor sit amet
+Lorem ipsum ⸠www.google.com/doku.php?id=gps:resource:scs:start⸡ dolor sit amet
+Lorem ipsum ⸠maps.google.co.uk/maps?f=q&q=the+london+eye&ie=UTF8&ll=51.503373,-0.11939&spn=0.007052,0.012767&z=16&iwloc=A⸡ dolor sit amet
+Lorem ipsum ⸠www.rubyonrails.com/foo.cgi?trailing_hyphen=value-⸡ dolor sit amet
+Lorem ipsum ⸠www.rubyonrails.com/foo.cgi?trailing_forward_slash=value⸡ dolor sit amet

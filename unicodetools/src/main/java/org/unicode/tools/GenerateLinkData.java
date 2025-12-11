@@ -29,7 +29,6 @@ import org.unicode.props.BagFormatter;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.utilities.LinkUtilities;
-import org.unicode.utilities.LinkUtilities.LinkScanner;
 import org.unicode.utilities.LinkUtilities.LinkTermination;
 import org.unicode.utilities.LinkUtilities.Part;
 
@@ -46,6 +45,8 @@ import org.unicode.utilities.LinkUtilities.Part;
  * @throws IOException
  */
 class GenerateLinkData {
+
+    private static final boolean ADDTEST = false; // set to true to generate LinkDetectionTestSource
 
     private static final Joiner JOIN_SEMI_SP = Joiner.on(" ;\t");
     private static final Splitter SPLIT_TABS = Splitter.on('\t').omitEmptyStrings().trimResults();
@@ -90,7 +91,7 @@ class GenerateLinkData {
                             + "# For the purpose of detection and formatting operations, the property {3} is defined as\n"
                             + "# mapping each code point to a set of enumerated values.\n"
                             + "# The short name of the property is the same as its long name.\n"
-                            + "# The possible values are:  Include, Hard, Soft, Close, Open\n" 
+                            + "# The possible values are:  Include, Hard, Soft, Close, Open\n"
                             + "#\n"
                             + "# The short name of each value is the same as its long name.\n"
                             + "#\n"
@@ -100,7 +101,6 @@ class GenerateLinkData {
                             + "# @missing: 0000..10FFFF; {4}\n"
                             + "#\n"
                             + "# ================================================\n");
-
 
     static final SimpleFormatter HEADER_PROP_STRING =
             SimpleFormatter.compile(
@@ -115,7 +115,7 @@ class GenerateLinkData {
                             + "# For the purpose of link detection and formatting operations, the property {3} is defined as\n"
                             + "# a string property whose value is either a single code point or is {4}.\n"
                             + "#\n"
-                           + "# The short name of the property is the same as its long name.\n"
+                            + "# The short name of the property is the same as its long name.\n"
                             + "#\n"
                             + "#  All code points not explicitly listed for {3}\n"
                             + "#  have the value {4}.\n"
@@ -123,7 +123,6 @@ class GenerateLinkData {
                             + "# @missing: 0000..10FFFF; {4}\n"
                             + "#\n"
                             + "# ================================================\n");
-
 
     static final SimpleFormatter HEADER_PROP_BINARY =
             SimpleFormatter.compile(
@@ -146,7 +145,6 @@ class GenerateLinkData {
                             + "# @missing: 0000..10FFFF; {4}\n"
                             + "#\n"
                             + "# ================================================\n");
-
 
     static final SimpleFormatter HEADER_DETECT_TEST =
             SimpleFormatter.compile(
@@ -181,13 +179,17 @@ class GenerateLinkData {
                             + "# ================================================\n");
 
     static void writePropHeader(
-            PrintWriter out, SimpleFormatter simpleFormatter, String filename, String propertyName, String missingValue) {
+            PrintWriter out,
+            SimpleFormatter simpleFormatter,
+            String filename,
+            String propertyName,
+            String missingValue) {
         out.println(
                 simpleFormatter.format(
                         filename, dt.format(now), dty.format(now), propertyName, missingValue));
     }
 
-   static void writeTestHeader(
+    static void writeTestHeader(
             PrintWriter out, SimpleFormatter simpleFormatter, String filename, String testName) {
         out.println(simpleFormatter.format(filename, dt.format(now), dty.format(now), testName));
     }
@@ -229,13 +231,22 @@ class GenerateLinkData {
         bf.setValueSource(LinkUtilities.LinkEmail);
         try (final PrintWriter out =
                 FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkEmail.txt"); ) {
-            writePropHeader(out, HEADER_PROP_BINARY, "LinkEmail", "Link_Email", UcdPropertyValues.Binary.No.toString());
+            writePropHeader(
+                    out,
+                    HEADER_PROP_BINARY,
+                    "LinkEmail",
+                    "Link_Email",
+                    UcdPropertyValues.Binary.No.toString());
             bf.showSetNames(out, LinkUtilities.LinkEmail.getSet(UcdPropertyValues.Binary.Yes));
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
     }
 
+    /**
+     * The format of the test file sources are: source<TAB>expected OR just source If there is an
+     * expected value, then it is checked against what is generated.
+     */
     static void generateDetectionTestData() {
 
         OutputInt errorCount = new OutputInt();
@@ -245,7 +256,36 @@ class GenerateLinkData {
                         LinkUtilities.DATA_DIR_DEV, "LinkDetectionTest.txt"); ) {
             writeTestHeader(out, HEADER_DETECT_TEST, "LinkDetectionTest", "LinkDetectionTest");
 
-            out.println("# Test cases contributed by ICANN\n");
+            out.println("\n# Misc. test cases\n");
+
+            Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "LinkDetectionTestSource.txt"))
+                    .forEach(
+                            line -> {
+                                if (line.startsWith("#") || line.isBlank()) {
+                                    out.println(line);
+                                    return;
+                                }
+                                List<String> parts = SPLIT_TABS.splitToList(line);
+
+                                String base = parts.get(0);
+                                String actual = LinkUtilities.addBracesAroundDetectedLink(base);
+                                String expected = parts.size() < 2 ? null : parts.get(1);
+
+                                if (expected != null && !actual.equals(expected)) {
+                                    System.out.println(
+                                            "* mismatch "
+                                                    + base
+                                                    + "\nexpected:\t"
+                                                    + expected
+                                                    + "\nactual:  \t"
+                                                    + actual);
+                                    return;
+                                }
+
+                                out.println((ADDTEST ? (line + "\t") : "") + actual);
+                            });
+
+            out.println("\n# Test cases contributed by ICANN\n");
 
             Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "LinkDetectionTestSourceICANN.txt"))
                     .forEach(
@@ -261,7 +301,7 @@ class GenerateLinkData {
                                 }
                                 String base = parts.get(0);
                                 String expected = parts.get(1);
-                                String actual = addBraces(base);
+                                String actual = LinkUtilities.addBracesAroundDetectedLink(base);
                                 if (!actual.equals(expected)) {
                                     System.out.println(
                                             "* mismatch "
@@ -275,46 +315,12 @@ class GenerateLinkData {
                                 out.println(actual);
                             });
 
-            out.println("\n# Other test cases\n");
-
-            Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "LinkDetectionTestSource.txt"))
-                    .forEach(
-                            line -> {
-                                if (line.startsWith("#") || line.isBlank()) {
-                                    out.println(line);
-                                    return;
-                                }
-                                String actual = addBraces(line);
-                                out.println(actual);
-                            });
-
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
         if (errorCount.value != 0) {
             throw new IllegalArgumentException("Failures in writing test file: " + errorCount);
         }
-    }
-
-    private static String addBraces(String base) {
-        LinkScanner ls = new LinkScanner(base, 0, base.length());
-        StringBuilder result = new StringBuilder();
-
-        int lastEnd = 0;
-        while (ls.next()) {
-            int start = ls.getLinkStart();
-            int end = ls.getLinkEnd();
-
-            result.append(base.substring(lastEnd, start))
-                    .append("⸠")
-                    .append(base.substring(start, end))
-                    .append("⸡");
-            lastEnd = end;
-        }
-
-        result.append(base.substring(lastEnd));
-
-        return result.toString();
     }
 
     static void generateFormattingTestData() {

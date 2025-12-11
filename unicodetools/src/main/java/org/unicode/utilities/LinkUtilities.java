@@ -47,6 +47,7 @@ import org.unicode.props.UnicodeProperty.UnicodeSetProperty;
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.utilities.LinkUtilities.LinkScanner;
 
 public class LinkUtilities {
     private static final boolean SHOW_NON_ASCII_TLDS = true;
@@ -829,6 +830,10 @@ public class LinkUtilities {
      */
     public static final Pattern TLD_SCANNER;
 
+    public static final String DOTSET_STRING = "[.。]";
+    public static final UnicodeSet DOTSET = new UnicodeSet("[.。]").freeze();
+    public static final Splitter SPLIT_LABELS = Splitter.on(Pattern.compile("[.。]"));
+
     private static final Comparator<String> LENGTH_FIRST =
             new Comparator<>() {
 
@@ -864,7 +869,7 @@ public class LinkUtilities {
                                     nonAscii.add(y);
                                 }
                             });
-            String pattern = "(?u)[.。](" + Joiner.on('|').join(core) + ")";
+            String pattern = "(?u)" + DOTSET_STRING + "(" + Joiner.on('|').join(core) + ")";
             TLD_SCANNER = Pattern.compile(pattern);
             if (SHOW_NON_ASCII_TLDS) {
                 System.out.println(nonAscii);
@@ -903,6 +908,8 @@ public class LinkUtilities {
 
     /** Scans a string for links */
     public static class LinkScanner {
+        private static final UnicodeSet PATH_QUERY_OR_FRAGMENT_START =
+                new UnicodeSet("[/#?]").freeze();
         private static final UnicodeSet DIGITS = new UnicodeSet("[0-9]").freeze();
         private final String source;
         private final Matcher m;
@@ -944,31 +951,38 @@ public class LinkUtilities {
                 // we found something of the form ".com", so check for longer label
                 // it is ok to have trailing dot after TLD (Fully Qualified Domain Name), but
                 // bad cases are .comx or .com.x
+
                 linkEnd = m.end();
                 int emailEnd = linkEnd;
                 if (linkEnd < limit) {
                     int nextCp = source.codePointAt(linkEnd);
-                    if (nextCp == '.') {
+                    if (DOTSET.contains(nextCp)) {
                         linkEnd++;
                         nextCp = linkEnd < limit ? source.codePointAt(linkEnd) : 0;
                         // 0 is just after the end of the string, makes the logic simpler
+                        // don't include unless the following character is a /, #, or ?
                     }
-                    if (validHost.contains(nextCp)) {
-                        // scan again. We found something like ".comx", which could be part of a
+                    if (validHostNoDot.contains(nextCp)) {
+                        // scan further. We found something like ".comx", which could be part of a
                         // domain name
-
                         continue;
                     }
+                    //                    if (nextCp != 0 &&
+                    // !PATH_QUERY_OR_FRAGMENT_START.contains(nextCp)) { // backup unless continuing
+                    //                    	nextCp = '.';
+                    //                    	linkEnd--;
+                    //                    }
+
                     if (nextCp == ':') {
-                        // ugly, we want to only go to limit. But for testing...
+                        // TODO only span to limit
                         int limitDigits = DIGITS.span(source, linkEnd + 1, SpanCondition.CONTAINED);
                         if (limitDigits > linkEnd + 6) {
-                            // too long, scan again.
+                            // too long, scan further.
                             continue;
                         }
                         int possiblePort = Integer.parseInt(source, linkEnd + 1, limitDigits, 10);
                         if (possiblePort > 0xFFFF) {
-                            continue; // too big, scan again.
+                            continue; // too big, scan further.
                         }
                         linkEnd = limitDigits;
                     }
@@ -977,10 +991,13 @@ public class LinkUtilities {
                 int domainStart =
                         LinkUtilities.scanBackward(validHost, true, source, hardStart, m.start());
                 if (m.start() - domainStart < 1) {
-                    // we don't have enough for a link
+                    // we don't have enough for a link, scan further
                     continue;
                 }
-                // TBD, check edge conditions like abc..def.com
+                String domain = source.substring(domainStart, linkEnd);
+                if (!verifyDomainName(domain)) { // if not valid, scan further
+                    continue;
+                }
 
                 if (domainStart > hardStart) {
                     int cpBefore = source.codePointBefore(domainStart);
@@ -996,29 +1013,59 @@ public class LinkUtilities {
                                         source,
                                         hardStart,
                                         domainStart - 1);
-
-                        // check for mailto: beforehand
-                        linkStart = backupIfAfter("mailto:", mailToStart);
-                        linkEnd = emailEnd; // do this so we don't include items after the domain
-                        // name.
-                        hardStart = linkEnd; // prepare for next next()
-                        return true;
+                        // fail in illegal cases: .joe.jones, joe.jones. joe..jones
+                        String localPart = source.substring(mailToStart, domainStart - 1);
+                        if (!localPart.startsWith(".")
+                                && !localPart.endsWith(".")
+                                && !localPart.contains("..")) {
+                            // check for mailto: beforehand
+                            linkStart = backupIfAfter("mailto:", mailToStart);
+                            linkEnd =
+                                    emailEnd; // do this so we don't include items after the domain
+                            // name.
+                            hardStart = linkEnd; // prepare for next next()
+                            return true;
+                        }
                     }
                 }
 
-                // we are either http or https
+                // Check for (some) schemes
 
                 int temp = backupIfAfter("https://", domainStart);
                 linkStart = temp != domainStart ? temp : backupIfAfter("http://", domainStart);
 
-                // check for a port;
-                if (linkEnd < limit)
+                // check for Path/Query/Fragment
+                if (linkEnd < limit) {
                     // Extend end for path, query, etc.
-                    linkEnd = parsePathQueryFragment(source, linkEnd);
-
+                    int pqfEnd = parsePathQueryFragment(source, linkEnd);
+                    if (pqfEnd != linkEnd) {
+                        linkEnd = pqfEnd;
+                    } else if (DOTSET.contains(source.codePointBefore(linkEnd))) {
+                        // if there is no path, query, or fragment and it ends with ., then backup
+                        --linkEnd;
+                    }
+                }
                 hardStart = linkEnd; // prepare for next next()
                 return true;
             }
+        }
+
+        // Right now, this is just a very simple check.
+        // TODO We could do a full test for validity with UTS46, but we don't really need that for
+        // either the spec or the test files.
+
+        private boolean verifyDomainName(String domain) {
+            List<String> labels = SPLIT_LABELS.splitToList(domain);
+            int fromEnd = labels.size();
+            for (String label : labels) {
+                fromEnd--;
+                if ((label.isEmpty() && fromEnd != 0)
+                        || label.startsWith("-")
+                        || label.endsWith("-")) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private int backupIfAfter(String string, int currentPosition) {
@@ -1030,5 +1077,29 @@ public class LinkUtilities {
             }
             return currentPosition;
         }
+    }
+
+    public static final char LINKIFY_START = '⸠';
+    public static final char LINKIFY_END = '⸡';
+
+    public static String addBracesAroundDetectedLink(String base) {
+        LinkScanner ls = new LinkScanner(base, 0, base.length());
+        StringBuilder result = new StringBuilder();
+
+        int lastEnd = 0;
+        while (ls.next()) {
+            int start = ls.getLinkStart();
+            int end = ls.getLinkEnd();
+
+            result.append(base.substring(lastEnd, start))
+                    .append(LINKIFY_START)
+                    .append(base.substring(start, end))
+                    .append(LINKIFY_END);
+            lastEnd = end;
+        }
+
+        result.append(base.substring(lastEnd));
+
+        return result.toString();
     }
 }

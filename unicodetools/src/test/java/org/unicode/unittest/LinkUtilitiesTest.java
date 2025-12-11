@@ -39,8 +39,6 @@ import org.unicode.utilities.LinkUtilities.Part;
 public class LinkUtilitiesTest extends TestFmwkMinusMinus {
 
     private static final Joiner JOIN_SEMI_TAB = Joiner.on(";\t");
-    public static final char LINKIFY_START = '⸠';
-    public static final char LINKIFY_END = '⸡';
 
     static final List<String> TEST_DETECTION_CASES = new ArrayList<>();
 
@@ -96,7 +94,7 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
                         parseResult == 0
                                 ? source
                                 : source.substring(0, parseResult)
-                                        + LINKIFY_END
+                                        + LinkUtilities.LINKIFY_END
                                         + source.substring(parseResult);
                 counter.add(assertEquals(source.toString(), expected, actual), 1);
             }
@@ -106,9 +104,9 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
                 "\n@Linkification\n"
                         + "# Field 0: Source\n" //
                         + "# Field 1: Expected Linkification, where:\n\t"
-                        + LINKIFY_START
+                        + LinkUtilities.LINKIFY_START
                         + " is at the start, and \n\t"
-                        + LINKIFY_END
+                        + LinkUtilities.LINKIFY_END
                         + " is at the end" //
                         + "\n");
         for (List<String> testLine : testLines) {
@@ -116,7 +114,7 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
                     "See example.com"
                             + testLine.get(0)
                             + " on…;\tSee "
-                            + LINKIFY_START
+                            + LinkUtilities.LINKIFY_START
                             + "example.com"
                             + testLine.get(1)
                             + " on…"
