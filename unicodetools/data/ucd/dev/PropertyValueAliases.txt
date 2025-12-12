@@ -1,5 +1,5 @@
 # PropertyValueAliases-18.0.0.txt
-# Date: 2025-11-30, 03:21:38 GMT
+# Date: 2025-12-04, 00:43:21 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -420,6 +420,7 @@ blk; Phoenician                       ; Phoenician
 blk; Phonetic_Ext                     ; Phonetic_Extensions
 blk; Phonetic_Ext_Sup                 ; Phonetic_Extensions_Supplement
 blk; Playing_Cards                    ; Playing_Cards
+blk; Proto_Cuneiform                  ; Proto_Cuneiform
 blk; Psalter_Pahlavi                  ; Psalter_Pahlavi
 blk; PUA                              ; Private_Use_Area                 ; Private_Use
 blk; Punctuation                      ; General_Punctuation

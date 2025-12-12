@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2025-11-30, 20:46:29 GMT
+# Date: 2025-12-04, 00:43:00 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,8 +71,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 755561 code points not listed here.
-# Total code points: 893029
+# The above property value applies to 754169 code points not listed here.
+# Total code points: 891637
 
 # ================================================
 
@@ -1433,6 +1433,8 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 12475..1247F  ; AL # Nl  [11] CUNEIFORM NUMERIC SIGN EIGHT ASH TENU..CUNEIFORM NUMERIC SIGN ASH TIMES NINE DISH TENU
 12480..12543  ; AL # Lo [196] CUNEIFORM SIGN AB TIMES NUN TENU..CUNEIFORM SIGN ZU5 TIMES THREE DISH TENU
 12550..12686  ; AL # Nl [311] CUNEIFORM NUMERIC SIGN ONE N01..CUNEIFORM NUMERIC SIGN ONE N36 FLAT
+12690..12BE7  ; AL # Lo [1368] PROTO-CUNEIFORM SIGN A..PROTO-CUNEIFORM SIGN ZATU859
+12BE8..12BFF  ; AL # Nl  [24] PROTO-CUNEIFORM NUMERIC SIGN TWO LAGAB-A..PROTO-CUNEIFORM NUMERIC SIGN ONE N58 TENU
 12F90..12FF0  ; AL # Lo  [97] CYPRO-MINOAN SIGN CM001..CYPRO-MINOAN SIGN CM114
 12FF1..12FF2  ; AL # Po   [2] CYPRO-MINOAN SIGN CM301..CYPRO-MINOAN SIGN CM302
 13000..13257  ; AL # Lo [600] EGYPTIAN HIEROGLYPH A001..EGYPTIAN HIEROGLYPH O006
@@ -1656,7 +1658,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB94..1FBEF  ; AL # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; AL # So       ALARM BELL SYMBOL
 
-# Total code points: 27562
+# Total code points: 28954
 
 # ================================================
 
