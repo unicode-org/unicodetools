@@ -5,6 +5,7 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedMap;
+import com.google.common.collect.ImmutableSortedSet;
 import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.UncheckedExecutionException;
 import com.ibm.icu.impl.IDNA2003;
@@ -12,6 +13,7 @@ import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
+import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -27,10 +29,12 @@ import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NavigableMap;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.Stack;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
@@ -50,8 +54,6 @@ import org.unicode.text.utility.Utility;
 import org.unicode.utilities.LinkUtilities.LinkScanner;
 
 public class LinkUtilities {
-    private static final boolean SHOW_NON_ASCII_TLDS = true;
-
     // allow changing UnicodeSet to use the current IndexUnicodeProperties
     public static final IndexUnicodeProperties IUP =
             IndexUnicodeProperties.make(VersionInfo.UNICODE_17_0);
@@ -830,6 +832,8 @@ public class LinkUtilities {
      */
     public static final Pattern TLD_SCANNER;
 
+    public static final SortedSet<String> TLDS;
+
     public static final String DOTSET_STRING = "[.。]";
     public static final UnicodeSet DOTSET = new UnicodeSet("[.。]").freeze();
     public static final Splitter SPLIT_LABELS = Splitter.on(Pattern.compile("[.。]"));
@@ -870,10 +874,13 @@ public class LinkUtilities {
                                 }
                             });
             String pattern = "(?u)" + DOTSET_STRING + "(" + Joiner.on('|').join(core) + ")";
+            TLDS =
+                    core.stream()
+                            .map(x -> UCharacter.toLowerCase(x))
+                            .collect(
+                                    ImmutableSortedSet.toImmutableSortedSet(
+                                            Collator.getInstance(Locale.ROOT)));
             TLD_SCANNER = Pattern.compile(pattern);
-            if (SHOW_NON_ASCII_TLDS) {
-                System.out.println(nonAscii);
-            }
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }

@@ -196,6 +196,7 @@ class GenerateLinkData {
 
     /** Generate property data for the UTS */
     static void generatePropertyData() {
+        System.out.println("TLDs=\t" + Joiner.on(' ').join(LinkUtilities.TLDS));
 
         BagFormatter bf = new BagFormatter(LinkUtilities.IUP).setLineSeparator("\n");
 
@@ -211,6 +212,7 @@ class GenerateLinkData {
                 bf.showSetNames(out, propValue.base);
                 out.println("");
                 out.flush();
+                System.out.println(propValue + "=\t" + propValue.base.toPattern(false));
             }
 
         } catch (IOException e) {
@@ -237,7 +239,9 @@ class GenerateLinkData {
                     "LinkEmail",
                     "Link_Email",
                     UcdPropertyValues.Binary.No.toString());
-            bf.showSetNames(out, LinkUtilities.LinkEmail.getSet(UcdPropertyValues.Binary.Yes));
+            UnicodeSet linkEmailSet = LinkUtilities.LinkEmail.getSet(UcdPropertyValues.Binary.Yes);
+            bf.showSetNames(out, linkEmailSet);
+            System.out.println("LinkEmail=\t" + linkEmailSet.toPattern(false));
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
