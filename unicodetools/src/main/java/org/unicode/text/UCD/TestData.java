@@ -42,8 +42,8 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Pair;
-import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.BagFormatter;
+import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
@@ -191,7 +191,7 @@ public class TestData implements UCD_Types {
         foo();
 
         System.out.println("main: " + Default.getDate());
-        upf = ICUPropertyFactory.make();
+        upf = IndexUnicodeProperties.make();
         System.out.println("after factory: " + Default.getDate());
 
         showPropDiff(

@@ -1,0 +1,30 @@
+# Symbols: five historic mathematical operators (1CEF1.. 1CEF5)
+# https://github.com/unicode-org/utc-release-management/issues/195
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set Math_Class Math_Class_Ex:
+
+Ignoring Block Pattern_Syntax:
+Propertywise [
+    \x{22C7} ⋇ \N{DIVISION TIMES}
+    \x{1CEF1}  \N{LEIBNIZIAN DIVISION SIGN}
+    \x{1CEF2}  \N{LEIBNIZIAN MULTIPLICATION SIGN}
+    \x{1CEF3}  \N{LEIBNIZIAN MULTIPLICATION-DIVISION SIGN}
+    \x{1CEF4}  \N{LEIBNIZIAN FRACTION REDUCTION SIGN-1}
+    \x{1CEF5}  \N{LEIBNIZIAN FRACTION REDUCTION SIGN-2}
+] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

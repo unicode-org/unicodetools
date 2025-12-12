@@ -39,6 +39,10 @@ public interface UCD_Types {
     // 18D00;<Tangut Ideograph Supplement, First>;Lo;0;L;;;;;N;;;;;
     // 18D1C;<Tangut Ideograph Supplement, Last>;Lo;0;L;;;;;N;;;;;
 
+    // Unicode 18.
+    public static final int SEAL_BASE = 0x3D000;
+    public static final int SEAL_LIMIT = 0x3FC3F + 1;
+
     public static final int
             // 4E00;<CJK Ideograph, First>;Lo;0;L;;;;;N;;;;;
             // 9FFC;<CJK Ideograph, Last>;Lo;0;L;;;;;N;;;;;
@@ -63,9 +67,9 @@ public interface UCD_Types {
             CJK_C_LIMIT = 0x2B73F + 1, // last changed in Unicode 17
 
             // 2B740;<CJK Ideograph Extension D, First>;Lo;0;L;;;;;N;;;;;
-            // 2B81D;<CJK Ideograph Extension D, Last>;Lo;0;L;;;;;N;;;;;
+            // 2B81E;<CJK Ideograph Extension D, Last>;Lo;0;L;;;;;N;;;;;
             CJK_D_BASE = 0x2B740,
-            CJK_D_LIMIT = 0x2B81D + 1,
+            CJK_D_LIMIT = 0x2B81E + 1, // last changed in Unicode 18
 
             // 2B820;<CJK Ideograph Extension E, First>;Lo;0;L;;;;;N;;;;;
             // 2CEA1;<CJK Ideograph Extension E, Last>;Lo;0;L;;;;;N;;;;;

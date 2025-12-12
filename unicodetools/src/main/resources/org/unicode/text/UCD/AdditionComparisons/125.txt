@@ -1,0 +1,61 @@
+# IPA: Modifier letters with palatal hook
+# https://github.com/unicode-org/utc-release-management/issues/125
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+# Modifier ꞕ separately below because its non-modifier counterpart is out of
+# order (Latin Extended D vs. Phonetic Extensions Supplement for [ᶁᶇᶊᶎ]).
+# Modifier ᶎ separately because Ᶎ exists.
+Ignoring Block Unicode_1_Name:
+Propertywise [\N{MODIFIER LETTER SMALL D WITH PALATAL HOOK}
+              \N{MODIFIER LETTER SMALL N WITH PALATAL HOOK}]
+           : [ᶁᶇ]
+           ⧴ [{ᵈ\N{COMBINING PALATALIZED HOOK BELOW}}{ⁿ\N{COMBINING PALATALIZED HOOK BELOW}}]
+           ⧴ [{d\N{COMBINING PALATALIZED HOOK BELOW}}{n\N{COMBINING PALATALIZED HOOK BELOW}}]
+CorrespondTo [ᶪ] : [ᶅ]
+           ⧴ [{ˡ\N{COMBINING PALATALIZED HOOK BELOW}}]
+           ⧴ [{l\N{COMBINING PALATALIZED HOOK BELOW}}]
+Propertywise [\N{MODIFIER LETTER SMALL S WITH PALATAL HOOK}]
+           : [ᶊ]
+           ⧴ [{ˢ\N{COMBINING PALATALIZED HOOK BELOW}}]
+           ⧴ [{s\N{COMBINING PALATALIZED HOOK BELOW}}]
+CorrespondTo [ᶪ] : [ᶅ]
+           ⧴ [{ˡ\N{COMBINING PALATALIZED HOOK BELOW}}]
+           ⧴ [{l\N{COMBINING PALATALIZED HOOK BELOW}}]
+Propertywise [\N{MODIFIER LETTER SMALL H WITH PALATAL HOOK}]
+           : [ꞕ]
+           ⧴ [{ʰ\N{COMBINING PALATALIZED HOOK BELOW}}]
+           ⧴ [{h\N{COMBINING PALATALIZED HOOK BELOW}}]
+CorrespondTo [ᶪ] : [ᶅ]
+           ⧴ [{ˡ\N{COMBINING PALATALIZED HOOK BELOW}}]
+           ⧴ [{l\N{COMBINING PALATALIZED HOOK BELOW}}]
+# ᶎ is part of a case pair, contrary to ᶅ, so we only test it as a property
+# value here (with ⧴, not :), we do not look at its own properties.
+# The casing of the non-modifier has no effect on the properties of the
+# modifier, as shown below.
+Propertywise [\N{MODIFIER LETTER SMALL H WITH PALATAL HOOK}]
+           ⧴ [ꞕ]
+           ⧴ [{ʰ\N{COMBINING PALATALIZED HOOK BELOW}}]
+           ⧴ [{h\N{COMBINING PALATALIZED HOOK BELOW}}]
+CorrespondTo [ᶪ] ⧴ [ᶅ]
+           ⧴ [{ˡ\N{COMBINING PALATALIZED HOOK BELOW}}]
+           ⧴ [{l\N{COMBINING PALATALIZED HOOK BELOW}}]
+
+Ignoring Do_Not_Emit_Dispreferred Do_Not_Emit_Dispreferred_Type:
+# Like ᶎ, ɦ is part of a case pair.
+Propertywise [\N{MODIFIER LETTER SMALL Z WITH PALATAL HOOK}]
+           : [ᶎ] : [Ᶎ]
+CorrespondTo [ʱ] : [ɦ] : [Ɦ]
+end Ignoring;
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

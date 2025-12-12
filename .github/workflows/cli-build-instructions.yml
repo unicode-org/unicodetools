@@ -165,6 +165,29 @@ jobs:
             exit 1
           }
 
+      - name: Run command - Generate Emoji Data
+        run: |
+          cd unicodetools/mine/src
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.tools.emoji.GenerateEmojiData" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Some emoji files are UCD files, so we should check that their generator
+      # not only runs, but that it doesn’t change anything.
+      - name: Check that Emoji files are consistent
+        run: |
+          cd unicodetools/mine/src
+          git diff --compact-summary --exit-code || {
+            git diff --compact-summary |
+              awk '{
+                if (previous) {
+                  print "::error file="previous",title=File must be regenerated::Run org.unicode.tools.emoji.GenerateEmojiData."
+                }
+                previous=$1
+              }'
+            exit 1
+          }
+
       # Only test once we know the UCD is internally consistent.
       # MakeUnicodeFiles is much faster than this anyway.
       - name: Run command - Build and Test

@@ -23,7 +23,6 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.Visitor;
 import org.unicode.cldr.util.props.UnicodeLabel;
-import org.unicode.jsp.ICUPropertyFactory;
 
 public class BagFormatter {
     static final boolean DEBUG = false;
@@ -395,7 +394,7 @@ public class BagFormatter {
     }
 
     private UnicodeProperty.Factory getUnicodePropertyFactory() {
-        if (source == null) source = ICUPropertyFactory.make();
+        if (source == null) source = IndexUnicodeProperties.make();
         return source;
     }
 

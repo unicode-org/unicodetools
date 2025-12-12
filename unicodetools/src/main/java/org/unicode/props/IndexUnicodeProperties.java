@@ -813,6 +813,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         @Override
+        protected String _getValue(String string) {
+            return _getRawUnicodeMap().get(string);
+        }
+
+        @Override
         public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
             if (baseVersionProperties == null) {
                 return super.getSet(matcher, result);
@@ -853,6 +858,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             } else {
                 return rawValue;
             }
+        }
+
+        public List<String> getApprovedNameAliases() {
+            var result = new ArrayList<String>();
+            result.add(prop.getShortName());
+            result.add(prop.getNames().getLongName());
+            result.addAll(prop.getNames().getOtherNames());
+            return result;
         }
 
         @Override
