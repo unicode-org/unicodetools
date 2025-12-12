@@ -1,5 +1,5 @@
 # PropList-18.0.0.txt
-# Date: 2025-11-30, 16:57:44 GMT
+# Date: 2025-12-12, 00:05:04 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -704,6 +704,10 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 10D24..10D27  ; Other_Alphabetic # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
 10D69         ; Other_Alphabetic # Mn       GARAY VOWEL SIGN E
 10EAB..10EAC  ; Other_Alphabetic # Mn   [2] YEZIDI COMBINING HAMZA MARK..YEZIDI COMBINING MADDA MARK
+10ECB..10ECD  ; Other_Alphabetic # Mn   [3] ARABIC NORTHEAST POINTING ARROWHEAD ABOVE..ARABIC SOUTHWEST POINTING ARROWHEAD BELOW
+10EF3         ; Other_Alphabetic # Mn       ARABIC SMALL HIGH NOON WITH FATHA
+10EF5         ; Other_Alphabetic # Mn       ARABIC SMALL HIGH NOON WITH DAMMA
+10EF7..10EF8  ; Other_Alphabetic # Mn   [2] ARABIC SMALL HIGH HEH INITIAL FORM..ARABIC SMALL HIGH WORD KABBIR
 10EFA..10EFC  ; Other_Alphabetic # Mn   [3] ARABIC DOUBLE VERTICAL BAR BELOW..ARABIC COMBINING ALEF OVERLAY
 11000         ; Other_Alphabetic # Mc       BRAHMI SIGN CANDRABINDU
 11001         ; Other_Alphabetic # Mn       BRAHMI SIGN ANUSVARA
@@ -871,7 +875,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1513
+# Total code points: 1520
 
 # ================================================
 
@@ -1099,6 +1103,9 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 10D24..10D27  ; Diacritic # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
 10D4E         ; Diacritic # Lm       GARAY VOWEL LENGTH MARK
 10D69..10D6D  ; Diacritic # Mn   [5] GARAY VOWEL SIGN E..GARAY CONSONANT NASALIZATION MARK
+10ECB         ; Diacritic # Mn       ARABIC NORTHEAST POINTING ARROWHEAD ABOVE
+10ECE..10ECF  ; Diacritic # Mn   [2] ARABIC SMALL CIRCLE ABOVE..ARABIC LARGE CIRCLE ABOVE
+10EF0..10EF2  ; Diacritic # Mn   [3] ARABIC SMALL LOW UPRIGHT RECTANGULAR ZERO..ARABIC FILLED SQUARE BELOW
 10EFA         ; Diacritic # Mn       ARABIC DOUBLE VERTICAL BAR BELOW
 10EFD..10EFF  ; Diacritic # Mn   [3] ARABIC SMALL LOW WORD SAKTA..ARABIC SMALL LOW WORD MADDA
 10F46..10F50  ; Diacritic # Mn  [11] SOGDIAN COMBINING DOT BELOW..SOGDIAN COMBINING STROKE BELOW
@@ -1179,7 +1186,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1317
+# Total code points: 1323
 
 # ================================================
 
@@ -1963,8 +1970,10 @@ FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 08CD..08CF    ; Modifier_Combining_Mark # Mn   [3] ARABIC SMALL HIGH ZAH..ARABIC LARGE ROUND DOT BELOW
 08D3          ; Modifier_Combining_Mark # Mn       ARABIC SMALL LOW WAW
 08F3          ; Modifier_Combining_Mark # Mn       ARABIC SMALL HIGH WAW
+10EF4         ; Modifier_Combining_Mark # Mn       ARABIC SMALL LOW NOON WITH FATHA
+10EF6         ; Modifier_Combining_Mark # Mn       ARABIC SMALL LOW NOON WITH DAMMA
 10EF9         ; Modifier_Combining_Mark # Mn       ARABIC MARK CROWN
 
-# Total code points: 15
+# Total code points: 17
 
 # EOF
