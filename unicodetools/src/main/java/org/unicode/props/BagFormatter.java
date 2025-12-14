@@ -741,48 +741,42 @@ public class BagFormatter {
         }
 
         private String insertLiteral(String thing) {
-            return (showLiteral == null
-                    ? ""
-                    : " \t(" + showLiteral.transliterate(thing) + showValue(thing) + ") ");
+            if (showLiteral == null) {
+                return "";
+            }
+            return " \t(" + showLiteral.transliterate(thing) + showValue(thing);
         }
 
         private String showValue(String source) {
-            return showValueInComment
-                    ? " ⇒ "
-                            + showLiteral.transliterate(
-                                    getValueSource().getValue(source.codePointAt(0), false))
-                    : "";
+            if (!showValueInComment) {
+                return ") ";
+            }
+            String value = getValueSource().getValue(source.codePointAt(0), false);
+            return " ⇒ " + showLiteral.transliterate(value) + ") ";
         }
 
         private String showValue(int start, int end) {
+            if (!showValueInComment) {
+                return ") ";
+            }
             String startValue = getValueSource().getValue(start, false);
             String endValue = getValueSource().getValue(end, false);
-            return showValueInComment
-                    ? " ⇒ "
-                            + showLiteral.transliterate(startValue)
-                            + (startValue != endValue
-                                    ? ".." + showLiteral.transliterate(endValue)
-                                    : "")
-                    : "";
+            return " ⇒ "
+                    + showLiteral.transliterate(startValue)
+                    + (startValue == endValue
+                            ? ")      "
+                            : ".." + showLiteral.transliterate(endValue) + ") ");
         }
 
         private String insertLiteral(int start, int end, String value) {
-            return (showLiteral == null
-                    ? ""
-                    : " \t("
-                            + showLiteral.transliterate(UTF16.valueOf(start))
-                            + ((start != end)
-                                    ? (".." + showLiteral.transliterate(UTF16.valueOf(end)))
-                                    : "")
-                            + showValue(start, end)
-                            + ") ");
+            if (showLiteral == null) {
+                return "";
+            }
+            return " \t("
+                    + showLiteral.transliterate(UTF16.valueOf(start))
+                    + (start == end ? "" : (".." + showLiteral.transliterate(UTF16.valueOf(end))))
+                    + showValue(start, end);
         }
-        /*
-        private String insertLiteral(int cp) {
-            return (showLiteral == null ? ""
-                :  " \t(" + showLiteral.transliterate(UTF16.valueOf(cp)) + ") ");
-        }
-         */
     }
 
     /**
