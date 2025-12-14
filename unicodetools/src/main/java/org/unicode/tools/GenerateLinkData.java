@@ -25,6 +25,7 @@ import java.util.function.Consumer;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Rational.MutableLong;
+import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -199,6 +200,7 @@ class GenerateLinkData {
         System.out.println("TLDs=\t" + Joiner.on(' ').join(LinkUtilities.TLDS));
 
         BagFormatter bf = new BagFormatter(LinkUtilities.IUP).setLineSeparator("\n");
+        bf.setShowLiteral(TransliteratorUtilities.toHTMLControl);
 
         // LinkTerm.txt
 
@@ -219,16 +221,6 @@ class GenerateLinkData {
             throw new UncheckedIOException(e);
         }
 
-        // LinkBracket.txt
-        bf.setValueSource(LinkUtilities.getLinkPairedOpener());
-        try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkBracket.txt"); ) {
-            writePropHeader(out, HEADER_PROP_STRING, "LinkBracket", "Link_Bracket", "undefined");
-            bf.showSetNames(out, LinkTermination.Close.base);
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        }
-
         // LinkEmail.txt
         bf.setValueSource(LinkUtilities.LinkEmail);
         try (final PrintWriter out =
@@ -242,6 +234,18 @@ class GenerateLinkData {
             UnicodeSet linkEmailSet = LinkUtilities.LinkEmail.getSet(UcdPropertyValues.Binary.Yes);
             bf.showSetNames(out, linkEmailSet);
             System.out.println("LinkEmail=\t" + linkEmailSet.toPattern(false));
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+
+        // LinkBracket.txt
+        bf.setValueSource(LinkUtilities.getLinkBracket());
+        bf.setHexValue(true);
+        bf.setShowDehexedValue(true);
+        try (final PrintWriter out =
+                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkBracket.txt"); ) {
+            writePropHeader(out, HEADER_PROP_STRING, "LinkBracket", "Link_Bracket", "undefined");
+            bf.showSetNames(out, LinkTermination.Close.base);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }

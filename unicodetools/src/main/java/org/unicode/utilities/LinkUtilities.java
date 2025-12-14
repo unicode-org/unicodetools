@@ -223,11 +223,11 @@ public class LinkUtilities {
 
     private static UnicodeProperty LINK_PAIRED_OPENER;
 
-    public static UnicodeProperty getLinkPairedOpener() {
+    public static UnicodeProperty getLinkBracket() {
         if (LINK_PAIRED_OPENER == null) {
             UnicodeMap<String> temp = new UnicodeMap<>();
             for (int cp : LinkTermination.Close.base.codePoints()) {
-                temp.put(cp, Utility.hex(getOpening(cp), 4));
+                temp.put(cp, Character.toString(getOpening(cp)));
             }
 
             LINK_PAIRED_OPENER =
