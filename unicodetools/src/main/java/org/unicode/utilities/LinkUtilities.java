@@ -195,9 +195,8 @@ public class LinkUtilities {
     static final UnicodeSet EMAIL_EXCLUDES =
             new UnicodeSet("[\\u0020 ; \\: \" ( ) \\[ \\] @ \\\\ < >]").freeze();
     static final UnicodeSet validEmailLocalPart =
-            new UnicodeSet(LinkTermination.Include.getBase())
+            new UnicodeSet("[\\p{XID_Continue}\\p{block=basic_latin}-\\p{Cc}]")
                     .removeAll(EMAIL_EXCLUDES)
-                    .add('.')
                     .freeze();
     public static final UnicodeProperty LinkEmail =
             new UnicodeSetProperty()
