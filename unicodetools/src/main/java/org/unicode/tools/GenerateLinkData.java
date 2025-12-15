@@ -294,8 +294,9 @@ class GenerateLinkData {
                                                     + expected
                                                     + "\nactual:  \t"
                                                     + actual);
-                                   LinkUtilities.addBracesAroundDetectedLink(base); // for debugging
-                                   return;
+                                    // for debugging
+                                    LinkUtilities.addBracesAroundDetectedLink(base);
+                                    return;
                                 }
 
                                 out.println((ADDTEST ? (line + "\t") : "") + actual);
@@ -326,7 +327,8 @@ class GenerateLinkData {
                                                     + expected
                                                     + "\nactual:  \t"
                                                     + actual);
-                                    LinkUtilities.addBracesAroundDetectedLink(base); // for debugging
+                                    // for debugging
+                                    LinkUtilities.addBracesAroundDetectedLink(base);
                                     return;
                                 }
                                 out.println(actual);

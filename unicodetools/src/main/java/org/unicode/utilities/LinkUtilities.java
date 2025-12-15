@@ -247,7 +247,7 @@ public class LinkUtilities {
         HOST('\u0000', "[/?#]", "[]", "[]"),
         PATH('/', "[?#]", "[/]", "[]"),
         QUERY('?', "[#]", "[=\\&]", "[+]"),
-        FRAGMENT('#', "[]", "[]", "[]");
+        FRAGMENT('#', "[]", "[]", "[\\{:~\\}]");
         final int initiator;
         final UnicodeSet terminators;
         final UnicodeSet clearStack;
@@ -325,6 +325,8 @@ public class LinkUtilities {
         public String unescape(String substring) {
             return LinkUtilities.unescape(substring, extraQuoted);
         }
+
+        static final int[] FRAGMENT_DIRECTIVE = ":~:".codePoints().toArray();
     }
 
     private static final UnicodeSet idnMapped =
@@ -458,6 +460,7 @@ public class LinkUtilities {
         int[] codePoints = source.codePoints().toArray();
         int lastSafe = codePointOffset;
         Part part = null;
+
         Stack<Integer> openingStack = new Stack<>();
         LinkTermination lt = LinkTermination.Soft;
         for (int i = codePointOffset; i < codePoints.length; ++i) {
@@ -481,8 +484,11 @@ public class LinkUtilities {
                 }
                 lastSafe = i + 1;
                 continue;
-            } else if (part.clearStack.contains(cp)) { // TODO, enhance for strings
-            	openingStack.clear();
+            } else if (part.clearStack.contains(cp)) {
+                openingStack.clear();
+            } else if (part == Part.FRAGMENT && matches(codePoints, i, Part.FRAGMENT_DIRECTIVE)) {
+                // there is one string form, so hard-code it
+                openingStack.clear();
             }
             switch (lt) {
                 case Include:
@@ -511,6 +517,19 @@ public class LinkUtilities {
         }
         // if we hit the end, it acts like we hit a hard character ***
         return lt == LinkTermination.Soft ? lastSafe : codePoints.length;
+    }
+
+    /** Simple utility for finding matching int array regions */
+    private static boolean matches(int[] codePoints, int cpIndex, int[] fragmentDirective) {
+        if (cpIndex + fragmentDirective.length > codePoints.length) {
+            return false;
+        }
+        for (int i = 0; i < fragmentDirective.length; ++i) {
+            if (codePoints[i + cpIndex] != fragmentDirective[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
