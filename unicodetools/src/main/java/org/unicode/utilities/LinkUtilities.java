@@ -472,15 +472,20 @@ public class LinkUtilities {
             }
 
             lt = LinkTermination.PROPERTY_MAP.get(cp);
+            // handle terminators and interior syntax
+            if (part.terminators.contains(cp)) {
+                lastSafe = i;
+                part = Part.fromInitiator(cp);
+                if (part == null) {
+                    return lastSafe;
+                }
+                lastSafe = i + 1;
+                continue;
+            } else if (part.clearStack.contains(cp)) { // TODO, enhance for strings
+            	openingStack.clear();
+            }
             switch (lt) {
                 case Include:
-                    if (part.terminators.contains(cp)) {
-                        lastSafe = i;
-                        part = Part.fromInitiator(cp);
-                        if (part == null) {
-                            return lastSafe;
-                        }
-                    }
                     lastSafe = i + 1;
                     break;
                 case Soft: // no action
