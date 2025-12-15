@@ -499,7 +499,7 @@ public class LinkUtilities {
                 case Hard:
                     return lastSafe;
                 case Open:
-                	// We're not testing for stack limits; not needed for test data
+                    // We're not testing for stack limits; not needed for test data
                     openingStack.push(cp);
                     lastSafe = i + 1;
                     break;
