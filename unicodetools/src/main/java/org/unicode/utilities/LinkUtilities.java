@@ -1028,6 +1028,10 @@ public class LinkUtilities {
                             hardStart = linkEnd;
                             continue; // scan again, skipping the URL after
                         }
+                        if (mailToStart > hardStart && localPart.startsWith("//") && source.codePointBefore(mailToStart) == ':') {
+                            hardStart = linkEnd;
+                            continue; // scan again, skipping the URL after
+                        }
                         // check for mailto: beforehand
                         linkStart = backupIfAfter("mailto:", mailToStart);
                         // do this so we don't include items after the domain name.

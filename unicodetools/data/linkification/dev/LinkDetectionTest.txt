@@ -1,5 +1,5 @@
 # LinkDetectionTest.txt
-# Date: 2025-12-15, 01:34:55 GMT 
+# Date: 2025-12-15, 02:18:18 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -111,6 +111,27 @@ See "john\ ⸠doe@example.com⸡"
 
 See ⸠example.com:1234/forum/questions/?tag=new&order=newest#top⸡ on…
 See ⸠john.doe@example.com⸡:1234/forum/questions/?tag=new&order=newest#top on…
+
+
+⸠john.smith@example.com⸡
+⸠john.smith@example.com⸡/foo/bar
+
+john..smith@example.com
+john..smith@example.com/foo/bar
+
+⸠mailto:john.smith@example.com⸡
+⸠mailto:john.smith@example.com⸡/foo/bar
+
+mailto:john..smith@example.com
+mailto:john..smith@example.com/foo/bar
+
+# The following are strange. the "john.smith" could be a valid userinfo, except that that is deprecated for security
+
+http://john.smith@example.com
+http://john.smith@example.com/foo/bar
+
+http://john..smith@example.com
+http://john..smith@example.com/foo/bar
 
 # Sample pages from https://meta.wikimedia.org/wiki/List_of_articles_every_Wikipedia_should_have
 

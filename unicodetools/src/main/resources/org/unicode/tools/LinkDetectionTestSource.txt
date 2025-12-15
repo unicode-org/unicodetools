@@ -88,6 +88,27 @@ See "john\ doe@example.com"
 See example.com:1234/forum/questions/?tag=new&order=newest#top on…	See ⸠example.com:1234/forum/questions/?tag=new&order=newest#top⸡ on…
 See john.doe@example.com:1234/forum/questions/?tag=new&order=newest#top on…	See ⸠john.doe@example.com⸡:1234/forum/questions/?tag=new&order=newest#top on…
 
+
+john.smith@example.com
+john.smith@example.com/foo/bar
+
+john..smith@example.com
+john..smith@example.com/foo/bar
+
+mailto:john.smith@example.com
+mailto:john.smith@example.com/foo/bar
+
+mailto:john..smith@example.com
+mailto:john..smith@example.com/foo/bar
+
+# The following are strange. the "john.smith" could be a valid userinfo, except that that is deprecated for security
+
+http://john.smith@example.com
+http://john.smith@example.com/foo/bar
+
+http://john..smith@example.com
+http://john..smith@example.com/foo/bar
+
 # Sample pages from https://meta.wikimedia.org/wiki/List_of_articles_every_Wikipedia_should_have
 
 https://als.wikipedia.org/wiki/Wikipedia:Artikel,_wos_i_allne_Wikipedene_gee_sött
