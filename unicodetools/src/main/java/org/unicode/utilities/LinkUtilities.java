@@ -975,8 +975,8 @@ public class LinkUtilities {
                     }
                     //                    if (nextCp != 0 &&
                     // !PATH_QUERY_OR_FRAGMENT_START.contains(nextCp)) { // backup unless continuing
-                    //                    	nextCp = '.';
-                    //                    	linkEnd--;
+                    //                     nextCp = '.';
+                    //                     linkEnd--;
                     //                    }
 
                     if (nextCp == ':') {
