@@ -1028,7 +1028,9 @@ public class LinkUtilities {
                             hardStart = linkEnd;
                             continue; // scan again, skipping the URL after
                         }
-                        if (mailToStart > hardStart && localPart.startsWith("//") && source.codePointBefore(mailToStart) == ':') {
+                        if (mailToStart > hardStart
+                                && localPart.startsWith("//")
+                                && source.codePointBefore(mailToStart) == ':') {
                             hardStart = linkEnd;
                             continue; // scan again, skipping the URL after
                         }

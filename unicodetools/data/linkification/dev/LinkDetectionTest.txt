@@ -1,5 +1,5 @@
 # LinkDetectionTest.txt
-# Date: 2025-12-15, 02:18:18 GMT 
+# Date: 2025-12-15, 06:34:31 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -26,8 +26,7 @@
 
 ## Sample uppercase
 See ⸠TEST.COM⸡ on…
-See ⸠FOO.VERMöGENSBERATER⸡ on…
-See ⸠FOO.VERMöGEN.com⸡ on…
+See ⸠FOO.VERMÖGEN.com⸡ on…
 
 # Illegal domain names
 See http://.foo.example.com/αβγ on…
@@ -64,11 +63,10 @@ See ⸠example.com/αβ⸡) on…
 See ⸠example.com/α(β)⸡ on…
 
 # Include when matching across interior syntax
-See ⸠example.com/αβ(γ/δ)ρς?θικ#λμν⸡ on…
 
 ⸠https://ja.wikipedia.org/wiki/フィンセント・ファン・ゴッホ⸡
 ⸠https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%B3%E3%82%BB%E3%83%B3%E3%83%88%E3%83%BB%E3%83%95%E3%82%A1%E3%83%B3%E3%83%BB%E3%82%B4%E3%83%83%E3%83%9B⸡
-⸠abc.com⸡ ⸠deΩ.uk⸡ .fr abc.ukx, ⸠foo.accountants⸡ ⸠foo.香港⸡
+⸠abc.com⸡ ⸠deΩ.uk⸡ .fr ⸠foo.accountants⸡ ⸠foo.香港⸡
 ⸠abc.com/d/e?xyz#w⸡
 ⸠abc.XN--11B4C3D⸡
 

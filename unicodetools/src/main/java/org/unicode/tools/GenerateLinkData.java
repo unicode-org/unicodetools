@@ -165,18 +165,25 @@ class GenerateLinkData {
     static final SimpleFormatter HEADER_FORMAT_TEST =
             SimpleFormatter.compile(
                     HEADER_BASE
-                            + "# Format: Each line has the following fields:\n"
-                            + "# Scheme/host\n"
-                            + "# Path\n"
-                            + "# Query\n"
-                            + "# Fragment\n"
-                            + "# Result — with minimal escaping\n"
+                            + "# Format: Each line has the following fields, separated by semicolons.\n"
+                            + "# Field 0: Scheme/host\n"
+                            + "# Field 1: Path\n"
+                            + "# Field 2: Query\n"
+                            + "# Field 3: Fragment\n"
+                            + "# Field 4: Result — with minimal escaping\n"
                             + "#\n"
                             + "# Empty lines, and lines starting with # are ignored.\n"
+                            + "# Spaces around the semicolons are ignored.\n"
                             + "# Otherwise # is treated like any other character.\n"
                             + "#\n"
-                            + "# The Path, Query, and Fragment may contain backslash escapes when characters would otherwise be \n"
-                            + "# internal syntax characters in that part. For example, a literal / within a path segments would be \\/.\n"
+                            + "# The Path, Query, and Fragment will contain backslash escapes when characters would otherwise be \n"
+                            + "# internal syntax characters in *that* part. \n"
+                            + "# For example, consider ?a=b\\&c&d=ef\n"
+                            + "# This represents the key-value pairs:\n"
+                            + "# - <\"a\", \"b&c\">\n"
+                            + "# - <\"d\", \"ef\">\n"
+                            + "# The \\& in the value of the first key-value pair does not represent a separator between key-value pairs, \n"
+                            + "# but rather a literal & in the string value \"b&c\".\n"
                             + "# ================================================\n");
 
     static void writePropHeader(
