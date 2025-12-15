@@ -1021,17 +1021,20 @@ public class LinkUtilities {
                                         domainStart - 1);
                         // fail in illegal cases: .joe.jones, joe.jones. joe..jones
                         String localPart = source.substring(mailToStart, domainStart - 1);
-                        if (!localPart.startsWith(".")
-                                && !localPart.endsWith(".")
-                                && !localPart.contains("..")) {
-                            // check for mailto: beforehand
-                            linkStart = backupIfAfter("mailto:", mailToStart);
-                            linkEnd =
-                                    emailEnd; // do this so we don't include items after the domain
-                            // name.
-                            hardStart = linkEnd; // prepare for next next()
-                            return true;
+                        if (localPart.startsWith(".")
+                                || localPart.endsWith(".")
+                                || localPart.contains("..")) {
+                            // prepare for next next() by skipping rest of domain link
+                            hardStart = linkEnd;
+                            continue; // scan again, skipping the URL after
                         }
+                        // check for mailto: beforehand
+                        linkStart = backupIfAfter("mailto:", mailToStart);
+                        // do this so we don't include items after the domain name.
+                        hardStart = linkEnd;
+                        // we don't want to include anything after the domain
+                        linkEnd = emailEnd;
+                        return true;
                     }
                 }
 

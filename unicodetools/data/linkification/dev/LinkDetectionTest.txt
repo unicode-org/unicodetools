@@ -1,5 +1,5 @@
 # LinkDetectionTest.txt
-# Date: 2025-12-14, 06:39:23 GMT 
+# Date: 2025-12-15, 01:34:55 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -76,9 +76,34 @@ See ⸠example.com/αβ(γ/δ)ρς?θικ#λμν⸡ on…
 
 See ⸠αβγ.δεζ@example.com⸡ on…
 See ⸠mailto:αβγ.δεζ@example.com⸡ on…
-See mailto:αβγ.δεζ.@⸠example.com⸡ on…
-See mailto:αβγ..δεζ@⸠example.com⸡ on…
-See mailto:.αβγ.δεζ@⸠example.com⸡ on…
+
+# If a local-part is invalid, skip the domain name
+See mailto:αβγ.δεζ.@example.com on…
+See mailto:αβγ..δεζ@example.com on…
+See mailto:.αβγ.δεζ@example.com on…
+
+#Stop backing up when a space is hit
+See ⸠abcd@example.com⸡
+
+#Include the medial dot
+See ⸠x.abcd@example.com⸡.
+
+#Handle non-ASCII
+See ⸠アルベルト.アルベルト@example.com⸡
+ 
+#No valid domain name
+See @example.😎
+
+# No local-part
+See ⸠@example.com⸡
+
+# No valid local-part
+See john.@example.com
+See .john@example.com
+See ..john.doe@example.com
+
+#Quoted local-parts (not in the base algorithm).
+See "john\ ⸠doe@example.com⸡"
 
 # Note that john.doe@example.com is ambiguous: it could be an email address, or it could be a URL with a userinfo
 # The latter, however, is extremely rare, so always favor the email address.

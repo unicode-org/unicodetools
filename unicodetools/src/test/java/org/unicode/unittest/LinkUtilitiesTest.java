@@ -163,9 +163,15 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
                 "Escape soft ('.') unless followed by include"
             },
             {"a(v))", "g(d))", "e(z))", "/a(v)%29?g(d)%29#e(z)%29", "Escape unmatched brackets"},
-            {"", "a%3D%26%=%3D%26%", "", "?a%3D%26%=%3D%26%", "Query with escapes"},
-            {"a/v%2Fg", "", "", "/a/v%2Fg", "Path with escapes"},
-            {"", "a%3D%26%=%3D%26%", "", "?a%3D%26%=%3D%26%", "Query with escapes"},
+            {
+                "",
+                "a%3D%26%=%3D%26%",
+                "",
+                "?a%253D%2526%=%253D%2526%",
+                "Query with escapes. %xx needs to go to %25xx if xx is hex"
+            },
+            {"a/v%2F%g", "", "", "/a/v%252F%g", "Path with escapes"},
+            {"", "a%3D%26%=%3D%26%", "", "?a%253D%2526%=%253D%2526%", "Query with escapes"},
         };
         List<List<String>> testLines = new ArrayList<>();
         int line = 0;
