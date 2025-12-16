@@ -27,7 +27,6 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Rational.MutableLong;
 import org.unicode.cldr.util.props.UnicodeLabel;
-import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -49,9 +48,13 @@ import org.unicode.utilities.LinkUtilities.Part;
  */
 class GenerateLinkData {
 
-    private static final Transliterator FIX_ODD = Transliterator.createFromRules("any-html", ":: [[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]] hex/unicode ; ", Transliterator.FORWARD);
+    private static final Transliterator FIX_ODD =
+            Transliterator.createFromRules(
+                    "any-html",
+                    ":: [[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]] hex/unicode ; ",
+                    Transliterator.FORWARD);
 
-	private static final boolean ADDTEST = false; // set to true to generate LinkDetectionTestSource
+    private static final boolean ADDTEST = false; // set to true to generate LinkDetectionTestSource
 
     private static final Joiner JOIN_SEMI_SP = Joiner.on(" ;\t");
     private static final Splitter SPLIT_TABS = Splitter.on('\t').omitEmptyStrings().trimResults();
@@ -145,8 +148,8 @@ class GenerateLinkData {
                             + "#\n"
                             + "#  All code points not explicitly listed for {3}\n"
                             + "#  have the value {4}.\n"
-//                            + "#\n"
-//                            + "# @missing: 0000..10FFFF; {4}\n"
+                            //                            + "#\n"
+                            //                            + "# @missing: 0000..10FFFF; {4}\n"
                             + "#\n"
                             + "# ================================================\n");
 
@@ -422,7 +425,7 @@ class GenerateLinkData {
                                     return;
                                 }
                                 if (line.contains(";")) { // skip any url with a ; in it
-                                	return;
+                                    return;
                                 }
                                 int lastCodePoint = line.codePointBefore(line.length());
                                 String rest =

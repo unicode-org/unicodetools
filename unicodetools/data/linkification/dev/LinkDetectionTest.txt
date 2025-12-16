@@ -1,5 +1,5 @@
 # LinkDetectionTest.txt
-# Date: 2025-12-16, 17:57:01 GMT 
+# Date: 2025-12-16, 20:06:36 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -23,15 +23,15 @@
 
 # Misc. test cases
 
-# Implementations may differ as to whether they linkify text where the TLD is invalid (not listed in  IANA's tlds-alpha-by-domain.txt)
-# So this is not specifically tested for
-# a test.invalid b
+# Implementations may differ as to whether they linkify text where the TLD is not listed in  IANA's tlds-alpha-by-domain.txt, such as example.invalid
+See example.😎  on…
+See .fr on…
 
 # Sample uppercase
 See ⸠TEST.COM⸡ on…
 See ⸠FOO.VERMÖGEN.com⸡ on…
 
-# Illegal domain names
+# Illegal domain names, so not linked
 See http://.foo.example.com/αβγ on…
 See http://foo..example.com/αβγ on…
 See http://-foo.example-.com. on…
@@ -64,7 +64,6 @@ See ⸠example.com/αβ⸡) on…
 
 # Include matched bracket
 See ⸠example.com/α(β)⸡ on…
-
 See ⸠example.com/αβγ/δρς?α=θ&β=κ#λμν:~:text=φχψ⸡ on…
 
 # Continue past matching brackets within same part and not across interior syntax
@@ -85,7 +84,7 @@ See ⸠example.com/αβγ/δρς?α=θ&β=κ#λμ(ν:~:text=φχ⸡)ψ on…
 
 ⸠https://ja.wikipedia.org/wiki/フィンセント・ファン・ゴッホ⸡
 ⸠https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%B3%E3%82%BB%E3%83%B3%E3%83%88%E3%83%BB%E3%83%95%E3%82%A1%E3%83%B3%E3%83%BB%E3%82%B4%E3%83%83%E3%83%9B⸡
-⸠abc.com⸡ ⸠deΩ.uk⸡ .fr ⸠foo.accountants⸡ ⸠foo.香港⸡
+⸠abc.com⸡ ⸠deΩ.uk⸡ ⸠foo.accountants⸡ ⸠foo.香港⸡
 ⸠abc.com/d/e?xyz#w⸡
 ⸠abc.XN--11B4C3D⸡
 
@@ -108,19 +107,17 @@ See ⸠x.abcd@example.com⸡.
 #Handle non-ASCII
 See ⸠アルベルト.アルベルト@example.com⸡
  
-#No valid domain name
+#Invalid domain name, so not linked
 See @example.😎
 
-# No local-part
-See ⸠@example.com⸡
-
-# No valid local-part
+# No valid local-part, so not linked
+See @example.com
 See john.@example.com
 See .john@example.com
 See ..john.doe@example.com
 
-#Quoted local-parts (not in the base algorithm).
-See "john\ doe"⸠@example.com⸡
+#Quoted local-part, so not linked (in the base algorithm)
+See "john\ doe"@example.com
 
 # Note that john.doe@example.com is ambiguous: it could be an email address, or it could be a URL with a userinfo
 # The latter, however, is extremely rare, so always favor the email address.

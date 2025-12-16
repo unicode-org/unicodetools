@@ -1046,7 +1046,8 @@ public class LinkUtilities {
                                         domainStart - 1);
                         // fail in illegal cases: .joe.jones, joe.jones. joe..jones
                         String localPart = source.substring(mailToStart, domainStart - 1);
-                        if (localPart.startsWith(".")
+                        if (localPart.isEmpty()
+                                || localPart.startsWith(".")
                                 || localPart.endsWith(".")
                                 || localPart.contains("..")) {
                             // prepare for next next() by skipping rest of domain link
