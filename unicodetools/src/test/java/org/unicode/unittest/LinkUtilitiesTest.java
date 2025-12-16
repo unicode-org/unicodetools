@@ -66,7 +66,7 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
             {"/a(v)", "/a(v)⸡", "Include matched bracket"},
             {
                 "/av(g/d)rs?thik#lmn",
-                "/av(g/d)rs?thik#lmn⸡",
+                "/av(g/d⸡)rs?thik#lmn",
                 "Includes matching across interior syntax — consider changing"
             },
         };
