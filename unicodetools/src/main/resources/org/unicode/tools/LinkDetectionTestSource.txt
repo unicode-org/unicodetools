@@ -1,6 +1,8 @@
-# Misc. test cases
+# Implementations may differ as to whether they linkify text where the TLD is invalid (not listed in  IANA's tlds-alpha-by-domain.txt)
+# So this is not specifically tested for
+# a test.invalid b
 
-## Sample uppercase
+# Sample uppercase
 See TEST.COM on…	See ⸠TEST.COM⸡ on…
 See FOO.VERMÖGEN.com on…	See ⸠FOO.VERMÖGEN.com⸡ on…
 

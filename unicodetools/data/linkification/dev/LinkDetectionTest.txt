@@ -1,5 +1,5 @@
 # LinkDetectionTest.txt
-# Date: 2025-12-15, 21:53:25 GMT 
+# Date: 2025-12-16, 01:20:14 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -22,9 +22,11 @@
 
 # Misc. test cases
 
-# Misc. test cases
+# Implementations may differ as to whether they linkify text where the TLD is invalid (not listed in  IANA's tlds-alpha-by-domain.txt)
+# So this is not specifically tested for
+# a test.invalid b
 
-## Sample uppercase
+# Sample uppercase
 See ⸠TEST.COM⸡ on…
 See ⸠FOO.VERMÖGEN.com⸡ on…
 
@@ -362,7 +364,6 @@ http://john..smith@example.com/foo/bar
 
 # Test cases contributed by ICANN
 
-a test.invalid b
 a ⸠blogspot.com⸡ b
 a com b
 a ⸠example.com:443⸡ b

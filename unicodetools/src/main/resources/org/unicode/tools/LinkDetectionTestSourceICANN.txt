@@ -1,8 +1,5 @@
 ## Original file is from ICANN
 ## There are some modifications, after a ## comment explaining the reason
-# Hm... PublicSuffix accepts .invalid as a valid TLD.
-## invalid is not a TLD
-a test.invalid b	a test.invalid b
 
 # If PublicSuffix is used, links to blogspot.com and .com need testing
 a blogspot.com b	a ⸠blogspot.com⸡ b
