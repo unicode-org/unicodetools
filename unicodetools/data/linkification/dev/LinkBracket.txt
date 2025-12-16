@@ -1,5 +1,5 @@
 # LinkBracket.txt
-# Date: 2025-12-14, 06:39:23 GMT 
+# Date: 2025-12-16, 17:57:01 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -15,20 +15,20 @@
 # Field 1: code point
 #          For more information, see https://www.unicode.org/reports/tr58/#property-data. 
 #
-# For the purpose of link detection and formatting operations, the property Link_Bracket is defined as
-# a string property whose value is either a single code point or is undefined.
+# For the purpose of regular expressions, the property Link_Bracket is defined as
+# a string property whose value is either a single code point or is <none>.
 #
 # The short name of the property is the same as its long name.
 #
 #  All code points not explicitly listed for Link_Bracket
-#  have the value undefined.
+#  have the value <none>.
 #
-# @missing: 0000..10FFFF; undefined
+# @missing: 0000..10FFFF; <none>
 #
 # ================================================
 
 0029          ; 0028 #1.1     () ⇒ ()       RIGHT PARENTHESIS
-003E          ; 003C #1.1     (&gt; ⇒ &lt;)       GREATER-THAN SIGN
+003E          ; 003C #1.1     (> ⇒ <)       GREATER-THAN SIGN
 005D          ; 005B #1.1     (] ⇒ [)       RIGHT SQUARE BRACKET
 007D          ; 007B #1.1     (} ⇒ {)       RIGHT CURLY BRACKET
 0F3B          ; 0F3A #2.0     (༻ ⇒ ༺)       TIBETAN MARK GUG RTAGS GYAS

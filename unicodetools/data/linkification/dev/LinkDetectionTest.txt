@@ -1,5 +1,5 @@
 # LinkDetectionTest.txt
-# Date: 2025-12-16, 01:20:14 GMT 
+# Date: 2025-12-16, 17:57:01 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -11,7 +11,8 @@
 # Format:
 #   Each line contains zero or more marked links, such as ⸠abc.com⸡
 #
-# Operation:#   For each line.
+# Operation:
+#   For each line.
 #   • Create a copy of the line, with the characters ⸠ and ⸡ removed.
 #   • Run link detection on the line, inserting ⸠ and ⸡ around each detected link.
 #   • Report a failure if the result is not identical to the original line.
@@ -35,7 +36,7 @@ See http://.foo.example.com/αβγ on…
 See http://foo..example.com/αβγ on…
 See http://-foo.example-.com. on…
 
-# Legal but unusual. Because we might be at the end of a sentence, we don't include the . unless followed by [/$#]
+# Legal but unusual. Because we might be at the end of a sentence, we don't include the . unless followed by a Path, Query, or Fragment
 See ⸠http://foo.example.com⸡. on…
 See ⸠http://foo.example.com./αβγ⸡ on…
 
@@ -119,7 +120,7 @@ See .john@example.com
 See ..john.doe@example.com
 
 #Quoted local-parts (not in the base algorithm).
-See "john\ ⸠doe@example.com⸡"
+See "john\ doe"⸠@example.com⸡
 
 # Note that john.doe@example.com is ambiguous: it could be an email address, or it could be a URL with a userinfo
 # The latter, however, is extremely rare, so always favor the email address.

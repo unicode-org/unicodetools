@@ -11,7 +11,7 @@ See http://.foo.example.com/αβγ on…	See http://.foo.example.com/αβγ on�
 See http://foo..example.com/αβγ on…	See http://foo..example.com/αβγ on…
 See http://-foo.example-.com. on…	See http://-foo.example-.com. on…
 
-# Legal but unusual. Because we might be at the end of a sentence, we don't include the . unless followed by [/$#]
+# Legal but unusual. Because we might be at the end of a sentence, we don't include the . unless followed by a Path, Query, or Fragment
 See http://foo.example.com. on…	See ⸠http://foo.example.com⸡. on…
 See http://foo.example.com./αβγ on…	See ⸠http://foo.example.com./αβγ⸡ on…
 
@@ -95,7 +95,7 @@ See .john@example.com
 See ..john.doe@example.com
 
 #Quoted local-parts (not in the base algorithm).
-See "john\ doe@example.com"	
+See "john\ doe"@example.com
 
 # Note that john.doe@example.com is ambiguous: it could be an email address, or it could be a URL with a userinfo
 # The latter, however, is extremely rare, so always favor the email address.

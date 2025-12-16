@@ -1,5 +1,5 @@
 # LinkFormattingTest.txt
-# Date: 2025-12-15, 06:34:31 GMT 
+# Date: 2025-12-16, 17:57:01 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -16,8 +16,8 @@
 # Field 4: Result — with minimal escaping
 #
 # Empty lines, and lines starting with # are ignored.
-# Spaces around the semicolons are ignored.
 # Otherwise # is treated like any other character.
+# Spaces around the semicolons are ignored.
 #
 # The Path, Query, and Fragment will contain backslash escapes when characters would otherwise be 
 # internal syntax characters in *that* part. 
@@ -111,7 +111,6 @@ https:// ;	azb.wikipedia.org ;	/wiki/واشینقتن،_دی.سی. ;	 ;	 ;	https
 https:// ;	mad.wikipedia.org ;	/wiki/Tasè’ ;	 ;	 ;	https://mad.wikipedia.org/wiki/Tasè%E2%80%99
 https:// ;	wuu.wikipedia.org ;	/wiki/聖保羅（巴西） ;	 ;	 ;	https://wuu.wikipedia.org/wiki/聖保羅（巴西）
 https:// ;	vep.wikipedia.org ;	/wiki/Brüssel' ;	 ;	 ;	https://vep.wikipedia.org/wiki/Brüssel%27
-https:// ;	tw.wikipedia.org ;	/wiki/Wiase_Nyinaa_Wɛbsaet_(_World_Wide_Web;_WWW_) ;	 ;	 ;	https://tw.wikipedia.org/wiki/Wiase_Nyinaa_Wɛbsaet_(_World_Wide_Web;_WWW_)
 https:// ;	ja.wikibooks.org ;	/wiki/植物学/植物とはどのような生き物か？ ;	 ;	 ;	https://ja.wikibooks.org/wiki/植物学/植物とはどのような生き物か%EF%BC%9F
 https:// ;	bn.wikibooks.org ;	/wiki/উইকিশৈশব:দেশসমূহ_(অ-হ)/ইসরায়েল ;	 ;	 ;	https://bn.wikibooks.org/wiki/উইকিশৈশব:দেশসমূহ_(অ-হ)/ইসরায়েল
 https:// ;	haw.wikipedia.org ;	/wiki/Puke_noi‘i_kū‘ikena ;	 ;	 ;	https://haw.wikipedia.org/wiki/Puke_noi‘i_kū‘ikena

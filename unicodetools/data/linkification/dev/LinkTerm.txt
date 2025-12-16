@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2025-12-14, 06:39:23 GMT 
+# Date: 2025-12-16, 17:57:01 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -15,8 +15,8 @@
 # Field 1: a Link_Term value
 #          For more information, see https://www.unicode.org/reports/tr58/#property-data. 
 #
-# For the purpose of detection and formatting operations, the property Link_Term is defined as
-# mapping each code point to a set of enumerated values.
+# For the purpose of regular expressions, the property Link_Term is defined as
+# an enumerated property of code points.
 # The short name of the property is the same as its long name.
 # The possible values are:  Include, Hard, Soft, Close, Open
 #
@@ -29,7 +29,7 @@
 #
 # ================================================
 
-0021..0022    ; Soft    # 1.1   [2] (!..&quot;)  EXCLAMATION MARK..QUOTATION MARK
+0021..0022    ; Soft    # 1.1   [2] (!..")  EXCLAMATION MARK..QUOTATION MARK
 0027          ; Soft    # 1.1       (')  APOSTROPHE
 002C          ; Soft    # 1.1       (,)  COMMA
 002E          ; Soft    # 1.1       (.)  FULL STOP
@@ -170,7 +170,7 @@ FF64          ; Soft    # 1.1       (､)  HALFWIDTH IDEOGRAPHIC COMMA
 # Total code points: 330
 
 0029          ; Close   # 1.1       ())  RIGHT PARENTHESIS
-003E          ; Close   # 1.1       (&gt;)  GREATER-THAN SIGN
+003E          ; Close   # 1.1       (>)  GREATER-THAN SIGN
 005D          ; Close   # 1.1       (])  RIGHT SQUARE BRACKET
 007D          ; Close   # 1.1       (})  RIGHT CURLY BRACKET
 0F3B          ; Close   # 2.0       (༻)  TIBETAN MARK GUG RTAGS GYAS
@@ -237,7 +237,7 @@ FF63          ; Close   # 1.1       (｣)  HALFWIDTH RIGHT CORNER BRACKET
 # Total code points: 64
 
 0028          ; Open    # 1.1       (()  LEFT PARENTHESIS
-003C          ; Open    # 1.1       (&lt;)  LESS-THAN SIGN
+003C          ; Open    # 1.1       (<)  LESS-THAN SIGN
 005B          ; Open    # 1.1       ([)  LEFT SQUARE BRACKET
 007B          ; Open    # 1.1       ({)  LEFT CURLY BRACKET
 0F3A          ; Open    # 2.0       (༺)  TIBETAN MARK GUG RTAGS GYON
@@ -303,7 +303,7 @@ FF62          ; Open    # 1.1       (｢)  HALFWIDTH LEFT CORNER BRACKET
 
 # Total code points: 64
 
-0023..0026    ; Include # 1.1   [4] (#..&amp;)  NUMBER SIGN..AMPERSAND
+0023..0026    ; Include # 1.1   [4] (#..&)  NUMBER SIGN..AMPERSAND
 002A..002B    ; Include # 1.1   [2] (*..+)  ASTERISK..PLUS SIGN
 002D          ; Include # 1.1       (-)  HYPHEN-MINUS
 002F..0039    ; Include # 1.1  [11] (/..9)  SOLIDUS..DIGIT NINE

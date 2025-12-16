@@ -7,6 +7,7 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.SimpleFormatter;
+import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.OutputInt;
 import java.io.IOException;
@@ -25,6 +26,7 @@ import java.util.function.Consumer;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Rational.MutableLong;
+import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.UcdProperty;
@@ -47,7 +49,9 @@ import org.unicode.utilities.LinkUtilities.Part;
  */
 class GenerateLinkData {
 
-    private static final boolean ADDTEST = false; // set to true to generate LinkDetectionTestSource
+    private static final Transliterator FIX_ODD = Transliterator.createFromRules("any-html", ":: [[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]] hex/unicode ; ", Transliterator.FORWARD);
+
+	private static final boolean ADDTEST = false; // set to true to generate LinkDetectionTestSource
 
     private static final Joiner JOIN_SEMI_SP = Joiner.on(" ;\t");
     private static final Splitter SPLIT_TABS = Splitter.on('\t').omitEmptyStrings().trimResults();
@@ -89,8 +93,8 @@ class GenerateLinkData {
                             + "# Field 1: a {3} value\n"
                             + "#          For more information, see https://www.unicode.org/reports/tr58/#property-data. \n"
                             + "#\n"
-                            + "# For the purpose of detection and formatting operations, the property {3} is defined as\n"
-                            + "# mapping each code point to a set of enumerated values.\n"
+                            + "# For the purpose of regular expressions, the property {3} is defined as\n"
+                            + "# an enumerated property of code points.\n"
                             + "# The short name of the property is the same as its long name.\n"
                             + "# The possible values are:  Include, Hard, Soft, Close, Open\n"
                             + "#\n"
@@ -113,7 +117,7 @@ class GenerateLinkData {
                             + "# Field 1: code point\n"
                             + "#          For more information, see https://www.unicode.org/reports/tr58/#property-data. \n"
                             + "#\n"
-                            + "# For the purpose of link detection and formatting operations, the property {3} is defined as\n"
+                            + "# For the purpose of regular expressions, the property {3} is defined as\n"
                             + "# a string property whose value is either a single code point or is {4}.\n"
                             + "#\n"
                             + "# The short name of the property is the same as its long name.\n"
@@ -132,18 +136,17 @@ class GenerateLinkData {
                             + "# Format\n"
                             + "#\n"
                             + "# Field 0: code point range\n"
-                            + "# Field 1: binary value\n"
                             + "#          For more information, see https://www.unicode.org/reports/tr58/#property-data. \n"
                             + "#\n"
-                            + "# For the purpose of link detection and formatting operations, the property {3} is defined as\n"
+                            + "# For the purpose of regular expressions, the property {3} is defined as\n"
                             + "# a binary property.\n"
                             + "#\n"
                             + "# The short name of the property is the same as its long name.\n"
                             + "#\n"
                             + "#  All code points not explicitly listed for {3}\n"
                             + "#  have the value {4}.\n"
-                            + "#\n"
-                            + "# @missing: 0000..10FFFF; {4}\n"
+//                            + "#\n"
+//                            + "# @missing: 0000..10FFFF; {4}\n"
                             + "#\n"
                             + "# ================================================\n");
 
@@ -153,7 +156,7 @@ class GenerateLinkData {
                             + "# Format:\n"
                             + "#   Each line contains zero or more marked links, such as ⸠abc.com⸡\n"
                             + "#\n"
-                            + "# Operation:"
+                            + "# Operation:\n"
                             + "#   For each line.\n"
                             + "#   • Create a copy of the line, with the characters ⸠ and ⸡ removed.\n"
                             + "#   • Run link detection on the line, inserting ⸠ and ⸡ around each detected link.\n"
@@ -173,8 +176,8 @@ class GenerateLinkData {
                             + "# Field 4: Result — with minimal escaping\n"
                             + "#\n"
                             + "# Empty lines, and lines starting with # are ignored.\n"
-                            + "# Spaces around the semicolons are ignored.\n"
                             + "# Otherwise # is treated like any other character.\n"
+                            + "# Spaces around the semicolons are ignored.\n"
                             + "#\n"
                             + "# The Path, Query, and Fragment will contain backslash escapes when characters would otherwise be \n"
                             + "# internal syntax characters in *that* part. \n"
@@ -207,7 +210,7 @@ class GenerateLinkData {
         System.out.println("TLDs=\t" + Joiner.on(' ').join(LinkUtilities.TLDS));
 
         BagFormatter bf = new BagFormatter(LinkUtilities.IUP).setLineSeparator("\n");
-        bf.setShowLiteral(TransliteratorUtilities.toHTMLControl);
+        bf.setShowLiteral(FIX_ODD);
 
         // LinkTerm.txt
 
@@ -229,7 +232,7 @@ class GenerateLinkData {
         }
 
         // LinkEmail.txt
-        bf.setValueSource(LinkUtilities.LinkEmail);
+        bf.setValueSource(UnicodeLabel.NULL);
         try (final PrintWriter out =
                 FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkEmail.txt"); ) {
             writePropHeader(
@@ -251,7 +254,7 @@ class GenerateLinkData {
         bf.setShowDehexedValue(true);
         try (final PrintWriter out =
                 FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkBracket.txt"); ) {
-            writePropHeader(out, HEADER_PROP_STRING, "LinkBracket", "Link_Bracket", "undefined");
+            writePropHeader(out, HEADER_PROP_STRING, "LinkBracket", "Link_Bracket", "<none>");
             bf.showSetNames(out, LinkTermination.Close.base);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
@@ -417,6 +420,9 @@ class GenerateLinkData {
                                 int wikiStart = line.indexOf("/wiki/");
                                 if (wikiStart < 0) {
                                     return;
+                                }
+                                if (line.contains(";")) { // skip any url with a ; in it
+                                	return;
                                 }
                                 int lastCodePoint = line.codePointBefore(line.length());
                                 String rest =
