@@ -247,7 +247,12 @@ public class LinkUtilities {
         HOST('\u0000', "[/?#]", "[]", "[]"),
         PATH('/', "[?#]", "[/]", "[]"),
         QUERY('?', "[#]", "[=\\&]", "[+]"),
-        FRAGMENT('#', "[]", "[]", "[\\{:~\\}]");
+        FRAGMENT('#', "[]", "[]", "[{:~:}]"), // the :~: is handled by code
+        FRAGMENT_DIRECTIVE('\u0000', "[]", "[]", "[\\&,{:~:}]") // the :~: is handled by code
+    ;
+
+        static final int[] FRAGMENT_DIRECTIVE_STRING = ":~:".codePoints().toArray();
+
         final int initiator;
         final UnicodeSet terminators;
         final UnicodeSet clearStack;
@@ -325,8 +330,6 @@ public class LinkUtilities {
         public String unescape(String substring) {
             return LinkUtilities.unescape(substring, extraQuoted);
         }
-
-        static final int[] FRAGMENT_DIRECTIVE = ":~:".codePoints().toArray();
     }
 
     private static final UnicodeSet idnMapped =
@@ -337,10 +340,10 @@ public class LinkUtilities {
             new UnicodeSet(idnValid)
                     .addAll(idnMapped)
                     .removeAll(new UnicodeSet("[:Block=Basic_Latin:]"))
-                    .addAll(new UnicodeSet("[-a-zA-Z0-9..]"))
+                    .addAll(new UnicodeSet("[-a-zA-Z0-9.．。]")) // the three dots are different:
                     .freeze();
     public static final UnicodeSet validHostNoDot =
-            new UnicodeSet(validHost).remove('.').remove('.').freeze();
+            new UnicodeSet(validHost).removeAll(".．。").freeze();
 
     /** Status of link found. Note that if the link is imputed, https or mailto will be returned. */
     enum LinkStatus {
@@ -486,7 +489,8 @@ public class LinkUtilities {
                 continue;
             } else if (part.clearStack.contains(cp)) {
                 openingStack.clear();
-            } else if (part == Part.FRAGMENT && matches(codePoints, i, Part.FRAGMENT_DIRECTIVE)) {
+            } else if (part == Part.FRAGMENT
+                    && matches(codePoints, i, Part.FRAGMENT_DIRECTIVE_STRING)) {
                 // there is one string form, so hard-code it
                 openingStack.clear();
             }
