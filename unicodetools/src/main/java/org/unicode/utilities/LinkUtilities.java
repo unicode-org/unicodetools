@@ -39,8 +39,6 @@ import java.util.Stack;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.unicode.cldr.util.CLDRConfig;
-import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.props.IndexUnicodeProperties;
@@ -51,12 +49,15 @@ import org.unicode.props.UnicodeProperty.UnicodeSetProperty;
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-import org.unicode.utilities.LinkUtilities.LinkScanner;
 
 public class LinkUtilities {
+
+    public static final VersionInfo UNICODE_VERSION =
+            VersionInfo
+                    .UNICODE_17_0; // Hard coded until we do the first release, then change to dev.
+
     // allow changing UnicodeSet to use the current IndexUnicodeProperties
-    public static final IndexUnicodeProperties IUP =
-            IndexUnicodeProperties.make(VersionInfo.UNICODE_17_0);
+    public static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(UNICODE_VERSION);
 
     public static final boolean DEBUG = false;
     public static final boolean USE_CLDR = false;
@@ -77,8 +78,6 @@ public class LinkUtilities {
     public static final Joiner JOIN_EMPTY = Joiner.on("");
 
     static final UnicodeSet HEX = new UnicodeSet("[a-fA-F0-9]").freeze();
-
-    public static final CLDRFile ENGLISH = USE_CLDR ? CLDRConfig.getInstance().getEnglish() : null;
 
     private static final UnicodeSet SOFAR = new UnicodeSet();
 
@@ -143,7 +142,7 @@ public class LinkUtilities {
                         new UnicodeSet(
                                         uset,
                                         parsePosition,
-                                        VersionedSymbolTable.frozenAt(VersionInfo.UNICODE_17_0))
+                                        VersionedSymbolTable.frozenAt(UNICODE_VERSION))
                                 .freeze();
                 SOFAR.addAll(this.base);
             }
@@ -243,12 +242,13 @@ public class LinkUtilities {
 
     /** Parallels the spec parts table */
     public enum Part {
+        // initiator, terminators, clearStack
         PROTOCOL('\u0000', "[{//}]", "[]", "[]"),
         HOST('\u0000', "[/?#]", "[]", "[]"),
         PATH('/', "[?#]", "[/]", "[]"),
         QUERY('?', "[#]", "[=\\&]", "[+]"),
-        FRAGMENT('#', "[]", "[]", "[{:~:}]"), // the :~: is handled by code
-        FRAGMENT_DIRECTIVE('\u0000', "[]", "[]", "[\\&,{:~:}]") // the :~: is handled by code
+        FRAGMENT('#', "[]", "[{:~:}]", "[]"), // the :~: is handled by code
+        FRAGMENT_DIRECTIVE('\u0000', "[]", "[\\&,{:~:}]", "[]") // the :~: is handled by code
     ;
 
         static final int[] FRAGMENT_DIRECTIVE_STRING = ":~:".codePoints().toArray();

@@ -360,11 +360,7 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
 
     public String getLanguageName(String localeId) {
         try {
-            if (LinkUtilities.USE_CLDR) {
-                return LinkUtilities.ENGLISH.getName(localeId);
-            } else {
-                return ULocale.getDisplayName(localeId, "en");
-            }
+            return ULocale.getDisplayName(localeId, "en");
         } catch (Exception e1) {
             return null;
         }
