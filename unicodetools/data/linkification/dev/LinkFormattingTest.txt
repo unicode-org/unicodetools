@@ -1,5 +1,5 @@
 # LinkFormattingTest.txt
-# Date: 2025-12-16, 20:06:36 GMT 
+# Date: 2025-12-18, 01:51:28 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -86,8 +86,8 @@ https:// ;	example.com ;	 ;	 ;	ε(ζ) ;	https://example.com#ε(ζ)
 # Path with escapes (\/ is a literal /, %xx is escaped)
 https:// ;	example.com ;	α/β\/γ ;	 ;	 ;	https://example.com/α/β%2Fγ
 
-# Path with escapes (%xx is escaped iff x is hex)
-https:// ;	example.com ;	α/βγ%δ%61ε% ;	 ;	 ;	https://example.com/α/βγ%δ%2561ε%
+# Path with escapes (% is escaped only if followed by 2 hex digits [0-9A-fa-f)
+https:// ;	example.com ;	α/β%41γ%ε% ;	 ;	 ;	https://example.com/α/β%2541γ%ε%
 
 # Query with escapes (& separates key-value pairs, so handle literal &)	
 https:// ;	example.com ;	 ;	α\&=β&γ=\&δ ;	 ;	https://example.com?α%26=β&γ=%26δ
@@ -95,8 +95,12 @@ https:// ;	example.com ;	 ;	α\&=β&γ=\&δ ;	 ;	https://example.com?α%26=β&γ
 # Query with escapes (= separates keys and values, so handle literal &=)	
 https:// ;	example.com ;	 ;	α\=β=γ\=δ ;	 ;	https://example.com?α%3Dβ=γ%3Dδ
 
-# Query with escapes (%xx is escaped iff x is hex)	
-https:// ;	example.com ;	 ;	α%β%3D=γ%δ%3D ;	 ;	https://example.com?α%β%253D=γ%δ%253D
+# Query with escapes (% is escaped only if followed by 2 hex digits [0-9A-fa-f)
+https:// ;	example.com ;	 ;	α%β=γ%δ ;	 ;	https://example.com?α%β=γ%δ
+
+# Path and Query with quoted syntax characters
+https:// ;	example.com ;	α/b\/\?\#c ;	αβ=γ\&ζ\=\#Ξ&k=v ;	frag ;	https://example.com/α/b%2F%3F%23c?αβ=γ%26ζ%3D%23Ξ&k=v#frag
+
 
 # Wikipedia test cases
 
