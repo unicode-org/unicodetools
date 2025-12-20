@@ -663,7 +663,7 @@ public class LinkUtilities {
 
     public static String joinListEscaping(String sep, UnicodeSet toEscape, List<String> partParts) {
         return sep == null
-                ? escape(partParts.get(0),toEscape)
+                ? escape(partParts.get(0), toEscape)
                 : partParts.stream()
                         .map(
                                 x -> {

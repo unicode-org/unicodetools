@@ -1,34 +1,34 @@
 # LinkTerm.txt
-# Date: 2025-12-16, 20:06:36 GMT 
+# Date: 2025-12-20, 21:02:29 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
-#
+# 
 # The usage and stability of these values is covered in https://www.unicode.org/reports/tr58/
-#
+# 
 # ================================================
-#
+# 
 # Property:	Link_Term
 # Format
-#
+# 
 # Field 0: code point range
 # Field 1: a Link_Term value
 #          For more information, see https://www.unicode.org/reports/tr58/#property-data. 
-#
+# 
 # For the purpose of regular expressions, the property Link_Term is defined as
 # an enumerated property of code points.
 # The short name of the property is the same as its long name.
 # The possible values are:  Include, Hard, Soft, Close, Open
-#
+# 
 # The short name of each value is the same as its long name.
-#
+# 
 #  All code points not explicitly listed for Link_Term
 #  have the value Hard.
-#
+# 
 # @missing: 0000..10FFFF; Hard
-#
+# 
 # ================================================
-
+# 
 0021..0022    ; Soft    # 1.1   [2] (!..")  EXCLAMATION MARK..QUOTATION MARK
 0027          ; Soft    # 1.1       (')  APOSTROPHE
 002C          ; Soft    # 1.1       (,)  COMMA

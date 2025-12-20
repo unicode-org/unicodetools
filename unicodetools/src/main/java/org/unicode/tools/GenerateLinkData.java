@@ -56,20 +56,23 @@ class GenerateLinkData {
     private static final boolean ADDTEST = false; // set to true to generate LinkDetectionTestSource
 
     private static final Joiner JOIN_SEMI_SP = Joiner.on(" ;\t");
+    private static final Joiner JOIN_N = Joiner.on('\n');
+    private static final Joiner JOIN_N_HASH = Joiner.on("\n# ");
     private static final Splitter SPLIT_TABS = Splitter.on('\t').omitEmptyStrings().trimResults();
     private static final Splitter SPLIT_SEMI = Splitter.on(';').trimResults();
 
     private static final String HEADER_BASE =
-            "# {0}.txt\n"
-                    + "# Date: {1} \n"
-                    + "# © {2} Unicode®, Inc.\n"
-                    + "# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.\n"
-                    + "# For terms of use and license, see https://www.unicode.org/terms_of_use.html\n"
-                    + "#\n"
-                    + "# The usage and stability of these values is covered in https://www.unicode.org/reports/tr58/\n"
-                    + "#\n"
-                    + "# ================================================\n"
-                    + "#\n";
+            JOIN_N_HASH.join(
+                    "# {0}.txt",
+                    "Date: {1} ",
+                    "© {2} Unicode®, Inc.",
+                    "Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.",
+                    "For terms of use and license, see https://www.unicode.org/terms_of_use.html",
+                    "",
+                    "The usage and stability of these values is covered in https://www.unicode.org/reports/tr58/",
+                    "",
+                    "================================================",
+                    "");
 
     public static void main(String[] args) throws IOException {
         generatePropertyData();
@@ -88,106 +91,122 @@ class GenerateLinkData {
     static final SimpleFormatter HEADER_PROP_TERM =
             SimpleFormatter.compile(
                     HEADER_BASE
-                            + "# Property:\t{3}\n"
-                            + "# Format\n"
-                            + "#\n"
-                            + "# Field 0: code point range\n"
-                            + "# Field 1: a {3} value\n"
-                            + "#          For more information, see https://www.unicode.org/reports/tr58/#property-data. \n"
-                            + "#\n"
-                            + "# For the purpose of regular expressions, the property {3} is defined as\n"
-                            + "# an enumerated property of code points.\n"
-                            + "# The short name of the property is the same as its long name.\n"
-                            + "# The possible values are:  Include, Hard, Soft, Close, Open\n"
-                            + "#\n"
-                            + "# The short name of each value is the same as its long name.\n"
-                            + "#\n"
-                            + "#  All code points not explicitly listed for {3}\n"
-                            + "#  have the value {4}.\n"
-                            + "#\n"
-                            + "# @missing: 0000..10FFFF; {4}\n"
-                            + "#\n"
-                            + "# ================================================\n");
+                            + JOIN_N_HASH.join(
+                                    "",
+                                    "Property:\t{3}",
+                                    "Format",
+                                    "",
+                                    "Field 0: code point range",
+                                    "Field 1: a {3} value",
+                                    "         For more information, see https://www.unicode.org/reports/tr58/#property-data. ",
+                                    "",
+                                    "For the purpose of regular expressions, the property {3} is defined as",
+                                    "an enumerated property of code points.",
+                                    "The short name of the property is the same as its long name.",
+                                    "The possible values are:  Include, Hard, Soft, Close, Open",
+                                    "",
+                                    "The short name of each value is the same as its long name.",
+                                    "",
+                                    " All code points not explicitly listed for {3}",
+                                    " have the value {4}.",
+                                    "",
+                                    "@missing: 0000..10FFFF; {4}",
+                                    "",
+                                    "================================================",
+                                    ""));
 
     static final SimpleFormatter HEADER_PROP_STRING =
             SimpleFormatter.compile(
                     HEADER_BASE
-                            + "# Property:\t{3}\n"
-                            + "# Format\n"
-                            + "#\n"
-                            + "# Field 0: code point\n"
-                            + "# Field 1: code point\n"
-                            + "#          For more information, see https://www.unicode.org/reports/tr58/#property-data. \n"
-                            + "#\n"
-                            + "# For the purpose of regular expressions, the property {3} is defined as\n"
-                            + "# a string property whose value is either a single code point or is {4}.\n"
-                            + "#\n"
-                            + "# The short name of the property is the same as its long name.\n"
-                            + "#\n"
-                            + "#  All code points not explicitly listed for {3}\n"
-                            + "#  have the value {4}.\n"
-                            + "#\n"
-                            + "# @missing: 0000..10FFFF; {4}\n"
-                            + "#\n"
-                            + "# ================================================\n");
+                            + JOIN_N_HASH.join(
+                                    "",
+                                    "Property:\t{3}",
+                                    "Format",
+                                    "",
+                                    "Field 0: code point",
+                                    "Field 1: code point",
+                                    "         For more information, see https://www.unicode.org/reports/tr58/#property-data. ",
+                                    "",
+                                    "For the purpose of regular expressions, the property {3} is defined as",
+                                    "a string property whose value is either a single code point or is {4}.",
+                                    "",
+                                    "The short name of the property is the same as its long name.",
+                                    "",
+                                    " All code points not explicitly listed for {3}",
+                                    " have the value {4}.",
+                                    "",
+                                    "@missing: 0000..10FFFF; {4}",
+                                    "",
+                                    "================================================",
+                                    ""));
 
     static final SimpleFormatter HEADER_PROP_BINARY =
             SimpleFormatter.compile(
                     HEADER_BASE
-                            + "# Property:\t{3}\n"
-                            + "# Format\n"
-                            + "#\n"
-                            + "# Field 0: code point range\n"
-                            + "#          For more information, see https://www.unicode.org/reports/tr58/#property-data. \n"
-                            + "#\n"
-                            + "# For the purpose of regular expressions, the property {3} is defined as\n"
-                            + "# a binary property.\n"
-                            + "#\n"
-                            + "# The short name of the property is the same as its long name.\n"
-                            + "#\n"
-                            + "#  All code points not explicitly listed for {3}\n"
-                            + "#  have the value {4}.\n"
-                            //                            + "#\n"
-                            //                            + "# @missing: 0000..10FFFF; {4}\n"
-                            + "#\n"
-                            + "# ================================================\n");
+                            + JOIN_N_HASH.join(
+                                    "",
+                                    "Property:\t{3}",
+                                    "Format",
+                                    "",
+                                    "Field 0: code point range",
+                                    "         For more information, see https://www.unicode.org/reports/tr58/#property-data. ",
+                                    "",
+                                    "For the purpose of regular expressions, the property {3} is defined as",
+                                    "a binary property.",
+                                    "",
+                                    "The short name of the property is the same as its long name.",
+                                    "",
+                                    " All code points not explicitly listed for {3}",
+                                    " have the value {4}."
+                                    //                            , ""
+                                    //                            , "@missing: 0000..10FFFF; {4}"
+                                    ,
+                                    "",
+                                    "================================================",
+                                    ""));
 
     static final SimpleFormatter HEADER_DETECT_TEST =
             SimpleFormatter.compile(
                     HEADER_BASE
-                            + "# Format:\n"
-                            + "#   Each line contains zero or more marked links, such as ⸠abc.com⸡\n"
-                            + "#\n"
-                            + "# Operation:\n"
-                            + "#   For each line.\n"
-                            + "#   • Create a copy of the line, with the characters ⸠ and ⸡ removed.\n"
-                            + "#   • Run link detection on the line, inserting ⸠ and ⸡ around each detected link.\n"
-                            + "#   • Report a failure if the result is not identical to the original line.\n"
-                            + "#   Empty lines, and lines starting with # are ignored.\n"
-                            + "#   Otherwise # is treated like any other character.\n"
-                            + "# ================================================\n");
+                            + JOIN_N_HASH.join(
+                                    "",
+                                    "Format:",
+                                    "  Each line contains zero or more marked links, such as ⸠abc.com⸡",
+                                    "",
+                                    "Operation:",
+                                    "  For each line.",
+                                    "  • Create a copy of the line, with the characters ⸠ and ⸡ removed.",
+                                    "  • Run link detection on the line, inserting ⸠ and ⸡ around each detected link.",
+                                    "  • Report a failure if the result is not identical to the original line.",
+                                    "  Empty lines, and lines starting with # are ignored.",
+                                    "  Otherwise # is treated like any other character.",
+                                    "================================================",
+                                    ""));
 
     static final SimpleFormatter HEADER_FORMAT_TEST =
             SimpleFormatter.compile(
                     HEADER_BASE
-                            + "# Format: Each line has the following fields, separated by semicolons.\n"
-                            + "# Field 0: Fully escaped\n"
-                            + "# Field 1: Minimally escaped\n"
-                            + "#\n"
-                            + "# Empty lines, and lines starting with # are ignored.\n"
-                            + "# Spaces around the semicolons are ignored.\n"
-                            + "#\n"
-                            + "# The fully-escaped field percent-escapes all literal syntax characters and all characters above ASCII.\n"
-                            + "# The minimally-escaped field is the more readable format described in UTS #58.\n"
-                            + "# Each line also has a comment field for the internal structure of the URL.\n"
-                            + "# 𝑺 = the schema\n"
-                            + "# 𝑯 = the host (typically just a domain name) the internal structure is not broken down.\n"
-                            + "# 𝑷 = indicates one of the labels in the path. So /seg1/seg2 becomes 𝑷=seg1 𝑷=seg1\n"
-                            + "# 𝑸 = each key in the query. So &θ=ικλ&μ=γξο becomes 𝑸=θ 𝑽=ικλ 𝑸=μ 𝑽=γξο.\n"
-                            + "# 𝑽 = a value for the preceding key\n"
-                            + "# 𝑭 = a fragment. So #reserved:~:text=Reserved,into:~:text=open,closed becomes 𝑭=reserved 𝑫=Reserved,into 𝑫=text=open,closed\n"
-                            + "# 𝑫 = a fragment-directive\n"
-                            + "# ================================================\n");
+                            + JOIN_N_HASH.join(
+                                    "",
+                                    "Format: This is not a file with semicolon-delimited fields.",
+                                    "Instead, it consists of paired lines, separated by empty lines and/or comment lines.",
+                                    "The first line of each pair is the source, fully escaped.",
+                                    "The second line of each pair is the result, minimally escaped.",
+                                    "",
+                                    "Comments are lines that begin with a #.",
+                                    "",
+                                    "The fully-escaped field percent-escapes all literal syntax characters and all characters above ASCII.",
+                                    "The minimally-escaped field is the more readable format described in UTS #58.",
+                                    "Each pair also has a comment line for the internal structure of the URL.",
+                                    "𝑺 = the schema",
+                                    "𝑯 = the host (typically just a domain name) the internal structure is not broken down.",
+                                    "𝑷 = indicates one of the labels in the path. So /seg1/seg2 becomes 𝑷=seg1 𝑷=seg1",
+                                    "𝑸 = each key in the query. So &θ=ικλ&μ=γξο becomes 𝑸=θ 𝑽=ικλ 𝑸=μ 𝑽=γξο.",
+                                    "𝑽 = a value for the preceding key",
+                                    "𝑭 = a fragment. So #reserved:~:text=Reserved,into:~:text=open,closed becomes 𝑭=reserved 𝑫=Reserved,into 𝑫=text=open,closed",
+                                    "𝑫 = a fragment-directive",
+                                    "================================================",
+                                    ""));
 
     static void writePropHeader(
             PrintWriter out,
@@ -363,13 +382,19 @@ class GenerateLinkData {
                     .forEach(
                             line -> {
                                 ++lineCount.value;
-                                if (line.startsWith("#") || line.isBlank()) {
+                                if (line.isBlank()) {
+                                    return;
+                                }
+                                if (line.startsWith("#")) {
                                     out.println(line);
                                     comments.add(line);
                                     return;
                                 }
 
                                 // process old format
+                                // TODO convert the LinkFormattingTestSource.txt to the same format
+                                // as the output
+
                                 line = percentEscapeBackslash(line);
 
                                 List<String> parts = SPLIT_SEMI.splitToList(line);
@@ -414,10 +439,7 @@ class GenerateLinkData {
                                     comments.clear();
                                     return;
                                 }
-                                String fullEscape = internals.fullEscape();
-                                out.println(
-                                        JOIN_SEMI_SP.join(fullEscape, actual) + " # " + internals);
-                                comments.clear();
+                                outputTestCase(out, comments, internals, actual);
                             });
 
             out.println("\n# Wikipedia test cases\n");
@@ -435,9 +457,6 @@ class GenerateLinkData {
                                 line = line.trim();
                                 int wikiStart = line.indexOf("/wiki/");
                                 if (wikiStart < 0) {
-                                    return;
-                                }
-                                if (line.contains(";")) { // skip any url with a ; in it
                                     return;
                                 }
                                 int lastCodePoint = line.codePointBefore(line.length());
@@ -461,7 +480,7 @@ class GenerateLinkData {
 
                                 String actual = internals.minimalEscape(true, null);
 
-                                out.println(JOIN_SEMI_SP.join(internals.fullEscape(), actual));
+                                outputTestCase(out, comments, internals, actual);
                             });
         } catch (IOException e) {
             throw new UncheckedIOException(e);
@@ -469,6 +488,16 @@ class GenerateLinkData {
         if (errorCount.value != 0) {
             throw new IllegalArgumentException("Failures in writing test file: " + errorCount);
         }
+    }
+
+    private static void outputTestCase(
+            final PrintWriter out, List<String> comments, UrlInternals internals, String actual) {
+        String fullEscape = internals.fullEscape();
+        out.println("# " + internals);
+        out.println(fullEscape);
+        out.println(actual);
+        out.println();
+        comments.clear();
     }
 
     private static String percentEscapeBackslash(String line) {

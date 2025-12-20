@@ -1,23 +1,23 @@
 # LinkFormattingTest.txt
-# Date: 2025-12-20, 01:51:19 GMT 
+# Date: 2025-12-20, 21:02:29 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
-#
+# 
 # The usage and stability of these values is covered in https://www.unicode.org/reports/tr58/
-#
+# 
 # ================================================
-#
-# Format: Each line has the following fields, separated by semicolons.
-# Field 0: Fully escaped
-# Field 1: Minimally escaped
-#
-# Empty lines, and lines starting with # are ignored.
-# Spaces around the semicolons are ignored.
-#
+# 
+# Format: This is not a file with semicolon-delimited fields.
+# Instead, it consists of paired lines, separated by empty lines and/or comment lines.
+# The first line of each pair is the source, fully escaped.
+# The second line of each pair is the result, minimally escaped.
+# 
+# Comments are lines that begin with a #.
+# 
 # The fully-escaped field percent-escapes all literal syntax characters and all characters above ASCII.
 # The minimally-escaped field is the more readable format described in UTS #58.
-# Each line also has a comment field for the internal structure of the URL.
+# Each pair also has a comment line for the internal structure of the URL.
 # 𝑺 = the schema
 # 𝑯 = the host (typically just a domain name) the internal structure is not broken down.
 # 𝑷 = indicates one of the labels in the path. So /seg1/seg2 becomes 𝑷=seg1 𝑷=seg1
@@ -26,102 +26,249 @@
 # 𝑭 = a fragment. So #reserved:~:text=Reserved,into:~:text=open,closed becomes 𝑭=reserved 𝑫=Reserved,into 𝑫=text=open,closed
 # 𝑫 = a fragment-directive
 # ================================================
-
+# 
 
 # Selected test cases
 
 # Path only					
-https://example.com/%CE%B1 ;	https://example.com/α # {𝑺=https:// 𝑯=example.com 𝑷=α}
+# {𝑺=https:// 𝑯=example.com 𝑷=α}
+https://example.com/%CE%B1
+https://example.com/α
 
 # Query only					
-https://example.com?%CE%B1 ;	https://example.com?α # {𝑺=https:// 𝑯=example.com 𝑸=α}
+# {𝑺=https:// 𝑯=example.com 𝑸=α}
+https://example.com?%CE%B1
+https://example.com?α
 
 # Fragment only					
-https://example.com#%CE%B1 ;	https://example.com#α # {𝑺=https:// 𝑯=example.com 𝑭=α}
+# {𝑺=https:// 𝑯=example.com 𝑭=α}
+https://example.com#%CE%B1
+https://example.com#α
 
 # All parts					
-https://example.com/%CE%B1%CE%B2%CE%B3/%CE%B4%CE%B5%CE%B6?%CE%B8=%CE%B9%CE%BA%CE%BB&%CE%BC=%CE%B3%CE%BE%CE%BF#%CF%80%CF%81%CF%82 ;	https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο#πρς # {𝑺=https:// 𝑯=example.com 𝑷=αβγ 𝑷=δεζ 𝑸=θ 𝑽=ικλ 𝑸=μ 𝑽=γξο 𝑭=πρς}
+# {𝑺=https:// 𝑯=example.com 𝑷=αβγ 𝑷=δεζ 𝑸=θ 𝑽=ικλ 𝑸=μ 𝑽=γξο 𝑭=πρς}
+https://example.com/%CE%B1%CE%B2%CE%B3/%CE%B4%CE%B5%CE%B6?%CE%B8=%CE%B9%CE%BA%CE%BB&%CE%BC=%CE%B3%CE%BE%CE%BF#%CF%80%CF%81%CF%82
+https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο#πρς
 
 # Escape soft at end of Path (with nothing following)				
-https://example.com/%CE%B1%CE%B2%CE%B3/%CE%B4.%CE%B5%CE%B6. ;	https://example.com/αβγ/δ.εζ%2E # {𝑺=https:// 𝑯=example.com 𝑷=αβγ 𝑷=δ.εζ.}
+# {𝑺=https:// 𝑯=example.com 𝑷=αβγ 𝑷=δ.εζ.}
+https://example.com/%CE%B1%CE%B2%CE%B3/%CE%B4.%CE%B5%CE%B6.
+https://example.com/αβγ/δ.εζ%2E
 
 # Escape soft at end of Query (with nothing following)				
-https://example.com/%CE%B1%CE%B2%CE%B3/%CE%B4.%CE%B5%CE%B6.?%CE%B8=%CE%B9%CE%BA%CE%BB&%CE%BC=%CE%B3.%CE%BE%CE%BF. ;	https://example.com/αβγ/δ.εζ.?θ=ικλ&μ=γ.ξο%2E # {𝑺=https:// 𝑯=example.com 𝑷=αβγ 𝑷=δ.εζ. 𝑸=θ 𝑽=ικλ 𝑸=μ 𝑽=γ.ξο.}
+# {𝑺=https:// 𝑯=example.com 𝑷=αβγ 𝑷=δ.εζ. 𝑸=θ 𝑽=ικλ 𝑸=μ 𝑽=γ.ξο.}
+https://example.com/%CE%B1%CE%B2%CE%B3/%CE%B4.%CE%B5%CE%B6.?%CE%B8=%CE%B9%CE%BA%CE%BB&%CE%BC=%CE%B3.%CE%BE%CE%BF.
+https://example.com/αβγ/δ.εζ.?θ=ικλ&μ=γ.ξο%2E
 
 # Escape soft at end of Fragment (with nothing following)				
-https://example.com/%CE%B1%CE%B2%CE%B3/%CE%B4.%CE%B5%CE%B6?%CE%B8=%CE%B9%CE%BA%CE%BB&%CE%BC=%CE%B3.%CE%BE%CE%BF#%CF%80.%CF%81%CF%82. ;	https://example.com/αβγ/δ.εζ?θ=ικλ&μ=γ.ξο#π.ρς%2E # {𝑺=https:// 𝑯=example.com 𝑷=αβγ 𝑷=δ.εζ 𝑸=θ 𝑽=ικλ 𝑸=μ 𝑽=γ.ξο 𝑭=π.ρς.}
+# {𝑺=https:// 𝑯=example.com 𝑷=αβγ 𝑷=δ.εζ 𝑸=θ 𝑽=ικλ 𝑸=μ 𝑽=γ.ξο 𝑭=π.ρς.}
+https://example.com/%CE%B1%CE%B2%CE%B3/%CE%B4.%CE%B5%CE%B6?%CE%B8=%CE%B9%CE%BA%CE%BB&%CE%BC=%CE%B3.%CE%BE%CE%BF#%CF%80.%CF%81%CF%82.
+https://example.com/αβγ/δ.εζ?θ=ικλ&μ=γ.ξο#π.ρς%2E
 
 # Escape ? in Path					
-https://example.com/%CE%B1%3F%CE%BC%CF%80 ;	https://example.com/α%3Fμπ # {𝑺=https:// 𝑯=example.com 𝑷=α?μπ}
+# {𝑺=https:// 𝑯=example.com 𝑷=α?μπ}
+https://example.com/%CE%B1%3F%CE%BC%CF%80
+https://example.com/α%3Fμπ
 
 # Escape #, =, & in Path/Query					
-https://example.com/%CE%B1#%CE%B2?%CE%B3=%CE%B4#%CE%B5 ;	https://example.com/α%23β?γ=δ%23ε # {𝑺=https:// 𝑯=example.com 𝑷=α#β 𝑸=γ 𝑽=δ#ε}
+# {𝑺=https:// 𝑯=example.com 𝑷=α#β 𝑸=γ 𝑽=δ#ε}
+https://example.com/%CE%B1#%CE%B2?%CE%B3=%CE%B4#%CE%B5
+https://example.com/α%23β?γ=δ%23ε
 
 # Escape hard (' ')					
-https://example.com/%CE%B1%CE%B2%20%CE%B3/%CE%B4%CE%B5%CE%B6?%CE%B8=%CE%B9%CE%BA%20%CE%BB&=%CE%B3%CE%BE%CE%BF#%CF%80%CF%81%20%CF%83 ;	https://example.com/αβ%20γ/δεζ?θ=ικ%20λ&=γξο#πρ%20σ # {𝑺=https:// 𝑯=example.com 𝑷=αβ γ 𝑷=δεζ 𝑸=θ 𝑽=ικ λ 𝑸= 𝑽=γξο 𝑭=πρ σ}
+# {𝑺=https:// 𝑯=example.com 𝑷=αβ γ 𝑷=δεζ 𝑸=θ 𝑽=ικ λ 𝑸= 𝑽=γξο 𝑭=πρ σ}
+https://example.com/%CE%B1%CE%B2%20%CE%B3/%CE%B4%CE%B5%CE%B6?%CE%B8=%CE%B9%CE%BA%20%CE%BB&=%CE%B3%CE%BE%CE%BF#%CF%80%CF%81%20%CF%83
+https://example.com/αβ%20γ/δεζ?θ=ικ%20λ&=γξο#πρ%20σ
 
 # Escape soft ('.') unless followed by include					
-https://example.com/%CE%B1%CE%B2%CE%B3./%CE%B4%CE%B5%CE%B6.?%CE%B8=%CE%B9%CE%BA.%CE%BB&=%CE%B3%CE%BE%CE%BF.#%CF%80%CF%81%CF%82. ;	https://example.com/αβγ./δεζ.?θ=ικ.λ&=γξο.#πρς%2E # {𝑺=https:// 𝑯=example.com 𝑷=αβγ. 𝑷=δεζ. 𝑸=θ 𝑽=ικ.λ 𝑸= 𝑽=γξο. 𝑭=πρς.}
+# {𝑺=https:// 𝑯=example.com 𝑷=αβγ. 𝑷=δεζ. 𝑸=θ 𝑽=ικ.λ 𝑸= 𝑽=γξο. 𝑭=πρς.}
+https://example.com/%CE%B1%CE%B2%CE%B3./%CE%B4%CE%B5%CE%B6.?%CE%B8=%CE%B9%CE%BA.%CE%BB&=%CE%B3%CE%BE%CE%BF.#%CF%80%CF%81%CF%82.
+https://example.com/αβγ./δεζ.?θ=ικ.λ&=γξο.#πρς%2E
 
 # Escape unmatched brackets					
-https://example.com/%CE%B1(%CE%B2)?%CE%B3(%CE%B4)#%CE%B5(%CE%B6)) ;	https://example.com/α(β)?γ(δ)#ε(ζ)%29 # {𝑺=https:// 𝑯=example.com 𝑷=α(β) 𝑸=γ(δ) 𝑭=ε(ζ))}
-https://example.com/%CE%B1(%CE%B2)?%CE%B3(%CE%B4)) ;	https://example.com/α(β)?γ(δ)%29 # {𝑺=https:// 𝑯=example.com 𝑷=α(β) 𝑸=γ(δ))}
-https://example.com/%CE%B1(%CE%B2)#%CE%B5(%CE%B6)) ;	https://example.com/α(β)#ε(ζ)%29 # {𝑺=https:// 𝑯=example.com 𝑷=α(β) 𝑭=ε(ζ))}
-https://example.com/%CE%B1(%CE%B2)) ;	https://example.com/α(β)%29 # {𝑺=https:// 𝑯=example.com 𝑷=α(β))}
-https://example.com?%CE%B3(%CE%B4)#%CE%B5(%CE%B6)) ;	https://example.com?γ(δ)#ε(ζ)%29 # {𝑺=https:// 𝑯=example.com 𝑸=γ(δ) 𝑭=ε(ζ))}
-https://example.com?%CE%B3(%CE%B4)) ;	https://example.com?γ(δ)%29 # {𝑺=https:// 𝑯=example.com 𝑸=γ(δ))}
-https://example.com#%CE%B5(%CE%B6)) ;	https://example.com#ε(ζ)%29 # {𝑺=https:// 𝑯=example.com 𝑭=ε(ζ))}
+# {𝑺=https:// 𝑯=example.com 𝑷=α(β) 𝑸=γ(δ) 𝑭=ε(ζ))}
+https://example.com/%CE%B1(%CE%B2)?%CE%B3(%CE%B4)#%CE%B5(%CE%B6))
+https://example.com/α(β)?γ(δ)#ε(ζ)%29
+
+# {𝑺=https:// 𝑯=example.com 𝑷=α(β) 𝑸=γ(δ))}
+https://example.com/%CE%B1(%CE%B2)?%CE%B3(%CE%B4))
+https://example.com/α(β)?γ(δ)%29
+
+# {𝑺=https:// 𝑯=example.com 𝑷=α(β) 𝑭=ε(ζ))}
+https://example.com/%CE%B1(%CE%B2)#%CE%B5(%CE%B6))
+https://example.com/α(β)#ε(ζ)%29
+
+# {𝑺=https:// 𝑯=example.com 𝑷=α(β))}
+https://example.com/%CE%B1(%CE%B2))
+https://example.com/α(β)%29
+
+# {𝑺=https:// 𝑯=example.com 𝑸=γ(δ) 𝑭=ε(ζ))}
+https://example.com?%CE%B3(%CE%B4)#%CE%B5(%CE%B6))
+https://example.com?γ(δ)#ε(ζ)%29
+
+# {𝑺=https:// 𝑯=example.com 𝑸=γ(δ))}
+https://example.com?%CE%B3(%CE%B4))
+https://example.com?γ(δ)%29
+
+# {𝑺=https:// 𝑯=example.com 𝑭=ε(ζ))}
+https://example.com#%CE%B5(%CE%B6))
+https://example.com#ε(ζ)%29
 
 # No escape for matched brackets					
-https://example.com/%CE%B1(%CE%B2)?%CE%B3(%CE%B4)#%CE%B5(%CE%B6) ;	https://example.com/α(β)?γ(δ)#ε(ζ) # {𝑺=https:// 𝑯=example.com 𝑷=α(β) 𝑸=γ(δ) 𝑭=ε(ζ)}
-https://example.com/%CE%B1(%CE%B2)?%CE%B3(%CE%B4) ;	https://example.com/α(β)?γ(δ) # {𝑺=https:// 𝑯=example.com 𝑷=α(β) 𝑸=γ(δ)}
-https://example.com/%CE%B1(%CE%B2)#%CE%B5(%CE%B6) ;	https://example.com/α(β)#ε(ζ) # {𝑺=https:// 𝑯=example.com 𝑷=α(β) 𝑭=ε(ζ)}
-https://example.com/%CE%B1(%CE%B2) ;	https://example.com/α(β) # {𝑺=https:// 𝑯=example.com 𝑷=α(β)}
-https://example.com?%CE%B3(%CE%B4)#%CE%B5(%CE%B6) ;	https://example.com?γ(δ)#ε(ζ) # {𝑺=https:// 𝑯=example.com 𝑸=γ(δ) 𝑭=ε(ζ)}
-https://example.com?%CE%B3(%CE%B4) ;	https://example.com?γ(δ) # {𝑺=https:// 𝑯=example.com 𝑸=γ(δ)}
-https://example.com#%CE%B5(%CE%B6) ;	https://example.com#ε(ζ) # {𝑺=https:// 𝑯=example.com 𝑭=ε(ζ)}
+# {𝑺=https:// 𝑯=example.com 𝑷=α(β) 𝑸=γ(δ) 𝑭=ε(ζ)}
+https://example.com/%CE%B1(%CE%B2)?%CE%B3(%CE%B4)#%CE%B5(%CE%B6)
+https://example.com/α(β)?γ(δ)#ε(ζ)
+
+# {𝑺=https:// 𝑯=example.com 𝑷=α(β) 𝑸=γ(δ)}
+https://example.com/%CE%B1(%CE%B2)?%CE%B3(%CE%B4)
+https://example.com/α(β)?γ(δ)
+
+# {𝑺=https:// 𝑯=example.com 𝑷=α(β) 𝑭=ε(ζ)}
+https://example.com/%CE%B1(%CE%B2)#%CE%B5(%CE%B6)
+https://example.com/α(β)#ε(ζ)
+
+# {𝑺=https:// 𝑯=example.com 𝑷=α(β)}
+https://example.com/%CE%B1(%CE%B2)
+https://example.com/α(β)
+
+# {𝑺=https:// 𝑯=example.com 𝑸=γ(δ) 𝑭=ε(ζ)}
+https://example.com?%CE%B3(%CE%B4)#%CE%B5(%CE%B6)
+https://example.com?γ(δ)#ε(ζ)
+
+# {𝑺=https:// 𝑯=example.com 𝑸=γ(δ)}
+https://example.com?%CE%B3(%CE%B4)
+https://example.com?γ(δ)
+
+# {𝑺=https:// 𝑯=example.com 𝑭=ε(ζ)}
+https://example.com#%CE%B5(%CE%B6)
+https://example.com#ε(ζ)
 
 # Path with escaped separator
-https://example.com/%CE%B1/%CE%B2/%CE%B3 ;	https://example.com/α/β%2Fγ # {𝑺=https:// 𝑯=example.com 𝑷=α 𝑷=β/γ}
+# {𝑺=https:// 𝑯=example.com 𝑷=α 𝑷=β/γ}
+https://example.com/%CE%B1/%CE%B2/%CE%B3
+https://example.com/α/β%2Fγ
 
 # Path with escapes (% is escaped only if followed by 2 hex digits [0-9A-fa-f)
-https://example.com/%CE%B1/%CE%B2%2541%CE%B3%%CE%B5% ;	https://example.com/α/β%2541γ%ε% # {𝑺=https:// 𝑯=example.com 𝑷=α 𝑷=β%41γ%ε%}
+# {𝑺=https:// 𝑯=example.com 𝑷=α 𝑷=β%41γ%ε%}
+https://example.com/%CE%B1/%CE%B2%2541%CE%B3%%CE%B5%
+https://example.com/α/β%2541γ%ε%
 
 # Query with escapes (& separates key-value pairs, so handle literal &)	
-https://example.com?%CE%B1&=%CE%B2&%CE%B3=&%CE%B4 ;	https://example.com?α%26=β&γ=%26δ # {𝑺=https:// 𝑯=example.com 𝑸=α& 𝑽=β 𝑸=γ 𝑽=&δ}
+# {𝑺=https:// 𝑯=example.com 𝑸=α& 𝑽=β 𝑸=γ 𝑽=&δ}
+https://example.com?%CE%B1&=%CE%B2&%CE%B3=&%CE%B4
+https://example.com?α%26=β&γ=%26δ
 
 # Query with escapes (= separates keys and values, so handle literal =)	
-https://example.com?%CE%B1=%CE%B2=%CE%B3=%CE%B4 ;	https://example.com?α%3Dβ=γ%3Dδ # {𝑺=https:// 𝑯=example.com 𝑸=α=β 𝑽=γ=δ}
+# {𝑺=https:// 𝑯=example.com 𝑸=α=β 𝑽=γ=δ}
+https://example.com?%CE%B1=%CE%B2=%CE%B3=%CE%B4
+https://example.com?α%3Dβ=γ%3Dδ
 
 # Query with escapes (% is escaped only if followed by 2 hex digits [0-9A-fa-f)
-https://example.com?%CE%B1%%CE%B2=%CE%B3%%CE%B4 ;	https://example.com?α%β=γ%δ # {𝑺=https:// 𝑯=example.com 𝑸=α%β 𝑽=γ%δ}
+# {𝑺=https:// 𝑯=example.com 𝑸=α%β 𝑽=γ%δ}
+https://example.com?%CE%B1%%CE%B2=%CE%B3%%CE%B4
+https://example.com?α%β=γ%δ
 
 # Path and Query with quoted syntax characters
-https://example.com/%CE%B1/b/%3F#c?%CE%B1%CE%B2=%CE%B3&%CE%B6=#%CE%9E&k=v#frag ;	https://example.com/α/b%2F%3F%23c?αβ=γ%26ζ%3D%23Ξ&k=v#frag # {𝑺=https:// 𝑯=example.com 𝑷=α 𝑷=b/?#c 𝑸=αβ 𝑽=γ&ζ=#Ξ 𝑸=k 𝑽=v 𝑭=frag}
+# {𝑺=https:// 𝑯=example.com 𝑷=α 𝑷=b/?#c 𝑸=αβ 𝑽=γ&ζ=#Ξ 𝑸=k 𝑽=v 𝑭=frag}
+https://example.com/%CE%B1/b/%3F#c?%CE%B1%CE%B2=%CE%B3&%CE%B6=#%CE%9E&k=v#frag
+https://example.com/α/b%2F%3F%23c?αβ=γ%26ζ%3D%23Ξ&k=v#frag
 
 
 # Wikipedia test cases
 
-https://ru.wikinews.org/wiki/%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%92%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F ;	https://ru.wikinews.org/wiki/Категория:Вселенная
-https://av.wikipedia.org/wiki/%D0%A0%D0%B0%D0%BA%D1%8C_(%D0%BF%D0%BB%D0%B0%D0%BD%D0%B5%D1%82%D0%B0) ;	https://av.wikipedia.org/wiki/Ракь_(планета)
-https://bo.wikipedia.org/wiki/%E0%BD%A6%E0%BD%A0%E0%BD%B2%E0%BC%8B%E0%BD%82%E0%BD%BC%E0%BC%8B%E0%BD%A3%E0%BC%8D ;	https://bo.wikipedia.org/wiki/སའི་གོ་ལ།
-https://fiu-vro.wikipedia.org/wiki/Maa_(hod'ot%C3%A4ht) ;	https://fiu-vro.wikipedia.org/wiki/Maa_(hod'otäht)
-https://ty.wikipedia.org/wiki/’Afirita ;	https://ty.wikipedia.org/wiki/’Afirita
-https://ab.wikipedia.org/wiki/%D0%92%D0%B0%D1%88%D0%B8%D0%BD%D0%B3%D1%82%D0%BE%D0%BD,_%D0%8F%D1%8C%D0%BE%D1%80%D1%9F%D1%8C ;	https://ab.wikipedia.org/wiki/Вашингтон,_Џьорџь
-https://mni.wikipedia.org/wiki/ꯅ꯭ꯌꯨ_ꯌꯣꯔ꯭ꯛ_ꯁꯤꯇꯤꯒꯤ_ꯌꯨ.ꯑꯦꯁ. ;	https://mni.wikipedia.org/wiki/ꯅ꯭ꯌꯨ_ꯌꯣꯔ꯭ꯛ_ꯁꯤꯇꯤꯒꯤ_ꯌꯨ.ꯑꯦꯁ.
-https://azb.wikipedia.org/wiki/%D9%88%D8%A7%D8%B4%DB%8C%D9%86%D9%82%D8%AA%D9%86%D8%8C_%D8%AF%DB%8C.%D8%B3%DB%8C. ;	https://azb.wikipedia.org/wiki/واشینقتن،_دی.سی.
-https://mad.wikipedia.org/wiki/Tas%C3%A8’ ;	https://mad.wikipedia.org/wiki/Tasè’
-https://wuu.wikipedia.org/wiki/聖保羅（巴西） ;	https://wuu.wikipedia.org/wiki/聖保羅（巴西）
-https://vep.wikipedia.org/wiki/Br%C3%BCssel' ;	https://vep.wikipedia.org/wiki/Brüssel'
-https://ja.wikibooks.org/wiki/植物学/植物とはどのような生き物か？ ;	https://ja.wikibooks.org/wiki/植物学/植物とはどのような生き物か？
-https://bn.wikibooks.org/wiki/%E0%A6%89%E0%A6%87%E0%A6%95%E0%A6%BF%E0%A6%B6%E0%A7%88%E0%A6%B6%E0%A6%AC:%E0%A6%A6%E0%A7%87%E0%A6%B6%E0%A6%B8%E0%A6%AE%E0%A7%82%E0%A6%B9_(%E0%A6%85-%E0%A6%B9)/%E0%A6%87%E0%A6%B8%E0%A6%B0%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%87%E0%A6%B2 ;	https://bn.wikibooks.org/wiki/উইকিশৈশব:দেশসমূহ_(অ-হ)/ইসরায়েল
-https://haw.wikipedia.org/wiki/Puke_noi‘i_k%C5%AB‘ikena ;	https://haw.wikipedia.org/wiki/Puke_noi‘i_kū‘ikena
-https://new.wikipedia.org/wiki/%E0%A4%B5%E0%A4%BF%E0%A4%A8%E0%A5%8D%E0%A4%B8%E0%A5%87%E0%A4%A8%E0%A5%8D%E0%A4%9F_%E0%A4%AD%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%A8_%E0%A4%97: ;	https://new.wikipedia.org/wiki/विन्सेन्ट_भ्यान_ग:
-https://he.wikipedia.org/wiki/%D7%A0%D7%90%D7%98%22%D7%95 ;	https://he.wikipedia.org/wiki/נאט"ו
-https://ks.wikipedia.org/wiki/%D8%B4%D8%A7%D8%B1%D9%95%DA%A9%DB%94 ;	https://ks.wikipedia.org/wiki/شارٕک۔
-https://zh.wikipedia.org/wiki/联合国教育、科学及文化组织 ;	https://zh.wikipedia.org/wiki/联合国教育、科学及文化组织
-https://am.wikipedia.org/wiki/%C2%ABየሰብዓዊ_መብት_አቀፋዊ_መግለጽ%C2%BB ;	https://am.wikipedia.org/wiki/«የሰብዓዊ_መብት_አቀፋዊ_መግለጽ»
-https://bo.wikipedia.org/wiki/%E0%BC%BC%E0%BD%98%E0%BC%8B%E0%BD%A7%E0%BC%8B%E0%BD%96%E0%BC%8B%E0%BD%A2%E0%BC%8B%E0%BD%8F%E0%BC%8D%E0%BC%BD ;	https://bo.wikipedia.org/wiki/༼མ་ཧ་བ་ར་ཏ།༽
-https://am.wikipedia.org/wiki/አፈ፡ታሪክ ;	https://am.wikipedia.org/wiki/አፈ፡ታሪክ
-https://it.wikibooks.org/wiki/Questo_%C3%A8_l'ebraismo! ;	https://it.wikibooks.org/wiki/Questo_è_l'ebraismo!
-https://my.wikipedia.org/wiki/%E1%80%81%E1%80%AD%E1%80%AF%E1%81%8A_%E1%80%81%E1%80%BB%E1%80%AD%E1%80%AF%E1%80%B8%E1%80%94%E1%80%BE%E1%80%84%E1%80%B7%E1%80%BA_%E1%80%A1%E1%80%9C%E1%80%AC%E1%80%B8%E1%80%90%E1%80%B0%E1%80%84%E1%80%BE%E1%80%80%E1%80%BA%E1%80%99%E1%80%BB%E1%80%AC%E1%80%B8 ;	https://my.wikipedia.org/wiki/ခို၊_ချိုးနှင့်_အလားတူငှက်များ
+# {𝑺=https:// 𝑯=ru.wikinews.org 𝑷=wiki 𝑷=Категория:Вселенная}
+https://ru.wikinews.org/wiki/%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%92%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F
+https://ru.wikinews.org/wiki/Категория:Вселенная
+
+# {𝑺=https:// 𝑯=av.wikipedia.org 𝑷=wiki 𝑷=Ракь_(планета)}
+https://av.wikipedia.org/wiki/%D0%A0%D0%B0%D0%BA%D1%8C_(%D0%BF%D0%BB%D0%B0%D0%BD%D0%B5%D1%82%D0%B0)
+https://av.wikipedia.org/wiki/Ракь_(планета)
+
+# {𝑺=https:// 𝑯=bo.wikipedia.org 𝑷=wiki 𝑷=སའི་གོ་ལ།}
+https://bo.wikipedia.org/wiki/%E0%BD%A6%E0%BD%A0%E0%BD%B2%E0%BC%8B%E0%BD%82%E0%BD%BC%E0%BC%8B%E0%BD%A3%E0%BC%8D
+https://bo.wikipedia.org/wiki/སའི་གོ་ལ།
+
+# {𝑺=https:// 𝑯=fiu-vro.wikipedia.org 𝑷=wiki 𝑷=Maa_(hod'otäht)}
+https://fiu-vro.wikipedia.org/wiki/Maa_(hod'ot%C3%A4ht)
+https://fiu-vro.wikipedia.org/wiki/Maa_(hod'otäht)
+
+# {𝑺=https:// 𝑯=ty.wikipedia.org 𝑷=wiki 𝑷=’Afirita}
+https://ty.wikipedia.org/wiki/’Afirita
+https://ty.wikipedia.org/wiki/’Afirita
+
+# {𝑺=https:// 𝑯=ab.wikipedia.org 𝑷=wiki 𝑷=Вашингтон,_Џьорџь}
+https://ab.wikipedia.org/wiki/%D0%92%D0%B0%D1%88%D0%B8%D0%BD%D0%B3%D1%82%D0%BE%D0%BD,_%D0%8F%D1%8C%D0%BE%D1%80%D1%9F%D1%8C
+https://ab.wikipedia.org/wiki/Вашингтон,_Џьорџь
+
+# {𝑺=https:// 𝑯=mni.wikipedia.org 𝑷=wiki 𝑷=ꯅ꯭ꯌꯨ_ꯌꯣꯔ꯭ꯛ_ꯁꯤꯇꯤꯒꯤ_ꯌꯨ.ꯑꯦꯁ.}
+https://mni.wikipedia.org/wiki/ꯅ꯭ꯌꯨ_ꯌꯣꯔ꯭ꯛ_ꯁꯤꯇꯤꯒꯤ_ꯌꯨ.ꯑꯦꯁ.
+https://mni.wikipedia.org/wiki/ꯅ꯭ꯌꯨ_ꯌꯣꯔ꯭ꯛ_ꯁꯤꯇꯤꯒꯤ_ꯌꯨ.ꯑꯦꯁ.
+
+# {𝑺=https:// 𝑯=azb.wikipedia.org 𝑷=wiki 𝑷=واشینقتن،_دی.سی.}
+https://azb.wikipedia.org/wiki/%D9%88%D8%A7%D8%B4%DB%8C%D9%86%D9%82%D8%AA%D9%86%D8%8C_%D8%AF%DB%8C.%D8%B3%DB%8C.
+https://azb.wikipedia.org/wiki/واشینقتن،_دی.سی.
+
+# {𝑺=https:// 𝑯=mad.wikipedia.org 𝑷=wiki 𝑷=Tasè’}
+https://mad.wikipedia.org/wiki/Tas%C3%A8’
+https://mad.wikipedia.org/wiki/Tasè’
+
+# {𝑺=https:// 𝑯=wuu.wikipedia.org 𝑷=wiki 𝑷=聖保羅（巴西）}
+https://wuu.wikipedia.org/wiki/聖保羅（巴西）
+https://wuu.wikipedia.org/wiki/聖保羅（巴西）
+
+# {𝑺=https:// 𝑯=vep.wikipedia.org 𝑷=wiki 𝑷=Brüssel'}
+https://vep.wikipedia.org/wiki/Br%C3%BCssel'
+https://vep.wikipedia.org/wiki/Brüssel'
+
+# {𝑺=https:// 𝑯=tw.wikipedia.org 𝑷=wiki 𝑷=Wiase_Nyinaa_Wɛbsaet_(_World_Wide_Web;_WWW_)}
+https://tw.wikipedia.org/wiki/Wiase_Nyinaa_W%C9%9Bbsaet_(_World_Wide_Web;_WWW_)
+https://tw.wikipedia.org/wiki/Wiase_Nyinaa_Wɛbsaet_(_World_Wide_Web;_WWW_)
+
+# {𝑺=https:// 𝑯=ja.wikibooks.org 𝑷=wiki 𝑷=植物学 𝑷=植物とはどのような生き物か？}
+https://ja.wikibooks.org/wiki/植物学/植物とはどのような生き物か？
+https://ja.wikibooks.org/wiki/植物学/植物とはどのような生き物か？
+
+# {𝑺=https:// 𝑯=bn.wikibooks.org 𝑷=wiki 𝑷=উইকিশৈশব:দেশসমূহ_(অ-হ) 𝑷=ইসরায়েল}
+https://bn.wikibooks.org/wiki/%E0%A6%89%E0%A6%87%E0%A6%95%E0%A6%BF%E0%A6%B6%E0%A7%88%E0%A6%B6%E0%A6%AC:%E0%A6%A6%E0%A7%87%E0%A6%B6%E0%A6%B8%E0%A6%AE%E0%A7%82%E0%A6%B9_(%E0%A6%85-%E0%A6%B9)/%E0%A6%87%E0%A6%B8%E0%A6%B0%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%87%E0%A6%B2
+https://bn.wikibooks.org/wiki/উইকিশৈশব:দেশসমূহ_(অ-হ)/ইসরায়েল
+
+# {𝑺=https:// 𝑯=haw.wikipedia.org 𝑷=wiki 𝑷=Puke_noi‘i_kū‘ikena}
+https://haw.wikipedia.org/wiki/Puke_noi‘i_k%C5%AB‘ikena
+https://haw.wikipedia.org/wiki/Puke_noi‘i_kū‘ikena
+
+# {𝑺=https:// 𝑯=new.wikipedia.org 𝑷=wiki 𝑷=विन्सेन्ट_भ्यान_ग:}
+https://new.wikipedia.org/wiki/%E0%A4%B5%E0%A4%BF%E0%A4%A8%E0%A5%8D%E0%A4%B8%E0%A5%87%E0%A4%A8%E0%A5%8D%E0%A4%9F_%E0%A4%AD%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%A8_%E0%A4%97:
+https://new.wikipedia.org/wiki/विन्सेन्ट_भ्यान_ग:
+
+# {𝑺=https:// 𝑯=he.wikipedia.org 𝑷=wiki 𝑷=נאט"ו}
+https://he.wikipedia.org/wiki/%D7%A0%D7%90%D7%98%22%D7%95
+https://he.wikipedia.org/wiki/נאט"ו
+
+# {𝑺=https:// 𝑯=ks.wikipedia.org 𝑷=wiki 𝑷=شارٕک۔}
+https://ks.wikipedia.org/wiki/%D8%B4%D8%A7%D8%B1%D9%95%DA%A9%DB%94
+https://ks.wikipedia.org/wiki/شارٕک۔
+
+# {𝑺=https:// 𝑯=zh.wikipedia.org 𝑷=wiki 𝑷=联合国教育、科学及文化组织}
+https://zh.wikipedia.org/wiki/联合国教育、科学及文化组织
+https://zh.wikipedia.org/wiki/联合国教育、科学及文化组织
+
+# {𝑺=https:// 𝑯=am.wikipedia.org 𝑷=wiki 𝑷=«የሰብዓዊ_መብት_አቀፋዊ_መግለጽ»}
+https://am.wikipedia.org/wiki/%C2%ABየሰብዓዊ_መብት_አቀፋዊ_መግለጽ%C2%BB
+https://am.wikipedia.org/wiki/«የሰብዓዊ_መብት_አቀፋዊ_መግለጽ»
+
+# {𝑺=https:// 𝑯=bo.wikipedia.org 𝑷=wiki 𝑷=༼མ་ཧ་བ་ར་ཏ།༽}
+https://bo.wikipedia.org/wiki/%E0%BC%BC%E0%BD%98%E0%BC%8B%E0%BD%A7%E0%BC%8B%E0%BD%96%E0%BC%8B%E0%BD%A2%E0%BC%8B%E0%BD%8F%E0%BC%8D%E0%BC%BD
+https://bo.wikipedia.org/wiki/༼མ་ཧ་བ་ར་ཏ།༽
+
+# {𝑺=https:// 𝑯=am.wikipedia.org 𝑷=wiki 𝑷=አፈ፡ታሪክ}
+https://am.wikipedia.org/wiki/አፈ፡ታሪክ
+https://am.wikipedia.org/wiki/አፈ፡ታሪክ
+
+# {𝑺=https:// 𝑯=it.wikibooks.org 𝑷=wiki 𝑷=Questo_è_l'ebraismo!}
+https://it.wikibooks.org/wiki/Questo_%C3%A8_l'ebraismo!
+https://it.wikibooks.org/wiki/Questo_è_l'ebraismo!
+
+# {𝑺=https:// 𝑯=my.wikipedia.org 𝑷=wiki 𝑷=ခို၊_ချိုးနှင့်_အလားတူငှက်များ}
+https://my.wikipedia.org/wiki/%E1%80%81%E1%80%AD%E1%80%AF%E1%81%8A_%E1%80%81%E1%80%BB%E1%80%AD%E1%80%AF%E1%80%B8%E1%80%94%E1%80%BE%E1%80%84%E1%80%B7%E1%80%BA_%E1%80%A1%E1%80%9C%E1%80%AC%E1%80%B8%E1%80%90%E1%80%B0%E1%80%84%E1%80%BE%E1%80%80%E1%80%BA%E1%80%99%E1%80%BB%E1%80%AC%E1%80%B8
+https://my.wikipedia.org/wiki/ခို၊_ချိုးနှင့်_အလားတူငှက်များ
+
