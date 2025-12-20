@@ -17,10 +17,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.NavigableMap;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
@@ -34,6 +31,7 @@ import org.unicode.utilities.LinkUtilities;
 import org.unicode.utilities.LinkUtilities.LinkScanner;
 import org.unicode.utilities.LinkUtilities.LinkTermination;
 import org.unicode.utilities.LinkUtilities.Part;
+import org.unicode.utilities.LinkUtilities.UrlInternals;
 
 /** The following is very temporary, just during the spec development. */
 public class LinkUtilitiesTest extends TestFmwkMinusMinus {
@@ -142,68 +140,89 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
     public void testMinimumEscaping() {
         System.out.println();
         String[][] tests = {
-            {"a", "", "", "/a", "Path only"},
-            {"", "a", "", "?a", "Query only"},
-            {"", "", "a", "#a", "Fragment only"},
-            {"avg/dez", "th=ikl&m=nxo", "prs", "/avg/dez?th=ikl&m=nxo#prs", "All parts"},
-            {"a?b", "", "", "/a%3Fb", "Escape ? in Path"},
-            {"a#v", "g=d#e", "", "/a%23v?g=d%23e", "Escape # in Path/Query"},
+            {"a", "", "", "https://example.com/a", "Path only"},
+            {"", "a", "", "https://example.com?a", "Query only"},
+            {"", "", "a", "https://example.com#a", "Fragment only"},
+            {
+                "avg/dez",
+                "th=ikl&m=nxo",
+                "prs",
+                "https://example.com/avg/dez?th=ikl&m=nxo#prs",
+                "All parts"
+            },
+            {"a%3Fb", "", "", "https://example.com/a%3Fb", "Escape ? in Path"},
+            {"a%23v", "g=d%23e", "", "https://example.com/a%23v?g=d%23e", "Escape # in Path/Query"},
             {
                 "av g/dez",
                 "th=ik l&=nxo",
                 "pr s",
-                "/av%20g/dez?th=ik%20l&=nxo#pr%20s",
+                "https://example.com/av%20g/dez?th=ik%20l&=nxo#pr%20s",
                 "Escape hard (' ')"
             },
             {
                 "avg./dez.",
                 "th=ik.l&=nxo.",
                 "prs.",
-                "/avg./dez.?th=ik.l&=nxo.#prs%2E",
+                "https://example.com/avg./dez.?th=ik.l&=nxo.#prs%2E",
                 "Escape soft ('.') unless followed by include"
             },
-            {"a(v))", "g(d))", "e(z))", "/a(v)%29?g(d)%29#e(z)%29", "Escape unmatched brackets"},
+            {
+                "a(v))",
+                "g(d))",
+                "e(z))",
+                "https://example.com/a(v)%29?g(d)%29#e(z)%29",
+                "Escape unmatched brackets"
+            },
             {
                 "",
                 "a%3D%26%=%3D%26%",
                 "",
-                "?a%253D%2526%=%253D%2526%",
+                "https://example.com?a%253D%2526%=%253D%2526%",
                 "Query with escapes. %xx needs to go to %25xx if xx is hex"
             },
-            {"a/v%2F%g", "", "", "/a/v%252F%g", "Path with escapes"},
-            {"", "a%3D%26%=%3D%26%", "", "?a%253D%2526%=%253D%2526%", "Query with escapes"},
+            {"a/v%2F%g", "", "", "https://example.com/a/v%252F%g", "Path with escapes"},
+            {
+                "",
+                "a%3D%26%=%3D%26%",
+                "",
+                "https://example.com?a%253D%2526%=%253D%2526%",
+                "Query with escapes"
+            },
         };
         List<List<String>> testLines = new ArrayList<>();
         int line = 0;
         Counter<Boolean> counter = new Counter<>();
         for (String[] test : tests) {
             ++line;
+            // we test first with the direct strings, then we transliterate Latin letters to Greek
             for (StringTransform alt : ALTS) {
+                String host = "example.com";
+                String comment = test.length < 4 ? "" : test[4];
                 if (alt != null) { // generate alt version
-                    String comment = test.length < 5 ? null : test[4]; // save
                     test =
                             Arrays.asList(test).stream()
                                     .map(x -> alt.transform(x))
                                     .collect(Collectors.toList())
                                     .toArray(new String[test.length]);
-                    if (comment != null) {
-                        test[4] = comment;
-                    }
+                    host = alt.transform(host);
                     testLines.add(Arrays.asList(test));
                 }
                 // produce a map, ignoring null values
-                int j = 0;
-                TreeMap<Part, String> source = new TreeMap<>();
-                for (Part part : List.of(Part.PATH, Part.QUERY, Part.FRAGMENT)) {
-                    if (!test[j].isEmpty()) {
-                        source.put(part, test[j]);
-                    }
-                    j++;
-                }
-                // check
-                final String expected = test[3];
-                final String actual = LinkUtilities.minimalEscape(source, false, null);
-                counter.add(assertEquals(line + ") " + source.toString(), expected, actual), 1);
+                StringBuilder pqf = new StringBuilder("https://" + host);
+                Part.PATH.appendPart(pqf, test[0]);
+                Part.QUERY.appendPart(pqf, test[1]);
+                Part.FRAGMENT.appendPart(pqf, test[2]);
+                UrlInternals source = UrlInternals.from(pqf.toString());
+
+                final String expected = test[3].replace("χττψ://", "https://");
+
+                final String actual = source.minimalEscape(false, null);
+                counter.add(
+                        assertEquals(
+                                line + ") " + Arrays.asList(test) + "\n" + pqf + "\n" + source,
+                                "\n" + expected,
+                                "\n" + actual),
+                        1);
             }
         }
         show("checkMinimumEscaping", counter);
@@ -229,20 +248,20 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
     public void testParts() {
         String[][] tests = {
             {
-                "https://ja.wikipedia.org/wiki/Special:EntityPage/Q5582#sitelinks-wikipedia",
-                "{PROTOCOL=https://, HOST=ja.wikipedia.org, PATH=/wiki/Special:EntityPage/Q5582, FRAGMENT=#sitelinks-wikipedia}"
+                "https://docs.foobar.com/knowledge/area?name=article&topic=seo#top:~:text=junk",
+                "{𝑺=https:// 𝑯=docs.foobar.com 𝑷=knowledge 𝑷=area 𝑸=name 𝑽=article 𝑸=topic 𝑽=seo 𝑭=top 𝑫=text=junk}"
             },
             {
-                "https://docs.foobar.com/knowledge/area/?name=article&topic=seo#top",
-                "{PROTOCOL=https://, HOST=docs.foobar.com, PATH=/knowledge/area/, QUERY=?name=article&topic=seo, FRAGMENT=#top}"
+                "https://ja.wikipedia.org/wiki/Special:EntityPage/Q5582#sitelinks-wikipedia",
+                "{𝑺=https:// 𝑯=ja.wikipedia.org 𝑷=wiki 𝑷=Special:EntityPage 𝑷=Q5582 𝑭=sitelinks-wikipedia}"
             },
         };
         for (String[] test : tests) {
             String test0 = test[0];
             String expected = test[1];
-            NavigableMap<Part, String> parts0 = Part.getParts(test0, false);
-            assertEquals("checkParts", expected, parts0.toString());
-            String min0 = LinkUtilities.minimalEscape(parts0, false, null);
+            UrlInternals internals = UrlInternals.from(test0);
+            assertEquals(test0 + "\n", "\n" + expected, "\n" + internals.toString());
+            String min0 = internals.minimalEscape(false, null);
         }
     }
 
@@ -273,15 +292,15 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
                     if (x.startsWith("#")) {
                         return;
                     }
-                    if (shortTest && items.value++ > 100) {
+                    if (shortTest && items.value++ > 20) {
                         throw new Bail();
                     }
 
                     List<String> urls = LinkUtilities.SPLIT_TAB.splitToList(x);
                     String source = urls.get(0);
                     String expected = urls.size() == 2 ? urls.get(1) : source;
-                    Map<Part, String> parts = Part.getParts(source, false);
-                    String host = parts.get(Part.HOST);
+                    UrlInternals parts = UrlInternals.from(source);
+                    String host = parts.get(Part.HOST).get(0).get(0);
                     String wikiLanguage = host;
                     if (wikiLanguageMatcher.reset(host).find()) {
                         final String rawWikiCode = wikiLanguageMatcher.group(1);
@@ -292,9 +311,7 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
                     final Counter<Boolean> okCounter = new Counter<>();
                     Counter<Integer> escapedCounter = new Counter<>();
 
-                    String actual =
-                            LinkUtilities.minimalEscape(
-                                    new TreeMap<Part, String>(parts), false, escapedCounter);
+                    String actual = parts.minimalEscape(false, escapedCounter);
                     okCounter.add(assertEquals(wikiLanguage, expected, actual), 1);
                     try {
                         processUrls(source, wikiLanguage, okCounter, escapedCounter);
@@ -391,12 +408,9 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
                                     int wikipos = url.indexOf("/wiki/");
                                     if (wikipos >= 0) {
                                         url = prefix + url.substring(wikipos + 6);
-                                        NavigableMap<Part, String> parts =
-                                                Part.getParts(url, false); // splits and unescapes
-                                        String raw = LinkUtilities.JOIN_EMPTY.join(parts.values());
-                                        String actual =
-                                                LinkUtilities.minimalEscape(parts, false, escaped);
-                                        counter.add(assertEquals(wikiLanguage, raw, actual), 1);
+                                        UrlInternals parts = UrlInternals.from(url);
+                                        String actual = parts.minimalEscape(false, escaped);
+                                        counter.add(assertEquals(wikiLanguage, url, actual), 1);
                                     }
                                 }
                             });
@@ -565,5 +579,55 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
         //        }
         //        return areEqual;
         //    }
+    }
+
+    @Test
+    public void testEscaper() {
+        String source = "abcdefgh";
+        UnicodeSet toEscape = new UnicodeSet("[deg]");
+        String expected = "abc%64%65f%67h";
+        String actual = LinkUtilities.escape(source, toEscape, null);
+        assertEquals(source + toEscape, expected, actual);
+    }
+
+    @Test
+    public void testEscape() {
+        String source = "β%2541γ%ε%";
+        String actual = LinkUtilities.unescape(source);
+        String expected = "β%41γ%ε%";
+        assertEquals(source, expected, actual);
+    }
+
+    @Test
+    public void testCleanList() {
+        String source = "β%2541γ%ε%";
+        List<List<String>> actual = LinkUtilities.cleanList(Part.PATH, source);
+        String expected = "[[β%41γ%ε%]]";
+        assertEquals(source, expected, actual.toString());
+    }
+
+    @Test
+    public void testEscaping() {
+        String source = "https://example.com?α%3Dβ=γ%3Dδ";
+        UrlInternals internals = UrlInternals.from(source);
+        String actual = internals.minimalEscape(false, null);
+        String expected = "https://example.com?α%3Dβ=γ%3Dδ";
+        assertEquals(source, expected, actual.toString());
+
+        source = "https://example.com/α/β%2Fγ";
+        internals = UrlInternals.from(source);
+        actual = internals.minimalEscape(false, null);
+        expected = "https://example.com/α/β%2Fγ";
+        assertEquals(source, expected, actual.toString());
+    }
+
+    @Test
+    public void testJoinList() {
+        List<List<String>> source = List.of(List.of("α"), List.of("β/γ"));
+        Part part = Part.PATH;
+        String unified =
+                LinkUtilities.joinListListEscaping(part.structure.sub, part.structure.sub2, source);
+        String expected = "α/β%2Fγ";
+        assertEquals(source.toString(), expected, unified);
     }
 }

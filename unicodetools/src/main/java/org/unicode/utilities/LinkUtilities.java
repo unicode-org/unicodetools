@@ -26,8 +26,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.EnumMap;
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -37,8 +37,11 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.Stack;
 import java.util.TreeSet;
+import java.util.function.Function;
+import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.props.IndexUnicodeProperties;
@@ -92,10 +95,9 @@ public class LinkUtilities {
                 C0,
                 "[\\ \"<>]"), // C0 and U+0020 SPACE, U+0022 ("), U+0023 (#), U+003C (<), and U+003E
         // (>)
-        SPECIAL_QUERY(QUERY, "[']"), // query percent-encode set and U+0027 (').
-        PATH(
-                QUERY,
-                "[?^`\\{\\}]"), // query percent-encode set and U+003F (?), U+005E (^), U+0060 (`),
+        SPECIAL_QUERY(QUERY, "[']"), // query percent-encode set and U+0027 ('). Used for http://...
+        PATH(QUERY, "[?\\^`\\{\\}]"), // query percent-encode set and U+003F (?), U+005E (^), U+0060
+        // (`),
         // U+007B ({), and U+007D (}).
         USERINFO(
                 PATH,
@@ -104,10 +106,10 @@ public class LinkUtilities {
         // (|).
         COMPONENT(
                 USERINFO,
-                "[\\$-&+,]") // userinfo and U+0024 ($) to U+0026 (&), inclusive, U+002B (+), and
+                "[\\$-\\&+,]") // userinfo and U+0024 ($) to U+0026 (&), inclusive, U+002B (+), and
     // U+002C (,).
     ;
-        final UnicodeSet set;
+        public final UnicodeSet set;
 
         private WHATWG_PERCENT_ENCODED(WHATWG_PERCENT_ENCODED base, String uset) {
             set = new UnicodeSet(uset).addAll(base == null ? UnicodeSet.EMPTY : base.set).freeze();
@@ -240,25 +242,69 @@ public class LinkUtilities {
         return LINK_PAIRED_OPENER;
     }
 
+    public enum Structure {
+        single,
+        listP("/", "𝑷"),
+        listF(":~:", "𝑭"), // directive
+        listQ2("&", "𝑸", "=", "𝑽");
+        public final String sub;
+        public final String sub2;
+        public final String prefix;
+        public final String prefix2;
+
+        Structure() {
+            this(null, null, null, null);
+        }
+
+        Structure(String sub, String prefix) {
+            this(sub, prefix, null, null);
+        }
+
+        Structure(String sub, String prefix, String sub2, String prefix2) {
+            this.sub = sub;
+            this.sub2 = sub2;
+            this.prefix = prefix;
+            this.prefix2 = prefix2;
+        }
+    }
+
     /** Parallels the spec parts table */
     public enum Part {
         // initiator, terminators, clearStack
-        PROTOCOL('\u0000', "[{//}]", "[]", "[]"),
-        HOST('\u0000', "[/?#]", "[]", "[]"),
-        PATH('/', "[?#]", "[/]", "[]"),
-        QUERY('?', "[#]", "[=\\&]", "[+]"),
-        FRAGMENT('#', "[]", "[{:~:}]", "[]"), // the :~: is handled by code
-        FRAGMENT_DIRECTIVE('\u0000', "[]", "[\\&,{:~:}]", "[]") // the :~: is handled by code
+        PROTOCOL(Structure.single, '\u0000', "[{//}]", "[]", "[]", null),
+        HOST(Structure.single, '\u0000', "[/?#]", "[]", "[]", null),
+        PATH(Structure.listP, '/', "[?#]", "[/]", "[]", WHATWG_PERCENT_ENCODED.PATH),
+        QUERY(Structure.listQ2, '?', "[#]", "[=\\&]", "[+]", WHATWG_PERCENT_ENCODED.SPECIAL_QUERY),
+        FRAGMENT(
+                Structure.listF,
+                '#',
+                "[]",
+                "[{:~:}]",
+                "[]",
+                WHATWG_PERCENT_ENCODED.FRAGMENT), // the :~: is handled by code
+    // FRAGMENT_DIRECTIVE(Structure.listF, '#', "[]", "[{:~:}]", "[]"), // the :~: is handled by
+    // code
     ;
+
+        static final Set<Part> ALL = ImmutableSet.copyOf(values());
 
         static final int[] FRAGMENT_DIRECTIVE_STRING = ":~:".codePoints().toArray();
 
+        public final Structure structure;
         final int initiator;
         final UnicodeSet terminators;
         final UnicodeSet clearStack;
         final UnicodeSet extraQuoted;
+        final UnicodeSet whatwg_quoted;
 
-        private Part(char initiator, String terminators, String clearStack, String extraQuoted) {
+        private Part(
+                Structure structure,
+                char initiator,
+                String terminators,
+                String clearStack,
+                String extraQuoted,
+                WHATWG_PERCENT_ENCODED whatwg_quoted) {
+            this.structure = structure;
             this.initiator = initiator;
             this.terminators = new UnicodeSet(terminators).freeze();
             this.clearStack = new UnicodeSet(clearStack).freeze();
@@ -267,6 +313,7 @@ public class LinkUtilities {
                             .addAll(this.clearStack)
                             .addAll(this.terminators)
                             .freeze();
+            this.whatwg_quoted = whatwg_quoted == null ? UnicodeSet.EMPTY : whatwg_quoted.set;
         }
 
         static Part fromInitiator(int cp) {
@@ -276,47 +323,6 @@ public class LinkUtilities {
                 }
             }
             return null;
-        }
-
-        /**
-         * Pull apart a URL string into Parts. <br>
-         * TODO: unescape the %escapes.
-         *
-         * @param source
-         * @param unescape TODO
-         * @return
-         */
-        public static NavigableMap<Part, String> getParts(String source, boolean unescape) {
-            Map<Part, String> result = new HashMap<>();
-            // quick and dirty
-            int partStart = 0;
-            int partEnd;
-            main:
-            for (Part part : Part.values()) {
-                switch (part) {
-                    case PROTOCOL:
-                        partEnd = source.indexOf("://"); // TODO fix for mailto
-                        if (partEnd > 0) {
-                            partEnd += 3;
-                            result.put(Part.PROTOCOL, source.substring(0, partEnd));
-                            partStart = partEnd;
-                        }
-                        break;
-                    default:
-                        partEnd =
-                                part.terminators.span(
-                                        source, partStart, SpanCondition.NOT_CONTAINED);
-                        if (partStart != partEnd) {
-                            result.put(part, part.unescape(source.substring(partStart, partEnd)));
-                        }
-                        if (partEnd == source.length()) {
-                            break main;
-                        }
-                        partStart = partEnd;
-                        break;
-                }
-            }
-            return ImmutableSortedMap.copyOf(result);
         }
 
         /**
@@ -330,6 +336,356 @@ public class LinkUtilities {
         public String unescape(String substring) {
             return LinkUtilities.unescape(substring, extraQuoted);
         }
+
+        public String fullEscape(List<List<String>> source) {
+            if (source.isEmpty()) {
+                return "";
+            }
+            if (structure == Structure.single) {
+                return source.get(0).get(0);
+            }
+            StringBuilder result = new StringBuilder().appendCodePoint(initiator);
+            UnicodeSet allEscape = whatwg_quoted;
+            // new UnicodeSet(0, 0x21, 0x7F, 0x10FFFF).addAll(extraQuoted).freeze();
+            boolean atStart = true;
+            for (List<String> list : source) {
+                if (atStart) {
+                    atStart = false;
+                } else {
+                    result.append(structure.sub);
+                }
+                if (structure.sub2 == null) {
+                    result.append(escape(list.get(0), allEscape, null));
+                } else {
+                    boolean atStart2 = true;
+                    for (String string : list) {
+                        if (atStart2) {
+                            atStart2 = false;
+                        } else {
+                            result.append(structure.sub2);
+                        }
+                        result.append(escape(string, allEscape, null));
+                    }
+                }
+            }
+            return result.toString();
+        }
+
+        /** Append an unescaped part, escaping as necessary */
+        public void appendPart(StringBuilder toAppendTo, String partValue) {
+            if (!partValue.isBlank()) {
+                if (initiator != 0) {
+                    toAppendTo.appendCodePoint(initiator);
+                }
+                toAppendTo.append(partValue);
+            }
+        }
+    }
+
+    public static class UrlInternals {
+        private NavigableMap<Part, List<List<String>>>
+                data; // note for some parts, the lists only ever have 1 member
+
+        /**
+         * Pull apart a URL string into Parts. <br>
+         * TODO: unescape the %escapes.
+         *
+         * @param source
+         * @param unescape TODO
+         * @return
+         */
+        public static UrlInternals from(String source) {
+            Map<Part, List<List<String>>> result = new EnumMap<>(Part.class);
+            // quick and dirty
+            int partStart = 0;
+            int partEnd;
+            main:
+            for (Part part : Part.values()) {
+                switch (part) {
+                    case PROTOCOL:
+                        partEnd = source.indexOf("://"); // TODO fix for mailto
+                        if (partEnd > 0) {
+                            partEnd += 3;
+                            result.put(
+                                    Part.PROTOCOL, List.of(List.of(source.substring(0, partEnd))));
+                            partStart = partEnd;
+                        }
+                        break;
+                    default:
+                        partEnd =
+                                part.terminators.span(
+                                        source, partStart, SpanCondition.NOT_CONTAINED);
+                        if (partStart != partEnd) {
+                            if (part != Part.HOST) {
+                                ++partStart;
+                            }
+                            String partString = source.substring(partStart, partEnd);
+                            if (part.structure.sub == null) { // only host, no unescaping
+                                result.put(part, List.of(List.of(partString)));
+                            } else if (part.structure.sub2 == null) { // we have just a list
+                                List<List<String>> cleanList = cleanList(part, partString);
+                                result.put(part, cleanList);
+                            } else { // we have a list of lists (query)
+                                List<List<String>> cleanList =
+                                        Splitter.on(part.structure.sub)
+                                                .splitToStream(partString)
+                                                .map(x -> splitList(part, part.structure.sub2, x))
+                                                .collect(Collectors.toList());
+                                result.put(part, cleanList);
+                            }
+                        }
+                        if (partEnd == source.length()) {
+                            break main;
+                        }
+                        partStart = partEnd;
+                        break;
+                }
+            }
+            return new UrlInternals(result);
+        }
+
+        private UrlInternals(Map<Part, List<List<String>>> data) {
+            this.data = ImmutableSortedMap.copyOf(data);
+        }
+
+        /**
+         * Minimally escape. Presumes that the parts use \ for interior quoting.<br>
+         *
+         * @param atEndOfText TODO
+         * @param escapedCounter TODO
+         */
+        public String minimalEscape(boolean atEndOfText, Counter<Integer> escapedCounter) {
+            StringBuilder output = new StringBuilder();
+            // get the last part
+            List<Entry<Part, List<List<String>>>> ordered = List.copyOf(data.entrySet());
+            Part lastPart = null;
+
+            for (Entry<Part, List<List<String>>> entry : ordered) {
+                if (!entry.getValue().isEmpty()) {
+                    lastPart = entry.getKey();
+                }
+            }
+            // process all parts
+            for (Entry<Part, List<List<String>>> partEntry : ordered) {
+                Part part = partEntry.getKey();
+                final List<List<String>> partParts = partEntry.getValue();
+                if (partParts.isEmpty()) {
+                    continue;
+                }
+                if (part.structure.sub == null) {
+                    output.append(partParts.get(0).get(0)); // just copy
+                    continue;
+                }
+                String unified =
+                        joinListListEscaping(part.structure.sub, part.structure.sub2, partParts);
+
+                int[] cps = unified.codePoints().toArray();
+                int n = cps.length;
+                if (cps[0] != part.initiator) {
+                    output.appendCodePoint(part.initiator);
+                }
+                ;
+                int copiedAlready = 0;
+                Stack<Integer> openingStack = new Stack<>();
+                for (int i = 0; i < n; ++i) {
+                    final int cp = cps[i];
+                    switch (cp) { // was just for test files
+                        case '\\': // if we have \ followed by x, just emit the literal x; otherwise
+                            // \
+                            // This is ONLY used for our test files;
+                            // in production the parts of the path/query
+                            // would be handled separately.
+
+                            // append soft code points
+                            appendCodePointsBetween(output, cps, copiedAlready, i);
+                            if (i < n - 1) {
+                                // append next code point
+                                ++i;
+                                appendPercentEscaped(output, cps[i], escapedCounter);
+                                copiedAlready = i + 1;
+                            } else {
+                                // append '\' alone (at end)
+                                appendPercentEscaped(output, cp, escapedCounter);
+                                copiedAlready = i + 1;
+                            }
+                            continue;
+                            //
+                            //                        case '%': // if we have %xy, and x and y are
+                            // hex, escape the %
+                            //                            if (i < n - 2 && HEX.contains(cps[i + 1])
+                            // && HEX.contains(cps[i + 2])) {
+                            //                                // append soft code points
+                            //                                appendCodePointsBetween(output, cps,
+                            // copiedAlready, i);
+                            //                                appendPercentEscaped(output, cp,
+                            // escapedCounter);
+                            //                                copiedAlready = i + 1;
+                            //                                continue;
+                            //                            }
+                            //                            break;
+                    }
+                    LinkTermination lt =
+                            part.terminators.contains(cp)
+                                    ? LinkTermination.Hard
+                                    : LinkTermination.PROPERTY_MAP.get(cp);
+                    switch (lt) {
+                        case Include:
+                            appendCodePointsBetween(output, cps, copiedAlready, i);
+                            output.appendCodePoint(cp);
+                            copiedAlready = i + 1;
+                            break;
+                        case Hard:
+                            appendCodePointsBetween(output, cps, copiedAlready, i);
+                            appendPercentEscaped(output, cp, escapedCounter);
+                            copiedAlready = i + 1;
+                            continue;
+                        case Soft: // fix
+                            continue;
+                        case Open:
+                            openingStack.push(cp);
+                            appendCodePointsBetween(output, cps, copiedAlready, i);
+                            output.appendCodePoint(cp);
+                            copiedAlready = i + 1;
+                            continue; // fix
+                        case Close: // fix
+                            if (openingStack.empty()) {
+                                appendCodePointsBetween(output, cps, copiedAlready, i);
+                                appendPercentEscaped(output, cp, escapedCounter);
+                            } else {
+                                Integer topOfStack = openingStack.pop();
+                                int matchingOpening = getOpening(cp);
+                                if (matchingOpening == topOfStack) {
+                                    appendCodePointsBetween(output, cps, copiedAlready, i);
+                                    output.appendCodePoint(cp);
+                                } else { // failed to match
+                                    appendCodePointsBetween(output, cps, copiedAlready, i);
+                                    appendPercentEscaped(output, cp, escapedCounter);
+                                }
+                            }
+                            copiedAlready = i + 1;
+                            continue;
+                        default:
+                            throw new IllegalArgumentException();
+                    }
+                }
+                // fix
+                if (atEndOfText || part != lastPart) {
+                    appendCodePointsBetween(output, cps, copiedAlready, n);
+                } else if (copiedAlready < n) {
+                    appendCodePointsBetween(output, cps, copiedAlready, n - 1);
+                    appendPercentEscaped(output, cps[n - 1], escapedCounter);
+                }
+            }
+
+            return output.toString();
+        }
+
+        public String fullEscape() {
+            return data.entrySet().stream()
+                    .map(
+                            x -> {
+                                Part part = x.getKey();
+                                List<List<String>> value = x.getValue();
+                                return part.fullEscape(value);
+                            })
+                    .collect(Collectors.joining());
+        }
+
+        public List<List<String>> get(Part part) {
+            return data.get(part);
+        }
+
+        @Override
+        public String toString() {
+            return toString(Part.ALL); // show all
+        }
+
+        public String toString(Set<Part> partsToShow) {
+            StringBuilder result = new StringBuilder("{");
+            for (Entry<Part, List<List<String>>> partListList : data.entrySet()) {
+                Part part = partListList.getKey();
+                List<List<String>> listList = partListList.getValue();
+                int index1 = -1;
+                for (List<String> list1 : listList) {
+                    ++index1;
+                    int index2 = -1;
+                    for (String value : list1) {
+                        ++index2;
+                        if (result.length() != 1) {
+                            result.append(" ");
+                        }
+                        switch (part.structure) {
+                            case single:
+                                // we don't care about interior structure
+                                result.append(part == Part.PROTOCOL ? "𝑺" : "𝑯");
+                                break;
+                            case listP:
+                                result.append(part.structure.prefix);
+                                break;
+                            case listF:
+                                // Hack the difference between Fragment and FragmentDirective for
+                                // now
+                                result.append(index1 == 0 ? part.structure.prefix : "𝑫");
+                                break;
+                            case listQ2:
+                                result.append(
+                                        index2 == 0
+                                                ? part.structure.prefix
+                                                : part.structure.prefix2);
+                                break;
+                        }
+                        result.append('=');
+                        result.append(value);
+                    }
+                }
+            }
+            return result.append("}").toString();
+        }
+    }
+
+    public static String joinListListEscaping(
+            String sep, String sep2, List<List<String>> partParts) {
+        if (sep.codePointCount(0, sep.length()) == 0
+                || (sep2 != null && sep2.codePointCount(0, sep2.length()) == 0)) {
+            throw new IllegalArgumentException();
+        }
+        UnicodeSet toEscape = new UnicodeSet().add(sep);
+        if (sep2 != null) {
+            toEscape.add(sep2);
+        }
+        return partParts.stream()
+                .map(
+                        x -> {
+                            return joinListEscaping(sep2, toEscape, x);
+                        })
+                .collect(Collectors.joining(sep));
+    }
+
+    public static String joinListEscaping(String sep, UnicodeSet toEscape, List<String> partParts) {
+        return sep == null
+                ? escape(partParts.get(0),toEscape)
+                : partParts.stream()
+                        .map(
+                                x -> {
+                                    return escape(x, toEscape);
+                                })
+                        .collect(Collectors.joining(sep));
+    }
+
+    public static List<List<String>> cleanList(Part part, String partString) {
+        return splitList(part, part.structure.sub, partString).stream()
+                .map(
+                        x -> {
+                            return List.of(x);
+                        })
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private static List<String> splitList(Part part, String separator, String partString) {
+        return Splitter.on(separator)
+                .splitToStream(partString)
+                .map(x -> unescape(x))
+                .collect(Collectors.toList());
     }
 
     private static final UnicodeSet idnMapped =
@@ -537,131 +893,6 @@ public class LinkUtilities {
         return true;
     }
 
-    /**
-     * Minimally escape. Presumes that the parts use \ for interior quoting.<br>
-     *
-     * @param atEndOfText TODO
-     * @param escapedCounter TODO
-     */
-    public static String minimalEscape(
-            NavigableMap<Part, String> parts,
-            boolean atEndOfText,
-            Counter<Integer> escapedCounter) {
-        StringBuilder output = new StringBuilder();
-        // get the last part
-        List<Entry<Part, String>> ordered = List.copyOf(parts.entrySet());
-        Part lastPart = null;
-
-        for (Entry<Part, String> entry : ordered) {
-            if (!entry.getValue().isEmpty()) {
-                lastPart = entry.getKey();
-            }
-        }
-        // process all parts
-        for (Entry<Part, String> partEntry : ordered) {
-            Part part = partEntry.getKey();
-            final String string = partEntry.getValue();
-            if (string.isEmpty()) {
-                continue;
-            }
-            if (part == Part.HOST || part == Part.PROTOCOL) {
-                output.append(string);
-                continue;
-            }
-            int[] cps = string.codePoints().toArray();
-            int n = cps.length;
-            if (cps[0] != part.initiator) {
-                output.appendCodePoint(part.initiator);
-            }
-            ;
-            int copiedAlready = 0;
-            Stack<Integer> openingStack = new Stack<>();
-            for (int i = 0; i < n; ++i) {
-                final int cp = cps[i];
-                switch (cp) {
-                    case '\\': // if we have \ followed by x, just emit the literal x; otherwise \
-                        // This is ONLY used for our test files;
-                        // in production the parts of the path/query
-                        // would be handled separately.
-
-                        // append soft code points
-                        appendCodePointsBetween(output, cps, copiedAlready, i);
-                        if (i < n - 1) {
-                            // append next code point
-                            ++i;
-                            appendPercentEscaped(output, cps[i], escapedCounter);
-                            copiedAlready = i + 1;
-                        } else {
-                            // append '\' alone (at end)
-                            appendPercentEscaped(output, cp, escapedCounter);
-                            copiedAlready = i + 1;
-                        }
-                        continue;
-
-                    case '%': // if we have %xy, and x and y are hex, escape the %
-                        if (i < n - 2 && HEX.contains(cps[i + 1]) && HEX.contains(cps[i + 2])) {
-                            // append soft code points
-                            appendCodePointsBetween(output, cps, copiedAlready, i);
-                            appendPercentEscaped(output, cp, escapedCounter);
-                            copiedAlready = i + 1;
-                            continue;
-                        }
-                        break;
-                }
-                LinkTermination lt =
-                        part.terminators.contains(cp)
-                                ? LinkTermination.Hard
-                                : LinkTermination.PROPERTY_MAP.get(cp);
-                switch (lt) {
-                    case Include:
-                        appendCodePointsBetween(output, cps, copiedAlready, i);
-                        output.appendCodePoint(cp);
-                        copiedAlready = i + 1;
-                        break;
-                    case Hard:
-                        appendCodePointsBetween(output, cps, copiedAlready, i);
-                        appendPercentEscaped(output, cp, escapedCounter);
-                        copiedAlready = i + 1;
-                        continue;
-                    case Soft: // fix
-                        continue;
-                    case Open:
-                        openingStack.push(cp);
-                        appendCodePointsBetween(output, cps, copiedAlready, i);
-                        output.appendCodePoint(cp);
-                        copiedAlready = i + 1;
-                        continue; // fix
-                    case Close: // fix
-                        if (openingStack.empty()) {
-                            appendCodePointsBetween(output, cps, copiedAlready, i);
-                            appendPercentEscaped(output, cp, escapedCounter);
-                        } else {
-                            Integer topOfStack = openingStack.pop();
-                            int matchingOpening = getOpening(cp);
-                            if (matchingOpening == topOfStack) {
-                                appendCodePointsBetween(output, cps, copiedAlready, i);
-                                output.appendCodePoint(cp);
-                            } else { // failed to match
-                                appendCodePointsBetween(output, cps, copiedAlready, i);
-                                appendPercentEscaped(output, cp, escapedCounter);
-                            }
-                        }
-                        copiedAlready = i + 1;
-                        continue;
-                    default:
-                        throw new IllegalArgumentException();
-                }
-            } // fix
-            if (atEndOfText || part != lastPart) {
-                appendCodePointsBetween(output, cps, copiedAlready, n);
-            } else if (copiedAlready < n) {
-                appendCodePointsBetween(output, cps, copiedAlready, n - 1);
-                appendPercentEscaped(output, cps[n - 1], escapedCounter);
-            }
-        }
-        return output.toString();
-    }
-
     private static void appendCodePointsBetween(
             StringBuilder output, int[] cp, int copyEnd, int notToCopy) {
         for (int i = copyEnd; i < notToCopy; ++i) {
@@ -670,12 +901,20 @@ public class LinkUtilities {
     }
 
     /** Regex for percent escaping */
-    public static final Pattern escapedSequence = Pattern.compile("(%[a-fA-F0-9][a-fA-F0-9])+");
+    public static final Pattern ESCAPED_BYTE_PATTERN =
+            Pattern.compile("(%[a-fA-F0-9][a-fA-F0-9])+");
+
+    public static final Pattern ESCAPED_SINGLE = Pattern.compile("%[a-fA-F0-9][a-fA-F0-9]");
+
+    /** Unescape a string. */
+    public static String unescape(String stringWithEscapes) {
+        return unescape(stringWithEscapes, UnicodeSet.EMPTY); // no characters escaped bak
+    }
 
     /** Unescape a string; however, code points in toEscape are escaped back. */
     public static String unescape(String stringWithEscapes, UnicodeSet toEscape) {
         StringBuilder result = new StringBuilder();
-        Matcher matcher = escapedSequence.matcher(stringWithEscapes);
+        Matcher matcher = ESCAPED_BYTE_PATTERN.matcher(stringWithEscapes);
         int current = 0;
         while (matcher.find(current)) {
             result.append(
@@ -699,7 +938,7 @@ public class LinkUtilities {
         return result.toString();
     }
 
-    private static void appendPercentEscaped(
+    public static void appendPercentEscaped(
             StringBuilder output, int cp, Counter<Integer> escaped) {
         if (escaped != null) {
             escaped.add(cp, 1);
@@ -711,8 +950,68 @@ public class LinkUtilities {
         }
     }
 
+    public static void appendPercentEscaped(StringBuilder output, String source) {
+        byte[] bytes = source.getBytes(StandardCharsets.UTF_8);
+        for (int i = 0; i < bytes.length; ++i) {
+            output.append('%');
+            output.append(Utility.hex(bytes[i]));
+        }
+    }
+
+    /** percent-escape single char or string. */
+    public static String escape(String source, String cpToEscape) {
+        return escape(source, cpToEscape, null);
+    }
+
+    public static String escape(String source, String cpToEscape, Counter<Integer> escaped) {
+        return escape(source, new UnicodeSet().add(cpToEscape), escaped);
+    }
+
+    /** percent-escape all the toEscape characters. */
+    public static String escape(String source, UnicodeSet toEscape) {
+        return escape(source, toEscape, null);
+    }
+
+    public static String escape(String source, UnicodeSet toEscape, Counter<Integer> escaped) {
+        StringBuilder result = new StringBuilder();
+        int lastEnd = 0;
+        while (true) {
+            int start = toEscape.span(source, lastEnd, SpanCondition.NOT_CONTAINED);
+            appendCheckingPercent(result, source, lastEnd, start);
+            if (start == source.length()) {
+                break;
+            }
+            lastEnd = toEscape.span(source, start, SpanCondition.SIMPLE);
+            appendPercentEscaped(result, source.substring(start, lastEnd));
+            if (lastEnd == source.length()) {
+                break;
+            }
+        }
+        return result.toString();
+    }
+
+    /** If we have in an unescaped string %xy, and xy are hex, then we have to escape the % sign. */
+    private static void appendCheckingPercent(
+            StringBuilder toAppendTo, String source, int lastEnd, int start) {
+        int pos = source.indexOf("%", lastEnd); // quickcheck
+        if (pos < 0 || pos >= start) {
+            toAppendTo.append(source, lastEnd, start);
+            return;
+        }
+        String sub = source.substring(lastEnd, start);
+        Matcher matcher = ESCAPED_SINGLE.matcher(sub);
+        Function<MatchResult, String> replacer =
+                x -> {
+                    return "%25"
+                            + x.group(0)
+                                    .substring(1); // separate the % from the xy, and return %25xy
+                };
+        String fixed = matcher.replaceAll(replacer);
+        toAppendTo.append(fixed);
+    }
+
     /** We are guaranteed that string is all percent escaped utf8, %a3%c0 ... */
-    private static String percentUnescape(String escapedSource) {
+    public static String percentUnescape(String escapedSource) {
         byte[] temp = new byte[escapedSource.length() / 3];
         int tempOffset = 0;
         for (int i = 0; i < escapedSource.length(); i += 3) {

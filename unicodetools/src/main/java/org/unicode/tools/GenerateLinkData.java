@@ -2,13 +2,13 @@ package org.unicode.tools;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
-import com.google.common.collect.ImmutableSortedMap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.SimpleFormatter;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.Output;
 import com.ibm.icu.util.OutputInt;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,10 +18,8 @@ import java.nio.file.Path;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.EnumMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.NavigableMap;
-import java.util.TreeMap;
 import java.util.function.Consumer;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
@@ -33,6 +31,7 @@ import org.unicode.props.UcdPropertyValues;
 import org.unicode.utilities.LinkUtilities;
 import org.unicode.utilities.LinkUtilities.LinkTermination;
 import org.unicode.utilities.LinkUtilities.Part;
+import org.unicode.utilities.LinkUtilities.UrlInternals;
 
 /**
  * Generate UTS #58 property and test files
@@ -172,24 +171,22 @@ class GenerateLinkData {
             SimpleFormatter.compile(
                     HEADER_BASE
                             + "# Format: Each line has the following fields, separated by semicolons.\n"
-                            + "# Field 0: Scheme/host\n"
-                            + "# Field 1: Path\n"
-                            + "# Field 2: Query\n"
-                            + "# Field 3: Fragment\n"
-                            + "# Field 4: Result — with minimal escaping\n"
+                            + "# Field 0: Fully escaped\n"
+                            + "# Field 1: Minimally escaped\n"
                             + "#\n"
                             + "# Empty lines, and lines starting with # are ignored.\n"
-                            + "# Otherwise # is treated like any other character.\n"
                             + "# Spaces around the semicolons are ignored.\n"
                             + "#\n"
-                            + "# The Path, Query, and Fragment will contain backslash escapes when characters would otherwise be \n"
-                            + "# internal syntax characters in *that* part. \n"
-                            + "# For example, consider ?a=b\\&c&d=ef\n"
-                            + "# This represents the key-value pairs:\n"
-                            + "# - <\"a\", \"b&c\">\n"
-                            + "# - <\"d\", \"ef\">\n"
-                            + "# The \\& in the value of the first key-value pair does not represent a separator between key-value pairs, \n"
-                            + "# but rather a literal & in the string value \"b&c\".\n"
+                            + "# The fully-escaped field percent-escapes all literal syntax characters and all characters above ASCII.\n"
+                            + "# The minimally-escaped field is the more readable format described in UTS #58.\n"
+                            + "# Each line also has a comment field for the internal structure of the URL.\n"
+                            + "# 𝑺 = the schema\n"
+                            + "# 𝑯 = the host (typically just a domain name) the internal structure is not broken down.\n"
+                            + "# 𝑷 = indicates one of the labels in the path. So /seg1/seg2 becomes 𝑷=seg1 𝑷=seg1\n"
+                            + "# 𝑸 = each key in the query. So &θ=ικλ&μ=γξο becomes 𝑸=θ 𝑽=ικλ 𝑸=μ 𝑽=γξο.\n"
+                            + "# 𝑽 = a value for the preceding key\n"
+                            + "# 𝑭 = a fragment. So #reserved:~:text=Reserved,into:~:text=open,closed becomes 𝑭=reserved 𝑫=Reserved,into 𝑫=text=open,closed\n"
+                            + "# 𝑫 = a fragment-directive\n"
                             + "# ================================================\n");
 
     static void writePropHeader(
@@ -359,51 +356,68 @@ class GenerateLinkData {
 
             out.println("\n# Selected test cases\n");
 
+            List<String> comments = new ArrayList<>();
+            Output<Integer> lineCount = new Output<>(0);
+
             Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "LinkFormattingTestSource.txt"))
                     .forEach(
                             line -> {
+                                ++lineCount.value;
                                 if (line.startsWith("#") || line.isBlank()) {
                                     out.println(line);
+                                    comments.add(line);
                                     return;
                                 }
+
+                                // process old format
+                                line = percentEscapeBackslash(line);
+
                                 List<String> parts = SPLIT_SEMI.splitToList(line);
                                 if (parts.size() < 5 || parts.size() > 6) {
                                     System.out.println("* Malformed? " + line);
                                     ++errorCount.value;
                                     return;
                                 }
-                                EnumMap<Part, String> partMap = new EnumMap<>(Part.class);
-                                partMap.put(Part.PROTOCOL, parts.get(0));
-                                partMap.put(Part.HOST, parts.get(1));
-                                partMap.put(Part.PATH, parts.get(2));
-                                partMap.put(Part.QUERY, parts.get(3));
-                                partMap.put(Part.FRAGMENT, parts.get(4));
-                                ImmutableSortedMap<Part, String> temp =
-                                        ImmutableSortedMap.copyOf(partMap);
 
-                                String actual = LinkUtilities.minimalEscape(temp, false, null);
+                                StringBuilder oldValue = new StringBuilder();
+                                Part.PROTOCOL.appendPart(oldValue, parts.get(0));
+                                Part.HOST.appendPart(oldValue, parts.get(1));
+                                Part.PATH.appendPart(oldValue, parts.get(2));
+                                Part.QUERY.appendPart(oldValue, parts.get(3));
+                                Part.FRAGMENT.appendPart(oldValue, parts.get(4));
+                                String fullSourcePath = oldValue.toString();
+
+                                UrlInternals internals = UrlInternals.from(fullSourcePath);
+
+                                String actual = internals.minimalEscape(false, null);
 
                                 String expected = parts.size() < 6 ? null : parts.get(5);
                                 if (expected != null && !actual.equals(expected)) {
+                                    String title =
+                                            "("
+                                                    + lineCount
+                                                    + ") Mismatch from: "
+                                                    + Joiner.on('\n').join(comments);
                                     System.out.println(
-                                            "* mismatch "
-                                                    + temp
-                                                    + "\nexpected:\t"
-                                                    + expected
-                                                    + "\nactual:  \t"
-                                                    + actual);
+                                            Joiner.on('\n')
+                                                    .join(
+                                                            title,
+                                                            line,
+                                                            internals,
+                                                            fullSourcePath,
+                                                            "expected:\t" + expected,
+                                                            "actual:  \t" + actual));
                                     ++errorCount.value;
-                                    LinkUtilities.minimalEscape(temp, false, null); // for debugging
+                                    // for debugging
+                                    UrlInternals.from(fullSourcePath);
+                                    internals.minimalEscape(false, null);
+                                    comments.clear();
                                     return;
                                 }
+                                String fullEscape = internals.fullEscape();
                                 out.println(
-                                        JOIN_SEMI_SP.join(
-                                                temp.get(Part.PROTOCOL),
-                                                temp.get(Part.HOST),
-                                                temp.get(Part.PATH),
-                                                temp.get(Part.QUERY),
-                                                temp.get(Part.FRAGMENT),
-                                                actual));
+                                        JOIN_SEMI_SP.join(fullEscape, actual) + " # " + internals);
+                                comments.clear();
                             });
 
             out.println("\n# Wikipedia test cases\n");
@@ -411,7 +425,6 @@ class GenerateLinkData {
             final UnicodeSet charactersSeen = new UnicodeSet(LinkTermination.Include.getBase());
             final UnicodeSet charactersSeenAtEnd =
                     new UnicodeSet(LinkTermination.Include.getBase());
-            final TreeMap<Part, String> parts = new TreeMap<>();
 
             Files.lines(Path.of(LinkUtilities.RESOURCE_DIR, "testUrls.txt"))
                     .forEach(
@@ -444,21 +457,11 @@ class GenerateLinkData {
                                     return;
                                 }
                                 // Divide into parts
-                                parts.clear();
-                                parts.putAll(Part.getParts(line, false));
-                                parts.put(Part.QUERY, "");
-                                parts.put(Part.FRAGMENT, "");
+                                UrlInternals internals = UrlInternals.from(line);
 
-                                String actual = LinkUtilities.minimalEscape(parts, false, null);
+                                String actual = internals.minimalEscape(true, null);
 
-                                out.println(
-                                        JOIN_SEMI_SP.join(
-                                                parts.get(Part.PROTOCOL),
-                                                parts.get(Part.HOST),
-                                                parts.get(Part.PATH),
-                                                parts.get(Part.QUERY),
-                                                parts.get(Part.FRAGMENT),
-                                                actual));
+                                out.println(JOIN_SEMI_SP.join(internals.fullEscape(), actual));
                             });
         } catch (IOException e) {
             throw new UncheckedIOException(e);
@@ -466,6 +469,22 @@ class GenerateLinkData {
         if (errorCount.value != 0) {
             throw new IllegalArgumentException("Failures in writing test file: " + errorCount);
         }
+    }
+
+    private static String percentEscapeBackslash(String line) {
+        StringBuilder result = new StringBuilder();
+        boolean skipFirst = !line.startsWith("\\");
+        for (String part : Splitter.on('\\').split(line)) {
+            if (skipFirst) {
+                result.append(part);
+                skipFirst = false;
+                continue;
+            }
+            int toEscape = part.codePointAt(0);
+            LinkUtilities.appendPercentEscaped(result, toEscape, null);
+            result.append(part.substring(Character.charCount(toEscape), part.length()));
+        }
+        return result.toString();
     }
 
     /**
@@ -508,10 +527,10 @@ class GenerateLinkData {
                                 qid = Long.parseLong(item.substring(toRemove.length()));
                                 break;
                             case 2:
-                                NavigableMap<Part, String> parts =
-                                        Part.getParts(item, false); // splits and unescapes
-                                hostCounter.add(parts.get(Part.HOST), 1);
-                                url = LinkUtilities.minimalEscape(parts, true, escaped);
+                                UrlInternals parts = UrlInternals.from(item);
+                                String host = parts.get(Part.HOST).get(0).get(0);
+                                hostCounter.add(host, 1);
+                                url = parts.minimalEscape(true, escaped);
                                 break;
                         }
                     }

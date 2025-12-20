@@ -10,20 +10,20 @@ https://;	example.com;	;	;	α;	https://example.com#α
 # All parts					
 https://;	example.com;	αβγ/δεζ;	θ=ικλ&μ=γξο;	πρς;	https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο#πρς
 
-# Escape soft at end				
-https://;	example.com;	αβγ/δεζ.;	;	;	https://example.com/αβγ/δεζ%2E
+# Escape soft at end of Path (with nothing following)				
+https://;	example.com;	αβγ/δ.εζ.;	;	;	https://example.com/αβγ/δ.εζ%2E
 
-# Escape soft at end				
-https://;	example.com;	αβγ/δεζ;	θ=ικλ&μ=γξο.;	;	https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο%2E
+# Escape soft at end of Query (with nothing following)				
+https://;	example.com;	αβγ/δ.εζ.;	θ=ικλ&μ=γ.ξο.;	;	https://example.com/αβγ/δ.εζ.?θ=ικλ&μ=γ.ξο%2E
 
-# Escape soft at end				
-https://;	example.com;	αβγ/δεζ;	θ=ικλ&μ=γξο;	πρς.;	https://example.com/αβγ/δεζ?θ=ικλ&μ=γξο#πρς%2E
+# Escape soft at end of Fragment (with nothing following)				
+https://;	example.com;	αβγ/δ.εζ;	θ=ικλ&μ=γ.ξο;	π.ρς.;	https://example.com/αβγ/δ.εζ?θ=ικλ&μ=γ.ξο#π.ρς%2E
 
 # Escape ? in Path					
-https://;	example.com;	α?μπ;	;	;	https://example.com/α%3Fμπ
+https://;	example.com;	α%3Fμπ;	;	;	https://example.com/α%3Fμπ
 
 # Escape #, =, & in Path/Query					
-https://;	example.com;	α#β;	γ=δ#ε;	;	https://example.com/α%23β?γ=δ%23ε
+https://;	example.com;	α%23β;	γ=δ%23ε;	;	https://example.com/α%23β?γ=δ%23ε
 
 # Escape hard (' ')					
 https://;	example.com;	αβ γ/δεζ;	θ=ικ λ&=γξο;	πρ σ;	https://example.com/αβ%20γ/δεζ?θ=ικ%20λ&=γξο#πρ%20σ
@@ -49,16 +49,16 @@ https://;	example.com;	;	γ(δ);	ε(ζ);	https://example.com?γ(δ)#ε(ζ)
 https://;	example.com;	;	γ(δ);	;	https://example.com?γ(δ)
 https://;	example.com;	;	;	ε(ζ);	https://example.com#ε(ζ)
 
-# Path with escapes (\/ is a literal /, %xx is escaped)
+# Path with escaped separator
 https://;	example.com;	α/β\/γ;	;	;	https://example.com/α/β%2Fγ
 
 # Path with escapes (% is escaped only if followed by 2 hex digits [0-9A-fa-f)
-https://;	example.com;	α/β%41γ%ε%;	;	;	https://example.com/α/β%2541γ%ε%
+https://;	example.com;	α/β%2541γ%ε%;	;	;	https://example.com/α/β%2541γ%ε%
 
 # Query with escapes (& separates key-value pairs, so handle literal &)	
 https://;	example.com;	;	α\&=β&γ=\&δ;	;	https://example.com?α%26=β&γ=%26δ
 
-# Query with escapes (= separates keys and values, so handle literal &=)	
+# Query with escapes (= separates keys and values, so handle literal =)	
 https://;	example.com;	;	α\=β=γ\=δ;	;	https://example.com?α%3Dβ=γ%3Dδ
 
 # Query with escapes (% is escaped only if followed by 2 hex digits [0-9A-fa-f)
