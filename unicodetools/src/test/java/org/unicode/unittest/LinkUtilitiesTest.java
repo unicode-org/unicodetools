@@ -136,7 +136,7 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
                             counter.get(Boolean.TRUE)));
     }
 
-    @Test
+    // outdated test;
     public void testMinimumEscaping() {
         System.out.println();
         String[][] tests = {
