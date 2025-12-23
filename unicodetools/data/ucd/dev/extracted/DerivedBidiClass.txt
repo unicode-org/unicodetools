@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2025-11-30, 20:46:24 GMT
+# Date: 2025-12-23, 17:10:22 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1252,8 +1252,8 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 797671 code points not listed here.
-# Total code points: 1095365
+# The above property value applies to 797663 code points not listed here.
+# Total code points: 1095357
 
 # ================================================
 
@@ -1992,7 +1992,7 @@ FFFC..FFFD    ; ON # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTE
 1CD00..1CEB3  ; ON # So [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
 1CEBA..1CED0  ; ON # So  [23] FRAGILE SYMBOL..LEUKOTHEA
 1CEE0..1CEEF  ; ON # So  [16] GEOMANTIC FIGURE POPULUS..GEOMANTIC FIGURE VIA
-1CEF0..1CEF5  ; ON # Sm   [6] MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR..LEIBNIZIAN FRACTION REDUCTION SIGN-2
+1CEF0..1CEFD  ; ON # Sm  [14] MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR..HYPERBOLA
 1D1E9..1D1EA  ; ON # So   [2] MUSICAL SYMBOL SORI..MUSICAL SYMBOL KORON
 1D200..1D241  ; ON # So  [66] GREEK VOCAL NOTATION SYMBOL-1..GREEK INSTRUMENTAL NOTATION SYMBOL-54
 1D245         ; ON # So       GREEK MUSICAL LEIMMA
@@ -2049,7 +2049,7 @@ FFFC..FFFD    ; ON # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTE
 1FB94..1FBEF  ; ON # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; ON # So       ALARM BELL SYMBOL
 
-# Total code points: 6880
+# Total code points: 6888
 
 # ================================================
 
