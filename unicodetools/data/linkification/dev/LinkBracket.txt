@@ -1,0 +1,95 @@
+# LinkBracket.txt
+# Date: 2025-12-20, 21:02:29 GMT 
+# © 2025 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
+# 
+# The usage and stability of these values is covered in https://www.unicode.org/reports/tr58/
+# 
+# ================================================
+# 
+# Property:	Link_Bracket
+# Format
+# 
+# Field 0: code point
+# Field 1: code point
+#          For more information, see https://www.unicode.org/reports/tr58/#property-data. 
+# 
+# For the purpose of regular expressions, the property Link_Bracket is defined as
+# a string property whose value is either a single code point or is <none>.
+# 
+# The short name of the property is the same as its long name.
+# 
+#  All code points not explicitly listed for Link_Bracket
+#  have the value <none>.
+# 
+# @missing: 0000..10FFFF; <none>
+# 
+# ================================================
+# 
+0029          ; 0028 #1.1     () ⇒ ()       RIGHT PARENTHESIS
+003E          ; 003C #1.1     (> ⇒ <)       GREATER-THAN SIGN
+005D          ; 005B #1.1     (] ⇒ [)       RIGHT SQUARE BRACKET
+007D          ; 007B #1.1     (} ⇒ {)       RIGHT CURLY BRACKET
+0F3B          ; 0F3A #2.0     (༻ ⇒ ༺)       TIBETAN MARK GUG RTAGS GYAS
+0F3D          ; 0F3C #2.0     (༽ ⇒ ༼)       TIBETAN MARK ANG KHANG GYAS
+169C          ; 169B #3.0     (᚜ ⇒ ᚛)       OGHAM REVERSED FEATHER MARK
+2046          ; 2045 #1.1     (⁆ ⇒ ⁅)       RIGHT SQUARE BRACKET WITH QUILL
+207E          ; 207D #1.1     (⁾ ⇒ ⁽)       SUPERSCRIPT RIGHT PARENTHESIS
+208E          ; 208D #1.1     (₎ ⇒ ₍)       SUBSCRIPT RIGHT PARENTHESIS
+2309          ; 2308 #1.1     (⌉ ⇒ ⌈)       RIGHT CEILING
+230B          ; 230A #1.1     (⌋ ⇒ ⌊)       RIGHT FLOOR
+2769          ; 2768 #3.2     (❩ ⇒ ❨)       MEDIUM RIGHT PARENTHESIS ORNAMENT
+276B          ; 276A #3.2     (❫ ⇒ ❪)       MEDIUM FLATTENED RIGHT PARENTHESIS ORNAMENT
+276D          ; 276C #3.2     (❭ ⇒ ❬)       MEDIUM RIGHT-POINTING ANGLE BRACKET ORNAMENT
+276F          ; 276E #3.2     (❯ ⇒ ❮)       HEAVY RIGHT-POINTING ANGLE QUOTATION MARK ORNAMENT
+2771          ; 2770 #3.2     (❱ ⇒ ❰)       HEAVY RIGHT-POINTING ANGLE BRACKET ORNAMENT
+2773          ; 2772 #3.2     (❳ ⇒ ❲)       LIGHT RIGHT TORTOISE SHELL BRACKET ORNAMENT
+2775          ; 2774 #3.2     (❵ ⇒ ❴)       MEDIUM RIGHT CURLY BRACKET ORNAMENT
+27C6          ; 27C5 #4.1     (⟆ ⇒ ⟅)       RIGHT S-SHAPED BAG DELIMITER
+27E7          ; 27E6 #3.2     (⟧ ⇒ ⟦)       MATHEMATICAL RIGHT WHITE SQUARE BRACKET
+27E9          ; 27E8 #3.2     (⟩ ⇒ ⟨)       MATHEMATICAL RIGHT ANGLE BRACKET
+27EB          ; 27EA #3.2     (⟫ ⇒ ⟪)       MATHEMATICAL RIGHT DOUBLE ANGLE BRACKET
+27ED          ; 27EC #5.1     (⟭ ⇒ ⟬)       MATHEMATICAL RIGHT WHITE TORTOISE SHELL BRACKET
+27EF          ; 27EE #5.1     (⟯ ⇒ ⟮)       MATHEMATICAL RIGHT FLATTENED PARENTHESIS
+2984          ; 2983 #3.2     (⦄ ⇒ ⦃)       RIGHT WHITE CURLY BRACKET
+2986          ; 2985 #3.2     (⦆ ⇒ ⦅)       RIGHT WHITE PARENTHESIS
+2988          ; 2987 #3.2     (⦈ ⇒ ⦇)       Z NOTATION RIGHT IMAGE BRACKET
+298A          ; 2989 #3.2     (⦊ ⇒ ⦉)       Z NOTATION RIGHT BINDING BRACKET
+298C          ; 298B #3.2     (⦌ ⇒ ⦋)       RIGHT SQUARE BRACKET WITH UNDERBAR
+298E          ; 298F #3.2     (⦎ ⇒ ⦏)       RIGHT SQUARE BRACKET WITH TICK IN BOTTOM CORNER
+2990          ; 298D #3.2     (⦐ ⇒ ⦍)       RIGHT SQUARE BRACKET WITH TICK IN TOP CORNER
+2992          ; 2991 #3.2     (⦒ ⇒ ⦑)       RIGHT ANGLE BRACKET WITH DOT
+2994          ; 2993 #3.2     (⦔ ⇒ ⦓)       RIGHT ARC GREATER-THAN BRACKET
+2996          ; 2995 #3.2     (⦖ ⇒ ⦕)       DOUBLE RIGHT ARC LESS-THAN BRACKET
+2998          ; 2997 #3.2     (⦘ ⇒ ⦗)       RIGHT BLACK TORTOISE SHELL BRACKET
+29D9          ; 29D8 #3.2     (⧙ ⇒ ⧘)       RIGHT WIGGLY FENCE
+29DB          ; 29DA #3.2     (⧛ ⇒ ⧚)       RIGHT DOUBLE WIGGLY FENCE
+29FD          ; 29FC #3.2     (⧽ ⇒ ⧼)       RIGHT-POINTING CURVED ANGLE BRACKET
+2E23          ; 2E22 #5.1     (⸣ ⇒ ⸢)       TOP RIGHT HALF BRACKET
+2E25          ; 2E24 #5.1     (⸥ ⇒ ⸤)       BOTTOM RIGHT HALF BRACKET
+2E27          ; 2E26 #5.1     (⸧ ⇒ ⸦)       RIGHT SIDEWAYS U BRACKET
+2E29          ; 2E28 #5.1     (⸩ ⇒ ⸨)       RIGHT DOUBLE PARENTHESIS
+2E56          ; 2E55 #14.0    (⹖ ⇒ ⹕)       RIGHT SQUARE BRACKET WITH STROKE
+2E58          ; 2E57 #14.0    (⹘ ⇒ ⹗)       RIGHT SQUARE BRACKET WITH DOUBLE STROKE
+2E5A          ; 2E59 #14.0    (⹚ ⇒ ⹙)       TOP HALF RIGHT PARENTHESIS
+2E5C          ; 2E5B #14.0    (⹜ ⇒ ⹛)       BOTTOM HALF RIGHT PARENTHESIS
+3009          ; 3008 #1.1     (〉 ⇒ 〈)       RIGHT ANGLE BRACKET
+300B          ; 300A #1.1     (》 ⇒ 《)       RIGHT DOUBLE ANGLE BRACKET
+300D          ; 300C #1.1     (」 ⇒ 「)       RIGHT CORNER BRACKET
+300F          ; 300E #1.1     (』 ⇒ 『)       RIGHT WHITE CORNER BRACKET
+3011          ; 3010 #1.1     (】 ⇒ 【)       RIGHT BLACK LENTICULAR BRACKET
+3015          ; 3014 #1.1     (〕 ⇒ 〔)       RIGHT TORTOISE SHELL BRACKET
+3017          ; 3016 #1.1     (〗 ⇒ 〖)       RIGHT WHITE LENTICULAR BRACKET
+3019          ; 3018 #1.1     (〙 ⇒ 〘)       RIGHT WHITE TORTOISE SHELL BRACKET
+301B          ; 301A #1.1     (〛 ⇒ 〚)       RIGHT WHITE SQUARE BRACKET
+FE5A          ; FE59 #1.1     (﹚ ⇒ ﹙)       SMALL RIGHT PARENTHESIS
+FE5C          ; FE5B #1.1     (﹜ ⇒ ﹛)       SMALL RIGHT CURLY BRACKET
+FE5E          ; FE5D #1.1     (﹞ ⇒ ﹝)       SMALL RIGHT TORTOISE SHELL BRACKET
+FF09          ; FF08 #1.1     (） ⇒ （)       FULLWIDTH RIGHT PARENTHESIS
+FF3D          ; FF3B #1.1     (］ ⇒ ［)       FULLWIDTH RIGHT SQUARE BRACKET
+FF5D          ; FF5B #1.1     (｝ ⇒ ｛)       FULLWIDTH RIGHT CURLY BRACKET
+FF60          ; FF5F #3.2     (｠ ⇒ ｟)       FULLWIDTH RIGHT WHITE PARENTHESIS
+FF63          ; FF62 #1.1     (｣ ⇒ ｢)       HALFWIDTH RIGHT CORNER BRACKET
+
+# Total code points: 64
