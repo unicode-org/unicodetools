@@ -529,6 +529,10 @@ security/*/confusables ; Confusable_SA
 security/*/confusables ; Confusable_ML
 security/*/confusables ; Confusable_MA
 
+linkification/*/LinkBracket ; Link_Bracket
+linkification/*/LinkTerm ; Link_Term
+linkification/*/LinkEmail ; Link_Email
+
 # Unicode 13 moves the emoji-data.txt and emoji-variation-sequences.txt files
 # from the emoji folder to the ucd/emoji folder.
 # The line with the new location (i.e., the line without version number)
