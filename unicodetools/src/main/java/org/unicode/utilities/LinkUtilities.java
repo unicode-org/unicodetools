@@ -46,6 +46,7 @@ import java.util.stream.Collectors;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
@@ -198,11 +199,11 @@ public class LinkUtilities {
 
     static final UnicodeSet EMAIL_EXCLUDES =
             new UnicodeSet("[\\u0020 ; \\: \" ( ) \\[ \\] @ \\\\ < >]").freeze();
-    public static final UnicodeSet validEmailLocalPart =
+    static final UnicodeSet validEmailLocalPart =
             new UnicodeSet(
                             "[\\p{XID_Continue}\\p{block=basic_latin}-\\p{Cc}]",
                             new ParsePosition(0),
-                            VersionedSymbolTable.frozenAt(Settings.LATEST_VERSION_INFO))
+                            VersionedSymbolTable.frozenAt(UNICODE_VERSION))
                     .removeAll(EMAIL_EXCLUDES)
                     .freeze();
     public static final UnicodeProperty LinkEmail =
@@ -224,7 +225,9 @@ public class LinkUtilities {
     }
 
     private static int getOpening(int cp) {
-        return cp == '>' ? '<' : UCharacter.getBidiPairedBracket(cp);
+        return cp == '>'
+                ? '<'
+                : IUP.getProperty(UcdProperty.Bidi_Paired_Bracket).getValue(cp).codePointAt(0);
     }
 
     private static UnicodeProperty LINK_PAIRED_OPENER;
