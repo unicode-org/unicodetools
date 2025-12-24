@@ -1804,6 +1804,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         protected List<String> _getAvailableValues(List<String> result) {
             return YESNO;
         }
+
+        public boolean hasUniformUnassigned() {
+            return false;
+        }
     }
 
     //    private static class StringTransformProperty extends SimpleProperty {
