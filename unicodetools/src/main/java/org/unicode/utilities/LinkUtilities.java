@@ -57,8 +57,8 @@ public class LinkUtilities {
 
     public static final VersionInfo UNICODE_VERSION =
             System.getProperty("POST_SYNCHRONIZED_17") != null
-                ? VersionInfo.UNICODE_17_0
-                : Settings.LATEST_VERSION_INFO;
+                    ? VersionInfo.UNICODE_17_0
+                    : Settings.LATEST_VERSION_INFO;
 
     // allow changing UnicodeSet to use the current IndexUnicodeProperties
     public static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(UNICODE_VERSION);
@@ -72,10 +72,8 @@ public class LinkUtilities {
 
     public static final String DATA_DIR =
             Settings.UnicodeTools.UNICODETOOLS_REPO_DIR + "/unicodetools/data/linkification/";
-    public static final String DATA_DIR_DEV = DATA_DIR +
-            (System.getProperty("POST_SYNCHRONIZED_17") != null
-                 ? "17.0.0/"
-                 : "dev/");
+    public static final String DATA_DIR_DEV =
+            DATA_DIR + (System.getProperty("POST_SYNCHRONIZED_17") != null ? "17.0.0/" : "dev/");
 
     public static final Splitter SPLIT_COMMA = Splitter.on(',');
     public static final Splitter SPLIT_TAB = Splitter.on('\t');
