@@ -198,11 +198,11 @@ public class LinkUtilities {
 
     static final UnicodeSet EMAIL_EXCLUDES =
             new UnicodeSet("[\\u0020 ; \\: \" ( ) \\[ \\] @ \\\\ < >]").freeze();
-    public static final UnicodeSet validEmailLocalPart =
+    static final UnicodeSet validEmailLocalPart =
             new UnicodeSet(
                             "[\\p{XID_Continue}\\p{block=basic_latin}-\\p{Cc}]",
                             new ParsePosition(0),
-                            VersionedSymbolTable.frozenAt(Settings.LATEST_VERSION_INFO))
+                            VersionedSymbolTable.frozenAt(UNICODE_VERSION))
                     .removeAll(EMAIL_EXCLUDES)
                     .freeze();
     public static final UnicodeProperty LinkEmail =
