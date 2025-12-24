@@ -22,7 +22,8 @@ Propertywise [\x{2E60}   \N{WIGGLY EXCLAMATION MARK}
               \x{2E61}   \N{INVERTED WIGGLY EXCLAMATION MARK}]
 CorrespondTo [\x{0021} ! \N{EXCLAMATION MARK}]
     UpTo: East_Asian_Width (Neutral                  vs Narrow),
-          Block            (Supplemental_Punctuation vs Basic_Latin)
+          Block            (Supplemental_Punctuation vs Basic_Latin),
+          Link_Email       (No                       vs Yes)
 
 end Ignoring;
 
