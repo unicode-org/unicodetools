@@ -46,6 +46,7 @@ import java.util.stream.Collectors;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
@@ -224,7 +225,9 @@ public class LinkUtilities {
     }
 
     private static int getOpening(int cp) {
-        return cp == '>' ? '<' : UCharacter.getBidiPairedBracket(cp);
+        return cp == '>'
+                ? '<'
+                : IUP.getProperty(UcdProperty.Bidi_Paired_Bracket).getValue(cp).codePointAt(0);
     }
 
     private static UnicodeProperty LINK_PAIRED_OPENER;
