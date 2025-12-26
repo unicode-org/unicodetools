@@ -25,6 +25,7 @@ import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.ParsePosition;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -202,7 +203,10 @@ public class LinkUtilities {
                     .add('.')
                     .freeze();
     static final UnicodeSet validEmailLocalPart =
-            new UnicodeSet("[\\p{XID_Continue}-\\p{block=basic_latin}]")
+            new UnicodeSet(
+                            "[\\p{XID_Continue}-\\p{block=basic_latin}]",
+                            new ParsePosition(0),
+                            VersionedSymbolTable.frozenAt(UNICODE_VERSION))
                     .addAll(EMAIL_ASCII_INCLUDES)
                     .freeze();
     public static final UnicodeProperty LinkEmail =
