@@ -25,7 +25,6 @@ import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.text.ParsePosition;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -194,17 +193,17 @@ public class LinkUtilities {
         }
     }
 
-    // Note: the source standards are painful to read.
-    // https://en.wikipedia.org/wiki/Email_address#Local-part is much easier
+    // https://datatracker.ietf.org/doc/html/rfc5322#section-3.2.3 has the full list for ASCII part
+    // See also https://en.wikipedia.org/wiki/Email_address#Local-part
+    // We add dot (ascii '.'), and then check after for the special dot constraints.
 
-    static final UnicodeSet EMAIL_EXCLUDES =
-            new UnicodeSet("[\\u0020 ; \\: \" ( ) \\[ \\] @ \\\\ < >]").freeze();
+    static final UnicodeSet EMAIL_ASCII_INCLUDES =
+            new UnicodeSet("[[a-zA-Z][0-9][_ \\- ! ? ' \\{ \\} * / \\& # % ` \\^ + = | ~ \\$]]")
+                    .add('.')
+                    .freeze();
     static final UnicodeSet validEmailLocalPart =
-            new UnicodeSet(
-                            "[\\p{XID_Continue}\\p{block=basic_latin}-\\p{Cc}]",
-                            new ParsePosition(0),
-                            VersionedSymbolTable.frozenAt(UNICODE_VERSION))
-                    .removeAll(EMAIL_EXCLUDES)
+            new UnicodeSet("[\\p{XID_Continue}-\\p{block=basic_latin}]")
+                    .addAll(EMAIL_ASCII_INCLUDES)
                     .freeze();
     public static final UnicodeProperty LinkEmail =
             new UnicodeSetProperty()
