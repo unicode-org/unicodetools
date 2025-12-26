@@ -1,5 +1,5 @@
 # LinkEmail.txt
-# Date: 2025-12-24, 02:37:15 GMT 
+# Date: 2025-12-26, 00:32:54 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -26,7 +26,8 @@
 # 
 0021           # 1.1       (!)  EXCLAMATION MARK
 0023..0027     # 1.1   [5] (#..')  NUMBER SIGN..APOSTROPHE
-002A..0039     # 1.1  [16] (*..9)  ASTERISK..DIGIT NINE
+002A..002B     # 1.1   [2] (*..+)  ASTERISK..PLUS SIGN
+002D..0039     # 1.1  [13] (-..9)  HYPHEN-MINUS..DIGIT NINE
 003D           # 1.1       (=)  EQUALS SIGN
 003F           # 1.1       (?)  QUESTION MARK
 0041..005A     # 1.1  [26] (A..Z)  LATIN CAPITAL LETTER A..LATIN CAPITAL LETTER Z
@@ -1331,4 +1332,4 @@ FFDA..FFDC     # 1.1   [3] (ￚ..ￜ)  HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 3D000..3FC3F   # 18.0 [11328] (U+3D000..U+3FC3F)  SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 E0100..E01EF   # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 162119
+# Total code points: 162118
