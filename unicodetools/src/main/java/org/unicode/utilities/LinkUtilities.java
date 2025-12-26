@@ -194,7 +194,7 @@ public class LinkUtilities {
         }
     }
 
-    // https://datatracker.ietf.org/doc/html/rfc5322#section-3.2.3 has the full list for ASCII part
+    // https://www.rfc-editor.org/rfc/rfc5322.html#section-3.2.3 has the full list for ASCII part
     // See also https://en.wikipedia.org/wiki/Email_address#Local-part
     // We add dot (ascii '.'), and then check after for the special dot constraints.
 
