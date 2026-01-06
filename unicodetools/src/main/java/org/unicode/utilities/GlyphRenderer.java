@@ -13,7 +13,6 @@ import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-
 import org.unicode.text.utility.Utility;
 
 public class GlyphRenderer {
@@ -142,20 +141,18 @@ public class GlyphRenderer {
         return true;
     }
 
-	public static String getPropValueName(int uPropertyNumber, int nameChoice, int cp) {
-	    return UCharacter.getPropertyValueName(
-	            uPropertyNumber,
-	            UCharacter.getIntPropertyValue(cp, uPropertyNumber),
-	            nameChoice);
-	}
-	
-	public static String charInfo(int cp) {
-		return Character.toString(cp)
-        + "\t"
-        + Utility.hex(cp)
-        + "\t"
-        + UCharacter.getExtendedName(cp)
-        + "\t"
-        + GlyphRenderer.getPropValueName(UProperty.GENERAL_CATEGORY, NameChoice.SHORT, cp);
-	}
+    public static String getPropValueName(int uPropertyNumber, int nameChoice, int cp) {
+        return UCharacter.getPropertyValueName(
+                uPropertyNumber, UCharacter.getIntPropertyValue(cp, uPropertyNumber), nameChoice);
+    }
+
+    public static String charInfo(int cp) {
+        return Character.toString(cp)
+                + "\t"
+                + Utility.hex(cp)
+                + "\t"
+                + UCharacter.getExtendedName(cp)
+                + "\t"
+                + GlyphRenderer.getPropValueName(UProperty.GENERAL_CATEGORY, NameChoice.SHORT, cp);
+    }
 }

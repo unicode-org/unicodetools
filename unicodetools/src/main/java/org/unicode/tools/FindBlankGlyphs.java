@@ -27,17 +27,18 @@ public class FindBlankGlyphs {
         int fontSize = 144;
         Font font = new Font(fontName, Font.PLAIN, fontSize);
 
-        String specialCases = "[\\N{HANGUL CHOSEONG FILLER}"
-		                                        + "\\N{HANGUL JUNGSEONG FILLER}"
-		                                        + "\\N{HANGUL FILLER}"
-		                                        + "\\N{HALFWIDTH HANGUL FILLER}"
-		                                        + "\\N{COMBINING GRAPHEME JOINER}"
-		                                        + "\\N{KHMER VOWEL INHERENT AQ}"
-		                                        + "\\N{KHMER VOWEL INHERENT AA}"
-		                                        + "\\N{BRAILLE PATTERN BLANK}"
-		                                        + "\\p{variation_selector}]"
-		                                        + "]";
-		UnicodeSet exclusions =
+        String specialCases =
+                "[\\N{HANGUL CHOSEONG FILLER}"
+                        + "\\N{HANGUL JUNGSEONG FILLER}"
+                        + "\\N{HANGUL FILLER}"
+                        + "\\N{HALFWIDTH HANGUL FILLER}"
+                        + "\\N{COMBINING GRAPHEME JOINER}"
+                        + "\\N{KHMER VOWEL INHERENT AQ}"
+                        + "\\N{KHMER VOWEL INHERENT AA}"
+                        + "\\N{BRAILLE PATTERN BLANK}"
+                        + "\\p{variation_selector}]"
+                        + "]";
+        UnicodeSet exclusions =
                 new UnicodeSet(
                                 "["
                                         + "\\p{C}"
@@ -79,7 +80,8 @@ public class FindBlankGlyphs {
                             + "\t"
                             + UCharacter.getExtendedName(cp)
                             + "\t"
-                            + GlyphRenderer.getPropValueName(UProperty.GENERAL_CATEGORY, NameChoice.SHORT, cp)
+                            + GlyphRenderer.getPropValueName(
+                                    UProperty.GENERAL_CATEGORY, NameChoice.SHORT, cp)
                             + "\t"
                             + visualBounds);
 
@@ -130,7 +132,8 @@ public class FindBlankGlyphs {
                                 + "</td><td>"
                                 + UCharacter.getExtendedName(cp)
                                 + "</td><td>"
-                                + GlyphRenderer.getPropValueName(UProperty.GENERAL_CATEGORY, NameChoice.SHORT, cp)
+                                + GlyphRenderer.getPropValueName(
+                                        UProperty.GENERAL_CATEGORY, NameChoice.SHORT, cp)
                                 + "</td>"
                                 + "<tr>");
             }
