@@ -79,7 +79,7 @@ public class FindBlankGlyphs {
                             + "\t"
                             + UCharacter.getExtendedName(cp)
                             + "\t"
-                            + getPropValueName(cp)
+                            + GlyphRenderer.getPropValueName(UProperty.GENERAL_CATEGORY, NameChoice.SHORT, cp)
                             + "\t"
                             + visualBounds);
 
@@ -130,7 +130,7 @@ public class FindBlankGlyphs {
                                 + "</td><td>"
                                 + UCharacter.getExtendedName(cp)
                                 + "</td><td>"
-                                + getPropValueName(cp)
+                                + GlyphRenderer.getPropValueName(UProperty.GENERAL_CATEGORY, NameChoice.SHORT, cp)
                                 + "</td>"
                                 + "<tr>");
             }
@@ -140,12 +140,5 @@ public class FindBlankGlyphs {
         }
         System.out.println("Checked: " + count);
         System.out.println(specialCases);
-    }
-
-    private static String getPropValueName(int cp) {
-        return UCharacter.getPropertyValueName(
-                UProperty.GENERAL_CATEGORY,
-                UCharacter.getIntPropertyValue(cp, UProperty.GENERAL_CATEGORY),
-                NameChoice.SHORT);
     }
 }
