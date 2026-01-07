@@ -70,6 +70,14 @@ public class MakeUnicodeFiles {
         boolean cleanAndCopy =
                 Arrays.asList(args).contains("-c"); // clean Bin & copy changed output
 
+        int files = Arrays.asList(args).indexOf("--generate");
+        if (files >= 0) {
+            Format.theFormat.filesToDo =
+                    Arrays.asList(args)
+                            .subList(files + 1, args.length)
+                            .toArray(new String[args.length - (files + 1)]);
+        }
+
         if (cleanAndCopy) {
 
             // Remove the bin file so that changes to the dev directory aren't ignored
@@ -423,10 +431,14 @@ public class MakeUnicodeFiles {
                             comments = "";
                         }
                         if (line.startsWith("Generate:")) {
-                            filesToDo = Utility.split(lineValue.trim(), ' ');
-                            if (filesToDo.length == 0
-                                    || (filesToDo.length == 1 && filesToDo[0].length() == 0)) {
-                                filesToDo = new String[] {".*"};
+                            // A --generate on the command line overrides the Generate: directive in
+                            // MakeUnicodeFiles.txt.
+                            if (filesToDo != null) {
+                                filesToDo = Utility.split(lineValue.trim(), ' ');
+                                if (filesToDo.length == 0
+                                        || (filesToDo.length == 1 && filesToDo[0].length() == 0)) {
+                                    filesToDo = new String[] {".*"};
+                                }
                             }
                         } else if (line.startsWith("CopyrightYear:")) {
                             Default.setYear(lineValue);

@@ -206,8 +206,7 @@ eggrobin (Windows, in-source).
 <!--FIX_FOR_NEW_VERSION-->
 ```powershell
 rm .\Generated\* -recurse -force
-mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.Main"'  '-Dexec.args="build MakeUnicodeFiles"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
-cp .\Generated\UCD\18.0.0\LineBreak.txt .\unicodetools\data\ucd\dev
+mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c --generate LineBreak"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
 ```
 
 ### GenerateEmojiData
