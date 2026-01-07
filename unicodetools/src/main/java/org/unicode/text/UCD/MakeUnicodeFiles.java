@@ -433,7 +433,7 @@ public class MakeUnicodeFiles {
                         if (line.startsWith("Generate:")) {
                             // A --generate on the command line overrides the Generate: directive in
                             // MakeUnicodeFiles.txt.
-                            if (filesToDo != null) {
+                            if (filesToDo == null) {
                                 filesToDo = Utility.split(lineValue.trim(), ' ');
                                 if (filesToDo.length == 0
                                         || (filesToDo.length == 1 && filesToDo[0].length() == 0)) {
