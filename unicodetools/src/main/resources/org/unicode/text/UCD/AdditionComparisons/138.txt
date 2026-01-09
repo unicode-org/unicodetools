@@ -12,7 +12,7 @@ Ignoring Block:
 
 # We test Joining_Type, but not the pseudoproperty Other_Joining_Type, which distinguishes
 # characters explicitly listed in ArabicShaping.txt from those where Joining_Type is derived.
-Ignoring Other_Joining_Type:
+Ignoring Other_Joining_Type Arabic_Shaping_Schematic_Name:
 Propertywise [
                \N{ARABIC SMALL BASELINE FATHA}
                \N{ARABIC SMALL BASELINE DOTLESS HEAD OF KHAH}
