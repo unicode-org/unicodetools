@@ -1,6 +1,6 @@
 # emoji-internal.txt
-# Date: 2025-12-03, 13:29:03 GMT
-# © 2025 Unicode®, Inc.
+# Date: 2026-01-09, 12:44:42 GMT
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
