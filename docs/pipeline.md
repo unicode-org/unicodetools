@@ -152,12 +152,7 @@ git checkout la-vache/main unicodetools/data/ucd/dev/Derived*;
 git checkout la-vache/main unicodetools/data/ucd/dev/extracted/*;
 git checkout la-vache/main unicodetools/data/ucd/dev/auxiliary/*;
 rm .\Generated\* -recurse -force;
-mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.Main"'  '-Dexec.args="build MakeUnicodeFiles"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
-cp .\Generated\UCD\18.0.0\* .\unicodetools\data\ucd\dev -recurse -force;
-rm unicodetools\data\ucd\dev\zzz-unchanged-*;
-rm unicodetools\data\ucd\dev\*\zzz-unchanged-*;
-rm .\unicodetools\data\ucd\dev\extra\*;
-rm .\unicodetools\data\ucd\dev\cldr\*;
+mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
 git add ./unicodetools/data
 git merge --continue
 ```
@@ -200,12 +195,7 @@ eggrobin (Windows, in-source).
 <!--FIX_FOR_NEW_VERSION-->
 ```powershell
 rm .\Generated\* -recurse -force
-mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.Main"'  '-Dexec.args="build MakeUnicodeFiles"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
-cp .\Generated\UCD\18.0.0\* .\unicodetools\data\ucd\dev -recurse -force
-rm unicodetools\data\ucd\dev\zzz-unchanged-*
-rm unicodetools\data\ucd\dev\*\zzz-unchanged-*
-rm .\unicodetools\data\ucd\dev\extra\*
-rm .\unicodetools\data\ucd\dev\cldr\*
+mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
 git add unicodetools/data/ucd/dev/*
 git commit -m "Regenerate UCD"
 ```
@@ -216,8 +206,7 @@ eggrobin (Windows, in-source).
 <!--FIX_FOR_NEW_VERSION-->
 ```powershell
 rm .\Generated\* -recurse -force
-mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.Main"'  '-Dexec.args="build MakeUnicodeFiles"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
-cp .\Generated\UCD\18.0.0\LineBreak.txt .\unicodetools\data\ucd\dev
+mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c --generate LineBreak$"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
 ```
 
 ### GenerateEmojiData
