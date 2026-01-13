@@ -1,15 +1,17 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2025-12-06, 10:51:02 GMT
+@+	Generation Date: 2026-01-08, 13:28:31 GMT
 	Unicode 18.0.0 names list.
-	Repertoire synched with UnicodeData-18.0.0d2.txt.
+	Repertoire synched with UnicodeData-18.0.0d4.txt.
 	Post UTC185 annotation updates for 18.0.
 	Add xrefs to 6 CJK compatibility ideographs.
 	Adjust end of CJK Extension-D.
 	Resynch to 18.0.0 repertoire additions and CD3.
 	Update annotations to 1CEF1, 1CEF2.
 	Added Rokuyō annotations to 25CB, 25CF, 25D0, 25D1.
+	Added xref to 1CEF3.
+	Adjusted for repertoire additions post UTC186.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -4016,6 +4018,7 @@
 05BC	HEBREW POINT DAGESH OR MAPIQ
 	= shuruq
 	* falls within the base letter
+	* as dagesh, used either generically or as dagesh qal in texts that distinguish that from dagesh hazaq
 05BD	HEBREW POINT METEG
 	= siluq
 	* may be used as a Hebrew accent sof pasuq
@@ -4044,6 +4047,9 @@
 	x (hebrew point qamats - 05B8)
 05C8	HEBREW POINT SHEVA NA MUDGASH
 	x (hebrew point sheva - 05B0)
+05C9	HEBREW POINT DAGESH HAZAQ MUDGASH
+	x (hebrew point dagesh or mapiq - 05BC)
+	* used in texts that distinguish dagesh hazaq from dagesh gal
 @		Based on ISO 8859-8
 05D0	HEBREW LETTER ALEF
 	= aleph
@@ -13776,6 +13782,7 @@
 20C2	RUFIYAA SIGN
 	* Maldives
 20C3	UAE DIRHAM SIGN
+20C4	OMANI RIAL SIGN
 @@	20D0	Combining Diacritical Marks for Symbols	20FF
 @		Combining diacritical marks for symbols
 20D0	COMBINING LEFT HARPOON ABOVE
@@ -14553,6 +14560,7 @@
 	* used in astrological contexts for aspect semisquare
 	x (acute angle - 299F)
 2221	MEASURED ANGLE
+	x (measured angle with double arc - 1CEF9)
 2222	SPHERICAL ANGLE
 	= angle arc
 @		Relations
@@ -15071,6 +15079,7 @@
 2313	SEGMENT
 	= position of a surface
 2314	SECTOR
+	x (sector with chord - 1CEF6)
 2315	TELEPHONE RECORDER
 2316	POSITION INDICATOR
 	= true position
@@ -55965,12 +55974,26 @@ FFFF	<not a character>
 	* ambiguous operator sign
 	x (plus-minus sign - 00B1)
 	x (close up - 2050)
+	x (division times - 22C7)
 1CEF4	LEIBNIZIAN FRACTION REDUCTION SIGN-1
 	= division
 	* shows how numerator and denominator are divided equally to reduce a fraction
 1CEF5	LEIBNIZIAN FRACTION REDUCTION SIGN-2
 	= division
 	* shows how numerator and denominator are divided equally to reduce a fraction
+@		Sector and angle symbols
+1CEF6	SECTOR WITH CHORD
+	x (sector - 2314)
+1CEF7	SECTOR WITH DOUBLE ARC
+1CEF8	SECTOR WITH CHORD AND DOTTED ARC
+1CEF9	MEASURED ANGLE WITH DOUBLE ARC
+	x (measured angle - 2221)
+1CEFA	MEASURED ANGLE WITH CONCAVE ARC
+1CEFB	MEASURED ANGLE WITH DOUBLE CONCAVE ARC
+1CEFC	ANGLE OPENING UP
+	x (oblique angle opening up - 29A6)
+@		Miscellaneous geometrical symbol	
+1CEFD	HYPERBOLA
 @@	1CF00	Znamenny Musical Notation	1CFCF
 @		Combining red marks
 1CF00	ZNAMENNY COMBINING MARK GORAZDO NIZKO S KRYZHEM ON LEFT
@@ -57044,7 +57067,7 @@ FFFF	<not a character>
 1D267	MUSICAL SYMBOL DIAMOND NOTEHEAD WHOLE
 1D268	MUSICAL SYMBOL DIAMOND NOTEHEAD WHITE
 1D269	MUSICAL SYMBOL DIAMOND NOTEHEAD BLACK
-1D26A	MUSICAL SYMBOL DIAMOND NOTEHEAD HALF FILLED
+1D26A	MUSICAL SYMBOL DIAMOND NOTEHEAD HALF-FILLED
 @		Holds and pauses
 1D26B	MUSICAL SYMBOL TRIANGULAR FERMATA
 1D26C	MUSICAL SYMBOL DOUBLE TRIANGULAR FERMATA
@@ -60258,7 +60281,7 @@ FFFF	<not a character>
 1DF7C	LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM
 1DF7D	LATIN SMALL LETTER U WITH NOTCH AT BOTTOM
 	x (latin small letter ui - AB50)
-1DF7E	LATIN CAPITAL LETTER REVERSED ENLARGED SMALL U
+1DF7E	LATIN CAPITAL LETTER REVERSED U
 1DF7F	LATIN SMALL LETTER REVERSED U
 @		Capital letter additions for the English Phonotypic Alphabet
 @+		These letters are not paired with any encoded lowercase letter.
