@@ -89,6 +89,8 @@
 # @missing: 0000..10FFFF; kEH_NoMirror  ;  No
 # @missing: 0000..10FFFF; kEH_NoRotate  ;  No
 
+# @missing: 0000..10FFFF; Link_Email ; No
+
 # End of binary properties.
 
 # @missing: 0000..10FFFF; Canonical_Combining_Class; Not_Reordered
@@ -446,6 +448,12 @@ Math_Class_Ex ; S    ; Space
 Math_Class_Ex ; U    ; Unary
 Math_Class_Ex ; V    ; Vary
 Math_Class_Ex ; X    ; Special
+
+Link_Term  ; Include ; Include
+Link_Term  ; Hard    ; Hard
+Link_Term  ; Soft    ; Soft
+Link_Term  ; Close   ; Close
+Link_Term  ; Open    ; Open
 
 # @missing: 0000..10FFFF; kVietnameseNumeric ; NaN
 # @missing: 0000..10FFFF; kZhuangNumeric ; NaN

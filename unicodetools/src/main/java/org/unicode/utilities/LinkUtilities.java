@@ -25,6 +25,7 @@ import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.ParsePosition;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -45,6 +46,7 @@ import java.util.stream.Collectors;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
@@ -56,8 +58,9 @@ import org.unicode.text.utility.Utility;
 public class LinkUtilities {
 
     public static final VersionInfo UNICODE_VERSION =
-            VersionInfo
-                    .UNICODE_17_0; // Hard coded until we do the first release, then change to dev.
+            System.getProperty("POST_SYNCHRONIZED_17") != null
+                    ? VersionInfo.UNICODE_17_0
+                    : Settings.LATEST_VERSION_INFO;
 
     // allow changing UnicodeSet to use the current IndexUnicodeProperties
     public static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(UNICODE_VERSION);
@@ -71,7 +74,8 @@ public class LinkUtilities {
 
     public static final String DATA_DIR =
             Settings.UnicodeTools.UNICODETOOLS_REPO_DIR + "/unicodetools/data/linkification/";
-    public static final String DATA_DIR_DEV = DATA_DIR + "dev/";
+    public static final String DATA_DIR_DEV =
+            DATA_DIR + (System.getProperty("POST_SYNCHRONIZED_17") != null ? "17.0.0/" : "dev/");
 
     public static final Splitter SPLIT_COMMA = Splitter.on(',');
     public static final Splitter SPLIT_TAB = Splitter.on('\t');
@@ -190,14 +194,20 @@ public class LinkUtilities {
         }
     }
 
-    // Note: the source standards are painful to read.
-    // https://en.wikipedia.org/wiki/Email_address#Local-part is much easier
+    // https://www.rfc-editor.org/rfc/rfc5322.html#section-3.2.3 has the full list for ASCII part
+    // See also https://en.wikipedia.org/wiki/Email_address#Local-part
+    // We add dot (ascii '.'), and then check after for the special dot constraints.
 
-    static final UnicodeSet EMAIL_EXCLUDES =
-            new UnicodeSet("[\\u0020 ; \\: \" ( ) \\[ \\] @ \\\\ < >]").freeze();
+    static final UnicodeSet EMAIL_ASCII_INCLUDES =
+            new UnicodeSet("[[a-zA-Z][0-9][_ \\- ! ? ' \\{ \\} * / \\& # % ` \\^ + = | ~ \\$]]")
+                    .add('.')
+                    .freeze();
     static final UnicodeSet validEmailLocalPart =
-            new UnicodeSet("[\\p{XID_Continue}\\p{block=basic_latin}-\\p{Cc}]")
-                    .removeAll(EMAIL_EXCLUDES)
+            new UnicodeSet(
+                            "[\\p{XID_Continue}-\\p{block=basic_latin}]",
+                            new ParsePosition(0),
+                            VersionedSymbolTable.frozenAt(UNICODE_VERSION))
+                    .addAll(EMAIL_ASCII_INCLUDES)
                     .freeze();
     public static final UnicodeProperty LinkEmail =
             new UnicodeSetProperty()
@@ -218,7 +228,9 @@ public class LinkUtilities {
     }
 
     private static int getOpening(int cp) {
-        return cp == '>' ? '<' : UCharacter.getBidiPairedBracket(cp);
+        return cp == '>'
+                ? '<'
+                : IUP.getProperty(UcdProperty.Bidi_Paired_Bracket).getValue(cp).codePointAt(0);
     }
 
     private static UnicodeProperty LINK_PAIRED_OPENER;

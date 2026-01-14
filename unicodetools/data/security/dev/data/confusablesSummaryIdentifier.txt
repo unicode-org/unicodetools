@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2025-11-13, 04:42:22 GMT
+# Date: 2025-12-07, 22:02:22 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -68,18 +68,6 @@
 ←	(‎ Ι ‎)	0399	 GREEK CAPITAL LETTER IOTA	# →I→
 ←	(‎ І ‎)	0406	 CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I	# →I→
 ←	(‎ Ӏ ‎)	04C0	 CYRILLIC LETTER PALOCHKA	# →I→
-
-#	lٴ	lٔ	ٴl	1ٔ	1ٴ	أ	اٴ	ٴ1	ٴا	ٲ
-	(‎ 1ٔ ‎)	0031 0654	 DIGIT ONE, ARABIC HAMZA ABOVE
-←	(‎ lٴ ‎)	006C 0674	 LATIN SMALL LETTER L, ARABIC LETTER HIGH HAMZA	# →‎اٴ‎→→‎ٵ‎→→‎أ‎→
-←	(‎ lٔ ‎)	006C 0654	 LATIN SMALL LETTER L, ARABIC HAMZA ABOVE	# →‎أ‎→
-←	(‎ ٴl ‎)	0674 006C	 ARABIC LETTER HIGH HAMZA, LATIN SMALL LETTER L	# →‎ٴا‎→→‎ٵ‎→→‎أ‎→
-←	(‎ 1ٴ ‎)	0031 0674	 DIGIT ONE, ARABIC LETTER HIGH HAMZA	# →‎اٴ‎→→‎ٵ‎→→‎أ‎→
-←	(‎ أ ‎)	0627 0654	 ARABIC LETTER ALEF, ARABIC HAMZA ABOVE
-←	(‎ اٴ ‎)	0627 0674	 ARABIC LETTER ALEF, ARABIC LETTER HIGH HAMZA	# →‎ٵ‎→→‎أ‎→
-←	(‎ ٴ1 ‎)	0674 0031	 ARABIC LETTER HIGH HAMZA, DIGIT ONE	# →‎ٴا‎→→‎ٵ‎→→‎أ‎→
-←	(‎ ٴا ‎)	0674 0627	 ARABIC LETTER HIGH HAMZA, ARABIC LETTER ALEF	# →‎ٵ‎→→‎أ‎→
-←	(‎ ٲ ‎)	0672	 ARABIC LETTER ALEF WITH WAVY HAMZA ABOVE	# →‎أ‎→
 
 #	3	३	૩	З	Ӡ
 	(‎ 3 ‎)	0033	 DIGIT THREE
@@ -237,12 +225,11 @@
 	(‎ b ‎)	0062	 LATIN SMALL LETTER B
 ←	(‎ Ь ‎)	042C	 CYRILLIC CAPITAL LETTER SOFT SIGN	# →Ƅ→
 
-#	bl	Ьl	Ь1	ЬІ	Ы
+#	bl	Ьl	ЬІ	Ы
 	(‎ bl ‎)	0062 006C	 LATIN SMALL LETTER B, LATIN SMALL LETTER L
-←	(‎ Ьl ‎)	042C 006C	 CYRILLIC CAPITAL LETTER SOFT SIGN, LATIN SMALL LETTER L	# →Ь1→
-←	(‎ Ь1 ‎)	042C 0031	 CYRILLIC CAPITAL LETTER SOFT SIGN, DIGIT ONE
-←	(‎ ЬІ ‎)	042C 0406	 CYRILLIC CAPITAL LETTER SOFT SIGN, CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I	# →Ь1→
-←	(‎ Ы ‎)	042B	 CYRILLIC CAPITAL LETTER YERU	# →ЬІ→→Ь1→
+←	(‎ Ьl ‎)	042C 006C	 CYRILLIC CAPITAL LETTER SOFT SIGN, LATIN SMALL LETTER L
+←	(‎ ЬІ ‎)	042C 0406	 CYRILLIC CAPITAL LETTER SOFT SIGN, CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I	# →‎Ь𞴁‎→→Ьl→
+←	(‎ Ы ‎)	042B	 CYRILLIC CAPITAL LETTER YERU	# →ЬІ→→‎Ь𞴁‎→→Ьl→
 
 #	b̄	Б
 	(‎ b̄ ‎)	0062 0304	 LATIN SMALL LETTER B, COMBINING MACRON
@@ -294,9 +281,19 @@
 ←	(‎ і ‎)	0456	 CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
 ←	(‎ ւ ‎)	0582	 ARMENIAN SMALL LETTER YIWN	# →ı→
 
-#	j	ј
+#	j	ј	յ
 	(‎ j ‎)	006A	 LATIN SMALL LETTER J
 ←	(‎ ј ‎)	0458	 CYRILLIC SMALL LETTER JE
+←	(‎ յ ‎)	0575	 ARMENIAN SMALL LETTER YI	# →ȷ→
+
+#	lٴ	lٔ	ٴl	أ	اٴ	ٴا	ٲ
+	(‎ lٔ ‎)	006C 0654	 LATIN SMALL LETTER L, ARABIC HAMZA ABOVE
+←	(‎ lٴ ‎)	006C 0674	 LATIN SMALL LETTER L, ARABIC LETTER HIGH HAMZA	# →‎اٴ‎→→‎ٵ‎→→‎أ‎→
+←	(‎ ٴl ‎)	0674 006C	 ARABIC LETTER HIGH HAMZA, LATIN SMALL LETTER L	# →‎ٴا‎→→‎ٵ‎→→‎أ‎→
+←	(‎ أ ‎)	0627 0654	 ARABIC LETTER ALEF, ARABIC HAMZA ABOVE
+←	(‎ اٴ ‎)	0627 0674	 ARABIC LETTER ALEF, ARABIC LETTER HIGH HAMZA	# →‎ٵ‎→→‎أ‎→
+←	(‎ ٴا ‎)	0674 0627	 ARABIC LETTER HIGH HAMZA, ARABIC LETTER ALEF	# →‎ٵ‎→→‎أ‎→
+←	(‎ ٲ ‎)	0672	 ARABIC LETTER ALEF WITH WAVY HAMZA ABOVE	# →‎أ‎→
 
 #	rn	m
 	(‎ m ‎)	006D	 LATIN SMALL LETTER M
@@ -475,11 +472,12 @@
 ←	(‎ ̌ ‎)	030C	 COMBINING CARON
 ←	(‎ ॅ ‎)	0945	 DEVANAGARI VOWEL SIGN CANDRA E
 
-#	̆̇	ँ	ঁ	ଁ
+#	̆̇	ँ	ঁ	ଁ	𑌁
 	(‎ ̆̇ ‎)	0306 0307	 COMBINING BREVE, COMBINING DOT ABOVE
 ←	(‎ ँ ‎)	0901	 DEVANAGARI SIGN CANDRABINDU	# →̐→
 ←	(‎ ঁ ‎)	0981	 BENGALI SIGN CANDRABINDU	# →̐→
 ←	(‎ ଁ ‎)	0B01	 ORIYA SIGN CANDRABINDU	# →̐→
+←	(‎ 𑌁 ‎)	11301	 GRANTHA SIGN CANDRABINDU	# →̐→
 
 #	̇	ं	ਂ	ં	்
 	(‎ ̇ ‎)	0307	 COMBINING DOT ABOVE
@@ -487,6 +485,10 @@
 ←	(‎ ਂ ‎)	0A02	 GURMUKHI SIGN BINDI
 ←	(‎ ં ‎)	0A82	 GUJARATI SIGN ANUSVARA
 ←	(‎ ் ‎)	0BCD	 TAMIL SIGN VIRAMA
+
+#	̉	ު
+	(‎ ̉ ‎)	0309	 COMBINING HOOK ABOVE
+←	(‎ ު ‎)	07AA	 THAANA UBUFILI	# →͐→→ࣸ→→ࣿ→→͗→
 
 #	̊	ْ	ް	ํ	ໍ	ཾ	ံ	ំ
 	(‎ ̊ ‎)	030A	 COMBINING RING ABOVE
@@ -497,6 +499,11 @@
 ←	(‎ ཾ ‎)	0F7E	 TIBETAN SIGN RJES SU NGA RO
 ←	(‎ ံ ‎)	1036	 MYANMAR SIGN ANUSVARA
 ←	(‎ ំ ‎)	17C6	 KHMER SIGN NIKAHIT
+
+#	่	ٰ	່
+	(‎ ่ ‎)	0E48	 THAI CHARACTER MAI EK
+←	(‎ ٰ ‎)	0670	 ARABIC LETTER SUPERSCRIPT ALEF	# →̍→
+←	(‎ ່ ‎)	0EC8	 LAO TONE MAI EK
 
 #	ِ	ި
 	(‎ ِ ‎)	0650	 ARABIC KASRA
@@ -659,8 +666,9 @@
 	(‎ وُ ‎)	0648 064F	 ARABIC LETTER WAW, ARABIC DAMMA
 ←	(‎ ۇ ‎)	06C7	 ARABIC LETTER U
 
-#	وٰ	ۈ
+#	وٰ	و่	ۈ
 	(‎ وٰ ‎)	0648 0670	 ARABIC LETTER WAW, ARABIC LETTER SUPERSCRIPT ALEF
+←	(‎ و่ ‎)	0648 0E48	 ARABIC LETTER WAW, THAI CHARACTER MAI EK
 ←	(‎ ۈ ‎)	06C8	 ARABIC LETTER YU
 
 #	ى	ي	ں	ی	ے	ࢽ
@@ -752,6 +760,11 @@
 	(‎ ެެ ‎)	07AC 07AC	 THAANA EBEFILI, THAANA EBEFILI
 ←	(‎ ޭ ‎)	07AD	 THAANA EYBEYFILI
 
+#	ஐ	ஜ	ജ
+	(‎ ஐ ‎)	0B90	 TAMIL LETTER AI
+←	(‎ ஜ ‎)	0B9C	 TAMIL LETTER JA
+←	(‎ ജ ‎)	0D1C	 MALAYALAM LETTER JA	# →ஜ→
+
 #	अ̆	अॅ	ॲ
 	(‎ अ̆ ‎)	0905 0306	 DEVANAGARI LETTER A, COMBINING BREVE
 ←	(‎ अॅ ‎)	0905 0945	 DEVANAGARI LETTER A, DEVANAGARI VOWEL SIGN CANDRA E
@@ -770,9 +783,8 @@
 	(‎ अा ‎)	0905 093E	 DEVANAGARI LETTER A, DEVANAGARI VOWEL SIGN AA
 ←	(‎ आ ‎)	0906	 DEVANAGARI LETTER AA
 
-#	अा̆	अाॅ	अॉ	ऑ
-	(‎ अा̆ ‎)	0905 093E 0306	 DEVANAGARI LETTER A, DEVANAGARI VOWEL SIGN AA, COMBINING BREVE
-←	(‎ अाॅ ‎)	0905 093E 0945	 DEVANAGARI LETTER A, DEVANAGARI VOWEL SIGN AA, DEVANAGARI VOWEL SIGN CANDRA E	# →अॉ→
+#	अाॅ	अॉ	ऑ
+	(‎ अाॅ ‎)	0905 093E 0945	 DEVANAGARI LETTER A, DEVANAGARI VOWEL SIGN AA, DEVANAGARI VOWEL SIGN CANDRA E
 ←	(‎ अॉ ‎)	0905 0949	 DEVANAGARI LETTER A, DEVANAGARI VOWEL SIGN CANDRA O
 ←	(‎ ऑ ‎)	0911	 DEVANAGARI LETTER CANDRA O	# →अॉ→
 
@@ -867,10 +879,9 @@
 	(‎ ऻ ‎)	093B	 DEVANAGARI VOWEL SIGN OOE
 ←	(‎ ाऺ ‎)	093E 093A	 DEVANAGARI VOWEL SIGN AA, DEVANAGARI VOWEL SIGN OE
 
-#	ा̆	ाॅ	ॉ
-	(‎ ा̆ ‎)	093E 0306	 DEVANAGARI VOWEL SIGN AA, COMBINING BREVE
-←	(‎ ाॅ ‎)	093E 0945	 DEVANAGARI VOWEL SIGN AA, DEVANAGARI VOWEL SIGN CANDRA E
-←	(‎ ॉ ‎)	0949	 DEVANAGARI VOWEL SIGN CANDRA O	# →ाॅ→
+#	ाॅ	ॉ
+	(‎ ाॅ ‎)	093E 0945	 DEVANAGARI VOWEL SIGN AA, DEVANAGARI VOWEL SIGN CANDRA E
+←	(‎ ॉ ‎)	0949	 DEVANAGARI VOWEL SIGN CANDRA O
 
 #	ি	ि	ਿ
 	(‎ ि ‎)	093F	 DEVANAGARI VOWEL SIGN I
@@ -915,12 +926,13 @@
 	(‎ ८ ‎)	096E	 DEVANAGARI DIGIT EIGHT
 ←	(‎ ૮ ‎)	0AEE	 GUJARATI DIGIT EIGHT
 
-#	ঃ	ః	ಃ	ഃ	ඃ	း	ះ	𑌃
+#	ঃ	ః	ಃ	ഃ	ඃ	ཿ	း	ះ	𑌃
 	(‎ ঃ ‎)	0983	 BENGALI SIGN VISARGA
 ←	(‎ ః ‎)	0C03	 TELUGU SIGN VISARGA	# →ਃ→
 ←	(‎ ಃ ‎)	0C83	 KANNADA SIGN VISARGA	# →ః→→ਃ→
 ←	(‎ ഃ ‎)	0D03	 MALAYALAM SIGN VISARGA	# →ಃ→→ః→→ਃ→
 ←	(‎ ඃ ‎)	0D83	 SINHALA SIGN VISARGAYA	# →ഃ→→ಃ→→ః→→ਃ→
+←	(‎ ཿ ‎)	0F7F	 TIBETAN SIGN RNAM BCAD	# →⦂→
 ←	(‎ း ‎)	1038	 MYANMAR SIGN VISARGA	# →ඃ→→ഃ→→ಃ→→ః→→ਃ→
 ←	(‎ ះ ‎)	17C7	 KHMER SIGN REAHMUK
 ←	(‎ 𑌃 ‎)	11303	 GRANTHA SIGN VISARGA
@@ -1005,11 +1017,6 @@
 	(‎ உൗ ‎)	0B89 0D57	 TAMIL LETTER U, MALAYALAM AU LENGTH MARK
 ←	(‎ ഉൗ ‎)	0D09 0D57	 MALAYALAM LETTER U, MALAYALAM AU LENGTH MARK
 ←	(‎ ഊ ‎)	0D0A	 MALAYALAM LETTER UU	# →ഉൗ→
-
-#	ஐ	ஜ	ജ
-	(‎ ஐ ‎)	0B90	 TAMIL LETTER AI
-←	(‎ ஜ ‎)	0B9C	 TAMIL LETTER JA
-←	(‎ ജ ‎)	0D1C	 MALAYALAM LETTER JA	# →ஜ→
 
 #	ண	ണ
 	(‎ ண ‎)	0BA3	 TAMIL LETTER NNA
@@ -1377,10 +1384,6 @@
 	(‎ เเ ‎)	0E40 0E40	 THAI CHARACTER SARA E, THAI CHARACTER SARA E
 ←	(‎ แ ‎)	0E41	 THAI CHARACTER SARA AE
 
-#	่	່
-	(‎ ่ ‎)	0E48	 THAI CHARACTER MAI EK
-←	(‎ ່ ‎)	0EC8	 LAO TONE MAI EK
-
 #	้	້
 	(‎ ้ ‎)	0E49	 THAI CHARACTER MAI THO
 ←	(‎ ້ ‎)	0EC9	 LAO TONE MAI THO
@@ -1408,6 +1411,10 @@
 #	ပာ	ဟ
 	(‎ ပာ ‎)	1015 102C	 MYANMAR LETTER PA, MYANMAR VOWEL SIGN AA
 ←	(‎ ဟ ‎)	101F	 MYANMAR LETTER HA
+
+#	၁ာ	ဘ
+	(‎ ဘ ‎)	1018	 MYANMAR LETTER BHA
+←	(‎ ၁ာ ‎)	1041 102C	 MYANMAR DIGIT ONE, MYANMAR VOWEL SIGN AA	# →ၥာ→
 
 #	ရှ	ၡ
 	(‎ ရှ ‎)	101B 103E	 MYANMAR LETTER RA, MYANMAR CONSONANT SIGN MEDIAL HA
@@ -1456,5 +1463,5 @@
 	(‎ へ ‎)	3078	 HIRAGANA LETTER HE
 ←	(‎ ヘ ‎)	30D8	 KATAKANA LETTER HE
 
-# total : 522
+# total : 523
 
