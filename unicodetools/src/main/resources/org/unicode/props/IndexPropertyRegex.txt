@@ -26,23 +26,24 @@
 $digit  =   [0-9]
 $hexDigit   =   [A-F0-9]
 $alphaNum   =   [a-zA-Z0-9]
-$dashName = $alphaNum+([-]$alphaNum)*
 $digits =   $digit+
-$label  =   $alphaNum+
 $positiveDecimal    =   $digits\.$digits
-$decimal    =   -?$positiveDecimal
+$label  =   $alphaNum+
 $rational   =   -?$digits(/$digits)?
-$optionalDecimal    =   -?$digits(\.$digits)?
 $name   =   $label(( -|- |[-_ ])$label)*
 $name2  =   $label([-_ ]$label)*
 $annotatedName  =   $name2( \(.*\))?
-$shortName  =   [A-Z]{0,3}
 $codePoint  =   (10|$hexDigit)?$hexDigit{4}
 $codePoints =   $codePoint(\s$codePoint)*
 $codePoint0 =   ($codePoints)?
 
-# Main data
+# Variables that aren't being used
+#$dashName = $alphaNum+([-]$alphaNum)*
+#$optionalDecimal    =   -?$digits(\.$digits)?
+#$shortName  =   [A-Z]{0,3}
+##$decimal    =   -?$positiveDecimal
 
+# Main data
 Bidi_Mirroring_Glyph ;        SINGLE_VALUED ;               $codePoint
 Bidi_Paired_Bracket ;         SINGLE_VALUED ;               $codePoint
 Simple_Lowercase_Mapping ;    SINGLE_VALUED ;               $codePoint
@@ -62,52 +63,52 @@ Titlecase_Mapping ;           SINGLE_VALUED ;               $codePoints
 Uppercase_Mapping ;           SINGLE_VALUED ;               $codePoints
 
 ISO_Comment ;                 SINGLE_VALUED ;               $name
-Name ;                        SINGLE_VALUED ;               $name
+Name ;                        SINGLE_VALUED ;               CJK UNIFIED IDEOGRAPH-#|CJK COMPATIBILITY IDEOGRAPH-#|EGYPTIAN HIEROGLYPH-#|TANGUT IDEOGRAPH-#|KHITAN SMALL SCRIPT CHARACTER-#|NUSHU CHARACTER-#|SEAL CHARACTER-#|\$HANGUL_SYLLABLE\$|$name
 Named_Sequences ;             SINGLE_VALUED ;               $name
 Named_Sequences_Prov ;        SINGLE_VALUED ;               $name
 Name_Alias ;                  MULTI_VALUED ;                $name
 Unicode_1_Name ;              SINGLE_VALUED ;               $annotatedName
-Jamo_Short_Name ;             SINGLE_VALUED ;               $shortName
+Jamo_Short_Name ;             SINGLE_VALUED ;               [A-Z]{0,3}
 
 Block ;                       SINGLE_VALUED ;               $name2
 Script ;                      SINGLE_VALUED ;               $name2
 
-Numeric_Value ;               SINGLE_VALUED ;               $rational
+Numeric_Value ;               SINGLE_VALUED ;               NaN|$rational
 
 Emoji_DCM ;                   SINGLE_VALUED ;               [0-9A-F]{4}
 Emoji_KDDI ;                  SINGLE_VALUED ;               [0-9A-F]{4}
 Emoji_SB ;                    SINGLE_VALUED ;               [0-9A-F]{4}
-CJK_Radical ;                 ORDERED ;                     [1-9][0-9]?|1[0-9][0-9]|2(0[0-9]|1[0-4])|(90|120|147|149|154|159|162|16[7-9]|178|18[1-4]|187|19[5-7]|199|201|205|21[0-3])'
+CJK_Radical ;                 ORDERED ;                     [0-9]{1,3}'{0,3}
 
 # Regex patterns from UAX #38
 
 kHanyuPinyin ;                MULTI_VALUED ;                 (\d{5}\.\d{2}0,)*\d{5}\.\d{2}0:([a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+,)*[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+
-kIICore ;                     SINGLE_VALUED ;                2\.1
+kIICore ;                     SINGLE_VALUED ;                [ABC][GHJKMPT]{1,7}
 kIBMJapan ;                   SINGLE_VALUED ;                F[ABC][0-9A-F]{2}
-kIRG_GSource ;                SINGLE_VALUED ;                G(4K|BK|CH|CY|FZ|HC|HZ|((BK|CH|GH|HC|XC|ZH)-[0-9]{4}\.[0-9]{2})|HZ-[0-9]{5}\.[0-9]{2}|(KX-[01][0-9]{3}\.[0-9]{2})|((CYY|FZ|JZ|ZFY|ZJW)-[0-9]{5})|([0135789ES]-[0-9A-F]{4})|IDC-[0-9]{3})
-kIRG_HSource ;                SINGLE_VALUED ;                H-[0-9A-F]{4}
-kIRG_JSource ;                SINGLE_VALUED ;                J((([0134AK]|3A|ARIB)-[0-9A-F]{4,5})|(H-(((IB|JT|[0-9]{2})[0-9A-F]{4}S?))))
-kIRG_KPSource ;               SINGLE_VALUED ;                KP[01]-[0-9A-F]{4}
-kIRG_KSource ;                SINGLE_VALUED ;                K[0-57]-[0-9A-F]{4}
-kIRG_MSource ;                SINGLE_VALUED ;                MAC-[0-9]{5}
-kIRG_TSource ;                SINGLE_VALUED ;                T[1-7B-F]-[0-9A-F]{4}
+kIRG_GSource ;                SINGLE_VALUED ;                G[013578EKS]-[0-9A-F]{4}|G(CH|CY|DZ|GH|RM|WZ|XC|XH|ZH)-\d{4}\.\d{2}|GKX-\d{4}\.\d{2,3}|G(HZ|HZR)-\d{5}\.\d{2}|G(CE|FC|IDC23|OCD|XHZ)-\d{3}|G(H|HF|LGYJ|PGLG|T|ZHSJ)-\d{4}|G(4K|CESI|CYY|DM|GT|JZ|KJ|XM|WY|ZFY|ZJW|ZYS)-\d{5}|G(FZ|IDC)-[0-9A-F]{4}|GCA-[A-Z]\d{4}|GGFZ-\d{6}|G(BK|HC|LK|Z)-\d{7}|G(CH|CY|HC|U)-[023][0-9A-F]{4}|GZA-[123467]\d{5}
+kIRG_HSource ;                SINGLE_VALUED ;                H-[0-9A-F]{4}|H(B[012])-[0-9A-F]{4}|HD-[23]?[0-9A-F]{4}|HU-[023][0-9A-F]{4}
+kIRG_JSource ;                SINGLE_VALUED ;                J[014]-[0-9A-F]{4}|J3A?-[0-9A-F]{4}|J13A?-[0-9A-F]{4}|J14-[0-9A-F]{4}|JA[34]?-[0-9A-F]{4}|JARIB-[0-9A-F]{4}|JH-(JT[ABC][0-9A-F]{3}S?|IB\d{4}|\d{6})|JK-\d{5}|JMJ-\d{6}
+kIRG_KPSource ;               SINGLE_VALUED ;                KP([01]-[0-9A-F]{4}|U-[023][0-9A-F]{4})
+kIRG_KSource ;                SINGLE_VALUED ;                K[0-6]-[0-9A-F]{4}|KC-\d{5}|KU-[023][0-9A-F]{4}
+kIRG_MSource ;                SINGLE_VALUED ;                MA-[0-9A-F]{4}|MB[12]-[0-9A-F]{4}|MC-\d{5}|MDH?-[23]?[0-9A-F]{4}
+kIRG_TSource ;                SINGLE_VALUED ;                T([1-79A-F]|1[1-3])-[0-9A-F]{4}|TU-[023][0-9A-F]{4}
 kIRG_USource ;                SINGLE_VALUED ;                U(TC|CI)-?[0-9]{5}
 kCompatibilityVariant ;       SINGLE_VALUED ;                U\+2?[0-9A-F]{4}
-kSimplifiedVariant ;          MULTI_VALUED ;                 U\+2?[0-9A-F]{4}
-kTraditionalVariant ;         MULTI_VALUED ;                 U\+2?[0-9A-F]{4}
-kSemanticVariant ;            MULTI_VALUED ;                 U\+2?[0-9A-F]{4}(<k[A-Za-z0-9]+(:[TBZ]+)?(,k[A-Za-z0-9]+(:[TBZ]+)?)*)?
-kSpecializedSemanticVariant ; MULTI_VALUED ;                 U\+2?[0-9A-F]{4}(<k[A-Za-z0-9]+(:[TBZ]+)?(,k[A-Za-z0-9]+(:[TBZ]+)?)*)?
-kZVariant ;                   EXTENSIBLE ;                   U\+2?[0-9A-F]{4}(<k[A-Za-z0-9]+(:[TBZ]+)?(,k[A-Za-z0-9]+(:[TBZ]+)?)*)?
-kIRG_VSource ;                SINGLE_VALUED ;                V[0-4]-[0-9A-F]{4}
-kBigFive ;                    SINGLE_VALUED ;                [0-9A-F]{4}
+kSimplifiedVariant ;          MULTI_VALUED ;                 U\+[23]?[0-9A-F]{4}
+kTraditionalVariant ;         MULTI_VALUED ;                 U\+[23]?[0-9A-F]{4}
+kSemanticVariant ;            MULTI_VALUED ;                 U\+[23]?[0-9A-F]{4}(<[ks][A-Za-z0-9_]+(:[TBZFJ]+)?(,[ks][A-Za-z0-9_]+(:[TBZFJ]+)?)*)?
+kSpecializedSemanticVariant ; MULTI_VALUED ;                 U\+[23]?[0-9A-F]{4}(<[ks][A-Za-z0-9_]+(:[TBZFJ]+)?(,[ks][A-Za-z0-9_]+(:[TBZFJ]+)?)*)?
+kZVariant ;                   MULTI_VALUED ;                 U\+[23]?[0-9A-F]{4}(<[ks][A-Za-z0-9_]+(:[TBZ]+)?(,[ks][A-Za-z0-9_]+(:[TBZ]+)?)*)?
+kIRG_VSource ;                SINGLE_VALUED ;                V[0-4]-[0-9A-F]{4}|VN-[023F][0-9A-F]{4}
+kBigFive ;                    SINGLE_VALUED ;                [0-9A-F]{4}'?
 kHKSCS ;                      SINGLE_VALUED ;                [0-9A-F]{4}
 kKPS0 ;                       SINGLE_VALUED ;                [0-9A-F]{4}
 kKPS1 ;                       SINGLE_VALUED ;                [0-9A-F]{4}
 kCCCII ;                      EXTENSIBLE ;                   [0-9A-F]{6}
 kEACC ;                       SINGLE_VALUED ;                [0-9A-F]{6}
-kAccountingNumeric ;          SINGLE_VALUED ;                [0-9]+
-kOtherNumeric ;               SINGLE_VALUED ;                [0-9]+
-kPrimaryNumeric ;             ORDERED ;                      [0-9]+
+kAccountingNumeric ;          SINGLE_VALUED ;                NaN|[0-9]+
+kOtherNumeric ;               SINGLE_VALUED ;                NaN|[0-9]+
+kPrimaryNumeric ;             ORDERED ;                      NaN|[0-9]+
 kFenn ;                       MULTI_VALUED ;                 [0-9]+a?[A-KP*]
 kCowles ;                     MULTI_VALUED ;                 [0-9]{1,4}(\.[0-9]{1,2})?
 kXerox ;                      SINGLE_VALUED ;                [0-9]{3}:[0-9]{3}
@@ -128,15 +129,15 @@ kKSC1 ;                       SINGLE_VALUED ;                [0-9]{4}
 kMainlandTelegraph ;          SINGLE_VALUED ;                [0-9]{4}
 kNelson ;                     MULTI_VALUED ;                 [0-9]{4}
 kPseudoGB1 ;                  SINGLE_VALUED ;                [0-9]{4}
-kTaiwanTelegraph ;            SINGLE_VALUED ;                [0-9]{4}
+kTaiwanTelegraph ;            MULTI_VALUED ;                 [0-9]{4}
 kFourCornerCode ;             MULTI_VALUED ;                 [0-9]{4}(\.[0-9])?
 kGSR ;                        MULTI_VALUED ;                 [0-9]{4}[a-vx-z]\'?
 kDaeJaweon ;                  SINGLE_VALUED ;                [0-9]{4}\.[0-9]{2}[01]
 kIRGDaeJaweon ;               SINGLE_VALUED ;                [0-9]{4}\.[0-9]{2}[01]
-kKangXi ;                     SINGLE_VALUED ;                [0-9]{4}\.[0-9]{2}[01]
+kKangXi ;                     MULTI_VALUED ;                 \d{4}\.\d{2}[01]
 kXHC1983 ;                    MULTI_VALUED ;                 [0-9]{4}\.[0-9]{3}\*?(,[0-9]{4}\.[0-9]{3}\*?)*:[a-z\x{300}\x{301}\x{304}\x{308}\x{30C}]+
 kIRGDaiKanwaZiten ;           SINGLE_VALUED ;                [0-9]{5}\'?
-kMorohashi ;                  EXTENSIBLE ;                   [0-9]{5}\'?
+kMorohashi ;                  MULTI_VALUED ;                 (\d{5}'{0,2}|H\d{3})(:(FE0[01]|E010[0-9A-F]))?
 kIRGKangXi ;                  SINGLE_VALUED ;                [01][0-9]{3}\.[0-7][0-9][01]
 kFrequency ;                  SINGLE_VALUED ;                [1-5]
 kGradeLevel ;                 SINGLE_VALUED ;                [1-6]
@@ -144,12 +145,12 @@ kHanYu ;                      MULTI_VALUED ;                 [1-8][0-9]{4}\.[0-3
 kIRGHanyuDaZidian ;           SINGLE_VALUED ;                [1-8][0-9]{4}\.[0-3][0-9][01]
 kCNS1992 ;                    SINGLE_VALUED ;                [1-9]-[0-9A-F]{4}
 kTotalStrokes ;               ORDERED ;                      [1-9][0-9]{0,2}
-kRSUnicode ;                  ORDERED ;                      [1-9][0-9]{0,2}\'?\.[0-9]{1,2}
+kRSUnicode ;                  ORDERED ;                      [1-9]\d{0,2}'{0,3}\.-?\d{1,2}
 kRSJapanese ;                 EXTENSIBLE ;                   [1-9][0-9]{0,2}\.[0-9]{1,2}
 kRSKanWa ;                    EXTENSIBLE ;                   [1-9][0-9]{0,2}\.[0-9]{1,2}
 kRSKangXi ;                   EXTENSIBLE ;                   [1-9][0-9]{0,2}\.[0-9]{1,2}
 kRSKorean ;                   EXTENSIBLE ;                   [1-9][0-9]{0,2}\.[0-9]{1,2}
-kFennIndex ;                  MULTI_VALUED ;                 [1-9][0-9]{0,2}\.[01][0-9]
+kFennIndex ;                  MULTI_VALUED ;                 \d{1,3}\.[01]\d
 kLau ;                        MULTI_VALUED ;                 [1-9][0-9]{0,3}
 kMatthews ;                   SINGLE_VALUED ;                [1-9][0-9]{0,3}(a|\.5)?
 kKarlgren ;                   SINGLE_VALUED ;                [1-9][0-9]{0,3}[A*]?
@@ -164,11 +165,11 @@ kJapaneseOn ;                 MULTI_VALUED ;                 [A-Z]+
 kKorean ;                     MULTI_VALUED ;                 [A-Z]+
 kVietnamese ;                 MULTI_VALUED ;                 [A-Za-z\x{110}\x{111}\x{300}-\x{303}\x{306}\x{309}\x{31B}\x{323}]+
 kRSAdobe_Japan1_6 ;           MULTI_VALUED ;                 [CV]\+[0-9]{1,5}\+[1-9][0-9]{0,2}\.[1-9][0-9]?\.[0-9]{1,2}
-kHangul ;                     MULTI_VALUED ;                 [\x{1100}-\x{11FF}]+
+kHangul ;                     MULTI_VALUED ;                 [\x{1100}-\x{1112}][\x{1161}-\x{1175}][\x{11A8}-\x{11C2}]?:[01ENX]{1,3}
 kHDZRadBreak ;                SINGLE_VALUED ;                [\x{2F00}-\x{2FD5}]\[U\+2F[0-9A-D][0-9A-F]\]:[1-8][0-9]{4}\.[0-3][0-9]0
 kDefinition ;                 SINGLE_VALUED ;                [^\t"]+
 kMandarin ;                   ORDERED ;                      [a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+
-kHanyuPinlu ;                 MULTI_VALUED ;                 [a-z\x{308}]+[1-5]\([0-9]+\)
+kHanyuPinlu ;                 MULTI_VALUED ;                 [a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+\(\d+\)
 kCantonese ;                  MULTI_VALUED ;                 [a-z]{1,6}[1-6]
 kTang ;                       MULTI_VALUED ;                 \*?[A-Za-z()\x{E6}\x{251}\x{259}\x{25B}\x{300}\x{30C}]+
 
@@ -178,8 +179,8 @@ kKoreanEducationHanja ;       MULTI_VALUED ;                 20[0-9]{2}
 kKoreanName ;                 MULTI_VALUED ;                 (20[0-9]{2})(:U\+2?[0-9A-F]{4})*
 kTGH ;                        MULTI_VALUED ;                 20[0-9]{2}:[1-9][0-9]{0,3}
 
-kIRG_UKSource ;               SINGLE_VALUED ;                V[0-4]-[0-9A-F]{4}
-kIRG_SSource ;                SINGLE_VALUED ;                V[0-4]-[0-9A-F]{4}
+kIRG_UKSource ;               SINGLE_VALUED ;                UK-\d{5}
+kIRG_SSource ;                SINGLE_VALUED ;                SATM?-\d{5}
 
 # Unihan properties from 13.0 and later.  No regexes for now.
 # TODO(egg): We should automate the updating of the regexes from UAX #38.
@@ -202,9 +203,35 @@ kFanqie ; MULTI_VALUED ; .*
 kZhuang ; MULTI_VALUED ; .*
 
 kSrc_NushuDuben ;             SINGLE_VALUED ;                [0-9]+\.[0-9]+
-kReading ;                    SINGLE_VALUED ;                [a-z]{1,6}[1-6]+
+kReading ;                    SINGLE_VALUED ;                .*
 kRSTUnicode ;                 SINGLE_VALUED ;                [0-9]+\.[0-9]+
-kTGT_MergedSrc ;              SINGLE_VALUED ;                L2008-[0-9A-F]{4,5}(-[0-9]{4,5})?
+kTGT_MergedSrc ;              SINGLE_VALUED ;                H2004-[AB]-\d{4}|H2021-\d{6}|L(19(86|97)|20(06|12))-\d{4}|L2008-\d{4}([AB]|-\d{4})?|N1966-\d{3}-\d{2}[0-9A-Z]{1,2}|N5217-\d{2}|N5314-\d{2}|S1968-\d{4}|UTN42-\d{3}
+# Regex patterns from UAX #57
+kEH_Cat ;                     SINGLE_VALUED ;                ([A-IK-Z]|AA)-\d{2}-\d{3}
+kEH_Desc ;                    SINGLE_VALUED ;                [^\t"]+
+kEH_Func ;                    MULTI_VALUED ;                 [^\t]+
+kEH_FVal ;                    MULTI_VALUED ;                 [BDF-HJKMNPR-TWY-bdf-hjkmnpr-twy\.,/\-\+=;?>&\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A722}\x{A723}\x{A724}\x{A725}\x{A7BC}\x{A7BD}]+
+kEH_HG ;                      MULTI_VALUED ;                 ([A-IK-Z]|AA)\d{1,3}[A-Za-z]{0,2}
+kEH_IFAO ;                    MULTI_VALUED ;                 \d{1,3},\d{1,2}[ab]?
+kEH_JSesh ;                   MULTI_VALUED ;                 ([A-IK-Z]|Aa|NL|NU|Ff)\d{1,3}[A-Za-z]{0,5}|(US1|US22|US248|US685)([A-IK-Z]|Aa|NL|NU)\d{1,3}[A-Za-z]{0,5}
+kEH_UniK ;                    SINGLE_VALUED ;                ([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}|HJ ([A-IK-Z]|AA)\d{3}[A-Z]{0,2}
+
+# 17.0
+kEH_AltSeq ;                  SINGLE_VALUED ;                [0-9A-F]{5}(\s[0-9A-F]{4,5})*
+kTayNumeric ;                 SINGLE_VALUED ;                NaN|[0-9]+
+
+# 18.0
+kTGT_Numeric ;                SINGLE_VALUED ;                NaN|$digit+|$positiveDecimal
+kJURC_Numeric ;               SINGLE_VALUED ;                [1-9]\d{0,4}
+kJURC_NCReading ;             SINGLE_VALUED ;                [^\t"]+
+kJURC_Src ;                   SINGLE_VALUED ;                NC:\d{3}\.\d{2}(,\d{3}\.\d{2})?|SJ-B\:\d{3}[A-Z]\.\d|JJ\:\d{3}|N5131\:X-\d{4}
+kJURC_RSUnicode ;             SINGLE_VALUED ;                [1-9]\d{0,1}\.[1-9]\d{0,1}
+kSEAL_THXSrc ;                SINGLE_VALUED ;                TH-[0-9]{5}|TH-(X|Y)[0-9]{3}|KD-[0-9A-F]{5}
+kSEAL_CCZSrc ;                SINGLE_VALUED ;                C-[0-9]{5}
+kSEAL_DYCSrc ;                SINGLE_VALUED ;                D-[0-9]{5}
+kSEAL_QJZSrc ;                SINGLE_VALUED ;                K-[0-9]{5}
+kSEAL_MCJK ;                  SINGLE_VALUED ;                $codePoints
+kSEAL_Rad ;                   MULTI_VALUED ;                 [0-9]{1,3}\.[A-F0-9]{4,5}
 
 normalization_correction_original ;  SINGLE_VALUED ;         [0-9A-F]{4,5}
 normalization_correction_corrected ; SINGLE_VALUED ;         [0-9A-F]{4,5}
@@ -217,17 +244,6 @@ Names_List_Cross_Ref ; MULTI_VALUED ; .*
 Do_Not_Emit_Dispreferred ; MULTI_VALUED ; .*
 Do_Not_Emit_Dispreferred_Type ; MULTI_VALUED ; .*
 
-# Regex patterns from UAX #57
-
-kEH_Cat ;                     SINGLE_VALUED ;                ([A-IK-Z]|AA)-\d{2}-\d{3}
-kEH_Desc ;                    SINGLE_VALUED ;                [^\t"]+
-kEH_Func ;                    MULTI_VALUED ;                 [^\t"]+
-kEH_FVal ;                    MULTI_VALUED ;                 [bdf-hjkmnpr-twy\.,\/\-\+=;?>\&\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A723}\x{A725}\x{A7BD}]+
-kEH_HG ;                      MULTI_VALUED ;                 ([A-IK-Z]|AA)\d{1,3}[A-Za-z]{0,2}
-kEH_IFAO ;                    MULTI_VALUED ;                 \d{1,3},\d{1,2}[ab]?
-kEH_JSesh ;                   MULTI_VALUED ;                 ([A-IK-Z]|Aa|NL|NU|Ff)\d{1,3}[A-Za-z]{0,5}|(US1|US22|US248|US685)([A-IK-Z]|Aa|NL|NU)\d{1,3}[A-Za-z]{0,5}
-kEH_UniK ;                    SINGLE_VALUED ;                ([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}|HJ ([A-IK-Z]|AA)\d{3}[A-Z]{0,2}
-kEH_AltSeq ;                  SINGLE_VALUED ;                [0-9A-F]{5}(\s[0-9A-F]{5})*
 
 # =============================
 # Catalog/Enum/Binary Properties

@@ -423,30 +423,35 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             case Miscellaneous:
                 if (property == UcdProperty.Script_Extensions) {
                     string = normalizeEnum(string);
-                } else {
+                }
+                if (property.getDerivedStatus() != DerivedPropertyStatus.UCDNonProperty &&
+                        property.getDerivedStatus() != DerivedPropertyStatus.NonUCDNonProperty ) {
                     string = checkRegex2(string);
                 }
                 break;
             case String:
                 // check regex
-                string = checkRegex2(string);
-                if (string == null) {
-                    // nothing
-                } else {
-                    try {
-                        if (string.contains("|")) {
-                            StringBuilder result = new StringBuilder();
-                            for (String part : BAR.split(string)) {
-                                result.append(Utility.fromHex(part));
+                if (property.getDerivedStatus() != DerivedPropertyStatus.UCDNonProperty &&
+                        property.getDerivedStatus() != DerivedPropertyStatus.NonUCDNonProperty ) {
+                    string = checkRegex2(string);
+                    if (string == null) {
+                        // nothing
+                    } else {
+                        try {
+                            if (string.contains("|")) {
+                                StringBuilder result = new StringBuilder();
+                                for (String part : BAR.split(string)) {
+                                    result.append(Utility.fromHex(part));
+                                }
+                                string = result.toString();
+                            } else {
+                                string = Utility.fromHex(string);
                             }
-                            string = result.toString();
-                        } else {
-                            string = Utility.fromHex(string);
+                        } catch (RuntimeException e) {
+                            throw e;
+                        } catch (Exception e) {
+                            throw new UnicodePropertyException(property.toString());
                         }
-                    } catch (RuntimeException e) {
-                        throw e;
-                    } catch (Exception e) {
-                        throw new UnicodePropertyException(property.toString());
                     }
                 }
                 break;
@@ -1997,7 +2002,11 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             }
         }
 
-        // DO THESE FIRST (overrides values in files!)
+        for (final String line :
+                FileUtilities.in(IndexUnicodeProperties.class, "IndexPropertyRegex.txt")) {
+            getRegexInfo(line);
+        }
+
         parseMissingFromValueAliases(
                 FileUtilities.in(IndexUnicodeProperties.class, "ExtraPropertyAliases.txt"));
         parseMissingFromValueAliases(
@@ -2015,11 +2024,6 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     "");
         }
         parseMissingFromValueAliases(FileUtilities.in("", propValueAliases));
-
-        for (final String line :
-                FileUtilities.in(IndexUnicodeProperties.class, "IndexPropertyRegex.txt")) {
-            getRegexInfo(line);
-        }
 
         //        for (String line : FileUtilities.in(IndexUnicodeProperties.class,
         // "Multivalued.txt")) {
