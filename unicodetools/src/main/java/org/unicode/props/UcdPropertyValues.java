@@ -446,6 +446,7 @@ public class UcdPropertyValues {
         Phonetic_Extensions("Phonetic_Ext"),
         Phonetic_Extensions_Supplement("Phonetic_Ext_Sup"),
         Playing_Cards("Playing_Cards"),
+        Proto_Cuneiform("Proto_Cuneiform"),
         Psalter_Pahlavi("Psalter_Pahlavi"),
         Private_Use_Area("PUA", "Private_Use"),
         General_Punctuation("Punctuation"),

@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2025-11-30, 20:46:28 GMT
+# Date: 2025-12-04, 00:42:58 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -547,7 +547,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 11FF2..11FFE  ; Cn #  [13] <reserved-11FF2>..<reserved-11FFE>
 1239A..123FF  ; Cn # [102] <reserved-1239A>..<reserved-123FF>
 12544..1254F  ; Cn #  [12] <reserved-12544>..<reserved-1254F>
-12687..12F8F  ; Cn # [2313] <reserved-12687>..<reserved-12F8F>
+12687..1268F  ; Cn #   [9] <reserved-12687>..<reserved-1268F>
+12C00..12F8F  ; Cn # [912] <reserved-12C00>..<reserved-12F8F>
 12FF3..12FFF  ; Cn #  [13] <reserved-12FF3>..<reserved-12FFF>
 13456..1345F  ; Cn #  [10] <reserved-13456>..<reserved-1345F>
 143FB..143FF  ; Cn #   [5] <reserved-143FB>..<reserved-143FF>
@@ -749,7 +750,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801760
+# Total code points: 800368
 
 # ================================================
 
@@ -2677,6 +2678,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 11FB0         ; Lo #       LISU LETTER YHA
 12000..12399  ; Lo # [922] CUNEIFORM SIGN A..CUNEIFORM SIGN U U
 12480..12543  ; Lo # [196] CUNEIFORM SIGN AB TIMES NUN TENU..CUNEIFORM SIGN ZU5 TIMES THREE DISH TENU
+12690..12BE7  ; Lo # [1368] PROTO-CUNEIFORM SIGN A..PROTO-CUNEIFORM SIGN ZATU859
 12F90..12FF0  ; Lo #  [97] CYPRO-MINOAN SIGN CM001..CYPRO-MINOAN SIGN CM114
 13000..1342F  ; Lo # [1072] EGYPTIAN HIEROGLYPH A001..EGYPTIAN HIEROGLYPH V011D
 13441..13446  ; Lo #   [6] EGYPTIAN HIEROGLYPH FULL BLANK..EGYPTIAN HIEROGLYPH WIDE LOST SIGN
@@ -2773,7 +2775,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 31350..33479  ; Lo # [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Lo # [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 153425
+# Total code points: 154793
 
 # ================================================
 
@@ -3464,9 +3466,10 @@ A6E6..A6EF    ; Nl #  [10] BAMUM LETTER MO..BAMUM LETTER KOGHOM
 12400..1246F  ; Nl # [112] CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN SEVEN ASH TENU
 12475..1247F  ; Nl #  [11] CUNEIFORM NUMERIC SIGN EIGHT ASH TENU..CUNEIFORM NUMERIC SIGN ASH TIMES NINE DISH TENU
 12550..12686  ; Nl # [311] CUNEIFORM NUMERIC SIGN ONE N01..CUNEIFORM NUMERIC SIGN ONE N36 FLAT
+12BE8..12BFF  ; Nl #  [24] PROTO-CUNEIFORM NUMERIC SIGN TWO LAGAB-A..PROTO-CUNEIFORM NUMERIC SIGN ONE N58 TENU
 16FF4..16FF6  ; Nl #   [3] YANGQIN SIGN SLOW ONE BEAT..YANGQIN SIGN SLOW TWO BEATS
 
-# Total code points: 562
+# Total code points: 586
 
 # ================================================
 

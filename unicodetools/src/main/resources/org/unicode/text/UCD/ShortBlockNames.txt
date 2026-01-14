@@ -265,6 +265,7 @@ Phonetic_Ext	;	Phonetic_Extensions
 Phonetic_Ext_Sup	;	Phonetic_Extensions_Supplement
 Playing_Cards	;	Playing_Cards
 PUA	;	Private_Use_Area
+Proto_Cuneiform	;	Proto_Cuneiform
 Psalter_Pahlavi	;	Psalter_Pahlavi
 Rejang	;	Rejang
 Rumi	;	Rumi_Numeral_Symbols

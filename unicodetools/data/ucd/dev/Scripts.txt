@@ -1,5 +1,5 @@
 # Scripts-18.0.0.txt
-# Date: 2025-11-30, 20:47:03 GMT
+# Date: 2025-12-04, 00:43:37 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3224,8 +3224,10 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 # ================================================
 
 125A8..1264B  ; Proto_Cuneiform # Nl [164] CUNEIFORM NUMERIC SIGN ONE N56..CUNEIFORM NUMERIC SIGN THREE N07B
+12690..12BE7  ; Proto_Cuneiform # Lo [1368] PROTO-CUNEIFORM SIGN A..PROTO-CUNEIFORM SIGN ZATU859
+12BE8..12BFF  ; Proto_Cuneiform # Nl  [24] PROTO-CUNEIFORM NUMERIC SIGN TWO LAGAB-A..PROTO-CUNEIFORM NUMERIC SIGN ONE N58 TENU
 
-# Total code points: 164
+# Total code points: 1556
 
 # ================================================
 
