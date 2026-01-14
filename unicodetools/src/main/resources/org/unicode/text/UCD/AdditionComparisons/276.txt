@@ -14,7 +14,7 @@ Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping 
 # to U+29A1. Math_Class, Math_Class_Ex, and Pattern_Syntax won't be updated for
 # new characters. While the Block values are different, the other values of
 # U+29A1 should be comparable to U+1CEF6..U+1CEFD.
-Ignoring Block Math_Class Math_Class_Ex Pattern_Syntax:
+Ignoring Block Math_Class Math_Class_Ex Pattern_Syntax Link_Term:
 
 Propertywise [\x{1CEF6} \N{SECTOR WITH CHORD}
               \x{1CEF7} \N{SECTOR WITH DOUBLE ARC}
