@@ -54,13 +54,13 @@ Equivalent_Unified_Ideograph; SINGLE_VALUED ;               $codePoint
 NFKC_Casefold ;               SINGLE_VALUED ;               $codePoint0
 NFKC_Simple_Casefold ;        SINGLE_VALUED ;               $codePoint0
 
-Case_Folding ;                SINGLE_VALUED ;               $codePoints
-Decomposition_Mapping ;       SINGLE_VALUED ;               $codePoints
-FC_NFKC_Closure ;             SINGLE_VALUED ;               $codePoints
-Lowercase_Mapping ;           SINGLE_VALUED ;               $codePoints
-Simple_Case_Folding ;         SINGLE_VALUED ;               $codePoints
-Titlecase_Mapping ;           SINGLE_VALUED ;               $codePoints
-Uppercase_Mapping ;           SINGLE_VALUED ;               $codePoints
+Case_Folding ;                MULTI_VALUED ;                $codePoint
+Decomposition_Mapping ;       MULTI_VALUED ;                $codePoint
+FC_NFKC_Closure ;             MULTI_VALUED ;                $codePoint
+Lowercase_Mapping ;           MULTI_VALUED ;                $codePoint
+Simple_Case_Folding ;         MULTI_VALUED ;                $codePoint
+Titlecase_Mapping ;           MULTI_VALUED ;                $codePoint
+Uppercase_Mapping ;           MULTI_VALUED ;                $codePoint
 
 ISO_Comment ;                 SINGLE_VALUED ;               $name
 Name ;                        SINGLE_VALUED ;               CJK UNIFIED IDEOGRAPH-#|CJK COMPATIBILITY IDEOGRAPH-#|EGYPTIAN HIEROGLYPH-#|TANGUT IDEOGRAPH-#|KHITAN SMALL SCRIPT CHARACTER-#|NUSHU CHARACTER-#|SEAL CHARACTER-#|\$HANGUL_SYLLABLE\$|$name
@@ -230,16 +230,16 @@ kSEAL_THXSrc ;                SINGLE_VALUED ;                TH-[0-9]{5}|TH-(X|Y
 kSEAL_CCZSrc ;                SINGLE_VALUED ;                C-[0-9]{5}
 kSEAL_DYCSrc ;                SINGLE_VALUED ;                D-[0-9]{5}
 kSEAL_QJZSrc ;                SINGLE_VALUED ;                K-[0-9]{5}
-kSEAL_MCJK ;                  SINGLE_VALUED ;                $codePoints
+kSEAL_MCJK ;                  MULTI_VALUED ;                 $codePoint
 kSEAL_Rad ;                   MULTI_VALUED ;                 [0-9]{1,3}\.[A-F0-9]{4,5}
 
 normalization_correction_original ;  SINGLE_VALUED ;         [0-9A-F]{4,5}
 normalization_correction_corrected ; SINGLE_VALUED ;         [0-9A-F]{4,5}
 normalization_correction_version ;   SINGLE_VALUED ;         [0-9]\.[0-9]\.[0-9]
 
-Names_List_Alias     ; MULTI_VALUED ; .*
-Names_List_Comment   ; MULTI_VALUED ; .*
-Names_List_Cross_Ref ; MULTI_VALUED ; .*
+Names_List_Alias     ; SINGLE_VALUED ; .*
+Names_List_Comment   ; SINGLE_VALUED ; .*
+Names_List_Cross_Ref ; SINGLE_VALUED ; .*
 
 Do_Not_Emit_Dispreferred ; MULTI_VALUED ; .*
 Do_Not_Emit_Dispreferred_Type ; MULTI_VALUED ; .*
@@ -254,16 +254,16 @@ Script_Extensions ;           MULTI_VALUED ;                 <enum>
 Standardized_Variant ;        MULTI_VALUED ;                 .*
 
 Idn_Status ;                  SINGLE_VALUED ;                <enum>
-Idn_Mapping ;                 SINGLE_VALUED ;                $codePoints
+Idn_Mapping ;                 MULTI_VALUED ;                 $codePoint
 Idn_2008 ;                    SINGLE_VALUED ;                <enum>
 
 Identifier_Status ;           SINGLE_VALUED ;                <enum>
 Identifier_Type ;             MULTI_VALUED ;                 <enum>
 
-Confusable_SL ;               SINGLE_VALUED ;                $codePoints
-Confusable_SA ;               SINGLE_VALUED ;                $codePoints
-Confusable_ML ;               SINGLE_VALUED ;                $codePoints
-Confusable_MA ;               SINGLE_VALUED ;                $codePoints
+Confusable_SL ;               MULTI_VALUED ;                $codePoint
+Confusable_SA ;               MULTI_VALUED ;                $codePoint
+Confusable_ML ;               MULTI_VALUED ;                $codePoint
+Confusable_MA ;               MULTI_VALUED ;                $codePoint
 
 #Emoji ;                       SINGLE_VALUED ;                <enum>
 #Emoji_Presentation ;          SINGLE_VALUED ;                <enum>
