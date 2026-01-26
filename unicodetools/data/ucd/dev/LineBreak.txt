@@ -1,5 +1,5 @@
 # LineBreak-18.0.0.txt
-# Date: 2025-12-12, 00:04:55 GMT
+# Date: 2026-01-26, 22:09:32 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -974,8 +974,8 @@
 20BE           ; PO # Sc         LARI SIGN
 20BF           ; PR # Sc         BITCOIN SIGN
 20C0           ; PO # Sc         SOM SIGN
-20C1..20C3     ; PR # Sc     [3] SAUDI RIYAL SIGN..UAE DIRHAM SIGN
-20C4..20CF     ; PR # Cn    [12] <reserved-20C4>..<reserved-20CF>
+20C1..20C4     ; PR # Sc     [4] SAUDI RIYAL SIGN..OMANI RIAL SIGN
+20C5..20CF     ; PR # Cn    [11] <reserved-20C5>..<reserved-20CF>
 20D0..20DC     ; CM # Mn    [13] COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
 20DD..20E0     ; CM # Me     [4] COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
 20E1           ; CM # Mn         COMBINING LEFT RIGHT ARROW ABOVE
