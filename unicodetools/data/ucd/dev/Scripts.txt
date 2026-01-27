@@ -1,5 +1,5 @@
 # Scripts-18.0.0.txt
-# Date: 2025-12-12, 00:05:16 GMT
+# Date: 2026-01-26, 22:32:45 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -155,7 +155,7 @@
 208D          ; Common # Ps       SUBSCRIPT LEFT PARENTHESIS
 208E          ; Common # Pe       SUBSCRIPT RIGHT PARENTHESIS
 208F          ; Common # Lm       MODIFIER LETTER HIGH AND LOW VERTICAL LINE
-20A0..20C3    ; Common # Sc  [36] EURO-CURRENCY SIGN..UAE DIRHAM SIGN
+20A0..20C4    ; Common # Sc  [37] EURO-CURRENCY SIGN..OMANI RIAL SIGN
 2100..2101    ; Common # So   [2] ACCOUNT OF..ADDRESSED TO THE SUBJECT
 2102          ; Common # L&       DOUBLE-STRUCK CAPITAL C
 2103..2106    ; Common # So   [4] DEGREE CELSIUS..CADA UNA
@@ -647,7 +647,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 9222
+# Total code points: 9223
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2025-12-12, 00:04:50 GMT
+# Date: 2026-01-26, 22:09:27 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -442,7 +442,7 @@ FF1F          ; EX # Po       FULLWIDTH QUESTION MARK
 20B7..20BA    ; PR # Sc   [4] SPESMILO SIGN..TURKISH LIRA SIGN
 20BC..20BD    ; PR # Sc   [2] MANAT SIGN..RUBLE SIGN
 20BF          ; PR # Sc       BITCOIN SIGN
-20C1..20C3    ; PR # Sc   [3] SAUDI RIYAL SIGN..UAE DIRHAM SIGN
+20C1..20C4    ; PR # Sc   [4] SAUDI RIYAL SIGN..OMANI RIAL SIGN
 2116          ; PR # So       NUMERO SIGN
 2212..2213    ; PR # Sm   [2] MINUS SIGN..MINUS-OR-PLUS SIGN
 FE69          ; PR # Sc       SMALL DOLLAR SIGN
@@ -451,7 +451,7 @@ FFE1          ; PR # Sc       FULLWIDTH POUND SIGN
 FFE5..FFE6    ; PR # Sc   [2] FULLWIDTH YEN SIGN..FULLWIDTH WON SIGN
 1E2FF         ; PR # Sc       WANCHO NGUN SIGN
 
-# The above property value applies to 12 code points not listed here.
+# The above property value applies to 11 code points not listed here.
 # Total code points: 67
 
 # ================================================
