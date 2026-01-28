@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2026-01-26, 22:09:25 GMT
+# Date: 2026-01-28, 11:41:16 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -13040,6 +13040,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 1CCFA..1CCFC  ; Grapheme_Base # So   [3] SNAKE SYMBOL..NOSE SYMBOL
 1CD00..1CEB3  ; Grapheme_Base # So [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
 1CEBA..1CED0  ; Grapheme_Base # So  [23] FRAGILE SYMBOL..LEUKOTHEA
+1CED2..1CED4  ; Grapheme_Base # So   [3] ALCHEMICAL SYMBOL FOR OIL INVERTED..ALCHEMICAL SYMBOL FOR TARTAR-SALT
 1CEE0..1CEEF  ; Grapheme_Base # So  [16] GEOMANTIC FIGURE POPULUS..GEOMANTIC FIGURE VIA
 1CEF0..1CEF5  ; Grapheme_Base # Sm   [6] MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR..LEIBNIZIAN FRACTION REDUCTION SIGN-2
 1CF50..1CFC3  ; Grapheme_Base # So [116] ZNAMENNY NEUME KRYUK..ZNAMENNY NEUME PAUK
@@ -13237,7 +13238,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 31350..33479  ; Grapheme_Base # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Grapheme_Base # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 170443
+# Total code points: 170446
 
 # ================================================
 
