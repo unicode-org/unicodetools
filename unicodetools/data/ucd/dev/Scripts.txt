@@ -1,3 +1,4 @@
+1CED2..1CED4 ; Common
 # Scripts-18.0.0.txt
 # Date: 2026-01-26, 22:32:45 GMT
 # © 2025 Unicode®, Inc.
