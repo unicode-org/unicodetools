@@ -1,3 +1,6 @@
+1CEDD..1CEDF; Common
+1D6A6; Common
+1DF90..1DF96; Latin
 # Scripts-18.0.0.txt
 # Date: 2026-01-26, 22:32:45 GMT
 # © 2025 Unicode®, Inc.
