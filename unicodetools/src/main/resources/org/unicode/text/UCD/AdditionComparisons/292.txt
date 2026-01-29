@@ -1,0 +1,28 @@
+# Symbols: 11 Cossic (1D6A6, 1DF90..1DF96, 1CEDD..1CEDF)
+# https://github.com/unicode-org/utc-release-management/issues/292
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring
+    Block
+    Script Script_Extensions
+    Unicode_1_Name
+    Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set:
+Propertywise [\x{1D6A6} \N{MATHEMATICAL ITALIC SMALL LIGATURE LONG S WITH DESCENDER S}]
+           : [\x{1DF95} \N{LATIN SMALL LIGATURE LONG S WITH DESCENDER S}]
+           ⧴ [ß]
+CorrespondTo [𝜛]
+           : [ϖ]
+           ⧴ [π]
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
