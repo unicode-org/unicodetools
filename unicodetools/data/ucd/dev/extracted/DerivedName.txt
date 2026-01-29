@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2026-01-14, 20:17:05 GMT
+# Date: 2026-01-26, 22:09:27 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -7573,6 +7573,7 @@
 20C1          ; SAUDI RIYAL SIGN
 20C2          ; RUFIYAA SIGN
 20C3          ; UAE DIRHAM SIGN
+20C4          ; OMANI RIAL SIGN
 20D0          ; COMBINING LEFT HARPOON ABOVE
 20D1          ; COMBINING RIGHT HARPOON ABOVE
 20D2          ; COMBINING LONG VERTICAL LINE OVERLAY
@@ -46569,6 +46570,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172795
+# Total code points: 172788
 
 # EOF

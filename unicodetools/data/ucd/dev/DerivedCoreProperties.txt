@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2026-01-14, 20:17:03 GMT
+# Date: 2026-01-26, 22:09:25 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -12020,7 +12020,7 @@ E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELE
 208D          ; Grapheme_Base # Ps       SUBSCRIPT LEFT PARENTHESIS
 208E          ; Grapheme_Base # Pe       SUBSCRIPT RIGHT PARENTHESIS
 208F..209F    ; Grapheme_Base # Lm  [17] MODIFIER LETTER HIGH AND LOW VERTICAL LINE..LATIN SUBSCRIPT SMALL LETTER Z
-20A0..20C3    ; Grapheme_Base # Sc  [36] EURO-CURRENCY SIGN..UAE DIRHAM SIGN
+20A0..20C4    ; Grapheme_Base # Sc  [37] EURO-CURRENCY SIGN..OMANI RIAL SIGN
 2100..2101    ; Grapheme_Base # So   [2] ACCOUNT OF..ADDRESSED TO THE SUBJECT
 2102          ; Grapheme_Base # L&       DOUBLE-STRUCK CAPITAL C
 2103..2106    ; Grapheme_Base # So   [4] DEGREE CELSIUS..CADA UNA
@@ -13237,7 +13237,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 31350..33479  ; Grapheme_Base # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Grapheme_Base # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 170450
+# Total code points: 170443
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2025-12-12, 00:05:19 GMT
+# Date: 2026-01-26, 22:09:57 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -906,7 +906,7 @@
 208D           ; R  # Ps         SUBSCRIPT LEFT PARENTHESIS
 208E           ; R  # Pe         SUBSCRIPT RIGHT PARENTHESIS
 208F..209F     ; R  # Lm    [17] MODIFIER LETTER HIGH AND LOW VERTICAL LINE..LATIN SUBSCRIPT SMALL LETTER Z
-20A0..20C3     ; R  # Sc    [36] EURO-CURRENCY SIGN..UAE DIRHAM SIGN
+20A0..20C4     ; R  # Sc    [37] EURO-CURRENCY SIGN..OMANI RIAL SIGN
 20D0..20DC     ; R  # Mn    [13] COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
 20DD..20E0     ; U  # Me     [4] COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
 20E1           ; R  # Mn         COMBINING LEFT RIGHT ARROW ABOVE
