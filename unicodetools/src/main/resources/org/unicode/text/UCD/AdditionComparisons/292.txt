@@ -11,15 +11,15 @@ Ignoring Name Age:
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
 Ignoring
-    Block
-    Script Script_Extensions
     Unicode_1_Name
-    Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set:
+    Math_Class Math_Class_Ex Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set:
 Propertywise [\x{1D6A6} \N{MATHEMATICAL ITALIC SMALL LIGATURE LONG S WITH DESCENDER S}]
-           : [\x{1DF95} \N{LATIN SMALL LIGATURE LONG S WITH DESCENDER S}]
+           ⧴ [\x{1DF95} \N{LATIN SMALL LIGATURE LONG S WITH DESCENDER S}]
            ⧴ [ß]
+           ⧴ [{ss}]
 CorrespondTo [𝜛]
-           : [ϖ]
+           ⧴ [ϖ]
+           ⧴ [π]
            ⧴ [π]
 end Ignoring;
 
