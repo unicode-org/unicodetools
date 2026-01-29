@@ -34,7 +34,6 @@ import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import org.unicode.cldr.util.Counter;
-import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
@@ -78,7 +77,7 @@ public class TestUtility {
         // if (true) return;
         // UnicodeLabel ul;
 
-        final ICUPropertyFactory p = ICUPropertyFactory.make();
+        final var p = IndexUnicodeProperties.make();
         total = 0;
         final BreakIterator bk = BreakIterator.getWordInstance(Locale.ENGLISH);
         final Matcher nameMatch = Pattern.compile("Name").matcher("");

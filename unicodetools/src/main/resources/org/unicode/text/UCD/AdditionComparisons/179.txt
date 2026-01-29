@@ -5,7 +5,9 @@
 # Age always differs since these tests are comparing additions to pre-existing characters.
 Ignoring Name Age:
 
-# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
 Propertywise [
@@ -20,7 +22,8 @@ Propertywise [\x{2E60}   \N{WIGGLY EXCLAMATION MARK}
               \x{2E61}   \N{INVERTED WIGGLY EXCLAMATION MARK}]
 CorrespondTo [\x{0021} ! \N{EXCLAMATION MARK}]
     UpTo: East_Asian_Width (Neutral                  vs Narrow),
-          Block            (Supplemental_Punctuation vs Basic_Latin)
+          Block            (Supplemental_Punctuation vs Basic_Latin),
+          Link_Email       (No                       vs Yes)
 
 end Ignoring;
 

@@ -52,8 +52,6 @@ Indic scripts only:
 If the change affects emoji properties, including reserved Extended_Pictographic codepoints that should no longer be 
 reserved:
 - [ ] [GenerateEmojiData](#generateemojidata)
-- [ ] Merge changes from the temporary files that are generated in unicodetools/data/ucd.
-- [ ] Delete the temporary files that aren't needed from unicodetools/data/ucd and unicodetools/data/emoji.
 - [ ] Commit
 
 ---
@@ -154,12 +152,7 @@ git checkout la-vache/main unicodetools/data/ucd/dev/Derived*;
 git checkout la-vache/main unicodetools/data/ucd/dev/extracted/*;
 git checkout la-vache/main unicodetools/data/ucd/dev/auxiliary/*;
 rm .\Generated\* -recurse -force;
-mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.Main"'  '-Dexec.args="build MakeUnicodeFiles"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
-cp .\Generated\UCD\18.0.0\* .\unicodetools\data\ucd\dev -recurse -force;
-rm unicodetools\data\ucd\dev\zzz-unchanged-*;
-rm unicodetools\data\ucd\dev\*\zzz-unchanged-*;
-rm .\unicodetools\data\ucd\dev\extra\*;
-rm .\unicodetools\data\ucd\dev\cldr\*;
+mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
 git add ./unicodetools/data
 git merge --continue
 ```
@@ -202,12 +195,7 @@ eggrobin (Windows, in-source).
 <!--FIX_FOR_NEW_VERSION-->
 ```powershell
 rm .\Generated\* -recurse -force
-mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.Main"'  '-Dexec.args="build MakeUnicodeFiles"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
-cp .\Generated\UCD\18.0.0\* .\unicodetools\data\ucd\dev -recurse -force
-rm unicodetools\data\ucd\dev\zzz-unchanged-*
-rm unicodetools\data\ucd\dev\*\zzz-unchanged-*
-rm .\unicodetools\data\ucd\dev\extra\*
-rm .\unicodetools\data\ucd\dev\cldr\*
+mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
 git add unicodetools/data/ucd/dev/*
 git commit -m "Regenerate UCD"
 ```
@@ -218,8 +206,7 @@ eggrobin (Windows, in-source).
 <!--FIX_FOR_NEW_VERSION-->
 ```powershell
 rm .\Generated\* -recurse -force
-mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.Main"'  '-Dexec.args="build MakeUnicodeFiles"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
-cp .\Generated\UCD\18.0.0\LineBreak.txt .\unicodetools\data\ucd\dev
+mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c --generate LineBreak$"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
 ```
 
 ### GenerateEmojiData
@@ -243,8 +230,8 @@ git commit -m GenerateEnums
 
 ### Run comparison tests
 
-eggrobin (Windows, in-source).
+eggrobin (Windows, in-source; replace $RMG_ISSUE by the RMG issue number, or define it as that number).
 ```powershell
-mvn test -am -pl unicodetools "-DCLDR_DIR=$(gl|split-path -parent)\cldr\"  "-DUNICODETOOLS_GEN_DIR=$(gl|split-path -parent)\unicodetools\Generated\"  "-DUNICODETOOLS_REPO_DIR=$(gl|split-path -parent)\unicodetools\" "-DUVERSION=18.0.0" "-Dtest=TestTestUnicodeInvariants#testAdditionComparisons" -DfailIfNoTests=false -DtrimStackTrace=false
+mvn test -am -pl unicodetools "-DCLDR_DIR=$(gl|split-path -parent)\cldr\"  "-DUNICODETOOLS_GEN_DIR=$(gl|split-path -parent)\unicodetools\Generated\"  "-DUNICODETOOLS_REPO_DIR=$(gl|split-path -parent)\unicodetools\" "-DUVERSION=18.0.0" "-Dtest=TestTestUnicodeInvariants#testAdditionComparisons" -DfailIfNoTests=false -DtrimStackTrace=false "-DRMG_ISSUE=$RMG_ISSUE"
 ```
 Results are in Generated\UnicodeTestResults-addition-comparisons-[RMG issue number].html.

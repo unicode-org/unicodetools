@@ -5,7 +5,9 @@
 # Age always differs since these tests are comparing additions to pre-existing characters.
 Ignoring Name Age:
 
-# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
 # For the 𒀸-𒐇 𒁹-𒐎 𒌋-𒐔 series, the lower numerals (𒀸, 𒁹, 𒈫, 𒌋, 𒎙, 𒌍) have different properties

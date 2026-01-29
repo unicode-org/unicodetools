@@ -1890,6 +1890,39 @@ public class UcdPropertyValues {
         }
     }
 
+    // Link_Bracket
+    public enum Link_Term_Values implements Named {
+        Include("Include"),
+        Hard("Hard"),
+        Soft("Soft"),
+        Close("Close"),
+        Open("Open");
+        private final PropertyNames<Link_Term_Values> names;
+
+        private Link_Term_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Link_Term_Values>(
+                            Link_Term_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Link_Term_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Link_Term_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Link_Term_Values.class);
+
+        public static Link_Term_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     // Lowercase_Mapping
     public enum Math_Class_Values implements Named {
         None("None"),

@@ -28,7 +28,6 @@ import org.unicode.cldr.util.Timer;
 import org.unicode.cldr.util.With;
 import org.unicode.draft.UnicodeDataOutput;
 import org.unicode.draft.UnicodeDataOutput.ItemWriter;
-import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyNames;
 import org.unicode.props.PropertyNames.NameMatcher;
@@ -48,16 +47,12 @@ public class CheckProperties {
 
     private static final int DEBUG_CODE_POINT = 0x0600;
 
-    private static final boolean LATEST_ICU = true;
-
     static LinkedHashSet<String> PROPNAMEDIFFERENCES = new LinkedHashSet<String>();
     static LinkedHashSet<String> SKIPPING = new LinkedHashSet<String>();
-    static LinkedHashSet<String> NOT_IN_ICU = new LinkedHashSet<String>();
 
     enum Action {
         SHOW,
         COMPARE,
-        ICU,
         EMPTY,
         INFO,
         SPACES,
@@ -221,16 +216,6 @@ public class CheckProperties {
                         showSummary(summary);
                     }
                     break;
-                case ICU:
-                    {
-                        out.println("Property\tICU-Value\tDirect-Value\tChars-Affected");
-                        final Set<String> summary = new LinkedHashSet();
-                        for (final UcdProperty prop : values) {
-                            compareICU(prop, LATEST_ICU ? latest : last, summary);
-                        }
-                        showSummary(summary);
-                    }
-                    break;
                 case DEFAULTS:
                     for (final UcdProperty prop : values) {
                         showDefaults(prop);
@@ -309,7 +294,6 @@ public class CheckProperties {
 
         showInfo("No Differences", SKIPPING, out);
         showInfo("Property Enum Canonical Form wrong", PROPNAMEDIFFERENCES, outLog);
-        showInfo("Not In ICU", NOT_IN_ICU, outLog);
         showInfo("Cache File Sizes", latest.getCacheFileSize().entrySet(), outLog);
 
         final Set<Entry<UcdProperty, Set<String>>> dataLoadingErrors =
@@ -561,39 +545,6 @@ public class CheckProperties {
         //            out.println("Null: " + prop + "\t" + defaultValue + "\t" +
         // abbreviate(nullElements, 100, false));
         //        }
-    }
-
-    private static void compareICU(
-            UcdProperty prop, IndexUnicodeProperties direct, Set<String> summary) {
-        PropertyNames<UcdProperty> names = prop.getNames();
-        if (VERBOSE) {
-            System.out.println(prop);
-        }
-        if (prop == UcdProperty.Unicode_1_Name) {
-            NOT_IN_ICU.add(prop.toString());
-            return;
-        }
-
-        final ICUPropertyFactory propFactory = ICUPropertyFactory.make();
-        final UnicodeProperty icuProp = propFactory.getProperty(prop.toString());
-        if (icuProp == null) {
-            NOT_IN_ICU.add(prop.toString());
-            return;
-        }
-        final UnicodeMap<String> icuMap = icuProp.getUnicodeMap();
-        if (prop == UcdProperty.Numeric_Value) {
-            icuMap.setMissing("NaN");
-        }
-
-        final UnicodeMap<String> directMap = direct.load(prop);
-        showChanges(
-                prop,
-                new UnicodeSet("[^[:cn:][:co:][:cs:]]"),
-                null,
-                icuMap,
-                direct,
-                directMap,
-                summary);
     }
 
     private static void addAll(UnicodeSet toSet, UnicodeSet set) {
