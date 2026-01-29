@@ -1,5 +1,5 @@
 # LinkEmail.txt
-# Date: 2026-01-29, 22:15:40 GMT 
+# Date: 2026-01-29, 22:53:08 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -139,8 +139,7 @@
 05C4           # 2.0       (ׄ)  HEBREW MARK UPPER DOT
 05C5           # 4.1       (ׅ)  HEBREW MARK LOWER DOT
 05C7           # 4.1       (ׇ)  HEBREW POINT QAMATS QATAN
-05C8           # 18.0      (U+05C8)  HEBREW POINT SHEVA NA MUDGASH
-05C9           # NA        (U+05C9)  HEBREW POINT DAGESH HAZAQ MUDGASH
+05C8..05C9     # 18.0  [2] (U+05C8..U+05C9)  HEBREW POINT SHEVA NA MUDGASH..HEBREW POINT DAGESH HAZAQ MUDGASH
 05D0..05EA     # 1.1  [27] (א..ת)  HEBREW LETTER ALEF..HEBREW LETTER TAV
 05EF           # 11.0      (ׯ)  HEBREW YOD TRIANGLE
 05F0..05F2     # 1.1   [3] (װ..ײ)  HEBREW LIGATURE YIDDISH DOUBLE VAV..HEBREW LIGATURE YIDDISH DOUBLE YOD
