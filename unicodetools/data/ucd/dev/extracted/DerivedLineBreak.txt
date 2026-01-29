@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2026-01-26, 22:09:27 GMT
+# Date: 2026-01-29, 22:18:41 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,8 +71,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 755537 code points not listed here.
-# Total code points: 893005
+# The above property value applies to 755536 code points not listed here.
+# Total code points: 893004
 
 # ================================================
 
@@ -1940,7 +1940,7 @@ FE19          ; IN # Po       PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS
 05BF          ; CM # Mn       HEBREW POINT RAFE
 05C1..05C2    ; CM # Mn   [2] HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
 05C4..05C5    ; CM # Mn   [2] HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
-05C7..05C8    ; CM # Mn   [2] HEBREW POINT QAMATS QATAN..HEBREW POINT SHEVA NA MUDGASH
+05C7..05C9    ; CM # Mn   [3] HEBREW POINT QAMATS QATAN..HEBREW POINT DAGESH HAZAQ MUDGASH
 0610..061A    ; CM # Mn  [11] ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..ARABIC SMALL KASRA
 061C          ; CM # Cf       ARABIC LETTER MARK
 064B..065F    ; CM # Mn  [21] ARABIC FATHATAN..ARABIC WAVY HAMZA BELOW
@@ -2456,7 +2456,7 @@ E0001         ; CM # Cf       LANGUAGE TAG
 E0020..E007F  ; CM # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; CM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2550
+# Total code points: 2551
 
 # ================================================
 
