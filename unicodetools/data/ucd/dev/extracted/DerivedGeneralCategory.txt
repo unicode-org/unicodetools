@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2026-01-29, 21:09:34 GMT
+# Date: 2026-01-29, 22:18:40 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -598,7 +598,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1CCFD..1CCFF  ; Cn #   [3] <reserved-1CCFD>..<reserved-1CCFF>
 1CEB4..1CEB9  ; Cn #   [6] <reserved-1CEB4>..<reserved-1CEB9>
 1CED1..1CEDF  ; Cn #  [15] <reserved-1CED1>..<reserved-1CEDF>
-1CEF6..1CEFF  ; Cn #  [10] <reserved-1CEF6>..<reserved-1CEFF>
+1CEFE..1CEFF  ; Cn #   [2] <reserved-1CEFE>..<reserved-1CEFF>
 1CF2E..1CF2F  ; Cn #   [2] <reserved-1CF2E>..<reserved-1CF2F>
 1CF47..1CF4F  ; Cn #   [9] <reserved-1CF47>..<reserved-1CF4F>
 1CFC4..1CFFF  ; Cn #  [60] <reserved-1CFC4>..<reserved-1CFFF>
@@ -749,7 +749,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801742
+# Total code points: 801734
 
 # ================================================
 
@@ -4104,7 +4104,7 @@ FF5E          ; Sm #       FULLWIDTH TILDE
 FFE2          ; Sm #       FULLWIDTH NOT SIGN
 FFE9..FFEC    ; Sm #   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS ARROW
 10D8E..10D8F  ; Sm #   [2] GARAY PLUS SIGN..GARAY MINUS SIGN
-1CEF0..1CEF5  ; Sm #   [6] MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR..LEIBNIZIAN FRACTION REDUCTION SIGN-2
+1CEF0..1CEFD  ; Sm #  [14] MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR..HYPERBOLA
 1D6C1         ; Sm #       MATHEMATICAL BOLD NABLA
 1D6DB         ; Sm #       MATHEMATICAL BOLD PARTIAL DIFFERENTIAL
 1D6FB         ; Sm #       MATHEMATICAL ITALIC NABLA
@@ -4118,7 +4118,7 @@ FFE9..FFEC    ; Sm #   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS ARROW
 1EEF0..1EEF1  ; Sm #   [2] ARABIC MATHEMATICAL OPERATOR MEEM WITH HAH WITH TATWEEL..ARABIC MATHEMATICAL OPERATOR HAH WITH DAL
 1F8D0..1F8D8  ; Sm #   [9] LONG RIGHTWARDS ARROW OVER LONG LEFTWARDS ARROW..LONG LEFT RIGHT ARROW WITH DEPENDENT LOBE
 
-# Total code points: 965
+# Total code points: 973
 
 # ================================================
 
