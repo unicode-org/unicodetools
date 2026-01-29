@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2026-01-26, 22:09:26 GMT
+# Date: 2026-01-29, 21:18:12 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -749,7 +749,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801743
+# Total code points: 801735
 
 # ================================================
 
