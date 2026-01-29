@@ -1,5 +1,5 @@
 # LinkEmail.txt
-# Date: 2026-01-26, 23:59:39 GMT 
+# Date: 2026-01-29, 22:15:40 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -140,6 +140,7 @@
 05C5           # 4.1       (ׅ)  HEBREW MARK LOWER DOT
 05C7           # 4.1       (ׇ)  HEBREW POINT QAMATS QATAN
 05C8           # 18.0      (U+05C8)  HEBREW POINT SHEVA NA MUDGASH
+05C9           # NA        (U+05C9)  HEBREW POINT DAGESH HAZAQ MUDGASH
 05D0..05EA     # 1.1  [27] (א..ת)  HEBREW LETTER ALEF..HEBREW LETTER TAV
 05EF           # 11.0      (ׯ)  HEBREW YOD TRIANGLE
 05F0..05F2     # 1.1   [3] (װ..ײ)  HEBREW LIGATURE YIDDISH DOUBLE VAV..HEBREW LIGATURE YIDDISH DOUBLE YOD
@@ -1333,4 +1334,4 @@ FFDA..FFDC     # 1.1   [3] (ￚ..ￜ)  HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 3D000..3FC3F   # 18.0 [11328] (U+3D000..U+3FC3F)  SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 E0100..E01EF   # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 162132
+# Total code points: 162133

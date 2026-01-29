@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-01-26, 23:59:39 GMT 
+# Date: 2026-01-29, 22:15:40 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -426,6 +426,7 @@ FF62          ; Open    # 1.1       (｢)  HALFWIDTH LEFT CORNER BRACKET
 05C4          ; Include # 2.0       (ׄ)  HEBREW MARK UPPER DOT
 05C5..05C7    ; Include # 4.1   [3] (ׅ..ׇ)  HEBREW MARK LOWER DOT..HEBREW POINT QAMATS QATAN
 05C8          ; Include # 18.0      (U+05C8)  HEBREW POINT SHEVA NA MUDGASH
+05C9          ; Include # NA        (U+05C9)  HEBREW POINT DAGESH HAZAQ MUDGASH
 05D0..05EA    ; Include # 1.1  [27] (א..ת)  HEBREW LETTER ALEF..HEBREW LETTER TAV
 05EF          ; Include # 11.0      (ׯ)  HEBREW YOD TRIANGLE
 05F0..05F4    ; Include # 1.1   [5] (װ..״)  HEBREW LIGATURE YIDDISH DOUBLE VAV..HEBREW PUNCTUATION GERSHAYIM
@@ -2198,5 +2199,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172291
+# Total code points: 172293
 
