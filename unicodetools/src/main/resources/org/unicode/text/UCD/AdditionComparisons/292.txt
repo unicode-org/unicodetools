@@ -68,12 +68,15 @@ Propertywise [
 ] AreAlike
 
 Ignoring Block Pattern_Syntax:
+
+Ignoring East_Asian_Width Line_Break:
 Propertywise [
     \x{221A} √ \N{SQUARE ROOT}
     \x{1CEDD}  \N{SQUARE ROOT OF SQUARE ROOT}
     \x{1CEDE}  \N{SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT}
     \x{1CEDF}  \N{SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT}
 ] AreAlike
+end Ignoring;
 
 Propertywise [
     \x{221C} ∜ \N{FOURTH ROOT}
@@ -81,6 +84,7 @@ Propertywise [
     \x{1CEDE}  \N{SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT}
     \x{1CEDF}  \N{SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT}
 ] AreAlike
+
 end Ignoring;
 
 end Ignoring;
