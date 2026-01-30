@@ -1,0 +1,30 @@
+# Emoji: new emoji for Unicode 18.0 (1F6D9, 1FA8B..1FA8D, 1FACC, 1FADD, 1FAEB, 1FAF9..1FAFA)
+# https://github.com/unicode-org/utc-release-management/issues/264
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block:
+Propertywise [\x{1F6D9} \N{LIGHTHOUSE}
+              \x{1FA8B} \N{METEOR}
+              \x{1FA8C} \N{ERASER}
+              \x{1FA8D} \N{NET WITH HANDLE}
+              \x{1FACC} \N{MONARCH BUTTERFLY}
+              \x{1FADD} \N{PICKLE}
+              \x{1FAEB} \N{CRACKING FACE}
+              \x{1F000} \N{GRINNING FACE}] AreAlike
+end Ignoring;
+
+Propertywise [\x{1FAF9} \N{LEFTWARDS THUMB SIGN}
+              \x{1FAFA} \N{RIGHTWARDS THUMB SIGN}
+              \x{1F44D} \N{THUMBS UP SIGN}] AreAlike
+
+end Ignoring;
+
+end Ignoring;
