@@ -45,7 +45,6 @@ end Ignoring;
 
 Ignoring Block
          Decomposition_Mapping NFKC_Simple_Casefold Expands_On_NFKC Expands_On_NFKD:
-
 Propertywise [\x{1DF95} \N{LATIN SMALL LIGATURE LONG S WITH DESCENDER S}]
            ⧴ [ß]
            ⧴ [{ss}]
@@ -57,5 +56,16 @@ CorrespondTo [ﬅ]
            ⧴ [{ST}]
            ⧴ [{St}]
 end Ignoring;
+
+Propertywise [
+    \x{1DF01} 𝼁 \N{LATIN SMALL LETTER REVERSED SCRIPT G}
+    \x{1DF90}   \N{LATIN SMALL LETTER C WITH SMALL SLASH}
+    \x{1DF91}   \N{LATIN SMALL LETTER C WITH DESCENDING LOOP}
+    \x{1DF92}   \N{LATIN SMALL LETTER C WITH RIGHT LOOP}
+    \x{1DF93}   \N{LATIN SMALL LETTER D ROTUNDA WITH CROSSING LOOP}
+    \x{1DF94}   \N{LATIN SMALL LETTER R ROTUNDA WITH LOOP}
+    \x{1DF96}   \N{LATIN SMALL LETTER LONG S WITH TOP LOOP}
+] AreAlike
+
 
 end Ignoring;
