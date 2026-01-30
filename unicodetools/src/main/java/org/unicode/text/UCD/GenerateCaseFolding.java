@@ -253,6 +253,7 @@ public class GenerateCaseFolding implements UCD_Types {
         // ﬅ → ﬆ
         // LATIN SMALL LIGATURE LONG S T → LATIN SMALL LIGATURE ST
         0xFB05, 0xFB06,
+        // Similar characters added after Unicode 15.1.
         0x1DF95, 0x00DF,
     };
 
