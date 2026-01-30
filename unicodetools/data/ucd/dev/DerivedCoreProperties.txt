@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2026-01-29, 15:49:57 GMT
+# Date: 2026-01-30, 13:24:40 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -4927,9 +4927,10 @@ FF41..FF5A    ; Changes_When_Uppercased # L&  [26] FULLWIDTH LATIN SMALL LETTER 
 1DF7B         ; Changes_When_Uppercased # L&       LATIN SMALL LETTER U WITH HOOK TAIL
 1DF7D         ; Changes_When_Uppercased # L&       LATIN SMALL LETTER U WITH NOTCH AT BOTTOM
 1DF7F         ; Changes_When_Uppercased # L&       LATIN SMALL LETTER REVERSED U
+1DF95         ; Changes_When_Uppercased # L&       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1E922..1E943  ; Changes_When_Uppercased # L&  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 1600
+# Total code points: 1601
 
 # ================================================
 
@@ -5589,9 +5590,10 @@ FF41..FF5A    ; Changes_When_Titlecased # L&  [26] FULLWIDTH LATIN SMALL LETTER 
 1DF7B         ; Changes_When_Titlecased # L&       LATIN SMALL LETTER U WITH HOOK TAIL
 1DF7D         ; Changes_When_Titlecased # L&       LATIN SMALL LETTER U WITH NOTCH AT BOTTOM
 1DF7F         ; Changes_When_Titlecased # L&       LATIN SMALL LETTER REVERSED U
+1DF95         ; Changes_When_Titlecased # L&       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1E922..1E943  ; Changes_When_Titlecased # L&  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 1527
+# Total code points: 1528
 
 # ================================================
 
@@ -6248,9 +6250,10 @@ FF21..FF3A    ; Changes_When_Casefolded # L&  [26] FULLWIDTH LATIN CAPITAL LETTE
 1DF7A         ; Changes_When_Casefolded # L&       LATIN CAPITAL LETTER U WITH HOOK TAIL
 1DF7C         ; Changes_When_Casefolded # L&       LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM
 1DF7E         ; Changes_When_Casefolded # L&       LATIN CAPITAL LETTER REVERSED ENLARGED SMALL U
+1DF95         ; Changes_When_Casefolded # L&       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1E900..1E921  ; Changes_When_Casefolded # L&  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 
-# Total code points: 1581
+# Total code points: 1582
 
 # ================================================
 
@@ -6400,9 +6403,10 @@ FF41..FF5A    ; Changes_When_Casemapped # L&  [26] FULLWIDTH LATIN SMALL LETTER 
 1DF51..1DF52  ; Changes_When_Casemapped # L&   [2] LATIN CAPITAL LETTER BARRED V..LATIN SMALL LETTER BARRED V
 1DF68..1DF6F  ; Changes_When_Casemapped # L&   [8] LATIN CAPITAL LETTER PHONOTYPIC A WITH SWASH..LATIN SMALL LETTER PHONOTYPIC DIPHTHONG AI
 1DF72..1DF7F  ; Changes_When_Casemapped # L&  [14] LATIN CAPITAL LETTER O WITH CURL..LATIN SMALL LETTER REVERSED U
+1DF95         ; Changes_When_Casemapped # L&       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1E900..1E943  ; Changes_When_Casemapped # L&  [68] ADLAM CAPITAL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 3077
+# Total code points: 3078
 
 # ================================================
 

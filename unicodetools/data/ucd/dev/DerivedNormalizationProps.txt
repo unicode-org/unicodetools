@@ -1,5 +1,5 @@
 # DerivedNormalizationProps-18.0.0.txt
-# Date: 2026-01-29, 15:50:01 GMT
+# Date: 2026-01-30, 13:24:44 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -613,7 +613,6 @@ A7F8  ; FC_NFKC; 0127           # Lm  MODIFIER LETTER CAPITAL H WITH STROKE
 1D7A8 ; FC_NFKC; 03C9           # L&  MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL OMEGA
 1D7BB ; FC_NFKC; 03C3           # L&  MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL FINAL SIGMA
 1D7CA ; FC_NFKC; 03DD           # L&  MATHEMATICAL BOLD CAPITAL DIGAMMA
-1DF95 ; FC_NFKC; 0073 0073      # L&  LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1F110 ; FC_NFKC; 0028 0061 0029 # So  PARENTHESIZED LATIN CAPITAL LETTER A
 1F111 ; FC_NFKC; 0028 0062 0029 # So  PARENTHESIZED LATIN CAPITAL LETTER B
 1F112 ; FC_NFKC; 0028 0063 0029 # So  PARENTHESIZED LATIN CAPITAL LETTER C
@@ -682,7 +681,7 @@ A7F8  ; FC_NFKC; 0127           # Lm  MODIFIER LETTER CAPITAL H WITH STROKE
 1F16C ; FC_NFKC; 006D 0072      # So  RAISED MR SIGN
 1F190 ; FC_NFKC; 0064 006A      # So  SQUARE DJ
 
-# Total code points: 666
+# Total code points: 665
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # CaseFolding-18.0.0.txt
-# Date: 2025-11-29, 01:41:28 GMT
+# Date: 2026-01-30, 13:24:34 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -60,7 +60,6 @@
 #  have the value C for the status field, and the code point itself for the mapping field.
 
 # =================================================================
-1DF95; F; 0073 0073
 0041; C; 0061; # LATIN CAPITAL LETTER A
 0042; C; 0062; # LATIN CAPITAL LETTER B
 0043; C; 0063; # LATIN CAPITAL LETTER C
@@ -1665,6 +1664,8 @@ FF3A; C; FF5A; # FULLWIDTH LATIN CAPITAL LETTER Z
 1DF7A; C; 1DF7B; # LATIN CAPITAL LETTER U WITH HOOK TAIL
 1DF7C; C; 1DF7D; # LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM
 1DF7E; C; 1DF7F; # LATIN CAPITAL LETTER REVERSED ENLARGED SMALL U
+1DF95; F; 0073 0073; # LATIN SMALL LIGATURE LONG S WITH DESCENDER S
+1DF95; S; 00DF; # LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1E900; C; 1E922; # ADLAM CAPITAL LETTER ALIF
 1E901; C; 1E923; # ADLAM CAPITAL LETTER DAALI
 1E902; C; 1E924; # ADLAM CAPITAL LETTER LAAM
