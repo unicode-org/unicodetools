@@ -60,6 +60,7 @@
 #  have the value C for the status field, and the code point itself for the mapping field.
 
 # =================================================================
+1DF95; F; 0073 0073
 0041; C; 0061; # LATIN CAPITAL LETTER A
 0042; C; 0062; # LATIN CAPITAL LETTER B
 0043; C; 0063; # LATIN CAPITAL LETTER C

@@ -252,7 +252,8 @@ public class GenerateCaseFolding implements UCD_Types {
         0x1FE3, 0x03B0,
         // ﬅ → ﬆ
         // LATIN SMALL LIGATURE LONG S T → LATIN SMALL LIGATURE ST
-        0xFB05, 0xFB06
+        0xFB05, 0xFB06,
+        0x1DF95, 0x00DF,
     };
 
     private static Map<String, String> getCaseFolding(
