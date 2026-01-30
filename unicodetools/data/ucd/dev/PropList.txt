@@ -7,6 +7,8 @@
 # Unicode Character Database
 #   For documentation, see https://www.unicode.org/reports/tr44/
 
+1D6A6 ; Other_Math
+
 # ================================================
 
 0009..000D    ; White_Space # Cc   [5] <control-0009>..<control-000D>
