@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2026-01-29, 15:49:54 GMT
+# Date: 2026-01-30, 19:37:18 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1253,8 +1253,8 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 797660 code points not listed here.
-# Total code points: 1095362
+# The above property value applies to 797652 code points not listed here.
+# Total code points: 1095354
 
 # ================================================
 
@@ -1367,8 +1367,8 @@ FB46..FB4F    ; R # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW LIGATURE AL
 1E950..1E959  ; R # Nd  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 1E95E..1E95F  ; R # Po   [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 
-# The above property value applies to 2060 code points not listed here.
-# Total code points: 3630
+# The above property value applies to 2059 code points not listed here.
+# Total code points: 3629
 
 # ================================================
 
@@ -1994,7 +1994,7 @@ FFFC..FFFD    ; ON # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTE
 1CEBA..1CED0  ; ON # So  [23] FRAGILE SYMBOL..LEUKOTHEA
 1CEDD..1CEDF  ; ON # Sm   [3] SQUARE ROOT OF SQUARE ROOT..SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
 1CEE0..1CEEF  ; ON # So  [16] GEOMANTIC FIGURE POPULUS..GEOMANTIC FIGURE VIA
-1CEF0..1CEF5  ; ON # Sm   [6] MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR..LEIBNIZIAN FRACTION REDUCTION SIGN-2
+1CEF0..1CEFD  ; ON # Sm  [14] MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR..HYPERBOLA
 1D1E9..1D1EA  ; ON # So   [2] MUSICAL SYMBOL SORI..MUSICAL SYMBOL KORON
 1D200..1D241  ; ON # So  [66] GREEK VOCAL NOTATION SYMBOL-1..GREEK INSTRUMENTAL NOTATION SYMBOL-54
 1D245         ; ON # So       GREEK MUSICAL LEIMMA
@@ -2051,7 +2051,7 @@ FFFC..FFFD    ; ON # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTE
 1FB94..1FBEF  ; ON # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; ON # So       ALARM BELL SYMBOL
 
-# Total code points: 6883
+# Total code points: 6891
 
 # ================================================
 
@@ -2108,7 +2108,7 @@ FFFFE..FFFFF  ; BN # Cn   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 05BF          ; NSM # Mn       HEBREW POINT RAFE
 05C1..05C2    ; NSM # Mn   [2] HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
 05C4..05C5    ; NSM # Mn   [2] HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
-05C7..05C8    ; NSM # Mn   [2] HEBREW POINT QAMATS QATAN..HEBREW POINT SHEVA NA MUDGASH
+05C7..05C9    ; NSM # Mn   [3] HEBREW POINT QAMATS QATAN..HEBREW POINT DAGESH HAZAQ MUDGASH
 0610..061A    ; NSM # Mn  [11] ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..ARABIC SMALL KASRA
 064B..065F    ; NSM # Mn  [21] ARABIC FATHATAN..ARABIC WAVY HAMZA BELOW
 0670          ; NSM # Mn       ARABIC LETTER SUPERSCRIPT ALEF
@@ -2475,7 +2475,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 1E944..1E94A  ; NSM # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; NSM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2099
+# Total code points: 2100
 
 # ================================================
 
