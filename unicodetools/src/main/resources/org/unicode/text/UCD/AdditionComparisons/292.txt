@@ -1,18 +1,21 @@
 # Symbols: 11 Cossic (1D6A6, 1DF90..1DF96, 1CEDD..1CEDF)
 # https://github.com/unicode-org/utc-release-management/issues/292
 
-# Names always differ.
-# Age always differs since these tests are comparing additions to pre-existing characters.
-Ignoring Name Age:
-
-# Ignore the security and IDNA properties. These are not part of the UCD, and
-# are typically prepared just before β, after these tests are written (which is
-# normally anywhere between proposal submission and the start of α).
-Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
-
 Ignoring
+    # Names always differ.
+    # Age always differs since these tests are comparing additions to pre-existing characters.
+    Name Age
+    # Ignore the security and IDNA properties. These are not part of the UCD, and
+    # are typically prepared just before β, after these tests are written (which is
+    # normally anywhere between proposal submission and the start of α).
+    Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category
+    # Of historical interest only; the comparandum ϖ has one. 
     Unicode_1_Name
+    # Not synchronized.
     Math_Class Math_Class_Ex Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set:
+
+Ignoring FC_NFKC_Closure:
+
 Propertywise [\x{1D6A6} \N{MATHEMATICAL ITALIC SMALL LIGATURE LONG S WITH DESCENDER S}]
            ⧴ [\x{1DF95} \N{LATIN SMALL LIGATURE LONG S WITH DESCENDER S}]
            ⧴ [ß]
@@ -21,8 +24,38 @@ CorrespondTo [𝜛]
            ⧴ [ϖ]
            ⧴ [π]
            ⧴ [π]
+
+Ignoring Block Script Script_Extensions
+         Simple_Titlecase_Mapping Simple_Uppercase_Mapping:
+Propertywise [\x{1D6A6} \N{MATHEMATICAL ITALIC SMALL LIGATURE LONG S WITH DESCENDER S}]
+           : [\x{1DF95} \N{LATIN SMALL LIGATURE LONG S WITH DESCENDER S}]
+           ⧴ [ß]
+           ⧴ [{ss}]
+           ⧴ [{SS}]
+           ⧴ [{Ss}]
+CorrespondTo [𝜛]
+           : [ϖ]
+           ⧴ [π]
+           ⧴ [π]
+           ⧴ [Π]
+           ⧴ [Π]
 end Ignoring;
 
+end Ignoring;
+
+Ignoring Block
+         Decomposition_Mapping NFKC_Simple_Casefold Expands_On_NFKC Expands_On_NFKD:
+
+Propertywise [\x{1DF95} \N{LATIN SMALL LIGATURE LONG S WITH DESCENDER S}]
+           ⧴ [ß]
+           ⧴ [{ss}]
+           ⧴ [{SS}]
+           ⧴ [{Ss}]
+CorrespondTo [ﬅ]
+           ⧴ [ﬆ]
+           ⧴ [{st}]
+           ⧴ [{ST}]
+           ⧴ [{St}]
 end Ignoring;
 
 end Ignoring;
