@@ -67,5 +67,20 @@ Propertywise [
     \x{1DF96}   \N{LATIN SMALL LETTER LONG S WITH TOP LOOP}
 ] AreAlike
 
+Ignoring Block Pattern_Syntax:
+Propertywise [
+    \x{221A} √ \N{SQUARE ROOT}
+    \x{1CEDD}  \N{SQUARE ROOT OF SQUARE ROOT}
+    \x{1CEDE}  \N{SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT}
+    \x{1CEDF}  \N{SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT}
+] AreAlike
+
+Propertywise [
+    \x{221C} ∜ \N{FOURTH ROOT}
+    \x{1CEDD}  \N{SQUARE ROOT OF SQUARE ROOT}
+    \x{1CEDE}  \N{SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT}
+    \x{1CEDF}  \N{SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT}
+] AreAlike
+end Ignoring;
 
 end Ignoring;
