@@ -1,17 +1,13 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-01-08, 13:28:31 GMT
+@+	Generation Date: 2026-01-23, 14:51:47 GMT
 	Unicode 18.0.0 names list.
-	Repertoire synched with UnicodeData-18.0.0d4.txt.
-	Post UTC185 annotation updates for 18.0.
-	Add xrefs to 6 CJK compatibility ideographs.
-	Adjust end of CJK Extension-D.
-	Resynch to 18.0.0 repertoire additions and CD3.
-	Update annotations to 1CEF1, 1CEF2.
-	Added Rokuyō annotations to 25CB, 25CF, 25D0, 25D1.
-	Added xref to 1CEF3.
+	Repertoire synched with UnicodeData-18.0.0d6.txt.
 	Adjusted for repertoire additions post UTC186.
+	Removed extraneous TAB in one subhead.
+	Added xref from 1D83 to 0261.
+	Annotations updates for 231B, 29D6, 1F76E.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -11885,6 +11881,7 @@
 1D81	LATIN SMALL LETTER D WITH PALATAL HOOK
 1D82	LATIN SMALL LETTER F WITH PALATAL HOOK
 1D83	LATIN SMALL LETTER G WITH PALATAL HOOK
+	x (latin small letter script g - 0261)
 1D84	LATIN SMALL LETTER K WITH PALATAL HOOK
 1D85	LATIN SMALL LETTER L WITH PALATAL HOOK
 1D86	LATIN SMALL LETTER M WITH PALATAL HOOK
@@ -14646,6 +14643,7 @@
 223D	REVERSED TILDE
 	= lazy S
 	* reversed tilde and lazy S are glyph variants
+	~ 223D FE00 using lazy S
 223E	INVERTED LAZY S
 	= most positive
 @		Miscellaneous mathematical symbol
@@ -14657,7 +14655,9 @@
 2241	NOT TILDE
 	: 223C 0338
 2242	MINUS TILDE
+	~ 2242 FE00 using lazy S
 2243	ASYMPTOTICALLY EQUAL TO
+	~ 2243 FE00 using lazy S
 2244	NOT ASYMPTOTICALLY EQUAL TO
 	: 2243 0338
 2245	APPROXIMATELY EQUAL TO
@@ -14667,6 +14667,7 @@
 	: 2245 0338
 2248	ALMOST EQUAL TO
 	= asymptotic to
+	~ 2248 FE00 using lazy S
 2249	NOT ALMOST EQUAL TO
 	: 2248 0338
 224A	ALMOST EQUAL OR EQUAL TO
@@ -14947,6 +14948,7 @@
 	x (caret insertion point - 2041)
 @		Relation
 22CD	REVERSED TILDE EQUALS
+	~ 22CD FE00 using lazy S
 @		Logical operators
 22CE	CURLY LOGICAL OR
 22CF	CURLY LOGICAL AND
@@ -14970,7 +14972,9 @@
 22DB	GREATER-THAN EQUAL TO OR LESS-THAN
 	~ 22DB FE00 with slanted equal
 22DC	EQUAL TO OR LESS-THAN
+	~ 22DC FE00 with horizontal equal
 22DD	EQUAL TO OR GREATER-THAN
+	~ 22DD FE00 with horizontal equal
 22DE	EQUAL TO OR PRECEDES
 22DF	EQUAL TO OR SUCCEEDS
 22E0	DOES NOT PRECEDE OR EQUAL
@@ -15096,7 +15100,7 @@
 	x (alarm clock - 23F0)
 	x (clock face one oclock - 1F550)
 231B	HOURGLASS
-	= alchemical symbol for hour
+	x (white hourglass - 29D6)
 @		Quine corners
 @+		These form a set of four quine corners, for quincuncial arrangement. They are also used in upper and lower pairs in mathematics, or more rarely in editorial usage as alternatives to half brackets.
 231C	TOP LEFT CORNER
@@ -16533,6 +16537,7 @@
 	x (mens symbol - 1F6B9)
 2643	JUPITER
 	= alchemical symbol for tin
+	x (alchemical symbol for moon-jupiter - 1CED3)
 2644	SATURN
 	= alchemical symbol for lead
 2645	URANUS
@@ -18071,6 +18076,7 @@
 29D6	WHITE HOURGLASS
 	= vertical bowtie
 	= white framus
+	* simple form of the alchemical symbol for hour
 	x (hourglass - 231B)
 	x (alchemical symbol for hour - 1F76E)
 29D7	BLACK HOURGLASS
@@ -18340,6 +18346,7 @@
 2A6B	TILDE OPERATOR WITH RISING DOTS
 	x (homothetic - 223B)
 2A6C	SIMILAR MINUS SIMILAR
+	~ 2A6C FE00 using lazy S
 2A6D	CONGRUENT WITH DOT ABOVE
 	x (approximately equal to - 2245)
 2A6E	EQUALS WITH ASTERISK
@@ -55937,6 +55944,18 @@ FFFF	<not a character>
 1CECE	BELLONA
 1CECF	AMPHITRITE
 1CED0	LEUKOTHEA
+@		Alchemical symbols
+1CED2	ALCHEMICAL SYMBOL FOR OIL INVERTED
+	x (alchemical symbol for oil - 1F746)
+1CED3	ALCHEMICAL SYMBOL FOR MOON-JUPITER
+	x (jupiter - 2643)
+1CED4	ALCHEMICAL SYMBOL FOR TARTAR-SALT
+	x (alchemical symbol for tartar - 1F73F)
+@		Radix signs for historical mathematics
+1CEDD	SQUARE ROOT OF SQUARE ROOT
+	x (square root - 221A)
+1CEDE	SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
+1CEDF	SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
 @		Symbols for geomantic figures
 1CEE0	GEOMANTIC FIGURE POPULUS
 1CEE1	GEOMANTIC FIGURE TRISTITIA
@@ -55992,7 +56011,7 @@ FFFF	<not a character>
 1CEFB	MEASURED ANGLE WITH DOUBLE CONCAVE ARC
 1CEFC	ANGLE OPENING UP
 	x (oblique angle opening up - 29A6)
-@		Miscellaneous geometrical symbol	
+@		Miscellaneous geometrical symbol
 1CEFD	HYPERBOLA
 @@	1CF00	Znamenny Musical Notation	1CFCF
 @		Combining red marks
@@ -57735,6 +57754,7 @@ FFFF	<not a character>
 1D4CE	MATHEMATICAL SCRIPT SMALL Y
 	# <font> 0079 latin small letter y
 1D4CF	MATHEMATICAL SCRIPT SMALL Z
+	~ 1D4CF FE02 current style
 	# <font> 007A latin small letter z
 @		Bold script symbols
 1D4D0	MATHEMATICAL BOLD SCRIPT CAPITAL A
@@ -58698,6 +58718,12 @@ FFFF	<not a character>
 	x (latin small letter dotless j - 0237)
 	x (mathematical italic small j - 1D457)
 	# <font> 0237 latin small letter dotless j
+@		Ligature long s
+1D6A6	MATHEMATICAL ITALIC SMALL LIGATURE LONG S WITH DESCENDER S
+	= sursolidum
+	* denotes fifth power of the unknown in historical mathematics
+	x (latin small ligature long s with descender s - 1DF95)
+	# <font> 1DF95 latin small ligature long s with descender s
 @		Bold Greek symbols
 1D6A8	MATHEMATICAL BOLD CAPITAL ALPHA
 	# <font> 0391 greek capital letter alpha
@@ -60094,6 +60120,39 @@ FFFF	<not a character>
 1DAAD	SIGNWRITING ROTATION MODIFIER-14
 1DAAE	SIGNWRITING ROTATION MODIFIER-15
 1DAAF	SIGNWRITING ROTATION MODIFIER-16
+@@	1DB00	Miscellaneous Symbols and Arrows Extended	1DBFF
+@		Leibnizian operators
+1DB00	LEIBNIZIAN EQUALS SIGN
+1DB01	LEIBNIZIAN EQUALS SIGN WITH DOUBLE VERTICALS
+1DB02	LEIBNIZIAN EQUALS SIGN WITH SMALL S
+1DB03	LEIBNIZIAN GREATER-THAN
+1DB04	LEIBNIZIAN LESS-THAN
+1DB05	LEIBNIZIAN GREATER-THAN WITH SMALL P
+1DB06	LEIBNIZIAN LESS-THAN WITH SMALL P
+1DB07	LEIBNIZIAN GREATER-THAN OR LESS-THAN
+1DB08	INVERTED SQUARE LEFT OPEN BOX OPERATOR
+1DB09	INVERTED SQUARE RIGHT OPEN BOX OPERATOR
+1DB0A	TWO-LINE GREATER-THAN
+1DB0B	TWO-LINE LESS-THAN
+1DB0C	COMMENSURABILITY
+1DB0D	INCOMMENSURABILITY
+1DB0E	COMMENSURABILITY IN SQUARE
+1DB0F	INCOMMENSURABILITY IN SQUARE
+1DB10	CARTESIAN EQUALS SIGN
+	~ 1DB10 FE00 with descender
+1DB11	LEIBNIZIAN CONGRUENCE
+1DB12	LEIBNIZIAN CONGRUENCE WITH VERTICAL BAR
+1DB13	LEIBNIZIAN CONGRUENCE-2
+1DB14	LEIBNIZIAN CONGRUENCE-2 INVERTED
+1DB15	LEIBNIZIAN CONGRUENCE-2 WITH HORIZONTAL BAR
+1DB16	LEIBNIZIAN CONGRUENCE-2 WITH HORIZONTAL AND VERTICAL BAR
+1DB17	LEIBNIZIAN COINCIDENCE
+1DB18	INVERTED LAZY S OVER LAZY S
+1DB19	LEIBNIZIAN SIMILARITY
+1DB1A	LEIBNIZIAN SIMILARITY-2
+1DB1B	LEIBNIZIAN DISSIMILARITY
+1DB1C	FACIT SYMBOL
+@~	Standardized Variation Sequences
 @@	1DF00	Latin Extended-G	1DFFF
 @		Extended IPA for disordered speech
 1DF00	LATIN SMALL LETTER FENG DIGRAPH WITH TRILL
@@ -60287,6 +60346,43 @@ FFFF	<not a character>
 @+		These letters are not paired with any encoded lowercase letter.
 1DF80	LATIN CAPITAL LETTER A WITH TOPBAR
 1DF81	LATIN CAPITAL LETTER E WITH BENT TOPBAR
+@		Cossic letters
+1DF90	LATIN SMALL LETTER C WITH SMALL SLASH
+	= cubus
+	* denotes cube of the unknown
+1DF91	LATIN SMALL LETTER C WITH DESCENDING LOOP
+	= census
+	* denotes square of the unknown
+1DF92	LATIN SMALL LETTER C WITH RIGHT LOOP
+	= cubus
+	* denotes cube of the unknown
+1DF93	LATIN SMALL LETTER D ROTUNDA WITH CROSSING LOOP
+	= dragma
+	* denotes numerus/constant
+	x (latin small letter delta - 1E9F)
+	x (german penny sign - 20B0)
+	x (latin small letter insular d - A77A)
+1DF94	LATIN SMALL LETTER R ROTUNDA WITH LOOP
+	= res, radix
+	* denotes the unknown
+	x (square root - 221A)
+	x (latin small letter r rotunda - A75B)
+	x (latin small letter rum rotunda - A75D)
+	x (latin letter small capital rum - A776)
+1DF95	LATIN SMALL LIGATURE LONG S WITH DESCENDER S
+	= sursolidum
+	* denotes fifth power of the unknown in historical mathematics
+	x (latin small letter sharp s - 00DF)
+	x (latin small letter long s - 017F)
+	x (latin small letter middle scots s - A7D7)
+	x (mathematical italic small ligature long s with descender s - 1D6A6)
+	# 00DF latin small letter sharp s
+1DF96	LATIN SMALL LETTER LONG S WITH TOP LOOP
+	= sursolidum
+	* denotes fifth power of the unknown
+	x (latin small letter long s - 017F)
+	x (latin small letter long s with diagonal stroke - 1E9C)
+	x (latin small letter long s with high stroke - 1E9D)
 @		RFE modifier letters
 1DFCD	MODIFIER LETTER SMALL TURNED R WITH MID-HEIGHT LEFT HOOK
 	# <super> 1DF57
@@ -64779,6 +64875,7 @@ FFFF	<not a character>
 	x (neptune - 2646)
 1F73F	ALCHEMICAL SYMBOL FOR TARTAR
 	= impure potassium tartrate
+	x (alchemical symbol for tartar-salt - 1CED4)
 1F740	ALCHEMICAL SYMBOL FOR TARTAR-2
 	= impure potassium tartrate
 1F741	ALCHEMICAL SYMBOL FOR QUICK LIME
@@ -64790,6 +64887,7 @@ FFFF	<not a character>
 1F745	ALCHEMICAL SYMBOL FOR ALUM
 1F746	ALCHEMICAL SYMBOL FOR OIL
 	x (tibetan sign rdel dkar gsum - 0F1C)
+	x (alchemical symbol for oil inverted - 1CED2)
 1F747	ALCHEMICAL SYMBOL FOR SPIRIT
 1F748	ALCHEMICAL SYMBOL FOR TINCTURE
 1F749	ALCHEMICAL SYMBOL FOR GUM
@@ -64863,6 +64961,7 @@ FFFF	<not a character>
 	x (alembic - 2697)
 @		Time
 1F76E	ALCHEMICAL SYMBOL FOR HOUR
+	* simple form is 29D6
 	x (hourglass - 231B)
 	x (white hourglass - 29D6)
 1F76F	ALCHEMICAL SYMBOL FOR NIGHT
@@ -66007,7 +66106,7 @@ FFFF	<not a character>
 1FAE8	SHAKING FACE
 1FAE9	FACE WITH BAGS UNDER EYES
 1FAEA	DISTORTED FACE
-1FAEB	FACE WITH SQUINTING EYES
+1FAEB	CRACKING FACE
 @		Emotion
 1FAEF	FIGHT CLOUD
 @		Hand symbols
