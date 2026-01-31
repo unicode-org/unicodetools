@@ -252,7 +252,9 @@ public class GenerateCaseFolding implements UCD_Types {
         0x1FE3, 0x03B0,
         // ﬅ → ﬆ
         // LATIN SMALL LIGATURE LONG S T → LATIN SMALL LIGATURE ST
-        0xFB05, 0xFB06
+        0xFB05, 0xFB06,
+        // Similar characters added after Unicode 15.1.
+        0x1DF95, 0x00DF,
     };
 
     private static Map<String, String> getCaseFolding(
@@ -604,14 +606,14 @@ public class GenerateCaseFolding implements UCD_Types {
     }
 
     static boolean specialNormalizationDiffers(int ch) {
-        if (ch == 0x00DF) {
+        if (Default.nfkd().normalize(ch).equals("\u00DF")) {
             return true; // es-zed
         }
         return !Default.nfkd().isNormalized(ch);
     }
 
     static String specialNormalization(String s) {
-        if (s.equals("\u00DF")) {
+        if (Default.nfkd().normalize(s).equals("\u00DF")) {
             return "ss";
         }
         return Default.nfkd().normalize(s);
@@ -637,7 +639,7 @@ public class GenerateCaseFolding implements UCD_Types {
         }
 
         final byte type = Default.ucd().getDecompositionType(ch);
-        if (type == COMPAT_SQUARE) {
+        if (type == COMPAT_SQUARE || type == COMPAT_FONT) {
             return true;
         }
         // if (type == COMPAT_UNSPECIFIED) return true;

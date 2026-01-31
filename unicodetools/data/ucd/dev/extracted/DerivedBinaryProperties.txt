@@ -1,5 +1,5 @@
 # DerivedBinaryProperties-18.0.0.txt
-# Date: 2025-11-29, 01:41:51 GMT
+# Date: 2026-01-30, 19:37:20 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -232,12 +232,13 @@ FF5F          ; Bidi_Mirrored # Ps       FULLWIDTH LEFT WHITE PARENTHESIS
 FF60          ; Bidi_Mirrored # Pe       FULLWIDTH RIGHT WHITE PARENTHESIS
 FF62          ; Bidi_Mirrored # Ps       HALFWIDTH LEFT CORNER BRACKET
 FF63          ; Bidi_Mirrored # Pe       HALFWIDTH RIGHT CORNER BRACKET
+1CEDD..1CEDF  ; Bidi_Mirrored # Sm   [3] SQUARE ROOT OF SQUARE ROOT..SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
 1D6DB         ; Bidi_Mirrored # Sm       MATHEMATICAL BOLD PARTIAL DIFFERENTIAL
 1D715         ; Bidi_Mirrored # Sm       MATHEMATICAL ITALIC PARTIAL DIFFERENTIAL
 1D74F         ; Bidi_Mirrored # Sm       MATHEMATICAL BOLD ITALIC PARTIAL DIFFERENTIAL
 1D789         ; Bidi_Mirrored # Sm       MATHEMATICAL SANS-SERIF BOLD PARTIAL DIFFERENTIAL
 1D7C3         ; Bidi_Mirrored # Sm       MATHEMATICAL SANS-SERIF BOLD ITALIC PARTIAL DIFFERENTIAL
 
-# Total code points: 556
+# Total code points: 559
 
 # EOF

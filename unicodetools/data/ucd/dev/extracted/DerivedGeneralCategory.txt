@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2026-01-29, 22:18:40 GMT
+# Date: 2026-01-30, 19:37:22 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -597,7 +597,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1BCA4..1CBFF  ; Cn # [3932] <reserved-1BCA4>..<reserved-1CBFF>
 1CCFD..1CCFF  ; Cn #   [3] <reserved-1CCFD>..<reserved-1CCFF>
 1CEB4..1CEB9  ; Cn #   [6] <reserved-1CEB4>..<reserved-1CEB9>
-1CED1..1CEDF  ; Cn #  [15] <reserved-1CED1>..<reserved-1CEDF>
+1CED1..1CEDC  ; Cn #  [12] <reserved-1CED1>..<reserved-1CEDC>
 1CEFE..1CEFF  ; Cn #   [2] <reserved-1CEFE>..<reserved-1CEFF>
 1CF2E..1CF2F  ; Cn #   [2] <reserved-1CF2E>..<reserved-1CF2F>
 1CF47..1CF4F  ; Cn #   [9] <reserved-1CF47>..<reserved-1CF4F>
@@ -627,12 +627,13 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1D545         ; Cn #       <reserved-1D545>
 1D547..1D549  ; Cn #   [3] <reserved-1D547>..<reserved-1D549>
 1D551         ; Cn #       <reserved-1D551>
-1D6A6..1D6A7  ; Cn #   [2] <reserved-1D6A6>..<reserved-1D6A7>
+1D6A7         ; Cn #       <reserved-1D6A7>
 1D7CC..1D7CD  ; Cn #   [2] <reserved-1D7CC>..<reserved-1D7CD>
 1DA8C..1DA9A  ; Cn #  [15] <reserved-1DA8C>..<reserved-1DA9A>
 1DAA0         ; Cn #       <reserved-1DAA0>
 1DAB0..1DEFF  ; Cn # [1104] <reserved-1DAB0>..<reserved-1DEFF>
-1DF82..1DFCC  ; Cn #  [75] <reserved-1DF82>..<reserved-1DFCC>
+1DF82..1DF8F  ; Cn #  [14] <reserved-1DF82>..<reserved-1DF8F>
+1DF97..1DFCC  ; Cn #  [54] <reserved-1DF97>..<reserved-1DFCC>
 1E007         ; Cn #       <reserved-1E007>
 1E019..1E01A  ; Cn #   [2] <reserved-1E019>..<reserved-1E01A>
 1E022         ; Cn #       <reserved-1E022>
@@ -749,7 +750,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801734
+# Total code points: 801723
 
 # ================================================
 
@@ -2083,7 +2084,7 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1D5EE..1D607  ; Ll #  [26] MATHEMATICAL SANS-SERIF BOLD SMALL A..MATHEMATICAL SANS-SERIF BOLD SMALL Z
 1D622..1D63B  ; Ll #  [26] MATHEMATICAL SANS-SERIF ITALIC SMALL A..MATHEMATICAL SANS-SERIF ITALIC SMALL Z
 1D656..1D66F  ; Ll #  [26] MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL A..MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL Z
-1D68A..1D6A5  ; Ll #  [28] MATHEMATICAL MONOSPACE SMALL A..MATHEMATICAL ITALIC SMALL DOTLESS J
+1D68A..1D6A6  ; Ll #  [29] MATHEMATICAL MONOSPACE SMALL A..MATHEMATICAL ITALIC SMALL LIGATURE LONG S WITH DESCENDER S
 1D6C2..1D6DA  ; Ll #  [25] MATHEMATICAL BOLD SMALL ALPHA..MATHEMATICAL BOLD SMALL OMEGA
 1D6DC..1D6E1  ; Ll #   [6] MATHEMATICAL BOLD EPSILON SYMBOL..MATHEMATICAL BOLD PI SYMBOL
 1D6FC..1D714  ; Ll #  [25] MATHEMATICAL ITALIC SMALL ALPHA..MATHEMATICAL ITALIC SMALL OMEGA
@@ -2113,9 +2114,10 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1DF7B         ; Ll #       LATIN SMALL LETTER U WITH HOOK TAIL
 1DF7D         ; Ll #       LATIN SMALL LETTER U WITH NOTCH AT BOTTOM
 1DF7F         ; Ll #       LATIN SMALL LETTER REVERSED U
+1DF90..1DF96  ; Ll #   [7] LATIN SMALL LETTER C WITH SMALL SLASH..LATIN SMALL LETTER LONG S WITH TOP LOOP
 1E922..1E943  ; Ll #  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2358
+# Total code points: 2366
 
 # ================================================
 
@@ -4104,6 +4106,7 @@ FF5E          ; Sm #       FULLWIDTH TILDE
 FFE2          ; Sm #       FULLWIDTH NOT SIGN
 FFE9..FFEC    ; Sm #   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS ARROW
 10D8E..10D8F  ; Sm #   [2] GARAY PLUS SIGN..GARAY MINUS SIGN
+1CEDD..1CEDF  ; Sm #   [3] SQUARE ROOT OF SQUARE ROOT..SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
 1CEF0..1CEFD  ; Sm #  [14] MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR..HYPERBOLA
 1D6C1         ; Sm #       MATHEMATICAL BOLD NABLA
 1D6DB         ; Sm #       MATHEMATICAL BOLD PARTIAL DIFFERENTIAL
@@ -4118,7 +4121,7 @@ FFE9..FFEC    ; Sm #   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS ARROW
 1EEF0..1EEF1  ; Sm #   [2] ARABIC MATHEMATICAL OPERATOR MEEM WITH HAH WITH TATWEEL..ARABIC MATHEMATICAL OPERATOR HAH WITH DAL
 1F8D0..1F8D8  ; Sm #   [9] LONG RIGHTWARDS ARROW OVER LONG LEFTWARDS ARROW..LONG LEFT RIGHT ARROW WITH DEPENDENT LOBE
 
-# Total code points: 973
+# Total code points: 976
 
 # ================================================
 
