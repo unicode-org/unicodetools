@@ -23,7 +23,7 @@ end Ignoring;
 
 Propertywise [\x{1FAF9} \N{LEFTWARDS THUMB SIGN}
               \x{1FAFA} \N{RIGHTWARDS THUMB SIGN}
-              \x{1F44D} \N{THUMBS UP SIGN}] AreAlike
+              \x{1FAF6} \N{HEART HANDS}] AreAlike
 
 end Ignoring;
 
