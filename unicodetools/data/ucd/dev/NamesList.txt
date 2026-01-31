@@ -1,13 +1,14 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-01-24, 07:17:04 GMT
+@+	Generation Date: 2026-01-31, 10:21:45 GMT
 	Unicode 18.0.0 names list.
 	Repertoire synched with UnicodeData-18.0.0d6.txt.
 	Adjusted for repertoire additions post UTC186.
 	Removed extraneous TAB in one subhead.
 	Added xref from 1D83 to 0261.
 	Annotations updates for 231B, 29D6, 1F76E.
+	More cuneiform annotations from L2/24-239.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -37301,11 +37302,15 @@ FFFF	<not a character>
 12038	CUNEIFORM SIGN ASH
 	= 1 aš
 	x (cuneiform numeric sign two ash - 12400)
+	x (cuneiform numeric sign one n01 - 12550)
+	x (cuneiform numeric sign one n01 flat - 1264C)
 12039	CUNEIFORM SIGN ASH ZIDA TENU
 	= 1 aš tenû
 	= 1 diš tenû
 	= 1/2 iku
 	x (cuneiform numeric sign two ash tenu - 1244A)
+	x (cuneiform numeric sign one n08 - 12559)
+	x (cuneiform numeric sign one half iku curved variant form - 1258B)
 1203A	CUNEIFORM SIGN ASH KABA TENU
 1203B	CUNEIFORM SIGN ASH OVER ASH TUG2 OVER TUG2 TUG2 OVER TUG2 PAP
 1203C	CUNEIFORM SIGN ASH OVER ASH OVER ASH
@@ -37376,6 +37381,8 @@ FFFF	<not a character>
 	x (cuneiform numeric sign three dish - 12408)
 	x (cuneiform numeric sign nigidamin - 12456)
 	x (cuneiform numeric sign nigidaesh - 12457)
+	x (cuneiform numeric sign one n01 - 12550)
+	x (cuneiform numeric sign one n08 - 12559)
 1207A	CUNEIFORM SIGN DU
 1207B	CUNEIFORM SIGN DU OVER DU
 1207C	CUNEIFORM SIGN DU GUNU
@@ -37806,7 +37813,9 @@ FFFF	<not a character>
 12225	CUNEIFORM SIGN MAR
 12226	CUNEIFORM SIGN MASH
 	= 1/2 diš
+	* 12593 should be used for 1/2 aš curved
 	x (cuneiform numeric sign one ban2 - 1244F)
+	x (cuneiform numeric sign one ban2 curved - 12593)
 12227	CUNEIFORM SIGN MASH2
 12228	CUNEIFORM SIGN ME
 12229	CUNEIFORM SIGN MES
@@ -37814,6 +37823,7 @@ FFFF	<not a character>
 1222B	CUNEIFORM SIGN MIN
 	= 2 diš
 	x (cuneiform numeric sign three dish - 12408)
+	x (cuneiform numeric sign two n08 - 1255A)
 1222C	CUNEIFORM SIGN MU
 1222D	CUNEIFORM SIGN MU OVER MU
 1222E	CUNEIFORM SIGN MUG
@@ -37961,7 +37971,9 @@ FFFF	<not a character>
 	* same glyph as 1212D HI in all but the most archaizing texts
 	* the archaic reference glyph is formed by making a circular indentation with the end of the stylus
 	* used for logographic šar₂ and cuneiform 1 šar₂
+	* 12579 should be used for numeric šar₂ curved
 	x (cuneiform numeric sign two shar2 - 12423)
+	x (cuneiform numeric sign one n45 - 12579)
 122BA	CUNEIFORM SIGN SHE
 122BB	CUNEIFORM SIGN SHE HU
 122BC	CUNEIFORM SIGN SHE OVER SHE GAD OVER GAD GAR OVER GAR
@@ -38049,11 +38061,15 @@ FFFF	<not a character>
 	= 1 u
 	= 1 bur₃
 	x (cuneiform numeric sign four u - 1240F)
+	x (cuneiform numeric sign one n14 - 12562)
+	x (cuneiform numeric sign one n14 flat - 12656)
 1230C	CUNEIFORM SIGN U GUD
 1230D	CUNEIFORM SIGN U U U
 	= 3 u
 	= 3 bur₃
 	x (cuneiform numeric sign four u - 1240F)
+	x (cuneiform numeric sign three n14 - 12564)
+	x (cuneiform numeric sign three n14 flat - 12658)
 1230E	CUNEIFORM SIGN U OVER U PA OVER PA GAR OVER GAR
 1230F	CUNEIFORM SIGN U OVER U SUR OVER SUR
 12310	CUNEIFORM SIGN U OVER U U REVERSED OVER U REVERSED
@@ -38204,6 +38220,8 @@ FFFF	<not a character>
 	= 2 u
 	= 2 bur₃
 	x (cuneiform numeric sign four u - 1240F)
+	x (cuneiform numeric sign two n14 - 12563)
+	x (cuneiform numeric sign two n14 flat - 12657)
 @@	12400	Cuneiform Numbers and Punctuation	1247F
 @		Common numeric signs
 @+		These are used in multiple metrological systems.
@@ -38596,6 +38614,7 @@ FFFF	<not a character>
 1253F	CUNEIFORM SIGN URU TIMES LAK-668
 12540	CUNEIFORM SIGN URU TIMES LU3
 12541	CUNEIFORM SIGN ZA7
+	x (cuneiform numeric sign two n08 - 1255A)
 12542	CUNEIFORM SIGN ZU OVER ZU PLUS SAR
 12543	CUNEIFORM SIGN ZU5 TIMES THREE DISH TENU
 @@	12550	Archaic Cuneiform Numerals	1268F
@@ -57760,7 +57779,7 @@ FFFF	<not a character>
 1D4CE	MATHEMATICAL SCRIPT SMALL Y
 	# <font> 0079 latin small letter y
 1D4CF	MATHEMATICAL SCRIPT SMALL Z
-	~ 1D4CF FE02 current style
+	~ 1D4CF FE02 kurrent style
 	# <font> 007A latin small letter z
 @		Bold script symbols
 1D4D0	MATHEMATICAL BOLD SCRIPT CAPITAL A
