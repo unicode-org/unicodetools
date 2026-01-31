@@ -1,9 +1,5 @@
 # LinkEmail.txt
-<<<<<<< HEAD
-# Date: 2026-01-29, 20:57:18 GMT 
-=======
-# Date: 2026-01-29, 22:53:08 GMT 
->>>>>>> la-vache/main
+# Date: 2026-01-31, 12:27:25 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1339,8 +1335,4 @@ FFDA..FFDC     # 1.1   [3] (ￚ..ￜ)  HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 3D000..3FC3F   # 18.0 [11328] (U+3D000..U+3FC3F)  SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 E0100..E01EF   # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-<<<<<<< HEAD
-# Total code points: 162140
-=======
-# Total code points: 162133
->>>>>>> la-vache/main
+# Total code points: 162141

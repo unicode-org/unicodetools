@@ -1,9 +1,5 @@
 # LinkTerm.txt
-<<<<<<< HEAD
-# Date: 2026-01-29, 20:40:35 GMT 
-=======
-# Date: 2026-01-29, 22:53:08 GMT 
->>>>>>> la-vache/main
+# Date: 2026-01-31, 12:27:25 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2205,9 +2201,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-<<<<<<< HEAD
-# Total code points: 172303
-=======
-# Total code points: 172301
->>>>>>> la-vache/main
+# Total code points: 172312
 
