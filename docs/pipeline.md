@@ -151,7 +151,6 @@ git merge la-vache/main
 git checkout la-vache/main unicodetools/data/ucd/dev/Derived*;
 git checkout la-vache/main unicodetools/data/ucd/dev/extracted/*;
 git checkout la-vache/main unicodetools/data/ucd/dev/auxiliary/*;
-rm .\Generated\* -recurse -force;
 mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
 git add ./unicodetools/data
 git merge --continue
@@ -165,8 +164,6 @@ git merge main
 git checkout main unicodetools/data/ucd/dev/Derived*
 git checkout main unicodetools/data/ucd/dev/extracted/*
 git checkout main unicodetools/data/ucd/dev/auxiliary/*
-rm -r ../Generated/BIN/18.0.0.0/
-rm -r ../Generated/BIN/UCD_Data18.0.0.bin
 mvn -s ~/.m2/settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 18.0.0 build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=18.0.0
 # fix merge conflicts in unicodetools/src/main/java/org/unicode/text/UCD/UCD_Types.java
 #   and in UCD_Names.java
@@ -194,7 +191,6 @@ Cf. https://github.com/unicode-org/unicodetools/pull/636
 eggrobin (Windows, in-source).
 <!--FIX_FOR_NEW_VERSION-->
 ```powershell
-rm .\Generated\* -recurse -force
 mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
 git add unicodetools/data/ucd/dev/*
 git commit -m "Regenerate UCD"
@@ -205,7 +201,6 @@ git commit -m "Regenerate UCD"
 eggrobin (Windows, in-source).
 <!--FIX_FOR_NEW_VERSION-->
 ```powershell
-rm .\Generated\* -recurse -force
 mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c --generate LineBreak$"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
 ```
 
