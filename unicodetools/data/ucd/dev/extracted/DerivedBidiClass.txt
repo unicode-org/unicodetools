@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2026-01-30, 19:37:18 GMT
+# Date: 2026-02-01, 23:51:30 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1253,8 +1253,8 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 797652 code points not listed here.
-# Total code points: 1095354
+# The above property value applies to 797623 code points not listed here.
+# Total code points: 1095325
 
 # ================================================
 
@@ -2009,6 +2009,7 @@ FFFC..FFFD    ; ON # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTE
 1D789         ; ON # Sm       MATHEMATICAL SANS-SERIF BOLD PARTIAL DIFFERENTIAL
 1D7A9         ; ON # Sm       MATHEMATICAL SANS-SERIF BOLD ITALIC NABLA
 1D7C3         ; ON # Sm       MATHEMATICAL SANS-SERIF BOLD ITALIC PARTIAL DIFFERENTIAL
+1DB00..1DB1C  ; ON # Sm  [29] LEIBNIZIAN EQUALS SIGN..FACIT SYMBOL
 1EEF0..1EEF1  ; ON # Sm   [2] ARABIC MATHEMATICAL OPERATOR MEEM WITH HAH WITH TATWEEL..ARABIC MATHEMATICAL OPERATOR HAH WITH DAL
 1F000..1F02B  ; ON # So  [44] MAHJONG TILE EAST WIND..MAHJONG TILE BACK
 1F030..1F093  ; ON # So [100] DOMINO TILE HORIZONTAL BACK..DOMINO TILE VERTICAL-06-06
@@ -2051,7 +2052,7 @@ FFFC..FFFD    ; ON # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTE
 1FB94..1FBEF  ; ON # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; ON # So       ALARM BELL SYMBOL
 
-# Total code points: 6891
+# Total code points: 6920
 
 # ================================================
 
