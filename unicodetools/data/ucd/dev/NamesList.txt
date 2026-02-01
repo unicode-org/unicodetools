@@ -1,14 +1,15 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-01-31, 10:21:45 GMT
+@+	Generation Date: 2026-01-31, 16:06:55 GMT
 	Unicode 18.0.0 names list.
-	Repertoire synched with UnicodeData-18.0.0d6.txt.
 	Adjusted for repertoire additions post UTC186.
 	Removed extraneous TAB in one subhead.
 	Added xref from 1D83 to 0261.
 	Annotations updates for 231B, 29D6, 1F76E.
 	More cuneiform annotations from L2/24-239.
+	Add xref from 02AE to 0265.
+	Repertoire synched with UnicodeData-18.0.0d7.txt.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -2393,6 +2394,7 @@
 02AE	LATIN SMALL LETTER TURNED H WITH FISHHOOK
 	= turned h with left hook
 	* labialized apical dental vowel
+	x (latin small letter turned h - 0265)
 02AF	LATIN SMALL LETTER TURNED H WITH FISHHOOK AND TAIL
 	= turned h with left hook and tail
 	* labialized apical retroflex vowel
@@ -37971,7 +37973,7 @@ FFFF	<not a character>
 	* same glyph as 1212D HI in all but the most archaizing texts
 	* the archaic reference glyph is formed by making a circular indentation with the end of the stylus
 	* used for logographic šar₂ and cuneiform 1 šar₂
-	* 12579 should be used for numeric šar₂ curved
+	* 12579 should be used for numeric 1 šar₂ curved
 	x (cuneiform numeric sign two shar2 - 12423)
 	x (cuneiform numeric sign one n45 - 12579)
 122BA	CUNEIFORM SIGN SHE
@@ -55974,7 +55976,7 @@ FFFF	<not a character>
 	x (alchemical symbol for oil - 1F746)
 1CED3	ALCHEMICAL SYMBOL FOR MOON-JUPITER
 	x (jupiter - 2643)
-1CED4	ALCHEMICAL SYMBOL FOR TARTAR-SALT
+1CED4	ALCHEMICAL SYMBOL FOR SALT OF TARTAR
 	x (alchemical symbol for tartar - 1F73F)
 @		Radix signs for historical mathematics
 1CEDD	SQUARE ROOT OF SQUARE ROOT
@@ -64900,7 +64902,7 @@ FFFF	<not a character>
 	x (neptune - 2646)
 1F73F	ALCHEMICAL SYMBOL FOR TARTAR
 	= impure potassium tartrate
-	x (alchemical symbol for tartar-salt - 1CED4)
+	x (alchemical symbol for salt of tartar - 1CED4)
 1F740	ALCHEMICAL SYMBOL FOR TARTAR-2
 	= impure potassium tartrate
 1F741	ALCHEMICAL SYMBOL FOR QUICK LIME
