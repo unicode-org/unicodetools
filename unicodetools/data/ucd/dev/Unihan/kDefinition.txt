@@ -6192,7 +6192,7 @@
 4ED6	other, another; he, she, it
 4ED7	rely upon; protector; fight; war, weaponry
 4ED8	give, deliver, pay, hand over; entrust
-4ED9	Taoist super-being, transcendent, immortal
+4ED9	Taoist super-being, transcendent, immortal; cent
 4EDA	to fly
 4EDB	young girl; strange, different
 4EDD	together, same; surname
@@ -6656,7 +6656,7 @@
 515D	decigram
 515E	milligram
 515F	to advance
-5161	mercury (chemical element)
+5161	mercury (chemical element); hectogram
 5162	fearful, cautious, wary
 5163	decigram; centigram
 5165	enter, come in(to), join
@@ -7236,7 +7236,7 @@
 5429	order, command, instruct
 542A	move
 542B	hold in mouth; cherish; contain
-542C	hear; understand; obey, comply
+542C	hear; understand; obey, comply; one pound
 542D	throat
 542E	suck with mouth, sip, lick
 542F	open; begin, commence; explain
@@ -7267,7 +7267,7 @@
 544B	(呋喃) furan (C₄H₄O)
 544C	to call; to summon
 544D	(Cant.) phonetic
-544E	foot
+544E	foot, twelve inches
 544F	gallon; quart
 5450	raise voice, yell out loud, shout; stammer
 5451	swallow; absorb
@@ -7657,6 +7657,7 @@
 5618	exhale; blow out; deep sigh; hiss; praise
 561B	final exclamatory particle
 561C	mark
+561D	bushel (unit of measure)
 561E	(Cant.) final particle used for polite refusal
 561F	sound of horn tooting
 5620	the chirping of birds loud laughter
@@ -8622,7 +8623,7 @@
 5BFE	correct, right; facing, opposed
 5BFF	old age, long life; lifespan
 5C00	cannot; thereupon
-5C01	letter, envelope; feudal
+5C01	letter, envelope; feudal; one pound
 5C02	monopolize, take sole possession
 5C03	to state to, to announce
 5C04	shoot, eject, issue forth, emit
@@ -9150,7 +9151,7 @@
 5F14	condole, mourn, pity; hang
 5F15	to pull, draw out, attract; to stretch
 5F16	phonetic for 'te' (Japanese)
-5F17	not, negative
+5F17	not, negative; dollar
 5F18	enlarge, expand; liberal, great
 5F1B	loosen, relax, unstring a bow
 5F1D	the part of a bow grasped when shooting
@@ -11702,7 +11703,7 @@
 6D66	bank of river, shore; surname
 6D69	great, numerous, vast, abundant
 6D6A	wave; wasteful, reckless
-6D6C	nautical mile
+6D6C	nautical mile; knot, nautical mile per hour
 6D6D	river in Hebei province; (Cant.) a ford; to wade
 6D6E	to float, drift, waft; to exceed; superfluous
 6D6F	name of a river in Shandong
@@ -12872,6 +12873,7 @@
 74EF	bowl, cup; small tray
 74F0	a decigram, one-tenth of a gram
 74F1	milligram
+74F2	ton
 74F4	concave channels of tiling a long-necked jar
 74F6	jug, pitcher, vase, jar, bottle
 74F7	crockery, porcelain, chinaware
@@ -13875,7 +13877,7 @@
 7ACA	secretly, stealthily; steal; thief
 7ACB	stand; let stand; establish, set
 7ACD	decaliter
-7ACF	kiloliter
+7ACF	kiloliter, cubic meter
 7AD1	be vast and endless; broad
 7AD2	strange, unusual, uncanny, occult
 7AD3	milliliter
@@ -14153,13 +14155,15 @@
 7C72	appeal; request; implore
 7C73	hulled or husked uncooked rice
 7C74	purchase grains; store grain
-7C75	decimeter
+7C75	decameter, ten meters
 7C78	powdery substance
 7C79	cake
 7C7B	class, group, kind, category
 7C7C	non-glutinous long grain rice
 7C7D	seed, pip, pit, stone
 7C7E	unhulled rice
+7C7F	decimeter, one tenth of a meter
+7C80	decameter, ten meters
 7C81	kilometer
 7C82	surname
 7C83	empty husks of grain
@@ -14167,6 +14171,7 @@
 7C87	chaff, bran, husks
 7C89	powder, face powder; plaster
 7C8B	pure; unadulterated; select
+7C8C	hectometer
 7C8D	millimetre
 7C8E	meter
 7C91	bread, cake; tsamba (Tibetan barley bread)
@@ -14192,6 +14197,7 @@
 7CB1	better varieties of millet
 7CB2	polish; bright, radiant; smiling
 7CB3	non-glutinous rice
+7CB4	kilometer
 7CB5	Guangdong and Guangxi provinces; initial particle
 7CB9	pure; unadulterated; select
 7CBA	polished rice or millet
@@ -14894,7 +14900,7 @@
 804D	earwax
 8052	clamor, din, hubbub
 8054	connect, join; associate, ally
-8056	holy, sacred; sage
+8056	holy, sacred; sage, saint
 8058	engage, employ; betroth
 805A	assemble, meet together, collect
 805D	to cut the left ears of the slain
@@ -20753,7 +20759,12 @@ FA2D	crane
 20325	(Cant.) to bow, stoop
 20341	(Cant.) an undesirable situation
 2037D	to pull up; tear
-204B2	Dg
+20490	milligram
+20498	hectogram
+20499	kilogram
+204AD	milligram
+204B2	decagram, ten grams
+204C8	myriagram, ten kilograms
 204CE	ton
 204CF	quintal
 204FC	(Cant.) a wedge; to thrust in
@@ -20994,6 +21005,8 @@ FA2D	crane
 21A04	to stop up
 21A34	rather; it is better; it is easier
 21A4B	repose, serenity, peace; peaceful; Nanking
+21A5B	hectare
+21AB8	square meter, centiare
 21B19	to wake from sleep
 21B36	to look for; ordinary
 21B74	fissure
@@ -21277,6 +21290,7 @@ FA2D	crane
 24C48	a mǔ (畝), a unit of area roughly equal to 600 square meters
 24C5D	hamlet; area outside city
 24C6C	to clear land
+24CBE	are, one hundredth of a hectare
 24CC8	wet, cultivated land
 24D10	thunder
 24D14	foot (obs.); bale
@@ -21363,8 +21377,11 @@ FA2D	crane
 2591B	autumn
 25945	(Cant.) a hole, hollow; cavity
 259F9	(Cant.) puddle
+25A58	centiliter
 25A72	a god; to raise
-25A95	classifier
+25A7B	deciliter
+25A95	kiloliter, cubic meter; classifier
+25AB3	milliliter
 25AD7	bamboo; surname
 25AF1	to hoard
 25B00	name of a variety of bamboo; big bamboo
@@ -21379,6 +21396,7 @@ FA2D	crane
 25D27	rough mat; ugly
 25D5A	thorns, brambles
 25D5C	(same as 攴) to tap; to rap, (same as 撲) to pat; to beat; to strike; to dash; to smash
+25E2F	myriameter, ten kilometers, Swedish mile
 25E49	(Cant.) sticky
 25E85	to overturn; to pour out, to respond, to examine carefully, to stick, thick congee
 25EDA	agreeable
@@ -21963,6 +21981,7 @@ FA2D	crane
 2B62D	horse
 2B62E	a kind of beast, a kind of mule
 2B63D	to make a top knot; (Cant.) 鬅鬠, to be slovenly dressed
+2B679	blizzard
 2B688	silver carp (Hypophthalmichthys molitrix); bream
 2B689	a ray, skate
 2B68B	anchovy
@@ -22036,6 +22055,7 @@ FA2D	crane
 2B81C	teeth grown in old age
 2B825	to retire into obscurity
 2B852	to loose, take off, get rid of
+2B877	hectare
 2B88A	money, currency, coins
 2B892	rude; barbarous
 2B899	labor; work
@@ -22339,7 +22359,7 @@ FA2D	crane
 2CA7D	county in Shandong province
 2CAA8	wine cup; muddy wine
 2CAA9	strong wine; dense, thick
-2CABF	a square meter; one hundredth of a 公畝
+2CABF	square meter, centiare; one hundredth of a 公畝
 2CB27	solder
 2CB2A	button; buckle, clasp; engrave
 2CB2B	an ancient type of arrow
@@ -22489,6 +22509,7 @@ FA2D	crane
 2CE9C	a cage, a pen, a grating, bars, window; window frame
 2CF01	dram (apothecary symbol ʒ)
 2CF04	ounce (apothecary symbol ℥)
+2CF17	grain (unit of weight)
 2D016	manage, control; thousandth part of tael
 2D11B	to cut, clip
 2D1DC	to expel the breath
@@ -22500,6 +22521,8 @@ FA2D	crane
 2D39C	a mound, a tumulus
 2D3E6	dust
 2D3F8	a mound, an embankment the earthen altar to the god of the soil
+2D505	hectare
+2D516	square meter, centiare
 2D546	fragments
 2D613	cover
 2D6A6	to draw a bow to the full

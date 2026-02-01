@@ -19,7 +19,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.cldr.util.XMLFileReader;
 import org.unicode.cldr.util.XPathParts;
-import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.Factory;
 import org.unicode.text.UCD.Default;
@@ -27,16 +26,12 @@ import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Settings;
 
 public class VerifyXmlUcd {
-    public static final boolean USE_ICU = false;
     public static final boolean ABBREVIATED = true;
     private static Factory factory;
 
     static Factory getFactory() {
         if (factory == null) {
-            factory =
-                    USE_ICU
-                            ? ICUPropertyFactory.make()
-                            : ToolUnicodePropertySource.make(Default.ucdVersion());
+            factory = ToolUnicodePropertySource.make(Default.ucdVersion());
         }
         return factory;
     }
@@ -343,11 +338,11 @@ public class VerifyXmlUcd {
 
             // get my values
             if (toolProperty == null) {
-                return USE_ICU ? null : "MISSING";
+                return "MISSING";
             }
             String toolValue = toolProperty.getValue(cp, true);
             if (toolValue == null) {
-                return USE_ICU ? null : ""; // for ICU, only test a subset
+                return "";
             }
             final int type = toolProperty.getType();
 

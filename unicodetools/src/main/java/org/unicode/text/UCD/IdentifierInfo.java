@@ -138,6 +138,18 @@ public class IdentifierInfo {
         info.printIDNStuff();
     }
 
+    private static final class ModifiedNFKC {
+        private static Normalizer INSTANCE;
+
+        static String normalize(String cf) {
+            if (INSTANCE == null) {
+                INSTANCE = new Normalizer(UCD_Types.NFKC, Default.ucdVersion());
+                INSTANCE.setSpacingSubstitute();
+            }
+            return ModifiedNFKC.INSTANCE.normalize(cf);
+        }
+    }
+
     private IdentifierInfo() throws IOException {
         isCaseFolded = new UnicodeSet();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
@@ -189,9 +201,9 @@ public class IdentifierInfo {
         // the output set
         for (final UnicodeSetIterator usi = new UnicodeSetIterator(remainingInputSet1);
                 usi.next(); ) {
-            final String nss = GenerateConfusables.getModifiedNKFC(usi.getString());
+            final String nss = ModifiedNFKC.normalize(usi.getString());
             final String cf = DEFAULT_UCD.getCase(nss, UCD_Types.FULL, UCD_Types.FOLD);
-            final String cf2 = GenerateConfusables.getModifiedNKFC(cf);
+            final String cf2 = ModifiedNFKC.normalize(cf);
             if (remainingOutputSet.containsAll(cf2)) {
                 remainingInputSet.add(usi.codepoint);
             } else {
@@ -203,7 +215,7 @@ public class IdentifierInfo {
         for (final UnicodeSetIterator usi = new UnicodeSetIterator(remainingInputSet);
                 usi.next(); ) {
             final String ss = usi.getString();
-            final String nss = GenerateConfusables.getModifiedNKFC(ss);
+            final String nss = ModifiedNFKC.normalize(ss);
             final String cf = DEFAULT_UCD.getCase(ss, UCD_Types.FULL, UCD_Types.FOLD);
             if (DEBUG && (usi.codepoint == 0x2126 || usi.codepoint == 0x212B)) {
                 System.out.println("check");
@@ -711,14 +723,8 @@ public class IdentifierInfo {
         }
     }
 
-    enum Style {
-        flat,
-        byValue
-    };
-
     void printIDNStuff() throws IOException {
-        printIdentifierTypes(Style.byValue);
-        printIdentifierTypes(Style.flat);
+        printIdentifierTypes();
         printIdentifierStatus();
 
         printModificationsInternal();
@@ -1052,7 +1058,7 @@ public class IdentifierInfo {
         out.close();
     }
 
-    private void printIdentifierTypes(Style status) throws IOException {
+    private void printIdentifierTypes() throws IOException {
         final UnicodeMap<String> tempMap = new UnicodeMap<String>();
         final Map<String, Set<Identifier_Type>> sortingMap = new HashMap<>();
         for (Set<Identifier_Type> value : identifierTypesMap.values()) {
@@ -1081,8 +1087,7 @@ public class IdentifierInfo {
         bf2.setLabelSource(age);
 
         final String propName = "Identifier_Type";
-        final String filename =
-                status == Style.byValue ? "IdentifierType.txt" : "IdentifierTypeFlat.txt";
+        final String filename = "IdentifierType.txt";
         try (PrintWriter out2 =
                 GenerateConfusables.openAndWriteHeader(
                         GenerateConfusables.GEN_SECURITY_DIR,
@@ -1120,20 +1125,8 @@ public class IdentifierInfo {
                     (new UnicodeProperty.UnicodeMapProperty() {})
                             .set(tempMap)
                             .setMain(propName, "IDT", UnicodeProperty.EXTENDED_MISC, "1.0"));
-            if (status == Style.byValue) {
-                TreeSet<String> sorted = new TreeSet<>(tempComp);
-                sorted.addAll(tempMap.values());
-
-                for (String value : sorted) {
-                    out2.println("");
-                    out2.println("#\t" + propName + ":\t" + value);
-                    out2.println("");
-                    bf2.showSetNames(out2, tempMap.getSet(value));
-                }
-            } else {
-                out2.println("");
-                bf2.showSetNames(out2, tempMap.keySet());
-            }
+            out2.println("");
+            bf2.showSetNames(out2, tempMap.keySet());
         }
     }
 

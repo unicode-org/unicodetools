@@ -80,6 +80,7 @@ public class GenerateEnums {
         final String shortName;
         final String longName;
         final List<String> others;
+        List<String> extra;
         final DerivedPropertyStatus status;
         final Map<String, PropName> subnames = new TreeMap<String, PropName>();
 
@@ -511,7 +512,8 @@ public class GenerateEnums {
                         classItem,
                         cardinality,
                         pname.shortName,
-                        pname.others);
+                        pname.others,
+                        pname.extra);
                 output.print(",\n");
             }
         }
@@ -532,6 +534,21 @@ public class GenerateEnums {
                         + "    private final EnumSet enums;\n"
                         + "    private final Class enumClass;\n"
                         + "    private final ValueCardinality cardinality;\n"
+                        + "    \n"
+                        + "    private UcdProperty(PropertyType type,\n"
+                        + "                        DerivedPropertyStatus status,\n"
+                        + "                        String shortName,\n"
+                        + "                        String[] otherNames,\n"
+                        + "                        String[] extraNames) {\n"
+                        + "        this.type = type;\n"
+                        + "        this.status = status;\n"
+                        + "        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames, extraNames);\n"
+                        + "        name2enum = null;\n"
+                        + "        enums = null;\n"
+                        + "        enumClass = null;\n"
+                        + "        cardinality = ValueCardinality.Singleton;\n"
+                        + "    }\n"
+                        + "\n"
                         + "    \n"
                         + "    private UcdProperty(PropertyType type,\n"
                         + "                        DerivedPropertyStatus status,\n"
@@ -619,7 +636,8 @@ public class GenerateEnums {
             String classItem,
             ValueCardinality cardinality,
             String shortName,
-            List<String> otherNames) {
+            List<String> otherNames,
+            List<String> extraNames) {
         output.print("(");
         // if (shortName != null) {
         output.print(type);
@@ -635,8 +653,20 @@ public class GenerateEnums {
                                     : "ValueCardinality." + cardinality.toString()));
         }
         output.print(", \"" + shortName + "\"");
-        for (final String otherName : otherNames) {
-            output.print(", \"" + otherName + "\"");
+        if (extraNames == null) {
+            for (final String otherName : otherNames) {
+                output.print(", \"" + otherName + "\"");
+            }
+        } else {
+            output.print(", new String[]{");
+            for (final String otherName : otherNames) {
+                output.print("\"" + otherName + "\", ");
+            }
+            output.print("}, new String[]{");
+            for (final String extraName : extraNames) {
+                output.print("\"" + extraName + "\", ");
+            }
+            output.print("}");
         }
         output.print(")");
     }
@@ -676,16 +706,41 @@ public class GenerateEnums {
             }
             var status = fileStatus;
             if (status == null) {
-                status = DerivedPropertyStatus.valueOf(parts[parts.length - 1]);
+                if (!parts[parts.length - 1].equals("ExtraAliases")) {
+                    status = DerivedPropertyStatus.valueOf(parts[parts.length - 1]);
+                }
                 parts = Arrays.copyOf(parts, parts.length - 1);
             }
-            final PropName propName = new PropName(type, status, parts);
-            values.put(
-                    propName,
-                    propName.longName.equals("Age")
-                            ? new TreeSet<>(ARRAY_SORT)
-                            : new LinkedHashSet<>());
-            System.out.println(propName);
+            if (status == null) {
+                for (var key : values.keySet()) {
+                    if (key.shortName.equals(parts[0]) || key.longName.equals(parts[1])) {
+                        if (!(key.shortName.equals(parts[0]) && key.longName.equals(parts[1]))) {
+                            throw new IllegalArgumentException(
+                                    "Partial match for (short, long) on ExtraAliases: "
+                                            + key.shortName
+                                            + " "
+                                            + key.longName);
+                        }
+                        if (key.status != DerivedPropertyStatus.Approved) {
+                            throw new IllegalArgumentException(
+                                    "ExtraAliases for unapproved property "
+                                            + key.shortName
+                                            + " "
+                                            + key.longName);
+                        }
+                        key.extra = Arrays.asList(parts).subList(2, parts.length);
+                        break;
+                    }
+                }
+            } else {
+                final PropName propName = new PropName(type, status, parts);
+                values.put(
+                        propName,
+                        propName.longName.equals("Age")
+                                ? new TreeSet<>(ARRAY_SORT)
+                                : new LinkedHashSet<>());
+                System.out.println(propName);
+            }
             //            if (!Locations.contains(propName.longName)) {
             //                System.out.println("Missing file: " + propName.longName);
             //            }

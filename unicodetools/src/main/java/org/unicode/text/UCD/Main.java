@@ -105,8 +105,6 @@ public final class Main implements UCD_Types {
                     ConvertUCD.main(new String[] {Default.ucdVersion()});
                 } else if (arg.equalsIgnoreCase("statistics")) {
                     VerifyUCD.statistics();
-                } else if (arg.equalsIgnoreCase("NFSkippable")) {
-                    NFSkippable.main(null);
                 } else if (arg.equalsIgnoreCase("diffIgnorable")) {
                     VerifyUCD.diffIgnorable();
                 } else if (arg.equalsIgnoreCase("generateXML")) {
@@ -131,8 +129,6 @@ public final class Main implements UCD_Types {
                     VerifyUCD.compareBlueberry();
                 } else if (arg.equalsIgnoreCase("testenum")) {
                     SampleEnum.test();
-                } else if (arg.equalsIgnoreCase("quicktest")) {
-                    QuickTest.test();
                 } else if (arg.equalsIgnoreCase("TernaryStore")) {
                     TernaryStore.test();
                 } else if (arg.equalsIgnoreCase("checkBIDI")) {
@@ -149,8 +145,6 @@ public final class Main implements UCD_Types {
                     VerifyUCD.checkDecompFolding();
                 } else if (arg.equalsIgnoreCase("breaktest")) {
                     GenerateBreakTest.main(null);
-                } else if (arg.equalsIgnoreCase("checkcollator")) {
-                    CheckCollator.main(null);
                 } else if (arg.equalsIgnoreCase("iana")) {
                     IANANames.testSensitivity();
                 } else if (arg.equalsIgnoreCase("testDerivedProperties")) {
@@ -175,8 +169,6 @@ public final class Main implements UCD_Types {
                     VerifyUCD.NFTest();
                 } else if (arg.equalsIgnoreCase("test1")) {
                     VerifyUCD.test1();
-                } else if (arg.equalsIgnoreCase("GenerateThaiBreaks")) {
-                    GenerateThaiBreaks.main(null);
                 } else if (arg.equalsIgnoreCase("TestData")) {
                     TestData.main(new String[] {args[++i]});
                 } else if (arg.equalsIgnoreCase("MakeUnicodeFiles")) {
@@ -193,10 +185,6 @@ public final class Main implements UCD_Types {
                     DirectoryIterator.test();
                 } else if (arg.equalsIgnoreCase("testnameuniqueness")) {
                     TestNameUniqueness.checkNameList();
-                    // else if (arg.equalsIgnoreCase("checkDifferences"))
-                    // GenerateData.checkDifferences("3.2.0");
-                } else if (arg.equalsIgnoreCase("Compare14652")) {
-                    Compare14652.main(null);
                 } else if (arg.equalsIgnoreCase("StandardizedVariants")) {
                     GenerateStandardizedVariants.generate();
 

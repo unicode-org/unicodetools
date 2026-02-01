@@ -137,7 +137,7 @@
                 Propertywise [𐛪 𐛫] AreAlike
 #       Yeh (with two dots) and yeh with three dots behave the same, except for confusability and
 #       their name in Unicode 1 (both had one that differs from their current name).
-                Ignoring Unicode_1_Name Confusable_MA:
+                Ignoring Unicode_1_Name Arabic_Shaping_Schematic_Name Confusable_MA:
                     Propertywise [ي ۑ] AreAlike
                 end Ignoring;
             end Ignoring;
@@ -169,7 +169,7 @@
 # script, but behave regularly.  See the examples below.
 #
 #   Examples:
-            Ignoring Name Unicode_1_Name Confusable_MA:
+            Ignoring Name Unicode_1_Name Confusable_MA Math_Class Math_Class_Ex Math_Entity_Name Math_Entity_Set Math_Descriptive_Comments:
 #       The basic Greek and Latin scripts behave the same, except that they are different scripts,
 #       encoded in different blocks, and that Latin is ea=Narrow (because fullwidth Latin exists)
 #       whereas Greek is ea=Ambiguous.
@@ -230,7 +230,7 @@
 Let $foo := \p{ccc=9}
 Let $fii := \p{toNFD=/$foo/}
 
-Let $codepoints := [\u0000-\U0010FFFF]
+Let $code_points := [\u0000-\U0010FFFF]
 
 Let $gcAllPunctuation := \p{gc=/_Punctuation/}
 $gcAllPunctuation = [
@@ -413,7 +413,7 @@ In \p{sc=Cher}, scf = suc
 # Simple and full case foldings define the same equivalence classes on code points.
 # This used not to be true, but was rectified by
 # https://www.unicode.org/cgi-bin/GetL2Ref.pl?175-C19.
-OnPairsOf $codepoints, EqualityOf Case_Folding ⇔ EqualityOf Simple_Case_Folding
+OnPairsOf $code_points, EqualityOf Case_Folding ⇔ EqualityOf Simple_Case_Folding
 
 # Stability: All characters with the Lowercase property and all characters with the Uppercase property have the Alphabetic property. 
 \p{Alphabetic} ⊃ [\p{Uppercase} \p{Lowercase}]
@@ -568,7 +568,7 @@ $Unicode_6_1_Decompositions ⊆ [\p{Name=/^CHAKMA VOWEL SIGN /}]
 # decomposition will also be in canonical order. 
 # Note: We really mean the fixed point of Decomposition_Mapping on the
 # left-hand side here.
-In $codepoints, Decomposition_Mapping * Decomposition_Mapping * Decomposition_Mapping = toNFKD
+In $code_points, Decomposition_Mapping * Decomposition_Mapping * Decomposition_Mapping = toNFKD
 
 # Stability: Canonical mappings (Decomposition_Mapping property values) are
 # always limited either to a single value or to a pair. The second character in
@@ -672,10 +672,29 @@ Let $anyNumericValue := \p{Numeric_Value=/-?[0-9]+(.[0-9]+)?/}
 
 # Musical symbol combining marks, other oddities
 
-Let $AlphaExclusions := [[\uAA7D \u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u1CE1\u1CF7\uAA7B\uABEC\U0001D165\U0001D166\U0001D16D-\U0001D172][[:gc=mc:]&[:ccc=9:][\u302E\u302F]]]
-# 6.1.0 Added HANGUL SINGLE DOT TONE MARK..HANGUL DOUBLE DOT TONE MARK
-# 7.0 Added AA7D
-# 10.0 Added 1CF7 (similar to 1CE1)
+# TODO(egg): See if we can define this set in a more readable way.
+Let $AlphaExclusions := [
+    \uAA7D
+    \u0F3E\u0F3F\u1063\u1064
+    \u1069-\u106D
+    \u1087-\u108C
+    \u108F
+    \u109A
+    \u109B
+    \u1CE1
+    \u1CF7
+    \uAA7B
+    \uABEC
+    \U0001D165
+    \U0001D166
+    \U0001D16D
+    \p{Name=/^MUSICAL SYMBOL COMBINING FLAG-/}
+    \U0001D25F
+    \U0001D280
+    \U0001D281
+    [[:gc=mc:]&[:ccc=9:]]
+    \u302E\u302F
+]
 \p{Alphabetic} ⊇ [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} \p{GC=Mc} - $AlphaExclusions]
 
 # Show [\p{GC=Mc} - \p{alphabetic}]
@@ -711,6 +730,7 @@ Let $nonAlphabeticBindus := []
 
 Let $nonAlphabeticDependentVowels := [
     \N{ORIYA SIGN OVERLINE}
+    \p{Name=/^ORIYA SIGN (DOUBLE )?DOT ABOVE$/}  # L2/24-106R, related to the overline.
     \N{THAI CHARACTER MAITAIKHU}
     \N{LIMBU SIGN KEMPHRENG}
     \N{SHARADA VOWEL MODIFIER MARK}
@@ -1348,6 +1368,8 @@ $CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
             \p{Script=Tangut}
             \p{Script=Nushu}
             \p{Script=Khitan_Small_Script}
+            \p{Script=Jurchen}
+            \p{Script=Seal}
         ]
     ]
 ]
@@ -1426,12 +1448,29 @@ $tangutSourcesScope = [ [\p{gc=Lo} & \p{sc=Tangut}] - \p{name=/^TANGUT COMPONENT
 $tangutSourcesScope = \P{kTGT_MergedSrc=@none@}
 $tangutSourcesScope = \P{kRSTUnicode=@none@}
 
+# Jurchen invariants
+
+Let $jurchenSourcesScope := [\p{Block=/^Jurchen(.Supplement)?$/} - \p{gc=Cn}]
+$jurchenSourcesScope = [ [\p{gc=Lo} & \p{sc=Jurchen}] - \p{name=/^JURCHEN RADICAL-/} ]
+$jurchenSourcesScope = \P{kJURC_Src=@none@}
+$jurchenSourcesScope = \P{kJURC_RSUnicode=@none@}
+$jurchenSourcesScope ⊃ \P{kJURC_Numeric=@none@}
+$jurchenSourcesScope ⊃ \P{kJURC_NCReading=@none@}
+
 # Nüshu invariants
 
 Let $nüshuSourcesScope := [\p{Block=Nushu} - \p{gc=Cn}]
 $nüshuSourcesScope = [\p{gc=Lo} & \p{sc=Nushu}]
 $nüshuSourcesScope = \P{kSrc_NushuDuben=@none@}
 $nüshuSourcesScope = \P{kReading=@none@}
+
+# Seal invariants
+
+Let $sealSourcesScope := \p{Block=Seal}
+$sealSourcesScope = \P{kSEAL_THXSrc=@none@}
+$sealSourcesScope ⊃ [\P{kSEAL_CCZSrc=@none@}\P{kSEAL_QJZSrc=@none@}\P{kSEAL_DYCSrc=@none@}]
+In [\P{kSEAL_MCJK=@none@}], Script * kSEAL_MCJK = (constant Han)
+$sealSourcesScope = \P{kSEAL_Rad=@none@}
 
 # Egyptian hieroglyph invariants
 
@@ -1478,13 +1517,36 @@ In [\p{Block=Hangul Syllables} - \p{gc=Cn}], (prepend HANGUL SYLLABLE ) * (strin
 # https://www.unicode.org/review/pri497/feedback.html#ID20240216135149.
 In \p{Decomposition_Type=font}, Bidi_Class = Bidi_Class * Decomposition_Mapping
 
+# When Math_Class gets updated, it normally covers all Math characters.
+\p{U9:Math} ⊂ \P{U9:Math_Class=None}
+[\p{U5:Math} - \P{U5:Math_Class=None}] = [ \u237C \u27CA ]
+
+# Math_Class values in files MathClass and MathClassEx should be consistent, but
+# they have not always been.  Here Math_Class_Ex is field 1 of MathClassEx, and
+# Math_Class is field 1 of MathClass.
+In $code_points,             Math_Class      = Math_Class_Ex
+In $code_points,             U9:Math_Class   = U9:Math_Class_Ex
+In $code_points,             U7:Math_Class   = U7:Math_Class_Ex
+In [^ \u21EA-\u21F2       ], U6.1:Math_Class = U6.1:Math_Class_Ex
+In [^ \u21EA-\u21F2 \u27CA], U6.0:Math_Class = U6.0:Math_Class_Ex
+In $code_points,             U5.1:Math_Class = U5.1:Math_Class_Ex
+
+# MathClassEx was just missing some assignments that were in MathClass, so we
+# can safely use MathClass as our source of truth for the property Math_Class.
+In \P{U6.1:Math_Class_Ex=None}, U6.1:Math_Class = U6.1:Math_Class_Ex
+In \P{U6.0:Math_Class_Ex=None}, U6.0:Math_Class = U6.0:Math_Class_Ex
+\p{U6.1:Math_Class=None} ⊂ \p{U6.1:Math_Class_Ex=None}
+\p{U6.0:Math_Class=None} ⊂ \p{U6.0:Math_Class_Ex=None}
+
 # Basic Propertywise tests.
 Ignoring Name:
 
 Propertywise [𐛪 𐛫] AreAlike
 
-Ignoring Unicode_1_Name Confusable_MA:
+Ignoring Unicode_1_Name Arabic_Shaping_Schematic_Name Confusable_MA:
     Propertywise [ي ۑ] AreAlike
+
+Ignoring Math_Class Math_Class_Ex Math_Entity_Name Math_Entity_Set Math_Descriptive_Comments:
 
     Propertywise [[β-ω] - [ς]] : [[Β-Ω] - \p{gc=Cn}]
     CorrespondTo [α]           :  [Α]
@@ -1495,6 +1557,8 @@ Ignoring Unicode_1_Name Confusable_MA:
               Script            (Greek            vs Latin),
               Script_Extensions (Greek            vs Latin),
               East_Asian_Width  (Ambiguous        vs Narrow)
+
+end Ignoring;
 
     Propertywise [ʳʷʸ] : [rwy] : [RWY]
     CorrespondTo [ʰ]   : [h]   : [H]

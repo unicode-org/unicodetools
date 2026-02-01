@@ -65,7 +65,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     static final boolean GZIP = true;
 
     static final boolean SIMPLE_COMPRESSION = true;
-    static final boolean FILE_CACHE = System.getProperty("DISABLE_PROP_FILE_CACHE") == null;
+    static final boolean FILE_CACHE = System.getProperty("ENABLE_PROP_FILE_CACHE") != null;
 
     /** Debugging */
     static final boolean SHOW_DEFAULTS = false;
@@ -467,7 +467,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             fullFilename = fileInfo.getFullFileName(ucdVersion);
             final String fileName = fileInfo.getFileName(ucdVersion);
 
-            if (FILE_CACHE) {
+            if (FILE_CACHE || incrementalProperties) {
                 // TODO(egg): When using cached property data, most defaults do not get
                 // loaded in PropertyParsingInfo, as that happens in parseSourceFile.
                 // Only the ones from the Extra files are loaded.
@@ -813,6 +813,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         @Override
+        protected String _getValue(String string) {
+            return _getRawUnicodeMap().get(string);
+        }
+
+        @Override
         public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
             if (baseVersionProperties == null) {
                 return super.getSet(matcher, result);
@@ -853,6 +858,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             } else {
                 return rawValue;
             }
+        }
+
+        public List<String> getApprovedNameAliases() {
+            var result = new ArrayList<String>();
+            result.add(prop.getShortName());
+            result.add(prop.getNames().getLongName());
+            result.addAll(prop.getNames().getOtherNames());
+            return result;
         }
 
         @Override

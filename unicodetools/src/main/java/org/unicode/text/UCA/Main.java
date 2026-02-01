@@ -15,7 +15,6 @@ import com.ibm.icu.text.CanonicalIterator;
 import com.ibm.icu.text.UTF16;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.NFSkippable;
 import org.unicode.text.utility.Utility;
 
 public class Main {
@@ -83,8 +82,6 @@ public class Main {
             }
             if (arg.equalsIgnoreCase("GenOverlap")) {
                 GenOverlap.test(WriteCollationData.getCollator(CollatorType.ducet));
-            } else if (arg.equalsIgnoreCase("NFSkippable")) {
-                NFSkippable.main(null);
             } else if (arg.equalsIgnoreCase("validateUCA")) {
                 GenOverlap.validateUCA(WriteCollationData.getCollator(CollatorType.ducet));
                 // else if (arg.equalsIgnoreCase("writeNonspacingDifference"))

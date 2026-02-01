@@ -214,6 +214,9 @@ Names_List_Alias     ; MULTI_VALUED ; .*
 Names_List_Comment   ; MULTI_VALUED ; .*
 Names_List_Cross_Ref ; MULTI_VALUED ; .*
 
+Do_Not_Emit_Dispreferred ; MULTI_VALUED ; .*
+Do_Not_Emit_Dispreferred_Type ; MULTI_VALUED ; .*
+
 # Regex patterns from UAX #57
 
 kEH_Cat ;                     SINGLE_VALUED ;                ([A-IK-Z]|AA)-\d{2}-\d{3}
@@ -251,3 +254,7 @@ Confusable_MA ;               SINGLE_VALUED ;                $codePoints
 #Emoji_Modifier ;              SINGLE_VALUED ;                <enum>
 #Emoji_Modifier_Base ;         SINGLE_VALUED ;                <enum>
 
+Math_Class       ; ORDERED ; .*
+Math_Class_Ex    ; ORDERED ; .*
+Math_Entity_Name ; MULTI_VALUED ; .*
+Math_Entity_Set  ; MULTI_VALUED ; .*

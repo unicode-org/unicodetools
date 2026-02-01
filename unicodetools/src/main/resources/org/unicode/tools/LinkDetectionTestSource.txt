@@ -1,0 +1,336 @@
+# Implementations may differ as to whether they linkify text where the TLD is not listed in  IANA's tlds-alpha-by-domain.txt, such as example.invalid
+See example.😎  on…
+See .fr on…
+
+# Sample uppercase
+See TEST.COM on…	See ⸠TEST.COM⸡ on…
+See FOO.VERMÖGEN.com on…	See ⸠FOO.VERMÖGEN.com⸡ on…
+
+# Illegal domain names, so not linked
+See http://.foo.example.com/αβγ on…	See http://.foo.example.com/αβγ on…
+See http://foo..example.com/αβγ on…	See http://foo..example.com/αβγ on…
+See http://-foo.example-.com. on…	See http://-foo.example-.com. on…
+
+# Legal but unusual. Because we might be at the end of a sentence, we don't include the . unless followed by a Path, Query, or Fragment
+See http://foo.example.com. on…	See ⸠http://foo.example.com⸡. on…
+See http://foo.example.com./αβγ on…	See ⸠http://foo.example.com./αβγ⸡ on…
+
+# Various Path/Query/Fragment cases
+See example.com! on…	See ⸠example.com⸡! on…
+See example.com/αβγ on…	See ⸠example.com/αβγ⸡ on…
+See example.com?αβγ on…	See ⸠example.com?αβγ⸡ on…
+See example.com#αβγ on…	See ⸠example.com#αβγ⸡ on…
+See example.com/αβγ/δεζ?θικ#λμν on…	See ⸠example.com/αβγ/δεζ?θικ#λμν⸡ on…
+See example.com/αβγ/δεζ?δ.εφ#λμν on…	See ⸠example.com/αβγ/δεζ?δ.εφ#λμν⸡ on…
+See https://example.com/αβγ on…	See ⸠https://example.com/αβγ⸡ on…
+See http://example.com/αβγ on…	See ⸠http://example.com/αβγ⸡ on…
+
+# Illustrations of Soft vs Hard, bracketing
+
+# Break on hard (such as ' ')
+See example.com/αβγ/δεζ?δ εφ#λμν on…	See ⸠example.com/αβγ/δεζ?δ⸡ εφ#λμν on…
+
+# Break on soft (such as '.') followed by hard (such as ' ')
+See example.com/αβγ/δεζ?δ. εφ#λμν on…	See ⸠example.com/αβγ/δεζ?δ⸡. εφ#λμν on…
+See example.com/α/βγ?δ/ε?ζ#λ/μ?ν#π on…	See ⸠example.com/α/βγ?δ/ε?ζ#λ/μ?ν#π⸡ on…
+
+# Break on unmatched bracket
+See example.com/αβ) on…	See ⸠example.com/αβ⸡) on…
+
+# Include matched bracket
+See example.com/α(β) on…	See ⸠example.com/α(β)⸡ on…
+See example.com/αβγ/δρς?α=θ&β=κ#λμν:~:text=φχψ on…	See ⸠example.com/αβγ/δρς?α=θ&β=κ#λμν:~:text=φχψ⸡ on…
+
+# Continue past matching brackets within same part and not across interior syntax
+See example.com/α(β)γ/δρς?α=(θ)&(β)=κ#λμν:~:text=(φχψ) on…	See ⸠example.com/α(β)γ/δρς?α=(θ)&(β)=κ#λμν:~:text=(φχψ)⸡ on…
+See example.com/α[(β)]γ/δρς?α=[(θ)]&[(β)]=κ#λμν:~:text=[(φχψ)] on…	See ⸠example.com/α[(β)]γ/δρς?α=[(θ)]&[(β)]=κ#λμν:~:text=[(φχψ)]⸡ on…
+
+# Don't match mismatched brackets
+See example.com/α[(β])γ/δρς?α=[(θ)]&[(β)]=κ#λμν:~:text=φχψ on…	See ⸠example.com/α[(β⸡])γ/δρς?α=[(θ)]&[(β)]=κ#λμν:~:text=φχψ on…
+See example.com/α[(β)]γ/δρς?α=[(θ])&[(β)]=κ#λμν:~:text=φχψ on…	See ⸠example.com/α[(β)]γ/δρς?α=[(θ⸡])&[(β)]=κ#λμν:~:text=φχψ on…
+See example.com/α[(β)]γ/δρς?α=[(θ)]&[(β])=κ#λμν:~:text=φχψ on…	See ⸠example.com/α[(β)]γ/δρς?α=[(θ)]&[(β⸡])=κ#λμν:~:text=φχψ on…
+See example.com/α[(β)]γ/δρς?α=[(θ)]&[(β)]=κ#λμν:~:text=[(φχψ]) on…	See ⸠example.com/α[(β)]γ/δρς?α=[(θ)]&[(β)]=κ#λμν:~:text=[(φχψ⸡]) on…
+
+# Don't match across interior syntax 
+See example.com/αβ(γ/δ)ρς?α=θ&β=κ#λμν:~:text=φχψ on…	See ⸠example.com/αβ(γ/δ⸡)ρς?α=θ&β=κ#λμν:~:text=φχψ on…
+See example.com/αβγ/δρς?α(=)θ&β=κ#λμν:~:text=φχψ on…	See ⸠example.com/αβγ/δρς?α(=⸡)θ&β=κ#λμν:~:text=φχψ on…
+See example.com/αβγ/δρς?α=θ(&)β=κ#λμν:~:text=φχψ on…	See ⸠example.com/αβγ/δρς?α=θ(&⸡)β=κ#λμν:~:text=φχψ on…
+See example.com/αβγ/δρς?α=θ&β=κ#λμ(ν:~:text=φχ)ψ on…	See ⸠example.com/αβγ/δρς?α=θ&β=κ#λμ(ν:~:text=φχ⸡)ψ on…
+
+https://ja.wikipedia.org/wiki/フィンセント・ファン・ゴッホ	⸠https://ja.wikipedia.org/wiki/フィンセント・ファン・ゴッホ⸡
+https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%B3%E3%82%BB%E3%83%B3%E3%83%88%E3%83%BB%E3%83%95%E3%82%A1%E3%83%B3%E3%83%BB%E3%82%B4%E3%83%83%E3%83%9B	⸠https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%B3%E3%82%BB%E3%83%B3%E3%83%88%E3%83%BB%E3%83%95%E3%82%A1%E3%83%B3%E3%83%BB%E3%82%B4%E3%83%83%E3%83%9B⸡
+abc.com deΩ.uk foo.accountants foo.香港	⸠abc.com⸡ ⸠deΩ.uk⸡ ⸠foo.accountants⸡ ⸠foo.香港⸡
+abc.com/d/e?xyz#w	⸠abc.com/d/e?xyz#w⸡
+abc.XN--11B4C3D	⸠abc.XN--11B4C3D⸡
+
+# Email addresses
+
+See αβγ.δεζ@example.com on…	See ⸠αβγ.δεζ@example.com⸡ on…
+See mailto:αβγ.δεζ@example.com on…	See ⸠mailto:αβγ.δεζ@example.com⸡ on…
+
+# If a local-part is invalid, skip the domain name
+See mailto:αβγ.δεζ.@example.com on…	See mailto:αβγ.δεζ.@example.com on…
+See mailto:αβγ..δεζ@example.com on…	See mailto:αβγ..δεζ@example.com on…
+See mailto:.αβγ.δεζ@example.com on…	See mailto:.αβγ.δεζ@example.com on…
+
+#Stop backing up when a space is hit
+See abcd@example.com
+
+#Include the medial dot
+See x.abcd@example.com.
+
+#Handle non-ASCII
+See アルベルト.アルベルト@example.com	
+ 
+#Invalid domain name, so not linked
+See @example.😎
+
+# No valid local-part, so not linked
+See @example.com
+See john.@example.com	
+See .john@example.com
+See ..john.doe@example.com
+
+#Quoted local-part, so not linked (in the base algorithm)
+See "john\ doe"@example.com
+
+# Note that john.doe@example.com is ambiguous: it could be an email address, or it could be a URL with a userinfo
+# The latter, however, is extremely rare, so always favor the email address.
+# (Even when the context would tip the balance towards the URL interpretation, for consistency.)
+
+See example.com:1234/forum/questions/?tag=new&order=newest#top on…	See ⸠example.com:1234/forum/questions/?tag=new&order=newest#top⸡ on…
+See john.doe@example.com:1234/forum/questions/?tag=new&order=newest#top on…	See ⸠john.doe@example.com⸡:1234/forum/questions/?tag=new&order=newest#top on…
+
+
+john.smith@example.com
+john.smith@example.com/foo/bar
+
+john..smith@example.com
+john..smith@example.com/foo/bar
+
+mailto:john.smith@example.com
+mailto:john.smith@example.com/foo/bar
+
+mailto:john..smith@example.com
+mailto:john..smith@example.com/foo/bar
+
+# The following are strange. the "john.smith" could be a valid userinfo, except that that is deprecated for security
+
+http://john.smith@example.com
+http://john.smith@example.com/foo/bar
+
+http://john..smith@example.com
+http://john..smith@example.com/foo/bar
+
+# Sample pages from https://meta.wikimedia.org/wiki/List_of_articles_every_Wikipedia_should_have
+
+https://als.wikipedia.org/wiki/Wikipedia:Artikel,_wos_i_allne_Wikipedene_gee_sött
+https://an.wikipedia.org/wiki/Wikipedia:Lista_d'articlos_que_toda_Wikipedia_habría_de_tener
+https://ang.wikipedia.org/wiki/Wikipǣdia:List_of_articles_all_languages_should_have
+https://anp.wikipedia.org/wiki/मूलभूत_लेखॊ_के_सूची
+https://ar.wikipedia.org/wiki/ويكيبيديا:قائمة_مقالات_يجب_أن_تحتويها_كل_ويكيبيديا
+https://arc.wikipedia.org/wiki/ܘܝܩܝܦܕܝܐ:ܡܟܬܒܘܬܐ_ܕܡܓܠܐ_ܠܟܠ_ܘܝܩܝܦܕܝܐ
+https://ary.wikipedia.org/wiki/ويكيپيديا:1000_مقالة_خاص_يكونو_ف_جميع_لويكيپيديات
+https://arz.wikipedia.org/wiki/ويكيبيديا:مقالات_لازم_تكون_فى_كل_ويكيبيديا
+https://as.wikipedia.org/wiki/ৱিকিপিডিয়া:অত্যাৱশ্যকীয়_প্ৰবন্ধসমূহৰ_তালিকা
+https://ast.wikipedia.org/wiki/Wikipedia:Llista_d'artículos_que_toles_Wikipedies_habríen_de_tener
+https://av.wikipedia.org/wiki/Википедия:Киналго_Википедиязда_рукӀине_кколел_макъалабазул_сияхӀ
+https://awa.wikipedia.org/wiki/विकिपीडिया:अवधी_भाषाकय_विकिपीडिया_में_होए_वाला_न्युनतम_लेख_कय_लिस्ट
+https://az.wikipedia.org/wiki/Vikipediya:1000_məqalə
+https://azb.wikipedia.org/wiki/ویکی‌پدیا:۱۰۰۰_مقاله
+https://ba.wikipedia.org/wiki/Википедия:Һәр_тел_бүлегендә_булырға_тейеш_мәҡәләләр_исемлеге
+https://bar.wikipedia.org/wiki/Wikipedia:Artikl,_de_wo_jede_Wikipedia_hom_soit
+https://bat-smg.wikipedia.org/wiki/Vikipedėjė:Būtėnū_straipsniu_sārašos_vikipedėjuo
+https://be-tarask.wikipedia.org/wiki/Вікіпэдыя:Істотныя_артыкулы
+https://be.wikipedia.org/wiki/Вікіпедыя:Артыкулы,_якія_мусяць_быць_у_кожнай_Вікіпедыі
+https://bew.wikipedia.org/wiki/Wikipédi:Daptar_makalah_nyang_saban_Wikipédi_kudu_gableg
+https://bg.wikipedia.org/wiki/Уикипедия:1000_статии
+https://bh.wikipedia.org/wiki/विकिपीडिया:जरूरी_लेख
+https://bn.wikipedia.org/wiki/উইকিপিডিয়া:আবশ্যকীয়_নিবন্ধ
+https://bo.wikipedia.org/wiki/Wikipedia:སྐད་རིགས་ཆ་ཚང་ཡོད་པའི་རྩོམ་ཡིག་ཟིན་ཐོ།
+https://bpy.wikipedia.org/wiki/উইকিপিডিয়া:থানা_থকিসে_নিবন্ধ
+https://br.wikipedia.org/wiki/Wikipedia:Roll_ar_pennadoù_a_rankfe_pep_wikipedia_kaout
+https://bs.wikipedia.org/wiki/Wikipedia:1000_članaka
+https://btm.wikipedia.org/wiki/Wikipedia:Artikel_ponting
+https://bug.wikipedia.org/wiki/Wikipedia:Daftar_artikel_ᨆᨊᨛᨂ_ᨅᨔ_ᨄᨑᨛᨒᨘ_ᨂᨛᨀ
+https://bxr.wikipedia.org/wiki/Википеэди:1000_үгүүлэл
+https://ca.wikipedia.org/wiki/Viquipèdia:Llista_d'articles_que_totes_les_llengües_haurien_de_tenir
+https://cdo.wikipedia.org/wiki/Wikipedia:Ék-chiék_Wikipedia_dŭ_găi-dŏng_ô_gì_ùng
+https://ce.wikipedia.org/wiki/Википеди:Массо_а_маттахь_хилайеза_агӀонаш
+https://ceb.wikipedia.org/wiki/Wikipedia:Talaan_sa_mga_artikulo_nga_angayng_anaa_sa_matag_Wikipedya
+https://ch.wikipedia.org/wiki/Wikipedia:List_of_articles_all_languages_should_have
+https://ckb.wikipedia.org/wiki/ویکیپیدیا:وتارە_سەرەکییەکان
+https://co.wikipedia.org/wiki/Wikipedia:Lista_di_l'articuli_chì_ogni_Wikipedia_duverìa_avè
+https://crh.wikipedia.org/wiki/Vikipediya:Er_bir_Vikipediyada_olması_kerek_olğan_maqaleler
+https://cs.wikipedia.org/wiki/Wikipedie:1000_nejdůležitějších_článků
+https://cu.wikipedia.org/wiki/Википєдїꙗ:Важьни_члѣни
+https://cv.wikipedia.org/wiki/Википеди:Ку_статьясем_кашни_Википеди_уйрăмĕсенче_пулмалла
+https://cy.wikipedia.org/wiki/Wicipedia:Rhestr_erthyglau_sy'n_angenrheidiol_ym_mhob_iaith
+https://da.wikipedia.org/wiki/Wikipedia:Artikler_vi_bør_have
+https://de.wikipedia.org/wiki/Wikipedia:Artikel,_die_es_in_allen_Wikipedias_geben_sollte
+https://dz.wikipedia.org/wiki/Wikipedia:List_of_articles_all_Wikipedias_should_have
+https://ee.wikipedia.org/wiki/Wikipedia:Vital_articles
+https://eml.wikipedia.org/wiki/Wikipedia:Léssta_ed_artéccuel_necesàri
+https://en.wikipedia.org/wiki/Wikipedia:List_of_articles_all_languages_should_have
+https://eo.wikipedia.org/wiki/Vikipedio:Listo_de_havendaj_artikoloj
+https://es.wikipedia.org/wiki/Wikipedia:Lista_de_artículos_que_toda_Wikipedia_debería_tener
+https://et.wikipedia.org/wiki/Vikipeedia:Oluliste_artiklite_loend
+https://eu.wikipedia.org/wiki/Wikipedia:Wikipedia_guztiek_izan_beharreko_artikuluen_zerrenda/3._maila
+https://ext.wikipedia.org/wiki/Lista_d'artícalus_que_toa_Wikipedia_deviera_de_tenel
+https://fat.wikipedia.org/wiki/Atekels_a_ɔsɛ_dɛ_Wikipedia_biara_enya
+https://ff.wikipedia.org/wiki/Wikipedia:Lissafin_labaran_duk_harsuna_yakamata_su_kasance_suna_da
+https://fi.wikipedia.org/wiki/Wikipedia:Luettelo_keskeisistä_tietosanakirja-artikkeleista
+https://fiu-vro.wikipedia.org/wiki/Wikipedia:Artikliq,_miä_egan_keelen_pidänü_olõma
+https://fr.wikipedia.org/wiki/Wikipédia:Liste_d'articles_que_toutes_les_encyclopédies_devraient_avoir
+https://frr.wikipedia.org/wiki/Wikipedia:1000_wichtag_artiikler
+https://fur.wikipedia.org/wiki/Vichipedie:Liste_dai_articui_che_dutis_lis_vichipedîs_a_varessin_di_vê
+https://fy.wikipedia.org/wiki/Wikipedy:Artikels_dy't_wichtich_binne_foar_eltse_Wikipedy
+https://ga.wikipedia.org/wiki/Vicipéid:Liosta_d'ábhair_riachtanach_do_gach_uile_Vicipéid
+https://gan.wikipedia.org/wiki/Wikipedia:基礎文章
+https://gl.wikipedia.org/wiki/Wikipedia:Lista_de_artigos_que_toda_Wikipedia_debería_ter
+https://gor.wikipedia.org/wiki/Wikipedia:Artikel_u_musti_woluwo_to_timi'idu_Wikipedia
+https://gv.wikipedia.org/wiki/Wikipedia:Artyn_er-laccal
+https://ha.wikipedia.org/wiki/Wikipedia:Vital_articles
+https://he.wikipedia.org/wiki/ויקיפדיה:מיזמי_ויקיפדיה/מיזם_ערכים_חשובים
+https://hi.wikipedia.org/wiki/विकिपीडिया:कुछ_प्रारंभिक_लेख_जो_कि_हर_भाषा_के_विकिपीडिया_में_होने_चाहिए
+https://hif.wikipedia.org/wiki/Wikipedia:Articles_jiske_sab_wikipedia_me_hoe_ke_chaahi_ke_suchi
+https://hr.wikipedia.org/wiki/Wikipedija:Wikiprojekt_10000/Predloženi_članci
+https://hsb.wikipedia.org/wiki/Wikipedija:1000_wažnych_nastawkow
+https://ht.wikipedia.org/wiki/Wikipedya:Lis_atik_ke_tout_ansiklopedi_yo_ta_dwe_genyen
+https://hu.wikipedia.org/wiki/Wikipédia:Ezer_fontos_cikk
+https://hy.wikipedia.org/wiki/Վիքիպեդիա:Կարևորագույն_հոդվածներ
+https://ia.wikipedia.org/wiki/Wikipedia:Articulos_vital
+https://id.wikipedia.org/wiki/Wikipedia:Artikel_penting
+https://ie.wikipedia.org/wiki/Liste_de_articules_quel_omni_Wikipedia_deve_haver
+https://ilo.wikipedia.org/wiki/Wikipedia:Listaan_dagiti_artikulo_a_nasken_nga_adda_ti_amin_a_Wikipedia
+https://inh.wikipedia.org/wiki/Википеди:Массайолча_эршашка_хила_езаш_йола_оагӀонаш
+https://io.wikipedia.org/wiki/Wikipedio:Obligita_artikli
+https://is.wikipedia.org/wiki/Wikipedia:Grundvallargreinar
+https://it.wikipedia.org/wiki/Wikipedia:Lista_delle_voci_che_tutte_le_Wikipedie_dovrebbero_avere
+https://ja.wikipedia.org/wiki/Wikipedia:すべての言語版にあるべき項目の一覧
+https://jam.wikipedia.org/wiki/Wikipidia:Di_nesiseri_aatikl_dem
+https://jbo.wikipedia.org/wiki/uikipedi'as:liste_be_le_tcevai_ckupau
+https://jv.wikipedia.org/wiki/Wikipédia:Daftar_Artikel_Dhasar
+https://ka.wikipedia.org/wiki/ვიკიპედია:აუცილებელი_სტატიები
+https://kaa.wikipedia.org/wiki/Wikipedia:Hámme_Wikipedialarda_bolıwı_tiyis_maqalalar_dizimi
+https://kbd.wikipedia.org/wiki/Уикипедиэ:Бзэ_версиэу_хъуам_яӀэн_хуей_тхыгъэхэм_я_напэ
+https://kcg.wikipedia.org/wiki/A̱tsatsak_a̱yaati̱kut
+https://kg.wikipedia.org/wiki/Wikipedia:Vital_articles
+https://kk.wikipedia.org/wiki/Уикипедия:Барлық_Уикипедияларда_болуы_тиіс_мақала_тізімі
+https://kn.wikipedia.org/wiki/ವಿಕಿಪೀಡಿಯ:ಅಗತ್ಯ_ಲೇಖನಗಳು
+https://ko.wikipedia.org/wiki/위키백과:모든_언어의_위키백과마다_꼭_있어야_하는_문서_목록
+https://krc.wikipedia.org/wiki/Википедия:Хар_Википедияда_болургъа_керек_статьяланы_тизмеси
+https://ks.wikipedia.org/wiki/وِکیٖپیٖڈیا:Vital_articles
+https://ksh.wikipedia.org/wiki/Wikipedia:Sigge_di_en_alle_Sproche_drin_sin_sullte
+https://ku.wikipedia.org/wiki/Wîkîpediya:Gotarên_ku_ji_bo_hemû_Wîkîpediyayan_pêwîst_in
+https://kw.wikipedia.org/wiki/Wikipedia:1,000_erthygel
+https://ky.wikipedia.org/wiki/Википедия:Vital_articles
+https://la.wikipedia.org/wiki/Vicipaedia:Paginae_quas_omnibus_Wikipediis_contineri_oportet
+https://lad.wikipedia.org/wiki/Vikipedya:Lista_de_artikolos_ke_toda_Vikipedya_kale_tener
+https://lb.wikipedia.org/wiki/Wikipedia:Artikelen,_déi_et_op_all_Wikipedia_sollt_ginn
+https://lez.wikipedia.org/wiki/Википедия:1000
+https://lfn.wikipedia.org/wiki/Vicipedia:Lista_de_articles_nesesada_per_vicipedia
+https://lg.wikipedia.org/wiki/Wikipedia:Vital_articles
+https://li.wikipedia.org/wiki/Wikipedia:Lies_van_artikele_die_eder_Wikipedia_moot_höbbe
+https://lij.wikipedia.org/wiki/Wikipedia:Vôxe_de_bâze
+https://lmo.wikipedia.org/wiki/Wikipedia:Lista_di_articoi_che_tutt_i_Wikipedii_dovarissen_avègh
+https://lt.wikipedia.org/wiki/Vikipedija:Sąrašas_straipsnių,_būtinų_visomis_kalbomis
+https://lv.wikipedia.org/wiki/Vikipēdija:Nozīmīgi_raksti
+https://mad.wikipedia.org/wiki/Wikipèḍia:Artikel_penting
+https://mai.wikipedia.org/wiki/विकिपिडिया:महत्वपूर्ण_लेखसभ
+https://mdf.wikipedia.org/wiki/Википедиесь:1000_эрявикс_сёрматфксне
+https://min.wikipedia.org/wiki/Wikipedia:Artikel_nan_paralu_ado_di_satiok_Wikipedia
+https://mk.wikipedia.org/wiki/Википедија:Потребни_статии
+https://ml.wikipedia.org/wiki/വിക്കിപീഡിയ:സുപ്രധാന_ലേഖനങ്ങൾ
+https://mni.wikipedia.org/wiki/ꯋꯤꯀꯤꯄꯦꯗꯤꯌꯥ_ꯈꯨꯗꯤꯡꯗ_ꯌꯥꯎꯒꯗꯕ_ꯋꯥꯔꯦꯡꯁꯤꯡ
+https://mr.wikipedia.org/wiki/विकिपीडिया:सगळ्या_विकिपीडियांवर_अपेक्षित_लेखांची_यादी/आंतरभाषीय_परिपेक्ष
+https://ms.wikipedia.org/wiki/Wikipedia:Senarai_rencana_semua_bahasa_perlu_ada
+https://mt.wikipedia.org/wiki/Wikipedija:Lista_ta'_artikli_li_kull_Wikipedija_għandu_jkollha
+https://mwl.wikipedia.org/wiki/Biquipédia:1000_artigos_bitales
+https://my.wikipedia.org/wiki/ဝီကီပီးဒီးယား:မြန်မာဝီကီတွင်_ရှိသင့်သော_ဆောင်းပါးများ
+https://myv.wikipedia.org/wiki/Википедиясь:Лопань_потмокс,_конатат_эрявить_эрьва_келень_пельксэ
+https://nah.wikipedia.org/wiki/Huiquipedia:Amatlahcuilolli_tlen_monequi_ipan_nochi_Huiquipedia_ica_nahuatlahtolli
+https://nap.wikipedia.org/wiki/Wikipedia:Lista_d"e_vvoce_ca_tutt'_'e_Wikipedie_aveno_a_avé
+https://nds.wikipedia.org/wiki/Wikipedia:List_vun_Artikels,_de_in_all_Wikipedias_binnen_ween_schöölt
+https://ne.wikipedia.org/wiki/विकिपिडिया:प्रत्येक_भाषामा_हुनु_पर्ने_न्यूनतम_लेखहरू
+https://ng.wikipedia.org/wiki/Wikipedia:Vital_articles
+https://nl.wikipedia.org/wiki/Wikipedia:Archief/Wikipedia:Artikelen_die_elke_Wikipedia_zou_moeten_hebben
+https://nn.wikipedia.org/wiki/Wikipedia:Artiklar_vi_bør_ha
+https://no.wikipedia.org/wiki/Wikipedia:Liste_over_artikler_vi_bør_ha
+https://nov.wikipedia.org/wiki/Wikipedia:Liste_de_artikles_kel_chaki_wikipedia_deve_kontena
+https://nso.wikipedia.org/wiki/Wikipedia:Ditemana_tše_Bohlokwa
+https://ny.wikipedia.org/wiki/Wikipedia:Vital_articles
+https://oc.wikipedia.org/wiki/Wikipèdia:Tièra_de_1000_articles_que_totas_las_Wikipèdias_deurián_aver
+https://olo.wikipedia.org/wiki/Wikipedii:Vältämättömien_Wikipedii-kirjutuksien_luvettelo
+https://om.wikipedia.org/wiki/Wikipedia:Tarreeffama_barruu_Wiikiipiidiyaa_hundi_qabaachuu_qabu
+https://os.wikipedia.org/wiki/Википеди:Æппæт_Википедиты_чи_хъуамæ_уа,_уыцы_уацтæ
+https://pag.wikipedia.org/wiki/Wikipedia:Listaan_na_nakaukulan_ed_balang_salita
+https://pap.wikipedia.org/wiki/Wikipedia:Artíkulonan_importante
+https://pl.wikipedia.org/wiki/Wikipedia:Strony,_które_powinna_mieć_każda_Wikipedia
+https://pms.wikipedia.org/wiki/Wikipedia:Lista_dj'artìcoj_che_minca_Wikipedia_a_dovrìa_avèj
+https://pnt.wikipedia.org/wiki/Βικιπαίδεια:1000_σελίδας
+https://pt.wikipedia.org/wiki/Wikipédia:Lista_dos_artigos_que_toda_Wikipédia_deve_ter
+https://qu.wikipedia.org/wiki/Wikipidiya:Lliw_Wikipidiyapaq_qillqanakuna
+https://rm.wikipedia.org/wiki/Wikipedia:Artitgels_che_mintga_Vichipedia_duai_aver
+https://ro.wikipedia.org/wiki/Wikipedia:Articole_vitale
+https://roa-rup.wikipedia.org/wiki/Wikipedia:Frândzâ_anânghioasi_trâ_unâ_enciclopedie
+https://ru.wikipedia.org/wiki/Википедия:Список_статей,_которые_должны_быть_во_всех_языковых_версиях
+https://rue.wikipedia.org/wiki/Вікіпедія:Статї,_якы_повинны_быти
+https://rw.wikipedia.org/wiki/Wikipedia:Vital_articles
+https://sa.wikipedia.org/wiki/विकिपीडिया:प्रारम्भिक-विषयाः
+https://sah.wikipedia.org/wiki/Бикипиэдьийэ:Ханнык_баҕарар_Бикипиэдьийэҕэ_баар_буолуохтаах_ыстатыйалар_тиһиликтэрэ
+https://sat.wikipedia.org/wiki/ᱞᱟᱹᱠᱛᱤᱭᱟᱱ_ᱚᱱᱚᱞᱠᱚ
+https://sc.wikipedia.org/wiki/Wikipedia:Lista_de_sos_artìculos_chi_totu_sas_Wikipedias_bisonzat_a_tenner
+https://scn.wikipedia.org/wiki/Wikipedia:Artìculi_nicissari
+https://sco.wikipedia.org/wiki/Wikipedia:Leet_o_airticles_that_aa_Wikipedias_shuid_hae
+https://sh.wikipedia.org/wiki/Wikipedija:Spisak_članaka_koje_sve_Wikipedije_trebaju_imati
+https://simple.wikipedia.org/wiki/Wikipedia:List_of_articles_all_languages_should_have
+https://sk.wikipedia.org/wiki/Wikipédia:1_000_najdôležitejších_článkov
+https://sl.wikipedia.org/wiki/Wikipedija:Članki,_ki_bi_jih_morala_imeti_vsaka_Wikipedija
+https://so.wikipedia.org/wiki/Wikipedia:Maqaalada_aan_u_baahan_laheen
+https://sq.wikipedia.org/wiki/Wikipedia:Artikujt_që_secila_Wikipedia_duhet_t'i_ketë
+https://sr.wikipedia.org/wiki/Википедија:Списак_чланака_које_свака_Википедија_треба_да_има
+https://srn.wikipedia.org/wiki/Wikipedia:Rei_fu_Peprewoysi_ala_Wikipedia_mu_Abi
+https://ss.wikipedia.org/wiki/Wikipedia:List_of_articles_all_languages_should_have
+https://st.wikipedia.org/wiki/Wikipedia:Vital_articles
+https://stq.wikipedia.org/wiki/Wikipedia:Artikkele_do't_in_älke_Wikipedia_reeke_skäl
+https://su.wikipedia.org/wiki/Wikipedia:Artikel_nu_sadaya_basa_Wikipédia_kedah_gaduh
+https://sv.wikipedia.org/wiki/Wikipedia:Basartiklar
+https://sw.wikipedia.org/wiki/Wikipedia:Makala_za_msingi_za_kamusi_elezo
+https://ta.wikipedia.org/wiki/விக்கிப்பீடியா:முக்கிய_கட்டுரைகள்
+https://te.wikipedia.org/wiki/వికీపీడియా:వికీపీడియాలో_తప్పకుండా_ఉండవలసిన_వ్యాసాలు
+https://tet.wikipedia.org/wiki/Wikipedia:Lista_husi_artigu_sira_ne'ebé_Wikipédia_hotu-hotu_bele_iha
+https://tg.wikipedia.org/wiki/Википедиа:Феҳристи_мақолаҳои_муҳим
+https://th.wikipedia.org/wiki/วิกิพีเดีย:รายการบทความที่วิกิพีเดียทุกภาษาควรมี
+https://tk.wikipedia.org/wiki/Wikipediýa:Wikipediýada_bolmagy_gerek_sahypalar
+https://tl.wikipedia.org/wiki/Wikipedia:Talaan_ng_mga_artikulong_kailangang_mayroon_ang_bawat_Wikipedia
+https://tly.wikipedia.org/wiki/Vikipediá:Məǧolon_sijohi,_komon_bəpe_har_zyvonədə_bybun
+https://tn.wikipedia.org/wiki/Wikipedia:List_of_articles_we_should_have
+https://tpi.wikipedia.org/wiki/Wikipedia:Ol_pes_i_mas_stap_long_Wikipedia
+https://tr.wikipedia.org/wiki/Vikipedi:Her_Vikipedi'de_olması_gereken_maddeler
+https://ts.wikipedia.org/wiki/Wikipedia:Matsalwa_ya_Nkoka/xiyenge/3
+https://tt.wikipedia.org/wiki/Википедия:Һәрбер_тел_бүлегендә_булырга_тиешле_мәкаләләр
+https://tum.wikipedia.org/wiki/Wikipedia:Vital_articles
+https://tw.wikipedia.org/wiki/Wikipidia:Atwerɛsɛm_dodoɔ_a_ɛwɔ_sɛ_Wikipidia_ɛnya
+https://ty.wikipedia.org/wiki/Wikipedia:Te_àpi_faufaa
+https://tyv.wikipedia.org/wiki/Википедия:Шупту_дылдарга_бижээн_турар_чүүлдер
+https://udm.wikipedia.org/wiki/Википедия:Тужгес_кулэ_статьяос
+https://uk.wikipedia.org/wiki/Вікіпедія:Статті,_які_повинні_бути_в_усіх_Вікіпедіях
+https://ur.wikipedia.org/wiki/ویکیپیڈیا:مضامین_تازہ
+https://uz.wikipedia.org/wiki/Vikipediya:Muhim_maqolalar
+https://ve.wikipedia.org/wiki/Wikipedia:Vital_articles
+https://vec.wikipedia.org/wiki/Wikipedia:Lista_de_łe_voze_che_tuta_Wikipèdia_garia_da_ver
+https://vep.wikipedia.org/wiki/Vikipedii:Tarbhaižed_lehtpoled,_kudambad_tarbiž_säta_kaikihe_Vikipedijan_versijoihe
+https://wuu.wikipedia.org/wiki/Wikipedia:必有个页面
+https://xal.wikipedia.org/wiki/Wikipedia:Википедьт_иим_төрмүд_бəəх_зөвтə
+https://xh.wikipedia.org/wiki/Wikipedia:Vital_articles
+https://xmf.wikipedia.org/wiki/ვიკიპედია:უციო_სტატიეფი
+https://yi.wikipedia.org/wiki/װיקיפּעדיע:וויכטיגע_ארטיקלען
+https://yo.wikipedia.org/wiki/Wikipedia:Àwọn_àyọkà_tó_ṣe_kóko
+https://zea.wikipedia.org/wiki/Wikipedia:Artikels_die_ieleken_Wikipedia_zou_motte_ha
+https://zgh.wikipedia.org/wiki/ⵡⵉⴽⵉⴱⵉⴷⵢⴰ:ⵜⴰⵍⴳⴰⵎⵜ_ⵏ_ⵉⵎⴳⵔⴰⴷⵏ_ⵏⵏⴰ_ⴷ_ⵉⵇⵇⴰⵏ_ⴰⴷ_ⵉⵍⵉⵏ_ⴳ_ⴽⵔⴰⵢⴳⴰⵜⵜ_ⵡⵉⴽⵉⴱⵉⴷⵢⴰ
+https://zh-classical.wikipedia.org/wiki/維基大典:當有之文
+https://zh-min-nan.wikipedia.org/wiki/Wikipedia:Só͘-ū_ê_Wikipedia_pán-pún_lóng_èng-kai_ū_ê_bûn-chiuⁿ
+https://zh-yue.wikipedia.org/wiki/Wikipedia:基礎文章
+https://zh.wikipedia.org/wiki/Wikipedia:基礎條目
+https://zu.wikipedia.org/wiki/Wikipedia:Vital_articles

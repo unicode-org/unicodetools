@@ -1,0 +1,2824 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mathchars SYSTEM "MathClassEx.dtd">
+<mathchars unicode="17.0" tr25="16">
+   <char cp="0020" mathclass="S"/>
+   <char cp="0021" mathclass="C" note="Factorial spacing"/>
+   <char cp="0023" mathclass="N"/>
+   <char cp="0024" mathclass="N"/>
+   <char cp="0025" mathclass="N"/>
+   <char cp="0026" mathclass="N"/>
+   <char cp="0028" mathclass="O"/>
+   <char cp="0029" mathclass="C"/>
+   <char cp="002A" mathclass="N" note="[high, not /ast]"/>
+   <char cp="002B" mathclass="V"/>
+   <char cp="002C" mathclass="P"/>
+   <char cp="002D" mathclass="N" note="(deprecated for math)"/>
+   <char cp="002E" mathclass="P" note="period"/>
+   <char cp="002F" mathclass="B" note="No extra spacing, stretchy"/>
+   <char cp="0030" mathclass="N"/>
+   <char cp="0031" mathclass="N"/>
+   <char cp="0032" mathclass="N"/>
+   <char cp="0033" mathclass="N"/>
+   <char cp="0034" mathclass="N"/>
+   <char cp="0035" mathclass="N"/>
+   <char cp="0036" mathclass="N"/>
+   <char cp="0037" mathclass="N"/>
+   <char cp="0038" mathclass="N"/>
+   <char cp="0039" mathclass="N"/>
+   <char cp="003A" mathclass="P"/>
+   <char cp="003B" mathclass="P"/>
+   <char cp="003C" mathclass="R"/>
+   <char cp="003D" mathclass="R"/>
+   <char cp="003E" mathclass="R"/>
+   <char cp="003F" mathclass="P"/>
+   <char cp="0040" mathclass="N"/>
+   <char cp="0041" mathclass="A"/>
+   <char cp="0042" mathclass="A"/>
+   <char cp="0043" mathclass="A"/>
+   <char cp="0044" mathclass="A"/>
+   <char cp="0045" mathclass="A"/>
+   <char cp="0046" mathclass="A"/>
+   <char cp="0047" mathclass="A"/>
+   <char cp="0048" mathclass="A"/>
+   <char cp="0049" mathclass="A"/>
+   <char cp="004A" mathclass="A"/>
+   <char cp="004B" mathclass="A"/>
+   <char cp="004C" mathclass="A"/>
+   <char cp="004D" mathclass="A"/>
+   <char cp="004E" mathclass="A"/>
+   <char cp="004F" mathclass="A"/>
+   <char cp="0050" mathclass="A"/>
+   <char cp="0051" mathclass="A"/>
+   <char cp="0052" mathclass="A"/>
+   <char cp="0053" mathclass="A"/>
+   <char cp="0054" mathclass="A"/>
+   <char cp="0055" mathclass="A"/>
+   <char cp="0056" mathclass="A"/>
+   <char cp="0057" mathclass="A"/>
+   <char cp="0058" mathclass="A"/>
+   <char cp="0059" mathclass="A"/>
+   <char cp="005A" mathclass="A"/>
+   <char cp="005B" mathclass="O"/>
+   <char cp="005C" mathclass="B" note="No extra spacing, stretchy"/>
+   <char cp="005D" mathclass="C"/>
+   <char cp="005E" mathclass="N" note="TeX superscript operator"/>
+   <char cp="005F" mathclass="N" note="TeX subscript operator"/>
+   <char cp="0060" mathclass="D" note="Alias for 0300"/>
+   <char cp="0061" mathclass="A"/>
+   <char cp="0062" mathclass="A"/>
+   <char cp="0063" mathclass="A"/>
+   <char cp="0064" mathclass="A"/>
+   <char cp="0065" mathclass="A"/>
+   <char cp="0066" mathclass="A"/>
+   <char cp="0067" mathclass="A"/>
+   <char cp="0068" mathclass="A"/>
+   <char cp="0069" mathclass="A"/>
+   <char cp="006A" mathclass="A"/>
+   <char cp="006B" mathclass="A"/>
+   <char cp="006C" mathclass="A"/>
+   <char cp="006D" mathclass="A"/>
+   <char cp="006E" mathclass="A"/>
+   <char cp="006F" mathclass="A"/>
+   <char cp="0070" mathclass="A"/>
+   <char cp="0071" mathclass="A"/>
+   <char cp="0072" mathclass="A"/>
+   <char cp="0073" mathclass="A"/>
+   <char cp="0074" mathclass="A"/>
+   <char cp="0075" mathclass="A"/>
+   <char cp="0076" mathclass="A"/>
+   <char cp="0077" mathclass="A"/>
+   <char cp="0078" mathclass="A"/>
+   <char cp="0079" mathclass="A"/>
+   <char cp="007A" mathclass="A"/>
+   <char cp="007B" mathclass="O"/>
+   <char cp="007C" mathclass="F"/>
+   <char cp="007D" mathclass="C"/>
+   <char cp="007E" mathclass="N"/>
+   <char cp="00A0" mathclass="S"/>
+   <char cp="00A1" mathclass="P"/>
+   <char cp="00A2" mathclass="N"/>
+   <char cp="00A3" mathclass="N"/>
+   <char cp="00A4" mathclass="N"/>
+   <char cp="00A5" mathclass="N"/>
+   <char cp="00A6" mathclass="N" note="(vertical)"/>
+   <char cp="00A7" mathclass="N"/>
+   <char cp="00A8" mathclass="D" note="/die, Alias for 0308"/>
+   <char cp="00AC" mathclass="U" note="/neg /lnot"/>
+   <char cp="00AF" mathclass="D" note="Alias for 0304"/>
+   <char cp="00B0" mathclass="N"/>
+   <char cp="00B1" mathclass="V"/>
+   <char cp="00B2" mathclass="N"/>
+   <char cp="00B3" mathclass="N"/>
+   <char cp="00B4" mathclass="N" note="Alias for 0301"/>
+   <char cp="00B5" mathclass="N"/>
+   <char cp="00B6" mathclass="N" note="(paragraph sign)"/>
+   <char cp="00B7" mathclass="B" note="/centerdot"/>
+   <char cp="00B9" mathclass="N"/>
+   <char cp="00BC" mathclass="N"/>
+   <char cp="00BD" mathclass="N"/>
+   <char cp="00BE" mathclass="N"/>
+   <char cp="00BF" mathclass="P"/>
+   <char cp="00D7" mathclass="B"/>
+   <char cp="00F7" mathclass="B"/>
+   <char cp="0131" mathclass="A"/>
+   <char cp="0237" mathclass="A"/>
+   <char cp="02C6" mathclass="D" note="Alias for 0302"/>
+   <char cp="02C7" mathclass="D" note="Alias for 030C"/>
+   <char cp="02D8" mathclass="D" note="Alias for 0306"/>
+   <char cp="02D9" mathclass="D" note="Alias for 0307"/>
+   <char cp="02DA" mathclass="D" note="Alias for 030A"/>
+   <char cp="02DC" mathclass="D" note="Alias for 0303"/>
+   <char cp="0300" mathclass="D" note="MathML prefers 0060"/>
+   <char cp="0301" mathclass="D" note="MathML prefers 00B4"/>
+   <char cp="0302" mathclass="D" note="MathML prefers 02C6"/>
+   <char cp="0303" mathclass="D" note="MathML prefers 02DC"/>
+   <char cp="0304" mathclass="D" note="MathML prefers 00AF"/>
+   <char cp="0305" mathclass="D"/>
+   <char cp="0306" mathclass="D" note="MathML prefers 02D8"/>
+   <char cp="0307" mathclass="D" note="MathML prefers 02D9"/>
+   <char cp="0308" mathclass="D" note="MathML prefers 00A8"/>
+   <char cp="030A" mathclass="D" note="MathML prefers 02DA"/>
+   <char cp="030C" mathclass="D" note="MathML prefers 02C7"/>
+   <char cp="0311" mathclass="D"/>
+   <char cp="0323" mathclass="D"/>
+   <char cp="032C" mathclass="D"/>
+   <char cp="032D" mathclass="D"/>
+   <char cp="032E" mathclass="D"/>
+   <char cp="032F" mathclass="D"/>
+   <char cp="0330" mathclass="D"/>
+   <char cp="0331" mathclass="D"/>
+   <char cp="0332" mathclass="D"/>
+   <char cp="0333" mathclass="D"/>
+   <char cp="0338" mathclass="D" note="negation slash"/>
+   <char cp="033A" mathclass="D"/>
+   <char cp="033F" mathclass="D"/>
+   <char cp="0346" mathclass="D"/>
+   <char cp="0391" mathclass="A"/>
+   <char cp="0392" mathclass="A"/>
+   <char cp="0393" mathclass="A"/>
+   <char cp="0394" mathclass="A"/>
+   <char cp="0395" mathclass="A"/>
+   <char cp="0396" mathclass="A"/>
+   <char cp="0397" mathclass="A"/>
+   <char cp="0398" mathclass="A"/>
+   <char cp="0399" mathclass="A"/>
+   <char cp="039A" mathclass="A"/>
+   <char cp="039B" mathclass="A"/>
+   <char cp="039C" mathclass="A"/>
+   <char cp="039D" mathclass="A"/>
+   <char cp="039E" mathclass="A"/>
+   <char cp="039F" mathclass="A"/>
+   <char cp="03A0" mathclass="A"/>
+   <char cp="03A1" mathclass="A"/>
+   <char cp="03A3" mathclass="A"/>
+   <char cp="03A4" mathclass="A"/>
+   <char cp="03A6" mathclass="A"/>
+   <char cp="03A7" mathclass="A"/>
+   <char cp="03A8" mathclass="A"/>
+   <char cp="03A9" mathclass="A"/>
+   <char cp="03B1" mathclass="A"/>
+   <char cp="03B2" mathclass="A"/>
+   <char cp="03B3" mathclass="A"/>
+   <char cp="03B4" mathclass="A"/>
+   <char cp="03B5" mathclass="A" note="rounded"/>
+   <char cp="03B6" mathclass="A"/>
+   <char cp="03B7" mathclass="A"/>
+   <char cp="03B8" mathclass="A" note="straight theta"/>
+   <char cp="03B9" mathclass="A"/>
+   <char cp="03BA" mathclass="A"/>
+   <char cp="03BB" mathclass="A"/>
+   <char cp="03BC" mathclass="A"/>
+   <char cp="03BD" mathclass="A"/>
+   <char cp="03BE" mathclass="A"/>
+   <char cp="03BF" mathclass="A"/>
+   <char cp="03C0" mathclass="A"/>
+   <char cp="03C1" mathclass="A"/>
+   <char cp="03C3" mathclass="A"/>
+   <char cp="03C4" mathclass="A"/>
+   <char cp="03C5" mathclass="A"/>
+   <char cp="03C6" mathclass="A" note="\varphi"/>
+   <char cp="03C7" mathclass="A"/>
+   <char cp="03C8" mathclass="A"/>
+   <char cp="03C9" mathclass="A"/>
+   <char cp="03D0" mathclass="A"/>
+   <char cp="03D1" mathclass="A" note="\vartheta - curly or open small theta"/>
+   <char cp="03D2" mathclass="A"/>
+   <char cp="03D5" mathclass="A"/>
+   <char cp="03D6" mathclass="A" note="rounded (pomega)"/>
+   <char cp="03D8" mathclass="N"/>
+   <char cp="03D9" mathclass="N"/>
+   <char cp="03DA" mathclass="A" note="capital"/>
+   <char cp="03DB" mathclass="A"/>
+   <char cp="03DC" mathclass="A" note="capital"/>
+   <char cp="03DD" mathclass="A" note="old"/>
+   <char cp="03E0" mathclass="A" note="capital"/>
+   <char cp="03E1" mathclass="A"/>
+   <char cp="03F0" mathclass="A" note="rounded"/>
+   <char cp="03F1" mathclass="A" note="rounded"/>
+   <char cp="03F4" mathclass="A"/>
+   <char cp="03F5" mathclass="A" note="straight"/>
+   <char cp="03F6" mathclass="N"/>
+   <char cp="0428" mathclass="A"/>
+   <char cp="0606" mathclass="L"/>
+   <char cp="0607" mathclass="L"/>
+   <char cp="0608" mathclass="A"/>
+   <char cp="0627" mathclass="A"/>
+   <char cp="0628" mathclass="A"/>
+   <char cp="0629" mathclass="A"/>
+   <char cp="062A" mathclass="A"/>
+   <char cp="062B" mathclass="A"/>
+   <char cp="062C" mathclass="A"/>
+   <char cp="062D" mathclass="A"/>
+   <char cp="062E" mathclass="A"/>
+   <char cp="062F" mathclass="A"/>
+   <char cp="0630" mathclass="A"/>
+   <char cp="0631" mathclass="A"/>
+   <char cp="0632" mathclass="A"/>
+   <char cp="0633" mathclass="A"/>
+   <char cp="0634" mathclass="A"/>
+   <char cp="0635" mathclass="A"/>
+   <char cp="0636" mathclass="A"/>
+   <char cp="0637" mathclass="A"/>
+   <char cp="0638" mathclass="A"/>
+   <char cp="0639" mathclass="A"/>
+   <char cp="063A" mathclass="A"/>
+   <char cp="1ACF" mathclass="D"/>
+   <char cp="1AD0" mathclass="D"/>
+   <char cp="1AD1" mathclass="D"/>
+   <char cp="1AD2" mathclass="D"/>
+   <char cp="1AD3" mathclass="D"/>
+   <char cp="1AD4" mathclass="D"/>
+   <char cp="1AD5" mathclass="D"/>
+   <char cp="1AD6" mathclass="D"/>
+   <char cp="1AD7" mathclass="D"/>
+   <char cp="1AD8" mathclass="D"/>
+   <char cp="1AD9" mathclass="D"/>
+   <char cp="1ADA" mathclass="D"/>
+   <char cp="1ADB" mathclass="D"/>
+   <char cp="1ADC" mathclass="D"/>
+   <char cp="1ADD" mathclass="D"/>
+   <char cp="1AE0" mathclass="D"/>
+   <char cp="1AE1" mathclass="D"/>
+   <char cp="1AE2" mathclass="D"/>
+   <char cp="1AE3" mathclass="D"/>
+   <char cp="1AE4" mathclass="D"/>
+   <char cp="1AE5" mathclass="D"/>
+   <char cp="1AE6" mathclass="D"/>
+   <char cp="1AE7" mathclass="D"/>
+   <char cp="1AE8" mathclass="D"/>
+   <char cp="1AE9" mathclass="D"/>
+   <char cp="1AEA" mathclass="D"/>
+   <char cp="1AEB" mathclass="D"/>
+   <char cp="2000" mathclass="S"/>
+   <char cp="2001" mathclass="S"/>
+   <char cp="2002" mathclass="S" note="(half an em)"/>
+   <char cp="2003" mathclass="S"/>
+   <char cp="2004" mathclass="S"/>
+   <char cp="2005" mathclass="S" note="mid space"/>
+   <char cp="2006" mathclass="S"/>
+   <char cp="2007" mathclass="S"/>
+   <char cp="2009" mathclass="S"/>
+   <char cp="200A" mathclass="S"/>
+   <char cp="200B" mathclass="S"/>
+   <char cp="2010" mathclass="P" note="(true graphic)"/>
+   <char cp="2012" mathclass="P"/>
+   <char cp="2013" mathclass="P"/>
+   <char cp="2014" mathclass="P"/>
+   <char cp="2016" mathclass="F"/>
+   <char cp="2020" mathclass="R"/>
+   <char cp="2021" mathclass="R"/>
+   <char cp="2022" mathclass="B" note="/bullet round bullet, filled"/>
+   <char cp="2026" mathclass="N"/>
+   <char cp="2032" mathclass="N" note="minute"/>
+   <char cp="2033" mathclass="N" note="second"/>
+   <char cp="2034" mathclass="N"/>
+   <char cp="2035" mathclass="N"/>
+   <char cp="2036" mathclass="N"/>
+   <char cp="2037" mathclass="N"/>
+   <char cp="203B" mathclass="N" note="Japanese kome"/>
+   <char cp="203C" mathclass="N" note="Factorial spacing"/>
+   <char cp="2040" mathclass="B" note="z notation sequence concatenation"/>
+   <char cp="2044" mathclass="B" note="stretchy"/>
+   <char cp="204E" mathclass="B"/>
+   <char cp="204F" mathclass="R"/>
+   <char cp="2050" mathclass="R"/>
+   <char cp="2051" mathclass="N"/>
+   <char cp="2052" mathclass="N"/>
+   <char cp="2057" mathclass="N"/>
+   <char cp="205F" mathclass="S"/>
+   <char cp="2061" mathclass="B"/>
+   <char cp="2062" mathclass="B"/>
+   <char cp="2063" mathclass="P"/>
+   <char cp="2064" mathclass="X"/>
+   <char cp="207A" mathclass="N" note="superscript operators"/>
+   <char cp="207B" mathclass="N" note="superscript operators"/>
+   <char cp="207C" mathclass="N" note="superscript operators"/>
+   <char cp="207D" mathclass="N" note="superscript operators"/>
+   <char cp="207E" mathclass="N" note="superscript operators"/>
+   <char cp="208A" mathclass="N" note="subscript operators"/>
+   <char cp="208B" mathclass="N" note="subscript operators"/>
+   <char cp="208C" mathclass="N" note="subscript operators"/>
+   <char cp="208D" mathclass="N" note="subscript operators"/>
+   <char cp="208E" mathclass="N" note="subscript operators"/>
+   <char cp="20D0" mathclass="D"/>
+   <char cp="20D1" mathclass="D"/>
+   <char cp="20D2" mathclass="D"/>
+   <char cp="20D3" mathclass="X"/>
+   <char cp="20D4" mathclass="D"/>
+   <char cp="20D5" mathclass="D"/>
+   <char cp="20D6" mathclass="D"/>
+   <char cp="20D7" mathclass="D"/>
+   <char cp="20D8" mathclass="D"/>
+   <char cp="20D9" mathclass="D"/>
+   <char cp="20DA" mathclass="D"/>
+   <char cp="20DB" mathclass="D"/>
+   <char cp="20DC" mathclass="D"/>
+   <char cp="20DD" mathclass="D"/>
+   <char cp="20DE" mathclass="D"/>
+   <char cp="20DF" mathclass="D"/>
+   <char cp="20E1" mathclass="D"/>
+   <char cp="20E4" mathclass="D"/>
+   <char cp="20E5" mathclass="D"/>
+   <char cp="20E6" mathclass="D"/>
+   <char cp="20E7" mathclass="D" note="actuary"/>
+   <char cp="20E8" mathclass="D"/>
+   <char cp="20E9" mathclass="D"/>
+   <char cp="20EA" mathclass="D"/>
+   <char cp="20EB" mathclass="D"/>
+   <char cp="20EC" mathclass="D"/>
+   <char cp="20ED" mathclass="D"/>
+   <char cp="20EE" mathclass="D"/>
+   <char cp="20EF" mathclass="D"/>
+   <char cp="2102" mathclass="A" note="/Bbb C, open face C"/>
+   <char cp="2107" mathclass="N"/>
+   <char cp="210A" mathclass="A" note="/scr g"/>
+   <char cp="210B" mathclass="A" note="/scr H"/>
+   <char cp="210C" mathclass="A" note="/frak H"/>
+   <char cp="210D" mathclass="A" note="/Bbb H"/>
+   <char cp="210E" mathclass="N"/>
+   <char cp="210F" mathclass="N" note="/hslash - variant"/>
+   <char cp="2110" mathclass="A" note="/scr I"/>
+   <char cp="2111" mathclass="A" note="imaginary part"/>
+   <char cp="2112" mathclass="A" note="Lagrangian"/>
+   <char cp="2113" mathclass="A" note="cursive small l"/>
+   <char cp="2115" mathclass="A" note="/Bbb N, open face N"/>
+   <char cp="2118" mathclass="A" note="Weierstrass p (Unicode name is a misnomer)"/>
+   <char cp="2119" mathclass="A" note="/Bbb P, open face P"/>
+   <char cp="211A" mathclass="A" note="/Bbb Q, open face Q"/>
+   <char cp="211B" mathclass="A" note="/scr R"/>
+   <char cp="211C" mathclass="A"/>
+   <char cp="211D" mathclass="A" note="/Bbb R, open face R"/>
+   <char cp="2124" mathclass="A" note="/Bbb Z, open face Z"/>
+   <char cp="2126" mathclass="N" note="(deprecated in math, use greek letter)"/>
+   <char cp="2127" mathclass="N" note="conductance"/>
+   <char cp="2128" mathclass="A" note="/frak Z"/>
+   <char cp="2129" mathclass="N" note="inverted iota"/>
+   <char cp="212B" mathclass="A" note="Angstrom capital A, ring (deprecated in math)"/>
+   <char cp="212C" mathclass="A" note="Bernoulli function"/>
+   <char cp="212D" mathclass="A"/>
+   <char cp="212F" mathclass="A" note="/scr e"/>
+   <char cp="2130" mathclass="A" note="/scr E"/>
+   <char cp="2131" mathclass="A" note="/scr F"/>
+   <char cp="2132" mathclass="N"/>
+   <char cp="2133" mathclass="A" note="physics M-matrix"/>
+   <char cp="2134" mathclass="A" note="order of"/>
+   <char cp="2135" mathclass="A" note="aleph, Hebrew"/>
+   <char cp="2136" mathclass="A" note="beth, Hebrew"/>
+   <char cp="2137" mathclass="A" note="gimel, Hebrew"/>
+   <char cp="2138" mathclass="A" note="daleth, Hebrew"/>
+   <char cp="213C" mathclass="A"/>
+   <char cp="213D" mathclass="A"/>
+   <char cp="213E" mathclass="N"/>
+   <char cp="213F" mathclass="A"/>
+   <char cp="2140" mathclass="L"/>
+   <char cp="2141" mathclass="N"/>
+   <char cp="2142" mathclass="N"/>
+   <char cp="2143" mathclass="N"/>
+   <char cp="2144" mathclass="N"/>
+   <char cp="2145" mathclass="N"/>
+   <char cp="2146" mathclass="N"/>
+   <char cp="2147" mathclass="N"/>
+   <char cp="2148" mathclass="N"/>
+   <char cp="2149" mathclass="N"/>
+   <char cp="214B" mathclass="N"/>
+   <char cp="2190" mathclass="R" note="/leftarrow /gets"/>
+   <char cp="2191" mathclass="R"/>
+   <char cp="2192" mathclass="R" note="/rightarrow /to"/>
+   <char cp="2193" mathclass="R"/>
+   <char cp="2194" mathclass="R" note="left and right arrow"/>
+   <char cp="2195" mathclass="R" note="up and down arrow"/>
+   <char cp="2196" mathclass="R" note="NW pointing arrow"/>
+   <char cp="2197" mathclass="R" note="NE pointing arrow"/>
+   <char cp="2198" mathclass="R" note="SE pointing arrow"/>
+   <char cp="2199" mathclass="R" note="SW pointing arrow"/>
+   <char cp="219A" mathclass="R" note="not left arrow"/>
+   <char cp="219B" mathclass="R" note="not right arrow"/>
+   <char cp="219C" mathclass="R" note="left arrow-wavy"/>
+   <char cp="219D" mathclass="R" note="right arrow-wavy"/>
+   <char cp="219E" mathclass="R"/>
+   <char cp="219F" mathclass="R"/>
+   <char cp="21A0" mathclass="R"/>
+   <char cp="21A1" mathclass="R"/>
+   <char cp="21A2" mathclass="R" note="left arrow-tailed"/>
+   <char cp="21A3" mathclass="R" note="right arrow-tailed"/>
+   <char cp="21A4" mathclass="R" note="maps to, leftward"/>
+   <char cp="21A5" mathclass="R" note="maps to, upward"/>
+   <char cp="21A6" mathclass="R" note="maps to, rightward"/>
+   <char cp="21A7" mathclass="R" note="maps to, downward"/>
+   <char cp="21A8" mathclass="R" note="up and down arrow, bar under"/>
+   <char cp="21A9" mathclass="R"/>
+   <char cp="21AA" mathclass="R"/>
+   <char cp="21AB" mathclass="R"/>
+   <char cp="21AC" mathclass="R"/>
+   <char cp="21AD" mathclass="R" note="left and right arrow-wavy"/>
+   <char cp="21AE" mathclass="R" note="not left and right arrow"/>
+   <char cp="21AF" mathclass="R"/>
+   <char cp="21B0" mathclass="R" note="/Lsh"/>
+   <char cp="21B1" mathclass="R" note="/Rsh"/>
+   <char cp="21B2" mathclass="R" note="left down angled arrow"/>
+   <char cp="21B3" mathclass="R" note="right down angled arrow"/>
+   <char cp="21B6" mathclass="R" note="left curved arrow"/>
+   <char cp="21B7" mathclass="R" note="right curved arrow"/>
+   <char cp="21BA" mathclass="R"/>
+   <char cp="21BB" mathclass="R"/>
+   <char cp="21BC" mathclass="R" note="left harpoon-up"/>
+   <char cp="21BD" mathclass="R" note="left harpoon-down"/>
+   <char cp="21BE" mathclass="R" note="/upharpoonright /restriction up harpoon-right"/>
+   <char cp="21BF" mathclass="R" note="up harpoon-left"/>
+   <char cp="21C0" mathclass="R" note="right harpoon-up"/>
+   <char cp="21C1" mathclass="R" note="right harpoon-down"/>
+   <char cp="21C2" mathclass="R" note="down harpoon-right"/>
+   <char cp="21C3" mathclass="R" note="down harpoon-left"/>
+   <char cp="21C4" mathclass="R" note="right arrow over left arrow"/>
+   <char cp="21C5" mathclass="R" note="up arrow, down arrow"/>
+   <char cp="21C6" mathclass="R" note="left arrow over right arrow"/>
+   <char cp="21C7" mathclass="R" note="two left arrows"/>
+   <char cp="21C8" mathclass="R" note="two up arrows"/>
+   <char cp="21C9" mathclass="R" note="two right arrows"/>
+   <char cp="21CA" mathclass="R" note="two down arrows"/>
+   <char cp="21CB" mathclass="R" note="left harpoon over right"/>
+   <char cp="21CC" mathclass="R" note="right harpoon over left"/>
+   <char cp="21CD" mathclass="R" note="not implied by"/>
+   <char cp="21CE" mathclass="R" note="not left and right double arrows"/>
+   <char cp="21CF" mathclass="R" note="not implies"/>
+   <char cp="21D0" mathclass="R" note="is implied by"/>
+   <char cp="21D1" mathclass="R" note="up double arrow"/>
+   <char cp="21D2" mathclass="R" note="implies"/>
+   <char cp="21D3" mathclass="R" note="down double arrow"/>
+   <char cp="21D4" mathclass="R" note="left and right double arrow"/>
+   <char cp="21D5" mathclass="R" note="up and down double arrow"/>
+   <char cp="21D6" mathclass="R" note="NW pointing double arrow"/>
+   <char cp="21D7" mathclass="R" note="NE pointing double arrow"/>
+   <char cp="21D8" mathclass="R" note="SE pointing double arrow"/>
+   <char cp="21D9" mathclass="R" note="SW pointing double arrow"/>
+   <char cp="21DA" mathclass="R" note="left triple arrow"/>
+   <char cp="21DB" mathclass="R" note="right triple arrow"/>
+   <char cp="21DC" mathclass="R" note="left zig-zag arrow"/>
+   <char cp="21DD" mathclass="R" note="right zig-zag arrow"/>
+   <char cp="21DE" mathclass="R"/>
+   <char cp="21DF" mathclass="R"/>
+   <char cp="21E0" mathclass="R"/>
+   <char cp="21E1" mathclass="R"/>
+   <char cp="21E2" mathclass="R"/>
+   <char cp="21E3" mathclass="R"/>
+   <char cp="21E4" mathclass="R"/>
+   <char cp="21E5" mathclass="R"/>
+   <char cp="21E6" mathclass="R"/>
+   <char cp="21E7" mathclass="R"/>
+   <char cp="21E8" mathclass="R"/>
+   <char cp="21E9" mathclass="R"/>
+   <char cp="21EA" mathclass="R"/>
+   <char cp="21EB" mathclass="R"/>
+   <char cp="21EC" mathclass="R"/>
+   <char cp="21ED" mathclass="R"/>
+   <char cp="21EE" mathclass="R"/>
+   <char cp="21EF" mathclass="R"/>
+   <char cp="21F0" mathclass="R"/>
+   <char cp="21F1" mathclass="R"/>
+   <char cp="21F2" mathclass="R"/>
+   <char cp="21F3" mathclass="R"/>
+   <char cp="21F4" mathclass="R"/>
+   <char cp="21F5" mathclass="R"/>
+   <char cp="21F6" mathclass="R"/>
+   <char cp="21F7" mathclass="R"/>
+   <char cp="21F8" mathclass="R"/>
+   <char cp="21F9" mathclass="R"/>
+   <char cp="21FA" mathclass="R"/>
+   <char cp="21FB" mathclass="R"/>
+   <char cp="21FC" mathclass="R"/>
+   <char cp="21FD" mathclass="R"/>
+   <char cp="21FE" mathclass="R"/>
+   <char cp="21FF" mathclass="R"/>
+   <char cp="2200" mathclass="U"/>
+   <char cp="2201" mathclass="U"/>
+   <char cp="2202" mathclass="N"/>
+   <char cp="2203" mathclass="U" note="at least one exists"/>
+   <char cp="2204" mathclass="U" note="negated exists"/>
+   <char cp="2205" mathclass="N" note="circle, slash"/>
+   <char cp="2206" mathclass="U" note="Laplacian (Delta, nabla^2)"/>
+   <char cp="2207" mathclass="U" note="nabla, del, Hamilton operator"/>
+   <char cp="2208" mathclass="R" note="set membership, variant"/>
+   <char cp="2209" mathclass="R" note="negated set membership"/>
+   <char cp="220A" mathclass="R" note="set membership"/>
+   <char cp="220B" mathclass="R" note="contains, variant"/>
+   <char cp="220C" mathclass="R" note="negated contains, variant"/>
+   <char cp="220D" mathclass="R" note="/ni /owns contains"/>
+   <char cp="220E" mathclass="N"/>
+   <char cp="220F" mathclass="L" note="product operator"/>
+   <char cp="2210" mathclass="L" note="coproduct operator"/>
+   <char cp="2211" mathclass="L" note="summation operator"/>
+   <char cp="2212" mathclass="V"/>
+   <char cp="2213" mathclass="V"/>
+   <char cp="2214" mathclass="B" note="plus sign, dot above"/>
+   <char cp="2215" mathclass="B"/>
+   <char cp="2216" mathclass="B" note="small set minus (cf. reverse solidus)"/>
+   <char cp="2217" mathclass="B" note="centered asterisk"/>
+   <char cp="2218" mathclass="B" note="composite function (small circle)"/>
+   <char cp="2219" mathclass="B"/>
+   <char cp="221A" mathclass="L" note="radical"/>
+   <char cp="221B" mathclass="L"/>
+   <char cp="221C" mathclass="L"/>
+   <char cp="221D" mathclass="R"/>
+   <char cp="221E" mathclass="N"/>
+   <char cp="221F" mathclass="N" note="(90 degree)"/>
+   <char cp="2220" mathclass="N"/>
+   <char cp="2221" mathclass="N"/>
+   <char cp="2222" mathclass="N"/>
+   <char cp="2223" mathclass="R" note="/mid"/>
+   <char cp="2224" mathclass="R" note="negated mid"/>
+   <char cp="2225" mathclass="R"/>
+   <char cp="2226" mathclass="R"/>
+   <char cp="2227" mathclass="B" note="/wedge /land"/>
+   <char cp="2228" mathclass="B" note="/vee /lor"/>
+   <char cp="2229" mathclass="B"/>
+   <char cp="222A" mathclass="B" note="logical sum"/>
+   <char cp="222B" mathclass="L"/>
+   <char cp="222C" mathclass="L"/>
+   <char cp="222D" mathclass="L"/>
+   <char cp="222E" mathclass="L"/>
+   <char cp="222F" mathclass="L" note="double contour integral operator"/>
+   <char cp="2230" mathclass="L" note="triple contour integral operator"/>
+   <char cp="2231" mathclass="L"/>
+   <char cp="2232" mathclass="L"/>
+   <char cp="2233" mathclass="L"/>
+   <char cp="2234" mathclass="R"/>
+   <char cp="2235" mathclass="R"/>
+   <char cp="2236" mathclass="R"/>
+   <char cp="2237" mathclass="R" note="two colons"/>
+   <char cp="2238" mathclass="B" note="minus sign, dot above"/>
+   <char cp="2239" mathclass="R" note="excess (-:)"/>
+   <char cp="223A" mathclass="R" note="minus with four dots, geometric properties"/>
+   <char cp="223B" mathclass="R"/>
+   <char cp="223C" mathclass="R" note="similar"/>
+   <char cp="223D" mathclass="R" note="reverse similar"/>
+   <char cp="223E" mathclass="B" note="most positive"/>
+   <char cp="223F" mathclass="N"/>
+   <char cp="2240" mathclass="B"/>
+   <char cp="2241" mathclass="R" note="not similar"/>
+   <char cp="2242" mathclass="R" note="equals, similar"/>
+   <char cp="2243" mathclass="R" note="similar, equals"/>
+   <char cp="2244" mathclass="R" note="not similar, equals"/>
+   <char cp="2245" mathclass="R" note="congruent with"/>
+   <char cp="2246" mathclass="R" note="similar, not equals [vert only for 9573 entity]"/>
+   <char cp="2247" mathclass="R" note="not congruent with"/>
+   <char cp="2248" mathclass="R" note="approximate"/>
+   <char cp="2249" mathclass="R" note="not approximate"/>
+   <char cp="224A" mathclass="R" note="approximate, equals"/>
+   <char cp="224B" mathclass="R" note="approximately identical to"/>
+   <char cp="224C" mathclass="R"/>
+   <char cp="224D" mathclass="R" note="asymptotically equal to"/>
+   <char cp="224E" mathclass="R" note="bumpy equals"/>
+   <char cp="224F" mathclass="R" note="bumpy equals, equals"/>
+   <char cp="2250" mathclass="R" note="equals, single dot above"/>
+   <char cp="2251" mathclass="R" note="/doteqdot /Doteq equals, even dots"/>
+   <char cp="2252" mathclass="R" note="equals, falling dots"/>
+   <char cp="2253" mathclass="R" note="equals, rising dots"/>
+   <char cp="2254" mathclass="R"/>
+   <char cp="2255" mathclass="R"/>
+   <char cp="2256" mathclass="R" note="circle on equals sign"/>
+   <char cp="2257" mathclass="R" note="circle, equals"/>
+   <char cp="2258" mathclass="R" note="arc, equals"/>
+   <char cp="2259" mathclass="R" note="corresponds to (wedge, equals)"/>
+   <char cp="225A" mathclass="R" note="logical or, equals"/>
+   <char cp="225B" mathclass="R"/>
+   <char cp="225C" mathclass="R" note="triangle, equals"/>
+   <char cp="225D" mathclass="R"/>
+   <char cp="225E" mathclass="R" note="(m over equals)"/>
+   <char cp="225F" mathclass="R" note="equal with question mark"/>
+   <char cp="2260" mathclass="R" note="/ne /neq"/>
+   <char cp="2261" mathclass="R"/>
+   <char cp="2262" mathclass="R"/>
+   <char cp="2263" mathclass="R" note="(4 lines)"/>
+   <char cp="2264" mathclass="R" note="/leq /le"/>
+   <char cp="2265" mathclass="R" note="/geq /ge"/>
+   <char cp="2266" mathclass="R" note="less, double equals"/>
+   <char cp="2267" mathclass="R" note="greater, double equals"/>
+   <char cp="2268" mathclass="R" note="less, not double equals"/>
+   <char cp="2269" mathclass="R" note="greater, not double equals"/>
+   <char cp="226A" mathclass="R" note="much less than, type 2"/>
+   <char cp="226B" mathclass="R" note="much greater than, type 2"/>
+   <char cp="226C" mathclass="R"/>
+   <char cp="226D" mathclass="R" note="not asymptotically equal to"/>
+   <char cp="226E" mathclass="R"/>
+   <char cp="226F" mathclass="R"/>
+   <char cp="2270" mathclass="R"/>
+   <char cp="2271" mathclass="R"/>
+   <char cp="2272" mathclass="R" note="less, similar"/>
+   <char cp="2273" mathclass="R" note="greater, similar"/>
+   <char cp="2274" mathclass="R" note="not less, similar"/>
+   <char cp="2275" mathclass="R" note="not greater, similar"/>
+   <char cp="2276" mathclass="R" note="less, greater"/>
+   <char cp="2277" mathclass="R" note="greater, less"/>
+   <char cp="2278" mathclass="R"/>
+   <char cp="2279" mathclass="R"/>
+   <char cp="227A" mathclass="R"/>
+   <char cp="227B" mathclass="R"/>
+   <char cp="227C" mathclass="R" note="precedes, curly equals"/>
+   <char cp="227D" mathclass="R" note="succeeds, curly equals"/>
+   <char cp="227E" mathclass="R" note="precedes, similar"/>
+   <char cp="227F" mathclass="R" note="succeeds, similar"/>
+   <char cp="2280" mathclass="R" note="not precedes"/>
+   <char cp="2281" mathclass="R" note="not succeeds"/>
+   <char cp="2282" mathclass="R" note="subset or is implied by"/>
+   <char cp="2283" mathclass="R" note="superset or implies"/>
+   <char cp="2284" mathclass="R"/>
+   <char cp="2285" mathclass="R"/>
+   <char cp="2286" mathclass="R" note="subset, equals"/>
+   <char cp="2287" mathclass="R" note="superset, equals"/>
+   <char cp="2288" mathclass="R" note="not subset, equals"/>
+   <char cp="2289" mathclass="R" note="not superset, equals"/>
+   <char cp="228A" mathclass="R" note="subset, not equals"/>
+   <char cp="228B" mathclass="R" note="superset, not equals"/>
+   <char cp="228C" mathclass="B"/>
+   <char cp="228D" mathclass="B" note="union, with dot"/>
+   <char cp="228E" mathclass="B" note="plus sign in union"/>
+   <char cp="228F" mathclass="R" note="square subset"/>
+   <char cp="2290" mathclass="R" note="square superset"/>
+   <char cp="2291" mathclass="R" note="square subset, equals"/>
+   <char cp="2292" mathclass="R" note="square superset, equals"/>
+   <char cp="2293" mathclass="B" note="square intersection"/>
+   <char cp="2294" mathclass="B" note="square union"/>
+   <char cp="2295" mathclass="B" note="plus sign in circle"/>
+   <char cp="2296" mathclass="B" note="minus sign in circle"/>
+   <char cp="2297" mathclass="B" note="multiply sign in circle"/>
+   <char cp="2298" mathclass="B" note="solidus in circle"/>
+   <char cp="2299" mathclass="B" note="middle dot in circle"/>
+   <char cp="229A" mathclass="B" note="small circle in circle"/>
+   <char cp="229B" mathclass="B" note="asterisk in circle"/>
+   <char cp="229C" mathclass="B" note="equal in circle"/>
+   <char cp="229D" mathclass="B" note="hyphen in circle"/>
+   <char cp="229E" mathclass="B" note="plus sign in box \boxplus"/>
+   <char cp="229F" mathclass="B" note="minus sign in box \boxminus"/>
+   <char cp="22A0" mathclass="B" note="multiply sign in box \boxtimes"/>
+   <char cp="22A1" mathclass="B" note="small dot in box \dotsquare \boxdot"/>
+   <char cp="22A2" mathclass="R" note="vertical, dash"/>
+   <char cp="22A3" mathclass="R" note="dash, vertical"/>
+   <char cp="22A4" mathclass="N" note="top"/>
+   <char cp="22A5" mathclass="R" note="bottom"/>
+   <char cp="22A6" mathclass="R" note="(vertical, short dash)"/>
+   <char cp="22A7" mathclass="R" note="(vertical, short double dash)"/>
+   <char cp="22A8" mathclass="R" note="vertical, double dash"/>
+   <char cp="22A9" mathclass="R" note="double vertical, dash"/>
+   <char cp="22AA" mathclass="R" note="triple vertical, dash"/>
+   <char cp="22AB" mathclass="R" note="double vert, double dash"/>
+   <char cp="22AC" mathclass="R" note="not vertical, dash"/>
+   <char cp="22AD" mathclass="R" note="not vertical, double dash"/>
+   <char cp="22AE" mathclass="R" note="not double vertical, dash"/>
+   <char cp="22AF" mathclass="R" note="not double vert, double dash"/>
+   <char cp="22B0" mathclass="R" note="element precedes under relation"/>
+   <char cp="22B1" mathclass="R"/>
+   <char cp="22B2" mathclass="R" note="left triangle, open, variant"/>
+   <char cp="22B3" mathclass="R" note="right triangle, open, variant"/>
+   <char cp="22B4" mathclass="R" note="left triangle, equals"/>
+   <char cp="22B5" mathclass="R" note="right triangle, equals"/>
+   <char cp="22B6" mathclass="R"/>
+   <char cp="22B7" mathclass="R"/>
+   <char cp="22B8" mathclass="R" note="/multimap"/>
+   <char cp="22B9" mathclass="B"/>
+   <char cp="22BA" mathclass="B" note="intercal"/>
+   <char cp="22BB" mathclass="B" note="logical or, bar below (large vee), exclusive disjunction"/>
+   <char cp="22BC" mathclass="B" note="bar, wedge (large wedge)"/>
+   <char cp="22BD" mathclass="B" note="bar, vee (large vee)"/>
+   <char cp="22BE" mathclass="N" note="right angle-measured [with arc]"/>
+   <char cp="22BF" mathclass="N"/>
+   <char cp="22C0" mathclass="L" note="logical or operator"/>
+   <char cp="22C1" mathclass="L" note="logical and operator"/>
+   <char cp="22C2" mathclass="L" note="intersection operator"/>
+   <char cp="22C3" mathclass="L" note="union operator"/>
+   <char cp="22C4" mathclass="B" note="white diamond"/>
+   <char cp="22C5" mathclass="B" note="small middle dot"/>
+   <char cp="22C6" mathclass="B" note="small star, filled, low"/>
+   <char cp="22C7" mathclass="B" note="division on times"/>
+   <char cp="22C8" mathclass="R"/>
+   <char cp="22C9" mathclass="B" note="times sign, left closed"/>
+   <char cp="22CA" mathclass="B" note="times sign, right closed"/>
+   <char cp="22CB" mathclass="B"/>
+   <char cp="22CC" mathclass="B"/>
+   <char cp="22CD" mathclass="R" note="reverse similar, equals"/>
+   <char cp="22CE" mathclass="B"/>
+   <char cp="22CF" mathclass="B"/>
+   <char cp="22D0" mathclass="R"/>
+   <char cp="22D1" mathclass="R"/>
+   <char cp="22D2" mathclass="B" note="/Cap /doublecap"/>
+   <char cp="22D3" mathclass="B" note="/Cup /doublecup"/>
+   <char cp="22D4" mathclass="R"/>
+   <char cp="22D5" mathclass="R" note="parallel, equal"/>
+   <char cp="22D6" mathclass="R"/>
+   <char cp="22D7" mathclass="R"/>
+   <char cp="22D8" mathclass="R" note="/Ll /lll /llless triple less-than"/>
+   <char cp="22D9" mathclass="R" note="/ggg /Gg /gggtr triple greater-than"/>
+   <char cp="22DA" mathclass="R" note="less, equals, greater"/>
+   <char cp="22DB" mathclass="R" note="greater, equals, less"/>
+   <char cp="22DC" mathclass="R" note="equal-or-less"/>
+   <char cp="22DD" mathclass="R" note="equal-or-greater"/>
+   <char cp="22DE" mathclass="R" note="curly equals, precedes"/>
+   <char cp="22DF" mathclass="R" note="curly equals, succeeds"/>
+   <char cp="22E0" mathclass="R" note="not precedes, curly equals"/>
+   <char cp="22E1" mathclass="R" note="not succeeds, curly equals"/>
+   <char cp="22E2" mathclass="R" note="not, square subset, equals"/>
+   <char cp="22E3" mathclass="R" note="not, square superset, equals"/>
+   <char cp="22E4" mathclass="R" note="square subset, not equals"/>
+   <char cp="22E5" mathclass="R" note="square superset, not equals"/>
+   <char cp="22E6" mathclass="R" note="less, not similar"/>
+   <char cp="22E7" mathclass="R" note="greater, not similar"/>
+   <char cp="22E8" mathclass="R" note="precedes, not similar"/>
+   <char cp="22E9" mathclass="R" note="succeeds, not similar"/>
+   <char cp="22EA" mathclass="R" note="not left triangle"/>
+   <char cp="22EB" mathclass="R" note="not right triangle"/>
+   <char cp="22EC" mathclass="R" note="not left triangle, equals"/>
+   <char cp="22ED" mathclass="R" note="not right triangle, equals"/>
+   <char cp="22EE" mathclass="R" note="vertical ellipsis"/>
+   <char cp="22EF" mathclass="R" note="three dots, centered"/>
+   <char cp="22F0" mathclass="R" note="three dots, ascending"/>
+   <char cp="22F1" mathclass="R" note="three dots, descending"/>
+   <char cp="22F2" mathclass="R"/>
+   <char cp="22F3" mathclass="R"/>
+   <char cp="22F4" mathclass="R"/>
+   <char cp="22F5" mathclass="R"/>
+   <char cp="22F6" mathclass="R"/>
+   <char cp="22F7" mathclass="R"/>
+   <char cp="22F8" mathclass="R"/>
+   <char cp="22F9" mathclass="R"/>
+   <char cp="22FA" mathclass="R"/>
+   <char cp="22FB" mathclass="R"/>
+   <char cp="22FC" mathclass="R"/>
+   <char cp="22FD" mathclass="R"/>
+   <char cp="22FE" mathclass="R"/>
+   <char cp="22FF" mathclass="R"/>
+   <char cp="2300" mathclass="N" note="2205 diameter sign"/>
+   <char cp="2302" mathclass="N"/>
+   <char cp="2305" mathclass="B"/>
+   <char cp="2306" mathclass="B"/>
+   <char cp="2308" mathclass="O"/>
+   <char cp="2309" mathclass="C"/>
+   <char cp="230A" mathclass="O"/>
+   <char cp="230B" mathclass="C"/>
+   <char cp="2310" mathclass="N"/>
+   <char cp="2311" mathclass="N"/>
+   <char cp="2319" mathclass="N"/>
+   <char cp="231C" mathclass="O"/>
+   <char cp="231D" mathclass="C"/>
+   <char cp="231E" mathclass="O"/>
+   <char cp="231F" mathclass="C"/>
+   <char cp="2320" mathclass="G" note="(integral parts)"/>
+   <char cp="2321" mathclass="G" note="(integral parts)"/>
+   <char cp="2322" mathclass="R" note="down curve"/>
+   <char cp="2323" mathclass="R" note="up curve"/>
+   <char cp="2329" mathclass="O" note="left angle bracket (deprecated for math use, use 27E8)" deprecated="true"/>
+   <char cp="232A" mathclass="C" note="right angle bracket (deprecated for math use, use 27E9)" deprecated="true"/>
+   <char cp="2336" mathclass="N" note="top and bottom"/>
+   <char cp="233D" mathclass="B" note="circle with vertical bar"/>
+   <char cp="233F" mathclass="R" note="solidus, bar through"/>
+   <char cp="237C" mathclass="R"/>
+   <char cp="2394" mathclass="N" note="horizontal benzene ring [hexagon flat open]"/>
+   <char cp="239B" mathclass="G" note="(bracket parts)"/>
+   <char cp="239C" mathclass="G" note="(bracket parts)"/>
+   <char cp="239D" mathclass="G" note="(bracket parts)"/>
+   <char cp="239E" mathclass="G" note="(bracket parts)"/>
+   <char cp="239F" mathclass="G" note="(bracket parts)"/>
+   <char cp="23A0" mathclass="G" note="(bracket parts)"/>
+   <char cp="23A1" mathclass="G" note="(bracket parts)"/>
+   <char cp="23A2" mathclass="G" note="(bracket parts)"/>
+   <char cp="23A3" mathclass="G" note="(bracket parts)"/>
+   <char cp="23A4" mathclass="G" note="(bracket parts)"/>
+   <char cp="23A5" mathclass="G" note="(bracket parts)"/>
+   <char cp="23A6" mathclass="G" note="(bracket parts)"/>
+   <char cp="23A7" mathclass="G" note="(bracket parts)"/>
+   <char cp="23A8" mathclass="G" note="(bracket parts)"/>
+   <char cp="23A9" mathclass="G" note="(bracket parts)"/>
+   <char cp="23AA" mathclass="G" note="(bracket parts)"/>
+   <char cp="23AB" mathclass="G" note="(bracket parts)"/>
+   <char cp="23AC" mathclass="G" note="(bracket parts)"/>
+   <char cp="23AD" mathclass="G" note="(bracket parts)"/>
+   <char cp="23AE" mathclass="G" note="(bracket parts)"/>
+   <char cp="23AF" mathclass="G" note="(bracket parts)"/>
+   <char cp="23B0" mathclass="R"/>
+   <char cp="23B1" mathclass="R"/>
+   <char cp="23B2" mathclass="G" note="(summation parts)"/>
+   <char cp="23B3" mathclass="G" note="(summation parts)"/>
+   <char cp="23B4" mathclass="N"/>
+   <char cp="23B5" mathclass="N"/>
+   <char cp="23B6" mathclass="N"/>
+   <char cp="23B7" mathclass="G" note="(square root part)"/>
+   <char cp="23D0" mathclass="G" note="(vertical line extension)"/>
+   <char cp="23DC" mathclass="N" note="over parenthesis"/>
+   <char cp="23DD" mathclass="N" note="under parenthesis"/>
+   <char cp="23DE" mathclass="N" note="over brace"/>
+   <char cp="23DF" mathclass="N" note="under brace"/>
+   <char cp="23E0" mathclass="N"/>
+   <char cp="23E1" mathclass="N"/>
+   <char cp="23E2" mathclass="N"/>
+   <char cp="23E3" mathclass="N"/>
+   <char cp="23E4" mathclass="N"/>
+   <char cp="23E5" mathclass="N"/>
+   <char cp="23E6" mathclass="N"/>
+   <char cp="23E7" mathclass="N"/>
+   <char cp="24C8" mathclass="N" note="capital S in circle"/>
+   <char cp="25A0" mathclass="N" note="square, filled"/>
+   <char cp="25A1" mathclass="N" note="square, open"/>
+   <char cp="25AA" mathclass="N" note="? /blacksquare - sq bullet, filled"/>
+   <char cp="25AB" mathclass="N"/>
+   <char cp="25AD" mathclass="N" note="horizontal rectangle, open"/>
+   <char cp="25AE" mathclass="N" note="histogram marker"/>
+   <char cp="25AF" mathclass="N"/>
+   <char cp="25B0" mathclass="N"/>
+   <char cp="25B1" mathclass="N" note="parallelogram, open"/>
+   <char cp="25B2" mathclass="B"/>
+   <char cp="25B3" mathclass="B" note="big up triangle, open"/>
+   <char cp="25B4" mathclass="B" note="up triangle, filled"/>
+   <char cp="25B5" mathclass="B" note="/triangle - up triangle, open"/>
+   <char cp="25B6" mathclass="B" note="(large) right triangle, filled"/>
+   <char cp="25B7" mathclass="B" note="(large) right triangle, open, Z notation range restriction"/>
+   <char cp="25B8" mathclass="B" note="right triangle, filled"/>
+   <char cp="25B9" mathclass="B" note="right triangle, open"/>
+   <char cp="25BC" mathclass="B" note="big down triangle, filled"/>
+   <char cp="25BD" mathclass="B" note="big down triangle, open"/>
+   <char cp="25BE" mathclass="B" note="down triangle, filled"/>
+   <char cp="25BF" mathclass="B" note="down triangle, open"/>
+   <char cp="25C0" mathclass="B" note="(large) left triangle, filled"/>
+   <char cp="25C1" mathclass="B" note="(large) left triangle, open, Z notation domain restriction"/>
+   <char cp="25C2" mathclass="B" note="left triangle, filled"/>
+   <char cp="25C3" mathclass="B" note="left triangle, open"/>
+   <char cp="25C4" mathclass="B"/>
+   <char cp="25C5" mathclass="B"/>
+   <char cp="25C6" mathclass="N"/>
+   <char cp="25C7" mathclass="N"/>
+   <char cp="25C8" mathclass="N"/>
+   <char cp="25C9" mathclass="N"/>
+   <char cp="25CA" mathclass="B" note="lozenge or total mark"/>
+   <char cp="25CB" mathclass="B" note="large circle"/>
+   <char cp="25CE" mathclass="N"/>
+   <char cp="25CF" mathclass="N" note="circle, filled"/>
+   <char cp="25D0" mathclass="N"/>
+   <char cp="25D1" mathclass="N"/>
+   <char cp="25D2" mathclass="N"/>
+   <char cp="25D3" mathclass="N"/>
+   <char cp="25D6" mathclass="N"/>
+   <char cp="25D7" mathclass="N"/>
+   <char cp="25E2" mathclass="N" note="lower right triangle, filled"/>
+   <char cp="25E3" mathclass="N" note="lower left triangle, filled"/>
+   <char cp="25E4" mathclass="N" note="upper left triangle, filled"/>
+   <char cp="25E5" mathclass="N" note="upper right triangle, filled"/>
+   <char cp="25E6" mathclass="B"/>
+   <char cp="25E7" mathclass="N"/>
+   <char cp="25E8" mathclass="N"/>
+   <char cp="25E9" mathclass="N"/>
+   <char cp="25EA" mathclass="N"/>
+   <char cp="25EB" mathclass="B" note="vertical bar in box"/>
+   <char cp="25EC" mathclass="B" note="triangle with centered dot"/>
+   <char cp="25EF" mathclass="N"/>
+   <char cp="25F8" mathclass="B"/>
+   <char cp="25F9" mathclass="B"/>
+   <char cp="25FA" mathclass="B"/>
+   <char cp="25FB" mathclass="B"/>
+   <char cp="25FC" mathclass="B"/>
+   <char cp="25FD" mathclass="B"/>
+   <char cp="25FE" mathclass="B"/>
+   <char cp="25FF" mathclass="B"/>
+   <char cp="2605" mathclass="B" note="star, filled"/>
+   <char cp="2606" mathclass="B" note="star, open"/>
+   <char cp="2609" mathclass="N"/>
+   <char cp="260C" mathclass="N"/>
+   <char cp="2612" mathclass="N"/>
+   <char cp="263D" mathclass="N"/>
+   <char cp="263E" mathclass="N"/>
+   <char cp="263F" mathclass="N"/>
+   <char cp="2640" mathclass="N" note="Venus"/>
+   <char cp="2641" mathclass="N"/>
+   <char cp="2642" mathclass="N" note="Mars"/>
+   <char cp="2643" mathclass="N"/>
+   <char cp="2644" mathclass="N"/>
+   <char cp="2646" mathclass="N"/>
+   <char cp="2647" mathclass="N"/>
+   <char cp="2648" mathclass="N"/>
+   <char cp="2649" mathclass="N"/>
+   <char cp="2660" mathclass="N" note="spades suit symbol"/>
+   <char cp="2661" mathclass="N" note="heart suit symbol"/>
+   <char cp="2662" mathclass="N" note="diamond suit symbol"/>
+   <char cp="2663" mathclass="N" note="club suit symbol"/>
+   <char cp="2664" mathclass="N" note="spade, white (card suit)"/>
+   <char cp="2665" mathclass="N" note="filled heart (card suit)"/>
+   <char cp="2666" mathclass="N" note="filled diamond (card suit)"/>
+   <char cp="2667" mathclass="N" note="club, white (card suit)"/>
+   <char cp="2669" mathclass="N" note="music note (sung text sign)"/>
+   <char cp="266D" mathclass="N"/>
+   <char cp="266E" mathclass="N"/>
+   <char cp="266F" mathclass="N"/>
+   <char cp="2680" mathclass="N"/>
+   <char cp="2681" mathclass="N"/>
+   <char cp="2682" mathclass="N"/>
+   <char cp="2683" mathclass="N"/>
+   <char cp="2684" mathclass="N"/>
+   <char cp="2685" mathclass="N"/>
+   <char cp="2686" mathclass="N"/>
+   <char cp="2687" mathclass="N"/>
+   <char cp="2688" mathclass="N"/>
+   <char cp="2689" mathclass="N"/>
+   <char cp="26AA" mathclass="N"/>
+   <char cp="26AB" mathclass="N"/>
+   <char cp="26AC" mathclass="N"/>
+   <char cp="26B2" mathclass="N"/>
+   <char cp="2713" mathclass="N" note="tick"/>
+   <char cp="2717" mathclass="N" note="ballot cross"/>
+   <char cp="2720" mathclass="N"/>
+   <char cp="272A" mathclass="N"/>
+   <char cp="2736" mathclass="N"/>
+   <char cp="2772" mathclass="O" note="left broken bracket"/>
+   <char cp="2773" mathclass="C" note="right broken bracket"/>
+   <char cp="27C0" mathclass="N"/>
+   <char cp="27C1" mathclass="N"/>
+   <char cp="27C2" mathclass="R" note="perpendicular"/>
+   <char cp="27C3" mathclass="R"/>
+   <char cp="27C4" mathclass="R"/>
+   <char cp="27C5" mathclass="R"/>
+   <char cp="27C6" mathclass="R"/>
+   <char cp="27C7" mathclass="R"/>
+   <char cp="27C8" mathclass="R"/>
+   <char cp="27C9" mathclass="R"/>
+   <char cp="27CA" mathclass="R"/>
+   <char cp="27CB" mathclass="R"/>
+   <char cp="27CC" mathclass="L"/>
+   <char cp="27CD" mathclass="R"/>
+   <char cp="27CE" mathclass="B"/>
+   <char cp="27CF" mathclass="B"/>
+   <char cp="27D0" mathclass="N"/>
+   <char cp="27D1" mathclass="B"/>
+   <char cp="27D2" mathclass="R"/>
+   <char cp="27D3" mathclass="R"/>
+   <char cp="27D4" mathclass="R"/>
+   <char cp="27D5" mathclass="L"/>
+   <char cp="27D6" mathclass="L"/>
+   <char cp="27D7" mathclass="L"/>
+   <char cp="27D8" mathclass="L"/>
+   <char cp="27D9" mathclass="L"/>
+   <char cp="27DA" mathclass="R"/>
+   <char cp="27DB" mathclass="R"/>
+   <char cp="27DC" mathclass="R"/>
+   <char cp="27DD" mathclass="R"/>
+   <char cp="27DE" mathclass="R"/>
+   <char cp="27DF" mathclass="R"/>
+   <char cp="27E0" mathclass="B"/>
+   <char cp="27E1" mathclass="B"/>
+   <char cp="27E2" mathclass="B"/>
+   <char cp="27E3" mathclass="B"/>
+   <char cp="27E4" mathclass="B"/>
+   <char cp="27E5" mathclass="B"/>
+   <char cp="27E6" mathclass="O"/>
+   <char cp="27E7" mathclass="C"/>
+   <char cp="27E8" mathclass="O"/>
+   <char cp="27E9" mathclass="C"/>
+   <char cp="27EA" mathclass="O" note="left angle bracket, double"/>
+   <char cp="27EB" mathclass="C" note="right angle bracket, double"/>
+   <char cp="27EC" mathclass="O"/>
+   <char cp="27ED" mathclass="C"/>
+   <char cp="27EE" mathclass="O" note="lgroup"/>
+   <char cp="27EF" mathclass="C" note="rgroup"/>
+   <char cp="27F0" mathclass="R"/>
+   <char cp="27F1" mathclass="R"/>
+   <char cp="27F2" mathclass="R"/>
+   <char cp="27F3" mathclass="R"/>
+   <char cp="27F4" mathclass="R"/>
+   <char cp="27F5" mathclass="R"/>
+   <char cp="27F6" mathclass="R"/>
+   <char cp="27F7" mathclass="R"/>
+   <char cp="27F8" mathclass="R"/>
+   <char cp="27F9" mathclass="R"/>
+   <char cp="27FA" mathclass="R"/>
+   <char cp="27FB" mathclass="R"/>
+   <char cp="27FC" mathclass="R"/>
+   <char cp="27FD" mathclass="R"/>
+   <char cp="27FE" mathclass="R"/>
+   <char cp="27FF" mathclass="R"/>
+   <char cp="2900" mathclass="R"/>
+   <char cp="2901" mathclass="R"/>
+   <char cp="2902" mathclass="R"/>
+   <char cp="2903" mathclass="R"/>
+   <char cp="2904" mathclass="R"/>
+   <char cp="2905" mathclass="R"/>
+   <char cp="2906" mathclass="R"/>
+   <char cp="2907" mathclass="R"/>
+   <char cp="2908" mathclass="R"/>
+   <char cp="2909" mathclass="R"/>
+   <char cp="290A" mathclass="R"/>
+   <char cp="290B" mathclass="R"/>
+   <char cp="290C" mathclass="R"/>
+   <char cp="290D" mathclass="R"/>
+   <char cp="290E" mathclass="R"/>
+   <char cp="290F" mathclass="R"/>
+   <char cp="2910" mathclass="R"/>
+   <char cp="2911" mathclass="R"/>
+   <char cp="2912" mathclass="R"/>
+   <char cp="2913" mathclass="R"/>
+   <char cp="2914" mathclass="R"/>
+   <char cp="2915" mathclass="R"/>
+   <char cp="2916" mathclass="R"/>
+   <char cp="2917" mathclass="R"/>
+   <char cp="2918" mathclass="R"/>
+   <char cp="2919" mathclass="R"/>
+   <char cp="291A" mathclass="R"/>
+   <char cp="291B" mathclass="R"/>
+   <char cp="291C" mathclass="R"/>
+   <char cp="291D" mathclass="R"/>
+   <char cp="291E" mathclass="R"/>
+   <char cp="291F" mathclass="R"/>
+   <char cp="2920" mathclass="R"/>
+   <char cp="2921" mathclass="R"/>
+   <char cp="2922" mathclass="R"/>
+   <char cp="2923" mathclass="R"/>
+   <char cp="2924" mathclass="R"/>
+   <char cp="2925" mathclass="R"/>
+   <char cp="2926" mathclass="R"/>
+   <char cp="2927" mathclass="R"/>
+   <char cp="2928" mathclass="R"/>
+   <char cp="2929" mathclass="R"/>
+   <char cp="292A" mathclass="R"/>
+   <char cp="292B" mathclass="R"/>
+   <char cp="292C" mathclass="R"/>
+   <char cp="292D" mathclass="R"/>
+   <char cp="292E" mathclass="R"/>
+   <char cp="292F" mathclass="R"/>
+   <char cp="2930" mathclass="R"/>
+   <char cp="2931" mathclass="R"/>
+   <char cp="2932" mathclass="R"/>
+   <char cp="2933" mathclass="R"/>
+   <char cp="2934" mathclass="R"/>
+   <char cp="2935" mathclass="R"/>
+   <char cp="2936" mathclass="R"/>
+   <char cp="2937" mathclass="R"/>
+   <char cp="2938" mathclass="R"/>
+   <char cp="2939" mathclass="R"/>
+   <char cp="293A" mathclass="R"/>
+   <char cp="293B" mathclass="R"/>
+   <char cp="293C" mathclass="R"/>
+   <char cp="293D" mathclass="R"/>
+   <char cp="293E" mathclass="R"/>
+   <char cp="293F" mathclass="R"/>
+   <char cp="2940" mathclass="R"/>
+   <char cp="2941" mathclass="R"/>
+   <char cp="2942" mathclass="R"/>
+   <char cp="2943" mathclass="R"/>
+   <char cp="2944" mathclass="R"/>
+   <char cp="2945" mathclass="R"/>
+   <char cp="2946" mathclass="R"/>
+   <char cp="2947" mathclass="R"/>
+   <char cp="2948" mathclass="R"/>
+   <char cp="2949" mathclass="R"/>
+   <char cp="294A" mathclass="R"/>
+   <char cp="294B" mathclass="R"/>
+   <char cp="294C" mathclass="R"/>
+   <char cp="294D" mathclass="R"/>
+   <char cp="294E" mathclass="R"/>
+   <char cp="294F" mathclass="R"/>
+   <char cp="2950" mathclass="R"/>
+   <char cp="2951" mathclass="R"/>
+   <char cp="2952" mathclass="R"/>
+   <char cp="2953" mathclass="R"/>
+   <char cp="2954" mathclass="R"/>
+   <char cp="2955" mathclass="R"/>
+   <char cp="2956" mathclass="R"/>
+   <char cp="2957" mathclass="R"/>
+   <char cp="2958" mathclass="R"/>
+   <char cp="2959" mathclass="R"/>
+   <char cp="295A" mathclass="R"/>
+   <char cp="295B" mathclass="R"/>
+   <char cp="295C" mathclass="R"/>
+   <char cp="295D" mathclass="R"/>
+   <char cp="295E" mathclass="R"/>
+   <char cp="295F" mathclass="R"/>
+   <char cp="2960" mathclass="R"/>
+   <char cp="2961" mathclass="R"/>
+   <char cp="2962" mathclass="R"/>
+   <char cp="2963" mathclass="R"/>
+   <char cp="2964" mathclass="R"/>
+   <char cp="2965" mathclass="R"/>
+   <char cp="2966" mathclass="R"/>
+   <char cp="2967" mathclass="R"/>
+   <char cp="2968" mathclass="R"/>
+   <char cp="2969" mathclass="R"/>
+   <char cp="296A" mathclass="R"/>
+   <char cp="296B" mathclass="R"/>
+   <char cp="296C" mathclass="R"/>
+   <char cp="296D" mathclass="R"/>
+   <char cp="296E" mathclass="R"/>
+   <char cp="296F" mathclass="R"/>
+   <char cp="2970" mathclass="R"/>
+   <char cp="2971" mathclass="R"/>
+   <char cp="2972" mathclass="R"/>
+   <char cp="2973" mathclass="R"/>
+   <char cp="2974" mathclass="R"/>
+   <char cp="2975" mathclass="R"/>
+   <char cp="2976" mathclass="R"/>
+   <char cp="2977" mathclass="R"/>
+   <char cp="2978" mathclass="R"/>
+   <char cp="2979" mathclass="R"/>
+   <char cp="297A" mathclass="R"/>
+   <char cp="297B" mathclass="R"/>
+   <char cp="297C" mathclass="R"/>
+   <char cp="297D" mathclass="R"/>
+   <char cp="297E" mathclass="R"/>
+   <char cp="297F" mathclass="R"/>
+   <char cp="2980" mathclass="F"/>
+   <char cp="2981" mathclass="N"/>
+   <char cp="2982" mathclass="F"/>
+   <char cp="2983" mathclass="O"/>
+   <char cp="2984" mathclass="C"/>
+   <char cp="2985" mathclass="O"/>
+   <char cp="2986" mathclass="C"/>
+   <char cp="2987" mathclass="O"/>
+   <char cp="2988" mathclass="C"/>
+   <char cp="2989" mathclass="O"/>
+   <char cp="298A" mathclass="C"/>
+   <char cp="298B" mathclass="O"/>
+   <char cp="298C" mathclass="C"/>
+   <char cp="298D" mathclass="O"/>
+   <char cp="298E" mathclass="C"/>
+   <char cp="298F" mathclass="O"/>
+   <char cp="2990" mathclass="C"/>
+   <char cp="2991" mathclass="O"/>
+   <char cp="2992" mathclass="C"/>
+   <char cp="2993" mathclass="O"/>
+   <char cp="2994" mathclass="C"/>
+   <char cp="2995" mathclass="O"/>
+   <char cp="2996" mathclass="C"/>
+   <char cp="2997" mathclass="O"/>
+   <char cp="2998" mathclass="C"/>
+   <char cp="2999" mathclass="F"/>
+   <char cp="299A" mathclass="F"/>
+   <char cp="299B" mathclass="N"/>
+   <char cp="299C" mathclass="N"/>
+   <char cp="299D" mathclass="N"/>
+   <char cp="299E" mathclass="N"/>
+   <char cp="299F" mathclass="N"/>
+   <char cp="29A0" mathclass="N"/>
+   <char cp="29A1" mathclass="N"/>
+   <char cp="29A2" mathclass="N"/>
+   <char cp="29A3" mathclass="N"/>
+   <char cp="29A4" mathclass="N"/>
+   <char cp="29A5" mathclass="N"/>
+   <char cp="29A6" mathclass="N"/>
+   <char cp="29A7" mathclass="N"/>
+   <char cp="29A8" mathclass="N"/>
+   <char cp="29A9" mathclass="N"/>
+   <char cp="29AA" mathclass="N"/>
+   <char cp="29AB" mathclass="N"/>
+   <char cp="29AC" mathclass="N"/>
+   <char cp="29AD" mathclass="N"/>
+   <char cp="29AE" mathclass="N"/>
+   <char cp="29AF" mathclass="N"/>
+   <char cp="29B0" mathclass="N"/>
+   <char cp="29B1" mathclass="N"/>
+   <char cp="29B2" mathclass="N"/>
+   <char cp="29B3" mathclass="N"/>
+   <char cp="29B4" mathclass="N"/>
+   <char cp="29B5" mathclass="N"/>
+   <char cp="29B6" mathclass="B"/>
+   <char cp="29B7" mathclass="B"/>
+   <char cp="29B8" mathclass="B"/>
+   <char cp="29B9" mathclass="B"/>
+   <char cp="29BA" mathclass="N"/>
+   <char cp="29BB" mathclass="N"/>
+   <char cp="29BC" mathclass="N"/>
+   <char cp="29BD" mathclass="N"/>
+   <char cp="29BE" mathclass="N"/>
+   <char cp="29BF" mathclass="N"/>
+   <char cp="29C0" mathclass="B"/>
+   <char cp="29C1" mathclass="B"/>
+   <char cp="29C2" mathclass="N"/>
+   <char cp="29C3" mathclass="N"/>
+   <char cp="29C4" mathclass="B"/>
+   <char cp="29C5" mathclass="B"/>
+   <char cp="29C6" mathclass="B"/>
+   <char cp="29C7" mathclass="B"/>
+   <char cp="29C8" mathclass="B"/>
+   <char cp="29C9" mathclass="N"/>
+   <char cp="29CA" mathclass="N"/>
+   <char cp="29CB" mathclass="N"/>
+   <char cp="29CC" mathclass="N"/>
+   <char cp="29CD" mathclass="N"/>
+   <char cp="29CE" mathclass="R"/>
+   <char cp="29CF" mathclass="R"/>
+   <char cp="29D0" mathclass="R"/>
+   <char cp="29D1" mathclass="R"/>
+   <char cp="29D2" mathclass="R"/>
+   <char cp="29D3" mathclass="R"/>
+   <char cp="29D4" mathclass="R"/>
+   <char cp="29D5" mathclass="R"/>
+   <char cp="29D6" mathclass="B"/>
+   <char cp="29D7" mathclass="B"/>
+   <char cp="29D8" mathclass="O"/>
+   <char cp="29D9" mathclass="C"/>
+   <char cp="29DA" mathclass="O"/>
+   <char cp="29DB" mathclass="C"/>
+   <char cp="29DC" mathclass="N"/>
+   <char cp="29DD" mathclass="N"/>
+   <char cp="29DE" mathclass="N"/>
+   <char cp="29DF" mathclass="R"/>
+   <char cp="29E0" mathclass="N"/>
+   <char cp="29E1" mathclass="R"/>
+   <char cp="29E2" mathclass="B"/>
+   <char cp="29E3" mathclass="R"/>
+   <char cp="29E4" mathclass="R"/>
+   <char cp="29E5" mathclass="R"/>
+   <char cp="29E6" mathclass="R"/>
+   <char cp="29E7" mathclass="N"/>
+   <char cp="29E8" mathclass="N"/>
+   <char cp="29E9" mathclass="N"/>
+   <char cp="29EA" mathclass="N"/>
+   <char cp="29EB" mathclass="B"/>
+   <char cp="29EC" mathclass="N"/>
+   <char cp="29ED" mathclass="N"/>
+   <char cp="29EE" mathclass="N"/>
+   <char cp="29EF" mathclass="N"/>
+   <char cp="29F0" mathclass="N"/>
+   <char cp="29F1" mathclass="N"/>
+   <char cp="29F2" mathclass="N"/>
+   <char cp="29F3" mathclass="N"/>
+   <char cp="29F4" mathclass="R"/>
+   <char cp="29F5" mathclass="B"/>
+   <char cp="29F6" mathclass="B"/>
+   <char cp="29F7" mathclass="B"/>
+   <char cp="29F8" mathclass="L"/>
+   <char cp="29F9" mathclass="L"/>
+   <char cp="29FA" mathclass="B"/>
+   <char cp="29FB" mathclass="B"/>
+   <char cp="29FC" mathclass="O"/>
+   <char cp="29FD" mathclass="C"/>
+   <char cp="29FE" mathclass="B"/>
+   <char cp="29FF" mathclass="B"/>
+   <char cp="2A00" mathclass="L"/>
+   <char cp="2A01" mathclass="L"/>
+   <char cp="2A02" mathclass="L"/>
+   <char cp="2A03" mathclass="L"/>
+   <char cp="2A04" mathclass="L"/>
+   <char cp="2A05" mathclass="L"/>
+   <char cp="2A06" mathclass="L"/>
+   <char cp="2A07" mathclass="L"/>
+   <char cp="2A08" mathclass="L"/>
+   <char cp="2A09" mathclass="L"/>
+   <char cp="2A0A" mathclass="L"/>
+   <char cp="2A0B" mathclass="L"/>
+   <char cp="2A0C" mathclass="L"/>
+   <char cp="2A0D" mathclass="L"/>
+   <char cp="2A0E" mathclass="L"/>
+   <char cp="2A0F" mathclass="L"/>
+   <char cp="2A10" mathclass="L"/>
+   <char cp="2A11" mathclass="L"/>
+   <char cp="2A12" mathclass="L"/>
+   <char cp="2A13" mathclass="L"/>
+   <char cp="2A14" mathclass="L"/>
+   <char cp="2A15" mathclass="L"/>
+   <char cp="2A16" mathclass="L"/>
+   <char cp="2A17" mathclass="L"/>
+   <char cp="2A18" mathclass="L"/>
+   <char cp="2A19" mathclass="L"/>
+   <char cp="2A1A" mathclass="L"/>
+   <char cp="2A1B" mathclass="L"/>
+   <char cp="2A1C" mathclass="L"/>
+   <char cp="2A1D" mathclass="L"/>
+   <char cp="2A1E" mathclass="L"/>
+   <char cp="2A1F" mathclass="L"/>
+   <char cp="2A20" mathclass="L"/>
+   <char cp="2A21" mathclass="L"/>
+   <char cp="2A22" mathclass="B"/>
+   <char cp="2A23" mathclass="B"/>
+   <char cp="2A24" mathclass="B"/>
+   <char cp="2A25" mathclass="B"/>
+   <char cp="2A26" mathclass="B"/>
+   <char cp="2A27" mathclass="B"/>
+   <char cp="2A28" mathclass="B"/>
+   <char cp="2A29" mathclass="B"/>
+   <char cp="2A2A" mathclass="B"/>
+   <char cp="2A2B" mathclass="B"/>
+   <char cp="2A2C" mathclass="B"/>
+   <char cp="2A2D" mathclass="B"/>
+   <char cp="2A2E" mathclass="B"/>
+   <char cp="2A2F" mathclass="B"/>
+   <char cp="2A30" mathclass="B"/>
+   <char cp="2A31" mathclass="B"/>
+   <char cp="2A32" mathclass="B"/>
+   <char cp="2A33" mathclass="B"/>
+   <char cp="2A34" mathclass="B"/>
+   <char cp="2A35" mathclass="B"/>
+   <char cp="2A36" mathclass="B"/>
+   <char cp="2A37" mathclass="B"/>
+   <char cp="2A38" mathclass="B"/>
+   <char cp="2A39" mathclass="B"/>
+   <char cp="2A3A" mathclass="B"/>
+   <char cp="2A3B" mathclass="B"/>
+   <char cp="2A3C" mathclass="B"/>
+   <char cp="2A3D" mathclass="B"/>
+   <char cp="2A3E" mathclass="B"/>
+   <char cp="2A3F" mathclass="B"/>
+   <char cp="2A40" mathclass="B"/>
+   <char cp="2A41" mathclass="B"/>
+   <char cp="2A42" mathclass="B"/>
+   <char cp="2A43" mathclass="B"/>
+   <char cp="2A44" mathclass="B"/>
+   <char cp="2A45" mathclass="B"/>
+   <char cp="2A46" mathclass="B"/>
+   <char cp="2A47" mathclass="B"/>
+   <char cp="2A48" mathclass="B"/>
+   <char cp="2A49" mathclass="B"/>
+   <char cp="2A4A" mathclass="B"/>
+   <char cp="2A4B" mathclass="B"/>
+   <char cp="2A4C" mathclass="B"/>
+   <char cp="2A4D" mathclass="B"/>
+   <char cp="2A4E" mathclass="B"/>
+   <char cp="2A4F" mathclass="B"/>
+   <char cp="2A50" mathclass="B"/>
+   <char cp="2A51" mathclass="B"/>
+   <char cp="2A52" mathclass="B"/>
+   <char cp="2A53" mathclass="B"/>
+   <char cp="2A54" mathclass="B"/>
+   <char cp="2A55" mathclass="B"/>
+   <char cp="2A56" mathclass="B"/>
+   <char cp="2A57" mathclass="B"/>
+   <char cp="2A58" mathclass="B"/>
+   <char cp="2A59" mathclass="R"/>
+   <char cp="2A5A" mathclass="B"/>
+   <char cp="2A5B" mathclass="B"/>
+   <char cp="2A5C" mathclass="B"/>
+   <char cp="2A5D" mathclass="B"/>
+   <char cp="2A5E" mathclass="B"/>
+   <char cp="2A5F" mathclass="B"/>
+   <char cp="2A60" mathclass="B"/>
+   <char cp="2A61" mathclass="B"/>
+   <char cp="2A62" mathclass="B"/>
+   <char cp="2A63" mathclass="B"/>
+   <char cp="2A64" mathclass="B"/>
+   <char cp="2A65" mathclass="B"/>
+   <char cp="2A66" mathclass="R"/>
+   <char cp="2A67" mathclass="R"/>
+   <char cp="2A68" mathclass="R"/>
+   <char cp="2A69" mathclass="R"/>
+   <char cp="2A6A" mathclass="R"/>
+   <char cp="2A6B" mathclass="R"/>
+   <char cp="2A6C" mathclass="R"/>
+   <char cp="2A6D" mathclass="R"/>
+   <char cp="2A6E" mathclass="R"/>
+   <char cp="2A6F" mathclass="R"/>
+   <char cp="2A70" mathclass="R"/>
+   <char cp="2A71" mathclass="B"/>
+   <char cp="2A72" mathclass="B"/>
+   <char cp="2A73" mathclass="R"/>
+   <char cp="2A74" mathclass="R"/>
+   <char cp="2A75" mathclass="R"/>
+   <char cp="2A76" mathclass="R"/>
+   <char cp="2A77" mathclass="R"/>
+   <char cp="2A78" mathclass="R"/>
+   <char cp="2A79" mathclass="R"/>
+   <char cp="2A7A" mathclass="R"/>
+   <char cp="2A7B" mathclass="R"/>
+   <char cp="2A7C" mathclass="R"/>
+   <char cp="2A7D" mathclass="R"/>
+   <char cp="2A7E" mathclass="R"/>
+   <char cp="2A7F" mathclass="R"/>
+   <char cp="2A80" mathclass="R"/>
+   <char cp="2A81" mathclass="R"/>
+   <char cp="2A82" mathclass="R"/>
+   <char cp="2A83" mathclass="R"/>
+   <char cp="2A84" mathclass="R"/>
+   <char cp="2A85" mathclass="R"/>
+   <char cp="2A86" mathclass="R"/>
+   <char cp="2A87" mathclass="R"/>
+   <char cp="2A88" mathclass="R"/>
+   <char cp="2A89" mathclass="R"/>
+   <char cp="2A8A" mathclass="R"/>
+   <char cp="2A8B" mathclass="R"/>
+   <char cp="2A8C" mathclass="R"/>
+   <char cp="2A8D" mathclass="R"/>
+   <char cp="2A8E" mathclass="R"/>
+   <char cp="2A8F" mathclass="R"/>
+   <char cp="2A90" mathclass="R"/>
+   <char cp="2A91" mathclass="R"/>
+   <char cp="2A92" mathclass="R"/>
+   <char cp="2A93" mathclass="R"/>
+   <char cp="2A94" mathclass="R"/>
+   <char cp="2A95" mathclass="R"/>
+   <char cp="2A96" mathclass="R"/>
+   <char cp="2A97" mathclass="R"/>
+   <char cp="2A98" mathclass="R"/>
+   <char cp="2A99" mathclass="R"/>
+   <char cp="2A9A" mathclass="R"/>
+   <char cp="2A9B" mathclass="R"/>
+   <char cp="2A9C" mathclass="R"/>
+   <char cp="2A9D" mathclass="R"/>
+   <char cp="2A9E" mathclass="R"/>
+   <char cp="2A9F" mathclass="R"/>
+   <char cp="2AA0" mathclass="R"/>
+   <char cp="2AA1" mathclass="R"/>
+   <char cp="2AA2" mathclass="R"/>
+   <char cp="2AA3" mathclass="R"/>
+   <char cp="2AA4" mathclass="R"/>
+   <char cp="2AA5" mathclass="R"/>
+   <char cp="2AA6" mathclass="R"/>
+   <char cp="2AA7" mathclass="R"/>
+   <char cp="2AA8" mathclass="R"/>
+   <char cp="2AA9" mathclass="R"/>
+   <char cp="2AAA" mathclass="R"/>
+   <char cp="2AAB" mathclass="R"/>
+   <char cp="2AAC" mathclass="R"/>
+   <char cp="2AAD" mathclass="R"/>
+   <char cp="2AAE" mathclass="R"/>
+   <char cp="2AAF" mathclass="R"/>
+   <char cp="2AB0" mathclass="R"/>
+   <char cp="2AB1" mathclass="R"/>
+   <char cp="2AB2" mathclass="R"/>
+   <char cp="2AB3" mathclass="R"/>
+   <char cp="2AB4" mathclass="R"/>
+   <char cp="2AB5" mathclass="R"/>
+   <char cp="2AB6" mathclass="R"/>
+   <char cp="2AB7" mathclass="R"/>
+   <char cp="2AB8" mathclass="R"/>
+   <char cp="2AB9" mathclass="R"/>
+   <char cp="2ABA" mathclass="R"/>
+   <char cp="2ABB" mathclass="R"/>
+   <char cp="2ABC" mathclass="R"/>
+   <char cp="2ABD" mathclass="R"/>
+   <char cp="2ABE" mathclass="R"/>
+   <char cp="2ABF" mathclass="R"/>
+   <char cp="2AC0" mathclass="R"/>
+   <char cp="2AC1" mathclass="R"/>
+   <char cp="2AC2" mathclass="R"/>
+   <char cp="2AC3" mathclass="R"/>
+   <char cp="2AC4" mathclass="R"/>
+   <char cp="2AC5" mathclass="R"/>
+   <char cp="2AC6" mathclass="R"/>
+   <char cp="2AC7" mathclass="R"/>
+   <char cp="2AC8" mathclass="R"/>
+   <char cp="2AC9" mathclass="R"/>
+   <char cp="2ACA" mathclass="R"/>
+   <char cp="2ACB" mathclass="R"/>
+   <char cp="2ACC" mathclass="R"/>
+   <char cp="2ACD" mathclass="R"/>
+   <char cp="2ACE" mathclass="R"/>
+   <char cp="2ACF" mathclass="R"/>
+   <char cp="2AD0" mathclass="R"/>
+   <char cp="2AD1" mathclass="R"/>
+   <char cp="2AD2" mathclass="R"/>
+   <char cp="2AD3" mathclass="R"/>
+   <char cp="2AD4" mathclass="R"/>
+   <char cp="2AD5" mathclass="R"/>
+   <char cp="2AD6" mathclass="R"/>
+   <char cp="2AD7" mathclass="R"/>
+   <char cp="2AD8" mathclass="R"/>
+   <char cp="2AD9" mathclass="R"/>
+   <char cp="2ADA" mathclass="R"/>
+   <char cp="2ADB" mathclass="R"/>
+   <char cp="2ADC" mathclass="R"/>
+   <char cp="2ADD" mathclass="R"/>
+   <char cp="2ADE" mathclass="R"/>
+   <char cp="2ADF" mathclass="R"/>
+   <char cp="2AE0" mathclass="R"/>
+   <char cp="2AE1" mathclass="N"/>
+   <char cp="2AE2" mathclass="R"/>
+   <char cp="2AE3" mathclass="R"/>
+   <char cp="2AE4" mathclass="R"/>
+   <char cp="2AE5" mathclass="R"/>
+   <char cp="2AE6" mathclass="R"/>
+   <char cp="2AE7" mathclass="R"/>
+   <char cp="2AE8" mathclass="R"/>
+   <char cp="2AE9" mathclass="R"/>
+   <char cp="2AEA" mathclass="R"/>
+   <char cp="2AEB" mathclass="R"/>
+   <char cp="2AEC" mathclass="R"/>
+   <char cp="2AED" mathclass="R"/>
+   <char cp="2AEE" mathclass="R"/>
+   <char cp="2AEF" mathclass="R"/>
+   <char cp="2AF0" mathclass="R"/>
+   <char cp="2AF1" mathclass="N"/>
+   <char cp="2AF2" mathclass="R"/>
+   <char cp="2AF3" mathclass="R"/>
+   <char cp="2AF4" mathclass="B"/>
+   <char cp="2AF5" mathclass="B"/>
+   <char cp="2AF6" mathclass="B"/>
+   <char cp="2AF7" mathclass="R"/>
+   <char cp="2AF8" mathclass="R"/>
+   <char cp="2AF9" mathclass="R"/>
+   <char cp="2AFA" mathclass="R"/>
+   <char cp="2AFB" mathclass="B"/>
+   <char cp="2AFC" mathclass="L"/>
+   <char cp="2AFD" mathclass="B"/>
+   <char cp="2AFE" mathclass="B"/>
+   <char cp="2AFF" mathclass="L"/>
+   <char cp="2B00" mathclass="R"/>
+   <char cp="2B01" mathclass="R"/>
+   <char cp="2B02" mathclass="R"/>
+   <char cp="2B03" mathclass="R"/>
+   <char cp="2B04" mathclass="R"/>
+   <char cp="2B05" mathclass="R"/>
+   <char cp="2B06" mathclass="R"/>
+   <char cp="2B07" mathclass="R"/>
+   <char cp="2B08" mathclass="R"/>
+   <char cp="2B09" mathclass="R"/>
+   <char cp="2B0A" mathclass="R"/>
+   <char cp="2B0B" mathclass="R"/>
+   <char cp="2B0C" mathclass="R"/>
+   <char cp="2B0D" mathclass="R"/>
+   <char cp="2B0E" mathclass="R"/>
+   <char cp="2B0F" mathclass="R"/>
+   <char cp="2B10" mathclass="R"/>
+   <char cp="2B11" mathclass="R"/>
+   <char cp="2B12" mathclass="N"/>
+   <char cp="2B13" mathclass="N"/>
+   <char cp="2B14" mathclass="N"/>
+   <char cp="2B15" mathclass="N"/>
+   <char cp="2B16" mathclass="N"/>
+   <char cp="2B17" mathclass="N"/>
+   <char cp="2B18" mathclass="N"/>
+   <char cp="2B19" mathclass="N"/>
+   <char cp="2B1B" mathclass="N"/>
+   <char cp="2B1C" mathclass="N"/>
+   <char cp="2B1D" mathclass="N"/>
+   <char cp="2B1E" mathclass="N"/>
+   <char cp="2B1F" mathclass="N"/>
+   <char cp="2B20" mathclass="N"/>
+   <char cp="2B21" mathclass="N"/>
+   <char cp="2B22" mathclass="N"/>
+   <char cp="2B23" mathclass="N"/>
+   <char cp="2B24" mathclass="N"/>
+   <char cp="2B25" mathclass="N"/>
+   <char cp="2B26" mathclass="N"/>
+   <char cp="2B27" mathclass="N"/>
+   <char cp="2B28" mathclass="N"/>
+   <char cp="2B29" mathclass="N"/>
+   <char cp="2B2A" mathclass="N"/>
+   <char cp="2B2B" mathclass="N"/>
+   <char cp="2B2C" mathclass="N"/>
+   <char cp="2B2D" mathclass="N"/>
+   <char cp="2B2E" mathclass="N"/>
+   <char cp="2B2F" mathclass="N"/>
+   <char cp="2B30" mathclass="R"/>
+   <char cp="2B31" mathclass="R"/>
+   <char cp="2B32" mathclass="R"/>
+   <char cp="2B33" mathclass="R"/>
+   <char cp="2B34" mathclass="R"/>
+   <char cp="2B35" mathclass="R"/>
+   <char cp="2B36" mathclass="R"/>
+   <char cp="2B37" mathclass="R"/>
+   <char cp="2B38" mathclass="R"/>
+   <char cp="2B39" mathclass="R"/>
+   <char cp="2B3A" mathclass="R"/>
+   <char cp="2B3B" mathclass="R"/>
+   <char cp="2B3C" mathclass="R"/>
+   <char cp="2B3D" mathclass="R"/>
+   <char cp="2B3E" mathclass="R"/>
+   <char cp="2B3F" mathclass="R"/>
+   <char cp="2B40" mathclass="R"/>
+   <char cp="2B41" mathclass="R"/>
+   <char cp="2B42" mathclass="R"/>
+   <char cp="2B43" mathclass="R"/>
+   <char cp="2B44" mathclass="R"/>
+   <char cp="2B45" mathclass="R"/>
+   <char cp="2B46" mathclass="R"/>
+   <char cp="2B47" mathclass="R"/>
+   <char cp="2B48" mathclass="R"/>
+   <char cp="2B49" mathclass="R"/>
+   <char cp="2B4A" mathclass="R"/>
+   <char cp="2B4B" mathclass="R"/>
+   <char cp="2B4C" mathclass="R"/>
+   <char cp="2B50" mathclass="N"/>
+   <char cp="2B51" mathclass="N"/>
+   <char cp="2B52" mathclass="N"/>
+   <char cp="2B53" mathclass="N"/>
+   <char cp="2B54" mathclass="N"/>
+   <char cp="2B95" mathclass="R"/>
+   <char cp="2B96" mathclass="R"/>
+   <char cp="2BC2" mathclass="N"/>
+   <char cp="2BC3" mathclass="N"/>
+   <char cp="2BC4" mathclass="N"/>
+   <char cp="2BC5" mathclass="N"/>
+   <char cp="2BC6" mathclass="N"/>
+   <char cp="2BC7" mathclass="N"/>
+   <char cp="2BC8" mathclass="N"/>
+   <char cp="2BCA" mathclass="N"/>
+   <char cp="2BCB" mathclass="N"/>
+   <char cp="2BF9" mathclass="R"/>
+   <char cp="3008" mathclass="X" note="(deprecated for math use)"/>
+   <char cp="3009" mathclass="X" note="(deprecated for math use)"/>
+   <char cp="3014" mathclass="O" note="left broken bracket" deprecated="true"/>
+   <char cp="3015" mathclass="C" note="right broken bracket" deprecated="true"/>
+   <char cp="3018" mathclass="O" deprecated="true"/>
+   <char cp="3019" mathclass="C" deprecated="true"/>
+   <char cp="301A" mathclass="X" note="(deprecated for math use)"/>
+   <char cp="301B" mathclass="X" note="(deprecated for math use)"/>
+   <char cp="306E" mathclass="N"/>
+   <char cp="FB29" mathclass="X" note="(doesn't have cross shape)"/>
+   <char cp="FE00" mathclass="D"/>
+   <char cp="FE35" mathclass="" note="(deprecated for math use)" deprecated="true"/>
+   <char cp="FE36" mathclass="" note="(deprecated for math use)" deprecated="true"/>
+   <char cp="FE37" mathclass="" note="(deprecated for math use)" deprecated="true"/>
+   <char cp="FE38" mathclass="" note="(deprecated for math use)" deprecated="true"/>
+   <char cp="FE61" mathclass="X" note="(&#34;small&#34; compatibility variants of ASCII math operators)"/>
+   <char cp="FE62" mathclass="X" note="(&#34;small&#34; compatibility variants of ASCII math operators)"/>
+   <char cp="FE63" mathclass="X" note="(&#34;small&#34; compatibility variants of ASCII math operators)"/>
+   <char cp="FE64" mathclass="X" note="(&#34;small&#34; compatibility variants of ASCII math operators)"/>
+   <char cp="FE65" mathclass="X" note="(&#34;small&#34; compatibility variants of ASCII math operators)"/>
+   <char cp="FE66" mathclass="X" note="(&#34;small&#34; compatibility variants of ASCII math operators)"/>
+   <char cp="FE68" mathclass="X" note="(&#34;small&#34; compatibility variants of ASCII math operators)"/>
+   <char cp="FF0B" mathclass="X" note="(&#34;wide&#34; compatibility variant of ASCII math operators)"/>
+   <char cp="FF1C" mathclass="X" note="(&#34;wide&#34; compatibility variant of ASCII math operators)"/>
+   <char cp="FF1D" mathclass="X" note="(&#34;wide&#34; compatibility variant of ASCII math operators)"/>
+   <char cp="FF1E" mathclass="X" note="(&#34;wide&#34; compatibility variant of ASCII math operators)"/>
+   <char cp="FF3C" mathclass="X" note="(&#34;wide&#34; compatibility variant of ASCII math operators)"/>
+   <char cp="FF3E" mathclass="X" note="(&#34;wide&#34; compatibility variant of ASCII math operators)"/>
+   <char cp="FF5C" mathclass="X" note="(&#34;wide&#34; compatibility variant of ASCII math operators)"/>
+   <char cp="FF5E" mathclass="X" note="(&#34;wide&#34; compatibility variant of math operators)"/>
+   <char cp="FFE2" mathclass="X" note="(&#34;wide&#34; compatibility variant of ASCII math operators)"/>
+   <char cp="FFE9" mathclass="X" note="(&#34;wide&#34; compatibility variants of arrows)"/>
+   <char cp="FFEA" mathclass="X" note="(&#34;wide&#34; compatibility variants of arrows)"/>
+   <char cp="FFEB" mathclass="X" note="(&#34;wide&#34; compatibility variants of arrows)"/>
+   <char cp="FFEC" mathclass="X" note="(&#34;wide&#34; compatibility variants of arrows)"/>
+   <char cp="1D400" mathclass="A"/>
+   <char cp="1D401" mathclass="A"/>
+   <char cp="1D402" mathclass="A"/>
+   <char cp="1D403" mathclass="A"/>
+   <char cp="1D404" mathclass="A"/>
+   <char cp="1D405" mathclass="A"/>
+   <char cp="1D406" mathclass="A"/>
+   <char cp="1D407" mathclass="A"/>
+   <char cp="1D408" mathclass="A"/>
+   <char cp="1D409" mathclass="A"/>
+   <char cp="1D40A" mathclass="A"/>
+   <char cp="1D40B" mathclass="A"/>
+   <char cp="1D40C" mathclass="A"/>
+   <char cp="1D40D" mathclass="A"/>
+   <char cp="1D40E" mathclass="A"/>
+   <char cp="1D40F" mathclass="A"/>
+   <char cp="1D410" mathclass="A"/>
+   <char cp="1D411" mathclass="A"/>
+   <char cp="1D412" mathclass="A"/>
+   <char cp="1D413" mathclass="A"/>
+   <char cp="1D414" mathclass="A"/>
+   <char cp="1D415" mathclass="A"/>
+   <char cp="1D416" mathclass="A"/>
+   <char cp="1D417" mathclass="A"/>
+   <char cp="1D418" mathclass="A"/>
+   <char cp="1D419" mathclass="A"/>
+   <char cp="1D41A" mathclass="A"/>
+   <char cp="1D41B" mathclass="A"/>
+   <char cp="1D41C" mathclass="A"/>
+   <char cp="1D41D" mathclass="A"/>
+   <char cp="1D41E" mathclass="A"/>
+   <char cp="1D41F" mathclass="A"/>
+   <char cp="1D420" mathclass="A"/>
+   <char cp="1D421" mathclass="A"/>
+   <char cp="1D422" mathclass="A"/>
+   <char cp="1D423" mathclass="A"/>
+   <char cp="1D424" mathclass="A"/>
+   <char cp="1D425" mathclass="A"/>
+   <char cp="1D426" mathclass="A"/>
+   <char cp="1D427" mathclass="A"/>
+   <char cp="1D428" mathclass="A"/>
+   <char cp="1D429" mathclass="A"/>
+   <char cp="1D42A" mathclass="A"/>
+   <char cp="1D42B" mathclass="A"/>
+   <char cp="1D42C" mathclass="A"/>
+   <char cp="1D42D" mathclass="A"/>
+   <char cp="1D42E" mathclass="A"/>
+   <char cp="1D42F" mathclass="A"/>
+   <char cp="1D430" mathclass="A"/>
+   <char cp="1D431" mathclass="A"/>
+   <char cp="1D432" mathclass="A"/>
+   <char cp="1D433" mathclass="A"/>
+   <char cp="1D434" mathclass="A"/>
+   <char cp="1D435" mathclass="A"/>
+   <char cp="1D436" mathclass="A"/>
+   <char cp="1D437" mathclass="A"/>
+   <char cp="1D438" mathclass="A"/>
+   <char cp="1D439" mathclass="A"/>
+   <char cp="1D43A" mathclass="A"/>
+   <char cp="1D43B" mathclass="A"/>
+   <char cp="1D43C" mathclass="A"/>
+   <char cp="1D43D" mathclass="A"/>
+   <char cp="1D43E" mathclass="A"/>
+   <char cp="1D43F" mathclass="A"/>
+   <char cp="1D440" mathclass="A"/>
+   <char cp="1D441" mathclass="A"/>
+   <char cp="1D442" mathclass="A"/>
+   <char cp="1D443" mathclass="A"/>
+   <char cp="1D444" mathclass="A"/>
+   <char cp="1D445" mathclass="A"/>
+   <char cp="1D446" mathclass="A"/>
+   <char cp="1D447" mathclass="A"/>
+   <char cp="1D448" mathclass="A"/>
+   <char cp="1D449" mathclass="A"/>
+   <char cp="1D44A" mathclass="A"/>
+   <char cp="1D44B" mathclass="A"/>
+   <char cp="1D44C" mathclass="A"/>
+   <char cp="1D44D" mathclass="A"/>
+   <char cp="1D44E" mathclass="A"/>
+   <char cp="1D44F" mathclass="A"/>
+   <char cp="1D450" mathclass="A"/>
+   <char cp="1D451" mathclass="A"/>
+   <char cp="1D452" mathclass="A"/>
+   <char cp="1D453" mathclass="A"/>
+   <char cp="1D454" mathclass="A"/>
+   <char cp="1D455" mathclass="N" unassigned="true" equivalent="210E"/>
+   <char cp="1D456" mathclass="A"/>
+   <char cp="1D457" mathclass="A"/>
+   <char cp="1D458" mathclass="A"/>
+   <char cp="1D459" mathclass="A"/>
+   <char cp="1D45A" mathclass="A"/>
+   <char cp="1D45B" mathclass="A"/>
+   <char cp="1D45C" mathclass="A"/>
+   <char cp="1D45D" mathclass="A"/>
+   <char cp="1D45E" mathclass="A"/>
+   <char cp="1D45F" mathclass="A"/>
+   <char cp="1D460" mathclass="A"/>
+   <char cp="1D461" mathclass="A"/>
+   <char cp="1D462" mathclass="A"/>
+   <char cp="1D463" mathclass="A"/>
+   <char cp="1D464" mathclass="A"/>
+   <char cp="1D465" mathclass="A"/>
+   <char cp="1D466" mathclass="A"/>
+   <char cp="1D467" mathclass="A"/>
+   <char cp="1D468" mathclass="A"/>
+   <char cp="1D469" mathclass="A"/>
+   <char cp="1D46A" mathclass="A"/>
+   <char cp="1D46B" mathclass="A"/>
+   <char cp="1D46C" mathclass="A"/>
+   <char cp="1D46D" mathclass="A"/>
+   <char cp="1D46E" mathclass="A"/>
+   <char cp="1D46F" mathclass="A"/>
+   <char cp="1D470" mathclass="A"/>
+   <char cp="1D471" mathclass="A"/>
+   <char cp="1D472" mathclass="A"/>
+   <char cp="1D473" mathclass="A"/>
+   <char cp="1D474" mathclass="A"/>
+   <char cp="1D475" mathclass="A"/>
+   <char cp="1D476" mathclass="A"/>
+   <char cp="1D477" mathclass="A"/>
+   <char cp="1D478" mathclass="A"/>
+   <char cp="1D479" mathclass="A"/>
+   <char cp="1D47A" mathclass="A"/>
+   <char cp="1D47B" mathclass="A"/>
+   <char cp="1D47C" mathclass="A"/>
+   <char cp="1D47D" mathclass="A"/>
+   <char cp="1D47E" mathclass="A"/>
+   <char cp="1D47F" mathclass="A"/>
+   <char cp="1D480" mathclass="A"/>
+   <char cp="1D481" mathclass="A"/>
+   <char cp="1D482" mathclass="A"/>
+   <char cp="1D483" mathclass="A"/>
+   <char cp="1D484" mathclass="A"/>
+   <char cp="1D485" mathclass="A"/>
+   <char cp="1D486" mathclass="A"/>
+   <char cp="1D487" mathclass="A"/>
+   <char cp="1D488" mathclass="A"/>
+   <char cp="1D489" mathclass="A"/>
+   <char cp="1D48A" mathclass="A"/>
+   <char cp="1D48B" mathclass="A"/>
+   <char cp="1D48C" mathclass="A"/>
+   <char cp="1D48D" mathclass="A"/>
+   <char cp="1D48E" mathclass="A"/>
+   <char cp="1D48F" mathclass="A"/>
+   <char cp="1D490" mathclass="A"/>
+   <char cp="1D491" mathclass="A"/>
+   <char cp="1D492" mathclass="A"/>
+   <char cp="1D493" mathclass="A"/>
+   <char cp="1D494" mathclass="A"/>
+   <char cp="1D495" mathclass="A"/>
+   <char cp="1D496" mathclass="A"/>
+   <char cp="1D497" mathclass="A"/>
+   <char cp="1D498" mathclass="A"/>
+   <char cp="1D499" mathclass="A"/>
+   <char cp="1D49A" mathclass="A"/>
+   <char cp="1D49B" mathclass="A"/>
+   <char cp="1D49C" mathclass="A"/>
+   <char cp="1D49D" mathclass="A" unassigned="true" equivalent="212C"/>
+   <char cp="1D49E" mathclass="A"/>
+   <char cp="1D49F" mathclass="A"/>
+   <char cp="1D4A0" mathclass="A" unassigned="true" equivalent="2130"/>
+   <char cp="1D4A1" mathclass="A" unassigned="true" equivalent="2131"/>
+   <char cp="1D4A2" mathclass="A"/>
+   <char cp="1D4A3" mathclass="A" unassigned="true" equivalent="210B"/>
+   <char cp="1D4A4" mathclass="A" unassigned="true" equivalent="2110"/>
+   <char cp="1D4A5" mathclass="A"/>
+   <char cp="1D4A6" mathclass="A"/>
+   <char cp="1D4A7" mathclass="A" unassigned="true" equivalent="2112"/>
+   <char cp="1D4A8" mathclass="A" unassigned="true" equivalent="2133"/>
+   <char cp="1D4A9" mathclass="A"/>
+   <char cp="1D4AA" mathclass="A"/>
+   <char cp="1D4AB" mathclass="A"/>
+   <char cp="1D4AC" mathclass="A"/>
+   <char cp="1D4AD" mathclass="A" unassigned="true" equivalent="211B"/>
+   <char cp="1D4AE" mathclass="A"/>
+   <char cp="1D4AF" mathclass="A"/>
+   <char cp="1D4B0" mathclass="A"/>
+   <char cp="1D4B1" mathclass="A"/>
+   <char cp="1D4B2" mathclass="A"/>
+   <char cp="1D4B3" mathclass="A"/>
+   <char cp="1D4B4" mathclass="A"/>
+   <char cp="1D4B5" mathclass="A"/>
+   <char cp="1D4B6" mathclass="A"/>
+   <char cp="1D4B7" mathclass="A"/>
+   <char cp="1D4B8" mathclass="A"/>
+   <char cp="1D4B9" mathclass="A"/>
+   <char cp="1D4BA" mathclass="A" unassigned="true" equivalent="212F"/>
+   <char cp="1D4BB" mathclass="A"/>
+   <char cp="1D4BC" mathclass="A" unassigned="true" equivalent="210A"/>
+   <char cp="1D4BD" mathclass="A"/>
+   <char cp="1D4BE" mathclass="A"/>
+   <char cp="1D4BF" mathclass="A"/>
+   <char cp="1D4C0" mathclass="A"/>
+   <char cp="1D4C1" mathclass="A"/>
+   <char cp="1D4C2" mathclass="A"/>
+   <char cp="1D4C3" mathclass="A"/>
+   <char cp="1D4C4" mathclass="A" unassigned="true" equivalent="2134"/>
+   <char cp="1D4C5" mathclass="A"/>
+   <char cp="1D4C6" mathclass="A"/>
+   <char cp="1D4C7" mathclass="A"/>
+   <char cp="1D4C8" mathclass="A"/>
+   <char cp="1D4C9" mathclass="A"/>
+   <char cp="1D4CA" mathclass="A"/>
+   <char cp="1D4CB" mathclass="A"/>
+   <char cp="1D4CC" mathclass="A"/>
+   <char cp="1D4CD" mathclass="A"/>
+   <char cp="1D4CE" mathclass="A"/>
+   <char cp="1D4CF" mathclass="A"/>
+   <char cp="1D4D0" mathclass="A"/>
+   <char cp="1D4D1" mathclass="A"/>
+   <char cp="1D4D2" mathclass="A"/>
+   <char cp="1D4D3" mathclass="A"/>
+   <char cp="1D4D4" mathclass="A"/>
+   <char cp="1D4D5" mathclass="A"/>
+   <char cp="1D4D6" mathclass="A"/>
+   <char cp="1D4D7" mathclass="A"/>
+   <char cp="1D4D8" mathclass="A"/>
+   <char cp="1D4D9" mathclass="A"/>
+   <char cp="1D4DA" mathclass="A"/>
+   <char cp="1D4DB" mathclass="A"/>
+   <char cp="1D4DC" mathclass="A"/>
+   <char cp="1D4DD" mathclass="A"/>
+   <char cp="1D4DE" mathclass="A"/>
+   <char cp="1D4DF" mathclass="A"/>
+   <char cp="1D4E0" mathclass="A"/>
+   <char cp="1D4E1" mathclass="A"/>
+   <char cp="1D4E2" mathclass="A"/>
+   <char cp="1D4E3" mathclass="A"/>
+   <char cp="1D4E4" mathclass="A"/>
+   <char cp="1D4E5" mathclass="A"/>
+   <char cp="1D4E6" mathclass="A"/>
+   <char cp="1D4E7" mathclass="A"/>
+   <char cp="1D4E8" mathclass="A"/>
+   <char cp="1D4E9" mathclass="A"/>
+   <char cp="1D4EA" mathclass="A"/>
+   <char cp="1D4EB" mathclass="A"/>
+   <char cp="1D4EC" mathclass="A"/>
+   <char cp="1D4ED" mathclass="A"/>
+   <char cp="1D4EE" mathclass="A"/>
+   <char cp="1D4EF" mathclass="A"/>
+   <char cp="1D4F0" mathclass="A"/>
+   <char cp="1D4F1" mathclass="A"/>
+   <char cp="1D4F2" mathclass="A"/>
+   <char cp="1D4F3" mathclass="A"/>
+   <char cp="1D4F4" mathclass="A"/>
+   <char cp="1D4F5" mathclass="A"/>
+   <char cp="1D4F6" mathclass="A"/>
+   <char cp="1D4F7" mathclass="A"/>
+   <char cp="1D4F8" mathclass="A"/>
+   <char cp="1D4F9" mathclass="A"/>
+   <char cp="1D4FA" mathclass="A"/>
+   <char cp="1D4FB" mathclass="A"/>
+   <char cp="1D4FC" mathclass="A"/>
+   <char cp="1D4FD" mathclass="A"/>
+   <char cp="1D4FE" mathclass="A"/>
+   <char cp="1D4FF" mathclass="A"/>
+   <char cp="1D500" mathclass="A"/>
+   <char cp="1D501" mathclass="A"/>
+   <char cp="1D502" mathclass="A"/>
+   <char cp="1D503" mathclass="A"/>
+   <char cp="1D504" mathclass="A"/>
+   <char cp="1D505" mathclass="A"/>
+   <char cp="1D506" mathclass="A" unassigned="true" equivalent="212D"/>
+   <char cp="1D507" mathclass="A"/>
+   <char cp="1D508" mathclass="A"/>
+   <char cp="1D509" mathclass="A"/>
+   <char cp="1D50A" mathclass="A"/>
+   <char cp="1D50B" mathclass="A" unassigned="true" equivalent="210C"/>
+   <char cp="1D50C" mathclass="A" unassigned="true" equivalent="2111"/>
+   <char cp="1D50D" mathclass="A"/>
+   <char cp="1D50E" mathclass="A"/>
+   <char cp="1D50F" mathclass="A"/>
+   <char cp="1D510" mathclass="A"/>
+   <char cp="1D511" mathclass="A"/>
+   <char cp="1D512" mathclass="A"/>
+   <char cp="1D513" mathclass="A"/>
+   <char cp="1D514" mathclass="A"/>
+   <char cp="1D515" mathclass="A" unassigned="true" equivalent="211C"/>
+   <char cp="1D516" mathclass="A"/>
+   <char cp="1D517" mathclass="A"/>
+   <char cp="1D518" mathclass="A"/>
+   <char cp="1D519" mathclass="A"/>
+   <char cp="1D51A" mathclass="A"/>
+   <char cp="1D51B" mathclass="A"/>
+   <char cp="1D51C" mathclass="A"/>
+   <char cp="1D51D" mathclass="A" unassigned="true" equivalent="2128"/>
+   <char cp="1D51E" mathclass="A"/>
+   <char cp="1D51F" mathclass="A"/>
+   <char cp="1D520" mathclass="A"/>
+   <char cp="1D521" mathclass="A"/>
+   <char cp="1D522" mathclass="A"/>
+   <char cp="1D523" mathclass="A"/>
+   <char cp="1D524" mathclass="A"/>
+   <char cp="1D525" mathclass="A"/>
+   <char cp="1D526" mathclass="A"/>
+   <char cp="1D527" mathclass="A"/>
+   <char cp="1D528" mathclass="A"/>
+   <char cp="1D529" mathclass="A"/>
+   <char cp="1D52A" mathclass="A"/>
+   <char cp="1D52B" mathclass="A"/>
+   <char cp="1D52C" mathclass="A"/>
+   <char cp="1D52D" mathclass="A"/>
+   <char cp="1D52E" mathclass="A"/>
+   <char cp="1D52F" mathclass="A"/>
+   <char cp="1D530" mathclass="A"/>
+   <char cp="1D531" mathclass="A"/>
+   <char cp="1D532" mathclass="A"/>
+   <char cp="1D533" mathclass="A"/>
+   <char cp="1D534" mathclass="A"/>
+   <char cp="1D535" mathclass="A"/>
+   <char cp="1D536" mathclass="A"/>
+   <char cp="1D537" mathclass="A"/>
+   <char cp="1D538" mathclass="A"/>
+   <char cp="1D539" mathclass="A"/>
+   <char cp="1D53A" mathclass="A" unassigned="true" equivalent="2102"/>
+   <char cp="1D53B" mathclass="A"/>
+   <char cp="1D53C" mathclass="A"/>
+   <char cp="1D53D" mathclass="A"/>
+   <char cp="1D53E" mathclass="A"/>
+   <char cp="1D53F" mathclass="A" unassigned="true" equivalent="210D"/>
+   <char cp="1D540" mathclass="A"/>
+   <char cp="1D541" mathclass="A"/>
+   <char cp="1D542" mathclass="A"/>
+   <char cp="1D543" mathclass="A"/>
+   <char cp="1D544" mathclass="A"/>
+   <char cp="1D545" mathclass="A" unassigned="true" equivalent="2115"/>
+   <char cp="1D546" mathclass="A"/>
+   <char cp="1D547" mathclass="A" unassigned="true" equivalent="2119"/>
+   <char cp="1D548" mathclass="A" unassigned="true" equivalent="211A"/>
+   <char cp="1D549" mathclass="A" unassigned="true" equivalent="211D"/>
+   <char cp="1D54A" mathclass="A"/>
+   <char cp="1D54B" mathclass="A"/>
+   <char cp="1D54C" mathclass="A"/>
+   <char cp="1D54D" mathclass="A"/>
+   <char cp="1D54E" mathclass="A"/>
+   <char cp="1D54F" mathclass="A"/>
+   <char cp="1D550" mathclass="A"/>
+   <char cp="1D551" mathclass="A" unassigned="true" equivalent="2124"/>
+   <char cp="1D552" mathclass="A"/>
+   <char cp="1D553" mathclass="A"/>
+   <char cp="1D554" mathclass="A"/>
+   <char cp="1D555" mathclass="A"/>
+   <char cp="1D556" mathclass="A"/>
+   <char cp="1D557" mathclass="A"/>
+   <char cp="1D558" mathclass="A"/>
+   <char cp="1D559" mathclass="A"/>
+   <char cp="1D55A" mathclass="A"/>
+   <char cp="1D55B" mathclass="A"/>
+   <char cp="1D55C" mathclass="A"/>
+   <char cp="1D55D" mathclass="A"/>
+   <char cp="1D55E" mathclass="A"/>
+   <char cp="1D55F" mathclass="A"/>
+   <char cp="1D560" mathclass="A"/>
+   <char cp="1D561" mathclass="A"/>
+   <char cp="1D562" mathclass="A"/>
+   <char cp="1D563" mathclass="A"/>
+   <char cp="1D564" mathclass="A"/>
+   <char cp="1D565" mathclass="A"/>
+   <char cp="1D566" mathclass="A"/>
+   <char cp="1D567" mathclass="A"/>
+   <char cp="1D568" mathclass="A"/>
+   <char cp="1D569" mathclass="A"/>
+   <char cp="1D56A" mathclass="A"/>
+   <char cp="1D56B" mathclass="A"/>
+   <char cp="1D56C" mathclass="A"/>
+   <char cp="1D56D" mathclass="A"/>
+   <char cp="1D56E" mathclass="A"/>
+   <char cp="1D56F" mathclass="A"/>
+   <char cp="1D570" mathclass="A"/>
+   <char cp="1D571" mathclass="A"/>
+   <char cp="1D572" mathclass="A"/>
+   <char cp="1D573" mathclass="A"/>
+   <char cp="1D574" mathclass="A"/>
+   <char cp="1D575" mathclass="A"/>
+   <char cp="1D576" mathclass="A"/>
+   <char cp="1D577" mathclass="A"/>
+   <char cp="1D578" mathclass="A"/>
+   <char cp="1D579" mathclass="A"/>
+   <char cp="1D57A" mathclass="A"/>
+   <char cp="1D57B" mathclass="A"/>
+   <char cp="1D57C" mathclass="A"/>
+   <char cp="1D57D" mathclass="A"/>
+   <char cp="1D57E" mathclass="A"/>
+   <char cp="1D57F" mathclass="A"/>
+   <char cp="1D580" mathclass="A"/>
+   <char cp="1D581" mathclass="A"/>
+   <char cp="1D582" mathclass="A"/>
+   <char cp="1D583" mathclass="A"/>
+   <char cp="1D584" mathclass="A"/>
+   <char cp="1D585" mathclass="A"/>
+   <char cp="1D586" mathclass="A"/>
+   <char cp="1D587" mathclass="A"/>
+   <char cp="1D588" mathclass="A"/>
+   <char cp="1D589" mathclass="A"/>
+   <char cp="1D58A" mathclass="A"/>
+   <char cp="1D58B" mathclass="A"/>
+   <char cp="1D58C" mathclass="A"/>
+   <char cp="1D58D" mathclass="A"/>
+   <char cp="1D58E" mathclass="A"/>
+   <char cp="1D58F" mathclass="A"/>
+   <char cp="1D590" mathclass="A"/>
+   <char cp="1D591" mathclass="A"/>
+   <char cp="1D592" mathclass="A"/>
+   <char cp="1D593" mathclass="A"/>
+   <char cp="1D594" mathclass="A"/>
+   <char cp="1D595" mathclass="A"/>
+   <char cp="1D596" mathclass="A"/>
+   <char cp="1D597" mathclass="A"/>
+   <char cp="1D598" mathclass="A"/>
+   <char cp="1D599" mathclass="A"/>
+   <char cp="1D59A" mathclass="A"/>
+   <char cp="1D59B" mathclass="A"/>
+   <char cp="1D59C" mathclass="A"/>
+   <char cp="1D59D" mathclass="A"/>
+   <char cp="1D59E" mathclass="A"/>
+   <char cp="1D59F" mathclass="A"/>
+   <char cp="1D5A0" mathclass="A"/>
+   <char cp="1D5A1" mathclass="A"/>
+   <char cp="1D5A2" mathclass="A"/>
+   <char cp="1D5A3" mathclass="A"/>
+   <char cp="1D5A4" mathclass="A"/>
+   <char cp="1D5A5" mathclass="A"/>
+   <char cp="1D5A6" mathclass="A"/>
+   <char cp="1D5A7" mathclass="A"/>
+   <char cp="1D5A8" mathclass="A"/>
+   <char cp="1D5A9" mathclass="A"/>
+   <char cp="1D5AA" mathclass="A"/>
+   <char cp="1D5AB" mathclass="A"/>
+   <char cp="1D5AC" mathclass="A"/>
+   <char cp="1D5AD" mathclass="A"/>
+   <char cp="1D5AE" mathclass="A"/>
+   <char cp="1D5AF" mathclass="A"/>
+   <char cp="1D5B0" mathclass="A"/>
+   <char cp="1D5B1" mathclass="A"/>
+   <char cp="1D5B2" mathclass="A"/>
+   <char cp="1D5B3" mathclass="A"/>
+   <char cp="1D5B4" mathclass="A"/>
+   <char cp="1D5B5" mathclass="A"/>
+   <char cp="1D5B6" mathclass="A"/>
+   <char cp="1D5B7" mathclass="A"/>
+   <char cp="1D5B8" mathclass="A"/>
+   <char cp="1D5B9" mathclass="A"/>
+   <char cp="1D5BA" mathclass="A"/>
+   <char cp="1D5BB" mathclass="A"/>
+   <char cp="1D5BC" mathclass="A"/>
+   <char cp="1D5BD" mathclass="A"/>
+   <char cp="1D5BE" mathclass="A"/>
+   <char cp="1D5BF" mathclass="A"/>
+   <char cp="1D5C0" mathclass="A"/>
+   <char cp="1D5C1" mathclass="A"/>
+   <char cp="1D5C2" mathclass="A"/>
+   <char cp="1D5C3" mathclass="A"/>
+   <char cp="1D5C4" mathclass="A"/>
+   <char cp="1D5C5" mathclass="A"/>
+   <char cp="1D5C6" mathclass="A"/>
+   <char cp="1D5C7" mathclass="A"/>
+   <char cp="1D5C8" mathclass="A"/>
+   <char cp="1D5C9" mathclass="A"/>
+   <char cp="1D5CA" mathclass="A"/>
+   <char cp="1D5CB" mathclass="A"/>
+   <char cp="1D5CC" mathclass="A"/>
+   <char cp="1D5CD" mathclass="A"/>
+   <char cp="1D5CE" mathclass="A"/>
+   <char cp="1D5CF" mathclass="A"/>
+   <char cp="1D5D0" mathclass="A"/>
+   <char cp="1D5D1" mathclass="A"/>
+   <char cp="1D5D2" mathclass="A"/>
+   <char cp="1D5D3" mathclass="A"/>
+   <char cp="1D5D4" mathclass="A"/>
+   <char cp="1D5D5" mathclass="A"/>
+   <char cp="1D5D6" mathclass="A"/>
+   <char cp="1D5D7" mathclass="A"/>
+   <char cp="1D5D8" mathclass="A"/>
+   <char cp="1D5D9" mathclass="A"/>
+   <char cp="1D5DA" mathclass="A"/>
+   <char cp="1D5DB" mathclass="A"/>
+   <char cp="1D5DC" mathclass="A"/>
+   <char cp="1D5DD" mathclass="A"/>
+   <char cp="1D5DE" mathclass="A"/>
+   <char cp="1D5DF" mathclass="A"/>
+   <char cp="1D5E0" mathclass="A"/>
+   <char cp="1D5E1" mathclass="A"/>
+   <char cp="1D5E2" mathclass="A"/>
+   <char cp="1D5E3" mathclass="A"/>
+   <char cp="1D5E4" mathclass="A"/>
+   <char cp="1D5E5" mathclass="A"/>
+   <char cp="1D5E6" mathclass="A"/>
+   <char cp="1D5E7" mathclass="A"/>
+   <char cp="1D5E8" mathclass="A"/>
+   <char cp="1D5E9" mathclass="A"/>
+   <char cp="1D5EA" mathclass="A"/>
+   <char cp="1D5EB" mathclass="A"/>
+   <char cp="1D5EC" mathclass="A"/>
+   <char cp="1D5ED" mathclass="A"/>
+   <char cp="1D5EE" mathclass="A"/>
+   <char cp="1D5EF" mathclass="A"/>
+   <char cp="1D5F0" mathclass="A"/>
+   <char cp="1D5F1" mathclass="A"/>
+   <char cp="1D5F2" mathclass="A"/>
+   <char cp="1D5F3" mathclass="A"/>
+   <char cp="1D5F4" mathclass="A"/>
+   <char cp="1D5F5" mathclass="A"/>
+   <char cp="1D5F6" mathclass="A"/>
+   <char cp="1D5F7" mathclass="A"/>
+   <char cp="1D5F8" mathclass="A"/>
+   <char cp="1D5F9" mathclass="A"/>
+   <char cp="1D5FA" mathclass="A"/>
+   <char cp="1D5FB" mathclass="A"/>
+   <char cp="1D5FC" mathclass="A"/>
+   <char cp="1D5FD" mathclass="A"/>
+   <char cp="1D5FE" mathclass="A"/>
+   <char cp="1D5FF" mathclass="A"/>
+   <char cp="1D600" mathclass="A"/>
+   <char cp="1D601" mathclass="A"/>
+   <char cp="1D602" mathclass="A"/>
+   <char cp="1D603" mathclass="A"/>
+   <char cp="1D604" mathclass="A"/>
+   <char cp="1D605" mathclass="A"/>
+   <char cp="1D606" mathclass="A"/>
+   <char cp="1D607" mathclass="A"/>
+   <char cp="1D608" mathclass="A"/>
+   <char cp="1D609" mathclass="A"/>
+   <char cp="1D60A" mathclass="A"/>
+   <char cp="1D60B" mathclass="A"/>
+   <char cp="1D60C" mathclass="A"/>
+   <char cp="1D60D" mathclass="A"/>
+   <char cp="1D60E" mathclass="A"/>
+   <char cp="1D60F" mathclass="A"/>
+   <char cp="1D610" mathclass="A"/>
+   <char cp="1D611" mathclass="A"/>
+   <char cp="1D612" mathclass="A"/>
+   <char cp="1D613" mathclass="A"/>
+   <char cp="1D614" mathclass="A"/>
+   <char cp="1D615" mathclass="A"/>
+   <char cp="1D616" mathclass="A"/>
+   <char cp="1D617" mathclass="A"/>
+   <char cp="1D618" mathclass="A"/>
+   <char cp="1D619" mathclass="A"/>
+   <char cp="1D61A" mathclass="A"/>
+   <char cp="1D61B" mathclass="A"/>
+   <char cp="1D61C" mathclass="A"/>
+   <char cp="1D61D" mathclass="A"/>
+   <char cp="1D61E" mathclass="A"/>
+   <char cp="1D61F" mathclass="A"/>
+   <char cp="1D620" mathclass="A"/>
+   <char cp="1D621" mathclass="A"/>
+   <char cp="1D622" mathclass="A"/>
+   <char cp="1D623" mathclass="A"/>
+   <char cp="1D624" mathclass="A"/>
+   <char cp="1D625" mathclass="A"/>
+   <char cp="1D626" mathclass="A"/>
+   <char cp="1D627" mathclass="A"/>
+   <char cp="1D628" mathclass="A"/>
+   <char cp="1D629" mathclass="A"/>
+   <char cp="1D62A" mathclass="A"/>
+   <char cp="1D62B" mathclass="A"/>
+   <char cp="1D62C" mathclass="A"/>
+   <char cp="1D62D" mathclass="A"/>
+   <char cp="1D62E" mathclass="A"/>
+   <char cp="1D62F" mathclass="A"/>
+   <char cp="1D630" mathclass="A"/>
+   <char cp="1D631" mathclass="A"/>
+   <char cp="1D632" mathclass="A"/>
+   <char cp="1D633" mathclass="A"/>
+   <char cp="1D634" mathclass="A"/>
+   <char cp="1D635" mathclass="A"/>
+   <char cp="1D636" mathclass="A"/>
+   <char cp="1D637" mathclass="A"/>
+   <char cp="1D638" mathclass="A"/>
+   <char cp="1D639" mathclass="A"/>
+   <char cp="1D63A" mathclass="A"/>
+   <char cp="1D63B" mathclass="A"/>
+   <char cp="1D63C" mathclass="A"/>
+   <char cp="1D63D" mathclass="A"/>
+   <char cp="1D63E" mathclass="A"/>
+   <char cp="1D63F" mathclass="A"/>
+   <char cp="1D640" mathclass="A"/>
+   <char cp="1D641" mathclass="A"/>
+   <char cp="1D642" mathclass="A"/>
+   <char cp="1D643" mathclass="A"/>
+   <char cp="1D644" mathclass="A"/>
+   <char cp="1D645" mathclass="A"/>
+   <char cp="1D646" mathclass="A"/>
+   <char cp="1D647" mathclass="A"/>
+   <char cp="1D648" mathclass="A"/>
+   <char cp="1D649" mathclass="A"/>
+   <char cp="1D64A" mathclass="A"/>
+   <char cp="1D64B" mathclass="A"/>
+   <char cp="1D64C" mathclass="A"/>
+   <char cp="1D64D" mathclass="A"/>
+   <char cp="1D64E" mathclass="A"/>
+   <char cp="1D64F" mathclass="A"/>
+   <char cp="1D650" mathclass="A"/>
+   <char cp="1D651" mathclass="A"/>
+   <char cp="1D652" mathclass="A"/>
+   <char cp="1D653" mathclass="A"/>
+   <char cp="1D654" mathclass="A"/>
+   <char cp="1D655" mathclass="A"/>
+   <char cp="1D656" mathclass="A"/>
+   <char cp="1D657" mathclass="A"/>
+   <char cp="1D658" mathclass="A"/>
+   <char cp="1D659" mathclass="A"/>
+   <char cp="1D65A" mathclass="A"/>
+   <char cp="1D65B" mathclass="A"/>
+   <char cp="1D65C" mathclass="A"/>
+   <char cp="1D65D" mathclass="A"/>
+   <char cp="1D65E" mathclass="A"/>
+   <char cp="1D65F" mathclass="A"/>
+   <char cp="1D660" mathclass="A"/>
+   <char cp="1D661" mathclass="A"/>
+   <char cp="1D662" mathclass="A"/>
+   <char cp="1D663" mathclass="A"/>
+   <char cp="1D664" mathclass="A"/>
+   <char cp="1D665" mathclass="A"/>
+   <char cp="1D666" mathclass="A"/>
+   <char cp="1D667" mathclass="A"/>
+   <char cp="1D668" mathclass="A"/>
+   <char cp="1D669" mathclass="A"/>
+   <char cp="1D66A" mathclass="A"/>
+   <char cp="1D66B" mathclass="A"/>
+   <char cp="1D66C" mathclass="A"/>
+   <char cp="1D66D" mathclass="A"/>
+   <char cp="1D66E" mathclass="A"/>
+   <char cp="1D66F" mathclass="A"/>
+   <char cp="1D670" mathclass="A"/>
+   <char cp="1D671" mathclass="A"/>
+   <char cp="1D672" mathclass="A"/>
+   <char cp="1D673" mathclass="A"/>
+   <char cp="1D674" mathclass="A"/>
+   <char cp="1D675" mathclass="A"/>
+   <char cp="1D676" mathclass="A"/>
+   <char cp="1D677" mathclass="A"/>
+   <char cp="1D678" mathclass="A"/>
+   <char cp="1D679" mathclass="A"/>
+   <char cp="1D67A" mathclass="A"/>
+   <char cp="1D67B" mathclass="A"/>
+   <char cp="1D67C" mathclass="A"/>
+   <char cp="1D67D" mathclass="A"/>
+   <char cp="1D67E" mathclass="A"/>
+   <char cp="1D67F" mathclass="A"/>
+   <char cp="1D680" mathclass="A"/>
+   <char cp="1D681" mathclass="A"/>
+   <char cp="1D682" mathclass="A"/>
+   <char cp="1D683" mathclass="A"/>
+   <char cp="1D684" mathclass="A"/>
+   <char cp="1D685" mathclass="A"/>
+   <char cp="1D686" mathclass="A"/>
+   <char cp="1D687" mathclass="A"/>
+   <char cp="1D688" mathclass="A"/>
+   <char cp="1D689" mathclass="A"/>
+   <char cp="1D68A" mathclass="A"/>
+   <char cp="1D68B" mathclass="A"/>
+   <char cp="1D68C" mathclass="A"/>
+   <char cp="1D68D" mathclass="A"/>
+   <char cp="1D68E" mathclass="A"/>
+   <char cp="1D68F" mathclass="A"/>
+   <char cp="1D690" mathclass="A"/>
+   <char cp="1D691" mathclass="A"/>
+   <char cp="1D692" mathclass="A"/>
+   <char cp="1D693" mathclass="A"/>
+   <char cp="1D694" mathclass="A"/>
+   <char cp="1D695" mathclass="A"/>
+   <char cp="1D696" mathclass="A"/>
+   <char cp="1D697" mathclass="A"/>
+   <char cp="1D698" mathclass="A"/>
+   <char cp="1D699" mathclass="A"/>
+   <char cp="1D69A" mathclass="A"/>
+   <char cp="1D69B" mathclass="A"/>
+   <char cp="1D69C" mathclass="A"/>
+   <char cp="1D69D" mathclass="A"/>
+   <char cp="1D69E" mathclass="A"/>
+   <char cp="1D69F" mathclass="A"/>
+   <char cp="1D6A0" mathclass="A"/>
+   <char cp="1D6A1" mathclass="A"/>
+   <char cp="1D6A2" mathclass="A"/>
+   <char cp="1D6A3" mathclass="A"/>
+   <char cp="1D6A4" mathclass="A"/>
+   <char cp="1D6A5" mathclass="A"/>
+   <char cp="1D6A8" mathclass="A"/>
+   <char cp="1D6A9" mathclass="A"/>
+   <char cp="1D6AA" mathclass="A"/>
+   <char cp="1D6AB" mathclass="A"/>
+   <char cp="1D6AC" mathclass="A"/>
+   <char cp="1D6AD" mathclass="A"/>
+   <char cp="1D6AE" mathclass="A"/>
+   <char cp="1D6AF" mathclass="A"/>
+   <char cp="1D6B0" mathclass="A"/>
+   <char cp="1D6B1" mathclass="A"/>
+   <char cp="1D6B2" mathclass="A"/>
+   <char cp="1D6B3" mathclass="A"/>
+   <char cp="1D6B4" mathclass="A"/>
+   <char cp="1D6B5" mathclass="A"/>
+   <char cp="1D6B6" mathclass="A"/>
+   <char cp="1D6B7" mathclass="A"/>
+   <char cp="1D6B8" mathclass="A"/>
+   <char cp="1D6B9" mathclass="A"/>
+   <char cp="1D6BA" mathclass="A"/>
+   <char cp="1D6BB" mathclass="A"/>
+   <char cp="1D6BC" mathclass="A"/>
+   <char cp="1D6BD" mathclass="A"/>
+   <char cp="1D6BE" mathclass="A"/>
+   <char cp="1D6BF" mathclass="A"/>
+   <char cp="1D6C0" mathclass="A"/>
+   <char cp="1D6C1" mathclass="A"/>
+   <char cp="1D6C2" mathclass="A"/>
+   <char cp="1D6C3" mathclass="A"/>
+   <char cp="1D6C4" mathclass="A"/>
+   <char cp="1D6C5" mathclass="A"/>
+   <char cp="1D6C6" mathclass="A"/>
+   <char cp="1D6C7" mathclass="A"/>
+   <char cp="1D6C8" mathclass="A"/>
+   <char cp="1D6C9" mathclass="A"/>
+   <char cp="1D6CA" mathclass="A"/>
+   <char cp="1D6CB" mathclass="A"/>
+   <char cp="1D6CC" mathclass="A"/>
+   <char cp="1D6CD" mathclass="A"/>
+   <char cp="1D6CE" mathclass="A"/>
+   <char cp="1D6CF" mathclass="A"/>
+   <char cp="1D6D0" mathclass="A"/>
+   <char cp="1D6D1" mathclass="A"/>
+   <char cp="1D6D2" mathclass="A"/>
+   <char cp="1D6D3" mathclass="A"/>
+   <char cp="1D6D4" mathclass="A"/>
+   <char cp="1D6D5" mathclass="A"/>
+   <char cp="1D6D6" mathclass="A"/>
+   <char cp="1D6D7" mathclass="A"/>
+   <char cp="1D6D8" mathclass="A"/>
+   <char cp="1D6D9" mathclass="A"/>
+   <char cp="1D6DA" mathclass="A"/>
+   <char cp="1D6DB" mathclass="A"/>
+   <char cp="1D6DC" mathclass="A"/>
+   <char cp="1D6DD" mathclass="A"/>
+   <char cp="1D6DE" mathclass="A"/>
+   <char cp="1D6DF" mathclass="A"/>
+   <char cp="1D6E0" mathclass="A"/>
+   <char cp="1D6E1" mathclass="A"/>
+   <char cp="1D6E2" mathclass="A"/>
+   <char cp="1D6E3" mathclass="A"/>
+   <char cp="1D6E4" mathclass="A"/>
+   <char cp="1D6E5" mathclass="A"/>
+   <char cp="1D6E6" mathclass="A"/>
+   <char cp="1D6E7" mathclass="A"/>
+   <char cp="1D6E8" mathclass="A"/>
+   <char cp="1D6E9" mathclass="A"/>
+   <char cp="1D6EA" mathclass="A"/>
+   <char cp="1D6EB" mathclass="A"/>
+   <char cp="1D6EC" mathclass="A"/>
+   <char cp="1D6ED" mathclass="A"/>
+   <char cp="1D6EE" mathclass="A"/>
+   <char cp="1D6EF" mathclass="A"/>
+   <char cp="1D6F0" mathclass="A"/>
+   <char cp="1D6F1" mathclass="A"/>
+   <char cp="1D6F2" mathclass="A"/>
+   <char cp="1D6F3" mathclass="A"/>
+   <char cp="1D6F4" mathclass="A"/>
+   <char cp="1D6F5" mathclass="A"/>
+   <char cp="1D6F6" mathclass="A"/>
+   <char cp="1D6F7" mathclass="A"/>
+   <char cp="1D6F8" mathclass="A"/>
+   <char cp="1D6F9" mathclass="A"/>
+   <char cp="1D6FA" mathclass="A"/>
+   <char cp="1D6FB" mathclass="A"/>
+   <char cp="1D6FC" mathclass="A"/>
+   <char cp="1D6FD" mathclass="A"/>
+   <char cp="1D6FE" mathclass="A"/>
+   <char cp="1D6FF" mathclass="A"/>
+   <char cp="1D700" mathclass="A"/>
+   <char cp="1D701" mathclass="A"/>
+   <char cp="1D702" mathclass="A"/>
+   <char cp="1D703" mathclass="A"/>
+   <char cp="1D704" mathclass="A"/>
+   <char cp="1D705" mathclass="A"/>
+   <char cp="1D706" mathclass="A"/>
+   <char cp="1D707" mathclass="A"/>
+   <char cp="1D708" mathclass="A"/>
+   <char cp="1D709" mathclass="A"/>
+   <char cp="1D70A" mathclass="A"/>
+   <char cp="1D70B" mathclass="A"/>
+   <char cp="1D70C" mathclass="A"/>
+   <char cp="1D70D" mathclass="A"/>
+   <char cp="1D70E" mathclass="A"/>
+   <char cp="1D70F" mathclass="A"/>
+   <char cp="1D710" mathclass="A"/>
+   <char cp="1D711" mathclass="A"/>
+   <char cp="1D712" mathclass="A"/>
+   <char cp="1D713" mathclass="A"/>
+   <char cp="1D714" mathclass="A"/>
+   <char cp="1D715" mathclass="A"/>
+   <char cp="1D716" mathclass="A"/>
+   <char cp="1D717" mathclass="A"/>
+   <char cp="1D718" mathclass="A"/>
+   <char cp="1D719" mathclass="A"/>
+   <char cp="1D71A" mathclass="A"/>
+   <char cp="1D71B" mathclass="A"/>
+   <char cp="1D71C" mathclass="A"/>
+   <char cp="1D71D" mathclass="A"/>
+   <char cp="1D71E" mathclass="A"/>
+   <char cp="1D71F" mathclass="A"/>
+   <char cp="1D720" mathclass="A"/>
+   <char cp="1D721" mathclass="A"/>
+   <char cp="1D722" mathclass="A"/>
+   <char cp="1D723" mathclass="A"/>
+   <char cp="1D724" mathclass="A"/>
+   <char cp="1D725" mathclass="A"/>
+   <char cp="1D726" mathclass="A"/>
+   <char cp="1D727" mathclass="A"/>
+   <char cp="1D728" mathclass="A"/>
+   <char cp="1D729" mathclass="A"/>
+   <char cp="1D72A" mathclass="A"/>
+   <char cp="1D72B" mathclass="A"/>
+   <char cp="1D72C" mathclass="A"/>
+   <char cp="1D72D" mathclass="A"/>
+   <char cp="1D72E" mathclass="A"/>
+   <char cp="1D72F" mathclass="A"/>
+   <char cp="1D730" mathclass="A"/>
+   <char cp="1D731" mathclass="A"/>
+   <char cp="1D732" mathclass="A"/>
+   <char cp="1D733" mathclass="A"/>
+   <char cp="1D734" mathclass="A"/>
+   <char cp="1D735" mathclass="A"/>
+   <char cp="1D736" mathclass="A"/>
+   <char cp="1D737" mathclass="A"/>
+   <char cp="1D738" mathclass="A"/>
+   <char cp="1D739" mathclass="A"/>
+   <char cp="1D73A" mathclass="A"/>
+   <char cp="1D73B" mathclass="A"/>
+   <char cp="1D73C" mathclass="A"/>
+   <char cp="1D73D" mathclass="A"/>
+   <char cp="1D73E" mathclass="A"/>
+   <char cp="1D73F" mathclass="A"/>
+   <char cp="1D740" mathclass="A"/>
+   <char cp="1D741" mathclass="A"/>
+   <char cp="1D742" mathclass="A"/>
+   <char cp="1D743" mathclass="A"/>
+   <char cp="1D744" mathclass="A"/>
+   <char cp="1D745" mathclass="A"/>
+   <char cp="1D746" mathclass="A"/>
+   <char cp="1D747" mathclass="A"/>
+   <char cp="1D748" mathclass="A"/>
+   <char cp="1D749" mathclass="A"/>
+   <char cp="1D74A" mathclass="A"/>
+   <char cp="1D74B" mathclass="A"/>
+   <char cp="1D74C" mathclass="A"/>
+   <char cp="1D74D" mathclass="A"/>
+   <char cp="1D74E" mathclass="A"/>
+   <char cp="1D74F" mathclass="A"/>
+   <char cp="1D750" mathclass="A"/>
+   <char cp="1D751" mathclass="A"/>
+   <char cp="1D752" mathclass="A"/>
+   <char cp="1D753" mathclass="A"/>
+   <char cp="1D754" mathclass="A"/>
+   <char cp="1D755" mathclass="A"/>
+   <char cp="1D756" mathclass="A"/>
+   <char cp="1D757" mathclass="A"/>
+   <char cp="1D758" mathclass="A"/>
+   <char cp="1D759" mathclass="A"/>
+   <char cp="1D75A" mathclass="A"/>
+   <char cp="1D75B" mathclass="A"/>
+   <char cp="1D75C" mathclass="A"/>
+   <char cp="1D75D" mathclass="A"/>
+   <char cp="1D75E" mathclass="A"/>
+   <char cp="1D75F" mathclass="A"/>
+   <char cp="1D760" mathclass="A"/>
+   <char cp="1D761" mathclass="A"/>
+   <char cp="1D762" mathclass="A"/>
+   <char cp="1D763" mathclass="A"/>
+   <char cp="1D764" mathclass="A"/>
+   <char cp="1D765" mathclass="A"/>
+   <char cp="1D766" mathclass="A"/>
+   <char cp="1D767" mathclass="A"/>
+   <char cp="1D768" mathclass="A"/>
+   <char cp="1D769" mathclass="A"/>
+   <char cp="1D76A" mathclass="A"/>
+   <char cp="1D76B" mathclass="A"/>
+   <char cp="1D76C" mathclass="A"/>
+   <char cp="1D76D" mathclass="A"/>
+   <char cp="1D76E" mathclass="A"/>
+   <char cp="1D76F" mathclass="A"/>
+   <char cp="1D770" mathclass="A"/>
+   <char cp="1D771" mathclass="A"/>
+   <char cp="1D772" mathclass="A"/>
+   <char cp="1D773" mathclass="A"/>
+   <char cp="1D774" mathclass="A"/>
+   <char cp="1D775" mathclass="A"/>
+   <char cp="1D776" mathclass="A"/>
+   <char cp="1D777" mathclass="A"/>
+   <char cp="1D778" mathclass="A"/>
+   <char cp="1D779" mathclass="A"/>
+   <char cp="1D77A" mathclass="A"/>
+   <char cp="1D77B" mathclass="A"/>
+   <char cp="1D77C" mathclass="A"/>
+   <char cp="1D77D" mathclass="A"/>
+   <char cp="1D77E" mathclass="A"/>
+   <char cp="1D77F" mathclass="A"/>
+   <char cp="1D780" mathclass="A"/>
+   <char cp="1D781" mathclass="A"/>
+   <char cp="1D782" mathclass="A"/>
+   <char cp="1D783" mathclass="A"/>
+   <char cp="1D784" mathclass="A"/>
+   <char cp="1D785" mathclass="A"/>
+   <char cp="1D786" mathclass="A"/>
+   <char cp="1D787" mathclass="A"/>
+   <char cp="1D788" mathclass="A"/>
+   <char cp="1D789" mathclass="A"/>
+   <char cp="1D78A" mathclass="A"/>
+   <char cp="1D78B" mathclass="A"/>
+   <char cp="1D78C" mathclass="A"/>
+   <char cp="1D78D" mathclass="A"/>
+   <char cp="1D78E" mathclass="A"/>
+   <char cp="1D78F" mathclass="A"/>
+   <char cp="1D790" mathclass="A"/>
+   <char cp="1D791" mathclass="A"/>
+   <char cp="1D792" mathclass="A"/>
+   <char cp="1D793" mathclass="A"/>
+   <char cp="1D794" mathclass="A"/>
+   <char cp="1D795" mathclass="A"/>
+   <char cp="1D796" mathclass="A"/>
+   <char cp="1D797" mathclass="A"/>
+   <char cp="1D798" mathclass="A"/>
+   <char cp="1D799" mathclass="A"/>
+   <char cp="1D79A" mathclass="A"/>
+   <char cp="1D79B" mathclass="A"/>
+   <char cp="1D79C" mathclass="A"/>
+   <char cp="1D79D" mathclass="A"/>
+   <char cp="1D79E" mathclass="A"/>
+   <char cp="1D79F" mathclass="A"/>
+   <char cp="1D7A0" mathclass="A"/>
+   <char cp="1D7A1" mathclass="A"/>
+   <char cp="1D7A2" mathclass="A"/>
+   <char cp="1D7A3" mathclass="A"/>
+   <char cp="1D7A4" mathclass="A"/>
+   <char cp="1D7A5" mathclass="A"/>
+   <char cp="1D7A6" mathclass="A"/>
+   <char cp="1D7A7" mathclass="A"/>
+   <char cp="1D7A8" mathclass="A"/>
+   <char cp="1D7A9" mathclass="A"/>
+   <char cp="1D7AA" mathclass="A"/>
+   <char cp="1D7AB" mathclass="A"/>
+   <char cp="1D7AC" mathclass="A"/>
+   <char cp="1D7AD" mathclass="A"/>
+   <char cp="1D7AE" mathclass="A"/>
+   <char cp="1D7AF" mathclass="A"/>
+   <char cp="1D7B0" mathclass="A"/>
+   <char cp="1D7B1" mathclass="A"/>
+   <char cp="1D7B2" mathclass="A"/>
+   <char cp="1D7B3" mathclass="A"/>
+   <char cp="1D7B4" mathclass="A"/>
+   <char cp="1D7B5" mathclass="A"/>
+   <char cp="1D7B6" mathclass="A"/>
+   <char cp="1D7B7" mathclass="A"/>
+   <char cp="1D7B8" mathclass="A"/>
+   <char cp="1D7B9" mathclass="A"/>
+   <char cp="1D7BA" mathclass="A"/>
+   <char cp="1D7BB" mathclass="A"/>
+   <char cp="1D7BC" mathclass="A"/>
+   <char cp="1D7BD" mathclass="A"/>
+   <char cp="1D7BE" mathclass="A"/>
+   <char cp="1D7BF" mathclass="A"/>
+   <char cp="1D7C0" mathclass="A"/>
+   <char cp="1D7C1" mathclass="A"/>
+   <char cp="1D7C2" mathclass="A"/>
+   <char cp="1D7C3" mathclass="A"/>
+   <char cp="1D7C4" mathclass="A"/>
+   <char cp="1D7C5" mathclass="A"/>
+   <char cp="1D7C6" mathclass="A"/>
+   <char cp="1D7C7" mathclass="A"/>
+   <char cp="1D7C8" mathclass="A"/>
+   <char cp="1D7C9" mathclass="A"/>
+   <char cp="1D7CA" mathclass="A"/>
+   <char cp="1D7CB" mathclass="A"/>
+   <char cp="1D7CE" mathclass="N"/>
+   <char cp="1D7CF" mathclass="N"/>
+   <char cp="1D7D0" mathclass="N"/>
+   <char cp="1D7D1" mathclass="N"/>
+   <char cp="1D7D2" mathclass="N"/>
+   <char cp="1D7D3" mathclass="N"/>
+   <char cp="1D7D4" mathclass="N"/>
+   <char cp="1D7D5" mathclass="N"/>
+   <char cp="1D7D6" mathclass="N"/>
+   <char cp="1D7D7" mathclass="N"/>
+   <char cp="1D7D8" mathclass="N"/>
+   <char cp="1D7D9" mathclass="N"/>
+   <char cp="1D7DA" mathclass="N"/>
+   <char cp="1D7DB" mathclass="N"/>
+   <char cp="1D7DC" mathclass="N"/>
+   <char cp="1D7DD" mathclass="N"/>
+   <char cp="1D7DE" mathclass="N"/>
+   <char cp="1D7DF" mathclass="N"/>
+   <char cp="1D7E0" mathclass="N"/>
+   <char cp="1D7E1" mathclass="N"/>
+   <char cp="1D7E2" mathclass="N"/>
+   <char cp="1D7E3" mathclass="N"/>
+   <char cp="1D7E4" mathclass="N"/>
+   <char cp="1D7E5" mathclass="N"/>
+   <char cp="1D7E6" mathclass="N"/>
+   <char cp="1D7E7" mathclass="N"/>
+   <char cp="1D7E8" mathclass="N"/>
+   <char cp="1D7E9" mathclass="N"/>
+   <char cp="1D7EA" mathclass="N"/>
+   <char cp="1D7EB" mathclass="N"/>
+   <char cp="1D7EC" mathclass="N"/>
+   <char cp="1D7ED" mathclass="N"/>
+   <char cp="1D7EE" mathclass="N"/>
+   <char cp="1D7EF" mathclass="N"/>
+   <char cp="1D7F0" mathclass="N"/>
+   <char cp="1D7F1" mathclass="N"/>
+   <char cp="1D7F2" mathclass="N"/>
+   <char cp="1D7F3" mathclass="N"/>
+   <char cp="1D7F4" mathclass="N"/>
+   <char cp="1D7F5" mathclass="N"/>
+   <char cp="1D7F6" mathclass="N"/>
+   <char cp="1D7F7" mathclass="N"/>
+   <char cp="1D7F8" mathclass="N"/>
+   <char cp="1D7F9" mathclass="N"/>
+   <char cp="1D7FA" mathclass="N"/>
+   <char cp="1D7FB" mathclass="N"/>
+   <char cp="1D7FC" mathclass="N"/>
+   <char cp="1D7FD" mathclass="N"/>
+   <char cp="1D7FE" mathclass="N"/>
+   <char cp="1D7FF" mathclass="N"/>
+   <char cp="1EE00" mathclass="A"/>
+   <char cp="1EE01" mathclass="A"/>
+   <char cp="1EE02" mathclass="A"/>
+   <char cp="1EE03" mathclass="A"/>
+   <char cp="1EE05" mathclass="A"/>
+   <char cp="1EE06" mathclass="A"/>
+   <char cp="1EE07" mathclass="A"/>
+   <char cp="1EE08" mathclass="A"/>
+   <char cp="1EE09" mathclass="A"/>
+   <char cp="1EE0A" mathclass="A"/>
+   <char cp="1EE0B" mathclass="A"/>
+   <char cp="1EE0C" mathclass="A"/>
+   <char cp="1EE0D" mathclass="A"/>
+   <char cp="1EE0E" mathclass="A"/>
+   <char cp="1EE0F" mathclass="A"/>
+   <char cp="1EE10" mathclass="A"/>
+   <char cp="1EE11" mathclass="A"/>
+   <char cp="1EE12" mathclass="A"/>
+   <char cp="1EE13" mathclass="A"/>
+   <char cp="1EE14" mathclass="A"/>
+   <char cp="1EE15" mathclass="A"/>
+   <char cp="1EE16" mathclass="A"/>
+   <char cp="1EE17" mathclass="A"/>
+   <char cp="1EE18" mathclass="A"/>
+   <char cp="1EE19" mathclass="A"/>
+   <char cp="1EE1A" mathclass="A"/>
+   <char cp="1EE1B" mathclass="A"/>
+   <char cp="1EE1C" mathclass="A"/>
+   <char cp="1EE1D" mathclass="A"/>
+   <char cp="1EE1E" mathclass="A"/>
+   <char cp="1EE1F" mathclass="A"/>
+   <char cp="1EE21" mathclass="A"/>
+   <char cp="1EE22" mathclass="A"/>
+   <char cp="1EE24" mathclass="A"/>
+   <char cp="1EE27" mathclass="A"/>
+   <char cp="1EE29" mathclass="A"/>
+   <char cp="1EE2A" mathclass="A"/>
+   <char cp="1EE2B" mathclass="A"/>
+   <char cp="1EE2C" mathclass="A"/>
+   <char cp="1EE2D" mathclass="A"/>
+   <char cp="1EE2E" mathclass="A"/>
+   <char cp="1EE2F" mathclass="A"/>
+   <char cp="1EE30" mathclass="A"/>
+   <char cp="1EE31" mathclass="A"/>
+   <char cp="1EE32" mathclass="A"/>
+   <char cp="1EE34" mathclass="A"/>
+   <char cp="1EE35" mathclass="A"/>
+   <char cp="1EE36" mathclass="A"/>
+   <char cp="1EE37" mathclass="A"/>
+   <char cp="1EE39" mathclass="A"/>
+   <char cp="1EE3B" mathclass="A"/>
+   <char cp="1EE42" mathclass="A"/>
+   <char cp="1EE47" mathclass="A"/>
+   <char cp="1EE49" mathclass="A"/>
+   <char cp="1EE4B" mathclass="A"/>
+   <char cp="1EE4D" mathclass="A"/>
+   <char cp="1EE4E" mathclass="A"/>
+   <char cp="1EE4F" mathclass="A"/>
+   <char cp="1EE51" mathclass="A"/>
+   <char cp="1EE52" mathclass="A"/>
+   <char cp="1EE54" mathclass="A"/>
+   <char cp="1EE57" mathclass="A"/>
+   <char cp="1EE59" mathclass="A"/>
+   <char cp="1EE5B" mathclass="A"/>
+   <char cp="1EE5D" mathclass="A"/>
+   <char cp="1EE5F" mathclass="A"/>
+   <char cp="1EE61" mathclass="A"/>
+   <char cp="1EE62" mathclass="A"/>
+   <char cp="1EE64" mathclass="A"/>
+   <char cp="1EE67" mathclass="A"/>
+   <char cp="1EE68" mathclass="A"/>
+   <char cp="1EE69" mathclass="A"/>
+   <char cp="1EE6A" mathclass="A"/>
+   <char cp="1EE6C" mathclass="A"/>
+   <char cp="1EE6D" mathclass="A"/>
+   <char cp="1EE6E" mathclass="A"/>
+   <char cp="1EE6F" mathclass="A"/>
+   <char cp="1EE70" mathclass="A"/>
+   <char cp="1EE71" mathclass="A"/>
+   <char cp="1EE72" mathclass="A"/>
+   <char cp="1EE74" mathclass="A"/>
+   <char cp="1EE75" mathclass="A"/>
+   <char cp="1EE76" mathclass="A"/>
+   <char cp="1EE77" mathclass="A"/>
+   <char cp="1EE79" mathclass="A"/>
+   <char cp="1EE7A" mathclass="A"/>
+   <char cp="1EE7B" mathclass="A"/>
+   <char cp="1EE7C" mathclass="A"/>
+   <char cp="1EE7E" mathclass="A"/>
+   <char cp="1EE80" mathclass="A"/>
+   <char cp="1EE81" mathclass="A"/>
+   <char cp="1EE82" mathclass="A"/>
+   <char cp="1EE83" mathclass="A"/>
+   <char cp="1EE84" mathclass="A"/>
+   <char cp="1EE85" mathclass="A"/>
+   <char cp="1EE86" mathclass="A"/>
+   <char cp="1EE87" mathclass="A"/>
+   <char cp="1EE88" mathclass="A"/>
+   <char cp="1EE89" mathclass="A"/>
+   <char cp="1EE8B" mathclass="A"/>
+   <char cp="1EE8C" mathclass="A"/>
+   <char cp="1EE8D" mathclass="A"/>
+   <char cp="1EE8E" mathclass="A"/>
+   <char cp="1EE8F" mathclass="A"/>
+   <char cp="1EE90" mathclass="A"/>
+   <char cp="1EE91" mathclass="A"/>
+   <char cp="1EE92" mathclass="A"/>
+   <char cp="1EE93" mathclass="A"/>
+   <char cp="1EE94" mathclass="A"/>
+   <char cp="1EE95" mathclass="A"/>
+   <char cp="1EE96" mathclass="A"/>
+   <char cp="1EE97" mathclass="A"/>
+   <char cp="1EE98" mathclass="A"/>
+   <char cp="1EE99" mathclass="A"/>
+   <char cp="1EE9A" mathclass="A"/>
+   <char cp="1EE9B" mathclass="A"/>
+   <char cp="1EEA1" mathclass="A"/>
+   <char cp="1EEA2" mathclass="A"/>
+   <char cp="1EEA3" mathclass="A"/>
+   <char cp="1EEA5" mathclass="A"/>
+   <char cp="1EEA6" mathclass="A"/>
+   <char cp="1EEA7" mathclass="A"/>
+   <char cp="1EEA8" mathclass="A"/>
+   <char cp="1EEA9" mathclass="A"/>
+   <char cp="1EEAB" mathclass="A"/>
+   <char cp="1EEAC" mathclass="A"/>
+   <char cp="1EEAD" mathclass="A"/>
+   <char cp="1EEAE" mathclass="A"/>
+   <char cp="1EEAF" mathclass="A"/>
+   <char cp="1EEB0" mathclass="A"/>
+   <char cp="1EEB1" mathclass="A"/>
+   <char cp="1EEB2" mathclass="A"/>
+   <char cp="1EEB3" mathclass="A"/>
+   <char cp="1EEB4" mathclass="A"/>
+   <char cp="1EEB5" mathclass="A"/>
+   <char cp="1EEB6" mathclass="A"/>
+   <char cp="1EEB7" mathclass="A"/>
+   <char cp="1EEB8" mathclass="A"/>
+   <char cp="1EEB9" mathclass="A"/>
+   <char cp="1EEBA" mathclass="A"/>
+   <char cp="1EEBB" mathclass="A"/>
+   <char cp="1EEF0" mathclass="L"/>
+   <char cp="1EEF1" mathclass="L"/>
+   <char cp="1F784" mathclass="N"/>
+   <char cp="1F78C" mathclass="N"/>
+   <char cp="1F78D" mathclass="N"/>
+   <char cp="1F797" mathclass="N"/>
+   <char cp="1F798" mathclass="N"/>
+   <char cp="1F799" mathclass="N"/>
+   <char cp="1F79D" mathclass="N"/>
+   <char cp="1F79E" mathclass="N"/>
+   <char cp="1F79F" mathclass="N"/>
+</mathchars>

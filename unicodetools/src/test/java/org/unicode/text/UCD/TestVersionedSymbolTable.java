@@ -9,6 +9,7 @@ import java.text.ParsePosition;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.unicode.props.UnicodeProperty;
 
 /**
  * Notice to the maintainer: These tests check that the UnicodeSet property queries are correctly
@@ -23,11 +24,13 @@ public class TestVersionedSymbolTable {
     void setUp() {
         oldDefault = UnicodeSet.getDefaultXSymbolTable();
         UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
+        UnicodeProperty.ResetCacheProperties();
     }
 
     @AfterEach
     void tearDown() {
         UnicodeSet.setDefaultXSymbolTable(oldDefault);
+        UnicodeProperty.ResetCacheProperties();
     }
 
     @Test

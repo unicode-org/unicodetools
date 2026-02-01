@@ -1,0 +1,27 @@
+# Music symbols: Musical notes and rests
+# https://github.com/unicode-org/utc-release-management/issues/139
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block:
+Propertywise [\N{MUSICAL SYMBOL COMBINING FLAG-5}
+              \N{MUSICAL SYMBOL COMBINING FLAG-6}
+              \N{MUSICAL SYMBOL COMBINING FLAG-7}
+              \N{MUSICAL SYMBOL COMBINING FLAG-8}] AreAlike
+
+Propertywise [𝅂
+              \N{MUSICAL SYMBOL TWO HUNDRED FIFTY-SIXTH REST}
+              \N{MUSICAL SYMBOL FIVE HUNDRED TWELFTH REST}
+              \N{MUSICAL SYMBOL ONE THOUSAND TWENTY-FOURTH REST}] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

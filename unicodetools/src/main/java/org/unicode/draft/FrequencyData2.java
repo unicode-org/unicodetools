@@ -23,7 +23,8 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.PatternCache;
-import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Utility;
 
@@ -426,7 +427,7 @@ public class FrequencyData2 {
 
         data.showData2(
                 "Age",
-                ICUPropertyFactory.make().getProperty("age"),
+                IndexUnicodeProperties.make().getProperty(UcdProperty.Age),
                 new UnicodeSet("[[:cn:][:co:]]"),
                 true);
         data.showData("Script/Cat", UCharacter.getPropertyEnum("script"), NO_SCRIPT);
