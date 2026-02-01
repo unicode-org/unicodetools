@@ -214,7 +214,8 @@ public class AttributeResolver {
                         if (resolvedValue != null && resolvedValue.startsWith("SEAL CHARACTER-")) {
                             return "SEAL CHARACTER-#";
                         }
-                        if (resolvedValue != null && resolvedValue.startsWith("JURCHEN CHARACTER-")) {
+                        if (resolvedValue != null
+                                && resolvedValue.startsWith("JURCHEN CHARACTER-")) {
                             return "JURCHEN CHARACTER-#";
                         }
                         return Optional.ofNullable(resolvedValue).orElse("");
