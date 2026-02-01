@@ -65,7 +65,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     static final boolean GZIP = true;
 
     static final boolean SIMPLE_COMPRESSION = true;
-    static final boolean FILE_CACHE = System.getProperty("DISABLE_PROP_FILE_CACHE") == null;
+    static final boolean FILE_CACHE = System.getProperty("ENABLE_PROP_FILE_CACHE") != null;
 
     /** Debugging */
     static final boolean SHOW_DEFAULTS = false;
@@ -467,7 +467,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             fullFilename = fileInfo.getFullFileName(ucdVersion);
             final String fileName = fileInfo.getFileName(ucdVersion);
 
-            if (FILE_CACHE) {
+            if (FILE_CACHE || incrementalProperties) {
                 // TODO(egg): When using cached property data, most defaults do not get
                 // loaded in PropertyParsingInfo, as that happens in parseSourceFile.
                 // Only the ones from the Extra files are loaded.
