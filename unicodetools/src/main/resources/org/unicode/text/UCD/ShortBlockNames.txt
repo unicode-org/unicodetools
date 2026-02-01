@@ -213,6 +213,7 @@ Misc_Math_Symbols_B	;	Miscellaneous_Mathematical_Symbols_B
 Misc_Symbols	;	Miscellaneous_Symbols
 Misc_Symbols_Sup	;	Miscellaneous_Symbols_Supplement
 Misc_Arrows	;	Miscellaneous_Symbols_And_Arrows
+Misc_Arrows_Ext	;	Miscellaneous_Symbols_And_Arrows_Extended
 Misc_Pictographs	;	Miscellaneous_Symbols_And_Pictographs
 Misc_Technical	;	Miscellaneous_Technical
 Modi	;	Modi
