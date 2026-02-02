@@ -16,8 +16,8 @@ Ignoring
     # New block.
     Block:
 
-# Symbols symmetric about the vertical axis, not Bidi_Mirrored.
 Ignoring Pattern_Syntax:
+# Symbols symmetric about the vertical axis, not Bidi_Mirrored.
 Propertywise [
     \x{1DB00}  \N{LEIBNIZIAN EQUALS SIGN}
     \x{1DB01}  \N{LEIBNIZIAN EQUALS SIGN WITH DOUBLE VERTICALS}
@@ -28,14 +28,13 @@ Propertywise [
     \x{1DB19}  \N{LEIBNIZIAN SIMILARITY}
     \x{27D2} ⟒ \N{ELEMENT OF OPENING UPWARDS}
 ] AreAlike
-end Ignoring;
-
 
 # One of the above symbols, with an added Latin letter: also not Bidi_Mirrored.
 Propertywise [
     \x{1DB02}  \N{LEIBNIZIAN EQUALS SIGN WITH SMALL S}
     \x{225E} ≞ \N{MEASURED BY}
 ] AreAlike
+end Ignoring;
 
 # Miscellaneous asymmetric symbols, some derived from letters (FACIT SYMBOL < 𝑓,
 # LEIBNIZIAN CONGRUENCE < c).
@@ -55,7 +54,7 @@ Propertywise [
     \x{214B} ⅋ \N{TURNED AMPERSAND}
 ] AreAlike
 
-Ignoring East_Asian_Width Vertical_Orientation Pattern_Syntax:
+Ignoring Line_Break East_Asian_Width Vertical_Orientation Pattern_Syntax:
 Propertywise [
     \x{1DB0A}  \N{TWO-LINE GREATER-THAN}
     \x{1DB0B}  \N{TWO-LINE LESS-THAN}
@@ -71,20 +70,25 @@ Propertywise [
 ] AreAlike
 end Ignoring;
 
+# Relations whose converse is obtained by symmetry about the vertical axis, some adorned with text.
 Propertywise [\x{1DB03}  \N{LEIBNIZIAN GREATER-THAN}
               \x{1DB05}  \N{LEIBNIZIAN GREATER-THAN WITH SMALL P}]
            : [\x{1DB04}  \N{LEIBNIZIAN LESS-THAN}
               \x{1DB06}  \N{LEIBNIZIAN LESS-THAN WITH SMALL P}]
 CorrespondTo [\x{2A7C} ⩼ \N{GREATER-THAN WITH QUESTION MARK ABOVE}]
            : [\x{2A7B} ⩻ \N{LESS-THAN WITH QUESTION MARK ABOVE}]
+       UpTo: Pattern_Syntax (No vs Yes)
 
+# Stack of relations for which the opposite stack does not exist,
+# where the comparandum here is a stack of ⊳ and ⊲.
+Ignoring Pattern_Syntax:
 Propertywise [
     \x{1DB07}  \N{LEIBNIZIAN GREATER-THAN OR LESS-THAN}
     \x{29CE} ⧎ \N{RIGHT TRIANGLE ABOVE LEFT TRIANGLE}
 ] AreAlike
+end Ignoring;
 
 # Symbols incorporating a lazy S.
-
 Propertywise [
     \x{223E} ∾ \N{INVERTED LAZY S}
     \x{1DB17}  \N{LEIBNIZIAN COINCIDENCE}
@@ -93,16 +97,20 @@ Propertywise [
 ] AreAlike
 
 # Inverted versions of existing relation symbols.
-
+Ignoring Pattern_Syntax:
 Propertywise [\x{1DB08}   \N{INVERTED SQUARE LEFT OPEN BOX OPERATOR}]
            : [\x{1DB09}   \N{INVERTED SQUARE RIGHT OPEN BOX OPERATOR}]
 CorrespondTo [\x{2ACD} ⫍ \N{SQUARE LEFT OPEN BOX OPERATOR}]
            : [\x{2ACE} ⫎ \N{SQUARE RIGHT OPEN BOX OPERATOR}]
        UpTo: Pattern_Syntax (No vs Yes)
+end Ignoring;
 
+# A bidi mirorring glyph for the long bidi mirrored ∝.
+Ignoring Pattern_Syntax:
 Propertywise [\x{1DB10}  \N{CARTESIAN EQUALS SIGN}]
            : [\x{221D} ∝ \N{PROPORTIONAL TO}]
 CorrespondTo [\x{29F5} ⧵ \N{REVERSE SOLIDUS OPERATOR}]
            : [\x{2215} ∕ \N{DIVISION SLASH}]
+end Ignoring;
 
 end Ignoring;
