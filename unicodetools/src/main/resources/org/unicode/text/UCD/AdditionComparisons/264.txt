@@ -18,7 +18,7 @@ Propertywise [\x{1F6D9} \N{LIGHTHOUSE}
               \x{1FACC} \N{MONARCH BUTTERFLY}
               \x{1FADD} \N{PICKLE}
               \x{1FAEB} \N{CRACKING FACE}
-              \x{1F000} \N{GRINNING FACE}] AreAlike
+              \x{1F600} \N{GRINNING FACE}] AreAlike
 end Ignoring;
 
 Propertywise [\x{1FAF9} \N{LEFTWARDS THUMB SIGN}
