@@ -17,6 +17,7 @@ Ignoring
     Block:
 
 # Symbols symmetric about the vertical axis, not Bidi_Mirrored.
+Ignoring Pattern_Syntax:
 Propertywise [
     \x{1DB00}  \N{LEIBNIZIAN EQUALS SIGN}
     \x{1DB01}  \N{LEIBNIZIAN EQUALS SIGN WITH DOUBLE VERTICALS}
@@ -25,9 +26,9 @@ Propertywise [
     \x{1DB15}  \N{LEIBNIZIAN CONGRUENCE-2 WITH HORIZONTAL BAR}
     \x{1DB16}  \N{LEIBNIZIAN CONGRUENCE-2 WITH HORIZONTAL AND VERTICAL BAR}
     \x{1DB19}  \N{LEIBNIZIAN SIMILARITY}
-    \x{224E} ≎ \N{GEOMETRICALLY EQUIVALENT TO}
     \x{27D2} ⟒ \N{ELEMENT OF OPENING UPWARDS}
 ] AreAlike
+end Ignoring;
 
 
 # One of the above symbols, with an added Latin letter: also not Bidi_Mirrored.
@@ -54,7 +55,7 @@ Propertywise [
     \x{214B} ⅋ \N{TURNED AMPERSAND}
 ] AreAlike
 
-Ignoring:
+Ignoring East_Asian_Width Vertical_Orientation Pattern_Syntax:
 Propertywise [
     \x{1DB0A}  \N{TWO-LINE GREATER-THAN}
     \x{1DB0B}  \N{TWO-LINE LESS-THAN}
@@ -68,7 +69,7 @@ Propertywise [
     \x{1DB1C}  \N{FACIT SYMBOL}
     \x{266F} ♯ \N{MUSIC SHARP SIGN}
 ] AreAlike
-end Ignoring
+end Ignoring;
 
 Propertywise [\x{1DB03}  \N{LEIBNIZIAN GREATER-THAN}
               \x{1DB05}  \N{LEIBNIZIAN GREATER-THAN WITH SMALL P}]
@@ -97,6 +98,7 @@ Propertywise [\x{1DB08}   \N{INVERTED SQUARE LEFT OPEN BOX OPERATOR}]
            : [\x{1DB09}   \N{INVERTED SQUARE RIGHT OPEN BOX OPERATOR}]
 CorrespondTo [\x{2ACD} ⫍ \N{SQUARE LEFT OPEN BOX OPERATOR}]
            : [\x{2ACE} ⫎ \N{SQUARE RIGHT OPEN BOX OPERATOR}]
+       UpTo: Pattern_Syntax (No vs Yes)
 
 Propertywise [\x{1DB10}  \N{CARTESIAN EQUALS SIGN}]
            : [\x{221D} ∝ \N{PROPORTIONAL TO}]
