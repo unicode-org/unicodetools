@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2026-02-02, 20:37:49 GMT
+# Date: 2026-02-02, 23:42:42 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1893,7 +1893,6 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 1FACC..1FADD  ; ID # So  [18] MONARCH BUTTERFLY..PICKLE
 1FADF..1FAEB  ; ID # So  [13] SPLATTER..CRACKING FACE
 1FAEF         ; ID # So       FIGHT CLOUD
-1FAF9..1FAFA  ; ID # So   [2] LEFTWARDS THUMB SIGN..RIGHTWARDS THUMB SIGN
 20000..2A6DF  ; ID # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
 2A700..2B81E  ; ID # Lo [4383] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B81E
 2B820..2CEAD  ; ID # Lo [5774] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEAD
@@ -1905,7 +1904,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 3D000..3FC3F  ; ID # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
 # The above property value applies to 46178 code points not listed here.
-# Total code points: 173534
+# Total code points: 173532
 
 # ================================================
 
@@ -3900,9 +3899,9 @@ FF70          ; CJ # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK
 1F9CD..1F9CF  ; EB # So   [3] STANDING PERSON..DEAF PERSON
 1F9D1..1F9DD  ; EB # So  [13] ADULT..ELF
 1FAC3..1FAC5  ; EB # So   [3] PREGNANT MAN..PERSON WITH CROWN
-1FAF0..1FAF8  ; EB # So   [9] HAND WITH INDEX FINGER AND THUMB CROSSED..RIGHTWARDS PUSHING HAND
+1FAF0..1FAFA  ; EB # So  [11] HAND WITH INDEX FINGER AND THUMB CROSSED..RIGHTWARDS THUMB SIGN
 
-# Total code points: 134
+# Total code points: 136
 
 # ================================================
 
