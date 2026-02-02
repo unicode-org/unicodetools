@@ -92,12 +92,14 @@ Propertywise [
 end Ignoring;
 
 # Symbols incorporating a lazy S.
+Ignoring Pattern_Syntax:
 Propertywise [
     \x{223E} ∾ \N{INVERTED LAZY S}
     \x{1DB17}  \N{LEIBNIZIAN COINCIDENCE}
     \x{1DB18}  \N{INVERTED LAZY S OVER LAZY S}
     \x{1DB1B}  \N{LEIBNIZIAN DISSIMILARITY}
 ] AreAlike
+end Ignoring;
 
 # Inverted versions of existing relation symbols.
 Ignoring Pattern_Syntax:
