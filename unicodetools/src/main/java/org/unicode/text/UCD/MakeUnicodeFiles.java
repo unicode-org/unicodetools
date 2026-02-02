@@ -2505,6 +2505,7 @@ public class MakeUnicodeFiles {
             rangeBlocks.put("Tangut", "Tangut Ideograph");
             rangeBlocks.put("Tangut_Supplement", "Tangut Ideograph Supplement");
             rangeBlocks.put("Seal", "Seal Character");
+            rangeBlocks.put("Jurchen", "Jurchen Character");
             rangeBlocks.put("Supplementary_Private_Use_Area_A", "Plane 15 Private Use");
             rangeBlocks.put("Supplementary_Private_Use_Area_B", "Plane 16 Private Use");
         }
