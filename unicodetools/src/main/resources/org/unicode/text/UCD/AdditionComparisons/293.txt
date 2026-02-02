@@ -37,7 +37,10 @@ Propertywise [
 end Ignoring;
 
 # Miscellaneous asymmetric symbols, some derived from letters (FACIT SYMBOL < 𝑓,
-# LEIBNIZIAN CONGRUENCE < c).
+# LEIBNIZIAN CONGRUENCE < c), with no obvious parallels in modern notation.
+# For the Bidi_Mirrored assignment, since they are obscure, going with No (like
+# the obscure ⅁, ⅋, or ♯ which is relatively obscure in mathematical usage)
+# rather than Yes (like the very common ∃ or ∂).
 
 Propertywise [
     \x{1DB0A}  \N{TWO-LINE GREATER-THAN}
