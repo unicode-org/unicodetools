@@ -39,7 +39,6 @@ Propertywise [
 # Miscellaneous asymmetric symbols, some derived from letters (FACIT SYMBOL < 𝑓,
 # LEIBNIZIAN CONGRUENCE < c).
 
-Ignoring Name_Alias:
 Propertywise [
     \x{1DB0A}  \N{TWO-LINE GREATER-THAN}
     \x{1DB0B}  \N{TWO-LINE LESS-THAN}
@@ -52,8 +51,24 @@ Propertywise [
     \x{1DB1A}  \N{LEIBNIZIAN SIMILARITY-2}
     \x{1DB1C}  \N{FACIT SYMBOL}
     \x{2141} ⅁ \N{TURNED SANS-SERIF CAPITAL G}
+    \x{214B} ⅋ \N{TURNED AMPERSAND}
 ] AreAlike
-end Ignoring;
+
+Ignoring:
+Propertywise [
+    \x{1DB0A}  \N{TWO-LINE GREATER-THAN}
+    \x{1DB0B}  \N{TWO-LINE LESS-THAN}
+    \x{1DB0C}  \N{COMMENSURABILITY}
+    \x{1DB0D}  \N{INCOMMENSURABILITY}
+    \x{1DB0E}  \N{COMMENSURABILITY IN SQUARE}
+    \x{1DB0F}  \N{INCOMMENSURABILITY IN SQUARE}
+    \x{1DB11}  \N{LEIBNIZIAN CONGRUENCE}
+    \x{1DB12}  \N{LEIBNIZIAN CONGRUENCE WITH VERTICAL BAR}
+    \x{1DB1A}  \N{LEIBNIZIAN SIMILARITY-2}
+    \x{1DB1C}  \N{FACIT SYMBOL}
+    \x{266F} ♯ \N{MUSIC SHARP SIGN}
+] AreAlike
+end Ignoring
 
 Propertywise [\x{1DB03}  \N{LEIBNIZIAN GREATER-THAN}
               \x{1DB05}  \N{LEIBNIZIAN GREATER-THAN WITH SMALL P}]
