@@ -69,7 +69,7 @@ reserved:
     - [characters decomposing to sequences](https://github.com/unicode-org/unicodetools/blob/5f6bc190766ed9104cebc828f1e193517f4d74ec/unicodetools/src/main/resources/org/unicode/text/UCD/AdditionComparisons/141.txt#L13-L20).
   - Until tests pass:    
     - [ ] Comparison tests — [Run](#run-comparison-tests)
-    - [ ] Correct properties (often in PropList.txt, but also VerticalOrientation.txt, East_Asian_Width.txt, etc.).
+    - [ ] Correct properties (often in PropList.txt, but also VerticalOrientation.txt, EastAsianWidth.txt, etc.).
     - [ ] Commit
     - [ ] UCD — [Regenerate](#regenerate-ucd)
 
