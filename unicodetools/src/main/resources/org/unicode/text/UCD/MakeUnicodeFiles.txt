@@ -1552,6 +1552,10 @@ File: linkification/LinkEmail
 Property: SPECIAL
 File: linkification/LinkTerm
 Property: SPECIAL
+File: linkification/LinkDetectionTest
+Property: SPECIAL
+File: linkification/LinkFormattingTest
+Property: SPECIAL
 
 HackName:	noBreak
 HackName:	Arabic_Presentation_Forms-A

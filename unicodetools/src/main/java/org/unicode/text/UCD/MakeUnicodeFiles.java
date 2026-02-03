@@ -644,6 +644,12 @@ public class MakeUnicodeFiles {
                 case "LinkBracket":
                     GenerateLinkData.generateLinkBracket(Default.getYear());
                     break;
+                case "LinkDetectionTest":
+                    GenerateLinkData.generateDetectionTestData(Default.getYear());
+                    break;
+                case "LinkFormattingTest":
+                    GenerateLinkData.generateFormattingTestData(Default.getYear());
+                    break;
                 default:
                     generatePropertyFile(filename);
                     break;
