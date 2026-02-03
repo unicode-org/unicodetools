@@ -77,11 +77,12 @@ public class GenerateLinkData {
 
     public static void main(String[] args) throws IOException {
         System.out.println("TLDs=\t" + Joiner.on(' ').join(LinkUtilities.TLDS));
-        generateLinkTerm(dty.format(now));
-        generateLinkEmail(dty.format(now));
-        generateLinkBracket(dty.format(now));
-        generateDetectionTestData();
-        generateFormattingTestData();
+        final String copyrightYear = dty.format(now);
+        generateLinkTerm(copyrightYear);
+        generateLinkEmail(copyrightYear);
+        generateLinkBracket(copyrightYear);
+        generateDetectionTestData(copyrightYear);
+        generateFormattingTestData(copyrightYear);
     }
 
     static final Instant now = Instant.now();
@@ -225,8 +226,12 @@ public class GenerateLinkData {
     }
 
     static void writeTestHeader(
-            PrintWriter out, SimpleFormatter simpleFormatter, String filename, String testName) {
-        out.println(simpleFormatter.format(filename, dt.format(now), dty.format(now), testName));
+            PrintWriter out,
+            SimpleFormatter simpleFormatter,
+            String filename,
+            String testName,
+            String copyrightYear) {
+        out.println(simpleFormatter.format(filename, dt.format(now), copyrightYear, testName));
     }
 
     /** Generate property data for the UTS */
@@ -240,7 +245,13 @@ public class GenerateLinkData {
         bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
 
         try (final var out = new DiffingPrintWriter(LinkUtilities.DATA_DIR_DEV, "LinkTerm.txt"); ) {
-            writePropHeader(out.tempPrintWriter, HEADER_PROP_TERM, "LinkTerm", "Link_Term", "Hard", copyrightYear);
+            writePropHeader(
+                    out.tempPrintWriter,
+                    HEADER_PROP_TERM,
+                    "LinkTerm",
+                    "Link_Term",
+                    "Hard",
+                    copyrightYear);
             for (LinkTermination propValue : LinkTermination.NON_MISSING) {
                 bf.showSetNames(out.tempPrintWriter, propValue.base);
                 out.println("");
@@ -263,7 +274,8 @@ public class GenerateLinkData {
                     HEADER_PROP_BINARY,
                     "LinkEmail",
                     "Link_Email",
-                    UcdPropertyValues.Binary.No.toString(), copyrightYear);
+                    UcdPropertyValues.Binary.No.toString(),
+                    copyrightYear);
             UnicodeSet linkEmailSet = LinkUtilities.LinkEmail.getSet(UcdPropertyValues.Binary.Yes);
             bf.showSetNames(out.tempPrintWriter, linkEmailSet);
             System.out.println("LinkEmail=\t" + linkEmailSet.toPattern(false));
@@ -285,7 +297,8 @@ public class GenerateLinkData {
                     HEADER_PROP_STRING,
                     "LinkBracket",
                     "Link_Bracket",
-                    "<none>", copyrightYear);
+                    "<none>",
+                    copyrightYear);
             bf.showSetNames(out.tempPrintWriter, LinkTermination.Close.base);
         }
     }
@@ -294,7 +307,7 @@ public class GenerateLinkData {
      * The format of the test file sources are: source<TAB>expected OR just source If there is an
      * expected value, then it is checked against what is generated.
      */
-    static void generateDetectionTestData() {
+    public static void generateDetectionTestData(String copyrightYear) {
 
         OutputInt errorCount = new OutputInt();
 
@@ -304,7 +317,8 @@ public class GenerateLinkData {
                     out.tempPrintWriter,
                     HEADER_DETECT_TEST,
                     "LinkDetectionTest",
-                    "LinkDetectionTest");
+                    "LinkDetectionTest",
+                    copyrightYear);
 
             out.println("\n# Misc. test cases\n");
 
@@ -377,7 +391,7 @@ public class GenerateLinkData {
         }
     }
 
-    static void generateFormattingTestData() {
+    public static void generateFormattingTestData(String copyrightYear) {
 
         OutputInt errorCount = new OutputInt();
 
@@ -387,7 +401,8 @@ public class GenerateLinkData {
                     out.tempPrintWriter,
                     HEADER_FORMAT_TEST,
                     "LinkFormattingTest",
-                    "LinkFormattingTest");
+                    "LinkFormattingTest",
+                    copyrightYear);
 
             out.tempPrintWriter.println("\n# Selected test cases\n");
 

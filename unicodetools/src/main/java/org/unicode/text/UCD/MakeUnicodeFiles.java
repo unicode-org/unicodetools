@@ -60,8 +60,8 @@ import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.Segmenter;
 import org.unicode.tools.GenerateLinkData;
+import org.unicode.tools.Segmenter;
 
 public class MakeUnicodeFiles {
     static boolean DEBUG = false;
@@ -643,6 +643,12 @@ public class MakeUnicodeFiles {
                     break;
                 case "LinkBracket":
                     GenerateLinkData.generateLinkBracket(Default.getYear());
+                    break;
+                case "LinkDetectionTest":
+                    GenerateLinkData.generateDetectionTestData(Default.getYear());
+                    break;
+                case "LinkFormattingTest":
+                    GenerateLinkData.generateFormattingTestData(Default.getYear());
                     break;
                 default:
                     generatePropertyFile(filename);
