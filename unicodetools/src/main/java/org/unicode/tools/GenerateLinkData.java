@@ -46,7 +46,7 @@ import org.unicode.utilities.LinkUtilities.UrlInternals;
  *
  * @throws IOException
  */
-class GenerateLinkData {
+public class GenerateLinkData {
 
     private static final Transliterator FIX_ODD =
             Transliterator.createFromRules(
@@ -76,7 +76,10 @@ class GenerateLinkData {
                     "");
 
     public static void main(String[] args) throws IOException {
-        generatePropertyData();
+        System.out.println("TLDs=\t" + Joiner.on(' ').join(LinkUtilities.TLDS));
+        generateLinkTerm(dty.format(now));
+        generateLinkEmail(dty.format(now));
+        generateLinkBracket(dty.format(now));
         generateDetectionTestData();
         generateFormattingTestData();
     }
@@ -214,10 +217,11 @@ class GenerateLinkData {
             SimpleFormatter simpleFormatter,
             String filename,
             String propertyName,
-            String missingValue) {
+            String missingValue,
+            String copyrightYear) {
         out.println(
                 simpleFormatter.format(
-                        filename, dt.format(now), dty.format(now), propertyName, missingValue));
+                        filename, dt.format(now), copyrightYear, propertyName, missingValue));
     }
 
     static void writeTestHeader(
@@ -226,9 +230,7 @@ class GenerateLinkData {
     }
 
     /** Generate property data for the UTS */
-    static void generatePropertyData() {
-        System.out.println("TLDs=\t" + Joiner.on(' ').join(LinkUtilities.TLDS));
-
+    public static void generateLinkTerm(String copyrightYear) {
         BagFormatter bf = new BagFormatter(LinkUtilities.IUP).setLineSeparator("\n");
         bf.setShowLiteral(FIX_ODD);
 
@@ -238,7 +240,7 @@ class GenerateLinkData {
         bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
 
         try (final var out = new DiffingPrintWriter(LinkUtilities.DATA_DIR_DEV, "LinkTerm.txt"); ) {
-            writePropHeader(out.tempPrintWriter, HEADER_PROP_TERM, "LinkTerm", "Link_Term", "Hard");
+            writePropHeader(out.tempPrintWriter, HEADER_PROP_TERM, "LinkTerm", "Link_Term", "Hard", copyrightYear);
             for (LinkTermination propValue : LinkTermination.NON_MISSING) {
                 bf.showSetNames(out.tempPrintWriter, propValue.base);
                 out.println("");
@@ -246,7 +248,12 @@ class GenerateLinkData {
                 System.out.println(propValue + "=\t" + propValue.base.toPattern(false));
             }
         }
+    }
 
+    public static void generateLinkEmail(String copyrightYear) {
+        BagFormatter bf = new BagFormatter(LinkUtilities.IUP).setLineSeparator("\n");
+        bf.setShowLiteral(FIX_ODD);
+        bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
         // LinkEmail.txt
         bf.setValueSource(UnicodeLabel.NULL);
         try (final var out =
@@ -256,12 +263,17 @@ class GenerateLinkData {
                     HEADER_PROP_BINARY,
                     "LinkEmail",
                     "Link_Email",
-                    UcdPropertyValues.Binary.No.toString());
+                    UcdPropertyValues.Binary.No.toString(), copyrightYear);
             UnicodeSet linkEmailSet = LinkUtilities.LinkEmail.getSet(UcdPropertyValues.Binary.Yes);
             bf.showSetNames(out.tempPrintWriter, linkEmailSet);
             System.out.println("LinkEmail=\t" + linkEmailSet.toPattern(false));
         }
+    }
 
+    public static void generateLinkBracket(String copyrightYear) {
+        BagFormatter bf = new BagFormatter(LinkUtilities.IUP).setLineSeparator("\n");
+        bf.setShowLiteral(FIX_ODD);
+        bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
         // LinkBracket.txt
         bf.setValueSource(LinkUtilities.getLinkBracket());
         bf.setHexValue(true);
@@ -273,7 +285,7 @@ class GenerateLinkData {
                     HEADER_PROP_STRING,
                     "LinkBracket",
                     "Link_Bracket",
-                    "<none>");
+                    "<none>", copyrightYear);
             bf.showSetNames(out.tempPrintWriter, LinkTermination.Close.base);
         }
     }

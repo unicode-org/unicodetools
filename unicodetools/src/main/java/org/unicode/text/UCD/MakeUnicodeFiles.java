@@ -61,6 +61,7 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Segmenter;
+import org.unicode.tools.GenerateLinkData;
 
 public class MakeUnicodeFiles {
     static boolean DEBUG = false;
@@ -633,6 +634,15 @@ public class MakeUnicodeFiles {
                     break;
                 case "DoNotEmit":
                     generateDoNotEmit(filename);
+                    break;
+                case "LinkEmail":
+                    GenerateLinkData.generateLinkEmail(Default.getYear());
+                    break;
+                case "LinkTerm":
+                    GenerateLinkData.generateLinkTerm(Default.getYear());
+                    break;
+                case "LinkBracket":
+                    GenerateLinkData.generateLinkBracket(Default.getYear());
                     break;
                 default:
                     generatePropertyFile(filename);
