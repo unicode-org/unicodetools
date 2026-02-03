@@ -28,6 +28,7 @@ import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
+import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.utilities.LinkUtilities;
 import org.unicode.utilities.LinkUtilities.LinkTermination;
 import org.unicode.utilities.LinkUtilities.Part;
@@ -236,47 +237,44 @@ class GenerateLinkData {
         bf.setValueSource(LinkTermination.PROPERTY);
         bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
 
-        try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkTerm.txt"); ) {
-            writePropHeader(out, HEADER_PROP_TERM, "LinkTerm", "Link_Term", "Hard");
+        try (final var out = new DiffingPrintWriter(LinkUtilities.DATA_DIR_DEV, "LinkTerm.txt"); ) {
+            writePropHeader(out.tempPrintWriter, HEADER_PROP_TERM, "LinkTerm", "Link_Term", "Hard");
             for (LinkTermination propValue : LinkTermination.NON_MISSING) {
-                bf.showSetNames(out, propValue.base);
+                bf.showSetNames(out.tempPrintWriter, propValue.base);
                 out.println("");
                 out.flush();
                 System.out.println(propValue + "=\t" + propValue.base.toPattern(false));
             }
-
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
         }
 
         // LinkEmail.txt
         bf.setValueSource(UnicodeLabel.NULL);
-        try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkEmail.txt"); ) {
+        try (final var out =
+                new DiffingPrintWriter(LinkUtilities.DATA_DIR_DEV, "LinkEmail.txt"); ) {
             writePropHeader(
-                    out,
+                    out.tempPrintWriter,
                     HEADER_PROP_BINARY,
                     "LinkEmail",
                     "Link_Email",
                     UcdPropertyValues.Binary.No.toString());
             UnicodeSet linkEmailSet = LinkUtilities.LinkEmail.getSet(UcdPropertyValues.Binary.Yes);
-            bf.showSetNames(out, linkEmailSet);
+            bf.showSetNames(out.tempPrintWriter, linkEmailSet);
             System.out.println("LinkEmail=\t" + linkEmailSet.toPattern(false));
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
         }
 
         // LinkBracket.txt
         bf.setValueSource(LinkUtilities.getLinkBracket());
         bf.setHexValue(true);
         bf.setShowDehexedValue(true);
-        try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkBracket.txt"); ) {
-            writePropHeader(out, HEADER_PROP_STRING, "LinkBracket", "Link_Bracket", "<none>");
-            bf.showSetNames(out, LinkTermination.Close.base);
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
+        try (final var out =
+                new DiffingPrintWriter(LinkUtilities.DATA_DIR_DEV, "LinkBracket.txt"); ) {
+            writePropHeader(
+                    out.tempPrintWriter,
+                    HEADER_PROP_STRING,
+                    "LinkBracket",
+                    "Link_Bracket",
+                    "<none>");
+            bf.showSetNames(out.tempPrintWriter, LinkTermination.Close.base);
         }
     }
 
@@ -288,10 +286,13 @@ class GenerateLinkData {
 
         OutputInt errorCount = new OutputInt();
 
-        try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(
-                        LinkUtilities.DATA_DIR_DEV, "LinkDetectionTest.txt"); ) {
-            writeTestHeader(out, HEADER_DETECT_TEST, "LinkDetectionTest", "LinkDetectionTest");
+        try (final var out =
+                new DiffingPrintWriter(LinkUtilities.DATA_DIR_DEV, "LinkDetectionTest.txt"); ) {
+            writeTestHeader(
+                    out.tempPrintWriter,
+                    HEADER_DETECT_TEST,
+                    "LinkDetectionTest",
+                    "LinkDetectionTest");
 
             out.println("\n# Misc. test cases\n");
 
@@ -368,12 +369,15 @@ class GenerateLinkData {
 
         OutputInt errorCount = new OutputInt();
 
-        try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(
-                        LinkUtilities.DATA_DIR_DEV, "LinkFormattingTest.txt"); ) {
-            writeTestHeader(out, HEADER_FORMAT_TEST, "LinkFormattingTest", "LinkFormattingTest");
+        try (final var out =
+                new DiffingPrintWriter(LinkUtilities.DATA_DIR_DEV, "LinkFormattingTest.txt"); ) {
+            writeTestHeader(
+                    out.tempPrintWriter,
+                    HEADER_FORMAT_TEST,
+                    "LinkFormattingTest",
+                    "LinkFormattingTest");
 
-            out.println("\n# Selected test cases\n");
+            out.tempPrintWriter.println("\n# Selected test cases\n");
 
             List<String> comments = new ArrayList<>();
             Output<Integer> lineCount = new Output<>(0);
@@ -439,7 +443,7 @@ class GenerateLinkData {
                                     comments.clear();
                                     return;
                                 }
-                                outputTestCase(out, comments, internals, actual);
+                                outputTestCase(out.tempPrintWriter, comments, internals, actual);
                             });
 
             out.println("\n# Wikipedia test cases\n");
@@ -480,7 +484,7 @@ class GenerateLinkData {
 
                                 String actual = internals.minimalEscape(true, null);
 
-                                outputTestCase(out, comments, internals, actual);
+                                outputTestCase(out.tempPrintWriter, comments, internals, actual);
                             });
         } catch (IOException e) {
             throw new UncheckedIOException(e);
