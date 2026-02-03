@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2026-02-03, 11:13:50 GMT
+# Date: 2026-02-03, 14:39:30 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1427,7 +1427,7 @@ FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAP
 1DF78         ; Lu #       LATIN CAPITAL LETTER PHONOTYPIC TH
 1DF7A         ; Lu #       LATIN CAPITAL LETTER U WITH HOOK TAIL
 1DF7C         ; Lu #       LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM
-1DF7E         ; Lu #       LATIN CAPITAL LETTER REVERSED ENLARGED SMALL U
+1DF7E         ; Lu #       LATIN CAPITAL LETTER REVERSED U
 1E900..1E921  ; Lu #  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 
 # Total code points: 1906

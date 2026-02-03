@@ -1,5 +1,5 @@
 # SentenceBreakProperty-18.0.0.txt
-# Date: 2026-01-30, 19:37:57 GMT
+# Date: 2026-02-03, 14:40:07 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2038,7 +2038,7 @@ FF21..FF3A    ; Upper # L&  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LAT
 1DF78         ; Upper # L&       LATIN CAPITAL LETTER PHONOTYPIC TH
 1DF7A         ; Upper # L&       LATIN CAPITAL LETTER U WITH HOOK TAIL
 1DF7C         ; Upper # L&       LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM
-1DF7E         ; Upper # L&       LATIN CAPITAL LETTER REVERSED ENLARGED SMALL U
+1DF7E         ; Upper # L&       LATIN CAPITAL LETTER REVERSED U
 1E900..1E921  ; Upper # L&  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 1F130..1F149  ; Upper # So  [26] SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
 1F150..1F169  ; Upper # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z

@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2026-02-03, 11:13:48 GMT
+# Date: 2026-02-03, 14:39:28 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2888,7 +2888,7 @@ FF21..FF3A    ; Uppercase # L&  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH
 1DF78         ; Uppercase # L&       LATIN CAPITAL LETTER PHONOTYPIC TH
 1DF7A         ; Uppercase # L&       LATIN CAPITAL LETTER U WITH HOOK TAIL
 1DF7C         ; Uppercase # L&       LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM
-1DF7E         ; Uppercase # L&       LATIN CAPITAL LETTER REVERSED ENLARGED SMALL U
+1DF7E         ; Uppercase # L&       LATIN CAPITAL LETTER REVERSED U
 1E900..1E921  ; Uppercase # L&  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 1F130..1F149  ; Uppercase # So  [26] SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
 1F150..1F169  ; Uppercase # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
@@ -4264,7 +4264,7 @@ FF21..FF3A    ; Changes_When_Lowercased # L&  [26] FULLWIDTH LATIN CAPITAL LETTE
 1DF78         ; Changes_When_Lowercased # L&       LATIN CAPITAL LETTER PHONOTYPIC TH
 1DF7A         ; Changes_When_Lowercased # L&       LATIN CAPITAL LETTER U WITH HOOK TAIL
 1DF7C         ; Changes_When_Lowercased # L&       LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM
-1DF7E         ; Changes_When_Lowercased # L&       LATIN CAPITAL LETTER REVERSED ENLARGED SMALL U
+1DF7E         ; Changes_When_Lowercased # L&       LATIN CAPITAL LETTER REVERSED U
 1E900..1E921  ; Changes_When_Lowercased # L&  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 
 # Total code points: 1508
@@ -6250,7 +6250,7 @@ FF21..FF3A    ; Changes_When_Casefolded # L&  [26] FULLWIDTH LATIN CAPITAL LETTE
 1DF78         ; Changes_When_Casefolded # L&       LATIN CAPITAL LETTER PHONOTYPIC TH
 1DF7A         ; Changes_When_Casefolded # L&       LATIN CAPITAL LETTER U WITH HOOK TAIL
 1DF7C         ; Changes_When_Casefolded # L&       LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM
-1DF7E         ; Changes_When_Casefolded # L&       LATIN CAPITAL LETTER REVERSED ENLARGED SMALL U
+1DF7E         ; Changes_When_Casefolded # L&       LATIN CAPITAL LETTER REVERSED U
 1DF95         ; Changes_When_Casefolded # L&       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1E900..1E921  ; Changes_When_Casefolded # L&  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 
