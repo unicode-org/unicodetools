@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2026-02-03, 14:39:32 GMT
+# Date: 2026-02-03, 19:40:43 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -39729,6 +39729,9 @@ FFFD          ; REPLACEMENT CHARACTER
 1CECE         ; BELLONA
 1CECF         ; AMPHITRITE
 1CED0         ; LEUKOTHEA
+1CED2         ; ALCHEMICAL SYMBOL FOR OIL INVERTED
+1CED3         ; ALCHEMICAL SYMBOL FOR MOON-JUPITER
+1CED4         ; ALCHEMICAL SYMBOL FOR SALT OF TARTAR
 1CEDD         ; SQUARE ROOT OF SQUARE ROOT
 1CEDE         ; SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
 1CEDF         ; SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
@@ -46620,6 +46623,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172846
+# Total code points: 172849
 
 # EOF

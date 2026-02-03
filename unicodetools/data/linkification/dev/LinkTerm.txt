@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-02-03, 13:35:49 GMT 
+# Date: 2026-02-03, 19:40:53 GMT 
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1804,6 +1804,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 1CCFA..1CCFC  ; Include # 17.0  [3] (𜳺..𜳼)  SNAKE SYMBOL..NOSE SYMBOL
 1CD00..1CEB3  ; Include # 16.0 [436] (𜴀..𜺳)  BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
 1CEBA..1CED0  ; Include # 17.0 [23] (𜺺..𜻐)  FRAGILE SYMBOL..LEUKOTHEA
+1CED2..1CED4  ; Include # 18.0  [3] (U+1CED2..U+1CED4)  ALCHEMICAL SYMBOL FOR OIL INVERTED..ALCHEMICAL SYMBOL FOR SALT OF TARTAR
 1CEDD..1CEDF  ; Include # 18.0  [3] (U+1CEDD..U+1CEDF)  SQUARE ROOT OF SQUARE ROOT..SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
 1CEE0..1CEF0  ; Include # 17.0 [17] (𜻠..𜻰)  GEOMANTIC FIGURE POPULUS..MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR
 1CEF1..1CEFD  ; Include # 18.0 [13] (U+1CEF1..U+1CEFD)  LEIBNIZIAN DIVISION SIGN..HYPERBOLA
@@ -2208,5 +2209,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172350
+# Total code points: 172353
 
