@@ -14,384 +14,79 @@
 # Then run ProposalData.java to generate an updated version of proposalData.txt that incorporates all the proposal data from this file.
 
 #================================
-Status=Final Candidate
+Status=Draft Candidate
 #================================
 
-Proposal=L2/24-250
-After=🙂‍↕
-U+1FAEA
-Name=distorted face
-Keywords=vulnerable | anxiety | panic | bloated | surprised | shocked
+Proposal=L2/25-256
+After=🗽
+U+1F6D9
+Name=lighthouse
+Keywords=sea | navigation | light | enlightenment | guidance | hope | maritime | beacon | signal
 
-Proposal=L2/24-254
-After=💤
-U+1FAEF
-Name=fight cloud
-Keywords=fight | brawl | ruckus | argument | disagreement | debate | wrestle
+Proposal=L2/25-257
+After=☄️
+U+1FA8B
+Name=meteor
+Keywords=space | rock | star | falling | gravity | fireball | apocalypse
 
-Proposal=L2/24-252
-After=🤼
-#U+1F93C
-#Name=people wrestling
-#Emoji_Modifier_Base
-U+1F93C U+1F3FB
-Name=people wrestling: light skin tone
-U+1F93C U+1F3FC
-Name=people wrestling: medium-light skin tone
-U+1F93C U+1F3FD
-Name=people wrestling: medium skin tone
-U+1F93C U+1F3FE
-Name=people wrestling: medium-dark skin tone
-U+1F93C U+1F3FF
-Name=people wrestling: dark skin tone
+Proposal=L2/25-255
+After=🪢
+U+1FA8C
+Name=eraser
+Keywords=erase | undo | mistake | error | correction | delete | remove | rub | writing | drawing
 
-U+1F9D1 U+1F3FB U+200D U+1FAEF U+200D U+1F9D1 U+1F3FC
-Name=people wrestling: light skin tone, medium-light skin tone
-U+1F9D1 U+1F3FB U+200D U+1FAEF U+200D U+1F9D1 U+1F3FD
-Name=people wrestling: light skin tone, medium skin tone
-U+1F9D1 U+1F3FB U+200D U+1FAEF U+200D U+1F9D1 U+1F3FE
-Name=people wrestling: light skin tone, medium-dark skin tone
-U+1F9D1 U+1F3FB U+200D U+1FAEF U+200D U+1F9D1 U+1F3FF
-Name=people wrestling: light skin tone, dark skin tone
-U+1F9D1 U+1F3FC U+200D U+1FAEF U+200D U+1F9D1 U+1F3FB
-Name=people wrestling: medium-light skin tone, light skin tone
-U+1F9D1 U+1F3FC U+200D U+1FAEF U+200D U+1F9D1 U+1F3FD
-Name=people wrestling: medium-light skin tone, medium skin tone
-U+1F9D1 U+1F3FC U+200D U+1FAEF U+200D U+1F9D1 U+1F3FE
-Name=people wrestling: medium-light skin tone, medium-dark skin tone
-U+1F9D1 U+1F3FC U+200D U+1FAEF U+200D U+1F9D1 U+1F3FF
-Name=people wrestling: medium-light skin tone, dark skin tone
-U+1F9D1 U+1F3FD U+200D U+1FAEF U+200D U+1F9D1 U+1F3FB
-Name=people wrestling: medium skin tone, light skin tone
-U+1F9D1 U+1F3FD U+200D U+1FAEF U+200D U+1F9D1 U+1F3FC
-Name=people wrestling: medium skin tone, medium-light skin tone
-U+1F9D1 U+1F3FD U+200D U+1FAEF U+200D U+1F9D1 U+1F3FE
-Name=people wrestling: medium skin tone, medium-dark skin tone
-U+1F9D1 U+1F3FD U+200D U+1FAEF U+200D U+1F9D1 U+1F3FF
-Name=people wrestling: medium skin tone, dark skin tone
-U+1F9D1 U+1F3FE U+200D U+1FAEF U+200D U+1F9D1 U+1F3FB
-Name=people wrestling: medium-dark skin tone, light skin tone
-U+1F9D1 U+1F3FE U+200D U+1FAEF U+200D U+1F9D1 U+1F3FC
-Name=people wrestling: medium-dark skin tone, medium-light skin tone
-U+1F9D1 U+1F3FE U+200D U+1FAEF U+200D U+1F9D1 U+1F3FD
-Name=people wrestling: medium-dark skin tone, medium skin tone
-U+1F9D1 U+1F3FE U+200D U+1FAEF U+200D U+1F9D1 U+1F3FF
-Name=people wrestling: medium-dark skin tone, dark skin tone
-U+1F9D1 U+1F3FF U+200D U+1FAEF U+200D U+1F9D1 U+1F3FB
-Name=people wrestling: dark skin tone, light skin tone
-U+1F9D1 U+1F3FF U+200D U+1FAEF U+200D U+1F9D1 U+1F3FC
-Name=people wrestling: dark skin tone, medium-light skin tone
-U+1F9D1 U+1F3FF U+200D U+1FAEF U+200D U+1F9D1 U+1F3FD
-Name=people wrestling: dark skin tone, medium skin tone
-U+1F9D1 U+1F3FF U+200D U+1FAEF U+200D U+1F9D1 U+1F3FE
-Name=people wrestling: dark skin tone, medium-dark skin tone
+Proposal=L2/25-258
+After=🪏
+U+1FA8D
+Name=net with handle
+Keywords=catch | collect | trap | mesh
 
-U+1F93C U+1F3FB U+200D U+2642 U+FE0F
-Name=men wrestling: light skin tone
-U+1F93C U+1F3FC U+200D U+2642 U+FE0F
-Name=men wrestling: medium-light skin tone
-U+1F93C U+1F3FD U+200D U+2642 U+FE0F
-Name=men wrestling: medium skin tone
-U+1F93C U+1F3FE U+200D U+2642 U+FE0F
-Name=men wrestling: medium-dark skin tone
-U+1F93C U+1F3FF U+200D U+2642 U+FE0F
-Name=men wrestling: dark skin tone
+Proposal=L2/25-254
+After=🦋
+U+1FACC
+Name=monarch butterfly
+Keywords=insect | migration | caterpillar | transformation | hope | change | fragile | metamorphosis
 
-U+1F468 U+1F3FB U+200D U+1FAEF U+200D U+1F468 U+1F3FC
-Name=men wrestling: light skin tone, medium-light skin tone
-U+1F468 U+1F3FB U+200D U+1FAEF U+200D U+1F468 U+1F3FD
-Name=men wrestling: light skin tone, medium skin tone
-U+1F468 U+1F3FB U+200D U+1FAEF U+200D U+1F468 U+1F3FE
-Name=men wrestling: light skin tone, medium-dark skin tone
-U+1F468 U+1F3FB U+200D U+1FAEF U+200D U+1F468 U+1F3FF
-Name=men wrestling: light skin tone, dark skin tone
-U+1F468 U+1F3FC U+200D U+1FAEF U+200D U+1F468 U+1F3FB
-Name=men wrestling: medium-light skin tone, light skin tone
-U+1F468 U+1F3FC U+200D U+1FAEF U+200D U+1F468 U+1F3FD
-Name=men wrestling: medium-light skin tone, medium skin tone
-U+1F468 U+1F3FC U+200D U+1FAEF U+200D U+1F468 U+1F3FE
-Name=men wrestling: medium-light skin tone, medium-dark skin tone
-U+1F468 U+1F3FC U+200D U+1FAEF U+200D U+1F468 U+1F3FF
-Name=men wrestling: medium-light skin tone, dark skin tone
-U+1F468 U+1F3FD U+200D U+1FAEF U+200D U+1F468 U+1F3FB
-Name=men wrestling: medium skin tone, light skin tone
-U+1F468 U+1F3FD U+200D U+1FAEF U+200D U+1F468 U+1F3FC
-Name=men wrestling: medium skin tone, medium-light skin tone
-U+1F468 U+1F3FD U+200D U+1FAEF U+200D U+1F468 U+1F3FE
-Name=men wrestling: medium skin tone, medium-dark skin tone
-U+1F468 U+1F3FD U+200D U+1FAEF U+200D U+1F468 U+1F3FF
-Name=men wrestling: medium skin tone, dark skin tone
-U+1F468 U+1F3FE U+200D U+1FAEF U+200D U+1F468 U+1F3FB
-Name=men wrestling: medium-dark skin tone, light skin tone
-U+1F468 U+1F3FE U+200D U+1FAEF U+200D U+1F468 U+1F3FC
-Name=men wrestling: medium-dark skin tone, medium-light skin tone
-U+1F468 U+1F3FE U+200D U+1FAEF U+200D U+1F468 U+1F3FD
-Name=men wrestling: medium-dark skin tone, medium skin tone
-U+1F468 U+1F3FE U+200D U+1FAEF U+200D U+1F468 U+1F3FF
-Name=men wrestling: medium-dark skin tone, dark skin tone
-U+1F468 U+1F3FF U+200D U+1FAEF U+200D U+1F468 U+1F3FB
-Name=men wrestling: dark skin tone, light skin tone
-U+1F468 U+1F3FF U+200D U+1FAEF U+200D U+1F468 U+1F3FC
-Name=men wrestling: dark skin tone, medium-light skin tone
-U+1F468 U+1F3FF U+200D U+1FAEF U+200D U+1F468 U+1F3FD
-Name=men wrestling: dark skin tone, medium skin tone
-U+1F468 U+1F3FF U+200D U+1FAEF U+200D U+1F468 U+1F3FE
-Name=men wrestling: dark skin tone, medium-dark skin tone
+Proposal=L2/25-253
+After=🥒
+U+1FADD
+Name=pickle
+Keywords=gherkin | brine | relish | trouble | cucumber | condiment | ferment
 
-U+1F93C U+1F3FB U+200D U+2640 U+FE0F
-Name=women wrestling: light skin tone
-U+1F93C U+1F3FC U+200D U+2640 U+FE0F
-Name=women wrestling: medium-light skin tone
-U+1F93C U+1F3FD U+200D U+2640 U+FE0F
-Name=women wrestling: medium skin tone
-U+1F93C U+1F3FE U+200D U+2640 U+FE0F
-Name=women wrestling: medium-dark skin tone
-U+1F93C U+1F3FF U+200D U+2640 U+FE0F
-Name=women wrestling: dark skin tone
+Proposal=L2/26-048
+After=🫠
+U+1FAEB
+Name=cracking face
+Keywords=reveal | resilience | transformation | tension | masking | crumbling | breaking
 
-U+1F469 U+1F3FB U+200D U+1FAEF U+200D U+1F469 U+1F3FC
-Name=women wrestling: light skin tone, medium-light skin tone
-U+1F469 U+1F3FB U+200D U+1FAEF U+200D U+1F469 U+1F3FD
-Name=women wrestling: light skin tone, medium skin tone
-U+1F469 U+1F3FB U+200D U+1FAEF U+200D U+1F469 U+1F3FE
-Name=women wrestling: light skin tone, medium-dark skin tone
-U+1F469 U+1F3FB U+200D U+1FAEF U+200D U+1F469 U+1F3FF
-Name=women wrestling: light skin tone, dark skin tone
-U+1F469 U+1F3FC U+200D U+1FAEF U+200D U+1F469 U+1F3FB
-Name=women wrestling: medium-light skin tone, light skin tone
-U+1F469 U+1F3FC U+200D U+1FAEF U+200D U+1F469 U+1F3FD
-Name=women wrestling: medium-light skin tone, medium skin tone
-U+1F469 U+1F3FC U+200D U+1FAEF U+200D U+1F469 U+1F3FE
-Name=women wrestling: medium-light skin tone, medium-dark skin tone
-U+1F469 U+1F3FC U+200D U+1FAEF U+200D U+1F469 U+1F3FF
-Name=women wrestling: medium-light skin tone, dark skin tone
-U+1F469 U+1F3FD U+200D U+1FAEF U+200D U+1F469 U+1F3FB
-Name=women wrestling: medium skin tone, light skin tone
-U+1F469 U+1F3FD U+200D U+1FAEF U+200D U+1F469 U+1F3FC
-Name=women wrestling: medium skin tone, medium-light skin tone
-U+1F469 U+1F3FD U+200D U+1FAEF U+200D U+1F469 U+1F3FE
-Name=women wrestling: medium skin tone, medium-dark skin tone
-U+1F469 U+1F3FD U+200D U+1FAEF U+200D U+1F469 U+1F3FF
-Name=women wrestling: medium skin tone, dark skin tone
-U+1F469 U+1F3FE U+200D U+1FAEF U+200D U+1F469 U+1F3FB
-Name=women wrestling: medium-dark skin tone, light skin tone
-U+1F469 U+1F3FE U+200D U+1FAEF U+200D U+1F469 U+1F3FC
-Name=women wrestling: medium-dark skin tone, medium-light skin tone
-U+1F469 U+1F3FE U+200D U+1FAEF U+200D U+1F469 U+1F3FD
-Name=women wrestling: medium-dark skin tone, medium skin tone
-U+1F469 U+1F3FE U+200D U+1FAEF U+200D U+1F469 U+1F3FF
-Name=women wrestling: medium-dark skin tone, dark skin tone
-U+1F469 U+1F3FF U+200D U+1FAEF U+200D U+1F469 U+1F3FB
-Name=women wrestling: dark skin tone, light skin tone
-U+1F469 U+1F3FF U+200D U+1FAEF U+200D U+1F469 U+1F3FC
-Name=women wrestling: dark skin tone, medium-light skin tone
-U+1F469 U+1F3FF U+200D U+1FAEF U+200D U+1F469 U+1F3FD
-Name=women wrestling: dark skin tone, medium skin tone
-U+1F469 U+1F3FF U+200D U+1FAEF U+200D U+1F469 U+1F3FE
-Name=women wrestling: dark skin tone, medium-dark skin tone
+Proposal=L2/25-252
+After=👎
+U+1FAF9
+Name=leftwards thumb sign
+Keywords=point | that | this | grip | neutral | left
+Emoji_Modifier_Base
+U+1FAF9 U+1F3FB
+Name=leftwards thumb sign: light skin tone
+U+1FAF9 U+1F3FC
+Name=leftwards thumb sign: medium-light skin tone
+U+1FAF9 U+1F3FD
+Name=leftwards thumb sign: medium skin tone
+U+1FAF9 U+1F3FE
+Name=leftwards thumb sign: medium-dark skin tone
+U+1FAF9 U+1F3FF
+Name=leftwards thumb sign: dark skin tone
 
-Proposal=L2/24-252
-After=👯
-#U+1F46F
-#Name=bunny dancers
-#Emoji_Modifier_Base
-U+1F46F U+1F3FB
-Name=bunny dancers: light skin tone
-U+1F46F U+1F3FC
-Name=bunny dancers: medium-light skin tone
-U+1F46F U+1F3FD
-Name=bunny dancers: medium skin tone
-U+1F46F U+1F3FE
-Name=bunny dancers: medium-dark skin tone
-U+1F46F U+1F3FF
-Name=bunny dancers: dark skin tone
-
-U+1F9D1 U+1F3FB U+200D U+1F430 U+200D U+1F9D1 U+1F3FC
-Name=people with bunny ears: light skin tone, medium-light skin tone
-U+1F9D1 U+1F3FB U+200D U+1F430 U+200D U+1F9D1 U+1F3FD
-Name=people with bunny ears: light skin tone, medium skin tone
-U+1F9D1 U+1F3FB U+200D U+1F430 U+200D U+1F9D1 U+1F3FE
-Name=people with bunny ears: light skin tone, medium-dark skin tone
-U+1F9D1 U+1F3FB U+200D U+1F430 U+200D U+1F9D1 U+1F3FF
-Name=people with bunny ears: light skin tone, dark skin tone
-U+1F9D1 U+1F3FC U+200D U+1F430 U+200D U+1F9D1 U+1F3FB
-Name=people with bunny ears: medium-light skin tone, light skin tone
-U+1F9D1 U+1F3FC U+200D U+1F430 U+200D U+1F9D1 U+1F3FD
-Name=people with bunny ears: medium-light skin tone, medium skin tone
-U+1F9D1 U+1F3FC U+200D U+1F430 U+200D U+1F9D1 U+1F3FE
-Name=people with bunny ears: medium-light skin tone, medium-dark skin tone
-U+1F9D1 U+1F3FC U+200D U+1F430 U+200D U+1F9D1 U+1F3FF
-Name=people with bunny ears: medium-light skin tone, dark skin tone
-U+1F9D1 U+1F3FD U+200D U+1F430 U+200D U+1F9D1 U+1F3FB
-Name=people with bunny ears: medium skin tone, light skin tone
-U+1F9D1 U+1F3FD U+200D U+1F430 U+200D U+1F9D1 U+1F3FC
-Name=people with bunny ears: medium skin tone, medium-light skin tone
-U+1F9D1 U+1F3FD U+200D U+1F430 U+200D U+1F9D1 U+1F3FE
-Name=people with bunny ears: medium skin tone, medium-dark skin tone
-U+1F9D1 U+1F3FD U+200D U+1F430 U+200D U+1F9D1 U+1F3FF
-Name=people with bunny ears: medium skin tone, dark skin tone
-U+1F9D1 U+1F3FE U+200D U+1F430 U+200D U+1F9D1 U+1F3FB
-Name=people with bunny ears: medium-dark skin tone, light skin tone
-U+1F9D1 U+1F3FE U+200D U+1F430 U+200D U+1F9D1 U+1F3FC
-Name=people with bunny ears: medium-dark skin tone, medium-light skin tone
-U+1F9D1 U+1F3FE U+200D U+1F430 U+200D U+1F9D1 U+1F3FD
-Name=people with bunny ears: medium-dark skin tone, medium skin tone
-U+1F9D1 U+1F3FE U+200D U+1F430 U+200D U+1F9D1 U+1F3FF
-Name=people with bunny ears: medium-dark skin tone, dark skin tone
-U+1F9D1 U+1F3FF U+200D U+1F430 U+200D U+1F9D1 U+1F3FB
-Name=people with bunny ears: dark skin tone, light skin tone
-U+1F9D1 U+1F3FF U+200D U+1F430 U+200D U+1F9D1 U+1F3FC
-Name=people with bunny ears: dark skin tone, medium-light skin tone
-U+1F9D1 U+1F3FF U+200D U+1F430 U+200D U+1F9D1 U+1F3FD
-Name=people with bunny ears: dark skin tone, medium skin tone
-U+1F9D1 U+1F3FF U+200D U+1F430 U+200D U+1F9D1 U+1F3FE
-Name=people with bunny ears: dark skin tone, medium-dark skin tone
-
-U+1F46F U+1F3FB U+200D U+2642 U+FE0F
-Name=men with bunny ears: light skin tone
-U+1F46F U+1F3FC U+200D U+2642 U+FE0F
-Name=men with bunny ears: medium-light skin tone
-U+1F46F U+1F3FD U+200D U+2642 U+FE0F
-Name=men with bunny ears: medium skin tone
-U+1F46F U+1F3FE U+200D U+2642 U+FE0F
-Name=men with bunny ears: medium-dark skin tone
-U+1F46F U+1F3FF U+200D U+2642 U+FE0F
-Name=men with bunny ears: dark skin tone
-
-U+1F468 U+1F3FB U+200D U+1F430 U+200D U+1F468 U+1F3FC
-Name=men with bunny ears: light skin tone, medium-light skin tone
-U+1F468 U+1F3FB U+200D U+1F430 U+200D U+1F468 U+1F3FD
-Name=men with bunny ears: light skin tone, medium skin tone
-U+1F468 U+1F3FB U+200D U+1F430 U+200D U+1F468 U+1F3FE
-Name=men with bunny ears: light skin tone, medium-dark skin tone
-U+1F468 U+1F3FB U+200D U+1F430 U+200D U+1F468 U+1F3FF
-Name=men with bunny ears: light skin tone, dark skin tone
-U+1F468 U+1F3FC U+200D U+1F430 U+200D U+1F468 U+1F3FB
-Name=men with bunny ears: medium-light skin tone, light skin tone
-U+1F468 U+1F3FC U+200D U+1F430 U+200D U+1F468 U+1F3FD
-Name=men with bunny ears: medium-light skin tone, medium skin tone
-U+1F468 U+1F3FC U+200D U+1F430 U+200D U+1F468 U+1F3FE
-Name=men with bunny ears: medium-light skin tone, medium-dark skin tone
-U+1F468 U+1F3FC U+200D U+1F430 U+200D U+1F468 U+1F3FF
-Name=men with bunny ears: medium-light skin tone, dark skin tone
-U+1F468 U+1F3FD U+200D U+1F430 U+200D U+1F468 U+1F3FB
-Name=men with bunny ears: medium skin tone, light skin tone
-U+1F468 U+1F3FD U+200D U+1F430 U+200D U+1F468 U+1F3FC
-Name=men with bunny ears: medium skin tone, medium-light skin tone
-U+1F468 U+1F3FD U+200D U+1F430 U+200D U+1F468 U+1F3FE
-Name=men with bunny ears: medium skin tone, medium-dark skin tone
-U+1F468 U+1F3FD U+200D U+1F430 U+200D U+1F468 U+1F3FF
-Name=men with bunny ears: medium skin tone, dark skin tone
-U+1F468 U+1F3FE U+200D U+1F430 U+200D U+1F468 U+1F3FB
-Name=men with bunny ears: medium-dark skin tone, light skin tone
-U+1F468 U+1F3FE U+200D U+1F430 U+200D U+1F468 U+1F3FC
-Name=men with bunny ears: medium-dark skin tone, medium-light skin tone
-U+1F468 U+1F3FE U+200D U+1F430 U+200D U+1F468 U+1F3FD
-Name=men with bunny ears: medium-dark skin tone, medium skin tone
-U+1F468 U+1F3FE U+200D U+1F430 U+200D U+1F468 U+1F3FF
-Name=men with bunny ears: medium-dark skin tone, dark skin tone
-U+1F468 U+1F3FF U+200D U+1F430 U+200D U+1F468 U+1F3FB
-Name=men with bunny ears: dark skin tone, light skin tone
-U+1F468 U+1F3FF U+200D U+1F430 U+200D U+1F468 U+1F3FC
-Name=men with bunny ears: dark skin tone, medium-light skin tone
-U+1F468 U+1F3FF U+200D U+1F430 U+200D U+1F468 U+1F3FD
-Name=men with bunny ears: dark skin tone, medium skin tone
-U+1F468 U+1F3FF U+200D U+1F430 U+200D U+1F468 U+1F3FE
-Name=men with bunny ears: dark skin tone, medium-dark skin tone
-
-U+1F46F U+1F3FB U+200D U+2640 U+FE0F
-Name=women with bunny ears: light skin tone
-U+1F46F U+1F3FC U+200D U+2640 U+FE0F
-Name=women with bunny ears: medium-light skin tone
-U+1F46F U+1F3FD U+200D U+2640 U+FE0F
-Name=women with bunny ears: medium skin tone
-U+1F46F U+1F3FE U+200D U+2640 U+FE0F
-Name=women with bunny ears: medium-dark skin tone
-U+1F46F U+1F3FF U+200D U+2640 U+FE0F
-Name=women with bunny ears: dark skin tone
-
-U+1F469 U+1F3FB U+200D U+1F430 U+200D U+1F469 U+1F3FC
-Name=women with bunny ears: light skin tone, medium-light skin tone
-U+1F469 U+1F3FB U+200D U+1F430 U+200D U+1F469 U+1F3FD
-Name=women with bunny ears: light skin tone, medium skin tone
-U+1F469 U+1F3FB U+200D U+1F430 U+200D U+1F469 U+1F3FE
-Name=women with bunny ears: light skin tone, medium-dark skin tone
-U+1F469 U+1F3FB U+200D U+1F430 U+200D U+1F469 U+1F3FF
-Name=women with bunny ears: light skin tone, dark skin tone
-U+1F469 U+1F3FC U+200D U+1F430 U+200D U+1F469 U+1F3FB
-Name=women with bunny ears: medium-light skin tone, light skin tone
-U+1F469 U+1F3FC U+200D U+1F430 U+200D U+1F469 U+1F3FD
-Name=women with bunny ears: medium-light skin tone, medium skin tone
-U+1F469 U+1F3FC U+200D U+1F430 U+200D U+1F469 U+1F3FE
-Name=women with bunny ears: medium-light skin tone, medium-dark skin tone
-U+1F469 U+1F3FC U+200D U+1F430 U+200D U+1F469 U+1F3FF
-Name=women with bunny ears: medium-light skin tone, dark skin tone
-U+1F469 U+1F3FD U+200D U+1F430 U+200D U+1F469 U+1F3FB
-Name=women with bunny ears: medium skin tone, light skin tone
-U+1F469 U+1F3FD U+200D U+1F430 U+200D U+1F469 U+1F3FC
-Name=women with bunny ears: medium skin tone, medium-light skin tone
-U+1F469 U+1F3FD U+200D U+1F430 U+200D U+1F469 U+1F3FE
-Name=women with bunny ears: medium skin tone, medium-dark skin tone
-U+1F469 U+1F3FD U+200D U+1F430 U+200D U+1F469 U+1F3FF
-Name=women with bunny ears: medium skin tone, dark skin tone
-U+1F469 U+1F3FE U+200D U+1F430 U+200D U+1F469 U+1F3FB
-Name=women with bunny ears: medium-dark skin tone, light skin tone
-U+1F469 U+1F3FE U+200D U+1F430 U+200D U+1F469 U+1F3FC
-Name=women with bunny ears: medium-dark skin tone, medium-light skin tone
-U+1F469 U+1F3FE U+200D U+1F430 U+200D U+1F469 U+1F3FD
-Name=women with bunny ears: medium-dark skin tone, medium skin tone
-U+1F469 U+1F3FE U+200D U+1F430 U+200D U+1F469 U+1F3FF
-Name=women with bunny ears: medium-dark skin tone, dark skin tone
-U+1F469 U+1F3FF U+200D U+1F430 U+200D U+1F469 U+1F3FB
-Name=women with bunny ears: dark skin tone, light skin tone
-U+1F469 U+1F3FF U+200D U+1F430 U+200D U+1F469 U+1F3FC
-Name=women with bunny ears: dark skin tone, medium-light skin tone
-U+1F469 U+1F3FF U+200D U+1F430 U+200D U+1F469 U+1F3FD
-Name=women with bunny ears: dark skin tone, medium skin tone
-U+1F469 U+1F3FF U+200D U+1F430 U+200D U+1F469 U+1F3FE
-Name=women with bunny ears: dark skin tone, medium-dark skin tone
-
-Proposal=L2/24-226
-U+1F9D1 U+200D U+1FA70
-Name=ballet dancer
-Keywords=ballet | dancer | graceful | perform | twirl
-U+1F9D1 U+1F3FB U+200D U+1FA70
-Name=ballet dancer: light skin tone
-U+1F9D1 U+1F3FC U+200D U+1FA70
-Name=ballet dancer: medium-light skin tone
-U+1F9D1 U+1F3FD U+200D U+1FA70
-Name=ballet dancer: medium skin tone
-U+1F9D1 U+1F3FE U+200D U+1FA70
-Name=ballet dancer: medium-dark skin tone
-U+1F9D1 U+1F3FF U+200D U+1FA70
-Name=ballet dancer: dark skin tone
-
-Proposal=L2/24-249
-After=🦪
-U+1FACD
-Name=orca
-Keywords=whale | ocean | marine
-
-Proposal=L2/24-251
-After=🧌
-U+1FAC8
-Name=hairy creature
-Keywords=yeti | bigfoot | sasquatch | hairy | cryptid |  woodwose | giant | forest
-
-Proposal=L2/24-256
-After=🪉
-U+1FA8A
-Name=trombone
-Keywords=music | instrument | sad | slide | brass | jazz
-
-Proposal=L2/24-257
-After=🏞️
-U+1F6D8
-Name=landslide
-Keywords=avalanche | danger | disaster | mountain | earthquake | mudslide | rocks
-
-Proposal=L2/24-255
-After=💹
-U+1FA8E
-Name=treasure chest
-Keywords=valuables | loot | money | gold | silver | gem | jewels | wealth | prize
+U+1FAFA
+Name=rightwards thumb sign
+Keywords=point | that | this | grip | neutral | right
+Emoji_Modifier_Base
+U+1FAFA U+1F3FB
+Name=rightwards thumb sign: light skin tone
+U+1FAFA U+1F3FC
+Name=rightwards thumb sign: medium-light skin tone
+U+1FAFA U+1F3FD
+Name=rightwards thumb sign: medium skin tone
+U+1FAFA U+1F3FE
+Name=rightwards thumb sign: medium-dark skin tone
+U+1FAFA U+1F3FF
+Name=rightwards thumb sign: dark skin tone

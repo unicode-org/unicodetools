@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2026-02-01, 23:51:36 GMT
+# Date: 2026-02-03, 11:13:51 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -45087,6 +45087,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1F6D6         ; HUT
 1F6D7         ; ELEVATOR
 1F6D8         ; LANDSLIDE
+1F6D9         ; LIGHTHOUSE
 1F6DC         ; WIRELESS
 1F6DD         ; PLAYGROUND SLIDE
 1F6DE         ; WHEEL
@@ -45918,6 +45919,9 @@ FFFD          ; REPLACEMENT CHARACTER
 1FA88         ; FLUTE
 1FA89         ; HARP
 1FA8A         ; TROMBONE
+1FA8B         ; METEOR
+1FA8C         ; ERASER
+1FA8D         ; NET WITH HANDLE
 1FA8E         ; TREASURE CHEST
 1FA8F         ; SHOVEL
 1FA90         ; RINGED PLANET
@@ -45976,6 +45980,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1FAC5         ; PERSON WITH CROWN
 1FAC6         ; FINGERPRINT
 1FAC8         ; HAIRY CREATURE
+1FACC         ; MONARCH BUTTERFLY
 1FACD         ; ORCA
 1FACE         ; MOOSE
 1FACF         ; DONKEY
@@ -45992,6 +45997,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1FADA         ; GINGER ROOT
 1FADB         ; PEA POD
 1FADC         ; ROOT VEGETABLE
+1FADD         ; PICKLE
 1FADF         ; SPLATTER
 1FAE0         ; MELTING FACE
 1FAE1         ; SALUTING FACE
@@ -46004,6 +46010,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1FAE8         ; SHAKING FACE
 1FAE9         ; FACE WITH BAGS UNDER EYES
 1FAEA         ; DISTORTED FACE
+1FAEB         ; CRACKING FACE
 1FAEF         ; FIGHT CLOUD
 1FAF0         ; HAND WITH INDEX FINGER AND THUMB CROSSED
 1FAF1         ; RIGHTWARDS HAND
@@ -46014,6 +46021,8 @@ FFFD          ; REPLACEMENT CHARACTER
 1FAF6         ; HEART HANDS
 1FAF7         ; LEFTWARDS PUSHING HAND
 1FAF8         ; RIGHTWARDS PUSHING HAND
+1FAF9         ; LEFTWARDS THUMB SIGN
+1FAFA         ; RIGHTWARDS THUMB SIGN
 1FB00         ; BLOCK SEXTANT-1
 1FB01         ; BLOCK SEXTANT-2
 1FB02         ; BLOCK SEXTANT-12
@@ -46611,6 +46620,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172837
+# Total code points: 172846
 
 # EOF
