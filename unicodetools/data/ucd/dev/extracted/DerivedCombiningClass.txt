@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2026-01-30, 19:37:20 GMT
+# Date: 2026-02-01, 23:51:32 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1975,6 +1975,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1DA87..1DA8B  ; 0 # Po   [5] SIGNWRITING COMMA..SIGNWRITING PARENTHESIS
 1DA9B..1DA9F  ; 0 # Mn   [5] SIGNWRITING FILL MODIFIER-2..SIGNWRITING FILL MODIFIER-6
 1DAA1..1DAAF  ; 0 # Mn  [15] SIGNWRITING ROTATION MODIFIER-2..SIGNWRITING ROTATION MODIFIER-16
+1DB00..1DB1C  ; 0 # Sm  [29] LEIBNIZIAN EQUALS SIGN..FACIT SYMBOL
 1DF00..1DF09  ; 0 # L&  [10] LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER T WITH HOOK AND RETROFLEX HOOK
 1DF0A         ; 0 # Lo       LATIN LETTER RETROFLEX CLICK WITH RETROFLEX HOOK
 1DF0B..1DF7F  ; 0 # L& [117] LATIN SMALL LETTER ESH WITH DOUBLE BAR..LATIN SMALL LETTER REVERSED U
@@ -2113,7 +2114,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 803771 code points not listed here.
+# The above property value applies to 803742 code points not listed here.
 # Total code points: 1113109
 
 # ================================================
