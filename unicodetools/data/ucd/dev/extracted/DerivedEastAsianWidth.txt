@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-18.0.0.txt
-# Date: 2026-02-02, 20:37:47 GMT
+# Date: 2026-02-03, 11:13:50 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2009,6 +2009,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 1DA87..1DA8B  ; N # Po   [5] SIGNWRITING COMMA..SIGNWRITING PARENTHESIS
 1DA9B..1DA9F  ; N # Mn   [5] SIGNWRITING FILL MODIFIER-2..SIGNWRITING FILL MODIFIER-6
 1DAA1..1DAAF  ; N # Mn  [15] SIGNWRITING ROTATION MODIFIER-2..SIGNWRITING ROTATION MODIFIER-16
+1DB00..1DB1C  ; N # Sm  [29] LEIBNIZIAN EQUALS SIGN..FACIT SYMBOL
 1DF00..1DF09  ; N # L&  [10] LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER T WITH HOOK AND RETROFLEX HOOK
 1DF0A         ; N # Lo       LATIN LETTER RETROFLEX CLICK WITH RETROFLEX HOOK
 1DF0B..1DF7F  ; N # L& [117] LATIN SMALL LETTER ESH WITH DOUBLE BAR..LATIN SMALL LETTER REVERSED U
@@ -2166,7 +2167,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 758925 code points not listed here.
+# The above property value applies to 758896 code points not listed here.
 # Total code points: 791273
 
 # ================================================

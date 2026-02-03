@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2026-02-02, 20:37:48 GMT
+# Date: 2026-02-03, 11:13:50 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -631,7 +631,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1D7CC..1D7CD  ; Cn #   [2] <reserved-1D7CC>..<reserved-1D7CD>
 1DA8C..1DA9A  ; Cn #  [15] <reserved-1DA8C>..<reserved-1DA9A>
 1DAA0         ; Cn #       <reserved-1DAA0>
-1DAB0..1DEFF  ; Cn # [1104] <reserved-1DAB0>..<reserved-1DEFF>
+1DAB0..1DAFF  ; Cn #  [80] <reserved-1DAB0>..<reserved-1DAFF>
+1DB1D..1DEFF  ; Cn # [995] <reserved-1DB1D>..<reserved-1DEFF>
 1DF82..1DF8F  ; Cn #  [14] <reserved-1DF82>..<reserved-1DF8F>
 1DF97..1DFCC  ; Cn #  [54] <reserved-1DF97>..<reserved-1DFCC>
 1E007         ; Cn #       <reserved-1E007>
@@ -749,7 +750,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801714
+# Total code points: 801685
 
 # ================================================
 
@@ -4117,10 +4118,11 @@ FFE9..FFEC    ; Sm #   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS ARROW
 1D789         ; Sm #       MATHEMATICAL SANS-SERIF BOLD PARTIAL DIFFERENTIAL
 1D7A9         ; Sm #       MATHEMATICAL SANS-SERIF BOLD ITALIC NABLA
 1D7C3         ; Sm #       MATHEMATICAL SANS-SERIF BOLD ITALIC PARTIAL DIFFERENTIAL
+1DB00..1DB1C  ; Sm #  [29] LEIBNIZIAN EQUALS SIGN..FACIT SYMBOL
 1EEF0..1EEF1  ; Sm #   [2] ARABIC MATHEMATICAL OPERATOR MEEM WITH HAH WITH TATWEEL..ARABIC MATHEMATICAL OPERATOR HAH WITH DAL
 1F8D0..1F8D8  ; Sm #   [9] LONG RIGHTWARDS ARROW OVER LONG LEFTWARDS ARROW..LONG LEFT RIGHT ARROW WITH DEPENDENT LOBE
 
-# Total code points: 976
+# Total code points: 1005
 
 # ================================================
 

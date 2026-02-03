@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2026-01-31, 03:24:00 GMT
+# Date: 2026-02-03, 11:14:24 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2381,6 +2381,7 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1DA9B..1DA9F   ; U  # Mn     [5] SIGNWRITING FILL MODIFIER-2..SIGNWRITING FILL MODIFIER-6
 1DAA0          ; U  # Cn         <reserved-1DAA0>
 1DAA1..1DAAF   ; U  # Mn    [15] SIGNWRITING ROTATION MODIFIER-2..SIGNWRITING ROTATION MODIFIER-16
+1DB00..1DB1C   ; R  # Sm    [29] LEIBNIZIAN EQUALS SIGN..FACIT SYMBOL
 1DF00..1DF09   ; R  # Ll    [10] LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER T WITH HOOK AND RETROFLEX HOOK
 1DF0A          ; R  # Lo         LATIN LETTER RETROFLEX CLICK WITH RETROFLEX HOOK
 1DF0B..1DF7F   ; R  # L&   [117] LATIN SMALL LETTER ESH WITH DOUBLE BAR..LATIN SMALL LETTER REVERSED U

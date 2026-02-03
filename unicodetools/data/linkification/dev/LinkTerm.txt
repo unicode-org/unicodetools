@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-02-02, 20:39:30 GMT 
+# Date: 2026-02-03, 11:15:16 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1857,6 +1857,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 1DA8B         ; Include # 8.0       (𝪋)  SIGNWRITING PARENTHESIS
 1DA9B..1DA9F  ; Include # 8.0   [5] (𝪛..𝪟)  SIGNWRITING FILL MODIFIER-2..SIGNWRITING FILL MODIFIER-6
 1DAA1..1DAAF  ; Include # 8.0  [15] (𝪡..𝪯)  SIGNWRITING ROTATION MODIFIER-2..SIGNWRITING ROTATION MODIFIER-16
+1DB00..1DB1C  ; Include # 18.0 [29] (U+1DB00..U+1DB1C)  LEIBNIZIAN EQUALS SIGN..FACIT SYMBOL
 1DF00..1DF1E  ; Include # 14.0 [31] (𝼀..𝼞)  LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER S WITH CURL
 1DF1F..1DF24  ; Include # 18.0  [6] (U+1DF1F..U+1DF24)  LATIN SMALL LETTER D-ETH DIGRAPH..LATIN SMALL LETTER T-THETA DIGRAPH
 1DF25..1DF2A  ; Include # 15.0  [6] (𝼥..𝼪)  LATIN SMALL LETTER D WITH MID-HEIGHT LEFT HOOK..LATIN SMALL LETTER T WITH MID-HEIGHT LEFT HOOK
@@ -2207,5 +2208,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172321
+# Total code points: 172350
 
