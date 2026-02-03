@@ -1,5 +1,5 @@
 # LineBreak-18.0.0.txt
-# Date: 2026-02-03, 11:13:55 GMT
+# Date: 2026-02-03, 12:08:14 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3341,6 +3341,7 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 1CD00..1CEB3   ; AL # So   [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
 1CEBA..1CEBF   ; AL # So     [6] FRAGILE SYMBOL..STRAWBERRY SYMBOL
 1CEC0..1CED0   ; AL # So    [17] HEBE..LEUKOTHEA
+1CED2..1CED4   ; AL # So     [3] ALCHEMICAL SYMBOL FOR OIL INVERTED..ALCHEMICAL SYMBOL FOR SALT OF TARTAR
 1CEDD..1CEDF   ; AL # Sm     [3] SQUARE ROOT OF SQUARE ROOT..SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
 1CEE0..1CEEF   ; AL # So    [16] GEOMANTIC FIGURE POPULUS..GEOMANTIC FIGURE VIA
 1CEF0..1CEFD   ; AL # Sm    [14] MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR..HYPERBOLA
