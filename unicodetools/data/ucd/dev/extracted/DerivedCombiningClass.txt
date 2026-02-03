@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2026-02-03, 11:13:47 GMT
+# Date: 2026-02-03, 12:08:06 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1900,6 +1900,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1CCFA..1CCFC  ; 0 # So   [3] SNAKE SYMBOL..NOSE SYMBOL
 1CD00..1CEB3  ; 0 # So [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
 1CEBA..1CED0  ; 0 # So  [23] FRAGILE SYMBOL..LEUKOTHEA
+1CED2..1CED4  ; 0 # So   [3] ALCHEMICAL SYMBOL FOR OIL INVERTED..ALCHEMICAL SYMBOL FOR SALT OF TARTAR
 1CEDD..1CEDF  ; 0 # Sm   [3] SQUARE ROOT OF SQUARE ROOT..SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
 1CEE0..1CEEF  ; 0 # So  [16] GEOMANTIC FIGURE POPULUS..GEOMANTIC FIGURE VIA
 1CEF0..1CEFD  ; 0 # Sm  [14] MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR..HYPERBOLA
@@ -2113,7 +2114,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 803733 code points not listed here.
+# The above property value applies to 803730 code points not listed here.
 # Total code points: 1113109
 
 # ================================================

@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2026-02-03, 11:13:51 GMT
+# Date: 2026-02-03, 12:08:10 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,8 +71,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 755496 code points not listed here.
-# Total code points: 892964
+# The above property value applies to 755493 code points not listed here.
+# Total code points: 892961
 
 # ================================================
 
@@ -1485,6 +1485,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1CCFA..1CCFC  ; AL # So   [3] SNAKE SYMBOL..NOSE SYMBOL
 1CD00..1CEB3  ; AL # So [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
 1CEBA..1CED0  ; AL # So  [23] FRAGILE SYMBOL..LEUKOTHEA
+1CED2..1CED4  ; AL # So   [3] ALCHEMICAL SYMBOL FOR OIL INVERTED..ALCHEMICAL SYMBOL FOR SALT OF TARTAR
 1CEDD..1CEDF  ; AL # Sm   [3] SQUARE ROOT OF SQUARE ROOT..SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
 1CEE0..1CEEF  ; AL # So  [16] GEOMANTIC FIGURE POPULUS..GEOMANTIC FIGURE VIA
 1CEF0..1CEFD  ; AL # Sm  [14] MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR..HYPERBOLA
@@ -1660,7 +1661,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB94..1FBEF  ; AL # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; AL # So       ALARM BELL SYMBOL
 
-# Total code points: 27612
+# Total code points: 27615
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2026-02-03, 11:14:24 GMT
+# Date: 2026-02-03, 12:08:44 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2281,7 +2281,9 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1CD00..1CEB3   ; R  # So   [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
 1CEBA..1CEBF   ; R  # So     [6] FRAGILE SYMBOL..STRAWBERRY SYMBOL
 1CEC0..1CED0   ; U  # So    [17] HEBE..LEUKOTHEA
-1CED1..1CEDC   ; U  # Cn    [12] <reserved-1CED1>..<reserved-1CEDC>
+1CED1          ; U  # Cn         <reserved-1CED1>
+1CED2..1CED4   ; U  # So     [3] ALCHEMICAL SYMBOL FOR OIL INVERTED..ALCHEMICAL SYMBOL FOR SALT OF TARTAR
+1CED5..1CEDC   ; U  # Cn     [8] <reserved-1CED5>..<reserved-1CEDC>
 1CEDD..1CEDF   ; R  # Sm     [3] SQUARE ROOT OF SQUARE ROOT..SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
 1CEE0..1CEEF   ; U  # So    [16] GEOMANTIC FIGURE POPULUS..GEOMANTIC FIGURE VIA
 1CEF0          ; U  # Sm         MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR
