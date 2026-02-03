@@ -16,7 +16,7 @@
 	for this process are aimed at readability for the human reader,
 	at the expense of some details; therefore, this file should not
 	be parsed for machine-readable information.
-@+		© 2025 Unicode®, Inc.
+@+		© 2026 Unicode®, Inc.
 	For terms of use and license, see https://www.unicode.org/terms_of_use.html
 @@	0000	C0 Controls and Basic Latin (Basic Latin)	007F
 @@+
