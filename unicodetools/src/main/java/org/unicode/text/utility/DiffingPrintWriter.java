@@ -1,4 +1,4 @@
-package org.unicode.tools.emoji;
+package org.unicode.text.utility;
 
 import com.ibm.icu.util.ICUUncheckedIOException;
 import java.io.File;
@@ -7,18 +7,17 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.Random;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.text.utility.Utility;
 
-public class TempPrintWriter extends Writer {
-    final PrintWriter tempPrintWriter;
+public class DiffingPrintWriter extends Writer {
+    public final PrintWriter tempPrintWriter;
     final String tempName;
     final String filename;
 
-    public TempPrintWriter(String dir, String filename) {
+    public DiffingPrintWriter(String dir, String filename) {
         this(new File(dir, filename));
     }
 
-    public TempPrintWriter(File file) {
+    public DiffingPrintWriter(File file) {
         super();
         final String parentFile = file.getParent();
         this.filename = file.toString();

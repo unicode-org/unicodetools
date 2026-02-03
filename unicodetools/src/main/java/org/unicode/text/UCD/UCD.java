@@ -1326,6 +1326,15 @@ public final class UCD implements UCD_Types {
                 }
             }
 
+            if (rCompositeVersion >= 0x120000) {
+                if (ch <= JURCHEN_BASE) {
+                    return ch;
+                }
+                if (ch < JURCHEN_LIMIT) {
+                    return JURCHEN_BASE;
+                }
+            }
+
             // 20000..2A6DF; CJK Unified Ideographs Extension B
             if (ch <= CJK_B_BASE) {
                 return ch; // Extension B first char
@@ -1706,6 +1715,12 @@ public final class UCD implements UCD_Types {
             case SEAL_BASE:
                 if (fixStrings) {
                     constructedName = "SEAL CHARACTER-" + Utility.hex(codePoint, 4);
+                }
+                isRemapped = true;
+                break;
+            case JURCHEN_BASE:
+                if (fixStrings) {
+                    constructedName = "JURCHEN CHARACTER-" + Utility.hex(codePoint, 4);
                 }
                 isRemapped = true;
                 break;

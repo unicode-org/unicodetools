@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Set;
+import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 
@@ -203,7 +204,7 @@ public class EmojiDataSourceCombined implements EmojiDataSource {
      *
      * @param reformatted
      */
-    public void showOrderingInterleaved(TempPrintWriter reformatted) {
+    public void showOrderingInterleaved(DiffingPrintWriter reformatted) {
         showOrderingInterleaved(30, reformatted);
     }
 

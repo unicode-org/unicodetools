@@ -1337,6 +1337,32 @@
 26A7; L2/19-080, L2/19-193 # 2020 (⚧️) transgender symbol
 1F3F3 200D 26A7; L2/19-080, L2/19-193 # 2020 (🏳️‍⚧️) transgender flag
 
+# L2/25-256
+1F6D9; L2/25-256 # 2026 (🛙) lighthouse
+
+# L2/25-257
+1FA8B; L2/25-257 # 2026 (🪋) meteor
+
+# L2/25-255
+1FA8C; L2/25-255 # 2026 (🪌) eraser
+
+# L2/25-258
+1FA8D; L2/25-258 # 2026 (🪍) net with handle
+
+# L2/25-254
+1FACC; L2/25-254 # 2026 (🫌) monarch butterfly
+
+# L2/25-253
+1FADD; L2/25-253 # 2026 (🫝) pickle
+
+# L2/26-048
+1FAEB; L2/26-048 # 2026 (🫫) cracking face
+
+# L2/25-252
+1FAF9..1FAFA; L2/25-252 # 2026..2026 (🫹..🫺) leftwards thumb sign..rightwards thumb sign
+1FAF9 1F3FF; L2/25-252 # 2026 (🫹🏿) leftwards thumb sign: dark skin tone
+1FAFA 1F3FF; L2/25-252 # 2026 (🫺🏿) rightwards thumb sign: dark skin tone
+
 # L2/14-173
 261D 1F3FF; L2/14-173 # 2015 (☝🏿) index pointing up: dark skin tone
 26F9 1F3FF; L2/14-173 # 2015 (⛹🏿) person bouncing ball: dark skin tone

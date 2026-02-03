@@ -28,6 +28,7 @@ import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
+import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.utilities.LinkUtilities;
 import org.unicode.utilities.LinkUtilities.LinkTermination;
 import org.unicode.utilities.LinkUtilities.Part;
@@ -45,7 +46,7 @@ import org.unicode.utilities.LinkUtilities.UrlInternals;
  *
  * @throws IOException
  */
-class GenerateLinkData {
+public class GenerateLinkData {
 
     private static final Transliterator FIX_ODD =
             Transliterator.createFromRules(
@@ -75,9 +76,13 @@ class GenerateLinkData {
                     "");
 
     public static void main(String[] args) throws IOException {
-        generatePropertyData();
-        generateDetectionTestData();
-        generateFormattingTestData();
+        System.out.println("TLDs=\t" + Joiner.on(' ').join(LinkUtilities.TLDS));
+        final String copyrightYear = dty.format(now);
+        generateLinkTerm(copyrightYear);
+        generateLinkEmail(copyrightYear);
+        generateLinkBracket(copyrightYear);
+        generateDetectionTestData(copyrightYear);
+        generateFormattingTestData(copyrightYear);
     }
 
     static final Instant now = Instant.now();
@@ -213,21 +218,24 @@ class GenerateLinkData {
             SimpleFormatter simpleFormatter,
             String filename,
             String propertyName,
-            String missingValue) {
+            String missingValue,
+            String copyrightYear) {
         out.println(
                 simpleFormatter.format(
-                        filename, dt.format(now), dty.format(now), propertyName, missingValue));
+                        filename, dt.format(now), copyrightYear, propertyName, missingValue));
     }
 
     static void writeTestHeader(
-            PrintWriter out, SimpleFormatter simpleFormatter, String filename, String testName) {
-        out.println(simpleFormatter.format(filename, dt.format(now), dty.format(now), testName));
+            PrintWriter out,
+            SimpleFormatter simpleFormatter,
+            String filename,
+            String testName,
+            String copyrightYear) {
+        out.println(simpleFormatter.format(filename, dt.format(now), copyrightYear, testName));
     }
 
     /** Generate property data for the UTS */
-    static void generatePropertyData() {
-        System.out.println("TLDs=\t" + Joiner.on(' ').join(LinkUtilities.TLDS));
-
+    public static void generateLinkTerm(String copyrightYear) {
         BagFormatter bf = new BagFormatter(LinkUtilities.IUP).setLineSeparator("\n");
         bf.setShowLiteral(FIX_ODD);
 
@@ -236,47 +244,62 @@ class GenerateLinkData {
         bf.setValueSource(LinkTermination.PROPERTY);
         bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
 
-        try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkTerm.txt"); ) {
-            writePropHeader(out, HEADER_PROP_TERM, "LinkTerm", "Link_Term", "Hard");
+        try (final var out = new DiffingPrintWriter(LinkUtilities.DATA_DIR_DEV, "LinkTerm.txt"); ) {
+            writePropHeader(
+                    out.tempPrintWriter,
+                    HEADER_PROP_TERM,
+                    "LinkTerm",
+                    "Link_Term",
+                    "Hard",
+                    copyrightYear);
             for (LinkTermination propValue : LinkTermination.NON_MISSING) {
-                bf.showSetNames(out, propValue.base);
+                bf.showSetNames(out.tempPrintWriter, propValue.base);
                 out.println("");
                 out.flush();
                 System.out.println(propValue + "=\t" + propValue.base.toPattern(false));
             }
-
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
         }
+    }
 
+    public static void generateLinkEmail(String copyrightYear) {
+        BagFormatter bf = new BagFormatter(LinkUtilities.IUP).setLineSeparator("\n");
+        bf.setShowLiteral(FIX_ODD);
+        bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
         // LinkEmail.txt
         bf.setValueSource(UnicodeLabel.NULL);
-        try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkEmail.txt"); ) {
+        try (final var out =
+                new DiffingPrintWriter(LinkUtilities.DATA_DIR_DEV, "LinkEmail.txt"); ) {
             writePropHeader(
-                    out,
+                    out.tempPrintWriter,
                     HEADER_PROP_BINARY,
                     "LinkEmail",
                     "Link_Email",
-                    UcdPropertyValues.Binary.No.toString());
+                    UcdPropertyValues.Binary.No.toString(),
+                    copyrightYear);
             UnicodeSet linkEmailSet = LinkUtilities.LinkEmail.getSet(UcdPropertyValues.Binary.Yes);
-            bf.showSetNames(out, linkEmailSet);
+            bf.showSetNames(out.tempPrintWriter, linkEmailSet);
             System.out.println("LinkEmail=\t" + linkEmailSet.toPattern(false));
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
         }
+    }
 
+    public static void generateLinkBracket(String copyrightYear) {
+        BagFormatter bf = new BagFormatter(LinkUtilities.IUP).setLineSeparator("\n");
+        bf.setShowLiteral(FIX_ODD);
+        bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
         // LinkBracket.txt
         bf.setValueSource(LinkUtilities.getLinkBracket());
         bf.setHexValue(true);
         bf.setShowDehexedValue(true);
-        try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(LinkUtilities.DATA_DIR_DEV, "LinkBracket.txt"); ) {
-            writePropHeader(out, HEADER_PROP_STRING, "LinkBracket", "Link_Bracket", "<none>");
-            bf.showSetNames(out, LinkTermination.Close.base);
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
+        try (final var out =
+                new DiffingPrintWriter(LinkUtilities.DATA_DIR_DEV, "LinkBracket.txt"); ) {
+            writePropHeader(
+                    out.tempPrintWriter,
+                    HEADER_PROP_STRING,
+                    "LinkBracket",
+                    "Link_Bracket",
+                    "<none>",
+                    copyrightYear);
+            bf.showSetNames(out.tempPrintWriter, LinkTermination.Close.base);
         }
     }
 
@@ -284,14 +307,18 @@ class GenerateLinkData {
      * The format of the test file sources are: source<TAB>expected OR just source If there is an
      * expected value, then it is checked against what is generated.
      */
-    static void generateDetectionTestData() {
+    public static void generateDetectionTestData(String copyrightYear) {
 
         OutputInt errorCount = new OutputInt();
 
-        try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(
-                        LinkUtilities.DATA_DIR_DEV, "LinkDetectionTest.txt"); ) {
-            writeTestHeader(out, HEADER_DETECT_TEST, "LinkDetectionTest", "LinkDetectionTest");
+        try (final var out =
+                new DiffingPrintWriter(LinkUtilities.DATA_DIR_DEV, "LinkDetectionTest.txt"); ) {
+            writeTestHeader(
+                    out.tempPrintWriter,
+                    HEADER_DETECT_TEST,
+                    "LinkDetectionTest",
+                    "LinkDetectionTest",
+                    copyrightYear);
 
             out.println("\n# Misc. test cases\n");
 
@@ -364,16 +391,20 @@ class GenerateLinkData {
         }
     }
 
-    static void generateFormattingTestData() {
+    public static void generateFormattingTestData(String copyrightYear) {
 
         OutputInt errorCount = new OutputInt();
 
-        try (final PrintWriter out =
-                FileUtilities.openUTF8Writer(
-                        LinkUtilities.DATA_DIR_DEV, "LinkFormattingTest.txt"); ) {
-            writeTestHeader(out, HEADER_FORMAT_TEST, "LinkFormattingTest", "LinkFormattingTest");
+        try (final var out =
+                new DiffingPrintWriter(LinkUtilities.DATA_DIR_DEV, "LinkFormattingTest.txt"); ) {
+            writeTestHeader(
+                    out.tempPrintWriter,
+                    HEADER_FORMAT_TEST,
+                    "LinkFormattingTest",
+                    "LinkFormattingTest",
+                    copyrightYear);
 
-            out.println("\n# Selected test cases\n");
+            out.tempPrintWriter.println("\n# Selected test cases\n");
 
             List<String> comments = new ArrayList<>();
             Output<Integer> lineCount = new Output<>(0);
@@ -439,7 +470,7 @@ class GenerateLinkData {
                                     comments.clear();
                                     return;
                                 }
-                                outputTestCase(out, comments, internals, actual);
+                                outputTestCase(out.tempPrintWriter, comments, internals, actual);
                             });
 
             out.println("\n# Wikipedia test cases\n");
@@ -480,7 +511,7 @@ class GenerateLinkData {
 
                                 String actual = internals.minimalEscape(true, null);
 
-                                outputTestCase(out, comments, internals, actual);
+                                outputTestCase(out.tempPrintWriter, comments, internals, actual);
                             });
         } catch (IOException e) {
             throw new UncheckedIOException(e);

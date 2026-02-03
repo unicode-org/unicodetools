@@ -339,6 +339,7 @@ FFF0..FFFF; Specials
 1D360..1D37F; Counting Rod Numerals
 1D400..1D7FF; Mathematical Alphanumeric Symbols
 1D800..1DAAF; Sutton SignWriting
+1DB00..1DBFF; Miscellaneous Symbols and Arrows Extended
 1DF00..1DFFF; Latin Extended-G
 1E000..1E02F; Glagolitic Supplement
 1E030..1E08F; Cyrillic Extended-D

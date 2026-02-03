@@ -1972,4 +1972,16 @@
 # https://www.unicode.org/L2/L2023/23157.htm#176-A6
 1F1E8 1F1F6; MISSING # 2024 (🇨🇶) flag: Sark
 
+1F6D9; L2/25-256; lighthouse
+1FA8B; L2/25-257; meteor
+1FA8C; L2/25-255; eraser
+1FA8D; L2/25-258; net with handle
+1FACC; L2/25-254; monarch butterfly
+1FADD; L2/25-253; pickle
+1FAEB; L2/26-048; cracking face
+1FAF9; L2/25-252; leftwards thumb sign
+1FAFA; L2/25-252; rightwards thumb sign
+1FAF9 1F3FF; L2/25-252; leftwards thumb sign: light skin tone
+1FAFA 1F3FF; L2/25-252; rightwards thumb sign: light skin tone
+
 #EOF

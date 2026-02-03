@@ -26,6 +26,8 @@ If the proposal does not supply LineBreak.txt:
 ---
 New scripts only:
 - [ ] UCD_Names — Check script name
+- [ ] PropertyValueAliases.txt — [Regenerate](#regenerate-propertyvaluealiases)
+- [ ] Enums — [Regenerate](#generateenums)
 
 ---
 - [ ] Scripts.txt — Prepend ranges (carefully mind any gaps)
@@ -36,6 +38,8 @@ New blocks only:
 - [ ] ShortBlockNames.txt — Update, keep sorted
 - [ ] Blocks.txt — Update, keep sorted [TODO(egg): This one wants to be generated…]
 - [ ] Commit
+- [ ] PropertyValueAliases.txt — [Regenerate](#regenerate-propertyvaluealiases)
+- [ ] Enums — [Regenerate](#generateenums)
 
 ---
 Joining scripts only:
@@ -56,7 +60,6 @@ reserved:
 
 ---
 - [ ] UCD — [Regenerate](#regenerate-ucd)
-- [ ] Enums — [Regenerate](#generateenums)
 
 ---
 - [ ] In unicodetools/src/main/resources/org/unicode/text/UCD/AdditionComparisons,
@@ -69,7 +72,7 @@ reserved:
     - [characters decomposing to sequences](https://github.com/unicode-org/unicodetools/blob/5f6bc190766ed9104cebc828f1e193517f4d74ec/unicodetools/src/main/resources/org/unicode/text/UCD/AdditionComparisons/141.txt#L13-L20).
   - Until tests pass:    
     - [ ] Comparison tests — [Run](#run-comparison-tests)
-    - [ ] Correct properties (often in PropList.txt, but also VerticalOrientation.txt, East_Asian_Width.txt, etc.).
+    - [ ] Correct properties (often in PropList.txt, but also VerticalOrientation.txt, EastAsianWidth.txt, etc.).
     - [ ] Commit
     - [ ] UCD — [Regenerate](#regenerate-ucd)
 
@@ -189,7 +192,6 @@ Cf. https://github.com/unicode-org/unicodetools/pull/636
 ### Regenerate UCD
 
 eggrobin (Windows, in-source).
-<!--FIX_FOR_NEW_VERSION-->
 ```powershell
 mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
 git add unicodetools/data/ucd/dev/*
@@ -199,15 +201,22 @@ git commit -m "Regenerate UCD"
 ### Regenerate LineBreak
 
 eggrobin (Windows, in-source).
-<!--FIX_FOR_NEW_VERSION-->
 ```powershell
-mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c --generate LineBreak$"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
+mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c --generate ^LineBreak$"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
+```
+
+### Regenerate PropertyValueAliases
+
+eggrobin (Windows, in-source).
+```powershell
+mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c --generate ^PropertyValueAliases$"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
+git add unicodetools/data/ucd/dev/PropertyValueAliases.txt
+git commit -m "Regenerate PropertyValueAliases"
 ```
 
 ### GenerateEmojiData
 
 jowilco (Windows, in-source).
-<!--FIX_FOR_NEW_VERSION-->
 ```powershell
 mvn compile exec:java '-Dexec.mainClass="org.unicode.tools.emoji.GenerateEmojiData"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
 ```
@@ -224,7 +233,7 @@ git commit -m GenerateEnums
 
 
 ### Run comparison tests
-
+<!--FIX_FOR_NEW_VERSION-->
 eggrobin (Windows, in-source; replace $RMG_ISSUE by the RMG issue number, or define it as that number).
 ```powershell
 mvn test -am -pl unicodetools "-DCLDR_DIR=$(gl|split-path -parent)\cldr\"  "-DUNICODETOOLS_GEN_DIR=$(gl|split-path -parent)\unicodetools\Generated\"  "-DUNICODETOOLS_REPO_DIR=$(gl|split-path -parent)\unicodetools\" "-DUVERSION=18.0.0" "-Dtest=TestTestUnicodeInvariants#testAdditionComparisons" -DfailIfNoTests=false -DtrimStackTrace=false "-DRMG_ISSUE=$RMG_ISSUE"

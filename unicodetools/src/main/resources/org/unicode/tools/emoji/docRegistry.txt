@@ -9541,3 +9541,4 @@ L2/24-276	Proposal to add 8 ideographs used in Japanese shrines, manga, game, ge
 L2/24-277	Fifth Revised Proposal to encode characters for the English Phonotypic Alphabet (EPA) in the UCS	Karl Pentzlin	2024-12-29
 L2/24-278	Proposal to add three characters used for foods in Xiapu County and Yilan County to UAX #45 (revised)	Eiso Chan	2024-12-31
 L2/24-279	Proposal to Encode One Kana Ligature	CheonHyeong Sim	2024-12-31
+L2/26-048	Cracked Smiling Face Emoji Proposal	Jennifer Daniel	2026-01-15
