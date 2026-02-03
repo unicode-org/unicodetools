@@ -1,5 +1,5 @@
 # DerivedNormalizationProps-18.0.0.txt
-# Date: 2026-01-30, 19:37:24 GMT
+# Date: 2026-02-03, 19:40:43 GMT
 # © 2025 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -8303,7 +8303,7 @@ FFF0..FFF8    ; NFKC_CF;                # Cn   [9] <reserved-FFF0>..<reserved-FF
 1DF78         ; NFKC_CF; 1DF79          # L&       LATIN CAPITAL LETTER PHONOTYPIC TH
 1DF7A         ; NFKC_CF; 1DF7B          # L&       LATIN CAPITAL LETTER U WITH HOOK TAIL
 1DF7C         ; NFKC_CF; 1DF7D          # L&       LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM
-1DF7E         ; NFKC_CF; 1DF7F          # L&       LATIN CAPITAL LETTER REVERSED ENLARGED SMALL U
+1DF7E         ; NFKC_CF; 1DF7F          # L&       LATIN CAPITAL LETTER REVERSED U
 1DF95         ; NFKC_CF; 0073 0073      # L&       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1DFCD         ; NFKC_CF; 1DF57          # Lm       MODIFIER LETTER SMALL TURNED R WITH MID-HEIGHT LEFT HOOK
 1DFCE         ; NFKC_CF; 1DF58          # Lm       MODIFIER LETTER SMALL SPLIT O
@@ -14554,7 +14554,7 @@ FFF0..FFF8    ; NFKC_SCF;                # Cn   [9] <reserved-FFF0>..<reserved-F
 1DF78         ; NFKC_SCF; 1DF79          # L&       LATIN CAPITAL LETTER PHONOTYPIC TH
 1DF7A         ; NFKC_SCF; 1DF7B          # L&       LATIN CAPITAL LETTER U WITH HOOK TAIL
 1DF7C         ; NFKC_SCF; 1DF7D          # L&       LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM
-1DF7E         ; NFKC_SCF; 1DF7F          # L&       LATIN CAPITAL LETTER REVERSED ENLARGED SMALL U
+1DF7E         ; NFKC_SCF; 1DF7F          # L&       LATIN CAPITAL LETTER REVERSED U
 1DF95         ; NFKC_SCF; 00DF           # L&       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1DFCD         ; NFKC_SCF; 1DF57          # Lm       MODIFIER LETTER SMALL TURNED R WITH MID-HEIGHT LEFT HOOK
 1DFCE         ; NFKC_SCF; 1DF58          # Lm       MODIFIER LETTER SMALL SPLIT O
@@ -16518,7 +16518,7 @@ FFF0..FFF8    ; Changes_When_NFKC_Casefolded # Cn   [9] <reserved-FFF0>..<reserv
 1DF78         ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER PHONOTYPIC TH
 1DF7A         ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER U WITH HOOK TAIL
 1DF7C         ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM
-1DF7E         ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER REVERSED ENLARGED SMALL U
+1DF7E         ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER REVERSED U
 1DF95         ; Changes_When_NFKC_Casefolded # L&       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1DFCD..1DFFF  ; Changes_When_NFKC_Casefolded # Lm  [51] MODIFIER LETTER SMALL TURNED R WITH MID-HEIGHT LEFT HOOK..MODIFIER LETTER SMALL T WITH HOOK AND RETROFLEX HOOK
 1E030..1E06D  ; Changes_When_NFKC_Casefolded # Lm  [62] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
