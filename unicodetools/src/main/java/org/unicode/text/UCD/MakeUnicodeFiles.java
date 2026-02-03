@@ -60,6 +60,7 @@ import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.GenerateLinkData;
 import org.unicode.tools.Segmenter;
 
 public class MakeUnicodeFiles {
@@ -633,6 +634,21 @@ public class MakeUnicodeFiles {
                     break;
                 case "DoNotEmit":
                     generateDoNotEmit(filename);
+                    break;
+                case "LinkEmail":
+                    GenerateLinkData.generateLinkEmail(Default.getYear());
+                    break;
+                case "LinkTerm":
+                    GenerateLinkData.generateLinkTerm(Default.getYear());
+                    break;
+                case "LinkBracket":
+                    GenerateLinkData.generateLinkBracket(Default.getYear());
+                    break;
+                case "LinkDetectionTest":
+                    GenerateLinkData.generateDetectionTestData(Default.getYear());
+                    break;
+                case "LinkFormattingTest":
+                    GenerateLinkData.generateFormattingTestData(Default.getYear());
                     break;
                 default:
                     generatePropertyFile(filename);

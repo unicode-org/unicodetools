@@ -30,6 +30,7 @@ import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.EmojiConstants;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
+import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.DocRegistry.DocRegistryEntry;
 import org.unicode.tools.emoji.Emoji.CharSource;
@@ -520,7 +521,7 @@ public class ProposalData {
         }
         TreeSet<String> sorted = new TreeSet<>(EmojiOrder.BETA_ORDER.codepointCompare);
 
-        try (TempPrintWriter out = new TempPrintWriter(dir, filename)) {
+        try (DiffingPrintWriter out = new DiffingPrintWriter(dir, filename)) {
             ChartUtilities.writeHeader(
                     filename,
                     out,
