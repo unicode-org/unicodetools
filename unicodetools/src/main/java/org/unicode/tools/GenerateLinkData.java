@@ -240,7 +240,13 @@ public class GenerateLinkData {
         bf.setLabelSource(LinkUtilities.IUP.getProperty(UcdProperty.Age));
 
         try (final var out = new DiffingPrintWriter(LinkUtilities.DATA_DIR_DEV, "LinkTerm.txt"); ) {
-            writePropHeader(out.tempPrintWriter, HEADER_PROP_TERM, "LinkTerm", "Link_Term", "Hard", copyrightYear);
+            writePropHeader(
+                    out.tempPrintWriter,
+                    HEADER_PROP_TERM,
+                    "LinkTerm",
+                    "Link_Term",
+                    "Hard",
+                    copyrightYear);
             for (LinkTermination propValue : LinkTermination.NON_MISSING) {
                 bf.showSetNames(out.tempPrintWriter, propValue.base);
                 out.println("");
@@ -263,7 +269,8 @@ public class GenerateLinkData {
                     HEADER_PROP_BINARY,
                     "LinkEmail",
                     "Link_Email",
-                    UcdPropertyValues.Binary.No.toString(), copyrightYear);
+                    UcdPropertyValues.Binary.No.toString(),
+                    copyrightYear);
             UnicodeSet linkEmailSet = LinkUtilities.LinkEmail.getSet(UcdPropertyValues.Binary.Yes);
             bf.showSetNames(out.tempPrintWriter, linkEmailSet);
             System.out.println("LinkEmail=\t" + linkEmailSet.toPattern(false));
@@ -285,7 +292,8 @@ public class GenerateLinkData {
                     HEADER_PROP_STRING,
                     "LinkBracket",
                     "Link_Bracket",
-                    "<none>", copyrightYear);
+                    "<none>",
+                    copyrightYear);
             bf.showSetNames(out.tempPrintWriter, LinkTermination.Close.base);
         }
     }

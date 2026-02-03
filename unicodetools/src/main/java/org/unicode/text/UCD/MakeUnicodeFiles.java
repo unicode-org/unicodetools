@@ -60,8 +60,8 @@ import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.Segmenter;
 import org.unicode.tools.GenerateLinkData;
+import org.unicode.tools.Segmenter;
 
 public class MakeUnicodeFiles {
     static boolean DEBUG = false;
