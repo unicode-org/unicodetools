@@ -1,5 +1,9 @@
 # LinkTerm.txt
+<<<<<<< HEAD
 # Date: 2026-02-01, 17:41:40 GMT 
+=======
+# Date: 2026-02-03, 11:15:16 GMT 
+>>>>>>> la-vache/main
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1858,6 +1862,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 1DA8B         ; Include # 8.0       (𝪋)  SIGNWRITING PARENTHESIS
 1DA9B..1DA9F  ; Include # 8.0   [5] (𝪛..𝪟)  SIGNWRITING FILL MODIFIER-2..SIGNWRITING FILL MODIFIER-6
 1DAA1..1DAAF  ; Include # 8.0  [15] (𝪡..𝪯)  SIGNWRITING ROTATION MODIFIER-2..SIGNWRITING ROTATION MODIFIER-16
+1DB00..1DB1C  ; Include # 18.0 [29] (U+1DB00..U+1DB1C)  LEIBNIZIAN EQUALS SIGN..FACIT SYMBOL
 1DF00..1DF1E  ; Include # 14.0 [31] (𝼀..𝼞)  LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER S WITH CURL
 1DF1F..1DF24  ; Include # 18.0  [6] (U+1DF1F..U+1DF24)  LATIN SMALL LETTER D-ETH DIGRAPH..LATIN SMALL LETTER T-THETA DIGRAPH
 1DF25..1DF2A  ; Include # 15.0  [6] (𝼥..𝼪)  LATIN SMALL LETTER D WITH MID-HEIGHT LEFT HOOK..LATIN SMALL LETTER T WITH MID-HEIGHT LEFT HOOK
@@ -2061,6 +2066,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 1F6D5         ; Include # 12.0      (🛕)  HINDU TEMPLE
 1F6D6..1F6D7  ; Include # 13.0  [2] (🛖..🛗)  HUT..ELEVATOR
 1F6D8         ; Include # 17.0      (🛘)  LANDSLIDE
+1F6D9         ; Include # 18.0      (U+1F6D9)  LIGHTHOUSE
 1F6DC         ; Include # 15.0      (🛜)  WIRELESS
 1F6DD..1F6DF  ; Include # 14.0  [3] (🛝..🛟)  PLAYGROUND SLIDE..RING BUOY
 1F6E0..1F6EC  ; Include # 7.0  [13] (🛠..🛬)  HAMMER AND WRENCH..AIRPLANE ARRIVING
@@ -2147,6 +2153,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 1FA87..1FA88  ; Include # 15.0  [2] (🪇..🪈)  MARACAS..FLUTE
 1FA89         ; Include # 16.0      (🪉)  HARP
 1FA8A         ; Include # 17.0      (🪊)  TROMBONE
+1FA8B..1FA8D  ; Include # 18.0  [3] (U+1FA8B..U+1FA8D)  METEOR..NET WITH HANDLE
 1FA8E         ; Include # 17.0      (🪎)  TREASURE CHEST
 1FA8F         ; Include # 16.0      (🪏)  SHOVEL
 1FA90..1FA95  ; Include # 12.0  [6] (🪐..🪕)  RINGED PLANET..BANJO
@@ -2162,20 +2169,24 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 1FAC3..1FAC5  ; Include # 14.0  [3] (🫃..🫅)  PREGNANT MAN..PERSON WITH CROWN
 1FAC6         ; Include # 16.0      (🫆)  FINGERPRINT
 1FAC8         ; Include # 17.0      (🫈)  HAIRY CREATURE
+1FACC         ; Include # 18.0      (U+1FACC)  MONARCH BUTTERFLY
 1FACD         ; Include # 17.0      (🫍)  ORCA
 1FACE..1FACF  ; Include # 15.0  [2] (🫎..🫏)  MOOSE..DONKEY
 1FAD0..1FAD6  ; Include # 13.0  [7] (🫐..🫖)  BLUEBERRIES..TEAPOT
 1FAD7..1FAD9  ; Include # 14.0  [3] (🫗..🫙)  POURING LIQUID..JAR
 1FADA..1FADB  ; Include # 15.0  [2] (🫚..🫛)  GINGER ROOT..PEA POD
 1FADC         ; Include # 16.0      (🫜)  ROOT VEGETABLE
+1FADD         ; Include # 18.0      (U+1FADD)  PICKLE
 1FADF         ; Include # 16.0      (🫟)  SPLATTER
 1FAE0..1FAE7  ; Include # 14.0  [8] (🫠..🫧)  MELTING FACE..BUBBLES
 1FAE8         ; Include # 15.0      (🫨)  SHAKING FACE
 1FAE9         ; Include # 16.0      (🫩)  FACE WITH BAGS UNDER EYES
 1FAEA         ; Include # 17.0      (🫪)  DISTORTED FACE
+1FAEB         ; Include # 18.0      (U+1FAEB)  CRACKING FACE
 1FAEF         ; Include # 17.0      (🫯)  FIGHT CLOUD
 1FAF0..1FAF6  ; Include # 14.0  [7] (🫰..🫶)  HAND WITH INDEX FINGER AND THUMB CROSSED..HEART HANDS
 1FAF7..1FAF8  ; Include # 15.0  [2] (🫷..🫸)  LEFTWARDS PUSHING HAND..RIGHTWARDS PUSHING HAND
+1FAF9..1FAFA  ; Include # 18.0  [2] (U+1FAF9..U+1FAFA)  LEFTWARDS THUMB SIGN..RIGHTWARDS THUMB SIGN
 1FB00..1FB92  ; Include # 13.0 [147] (🬀..🮒)  BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK
 1FB94..1FBCA  ; Include # 13.0 [55] (🮔..🯊)  LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..WHITE UP-POINTING CHEVRON
 1FBCB..1FBEF  ; Include # 16.0 [37] (🯋..🯯)  WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
@@ -2202,5 +2213,9 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
+<<<<<<< HEAD
 # Total code points: 172315
+=======
+# Total code points: 172350
+>>>>>>> la-vache/main
 

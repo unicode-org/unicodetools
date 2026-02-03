@@ -390,6 +390,7 @@ public class UcdPropertyValues {
         Meroitic_Hieroglyphs("Meroitic_Hieroglyphs"),
         Miao("Miao"),
         Miscellaneous_Symbols_And_Arrows("Misc_Arrows"),
+        Miscellaneous_Symbols_And_Arrows_Extended("Misc_Arrows_Ext"),
         Miscellaneous_Mathematical_Symbols_A("Misc_Math_Symbols_A"),
         Miscellaneous_Mathematical_Symbols_B("Misc_Math_Symbols_B"),
         Miscellaneous_Symbols_And_Pictographs("Misc_Pictographs"),

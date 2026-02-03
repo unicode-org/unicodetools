@@ -42,6 +42,8 @@ public interface UCD_Types {
     // Unicode 18.
     public static final int SEAL_BASE = 0x3D000;
     public static final int SEAL_LIMIT = 0x3FC3F + 1;
+    public static final int JURCHEN_BASE = 0x18E00;
+    public static final int JURCHEN_LIMIT = 0x19191 + 1;
 
     public static final int
             // 4E00;<CJK Ideograph, First>;Lo;0;L;;;;;N;;;;;
