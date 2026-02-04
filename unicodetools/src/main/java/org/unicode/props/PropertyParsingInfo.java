@@ -1430,6 +1430,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     parts[1] = "TANGUT IDEOGRAPH-#";
                 } else if (parts[1].contains("Seal Character")) {
                     parts[1] = "SEAL CHARACTER-#";
+                } else if (parts[1].contains("Jurchen Character")) {
+                    parts[1] = "JURCHEN CHARACTER-#";
                 } else if (parts[1].contains("Hangul Syllable")) {
                     parts[1] = CONSTRUCTED_NAME;
                     hackHangul = true;

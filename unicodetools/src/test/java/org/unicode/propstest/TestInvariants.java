@@ -30,10 +30,6 @@ import org.unicode.text.utility.Utility;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
 public class TestInvariants extends TestFmwkMinusMinus {
-    static {
-        System.setProperty("DISABLE_PROP_FILE_CACHE", "TRUE");
-    }
-
     private static final IndexUnicodeProperties iup =
             IndexUnicodeProperties.make(Settings.latestVersion);
     private static final UnicodeMap<Script_Values> SCRIPTS =

@@ -60,6 +60,7 @@ import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.GenerateLinkData;
 import org.unicode.tools.Segmenter;
 
 public class MakeUnicodeFiles {
@@ -67,8 +68,20 @@ public class MakeUnicodeFiles {
 
     public static void main(String[] args) throws IOException {
 
-        boolean cleanAndCopy =
-                Arrays.asList(args).contains("-c"); // clean Bin & copy changed output
+        // Copy generated files to the dev directory by default
+        boolean cleanAndCopy = true;
+        if (Arrays.asList(args).contains("--no-copy")) {
+            // Leave dev untouched, files are only in Generated directory
+            cleanAndCopy = false;
+        }
+
+        int files = Arrays.asList(args).indexOf("--generate");
+        if (files >= 0) {
+            Format.theFormat.filesToDo =
+                    Arrays.asList(args)
+                            .subList(files + 1, args.length)
+                            .toArray(new String[args.length - (files + 1)]);
+        }
 
         if (cleanAndCopy) {
 
@@ -423,10 +436,14 @@ public class MakeUnicodeFiles {
                             comments = "";
                         }
                         if (line.startsWith("Generate:")) {
-                            filesToDo = Utility.split(lineValue.trim(), ' ');
-                            if (filesToDo.length == 0
-                                    || (filesToDo.length == 1 && filesToDo[0].length() == 0)) {
-                                filesToDo = new String[] {".*"};
+                            // A --generate on the command line overrides the Generate: directive in
+                            // MakeUnicodeFiles.txt.
+                            if (filesToDo == null) {
+                                filesToDo = Utility.split(lineValue.trim(), ' ');
+                                if (filesToDo.length == 0
+                                        || (filesToDo.length == 1 && filesToDo[0].length() == 0)) {
+                                    filesToDo = new String[] {".*"};
+                                }
                             }
                         } else if (line.startsWith("CopyrightYear:")) {
                             Default.setYear(lineValue);
@@ -621,6 +638,21 @@ public class MakeUnicodeFiles {
                     break;
                 case "DoNotEmit":
                     generateDoNotEmit(filename);
+                    break;
+                case "LinkEmail":
+                    GenerateLinkData.generateLinkEmail(Default.getYear());
+                    break;
+                case "LinkTerm":
+                    GenerateLinkData.generateLinkTerm(Default.getYear());
+                    break;
+                case "LinkBracket":
+                    GenerateLinkData.generateLinkBracket(Default.getYear());
+                    break;
+                case "LinkDetectionTest":
+                    GenerateLinkData.generateDetectionTestData(Default.getYear());
+                    break;
+                case "LinkFormattingTest":
+                    GenerateLinkData.generateFormattingTestData(Default.getYear());
                     break;
                 default:
                     generatePropertyFile(filename);
@@ -2493,6 +2525,7 @@ public class MakeUnicodeFiles {
             rangeBlocks.put("Tangut", "Tangut Ideograph");
             rangeBlocks.put("Tangut_Supplement", "Tangut Ideograph Supplement");
             rangeBlocks.put("Seal", "Seal Character");
+            rangeBlocks.put("Jurchen", "Jurchen Character");
             rangeBlocks.put("Supplementary_Private_Use_Area_A", "Plane 15 Private Use");
             rangeBlocks.put("Supplementary_Private_Use_Area_B", "Plane 16 Private Use");
         }

@@ -1,6 +1,6 @@
 # PropertyValueAliases-18.0.0.txt
-# Date: 2025-11-30, 03:21:38 GMT
-# © 2025 Unicode®, Inc.
+# Date: 2026-02-03, 23:10:11 GMT
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -364,6 +364,7 @@ blk; Meroitic_Cursive                 ; Meroitic_Cursive
 blk; Meroitic_Hieroglyphs             ; Meroitic_Hieroglyphs
 blk; Miao                             ; Miao
 blk; Misc_Arrows                      ; Miscellaneous_Symbols_And_Arrows
+blk; Misc_Arrows_Ext                  ; Miscellaneous_Symbols_And_Arrows_Extended
 blk; Misc_Math_Symbols_A              ; Miscellaneous_Mathematical_Symbols_A
 blk; Misc_Math_Symbols_B              ; Miscellaneous_Mathematical_Symbols_B
 blk; Misc_Pictographs                 ; Miscellaneous_Symbols_And_Pictographs

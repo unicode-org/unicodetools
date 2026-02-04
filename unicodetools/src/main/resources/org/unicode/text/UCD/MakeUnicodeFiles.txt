@@ -1,5 +1,5 @@
 Generate: .
-CopyrightYear: 2025
+CopyrightYear: 2026
 
 File: extra/ScriptNfkc
 Property: SPECIAL
@@ -1544,6 +1544,17 @@ File:	extra/NamedSequences
 Property: SPECIAL
 
 File:	extra/NamedSequencesProv
+Property: SPECIAL
+
+File: linkification/LinkBracket
+Property: SPECIAL
+File: linkification/LinkEmail
+Property: SPECIAL
+File: linkification/LinkTerm
+Property: SPECIAL
+File: linkification/LinkDetectionTest
+Property: SPECIAL
+File: linkification/LinkFormattingTest
 Property: SPECIAL
 
 HackName:	noBreak

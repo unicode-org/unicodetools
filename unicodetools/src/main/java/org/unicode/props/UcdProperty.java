@@ -27,6 +27,7 @@ import org.unicode.props.UcdPropertyValues.Indic_Syllabic_Category_Values;
 import org.unicode.props.UcdPropertyValues.Joining_Group_Values;
 import org.unicode.props.UcdPropertyValues.Joining_Type_Values;
 import org.unicode.props.UcdPropertyValues.Line_Break_Values;
+import org.unicode.props.UcdPropertyValues.Link_Term_Values;
 import org.unicode.props.UcdPropertyValues.Math_Class_Ex_Values;
 import org.unicode.props.UcdPropertyValues.Math_Class_Values;
 import org.unicode.props.UcdPropertyValues.NFC_Quick_Check_Values;
@@ -98,6 +99,7 @@ public enum UcdProperty {
     Equivalent_Unified_Ideograph(PropertyType.String, DerivedPropertyStatus.Approved, "EqUIdeo"),
     FC_NFKC_Closure(PropertyType.String, DerivedPropertyStatus.Approved, "FC_NFKC"),
     Idn_Mapping(PropertyType.String, DerivedPropertyStatus.NonUCDNonProperty, "idnm"),
+    Link_Bracket(PropertyType.String, DerivedPropertyStatus.NonUCDProperty, "Link_Bracket"),
     Lowercase_Mapping(PropertyType.String, DerivedPropertyStatus.Approved, "lc"),
     NFKC_Casefold(PropertyType.String, DerivedPropertyStatus.Approved, "NFKC_CF"),
     NFKC_Simple_Casefold(PropertyType.String, DerivedPropertyStatus.Approved, "NFKC_SCF"),
@@ -761,6 +763,12 @@ public enum UcdProperty {
             Line_Break_Values.class,
             null,
             "lb"),
+    Link_Term(
+            PropertyType.Enumerated,
+            DerivedPropertyStatus.NonUCDProperty,
+            Link_Term_Values.class,
+            null,
+            "Link_Term"),
     Math_Class(
             PropertyType.Enumerated,
             DerivedPropertyStatus.NonUCDProperty,
@@ -921,6 +929,12 @@ public enum UcdProperty {
     ID_Start(PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "IDS"),
     Ideographic(PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "Ideo"),
     Join_Control(PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "Join_C"),
+    Link_Email(
+            PropertyType.Binary,
+            DerivedPropertyStatus.NonUCDProperty,
+            Binary.class,
+            null,
+            "Link_Email"),
     Logical_Order_Exception(
             PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "LOE"),
     Lowercase(PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "Lower"),

@@ -20,6 +20,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.VersionToAge;
+import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiData.VariantFactory;
 import org.unicode.tools.emoji.EmojiData.VariantStatus;
@@ -197,7 +198,7 @@ public class GenerateEmojiTestFile {
             }
         }
 
-        private void show(TempPrintWriter out, EmojiOrder.MajorGroup lastMajorGroup)
+        private void show(DiffingPrintWriter out, EmojiOrder.MajorGroup lastMajorGroup)
                 throws IOException {
             Totals totals = this;
             out.println("");
@@ -231,7 +232,7 @@ public class GenerateEmojiTestFile {
 
         UnicodeSet charactersNotShown = new UnicodeSet().addAll(retain);
         EmojiOrder.MajorGroup lastMajorGroup = null;
-        TempPrintWriter out = null;
+        DiffingPrintWriter out = null;
         Totals totals = new Totals();
 
         int maxField1 = 0;
@@ -286,7 +287,7 @@ public class GenerateEmojiTestFile {
                                             .replaceAll("[^a-z]+", "_")
                                     : "emoji-test";
                     final String suffix = target == Target.csv ? ".csv" : ".txt";
-                    out = new TempPrintWriter(directory, filename + suffix);
+                    out = new DiffingPrintWriter(directory, filename + suffix);
                     if (target == Target.csv) {
                         out.println("# " + filename);
                         out.println("\n# Format\n" + "#   Hex code points, characters, name");

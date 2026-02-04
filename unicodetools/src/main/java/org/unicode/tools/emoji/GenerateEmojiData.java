@@ -32,6 +32,7 @@ import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.UCD.MakeUnicodeFiles;
+import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CountEmoji.Category;
@@ -170,8 +171,8 @@ public class GenerateEmojiData {
         PropPrinter printer = new PropPrinter().set(emojiDataSource);
 
         final String VERSION_STRING = DATA_VERSION_TO_GENERATE.getVersionString(2, 2);
-        try (TempPrintWriter outText2 =
-                new TempPrintWriter(emojiPathString, "internal/emoji-internal.txt")) {
+        try (DiffingPrintWriter outText2 =
+                new DiffingPrintWriter(emojiPathString, "internal/emoji-internal.txt")) {
             UnicodeSet emojiGenderBase = emojiDataSource.getGenderBases();
             UnicodeSet emojiExplicitGender = emojiDataSource.getExplicitGender();
             outText2.println(
@@ -221,8 +222,8 @@ public class GenerateEmojiData {
             outText2.println("\n#EOF");
         }
 
-        try (TempPrintWriter outText2 =
-                new TempPrintWriter(emojiPathString, "internal/emoji-proposals.txt")) {
+        try (DiffingPrintWriter outText2 =
+                new DiffingPrintWriter(emojiPathString, "internal/emoji-proposals.txt")) {
             outText2.println("# Mapping from emoji to proposals.");
             outText2.println("# Format: ");
             outText2.println("#     <emoji> ; <property> # <comments> ");
@@ -236,7 +237,8 @@ public class GenerateEmojiData {
             outText2.println("\n#EOF");
         }
 
-        try (TempPrintWriter outText2 = new TempPrintWriter(ucdPathString, "emoji-data.txt")) {
+        try (DiffingPrintWriter outText2 =
+                new DiffingPrintWriter(ucdPathString, "emoji-data.txt")) {
             UnicodeSet emoji = emojiDataSource.getSingletonsWithDefectives();
             UnicodeSet emoji_presentation = emojiDataSource.getEmojiPresentationSet();
             UnicodeSet emoji_modifiers = EmojiData.MODIFIERS;
@@ -350,9 +352,9 @@ public class GenerateEmojiData {
         UnicodeSet nonRgiSequences = new UnicodeSet();
         String prefix13 = emojiDataSource.getVersionString().compareTo("13") >= 0 ? "RGI_" : "";
 
-        try (Writer out = new TempPrintWriter(emojiPathString, "emoji-sequences.txt");
+        try (Writer out = new DiffingPrintWriter(emojiPathString, "emoji-sequences.txt");
                 Writer outNonRgi =
-                        new TempPrintWriter(
+                        new DiffingPrintWriter(
                                 emojiPathString, "internal/emoji-sequences-nonrgi.txt")) {
             out.write(
                     Utility.getBaseDataHeader(
@@ -461,9 +463,9 @@ public class GenerateEmojiData {
             out.write("\n#EOF\n");
         }
 
-        try (Writer out = new TempPrintWriter(emojiPathString, "emoji-zwj-sequences.txt");
+        try (Writer out = new DiffingPrintWriter(emojiPathString, "emoji-zwj-sequences.txt");
                 Writer outNonRgi =
-                        new TempPrintWriter(
+                        new DiffingPrintWriter(
                                 emojiPathString, "internal/emoji-zwj-sequences-nonrgi.txt")) {
             out.write(
                     Utility.getBaseDataHeader(
@@ -540,7 +542,8 @@ public class GenerateEmojiData {
         }
 
         if (DATA_VERSION_TO_GENERATE.compareTo(Emoji.VERSION5) >= 0) {
-            try (Writer out = new TempPrintWriter(ucdPathString, "emoji-variation-sequences.txt")) {
+            try (Writer out =
+                    new DiffingPrintWriter(ucdPathString, "emoji-variation-sequences.txt")) {
                 out.write(
                         Utility.getBaseDataHeaderWithVersionText(
                                         "emoji-variation-sequences",
@@ -621,8 +624,8 @@ public class GenerateEmojiData {
                     "Emoji All ; "
                             + emojiDataSource.getAllEmojiWithoutDefectives().toPattern(false));
 
-        try (TempPrintWriter reformatted =
-                new TempPrintWriter(Emoji.INTERNAL_OUTPUT_DIR, "internal/emojiOrdering.txt")) {
+        try (DiffingPrintWriter reformatted =
+                new DiffingPrintWriter(Emoji.INTERNAL_OUTPUT_DIR, "internal/emojiOrdering.txt")) {
             new EmojiDataSourceCombined().showOrderingInterleaved(reformatted);
         }
 
@@ -805,8 +808,8 @@ public class GenerateEmojiData {
                     PrintWriter pw;
                     if (out instanceof PrintWriter) {
                         pw = (PrintWriter) out;
-                    } else if (out instanceof TempPrintWriter) {
-                        pw = ((TempPrintWriter) out).tempPrintWriter;
+                    } else if (out instanceof DiffingPrintWriter) {
+                        pw = ((DiffingPrintWriter) out).tempPrintWriter;
                     } else {
                         throw new IllegalArgumentException(
                                 "need a PrintWriter or a TempPrintWriter for calling "

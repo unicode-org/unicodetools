@@ -9,6 +9,7 @@ REKS ; RGI_Emoji_Keycap_Sequence ; Emoji_Keycap_Sequence ; Emoji_Combining_Seque
 RETS ; RGI_Emoji_Tag_Sequence ; Emoji_Tag_Sequence ; NonUCDProperty
 REZS ; RGI_Emoji_Zwj_Sequence ; Emoji_Zwj_Sequence ; NonUCDProperty
 RGI_Emoji ; RGI_Emoji ; NonUCDProperty
+Link_Email ; Link_Email ; NonUCDProperty
 
 # ================================================
 # Enumerated Properties
@@ -37,6 +38,8 @@ Math_Class ; Math_Class ; NonUCDProperty
 # identical to the assignment in MathClass.  In practice there are a few
 # characters for which it historically lagged behind the value in MathClass.
 Math_Class_Ex ; Math_Class_Ex ; NonUCDNonProperty
+
+Link_Term  ; Link_Term  ; NonUCDProperty
 
 # ================================================
 # Numeric Properties
@@ -86,6 +89,8 @@ kEH_AltSeq               ; kEH_AltSeq ; Provisional
 kSEAL_MCJK ; kSEAL_MCJK ; Provisional
 
 Names_List_Cross_Ref ; Names_List_Cross_Ref ; UCDNonProperty
+
+Link_Bracket ; Link_Bracket ; NonUCDProperty
 
 # ================================================
 # Miscellaneous Properties

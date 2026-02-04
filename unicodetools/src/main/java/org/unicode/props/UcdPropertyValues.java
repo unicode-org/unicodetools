@@ -390,6 +390,7 @@ public class UcdPropertyValues {
         Meroitic_Hieroglyphs("Meroitic_Hieroglyphs"),
         Miao("Miao"),
         Miscellaneous_Symbols_And_Arrows("Misc_Arrows"),
+        Miscellaneous_Symbols_And_Arrows_Extended("Misc_Arrows_Ext"),
         Miscellaneous_Mathematical_Symbols_A("Misc_Math_Symbols_A"),
         Miscellaneous_Mathematical_Symbols_B("Misc_Math_Symbols_B"),
         Miscellaneous_Symbols_And_Pictographs("Misc_Pictographs"),
@@ -1886,6 +1887,39 @@ public class UcdPropertyValues {
                 PropertyNames.getNameToEnums(Line_Break_Values.class);
 
         public static Line_Break_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
+    // Link_Bracket
+    public enum Link_Term_Values implements Named {
+        Include("Include"),
+        Hard("Hard"),
+        Soft("Soft"),
+        Close("Close"),
+        Open("Open");
+        private final PropertyNames<Link_Term_Values> names;
+
+        private Link_Term_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Link_Term_Values>(
+                            Link_Term_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Link_Term_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Link_Term_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Link_Term_Values.class);
+
+        public static Link_Term_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }

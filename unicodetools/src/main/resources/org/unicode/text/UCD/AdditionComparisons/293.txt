@@ -1,0 +1,121 @@
+# Symbols: 29 math relation characters (1DB00..1DB1C)
+# https://github.com/unicode-org/utc-release-management/issues/293
+
+Ignoring
+    # Names always differ.
+    # Age always differs since these tests are comparing additions to pre-existing characters.
+    Name Age
+    # Ignore the security and IDNA properties. These are not part of the UCD, and
+    # are typically prepared just before β, after these tests are written (which is
+    # normally anywhere between proposal submission and the start of α).
+    Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category
+    # Of historical interest only; the comparandum ϖ has one. 
+    Unicode_1_Name
+    # Not synchronized.
+    Math_Class Math_Class_Ex Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set
+    # New block.
+    Block:
+
+Ignoring Pattern_Syntax:
+# Symbols symmetric about the vertical axis, not Bidi_Mirrored.
+Propertywise [
+    \x{1DB00}  \N{LEIBNIZIAN EQUALS SIGN}
+    \x{1DB01}  \N{LEIBNIZIAN EQUALS SIGN WITH DOUBLE VERTICALS}
+    \x{1DB13}  \N{LEIBNIZIAN CONGRUENCE-2}
+    \x{1DB14}  \N{LEIBNIZIAN CONGRUENCE-2 INVERTED}
+    \x{1DB15}  \N{LEIBNIZIAN CONGRUENCE-2 WITH HORIZONTAL BAR}
+    \x{1DB16}  \N{LEIBNIZIAN CONGRUENCE-2 WITH HORIZONTAL AND VERTICAL BAR}
+    \x{1DB19}  \N{LEIBNIZIAN SIMILARITY}
+    \x{27D2} ⟒ \N{ELEMENT OF OPENING UPWARDS}
+] AreAlike
+
+# One of the above symbols, with an added Latin letter: also not Bidi_Mirrored.
+Propertywise [
+    \x{1DB02}  \N{LEIBNIZIAN EQUALS SIGN WITH SMALL S}
+    \x{225E} ≞ \N{MEASURED BY}
+] AreAlike
+end Ignoring;
+
+# Miscellaneous asymmetric symbols, some derived from letters (FACIT SYMBOL < 𝑓,
+# LEIBNIZIAN CONGRUENCE < c), with no obvious parallels in modern notation.
+# For the Bidi_Mirrored assignment, since they are obscure, going with No (like
+# the obscure ⅁, ⅋, or ♯ which is relatively obscure in mathematical usage)
+# rather than Yes (like the very common ∃ or ∂).
+
+Propertywise [
+    \x{1DB0A}  \N{TWO-LINE GREATER-THAN}
+    \x{1DB0B}  \N{TWO-LINE LESS-THAN}
+    \x{1DB0C}  \N{COMMENSURABILITY}
+    \x{1DB0D}  \N{INCOMMENSURABILITY}
+    \x{1DB0E}  \N{COMMENSURABILITY IN SQUARE}
+    \x{1DB0F}  \N{INCOMMENSURABILITY IN SQUARE}
+    \x{1DB11}  \N{LEIBNIZIAN CONGRUENCE}
+    \x{1DB12}  \N{LEIBNIZIAN CONGRUENCE WITH VERTICAL BAR}
+    \x{1DB1A}  \N{LEIBNIZIAN SIMILARITY-2}
+    \x{1DB1C}  \N{FACIT SYMBOL}
+    \x{2141} ⅁ \N{TURNED SANS-SERIF CAPITAL G}
+    \x{214B} ⅋ \N{TURNED AMPERSAND}
+] AreAlike
+
+Ignoring Line_Break East_Asian_Width Vertical_Orientation Pattern_Syntax:
+Propertywise [
+    \x{1DB0A}  \N{TWO-LINE GREATER-THAN}
+    \x{1DB0B}  \N{TWO-LINE LESS-THAN}
+    \x{1DB0C}  \N{COMMENSURABILITY}
+    \x{1DB0D}  \N{INCOMMENSURABILITY}
+    \x{1DB0E}  \N{COMMENSURABILITY IN SQUARE}
+    \x{1DB0F}  \N{INCOMMENSURABILITY IN SQUARE}
+    \x{1DB11}  \N{LEIBNIZIAN CONGRUENCE}
+    \x{1DB12}  \N{LEIBNIZIAN CONGRUENCE WITH VERTICAL BAR}
+    \x{1DB1A}  \N{LEIBNIZIAN SIMILARITY-2}
+    \x{1DB1C}  \N{FACIT SYMBOL}
+    \x{266F} ♯ \N{MUSIC SHARP SIGN}
+] AreAlike
+end Ignoring;
+
+# Relations whose converse is obtained by symmetry about the vertical axis, some adorned with text.
+Propertywise [\x{1DB03}  \N{LEIBNIZIAN GREATER-THAN}
+              \x{1DB05}  \N{LEIBNIZIAN GREATER-THAN WITH SMALL P}]
+           : [\x{1DB04}  \N{LEIBNIZIAN LESS-THAN}
+              \x{1DB06}  \N{LEIBNIZIAN LESS-THAN WITH SMALL P}]
+CorrespondTo [\x{2A7C} ⩼ \N{GREATER-THAN WITH QUESTION MARK ABOVE}]
+           : [\x{2A7B} ⩻ \N{LESS-THAN WITH QUESTION MARK ABOVE}]
+       UpTo: Pattern_Syntax (No vs Yes)
+
+# Stack of relations for which the opposite stack does not exist,
+# where the comparandum here is a stack of ⊳ and ⊲.
+Ignoring Pattern_Syntax:
+Propertywise [
+    \x{1DB07}  \N{LEIBNIZIAN GREATER-THAN OR LESS-THAN}
+    \x{29CE} ⧎ \N{RIGHT TRIANGLE ABOVE LEFT TRIANGLE}
+] AreAlike
+end Ignoring;
+
+# Symbols incorporating a lazy S.
+Ignoring Pattern_Syntax:
+Propertywise [
+    \x{223E} ∾ \N{INVERTED LAZY S}
+    \x{1DB17}  \N{LEIBNIZIAN COINCIDENCE}
+    \x{1DB18}  \N{INVERTED LAZY S OVER LAZY S}
+    \x{1DB1B}  \N{LEIBNIZIAN DISSIMILARITY}
+] AreAlike
+end Ignoring;
+
+# Inverted versions of existing relation symbols.
+Ignoring Pattern_Syntax:
+Propertywise [\x{1DB08}   \N{INVERTED SQUARE LEFT OPEN BOX OPERATOR}]
+           : [\x{1DB09}   \N{INVERTED SQUARE RIGHT OPEN BOX OPERATOR}]
+CorrespondTo [\x{2ACD} ⫍ \N{SQUARE LEFT OPEN BOX OPERATOR}]
+           : [\x{2ACE} ⫎ \N{SQUARE RIGHT OPEN BOX OPERATOR}]
+       UpTo: Pattern_Syntax (No vs Yes)
+end Ignoring;
+
+# A bidi mirorring glyph for the long bidi mirrored ∝.
+Ignoring Pattern_Syntax:
+Propertywise [\x{1DB10}  \N{CARTESIAN EQUALS SIGN}]
+           : [\x{221D} ∝ \N{PROPORTIONAL TO}]
+CorrespondTo [\x{29F5} ⧵ \N{REVERSE SOLIDUS OPERATOR}]
+           : [\x{2215} ∕ \N{DIVISION SLASH}]
+end Ignoring;
+
+end Ignoring;
