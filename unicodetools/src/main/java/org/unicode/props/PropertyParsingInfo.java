@@ -1949,6 +1949,11 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                         + propInfo.getDefaultValue(version));
             }
         } else if (propInfo.getDefaultValue(version).equals(value)) {
+        } else if (propInfo.property == UcdProperty.Lowercase_Mapping ||
+                propInfo.property == UcdProperty.Titlecase_Mapping ||
+                propInfo.property == UcdProperty.Uppercase_Mapping) {
+            // These properties are intentionally set to <code point> in PropertyValueAliases.txt
+            // But we should keep <slc>, <stc>, and <suc>
         } else {
             final String comment =
                     "\t ** ERROR Will not change default for "
