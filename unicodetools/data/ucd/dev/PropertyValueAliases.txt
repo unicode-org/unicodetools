@@ -1571,7 +1571,7 @@ Term; Y                               ; Yes                              ; T    
 
 # Titlecase_Mapping (tc)
 
-# @missing: 0000..10FFFF; Titlecase_Mapping; <stc>
+# @missing: 0000..10FFFF; Titlecase_Mapping; <code point>
 
 # Unicode_1_Name (na1)
 
