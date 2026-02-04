@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+import java.util.jar.Manifest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.cldr.util.BNF;
@@ -438,9 +439,10 @@ public class UnicodeJsp {
         return UnicodeUtilities.getIdentifier(script, showDevProperties, originalParameters);
     }
 
+    static Manifest MANIFEST;
+
     static final String VERSIONS =
-            "Version 3.9; "
-                    + "ICU version: "
+            "ICU version: "
                     + VersionInfo.ICU_VERSION.getVersionString(2, 2)
                     + "; "
                     + "Unicode/Emoji version: "
@@ -451,7 +453,15 @@ public class UnicodeJsp {
                             : "");
 
     public static String getVersions() {
-        return VERSIONS;
+        return "unicodetools "
+                + MANIFEST.getMainAttributes().getValue("UnicodeTools-Git-Commit").substring(0, 7)
+                + (MANIFEST.getMainAttributes().getValue("UnicodeTools-Git-Dirty").equals("ok")
+                        ? ""
+                        : "-dirty")
+                + " built on "
+                + (MANIFEST.getMainAttributes().getValue("Build-Time"))
+                + "; "
+                + VERSIONS;
     }
 
     static final String SUBHEAD =

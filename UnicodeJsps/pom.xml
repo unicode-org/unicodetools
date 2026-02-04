@@ -101,6 +101,7 @@
 							<Built-By>${user.name}</Built-By>
 							<Build-Time>${maven.build.timestamp}</Build-Time>
 							<UnicodeTools-Git-Commit>${buildNumber}</UnicodeTools-Git-Commit>
+							<UnicodeTools-Git-Dirty>${buildIsTainted}</UnicodeTools-Git-Dirty>
 							<UnicodeTools-Git-Branch>${scmBranch}</UnicodeTools-Git-Branch>
 						</manifestEntries>
 					</archive>
