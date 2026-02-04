@@ -873,7 +873,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     throw new UnicodePropertyException(); // unexpected error
             }
             data.freeze();
-            if (IndexUnicodeProperties.FILE_CACHE) {
+            if (IndexUnicodeProperties.FILE_CACHE
+                    || IndexUnicodeProperties.usingIncrementalProperties()) {
                 indexUnicodeProperties.internalStoreCachedMap(
                         Settings.Output.BIN_DIR, propInfo.property, data);
             }
