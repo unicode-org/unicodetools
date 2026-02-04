@@ -11,7 +11,7 @@ DEST=$2
 UNITOOLS_DATA=$UNICODETOOLS/unicodetools/data
 
 # Adjust the following for each year and version as needed.
-COPY_YEAR=2025
+COPY_YEAR=2026
 UNI_VER=18.0.0
 EMOJI_VER=18.0
 
@@ -46,8 +46,8 @@ cp $UNITOOLS_DATA/idna/dev/* $DEST/idna
 mkdir -p $DEST/security
 cp $UNITOOLS_DATA/security/dev/* $DEST/security
 
-mkdir -p $DEST/links
-cp $UNITOOLS_DATA/links/dev/* $DEST/links
+mkdir -p $DEST/linkification
+cp $UNITOOLS_DATA/linkification/dev/* $DEST/linkification
 
 # Fix permissions. Everyone can read, and search directories.
 chmod a+rX -R $DEST
