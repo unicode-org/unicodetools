@@ -136,6 +136,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     // fixed.
     private static boolean incrementalProperties = false;
 
+    public static synchronized boolean usingIncrementalProperties() {
+        return incrementalProperties;
+    }
+
     public static synchronized void useIncrementalProperties() {
         if (!incrementalProperties && !version2IndexUnicodeProperties.isEmpty()) {
             throw new IllegalStateException(
