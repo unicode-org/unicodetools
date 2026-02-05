@@ -276,6 +276,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/newunicodeproperties.md#checking-IndexPropertyRegex
+      - name: Run IndexPropertyRegex test
+        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestIndexPropertyRegex#testIndexPropertyRegex -DfailIfNoTests=false -DCLDR_DIR=$(cd ../cldr ; pwd) -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       # https://github.com/unicode-org/unicodetools/blob/main/docs/newunicodeproperties.md#checking-other-properties
       - name: Run command - Checking Other Properties
         run: |

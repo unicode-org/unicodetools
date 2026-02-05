@@ -424,15 +424,15 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 if (property == UcdProperty.Script_Extensions) {
                     string = normalizeEnum(string);
                 }
-                if (property.getDerivedStatus() != DerivedPropertyStatus.UCDNonProperty &&
-                        property.getDerivedStatus() != DerivedPropertyStatus.NonUCDNonProperty ) {
+                if (property.getDerivedStatus() != DerivedPropertyStatus.UCDNonProperty
+                        && property.getDerivedStatus() != DerivedPropertyStatus.NonUCDNonProperty) {
                     string = checkRegex2(string);
                 }
                 break;
             case String:
                 // check regex
-                if (property.getDerivedStatus() != DerivedPropertyStatus.UCDNonProperty &&
-                        property.getDerivedStatus() != DerivedPropertyStatus.NonUCDNonProperty ) {
+                if (property.getDerivedStatus() != DerivedPropertyStatus.UCDNonProperty
+                        && property.getDerivedStatus() != DerivedPropertyStatus.NonUCDNonProperty) {
                     string = checkRegex2(string);
                     if (string == null) {
                         // nothing
@@ -1949,9 +1949,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                         + propInfo.getDefaultValue(version));
             }
         } else if (propInfo.getDefaultValue(version).equals(value)) {
-        } else if (propInfo.property == UcdProperty.Lowercase_Mapping ||
-                propInfo.property == UcdProperty.Titlecase_Mapping ||
-                propInfo.property == UcdProperty.Uppercase_Mapping) {
+        } else if (propInfo.property == UcdProperty.Lowercase_Mapping
+                || propInfo.property == UcdProperty.Titlecase_Mapping
+                || propInfo.property == UcdProperty.Uppercase_Mapping) {
             // These properties are intentionally set to <code point> in PropertyValueAliases.txt
             // But we should keep <slc>, <stc>, and <suc>
         } else {
