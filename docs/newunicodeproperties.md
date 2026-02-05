@@ -120,13 +120,6 @@ To test the XML properties from https://www.unicode.org/Public/XXX/ucdxml/
 
 The problem is a difference in how missing values are handled.
 
-## Checking IndexPropertyRegex
-
-Run TestIndexPropertyRegex to validate data files against the regular expressions in IndexPropertyRegex.txt that
-correspond to the appropriate UcdProperty. 
-
-This test works by loading all UcdProperties, so it also indirectly tests whether the property load works.
-
 ## Checking Other Properties
 
 For a general test of properties, run CheckProperties. You can supply any of the
