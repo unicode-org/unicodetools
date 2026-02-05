@@ -86,8 +86,8 @@ Named_Sequences_Prov ;        SINGLE_VALUED ;               $name
 Names_List_Alias  ;           SINGLE_VALUED ;               .*
 Names_List_Comment ;          SINGLE_VALUED ;               .*
 Names_List_Cross_Ref ;        SINGLE_VALUED ;               .*
-Names_List_Subheader ;        SINGLE_VALUED ;               .*
-Names_List_Subheader_Notice ; SINGLE_VALUED ;               .*
+Names_List_Subheader ;        MULTI_VALUED ;                .*
+Names_List_Subheader_Notice ; MULTI_VALUED ;                .*
 Non_Unihan_Numeric_Value ;    SINGLE_VALUED ;               NaN|$rational
 normalization_correction_corrected ; SINGLE_VALUED ;        [0-9A-F]{4,5}
 normalization_correction_original ;  SINGLE_VALUED ;        [0-9A-F]{4,5}
