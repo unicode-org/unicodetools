@@ -423,35 +423,30 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             case Miscellaneous:
                 if (property == UcdProperty.Script_Extensions) {
                     string = normalizeEnum(string);
-                }
-                if (property.getDerivedStatus() != DerivedPropertyStatus.UCDNonProperty
-                        && property.getDerivedStatus() != DerivedPropertyStatus.NonUCDNonProperty) {
+                } else {
                     string = checkRegex2(string);
                 }
                 break;
             case String:
                 // check regex
-                if (property.getDerivedStatus() != DerivedPropertyStatus.UCDNonProperty
-                        && property.getDerivedStatus() != DerivedPropertyStatus.NonUCDNonProperty) {
-                    string = checkRegex2(string);
-                    if (string == null) {
-                        // nothing
-                    } else {
-                        try {
-                            if (string.contains("|")) {
-                                StringBuilder result = new StringBuilder();
-                                for (String part : BAR.split(string)) {
-                                    result.append(Utility.fromHex(part));
-                                }
-                                string = result.toString();
-                            } else {
-                                string = Utility.fromHex(string);
+                string = checkRegex2(string);
+                if (string == null) {
+                    // nothing
+                } else {
+                    try {
+                        if (string.contains("|")) {
+                            StringBuilder result = new StringBuilder();
+                            for (String part : BAR.split(string)) {
+                                result.append(Utility.fromHex(part));
                             }
-                        } catch (RuntimeException e) {
-                            throw e;
-                        } catch (Exception e) {
-                            throw new UnicodePropertyException(property.toString());
+                            string = result.toString();
+                        } else {
+                            string = Utility.fromHex(string);
                         }
+                    } catch (RuntimeException e) {
+                        throw e;
+                    } catch (Exception e) {
+                        throw new UnicodePropertyException(property.toString());
                     }
                 }
                 break;
