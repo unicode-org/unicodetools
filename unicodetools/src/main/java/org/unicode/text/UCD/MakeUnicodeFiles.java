@@ -69,8 +69,11 @@ public class MakeUnicodeFiles {
     public static void main(String[] args) throws IOException {
 
         // Copy generated files to the dev directory by default
-        boolean cleanAndCopy =
-                Arrays.asList(args).contains("-c"); // clean Bin & copy changed output
+        boolean cleanAndCopy = true;
+        if (Arrays.asList(args).contains("--no-copy")) {
+            // Leave dev untouched, files are only in Generated directory
+            cleanAndCopy = false;
+        }
 
         int files = Arrays.asList(args).indexOf("--generate");
         if (files >= 0) {
