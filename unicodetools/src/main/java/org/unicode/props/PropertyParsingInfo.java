@@ -423,9 +423,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             case Miscellaneous:
                 if (property == UcdProperty.Script_Extensions) {
                     string = normalizeEnum(string);
-                }
-                if (property.getDerivedStatus() != DerivedPropertyStatus.UCDNonProperty
-                        && property.getDerivedStatus() != DerivedPropertyStatus.NonUCDNonProperty) {
+                } else {
                     string = checkRegex2(string);
                 }
                 break;
