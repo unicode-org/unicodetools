@@ -27,9 +27,8 @@ public class TestIndexPropertyRegex {
                 }
             }
         }
-        final Set<Map.Entry<UcdProperty, Set<String>>> dataLoadingErrors;
         if (IndexUnicodeProperties.getDataLoadingErrors(latest.getUcdVersion()) != null) {
-            dataLoadingErrors =
+            final Set<Map.Entry<UcdProperty, Set<String>>> dataLoadingErrors =
                     IndexUnicodeProperties.getDataLoadingErrors(latest.getUcdVersion()).entrySet();
             if (!dataLoadingErrors.isEmpty()) {
                 System.err.println(
