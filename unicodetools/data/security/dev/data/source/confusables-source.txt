@@ -5816,6 +5816,7 @@ A8CF ; 007C 007C # SAURASHTRA DOUBLE DANDA
 8EB1 ; 8EB2
 514C ; 5151
 980B ; 2EA07
+6B25 ; 2B81E
 2EDB5 ; 32A8F
 
 # Pairs add to compensate for removal of non-NFD characters and sequences.
