@@ -4,7 +4,6 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.Normalizer2;
@@ -80,9 +79,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     static final boolean SHOW_LOADED = false;
 
     public static final String FIELD_SEPARATOR = "; ";
-    private static final Relation<UcdProperty, String> DATA_LOADING_ERRORS =
-            Relation.of(
-                    new EnumMap<UcdProperty, Set<String>>(UcdProperty.class), LinkedHashSet.class);
+
+    private static final Map<VersionInfo, Map<UcdProperty, Set<String>>> DATA_LOADING_ERRORS =
+            new HashMap<>();
 
     public enum DefaultValueType {
         LITERAL(null),
@@ -667,7 +666,20 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return Arrays.asList(UcdProperty.values());
     }
 
-    public static Relation<UcdProperty, String> getDataLoadingErrors() {
+    public static void putDataLoadingErrors(
+            VersionInfo versionInfo, UcdProperty property, String error) {
+        // Ensure the version map exists
+        Map<UcdProperty, Set<String>> errorsForVersion =
+                DATA_LOADING_ERRORS.computeIfAbsent(versionInfo, k -> new HashMap<>());
+        // Ensure the property set exists and add the error
+        errorsForVersion.computeIfAbsent(property, k -> new HashSet<>()).add(error);
+    }
+
+    public static Map<UcdProperty, Set<String>> getDataLoadingErrors(VersionInfo versionInfo) {
+        return DATA_LOADING_ERRORS.get(versionInfo);
+    }
+
+    public static Map<VersionInfo, Map<UcdProperty, Set<String>>> getAllDataLoadingErrors() {
         return DATA_LOADING_ERRORS;
     }
 

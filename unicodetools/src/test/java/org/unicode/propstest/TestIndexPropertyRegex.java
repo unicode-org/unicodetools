@@ -15,7 +15,6 @@ public class TestIndexPropertyRegex {
 
     @Test
     void testIndexPropertyRegex() throws IOException {
-        IndexUnicodeProperties.getDataLoadingErrors().clear();
         IndexUnicodeProperties latest = IndexUnicodeProperties.make(Settings.latestVersion);
         for (final UcdProperty prop : UcdProperty.values()) {
             if (PropertyStatus.getPropertyStatus(prop) != PropertyStatus.Deprecated) {
@@ -28,25 +27,32 @@ public class TestIndexPropertyRegex {
                 }
             }
         }
-        final Set<Map.Entry<UcdProperty, Set<String>>> dataLoadingErrors =
-                IndexUnicodeProperties.getDataLoadingErrors().keyValuesSet();
-        if (!dataLoadingErrors.isEmpty()) {
-            System.err.println("Data loading errors: " + dataLoadingErrors.size());
-            for (final Map.Entry<UcdProperty, Set<String>> s : dataLoadingErrors) {
-                System.err.println("\t" + s.getKey());
-                int max = 100;
-                for (final String value : s.getValue()) {
-                    System.err.println("\t\t" + value);
-                    if (--max < 0) {
-                        System.err.println("…");
-                        break;
+        final Set<Map.Entry<UcdProperty, Set<String>>> dataLoadingErrors;
+        if (IndexUnicodeProperties.getDataLoadingErrors(latest.getUcdVersion()) != null) {
+            dataLoadingErrors =
+                    IndexUnicodeProperties.getDataLoadingErrors(latest.getUcdVersion()).entrySet();
+            if (!dataLoadingErrors.isEmpty()) {
+                System.err.println(
+                        "Data loading errors for "
+                                + latest.getUcdVersion().toString()
+                                + ": "
+                                + dataLoadingErrors.size());
+                for (final Map.Entry<UcdProperty, Set<String>> s : dataLoadingErrors) {
+                    System.err.println("\t" + s.getKey());
+                    int max = 100;
+                    for (final String value : s.getValue()) {
+                        System.err.println("\t\t" + value);
+                        if (--max < 0) {
+                            System.err.println("…");
+                            break;
+                        }
                     }
                 }
             }
+            assertEquals(
+                    0,
+                    dataLoadingErrors.size(),
+                    "TestIndexPropertyRegex.testIndexPropertyRegex() failed");
         }
-        assertEquals(
-                0,
-                dataLoadingErrors.size(),
-                "TestIndexPropertyRegex.testIndexPropertyRegex() failed");
     }
 }
