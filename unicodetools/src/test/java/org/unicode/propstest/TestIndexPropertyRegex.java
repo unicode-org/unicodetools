@@ -15,6 +15,7 @@ public class TestIndexPropertyRegex {
 
     @Test
     void testIndexPropertyRegex() throws IOException {
+        IndexUnicodeProperties.getDataLoadingErrors().clear();
         IndexUnicodeProperties latest = IndexUnicodeProperties.make(Settings.latestVersion);
         for (final UcdProperty prop : UcdProperty.values()) {
             if (PropertyStatus.getPropertyStatus(prop) != PropertyStatus.Deprecated) {
