@@ -1,6 +1,6 @@
 # confusablesSummary.txt
-# Date: 2025-12-07, 22:02:22 GMT
-# © 2025 Unicode®, Inc.
+# Date: 2026-02-06, 21:41:44 GMT
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -5481,13 +5481,15 @@
 ←	(‎ 𖧖 ‎)	169D6	 BAMUM LETTER PHASE-E TOQ
 ←	(‎ 𐓄 ‎)	104C4	 OSAGE CAPITAL LETTER PA
 
-#	ß	Ꟗ	ẞ	β	Ᏸ	ꞵ	ϐ	𝛃	𝛽	𝜷	𝝱	𝞫
+#	ß	Ꟗ	ẞ	β	Ᏸ	ꞵ	𝾕	𝚦	ϐ	𝛃	𝛽	𝜷	𝝱	𝞫
 	(‎ ß ‎)	00DF	 LATIN SMALL LETTER SHARP S
 ←	(‎ Ꟗ ‎)	A7D6	 LATIN CAPITAL LETTER MIDDLE SCOTS S	# →β→
 ←	(‎ ẞ ‎)	1E9E	 LATIN CAPITAL LETTER SHARP S
 ←	(‎ β ‎)	03B2	 GREEK SMALL LETTER BETA
 ←	(‎ Ᏸ ‎)	13F0	 CHEROKEE LETTER YE	# →β→
 ←	(‎ ꞵ ‎)	A7B5	 LATIN SMALL LETTER BETA	# →β→
+←	(‎ 𝾕 ‎)	1DF95	 LATIN SMALL LIGATURE LONG S WITH DESCENDER S
+←	(‎ 𝚦 ‎)	1D6A6	 MATHEMATICAL ITALIC SMALL LIGATURE LONG S WITH DESCENDER S
 ←	(‎ ϐ ‎)	03D0	 GREEK BETA SYMBOL	# →β→
 ←	(‎ 𝛃 ‎)	1D6C3	 MATHEMATICAL BOLD SMALL BETA	# →β→
 ←	(‎ 𝛽 ‎)	1D6FD	 MATHEMATICAL ITALIC SMALL BETA	# →β→
@@ -14705,6 +14707,10 @@
 	(‎ 榝 ‎)	699D	 CJK UNIFIED IDEOGRAPH-699D
 ←	(‎ 樧 ‎)	6A27	 CJK UNIFIED IDEOGRAPH-6A27
 
+#	𫠞	欥
+	(‎ 欥 ‎)	6B25	 CJK UNIFIED IDEOGRAPH-6B25
+←	(‎ 𫠞 ‎)	2B81E	 CJK UNIFIED IDEOGRAPH-2B81E
+
 #	𝍶	正
 	(‎ 正 ‎)	6B63	 CJK UNIFIED IDEOGRAPH-6B63
 ←	(‎ 𝍶 ‎)	1D376	 IDEOGRAPHIC TALLY MARK FIVE
@@ -15155,5 +15161,5 @@
 	(‎ 𮶵 ‎)	2EDB5	 CJK UNIFIED IDEOGRAPH-2EDB5
 ←	(‎ 𲪏 ‎)	32A8F	 CJK UNIFIED IDEOGRAPH-32A8F
 
-# total : 7258
+# total : 7261
 

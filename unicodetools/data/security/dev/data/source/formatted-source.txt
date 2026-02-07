@@ -1,6 +1,6 @@
 # formatted-source.txt
-# Date: 2025-12-07, 22:02:20 GMT
-# © 2025 Unicode®, Inc.
+# Date: 2026-02-06, 21:41:43 GMT
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -5243,6 +5243,8 @@ A99D ;	A9A3	# ( ꦝ ~ ꦣ ) JAVANESE LETTER DDA ~ JAVANESE LETTER DA MAHAPRANA
 29994 ;	299B4	# ( 𩦔 ~ 𩦴 ) CJK UNIFIED IDEOGRAPH-29994 ~ CJK UNIFIED IDEOGRAPH-299B4
 
 2B73F ;	6138	# ( 𫜿 ~ 愸 ) CJK UNIFIED IDEOGRAPH-2B73F ~ CJK UNIFIED IDEOGRAPH-6138
+
+2B81E ;	6B25	# ( 𫠞 ~ 欥 ) CJK UNIFIED IDEOGRAPH-2B81E ~ CJK UNIFIED IDEOGRAPH-6B25
 
 2EDB5 ;	32A8F	# ( 𮶵 ~ 𲪏 ) CJK UNIFIED IDEOGRAPH-2EDB5 ~ CJK UNIFIED IDEOGRAPH-32A8F
 
