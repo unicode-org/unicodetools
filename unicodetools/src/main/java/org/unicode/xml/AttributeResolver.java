@@ -211,6 +211,13 @@ public class AttributeResolver {
                                 && resolvedValue.startsWith("EGYPTIAN HIEROGLYPH-")) {
                             return "EGYPTIAN HIEROGLYPH-#";
                         }
+                        if (resolvedValue != null && resolvedValue.startsWith("SEAL CHARACTER-")) {
+                            return "SEAL CHARACTER-#";
+                        }
+                        if (resolvedValue != null
+                                && resolvedValue.startsWith("JURCHEN CHARACTER-")) {
+                            return "JURCHEN CHARACTER-#";
+                        }
                         return Optional.ofNullable(resolvedValue).orElse("");
                     case kDefinition:
                         return resolvedValue;

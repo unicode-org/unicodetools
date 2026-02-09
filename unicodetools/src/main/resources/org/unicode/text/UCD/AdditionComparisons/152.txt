@@ -1,0 +1,455 @@
+# Cuneiform: Archaic Cuneiform Numerals
+# https://github.com/unicode-org/utc-release-management/issues/152
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+# For the 𒀸-𒐇 𒁹-𒐎 𒌋-𒐔 series, the lower numerals (𒀸, 𒁹, 𒈫, 𒌋, 𒎙, 𒌍) have different properties
+# on account of their non-numeric usage (gc=Lo, block=Cuneiform), so we take higher ones as references.
+
+Propertywise [[\x{12550}-\x{12558}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N01}-\N{CUNEIFORM NUMERIC SIGN NINE N01}]]
+           ⧴ [1-9]
+CorrespondTo [𒐀 \N{CUNEIFORM NUMERIC SIGN TWO ASH}]
+           ⧴ [2]
+       UpTo: Block             (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation),
+             Script_Extensions (Proto_Cuneiform|Cuneiform  vs Cuneiform)
+
+Propertywise [[\x{12559}-\x{12561}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N08}-\N{CUNEIFORM NUMERIC SIGN NINE N08}]]
+           ⧴ [1-9]
+CorrespondTo [𒑖 \N{CUNEIFORM NUMERIC SIGN NIGIDAMIN}]
+           ⧴ [2]
+       UpTo: Block             (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation),
+             Script_Extensions (Proto_Cuneiform|Cuneiform  vs Cuneiform)
+
+Propertywise [[\x{12562}-\x{1256A}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N14}-\N{CUNEIFORM NUMERIC SIGN NINE N14}]]
+           ⧴ [1-9]
+CorrespondTo [𒐏 \N{CUNEIFORM NUMERIC SIGN FOUR U}]
+           ⧴ [4]
+       UpTo: Block             (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation),
+             Script_Extensions (Proto_Cuneiform|Cuneiform  vs Cuneiform)
+
+Propertywise [[\x{12562}-\x{1256A}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N14}-\N{CUNEIFORM NUMERIC SIGN NINE N14}]]
+           ⧴ [1-9]
+CorrespondTo [𒐏 \N{CUNEIFORM NUMERIC SIGN FOUR U}]
+           ⧴ [4]
+       UpTo: Block             (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation),
+             Script_Extensions (Proto_Cuneiform|Cuneiform  vs Cuneiform)
+
+Propertywise [[\x{1256B}-\x{12573}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N34}-\N{CUNEIFORM NUMERIC SIGN NINE N34}]]
+           ⧴ [1-9]
+CorrespondTo [𒐕 \N{CUNEIFORM NUMERIC SIGN ONE GESH2}]
+           ⧴ [1]
+       UpTo: Block             (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation),
+             Script_Extensions (Proto_Cuneiform|Cuneiform  vs Cuneiform)
+
+Propertywise [[\x{12574}-\x{12578}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N48}-\N{CUNEIFORM NUMERIC SIGN FIVE N48}]]
+           ⧴ [1-5]
+CorrespondTo [𒐞 \N{CUNEIFORM NUMERIC SIGN ONE GESHU}]
+           ⧴ [1]
+       UpTo: Block             (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation),
+             Script_Extensions (Proto_Cuneiform|Cuneiform  vs Cuneiform)
+
+Propertywise [[\x{12579}-\x{12581}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N45}-\N{CUNEIFORM NUMERIC SIGN NINE N45}]]
+           ⧴ [1-9]
+CorrespondTo [𒐣 \N{CUNEIFORM NUMERIC SIGN TWO SHAR2}]
+           ⧴ [2]
+       UpTo: Block             (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation),
+             Script_Extensions (Proto_Cuneiform|Cuneiform  vs Cuneiform)
+
+Propertywise [[\x{12582}-\x{12586}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N50}-\N{CUNEIFORM NUMERIC SIGN FIVE N50}]]
+           ⧴ [1-5]
+CorrespondTo [𒐬 \N{CUNEIFORM NUMERIC SIGN ONE SHARU}]
+           ⧴ [1]
+       UpTo: Block             (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation),
+             Script_Extensions (Proto_Cuneiform|Cuneiform  vs Cuneiform)
+
+Ignoring Block:
+Propertywise [\x{12587}\N{CUNEIFORM NUMERIC SIGN ONE EIGHTH IKU CURVED}
+              \x{12588}\N{CUNEIFORM NUMERIC SIGN ONE EIGHTH IKU CURVED VARIANT FORM}
+              𒑟\N{CUNEIFORM NUMERIC SIGN ONE EIGHTH ASH}] AreAlike
+Propertywise [\x{12589}\N{CUNEIFORM NUMERIC SIGN ONE N01 REVERSED}
+              \x{1258A}\N{CUNEIFORM NUMERIC SIGN ONE QUARTER IKU CURVED VARIANT FORM}
+              𒑠\N{CUNEIFORM NUMERIC SIGN ONE QUARTER ASH}] AreAlike
+# U+1258B does not semantically correspond to 𒑤 (which is 150 l, not 1800 m²), but instead to 𒀹.
+# However, 𒀹 is also used non-numerically and numerically for 1 of various things, so it has very
+# different properties.
+Propertywise [\x{1258B}\N{CUNEIFORM NUMERIC SIGN ONE HALF IKU CURVED VARIANT FORM}
+              𒑤\N{CUNEIFORM NUMERIC SIGN ONE HALF GUR}] AreAlike
+end Ignoring;
+
+Propertywise [[\x{1258C}-\x{1258D}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N22}-\N{CUNEIFORM NUMERIC SIGN TWO N22}]]
+           ⧴ [1-2]
+CorrespondTo [𒑘 \N{CUNEIFORM NUMERIC SIGN ONE ESHE3}]
+           ⧴ [1]
+       UpTo: Block             (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation),
+             Script_Extensions (Proto_Cuneiform|Cuneiform  vs Cuneiform)
+
+Propertywise [[\x{1258E}-\x{12592}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE BURU CURVED}-\N{CUNEIFORM NUMERIC SIGN FIVE BURU CURVED}]]
+           ⧴ [1-5]
+CorrespondTo [𒐴 \N{CUNEIFORM NUMERIC SIGN ONE BURU}]
+           ⧴ [1]
+       UpTo: Block (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation)
+
+Propertywise [[\x{12593}-\x{12597}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE BAN2 CURVED}-\N{CUNEIFORM NUMERIC SIGN FIVE BAN2 CURVED}]]
+           ⧴ [1-5]
+CorrespondTo [𒑏 \N{CUNEIFORM NUMERIC SIGN ONE BAN2}]
+           ⧴ [1]
+       UpTo: Block (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation)
+
+Ignoring Block:
+Propertywise [\x{12598}\N{CUNEIFORM NUMERIC SIGN NINDA2 TIMES SHE PLUS ONE ASH CURVED}
+              𒑝\N{CUNEIFORM NUMERIC SIGN ONE THIRD VARIANT FORM A}
+              𒑚\N{CUNEIFORM NUMERIC SIGN ONE THIRD DISH}] AreAlike
+Propertywise [\x{12599}\N{CUNEIFORM NUMERIC SIGN NINDA2 TIMES SHE PLUS TWO ASH CURVED}
+              𒑞\N{CUNEIFORM NUMERIC SIGN TWO THIRDS VARIANT FORM A}
+              𒑛\N{CUNEIFORM NUMERIC SIGN TWO THIRDS DISH}] AreAlike
+end Ignoring;
+
+# The bisexagesimal numerals have no cuneiform counterpart, so we compare them with sexagesimal
+# numerals.  The actual numeric value of the bisexagesimal numerals is double that of the reference
+# numerals when the latter are used in the sexagesimal discrete counting system, but since we use
+# system-agnostic numeric values that only relate numerals to the ONE numeral, this does not matter
+# for property assigments.
+
+Propertywise [[\x{1259A}-\x{125A2}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N51}-\N{CUNEIFORM NUMERIC SIGN NINE N51}]]
+           ⧴ [1-9]
+CorrespondTo [𒐕 \N{CUNEIFORM NUMERIC SIGN ONE GESH2}]
+           ⧴ [1]
+       UpTo: Block             (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation),
+             Script_Extensions (Proto_Cuneiform|Cuneiform  vs Cuneiform)
+
+Propertywise [[\x{125A3}-\x{125A7}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N54}-\N{CUNEIFORM NUMERIC SIGN FIVE N54}]]
+           ⧴ [1-5]
+CorrespondTo [𒐞 \N{CUNEIFORM NUMERIC SIGN ONE GESHU}]
+           ⧴ [1]
+       UpTo: Block             (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation),
+             Script_Extensions (Proto_Cuneiform|Cuneiform  vs Cuneiform)
+
+# The highest numeral of the bisexagesimal system, N56 (=7200), is only attested in proto-cuneiform
+# texts.
+Propertywise [[\x{125A8}-\x{125A9}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N56}-\N{CUNEIFORM NUMERIC SIGN TWO N56}]]
+           ⧴ [1-2]
+CorrespondTo [𒐣 \N{CUNEIFORM NUMERIC SIGN TWO SHAR2}]
+           ⧴ [2]
+       UpTo: Block             (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation),
+             Script            (Proto_Cuneiform            vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform            vs Cuneiform)
+
+# We give nv=1 to all the system Š fractions (and the ones of related systems Š′, Š″, Š*, as well as
+# the mysterious system EN), as some have unknown values.  We compare them to a mostly arbitrary
+# one-numeral.
+Propertywise [\x{125AA}-\x{125B5} \N{CUNEIFORM NUMERIC SIGN ONE N24}-\N{CUNEIFORM NUMERIC SIGN ONE N33}
+              \x{125EA}           \N{CUNEIFORM NUMERIC SIGN ONE N24A}
+              \x{125FE}-\x{12601} \N{CUNEIFORM NUMERIC SIGN ONE N24B}-\N{CUNEIFORM NUMERIC SIGN ONE N29AB}
+              \x{12623}-\x{12628} \N{CUNEIFORM NUMERIC SIGN ONE N25}-\N{CUNEIFORM NUMERIC SIGN ONE N30CC}
+              \x{12643}-\x{12645} \N{CUNEIFORM NUMERIC SIGN ONE N09}-\N{CUNEIFORM NUMERIC SIGN ONE N12}]
+ CorrespondTo [𒑏\N{CUNEIFORM NUMERIC SIGN ONE BAN2}]
+        UpTo: Block             (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation),
+              Script            (Proto_Cuneiform            vs Cuneiform),
+              Script_Extensions (Proto_Cuneiform            vs Cuneiform)
+
+Propertywise [[\x{125B6}-\x{125B9}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N39A}-\N{CUNEIFORM NUMERIC SIGN FOUR N39A}]]
+           ⧴ [1-4]
+CorrespondTo [𒑖 \N{CUNEIFORM NUMERIC SIGN NIGIDAMIN}]
+           ⧴ [2]
+       UpTo: Block             (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation),
+             Script            (Proto_Cuneiform            vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform            vs Cuneiform)
+
+Propertywise [[\x{125BA}-\x{125BD}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N39B}-\N{CUNEIFORM NUMERIC SIGN FOUR N39B}]]
+           ⧴ [1-4]
+CorrespondTo [\x{125B6} \N{CUNEIFORM NUMERIC SIGN ONE N39A}]
+           ⧴ [1]
+
+# System S′ numerals; we compare them with those from system S.
+
+Propertywise [[\x{125BE}-\x{125C6}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N02}-\N{CUNEIFORM NUMERIC SIGN NINE N02}]]
+           ⧴ [1-9]
+CorrespondTo [\x{12550} \N{CUNEIFORM NUMERIC SIGN ONE N01}]
+           ⧴ [1]
+       UpTo: Script            (Proto_Cuneiform vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform vs Proto_Cuneiform|Cuneiform)
+
+Propertywise [[\x{125C7}-\x{125CB}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N15}-\N{CUNEIFORM NUMERIC SIGN FIVE N15}]]
+           ⧴ [1-5]
+CorrespondTo [\x{12562} \N{CUNEIFORM NUMERIC SIGN ONE N14}]
+           ⧴ [1]
+       UpTo: Script            (Proto_Cuneiform vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform vs Proto_Cuneiform|Cuneiform)
+
+Propertywise [[\x{125CC}-\x{125D0}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N35}-\N{CUNEIFORM NUMERIC SIGN FIVE N35}]]
+           ⧴ [1-5]
+CorrespondTo [\x{1256B} \N{CUNEIFORM NUMERIC SIGN ONE N34}]
+           ⧴ [1]
+       UpTo: Script            (Proto_Cuneiform vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform vs Proto_Cuneiform|Cuneiform)
+
+# System B* numerals; we compare them with those from system B.
+
+Propertywise [[\x{125D1}-\x{125D9}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N06}-\N{CUNEIFORM NUMERIC SIGN NINE N06}]]
+           ⧴ [1-9]
+CorrespondTo [\x{12550} \N{CUNEIFORM NUMERIC SIGN ONE N01}]
+           ⧴ [1]
+       UpTo: Script            (Proto_Cuneiform vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform vs Proto_Cuneiform|Cuneiform)
+
+Propertywise [[\x{125DA}-\x{125DE}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N21}-\N{CUNEIFORM NUMERIC SIGN FIVE N21}]]
+           ⧴ [1-5]
+CorrespondTo [\x{12562} \N{CUNEIFORM NUMERIC SIGN ONE N14}]
+           ⧴ [1]
+       UpTo: Script            (Proto_Cuneiform vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform vs Proto_Cuneiform|Cuneiform)
+
+Propertywise [\x{125DF} \N{CUNEIFORM NUMERIC SIGN ONE N38}]
+CorrespondTo [\x{1256B} \N{CUNEIFORM NUMERIC SIGN ONE N34}]
+       UpTo: Script            (Proto_Cuneiform vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform vs Proto_Cuneiform|Cuneiform)
+
+Propertywise [[\x{125E0}-\x{125E8}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N52}-\N{CUNEIFORM NUMERIC SIGN NINE N52}]]
+           ⧴ [1-9]
+CorrespondTo [\x{1259A} \N{CUNEIFORM NUMERIC SIGN ONE N51}]
+           ⧴ [1]
+       UpTo: Script            (Proto_Cuneiform vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform vs Proto_Cuneiform|Cuneiform)
+
+# System Š′ numerals (except the fractions already tested above).
+# We compare them with those from system Š.
+
+Propertywise [[\x{125EB}-\x{125EE}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N40}-\N{CUNEIFORM NUMERIC SIGN FOUR N40}]]
+           ⧴ [1-4]
+CorrespondTo [\x{125B6} \N{CUNEIFORM NUMERIC SIGN ONE N39A}]
+           ⧴ [1]
+
+Propertywise [[\x{125EF}-\x{125F3}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N03}-\N{CUNEIFORM NUMERIC SIGN FIVE N03}]]
+           ⧴ [1-5]
+CorrespondTo [\x{12550} \N{CUNEIFORM NUMERIC SIGN ONE N01}]
+           ⧴ [1]
+       UpTo: Script            (Proto_Cuneiform vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform vs Proto_Cuneiform|Cuneiform)
+
+Propertywise [[\x{125F4}-\x{125FC}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N18}-\N{CUNEIFORM NUMERIC SIGN NINE N18}]]
+           ⧴ [1-9]
+CorrespondTo [\x{12562} \N{CUNEIFORM NUMERIC SIGN ONE N14}]
+           ⧴ [1]
+       UpTo: Script            (Proto_Cuneiform vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform vs Proto_Cuneiform|Cuneiform)
+
+Propertywise [\x{125FD} \N{CUNEIFORM NUMERIC SIGN ONE N45A}]
+CorrespondTo [\x{12579} \N{CUNEIFORM NUMERIC SIGN ONE N45}]
+       UpTo: Script            (Proto_Cuneiform vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform vs Proto_Cuneiform|Cuneiform)
+
+# System Š″ numerals (except the fractions already tested above).
+# We mostly compare them with those from system Š′ (which are closer in property assignments than
+# those from system Š, since system Š uses many of the common numerals).
+
+Propertywise [[\x{12602}-\x{12605}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N41}-\N{CUNEIFORM NUMERIC SIGN FOUR N41}]]
+           ⧴ [1-4]
+CorrespondTo [\x{125EB} \N{CUNEIFORM NUMERIC SIGN ONE N40}]
+           ⧴ [1]
+
+Propertywise [[\x{12606}-\x{1260A}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N04}-\N{CUNEIFORM NUMERIC SIGN FIVE N04}]]
+           ⧴ [1-5]
+CorrespondTo [\x{125EF} \N{CUNEIFORM NUMERIC SIGN ONE N03}]
+           ⧴ [1]
+
+Propertywise [[\x{1260B}-\x{12613}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N19}-\N{CUNEIFORM NUMERIC SIGN NINE N19}]]
+           ⧴ [1-9]
+CorrespondTo [\x{12636} \N{CUNEIFORM NUMERIC SIGN ONE N20}]
+           ⧴ [1]
+
+Propertywise [[\x{12614}-\x{12615}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N46}-\N{CUNEIFORM NUMERIC SIGN TWO N46}]]
+           ⧴ [1-2]
+CorrespondTo [\x{125FD} \N{CUNEIFORM NUMERIC SIGN ONE N45A}]
+           ⧴ [1]
+
+Propertywise [[\x{12616}-\x{1261E}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N36}-\N{CUNEIFORM NUMERIC SIGN NINE N36}]]
+           ⧴ [1-9]
+CorrespondTo [\x{1256B} \N{CUNEIFORM NUMERIC SIGN ONE N34}]
+           ⧴ [1]
+       UpTo: Script            (Proto_Cuneiform vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform vs Proto_Cuneiform|Cuneiform)
+
+Propertywise [[\x{1261F}-\x{12622}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N49}-\N{CUNEIFORM NUMERIC SIGN FOUR N49}]]
+           ⧴ [1-4]
+CorrespondTo [\x{12574} \N{CUNEIFORM NUMERIC SIGN ONE N48}]
+           ⧴ [1]
+       UpTo: Script            (Proto_Cuneiform vs Cuneiform),
+             Script_Extensions (Proto_Cuneiform vs Proto_Cuneiform|Cuneiform)
+
+# System Š* numerals (except the fractions already tested above).
+# We compare them with those from system Š″.
+
+Propertywise [[\x{12629}-\x{1262C}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N42A}-\N{CUNEIFORM NUMERIC SIGN FOUR N42A}]]
+           ⧴ [1-4]
+CorrespondTo [\x{12602} \N{CUNEIFORM NUMERIC SIGN ONE N41}]
+           ⧴ [1]
+
+Propertywise [[\x{1262D}-\x{12630}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N42B}-\N{CUNEIFORM NUMERIC SIGN FOUR N42B}]]
+           ⧴ [1-4]
+CorrespondTo [\x{12602} \N{CUNEIFORM NUMERIC SIGN ONE N41}]
+           ⧴ [1]
+
+Propertywise [[\x{12631}-\x{12635}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N05}-\N{CUNEIFORM NUMERIC SIGN FIVE N05}]]
+           ⧴ [1-5]
+CorrespondTo [\x{12606} \N{CUNEIFORM NUMERIC SIGN ONE N04}]
+           ⧴ [1]
+
+Propertywise [[\x{12636}-\x{1263E}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N20}-\N{CUNEIFORM NUMERIC SIGN NINE N20}]]
+           ⧴ [1-9]
+CorrespondTo [\x{1260B} \N{CUNEIFORM NUMERIC SIGN ONE N19}]
+           ⧴ [1]
+
+Propertywise [[\x{1263F}-\x{12640}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N47}-\N{CUNEIFORM NUMERIC SIGN TWO N47}]]
+           ⧴ [1-2]
+CorrespondTo [\x{12614} \N{CUNEIFORM NUMERIC SIGN ONE N46}]
+           ⧴ [1]
+
+Propertywise [[\x{12641}-\x{12642}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N37}-\N{CUNEIFORM NUMERIC SIGN TWO N37}]]
+           ⧴ [1-2]
+CorrespondTo [\x{12616} \N{CUNEIFORM NUMERIC SIGN ONE N36}]
+           ⧴ [1]
+
+# The actual 𒂗-looking N07 numerals of system EN (their fractions are already covered above).
+
+Propertywise [[\x{12646}-\x{12648}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N07A}-\N{CUNEIFORM NUMERIC SIGN THREE N07A}]]
+           ⧴ [1-3]
+CorrespondTo [\x{125B6} \N{CUNEIFORM NUMERIC SIGN ONE N39A}]
+           ⧴ [1]
+
+Propertywise [[\x{12649}-\x{1264B}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N07B}-\N{CUNEIFORM NUMERIC SIGN THREE N07B}]]
+           ⧴ [1-3]
+CorrespondTo [\x{125B6} \N{CUNEIFORM NUMERIC SIGN ONE N39A}]
+           ⧴ [1]
+
+# The flat numerals.  These ones are only Cuneiform.
+
+Propertywise [[\x{1264C}-\x{12654}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N01 FLAT}-\N{CUNEIFORM NUMERIC SIGN NINE N01 FLAT}]]
+           ⧴ [1-9]
+CorrespondTo [𒐀 \N{CUNEIFORM NUMERIC SIGN TWO ASH}]
+           ⧴ [2]
+       UpTo: Block (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation)
+
+Propertywise [\x{12655} \N{CUNEIFORM NUMERIC SIGN ONE N08 FLAT}]
+           ⧴ [1]
+CorrespondTo [𒑖 \N{CUNEIFORM NUMERIC SIGN NIGIDAMIN}]
+           ⧴ [2]
+       UpTo: Block (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation)
+
+Propertywise [[\x{12656}-\x{1265E}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N14 FLAT}-\N{CUNEIFORM NUMERIC SIGN NINE N14 FLAT}]]
+           ⧴ [1-9]
+CorrespondTo [𒐏 \N{CUNEIFORM NUMERIC SIGN FOUR U}]
+           ⧴ [4]
+       UpTo: Block (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation)
+
+Propertywise [[\x{1265F}-\x{12667}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N34 FLAT}-\N{CUNEIFORM NUMERIC SIGN NINE N34 FLAT}]]
+           ⧴ [1-9]
+CorrespondTo [𒐕 \N{CUNEIFORM NUMERIC SIGN ONE GESH2}]
+           ⧴ [1]
+       UpTo: Block (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation)
+
+Propertywise [[\x{12668}-\x{12669}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N45 FLAT}-\N{CUNEIFORM NUMERIC SIGN TWO N45 FLAT}]]
+           ⧴ [1-2]
+CorrespondTo [𒐣 \N{CUNEIFORM NUMERIC SIGN TWO SHAR2}]
+           ⧴ [2]
+       UpTo: Block (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation)
+
+Propertywise [[\x{1266A}-\x{1266B}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N22 FLAT}-\N{CUNEIFORM NUMERIC SIGN TWO N22 FLAT}]]
+           ⧴ [1-2]
+CorrespondTo [𒑘 \N{CUNEIFORM NUMERIC SIGN ONE ESHE3}]
+           ⧴ [1]
+       UpTo: Block (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation)
+
+Propertywise [[\x{1266C}-\x{12674}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N51 FLAT}-\N{CUNEIFORM NUMERIC SIGN NINE N51 FLAT}]]
+           ⧴ [1-9]
+CorrespondTo [\x{1259A} \N{CUNEIFORM NUMERIC SIGN ONE N51}]
+           ⧴ [1]
+       UpTo: Script_Extensions (Cuneiform vs Proto_Cuneiform|Cuneiform)
+
+Propertywise [\x{12675} \N{CUNEIFORM NUMERIC SIGN ONE N34 FLAT TENU}]
+CorrespondTo [𒐕 \N{CUNEIFORM NUMERIC SIGN ONE GESH2}]
+       UpTo: Block (Archaic_Cuneiform_Numerals vs Cuneiform_Numbers_And_Punctuation)
+
+Propertywise [[\x{12676}-\x{1267A}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N04 FLAT}-\N{CUNEIFORM NUMERIC SIGN FIVE N04 FLAT}]]
+           ⧴ [1-5]
+CorrespondTo [\x{12606} \N{CUNEIFORM NUMERIC SIGN ONE N04}]
+           ⧴ [1]
+       UpTo: Script            (Cuneiform vs Proto_Cuneiform),
+             Script_Extensions (Cuneiform vs Proto_Cuneiform)
+
+Propertywise [[\x{1267B}-\x{12683}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N19 FLAT}-\N{CUNEIFORM NUMERIC SIGN NINE N19 FLAT}]]
+           ⧴ [1-9]
+CorrespondTo [\x{1260B} \N{CUNEIFORM NUMERIC SIGN ONE N19}]
+           ⧴ [1]
+       UpTo: Script            (Cuneiform vs Proto_Cuneiform),
+             Script_Extensions (Cuneiform vs Proto_Cuneiform)
+
+Propertywise [[\x{12684}-\x{12685}]
+              [\N{CUNEIFORM NUMERIC SIGN ONE N46 FLAT}-\N{CUNEIFORM NUMERIC SIGN TWO N46 FLAT}]]
+           ⧴ [1-2]
+CorrespondTo [\x{12614} \N{CUNEIFORM NUMERIC SIGN ONE N46}]
+           ⧴ [1]
+       UpTo: Script            (Cuneiform vs Proto_Cuneiform),
+             Script_Extensions (Cuneiform vs Proto_Cuneiform)
+
+Propertywise [\x{12686} \N{CUNEIFORM NUMERIC SIGN ONE N36 FLAT}]
+CorrespondTo [\x{12616} \N{CUNEIFORM NUMERIC SIGN ONE N36}]
+       UpTo: Script            (Cuneiform vs Proto_Cuneiform),
+             Script_Extensions (Cuneiform vs Proto_Cuneiform)
+
+end Ignoring;
+
+end Ignoring;

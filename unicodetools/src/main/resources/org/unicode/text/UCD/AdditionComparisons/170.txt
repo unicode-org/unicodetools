@@ -1,0 +1,38 @@
+# Symbols: Two Japanese traditional calendar symbols (1F1AE, 1F7DA)
+# https://github.com/unicode-org/utc-release-management/issues/170
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set Math_Class Math_Class_Ex:
+
+# The other 六曜 symbols [L2/24-151R, p. 1] are all propertywise alike.
+Propertywise [\x{25D0} ◐ \N{CIRCLE WITH LEFT HALF BLACK}
+              \x{25D1} ◑ \N{CIRCLE WITH RIGHT HALF BLACK}
+              \x{25CF} ● \N{BLACK CIRCLE}
+              \x{25CB} ○ \N{WHITE CIRCLE}] AreAlike
+
+Ignoring Block:
+Propertywise [\x{1F1AE} \N{TOMOBIKI SYMBOL}
+              \x{1F7DA} \N{BLACK CIRCLE WITH WHITE VERTICAL BAR}]
+CorrespondTo [\x{25D0} ◐ \N{CIRCLE WITH LEFT HALF BLACK}]
+    UpTo: Bidi_Class            (Left_To_Right vs Other_Neutral),
+          East_Asian_Width      (Wide          vs Ambiguous),
+          Line_Break            (Ideographic   vs Ambiguous),
+          Math                  (No            vs Yes),
+          Other_Math            (No            vs Yes),
+          Pattern_Syntax        (No            vs Yes)
+
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

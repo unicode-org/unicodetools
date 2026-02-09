@@ -41,7 +41,7 @@ public class Settings {
         }
     };
 
-    public static final ReleasePhase latestVersionPhase = ReleasePhase.DEV;
+    public static final ReleasePhase latestVersionPhase = ReleasePhase.ALPHA;
 
     public static final String lastVersion = "17.0.0"; // last released version
 

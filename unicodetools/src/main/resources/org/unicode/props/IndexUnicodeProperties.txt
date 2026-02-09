@@ -21,6 +21,7 @@ FileType ; UnicodeData ; HackField
 # Contains exactly one boolean property, with value "Yes"
 
 FileType ; CompositionExclusions ; List
+FileType ; linkification/*/LinkEmail ; List
 
 # PropertyValue File Type
 # The value is in field 2, except for binary properties, where the value is "Yes"
@@ -38,12 +39,15 @@ FileType ; Unihan_Readings ; PropertyValue
 FileType ; Unihan_Variants ; PropertyValue
 FileType ; NushuSources ; PropertyValue
 FileType ; TangutSources ; PropertyValue
+FileType ; JurchenSources ; PropertyValue
+FileType ; SealSources ; PropertyValue
 
 # NameAliases File Type
 # Contains a multivalued property, where successive values are not in the same line, but are divided out on successive lines with the same code point
 
 FileType ; NameAliases ; NameAliases
 FileType ; NameAliasesProv ; NameAliases
+# TODO(egg): These probably want to be somehow associated with their base character.
 FileType ; StandardizedVariants ; StandardizedVariants
 FileType ; emoji-variation-sequences ; StandardizedVariants
 
@@ -57,6 +61,8 @@ FileType ; CJKRadicals ; CJKRadicals
 # NamedSequences File Type
 # The code point is not in field 0, but instead in field 1.
 # The value is in field 0
+# TODO(egg): This could be handled with a field mapping 1 ↦ 0 instead of a
+# dedicated file type.
 
 FileType ; NamedSequences ; NamedSequences
 FileType ; NamedSequencesProv ; NamedSequences
@@ -69,11 +75,21 @@ FileType ; NamesList ; NamesList
 # =======================================
 
 # Files where particular properties can be found, and in which field
-# The format is:
-# Field0 : file name
-# Field1 : property name
-# Field2 : field number in file (default is 1)
-# Field3 : special handling
+# The format of these property location lines is:
+# <file name without extension>
+#    ; <property alias>
+#  [ ; <field mapping> [ ; <special handling> ] ]
+#  [ ; <version> ]
+# Where <field mapping> is <key field index> ↦ <value field index>
+# or <value field index> (with the key field being field 0 by default).
+# If the <field mapping> is omitted, it is 0 ↦ 1 by default.
+# No <field mapping> is given for files whose type determine the field mapping,
+# such as PropertyValue: in a PropertyValue file, the key is always
+# field 0, the value field 2, and field 1 determines the property.
+# <version> has the form v<n>[.<n>.[.<n>]]; it determines the latest applicable
+# version for a past location of the property.  If it is omitted, the location
+# is still current.
+# The <special handling> is only used for SpecialCasing:
 #   Skip1FT  : Skip line if field 1 is F or T
 #   Skip1ST  : Skip line if field 1 is S or T
 #   SkipAny4 : Skip line if field 4 is not empty
@@ -101,6 +117,7 @@ UnicodeData; Simple_Lowercase_Mapping ; 13
 UnicodeData; Simple_Titlecase_Mapping ; 14
 UnicodeData; Unicode_1_Name ; 10
 UnicodeData; ISO_Comment ; 11
+ArabicShaping; Arabic_Shaping_Schematic_Name; 1
 # Handle the complex default of ArabicShaping.txt by introducing an unofficial
 # contributory property, to be used when deriving Joining_Type.
 ArabicShaping; Other_Joining_Type; 2
@@ -337,6 +354,19 @@ NushuSources ; kSrc_NushuDuben
 NushuSources ; kReading
 TangutSources ; kRSTUnicode
 TangutSources ; kTGT_MergedSrc
+TangutSources ; kTGT_Numeric
+
+SealSources ; kSEAL_THXSrc
+SealSources ; kSEAL_CCZSrc
+SealSources ; kSEAL_QJZSrc
+SealSources ; kSEAL_DYCSrc
+SealSources ; kSEAL_MCJK
+SealSources ; kSEAL_Rad
+
+JurchenSources ; kJURC_RSUnicode
+JurchenSources ; kJURC_Src
+JurchenSources ; kJURC_NCReading
+JurchenSources ; kJURC_Numeric
 
 NormalizationCorrections ; normalization_correction_original ; 1
 NormalizationCorrections ; normalization_correction_corrected ; 2
@@ -479,6 +509,8 @@ NamedSequencesProv ; Named_Sequences_Prov
 StandardizedVariants ; Standardized_Variant
 emoji-variation-sequences ; emoji-variation-sequence
 DoNotEmit ; Do_Not_Emit_Preferred ; 1
+DoNotEmit ; Do_Not_Emit_Dispreferred ; 1 ↦ 0
+DoNotEmit ; Do_Not_Emit_Dispreferred_Type ; 1 ↦ 2
 DoNotEmit ; Do_Not_Emit_Type ; 2
 
 idna/*/IdnaMappingTable; Idn_Status;
@@ -497,6 +529,10 @@ security/*/confusables ; Confusable_SL
 security/*/confusables ; Confusable_SA
 security/*/confusables ; Confusable_ML
 security/*/confusables ; Confusable_MA
+
+linkification/*/LinkBracket ; Link_Bracket
+linkification/*/LinkTerm    ; Link_Term
+linkification/*/LinkEmail   ; Link_Email
 
 # Unicode 13 moves the emoji-data.txt and emoji-variation-sequences.txt files
 # from the emoji folder to the ucd/emoji folder.
@@ -537,6 +573,19 @@ emoji/*/emoji-test ; RGI_Emoji_Qualification ; 1
 #   \p{RGI_Emoji} := [\p{RGI_Emoji_Qualification=Fully_Qualified}
 #                     \p{RGI_Emoji_Qualification=Standalone_Component}].
 emoji/*/emoji-test ; RGI_Emoji ; 1
+
+# Get Math_Class from MathClass.txt, which exists since revision 9.
+math/*/MathClass ; Math_Class ; 1
+
+# Should be the same as Math_Class, but isn’t.
+math/*/MathClassEx ; Math_Class_Ex             ; 1
+math/*/MathClassEx ; Math_Entity_Name          ; 2
+math/*/MathClassEx ; Math_Entity_Set           ; 3
+math/*/MathClassEx ; Math_Descriptive_Comments ; 4
+# Field 2 used to be the character itself.
+math/*/MathClassEx ; Math_Entity_Name          ; 3 ; v17.0
+math/*/MathClassEx ; Math_Entity_Set           ; 4 ; v17.0
+math/*/MathClassEx ; Math_Descriptive_Comments ; 5 ; v17.0
 
 FileType ; Unikemet ; PropertyValue
 Unikemet ; kEH_Cat

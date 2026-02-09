@@ -1,0 +1,66 @@
+# Arabic: Sixteen Quranic characters
+# https://github.com/unicode-org/utc-release-management/issues/138
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block:
+
+# We test Joining_Type, but not the pseudoproperty Other_Joining_Type, which distinguishes
+# characters explicitly listed in ArabicShaping.txt from those where Joining_Type is derived.
+Ignoring Other_Joining_Type Arabic_Shaping_Schematic_Name:
+Propertywise [
+               \N{ARABIC SMALL BASELINE FATHA}
+               \N{ARABIC SMALL BASELINE DOTLESS HEAD OF KHAH}
+    \x{0888} ࢈ \N{ARABIC RAISED ROUND DOT}
+] AreAlike
+end Ignoring;
+
+Propertywise [
+               \N{ARABIC NORTHEAST POINTING ARROWHEAD ABOVE}
+      \x{0657} \N{ARABIC INVERTED DAMMA}
+] AreAlike
+
+Propertywise [
+               \N{ARABIC SMALL CIRCLE ABOVE}
+               \N{ARABIC LARGE CIRCLE ABOVE}
+      \x{06E0} \N{ARABIC SMALL HIGH UPRIGHT RECTANGULAR ZERO}
+] AreAlike
+
+Propertywise [
+               \N{ARABIC SMALL HIGH NOON WITH FATHA}
+               \N{ARABIC SMALL HIGH NOON WITH DAMMA}
+               \N{ARABIC SMALL HIGH HEH INITIAL FORM}
+               \N{ARABIC SMALL HIGH WORD KABBIR}
+    \x{06E2} ۢ  \N{ARABIC SMALL HIGH MEEM ISOLATED FORM}  # Not like SMALL HIGH NOON, which is MCM.
+              ࣞ \N{ARABIC SMALL HIGH WORD QIF}
+] AreAlike
+
+Propertywise [
+              \N{ARABIC NORTHEAST POINTING ARROWHEAD BELOW}
+              \N{ARABIC SOUTHWEST POINTING ARROWHEAD BELOW}
+     \x{0656} \N{ARABIC SUBSCRIPT ALEF}
+] AreAlike
+
+Propertywise [
+      \N{ARABIC SMALL LOW UPRIGHT RECTANGULAR ZERO}
+      \N{ARABIC SQUARE BELOW}
+      \N{ARABIC FILLED SQUARE BELOW}
+     ࣑\N{ARABIC LARGE CIRCLE BELOW}
+] AreAlike
+
+Propertywise [
+                 \N{ARABIC SMALL LOW NOON WITH FATHA}
+                 \N{ARABIC SMALL LOW NOON WITH DAMMA}
+      \x{08D3} ࣓ \N{ARABIC SMALL LOW WAW}  # Not like SMALL LOW NOON WITH KASRA, which is not MCM.
+] AreAlike
+
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

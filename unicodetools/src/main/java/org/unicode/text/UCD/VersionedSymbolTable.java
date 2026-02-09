@@ -61,12 +61,9 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         String propertyPredicate = afterEquals;
         boolean interiorlyNegated = false;
         int posNotEqual = beforeEquals.indexOf('≠');
-        // TODO(egg): We cannot distinguish \p{X=} from \p{X} in this API, both give us an empty
-        // string as afterEquals.  This is an @internal API, so we could change it to pass null in
-        // the unary case.
         if (posNotEqual >= 0) {
             propertyPredicate =
-                    afterEquals.isEmpty()
+                    afterEquals == null
                             ? beforeEquals.substring(posNotEqual + 1)
                             : beforeEquals.substring(posNotEqual + 1) + "=" + afterEquals;
             leftHandSide = beforeEquals.substring(0, posNotEqual);
@@ -90,7 +87,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         checkLoaded(deducedQueriedVersion);
         final var queriedProperties = IndexUnicodeProperties.make(deducedQueriedVersion);
 
-        if (propertyPredicate.isEmpty()) {
+        if (propertyPredicate == null) {
             return computeUnaryQuery(queriedProperties, unqualifiedLeftHandSide);
         } else {
             return computeBinaryQuery(
@@ -100,7 +97,6 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
 
     private UnicodeSet computeUnaryQuery(
             IndexUnicodeProperties queriedProperties, String unqualifiedQuery) {
-        // Either unary-property-query, or binary-property-query with an empty property-value.
         final var script = queriedProperties.getProperty(UcdProperty.Script);
         final var generalCategory = queriedProperties.getProperty(UcdProperty.General_Category);
         if (script.isValidValue(unqualifiedQuery)) {
@@ -118,10 +114,6 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                     "Invalid unary-query-expression; could not find property " + unqualifiedQuery);
         }
         if (!queriedProperty.isType(UnicodeProperty.BINARY_MASK)) {
-            // TODO(egg): Remove when we can tell this is a unary query.
-            if (queriedProperty.isType(UnicodeProperty.STRING_OR_MISC_MASK)) {
-                return queriedProperty.getSet("");
-            }
             throw new IllegalArgumentException(
                     "Invalid unary-query-expression for non-binary property "
                             + queriedProperty.getName());
