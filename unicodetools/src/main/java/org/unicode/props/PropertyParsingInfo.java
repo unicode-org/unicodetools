@@ -486,7 +486,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
     public String checkRegex2(VersionInfo versionInfo, String string) {
         if (getRegex() == null) {
-            IndexUnicodeProperties.putDataLoadingErrors(versionInfo, property, "Regex missing");
+            IndexUnicodeProperties.getDataLoadingErrors(versionInfo).put(property, "Regex missing");
             return string;
         }
         if (string == null) {
@@ -529,10 +529,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         if (!getRegex().matcher(part).matches()) {
             final String part2 = NFD.normalize(part);
             if (!getRegex().matcher(part2).matches()) {
-                IndexUnicodeProperties.putDataLoadingErrors(
-                        versionInfo,
-                        property,
-                        "Regex failure: " + RegexUtilities.showMismatch(getRegex(), part));
+                IndexUnicodeProperties.getDataLoadingErrors(versionInfo)
+                        .put(
+                                property,
+                                "Regex failure: " + RegexUtilities.showMismatch(getRegex(), part));
             }
         }
     }
@@ -1963,15 +1963,15 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             propInfo.defaultValueType = IndexUnicodeProperties.DefaultValueType.forString(value);
             propInfo.defaultValues.put(version, value);
             if (IndexUnicodeProperties.SHOW_DEFAULTS) {
-                IndexUnicodeProperties.putDataLoadingErrors(
-                        version,
-                        prop,
-                        "**\t"
-                                + prop
-                                + "\t"
-                                + propInfo.defaultValueType
-                                + "\t"
-                                + propInfo.getDefaultValue(version));
+                IndexUnicodeProperties.getDataLoadingErrors(version)
+                        .put(
+                                prop,
+                                "**\t"
+                                        + prop
+                                        + "\t"
+                                        + propInfo.defaultValueType
+                                        + "\t"
+                                        + propInfo.getDefaultValue(version));
             }
         } else if (propInfo.getDefaultValue(version).equals(value)) {
         } else if (propInfo.property == UcdProperty.Lowercase_Mapping
@@ -1989,7 +1989,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             + propInfo.getDefaultValue(version);
             //            propInfo.defaultValueType = DefaultValueType.forString(value);
             //            propInfo.defaultValue = value;
-            IndexUnicodeProperties.putDataLoadingErrors(version, prop, comment);
+            IndexUnicodeProperties.getDataLoadingErrors(version).put(prop, comment);
         }
     }
 

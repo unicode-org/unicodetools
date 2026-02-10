@@ -29,7 +29,8 @@ public class TestIndexPropertyRegex {
         }
         if (IndexUnicodeProperties.getDataLoadingErrors(latest.getUcdVersion()) != null) {
             final Set<Map.Entry<UcdProperty, Set<String>>> dataLoadingErrors =
-                    IndexUnicodeProperties.getDataLoadingErrors(latest.getUcdVersion()).entrySet();
+                    IndexUnicodeProperties.getDataLoadingErrors(latest.getUcdVersion())
+                            .keyValuesSet();
             if (!dataLoadingErrors.isEmpty()) {
                 System.err.println(
                         "Data loading errors for "

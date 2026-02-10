@@ -297,13 +297,14 @@ public class CheckProperties {
         showInfo("Property Enum Canonical Form wrong", PROPNAMEDIFFERENCES, outLog);
         showInfo("Cache File Sizes", latest.getCacheFileSize().entrySet(), outLog);
 
-        for (VersionInfo versionInfo : IndexUnicodeProperties.getAllDataLoadingErrors().keySet()) {
+        for (final Entry<VersionInfo, Relation<UcdProperty, String>> versionEntry :
+                IndexUnicodeProperties.getDataLoadingErrors().entrySet()) {
             final Set<Entry<UcdProperty, Set<String>>> dataLoadingErrors =
-                    IndexUnicodeProperties.getDataLoadingErrors(versionInfo).entrySet();
+                    versionEntry.getValue().keyValuesSet();
             if (!dataLoadingErrors.isEmpty()) {
                 outLog.println(
                         "Data loading errors for "
-                                + versionInfo.toString()
+                                + versionEntry.getKey()
                                 + ": "
                                 + dataLoadingErrors.size());
                 for (final Entry<UcdProperty, Set<String>> s : dataLoadingErrors) {
