@@ -1,0 +1,33 @@
+# Symbols: 8 math symbols (1CEF6..1CEFD)
+# https://github.com/unicode-org/utc-release-management/issues/276
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+# Ignore the Block, Math_Class, Math_Class_Ex, and Pattern_Syntax when compared
+# to U+29A1. Math_Class, Math_Class_Ex, and Pattern_Syntax won't be updated for
+# new characters. While the Block values are different, the other values of
+# U+29A1 should be comparable to U+1CEF6..U+1CEFD.
+Ignoring Block Math_Class Math_Class_Ex Pattern_Syntax Link_Term:
+
+Propertywise [\x{1CEF6} \N{SECTOR WITH CHORD}
+              \x{1CEF7} \N{SECTOR WITH DOUBLE ARC}
+              \x{1CEF8} \N{SECTOR WITH CHORD AND DOTTED ARC}
+              \x{1CEF9} \N{MEASURED ANGLE WITH DOUBLE ARC}
+              \x{1CEFA} \N{MEASURED ANGLE WITH CONCAVE ARC}
+              \x{1CEFB} \N{MEASURED ANGLE WITH DOUBLE CONCAVE ARC}
+              \x{1CEFC} \N{ANGLE OPENING UP}
+              \x{1CEFD} \N{HYPERBOLA}
+              \x{29A1}  \N{SPHERICAL ANGLE OPENING UP}] AreAlike
+
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

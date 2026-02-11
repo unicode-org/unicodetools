@@ -66,7 +66,6 @@
         <div class="body">
           <h2 style="text-align:center">
             <xsl:call-template name="display-stage"/>
-            <xsl:text> </xsl:text>
             <xsl:choose>
               <xsl:when test="articleinfo/unicode:tr/@class='uax'">
                 <xsl:text>Unicode® Standard Annex</xsl:text>
@@ -106,10 +105,10 @@
   <xsl:template name="display-stage">
     <xsl:choose>
       <xsl:when test="articleinfo/unicode:tr/@stage='working-draft'">
-        <span style="background-color: #ffff00; border-style:dotted; border-width:1px"><xsl:text>Working draft</xsl:text></span>
+        <span><xsl:attribute name="class">changed</xsl:attribute><xsl:text>Working draft </xsl:text></span>
       </xsl:when>
       <xsl:when test="articleinfo/unicode:tr/@stage='proposed-update'">
-        <span style="background-color: #ffff00; border-style:dotted; border-width:1px"><xsl:text>Proposed Update</xsl:text></span>
+        <span><xsl:attribute name="class">changed</xsl:attribute><xsl:text>Proposed Update </xsl:text></span>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -463,15 +462,21 @@
         </xsl:choose>
         <xsl:text>: </xsl:text>
         <xsl:for-each select="key('ucdxml-key',@linkend)">
-          <a href="#ucdxml:{generate-id ()}"><xsl:number count="ucdxml:block" level="any"/></a>
+          <xsl:variable name="link"><xsl:value-of
+                  select="replace(lower-case(@title), ' ', '_')"/><xsl:text>_</xsl:text><xsl:number
+                  count="ucdxml:block" level="any"/></xsl:variable>
+          <a href="#ucdxml:{$link}"><xsl:number count="ucdxml:block" level="any"/></a>
           <xsl:if test="position() != last ()">, </xsl:if></xsl:for-each><xsl:text>]</xsl:text>
     </i>
   </xsl:template>
 
   <xsl:template match="ucdxml:block">
+    <xsl:variable name="link"><xsl:value-of
+            select="replace(lower-case(@title), ' ', '_')"/><xsl:text>_</xsl:text><xsl:number
+            count="ucdxml:block" level="any"/></xsl:variable>
     <p>
       <xsl:apply-templates select="@edit"/>
-      <i><a name="ucdxml:{generate-id()}">[<xsl:value-of select="@title"/>,
+      <i><a name="ucdxml:{$link}">[<xsl:value-of select="@title"/>,
         <xsl:number count="ucdxml:block" level="any"/>]
       </a>
         =</i>
@@ -482,8 +487,10 @@
   </xsl:template>
 
   <xsl:template match="ucdxml:schema">
+    <xsl:variable name="link"><xsl:value-of
+            select="replace(lower-case(@title), ' ', '_')"/></xsl:variable>
     <p>
-      <i><a name="ucdxml:{generate-id()}">[<xsl:value-of select="@title"/>]
+      <i><a name="ucdxml:{$link}">[<xsl:value-of select="@title"/>]
       </a>
         =</i>
       <xsl:apply-templates/>
@@ -497,21 +504,29 @@
   <!-- Revision history aka. Modifications -->
 
   <xsl:template match="revision">
-    <div>
-      <xsl:apply-templates select="@edit"/>
-      <p>
-        <b>Revision <xsl:value-of select="@revnumber"/></b>
-      </p>
-      <xsl:apply-templates/>
-    </div>
+    <xsl:choose>
+      <xsl:when test="@edit">
+        <div>
+          <xsl:apply-templates select="@edit"/>
+          <p>
+            <b>Revision <xsl:value-of select="@revnumber"/></b>
+          </p>
+          <xsl:apply-templates/>
+        </div>
+      </xsl:when>
+      <xsl:otherwise>
+        <p>
+          <b>Revision <xsl:value-of select="@revnumber"/></b>
+        </p>
+        <xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="proposed_update">
-    <div>
-      <p>
-        <xsl:apply-templates/>
-      </p>
-    </div>
+    <p>
+      <xsl:apply-templates/>
+    </p>
   </xsl:template>
 
   <xsl:template match="changes">
@@ -524,6 +539,10 @@
     <li>
       <xsl:apply-templates/>
     </li>
+  </xsl:template>
+
+  <xsl:template match="reissued">
+    <b><xsl:apply-templates/></b>
   </xsl:template>
 
   <!-- Copyright -->
@@ -563,8 +582,14 @@
       <xsl:when test="../@id">
         <xsl:value-of select="../@id"/>
       </xsl:when>
+      <xsl:when test="@id">
+        <xsl:value-of select="@id"/>
+      </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="generate-id()"/>
+        <xsl:variable name="currentText" select="descendant::text()"/>
+        <xsl:value-of
+                select="replace(lower-case(descendant::text()), ' ', '_')"/><xsl:text>_</xsl:text><xsl:value-of
+              select="count(preceding::title[descendant::text() = $currentText])"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

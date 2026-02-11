@@ -1,0 +1,35 @@
+# DEVANAGARI LETTER ALTERNATE DDDA (11B0A)
+# https://github.com/unicode-org/utc-release-management/issues/182
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block:
+# U+097E is associated with a strange DoNotEmit sequence.
+# TODO(egg): That sequence looks spurious, since U+097E does not have a vertical stem on the right
+# and does not have a half form.
+# See also L2/12-289.
+Ignoring Do_Not_Emit_Dispreferred Do_Not_Emit_Dispreferred_Type:
+Propertywise [
+     \x{0921} द \N{DEVANAGARI LETTER DA}
+     \x{0926} ड \N{DEVANAGARI LETTER DDA}
+     \x{097E} ॾ \N{DEVANAGARI LETTER DDDA}
+    \x{11B0A}   \N{DEVANAGARI LETTER ALTERNATE DDDA}
+] AreAlike
+end Ignoring;
+Propertywise [
+     \x{0921} द \N{DEVANAGARI LETTER DA}
+     \x{0926} ड \N{DEVANAGARI LETTER DDA}
+    \x{11B0A}   \N{DEVANAGARI LETTER ALTERNATE DDDA}
+] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

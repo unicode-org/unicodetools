@@ -20,6 +20,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.VersionToAge;
+import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiData.VariantFactory;
 import org.unicode.tools.emoji.EmojiData.VariantStatus;
@@ -197,7 +198,7 @@ public class GenerateEmojiTestFile {
             }
         }
 
-        private void show(TempPrintWriter out, EmojiOrder.MajorGroup lastMajorGroup)
+        private void show(DiffingPrintWriter out, EmojiOrder.MajorGroup lastMajorGroup)
                 throws IOException {
             Totals totals = this;
             out.println("");
@@ -231,7 +232,7 @@ public class GenerateEmojiTestFile {
 
         UnicodeSet charactersNotShown = new UnicodeSet().addAll(retain);
         EmojiOrder.MajorGroup lastMajorGroup = null;
-        TempPrintWriter out = null;
+        DiffingPrintWriter out = null;
         Totals totals = new Totals();
 
         int maxField1 = 0;
@@ -286,7 +287,7 @@ public class GenerateEmojiTestFile {
                                             .replaceAll("[^a-z]+", "_")
                                     : "emoji-test";
                     final String suffix = target == Target.csv ? ".csv" : ".txt";
-                    out = new TempPrintWriter(directory, filename + suffix);
+                    out = new DiffingPrintWriter(directory, filename + suffix);
                     if (target == Target.csv) {
                         out.println("# " + filename);
                         out.println("\n# Format\n" + "#   Hex code points, characters, name");
@@ -309,10 +310,14 @@ public class GenerateEmojiTestFile {
                                         + "#       minimally-qualified — a minimally-qualified emoji (see ED-18a in UTS #51)\n"
                                         + "#       unqualified         — an unqualified emoji (see ED-19 in UTS #51)\n"
                                         + "# Notes:\n"
+                                        + "#   • A mapping of these status values to RGI_Emoji_Qualification property values\n"
+                                        + "#     is given by ED-28 in UTS #51.\n"
                                         + "#   • This includes the emoji components that need emoji presentation (skin tone and hair)\n"
                                         + "#     when isolated, but omits the components that need not have an emoji\n"
                                         + "#     presentation when isolated. See ED-20 in UTS #51 for further information.\n"
-                                        + "#   • The RGI set is composed of the listed component and fully-qualified emoji.\n"
+                                        + "#   • The RGI emoji set corresponds to the RGI_Emoji property and contains the same sequences\n"
+                                        + "#     as the union of the sets of component and fully-qualified sequences in this file.\n"
+                                        + "#     See ED-27 in UTS #51 for further information.\n"
                                         + "#   • The listed minimally-qualified and unqualified cover all cases where an\n"
                                         + "#     element of the RGI set is missing one or more emoji presentation selectors.\n"
                                         + "#   • The file is in CLDR order, not codepoint order. This is recommended (but not required!) for keyboard palettes.\n"

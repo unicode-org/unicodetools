@@ -7,10 +7,12 @@ Let $OldNoons := [ ن ڹ ں ڻ ڼ ڽ ݧ ݨ ݩ ࢉ ]
 # Age always differs since these tests are comparing additions to pre-existing characters.
 Ignoring Name Age:
 
-# Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
 
-Ignoring Block Unicode_1_Name:
+Ignoring Block Unicode_1_Name Arabic_Shaping_Schematic_Name:
 
 # « Another ن, propertywise like the others. ».
 

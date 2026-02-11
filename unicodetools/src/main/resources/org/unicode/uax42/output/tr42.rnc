@@ -14,8 +14,6 @@
   zero-or-more-code-points = list { single-code-point * }
   two-code-points = list { single-code-point, single-code-point }
 
-
-
       
   start =
     element ucd { ucd.content }
@@ -151,7 +149,6 @@
                   | "Cherokee"
                   | "Cherokee_Sup"
                   | "Chess_Symbols"
-                  | "Chisoi"
                   | "Chorasmian"
                   | "CJK"
                   | "CJK_Compat"
@@ -526,8 +523,6 @@
   code-point-attributes &=
     attribute NFKD_QC { "Y" | "N" }?
 
-
-
   code-point-attributes &=
     attribute nt { "De" | "Di" | "Nu" | "None" }?
 
@@ -694,8 +689,8 @@
            | "Avst"
            | "Bali" | "Bamu" | "Bass" | "Batk" | "Beng" | "Berf"
            | "Bhks" | "Bopo" | "Brah" | "Brai" | "Bugi" | "Buhd"
-           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | "Chis"
-           | "Chrs" | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
+           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | "Chrs"
+           | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
            | "Deva" | "Diak" | "Dogr" | "Dsrt" | "Dupl"
            | "Egyp" | "Elba" | "Elym" | "Ethi"
            | "Gara" | "Geor" | "Glag" | "Gong" | "Gonm" | "Goth"
@@ -737,8 +732,6 @@
 
   code-point-attributes &=
     attribute scx { list { script + } }?
-
-  
 
   code-point-attributes &=
     attribute hst { "L" | "LV" | "LVT" | "NA" | "T" | "V" }?
@@ -847,8 +840,6 @@
   code-point-attributes &=
     attribute Dash { boolean }?
 
-
-
   code-point-attributes &=
     attribute QMark { boolean }?
 
@@ -917,8 +908,6 @@
 
   code-point-attributes &=
     attribute OGr_Ext { boolean }?
-
-
 
   code-point-attributes &=
     attribute GCB { "CN" | "CR"
@@ -1066,8 +1055,6 @@
   code-point-attributes &= attribute kGB5
     { xsd:string { pattern="\d{4}" } }?
 
-
-
   code-point-attributes &= attribute kGB8
     { xsd:string { pattern="\d{4}" } }?
 
@@ -1179,8 +1166,6 @@
 
   code-point-attributes &= attribute kIRGKangXi
     { list { xsd:string { pattern="[01]\d{3}\.[0-7]\d[01]" }+ } }?
-
-
 
   code-point-attributes &= attribute kJapanese
     { list { xsd:string { pattern="[\x{3041}-\x{3096}\x{3099}\x{309A}\x{30A1}-\x{30FA}\x{30FC}]+" }+ } }?
@@ -1300,7 +1285,7 @@
   code-point-attributes &= attribute kTang
     { list { xsd:string { pattern="\*?[A-Za-z()\x{E6}\x{251}\x{259}\x{25B}\x{300}\x{30C}]+" }+ } }?
 
-    code-point-attributes &= attribute kTayNumeric
+  code-point-attributes &= attribute kTayNumeric
     { list { xsd:string { pattern="\d+" }+ } }?
 
   code-point-attributes &= attribute kTGH
@@ -1373,10 +1358,10 @@
     { xsd:string { pattern='[^\t"]+' } }?
 
   code-point-attributes &= attribute kEH_Func
-    { xsd:string { pattern='[^\t"]+' } }?
+    { list { ("/" | xsd:string { pattern='[^\t]+' } )+} }?
 
-  code-point-attributes &=
-    attribute kEH_FVal { text }?
+  code-point-attributes &= attribute kEH_FVal
+    { list { ("|" | xsd:string { pattern="[BDF-HJKMNPR-TWY-bdf-hjkmnpr-twy\.,/\-\+=;?>&\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A722}\x{A723}\x{A724}\x{A725}\x{A7BC}\x{A7BD}]+" } )+} }?
 
   code-point-attributes &= attribute kEH_UniK
     { xsd:string { pattern="([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}" }
@@ -1400,8 +1385,8 @@
   code-point-attributes &=
     attribute kEH_NoRotate { boolean }?
 
-  code-point-attributes &=
-    attribute kEH_AltSeq { text }?
+  code-point-attributes &= attribute kEH_AltSeq
+    { xsd:string { pattern="[0-9A-F]{5}(\s[0-9A-F]{4,5})*" } }?
 
       
   ucd.content &=
@@ -1425,7 +1410,6 @@
         attribute name { text } }+ }?
 
       
-      
   ucd.content &=
     element standardized-variants {
       element standardized-variant {
@@ -1441,7 +1425,6 @@
         attribute radical { single-code-point? },
         attribute ideograph { single-code-point } }+ }?
 
-      
       
   code-point-attributes &=
     attribute Emoji { boolean }?

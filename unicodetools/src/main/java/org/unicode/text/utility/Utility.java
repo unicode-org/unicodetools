@@ -31,6 +31,7 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -892,6 +893,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
 
     public static final String[] searchPath = {
         // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
+        "18.0.0",
         "17.0.0",
         "16.0.0",
         "15.1.0",
@@ -1289,7 +1291,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                             + lines[1].substring(diff)
                             + "'");
         }
-        new File(newFile).renameTo(oldFile2);
+        Files.move(Path.of(newFile), Path.of(oldFile), StandardCopyOption.REPLACE_EXISTING);
         return true;
     }
 
@@ -1506,6 +1508,16 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                         return null;
                     }
                 }
+                if (base.equals("math")) {
+                    final String revision = getMathRevision(currentVersion);
+                    if (element == null) {
+                        return null;
+                    }
+                    element = "revision-" + revision;
+                    if (currentVersion.compareTo(UTR25_REVISION_16) < 0) {
+                        parts[2] = parts[2] + "-" + revision;
+                    }
+                }
                 if (parts[2].equals("Idna2008")
                         && currentVersion.compareTo(VersionInfo.UNICODE_16_0) <= 0) {
                     Path path = Settings.UnicodeTools.getDataPath(base, "idna2008derived");
@@ -1579,6 +1591,43 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                 break;
         }
         return null;
+    }
+
+    // This will may turn out to be 17, but for now set it to Latest (currently 18) so that it
+    // doesn’t show up as published in the online tools.
+    public static final VersionInfo UTR25_REVISION_16 = Settings.LATEST_VERSION_INFO;
+
+    // UTR #25 is not synchronized, but its releases correspond to the preceding
+    // version of Unicode (or, in the case of revision 12, to the following
+    // day’s version of Unicode).
+    private static String getMathRevision(VersionInfo versionInfo) {
+        VersionInfo[] mathToSubsequentUnicodeVersion = {
+            /*  0 ∄ */ null,
+            /*  1 (Proposed Draft) */ null,
+            /*  2 (Proposed Draft) */ null,
+            /*  3 (Proposed Draft) */ null,
+            /*  4 (Proposed Draft) */ null,
+            /*  5 (Draft) */ null,
+            /*  6, 2003-08-31 */ VersionInfo.UNICODE_4_0, // First printing, August 2003
+            /*  7 (Proposed Update) */ null,
+            /*  8 (Proposed Update) */ null,
+            /*  9, 2007-05-07 */ VersionInfo.UNICODE_5_0, // 2006 July 14
+            /* 10 (Proposed Update) */ null,
+            /* 11, 2008-08-14 */ VersionInfo.UNICODE_5_1, // 2008 April 4
+            /* 12, 2010-10-10 */ VersionInfo.UNICODE_6_0, // 2010 October 11
+            /* 13, 2012-04-02 */ VersionInfo.UNICODE_6_1, // 2012 January 31
+            /* 14, 2015-07-31 */ VersionInfo.UNICODE_7_0, // 2014 June 16
+            /* 15, 2017-05-30 */ VersionInfo.UNICODE_9_0, // 2016 June 21
+            /* 16, WIP        */ UTR25_REVISION_16,
+        };
+        String result = null;
+        for (int i = 0; i < mathToSubsequentUnicodeVersion.length; ++i) {
+            if (mathToSubsequentUnicodeVersion[i] != null
+                    && mathToSubsequentUnicodeVersion[i].compareTo(versionInfo) <= 0) {
+                result = Integer.toString(i);
+            }
+        }
+        return result;
     }
 
     public static Set<String> getDirectoryContentsLastFirst(File directory) {

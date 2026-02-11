@@ -1,7 +1,7 @@
-# USourceData-17.0.0.txt
-# Date: 2025-04-13, 00:00:00 GMT [KL]
+# USourceData-18.0.0.txt
+# Date: 2026-01-22, 00:00:00 GMT [KL]
 #
-# © 2025 Unicode®, Inc.
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -117,10 +117,10 @@ UTC-00073;ExtC;U+2B5E7;184.7;;⿰饣束;ABC2;;10;1
 UTC-00074;ExtC;U+2B694;195.6;;⿰鱼回;ABC2;;14;2
 UTC-00075;ExtA;U+3D89;196.13;;⿰溪鸟;ABC2;;19;4
 UTC-00076;ExtB;U+200D3;5.2;;𠃓;ABC2;;3;3
-UTC-00077;URO;U+9FB4;5.1;;;GB18030-2000;;2;4
+UTC-00077;URO;U+9FB4;3.1;;⿱乛丶;GB18030-2000;;2;4
 UTC-00078;URO;U+9FB5;4.3;;;GB18030-2000;;3;1
-UTC-00079;URO;U+9FB6;2.3;;;GB18030-2000;;4;
-UTC-00080;URO;U+9FB7;2.3;;;GB18030-2000;;5;1
+UTC-00079;URO;U+9FB6;32.1;;⿻土一;GB18030-2000;;4;1
+UTC-00080;URO;U+9FB7;140.1;;⿱卄一;GB18030-2000;;5;1
 UTC-00081;URO;U+9FB8;42.2;;⿱𭕄冖;GB18030-2000;;5;3
 UTC-00082;URO;U+9FBB;149.12;;䜌;GB18030-2000;;19;
 UTC-00083;ExtC;U+2B6F2;196.8;;⿰周鸟;Cheng;;13;3
@@ -375,7 +375,7 @@ UTC-00331;URO;U+4F4A;9.5;;⿰亻皮;kCheungBauerIndex 339.07;;7;
 UTC-00332;Variant;U+5557;30.7;;⿰口𥁀;kLau 458a;;;
 UTC-00333;ExtE;U+2BF6E;64.10;;⿰扌党;kLau 599b kFennIndex 497.06;;13;
 UTC-00334;Variant;U+7BA1;87.8;;⿱爫官;kLau 1074a;;;
-UTC-00335;Variant;U+4E80;5.9;;⿱𠮥⿻日乚;kLau 1028a kCowles 2059*kMeyerWempe 1368*kFennIndex 272.04;;;
+UTC-00335;ExtE;U+2CE9E;213'.0;;⿱𠮥⿻日乚;kLau 1028 kCowles 2059 kMeyerWempe 1368* kFennIndex 272.04;;10;0
 UTC-00336;NoAction;;18.4;;;kLau 1027a;;;
 UTC-00337;UTC-00355;;181.10;;⿰⿱日亚頁;kLau 1177a;;;
 UTC-00338;UTC-01029;U+70B8;86.1;;⿰火乚;kLau 1272b;;;2
@@ -628,7 +628,7 @@ UTC-00584;ExtE;U+2BB1C;30.15;;⿰口擒;kCheungBauerIndex 391.02;;18;1
 UTC-00585;ExtE;U+2BB1D;30.16;;⿰口霎;kCheungBauerIndex 391.08;;19;1
 UTC-00586;ExtE;U+2BB27;30.16;;⿰口篩;kCheungBauerIndex 391.09;;19;3
 UTC-00587;ExtE;U+2BB1E;30.16;;⿰口醒;kCheungBauerIndex 391.11;;19;1
-UTC-00588;Rejected;;119.23;;⿰米戀;kFennIndex 321.10,325.08;;;3
+UTC-00588;ExtJ;U+32DE8;119.23;;⿰米戀;kFennIndex 321.10,325.08;;29;4
 UTC-00589;ExtE;U+2BB35;30.17;;⿰口濟;kCheungBauerIndex 392.05;;20;4
 UTC-00590;ExtE;U+2BB2C;30.17;;⿰口擠;kCheungBauerIndex 392.04;;20;1
 UTC-00591;ExtE;U+2BB37;30.18;;⿰口騎;kCheungBauerIndex 392.07;;21;1
@@ -773,7 +773,7 @@ UTC-00729;ExtE;U+2C6C1;130.6;;⿰月那;kCheungBauerIndex 452.01;;11;5
 UTC-00730;ExtE;U+2C6BB;130.7;;⿰月吞;kCheungBauerIndex 452.03;;11;1
 UTC-00731;Rejected;;130.9;;⿰月查;kCheungBauerIndex 453.01;;;1
 UTC-00732;ExtC;U+2B736;130.12;;⿰月敦;kCheungBauerIndex 453.10;;16;4
-UTC-00733;Variant;U+81A5;130.11;;⿰未⿱成肉;kCheungBauerIndex 453.09;;;
+UTC-00733;ExtH;U+31F1A;130.12;;⿰未⿱成肉;kCheungBauerIndex 453.09;;18;1
 UTC-00734;ExtB;U+26882;130.12;;⿰月菐;kCheungBauerIndex 454.02;;18;
 UTC-00735;URO;U+81C1;130.13;;⿰月亷;kCheungBauerIndex 454.05;;17;4
 UTC-00736;ExtE;U+2C70D;135.11;;⿰舍炭;kCheungBauerIndex 455.02;;17;3
@@ -834,7 +834,7 @@ UTC-00790;ExtH;U+3184B;64.15;;⿰扌履;http://www.kentstaichi.com/abouttaichi.h
 UTC-00791;ExtG;U+30EDE;162.54;;⿺辶⿳穴⿰月⿰⿲⿱幺長⿱言馬⿱幺長刂心;http://en.wikipedia.org/wiki/Biang_Biang_Noodles 2007-10-31;;58;4
 UTC-00792;WS-2024;U+8F66;159'.0;;车;WL EF95:UTCDoc L2/21-149 1;;4;0
 UTC-00793;Rejected;;195'.0;;鱼;WL EF72;;;
-UTC-00794;Rejected;;29.3;;睪;WL EFD1;;;
+UTC-00794;ExtB;U+20B24;29.3;;⿱又𰀁;WL EFD1;;5;1
 UTC-00795;Rejected;;86.0;;火;WL EF8E;;;
 UTC-00796;Rejected;;119.0;;米;WL EF5A;;;
 UTC-00797;Rejected;;75.0;;木;WL EF9B;;;
@@ -844,17 +844,17 @@ UTC-00800;Rejected;;135.2;;舍;WL EEBF;;;
 UTC-00801;Rejected;;9.1;;⿵人一;WL EFE9;;;
 UTC-00802;Rejected;;38.0;;女;WL EF8D;;;
 UTC-00803;Rejected;;32.0;;土;WL EF97;;;
-UTC-00804;Rejected;;36.1;;肉;WL EFDC;;;
-UTC-00805;Rejected;;96.-1;;王;WL EF84;;;
+UTC-00804;ExtH;U+31F00;36.1;;⿻夕丶;WL EFDC;;4;3
+UTC-00805;ExtB;U+248E9;96.-1;;𤣩;WL EF84;;4;0
 UTC-00806;Rejected;;46.0;;山;WL EF6A;;;
 UTC-00807;Rejected;;187'.0;;马;WL EF7B;;;
 UTC-00808;Rejected;;67.0;;文;WL EF8F;;;
 UTC-00809;Rejected;;44.0;;尸;WL EF35;;;
-UTC-00810;Rejected;;157.0;;𧾷;WL EF76;;;
+UTC-00810;ExtB;U+27FB7;157.0;;⿱口止;WL EF76;;7;0
 UTC-00811;Rejected;;173.0;;⻗;WL EF89;;;
 UTC-00812;Rejected;;116.0;;穴;WL EF92;;;
 UTC-00813;Rejected;;75.6;;;WL E180;;;
-UTC-00814;Rejected;;4.1;;𠂉;WL EFF6;;;
+UTC-00814;ExtB;U+20089;4.1;;⿰㇒一;WL EFF6;;2;1
 UTC-00815;Rejected;;37.0;;大;WL EF42;;;
 UTC-00816;Rejected;;163.7;;⿰𧮫阝;WL E0A0;;;
 UTC-00817;Rejected;;24.6;;;WL E076;;;
@@ -862,14 +862,14 @@ UTC-00818;Rejected;;117.0;;立;WL EF78;;;
 UTC-00819;Rejected;;127.0;;耒;WL EF74;;;
 UTC-00820;Rejected;;203.0;;黑;WL EF02;;;
 UTC-00821;Rejected;;111.0;;矢;WL EF8A;;;
-UTC-00822;Rejected;;3.1;;;WL EFF4;;;
-UTC-00823;Rejected;;1.3;;;WL EFE3;;;
-UTC-00824;Rejected;;1.3;;;WL EFE0;;;
+UTC-00822;UTC-00077;U+9FB4;3.1;;⿱乛丶;WL EFF4;;2;4
+UTC-00823;UTC-00079;U+9FB6;32.1;;⿻土一;WL EFE3;;4;1
+UTC-00824;UTC-00080;U+9FB7;140.1;;⿱卄一;WL EFE0;;5;1
 UTC-00825;Rejected;;169.0;;門;WL EF5D;;;
 UTC-00826;Rejected;;182.0;;風;WL EF4D;;;
 UTC-00827;Rejected;;37.1;;天;WL E15E;;;
 UTC-00828;Rejected;;26.2;;虎;WL E287;;;
-UTC-00829;Rejected;;9.0;;人;WL EFA2;;;
+UTC-00829;ExtB;U+201A2;9.0;;𠆢;WL EFA2;;2;0
 UTC-00830;Rejected;;53.4;;;WL EF24;;;
 UTC-00831;UTC-00809;;44.0;;尸;WL EF37;;;
 UTC-00832;Rejected;;40.7;;⿳宀𠀎八;WL EFB0;;;
@@ -1345,7 +1345,7 @@ UTC-01297;UTC-01299;;167.7;;⿱⿰夕戈金;UTCDoc L2/15-177 96;;15;3
 UTC-01298;ExtG;U+30F32;167.7;;⿰金甸;UTCDoc L2/15-177 97;;15;3
 UTC-01299;ExtG;U+30F35;167.8;;⿱⿰歹戈金;UTCDoc L2/15-177 98;;16;1
 UTC-01300;ExtG;U+30F40;167.9;;⿰金㓧;UTCDoc L2/15-177 99;;17;3
-UTC-01301;WS-2024;;167.9;;⿰金朐;UTCDoc L2/15-177 100;;17;3
+UTC-01301;Variant;U+28AB5;167.9;;⿰金朐;UTCDoc L2/15-177 100;;17;3
 UTC-01302;ExtG;U+30F45;167.10;;⿰金离;UTCDoc L2/15-177 101;;19;4
 UTC-01303;ExtG;U+30F43;167.10;;⿰金脊;UTCDoc L2/15-177 102;;18;4
 UTC-01304;ExtB;U+28B02;167.11;;⿰金⿱谷心;UTCDoc L2/15-177 103;;19;3
@@ -1485,7 +1485,7 @@ UK-01437;NoAction;;40.6;;⿱宀汝;UTCDoc L2/15-260 125;;9;4
 UK-01438;ExtG;U+30CEC;144.7;;⿲彳步亍;UTCDoc L2/15-260 126;;131;2
 UK-01439;ExtG;U+30366;41.12;;⿰寻某;UTCDoc L2/15-260 127;;15;5
 UK-01440;ExtG;U+30343;40.8;;⿱宀卹;UTCDoc L2/15-260 128;;11;3
-UK-01441;NoAction;;38.6;;⿰女回;UTCDoc L2/15-260 129;;9;2
+UK-01441;ExtI;U+2EC43;38.6;;⿰女回;UTCDoc L2/15-260 129;;9;2
 UK-01442;ExtG;U+305F0;75.7;;⿲木己木;UTCDoc L2/15-260 130;;11;5
 UK-01443;ExtG;U+303D0;49.8;;⿱林己;UTCDoc L2/15-260 131;;11;1
 UK-01444;ExtG;U+30012;1.9;;⿱丙丙;UTCDoc L2/15-260 132;;10;2
@@ -3359,7 +3359,7 @@ UTC-03304;WS-2024;;24.11;;⿰南太;UTCDoc L2/22-206 7;;13;2
 UTC-03305;WS-2024;;26.6;;〾⿱[P5-02]五;UTCDoc L2/22-206 8;;8;3
 UTC-03306;WS-2024;;30.11;;⿰古南;UTCDoc L2/22-206 9;;4;1
 UTC-03307;WS-2024;;38.6;;⿳一巛𠕷;UTCDoc L2/22-206 10;;9;1
-UTC-03308;WS-2024;;38.6;;⿱爪𠕷;UTCDoc L2/22-206 11;;9;3
+UTC-03308;WS-2024;;38.6;;⿱爫𠕷;UTCDoc L2/22-206 11;;9;3
 UTC-03309;WS-2024;;53.4;;⿸广五;UTCDoc L2/22-206 12;;7;1
 UTC-03310;WS-2024;;59.2;;⿰⿱丿彳一;UTCDoc L2/22-206 13;;5;2
 UTC-03311;WS-2024;;59.2;;⿰⿱丿彳乙;UTCDoc L2/22-206 14;;5;2
@@ -3395,7 +3395,7 @@ UTC-03339;WS-2024;;86.8;;⿰火奈;UTCDoc L2/23-124;kMandarin nà:kCantonese naa
 UTC-03340;WS-2024;;74.52;;⿰月⿹⿶戈丶⿳⿲糹⿱二口糹⿲長馬長心;UTCDoc L2/23-126 1;;56;4
 UTC-03341;WS-2024;;74.31;;⿰月⿹⿶戈丶⿳⿲纟⿱二口纟⿲长马长心;UTCDoc L2/23-126 2;;35;4
 UTC-03342;WS-2024;;74.53;;⿲月⿳亠⿲糹⿱二口糹⿱⿲長馬長心戈;UTCDoc L2/23-126 3;;57;4
-UTC-03343;WS-2024;;74.32;;⿲月⿳亠⿲糹⿱二口糹⿱⿲長馬長心戈;UTCDoc L2/23-126 4;;36;4
+UTC-03343;WS-2024;;74.32;;⿲月⿳亠⿲纟⿱二口纟⿱⿲长马长心戈;UTCDoc L2/23-126 4;;36;4
 UTC-03344;WS-2024;;8.60;;⿳亠⿲月⿳⿲糹⿱二口糹一⿲長馬長戔心;UTCDoc L2/23-126 5;;62;3
 UTC-03345;WS-2024;;61.46;;⿳䜌⿲長馬長必;UTCDoc L2/23-126 6;;50;5
 UTC-03346;WS-2024;;46.52;;⿹⿶戈⿱山丶⿳⿲糹⿱二口糹⿲長馬長灬;UTCDoc L2/23-126 7;;55;4
@@ -3650,4 +3650,68 @@ UTC-03593;FutureWS;;4.5;;⿳丿车一;UTCDoc L2/25-070 8;kMandarin zhòng chóng
 UTC-03594;FutureWS;;37.3;;⿸厂下;UTCDoc L2/25-070 9;kMandarin xià:kSemanticVariant U+5EC8;5;1
 UTC-03595;FutureWS;;27.5;;⿸厂头;UTCDoc L2/25-070 10;kMandarin xià:kSemanticVariant U+5EC8;7;4
 UTC-03596;FutureWS;;75.4;;⿱木⿰冫⿱丿丶;UTCDoc L2/25-070 11;kMandarin sēn:kJapanese もり:kSemanticVariant U+68EE;8;4
+# Unicode 18.0.0 Additions: 63
+UTC-03597;FutureWS;;112.7;;⿱投石;UTCDoc L2/25-221 1;kJapanese なげ;12;1
+UTC-03598;FutureWS;;119.12;;⿱米𥹫;UTCDoc L2/25-221 2;kJapanese ひとぎ;18;4
+UTC-03599;FutureWS;;195.3;;⿰魚久;UTCDoc L2/25-221 3;kJapanese ひさ;14;3
+UTC-03600;FutureWS;;18.4;;⿱刀比;UTCDoc L2/25-270 1;kJapanese ピ:kSemanticVariant U+6BD8;6;1
+UTC-03601;FutureWS;;140.8;;⿱艹阿;UTCDoc L2/25-270 2;kJapanese カ;12;5
+UTC-03602;FutureWS;;94.12;;⿰犭華;UTCDoc L2/25-274;kJapanese カ;15;2
+UTC-03603;FutureWS;;9.5;;〾⿰亻电;UTCDoc L2/25-275;kSpecializedSemanticVariant U+5072;7;2
+UTC-03604;FutureWS;;71.10;;⿰哥旡;UTCDoc L2/26-014 1;kMandarin huò:U+7978 U+798D U+65E4 U+23138 U+2C025;14;1
+UTC-03605;FutureWS;;1.5;;⿱占一;UTCDoc L2/26-014 2;kMandarin diǎn:U+70B9 U+9EDE;6;2
+UTC-03606;FutureWS;;1.8;;⿱㇯黑灬一;UTCDoc L2/26-014 3;kMandarin hēi:U+9ED1;9;2
+UTC-03607;FutureWS;;4.5;;⿱𠂉⿽𠫓一;UTCDoc L2/26-014 4;kMandarin wú:U+65E0 U+7121;6;1
+UTC-03608;FutureWS;;9.2;;⿲丨丨人;UTCDoc L2/26-014 5;kMandarin wò:U+5367 U+81E5;4;2
+UTC-03609;FutureWS;;9.4;;⿰亻⿻㇯丈一㇯东小;UTCDoc L2/26-014 6;kMandarin shǐ:U+4F7F;6;1
+UTC-03610;FutureWS;;9.4;;⿰亻⿱一𪜀;UTCDoc L2/26-014 7;kMandarin jiǎ:U+5047 U+4EEE;6;1
+UTC-03611;FutureWS;;9.6;;⿰亻𬺨;UTCDoc L2/26-014 8;kMandarin xiàng:U+50CF;8;3
+UTC-03612;FutureWS;;9.7;;⿰亻⿺廴占;UTCDoc L2/26-014 9;kMandarin jiàn:U+5065;9;2
+UTC-03613;FutureWS;;12.3;;⿹兯丿;UTCDoc L2/26-014 10;kMandarin dì:U+5F1F U+3427;5;5
+UTC-03614;FutureWS;;14.5;;⿱冖旧;UTCDoc L2/26-014 11;kMandarin xiě:U+5199 U+5BEB U+2D081;7;2
+UTC-03615;FutureWS;;29.3;;⿱又与;UTCDoc L2/26-014 12;kMandarin yān:U+7109 U+31AB7;5;1
+UTC-03616;FutureWS;;31.3;;⿴囗千;UTCDoc L2/26-014 13;kMandarin quān:U+5708;6;3
+UTC-03617;FutureWS;;31.4;;⿴囗专;UTCDoc L2/26-014 14;kMandarin tuán:U+56E2 U+5718 U+56E3;7;1
+UTC-03618;FutureWS;;33.5;;⿱士头;UTCDoc L2/26-014 15;kMandarin mài:U+5356 U+8CE3 U+58F2;8;4
+UTC-03619;FutureWS;;52.1;;⿱幺一;UTCDoc L2/26-014 16;kMandarin sī:U+7CF8 U+221AF;4;1
+UTC-03620;FutureWS;;53.4;;⿸广毛;UTCDoc L2/26-014 17;kMandarin mó:U+9B54;7;3
+UTC-03621;FutureWS;;53.4;;⿸广犬;UTCDoc L2/26-014 18;kMandarin qìng:U+5E86 U+6176;7;1
+UTC-03622;FutureWS;;53.7;;⿸广听;UTCDoc L2/26-014 19;kMandarin tīng:U+5385 U+3554 U+5EF3 U+539B;10;2
+UTC-03623;FutureWS;;61.1;;⿱一心;UTCDoc L2/26-014 20;kMandarin dé:U+5FB7 U+226F3:kMandarin yì:U+610F U+3043A;5;1
+UTC-03624;FutureWS;;61.6;;⿱权心;UTCDoc L2/26-014 21;kMandarin xiǎng:U+60F3 U+2D737;10;1
+UTC-03625;FutureWS;;62.6;;⿰西戈;UTCDoc L2/26-014 22;kMandarin xì:U+620F U+6232;10;1
+UTC-03626;FutureWS;;64.6;;⿰扌⿱𠂉⿽𠫓一;UTCDoc L2/26-014 23;kMandarin fǔ:U+629A U+64AB U+317F3;9;3
+UTC-03627;FutureWS;;66.3;;⿰⿻𠄌二攵;UTCDoc L2/26-014 24;kMandarin shù:U+6570 U+6578 U+6549 U+2EC93;7;1
+UTC-03628;FutureWS;;72.7;;⿺是㐅;UTCDoc L2/26-014 25;kMandarin tí:U+9898 U+984C;11;1
+UTC-03629;FutureWS;;75.6;;⿰木𬺨;UTCDoc L2/26-014 26;kMandarin xiàng:U+6A61;10;3
+UTC-03630;FutureWS;;77.2;;⿱止二;UTCDoc L2/26-014 27;kMandarin suì:U+5C81 U+6B72 U+3C51 U+4E97 U+2DB5A U+3036A;6;1
+UTC-03631;FutureWS;;77.8;;⿱束正;UTCDoc L2/26-014 28;kMandarin zhěng:U+6574;12;1
+UTC-03632;FutureWS;;105.4;;⿳癶一𪜀;UTCDoc L2/26-014 29;kMandarin fā:U+53D1 U+767C U+767A;9;1
+UTC-03633;FutureWS;;118.2;;⿱𥫗𰆊;UTCDoc L2/26-014 30;kMandarin jié:U+8282 U+7BC0;8;5
+UTC-03634;FutureWS;;120.2;;⿰糹人;UTCDoc L2/26-014 31;kMandarin zǔ:U+7EC4 U+7D44;8;3
+UTC-03635;FutureWS;;120.5;;⿰糹戋;UTCDoc L2/26-014 32;kMandarin xiàn:U+7EBF U+7DAB;11;1
+UTC-03636;FutureWS;;120.5;;⿰糹𫠣;UTCDoc L2/26-014 33;kMandarin liàn:U+7EC3 U+7DF4 U+31EA7;11;1
+UTC-03637;FutureWS;;120.8;;⿰糹卖;UTCDoc L2/26-014 34;kMandarin xù:U+7EED U+7E8C;14;1
+UTC-03638;FutureWS;;120.12;;⿰糹𳁖;UTCDoc L2/26-014 35;kMandarin lǎn:U+7F06 U+7E9C U+432B;18;2
+UTC-03639;FutureWS;;120'.2;;⿰纟人;UTCDoc L2/26-014 36;kMandarin zǔ:U+7EC4 U+7D44;5;3
+UTC-03640;FutureWS;;130.5;;⿰月𡚩;UTCDoc L2/26-014 37;kMandarin yāo:U+8170;9;5
+UTC-03641;FutureWS;;140.6;;⿱艹⿱𠂉⿽𠫓一;UTCDoc L2/26-014 38;kMandarin wú:U+856A;9;3
+UTC-03642;FutureWS;;144.4;;⿲彳韦亍;UTCDoc L2/26-014 39;kMandarin wèi:U+536B U+885E U+885B;10;1
+UTC-03643;FutureWS;;149.5;;⿰言𫠣;UTCDoc L2/26-014 40;kMandarin jiàn:U+8C0F U+8AEB U+2B35D;12;1
+UTC-03644;FutureWS;;149.7;;⿰言𦬫;UTCDoc L2/26-014 41;kMandarin hù:U+8B77;14;2
+UTC-03645;FutureWS;;149.8;;⿰言卖;UTCDoc L2/26-014 42;kMandarin dú:U+8BFB U+8B80 U+8AAD;15;1
+UTC-03646;FutureWS;;154.4;;⿰貝井;UTCDoc L2/26-014 43;kMandarin gòu:U+8D2D U+8CFC U+27DA5 U+27DA9 U+30DCB;11;1
+UTC-03647;FutureWS;;154.8;;⿰貝卖;UTCDoc L2/26-014 44;kMandarin shú:U+8D4E U+8D16;15;1
+UTC-03648;FutureWS;;154'.4;;⿰贝井;UTCDoc L2/26-014 45;kMandarin gòu:U+8D2D U+8CFC U+27DA5 U+27DA9 U+30DCB;8;1
+UTC-03649;FutureWS;;157.8;;⿰𧾷畄;UTCDoc L2/26-014 46;kMandarin liū:U+8E53;15;4
+UTC-03650;FutureWS;;162.1;;⿺辶乙;UTCDoc L2/26-014 47;kMandarin yí:U+9057 U+907A;4;5
+UTC-03651;FutureWS;;162.2;;⿺辶讠;UTCDoc L2/26-014 48;kMandarin zhè:U+8FD9 U+9019 U+33117;5;4
+UTC-03652;FutureWS;;162.4;;⿺辶办;UTCDoc L2/26-014 49;kMandarin biān:U+8FB9 U+908A U+8FBA;7;5
+UTC-03653;FutureWS;;162.6;;⿺辶早;UTCDoc L2/26-014 50;kMandarin zāo:U+906D;9;2
+UTC-03654;FutureWS;;162.6;;⿺辶军;UTCDoc L2/26-014 51;kMandarin yùn:U+8FD0 U+904B;9;4
+UTC-03655;FutureWS;;167'.7;;⿰钅⿺廴占;UTCDoc L2/26-014 52;kMandarin jiàn:U+952E U+9375;12;2
+UTC-03656;FutureWS;;170.7;;⿰阝𨑾;UTCDoc L2/26-014 53;kMandarin suí:U+96A8 U+968F;15;2
+UTC-03657;FutureWS;;181.6;;⿰𰆖頁;UTCDoc L2/26-014 54;kMandarin yuàn:U+613F U+9858 U+2B5B8;15;1
+UTC-03658;FutureWS;;187.6;;⿰馬乔;UTCDoc L2/26-014 55;kMandarin jiāo:U+9A84 U+9A55;16;3
+UTC-03659;FutureWS;;187.7;;⿰馬佥;UTCDoc L2/26-014 56;kMandarin yàn:U+9A8C U+9A57;17;3
 # EOF
