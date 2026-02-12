@@ -262,7 +262,7 @@ public class Indexer {
                         + Settings.latestVersionPhase
                         + "</h1>");
         file.println(
-                "<input type='search' placeholder='Search terms, e.g., [arrow], [click], [cyrillic o], [italic], [queen card], [sanskrit]…' oninput='updateResults(event)'>");
+                "<input type='search' placeholder='Search terms, e.g., [arrow], [click], [cyrillic o], [letter with ring], [queen card], [sanskrit]…' oninput='updateResults(event)'>");
         file.println("<p id='info'></p>");
         file.println("<ul id='results'></ul>");
         file.println("</body>");
