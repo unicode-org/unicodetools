@@ -105,11 +105,7 @@ public enum UcdProperty {
             ValueCardinality.Unordered,
             "Do_Not_Emit_Dispreferred"),
     Do_Not_Emit_Preferred(
-            PropertyType.String,
-            DerivedPropertyStatus.UCDNonProperty,
-            null,
-            ValueCardinality.Unordered,
-            "Do_Not_Emit_Preferred"),
+            PropertyType.String, DerivedPropertyStatus.UCDNonProperty, "Do_Not_Emit_Preferred"),
     Equivalent_Unified_Ideograph(PropertyType.String, DerivedPropertyStatus.Approved, "EqUIdeo"),
     FC_NFKC_Closure(PropertyType.String, DerivedPropertyStatus.Approved, "FC_NFKC"),
     Idn_Mapping(PropertyType.String, DerivedPropertyStatus.NonUCDNonProperty, "idnm"),
@@ -118,7 +114,11 @@ public enum UcdProperty {
     NFKC_Casefold(PropertyType.String, DerivedPropertyStatus.Approved, "NFKC_CF"),
     NFKC_Simple_Casefold(PropertyType.String, DerivedPropertyStatus.Approved, "NFKC_SCF"),
     Names_List_Cross_Ref(
-            PropertyType.String, DerivedPropertyStatus.UCDNonProperty, "Names_List_Cross_Ref"),
+            PropertyType.String,
+            DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Unordered,
+            "Names_List_Cross_Ref"),
     Simple_Case_Folding(PropertyType.String, DerivedPropertyStatus.Approved, "scf", "sfc"),
     Simple_Lowercase_Mapping(PropertyType.String, DerivedPropertyStatus.Approved, "slc"),
     Simple_Titlecase_Mapping(PropertyType.String, DerivedPropertyStatus.Approved, "stc"),
@@ -128,12 +128,7 @@ public enum UcdProperty {
     kCompatibilityVariant(
             PropertyType.String, DerivedPropertyStatus.Approved, "cjkCompatibilityVariant"),
     kEH_AltSeq(PropertyType.String, DerivedPropertyStatus.Provisional, "kEH_AltSeq"),
-    kSEAL_MCJK(
-            PropertyType.String,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "kSEAL_MCJK"),
+    kSEAL_MCJK(PropertyType.String, DerivedPropertyStatus.Provisional, "kSEAL_MCJK"),
     kSimplifiedVariant(
             PropertyType.String,
             DerivedPropertyStatus.Provisional,
@@ -205,9 +200,17 @@ public enum UcdProperty {
     Named_Sequences(PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "NS"),
     Named_Sequences_Prov(PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "NSP"),
     Names_List_Alias(
-            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "Names_List_Alias"),
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Unordered,
+            "Names_List_Alias"),
     Names_List_Comment(
-            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "Names_List_Comment"),
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Unordered,
+            "Names_List_Comment"),
     Names_List_Subheader(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
