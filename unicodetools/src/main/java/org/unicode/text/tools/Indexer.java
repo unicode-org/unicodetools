@@ -489,6 +489,10 @@ public class Indexer {
                 currentSubEntry.propertiesLink =
                         "https://util.unicode.org/UnicodeJsps/character.jsp?a="
                                 + Utility.hex(range.codepoint);
+                if (newCharacters.contains(range.codepoint)
+                        && Settings.latestVersionPhase.compareTo(Settings.ReleasePhase.BETA) < 0) {
+                    currentSubEntry.propertiesLink += "&showDevProperties=1";
+                }
             } else {
                 UnicodeSet remainder = new UnicodeSet(range.codepoint, range.codepointEnd);
                 while (!remainder.isEmpty()) {
@@ -511,7 +515,8 @@ public class Indexer {
                             if (blockHasNewCharacters) {
                                 currentSubEntry.chartLink =
                                         "https://www.unicode.org/charts/PDF/Unicode-"
-                                                + Settings.LATEST_VERSION_INFO.getVersionString(2, 2)
+                                                + Settings.LATEST_VERSION_INFO.getVersionString(
+                                                        2, 2)
                                                 + "/U"
                                                 + Settings.LATEST_VERSION_INFO
                                                         .getVersionString(2, 2)
