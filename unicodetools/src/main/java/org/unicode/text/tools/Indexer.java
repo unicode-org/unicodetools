@@ -185,11 +185,11 @@ public class Indexer {
             }
         }
 
-        System.out.println("Writing index.html...");
-        var file = new PrintStream(new File("index.html"));
+        System.out.println("Writing charindex.html...");
+        var file = new PrintStream(new File("charindex.html"));
         file.println("<head>");
         file.println("<style>");
-        final var css = new BufferedReader(new FileReader(new File("index.css")));
+        final var css = new BufferedReader(new FileReader(new File("charindex.css")));
         for (String line = css.readLine(); line != null; line = css.readLine()) {
             file.println(line);
         }
