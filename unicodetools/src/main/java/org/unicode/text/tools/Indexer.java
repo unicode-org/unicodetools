@@ -32,6 +32,15 @@ public class Indexer {
     static String HTML_RULES_CONTROLS;
 
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make();
+    static final UnicodeSet newCharacters =
+            IndexUnicodeProperties.make(Settings.LAST_VERSION_INFO)
+                    .getProperty(UcdProperty.General_Category)
+                    .getSet("Unassigned")
+                    .removeAll(
+                            IndexUnicodeProperties.make(Settings.LATEST_VERSION_INFO)
+                                    .getProperty(UcdProperty.General_Category)
+                                    .getSet("Unassigned"))
+                    .freeze();
     static final UnicodeProperty name = iup.getProperty(UcdProperty.Name);
     static final UnicodeProperty nameAlias = iup.getProperty(UcdProperty.Name_Alias);
     static final UnicodeProperty informalAlias = iup.getProperty(UcdProperty.Names_List_Alias);
@@ -157,7 +166,7 @@ public class Indexer {
                     for (int end = wordBreak.next();
                             end != BreakIterator.DONE;
                             start = end, end = wordBreak.next()) {
-                        if (wordBreak.getRuleStatus() >= BreakIterator.WORD_LETTER) {
+                        if (wordBreak.getRuleStatus() >= BreakIterator.WORD_NUMBER) {
                             String word = key.substring(start, end).toLowerCase();
                             String lemma = lemmatize(word);
                             if (false && !lemmatizations.contains(word) && !lemma.equals(word)) {
@@ -363,7 +372,7 @@ public class Indexer {
         for (int end = wordBreak.next();
                 end != BreakIterator.DONE;
                 start = end, end = wordBreak.next()) {
-            if (wordBreak.getRuleStatus() >= BreakIterator.WORD_LETTER) {
+            if (wordBreak.getRuleStatus() >= BreakIterator.WORD_NUMBER) {
                 String word = lemmatize(haystack.substring(start, end));
                 if (word.equals(needle)) {
                     position = start;
@@ -425,8 +434,10 @@ public class Indexer {
         }
         for (var range : characters.ranges()) {
             if (range.codepointEnd == range.codepoint) {
-                final int blockStart =
-                        blockSet.get(block.getValue(range.codepoint)).getRangeStart(0);
+                final UnicodeSet codePointsInBlock = blockSet.get(block.getValue(range.codepoint));
+                final int blockStart = codePointsInBlock.getRangeStart(0);
+                final boolean blockHasNewCharacters =
+                        !newCharacters.cloneAsThawed().retainAll(codePointsInBlock).isEmpty();
                 if (showBlocks) {
                     result.add(new IndexSubEntry());
                     result.get(result.size() - 1).block = block.getValue(range.codepoint);
@@ -435,10 +446,39 @@ public class Indexer {
                 if (showSubheader) {
                     currentSubEntry.subheader = subheader.getValue(range.codepoint);
                 }
-                currentSubEntry.chartLink =
-                        "https://www.unicode.org/Public/draft/charts/blocks/U"
-                                + Utility.hex(blockStart)
-                                + ".pdf";
+                switch (Settings.latestVersionPhase) {
+                    case ALPHA:
+                        if (blockHasNewCharacters) {
+                            currentSubEntry.chartLink =
+                                    "https://www.unicode.org/charts/PDF/Unicode-"
+                                            + Settings.LATEST_VERSION_INFO.getVersionString(2, 2)
+                                            + "/U"
+                                            + Settings.LATEST_VERSION_INFO
+                                                    .getVersionString(2, 2)
+                                                    .replace(".", "")
+                                            + "-"
+                                            + Utility.hex(blockStart)
+                                            + ".pdf";
+                        } else {
+                            currentSubEntry.chartLink =
+                                    "https://unicode.org/charts/PDF/U"
+                                            + Utility.hex(blockStart)
+                                            + ".pdf";
+                        }
+                        break;
+                    case BETA:
+                        currentSubEntry.chartLink =
+                                "https://www.unicode.org/Public/draft/charts/blocks/U"
+                                        + Utility.hex(blockStart)
+                                        + ".pdf";
+                        break;
+                    default:
+                        currentSubEntry.chartLink =
+                                "https://unicode.org/charts/PDF/U"
+                                        + Utility.hex(blockStart)
+                                        + ".pdf";
+                        break;
+                }
                 final String characterName = name.getValue(range.codepoint);
                 currentSubEntry.ranges =
                         "U+"
