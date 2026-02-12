@@ -434,10 +434,10 @@ public class Indexer {
         }
         for (var range : characters.ranges()) {
             if (range.codepointEnd == range.codepoint) {
-                final UnicodeSet codePointsInBlock = blockSet.get(block.getValue(range.codepoint));
-                final int blockStart = codePointsInBlock.getRangeStart(0);
+                final UnicodeSet currentBlock = blockSet.get(block.getValue(range.codepoint));
+                final int blockStart = currentBlock.getRangeStart(0);
                 final boolean blockHasNewCharacters =
-                        !newCharacters.cloneAsThawed().retainAll(codePointsInBlock).isEmpty();
+                        !newCharacters.cloneAsThawed().retainAll(currentBlock).isEmpty();
                 if (showBlocks) {
                     result.add(new IndexSubEntry());
                     result.get(result.size() - 1).block = block.getValue(range.codepoint);
@@ -498,16 +498,47 @@ public class Indexer {
                         result.get(result.size() - 1).block = block.getValue(remainder.charAt(0));
                     }
                     final int blockStart = currentBlock.getRangeStart(0);
+                    final boolean blockHasNewCharacters =
+                            !newCharacters.cloneAsThawed().retainAll(currentBlock).isEmpty();
                     final var subrange = remainder.cloneAsThawed().retainAll(currentBlock);
                     remainder.removeAll(currentBlock);
                     final var currentSubEntry = result.get(result.size() - 1);
                     if (showSubheader) {
                         currentSubEntry.subheader = subheader.getValue(range.codepoint);
                     }
-                    currentSubEntry.chartLink =
-                            "https://www.unicode.org/Public/draft/charts/blocks/U"
-                                    + Utility.hex(blockStart)
-                                    + ".pdf";
+                    switch (Settings.latestVersionPhase) {
+                        case ALPHA:
+                            if (blockHasNewCharacters) {
+                                currentSubEntry.chartLink =
+                                        "https://www.unicode.org/charts/PDF/Unicode-"
+                                                + Settings.LATEST_VERSION_INFO.getVersionString(2, 2)
+                                                + "/U"
+                                                + Settings.LATEST_VERSION_INFO
+                                                        .getVersionString(2, 2)
+                                                        .replace(".", "")
+                                                + "-"
+                                                + Utility.hex(blockStart)
+                                                + ".pdf";
+                            } else {
+                                currentSubEntry.chartLink =
+                                        "https://unicode.org/charts/PDF/U"
+                                                + Utility.hex(blockStart)
+                                                + ".pdf";
+                            }
+                            break;
+                        case BETA:
+                            currentSubEntry.chartLink =
+                                    "https://www.unicode.org/Public/draft/charts/blocks/U"
+                                            + Utility.hex(blockStart)
+                                            + ".pdf";
+                            break;
+                        default:
+                            currentSubEntry.chartLink =
+                                    "https://unicode.org/charts/PDF/U"
+                                            + Utility.hex(blockStart)
+                                            + ".pdf";
+                            break;
+                    }
                     currentSubEntry.ranges =
                             "U+"
                                     + Utility.hex(subrange.getRangeStart(0))
