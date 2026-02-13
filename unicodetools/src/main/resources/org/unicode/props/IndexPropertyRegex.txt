@@ -195,7 +195,6 @@ kRSJapanese ;                 EXTENSIBLE ;                   [1-9]\d{0,2}\.\d{1,
 kRSKangXi ;                   EXTENSIBLE ;                   [1-9]\d{0,2}\.\d{1,2}
 kRSKanWa ;                    EXTENSIBLE ;                   [1-9]\d{0,2}\.\d{1,2}
 kRSKorean ;                   EXTENSIBLE ;                   [1-9]\d{0,2}\.\d{1,2}
-kRSTUnicode ;                 SINGLE_VALUED ;                \d+\.\d+
 kRSUnicode ;                  ORDERED ;                      [1-9]\d{0,2}\'{0,3}\.-?\d{1,2}
 kSBGY ;                       MULTI_VALUED ;                 \d{3}\.[0-7]\d
 kSemanticVariant ;            MULTI_VALUED ;                 U\+[23]?[0-9A-F]{4}(<[ks][A-Za-z0-9_]+(:[TBZFJ]+)?(,[ks][A-Za-z0-9_]+(:[TBZFJ]+)?)*)?
@@ -247,6 +246,7 @@ kNSHU_Reading ;               SINGLE_VALUED ;                [a-z]+[1-9]\d{0,1}
 ## Tangut
 kTGT_MergedSrc ;              SINGLE_VALUED ;                H2004-[AB]-\d{4}|H2021-\d{6}|L(19(86|97)|20(06|12))-\d{4}|L2008-\d{4}([AB]|-\d{4})?|N1966-\d{3}-\d{2}[0-9A-Z]{1,2}|N5217-\d{2}|N5314-\d{2}|S1968-\d{4}|UTN42-\d{3}
 kTGT_Numeric ;                SINGLE_VALUED ;                NaN|$digit+|$positiveDecimal
+kTGT_RSUnicode ;              SINGLE_VALUED ;                \d+\.\d+
 ## Seal
 kSEAL_CCZSrc ;                SINGLE_VALUED ;                C-\d{5}
 kSEAL_DYCSrc ;                SINGLE_VALUED ;                D-\d{5}
