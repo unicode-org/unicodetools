@@ -455,9 +455,6 @@ public class UnicodeJsp {
     public static String getVersions() {
         return "unicodetools "
                 + MANIFEST.getMainAttributes().getValue("UnicodeTools-Git-Commit").substring(0, 7)
-                + (MANIFEST.getMainAttributes().getValue("UnicodeTools-Git-Dirty").equals("ok")
-                        ? ""
-                        : "-dirty")
                 + " built on "
                 + (MANIFEST.getMainAttributes().getValue("Build-Time"))
                 + "; "
