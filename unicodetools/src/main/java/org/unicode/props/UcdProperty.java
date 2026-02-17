@@ -156,8 +156,6 @@ public enum UcdProperty {
     Math_Descriptive_Comments(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.NonUCDNonProperty,
-            null,
-            ValueCardinality.Unordered,
             "Math_Descriptive_Comments"),
     Math_Entity_Name(
             PropertyType.Miscellaneous,
@@ -195,15 +193,11 @@ public enum UcdProperty {
     Names_List_Subheader(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
-            null,
-            ValueCardinality.Unordered,
             "Names_List_Subheader",
             "subhead"),
     Names_List_Subheader_Notice(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
-            null,
-            ValueCardinality.Unordered,
             "Names_List_Subheader_Notice"),
     Standardized_Variant(
             PropertyType.Miscellaneous,

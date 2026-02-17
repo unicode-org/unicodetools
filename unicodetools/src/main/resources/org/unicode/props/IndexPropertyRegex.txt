@@ -86,8 +86,8 @@ Named_Sequences_Prov ;        SINGLE_VALUED ;               $name
 Names_List_Alias  ;           MULTI_VALUED ;                .*
 Names_List_Comment ;          MULTI_VALUED ;                .*
 Names_List_Cross_Ref ;        MULTI_VALUED ;                .*
-Names_List_Subheader ;        MULTI_VALUED ;                .*
-Names_List_Subheader_Notice ; MULTI_VALUED ;                .*
+Names_List_Subheader ;        SINGLE_VALUED ;               .*
+Names_List_Subheader_Notice ; SINGLE_VALUED ;               .*
 Non_Unihan_Numeric_Value ;    SINGLE_VALUED ;               NaN|$rational
 normalization_correction_corrected ; SINGLE_VALUED ;        [0-9A-F]{4,5}
 normalization_correction_original ;  SINGLE_VALUED ;        [0-9A-F]{4,5}
@@ -103,7 +103,7 @@ Idn_2008 ;                    SINGLE_VALUED ;               <enum>
 Idn_Mapping ;                 SINGLE_VALUED ;               $codePoints
 Idn_Status ;                  SINGLE_VALUED ;               <enum>
 Math_Class_Ex ;               ORDERED ;                     <enum>
-Math_Descriptive_Comments ;   MULTI_VALUED ;                .*
+Math_Descriptive_Comments ;   SINGLE_VALUED ;               .*
 Math_Entity_Name ;            MULTI_VALUED ;                .*
 Math_Entity_Set ;             MULTI_VALUED ;                .*
 
