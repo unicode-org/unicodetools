@@ -1505,10 +1505,12 @@ public class UnicodeUtilities {
                 ucdProperties.stream()
                         .filter(UcdProperty::isScriptSpecific)
                         .collect(
-                            Collectors.groupingBy(UcdProperty::associatedScript,
-                            Collectors.toList()));
+                                Collectors.groupingBy(
+                                        UcdProperty::associatedScript, Collectors.toList()));
         ucdProperties.removeIf(UcdProperty::isScriptSpecific);
-        UcdPropertyValues.Script_Values script = UcdPropertyValues.Script_Values.forName(getFactory().getProperty("Script").getValue(cp));
+        UcdPropertyValues.Script_Values script =
+                UcdPropertyValues.Script_Values.forName(
+                        getFactory().getProperty("Script").getValue(cp));
         boolean hasScriptSpecificProperties = scriptSpecificProperties.containsKey(script);
 
         Age_Values age = Age_Values.forName(getFactory().getProperty("Age").getValue(cp));
@@ -1549,7 +1551,10 @@ public class UnicodeUtilities {
                 out);
         showProperties(
                 ucdNonProperties.stream().map(UcdProperty::toString).collect(Collectors.toList()),
-                "Other " + (hasScriptSpecificProperties ? "script-nonspecific " : "") + "UCD data for U+" + hex,
+                "Other "
+                        + (hasScriptSpecificProperties ? "script-nonspecific " : "")
+                        + "UCD data for U+"
+                        + hex,
                 cp,
                 minVersion,
                 maxVersion,
@@ -1557,8 +1562,11 @@ public class UnicodeUtilities {
                 out);
         if (hasScriptSpecificProperties) {
             showProperties(
-                    scriptSpecificProperties.get(script).stream().map(UcdProperty::toString).collect(Collectors.toList()),
-                    "Script-specific Normative, Informative, and (Provisional) properties for U+" + hex,
+                    scriptSpecificProperties.get(script).stream()
+                            .map(UcdProperty::toString)
+                            .collect(Collectors.toList()),
+                    "Script-specific Normative, Informative, and (Provisional) properties for U+"
+                            + hex,
                     cp,
                     minVersion,
                     maxVersion,

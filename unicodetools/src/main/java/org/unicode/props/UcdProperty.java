@@ -43,8 +43,6 @@ import org.unicode.props.UcdPropertyValues.Vertical_Orientation_Values;
 import org.unicode.props.UcdPropertyValues.Word_Break_Values;
 import org.unicode.props.UcdPropertyValues.kEH_Core_Values;
 
-import com.google.common.primitives.Chars;
-
 /**
  * Machine-generated file for properties, produced by GenerateEnums.java from PropertyAliases.txt
  * and ExtraPropertyAliases.txt. The ordering of properties is first by category, then alphabetical
@@ -1140,19 +1138,20 @@ public enum UcdProperty {
 
     public UcdPropertyValues.Script_Values associatedScript() {
         if (getShortName().startsWith("cjk")) {
-                return UcdPropertyValues.Script_Values.Han;
-        } else if (getShortName().charAt(0) == 'k' && Character.isUpperCase(getShortName().codePointAt(1))) {
-                String script = getShortName().subSequence(1, getShortName().indexOf("_")).toString();
-                switch (script) {
-                        case "EH":
-                                return UcdPropertyValues.Script_Values.Egyptian_Hieroglyphs;
-                        case "TGT":
-                                return UcdPropertyValues.Script_Values.Tangut;
-                        default:
-                                return UcdPropertyValues.Script_Values.forName(script);
-                }
+            return UcdPropertyValues.Script_Values.Han;
+        } else if (getShortName().charAt(0) == 'k'
+                && Character.isUpperCase(getShortName().codePointAt(1))) {
+            String script = getShortName().subSequence(1, getShortName().indexOf("_")).toString();
+            switch (script) {
+                case "EH":
+                    return UcdPropertyValues.Script_Values.Egyptian_Hieroglyphs;
+                case "TGT":
+                    return UcdPropertyValues.Script_Values.Tangut;
+                default:
+                    return UcdPropertyValues.Script_Values.forName(script);
+            }
         } else {
-                return null;
+            return null;
         }
     }
 
