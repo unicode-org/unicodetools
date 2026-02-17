@@ -66,17 +66,8 @@ public enum UcdProperty {
     kTGT_Numeric(PropertyType.Numeric, DerivedPropertyStatus.Provisional, "kTGT_Numeric"),
     kTayNumeric(PropertyType.Numeric, DerivedPropertyStatus.Provisional, "cjkTayNumeric"),
     kVietnameseNumeric(
-            PropertyType.Numeric,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "cjkVietnameseNumeric"),
-    kZhuangNumeric(
-            PropertyType.Numeric,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "cjkZhuangNumeric"),
+            PropertyType.Numeric, DerivedPropertyStatus.Provisional, "cjkVietnameseNumeric"),
+    kZhuangNumeric(PropertyType.Numeric, DerivedPropertyStatus.Provisional, "cjkZhuangNumeric"),
 
     // String
     Bidi_Mirroring_Glyph(PropertyType.String, DerivedPropertyStatus.Approved, "bmg"),
@@ -229,20 +220,13 @@ public enum UcdProperty {
     kAlternateTotalStrokes(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
             "cjkAlternateTotalStrokes"),
     kBigFive(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkBigFive"),
     kCCCII(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkCCCII"),
     kCNS1986(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkCNS1986"),
     kCNS1992(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkCNS1992"),
     kCangjie(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkCangjie"),
-    kCantonese(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "cjkCantonese"),
+    kCantonese(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkCantonese"),
     kCheungBauer(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkCheungBauer"),
     kCheungBauerIndex(
             PropertyType.Miscellaneous,
@@ -326,7 +310,12 @@ public enum UcdProperty {
     kGB0(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkGB0"),
     kGB1(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkGB1"),
     kGB3(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkGB3"),
-    kGB5(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkGB5"),
+    kGB5(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.Provisional,
+            null,
+            ValueCardinality.Unordered,
+            "cjkGB5"),
     kGB7(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkGB7"),
     kGB8(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkGB8"),
     kGSR(
@@ -337,12 +326,7 @@ public enum UcdProperty {
             "cjkGSR"),
     kGradeLevel(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkGradeLevel"),
     kHDZRadBreak(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkHDZRadBreak"),
-    kHKGlyph(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "cjkHKGlyph"),
+    kHKGlyph(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkHKGlyph"),
     kHKSCS(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkHKSCS"),
     kHanYu(
             PropertyType.Miscellaneous,
@@ -415,24 +399,20 @@ public enum UcdProperty {
             ValueCardinality.Unordered,
             "cjkJapaneseOn"),
     kJinmeiyoKanji(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "cjkJinmeiyoKanji"),
+            PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJinmeiyoKanji"),
     kJis0(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJis0"),
     kJis1(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJis1"),
-    kJoyoKanji(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "cjkJoyoKanji"),
+    kJoyoKanji(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJoyoKanji"),
     kKPS0(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkKPS0"),
     kKPS1(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkKPS1"),
     kKSC0(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkKSC0"),
     kKSC1(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkKSC1"),
-    kKangXi(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkKangXi"),
+    kKangXi(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.Provisional,
+            null,
+            ValueCardinality.Unordered,
+            "cjkKangXi"),
     kKarlgren(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkKarlgren"),
     kKorean(
             PropertyType.Miscellaneous,
@@ -443,15 +423,8 @@ public enum UcdProperty {
     kKoreanEducationHanja(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
             "cjkKoreanEducationHanja"),
-    kKoreanName(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "cjkKoreanName"),
+    kKoreanName(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkKoreanName"),
     kLau(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,
@@ -479,7 +452,12 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkMojiJoho"),
-    kMorohashi(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkMorohashi"),
+    kMorohashi(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.Provisional,
+            null,
+            ValueCardinality.Unordered,
+            "cjkMorohashi"),
     kNSHU_DubenSrc(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Approved,
@@ -534,7 +512,12 @@ public enum UcdProperty {
     kSEAL_CCZSrc(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kSEAL_CCZSrc"),
     kSEAL_DYCSrc(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kSEAL_DYCSrc"),
     kSEAL_QJZSrc(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kSEAL_QJZSrc"),
-    kSEAL_Rad(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "kSEAL_Rad"),
+    kSEAL_Rad(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.Provisional,
+            null,
+            ValueCardinality.Unordered,
+            "kSEAL_Rad"),
     kSEAL_THXSrc(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "kSEAL_THXSrc"),
     kSMSZD2003Index(
             PropertyType.Miscellaneous,
@@ -566,12 +549,7 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkStrange"),
-    kTGH(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Provisional,
-            null,
-            ValueCardinality.Unordered,
-            "cjkTGH"),
+    kTGH(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkTGH"),
     kTGHZ2013(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,
@@ -585,19 +563,18 @@ public enum UcdProperty {
             "kTGT_RSUnicode",
             "kRSTUnicode"),
     kTaiwanTelegraph(
-            PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkTaiwanTelegraph"),
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.Provisional,
+            null,
+            ValueCardinality.Unordered,
+            "cjkTaiwanTelegraph"),
     kTang(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,
             null,
             ValueCardinality.Unordered,
             "cjkTang"),
-    kTotalStrokes(
-            PropertyType.Miscellaneous,
-            DerivedPropertyStatus.Approved,
-            null,
-            ValueCardinality.Ordered,
-            "cjkTotalStrokes"),
+    kTotalStrokes(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "cjkTotalStrokes"),
     kUnihanCore2020(
             PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "cjkUnihanCore2020"),
     kVietnamese(
@@ -613,13 +590,13 @@ public enum UcdProperty {
             ValueCardinality.Unordered,
             "cjkXHC1983"),
     kXerox(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkXerox"),
-    kZVariant(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkZVariant"),
-    kZhuang(
+    kZVariant(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,
             null,
             ValueCardinality.Unordered,
-            "cjkZhuang"),
+            "cjkZVariant"),
+    kZhuang(PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkZhuang"),
     normalization_correction_version(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,

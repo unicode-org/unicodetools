@@ -80,9 +80,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     static final boolean SHOW_LOADED = false;
 
     public static final String FIELD_SEPARATOR = "; ";
-    private static final Relation<UcdProperty, String> DATA_LOADING_ERRORS =
-            Relation.of(
-                    new EnumMap<UcdProperty, Set<String>>(UcdProperty.class), LinkedHashSet.class);
+
+    private static final Map<VersionInfo, Relation<UcdProperty, String>> DATA_LOADING_ERRORS =
+            new ConcurrentHashMap<>();
 
     public enum DefaultValueType {
         LITERAL(null),
@@ -667,7 +667,16 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return Arrays.asList(UcdProperty.values());
     }
 
-    public static Relation<UcdProperty, String> getDataLoadingErrors() {
+    public static Relation<UcdProperty, String> getDataLoadingErrors(VersionInfo version) {
+        return DATA_LOADING_ERRORS.computeIfAbsent(
+                version,
+                v ->
+                        Relation.of(
+                                new EnumMap<UcdProperty, Set<String>>(UcdProperty.class),
+                                LinkedHashSet.class));
+    }
+
+    public static Map<VersionInfo, Relation<UcdProperty, String>> getDataLoadingErrors() {
         return DATA_LOADING_ERRORS;
     }
 
