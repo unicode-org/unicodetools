@@ -54,6 +54,7 @@ import org.unicode.idna.Uts46;
 import org.unicode.props.DerivedPropertyStatus;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
@@ -1469,8 +1470,6 @@ public class UnicodeUtilities {
         TreeSet<String> sortedProps =
                 Builder.with(new TreeSet<String>(col)).addAll(availableNames).get();
 
-        String kRSUnicode = getFactory().getProperty("kRSUnicode").getValue(cp);
-        boolean isUnihan = kRSUnicode != null;
         List<UcdProperty> indexedProperties =
                 sortedProps.stream()
                         .map(UcdProperty::forString)
@@ -1502,11 +1501,15 @@ public class UnicodeUtilities {
                                                         == DerivedPropertyStatus.NonUCDNonProperty)
                         .collect(Collectors.toList());
 
-        List<UcdProperty> cjkProperties =
+        Map<UcdPropertyValues.Script_Values, List<UcdProperty>> scriptSpecificProperties =
                 ucdProperties.stream()
-                        .filter(p -> p.getNames().getShortName().startsWith("cjk"))
-                        .collect(Collectors.toList());
-        ucdProperties.removeIf(p -> p.getNames().getShortName().startsWith("cjk"));
+                        .filter(UcdProperty::isScriptSpecific)
+                        .collect(
+                            Collectors.groupingBy(UcdProperty::associatedScript,
+                            Collectors.toList()));
+        ucdProperties.removeIf(UcdProperty::isScriptSpecific);
+        UcdPropertyValues.Script_Values script = UcdPropertyValues.Script_Values.forName(getFactory().getProperty("Script").getValue(cp));
+        boolean hasScriptSpecificProperties = scriptSpecificProperties.containsKey(script);
 
         Age_Values age = Age_Values.forName(getFactory().getProperty("Age").getValue(cp));
         VersionInfo minVersion =
@@ -1528,7 +1531,7 @@ public class UnicodeUtilities {
         out.append("<table class='propTable'>");
         showProperties(
                 ucdProperties.stream().map(UcdProperty::toString).collect(Collectors.toList()),
-                (isUnihan ? "Non-Unihan " : "")
+                (hasScriptSpecificProperties ? "Script-nonspecific " : "")
                         + "Normative, Informative, Contributory, and (Provisional) UCD properties for U+"
                         + hex,
                 cp,
@@ -1546,16 +1549,16 @@ public class UnicodeUtilities {
                 out);
         showProperties(
                 ucdNonProperties.stream().map(UcdProperty::toString).collect(Collectors.toList()),
-                "Other " + (isUnihan ? "non-Unihan " : "") + "UCD data for U+" + hex,
+                "Other " + (hasScriptSpecificProperties ? "script-nonspecific " : "") + "UCD data for U+" + hex,
                 cp,
                 minVersion,
                 maxVersion,
                 originalParameters,
                 out);
-        if (isUnihan) {
+        if (hasScriptSpecificProperties) {
             showProperties(
-                    cjkProperties.stream().map(UcdProperty::toString).collect(Collectors.toList()),
-                    "Unihan Normative, Informative, and (Provisional) properties for U+" + hex,
+                    scriptSpecificProperties.get(script).stream().map(UcdProperty::toString).collect(Collectors.toList()),
+                    "Script-specific Normative, Informative, and (Provisional) properties for U+" + hex,
                     cp,
                     minVersion,
                     maxVersion,
