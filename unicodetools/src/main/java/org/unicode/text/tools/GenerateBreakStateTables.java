@@ -97,7 +97,7 @@ public class GenerateBreakStateTables {
                 neighbourhoodsToName.add(next);
             }
         }
-        for (int state = 0; state < table.fNumStates; ++state) {
+        for (int state = 1; state < table.fNumStates; ++state) {
             int row = rbbi.fRData.getRowIndex(state);
             if (table.fTable[row + RBBIDataWrapper.ACCEPTING] != 0) {
                 file.println("State " + stateNames.get(state) + ":");
@@ -112,21 +112,15 @@ public class GenerateBreakStateTables {
                 }
                 // TODO(egg): Weird default, check the output for (). Seems to have to do with
                 // Qu_Pf. Lookahead?
-                if (stateNames
-                        .get(next)
-                        .equals(
-                                rbbiNames.getOrDefault(col, List.of()).stream()
-                                        .map(NamedRefinedSet::getName)
-                                        .collect(Collectors.joining("+")))) {
-                    continue;
+                String ahead =
+                        rbbiNames.getOrDefault(col, List.of()).stream()
+                                .map(NamedRefinedSet::getName)
+                                .collect(Collectors.joining("+"));
+                if (stateNames.get(next).equals(ahead)) {
+                    file.println("-(" + ahead + ")-> SELF");
+                } else {
+                    file.println("-(" + ahead + ")-> " + stateNames.get(next));
                 }
-                file.print(
-                        "-("
-                                + rbbiNames.getOrDefault(col, List.of()).stream()
-                                        .map(NamedRefinedSet::getName)
-                                        .collect(Collectors.joining("+"))
-                                + ")");
-                file.println("-> " + stateNames.get(next));
             }
         }
     }
