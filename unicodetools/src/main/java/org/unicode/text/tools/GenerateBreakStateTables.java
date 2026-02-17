@@ -99,11 +99,15 @@ public class GenerateBreakStateTables {
         }
         for (int state = 1; state < table.fNumStates; ++state) {
             int row = rbbi.fRData.getRowIndex(state);
-            if (table.fTable[row + RBBIDataWrapper.ACCEPTING] != 0) {
-                file.println("State " + stateNames.get(state) + ":");
+            if (table.fTable[row + RBBIDataWrapper.ACCEPTING] == RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
+                file.print("State ||" + stateNames.get(state) + "||");
+            } else if (table.fTable[row + RBBIDataWrapper.ACCEPTING] > RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
+                file.print("State /" + (int)table.fTable[row + RBBIDataWrapper.ACCEPTING] + "|" + stateNames.get(state) + "|");
             } else {
-                file.println("State ||" + stateNames.get(state) + "||:");
+                file.print("State " + stateNames.get(state) + "");
             }
+            int lookahead = table.fTable[row + RBBIDataWrapper.LOOKAHEAD];
+            file.println(lookahead == 0 ? ":" : " / " + lookahead + ":");
 
             for (int col = 0; col < rbbi.fRData.fHeader.fCatCount; ++col) {
                 int next = table.fTable[row + RBBIDataWrapper.NEXTSTATES + col];
@@ -116,9 +120,7 @@ public class GenerateBreakStateTables {
                         rbbiNames.getOrDefault(col, List.of()).stream()
                                 .map(NamedRefinedSet::getName)
                                 .collect(Collectors.joining("+"));
-                if (stateNames.get(next).equals(ahead)) {
-                    file.println("-(" + ahead + ")-> SELF");
-                } else {
+                if (next != 0) {
                     file.println("-(" + ahead + ")-> " + stateNames.get(next));
                 }
             }
