@@ -1141,7 +1141,7 @@ public enum UcdProperty {
             return UcdPropertyValues.Script_Values.Han;
         } else if (getShortName().charAt(0) == 'k'
                 && Character.isUpperCase(getShortName().codePointAt(1))) {
-            String script = getShortName().subSequence(1, getShortName().indexOf("_")).toString();
+            String script = getShortName().substring(1, getShortName().indexOf("_"));
             switch (script) {
                 case "EH":
                     return UcdPropertyValues.Script_Values.Egyptian_Hieroglyphs;
