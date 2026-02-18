@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.stream.Collectors;
+
+import org.checkerframework.checker.units.qual.t;
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.tools.Segmenter;
 import org.unicode.tools.Segmenter.Builder.NamedRefinedSet;
@@ -77,37 +79,85 @@ public class GenerateBreakStateTables {
         var table = rbbi.fRData.fFTable;
         var file = new PrintStream(new File("LineBreakTable.txt"));
         Map<Integer, String> stateNames = new HashMap<>();
+        Map<Integer, String> lookaheadNames = new HashMap<>();
         stateNames.put(0, "STOP");
         stateNames.put(1, "START");
         Queue<Integer> neighbourhoodsToName = new LinkedList<>();
         neighbourhoodsToName.add(1);
         for (int state = 1; !neighbourhoodsToName.isEmpty(); state = neighbourhoodsToName.poll()) {
-            int row = rbbi.fRData.getRowIndex(state);
+            final int row = rbbi.fRData.getRowIndex(state);
+            final String stateName = stateNames.get(state);
+            {
+            final int lookahead = table.fTable[row + RBBIDataWrapper.LOOKAHEAD];
+            if (lookahead != 0 && !lookaheadNames.containsKey(lookahead)) {
+                lookaheadNames.put(lookahead, stateName);
+            }
+        }
+    {
+            final int accepting = table.fTable[row + RBBIDataWrapper.ACCEPTING];
+            if (accepting > RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
+                final String prefix = lookaheadNames.get(accepting);
+                if (!prefix.contains("/")) {
+                if (!stateName.startsWith(prefix)) {
+                    throw new IllegalArgumentException(stateName + " does not start with " + prefix);
+                }
+                lookaheadNames.put(accepting, prefix + " /" + stateName.subSequence(prefix.length(), stateName.length()));
+            }
+            }
+        }
             for (int col = 0; col < rbbi.fRData.fHeader.fCatCount; ++col) {
-                int next = table.fTable[row + RBBIDataWrapper.NEXTSTATES + col];
+                final int next = table.fTable[row + RBBIDataWrapper.NEXTSTATES + col];
                 if (stateNames.containsKey(next)) {
                     continue;
                 }
                 stateNames.put(
                         next,
-                        (state == 1 ? "" : stateNames.get(state) + ">")
+                        (state == 1 ? "" : stateName + " ")
                                 + rbbiNames.getOrDefault(col, List.of()).stream()
                                         .map(NamedRefinedSet::getName)
                                         .collect(Collectors.joining("|")));
                 neighbourhoodsToName.add(next);
             }
         }
-        for (int state = 1; state < table.fNumStates; ++state) {
-            int row = rbbi.fRData.getRowIndex(state);
-            if (table.fTable[row + RBBIDataWrapper.ACCEPTING] == RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
-                file.print("State ||" + stateNames.get(state) + "||");
-            } else if (table.fTable[row + RBBIDataWrapper.ACCEPTING] > RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
-                file.print("State /" + (int)table.fTable[row + RBBIDataWrapper.ACCEPTING] + "|" + stateNames.get(state) + "|");
-            } else {
-                file.print("State " + stateNames.get(state) + "");
+        Map<String, Integer> nameToState = new HashMap<>();
+        for (var entry : stateNames.entrySet()) {
+            if (nameToState.containsKey(entry.getValue())) {
+                throw new IllegalArgumentException(
+                        "Duplicate state name "
+                                + entry.getValue()
+                                + " for states "
+                                + nameToState.get(entry.getValue())
+                                + " and "
+                                + entry.getKey());
             }
-            int lookahead = table.fTable[row + RBBIDataWrapper.LOOKAHEAD];
-            file.println(lookahead == 0 ? ":" : " / " + lookahead + ":");
+            nameToState.put(entry.getValue(), entry.getKey());
+        }
+        for (var entry : lookaheadNames.entrySet()) {
+            if (!entry.getValue().contains("/")) {
+                throw new IllegalArgumentException(
+                        "lookahead name "
+                                + entry.getValue()
+                                + " for "
+                                + entry.getKey()
+                                + " has no / (accepting state was not found by the BFS)");
+            }
+            nameToState.put(entry.getValue(), entry.getKey());
+        }
+        for (int state = 1; state < table.fNumStates; ++state) {
+            final int row = rbbi.fRData.getRowIndex(state);
+                file.println("State " + stateNames.get(state));
+            final int accepting = table.fTable[row + RBBIDataWrapper.ACCEPTING];                
+            if (accepting
+                    == RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
+                file.println("Accepting here");
+            } else if (accepting
+                    > RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
+                file.println("Accepting for lookahead " + lookaheadNames.get(accepting));
+            }
+            final int lookahead = table.fTable[row + RBBIDataWrapper.LOOKAHEAD];
+            if (lookahead != 0) {
+                file.println("Break position for lookahead " + lookaheadNames.get(lookahead));
+            }
 
             for (int col = 0; col < rbbi.fRData.fHeader.fCatCount; ++col) {
                 int next = table.fTable[row + RBBIDataWrapper.NEXTSTATES + col];
@@ -119,7 +169,7 @@ public class GenerateBreakStateTables {
                 String ahead =
                         rbbiNames.getOrDefault(col, List.of()).stream()
                                 .map(NamedRefinedSet::getName)
-                                .collect(Collectors.joining("+"));
+                                .collect(Collectors.joining("|"));
                 if (next != 0) {
                     file.println("-(" + ahead + ")-> " + stateNames.get(next));
                 }
