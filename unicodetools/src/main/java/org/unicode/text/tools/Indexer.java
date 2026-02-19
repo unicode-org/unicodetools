@@ -31,6 +31,9 @@ public class Indexer {
     static Transliterator toHTMLInput;
     static String HTML_RULES_CONTROLS;
 
+    static int BOOP = 0x10BE77;
+    static int DOOD = 0x10D00D;
+
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make();
     static final UnicodeSet newCharacters =
             IndexUnicodeProperties.make(Settings.LAST_VERSION_INFO)
@@ -186,6 +189,10 @@ public class Indexer {
                 System.out.println("Indexed plane " + cp / 0x10000);
             }
         }
+        leaves.get(block).computeIfAbsent("Betty", k -> new Leaf(k, block)).characters.add(BOOP);
+        leaves.get(block).computeIfAbsent("the", k -> new Leaf(k, block)).characters.add(DOOD);
+        wordIndex.computeIfAbsent("betty",  k -> new TreeMap<>()).putIfAbsent("Betty", 0);
+        wordIndex.computeIfAbsent("the",  k -> new TreeMap<>()).putIfAbsent("the", 0);
 
         System.out.println("Writing charindex.html...");
         var file = new PrintStream(new File("charindex.html"));
@@ -484,8 +491,7 @@ public class Indexer {
                 }
                 final String characterName = name.getValue(range.codepoint);
                 currentSubEntry.ranges =
-                        "U+"
-                                + Utility.hex(range.codepoint)
+                                Utility.hex(range.codepoint)
                                 + "\u00A0"
                                 + Character.toString(range.codepoint)
                                 + (showName && characterName != null ? " " + characterName : "");
@@ -495,6 +501,11 @@ public class Indexer {
                 if (newCharacters.contains(range.codepoint)
                         && Settings.latestVersionPhase.compareTo(Settings.ReleasePhase.BETA) < 0) {
                     currentSubEntry.propertiesLink += "&showDevProperties=1";
+                }
+                if (range.codepoint == BOOP || range.codepoint == DOOD) {
+                    currentSubEntry.chartLink = "https://unicode.org/charts/PDF/UBOOP.pdf";
+                    currentSubEntry.ranges = range.codepoint == BOOP ? "BOOP" : "DOOD";
+                    currentSubEntry.propertiesLink = null;
                 }
             } else {
                 UnicodeSet remainder = new UnicodeSet(range.codepoint, range.codepointEnd);
@@ -548,9 +559,8 @@ public class Indexer {
                             break;
                     }
                     currentSubEntry.ranges =
-                            "U+"
-                                    + Utility.hex(subrange.getRangeStart(0))
-                                    + "..U+"
+                                    Utility.hex(subrange.getRangeStart(0))
+                                    + "–"
                                     + Utility.hex(subrange.getRangeEnd(0));
                 }
             }

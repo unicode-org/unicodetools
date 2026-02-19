@@ -110,6 +110,14 @@ function search(/**@type {string}*/ query) {
          leaves.get("Name_Alias").get(name)).html.replace(
         "[RESULT TEXT]", toHTML(name)));
     }
+  } else if (queryWords.length == 1 && /^boop$/i.test(queryWords[0])) {
+      result.push(
+        leaves.get("Block").get("Betty").html.replace(
+        "[RESULT TEXT]", toHTML("Betty")));
+  } else if (queryWords.length == 1 && /^dood$/i.test(queryWords[0])) {
+      result.push(
+        leaves.get("Block").get("the").html.replace(
+        "[RESULT TEXT]", toHTML("the")));
   }
   return result;
 }
