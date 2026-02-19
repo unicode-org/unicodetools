@@ -5,6 +5,17 @@ let wordIndex/*= GENERATED LINE*/;
 /**@type {Map<string, Map<string, {html: string, characters: [number, number][]}>>}*/
 let leaves/*= GENERATED LINE*/;
 
+/**@type {Map<number, string>}*/
+let nameLeaves = new Map();
+for (let [name, leaf] of leaves.get("Name")) {
+  nameLeaves.set(leaf.characters[0][0], name);
+}
+for (let [name, leaf] of leaves.get("Name_Alias")) {
+  if (!nameLeaves.has(leaf.characters[0][0])) {
+    nameLeaves.set(leaf.characters[0][0], name);
+  }
+}
+
 function updateResults(event) {
   /**@type {string}*/
   let query = event.target.value;
@@ -89,6 +100,15 @@ function search(/**@type {string}*/ query) {
       if (result.length >= 100) {
         return result;
       }
+    }
+  }
+  if (queryWords.length == 1 && /^[0-9A-F]+$/i.test(queryWords[0])) {
+    let name = nameLeaves.get(parseInt(queryWords[0], 16));
+    if (name) {
+      result.push(
+        (leaves.get("Name").get(name) ??
+         leaves.get("Name_Alias").get(name)).html.replace(
+        "[RESULT TEXT]", toHTML(name)));
     }
   }
   return result;
