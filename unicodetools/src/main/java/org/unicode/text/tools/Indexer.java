@@ -128,7 +128,9 @@ public class Indexer {
                 return left.getName().compareTo(right.getName());
             }
         }
+        // Property to property value to index entry.
         Map<UnicodeProperty, Map<String, Leaf>> leaves = new TreeMap<>(new PropertyComparator());
+        // Lemma to property value to position of the word in the property value.
         Map<String, Map<String, Integer>> wordIndex = new TreeMap<>();
         // final var kEHDesc = iup.getProperty(UcdProperty.kEH_Desc);
         final var properties =

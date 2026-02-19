@@ -1,6 +1,8 @@
+// Lemma to property value to position of the word in the property value.
 /**@type {Map<string, Map<String, number>>}*/
 let wordIndex/*= GENERATED LINE*/;
-/**@type {Map<string, Map<string, {characters: [number, number][]}>>}*/
+// Property name to property value to index entry.
+/**@type {Map<string, Map<string, {html: string, characters: [number, number][]}>>}*/
 let leaves/*= GENERATED LINE*/;
 
 function updateResults(event) {
