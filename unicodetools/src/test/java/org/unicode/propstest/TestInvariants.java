@@ -149,6 +149,7 @@ public class TestInvariants extends TestFmwkMinusMinus {
                         UcdProperty.NFKC_Simple_Casefold,
                         UcdProperty.Age,
                         UcdProperty.Block,
+                        UcdProperty.Pretty_Block,
                         UcdProperty.Bidi_Class,
                         UcdProperty.East_Asian_Width,
                         UcdProperty.Grapheme_Cluster_Break,
