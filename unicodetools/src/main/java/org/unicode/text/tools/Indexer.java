@@ -48,6 +48,7 @@ public class Indexer {
     static final UnicodeProperty nameAlias = iup.getProperty(UcdProperty.Name_Alias);
     static final UnicodeProperty informalAlias = iup.getProperty(UcdProperty.Names_List_Alias);
     static final UnicodeProperty block = iup.getProperty(UcdProperty.Block);
+    static final UnicodeProperty pretty_block = iup.getProperty(UcdProperty.Pretty_Block);
     static final UnicodeProperty subheader = iup.getProperty(UcdProperty.Names_List_Subheader);
     static final UnicodeProperty subheader_notice =
             iup.getProperty(UcdProperty.Names_List_Subheader_Notice);
@@ -155,11 +156,10 @@ public class Indexer {
                     if (key == null) {
                         continue;
                     }
-                    if (prop == name) {
-                        key = key.replace(Utility.hex(cp), "#");
-                    }
                     if (prop == block) {
-                        key = key.replace("_", " ");
+                        key = pretty_block.getValue(cp);
+                    } else if (prop == name) {
+                        key = key.replace(Utility.hex(cp), "#");
                     }
                     final String leafKey = key;
                     propertyLeaves
@@ -196,8 +196,8 @@ public class Indexer {
         }
         leaves.get(block).computeIfAbsent("Betty", k -> new Leaf(k, block)).characters.add(BOOP);
         leaves.get(block).computeIfAbsent("the", k -> new Leaf(k, block)).characters.add(DOOD);
-        wordIndex.computeIfAbsent("betty",  k -> new TreeMap<>()).putIfAbsent("Betty", 0);
-        wordIndex.computeIfAbsent("the",  k -> new TreeMap<>()).putIfAbsent("the", 0);
+        wordIndex.computeIfAbsent("betty", k -> new TreeMap<>()).putIfAbsent("Betty", 0);
+        wordIndex.computeIfAbsent("the", k -> new TreeMap<>()).putIfAbsent("the", 0);
 
         System.out.println("Writing charindex.html...");
         var file = new PrintStream(new File("charindex.html"));
@@ -460,7 +460,7 @@ public class Indexer {
                         !newCharacters.cloneAsThawed().retainAll(currentBlock).isEmpty();
                 if (showBlocks) {
                     result.add(new IndexSubEntry());
-                    result.get(result.size() - 1).block = block.getValue(range.codepoint);
+                    result.get(result.size() - 1).block = pretty_block.getValue(range.codepoint);
                 }
                 final var currentSubEntry = result.get(result.size() - 1);
                 if (showSubheader) {
@@ -501,7 +501,7 @@ public class Indexer {
                 }
                 final String characterName = name.getValue(range.codepoint);
                 currentSubEntry.ranges =
-                                Utility.hex(range.codepoint)
+                        Utility.hex(range.codepoint)
                                 + "\u00A0"
                                 + Character.toString(range.codepoint)
                                 + (showName && characterName != null ? " " + characterName : "");
@@ -523,7 +523,8 @@ public class Indexer {
                     final var currentBlock = blockSet.get(block.getValue(remainder.charAt(0)));
                     if (showBlocks) {
                         result.add(new IndexSubEntry());
-                        result.get(result.size() - 1).block = block.getValue(remainder.charAt(0));
+                        result.get(result.size() - 1).block =
+                                pretty_block.getValue(remainder.charAt(0));
                     }
                     final int blockStart = currentBlock.getRangeStart(0);
                     final boolean blockHasNewCharacters =
@@ -569,7 +570,7 @@ public class Indexer {
                             break;
                     }
                     currentSubEntry.ranges =
-                                    Utility.hex(subrange.getRangeStart(0))
+                            Utility.hex(subrange.getRangeStart(0))
                                     + "–"
                                     + Utility.hex(subrange.getRangeEnd(0));
                 }
