@@ -1538,6 +1538,10 @@ In \P{U6.0:Math_Class_Ex=None}, U6.0:Math_Class = U6.0:Math_Class_Ex
 \p{U6.1:Math_Class=None} ⊂ \p{U6.1:Math_Class_Ex=None}
 \p{U6.0:Math_Class=None} ⊂ \p{U6.0:Math_Class_Ex=None}
 
+# Pretty_Block is just Block, but prettier.
+
+OnPairsOf $code_points, EqualityOf Block ⇔ EqualityOf Pretty_Block
+
 # Basic Propertywise tests.
 Ignoring Name:
 
