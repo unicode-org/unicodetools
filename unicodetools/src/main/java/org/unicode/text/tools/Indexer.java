@@ -179,8 +179,13 @@ public class Indexer {
                                 lemmatizations.add(word);
                             }
                             wordIndex
-                                    .computeIfAbsent(lemma, k -> new TreeMap<>())
+                                    .computeIfAbsent(fold(word), k -> new TreeMap<>())
                                     .putIfAbsent(key, start);
+                            if (!lemma.equals(fold(word))) {
+                                wordIndex
+                                        .computeIfAbsent(lemma, k -> new TreeMap<>())
+                                        .putIfAbsent(key, start);
+                            }
                         }
                     }
                 }
@@ -292,7 +297,7 @@ public class Indexer {
                 return;
             }
             for (int i = 0; i < queryWords.length; ++i) {
-                queryWords[i] = lemmatize(queryWords[i]);
+                queryWords[i] = fold(queryWords[i]);
             }
 
             final var covered = new UnicodeSet();
@@ -362,10 +367,15 @@ public class Indexer {
         return count;
     }
 
+    static String fold(String word) {
+        // TODO(egg): collation folding.
+        String folding = word.toLowerCase();
+        return folding.replace("š", "sh");
+    }
+
     static String lemmatize(String word) {
-        // TODO(egg): collation folding, proper lemmatization.
-        String lemma = word.toLowerCase();
-        lemma = lemma.replace("š", "sh");
+        // TODO(egg): proper lemmatization.
+        String lemma = fold(word);
         if (lemma.endsWith("ses") && lemma.length() > 4) {
             lemma = lemma.substring(0, lemma.length() - 2);
         } else if (lemma.endsWith("s") && !lemma.endsWith("ss") && lemma.length() > 2) {

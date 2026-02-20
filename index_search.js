@@ -30,14 +30,14 @@ function updateResults(event) {
 function search(/**@type {string}*/ query) {
   let wordBreak = new Intl.Segmenter("en", { granularity: "word" });
   let queryWords = Array.from(wordBreak.segment(query)).filter(s => s.isWordLike).map(s => s.segment);
-  let queryLemmata = queryWords.map(lemmatize);
+  let foldedQuery = queryWords.map(fold);
   var covered = [];
   /**@type {string[]}*/
   var result = [];
   /**@type {Set<string>}*/
-  var resultLeaves = new Set(wordIndex.get(queryLemmata[0])?.keys() ?? []);
-  let firstLemmata = [queryLemmata[0]];
-  if (resultLeaves.size === 0 && queryLemmata.length == 1) {
+  var resultLeaves = new Set(wordIndex.get(foldedQuery[0])?.keys() ?? []);
+  let firstLemmata = [foldedQuery[0]];
+  if (resultLeaves.size === 0 && foldedQuery.length == 1) {
     let prefix = queryWords.at(-1);
     for (let [completion, leaves] of wordIndex) {
       if (completion.startsWith(prefix)) {
@@ -46,10 +46,10 @@ function search(/**@type {string}*/ query) {
       }
     }
   }
-  for (var i = 1; i < queryLemmata.length; ++i) {
-    var rhs = new Set(wordIndex.get(queryLemmata[i])?.keys() ?? []);
+  for (var i = 1; i < foldedQuery.length; ++i) {
+    var rhs = new Set(wordIndex.get(foldedQuery[i])?.keys() ?? []);
     let intersection = resultLeaves.intersection(rhs);
-    if (intersection.size === 0 && i == queryLemmata.length - 1) {
+    if (intersection.size === 0 && i == foldedQuery.length - 1) {
       let prefix = queryWords.at(-1);
       for (let [completion, leaves] of wordIndex) {
         if (completion.startsWith(prefix)) {
@@ -168,13 +168,7 @@ function rangeIntersection(/**@type {[number, number]}*/left, /**@type {[number,
   }
 }
 
-function lemmatize(/**@type {string}*/ word) {
-  let lemma = word.toLowerCase();
-  lemma = lemma.replace("š", "sh");
-  if (lemma.endsWith("ses") && lemma.length > 4) {
-      lemma = lemma.substring(0, lemma.length - 2);
-  } else if (lemma.endsWith("s") && !lemma.endsWith("ss") && lemma.length > 2) {
-      lemma = lemma.substring(0, lemma.length - 1);
-  }
-  return lemma;
+function fold(/**@type {string}*/ word) {
+  let folding = word.toLowerCase();
+  return folding.replace("š", "sh");
 }
