@@ -199,6 +199,7 @@ public enum UcdProperty {
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
             "Names_List_Subheader_Notice"),
+    Pretty_Block(PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "Pretty_Block"),
     Standardized_Variant(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
