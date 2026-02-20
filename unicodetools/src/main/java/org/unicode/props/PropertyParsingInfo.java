@@ -1725,7 +1725,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     }
                 }
                 Merge<String> merger = null;
-                if (line.getParts().length == 3 && propInfo.property == UcdProperty.Block) {
+                if (line.getParts().length == 3
+                        && (propInfo.property == UcdProperty.Block
+                                || propInfo.property == UcdProperty.Pretty_Block)) {
                     // The old Blocks files had First; Last; Block.
                     IntRange range = new IntRange();
                     range.start = Utility.codePointFromHex(line.getParts()[0]);

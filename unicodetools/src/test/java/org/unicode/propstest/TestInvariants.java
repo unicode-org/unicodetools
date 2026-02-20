@@ -167,8 +167,10 @@ public class TestInvariants extends TestFmwkMinusMinus {
                         UcdProperty.Names_List_Subheader_Notice));
         exceptions.putAll(
                 General_Category_Values.Private_Use,
-                Arrays.asList(UcdProperty.Age, UcdProperty.Block));
-        exceptions.put(General_Category_Values.Surrogate, UcdProperty.Block);
+                Arrays.asList(UcdProperty.Age, UcdProperty.Block, UcdProperty.Pretty_Block));
+        exceptions.putAll(
+                General_Category_Values.Surrogate,
+                Arrays.asList(UcdProperty.Block, UcdProperty.Pretty_Block));
 
         List<UcdProperty> ordered = new ArrayList<>();
         // ordered.add(UcdProperty.Bidi_Class);
