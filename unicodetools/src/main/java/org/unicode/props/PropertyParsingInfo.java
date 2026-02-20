@@ -1642,6 +1642,42 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     // 21EA..21F3;;⇪..⇳;;;; 21EA-21F3 are keyboard
                     value = "None";
                 }
+                if (line.getParts().length == 3
+                        && (propInfo.property == UcdProperty.Block
+                                || propInfo.property == UcdProperty.Pretty_Block)) {
+                    // The old Blocks files had First; Last; Block.
+                    IntRange range = new IntRange();
+                    range.start = Utility.codePointFromHex(line.getParts()[0]);
+                    range.end = Utility.codePointFromHex(line.getParts()[1]);
+                    // Unicode 2 puts FEFF both in Arabic Presentation Forms-B and in Specials.
+                    // We are not going to make Block multivalued for that, so we let the second
+                    // assignment win.
+                    // This fits with assignments in Unicode 2.1.4..3.1.1 where
+                    // Arabic Presentation Forms-B ended on FEFE and Specials was a
+                    // split Block of FEFF & FFF0..FFFD.
+                    // Since Unicode 3.2, blocks were contiguous xxx0..yyyF:
+                    // https://www.unicode.org/reports/tr28/tr28-3.html#database
+                    // The normative blocks defined in Blocks.txt have been adjusted slightly,
+                    // in accordance with Unicode Technical Committee decisions.
+                    // - Every block starts and ends on a column boundary.
+                    //   That is, the last digit of the first code point in the block is always 0,
+                    //   and the last digit of the final code point in the block is always F.
+                    // - Every block is contiguous. [...]
+                    propInfo.put(
+                            data,
+                            line.getMissingSet(),
+                            range,
+                            line.getParts()[2],
+                            indexUnicodeProperties.ucdVersion.getMajor() == 2
+                                    ? new PropertyUtilities.Overrider()
+                                    : null,
+                            false,
+                            nextProperties == null
+                                    ? null
+                                    : nextProperties.getProperty(propInfo.property),
+                            indexUnicodeProperties.getUcdVersion());
+                    continue;
+                }
                 if (propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion).keyField == 0) {
                     propInfo.put(
                             data,
@@ -1725,38 +1761,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     }
                 }
                 Merge<String> merger = null;
-                if (line.getParts().length == 3
-                        && (propInfo.property == UcdProperty.Block
-                                || propInfo.property == UcdProperty.Pretty_Block)) {
-                    // The old Blocks files had First; Last; Block.
-                    IntRange range = new IntRange();
-                    range.start = Utility.codePointFromHex(line.getParts()[0]);
-                    range.end = Utility.codePointFromHex(line.getParts()[1]);
-                    // Unicode 2 puts FEFF both in Arabic Presentation Forms-B and in Specials.
-                    // We are not going to make Block multivalued for that, so we let the second
-                    // assignment win.
-                    // This fits with assignments in Unicode 2.1.4..3.1.1 where
-                    // Arabic Presentation Forms-B ended on FEFE and Specials was a
-                    // split Block of FEFF & FFF0..FFFD.
-                    // Since Unicode 3.2, blocks were contiguous xxx0..yyyF:
-                    // https://www.unicode.org/reports/tr28/tr28-3.html#database
-                    // The normative blocks defined in Blocks.txt have been adjusted slightly,
-                    // in accordance with Unicode Technical Committee decisions.
-                    // - Every block starts and ends on a column boundary.
-                    //   That is, the last digit of the first code point in the block is always 0,
-                    //   and the last digit of the final code point in the block is always F.
-                    // - Every block is contiguous. [...]
-                    propInfo.put(
-                            data,
-                            line.getMissingSet(),
-                            range,
-                            line.getParts()[2],
-                            version.getMajor() == 2 ? new PropertyUtilities.Overrider() : null,
-                            false,
-                            nextVersion,
-                            indexUnicodeProperties.getUcdVersion());
-                    continue;
-                } else if (propInfo.property == UcdProperty.Numeric_Value) {
+                if (propInfo.property == UcdProperty.Numeric_Value) {
                     String extractedValue = line.getParts()[1];
                     for (int cp = line.getRange().start; cp <= line.getRange().end; ++cp) {
                         String unicodeDataValue =
