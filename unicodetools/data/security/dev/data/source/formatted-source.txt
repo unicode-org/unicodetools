@@ -1,5 +1,5 @@
 # formatted-source.txt
-# Date: 2026-02-06, 21:41:43 GMT
+# Date: 2026-02-20, 09:37:07 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -4734,10 +4734,6 @@
 
 3005 ;	206A4	# ( 々 ~ 𠚤 ) IDEOGRAPHIC ITERATION MARK ~ CJK UNIFIED IDEOGRAPH-206A4
 
-3014 ;	FF3B	#* ( 〔 ~ ［ ) LEFT TORTOISE SHELL BRACKET ~ FULLWIDTH LEFT SQUARE BRACKET
-
-3015 ;	FF3D	#* ( 〕 ~ ］ ) RIGHT TORTOISE SHELL BRACKET ~ FULLWIDTH RIGHT SQUARE BRACKET
-
 301C ;	FF5E	#* ( 〜 ~ ～ ) WAVE DASH ~ FULLWIDTH TILDE
 
 302C ;	309A	# ( 〬 ~ ゚ ) IDEOGRAPHIC DEPARTING TONE MARK ~ COMBINING KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK
@@ -4785,7 +4781,7 @@
 
 312D ;	5E00	# ( ㄭ ~ 帀 ) BOPOMOFO LETTER IH ~ CJK UNIFIED IDEOGRAPH-5E00
 
-33C4 0009 20DD ;	1F16D	#* (  ~ 🅭 ) SQUARE CC, <CHARACTER TABULATION>, COMBINING ENCLOSING CIRCLE ~ CIRCLED CC
+33C4 20DD ;	1F16D	#* ( ㏄⃝ ~ 🅭 ) SQUARE CC, COMBINING ENCLOSING CIRCLE ~ CIRCLED CC
 
 3588 ;	439B	# ( 㖈 ~ 䎛 ) CJK UNIFIED IDEOGRAPH-3588 ~ CJK UNIFIED IDEOGRAPH-439B
 
