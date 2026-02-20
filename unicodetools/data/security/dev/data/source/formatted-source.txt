@@ -1,5 +1,5 @@
 # formatted-source.txt
-# Date: 2026-02-20, 09:37:07 GMT
+# Date: 2026-02-20, 22:50:36 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -4413,6 +4413,8 @@
 1D43 2044 0063 ;	2100	#* ( ᵃ⁄c ~ ℀ ) MODIFIER LETTER SMALL A, FRACTION SLASH, LATIN SMALL LETTER C ~ ACCOUNT OF
 
 1D43 2044 209B ;	2101	#* ( ᵃ⁄ₛ ~ ℁ ) MODIFIER LETTER SMALL A, FRACTION SLASH, LATIN SUBSCRIPT SMALL LETTER S ~ ADDRESSED TO THE SUBJECT
+
+1D4C ;	1D9F	# ( ᵌ ~ ᶟ ) MODIFIER LETTER SMALL TURNED OPEN E ~ MODIFIER LETTER SMALL REVERSED OPEN E
 
 1D52 ;	2070	# ( ᵒ ~ ⁰ ) MODIFIER LETTER SMALL O ~ SUPERSCRIPT ZERO
 

@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2026-02-20, 09:37:08 GMT
+# Date: 2026-02-20, 22:50:38 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -13421,8 +13421,8 @@
 	(‎ ᴴ ‎)	1D34	 MODIFIER LETTER CAPITAL H
 ←	(‎ ᵸ ‎)	1D78	 MODIFIER LETTER CYRILLIC EN
 
-#	ᵋ	ᶟ
-	(‎ ᵋ ‎)	1D4B	 MODIFIER LETTER SMALL OPEN E
+#	ᵌ	ᶟ
+	(‎ ᵌ ‎)	1D4C	 MODIFIER LETTER SMALL TURNED OPEN E
 ←	(‎ ᶟ ‎)	1D9F	 MODIFIER LETTER SMALL REVERSED OPEN E
 
 #	ᵍ	ᶢ

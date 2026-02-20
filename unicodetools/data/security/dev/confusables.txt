@@ -1,5 +1,5 @@
 # confusables.txt
-# Date: 2026-02-20, 09:37:09 GMT
+# Date: 2026-02-20, 22:50:38 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2509,12 +2509,12 @@ A613 ;	0190 ;	MA	# ( ꘓ → Ɛ ) VAI SYMBOL FEENG → LATIN CAPITAL LETTER OPEN
 16F2D ;	0190 ;	MA	# ( 𖼭 → Ɛ ) MIAO LETTER NYHA → LATIN CAPITAL LETTER OPEN E	# 
 10401 ;	0190 ;	MA	# ( 𐐁 → Ɛ ) DESERET CAPITAL LETTER LONG E → LATIN CAPITAL LETTER OPEN E	# 
 
-1D9F ;	1D4B ;	MA	# ( ᶟ → ᵋ ) MODIFIER LETTER SMALL REVERSED OPEN E → MODIFIER LETTER SMALL OPEN E	# 
-
 1D08 ;	025C ;	MA	# ( ᴈ → ɜ ) LATIN SMALL LETTER TURNED OPEN E → LATIN SMALL LETTER REVERSED OPEN E	# 
 0437 ;	025C ;	MA	# ( з → ɜ ) CYRILLIC SMALL LETTER ZE → LATIN SMALL LETTER REVERSED OPEN E	# 
 
 0499 ;	025C 0326 ;	MA	# ( ҙ → ɜ̦ ) CYRILLIC SMALL LETTER ZE WITH DESCENDER → LATIN SMALL LETTER REVERSED OPEN E, COMBINING COMMA BELOW	# →з̡→
+
+1D9F ;	1D4C ;	MA	# ( ᶟ → ᵌ ) MODIFIER LETTER SMALL REVERSED OPEN E → MODIFIER LETTER SMALL TURNED OPEN E	# 
 
 10442 ;	025E ;	MA	# ( 𐑂 → ɞ ) DESERET SMALL LETTER VEE → LATIN SMALL LETTER CLOSED REVERSED OPEN E	# 
 
