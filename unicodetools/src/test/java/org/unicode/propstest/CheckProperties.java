@@ -8,6 +8,7 @@ import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.io.DataOutput;
 import java.io.File;
 import java.io.IOException;
@@ -296,18 +297,25 @@ public class CheckProperties {
         showInfo("Property Enum Canonical Form wrong", PROPNAMEDIFFERENCES, outLog);
         showInfo("Cache File Sizes", latest.getCacheFileSize().entrySet(), outLog);
 
-        final Set<Entry<UcdProperty, Set<String>>> dataLoadingErrors =
-                IndexUnicodeProperties.getDataLoadingErrors().keyValuesSet();
-        if (dataLoadingErrors.size() != 0) {
-            outLog.println("Data loading errors: " + dataLoadingErrors.size());
-            for (final Entry<UcdProperty, Set<String>> s : dataLoadingErrors) {
-                outLog.println("\t" + s.getKey());
-                int max = 100;
-                for (final String value : s.getValue()) {
-                    outLog.println("\t\t" + value);
-                    if (--max < 0) {
-                        outLog.println("…");
-                        break;
+        for (final Entry<VersionInfo, Relation<UcdProperty, String>> versionEntry :
+                IndexUnicodeProperties.getDataLoadingErrors().entrySet()) {
+            final Set<Entry<UcdProperty, Set<String>>> dataLoadingErrors =
+                    versionEntry.getValue().keyValuesSet();
+            if (!dataLoadingErrors.isEmpty()) {
+                outLog.println(
+                        "Data loading errors for "
+                                + versionEntry.getKey()
+                                + ": "
+                                + dataLoadingErrors.size());
+                for (final Entry<UcdProperty, Set<String>> s : dataLoadingErrors) {
+                    outLog.println("\t" + s.getKey());
+                    int max = 100;
+                    for (final String value : s.getValue()) {
+                        outLog.println("\t\t" + value);
+                        if (--max < 0) {
+                            outLog.println("…");
+                            break;
+                        }
                     }
                 }
             }
