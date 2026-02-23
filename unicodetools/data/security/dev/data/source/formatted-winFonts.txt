@@ -1,6 +1,6 @@
 # formatted-winFonts.txt
-# Date: 2025-11-13, 04:42:20 GMT
-# © 2025 Unicode®, Inc.
+# Date: 2026-02-20, 09:37:07 GMT
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -972,10 +972,6 @@
 2D5D ;	2169	# ( ⵝ ~ Ⅹ ) TIFINAGH LETTER YATH ~ ROMAN NUMERAL TEN
 
 3003 ;	2033	#* ( 〃 ~ ″ ) DITTO MARK ~ DOUBLE PRIME
-
-3014 ;	FF3B	#* ( 〔 ~ ［ ) LEFT TORTOISE SHELL BRACKET ~ FULLWIDTH LEFT SQUARE BRACKET
-
-3015 ;	FF3D	#* ( 〕 ~ ］ ) RIGHT TORTOISE SHELL BRACKET ~ FULLWIDTH RIGHT SQUARE BRACKET
 
 301C ;	FF5E	#* ( 〜 ~ ～ ) WAVE DASH ~ FULLWIDTH TILDE
 

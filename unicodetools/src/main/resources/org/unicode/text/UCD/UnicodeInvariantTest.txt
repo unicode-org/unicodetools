@@ -1377,6 +1377,7 @@ $CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
 [ [\p{Ideographic}&\p{sc=Han}] - \p{nfkcqc=n} - $NonOtherLetterIdeographs ] = \p{Unified_Ideograph}
 
 Let $unihanScope := [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
+$unihanScope ⊂ \p{Script=Han}
 \p{Unified_Ideograph} ⊂ $unihanScope
 $unihanScope = [\p{gc=Lo} & \p{sc=Hani}]
 $unihanScope = \P{kRSUnicode=@none@}
@@ -1444,6 +1445,7 @@ In $japaneseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/
 # Tangut invariants
 
 Let $tangutSourcesScope := [\p{Block=/^Tangut(.Supplement)?$/} - \p{gc=Cn}]
+$tangutSourcesScope ⊂ \p{sc=Tangut}
 $tangutSourcesScope = [ [\p{gc=Lo} & \p{sc=Tangut}] - \p{name=/^TANGUT COMPONENT-/} ]
 $tangutSourcesScope = \P{kTGT_MergedSrc=@none@}
 $tangutSourcesScope = \P{kRSTUnicode=@none@}
@@ -1451,6 +1453,7 @@ $tangutSourcesScope = \P{kRSTUnicode=@none@}
 # Jurchen invariants
 
 Let $jurchenSourcesScope := [\p{Block=/^Jurchen(.Supplement)?$/} - \p{gc=Cn}]
+$jurchenSourcesScope ⊂ \p{sc=Jurchen}
 $jurchenSourcesScope = [ [\p{gc=Lo} & \p{sc=Jurchen}] - \p{name=/^JURCHEN RADICAL-/} ]
 $jurchenSourcesScope = \P{kJURC_Src=@none@}
 $jurchenSourcesScope = \P{kJURC_RSUnicode=@none@}
@@ -1460,6 +1463,7 @@ $jurchenSourcesScope ⊃ \P{kJURC_NCReading=@none@}
 # Nüshu invariants
 
 Let $nüshuSourcesScope := [\p{Block=Nushu} - \p{gc=Cn}]
+$nüshuSourcesScope ⊂ \p{sc=Nushu}
 $nüshuSourcesScope = [\p{gc=Lo} & \p{sc=Nushu}]
 $nüshuSourcesScope = \P{kSrc_NushuDuben=@none@}
 $nüshuSourcesScope = \P{kReading=@none@}
@@ -1467,6 +1471,7 @@ $nüshuSourcesScope = \P{kReading=@none@}
 # Seal invariants
 
 Let $sealSourcesScope := \p{Block=Seal}
+$sealSourcesScope ⊆ \p{sc=Seal}
 $sealSourcesScope = \P{kSEAL_THXSrc=@none@}
 $sealSourcesScope ⊃ [\P{kSEAL_CCZSrc=@none@}\P{kSEAL_QJZSrc=@none@}\P{kSEAL_DYCSrc=@none@}]
 In [\P{kSEAL_MCJK=@none@}], Script * kSEAL_MCJK = (constant Han)
@@ -1475,6 +1480,7 @@ $sealSourcesScope = \P{kSEAL_Rad=@none@}
 # Egyptian hieroglyph invariants
 
 Let $unikemetScope := [\p{Block=/^Egyptian.Hieroglyphs/} - \p{gc=Cn}]
+$unikemetScope ⊂ \p{sc=Egyptian Hieroglyphs}
 $unikemetScope = [ [\p{gc=Lo} & \p{sc=Egyp}] - \p{Name=/^EGYPTIAN HIEROGLYPH (FULL |HALF |TALL |WIDE )?(BLANK|LOST SIGN)$/} ]
 $unikemetScope = \P{kEH_Cat=@none@}
 $unikemetScope = \P{kEH_UniK=@none@}

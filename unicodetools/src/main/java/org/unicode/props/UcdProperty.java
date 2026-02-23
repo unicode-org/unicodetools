@@ -1109,6 +1109,30 @@ public enum UcdProperty {
         return names.getShortName();
     }
 
+    /* The script-specific properties are those defined in UAXes #38, #57, and #60. */
+    public boolean isScriptSpecific() {
+        return associatedScript() != null;
+    }
+
+    public UcdPropertyValues.Script_Values associatedScript() {
+        if (getShortName().startsWith("cjk")) {
+            return UcdPropertyValues.Script_Values.Han;
+        } else if (getShortName().charAt(0) == 'k'
+                && Character.isUpperCase(getShortName().codePointAt(1))) {
+            String script = getShortName().substring(1, getShortName().indexOf("_"));
+            switch (script) {
+                case "EH":
+                    return UcdPropertyValues.Script_Values.Egyptian_Hieroglyphs;
+                case "TGT":
+                    return UcdPropertyValues.Script_Values.Tangut;
+                default:
+                    return UcdPropertyValues.Script_Values.forName(script);
+            }
+        } else {
+            return null;
+        }
+    }
+
     public static UcdProperty forString(String name) {
         return Numeric_Value.names.forString(name);
     }
