@@ -125,6 +125,7 @@ DerivedJoiningType; Joining_Type; 1
 ArabicShaping; Joining_Group; 3
 BidiMirroring; Bidi_Mirroring_Glyph;
 Blocks ; Block
+Blocks ; Pretty_Block
 CompositionExclusions ; Composition_Exclusion
 DerivedAge ; Age
 EastAsianWidth ; East_Asian_Width

@@ -1,6 +1,6 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2025-12-07, 22:02:22 GMT
-# © 2025 Unicode®, Inc.
+# Date: 2026-02-20, 09:37:08 GMT
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -18,7 +18,7 @@
 
 #	'	`	ʻ	ʼ	י	׳	’
 	(‎ ' ‎)	0027	 APOSTROPHE
-←	(‎ ` ‎)	0060	 GRAVE ACCENT	# →ˋ→→｀→→‘→
+←	(‎ ` ‎)	0060	 GRAVE ACCENT	# →｀→→‘→
 ←	(‎ ʻ ‎)	02BB	 MODIFIER LETTER TURNED COMMA	# →‘→
 ←	(‎ ʼ ‎)	02BC	 MODIFIER LETTER APOSTROPHE	# →′→
 ←	(‎ י ‎)	05D9	 HEBREW LETTER YOD

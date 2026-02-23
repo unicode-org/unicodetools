@@ -1,6 +1,6 @@
 # formatted-macFonts.txt
-# Date: 2025-11-13, 04:42:21 GMT
-# © 2025 Unicode®, Inc.
+# Date: 2026-02-20, 00:35:23 GMT
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -883,7 +883,7 @@
 
 1D34 ;	1D78	# ( ᴴ ~ ᵸ ) MODIFIER LETTER CAPITAL H ~ MODIFIER LETTER CYRILLIC EN
 
-1D4B ;	1D9F	# ( ᵋ ~ ᶟ ) MODIFIER LETTER SMALL OPEN E ~ MODIFIER LETTER SMALL REVERSED OPEN E
+1D4C ;	1D9F	# ( ᵌ ~ ᶟ ) MODIFIER LETTER SMALL TURNED OPEN E ~ MODIFIER LETTER SMALL REVERSED OPEN E
 
 1D4D ;	1DA2	# ( ᵍ ~ ᶢ ) MODIFIER LETTER SMALL G ~ MODIFIER LETTER SMALL SCRIPT G
 

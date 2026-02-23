@@ -483,7 +483,7 @@ public class TestUnicodeInvariants {
         final var iup = IndexUnicodeProperties.make(Settings.latestVersion);
         final List<String> errorMessageLines = new ArrayList<>();
         for (var p : UcdProperty.values()) {
-            if (p.name().startsWith("Names_List_")) {
+            if (p.name().startsWith("Names_List_") || p == UcdProperty.Pretty_Block) {
                 continue;
             }
             final var property = iup.getProperty(p);
@@ -654,7 +654,7 @@ public class TestUnicodeInvariants {
             } while (Lookahead.oneToken(pp, source).accept(","));
         }
         for (var p : UcdProperty.values()) {
-            if (p.name().startsWith("Names_List_")) {
+            if (p.name().startsWith("Names_List_") || p == UcdProperty.Pretty_Block) {
                 continue;
             }
             final var property = iup.getProperty(p);

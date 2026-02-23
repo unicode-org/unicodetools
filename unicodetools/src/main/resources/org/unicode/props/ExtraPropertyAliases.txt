@@ -96,6 +96,12 @@ Link_Bracket ; Link_Bracket ; NonUCDProperty
 # Miscellaneous Properties
 # ================================================
 
+# The spelling of the block name in Blocks.txt, which is not exactly the
+# matching one in PropertyValueAliases.txt (the latter has _ instead of both
+# spaces and hyphens, and they also differ in case, e.g. Greek_And_Coptic vs.
+# Greek and Coptic.).
+Pretty_Block ; Pretty_Block ; UCDNonProperty
+
 Arabic_Shaping_Schematic_Name ; Arabic_Shaping_Schematic_Name ; UCDNonProperty
 
 CJKR ; CJK_Radical ; UCDNonProperty

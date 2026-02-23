@@ -712,6 +712,7 @@ public class GenerateConfusables {
                 }
                 final int decompType = DEFAULT_UCD.getDecompositionType(cp);
                 final String nfc = Default.nfc().normalize(cp);
+                final String mapped = NFKD.normalize(cp);
                 if (decompType == UCD_Types.CANONICAL) {
                     nfcMap.put(cp, nfc);
                 }
@@ -719,19 +720,25 @@ public class GenerateConfusables {
                         || decompType == UCD_Types.COMPAT_SUPER
                         || decompType == UCD_Types.COMPAT_SUB
                         || decompType == UCD_Types.COMPAT_VERTICAL
-                        || decompType == UCD_Types.COMPAT_SMALL
-                        || decompType == UCD_Types.COMPAT_SQUARE
                         || decompType == UCD_Types.COMPAT_FRACTION
-                        || decompType == UCD_Types.COMPAT_NARROW
-                        || decompType == UCD_Types.COMPAT_WIDE
-                        || decompType == UCD_Types.COMPAT_WIDE
+                        || (0x3300 <= cp && cp <= 0x3357) // Skip squared Katakana words
+                        || cp == 0x337F // Skip SQUARE CORPORATION
+                        || cp == 0xFE58 // Skip SMALL EM DASH since it would merge two classes
+                        // Skip FULLWIDTH HYPHEN-MINUS since it would merge two classes
+                        || cp == 0xFF0D
+                        || (0x1F130 <= cp && cp <= 0x1F14F) // Skip squared Latin letters
+                        || (0x1F200 <= cp && cp <= 0x1F23B) // Skip Enclosed Ideographic Supplement
+                        // Skip square compatibility characters that have a power of 2 or 3.
+                        // This needs to be fixed in the future so we can have confusability
+                        // with the decomposition using superscript 2 and 3.
+                        || (decompType == UCD_Types.COMPAT_SQUARE
+                                && (mapped.contains("2") || mapped.contains("3")))
                         || cp == '﬩'
                         || cp == '︒') {
                     _skipNFKD.add(cp);
                     continue;
                 }
                 final String source = UTF16.valueOf(cp);
-                final String mapped = NFKD.normalize(cp);
                 String kmapped = ModifiedNFKD.normalize(source);
                 if (!kmapped.equals(source) && !kmapped.equals(nfc)) {
                     if (kmapped.startsWith(" ") || kmapped.startsWith("\u0640")) {
@@ -1384,7 +1391,15 @@ public class GenerateConfusables {
                                     + ";\t"
                                     + line);
                 }
-            } else if (suppress_NFKC && nfkdSource.equals(nfkdTarget)) {
+            } else if (suppress_NFKC
+                    && nfkdSource.equals(nfkdTarget)
+                    && !source.equals("\u1D4C")
+                    && !target.equals("\u1D4C")) {
+                // Skipping the suppression of U+1D4C temporarily so that we can
+                // add the confusable pair (U+1D9F, U+1D4C) that have the same
+                // compatibility decomposition, but not the same canonical decomposition.
+                // In the future, suppress_NFKC should be set to false and all
+                // resulting additions reviewed.
                 if (SHOW_SUPPRESS) {
                     System.out.println(
                             "*** Suppressing nfkc for:\t"
