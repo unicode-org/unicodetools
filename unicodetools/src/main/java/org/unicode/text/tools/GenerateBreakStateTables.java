@@ -16,13 +16,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.stream.Collectors;
+import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.tools.Segmenter;
 import org.unicode.tools.Segmenter.Builder.NamedRefinedSet;
 
 public class GenerateBreakStateTables {
     public static void main(String[] args) throws IOException {
-        var rbbi = (RuleBasedBreakIterator) BreakIterator.getLineInstance();
+        final var rbbi = (RuleBasedBreakIterator) BreakIterator.getLineInstance();
+        final var iup = IndexUnicodeProperties.make(UCharacter.getUnicodeVersion());
+        final var unassigned = iup.getProperty("gc").getSet("Unassigned");
+        final var pua = iup.getProperty("gc").getSet("Private Use");
         var segmenter =
                 Segmenter.make(
                                 VersionedSymbolTable.frozenAt(UCharacter.getUnicodeVersion()),
@@ -91,7 +95,6 @@ public class GenerateBreakStateTables {
             }
         }
         var table = rbbi.fRData.fFTable;
-        var file = new PrintStream(new File("LineBreakTable.txt"));
         Map<Integer, String> stateNames = new HashMap<>();
         Map<Integer, String> lookaheadNames = new HashMap<>();
         stateNames.put(0, "STOP");
@@ -136,11 +139,11 @@ public class GenerateBreakStateTables {
                                 + rbbiNames.getOrDefault(col, List.of()).stream()
                                         .sorted(
                                                 Comparator.<NamedRefinedSet>comparingInt(
-                                                                s ->
-                                                                        s.getName()
-                                                                                .replace("orig", "")
-                                                                                .length())
-                                                        .thenComparing(s -> -s.getSet().size()))
+                                                        s ->
+                                                                -s.getSet()
+                                                                        .removeAll(unassigned)
+                                                                        .removeAll(pua)
+                                                                        .size()))
                                         .map(NamedRefinedSet::getName)
                                         .map(s -> s.replace("orig", ""))
                                         .findFirst()
@@ -172,34 +175,70 @@ public class GenerateBreakStateTables {
             }
             nameToState.put(entry.getValue(), entry.getKey());
         }
-        for (int state = 1; state < table.fNumStates; ++state) {
-            final int row = rbbi.fRData.getRowIndex(state);
-            file.println("State " + stateNames.get(state));
-            final int accepting = table.fTable[row + RBBIDataWrapper.ACCEPTING];
-            if (accepting == RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
-                file.println("Accepting here");
-            } else if (accepting > RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
-                file.println("Accepting for lookahead " + lookaheadNames.get(accepting));
-            }
-            final int lookahead = table.fTable[row + RBBIDataWrapper.LOOKAHEAD];
-            if (lookahead != 0) {
-                file.println("Break position for lookahead " + lookaheadNames.get(lookahead));
-            }
-
-            for (int col = 0; col < rbbi.fRData.fHeader.fCatCount; ++col) {
-                int next = table.fTable[row + RBBIDataWrapper.NEXTSTATES + col];
-                if (rbbiNames.get(col) == null && next == 0) {
-                    continue;
+        try (var file = new PrintStream(new File("LineBreakClasses.txt"))) {
+            file.println("# Class name ; Class definition in UnicodeSet notation");
+            for (final var characterClass : rbbiNames.values()) {
+                file.print(
+                        characterClass.stream()
+                                        .map(NamedRefinedSet::getName)
+                                        .map(s -> s.replace("orig", ""))
+                                        .collect(Collectors.joining("|"))
+                                + " ; ");
+                if (characterClass.size() > 1) {
+                    file.print("[");
                 }
-                // TODO(egg): Weird default, check the output for (). Seems to have to do with
-                // Qu_Pf. Lookahead?
-                String ahead =
-                        rbbiNames.getOrDefault(col, List.of()).stream()
-                                .map(NamedRefinedSet::getName)
-                                .map(s -> s.replace("orig", ""))
-                                .collect(Collectors.joining("|"));
-                if (next != 0) {
-                    file.println("-(" + ahead + ")-> " + stateNames.get(next));
+                file.print(
+                        characterClass.stream()
+                                .map(NamedRefinedSet::getDefinition)
+                                .collect(Collectors.joining(" ")));
+                if (characterClass.size() > 1) {
+                    file.print("]");
+                }
+                file.println();
+            }
+        }
+        try (var file = new PrintStream(new File("LineBreakStates.txt"))) {
+            file.println(
+                    "# State name ; Accepting (Yes, No, or lookahead name); lookahead name or empty.");
+            for (int state = 1; state < table.fNumStates; ++state) {
+                final int row = rbbi.fRData.getRowIndex(state);
+                file.print(stateNames.get(state) + " ; ");
+                final int accepting = table.fTable[row + RBBIDataWrapper.ACCEPTING];
+                if (accepting == RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
+                    file.print("Yes");
+                } else if (accepting > RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
+                    file.print(lookaheadNames.get(accepting));
+                } else {
+                    file.print("No");
+                }
+                file.print(" ; ");
+                final int lookahead = table.fTable[row + RBBIDataWrapper.LOOKAHEAD];
+                if (lookahead != 0) {
+                    file.print(lookaheadNames.get(lookahead));
+                }
+                file.println();
+            }
+        }
+        try (var file = new PrintStream(new File("LineBreakTransitions.txt"))) {
+            file.println("# From state ; class ; To state");
+            for (int state = 1; state < table.fNumStates; ++state) {
+                final int row = rbbi.fRData.getRowIndex(state);
+
+                for (int col = 0; col < rbbi.fRData.fHeader.fCatCount; ++col) {
+                    int next = table.fTable[row + RBBIDataWrapper.NEXTSTATES + col];
+                    if (rbbiNames.get(col) == null && next == 0) {
+                        continue;
+                    }
+                    // TODO(egg): Weird that we have those nameless classes.
+                    String ahead =
+                            rbbiNames.getOrDefault(col, List.of()).stream()
+                                    .map(NamedRefinedSet::getName)
+                                    .map(s -> s.replace("orig", ""))
+                                    .collect(Collectors.joining("|"));
+                    if (next != 0 && !ahead.isEmpty()) {
+                        file.print(stateNames.get(state) + " ; ");
+                        file.println(ahead + " ; " + stateNames.get(next));
+                    }
                 }
             }
         }
