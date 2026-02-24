@@ -626,6 +626,17 @@ public class Segmenter {
                                         .collect(Collectors.joining());
             }
 
+            public String getPrettyName() {
+                return intersectionTerms.isEmpty()
+                        ? null
+                        : intersectionTerms.stream()
+                                        .map((s) -> s.name)
+                                        .collect(Collectors.joining("∩"))
+                                + subtrahends.stream()
+                                        .map((s) -> "∖" + s.name)
+                                        .collect(Collectors.joining());
+            }
+
             public String getDefinition() {
                 return intersectionTerms.isEmpty()
                         ? "[^[]]"
