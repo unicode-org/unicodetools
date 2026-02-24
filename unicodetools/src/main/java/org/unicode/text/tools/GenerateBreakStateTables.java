@@ -48,7 +48,7 @@ public class GenerateBreakStateTables {
             for (var part : namedPartition) {
                 if (part.getSet().equals(rbbiPart)) {
                     rbbiNames.put(entry.getKey(), List.of(part));
-                    System.out.println("Part " + entry.getKey() + " is " + part.getPrettyName());
+                    System.out.println("Part " + entry.getKey() + " is " + part.getName());
                     continue loopOverRbbiPartition;
                 } else if (rbbiPart.containsAll(part.getSet())) {
                     refinement.add(part);
@@ -59,7 +59,7 @@ public class GenerateBreakStateTables {
                                         + entry.getKey()
                                         + " is a union of: "
                                         + refinement.stream()
-                                                .map(NamedRefinedSet::getPrettyName)
+                                                .map(NamedRefinedSet::getName)
                                                 .collect(Collectors.joining(", ")));
                         rbbiNames.put(entry.getKey(), refinement);
                         continue loopOverRbbiPartition;
@@ -72,7 +72,7 @@ public class GenerateBreakStateTables {
                 System.out.println(
                         "Partially covered by "
                                 + refinement.stream()
-                                        .map(NamedRefinedSet::getPrettyName)
+                                        .map(NamedRefinedSet::getName)
                                         .collect(Collectors.joining(", ")));
                 System.out.println("Remaining: " + rbbiPartRemaining.toString());
             }
@@ -115,8 +115,9 @@ public class GenerateBreakStateTables {
                         next,
                         (state == 1 ? "" : stateName + " ")
                                 + rbbiNames.getOrDefault(col, List.of()).stream()
-                                        .map(NamedRefinedSet::getPrettyName)
-                                        .sorted(Comparator.comparingInt(String::length))
+                                        .sorted(Comparator.<NamedRefinedSet>comparingInt(s -> s.getName().replace("orig", "").length()).thenComparing(s -> s.getSet().size()))
+                                        .map(NamedRefinedSet::getName)
+                                        .map(s -> s.replace("orig", ""))
                                         .findFirst().orElse(""));
                 neighbourhoodsToName.add(next);
             }
@@ -170,7 +171,8 @@ public class GenerateBreakStateTables {
                 // Qu_Pf. Lookahead?
                 String ahead =
                         rbbiNames.getOrDefault(col, List.of()).stream()
-                                .map(NamedRefinedSet::getPrettyName)
+                                .map(NamedRefinedSet::getName)
+                                .map(s -> s.replace("orig", ""))
                                 .collect(Collectors.joining("|"));
                 if (next != 0) {
                     file.println("-(" + ahead + ")-> " + stateNames.get(next));
