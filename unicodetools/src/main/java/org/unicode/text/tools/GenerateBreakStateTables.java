@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.stream.Collectors;
-
-import org.checkerframework.checker.units.qual.t;
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.tools.Segmenter;
 import org.unicode.tools.Segmenter.Builder.NamedRefinedSet;
@@ -61,7 +59,22 @@ public class GenerateBreakStateTables {
                                         + refinement.stream()
                                                 .map(NamedRefinedSet::getName)
                                                 .collect(Collectors.joining(", ")));
-                        rbbiNames.put(entry.getKey(), refinement);
+                        if (refinement.stream()
+                                .map(NamedRefinedSet::getName)
+                                .collect(Collectors.joining(", "))
+                                .equals("CMorig_EastAsian, CMorigmEastAsian")) {
+                            rbbiNames.put(
+                                    entry.getKey(),
+                                    List.of(
+                                            new NamedRefinedSet()
+                                                    .intersect(
+                                                            refinement
+                                                                    .get(0)
+                                                                    .intersectionTerms
+                                                                    .get(0))));
+                        } else {
+                            rbbiNames.put(entry.getKey(), refinement);
+                        }
                         continue loopOverRbbiPartition;
                     }
                 }
@@ -89,23 +102,29 @@ public class GenerateBreakStateTables {
             final int row = rbbi.fRData.getRowIndex(state);
             final String stateName = stateNames.get(state);
             {
-            final int lookahead = table.fTable[row + RBBIDataWrapper.LOOKAHEAD];
-            if (lookahead != 0 && !lookaheadNames.containsKey(lookahead)) {
-                lookaheadNames.put(lookahead, stateName);
-            }
-        }
-    {
-            final int accepting = table.fTable[row + RBBIDataWrapper.ACCEPTING];
-            if (accepting > RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
-                final String prefix = lookaheadNames.get(accepting);
-                if (!prefix.contains("/")) {
-                if (!stateName.startsWith(prefix)) {
-                    throw new IllegalArgumentException(stateName + " does not start with " + prefix);
+                final int lookahead = table.fTable[row + RBBIDataWrapper.LOOKAHEAD];
+                if (lookahead != 0 && !lookaheadNames.containsKey(lookahead)) {
+                    lookaheadNames.put(lookahead, stateName);
                 }
-                lookaheadNames.put(accepting, prefix + " /" + stateName.subSequence(prefix.length(), stateName.length()));
             }
+            {
+                final int accepting = table.fTable[row + RBBIDataWrapper.ACCEPTING];
+                if (accepting > RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
+                    final String prefix = lookaheadNames.get(accepting);
+                    if (!prefix.contains("/")) {
+                        if (!stateName.startsWith(prefix)) {
+                            throw new IllegalArgumentException(
+                                    stateName + " does not start with " + prefix);
+                        }
+                        lookaheadNames.put(
+                                accepting,
+                                prefix
+                                        + " /"
+                                        + stateName.subSequence(
+                                                prefix.length(), stateName.length()));
+                    }
+                }
             }
-        }
             for (int col = 0; col < rbbi.fRData.fHeader.fCatCount; ++col) {
                 final int next = table.fTable[row + RBBIDataWrapper.NEXTSTATES + col];
                 if (stateNames.containsKey(next)) {
@@ -115,10 +134,17 @@ public class GenerateBreakStateTables {
                         next,
                         (state == 1 ? "" : stateName + " ")
                                 + rbbiNames.getOrDefault(col, List.of()).stream()
-                                        .sorted(Comparator.<NamedRefinedSet>comparingInt(s -> s.getName().replace("orig", "").length()).thenComparing(s -> s.getSet().size()))
+                                        .sorted(
+                                                Comparator.<NamedRefinedSet>comparingInt(
+                                                                s ->
+                                                                        s.getName()
+                                                                                .replace("orig", "")
+                                                                                .length())
+                                                        .thenComparing(s -> -s.getSet().size()))
                                         .map(NamedRefinedSet::getName)
                                         .map(s -> s.replace("orig", ""))
-                                        .findFirst().orElse(""));
+                                        .findFirst()
+                                        .orElse(""));
                 neighbourhoodsToName.add(next);
             }
         }
@@ -148,13 +174,11 @@ public class GenerateBreakStateTables {
         }
         for (int state = 1; state < table.fNumStates; ++state) {
             final int row = rbbi.fRData.getRowIndex(state);
-                file.println("State " + stateNames.get(state));
-            final int accepting = table.fTable[row + RBBIDataWrapper.ACCEPTING];                
-            if (accepting
-                    == RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
+            file.println("State " + stateNames.get(state));
+            final int accepting = table.fTable[row + RBBIDataWrapper.ACCEPTING];
+            if (accepting == RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
                 file.println("Accepting here");
-            } else if (accepting
-                    > RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
+            } else if (accepting > RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
                 file.println("Accepting for lookahead " + lookaheadNames.get(accepting));
             }
             final int lookahead = table.fTable[row + RBBIDataWrapper.LOOKAHEAD];
