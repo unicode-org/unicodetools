@@ -2,7 +2,7 @@
 // License & terms of use: https://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2023 - 2025
+**      Copyright 2023 - 2026
 **      Ken Whistler, All rights reserved.
 */
 
@@ -59,6 +59,11 @@
  *               Change implicit weights for Tangut ideographs vs. components.
  *   2025-Feb-19 Tweak dumpTimeStamp to use it for the CTT as well.
  *   2025-Apr-24 Updates for Unicode 17.0 -- CJK range changes.
+ *   2026-Feb-18 Updates for Unicode 18.0.
+ *               Add all the new Cuneiform numbers to isAlphabeticException.
+ *   2026-Feb-19 Add 208F to isAlphabeticException.
+ *               Add 1B168 to kana mapping in unisift_GetKatakanaBase.
+ *   2026-Feb-21 Add implicit weights for Jurchen and Seal.
  */
 
 /*
@@ -183,15 +188,15 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 17.0.0d4, 2025-04-24\n";
+static char versionString[] = "Sifter version 18.0.0d2, 2026-02-21\n";
 
-static char unidatafilename[] = "unidata-17.0.0.txt";
-static char allkeysfilename[] = "allkeys-17.0.0.txt";
-static char decompsfilename[] = "decomps-17.0.0.txt";
+static char unidatafilename[] = "unidata-18.0.0.txt";
+static char allkeysfilename[] = "allkeys-18.0.0.txt";
+static char decompsfilename[] = "decomps-18.0.0.txt";
 
-static char versionstring[] = "@version 17.0.0\n\n";
+static char versionstring[] = "@version 18.0.0\n\n";
 
-#define COPYRIGHTYEAR (2025)
+#define COPYRIGHTYEAR (2026)
 
 #define defaultInfile "unidata.txt"
 
@@ -1760,6 +1765,10 @@ char localbuf[128];
     sprintf ( localbuf, "@implicitweights 1B170..1B2FF; FB02 # Nushu\n\n" );
     fputs ( localbuf, fd );
     sprintf ( localbuf, "@implicitweights 18B00..18CFF; FB03 # Khitan Small Script\n\n" );
+    fputs ( localbuf, fd );
+    sprintf ( localbuf, "@implicitweights 18E00..191DF; FB04 # Jurchen and Jurchen Radicals\n\n" );
+    fputs ( localbuf, fd );
+    sprintf ( localbuf, "@implicitweights 3D000..3FC3F; FB05 # Seal\n\n" );
     fputs ( localbuf, fd );
 }
 
@@ -3739,7 +3748,7 @@ static UChar8 tertwtMap3[] =
            HIRA_S, HIRA_S, HIRA_S, 0,      0,      KATA_S, 0,      0,
            0,      0,      0,      0,      0,      0,      0,      0,
            0,      0,      0,      0,      KATA_S, KATA_S, KATA_S, KATA_S,
-           0,      0,      0,      0,      0,      0,      0,      0
+           KATA_S, 0,      0,      0,      0,      0,      0,      0
     };
 
 
@@ -3788,6 +3797,11 @@ int lsb;
     {
         *tertwt = HIRA_N;
         return ( 0x1B122 ); /* maps to katakana archaic wu */
+    }
+    else if ( c == 0x1B168 ) /* katakana archaic ye */
+    {
+        *tertwt = KATA_S;
+        return ( 0x1B121 ); /* maps to katakana archaic ye */
     }
     else if ( ( c >= 0x1B120 ) && ( c <= 0x1B122 ) ) /* katakana archaic yi, ye, wu */
     {
@@ -3984,6 +3998,9 @@ int tertwt;
  * Added exceptions for Katakana Minnan tone marks (gc=Lm),
  *   in the block 1AFF0..1AFFF.
  *
+ * 2026-Feb-18:
+ * More Cuneiform numbers (gc=Nl)
+ *   1246F, 12475..1247F, 12550..12686
  */
 static int isAlphabeticException ( UInt32 c )
 {
@@ -3993,6 +4010,7 @@ static int isAlphabeticException ( UInt32 c )
          ( c == 0x0345 ) ||
          ( c == 0x0E4D ) ||
          ( c == 0x0ECD ) ||
+         ( c == 0x208F ) ||
          ( ( c >= 0x2180 ) && ( c <= 0x2182 ) ) ||
          ( ( c >= 0x2185 ) && ( c <= 0x2188 ) ) ||
          ( c == 0x3007 ) ||
@@ -4002,7 +4020,9 @@ static int isAlphabeticException ( UInt32 c )
          ( c == 0xA788 ) ||
          ( ( c >= 0x10140 ) && ( c <= 0x10174 ) ) ||
          ( ( c >= 0x103D1 ) && ( c <= 0x103D5 ) ) ||
-         ( ( c >= 0x12400 ) && ( c <= 0x1246E ) ) ||
+         ( ( c >= 0x12400 ) && ( c <= 0x1246F ) ) ||
+         ( ( c >= 0x12475 ) && ( c <= 0x1247F ) ) ||
+         ( ( c >= 0x12550 ) && ( c <= 0x12686 ) ) ||
          ( ( c >= 0x16FF0 ) && ( c <= 0x16FF1 ) ) ||
          ( ( c >= 0x1AFF0 ) && ( c <= 0x1AFFF ) ) )
     {
@@ -4290,7 +4310,7 @@ int doTrace;
     // Turn SIFT_TRACE(p) on for certain characters.
     // For example, doTrace = uvalue == 0xA700;
     // Turn off via doTrace = FALSE;
-    doTrace = uvalue == 0x0670;
+    doTrace = uvalue == 0x12550;
     // doTrace = 0;
 
 /*
