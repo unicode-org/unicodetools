@@ -2,7 +2,7 @@
 // License & terms of use: https://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2025
+**      Copyright 2026
 **      Ken Whistler, All rights reserved.
 */
 
@@ -44,6 +44,8 @@
  *   2025-Feb-18 Tweak for typo.
  *   2025-Feb-19 Add time stamp and CTT table ID to output.
  *   2025-Jul-22 Update publication date for TR 30112.
+ *   2026-Feb-18 Update CTT table ID for 18.0.
+ *               Add implicit weights for Jurchen and Seal.
  */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -59,7 +61,7 @@ extern int debugLevel;
  * of UTS #10.
  */
 
-static char *cttID = "CTT_V17_0";
+static char *cttID = "CTT_V18_0";
 
 /*
  * Node to build up tree of symbolic line entries for the table.
@@ -1059,6 +1061,8 @@ char localbuf[120];
     fputs ( "collating-symbol <RFB01>          % Symbol for first element of computed weights for Tangut components\n", fd );
     fputs ( "collating-symbol <RFB02>          % Symbol for first element of computed weights for Nushu ideographs\n", fd );
     fputs ( "collating-symbol <RFB03>          % Symbol for first element of computed weights for Khitan Small Script\n", fd );
+    fputs ( "collating-symbol <RFB04>          % Symbol for first element of computed weights for Jurchen ideographs\n", fd );
+    fputs ( "collating-symbol <RFB05>          % Symbol for first element of computed weights for Seal ideographs\n", fd );
     fputs ( "collating-symbol <RFB40>..<RFB41> % Symbols for first element of computed weights for core Han unified ideographs\n", fd );
     fputs ( "collating-symbol <RFB80>          % Symbol for first element of computed weights for Han unified ideographs Ext-A\n", fd );
     fputs ( "collating-symbol <RFB84>..<RFB85> % Symbols for first element of computed weights for Han unified ideographs Ext-B, ...\n", fd );
