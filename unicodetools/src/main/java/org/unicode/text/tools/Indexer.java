@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.tools.Indexer.IndexEntry;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -88,8 +89,8 @@ public class Indexer {
         }
     }
 
-    static class Leaf {
-        Leaf(String key, UnicodeProperty property) {
+    static class IndexEntry {
+        IndexEntry(String key, UnicodeProperty property) {
             this.key = key;
             this.property = property;
             characters = new UnicodeSet();
@@ -133,7 +134,8 @@ public class Indexer {
             }
         }
         // Property to property value to index entry.
-        Map<UnicodeProperty, Map<String, Leaf>> leaves = new TreeMap<>(new PropertyComparator());
+        Map<UnicodeProperty, Map<String, IndexEntry>> indexEntries =
+                new TreeMap<>(new PropertyComparator());
         // Lemma to property value to position of the word in the property value.
         Map<String, Map<String, Integer>> wordIndex = new TreeMap<>();
         // final var kEHDesc = iup.getProperty(UcdProperty.kEH_Desc);
@@ -151,7 +153,7 @@ public class Indexer {
         final Set<String> lemmatizations = new HashSet<>();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             for (var prop : properties) {
-                final var propertyLeaves = leaves.computeIfAbsent(prop, k -> new TreeMap<>());
+                final var propertyIndex = indexEntries.computeIfAbsent(prop, k -> new TreeMap<>());
                 for (String key : prop.getValues(cp)) {
                     if (key == null) {
                         continue;
@@ -161,9 +163,10 @@ public class Indexer {
                     } else if (prop == name) {
                         key = key.replace(Utility.hex(cp), "#");
                     }
-                    final String leafKey = key;
-                    propertyLeaves
-                            .computeIfAbsent(key, k -> new Leaf(leafKey, prop))
+                    // Copy the key to a final variable for use in the λ.
+                    final String indexKey = key;
+                    propertyIndex
+                            .computeIfAbsent(key, k -> new IndexEntry(indexKey, prop))
                             .characters
                             .add(cp);
                     wordBreak.setText(key);
@@ -194,8 +197,16 @@ public class Indexer {
                 System.out.println("Indexed plane " + cp / 0x10000);
             }
         }
-        leaves.get(block).computeIfAbsent("Betty", k -> new Leaf(k, block)).characters.add(BOOP);
-        leaves.get(block).computeIfAbsent("the", k -> new Leaf(k, block)).characters.add(DOOD);
+        indexEntries
+                .get(block)
+                .computeIfAbsent("Betty", k -> new IndexEntry(k, block))
+                .characters
+                .add(BOOP);
+        indexEntries
+                .get(block)
+                .computeIfAbsent("the", k -> new IndexEntry(k, block))
+                .characters
+                .add(DOOD);
         wordIndex.computeIfAbsent("betty", k -> new TreeMap<>()).putIfAbsent("Betty", 0);
         wordIndex.computeIfAbsent("the", k -> new TreeMap<>()).putIfAbsent("the", 0);
 
@@ -215,38 +226,39 @@ public class Indexer {
         System.out.println("wordIndex...");
         {
             int i = 0;
-            for (var wordLeaves : wordIndex.entrySet()) {
+            for (var wordAndSnippets : wordIndex.entrySet()) {
                 if (++i % 1000 == 0) {
                     System.out.println(i + "/" + wordIndex.size() + "...");
                 }
-                file.println("    ['" + wordLeaves.getKey().replace("'", "\\'") + "', new Map([");
-                for (var leaf : wordLeaves.getValue().entrySet()) {
+                file.println(
+                        "    ['" + wordAndSnippets.getKey().replace("'", "\\'") + "', new Map([");
+                for (var snippetAndPosition : wordAndSnippets.getValue().entrySet()) {
                     file.println(
                             "      ['"
-                                    + leaf.getKey().replace("'", "\\'")
+                                    + snippetAndPosition.getKey().replace("'", "\\'")
                                     + "', "
-                                    + leaf.getValue()
+                                    + snippetAndPosition.getValue()
                                     + "],");
                 }
                 file.println("])],");
             }
         }
         file.println("]);");
-        System.out.println("leaves...");
-        file.println("let leaves = new Map([");
+        System.out.println("indexEntries...");
+        file.println("let indexEntries = new Map([");
         for (var property : properties) {
             System.out.println(property.getName() + "...");
-            final var propertyLeaves = leaves.get(property);
+            final var propertyIndex = indexEntries.get(property);
             file.println("  ['" + property.getName() + "', new Map([");
             int i = 0;
-            for (var leaf : propertyLeaves.values()) {
+            for (var indexEntry : propertyIndex.values()) {
                 if (++i % 1000 == 0) {
-                    System.out.println(i + "/" + propertyLeaves.size() + "...");
+                    System.out.println(i + "/" + propertyIndex.size() + "...");
                 }
-                file.println("    ['" + leaf.key.replace("'", "\\'") + "', {");
-                file.println("       html: \"" + leaf.toHTML().replace("\"", "\\\"") + "\",");
+                file.println("    ['" + indexEntry.key.replace("'", "\\'") + "', {");
+                file.println("       html: \"" + indexEntry.toHTML().replace("\"", "\\\"") + "\",");
                 file.println("       characters: [");
-                for (var range : leaf.characters.ranges()) {
+                for (var range : indexEntry.characters.ranges()) {
                     file.println(
                             "         [0x"
                                     + Utility.hex(range.codepoint)
@@ -322,10 +334,10 @@ public class Indexer {
                 resultLeaves.retainAll(wordLeaves.keySet());
             }
             for (var property : properties) {
-                final var propertyLeaves = leaves.get(property);
+                final var propertyIndex = indexEntries.get(property);
                 for (String leaf : resultLeaves) {
                     final int position = leafPivots.get(leaf);
-                    final var entry = propertyLeaves.get(leaf);
+                    final var entry = propertyIndex.get(leaf);
                     if (entry == null) {
                         continue;
                     }

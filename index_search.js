@@ -3,30 +3,31 @@
 let wordIndex/*= GENERATED LINE*/;
 // Property name to property value to index entry.
 /**@type {Map<string, Map<string, {html: string, characters: [number, number][]}>>}*/
-let leaves/*= GENERATED LINE*/;
+let indexEntries/*= GENERATED LINE*/;
 
 /**@type {Map<number, string>}*/
-let nameLeaves = new Map();
-for (let [name, leaf] of leaves.get("Name")) {
-  nameLeaves.set(leaf.characters[0][0], name);
+let characterNames = new Map();
+for (let [name, entry] of indexEntries.get("Name")) {
+  characterNames.set(entry.characters[0][0], name);
 }
-for (let [name, leaf] of leaves.get("Name_Alias")) {
-  if (!nameLeaves.has(leaf.characters[0][0])) {
-    nameLeaves.set(leaf.characters[0][0], name);
+for (let [name, entry] of indexEntries.get("Name_Alias")) {
+  if (!characterNames.has(entry.characters[0][0])) {
+    characterNames.set(entry.characters[0][0], name);
   }
 }
 
 function updateResults(event) {
   /**@type {string}*/
   let query = event.target.value;
-  let leaves = search(query);
-  if (leaves.length >= 100) {
+  let resultEntries = search(query);
+  if (resultEntries.length >= 100) {
     document.getElementById("info").innerHTML = "Showing first 100 results";
   } else {
-    document.getElementById("info").innerHTML = leaves.length + " results";
+    document.getElementById("info").innerHTML = resultEntries.length + " results";
   }
-  document.getElementById("results").innerHTML = "<tr><td>" + leaves.join("</tr></tr><tr><td>") + "</td></tr>";
+  document.getElementById("results").innerHTML = "<tr><td>" + resultEntries.join("</tr></tr><tr><td>") + "</td></tr>";
 }
+
 function search(/**@type {string}*/ query) {
   let wordBreak = new Intl.Segmenter("en", { granularity: "word" });
   let queryWords = Array.from(wordBreak.segment(query)).filter(s => s.isWordLike).map(s => s.segment);
@@ -35,36 +36,36 @@ function search(/**@type {string}*/ query) {
   /**@type {string[]}*/
   var result = [];
   /**@type {Set<string>}*/
-  var resultLeaves = new Set(wordIndex.get(foldedQuery[0])?.keys() ?? []);
+  var resultSnippets = new Set(wordIndex.get(foldedQuery[0])?.keys() ?? []);
   let firstLemmata = [foldedQuery[0]];
-  if (resultLeaves.size === 0 && foldedQuery.length == 1) {
-    let prefix = queryWords.at(-1);
+  if (resultSnippets.size === 0 && foldedQuery.length == 1) {
+    let prefix = fold(queryWords.at(-1));
     for (let [completion, leaves] of wordIndex) {
       if (completion.startsWith(prefix)) {
         firstLemmata.push(completion);
-        resultLeaves = resultLeaves.union(leaves);
+        resultSnippets = resultSnippets.union(leaves);
       }
     }
   }
   for (var i = 1; i < foldedQuery.length; ++i) {
     var rhs = new Set(wordIndex.get(foldedQuery[i])?.keys() ?? []);
-    let intersection = resultLeaves.intersection(rhs);
+    let intersection = resultSnippets.intersection(rhs);
     if (intersection.size === 0 && i == foldedQuery.length - 1) {
-      let prefix = queryWords.at(-1);
+      let prefix = fold(queryWords.at(-1));
       for (let [completion, leaves] of wordIndex) {
         if (completion.startsWith(prefix)) {
           rhs = rhs.union(leaves);
         }
       }
-      resultLeaves = resultLeaves.intersection(rhs);
+      resultSnippets = resultSnippets.intersection(rhs);
     } else {
-      resultLeaves = intersection;
+      resultSnippets = intersection;
     }
   }
   let pivots = firstLemmata.map(l => wordIndex.get(l)).filter(x => !!x);
   let getPivot = (/**@type {string}*/s) => pivots.map(p => p.get(s)).filter(x => x !== undefined)[0];
   let collator = new Intl.Collator("en");
-  resultLeaves = Array.from(resultLeaves).sort(
+  resultSnippets = Array.from(resultSnippets).sort(
     (left, right) => collator.compare(
       left.substring(getPivot(left)) +
                       ' \uFFFE ' +
@@ -72,29 +73,29 @@ function search(/**@type {string}*/ query) {
       right.substring(getPivot(right)) +
                       ' \uFFFE ' +
                       right.substring(0, getPivot(right))));
-  for (let [property, propertyLeaves] of leaves) {
+  for (let [property, propertyIndex] of indexEntries) {
     /**@type {[number, number][]}*/
-    for (let leaf of resultLeaves) {
-      let entry = propertyLeaves.get(leaf);
+    for (let snippet of resultSnippets) {
+      let entry = propertyIndex.get(snippet);
       if (!entry) {
         continue;
       }
-      let leafSet = entry.characters;
-      if (superset(covered, leafSet)) {
+      let entrySet = entry.characters;
+      if (superset(covered, entrySet)) {
         continue;
       }
-      covered = covered.concat(leafSet);
-      let pivot = getPivot(leaf);
-      let tail = leaf.substring(pivot);
+      covered = covered.concat(entrySet);
+      let pivot = getPivot(snippet);
+      let tail = snippet.substring(pivot);
       result.push(entry.html.replace(
         "[RESULT TEXT]",
         "<span class=tail" +
-        (leaf.includes(",") ? " style=width:100%" : "") + ">" +
+        (snippet.includes(",") ? " style=width:100%" : "") + ">" +
         toHTML(tail) +
         (pivot > 0 && !tail.endsWith(".") ? "," : "") +
         "</span> " +
           (pivot > 0 ? "<span class=head>" +
-                       toHTML(leaf.substring(0, pivot)) +
+                       toHTML(snippet.substring(0, pivot)) +
                        "</span>"
                      : "")));
       if (result.length >= 100) {
@@ -103,20 +104,20 @@ function search(/**@type {string}*/ query) {
     }
   }
   if (queryWords.length == 1 && /^[0-9A-F]+$/i.test(queryWords[0])) {
-    let name = nameLeaves.get(parseInt(queryWords[0], 16));
+    let name = characterNames.get(parseInt(queryWords[0], 16));
     if (name) {
       result.push(
-        (leaves.get("Name").get(name) ??
-         leaves.get("Name_Alias").get(name)).html.replace(
+        (indexEntries.get("Name").get(name) ??
+         indexEntries.get("Name_Alias").get(name)).html.replace(
         "[RESULT TEXT]", toHTML(name)));
     }
   } else if (queryWords.length == 1 && /^boop$/i.test(queryWords[0])) {
       result.push(
-        leaves.get("Block").get("Betty").html.replace(
+        indexEntries.get("Block").get("Betty").html.replace(
         "[RESULT TEXT]", toHTML("Betty")));
   } else if (queryWords.length == 1 && /^dood$/i.test(queryWords[0])) {
       result.push(
-        leaves.get("Block").get("the").html.replace(
+        indexEntries.get("Block").get("the").html.replace(
         "[RESULT TEXT]", toHTML("the")));
   }
   return result;
