@@ -136,18 +136,21 @@ public class GenerateBreakStateTables {
                 stateNames.put(
                         next,
                         (state == 1 ? "" : stateName + " ")
-                                + rbbiNames.getOrDefault(col, List.of()).stream()
-                                        .sorted(
-                                                Comparator.<NamedRefinedSet>comparingInt(
-                                                        s ->
-                                                                -s.getSet()
-                                                                        .removeAll(unassigned)
-                                                                        .removeAll(pua)
-                                                                        .size()))
-                                        .map(NamedRefinedSet::getName)
-                                        .map(s -> s.replace("orig", ""))
-                                        .findFirst()
-                                        .orElse(""));
+                                + (col == 1
+                                        ? "eot"
+                                        : rbbiNames.get(col).stream()
+                                                .sorted(
+                                                        Comparator.<NamedRefinedSet>comparingInt(
+                                                                s ->
+                                                                        -s.getSet()
+                                                                                .removeAll(
+                                                                                        unassigned)
+                                                                                .removeAll(pua)
+                                                                                .size()))
+                                                .map(NamedRefinedSet::getName)
+                                                .map(s -> s.replace("orig", ""))
+                                                .findFirst()
+                                                .orElse("")));
                 neighbourhoodsToName.add(next);
             }
         }
@@ -220,7 +223,7 @@ public class GenerateBreakStateTables {
             }
         }
         try (var file = new PrintStream(new File("LineBreakTransitions.txt"))) {
-            file.println("# From state ; class ; To state");
+            file.println("# From state ; class name or eot ; to state");
             for (int state = 1; state < table.fNumStates; ++state) {
                 final int row = rbbi.fRData.getRowIndex(state);
 
@@ -229,12 +232,13 @@ public class GenerateBreakStateTables {
                     if (rbbiNames.get(col) == null && next == 0) {
                         continue;
                     }
-                    // TODO(egg): Weird that we have those nameless classes.
                     String ahead =
-                            rbbiNames.getOrDefault(col, List.of()).stream()
-                                    .map(NamedRefinedSet::getName)
-                                    .map(s -> s.replace("orig", ""))
-                                    .collect(Collectors.joining("|"));
+                            col == 1
+                                    ? "eot"
+                                    : rbbiNames.get(col).stream()
+                                            .map(NamedRefinedSet::getName)
+                                            .map(s -> s.replace("orig", ""))
+                                            .collect(Collectors.joining("|"));
                     if (next != 0 && !ahead.isEmpty()) {
                         file.print(stateNames.get(state) + " ; ");
                         file.println(ahead + " ; " + stateNames.get(next));

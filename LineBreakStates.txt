@@ -161,7 +161,7 @@ XX_ExtPictUnassigned CM ; Yes ;
 XX_ExtPictUnassigned ZWJ ; Yes ; 
 CM HY CM ; Yes ; 
 CM HY ZWJ ; Yes ; 
-CM QU_Pf  ; Yes ; 
+CM QU_Pf eot ; Yes ; 
 CM QU_Pf CM ; Yes ; 
 CM QU_Pf QU_Pi ; Yes ; 
 BAmEastAsian CM QU_Pf ; Yes ; 
