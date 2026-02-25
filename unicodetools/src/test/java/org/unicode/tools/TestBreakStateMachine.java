@@ -131,12 +131,8 @@ public class TestBreakStateMachine extends TestFmwkMinusMinus {
                     State state = states.get("START");
                     Integer lastAccepting = null;
                     Map<String, Integer> lookaheadPositions = new HashMap<>();
-                    for (int i = lastBreak;
-                            ;
-                            i =
-                                    i == testString.length()
-                                            ? i
-                                            : testString.offsetByCodePoints(i, 1)) {
+                    int i = lastBreak;
+                    for (; ; ) {
                         if (state.unconditionallyAccepting) {
                             lastAccepting = i;
                         }
@@ -150,15 +146,18 @@ public class TestBreakStateMachine extends TestFmwkMinusMinus {
                             lookaheadPositions.put(state.lookahead, i);
                         }
 
-                        final String classAhead =
-                                i == testString.length()
-                                        ? "eot"
-                                        : classes.get(testString.codePointAt(i));
+                        String classAhead;
+                        if (i == testString.length()) {
+                            classAhead = "eot";
+                        } else {
+                            int cp = testString.codePointAt(i);
+                            classAhead = classes.get(cp);
+                            i += Character.charCount(cp);
+                        }
                         state = state.transitions.get(classAhead);
                         if (state == null) {
                             // Normal DFA termination: no transition out of this state, the break is
-                            // the
-                            // last accepting state encoutered.
+                            // the last accepting state encoutered.
                             lastBreak = lastAccepting;
                             break;
                         }
