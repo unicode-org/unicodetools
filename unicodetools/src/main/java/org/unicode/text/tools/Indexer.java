@@ -1,5 +1,8 @@
 package org.unicode.text.tools;
 
+import com.ibm.icu.segmenter.LocalizedSegmenter;
+import com.ibm.icu.segmenter.LocalizedSegmenter.SegmentationType;
+import com.ibm.icu.segmenter.Segment;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
@@ -17,6 +20,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
@@ -87,8 +92,8 @@ public class Indexer {
     }
 
     static class IndexEntry {
-        IndexEntry(String key, UnicodeProperty property) {
-            this.key = key;
+        IndexEntry(String snippet, UnicodeProperty property) {
+            this.snippet = snippet;
             this.property = property;
             characters = new UnicodeSet();
         }
@@ -101,7 +106,7 @@ public class Indexer {
                     characters);
         }
 
-        String key;
+        String snippet;
         UnicodeProperty property;
         UnicodeSet characters;
 
@@ -133,7 +138,7 @@ public class Indexer {
         // Property to property value to index entry.
         Map<UnicodeProperty, Map<String, IndexEntry>> indexEntries =
                 new TreeMap<>(new PropertyComparator());
-        // Lemma to property value to position of the word in the property value.
+        // Lemma to snippet to position of the word in the snippet.
         Map<String, Map<String, Integer>> wordIndex = new TreeMap<>();
         // final var kEHDesc = iup.getProperty(UcdProperty.kEH_Desc);
         final var properties =
@@ -147,32 +152,55 @@ public class Indexer {
                     comment, // kEHDesc
                 };
         final var wordBreak = BreakIterator.getWordInstance();
+        final var sentenceBreak =
+                LocalizedSegmenter.builder().setSegmentationType(SegmentationType.SENTENCE).build();
         final Set<String> lemmatizations = new HashSet<>();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             for (var prop : properties) {
                 final var propertyIndex = indexEntries.computeIfAbsent(prop, k -> new TreeMap<>());
-                for (String key : prop.getValues(cp)) {
-                    if (key == null) {
+                Iterable<String> snippets;
+                if (prop == subheader_notice || prop == comment) {
+                    snippets =
+                            StreamSupport.stream(prop.getValues(cp).spliterator(), false)
+                                            .flatMap(
+                                                    s ->
+                                                            s == null
+                                                                    ? Stream.of()
+                                                                    : sentenceBreak
+                                                                            .segment(s)
+                                                                            .segments()
+                                                                            .map(
+                                                                                    Segment
+                                                                                            ::getSubSequence)
+                                                                            .map(
+                                                                                    CharSequence
+                                                                                            ::toString))
+                                    ::iterator;
+                } else {
+                    snippets = prop.getValues(cp);
+                }
+                for (String snippet : snippets) {
+                    if (snippet == null) {
                         continue;
                     }
                     if (prop == block) {
-                        key = pretty_block.getValue(cp);
+                        snippet = pretty_block.getValue(cp);
                     } else if (prop == name) {
-                        key = key.replace(Utility.hex(cp), "#");
+                        snippet = snippet.replace(Utility.hex(cp), "#");
                     }
-                    // Copy the key to a final variable for use in the λ.
-                    final String indexKey = key;
+                    // Copy the snippet to a final variable for use in the λ.
+                    final String indexSnippet = snippet;
                     propertyIndex
-                            .computeIfAbsent(key, k -> new IndexEntry(indexKey, prop))
+                            .computeIfAbsent(snippet, k -> new IndexEntry(indexSnippet, prop))
                             .characters
                             .add(cp);
-                    wordBreak.setText(key);
+                    wordBreak.setText(snippet);
                     int start = 0;
                     for (int end = wordBreak.next();
                             end != BreakIterator.DONE;
                             start = end, end = wordBreak.next()) {
                         if (wordBreak.getRuleStatus() >= BreakIterator.WORD_NUMBER) {
-                            String word = key.substring(start, end).toLowerCase();
+                            String word = snippet.substring(start, end).toLowerCase();
                             String lemma = lemmatize(word);
                             if (false && !lemmatizations.contains(word) && !lemma.equals(word)) {
                                 System.out.println(word + " < " + lemma);
@@ -180,11 +208,11 @@ public class Indexer {
                             }
                             wordIndex
                                     .computeIfAbsent(fold(word), k -> new TreeMap<>())
-                                    .putIfAbsent(key, start);
+                                    .putIfAbsent(snippet, start);
                             if (!lemma.equals(fold(word))) {
                                 wordIndex
                                         .computeIfAbsent(lemma, k -> new TreeMap<>())
-                                        .putIfAbsent(key, start);
+                                        .putIfAbsent(snippet, start);
                             }
                         }
                     }
@@ -252,7 +280,7 @@ public class Indexer {
                 if (++i % 1000 == 0) {
                     System.out.println(i + "/" + propertyIndex.size() + "...");
                 }
-                file.println("    ['" + indexEntry.key.replace("'", "\\'") + "', {");
+                file.println("    ['" + indexEntry.snippet.replace("'", "\\'") + "', {");
                 file.println("       html: \"" + indexEntry.toHTML().replace("\"", "\\\"") + "\",");
                 file.println("       characters: [");
                 for (var range : indexEntry.characters.ranges()) {

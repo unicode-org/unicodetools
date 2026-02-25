@@ -1,7 +1,7 @@
-// Lemma to property value to position of the word in the property value.
+// Lemma to snippet to position of the word in the snippet.
 /**@type {Map<string, Map<String, number>>}*/
 let wordIndex/*= GENERATED LINE*/;
-// Property name to property value to index entry.
+// Property name to snippet to index entry.
 /**@type {Map<string, Map<string, {html: string, characters: [number, number][]}>>}*/
 let indexEntries/*= GENERATED LINE*/;
 
