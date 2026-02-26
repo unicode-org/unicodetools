@@ -195,6 +195,6 @@ function rangeIntersection(/**@type {[number, number]}*/left, /**@type {[number,
 }
 
 function fold(/**@type {string}*/ word) {
-  let folding = word.toLowerCase();
+  let folding = word.normalize("NFKC").toLowerCase();
   return folding.replace("š", "sh");
 }

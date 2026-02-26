@@ -25,6 +25,7 @@ import java.util.stream.StreamSupport;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -38,6 +39,7 @@ public class Indexer {
     static int DOOD = 0x10D00D;
 
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make();
+    static Normalizer nfkc = new Normalizer(Normalizer.NormalizationForm.NFKC, iup);
     static final UnicodeSet newCharacters =
             IndexUnicodeProperties.make(Settings.LAST_VERSION_INFO)
                     .getProperty(UcdProperty.General_Category)
@@ -333,7 +335,7 @@ public class Indexer {
 
     static String fold(String word) {
         // TODO(egg): collation folding.
-        String folding = word.toLowerCase();
+        String folding = nfkc.normalize(word).toLowerCase();
         return folding.replace("š", "sh");
     }
 
