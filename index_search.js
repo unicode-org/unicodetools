@@ -111,13 +111,13 @@ function search(/**@type {string}*/ query) {
       }
     }
   }
-  if (queryWords.length == 1) {
+  if (queryWords.length <= 1 && query.length > 0) {
     let codePoints = [];
-    if (/^[0-9A-F]+$/ui.test(queryWords[0])) {
-      codePoints.push(parseInt(queryWords[0], 16));
+    if (/^[0-9A-F]+$/ui.test(query)) {
+      codePoints.push(parseInt(query, 16));
     }
-    if (/^.$/ui.test(queryWords[0])) {
-      codePoints.push(queryWords[0].codePointAt(0));
+    if (/^.$/ui.test(query)) {
+      codePoints.push(query.codePointAt(0));
     }
     for (let cp of codePoints) {
       var name = characterNames.get(cp);

@@ -335,6 +335,7 @@ public class Indexer {
 
     static String fold(String word) {
         // TODO(egg): collation folding.
+        // Maybe some of it before segmentation.
         String folding = nfkc.normalize(word).toLowerCase();
         return folding.replace("š", "sh");
     }
