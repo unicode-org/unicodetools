@@ -12,15 +12,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -164,15 +165,17 @@ public class Indexer {
                 if (prop == subheader_notice || prop == comment) {
                     snippets =
                             StreamSupport.stream(prop.getValues(cp).spliterator(), false)
-                                            .flatMap(
-                                                    s ->
-                                                            s == null
-                                                                    ? Stream.of()
-                                                                    : sentenceBreak
-                                                                            .segment(s)
-                                                                            .segments())
+                                            .filter(Objects::nonNull)
+                                            .flatMap(s -> sentenceBreak.segment(s).segments())
                                             .map(Segment::getSubSequence)
                                             .map(CharSequence::toString)
+                                            .map(String::strip)
+                                    ::iterator;
+                } else if (prop == informalAlias) {
+                    snippets =
+                            StreamSupport.stream(prop.getValues(cp).spliterator(), false)
+                                            .filter(Objects::nonNull)
+                                            .flatMap(s -> Arrays.stream(s.split("[,;]")))
                                             .map(String::strip)
                                     ::iterator;
                 } else {
