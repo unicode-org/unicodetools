@@ -573,7 +573,7 @@ public class GenerateConfusables {
 
     //    static final String PROHIBITED = "Restricted ; ";
     //    static final String UNPROHIBITED = "Allowed ; ";
-    private static final boolean suppress_NFKC = true;
+    private static final boolean suppress_NFKC = false;
 
     /** */
 
@@ -1391,15 +1391,7 @@ public class GenerateConfusables {
                                     + ";\t"
                                     + line);
                 }
-            } else if (suppress_NFKC
-                    && nfkdSource.equals(nfkdTarget)
-                    && !source.equals("\u1D4C")
-                    && !target.equals("\u1D4C")) {
-                // Skipping the suppression of U+1D4C temporarily so that we can
-                // add the confusable pair (U+1D9F, U+1D4C) that have the same
-                // compatibility decomposition, but not the same canonical decomposition.
-                // In the future, suppress_NFKC should be set to false and all
-                // resulting additions reviewed.
+            } else if (suppress_NFKC && nfkdSource.equals(nfkdTarget)) {
                 if (SHOW_SUPPRESS) {
                     System.out.println(
                             "*** Suppressing nfkc for:\t"

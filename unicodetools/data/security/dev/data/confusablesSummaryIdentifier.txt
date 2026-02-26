@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2026-02-20, 09:37:08 GMT
+# Date: 2026-02-21, 04:18:13 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
