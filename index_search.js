@@ -7,8 +7,16 @@ let indexEntries/*= GENERATED LINE*/;
 
 /**@type {Map<number, string>}*/
 let characterNames = new Map();
+/**@type {Map<[number, number], string>}*/
+let characterNameRanges = new Map();
 for (let [name, entry] of indexEntries.get("Name")) {
-  characterNames.set(entry.characters[0][0], name);
+  if (entry.characters[0][0] == entry.characters[0][1]) {
+    characterNames.set(entry.characters[0][0], name);
+  } else {
+    for (let range of entry.characters) {
+      characterNameRanges.set(range, name);
+    }
+  }
 }
 for (let [name, entry] of indexEntries.get("Name_Alias")) {
   if (!characterNames.has(entry.characters[0][0])) {
@@ -103,13 +111,30 @@ function search(/**@type {string}*/ query) {
       }
     }
   }
-  if (queryWords.length == 1 && /^[0-9A-F]+$/i.test(queryWords[0])) {
-    let name = characterNames.get(parseInt(queryWords[0], 16));
-    if (name) {
-      result.push(
-        (indexEntries.get("Name").get(name) ??
-         indexEntries.get("Name_Alias").get(name)).html.replace(
-        "[RESULT TEXT]", toHTML(name)));
+  if (queryWords.length == 1) {
+    let codePoints = [];
+    if (/^[0-9A-F]+$/ui.test(queryWords[0])) {
+      codePoints.push(parseInt(queryWords[0], 16));
+    }
+    if (/^.$/ui.test(queryWords[0])) {
+      codePoints.push(queryWords[0].codePointAt(0));
+    }
+    for (let cp of codePoints) {
+      var name = characterNames.get(cp);
+      if (!name) {
+        for (let [[first, last], n] of characterNameRanges) {
+          if (first <= cp && cp <= last) {
+            name = n;
+            break;
+          }
+        }
+      }
+      if (name) {
+        result.push(
+          (indexEntries.get("Name").get(name) ??
+          indexEntries.get("Name_Alias").get(name)).html.replace(
+          "[RESULT TEXT]", toHTML(name)));
+      }
     }
   } else if (queryWords.length == 1 && /^boop$/i.test(queryWords[0])) {
       result.push(

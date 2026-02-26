@@ -168,13 +168,10 @@ public class Indexer {
                                                                     ? Stream.of()
                                                                     : sentenceBreak
                                                                             .segment(s)
-                                                                            .segments()
-                                                                            .map(
-                                                                                    Segment
-                                                                                            ::getSubSequence)
-                                                                            .map(
-                                                                                    CharSequence
-                                                                                            ::toString))
+                                                                            .segments())
+                                            .map(Segment::getSubSequence)
+                                            .map(CharSequence::toString)
+                                            .map(String::strip)
                                     ::iterator;
                 } else {
                     snippets = prop.getValues(cp);
@@ -238,6 +235,7 @@ public class Indexer {
         System.out.println("Writing charindex.html...");
         var file = new PrintStream(new File("charindex.html"));
         file.println("<head>");
+        file.println("<meta charset=\"utf-8\">");
         file.println("<title>Character Name Index</title>");
         file.println("<style>");
         final var css = new BufferedReader(new FileReader(new File("charindex.css")));
