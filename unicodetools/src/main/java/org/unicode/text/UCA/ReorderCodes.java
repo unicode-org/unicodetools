@@ -143,19 +143,15 @@ public class ReorderCodes {
             // See https://www.unicode.org/alloc/Pipeline.html
             // and https://cldr.unicode.org/development/updating-codes/updating-script-metadata
             switch (reorderCode) {
-                    //            case UCD_Types.Old_Hungarian:
-                    //                return "𐲡";
-                    // Approved for Unicode 17:
+                    // Approved for Unicode 18:
                 case UCD_Types.Chisoi:
-                    return "\uD81B\uDD93";
-                case UCD_Types.Sidetic:
-                    return "\uD802\uDD50";
-                case UCD_Types.Tai_Yo:
-                    return "\uD839\uDED5";
-                case UCD_Types.Tolong_Siki:
-                    return "\uD807\uDDC6";
-                case UCD_Types.Beria_Erfe:
-                    return Character.toString(0x16EA1);
+                    return Character.toString(0x16D93);
+                case UCD_Types.Jurchen:
+                    return Character.toString(0x18F1A);
+                case UCD_Types.Proto_Cuneiform:
+                    return Character.toString(0x125AD);
+                case UCD_Types.Seal:
+                    return Character.toString(0x3EA10);
                     // Provisionally assigned so far:
                     // (none of these needed right now)
                 default:

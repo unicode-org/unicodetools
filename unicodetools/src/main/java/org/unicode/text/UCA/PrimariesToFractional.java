@@ -733,8 +733,9 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.Egyptian_Hieroglyphs).minimalGap3();
         // Register the scripts as aliases.
         setOptionsForScripts(UCD_Types.Meroitic_Cursive, UCD_Types.Meroitic_Hieroglyphs);
-        // Large Excluded Script, minimal gaps.
-        setOptionsForScripts(UCD_Types.Tangut).minimalGap3();
+        // All siniform scripts are elsewhere set to minimalGap3().
+        // Large (siniform) Excluded Script, avoid lead byte overflow.
+        setOptionsForScripts(UCD_Types.Tangut).newByte();
         // Han uses many lead bytes, so that tailoring tens of thousands of characters
         // can use many two-byte primaries.
         setOptionsForScript(UCD_Types.HAN_SCRIPT)
@@ -1284,6 +1285,8 @@ public final class PrimariesToFractional {
             if (props.options.firstPrimary == 0) {
                 props.options.firstPrimary = r.leadPrimary;
             }
+            props.newByte = props.options.beginsByte;
+            props.options.minimalGap3();
             props.implicitRange = r;
         }
 
