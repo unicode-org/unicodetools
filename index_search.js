@@ -9,6 +9,9 @@ let indexEntries/*= GENERATED LINE*/;
 let characterNames = new Map();
 /**@type {Map<[number, number], string>}*/
 let characterNameRanges = new Map();
+
+let maxResults = 100;
+
 for (let [name, entry] of indexEntries.get("Name")) {
   if (entry.characters[0][0] == entry.characters[0][1]) {
     characterNames.set(entry.characters[0][0], name);
@@ -27,19 +30,20 @@ for (let [name, entry] of indexEntries.get("Name_Alias")) {
 function updateResults(event) {
   /**@type {string}*/
   let query = event.target.value;
-  let resultEntries = search(query);
-  if (resultEntries.length >= 100) {
-    document.getElementById("info").innerHTML = "Showing first 100 results";
+  let {entries, rangeCount} = search(query);
+  if (rangeCount >= maxResults) {
+    document.getElementById("info").innerHTML = `Showing first ${maxResults} results`;
   } else {
-    document.getElementById("info").innerHTML = resultEntries.length + " results";
+    document.getElementById("info").innerHTML = rangeCount + " results";
   }
-  document.getElementById("results").innerHTML = "<tr><td>" + resultEntries.join("</tr></tr><tr><td>") + "</td></tr>";
+  document.getElementById("results").innerHTML = "<tr><td>" + entries.join("</tr></tr><tr><td>") + "</td></tr>";
 }
 
 function search(/**@type {string}*/ query) {
   let wordBreak = new Intl.Segmenter("en", { granularity: "word" });
   let queryWords = Array.from(wordBreak.segment(query)).filter(s => s.isWordLike).map(s => s.segment);
   let foldedQuery = queryWords.map(fold);
+  var rangeCount = 0;
   var covered = [];
   /**@type {string[]}*/
   var result = [];
@@ -92,6 +96,7 @@ function search(/**@type {string}*/ query) {
       if (superset(covered, entrySet)) {
         continue;
       }
+      rangeCount += entrySet.length;
       covered = covered.concat(entrySet);
       let pivot = getPivot(snippet);
       let tail = snippet.substring(pivot);
@@ -106,8 +111,8 @@ function search(/**@type {string}*/ query) {
                        toHTML(snippet.substring(0, pivot)) +
                        "</span>"
                      : "")));
-      if (result.length >= 100) {
-        return result;
+      if (rangeCount >= maxResults) {
+        return {entries: result, rangeCount};
       }
     }
   }
@@ -130,6 +135,7 @@ function search(/**@type {string}*/ query) {
         }
       }
       if (name) {
+        rangeCount += 1;
         result.push(
           (indexEntries.get("Name").get(name) ??
           indexEntries.get("Name_Alias").get(name)).html.replace(
@@ -137,15 +143,17 @@ function search(/**@type {string}*/ query) {
       }
     }
   } else if (queryWords.length == 1 && /^boop$/i.test(queryWords[0])) {
+        rangeCount += 1;
       result.push(
         indexEntries.get("Block").get("Betty").html.replace(
         "[RESULT TEXT]", toHTML("Betty")));
   } else if (queryWords.length == 1 && /^dood$/i.test(queryWords[0])) {
+      rangeCount += 1;
       result.push(
         indexEntries.get("Block").get("the").html.replace(
         "[RESULT TEXT]", toHTML("the")));
   }
-  return result;
+  return {entries: result, rangeCount};
 }
 
 function toHTML(/**@type {string}*/ plain) {
