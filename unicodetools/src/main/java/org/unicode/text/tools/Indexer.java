@@ -316,8 +316,12 @@ public class Indexer {
                             .computeIfAbsent(snippet, k -> new IndexEntry(indexSnippet, prop))
                             .characters
                             .add(cp);
-                    // Override word breaking of ', ., and .- so that radical/stroke indices are atomic.
-                    wordBreak.setText(snippet.replace(".-", "pp").replace('\'', 'p').replace('.', 'p'));
+                    // Override word breaking of ', ., and .- so that radical/stroke indices are
+                    // atomic.
+                    wordBreak.setText(
+                            snippet.replaceAll(".-", "pm")
+                                    .replace('\'', 'p')
+                                    .replaceAll("\\.(?=[0-9])", "p"));
                     int start = 0;
                     for (int end = wordBreak.next();
                             end != BreakIterator.DONE;

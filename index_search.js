@@ -41,7 +41,7 @@ function updateResults(event) {
 
 function search(/**@type {string}*/ query) {
   let wordBreak = new Intl.Segmenter("en", { granularity: "word" });
-  let queryWords = Array.from(wordBreak.segment(query.replace(/\.-/, "pp").replace(/['.]/, "p")))
+  let queryWords = Array.from(wordBreak.segment(query.replace(/\.-/, "pm").replace(/['.]/, "p")))
       .filter(s => s.isWordLike)
       .map(s => query.substring(s.index, s.index + s.segment.length));
   let foldedQuery = queryWords.map(fold);
