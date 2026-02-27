@@ -41,6 +41,11 @@ function updateResults(event) {
 
 function search(/**@type {string}*/ query) {
   let wordBreak = new Intl.Segmenter("en", { granularity: "word" });
+  // Override word breaking of ., -, and ' so radical/stroke indices are atomic.
+  // This is different from what is done in the index, because we don’t expect a
+  // lot of punctuation in the query, but we need to treat partially-type
+  // radical-stroke indices as atomic: when indexing, "153." has the word 153,
+  // but in a query, it has the word "153." which may be a prefix for "153.9".
   let queryWords = Array.from(wordBreak.segment(query.replace(/\.-/, "pm").replace(/['.]/, "p")))
       .filter(s => s.isWordLike)
       .map(s => query.substring(s.index, s.index + s.segment.length));
