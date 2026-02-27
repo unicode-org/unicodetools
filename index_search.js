@@ -7,10 +7,24 @@ let indexEntries/*= GENERATED LINE*/;
 
 /**@type {Map<number, string>}*/
 let characterNames = new Map();
+/**@type {Map<[number, number], {property: string, snippet: string}>}*/
+let radicalStrokeRanges = new Map();
 /**@type {Map<[number, number], string>}*/
 let characterNameRanges = new Map();
 
 let maxResults = 100;
+
+for (let [property, propertyIndex] of indexEntries) {
+  if (!property.endsWith("RSUnicode")) {
+    continue;
+  }
+  for (let [snippet, entry] of propertyIndex) {
+    for (let range of entry.characters) {
+      radicalStrokeRanges.set(range, {property, snippet});
+    }
+  }
+}
+// TODO(egg): Something about the seal radicals, but maybe get rid of the comment hack first.
 
 for (let [name, entry] of indexEntries.get("Name")) {
   if (entry.characters[0][0] == entry.characters[0][1]) {
@@ -133,11 +147,25 @@ function search(/**@type {string}*/ query) {
     }
     for (let cp of codePoints) {
       var name = characterNames.get(cp);
+      var rs = null;
       if (!name) {
-        for (let [[first, last], n] of characterNameRanges) {
+        for (let [[first, last], {property, snippet}] of radicalStrokeRanges) {
           if (first <= cp && cp <= last) {
-            name = n;
+            rs = {property, snippet};
             break;
+          }
+        }
+        if (rs) {
+          rangeCount += indexEntries.get(rs.property).get(rs.snippet).characters.length;
+          result.push(
+            indexEntries.get(rs.property).get(rs.snippet).html.replace(
+            "[RESULT TEXT]", toHTML(rs.snippet)));
+        } else {
+          for (let [[first, last], n] of characterNameRanges) {
+            if (first <= cp && cp <= last) {
+              name = n;
+              break;
+            }
           }
         }
       }
@@ -149,16 +177,17 @@ function search(/**@type {string}*/ query) {
           "[RESULT TEXT]", toHTML(name)));
       }
     }
-  } else if (queryWords.length == 1 && /^boop$/i.test(queryWords[0])) {
+    if (/^boop$/i.test(query)) {
         rangeCount += 1;
       result.push(
         indexEntries.get("Block").get("Betty").html.replace(
         "[RESULT TEXT]", toHTML("Betty")));
-  } else if (queryWords.length == 1 && /^dood$/i.test(queryWords[0])) {
-      rangeCount += 1;
-      result.push(
-        indexEntries.get("Block").get("the").html.replace(
-        "[RESULT TEXT]", toHTML("the")));
+    } else if (/^dood$/i.test(query)) {
+        rangeCount += 1;
+        result.push(
+          indexEntries.get("Block").get("the").html.replace(
+          "[RESULT TEXT]", toHTML("the")));
+    }
   }
   return {entries: result, rangeCount};
 }
