@@ -59,6 +59,11 @@ public class Indexer {
     static final UnicodeProperty subheader_notice =
             iup.getProperty(UcdProperty.Names_List_Subheader_Notice);
     static final UnicodeProperty comment = iup.getProperty(UcdProperty.Names_List_Comment);
+    static final UnicodeProperty kRSUnicode = iup.getProperty(UcdProperty.kRSUnicode);
+    static final UnicodeProperty kTGT_RSUnicode = iup.getProperty(UcdProperty.kTGT_RSUnicode);
+    static final UnicodeProperty kJURC_RSUnicode = iup.getProperty(UcdProperty.kJURC_RSUnicode);
+    static final UnicodeProperty kSeal_Rad = iup.getProperty(UcdProperty.kSEAL_Rad);
+    static final UnicodeProperty cjkRadical = iup.getProperty(UcdProperty.CJK_Radical);
     static final Map<String, UnicodeSet> blockSet = new HashMap<>();
 
     static {
@@ -112,6 +117,15 @@ public class Indexer {
         String snippet;
         UnicodeProperty property;
         UnicodeSet characters;
+        Map<String, UnicodeSet> relatedCharacters = new TreeMap<>();
+
+        public UnicodeSet coveredCharacters() {
+            UnicodeSet result = characters.cloneAsThawed();
+            for (UnicodeSet related : relatedCharacters.values()) {
+                result.addAll(related);
+            }
+            return result;
+        }
 
         public String toHTML() {
             final var subEntries = subEntries();
@@ -127,8 +141,95 @@ public class Indexer {
                                                     Collectors.joining(
                                                             "</div></li><li><div style='overflow:hidden'>"))
                                     + "</div></li></ul>")
-                    + "</div></li>";
+                    + "</div>"
+                    + relatedCharacters.entrySet().stream()
+                            .map(
+                                    entry ->
+                                            "<div style='overflow:hidden'>"
+                                                    + entry.getKey()
+                                                    + "<ul><li><div style='overflow:hidden'>"
+                                                    + Indexer.subEntries(
+                                                                    /* showBlock= */ true,
+                                                                    /* showSubheader= */ false,
+                                                                    /* showName= */ true,
+                                                                    entry.getValue())
+                                                            .stream()
+                                                            .map(e -> e.toHTML())
+                                                            .collect(
+                                                                    Collectors.joining(
+                                                                            "</div></li><li><div style='overflow:hidden'>"))
+                                                    + "</div></li></ul></div>")
+                            .collect(Collectors.joining())
+                    + "</li>";
         }
+    }
+
+    // Keyed by radical character, not radical number.
+    static Map<Integer, UnicodeSet> getRadicalSets() {
+        final Map<String, UnicodeSet> fastCJKRadicals = new HashMap<>();
+        for (final String r : cjkRadical.getAvailableValues()) {
+            fastCJKRadicals.put(r, cjkRadical.getSet(r));
+        }
+        final Map<Integer, Integer> tangutComponents = new HashMap<>();
+        for (int i = 1; i < 1000; ++i) {
+            int cp = i <= 768 ? 0x18800 + i - 1 : 0x18D80 + i - 769;
+            if (name.getValue(cp) == null) {
+                break;
+            }
+            if (!name.getValue(cp).equals(String.format("TANGUT COMPONENT-%03d", i))) {
+                throw new IllegalArgumentException(name.getValue(cp));
+            }
+            tangutComponents.put(i, cp);
+        }
+        final Map<Integer, Integer> jurchenRadicals = new HashMap<>();
+        for (int i = 1; i < 100; ++i) {
+            int cp = 0x191A0 + i - 1;
+            if (name.getValue(cp) == null) {
+                break;
+            }
+            if (!name.getValue(cp).equals(String.format("JURCHEN RADICAL-%02d", i))) {
+                throw new IllegalArgumentException(name.getValue(cp));
+            }
+            jurchenRadicals.put(i, cp);
+        }
+        final Map<Integer, UnicodeSet> radicalSets = new HashMap<>();
+        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+            for (final String rs : kRSUnicode.getValues(cp)) {
+                if (rs == null) {
+                    continue;
+                }
+                final String radical = rs.split("\\.")[0];
+                for (String radicalCharacter : fastCJKRadicals.get(radical)) {
+                    radicalSets
+                            .computeIfAbsent(radicalCharacter.codePointAt(0), c -> new UnicodeSet())
+                            .add(cp);
+                }
+            }
+            for (final String rs : kTGT_RSUnicode.getValues(cp)) {
+                if (rs == null) {
+                    continue;
+                }
+                final int component = Integer.parseInt(rs.split("\\.")[0]);
+                final int componentCharacter = tangutComponents.get(component);
+                radicalSets.computeIfAbsent(componentCharacter, c -> new UnicodeSet()).add(cp);
+            }
+            for (final String rs : kJURC_RSUnicode.getValues(cp)) {
+                if (rs == null) {
+                    continue;
+                }
+                final int radical = Integer.parseInt(rs.split("\\.")[0]);
+                final int radicalCharacter = jurchenRadicals.get(radical);
+                radicalSets.computeIfAbsent(radicalCharacter, c -> new UnicodeSet()).add(cp);
+            }
+            for (final String r : kSeal_Rad.getValues(cp)) {
+                if (r == null) {
+                    continue;
+                }
+                final int radicalCharacter = Utility.codePointFromHex(r.split("\\.")[1]);
+                radicalSets.computeIfAbsent(radicalCharacter, c -> new UnicodeSet()).add(cp);
+            }
+        }
+        return radicalSets;
     }
 
     public static void main(String[] args) throws IOException {
@@ -143,7 +244,6 @@ public class Indexer {
                 new TreeMap<>(new PropertyComparator());
         // Lemma to snippet to position of the word in the snippet.
         Map<String, Map<String, Integer>> wordIndex = new TreeMap<>();
-        // final var kEHDesc = iup.getProperty(UcdProperty.kEH_Desc);
         final var properties =
                 new UnicodeProperty[] {
                     block,
@@ -152,7 +252,11 @@ public class Indexer {
                     nameAlias,
                     informalAlias,
                     subheader_notice,
-                    comment, // kEHDesc
+                    comment,
+                    kRSUnicode,
+                    kTGT_RSUnicode,
+                    kJURC_RSUnicode,
+                    kSeal_Rad,
                 };
         final var wordBreak = BreakIterator.getWordInstance();
         final var sentenceBreak =
@@ -237,6 +341,25 @@ public class Indexer {
         wordIndex.computeIfAbsent("betty", k -> new TreeMap<>()).putIfAbsent("Betty", 0);
         wordIndex.computeIfAbsent("the", k -> new TreeMap<>()).putIfAbsent("the", 0);
 
+        System.out.println("Radicals…");
+        final var radicalSets = getRadicalSets();
+        for (final var propertyIndex : indexEntries.values()) {
+            for (final var indexEntry : propertyIndex.values()) {
+                if (indexEntry.characters.size() == 1
+                        && radicalSets.containsKey(indexEntry.characters.charAt(0))) {
+                    final int radical = indexEntry.characters.charAt(0);
+                    final String kind =
+                            name.getValue(radical).contains("COMPONENT") ? "component" : "radical";
+                    String cjkParenthetical = cjkRadical.getValue(radical);
+                    cjkParenthetical =
+                            cjkParenthetical == null ? "" : " (" + cjkParenthetical + ")";
+                    indexEntry.relatedCharacters.put(
+                            "Characters with this " + kind + cjkParenthetical + ":",
+                            radicalSets.get(radical));
+                }
+            }
+        }
+
         System.out.println("Writing charindex.html...");
         var file = new PrintStream(new File("charindex.html"));
         file.println("<head>");
@@ -286,7 +409,7 @@ public class Indexer {
                 file.println("    ['" + indexEntry.snippet.replace("'", "\\'") + "', {");
                 file.println("       html: \"" + indexEntry.toHTML().replace("\"", "\\\"") + "\",");
                 file.println("       characters: [");
-                for (var range : indexEntry.characters.ranges()) {
+                for (var range : indexEntry.coveredCharacters().ranges()) {
                     file.println(
                             "         [0x"
                                     + Utility.hex(range.codepoint)
@@ -474,7 +597,12 @@ public class Indexer {
                         Utility.hex(range.codepoint)
                                 + "\u00A0"
                                 + Character.toString(range.codepoint)
-                                + (showName && characterName != null ? " " + characterName : "");
+                                + (showName
+                                                && characterName != null
+                                                && !characterName.contains(
+                                                        Utility.hex(range.codepoint))
+                                        ? " " + characterName
+                                        : "");
                 currentSubEntry.propertiesLink =
                         "https://util.unicode.org/UnicodeJsps/character.jsp?a="
                                 + Utility.hex(range.codepoint);
