@@ -41,7 +41,9 @@ function updateResults(event) {
 
 function search(/**@type {string}*/ query) {
   let wordBreak = new Intl.Segmenter("en", { granularity: "word" });
-  let queryWords = Array.from(wordBreak.segment(query)).filter(s => s.isWordLike).map(s => s.segment);
+  let queryWords = Array.from(wordBreak.segment(query.replace(/\.-/, "pp").replace(/['.]/, "p")))
+      .filter(s => s.isWordLike)
+      .map(s => query.substring(s.index, s.index + s.segment.length));
   let foldedQuery = queryWords.map(fold);
   var rangeCount = 0;
   var covered = [];
@@ -203,6 +205,6 @@ function rangeIntersection(/**@type {[number, number]}*/left, /**@type {[number,
 }
 
 function fold(/**@type {string}*/ word) {
-  let folding = word.normalize("NFKC").toLowerCase();
+  var folding = word.normalize("NFKC").toLowerCase();
   return folding.replace("š", "sh");
 }

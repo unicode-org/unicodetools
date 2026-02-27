@@ -27,6 +27,7 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.tools.Indexer.IndexEntry;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -256,7 +257,6 @@ public class Indexer {
                     kRSUnicode,
                     kTGT_RSUnicode,
                     kJURC_RSUnicode,
-                    kSeal_Rad,
                 };
         final var wordBreak = BreakIterator.getWordInstance();
         final var sentenceBreak =
@@ -282,6 +282,22 @@ public class Indexer {
                                             .flatMap(s -> Arrays.stream(s.split("[,;]")))
                                             .map(String::strip)
                                     ::iterator;
+                } else if (prop == kRSUnicode
+                        || prop == kTGT_RSUnicode
+                        || prop == kJURC_RSUnicode) {
+                    snippets =
+                            StreamSupport.stream(prop.getValues(cp).spliterator(), false)
+                                            .filter(Objects::nonNull)
+                                            .map(
+                                                    s ->
+                                                            (prop == kRSUnicode
+                                                                            ? "CJK "
+                                                                            : prop == kTGT_RSUnicode
+                                                                                    ? "Tangut "
+                                                                                    : "Jurchen ")
+                                                                    + " radical/stroke "
+                                                                    + s)
+                                    ::iterator;
                 } else {
                     snippets = prop.getValues(cp);
                 }
@@ -300,7 +316,8 @@ public class Indexer {
                             .computeIfAbsent(snippet, k -> new IndexEntry(indexSnippet, prop))
                             .characters
                             .add(cp);
-                    wordBreak.setText(snippet);
+                    // Override word breaking of ', ., and .- so that radical/stroke indices are atomic.
+                    wordBreak.setText(snippet.replace(".-", "pp").replace('\'', 'p').replace('.', 'p'));
                     int start = 0;
                     for (int end = wordBreak.next();
                             end != BreakIterator.DONE;
@@ -343,8 +360,27 @@ public class Indexer {
 
         System.out.println("Radicals…");
         final var radicalSets = getRadicalSets();
-        for (final var propertyIndex : indexEntries.values()) {
-            for (final var indexEntry : propertyIndex.values()) {
+        for (final int cp : radicalSets.keySet()) {
+            if (!block.getValue(cp).equals("Seal")) {
+                continue;
+            }
+            String snippet = "Seal radical " + kSeal_Rad.getValue(cp).split("\\.")[0];
+            indexEntries
+                    .get(comment)
+                    .computeIfAbsent(snippet, k -> new IndexEntry(k, comment))
+                    .characters
+                    .add(cp);
+            wordIndex.computeIfAbsent("seal", k -> new TreeMap<>()).putIfAbsent(snippet, 0);
+            wordIndex.computeIfAbsent("radical", k -> new TreeMap<>()).putIfAbsent(snippet, 5);
+            wordIndex
+                    .computeIfAbsent(kSeal_Rad.getValue(cp).split("\\.")[0], k -> new TreeMap<>())
+                    .putIfAbsent(snippet, 13);
+        }
+        for (final var propertyIndex : indexEntries.entrySet()) {
+            if (propertyIndex.getKey() == kRSUnicode) {
+                continue;
+            }
+            for (final var indexEntry : propertyIndex.getValue().values()) {
                 if (indexEntry.characters.size() == 1
                         && radicalSets.containsKey(indexEntry.characters.charAt(0))) {
                     final int radical = indexEntry.characters.charAt(0);
@@ -473,6 +509,9 @@ public class Indexer {
             lemma = lemma.substring(0, lemma.length() - 2);
         } else if (lemma.endsWith("s") && !lemma.endsWith("ss") && lemma.length() > 2) {
             lemma = lemma.substring(0, lemma.length() - 1);
+        }
+        if (lemma.matches("^[0-9]*[1-9][0-9]*$")) {
+            lemma = lemma.replaceAll("^0+", "");
         }
         return lemma;
     }
