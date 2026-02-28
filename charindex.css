@@ -1,0 +1,28 @@
+input {
+  width:100%;
+  max-width:40em;
+}
+
+ul#results {
+  max-width: 40em;
+  list-style: none;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.tail {
+  display: inline-block;
+  padding-left: 2em;
+  text-indent: -2em;
+  box-sizing: border-box;
+}
+.head {
+  display: inline-block;
+  padding-left: 1em;
+  width: max-content;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+span.ranges {
+    float: right;
+}
