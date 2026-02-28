@@ -257,6 +257,7 @@ public class Indexer {
                     kRSUnicode,
                     kTGT_RSUnicode,
                     kJURC_RSUnicode,
+                    kSeal_Rad,
                 };
         final var wordBreak = BreakIterator.getWordInstance();
         final var sentenceBreak =
@@ -295,9 +296,21 @@ public class Indexer {
                                                                             : prop == kTGT_RSUnicode
                                                                                     ? "Tangut "
                                                                                     : "Jurchen ")
-                                                                    + " radical/stroke "
+                                                                    + " radical-stroke "
                                                                     + s)
                                     ::iterator;
+                } else if (prop == kSeal_Rad) {
+                    snippets = List.of();
+                    for (final String value : prop.getValues(cp)) {
+                        if (value == null) {
+                            continue;
+                        }
+                        final String[] parts = value.split("\\.");
+                        if (Utility.codePointFromHex(parts[1]) != cp) {
+                            continue;
+                        }
+                        snippets = List.of("Seal radical " + parts[0]);
+                    }
                 } else {
                     snippets = prop.getValues(cp);
                 }
@@ -363,22 +376,6 @@ public class Indexer {
 
         System.out.println("Radicals…");
         final var radicalSets = getRadicalSets();
-        for (final int cp : radicalSets.keySet()) {
-            if (!block.getValue(cp).equals("Seal")) {
-                continue;
-            }
-            String snippet = "Seal radical " + kSeal_Rad.getValue(cp).split("\\.")[0];
-            indexEntries
-                    .get(comment)
-                    .computeIfAbsent(snippet, k -> new IndexEntry(k, comment))
-                    .characters
-                    .add(cp);
-            wordIndex.computeIfAbsent("seal", k -> new TreeMap<>()).putIfAbsent(snippet, 0);
-            wordIndex.computeIfAbsent("radical", k -> new TreeMap<>()).putIfAbsent(snippet, 5);
-            wordIndex
-                    .computeIfAbsent(kSeal_Rad.getValue(cp).split("\\.")[0], k -> new TreeMap<>())
-                    .putIfAbsent(snippet, 13);
-        }
         for (final var propertyIndex : indexEntries.entrySet()) {
             if (propertyIndex.getKey() == kRSUnicode) {
                 continue;

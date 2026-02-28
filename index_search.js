@@ -15,7 +15,7 @@ let characterNameRanges = new Map();
 let maxResults = 100;
 
 for (let [property, propertyIndex] of indexEntries) {
-  if (!property.endsWith("RSUnicode")) {
+  if (!property.endsWith("RSUnicode") && property !== "kSEAL_Rad") {
     continue;
   }
   for (let [snippet, entry] of propertyIndex) {
@@ -24,7 +24,6 @@ for (let [property, propertyIndex] of indexEntries) {
     }
   }
 }
-// TODO(egg): Something about the seal radicals, but maybe get rid of the comment hack first.
 
 for (let [name, entry] of indexEntries.get("Name")) {
   if (entry.characters[0][0] == entry.characters[0][1]) {
