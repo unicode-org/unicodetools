@@ -1,5 +1,5 @@
 # unidata-18.0.0.txt
-# Date: 2026-02-21, 00:00:00 GMT [KW]
+# Date: 2026-02-26, 00:00:00 GMT [KW]
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/copyright.html
@@ -10,7 +10,7 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 18.0.0 draft 10 (Unicode Version: 18.0.0)
+# Version 18.0.0 draft 11 (Unicode Version: 18.0.0)
 # based on Unicode data file UnicodeData-18.0.0d8.txt
 # Ordering for Unicode 18.0
 #
@@ -14962,7 +14962,7 @@ AB66;LATIN SMALL LETTER DZ DIGRAPH WITH RETROFLEX HOOK;Ll;<sort> 0064 0290;;;;;
 10788;MODIFIER LETTER SMALL DZ DIGRAPH WITH RETROFLEX HOOK;Lm;<super> AB66;;;;;
 0238;LATIN SMALL LETTER DB DIGRAPH;Ll;<sort> 0064 0062;;;;;
 1DFDE;MODIFIER LETTER SMALL DB DIGRAPH;Lm;<super> 0238;;;;;
-1DF1F;LATIN SMALL LETTER D-ETH DIGRAPH;Ll;<sort> 0064 0064 F8F0;;;;;
+1DF1F;LATIN SMALL LETTER D-ETH DIGRAPH;Ll;<sort> 0064 00F0;;;;;
 1DF20;LATIN SMALL LETTER D-LEZH DIGRAPH;Ll;<sort> 0064 026E;;;;;
 1DF21;LATIN SMALL LETTER D-LEZH DIGRAPH WITH RETROFLEX HOOK;Ll;<sort> 0064 1DF05;;;;;
 
