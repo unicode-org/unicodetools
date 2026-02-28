@@ -64,6 +64,7 @@
  *   2026-Feb-19 Add 208F to isAlphabeticException.
  *               Add 1B168 to kana mapping in unisift_GetKatakanaBase.
  *   2026-Feb-21 Add implicit weights for Jurchen and Seal.
+ *   2026-Feb-26 Tweak test for infinite recursion in doRecursiveDecomp.
  */
 
 /*
@@ -188,7 +189,7 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 18.0.0d2, 2026-02-21\n";
+static char versionString[] = "Sifter version 18.0.0d3, 2026-02-26\n";
 
 static char unidatafilename[] = "unidata-18.0.0.txt";
 static char allkeysfilename[] = "allkeys-18.0.0.txt";
@@ -1026,12 +1027,39 @@ UInt32 buf3[60]; /* temporary hold for constructed decomp */
                     printf ( "Bad Value: %s\n", sp );
                     break;
                 }
+                /*
+                 * Check if the token is the same as the scalarValue
+                 * passed in. If this token itself has a non-trivial
+                 * decomposition, this can lead to infinite recursion.
+                 * Test that case and bail out if found.
+                 *
+                 * If cc is Atomic (or Implicit), let this just fall through.
+                 * That allows for cases like:
+                 *   x -> a b
+                 *   b -> a c ==> x -> a a c
+                 *
+                 * This condition is not encountered for the normative
+                 * decompositions, but might be encountered in synthetic
+                 * decompositions added to unidata.txt for collation if
+                 * not properly constructed.
+                 */
                 if ( cc == scalarValue )
                 {
-                    badValues++;
-                    printf ( "Infinite recursion: %08X %s\n", scalarValue, 
-                             sp );
-                    return ( 0 );
+                WALNUTPTR t1;
+
+                    t1 = getSiftDataPtr ( cc );
+                    if ( t1 == NULL )
+                    {
+                        printf ( "Bad decomposition: %04X\n", cc );
+                        return ( 0 );
+                    }
+                    if ( ( t1->decompType != Atomic ) && ( t1->decompType != Implicit ) )
+                    {
+                        badValues++;
+                        printf ( "Infinite recursion: %08X %s\n", scalarValue, 
+                                 sp );
+                        return ( 0 );
+                    }
                 }
                 buf[numCharTokens] = cc;
                 numCharTokens++;
