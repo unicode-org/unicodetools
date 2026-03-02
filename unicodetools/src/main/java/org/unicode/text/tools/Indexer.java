@@ -71,7 +71,7 @@ public class Indexer {
     static final UnicodeSet ideographic = iup.getProperty(UcdProperty.Ideographic).getSet("Yes");
     static final Map<String, UnicodeSet> blockSet = new HashMap<>();
 
-    static int maxCharacters = 0;
+    static int maxRSEntryCharacters = 0;
 
     static {
         String BASE_RULES =
@@ -140,7 +140,7 @@ public class Indexer {
             return "<tr class=entry><td class=entry-text>[RESULT TEXT]"
                     + (singleEntry != null
                             ? singleEntry + "</tr>"
-                            : "</td></tr><tr class=subentry><td>"
+                            : "</td></tr><tr class=subentry><td class=entry-text>"
                                     + subEntries().stream()
                                             .map(e -> e.toHTML())
                                             .collect(
@@ -489,7 +489,7 @@ public class Indexer {
         System.out.println(
                 indexEntries.values().stream().collect(Collectors.summingInt(Map::size))
                         + " index entries");
-        System.out.println("Max characters in RS entries: " + maxCharacters);
+        System.out.println("Max characters in RS entries: " + maxRSEntryCharacters);
     }
 
     static int blockCount(UnicodeSet characters) {
@@ -670,7 +670,7 @@ public class Indexer {
                                 subrange.codePointStream()
                                         .mapToObj(Character::toString)
                                         .collect(Collectors.joining());
-                        maxCharacters = Math.max(maxCharacters, subrange.size());
+                        maxRSEntryCharacters = Math.max(maxRSEntryCharacters, subrange.size());
                     }
                     if (currentSubEntry.characters == null
                             && generalCategory
