@@ -27,6 +27,7 @@ import java.util.stream.StreamSupport;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.tools.Indexer.IndexEntry;
@@ -614,9 +615,12 @@ public class Indexer {
                         getChartLink(
                                 UcdPropertyValues.Block_Values.forName(
                                         block.getValue(range.codepoint)));
-                final String characterName = name.getValue(range.codepoint);
                 currentSubEntry.ranges = Utility.hex(range.codepoint);
-                currentSubEntry.characters = Character.toString(range.codepoint);
+                if (!General_Category_Values.forName(generalCategory.getValue(range.codepoint))
+                        .getShortName()
+                        .startsWith("C")) {
+                    currentSubEntry.characters = Character.toString(range.codepoint);
+                }
                 currentSubEntry.propertiesLink =
                         "https://util.unicode.org/UnicodeJsps/character.jsp?a="
                                 + Utility.hex(range.codepoint);
@@ -684,10 +688,12 @@ public class Indexer {
                                         .collect(Collectors.joining());
                         maxRSEntryCharacters = Math.max(maxRSEntryCharacters, subrange.size());
                     }
+                    final String firstGC = generalCategory.getValue(subrange.getRangeStart(0));
                     if (currentSubEntry.characters == null
-                            && generalCategory
-                                    .getSet(generalCategory.getValue(subrange.getRangeStart(0)))
-                                    .containsAll(subrange)) {
+                            && !General_Category_Values.forName(firstGC)
+                                    .getShortName()
+                                    .startsWith("C")
+                            && generalCategory.getSet(firstGC).containsAll(subrange)) {
                         currentSubEntry.characters =
                                 Character.toString(subrange.getRangeStart(0))
                                         + "–"
