@@ -481,7 +481,8 @@ public class Indexer {
         file.println(
                 "<input type='search' placeholder='Search terms, e.g., [arrow], [click], [cyrillic o], [letter with ring], [queen card], [sanskrit]…' oninput='updateResults(event)'>");
         file.println("<p id='info'></p>");
-        file.println("<table><colgroup><col span=2 class=results-and-codepoints><col class=characters></colgroup><tbody id='results'></tbody></table>");
+        file.println(
+                "<table><colgroup><col span=2 class=results-and-codepoints><col class=characters></colgroup><tbody id='results'></tbody></table>");
         file.println("</body>");
         file.close();
 
@@ -628,7 +629,11 @@ public class Indexer {
                     currentSubEntry.ranges = range.codepoint == BOOP ? "BOOP" : "DOOD";
                     currentSubEntry.propertiesLink = null;
                 }
-                if (previousSubEntryWithLocation != null && Objects.equals(currentSubEntry.subheader, previousSubEntryWithLocation.subheader) && Objects.equals(currentSubEntry.block, previousSubEntryWithLocation.block)) {
+                if (previousSubEntryWithLocation != null
+                        && Objects.equals(
+                                currentSubEntry.subheader, previousSubEntryWithLocation.subheader)
+                        && Objects.equals(
+                                currentSubEntry.block, previousSubEntryWithLocation.block)) {
                     currentSubEntry.subheader = null;
                     currentSubEntry.block = null;
                 } else {
@@ -688,7 +693,12 @@ public class Indexer {
                                         + "–"
                                         + Character.toString(subrange.getRangeEnd(0));
                     }
-                    if (previousSubEntryWithLocation != null && Objects.equals(currentSubEntry.subheader, previousSubEntryWithLocation.subheader) && Objects.equals(currentSubEntry.block, previousSubEntryWithLocation.block)) {
+                    if (previousSubEntryWithLocation != null
+                            && Objects.equals(
+                                    currentSubEntry.subheader,
+                                    previousSubEntryWithLocation.subheader)
+                            && Objects.equals(
+                                    currentSubEntry.block, previousSubEntryWithLocation.block)) {
                         currentSubEntry.subheader = null;
                         currentSubEntry.block = null;
                     } else {
