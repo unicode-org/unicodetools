@@ -2,14 +2,6 @@ input {
   width:100%;
   max-width:40em;
 }
-
-ul#results {
-  max-width: 40em;
-  list-style: none;
-  padding: 0;
-  overflow-x: hidden;
-}
-
 .tail {
   display: inline-block;
   padding-left: 2em;
@@ -23,6 +15,30 @@ ul#results {
   max-width: 100%;
   box-sizing: border-box;
 }
-span.ranges {
-    float: right;
+tr.entry .location {
+  float: right;
+}
+tr.subentry .location {
+  padding-left: 2em;
+  vertical-align: top;
+}
+td.entry-text {
+  width: 26em;
+  max-width: 26em;
+  vertical-align: top;
+}
+td.ranges {
+  width: 7em;
+  max-width: 7em;
+  text-align: right;
+  white-space: nowrap;
+  vertical-align: top;
+  font-family: monospace;
+}
+td.characters {
+  max-width: 40em;
+  vertical-align: top;
+}
+table {
+  border-collapse: collapse;
 }

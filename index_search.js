@@ -49,7 +49,7 @@ function updateResults(event) {
   } else {
     document.getElementById("info").innerHTML = rangeCount + " results";
   }
-  document.getElementById("results").innerHTML = "<tr><td>" + entries.join("</tr></tr><tr><td>") + "</td></tr>";
+  document.getElementById("results").innerHTML = entries.join("");
 }
 
 function search(/**@type {string}*/ query) {

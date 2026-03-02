@@ -1,5 +1,6 @@
 package org.unicode.text.tools;
 
+import com.google.common.collect.Lists;
 import com.ibm.icu.segmenter.LocalizedSegmenter;
 import com.ibm.icu.segmenter.LocalizedSegmenter.SegmentationType;
 import com.ibm.icu.segmenter.Segment;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.tools.Indexer.IndexEntry;
@@ -65,7 +67,11 @@ public class Indexer {
     static final UnicodeProperty kJURC_RSUnicode = iup.getProperty(UcdProperty.kJURC_RSUnicode);
     static final UnicodeProperty kSeal_Rad = iup.getProperty(UcdProperty.kSEAL_Rad);
     static final UnicodeProperty cjkRadical = iup.getProperty(UcdProperty.CJK_Radical);
+    static final UnicodeProperty generalCategory = iup.getProperty(UcdProperty.General_Category);
+    static final UnicodeSet ideographic = iup.getProperty(UcdProperty.Ideographic).getSet("Yes");
     static final Map<String, UnicodeSet> blockSet = new HashMap<>();
+
+    static int maxCharacters = 0;
 
     static {
         String BASE_RULES =
@@ -131,24 +137,22 @@ public class Indexer {
         public String toHTML() {
             final var subEntries = subEntries();
             final String singleEntry = subEntries.size() == 1 ? subEntries.get(0).toHTML() : null;
-            return "<li><div style='overflow:hidden'>"
-                    + "[RESULT TEXT]"
+            return "<tr class=entry><td class=entry-text>[RESULT TEXT]"
                     + (singleEntry != null
-                            ? "<span class=ranges>" + singleEntry.replace("<span class=ranges>", "")
-                            : "<ul><li><div style='overflow:hidden'>"
+                            ? singleEntry + "</tr>"
+                            : "</td></tr><tr class=subentry><td>"
                                     + subEntries().stream()
                                             .map(e -> e.toHTML())
                                             .collect(
                                                     Collectors.joining(
-                                                            "</div></li><li><div style='overflow:hidden'>"))
-                                    + "</div></li></ul>")
-                    + "</div>"
+                                                            "</tr><tr class=subentry><td>"))
+                                    + "</tr>")
                     + relatedCharacters.entrySet().stream()
                             .map(
                                     entry ->
-                                            "<div style='overflow:hidden'>"
+                                            "<tr class=related><td class=entry-text>"
                                                     + entry.getKey()
-                                                    + "<ul><li><div style='overflow:hidden'>"
+                                                    + "</td></tr></tr><tr class=subentry><td>"
                                                     + Indexer.subEntries(
                                                                     /* showBlock= */ true,
                                                                     /* showSubheader= */ false,
@@ -158,10 +162,9 @@ public class Indexer {
                                                             .map(e -> e.toHTML())
                                                             .collect(
                                                                     Collectors.joining(
-                                                                            "</div></li><li><div style='overflow:hidden'>"))
-                                                    + "</div></li></ul></div>")
-                            .collect(Collectors.joining())
-                    + "</li>";
+                                                                            "</tr><tr class=subentry><td>"))
+                                                    + "</tr>")
+                            .collect(Collectors.joining());
         }
     }
 
@@ -478,11 +481,15 @@ public class Indexer {
         file.println(
                 "<input type='search' placeholder='Search terms, e.g., [arrow], [click], [cyrillic o], [letter with ring], [queen card], [sanskrit]…' oninput='updateResults(event)'>");
         file.println("<p id='info'></p>");
-        file.println("<ul id='results'></ul>");
+        file.println("<table><colgroup><col span=2 class=results-and-codepoints><col class=characters></colgroup><tbody id='results'></tbody></table>");
         file.println("</body>");
         file.close();
 
         System.out.println(wordIndex.size() + " words");
+        System.out.println(
+                indexEntries.values().stream().collect(Collectors.summingInt(Map::size))
+                        + " index entries");
+        System.out.println("Max characters in RS entries: " + maxCharacters);
     }
 
     static int blockCount(UnicodeSet characters) {
@@ -540,6 +547,7 @@ public class Indexer {
         String chartLink;
         String ranges;
         String propertiesLink;
+        String characters;
 
         @Override
         public String toString() {
@@ -556,19 +564,25 @@ public class Indexer {
 
         public String toHTML() {
             StringBuilder result = new StringBuilder();
+            result.append("<span class=location>");
             if (subheader != null) {
                 result.append(toHTML.transform(subheader) + ". ");
             }
             if (block != null) {
                 result.append("In " + block + ": ");
             }
-            result.append("<span class=ranges><a href='" + chartLink + "'>");
+            result.append("</location>");
+            result.append("</td><td class=ranges><a href='" + chartLink + "'>");
             result.append(toHTML.transform(ranges));
             result.append("</a>");
-            if (propertiesLink != null) {
+            /*if (propertiesLink != null) {
                 result.append(" (<a href='" + propertiesLink + "'>properties</a>)");
+            }*/
+            result.append("</td><td class=characters>");
+            if (characters != null) {
+                result.append(toHTML.transform(characters));
             }
-            result.append("</span>");
+            result.append("</td>");
             return result.toString();
         }
     }
@@ -586,10 +600,6 @@ public class Indexer {
         }
         for (var range : characters.ranges()) {
             if (range.codepointEnd == range.codepoint) {
-                final UnicodeSet currentBlock = blockSet.get(block.getValue(range.codepoint));
-                final int blockStart = currentBlock.getRangeStart(0);
-                final boolean blockHasNewCharacters =
-                        !newCharacters.cloneAsThawed().retainAll(currentBlock).isEmpty();
                 if (showBlocks) {
                     result.add(new IndexSubEntry());
                     result.get(result.size() - 1).block = pretty_block.getValue(range.codepoint);
@@ -598,50 +608,13 @@ public class Indexer {
                 if (showSubheader) {
                     currentSubEntry.subheader = subheader.getValue(range.codepoint);
                 }
-                switch (Settings.latestVersionPhase) {
-                    case ALPHA:
-                        if (blockHasNewCharacters) {
-                            currentSubEntry.chartLink =
-                                    "https://www.unicode.org/charts/PDF/Unicode-"
-                                            + Settings.LATEST_VERSION_INFO.getVersionString(2, 2)
-                                            + "/U"
-                                            + Settings.LATEST_VERSION_INFO
-                                                    .getVersionString(2, 2)
-                                                    .replace(".", "")
-                                            + "-"
-                                            + Utility.hex(blockStart)
-                                            + ".pdf";
-                        } else {
-                            currentSubEntry.chartLink =
-                                    "https://unicode.org/charts/PDF/U"
-                                            + Utility.hex(blockStart)
-                                            + ".pdf";
-                        }
-                        break;
-                    case BETA:
-                        currentSubEntry.chartLink =
-                                "https://www.unicode.org/Public/draft/charts/blocks/U"
-                                        + Utility.hex(blockStart)
-                                        + ".pdf";
-                        break;
-                    default:
-                        currentSubEntry.chartLink =
-                                "https://unicode.org/charts/PDF/U"
-                                        + Utility.hex(blockStart)
-                                        + ".pdf";
-                        break;
-                }
+                currentSubEntry.chartLink =
+                        getChartLink(
+                                UcdPropertyValues.Block_Values.forName(
+                                        block.getValue(range.codepoint)));
                 final String characterName = name.getValue(range.codepoint);
-                currentSubEntry.ranges =
-                        Utility.hex(range.codepoint)
-                                + "\u00A0"
-                                + Character.toString(range.codepoint)
-                                + (showName
-                                                && characterName != null
-                                                && !characterName.contains(
-                                                        Utility.hex(range.codepoint))
-                                        ? " " + characterName
-                                        : "");
+                currentSubEntry.ranges = Utility.hex(range.codepoint);
+                currentSubEntry.characters = Character.toString(range.codepoint);
                 currentSubEntry.propertiesLink =
                         "https://util.unicode.org/UnicodeJsps/character.jsp?a="
                                 + Utility.hex(range.codepoint);
@@ -657,62 +630,87 @@ public class Indexer {
             } else {
                 UnicodeSet remainder = new UnicodeSet(range.codepoint, range.codepointEnd);
                 while (!remainder.isEmpty()) {
-                    final var currentBlock = blockSet.get(block.getValue(remainder.charAt(0)));
+                    final String blockValue = block.getValue(remainder.charAt(0));
+                    final var currentBlock = blockSet.get(blockValue);
                     if (showBlocks) {
                         result.add(new IndexSubEntry());
                         result.get(result.size() - 1).block =
                                 pretty_block.getValue(remainder.charAt(0));
                     }
-                    final int blockStart = currentBlock.getRangeStart(0);
-                    final boolean blockHasNewCharacters =
-                            !newCharacters.cloneAsThawed().retainAll(currentBlock).isEmpty();
                     final var subrange = remainder.cloneAsThawed().retainAll(currentBlock);
                     remainder.removeAll(currentBlock);
                     final var currentSubEntry = result.get(result.size() - 1);
                     if (showSubheader) {
                         currentSubEntry.subheader = subheader.getValue(range.codepoint);
                     }
-                    switch (Settings.latestVersionPhase) {
-                        case ALPHA:
-                            if (blockHasNewCharacters) {
-                                currentSubEntry.chartLink =
-                                        "https://www.unicode.org/charts/PDF/Unicode-"
-                                                + Settings.LATEST_VERSION_INFO.getVersionString(
-                                                        2, 2)
-                                                + "/U"
-                                                + Settings.LATEST_VERSION_INFO
-                                                        .getVersionString(2, 2)
-                                                        .replace(".", "")
-                                                + "-"
-                                                + Utility.hex(blockStart)
-                                                + ".pdf";
-                            } else {
-                                currentSubEntry.chartLink =
-                                        "https://unicode.org/charts/PDF/U"
-                                                + Utility.hex(blockStart)
-                                                + ".pdf";
-                            }
-                            break;
-                        case BETA:
-                            currentSubEntry.chartLink =
-                                    "https://www.unicode.org/Public/draft/charts/blocks/U"
-                                            + Utility.hex(blockStart)
-                                            + ".pdf";
-                            break;
-                        default:
-                            currentSubEntry.chartLink =
-                                    "https://unicode.org/charts/PDF/U"
-                                            + Utility.hex(blockStart)
-                                            + ".pdf";
-                            break;
-                    }
+                    currentSubEntry.chartLink =
+                            getChartLink(UcdPropertyValues.Block_Values.forName(blockValue));
                     currentSubEntry.ranges =
                             Utility.hex(subrange.getRangeStart(0))
                                     + "–"
                                     + Utility.hex(subrange.getRangeEnd(0));
+                    rsProperties:
+                    for (var rsProperty :
+                            new UnicodeProperty[] {kRSUnicode, kTGT_RSUnicode, kJURC_RSUnicode}) {
+                        Set<String> commonValues = new HashSet<>();
+                        commonValues.addAll(
+                                Lists.newArrayList(
+                                        rsProperty
+                                                .getValues(subrange.getRangeStart(0))
+                                                .iterator()));
+                        commonValues.remove(null);
+                        for (int cp : subrange.codePoints()) {
+                            commonValues.retainAll(
+                                    Lists.newArrayList(rsProperty.getValues(cp).iterator()));
+                            if (commonValues.isEmpty()) {
+                                continue rsProperties;
+                            }
+                        }
+                        currentSubEntry.characters =
+                                subrange.codePointStream()
+                                        .mapToObj(Character::toString)
+                                        .collect(Collectors.joining());
+                        maxCharacters = Math.max(maxCharacters, subrange.size());
+                    }
+                    if (currentSubEntry.characters == null
+                            && generalCategory
+                                    .getSet(generalCategory.getValue(subrange.getRangeStart(0)))
+                                    .containsAll(subrange)) {
+                        currentSubEntry.characters =
+                                Character.toString(subrange.getRangeStart(0))
+                                        + "–"
+                                        + Character.toString(subrange.getRangeEnd(0));
+                    }
                 }
             }
         }
         return result;
+    }
+
+    static String getChartLink(UcdPropertyValues.Block_Values block) {
+        final var currentBlock = blockSet.get(block.toString());
+        final int blockStart = currentBlock.getRangeStart(0);
+        final boolean blockHasNewCharacters =
+                !newCharacters.cloneAsThawed().retainAll(currentBlock).isEmpty();
+        switch (Settings.latestVersionPhase) {
+            case ALPHA:
+                if (blockHasNewCharacters) {
+                    return "https://www.unicode.org/charts/PDF/Unicode-"
+                            + Settings.LATEST_VERSION_INFO.getVersionString(2, 2)
+                            + "/U"
+                            + Settings.LATEST_VERSION_INFO.getVersionString(2, 2).replace(".", "")
+                            + "-"
+                            + Utility.hex(blockStart)
+                            + ".pdf";
+                } else {
+                    return "https://unicode.org/charts/PDF/U" + Utility.hex(blockStart) + ".pdf";
+                }
+            case BETA:
+                return "https://www.unicode.org/Public/draft/charts/blocks/U"
+                        + Utility.hex(blockStart)
+                        + ".pdf";
+            default:
+                return "https://unicode.org/charts/PDF/U" + Utility.hex(blockStart) + ".pdf";
+        }
     }
 }
