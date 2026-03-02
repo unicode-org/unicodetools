@@ -145,14 +145,14 @@ public class Indexer {
                                             .map(e -> e.toHTML())
                                             .collect(
                                                     Collectors.joining(
-                                                            "</tr><tr class=subentry><td>"))
+                                                            "</tr><tr class=subentry><td class=entry-text>"))
                                     + "</tr>")
                     + relatedCharacters.entrySet().stream()
                             .map(
                                     entry ->
                                             "<tr class=related><td class=entry-text>"
                                                     + entry.getKey()
-                                                    + "</td></tr></tr><tr class=subentry><td>"
+                                                    + "</td></tr></tr><tr class=subentry><td class=entry-text>"
                                                     + Indexer.subEntries(
                                                                     /* showBlock= */ true,
                                                                     /* showSubheader= */ false,
@@ -162,7 +162,7 @@ public class Indexer {
                                                             .map(e -> e.toHTML())
                                                             .collect(
                                                                     Collectors.joining(
-                                                                            "</tr><tr class=subentry><td>"))
+                                                                            "</tr><tr class=subentry><td class=entry-text>"))
                                                     + "</tr>")
                             .collect(Collectors.joining());
         }
@@ -598,6 +598,7 @@ public class Indexer {
         if (!showBlocks) {
             result.add(new IndexSubEntry());
         }
+        IndexSubEntry previousSubEntryWithLocation = null;
         for (var range : characters.ranges()) {
             if (range.codepointEnd == range.codepoint) {
                 if (showBlocks) {
@@ -626,6 +627,12 @@ public class Indexer {
                     currentSubEntry.chartLink = "https://unicode.org/charts/PDF/UBOOP.pdf";
                     currentSubEntry.ranges = range.codepoint == BOOP ? "BOOP" : "DOOD";
                     currentSubEntry.propertiesLink = null;
+                }
+                if (previousSubEntryWithLocation != null && Objects.equals(currentSubEntry.subheader, previousSubEntryWithLocation.subheader) && Objects.equals(currentSubEntry.block, previousSubEntryWithLocation.block)) {
+                    currentSubEntry.subheader = null;
+                    currentSubEntry.block = null;
+                } else {
+                    previousSubEntryWithLocation = currentSubEntry;
                 }
             } else {
                 UnicodeSet remainder = new UnicodeSet(range.codepoint, range.codepointEnd);
@@ -680,6 +687,12 @@ public class Indexer {
                                 Character.toString(subrange.getRangeStart(0))
                                         + "–"
                                         + Character.toString(subrange.getRangeEnd(0));
+                    }
+                    if (previousSubEntryWithLocation != null && Objects.equals(currentSubEntry.subheader, previousSubEntryWithLocation.subheader) && Objects.equals(currentSubEntry.block, previousSubEntryWithLocation.block)) {
+                        currentSubEntry.subheader = null;
+                        currentSubEntry.block = null;
+                    } else {
+                        previousSubEntryWithLocation = currentSubEntry;
                     }
                 }
             }
