@@ -20,7 +20,6 @@ tr.entry .location {
 }
 tr.subentry .location {
   padding-left: 2em;
-  vertical-align: top;
 }
 td.entry-text {
   width: 26em;
@@ -36,7 +35,7 @@ td.ranges {
   font-family: monospace;
 }
 td.characters {
-  max-width: 40em;
+  max-width: 16ic;
   vertical-align: top;
 }
 table {
