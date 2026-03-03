@@ -40,6 +40,14 @@ for (let [name, entry] of indexEntries.get("Name_Alias")) {
   }
 }
 
+function updateQuery(event) {
+  if(event.key === 'Enter') {
+    let newURL = window.location.protocol + "//" + window.location.host + window.location.pathname
+     + "?q=" + encodeURIComponent(document.querySelector('input[name="q"]').value);
+    history.replaceState(null, '', newURL);
+  }
+}
+
 function updateResults(event) {
   /**@type {string}*/
   let query = event.target.value;
@@ -241,4 +249,13 @@ function rangeIntersection(/**@type {[number, number]}*/left, /**@type {[number,
 function fold(/**@type {string}*/ word) {
   var folding = word.normalize("NFKC").toLowerCase();
   return folding.replace("š", "sh");
+}
+
+window.onload = function () {
+  let params = (new URL(document.location)).searchParams;
+  if (params.has("q")) {
+    let query = params.get("q");
+    document.querySelector('input[name="q"]').value = query;
+    updateResults({target: {value: query}});
+  }
 }
