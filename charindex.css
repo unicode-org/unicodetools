@@ -31,11 +31,17 @@ td.ranges {
   max-width: 7em;
   text-align: right;
   white-space: nowrap;
-  vertical-align: top;
+  vertical-align: bottom;
   font-family: monospace;
 }
 td.characters {
   max-width: 16ic;
+  vertical-align: bottom;
+}
+td.ranges.rs-entry {
+  vertical-align: top;
+}
+td.characters.rs-entry {
   vertical-align: top;
 }
 table {

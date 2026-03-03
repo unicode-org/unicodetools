@@ -137,33 +137,32 @@ public class Indexer {
 
         public String toHTML() {
             final var subEntries = subEntries();
-            final String singleEntry = subEntries.size() == 1 ? subEntries.get(0).toHTML() : null;
-            return "<tr class=entry><td class=entry-text>[RESULT TEXT]"
+            final String singleEntry =
+                    subEntries.size() == 1 ? subEntries.get(0).toHTML("[RESULT TEXT]") : null;
+            return "<tr class=entry>"
                     + (singleEntry != null
                             ? singleEntry + "</tr>"
-                            : "</td></tr><tr class=subentry><td class=entry-text>"
+                            : "<td class=entry-text>[RESULT TEXT]</td></tr><tr class=subentry>"
                                     + subEntries().stream()
-                                            .map(e -> e.toHTML())
-                                            .collect(
-                                                    Collectors.joining(
-                                                            "</tr><tr class=subentry><td class=entry-text>"))
+                                            .map(e -> e.toHTML(""))
+                                            .collect(Collectors.joining("</tr><tr class=subentry>"))
                                     + "</tr>")
                     + relatedCharacters.entrySet().stream()
                             .map(
                                     entry ->
-                                            "<tr class=related><td class=entry-text>"
+                                            "<tr class=related>"
                                                     + entry.getKey()
-                                                    + "</td></tr></tr><tr class=subentry><td class=entry-text>"
+                                                    + "</td></tr></tr><tr class=subentry>"
                                                     + Indexer.subEntries(
                                                                     /* showBlock= */ true,
                                                                     /* showSubheader= */ false,
                                                                     /* showName= */ true,
                                                                     entry.getValue())
                                                             .stream()
-                                                            .map(e -> e.toHTML())
+                                                            .map(e -> e.toHTML(""))
                                                             .collect(
                                                                     Collectors.joining(
-                                                                            "</tr><tr class=subentry><td class=entry-text>"))
+                                                                            "</tr><tr class=subentry>"))
                                                     + "</tr>")
                             .collect(Collectors.joining());
         }
@@ -482,8 +481,7 @@ public class Indexer {
         file.println(
                 "<input type='search' placeholder='Search terms, e.g., [arrow], [click], [cyrillic o], [letter with ring], [queen card], [sanskrit]…' oninput='updateResults(event)'>");
         file.println("<p id='info'></p>");
-        file.println(
-                "<table><colgroup><col span=2 class=results-and-codepoints><col class=characters></colgroup><tbody id='results'></tbody></table>");
+        file.println("<table><tbody id='results'></tbody></table>");
         file.println("</body>");
         file.close();
 
@@ -550,6 +548,7 @@ public class Indexer {
         String ranges;
         String propertiesLink;
         String characters;
+        boolean rsEntry = false;
 
         @Override
         public String toString() {
@@ -564,8 +563,10 @@ public class Indexer {
             return result.toString();
         }
 
-        public String toHTML() {
+        public String toHTML(String entryText) {
             StringBuilder result = new StringBuilder();
+            result.append("<td class=entry-text>");
+            result.append(entryText);
             result.append("<span class=location>");
             if (subheader != null) {
                 result.append(toHTML.transform(subheader) + ". ");
@@ -573,14 +574,22 @@ public class Indexer {
             if (block != null) {
                 result.append("In " + block + ": ");
             }
-            result.append("</location>");
-            result.append("</td><td class=ranges><a href='" + chartLink + "'>");
+            result.append("</span>");
+            result.append("</td><td class='ranges");
+            if (rsEntry) {
+                result.append(" rs-entry");
+            }
+            result.append("'><a href='" + chartLink + "'>");
             result.append(toHTML.transform(ranges));
             result.append("</a>");
             /*if (propertiesLink != null) {
                 result.append(" (<a href='" + propertiesLink + "'>properties</a>)");
             }*/
-            result.append("</td><td class=characters>");
+            result.append("</td><td class='characters");
+            if (rsEntry) {
+                result.append(" rs-entry");
+            }
+            result.append("'>");
             if (characters != null) {
                 result.append(toHTML.transform(characters));
             }
@@ -686,6 +695,7 @@ public class Indexer {
                                 subrange.codePointStream()
                                         .mapToObj(Character::toString)
                                         .collect(Collectors.joining());
+                        currentSubEntry.rsEntry = true;
                         maxRSEntryCharacters = Math.max(maxRSEntryCharacters, subrange.size());
                     }
                     final String firstGC = generalCategory.getValue(subrange.getRangeStart(0));
