@@ -479,7 +479,10 @@ public class Indexer {
                         + Settings.latestVersionPhase
                         + "</h1>");
         file.println(
-                "<input type='search' name='q' placeholder='Search terms, e.g., [arrow], [click], [cyrillic o], [letter with ring], [queen card], [sanskrit], [153.9]…' oninput='updateResults(event)' onkeydown='updateQuery(event)'>");
+                "<input type='search' name='q'"
+                        + " placeholder='Search terms, e.g., [arrow], [click], [cyrillic o],"
+                        + " [letter with ring], [queen card], [sanskrit]…'"
+                        + " oninput='updateResults(event)' onkeydown='updateQuery(event)'>");
         file.println("<p id='info'></p>");
         file.println("<table><tbody id='results'></tbody></table>");
         file.println("</body>");
