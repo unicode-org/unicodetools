@@ -401,91 +401,86 @@ public class Indexer {
 
         System.out.println("Writing charindex.html...");
         var file = new PrintStream(new File("charindex.html"));
-        file.println("<head>");
-        file.println("<meta charset=\"utf-8\">");
-        file.println("<title>Character Name Index</title>");
-        file.println("<style>");
-        final var css = new BufferedReader(new FileReader(new File("charindex.css")));
-        for (String line = css.readLine(); line != null; line = css.readLine()) {
-            file.println(line);
-        }
-        css.close();
-        file.println("</style>");
-        file.println("<script>");
-        file.println("let wordIndex = new Map([");
-        System.out.println("wordIndex...");
-        {
-            int i = 0;
-            for (var wordAndSnippets : wordIndex.entrySet()) {
-                if (++i % 1000 == 0) {
-                    System.out.println(i + "/" + wordIndex.size() + "...");
+        final var htmlTemplate =
+                new BufferedReader(new FileReader(new File("charindex_template.html")));
+        for (String htmlLine = htmlTemplate.readLine();
+                htmlLine != null;
+                htmlLine = htmlTemplate.readLine()) {
+            if (htmlLine.contains("CSS HERE")) {
+                final var css = new BufferedReader(new FileReader(new File("charindex.css")));
+                for (String cssLine = css.readLine(); cssLine != null; cssLine = css.readLine()) {
+                    file.println(cssLine);
                 }
-                file.println(
-                        "    ['" + wordAndSnippets.getKey().replace("'", "\\'") + "', new Map([");
-                for (var snippetAndPosition : wordAndSnippets.getValue().entrySet()) {
-                    file.println(
-                            "      ['"
-                                    + snippetAndPosition.getKey().replace("'", "\\'")
-                                    + "', "
-                                    + snippetAndPosition.getValue()
-                                    + "],");
+                css.close();
+            } else if (htmlLine.contains("JS HERE")) {
+                file.println("let wordIndex = new Map([");
+                System.out.println("wordIndex...");
+                {
+                    int i = 0;
+                    for (var wordAndSnippets : wordIndex.entrySet()) {
+                        if (++i % 1000 == 0) {
+                            System.out.println(i + "/" + wordIndex.size() + "...");
+                        }
+                        file.println(
+                                "    ['"
+                                        + wordAndSnippets.getKey().replace("'", "\\'")
+                                        + "', new Map([");
+                        for (var snippetAndPosition : wordAndSnippets.getValue().entrySet()) {
+                            file.println(
+                                    "      ['"
+                                            + snippetAndPosition.getKey().replace("'", "\\'")
+                                            + "', "
+                                            + snippetAndPosition.getValue()
+                                            + "],");
+                        }
+                        file.println("])],");
+                    }
                 }
-                file.println("])],");
+                file.println("]);");
+                System.out.println("indexEntries...");
+                file.println("let indexEntries = new Map([");
+                for (var property : properties) {
+                    System.out.println(property.getName() + "...");
+                    final var propertyIndex = indexEntries.get(property);
+                    file.println("  ['" + property.getName() + "', new Map([");
+                    int i = 0;
+                    for (var indexEntry : propertyIndex.values()) {
+                        if (++i % 1000 == 0) {
+                            System.out.println(i + "/" + propertyIndex.size() + "...");
+                        }
+                        file.println("    ['" + indexEntry.snippet.replace("'", "\\'") + "', {");
+                        file.println(
+                                "       html: \""
+                                        + indexEntry.toHTML().replace("\"", "\\\"")
+                                        + "\",");
+                        file.println("       characters: [");
+                        for (var range : indexEntry.coveredCharacters().ranges()) {
+                            file.println(
+                                    "         [0x"
+                                            + Utility.hex(range.codepoint)
+                                            + ", 0x"
+                                            + Utility.hex(range.codepointEnd)
+                                            + "],");
+                        }
+                        file.println("      ],");
+                        file.println("    }],");
+                    }
+                    file.println("  ])],");
+                }
+                file.println("]);");
+                final var js = new BufferedReader(new FileReader(new File("index_search.js")));
+                for (String jsLine = js.readLine(); jsLine != null; jsLine = js.readLine()) {
+                    if (jsLine.contains("GENERATED LINE")) {
+                        continue;
+                    }
+                    file.println(jsLine);
+                }
+                js.close();
+            } else {
+                file.println(htmlLine.replace("<!--VERSION HERE-->", Settings.LATEST_VERSION_INFO.getVersionString(2, 2) + Settings.latestVersionPhase));
             }
         }
-        file.println("]);");
-        System.out.println("indexEntries...");
-        file.println("let indexEntries = new Map([");
-        for (var property : properties) {
-            System.out.println(property.getName() + "...");
-            final var propertyIndex = indexEntries.get(property);
-            file.println("  ['" + property.getName() + "', new Map([");
-            int i = 0;
-            for (var indexEntry : propertyIndex.values()) {
-                if (++i % 1000 == 0) {
-                    System.out.println(i + "/" + propertyIndex.size() + "...");
-                }
-                file.println("    ['" + indexEntry.snippet.replace("'", "\\'") + "', {");
-                file.println("       html: \"" + indexEntry.toHTML().replace("\"", "\\\"") + "\",");
-                file.println("       characters: [");
-                for (var range : indexEntry.coveredCharacters().ranges()) {
-                    file.println(
-                            "         [0x"
-                                    + Utility.hex(range.codepoint)
-                                    + ", 0x"
-                                    + Utility.hex(range.codepointEnd)
-                                    + "],");
-                }
-                file.println("      ],");
-                file.println("    }],");
-            }
-            file.println("  ])],");
-        }
-        file.println("]);");
-        final var js = new BufferedReader(new FileReader(new File("index_search.js")));
-        for (String line = js.readLine(); line != null; line = js.readLine()) {
-            if (line.contains("GENERATED LINE")) {
-                continue;
-            }
-            file.println(line);
-        }
-        js.close();
-        file.println("</script>");
-        file.println("</head>");
-        file.println("<body>");
-        file.println(
-                "<h1>Character names list index "
-                        + Settings.latestVersion
-                        + Settings.latestVersionPhase
-                        + "</h1>");
-        file.println(
-                "<input type='search' name='q'"
-                        + " placeholder='Search terms, e.g., [arrow], [click], [cyrillic o],"
-                        + " [letter with ring], [queen card], [sanskrit]…'"
-                        + " oninput='updateResults(event)' onkeydown='updateQuery(event)'>");
-        file.println("<p id='info'></p>");
-        file.println("<table><tbody id='results'></tbody></table>");
-        file.println("</body>");
+        htmlTemplate.close();
         file.close();
 
         System.out.println(wordIndex.size() + " words");

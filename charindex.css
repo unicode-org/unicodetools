@@ -1,6 +1,13 @@
-input {
-  width:100%;
-  max-width:40em;
+#table4 { width: 100%; border-collapse: collapse; border-spacing: 0; }
+body {
+  --body-width  : 36rem;
+  --range-width : 7rem;
+}
+.body-width {
+  max-width: var(--body-width);
+}
+input[name="q"] {
+  width: 100%;
 }
 .tail {
   display: inline-block;
@@ -22,19 +29,20 @@ tr.subentry .location {
   padding-left: 2em;
 }
 td.entry-text {
-  width: 27em;
-  max-width: 27em;
+  width: calc(var(--body-width) - var(--range-width));
+  max-width: calc(var(--body-width) - var(--range-width));
   vertical-align: top;
 }
 td.ranges {
-  width: 7em;
-  max-width: 7em;
+  width: var(--range-width);
+  max-width: var(--range-width);
   text-align: right;
   white-space: nowrap;
   vertical-align: bottom;
   font-family: monospace;
 }
 td.characters {
+  min-width: 4ic;
   max-width: 16ic;
   vertical-align: bottom;
 }
@@ -44,6 +52,6 @@ td.ranges.rs-entry {
 td.characters.rs-entry {
   vertical-align: top;
 }
-table {
+table.search-results {
   border-collapse: collapse;
 }
