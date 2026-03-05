@@ -27,6 +27,7 @@ import java.util.stream.StreamSupport;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Normalizer;
@@ -70,6 +71,8 @@ public class Indexer {
     static final UnicodeProperty cjkRadical = iup.getProperty(UcdProperty.CJK_Radical);
     static final UnicodeProperty generalCategory = iup.getProperty(UcdProperty.General_Category);
     static final UnicodeSet ideographic = iup.getProperty(UcdProperty.Ideographic).getSet("Yes");
+    static final UnicodeSet noncharacters =
+            iup.getProperty(UcdProperty.Noncharacter_Code_Point).getSet("Yes");
     static final Map<String, UnicodeSet> blockSet = new HashMap<>();
 
     static int maxRSEntryCharacters = 0;
@@ -115,11 +118,16 @@ public class Indexer {
         }
 
         List<IndexSubEntry> subEntries() {
+            try {
             return Indexer.subEntries(
                     property == subheader,
                     property == subheader_notice,
                     property != name,
                     characters);
+            } catch (Exception e) {
+                System.err.println("In entry for " + property.getName() + ": " + snippet);
+                throw e;
+            }
         }
 
         String snippet;
@@ -322,6 +330,9 @@ public class Indexer {
                         continue;
                     }
                     if (prop == block) {
+                        if (Block_Values.forName(snippet) == Block_Values.No_Block) {
+                            continue;
+                        }
                         snippet = pretty_block.getValue(cp);
                     } else if (prop == name) {
                         snippet = snippet.replace(Utility.hex(cp), "#");
@@ -477,7 +488,11 @@ public class Indexer {
                 }
                 js.close();
             } else {
-                file.println(htmlLine.replace("<!--VERSION HERE-->", Settings.LATEST_VERSION_INFO.getVersionString(2, 2) + Settings.latestVersionPhase));
+                file.println(
+                        htmlLine.replace(
+                                "<!--VERSION HERE-->",
+                                Settings.LATEST_VERSION_INFO.getVersionString(2, 2)
+                                        + Settings.latestVersionPhase));
             }
         }
         htmlTemplate.close();
@@ -619,9 +634,7 @@ public class Indexer {
                     currentSubEntry.subheader = subheader.getValue(range.codepoint);
                 }
                 currentSubEntry.chartLink =
-                        getChartLink(
-                                UcdPropertyValues.Block_Values.forName(
-                                        block.getValue(range.codepoint)));
+                        getChartLink(new UnicodeSet(range.codepoint, range.codepoint));
                 currentSubEntry.ranges = Utility.hex(range.codepoint);
                 if (!General_Category_Values.forName(generalCategory.getValue(range.codepoint))
                         .getShortName()
@@ -666,8 +679,7 @@ public class Indexer {
                     if (showSubheader) {
                         currentSubEntry.subheader = subheader.getValue(range.codepoint);
                     }
-                    currentSubEntry.chartLink =
-                            getChartLink(UcdPropertyValues.Block_Values.forName(blockValue));
+                    currentSubEntry.chartLink = getChartLink(subrange);
                     currentSubEntry.ranges =
                             Utility.hex(subrange.getRangeStart(0))
                                     + "–"
@@ -724,11 +736,27 @@ public class Indexer {
         return result;
     }
 
-    static String getChartLink(UcdPropertyValues.Block_Values block) {
-        final var currentBlock = blockSet.get(block.toString());
-        final int blockStart = currentBlock.getRangeStart(0);
-        final boolean blockHasNewCharacters =
-                !newCharacters.cloneAsThawed().retainAll(currentBlock).isEmpty();
+    static String getChartLink(UnicodeSet set) {
+        int chartStart;
+        var blockValue = UcdPropertyValues.Block_Values.forName(block.getValue(set.charAt(0)));
+        boolean blockHasNewCharacters = false;
+        if (noncharacters.containsAll(set)
+                && (blockValue == Block_Values.No_Block
+                        || blockValue == Block_Values.Supplementary_Private_Use_Area_A
+                        || blockValue == Block_Values.Supplementary_Private_Use_Area_B)) {
+            chartStart = set.charAt(0) & 0xFF_FF80;
+        } else {
+            if (blockValue == Block_Values.No_Block) {
+                throw new IllegalArgumentException("Getting chart for No_Block characters " + set);
+            }
+            if (blockValue == Block_Values.High_Private_Use_Surrogates) {
+                blockValue = Block_Values.High_Surrogates;
+            }
+            final var currentBlock = blockSet.get(blockValue.toString());
+            chartStart = currentBlock.getRangeStart(0);
+            blockHasNewCharacters =
+                    !newCharacters.cloneAsThawed().retainAll(currentBlock).isEmpty();
+        }
         switch (Settings.latestVersionPhase) {
             case ALPHA:
                 if (blockHasNewCharacters) {
@@ -737,17 +765,17 @@ public class Indexer {
                             + "/U"
                             + Settings.LATEST_VERSION_INFO.getVersionString(2, 2).replace(".", "")
                             + "-"
-                            + Utility.hex(blockStart)
+                            + Utility.hex(chartStart)
                             + ".pdf";
                 } else {
-                    return "https://unicode.org/charts/PDF/U" + Utility.hex(blockStart) + ".pdf";
+                    return "https://unicode.org/charts/PDF/U" + Utility.hex(chartStart) + ".pdf";
                 }
             case BETA:
                 return "https://www.unicode.org/Public/draft/charts/blocks/U"
-                        + Utility.hex(blockStart)
+                        + Utility.hex(chartStart)
                         + ".pdf";
             default:
-                return "https://unicode.org/charts/PDF/U" + Utility.hex(blockStart) + ".pdf";
+                return "https://unicode.org/charts/PDF/U" + Utility.hex(chartStart) + ".pdf";
         }
     }
 }
