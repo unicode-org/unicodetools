@@ -602,6 +602,8 @@ Unikemet ; kEH_NoRotate
 Unikemet ; kEH_UniK
 Unikemet ; kEH_AltSeq
 
+NamesList ; Names_List_Block_Header
+NamesList ; Names_List_Block_Header_Notice
 NamesList ; Names_List_Alias
 NamesList ; Names_List_Cross_Ref
 NamesList ; Names_List_Comment

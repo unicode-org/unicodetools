@@ -892,6 +892,23 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             IndexUnicodeProperties nextProperties,
             Set<PropertyParsingInfo> propInfoSet) {
         final var namesListChar = Pattern.compile("[0-9A-F]{4,6}");
+        final var blockHeaderPropInfo =
+                property2PropertyInfo.get(UcdProperty.Names_List_Block_Header);
+        final var nextBlockHeader =
+                nextProperties == null
+                        ? null
+                        : nextProperties.getProperty(UcdProperty.Names_List_Block_Header);
+        final UnicodeMap<String> blockHeaderData =
+                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Block_Header);
+        final var blockHeaderNoticePropInfo =
+                property2PropertyInfo.get(UcdProperty.Names_List_Block_Header_Notice);
+        final var nextBlockHeaderNotice =
+                nextProperties == null
+                        ? null
+                        : nextProperties.getProperty(UcdProperty.Names_List_Block_Header_Notice);
+        final UnicodeMap<String> blockHeaderNoticeData =
+                indexUnicodeProperties.property2UnicodeMap.get(
+                        UcdProperty.Names_List_Block_Header_Notice);
         final var subheaderPropInfo = property2PropertyInfo.get(UcdProperty.Names_List_Subheader);
         final var nextSubheader =
                 nextProperties == null
@@ -934,9 +951,12 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         aliasPropInfo.multivaluedSplit = NO_SPLIT;
         commentPropInfo.multivaluedSplit = NO_SPLIT;
 
+        String blockHeader = null;
+        String blockHeaderNotice = null;
         String subheader = null;
         String subheaderNotice = null;
         IntRange codePoint = null;
+        IntRange blockRange = null;
         for (String line : lines) {
             String[] parts = line.split("\t+");
             if (parts.length == 2 && namesListChar.matcher(parts[0]).matches()) {
@@ -1000,16 +1020,31 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 codePoint = null;
             }
             if (parts.length == 4 && parts[0].equals("@@")) {
-                // New block header, clear the current subheader.
+                blockRange = new IntRange();
+                blockRange.set(parts[1] + ".." + parts[3]);
+                blockHeaderPropInfo.put(
+                        blockHeaderData,
+                        blockRange,
+                        parts[2],
+                        nextBlockHeader,
+                        indexUnicodeProperties.getUcdVersion());
+                blockHeaderNotice = null;
                 subheader = null;
                 subheaderNotice = null;
                 codePoint = null;
             }
-            if (parts.length == 2
-                    && parts[0].equals("@+")
-                    && codePoint == null
-                    && subheader != null) {
-                subheaderNotice = parts[1];
+            if (parts.length == 2 && parts[0].equals("@+") && codePoint == null) {
+                if (subheader != null) {
+                    subheaderNotice = parts[1];
+                } else if (blockRange != null) {
+                    blockHeaderNoticePropInfo.put(
+                            blockHeaderNoticeData,
+                            blockRange,
+                            parts[1],
+                            IndexUnicodeProperties.MULTIVALUED_JOINER,
+                            nextBlockHeaderNotice,
+                            indexUnicodeProperties.getUcdVersion());
+                }
             }
         }
     }

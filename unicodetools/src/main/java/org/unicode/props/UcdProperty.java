@@ -184,6 +184,14 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "Names_List_Alias"),
+    Names_List_Block_Header(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "Names_List_Block_Header"),
+    Names_List_Block_Header_Notice(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "Names_List_Block_Header_Notice"),
     Names_List_Comment(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
