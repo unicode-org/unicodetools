@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2026-02-21, 04:18:13 GMT
+# Date: 2026-03-17, 18:19:31 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3631,14 +3631,16 @@
 ←	(‎ a.rn. ‎)	0061 002E 0072 006E 002E	 LATIN SMALL LETTER A, FULL STOP, LATIN SMALL LETTER R, LATIN SMALL LETTER N, FULL STOP
 ←	(‎ ㏂ ‎)	33C2	 SQUARE AM
 
-#	a/c	ᵃ/c	ᵃ⁄c	℀
+#	a/c	𞀰/c	ᵃ/c	ᵃ⁄c	℀
 	(‎ a/c ‎)	0061 002F 0063	 LATIN SMALL LETTER A, SOLIDUS, LATIN SMALL LETTER C
+←	(‎ 𞀰/c ‎)	1E030 002F 0063	 MODIFIER LETTER CYRILLIC SMALL A, SOLIDUS, LATIN SMALL LETTER C	# →ᵃ⁄c→→℀→
 ←	(‎ ᵃ/c ‎)	1D43 002F 0063	 MODIFIER LETTER SMALL A, SOLIDUS, LATIN SMALL LETTER C	# →ᵃ⁄c→→℀→
 ←	(‎ ᵃ⁄c ‎)	1D43 2044 0063	 MODIFIER LETTER SMALL A, FRACTION SLASH, LATIN SMALL LETTER C	# →℀→
 ←	(‎ ℀ ‎)	2100	 ACCOUNT OF
 
-#	a/s	ᵃ/ₛ	ᵃ⁄ₛ	℁
+#	a/s	𞀰/𞁩	ᵃ/ₛ	ᵃ⁄ₛ	℁
 	(‎ a/s ‎)	0061 002F 0073	 LATIN SMALL LETTER A, SOLIDUS, LATIN SMALL LETTER S
+←	(‎ 𞀰/𞁩 ‎)	1E030 002F 1E069	 MODIFIER LETTER CYRILLIC SMALL A, SOLIDUS, CYRILLIC SUBSCRIPT SMALL LETTER DZE	# →ᵃ⁄ₛ→→℁→
 ←	(‎ ᵃ/ₛ ‎)	1D43 002F 209B	 MODIFIER LETTER SMALL A, SOLIDUS, LATIN SUBSCRIPT SMALL LETTER S	# →ᵃ⁄ₛ→→℁→
 ←	(‎ ᵃ⁄ₛ ‎)	1D43 2044 209B	 MODIFIER LETTER SMALL A, FRACTION SLASH, LATIN SUBSCRIPT SMALL LETTER S	# →℁→
 ←	(‎ ℁ ‎)	2101	 ADDRESSED TO THE SUBJECT
@@ -3786,14 +3788,16 @@
 ←	(‎ 𝙘 ‎)	1D658	 MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL C
 ←	(‎ 𝚌 ‎)	1D68C	 MATHEMATICAL MONOSPACE SMALL C
 
-#	c/o	ᶜ/₀	ᶜ⁄₀	℅
+#	c/o	𞀿/₀	ᶜ/₀	ᶜ⁄₀	℅
 	(‎ c/o ‎)	0063 002F 006F	 LATIN SMALL LETTER C, SOLIDUS, LATIN SMALL LETTER O
+←	(‎ 𞀿/₀ ‎)	1E03F 002F 2080	 MODIFIER LETTER CYRILLIC SMALL ES, SOLIDUS, SUBSCRIPT ZERO	# →ᶜ⁄₀→→℅→
 ←	(‎ ᶜ/₀ ‎)	1D9C 002F 2080	 MODIFIER LETTER SMALL C, SOLIDUS, SUBSCRIPT ZERO	# →ᶜ⁄₀→→℅→
 ←	(‎ ᶜ⁄₀ ‎)	1D9C 2044 2080	 MODIFIER LETTER SMALL C, FRACTION SLASH, SUBSCRIPT ZERO	# →℅→
 ←	(‎ ℅ ‎)	2105	 CARE OF
 
-#	c/u	ᶜ/ᵤ	ᶜ⁄ᵤ	℆
+#	c/u	𞀿/ᵤ	ᶜ/ᵤ	ᶜ⁄ᵤ	℆
 	(‎ c/u ‎)	0063 002F 0075	 LATIN SMALL LETTER C, SOLIDUS, LATIN SMALL LETTER U
+←	(‎ 𞀿/ᵤ ‎)	1E03F 002F 1D64	 MODIFIER LETTER CYRILLIC SMALL ES, SOLIDUS, LATIN SUBSCRIPT SMALL LETTER U	# →ᶜ⁄ᵤ→→℆→
 ←	(‎ ᶜ/ᵤ ‎)	1D9C 002F 1D64	 MODIFIER LETTER SMALL C, SOLIDUS, LATIN SUBSCRIPT SMALL LETTER U	# →ᶜ⁄ᵤ→→℆→
 ←	(‎ ᶜ⁄ᵤ ‎)	1D9C 2044 1D64	 MODIFIER LETTER SMALL C, FRACTION SLASH, LATIN SUBSCRIPT SMALL LETTER U	# →℆→
 ←	(‎ ℆ ‎)	2106	 CADA UNA
@@ -6137,8 +6141,9 @@
 ←	(‎ ᐧᣀ ‎)	1427 18C0	 CANADIAN SYLLABICS FINAL MIDDLE DOT, CANADIAN SYLLABICS SHOY
 ←	(‎ ᣂ ‎)	18C2	 CANADIAN SYLLABICS SHWOY	# →ᐧᣀ→
 
-#	º	ᵒ	⁰
+#	º	𞀼	ᵒ	⁰
 	(‎ º ‎)	00BA	 MASCULINE ORDINAL INDICATOR
+←	(‎ 𞀼 ‎)	1E03C	 MODIFIER LETTER CYRILLIC SMALL O	# →ᵒ→→⁰→
 ←	(‎ ᵒ ‎)	1D52	 MODIFIER LETTER SMALL O	# →⁰→
 ←	(‎ ⁰ ‎)	2070	 SUPERSCRIPT ZERO
 
@@ -6579,9 +6584,17 @@
 	(‎ ʡ ‎)	02A1	 LATIN LETTER GLOTTAL STOP WITH STROKE
 ←	(‎ ꛍ ‎)	A6CD	 BAMUM LETTER LU
 
+#	𞁍	ʲ
+	(‎ ʲ ‎)	02B2	 MODIFIER LETTER SMALL J
+←	(‎ 𞁍 ‎)	1E04D	 MODIFIER LETTER CYRILLIC SMALL JE
+
 #	ᣴ	ʳ
 	(‎ ʳ ‎)	02B3	 MODIFIER LETTER SMALL R
 ←	(‎ ᣴ ‎)	18F4	 CANADIAN SYLLABICS BEAVER DENE R
+
+#	𞁁	ʸ
+	(‎ ʸ ‎)	02B8	 MODIFIER LETTER SMALL Y
+←	(‎ 𞁁 ‎)	1E041	 MODIFIER LETTER CYRILLIC SMALL U
 
 #	ՙ	ʿ	˓
 	(‎ ʿ ‎)	02BF	 MODIFIER LETTER LEFT HALF RING
@@ -6625,6 +6638,10 @@
 ←	(‎ ᣵ ‎)	18F5	 CANADIAN SYLLABICS CARRIER DENTAL S
 ←	(‎ ᣛ ‎)	18DB	 CANADIAN SYLLABICS OJIBWAY SH
 ←	(‎ ꟱ ‎)	A7F1	 MODIFIER LETTER CAPITAL S
+
+#	𞁃	ˣ
+	(‎ ˣ ‎)	02E3	 MODIFIER LETTER SMALL X
+←	(‎ 𞁃 ‎)	1E043	 MODIFIER LETTER CYRILLIC SMALL HA
 
 #	˪	˻	꜖
 	(‎ ˪ ‎)	02EA	 MODIFIER LETTER YIN DEPARTING TONE MARK
@@ -6989,6 +7006,10 @@
 #	ͤ	ⷷ
 	(‎ ͤ ‎)	0364	 COMBINING LATIN SMALL LETTER E
 ←	(‎ ⷷ ‎)	2DF7	 COMBINING CYRILLIC LETTER IE
+
+#	𞂏	ͥ
+	(‎ ͥ ‎)	0365	 COMBINING LATIN SMALL LETTER I
+←	(‎ 𞂏 ‎)	1E08F	 COMBINING CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
 
 #	ͨ	ⷭ
 	(‎ ͨ ‎)	0368	 COMBINING LATIN SMALL LETTER C
@@ -13582,13 +13603,73 @@
 	(‎ ᴴ ‎)	1D34	 MODIFIER LETTER CAPITAL H
 ←	(‎ ᵸ ‎)	1D78	 MODIFIER LETTER CYRILLIC EN
 
-#	ᵌ	ᶟ
+#	𞁐	ᴵ
+	(‎ ᴵ ‎)	1D35	 MODIFIER LETTER CAPITAL I
+←	(‎ 𞁐 ‎)	1E050	 MODIFIER LETTER CYRILLIC SMALL PALOCHKA
+
+#	𞀹	ᴷ
+	(‎ ᴷ ‎)	1D37	 MODIFIER LETTER CAPITAL K
+←	(‎ 𞀹 ‎)	1E039	 MODIFIER LETTER CYRILLIC SMALL KA
+
+#	𞁀	ᵀ
+	(‎ ᵀ ‎)	1D40	 MODIFIER LETTER CAPITAL T
+←	(‎ 𞁀 ‎)	1E040	 MODIFIER LETTER CYRILLIC SMALL TE
+
+#	𞀰	ᵃ
+	(‎ ᵃ ‎)	1D43	 MODIFIER LETTER SMALL A
+←	(‎ 𞀰 ‎)	1E030	 MODIFIER LETTER CYRILLIC SMALL A
+
+#	ᵇ	ꚝ
+	(‎ ᵇ ‎)	1D47	 MODIFIER LETTER SMALL B
+←	(‎ ꚝ ‎)	A69D	 MODIFIER LETTER CYRILLIC SOFT SIGN
+
+#	ᵇᶦ	ꚝᶦ	𞁇
+	(‎ ᵇᶦ ‎)	1D47 1DA6	 MODIFIER LETTER SMALL B, MODIFIER LETTER SMALL CAPITAL I
+←	(‎ ꚝᶦ ‎)	A69D 1DA6	 MODIFIER LETTER CYRILLIC SOFT SIGN, MODIFIER LETTER SMALL CAPITAL I
+←	(‎ 𞁇 ‎)	1E047	 MODIFIER LETTER CYRILLIC SMALL YERU	# →ꚝᶦ→
+
+#	𞀵	ᵉ
+	(‎ ᵉ ‎)	1D49	 MODIFIER LETTER SMALL E
+←	(‎ 𞀵 ‎)	1E035	 MODIFIER LETTER CYRILLIC SMALL IE
+
+#	𞁋	ᵊ
+	(‎ ᵊ ‎)	1D4A	 MODIFIER LETTER SMALL SCHWA
+←	(‎ 𞁋 ‎)	1E04B	 MODIFIER LETTER CYRILLIC SMALL SCHWA
+
+#	𞀷	ᵌ	ᶟ
 	(‎ ᵌ ‎)	1D4C	 MODIFIER LETTER SMALL TURNED OPEN E
+←	(‎ 𞀷 ‎)	1E037	 MODIFIER LETTER CYRILLIC SMALL ZE	# →ᶟ→
 ←	(‎ ᶟ ‎)	1D9F	 MODIFIER LETTER SMALL REVERSED OPEN E
 
 #	ᵍ	ᶢ
 	(‎ ᵍ ‎)	1D4D	 MODIFIER LETTER SMALL G
 ←	(‎ ᶢ ‎)	1DA2	 MODIFIER LETTER SMALL SCRIPT G
+
+#	𞀾	ᵖ
+	(‎ ᵖ ‎)	1D56	 MODIFIER LETTER SMALL P
+←	(‎ 𞀾 ‎)	1E03E	 MODIFIER LETTER CYRILLIC SMALL ER
+
+#	𞁨	ᵢ
+	(‎ ᵢ ‎)	1D62	 LATIN SUBSCRIPT SMALL LETTER I
+←	(‎ 𞁨 ‎)	1E068	 CYRILLIC SUBSCRIPT SMALL LETTER BYELORUSSIAN-UKRAINIAN I
+
+#	𞀿	ᶜ
+	(‎ ᶜ ‎)	1D9C	 MODIFIER LETTER SMALL C
+←	(‎ 𞀿 ‎)	1E03F	 MODIFIER LETTER CYRILLIC SMALL ES
+
+#	𞀿̦	ᶜ̦	ᶜ̧	𞁫
+	(‎ ᶜ̦ ‎)	1D9C 0326	 MODIFIER LETTER SMALL C, COMBINING COMMA BELOW
+←	(‎ 𞀿̦ ‎)	1E03F 0326	 MODIFIER LETTER CYRILLIC SMALL ES, COMBINING COMMA BELOW	# →ᶜ̧→
+←	(‎ ᶜ̧ ‎)	1D9C 0327	 MODIFIER LETTER SMALL C, COMBINING CEDILLA
+←	(‎ 𞁫 ‎)	1E06B	 MODIFIER LETTER CYRILLIC SMALL ES WITH DESCENDER	# →ᶜ̧→
+
+#	𞁎	ᶱ
+	(‎ ᶱ ‎)	1DB1	 MODIFIER LETTER SMALL BARRED O
+←	(‎ 𞁎 ‎)	1E04E	 MODIFIER LETTER CYRILLIC SMALL BARRED O
+
+#	𞁂	ᶲ
+	(‎ ᶲ ‎)	1DB2	 MODIFIER LETTER SMALL PHI
+←	(‎ 𞁂 ‎)	1E042	 MODIFIER LETTER CYRILLIC SMALL EF
 
 #	ᷟ	ⷨ
 	(‎ ᷟ ‎)	1DDF	 COMBINING LATIN LETTER SMALL CAPITAL M
@@ -13611,6 +13692,10 @@
 ←	(‎ ⦙ ‎)	2999	 DOTTED FENCE
 ←	(‎ ⸽ ‎)	2E3D	 VERTICAL SIX DOTS
 
+#	𞁌	ⁱ
+	(‎ ⁱ ‎)	2071	 SUPERSCRIPT LATIN SMALL LETTER I
+←	(‎ 𞁌 ‎)	1E04C	 MODIFIER LETTER CYRILLIC SMALL BYELORUSSIAN-UKRAINIAN I
+
 #	ꝰ	⁹
 	(‎ ⁹ ‎)	2079	 SUPERSCRIPT NINE
 ←	(‎ ꝰ ‎)	A770	 MODIFIER LETTER US
@@ -13618,6 +13703,26 @@
 #	₁₀	⏨
 	(‎ ₁₀ ‎)	2081 2080	 SUBSCRIPT ONE, SUBSCRIPT ZERO
 ←	(‎ ⏨ ‎)	23E8	 DECIMAL EXPONENT SYMBOL
+
+#	𞁑	ₐ
+	(‎ ₐ ‎)	2090	 LATIN SUBSCRIPT SMALL LETTER A
+←	(‎ 𞁑 ‎)	1E051	 CYRILLIC SUBSCRIPT SMALL LETTER A
+
+#	𞁖	ₑ
+	(‎ ₑ ‎)	2091	 LATIN SUBSCRIPT SMALL LETTER E
+←	(‎ 𞁖 ‎)	1E056	 CYRILLIC SUBSCRIPT SMALL LETTER IE
+
+#	𞁜	ₒ
+	(‎ ₒ ‎)	2092	 LATIN SUBSCRIPT SMALL LETTER O
+←	(‎ 𞁜 ‎)	1E05C	 CYRILLIC SUBSCRIPT SMALL LETTER O
+
+#	𞁡	ₓ
+	(‎ ₓ ‎)	2093	 LATIN SUBSCRIPT SMALL LETTER X
+←	(‎ 𞁡 ‎)	1E061	 CYRILLIC SUBSCRIPT SMALL LETTER HA
+
+#	𞁩	ₛ
+	(‎ ₛ ‎)	209B	 LATIN SUBSCRIPT SMALL LETTER S
+←	(‎ 𞁩 ‎)	1E069	 CYRILLIC SUBSCRIPT SMALL LETTER DZE
 
 #	₸	〒	〶
 	(‎ ₸ ‎)	20B8	 TENGE SIGN
@@ -15861,6 +15966,10 @@
 	(‎ ꙩ ‎)	A669	 CYRILLIC SMALL LETTER MONOCULAR O
 ←	(‎ 𐓫 ‎)	104EB	 OSAGE SMALL LETTER OIN
 
+#	ꚜᶦ	𞁬
+	(‎ ꚜᶦ ‎)	A69C 1DA6	 MODIFIER LETTER CYRILLIC HARD SIGN, MODIFIER LETTER SMALL CAPITAL I
+←	(‎ 𞁬 ‎)	1E06C	 MODIFIER LETTER CYRILLIC SMALL YERU WITH BACK YER
+
 #	꛳꛳	꛴
 	(‎ ꛳꛳ ‎)	A6F3 A6F3	 BAMUM FULL STOP, BAMUM FULL STOP
 ←	(‎ ꛴ ‎)	A6F4	 BAMUM COLON
@@ -15958,6 +16067,14 @@
 #	𐒆	𐒠
 	(‎ 𐒆 ‎)	10486	 OSMANYA LETTER DEEL
 ←	(‎ 𐒠 ‎)	104A0	 OSMANYA DIGIT ZERO
+
+#	𐞄	𞀲
+	(‎ 𐞄 ‎)	10784	 MODIFIER LETTER SMALL CAPITAL B
+←	(‎ 𞀲 ‎)	1E032	 MODIFIER LETTER CYRILLIC SMALL VE
+
+#	𐞲	𞁏
+	(‎ 𐞲 ‎)	107B2	 MODIFIER LETTER SMALL CAPITAL Y
+←	(‎ 𞁏 ‎)	1E04F	 MODIFIER LETTER CYRILLIC SMALL STRAIGHT U
 
 #	𐩖𐩖	𐩗
 	(‎ 𐩖𐩖 ‎)	10A56 10A56	 KHAROSHTHI PUNCTUATION DANDA, KHAROSHTHI PUNCTUATION DANDA
@@ -16142,5 +16259,5 @@
 	(‎ 𮶵 ‎)	2EDB5	 CJK UNIFIED IDEOGRAPH-2EDB5
 ←	(‎ 𲪏 ‎)	32A8F	 CJK UNIFIED IDEOGRAPH-32A8F
 
-# total : 7699
+# total : 7735
 
