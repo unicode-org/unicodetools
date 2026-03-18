@@ -119,11 +119,11 @@ public class Indexer {
 
         List<IndexSubEntry> subEntries() {
             try {
-            return Indexer.subEntries(
-                    property == subheader,
-                    property == subheader_notice,
-                    property != name,
-                    characters);
+                return Indexer.subEntries(
+                        property == subheader,
+                        property == subheader_notice,
+                        property != name,
+                        characters);
             } catch (Exception e) {
                 System.err.println("In entry for " + property.getName() + ": " + snippet);
                 throw e;
@@ -411,14 +411,17 @@ public class Indexer {
         }
 
         System.out.println("Writing charindex.html...");
-        var file = new PrintStream(new File("charindex.html"));
+        final String resources =
+                Settings.UnicodeTools.UNICODETOOLS_RSRC_DIR + "org/unicode/text/tools/";
+        var file = new PrintStream(new File(Settings.Output.GEN_DIR + "charindex.html"));
         final var htmlTemplate =
-                new BufferedReader(new FileReader(new File("charindex_template.html")));
+                new BufferedReader(new FileReader(new File(resources + "charindex_template.html")));
         for (String htmlLine = htmlTemplate.readLine();
                 htmlLine != null;
                 htmlLine = htmlTemplate.readLine()) {
             if (htmlLine.contains("CSS HERE")) {
-                final var css = new BufferedReader(new FileReader(new File("charindex.css")));
+                final var css =
+                        new BufferedReader(new FileReader(new File(resources + "charindex.css")));
                 for (String cssLine = css.readLine(); cssLine != null; cssLine = css.readLine()) {
                     file.println(cssLine);
                 }
@@ -479,7 +482,8 @@ public class Indexer {
                     file.println("  ])],");
                 }
                 file.println("]);");
-                final var js = new BufferedReader(new FileReader(new File("index_search.js")));
+                final var js =
+                        new BufferedReader(new FileReader(new File(resources + "charindex.js")));
                 for (String jsLine = js.readLine(); jsLine != null; jsLine = js.readLine()) {
                     if (jsLine.contains("GENERATED LINE")) {
                         continue;
