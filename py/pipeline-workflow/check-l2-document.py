@@ -13,7 +13,7 @@ if not re.search(r"L2/\d\d-\d\d\d", pr_body):
           "PRs for character additions must include a link to an L2 document in"
           " the PR description.")
     errors += 1
-if not re.search(r"(unicode-org/sah(#|/issues/)\d|CJK|ESC)", pr_body):
+if not re.search(r"(unicode-org/(sah|sew)(#|/issues/)\d|CJK|ESC)", pr_body):
     print("::error title=Need working group reference::"
           "PRs for character additions must include a link to the SAH issue, or "
           "the mention ESC or CJK.")
