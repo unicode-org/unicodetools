@@ -114,8 +114,7 @@ function search(/**@type {string}*/ query) {
       right.substring(getPivot(right)) +
                       ' \uFFFE ' +
                       right.substring(0, getPivot(right))));
-  for (let [property, propertyIndex] of indexEntries) {
-    /**@type {[number, number][]}*/
+  for (let propertyIndex of indexEntries.values()) {
     for (let snippet of resultSnippets) {
       let entry = propertyIndex.get(snippet);
       if (!entry) {
@@ -258,4 +257,4 @@ window.onload = function () {
     document.querySelector('input[name="q"]').value = query;
     updateResults({target: {value: query}});
   }
-}
+};
