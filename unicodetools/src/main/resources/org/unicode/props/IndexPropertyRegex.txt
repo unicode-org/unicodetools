@@ -83,6 +83,8 @@ Emoji_SB ;                    SINGLE_VALUED ;               [0-9A-F]{4}
 emoji_variation_sequence ;    SINGLE_VALUED ;               text style|emoji style
 Named_Sequences ;             SINGLE_VALUED ;               $name
 Named_Sequences_Prov ;        SINGLE_VALUED ;               $name
+Names_List_Block_Header  ;    SINGLE_VALUED ;               .*
+Names_List_Block_Header_Notice ; MULTI_VALUED ;             .*
 Names_List_Alias  ;           MULTI_VALUED ;                .*
 Names_List_Comment ;          MULTI_VALUED ;                .*
 Names_List_Cross_Ref ;        MULTI_VALUED ;                .*

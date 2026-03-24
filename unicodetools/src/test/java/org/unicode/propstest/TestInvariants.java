@@ -164,13 +164,24 @@ public class TestInvariants extends TestFmwkMinusMinus {
                         UcdProperty.Names_List_Cross_Ref,
                         UcdProperty.Names_List_Comment,
                         UcdProperty.Names_List_Subheader,
-                        UcdProperty.Names_List_Subheader_Notice));
+                        UcdProperty.Names_List_Subheader_Notice,
+                        UcdProperty.Names_List_Block_Header,
+                        UcdProperty.Names_List_Block_Header_Notice));
         exceptions.putAll(
                 General_Category_Values.Private_Use,
-                Arrays.asList(UcdProperty.Age, UcdProperty.Block, UcdProperty.Pretty_Block));
+                Arrays.asList(
+                        UcdProperty.Age,
+                        UcdProperty.Block,
+                        UcdProperty.Pretty_Block,
+                        UcdProperty.Names_List_Block_Header,
+                        UcdProperty.Names_List_Block_Header_Notice));
         exceptions.putAll(
                 General_Category_Values.Surrogate,
-                Arrays.asList(UcdProperty.Block, UcdProperty.Pretty_Block));
+                Arrays.asList(
+                        UcdProperty.Block,
+                        UcdProperty.Pretty_Block,
+                        UcdProperty.Names_List_Block_Header,
+                        UcdProperty.Names_List_Block_Header_Notice));
 
         List<UcdProperty> ordered = new ArrayList<>();
         // ordered.add(UcdProperty.Bidi_Class);

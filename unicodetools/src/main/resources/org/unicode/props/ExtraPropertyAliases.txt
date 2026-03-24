@@ -242,10 +242,12 @@ kEH_Func                 ; kEH_Func ; Provisional
 kEH_FVal                 ; kEH_FVal ; Provisional
 kEH_UniK                 ; kEH_UniK ; Provisional
 
-Names_List_Subheader        ; Names_List_Subheader ; subhead ; UCDNonProperty
-Names_List_Subheader_Notice ; Names_List_Subheader_Notice    ; UCDNonProperty
-Names_List_Alias            ; Names_List_Alias               ; UCDNonProperty
-Names_List_Comment          ; Names_List_Comment             ; UCDNonProperty
+Names_List_Block_Header        ; Names_List_Block_Header        ; UCDNonProperty
+Names_List_Block_Header_Notice ; Names_List_Block_Header_Notice ; UCDNonProperty
+Names_List_Subheader           ; Names_List_Subheader ; subhead ; UCDNonProperty
+Names_List_Subheader_Notice    ; Names_List_Subheader_Notice    ; UCDNonProperty
+Names_List_Alias               ; Names_List_Alias               ; UCDNonProperty
+Names_List_Comment             ; Names_List_Comment             ; UCDNonProperty
 
 Math_Entity_Name          ; Math_Entity_Name          ; NonUCDNonProperty
 Math_Entity_Set           ; Math_Entity_Set           ; NonUCDNonProperty

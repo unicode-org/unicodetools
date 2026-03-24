@@ -922,11 +922,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
             return result;
         }
-        //        @Override
-        //        public boolean hasUniformUnassigned() {
-        //            //throw new UnsupportedOperationException();
-        //            return false;
-        //        }
+
+        @Override
+        public boolean hasUniformUnassigned() {
+            return false;
+        }
     }
 
     {
