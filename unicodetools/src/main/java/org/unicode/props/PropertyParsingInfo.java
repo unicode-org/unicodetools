@@ -950,6 +950,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
         aliasPropInfo.multivaluedSplit = NO_SPLIT;
         commentPropInfo.multivaluedSplit = NO_SPLIT;
+        blockHeaderNoticePropInfo.multivaluedSplit = NO_SPLIT;
 
         String blockHeader = null;
         String blockHeaderNotice = null;
