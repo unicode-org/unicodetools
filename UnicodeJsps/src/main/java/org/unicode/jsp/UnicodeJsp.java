@@ -255,7 +255,7 @@ public class UnicodeJsp {
         // of hexadecimal character escape and numeric literal syntaxes.
         Matcher matcher =
                 Pattern.compile(
-                                "(?:U\\+|\\\\[ux]\\{?|&#x|0x|16#|&H)?([0-9a-f'_]+)[\\};#]?",
+                                "(?:U\\+|\\\\[ux]\\{?|&#x|0x|16#|&H|u(?:ni)?)?([0-9a-f'_]+)[\\};#]?",
                                 Pattern.CASE_INSENSITIVE)
                         .matcher(trimmed);
         String digits = matcher.matches() ? matcher.group(1).replaceAll("['_]", "") : null;
