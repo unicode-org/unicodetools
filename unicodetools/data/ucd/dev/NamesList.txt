@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-01-31, 16:06:55 GMT
+@+	Generation Date: 2026-03-13, 10:32:52 GMT
 	Unicode 18.0.0 names list.
 	Adjusted for repertoire additions post UTC186.
 	Removed extraneous TAB in one subhead.
@@ -9,7 +9,16 @@
 	Annotations updates for 231B, 29D6, 1F76E.
 	More cuneiform annotations from L2/24-239.
 	Add xref from 02AE to 0265.
-	Repertoire synched with UnicodeData-18.0.0d7.txt.
+	Repertoire synched with UnicodeData-18.0.0d8.txt.
+	Alpha review fixes.
+	Fix annotation for 1D252.
+	Update Chisoi subheads.
+	Add xref 1D1F7 to A75C.
+	Fix typo in xref for 2F82D.
+	Add alias to 237C.
+	Fixed subheads per Kirk suggestions.
+	Update annotation for 05BC.
+	Update annotation for 29FE and 29FF.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -4048,7 +4057,7 @@
 	x (hebrew point sheva - 05B0)
 05C9	HEBREW POINT DAGESH HAZAQ MUDGASH
 	x (hebrew point dagesh or mapiq - 05BC)
-	* used in texts that distinguish dagesh hazaq from dagesh gal
+	* used in texts that distinguish dagesh hazaq from dagesh qal
 @		Based on ISO 8859-8
 05D0	HEBREW LETTER ALEF
 	= aleph
@@ -10814,7 +10823,7 @@
 	x (combining down tack below - 031E)
 1ADC	COMBINING DIAERESIS WITH RAISED LEFT DOT
 1ADD	COMBINING DOT-AND-RING BELOW
-@		Chao diacritics
+@		Intermediate tone diacritics
 1ADE	COMBINING GRAVE-DOT
 1ADF	COMBINING DOT-ACUTE
 @		IPA positional variants
@@ -10855,7 +10864,7 @@
 	x (combining upwards arrow below - 034E)
 1AEB	COMBINING DOUBLE RIGHTWARDS ARROW ABOVE
 	x (combining double rightwards arrow below - 0362)
-@		Khoe diacritics
+@		Compound tone diacritics
 1AEC	COMBINING CARON-ACUTE
 1AED	COMBINING VERTICAL-LINE-DOUBLE-ACUTE
 1AEE	COMBINING DOUBLE GRAVE ACCENT BELOW
@@ -10863,6 +10872,7 @@
 1AF0	COMBINING DOUBLE COMMA ABOVE
 	x (combining comma above - 0313)
 	x (modifier letter double apostrophe - 02EE)
+	x (combining double open mark below - 1AB8)
 @@	1B00	Balinese	1B7F
 @		Various signs
 1B00	BALINESE SIGN ULU RICEM
@@ -15270,6 +15280,7 @@
 	* symbol for Negative Acknowledge
 @		Miscellaneous technical
 237C	RIGHT ANGLE WITH DOWNWARDS ZIGZAG ARROW
+	= azimuth
 @		Graphics for control codes
 237D	SHOULDERED OPEN BOX
 	* from ISO 9995-7
@@ -18164,7 +18175,7 @@
 	x (succeeds - 227B)
 	x (right-pointing angle bracket - 232A)
 @		Symbols used in game theory
-@+		TINY (pronounced "teenie") and MINY (pronounced "meenie") are symbols that yield infinitesimal values when applied to numbers in combinatorial game theory.
+@+		TINY and MINY are symbols that yield infinitesimal values when applied to numbers in combinatorial game theory.
 29FE	TINY
 	x (plus sign - 002B)
 29FF	MINY
@@ -51701,7 +51712,9 @@ FFFF	<not a character>
 16D95	CHISOI LETTER CA
 16D96	CHISOI LETTER JA
 16D97	CHISOI LETTER PA
+@		Sign
 16D98	CHISOI SIGN ANUSVARA
+@		Letters
 16D99	CHISOI LETTER YA
 16D9A	CHISOI LETTER DDA
 16D9B	CHISOI LETTER TTA
@@ -56877,6 +56890,7 @@ FFFF	<not a character>
 @+		Used in figured bass music notation in Baroque and neo-Baroque compositions.
 1D1F7	MUSICAL SYMBOL DIGIT TWO WITH STROKE
 	= raised 2nd
+	x (latin capital letter rum rotunda - A75C)
 1D1F8	MUSICAL SYMBOL DIGIT FOUR WITH STROKE
 	= raised 4th
 1D1F9	MUSICAL SYMBOL DIGIT FIVE WITH STROKE
@@ -57071,7 +57085,7 @@ FFFF	<not a character>
 1D251	MUSICAL SYMBOL COMBINING FLAG-7
 	* creates 512th notes
 1D252	MUSICAL SYMBOL COMBINING FLAG-8
-	* creates 1024th notes
+	* creates \1024th notes
 @		Rests
 1D253	MUSICAL SYMBOL TWO HUNDRED FIFTY-SIXTH REST
 1D254	MUSICAL SYMBOL FIVE HUNDRED TWELFTH REST
@@ -60235,7 +60249,7 @@ FFFF	<not a character>
 1DF22	LATIN SMALL LETTER TL DIGRAPH WITH BELT
 1DF23	LATIN SMALL LETTER TL DIGRAPH WITH RETROFLEX HOOK AND BELT
 1DF24	LATIN SMALL LETTER T-THETA DIGRAPH
-@		Letters for Malayalam transliteration
+@		Letters for romanized Malayalam
 1DF25	LATIN SMALL LETTER D WITH MID-HEIGHT LEFT HOOK
 1DF26	LATIN SMALL LETTER L WITH MID-HEIGHT LEFT HOOK
 1DF27	LATIN SMALL LETTER N WITH MID-HEIGHT LEFT HOOK
@@ -60263,7 +60277,7 @@ FFFF	<not a character>
 1DF3B	LATIN SMALL LETTER BETA WITH PALATAL HOOK
 1DF3C	LATIN SMALL LETTER THETA WITH PALATAL HOOK
 1DF3D	LATIN SMALL LETTER CHI WITH PALATAL HOOK
-@		IPA barred letters
+@		Barred letters
 1DF3E	LATIN SMALL LETTER BARRED TURNED H
 1DF3F	LATIN SMALL LETTER BARRED W
 1DF40	LATIN CAPITAL LETTER BARRED A
@@ -60307,6 +60321,7 @@ FFFF	<not a character>
 1DF5F	LATIN SMALL LETTER OU DIGRAPH
 	x (latin small letter ou - 0223)
 1DF60	LATIN SMALL LETTER OMEGA WITH LOOP
+	x (latin small letter oo - A74F)
 1DF61	LATIN SMALL LETTER R WITH LEFT TIE
 1DF62	LATIN SMALL LETTER ESH-H DIGRAPH
 1DF63	LATIN SMALL LETTER STRETCHED T-H DIGRAPH
@@ -60324,7 +60339,7 @@ FFFF	<not a character>
 1DF6A	LATIN CAPITAL LETTER PHONOTYPIC ROUNDTOP A
 1DF6B	LATIN SMALL LETTER PHONOTYPIC ROUNDTOP A
 	* italic and handwriting forms usually do not show a reversed a
-	* also used for Malayalam transliteration
+	* also used for romanized Malayalam
 1DF6C	LATIN CAPITAL LETTER REVERSED SCRUPLE
 	* denotes the sound [tʃ] in the English Phonotypic Alphabet
 	* denotes the sound [e] in the Slovene Metelko alphabet
@@ -60339,7 +60354,7 @@ FFFF	<not a character>
 	x (cross of jerusalem - 2629)
 	x (maltese cross - 2720)
 1DF6F	LATIN SMALL LETTER PHONOTYPIC DIPHTHONG AI
-	* also used for Malayalam transliteration
+	* also used for romanized Malayalam
 	* glyphic variants may show a hook tail instead of a curved descender
 	* handwritten forms may show a large crossbar like the capital form
 1DF70	LATIN SMALL LETTER I WITH PIGTAIL AT BOTTOM
@@ -60350,11 +60365,12 @@ FFFF	<not a character>
 1DF72	LATIN CAPITAL LETTER O WITH CURL
 	* the italic form may have the curl directed to the left
 1DF73	LATIN SMALL LETTER O WITH CURL
-	* also used for Malayalam transliteration
+	* also used for romanized Malayalam
 1DF74	LATIN CAPITAL LETTER CLOSED OMEGA WITH LONG STEM
 	x (latin capital letter oo - A74E)
 	x (latin capital letter closed omega - A7DD)
 1DF75	LATIN SMALL LETTER CLOSED OMEGA WITH LONG STEM
+	x (latin small letter closed omega - 0277)
 1DF76	LATIN CAPITAL LETTER TURNED CLOSED OMEGA
 1DF77	LATIN SMALL LETTER TURNED CLOSED OMEGA
 1DF78	LATIN CAPITAL LETTER PHONOTYPIC TH
@@ -60363,7 +60379,7 @@ FFFF	<not a character>
 	* the hook tail may take the shape of the tail of a capital Q 
 1DF7B	LATIN SMALL LETTER U WITH HOOK TAIL
 	x (latin small letter u with retroflex hook - 1D99)
-	* also used for Malayalam transliteration
+	* also used for romanized Malayalam
 1DF7C	LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM
 1DF7D	LATIN SMALL LETTER U WITH NOTCH AT BOTTOM
 	x (latin small letter ui - AB50)
@@ -60420,7 +60436,7 @@ FFFF	<not a character>
 @		Subscript letter for phonetic transcription
 1DFD0	LATIN SUBSCRIPT SMALL LETTER GAMMA
 	# <sub> 0263
-@		IPA phonetic modifier letters
+@		Phonetic modifier letters
 1DFD1	MODIFIER LETTER SMALL CAPITAL P
 	# <super> 1D18
 1DFD2	MODIFIER LETTER SMALL B WITH STROKE
@@ -60467,14 +60483,14 @@ FFFF	<not a character>
 	# <super> 0293
 1DFE7	MODIFIER LETTER SMALL EZH WITH RETROFLEX HOOK
 	# <super> 1D9A
-@		IPA small capital modifier letters
+@		Small capital modifier letters
 1DFE8	MODIFIER LETTER SMALL CAPITAL D
 	# <super> 1D05
 1DFE9	MODIFIER LETTER SMALL CAPITAL A
 	# <super> 1D00
 1DFEA	MODIFIER LETTER SMALL CAPITAL E
 	# <super> 1D07
-@		IPA sinological modifier letters
+@		Sinological modifier letters
 1DFEB	MODIFIER LETTER SMALL REVERSED R WITH FISHHOOK
 	# <super> 027F
 1DFEC	MODIFIER LETTER SMALL SQUAT REVERSED ESH
@@ -60491,7 +60507,7 @@ FFFF	<not a character>
 	# <super> 0235
 1DFF2	MODIFIER LETTER SMALL T WITH CURL
 	# <super> 0236
-@		IPA Greek modifier letters
+@		Greek modifier letters
 1DFF3	MODIFIER LETTER SMALL GREEK PSI
 	x (modifier letter retroflex click with retroflex hook - 107B9)
 	# <super> 03C8
@@ -66618,7 +66634,7 @@ FFFF	<not a character>
 	x 20984
 	: 5349
 2F82D	CJK COMPATIBILITY IDEOGRAPH-2F82D
-	x 20161
+	x 2D161
 	: 5351
 2F82E	CJK COMPATIBILITY IDEOGRAPH-2F82E
 	: 535A
