@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2026-02-21, 04:18:13 GMT
+# Date: 2026-03-17, 22:17:15 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -15,6 +15,10 @@
 ←	(‎ '' ‎)	0027 0027	 APOSTROPHE, APOSTROPHE
 ←	(‎ יי ‎)	05D9 05D9	 HEBREW LETTER YOD, HEBREW LETTER YOD	# →''→
 ←	(‎ ״ ‎)	05F4	 HEBREW PUNCTUATION GERSHAYIM
+
+#	$	ֆ
+	(‎ $ ‎)	0024	 DOLLAR SIGN
+←	(‎ ֆ ‎)	0586	 ARMENIAN SMALL LETTER FEH
 
 #	'	`	ʻ	ʼ	י	׳	’
 	(‎ ' ‎)	0027	 APOSTROPHE
@@ -49,8 +53,9 @@
 ←	(‎ О ‎)	041E	 CYRILLIC CAPITAL LETTER O
 ←	(‎ Օ ‎)	0555	 ARMENIAN CAPITAL LETTER OH	# →О→
 
-#	θ	Θ	Ө
+#	θ	ፀ	Θ	Ө
 	(‎ θ ‎)	03B8	 GREEK SMALL LETTER THETA
+←	(‎ ፀ ‎)	1340	 ETHIOPIC SYLLABLE TZA
 ←	(‎ Θ ‎)	0398	 GREEK CAPITAL LETTER THETA	# →⊖→
 ←	(‎ Ө ‎)	04E8	 CYRILLIC CAPITAL LETTER BARRED O	# →Ѳ→→Θ→→⊖→
 
@@ -69,12 +74,14 @@
 ←	(‎ І ‎)	0406	 CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I	# →I→
 ←	(‎ Ӏ ‎)	04C0	 CYRILLIC LETTER PALOCHKA	# →I→
 
-#	3	३	૩	З	Ӡ
+#	3	Ვ	३	૩	З	Ӡ	Յ
 	(‎ 3 ‎)	0033	 DIGIT THREE
+←	(‎ Ვ ‎)	1C95	 GEORGIAN MTAVRULI CAPITAL LETTER VIN
 ←	(‎ ३ ‎)	0969	 DEVANAGARI DIGIT THREE	# →૩→
 ←	(‎ ૩ ‎)	0AE9	 GUJARATI DIGIT THREE
 ←	(‎ З ‎)	0417	 CYRILLIC CAPITAL LETTER ZE
 ←	(‎ Ӡ ‎)	04E0	 CYRILLIC CAPITAL LETTER ABKHASIAN DZE	# →Ʒ→
+←	(‎ Յ ‎)	0545	 ARMENIAN CAPITAL LETTER YI
 
 #	3̦	З̦	З̧	Ҙ
 	(‎ 3̦ ‎)	0033 0326	 DIGIT THREE, COMBINING COMMA BELOW
@@ -265,10 +272,11 @@
 	(‎ g ‎)	0067	 LATIN SMALL LETTER G
 ←	(‎ ց ‎)	0581	 ARMENIAN SMALL LETTER CO
 
-#	h	һ	հ
+#	h	һ	հ	Һ
 	(‎ h ‎)	0068	 LATIN SMALL LETTER H
 ←	(‎ һ ‎)	04BB	 CYRILLIC SMALL LETTER SHHA
 ←	(‎ հ ‎)	0570	 ARMENIAN SMALL LETTER HO
+←	(‎ Һ ‎)	04BA	 CYRILLIC CAPITAL LETTER SHHA
 
 #	ħ	ћ
 	(‎ ħ ‎)	0127	 LATIN SMALL LETTER H WITH STROKE
@@ -433,6 +441,10 @@
 	(‎ ə ‎)	0259	 LATIN SMALL LETTER SCHWA
 ←	(‎ ә ‎)	04D9	 CYRILLIC SMALL LETTER SCHWA
 
+#	φ	ф
+	(‎ φ ‎)	03C6	 GREEK SMALL LETTER PHI
+←	(‎ ф ‎)	0444	 CYRILLIC SMALL LETTER EF	# →ɸ→
+
 #	٨	۸	Λ	Л
 	(‎ ٨ ‎)	0668	 ARABIC-INDIC DIGIT EIGHT
 ←	(‎ ۸ ‎)	06F8	 EXTENDED ARABIC-INDIC DIGIT EIGHT
@@ -450,10 +462,6 @@
 #	պ	ሣ
 	(‎ պ ‎)	057A	 ARMENIAN SMALL LETTER PEH
 ←	(‎ ሣ ‎)	1223	 ETHIOPIC SYLLABLE SZAA
-
-#	φ	ф
-	(‎ φ ‎)	03C6	 GREEK SMALL LETTER PHI
-←	(‎ ф ‎)	0444	 CYRILLIC SMALL LETTER EF	# →ɸ→
 
 #	́	َ	ަ
 	(‎ ́ ‎)	0301	 COMBINING ACUTE ACCENT
@@ -1463,5 +1471,5 @@
 	(‎ へ ‎)	3078	 HIRAGANA LETTER HE
 ←	(‎ ヘ ‎)	30D8	 KATAKANA LETTER HE
 
-# total : 523
+# total : 528
 
