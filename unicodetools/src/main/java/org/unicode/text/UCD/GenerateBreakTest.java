@@ -1215,7 +1215,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
             super(
                     ucd,
                     Segmenter.make(
-                            ToolUnicodePropertySource.make(ucd.getVersion()),
+                            VersionedSymbolTable.frozenAt(ucd.getVersionInfo()),
                             "GraphemeClusterBreak",
                             target),
                     "aa",
@@ -1304,7 +1304,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
             super(
                     ucd,
                     Segmenter.make(
-                            ToolUnicodePropertySource.make(ucd.getVersion()), "LineBreak", target),
+                            VersionedSymbolTable.frozenAt(ucd.getVersionInfo()),
+                            "LineBreak",
+                            target),
                     "aa",
                     "Line",
                     // extraSamples
@@ -1692,7 +1694,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
         private static Builder makeSegmenter(UCD ucd, Segmenter.Target target) {
             final Builder result =
                     Segmenter.make(
-                            ToolUnicodePropertySource.make(ucd.getVersion()),
+                            VersionedSymbolTable.frozenAt(ucd.getVersionInfo()),
                             "SentenceBreak",
                             target);
             final Segmenter segmenter = result.make();
@@ -1754,7 +1756,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
             super(
                     ucd,
                     Segmenter.make(
-                            ToolUnicodePropertySource.make(ucd.getVersion()), "WordBreak", target),
+                            VersionedSymbolTable.frozenAt(ucd.getVersionInfo()),
+                            "WordBreak",
+                            target),
                     "aa",
                     "Word",
                     new String[] {
