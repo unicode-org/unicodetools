@@ -1,6 +1,6 @@
 # IdentifierType.txt
-# Date: 2025-11-11, 20:16:38 GMT
-# © 2025 Unicode®, Inc.
+# Date: 2026-04-06, 20:49:10 GMT
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -313,6 +313,7 @@
 0526..0527    ; Obsolete                       # 6.0    [2] CYRILLIC CAPITAL LETTER SHHA WITH DESCENDER..CYRILLIC SMALL LETTER SHHA WITH DESCENDER
 0528..052F    ; Obsolete                       # 7.0    [8] CYRILLIC CAPITAL LETTER EN WITH LEFT HOOK..CYRILLIC SMALL LETTER EL WITH DESCENDER
 0531..0556    ; Recommended                    # 1.1   [38] ARMENIAN CAPITAL LETTER AYB..ARMENIAN CAPITAL LETTER FEH
+0558          ; Not_NFKC                       # 18.0       MODIFIER LETTER ARMENIAN SMALL EH
 0559          ; Technical                      # 1.1        ARMENIAN MODIFIER LETTER LEFT HALF RING
 055A..055F    ; Not_XID                        # 1.1    [6] ARMENIAN APOSTROPHE..ARMENIAN ABBREVIATION MARK
 0560          ; Technical                      # 11.0       ARMENIAN SMALL LETTER TURNED AYB
@@ -321,6 +322,7 @@
 0588          ; Technical                      # 11.0       ARMENIAN SMALL LETTER YI WITH STROKE
 0589          ; Not_XID                        # 1.1        ARMENIAN FULL STOP
 058A          ; Inclusion                      # 3.0        ARMENIAN HYPHEN
+058B..058C    ; Not_NFKC                       # 18.0   [2] MODIFIER LETTER ARMENIAN SMALL INI..MODIFIER LETTER ARMENIAN SMALL YI
 058D..058E    ; Not_XID                        # 7.0    [2] RIGHT-FACING ARMENIAN ETERNITY SIGN..LEFT-FACING ARMENIAN ETERNITY SIGN
 058F          ; Not_XID                        # 6.1        ARMENIAN DRAM SIGN
 0591..05A1    ; Uncommon_Use                   # 2.0   [17] HEBREW ACCENT ETNAHTA..HEBREW ACCENT PAZER
@@ -338,6 +340,7 @@
 05C5          ; Uncommon_Use Obsolete          # 4.1        HEBREW MARK LOWER DOT
 05C6          ; Obsolete Not_XID               # 4.1        HEBREW PUNCTUATION NUN HAFUKHA
 05C7          ; Uncommon_Use Technical         # 4.1        HEBREW POINT QAMATS QATAN
+05C8..05C9    ; Uncommon_Use Technical         # 18.0   [2] HEBREW POINT SHEVA NA MUDGASH..HEBREW POINT DAGESH HAZAQ MUDGASH
 05D0..05EA    ; Recommended                    # 1.1   [27] HEBREW LETTER ALEF..HEBREW LETTER TAV
 05EF          ; Uncommon_Use                   # 11.0       HEBREW YOD TRIANGLE
 05F0..05F2    ; Uncommon_Use                   # 1.1    [3] HEBREW LIGATURE YIDDISH DOUBLE VAV..HEBREW LIGATURE YIDDISH DOUBLE YOD
@@ -518,6 +521,7 @@
 097E..097F    ; Recommended                    # 5.0    [2] DEVANAGARI LETTER DDDA..DEVANAGARI LETTER BBA
 0980          ; Obsolete                       # 7.0        BENGALI ANJI
 0981..0983    ; Recommended                    # 1.1    [3] BENGALI SIGN CANDRABINDU..BENGALI SIGN VISARGA
+0984          ; Obsolete                       # 18.0       BENGALI SIGN COMBINING ANUSVARA ABOVE
 0985..098B    ; Recommended                    # 1.1    [7] BENGALI LETTER A..BENGALI LETTER VOCALIC R
 098C          ; Uncommon_Use                   # 1.1        BENGALI LETTER VOCALIC L
 098F..0990    ; Recommended                    # 1.1    [2] BENGALI LETTER E..BENGALI LETTER AI
@@ -541,6 +545,7 @@
 09FC          ; Obsolete                       # 10.0       BENGALI LETTER VEDIC ANUSVARA
 09FD          ; Not_XID                        # 10.0       BENGALI ABBREVIATION SIGN
 09FE          ; Uncommon_Use                   # 11.0       BENGALI SANDHI MARK
+09FF          ; Technical                      # 18.0       BENGALI LETTER SANSKRIT BA
 0A01          ; Uncommon_Use                   # 4.0        GURMUKHI SIGN ADAK BINDI
 0A02          ; Recommended                    # 1.1        GURMUKHI SIGN BINDI
 0A03          ; Uncommon_Use                   # 4.0        GURMUKHI SIGN VISARGA
@@ -605,6 +610,7 @@
 0B44          ; Uncommon_Use                   # 5.1        ORIYA VOWEL SIGN VOCALIC RR
 0B47..0B48    ; Recommended                    # 1.1    [2] ORIYA VOWEL SIGN E..ORIYA VOWEL SIGN AI
 0B4B..0B4D    ; Recommended                    # 1.1    [3] ORIYA VOWEL SIGN O..ORIYA SIGN VIRAMA
+0B53..0B54    ; Uncommon_Use                   # 18.0   [2] ORIYA SIGN DOT ABOVE..ORIYA SIGN DOUBLE DOT ABOVE
 0B55          ; Uncommon_Use                   # 13.0       ORIYA SIGN OVERLINE
 0B56          ; Recommended                    # 1.1        ORIYA AI LENGTH MARK
 0B57          ; Uncommon_Use                   # 1.1        ORIYA AU LENGTH MARK
@@ -1000,6 +1006,7 @@
 1810..1819    ; Exclusion                      # 3.0   [10] MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
 1820..1877    ; Exclusion                      # 3.0   [88] MONGOLIAN LETTER A..MONGOLIAN LETTER MANCHU ZHA
 1878          ; Exclusion                      # 11.0       MONGOLIAN LETTER CHA WITH TWO DOTS
+1879          ; Exclusion                      # 18.0       MONGOLIAN LETTER ALTERNATE UE
 1880..18A8    ; Exclusion                      # 3.0   [41] MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER MANCHU ALI GALI BHA
 18A9          ; Uncommon_Use Exclusion         # 3.0        MONGOLIAN LETTER ALI GALI DAGALGA
 18AA          ; Exclusion                      # 5.1        MONGOLIAN LETTER MANCHU ALI GALI LHA
@@ -1033,7 +1040,9 @@
 1ABF..1AC0    ; Technical                      # 13.0   [2] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER TURNED W BELOW
 1AC1..1ACE    ; Uncommon_Use                   # 14.0  [14] COMBINING LEFT PARENTHESIS ABOVE LEFT..COMBINING LATIN SMALL LETTER INSULAR T
 1ACF..1ADD    ; Technical                      # 17.0  [15] COMBINING DOUBLE CARON..COMBINING DOT-AND-RING BELOW
+1ADE..1ADF    ; Technical                      # 18.0   [2] COMBINING GRAVE-DOT..COMBINING DOT-ACUTE
 1AE0..1AEB    ; Technical                      # 17.0  [12] COMBINING LEFT TACK ABOVE..COMBINING DOUBLE RIGHTWARDS ARROW ABOVE
+1AEC..1AF0    ; Technical                      # 18.0   [5] COMBINING CARON-ACUTE..COMBINING DOUBLE COMMA ABOVE
 1B00..1B4B    ; Limited_Use                    # 5.0   [76] BALINESE SIGN ULU RICEM..BALINESE LETTER ASYURA SASAK
 1B4C          ; Limited_Use                    # 14.0       BALINESE LETTER ARCHAIC JNYA
 1B4E..1B4F    ; Limited_Use Not_XID            # 16.0   [2] BALINESE INVERTED CARIK SIKI..BALINESE INVERTED CARIK PAREREN
@@ -1229,8 +1238,10 @@
 2070          ; Not_NFKC                       # 1.1        SUPERSCRIPT ZERO
 2071          ; Not_NFKC                       # 3.2        SUPERSCRIPT LATIN SMALL LETTER I
 2074..208E    ; Not_NFKC                       # 1.1   [27] SUPERSCRIPT FOUR..SUBSCRIPT RIGHT PARENTHESIS
+208F          ; Technical                      # 18.0       MODIFIER LETTER HIGH AND LOW VERTICAL LINE
 2090..2094    ; Not_NFKC                       # 4.1    [5] LATIN SUBSCRIPT SMALL LETTER A..LATIN SUBSCRIPT SMALL LETTER SCHWA
 2095..209C    ; Not_NFKC                       # 6.0    [8] LATIN SUBSCRIPT SMALL LETTER H..LATIN SUBSCRIPT SMALL LETTER T
+209D..209F    ; Not_NFKC                       # 18.0   [3] LATIN SUBSCRIPT SMALL LETTER W..LATIN SUBSCRIPT SMALL LETTER Z
 20A0..20A7    ; Not_XID                        # 1.1    [8] EURO-CURRENCY SIGN..PESETA SIGN
 20A8          ; Not_NFKC                       # 1.1        RUPEE SIGN
 20A9..20AA    ; Not_XID                        # 1.1    [2] WON SIGN..NEW SHEQEL SIGN
@@ -1247,7 +1258,7 @@
 20BF          ; Not_XID                        # 10.0       BITCOIN SIGN
 20C0          ; Not_XID                        # 14.0       SOM SIGN
 20C1          ; Not_XID                        # 17.0       SAUDI RIYAL SIGN
-20C3          ; Not_XID                        # 18.0       UAE DIRHAM SIGN
+20C2..20C4    ; Not_XID                        # 18.0   [3] RUFIYAA SIGN..OMANI RIAL SIGN
 20D0..20DC    ; Technical                      # 1.1   [13] COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
 20DD..20E0    ; Technical Not_XID              # 1.1    [4] COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
 20E1          ; Technical                      # 1.1        COMBINING LEFT RIGHT ARROW ABOVE
@@ -1492,6 +1503,7 @@
 2E4F          ; Not_XID                        # 12.0       CORNISH VERSE DIVIDER
 2E50..2E52    ; Not_XID                        # 13.0   [3] CROSS PATTY WITH RIGHT CROSSBAR..TIRONIAN SIGN CAPITAL ET
 2E53..2E5D    ; Not_XID                        # 14.0  [11] MEDIEVAL EXCLAMATION MARK..OBLIQUE HYPHEN
+2E60..2E63    ; Not_XID                        # 18.0   [4] WIGGLY EXCLAMATION MARK..RIGHT PARENTHESIS WITH MIDDLE RING
 2E80..2E99    ; Not_XID                        # 3.0   [26] CJK RADICAL REPEAT..CJK RADICAL RAP
 2E9B..2E9E    ; Not_XID                        # 3.0    [4] CJK RADICAL CHOKE..CJK RADICAL DEATH
 2E9F          ; Not_NFKC                       # 3.0        CJK RADICAL MOTHER
@@ -4047,6 +4059,8 @@ A7D3          ; Obsolete                       # 14.0       LATIN SMALL LETTER D
 A7D4          ; Obsolete                       # 17.0       LATIN CAPITAL LETTER DOUBLE WYNN
 A7D5..A7D9    ; Obsolete                       # 14.0   [5] LATIN SMALL LETTER DOUBLE WYNN..LATIN SMALL LETTER SIGMOID S
 A7DA..A7DC    ; Uncommon_Use                   # 16.0   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER LAMBDA WITH STROKE
+A7DD          ; Technical Obsolete             # 18.0       LATIN CAPITAL LETTER CLOSED OMEGA
+A7E2          ; Obsolete                       # 18.0       LATIN CAPITAL LETTER R WITH LONG LEG
 A7F1          ; Not_NFKC                       # 17.0       MODIFIER LETTER CAPITAL S
 A7F2..A7F4    ; Not_NFKC                       # 14.0   [3] MODIFIER LETTER CAPITAL C..MODIFIER LETTER CAPITAL Q
 A7F5..A7F6    ; Obsolete                       # 13.0   [2] LATIN CAPITAL LETTER REVERSED HALF H..LATIN SMALL LETTER REVERSED HALF H
@@ -4112,6 +4126,7 @@ AB66..AB67    ; Uncommon_Use                   # 12.0   [2] LATIN SMALL LETTER D
 AB68          ; Technical                      # 13.0       LATIN SMALL LETTER TURNED R WITH MIDDLE TILDE
 AB69          ; Not_NFKC                       # 13.0       MODIFIER LETTER SMALL TURNED W
 AB6A..AB6B    ; Not_XID                        # 13.0   [2] MODIFIER LETTER LEFT TACK..MODIFIER LETTER RIGHT TACK
+AB6C..AB6D    ; Technical                      # 18.0   [2] LATIN CAPITAL LETTER SCRIPT R..LATIN CAPITAL LETTER SCRIPT R WITH RING
 AB70..ABBF    ; Limited_Use                    # 8.0   [80] CHEROKEE SMALL LETTER A..CHEROKEE SMALL LETTER YA
 ABC0..ABEA    ; Limited_Use                    # 5.2   [43] MEETEI MAYEK LETTER KOK..MEETEI MAYEK VOWEL SIGN NUNG
 ABEB          ; Limited_Use Not_XID            # 5.2        MEETEI MAYEK CHEIKHEI
@@ -4256,6 +4271,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 10781..10785  ; Not_NFKC                       # 14.0   [5] MODIFIER LETTER SUPERSCRIPT TRIANGULAR COLON..MODIFIER LETTER SMALL B WITH HOOK
 10787..107B0  ; Not_NFKC                       # 14.0  [42] MODIFIER LETTER SMALL DZ DIGRAPH..MODIFIER LETTER SMALL V WITH RIGHT HOOK
 107B2..107BA  ; Not_NFKC                       # 14.0   [9] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL S WITH CURL
+107BB..107BF  ; Not_NFKC                       # 18.0   [5] MODIFIER LETTER SMALL TURNED T..MODIFIER LETTER SMALL ESH WITH DOUBLE BAR
 10800..10805  ; Exclusion                      # 4.0    [6] CYPRIOT SYLLABLE A..CYPRIOT SYLLABLE JA
 10808         ; Exclusion                      # 4.0        CYPRIOT SYLLABLE JO
 1080A..10835  ; Exclusion                      # 4.0   [44] CYPRIOT SYLLABLE KA..CYPRIOT SYLLABLE WO
@@ -4330,7 +4346,12 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 10EC2..10EC4  ; Uncommon_Use                   # 16.0   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
 10EC5..10EC6  ; Technical                      # 17.0   [2] ARABIC SMALL YEH BARREE WITH TWO DOTS BELOW..ARABIC LETTER THIN NOON
 10EC7         ; Uncommon_Use                   # 17.0       ARABIC LETTER YEH WITH FOUR DOTS BELOW
+10EC9..10ECA  ; Technical Not_XID              # 18.0   [2] ARABIC SMALL BASELINE FATHA..ARABIC SMALL BASELINE DOTLESS HEAD OF KHAH
+10ECB..10ECF  ; Uncommon_Use Technical         # 18.0   [5] ARABIC NORTHEAST POINTING ARROWHEAD ABOVE..ARABIC LARGE CIRCLE ABOVE
 10ED0..10ED8  ; Not_XID                        # 17.0   [9] ARABIC BIBLICAL END OF VERSE..ARABIC LIGATURE NAWWARA ALLAAHU MARQADAH
+10ED9..10EEE  ; Obsolete                       # 18.0  [22] ARABIC CROWN LETTER BEH..ARABIC CROWN LETTER YEH
+10EF0..10EF8  ; Uncommon_Use Technical         # 18.0   [9] ARABIC SMALL LOW UPRIGHT RECTANGULAR ZERO..ARABIC SMALL HIGH WORD KABBIR
+10EF9         ; Uncommon_Use Obsolete          # 18.0       ARABIC MARK CROWN
 10EFA         ; Uncommon_Use                   # 17.0       ARABIC DOUBLE VERTICAL BAR BELOW
 10EFB         ; Technical                      # 17.0       ARABIC SMALL LOW NOON
 10EFC         ; Uncommon_Use                   # 16.0       ARABIC COMBINING ALEF OVERLAY
@@ -4488,6 +4509,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 11AB0..11ABF  ; Limited_Use                    # 14.0  [16] CANADIAN SYLLABICS NATTILIK HI..CANADIAN SYLLABICS SPA
 11AC0..11AF8  ; Exclusion                      # 7.0   [57] PAU CIN HAU LETTER PA..PAU CIN HAU GLOTTAL STOP FINAL
 11B00..11B09  ; Not_XID                        # 15.0  [10] DEVANAGARI HEAD MARK..DEVANAGARI SIGN MINDU
+11B0A         ; Recommended                    # 18.0       DEVANAGARI LETTER ALTERNATE DDDA
 11B60..11B67  ; Exclusion                      # 17.0   [8] SHARADA VOWEL SIGN OE..SHARADA VOWEL SIGN CANDRA O
 11BC0..11BE0  ; Exclusion                      # 16.0  [33] SUNUWAR LETTER DEVI..SUNUWAR LETTER KLOKO
 11BE1         ; Exclusion Not_XID              # 16.0       SUNUWAR SIGN PVO
@@ -4533,9 +4555,12 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 12399         ; Exclusion                      # 8.0        CUNEIFORM SIGN U U
 12400..12462  ; Exclusion                      # 5.0   [99] CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN OLD ASSYRIAN ONE QUARTER
 12463..1246E  ; Exclusion                      # 7.0   [12] CUNEIFORM NUMERIC SIGN ONE QUARTER GUR..CUNEIFORM NUMERIC SIGN NINE U VARIANT FORM
+1246F         ; Exclusion                      # 18.0       CUNEIFORM NUMERIC SIGN SEVEN ASH TENU
 12470..12473  ; Exclusion Not_XID              # 5.0    [4] CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL TRICOLON
 12474         ; Exclusion Not_XID              # 7.0        CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
+12475..1247F  ; Exclusion                      # 18.0  [11] CUNEIFORM NUMERIC SIGN EIGHT ASH TENU..CUNEIFORM NUMERIC SIGN ASH TIMES NINE DISH TENU
 12480..12543  ; Exclusion                      # 8.0  [196] CUNEIFORM SIGN AB TIMES NUN TENU..CUNEIFORM SIGN ZU5 TIMES THREE DISH TENU
+12550..12686  ; Exclusion                      # 18.0 [311] CUNEIFORM NUMERIC SIGN ONE N01..CUNEIFORM NUMERIC SIGN ONE N36 FLAT
 12F90..12FF0  ; Exclusion                      # 14.0  [97] CYPRO-MINOAN SIGN CM001..CYPRO-MINOAN SIGN CM114
 12FF1..12FF2  ; Exclusion Not_XID              # 14.0   [2] CYPRO-MINOAN SIGN CM301..CYPRO-MINOAN SIGN CM302
 13000..1342E  ; Exclusion                      # 5.2 [1071] EGYPTIAN HIEROGLYPH A001..EGYPTIAN HIEROGLYPH AA032
@@ -4566,6 +4591,8 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 16D40..16D6C  ; Exclusion                      # 16.0  [45] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN SAAT
 16D6D..16D6F  ; Exclusion Not_XID              # 16.0   [3] KIRAT RAI SIGN YUPI..KIRAT RAI DOUBLE DANDA
 16D70..16D79  ; Exclusion                      # 16.0  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
+16D80..16D9D  ; Exclusion                      # 18.0  [30] CHISOI LETTER A..CHISOI SIGN SISO
+16DA0..16DA9  ; Exclusion                      # 18.0  [10] CHISOI DIGIT ZERO..CHISOI DIGIT NINE
 16E40..16E7F  ; Exclusion                      # 11.0  [64] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN SMALL LETTER Y
 16E80..16E9A  ; Exclusion Not_XID              # 11.0  [27] MEDEFAIDRIN DIGIT ZERO..MEDEFAIDRIN EXCLAMATION OH
 16EA0..16EB8  ; Exclusion                      # 17.0  [25] BERIA ERFE CAPITAL LETTER ARKAB..BERIA ERFE CAPITAL LETTER AY
@@ -4589,20 +4616,27 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 187F8..187FF  ; Exclusion                      # 17.0   [8] TANGUT IDEOGRAPH-187F8..TANGUT IDEOGRAPH-187FF
 18800..18AF2  ; Exclusion                      # 9.0  [755] TANGUT COMPONENT-001..TANGUT COMPONENT-755
 18AF3..18CD5  ; Exclusion                      # 13.0 [483] TANGUT COMPONENT-756..KHITAN SMALL SCRIPT CHARACTER-18CD5
+18CD6..18CDA  ; Exclusion                      # 18.0   [5] KHITAN SMALL SCRIPT CHARACTER-18CD6..KHITAN SMALL SCRIPT CHARACTER-18CDA
 18CFF         ; Exclusion                      # 16.0       KHITAN SMALL SCRIPT CHARACTER-18CFF
 18D00..18D08  ; Exclusion                      # 13.0   [9] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D08
 18D09..18D1E  ; Exclusion                      # 17.0  [22] TANGUT IDEOGRAPH-18D09..TANGUT IDEOGRAPH-18D1E
+18D1F..18D20  ; Exclusion                      # 18.0   [2] TANGUT IDEOGRAPH-18D1F..TANGUT IDEOGRAPH-18D20
 18D80..18DF2  ; Exclusion                      # 17.0 [115] TANGUT COMPONENT-769..TANGUT COMPONENT-883
+18E00..19191  ; Exclusion                      # 18.0 [914] JURCHEN CHARACTER-18E00..JURCHEN CHARACTER-19191
+191A0..191D2  ; Exclusion                      # 18.0  [51] JURCHEN RADICAL-01..JURCHEN RADICAL-51
 1AFF0..1AFF3  ; Uncommon_Use                   # 14.0   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF5..1AFFB  ; Uncommon_Use                   # 14.0   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; Uncommon_Use                   # 14.0   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
 1B000..1B001  ; Obsolete                       # 6.0    [2] KATAKANA LETTER ARCHAIC E..HIRAGANA LETTER ARCHAIC YE
 1B002..1B11E  ; Obsolete                       # 10.0 [285] HENTAIGANA LETTER A-1..HENTAIGANA LETTER N-MU-MO-2
 1B11F..1B122  ; Obsolete                       # 14.0   [4] HIRAGANA LETTER ARCHAIC WU..KATAKANA LETTER ARCHAIC WU
+1B123..1B126  ; Not_NFKC                       # 18.0   [4] HIRAGANA DIGRAPH KOTO..KATAKANA DIGRAPH YORI
+1B127..1B128  ; Obsolete                       # 18.0   [2] KATAKANA LETTER ALTERNATE NE..KATAKANA LETTER ALTERNATE WI
 1B132         ; Obsolete                       # 15.0       HIRAGANA LETTER SMALL KO
 1B150..1B152  ; Obsolete                       # 12.0   [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
 1B155         ; Obsolete                       # 15.0       KATAKANA LETTER SMALL KO
 1B164..1B167  ; Obsolete                       # 12.0   [4] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL N
+1B168         ; Technical                      # 18.0       KATAKANA LETTER SMALL ARCHAIC YE
 1B170..1B2FB  ; Exclusion                      # 10.0 [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
 1BC00..1BC6A  ; Exclusion                      # 7.0  [107] DUPLOYAN LETTER H..DUPLOYAN LETTER VOCALIC M
 1BC70..1BC7C  ; Exclusion                      # 7.0   [13] DUPLOYAN AFFIX LEFT HORIZONTAL SECANT..DUPLOYAN AFFIX ATTACHED TANGENT HOOK
@@ -4617,12 +4651,16 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1CCFA..1CCFC  ; Not_XID                        # 17.0   [3] SNAKE SYMBOL..NOSE SYMBOL
 1CD00..1CEB3  ; Not_XID                        # 16.0 [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
 1CEBA..1CED0  ; Not_XID                        # 17.0  [23] FRAGILE SYMBOL..LEUKOTHEA
+1CED2..1CED4  ; Not_XID                        # 18.0   [3] ALCHEMICAL SYMBOL FOR OIL INVERTED..ALCHEMICAL SYMBOL FOR SALT OF TARTAR
+1CEDD..1CEDF  ; Not_XID                        # 18.0   [3] SQUARE ROOT OF SQUARE ROOT..SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
 1CEE0..1CEF0  ; Not_XID                        # 17.0  [17] GEOMANTIC FIGURE POPULUS..MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR
+1CEF1..1CEFD  ; Not_XID                        # 18.0  [13] LEIBNIZIAN DIVISION SIGN..HYPERBOLA
 1CF00..1CF2D  ; Technical                      # 14.0  [46] ZNAMENNY COMBINING MARK GORAZDO NIZKO S KRYZHEM ON LEFT..ZNAMENNY COMBINING MARK KRYZH ON LEFT
 1CF30..1CF46  ; Technical                      # 14.0  [23] ZNAMENNY COMBINING TONAL RANGE MARK MRACHNO..ZNAMENNY PRIZNAK MODIFIER ROG
 1CF50..1CFC3  ; Technical Not_XID              # 14.0 [116] ZNAMENNY NEUME KRYUK..ZNAMENNY NEUME PAUK
 1D000..1D0F5  ; Technical Not_XID              # 3.1  [246] BYZANTINE MUSICAL SYMBOL PSILI..BYZANTINE MUSICAL SYMBOL GORGON NEO KATO
 1D100..1D126  ; Technical Not_XID              # 3.1   [39] MUSICAL SYMBOL SINGLE BARLINE..MUSICAL SYMBOL DRUM CLEF-2
+1D127..1D128  ; Technical                      # 18.0   [2] MUSICAL SYMBOL COMBINING STRESS..MUSICAL SYMBOL COMBINING UNSTRESS
 1D129         ; Technical Not_XID              # 5.1        MUSICAL SYMBOL MULTIPLE MEASURE REST
 1D12A..1D15D  ; Technical Not_XID              # 3.1   [52] MUSICAL SYMBOL DOUBLE SHARP..MUSICAL SYMBOL WHOLE NOTE
 1D15E..1D164  ; Not_NFKC                       # 3.1    [7] MUSICAL SYMBOL HALF NOTE..MUSICAL SYMBOL ONE HUNDRED TWENTY-EIGHTH NOTE
@@ -4640,9 +4678,17 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1D1C1..1D1DD  ; Technical Not_XID              # 3.1   [29] MUSICAL SYMBOL LONGA PERFECTA REST..MUSICAL SYMBOL PES SUBPUNCTIS
 1D1DE..1D1E8  ; Uncommon_Use Technical Not_XID # 8.0   [11] MUSICAL SYMBOL KIEVAN C CLEF..MUSICAL SYMBOL KIEVAN FLAT SIGN
 1D1E9..1D1EA  ; Technical Not_XID              # 14.0   [2] MUSICAL SYMBOL SORI..MUSICAL SYMBOL KORON
+1D1EB..1D1FF  ; Technical Not_XID              # 18.0  [21] MUSICAL SYMBOL HALF SHARP..MUSICAL SYMBOL LONGA REST
 1D200..1D241  ; Obsolete Not_XID               # 4.1   [66] GREEK VOCAL NOTATION SYMBOL-1..GREEK INSTRUMENTAL NOTATION SYMBOL-54
 1D242..1D244  ; Technical Obsolete             # 4.1    [3] COMBINING GREEK MUSICAL TRISEME..COMBINING GREEK MUSICAL PENTASEME
 1D245         ; Obsolete Not_XID               # 4.1        GREEK MUSICAL LEIMMA
+1D250..1D252  ; Recommended                    # 18.0   [3] MUSICAL SYMBOL COMBINING FLAG-6..MUSICAL SYMBOL COMBINING FLAG-8
+1D253..1D25A  ; Not_XID                        # 18.0   [8] MUSICAL SYMBOL TWO HUNDRED FIFTY-SIXTH REST..MUSICAL SYMBOL SHARP WITH STROKE
+1D25B..1D25C  ; Recommended                    # 18.0   [2] MUSICAL SYMBOL COMBINING TREMOLO-4..MUSICAL SYMBOL COMBINING TREMOLO-5
+1D25D..1D25E  ; Not_XID                        # 18.0   [2] MUSICAL SYMBOL FINGERED TREMOLO-4..MUSICAL SYMBOL FINGERED TREMOLO-5
+1D25F         ; Recommended                    # 18.0       MUSICAL SYMBOL COMBINING BUZZ ROLL STEM
+1D260..1D27F  ; Not_XID                        # 18.0  [32] MUSICAL SYMBOL TRIPLE FLAT..MUSICAL SYMBOL ARPEGGIATO UP WITH ARROW
+1D280..1D281  ; Recommended                    # 18.0   [2] MUSICAL SYMBOL COMBINING STEM BOW BEHIND BRIDGE..MUSICAL SYMBOL COMBINING STEM BOW ON TOP OF BRIDGE
 1D2C0..1D2D3  ; Not_XID                        # 15.0  [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3  ; Not_XID                        # 11.0  [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
 1D300..1D356  ; Technical Not_XID              # 4.0   [87] MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
@@ -4670,6 +4716,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1D54A..1D550  ; Not_NFKC                       # 3.1    [7] MATHEMATICAL DOUBLE-STRUCK CAPITAL S..MATHEMATICAL DOUBLE-STRUCK CAPITAL Y
 1D552..1D6A3  ; Not_NFKC                       # 3.1  [338] MATHEMATICAL DOUBLE-STRUCK SMALL A..MATHEMATICAL MONOSPACE SMALL Z
 1D6A4..1D6A5  ; Not_NFKC                       # 4.1    [2] MATHEMATICAL ITALIC SMALL DOTLESS I..MATHEMATICAL ITALIC SMALL DOTLESS J
+1D6A6         ; Not_NFKC                       # 18.0       MATHEMATICAL ITALIC SMALL LIGATURE LONG S WITH DESCENDER S
 1D6A8..1D7C9  ; Not_NFKC                       # 3.1  [290] MATHEMATICAL BOLD CAPITAL ALPHA..MATHEMATICAL SANS-SERIF BOLD ITALIC PI SYMBOL
 1D7CA..1D7CB  ; Not_NFKC                       # 5.0    [2] MATHEMATICAL BOLD CAPITAL DIGAMMA..MATHEMATICAL BOLD SMALL DIGAMMA
 1D7CE..1D7FF  ; Not_NFKC                       # 3.1   [50] MATHEMATICAL BOLD DIGIT ZERO..MATHEMATICAL MONOSPACE DIGIT NINE
@@ -4684,8 +4731,18 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1DA85..1DA8B  ; Exclusion Not_XID              # 8.0    [7] SIGNWRITING LOCATION TORSO..SIGNWRITING PARENTHESIS
 1DA9B..1DA9F  ; Exclusion                      # 8.0    [5] SIGNWRITING FILL MODIFIER-2..SIGNWRITING FILL MODIFIER-6
 1DAA1..1DAAF  ; Exclusion                      # 8.0   [15] SIGNWRITING ROTATION MODIFIER-2..SIGNWRITING ROTATION MODIFIER-16
+1DB00..1DB1C  ; Not_XID                        # 18.0  [29] LEIBNIZIAN EQUALS SIGN..FACIT SYMBOL
 1DF00..1DF1E  ; Technical                      # 14.0  [31] LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER S WITH CURL
+1DF1F..1DF24  ; Technical                      # 18.0   [6] LATIN SMALL LETTER D-ETH DIGRAPH..LATIN SMALL LETTER T-THETA DIGRAPH
 1DF25..1DF2A  ; Technical                      # 15.0   [6] LATIN SMALL LETTER D WITH MID-HEIGHT LEFT HOOK..LATIN SMALL LETTER T WITH MID-HEIGHT LEFT HOOK
+1DF2B..1DF59  ; Technical                      # 18.0  [47] LATIN SMALL LETTER DEZH DIGRAPH WITH CURL..LATIN SMALL LETTER SPLIT U
+1DF5A..1DF66  ; Uncommon_Use                   # 18.0  [13] LATIN SMALL LETTER HALF A..LATIN SMALL LETTER REVERSED Z
+1DF67         ; Technical                      # 18.0       LATIN SMALL LETTER LEZH WITH CURL
+1DF68..1DF81  ; Technical Obsolete             # 18.0  [26] LATIN CAPITAL LETTER PHONOTYPIC A WITH SWASH..LATIN CAPITAL LETTER E WITH BENT TOPBAR
+1DF90..1DF94  ; Technical Obsolete             # 18.0   [5] LATIN SMALL LETTER C WITH SMALL SLASH..LATIN SMALL LETTER R ROTUNDA WITH LOOP
+1DF95         ; Not_NFKC                       # 18.0       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
+1DF96         ; Technical Obsolete             # 18.0       LATIN SMALL LETTER LONG S WITH TOP LOOP
+1DFCD..1DFFF  ; Not_NFKC                       # 18.0  [51] MODIFIER LETTER SMALL TURNED R WITH MID-HEIGHT LEFT HOOK..MODIFIER LETTER SMALL T WITH HOOK AND RETROFLEX HOOK
 1E000..1E006  ; Exclusion                      # 9.0    [7] COMBINING GLAGOLITIC LETTER AZU..COMBINING GLAGOLITIC LETTER ZHIVETE
 1E008..1E018  ; Exclusion                      # 9.0   [17] COMBINING GLAGOLITIC LETTER ZEMLJA..COMBINING GLAGOLITIC LETTER HERU
 1E01B..1E021  ; Exclusion                      # 9.0    [7] COMBINING GLAGOLITIC LETTER SHTA..COMBINING GLAGOLITIC LETTER YATI
@@ -4801,6 +4858,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1F191..1F19A  ; Not_XID                        # 6.0   [10] SQUARED CL..SQUARED VS
 1F19B..1F1AC  ; Not_XID                        # 9.0   [18] SQUARED THREE D..SQUARED VOD
 1F1AD         ; Not_XID                        # 13.0       MASK WORK SYMBOL
+1F1AE         ; Not_XID                        # 18.0       TOMOBIKI SYMBOL
 1F1E6..1F1FF  ; Not_XID                        # 6.0   [26] REGIONAL INDICATOR SYMBOL LETTER A..REGIONAL INDICATOR SYMBOL LETTER Z
 1F200         ; Not_NFKC                       # 5.2        SQUARE HIRAGANA HOKA
 1F201..1F202  ; Not_NFKC                       # 6.0    [2] SQUARED KATAKANA KOKO..SQUARED KATAKANA SA
@@ -4885,6 +4943,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1F6D5         ; Not_XID                        # 12.0       HINDU TEMPLE
 1F6D6..1F6D7  ; Not_XID                        # 13.0   [2] HUT..ELEVATOR
 1F6D8         ; Not_XID                        # 17.0       LANDSLIDE
+1F6D9         ; Not_XID                        # 18.0       LIGHTHOUSE
 1F6DC         ; Not_XID                        # 15.0       WIRELESS
 1F6DD..1F6DF  ; Not_XID                        # 14.0   [3] PLAYGROUND SLIDE..RING BUOY
 1F6E0..1F6EC  ; Not_XID                        # 7.0   [13] HAMMER AND WRENCH..AIRPLANE ARRIVING
@@ -4901,7 +4960,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1F780..1F7D4  ; Not_XID                        # 7.0   [85] BLACK LEFT-POINTING ISOSCELES RIGHT TRIANGLE..HEAVY TWELVE POINTED PINWHEEL STAR
 1F7D5..1F7D8  ; Not_XID                        # 11.0   [4] CIRCLED TRIANGLE..NEGATIVE CIRCLED SQUARE
 1F7D9         ; Not_XID                        # 15.0       NINE POINTED WHITE STAR
-1F7DB         ; Not_XID                        # 18.0       BULLET IN DOUBLE CIRCLE
+1F7DA..1F7DB  ; Not_XID                        # 18.0   [2] BLACK CIRCLE WITH WHITE VERTICAL BAR..BULLET IN DOUBLE CIRCLE
 1F7E0..1F7EB  ; Not_XID                        # 12.0  [12] LARGE ORANGE CIRCLE..LARGE BROWN SQUARE
 1F7F0         ; Not_XID                        # 14.0       HEAVY EQUALS SIGN
 1F7F1..1F7FF  ; Not_XID                        # 18.0  [15] CIRCLE WITH DOUBLE VERTICAL AND HORIZONTAL LINE..RHOMBUS
@@ -4971,6 +5030,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1FA87..1FA88  ; Not_XID                        # 15.0   [2] MARACAS..FLUTE
 1FA89         ; Not_XID                        # 16.0       HARP
 1FA8A         ; Not_XID                        # 17.0       TROMBONE
+1FA8B..1FA8D  ; Not_XID                        # 18.0   [3] METEOR..NET WITH HANDLE
 1FA8E         ; Not_XID                        # 17.0       TREASURE CHEST
 1FA8F         ; Not_XID                        # 16.0       SHOVEL
 1FA90..1FA95  ; Not_XID                        # 12.0   [6] RINGED PLANET..BANJO
@@ -4986,20 +5046,24 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1FAC3..1FAC5  ; Not_XID                        # 14.0   [3] PREGNANT MAN..PERSON WITH CROWN
 1FAC6         ; Not_XID                        # 16.0       FINGERPRINT
 1FAC8         ; Not_XID                        # 17.0       HAIRY CREATURE
+1FACC         ; Not_XID                        # 18.0       MONARCH BUTTERFLY
 1FACD         ; Not_XID                        # 17.0       ORCA
 1FACE..1FACF  ; Not_XID                        # 15.0   [2] MOOSE..DONKEY
 1FAD0..1FAD6  ; Not_XID                        # 13.0   [7] BLUEBERRIES..TEAPOT
 1FAD7..1FAD9  ; Not_XID                        # 14.0   [3] POURING LIQUID..JAR
 1FADA..1FADB  ; Not_XID                        # 15.0   [2] GINGER ROOT..PEA POD
 1FADC         ; Not_XID                        # 16.0       ROOT VEGETABLE
+1FADD         ; Not_XID                        # 18.0       PICKLE
 1FADF         ; Not_XID                        # 16.0       SPLATTER
 1FAE0..1FAE7  ; Not_XID                        # 14.0   [8] MELTING FACE..BUBBLES
 1FAE8         ; Not_XID                        # 15.0       SHAKING FACE
 1FAE9         ; Not_XID                        # 16.0       FACE WITH BAGS UNDER EYES
 1FAEA         ; Not_XID                        # 17.0       DISTORTED FACE
+1FAEB         ; Not_XID                        # 18.0       CRACKING FACE
 1FAEF         ; Not_XID                        # 17.0       FIGHT CLOUD
 1FAF0..1FAF6  ; Not_XID                        # 14.0   [7] HAND WITH INDEX FINGER AND THUMB CROSSED..HEART HANDS
 1FAF7..1FAF8  ; Not_XID                        # 15.0   [2] LEFTWARDS PUSHING HAND..RIGHTWARDS PUSHING HAND
+1FAF9..1FAFA  ; Not_XID                        # 18.0   [2] LEFTWARDS THUMB SIGN..RIGHTWARDS THUMB SIGN
 1FB00..1FB92  ; Not_XID                        # 13.0 [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK
 1FB94..1FBCA  ; Not_XID                        # 13.0  [55] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..WHITE UP-POINTING CHEVRON
 1FBCB..1FBEF  ; Not_XID                        # 16.0  [37] WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
@@ -5129,6 +5193,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 2B739         ; Uncommon_Use                   # 15.0       CJK UNIFIED IDEOGRAPH-2B739
 2B73A..2B73F  ; Uncommon_Use                   # 17.0   [6] CJK UNIFIED IDEOGRAPH-2B73A..CJK UNIFIED IDEOGRAPH-2B73F
 2B740..2B81D  ; Uncommon_Use                   # 6.0  [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
+2B81E         ; Uncommon_Use                   # 18.0       CJK UNIFIED IDEOGRAPH-2B81E
 2B820..2CEA1  ; Uncommon_Use                   # 8.0 [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEA2..2CEAD  ; Uncommon_Use                   # 17.0  [12] CJK UNIFIED IDEOGRAPH-2CEA2..CJK UNIFIED IDEOGRAPH-2CEAD
 2CEB0..2EBE0  ; Uncommon_Use                   # 10.0 [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
@@ -5137,8 +5202,9 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 30000..3134A  ; Uncommon_Use                   # 13.0 [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Uncommon_Use                   # 15.0 [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 323B0..33479  ; Uncommon_Use                   # 17.0 [4298] CJK UNIFIED IDEOGRAPH-323B0..CJK UNIFIED IDEOGRAPH-33479
+3D000..3FC3F  ; Exclusion                      # 18.0 [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 E0001         ; Deprecated                     # 3.1        LANGUAGE TAG
 E0020..E007F  ; Default_Ignorable              # 3.1   [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Default_Ignorable              # 4.0  [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 159824
+# Total code points: 172855
