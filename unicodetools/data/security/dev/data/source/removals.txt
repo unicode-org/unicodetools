@@ -1215,3 +1215,35 @@ AB66..AB67; Uncommon_Use
 # U+16FF0 and U+16FF1 VIETNAMESE ALTERNATE READING MARK CA and NHAY from Recommended to Obsolete.
 08C9; Technical
 16FF0..16FF1; Obsolete
+
+# Unicode 18.0
+0558 ; Technical
+058B..058C ; Technical
+05C8..05C9 ; Technical
+0984 ; Obsolete
+09FF ; Technical
+0B53..0B54 ; Uncommon_Use
+1879 ; Obsolete
+1ADE..1ADF ; Technical
+1AEC..1AF0 ; Technical
+208F ; Technical
+209D..209F ; Technical
+A7DD ; Technical Obsolete
+A7E2 ; Obsolete
+AB6C..AB6D ; Technical
+107BB..107BF ; Technical
+10EC9..10ECF ; Technical
+10ED9..10EEE ; Obsolete
+10EF0..10EF8 ; Technical
+10EF9 ; Obsolete
+11B0A ; Recommended
+1B123..1B128 ; Obsolete
+1B168 ; Technical
+1DF1F..1DF24 ; Technical
+1DF2B..1DF59 ; Technical
+1DF5A..1DF66 ; Uncommon_Use
+1DF67 ; Technical
+1DF68..1DF81 ; Technical Obsolete
+1DF90..1DF96 ; Technical Obsolete
+1DFCD..1DFFF ; Technical
+2B81E ; Uncommon_Use
