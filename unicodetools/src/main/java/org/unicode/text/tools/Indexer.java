@@ -478,11 +478,10 @@ public class Indexer {
                     ::iterator;
         } else if (prop == K_RS_UNICODE || prop == K_TGT_RS_UNICODE || prop == K_JURC_RS_UNICODE) {
             final String rsKind =
-                    prop == K_RS_UNICODE
-                            ? "CJK "
-                            : prop == K_TGT_RS_UNICODE
-                                    ? "Tangut "
-                                    : "Jurchen " + " radical-stroke ";
+                    (prop == K_RS_UNICODE
+                                    ? "CJK "
+                                    : prop == K_TGT_RS_UNICODE ? "Tangut " : "Jurchen ")
+                            + " radical-stroke ";
             return StreamSupport.stream(prop.getValues(cp).spliterator(), false)
                             .filter(Objects::nonNull)
                             .map(s -> rsKind + s)
