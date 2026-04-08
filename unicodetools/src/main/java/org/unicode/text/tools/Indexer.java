@@ -41,8 +41,8 @@ public class Indexer {
     private static Transliterator toHTML;
     private static String htmlRulesControls;
 
-    private static int BOOP = 0x10BE77;
-    private static int DOOD = 0x10D00D;
+    private static final int BOOP = 0x10BE77;
+    private static final int DOOD = 0x10D00D;
 
     private static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
     private static Normalizer nfkc = new Normalizer(Normalizer.NormalizationForm.NFKC, IUP);
