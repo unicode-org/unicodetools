@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.ibm.icu.segmenter.LocalizedSegmenter;
 import com.ibm.icu.segmenter.LocalizedSegmenter.SegmentationType;
 import com.ibm.icu.segmenter.Segment;
+import com.ibm.icu.segmenter.Segmenter;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
@@ -18,6 +19,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -31,54 +33,57 @@ import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Normalizer;
-import org.unicode.text.tools.Indexer.IndexEntry;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 public class Indexer {
 
-    static Transliterator toHTML;
-    static Transliterator toHTMLInput;
-    static String HTML_RULES_CONTROLS;
+    private static Transliterator toHTML;
+    private static String htmlRulesControls;
 
-    static int BOOP = 0x10BE77;
-    static int DOOD = 0x10D00D;
+    private static int BOOP = 0x10BE77;
+    private static int DOOD = 0x10D00D;
 
-    static final IndexUnicodeProperties iup = IndexUnicodeProperties.make();
-    static Normalizer nfkc = new Normalizer(Normalizer.NormalizationForm.NFKC, iup);
-    static final UnicodeSet newCharacters =
+    private static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
+    private static Normalizer nfkc = new Normalizer(Normalizer.NormalizationForm.NFKC, IUP);
+    private static final UnicodeSet NEW_CHARACTERS =
             IndexUnicodeProperties.make(Settings.LAST_VERSION_INFO)
                     .getProperty(UcdProperty.General_Category)
                     .getSet("Unassigned")
-                    .removeAll(
-                            IndexUnicodeProperties.make(Settings.LATEST_VERSION_INFO)
-                                    .getProperty(UcdProperty.General_Category)
-                                    .getSet("Unassigned"))
+                    .removeAll(IUP.getProperty(UcdProperty.General_Category).getSet("Unassigned"))
                     .freeze();
-    static final UnicodeProperty name = iup.getProperty(UcdProperty.Name);
-    static final UnicodeProperty nameAlias = iup.getProperty(UcdProperty.Name_Alias);
-    static final UnicodeProperty informalAlias = iup.getProperty(UcdProperty.Names_List_Alias);
-    static final UnicodeProperty block = iup.getProperty(UcdProperty.Block);
-    static final UnicodeProperty pretty_block = iup.getProperty(UcdProperty.Pretty_Block);
-    static final UnicodeProperty subheader = iup.getProperty(UcdProperty.Names_List_Subheader);
-    static final UnicodeProperty subheader_notice =
-            iup.getProperty(UcdProperty.Names_List_Subheader_Notice);
-    static final UnicodeProperty comment = iup.getProperty(UcdProperty.Names_List_Comment);
-    static final UnicodeProperty kRSUnicode = iup.getProperty(UcdProperty.kRSUnicode);
-    static final UnicodeProperty kTGT_RSUnicode = iup.getProperty(UcdProperty.kTGT_RSUnicode);
-    static final UnicodeProperty kJURC_RSUnicode = iup.getProperty(UcdProperty.kJURC_RSUnicode);
-    static final UnicodeProperty kSeal_Rad = iup.getProperty(UcdProperty.kSEAL_Rad);
-    static final UnicodeProperty cjkRadical = iup.getProperty(UcdProperty.CJK_Radical);
-    static final UnicodeProperty generalCategory = iup.getProperty(UcdProperty.General_Category);
-    static final UnicodeSet ideographic = iup.getProperty(UcdProperty.Ideographic).getSet("Yes");
-    static final UnicodeSet noncharacters =
-            iup.getProperty(UcdProperty.Noncharacter_Code_Point).getSet("Yes");
-    static final Map<String, UnicodeSet> blockSet = new HashMap<>();
+    private static final UnicodeProperty NAME = IUP.getProperty(UcdProperty.Name);
+    private static final UnicodeProperty NAME_ALIAS = IUP.getProperty(UcdProperty.Name_Alias);
+    private static final UnicodeProperty INFORMAL_ALIAS =
+            IUP.getProperty(UcdProperty.Names_List_Alias);
+    private static final UnicodeProperty BLOCK = IUP.getProperty(UcdProperty.Block);
+    private static final UnicodeProperty PRETTY_BLOCK = IUP.getProperty(UcdProperty.Pretty_Block);
+    private static final UnicodeProperty SUBHEADER =
+            IUP.getProperty(UcdProperty.Names_List_Subheader);
+    private static final UnicodeProperty SUBHEADER_NOTICE =
+            IUP.getProperty(UcdProperty.Names_List_Subheader_Notice);
+    private static final UnicodeProperty COMMENT = IUP.getProperty(UcdProperty.Names_List_Comment);
+    private static final UnicodeProperty K_RS_UNICODE = IUP.getProperty(UcdProperty.kRSUnicode);
+    private static final UnicodeProperty K_TGT_RS_UNICODE =
+            IUP.getProperty(UcdProperty.kTGT_RSUnicode);
+    private static final UnicodeProperty K_JURC_RS_UNICODE =
+            IUP.getProperty(UcdProperty.kJURC_RSUnicode);
+    private static final UnicodeProperty K_SEAL_RAD = IUP.getProperty(UcdProperty.kSEAL_Rad);
+    private static final UnicodeProperty CJK_RADICAL = IUP.getProperty(UcdProperty.CJK_Radical);
+    private static final UnicodeProperty GENERAL_CATEGORY =
+            IUP.getProperty(UcdProperty.General_Category);
+    private static final UnicodeSet NONCHARACTERS =
+            IUP.getProperty(UcdProperty.Noncharacter_Code_Point).getSet("Yes");
 
-    static int maxRSEntryCharacters = 0;
+    private static final Segmenter SENTENCE_BREAK =
+            LocalizedSegmenter.builder().setSegmentationType(SegmentationType.SENTENCE).build();
+
+    private static final Map<String, UnicodeSet> blockSet = new HashMap<>();
+
+    private static int maxRSEntryCharacters = 0;
 
     static {
-        String BASE_RULES =
+        String baseRules =
                 "'<' > '&lt;' ;"
                         + "'<' < '&'[lL][Tt]';' ;"
                         + "'&' > '&amp;' ;"
@@ -87,15 +92,12 @@ public class Indexer {
                         + "'\"' < '&'[qQ][uU][oO][tT]';' ; "
                         + "'' < '&'[aA][pP][oO][sS]';' ; ";
 
-        String CONTENT_RULES = "'>' > '&gt;' ;";
+        String contentRules = "'>' > '&gt;' ;";
 
-        String HTML_RULES = BASE_RULES + CONTENT_RULES + "'\"' > '&quot;' ; '' > '&apos;' ;";
+        String htmlRules = baseRules + contentRules + "'\"' > '&quot;' ; '' > '&apos;' ;";
 
-        toHTMLInput = Transliterator.createFromRules("any-xml", HTML_RULES, Transliterator.FORWARD);
-
-        HTML_RULES_CONTROLS =
-                HTML_RULES
-                        // + "\\u0000 > \uFFFD ; "
+        htmlRulesControls =
+                htmlRules
                         + "[\\uD800-\\uDB7F] > '<span class=\"high-surrogate\"><span>'\uFFFD'</span></span>' ; "
                         + "[\\uDB80-\\uDBFF] > '<span class=\"private-surrogate\"><span>'\uFFFD'</span></span>' ; "
                         + "[\\uDC00-\\uDFFF] > '<span class=\"low-surrogate\"><span>'\uFFFD'</span></span>' ; "
@@ -103,14 +105,14 @@ public class Indexer {
                         + "([[:cc:]&[:White_Space:]]) > '<span class=\"control\">'\uFFFD'</span>' ; ";
         toHTML =
                 Transliterator.createFromRules(
-                        "any-xml", HTML_RULES_CONTROLS, Transliterator.FORWARD);
+                        "any-xml", htmlRulesControls, Transliterator.FORWARD);
 
-        for (String blockName : block.getAvailableValues()) {
-            blockSet.put(blockName, block.getSet(blockName));
+        for (String block : BLOCK.getAvailableValues()) {
+            blockSet.put(block, BLOCK.getSet(block));
         }
     }
 
-    static class IndexEntry {
+    private static class IndexEntry {
         IndexEntry(String snippet, UnicodeProperty property) {
             this.snippet = snippet;
             this.property = property;
@@ -120,9 +122,9 @@ public class Indexer {
         List<IndexSubEntry> subEntries() {
             try {
                 return Indexer.subEntries(
-                        property == subheader,
-                        property == subheader_notice,
-                        property != name,
+                        /* showBlock= */ property == SUBHEADER,
+                        /* showSubheader= */ property == SUBHEADER_NOTICE,
+                        /* showName= */ property != NAME,
                         characters);
             } catch (Exception e) {
                 System.err.println("In entry for " + property.getName() + ": " + snippet);
@@ -150,17 +152,21 @@ public class Indexer {
             return "<tr class=entry>"
                     + (singleEntry != null
                             ? singleEntry + "</tr>"
-                            : "<td class=entry-text>[RESULT TEXT]</td></tr><tr class=subentry>"
+                            : ("<td class=entry-text>[RESULT TEXT]</td></tr>"
+                                    + "<tr class=subentry>"
                                     + subEntries().stream()
                                             .map(e -> e.toHTML(""))
-                                            .collect(Collectors.joining("</tr><tr class=subentry>"))
-                                    + "</tr>")
+                                            .collect(
+                                                    Collectors.joining(
+                                                            "</tr>" + "<tr class=subentry>"))
+                                    + "</tr>"))
                     + relatedCharacters.entrySet().stream()
                             .map(
                                     entry ->
-                                            "<tr class=related>"
+                                            "<tr class=related><td>"
                                                     + entry.getKey()
-                                                    + "</td></tr></tr><tr class=subentry>"
+                                                    + "</td></tr>"
+                                                    + "<tr class=subentry>"
                                                     + Indexer.subEntries(
                                                                     /* showBlock= */ true,
                                                                     /* showSubheader= */ false,
@@ -170,43 +176,44 @@ public class Indexer {
                                                             .map(e -> e.toHTML(""))
                                                             .collect(
                                                                     Collectors.joining(
-                                                                            "</tr><tr class=subentry>"))
+                                                                            "</tr>"
+                                                                                    + "<tr class=subentry>"))
                                                     + "</tr>")
                             .collect(Collectors.joining());
         }
     }
 
     // Keyed by radical character, not radical number.
-    static Map<Integer, UnicodeSet> getRadicalSets() {
+    private static Map<Integer, UnicodeSet> getRadicalSets() {
         final Map<String, UnicodeSet> fastCJKRadicals = new HashMap<>();
-        for (final String r : cjkRadical.getAvailableValues()) {
-            fastCJKRadicals.put(r, cjkRadical.getSet(r));
+        for (final String r : CJK_RADICAL.getAvailableValues()) {
+            fastCJKRadicals.put(r, CJK_RADICAL.getSet(r));
         }
         final Map<Integer, Integer> tangutComponents = new HashMap<>();
         for (int i = 1; i < 1000; ++i) {
             int cp = i <= 768 ? 0x18800 + i - 1 : 0x18D80 + i - 769;
-            if (name.getValue(cp) == null) {
+            if (NAME.getValue(cp) == null) {
                 break;
             }
-            if (!name.getValue(cp).equals(String.format("TANGUT COMPONENT-%03d", i))) {
-                throw new IllegalArgumentException(name.getValue(cp));
+            if (!NAME.getValue(cp).equals(String.format("TANGUT COMPONENT-%03d", i))) {
+                throw new IllegalArgumentException(NAME.getValue(cp));
             }
             tangutComponents.put(i, cp);
         }
         final Map<Integer, Integer> jurchenRadicals = new HashMap<>();
         for (int i = 1; i < 100; ++i) {
             int cp = 0x191A0 + i - 1;
-            if (name.getValue(cp) == null) {
+            if (NAME.getValue(cp) == null) {
                 break;
             }
-            if (!name.getValue(cp).equals(String.format("JURCHEN RADICAL-%02d", i))) {
-                throw new IllegalArgumentException(name.getValue(cp));
+            if (!NAME.getValue(cp).equals(String.format("JURCHEN RADICAL-%02d", i))) {
+                throw new IllegalArgumentException(NAME.getValue(cp));
             }
             jurchenRadicals.put(i, cp);
         }
         final Map<Integer, UnicodeSet> radicalSets = new HashMap<>();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-            for (final String rs : kRSUnicode.getValues(cp)) {
+            for (final String rs : K_RS_UNICODE.getValues(cp)) {
                 if (rs == null) {
                     continue;
                 }
@@ -217,7 +224,7 @@ public class Indexer {
                             .add(cp);
                 }
             }
-            for (final String rs : kTGT_RSUnicode.getValues(cp)) {
+            for (final String rs : K_TGT_RS_UNICODE.getValues(cp)) {
                 if (rs == null) {
                     continue;
                 }
@@ -225,7 +232,7 @@ public class Indexer {
                 final int componentCharacter = tangutComponents.get(component);
                 radicalSets.computeIfAbsent(componentCharacter, c -> new UnicodeSet()).add(cp);
             }
-            for (final String rs : kJURC_RSUnicode.getValues(cp)) {
+            for (final String rs : K_JURC_RS_UNICODE.getValues(cp)) {
                 if (rs == null) {
                     continue;
                 }
@@ -233,7 +240,7 @@ public class Indexer {
                 final int radicalCharacter = jurchenRadicals.get(radical);
                 radicalSets.computeIfAbsent(radicalCharacter, c -> new UnicodeSet()).add(cp);
             }
-            for (final String r : kSeal_Rad.getValues(cp)) {
+            for (final String r : K_SEAL_RAD.getValues(cp)) {
                 if (r == null) {
                     continue;
                 }
@@ -257,84 +264,34 @@ public class Indexer {
         // Lemma to snippet to position of the word in the snippet.
         Map<String, Map<String, Integer>> wordIndex = new TreeMap<>();
         final var properties =
-                new UnicodeProperty[] {
-                    block,
-                    subheader,
-                    name,
-                    nameAlias,
-                    informalAlias,
-                    subheader_notice,
-                    comment,
-                    kRSUnicode,
-                    kTGT_RSUnicode,
-                    kJURC_RSUnicode,
-                    kSeal_Rad,
-                };
-        final var wordBreak = BreakIterator.getWordInstance();
-        final var sentenceBreak =
-                LocalizedSegmenter.builder().setSegmentationType(SegmentationType.SENTENCE).build();
+                List.of(
+                        BLOCK,
+                        SUBHEADER,
+                        NAME,
+                        NAME_ALIAS,
+                        INFORMAL_ALIAS,
+                        SUBHEADER_NOTICE,
+                        COMMENT,
+                        K_RS_UNICODE,
+                        K_TGT_RS_UNICODE,
+                        K_JURC_RS_UNICODE,
+                        K_SEAL_RAD);
+        final var wordBreak =
+                LocalizedSegmenter.builder().setSegmentationType(SegmentationType.WORD).build();
         final Set<String> lemmatizations = new HashSet<>();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             for (var prop : properties) {
                 final var propertyIndex = indexEntries.computeIfAbsent(prop, k -> new TreeMap<>());
-                Iterable<String> snippets;
-                if (prop == subheader_notice || prop == comment) {
-                    snippets =
-                            StreamSupport.stream(prop.getValues(cp).spliterator(), false)
-                                            .filter(Objects::nonNull)
-                                            .flatMap(s -> sentenceBreak.segment(s).segments())
-                                            .map(Segment::getSubSequence)
-                                            .map(CharSequence::toString)
-                                            .map(String::strip)
-                                    ::iterator;
-                } else if (prop == informalAlias) {
-                    snippets =
-                            StreamSupport.stream(prop.getValues(cp).spliterator(), false)
-                                            .filter(Objects::nonNull)
-                                            .flatMap(s -> Arrays.stream(s.split("[,;]")))
-                                            .map(String::strip)
-                                    ::iterator;
-                } else if (prop == kRSUnicode
-                        || prop == kTGT_RSUnicode
-                        || prop == kJURC_RSUnicode) {
-                    snippets =
-                            StreamSupport.stream(prop.getValues(cp).spliterator(), false)
-                                            .filter(Objects::nonNull)
-                                            .map(
-                                                    s ->
-                                                            (prop == kRSUnicode
-                                                                            ? "CJK "
-                                                                            : prop == kTGT_RSUnicode
-                                                                                    ? "Tangut "
-                                                                                    : "Jurchen ")
-                                                                    + " radical-stroke "
-                                                                    + s)
-                                    ::iterator;
-                } else if (prop == kSeal_Rad) {
-                    snippets = List.of();
-                    for (final String value : prop.getValues(cp)) {
-                        if (value == null) {
-                            continue;
-                        }
-                        final String[] parts = value.split("\\.");
-                        if (Utility.codePointFromHex(parts[1]) != cp) {
-                            continue;
-                        }
-                        snippets = List.of("Seal radical " + parts[0]);
-                    }
-                } else {
-                    snippets = prop.getValues(cp);
-                }
-                for (String snippet : snippets) {
+                for (String snippet : getSnippets(prop, cp)) {
                     if (snippet == null) {
                         continue;
                     }
-                    if (prop == block) {
+                    if (prop == BLOCK) {
                         if (Block_Values.forName(snippet) == Block_Values.No_Block) {
                             continue;
                         }
-                        snippet = pretty_block.getValue(cp);
-                    } else if (prop == name) {
+                        snippet = PRETTY_BLOCK.getValue(cp);
+                    } else if (prop == NAME) {
                         snippet = snippet.replace(Utility.hex(cp), "#");
                     }
                     // Copy the snippet to a final variable for use in the λ.
@@ -345,28 +302,30 @@ public class Indexer {
                             .add(cp);
                     // Override word breaking of ' and - in appropriate contexts so that
                     // radical/stroke indices are atomic.
-                    wordBreak.setText(
-                            snippet.replaceAll("\\.-", ".0")
-                                    .replaceAll("(?<=[0-9]'*)'(?='*\\.[0-9])", "0"));
+
                     int start = 0;
-                    for (int end = wordBreak.next();
-                            end != BreakIterator.DONE;
-                            start = end, end = wordBreak.next()) {
-                        if (wordBreak.getRuleStatus() >= BreakIterator.WORD_NUMBER) {
-                            String word = snippet.substring(start, end).toLowerCase();
-                            String lemma = lemmatize(word);
-                            if (false && !lemmatizations.contains(word) && !lemma.equals(word)) {
-                                System.out.println(word + " < " + lemma);
-                                lemmatizations.add(word);
-                            }
+                    Iterable<Segment> words =
+                            wordBreak
+                                            .segment(
+                                                    snippet.replaceAll("\\.-", ".0")
+                                                            .replaceAll(
+                                                                    "(?<=[0-9]'*)'(?='*\\.[0-9])",
+                                                                    "0"))
+                                            .segments()
+                                            .filter(s -> s.ruleStatus >= BreakIterator.WORD_NUMBER)
+                                    ::iterator;
+                    for (var segment : words) {
+                        String word =
+                                snippet.substring(segment.start, segment.limit)
+                                        .toLowerCase(Locale.ROOT);
+                        String lemma = lemmatize(word);
+                        wordIndex
+                                .computeIfAbsent(fold(word), k -> new TreeMap<>())
+                                .putIfAbsent(snippet, start);
+                        if (!lemma.equals(fold(word))) {
                             wordIndex
-                                    .computeIfAbsent(fold(word), k -> new TreeMap<>())
+                                    .computeIfAbsent(lemma, k -> new TreeMap<>())
                                     .putIfAbsent(snippet, start);
-                            if (!lemma.equals(fold(word))) {
-                                wordIndex
-                                        .computeIfAbsent(lemma, k -> new TreeMap<>())
-                                        .putIfAbsent(snippet, start);
-                            }
                         }
                     }
                 }
@@ -376,13 +335,13 @@ public class Indexer {
             }
         }
         indexEntries
-                .get(block)
-                .computeIfAbsent("Betty", k -> new IndexEntry(k, block))
+                .get(BLOCK)
+                .computeIfAbsent("Betty", k -> new IndexEntry(k, BLOCK))
                 .characters
                 .add(BOOP);
         indexEntries
-                .get(block)
-                .computeIfAbsent("the", k -> new IndexEntry(k, block))
+                .get(BLOCK)
+                .computeIfAbsent("the", k -> new IndexEntry(k, BLOCK))
                 .characters
                 .add(DOOD);
         wordIndex.computeIfAbsent("betty", k -> new TreeMap<>()).putIfAbsent("Betty", 0);
@@ -391,7 +350,7 @@ public class Indexer {
         System.out.println("Radicals…");
         final var radicalSets = getRadicalSets();
         for (final var propertyIndex : indexEntries.entrySet()) {
-            if (propertyIndex.getKey() == kRSUnicode) {
+            if (propertyIndex.getKey() == K_RS_UNICODE) {
                 continue;
             }
             for (final var indexEntry : propertyIndex.getValue().values()) {
@@ -399,8 +358,8 @@ public class Indexer {
                         && radicalSets.containsKey(indexEntry.characters.charAt(0))) {
                     final int radical = indexEntry.characters.charAt(0);
                     final String kind =
-                            name.getValue(radical).contains("COMPONENT") ? "component" : "radical";
-                    String cjkParenthetical = cjkRadical.getValue(radical);
+                            NAME.getValue(radical).contains("COMPONENT") ? "component" : "radical";
+                    String cjkParenthetical = CJK_RADICAL.getValue(radical);
                     cjkParenthetical =
                             cjkParenthetical == null ? "" : " (" + cjkParenthetical + ")";
                     indexEntry.relatedCharacters.put(
@@ -509,24 +468,71 @@ public class Indexer {
         System.out.println("Max characters in RS entries: " + maxRSEntryCharacters);
     }
 
-    static int blockCount(UnicodeSet characters) {
+    private static Iterable<String> getSnippets(UnicodeProperty prop, int cp) {
+        if (prop == SUBHEADER_NOTICE || prop == COMMENT) {
+            return StreamSupport.stream(prop.getValues(cp).spliterator(), false)
+                            .filter(Objects::nonNull)
+                            .flatMap(s -> SENTENCE_BREAK.segment(s).segments())
+                            .map(Segment::getSubSequence)
+                            .map(CharSequence::toString)
+                            .map(String::strip)
+                    ::iterator;
+        } else if (prop == INFORMAL_ALIAS) {
+            return StreamSupport.stream(prop.getValues(cp).spliterator(), false)
+                            .filter(Objects::nonNull)
+                            .flatMap(s -> Arrays.stream(s.split("[,;]")))
+                            .map(String::strip)
+                    ::iterator;
+        } else if (prop == K_RS_UNICODE || prop == K_TGT_RS_UNICODE || prop == K_JURC_RS_UNICODE) {
+            final String rsKind =
+                    prop == K_RS_UNICODE
+                            ? "CJK "
+                            : prop == K_TGT_RS_UNICODE
+                                    ? "Tangut "
+                                    : "Jurchen " + " radical-stroke ";
+            return StreamSupport.stream(prop.getValues(cp).spliterator(), false)
+                            .filter(Objects::nonNull)
+                            .map(s -> rsKind + s)
+                    ::iterator;
+        } else if (prop == K_SEAL_RAD) {
+            // The kSealRad property maps Seal characters to numbered radicals, which are
+            // seal characters; the property values are <radical number>.<code point>.
+            // If a seal character is a radical, it is mapped to itself; if we find such a
+            // self-mapping, add an index entry "Seal radical <number>".
+            for (final String value : prop.getValues(cp)) {
+                if (value == null) {
+                    continue;
+                }
+                final String[] parts = value.split("\\.");
+                if (Utility.codePointFromHex(parts[1]) != cp) {
+                    continue;
+                }
+                return List.of("Seal radical " + parts[0]);
+            }
+            return List.of();
+        } else {
+            return prop.getValues(cp);
+        }
+    }
+
+    private static int blockCount(UnicodeSet characters) {
         UnicodeSet remainder = characters.cloneAsThawed();
         int count = 0;
         while (!remainder.isEmpty()) {
             ++count;
-            remainder.removeAll(blockSet.get(block.getValue(remainder.charAt(0))));
+            remainder.removeAll(blockSet.get(BLOCK.getValue(remainder.charAt(0))));
         }
         return count;
     }
 
-    static String fold(String word) {
+    private static String fold(String word) {
         // TODO(egg): collation folding.
         // Maybe some of it before segmentation.
-        String folding = nfkc.normalize(word).toLowerCase();
+        String folding = nfkc.normalize(word).toLowerCase(Locale.ROOT);
         return folding.replace("š", "sh");
     }
 
-    static String lemmatize(String word) {
+    private static String lemmatize(String word) {
         // TODO(egg): proper lemmatization.
         String lemma = fold(word);
         if (lemma.endsWith("ses") && lemma.length() > 4) {
@@ -540,30 +546,11 @@ public class Indexer {
         return lemma;
     }
 
-    static int findWord(String needle, String haystack) {
-        final var wordBreak = BreakIterator.getWordInstance();
-        wordBreak.setText(haystack);
-        int start = 0;
-        int position = -1;
-        for (int end = wordBreak.next();
-                end != BreakIterator.DONE;
-                start = end, end = wordBreak.next()) {
-            if (wordBreak.getRuleStatus() >= BreakIterator.WORD_NUMBER) {
-                String word = lemmatize(haystack.substring(start, end));
-                if (word.equals(needle)) {
-                    position = start;
-                }
-            }
-        }
-        return position;
-    }
-
-    static class IndexSubEntry {
+    private static class IndexSubEntry {
         String block;
         String subheader;
         String chartLink;
         String ranges;
-        String propertiesLink;
         String characters;
         boolean rsEntry = false;
 
@@ -599,9 +586,6 @@ public class Indexer {
             result.append("'><a href='" + chartLink + "'>");
             result.append(toHTML.transform(ranges));
             result.append("</a>");
-            /*if (propertiesLink != null) {
-                result.append(" (<a href='" + propertiesLink + "'>properties</a>)");
-            }*/
             result.append("</td><td class='characters");
             if (rsEntry) {
                 result.append(" rs-entry");
@@ -615,13 +599,13 @@ public class Indexer {
         }
     }
 
-    static List<IndexSubEntry> subEntries(
+    private static List<IndexSubEntry> subEntries(
             boolean showBlock, boolean showSubheader, boolean showName, UnicodeSet characters) {
         List<IndexSubEntry> result = new ArrayList<>();
         final boolean showBlocks =
                 showBlock
                         || showSubheader
-                        || !blockSet.get(block.getValue(characters.charAt(0)))
+                        || !blockSet.get(BLOCK.getValue(characters.charAt(0)))
                                 .containsAll(characters);
         if (!showBlocks) {
             result.add(new IndexSubEntry());
@@ -631,16 +615,16 @@ public class Indexer {
             if (range.codepointEnd == range.codepoint) {
                 if (showBlocks) {
                     result.add(new IndexSubEntry());
-                    result.get(result.size() - 1).block = pretty_block.getValue(range.codepoint);
+                    result.get(result.size() - 1).block = PRETTY_BLOCK.getValue(range.codepoint);
                 }
                 final var currentSubEntry = result.get(result.size() - 1);
                 if (showSubheader) {
-                    currentSubEntry.subheader = subheader.getValue(range.codepoint);
+                    currentSubEntry.subheader = SUBHEADER.getValue(range.codepoint);
                 }
                 currentSubEntry.chartLink =
                         getChartLink(new UnicodeSet(range.codepoint, range.codepoint));
                 currentSubEntry.ranges = Utility.hex(range.codepoint);
-                if (!General_Category_Values.forName(generalCategory.getValue(range.codepoint))
+                if (!General_Category_Values.forName(GENERAL_CATEGORY.getValue(range.codepoint))
                         .getShortName()
                         .startsWith("C")) {
                     currentSubEntry.characters = Character.toString(range.codepoint);
@@ -648,7 +632,7 @@ public class Indexer {
                 currentSubEntry.propertiesLink =
                         "https://util.unicode.org/UnicodeJsps/character.jsp?a="
                                 + Utility.hex(range.codepoint);
-                if (newCharacters.contains(range.codepoint)
+                if (NEW_CHARACTERS.contains(range.codepoint)
                         && Settings.latestVersionPhase.compareTo(Settings.ReleasePhase.BETA) < 0) {
                     currentSubEntry.propertiesLink += "&showDevProperties=1";
                 }
@@ -670,18 +654,18 @@ public class Indexer {
             } else {
                 UnicodeSet remainder = new UnicodeSet(range.codepoint, range.codepointEnd);
                 while (!remainder.isEmpty()) {
-                    final String blockValue = block.getValue(remainder.charAt(0));
+                    final String blockValue = BLOCK.getValue(remainder.charAt(0));
                     final var currentBlock = blockSet.get(blockValue);
                     if (showBlocks) {
                         result.add(new IndexSubEntry());
                         result.get(result.size() - 1).block =
-                                pretty_block.getValue(remainder.charAt(0));
+                                PRETTY_BLOCK.getValue(remainder.charAt(0));
                     }
                     final var subrange = remainder.cloneAsThawed().retainAll(currentBlock);
                     remainder.removeAll(currentBlock);
                     final var currentSubEntry = result.get(result.size() - 1);
                     if (showSubheader) {
-                        currentSubEntry.subheader = subheader.getValue(range.codepoint);
+                        currentSubEntry.subheader = SUBHEADER.getValue(range.codepoint);
                     }
                     currentSubEntry.chartLink = getChartLink(subrange);
                     currentSubEntry.ranges =
@@ -690,7 +674,9 @@ public class Indexer {
                                     + Utility.hex(subrange.getRangeEnd(0));
                     rsProperties:
                     for (var rsProperty :
-                            new UnicodeProperty[] {kRSUnicode, kTGT_RSUnicode, kJURC_RSUnicode}) {
+                            new UnicodeProperty[] {
+                                K_RS_UNICODE, K_TGT_RS_UNICODE, K_JURC_RS_UNICODE
+                            }) {
                         Set<String> commonValues = new HashSet<>();
                         commonValues.addAll(
                                 Lists.newArrayList(
@@ -706,18 +692,16 @@ public class Indexer {
                             }
                         }
                         currentSubEntry.characters =
-                                subrange.codePointStream()
-                                        .mapToObj(Character::toString)
-                                        .collect(Collectors.joining());
+                                subrange.stream().collect(Collectors.joining());
                         currentSubEntry.rsEntry = true;
                         maxRSEntryCharacters = Math.max(maxRSEntryCharacters, subrange.size());
                     }
-                    final String firstGC = generalCategory.getValue(subrange.getRangeStart(0));
+                    final String firstGC = GENERAL_CATEGORY.getValue(subrange.getRangeStart(0));
                     if (currentSubEntry.characters == null
                             && !General_Category_Values.forName(firstGC)
                                     .getShortName()
                                     .startsWith("C")
-                            && generalCategory.getSet(firstGC).containsAll(subrange)) {
+                            && GENERAL_CATEGORY.getSet(firstGC).containsAll(subrange)) {
                         currentSubEntry.characters =
                                 Character.toString(subrange.getRangeStart(0))
                                         + "–"
@@ -740,11 +724,11 @@ public class Indexer {
         return result;
     }
 
-    static String getChartLink(UnicodeSet set) {
+    private static String getChartLink(UnicodeSet set) {
         int chartStart;
-        var blockValue = UcdPropertyValues.Block_Values.forName(block.getValue(set.charAt(0)));
+        var blockValue = UcdPropertyValues.Block_Values.forName(BLOCK.getValue(set.charAt(0)));
         boolean blockHasNewCharacters = false;
-        if (noncharacters.containsAll(set)
+        if (NONCHARACTERS.containsAll(set)
                 && (blockValue == Block_Values.No_Block
                         || blockValue == Block_Values.Supplementary_Private_Use_Area_A
                         || blockValue == Block_Values.Supplementary_Private_Use_Area_B)) {
@@ -758,8 +742,7 @@ public class Indexer {
             }
             final var currentBlock = blockSet.get(blockValue.toString());
             chartStart = currentBlock.getRangeStart(0);
-            blockHasNewCharacters =
-                    !newCharacters.cloneAsThawed().retainAll(currentBlock).isEmpty();
+            blockHasNewCharacters = currentBlock.containsSome(NEW_CHARACTERS);
         }
         switch (Settings.latestVersionPhase) {
             case ALPHA:
