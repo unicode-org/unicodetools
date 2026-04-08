@@ -276,9 +276,7 @@ public class Indexer {
                         K_TGT_RS_UNICODE,
                         K_JURC_RS_UNICODE,
                         K_SEAL_RAD);
-        final var wordBreak =
-                LocalizedSegmenter.builder().setSegmentationType(SegmentationType.WORD).build();
-        final Set<String> lemmatizations = new HashSet<>();
+        final var wordBreak = BreakIterator.getWordInstance();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             for (var prop : properties) {
                 final var propertyIndex = indexEntries.computeIfAbsent(prop, k -> new TreeMap<>());
@@ -303,29 +301,24 @@ public class Indexer {
                     // Override word breaking of ' and - in appropriate contexts so that
                     // radical/stroke indices are atomic.
 
+                    wordBreak.setText(
+                            snippet.replaceAll("\\.-", ".0")
+                                    .replaceAll("(?<=[0-9]'*)'(?='*\\.[0-9])", "0"));
                     int start = 0;
-                    Iterable<Segment> words =
-                            wordBreak
-                                            .segment(
-                                                    snippet.replaceAll("\\.-", ".0")
-                                                            .replaceAll(
-                                                                    "(?<=[0-9]'*)'(?='*\\.[0-9])",
-                                                                    "0"))
-                                            .segments()
-                                            .filter(s -> s.ruleStatus >= BreakIterator.WORD_NUMBER)
-                                    ::iterator;
-                    for (var segment : words) {
-                        String word =
-                                snippet.substring(segment.start, segment.limit)
-                                        .toLowerCase(Locale.ROOT);
-                        String lemma = lemmatize(word);
-                        wordIndex
-                                .computeIfAbsent(fold(word), k -> new TreeMap<>())
-                                .putIfAbsent(snippet, start);
-                        if (!lemma.equals(fold(word))) {
+                    for (int limit = wordBreak.next();
+                            limit != BreakIterator.DONE;
+                            start = limit, limit = wordBreak.next()) {
+                        if (wordBreak.getRuleStatus() >= BreakIterator.WORD_NUMBER) {
+                            String word = snippet.substring(start, limit).toLowerCase(Locale.ROOT);
+                            String lemma = lemmatize(word);
                             wordIndex
-                                    .computeIfAbsent(lemma, k -> new TreeMap<>())
+                                    .computeIfAbsent(fold(word), k -> new TreeMap<>())
                                     .putIfAbsent(snippet, start);
+                            if (!lemma.equals(fold(word))) {
+                                wordIndex
+                                        .computeIfAbsent(lemma, k -> new TreeMap<>())
+                                        .putIfAbsent(snippet, start);
+                            }
                         }
                     }
                 }
@@ -629,17 +622,9 @@ public class Indexer {
                         .startsWith("C")) {
                     currentSubEntry.characters = Character.toString(range.codepoint);
                 }
-                currentSubEntry.propertiesLink =
-                        "https://util.unicode.org/UnicodeJsps/character.jsp?a="
-                                + Utility.hex(range.codepoint);
-                if (NEW_CHARACTERS.contains(range.codepoint)
-                        && Settings.latestVersionPhase.compareTo(Settings.ReleasePhase.BETA) < 0) {
-                    currentSubEntry.propertiesLink += "&showDevProperties=1";
-                }
                 if (range.codepoint == BOOP || range.codepoint == DOOD) {
                     currentSubEntry.chartLink = "https://unicode.org/charts/PDF/UBOOP.pdf";
                     currentSubEntry.ranges = range.codepoint == BOOP ? "BOOP" : "DOOD";
-                    currentSubEntry.propertiesLink = null;
                 }
                 if (previousSubEntryWithLocation != null
                         && Objects.equals(
