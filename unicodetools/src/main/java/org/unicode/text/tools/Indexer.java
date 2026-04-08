@@ -45,7 +45,7 @@ public class Indexer {
     private static final int DOOD = 0x10D00D;
 
     private static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
-    private static Normalizer nfkc = new Normalizer(Normalizer.NormalizationForm.NFKC, IUP);
+    private static final Normalizer NFKC = new Normalizer(Normalizer.NormalizationForm.NFKC, IUP);
     private static final UnicodeSet NEW_CHARACTERS =
             IndexUnicodeProperties.make(Settings.LAST_VERSION_INFO)
                     .getProperty(UcdProperty.General_Category)
@@ -510,7 +510,7 @@ public class Indexer {
     private static String fold(String word) {
         // TODO(egg): collation folding.
         // Maybe some of it before segmentation.
-        String folding = nfkc.normalize(word).toLowerCase(Locale.ROOT);
+        String folding = NFKC.normalize(word).toLowerCase(Locale.ROOT);
         return folding.replace("š", "sh");
     }
 
