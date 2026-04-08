@@ -588,6 +588,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     public void setMultiValued(String multivalued2) {
         switch (property) {
             case Name_Alias:
+            case Name_Alias_Abbreviation:
+            case Name_Alias_Control:
             case Standardized_Variant:
                 multivaluedSplit = NO_SPLIT;
                 break;
@@ -1601,6 +1603,14 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         break;
                     default:
                         throw new UnicodePropertyException();
+                }
+                if (propInfo.property.name().startsWith("Name_Alias_")
+                        && !propInfo.property
+                                .name()
+                                .substring(11)
+                                .toLowerCase(Locale.ROOT)
+                                .equals(parts[2])) {
+                    continue;
                 }
                 String value =
                         propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion).valueField

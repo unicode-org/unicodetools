@@ -2017,6 +2017,11 @@ public class UcdPropertyValues {
     // Math_Entity_Set
     // Name
     // Name_Alias
+    // Name_Alias_Abbreviation
+    // Name_Alias_Alternate
+    // Name_Alias_Control
+    // Name_Alias_Correction
+    // Name_Alias_Figment
     // Named_Sequences
     // Named_Sequences_Prov
     // Names_List_Alias

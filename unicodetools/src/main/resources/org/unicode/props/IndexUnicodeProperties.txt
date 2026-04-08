@@ -145,6 +145,11 @@ EquivalentUnifiedIdeograph ; Equivalent_Unified_Ideograph
 
 #
 NameAliases ; Name_Alias
+NameAliases ; Name_Alias_Correction
+NameAliases ; Name_Alias_Control
+NameAliases ; Name_Alias_Alternate
+NameAliases ; Name_Alias_Figment
+NameAliases ; Name_Alias_Abbreviation
 #NormalizationCorrections ; used in Decomposition Mappings
 Scripts ; Script
 CaseFolding ; Simple_Case_Folding ; 2 ; Skip1FT
