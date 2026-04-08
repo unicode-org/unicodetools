@@ -507,16 +507,6 @@ public class Indexer {
         }
     }
 
-    private static int blockCount(UnicodeSet characters) {
-        UnicodeSet remainder = characters.cloneAsThawed();
-        int count = 0;
-        while (!remainder.isEmpty()) {
-            ++count;
-            remainder.removeAll(blockSet.get(BLOCK.getValue(remainder.charAt(0))));
-        }
-        return count;
-    }
-
     private static String fold(String word) {
         // TODO(egg): collation folding.
         // Maybe some of it before segmentation.
