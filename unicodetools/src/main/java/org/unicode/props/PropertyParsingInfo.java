@@ -1609,7 +1609,12 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                 .name()
                                 .substring(11)
                                 .toLowerCase(Locale.ROOT)
-                                .equals(parts[2])) {
+                                .equals(
+                                        indexUnicodeProperties.ucdVersion.compareTo(
+                                                                VersionInfo.UNICODE_6_0)
+                                                        <= 0
+                                                ? "correction"
+                                                : parts[2])) {
                     continue;
                 }
                 String value =
