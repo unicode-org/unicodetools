@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-03-13, 10:32:52 GMT
+@+	Generation Date: 2026-04-07, 11:41:01 GMT
 	Unicode 18.0.0 names list.
 	Adjusted for repertoire additions post UTC186.
 	Removed extraneous TAB in one subhead.
@@ -19,6 +19,11 @@
 	Fixed subheads per Kirk suggestions.
 	Update annotation for 05BC.
 	Update annotation for 29FE and 29FF.
+	Add xref between 1F98B and 1FACC.
+	Add comment to 11B0A per BIS input.
+	Update chart label for Seal to Small Seal.
+	Correct numeric annotations for 130AD and 131BC.
+	Removed annotation for 1DF6E.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -36512,6 +36517,7 @@ FFFF	<not a character>
 	x (devanagari digit zero - 0966)
 @		Sindhi implosive letter
 11B0A	DEVANAGARI LETTER ALTERNATE DDDA
+	* used for digitization purposes but not in current use
 	x (devanagari letter da - 0926)
 @@	11B60	Sharada Supplement	11B7F
 @		Kashmiri vowel signs
@@ -39491,7 +39497,7 @@ FFFF	<not a character>
 	* classifier grasping/holding : ꜣmm
 130AD	EGYPTIAN HIEROGLYPH D050
 	* not to be confused with 130B7
-	* 10000
+	* \10000
 	* logogram (finger) : ḏbꜥ
 130AE	EGYPTIAN HIEROGLYPH D050A
 	* \20000
@@ -40093,7 +40099,7 @@ FFFF	<not a character>
 131BB	EGYPTIAN HIEROGLYPH M011
 	* logogram (to offer) : wdn
 131BC	EGYPTIAN HIEROGLYPH M012
-	* 1000
+	* \1000
 	* phonemogram : ḫꜣ
 131BD	EGYPTIAN HIEROGLYPH M012A
 	* \2000
@@ -60349,7 +60355,6 @@ FFFF	<not a character>
 1DF6D	LATIN SMALL LETTER REVERSED SCRUPLE
 	x (greek lunate epsilon symbol - 03F5)
 1DF6E	LATIN CAPITAL LETTER PHONOTYPIC DIPHTHONG AI
-	* denotes the diphthong [ai] in the English Phonotypic Alphabet
 	x (latin capital letter i with stroke - 0197)
 	x (cross of jerusalem - 2629)
 	x (maltese cross - 2720)
@@ -65684,6 +65689,7 @@ FFFF	<not a character>
 1F989	OWL
 1F98A	FOX FACE
 1F98B	BUTTERFLY
+	x (monarch butterfly - 1FACC)
 1F98C	DEER
 1F98D	GORILLA
 1F98E	LIZARD
@@ -66113,6 +66119,7 @@ FFFF	<not a character>
 @		Animals and nature
 1FAC8	HAIRY CREATURE
 1FACC	MONARCH BUTTERFLY
+	x (butterfly - 1F98B)
 1FACD	ORCA
 1FACE	MOOSE
 1FACF	DONKEY
@@ -67662,7 +67669,7 @@ FFFF	<not a character>
 @@	30000	CJK Unified Ideographs Extension G	3134A
 @@	31350	CJK Unified Ideographs Extension H	323AF
 @@	323B0	CJK Unified Ideographs Extension J	33479
-@@	3D000	Seal	3FC3F
+@@	3D000	Small Seal	3FC3F
 @@	3FF80	Unassigned	3FFFF
 @		Noncharacters
 @+		These codes are intended for process-internal uses.
