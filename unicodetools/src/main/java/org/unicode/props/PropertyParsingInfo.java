@@ -1605,8 +1605,16 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         throw new UnicodePropertyException();
                 }
                 if (propInfo.property.name().startsWith("Name_Alias_")) {
-                    String type = indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_6_0) <= 0 ? "correction" : parts[2];
-                        if (!propInfo.property.name().substring(11).toLowerCase(Locale.ROOT).equals(type)) {
+                    String type =
+                            indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_6_0)
+                                            <= 0
+                                    ? "correction"
+                                    : parts[2];
+                    if (!propInfo.property
+                            .name()
+                            .substring(11)
+                            .toLowerCase(Locale.ROOT)
+                            .equals(type)) {
                         continue;
                     }
                 }
