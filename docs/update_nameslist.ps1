@@ -8,7 +8,7 @@ pushd ..\charts
 git fetch
 $versions = git log --pretty=format:"%H" main -- .\nomenclator\output\NamesList.txt
 # Go back in time in the charts repository until we find a version of
-# NamesList.txt which matches the one from unicodetools.
+# NamesList.txt that matches the one from unicodetools.
 for ($i = 0; $i -lt $versions.Length; ++$i) {
     git checkout $versions[$i] .\nomenclator\output\NamesList.txt
     if (-not (Compare-Object                                     `
