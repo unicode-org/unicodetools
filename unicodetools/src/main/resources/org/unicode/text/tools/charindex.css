@@ -1,0 +1,57 @@
+#table4 { width: 100%; border-collapse: collapse; border-spacing: 0; }
+body {
+  --body-width  : 36rem;
+  --range-width : 7rem;
+}
+.body-width {
+  max-width: var(--body-width);
+}
+input[name="q"] {
+  width: 100%;
+}
+.tail {
+  display: inline-block;
+  padding-left: 2em;
+  text-indent: -2em;
+  box-sizing: border-box;
+}
+.head {
+  display: inline-block;
+  padding-left: 1em;
+  width: max-content;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+tr.entry .location {
+  float: right;
+}
+tr.subentry .location {
+  padding-left: 2em;
+}
+td.entry-text {
+  width: calc(var(--body-width) - var(--range-width));
+  max-width: calc(var(--body-width) - var(--range-width));
+  vertical-align: top;
+}
+td.ranges {
+  width: var(--range-width);
+  max-width: var(--range-width);
+  text-align: right;
+  white-space: nowrap;
+  vertical-align: bottom;
+  font-family: monospace;
+}
+td.characters {
+  min-width: 4ic;
+  max-width: 16ic;
+  vertical-align: bottom;
+}
+td.ranges.rs-entry {
+  vertical-align: top;
+}
+td.characters.rs-entry {
+  vertical-align: top;
+}
+table.search-results {
+  border-collapse: collapse;
+}
