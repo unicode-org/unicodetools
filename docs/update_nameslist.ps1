@@ -1,5 +1,5 @@
 # Picks up updates to NamesList.txt from a neighbouring clone of the charts repository.
-# This should be run from the root of the unicodetools repository, as
+# This Powershell should be run from the root of the unicodetools repository, as
 # .\docs\update_nameslist.ps1.
 
 $ErrorActionPreference = "Stop"
@@ -7,6 +7,8 @@ $ErrorActionPreference = "Stop"
 pushd ..\charts
 git fetch
 $versions = git log --pretty=format:"%H" main -- .\nomenclator\output\NamesList.txt
+# Go back in time in the charts repository until we find a version of
+# NamesList.txt which matches the one from unicodetools.
 for ($i = 0; $i -lt $versions.Length; ++$i) {
     git checkout $versions[$i] .\nomenclator\output\NamesList.txt
     if (-not (Compare-Object                                     `
@@ -15,6 +17,13 @@ for ($i = 0; $i -lt $versions.Length; ++$i) {
         Write-Host "unicodetools has $($versions[$i]); $i commits to import…"
         break
     }
+}
+if ($i -eq $versions.Length) {
+    popd
+    Write-Error ("Could not find charts revision matching unicodetools "     `
+    + "NamesList.txt.  If NamesList.txt has been modified in the tools, "    `
+    + "check out the tools before that revision and run this script again, " `
+    + "then merge.")
 }
 while (--$i -ge 0) {
     $version = $versions[$i]
@@ -25,9 +34,9 @@ while (--$i -ge 0) {
     cp .\nomenclator\output\NamesList.txt ..\unicodetools\unicodetools\data\ucd\dev\NamesList.txt
     popd
     git add .\unicodetools\data\ucd\dev\NamesList.txt
-    git commit -m $message
-    git commit --amend --author=$author --no-edit
-    git commit --amend --date=$date --no-edit
+    git commit -m $message      `
+               --author=$author `
+               --date=$date
     pushd ..\charts
 }
 popd
