@@ -1244,3 +1244,7 @@ AB6C..AB6D ; Technical
 1DF90..1DF94 ; Technical Obsolete
 1DF96 ; Technical Obsolete
 2B81E ; Uncommon_Use
+1D250..1D252 ; Technical
+1D25B..1D25C ; Technical
+1D25F ; Technical
+1D280..1D281 ; Technical
