@@ -242,6 +242,12 @@ kEH_Func                 ; kEH_Func ; Provisional
 kEH_FVal                 ; kEH_FVal ; Provisional
 kEH_UniK                 ; kEH_UniK ; Provisional
 
+Name_Alias_Correction   ; Name_Alias_Correction   ; UCDNonProperty
+Name_Alias_Control      ; Name_Alias_Control      ; UCDNonProperty
+Name_Alias_Alternate    ; Name_Alias_Alternate    ; UCDNonProperty
+Name_Alias_Figment      ; Name_Alias_Figment      ; UCDNonProperty
+Name_Alias_Abbreviation ; Name_Alias_Abbreviation ; UCDNonProperty
+
 Names_List_Block_Header        ; Names_List_Block_Header        ; UCDNonProperty
 Names_List_Block_Header_Notice ; Names_List_Block_Header_Notice ; UCDNonProperty
 Names_List_Subheader           ; Names_List_Subheader ; subhead ; UCDNonProperty

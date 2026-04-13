@@ -176,6 +176,28 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "Name_Alias"),
+    Name_Alias_Abbreviation(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Unordered,
+            "Name_Alias_Abbreviation"),
+    Name_Alias_Alternate(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "Name_Alias_Alternate"),
+    Name_Alias_Control(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Unordered,
+            "Name_Alias_Control"),
+    Name_Alias_Correction(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "Name_Alias_Correction"),
+    Name_Alias_Figment(
+            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "Name_Alias_Figment"),
     Named_Sequences(PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "NS"),
     Named_Sequences_Prov(PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "NSP"),
     Names_List_Alias(

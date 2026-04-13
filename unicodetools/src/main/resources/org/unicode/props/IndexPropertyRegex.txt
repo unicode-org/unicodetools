@@ -81,6 +81,11 @@ Emoji_DCM ;                   SINGLE_VALUED ;               [0-9A-F]{4}
 Emoji_KDDI ;                  SINGLE_VALUED ;               [0-9A-F]{4}
 Emoji_SB ;                    SINGLE_VALUED ;               [0-9A-F]{4}
 emoji_variation_sequence ;    SINGLE_VALUED ;               text style|emoji style
+Name_Alias_Abbreviation ;     MULTI_VALUED ;                .*
+Name_Alias_Alternate ;        SINGLE_VALUED ;               .*
+Name_Alias_Control ;          MULTI_VALUED ;                .*
+Name_Alias_Correction ;       SINGLE_VALUED ;               .*
+Name_Alias_Figment ;          SINGLE_VALUED ;               .*
 Named_Sequences ;             SINGLE_VALUED ;               $name
 Named_Sequences_Prov ;        SINGLE_VALUED ;               $name
 Names_List_Block_Header  ;    SINGLE_VALUED ;               .*
@@ -94,6 +99,7 @@ Non_Unihan_Numeric_Value ;    SINGLE_VALUED ;               NaN|$rational
 normalization_correction_corrected ; SINGLE_VALUED ;        [0-9A-F]{4,5}
 normalization_correction_original ;  SINGLE_VALUED ;        [0-9A-F]{4,5}
 normalization_correction_version ;   SINGLE_VALUED ;        [0-9]\.[0-9]\.[0-9]
+Pretty_Block ;                SINGLE_VALUED ;                .*
 Standardized_Variant ;        MULTI_VALUED ;                 .*
 
 ### Other information
