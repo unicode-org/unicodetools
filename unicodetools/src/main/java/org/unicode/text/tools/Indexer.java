@@ -9,12 +9,14 @@ import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -26,6 +28,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+import java.util.zip.DeflaterOutputStream;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -37,6 +40,8 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 public class Indexer {
+
+    private static final char RECORD_SEPARATOR = 0x001E;
 
     private static Transliterator toHTML;
     private static String htmlRulesControls;
@@ -113,8 +118,8 @@ public class Indexer {
     }
 
     private static class IndexEntry {
-        IndexEntry(String snippet, UnicodeProperty property) {
-            this.snippet = snippet;
+        IndexEntry(int snippetIndex, UnicodeProperty property) {
+            this.snippetIndex = snippetIndex;
             this.property = property;
             characters = new UnicodeSet();
         }
@@ -127,12 +132,12 @@ public class Indexer {
                         /* showName= */ property != NAME,
                         characters);
             } catch (Exception e) {
-                System.err.println("In entry for " + property.getName() + ": " + snippet);
+                System.err.println("In entry for " + property.getName() + ": " + snippetIndex);
                 throw e;
             }
         }
 
-        String snippet;
+        int snippetIndex;
         UnicodeProperty property;
         UnicodeSet characters;
         Map<String, UnicodeSet> relatedCharacters = new TreeMap<>();
@@ -258,11 +263,14 @@ public class Indexer {
                 return left.getName().compareTo(right.getName());
             }
         }
-        // Property to property value to index entry.
-        Map<UnicodeProperty, Map<String, IndexEntry>> indexEntries =
+        final StringBuilder allTheStrings = new StringBuilder();
+        final HashMap<String, Integer> stringIndices = new HashMap<>();
+        // Property to snippet based on property value (as an index in allTheStrings) to index
+        // entry.
+        Map<UnicodeProperty, Map<Integer, IndexEntry>> indexEntries =
                 new TreeMap<>(new PropertyComparator());
-        // Lemma to snippet to position of the word in the snippet.
-        Map<String, Map<String, Integer>> wordIndex = new TreeMap<>();
+        // Lemma to snippet (as an index in allTheStrings) to position of the word in the snippet.
+        Map<String, Map<Integer, Integer>> wordIndex = new TreeMap<>();
         final var properties =
                 List.of(
                         BLOCK,
@@ -292,10 +300,14 @@ public class Indexer {
                     } else if (prop == NAME) {
                         snippet = snippet.replace(Utility.hex(cp), "#");
                     }
-                    // Copy the snippet to a final variable for use in the λ.
-                    final String indexSnippet = snippet;
+                    final int snippetIndex =
+                            stringIndices.getOrDefault(snippet, allTheStrings.length());
+                    if (snippetIndex == allTheStrings.length()) {
+                        allTheStrings.append(snippet).append(RECORD_SEPARATOR);
+                        stringIndices.put(snippet, snippetIndex);
+                    }
                     propertyIndex
-                            .computeIfAbsent(snippet, k -> new IndexEntry(indexSnippet, prop))
+                            .computeIfAbsent(snippetIndex, k -> new IndexEntry(k, prop))
                             .characters
                             .add(cp);
                     // Override word breaking of ' and - in appropriate contexts so that
@@ -313,11 +325,11 @@ public class Indexer {
                             String lemma = lemmatize(word);
                             wordIndex
                                     .computeIfAbsent(fold(word), k -> new TreeMap<>())
-                                    .putIfAbsent(snippet, start);
+                                    .putIfAbsent(snippetIndex, start);
                             if (!lemma.equals(fold(word))) {
                                 wordIndex
                                         .computeIfAbsent(lemma, k -> new TreeMap<>())
-                                        .putIfAbsent(snippet, start);
+                                        .putIfAbsent(snippetIndex, start);
                             }
                         }
                     }
@@ -327,18 +339,22 @@ public class Indexer {
                 System.out.println("Indexed plane " + cp / 0x10000);
             }
         }
+        final int bettyIndex = allTheStrings.length();
+        allTheStrings.append("Betty").append(RECORD_SEPARATOR);
+        final int theIndex = allTheStrings.length();
+        allTheStrings.append("the").append(RECORD_SEPARATOR);
         indexEntries
                 .get(BLOCK)
-                .computeIfAbsent("Betty", k -> new IndexEntry(k, BLOCK))
+                .computeIfAbsent(bettyIndex, k -> new IndexEntry(k, BLOCK))
                 .characters
                 .add(BOOP);
         indexEntries
                 .get(BLOCK)
-                .computeIfAbsent("the", k -> new IndexEntry(k, BLOCK))
+                .computeIfAbsent(theIndex, k -> new IndexEntry(k, BLOCK))
                 .characters
                 .add(DOOD);
-        wordIndex.computeIfAbsent("betty", k -> new TreeMap<>()).putIfAbsent("Betty", 0);
-        wordIndex.computeIfAbsent("the", k -> new TreeMap<>()).putIfAbsent("the", 0);
+        wordIndex.computeIfAbsent("betty", k -> new TreeMap<>()).putIfAbsent(bettyIndex, 0);
+        wordIndex.computeIfAbsent("the", k -> new TreeMap<>()).putIfAbsent(theIndex, 0);
 
         System.out.println("Radicals…");
         final var radicalSets = getRadicalSets();
@@ -379,7 +395,11 @@ public class Indexer {
                 }
                 css.close();
             } else if (htmlLine.contains("JS HERE")) {
-                file.println("let wordIndex = new Map([");
+                // No pretty-printing in the loops that print these two maps; each space or newline
+                // here enlarges charindex.html by hundreds of kilobytes.  These are not suitable
+                // for human consumption anyway, since anything readable is turned into indices in
+                // allTheStrings.
+                file.print("let wordIndex = new Map([");
                 System.out.println("wordIndex...");
                 {
                     int i = 0;
@@ -387,53 +407,88 @@ public class Indexer {
                         if (++i % 1000 == 0) {
                             System.out.println(i + "/" + wordIndex.size() + "...");
                         }
-                        file.println(
-                                "    ['"
+                        file.print(
+                                "['"
                                         + wordAndSnippets.getKey().replace("'", "\\'")
-                                        + "', new Map([");
-                        for (var snippetAndPosition : wordAndSnippets.getValue().entrySet()) {
-                            file.println(
-                                    "      ['"
-                                            + snippetAndPosition.getKey().replace("'", "\\'")
-                                            + "', "
-                                            + snippetAndPosition.getValue()
-                                            + "],");
-                        }
-                        file.println("])],");
+                                        + "',new Map([");
+                        // Stream and collect for the innermost map to avoid trailing commas, for
+                        // size.
+                        file.print(
+                                wordAndSnippets.getValue().entrySet().stream()
+                                        .map(
+                                                snippetAndPosition ->
+                                                        "["
+                                                                + snippetAndPosition.getKey()
+                                                                + ","
+                                                                + snippetAndPosition.getValue()
+                                                                + "]")
+                                        .collect(Collectors.joining(",")));
+                        file.print("])],");
                     }
                 }
                 file.println("]);");
                 System.out.println("indexEntries...");
-                file.println("let indexEntries = new Map([");
+                file.print("let indexEntries = new Map([");
                 for (var property : properties) {
                     System.out.println(property.getName() + "...");
                     final var propertyIndex = indexEntries.get(property);
-                    file.println("  ['" + property.getName() + "', new Map([");
+                    file.print("['" + property.getName() + "',new Map([");
                     int i = 0;
                     for (var indexEntry : propertyIndex.values()) {
                         if (++i % 1000 == 0) {
                             System.out.println(i + "/" + propertyIndex.size() + "...");
                         }
-                        file.println("    ['" + indexEntry.snippet.replace("'", "\\'") + "', {");
-                        file.println(
-                                "       html: \""
-                                        + indexEntry.toHTML().replace("\"", "\\\"")
-                                        + "\",");
-                        file.println("       characters: [");
-                        for (var range : indexEntry.coveredCharacters().ranges()) {
-                            file.println(
-                                    "         [0x"
-                                            + Utility.hex(range.codepoint)
-                                            + ", 0x"
-                                            + Utility.hex(range.codepointEnd)
-                                            + "],");
-                        }
-                        file.println("      ],");
-                        file.println("    }],");
+                        final int htmlIndex = allTheStrings.length();
+                        allTheStrings.append(indexEntry.toHTML()).append(RECORD_SEPARATOR);
+                        file.print("[" + indexEntry.snippetIndex + ",{");
+                        file.print("html:" + htmlIndex + ",");
+                        file.print("characters:[");
+                        // Stream and collect for the innermost array to avoid trailing commas, for
+                        // size.
+                        file.print(
+                                indexEntry
+                                        .coveredCharacters()
+                                        .rangeStream()
+                                        .map(
+                                                range ->
+                                                        // Code points in decimal without
+                                                        // zero-padding for size.
+                                                        "["
+                                                                + range.codepoint
+                                                                + ","
+                                                                + range.codepointEnd
+                                                                + "]")
+                                        .collect(Collectors.joining(",")));
+                        file.print("]}],");
                     }
-                    file.println("  ])],");
+                    file.print("])],");
                 }
                 file.println("]);");
+                file.println("let bettyIndex = " + bettyIndex + ";");
+                file.println("let theIndex = " + theIndex + ";");
+                final var compressed = new ByteArrayOutputStream();
+                final var compressor = new DeflaterOutputStream(compressed);
+                final var uncompressed = allTheStrings.toString().getBytes("UTF-8");
+                compressor.write(uncompressed);
+                compressor.close();
+                final var compressedBytes = compressed.toByteArray();
+                System.out.println(
+                        "Strings compressed from "
+                                + (uncompressed.length >> 20)
+                                + " MiB to "
+                                + (compressedBytes.length >> 10)
+                                + " kiB ("
+                                + 100 * compressedBytes.length / uncompressed.length
+                                + "%)");
+                System.out.println(
+                        "Compressed payload is "
+                                + compressedBytes.length
+                                + " bytes, first byte is "
+                                + Byte.toUnsignedInt(compressedBytes[0]));
+                file.println(
+                        "let allTheStringsCompressed = '"
+                                + Base64.getEncoder().encodeToString(compressedBytes)
+                                + "'");
                 final var js =
                         new BufferedReader(new FileReader(new File(resources + "charindex.js")));
                 for (String jsLine = js.readLine(); jsLine != null; jsLine = js.readLine()) {
