@@ -455,8 +455,10 @@ public class Indexer {
                                                         // zero-padding for size.
                                                         "["
                                                                 + range.codepoint
-                                                                + ","
-                                                                + range.codepointEnd
+                                                                + (range.codepointEnd
+                                                                                != range.codepoint
+                                                                        ? "," + range.codepointEnd
+                                                                        : "")
                                                                 + "]")
                                         .collect(Collectors.joining(",")));
                         file.print("]}],");

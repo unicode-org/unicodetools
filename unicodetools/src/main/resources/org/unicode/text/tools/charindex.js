@@ -2,7 +2,7 @@
 /**@type {Map<string, Map<number, number>>}*/
 let wordIndex/*= GENERATED LINE*/;
 // Property name to snippet (compressed) to index entry; the html is compressed.
-/**@type {Map<string, Map<number, {html: number, characters: [number, number][]}>>}*/
+/**@type {Map<string, Map<number, {html: number, characters: ([number]|[number,number])[]}>>}*/
 let indexEntries/*= GENERATED LINE*/;
 /**@type {number}*/
 let bettyIndex/*= GENERATED LINE*/;
@@ -39,7 +39,7 @@ for (let [property, propertyIndex] of indexEntries) {
 }
 
 for (let [name, entry] of indexEntries.get("Name")) {
-  if (entry.characters[0][0] == entry.characters[0][1]) {
+  if (entry.characters[0][0] == entry.characters[0].at(-1)) {
     characterNames.set(entry.characters[0][0], name);
   } else {
     for (let range of entry.characters) {
@@ -227,7 +227,8 @@ function toHTML(/**@type {string}*/ plain) {
               .replaceAll(">", "&gt;")
 }
 
-function superset(/**@type {[number, number][]}*/left, /**@type {[number, number][]}*/right) {
+function superset(/**@type {([number, number]|[number])[]}*/left,
+                  /**@type {([number, number]|[number])[]}*/right) {
   var remaining = right.slice();
   for (containingRange of left) {
     remaining = remaining.flatMap(r => rangeMinus(r, containingRange));
@@ -238,7 +239,8 @@ function superset(/**@type {[number, number][]}*/left, /**@type {[number, number
   return true;
 }
 
-function rangeMinus(/**@type {[number, number]}*/left, /**@type {[number, number]}*/right) {
+function rangeMinus(/**@type {[number, number]|[number]}*/left,
+                    /**@type {[number, number]|[number]}*/right) {
   let intersection = rangeIntersection(left, right);
   if (intersection === left || intersection === right) {
     return [];
@@ -250,16 +252,17 @@ function rangeMinus(/**@type {[number, number]}*/left, /**@type {[number, number
     if (left[0] < intersection[0]) {
       result.push([left[0], intersection[0] - 1]);
     }
-    if (left[1] > intersection[1]) {
-      result.push([intersection[1] + 1, left[1] - 1]);
+    if (left.at(-1) > intersection.at(-1)) {
+      result.push([intersection.at(-1) + 1, left.at(-1) - 1]);
     }
     return result;
   }
 }
 
-function rangeIntersection(/**@type {[number, number]}*/left, /**@type {[number, number]}*/right) {
-  let [leftStart, leftEnd] = left;
-  let [rightStart, rightEnd] = right;
+function rangeIntersection(/**@type {[number, number]|[number]}*/left,
+                           /**@type {[number, number]|[number]}*/right) {
+  let [leftStart, leftEnd] = [left[0], left.at(-1)];
+  let [rightStart, rightEnd] = [right[0], right.at(-1)];
   if (leftEnd < rightStart || rightEnd < leftStart) {
     return null;
   } else {
