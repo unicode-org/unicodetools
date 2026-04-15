@@ -98,7 +98,7 @@ function search(/**@type {string}*/ query) {
   /**@type {Set<number>}*/
   var resultSnippetIndices = new Set(wordIndex.get(foldedQuery[0])?.keys() ?? []);
   let firstLemmata = [foldedQuery[0]];
-  if (resultSnippetIndices.size === 0 && foldedQuery.length == 1) {
+  if (foldedQuery.length == 1) {
     let prefix = fold(queryWords.at(-1));
     for (let [completion, snippets] of wordIndex) {
       if (completion.startsWith(prefix)) {
@@ -110,7 +110,7 @@ function search(/**@type {string}*/ query) {
   for (var i = 1; i < foldedQuery.length; ++i) {
     var rhs = new Set(wordIndex.get(foldedQuery[i])?.keys() ?? []);
     let intersection = resultSnippetIndices.intersection(rhs);
-    if (intersection.size === 0 && i == foldedQuery.length - 1) {
+    if (i == foldedQuery.length - 1) {
       let prefix = fold(queryWords.at(-1));
       for (let [completion, snippets] of wordIndex) {
         if (completion.startsWith(prefix)) {
