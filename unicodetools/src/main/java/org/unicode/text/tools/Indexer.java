@@ -87,6 +87,27 @@ public class Indexer {
 
     private static int maxRSEntryCharacters = 0;
 
+    private static class StringIndexer {
+        public StringIndexer() {}
+
+        public int getStringIndex(String s) {
+            int result = stringIndices.getOrDefault(s, allTheStrings.length());
+            if (result == allTheStrings.length()) {
+                allTheStrings.append(s).append(RECORD_SEPARATOR);
+                stringIndices.put(s, result);
+            }
+            return result;
+        }
+
+        @Override
+        public String toString() {
+            return allTheStrings.toString();
+        }
+
+        private final HashMap<String, Integer> stringIndices = new HashMap<>();
+        private final StringBuilder allTheStrings = new StringBuilder();
+    }
+
     static {
         String baseRules =
                 "'<' > '&lt;' ;"
@@ -263,8 +284,7 @@ public class Indexer {
                 return left.getName().compareTo(right.getName());
             }
         }
-        final StringBuilder allTheStrings = new StringBuilder();
-        final HashMap<String, Integer> stringIndices = new HashMap<>();
+        final var allTheStrings = new StringIndexer();
         // Property to snippet based on property value (as an index in allTheStrings) to index
         // entry.
         Map<UnicodeProperty, Map<Integer, IndexEntry>> indexEntries =
@@ -300,12 +320,7 @@ public class Indexer {
                     } else if (prop == NAME) {
                         snippet = snippet.replace(Utility.hex(cp), "#");
                     }
-                    final int snippetIndex =
-                            stringIndices.getOrDefault(snippet, allTheStrings.length());
-                    if (snippetIndex == allTheStrings.length()) {
-                        allTheStrings.append(snippet).append(RECORD_SEPARATOR);
-                        stringIndices.put(snippet, snippetIndex);
-                    }
+                    final int snippetIndex = allTheStrings.getStringIndex(snippet);
                     propertyIndex
                             .computeIfAbsent(snippetIndex, k -> new IndexEntry(k, prop))
                             .characters
@@ -339,10 +354,8 @@ public class Indexer {
                 System.out.println("Indexed plane " + cp / 0x10000);
             }
         }
-        final int bettyIndex = allTheStrings.length();
-        allTheStrings.append("Betty").append(RECORD_SEPARATOR);
-        final int theIndex = allTheStrings.length();
-        allTheStrings.append("the").append(RECORD_SEPARATOR);
+        final int bettyIndex = allTheStrings.getStringIndex("Betty");
+        final int theIndex = allTheStrings.getStringIndex("the");
         indexEntries
                 .get(BLOCK)
                 .computeIfAbsent(bettyIndex, k -> new IndexEntry(k, BLOCK))
@@ -438,8 +451,7 @@ public class Indexer {
                         if (++i % 1000 == 0) {
                             System.out.println(i + "/" + propertyIndex.size() + "...");
                         }
-                        final int htmlIndex = allTheStrings.length();
-                        allTheStrings.append(indexEntry.toHTML()).append(RECORD_SEPARATOR);
+                        final int htmlIndex = allTheStrings.getStringIndex(indexEntry.toHTML());
                         file.print("[" + indexEntry.snippetIndex + ",{");
                         file.print("html:" + htmlIndex + ",");
                         file.print("characters:[");
