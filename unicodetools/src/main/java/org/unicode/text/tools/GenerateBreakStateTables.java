@@ -2,10 +2,10 @@ package org.unicode.text.tools;
 
 import com.ibm.icu.impl.RBBIDataWrapper;
 import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.RuleBasedBreakIterator;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -23,7 +23,13 @@ import org.unicode.tools.Segmenter.Builder.NamedRefinedSet;
 
 public class GenerateBreakStateTables {
     public static void main(String[] args) throws IOException {
-        final var rbbi = (RuleBasedBreakIterator) BreakIterator.getLineInstance();
+        RuleBasedBreakIterator rbbi;
+        try (var f =
+                new FileInputStream(
+                        new File(
+                                "..\\icu\\icu4c\\source\\data\\out\\build\\icudt79l\\brkitr\\line.brk"))) {
+            rbbi = RuleBasedBreakIterator.getInstanceFromCompiledRules(f);
+        }
         final var iup = IndexUnicodeProperties.make(UCharacter.getUnicodeVersion());
         final var unassigned = iup.getProperty("gc").getSet("Unassigned");
         final var pua = iup.getProperty("gc").getSet("Private Use");
@@ -95,6 +101,8 @@ public class GenerateBreakStateTables {
             }
         }
         var table = rbbi.fRData.fFTable;
+        System.out.println(rbbiPartition.size() + " classes");
+        System.out.println(table.fNumStates + " states");
         Map<Integer, String> stateNames = new HashMap<>();
         Map<Integer, String> lookaheadNames = new HashMap<>();
         stateNames.put(0, "STOP");
