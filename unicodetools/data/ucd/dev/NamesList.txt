@@ -1,29 +1,11 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-04-07, 11:41:01 GMT
+@+	Generation Date: 2026-04-22, 09:42:47 GMT
 	Unicode 18.0.0 names list.
-	Adjusted for repertoire additions post UTC186.
-	Removed extraneous TAB in one subhead.
-	Added xref from 1D83 to 0261.
-	Annotations updates for 231B, 29D6, 1F76E.
-	More cuneiform annotations from L2/24-239.
-	Add xref from 02AE to 0265.
-	Repertoire synched with UnicodeData-18.0.0d8.txt.
+	Adjusted for repertoire changes post UTC187.
+	Repertoire synched with UnicodeData-18.0.0d9.txt.
 	Alpha review fixes.
-	Fix annotation for 1D252.
-	Update Chisoi subheads.
-	Add xref 1D1F7 to A75C.
-	Fix typo in xref for 2F82D.
-	Add alias to 237C.
-	Fixed subheads per Kirk suggestions.
-	Update annotation for 05BC.
-	Update annotation for 29FE and 29FF.
-	Add xref between 1F98B and 1FACC.
-	Add comment to 11B0A per BIS input.
-	Update chart label for Seal to Small Seal.
-	Correct numeric annotations for 130AD and 131BC.
-	Removed annotation for 1DF6E.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -5590,7 +5572,6 @@
 0981	BENGALI SIGN CANDRABINDU
 0982	BENGALI SIGN ANUSVARA
 0983	BENGALI SIGN VISARGA
-0984	BENGALI SIGN COMBINING ANUSVARA ABOVE
 @		Independent vowels
 0985	BENGALI LETTER A
 0986	BENGALI LETTER AA
@@ -5738,8 +5719,6 @@
 	x (bengali sign avagraha - 09BD)
 	x (sharada sandhi mark - 111C9)
 	x (newa sandhi mark - 1145E)
-@		Addition for Sanskrit
-09FF	BENGALI LETTER SANSKRIT BA
 @@	0A00	Gurmukhi	0A7F
 @		Various signs
 0A01	GURMUKHI SIGN ADAK BINDI
@@ -10152,10 +10131,6 @@
 1877	MONGOLIAN LETTER MANCHU ZHA
 @		Buryat letter
 1878	MONGOLIAN LETTER CHA WITH TWO DOTS
-@		Transliteration letter
-1879	MONGOLIAN LETTER ALTERNATE UE
-	* same shape also appears in some Old Manchu literature
-	x (mongolian letter ue - 1826)
 @		Extensions for Sanskrit and Tibetan
 1880	MONGOLIAN LETTER ALI GALI ANUSVARA ONE
 	x (tibetan sign sna ldan - 0F83)
@@ -36991,6 +36966,11 @@ FFFF	<not a character>
 11DE7	TOLONG SIKI DIGIT SEVEN
 11DE8	TOLONG SIKI DIGIT EIGHT
 11DE9	TOLONG SIKI DIGIT NINE
+@@	11DF0	Bengali Supplement	11DFF
+@		Sign
+11DF0	BENGALI SIGN COMBINING ANUSVARA ABOVE
+@		Addition for Sanskrit
+11DF1	BENGALI LETTER ALTERNATE BARGIYA BA
 @@	11EE0	Makasar	11EFF
 @+		This script is known indigenously as Ukiri' Jangangjangang and in English as Old Makasar.
 @		Consonants
@@ -60395,16 +60375,16 @@ FFFF	<not a character>
 1DF80	LATIN CAPITAL LETTER A WITH TOPBAR
 1DF81	LATIN CAPITAL LETTER E WITH BENT TOPBAR
 @		Cossic letters
-1DF90	LATIN SMALL LETTER C WITH SMALL SLASH
+1DF90	LATIN SMALL LETTER C WITH LOW SLASH
 	= cubus
 	* denotes cube of the unknown
-1DF91	LATIN SMALL LETTER C WITH DESCENDING LOOP
+1DF91	LATIN SMALL LETTER C WITH LOOPED CEDILLA
 	= census
 	* denotes square of the unknown
 1DF92	LATIN SMALL LETTER C WITH RIGHT LOOP
 	= cubus
 	* denotes cube of the unknown
-1DF93	LATIN SMALL LETTER D ROTUNDA WITH CROSSING LOOP
+1DF93	LATIN SMALL LETTER D ROTUNDA WITH DESCENDING CROSSING LOOP
 	= dragma
 	* denotes numerus/constant
 	x (latin small letter delta - 1E9F)
