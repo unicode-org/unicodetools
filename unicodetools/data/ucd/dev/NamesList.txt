@@ -1,11 +1,12 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-04-22, 09:42:47 GMT
+@+	Generation Date: 2026-04-22, 13:52:58 GMT
 	Unicode 18.0.0 names list.
 	Adjusted for repertoire changes post UTC187.
 	Repertoire synched with UnicodeData-18.0.0d9.txt.
 	Alpha review fixes.
+	Add SVS for CJK strokes.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -21763,6 +21764,7 @@
 @		CJK strokes
 31C0	CJK STROKE T
 	* 2nd stroke of 51B0
+	~ 31C0 FE00 dotted T form
 31C1	CJK STROKE WG
 	* 2nd stroke of 72D0
 31C2	CJK STROKE XG
@@ -21779,6 +21781,8 @@
 31C6	CJK STROKE HZG
 	* 1st stroke of 7FBD
 	* 1st stroke of 4E5F
+	~ 31C6 FE00 curved Z form
+	~ 31C6 FE01 rising H form
 31C7	CJK STROKE HP
 	* 1st stroke of 53C8
 	* 4th stroke of 4ECA
@@ -21787,6 +21791,7 @@
 31C9	CJK STROKE SZWG
 	* 3rd stroke of 5F13
 	* 2nd stroke of 9A6C
+	~ 31C9 FE00 slanted S form
 31CA	CJK STROKE HZT
 	* 2nd stroke of 8BA1
 	* 2nd stroke of 9CE9
@@ -21801,25 +21806,33 @@
 	* 1st stroke of 51F8
 31CF	CJK STROKE N
 	* 3rd stroke of 5927
+	~ 31CF FE00 curved starting N form
+	~ 31CF FE01 flat N form
 31D0	CJK STROKE H
 	* 1st stroke of 5927
 	* 1st stroke of 4E03
+	~ 31D0 FE00 rising H form
 31D1	CJK STROKE S
 	* 4th stroke of 4E2D
+	~ 31D1 FE00 slanted S form
 31D2	CJK STROKE P
 	* 1st stroke of 4E4F
+	~ 31D2 FE00 flat P form
 31D3	CJK STROKE SP
 	* 1st stroke of 6708
 31D4	CJK STROKE D
 	* 3rd stroke of 4E38
+	~ 31D4 FE00 to bottom left form
 31D5	CJK STROKE HZ
 	* 2nd stroke of 56DB
+	~ 31D5 FE00 slanted Z form
 31D6	CJK STROKE HG
 	* 1st stroke of 758B
 	* 1st stroke of 5B50
 31D7	CJK STROKE SZ
 	* 2nd stroke of 5C71
 	* 2nd stroke of 4E1C
+	~ 31D7 FE00 slanted S form
 31D8	CJK STROKE SWZ
 	* 6th stroke of 8085
 31D9	CJK STROKE ST
@@ -21829,11 +21842,15 @@
 31DB	CJK STROKE PD
 	* 1st stroke of 5DE1
 	* 1st stroke of 5973
+	~ 31DB FE00 slanted SD form
 31DC	CJK STROKE PZ
 	* 3rd stroke of 516C
 	* 4th stroke of 5F18
+	~ 31DC FE00 upwards T form
 31DD	CJK STROKE TN
 	* 8th stroke of 5EFB
+	~ 31DD FE00 horizontal H curved N form
+	~ 31DD FE01 upwards T flat N form
 31DE	CJK STROKE SZZ
 	* 1st stroke of 5350
 	* 4th stroke of 4E9E
@@ -21852,10 +21869,12 @@
 	* 1st stroke of 98DE
 31E5	CJK STROKE SZP
 	* 8th stroke of 594A
+	~ 31E5 FE00 slanted S form
 @		Ideographic description character
 @+		This is a visibly displayed graphic character, not an invisible composition control. It is used with other characters from the Ideographic Description Characters block.
 31EF	IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
 	* used to describe a character or a component with a stroke (or other component) removed
+@~	Standardized Variation Sequences
 @@	31F0	Katakana Phonetic Extensions	31FF
 @		Phonetic extensions for Ainu
 31F0	KATAKANA LETTER SMALL KU
