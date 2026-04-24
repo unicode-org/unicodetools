@@ -100,7 +100,6 @@
                     <configuration>
                         <systemPropertyVariables>
                             <!-- These are variables which are picked up by test runs -->
-                            <UVERSION>13.0.0</UVERSION>
                             <CLDR_ENVIRONMENT>UNITTEST</CLDR_ENVIRONMENT>
                             <java.awt.headless>true</java.awt.headless>
                             <UNICODETOOLS_REPO_DIR>${project.basedir}/..</UNICODETOOLS_REPO_DIR>
