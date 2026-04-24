@@ -1,12 +1,17 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-04-22, 13:52:58 GMT
+@+	Generation Date: 2026-04-24, 16:09:58 GMT
 	Unicode 18.0.0 names list.
 	Adjusted for repertoire changes post UTC187.
 	Repertoire synched with UnicodeData-18.0.0d9.txt.
 	Alpha review fixes.
 	Add SVS for CJK strokes.
+	Corrected spelling of subhead at 13864.
+	Updated notice for Tai Le script to include Dehong Dai name.
+	Added xrefs between 06C4 and 1EE85.
+	Added notice at 1BAE.
+	Added alias and xref to A77A.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -4517,6 +4522,7 @@
 	* Urdu
 06C4	ARABIC LETTER WAW WITH RING
 	* Kashmiri
+	x (arabic mathematical looped waw - 1EE85)
 06C5	ARABIC LETTER KIRGHIZ OE
 	* Kyrgyz
 	* a glyph variant occurs which replaces the looped tail with a horizontal bar through the tail
@@ -10354,7 +10360,7 @@
 194E	LIMBU DIGIT EIGHT
 194F	LIMBU DIGIT NINE
 @@	1950	Tai Le	197F
-@+		Note the similarly named but distinct New Tai Lue script encoded at 1980-19DF.
+@+		Note the similarly named but distinct New Tai Lue script encoded at 1980-19DF. The Tai Le script is also known as Dehong Dai.
 @		Consonants
 1950	TAI LE LETTER KA
 1951	TAI LE LETTER XA
@@ -11147,6 +11153,7 @@
 1BAD	SUNDANESE CONSONANT SIGN PASANGAN WA
 	= subjoined wa
 @		Additional consonants
+@+		These two letters are no longer used in modern Sundanese orthography.
 1BAE	SUNDANESE LETTER KHA
 1BAF	SUNDANESE LETTER SYA
 @		Digits
@@ -25200,9 +25207,11 @@ A778	LATIN SMALL LETTER UM
 @+		These letters are meant for transcriptions of medieval manuscripts, or for modern phonetic notations, for cases where the letters contrast with their Carolingian forms. For representing whole texts in an Insular style, one should use the regular Latin letters and display them with an Insular typeface.
 A779	LATIN CAPITAL LETTER INSULAR D
 A77A	LATIN SMALL LETTER INSULAR D
+	= d rotunda
 	* dental fricative [ð]
 	x (latin small letter eth - 00F0)
 	x (latin small letter delta - 1E9F)
+	x (latin small letter d rotunda with descending crossing loop - 1DF93)
 A77B	LATIN CAPITAL LETTER INSULAR F
 A77C	LATIN SMALL LETTER INSULAR F
 A77D	LATIN CAPITAL LETTER INSULAR G
@@ -43650,7 +43659,7 @@ FFFF	<not a character>
 	* phonemogram : sw
 13863	EGYPTIAN HIEROGLYPH-13863
 	* logogram (Tatenen) : tꜣ-ṯnn
-@		C31. Thot
+@		C31. Thoth
 13864	EGYPTIAN HIEROGLYPH-13864
 	* logogram (Thoth) : ḏhwty
 13865	EGYPTIAN HIEROGLYPH-13865
@@ -61957,6 +61966,7 @@ FFFF	<not a character>
 1EE84	ARABIC MATHEMATICAL LOOPED HEH
 	# <font> 0647 arabic letter heh
 1EE85	ARABIC MATHEMATICAL LOOPED WAW
+	x (arabic letter waw with ring - 06C4)
 	# <font> 0648 arabic letter waw
 1EE86	ARABIC MATHEMATICAL LOOPED ZAIN
 	# <font> 0632 arabic letter zain
