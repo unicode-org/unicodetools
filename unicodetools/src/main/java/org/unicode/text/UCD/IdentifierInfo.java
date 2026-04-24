@@ -536,9 +536,9 @@ public class IdentifierInfo {
             final IdUsage idUsage = getScriptUsage(script);
             IdentifierInfo.Identifier_Type status;
             switch (idUsage) {
-                    //            case ASPIRATIONAL:
-                    //                status = Identifier_Type.aspirational;
-                    //                break;
+                //            case ASPIRATIONAL:
+                //                status = Identifier_Type.aspirational;
+                //                break;
                 case LIMITED_USE:
                     status = Identifier_Type.limited_use;
                     break;

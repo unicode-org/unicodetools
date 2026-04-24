@@ -552,22 +552,22 @@ public class GeneratePropertyValues {
                         : "    attribute " + ucdProperty.getShortName() + " ";
         String formattedAttributeString;
         switch (ucdProperty) {
-                // { text }
+            // { text }
             case ISO_Comment:
                 formattedAttributeString = attributeString + "{ text }?";
                 break;
 
-                // { single-code-point }
+            // { single-code-point }
             case Equivalent_Unified_Ideograph:
                 formattedAttributeString = attributeString + "{ single-code-point }?";
                 break;
 
-                // { "" | single-code-point }
+            // { "" | single-code-point }
             case Bidi_Mirroring_Glyph:
                 formattedAttributeString = attributeString + "{ \"\" | single-code-point }?";
                 break;
 
-                // { "#" | single-code-point }
+            // { "#" | single-code-point }
             case Bidi_Paired_Bracket:
             case Simple_Uppercase_Mapping:
             case Simple_Lowercase_Mapping:
@@ -576,7 +576,7 @@ public class GeneratePropertyValues {
                 formattedAttributeString = attributeString + "{ \"#\" | single-code-point }?";
                 break;
 
-                // { "#" | zero-or-more-code-points }
+            // { "#" | zero-or-more-code-points }
             case Decomposition_Mapping:
             case NFKC_Casefold:
             case NFKC_Simple_Casefold:
@@ -584,7 +584,7 @@ public class GeneratePropertyValues {
                         attributeString + "{ \"#\" | zero-or-more-code-points }?";
                 break;
 
-                // { "#" | one-or-more-code-points }
+            // { "#" | one-or-more-code-points }
             case Uppercase_Mapping:
             case Lowercase_Mapping:
             case Titlecase_Mapping:
@@ -592,7 +592,7 @@ public class GeneratePropertyValues {
                 formattedAttributeString = attributeString + "{ \"#\" | one-or-more-code-points }?";
                 break;
 
-                // { "NaN" | RegEx }
+            // { "NaN" | RegEx }
             case Numeric_Value:
                 formattedAttributeString =
                         attributeString
@@ -601,7 +601,7 @@ public class GeneratePropertyValues {
                                 + "\" } }?";
                 break;
 
-                // Special cases
+            // Special cases
             case Name:
                 formattedAttributeString =
                         attributeString
@@ -1813,9 +1813,9 @@ public class GeneratePropertyValues {
             switch (delimiter) {
                 case "N/A":
                     break;
-                    // The next two are to support two Provisional attributes in Unikemet. We'll
-                    // process these as
-                    // exceptions for now
+                // The next two are to support two Provisional attributes in Unikemet. We'll
+                // process these as
+                // exceptions for now
                 case "/ (see description)": // kEH_Func
                 case "/ or | (see description)": // kEH_FVal
                     break;

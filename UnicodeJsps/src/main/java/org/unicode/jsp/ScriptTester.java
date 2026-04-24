@@ -493,7 +493,7 @@ public class ScriptTester {
                         }
                         addCompatible(UScript.LATIN, i);
                     }
-                    // FALL THRU!
+                // FALL THRU!
                 case Highly_Restrictive:
                     addCompatible(UScript.LATIN, UScript.HAN, UScript.HIRAGANA, UScript.KATAKANA);
                     // addCompatible(UScript.LATIN, HANT, UScript.HIRAGANA, UScript.KATAKANA);
@@ -505,8 +505,8 @@ public class ScriptTester {
 
                     addCompatible(UScript.LATIN, UScript.HAN, UScript.BOPOMOFO);
                     addCompatible(UScript.LATIN, UScript.HAN);
-                    // ?? Asomtavruli, Nuskhuri, and Mkhedruli (georgian)
-                    // FALL THRU!
+                // ?? Asomtavruli, Nuskhuri, and Mkhedruli (georgian)
+                // FALL THRU!
                 default:
                     // addCompatible(UScript.HAN, HANT);
                     // addCompatible(UScript.HAN, HANS);

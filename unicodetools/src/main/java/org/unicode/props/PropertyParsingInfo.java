@@ -818,7 +818,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             //                propInfo.defaultValue = "<none>";
             //            }
             switch (propInfo.defaultValueType) {
-                    // TODO(egg): Consider also storing only the changed values here.
+                // TODO(egg): Consider also storing only the changed values here.
                 case Script:
                 case Simple_Lowercase_Mapping:
                 case Simple_Titlecase_Mapping:
