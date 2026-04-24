@@ -57,21 +57,8 @@ import org.unicode.text.utility.Utility;
 public class GenerateUnihanCollators {
     private static final boolean DEBUG = false;
 
-    private static String version = CldrUtility.getProperty("UVERSION");
-
-    static {
-        System.out.println(
-                "To make files for a different version of unicode, use -DUVERSION=x.y.z");
-        if (version == null) {
-            version = Settings.latestVersion;
-        } else {
-            System.out.println("Resetting default version to: " + version);
-            Default.setUCD(version);
-        }
-    }
-
-    private static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(version);
-    private static final RadicalStroke radicalStroke = new RadicalStroke(version);
+    private static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(); // latest
+    private static final RadicalStroke radicalStroke = new RadicalStroke(Settings.latestVersion);
     private static final char INDEX_ITEM_BASE = '\u2800';
 
     private enum FileType {
@@ -107,21 +94,21 @@ public class GenerateUnihanCollators {
     private static final UnicodeSet PINYIN_LETTERS =
             new UnicodeSet("['a-uw-zàáèéìíòóùúüāēěīōūǎǐǒǔǖǘǚǜ]").freeze();
 
-    // these should be ok, eve if we are not on an old version
+    // TODO: unicodetools/issues/1336 should not use ICU Unicode properties
 
     private static final UnicodeSet NOT_NFC = new UnicodeSet("[:nfc_qc=no:]").freeze();
     private static final UnicodeSet NOT_NFD = new UnicodeSet("[:nfd_qc=no:]").freeze();
     private static final UnicodeSet NOT_NFKD = new UnicodeSet("[:nfkd_qc=no:]").freeze();
 
-    // specifically restrict this to the set version. Theoretically there could be some variance in
-    // ideographic, but it isn't worth worrying about
-
+    // TODO: Why Ideographic? That includes Tangut etc.
     private static final UnicodeSet UNIHAN_LATEST =
             new UnicodeSet("[[:ideographic:][:script=han:]]").removeAll(NOT_NFC).freeze();
-    private static final UnicodeSet UNIHAN =
-            version == null
-                    ? UNIHAN_LATEST
-                    : new UnicodeSet("[:age=" + version + ":]").retainAll(UNIHAN_LATEST).freeze();
+    private static final UnicodeSet UNIHAN = UNIHAN_LATEST;
+
+    // UNIHAN was restricted to a requested version, but
+    // ignored possible changes in the ideographic property.
+    // The version is now hardcoded to the latest one.
+    // new UnicodeSet("[:age=" + version + ":]").retainAll(UNIHAN_LATEST).freeze();
 
     static {
         if (!UNIHAN.contains(0x2B820)) {
