@@ -210,8 +210,8 @@ public final class FastBinarySearch {
         // The invariant AFTER each line is that data[low] < searchValue <= data[high]
 
         switch (power) {
-                // case 31: if (searchValue < data[temp = high-0x40000000]) high = temp; // no
-                // unsigned int in Java
+            // case 31: if (searchValue < data[temp = high-0x40000000]) high = temp; // no
+            // unsigned int in Java
             case 30:
                 if (searchValue < data[temp = high - 0x20000000]) {
                     high = temp;

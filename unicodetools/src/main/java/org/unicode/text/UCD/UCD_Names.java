@@ -920,12 +920,12 @@ public final class UCD_Names implements UCD_Types {
                     case 202:
                         s = style < LONG ? "ATB" : "AttachedBelow";
                         break;
-                        /*
-                           case 204: s = style < LONG ? "ATBR" :  "AttachedBelowRight"; break;
-                           case 208: s = style < LONG ? "ATL" :  "AttachedLeft"; break;
-                           case 210: s = style < LONG ? "ATR" :  "AttachedRight"; break;
-                           case 212: s = style < LONG ? "ATAL" :  "AttachedAboveLeft"; break;
-                        */
+                    /*
+                       case 204: s = style < LONG ? "ATBR" :  "AttachedBelowRight"; break;
+                       case 208: s = style < LONG ? "ATL" :  "AttachedLeft"; break;
+                       case 210: s = style < LONG ? "ATR" :  "AttachedRight"; break;
+                       case 212: s = style < LONG ? "ATAL" :  "AttachedAboveLeft"; break;
+                    */
                     case 214:
                         s = style < LONG ? "ATA" : "AttachedAbove";
                         break;

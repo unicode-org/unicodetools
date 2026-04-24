@@ -333,9 +333,9 @@ public class FixedProps {
         switch (s) {
             case Japanese:
                 return "Punc";
-                //        case Korean: return "Zmth";
-                //        case Han_with_Bopomofo: return "Zsye";
-                //        case Katakana_Or_Hiragana: return "Zsym";
+            //        case Korean: return "Zmth";
+            //        case Han_with_Bopomofo: return "Zsye";
+            //        case Katakana_Or_Hiragana: return "Zsym";
             default:
                 return s.getShortName();
         }
@@ -345,9 +345,9 @@ public class FixedProps {
         switch (s) {
             case Japanese:
                 return "Punctuation";
-                //        case Korean: return "Math Symbol";
-                //        case Han_with_Bopomofo: return "Emoji";
-                //        case Katakana_Or_Hiragana: return "Other Symbol";
+            //        case Korean: return "Math Symbol";
+            //        case Han_with_Bopomofo: return "Emoji";
+            //        case Katakana_Or_Hiragana: return "Other Symbol";
             default:
                 return s.toString();
         }

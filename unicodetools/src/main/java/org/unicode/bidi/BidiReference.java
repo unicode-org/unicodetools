@@ -470,7 +470,7 @@ public final class BidiReference {
                     }
                     break;
 
-                    // Rule X6a
+                // Rule X6a
                 case PDI:
                     if (overflowIsolateCount > 0) {
                         --overflowIsolateCount;
@@ -487,7 +487,7 @@ public final class BidiReference {
                     resultLevels[i] = stack.lastEmbeddingLevel();
                     break;
 
-                    // Rule X7
+                // Rule X7
                 case PDF:
                     // Not really part of the spec
                     resultLevels[i] = stack.lastEmbeddingLevel();

@@ -276,7 +276,7 @@ public class AttributeResolver {
             case Binary:
                 {
                     switch (resolvedValue) {
-                            // Seems overkill to get this from UcdPropertyValues.Binary
+                        // Seems overkill to get this from UcdPropertyValues.Binary
                         case "No":
                             return "N";
                         case "Yes":

@@ -491,7 +491,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                                 "bad hex value: ‘{0}’ at position {1} in \"{2}\"",
                                 new Object[] {String.valueOf(ch), new Integer(i), p});
                     }
-                    // fall through!!
+                // fall through!!
                 case 'U':
                 case 'u':
                 case '+': // for the U+ case
@@ -741,9 +741,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             case '"':
                 return "&quot;";
 
-                // fix controls, since XML can't handle
+            // fix controls, since XML can't handle
 
-                // also do this for 09, 0A, and 0D, so we can see them.
+            // also do this for 09, 0A, and 0D, so we can see them.
             case 0x00:
             case 0x01:
             case 0x02:
@@ -778,7 +778,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             case 0x1F:
             case 0x7F:
 
-                // fix noncharacters, since XML can't handle
+            // fix noncharacters, since XML can't handle
             case 0xFFFE:
             case 0xFFFF:
                 return HTML ? '#' + hex(c, 4) : "<codepoint hex=\"" + hex(c, 1) + "\"/>";

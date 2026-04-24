@@ -91,8 +91,8 @@ public class ReorderCodes {
             // - Remove scripts supported by ICU4J UScript and CLDR ScriptMetadata.
             // - Add scripts not yet supported there.
             switch (reorderCode) {
-                    //            case UCD_Types.Old_Hungarian:
-                    //                return "Old_Hungarian";
+                //            case UCD_Types.Old_Hungarian:
+                //                return "Old_Hungarian";
                 default:
                     throw new UnsupportedOperationException("unknown reorderCode " + reorderCode);
             }
@@ -111,8 +111,8 @@ public class ReorderCodes {
             // - Remove scripts supported by ICU4J UScript and CLDR ScriptMetadata.
             // - Add scripts not yet supported there.
             switch (reorderCode) {
-                    //            case UCD_Types.Old_Hungarian:
-                    //                return "Hung";
+                //            case UCD_Types.Old_Hungarian:
+                //                return "Hung";
                 default:
                     throw new UnsupportedOperationException("unknown reorderCode " + reorderCode);
             }
@@ -143,7 +143,7 @@ public class ReorderCodes {
             // See https://www.unicode.org/alloc/Pipeline.html
             // and https://cldr.unicode.org/development/updating-codes/updating-script-metadata
             switch (reorderCode) {
-                    // Approved for Unicode 18:
+                // Approved for Unicode 18:
                 case UCD_Types.Chisoi:
                     return Character.toString(0x16D93);
                 case UCD_Types.Jurchen:
@@ -152,8 +152,8 @@ public class ReorderCodes {
                     return Character.toString(0x125AD);
                 case UCD_Types.Seal:
                     return Character.toString(0x3EA10);
-                    // Provisionally assigned so far:
-                    // (none of these needed right now)
+                // Provisionally assigned so far:
+                // (none of these needed right now)
                 default:
                     throw new UnsupportedOperationException(
                             "ReorderCodes.getSampleCharacter() for unknown reorderCode "
