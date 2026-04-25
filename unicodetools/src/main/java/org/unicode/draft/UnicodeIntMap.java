@@ -884,18 +884,6 @@ public final class UnicodeIntMap
         return this;
     }
 
-    /**
-     * Utility for extracting map
-     *
-     * @deprecated
-     */
-    public UnicodeIntMap putAllIn(Map<? super String, ? super Integer> map) {
-        for (String key : keySet()) {
-            map.put(key, get(key));
-        }
-        return this;
-    }
-
     /** Utility for extracting map */
     public <U extends Map<String, Integer>> U putAllInto(U map) {
         for (EntryRange<Integer> entry : entryRanges()) {
