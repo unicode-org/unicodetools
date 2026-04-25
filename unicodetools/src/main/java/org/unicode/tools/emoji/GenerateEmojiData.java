@@ -121,6 +121,7 @@ public class GenerateEmojiData {
     /**
      * @deprecated Replace by the CountEmoji.Category
      */
+    @Deprecated
     public enum ZwjType {
         roleWithHair,
         roleWithObject,
