@@ -9,15 +9,12 @@
  */
 package org.unicode.text.UCD;
 
-import org.unicode.text.utility.CallArgs;
 import org.unicode.text.utility.DirectoryIterator;
 import org.unicode.text.utility.FastBinarySearch;
 import org.unicode.text.utility.SampleEnum;
 import org.unicode.text.utility.Utility;
 
 public final class Main implements UCD_Types {
-
-    static final String classPrefix = "org.unicode.text.UCD.";
 
     static final String[] CORE_FILES = {
         "CaseFolding",
@@ -271,9 +268,9 @@ public final class Main implements UCD_Types {
                         mask = Utility.setBits(0, NFD_UnsafeStart, NFKC_UnsafeStart);
                         GenerateData.generateDerived(mask, GenerateData.HEADER_DERIVED, "OtherData/", "NFUnsafeStart");
                          */
-
                 } else {
-                    CallArgs.call(new String[] {arg}, classPrefix);
+                    throw new IllegalArgumentException(
+                            "UCD.Main unrecognized command line argument \"" + arg + "\"");
                 }
 
                 // checkHoffman("\u05B8\u05B9\u05B1\u0591\u05C3\u05B0\u05AC\u059F");
