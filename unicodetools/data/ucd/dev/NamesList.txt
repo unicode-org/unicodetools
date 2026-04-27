@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-04-24, 16:09:58 GMT
+@+	Generation Date: 2026-04-27, 08:03:09 GMT
 	Unicode 18.0.0 names list.
 	Adjusted for repertoire changes post UTC187.
 	Repertoire synched with UnicodeData-18.0.0d9.txt.
@@ -12,6 +12,7 @@
 	Added xrefs between 06C4 and 1EE85.
 	Added notice at 1BAE.
 	Added alias and xref to A77A.
+	Added xref between A76D and 1DF92.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -25189,6 +25190,7 @@ A76B	LATIN SMALL LETTER ET
 	x (latin small letter yogh - 021D)
 A76C	LATIN CAPITAL LETTER IS
 A76D	LATIN SMALL LETTER IS
+	x (latin small letter c with right loop - 1DF92)
 A76E	LATIN CAPITAL LETTER CON
 	x (digit nine - 0039)
 A76F	LATIN SMALL LETTER CON
@@ -60412,6 +60414,7 @@ FFFF	<not a character>
 1DF92	LATIN SMALL LETTER C WITH RIGHT LOOP
 	= cubus
 	* denotes cube of the unknown
+	x (latin small letter is - A76D)
 1DF93	LATIN SMALL LETTER D ROTUNDA WITH DESCENDING CROSSING LOOP
 	= dragma
 	* denotes numerus/constant
