@@ -54,7 +54,6 @@ public class WriteCollationData {
 
     private static UCA ducetCollator;
     private static UCA cldrCollator;
-    private static UCA cldrWithoutFFFxCollator;
 
     private static PrintWriter log;
 
@@ -1858,7 +1857,7 @@ public class WriteCollationData {
         switch (type) {
             case cldr:
                 if (cldrCollator == null) {
-                    cldrCollator = buildCldrCollator(true);
+                    cldrCollator = buildCldrCollator();
                 }
                 return cldrCollator;
             case ducet:
@@ -1866,17 +1865,12 @@ public class WriteCollationData {
                     ducetCollator = UCA.buildDucetCollator();
                 }
                 return ducetCollator;
-            case cldrWithoutFFFx:
-                if (cldrWithoutFFFxCollator == null) {
-                    cldrWithoutFFFxCollator = buildCldrCollator(false);
-                }
-                return cldrWithoutFFFxCollator;
             default:
                 throw new IllegalArgumentException();
         }
     }
 
-    private static UCA buildCldrCollator(boolean addFFFx) {
+    private static UCA buildCldrCollator() {
         final UCA ducet = getCollator(CollatorType.ducet);
 
         final int ducetVariableHigh = CEList.getPrimary(ducet.getVariableHighCE());
@@ -1888,10 +1882,6 @@ public class WriteCollationData {
         // CLDR: variable primary weights include only spaces and punctuation
         for (final UCA.Primary up : ducet.getRegularPrimaries()) {
             final int ducetPrimary = up.primary;
-            if (ducetPrimary == 0xFFFD) {
-                // Do not remap the REPLACEMENT CHARACTER which has the special FFFD primary.
-                continue;
-            }
             if (firstDucetNonVariable < 0 && ducetPrimary > ducetVariableHigh) {
                 firstDucetNonVariable = ducetPrimary;
             }
@@ -1917,10 +1907,8 @@ public class WriteCollationData {
         }
         final UCA result = UCA.buildCollator(cldrVariableHigh, firstDucetNonVariable);
 
-        if (addFFFx) {
-            result.overrideCE("\uFFFE", 0x1, 0x20, 2);
-            result.overrideCE("\uFFFF", 0xFFFE, 0x20, 2);
-        }
+        result.overrideCE("\uFFFE", 0x1, 0x20, 2);
+        result.overrideCE("\uFFFF", 0xFFFE, 0x20, 2);
 
         if (ADD_TIBETAN) {
             final CEList fb2 = result.getCEList("\u0FB2", true);

@@ -99,10 +99,12 @@ public final class UCA implements Comparator<String>, UCA_Types {
 
     // --------------------------------------------------------------------
 
+    public static final int MAX_LOW_SPECIAL_PRIMARY = 0x200; // for U+FFFE
+    public static final int MIN_HIGH_SPECIAL_PRIMARY = 0xfffd; // for U+FFFD; FFFF for U+FFFF
+
     public enum CollatorType {
         ducet,
         cldr,
-        cldrWithoutFFFx
     }
 
     public static final String copyright =
@@ -165,7 +167,23 @@ public final class UCA implements Comparator<String>, UCA_Types {
         final RoBitSet primarySet = getStatistics().getPrimarySet();
 
         PrimaryIterator(int start) {
-            p.nextPrimary = primarySet.nextSetBit(start);
+            p.nextPrimary = getNextRegularPrimary(start);
+        }
+
+        private int getNextRegularPrimary(int next) {
+            for (; ; ) {
+                next = primarySet.nextSetBit(next);
+                // skip special primaries:
+                // 0200 special low primary for U+FFFE
+                // FFFD special high primary for U+FFFD
+                // FFFF special high primary for U+FFFF
+                if (next >= 0
+                        && (next <= MAX_LOW_SPECIAL_PRIMARY || MIN_HIGH_SPECIAL_PRIMARY <= next)) {
+                    ++next;
+                } else {
+                    return next;
+                }
+            }
         }
 
         @Override
@@ -177,7 +195,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
         public Primary next() {
             if (p.nextPrimary >= 0) {
                 p.primary = p.nextPrimary;
-                p.nextPrimary = primarySet.nextSetBit(p.primary + 1);
+                p.nextPrimary = getNextRegularPrimary(p.primary + 1);
                 p.representative = getRepresentativePrimary(p.primary);
                 return p;
             } else {
@@ -269,21 +287,16 @@ public final class UCA implements Comparator<String>, UCA_Types {
         cleanup();
     }
 
-    /** Returns all non-ignorable, below-implicit UCA primary weights. */
+    /** Returns all non-ignorable, below-implicit, non-special UCA primary weights. */
     Iterable<Primary> getRegularPrimaries() {
         // Start after the ignorable primary 0.
         return new PrimaryIterable(1);
     }
 
-    /** Returns all below-Han UCA primary weights, starting with ignorable 0. */
-    PrimaryIterable getIgnorableAndRegularPrimaries() {
-        return new PrimaryIterable(0);
-    }
-
     int getLastRegularPrimary() {
         UCA_Statistics.RoBitSet set = getStatistics().getPrimarySet();
         int last = set.length() - 1;
-        while (last >= 0xfffd) {
+        while (last >= MIN_HIGH_SPECIAL_PRIMARY) {
             last = set.previousSetBit(last - 1);
         }
         return last;
