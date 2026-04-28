@@ -1377,7 +1377,7 @@ public class FractionalUCA {
     }
 
     private static UCA getCollator() {
-        return WriteCollationData.getCollator(CollatorType.cldrWithoutFFFx);
+        return WriteCollationData.getCollator(CollatorType.cldr);
     }
 
     private static String cpToScript(int codePoint) {

@@ -178,7 +178,7 @@ public class Main {
                         "CollationTest_SHIFTED", UCA_Types.SHIFTED, true, CollatorType.cldr);
             } else if (arg.equalsIgnoreCase("testCompatibilityCharacters")) {
                 TestCompatibilityCharacters.testCompatibilityCharacters(
-                        WriteCollationData.getCollator(CollatorType.cldrWithoutFFFx));
+                        WriteCollationData.getCollator(CollatorType.cldr));
             } else if (arg.equalsIgnoreCase("writeCollationValidityLog")) {
                 Validity.writeCollationValidityLog();
             } else if (arg.equalsIgnoreCase("writeJavascriptInfo")) {

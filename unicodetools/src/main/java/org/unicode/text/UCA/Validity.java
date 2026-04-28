@@ -822,7 +822,7 @@ final class Validity {
                 // IF we are in the trailing range, something is wrong.
                 // UCA 6.3+ sets aside primary weights FFFD..FFFF as specials, so those are ok.
                 // See http://www.unicode.org/reports/tr10/#Trailing_Weights
-                if (Implicit.LIMIT <= p && p < 0xfffd) {
+                if (Implicit.LIMIT <= p && p < UCA.MIN_HIGH_SPECIAL_PRIMARY) {
                     log.println(
                             "<tr><td>"
                                     + (++errorCount)
