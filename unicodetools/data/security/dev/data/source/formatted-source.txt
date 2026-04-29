@@ -1,5 +1,5 @@
 # formatted-source.txt
-# Date: 2026-03-17, 22:17:12 GMT
+# Date: 2026-04-29, 15:15:13 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -5382,8 +5382,6 @@
 
 09EC ;	114D6	# ( ৬ ~ 𑓖 ) BENGALI DIGIT SIX ~ TIRHUTA DIGIT SIX
 
-09FF ;	09F0	# ( ৿ ~ ৰ ) BENGALI LETTER SANSKRIT BA ~ BENGALI LETTER RA WITH MIDDLE DIAGONAL
-
 0A05 0A3E ;	0A06	# ( ਅਾ ~ ਆ ) GURMUKHI LETTER A, GURMUKHI VOWEL SIGN AA ~ GURMUKHI LETTER AA
 
 0A05 0A48 ;	0A10	# ( ਅੈ ~ ਐ ) GURMUKHI LETTER A, GURMUKHI VOWEL SIGN AI ~ GURMUKHI LETTER AI
@@ -8922,6 +8920,8 @@ A99D ;	A9A3	# ( ꦝ ~ ꦣ ) JAVANESE LETTER DDA ~ JAVANESE LETTER DA MAHAPRANA
 11DE0 ;	0030	# ( 𑷠 ~ 0 ) TOLONG SIKI DIGIT ZERO ~ DIGIT ZERO
 
 11DE1 ;	007C	# ( 𑷡 ~ | ) TOLONG SIKI DIGIT ONE ~ VERTICAL LINE
+
+11DF1 ;	09F0	# ( 𑷱 ~ ৰ ) BENGALI LETTER ALTERNATE BARGIYA BA ~ BENGALI LETTER RA WITH MIDDLE DIAGONAL
 
 11FC8 ;	0BAA	#* ( 𑿈 ~ ப ) TAMIL FRACTION ONE TWENTIETH ~ TAMIL LETTER PA
 
