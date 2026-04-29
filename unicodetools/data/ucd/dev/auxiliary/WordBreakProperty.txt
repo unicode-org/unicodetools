@@ -1,5 +1,5 @@
 # WordBreakProperty-18.0.0.txt
-# Date: 2026-04-29, 12:18:43 GMT
+# Date: 2026-04-29, 14:39:43 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -776,7 +776,6 @@ FF71..FF9D    ; Katakana # Lo  [45] HALFWIDTH KATAKANA LETTER A..HALFWIDTH KATAK
 0958..0961    ; ALetter # Lo  [10] DEVANAGARI LETTER QA..DEVANAGARI LETTER VOCALIC LL
 0971          ; ALetter # Lm       DEVANAGARI SIGN HIGH SPACING DOT
 0972..0980    ; ALetter # Lo  [15] DEVANAGARI LETTER CANDRA A..BENGALI ANJI
-0984          ; ALetter # Cn       <reserved-0984>
 0985..098C    ; ALetter # Lo   [8] BENGALI LETTER A..BENGALI LETTER VOCALIC L
 098F..0990    ; ALetter # Lo   [2] BENGALI LETTER E..BENGALI LETTER AI
 0993..09A8    ; ALetter # Lo  [22] BENGALI LETTER O..BENGALI LETTER NA
@@ -1401,7 +1400,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 34518
+# Total code points: 34517
 
 # ================================================
 

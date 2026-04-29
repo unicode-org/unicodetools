@@ -1,5 +1,5 @@
 # SentenceBreakProperty-18.0.0.txt
-# Date: 2026-04-29, 12:18:41 GMT
+# Date: 2026-04-29, 14:39:40 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2093,7 +2093,6 @@ FF21..FF3A    ; Upper # L&  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LAT
 0958..0961    ; OLetter # Lo  [10] DEVANAGARI LETTER QA..DEVANAGARI LETTER VOCALIC LL
 0971          ; OLetter # Lm       DEVANAGARI SIGN HIGH SPACING DOT
 0972..0980    ; OLetter # Lo  [15] DEVANAGARI LETTER CANDRA A..BENGALI ANJI
-0984          ; OLetter # Cn       <reserved-0984>
 0985..098C    ; OLetter # Lo   [8] BENGALI LETTER A..BENGALI LETTER VOCALIC L
 098F..0990    ; OLetter # Lo   [2] BENGALI LETTER E..BENGALI LETTER AI
 0993..09A8    ; OLetter # Lo  [22] BENGALI LETTER O..BENGALI LETTER NA
@@ -2674,7 +2673,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 31350..33479  ; OLetter # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; OLetter # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 154189
+# Total code points: 154188
 
 # ================================================
 
