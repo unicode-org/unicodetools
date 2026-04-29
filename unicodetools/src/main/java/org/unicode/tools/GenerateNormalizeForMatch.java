@@ -10,7 +10,6 @@ import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import java.io.IOException;
@@ -51,16 +50,6 @@ public class GenerateNormalizeForMatch {
             Settings.CLDR.BASE_DIRECTORY + "Google Drive/workspace/DATA/frequency/";
     private static final String GOOGLE_FOLDING_TXT = "google_folding.txt";
     private static final Pattern SPACES = Pattern.compile("[,\\s]+");
-
-    private static final Comparator<String> CODEPOINT =
-            new StringComparator(true, false, StringComparator.FOLD_CASE_DEFAULT);
-    private static final Comparator<String> UCA;
-
-    static {
-        org.unicode.text.UCA.UCA uca_raw = org.unicode.text.UCA.UCA.buildDucetCollator();
-        //        uca_raw.setDecomposition(Collator.CANONICAL_DECOMPOSITION);
-        UCA = new MultiComparator<String>((Comparator<String>) (Comparator<?>) uca_raw, CODEPOINT);
-    }
 
     private static final UnicodeMap<String> COLLATION_MAP = CollatorEquivalences.COLLATION_MAP;
 

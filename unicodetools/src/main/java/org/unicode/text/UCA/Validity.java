@@ -54,7 +54,7 @@ final class Validity {
         log =
                 Utility.openPrintWriter(
                         UCA.getOutputDir(), "CheckCollationValidity.html", Utility.UTF8_WINDOWS);
-        uca = WriteCollationData.getCollator(CollatorType.ducet);
+        uca = UCA.getDucetCollator();
 
         log.println(
                 "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n"
@@ -822,7 +822,7 @@ final class Validity {
                 // IF we are in the trailing range, something is wrong.
                 // UCA 6.3+ sets aside primary weights FFFD..FFFF as specials, so those are ok.
                 // See http://www.unicode.org/reports/tr10/#Trailing_Weights
-                if (Implicit.LIMIT <= p && p < 0xfffd) {
+                if (Implicit.LIMIT <= p && p < UCA.MIN_HIGH_SPECIAL_PRIMARY) {
                     log.println(
                             "<tr><td>"
                                     + (++errorCount)
@@ -936,13 +936,11 @@ final class Validity {
 
     private static void addString(String ch, byte option, CollatorType collatorType) {
         final String colDbase =
-                WriteCollationData.getCollator(collatorType)
-                        .getSortKey(ch, option, true, AppendToCe.none);
+                UCA.getCollator(collatorType).getSortKey(ch, option, true, AppendToCe.none);
         final String colNbase =
-                WriteCollationData.getCollator(collatorType)
-                        .getSortKey(ch, option, false, AppendToCe.none);
+                UCA.getCollator(collatorType).getSortKey(ch, option, false, AppendToCe.none);
         final String colCbase =
-                WriteCollationData.getCollator(collatorType)
+                UCA.getCollator(collatorType)
                         .getSortKey(Default.nfc().normalize(ch), option, false, AppendToCe.none);
         if (!colNbase.equals(colCbase) || !colNbase.equals(colDbase)) {
             /*

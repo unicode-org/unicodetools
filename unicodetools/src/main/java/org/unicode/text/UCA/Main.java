@@ -81,13 +81,13 @@ public class Main {
                 continue;
             }
             if (arg.equalsIgnoreCase("GenOverlap")) {
-                GenOverlap.test(WriteCollationData.getCollator(CollatorType.ducet));
+                GenOverlap.test(UCA.getDucetCollator());
             } else if (arg.equalsIgnoreCase("validateUCA")) {
-                GenOverlap.validateUCA(WriteCollationData.getCollator(CollatorType.ducet));
+                GenOverlap.validateUCA(UCA.getDucetCollator());
                 // else if (arg.equalsIgnoreCase("writeNonspacingDifference"))
                 // WriteCollationData.writeNonspacingDifference();
             } else if (arg.equalsIgnoreCase("collationChart")) {
-                WriteCharts.collationChart(WriteCollationData.getCollator(CollatorType.ducet));
+                WriteCharts.collationChart(UCA.getDucetCollator());
             } else if (arg.equalsIgnoreCase("scriptChart")) {
                 WriteCharts.scriptChart();
             } else if (arg.equalsIgnoreCase("normalizationChart")) {
@@ -103,11 +103,11 @@ public class Main {
             } else if (arg.equalsIgnoreCase("writeCompositionChart")) {
                 WriteCharts.writeCompositionChart();
             } else if (arg.equalsIgnoreCase("CheckHash")) {
-                GenOverlap.checkHash(WriteCollationData.getCollator(CollatorType.ducet));
+                GenOverlap.checkHash(UCA.getDucetCollator());
             } else if (arg.equalsIgnoreCase("generateRevision")) {
-                GenOverlap.generateRevision(WriteCollationData.getCollator(CollatorType.ducet));
+                GenOverlap.generateRevision(UCA.getDucetCollator());
             } else if (arg.equalsIgnoreCase("listCyrillic")) {
-                GenOverlap.listCyrillic(WriteCollationData.getCollator(CollatorType.ducet));
+                GenOverlap.listCyrillic(UCA.getDucetCollator());
             } else if (arg.equalsIgnoreCase("WriteRules")) {
                 WriteCollationData.writeRules(
                         WriteCollationData.WITHOUT_NAMES, shortPrint, noCE, CollatorType.ducet);
@@ -177,8 +177,7 @@ public class Main {
                 WriteConformanceTest.writeConformance(
                         "CollationTest_SHIFTED", UCA_Types.SHIFTED, true, CollatorType.cldr);
             } else if (arg.equalsIgnoreCase("testCompatibilityCharacters")) {
-                TestCompatibilityCharacters.testCompatibilityCharacters(
-                        WriteCollationData.getCollator(CollatorType.cldrWithoutFFFx));
+                TestCompatibilityCharacters.testCompatibilityCharacters(UCA.getCldrCollator());
             } else if (arg.equalsIgnoreCase("writeCollationValidityLog")) {
                 Validity.writeCollationValidityLog();
             } else if (arg.equalsIgnoreCase("writeJavascriptInfo")) {
