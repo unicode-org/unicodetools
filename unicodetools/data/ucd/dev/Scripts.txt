@@ -1014,10 +1014,10 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 
 # ================================================
 
+11DF0..11DF0 ; Bengali
 0980          ; Bengali # Lo       BENGALI ANJI
 0981          ; Bengali # Mn       BENGALI SIGN CANDRABINDU
 0982..0983    ; Bengali # Mc   [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
-0984          ; Bengali # Cn       <reserved-0984>
 0985..098C    ; Bengali # Lo   [8] BENGALI LETTER A..BENGALI LETTER VOCALIC L
 098F..0990    ; Bengali # Lo   [2] BENGALI LETTER E..BENGALI LETTER AI
 0993..09A8    ; Bengali # Lo  [22] BENGALI LETTER O..BENGALI LETTER NA
@@ -1045,7 +1045,6 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 09FC          ; Bengali # Lo       BENGALI LETTER VEDIC ANUSVARA
 09FD          ; Bengali # Po       BENGALI ABBREVIATION SIGN
 09FE          ; Bengali # Mn       BENGALI SANDHI MARK
-09FF          ; Bengali # Cn       <reserved-09FF>
 
 # Total code points: 98
 
