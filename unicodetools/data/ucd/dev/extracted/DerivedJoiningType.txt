@@ -1,5 +1,5 @@
 # DerivedJoiningType-18.0.0.txt
-# Date: 2026-04-29, 13:44:20 GMT
+# Date: 2026-04-29, 13:46:24 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -79,7 +79,6 @@
 1820..1842    ; D # Lo  [35] MONGOLIAN LETTER A..MONGOLIAN LETTER CHI
 1843          ; D # Lm       MONGOLIAN LETTER TODO LONG VOWEL SIGN
 1844..1878    ; D # Lo  [53] MONGOLIAN LETTER TODO E..MONGOLIAN LETTER CHA WITH TWO DOTS
-1879          ; D # Cn       <reserved-1879>
 1887..18A8    ; D # Lo  [34] MONGOLIAN LETTER ALI GALI A..MONGOLIAN LETTER MANCHU ALI GALI BHA
 18AA          ; D # Lo       MONGOLIAN LETTER MANCHU ALI GALI LHA
 A840..A871    ; D # Lo  [50] PHAGS-PA LETTER KA..PHAGS-PA SUBJOINED LETTER RA
@@ -114,7 +113,7 @@ A840..A871    ; D # Lo  [50] PHAGS-PA LETTER KA..PHAGS-PA SUBJOINED LETTER RA
 10FCA         ; D # No       CHORASMIAN NUMBER TWENTY
 1E900..1E943  ; D # L&  [68] ADLAM CAPITAL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 616
+# Total code points: 615
 
 # ================================================
 
