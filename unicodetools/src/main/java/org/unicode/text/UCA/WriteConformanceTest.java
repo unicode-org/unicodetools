@@ -47,7 +47,7 @@ public class WriteConformanceTest {
             String filename, byte option, boolean shortPrint, CollatorType collatorType)
             throws IOException {
         ucd = Default.ucd();
-        collator = WriteCollationData.getCollator(collatorType);
+        collator = UCA.getCollator(collatorType);
         nfd = Default.nfd();
 
         /*
