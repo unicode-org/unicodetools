@@ -96,11 +96,13 @@ public class MakeUnicodeFiles {
             binFile.delete();
 
             // Remove the old files in the output directory
-
-            Files.walk(Path.of(Settings.Output.GEN_UCD_DIR))
-                    .sorted(Comparator.reverseOrder())
-                    .map(Path::toFile)
-                    .forEach(File::delete);
+            var genUcdPath = Path.of(Settings.Output.GEN_UCD_DIR);
+            if (Files.isDirectory(genUcdPath)) {
+                Files.walk(genUcdPath)
+                        .sorted(Comparator.reverseOrder())
+                        .map(Path::toFile)
+                        .forEach(File::delete);
+            }
         }
 
         generateFile();

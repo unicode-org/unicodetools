@@ -75,7 +75,9 @@ Currently, some tests run on the generated output files of a tool (ex: in order 
 
 #### Java System properties used in Unicode Tools
 
-(Note: The following example values for Java system properties are paths to local working copies that are organized using the out-of-source build workspace layout, as described above.)
+Note: The following example values for Java system properties are paths to local working copies that are organized using the out-of-source build workspace layout, as described above.
+
+Note: These are “properties” or “Java properties”, *not environment variables* (despite the `-D` on the Maven command lines).
 
 | Property                | Example Value                                                  |
 |-------------------------|----------------------------------------------------------------|
@@ -151,7 +153,7 @@ Some IDEs can integrate the formatter via plugins, which can minimize the need t
 
 #### Setting system properties
 
-For the tools to work, you need to set the JVM system properties according to your workspace layout.
+For the tools to work, you need to set the JVM system properties (or “Java properties” — not environment variables) according to your workspace layout.
 Depending on which tool you are running, you may need some or all of the properties listed above in General Setup for Maven.
 
 For command-line users:
@@ -161,6 +163,8 @@ For Eclipse users:
 - Set the common variables globally in Window > Preferences... > Java > Installed JREs > select the active JRE >  Edit... > Default VM arguments: `-Dvar1=path1 -Dvar2=path2 ...`.
   * This approach is recommended to avoid repeating setting the variables for each command. Examples of run configurations below will assume this approach and omit these globally shared variables.
 - Alternatively, you can set these for each single command/tool that you configure in the Run > Debug Configurations... > (x)= Arguments tab > VM arguments
+
+In IntelliJ, when you edit a Run/Debug Configuration, in the Java section select “Inherit from settings” and set the properties in those inherited settings.
 
 #### Enabling assertions
 
@@ -181,9 +185,9 @@ All commands must be run in the root of the `unicodetools` repository local work
 Common tasks for Unicode Tools are listed below with example CLI commands with example argument values that they need:
 
 - Make Unicode Files:
-  * Out-of-source build: `mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)`
+  * Out-of-source build: `mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass=org.unicode.text.UCD.MakeUnicodeFiles  -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)`
 
-  * In-source build: `MAVEN_OPTS="-ea" mvn compile exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)`
+  * In-source build: `MAVEN_OPTS="-ea" mvn compile exec:java -Dexec.mainClass=org.unicode.text.UCD.MakeUnicodeFiles  -am -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)`
 
 - Build and Test:
   * Out-of-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)`
@@ -198,15 +202,15 @@ For each individual command in Unicode Tools described above, you can configure 
 
 1.  Just like the Build and Test run config described above, which uses Maven, with the following command and extra changes:
     1. From Run > Run Configurations ..., select the previous "Build and Test" configuration. Then select the "Duplicate" button above to create a new duplicate run config. Now make the following changes.
-    2. Name: [command name goes here]  (ex: `UCD Make Unicode Files`)
+    2. Name: [command name goes here]  (ex: `Make Unicode Files`)
     3. Main > Goals: `-am -pl unicodetools compile exec:java` (the argument for the subproject list flag `-pl` assumes that the class with the main method is in the subdirectory `unicodetools/src/main/java`)
-    4. In the environment variables section, also set the class containing the main method and the command's CLI args (ex: name = `exec.mainClass`, value = `"org.unicode.text.UCD.Main"`; name = `exec.args`, value = `"version 15.0.0 build MakeUnicodeFiles"`)
+    4. In the environment variables section, also set the class containing the main method and the command's CLI args (ex: name = `exec.mainClass`, value = `org.unicode.text.UCD.MakeUnicodeFiles`; name = `exec.args`, value = `"some option"`)
 2. Create a typical Eclipse run configuration for running a Java class with a main file
     1. Run > Run Configurations ... > Java Application, then click the New Launch Configuration icon above
     2. Name: [command name goes here]  (ex: `UCD Make Unicode Files`)
     3. Project: `unicodetools`
-    4. Main class:  [main class path]  (ex: `org.unicode.text.UCD.Main`)
-    5. Arguments > Program arguments: [main class args] (ex: `version 15.0.0 build MakeUnicodeFiles`)
+    4. Main class:  [main class path]  (ex: `org.unicode.text.UCD.MakeUnicodeFiles`)
+    5. Arguments > Program arguments: [main class args]
     6. Arguments > VM arguments: [any VM arguments] (ex: `-ea`)
     7. Keep in mind that in this approach, you may need to run the Build and Test run config to ensure the latest source code has been compiled by Maven before executing it. For example, if running the run config  produces an error like `Error: Could not find or load main class org.unicode.text.UCD.Main  Caused by: java.lang.ClassNotFoundException ...`, then you must run the Build and Test run config for Maven to build the yet-uncompiled Java classes into `./unicodetools/target/classes`
 
@@ -249,10 +253,7 @@ For details see [Input data setup](inputdata.md).
 
 ## Generating new data
 
-To generate new data files, you can run the `org.unicode.text.UCD.Main` class
-(yes, the `Main` class has a `main()` function)
-with program arguments `build MakeUnicodeFiles`. You may optionally include e.g.
-`version 14.0.0` if you wish to just generate the files for a single version.
+To generate new data files, you can run the `org.unicode.text.UCD.MakeUnicodeFiles` class.
 Make sure you have the VM arguments set up as described above.
 
 ## Updating to a new Unicode version
@@ -281,9 +282,6 @@ unversioned "dev" folders in this repo.
 See [data workflow](data-workflow.md).
 
 ### Unicode 15.0.0 changes
-
-All of the following have `version 15.0.0` (or whatever the latest version is)
-in the options given to Java.
 
 Example changes for adding Unicode 15 version numbers:
 See the second commit of [https://github.com/unicode-org/unicodetools/pull/156](https://github.com/unicode-org/unicodetools/pull/156/commits/71ed1d4f2a7e2ff1e9ae0063ec10d5289c37ecf0). Also, you must update the version number in the CI build scripts in `.github/workflows/`.
