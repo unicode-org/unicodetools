@@ -10,7 +10,9 @@ Ignoring Name Age:
 # normally anywhere between proposal submission and the start of α).
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
+Ignoring Block:
 Propertywise [\N{BENGALI SIGN COMBINING ANUSVARA ABOVE} \N{BENGALI SIGN CANDRABINDU}] AreAlike
+end Ignoring;
 Ignoring Block Script Script_Extensions:
 Propertywise [\N{BENGALI SIGN COMBINING ANUSVARA ABOVE} \N{TELUGU SIGN COMBINING ANUSVARA ABOVE}] AreAlike
 end Ignoring;
