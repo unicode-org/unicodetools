@@ -1,5 +1,5 @@
 # LinkEmail.txt
-# Date: 2026-02-03, 23:10:02 GMT 
+# Date: 2026-04-29, 13:44:30 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -551,7 +551,7 @@
 1810..1819     # 3.0  [10] (᠐..᠙)  MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
 1820..1877     # 3.0  [88] (ᠠ..ᡷ)  MONGOLIAN LETTER A..MONGOLIAN LETTER MANCHU ZHA
 1878           # 11.0      (ᡸ)  MONGOLIAN LETTER CHA WITH TWO DOTS
-1879           # 18.0      (U+1879)  MONGOLIAN LETTER ALTERNATE UE
+1879           # 18.0      (U+1879)  <reserved-1879>
 1880..18A9     # 3.0  [42] (ᢀ..ᢩ)  MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER ALI GALI DAGALGA
 18AA           # 5.1       (ᢪ)  MONGOLIAN LETTER MANCHU ALI GALI LHA
 18B0..18F5     # 5.2  [70] (ᢰ..ᣵ)  CANADIAN SYLLABICS OY..CANADIAN SYLLABICS CARRIER DENTAL S
