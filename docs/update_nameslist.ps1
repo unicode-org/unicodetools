@@ -6,7 +6,8 @@ $ErrorActionPreference = "Stop"
 
 pushd ..\charts
 git fetch
-$versions = git log --pretty=format:"%H" main -- .\nomenclator\output\NamesList.txt
+git checkout origin/main
+$versions = git log --pretty=format:"%H" origin/main -- .\nomenclator\output\NamesList.txt
 # Go back in time in the charts repository until we find a version of
 # NamesList.txt that matches the one from unicodetools.
 for ($i = 0; $i -lt $versions.Length; ++$i) {
