@@ -12,7 +12,6 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Writer;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashSet;
