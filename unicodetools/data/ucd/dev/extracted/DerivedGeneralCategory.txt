@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2026-04-29, 18:09:55 GMT
+# Date: 2026-04-29, 19:44:02 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2117,7 +2117,7 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1DF7B         ; Ll #       LATIN SMALL LETTER U WITH HOOK TAIL
 1DF7D         ; Ll #       LATIN SMALL LETTER U WITH NOTCH AT BOTTOM
 1DF7F         ; Ll #       LATIN SMALL LETTER REVERSED U
-1DF90..1DF96  ; Ll #   [7] LATIN SMALL LETTER C WITH SMALL SLASH..LATIN SMALL LETTER LONG S WITH TOP LOOP
+1DF90..1DF96  ; Ll #   [7] LATIN SMALL LETTER C WITH LOW SLASH..LATIN SMALL LETTER LONG S WITH TOP LOOP
 1E922..1E943  ; Ll #  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
 # Total code points: 2366
