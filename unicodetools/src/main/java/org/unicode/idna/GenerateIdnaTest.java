@@ -12,6 +12,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashSet;
@@ -30,6 +31,7 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodeTransformFactory;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.UCD.VersionedSymbolTable;
+import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeTransform;
 import org.unicode.text.utility.Utility;
@@ -100,116 +102,105 @@ public class GenerateIdnaTest {
                 "UTF-8",
                 out);
 
-        final PrintWriter out2 =
-                org.unicode.cldr.draft.FileUtilities.openUTF8Writer(
-                        GenerateIdna.GEN_IDNA_DIR, NEW_FILE_NAME);
-        //        out2.println(Utility.getDataHeader(NEW_FILE_NAME));
-        out2.println(
-                Utility.getBaseDataHeader(
-                        NEW_FILE_NAME,
-                        46,
-                        "Unicode IDNA Compatible Preprocessing",
-                        Default.ucdVersion()));
+        try (final var out2 =
+                new DiffingPrintWriter(
+                        Settings.UnicodeTools.UNICODETOOLS_REPO_DIR
+                                + "/unicodetools/data/idna/dev/",
+                        NEW_FILE_NAME)) {
+            out2.println(
+                    Utility.getBaseDataHeader(
+                            NEW_FILE_NAME,
+                            46,
+                            "Unicode IDNA Compatible Preprocessing",
+                            Default.ucdVersion()));
 
-        FileUtilities.appendFile(
-                this.getClass().getResource("IdnaTestHeader2.txt").toString().substring(5),
-                "UTF-8",
-                out2);
+            FileUtilities.appendFile(
+                    this.getClass().getResource("IdnaTestHeader2.txt").toString().substring(5),
+                    "UTF-8",
+                    out2.tempPrintWriter);
 
-        //        out.println(
-        //                "# Format\n" +
-        //                "# source ; type ; toASCII ; toUnicode\n" +
-        //                "# type: T for transitional, N for nontransitional, B for both\n" +
-        //                "# In case of errors, field 3 and 4 show errors in [....] instead of a
-        // result\n" +
-        //                "# The errors are based on the step numbers in UTS46.\n" +
-        //                "# Pn for Section 4 Processing step n\n" +
-        //                "# Vn for 4.1 Validity Criteria step n\n" +
-        //                "# An for 4.2 ToASCII step n\n" +
-        //                "# Bn for Bidi (in IDNA2008)\n" +
-        //                "# Cn for ContextJ (in IDNA2008)\n" +
-        //                "\n"
-        //        );
-        int count = 0;
+            int count = 0;
 
-        count += generateLine("fass.de", out, out2);
-        count += generateLine("faß.de", out, out2);
+            count += generateLine("fass.de", out, out2);
+            count += generateLine("faß.de", out, out2);
 
-        out.println("\n# BIDI TESTS\n");
-        out2.println("\n# BIDI TESTS\n");
+            out.println("\n# BIDI TESTS\n");
+            out2.println("\n# BIDI TESTS\n");
 
-        for (final String[] testCase : bidiTests) {
-            count += generateLine(testCase[0], out, out2);
+            for (final String[] testCase : bidiTests) {
+                count += generateLine(testCase[0], out, out2);
+            }
+
+            out.println("\n# CONTEXT TESTS\n");
+            out2.println("\n# CONTEXT TESTS\n");
+
+            for (final String[] testCase : contextTests) {
+                count += generateLine(testCase[0], out, out2);
+            }
+
+            out.println("\n# SELECTED TESTS\n");
+            out2.println("\n# SELECTED TESTS\n");
+
+            count += generateLine("\u00a1", out, out2);
+            for (String s : Idna2008.GRANDFATHERED_VALID) {
+                count += generateLine(s, out, out2);
+            }
+
+            for (final String source : testCases) {
+                count += generateLine(source, out, out2);
+            }
+
+            out.println("\n# RANDOMIZED TESTS\n");
+            out2.println("\n# RANDOMIZED TESTS\n");
+
+            String lastVersion = Settings.lastVersion;
+            if (lastVersion.equals("13.1.0")) {
+                // HACK to work around the artificial Unicode version 13.1
+                // which was hacked in for producing emoji 13.1 data files.
+                // See https://github.com/unicode-org/unicodetools/issues/100 "Whither 13.1.0?"
+                lastVersion = "13.0.0";
+            }
+            int ucdTypesLastVersion = UCD_Types.AGE170; // FIX_FOR_NEW_VERSION
+            String ucdTypesLastVersionString = UCD_Types.AGE_VERSIONS[ucdTypesLastVersion];
+            if (!ucdTypesLastVersionString.equals(lastVersion)) {
+                throw new AssertionError(
+                        "update GenerateIdnaTest.ucdTypesLastVersion to match " + lastVersion);
+            }
+            Set<TestLine> testLines =
+                    LoadIdnaTest.load(Settings.UnicodeTools.DATA_DIR + "idna/" + lastVersion);
+
+            for (TestLine testLine : testLines) {
+                count +=
+                        generateLine(
+                                replaceNewerThan(testLine.source, ucdTypesLastVersion), out, out2);
+            }
+
+            //        final RandomString randomString = new RandomString();
+            //        final char[] LABELSEPARATORS = {'\u002E', '\uFF0E', '\u3002', '\uFF61'};
+            //        final StringBuilder sb = new StringBuilder();
+            //
+            //        final int labelLength = NEW_FORMAT ? 2 : 3;
+            //
+            //        for (int line = 0; line < lines; ++line) {
+            //            sb.setLength(0);
+            //            randomString.resetRandom(line); // provide predictable results based on
+            // line
+            // number
+            //            // random number of labels
+            //            int labels = RandomString.random.nextInt(labelLength);
+            //            for (; labels >= 0; --labels) {
+            //                randomString.appendNext(sb);
+            //                if (labels != 0) {
+            //                    sb.append(LABELSEPARATORS[RandomString.random.nextInt(4)]);
+            //                }
+            //            }
+            //            // random length
+            //            count += generateLine(sb.toString(), out);
+            //        }
+
+            out.close();
+            return count;
         }
-
-        out.println("\n# CONTEXT TESTS\n");
-        out2.println("\n# CONTEXT TESTS\n");
-
-        for (final String[] testCase : contextTests) {
-            count += generateLine(testCase[0], out, out2);
-        }
-
-        out.println("\n# SELECTED TESTS\n");
-        out2.println("\n# SELECTED TESTS\n");
-
-        count += generateLine("\u00a1", out, out2);
-        for (String s : Idna2008.GRANDFATHERED_VALID) {
-            count += generateLine(s, out, out2);
-        }
-
-        for (final String source : testCases) {
-            count += generateLine(source, out, out2);
-        }
-
-        out.println("\n# RANDOMIZED TESTS\n");
-        out2.println("\n# RANDOMIZED TESTS\n");
-
-        String lastVersion = Settings.lastVersion;
-        if (lastVersion.equals("13.1.0")) {
-            // HACK to work around the artificial Unicode version 13.1
-            // which was hacked in for producing emoji 13.1 data files.
-            // See https://github.com/unicode-org/unicodetools/issues/100 "Whither 13.1.0?"
-            lastVersion = "13.0.0";
-        }
-        int ucdTypesLastVersion = UCD_Types.AGE170; // FIX_FOR_NEW_VERSION
-        String ucdTypesLastVersionString = UCD_Types.AGE_VERSIONS[ucdTypesLastVersion];
-        if (!ucdTypesLastVersionString.equals(lastVersion)) {
-            throw new AssertionError(
-                    "update GenerateIdnaTest.ucdTypesLastVersion to match " + lastVersion);
-        }
-        Set<TestLine> testLines =
-                LoadIdnaTest.load(Settings.UnicodeTools.DATA_DIR + "idna/" + lastVersion);
-
-        for (TestLine testLine : testLines) {
-            count +=
-                    generateLine(replaceNewerThan(testLine.source, ucdTypesLastVersion), out, out2);
-        }
-
-        //        final RandomString randomString = new RandomString();
-        //        final char[] LABELSEPARATORS = {'\u002E', '\uFF0E', '\u3002', '\uFF61'};
-        //        final StringBuilder sb = new StringBuilder();
-        //
-        //        final int labelLength = NEW_FORMAT ? 2 : 3;
-        //
-        //        for (int line = 0; line < lines; ++line) {
-        //            sb.setLength(0);
-        //            randomString.resetRandom(line); // provide predictable results based on line
-        // number
-        //            // random number of labels
-        //            int labels = RandomString.random.nextInt(labelLength);
-        //            for (; labels >= 0; --labels) {
-        //                randomString.appendNext(sb);
-        //                if (labels != 0) {
-        //                    sb.append(LABELSEPARATORS[RandomString.random.nextInt(4)]);
-        //                }
-        //            }
-        //            // random length
-        //            count += generateLine(sb.toString(), out);
-        //        }
-
-        out.close();
-        out2.close();
-        return count;
     }
 
     private String replaceNewerThan(String source, int ucdTypesAge) {
@@ -261,7 +252,7 @@ public class GenerateIdnaTest {
         return s.substring(0, lastLabelEnd) + repl + s.substring(lastLabelEnd + 1);
     }
 
-    int generateLine(String source, PrintWriter out, PrintWriter out2) {
+    int generateLine(String source, PrintWriter out, DiffingPrintWriter out2) {
         source = avoidLastLabelAllAsciiDigits(source);
         if (alreadyDone(source)) {
             return 0;
