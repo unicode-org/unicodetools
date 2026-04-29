@@ -154,7 +154,7 @@ git merge la-vache/main
 git checkout la-vache/main unicodetools/data/ucd/dev/Derived*;
 git checkout la-vache/main unicodetools/data/ucd/dev/extracted/*;
 git checkout la-vache/main unicodetools/data/ucd/dev/auxiliary/*;
-mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
+mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
 git add ./unicodetools/data
 git merge --continue
 ```
@@ -167,7 +167,7 @@ git merge main
 git checkout main unicodetools/data/ucd/dev/Derived*
 git checkout main unicodetools/data/ucd/dev/extracted/*
 git checkout main unicodetools/data/ucd/dev/auxiliary/*
-mvn -s ~/.m2/settings.xml compile exec:java -Dexec.mainClass=org.unicode.text.UCD.MakeUnicodeFiles  -Dexec.args=-c -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)
+mvn -s ~/.m2/settings.xml compile exec:java -Dexec.mainClass=org.unicode.text.UCD.MakeUnicodeFiles  -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)
 # fix merge conflicts in unicodetools/src/main/java/org/unicode/text/UCD/UCD_Types.java
 #   and in UCD_Names.java
 # rerun mvn
@@ -193,7 +193,7 @@ Cf. https://github.com/unicode-org/unicodetools/pull/636
 
 eggrobin (Windows, in-source).
 ```powershell
-mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
+mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=.";
 git add unicodetools/data/ucd/dev/*
 git commit -m "Regenerate UCD"
 ```
@@ -202,14 +202,14 @@ git commit -m "Regenerate UCD"
 
 eggrobin (Windows, in-source).
 ```powershell
-mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c --generate ^LineBreak$"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
+mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="--generate ^LineBreak$"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
 ```
 
 ### Regenerate PropertyValueAliases
 
 eggrobin (Windows, in-source).
 ```powershell
-mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="-c --generate ^PropertyValueAliases$"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
+mvn compile exec:java '-Dexec.mainClass="org.unicode.text.UCD.MakeUnicodeFiles"'  '-Dexec.args="--generate ^PropertyValueAliases$"' -am -pl unicodetools  "-DCLDR_DIR=..\cldr\"  "-DUNICODETOOLS_GEN_DIR=Generated"  "-DUNICODETOOLS_REPO_DIR=."
 git add unicodetools/data/ucd/dev/PropertyValueAliases.txt
 git commit -m "Regenerate PropertyValueAliases"
 ```

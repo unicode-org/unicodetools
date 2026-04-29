@@ -185,9 +185,9 @@ All commands must be run in the root of the `unicodetools` repository local work
 Common tasks for Unicode Tools are listed below with example CLI commands with example argument values that they need:
 
 - Make Unicode Files:
-  * Out-of-source build: `mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass=org.unicode.text.UCD.MakeUnicodeFiles  -Dexec.args=-c -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)`
+  * Out-of-source build: `mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass=org.unicode.text.UCD.MakeUnicodeFiles  -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)`
 
-  * In-source build: `MAVEN_OPTS="-ea" mvn compile exec:java -Dexec.mainClass=org.unicode.text.UCD.MakeUnicodeFiles  -Dexec.args=-c -am -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)`
+  * In-source build: `MAVEN_OPTS="-ea" mvn compile exec:java -Dexec.mainClass=org.unicode.text.UCD.MakeUnicodeFiles  -am -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)`
 
 - Build and Test:
   * Out-of-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)`
@@ -204,13 +204,13 @@ For each individual command in Unicode Tools described above, you can configure 
     1. From Run > Run Configurations ..., select the previous "Build and Test" configuration. Then select the "Duplicate" button above to create a new duplicate run config. Now make the following changes.
     2. Name: [command name goes here]  (ex: `Make Unicode Files`)
     3. Main > Goals: `-am -pl unicodetools compile exec:java` (the argument for the subproject list flag `-pl` assumes that the class with the main method is in the subdirectory `unicodetools/src/main/java`)
-    4. In the environment variables section, also set the class containing the main method and the command's CLI args (ex: name = `exec.mainClass`, value = `"org.unicode.text.UCD.MakeUnicodeFiles"`; name = `exec.args`, value = `"-c"`)
+    4. In the environment variables section, also set the class containing the main method and the command's CLI args (ex: name = `exec.mainClass`, value = `org.unicode.text.UCD.MakeUnicodeFiles`; name = `exec.args`, value = `"some option"`)
 2. Create a typical Eclipse run configuration for running a Java class with a main file
     1. Run > Run Configurations ... > Java Application, then click the New Launch Configuration icon above
     2. Name: [command name goes here]  (ex: `UCD Make Unicode Files`)
     3. Project: `unicodetools`
     4. Main class:  [main class path]  (ex: `org.unicode.text.UCD.MakeUnicodeFiles`)
-    5. Arguments > Program arguments: [main class args] (ex: `-c`)
+    5. Arguments > Program arguments: [main class args]
     6. Arguments > VM arguments: [any VM arguments] (ex: `-ea`)
     7. Keep in mind that in this approach, you may need to run the Build and Test run config to ensure the latest source code has been compiled by Maven before executing it. For example, if running the run config  produces an error like `Error: Could not find or load main class org.unicode.text.UCD.Main  Caused by: java.lang.ClassNotFoundException ...`, then you must run the Build and Test run config for Maven to build the yet-uncompiled Java classes into `./unicodetools/target/classes`
 
@@ -253,8 +253,7 @@ For details see [Input data setup](inputdata.md).
 
 ## Generating new data
 
-To generate new data files, you can run the `org.unicode.text.UCD.MakeUnicodeFiles` class
-with program argument `-c`.
+To generate new data files, you can run the `org.unicode.text.UCD.MakeUnicodeFiles` class.
 Make sure you have the VM arguments set up as described above.
 
 ## Updating to a new Unicode version
