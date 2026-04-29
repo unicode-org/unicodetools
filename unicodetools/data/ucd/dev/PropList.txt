@@ -1,6 +1,5 @@
-11DF0 ; Other_Alphabetic
 # PropList-18.0.0.txt
-# Date: 2026-04-29, 14:39:22 GMT
+# Date: 2026-04-29, 15:05:35 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -843,6 +842,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 11D93..11D94  ; Other_Alphabetic # Mc   [2] GUNJALA GONDI VOWEL SIGN OO..GUNJALA GONDI VOWEL SIGN AU
 11D95         ; Other_Alphabetic # Mn       GUNJALA GONDI SIGN ANUSVARA
 11D96         ; Other_Alphabetic # Mc       GUNJALA GONDI SIGN VISARGA
+11DF0         ; Other_Alphabetic # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 11EF3..11EF4  ; Other_Alphabetic # Mn   [2] MAKASAR VOWEL SIGN I..MAKASAR VOWEL SIGN U
 11EF5..11EF6  ; Other_Alphabetic # Mc   [2] MAKASAR VOWEL SIGN E..MAKASAR VOWEL SIGN O
 11F00..11F01  ; Other_Alphabetic # Mn   [2] KAWI SIGN CANDRABINDU..KAWI SIGN ANUSVARA
@@ -875,7 +875,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1520
+# Total code points: 1521
 
 # ================================================
 

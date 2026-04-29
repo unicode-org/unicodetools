@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2026-04-29, 14:39:01 GMT
+# Date: 2026-04-29, 15:05:15 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1296,6 +1296,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 11DB0..11DD8  ; Alphabetic # Lo  [41] TOLONG SIKI LETTER I..TOLONG SIKI LETTER RRH
 11DD9         ; Alphabetic # Lm       TOLONG SIKI SIGN SELA
 11DDA..11DDB  ; Alphabetic # Lo   [2] TOLONG SIKI SIGN HECAKA..TOLONG SIKI UNGGA
+11DF0         ; Alphabetic # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 11DF1         ; Alphabetic # Lo       BENGALI LETTER ALTERNATE BARGIYA BA
 11EE0..11EF2  ; Alphabetic # Lo  [19] MAKASAR LETTER KA..MAKASAR ANGKA
 11EF3..11EF4  ; Alphabetic # Mn   [2] MAKASAR VOWEL SIGN I..MAKASAR VOWEL SIGN U
@@ -1488,7 +1489,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 31350..33479  ; Alphabetic # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Alphabetic # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
-# Total code points: 160283
+# Total code points: 160284
 
 # ================================================
 
@@ -13446,10 +13447,11 @@ ABC0..ABDA    ; InCB; Consonant # Lo  [27] MEETEI MAYEK LETTER KOK..MEETEI MAYEK
 11A50         ; InCB; Consonant # Lo       SOYOMBO LETTER A
 11A5C..11A83  ; InCB; Consonant # Lo  [40] SOYOMBO LETTER KA..SOYOMBO LETTER KSSA
 11B0A         ; InCB; Consonant # Lo       DEVANAGARI LETTER ALTERNATE DDDA
+11DF1         ; InCB; Consonant # Lo       BENGALI LETTER ALTERNATE BARGIYA BA
 11F04..11F10  ; InCB; Consonant # Lo  [13] KAWI LETTER A..KAWI LETTER O
 11F12..11F33  ; InCB; Consonant # Lo  [34] KAWI LETTER KA..KAWI LETTER JNYA
 
-# Total code points: 912
+# Total code points: 913
 
 # ================================================
 
