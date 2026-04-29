@@ -207,6 +207,7 @@ public class UcdPropertyValues {
         Bassa_Vah("Bassa_Vah"),
         Batak("Batak"),
         Bengali("Bengali"),
+        Bengali_Supplement("Bengali_Sup"),
         Beria_Erfe("Beria_Erfe"),
         Bhaiksuki("Bhaiksuki"),
         Block_Elements("Block_Elements"),
