@@ -1,5 +1,5 @@
 # Scripts-18.0.0.txt
-# Date: 2026-04-29, 12:18:40 GMT
+# Date: 2026-04-29, 14:14:25 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1014,7 +1014,6 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 
 # ================================================
 
-11DF0..11DF0 ; Bengali
 0980          ; Bengali # Lo       BENGALI ANJI
 0981          ; Bengali # Mn       BENGALI SIGN CANDRABINDU
 0982..0983    ; Bengali # Mc   [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
@@ -1045,8 +1044,9 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 09FC          ; Bengali # Lo       BENGALI LETTER VEDIC ANUSVARA
 09FD          ; Bengali # Po       BENGALI ABBREVIATION SIGN
 09FE          ; Bengali # Mn       BENGALI SANDHI MARK
+11DF0         ; Bengali # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 
-# Total code points: 98
+# Total code points: 97
 
 # ================================================
 

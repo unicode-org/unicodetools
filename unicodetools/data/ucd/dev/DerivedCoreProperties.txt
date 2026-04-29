@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2026-04-29, 12:18:04 GMT
+# Date: 2026-04-29, 14:13:46 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -13382,7 +13382,6 @@ AAF6          ; InCB; Linker # Mn       MEETEI MAYEK VIRAMA
 09DC..09DD    ; InCB; Consonant # Lo   [2] BENGALI LETTER RRA..BENGALI LETTER RHA
 09DF          ; InCB; Consonant # Lo       BENGALI LETTER YYA
 09F0..09F1    ; InCB; Consonant # Lo   [2] BENGALI LETTER RA WITH MIDDLE DIAGONAL..BENGALI LETTER RA WITH LOWER DIAGONAL
-09FF          ; InCB; Consonant # Cn       <reserved-09FF>
 0A95..0AA8    ; InCB; Consonant # Lo  [20] GUJARATI LETTER KA..GUJARATI LETTER NA
 0AAA..0AB0    ; InCB; Consonant # Lo   [7] GUJARATI LETTER PA..GUJARATI LETTER RA
 0AB2..0AB3    ; InCB; Consonant # Lo   [2] GUJARATI LETTER LA..GUJARATI LETTER LLA
@@ -13451,7 +13450,7 @@ ABC0..ABDA    ; InCB; Consonant # Lo  [27] MEETEI MAYEK LETTER KOK..MEETEI MAYEK
 11F04..11F10  ; InCB; Consonant # Lo  [13] KAWI LETTER A..KAWI LETTER O
 11F12..11F33  ; InCB; Consonant # Lo  [34] KAWI LETTER KA..KAWI LETTER JNYA
 
-# Total code points: 913
+# Total code points: 912
 
 # ================================================
 
