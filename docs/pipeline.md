@@ -167,7 +167,7 @@ git merge main
 git checkout main unicodetools/data/ucd/dev/Derived*
 git checkout main unicodetools/data/ucd/dev/extracted/*
 git checkout main unicodetools/data/ucd/dev/auxiliary/*
-mvn -s ~/.m2/settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 18.0.0 build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)
+mvn -s ~/.m2/settings.xml compile exec:java -Dexec.mainClass=org.unicode.text.UCD.MakeUnicodeFiles  -Dexec.args=-c -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)
 # fix merge conflicts in unicodetools/src/main/java/org/unicode/text/UCD/UCD_Types.java
 #   and in UCD_Names.java
 # rerun mvn
