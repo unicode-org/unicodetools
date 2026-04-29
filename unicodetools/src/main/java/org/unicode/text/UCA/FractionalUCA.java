@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.UCA.MappingsForFractionalUCA.MappingWithSortKey;
 import org.unicode.text.UCA.PrimariesToFractional.PrimaryToFractional;
-import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
@@ -1377,7 +1376,7 @@ public class FractionalUCA {
     }
 
     private static UCA getCollator() {
-        return WriteCollationData.getCollator(CollatorType.cldr);
+        return UCA.getCldrCollator();
     }
 
     private static String cpToScript(int codePoint) {
