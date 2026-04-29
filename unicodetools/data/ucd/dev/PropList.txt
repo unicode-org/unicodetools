@@ -1,3 +1,4 @@
+11DF0 ; Other_Alphabetic
 # PropList-18.0.0.txt
 # Date: 2026-04-29, 14:39:22 GMT
 # © 2026 Unicode®, Inc.

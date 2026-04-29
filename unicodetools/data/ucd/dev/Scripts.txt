@@ -1045,6 +1045,7 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 09FD          ; Bengali # Po       BENGALI ABBREVIATION SIGN
 09FE          ; Bengali # Mn       BENGALI SANDHI MARK
 11DF0         ; Bengali # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
+11DF1 ; Bengali
 
 # Total code points: 97
 
