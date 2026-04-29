@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-02-03, 23:10:02 GMT 
+# Date: 2026-04-29, 12:18:19 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -522,7 +522,6 @@ FF62          ; Open    # 1.1       (｢)  HALFWIDTH LEFT CORNER BRACKET
 097E..097F    ; Include # 5.0   [2] (ॾ..ॿ)  DEVANAGARI LETTER DDDA..DEVANAGARI LETTER BBA
 0980          ; Include # 7.0       (ঀ)  BENGALI ANJI
 0981..0983    ; Include # 1.1   [3] (ঁ..ঃ)  BENGALI SIGN CANDRABINDU..BENGALI SIGN VISARGA
-0984          ; Include # 18.0      (U+0984)  BENGALI SIGN COMBINING ANUSVARA ABOVE
 0985..098C    ; Include # 1.1   [8] (অ..ঌ)  BENGALI LETTER A..BENGALI LETTER VOCALIC L
 098F..0990    ; Include # 1.1   [2] (এ..ঐ)  BENGALI LETTER E..BENGALI LETTER AI
 0993..09A8    ; Include # 1.1  [22] (ও..ন)  BENGALI LETTER O..BENGALI LETTER NA
@@ -542,7 +541,6 @@ FF62          ; Open    # 1.1       (｢)  HALFWIDTH LEFT CORNER BRACKET
 09FB          ; Include # 5.2       (৻)  BENGALI GANDA MARK
 09FC..09FD    ; Include # 10.0  [2] (ৼ..৽)  BENGALI LETTER VEDIC ANUSVARA..BENGALI ABBREVIATION SIGN
 09FE          ; Include # 11.0      (৾)  BENGALI SANDHI MARK
-09FF          ; Include # 18.0      (U+09FF)  BENGALI LETTER SANSKRIT BA
 0A01          ; Include # 4.0       (ਁ)  GURMUKHI SIGN ADAK BINDI
 0A02          ; Include # 1.1       (ਂ)  GURMUKHI SIGN BINDI
 0A03          ; Include # 4.0       (ਃ)  GURMUKHI SIGN VISARGA
@@ -1706,6 +1704,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 11DA0..11DA9  ; Include # 11.0 [10] (𑶠..𑶩)  GUNJALA GONDI DIGIT ZERO..GUNJALA GONDI DIGIT NINE
 11DB0..11DDB  ; Include # 17.0 [44] (𑶰..𑷛)  TOLONG SIKI LETTER I..TOLONG SIKI UNGGA
 11DE0..11DE9  ; Include # 17.0 [10] (𑷠..𑷩)  TOLONG SIKI DIGIT ZERO..TOLONG SIKI DIGIT NINE
+11DF0..11DF1  ; Include # NA    [2] (U+11DF0..U+11DF1)  BENGALI SIGN COMBINING ANUSVARA ABOVE..BENGALI LETTER ALTERNATE BARGIYA BA
 11EE0..11EF6  ; Include # 11.0 [23] (𑻠..𑻶)  MAKASAR LETTER KA..MAKASAR VOWEL SIGN O
 11F00..11F10  ; Include # 15.0 [17] (𑼀..𑼐)  KAWI SIGN CANDRABINDU..KAWI LETTER O
 11F12..11F3A  ; Include # 15.0 [41] (𑼒..𑼺)  KAWI LETTER KA..KAWI VOWEL SIGN VOCALIC R

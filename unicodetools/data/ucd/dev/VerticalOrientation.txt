@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2026-02-03, 23:10:26 GMT
+# Date: 2026-04-29, 12:18:43 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -302,7 +302,6 @@
 0980           ; R  # Lo         BENGALI ANJI
 0981           ; R  # Mn         BENGALI SIGN CANDRABINDU
 0982..0983     ; R  # Mc     [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
-0984           ; R  # Mn         BENGALI SIGN COMBINING ANUSVARA ABOVE
 0985..098C     ; R  # Lo     [8] BENGALI LETTER A..BENGALI LETTER VOCALIC L
 098F..0990     ; R  # Lo     [2] BENGALI LETTER E..BENGALI LETTER AI
 0993..09A8     ; R  # Lo    [22] BENGALI LETTER O..BENGALI LETTER NA
@@ -330,7 +329,6 @@
 09FC           ; R  # Lo         BENGALI LETTER VEDIC ANUSVARA
 09FD           ; R  # Po         BENGALI ABBREVIATION SIGN
 09FE           ; R  # Mn         BENGALI SANDHI MARK
-09FF           ; R  # Lo         BENGALI LETTER SANSKRIT BA
 0A01..0A02     ; R  # Mn     [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A03           ; R  # Mc         GURMUKHI SIGN VISARGA
 0A05..0A0A     ; R  # Lo     [6] GURMUKHI LETTER A..GURMUKHI LETTER UU
@@ -2137,6 +2135,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 11DD9          ; R  # Lm         TOLONG SIKI SIGN SELA
 11DDA..11DDB   ; R  # Lo     [2] TOLONG SIKI SIGN HECAKA..TOLONG SIKI UNGGA
 11DE0..11DE9   ; R  # Nd    [10] TOLONG SIKI DIGIT ZERO..TOLONG SIKI DIGIT NINE
+11DF0          ; R  # Mn         BENGALI SIGN COMBINING ANUSVARA ABOVE
+11DF1          ; R  # Lo         BENGALI LETTER ALTERNATE BARGIYA BA
 11EE0..11EF2   ; R  # Lo    [19] MAKASAR LETTER KA..MAKASAR ANGKA
 11EF3..11EF4   ; R  # Mn     [2] MAKASAR VOWEL SIGN I..MAKASAR VOWEL SIGN U
 11EF5..11EF6   ; R  # Mc     [2] MAKASAR VOWEL SIGN E..MAKASAR VOWEL SIGN O

@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2026-02-03, 23:09:53 GMT
+# Date: 2026-04-29, 12:18:08 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2341,7 +2341,6 @@
 0981          ; BENGALI SIGN CANDRABINDU
 0982          ; BENGALI SIGN ANUSVARA
 0983          ; BENGALI SIGN VISARGA
-0984          ; BENGALI SIGN COMBINING ANUSVARA ABOVE
 0985          ; BENGALI LETTER A
 0986          ; BENGALI LETTER AA
 0987          ; BENGALI LETTER I
@@ -2434,7 +2433,6 @@
 09FC          ; BENGALI LETTER VEDIC ANUSVARA
 09FD          ; BENGALI ABBREVIATION SIGN
 09FE          ; BENGALI SANDHI MARK
-09FF          ; BENGALI LETTER SANSKRIT BA
 0A01          ; GURMUKHI SIGN ADAK BINDI
 0A02          ; GURMUKHI SIGN BINDI
 0A03          ; GURMUKHI SIGN VISARGA
@@ -32774,6 +32772,8 @@ FFFD          ; REPLACEMENT CHARACTER
 11DE7         ; TOLONG SIKI DIGIT SEVEN
 11DE8         ; TOLONG SIKI DIGIT EIGHT
 11DE9         ; TOLONG SIKI DIGIT NINE
+11DF0         ; BENGALI SIGN COMBINING ANUSVARA ABOVE
+11DF1         ; BENGALI LETTER ALTERNATE BARGIYA BA
 11EE0         ; MAKASAR LETTER KA
 11EE1         ; MAKASAR LETTER GA
 11EE2         ; MAKASAR LETTER NGA
