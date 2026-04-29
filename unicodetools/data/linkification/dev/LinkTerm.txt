@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-04-29, 13:11:36 GMT 
+# Date: 2026-04-29, 18:10:05 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -871,7 +871,6 @@ FF62          ; Open    # 1.1       (｢)  HALFWIDTH LEFT CORNER BRACKET
 1810..1819    ; Include # 3.0  [10] (᠐..᠙)  MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
 1820..1877    ; Include # 3.0  [88] (ᠠ..ᡷ)  MONGOLIAN LETTER A..MONGOLIAN LETTER MANCHU ZHA
 1878          ; Include # 11.0      (ᡸ)  MONGOLIAN LETTER CHA WITH TWO DOTS
-1879          ; Include # 18.0      (U+1879)  MONGOLIAN LETTER ALTERNATE UE
 1880..18A9    ; Include # 3.0  [42] (ᢀ..ᢩ)  MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER ALI GALI DAGALGA
 18AA          ; Include # 5.1       (ᢪ)  MONGOLIAN LETTER MANCHU ALI GALI LHA
 18B0..18F5    ; Include # 5.2  [70] (ᢰ..ᣵ)  CANADIAN SYLLABICS OY..CANADIAN SYLLABICS CARRIER DENTAL S
@@ -2208,5 +2207,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172353
+# Total code points: 172352
 

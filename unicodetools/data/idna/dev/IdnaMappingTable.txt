@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-04-29, 14:42:30 GMT
+# Date: 2026-04-29, 18:11:41 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1670,8 +1670,7 @@
 181A..181F    ; disallowed                 # NA   <reserved-181A>..<reserved-181F>
 1820..1877    ; valid                      # 3.0  MONGOLIAN LETTER A..MONGOLIAN LETTER MANCHU ZHA
 1878          ; valid                      # 11.0 MONGOLIAN LETTER CHA WITH TWO DOTS
-1879          ; valid                      # 18.0 MONGOLIAN LETTER ALTERNATE UE
-187A..187F    ; disallowed                 # NA   <reserved-187A>..<reserved-187F>
+1879..187F    ; disallowed                 # NA   <reserved-1879>..<reserved-187F>
 1880..18A9    ; valid                      # 3.0  MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER ALI GALI DAGALGA
 18AA          ; valid                      # 5.1  MONGOLIAN LETTER MANCHU ALI GALI LHA
 18AB..18AF    ; disallowed                 # NA   <reserved-18AB>..<reserved-18AF>
