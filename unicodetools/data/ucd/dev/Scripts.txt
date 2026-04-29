@@ -1,5 +1,5 @@
 # Scripts-18.0.0.txt
-# Date: 2026-04-29, 13:44:51 GMT
+# Date: 2026-04-29, 15:32:06 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1567,7 +1567,7 @@ AB70..ABBF    ; Cherokee # L&  [80] CHEROKEE SMALL LETTER A..CHEROKEE SMALL LETT
 18AA          ; Mongolian # Lo       MONGOLIAN LETTER MANCHU ALI GALI LHA
 11660..1166C  ; Mongolian # Po  [13] MONGOLIAN BIRGA WITH ORNAMENT..MONGOLIAN TURNED SWIRL BIRGA WITH DOUBLE ORNAMENT
 
-# Total code points: 169
+# Total code points: 168
 
 # ================================================
 
