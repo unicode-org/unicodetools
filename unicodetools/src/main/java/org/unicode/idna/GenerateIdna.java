@@ -12,11 +12,9 @@ import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
-import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.BagFormatter.NameLabel;
@@ -27,6 +25,7 @@ import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
+import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -493,49 +492,46 @@ public class GenerateIdna {
 
     private static void writeDataFile(UnicodeMap<String> mappingTable) throws IOException {
         final String unversionedFileName = "IdnaMappingTable.txt";
-        final PrintWriter writer = FileUtilities.openUTF8Writer(GEN_IDNA_DIR, unversionedFileName);
+        try (final var writer =
+                new DiffingPrintWriter(
+                        Settings.UnicodeTools.UNICODETOOLS_REPO_DIR
+                                + "/unicodetools/data/idna/dev/",
+                        "IdnaMappingTable.txt")) {
 
-        writer.println(
-                Utility.getBaseDataHeader(
-                        unversionedFileName,
-                        46,
-                        "Unicode IDNA Compatible Preprocessing",
-                        Default.ucdVersion()));
-        //        writer.println(
-        //                "#\n" +
-        //                        "# Unicode IDNA Compatible Preprocessing (UTS #46)\n" +
-        //                "# For documentation, see http://www.unicode.org/reports/tr46/\n");
+            writer.println(
+                    Utility.getBaseDataHeader(
+                            unversionedFileName,
+                            46,
+                            "Unicode IDNA Compatible Preprocessing",
+                            Default.ucdVersion()));
 
-        final UnicodeProperty ASSIGNED =
-                new UnicodeProperty.SimpleProperty() {
-                    @Override
-                    protected String _getValue(int codepoint) {
-                        return cn.contains(codepoint) ? "Cn" : "As";
-                    }
-                };
-        final UnicodeProperty age = properties.getProperty("age");
-        //        UnicodeMap ageValue = age0.getUnicodeMap();
-        //        UnicodeSet unassigned = ageValue.getSet("unassigned");
-        //        ageValue.putAll(unassigned, "n/a");
-        //        UnicodeMapProperty age = new UnicodeProperty.UnicodeMapProperty().set(ageValue);
+            final UnicodeProperty ASSIGNED =
+                    new UnicodeProperty.SimpleProperty() {
+                        @Override
+                        protected String _getValue(int codepoint) {
+                            return cn.contains(codepoint) ? "Cn" : "As";
+                        }
+                    };
+            final UnicodeProperty age = properties.getProperty("age");
 
-        final NameLabel name = new BagFormatter.NameLabel(properties);
-        final BagFormatter bf = new BagFormatter();
-        bf.setLineSeparator("\n");
-        bf.setLabelSource(age);
-        bf.setRangeBreakSource(ASSIGNED);
-        bf.setShowCount(false);
-        bf.setNameSource(name);
+            final NameLabel name = new BagFormatter.NameLabel(properties);
+            final BagFormatter bf = new BagFormatter();
+            bf.setLineSeparator("\n");
+            bf.setLabelSource(age);
+            bf.setRangeBreakSource(ASSIGNED);
+            bf.setShowCount(false);
+            bf.setNameSource(name);
 
-        final UnicodeMapProperty prop = new UnicodeProperty.UnicodeMapProperty().set(mappingTable);
-        bf.setValueSource(prop);
-        bf.setValueWidthOverride(MAX_STATUS_LENGTH + 16);
-        bf.setLabelWidthOverride(3);
-        String showSetNames = bf.showSetNames(mappingTable.keySet());
-        if (showSetNames.contains("\r")) {
-            throw new IllegalArgumentException("Bad, CR");
+            final UnicodeMapProperty prop =
+                    new UnicodeProperty.UnicodeMapProperty().set(mappingTable);
+            bf.setValueSource(prop);
+            bf.setValueWidthOverride(MAX_STATUS_LENGTH + 16);
+            bf.setLabelWidthOverride(3);
+            String showSetNames = bf.showSetNames(mappingTable.keySet());
+            if (showSetNames.contains("\r")) {
+                throw new IllegalArgumentException("Bad, CR");
+            }
+            writer.println(showSetNames);
         }
-        writer.println(showSetNames);
-        writer.close();
     }
 }
