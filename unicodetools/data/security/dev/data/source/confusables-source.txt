@@ -6226,3 +6226,11 @@ A69D ; 1D47
 207C ; 167F
 A742 ; 10182
 10171 ; 16C9
+
+# Katakana and Han confusables from L2/26-082 (UTC Action Item 187-A115)
+30CD ; 793B
+30D2 ; 5315
+30E0 ; 53B6
+30E1 ; 4E44
+30E8 ; 5F50
+30E8 ; 2B739
