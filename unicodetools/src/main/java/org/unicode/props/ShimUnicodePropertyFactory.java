@@ -95,16 +95,16 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
                 case "Unicode_1_Name":
                     prop = replaceValues(prop, oldValue -> oldValue == null ? "" : oldValue);
                     break;
-                    // The following are "fake" in ToolUnicodeProperty
-                    // I think they are just present for the types and aliases
+                // The following are "fake" in ToolUnicodeProperty
+                // I think they are just present for the types and aliases
                 case "ISO_Comment":
                     prop =
                             copyPropReplacingMap(
                                     prop,
                                     new UnicodeMap<String>().putAll(0, 0x10ffff, "").freeze());
                     break;
-                    // The following are not really supported in TUP; values are all "". So just
-                    // match that.
+                // The following are not really supported in TUP; values are all "". So just
+                // match that.
                 case "Name_Alias":
                 case "kAccountingNumeric":
                 case "kCompatibilityVariant":

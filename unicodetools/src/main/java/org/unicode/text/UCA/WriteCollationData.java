@@ -46,15 +46,7 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 public class WriteCollationData {
-    private static final boolean SHOW_NON_MAPPED = false;
-
-    private static final boolean ADD_TIBETAN = true;
-
     private static final String UNICODE_VERSION = Settings.latestVersion;
-
-    private static UCA ducetCollator;
-    private static UCA cldrCollator;
-    private static UCA cldrWithoutFFFxCollator;
 
     private static PrintWriter log;
 
@@ -287,8 +279,9 @@ public class WriteCollationData {
 
     static void writeVersionAndDate(PrintWriter log, String filename, boolean auxiliary) {
         log.println(Utility.getDataHeader(filename));
-        log.println("# UCA Version: " + getCollator(CollatorType.ducet).getDataVersion());
-        log.println("# UCD Version: " + getCollator(CollatorType.ducet).getDataVersion());
+        String version = UCA.getDucetCollator().getDataVersion();
+        log.println("# UCA Version: " + version);
+        log.println("# UCD Version: " + version);
         if (auxiliary) {
             log.println(
                     "# For a description of the format and usage, see\n"
@@ -307,7 +300,7 @@ public class WriteCollationData {
 
         diLog.write('\uFEFF');
 
-        final UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(Default.nfd());
+        final UCA.UCAContents cc = UCA.getDucetCollator().getContents(Default.nfd());
 
         diLog.println("# Contractions");
         writeVersionAndDate(diLog, fullFileName, true);
@@ -375,7 +368,7 @@ public class WriteCollationData {
          * String s = String.valueOf(ch); int len = collator.getCEs(s, true,
          * ces);
          */
-        final UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(Default.nfd());
+        final UCA.UCAContents cc = UCA.getDucetCollator().getContents(Default.nfd());
 
         final Set<String> sortedCodes = new TreeSet<String>();
         final Set<String> mixedCEs = new TreeSet<String>();
@@ -421,7 +414,7 @@ public class WriteCollationData {
                 if (haveMixture == 3) {
                     continue;
                 }
-                if (getCollator(CollatorType.ducet).isVariable(ce)) {
+                if (UCA.getDucetCollator().isVariable(ce)) {
                     haveMixture |= 1;
                 } else {
                     haveMixture |= 2;
@@ -506,13 +499,10 @@ public class WriteCollationData {
         diLog.println("# All characters with 'mixed' CEs: variable and non-variable");
         diLog.println(
                 "# Note: variables are in "
-                        + Utility.hex(
-                                CEList.getPrimary(
-                                        getCollator(CollatorType.ducet).getVariableLowCE()))
+                        + Utility.hex(CEList.getPrimary(UCA.getDucetCollator().getVariableLowCE()))
                         + " to "
                         + Utility.hex(
-                                CEList.getPrimary(
-                                        getCollator(CollatorType.ducet).getVariableHighCE())));
+                                CEList.getPrimary(UCA.getDucetCollator().getVariableHighCE())));
         diLog.println();
 
         Iterator<String> it;
@@ -545,7 +535,7 @@ public class WriteCollationData {
     private static void showSampleOverlap(
             PrintWriter diLog, boolean doNew, String head, String src) {
         final int[] ces = new int[30];
-        final int len = getCollator(CollatorType.ducet).getCEs(src, true, ces);
+        final int len = UCA.getDucetCollator().getCEs(src, true, ces);
         int[] newCes = null;
         int newLen = 0;
         if (doNew) {
@@ -594,7 +584,7 @@ public class WriteCollationData {
             expansionStart = 2; // move up if first is double-ce
         }
         if (len > expansionStart
-                && getCollator(CollatorType.ducet)
+                && UCA.getDucetCollator()
                         .getHomelessSecondaries()
                         .contains(CEList.getSecondary(ces.at(expansionStart)))) {
             if (log2 != null) {
@@ -614,7 +604,7 @@ public class WriteCollationData {
         final Map<ArrayWrapper, String> backMap = new HashMap<ArrayWrapper, String>();
         final Map<String, String> ordered = new TreeMap<String, String>();
 
-        final UCA uca = getCollator(collatorType);
+        final UCA uca = UCA.getCollator(collatorType);
         final UCA.UCAContents cc =
                 uca.getContents(SKIP_CANONICAL_DECOMPOSIBLES ? Default.nfd() : null);
 
@@ -1248,6 +1238,7 @@ public class WriteCollationData {
             Map<String, String> ordered,
             CollatorType collatorType,
             Set<String> removals) {
+        final UCA collator = UCA.getCollator(collatorType);
         final Map<String, String> equivalentsStrings = new LinkedHashMap<String, String>();
         final IntStack nextCes = new IntStack(10);
         final int[] startBuffer = new int[100];
@@ -1263,7 +1254,7 @@ public class WriteCollationData {
                 continue;
             }
             nextCes.clear();
-            getCollator(collatorType).getCEs(string, true, nextCes);
+            collator.getCEs(string, true, nextCes);
             final int len = nextCes.length();
             if (len < 2) {
                 continue;
@@ -1546,7 +1537,7 @@ public class WriteCollationData {
             int len,
             String chr,
             int[] rel) {
-        final UCA ducet = getCollator(CollatorType.ducet);
+        final UCA ducet = UCA.getDucetCollator();
         final int[] ces = new int[originalces.length()];
         originalces.appendTo(ces, 0);
 
@@ -1852,143 +1843,6 @@ public class WriteCollationData {
             }
         }
         return result.toString();
-    }
-
-    public static UCA getCollator(CollatorType type) {
-        switch (type) {
-            case cldr:
-                if (cldrCollator == null) {
-                    cldrCollator = buildCldrCollator(true);
-                }
-                return cldrCollator;
-            case ducet:
-                if (ducetCollator == null) {
-                    ducetCollator = UCA.buildDucetCollator();
-                }
-                return ducetCollator;
-            case cldrWithoutFFFx:
-                if (cldrWithoutFFFxCollator == null) {
-                    cldrWithoutFFFxCollator = buildCldrCollator(false);
-                }
-                return cldrWithoutFFFxCollator;
-            default:
-                throw new IllegalArgumentException();
-        }
-    }
-
-    private static UCA buildCldrCollator(boolean addFFFx) {
-        final UCA ducet = getCollator(CollatorType.ducet);
-
-        final int ducetVariableHigh = CEList.getPrimary(ducet.getVariableHighCE());
-        int cldrVariableHigh = 0;
-        // This will normally come out as ducetVariableHigh + 1.
-        int firstDucetNonVariable = -1;
-
-        // DUCET: variable primary weights include spaces, punctuation, and symbols
-        // CLDR: variable primary weights include only spaces and punctuation
-        for (final UCA.Primary up : ducet.getRegularPrimaries()) {
-            final int ducetPrimary = up.primary;
-            if (ducetPrimary == 0xFFFD) {
-                // Do not remap the REPLACEMENT CHARACTER which has the special FFFD primary.
-                continue;
-            }
-            if (firstDucetNonVariable < 0 && ducetPrimary > ducetVariableHigh) {
-                firstDucetNonVariable = ducetPrimary;
-            }
-
-            final String repChar = up.getRepresentative();
-            final int firstChar = Character.codePointAt(repChar, 0);
-            final int cat = Default.ucd().getCategory(firstChar);
-            switch (cat) {
-                case UCD_Types.DASH_PUNCTUATION:
-                case UCD_Types.START_PUNCTUATION:
-                case UCD_Types.END_PUNCTUATION:
-                case UCD_Types.CONNECTOR_PUNCTUATION:
-                case UCD_Types.OTHER_PUNCTUATION:
-                case UCD_Types.INITIAL_PUNCTUATION:
-                case UCD_Types.FINAL_PUNCTUATION:
-                    if (ducetPrimary <= ducetVariableHigh && ducetPrimary > cldrVariableHigh) {
-                        cldrVariableHigh = ducetPrimary;
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-        final UCA result = UCA.buildCollator(cldrVariableHigh, firstDucetNonVariable);
-
-        if (addFFFx) {
-            result.overrideCE("\uFFFE", 0x1, 0x20, 2);
-            result.overrideCE("\uFFFF", 0xFFFE, 0x20, 2);
-        }
-
-        if (ADD_TIBETAN) {
-            final CEList fb2 = result.getCEList("\u0FB2", true);
-            final CEList fb3 = result.getCEList("\u0FB3", true);
-            final CEList f71_f72 = result.getCEList("\u0F71\u0F72", true);
-            final CEList f71_f74 = result.getCEList("\u0F71\u0F74", true);
-            final CEList fb2_f71 = result.getCEList("\u0FB2\u0F71", true);
-            final CEList fb3_f71 = result.getCEList("\u0FB3\u0F71", true);
-
-            addOverride(
-                    result,
-                    "\u0FB2\u0F71",
-                    fb2_f71); // 0FB2 0F71      ;     [.255A.0020.0002.0FB2][.2570.0020.0002.0F71] -
-            // concat 0FB2 + 0F71
-            addOverride(
-                    result,
-                    "\u0FB2\u0F71\u0F72",
-                    fb2,
-                    f71_f72); // 0FB2 0F71 0F72 ;    [.255A.0020.0002.0FB2][.2572.0020.0002.0F73] -
-            // concat 0FB2 + (0F71/0F72)
-            addOverride(result, "\u0FB2\u0F73", fb2, f71_f72); // 0FB2 0F73      ;
-            // [.255A.0020.0002.0FB2][.2572.0020.0002.0F73] = prev
-            addOverride(
-                    result,
-                    "\u0FB2\u0F71\u0F74",
-                    fb2,
-                    f71_f74); // 0FB2 0F71 0F74 ;    [.255A.0020.0002.0FB2][.2576.0020.0002.0F75] -
-            // concat 0FB2 + (0F71/0F74)
-            addOverride(result, "\u0FB2\u0F75", fb2, f71_f74); // 0FB2 0F75      ;
-            // [.255A.0020.0002.0FB2][.2576.0020.0002.0F75]  = prev
-
-            // same as above, but 0FB2 => 0FB3 and fb2 => fb3
-
-            addOverride(
-                    result,
-                    "\u0FB3\u0F71",
-                    fb3_f71); // 0FB3 0F71      ;     [.255A.0020.0002.0FB3][.2570.0020.0002.0F71] -
-            // concat 0FB3 + 0F71
-            addOverride(
-                    result,
-                    "\u0FB3\u0F71\u0F72",
-                    fb3,
-                    f71_f72); // 0FB3 0F71 0F72 ;    [.255A.0020.0002.0FB3][.2572.0020.0002.0F73] -
-            // concat 0FB3 + (0F71/0F72)
-            addOverride(result, "\u0FB3\u0F73", fb3, f71_f72); // 0FB3 0F73      ;
-            // [.255A.0020.0002.0FB3][.2572.0020.0002.0F73] = prev
-            addOverride(
-                    result,
-                    "\u0FB3\u0F71\u0F74",
-                    fb3,
-                    f71_f74); // 0FB3 0F71 0F74 ;    [.255A.0020.0002.0FB3][.2576.0020.0002.0F75] -
-            // concat 0FB3 + (0F71/0F74)
-            addOverride(result, "\u0FB3\u0F75", fb3, f71_f74); // 0FB3 0F75      ;
-            // [.255A.0020.0002.0FB3][.2576.0020.0002.0F75]  = prev
-        }
-
-        return result;
-    }
-
-    private static void addOverride(UCA result, String string, CEList... ceLists) {
-        final IntStack tempStack = new IntStack(10);
-        for (final CEList ceList : ceLists) {
-            for (int i = 0; i < ceList.length(); ++i) {
-                final int ce = ceList.at(i);
-                tempStack.append(ce);
-            }
-        }
-        result.overrideCE(string, tempStack);
     }
 
     private static CharSequence filter(CharSequence repChar) {

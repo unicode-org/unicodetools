@@ -439,7 +439,7 @@ public class XMLProperties {
                     }
                     break;
                 }
-                // $FALL-THROUGH$
+            // $FALL-THROUGH$
             case Enumerated:
             case Catalog:
                 if (propertyValue != null) {
@@ -469,8 +469,8 @@ public class XMLProperties {
                             propertyValue =
                                     IndexUnicodeProperties.normalizeValue(property, propertyValue);
                             break;
-                            //                case Name:
-                            //                    break;
+                        //                case Name:
+                        //                    break;
                         default:
                             propertyValue = propertyValue.replace("#", Utility.hex(codePoint));
                     }

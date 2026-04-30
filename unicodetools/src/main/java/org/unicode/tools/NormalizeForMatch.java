@@ -78,13 +78,6 @@ public class NormalizeForMatch {
 
     static String TEST = Utility.fromHex("1F19B");
 
-    /**
-     * @deprecated Use {@link #load(String,String,boolean)} instead
-     */
-    public static NormalizeForMatch load(String directory, String file) {
-        return load(directory, file, true);
-    }
-
     public static NormalizeForMatch load(String directory, String file, boolean acceptRawChars) {
         UnicodeMap<String> sourceToTarget = new UnicodeMap<>();
         UnicodeMap<SpecialReason> sourceToReason = new UnicodeMap<>();

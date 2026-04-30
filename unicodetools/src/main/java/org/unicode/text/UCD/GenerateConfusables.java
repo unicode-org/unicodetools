@@ -666,7 +666,7 @@ public class GenerateConfusables {
                     case valid:
                     case deviation:
                         IDNOutputSet.add(cp);
-                        // fall thru!
+                    // fall thru!
                     case mapped:
                     case ignored:
                         IDNInputSet.add(cp);

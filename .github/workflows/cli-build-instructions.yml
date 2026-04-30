@@ -26,6 +26,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0  # fetch all branches so that Spotless can resolve `origin/main`
+      - name: Set up JDK 21
+        uses: actions/setup-java@v1
+        with:
+          java-version: 21
       - name: Check Java style
         run: mvn spotless:check || (echo "Style checker failed. Formatting changes can be applied by 'mvn spotless:apply'" && exit 1)
 
@@ -66,10 +70,10 @@ jobs:
       - name: Symlink CLDR working copy to be sibling of Unicode Tools
         run: |
           ln -s $(pwd)/cldr ..
-      - name: Set up JDK 11
+      - name: Set up JDK 21
         uses: actions/setup-java@v1
         with:
-          java-version: 11
+          java-version: 21
       - name: Cache local Maven repository
         uses: actions/cache@v4
         with:
@@ -88,12 +92,12 @@ jobs:
       # change anything, which makes little sense; but that is the job of the
       # other job.
       - name: Run invariant tests
-        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants#testUnicodeInvariants -DfailIfNoTests=false -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants#testUnicodeInvariants -DfailIfNoTests=false -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run command - Make Unicode Files
-        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version $CURRENT_UVERSION build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass=org.unicode.text.UCD.MakeUnicodeFiles  -am -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -128,10 +132,10 @@ jobs:
           fetch-depth: 0
       - name: Switch CLDR to CLDR_REF
         run: cd cldr/mine/src && git fetch && git checkout ${{ steps.cldr_ref.outputs.CLDR_REF }}
-      - name: Set up JDK 11
+      - name: Set up JDK 21
         uses: actions/setup-java@v1
         with:
-          java-version: 11
+          java-version: 21
       - name: Cache local Maven repository
         uses: actions/cache@v4
         with:
@@ -146,7 +150,7 @@ jobs:
       - name: Run command - Make Unicode Files
         run: |
           cd unicodetools/mine/src
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version $CURRENT_UVERSION build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION -DENABLE_PROP_FILE_CACHE
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass=org.unicode.text.UCD.MakeUnicodeFiles  -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd) -DENABLE_PROP_FILE_CACHE
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -193,7 +197,7 @@ jobs:
       - name: Run command - Build and Test
         run: |
           cd unicodetools/mine/src
-          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -Dtest=!TestTestUnicodeInvariants#testSecurityInvariants -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION  -DEMIT_GITHUB_ERRORS  -DENABLE_PROP_FILE_CACHE
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -Dtest=!TestTestUnicodeInvariants#testSecurityInvariants -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DEMIT_GITHUB_ERRORS  -DENABLE_PROP_FILE_CACHE
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -209,7 +213,7 @@ jobs:
       - name: Run command - AAC Order
         run: |
           cd unicodetools/mine/src
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.tools.AacOrder"  -Dexec.args="version $CURRENT_UVERSION build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION  -DENABLE_PROP_FILE_CACHE
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.tools.AacOrder"  -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DENABLE_PROP_FILE_CACHE
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -222,7 +226,7 @@ jobs:
           # "Delete all the bin files" as per instructions
           rm -rf ../Generated/BIN/*
           # run GenerateIdna
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.idna.GenerateIdna"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION  -DENABLE_PROP_FILE_CACHE
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.idna.GenerateIdna"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DENABLE_PROP_FILE_CACHE
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -231,7 +235,7 @@ jobs:
         run: |
           cd unicodetools/mine/src
           # run GenerateIdnaTest
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.idna.GenerateIdnaTest"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION  -DENABLE_PROP_FILE_CACHE
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.idna.GenerateIdnaTest"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DENABLE_PROP_FILE_CACHE
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -240,7 +244,7 @@ jobs:
         run: |
           cd unicodetools/mine/src
           # run GenerateEnums
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.props.GenerateEnums"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION  -DENABLE_PROP_FILE_CACHE
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.props.GenerateEnums"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DENABLE_PROP_FILE_CACHE
           # apply formatting because generated file will not pass Java formatter
           mvn spotless:apply '-DspotlessFiles=.*[\\/]org[\\/]unicode[\\/]props[\\/]UcdProperty(Values)?.java'
           # Fail if we haven't committed changes from Generate Enums.
@@ -261,9 +265,9 @@ jobs:
         run: |
           cd unicodetools/mine/src
           # run GenerateConfusables
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.GenerateConfusables"  -Dexec.args="-c -b" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION  -DENABLE_PROP_FILE_CACHE
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.GenerateConfusables"  -Dexec.args="-c -b" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DENABLE_PROP_FILE_CACHE
           # run Build & Test command again to rerun TestSecurity test to verify output is okay
-          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestSecurity -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION -DfailIfNoTests=false
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestSecurity -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd) -DfailIfNoTests=false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -272,7 +276,7 @@ jobs:
         run: |
           cd unicodetools/mine/src
           # run GenerateUnihanCollators
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.draft.GenerateUnihanCollators"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION  -DENABLE_PROP_FILE_CACHE
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.draft.GenerateUnihanCollators"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DENABLE_PROP_FILE_CACHE
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -284,7 +288,7 @@ jobs:
           # Note: the test-compile phase/target needs to precede `compile exec:java` because
           # the source code is in src/test/java, not src/main/java, and we need the
           # code to compile before it is executed.
-          mvn -s .github/workflows/mvn-settings.xml -Dexec.mainClass="org.unicode.propstest.CheckProperties" -Dexec.classpathScope=test test-compile  -Dexec.args="COMPARE ALL $PREVIOUS_UVERSION" compile exec:java -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION  -DENABLE_PROP_FILE_CACHE
+          mvn -s .github/workflows/mvn-settings.xml -Dexec.mainClass="org.unicode.propstest.CheckProperties" -Dexec.classpathScope=test test-compile  -Dexec.args="COMPARE ALL $PREVIOUS_UVERSION" compile exec:java -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DENABLE_PROP_FILE_CACHE
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -335,10 +339,10 @@ jobs:
           fetch-depth: 0
       - name: Switch CLDR to CLDR_REF
         run: cd cldr/mine/src && git fetch && git checkout ${{ steps.cldr_ref.outputs.CLDR_REF }}
-      - name: Set up JDK 11
+      - name: Set up JDK 21
         uses: actions/setup-java@v1
         with:
-          java-version: 11
+          java-version: 21
       - name: Cache local Maven repository
         uses: actions/cache@v4
         with:
@@ -360,7 +364,7 @@ jobs:
           then set +e
           fi
           # invoke main() in class ...UCA.Main
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCA.Main"  -Dexec.args="writeCollationValidityLog ICU" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCA.Main"  -Dexec.args="writeCollationValidityLog ICU" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)
           # check for output file
           compgen -G "../Generated/UCA/*/CheckCollationValidity.html"
         env:
@@ -413,10 +417,10 @@ jobs:
           fetch-depth: 0
       - name: Switch CLDR to CLDR_REF
         run: cd cldr/mine/src && git fetch && git checkout ${{ steps.cldr_ref.outputs.CLDR_REF }}
-      - name: Set up JDK 11
+      - name: Set up JDK 21
         uses: actions/setup-java@v1
         with:
-          java-version: 11
+          java-version: 21
       - name: Cache local Maven repository
         uses: actions/cache@v4
         with:
@@ -436,7 +440,7 @@ jobs:
           then ERROR="::notice"
           else ERROR="::error"
           fi
-          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants#testSecurityInvariants -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION -DfailIfNoTests=false -DEMIT_GITHUB_ERRORS 2>&1 | sed "s/^::error/$ERROR/"
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants#testSecurityInvariants -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd) -DfailIfNoTests=false -DEMIT_GITHUB_ERRORS 2>&1 | sed "s/^::error/$ERROR/"
           STATUS=${PIPESTATUS[0]}
           if [[ ${REPERTOIRE_CHANGED:-0} -ne 0 ]]
           then exit 0

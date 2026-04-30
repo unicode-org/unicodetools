@@ -115,7 +115,7 @@ public final class UTF8StreamReader extends Reader {
             int b = bBuffer[bIndex++] & 0xFF;
 
             switch (bRemaining) {
-                    // First Byte case
+                // First Byte case
                 case 0:
                     bRemaining = BYTES_REMAINING[b];
                     switch (bRemaining) {
@@ -139,7 +139,7 @@ public final class UTF8StreamReader extends Reader {
                     }
                     break;
 
-                    // Trailing bytes
+                // Trailing bytes
                 case 2:
                 case 3:
                     b ^= 0x80;
@@ -151,7 +151,7 @@ public final class UTF8StreamReader extends Reader {
                     --bRemaining;
                     break;
 
-                    // Last trailing byte, time to assemble
+                // Last trailing byte, time to assemble
                 case 1:
                     b ^= 0x80;
                     if (b > 0x3F) {

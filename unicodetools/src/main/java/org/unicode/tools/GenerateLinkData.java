@@ -28,6 +28,7 @@ import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.utilities.LinkUtilities;
 import org.unicode.utilities.LinkUtilities.LinkTermination;
@@ -48,11 +49,15 @@ import org.unicode.utilities.LinkUtilities.UrlInternals;
  */
 public class GenerateLinkData {
 
-    private static final Transliterator FIX_ODD =
-            Transliterator.createFromRules(
-                    "any-html",
-                    ":: [[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]] hex/unicode ; ",
-                    Transliterator.FORWARD);
+    private static final Transliterator FIX_ODD = getFixOdd();
+
+    private static final Transliterator getFixOdd() {
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
+        return Transliterator.createFromRules(
+                "any-html",
+                ":: [[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]] hex/unicode ; ",
+                Transliterator.FORWARD);
+    }
 
     private static final boolean ADDTEST = false; // set to true to generate LinkDetectionTestSource
 

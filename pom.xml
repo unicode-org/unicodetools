@@ -35,8 +35,8 @@
 
 
         <!-- these two set the JDK version for source and target -->
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
 
         <!-- Good hygiene. This is Unicode after all! -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -47,7 +47,9 @@
         <!-- Need to use an updated surefire plugin here. -->
         <maven-surefire-plugin-version>3.0.0-M5</maven-surefire-plugin-version>
 
-        <spotless.version>2.43.0</spotless.version>
+        <spotless.version>3.1.0</spotless.version>
+        <!-- https://mvnrepository.com/artifact/com.google.googlejavaformat/google-java-format -->
+        <google-java-style.version>1.35.0</google-java-style.version>
     </properties>
 
     <modules>
@@ -100,7 +102,6 @@
                     <configuration>
                         <systemPropertyVariables>
                             <!-- These are variables which are picked up by test runs -->
-                            <UVERSION>13.0.0</UVERSION>
                             <CLDR_ENVIRONMENT>UNITTEST</CLDR_ENVIRONMENT>
                             <java.awt.headless>true</java.awt.headless>
                             <UNICODETOOLS_REPO_DIR>${project.basedir}/..</UNICODETOOLS_REPO_DIR>
@@ -132,9 +133,7 @@
                             <!-- no need to specify files, inferred automatically, but you can if you want -->
                             <!-- apply a specific flavor of google-java-format and reflow long strings -->
                             <googleJavaFormat>
-                                <!-- version of google-java-style, see
-                                    https://mvnrepository.com/artifact/com.google.googlejavaformat/google-java-format -->
-                                <version>1.22.0</version>
+                                <version>${google-java-style.version}</version>
                                 <style>AOSP</style>
                                 <reflowLongStrings>false</reflowLongStrings>
                             </googleJavaFormat>

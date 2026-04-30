@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2026-03-17, 22:17:15 GMT
+# Date: 2026-04-29, 15:15:17 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -949,8 +949,9 @@
 	(‎ অা ‎)	0985 09BE	 BENGALI LETTER A, BENGALI VOWEL SIGN AA
 ←	(‎ আ ‎)	0986	 BENGALI LETTER AA
 
-#	র	ৰ
+#	র	𑷱	ৰ
 	(‎ র ‎)	09B0	 BENGALI LETTER RA
+←	(‎ 𑷱 ‎)	11DF1	 BENGALI LETTER ALTERNATE BARGIYA BA	# →ৰ→
 ←	(‎ ৰ ‎)	09F0	 BENGALI LETTER RA WITH MIDDLE DIAGONAL
 
 #	ਅै	ਅੈ	ਐ
@@ -1471,5 +1472,5 @@
 	(‎ へ ‎)	3078	 HIRAGANA LETTER HE
 ←	(‎ ヘ ‎)	30D8	 KATAKANA LETTER HE
 
-# total : 528
+# total : 529
 

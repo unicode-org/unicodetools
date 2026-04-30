@@ -282,10 +282,10 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         } else {
             switch (versionQualifier.charAt(0)) {
                 case 'R':
-                    // Extension: we allow a version-qualifier starting with R for retroactive
-                    // properties, that is, property derivations applied before the property
-                    // existed.
-                    // TODO(egg): Actually support that.
+                // Extension: we allow a version-qualifier starting with R for retroactive
+                // properties, that is, property derivations applied before the property
+                // existed.
+                // TODO(egg): Actually support that.
                 case 'U':
                     break;
                 default:

@@ -1666,29 +1666,29 @@ public final class UCD implements UCD_Types {
                 }
                 // isRemapped = true;
                 break;
-                // FALL THROUGH!!!!
-                // default:
-                /*
-                result = getRaw(codePoint);
-                if (result == null) {
-                    result = UData.UNASSIGNED;
-                    result.name = null; // clean this up, since we reuse UNASSIGNED
-                    result.shortName = null;
-                    if (fixStrings) {
-                        result.name = "<unassigned-" + Utility.hex(codePoint, 4) + ">";
-                    }
-                }
+            // FALL THROUGH!!!!
+            // default:
+            /*
+            result = getRaw(codePoint);
+            if (result == null) {
+                result = UData.UNASSIGNED;
+                result.name = null; // clean this up, since we reuse UNASSIGNED
+                result.shortName = null;
                 if (fixStrings) {
-                    if (result.name == null) {
-                        result.name = "<unassigned-" + Utility.hex(codePoint, 4) + ">";
-                        // System.out.println("Warning: fixing name for " + result.name);
-                    }
-                    if (result.shortName == null) {
-                        result.shortName = Utility.replace(result.name, UCD_Names.NAME_ABBREVIATIONS);
-                    }
+                    result.name = "<unassigned-" + Utility.hex(codePoint, 4) + ">";
                 }
-                 */
-                // break;
+            }
+            if (fixStrings) {
+                if (result.name == null) {
+                    result.name = "<unassigned-" + Utility.hex(codePoint, 4) + ">";
+                    // System.out.println("Warning: fixing name for " + result.name);
+                }
+                if (result.shortName == null) {
+                    result.shortName = Utility.replace(result.name, UCD_Names.NAME_ABBREVIATIONS);
+                }
+            }
+             */
+            // break;
             case CJK_A_BASE: // CJK Ideograph Extension A
             case CJK_BASE: // CJK Ideograph
             case CJK_B_BASE: // Extension B

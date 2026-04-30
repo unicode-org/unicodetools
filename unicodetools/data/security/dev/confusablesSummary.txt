@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2026-03-17, 22:17:15 GMT
+# Date: 2026-04-29, 15:15:17 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2842,7 +2842,7 @@
 ←	(‎ 𝘔 ‎)	1D614	 MATHEMATICAL SANS-SERIF ITALIC CAPITAL M
 ←	(‎ 𝙈 ‎)	1D648	 MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL M
 ←	(‎ 𝙼 ‎)	1D67C	 MATHEMATICAL MONOSPACE CAPITAL M
-←	(‎ 𝚳 ‎)	1D6B3	 MATHEMATICAL BOLD CAPITAL MU	# →𝐌→
+←	(‎ 𝚳 ‎)	1D6B3	 MATHEMATICAL BOLD CAPITAL MU	# →Μ→
 ←	(‎ 𝛭 ‎)	1D6ED	 MATHEMATICAL ITALIC CAPITAL MU	# →𝑀→
 ←	(‎ 𝜧 ‎)	1D727	 MATHEMATICAL BOLD ITALIC CAPITAL MU	# →𝑴→
 ←	(‎ 𝝡 ‎)	1D761	 MATHEMATICAL SANS-SERIF BOLD CAPITAL MU	# →Μ→
@@ -2977,7 +2977,7 @@
 ←	(‎ 𝘗 ‎)	1D617	 MATHEMATICAL SANS-SERIF ITALIC CAPITAL P
 ←	(‎ 𝙋 ‎)	1D64B	 MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL P
 ←	(‎ 𝙿 ‎)	1D67F	 MATHEMATICAL MONOSPACE CAPITAL P
-←	(‎ 𝚸 ‎)	1D6B8	 MATHEMATICAL BOLD CAPITAL RHO	# →𝐏→
+←	(‎ 𝚸 ‎)	1D6B8	 MATHEMATICAL BOLD CAPITAL RHO	# →Ρ→
 ←	(‎ 𝛲 ‎)	1D6F2	 MATHEMATICAL ITALIC CAPITAL RHO	# →Ρ→
 ←	(‎ 𝜬 ‎)	1D72C	 MATHEMATICAL BOLD ITALIC CAPITAL RHO	# →Ρ→
 ←	(‎ 𝝦 ‎)	1D766	 MATHEMATICAL SANS-SERIF BOLD CAPITAL RHO	# →Ρ→
@@ -3760,8 +3760,9 @@
 	(‎ bar ‎)	0062 0061 0072	 LATIN SMALL LETTER B, LATIN SMALL LETTER A, LATIN SMALL LETTER R
 ←	(‎ ㍴ ‎)	3374	 SQUARE BAR
 
-#	bl	Ь𞴁	𖺶l	Ьl	ЬІ	Ь│	Ы
+#	bl	Ь𝍷	Ь𞴁	𖺶l	Ьl	ЬІ	Ь│	Ы
 	(‎ bl ‎)	0062 006C	 LATIN SMALL LETTER B, LATIN SMALL LETTER L
+←	(‎ Ь𝍷 ‎)	042C 1D377	 CYRILLIC CAPITAL LETTER SOFT SIGN, TALLY MARK ONE	# →ЬІ→→‎Ь𞴁‎→→Ьl→
 ←	(‎ Ь𞴁 ‎)	042C 1ED01	 CYRILLIC CAPITAL LETTER SOFT SIGN, OTTOMAN SIYAQ NUMBER ONE	# →Ьl→
 ←	(‎ 𖺶l ‎)	16EB6 006C	 BERIA ERFE CAPITAL LETTER UI, LATIN SMALL LETTER L	# →ЬІ→→‎Ь𞴁‎→→Ьl→
 ←	(‎ Ьl ‎)	042C 006C	 CYRILLIC CAPITAL LETTER SOFT SIGN, LATIN SMALL LETTER L
@@ -4183,7 +4184,7 @@
 ←	(‎ ⲓ ‎)	2C93	 COPTIC SMALL LETTER IAUDA	# →ı→
 ←	(‎ ꙇ ‎)	A647	 CYRILLIC SMALL LETTER IOTA	# →ι→
 ←	(‎ ¡ ‎)	00A1	 INVERTED EXCLAMATION MARK
-←	(‎ ⍳ ‎)	2373	 APL FUNCTIONAL SYMBOL IOTA	# →ɩ→
+←	(‎ ⍳ ‎)	2373	 APL FUNCTIONAL SYMBOL IOTA	# →ι→
 ←	(‎ 𑣃 ‎)	118C3	 WARANG CITI SMALL LETTER YU	# →ι→
 ←	(‎ ꭵ ‎)	AB75	 CHEROKEE SMALL LETTER V
 ←	(‎ ⅰ ‎)	2170	 SMALL ROMAN NUMERAL ONE
@@ -4341,8 +4342,9 @@
 	(‎ kΩ ‎)	006B 03A9	 LATIN SMALL LETTER K, GREEK CAPITAL LETTER OMEGA
 ←	(‎ ㏀ ‎)	33C0	 SQUARE K OHM
 
-#	l'	𞴁'	וי	│'	ױ
+#	l'	𝍷'	𞴁'	וי	│'	ױ
 	(‎ l' ‎)	006C 0027	 LATIN SMALL LETTER L, APOSTROPHE
+←	(‎ 𝍷' ‎)	1D377 0027	 TALLY MARK ONE, APOSTROPHE	# →‎וי‎→
 ←	(‎ 𞴁' ‎)	1ED01 0027	 OTTOMAN SIYAQ NUMBER ONE, APOSTROPHE	# →‎וי‎→
 ←	(‎ וי ‎)	05D5 05D9	 HEBREW LETTER VAV, HEBREW LETTER YOD
 ←	(‎ │' ‎)	2502 0027	 BOX DRAWINGS LIGHT VERTICAL, APOSTROPHE	# →‎וי‎→
@@ -4390,8 +4392,9 @@
 ←	(‎ lʒ ‎)	006C 0292	 LATIN SMALL LETTER L, LATIN SMALL LETTER EZH
 ←	(‎ ɮ ‎)	026E	 LATIN SMALL LETTER LEZH	# →lʒ→
 
-#	ĺ́	𞴁ً	lً	اً	│ً	ﴼ	ﴽ
+#	ĺ́	𝍷ً	𞴁ً	lً	اً	│ً	ﴼ	ﴽ
 	(‎ ĺ́ ‎)	006C 0301 0301	 LATIN SMALL LETTER L, COMBINING ACUTE ACCENT, COMBINING ACUTE ACCENT
+←	(‎ 𝍷ً ‎)	1D377 064B	 TALLY MARK ONE, ARABIC FATHATAN	# →‎اً‎→
 ←	(‎ 𞴁ً ‎)	1ED01 064B	 OTTOMAN SIYAQ NUMBER ONE, ARABIC FATHATAN	# →‎اً‎→
 ←	(‎ lً ‎)	006C 064B	 LATIN SMALL LETTER L, ARABIC FATHATAN	# →‎𞴁ً‎→→‎اً‎→
 ←	(‎ اً ‎)	0627 064B	 ARABIC LETTER ALEF, ARABIC FATHATAN
@@ -4422,41 +4425,48 @@
 ←	(‎ ł ‎)	0142	 LATIN SMALL LETTER L WITH STROKE
 ←	(‎ ᛅ ‎)	16C5	 RUNIC LETTER LONG-BRANCH-AR AE	# →ł→
 
-#	𞴁ع𞴁	lعl	اعا	│ع│	𞲆
+#	𝍷ع𝍷	𞴁ع𞴁	lعl	اعا	│ع│	𞲆
 	(‎ lعl ‎)	006C 0639 006C	 LATIN SMALL LETTER L, ARABIC LETTER AIN, LATIN SMALL LETTER L
+←	(‎ 𝍷ع𝍷 ‎)	1D377 0639 1D377	 TALLY MARK ONE, ARABIC LETTER AIN, TALLY MARK ONE	# →‎اعا‎→
 ←	(‎ 𞴁ع𞴁 ‎)	1ED01 0639 1ED01	 OTTOMAN SIYAQ NUMBER ONE, ARABIC LETTER AIN, OTTOMAN SIYAQ NUMBER ONE	# →‎اعا‎→
 ←	(‎ اعا ‎)	0627 0639 0627	 ARABIC LETTER ALEF, ARABIC LETTER AIN, ARABIC LETTER ALEF
 ←	(‎ │ع│ ‎)	2502 0639 2502	 BOX DRAWINGS LIGHT VERTICAL, ARABIC LETTER AIN, BOX DRAWINGS LIGHT VERTICAL	# →‎اعا‎→
 ←	(‎ 𞲆 ‎)	1EC86	 INDIC SIYAQ NUMBER FOUR HUNDRED	# →‎اعا‎→
 
-#	lكبر	𞴁كبر	اكبر	│كبر	ﷳ
+#	lكبر	𝍷كبر	𞴁كبر	اكبر	│كبر	ﷳ
 	(‎ lكبر ‎)	006C 0643 0628 0631	 LATIN SMALL LETTER L, ARABIC LETTER KAF, ARABIC LETTER BEH, ARABIC LETTER REH
+←	(‎ 𝍷كبر ‎)	1D377 0643 0628 0631	 TALLY MARK ONE, ARABIC LETTER KAF, ARABIC LETTER BEH, ARABIC LETTER REH	# →‎اكبر‎→
 ←	(‎ 𞴁كبر ‎)	1ED01 0643 0628 0631	 OTTOMAN SIYAQ NUMBER ONE, ARABIC LETTER KAF, ARABIC LETTER BEH, ARABIC LETTER REH	# →‎اكبر‎→
 ←	(‎ اكبر ‎)	0627 0643 0628 0631	 ARABIC LETTER ALEF, ARABIC LETTER KAF, ARABIC LETTER BEH, ARABIC LETTER REH
 ←	(‎ │كبر ‎)	2502 0643 0628 0631	 BOX DRAWINGS LIGHT VERTICAL, ARABIC LETTER KAF, ARABIC LETTER BEH, ARABIC LETTER REH	# →‎اكبر‎→
 ←	(‎ ﷳ ‎)	FDF3	 ARABIC LIGATURE AKBAR ISOLATED FORM	# →‎اكبر‎→
 
-#	lلل่𐴧o	𞴁للّٰه	lللّٰه	اللّٰه	│للّٰه	lلل𐴧o	𞴁للّه	lللّه	اللّه	│للّه	𞴁لله	lللo	lلله	الله	│لله	ﷲ
+#	lلل่𐴧o	𝍷للّٰه	𞴁للّٰه	lللّٰه	اللّٰه	│للّٰه	lلل𐴧o	𝍷للّه	𞴁للّه	lللّه	اللّه	│للّه	𝍷لله	𞴁لله	lللo	lلله	الله	│لله	ﷲ
 	(‎ lللo ‎)	006C 0644 0644 006F	 LATIN SMALL LETTER L, ARABIC LETTER LAM, ARABIC LETTER LAM, LATIN SMALL LETTER O
 ←	(‎ lلل่𐴧o ‎)	006C 0644 0644 10D27 0E48 006F	 LATIN SMALL LETTER L, ARABIC LETTER LAM, ARABIC LETTER LAM, HANIFI ROHINGYA SIGN TASSI, THAI CHARACTER MAI EK, LATIN SMALL LETTER O	# →‎اللّٰه‎→→‎ﷲ‎→→‎الله‎→
+←	(‎ 𝍷للّٰه ‎)	1D377 0644 0644 0651 0670 0647	 TALLY MARK ONE, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC SHADDA, ARABIC LETTER SUPERSCRIPT ALEF, ARABIC LETTER HEH	# →‎اللّٰه‎→→‎ﷲ‎→→‎الله‎→
 ←	(‎ 𞴁للّٰه ‎)	1ED01 0644 0644 0651 0670 0647	 OTTOMAN SIYAQ NUMBER ONE, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC SHADDA, ARABIC LETTER SUPERSCRIPT ALEF, ARABIC LETTER HEH	# →‎اللّٰه‎→→‎ﷲ‎→→‎الله‎→
 ←	(‎ lللّٰه ‎)	006C 0644 0644 0651 0670 0647	 LATIN SMALL LETTER L, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC SHADDA, ARABIC LETTER SUPERSCRIPT ALEF, ARABIC LETTER HEH	# →‎𞴁للّٰه‎→→‎اللّٰه‎→→‎ﷲ‎→→‎الله‎→
 ←	(‎ اللّٰه ‎)	0627 0644 0644 0651 0670 0647	 ARABIC LETTER ALEF, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC SHADDA, ARABIC LETTER SUPERSCRIPT ALEF, ARABIC LETTER HEH	# →‎ﷲ‎→→‎الله‎→
 ←	(‎ │للّٰه ‎)	2502 0644 0644 0651 0670 0647	 BOX DRAWINGS LIGHT VERTICAL, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC SHADDA, ARABIC LETTER SUPERSCRIPT ALEF, ARABIC LETTER HEH	# →‎اللّٰه‎→→‎ﷲ‎→→‎الله‎→
 ←	(‎ lلل𐴧o ‎)	006C 0644 0644 10D27 006F	 LATIN SMALL LETTER L, ARABIC LETTER LAM, ARABIC LETTER LAM, HANIFI ROHINGYA SIGN TASSI, LATIN SMALL LETTER O	# →‎اللّه‎→→‎ﷲ‎→→‎الله‎→
+←	(‎ 𝍷للّه ‎)	1D377 0644 0644 0651 0647	 TALLY MARK ONE, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC SHADDA, ARABIC LETTER HEH	# →‎اللّه‎→→‎ﷲ‎→→‎الله‎→
 ←	(‎ 𞴁للّه ‎)	1ED01 0644 0644 0651 0647	 OTTOMAN SIYAQ NUMBER ONE, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC SHADDA, ARABIC LETTER HEH	# →‎اللّه‎→→‎ﷲ‎→→‎الله‎→
 ←	(‎ lللّه ‎)	006C 0644 0644 0651 0647	 LATIN SMALL LETTER L, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC SHADDA, ARABIC LETTER HEH	# →‎𞴁للّه‎→→‎اللّه‎→→‎ﷲ‎→→‎الله‎→
 ←	(‎ اللّه ‎)	0627 0644 0644 0651 0647	 ARABIC LETTER ALEF, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC SHADDA, ARABIC LETTER HEH	# →‎ﷲ‎→→‎الله‎→
 ←	(‎ │للّه ‎)	2502 0644 0644 0651 0647	 BOX DRAWINGS LIGHT VERTICAL, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC SHADDA, ARABIC LETTER HEH	# →‎اللّه‎→→‎ﷲ‎→→‎الله‎→
+←	(‎ 𝍷لله ‎)	1D377 0644 0644 0647	 TALLY MARK ONE, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC LETTER HEH	# →‎الله‎→
 ←	(‎ 𞴁لله ‎)	1ED01 0644 0644 0647	 OTTOMAN SIYAQ NUMBER ONE, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC LETTER HEH	# →‎الله‎→
 ←	(‎ lلله ‎)	006C 0644 0644 0647	 LATIN SMALL LETTER L, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC LETTER HEH	# →‎𞴁لله‎→→‎الله‎→
 ←	(‎ الله ‎)	0627 0644 0644 0647	 ARABIC LETTER ALEF, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC LETTER HEH
 ←	(‎ │لله ‎)	2502 0644 0644 0647	 BOX DRAWINGS LIGHT VERTICAL, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC LETTER HEH	# →‎الله‎→
 ←	(‎ ﷲ ‎)	FDF2	 ARABIC LIGATURE ALLAH ISOLATED FORM	# →‎الله‎→
 
-#	lٴ	ٴ𞴁	𞴁ٔ	lٔ	ٴl	أ	اٴ	ٴا	ٴ│	│ٔ	│ٴ	ٲ	ٵ	ﺃ	ﺄ
+#	lٴ	ٴ𝍷	𝍷ٔ	ٴ𞴁	𞴁ٔ	lٔ	ٴl	أ	اٴ	ٴا	ٴ│	│ٔ	│ٴ	ٲ	ٵ	ﺃ	ﺄ
 	(‎ lٔ ‎)	006C 0654	 LATIN SMALL LETTER L, ARABIC HAMZA ABOVE
 ←	(‎ lٴ ‎)	006C 0674	 LATIN SMALL LETTER L, ARABIC LETTER HIGH HAMZA	# →‎اٴ‎→→‎ٵ‎→→‎أ‎→
+←	(‎ ٴ𝍷 ‎)	0674 1D377	 ARABIC LETTER HIGH HAMZA, TALLY MARK ONE	# →‎ٴا‎→→‎ٵ‎→→‎أ‎→
+←	(‎ 𝍷ٔ ‎)	1D377 0654	 TALLY MARK ONE, ARABIC HAMZA ABOVE	# →‎أ‎→
 ←	(‎ ٴ𞴁 ‎)	0674 1ED01	 ARABIC LETTER HIGH HAMZA, OTTOMAN SIYAQ NUMBER ONE	# →‎ٴا‎→→‎ٵ‎→→‎أ‎→
 ←	(‎ 𞴁ٔ ‎)	1ED01 0654	 OTTOMAN SIYAQ NUMBER ONE, ARABIC HAMZA ABOVE	# →‎أ‎→
 ←	(‎ ٴl ‎)	0674 006C	 ARABIC LETTER HIGH HAMZA, LATIN SMALL LETTER L	# →‎ٴا‎→→‎ٵ‎→→‎أ‎→
@@ -4471,8 +4481,9 @@
 ←	(‎ ﺃ ‎)	FE83	 ARABIC LETTER ALEF WITH HAMZA ABOVE ISOLATED FORM	# →‎أ‎→
 ←	(‎ ﺄ ‎)	FE84	 ARABIC LETTER ALEF WITH HAMZA ABOVE FINAL FORM	# →‎أ‎→
 
-#	lٕ	𞴁ٕ	إ	اٟ	│ٕ	ٳ	ﺇ	ﺈ
+#	lٕ	𝍷ٕ	𞴁ٕ	إ	اٟ	│ٕ	ٳ	ﺇ	ﺈ
 	(‎ lٕ ‎)	006C 0655	 LATIN SMALL LETTER L, ARABIC HAMZA BELOW
+←	(‎ 𝍷ٕ ‎)	1D377 0655	 TALLY MARK ONE, ARABIC HAMZA BELOW	# →‎إ‎→
 ←	(‎ 𞴁ٕ ‎)	1ED01 0655	 OTTOMAN SIYAQ NUMBER ONE, ARABIC HAMZA BELOW	# →‎إ‎→
 ←	(‎ إ ‎)	0627 0655	 ARABIC LETTER ALEF, ARABIC HAMZA BELOW
 ←	(‎ اٟ ‎)	0627 065F	 ARABIC LETTER ALEF, ARABIC WAVY HAMZA BELOW	# →‎ٳ‎→→‎إ‎→
@@ -5618,11 +5629,12 @@
 ←	(‎ ◦̈ ‎)	25E6 0308	 WHITE BULLET, COMBINING DIAERESIS	# →∘̈→
 ←	(‎ ⍤ ‎)	2364	 APL FUNCTIONAL SYMBOL JOT DIAERESIS	# →◦̈→→∘̈→
 
-#	°̲	○̲	𐻐	⍜
+#	°̲	∘̲	○̲	𐻐	⍜
 	(‎ °̲ ‎)	00B0 0332	 DEGREE SIGN, COMBINING LOW LINE
-←	(‎ ○̲ ‎)	25CB 0332	 WHITE CIRCLE, COMBINING LOW LINE
-←	(‎ 𐻐 ‎)	10ED0	 ARABIC BIBLICAL END OF VERSE	# →⍜→→○̲→
-←	(‎ ⍜ ‎)	235C	 APL FUNCTIONAL SYMBOL CIRCLE UNDERBAR	# →○̲→
+←	(‎ ∘̲ ‎)	2218 0332	 RING OPERATOR, COMBINING LOW LINE
+←	(‎ ○̲ ‎)	25CB 0332	 WHITE CIRCLE, COMBINING LOW LINE	# →∘̲→
+←	(‎ 𐻐 ‎)	10ED0	 ARABIC BIBLICAL END OF VERSE	# →⍜→→○̲→→∘̲→
+←	(‎ ⍜ ‎)	235C	 APL FUNCTIONAL SYMBOL CIRCLE UNDERBAR	# →○̲→→∘̲→
 
 #	ᒾ	²
 	(‎ ² ‎)	00B2	 SUPERSCRIPT TWO
@@ -7489,8 +7501,9 @@
 	(‎ Ш ‎)	0428	 CYRILLIC CAPITAL LETTER SHA
 ←	(‎ Ⲽ ‎)	2CBC	 COPTIC CAPITAL LETTER CRYPTOGRAMMIC NI
 
-#	Ъl	Ъ𞴁	ЪІ	Ъ│	Ꙑ
+#	Ъl	Ъ𝍷	Ъ𞴁	ЪІ	Ъ│	Ꙑ
 	(‎ Ъl ‎)	042A 006C	 CYRILLIC CAPITAL LETTER HARD SIGN, LATIN SMALL LETTER L
+←	(‎ Ъ𝍷 ‎)	042A 1D377	 CYRILLIC CAPITAL LETTER HARD SIGN, TALLY MARK ONE	# →ЪІ→
 ←	(‎ Ъ𞴁 ‎)	042A 1ED01	 CYRILLIC CAPITAL LETTER HARD SIGN, OTTOMAN SIYAQ NUMBER ONE	# →ЪІ→
 ←	(‎ ЪІ ‎)	042A 0406	 CYRILLIC CAPITAL LETTER HARD SIGN, CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
 ←	(‎ Ъ│ ‎)	042A 2502	 CYRILLIC CAPITAL LETTER HARD SIGN, BOX DRAWINGS LIGHT VERTICAL	# →ЪІ→
@@ -8059,8 +8072,9 @@
 ←	(‎ ﶦ ‎)	FDA6	 ARABIC LIGATURE JEEM WITH HAH WITH ALEF MAKSURA FINAL FORM
 ←	(‎ ﶾ ‎)	FDBE	 ARABIC LIGATURE JEEM WITH HAH WITH YEH FINAL FORM	# →‎جحي‎→
 
-#	جل جلlلo	جل جل𞴁له	جل جلlله	جل جلاله	جل جل│له	ﷻ
+#	جل جلlلo	جل جل𝍷له	جل جل𞴁له	جل جلlله	جل جلاله	جل جل│له	ﷻ
 	(‎ جل جلlلo ‎)	062C 0644 0020 062C 0644 006C 0644 006F	 ARABIC LETTER JEEM, ARABIC LETTER LAM, SPACE, ARABIC LETTER JEEM, ARABIC LETTER LAM, LATIN SMALL LETTER L, ARABIC LETTER LAM, LATIN SMALL LETTER O
+←	(‎ جل جل𝍷له ‎)	062C 0644 0020 062C 0644 1D377 0644 0647	 ARABIC LETTER JEEM, ARABIC LETTER LAM, SPACE, ARABIC LETTER JEEM, ARABIC LETTER LAM, TALLY MARK ONE, ARABIC LETTER LAM, ARABIC LETTER HEH	# →‎جل جلاله‎→
 ←	(‎ جل جل𞴁له ‎)	062C 0644 0020 062C 0644 1ED01 0644 0647	 ARABIC LETTER JEEM, ARABIC LETTER LAM, SPACE, ARABIC LETTER JEEM, ARABIC LETTER LAM, OTTOMAN SIYAQ NUMBER ONE, ARABIC LETTER LAM, ARABIC LETTER HEH	# →‎جل جلاله‎→
 ←	(‎ جل جلlله ‎)	062C 0644 0020 062C 0644 006C 0644 0647	 ARABIC LETTER JEEM, ARABIC LETTER LAM, SPACE, ARABIC LETTER JEEM, ARABIC LETTER LAM, LATIN SMALL LETTER L, ARABIC LETTER LAM, ARABIC LETTER HEH	# →‎جل جل𞴁له‎→→‎جل جلاله‎→
 ←	(‎ جل جلاله ‎)	062C 0644 0020 062C 0644 0627 0644 0647	 ARABIC LETTER JEEM, ARABIC LETTER LAM, SPACE, ARABIC LETTER JEEM, ARABIC LETTER LAM, ARABIC LETTER ALEF, ARABIC LETTER LAM, ARABIC LETTER HEH
@@ -8104,8 +8118,9 @@
 ←	(‎ ﺣ ‎)	FEA3	 ARABIC LETTER HAH INITIAL FORM
 ←	(‎ ﺤ ‎)	FEA4	 ARABIC LETTER HAH MEDIAL FORM
 
-#	ح𞴁	حl	حا	ح│	𞴲
+#	ح𝍷	ح𞴁	حl	حا	ح│	𞴲
 	(‎ حl ‎)	062D 006C	 ARABIC LETTER HAH, LATIN SMALL LETTER L
+←	(‎ ح𝍷 ‎)	062D 1D377	 ARABIC LETTER HAH, TALLY MARK ONE	# →‎حا‎→
 ←	(‎ ح𞴁 ‎)	062D 1ED01	 ARABIC LETTER HAH, OTTOMAN SIYAQ NUMBER ONE	# →‎حا‎→
 ←	(‎ حا ‎)	062D 0627	 ARABIC LETTER HAH, ARABIC LETTER ALEF
 ←	(‎ ح│ ‎)	062D 2502	 ARABIC LETTER HAH, BOX DRAWINGS LIGHT VERTICAL	# →‎حا‎→
@@ -8136,8 +8151,9 @@
 ←	(‎ ﰘ ‎)	FC18	 ARABIC LIGATURE HAH WITH MEEM ISOLATED FORM
 ←	(‎ ﲪ ‎)	FCAA	 ARABIC LIGATURE HAH WITH MEEM INITIAL FORM
 
-#	حم𞴁	حمl	حما	حم│	𞲇
+#	حم𝍷	حم𞴁	حمl	حما	حم│	𞲇
 	(‎ حمl ‎)	062D 0645 006C	 ARABIC LETTER HAH, ARABIC LETTER MEEM, LATIN SMALL LETTER L
+←	(‎ حم𝍷 ‎)	062D 0645 1D377	 ARABIC LETTER HAH, ARABIC LETTER MEEM, TALLY MARK ONE	# →‎حما‎→
 ←	(‎ حم𞴁 ‎)	062D 0645 1ED01	 ARABIC LETTER HAH, ARABIC LETTER MEEM, OTTOMAN SIYAQ NUMBER ONE	# →‎حما‎→
 ←	(‎ حما ‎)	062D 0645 0627	 ARABIC LETTER HAH, ARABIC LETTER MEEM, ARABIC LETTER ALEF
 ←	(‎ حم│ ‎)	062D 0645 2502	 ARABIC LETTER HAH, ARABIC LETTER MEEM, BOX DRAWINGS LIGHT VERTICAL	# →‎حما‎→
@@ -8282,8 +8298,9 @@
 	(‎ رسول ‎)	0631 0633 0648 0644	 ARABIC LETTER REH, ARABIC LETTER SEEN, ARABIC LETTER WAW, ARABIC LETTER LAM
 ←	(‎ ﷶ ‎)	FDF6	 ARABIC LIGATURE RASOUL ISOLATED FORM
 
-#	رىlل	رى𞴁ل	ریال	رى│ل	⃁	﷼
+#	رىlل	رى𝍷ل	رى𞴁ل	ریال	رى│ل	⃁	﷼
 	(‎ رىlل ‎)	0631 0649 006C 0644	 ARABIC LETTER REH, ARABIC LETTER ALEF MAKSURA, LATIN SMALL LETTER L, ARABIC LETTER LAM
+←	(‎ رى𝍷ل ‎)	0631 0649 1D377 0644	 ARABIC LETTER REH, ARABIC LETTER ALEF MAKSURA, TALLY MARK ONE, ARABIC LETTER LAM	# →‎ریال‎→
 ←	(‎ رى𞴁ل ‎)	0631 0649 1ED01 0644	 ARABIC LETTER REH, ARABIC LETTER ALEF MAKSURA, OTTOMAN SIYAQ NUMBER ONE, ARABIC LETTER LAM	# →‎ریال‎→
 ←	(‎ ریال ‎)	0631 06CC 0627 0644	 ARABIC LETTER REH, ARABIC LETTER FARSI YEH, ARABIC LETTER ALEF, ARABIC LETTER LAM
 ←	(‎ رى│ل ‎)	0631 0649 2502 0644	 ARABIC LETTER REH, ARABIC LETTER ALEF MAKSURA, BOX DRAWINGS LIGHT VERTICAL, ARABIC LETTER LAM	# →‎ریال‎→
@@ -8561,8 +8578,9 @@
 ←	(‎ ﷰ ‎)	FDF0	 ARABIC LIGATURE SALLA USED AS KORANIC STOP SIGN ISOLATED FORM	# →‎صلے‎→
 ←	(‎ ﷹ ‎)	FDF9	 ARABIC LIGATURE SALLA ISOLATED FORM
 
-#	صلى lللo علىo وسلم	صلى 𞴁لله علىه وسلم	صلى lلله علىه وسلم	صلى الله عليه وسلم	صلى │لله علىه وسلم	ﷺ
+#	صلى lللo علىo وسلم	صلى 𝍷لله علىه وسلم	صلى 𞴁لله علىه وسلم	صلى lلله علىه وسلم	صلى الله عليه وسلم	صلى │لله علىه وسلم	ﷺ
 	(‎ صلى lللo علىo وسلم ‎)	0635 0644 0649 0020 006C 0644 0644 006F 0020 0639 0644 0649 006F 0020 0648 0633 0644 0645	 ARABIC LETTER SAD, ARABIC LETTER LAM, ARABIC LETTER ALEF MAKSURA, SPACE, LATIN SMALL LETTER L, ARABIC LETTER LAM, ARABIC LETTER LAM, LATIN SMALL LETTER O, SPACE, ARABIC LETTER AIN, ARABIC LETTER LAM, ARABIC LETTER ALEF MAKSURA, LATIN SMALL LETTER O, SPACE, ARABIC LETTER WAW, ARABIC LETTER SEEN, ARABIC LETTER LAM, ARABIC LETTER MEEM
+←	(‎ صلى 𝍷لله علىه وسلم ‎)	0635 0644 0649 0020 1D377 0644 0644 0647 0020 0639 0644 0649 0647 0020 0648 0633 0644 0645	 ARABIC LETTER SAD, ARABIC LETTER LAM, ARABIC LETTER ALEF MAKSURA, SPACE, TALLY MARK ONE, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC LETTER HEH, SPACE, ARABIC LETTER AIN, ARABIC LETTER LAM, ARABIC LETTER ALEF MAKSURA, ARABIC LETTER HEH, SPACE, ARABIC LETTER WAW, ARABIC LETTER SEEN, ARABIC LETTER LAM, ARABIC LETTER MEEM	# →‎صلى الله عليه وسلم‎→
 ←	(‎ صلى 𞴁لله علىه وسلم ‎)	0635 0644 0649 0020 1ED01 0644 0644 0647 0020 0639 0644 0649 0647 0020 0648 0633 0644 0645	 ARABIC LETTER SAD, ARABIC LETTER LAM, ARABIC LETTER ALEF MAKSURA, SPACE, OTTOMAN SIYAQ NUMBER ONE, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC LETTER HEH, SPACE, ARABIC LETTER AIN, ARABIC LETTER LAM, ARABIC LETTER ALEF MAKSURA, ARABIC LETTER HEH, SPACE, ARABIC LETTER WAW, ARABIC LETTER SEEN, ARABIC LETTER LAM, ARABIC LETTER MEEM	# →‎صلى الله عليه وسلم‎→
 ←	(‎ صلى lلله علىه وسلم ‎)	0635 0644 0649 0020 006C 0644 0644 0647 0020 0639 0644 0649 0647 0020 0648 0633 0644 0645	 ARABIC LETTER SAD, ARABIC LETTER LAM, ARABIC LETTER ALEF MAKSURA, SPACE, LATIN SMALL LETTER L, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC LETTER HEH, SPACE, ARABIC LETTER AIN, ARABIC LETTER LAM, ARABIC LETTER ALEF MAKSURA, ARABIC LETTER HEH, SPACE, ARABIC LETTER WAW, ARABIC LETTER SEEN, ARABIC LETTER LAM, ARABIC LETTER MEEM	# →‎صلى 𞴁لله علىه وسلم‎→→‎صلى الله عليه وسلم‎→
 ←	(‎ صلى الله عليه وسلم ‎)	0635 0644 0649 0020 0627 0644 0644 0647 0020 0639 0644 064A 0647 0020 0648 0633 0644 0645	 ARABIC LETTER SAD, ARABIC LETTER LAM, ARABIC LETTER ALEF MAKSURA, SPACE, ARABIC LETTER ALEF, ARABIC LETTER LAM, ARABIC LETTER LAM, ARABIC LETTER HEH, SPACE, ARABIC LETTER AIN, ARABIC LETTER LAM, ARABIC LETTER YEH, ARABIC LETTER HEH, SPACE, ARABIC LETTER WAW, ARABIC LETTER SEEN, ARABIC LETTER LAM, ARABIC LETTER MEEM
@@ -8714,8 +8732,9 @@
 ←	(‎ ﲹ ‎)	FCB9	 ARABIC LIGATURE ZAH WITH MEEM INITIAL FORM
 ←	(‎ ﴻ ‎)	FD3B	 ARABIC LIGATURE ZAH WITH MEEM MEDIAL FORM
 
-#	ع𞴁	عl	عا	ع│	𞲲	𞴷
+#	ع𝍷	ع𞴁	عl	عا	ع│	𞲲	𞴷
 	(‎ عl ‎)	0639 006C	 ARABIC LETTER AIN, LATIN SMALL LETTER L
+←	(‎ ع𝍷 ‎)	0639 1D377	 ARABIC LETTER AIN, TALLY MARK ONE	# →‎عا‎→
 ←	(‎ ع𞴁 ‎)	0639 1ED01	 ARABIC LETTER AIN, OTTOMAN SIYAQ NUMBER ONE	# →‎عا‎→
 ←	(‎ عا ‎)	0639 0627	 ARABIC LETTER AIN, ARABIC LETTER ALEF
 ←	(‎ ع│ ‎)	0639 2502	 ARABIC LETTER AIN, BOX DRAWINGS LIGHT VERTICAL	# →‎عا‎→
@@ -8935,8 +8954,9 @@
 ←	(‎ ﻛ ‎)	FEDB	 ARABIC LETTER KAF INITIAL FORM
 ←	(‎ ﻜ ‎)	FEDC	 ARABIC LETTER KAF MEDIAL FORM
 
-#	كl	ك𞴁	كا	ك│	ﰷ	ﲀ
+#	كl	ك𝍷	ك𞴁	كا	ك│	ﰷ	ﲀ
 	(‎ كl ‎)	0643 006C	 ARABIC LETTER KAF, LATIN SMALL LETTER L
+←	(‎ ك𝍷 ‎)	0643 1D377	 ARABIC LETTER KAF, TALLY MARK ONE	# →‎كا‎→
 ←	(‎ ك𞴁 ‎)	0643 1ED01	 ARABIC LETTER KAF, OTTOMAN SIYAQ NUMBER ONE	# →‎كا‎→
 ←	(‎ كا ‎)	0643 0627	 ARABIC LETTER KAF, ARABIC LETTER ALEF
 ←	(‎ ك│ ‎)	0643 2502	 ARABIC LETTER KAF, BOX DRAWINGS LIGHT VERTICAL	# →‎كا‎→
@@ -8969,8 +8989,9 @@
 ←	(‎ کرور ‎)	06A9 0631 0648 0631	 ARABIC LETTER KEHEH, ARABIC LETTER REH, ARABIC LETTER WAW, ARABIC LETTER REH
 ←	(‎ 𞲡 ‎)	1ECA1	 INDIC SIYAQ NUMBER KAROR	# →‎کرور‎→
 
-#	كرور𞴁ى	كرورlى	کروراں	كرور│ى	𞲢
+#	كرور𝍷ى	كرور𞴁ى	كرورlى	کروراں	كرور│ى	𞲢
 	(‎ كرورlى ‎)	0643 0631 0648 0631 006C 0649	 ARABIC LETTER KAF, ARABIC LETTER REH, ARABIC LETTER WAW, ARABIC LETTER REH, LATIN SMALL LETTER L, ARABIC LETTER ALEF MAKSURA
+←	(‎ كرور𝍷ى ‎)	0643 0631 0648 0631 1D377 0649	 ARABIC LETTER KAF, ARABIC LETTER REH, ARABIC LETTER WAW, ARABIC LETTER REH, TALLY MARK ONE, ARABIC LETTER ALEF MAKSURA	# →‎کروراں‎→
 ←	(‎ كرور𞴁ى ‎)	0643 0631 0648 0631 1ED01 0649	 ARABIC LETTER KAF, ARABIC LETTER REH, ARABIC LETTER WAW, ARABIC LETTER REH, OTTOMAN SIYAQ NUMBER ONE, ARABIC LETTER ALEF MAKSURA	# →‎کروراں‎→
 ←	(‎ کروراں ‎)	06A9 0631 0648 0631 0627 06BA	 ARABIC LETTER KEHEH, ARABIC LETTER REH, ARABIC LETTER WAW, ARABIC LETTER REH, ARABIC LETTER ALEF, ARABIC LETTER NOON GHUNNA
 ←	(‎ كرور│ى ‎)	0643 0631 0648 0631 2502 0649	 ARABIC LETTER KAF, ARABIC LETTER REH, ARABIC LETTER WAW, ARABIC LETTER REH, BOX DRAWINGS LIGHT VERTICAL, ARABIC LETTER ALEF MAKSURA	# →‎کروراں‎→
@@ -9031,8 +9052,9 @@
 ←	(‎ ﻟ ‎)	FEDF	 ARABIC LETTER LAM INITIAL FORM
 ←	(‎ ﻠ ‎)	FEE0	 ARABIC LETTER LAM MEDIAL FORM
 
-#	لl	ل𞴁	لا	ل│	ﻻ	ﻼ
+#	لl	ل𝍷	ل𞴁	لا	ل│	ﻻ	ﻼ
 	(‎ لl ‎)	0644 006C	 ARABIC LETTER LAM, LATIN SMALL LETTER L
+←	(‎ ل𝍷 ‎)	0644 1D377	 ARABIC LETTER LAM, TALLY MARK ONE	# →‎لا‎→
 ←	(‎ ل𞴁 ‎)	0644 1ED01	 ARABIC LETTER LAM, OTTOMAN SIYAQ NUMBER ONE	# →‎لا‎→
 ←	(‎ لا ‎)	0644 0627	 ARABIC LETTER LAM, ARABIC LETTER ALEF
 ←	(‎ ل│ ‎)	0644 2502	 ARABIC LETTER LAM, BOX DRAWINGS LIGHT VERTICAL	# →‎لا‎→
@@ -9048,16 +9070,18 @@
 ←	(‎ ﻵ ‎)	FEF5	 ARABIC LIGATURE LAM WITH ALEF WITH MADDA ABOVE ISOLATED FORM	# →‎لآ‎→
 ←	(‎ ﻶ ‎)	FEF6	 ARABIC LIGATURE LAM WITH ALEF WITH MADDA ABOVE FINAL FORM	# →‎لآ‎→
 
-#	ل𞴁ٔ	لlٔ	لأ	ل│ٔ	ﻷ	ﻸ
+#	ل𝍷ٔ	ل𞴁ٔ	لlٔ	لأ	ل│ٔ	ﻷ	ﻸ
 	(‎ لlٔ ‎)	0644 006C 0654	 ARABIC LETTER LAM, LATIN SMALL LETTER L, ARABIC HAMZA ABOVE
+←	(‎ ل𝍷ٔ ‎)	0644 1D377 0654	 ARABIC LETTER LAM, TALLY MARK ONE, ARABIC HAMZA ABOVE	# →‎لأ‎→
 ←	(‎ ل𞴁ٔ ‎)	0644 1ED01 0654	 ARABIC LETTER LAM, OTTOMAN SIYAQ NUMBER ONE, ARABIC HAMZA ABOVE	# →‎لأ‎→
 ←	(‎ لأ ‎)	0644 0627 0654	 ARABIC LETTER LAM, ARABIC LETTER ALEF, ARABIC HAMZA ABOVE
 ←	(‎ ل│ٔ ‎)	0644 2502 0654	 ARABIC LETTER LAM, BOX DRAWINGS LIGHT VERTICAL, ARABIC HAMZA ABOVE	# →‎لأ‎→
 ←	(‎ ﻷ ‎)	FEF7	 ARABIC LIGATURE LAM WITH ALEF WITH HAMZA ABOVE ISOLATED FORM	# →‎لأ‎→
 ←	(‎ ﻸ ‎)	FEF8	 ARABIC LIGATURE LAM WITH ALEF WITH HAMZA ABOVE FINAL FORM	# →‎لأ‎→
 
-#	لlٕ	ل𞴁ٕ	لإ	ل│ٕ	ﻹ	ﻺ
+#	لlٕ	ل𝍷ٕ	ل𞴁ٕ	لإ	ل│ٕ	ﻹ	ﻺ
 	(‎ لlٕ ‎)	0644 006C 0655	 ARABIC LETTER LAM, LATIN SMALL LETTER L, ARABIC HAMZA BELOW
+←	(‎ ل𝍷ٕ ‎)	0644 1D377 0655	 ARABIC LETTER LAM, TALLY MARK ONE, ARABIC HAMZA BELOW	# →‎لإ‎→
 ←	(‎ ل𞴁ٕ ‎)	0644 1ED01 0655	 ARABIC LETTER LAM, OTTOMAN SIYAQ NUMBER ONE, ARABIC HAMZA BELOW	# →‎لإ‎→
 ←	(‎ لإ ‎)	0644 0627 0655	 ARABIC LETTER LAM, ARABIC LETTER ALEF, ARABIC HAMZA BELOW
 ←	(‎ ل│ٕ ‎)	0644 2502 0655	 ARABIC LETTER LAM, BOX DRAWINGS LIGHT VERTICAL, ARABIC HAMZA BELOW	# →‎لإ‎→
@@ -9128,8 +9152,9 @@
 ←	(‎ لک ‎)	0644 06A9	 ARABIC LETTER LAM, ARABIC LETTER KEHEH
 ←	(‎ 𞲠 ‎)	1ECA0	 INDIC SIYAQ LAKH MARK	# →‎لک‎→
 
-#	لكه𞴁ن	لكolن	لكهlن	لکہان	لكه│ن	𞲟
+#	لكه𝍷ن	لكه𞴁ن	لكolن	لكهlن	لکہان	لكه│ن	𞲟
 	(‎ لكolن ‎)	0644 0643 006F 006C 0646	 ARABIC LETTER LAM, ARABIC LETTER KAF, LATIN SMALL LETTER O, LATIN SMALL LETTER L, ARABIC LETTER NOON
+←	(‎ لكه𝍷ن ‎)	0644 0643 0647 1D377 0646	 ARABIC LETTER LAM, ARABIC LETTER KAF, ARABIC LETTER HEH, TALLY MARK ONE, ARABIC LETTER NOON	# →‎لکہان‎→
 ←	(‎ لكه𞴁ن ‎)	0644 0643 0647 1ED01 0646	 ARABIC LETTER LAM, ARABIC LETTER KAF, ARABIC LETTER HEH, OTTOMAN SIYAQ NUMBER ONE, ARABIC LETTER NOON	# →‎لکہان‎→
 ←	(‎ لكهlن ‎)	0644 0643 0647 006C 0646	 ARABIC LETTER LAM, ARABIC LETTER KAF, ARABIC LETTER HEH, LATIN SMALL LETTER L, ARABIC LETTER NOON	# →‎لكه𞴁ن‎→→‎لکہان‎→
 ←	(‎ لکہان ‎)	0644 06A9 06C1 0627 0646	 ARABIC LETTER LAM, ARABIC LETTER KEHEH, ARABIC LETTER HEH GOAL, ARABIC LETTER ALEF, ARABIC LETTER NOON
@@ -9149,8 +9174,9 @@
 ←	(‎ ﳌ ‎)	FCCC	 ARABIC LIGATURE LAM WITH MEEM INITIAL FORM
 ←	(‎ ﳭ ‎)	FCED	 ARABIC LIGATURE LAM WITH MEEM MEDIAL FORM
 
-#	لم𞴁	لمl	لما	لم│	𞲉
+#	لم𝍷	لم𞴁	لمl	لما	لم│	𞲉
 	(‎ لمl ‎)	0644 0645 006C	 ARABIC LETTER LAM, ARABIC LETTER MEEM, LATIN SMALL LETTER L
+←	(‎ لم𝍷 ‎)	0644 0645 1D377	 ARABIC LETTER LAM, ARABIC LETTER MEEM, TALLY MARK ONE	# →‎لما‎→
 ←	(‎ لم𞴁 ‎)	0644 0645 1ED01	 ARABIC LETTER LAM, ARABIC LETTER MEEM, OTTOMAN SIYAQ NUMBER ONE	# →‎لما‎→
 ←	(‎ لما ‎)	0644 0645 0627	 ARABIC LETTER LAM, ARABIC LETTER MEEM, ARABIC LETTER ALEF
 ←	(‎ لم│ ‎)	0644 0645 2502	 ARABIC LETTER LAM, ARABIC LETTER MEEM, BOX DRAWINGS LIGHT VERTICAL	# →‎لما‎→
@@ -9174,8 +9200,9 @@
 ←	(‎ ﲆ ‎)	FC86	 ARABIC LIGATURE LAM WITH ALEF MAKSURA FINAL FORM
 ←	(‎ ﲇ ‎)	FC87	 ARABIC LIGATURE LAM WITH YEH FINAL FORM	# →‎لي‎→
 
-#	لىع𞴁	لىعl	لىعا	لىع│	𞴱
+#	لىع𝍷	لىع𞴁	لىعl	لىعا	لىع│	𞴱
 	(‎ لىعl ‎)	0644 0649 0639 006C	 ARABIC LETTER LAM, ARABIC LETTER ALEF MAKSURA, ARABIC LETTER AIN, LATIN SMALL LETTER L
+←	(‎ لىع𝍷 ‎)	0644 0649 0639 1D377	 ARABIC LETTER LAM, ARABIC LETTER ALEF MAKSURA, ARABIC LETTER AIN, TALLY MARK ONE	# →‎لىعا‎→
 ←	(‎ لىع𞴁 ‎)	0644 0649 0639 1ED01	 ARABIC LETTER LAM, ARABIC LETTER ALEF MAKSURA, ARABIC LETTER AIN, OTTOMAN SIYAQ NUMBER ONE	# →‎لىعا‎→
 ←	(‎ لىعا ‎)	0644 0649 0639 0627	 ARABIC LETTER LAM, ARABIC LETTER ALEF MAKSURA, ARABIC LETTER AIN, ARABIC LETTER ALEF
 ←	(‎ لىع│ ‎)	0644 0649 0639 2502	 ARABIC LETTER LAM, ARABIC LETTER ALEF MAKSURA, ARABIC LETTER AIN, BOX DRAWINGS LIGHT VERTICAL	# →‎لىعا‎→
@@ -9197,8 +9224,9 @@
 ←	(‎ ﻣ ‎)	FEE3	 ARABIC LETTER MEEM INITIAL FORM
 ←	(‎ ﻤ ‎)	FEE4	 ARABIC LETTER MEEM MEDIAL FORM
 
-#	مl	م𞴁	ما	م│	𞲃	𞴓	ﲈ
+#	مl	م𝍷	م𞴁	ما	م│	𞲃	𞴓	ﲈ
 	(‎ مl ‎)	0645 006C	 ARABIC LETTER MEEM, LATIN SMALL LETTER L
+←	(‎ م𝍷 ‎)	0645 1D377	 ARABIC LETTER MEEM, TALLY MARK ONE	# →‎ما‎→
 ←	(‎ م𞴁 ‎)	0645 1ED01	 ARABIC LETTER MEEM, OTTOMAN SIYAQ NUMBER ONE	# →‎ما‎→
 ←	(‎ ما ‎)	0645 0627	 ARABIC LETTER MEEM, ARABIC LETTER ALEF
 ←	(‎ م│ ‎)	0645 2502	 ARABIC LETTER MEEM, BOX DRAWINGS LIGHT VERTICAL	# →‎ما‎→
@@ -9584,8 +9612,9 @@
 ←	(‎ يز ‎)	064A 0632	 ARABIC LETTER YEH, ARABIC LETTER ZAIN
 ←	(‎ ﲒ ‎)	FC92	 ARABIC LIGATURE YEH WITH ZAIN FINAL FORM	# →‎يز‎→
 
-#	ىع𞴁	ىعl	ىعا	ىع│	𞴶
+#	ىع𝍷	ىع𞴁	ىعl	ىعا	ىع│	𞴶
 	(‎ ىعl ‎)	0649 0639 006C	 ARABIC LETTER ALEF MAKSURA, ARABIC LETTER AIN, LATIN SMALL LETTER L
+←	(‎ ىع𝍷 ‎)	0649 0639 1D377	 ARABIC LETTER ALEF MAKSURA, ARABIC LETTER AIN, TALLY MARK ONE	# →‎ىعا‎→
 ←	(‎ ىع𞴁 ‎)	0649 0639 1ED01	 ARABIC LETTER ALEF MAKSURA, ARABIC LETTER AIN, OTTOMAN SIYAQ NUMBER ONE	# →‎ىعا‎→
 ←	(‎ ىعا ‎)	0649 0639 0627	 ARABIC LETTER ALEF MAKSURA, ARABIC LETTER AIN, ARABIC LETTER ALEF
 ←	(‎ ىع│ ‎)	0649 0639 2502	 ARABIC LETTER ALEF MAKSURA, ARABIC LETTER AIN, BOX DRAWINGS LIGHT VERTICAL	# →‎ىعا‎→
@@ -9644,8 +9673,9 @@
 ←	(‎ ﺋ ‎)	FE8B	 ARABIC LETTER YEH WITH HAMZA ABOVE INITIAL FORM	# →‎ئ‎→
 ←	(‎ ﺌ ‎)	FE8C	 ARABIC LETTER YEH WITH HAMZA ABOVE MEDIAL FORM	# →‎ئ‎→
 
-#	ىٔ𞴁	ىٔl	ئا	ىٔ│	ﯪ	ﯫ
+#	ىٔ𝍷	ىٔ𞴁	ىٔl	ئا	ىٔ│	ﯪ	ﯫ
 	(‎ ىٔl ‎)	0649 0654 006C	 ARABIC LETTER ALEF MAKSURA, ARABIC HAMZA ABOVE, LATIN SMALL LETTER L
+←	(‎ ىٔ𝍷 ‎)	0649 0654 1D377	 ARABIC LETTER ALEF MAKSURA, ARABIC HAMZA ABOVE, TALLY MARK ONE	# →‎ئا‎→
 ←	(‎ ىٔ𞴁 ‎)	0649 0654 1ED01	 ARABIC LETTER ALEF MAKSURA, ARABIC HAMZA ABOVE, OTTOMAN SIYAQ NUMBER ONE	# →‎ئا‎→
 ←	(‎ ئا ‎)	064A 0654 0627	 ARABIC LETTER YEH, ARABIC HAMZA ABOVE, ARABIC LETTER ALEF
 ←	(‎ ىٔ│ ‎)	0649 0654 2502	 ARABIC LETTER ALEF MAKSURA, ARABIC HAMZA ABOVE, BOX DRAWINGS LIGHT VERTICAL	# →‎ئا‎→
@@ -10334,9 +10364,9 @@
 	(‎ য ‎)	09AF	 BENGALI LETTER YA
 ←	(‎ 𑒨 ‎)	114A8	 TIRHUTA LETTER YA
 
-#	র	৿	ৰ	𑒫
+#	র	𑷱	ৰ	𑒫
 	(‎ র ‎)	09B0	 BENGALI LETTER RA
-←	(‎ ৿ ‎)	09FF	 BENGALI LETTER SANSKRIT BA	# →ৰ→
+←	(‎ 𑷱 ‎)	11DF1	 BENGALI LETTER ALTERNATE BARGIYA BA	# →ৰ→
 ←	(‎ ৰ ‎)	09F0	 BENGALI LETTER RA WITH MIDDLE DIAGONAL
 ←	(‎ 𑒫 ‎)	114AB	 TIRHUTA LETTER VA
 
@@ -16335,5 +16365,5 @@
 	(‎ 𮶵 ‎)	2EDB5	 CJK UNIFIED IDEOGRAPH-2EDB5
 ←	(‎ 𲪏 ‎)	32A8F	 CJK UNIFIED IDEOGRAPH-32A8F
 
-# total : 7808
+# total : 7838
 

@@ -1,29 +1,18 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-04-07, 11:41:01 GMT
+@+	Generation Date: 2026-04-27, 08:03:09 GMT
 	Unicode 18.0.0 names list.
-	Adjusted for repertoire additions post UTC186.
-	Removed extraneous TAB in one subhead.
-	Added xref from 1D83 to 0261.
-	Annotations updates for 231B, 29D6, 1F76E.
-	More cuneiform annotations from L2/24-239.
-	Add xref from 02AE to 0265.
-	Repertoire synched with UnicodeData-18.0.0d8.txt.
+	Adjusted for repertoire changes post UTC187.
+	Repertoire synched with UnicodeData-18.0.0d9.txt.
 	Alpha review fixes.
-	Fix annotation for 1D252.
-	Update Chisoi subheads.
-	Add xref 1D1F7 to A75C.
-	Fix typo in xref for 2F82D.
-	Add alias to 237C.
-	Fixed subheads per Kirk suggestions.
-	Update annotation for 05BC.
-	Update annotation for 29FE and 29FF.
-	Add xref between 1F98B and 1FACC.
-	Add comment to 11B0A per BIS input.
-	Update chart label for Seal to Small Seal.
-	Correct numeric annotations for 130AD and 131BC.
-	Removed annotation for 1DF6E.
+	Add SVS for CJK strokes.
+	Corrected spelling of subhead at 13864.
+	Updated notice for Tai Le script to include Dehong Dai name.
+	Added xrefs between 06C4 and 1EE85.
+	Added notice at 1BAE.
+	Added alias and xref to A77A.
+	Added xref between A76D and 1DF92.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -4534,6 +4523,7 @@
 	* Urdu
 06C4	ARABIC LETTER WAW WITH RING
 	* Kashmiri
+	x (arabic mathematical looped waw - 1EE85)
 06C5	ARABIC LETTER KIRGHIZ OE
 	* Kyrgyz
 	* a glyph variant occurs which replaces the looped tail with a horizontal bar through the tail
@@ -5590,7 +5580,6 @@
 0981	BENGALI SIGN CANDRABINDU
 0982	BENGALI SIGN ANUSVARA
 0983	BENGALI SIGN VISARGA
-0984	BENGALI SIGN COMBINING ANUSVARA ABOVE
 @		Independent vowels
 0985	BENGALI LETTER A
 0986	BENGALI LETTER AA
@@ -5738,8 +5727,6 @@
 	x (bengali sign avagraha - 09BD)
 	x (sharada sandhi mark - 111C9)
 	x (newa sandhi mark - 1145E)
-@		Addition for Sanskrit
-09FF	BENGALI LETTER SANSKRIT BA
 @@	0A00	Gurmukhi	0A7F
 @		Various signs
 0A01	GURMUKHI SIGN ADAK BINDI
@@ -10152,10 +10139,6 @@
 1877	MONGOLIAN LETTER MANCHU ZHA
 @		Buryat letter
 1878	MONGOLIAN LETTER CHA WITH TWO DOTS
-@		Transliteration letter
-1879	MONGOLIAN LETTER ALTERNATE UE
-	* same shape also appears in some Old Manchu literature
-	x (mongolian letter ue - 1826)
 @		Extensions for Sanskrit and Tibetan
 1880	MONGOLIAN LETTER ALI GALI ANUSVARA ONE
 	x (tibetan sign sna ldan - 0F83)
@@ -10378,7 +10361,7 @@
 194E	LIMBU DIGIT EIGHT
 194F	LIMBU DIGIT NINE
 @@	1950	Tai Le	197F
-@+		Note the similarly named but distinct New Tai Lue script encoded at 1980-19DF.
+@+		Note the similarly named but distinct New Tai Lue script encoded at 1980-19DF. The Tai Le script is also known as Dehong Dai.
 @		Consonants
 1950	TAI LE LETTER KA
 1951	TAI LE LETTER XA
@@ -11171,6 +11154,7 @@
 1BAD	SUNDANESE CONSONANT SIGN PASANGAN WA
 	= subjoined wa
 @		Additional consonants
+@+		These two letters are no longer used in modern Sundanese orthography.
 1BAE	SUNDANESE LETTER KHA
 1BAF	SUNDANESE LETTER SYA
 @		Digits
@@ -21788,6 +21772,7 @@
 @		CJK strokes
 31C0	CJK STROKE T
 	* 2nd stroke of 51B0
+	~ 31C0 FE00 dotted T form
 31C1	CJK STROKE WG
 	* 2nd stroke of 72D0
 31C2	CJK STROKE XG
@@ -21804,6 +21789,8 @@
 31C6	CJK STROKE HZG
 	* 1st stroke of 7FBD
 	* 1st stroke of 4E5F
+	~ 31C6 FE00 curved Z form
+	~ 31C6 FE01 rising H form
 31C7	CJK STROKE HP
 	* 1st stroke of 53C8
 	* 4th stroke of 4ECA
@@ -21812,6 +21799,7 @@
 31C9	CJK STROKE SZWG
 	* 3rd stroke of 5F13
 	* 2nd stroke of 9A6C
+	~ 31C9 FE00 slanted S form
 31CA	CJK STROKE HZT
 	* 2nd stroke of 8BA1
 	* 2nd stroke of 9CE9
@@ -21826,25 +21814,33 @@
 	* 1st stroke of 51F8
 31CF	CJK STROKE N
 	* 3rd stroke of 5927
+	~ 31CF FE00 curved starting N form
+	~ 31CF FE01 flat N form
 31D0	CJK STROKE H
 	* 1st stroke of 5927
 	* 1st stroke of 4E03
+	~ 31D0 FE00 rising H form
 31D1	CJK STROKE S
 	* 4th stroke of 4E2D
+	~ 31D1 FE00 slanted S form
 31D2	CJK STROKE P
 	* 1st stroke of 4E4F
+	~ 31D2 FE00 flat P form
 31D3	CJK STROKE SP
 	* 1st stroke of 6708
 31D4	CJK STROKE D
 	* 3rd stroke of 4E38
+	~ 31D4 FE00 to bottom left form
 31D5	CJK STROKE HZ
 	* 2nd stroke of 56DB
+	~ 31D5 FE00 slanted Z form
 31D6	CJK STROKE HG
 	* 1st stroke of 758B
 	* 1st stroke of 5B50
 31D7	CJK STROKE SZ
 	* 2nd stroke of 5C71
 	* 2nd stroke of 4E1C
+	~ 31D7 FE00 slanted S form
 31D8	CJK STROKE SWZ
 	* 6th stroke of 8085
 31D9	CJK STROKE ST
@@ -21854,11 +21850,15 @@
 31DB	CJK STROKE PD
 	* 1st stroke of 5DE1
 	* 1st stroke of 5973
+	~ 31DB FE00 slanted SD form
 31DC	CJK STROKE PZ
 	* 3rd stroke of 516C
 	* 4th stroke of 5F18
+	~ 31DC FE00 upwards T form
 31DD	CJK STROKE TN
 	* 8th stroke of 5EFB
+	~ 31DD FE00 horizontal H curved N form
+	~ 31DD FE01 upwards T flat N form
 31DE	CJK STROKE SZZ
 	* 1st stroke of 5350
 	* 4th stroke of 4E9E
@@ -21877,10 +21877,12 @@
 	* 1st stroke of 98DE
 31E5	CJK STROKE SZP
 	* 8th stroke of 594A
+	~ 31E5 FE00 slanted S form
 @		Ideographic description character
 @+		This is a visibly displayed graphic character, not an invisible composition control. It is used with other characters from the Ideographic Description Characters block.
 31EF	IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
 	* used to describe a character or a component with a stroke (or other component) removed
+@~	Standardized Variation Sequences
 @@	31F0	Katakana Phonetic Extensions	31FF
 @		Phonetic extensions for Ainu
 31F0	KATAKANA LETTER SMALL KU
@@ -25188,6 +25190,7 @@ A76B	LATIN SMALL LETTER ET
 	x (latin small letter yogh - 021D)
 A76C	LATIN CAPITAL LETTER IS
 A76D	LATIN SMALL LETTER IS
+	x (latin small letter c with right loop - 1DF92)
 A76E	LATIN CAPITAL LETTER CON
 	x (digit nine - 0039)
 A76F	LATIN SMALL LETTER CON
@@ -25206,9 +25209,11 @@ A778	LATIN SMALL LETTER UM
 @+		These letters are meant for transcriptions of medieval manuscripts, or for modern phonetic notations, for cases where the letters contrast with their Carolingian forms. For representing whole texts in an Insular style, one should use the regular Latin letters and display them with an Insular typeface.
 A779	LATIN CAPITAL LETTER INSULAR D
 A77A	LATIN SMALL LETTER INSULAR D
+	= d rotunda
 	* dental fricative [ð]
 	x (latin small letter eth - 00F0)
 	x (latin small letter delta - 1E9F)
+	x (latin small letter d rotunda with descending crossing loop - 1DF93)
 A77B	LATIN CAPITAL LETTER INSULAR F
 A77C	LATIN SMALL LETTER INSULAR F
 A77D	LATIN CAPITAL LETTER INSULAR G
@@ -36991,6 +36996,11 @@ FFFF	<not a character>
 11DE7	TOLONG SIKI DIGIT SEVEN
 11DE8	TOLONG SIKI DIGIT EIGHT
 11DE9	TOLONG SIKI DIGIT NINE
+@@	11DF0	Bengali Supplement	11DFF
+@		Sign
+11DF0	BENGALI SIGN COMBINING ANUSVARA ABOVE
+@		Addition for Sanskrit
+11DF1	BENGALI LETTER ALTERNATE BARGIYA BA
 @@	11EE0	Makasar	11EFF
 @+		This script is known indigenously as Ukiri' Jangangjangang and in English as Old Makasar.
 @		Consonants
@@ -43651,7 +43661,7 @@ FFFF	<not a character>
 	* phonemogram : sw
 13863	EGYPTIAN HIEROGLYPH-13863
 	* logogram (Tatenen) : tꜣ-ṯnn
-@		C31. Thot
+@		C31. Thoth
 13864	EGYPTIAN HIEROGLYPH-13864
 	* logogram (Thoth) : ḏhwty
 13865	EGYPTIAN HIEROGLYPH-13865
@@ -60395,16 +60405,17 @@ FFFF	<not a character>
 1DF80	LATIN CAPITAL LETTER A WITH TOPBAR
 1DF81	LATIN CAPITAL LETTER E WITH BENT TOPBAR
 @		Cossic letters
-1DF90	LATIN SMALL LETTER C WITH SMALL SLASH
+1DF90	LATIN SMALL LETTER C WITH LOW SLASH
 	= cubus
 	* denotes cube of the unknown
-1DF91	LATIN SMALL LETTER C WITH DESCENDING LOOP
+1DF91	LATIN SMALL LETTER C WITH LOOPED CEDILLA
 	= census
 	* denotes square of the unknown
 1DF92	LATIN SMALL LETTER C WITH RIGHT LOOP
 	= cubus
 	* denotes cube of the unknown
-1DF93	LATIN SMALL LETTER D ROTUNDA WITH CROSSING LOOP
+	x (latin small letter is - A76D)
+1DF93	LATIN SMALL LETTER D ROTUNDA WITH DESCENDING CROSSING LOOP
 	= dragma
 	* denotes numerus/constant
 	x (latin small letter delta - 1E9F)
@@ -61958,6 +61969,7 @@ FFFF	<not a character>
 1EE84	ARABIC MATHEMATICAL LOOPED HEH
 	# <font> 0647 arabic letter heh
 1EE85	ARABIC MATHEMATICAL LOOPED WAW
+	x (arabic letter waw with ring - 06C4)
 	# <font> 0648 arabic letter waw
 1EE86	ARABIC MATHEMATICAL LOOPED ZAIN
 	# <font> 0632 arabic letter zain

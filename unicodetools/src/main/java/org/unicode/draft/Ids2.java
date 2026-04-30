@@ -179,7 +179,7 @@ public abstract class Ids2 implements Comparable<Ids2> {
         codePoints.next();
         int cp = codePoints.getCodePoint();
         switch (cp) {
-                // double
+            // double
             case '\u2FF0':
             case '\u2FF1':
             case '\u2FF4':
@@ -191,7 +191,7 @@ public abstract class Ids2 implements Comparable<Ids2> {
             case '\u2FFA':
             case '\u2FFB':
                 return new Dual(cp, codePoints);
-                // triple
+            // triple
             case '\u2FF2':
             case '\u2FF3':
                 return new Trial(cp, codePoints);

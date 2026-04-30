@@ -1,15 +1,28 @@
-// Lemma to snippet to position of the word in the snippet.
-/**@type {Map<string, Map<String, number>>}*/
+// Lemma to snippet (compressed) to position of the word in the snippet.
+/**@type {Map<string, Map<number, number>>}*/
 let wordIndex/*= GENERATED LINE*/;
-// Property name to snippet to index entry.
-/**@type {Map<string, Map<string, {html: string, characters: [number, number][]}>>}*/
+// Property name to snippet (compressed) to index entry; the html is compressed.
+/**@type {Map<string, Map<number, {html: number, characters: ([number]|[number,number])[]}>>}*/
 let indexEntries/*= GENERATED LINE*/;
+/**@type {number}*/
+let bettyIndex/*= GENERATED LINE*/;
+/**@type {number}*/
+let theIndex/*= GENERATED LINE*/;
+/**@type {string}*/
+let allTheStringsCompressed/*= GENERATED LINE*/;
+let decompressor = new DecompressionStream("deflate");
+/**@type {string}*/
+var allTheStrings;
+new Response(
+  new Blob([Uint8Array.fromBase64(allTheStringsCompressed)])
+      .stream().pipeThrough(decompressor))
+    .text().then(s => allTheStrings = s);
 
-/**@type {Map<number, string>}*/
+/**@type {Map<number, number>}*/
 let characterNames = new Map();
-/**@type {Map<[number, number], {property: string, snippet: string}>}*/
+/**@type {Map<[number, number], {property: string, snippetIndex: number}>}*/
 let radicalStrokeRanges = new Map();
-/**@type {Map<[number, number], string>}*/
+/**@type {Map<[number, number], number>}*/
 let characterNameRanges = new Map();
 
 let maxResults = 100;
@@ -18,15 +31,15 @@ for (let [property, propertyIndex] of indexEntries) {
   if (!property.endsWith("RSUnicode") && property !== "kSEAL_Rad") {
     continue;
   }
-  for (let [snippet, entry] of propertyIndex) {
+  for (let [snippetIndex, entry] of propertyIndex) {
     for (let range of entry.characters) {
-      radicalStrokeRanges.set(range, {property, snippet});
+      radicalStrokeRanges.set(range, {property, snippetIndex});
     }
   }
 }
 
 for (let [name, entry] of indexEntries.get("Name")) {
-  if (entry.characters[0][0] == entry.characters[0][1]) {
+  if (entry.characters[0][0] == entry.characters[0].at(-1)) {
     characterNames.set(entry.characters[0][0], name);
   } else {
     for (let range of entry.characters) {
@@ -38,6 +51,12 @@ for (let [name, entry] of indexEntries.get("Name_Alias")) {
   if (!characterNames.has(entry.characters[0][0])) {
     characterNames.set(entry.characters[0][0], name);
   }
+}
+
+function getString(/**@type {number}*/ start) {
+  let RECORD_SEPARATOR = "\x1E";
+  let limit = allTheStrings.indexOf(RECORD_SEPARATOR, start);
+  return allTheStrings.substring(start, limit);
 }
 
 function updateQuery(event) {
@@ -76,47 +95,49 @@ function search(/**@type {string}*/ query) {
   var covered = [];
   /**@type {string[]}*/
   var result = [];
-  /**@type {Set<string>}*/
-  var resultSnippets = new Set(wordIndex.get(foldedQuery[0])?.keys() ?? []);
+  /**@type {Set<number>}*/
+  var resultSnippetIndices = new Set(wordIndex.get(foldedQuery[0])?.keys() ?? []);
   let firstLemmata = [foldedQuery[0]];
-  if (resultSnippets.size === 0 && foldedQuery.length == 1) {
+  if (resultSnippetIndices.size === 0 && foldedQuery.length == 1) {
     let prefix = fold(queryWords.at(-1));
-    for (let [completion, leaves] of wordIndex) {
+    for (let [completion, snippets] of wordIndex) {
       if (completion.startsWith(prefix)) {
         firstLemmata.push(completion);
-        resultSnippets = resultSnippets.union(leaves);
+        resultSnippetIndices = resultSnippetIndices.union(snippets);
       }
     }
   }
   for (var i = 1; i < foldedQuery.length; ++i) {
     var rhs = new Set(wordIndex.get(foldedQuery[i])?.keys() ?? []);
-    let intersection = resultSnippets.intersection(rhs);
+    let intersection = resultSnippetIndices.intersection(rhs);
     if (intersection.size === 0 && i == foldedQuery.length - 1) {
       let prefix = fold(queryWords.at(-1));
-      for (let [completion, leaves] of wordIndex) {
+      for (let [completion, snippets] of wordIndex) {
         if (completion.startsWith(prefix)) {
-          rhs = rhs.union(leaves);
+          rhs = rhs.union(snippets);
         }
       }
-      resultSnippets = resultSnippets.intersection(rhs);
+      resultSnippetIndices = resultSnippetIndices.intersection(rhs);
     } else {
-      resultSnippets = intersection;
+      resultSnippetIndices = intersection;
     }
   }
   let pivots = firstLemmata.map(l => wordIndex.get(l)).filter(x => !!x);
-  let getPivot = (/**@type {string}*/s) => pivots.map(p => p.get(s)).filter(x => x !== undefined)[0];
+  let getPivot = (/**@type {number}*/s) => pivots.map(p => p.get(s)).filter(x => x !== undefined)[0];
   let collator = new Intl.Collator("en");
-  resultSnippets = Array.from(resultSnippets).sort(
+  let sortKeys = new Map(Array.from(resultSnippetIndices).map(
+    i => {
+      let snippet = getString(i);
+      return [i, snippet.substring(getPivot(i)) + ' \uFFFE ' +
+                     snippet.substring(0, getPivot(i))];
+    }));
+  let sortedSnippetIndices = Array.from(resultSnippetIndices).sort(
     (left, right) => collator.compare(
-      left.substring(getPivot(left)) +
-                      ' \uFFFE ' +
-                      left.substring(0, getPivot(left)),
-      right.substring(getPivot(right)) +
-                      ' \uFFFE ' +
-                      right.substring(0, getPivot(right))));
+      sortKeys.get(left),
+      sortKeys.get(right)));
   for (let propertyIndex of indexEntries.values()) {
-    for (let snippet of resultSnippets) {
-      let entry = propertyIndex.get(snippet);
+    for (let snippetIndex of sortedSnippetIndices) {
+      let entry = propertyIndex.get(snippetIndex);
       if (!entry) {
         continue;
       }
@@ -126,9 +147,10 @@ function search(/**@type {string}*/ query) {
       }
       rangeCount += entrySet.length;
       covered = covered.concat(entrySet);
-      let pivot = getPivot(snippet);
+      let pivot = getPivot(snippetIndex);
+      let snippet = getString(snippetIndex);
       let tail = snippet.substring(pivot);
-      result.push(entry.html.replace(
+      result.push(getString(entry.html).replace(
         "[RESULT TEXT]",
         "<span class=tail" +
         (snippet.includes(",") ? " style=width:100%" : "") + ">" +
@@ -156,17 +178,17 @@ function search(/**@type {string}*/ query) {
       var name = characterNames.get(cp);
       var rs = null;
       if (!name) {
-        for (let [[first, last], {property, snippet}] of radicalStrokeRanges) {
+        for (let [[first, last], {property, snippetIndex}] of radicalStrokeRanges) {
           if (first <= cp && cp <= last) {
-            rs = {property, snippet};
+            rs = {property, snippetIndex};
             break;
           }
         }
         if (rs) {
-          rangeCount += indexEntries.get(rs.property).get(rs.snippet).characters.length;
+          rangeCount += indexEntries.get(rs.property).get(rs.snippetIndex).characters.length;
           result.push(
-            indexEntries.get(rs.property).get(rs.snippet).html.replace(
-            "[RESULT TEXT]", toHTML(rs.snippet)));
+            getString(indexEntries.get(rs.property).get(rs.snippetIndex).html).replace(
+            "[RESULT TEXT]", toHTML(getString(rs.snippetIndex))));
         } else {
           for (let [[first, last], n] of characterNameRanges) {
             if (first <= cp && cp <= last) {
@@ -179,20 +201,20 @@ function search(/**@type {string}*/ query) {
       if (name) {
         rangeCount += 1;
         result.push(
-          (indexEntries.get("Name").get(name) ??
-          indexEntries.get("Name_Alias").get(name)).html.replace(
-          "[RESULT TEXT]", toHTML(name)));
+          getString(indexEntries.get("Name").get(name) ??
+                    indexEntries.get("Name_Alias").get(name).html).replace(
+          "[RESULT TEXT]", toHTML(getString(name))));
       }
     }
     if (/^boop$/i.test(query)) {
         rangeCount += 1;
       result.push(
-        indexEntries.get("Block").get("Betty").html.replace(
+        getString(indexEntries.get("Block").get(bettyIndex).html).replace(
         "[RESULT TEXT]", toHTML("Betty")));
     } else if (/^dood$/i.test(query)) {
         rangeCount += 1;
         result.push(
-          indexEntries.get("Block").get("the").html.replace(
+          getString(indexEntries.get("Block").get(theIndex).html).replace(
           "[RESULT TEXT]", toHTML("the")));
     }
   }
@@ -205,7 +227,8 @@ function toHTML(/**@type {string}*/ plain) {
               .replaceAll(">", "&gt;")
 }
 
-function superset(/**@type {[number, number][]}*/left, /**@type {[number, number][]}*/right) {
+function superset(/**@type {([number, number]|[number])[]}*/left,
+                  /**@type {([number, number]|[number])[]}*/right) {
   var remaining = right.slice();
   for (containingRange of left) {
     remaining = remaining.flatMap(r => rangeMinus(r, containingRange));
@@ -216,7 +239,8 @@ function superset(/**@type {[number, number][]}*/left, /**@type {[number, number
   return true;
 }
 
-function rangeMinus(/**@type {[number, number]}*/left, /**@type {[number, number]}*/right) {
+function rangeMinus(/**@type {[number, number]|[number]}*/left,
+                    /**@type {[number, number]|[number]}*/right) {
   let intersection = rangeIntersection(left, right);
   if (intersection === left || intersection === right) {
     return [];
@@ -228,16 +252,17 @@ function rangeMinus(/**@type {[number, number]}*/left, /**@type {[number, number
     if (left[0] < intersection[0]) {
       result.push([left[0], intersection[0] - 1]);
     }
-    if (left[1] > intersection[1]) {
-      result.push([intersection[1] + 1, left[1] - 1]);
+    if (left.at(-1) > intersection.at(-1)) {
+      result.push([intersection.at(-1) + 1, left.at(-1) - 1]);
     }
     return result;
   }
 }
 
-function rangeIntersection(/**@type {[number, number]}*/left, /**@type {[number, number]}*/right) {
-  let [leftStart, leftEnd] = left;
-  let [rightStart, rightEnd] = right;
+function rangeIntersection(/**@type {[number, number]|[number]}*/left,
+                           /**@type {[number, number]|[number]}*/right) {
+  let [leftStart, leftEnd] = [left[0], left.at(-1)];
+  let [rightStart, rightEnd] = [right[0], right.at(-1)];
   if (leftEnd < rightStart || rightEnd < leftStart) {
     return null;
   } else {

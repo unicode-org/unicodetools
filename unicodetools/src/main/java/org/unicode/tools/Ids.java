@@ -648,7 +648,7 @@ public class Ids {
                                 }
                                 break;
                             }
-                            // ⿱&CDP-8B5E;廾[UG]    ⿱&CDP-88F0;廾[T]
+                        // ⿱&CDP-8B5E;廾[UG]    ⿱&CDP-88F0;廾[T]
                         case '&':
                             {
                                 StringBuilder sb = new StringBuilder();

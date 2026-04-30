@@ -176,7 +176,7 @@ public class UnicodeMapParser<V> {
                         us = doUnicodeSet(source, pos, op, doAssignment, resultToAddTo);
                         break;
                     }
-                    // fall through
+                // fall through
                 default:
                     if (op != Operation.ADD) {
                         return setError(pos);

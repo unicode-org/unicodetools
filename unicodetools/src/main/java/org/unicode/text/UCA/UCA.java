@@ -99,14 +99,41 @@ public final class UCA implements Comparator<String>, UCA_Types {
 
     // --------------------------------------------------------------------
 
+    public static final int MAX_LOW_SPECIAL_PRIMARY = 0x200; // for U+FFFE
+    public static final int MIN_HIGH_SPECIAL_PRIMARY = 0xfffd; // for U+FFFD; FFFF for U+FFFF
+
     public enum CollatorType {
         ducet,
         cldr,
-        cldrWithoutFFFx
     }
 
-    public static final String copyright =
-            "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
+    private static UCA ducetCollator;
+    private static UCA cldrCollator;
+
+    public static UCA getDucetCollator() {
+        if (ducetCollator == null) {
+            ducetCollator = buildDucetCollator();
+        }
+        return ducetCollator;
+    }
+
+    public static UCA getCldrCollator() {
+        if (cldrCollator == null) {
+            cldrCollator = buildCldrCollator();
+        }
+        return cldrCollator;
+    }
+
+    public static UCA getCollator(CollatorType type) {
+        switch (type) {
+            case cldr:
+                return getCldrCollator();
+            case ducet:
+                return getDucetCollator();
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
 
     @Override
     public int compare(String a, String b) {
@@ -165,7 +192,23 @@ public final class UCA implements Comparator<String>, UCA_Types {
         final RoBitSet primarySet = getStatistics().getPrimarySet();
 
         PrimaryIterator(int start) {
-            p.nextPrimary = primarySet.nextSetBit(start);
+            p.nextPrimary = getNextRegularPrimary(start);
+        }
+
+        private int getNextRegularPrimary(int next) {
+            for (; ; ) {
+                next = primarySet.nextSetBit(next);
+                // skip special primaries:
+                // 0200 special low primary for U+FFFE
+                // FFFD special high primary for U+FFFD
+                // FFFF special high primary for U+FFFF
+                if (next >= 0
+                        && (next <= MAX_LOW_SPECIAL_PRIMARY || MIN_HIGH_SPECIAL_PRIMARY <= next)) {
+                    ++next;
+                } else {
+                    return next;
+                }
+            }
         }
 
         @Override
@@ -177,7 +220,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
         public Primary next() {
             if (p.nextPrimary >= 0) {
                 p.primary = p.nextPrimary;
-                p.nextPrimary = primarySet.nextSetBit(p.primary + 1);
+                p.nextPrimary = getNextRegularPrimary(p.primary + 1);
                 p.representative = getRepresentativePrimary(p.primary);
                 return p;
             } else {
@@ -269,21 +312,16 @@ public final class UCA implements Comparator<String>, UCA_Types {
         cleanup();
     }
 
-    /** Returns all non-ignorable, below-implicit UCA primary weights. */
+    /** Returns all non-ignorable, below-implicit, non-special UCA primary weights. */
     Iterable<Primary> getRegularPrimaries() {
         // Start after the ignorable primary 0.
         return new PrimaryIterable(1);
     }
 
-    /** Returns all below-Han UCA primary weights, starting with ignorable 0. */
-    PrimaryIterable getIgnorableAndRegularPrimaries() {
-        return new PrimaryIterable(0);
-    }
-
     int getLastRegularPrimary() {
         UCA_Statistics.RoBitSet set = getStatistics().getPrimarySet();
         int last = set.length() - 1;
-        while (last >= 0xfffd) {
+        while (last >= MIN_HIGH_SPECIAL_PRIMARY) {
             last = set.previousSetBit(last - 1);
         }
         return last;
@@ -1784,7 +1822,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
         return buildCollator(-1, -1);
     }
 
-    static UCA buildCollator(int variableHigh, int firstNonVariable) {
+    private static UCA buildCollator(int variableHigh, int firstNonVariable) {
         try {
             if (VERBOSE) System.out.println("Building UCA");
             final Path dataPath = Settings.UnicodeTools.getDataPathForLatestVersion("uca");
@@ -1802,6 +1840,116 @@ public final class UCA implements Comparator<String>, UCA_Types {
         } catch (final IOException e) {
             throw new IllegalArgumentException(e);
         }
+    }
+
+    private static UCA buildCldrCollator() {
+        final UCA ducet = getDucetCollator();
+
+        final int ducetVariableHigh = CEList.getPrimary(ducet.getVariableHighCE());
+        int cldrVariableHigh = 0;
+        // This will normally come out as ducetVariableHigh + 1.
+        int firstDucetNonVariable = -1;
+
+        // DUCET: variable primary weights include spaces, punctuation, and symbols
+        // CLDR: variable primary weights include only spaces and punctuation
+        for (final UCA.Primary up : ducet.getRegularPrimaries()) {
+            final int ducetPrimary = up.primary;
+            if (firstDucetNonVariable < 0 && ducetPrimary > ducetVariableHigh) {
+                firstDucetNonVariable = ducetPrimary;
+            }
+
+            final String repChar = up.getRepresentative();
+            final int firstChar = Character.codePointAt(repChar, 0);
+            final int cat = Default.ucd().getCategory(firstChar);
+            switch (cat) {
+                case UCD_Types.DASH_PUNCTUATION:
+                case UCD_Types.START_PUNCTUATION:
+                case UCD_Types.END_PUNCTUATION:
+                case UCD_Types.CONNECTOR_PUNCTUATION:
+                case UCD_Types.OTHER_PUNCTUATION:
+                case UCD_Types.INITIAL_PUNCTUATION:
+                case UCD_Types.FINAL_PUNCTUATION:
+                    if (ducetPrimary <= ducetVariableHigh && ducetPrimary > cldrVariableHigh) {
+                        cldrVariableHigh = ducetPrimary;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        final UCA result = buildCollator(cldrVariableHigh, firstDucetNonVariable);
+
+        result.overrideCE("\uFFFE", 0x1, 0x20, 2);
+        result.overrideCE("\uFFFF", 0xFFFE, 0x20, 2);
+
+        if (
+        /* ADD_TIBETAN */ true) {
+            final CEList fb2 = result.getCEList("\u0FB2", true);
+            final CEList fb3 = result.getCEList("\u0FB3", true);
+            final CEList f71_f72 = result.getCEList("\u0F71\u0F72", true);
+            final CEList f71_f74 = result.getCEList("\u0F71\u0F74", true);
+            final CEList fb2_f71 = result.getCEList("\u0FB2\u0F71", true);
+            final CEList fb3_f71 = result.getCEList("\u0FB3\u0F71", true);
+
+            addOverride(
+                    result,
+                    "\u0FB2\u0F71",
+                    fb2_f71); // 0FB2 0F71      ;     [.255A.0020.0002.0FB2][.2570.0020.0002.0F71] -
+            // concat 0FB2 + 0F71
+            addOverride(
+                    result,
+                    "\u0FB2\u0F71\u0F72",
+                    fb2,
+                    f71_f72); // 0FB2 0F71 0F72 ;    [.255A.0020.0002.0FB2][.2572.0020.0002.0F73] -
+            // concat 0FB2 + (0F71/0F72)
+            addOverride(result, "\u0FB2\u0F73", fb2, f71_f72); // 0FB2 0F73      ;
+            // [.255A.0020.0002.0FB2][.2572.0020.0002.0F73] = prev
+            addOverride(
+                    result,
+                    "\u0FB2\u0F71\u0F74",
+                    fb2,
+                    f71_f74); // 0FB2 0F71 0F74 ;    [.255A.0020.0002.0FB2][.2576.0020.0002.0F75] -
+            // concat 0FB2 + (0F71/0F74)
+            addOverride(result, "\u0FB2\u0F75", fb2, f71_f74); // 0FB2 0F75      ;
+            // [.255A.0020.0002.0FB2][.2576.0020.0002.0F75]  = prev
+
+            // same as above, but 0FB2 => 0FB3 and fb2 => fb3
+
+            addOverride(
+                    result,
+                    "\u0FB3\u0F71",
+                    fb3_f71); // 0FB3 0F71      ;     [.255A.0020.0002.0FB3][.2570.0020.0002.0F71] -
+            // concat 0FB3 + 0F71
+            addOverride(
+                    result,
+                    "\u0FB3\u0F71\u0F72",
+                    fb3,
+                    f71_f72); // 0FB3 0F71 0F72 ;    [.255A.0020.0002.0FB3][.2572.0020.0002.0F73] -
+            // concat 0FB3 + (0F71/0F72)
+            addOverride(result, "\u0FB3\u0F73", fb3, f71_f72); // 0FB3 0F73      ;
+            // [.255A.0020.0002.0FB3][.2572.0020.0002.0F73] = prev
+            addOverride(
+                    result,
+                    "\u0FB3\u0F71\u0F74",
+                    fb3,
+                    f71_f74); // 0FB3 0F71 0F74 ;    [.255A.0020.0002.0FB3][.2576.0020.0002.0F75] -
+            // concat 0FB3 + (0F71/0F74)
+            addOverride(result, "\u0FB3\u0F75", fb3, f71_f74); // 0FB3 0F75      ;
+            // [.255A.0020.0002.0FB3][.2576.0020.0002.0F75]  = prev
+        }
+
+        return result;
+    }
+
+    private static void addOverride(UCA result, String string, CEList... ceLists) {
+        final IntStack tempStack = new IntStack(10);
+        for (final CEList ceList : ceLists) {
+            for (int i = 0; i < ceList.length(); ++i) {
+                final int ce = ceList.at(i);
+                tempStack.append(ce);
+            }
+        }
+        result.overrideCE(string, tempStack);
     }
 
     UCA_Statistics getStatistics() {
