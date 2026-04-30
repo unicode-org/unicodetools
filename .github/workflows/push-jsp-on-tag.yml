@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Set up JDK 11
+    - name: Set up JDK 21
       uses: actions/setup-java@v1
       with:
-        java-version: 11
+        java-version: 21
     - name: Get the CLDR_REF from pom.xml
       id: cldr_ref
       run: echo "CLDR_REF="$(mvn help:evaluate -Dexpression=cldr.version -q -DforceStdout | cut -d- -f3) >> $GITHUB_OUTPUT && cat ${GITHUB_OUTPUT}
