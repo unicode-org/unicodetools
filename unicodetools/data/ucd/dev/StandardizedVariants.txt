@@ -186,6 +186,26 @@ FF1B FE01; centered form; # FULLWIDTH SEMICOLON
 FF1F FE00; corner-justified form; # FULLWIDTH QUESTION MARK
 FF1F FE01; centered form; # FULLWIDTH QUESTION MARK
 
+# CJK strokes
+
+31C0 FE00; dotted T form; # CJK STROKE T
+31C6 FE00; curved Z form; # CJK STROKE HZG
+31C6 FE01; rising H form; # CJK STROKE HZG
+31C9 FE00; slanted S form; # CJK STROKE SZWG
+31CF FE00; curved starting N form; # CJK STROKE N
+31CF FE01; flat N form; # CJK STROKE N
+31D0 FE00; rising H form; # CJK STROKE H
+31D1 FE00; slanted S form; # CJK STROKE S
+31D2 FE00; flat P form; # CJK STROKE P
+31D4 FE00; to bottom left form; # CJK STROKE D
+31D5 FE00; slanted Z form; # CJK STROKE HZ
+31D7 FE00; slanted S form; # CJK STROKE SZ
+31DB FE00; slanted SD form; # CJK STROKE PD
+31DC FE00; upwards T form; # CJK STROKE PZ
+31DD FE00; horizontal H curved N form; # CJK STROKE TN
+31DD FE01; upwards T flat N form; # CJK STROKE TN
+31E5 FE00; slanted S form; # CJK STROKE SZP
+
 # Myanmar
 
 1000 FE00; dotted form; # MYANMAR LETTER KA
