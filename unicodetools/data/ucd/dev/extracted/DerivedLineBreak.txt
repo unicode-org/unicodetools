@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2026-04-29, 19:44:04 GMT
+# Date: 2026-04-30, 18:41:33 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -243,8 +243,7 @@ FE40          ; CL # Pe       PRESENTATION FORM FOR VERTICAL RIGHT ANGLE BRACKET
 FE42          ; CL # Pe       PRESENTATION FORM FOR VERTICAL RIGHT CORNER BRACKET
 FE44          ; CL # Pe       PRESENTATION FORM FOR VERTICAL RIGHT WHITE CORNER BRACKET
 FE48          ; CL # Pe       PRESENTATION FORM FOR VERTICAL RIGHT SQUARE BRACKET
-FE50          ; CL # Po       SMALL COMMA
-FE52          ; CL # Po       SMALL FULL STOP
+FE50..FE52    ; CL # Po   [3] SMALL COMMA..SMALL FULL STOP
 FE5A          ; CL # Pe       SMALL RIGHT PARENTHESIS
 FE5C          ; CL # Pe       SMALL RIGHT CURLY BRACKET
 FE5E          ; CL # Pe       SMALL RIGHT TORTOISE SHELL BRACKET
@@ -267,7 +266,7 @@ FF64          ; CL # Po       HALFWIDTH IDEOGRAPHIC COMMA
 1343F         ; CL # Cf       EGYPTIAN HIEROGLYPH END WALLED ENCLOSURE
 145CF         ; CL # Lo       ANATOLIAN HIEROGLYPH A410A END LOGOGRAM MARK
 
-# Total code points: 95
+# Total code points: 96
 
 # ================================================
 
@@ -1768,7 +1767,6 @@ FE33..FE34    ; ID # Pc   [2] PRESENTATION FORM FOR VERTICAL LOW LINE..PRESENTAT
 FE45..FE46    ; ID # Po   [2] SESAME DOT..WHITE SESAME DOT
 FE49..FE4C    ; ID # Po   [4] DASHED OVERLINE..DOUBLE WAVY OVERLINE
 FE4D..FE4F    ; ID # Pc   [3] DASHED LOW LINE..WAVY LOW LINE
-FE51          ; ID # Po       SMALL IDEOGRAPHIC COMMA
 FE58          ; ID # Pd       SMALL EM DASH
 FE5F..FE61    ; ID # Po   [3] SMALL NUMBER SIGN..SMALL ASTERISK
 FE62          ; ID # Sm       SMALL PLUS SIGN
@@ -1906,7 +1904,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 3D000..3FC3F  ; ID # Lo [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
 
 # The above property value applies to 46178 code points not listed here.
-# Total code points: 173532
+# Total code points: 173531
 
 # ================================================
 
