@@ -8,6 +8,7 @@ import com.ibm.icu.segmenter.Segmenter;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ULocale;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -81,9 +82,15 @@ public class Indexer {
             IUP.getProperty(UcdProperty.Noncharacter_Code_Point).getSet("Yes");
 
     private static final Segmenter SENTENCE_BREAK =
-            LocalizedSegmenter.builder().setSegmentationType(SegmentationType.SENTENCE).build();
+            LocalizedSegmenter.builder()
+                    .setLocale(ULocale.ENGLISH)
+                    .setSegmentationType(SegmentationType.SENTENCE)
+                    .build();
     private static final Segmenter WORD_BREAK =
-            LocalizedSegmenter.builder().setSegmentationType(SegmentationType.WORD).build();
+            LocalizedSegmenter.builder()
+                    .setLocale(ULocale.ENGLISH)
+                    .setSegmentationType(SegmentationType.WORD)
+                    .build();
 
     private static final Map<String, UnicodeSet> blockSet = new HashMap<>();
 
