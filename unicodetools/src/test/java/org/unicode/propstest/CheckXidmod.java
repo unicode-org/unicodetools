@@ -25,6 +25,7 @@ import org.unicode.cldr.util.CLDRFile.DraftStatus;
 import org.unicode.cldr.util.CLDRFile.WinningChoice;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.DtdType;
+import org.unicode.cldr.util.ExemplarSets;
 import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.Iso639Data;
 import org.unicode.cldr.util.Iso639Data.Type;
@@ -269,7 +270,8 @@ public class CheckXidmod {
             }
 
             // CLDRFile f = cldrFactory.make(locale, false, DraftStatus.approved);
-            UnicodeSet uset = f.getExemplarSet("", WinningChoice.WINNING);
+            UnicodeSet uset =
+                    f.getExemplarSet(ExemplarSets.ExemplarType.main, WinningChoice.WINNING);
             if (uset == null) {
                 continue;
             }

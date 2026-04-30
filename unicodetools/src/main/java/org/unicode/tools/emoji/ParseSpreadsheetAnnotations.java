@@ -40,6 +40,7 @@ import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.CLDRFile.WinningChoice;
 import org.unicode.cldr.util.CLDRPaths;
+import org.unicode.cldr.util.ExemplarSets;
 import org.unicode.cldr.util.SimpleHtmlParser;
 import org.unicode.cldr.util.SimpleHtmlParser.Type;
 import org.unicode.cldr.util.TransliteratorUtilities;
@@ -194,9 +195,17 @@ public class ParseSpreadsheetAnnotations {
                             cldrFile, "//ldml/characterLabels/characterLabelP");
             okNameCharacters =
                     new UnicodeSet("[[:Nd:]\\u0020+]")
-                            .addAll(cldrFile.getExemplarSet("", WinningChoice.WINNING))
-                            .addAll(cldrFile.getExemplarSet("auxiliary", WinningChoice.WINNING))
-                            .addAll(cldrFile.getExemplarSet("punctuation", WinningChoice.WINNING));
+                            .addAll(
+                                    cldrFile.getExemplarSet(
+                                            ExemplarSets.ExemplarType.main, WinningChoice.WINNING))
+                            .addAll(
+                                    cldrFile.getExemplarSet(
+                                            ExemplarSets.ExemplarType.auxiliary,
+                                            WinningChoice.WINNING))
+                            .addAll(
+                                    cldrFile.getExemplarSet(
+                                            ExemplarSets.ExemplarType.punctuation,
+                                            WinningChoice.WINNING));
             if (locale.equals("zh")) {
                 okNameCharacters.addAll(
                         new UnicodeSet(
