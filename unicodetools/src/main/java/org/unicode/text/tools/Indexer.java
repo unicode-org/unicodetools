@@ -328,13 +328,15 @@ public class Indexer {
                             .add(cp);
                     // Override word breaking of ' and - in appropriate contexts so that
                     // radical/stroke indices are atomic.
+                    // With ICU4J we could do that with custom segmentation rules, but we need to
+                    // have the same segmentation in the JavaScript where we do not have that
+                    // luxury, so poor man’s tailoring by segmenting a mangled string it is.
+                    final String mangledForWordBreak =
+                            snippet.replaceAll("\\.-", ".0")
+                                    .replaceAll("(?<=[0-9]'*)'(?='*\\.[0-9])", "0");
                     final Iterable<Segment> segments =
                             WORD_BREAK
-                                            .segment(
-                                                    snippet.replaceAll("\\.-", ".0")
-                                                            .replaceAll(
-                                                                    "(?<=[0-9]'*)'(?='*\\.[0-9])",
-                                                                    "0"))
+                                            .segment(mangledForWordBreak)
                                             .segments()
                                             .filter(s -> s.ruleStatus >= BreakIterator.WORD_NUMBER)
                                     ::iterator;
