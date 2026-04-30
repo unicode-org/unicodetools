@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2026-04-29, 19:44:04 GMT
+# Date: 2026-04-30, 19:10:59 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2501,7 +2501,6 @@ A8FC          ; BB # Po       DEVANAGARI SIGN SIDDHAM
 
 0009          ; BA # Cc       <control-0009>
 007C          ; BA # Sm       VERTICAL LINE
-00AD          ; BA # Cf       SOFT HYPHEN
 0964..0965    ; BA # Po   [2] DEVANAGARI DANDA..DEVANAGARI DOUBLE DANDA
 0E5A..0E5B    ; BA # Po   [2] THAI CHARACTER ANGKHANKHU..THAI CHARACTER KHOMUT
 0F0B          ; BA # Po       TIBETAN MARK INTERSYLLABIC TSHEG
@@ -2527,6 +2526,7 @@ A8FC          ; BB # Po       DEVANAGARI SIGN SIDDHAM
 1C7E..1C7F    ; BA # Po   [2] OL CHIKI PUNCTUATION MUCAAD..OL CHIKI PUNCTUATION DOUBLE MUCAAD
 2000..2006    ; BA # Zs   [7] EN QUAD..SIX-PER-EM SPACE
 2008..200A    ; BA # Zs   [3] PUNCTUATION SPACE..HAIR SPACE
+2012..2013    ; BA # Pd   [2] FIGURE DASH..EN DASH
 2027          ; BA # Po       HYPHENATION POINT
 2056          ; BA # Po       THREE DOT PUNCTUATION
 2058..205B    ; BA # Po   [4] FOUR DOT PUNCTUATION..FOUR DOT MARK
@@ -2605,7 +2605,7 @@ ABEB          ; BA # Po       MEETEI MAYEK CHEIKHEI
 1BC9F         ; BA # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; BA # Po   [4] SIGNWRITING COMMA..SIGNWRITING COLON
 
-# Total code points: 263
+# Total code points: 264
 
 # ================================================
 
@@ -4011,17 +4011,17 @@ A9C0          ; VI # Mc       JAVANESE PANGKON
 
 # Line_Break=Unambiguous_Hyphen
 
+00AD          ; HH # Cf       SOFT HYPHEN
 058A          ; HH # Pd       ARMENIAN HYPHEN
 05BE          ; HH # Pd       HEBREW PUNCTUATION MAQAF
 1400          ; HH # Pd       CANADIAN SYLLABICS HYPHEN
 2010          ; HH # Pd       HYPHEN
-2012..2013    ; HH # Pd   [2] FIGURE DASH..EN DASH
 2E17          ; HH # Pd       DOUBLE OBLIQUE HYPHEN
 2E40          ; HH # Pd       DOUBLE HYPHEN
 2E5D          ; HH # Pd       OBLIQUE HYPHEN
 10D6E         ; HH # Pd       GARAY HYPHEN
 10EAD         ; HH # Pd       YEZIDI HYPHENATION MARK
 
-# Total code points: 11
+# Total code points: 10
 
 # EOF
