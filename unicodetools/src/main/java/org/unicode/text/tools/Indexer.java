@@ -8,6 +8,7 @@ import com.ibm.icu.segmenter.Segmenter;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ULocale;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -81,7 +82,15 @@ public class Indexer {
             IUP.getProperty(UcdProperty.Noncharacter_Code_Point).getSet("Yes");
 
     private static final Segmenter SENTENCE_BREAK =
-            LocalizedSegmenter.builder().setSegmentationType(SegmentationType.SENTENCE).build();
+            LocalizedSegmenter.builder()
+                    .setLocale(ULocale.ENGLISH)
+                    .setSegmentationType(SegmentationType.SENTENCE)
+                    .build();
+    private static final Segmenter WORD_BREAK =
+            LocalizedSegmenter.builder()
+                    .setLocale(ULocale.ENGLISH)
+                    .setSegmentationType(SegmentationType.WORD)
+                    .build();
 
     private static final Map<String, UnicodeSet> blockSet = new HashMap<>();
 
@@ -304,7 +313,6 @@ public class Indexer {
                         K_TGT_RS_UNICODE,
                         K_JURC_RS_UNICODE,
                         K_SEAL_RAD);
-        final var wordBreak = BreakIterator.getWordInstance();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             for (var prop : properties) {
                 final var propertyIndex = indexEntries.computeIfAbsent(prop, k -> new TreeMap<>());
@@ -327,25 +335,30 @@ public class Indexer {
                             .add(cp);
                     // Override word breaking of ' and - in appropriate contexts so that
                     // radical/stroke indices are atomic.
-
-                    wordBreak.setText(
+                    // With ICU4J we could do that with custom segmentation rules, but we need to
+                    // have the same segmentation in the JavaScript where we do not have that
+                    // luxury, so poor man’s tailoring by segmenting a mangled string it is.
+                    final String mangledForWordBreak =
                             snippet.replaceAll("\\.-", ".0")
-                                    .replaceAll("(?<=[0-9]'*)'(?='*\\.[0-9])", "0"));
-                    int start = 0;
-                    for (int limit = wordBreak.next();
-                            limit != BreakIterator.DONE;
-                            start = limit, limit = wordBreak.next()) {
-                        if (wordBreak.getRuleStatus() >= BreakIterator.WORD_NUMBER) {
-                            String word = snippet.substring(start, limit).toLowerCase(Locale.ROOT);
-                            String lemma = lemmatize(word);
+                                    .replaceAll("(?<=[0-9]'*)'(?='*\\.[0-9])", "0");
+                    final Iterable<Segment> segments =
+                            WORD_BREAK
+                                            .segment(mangledForWordBreak)
+                                            .segments()
+                                            .filter(s -> s.ruleStatus >= BreakIterator.WORD_NUMBER)
+                                    ::iterator;
+                    for (final var segment : segments) {
+                        String word =
+                                snippet.substring(segment.start, segment.limit)
+                                        .toLowerCase(Locale.ROOT);
+                        String lemma = lemmatize(word);
+                        wordIndex
+                                .computeIfAbsent(fold(word), k -> new TreeMap<>())
+                                .putIfAbsent(snippetIndex, segment.start);
+                        if (!lemma.equals(fold(word))) {
                             wordIndex
-                                    .computeIfAbsent(fold(word), k -> new TreeMap<>())
-                                    .putIfAbsent(snippetIndex, start);
-                            if (!lemma.equals(fold(word))) {
-                                wordIndex
-                                        .computeIfAbsent(lemma, k -> new TreeMap<>())
-                                        .putIfAbsent(snippetIndex, start);
-                            }
+                                    .computeIfAbsent(lemma, k -> new TreeMap<>())
+                                    .putIfAbsent(snippetIndex, segment.start);
                         }
                     }
                 }
