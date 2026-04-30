@@ -1,6 +1,11 @@
 08D3; Diacritic
 0656; Diacritic
 06E2; Diacritic
+10ECC; Diacritic
+10ECD; Diacritic
+10EF3..10EF6; Diacritic
+10EF7; Diacritic
+10EF9; Diacritic
 # PropList-18.0.0.txt
 # Date: 2026-04-29, 15:05:35 GMT
 # © 2026 Unicode®, Inc.
