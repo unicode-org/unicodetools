@@ -1521,10 +1521,14 @@ public class UnicodeUtilities {
                 UcdPropertyValues.Script_Values.forName(
                         getFactory().getProperty("Script").getValue(cp));
         boolean hasScriptSpecificUCDProperties =
-        scriptSpecificUCDProperties.containsKey(script) || (showDevProperties && scriptSpecificUCDProperties.containsKey(devScript));
+                scriptSpecificUCDProperties.containsKey(script)
+                        || (showDevProperties
+                                && scriptSpecificUCDProperties.containsKey(devScript));
         boolean hasOtherScriptSpecificUCDData =
-         otherScriptSpecificUCDData.containsKey(script) || (showDevProperties && otherScriptSpecificUCDData.containsKey(devScript));
-        boolean hasScriptSpecificUCDData = hasScriptSpecificUCDProperties || hasOtherScriptSpecificUCDData;
+                otherScriptSpecificUCDData.containsKey(script)
+                        || (showDevProperties && otherScriptSpecificUCDData.containsKey(devScript));
+        boolean hasScriptSpecificUCDData =
+                hasScriptSpecificUCDProperties || hasOtherScriptSpecificUCDData;
 
         Age_Values age = Age_Values.forName(getFactory().getProperty("Age").getValue(cp));
         VersionInfo minVersion =
@@ -1591,8 +1595,7 @@ public class UnicodeUtilities {
                     otherScriptSpecificUCDData.get(script).stream()
                             .map(UcdProperty::toString)
                             .collect(Collectors.toList()),
-                    "Other script-specific UCD data for U+"
-                            + hex,
+                    "Other script-specific UCD data for U+" + hex,
                     cp,
                     minVersion,
                     maxVersion,
