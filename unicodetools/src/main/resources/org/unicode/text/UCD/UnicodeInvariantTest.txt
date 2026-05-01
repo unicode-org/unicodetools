@@ -843,6 +843,7 @@ Let $OPInclusions := [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U0001328
     - \p{LB=GL} - \p{LB=AL} - \p{LB=ZWJ}
     - \p{LB=VI} - \p{LB=VF}
     - \p{LB=NU}  # 176-A81 changed [[:PCM:]-\u070F] from lb=AL to lb=NU
+    - \p{LB=HH}  # 187-C45 changed U+00AD SOFT HYPHEN from lb=BA to lb=HH.
 ]
 
 #  3.0.0: Numeric characters consist of decimal digits (all characters of General_Category Nd),
