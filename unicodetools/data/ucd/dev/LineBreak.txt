@@ -1,5 +1,5 @@
 # LineBreak-18.0.0.txt
-# Date: 2026-04-29, 19:44:09 GMT
+# Date: 2026-04-30, 18:41:44 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2599,9 +2599,7 @@ FE47           ; OP # Ps         PRESENTATION FORM FOR VERTICAL LEFT SQUARE BRAC
 FE48           ; CL # Pe         PRESENTATION FORM FOR VERTICAL RIGHT SQUARE BRACKET
 FE49..FE4C     ; ID # Po     [4] DASHED OVERLINE..DOUBLE WAVY OVERLINE
 FE4D..FE4F     ; ID # Pc     [3] DASHED LOW LINE..WAVY LOW LINE
-FE50           ; CL # Po         SMALL COMMA
-FE51           ; ID # Po         SMALL IDEOGRAPHIC COMMA
-FE52           ; CL # Po         SMALL FULL STOP
+FE50..FE52     ; CL # Po     [3] SMALL COMMA..SMALL FULL STOP
 FE54..FE55     ; NS # Po     [2] SMALL SEMICOLON..SMALL COLON
 FE56..FE57     ; EX # Po     [2] SMALL QUESTION MARK..SMALL EXCLAMATION MARK
 FE58           ; ID # Pd         SMALL EM DASH

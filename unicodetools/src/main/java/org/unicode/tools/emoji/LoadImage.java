@@ -74,6 +74,7 @@ import javax.imageio.stream.MemoryCacheImageOutputStream;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
+import org.unicode.cldr.util.ExemplarSets;
 import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.LocaleIDParser;
 import org.unicode.cldr.util.With;
@@ -314,7 +315,8 @@ public class LoadImage extends Component {
                 //            }
                 CLDRFile cldrFileObj = cldrFactory.make(cldrFile, true);
                 UnicodeSet exemplars =
-                        cldrFileObj.getExemplarSet("", CLDRFile.WinningChoice.WINNING);
+                        cldrFileObj.getExemplarSet(
+                                ExemplarSets.ExemplarType.main, CLDRFile.WinningChoice.WINNING);
                 int script = 0;
                 for (String s : exemplars) {
                     script = UScript.getScript(s.codePointAt(0));
