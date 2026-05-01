@@ -100,6 +100,9 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin-version}</version>
                     <configuration>
+                        <!-- Multiple JVM processes in parallel. -->
+                        <forkCount>4</forkCount>
+                        <!-- https://maven.apache.org/surefire/maven-surefire-plugin/examples/fork-options-and-parallel-execution.html -->
                         <systemPropertyVariables>
                             <!-- These are variables which are picked up by test runs -->
                             <CLDR_ENVIRONMENT>UNITTEST</CLDR_ENVIRONMENT>
