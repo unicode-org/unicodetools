@@ -747,6 +747,15 @@ public class UcdPropertyValues {
 
     // Case_Folding
     // CJK_Radical
+    // cjkUSource_Comments
+    // cjkUSource_FirstResidualStroke
+    // cjkUSource_Identifier
+    // cjkUSource_IDS
+    // cjkUSource_KangXi
+    // cjkUSource_RSUnicode
+    // cjkUSource_Source
+    // cjkUSource_Status
+    // cjkUSource_TotalStrokes
     // Confusable_MA
     // Confusable_ML
     // Confusable_SA

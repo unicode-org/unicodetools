@@ -219,6 +219,18 @@ cjkSMSZD2003Readings     ; kSMSZD2003Readings ; Provisional
 cjkFanqie                ; kFanqie ; Provisional
 cjkZhuang                ; kZhuang ; Provisional
 
+# USourceData.txt fields other than 2, keyed on field 2.
+cjkUSource_Identifier          ; cjkUSource_Identifier          ; UCDNonProperty
+cjkUSource_Status              ; cjkUSource_Status              ; UCDNonProperty
+
+cjkUSource_RSUnicode           ; cjkUSource_RSUnicode           ; UCDNonProperty
+cjkUSource_KangXi              ; cjkUSource_KangXi              ; UCDNonProperty
+cjkUSource_IDS                 ; cjkUSource_IDS                 ; UCDNonProperty
+cjkUSource_Source              ; cjkUSource_Source              ; UCDNonProperty
+cjkUSource_Comments            ; cjkUSource_Comments            ; UCDNonProperty
+cjkUSource_TotalStrokes        ; cjkUSource_TotalStrokes        ; UCDNonProperty
+cjkUSource_FirstResidualStroke ; cjkUSource_FirstResidualStroke ; UCDNonProperty
+
 # [183-C29] Consensus: In TangutSources.txt,
 # change the tag kRSTUnicode to kTGT_RSUnicode.
 # For Unicode Version 17.0. See L2/25-087 item 1.9.

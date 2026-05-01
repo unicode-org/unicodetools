@@ -239,6 +239,34 @@ public enum UcdProperty {
             ValueCardinality.Unordered,
             "SV"),
     Unicode_1_Name(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "na1"),
+    cjkUSource_Comments(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "cjkUSource_Comments"),
+    cjkUSource_FirstResidualStroke(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "cjkUSource_FirstResidualStroke"),
+    cjkUSource_IDS(
+            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "cjkUSource_IDS"),
+    cjkUSource_Identifier(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "cjkUSource_Identifier"),
+    cjkUSource_KangXi(
+            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "cjkUSource_KangXi"),
+    cjkUSource_RSUnicode(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "cjkUSource_RSUnicode"),
+    cjkUSource_Source(
+            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "cjkUSource_Source"),
+    cjkUSource_Status(
+            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "cjkUSource_Status"),
+    cjkUSource_TotalStrokes(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "cjkUSource_TotalStrokes"),
     emoji_variation_sequence(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
