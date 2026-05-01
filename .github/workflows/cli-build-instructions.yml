@@ -38,7 +38,7 @@ jobs:
   # look like. Rely on out-of-source build steps as the canonical way to
   # execute tools in CI and write corresponding documentation.
   in-source-build:
-    name: In-source Instructions (Examples)
+    name: In-source smoke test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
@@ -64,9 +64,6 @@ jobs:
           fetch-depth: 0
       - name: Switch CLDR to CLDR_REF
         run: cd cldr && git fetch && git checkout ${{ steps.cldr_ref.outputs.CLDR_REF }}
-      - name: Backup Unicodetools and CLDR for jsps  # this is needed only for the Docker build
-        run:
-          mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git -f UnicodeJsps/target/cldr-unicodetools.tgz ./cldr ./unicodetools
       - name: Symlink CLDR working copy to be sibling of Unicode Tools
         run: |
           ln -s $(pwd)/cldr ..
@@ -87,24 +84,25 @@ jobs:
 
       # Since these are just examples to smoke-test the in-source build process,
       # let’s not run the whole build and test suite, which is quite slow (6 min
-      # 26 s as of this writing).  Just run the invariant tests and smoke-test
-      # MakeUnicodeFiles.  We don’t even check that MakeUnicodeFiles doesn’t
-      # change anything, which makes little sense; but that is the job of the
-      # other job.
-      - name: Run invariant tests
-        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants#testUnicodeInvariants -DfailIfNoTests=false -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)
+      # 26 s as of this writing).
+      # Just run some of the invariant tests and smoke-test MakeUnicodeFiles.
+      # We don’t even check that MakeUnicodeFiles doesn’t change anything,
+      # which makes little sense; but that is the purpose of the other job.
+      # For smoke testing, generate only a couple of files.
+      - name: Run some invariant tests
+        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants#testUnicodeSetParsing -DfailIfNoTests=false -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run command - Make Unicode Files
-        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass=org.unicode.text.UCD.MakeUnicodeFiles  -am -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)
+      - name: Run command - Make Unicode Files subset
+        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass=org.unicode.text.UCD.MakeUnicodeFiles "-Dexec.args=--generate ^PropertyValueAliases$ ^LineBreak$"  -am -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
   # Out-of-source build.
   ucd-and-smoke-tests:
-    name: Check UCD consistency, invariants, smoke-test generators
+    name: Out-of-source full test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
@@ -194,7 +192,7 @@ jobs:
 
       # Only test once we know the UCD is internally consistent.
       # MakeUnicodeFiles is much faster than this anyway.
-      - name: Run command - Build and Test
+      - name: Test invariants
         run: |
           cd unicodetools/mine/src
           MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -Dtest=!TestTestUnicodeInvariants#testSecurityInvariants -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DEMIT_GITHUB_ERRORS  -DENABLE_PROP_FILE_CACHE
@@ -294,7 +292,7 @@ jobs:
 
   # Out-of-source build.
   uca:
-    name: Check UCA data
+    name: UCA data
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
@@ -372,7 +370,7 @@ jobs:
 
   # Out-of-source build.
   security:
-    name: Check security data invariants
+    name: Security data invariants
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
