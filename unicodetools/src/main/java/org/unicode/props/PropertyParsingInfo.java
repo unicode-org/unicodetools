@@ -58,12 +58,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     public static class FieldMapping implements Comparable<FieldMapping> {
         /** A mapping from field 0 to field `valueField`. This is the most common case. */
         FieldMapping(int valueField) {
-            this(0, valueField);
+            this(0, valueField, /* optionalKey= */ false);
         }
 
-        FieldMapping(int keyField, int valueField) {
+        FieldMapping(int keyField, int valueField, boolean optionalKey) {
             this.keyField = keyField;
             this.valueField = valueField;
+            this.optionalKey = optionalKey;
         }
 
         @Override
@@ -78,9 +79,11 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
         final int keyField;
         final int valueField;
+        final boolean optionalKey;
         static final Comparator<FieldMapping> comparator =
                 Comparator.<FieldMapping>comparingInt(m -> m.keyField)
-                        .thenComparing(m -> m.valueField);
+                        .thenComparing(m -> m.valueField)
+                        .thenComparing(m -> m.optionalKey);
     }
 
     /**
@@ -150,7 +153,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     }
 
     static final Pattern VERSION = Pattern.compile("v\\d+(\\.\\d+)+");
-    static final Pattern FIELD_MAPPING = Pattern.compile("(\\d+)\\s*↦\\s*(\\d+)");
+    static final Pattern FIELD_MAPPING = Pattern.compile("(\\d+)\\s*(\\?)?↦\\s*(\\d+)");
 
     private static void fromStrings(String... propertyInfo) {
         if (propertyInfo.length < 2 || propertyInfo.length > 4) {
@@ -175,7 +178,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 fieldMapping =
                         new FieldMapping(
                                 Integer.parseInt(matcher.group(1)),
-                                Integer.parseInt(matcher.group(2)));
+                                Integer.parseInt(matcher.group(3)),
+                                /* optionalKey= */ matcher.group(2) != null);
             } else {
                 fieldMapping = new FieldMapping(Integer.parseInt(propertyInfo[2]));
             }
@@ -1566,6 +1570,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             IndexUnicodeProperties indexUnicodeProperties,
             IndexUnicodeProperties nextProperties,
             Set<PropertyParsingInfo> propInfoSet) {
+        parser.withRange(
+                propInfoSet.stream()
+                        .map(pi -> pi.getFieldMapping(indexUnicodeProperties.ucdVersion).keyField)
+                        .anyMatch(kf -> kf == 0));
         for (UcdLineParser.UcdLine line : parser) {
             parseFields(line, indexUnicodeProperties, nextProperties, propInfoSet, null, false);
         }
@@ -1743,11 +1751,21 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                     : nextProperties.getProperty(propInfo.property),
                             indexUnicodeProperties.getUcdVersion());
                 } else {
+                    final var fieldMapping =
+                            propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion);
+                    String keyField = parts[fieldMapping.keyField];
+                    if (keyField.equals("UTC-03214") && parts[0].equals("UTC-03220")) {
+                        keyField = "U+33143";
+                    }
+                    if (keyField.isEmpty()) {
+                        if (!fieldMapping.optionalKey) {
+                            throw new UnicodePropertyException(
+                                    "Cannot key on empty field unless the key is made optional with ?↦");
+                        }
+                        continue;
+                    }
                     final var key = new IntRange();
-                    key.set(
-                            parts[
-                                    propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion)
-                                            .keyField]);
+                    key.set(keyField);
                     propInfo.put(
                             data,
                             line.getMissingSet(),
