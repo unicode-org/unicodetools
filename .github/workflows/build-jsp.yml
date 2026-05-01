@@ -12,7 +12,8 @@ on:
     tags:
     - '*'
 jobs:
-  build:
+  build-jsp:
+    name: Build JSPs
     runs-on: ubuntu-latest
     permissions:
       contents: read
