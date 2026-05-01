@@ -89,6 +89,7 @@
 # @missing: 0000..10FFFF; kEH_NoMirror  ;  No
 # @missing: 0000..10FFFF; kEH_NoRotate  ;  No
 
+# @missing: 0000..10FFFF; Link_Bracket; <none>
 # @missing: 0000..10FFFF; Link_Email ; No
 
 # End of binary properties.
