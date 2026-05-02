@@ -17,6 +17,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
@@ -56,15 +57,21 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
      * 1) maps U+1234 to Value.
      */
     public static class FieldMapping implements Comparable<FieldMapping> {
-        /** A mapping from field 0 to field `valueField`. This is the most common case. */
-        FieldMapping(int valueField) {
-            this(0, valueField, /* optionalKey= */ false);
+        public enum KeyType {
+            CodePoint,
+            String,
+            CodePointSet,
         }
 
-        FieldMapping(int keyField, int valueField, boolean optionalKey) {
+        /** A mapping from field 0 to field `valueField`. This is the most common case. */
+        FieldMapping(int valueField) {
+            this(0, valueField, KeyType.CodePoint);
+        }
+
+        FieldMapping(int keyField, int valueField, KeyType keyType) {
             this.keyField = keyField;
             this.valueField = valueField;
-            this.optionalKey = optionalKey;
+            this.keyType = keyType;
         }
 
         @Override
@@ -79,11 +86,11 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
         final int keyField;
         final int valueField;
-        final boolean optionalKey;
+        final KeyType keyType;
         static final Comparator<FieldMapping> comparator =
                 Comparator.<FieldMapping>comparingInt(m -> m.keyField)
                         .thenComparing(m -> m.valueField)
-                        .thenComparing(m -> m.optionalKey);
+                        .thenComparing(m -> m.keyType);
     }
 
     /**
@@ -153,7 +160,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     }
 
     static final Pattern VERSION = Pattern.compile("v\\d+(\\.\\d+)+");
-    static final Pattern FIELD_MAPPING = Pattern.compile("(\\d+)\\s*(\\?)?↦\\s*(\\d+)");
+    static final Pattern FIELD_MAPPING =
+            Pattern.compile("(?:(\\d+)|\\{(\\d+)\\}|\"(\\d+)\")\\s*↦\\s*(\\d+)");
 
     private static void fromStrings(String... propertyInfo) {
         if (propertyInfo.length < 2 || propertyInfo.length > 4) {
@@ -177,9 +185,17 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             if (matcher.matches()) {
                 fieldMapping =
                         new FieldMapping(
-                                Integer.parseInt(matcher.group(1)),
-                                Integer.parseInt(matcher.group(3)),
-                                /* optionalKey= */ matcher.group(2) != null);
+                                Integer.parseInt(
+                                        Optional.ofNullable(matcher.group(1))
+                                                .orElse(
+                                                        Optional.ofNullable(matcher.group(2))
+                                                                .orElse(matcher.group(3)))),
+                                Integer.parseInt(matcher.group(4)),
+                                matcher.group(1) != null
+                                        ? FieldMapping.KeyType.CodePoint
+                                        : matcher.group(2) != null
+                                                ? FieldMapping.KeyType.CodePointSet
+                                                : FieldMapping.KeyType.String);
             } else {
                 fieldMapping = new FieldMapping(Integer.parseInt(propertyInfo[2]));
             }
@@ -1754,29 +1770,100 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     final var fieldMapping =
                             propInfo.getFieldMapping(indexUnicodeProperties.ucdVersion);
                     String keyField = parts[fieldMapping.keyField];
-                    if (keyField.equals("UTC-03214") && parts[0].equals("UTC-03220")) {
-                        keyField = "U+33143";
-                    }
-                    if (keyField.isEmpty()) {
-                        if (!fieldMapping.optionalKey) {
-                            throw new UnicodePropertyException(
-                                    "Cannot key on empty field unless the key is made optional with ?↦");
+                    if (propInfo.getFileName(indexUnicodeProperties.ucdVersion)
+                            .equals("USourceData")) {
+                        if (keyField.equals("UTC-03214") && parts[0].equals("UTC-03220")) {
+                            // TODO(egg): Complain to Ken about this, and then make this .equals
+                            // once fixed in 18.
+                            keyField =
+                                    indexUnicodeProperties.ucdVersion.compareTo(
+                                                            VersionInfo.UNICODE_17_0)
+                                                    >= 0
+                                            ? "U+33143"
+                                            : "";
                         }
-                        continue;
+                        if (keyField.equals("UTC-02828") && parts[0].equals("UK-02829")) {
+                            keyField =
+                                    indexUnicodeProperties.ucdVersion.equals(
+                                                    VersionInfo.UNICODE_13_0)
+                                            ? "U+30F8A"
+                                            : "";
+                        }
+                        if (indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_12_1)
+                                        <= 0
+                                && keyField.matches("UTC-[0-9A-F]+")
+                                && parts[1].equals("UK-2015")) {
+                            keyField = "";
+                        }
+                        // U+2793 is ➓.  Surely that is nonsense.
+                        if (indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_12_1)
+                                        <= 0
+                                && keyField.equals("U+2793DUTC-02138")) {
+                            keyField = "";
+                        }
+                        // U+4C74 is 䱴, which seems reasonably close to UK-02696 ⿰鱼恒 (now encoded at
+                        // 𱈈).
+                        if (indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_12_1)
+                                        <= 0
+                                && keyField.equals("UTC-02557U+4C74")) {
+                            keyField = "U+4C74";
+                        }
+                        if (indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_10_0)
+                                        <= 0
+                                && keyField.equals("U+891DU+79AA")) {
+                            keyField = "U+891D U+79AA";
+                        }
+                        if (indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_10_0)
+                                        <= 0
+                                && keyField.equals("U+82B2U+83D5")) {
+                            keyField = "U+82B2 U+83D5";
+                        }
                     }
                     final var key = new IntRange();
                     key.set(keyField);
-                    propInfo.put(
-                            data,
-                            line.getMissingSet(),
-                            key,
-                            value,
-                            IndexUnicodeProperties.MULTIVALUED_JOINER,
-                            hackHangul && propInfo.property == UcdProperty.Decomposition_Mapping,
-                            nextProperties == null
-                                    ? null
-                                    : nextProperties.getProperty(propInfo.property),
-                            indexUnicodeProperties.getUcdVersion());
+                    if (key.string != null) {
+                        if (fieldMapping.keyType == FieldMapping.KeyType.CodePoint) {
+                            throw new UnicodePropertyException(
+                                    propInfo.property.name()
+                                            + ": Cannot key on multiple or zero code points ("
+                                            + key.string
+                                            + ") unless the key is made a string with \"\" or a set with {} in IndexUnicodeProperties");
+                        }
+                    }
+                    if (key.string != null
+                            && fieldMapping.keyType == FieldMapping.KeyType.CodePointSet) {
+                        for (int codePoint : key.string.codePoints().toArray()) {
+                            IntRange cp = new IntRange();
+                            cp.start = codePoint;
+                            cp.end = codePoint;
+                            propInfo.put(
+                                    data,
+                                    line.getMissingSet(),
+                                    cp,
+                                    value,
+                                    IndexUnicodeProperties.MULTIVALUED_JOINER,
+                                    hackHangul
+                                            && propInfo.property
+                                                    == UcdProperty.Decomposition_Mapping,
+                                    nextProperties == null
+                                            ? null
+                                            : nextProperties.getProperty(propInfo.property),
+                                    indexUnicodeProperties.getUcdVersion());
+                        }
+                    } else {
+                        propInfo.put(
+                                data,
+                                line.getMissingSet(),
+                                key,
+                                value,
+                                IndexUnicodeProperties.MULTIVALUED_JOINER,
+                                hackHangul
+                                        && propInfo.property == UcdProperty.Decomposition_Mapping,
+                                nextProperties == null
+                                        ? null
+                                        : nextProperties.getProperty(propInfo.property),
+                                indexUnicodeProperties.getUcdVersion());
+                    }
                 }
             }
         } else {

@@ -515,21 +515,22 @@ NamedSequencesProv ; Named_Sequences_Prov
 StandardizedVariants ; Standardized_Variant
 emoji-variation-sequences ; emoji-variation-sequence
 DoNotEmit ; Do_Not_Emit_Preferred ; 1
-DoNotEmit ; Do_Not_Emit_Dispreferred ; 1 ↦ 0
-DoNotEmit ; Do_Not_Emit_Dispreferred_Type ; 1 ↦ 2
+DoNotEmit ; Do_Not_Emit_Dispreferred ; "1" ↦ 0
+DoNotEmit ; Do_Not_Emit_Dispreferred_Type ; "1" ↦ 2
 DoNotEmit ; Do_Not_Emit_Type ; 2
 
 # USourceData.txt fields other than 2, keyed on field 2.
-USourceData ; cjkUSource_Identifier          ; 2 ?↦ 0
-USourceData ; cjkUSource_Status              ; 2 ?↦ 1
+# Field 2 is multivalued (although this is not documented).
+USourceData ; cjkUSource_Identifier          ; {2} ↦ 0
+USourceData ; cjkUSource_Status              ; {2} ↦ 1
 
-USourceData ; cjkUSource_RSUnicode           ; 2 ?↦ 3
-USourceData ; cjkUSource_KangXi              ; 2 ?↦ 4
-USourceData ; cjkUSource_IDS                 ; 2 ?↦ 5
-USourceData ; cjkUSource_Source              ; 2 ?↦ 6
-USourceData ; cjkUSource_Comments            ; 2 ?↦ 7
-USourceData ; cjkUSource_TotalStrokes        ; 2 ?↦ 8
-USourceData ; cjkUSource_FirstResidualStroke ; 2 ?↦ 9
+USourceData ; cjkUSource_RSUnicode           ; {2} ↦ 3
+USourceData ; cjkUSource_KangXi              ; {2} ↦ 4
+USourceData ; cjkUSource_IDS                 ; {2} ↦ 5
+USourceData ; cjkUSource_Source              ; {2} ↦ 6
+USourceData ; cjkUSource_Comments            ; {2} ↦ 7
+USourceData ; cjkUSource_TotalStrokes        ; {2} ↦ 8
+USourceData ; cjkUSource_FirstResidualStroke ; {2} ↦ 9
 
 idna/*/IdnaMappingTable; Idn_Status;
 idna/*/IdnaMappingTable; Idn_Mapping; 2
