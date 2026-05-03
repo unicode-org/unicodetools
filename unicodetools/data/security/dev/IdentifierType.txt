@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2026-04-13, 16:55:19 GMT
+# Date: 2026-05-03, 21:54:14 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -521,7 +521,6 @@
 097E..097F    ; Recommended                    # 5.0    [2] DEVANAGARI LETTER DDDA..DEVANAGARI LETTER BBA
 0980          ; Obsolete                       # 7.0        BENGALI ANJI
 0981..0983    ; Recommended                    # 1.1    [3] BENGALI SIGN CANDRABINDU..BENGALI SIGN VISARGA
-0984          ; Obsolete                       # 18.0       BENGALI SIGN COMBINING ANUSVARA ABOVE
 0985..098B    ; Recommended                    # 1.1    [7] BENGALI LETTER A..BENGALI LETTER VOCALIC R
 098C          ; Uncommon_Use                   # 1.1        BENGALI LETTER VOCALIC L
 098F..0990    ; Recommended                    # 1.1    [2] BENGALI LETTER E..BENGALI LETTER AI
@@ -545,7 +544,6 @@
 09FC          ; Obsolete                       # 10.0       BENGALI LETTER VEDIC ANUSVARA
 09FD          ; Not_XID                        # 10.0       BENGALI ABBREVIATION SIGN
 09FE          ; Uncommon_Use                   # 11.0       BENGALI SANDHI MARK
-09FF          ; Technical                      # 18.0       BENGALI LETTER SANSKRIT BA
 0A01          ; Uncommon_Use                   # 4.0        GURMUKHI SIGN ADAK BINDI
 0A02          ; Recommended                    # 1.1        GURMUKHI SIGN BINDI
 0A03          ; Uncommon_Use                   # 4.0        GURMUKHI SIGN VISARGA
@@ -1006,7 +1004,6 @@
 1810..1819    ; Exclusion                      # 3.0   [10] MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
 1820..1877    ; Exclusion                      # 3.0   [88] MONGOLIAN LETTER A..MONGOLIAN LETTER MANCHU ZHA
 1878          ; Exclusion                      # 11.0       MONGOLIAN LETTER CHA WITH TWO DOTS
-1879          ; Exclusion                      # 18.0       MONGOLIAN LETTER ALTERNATE UE
 1880..18A8    ; Exclusion                      # 3.0   [41] MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER MANCHU ALI GALI BHA
 18A9          ; Uncommon_Use Exclusion         # 3.0        MONGOLIAN LETTER ALI GALI DAGALGA
 18AA          ; Exclusion                      # 5.1        MONGOLIAN LETTER MANCHU ALI GALI LHA
@@ -4539,6 +4536,8 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 11DA0..11DA9  ; Exclusion                      # 11.0  [10] GUNJALA GONDI DIGIT ZERO..GUNJALA GONDI DIGIT NINE
 11DB0..11DDB  ; Exclusion                      # 17.0  [44] TOLONG SIKI LETTER I..TOLONG SIKI UNGGA
 11DE0..11DE9  ; Exclusion                      # 17.0  [10] TOLONG SIKI DIGIT ZERO..TOLONG SIKI DIGIT NINE
+11DF0         ; Obsolete                       # 18.0       BENGALI SIGN COMBINING ANUSVARA ABOVE
+11DF1         ; Technical                      # 18.0       BENGALI LETTER ALTERNATE BARGIYA BA
 11EE0..11EF6  ; Exclusion                      # 11.0  [23] MAKASAR LETTER KA..MAKASAR VOWEL SIGN O
 11EF7..11EF8  ; Exclusion Not_XID              # 11.0   [2] MAKASAR PASSIMBANG..MAKASAR END OF SECTION
 11F00..11F10  ; Exclusion                      # 15.0  [17] KAWI SIGN CANDRABINDU..KAWI LETTER O
@@ -4739,7 +4738,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 1DF5A..1DF66  ; Uncommon_Use                   # 18.0  [13] LATIN SMALL LETTER HALF A..LATIN SMALL LETTER REVERSED Z
 1DF67         ; Technical                      # 18.0       LATIN SMALL LETTER LEZH WITH CURL
 1DF68..1DF81  ; Technical Obsolete             # 18.0  [26] LATIN CAPITAL LETTER PHONOTYPIC A WITH SWASH..LATIN CAPITAL LETTER E WITH BENT TOPBAR
-1DF90..1DF94  ; Technical Obsolete             # 18.0   [5] LATIN SMALL LETTER C WITH SMALL SLASH..LATIN SMALL LETTER R ROTUNDA WITH LOOP
+1DF90..1DF94  ; Technical Obsolete             # 18.0   [5] LATIN SMALL LETTER C WITH LOW SLASH..LATIN SMALL LETTER R ROTUNDA WITH LOOP
 1DF95         ; Not_NFKC                       # 18.0       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1DF96         ; Technical Obsolete             # 18.0       LATIN SMALL LETTER LONG S WITH TOP LOOP
 1DFCD..1DFFF  ; Not_NFKC                       # 18.0  [51] MODIFIER LETTER SMALL TURNED R WITH MID-HEIGHT LEFT HOOK..MODIFIER LETTER SMALL T WITH HOOK AND RETROFLEX HOOK
@@ -5207,4 +5206,4 @@ E0001         ; Deprecated                     # 3.1        LANGUAGE TAG
 E0020..E007F  ; Default_Ignorable              # 3.1   [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Default_Ignorable              # 4.0  [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172855
+# Total code points: 172854
