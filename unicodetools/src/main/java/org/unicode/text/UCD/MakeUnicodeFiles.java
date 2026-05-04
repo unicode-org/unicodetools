@@ -79,10 +79,7 @@ public class MakeUnicodeFiles {
 
         int files = Arrays.asList(args).indexOf("--generate");
         if (files >= 0) {
-            Format.theFormat.filesToDo =
-                    Arrays.asList(args)
-                            .subList(files + 1, args.length)
-                            .toArray(new String[args.length - (files + 1)]);
+            Format.theFormat.filesToDo = Arrays.copyOfRange(args, files + 1, args.length);
         }
 
         if (cleanAndCopy) {
