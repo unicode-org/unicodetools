@@ -1,5 +1,5 @@
 # GraphemeBreakTest-18.0.0.txt
-# Date: 2026-05-04, 16:11:04 GMT
+# Date: 2026-05-04, 17:00:42 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -791,7 +791,15 @@
 ÷ 1795 × 17D2 × 17AF ÷ 1798 ÷	#  ÷ [0.2] KHMER LETTER PHA (LinkingConsonant) × [9.0] KHMER SIGN COENG (Extend_ConjunctLinker) × [9.3] KHMER INDEPENDENT VOWEL QE (LinkingConsonant) ÷ [999.0] KHMER LETTER MO (LinkingConsonant) ÷ [0.3]
 ÷ 17A0 × 17D2 × 17AB ÷ 1791 × 17D0 ÷ 1799 ÷	#  ÷ [0.2] KHMER LETTER HA (LinkingConsonant) × [9.0] KHMER SIGN COENG (Extend_ConjunctLinker) × [9.3] KHMER INDEPENDENT VOWEL RY (LinkingConsonant) ÷ [999.0] KHMER LETTER TO (LinkingConsonant) × [9.0] KHMER SIGN SAMYOK SANNYA (Extend_ConjunctExtender) ÷ [999.0] KHMER LETTER YO (LinkingConsonant) ÷ [0.3]
 ÷ 1B05 × 1B44 × 1B33 × 1B03 ÷	#  ÷ [0.2] BALINESE LETTER AKARA (XXmLinkingConsonantmExtPict) × [9.0] BALINESE ADEG ADEG (Extend_ConjunctLinker) × [9.3] BALINESE LETTER HA (LinkingConsonant) × [9.0] BALINESE SIGN SURANG (Extend_ConjunctExtender) ÷ [0.3]
+÷ 0CF1 ÷ 0C95 ÷	#  ÷ [0.2] KANNADA SIGN JIHVAMULIYA (XXmLinkingConsonantmExtPict) ÷ [999.0] KANNADA LETTER KA (XXmLinkingConsonantmExtPict) ÷ [0.3]
+÷ 0CF2 ÷ 0CAB ÷	#  ÷ [0.2] KANNADA SIGN UPADHMANIYA (XXmLinkingConsonantmExtPict) ÷ [999.0] KANNADA LETTER PHA (XXmLinkingConsonantmExtPict) ÷ [0.3]
+÷ 0CF1 ÷ 0C95 × 0CBF ÷	#  ÷ [0.2] KANNADA SIGN JIHVAMULIYA (XXmLinkingConsonantmExtPict) ÷ [999.0] KANNADA LETTER KA (XXmLinkingConsonantmExtPict) × [9.0] KANNADA VOWEL SIGN I (Extend_ConjunctExtender) ÷ [0.3]
+÷ 1CF5 ÷ 0995 ÷	#  ÷ [0.2] VEDIC SIGN JIHVAMULIYA (XXmLinkingConsonantmExtPict) ÷ [999.0] BENGALI LETTER KA (LinkingConsonant) ÷ [0.3]
+÷ 1CF6 ÷ 09AA ÷	#  ÷ [0.2] VEDIC SIGN UPADHMANIYA (XXmLinkingConsonantmExtPict) ÷ [999.0] BENGALI LETTER PA (LinkingConsonant) ÷ [0.3]
+÷ 1CF5 × 200C ÷ 0995 ÷	#  ÷ [0.2] VEDIC SIGN JIHVAMULIYA (XXmLinkingConsonantmExtPict) × [9.0] ZERO WIDTH NON-JOINER (ExtendmConjunctLinkermConjunctExtender) ÷ [999.0] BENGALI LETTER KA (LinkingConsonant) ÷ [0.3]
+÷ 1CF6 × 200C ÷ 09AA ÷	#  ÷ [0.2] VEDIC SIGN UPADHMANIYA (XXmLinkingConsonantmExtPict) × [9.0] ZERO WIDTH NON-JOINER (ExtendmConjunctLinkermConjunctExtender) ÷ [999.0] BENGALI LETTER PA (LinkingConsonant) ÷ [0.3]
+÷ 11A3A ÷ 11A0B ÷	#  ÷ [0.2] ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA (XXmLinkingConsonantmExtPict) ÷ [999.0] ZANABAZAR SQUARE LETTER KA (LinkingConsonant) ÷ [0.3]
 #
-# Lines: 767
+# Lines: 775
 #
 # EOF

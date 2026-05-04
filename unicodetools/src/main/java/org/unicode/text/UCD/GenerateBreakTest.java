@@ -1303,8 +1303,26 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             // In Unicode Version 17.0, this was thus segmented as two extended
                             // grapheme clusters, ᬅ᭄ and ᬳᬃ.  In Unicode Version 18.0, with 187-C47,
                             // it is a single extended grapheme cluster.
-                            "ᬅ᭄ᬳᬃ"
-                        ));
+                            "ᬅ᭄ᬳᬃ",
+                            // Kannada examples from
+                            // https://unicode.org/versions/Unicode17.0.0/core-spec/chapter-12/#G695652.
+                            "ೱಕ",
+                            "ೲಫ",
+                            "ೱಕಿ",
+                            // Bengali examples from
+                            // https://unicode.org/versions/Unicode17.0.0/core-spec/chapter-12/#G723286.
+                            "ᳵক",
+                            "ᳶপ",
+                            "ᳵ\u200Cক",
+                            "ᳶ\u200Cপ",
+                            // Zanabazar square example from L2/14-024, p. 15.
+                            // The cluster-initial RA 𑨺 was InSC=Consonant_Prefixed in 10.0..16.0,
+                            // and thus gcb=Prepend.  It was made InSC=Consonant_With_Stacker and
+                            // thus gcb=Other in 17.0 by 183-C15, breaking this grapheme cluster.
+                            // The proposal L2/25-119 did not address grapheme cluster breaking.
+                            // In 18.0 it becomes InCB=Linker by 187-C48, putting that extended
+                            // grapheme cluster together again.
+                            "𑨺𑨋"));
         }
     }
 
