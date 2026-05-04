@@ -218,6 +218,9 @@ cjkSMSZD2003Readings     ; kSMSZD2003Readings ; Provisional
 # 16.0
 cjkFanqie                ; kFanqie ; Provisional
 cjkZhuang                ; kZhuang ; Provisional
+# 18.0
+cjkJapaneseNewVariant    ; kJapaneseNewVariant ; Provisional
+cjkJapaneseOldVariant    ; kJapaneseOldVariant ; Provisional
 
 # USourceData.txt fields other than 2, keyed on field 2.
 cjkUSource_Identifier          ; cjkUSource_Identifier          ; UCDNonProperty

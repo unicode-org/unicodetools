@@ -453,6 +453,10 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkJapaneseKun"),
+    kJapaneseNewVariant(
+            PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJapaneseNewVariant"),
+    kJapaneseOldVariant(
+            PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJapaneseOldVariant"),
     kJapaneseOn(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,

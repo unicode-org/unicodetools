@@ -1752,6 +1752,8 @@ public class UcdPropertyValues {
     // kJa
     // kJapanese
     // kJapaneseKun
+    // kJapaneseNewVariant
+    // kJapaneseOldVariant
     // kJapaneseOn
     // kJHJ
     // kJinmeiyoKanji
