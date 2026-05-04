@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-04-27, 08:03:09 GMT
+@+	Generation Date: 2026-05-04, 11:55:12 GMT
 	Unicode 18.0.0 names list.
 	Adjusted for repertoire changes post UTC187.
 	Repertoire synched with UnicodeData-18.0.0d9.txt.
@@ -13,6 +13,7 @@
 	Added notice at 1BAE.
 	Added alias and xref to A77A.
 	Added xref between A76D and 1DF92.
+	Added xref between A7D7 and 1DF95.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -25450,6 +25451,7 @@ A7D6	LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D7	LATIN SMALL LETTER MIDDLE SCOTS S
 	* used in Middle Scots for s, ss, ser, sir, is, sis, etc.
 	x (latin small letter sharp s - 00DF)
+	x (latin small ligature long s with descender s - 1DF95)
 A7D8	LATIN CAPITAL LETTER SIGMOID S
 A7D9	LATIN SMALL LETTER SIGMOID S
 	* used in Middle Cornish, Middle English, and Middle Scots
@@ -44500,7 +44502,7 @@ FFFF	<not a character>
 13A05	EGYPTIAN HIEROGLYPH-13A05
 	* phono-repeater : fꜥg
 13A06	EGYPTIAN HIEROGLYPH-13A06
-	* logogram (Prosopopite nome) : mtr
+	* logogram (Prosopite nome) : mtr
 @		D31. Male genitals
 13A07	EGYPTIAN HIEROGLYPH-13A07
 	* classifier copulating : nk
