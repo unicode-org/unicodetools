@@ -109,6 +109,10 @@ public enum UcdProperty {
     kCompatibilityVariant(
             PropertyType.String, DerivedPropertyStatus.Approved, "cjkCompatibilityVariant"),
     kEH_AltSeq(PropertyType.String, DerivedPropertyStatus.Provisional, "kEH_AltSeq"),
+    kJapaneseNewVariant(
+            PropertyType.String, DerivedPropertyStatus.Provisional, "cjkJapaneseNewVariant"),
+    kJapaneseOldVariant(
+            PropertyType.String, DerivedPropertyStatus.Provisional, "cjkJapaneseOldVariant"),
     kSEAL_MCJK(PropertyType.String, DerivedPropertyStatus.Provisional, "kSEAL_MCJK"),
     kSimplifiedVariant(
             PropertyType.String,
@@ -453,10 +457,6 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "cjkJapaneseKun"),
-    kJapaneseNewVariant(
-            PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJapaneseNewVariant"),
-    kJapaneseOldVariant(
-            PropertyType.Miscellaneous, DerivedPropertyStatus.Provisional, "cjkJapaneseOldVariant"),
     kJapaneseOn(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.Provisional,

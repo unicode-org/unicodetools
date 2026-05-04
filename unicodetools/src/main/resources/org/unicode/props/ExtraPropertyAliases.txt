@@ -77,6 +77,9 @@ cjkSimplifiedVariant ; kSimplifiedVariant ; Provisional
 cjkTraditionalVariant ; kTraditionalVariant ; Provisional
 # 13.0
 cjkSpoofingVariant       ; kSpoofingVariant ; Provisional
+# 18.0
+cjkJapaneseNewVariant    ; kJapaneseNewVariant ; Provisional
+cjkJapaneseOldVariant    ; kJapaneseOldVariant ; Provisional
 
 Do_Not_Emit_Preferred ; Do_Not_Emit_Preferred ; UCDNonProperty
 Do_Not_Emit_Dispreferred ; Do_Not_Emit_Dispreferred ; UCDNonProperty
@@ -218,9 +221,6 @@ cjkSMSZD2003Readings     ; kSMSZD2003Readings ; Provisional
 # 16.0
 cjkFanqie                ; kFanqie ; Provisional
 cjkZhuang                ; kZhuang ; Provisional
-# 18.0
-cjkJapaneseNewVariant    ; kJapaneseNewVariant ; Provisional
-cjkJapaneseOldVariant    ; kJapaneseOldVariant ; Provisional
 
 # USourceData.txt fields other than 2, keyed on field 2.
 cjkUSource_Identifier          ; cjkUSource_Identifier          ; UCDNonProperty
