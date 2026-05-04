@@ -1295,7 +1295,34 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             // Khmer Examples with subscript independent vowel signs from
                             // https://unicode.org/versions/Unicode16.0.0/core-spec/chapter-16/#G37635:
                             "ផ្ឯម",
-                            "ហ្ឫទ័យ"));
+                            "ហ្ឫទ័យ",
+                            // Balinese example: AKARA with subjoined HA (and SURANG), from Figure 3
+                            // of L2/05-008.
+                            // See also the mention in L2/24-058R, p. 6.
+                            // AKARA cannot be subjoined: it is not InSC=Consonant.
+                            // In Unicode Version 17.0, this was thus segmented as two extended
+                            // grapheme clusters, ᬅ᭄ and ᬳᬃ.  In Unicode Version 18.0, with 187-C47,
+                            // it is a single extended grapheme cluster.
+                            "ᬅ᭄ᬳᬃ",
+                            // Kannada examples from
+                            // https://unicode.org/versions/Unicode17.0.0/core-spec/chapter-12/#G695652.
+                            "ೱಕ",
+                            "ೲಫ",
+                            "ೱಕಿ",
+                            // Bengali examples from
+                            // https://unicode.org/versions/Unicode17.0.0/core-spec/chapter-12/#G723286.
+                            "ᳵক",
+                            "ᳶপ",
+                            "ᳵ\u200Cক",
+                            "ᳶ\u200Cপ",
+                            // Zanabazar square example from L2/14-024, p. 15.
+                            // The cluster-initial RA 𑨺 was InSC=Consonant_Prefixed in 10.0..16.0,
+                            // and thus gcb=Prepend.  It was made InSC=Consonant_With_Stacker and
+                            // thus gcb=Other in 17.0 by 183-C15, breaking this grapheme cluster.
+                            // The proposal L2/25-119 did not address grapheme cluster breaking.
+                            // In 18.0 it becomes InCB=Linker by 187-C48, putting that extended
+                            // grapheme cluster together again.
+                            "𑨺𑨋"));
         }
     }
 

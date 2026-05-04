@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2026-04-29, 19:44:00 GMT
+# Date: 2026-05-04, 17:20:31 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -13362,11 +13362,12 @@ AAF6          ; InCB; Linker # Mn       MEETEI MAYEK VIRAMA
 11133         ; InCB; Linker # Mn       CHAKMA VIRAMA
 113D0         ; InCB; Linker # Mn       TULU-TIGALARI CONJOINER
 1193E         ; InCB; Linker # Mn       DIVES AKURU VIRAMA
+11A3A         ; InCB; Linker # Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
 11A47         ; InCB; Linker # Mn       ZANABAZAR SQUARE SUBJOINER
 11A99         ; InCB; Linker # Mn       SOYOMBO SUBJOINER
 11F42         ; InCB; Linker # Mn       KAWI CONJOINER
 
-# Total code points: 20
+# Total code points: 21
 
 # ================================================
 
