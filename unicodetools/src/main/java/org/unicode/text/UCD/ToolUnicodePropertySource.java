@@ -1221,7 +1221,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                             .addAll(
                                                     isc.getSet(
                                                             Indic_Syllabic_Category_Values
-                                                                    .Invisible_Stacker)));
+                                                                    .Invisible_Stacker))
+                                            .addAll(
+                                                    isc.getSet(
+                                                            Indic_Syllabic_Category_Values
+                                                                    .Consonant_With_Stacker)));
             final UnicodeSet incbConsonant =
                     conjunctLinkingScripts
                             .cloneAsThawed()
