@@ -171,7 +171,7 @@ $NS=[$NSorig $CJ]
 # LB 12  Do not break after NBSP and related characters.
 12) $GL ×
 # LB 12a Do not break before NBSP and related characters, except after spaces and hyphens.
-12.1) [^ $SP $BA $HY $HH] × $GL
+12.1) [^ $SP $HY $HH] × $GL
 # LB 13  Do not break before \u2018]\u2019 or \u2018!\u2019 or \u2018;\u2019 or \u2018/\u2019, even after spaces.
 13.01) × $EX
 13.02) × $CL

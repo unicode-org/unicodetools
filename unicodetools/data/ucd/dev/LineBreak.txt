@@ -105,7 +105,7 @@
 00AA           ; AI # Lo         FEMININE ORDINAL INDICATOR
 00AB           ; QU # Pi         LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
 00AC           ; AL # Sm         NOT SIGN
-00AD           ; BA # Cf         SOFT HYPHEN
+00AD           ; HH # Cf         SOFT HYPHEN
 00AE           ; AL # So         REGISTERED SIGN
 00AF           ; AL # Sk         MACRON
 00B0           ; PO # So         DEGREE SIGN
@@ -899,7 +899,7 @@
 200E..200F     ; CM # Cf     [2] LEFT-TO-RIGHT MARK..RIGHT-TO-LEFT MARK
 2010           ; HH # Pd         HYPHEN
 2011           ; GL # Pd         NON-BREAKING HYPHEN
-2012..2013     ; HH # Pd     [2] FIGURE DASH..EN DASH
+2012..2013     ; BA # Pd     [2] FIGURE DASH..EN DASH
 2014           ; B2 # Pd         EM DASH
 2015           ; AI # Pd         HORIZONTAL BAR
 2016           ; AI # Po         DOUBLE VERTICAL LINE

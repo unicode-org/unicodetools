@@ -1643,7 +1643,11 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         // There are mathematical spaces with lb=BA either side of this ≔, so that
                         // the Unicode 16.0 LB21a prevents a break before ≔, but Unicode 17.0 allows
                         // it as these spaces are not hyphens (lb=HH).
-                        "Let ש ≔ |𝑆|"
+                        "Let ש ≔ |𝑆|",
+                        // An *incise* set off by either em or en dashes, with no-break spaces
+                        // inside.
+                        "Une nuit, —\u00A0c’est toujours la nuit dans le tombeau,\u00A0— Il s’éveilla.",
+                        "Une nuit, –\u00A0c’est toujours la nuit dans le tombeau,\u00A0– Il s’éveilla.",
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
