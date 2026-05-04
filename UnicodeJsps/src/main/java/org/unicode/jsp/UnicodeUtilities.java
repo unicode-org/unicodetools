@@ -1507,13 +1507,14 @@ public class UnicodeUtilities {
                         .collect(
                                 Collectors.groupingBy(
                                         UcdProperty::associatedScript, Collectors.toList()));
+        ucdProperties.removeIf(UcdProperty::isScriptSpecific);
         Map<UcdPropertyValues.Script_Values, List<UcdProperty>> otherScriptSpecificUCDData =
                 ucdNonProperties.stream()
                         .filter(UcdProperty::isScriptSpecific)
                         .collect(
                                 Collectors.groupingBy(
                                         UcdProperty::associatedScript, Collectors.toList()));
-        ucdProperties.removeIf(UcdProperty::isScriptSpecific);
+        ucdNonProperties.removeIf(UcdProperty::isScriptSpecific);
         UcdPropertyValues.Script_Values devScript =
                 UcdPropertyValues.Script_Values.forName(
                         getFactory().getProperty("Udev:Script").getValue(cp));
