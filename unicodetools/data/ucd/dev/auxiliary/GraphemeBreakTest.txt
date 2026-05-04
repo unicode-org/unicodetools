@@ -1,5 +1,5 @@
 # GraphemeBreakTest-18.0.0.txt
-# Date: 2026-02-03, 23:09:56 GMT
+# Date: 2026-05-04, 15:47:30 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -790,7 +790,8 @@
 ÷ 1B27 ÷ 1B13 × 1B44 × 1B0B ÷ 1B0B × 1B04 ÷	#  ÷ [0.2] BALINESE LETTER PA (LinkingConsonant) ÷ [999.0] BALINESE LETTER KA (LinkingConsonant) × [9.0] BALINESE ADEG ADEG (Extend_ConjunctLinker) × [9.3] BALINESE LETTER RA REPA (LinkingConsonant) ÷ [999.0] BALINESE LETTER RA REPA (LinkingConsonant) × [9.1] BALINESE SIGN BISAH (SpacingMark) ÷ [0.3]
 ÷ 1795 × 17D2 × 17AF ÷ 1798 ÷	#  ÷ [0.2] KHMER LETTER PHA (LinkingConsonant) × [9.0] KHMER SIGN COENG (Extend_ConjunctLinker) × [9.3] KHMER INDEPENDENT VOWEL QE (LinkingConsonant) ÷ [999.0] KHMER LETTER MO (LinkingConsonant) ÷ [0.3]
 ÷ 17A0 × 17D2 × 17AB ÷ 1791 × 17D0 ÷ 1799 ÷	#  ÷ [0.2] KHMER LETTER HA (LinkingConsonant) × [9.0] KHMER SIGN COENG (Extend_ConjunctLinker) × [9.3] KHMER INDEPENDENT VOWEL RY (LinkingConsonant) ÷ [999.0] KHMER LETTER TO (LinkingConsonant) × [9.0] KHMER SIGN SAMYOK SANNYA (Extend_ConjunctExtendermConjunctLinker) ÷ [999.0] KHMER LETTER YO (LinkingConsonant) ÷ [0.3]
+÷ 1B05 × 1B44 ÷ 1B33 × 1B03 ÷	#  ÷ [0.2] BALINESE LETTER AKARA (XXmLinkingConsonantmExtPict) × [9.0] BALINESE ADEG ADEG (Extend_ConjunctLinker) ÷ [999.0] BALINESE LETTER HA (LinkingConsonant) × [9.0] BALINESE SIGN SURANG (Extend_ConjunctExtendermConjunctLinker) ÷ [0.3]
 #
-# Lines: 766
+# Lines: 767
 #
 # EOF
