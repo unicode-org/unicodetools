@@ -14,9 +14,9 @@
 	</parent>
 
 	<properties>
-		<servlet.version>3.1.0</servlet.version>
-		<jsp.version>2.3.3</jsp.version>
-		<jetty.version>9.4.36.v20210114</jetty.version>
+		<servlet.version>6.1.0</servlet.version>
+		<jsp.version>4.0.0</jsp.version>
+		<jetty.version>11.0.26</jetty.version>
 	</properties>
 
 	<dependencies>
@@ -38,15 +38,15 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
 			<version>${servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
+			<groupId>jakarta.servlet.jsp</groupId>
+			<artifactId>jakarta.servlet.jsp-api</artifactId>
 			<scope>provided</scope>
 			<version>${jsp.version}</version>
 		</dependency>

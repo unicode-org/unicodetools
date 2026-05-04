@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.jar.Manifest;
 import java.util.regex.Matcher;
@@ -454,7 +455,10 @@ public class UnicodeJsp {
 
     public static String getVersions() {
         return "unicodetools "
-                + MANIFEST.getMainAttributes().getValue("UnicodeTools-Git-Commit").substring(0, 7)
+                + Objects.requireNonNullElse(
+                                MANIFEST.getMainAttributes().getValue("UnicodeTools-Git-Commit"),
+                                "???????")
+                        .substring(0, 7)
                 + " built on "
                 + (MANIFEST.getMainAttributes().getValue("Build-Time"))
                 + "; "
