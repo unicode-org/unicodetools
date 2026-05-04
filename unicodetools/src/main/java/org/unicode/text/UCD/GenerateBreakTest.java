@@ -1295,7 +1295,16 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             // Khmer Examples with subscript independent vowel signs from
                             // https://unicode.org/versions/Unicode16.0.0/core-spec/chapter-16/#G37635:
                             "ផ្ឯម",
-                            "ហ្ឫទ័យ"));
+                            "ហ្ឫទ័យ",
+                            // Balinese example: AKARA with subjoined HA (and SURANG), from Figure 3
+                            // of L2/05-008.
+                            // See also the mention in L2/24-058R, p. 6.
+                            // AKARA cannot be subjoined: it is not InSC=Consonant.
+                            // In Unicode Version 17.0, this was thus segmented as two extended
+                            // grapheme clusters, ᬅ᭄ and ᬳᬃ.  In Unicode Version 18.0, with 187-C47,
+                            // it is a single extended grapheme cluster.
+                            "ᬅ᭄ᬳᬃ"
+                        ));
         }
     }
 
