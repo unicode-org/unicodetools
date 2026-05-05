@@ -295,15 +295,6 @@ public final class UCA implements Comparator<String> {
             moreSamples.add(r.codepoint).add(r.codepointEnd);
         }
 
-        // either get the full sources, or just a demo set
-        /*        if (fullData) {
-            for (int i = 0; i < KEYS.length; ++i) {
-                BufferedReader in = new BufferedReader(
-                    new FileReader(KEYS[i]), BUFFER_SIZE);
-                addCollationElements(in);
-                in.close();
-            }
-        } else */
         {
             final BufferedReader in = new BufferedReader(new FileReader(sourceFile), BUFFER_SIZE);
             addCollationElements(in);
@@ -470,9 +461,10 @@ public final class UCA implements Comparator<String> {
                         lastWasVariable = false;
                     } else if (isVariable(ce)) { // variables
                         ce = 0;
-                        weight4 = getPrimary(ce);
+                        weight4 = CEList.getPrimary(ce);
                         lastWasVariable = true;
-                    } else if (lastWasVariable && getPrimary(ce) == 0) { // zap trailing ignorables
+                    } else if (lastWasVariable
+                            && CEList.getPrimary(ce) == 0) { // zap trailing ignorables
                         ce = 0;
                         weight4 = 0;
                     } else { // not variable, or ignorable not following a variable
@@ -493,7 +485,7 @@ public final class UCA implements Comparator<String> {
             }
 
             // add weights
-            char w = getPrimary(ce);
+            char w = CEList.getPrimary(ce);
             if (DEBUG) {
                 System.out.println("\tCE: " + Utility.hex(ce));
             }
@@ -501,12 +493,12 @@ public final class UCA implements Comparator<String> {
                 primaries.append(w);
             }
 
-            w = getSecondary(ce);
+            w = CEList.getSecondary(ce);
             if (w != 0) {
                 secondaries.append(w);
             }
 
-            w = getTertiary(ce);
+            w = CEList.getTertiary(ce);
             if (w != 0) {
                 tertiaries.append(w);
             }
@@ -736,36 +728,6 @@ public final class UCA implements Comparator<String> {
         return ucaData.codePointHasExplicitMappings(ch);
     }
 
-    /**
-     * Returns the primary weight from a 32-bit CE. The primary is 16 bits, stored in b31..b16.
-     *
-     * @deprecated use {@link CEList#getPrimary(int)}
-     */
-    @Deprecated
-    public static char getPrimary(int ce) {
-        return CEList.getPrimary(ce);
-    }
-
-    /**
-     * Returns the secondary weight from a 32-bit CE. The secondary is 9 bits, stored in b15..b7.
-     *
-     * @deprecated use {@link CEList#getSecondary(int)}
-     */
-    @Deprecated
-    public static char getSecondary(int ce) {
-        return CEList.getSecondary(ce);
-    }
-
-    /**
-     * Returns the tertiary weight from a 32-bit CE. The tertiary is 7 bits, stored in b6..b0.
-     *
-     * @deprecated use {@link CEList#getTertiary(int)}
-     */
-    @Deprecated
-    public static char getTertiary(int ce) {
-        return CEList.getTertiary(ce);
-    }
-
     /** Utility, used to determine whether a CE is variable or not. */
     public boolean isVariable(int ce) {
         return (variableLowCE <= ce && ce <= variableHighCE);
@@ -844,9 +806,9 @@ public final class UCA implements Comparator<String> {
 
         for (int i = 0; i < ceList.length(); ++i) {
             final int ce = ceList.at(i);
-            final char p = UCA.getPrimary(ce);
-            final char s = UCA.getSecondary(ce);
-            final char t = UCA.getTertiary(ce);
+            final char p = CEList.getPrimary(ce);
+            final char s = CEList.getSecondary(ce);
+            final char t = CEList.getTertiary(ce);
 
             result.append("[")
                     .append(isVariablePrimary(p) ? "*" : ".")
@@ -861,7 +823,7 @@ public final class UCA implements Comparator<String> {
     }
 
     public static boolean isImplicitLeadCE(int ce) {
-        return Implicit.isImplicitLeadPrimary(getPrimary(ce));
+        return Implicit.isImplicitLeadPrimary(CEList.getPrimary(ce));
     }
 
     /** NFD required */

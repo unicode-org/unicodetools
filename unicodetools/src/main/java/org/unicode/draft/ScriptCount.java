@@ -91,7 +91,7 @@ public class ScriptCount {
             final int length = celist.length();
             for (int i = 0; i < length; ++i) {
                 final int ce = celist.at(i);
-                final int secondary = UCA.getSecondary(ce);
+                final int secondary = CEList.getSecondary(ce);
                 SecondaryInfo info = counter.get(secondary);
                 if (info == null) {
                     counter.put(secondary, info = new SecondaryInfo(secondary));
