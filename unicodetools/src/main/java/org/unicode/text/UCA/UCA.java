@@ -9,7 +9,6 @@
  */
 package org.unicode.text.UCA;
 
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
@@ -624,8 +623,8 @@ public final class UCA implements Comparator<String> {
     public static String codePointOrder(CharSequence source) {
         StringBuilder target = new StringBuilder();
         int cp;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(source, i);
+        for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
+            cp = Character.codePointAt(source, i);
             if (cp <= 2) {
                 // Avoid collision with level separator 0 and merge separator 1:
                 // 00 -> 02 02
@@ -1054,8 +1053,8 @@ public final class UCA implements Comparator<String> {
                     if (!nfkd.isNormalized(i)) {
                         final String decomp = nfkd.normalize(i);
                         int cp2;
-                        for (int j = 0; j < decomp.length(); j += UTF16.getCharCount(cp2)) {
-                            cp2 = UTF16.charAt(decomp, j);
+                        for (int j = 0; j < decomp.length(); j += Character.charCount(cp2)) {
+                            cp2 = decomp.codePointAt(j);
                             if (!getStatistics().unspecified.contains(cp2)) {
                                 temp.add(cp2);
                             }
@@ -1079,7 +1078,7 @@ public final class UCA implements Comparator<String> {
                 if (usi.codepoint == UnicodeSetIterator.IS_STRING) {
                     result = usi.string;
                 } else {
-                    result = UTF16.valueOf(usi.codepoint);
+                    result = Character.toString(usi.codepoint);
                 }
                 if (DEBUG) {
                     System.out.println("Unspecified: " + ucd.getCodeAndName(result));
@@ -1100,7 +1099,7 @@ public final class UCA implements Comparator<String> {
             // extra samples
             if (currentRange < SAMPLE_RANGES.length) {
                 try {
-                    result = UTF16.valueOf(itemInRange);
+                    result = Character.toString(itemInRange);
                 } catch (final RuntimeException e) {
                     System.out.println(Utility.hex(itemInRange));
                     throw e;
@@ -1519,8 +1518,8 @@ public final class UCA implements Comparator<String> {
                 return (char) cp;
             }
             // DEBUGCHAR = true;
-            charBuffer = UTF16.getTrailSurrogate(cp);
-            return UTF16.getLeadSurrogate(cp);
+            charBuffer = Character.lowSurrogate(cp);
+            return Character.highSurrogate(cp);
         }
 
         return UCA_Types.NOT_A_CHAR;
