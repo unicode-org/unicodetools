@@ -249,7 +249,7 @@ final class Validity {
 
     // keys must be of the same strength
     private static String mergeSortKeys(String key1, String key2) {
-        final StringBuffer result = new StringBuffer();
+        final StringBuilder result = new StringBuilder();
         int end1 = 0, end2 = 0;
         while (true) {
             final int pos1 = key1.indexOf(UCA_Types.LEVEL_SEPARATOR, end1);
@@ -273,7 +273,7 @@ final class Validity {
     }
 
     private static final String remove(String s, char ch) {
-        final StringBuffer buf = new StringBuffer();
+        final StringBuilder buf = new StringBuilder();
         for (int i = 0; i < s.length(); ++i) {
             final char c = s.charAt(i);
             if (c == ch) {
@@ -385,7 +385,7 @@ final class Validity {
     // if m exists, then it is a mapping to strings. Use it.
     // otherwise just print what is in set
     private static <K, V> String getHTML_NameSet(Collection<K> set, Map<K, V> m, boolean useName) {
-        final StringBuffer result = new StringBuffer();
+        final StringBuilder result = new StringBuilder();
         final Iterator<K> it = set.iterator();
         while (it.hasNext()) {
             if (result.length() != 0) {
