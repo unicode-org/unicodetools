@@ -287,7 +287,9 @@ public class WriteCollationData {
                     "# For a description of the format and usage, see\n"
                             + "# http://www.unicode.org/reports/tr35/tr35-collation.html#Root_Data_Files");
         } else {
-            log.println("# For a description of the format and usage, see CollationTest.html");
+            log.println(
+                    "# For a description of the format and usage, see\n"
+                            + "# https://www.unicode.org/reports/tr10/#Conformance_Tests");
         }
         log.println();
     }
