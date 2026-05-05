@@ -1,5 +1,5 @@
 # allkeys-18.0.0.txt
-# Date: 2026-03-16, 08:06:51 GMT
+# Date: 2026-03-16, 14:32:02 GMT
 # Copyright 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/copyright.html
@@ -40536,5 +40536,19 @@ FAD7  ; [.FB84.0020.0002][.FED3.0000.0000] # CJK COMPATIBILITY IDEOGRAPH-FAD7
 2FA1D ; [.FB85.0020.0002][.A600.0000.0000] # CJK COMPATIBILITY IDEOGRAPH-2FA1D
 FFFD  ; [.FFFD.0020.0002] # REPLACEMENT CHARACTER
 FFFF  ; [.FFFF.0020.0002] # <noncharacter-FFFF>
+
+# Tibetan well-formedness contractions
+# See PAG Issue #269 for justification.
+
+0FB2 0F71 ; [.3916.0020.0002][.392C.0020.0002]
+0FB3 0F71 ; [.3919.0020.0002][.392C.0020.0002]
+0FB2 0F71 0F72 ; [.3916.0020.0002][.392E.0020.0002]
+0FB2 0F73 ; [.3916.0020.0002][.392E.0020.0002]
+0FB2 0F71 0F74 ; [.3916.0020.0002][.3932.0020.0002]
+0FB2 0F75 ; [.3916.0020.0002][.3932.0020.0002]
+0FB3 0F71 0F72 ; [.3919.0020.0002][.392E.0020.0002]
+0FB3 0F73 ; [.3919.0020.0002][.392E.0020.0002]
+0FB3 0F71 0F74 ; [.3919.0020.0002][.3932.0020.0002]
+0FB3 0F75 ; [.3919.0020.0002][.3932.0020.0002]
 
 # EOF

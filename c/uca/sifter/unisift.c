@@ -65,6 +65,8 @@
  *               Add 1B168 to kana mapping in unisift_GetKatakanaBase.
  *   2026-Feb-21 Add implicit weights for Jurchen and Seal.
  *   2026-Feb-26 Tweak test for infinite recursion in doRecursiveDecomp.
+ *   2026-Mar-16 Add special handling to give primary weights to FFFE and FFFF.
+ *               Add the 10 contractions required for Tibetan table well-formedness.
  */
 
 /*
@@ -189,7 +191,7 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 18.0.0d3, 2026-02-26\n";
+static char versionString[] = "Sifter version 18.0.0d4, 2026-03-16\n";
 
 static char unidatafilename[] = "unidata-18.0.0.txt";
 static char allkeysfilename[] = "allkeys-18.0.0.txt";
@@ -1716,8 +1718,8 @@ void printDiagnosticsInHeader ( FILE *fd )
 char buffer[128];
 
     fputs ( "# Diagnostic weight ranges\n", fd );
-    sprintf ( buffer, "# Primary weight range:   %04X..%04X (%d)\n", FIRST_PRIMARY,
-                currentPrimary - 1, currentPrimary - FIRST_PRIMARY );
+    sprintf ( buffer, "# Primary weight range:   %04X..%04X (%d)\n", FIRST_PRIMARY + 1,
+                currentPrimary - 1, currentPrimary - FIRST_PRIMARY - 1 );
     fputs ( buffer, fd );
     sprintf ( buffer, "# Secondary weight range: %04X..%04X (%d)\n", FIRST_SECONDARY,
                 currentSecondary - 1, currentSecondary - FIRST_SECONDARY );
@@ -1733,6 +1735,14 @@ char buffer[128];
     fputs ( buffer, fd );
     sprintf ( buffer, "# Tertiary weight range:  0002..001F (30)\n" );
     fputs ( buffer, fd );
+/*
+ * Document the special assigned primary weights for U+FFFD..U+FFFE.
+ */
+    fputs ( "#\n", fd );
+    fputs ( "# Special primary weight assignments\n", fd );
+    fputs ( "# U+FFFD:                 FFFD\n", fd );
+    fputs ( "# U+FFFE:                 0200\n", fd );
+    fputs ( "# U+FFFF:                 FFFF\n", fd );
     fputs ( "#\n", fd );
 }
 
@@ -4224,10 +4234,14 @@ int doTrace;
      * special entries whose names start with "<", e.g.
      * <Hangul Syllable, First>, etc. Pass through the instances
      * of "<control>", however.
+     *
+     * Also pass through the cases of "<noncharacter-NNNN>", so
+     * that U+FFFE and U+FFFF can get special values.
      */
     if ( token2[0] == '<' )
     {
-        if ( strstr ( token2, "control" ) == NULL )
+        if ( ( strstr ( token2, "control" ) == NULL ) &&
+             ( strstr ( token2, "noncharacter" ) == NULL ) )
         {
             return (0);
         }
@@ -4716,6 +4730,28 @@ int doTrace;
             p->level2 = FIRST_SECONDARY;
             p->level3 = FIRST_TERTIARY;
         }
+        /*
+         * Catch U+FFFE and force it to the specific lowest primary weight 0x0200.
+         * PAG Issue #270.
+         */
+        else if ( uvalue == 0xFFFE )
+        {
+            p->symbolBase = uvalue;
+            p->level1 = FIRST_PRIMARY;
+            p->level2 = FIRST_SECONDARY;
+            p->level3 = FIRST_TERTIARY;
+        }
+        /*
+         * Catch U+FFFF and force it to the specific highest primary weight 0xFFFF.
+         * PAG Issue #271.
+         */
+        else if ( uvalue == 0xFFFF )
+        {
+            p->symbolBase = uvalue;
+            p->level1 = uvalue;
+            p->level2 = FIRST_SECONDARY;
+            p->level3 = FIRST_TERTIARY;
+        }
         else if ( unisift_IsMiscSymbolic ( uvalue ) )
         {
             SIFT_TRACE(p);
@@ -5087,7 +5123,12 @@ int i;
         CrackWalnuts ( i );
     }
 #endif
-    for ( i = 0xF900 ; i <= 0xFFFD; i++ )
+
+/*
+ * This loop now extends to the noncharacters 0xFFFE and 0xFFFF, so they
+ * can be given special weights.
+ */
+    for ( i = 0xF900 ; i <= 0xFFFF; i++ )
     {
         CrackWalnuts ( i );
     }
@@ -5288,16 +5329,9 @@ void dumpEOF ( FILE *fd )
 /*
  * dumpUCTableCoda()
  *
- * Starting with UCA 6.2, a small coda is dumped at the end of allkeys.txt.
+ * Starting with UCA 18.0, a small coda is dumped at the end of allkeys.txt.
  *
- * NB: Late breaking news. The UTC agreed to revert this change for UCA 6.2.
- * To keep things simple here, the relevant dumping code is simply
- * commented out, so the dumping will be easy to add back, in case the
- * UTC changes its mind again. For now, the DUCET for UCA 6.2 contains
- * no prefixcontractions section.
- *
- * This coda consists of an identifying label @prefixcontractions, for now
- * in a comment line, plus contraction productions for a small,
+ * This coda consists of a comment line, plus contraction productions for a small,
  * pre-calculated set of prefix sequences which are needed for closure of
  * contraction processing in the DUCET table.
  *
@@ -5314,20 +5348,51 @@ void dumpEOF ( FILE *fd )
 
 void dumpUCATableCoda ( FILE *fd )
 {
-#ifdef NOTDEF
-char buf1[30];
-char buf2[30];
+char buf_0FB2[30];
+char buf_0FB3[30];
+char buf_0F71[30];
+char buf_0F73[30];
+char buf_0F75[30];
 char buffer[128];
 
-    fputs ( "\n# @prefixcontractions\n", fd );
-    assembleKey ( getSiftDataPtr ( 0x0FB2 ), buf1 );
-    assembleKey ( getSiftDataPtr ( 0x0F71 ), buf2 );
-    sprintf ( buffer, "0FB2 0F71 ; %s%s\n", buf1, buf2 );
+    fputs ( "\n# Tibetan well-formedness contractions\n", fd );
+    fputs ( "# See PAG Issue #269 for justification.\n\n", fd );
+    /*
+     * First assemble the keys for the 5 weights in question.
+     */
+    assembleKey ( getSiftDataPtr ( 0x0FB2 ), buf_0FB2 );
+    assembleKey ( getSiftDataPtr ( 0x0FB3 ), buf_0FB3 );
+    assembleKey ( getSiftDataPtr ( 0x0F71 ), buf_0F71 );
+    assembleKey ( getSiftDataPtr ( 0x0F73 ), buf_0F73 );
+    assembleKey ( getSiftDataPtr ( 0x0F75 ), buf_0F75 );
+    /*
+     * Print out the two weight lines for the contractions
+     * required for well-formedness rule 5.
+     */
+    sprintf ( buffer, "0FB2 0F71 ; %s%s\n", buf_0FB2, buf_0F71 );
     fputs ( buffer, fd );
-    assembleKey ( getSiftDataPtr ( 0x0FB3 ), buf1 );
-    sprintf ( buffer, "0FB3 0F71 ; %s%s\n", buf1, buf2 );
+    sprintf ( buffer, "0FB3 0F71 ; %s%s\n", buf_0FB3, buf_0F71 );
     fputs ( buffer, fd );
-#endif
+    /*
+     * Now print out the weight lines for the other 8 contractions
+     * required to keep Tibetan order stable.
+     */
+    sprintf ( buffer, "0FB2 0F71 0F72 ; %s%s\n", buf_0FB2, buf_0F73 );
+    fputs ( buffer, fd );
+    sprintf ( buffer, "0FB2 0F73 ; %s%s\n", buf_0FB2, buf_0F73 );
+    fputs ( buffer, fd );
+    sprintf ( buffer, "0FB2 0F71 0F74 ; %s%s\n", buf_0FB2, buf_0F75 );
+    fputs ( buffer, fd );
+    sprintf ( buffer, "0FB2 0F75 ; %s%s\n", buf_0FB2, buf_0F75 );
+    fputs ( buffer, fd );
+    sprintf ( buffer, "0FB3 0F71 0F72 ; %s%s\n", buf_0FB3, buf_0F73 );
+    fputs ( buffer, fd );
+    sprintf ( buffer, "0FB3 0F73 ; %s%s\n", buf_0FB3, buf_0F73 );
+    fputs ( buffer, fd );
+    sprintf ( buffer, "0FB3 0F71 0F74 ; %s%s\n", buf_0FB3, buf_0F75 );
+    fputs ( buffer, fd );
+    sprintf ( buffer, "0FB3 0F75 ; %s%s\n", buf_0FB3, buf_0F75 );
+    fputs ( buffer, fd );
     dumpEOF ( fd );
 }
 
