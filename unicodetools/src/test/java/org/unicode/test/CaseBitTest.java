@@ -198,7 +198,7 @@ public class CaseBitTest extends TestFmwkMinusMinus {
         Casing composedUcaCasing = Casing.UNCASED;
         for (int i = 0; i < ceList.length(); ++i) {
             final int ce = ceList.at(i);
-            final char tertiary = UCA.getTertiary(ce);
+            final char tertiary = CEList.getTertiary(ce);
             final Casing itemUcaCasing = CaseBit.getCaseFromTertiary(tertiary);
             composedUcaCasing = composedUcaCasing.composeCasing(itemUcaCasing);
         }

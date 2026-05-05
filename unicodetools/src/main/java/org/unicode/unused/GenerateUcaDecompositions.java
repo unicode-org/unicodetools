@@ -52,9 +52,9 @@ public class GenerateUcaDecompositions {
 
         System.out.println(
                 "low variable "
-                        + Utility.hex(UCA.getPrimary(uca.getVariableLowCE()))
+                        + Utility.hex(CEList.getPrimary(uca.getVariableLowCE()))
                         + ", high variable "
-                        + Utility.hex(UCA.getPrimary(uca.getVariableHighCE())));
+                        + Utility.hex(CEList.getPrimary(uca.getVariableHighCE())));
         for (int i = 0; i <= 0x10FFFF; ++i) {
             final int cat = ucd.getCategory(i);
             if (cat == UCD_Types.Cn || cat == UCD_Types.Co || cat == UCD_Types.Cs) {
@@ -268,7 +268,7 @@ public class GenerateUcaDecompositions {
         final StringBuilder b = new StringBuilder();
         for (int i = 0; i < ceList.length(); ++i) {
             final int ce = ceList.at(i);
-            if (UCA.getPrimary(ce) == 0 && UCA.getSecondary(ce) >= LEAST_FAKE_SECONDARY) {
+            if (CEList.getPrimary(ce) == 0 && CEList.getSecondary(ce) >= LEAST_FAKE_SECONDARY) {
                 continue; // skip fake secondaries
             }
             int correspondingCharacter;
@@ -276,7 +276,7 @@ public class GenerateUcaDecompositions {
                 final int ce2 = ceList.at(++i);
                 correspondingCharacter =
                         uca.implicit.codePointForPrimaryPair(
-                                UCA.getPrimary(ce), UCA.getPrimary(ce2));
+                                CEList.getPrimary(ce), CEList.getPrimary(ce2));
             } else {
                 correspondingCharacter = getCorresponding(cp, ce);
             }

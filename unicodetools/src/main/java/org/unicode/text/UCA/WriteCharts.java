@@ -99,7 +99,7 @@ public class WriteCharts implements UCD_Types {
         String lastSortKey = "\u0000";
 
         final int high = uca.getSortKey("a").charAt(0);
-        final int variable = UCA.getPrimary(uca.getVariableHighCE());
+        final int variable = CEList.getPrimary(uca.getVariableHighCE());
 
         int columnCount = 0;
 
@@ -139,10 +139,10 @@ public class WriteCharts implements UCD_Types {
         indexFile.println("<p align='center'><a href = 'help.html'>Help</a>");
          */
 
-        final int LEAST_PUNCT_PRIMARY = UCA.getPrimary(uca.getCEList("\u203E", true).at(0));
-        final int LEAST_SYMBOL_PRIMARY = UCA.getPrimary(uca.getCEList("`", true).at(0));
-        final int LEAST_CURRENCY_PRIMARY = UCA.getPrimary(uca.getCEList("¤", true).at(0));
-        final int LEAST_DIGIT_PRIMARY = UCA.getPrimary(uca.getCEList("0", true).at(0));
+        final int LEAST_PUNCT_PRIMARY = CEList.getPrimary(uca.getCEList("\u203E", true).at(0));
+        final int LEAST_SYMBOL_PRIMARY = CEList.getPrimary(uca.getCEList("`", true).at(0));
+        final int LEAST_CURRENCY_PRIMARY = CEList.getPrimary(uca.getCEList("¤", true).at(0));
+        final int LEAST_DIGIT_PRIMARY = CEList.getPrimary(uca.getCEList("0", true).at(0));
 
         int lastCp = -1;
         boolean firstLine = true;
@@ -1731,11 +1731,11 @@ public class WriteCharts implements UCD_Types {
 
        for (int i = 0; i < ceList.length(); ++i) {
            int ce = ceList.at(i);
-           int temp = UCA.getPrimary(ce);
+           int temp = CEList.getPrimary(ce);
            if (temp != 0) primaries.push(temp);
-           temp = UCA.getSecondary(ce);
+           temp = CEList.getSecondary(ce);
            if (temp != 0) secondaries.push(temp);
-           temp = UCA.getTertiary(ce);
+           temp = CEList.getTertiary(ce);
            if (temp != 0) tertiaries.push(temp);
        }
    }

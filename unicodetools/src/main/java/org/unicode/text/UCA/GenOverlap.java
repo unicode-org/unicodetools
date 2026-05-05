@@ -234,9 +234,9 @@ public class GenOverlap implements UCD_Types {
             for (int i = 0; i < len; ++i) {
                 ces[i] =
                         UCA.makeKey(
-                                UCA.getPrimary(ces[i]),
-                                UCA.getSecondary(ces[i]),
-                                CEList.remap(originalChar, type, UCA.getTertiary(ces[i])));
+                                CEList.getPrimary(ces[i]),
+                                CEList.getSecondary(ces[i]),
+                                CEList.remap(originalChar, type, CEList.getTertiary(ces[i])));
             }
         }
         return new CEList(ces, 0, len);
@@ -429,8 +429,8 @@ public class GenOverlap implements UCD_Types {
                             int p =
                                     (i == 0 && decomp.length() > 1 && decomp.charAt(0) == ' '
                                             ? 0x20A
-                                            : UCA.getPrimary(ces[j]));
-                            final int s = UCA.getSecondary(ces[j]);
+                                            : CEList.getPrimary(ces[j]));
+                            final int s = CEList.getSecondary(ces[j]);
                             final boolean needsFix = (s != 0x20 && p != 0);
                             if (needsFix) {
                                 ++len;
@@ -438,7 +438,7 @@ public class GenOverlap implements UCD_Types {
                             final int t =
                                     (doMax && j > 0
                                             ? 0x1F
-                                            : CEList.remap(cp, type, UCA.getTertiary(ces[j])));
+                                            : CEList.remap(cp, type, CEList.getTertiary(ces[j])));
                             if (needsFix) {
                                 ces[j++] = UCA.makeKey(p, 0x20, t); // Set Extra
                                 System.arraycopy(ces, j, ces, j + 1, len - j); // Insert HOLE!
@@ -513,7 +513,7 @@ public class GenOverlap implements UCD_Types {
             Utility.dot(counter++);
             final Pair value = (Pair) it.next();
             final CEList newList = (CEList) value.first;
-            final int cur = UCA.getPrimary(newList.at(0));
+            final int cur = CEList.getPrimary(newList.at(0));
             if (cur != last) {
                 log.println();
                 last = cur;
@@ -576,7 +576,7 @@ public class GenOverlap implements UCD_Types {
         while (it.hasNext()) {
             final Pair pair = (Pair) it.next();
             final CEList cel = (CEList) pair.first;
-            final int curr = UCA.getPrimary(cel.at(0));
+            final int curr = CEList.getPrimary(cel.at(0));
             if (curr != last) {
                 last = curr;
                 log.println();
@@ -685,7 +685,7 @@ public class GenOverlap implements UCD_Types {
             final int script = ucd.getScript(cp);
 
             for (int i = 0; i < len; ++i) {
-                final int prim = UCA.getPrimary(ces[i]);
+                final int prim = CEList.getPrimary(ces[i]);
                 final int hash = prim % tableLength;
                 if (!repeats[script].get(prim)) {
                     ++collisions[script][hash];
