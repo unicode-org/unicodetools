@@ -1,5 +1,5 @@
 # allkeys-18.0.0.txt
-# Date: 2026-02-21, 09:33:57 GMT
+# Date: 2026-03-16, 08:06:51 GMT
 # Copyright 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/copyright.html
@@ -10,10 +10,15 @@
 # See UTS #10, Unicode Collation Algorithm, for more information.
 #
 # Diagnostic weight ranges
-# Primary weight range:   0200..74C1 (29378)
+# Primary weight range:   0201..74C1 (29377)
 # Secondary weight range: 0020..0127 (264)
 # Variant secondaries:    011F..0127 (9)
 # Tertiary weight range:  0002..001F (30)
+#
+# Special primary weight assignments
+# U+FFFD:                 FFFD
+# U+FFFE:                 0200
+# U+FFFF:                 FFFF
 #
 @version 18.0.0
 
@@ -10201,6 +10206,7 @@ A92D  ; [.0000.00EA.0002] # KAYAH LI TONE CALYA PLOPHU
 301F  ; [*033D.0020.0004][.0000.0126.0004] # LOW DOUBLE PRIME QUOTATION MARK
 05F3  ; [*033A.0020.0004][.0000.0127.0004] # HEBREW PUNCTUATION GERESH
 05F4  ; [*033D.0020.0004][.0000.0127.0004] # HEBREW PUNCTUATION GERSHAYIM
+FFFE  ; [.0200.0020.0002] # <noncharacter-FFFE>
 02D0  ; [.2220.0020.0002] # MODIFIER LETTER TRIANGULAR COLON
 10781 ; [.2220.0020.0014] # MODIFIER LETTER SUPERSCRIPT TRIANGULAR COLON
 02D1  ; [.2221.0020.0002] # MODIFIER LETTER HALF TRIANGULAR COLON
@@ -40529,5 +40535,6 @@ FAD7  ; [.FB84.0020.0002][.FED3.0000.0000] # CJK COMPATIBILITY IDEOGRAPH-FAD7
 2F88F ; [.FB85.0020.0002][.A392.0000.0000] # CJK COMPATIBILITY IDEOGRAPH-2F88F
 2FA1D ; [.FB85.0020.0002][.A600.0000.0000] # CJK COMPATIBILITY IDEOGRAPH-2FA1D
 FFFD  ; [.FFFD.0020.0002] # REPLACEMENT CHARACTER
+FFFF  ; [.FFFF.0020.0002] # <noncharacter-FFFF>
 
 # EOF
