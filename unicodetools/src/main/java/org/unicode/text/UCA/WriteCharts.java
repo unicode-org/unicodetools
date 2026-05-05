@@ -64,7 +64,7 @@ public class WriteCharts implements UCD_Types {
         Default.setUCD(uca.getUCDVersion());
         HACK_KANA = true;
 
-        uca.setAlternate(UCA_Types.NON_IGNORABLE);
+        uca.setAlternate(UCA_Types.Alternate.NON_IGNORABLE);
 
         // Normalizer nfd = new Normalizer(Normalizer.NFD);
         // Normalizer nfc = new Normalizer(Normalizer.NFC);

@@ -54,7 +54,11 @@ public final class MappingsForFractionalUCA {
         }
 
         private MappingWithSortKey(UCA uca, String prefix, String s, CEList ces) {
-            this(prefix, s, ces, uca.getSortKey(ces, UCA_Types.NON_IGNORABLE, AppendToCe.none));
+            this(
+                    prefix,
+                    s,
+                    ces,
+                    uca.getSortKey(ces, UCA_Types.Alternate.NON_IGNORABLE, AppendToCe.none));
         }
 
         private MappingWithSortKey(String prefix, String s, CEList ces, String sortKey) {
@@ -256,9 +260,10 @@ public final class MappingsForFractionalUCA {
                 // Than what we would get if we didn't decompose!!
                 final CEList ces = uca.getCEList(s, true);
                 final String sortKey =
-                        uca.getSortKey(ces, UCA_Types.NON_IGNORABLE, AppendToCe.none);
+                        uca.getSortKey(ces, UCA_Types.Alternate.NON_IGNORABLE, AppendToCe.none);
                 final String nonDecompSortKey =
-                        uca.getSortKey(s, UCA_Types.NON_IGNORABLE, false, AppendToCe.none);
+                        uca.getSortKey(
+                                s, UCA_Types.Alternate.NON_IGNORABLE, false, AppendToCe.none);
                 if (sortKey.equals(nonDecompSortKey)) {
                     continue;
                 }

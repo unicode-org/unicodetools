@@ -659,7 +659,7 @@ public class WriteCollationData {
                             + String.valueOf(CEList.getTertiary(ces.at(0)))
                             + String.valueOf(CEList.getTertiary(ce2))
                             + String.valueOf(CEList.getTertiary(ce3))
-                            + uca.getSortKey(s, UCA_Types.NON_IGNORABLE)
+                            + uca.getSortKey(s, UCA_Types.Alternate.NON_IGNORABLE)
                             + '\u0000'
                             + UCA.codePointOrder(s);
 

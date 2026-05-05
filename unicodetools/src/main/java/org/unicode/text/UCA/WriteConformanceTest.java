@@ -44,7 +44,10 @@ public class WriteConformanceTest {
     private static UnicodeSet hanNotInCPOrder;
 
     static void writeConformance(
-            String filename, byte option, boolean shortPrint, CollatorType collatorType)
+            String filename,
+            UCA_Types.Alternate alternate,
+            boolean shortPrint,
+            CollatorType collatorType)
             throws IOException {
         ucd = Default.ucd();
         collator = UCA.getCollator(collatorType);
@@ -84,10 +87,10 @@ public class WriteConformanceTest {
                 final CEList ces = collator.getCEList(t, true);
                 System.out.println("CEs:    " + ces);
 
-                String test = collator.getSortKey(t, option, true, AppendToCe.tieBreaker);
+                String test = collator.getSortKey(t, alternate, true, AppendToCe.tieBreaker);
                 System.out.println("Decomp: " + UCA.toString(test));
 
-                test = collator.getSortKey(t, option, false, AppendToCe.tieBreaker);
+                test = collator.getSortKey(t, alternate, false, AppendToCe.tieBreaker);
                 System.out.println("No Dec: " + UCA.toString(test));
             }
         }
@@ -95,7 +98,9 @@ public class WriteConformanceTest {
         final String fullFileName =
                 "CollationTest"
                         + (collatorType == CollatorType.cldr ? "_CLDR" : "")
-                        + (option == UCA_Types.NON_IGNORABLE ? "_NON_IGNORABLE" : "_SHIFTED")
+                        + (alternate == UCA_Types.Alternate.NON_IGNORABLE
+                                ? "_NON_IGNORABLE"
+                                : "_SHIFTED")
                         // + (appendNfd ? "_NFD" : "")
                         + (shortPrint ? "_SHORT" : "")
                         + ".txt";
@@ -146,26 +151,26 @@ public class WriteConformanceTest {
                 }
             }
             Utility.dot(counter++);
-            addStringX(s, option, AppendToCe.tieBreaker);
+            addStringX(s, alternate, AppendToCe.tieBreaker);
         }
 
         // Examples with U+FFFE for "merge sort key" behavior, using addStringY() not ...X().
-        addStringY("l\uFFFEf", option, AppendToCe.tieBreaker);
-        addStringY("l\uFFFEf2", option, AppendToCe.tieBreaker);
-        addStringY("l2\uFFFEf", option, AppendToCe.tieBreaker);
-        addStringY("l2\uFFFEf2", option, AppendToCe.tieBreaker);
-        addStringY("l f", option, AppendToCe.tieBreaker);
-        addStringY("l f2", option, AppendToCe.tieBreaker);
-        addStringY("l2 f", option, AppendToCe.tieBreaker);
-        addStringY("l2 f2", option, AppendToCe.tieBreaker);
-        addStringY("lf", option, AppendToCe.tieBreaker);
-        addStringY("lf2", option, AppendToCe.tieBreaker);
-        addStringY("l2f", option, AppendToCe.tieBreaker);
-        addStringY("l2f2", option, AppendToCe.tieBreaker);
+        addStringY("l\uFFFEf", alternate, AppendToCe.tieBreaker);
+        addStringY("l\uFFFEf2", alternate, AppendToCe.tieBreaker);
+        addStringY("l2\uFFFEf", alternate, AppendToCe.tieBreaker);
+        addStringY("l2\uFFFEf2", alternate, AppendToCe.tieBreaker);
+        addStringY("l f", alternate, AppendToCe.tieBreaker);
+        addStringY("l f2", alternate, AppendToCe.tieBreaker);
+        addStringY("l2 f", alternate, AppendToCe.tieBreaker);
+        addStringY("l2 f2", alternate, AppendToCe.tieBreaker);
+        addStringY("lf", alternate, AppendToCe.tieBreaker);
+        addStringY("lf2", alternate, AppendToCe.tieBreaker);
+        addStringY("l2f", alternate, AppendToCe.tieBreaker);
+        addStringY("l2f2", alternate, AppendToCe.tieBreaker);
 
         // Examples with U+FFFF
-        addStringX("Sch", option, AppendToCe.tieBreaker);
-        addStringX("Sch\uFFFF", option, AppendToCe.tieBreaker);
+        addStringX("Sch", alternate, AppendToCe.tieBreaker);
+        addStringX("Sch\uFFFF", alternate, AppendToCe.tieBreaker);
 
         final UnicodeSet found = collator.getStatistics().found;
         if (!found2.containsAll(found2)) {
@@ -214,7 +219,7 @@ public class WriteConformanceTest {
 
         final Iterator<String> it = sortedD.keySet().iterator();
 
-        final int level = (option == UCA_Types.NON_IGNORABLE ? 3 : 4);
+        final int level = (alternate == UCA_Types.Alternate.NON_IGNORABLE ? 3 : 4);
 
         while (it.hasNext()) {
             Utility.dot(counter);
@@ -279,18 +284,18 @@ public class WriteConformanceTest {
         return false;
     }
 
-    private static void addStringX(String s, byte option, AppendToCe appendToCe) {
+    private static void addStringX(String s, UCA_Types.Alternate alternate, AppendToCe appendToCe) {
         if (containsHanNotInCPOrder(s)) {
             return;
         }
         final int firstChar = s.codePointAt(0);
-        addStringY(s + 'a', option, appendToCe);
-        addStringY(s + 'b', option, appendToCe);
-        addStringY(s + '?', option, appendToCe);
-        addStringY(s + 'A', option, appendToCe);
-        addStringY(s + '!', option, appendToCe);
-        if (option == UCA_Types.SHIFTED && collator.isVariable(firstChar)) {
-            addStringY(s + LOW_ACCENT, option, appendToCe);
+        addStringY(s + 'a', alternate, appendToCe);
+        addStringY(s + 'b', alternate, appendToCe);
+        addStringY(s + '?', alternate, appendToCe);
+        addStringY(s + 'A', alternate, appendToCe);
+        addStringY(s + '!', alternate, appendToCe);
+        if (alternate == UCA_Types.Alternate.SHIFTED && collator.isVariable(firstChar)) {
+            addStringY(s + LOW_ACCENT, alternate, appendToCe);
         }
 
         // NOW, if the character decomposes, or is a combining mark (non-zero),
@@ -313,7 +318,7 @@ public class WriteConformanceTest {
                     if (--limit < 0) {
                         continue; // just include a sampling
                     }
-                    addStringY(can, option, appendToCe);
+                    addStringY(can, alternate, appendToCe);
                     // System.out.println(addCounter++ + " Adding " +
                     // Default.ucd.getCodeAndName(can));
                 }
@@ -327,7 +332,7 @@ public class WriteConformanceTest {
 
                 for (final String element : CONTRACTION_TEST) {
                     final String extra = s.substring(0, i) + element + s.substring(i);
-                    addStringY(extra + 'a', option, appendToCe);
+                    addStringY(extra + 'a', alternate, appendToCe);
                     if (DEBUG) {
                         System.out.println(addCounter++ + " Adding " + ucd.getCodeAndName(extra));
                     }
@@ -336,8 +341,8 @@ public class WriteConformanceTest {
         }
     }
 
-    private static void addStringY(String s, byte option, AppendToCe appendToCe) {
-        final String colDbase = collator.getSortKey(s, option, true, appendToCe);
+    private static void addStringY(String s, UCA_Types.Alternate alternate, AppendToCe appendToCe) {
+        final String colDbase = collator.getSortKey(s, alternate, true, appendToCe);
         sortedD.put(colDbase, s);
     }
 }

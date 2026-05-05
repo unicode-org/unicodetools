@@ -340,7 +340,8 @@ public final class UCA implements Comparator<String>, UCA_Types {
      * @return Result is a String not really of Unicodes, but of weights. String is just a handy way
      *     of returning them in Java, since there are no unsigned shorts.
      */
-    public String getSortKey(CEList ces, byte alternate, AppendToCe appendIdentical) {
+    public String getSortKey(
+            CEList ces, UCA_Types.Alternate alternate, AppendToCe appendIdentical) {
         return getSortKey(ces, "", alternate, defaultDecomposition, appendIdentical);
     }
 
@@ -366,7 +367,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
      * @return Result is a String not of really of Unicodes, but of weights. String is just a handy
      *     way of returning them in Java, since there are no unsigned shorts.
      */
-    public String getSortKey(String sourceString, byte alternate) {
+    public String getSortKey(String sourceString, UCA_Types.Alternate alternate) {
         return getSortKey(null, sourceString, alternate, defaultDecomposition, AppendToCe.none);
     }
 
@@ -399,7 +400,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
      */
     public String getSortKey(
             String sourceString,
-            byte alternate,
+            UCA_Types.Alternate alternate,
             boolean decomposition,
             AppendToCe appendIdentical) {
         return getSortKey(null, sourceString, alternate, decomposition, appendIdentical);
@@ -421,7 +422,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
     public String getSortKey(
             CEList ces,
             String sourceString,
-            byte alternate,
+            UCA_Types.Alternate alternate,
             boolean decomposition,
             AppendToCe appendIdentical) {
         setSourceString(sourceString, decomposition);
@@ -459,12 +460,6 @@ public final class UCA implements Comparator<String>, UCA_Types {
             }
 
             switch (alternate) {
-                case ZEROED:
-                    if (isVariable(ce)) {
-                        ce = 0;
-                    }
-                    break;
-                case SHIFTED_TRIMMED:
                 case SHIFTED:
                     if (CEList.getTertiary(ce) == 0) {
                         weight4 = 0;
@@ -527,24 +522,11 @@ public final class UCA implements Comparator<String>, UCA_Types {
 
         final StringBuilder result = primaries;
         if (strength >= 2) {
-            result.append(LEVEL_SEPARATOR); // separator
-            result.append(secondaries);
+            result.append(LEVEL_SEPARATOR).append(secondaries);
             if (strength >= 3) {
-                result.append(LEVEL_SEPARATOR); // separator
-                result.append(tertiaries);
+                result.append(LEVEL_SEPARATOR).append(tertiaries);
                 if (strength >= 4) {
-                    result.append(LEVEL_SEPARATOR); // separator
-                    if (alternate == SHIFTED_TRIMMED) {
-                        int q;
-                        for (q = quaternaries.length() - 1; q >= 0; --q) {
-                            if (quaternaries.charAt(q) != '\uFFFF') {
-                                break;
-                            }
-                        }
-                        quaternaries.setLength(q + 1);
-                    }
-                    result.append(quaternaries);
-                    // appendInCodePointOrder(decompositionBuffer, result);
+                    result.append(LEVEL_SEPARATOR).append(quaternaries);
                 }
             }
         }
@@ -603,12 +585,12 @@ public final class UCA implements Comparator<String>, UCA_Types {
     }
 
     /** Causes variables (those with *) to be set to all zero weights (level 1-3). */
-    public void setAlternate(byte status) {
+    public void setAlternate(UCA_Types.Alternate status) {
         defaultAlternate = status;
     }
 
     /** Retrieves value applied by set. */
-    public byte getAlternate() {
+    public UCA_Types.Alternate getAlternate() {
         return defaultAlternate;
     }
 
@@ -894,7 +876,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
     private String ucdVersion = "?";
 
     /** Choice of how to handle variables (those with *) */
-    private byte defaultAlternate = SHIFTED;
+    private UCA_Types.Alternate defaultAlternate = UCA_Types.Alternate.SHIFTED;
 
     /** For testing */
     private boolean defaultDecomposition = true;

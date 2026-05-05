@@ -79,7 +79,7 @@ final class Validity {
             if (s == null) {
                 break;
             }
-            addString(s, option, CollatorType.ducet);
+            addString(s, DEFAULT_ALTERNATE, CollatorType.ducet);
             coverage.add(s);
         }
 
@@ -227,7 +227,10 @@ final class Validity {
         final String compatDecomp = Default.nfkd().normalize(ch);
         final String decompSortKey =
                 uca.getSortKey(
-                        compatDecomp, UCA_Types.NON_IGNORABLE, decomposition, AppendToCe.none);
+                        compatDecomp,
+                        UCA_Types.Alternate.NON_IGNORABLE,
+                        decomposition,
+                        AppendToCe.none);
 
         final byte type = Default.ucd().getDecompositionType(ch);
         int pos = decompSortKey.indexOf(UCA_Types.LEVEL_SEPARATOR) + 1; // after first
@@ -470,11 +473,15 @@ final class Validity {
             String sortKey =
                     uca.getSortKey(
                             UTF16.valueOf(ch),
-                            UCA_Types.NON_IGNORABLE,
+                            UCA_Types.Alternate.NON_IGNORABLE,
                             decomposition,
                             AppendToCe.none);
             String decompSortKey =
-                    uca.getSortKey(decomp, UCA_Types.NON_IGNORABLE, decomposition, AppendToCe.none);
+                    uca.getSortKey(
+                            decomp,
+                            UCA_Types.Alternate.NON_IGNORABLE,
+                            decomposition,
+                            AppendToCe.none);
             if (false && strength == 2) {
                 sortKey = remove(sortKey, '\u0020');
                 decompSortKey = remove(decompSortKey, '\u0020');
@@ -678,9 +685,10 @@ final class Validity {
 
                 // We ONLY add if the sort key would be different
                 // Than what we would get if we didn't decompose!!
-                final String sortKey = uca.getSortKey(s, UCA_Types.NON_IGNORABLE);
+                final String sortKey = uca.getSortKey(s, UCA_Types.Alternate.NON_IGNORABLE);
                 final String nonDecompSortKey =
-                        uca.getSortKey(s, UCA_Types.NON_IGNORABLE, false, AppendToCe.none);
+                        uca.getSortKey(
+                                s, UCA_Types.Alternate.NON_IGNORABLE, false, AppendToCe.none);
                 if (sortKey.equals(nonDecompSortKey)) {
                     continue;
                 }
@@ -932,16 +940,17 @@ final class Validity {
     private static TreeMap<String, String> MismatchedN = new TreeMap<String, String>();
     private static TreeMap<String, String> MismatchedD = new TreeMap<String, String>();
 
-    private static final byte option = UCA.NON_IGNORABLE; // SHIFTED
+    private static final UCA_Types.Alternate DEFAULT_ALTERNATE = UCA_Types.Alternate.NON_IGNORABLE;
 
-    private static void addString(String ch, byte option, CollatorType collatorType) {
+    private static void addString(
+            String ch, UCA_Types.Alternate alternate, CollatorType collatorType) {
         final String colDbase =
-                UCA.getCollator(collatorType).getSortKey(ch, option, true, AppendToCe.none);
+                UCA.getCollator(collatorType).getSortKey(ch, alternate, true, AppendToCe.none);
         final String colNbase =
-                UCA.getCollator(collatorType).getSortKey(ch, option, false, AppendToCe.none);
+                UCA.getCollator(collatorType).getSortKey(ch, alternate, false, AppendToCe.none);
         final String colCbase =
                 UCA.getCollator(collatorType)
-                        .getSortKey(Default.nfc().normalize(ch), option, false, AppendToCe.none);
+                        .getSortKey(Default.nfc().normalize(ch), alternate, false, AppendToCe.none);
         if (!colNbase.equals(colCbase) || !colNbase.equals(colDbase)) {
             /*
              * System.out.println(Utility.hex(ch));
@@ -1070,10 +1079,6 @@ final class Validity {
         }
         log.println("</td></tr>");
     }
-
-    private static final String[] alternateName = {
-        "SHIFTED", "ZEROED", "NON_IGNORABLE", "SHIFTED_TRIMMED"
-    };
 
     private static final ToolUnicodePropertySource propertySource =
             ToolUnicodePropertySource.make(Default.ucdVersion());
@@ -1233,7 +1238,7 @@ final class Validity {
 
     private static void checkScripts() {
         log.println("<h2>0. Check UCA ‘Bucket’ Assignment</h2>");
-        log.println("<p>Alternate Handling = " + alternateName[option] + "</p>");
+        log.println("<p>Alternate Handling = " + DEFAULT_ALTERNATE + "</p>");
         //        log.println("<table border='1'>");
         // log.println("<tr><th>Status</th><th>Type</th><th>GC</th><th>Script</th><th>Ch</th><th>Code</th><th>CE</th><th>Name</th></tr>");
 
@@ -1580,7 +1585,7 @@ final class Validity {
 
     private static void showMismatches() {
         log.println("<h2>1. Mismatches when NFD is OFF</h2>");
-        log.println("<p>Alternate Handling = " + alternateName[option] + "</p>");
+        log.println("<p>Alternate Handling = " + DEFAULT_ALTERNATE + "</p>");
         log.println(
                 "<p>NOTE: NFD form is used by UCA,"
                         + "so if other forms are different there are <i>ignored</i>. This may indicate a problem, e.g. missing contraction.</p>");
