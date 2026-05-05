@@ -118,7 +118,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
      * @param source the original text, unnormalized
      * @param target the resulting normalized text
      */
-    public StringBuffer normalize(CharSequence source, StringBuffer target) {
+    public StringBuilder normalize(CharSequence source, StringBuilder target) {
 
         // First decompose the source into target,
         // then compose if the form requires.
@@ -132,18 +132,12 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         return target;
     }
 
-    /**
-     * Normalizes text according to the chosen form, replacing contents of the target buffer.
-     *
-     * @param source the original text, unnormalized
-     * @param target the resulting normalized text
-     */
     public boolean isFCD(String source) {
         if (source.length() == 0) {
             return true;
         }
-        final StringBuffer noReorder = new StringBuffer();
-        final StringBuffer reorder = new StringBuffer();
+        final StringBuilder noReorder = new StringBuilder();
+        final StringBuilder reorder = new StringBuilder();
 
         internalDecompose(source, noReorder, false, false);
         internalDecompose(source, reorder, true, false);
@@ -158,13 +152,13 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
      * @return target the resulting normalized text
      */
     public String normalize(CharSequence source) {
-        return normalize(source, new StringBuffer()).toString();
+        return normalize(source, new StringBuilder()).toString();
     }
 
     /**
-     * Normalizes text according to the chosen form
+     * Normalizes cp according to the chosen form.
      *
-     * @param newLocaleID the original text, unnormalized
+     * @param cp the original character
      * @return target the resulting normalized text
      */
     public String normalize(int cp) {
@@ -172,14 +166,14 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
     }
 
     /**
-     * private StringBuffer hasDecompositionBuffer = new StringBuffer();
+     * private StringBuilder hasDecompositionBuffer = new StringBuilder();
      *
      * <p>public boolean hasDecomposition(int cp) { hasDecompositionBuffer.setLength(0);
      * normalize(UTF16.valueOf(cp), hasDecompositionBuffer); if (hasDecompositionBuffer.length() !=
      * 1) return true; return cp != hasDecompositionBuffer.charAt(0); }
      */
 
-    /**
+    /*
      * Does a quick check to see if the string is in the current form. Checks canonical order and
      * isAllowed().
      *
@@ -252,12 +246,6 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         return !data.normalizationDiffers(ch, composition, compatibility);
     }
 
-    /**
-     * Utility: Checks whether there is a recursive decomposition of a character from the Unicode
-     * Character Database. It is compatibility or canonical according to the particular normalizer.
-     *
-     * @param ch the source character
-     */
     public boolean isNormalized(CharSequence s) {
         if (Character.codePointCount(s, 0, s.length()) == 1) {
             return !data.normalizationDiffers(UTF16.charAt(s, 0), composition, compatibility);
@@ -268,12 +256,10 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
     /**
      * Utility: Gets recursive decomposition of a character from the Unicode Character Database.
      *
-     * @param compatibility If false selects the recursive canonical decomposition, otherwise
-     *     selects the recursive compatibility AND canonical decomposition.
      * @param ch the source character
      * @param buffer buffer to be filled with the decomposition
      */
-    public void getRecursiveDecomposition(char ch, StringBuffer buffer) {
+    public void getRecursiveDecomposition(char ch, StringBuilder buffer) {
         data.getRecursiveDecomposition(ch, buffer, compatibility);
     }
 
@@ -291,7 +277,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         if (!composition) {
             return false;
         }
-        var buffer = new StringBuffer();
+        var buffer = new StringBuilder();
         data.getRecursiveDecomposition(cp, buffer, compatibility);
         return data.isTrailing(buffer.codePointAt(0));
     }
@@ -318,15 +304,12 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
     /**
      * Decomposes text, either canonical or compatibility, replacing contents of the target buffer.
      *
-     * @param form the normalization form. If NF_COMPATIBILITY_MASK bit is on in this byte, then
-     *     selects the recursive compatibility decomposition, otherwise selects the recursive
-     *     canonical decomposition.
      * @param source the original text, unnormalized
      * @param target the resulting normalized text
      */
     private void internalDecompose(
-            CharSequence source, StringBuffer target, boolean reorder, boolean compat) {
-        final StringBuffer buffer = new StringBuffer();
+            CharSequence source, StringBuilder target, boolean reorder, boolean compat) {
+        final StringBuilder buffer = new StringBuilder();
         int ch32;
         for (int i = 0; i < source.length(); i += UTF16.getCharCount(ch32)) {
             buffer.setLength(0);
@@ -365,13 +348,28 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         }
     }
 
+    private static void setCodePointAt(StringBuilder sb, int offset, int c) {
+        char oldUnit = sb.charAt(offset);
+        if (!Character.isSurrogate(oldUnit) && Character.isBmpCodePoint(c)) {
+            sb.setCharAt(offset, (char) c);
+        } else {
+            assert !(offset > 0
+                            && Character.isLowSurrogate(oldUnit)
+                            && Character.isHighSurrogate(sb.charAt(offset - 1)))
+                    : "setCodePointAt(offset not at code point boundary)";
+            int oldC = sb.codePointAt(offset);
+            int oldLength = Character.charCount(oldC);
+            sb.replace(offset, offset + oldLength, Character.toString(c));
+        }
+    }
+
     /**
      * Composes text in place. Target must already have been decomposed. Uses UTF16, which is a
      * utility class for supplementary character support in Java.
      *
      * @param target input: decomposed text. output: the resulting normalized text.
      */
-    private void internalCompose(StringBuffer target) {
+    private void internalCompose(StringBuilder target) {
         int starterPos = 0;
         int starterCh = UTF16.charAt(target, 0);
         int compPos = UTF16.getCharCount(starterCh); // length of last composition
@@ -402,7 +400,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
             final int composite = data.getPairwiseComposition(starterCh, ch);
             if (composite != NormalizationData.NOT_COMPOSITE
                     && (lastClass < chClass || lastClass == 0)) {
-                UTF16.setCharAt(target, starterPos, composite);
+                setCodePointAt(target, starterPos, composite);
                 // we know that we will only be replacing non-supplementaries by non-supplementaries
                 // so we don't have to adjust the decompPos
                 starterCh = composite;
@@ -412,7 +410,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
                     starterCh = ch;
                 }
                 lastClass = chClass;
-                UTF16.setCharAt(target, compPos, ch);
+                setCodePointAt(target, compPos, ch);
                 if (target.length() != oldLen) { // MAY HAVE TO ADJUST!
                     if (SHOW_ADJUSTING) {
                         System.out.println("ADJUSTING: " + Utility.hex(target));
@@ -489,7 +487,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
 
     private void makeSpacingMap() {
         spacingMap = new UnicodeMap();
-        final StringBuffer b = new StringBuffer();
+        final StringBuilder b = new StringBuilder();
         main:
         for (int i = 0; i <= 0x10FFFF; ++i) {
             final boolean compat = data.hasCompatDecomposition(i);

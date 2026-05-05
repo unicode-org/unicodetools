@@ -416,7 +416,7 @@ public final class DerivedProperty implements UCD_Types {
                     }
                 };
 
-        final StringBuffer tempBuf = new StringBuffer();
+        final StringBuilder tempBuf = new StringBuilder();
 
         // System.out.println("Deriving data for XID");
         // special hack for middle dot

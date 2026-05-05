@@ -145,7 +145,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
     }
 
     @Override
-    public void getRecursiveDecomposition(int cp, StringBuffer buffer, boolean compat) {
+    public void getRecursiveDecomposition(int cp, StringBuilder buffer, boolean compat) {
         // TODO Auto-generated method stub
 
     }

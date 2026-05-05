@@ -860,7 +860,7 @@ public final class UCA implements Comparator<String> {
     // =============================================================
 
     /** Temporary buffer used in getSortKey for the decomposed string */
-    private final StringBuffer decompositionBuffer = new StringBuffer();
+    private final StringBuilder decompositionBuffer = new StringBuilder();
 
     /*
      * We take advantage of the variables being in a closed range to save a bit per CE. The low and

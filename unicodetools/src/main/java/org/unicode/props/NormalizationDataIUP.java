@@ -213,7 +213,7 @@ public class NormalizationDataIUP implements NormalizationData {
      * @see org.unicode.text.UCD.NormalizationData#getRecursiveDecomposition(int, java.lang.StringBuffer, boolean)
      */
     @Override
-    public void getRecursiveDecomposition(int cp, StringBuffer buffer, boolean compat) {
+    public void getRecursiveDecomposition(int cp, StringBuilder buffer, boolean compat) {
         // final byte dt = ucd.getDecompositionType(cp);
         final Decomposition_Type_Values dt = decompType.get(cp);
 
@@ -229,7 +229,7 @@ public class NormalizationDataIUP implements NormalizationData {
                 getRecursiveDecomposition(cp, buffer, compat);
             }
         } else {
-            UTF16.append(buffer, cp);
+            buffer.appendCodePoint(cp);
         }
     }
 

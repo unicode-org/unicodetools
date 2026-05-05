@@ -143,7 +143,7 @@ class NormalizationDataStandard implements NormalizationData {
      * @see org.unicode.text.UCD.NormalizationData#getRecursiveDecomposition(int, java.lang.StringBuffer, boolean)
      */
     @Override
-    public void getRecursiveDecomposition(int cp, StringBuffer buffer, boolean compat) {
+    public void getRecursiveDecomposition(int cp, StringBuilder buffer, boolean compat) {
         final byte dt = ucd.getDecompositionType(cp);
         // we know we decompose all CANONICAL, plus > CANONICAL if compat is TRUE.
         if (dt == UCD_Types.CANONICAL || dt > UCD_Types.CANONICAL && compat) {
@@ -156,7 +156,7 @@ class NormalizationDataStandard implements NormalizationData {
                 getRecursiveDecomposition(cp, buffer, compat);
             }
         } else {
-            UTF16.append(buffer, cp);
+            buffer.appendCodePoint(cp);
         }
     }
 
