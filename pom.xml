@@ -101,7 +101,9 @@
                     <version>${maven-surefire-plugin-version}</version>
                     <configuration>
                         <!-- Multiple JVM processes in parallel. -->
-                        <forkCount>4</forkCount>
+                        <!-- Turned off: Currently makes tests flaky :-(
+                             https://github.com/unicode-org/unicodetools/pull/1368#issuecomment-4371865240 -->
+                        <forkCount>1</forkCount>
                         <!-- https://maven.apache.org/surefire/maven-surefire-plugin/examples/fork-options-and-parallel-execution.html -->
                         <systemPropertyVariables>
                             <!-- These are variables which are picked up by test runs -->
