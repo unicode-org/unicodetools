@@ -407,7 +407,12 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                     oldValue = nextValue;
                                 }
                                 String mergedValue = merger.merge(oldValue, insertedValue);
-                                if (Objects.equals(mergedValue, nextValue)) {
+                                // Do not turn unchanged nulls into UNCHANGED_IN_BASE_VERSION, this
+                                // results in properties that have a mix of null (from code points
+                                // that have no record for this property) and
+                                // UNCHANGED_IN_BASE_VERSION (from records with a null value),
+                                // leading to an incorrect isTrivial.
+                                if (mergedValue != null && mergedValue.equals(nextValue)) {
                                     mergedValue = IndexUnicodeProperties.UNCHANGED_IN_BASE_VERSION;
                                 }
                                 PropertyUtilities.putNew(
@@ -419,7 +424,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                 return;
                             }
                         }
-                        if (Objects.equals(insertedValue, nextValue)) {
+                        // Do not turn unchanged nulls into UNCHANGED_IN_BASE_VERSION, see above.
+                        if (insertedValue != null && insertedValue.equals(nextValue)) {
                             insertedValue = IndexUnicodeProperties.UNCHANGED_IN_BASE_VERSION;
                         }
                     }
