@@ -13,6 +13,7 @@ import java.util.BitSet;
 
 public interface UCA_Types {
     public static final char LEVEL_SEPARATOR = '\u0000';
+    public static final char MERGE_SEPARATOR = 1;
 
     static final int NEUTRAL_SECONDARY = 0x20;
     // http://www.unicode.org/reports/tr10/#Tertiary_Weight_Table

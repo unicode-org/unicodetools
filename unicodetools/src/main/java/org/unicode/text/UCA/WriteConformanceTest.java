@@ -149,14 +149,23 @@ public class WriteConformanceTest {
             addStringX(s, option, AppendToCe.tieBreaker);
         }
 
-        // Add special examples
-        /*
-         * addStringX("\u2024\u2024", option); addStringX("\u2024\u2024\u2024",
-         * option); addStringX("\u2032\u2032", option);
-         * addStringX("\u2032\u2032\u2032", option);
-         * addStringX("\u2033\u2033\u2033", option); addStringX("\u2034\u2034",
-         * option);
-         */
+        // Examples with U+FFFE for "merge sort key" behavior, using addStringY() not ...X().
+        addStringY("l\uFFFEf", option, AppendToCe.tieBreaker);
+        addStringY("l\uFFFEf2", option, AppendToCe.tieBreaker);
+        addStringY("l2\uFFFEf", option, AppendToCe.tieBreaker);
+        addStringY("l2\uFFFEf2", option, AppendToCe.tieBreaker);
+        addStringY("l f", option, AppendToCe.tieBreaker);
+        addStringY("l f2", option, AppendToCe.tieBreaker);
+        addStringY("l2 f", option, AppendToCe.tieBreaker);
+        addStringY("l2 f2", option, AppendToCe.tieBreaker);
+        addStringY("lf", option, AppendToCe.tieBreaker);
+        addStringY("lf2", option, AppendToCe.tieBreaker);
+        addStringY("l2f", option, AppendToCe.tieBreaker);
+        addStringY("l2f2", option, AppendToCe.tieBreaker);
+
+        // Examples with U+FFFF
+        addStringX("Sch", option, AppendToCe.tieBreaker);
+        addStringX("Sch\uFFFF", option, AppendToCe.tieBreaker);
 
         final UnicodeSet found = collator.getStatistics().found;
         if (!found2.containsAll(found2)) {

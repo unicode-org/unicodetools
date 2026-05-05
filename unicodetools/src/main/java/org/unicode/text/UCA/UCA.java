@@ -370,8 +370,6 @@ public final class UCA implements Comparator<String>, UCA_Types {
         return getSortKey(null, sourceString, alternate, defaultDecomposition, AppendToCe.none);
     }
 
-    public static final int CE_FFFE = UCA.makeKey(0x1, 0x20, 2);
-
     public enum AppendToCe {
         none,
         nfd,
@@ -470,22 +468,27 @@ public final class UCA implements Comparator<String>, UCA_Types {
                 case SHIFTED:
                     if (CEList.getTertiary(ce) == 0) {
                         weight4 = 0;
-                    } else if (ce == CE_FFFE) {
-                        weight4 = getPrimary(ce);
+                    } else if (CEList.getPrimary(ce) == MAX_LOW_SPECIAL_PRIMARY) {
+                        // U+FFFE (which has a special UCA primary weight)
+                        // used for "merge sort key" behavior.
+                        weight4 = UCA_Types.MERGE_SEPARATOR;
                         lastWasVariable = false;
                     } else if (isVariable(ce)) { // variables
+                        ce = 0;
                         weight4 = getPrimary(ce);
                         lastWasVariable = true;
-                        ce = 0;
                     } else if (lastWasVariable && getPrimary(ce) == 0) { // zap trailing ignorables
                         ce = 0;
                         weight4 = 0;
-                    } else { // above variables
-                        lastWasVariable = false;
+                    } else { // not variable, or ignorable not following a variable
                         weight4 = '\uFFFF';
+                        lastWasVariable = false;
                     }
                     break;
-                    // case NON_IGNORABLE: // doesn't ever change!
+                case NON_IGNORABLE:
+                default:
+                    // No quaternary distinctions.
+                    break;
             }
             if (SHOW_CE) {
                 if (debugList.length() != 0) {
@@ -505,11 +508,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
 
             w = getSecondary(ce);
             if (w != 0) {
-                if (!useBackwards) {
-                    secondaries.append(w);
-                } else {
-                    secondaries.insert(0, w);
-                }
+                secondaries.append(w);
             }
 
             w = getTertiary(ce);
@@ -517,7 +516,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
                 tertiaries.append(w);
             }
 
-            if (weight4 != 0) {
+            if (weight4 != 0 && strength >= 4) {
                 quaternaries.append(weight4);
             }
         }
@@ -551,17 +550,17 @@ public final class UCA implements Comparator<String>, UCA_Types {
         }
         if (appendIdentical != AppendToCe.none) {
             String cpo = UCA.codePointOrder(toD.normalize(sourceString));
-            result.append('\u0000').append(cpo);
+            result.append(UCA_Types.LEVEL_SEPARATOR).append(cpo);
             if (appendIdentical == AppendToCe.tieBreaker) {
                 cpo = UCA.codePointOrder(sourceString);
-                result.append('\u0000').append(cpo).append((char) cpo.length());
+                result.append(UCA_Types.LEVEL_SEPARATOR).append(cpo).append((char) cpo.length());
             }
         }
         return result.toString();
     }
 
     // 0 ==
-    // 2, -2 quarternary
+    // 2, -2 quaternary
     // 3, -3 tertiary
     // 4, -4 secondary
     // 5, -5 primary
@@ -591,16 +590,6 @@ public final class UCA implements Comparator<String>, UCA_Types {
             return strength;
         }
         return 0;
-    }
-
-    /** Turns backwards (e.g. for French) on globally for all secondaries */
-    public void setBackwards(boolean backwards) {
-        useBackwards = backwards;
-    }
-
-    /** Retrieves value applied by set. */
-    public boolean isBackwards() {
-        return useBackwards;
     }
 
     /** Causes variables (those with *) to be set to all zero weights (level 1-3). */
@@ -651,34 +640,36 @@ public final class UCA implements Comparator<String>, UCA_Types {
         return ucdVersion;
     }
 
-    public static String codePointOrder(CharSequence s) {
-        return appendInCodePointOrder(s, new StringBuffer()).toString();
-    }
-
     /**
-     * Appends UTF-16 string with the values swapped around so that they compare in code-point
-     * order. Replace 0000 and 0001 by 0001 0001/2
+     * Appends UTF-16 string modified so that strings compare in code-point order, with U+FFFE
+     * having "merge sort key" behavior.
      *
-     * @param source Normal UTF-16 (Java) string
-     * @return sort key (as string)
-     * @author Markus Scherer (cast into Java by MD) NOTE: changed to be longer, but handle isolated
-     *     surrogates
+     * @param source Normal UTF-16 string
+     * @return 16-bit sort key as string
      */
-    public static StringBuffer appendInCodePointOrder(CharSequence source, StringBuffer target) {
+    public static String codePointOrder(CharSequence source) {
+        StringBuilder target = new StringBuilder();
         int cp;
         for (int i = 0; i < source.length(); i += UTF16.getCharCount(cp)) {
             cp = UTF16.charAt(source, i);
-            target.append((char) ((cp >> 15) | 0x8000));
-            target.append((char) (cp | 0x8000));
-            /*
-            if (ch <= 1) { // hack to avoid nulls
-                target.append('\u0001');
-                target.append((char)(ch+1));
+            if (cp <= 2) {
+                // Avoid collision with level separator 0 and merge separator 1:
+                // 00 -> 02 02
+                // 01 -> 02 03
+                // 02 -> 02 04
+                target.append((char) 2).append((char) (cp + 2));
+            } else if (cp < 0xF000) {
+                // single char for much of the BMP
+                target.append((char) cp);
+            } else if (cp == 0xFFFE) {
+                target.append(UCA_Types.MERGE_SEPARATOR);
+            } else {
+                // high BMP and supplementary
+                target.append((char) (0xF000 + (cp >> 12)));
+                target.append((char) (0x8000 | (cp & 0xFFF)));
             }
-            target.append((char)(ch + utf16CodePointOrder[ch>>11]));
-             */
         }
-        return target;
+        return target.toString();
     }
 
     /**
@@ -856,7 +847,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
      * Start of variable primaries. Primary weight one higher than that for the special U+FFFE.
      * https://www.unicode.org/reports/tr35/tr35-collation.html#tailored_noncharacter_weights
      */
-    private static final int variableBottom = UCA.getPrimary(CE_FFFE) + 1;
+    private static final int variableBottom = MAX_LOW_SPECIAL_PRIMARY + 1;
 
     private boolean isVariablePrimary(char primary) {
         return variableBottom <= primary && primary <= ucaData.variableHigh;
@@ -902,9 +893,6 @@ public final class UCA implements Comparator<String>, UCA_Types {
     /** Records the dataversion */
     private String ucdVersion = "?";
 
-    /** Turns backwards (e.g. for French) on globally for all secondaries */
-    private boolean useBackwards = false;
-
     /** Choice of how to handle variables (those with *) */
     private byte defaultAlternate = SHIFTED;
 
@@ -930,17 +918,16 @@ public final class UCA implements Comparator<String>, UCA_Types {
     /** Temporary buffer used in getSortKey for the decomposed string */
     private final StringBuffer decompositionBuffer = new StringBuffer();
 
-    // was 0xFFC20101;
-
-    /**
+    /*
      * We take advantage of the variables being in a closed range to save a bit per CE. The low and
      * high values are initially set to be at the opposite ends of the range, as the table is built
      * from the UCA data, they are narrowed in. The first three values are used in building; the
      * last two in testing.
      */
-    private static final int variableLowCE = makeKey(1, 0, 0); // used for testing against
 
-    private int variableHighCE; // used for testing against
+    private static final int variableLowCE = makeKey(MAX_LOW_SPECIAL_PRIMARY + 1, 0, 0);
+
+    private int variableHighCE;
 
     /** Marks whether we are using the full data set, or an abbreviated version for an applet. */
     private final boolean fullData;
@@ -1395,24 +1382,6 @@ public final class UCA implements Comparator<String>, UCA_Types {
         }
     }
 
-    public void overrideCE(String multiChars, IntStack tempStack) {
-        ucaData.add(multiChars, tempStack);
-    }
-
-    public void overrideCE(String multiChars, int ce) {
-        final IntStack tempStack = new IntStack(1);
-        tempStack.push(ce);
-        ucaData.add(multiChars, tempStack);
-    }
-
-    public void overrideCE(String multiChars, int primary, int secondary, int tertiary) {
-        final IntStack tempStack = new IntStack(1);
-        final int ce = UCA.makeKey(primary, secondary, tertiary);
-        tempStack.push(ce);
-        ucaData.add(multiChars, tempStack);
-    }
-
-    /** */
     private UnicodeSet extractSet(String inputLine) {
         // # Variant secondaries:    0177..017B (5)
         // # Digit secondaries:      017C..0198 (29)
@@ -1424,12 +1393,6 @@ public final class UCA implements Comparator<String>, UCA_Types {
         }
         return new UnicodeSet(Integer.parseInt(m.group(1), 16), Integer.parseInt(m.group(2), 16));
     }
-
-    /*
-    private void concat(int[] ces1, int[] ces2) {
-
-    }
-     */
 
     public Set<String> getContractions() {
         return ucaData.getContractions();
@@ -1879,77 +1842,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
         }
         final UCA result = buildCollator(cldrVariableHigh, firstDucetNonVariable);
 
-        result.overrideCE("\uFFFE", 0x1, 0x20, 2);
-        result.overrideCE("\uFFFF", 0xFFFE, 0x20, 2);
-
-        if (
-        /* ADD_TIBETAN */ true) {
-            final CEList fb2 = result.getCEList("\u0FB2", true);
-            final CEList fb3 = result.getCEList("\u0FB3", true);
-            final CEList f71_f72 = result.getCEList("\u0F71\u0F72", true);
-            final CEList f71_f74 = result.getCEList("\u0F71\u0F74", true);
-            final CEList fb2_f71 = result.getCEList("\u0FB2\u0F71", true);
-            final CEList fb3_f71 = result.getCEList("\u0FB3\u0F71", true);
-
-            addOverride(
-                    result,
-                    "\u0FB2\u0F71",
-                    fb2_f71); // 0FB2 0F71      ;     [.255A.0020.0002.0FB2][.2570.0020.0002.0F71] -
-            // concat 0FB2 + 0F71
-            addOverride(
-                    result,
-                    "\u0FB2\u0F71\u0F72",
-                    fb2,
-                    f71_f72); // 0FB2 0F71 0F72 ;    [.255A.0020.0002.0FB2][.2572.0020.0002.0F73] -
-            // concat 0FB2 + (0F71/0F72)
-            addOverride(result, "\u0FB2\u0F73", fb2, f71_f72); // 0FB2 0F73      ;
-            // [.255A.0020.0002.0FB2][.2572.0020.0002.0F73] = prev
-            addOverride(
-                    result,
-                    "\u0FB2\u0F71\u0F74",
-                    fb2,
-                    f71_f74); // 0FB2 0F71 0F74 ;    [.255A.0020.0002.0FB2][.2576.0020.0002.0F75] -
-            // concat 0FB2 + (0F71/0F74)
-            addOverride(result, "\u0FB2\u0F75", fb2, f71_f74); // 0FB2 0F75      ;
-            // [.255A.0020.0002.0FB2][.2576.0020.0002.0F75]  = prev
-
-            // same as above, but 0FB2 => 0FB3 and fb2 => fb3
-
-            addOverride(
-                    result,
-                    "\u0FB3\u0F71",
-                    fb3_f71); // 0FB3 0F71      ;     [.255A.0020.0002.0FB3][.2570.0020.0002.0F71] -
-            // concat 0FB3 + 0F71
-            addOverride(
-                    result,
-                    "\u0FB3\u0F71\u0F72",
-                    fb3,
-                    f71_f72); // 0FB3 0F71 0F72 ;    [.255A.0020.0002.0FB3][.2572.0020.0002.0F73] -
-            // concat 0FB3 + (0F71/0F72)
-            addOverride(result, "\u0FB3\u0F73", fb3, f71_f72); // 0FB3 0F73      ;
-            // [.255A.0020.0002.0FB3][.2572.0020.0002.0F73] = prev
-            addOverride(
-                    result,
-                    "\u0FB3\u0F71\u0F74",
-                    fb3,
-                    f71_f74); // 0FB3 0F71 0F74 ;    [.255A.0020.0002.0FB3][.2576.0020.0002.0F75] -
-            // concat 0FB3 + (0F71/0F74)
-            addOverride(result, "\u0FB3\u0F75", fb3, f71_f74); // 0FB3 0F75      ;
-            // [.255A.0020.0002.0FB3][.2576.0020.0002.0F75]  = prev
-        }
-
         return result;
-    }
-
-    private static void addOverride(UCA result, String string, CEList... ceLists) {
-        final IntStack tempStack = new IntStack(10);
-        for (final CEList ceList : ceLists) {
-            for (int i = 0; i < ceList.length(); ++i) {
-                final int ce = ceList.at(i);
-                tempStack.append(ce);
-            }
-        }
-        result.overrideCE(string, tempStack);
     }
 
     UCA_Statistics getStatistics() {
