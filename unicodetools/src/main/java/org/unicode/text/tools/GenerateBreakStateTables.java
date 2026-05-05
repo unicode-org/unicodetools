@@ -23,11 +23,18 @@ import org.unicode.tools.Segmenter.Builder.NamedRefinedSet;
 
 public class GenerateBreakStateTables {
     public static void main(String[] args) throws IOException {
+        Generate("Line", "line");
+        Generate("GraphemeCluster", "char");
+        Generate("Word", "word");
+        Generate("Sentence", "sent");
+    }
+
+    private static void Generate(String name, String icuName) throws IOException {
         RuleBasedBreakIterator rbbi;
         try (var f =
                 new FileInputStream(
                         new File(
-                                "..\\icu\\icu4c\\source\\data\\out\\build\\icudt79l\\brkitr\\line.brk"))) {
+                                "..\\icu\\icu4c\\source\\data\\out\\build\\icudt79l\\brkitr\\"+icuName+".brk"))) {
             rbbi = RuleBasedBreakIterator.getInstanceFromCompiledRules(f);
         }
         final var iup = IndexUnicodeProperties.make(UCharacter.getUnicodeVersion());
@@ -36,7 +43,7 @@ public class GenerateBreakStateTables {
         var segmenter =
                 Segmenter.make(
                                 VersionedSymbolTable.frozenAt(UCharacter.getUnicodeVersion()),
-                                "LineBreak")
+                                name+"Break")
                         .make();
         List<NamedRefinedSet> namedPartition = segmenter.getPartitionDefinition();
         Map<Integer, UnicodeSet> rbbiPartition = new HashMap<>();
@@ -146,7 +153,7 @@ public class GenerateBreakStateTables {
                         (state == 1 ? "" : stateName + " ")
                                 + (col == 1
                                         ? "eot"
-                                        : rbbiNames.get(col).stream()
+                                        : rbbiNames.containsKey(col) ? rbbiNames.get(col).stream()
                                                 .sorted(
                                                         Comparator.<NamedRefinedSet>comparingInt(
                                                                 s ->
@@ -158,7 +165,7 @@ public class GenerateBreakStateTables {
                                                 .map(NamedRefinedSet::getName)
                                                 .map(s -> s.replace("orig", ""))
                                                 .findFirst()
-                                                .orElse("")));
+                                                .orElse("") : "???" + col + "???"));
                 neighbourhoodsToName.add(next);
             }
         }
@@ -186,7 +193,7 @@ public class GenerateBreakStateTables {
             }
             nameToState.put(entry.getValue(), entry.getKey());
         }
-        try (var file = new PrintStream(new File("LineBreakClasses.txt"))) {
+        try (var file = new PrintStream(new File(name + "BreakClasses.txt"))) {
             file.println("# Class name ; Class definition in UnicodeSet notation");
             for (final var characterClass : rbbiNames.values()) {
                 file.print(
@@ -208,7 +215,7 @@ public class GenerateBreakStateTables {
                 file.println();
             }
         }
-        try (var file = new PrintStream(new File("LineBreakStates.txt"))) {
+        try (var file = new PrintStream(new File(name+"BreakStates.txt"))) {
             file.println(
                     "# State name ; Accepting (Yes, No, or lookahead name); lookahead name or empty.");
             for (int state = 1; state < table.fNumStates; ++state) {
@@ -230,7 +237,7 @@ public class GenerateBreakStateTables {
                 file.println();
             }
         }
-        try (var file = new PrintStream(new File("LineBreakTransitions.txt"))) {
+        try (var file = new PrintStream(new File(name+"BreakTransitions.txt"))) {
             file.println("# From state ; class name or eot ; to state");
             for (int state = 1; state < table.fNumStates; ++state) {
                 final int row = rbbi.fRData.getRowIndex(state);
@@ -243,10 +250,10 @@ public class GenerateBreakStateTables {
                     String ahead =
                             col == 1
                                     ? "eot"
-                                    : rbbiNames.get(col).stream()
+                                    : rbbiNames.containsKey(col) ? rbbiNames.get(col).stream()
                                             .map(NamedRefinedSet::getName)
                                             .map(s -> s.replace("orig", ""))
-                                            .collect(Collectors.joining("|"));
+                                            .collect(Collectors.joining("|")) : "???"+col+"???";
                     if (next != 0 && !ahead.isEmpty()) {
                         file.print(stateNames.get(state) + " ; ");
                         file.println(ahead + " ; " + stateNames.get(next));
