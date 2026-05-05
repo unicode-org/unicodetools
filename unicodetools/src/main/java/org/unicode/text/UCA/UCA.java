@@ -761,7 +761,7 @@ public final class UCA implements Comparator<String> {
 
     /** Produces a human-readable string for a sort key. The 0000 separator is replaced by a '|' */
     public static String toString(String sortKey, int level) {
-        final StringBuffer result = new StringBuffer();
+        final StringBuilder result = new StringBuilder();
         boolean needSep = false;
         result.append("[");
         for (int i = 0; i < sortKey.length(); ++i) {
@@ -802,7 +802,7 @@ public final class UCA implements Comparator<String> {
             return "[.0000.0000.0000]";
         }
         extraComment.setLength(0);
-        final StringBuffer result = new StringBuffer();
+        final StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < ceList.length(); ++i) {
             final int ce = ceList.at(i);
@@ -893,9 +893,9 @@ public final class UCA implements Comparator<String> {
     private final StringBuilder quaternaries = new StringBuilder(100);
 
     /** Temporary buffer used to collect progress data for debugging */
-    StringBuffer debugList = new StringBuffer(100);
+    StringBuilder debugList = new StringBuilder(100);
 
-    private final StringBuffer hangulBuffer = new StringBuffer();
+    private final StringBuilder hangulBuffer = new StringBuilder();
 
     /**
      * Returns the collation elements for the character or substring of the decomposition buffer
@@ -948,7 +948,7 @@ public final class UCA implements Comparator<String> {
             LastInitial = LBase + LCount - 1, // last initial jamo
             LastPrimary = SBase + (LCount - 1) * VCount * TCount; // last corresponding primary
 
-    public static StringBuffer decomposeHangul(int s, StringBuffer result) {
+    public static StringBuilder decomposeHangul(int s, StringBuilder result) {
         final int SIndex = s - SBase;
         if (0 > SIndex || SIndex >= SCount) {
             throw new IllegalArgumentException("Non-Hangul Syllable");
@@ -1180,7 +1180,7 @@ public final class UCA implements Comparator<String> {
      */
     private void addCollationElements(BufferedReader in) throws java.io.IOException {
         final IntStack tempStack = new IntStack(100);
-        final StringBuffer multiChars = new StringBuffer(); // used for contracting chars
+        final StringBuilder multiChars = new StringBuilder(); // used for contracting chars
         String inputLine = "";
         final boolean[] wasImplicitLeadPrimary = new boolean[1];
 

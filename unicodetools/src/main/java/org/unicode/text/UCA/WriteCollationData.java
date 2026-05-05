@@ -141,7 +141,7 @@ public class WriteCollationData {
     }
 
     private static String replace(String source, char toBeReplaced, String toReplace) {
-        final StringBuffer result = new StringBuffer();
+        final StringBuilder result = new StringBuilder();
         for (int i = 0; i < source.length(); ++i) {
             final char c = source.charAt(i);
             if (c == toBeReplaced) {
@@ -1650,8 +1650,6 @@ public class WriteCollationData {
         return expansion;
     }
 
-    private static StringBuffer quoteOperandBuffer = new StringBuffer(); // faster
-
     private static UnicodeSet needsQuoting = null;
     private static UnicodeSet needsUnicodeForm = null;
 
@@ -1677,7 +1675,7 @@ public class WriteCollationData {
                     new UnicodeSet("[\\u000d\\u000a[:zl:][:zp:][:c:][:di:]-[:cn:]]").addAll(cn);
         }
         s = Default.nfc().normalize(s);
-        quoteOperandBuffer.setLength(0);
+        StringBuilder quoteOperandBuffer = new StringBuilder();
         boolean noQuotes = true;
         boolean inQuote = false;
         int cp;
@@ -1806,7 +1804,7 @@ public class WriteCollationData {
 
     // TODO: Unused, remove?
     public static final String XMLBaseString(int[] cps, int len, boolean quoteApos) {
-        final StringBuffer temp = new StringBuffer();
+        final StringBuilder temp = new StringBuilder();
         for (int i = 0; i < len; ++i) {
             temp.append((char) cps[i]);
         }
@@ -1818,7 +1816,7 @@ public class WriteCollationData {
         if (!needsXMLQuote(source, quoteApos)) {
             return source;
         }
-        final StringBuffer result = new StringBuffer();
+        final StringBuilder result = new StringBuilder();
         for (int i = 0; i < source.length(); ++i) {
             final char ch = source.charAt(i);
             if (ch < ' '
