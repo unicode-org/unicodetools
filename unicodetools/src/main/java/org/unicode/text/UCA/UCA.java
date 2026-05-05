@@ -61,7 +61,7 @@ import org.unicode.text.utility.Utility;
  *     because of shared characters between scripts with different directions, like French with
  *     Arabic or Greek.
  */
-public final class UCA implements Comparator<String>, UCA_Types {
+public final class UCA implements Comparator<String> {
     // Utility function copied from
     // icu4j/main/tests/translit/src/com/ibm/icu/dev/test/translit/RoundTripTest.java
     /**
@@ -522,11 +522,11 @@ public final class UCA implements Comparator<String>, UCA_Types {
 
         final StringBuilder result = primaries;
         if (strength >= 2) {
-            result.append(LEVEL_SEPARATOR).append(secondaries);
+            result.append(UCA_Types.LEVEL_SEPARATOR).append(secondaries);
             if (strength >= 3) {
-                result.append(LEVEL_SEPARATOR).append(tertiaries);
+                result.append(UCA_Types.LEVEL_SEPARATOR).append(tertiaries);
                 if (strength >= 4) {
-                    result.append(LEVEL_SEPARATOR).append(quaternaries);
+                    result.append(UCA_Types.LEVEL_SEPARATOR).append(quaternaries);
                 }
             }
         }
@@ -561,7 +561,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
             if (c1 > c2) {
                 return strength;
             }
-            if (c1 == LEVEL_SEPARATOR) {
+            if (c1 == UCA_Types.LEVEL_SEPARATOR) {
                 --strength; // Separator!
             }
         }
@@ -963,7 +963,11 @@ public final class UCA implements Comparator<String>, UCA_Types {
 
     CEList getCEListForImplicit(int c) {
         int implicitPair = implicit.primaryPairForCodePoint(c);
-        int p = makeKey((implicitPair >>> 16), NEUTRAL_SECONDARY, NEUTRAL_TERTIARY);
+        int p =
+                makeKey(
+                        (implicitPair >>> 16),
+                        UCA_Types.NEUTRAL_SECONDARY,
+                        UCA_Types.NEUTRAL_TERTIARY);
         int q = makeKey((implicitPair & 0xFFFF), 0, 0);
         return new CEList(p, q);
     }
@@ -1273,7 +1277,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
 
                 char value2 = getChar(line, position);
                 // append until we get terminator
-                while (value2 != NOT_A_CHAR) {
+                while (value2 != UCA_Types.NOT_A_CHAR) {
                     multiChars.append(value2);
                     value2 = getChar(line, position);
                 }
@@ -1324,7 +1328,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
                                 record,
                                 wasImplicitLeadPrimary,
                                 false);
-                if (CHECK_UNIQUE && (ce2 == TERMINATOR || CHECK_UNIQUE_EXPANSIONS)) {
+                if (CHECK_UNIQUE && (ce2 == UCA_Types.TERMINATOR || CHECK_UNIQUE_EXPANSIONS)) {
                     if (!CHECK_UNIQUE_VARIABLES) {
                         checkUnique(value, ce, 0, inputLine); // only need to check first value
                     } else {
@@ -1339,7 +1343,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
                 tempStack.clear();
                 tempStack.push(ce);
 
-                while (ce2 != TERMINATOR) {
+                while (ce2 != UCA_Types.TERMINATOR) {
                     tempStack.push(ce2);
                     ce2 =
                             getCEFromLine(
@@ -1349,7 +1353,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
                                     record,
                                     wasImplicitLeadPrimary,
                                     false);
-                    if (ce2 == TERMINATOR) {
+                    if (ce2 == UCA_Types.TERMINATOR) {
                         break;
                     }
                 }
@@ -1532,7 +1536,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
         int start = position[0];
         while (true) { // trim whitespace
             if (start >= line.length()) {
-                return NOT_A_CHAR;
+                return UCA_Types.NOT_A_CHAR;
             }
             ch = line.charAt(start);
             if (ch != ' ' && ch != ',') {
@@ -1557,7 +1561,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
             return UTF16.getLeadSurrogate(cp);
         }
 
-        return NOT_A_CHAR;
+        return UCA_Types.NOT_A_CHAR;
     }
 
     boolean DEBUGCHAR = false;
@@ -1639,7 +1643,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
             boolean first) {
         final int start = line.indexOf('[', position[0]);
         if (start == -1) {
-            return TERMINATOR;
+            return UCA_Types.TERMINATOR;
         }
         boolean variable = line.charAt(start + 1) == '*';
         int key1 = Integer.parseInt(line.substring(start + 2, start + 6), 16);

@@ -25,7 +25,7 @@ import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Utility;
 
-public class GenOverlap implements UCD_Types, UCA_Types {
+public class GenOverlap implements UCD_Types {
 
     static Map completes = new TreeMap();
     static Map back = new HashMap();
