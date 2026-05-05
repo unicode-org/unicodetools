@@ -13,7 +13,7 @@ ADD ./target/cldr-unicodetools.tgz /build/data/
 ADD ./target/generated.tgz /build/data/
 # move this into place (including unicodetools/unicodetools)
 RUN rm -rf /build/data/cldr/.git  # unneeded
-FROM jetty:9-jre11-alpine-eclipse-temurin AS run
+FROM jetty:11-jre21-alpine-eclipse-temurin AS run
 ADD port-entrypoint.sh /port-entrypoint.sh
 ADD ./jetty.d/ROOT /var/lib/jetty/webapps/ROOT/
 ENTRYPOINT [ "/port-entrypoint.sh" ]
