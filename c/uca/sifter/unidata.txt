@@ -1,5 +1,5 @@
 # unidata-18.0.0.txt
-# Date: 2026-02-26, 00:00:00 GMT [KW]
+# Date: 2026-03-16, 00:00:00 GMT [KW]
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/copyright.html
@@ -10,7 +10,7 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 18.0.0 draft 11 (Unicode Version: 18.0.0)
+# Version 18.0.0 draft 12 (Unicode Version: 18.0.0)
 # based on Unicode data file UnicodeData-18.0.0d8.txt
 # Ordering for Unicode 18.0
 #
@@ -12057,6 +12057,24 @@ FFFC;OBJECT REPLACEMENT CHARACTER;So;;;;;;
 # See UTC 133-C23.
 
 FFFD;REPLACEMENT CHARACTER;So;;;;;;
+
+# ************************************************************
+
+# FFFE is a special case. It is forced to have the lowest primary
+# weight, exactly 0x0200, so that it will sort low for certain
+# comparison strategies.
+# See PAG Issue #270.
+
+FFFE;<noncharacter-FFFE>;Cn;;;;;;
+
+# ************************************************************
+
+# FFFF is a special case. It is forced to have the highest primary
+# weight, exactly 0xFFFF, so that it will sort high for certain
+# comparison strategies.
+# See PAG Issue #271.
+
+FFFF;<noncharacter-FFFF>;Cn;;;;;;
 
 # *********************************************************
 
