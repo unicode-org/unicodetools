@@ -112,7 +112,11 @@ public enum UcdProperty {
     kJapaneseNewVariant(
             PropertyType.String, DerivedPropertyStatus.Provisional, "cjkJapaneseNewVariant"),
     kJapaneseOldVariant(
-            PropertyType.String, DerivedPropertyStatus.Provisional, "cjkJapaneseOldVariant"),
+            PropertyType.String,
+            DerivedPropertyStatus.Provisional,
+            null,
+            ValueCardinality.Unordered,
+            "cjkJapaneseOldVariant"),
     kSEAL_MCJK(PropertyType.String, DerivedPropertyStatus.Provisional, "kSEAL_MCJK"),
     kSimplifiedVariant(
             PropertyType.String,
@@ -246,30 +250,56 @@ public enum UcdProperty {
     cjkUSource_Comments(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Ordered,
             "cjkUSource_Comments"),
     cjkUSource_FirstResidualStroke(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Ordered,
             "cjkUSource_FirstResidualStroke"),
     cjkUSource_IDS(
-            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "cjkUSource_IDS"),
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Ordered,
+            "cjkUSource_IDS"),
     cjkUSource_Identifier(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Ordered,
             "cjkUSource_Identifier"),
     cjkUSource_KangXi(
-            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "cjkUSource_KangXi"),
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Ordered,
+            "cjkUSource_KangXi"),
     cjkUSource_RSUnicode(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Ordered,
             "cjkUSource_RSUnicode"),
     cjkUSource_Source(
-            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "cjkUSource_Source"),
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Ordered,
+            "cjkUSource_Source"),
     cjkUSource_Status(
-            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "cjkUSource_Status"),
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Ordered,
+            "cjkUSource_Status"),
     cjkUSource_TotalStrokes(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Ordered,
             "cjkUSource_TotalStrokes"),
     emoji_variation_sequence(
             PropertyType.Miscellaneous,
