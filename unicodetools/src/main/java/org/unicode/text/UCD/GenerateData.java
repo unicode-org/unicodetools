@@ -214,7 +214,7 @@ public class GenerateData implements UCD_Types {
             if (!UTF16.hasMoreCodePointsThan(s, 1)) {
                 continue;
             }
-            final int c1 = UTF16.charAt(s, 0);
+            final int c1 = s.codePointAt(0);
             final int c2 = UTF16.charAt(s, Character.charCount(c1));
             if (Default.ucd().getCombiningClass(c1) != 0) {
                 continue;
@@ -544,7 +544,7 @@ public class GenerateData implements UCD_Types {
         commaResult.setLength(0);
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (Default.ucd().getCategory(cp) == Mn) {
                 commaResult.append('\u25CC');
             }

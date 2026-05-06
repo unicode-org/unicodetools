@@ -2679,7 +2679,7 @@ public class MakeUnicodeFiles {
      int cp = 0;
      int i;
      for (i = start; i < limit; i += Character.charCount(cp)) {
-     cp = UTF16.charAt(text, i);
+     cp = text.codePointAt(i);
      if (!com.ibm.icu.lang.UCharacter.isUnicodeIdentifierPart(cp)) {
      break;
      }

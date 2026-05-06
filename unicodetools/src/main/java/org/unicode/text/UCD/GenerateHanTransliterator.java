@@ -565,7 +565,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
         String lasts = "";
         for (final Iterator it2 = set.iterator(); it2.hasNext(); ) {
             final String s = (String) it2.next();
-            String m = map == null ? null : (String) map.getValue(UTF16.charAt(s, 0));
+            String m = map == null ? null : (String) map.getValue(s.codePointAt(0));
             if (m == null) {
                 m = "";
             }
@@ -573,20 +573,20 @@ public final class GenerateHanTransliterator implements UCD_Types {
             if (p2.compare(lastm, m) > 0) {
                 info = info + "\t" + lastm + " > " + m + "\t";
                 Object temp;
-                temp = hanyu.getValue(UTF16.charAt(lasts, 0));
+                temp = hanyu.getValue(lasts.codePointAt(0));
                 if (temp != null) {
                     info += "[" + temp + "]";
                 }
-                temp = mand.getValue(UTF16.charAt(lasts, 0));
+                temp = mand.getValue(lasts.codePointAt(0));
                 if (temp != null) {
                     info += "[" + temp + "]";
                 }
                 info += " > ";
-                temp = hanyu.getValue(UTF16.charAt(s, 0));
+                temp = hanyu.getValue(s.codePointAt(0));
                 if (temp != null) {
                     info += "[" + temp + "]";
                 }
-                temp = mand.getValue(UTF16.charAt(s, 0));
+                temp = mand.getValue(s.codePointAt(0));
                 if (temp != null) {
                     info += "[" + temp + "]";
                 }
