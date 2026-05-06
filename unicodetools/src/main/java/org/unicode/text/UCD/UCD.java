@@ -173,7 +173,7 @@ public final class UCD implements UCD_Types {
         final StringBuffer result = new StringBuffer();
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (i > 0) {
                 result.append(separator);
             }
@@ -195,7 +195,7 @@ public final class UCD implements UCD_Types {
         final StringBuffer result = new StringBuffer();
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (i > 0) {
                 result.append(", ");
             }
@@ -232,7 +232,7 @@ public final class UCD implements UCD_Types {
         final StringBuffer result = new StringBuffer();
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (i > 0) {
                 result.append(", ");
             }
@@ -661,7 +661,7 @@ public final class UCD implements UCD_Types {
         final UCDProperty defaultIgnorable = DerivedProperty.make(UCD_Types.DefaultIgnorable, this);
 
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             final String mappedVersion = getCase(cp, simpleVsFull, currentCaseType, condition);
             result.append(mappedVersion);
             if (caseType == TITLE) { // set the case type for the next character
@@ -826,7 +826,7 @@ public final class UCD implements UCD_Types {
         }
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             final short script = getScript(cp);
             if (script == INHERITED_SCRIPT) {
                 continue;
@@ -1508,7 +1508,7 @@ public final class UCD implements UCD_Types {
         }
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (i == 0) {
                 if (!isIdentifierStart(cp)) {
                     return false;

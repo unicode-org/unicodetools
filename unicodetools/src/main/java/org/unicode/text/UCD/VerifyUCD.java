@@ -471,7 +471,7 @@ public class VerifyUCD implements UCD_Types {
         byte lastBidi = -1;
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             byte bidi = Default.ucd().getBidiClass(cp);
             if (compact) {
                 if (bidi == BIDI_NSM) {
@@ -1141,7 +1141,7 @@ public class VerifyUCD implements UCD_Types {
         int cp;
         if (!doEnd) {
             for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-                cp = UTF16.charAt(s, i);
+                cp = s.codePointAt(i);
                 final int cc = Default.ucd().getCombiningClass(cp);
                 if (cc == 0) {
                     return s.substring(0, i);
@@ -1215,7 +1215,7 @@ public class VerifyUCD implements UCD_Types {
 
             int cp2;
             for (int i = 0; i < full.length(); i += Character.charCount(cp2)) {
-                cp2 = UTF16.charAt(full, i);
+                cp2 = full.codePointAt(i);
                 int ccc2 = Default.ucd.getCombiningClass(cp2);
                 if (ccc2 != ccc) {
                     System.out.println("Case fold CCC fails at " + Default.ucd.getCodeAndName(cp));
@@ -1382,7 +1382,7 @@ public class VerifyUCD implements UCD_Types {
                 int cp2;
                 boolean excluded = false;
                 for (int j = 0; j < kc.length(); j += Character.charCount(cp2)) {
-                    cp2 = UTF16.charAt(kc, j);
+                    cp2 = kc.codePointAt(j);
                     if (prohibited.get(cp2)) {
                         showError("Prohibited with NFKC, but output with NFC", cp, "");
                         excluded = true;
@@ -2079,7 +2079,7 @@ public class VerifyUCD implements UCD_Types {
                 if (UTF16.countCodePoint(key) != 1) {
                     throw new ChainException("First IDN field not single character: " + line, null);
                 }
-                final int cp = UTF16.charAt(key, 0);
+                final int cp = key.codePointAt(0);
                 if (!Default.ucd().isAssigned(cp) || Default.ucd().isPUA(cp)) {
                     throw new ChainException("IDN character unassigned or PUA: " + line, null);
                 }
@@ -2317,7 +2317,7 @@ public class VerifyUCD implements UCD_Types {
         final StringBuffer result = new StringBuffer();
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (i != 0) {
                 result.append(' ');
             }
@@ -2585,7 +2585,7 @@ public class VerifyUCD implements UCD_Types {
     public static boolean noneHaveCategory(String s, byte cat, UCD ucd) {
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             final byte cat2 = ucd.getCategory(i);
             if (cat == cat2) {
                 return false;

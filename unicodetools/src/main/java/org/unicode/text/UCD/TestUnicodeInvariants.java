@@ -5,7 +5,6 @@ import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
@@ -1348,7 +1347,7 @@ public class TestUnicodeInvariants {
                         }
                         buffer.setLength(0);
                         for (int j = 0; j < value.length(); j += Character.charCount(cp)) {
-                            cp = UTF16.charAt(value, j);
+                            cp = value.codePointAt(j);
                             if (!propOrFilter.filter.contains(cp)) {
                                 continue;
                             }
@@ -1366,7 +1365,7 @@ public class TestUnicodeInvariants {
                         }
                         buffer.setLength(0);
                         for (int j = 0; j < value.length(); j += Character.charCount(cp)) {
-                            cp = UTF16.charAt(value, j);
+                            cp = value.codePointAt(j);
                             final String value2 = propOrFilter.prop.getValue(cp);
                             buffer.append(value2);
                         }
@@ -1382,7 +1381,7 @@ public class TestUnicodeInvariants {
                         }
                         values = new ArrayList<>();
                         for (int j = 0; j < value.length(); j += Character.charCount(cp)) {
-                            cp = UTF16.charAt(value, j);
+                            cp = value.codePointAt(j);
                             final String value2 = propOrFilter.prop.getValue(cp);
                             values.add(value2);
                         }

@@ -375,7 +375,7 @@ public class TestIdentifiers {
         int lastScript = UScript.INVALID_CODE;
         int cp;
         for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(source, i);
+            cp = source.codePointAt(i);
             int script = UScript.getScript(cp);
             if (script == UScript.COMMON || script == UScript.INHERITED) {
                 if (XIDContinueSet.contains(cp)) {
