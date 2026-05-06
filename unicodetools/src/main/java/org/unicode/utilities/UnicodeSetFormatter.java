@@ -200,7 +200,7 @@ public class UnicodeSetFormatter {
             appendQuoted(s);
             lastString = s;
         } else {
-            appendUnicodeSetItem(UTF16.charAt(s, 0));
+            appendUnicodeSetItem(s.codePointAt(0));
         }
         return this;
     }
@@ -222,7 +222,7 @@ public class UnicodeSetFormatter {
         } else if (spaceComp != null && spaceComp.compare(s, lastString) != 0) {
             target.append(' ');
         } else {
-            int cp = UTF16.charAt(s, 0);
+            int cp = s.codePointAt(0);
             if (!toQuote.contains(cp) && !QUOTED_SYNTAX.contains(cp)) {
                 int type = UCharacter.getType(cp);
                 if (type == UCharacter.NON_SPACING_MARK || type == UCharacter.ENCLOSING_MARK) {
@@ -262,7 +262,7 @@ public class UnicodeSetFormatter {
         } else {
             int cp;
             for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-                appendQuoted(cp = UTF16.charAt(s, i));
+                appendQuoted(cp = s.codePointAt(i));
             }
         }
         target.append("}");

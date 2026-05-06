@@ -116,7 +116,7 @@ public final class DataOutputCompressor implements ObjectOutput {
     public void writeChars(String s) throws IOException {
         int cp = 0;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             writeULong(cp);
         }
     }

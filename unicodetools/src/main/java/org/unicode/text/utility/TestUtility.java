@@ -173,7 +173,7 @@ public class TestUtility {
         if (i <= 0xFFFF) {
             return false;
         }
-        return i == UTF16.charAt(value, 0);
+        return i == value.codePointAt(0);
     }
 
     /** */

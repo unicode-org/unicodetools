@@ -318,7 +318,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             if (i != 0) {
                 result.append(separator);
             }
-            ch = UTF16.charAt(s, i);
+            ch = s.codePointAt(i);
             result.append(hex(ch, places));
         }
         return result.toString();
@@ -808,7 +808,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         }
         final StringBuffer result = new StringBuffer();
         for (int i = 0; i < source.length(); ++i) {
-            final int c = UTF16.charAt(source, i);
+            final int c = source.codePointAt(i);
             if (Character.isSupplementaryCodePoint(c)) {
                 ++i;
             }
