@@ -23,10 +23,10 @@ import org.unicode.tools.Segmenter.Builder.NamedRefinedSet;
 
 public class GenerateBreakStateTables {
     public static void main(String[] args) throws IOException {
-        Generate("Line", "line");
+        //Generate("Line", "line");
         Generate("GraphemeCluster", "char");
-        Generate("Word", "word");
-        Generate("Sentence", "sent");
+        //Generate("Word", "word");
+        //Generate("Sentence", "sent");
     }
 
     private static void Generate(String name, String icuName) throws IOException {
@@ -116,7 +116,8 @@ public class GenerateBreakStateTables {
         stateNames.put(1, "START");
         Queue<Integer> neighbourhoodsToName = new LinkedList<>();
         neighbourhoodsToName.add(1);
-        for (int state = 1; !neighbourhoodsToName.isEmpty(); state = neighbourhoodsToName.poll()) {
+        do {
+            final int state = neighbourhoodsToName.poll();
             final int row = rbbi.fRData.getRowIndex(state);
             final String stateName = stateNames.get(state);
             {
@@ -168,7 +169,7 @@ public class GenerateBreakStateTables {
                                                 .orElse("") : "???" + col + "???"));
                 neighbourhoodsToName.add(next);
             }
-        }
+        } while (!neighbourhoodsToName.isEmpty());
         Map<String, Integer> nameToState = new HashMap<>();
         for (var entry : stateNames.entrySet()) {
             if (nameToState.containsKey(entry.getValue())) {
