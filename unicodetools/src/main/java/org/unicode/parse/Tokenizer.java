@@ -213,7 +213,7 @@ public class Tokenizer {
             while (index < source.length()) {
                 cp = nextChar();
                 if (UCharacter.getType(cp) != Character.DECIMAL_DIGIT_NUMBER) {
-                    index -= UTF16.getCharCount(cp); // BACKUP!
+                    index -= Character.charCount(cp); // BACKUP!
                     break;
                 }
                 number *= 10;
@@ -279,7 +279,7 @@ public class Tokenizer {
                 if (UCharacter.isUnicodeIdentifierPart(cp) || cp == '$') {
                     buffer.appendCodePoint(cp);
                 } else if (!UCharacter.isIdentifierIgnorable(cp)) {
-                    index -= UTF16.getCharCount(cp); // BACKUP!
+                    index -= Character.charCount(cp); // BACKUP!
                     break;
                 }
             }
@@ -324,7 +324,7 @@ public class Tokenizer {
 
     private int nextChar() {
         int cp = UTF16.charAt(source, index);
-        index += UTF16.getCharCount(cp);
+        index += Character.charCount(cp);
         return cp;
     }
 
@@ -398,7 +398,7 @@ public class Tokenizer {
             int cp;
             int start = pos.getIndex();
             int i;
-            for (i = start; i < limit; i += UTF16.getCharCount(cp)) {
+            for (i = start; i < limit; i += Character.charCount(cp)) {
                 cp = UTF16.charAt(text, i);
                 if (!com.ibm.icu.lang.UCharacter.isUnicodeIdentifierPart(cp)) {
                     break;

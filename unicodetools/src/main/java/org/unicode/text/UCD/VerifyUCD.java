@@ -470,7 +470,7 @@ public class VerifyUCD implements UCD_Types {
         String result = "";
         byte lastBidi = -1;
         int cp;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(s, i);
             byte bidi = Default.ucd().getBidiClass(cp);
             if (compact) {
@@ -1140,7 +1140,7 @@ public class VerifyUCD implements UCD_Types {
     public static String getMarks(String s, boolean doEnd) {
         int cp;
         if (!doEnd) {
-            for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+            for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
                 cp = UTF16.charAt(s, i);
                 final int cc = Default.ucd().getCombiningClass(cp);
                 if (cc == 0) {
@@ -1148,7 +1148,7 @@ public class VerifyUCD implements UCD_Types {
                 }
             }
         } else {
-            for (int i = s.length(); i > 0; i -= UTF16.getCharCount(cp)) {
+            for (int i = s.length(); i > 0; i -= Character.charCount(cp)) {
                 cp = UTF16.charAt(s, i - 1); // will go 2 before if necessary
                 final int cc = Default.ucd().getCombiningClass(cp);
                 if (cc == 0) {
@@ -1214,7 +1214,7 @@ public class VerifyUCD implements UCD_Types {
             int ccc = Default.ucd.getCombiningClass(cp);
 
             int cp2;
-            for (int i = 0; i < full.length(); i += UTF16.getCharCount(cp2)) {
+            for (int i = 0; i < full.length(); i += Character.charCount(cp2)) {
                 cp2 = UTF16.charAt(full, i);
                 int ccc2 = Default.ucd.getCombiningClass(cp2);
                 if (ccc2 != ccc) {
@@ -1381,7 +1381,7 @@ public class VerifyUCD implements UCD_Types {
                 }
                 int cp2;
                 boolean excluded = false;
-                for (int j = 0; j < kc.length(); j += UTF16.getCharCount(cp2)) {
+                for (int j = 0; j < kc.length(); j += Character.charCount(cp2)) {
                     cp2 = UTF16.charAt(kc, j);
                     if (prohibited.get(cp2)) {
                         showError("Prohibited with NFKC, but output with NFC", cp, "");
@@ -2584,7 +2584,7 @@ public class VerifyUCD implements UCD_Types {
 
     public static boolean noneHaveCategory(String s, byte cat, UCD ucd) {
         int cp;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(s, i);
             final byte cat2 = ucd.getCategory(i);
             if (cat == cat2) {

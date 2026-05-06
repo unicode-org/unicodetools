@@ -719,7 +719,7 @@ public class TestData implements UCD_Types {
             }
             // if (nfd.equals(it.getString())) continue;
             int cp;
-            for (int i = 0; i < nfd.length(); i += UTF16.getCharCount(cp)) {
+            for (int i = 0; i < nfd.length(); i += Character.charCount(cp)) {
                 cp = UTF16.charAt(nfd, i);
                 boolean shown = false;
                 final String newValue = up.getValue(cp);

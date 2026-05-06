@@ -666,7 +666,7 @@ public final class UnicodeIntMap
     public String transform(String source) {
         StringBuffer result = new StringBuffer();
         int cp;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(source, i);
             int mResult = getValue(cp);
             if (mResult != UNASSIGNED) {

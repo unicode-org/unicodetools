@@ -133,7 +133,7 @@ public final class CollectionUtilities {
     public static String remove(String source, UnicodeSet removals) {
         StringBuffer result = new StringBuffer();
         int cp;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(source, i);
             if (!removals.contains(cp)) UTF16.append(result, cp);
         }

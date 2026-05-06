@@ -227,7 +227,7 @@ public class FrequencyData2 {
                     norm = UCharacter.foldCase(norm, true);
                     norm = Normalizer.normalize(norm, compose);
                     int cp;
-                    for (int j = 0; j < norm.length(); j += UTF16.getCharCount(cp)) {
+                    for (int j = 0; j < norm.length(); j += Character.charCount(cp)) {
                         cp = UTF16.charAt(norm, j);
                         counter.add(cp, frequency);
                     }

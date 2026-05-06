@@ -921,7 +921,7 @@ public class WriteCharts implements UCD_Types {
     static short getBestScript(String s) {
         int cp;
         short result = COMMON_SCRIPT;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(s, i);
             result = Default.ucd().getScript(cp);
             if (result != COMMON_SCRIPT && result != INHERITED_SCRIPT) {
@@ -1259,7 +1259,7 @@ public class WriteCharts implements UCD_Types {
 
     static boolean containsCase(String s) {
         int cp;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(s, i);
             // contains Lu, Lo, Lt, or Lowercase or Uppercase
             final byte cat = Default.ucd().getCategory(cp);
@@ -1364,7 +1364,7 @@ public class WriteCharts implements UCD_Types {
                     }
 
                     // pick up all decompositions
-                    int count = UTF16.getCharCount(UTF16.charAt(decomp, 0));
+                    int count = Character.charCount(UTF16.charAt(decomp, 0));
 
                     if (count == decomp.length()) {
                         notPrinted.add(source);

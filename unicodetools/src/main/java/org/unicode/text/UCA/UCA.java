@@ -624,7 +624,7 @@ public final class UCA implements Comparator<String> {
     public static String codePointOrder(CharSequence source) {
         StringBuilder target = new StringBuilder();
         int cp;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(source, i);
             if (cp <= 2) {
                 // Avoid collision with level separator 0 and merge separator 1:
@@ -1054,7 +1054,7 @@ public final class UCA implements Comparator<String> {
                     if (!nfkd.isNormalized(i)) {
                         final String decomp = nfkd.normalize(i);
                         int cp2;
-                        for (int j = 0; j < decomp.length(); j += UTF16.getCharCount(cp2)) {
+                        for (int j = 0; j < decomp.length(); j += Character.charCount(cp2)) {
                             cp2 = UTF16.charAt(decomp, j);
                             if (!getStatistics().unspecified.contains(cp2)) {
                                 temp.add(cp2);

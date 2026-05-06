@@ -261,7 +261,7 @@ public class UnicodeSetFormatter {
             target.append(quoter.transform(s));
         } else {
             int cp;
-            for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+            for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
                 appendQuoted(cp = UTF16.charAt(s, i));
             }
         }

@@ -260,7 +260,7 @@ public abstract class Pick {
         if (newIndex >= newValue.length()) return newIndex;
         int cp = UTF16.charAt(newValue, newIndex);
         if (copy) UTF16.append(mergeBuffer, cp);
-        return newIndex + UTF16.getCharCount(cp);
+        return newIndex + Character.charCount(cp);
     }
 
     /*

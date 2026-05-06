@@ -212,7 +212,7 @@ final class Validity {
         final String canDecomp = Default.nfd().normalize(cp);
         String result = "";
         int ch;
-        for (int j = 0; j < canDecomp.length(); j += UTF16.getCharCount(ch)) {
+        for (int j = 0; j < canDecomp.length(); j += Character.charCount(ch)) {
             ch = UTF16.charAt(canDecomp, j);
             System.out.println("* " + Default.ucd().getCodeAndName(ch));
             final String newSortKey = remapCanSortKey(ch, decomposition);

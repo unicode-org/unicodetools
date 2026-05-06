@@ -187,7 +187,7 @@ public class BuildNames implements UCD_Types {
             }
 
             int cp2;
-            for (int i = 0; i < str.length(); i += UTF16.getCharCount(cp2)) {
+            for (int i = 0; i < str.length(); i += Character.charCount(cp2)) {
                 cp2 = UTF16.charAt(str, i);
                 name = Default.ucd().getName(cp2, SHORT);
                 if (name == null) {

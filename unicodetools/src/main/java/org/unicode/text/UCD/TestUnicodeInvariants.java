@@ -1347,7 +1347,7 @@ public class TestUnicodeInvariants {
                                             + values);
                         }
                         buffer.setLength(0);
-                        for (int j = 0; j < value.length(); j += UTF16.getCharCount(cp)) {
+                        for (int j = 0; j < value.length(); j += Character.charCount(cp)) {
                             cp = UTF16.charAt(value, j);
                             if (!propOrFilter.filter.contains(cp)) {
                                 continue;
@@ -1365,7 +1365,7 @@ public class TestUnicodeInvariants {
                                             + values);
                         }
                         buffer.setLength(0);
-                        for (int j = 0; j < value.length(); j += UTF16.getCharCount(cp)) {
+                        for (int j = 0; j < value.length(); j += Character.charCount(cp)) {
                             cp = UTF16.charAt(value, j);
                             final String value2 = propOrFilter.prop.getValue(cp);
                             buffer.append(value2);
@@ -1381,7 +1381,7 @@ public class TestUnicodeInvariants {
                                             + values);
                         }
                         values = new ArrayList<>();
-                        for (int j = 0; j < value.length(); j += UTF16.getCharCount(cp)) {
+                        for (int j = 0; j < value.length(); j += Character.charCount(cp)) {
                             cp = UTF16.charAt(value, j);
                             final String value2 = propOrFilter.prop.getValue(cp);
                             values.add(value2);
@@ -1976,7 +1976,7 @@ public class TestUnicodeInvariants {
     private static int scan(UnicodeSet allowed, CharSequence line, int start, boolean in) {
         int cp = 0;
         int i;
-        for (i = start; i < line.length(); i += UTF16.getCharCount(cp)) {
+        for (i = start; i < line.length(); i += Character.charCount(cp)) {
             cp = Character.codePointAt(line, i);
             if (allowed.contains(cp) != in) {
                 break;

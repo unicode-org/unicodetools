@@ -311,7 +311,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
             CharSequence source, StringBuilder target, boolean reorder, boolean compat) {
         final StringBuilder buffer = new StringBuilder();
         int ch32;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(ch32)) {
+        for (int i = 0; i < source.length(); i += Character.charCount(ch32)) {
             buffer.setLength(0);
             ch32 = UTF16.charAt(source, i);
             final String sub =
@@ -327,7 +327,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
             // no decomposition mapping)
 
             int ch;
-            for (int j = 0; j < buffer.length(); j += UTF16.getCharCount(ch)) {
+            for (int j = 0; j < buffer.length(); j += Character.charCount(ch)) {
                 ch = UTF16.charAt(buffer, j);
                 final int chClass = data.getCanonicalClass(ch);
                 int k = target.length(); // insertion point
@@ -336,7 +336,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
                     // bubble-sort combining marks as necessary
 
                     int ch2;
-                    for (; k > 0; k -= UTF16.getCharCount(ch2)) {
+                    for (; k > 0; k -= Character.charCount(ch2)) {
                         ch2 = UTF16.charAt(target, k - 1);
                         if (data.getCanonicalClass(ch2) <= chClass) {
                             break;
@@ -372,7 +372,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
     private void internalCompose(StringBuilder target) {
         int starterPos = 0;
         int starterCh = UTF16.charAt(target, 0);
-        int compPos = UTF16.getCharCount(starterCh); // length of last composition
+        int compPos = Character.charCount(starterCh); // length of last composition
         int lastClass = data.getCanonicalClass(starterCh);
         if (lastClass != 0) {
             lastClass = 256; // fix for strings staring with a combining mark
@@ -384,7 +384,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         int ch;
         for (int decompPos = compPos;
                 decompPos < target.length();
-                decompPos += UTF16.getCharCount(ch)) {
+                decompPos += Character.charCount(ch)) {
             ch = UTF16.charAt(target, decompPos);
             if (SHOW_PROGRESS) {
                 System.out.println(
@@ -418,7 +418,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
                     decompPos += target.length() - oldLen;
                     oldLen = target.length();
                 }
-                compPos += UTF16.getCharCount(ch);
+                compPos += Character.charCount(ch);
             }
         }
         target.setLength(compPos);
@@ -505,7 +505,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
             }
             // if rest are just Mn or Me marks, then add to substitute mapping
             int cp;
-            for (int j = 1; j < b.length(); j += UTF16.getCharCount(cp)) {
+            for (int j = 1; j < b.length(); j += Character.charCount(cp)) {
                 cp = UTF16.charAt(b, j);
                 if (data.isNonSpacing(cp)) {
                     continue main;

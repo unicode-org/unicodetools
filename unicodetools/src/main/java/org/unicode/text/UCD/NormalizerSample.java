@@ -139,7 +139,7 @@ public class NormalizerSample implements UCD_Types {
     private void internalDecompose(String source, StringBuffer target) {
         final StringBuffer buffer = new StringBuffer();
         int ch32;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(ch32)) {
+        for (int i = 0; i < source.length(); i += Character.charCount(ch32)) {
             buffer.setLength(0);
             ch32 = UTF16.charAt(source, i);
             data.getRecursiveDecomposition(ch32, buffer, compatibility);
@@ -149,7 +149,7 @@ public class NormalizerSample implements UCD_Types {
             // no decomposition mapping)
 
             int ch;
-            for (int j = 0; j < buffer.length(); j += UTF16.getCharCount(ch)) {
+            for (int j = 0; j < buffer.length(); j += Character.charCount(ch)) {
                 ch = UTF16.charAt(buffer, j);
                 final int chClass = data.getCanonicalClass(ch);
                 int k = target.length(); // insertion point
@@ -158,7 +158,7 @@ public class NormalizerSample implements UCD_Types {
                     // bubble-sort combining marks as necessary
 
                     int ch2;
-                    for (; k > 0; k -= UTF16.getCharCount(ch2)) {
+                    for (; k > 0; k -= Character.charCount(ch2)) {
                         ch2 = UTF16.charAt(target, k - 1);
                         if (data.getCanonicalClass(ch2) <= chClass) {
                             break;
@@ -179,7 +179,7 @@ public class NormalizerSample implements UCD_Types {
     private void internalCompose(StringBuffer target) {
         int starterPos = 0;
         int starterCh = UTF16.charAt(target, 0);
-        int compPos = UTF16.getCharCount(starterCh); // length of last composition
+        int compPos = Character.charCount(starterCh); // length of last composition
         int lastClass = data.getCanonicalClass(starterCh);
         if (lastClass != 0) {
             lastClass = 256; // fix for strings staring with a combining mark
@@ -191,7 +191,7 @@ public class NormalizerSample implements UCD_Types {
         int ch;
         for (int decompPos = compPos;
                 decompPos < target.length();
-                decompPos += UTF16.getCharCount(ch)) {
+                decompPos += Character.charCount(ch)) {
             ch = UTF16.charAt(target, decompPos);
             if (SHOW_PROGRESS) {
                 System.out.println(
@@ -224,7 +224,7 @@ public class NormalizerSample implements UCD_Types {
                     decompPos += target.length() - oldLen;
                     oldLen = target.length();
                 }
-                compPos += UTF16.getCharCount(ch);
+                compPos += Character.charCount(ch);
             }
         }
         target.setLength(compPos);
@@ -273,7 +273,7 @@ public class NormalizerSample implements UCD_Types {
                             continue;
                         }
 
-                        final int b = UTF16.charAt(s, UTF16.getCharCount(a));
+                        final int b = UTF16.charAt(s, Character.charCount(a));
                         isSecond.set(b);
 
                         // have a recomposition, so set the bit
@@ -329,7 +329,7 @@ public class NormalizerSample implements UCD_Types {
             // we know we decompose all CANONICAL, plus > CANONICAL if compatibility is TRUE.
             if (dt == CANONICAL || dt > CANONICAL && compatibility) {
                 final String s = ucd.getDecompositionMapping(cp);
-                for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+                for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
                     cp = UTF16.charAt(s, i);
                     getRecursiveDecomposition(cp, buffer, compatibility);
                 }

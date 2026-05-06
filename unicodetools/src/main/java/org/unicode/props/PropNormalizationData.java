@@ -107,7 +107,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
         String dt = dtp.getValue(cp);
         if (dt.equals("Canonical") || compat && !dt.equals("None")) {
             final String s = dmp.getValue(cp);
-            for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+            for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
                 cp = s.codePointAt(i);
                 getRecursiveDecomposition2(cp, compat, dtp, dmp, buffer);
             }
@@ -232,7 +232,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
      */
     private void internalDecompose(CharSequence source, StringBuilder target, boolean compat) {
         int ch32;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(ch32)) {
+        for (int i = 0; i < source.length(); i += Character.charCount(ch32)) {
             ch32 = Character.codePointAt(source, i);
             String buffer = compat ? nfkd.get(ch32) : nfd.get(ch32);
             if (buffer == null) {
@@ -244,7 +244,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
             // no decomposition mapping)
 
             int ch;
-            for (int j = 0; j < buffer.length(); j += UTF16.getCharCount(ch)) {
+            for (int j = 0; j < buffer.length(); j += Character.charCount(ch)) {
                 ch = UTF16.charAt(buffer, j);
                 final int chClass = canonical.getValue(ch);
                 int k = target.length(); // insertion point
@@ -253,7 +253,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
                     // bubble-sort combining marks as necessary
 
                     int ch2;
-                    for (; k > 0; k -= UTF16.getCharCount(ch2)) {
+                    for (; k > 0; k -= Character.charCount(ch2)) {
                         ch2 = UTF16.charAt(target, k - 1);
                         if (canonical.getValue(ch2) <= chClass) {
                             break;
@@ -274,7 +274,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
     private void internalCompose(StringBuilder target) {
         int starterPos = 0;
         int starterCh = UTF16.charAt(target, 0);
-        int compPos = UTF16.getCharCount(starterCh); // length of last composition
+        int compPos = Character.charCount(starterCh); // length of last composition
         int lastClass = canonical.getValue(starterCh);
         if (lastClass != 0) {
             lastClass = 256; // fix for strings staring with a combining mark
@@ -286,7 +286,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
         int ch;
         for (int decompPos = compPos;
                 decompPos < target.length();
-                decompPos += UTF16.getCharCount(ch)) {
+                decompPos += Character.charCount(ch)) {
             ch = UTF16.charAt(target, decompPos);
             if (SHOW_PROGRESS) {
                 System.out.println(
@@ -327,7 +327,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
                     decompPos += target.length() - oldLen;
                     oldLen = target.length();
                 }
-                compPos += UTF16.getCharCount(ch);
+                compPos += Character.charCount(ch);
             }
         }
         target.setLength(compPos);

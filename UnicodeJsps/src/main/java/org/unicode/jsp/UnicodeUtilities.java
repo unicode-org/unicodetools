@@ -188,7 +188,7 @@ public class UnicodeUtilities {
         String s = Common.MyNormalize(codepoint, compat);
         int cp;
         String lastPart = null;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(s, i);
             String part = Common.getXStringPropertyValue(propertyEnum, cp, nameChoice);
             if (lastPart == null) {
@@ -860,7 +860,7 @@ public class UnicodeUtilities {
             boolean plainText) {
         StringBuilder result = new StringBuilder();
         int cp;
-        for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(string, i);
             if (i != 0) {
                 result.append(separator);
@@ -917,7 +917,7 @@ public class UnicodeUtilities {
             String string, String separator, boolean ucdFormat, List<String> additionalParameters) {
         StringBuilder result = new StringBuilder();
         int cp;
-        for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
             if (i != 0) {
                 result.append(separator);
             }
@@ -929,7 +929,7 @@ public class UnicodeUtilities {
     //  private static void showString(String s, String separator, boolean ucdFormat, Writer out)
     // throws IOException {
     //    int cp;
-    //    for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+    //    for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
     //      if (i != 0) {
     //        out.write(separator);
     //      }
@@ -1244,7 +1244,7 @@ public class UnicodeUtilities {
         StringBuffer out = new StringBuffer();
         int charCount = 0;
         Status status = Status.NORMAL;
-        for (int i = 0; i < a_out.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < a_out.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(a_out, i);
             ++charCount;
             switch (status) {

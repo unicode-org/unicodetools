@@ -387,7 +387,7 @@ public class GenerateNormalizeForMatch2 {
         StringBuilder result = new StringBuilder();
         boolean changed = false;
         int cp;
-        for (int i = 0; i < target.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < target.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(target, i);
             String remapped = (String) mappings.getValue(cp);
             if (remapped != null) {
@@ -542,7 +542,7 @@ public class GenerateNormalizeForMatch2 {
     private static VersionInfo getNewest(String string) {
         int cp;
         VersionInfo oldest = null;
-        for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(string, i);
             VersionInfo age = UCharacter.getAge(cp);
             if (oldest == null || oldest.compareTo(age) < 0) {
@@ -834,7 +834,7 @@ public class GenerateNormalizeForMatch2 {
     public static String hex(String s, String separator) {
         StringBuffer result = new StringBuffer();
         int cp = 0;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
             if (i != 0) result.append(separator);
             cp = UTF16.charAt(s, i);
             result.append(com.ibm.icu.impl.Utility.hex(cp, 4));

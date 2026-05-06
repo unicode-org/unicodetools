@@ -747,7 +747,7 @@ public class WriteCollationData {
             Utility.dot(i);
             final String decomp = Default.nfkd().normalize(i);
             int cp;
-            for (int j = 0; j < decomp.length(); j += UTF16.getCharCount(cp)) {
+            for (int j = 0; j < decomp.length(); j += Character.charCount(cp)) {
                 cp = UTF16.charAt(decomp, j);
                 final String s = UTF16.valueOf(cp);
                 if (alreadyDone.contains(s)) {
@@ -1679,7 +1679,7 @@ public class WriteCollationData {
         boolean noQuotes = true;
         boolean inQuote = false;
         int cp;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(s, i);
             if (!needsQuoting.contains(cp)) {
                 if (inQuote) {

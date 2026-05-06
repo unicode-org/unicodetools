@@ -1003,7 +1003,7 @@ class GeneratePickerData2 {
                 Separation separateOld,
                 String values) {
             int cp;
-            for (int i = 0; i < values.length(); i += UTF16.getCharCount(cp)) {
+            for (int i = 0; i < values.length(); i += Character.charCount(cp)) {
                 add(
                         category,
                         sortSubcategory,
@@ -2714,7 +2714,7 @@ class GeneratePickerData2 {
     public static int utf8Length(String x) {
         int cp;
         int len = 0;
-        for (int i = 0; i < x.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < x.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(x, i);
             len += cp < 0x80 ? 1 : cp < 0x800 ? 2 : cp < 0x10000 ? 3 : 4;
         }

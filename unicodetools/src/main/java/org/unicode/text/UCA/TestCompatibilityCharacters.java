@@ -151,7 +151,7 @@ public final class TestCompatibilityCharacters {
         if (result == UCD_Types.CANONICAL) {
             final String d = Default.nfd().normalize(cp); // TODO
             int cp1;
-            for (int i = 0; i < d.length(); i += UTF16.getCharCount(cp1)) {
+            for (int i = 0; i < d.length(); i += Character.charCount(cp1)) {
                 cp1 = UTF16.charAt(d, i);
                 final byte t = Default.ucd().getDecompositionType(cp1);
                 if (t > UCD_Types.CANONICAL) {

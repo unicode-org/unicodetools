@@ -215,7 +215,7 @@ public class GenerateData implements UCD_Types {
                 continue;
             }
             final int c1 = UTF16.charAt(s, 0);
-            final int c2 = UTF16.charAt(s, UTF16.getCharCount(c1));
+            final int c2 = UTF16.charAt(s, Character.charCount(c1));
             if (Default.ucd().getCombiningClass(c1) != 0) {
                 continue;
             }
@@ -302,7 +302,7 @@ public class GenerateData implements UCD_Types {
             int second;
             for (int i = Character.charCount(first);
                     i < decomposition.length();
-                    first = second, i += UTF16.getCharCount(first)) {
+                    first = second, i += Character.charCount(first)) {
                 second = decomposition.codePointAt(i);
                 links.add(Character.toString(first) + Character.toString(second));
             }
@@ -543,7 +543,7 @@ public class GenerateData implements UCD_Types {
         // if (true) return s;
         commaResult.setLength(0);
         int cp;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(s, i);
             if (Default.ucd().getCategory(cp) == Mn) {
                 commaResult.append('\u25CC');

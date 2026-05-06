@@ -229,7 +229,7 @@ public class VerifyUCD {
                 final Object value1 = getValue(up, codepoint);
                 int newCodepoint;
                 String nfcStringPropertyValue = "";
-                for (int i = 0; i < normalized.length(); i += UTF16.getCharCount(newCodepoint)) {
+                for (int i = 0; i < normalized.length(); i += Character.charCount(newCodepoint)) {
                     newCodepoint = UTF16.charAt(normalized, i);
                     final int catMask = Default.ucd().getCategoryMask(newCodepoint);
                     // special case strings

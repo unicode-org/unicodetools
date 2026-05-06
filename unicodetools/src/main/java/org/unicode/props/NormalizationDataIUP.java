@@ -100,7 +100,7 @@ public class NormalizationDataIUP implements NormalizationData {
                 }
                 isFirst.set(a);
 
-                final int b = UTF16.charAt(s, UTF16.getCharCount(a));
+                final int b = UTF16.charAt(s, Character.charCount(a));
                 isSecond.set(b);
 
                 // have a recomposition, so set the bit
@@ -224,7 +224,7 @@ public class NormalizationDataIUP implements NormalizationData {
             if (s.equals("<code point>") || s.equals(UTF16.valueOf(cp))) {
                 throw new IllegalArgumentException("decomp, but no map, " + Utility.hex(cp));
             }
-            for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+            for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
                 cp = UTF16.charAt(s, i);
                 getRecursiveDecomposition(cp, buffer, compat);
             }

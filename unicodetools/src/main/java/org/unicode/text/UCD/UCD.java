@@ -172,7 +172,7 @@ public final class UCD implements UCD_Types {
         }
         final StringBuffer result = new StringBuffer();
         int cp;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(s, i);
             if (i > 0) {
                 result.append(separator);

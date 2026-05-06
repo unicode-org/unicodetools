@@ -430,7 +430,7 @@ public final class Punycode {
             }
 
             /* Insert n at position i of the output: */
-            cpLength = UTF16.getCharCount(n);
+            cpLength = Character.charCount(n);
             if ((destLength + cpLength) < destCapacity) {
                 int codeUnitIndex;
 

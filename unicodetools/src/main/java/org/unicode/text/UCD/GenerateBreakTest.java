@@ -111,7 +111,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
     // finds the first base character, or the first character if there is no base
     public int findFirstBase(String source, int start, int limit) {
         int cp;
-        for (int i = start; i < limit; i += UTF16.getCharCount(cp)) {
+        for (int i = start; i < limit; i += Character.charCount(cp)) {
             cp = UTF16.charAt(source, i);
             final byte cat = ucd.getCategory(cp);
             if (((1 << cat) & MARK_MASK) != 0) {
@@ -179,7 +179,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
     static String showData(UCD ucd, String source, UCDProperty[] props, String separator) {
         final StringBuffer result = new StringBuffer();
         int cp;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(source, i);
             if (i != 0) {
                 result.append(separator);
@@ -204,7 +204,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
     boolean isBaseNSMStar(String source) {
         int cp;
         int status = 0;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
             cp = UTF16.charAt(source, i);
             final byte cat = ucd.getCategory(cp);
             final int catMask = 1 << cat;
@@ -988,10 +988,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
         }
         comment.append(' ').append(status).append(" [").append(getRule()).append(']');
 
-        for (int offset = 0; offset < source.length(); offset += UTF16.getCharCount(cp)) {
+        for (int offset = 0; offset < source.length(); offset += Character.charCount(cp)) {
 
             cp = UTF16.charAt(source, offset);
-            hasBreak = isBreak(source, offset + UTF16.getCharCount(cp));
+            hasBreak = isBreak(source, offset + Character.charCount(cp));
             addToRules(rulesFound, source, hasBreak);
 
             if (html) {
