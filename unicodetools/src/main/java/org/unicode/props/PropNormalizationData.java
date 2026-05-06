@@ -245,7 +245,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
 
             int ch;
             for (int j = 0; j < buffer.length(); j += Character.charCount(ch)) {
-                ch = UTF16.charAt(buffer, j);
+                ch = buffer.codePointAt(j);
                 final int chClass = canonical.getValue(ch);
                 int k = target.length(); // insertion point
                 if (chClass != 0) {
@@ -273,7 +273,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
      */
     private void internalCompose(StringBuilder target) {
         int starterPos = 0;
-        int starterCh = UTF16.charAt(target, 0);
+        int starterCh = target.codePointAt(0);
         int compPos = Character.charCount(starterCh); // length of last composition
         int lastClass = canonical.getValue(starterCh);
         if (lastClass != 0) {
@@ -287,7 +287,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
         for (int decompPos = compPos;
                 decompPos < target.length();
                 decompPos += Character.charCount(ch)) {
-            ch = UTF16.charAt(target, decompPos);
+            ch = target.codePointAt(decompPos);
             if (SHOW_PROGRESS) {
                 System.out.println(
                         Utility.hex(target)

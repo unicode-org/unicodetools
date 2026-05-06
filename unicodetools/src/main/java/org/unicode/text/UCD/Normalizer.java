@@ -248,7 +248,8 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
 
     public boolean isNormalized(CharSequence s) {
         if (Character.codePointCount(s, 0, s.length()) == 1) {
-            return !data.normalizationDiffers(UTF16.charAt(s, 0), composition, compatibility);
+            return !data.normalizationDiffers(
+                    Character.codePointAt(s, 0), composition, compatibility);
         }
         return s.equals(normalize(s)); // TODO: OPTIMIZE LATER
     }
@@ -313,7 +314,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         int ch32;
         for (int i = 0; i < source.length(); i += Character.charCount(ch32)) {
             buffer.setLength(0);
-            ch32 = UTF16.charAt(source, i);
+            ch32 = Character.codePointAt(source, i);
             final String sub =
                     substituteMapping == null ? null : (String) substituteMapping.getValue(ch32);
             if (sub != null) {
@@ -328,7 +329,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
 
             int ch;
             for (int j = 0; j < buffer.length(); j += Character.charCount(ch)) {
-                ch = UTF16.charAt(buffer, j);
+                ch = buffer.codePointAt(j);
                 final int chClass = data.getCanonicalClass(ch);
                 int k = target.length(); // insertion point
                 if (chClass != 0 && reorder) {
@@ -371,7 +372,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
      */
     private void internalCompose(StringBuilder target) {
         int starterPos = 0;
-        int starterCh = UTF16.charAt(target, 0);
+        int starterCh = target.codePointAt(0);
         int compPos = Character.charCount(starterCh); // length of last composition
         int lastClass = data.getCanonicalClass(starterCh);
         if (lastClass != 0) {
@@ -385,7 +386,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         for (int decompPos = compPos;
                 decompPos < target.length();
                 decompPos += Character.charCount(ch)) {
-            ch = UTF16.charAt(target, decompPos);
+            ch = target.codePointAt(decompPos);
             if (SHOW_PROGRESS) {
                 System.out.println(
                         Utility.hex(target)
@@ -496,7 +497,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
             }
             b.setLength(0);
             data.getRecursiveDecomposition(i, b, true);
-            if (b.length() == 1) {
+            if (b.length() == 1) { // TODO: isSingleCodePoint(b)?
                 continue;
             }
             final char firstChar = b.charAt(0);
@@ -505,6 +506,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
             }
             // if rest are just Mn or Me marks, then add to substitute mapping
             int cp;
+            // TODO: Start after first code point which could be j=2?
             for (int j = 1; j < b.length(); j += Character.charCount(cp)) {
                 cp = UTF16.charAt(b, j);
                 if (data.isNonSpacing(cp)) {

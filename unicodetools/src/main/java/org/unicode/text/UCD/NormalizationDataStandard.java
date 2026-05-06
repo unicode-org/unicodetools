@@ -46,7 +46,7 @@ class NormalizationDataStandard implements NormalizationData {
                         }
                         continue;
                     }
-                    final int a = UTF16.charAt(s, 0);
+                    final int a = s.codePointAt(0);
                     if (ucd.getCombiningClass(a) != 0) {
                         continue;
                     }
@@ -152,7 +152,7 @@ class NormalizationDataStandard implements NormalizationData {
                 System.out.println("fix");
             }
             for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-                cp = UTF16.charAt(s, i);
+                cp = s.codePointAt(i);
                 getRecursiveDecomposition(cp, buffer, compat);
             }
         } else {

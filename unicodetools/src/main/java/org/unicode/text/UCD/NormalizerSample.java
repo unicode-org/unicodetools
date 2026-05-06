@@ -141,7 +141,7 @@ public class NormalizerSample implements UCD_Types {
         int ch32;
         for (int i = 0; i < source.length(); i += Character.charCount(ch32)) {
             buffer.setLength(0);
-            ch32 = UTF16.charAt(source, i);
+            ch32 = source.codePointAt(i);
             data.getRecursiveDecomposition(ch32, buffer, compatibility);
 
             // add all of the characters in the decomposition.
@@ -150,7 +150,7 @@ public class NormalizerSample implements UCD_Types {
 
             int ch;
             for (int j = 0; j < buffer.length(); j += Character.charCount(ch)) {
-                ch = UTF16.charAt(buffer, j);
+                ch = buffer.codePointAt(j);
                 final int chClass = data.getCanonicalClass(ch);
                 int k = target.length(); // insertion point
                 if (chClass != 0) {
@@ -178,7 +178,7 @@ public class NormalizerSample implements UCD_Types {
      */
     private void internalCompose(StringBuffer target) {
         int starterPos = 0;
-        int starterCh = UTF16.charAt(target, 0);
+        int starterCh = target.codePointAt(0);
         int compPos = Character.charCount(starterCh); // length of last composition
         int lastClass = data.getCanonicalClass(starterCh);
         if (lastClass != 0) {
@@ -192,7 +192,7 @@ public class NormalizerSample implements UCD_Types {
         for (int decompPos = compPos;
                 decompPos < target.length();
                 decompPos += Character.charCount(ch)) {
-            ch = UTF16.charAt(target, decompPos);
+            ch = target.codePointAt(decompPos);
             if (SHOW_PROGRESS) {
                 System.out.println(
                         Utility.hex(target)
@@ -268,7 +268,7 @@ public class NormalizerSample implements UCD_Types {
                             }
                             continue;
                         }
-                        final int a = UTF16.charAt(s, 0);
+                        final int a = s.codePointAt(0);
                         if (ucd.getCombiningClass(a) != 0) {
                             continue;
                         }
@@ -330,7 +330,7 @@ public class NormalizerSample implements UCD_Types {
             if (dt == CANONICAL || dt > CANONICAL && compatibility) {
                 final String s = ucd.getDecompositionMapping(cp);
                 for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-                    cp = UTF16.charAt(s, i);
+                    cp = s.codePointAt(i);
                     getRecursiveDecomposition(cp, buffer, compatibility);
                 }
             } else {

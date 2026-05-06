@@ -93,7 +93,7 @@ public class NormalizationDataIUP implements NormalizationData {
                     //                        }
                     continue;
                 }
-                final int a = UTF16.charAt(s, 0);
+                final int a = s.codePointAt(0);
                 // if (ucd.getCombiningClass(a) != 0) {
                 if (ccc.get(a) != 0) {
                     continue;
@@ -225,7 +225,7 @@ public class NormalizationDataIUP implements NormalizationData {
                 throw new IllegalArgumentException("decomp, but no map, " + Utility.hex(cp));
             }
             for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-                cp = UTF16.charAt(s, i);
+                cp = s.codePointAt(i);
                 getRecursiveDecomposition(cp, buffer, compat);
             }
         } else {
