@@ -5,14 +5,7 @@ released version of Unicode (via ICU) and from the new Unicode beta.
 
 To get the beta version of the property, insert `Uβ:` *before* the property name.
 The explicit version number for the β can be used;
-the resulting property is then only valid when that specific β is current.
-Examples:
 
-| Query | Result |
-|---|---|
-| `\p{Word_Break=ALetter}` | Released version of Unicode. |
-| `\p{Uβ:Word_Break=ALetter}` | Beta version of Unicode; error outside of beta review. |
-| `\p{U16β:Word_Break=ALetter}` | Beta version of Unicode 16.0; error during the beta review of any other version. |
 
 
 For example, to see additions to that property value in the beta version, use:
