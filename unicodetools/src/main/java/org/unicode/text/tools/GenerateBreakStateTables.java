@@ -20,13 +20,14 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.tools.Segmenter;
 import org.unicode.tools.Segmenter.Builder.NamedRefinedSet;
+import org.unicode.tools.Segmenter.Builder.NamedSet;
 
 public class GenerateBreakStateTables {
     public static void main(String[] args) throws IOException {
-        //Generate("Line", "line");
+        Generate("Line", "line");
         Generate("GraphemeCluster", "char");
-        //Generate("Word", "word");
-        //Generate("Sentence", "sent");
+        Generate("Word", "word");
+        Generate("Sentence", "sent");
     }
 
     private static void Generate(String name, String icuName) throws IOException {
@@ -34,7 +35,9 @@ public class GenerateBreakStateTables {
         try (var f =
                 new FileInputStream(
                         new File(
-                                "..\\icu\\icu4c\\source\\data\\out\\build\\icudt79l\\brkitr\\"+icuName+".brk"))) {
+                                "..\\icu\\icu4c\\source\\data\\out\\build\\icudt79l\\brkitr\\"
+                                        + icuName
+                                        + ".brk"))) {
             rbbi = RuleBasedBreakIterator.getInstanceFromCompiledRules(f);
         }
         final var iup = IndexUnicodeProperties.make(UCharacter.getUnicodeVersion());
@@ -43,7 +46,7 @@ public class GenerateBreakStateTables {
         var segmenter =
                 Segmenter.make(
                                 VersionedSymbolTable.frozenAt(UCharacter.getUnicodeVersion()),
-                                name+"Break")
+                                name + "Break")
                         .make();
         List<NamedRefinedSet> namedPartition = segmenter.getPartitionDefinition();
         Map<Integer, UnicodeSet> rbbiPartition = new HashMap<>();
@@ -106,6 +109,36 @@ public class GenerateBreakStateTables {
                                         .collect(Collectors.joining(", ")));
                 System.out.println("Remaining: " + rbbiPartRemaining.toString());
             }
+            rbbiNames.put(
+                    entry.getKey(),
+                    List.of(
+                            new NamedRefinedSet()
+                                    .intersect(
+                                            new NamedSet(
+                                                    "UNIDENTIFIED-" + entry.getKey(),
+                                                    entry.getValue().toString(),
+                                                    entry.getValue()))));
+        }
+        System.out.println("Named categories:");
+        for (int col = 0; col < rbbi.fRData.fHeader.fCatCount; ++col) {
+            System.out.print(col + " : ");
+            if (!rbbiNames.containsKey(col)) {
+                System.out.println("NAMELESS");
+            } else 
+                System.out.println(
+            rbbiNames.get(col).stream()
+                                                .sorted(
+                                                        Comparator.<NamedRefinedSet>comparingInt(
+                                                                s ->
+                                                                        -s.getSet()
+                                                                                .removeAll(
+                                                                                        unassigned)
+                                                                                .removeAll(pua)
+                                                                                .size()))
+                                                .map(NamedRefinedSet::getName)
+                                                .map(s -> s.replace("orig", ""))
+                                                .findFirst()
+                                                .orElse(""));
         }
         var table = rbbi.fRData.fFTable;
         System.out.println(rbbiPartition.size() + " classes");
@@ -153,8 +186,8 @@ public class GenerateBreakStateTables {
                         next,
                         (state == 1 ? "" : stateName + " ")
                                 + (col == 1
-                                        ? "eot"
-                                        : rbbiNames.containsKey(col) ? rbbiNames.get(col).stream()
+                                        ? "eot" : col == 2 ? "sot"
+                                        : rbbiNames.get(col).stream()
                                                 .sorted(
                                                         Comparator.<NamedRefinedSet>comparingInt(
                                                                 s ->
@@ -165,8 +198,7 @@ public class GenerateBreakStateTables {
                                                                                 .size()))
                                                 .map(NamedRefinedSet::getName)
                                                 .map(s -> s.replace("orig", ""))
-                                                .findFirst()
-                                                .orElse("") : "???" + col + "???"));
+                                                .findFirst().get()));
                 neighbourhoodsToName.add(next);
             }
         } while (!neighbourhoodsToName.isEmpty());
@@ -216,7 +248,7 @@ public class GenerateBreakStateTables {
                 file.println();
             }
         }
-        try (var file = new PrintStream(new File(name+"BreakStates.txt"))) {
+        try (var file = new PrintStream(new File(name + "BreakStates.txt"))) {
             file.println(
                     "# State name ; Accepting (Yes, No, or lookahead name); lookahead name or empty.");
             for (int state = 1; state < table.fNumStates; ++state) {
@@ -238,7 +270,7 @@ public class GenerateBreakStateTables {
                 file.println();
             }
         }
-        try (var file = new PrintStream(new File(name+"BreakTransitions.txt"))) {
+        try (var file = new PrintStream(new File(name + "BreakTransitions.txt"))) {
             file.println("# From state ; class name or eot ; to state");
             for (int state = 1; state < table.fNumStates; ++state) {
                 final int row = rbbi.fRData.getRowIndex(state);
@@ -250,11 +282,11 @@ public class GenerateBreakStateTables {
                     }
                     String ahead =
                             col == 1
-                                    ? "eot"
-                                    : rbbiNames.containsKey(col) ? rbbiNames.get(col).stream()
+                                    ? "eot" : col == 2 ? "sot"
+                                    : rbbiNames.get(col).stream()
                                             .map(NamedRefinedSet::getName)
                                             .map(s -> s.replace("orig", ""))
-                                            .collect(Collectors.joining("|")) : "???"+col+"???";
+                                            .collect(Collectors.joining("|"));
                     if (next != 0 && !ahead.isEmpty()) {
                         file.print(stateNames.get(state) + " ; ");
                         file.println(ahead + " ; " + stateNames.get(next));

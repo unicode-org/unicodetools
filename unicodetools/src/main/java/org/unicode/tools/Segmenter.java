@@ -554,7 +554,7 @@ public class Segmenter {
         private List<String> lastComments = new ArrayList<String>();
 
         public static class NamedSet {
-            NamedSet(String name, String definition, UnicodeSet set) {
+            public NamedSet(String name, String definition, UnicodeSet set) {
                 this.name = name;
                 this.definition = definition;
                 this.set = set;
