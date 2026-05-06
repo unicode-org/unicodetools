@@ -202,7 +202,7 @@ public class TestCodeInvariants {
                 System.out.print("  ≡  " + Utility.hex(nfdOrNull) + " ( ");
 
                 for (int i = 0; i < nfdOrNull.length(); i += Character.charCount(ch)) {
-                    ch = UTF16.charAt(nfdOrNull, i);
+                    ch = nfdOrNull.codePointAt(i);
                     System.out.print(gcbPropShortName + "=" + GCB.get(ch).getShortName() + " ");
                 }
 

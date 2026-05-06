@@ -134,7 +134,7 @@ public final class CollectionUtilities {
         StringBuffer result = new StringBuffer();
         int cp;
         for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(source, i);
+            cp = source.codePointAt(i);
             if (!removals.contains(cp)) UTF16.append(result, cp);
         }
         return result.toString();

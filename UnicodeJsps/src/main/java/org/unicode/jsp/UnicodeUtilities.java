@@ -189,7 +189,7 @@ public class UnicodeUtilities {
         int cp;
         String lastPart = null;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             String part = Common.getXStringPropertyValue(propertyEnum, cp, nameChoice);
             if (lastPart == null) {
                 lastPart = part;
@@ -861,7 +861,7 @@ public class UnicodeUtilities {
         StringBuilder result = new StringBuilder();
         int cp;
         for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(string, i);
+            cp = string.codePointAt(i);
             if (i != 0) {
                 result.append(separator);
             }
@@ -921,7 +921,7 @@ public class UnicodeUtilities {
             if (i != 0) {
                 result.append(separator);
             }
-            result.append(getHex(cp = UTF16.charAt(string, i), ucdFormat, additionalParameters));
+            result.append(getHex(cp = string.codePointAt(i), ucdFormat, additionalParameters));
         }
         return result.toString();
     }
@@ -933,7 +933,7 @@ public class UnicodeUtilities {
     //      if (i != 0) {
     //        out.write(separator);
     //      }
-    //      showCodePoint(cp = UTF16.charAt(s, i), ucdFormat, out);
+    //      showCodePoint(cp = s.codePointAt(i), ucdFormat, out);
     //    }
     //  }
 
