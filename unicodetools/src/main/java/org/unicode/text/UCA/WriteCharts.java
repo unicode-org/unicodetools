@@ -854,7 +854,7 @@ public class WriteCharts implements UCD_Types {
         }
         final String name = Default.ucd().getName(s);
         String comp = Default.nfc().normalize(s);
-        final int cat = Default.ucd().getCategory(UTF16.charAt(comp, 0));
+        final int cat = Default.ucd().getCategory(comp.codePointAt(0));
         if (cat == Mn || cat == Mc || cat == Me) {
             comp = '\u25CC' + comp;
             if (s.equals("\u0300")) {
@@ -885,7 +885,7 @@ public class WriteCharts implements UCD_Types {
         //        }
 
         String comp = Default.nfc().normalize(s);
-        final int cat = Default.ucd().getCategory(UTF16.charAt(comp, 0));
+        final int cat = Default.ucd().getCategory(comp.codePointAt(0));
         if (cat == Mn || cat == Mc || cat == Me) {
             comp = '\u25CC' + comp;
             if (s.equals("\u0300")) {
@@ -922,7 +922,7 @@ public class WriteCharts implements UCD_Types {
         int cp;
         short result = COMMON_SCRIPT;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             result = Default.ucd().getScript(cp);
             if (result != COMMON_SCRIPT && result != INHERITED_SCRIPT) {
                 return result;
@@ -1260,7 +1260,7 @@ public class WriteCharts implements UCD_Types {
     static boolean containsCase(String s) {
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             // contains Lu, Lo, Lt, or Lowercase or Uppercase
             final byte cat = Default.ucd().getCategory(cp);
             if (cat == Lu || cat == Ll || cat == Lt) {
@@ -1364,7 +1364,7 @@ public class WriteCharts implements UCD_Types {
                     }
 
                     // pick up all decompositions
-                    int count = Character.charCount(UTF16.charAt(decomp, 0));
+                    int count = Character.charCount(decomp.codePointAt(0));
 
                     if (count == decomp.length()) {
                         notPrinted.add(source);

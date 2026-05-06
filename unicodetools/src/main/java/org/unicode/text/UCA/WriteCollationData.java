@@ -387,7 +387,7 @@ public class WriteCollationData {
 
             int ccc;
             for (int kk = 0; kk < s.length(); kk += Character.charCount(ccc)) {
-                ccc = UTF16.charAt(s, kk);
+                ccc = s.codePointAt(kk);
                 final byte cat = Default.ucd().getCategory(ccc);
                 if (cat == UCD_Types.Cf
                         || cat == UCD_Types.Cc
@@ -748,7 +748,7 @@ public class WriteCollationData {
             final String decomp = Default.nfkd().normalize(i);
             int cp;
             for (int j = 0; j < decomp.length(); j += Character.charCount(cp)) {
-                cp = UTF16.charAt(decomp, j);
+                cp = decomp.codePointAt(j);
                 final String s = UTF16.valueOf(cp);
                 if (alreadyDone.contains(s)) {
                     continue;
@@ -1680,7 +1680,7 @@ public class WriteCollationData {
         boolean inQuote = false;
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (!needsQuoting.contains(cp)) {
                 if (inQuote) {
                     quoteOperandBuffer.append('\'');

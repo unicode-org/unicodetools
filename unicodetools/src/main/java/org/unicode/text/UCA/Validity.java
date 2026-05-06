@@ -213,7 +213,7 @@ final class Validity {
         String result = "";
         int ch;
         for (int j = 0; j < canDecomp.length(); j += Character.charCount(ch)) {
-            ch = UTF16.charAt(canDecomp, j);
+            ch = canDecomp.codePointAt(j);
             System.out.println("* " + Default.ucd().getCodeAndName(ch));
             final String newSortKey = remapCanSortKey(ch, decomposition);
             System.out.println("* " + UCA.toString(newSortKey));
@@ -304,7 +304,7 @@ final class Validity {
                 continue; // only unnormalized stuff
             }
             if (UTF16.countCodePoint(s) == 1) {
-                final int cat = Default.ucd().getCategory(UTF16.charAt(s, 0));
+                final int cat = Default.ucd().getCategory(s.codePointAt(0));
                 if (cat == UCD_Types.Cn || cat == UCD_Types.Cc || cat == UCD_Types.Cs) {
                     continue;
                 }

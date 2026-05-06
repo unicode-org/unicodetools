@@ -1,6 +1,5 @@
 package org.unicode.text.UCA;
 
-import com.ibm.icu.text.UTF16;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -152,7 +151,7 @@ public final class TestCompatibilityCharacters {
             final String d = Default.nfd().normalize(cp); // TODO
             int cp1;
             for (int i = 0; i < d.length(); i += Character.charCount(cp1)) {
-                cp1 = UTF16.charAt(d, i);
+                cp1 = d.codePointAt(i);
                 final byte t = Default.ucd().getDecompositionType(cp1);
                 if (t > UCD_Types.CANONICAL) {
                     return t;
@@ -215,7 +214,7 @@ public final class TestCompatibilityCharacters {
 
     private static int fixCompatibilityCE(
             UCA uca, String s, boolean decompose, int[] output, boolean compress) {
-        final byte type = getDecompType(UTF16.charAt(s, 0));
+        final byte type = getDecompType(s.codePointAt(0));
         // char ch = s.charAt(0);
 
         final String decomp = Default.nfkd().normalize(s);

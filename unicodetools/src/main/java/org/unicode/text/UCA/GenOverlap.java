@@ -413,7 +413,7 @@ public class GenOverlap implements UCD_Types {
             CEList newList = CEList.EMPTY;
             int cp;
             for (int i = 0; i < str.length(); i += Character.charCount(cp)) {
-                cp = UTF16.charAt(str, i);
+                cp = str.codePointAt(i);
                 if (0xFF3F == cp) {
                     System.out.println("debug");
                 }
@@ -637,7 +637,7 @@ public class GenOverlap implements UCD_Types {
                 if (UTF16.countCodePoint(s) != 1) {
                     continue; // skip ligatures
                 }
-                final int cp = UTF16.charAt(s, 0);
+                final int cp = s.codePointAt(0);
                 if (!nfkd.isNormalized(cp)) {
                     continue;
                 }
@@ -735,7 +735,7 @@ public class GenOverlap implements UCD_Types {
             int cp2;
             log.println("<table>");
             for (int j = 0; j < element.length(); j += Character.charCount(cp2)) {
-                cp2 = UTF16.charAt(element, j);
+                cp2 = element.codePointAt(j);
                 final String scp2 = UTF16.valueOf(cp2);
                 final CEList clist = collator.getCEList(scp2, true);
                 log.println(
