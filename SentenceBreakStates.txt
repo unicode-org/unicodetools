@@ -10,5 +10,5 @@ STerm CR ; Yes ;  ;
 ATerm Sp ; Yes ;  ; 
 ATerm Close ; Yes ;  ; 
 Upper ATerm ; Yes ;  ; 
-eot ; Yes ;  ; 
-CR ; Yes ;  ; 
+eot ; Yes ;  ; EOL
+CR ; Yes ;  ; EOL

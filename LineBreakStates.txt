@@ -101,8 +101,8 @@ JL QU_Pf ZWJ ; Yes ;  ;
 RI RI ZWJ ; Yes ;  ; 
 OPmEastAsian SP IS ZWJ ; Yes ;  ; 
 RI ZWJ RI ZWJ ; Yes ;  ; 
-LF ; Yes ;  ; 
-CR ; Yes ;  ; 
+LF ; Yes ;  ; Mandatory
+CR ; Yes ;  ; Mandatory
 JL ; Yes ; JL / QU_Pi JL ; 
 PR_EastAsian ; Yes ; JL / QU_Pi JL ; 
 ID_EastAsian ; Yes ; JL / QU_Pi JL ; 
