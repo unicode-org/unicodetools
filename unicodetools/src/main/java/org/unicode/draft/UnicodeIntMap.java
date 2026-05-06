@@ -652,7 +652,7 @@ public final class UnicodeIntMap
             }
             return stringMap.get(value);
         }
-        return getValue(UTF16.charAt(value, 0));
+        return getValue(value.codePointAt(0));
     }
 
     /**
@@ -667,7 +667,7 @@ public final class UnicodeIntMap
         StringBuffer result = new StringBuffer();
         int cp;
         for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(source, i);
+            cp = source.codePointAt(i);
             int mResult = getValue(cp);
             if (mResult != UNASSIGNED) {
                 result.append(mResult);

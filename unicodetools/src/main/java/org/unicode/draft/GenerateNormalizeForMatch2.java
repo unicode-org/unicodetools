@@ -388,7 +388,7 @@ public class GenerateNormalizeForMatch2 {
         boolean changed = false;
         int cp;
         for (int i = 0; i < target.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(target, i);
+            cp = target.codePointAt(i);
             String remapped = (String) mappings.getValue(cp);
             if (remapped != null) {
                 result.append(remapped);
@@ -543,7 +543,7 @@ public class GenerateNormalizeForMatch2 {
         int cp;
         VersionInfo oldest = null;
         for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(string, i);
+            cp = string.codePointAt(i);
             VersionInfo age = UCharacter.getAge(cp);
             if (oldest == null || oldest.compareTo(age) < 0) {
                 oldest = age;
@@ -621,7 +621,7 @@ public class GenerateNormalizeForMatch2 {
         if (UnicodeSet.resemblesPattern(sourcePiece, 0)) {
             source.applyPattern(sourcePiece);
         } else if (UTF16.countCodePoint(sourcePiece) == 1) {
-            source.add(UTF16.charAt(sourcePiece, 0));
+            source.add(sourcePiece.codePointAt(0));
         } else {
             String[] starts = sourcePiece.split("\\s*-\\s*");
             int start = Integer.parseInt(starts[0], 16);
@@ -817,7 +817,7 @@ public class GenerateNormalizeForMatch2 {
         String otherName =
                 UTF16.countCodePoint(other) != 1
                         ? null
-                        : (String) JIM_NAMES.getValue(UTF16.charAt(other, 0));
+                        : (String) JIM_NAMES.getValue(other.codePointAt(0));
         if (otherName == null) {
             otherName = UCharacter.getName(other, " + ");
         }
@@ -836,7 +836,7 @@ public class GenerateNormalizeForMatch2 {
         int cp = 0;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
             if (i != 0) result.append(separator);
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             result.append(com.ibm.icu.impl.Utility.hex(cp, 4));
         }
         return result.toString();

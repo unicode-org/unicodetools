@@ -323,7 +323,7 @@ public class Tokenizer {
     }
 
     private int nextChar() {
-        int cp = UTF16.charAt(source, index);
+        int cp = source.codePointAt(index);
         index += Character.charCount(cp);
         return cp;
     }
@@ -399,7 +399,7 @@ public class Tokenizer {
             int start = pos.getIndex();
             int i;
             for (i = start; i < limit; i += Character.charCount(cp)) {
-                cp = UTF16.charAt(text, i);
+                cp = text.codePointAt(i);
                 if (!com.ibm.icu.lang.UCharacter.isUnicodeIdentifierPart(cp)) {
                     break;
                 }

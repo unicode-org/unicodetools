@@ -228,7 +228,7 @@ public class FrequencyData2 {
                     norm = Normalizer.normalize(norm, compose);
                     int cp;
                     for (int j = 0; j < norm.length(); j += Character.charCount(cp)) {
-                        cp = UTF16.charAt(norm, j);
+                        cp = norm.codePointAt(j);
                         counter.add(cp, frequency);
                     }
                 }

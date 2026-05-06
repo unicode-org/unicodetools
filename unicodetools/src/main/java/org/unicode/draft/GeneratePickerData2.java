@@ -2715,7 +2715,7 @@ class GeneratePickerData2 {
         int cp;
         int len = 0;
         for (int i = 0; i < x.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(x, i);
+            cp = x.codePointAt(i);
             len += cp < 0x80 ? 1 : cp < 0x800 ? 2 : cp < 0x10000 ? 3 : 4;
         }
         return len;
