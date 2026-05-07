@@ -36,6 +36,7 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.VersionedSymbolTable;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.tools.Segmenter.Builder.NamedRefinedSet;
 import org.unicode.tools.Segmenter.SegmentationRule.Breaks;
 
@@ -162,8 +163,7 @@ public class Segmenter {
             return true;
         }
         // don't break in middle of surrogate
-        if (Character.isHighSurrogate(text.charAt(position - 1))
-                && Character.isLowSurrogate(text.charAt(position))) {
+        if (!UTF16Plus.isCodePointBoundary(text, position)) {
             breakRule = NOBREAK_SUPPLEMENTARY;
             return false;
         }
