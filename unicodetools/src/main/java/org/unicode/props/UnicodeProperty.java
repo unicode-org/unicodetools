@@ -35,6 +35,7 @@ import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import org.unicode.cldr.util.Rational.RationalParser;
 import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.text.utility.UTF16Plus;
 
 public abstract class UnicodeProperty extends UnicodeLabel {
 
@@ -1170,8 +1171,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                 if (DEBUG) System.out.println("\tGetID <" + text.substring(start, limit) + ">");
                 int cp = 0;
                 int i;
+                UTF16Plus.checkCodePointBoundary(text, start);
+                UTF16Plus.checkCodePointBoundary(text, limit);
                 for (i = start; i < limit; i += Character.charCount(cp)) {
-                    cp = UTF16.charAt(text, i);
+                    cp = text.codePointAt(i);
                     if (!com.ibm.icu.lang.UCharacter.isUnicodeIdentifierPart(cp) && cp != '.') {
                         break;
                     }

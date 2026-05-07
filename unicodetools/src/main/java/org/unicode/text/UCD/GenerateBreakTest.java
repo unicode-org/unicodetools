@@ -32,6 +32,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
 import org.unicode.text.utility.UtilityBase;
@@ -94,32 +95,20 @@ public abstract class GenerateBreakTest implements UCD_Types {
 
     Set<String> labels = new HashSet<String>();
 
-    public static boolean onCodepointBoundary(String s, int offset) {
-        if (offset < 0 || offset > s.length()) {
-            return false;
-        }
-        if (offset == 0 || offset == s.length()) {
-            return true;
-        }
-        if (UTF16.isLeadSurrogate(s.charAt(offset - 1))
-                && UTF16.isTrailSurrogate(s.charAt(offset))) {
-            return false;
-        }
-        return true;
-    }
-
     // finds the first base character, or the first character if there is no base
     public int findFirstBase(String source, int start, int limit) {
+        UTF16Plus.checkCodePointBoundary(source, start);
+        UTF16Plus.checkCodePointBoundary(source, limit);
         int cp;
         for (int i = start; i < limit; i += Character.charCount(cp)) {
-            cp = UTF16.charAt(source, i);
+            cp = source.codePointAt(i);
             final byte cat = ucd.getCategory(cp);
             if (((1 << cat) & MARK_MASK) != 0) {
                 continue;
             }
             return cp;
         }
-        return UTF16.charAt(source, start);
+        return source.codePointAt(start);
     }
 
     // quick & dirty routine
@@ -180,7 +169,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
         final StringBuffer result = new StringBuffer();
         int cp;
         for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(source, i);
+            cp = source.codePointAt(i);
             if (i != 0) {
                 result.append(separator);
             }
@@ -205,7 +194,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
         int cp;
         int status = 0;
         for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(source, i);
+            cp = source.codePointAt(i);
             final byte cat = ucd.getCategory(cp);
             final int catMask = 1 << cat;
             switch (status) {
@@ -666,7 +655,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
         final StringBuffer result = new StringBuffer();
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (i > 0) {
                 result.append(" ");
             }
@@ -731,7 +720,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
         final StringBuffer result = new StringBuffer();
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (i > 0) {
                 result.append(", ");
             }
@@ -990,7 +979,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
 
         for (int offset = 0; offset < source.length(); offset += Character.charCount(cp)) {
 
-            cp = UTF16.charAt(source, offset);
+            cp = source.codePointAt(offset);
             hasBreak = isBreak(source, offset + Character.charCount(cp));
             addToRules(rulesFound, source, hasBreak);
 
@@ -1916,6 +1905,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
 
         public MyBreakIterator set(String source, int offset) {
             // if (DEBUG_GRAPHEMES) System.out.println(Utility.hex(string) + "; " + offset);
+            UTF16Plus.checkCodePointBoundary(source, offset);
             string = source;
             this.offset = offset;
             return this;
@@ -1925,12 +1915,13 @@ public abstract class GenerateBreakTest implements UCD_Types {
             if (offset >= string.length()) {
                 return -1;
             }
-            final int result = UTF16.charAt(string, offset);
+            final int result = string.codePointAt(offset);
             for (++offset; offset < string.length(); ++offset) {
                 if (breaker.isBreak(string, offset)) {
                     break;
                 }
             }
+            UTF16Plus.checkCodePointBoundary(string, offset);
             // if (DEBUG_GRAPHEMES) System.out.println(Utility.hex(result));
             return result;
         }
@@ -1944,7 +1935,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
                     break;
                 }
             }
-            final int result = UTF16.charAt(string, offset);
+            UTF16Plus.checkCodePointBoundary(string, offset);
+            final int result = string.codePointAt(offset);
             // if (DEBUG_GRAPHEMES) System.out.println(Utility.hex(result));
             return result;
         }

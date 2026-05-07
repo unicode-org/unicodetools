@@ -151,7 +151,7 @@ public final class DerivedProperty implements UCD_Types {
                 return false;
             }
             final String norm = nfx.normalize(cp);
-            final int first = UTF16.charAt(norm, 0);
+            final int first = norm.codePointAt(0);
             if (ucdData.getCombiningClass(first) != 0) {
                 return true;
             }
@@ -182,7 +182,7 @@ public final class DerivedProperty implements UCD_Types {
         public boolean hasValue(int cp) {
             if (ucdData.getCombiningClass(cp) != 0) return false;
             String norm = nfx.normalize(cp);
-            int first = UTF16.charAt(norm, 0);
+            int first = norm.codePointAt(0);
             if (ucdData.getCombiningClass(first) != 0) return true;
             if (nfx.isComposition()
                 && dprops[NFC_TrailingZero].hasValue(first)) return true; // 1,3 == composing
@@ -449,8 +449,9 @@ public final class DerivedProperty implements UCD_Types {
                 int status2 = 0;
                 tempBuf.setLength(0);
                 nfkd.normalize(UTF16.valueOf(cp), tempBuf);
-                for (int i = 0; i < tempBuf.length(); i += Character.charCount(cp)) {
-                    final int cp2 = UTF16.charAt(tempBuf, i);
+                int cp2;
+                for (int i = 0; i < tempBuf.length(); i += Character.charCount(cp2)) {
+                    cp2 = tempBuf.codePointAt(i);
                     if (i == 0) {
                         if (ucdData.isIdentifierStart(cp2)) {
                             status2 = 1;
@@ -1093,7 +1094,7 @@ public final class DerivedProperty implements UCD_Types {
         boolean gotLower = false;
         boolean gotTitle = false;
         for (int i = 0; i < norm.length(); i += Character.charCount(cp2)) {
-            cp2 = UTF16.charAt(norm, i);
+            cp2 = norm.codePointAt(i);
             final byte catx = ucdData.getCategory(cp2);
             final boolean upx = ucdData.getBinaryProperty(cp, Other_Uppercase);
             final boolean lowx = ucdData.getBinaryProperty(cp, Other_Lowercase);

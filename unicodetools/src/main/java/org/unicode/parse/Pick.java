@@ -6,7 +6,6 @@
  */
 package org.unicode.parse;
 
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.HashSet;
 import java.util.Set;
@@ -253,26 +252,6 @@ public abstract class Pick {
             return toString();
         }
     }
-
-    /* Add character if we can
-     */
-    static int getChar(String newValue, int newIndex, StringBuffer mergeBuffer, boolean copy) {
-        if (newIndex >= newValue.length()) return newIndex;
-        int cp = UTF16.charAt(newValue, newIndex);
-        if (copy) UTF16.append(mergeBuffer, cp);
-        return newIndex + Character.charCount(cp);
-    }
-
-    /*
-            // quoted add
-            appendQuoted(target, addBuffer.toString(), quoteBuffer);
-            // fix buffers
-            StringBuffer swapTemp = addBuffer;
-            addBuffer = source;
-            source = swapTemp;
-        }
-    }
-     */
 
     private static class Literal extends FinalPick {
         public String toString() {
