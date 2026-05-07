@@ -836,9 +836,9 @@ public class CldrUtility {
 
     private static void addBmpRange(
             int start, int limit, Transliterator escaper, StringBuilder base) {
-        base.append(escaper.transliterate(UTF16.valueOf(start)));
+        base.append(escaper.transliterate(Character.toString(start)));
         if (start != limit) {
-            base.append("-").append(escaper.transliterate(UTF16.valueOf(limit)));
+            base.append("-").append(escaper.transliterate(Character.toString(limit)));
         }
     }
 

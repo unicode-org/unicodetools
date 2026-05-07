@@ -354,14 +354,14 @@ public class BranchStringPrepData {
     //
     //    for (int i = 'A'; i <= 'Z'; ++i) {
     //      R3<StringPrepData.Idna2003Table, String, String> alphaMap = Row.of(Idna2003Table.B_1,
-    // UTF16.valueOf(i-'A'+'a'), (String)null);
+    // Character.toString(i-'A'+'a'), (String)null);
     //      DataSet tableSet = data.get(i);
     //      if (tableSet == null) {
     //        tableSet = new DataSet(PROHIBITED.contains(Idna2003Table.B_1),
-    // UTF16.valueOf(i-'A'+'a'), (String)null);
+    // Character.toString(i-'A'+'a'), (String)null);
     //      } else {
     //        tableSet = tableSet.add(PROHIBITED.contains(Idna2003Table.B_1),
-    // UTF16.valueOf(i-'A'+'a'), (String)null);
+    // Character.toString(i-'A'+'a'), (String)null);
     //      }
     //      data.put(i, tableSet);
     //    }

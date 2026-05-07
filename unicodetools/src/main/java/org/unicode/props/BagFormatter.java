@@ -9,7 +9,6 @@ package org.unicode.props;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -773,8 +772,10 @@ public class BagFormatter {
                 return "";
             }
             return " \t("
-                    + showLiteral.transliterate(UTF16.valueOf(start))
-                    + (start == end ? "" : (".." + showLiteral.transliterate(UTF16.valueOf(end))))
+                    + showLiteral.transliterate(Character.toString(start))
+                    + (start == end
+                            ? ""
+                            : (".." + showLiteral.transliterate(Character.toString(end))))
                     + showValue(start, end);
         }
     }

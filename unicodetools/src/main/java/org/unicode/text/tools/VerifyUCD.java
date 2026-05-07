@@ -236,7 +236,7 @@ public class VerifyUCD {
                     if (isStringProp) {
                         Object value2 = getValue(up, newCodepoint);
                         if (value2 == null) {
-                            value2 = UTF16.valueOf(newCodepoint);
+                            value2 = Character.toString(newCodepoint);
                         }
                         nfcStringPropertyValue += value2;
                         continue;
@@ -371,7 +371,7 @@ public class VerifyUCD {
         Object value1 = up.getValue(codepoint);
         if (value1 == null) {
             if ((type & UnicodeProperty.STRING_OR_MISC_MASK) != 0) {
-                value1 = UTF16.valueOf(codepoint);
+                value1 = Character.toString(codepoint);
             } else if ((type & UnicodeProperty.BINARY_MASK) != 0) {
                 value1 = UCD_Names.NO;
             }

@@ -7,7 +7,6 @@ import com.google.common.collect.Multimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.ICUUncheckedIOException;
@@ -150,7 +149,7 @@ public class ProposalData {
     //        Collection<String> result = proposal.get(source);
     //        if (result.isEmpty()) {
     //            for (int cp : CharSequences.codePoints(source)) {
-    //                result = proposal.get(UTF16.valueOf(cp));
+    //                result = proposal.get(Character.toString(cp));
     //                if (!result.isEmpty()) {
     //                    break;
     //                }
@@ -455,13 +454,13 @@ public class ProposalData {
     }
 
     public static <T> String showLine(int codepoint, int codepointEnd, T value) {
-        String chars = UTF16.valueOf(codepoint);
+        String chars = Character.toString(codepoint);
         String charsWV = EmojiDataSourceCombined.EMOJI_DATA.addEmojiVariants(chars);
         String source = Utility.hex(chars);
         String names = getName(charsWV);
         String years = BirthInfo.getYear(charsWV) + "";
         if (codepoint != codepointEnd) {
-            String chars2 = UTF16.valueOf(codepointEnd);
+            String chars2 = Character.toString(codepointEnd);
             String charsWV2 = EmojiDataSourceCombined.EMOJI_DATA.addEmojiVariants(chars2);
             source += ".." + Utility.hex(chars2);
             charsWV += ".." + charsWV2;
@@ -541,15 +540,15 @@ public class ProposalData {
                             + "\n"
                             + "<p>This file is abbreviated by replacing certain characters that are always included in the same proposal:</p>"
                             + "<ul><li>skintones ("
-                            + ChartUtilities.htmlSpanForSkintone(UTF16.valueOf(0x1F3FB))
+                            + ChartUtilities.htmlSpanForSkintone(Character.toString(0x1F3FB))
                             + " "
-                            + ChartUtilities.htmlSpanForSkintone(UTF16.valueOf(0x1F3FC))
+                            + ChartUtilities.htmlSpanForSkintone(Character.toString(0x1F3FC))
                             + " "
-                            + ChartUtilities.htmlSpanForSkintone(UTF16.valueOf(0x1F3FD))
+                            + ChartUtilities.htmlSpanForSkintone(Character.toString(0x1F3FD))
                             + " "
-                            + ChartUtilities.htmlSpanForSkintone(UTF16.valueOf(0x1F3FE))
+                            + ChartUtilities.htmlSpanForSkintone(Character.toString(0x1F3FE))
                             + " "
-                            + ChartUtilities.htmlSpanForSkintone(UTF16.valueOf(0x1F3FF))
+                            + ChartUtilities.htmlSpanForSkintone(Character.toString(0x1F3FF))
                             + ") by "
                             + ChartUtilities.htmlSpanForSkintone(SKIN_REPRESENTATIVE)
                             + "</li>\n"

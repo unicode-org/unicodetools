@@ -1,6 +1,5 @@
 package org.unicode.text.UCA;
 
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.util.BitSet;
@@ -1360,7 +1359,7 @@ public final class PrimariesToFractional {
     }
 
     private void setTwoBytePrimaryFor(int minPrimary, int ch) {
-        final CEList ces = uca.getCEList(UTF16.valueOf(ch), true);
+        final CEList ces = uca.getCEList(Character.toString(ch), true);
         if (ces != null && ces.length() != 0) {
             final int firstPrimary = CEList.getPrimary(ces.at(0));
             if (minPrimary <= firstPrimary && firstPrimary < Implicit.CJK_BASE) {

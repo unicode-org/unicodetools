@@ -7,7 +7,6 @@ import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.StringPrep;
 import com.ibm.icu.text.StringPrepParseException;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
@@ -547,7 +546,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 new UnicodeProperty.SimpleProperty() {
                     @Override
                     public String _getValue(int codepoint) {
-                        return UTF16.valueOf(ucd.getBidi_Paired_Bracket(codepoint));
+                        return Character.toString(ucd.getBidi_Paired_Bracket(codepoint));
                     }
                 }.setValues("<string>")
                         .setMain(
@@ -2343,7 +2342,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     }
 
     public static boolean equals(int codepoint, String string) {
-        return UTF16.valueOf(codepoint).equals(string);
+        return Character.toString(codepoint).equals(string);
     }
 
     static List<String> lookup(
@@ -2418,7 +2417,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             if (cp == '-') {
                 return IdnaType.OK;
             }
-            final String source = UTF16.valueOf(cp);
+            final String source = Character.toString(cp);
             try {
                 String result = namePrep.prepare(source, IDNA.DEFAULT);
                 if (!source.equals(result)) {

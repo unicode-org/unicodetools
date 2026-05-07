@@ -1237,7 +1237,7 @@ public class GenerateUnihanCollators {
                                         + hexConstant(s)
                                         + "\", "
                                         + "// "
-                                        + UTF16.valueOf(alpha)
+                                        + Character.toString(alpha)
                                         + " : "
                                         + s
                                         + " ["
@@ -1519,7 +1519,7 @@ public class GenerateUnihanCollators {
             if (countHasPinyin != s.size() && hasPinyin != null) {
                 for (final Integer cp : s) {
                     if (!bestPinyin.containsKey(cp)) {
-                        addPinyin(title, UTF16.valueOf(cp), hasPinyin, OverrideItems.keepOld);
+                        addPinyin(title, Character.toString(cp), hasPinyin, OverrideItems.keepOld);
                         count++;
                     }
                 }
@@ -1714,7 +1714,7 @@ public class GenerateUnihanCollators {
                 throw new RuntimeException(hex);
             } else {
                 final int hexValue = Integer.parseInt(hex.substring(2), 16);
-                if (!character.equals(UTF16.valueOf(hexValue))) {
+                if (!character.equals(Character.toString(hexValue))) {
                     throw new RuntimeException(hex + "!=" + character);
                 }
             }
@@ -1797,7 +1797,7 @@ public class GenerateUnihanCollators {
             }
             String codepoint = items[0];
             if (codepoint.startsWith("U+")) {
-                codepoint = UTF16.valueOf(Integer.parseInt(codepoint.substring(2), 16));
+                codepoint = Character.toString(Integer.parseInt(codepoint.substring(2), 16));
             }
             if (!UNIHAN.contains(codepoint)) {
                 throw new IllegalArgumentException(

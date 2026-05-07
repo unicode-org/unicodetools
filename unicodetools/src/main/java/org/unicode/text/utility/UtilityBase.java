@@ -1,6 +1,5 @@
 package org.unicode.text.utility;
 
-import com.ibm.icu.text.UTF16;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.DerivedProperty;
 import org.unicode.text.UCD.UCDProperty;
@@ -9,7 +8,7 @@ import org.unicode.text.UCD.UCD_Types;
 public class UtilityBase implements UCD_Types {
 
     public static String getDisplay(int cp) {
-        String result = UTF16.valueOf(cp);
+        String result = Character.toString(cp);
         final byte cat = Default.ucd().getCategory(cp);
         if (cat == Mn || cat == Me) {
             result = String.valueOf(DOTTED_CIRCLE) + result;

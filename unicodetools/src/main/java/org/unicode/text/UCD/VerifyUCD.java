@@ -421,7 +421,7 @@ public class VerifyUCD implements UCD_Types {
         final boolean result = !x.isNormalized(cp);
         if (false) {
             final String s = x.normalize(cp);
-            final boolean sResult = !s.equals(UTF16.valueOf(cp));
+            final boolean sResult = !s.equals(Character.toString(cp));
             if (result != sResult) {
                 System.out.println("Failure with " + x + " at " + Default.ucd().getCodeAndName(cp));
             }
@@ -443,7 +443,7 @@ public class VerifyUCD implements UCD_Types {
 
             final String decomp = Default.nfd().normalize(cp);
             final String comp = Default.nfc().normalize(cp);
-            final String source = UTF16.valueOf(cp);
+            final String source = Character.toString(cp);
 
             final String bidiDecomp = getBidi(decomp, true);
             final String bidiComp = getBidi(comp, true);
@@ -559,7 +559,7 @@ public class VerifyUCD implements UCD_Types {
             final byte cat = Default.ucd().getCategory(cp);
             // check if canonical equivalents are case-mapped to canonical equivalents
             if (cat != PRIVATE_USE && cat != SURROGATE) {
-                String str = UTF16.valueOf(cp);
+                String str = Character.toString(cp);
                 if (!checkNF_AndCase(str, false)) {
                     badChars.add(cp);
                 }
@@ -1183,7 +1183,7 @@ public class VerifyUCD implements UCD_Types {
             final String full = Default.ucd().getCase(cp, FULL, FOLD);
             final String simple = Default.ucd().getCase(cp, SIMPLE, FOLD);
 
-            final String realTest = "\u0360" + UTF16.valueOf(cp) + "\u0334";
+            final String realTest = "\u0360" + Character.toString(cp) + "\u0334";
 
             final int ccc = Default.ucd().getCombiningClass(cp);
 
@@ -1716,7 +1716,7 @@ public class VerifyUCD implements UCD_Types {
             // if (Default.ucd.hasComputableName(i)) continue;
             tempInteger = null;
 
-            final String original = UTF16.valueOf(i);
+            final String original = Character.toString(i);
             final String caseFold = Default.ucd().getCase(i, FULL, FOLD);
             if (!original.equals(caseFold)) {
                 tempInteger = new Integer(i);
@@ -2568,7 +2568,7 @@ public class VerifyUCD implements UCD_Types {
                     final String decomp = Default.nfd().normalize(i);
                     if (noneHaveCategory(decomp, Cn, older)) {
                         final String recomp = Default.nfc().normalize(decomp);
-                        if (recomp.equals(UTF16.valueOf(i))) {
+                        if (recomp.equals(Character.toString(i))) {
                             Utility.fixDot();
                             System.out.println(
                                     "FAILS COMP STABILITY: " + Default.ucd().getCodeAndName(i));

@@ -8,7 +8,6 @@ import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.Normalizer.Mode;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
@@ -371,7 +370,7 @@ public class FrequencyData2 {
                 System.out.print(", ");
             }
             final int codePointAtRank = relative.getCodePointAtRank(i);
-            System.out.print(fixOutput.transform(UTF16.valueOf(codePointAtRank)));
+            System.out.print(fixOutput.transform(Character.toString(codePointAtRank)));
         }
         if (relative.getRankCount() > maxCount) {
             System.out.print(", ...");

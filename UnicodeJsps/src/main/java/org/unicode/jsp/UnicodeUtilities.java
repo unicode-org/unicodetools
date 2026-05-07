@@ -13,7 +13,6 @@ import com.ibm.icu.text.SpoofChecker;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
@@ -607,7 +606,7 @@ public class UnicodeUtilities {
     private static UnicodeSet RTL = new UnicodeSet("[[:bc=R:][:bc=AL:]]");
 
     private static String showCodePoint(int codepoint) {
-        return showCodePoint(UTF16.valueOf(codepoint));
+        return showCodePoint(Character.toString(codepoint));
     }
 
     private static String showCodePoint(String s) {
@@ -620,7 +619,7 @@ public class UnicodeUtilities {
     }
 
     private static String getLiteral(int codepoint) {
-        return getLiteral(UTF16.valueOf(codepoint));
+        return getLiteral(Character.toString(codepoint));
     }
 
     private static String getLiteral(String s) {
@@ -668,7 +667,7 @@ public class UnicodeUtilities {
         }
 
         void showCodePoint(int codePoint, Appendable out) throws IOException {
-            final String string = UTF16.valueOf(codePoint);
+            final String string = Character.toString(codePoint);
             String separator = ", ";
             showString(string, separator, out);
         }
@@ -1157,7 +1156,7 @@ public class UnicodeUtilities {
     //    StringBuilder rules = new StringBuilder();
     //    for (UnicodeSetIterator it = new UnicodeSetIterator(MAPPING_SET); it.nextRange();) {
     //      for (int i = it.codepoint; i <= it.codepointEnd; ++i) {
-    //        String s = UTF16.valueOf(i);
+    //        String s = Character.toString(i);
     //        String caseFold = UCharacter.foldCase(s, true);
     //        String lower = UCharacter.toLowerCase(Locale.ENGLISH, s);
     //        if (!caseFold.equals(lower) || i == 'Σ') {
@@ -1412,7 +1411,7 @@ public class UnicodeUtilities {
             List<String> originalParameters,
             Appendable out)
             throws IOException {
-        String text = UTF16.valueOf(cp);
+        String text = Character.toString(cp);
 
         String name = getFactory().getProperty("Name").getValue(cp);
         final String devName =
@@ -1651,7 +1650,7 @@ public class UnicodeUtilities {
     private static StringBuilder displayConfusables(int codepoint) {
         StringBuilder confusableString = new StringBuilder();
         Set<String> skip = new HashSet<String>();
-        String same = UTF16.valueOf(codepoint);
+        String same = Character.toString(codepoint);
         String nfd = Normalizer.normalize(same, Normalizer.NFD);
 
         skip.add(same);
@@ -1689,7 +1688,8 @@ public class UnicodeUtilities {
                 }
                 cp = nfd.codePointAt(i);
                 Confusables currentCombos =
-                        new Confusables(UTF16.valueOf(cp)).setNormalizationCheck(Normalizer.NFKC);
+                        new Confusables(Character.toString(cp))
+                                .setNormalizationCheck(Normalizer.NFKC);
                 combos.add(currentCombos);
                 confusableString.append("<div class='char'>");
                 for (String s : currentCombos) {
@@ -1762,7 +1762,7 @@ public class UnicodeUtilities {
                                     + Utility.hex(cp)
                                     + "'>"
                                     + "&nbsp;")
-                    .append(toHTML(UTF16.valueOf(cp)))
+                    .append(toHTML(Character.toString(cp)))
                     .append("&nbsp;</a>");
         }
         confusableString.append("</div>");

@@ -10,7 +10,6 @@ import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.Output;
@@ -408,7 +407,7 @@ public class Ids {
             int codepoint, String sample, String sampleDecomp, Positioning... part) {
         final IdsData value = new IdsData(sample, sampleDecomp, Arrays.asList(part));
         IDS_INFO.put(codepoint, value);
-        System.out.println(UTF16.valueOf(codepoint) + ", " + value);
+        System.out.println(Character.toString(codepoint) + ", " + value);
     }
 
     private static final UnicodeMap<IdsData> IDS_INFO = new UnicodeMap<>();
@@ -622,13 +621,16 @@ public class Ids {
             }
             if (DEBUG)
                 System.out.println(
-                        Utility.repeat("\t", depth) + UTF16.valueOf(lead) + " => " + ids.part);
+                        Utility.repeat("\t", depth) + Character.toString(lead) + " => " + ids.part);
             for (final Positioning subpart : ids.part) {
                 final Positioning combo = position.times(subpart);
                 int codePoint = codePoints[pos++];
                 if (DEBUG)
                     System.out.println(
-                            Utility.repeat("\t", depth) + UTF16.valueOf(codePoint) + " & " + combo);
+                            Utility.repeat("\t", depth)
+                                    + Character.toString(codePoint)
+                                    + " & "
+                                    + combo);
 
                 IdsData partData = IDS_INFO.get(codePoint);
                 while (partData == null && codePoint == '？') {
@@ -644,7 +646,7 @@ public class Ids {
                                 if (IDS_HACK.contains(codePoint)) {
                                     codePoint =
                                             Special.addSpecialX(
-                                                    sourceChar, UTF16.valueOf(codePoint));
+                                                    sourceChar, Character.toString(codePoint));
                                     partData = IDS_INFO.get(codePoint);
                                 }
                                 break;
@@ -711,7 +713,7 @@ public class Ids {
                                     Special.addSpecial(
                                             0xE040 + mirrored,
                                             sourceChar,
-                                            "mirrored " + UTF16.valueOf(codePoint));
+                                            "mirrored " + Character.toString(codePoint));
                                 }
                                 break;
                             }
@@ -724,7 +726,7 @@ public class Ids {
                                     Special.addSpecial(
                                             0xE050 + mirrored,
                                             sourceChar,
-                                            "rotated " + UTF16.valueOf(codePoint));
+                                            "rotated " + Character.toString(codePoint));
                                 }
                                 break;
                             }
@@ -755,7 +757,7 @@ public class Ids {
 
         @Override
         public String toString() {
-            return UTF16.valueOf(codepoint) + part;
+            return Character.toString(codepoint) + part;
         }
 
         public String svgRect(String color, boolean showRect) {
@@ -788,7 +790,7 @@ public class Ids {
                     + (part.y2 - part.y1)
                     + ")'"
                     + ">"
-                    + UTF16.valueOf(codepoint)
+                    + Character.toString(codepoint)
                     + "</text></g>\n";
         }
 
@@ -912,11 +914,13 @@ public class Ids {
         Special.listSpecials();
 
         //        for (int i : CharSequences.codePoints(FLIPPED)) {
-        //            System.out.println("FLIPPED:\t" + UTF16.valueOf(i) + "\t" + IDS_DATA.get(i) +
+        //            System.out.println("FLIPPED:\t" + Character.toString(i) + "\t" +
+        // IDS_DATA.get(i) +
         // "\t" + radicalStroke.get(i));
         //        }
         //        for (int i : CharSequences.codePoints(MIRRORED)) {
-        //            System.out.println("MIRRORED:\t" + UTF16.valueOf(i) + "\t" + IDS_DATA.get(i) +
+        //            System.out.println("MIRRORED:\t" + Character.toString(i) + "\t" +
+        // IDS_DATA.get(i) +
         // "\t" + radicalStroke.get(i));
         //        }
         //        for (Entry<String, CharacterIds> entry : IDS_DATA.entrySet()) {
@@ -1413,7 +1417,7 @@ public class Ids {
                     invert.put(entry.value.getComponents(), entry.string);
                 } else {
                     for (int i = entry.codepoint; i <= entry.codepointEnd; ++i) {
-                        invert.put(entry.value.getComponents(), UTF16.valueOf(i));
+                        invert.put(entry.value.getComponents(), Character.toString(i));
                     }
                 }
             }
@@ -1557,7 +1561,7 @@ public class Ids {
                 // CDP-854B &CDP-854B;  ⿻冂从
                 continue;
                 //                int cp = Special.addSpecialX("?", source);
-                //                source = UTF16.valueOf(cp);
+                //                source = Character.toString(cp);
             }
             try {
                 if (ids.equals(source)) {
@@ -1746,7 +1750,7 @@ public class Ids {
 
     private static void show(
             int count, PrintWriter out, int codepoint, String source, List<CpPart> breakdown) {
-        if (DEBUG) System.out.println(UTF16.valueOf(codepoint) + "\t" + source);
+        if (DEBUG) System.out.println(Character.toString(codepoint) + "\t" + source);
         out.println(
                 "<tr>"
                         + "<td style='text-align:right'>"
@@ -1755,7 +1759,7 @@ public class Ids {
                         + "<td style='font-size:"
                         + LARGE
                         + "px'>"
-                        + UTF16.valueOf(codepoint)
+                        + Character.toString(codepoint)
                         + "</td>\n"
                         + "<td height='"
                         + LARGE

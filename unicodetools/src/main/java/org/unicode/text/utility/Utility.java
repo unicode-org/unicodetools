@@ -14,7 +14,6 @@ import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Replaceable;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
@@ -1889,7 +1888,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                                         + "\t# "
                                         + (useHTML ? "(" + getUnicodeImage(cp) + ") " : "")
                                         + (withChar && (cp >= 0x20)
-                                                ? "(" + UTF16.valueOf(cp) + ") "
+                                                ? "(" + Character.toString(cp) + ") "
                                                 : "")
                                         + (names != null ? names.getValue(cp) + " " : "")
                                         + ucd.getName(cp)
@@ -1907,9 +1906,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                                     + "\t# "
                                     + (withChar && (start >= 0x20)
                                             ? " ("
-                                                    + UTF16.valueOf(start)
+                                                    + Character.toString(start)
                                                     + ((start != end)
-                                                            ? (".." + UTF16.valueOf(end))
+                                                            ? (".." + Character.toString(end))
                                                             : "")
                                                     + ") "
                                             : "")

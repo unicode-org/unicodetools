@@ -12,7 +12,6 @@ package org.unicode.text.UCA;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UCharacterEnums.ECharacterCategory;
 import com.ibm.icu.text.CanonicalIterator;
-import com.ibm.icu.text.UTF16;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
@@ -265,7 +264,7 @@ public class Main {
                     || cat == ECharacterCategory.SURROGATE) {
                 continue;
             }
-            final String s = UTF16.valueOf(i);
+            final String s = Character.toString(i);
             try {
                 it.setSource(s);
             } catch (final RuntimeException e) {

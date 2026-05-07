@@ -1062,8 +1062,8 @@ public class Segmenter {
                             return "\\u" + Utility.hex(codePoint);
                         }
                         if (JavaRegex_slash.contains(codePoint))
-                            return "\\" + UTF16.valueOf(codePoint);
-                        return UTF16.valueOf(codePoint);
+                            return "\\" + Character.toString(codePoint);
+                        return Character.toString(codePoint);
                     }
                 };
 

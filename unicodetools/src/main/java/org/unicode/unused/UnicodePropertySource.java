@@ -9,7 +9,6 @@ package org.unicode.unused;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.Normalizer;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.util.Arrays;
@@ -65,7 +64,7 @@ public abstract class UnicodePropertySource implements Cloneable {
         if (other.length() == 1) {
             return codepoint == other.charAt(0);
         }
-        return other.equals(UTF16.valueOf(codepoint));
+        return other.equals(Character.toString(codepoint));
     }
 
     public UnicodeSet getPropertySet(boolean charEqualsValue, UnicodeSet result) {
@@ -182,30 +181,32 @@ public abstract class UnicodePropertySource implements Cloneable {
                     case UProperty.AGE:
                         return UCharacter.getAge(codePoint).toString();
                     case UProperty.BIDI_MIRRORING_GLYPH:
-                        return UTF16.valueOf(UCharacter.getMirror(codePoint));
+                        return Character.toString(UCharacter.getMirror(codePoint));
                     case UProperty.CASE_FOLDING:
-                        return UCharacter.foldCase(UTF16.valueOf(codePoint), true);
+                        return UCharacter.foldCase(Character.toString(codePoint), true);
                     case UProperty.ISO_COMMENT:
                         return UCharacter.getISOComment(codePoint);
                     case UProperty.LOWERCASE_MAPPING:
-                        return UCharacter.toLowerCase(Locale.ENGLISH, UTF16.valueOf(codePoint));
+                        return UCharacter.toLowerCase(
+                                Locale.ENGLISH, Character.toString(codePoint));
                     case UProperty.NAME:
                         return UCharacter.getName(codePoint);
                     case UProperty.SIMPLE_CASE_FOLDING:
-                        return UTF16.valueOf(UCharacter.foldCase(codePoint, true));
+                        return Character.toString(UCharacter.foldCase(codePoint, true));
                     case UProperty.SIMPLE_LOWERCASE_MAPPING:
-                        return UTF16.valueOf(UCharacter.toLowerCase(codePoint));
+                        return Character.toString(UCharacter.toLowerCase(codePoint));
                     case UProperty.SIMPLE_TITLECASE_MAPPING:
-                        return UTF16.valueOf(UCharacter.toTitleCase(codePoint));
+                        return Character.toString(UCharacter.toTitleCase(codePoint));
                     case UProperty.SIMPLE_UPPERCASE_MAPPING:
-                        return UTF16.valueOf(UCharacter.toUpperCase(codePoint));
+                        return Character.toString(UCharacter.toUpperCase(codePoint));
                     case UProperty.TITLECASE_MAPPING:
                         return UCharacter.toTitleCase(
-                                Locale.ENGLISH, UTF16.valueOf(codePoint), null);
+                                Locale.ENGLISH, Character.toString(codePoint), null);
                     case UProperty.UNICODE_1_NAME:
                         return UCharacter.getName1_0(codePoint);
                     case UProperty.UPPERCASE_MAPPING:
-                        return UCharacter.toUpperCase(Locale.ENGLISH, UTF16.valueOf(codePoint));
+                        return UCharacter.toUpperCase(
+                                Locale.ENGLISH, Character.toString(codePoint));
                     case NFC:
                         return Normalizer.normalize(codePoint, Normalizer.NFC);
                     case NFD:

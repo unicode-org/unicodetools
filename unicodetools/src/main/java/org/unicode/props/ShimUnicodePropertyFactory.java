@@ -3,7 +3,6 @@ package org.unicode.props;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.locale.XCldrStub.Splitter;
 import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import java.lang.reflect.Method;
@@ -64,7 +63,7 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
                             replaceCpValues(
                                     prop,
                                     (cp, oldValue) ->
-                                            oldValue == null ? UTF16.valueOf(cp) : oldValue);
+                                            oldValue == null ? Character.toString(cp) : oldValue);
                     break;
                 case "Bidi_Paired_Bracket":
                     // The default is <none> in PropertyValueAliases.txt, but TUP incorrectly

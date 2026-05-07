@@ -9,7 +9,6 @@ import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import java.io.IOException;
@@ -169,8 +168,8 @@ public class GenerateNormalizeForMatch {
         Builder<String, String> builder = ImmutableMap.builder();
         for (EntryRange entry : NO_NAME.ranges()) {
             for (int cp = entry.codepoint; cp < entry.codepointEnd; ++cp) {
-                final String name = iup.getName(UTF16.valueOf(cp), " + ");
-                final String decomp = UTF16.valueOf(cp);
+                final String name = iup.getName(Character.toString(cp), " + ");
+                final String decomp = Character.toString(cp);
                 builder.put(name, decomp);
                 if (name.startsWith("CIRCLED NUMBER ")) {
                     final String decompHack = Normalizer3.NFKCCF.normalize(decomp);
@@ -283,7 +282,7 @@ public class GenerateNormalizeForMatch {
                 UnicodeSet other = nameToCp.get(lowName);
                 if (other != null) {
                     int otherFirst = other.getRangeStart(0);
-                    final String otherCp = UTF16.valueOf(otherFirst);
+                    final String otherCp = Character.toString(otherFirst);
                     final String cpNkfccf = CldrUtility.ifNull(cpToNFKCCF.get(cp), cp);
                     final String otherCpNfkccf =
                             CldrUtility.ifNull(cpToNFKCCF.get(otherCp), otherCp);
@@ -654,7 +653,7 @@ public class GenerateNormalizeForMatch {
                 int debug = 0;
             }
 
-            String source = UTF16.valueOf(cp);
+            String source = Character.toString(cp);
             String nfkccf = normalizer3.normalize(source);
             String target = source;
             Set<SpecialReason> reason = new LinkedHashSet<>();
@@ -898,7 +897,7 @@ public class GenerateNormalizeForMatch {
             if (b.length() > 0) {
                 b.append(separator);
             }
-            b.append(iup.getName(UTF16.valueOf(cp), " + "));
+            b.append(iup.getName(Character.toString(cp), " + "));
         }
         return b.toString();
     }
@@ -949,7 +948,7 @@ public class GenerateNormalizeForMatch {
     //                    + SEP + hex(trialValue)
     //                    + SEP + (Objects.equal(nfkccfValue,trialValue) ? "≣" : hex(nfkccfValue))
     //                    + SEP + (reason == null ? "" : reason)
-    //                    + SEP + iup.getName(UTF16.valueOf(sourceCodePoint), " + ")
+    //                    + SEP + iup.getName(Character.toString(sourceCodePoint), " + ")
     //                    );
     //            sorted.add(row);
     //            counter.add(Row.of(age,difference), 1);

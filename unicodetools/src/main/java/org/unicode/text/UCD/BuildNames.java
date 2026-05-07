@@ -9,7 +9,6 @@
  */
 package org.unicode.text.UCD;
 
-import com.ibm.icu.text.UTF16;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -181,7 +180,7 @@ public class BuildNames implements UCD_Types {
 
             // check the string, and its decomposition. This is just to get a good count.
 
-            String str = UTF16.valueOf(cp);
+            String str = Character.toString(cp);
             if (false && !Default.nfkd().isNormalized(cp)) {
                 str += Default.nfkd().normalize(cp);
             }

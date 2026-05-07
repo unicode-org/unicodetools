@@ -157,7 +157,7 @@ public class UnicodeSetFormatter {
             } else {
                 for (int i = it.codepoint; i <= it.codepointEnd; ++i) {
                     if (!putAtEnd.contains(i)) {
-                        orderedStrings.add(UTF16.valueOf(i));
+                        orderedStrings.add(Character.toString(i));
                     }
                 }
             }
@@ -235,7 +235,7 @@ public class UnicodeSetFormatter {
     }
 
     private void addSpaceAsNeededBefore(int codepoint) {
-        addSpaceAsNeededBefore(UTF16.valueOf(codepoint));
+        addSpaceAsNeededBefore(Character.toString(codepoint));
     }
 
     private void flushLast() {
@@ -250,7 +250,7 @@ public class UnicodeSetFormatter {
                 }
             }
             appendQuoted(lastCodePoint);
-            lastString = UTF16.valueOf(lastCodePoint);
+            lastString = Character.toString(lastCodePoint);
             firstCodePoint = lastCodePoint = -2;
         }
     }
@@ -271,7 +271,7 @@ public class UnicodeSetFormatter {
     UnicodeSetFormatter appendQuoted(int codePoint) {
         if (toQuote.contains(codePoint)) {
             if (quoter != null) {
-                target.append(quoter.transform(UTF16.valueOf(codePoint)));
+                target.append(quoter.transform(Character.toString(codePoint)));
                 return this;
             }
             if (codePoint > 0xFFFF) {

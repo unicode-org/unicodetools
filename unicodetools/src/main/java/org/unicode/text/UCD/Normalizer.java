@@ -11,7 +11,6 @@ package org.unicode.text.UCD;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.BitSet;
 import java.util.HashMap;
@@ -163,15 +162,16 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
      * @return target the resulting normalized text
      */
     public String normalize(int cp) {
-        return normalize(UTF16.valueOf(cp));
+        return normalize(Character.toString(cp));
     }
 
     /**
      * private StringBuilder hasDecompositionBuffer = new StringBuilder();
      *
      * <p>public boolean hasDecomposition(int cp) { hasDecompositionBuffer.setLength(0);
-     * normalize(UTF16.valueOf(cp), hasDecompositionBuffer); if (hasDecompositionBuffer.length() !=
-     * 1) return true; return cp != hasDecompositionBuffer.charAt(0); }
+     * normalize(Character.toString(cp), hasDecompositionBuffer); if
+     * (hasDecompositionBuffer.length() != 1) return true; return cp !=
+     * hasDecompositionBuffer.charAt(0); }
      */
 
     /*
@@ -512,7 +512,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
                     continue main;
                 }
             }
-            spacingMap.put(i, UTF16.valueOf(i));
+            spacingMap.put(i, Character.toString(i));
         }
         final String[][] specials = {
             {"[\\u0384\\u1FFD]", "\u00B4"},

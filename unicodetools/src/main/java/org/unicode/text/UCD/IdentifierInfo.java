@@ -6,7 +6,6 @@ import com.google.common.collect.Multimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.locale.XCldrStub.ImmutableSet;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ICUException;
@@ -158,7 +157,7 @@ public class IdentifierInfo {
             if (cat == UCD_Types.Cn || cat == UCD_Types.Co || cat == UCD_Types.Cs) {
                 continue;
             }
-            final String source = UTF16.valueOf(cp);
+            final String source = Character.toString(cp);
             final String cf = DEFAULT_UCD.getCase(source, UCD_Types.FULL, UCD_Types.FOLD);
             if (cf.equals(source)) {
                 isCaseFolded.add(cp);
@@ -655,7 +654,7 @@ public class IdentifierInfo {
         //          String[] pieces = Utility.split(line, ';');
         //          int code = Integer.parseInt(pieces[0].trim(), 16);
         //          if (pieces[1].trim().equals("remap-to")) {
-        //            remap.put(code, UTF16.valueOf(Integer.parseInt(
+        //            remap.put(code, Character.toString(Integer.parseInt(
         //                    pieces[2].trim(), 16)));
         //          } else {
         //            if (XIDContinueSet.contains(code)) {
@@ -976,7 +975,7 @@ public class IdentifierInfo {
                         if (GenerateConfusables.GC_LOWERCASE.contains(codePoint)) {
                             final String upper =
                                     DEFAULT_UCD.getCase(codePoint, UCD_Types.FULL, UCD_Types.UPPER);
-                            if (upper.equals(UTF16.valueOf(codePoint))
+                            if (upper.equals(Character.toString(codePoint))
                                     && x.equals("technical symbol (phonetic)")) {
                                 x = "technical symbol (phonetic with no uppercase)";
                             }

@@ -17,7 +17,6 @@ import com.ibm.icu.text.DecimalFormatSymbols;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.Currency;
@@ -291,7 +290,7 @@ public class TestData implements UCD_Types {
             final UnicodeSet base = new UnicodeSet("[:" + script + ":]");
             final UnicodeSetIterator it = new UnicodeSetIterator(base);
             while (it.next()) {
-                final String s2 = UTF16.valueOf(it.codepoint);
+                final String s2 = Character.toString(it.codepoint);
                 final String norm = Default.nfd().normalize(s2);
                 if (s2.equals(norm) && Default.nfkd().isNormalized(norm)) {
                     log.println("# " + s2 + " <> XXX # " + Default.ucd().getName(it.codepoint));
@@ -324,7 +323,7 @@ public class TestData implements UCD_Types {
                 continue;
             }
             // if (compat == (ucd.getDecompositionType(i) > UCD.CANONICAL)) continue;
-            final String str = UTF16.valueOf(i);
+            final String str = Character.toString(i);
             final String simpleLower = ucd.getCase(str, SIMPLE, LOWER);
             final String fullFold = ucd.getCase(str, FULL, FOLD);
 
@@ -527,7 +526,7 @@ public class TestData implements UCD_Types {
             if (gc == Cn || gc == PRIVATE_USE) {
                 continue;
             }
-            final String str = UTF16.valueOf(i);
+            final String str = Character.toString(i);
             if (!str.equals(ucd.getCase(str, FULL, FOLD))) {
                 hasFold.add(i);
                 scripts.set(ucd.getScript(i));

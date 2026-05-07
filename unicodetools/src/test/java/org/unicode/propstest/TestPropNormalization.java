@@ -1,7 +1,6 @@
 package org.unicode.propstest;
 
 import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.UTF16;
 import java.util.Objects;
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.util.Timer;
@@ -24,7 +23,7 @@ public class TestPropNormalization extends TestFmwkMinusMinus {
         Timer t = new Timer();
         t.start();
         for (int i = 0; i < 0x110000; ++i) {
-            n.normalize(UTF16.valueOf(i));
+            n.normalize(Character.toString(i));
         }
         t.stop();
         logln(t.toString());
@@ -72,13 +71,13 @@ public class TestPropNormalization extends TestFmwkMinusMinus {
     }
 
     public void checkDecomp(PropNormalizationData pnd, Type type, Normalizer oldNfd, int i) {
-        String newNfd0 = pnd.normalize(UTF16.valueOf(i), type);
+        String newNfd0 = pnd.normalize(Character.toString(i), type);
         boolean oldNorm = oldNfd.isNormalized(i);
         if (oldNorm == (newNfd0 == null)) {
             return;
         }
         if (newNfd0 == null) {
-            newNfd0 = UTF16.valueOf(i);
+            newNfd0 = Character.toString(i);
         }
         String oldNfd0 = oldNfd.normalize(i);
         if (!Objects.equals(oldNfd0, newNfd0)) {

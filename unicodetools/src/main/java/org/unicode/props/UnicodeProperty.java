@@ -10,7 +10,6 @@ import com.google.common.base.Splitter;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.SymbolTable;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
@@ -919,7 +918,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             return codepoint == other.charAt(0);
         }
         if (other.length() == 2) {
-            return other.equals(UTF16.valueOf(codepoint));
+            return other.equals(Character.toString(codepoint));
         }
         return false;
     }
@@ -1822,7 +1821,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     //            setUniformUnassigned(hasUniformUnassigned);
     //        }
     //        protected String _getValue(int codepoint) {
-    //            return transform.transform(UTF16.valueOf(codepoint));
+    //            return transform.transform(Character.toString(codepoint));
     //        }
     //    }
     //

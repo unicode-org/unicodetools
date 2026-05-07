@@ -11,7 +11,6 @@ package org.unicode.text.UCD;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -154,7 +153,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
                 for (int j = 1; j < test.length(); ++j) {
                     if (test2.isBreak(test, j)) {
                         if (!shown) {
-                            System.out.println(showData(ucd, UTF16.valueOf(i), INFOPROPS, "\n\t"));
+                            System.out.println(
+                                    showData(ucd, Character.toString(i), INFOPROPS, "\n\t"));
                             System.out.println(" => " + showData(ucd, decomp, INFOPROPS, "\n\t"));
                             shown = true;
                         }
@@ -813,7 +813,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
             out.println("<p><b>Suppressed:</b> ");
             for (final int skippedSample : skippedSamples) {
                 if (skippedSample > 0) {
-                    final String tmp = UTF16.valueOf(skippedSample);
+                    final String tmp = Character.toString(skippedSample);
                     out.println("<span title='" + getInfo(tmp) + "'>" + getTypeID(tmp) + "</span>");
                 }
             }
@@ -1672,7 +1672,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
             UnicodeSet extPict = propSource.getSet("ExtPict=yes");
             // [\p{Extended_Pictographic}&\p{Cn}]
             UnicodeSet extPictUnassigned = extPict.cloneAsThawed().retainAll(unassigned);
-            String firstExtPictUnassigned = UTF16.valueOf(extPictUnassigned.charAt(0));
+            String firstExtPictUnassigned = Character.toString(extPictUnassigned.charAt(0));
             // [\p{Extended_Pictographic}&\p{Cn}] × EM
             extraSingleSamples.add(firstExtPictUnassigned + sampleEMod);
 
@@ -1680,7 +1680,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
             // [\p{Extended_Pictographic}-\p{Cn}-\p{lb=EB}]
             UnicodeSet extPictAssigned =
                     extPict.cloneAsThawed().removeAll(unassigned).removeAll(lb_EBase);
-            String firstExtPictAssigned = UTF16.valueOf(extPictAssigned.charAt(0));
+            String firstExtPictAssigned = Character.toString(extPictAssigned.charAt(0));
             // [\p{Extended_Pictographic}-\p{Cn}-\p{lb=EB}] ÷ EM
             extraSingleSamples.add(firstExtPictAssigned + sampleEMod);
         }

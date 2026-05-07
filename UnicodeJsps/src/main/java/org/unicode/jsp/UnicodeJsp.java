@@ -6,7 +6,6 @@ import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.RuleBasedBreakIterator;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
@@ -105,7 +104,8 @@ public class UnicodeJsp {
         while (decimalEscapes.find(start)) {
             int radix = 10;
             int code = Integer.parseInt(decimalEscapes.group(2), radix);
-            result2.append(text.substring(start, decimalEscapes.start()) + UTF16.valueOf(code));
+            result2.append(
+                    text.substring(start, decimalEscapes.start()) + Character.toString(code));
             start = decimalEscapes.end();
         }
         result2.append(text.substring(start));
@@ -262,7 +262,7 @@ public class UnicodeJsp {
         String digits = matcher.matches() ? matcher.group(1).replaceAll("['_]", "") : null;
         if (digits != null && digits.length() > 1) {
             try {
-                text = UTF16.valueOf(Integer.parseInt(digits, 16));
+                text = Character.toString(Integer.parseInt(digits, 16));
             } catch (Exception e) {
             }
         }

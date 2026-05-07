@@ -81,7 +81,7 @@ public class NormalizerSample implements UCD_Types {
      * @return target the resulting normalized text
      */
     public String normalize(int cp) {
-        return normalize(UTF16.valueOf(cp));
+        return normalize(Character.toString(cp));
     }
 
     /** */
@@ -89,7 +89,7 @@ public class NormalizerSample implements UCD_Types {
 
     public boolean hasDecomposition(int cp) {
         hasDecompositionBuffer.setLength(0);
-        normalize(UTF16.valueOf(cp), hasDecompositionBuffer);
+        normalize(Character.toString(cp), hasDecompositionBuffer);
         if (hasDecompositionBuffer.length() != 1) {
             return true;
         }
@@ -165,7 +165,7 @@ public class NormalizerSample implements UCD_Types {
                         }
                     }
                 }
-                target.insert(k, UTF16.valueOf(ch));
+                target.insert(k, Character.toString(ch));
             }
         }
     }

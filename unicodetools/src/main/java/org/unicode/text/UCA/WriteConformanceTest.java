@@ -27,7 +27,7 @@ public class WriteConformanceTest {
 
     private static final char LOW_ACCENT = '\u0334';
 
-    private static final String SUPPLEMENTARY_ACCENT = UTF16.valueOf(0x1D165);
+    private static final String SUPPLEMENTARY_ACCENT = Character.toString(0x1D165);
     private static final String COMPLETELY_IGNOREABLE = "\u0001";
     private static final String COMPLETELY_IGNOREABLE_ACCENT = "\u0591";
     private static final String[] CONTRACTION_TEST = {

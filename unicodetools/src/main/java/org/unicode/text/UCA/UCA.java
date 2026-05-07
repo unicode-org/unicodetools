@@ -1079,7 +1079,7 @@ public final class UCA implements Comparator<String> {
                 if (usi.codepoint == UnicodeSetIterator.IS_STRING) {
                     result = usi.string;
                 } else {
-                    result = UTF16.valueOf(usi.codepoint);
+                    result = Character.toString(usi.codepoint);
                 }
                 if (DEBUG) {
                     System.out.println("Unspecified: " + ucd.getCodeAndName(result));
@@ -1100,7 +1100,7 @@ public final class UCA implements Comparator<String> {
             // extra samples
             if (currentRange < SAMPLE_RANGES.length) {
                 try {
-                    result = UTF16.valueOf(itemInRange);
+                    result = Character.toString(itemInRange);
                 } catch (final RuntimeException e) {
                     System.out.println(Utility.hex(itemInRange));
                     throw e;

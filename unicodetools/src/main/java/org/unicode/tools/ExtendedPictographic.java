@@ -1,7 +1,6 @@
 package org.unicode.tools;
 
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import java.io.File;
@@ -296,9 +295,9 @@ class ExtendedPictographic {
                 + Utility.hex(cpEnd)
                 + (v == null ? "" : "; " + v.getShortName())
                 + " # "
-                + UTF16.valueOf(cpStart)
+                + Character.toString(cpStart)
                 + ".."
-                + UTF16.valueOf(cpEnd)
+                + Character.toString(cpEnd)
                 + "; "
                 + iup.getName(cpStart)
                 + ".."
@@ -309,7 +308,7 @@ class ExtendedPictographic {
         return Utility.hex(cp)
                 + (v == null ? "" : "; " + v.getShortName())
                 + " # "
-                + UTF16.valueOf(cp)
+                + Character.toString(cp)
                 + "; "
                 + iup.getName(cp);
     }

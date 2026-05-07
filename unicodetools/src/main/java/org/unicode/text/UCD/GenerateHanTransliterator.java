@@ -277,7 +277,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
         StringBuffer result = new StringBuffer();
         while (pos1 < other.length()) {
             int end = getHexEnd(s, pos1);
-            result.append(UTF16.valueOf(Integer.parseInt(other.substring(pos1, end), 16)));
+            result.append(Character.toString(Integer.parseInt(other.substring(pos1, end), 16)));
             pos1 = other.indexOf("U+", pos1);
             if (pos2 < 0) pos2 = other.length();
             pos1 = pos2;
@@ -317,7 +317,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
         final UnicodeSet gotAtLeastOne = new UnicodeSet(gotMandarin).addAll(gotHanyu);
         final Map outmap = new TreeMap(Collator.getInstance(new ULocale("zh")));
         for (final UnicodeSetIterator it = new UnicodeSetIterator(gotAtLeastOne); it.next(); ) {
-            // String code = UTF16.valueOf(it.codepoint);
+            // String code = Character.toString(it.codepoint);
             final String hanyu = (String) kHanyuPinlu.getValue(it.codepoint);
             final String mandarin = (String) kMandarin.getValue(it.codepoint);
             final String hPinyin =
@@ -345,7 +345,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
             if (uset.size() == 1) {
                 final UnicodeSetIterator usi = new UnicodeSetIterator(uset);
                 usi.next();
-                out.println(UTF16.valueOf(usi.codepoint) + ">" + pinyin + ";");
+                out.println(Character.toString(usi.codepoint) + ">" + pinyin + ";");
             } else {
                 out.println(uset.toPattern(false) + ">" + pinyin + ";");
             }
@@ -391,7 +391,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
         log.println("N\tCode\tChar\tUnihan\tICU\tGCL\tkHanyuPinlu / kMandarin");
         final UnicodeMap reformed = new UnicodeMap();
         for (final UnicodeSetIterator it = new UnicodeSetIterator(gotAtLeastOne); it.next(); ) {
-            final String code = UTF16.valueOf(it.codepoint);
+            final String code = Character.toString(it.codepoint);
             final String hanyu = (String) kHanyuPinlu.getValue(it.codepoint);
             final String mandarin = (String) kMandarin.getValue(it.codepoint);
             final String hPinyin =
@@ -559,7 +559,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
         final Set set = new TreeSet(col);
         final PrintWriter pw = Utility.openPrintWriterGenDir("log/" + file, Utility.UTF8_WINDOWS);
         for (final UnicodeSetIterator it = new UnicodeSetIterator(tailored); it.next(); ) {
-            set.add(UTF16.valueOf(it.codepoint));
+            set.add(Character.toString(it.codepoint));
         }
         String lastm = "";
         String lasts = "";
@@ -1599,7 +1599,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
                     final int rank = Integer.parseInt(line.substring(0, tabPos));
                     final int cp = line.charAt(tabPos + 1);
                     // if ((rank % 100) == 0) System.out.println(rank + ", " + Utility.hex(cp));
-                    combinedRank.add(new Pair(new Integer(rank), UTF16.valueOf(cp)));
+                    combinedRank.add(new Pair(new Integer(rank), Character.toString(cp)));
                 }
                 br.close();
             }
@@ -1639,7 +1639,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
                             continue;
                         }
                         // if ((rank % 100) == 0) System.out.println(rank + ", " + Utility.hex(cp));
-                        Utility.addCount(japaneseMap, UTF16.valueOf(cp), -freq);
+                        Utility.addCount(japaneseMap, Character.toString(cp), -freq);
                     }
                 }
                 br.close();
@@ -1718,7 +1718,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
             }
             Utility.dot(i);
 
-            final String ch = UTF16.valueOf(i);
+            final String ch = Character.toString(i);
 
             String pinyin = (String) unihanMap.get(ch);
             if (pinyin == null) {
@@ -2440,11 +2440,11 @@ public final class GenerateHanTransliterator implements UCD_Types {
 
             // gather traditional mapping
             if (property.equals("kTraditionalVariant")) {
-                simplifiedToTraditional.put(UTF16.valueOf(code), propertyValue);
+                simplifiedToTraditional.put(Character.toString(code), propertyValue);
             }
 
             if (property.equals("kSimplifiedVariant")) {
-                traditionalToSimplified.put(UTF16.valueOf(code), propertyValue);
+                traditionalToSimplified.put(Character.toString(code), propertyValue);
             }
 
             if (key.equals("kMandarin") && property.equals("kHanyuPinlu")) {
@@ -2511,9 +2511,9 @@ public final class GenerateHanTransliterator implements UCD_Types {
             if (end3 == 0) {
                 log.println(
                         "Bad pinyin data: "
-                                + hex.transliterate(UTF16.valueOf(cp))
+                                + hex.transliterate(Character.toString(cp))
                                 + "\t"
-                                + UTF16.valueOf(cp)
+                                + Character.toString(cp)
                                 + "\t"
                                 + definition);
                 end3 = definition.length();
@@ -2522,7 +2522,11 @@ public final class GenerateHanTransliterator implements UCD_Types {
 
             definition = digitToPinyin(definition, line);
             out2.println(
-                    Utility.hex(cp) + '\t' + UTF16.valueOf(cp) + "\t" + definition.toLowerCase());
+                    Utility.hex(cp)
+                            + '\t'
+                            + Character.toString(cp)
+                            + "\t"
+                            + definition.toLowerCase());
         }
         if (type == DEFINITION) {
             definition = removeMatched(definition, '(', ')', line);
@@ -2540,7 +2544,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
                             + " on: "
                             + hex.transliterate(line));
         } else {
-            addCheck(UTF16.valueOf(cp), definition, line);
+            addCheck(Character.toString(cp), definition, line);
         }
         /*
         String key = (String) unihanMap.get(definition);

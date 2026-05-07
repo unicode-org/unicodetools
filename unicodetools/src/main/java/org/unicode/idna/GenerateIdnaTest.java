@@ -7,7 +7,6 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import java.io.IOException;
@@ -768,8 +767,8 @@ public class GenerateIdnaTest {
         // FB04 LATIN SMALL LIGATURE FFL
         "\u02E3\u034F\u2115\u200B\uFE63\u00AD\uFF0D\u180C"
                 + "\u212C\uFE00\u017F\u2064"
-                + UTF16.valueOf(0x1D530)
-                + UTF16.valueOf(0xE01EF)
+                + Character.toString(0x1D530)
+                + Character.toString(0xE01EF)
                 + "\uFB04",
         "123456789012345678901234567890123456789012345678901234567890123."
                 + "123456789012345678901234567890123456789012345678901234567890123."

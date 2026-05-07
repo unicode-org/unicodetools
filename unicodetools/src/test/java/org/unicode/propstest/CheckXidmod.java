@@ -6,7 +6,6 @@ import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.util.Comparator;
@@ -319,9 +318,13 @@ public class CheckXidmod {
 
     private void showSet(String title, UnicodeSet uset) {
         for (UnicodeSetIterator it = new UnicodeSetIterator(uset); it.nextRange(); ) {
-            logln("\t\t" + getCodeAndName(UTF16.valueOf(it.codepoint)) + "\t//" + title);
+            logln("\t\t" + getCodeAndName(Character.toString(it.codepoint)) + "\t//" + title);
             if (it.codepoint != it.codepointEnd) {
-                logln("\t\t... " + getCodeAndName(UTF16.valueOf(it.codepointEnd)) + "\t//" + title);
+                logln(
+                        "\t\t... "
+                                + getCodeAndName(Character.toString(it.codepointEnd))
+                                + "\t//"
+                                + title);
             }
         }
     }

@@ -10,7 +10,6 @@
  */
 package org.unicode.text.UCD;
 
-import com.ibm.icu.text.UTF16;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -186,7 +185,7 @@ class UData implements UCD_Types {
     }
 
     public void fleshOut() {
-        final String codeValue = codePoint >= 0 ? UTF16.valueOf(codePoint) : "\uFFFD";
+        final String codeValue = codePoint >= 0 ? Character.toString(codePoint) : "\uFFFD";
         if (codePoint == 0x13A0) {
             int debug = 0;
         }
@@ -239,12 +238,12 @@ class UData implements UCD_Types {
                 continue;
             }
             int c2 = GenerateCaseFolding.simpleAdditions[i + 1];
-            String s2 = UTF16.valueOf(c2);
+            String s2 = Character.toString(c2);
             if (simpleCaseFolding != null) {
                 if (simpleCaseFolding.equals(s2)) {
                     break;
                 }
-                String s1 = UTF16.valueOf(c1);
+                String s1 = Character.toString(c1);
                 throw new IllegalArgumentException(
                         String.format(
                                 "UData: Trying to add scf(U+%04X)→U+%04X (%s→%s) "

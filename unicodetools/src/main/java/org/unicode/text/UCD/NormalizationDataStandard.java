@@ -148,7 +148,7 @@ class NormalizationDataStandard implements NormalizationData {
         // we know we decompose all CANONICAL, plus > CANONICAL if compat is TRUE.
         if (dt == UCD_Types.CANONICAL || dt > UCD_Types.CANONICAL && compat) {
             final String s = ucd.getDecompositionMapping(cp);
-            if (s.equals(UTF16.valueOf(cp))) {
+            if (s.equals(Character.toString(cp))) {
                 System.out.println("fix");
             }
             for (int i = 0; i < s.length(); i += Character.charCount(cp)) {

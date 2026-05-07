@@ -1,7 +1,6 @@
 package org.unicode.props;
 
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.BitSet;
 import java.util.HashMap;
@@ -234,7 +233,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
             ch32 = Character.codePointAt(source, i);
             String buffer = compat ? nfkd.get(ch32) : nfd.get(ch32);
             if (buffer == null) {
-                buffer = UTF16.valueOf(ch32);
+                buffer = Character.toString(ch32);
             }
 
             // add all of the characters in the decomposition.
@@ -358,6 +357,6 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
                 }
             }
         }
-        target.replace(offset16, offset16 + count, UTF16.valueOf(char32));
+        target.replace(offset16, offset16 + count, Character.toString(char32));
     }
 }

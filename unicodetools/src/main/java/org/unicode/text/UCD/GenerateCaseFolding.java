@@ -102,10 +102,10 @@ public class GenerateCaseFolding implements UCD_Types {
                     continue;
                 }
 
-                final String rFull = fullData.get(UTF16.valueOf(ch));
-                final String rSimple = simpleData.get(UTF16.valueOf(ch));
-                final String rFullTurkish = fullDataTurkish.get(UTF16.valueOf(ch));
-                final String rSimpleTurkish = simpleDataTurkish.get(UTF16.valueOf(ch));
+                final String rFull = fullData.get(Character.toString(ch));
+                final String rSimple = simpleData.get(Character.toString(ch));
+                final String rFullTurkish = fullDataTurkish.get(Character.toString(ch));
+                final String rSimpleTurkish = simpleDataTurkish.get(Character.toString(ch));
                 if (rFull == null
                         && rSimple == null
                         && rFullTurkish == null
@@ -145,10 +145,10 @@ public class GenerateCaseFolding implements UCD_Types {
                 // Check that they are consistent. Eventually we should get rid of one of them, see
                 // https://github.com/unicode-org/unicodetools/issues/426.
                 if (normativeSCF.length() == 0) {
-                    normativeSCF.append(UTF16.valueOf(ch));
+                    normativeSCF.append(Character.toString(ch));
                 }
                 if (normativeCF.length() == 0) {
-                    normativeCF.append(UTF16.valueOf(ch));
+                    normativeCF.append(Character.toString(ch));
                 }
                 final String ucdSCF = Default.ucd().getCase(ch, UCD.SIMPLE, UCD.FOLD);
                 final String ucdCF = Default.ucd().getCase(ch, UCD.FULL, UCD.FOLD);
@@ -190,9 +190,9 @@ public class GenerateCaseFolding implements UCD_Types {
             StringBuilder normativeCF) {
         String comment = "";
         if (COMMENT_DIFFS) {
-            final String lower = Default.ucd().getCase(UTF16.valueOf(ch), FULL, LOWER);
+            final String lower = Default.ucd().getCase(Character.toString(ch), FULL, LOWER);
             if (!lower.equals(result)) {
-                final String lower2 = Default.ucd().getCase(UTF16.valueOf(ch), FULL, LOWER);
+                final String lower2 = Default.ucd().getCase(Character.toString(ch), FULL, LOWER);
                 if (lower.equals(lower2)) {
                     comment = "[Diff " + Utility.hex(lower, " ") + "] ";
                 } else {
@@ -235,7 +235,7 @@ public class GenerateCaseFolding implements UCD_Types {
     }
 
     static int probeCh = 0x01f0;
-    static String shower = UTF16.valueOf(probeCh);
+    static String shower = Character.toString(probeCh);
     // Public only for unicode.text.UCD.UData.
     // We have two independent definitions of the case foldings.
     // Eventually we should get rid of one of them, see
@@ -343,8 +343,8 @@ public class GenerateCaseFolding implements UCD_Types {
             for (int i = 0; i < simpleAdditions.length; i += 2) {
                 int c1 = simpleAdditions[i];
                 int c2 = simpleAdditions[i + 1];
-                String s1 = UTF16.valueOf(c1);
-                String s2 = UTF16.valueOf(c2);
+                String s1 = Character.toString(c1);
+                String s2 = Character.toString(c2);
                 String t = repChar.get(s1);
                 if (t != null) {
                     throw new IllegalArgumentException(
@@ -461,7 +461,7 @@ public class GenerateCaseFolding implements UCD_Types {
         if (ch == '\u023F') {
             System.out.println("???");
         }
-        final String charStr = UTF16.valueOf(ch);
+        final String charStr = Character.toString(ch);
         final String lowerStr = lower(charStr, full, condition);
         final String titleStr = title(charStr, full, condition);
         final String upperStr = upper(charStr, full, condition);
@@ -677,7 +677,7 @@ public class GenerateCaseFolding implements UCD_Types {
             final String upper = Default.nfc().normalize(Default.ucd().getCase(ch, SIMPLE, UPPER));
             final String title = Default.nfc().normalize(Default.ucd().getCase(ch, SIMPLE, TITLE));
 
-            final String chstr = UTF16.valueOf(ch);
+            final String chstr = Character.toString(ch);
 
             final String decomp = specialNormalization(chstr);
             String flower = Default.nfc().normalize(Default.ucd().getCase(decomp, SIMPLE, LOWER));

@@ -9,7 +9,6 @@
  */
 package org.unicode.text.UCA;
 
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.BufferedReader;
 import java.io.File;
@@ -749,7 +748,7 @@ public class WriteCollationData {
             int cp;
             for (int j = 0; j < decomp.length(); j += Character.charCount(cp)) {
                 cp = decomp.codePointAt(j);
-                final String s = UTF16.valueOf(cp);
+                final String s = Character.toString(cp);
                 if (alreadyDone.contains(s)) {
                     continue;
                 }
@@ -1002,10 +1001,10 @@ public class WriteCollationData {
                             uca.implicit.codePointForPrimaryPair(
                                     primary, CEList.getPrimary(ces.at(1)));
 
-                    final CEList ces2 = uca.getCEList(UTF16.valueOf(resetCp), true);
+                    final CEList ces2 = uca.getCEList(Character.toString(resetCp), true);
                     relation = getStrengthDifference(ces, ces.length(), ces2, ces2.length());
 
-                    reset = quoteOperand(UTF16.valueOf(resetCp));
+                    reset = quoteOperand(Character.toString(resetCp));
                     if (!shortPrint) {
                         resetComment = Default.ucd().getCodeAndName(resetCp);
                     }
@@ -1606,7 +1605,7 @@ public class WriteCollationData {
                         int c =
                                 ducet.implicit.codePointForPrimaryPair(
                                         CEList.getPrimary(probe), CEList.getPrimary(nextCE));
-                        s = UTF16.valueOf(c);
+                        s = Character.toString(c);
                         ++i; // skip over trail primary
                         break;
                     }
@@ -1686,7 +1685,7 @@ public class WriteCollationData {
                     quoteOperandBuffer.append('\'');
                     inQuote = false;
                 }
-                quoteOperandBuffer.append(UTF16.valueOf(cp));
+                quoteOperandBuffer.append(Character.toString(cp));
             } else {
                 noQuotes = false;
                 if (cp == '\'') {
@@ -1697,14 +1696,14 @@ public class WriteCollationData {
                         inQuote = true;
                     }
                     if (!needsUnicodeForm.contains(cp)) {
-                        quoteOperandBuffer.append(UTF16.valueOf(cp)); // cp !=
+                        quoteOperandBuffer.append(Character.toString(cp)); // cp !=
                         // 0x2028
                     } else if (cp > 0xFFFF) {
                         quoteOperandBuffer.append("\\U").append(Utility.hex(cp, 8));
                     } else if (cp <= 0x20 || cp > 0x7E) {
                         quoteOperandBuffer.append("\\u").append(Utility.hex(cp));
                     } else {
-                        quoteOperandBuffer.append(UTF16.valueOf(cp));
+                        quoteOperandBuffer.append(Character.toString(cp));
                     }
                 }
             }

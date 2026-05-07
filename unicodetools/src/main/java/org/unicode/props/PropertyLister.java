@@ -4,7 +4,6 @@ import com.google.common.base.Objects;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import java.io.IOException;
@@ -76,16 +75,16 @@ public class PropertyLister {
                     lead = Utility.hex(entry.codepoint);
                     trail =
                             "("
-                                    + UTF16.valueOf(entry.codepoint)
+                                    + Character.toString(entry.codepoint)
                                     + ") "
                                     + iup.getName(entry.codepoint);
                 } else {
                     lead = Utility.hex(entry.codepoint) + ".." + Utility.hex(entry.codepointEnd);
                     trail =
                             "("
-                                    + UTF16.valueOf(entry.codepoint)
+                                    + Character.toString(entry.codepoint)
                                     + ".."
-                                    + UTF16.valueOf(entry.codepointEnd)
+                                    + Character.toString(entry.codepointEnd)
                                     + ") "
                                     + iup.getName(entry.codepoint)
                                     + ".."

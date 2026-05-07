@@ -18,7 +18,6 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.awt.Font;
@@ -504,7 +503,7 @@ public class CheckSystemFonts {
     }
 
     private static String showChar(Integer item, boolean html) {
-        return rtlProtect(UTF16.valueOf(item), html);
+        return rtlProtect(Character.toString(item), html);
     }
 
     static UnicodeSet RTL = new UnicodeSet("[[:bc=R:][:bc=AL:][:bc=AN:]]").freeze();
@@ -649,7 +648,7 @@ public class CheckSystemFonts {
                                 "Adding "
                                         + Utility.hex(it.codepoint)
                                         + "\t"
-                                        + UTF16.valueOf(it.codepoint)
+                                        + Character.toString(it.codepoint)
                                         + "\tto "
                                         + set.toPattern(false));
                     }

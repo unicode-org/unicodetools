@@ -222,7 +222,7 @@ public class GenerateData implements UCD_Types {
             if (Default.ucd().getCombiningClass(c2) != 0) {
                 continue;
             }
-            prilist.add(UTF16.valueOf(c1) + '\u0334' + UTF16.valueOf(c2));
+            prilist.add(Character.toString(c1) + '\u0334' + Character.toString(c2));
         }
         Utility.fixDot();
 

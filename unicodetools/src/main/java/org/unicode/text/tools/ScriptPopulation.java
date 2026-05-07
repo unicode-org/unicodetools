@@ -8,7 +8,6 @@ import com.ibm.icu.lang.UScript.ScriptUsage;
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import java.util.BitSet;
@@ -82,7 +81,7 @@ class ScriptPopulation {
 
             // quick approximate normalization
             int i = UCharacter.foldCase(cp, true);
-            String str = NFC.normalize(UTF16.valueOf(i));
+            String str = NFC.normalize(Character.toString(i));
             if (UTF16Plus.isSingleCodePoint(str)) {
                 i = str.codePointAt(0);
             }
@@ -500,7 +499,7 @@ class ScriptPopulation {
                 break;
             }
             Double cFreq = topItems.getCount(codePoint);
-            String str = UTF16.valueOf(codePoint);
+            String str = Character.toString(codePoint);
             if (codePoint == '=' || codePoint == '"' || codePoint == '\'' || codePoint == '+') {
                 str = '\'' + str;
             }

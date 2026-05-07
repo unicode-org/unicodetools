@@ -2,7 +2,6 @@ package org.unicode.text.UCD;
 
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.UTF16;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -80,7 +79,7 @@ public class ChineseFrequency {
                             + "\t"
                             + Integer.toHexString(cp.intValue()).toUpperCase()
                             + "\t"
-                            + UTF16.valueOf(cp.intValue()));
+                            + Character.toString(cp.intValue()));
         }
         // pw.println("Grand total: " + (long)grandTotal);
         pw.close();

@@ -891,7 +891,7 @@ public final class UnicodeIntMap
                 break;
             }
             for (int cp = entry.codepoint; cp <= entry.codepointEnd; ++cp) {
-                map.put(UTF16.valueOf(cp), entry.value);
+                map.put(Character.toString(cp), entry.value);
             }
         }
         map.putAll(stringMap);

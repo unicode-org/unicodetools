@@ -221,7 +221,7 @@ public class NormalizationDataIUP implements NormalizationData {
         // if (dt == UCD_Types.CANONICAL || dt > UCD_Types.CANONICAL && compat) {
         if (dt == Decomposition_Type_Values.Canonical || isCompat(dt) && compat) {
             final String s = decompMap.get(cp);
-            if (s.equals("<code point>") || s.equals(UTF16.valueOf(cp))) {
+            if (s.equals("<code point>") || s.equals(Character.toString(cp))) {
                 throw new IllegalArgumentException("decomp, but no map, " + Utility.hex(cp));
             }
             for (int i = 0; i < s.length(); i += Character.charCount(cp)) {

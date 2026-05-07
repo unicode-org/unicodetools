@@ -473,7 +473,7 @@ final class Validity {
 
             String sortKey =
                     uca.getSortKey(
-                            UTF16.valueOf(ch),
+                            Character.toString(ch),
                             UCA_Types.Alternate.NON_IGNORABLE,
                             decomposition,
                             AppendToCe.none);
@@ -1525,9 +1525,9 @@ final class Validity {
                                     + typeAndString.getKey()
                                     + "</td>"
                                     + "<td>"
-                                    + UTF16.valueOf(it.codepoint)
+                                    + Character.toString(it.codepoint)
                                     + "…"
-                                    + UTF16.valueOf(it.codepointEnd)
+                                    + Character.toString(it.codepointEnd)
                                     + "</td>"
                                     + "<td>"
                                     + Utility.hex(it.codepoint)
@@ -1547,7 +1547,7 @@ final class Validity {
                                     + typeAndString.getKey()
                                     + "</td>"
                                     + "<td>"
-                                    + UTF16.valueOf(it.codepoint)
+                                    + Character.toString(it.codepoint)
                                     + "</td>"
                                     + "<td>"
                                     + Utility.hex(it.codepoint)

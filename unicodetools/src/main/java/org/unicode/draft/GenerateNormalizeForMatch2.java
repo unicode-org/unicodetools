@@ -14,7 +14,6 @@ import com.ibm.icu.text.Normalizer.Mode;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.VersionInfo;
@@ -282,7 +281,7 @@ public class GenerateNormalizeForMatch2 {
                             + countStr
                             + " ; # "
                             + showChanged(
-                                    UTF16.valueOf(cp),
+                                    Character.toString(cp),
                                     oldMapped,
                                     newMapped,
                                     Form.codeStringAndName);
@@ -426,7 +425,7 @@ public class GenerateNormalizeForMatch2 {
      * @return
      */
     private static String getRemapped(int codepoint, String special) {
-        String other = UTF16.valueOf(codepoint);
+        String other = Character.toString(codepoint);
         if (codepoint == DEBUG_CODE_POINT) {
             System.out.println("?debug?");
         }
@@ -803,7 +802,7 @@ public class GenerateNormalizeForMatch2 {
         StringBuilder result = new StringBuilder();
         String[] pieces = spaceDelimitedHex.split("\\s+");
         for (String piece : pieces) {
-            result.append(UTF16.valueOf(Integer.parseInt(piece, 16)));
+            result.append(Character.toString(Integer.parseInt(piece, 16)));
         }
         return result.toString();
     }

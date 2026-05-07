@@ -10,7 +10,6 @@
 package org.unicode.text.UCD;
 
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.PrintWriter;
 import java.util.BitSet;
@@ -275,7 +274,7 @@ public final class DerivedProperty implements UCD_Types {
             cacheStr = "";
 
             if (ucdData.getDecompositionType(cp) != NONE) {
-                final String cps = UTF16.valueOf(cp);
+                final String cps = Character.toString(cp);
                 String comp = cps;
                 if (nfComp != null) {
                     comp = nfComp.normalize(comp);
@@ -449,7 +448,7 @@ public final class DerivedProperty implements UCD_Types {
                 // else it is nothing
                 int status2 = 0;
                 tempBuf.setLength(0);
-                nfkd.normalize(UTF16.valueOf(cp), tempBuf);
+                nfkd.normalize(Character.toString(cp), tempBuf);
                 int cp2;
                 for (int i = 0; i < tempBuf.length(); i += Character.charCount(cp2)) {
                     cp2 = tempBuf.codePointAt(i);
@@ -874,7 +873,7 @@ public final class DerivedProperty implements UCD_Types {
                                         continue;
                                     }
 
-                                    final String cps = UTF16.valueOf(c);
+                                    final String cps = Character.toString(c);
                                     addCase(cps, FULL, LOWER);
                                     addCase(cps, FULL, UPPER);
                                     addCase(cps, FULL, TITLE);

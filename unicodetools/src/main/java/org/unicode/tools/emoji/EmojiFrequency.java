@@ -227,7 +227,7 @@ public class EmojiFrequency {
                 }
                 String subcategory = order.getCategory(dataS);
                 if (subcategory == null) {
-                    subcategory = order.getCategory(UTF16.valueOf(s.codePointAt(0)));
+                    subcategory = order.getCategory(Character.toString(s.codePointAt(0)));
                     if (subcategory == null) {
                         continue;
                     }
@@ -308,7 +308,7 @@ public class EmojiFrequency {
     static int matches(UnicodeSet unicodeSet, String input, int offset) {
         SortedSet<String> items = (SortedSet<String>) unicodeSet.strings();
         int cp = input.codePointAt(offset);
-        SortedSet<String> subset = items.subSet(UTF16.valueOf(cp), UTF16.valueOf(cp + 1));
+        SortedSet<String> subset = items.subSet(Character.toString(cp), Character.toString(cp + 1));
         int bestLength = -1;
         int inputLength = input.length();
         int allowedLength = inputLength - offset;
@@ -788,7 +788,7 @@ public class EmojiFrequency {
                         boolean found = m.find(pos);
                         if (!found) break;
                         int cp = Integer.parseInt(m.group(1), 16);
-                        String str = UTF16.valueOf(cp);
+                        String str = Character.toString(cp);
                         long count = Long.parseLong(m.group(2));
                         if (factor == 0) {
                             factor = 1_000_000_000.0 / count;

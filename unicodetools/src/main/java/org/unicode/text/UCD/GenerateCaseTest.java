@@ -9,7 +9,6 @@
  */
 package org.unicode.text.UCD;
 
-import com.ibm.icu.text.UTF16;
 import java.io.IOException;
 import java.io.PrintWriter;
 import org.unicode.text.utility.Utility;
@@ -49,7 +48,7 @@ public abstract class GenerateCaseTest implements UCD_Types {
                 continue;
             }
 
-            String s = UTF16.valueOf(cp);
+            String s = Character.toString(cp);
             write(out, s, true);
 
             // if (cp == '\u0345') continue; // don't add combining for this special case

@@ -11,7 +11,6 @@ package org.unicode.text.UCD;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedInputStream;
@@ -214,7 +213,7 @@ public final class UCD implements UCD_Types {
         return getCode(codePoint)
                 + (charTrans == null
                         ? " "
-                        : " ( " + charTrans.transliterate(UTF16.valueOf(codePoint)) + " ) ")
+                        : " ( " + charTrans.transliterate(Character.toString(codePoint)) + " ) ")
                 + getName(codePoint, type);
     }
 

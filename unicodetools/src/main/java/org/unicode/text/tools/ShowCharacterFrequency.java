@@ -2,7 +2,6 @@ package org.unicode.text.tools;
 
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.Locale;
 import org.unicode.cldr.util.Counter;
@@ -60,7 +59,7 @@ public class ShowCharacterFrequency {
             }
             double count = s.get0() * factor;
             System.out.println(
-                    UTF16.valueOf(cp)
+                    Character.toString(cp)
                             + "\t"
                             + count
                             + "%"
