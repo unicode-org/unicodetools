@@ -1,12 +1,9 @@
 package org.unicode.tools.emoji;
 
 import com.google.common.collect.ImmutableSet;
-import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
-import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -15,16 +12,10 @@ import java.util.Map.Entry;
 import java.util.Set;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Tabber;
-import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues;
-import org.unicode.props.UcdPropertyValues.Age_Values;
-import org.unicode.props.VersionToAge;
 import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiData.VariantFactory;
 import org.unicode.tools.emoji.EmojiData.VariantStatus;
-import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 
 public class GenerateEmojiTestFile {
 
