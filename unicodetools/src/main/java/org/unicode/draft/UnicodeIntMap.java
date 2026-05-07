@@ -672,7 +672,7 @@ public final class UnicodeIntMap
             if (mResult != UNASSIGNED) {
                 result.append(mResult);
             } else {
-                UTF16.append(result, cp);
+                result.appendCodePoint(cp);
             }
         }
         return result.toString();

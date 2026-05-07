@@ -334,7 +334,7 @@ public class NormalizerSample implements UCD_Types {
                     getRecursiveDecomposition(cp, buffer, compatibility);
                 }
             } else {
-                UTF16.append(buffer, cp);
+                buffer.appendCodePoint(cp);
             }
         }
 

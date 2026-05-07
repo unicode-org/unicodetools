@@ -548,7 +548,7 @@ public class GenerateData implements UCD_Types {
             if (Default.ucd().getCategory(cp) == Mn) {
                 commaResult.append('\u25CC');
             }
-            UTF16.append(commaResult, cp);
+            commaResult.appendCodePoint(cp);
         }
         return commaResult.toString();
     }

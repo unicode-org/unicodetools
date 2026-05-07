@@ -11,7 +11,6 @@ package com.ibm.icu.dev.util;
 // This file was migrated from the ICU4J repo,
 // path icu4j/main/framework/src/test/java/com/ibm/icu/dev/util/CollectionUtilities.java
 
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.Collection;
 import java.util.Comparator;
@@ -135,7 +134,7 @@ public final class CollectionUtilities {
         int cp;
         for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
             cp = source.codePointAt(i);
-            if (!removals.contains(cp)) UTF16.append(result, cp);
+            if (!removals.contains(cp)) result.appendCodePoint(cp);
         }
         return result.toString();
     }

@@ -1291,7 +1291,7 @@ public class UnicodeUtilities {
                     }
                     break;
             }
-            UTF16.append(out, cp);
+            out.appendCodePoint(cp);
             oldCp = cp;
         }
         return out.toString();

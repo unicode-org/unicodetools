@@ -9,7 +9,6 @@
 package org.unicode.props;
 
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,7 +108,7 @@ public class RandomStringGenerator {
         for (int i = 0; i < len; ++i) {
             UnicodeSet us = sets[random.nextInt(sets.length)];
             int cp = us.charAt(random.nextInt(us.size()));
-            UTF16.append(result, cp);
+            result.appendCodePoint(cp);
         }
         return result.toString();
     }

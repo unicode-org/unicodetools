@@ -8,7 +8,6 @@ package org.unicode.parse;
 
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.SymbolTable;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
 import java.text.ParsePosition;
@@ -241,7 +240,7 @@ public class Tokenizer {
                         } else if (cp == BSLASH) {
                             result = Result.INCOMPLETE_BACKSLASH;
                         } else {
-                            UTF16.append(buffer, cp);
+                            buffer.appendCodePoint(cp);
                         }
                         break;
                     case INCOMPLETE_BACKSLASH:
@@ -258,7 +257,7 @@ public class Tokenizer {
                             default:
                                 break;
                         }
-                        UTF16.append(buffer, cp);
+                        buffer.appendCodePoint(cp);
                         result = Result.UNTERMINATED_QUOTE;
                         break;
                     default:

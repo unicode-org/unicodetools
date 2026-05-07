@@ -46,7 +46,7 @@ public class Idna2003 extends Idna {
     ////      return UnicodeUtilities.OUTPUT;
     ////    }
     //    inbuffer.setLength(0);
-    //    UTF16.append(Idna2003.inbuffer, cp);
+    //    Idna2003.inbuffer.appendCodePoint(cp);
     //    try {
     //      convertWithHack();
     //      // DEFAULT
@@ -88,7 +88,7 @@ public class Idna2003 extends Idna {
     //  //      return "-";
     //  //    }
     //  //    UnicodeUtilities.inbuffer.setLength(0);
-    //  //    UTF16.append(UnicodeUtilities.inbuffer, cp);
+    //  //    UnicodeUtilities.inbuffer.appendCodePoint(cp);
     //  //    try {
     //  //      UnicodeUtilities.intermediate = IDNA.convertToASCII(UnicodeUtilities.inbuffer,
     // IDNA.USE_STD3_RULES); // USE_STD3_RULES,

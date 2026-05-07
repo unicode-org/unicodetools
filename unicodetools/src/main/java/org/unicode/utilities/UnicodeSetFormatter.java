@@ -304,7 +304,7 @@ public class UnicodeSetFormatter {
                 }
                 break;
         }
-        UTF16.append(target, codePoint);
+        target.appendCodePoint(codePoint);
         return this;
     }
 

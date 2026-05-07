@@ -6,7 +6,6 @@
  */
 package org.unicode.unused;
 
-import com.ibm.icu.text.UTF16;
 import java.io.DataInput;
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -136,7 +135,7 @@ public final class DataInputCompressor implements ObjectInput {
         stringBuffer.setLength(0);
         for (int i = 0; i < len; ++i) {
             int cp = (int) readULong();
-            UTF16.append(stringBuffer, cp);
+            stringBuffer.appendCodePoint(cp);
         }
         return stringBuffer.toString();
     }
