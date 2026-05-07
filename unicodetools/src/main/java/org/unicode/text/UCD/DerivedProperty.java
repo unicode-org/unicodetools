@@ -953,8 +953,8 @@ public final class DerivedProperty implements UCD_Types {
                         }
                         final String decomp = nfd.normalize(cp);
                         boolean ok = false;
-                        for (int i = decomp.length() - 1; i >= 0; --i) {
-                            final int ch = UTF16.charAt(decomp, i);
+                        for (int i = decomp.length(); i > 0; ) {
+                            final int ch = decomp.codePointBefore(i);
                             final int cc = ucdData.getCombiningClass(ch);
                             if (cc == 230) {
                                 return false;
@@ -965,6 +965,7 @@ public final class DerivedProperty implements UCD_Types {
                                 }
                                 ok = true;
                             }
+                            i -= Character.charCount(ch);
                         }
                         return ok;
                     }

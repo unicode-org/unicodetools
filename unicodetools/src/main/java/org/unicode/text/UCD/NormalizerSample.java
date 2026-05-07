@@ -159,7 +159,7 @@ public class NormalizerSample implements UCD_Types {
 
                     int ch2;
                     for (; k > 0; k -= Character.charCount(ch2)) {
-                        ch2 = UTF16.charAt(target, k - 1);
+                        ch2 = target.codePointBefore(k);
                         if (data.getCanonicalClass(ch2) <= chClass) {
                             break;
                         }

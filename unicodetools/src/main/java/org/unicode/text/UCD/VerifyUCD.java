@@ -1149,7 +1149,7 @@ public class VerifyUCD implements UCD_Types {
             }
         } else {
             for (int i = s.length(); i > 0; i -= Character.charCount(cp)) {
-                cp = UTF16.charAt(s, i - 1); // will go 2 before if necessary
+                cp = s.codePointBefore(i);
                 final int cc = Default.ucd().getCombiningClass(cp);
                 if (cc == 0) {
                     return s.substring(i);

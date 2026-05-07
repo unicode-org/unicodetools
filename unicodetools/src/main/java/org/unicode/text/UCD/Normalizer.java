@@ -334,12 +334,10 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
                 final int chClass = data.getCanonicalClass(ch);
                 int k = target.length(); // insertion point
                 if (chClass != 0 && reorder) {
-
                     // bubble-sort combining marks as necessary
-
                     int ch2;
                     for (; k > 0; k -= Character.charCount(ch2)) {
-                        ch2 = UTF16.charAt(target, k - 1);
+                        ch2 = target.codePointBefore(k);
                         if (data.getCanonicalClass(ch2) <= chClass) {
                             break;
                         }
