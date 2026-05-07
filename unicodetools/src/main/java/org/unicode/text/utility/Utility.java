@@ -318,7 +318,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             if (i != 0) {
                 result.append(separator);
             }
-            ch = UTF16.charAt(s, i);
+            ch = s.codePointAt(i);
             result.append(hex(ch, places));
         }
         return result.toString();
@@ -420,7 +420,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
 
     public static int codePointFromHex(String p) {
         final String temp = Utility.fromHex(p);
-        if (UTF16.countCodePoint(temp) != 1) {
+        if (!UTF16Plus.isSingleCodePoint(temp)) {
             throw new ChainException("String is not single (UTF32) character: " + p, null);
         }
         return temp.codePointAt(0);
@@ -785,7 +785,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         }
 
         // fix surrogates, since XML can't handle
-        if (UTF32.isSurrogate(c)) {
+        if (UTF16.isSurrogate(c)) {
             return HTML ? '#' + hex(c, 4) : "<codepoint hex=\"" + hex(c, 1) + "\"/>";
         }
 
@@ -808,7 +808,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         }
         final StringBuffer result = new StringBuffer();
         for (int i = 0; i < source.length(); ++i) {
-            final int c = UTF16.charAt(source, i);
+            final int c = source.codePointAt(i);
             if (Character.isSupplementaryCodePoint(c)) {
                 ++i;
             }
@@ -1889,7 +1889,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                                         + "\t# "
                                         + (useHTML ? "(" + getUnicodeImage(cp) + ") " : "")
                                         + (withChar && (cp >= 0x20)
-                                                ? "(" + UTF16.valueOf(cp) + ") "
+                                                ? "(" + Character.toString(cp) + ") "
                                                 : "")
                                         + (names != null ? names.getValue(cp) + " " : "")
                                         + ucd.getName(cp)
@@ -1907,9 +1907,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                                     + "\t# "
                                     + (withChar && (start >= 0x20)
                                             ? " ("
-                                                    + UTF16.valueOf(start)
+                                                    + Character.toString(start)
                                                     + ((start != end)
-                                                            ? (".." + UTF16.valueOf(end))
+                                                            ? (".." + Character.toString(end))
                                                             : "")
                                                     + ") "
                                             : "")

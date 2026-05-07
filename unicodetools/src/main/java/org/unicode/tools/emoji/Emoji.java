@@ -9,7 +9,6 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.LocaleDisplayNames;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
@@ -36,6 +35,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 /**
@@ -235,7 +235,7 @@ public class Emoji {
     public static final char EMOJI_VARIANT = '\uFE0F';
     public static final char TEXT_VARIANT = '\uFE0E';
 
-    public static final String RIGHTWARDS_ARROW = UTF16.valueOf(0x27A1) + EMOJI_VARIANT;
+    public static final String RIGHTWARDS_ARROW = "\u27A1" + EMOJI_VARIANT;
     public static final String ZWJ_RIGHTWARDS_ARROW = JOINER_STR + RIGHTWARDS_ARROW;
 
     // HACK
@@ -265,8 +265,8 @@ public class Emoji {
     public static final String TRANSGENDER = "\u26A7";
     public static final char TRANSGENDER_CP = '\u26A7';
 
-    public static final String ZWJ_HANDSHAKE_ZWJ = JOINER_STR + UTF16.valueOf(0x1F91D) + JOINER_STR;
-    public static final String ZWJ_HEART_ZWJ = JOINER_STR + UTF16.valueOf(0x2764) + JOINER_STR;
+    public static final String ZWJ_HANDSHAKE_ZWJ = JOINER_STR + cpToString(0x1F91D) + JOINER_STR;
+    public static final String ZWJ_HEART_ZWJ = JOINER_STR + "\u2764" + JOINER_STR;
 
     static final UnicodeMap<String> TO_NEUTRAL =
             new UnicodeMap<String>()
@@ -289,43 +289,46 @@ public class Emoji {
 
     static final UnicodeMap<String> MALE_TO_OTHER =
             new UnicodeMap<String>()
-                    .put(UTF16.valueOf(0x2642), UTF16.valueOf(0x2640)) // MALE SIGN→FEMALE SIGN
-                    .put(UTF16.valueOf(0x1F466), UTF16.valueOf(0x1F467)) // boy→girl
-                    .put(UTF16.valueOf(0x1F468), UTF16.valueOf(0x1F469)) // man→woman
-                    .put(UTF16.valueOf(0x1F474), UTF16.valueOf(0x1F475)) // old man→old woman
-                    .put(UTF16.valueOf(0x1F385), UTF16.valueOf(0x1F936)) // Santa Claus→Mrs. Claus
-                    .put(UTF16.valueOf(0x1F934), UTF16.valueOf(0x1F478)) // prince→princess
-                    .put(
-                            UTF16.valueOf(0x1F57A),
-                            UTF16.valueOf(0x1F483)) // man dancing→woman dancing
-                    //            .put(UTF16.valueOf(0x1F46C), UTF16.valueOf(0x1F46B)) // two men
+                    .put("\u2642", "\u2640)") // MALE SIGN→FEMALE SIGN
+                    .put(cpToString(0x1F466), cpToString(0x1F467)) // boy→girl
+                    .put(cpToString(0x1F468), cpToString(0x1F469)) // man→woman
+                    .put(cpToString(0x1F474), cpToString(0x1F475)) // old man→old woman
+                    .put(cpToString(0x1F385), cpToString(0x1F936)) // Santa Claus→Mrs. Claus
+                    .put(cpToString(0x1F934), cpToString(0x1F478)) // prince→princess
+                    .put(cpToString(0x1F57A), cpToString(0x1F483)) // man dancing→woman dancing
+                    //            .put(cpToString(0x1F46C), cpToString(0x1F46B)) //
+                    // two men
                     // holding hands→man and woman holding hands
-                    //            .put(UTF16.valueOf(0x1F46C), UTF16.valueOf(0x1F46D)) // two men
+                    //            .put(cpToString(0x1F46C), cpToString(0x1F46D)) //
+                    // two men
                     // holding hands→two women holding hands
-                    //            .put(UTF16.valueOf(0x1F935), "") // man in tuxedo→<NONE>
-                    //            .put(UTF16.valueOf(0x1F574), "") // man in suit levitating→<NONE>
-                    //            .put(UTF16.valueOf(0x1F472), "") // man with Chinese cap→<NONE>
-                    //            .put(UTF16.valueOf(0x1F9D4), "") // BEARDED PERSON→<NONE>
+                    //            .put(cpToString(0x1F935), "") // man in tuxedo→<NONE>
+                    //            .put(cpToString(0x1F574), "") // man in suit
+                    // levitating→<NONE>
+                    //            .put(cpToString(0x1F472), "") // man with Chinese
+                    // cap→<NONE>
+                    //            .put(cpToString(0x1F9D4), "") // BEARDED PERSON→<NONE>
                     .freeze();
     static final UnicodeMap<String> FEMALE_TO_OTHER =
             new UnicodeMap<String>()
-                    .put(UTF16.valueOf(0x2640), UTF16.valueOf(0x2642)) // FEMALE SIGN→MALE SIGN
-                    .put(UTF16.valueOf(0x1F467), UTF16.valueOf(0x1F466)) // girl→boy
-                    .put(UTF16.valueOf(0x1F469), UTF16.valueOf(0x1F468)) // woman→man
-                    .put(UTF16.valueOf(0x1F475), UTF16.valueOf(0x1F474)) // old woman→old man
-                    .put(UTF16.valueOf(0x1F936), UTF16.valueOf(0x1F385)) // Mrs. Claus→Santa Claus
-                    .put(UTF16.valueOf(0x1F478), UTF16.valueOf(0x1F934)) // princess→prince
-                    .put(
-                            UTF16.valueOf(0x1F483),
-                            UTF16.valueOf(0x1F57A)) // woman dancing→man dancing
-                    //            .put(UTF16.valueOf(0x1F46D), UTF16.valueOf(0x1F46C)) // two women
+                    .put("\u2640", "\u2642") // FEMALE SIGN→MALE SIGN
+                    .put(cpToString(0x1F467), cpToString(0x1F466)) // girl→boy
+                    .put(cpToString(0x1F469), cpToString(0x1F468)) // woman→man
+                    .put(cpToString(0x1F475), cpToString(0x1F474)) // old woman→old man
+                    .put(cpToString(0x1F936), cpToString(0x1F385)) // Mrs. Claus→Santa Claus
+                    .put(cpToString(0x1F478), cpToString(0x1F934)) // princess→prince
+                    .put(cpToString(0x1F483), cpToString(0x1F57A)) // woman dancing→man dancing
+                    //            .put(cpToString(0x1F46D), cpToString(0x1F46C)) //
+                    // two women
                     // holding hands→two men holding hands
-                    //            .put(UTF16.valueOf(0x1F46D), UTF16.valueOf(0x1F46B)) // two women
+                    //            .put(cpToString(0x1F46D), cpToString(0x1F46B)) //
+                    // two women
                     // holding hands→man and woman holding hands
-                    //            .put(UTF16.valueOf(0x1F470), "") // bride with veil→<NONE>
-                    //            .put(UTF16.valueOf(0x1F930), "") // pregnant woman→<NONE>
-                    //            .put(UTF16.valueOf(0x1F931), "") // breast-feeding→<NONE>
-                    //            .put(UTF16.valueOf(0x1F9D5), "") // woman with headscarf→<NONE>
+                    //            .put(cpToString(0x1F470), "") // bride with veil→<NONE>
+                    //            .put(cpToString(0x1F930), "") // pregnant woman→<NONE>
+                    //            .put(cpToString(0x1F931), "") // breast-feeding→<NONE>
+                    //            .put(cpToString(0x1F9D5), "") // woman with
+                    // headscarf→<NONE>
                     .freeze();
     static final UnicodeSet NEUTRAL =
             new UnicodeSet(
@@ -487,7 +490,7 @@ public class Emoji {
     public static final int TAG_BASE = 0xE0000;
     public static final int TAG_TERM_CHAR = 0xE007F;
     public static final UnicodeSet TAGS = new UnicodeSet(TAG_BASE, TAG_TERM_CHAR).freeze();
-    public static final String TAG_TERM = UTF16.valueOf(TAG_TERM_CHAR);
+    public static final String TAG_TERM = cpToString(TAG_TERM_CHAR);
 
     public static final char KEYCAP_MARK = '\u20E3';
     public static final String KEYCAP_MARK_STRING = String.valueOf(KEYCAP_MARK);
@@ -543,6 +546,11 @@ public class Emoji {
 
     // public static final UnicodeSet SKIP_ANDROID = new UnicodeSet("[♨ ⚠ ▶ ◀ ✉ ✏ ✒ ✂ ⬆ ↗ ➡ ↘ ⬇ ↙ ⬅
     // ↖ ↕ ↔ ↩ ↪ ⤴ ⤵ ♻ ☑ ✔ ✖ 〽 ✳ ✴ ❇ ▪ ▫ ◻ ◼ ‼ ⁉ 〰 © ® 🅰 🅱 ℹ Ⓜ 🅾 🅿 ™ 🈂 🈷 ㊗ ㊙]").freeze();
+
+    /** Abbreviated form of Character.toString(c). */
+    private static final String cpToString(int c) {
+        return Character.toString(c);
+    }
 
     public static final VersionInfo getUnicodeVersionForEmojiVersion(VersionInfo emojiVersion) {
         VersionInfo unicodeVersion = EMOJI_TO_UNICODE_VERSION.get(emojiVersion);
@@ -629,11 +637,11 @@ public class Emoji {
     public static final int GIRL = 0x1F467;
     public static final int MAN = 0x1F468;
     public static final int WOMAN = 0x1F469;
-    public static final String ADULT = UTF16.valueOf(0x1F9D1);
-    public static final String CHILD = UTF16.valueOf(0x1F9D2);
-    public static final String MAN_STR = UTF16.valueOf(MAN);
-    public static final String WOMAN_STR = UTF16.valueOf(WOMAN);
-    public static final String NEUTRAL_FAMILY = UTF16.valueOf(0x1F46A);
+    public static final String ADULT = cpToString(0x1F9D1);
+    public static final String CHILD = cpToString(0x1F9D2);
+    public static final String MAN_STR = cpToString(MAN);
+    public static final String WOMAN_STR = cpToString(WOMAN);
+    public static final String NEUTRAL_FAMILY = cpToString(0x1F46A);
     public static final UnicodeSet NEUTRAL_FAMILY_ZWJ_SEQUENCES =
             new UnicodeSet()
                     .add(ADULT + JOINER + CHILD)
@@ -834,7 +842,7 @@ public class Emoji {
             if (overrideSource != null) {
                 type = overrideSource;
             } else if (CountEmoji.ZwjType.getType(chars) != CountEmoji.ZwjType.family) {
-                overrideSource = BEST_OVERRIDE.get(UTF16.valueOf(chars.codePointAt(0)));
+                overrideSource = BEST_OVERRIDE.get(UTF16Plus.codePointSubstringAt(chars, 0));
                 if (overrideSource != null) {
                     type = overrideSource;
                 }
@@ -1025,7 +1033,7 @@ public class Emoji {
             if (b.length() != 0) {
                 b.append(' ');
             }
-            b.append("U+" + Utility.hex(cp) + " " + UTF16.valueOf(cp));
+            b.append("U+" + Utility.hex(cp) + " " + cpToString(cp));
         }
         return b.toString();
     }

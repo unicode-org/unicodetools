@@ -1343,13 +1343,14 @@ public class GenerateEmoji {
     private static void showNames(PrintWriter out, Set<String> minimal, boolean abbreviate) {
         UnicodeSet us = new UnicodeSet().addAll(minimal);
         for (EntryRange r : us.ranges()) {
-            out.print(getCodeAndName2(UTF16.valueOf(r.codepoint), false));
+            out.print(getCodeAndName2(Character.toString(r.codepoint), false));
             if (r.codepoint != r.codepointEnd) {
                 if (abbreviate) {
-                    out.print("<br>\n…" + getCodeAndName2(UTF16.valueOf(r.codepointEnd), false));
+                    out.print(
+                            "<br>\n…" + getCodeAndName2(Character.toString(r.codepointEnd), false));
                 } else {
                     for (int cp = r.codepoint + 1; cp <= r.codepointEnd; ++cp) {
-                        out.print("<br>\n" + getCodeAndName2(UTF16.valueOf(cp), false));
+                        out.print("<br>\n" + getCodeAndName2(Character.toString(cp), false));
                     }
                 }
             }
@@ -2151,7 +2152,7 @@ public class GenerateEmoji {
             // continue;
             // }
             // //if (Emoji.EMOJI_CHARS.contains(item)) {
-            // String s2 = UTF16.valueOf(item);
+            // String s2 = Character.toString(item);
             // out.println(getBestImage(s2, true, ""));
             // // if (name.length() != 0) {
             // // name.append();
@@ -3607,7 +3608,7 @@ public class GenerateEmoji {
     // Set<String> result = new LinkedHashSet<>();
     // for (int cp : CharSequences.codePoints(string)) {
     // if (cp != 0x200D && cp != 0xFE0F) {
-    // result.addAll(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(UTF16.valueOf(cp)));
+    // result.addAll(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(Character.toString(cp)));
     // }
     // }
     // return result;
@@ -4728,7 +4729,7 @@ public class GenerateEmoji {
             }
             String name;
             if (Emoji.TAG_BASE + ' ' <= cp && cp < Emoji.TAG_TERM_CHAR) {
-                name = "tag_" + UTF16.valueOf(cp - Emoji.TAG_BASE);
+                name = "tag_" + Character.toString(cp - Emoji.TAG_BASE);
             } else if (cp == Emoji.TAG_TERM_CHAR) {
                 name = "tag_term";
             } else {

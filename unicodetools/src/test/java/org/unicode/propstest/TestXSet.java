@@ -3,7 +3,6 @@ package org.unicode.propstest;
 import com.google.common.collect.ImmutableBiMap;
 import com.google.common.collect.ImmutableBiMap.Builder;
 import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.Map.Entry;
 import org.junit.jupiter.api.Test;
@@ -149,7 +148,7 @@ public class TestXSet extends TestFmwkMinusMinus {
         XSet<String> result = new XSet<>();
         for (int ch : CharSequences.codePoints(a1)) {
             if (ch != '[' && ch != ']') {
-                result.add(UTF16.valueOf(ch));
+                result.add(Character.toString(ch));
             }
         }
         return result;

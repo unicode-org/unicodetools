@@ -1,7 +1,6 @@
 package org.unicode.tools.emoji;
 
 import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
 import com.ibm.icu.text.UnicodeSetSpanner;
@@ -15,7 +14,7 @@ public class UnicodeSets {
                 spanner.replaceFrom(
                         input, "", CountMethod.MIN_ELEMENTS, SpanCondition.NOT_CONTAINED);
         for (int cp : CharSequences.codePoints(extractedString)) {
-            extracted.add(UTF16.valueOf(cp));
+            extracted.add(Character.toString(cp));
         }
         return spanner.deleteFrom(input);
     }

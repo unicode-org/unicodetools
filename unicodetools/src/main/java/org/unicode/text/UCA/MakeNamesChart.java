@@ -1,7 +1,6 @@
 package org.unicode.text.UCA;
 
 import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
@@ -28,6 +27,7 @@ import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 import org.unicode.text.utility.UtilityBase;
 
@@ -502,7 +502,7 @@ public class MakeNamesChart {
         if (lastDecompType != UCD_Types.NONE) {
             System.out.println("Alert: missing decomp for " + Utility.hex(lastCodePoint));
         }
-        final String str = UTF16.valueOf(lastCodePoint);
+        final String str = Character.toString(lastCodePoint);
         final String upper =
                 showForm(
                         out,
@@ -582,7 +582,7 @@ public class MakeNamesChart {
                             + symbol
                             + "</td><td>"
                             + showTextConvertingHex(Utility.hex(transformed, 4, " + "), true)
-                            + (UTF16.countCodePoint(transformed) != 1
+                            + (!UTF16Plus.isSingleCodePoint(transformed)
                                     ? ""
                                     : " "
                                             + Default.ucd()
@@ -753,7 +753,7 @@ public class MakeNamesChart {
         if (type == UCD_Types.Cn || type == UCD_Types.Co || type == UCD_Types.Cs) {
             return "\u2588";
         }
-        String result = TransliteratorUtilities.toHTML.transliterate(UTF16.valueOf(cp));
+        String result = TransliteratorUtilities.toHTML.transliterate(Character.toString(cp));
         if (type == UCD_Types.Me || type == UCD_Types.Mn) {
             result = "\u25CC" + result;
         } else if (addRlmIfNeeded && rtl.contains(cp)) {
@@ -778,13 +778,13 @@ public class MakeNamesChart {
         final String lastDecomp = Default.ucd().getDecompositionMapping(lastCodePoint);
         final String hexed = Utility.hex(lastDecomp, 4, " ");
         String hexed2 = hexed;
-        if (UTF16.countCodePoint(lastDecomp) == 1) {
+        if (UTF16Plus.isSingleCodePoint(lastDecomp)) {
             hexed2 += " " + Default.ucd().getName(lastDecomp).toLowerCase();
         }
         if (hexed.equalsIgnoreCase(body)) {
-            hasNoNameCan.put(lastDecomp, UTF16.valueOf(codePoint));
+            hasNoNameCan.put(lastDecomp, Character.toString(codePoint));
         } else if (hexed2.equalsIgnoreCase(body)) {
-            hasNameCan.put(lastDecomp, UTF16.valueOf(codePoint));
+            hasNameCan.put(lastDecomp, Character.toString(codePoint));
         } else {
             System.out.println(
                     "Mismatching Decomposition: " + body + " in " + Utility.hex(codePoint));
@@ -807,13 +807,13 @@ public class MakeNamesChart {
             hexed = "<" + lastDecompID + "> " + hexed;
         }
         String hexed2 = hexed;
-        if (UTF16.countCodePoint(lastDecomp) == 1) {
+        if (UTF16Plus.isSingleCodePoint(lastDecomp)) {
             hexed2 += " " + Default.ucd().getName(lastDecomp).toLowerCase();
         }
         if (hexed.equalsIgnoreCase(body)) {
-            hasNoNameComp.put(lastDecomp, UTF16.valueOf(codePoint));
+            hasNoNameComp.put(lastDecomp, Character.toString(codePoint));
         } else if (hexed2.equalsIgnoreCase(body)) {
-            hasNameComp.put(lastDecomp, UTF16.valueOf(codePoint));
+            hasNameComp.put(lastDecomp, Character.toString(codePoint));
         } else {
             System.out.println(
                     "Mismatching Decomposition: " + body + " in " + Utility.hex(codePoint));

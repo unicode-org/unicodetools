@@ -118,7 +118,7 @@ public class CharacterFrequency {
     //            //          int cp;
     //            //          for (int i = 0; i < sequence.length(); i+=Character.charCount(cp)) {
     //            //            cp = sequence.codePointAt(i);
-    //            //            String cpStr = UTF16.valueOf(cp);
+    //            //            String cpStr = Character.toString(cp);
     //            //            long charCount = charCounter.get(cpStr);
     //            //            if (sequenceCount > charCount) { // debug
     //            //              System.out.println(language + "\tsequence:\t" + sequenceCount +
@@ -169,7 +169,7 @@ public class CharacterFrequency {
     //        int cp;
     //        for (int i = 0; i < nfcSequence.length(); i+=Character.charCount(cp)) {
     //            cp = nfcSequence.codePointAt(i);
-    //            combinedCounter.add(UTF16.valueOf(cp), countValue);
+    //            combinedCounter.add(Character.toString(cp), countValue);
     //        }
     //    }
 

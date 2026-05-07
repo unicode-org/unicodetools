@@ -10,7 +10,6 @@
 package org.unicode.text.UCD;
 
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.PrintWriter;
 import java.util.BitSet;
@@ -20,6 +19,7 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 public final class DerivedProperty implements UCD_Types {
@@ -124,7 +124,7 @@ public final class DerivedProperty implements UCD_Types {
                 return false;
             }
             final String norm = nfx.normalize(cp);
-            if (UTF16.countCodePoint(norm) != 1) {
+            if (!UTF16Plus.isSingleCodePoint(norm)) {
                 return true;
             }
             return false;
@@ -151,7 +151,7 @@ public final class DerivedProperty implements UCD_Types {
                 return false;
             }
             final String norm = nfx.normalize(cp);
-            final int first = UTF16.charAt(norm, 0);
+            final int first = norm.codePointAt(0);
             if (ucdData.getCombiningClass(first) != 0) {
                 return true;
             }
@@ -182,7 +182,7 @@ public final class DerivedProperty implements UCD_Types {
         public boolean hasValue(int cp) {
             if (ucdData.getCombiningClass(cp) != 0) return false;
             String norm = nfx.normalize(cp);
-            int first = UTF16.charAt(norm, 0);
+            int first = norm.codePointAt(0);
             if (ucdData.getCombiningClass(first) != 0) return true;
             if (nfx.isComposition()
                 && dprops[NFC_TrailingZero].hasValue(first)) return true; // 1,3 == composing
@@ -274,7 +274,7 @@ public final class DerivedProperty implements UCD_Types {
             cacheStr = "";
 
             if (ucdData.getDecompositionType(cp) != NONE) {
-                final String cps = UTF16.valueOf(cp);
+                final String cps = Character.toString(cp);
                 String comp = cps;
                 if (nfComp != null) {
                     comp = nfComp.normalize(comp);
@@ -448,9 +448,10 @@ public final class DerivedProperty implements UCD_Types {
                 // else it is nothing
                 int status2 = 0;
                 tempBuf.setLength(0);
-                nfkd.normalize(UTF16.valueOf(cp), tempBuf);
-                for (int i = 0; i < tempBuf.length(); i += Character.charCount(cp)) {
-                    final int cp2 = UTF16.charAt(tempBuf, i);
+                nfkd.normalize(Character.toString(cp), tempBuf);
+                int cp2;
+                for (int i = 0; i < tempBuf.length(); i += Character.charCount(cp2)) {
+                    cp2 = tempBuf.codePointAt(i);
                     if (i == 0) {
                         if (ucdData.isIdentifierStart(cp2)) {
                             status2 = 1;
@@ -872,7 +873,7 @@ public final class DerivedProperty implements UCD_Types {
                                         continue;
                                     }
 
-                                    final String cps = UTF16.valueOf(c);
+                                    final String cps = Character.toString(c);
                                     addCase(cps, FULL, LOWER);
                                     addCase(cps, FULL, UPPER);
                                     addCase(cps, FULL, TITLE);
@@ -952,8 +953,8 @@ public final class DerivedProperty implements UCD_Types {
                         }
                         final String decomp = nfd.normalize(cp);
                         boolean ok = false;
-                        for (int i = decomp.length() - 1; i >= 0; --i) {
-                            final int ch = UTF16.charAt(decomp, i);
+                        for (int i = decomp.length(); i > 0; ) {
+                            final int ch = decomp.codePointBefore(i);
                             final int cc = ucdData.getCombiningClass(ch);
                             if (cc == 230) {
                                 return false;
@@ -964,6 +965,7 @@ public final class DerivedProperty implements UCD_Types {
                                 }
                                 ok = true;
                             }
+                            i -= Character.charCount(ch);
                         }
                         return ok;
                     }
@@ -1093,7 +1095,7 @@ public final class DerivedProperty implements UCD_Types {
         boolean gotLower = false;
         boolean gotTitle = false;
         for (int i = 0; i < norm.length(); i += Character.charCount(cp2)) {
-            cp2 = UTF16.charAt(norm, i);
+            cp2 = norm.codePointAt(i);
             final byte catx = ucdData.getCategory(cp2);
             final boolean upx = ucdData.getBinaryProperty(cp, Other_Uppercase);
             final boolean lowx = ucdData.getBinaryProperty(cp, Other_Lowercase);
@@ -1124,7 +1126,7 @@ public final class DerivedProperty implements UCD_Types {
             return true;
         }
         final String decomp = ucdData.getDecompositionMapping(cp);
-        if (UTF16.countCodePoint(decomp) == 1) {
+        if (UTF16Plus.isSingleCodePoint(decomp)) {
             return true;
         }
         final int first = decomp.codePointAt(0);

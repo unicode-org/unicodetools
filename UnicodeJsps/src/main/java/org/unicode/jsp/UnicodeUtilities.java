@@ -13,7 +13,6 @@ import com.ibm.icu.text.SpoofChecker;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
@@ -188,8 +187,8 @@ public class UnicodeUtilities {
         String s = Common.MyNormalize(codepoint, compat);
         int cp;
         String lastPart = null;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = s.codePointAt(i);
             String part = Common.getXStringPropertyValue(propertyEnum, cp, nameChoice);
             if (lastPart == null) {
                 lastPart = part;
@@ -607,7 +606,7 @@ public class UnicodeUtilities {
     private static UnicodeSet RTL = new UnicodeSet("[[:bc=R:][:bc=AL:]]");
 
     private static String showCodePoint(int codepoint) {
-        return showCodePoint(UTF16.valueOf(codepoint));
+        return showCodePoint(Character.toString(codepoint));
     }
 
     private static String showCodePoint(String s) {
@@ -620,7 +619,7 @@ public class UnicodeUtilities {
     }
 
     private static String getLiteral(int codepoint) {
-        return getLiteral(UTF16.valueOf(codepoint));
+        return getLiteral(Character.toString(codepoint));
     }
 
     private static String getLiteral(String s) {
@@ -668,7 +667,7 @@ public class UnicodeUtilities {
         }
 
         void showCodePoint(int codePoint, Appendable out) throws IOException {
-            final String string = UTF16.valueOf(codePoint);
+            final String string = Character.toString(codePoint);
             String separator = ", ";
             showString(string, separator, out);
         }
@@ -860,8 +859,8 @@ public class UnicodeUtilities {
             boolean plainText) {
         StringBuilder result = new StringBuilder();
         int cp;
-        for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(string, i);
+        for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
+            cp = string.codePointAt(i);
             if (i != 0) {
                 result.append(separator);
             }
@@ -917,11 +916,11 @@ public class UnicodeUtilities {
             String string, String separator, boolean ucdFormat, List<String> additionalParameters) {
         StringBuilder result = new StringBuilder();
         int cp;
-        for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
             if (i != 0) {
                 result.append(separator);
             }
-            result.append(getHex(cp = UTF16.charAt(string, i), ucdFormat, additionalParameters));
+            result.append(getHex(cp = string.codePointAt(i), ucdFormat, additionalParameters));
         }
         return result.toString();
     }
@@ -929,11 +928,11 @@ public class UnicodeUtilities {
     //  private static void showString(String s, String separator, boolean ucdFormat, Writer out)
     // throws IOException {
     //    int cp;
-    //    for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+    //    for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
     //      if (i != 0) {
     //        out.write(separator);
     //      }
-    //      showCodePoint(cp = UTF16.charAt(s, i), ucdFormat, out);
+    //      showCodePoint(cp = s.codePointAt(i), ucdFormat, out);
     //    }
     //  }
 
@@ -1157,7 +1156,7 @@ public class UnicodeUtilities {
     //    StringBuilder rules = new StringBuilder();
     //    for (UnicodeSetIterator it = new UnicodeSetIterator(MAPPING_SET); it.nextRange();) {
     //      for (int i = it.codepoint; i <= it.codepointEnd; ++i) {
-    //        String s = UTF16.valueOf(i);
+    //        String s = Character.toString(i);
     //        String caseFold = UCharacter.foldCase(s, true);
     //        String lower = UCharacter.toLowerCase(Locale.ENGLISH, s);
     //        if (!caseFold.equals(lower) || i == 'Σ') {
@@ -1244,8 +1243,8 @@ public class UnicodeUtilities {
         StringBuffer out = new StringBuffer();
         int charCount = 0;
         Status status = Status.NORMAL;
-        for (int i = 0; i < a_out.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(a_out, i);
+        for (int i = 0; i < a_out.length(); i += Character.charCount(cp)) {
+            cp = a_out.codePointAt(i);
             ++charCount;
             switch (status) {
                 case AFTERSLASH:
@@ -1291,7 +1290,7 @@ public class UnicodeUtilities {
                     }
                     break;
             }
-            UTF16.append(out, cp);
+            out.appendCodePoint(cp);
             oldCp = cp;
         }
         return out.toString();
@@ -1412,7 +1411,7 @@ public class UnicodeUtilities {
             List<String> originalParameters,
             Appendable out)
             throws IOException {
-        String text = UTF16.valueOf(cp);
+        String text = Character.toString(cp);
 
         String name = getFactory().getProperty("Name").getValue(cp);
         final String devName =
@@ -1651,7 +1650,7 @@ public class UnicodeUtilities {
     private static StringBuilder displayConfusables(int codepoint) {
         StringBuilder confusableString = new StringBuilder();
         Set<String> skip = new HashSet<String>();
-        String same = UTF16.valueOf(codepoint);
+        String same = Character.toString(codepoint);
         String nfd = Normalizer.normalize(same, Normalizer.NFD);
 
         skip.add(same);
@@ -1689,7 +1688,8 @@ public class UnicodeUtilities {
                 }
                 cp = nfd.codePointAt(i);
                 Confusables currentCombos =
-                        new Confusables(UTF16.valueOf(cp)).setNormalizationCheck(Normalizer.NFKC);
+                        new Confusables(Character.toString(cp))
+                                .setNormalizationCheck(Normalizer.NFKC);
                 combos.add(currentCombos);
                 confusableString.append("<div class='char'>");
                 for (String s : currentCombos) {
@@ -1762,7 +1762,7 @@ public class UnicodeUtilities {
                                     + Utility.hex(cp)
                                     + "'>"
                                     + "&nbsp;")
-                    .append(toHTML(UTF16.valueOf(cp)))
+                    .append(toHTML(Character.toString(cp)))
                     .append("&nbsp;</a>");
         }
         confusableString.append("</div>");

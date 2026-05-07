@@ -9,7 +9,6 @@ import com.ibm.icu.text.CollationElementIterator;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.RuleBasedCollator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
@@ -200,7 +199,7 @@ public class CollatorEquivalences {
                     || gc == UCharacter.SURROGATE) {
                 continue;
             }
-            String s = UTF16.valueOf(i);
+            String s = Character.toString(i);
             equiv.put(new RawKey(UCA_SECONDARY_ONLY, s), s);
             String t = nfkccf.normalize(s);
             equiv.put(new RawKey(UCA_SECONDARY_ONLY, t), t);

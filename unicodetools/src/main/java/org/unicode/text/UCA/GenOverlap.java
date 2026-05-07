@@ -9,7 +9,6 @@
  */
 package org.unicode.text.UCA;
 
-import com.ibm.icu.text.UTF16;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.BitSet;
@@ -23,6 +22,7 @@ import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 public class GenOverlap implements UCD_Types {
@@ -52,7 +52,7 @@ public class GenOverlap implements UCD_Types {
             if (decompType >= UCD_Types.COMPATIBILITY) {
                 final String decomp = nfkd.normalize(cp);
                 final CEList celistDecomp = getCEList(cp, decomp, true, decompType);
-                final CEList celistNormal = getCEList(UTF16.valueOf(cp), false);
+                final CEList celistNormal = getCEList(Character.toString(cp), false);
                 if (!celistNormal.equals(celistDecomp)) {
                     Utility.fixDot();
                     System.out.println();
@@ -412,8 +412,8 @@ public class GenOverlap implements UCD_Types {
 
             CEList newList = CEList.EMPTY;
             int cp;
-            for (int i = 0; i < str.length(); i += UTF16.getCharCount(cp)) {
-                cp = UTF16.charAt(str, i);
+            for (int i = 0; i < str.length(); i += Character.charCount(cp)) {
+                cp = str.codePointAt(i);
                 if (0xFF3F == cp) {
                     System.out.println("debug");
                 }
@@ -448,7 +448,7 @@ public class GenOverlap implements UCD_Types {
                         }
                     }
                 } else {
-                    len = collator.getCEs(UTF16.valueOf(cp), true, ces);
+                    len = collator.getCEs(Character.toString(cp), true, ces);
                 }
                 final CEList inc = new CEList(ces, 0, len);
 
@@ -634,10 +634,10 @@ public class GenOverlap implements UCD_Types {
                     break;
                 }
 
-                if (UTF16.countCodePoint(s) != 1) {
+                if (!UTF16Plus.isSingleCodePoint(s)) {
                     continue; // skip ligatures
                 }
-                final int cp = UTF16.charAt(s, 0);
+                final int cp = s.codePointAt(0);
                 if (!nfkd.isNormalized(cp)) {
                     continue;
                 }
@@ -680,7 +680,7 @@ public class GenOverlap implements UCD_Types {
                 continue; // don't count case
             }
 
-            final String scp = UTF16.valueOf(cp);
+            final String scp = Character.toString(cp);
             final int len = collator.getCEs(scp, true, ces);
             final int script = ucd.getScript(cp);
 
@@ -734,9 +734,9 @@ public class GenOverlap implements UCD_Types {
             // if (UTF16.countCodePoint(latin[i]) < 2) continue;
             int cp2;
             log.println("<table>");
-            for (int j = 0; j < element.length(); j += UTF16.getCharCount(cp2)) {
-                cp2 = UTF16.charAt(element, j);
-                final String scp2 = UTF16.valueOf(cp2);
+            for (int j = 0; j < element.length(); j += Character.charCount(cp2)) {
+                cp2 = element.codePointAt(j);
+                final String scp2 = Character.toString(cp2);
                 final CEList clist = collator.getCEList(scp2, true);
                 log.println(
                         "<tr><td>"

@@ -4,7 +4,6 @@ import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
@@ -15,6 +14,7 @@ import org.unicode.cldr.util.With;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.text.utility.UTF16Plus;
 
 public class FindProps {
     static final IndexUnicodeProperties latest =
@@ -94,8 +94,7 @@ public class FindProps {
     static Transform<String, String> GET_NAME =
             new Transform<String, String>() {
                 public String transform(String s) {
-                    int len = UTF16.countCodePoint(s);
-                    if (len == 1) {
+                    if (UTF16Plus.isSingleCodePoint(s)) {
                         return names.get(s);
                     }
                     StringBuilder result = new StringBuilder();

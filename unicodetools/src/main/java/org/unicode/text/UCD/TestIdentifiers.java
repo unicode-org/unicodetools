@@ -4,7 +4,6 @@ import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Normalizer;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
@@ -222,7 +221,7 @@ public class TestIdentifiers {
             return null;
         }
         final XEquivalenceClass ec = (XEquivalenceClass) type_equivalences.get(type);
-        return ec.getEquivalences(UTF16.valueOf(cp));
+        return ec.getEquivalences(Character.toString(cp));
     }
 
     void loadWholeScriptConfusables(String filterType) throws IOException {
@@ -374,8 +373,8 @@ public class TestIdentifiers {
     public static int getSingleScript(String source) {
         int lastScript = UScript.INVALID_CODE;
         int cp;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(source, i);
+        for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
+            cp = source.codePointAt(i);
             int script = UScript.getScript(cp);
             if (script == UScript.COMMON || script == UScript.INHERITED) {
                 if (XIDContinueSet.contains(cp)) {

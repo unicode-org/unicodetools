@@ -7,7 +7,6 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
@@ -83,7 +82,7 @@ public abstract class Ids2 implements Comparable<Ids2> {
 
         public int getHackCode(int cp) {
             hacks.badChars.add(cp, 1);
-            return getHackCode("Illegal-" + UTF16.valueOf(cp) + "-" + Utility.hex(cp));
+            return getHackCode("Illegal-" + Character.toString(cp) + "-" + Utility.hex(cp));
         }
 
         public String getHackString(int codepoint) {
@@ -167,11 +166,11 @@ public abstract class Ids2 implements Comparable<Ids2> {
             result = null;
         }
         return result == null
-                ? UTF16.valueOf(codepoint)
+                ? Character.toString(codepoint)
                 : !replace
-                        ? "*" + UTF16.valueOf(codepoint)
+                        ? "*" + Character.toString(codepoint)
                         : maxLevel <= 0
-                                ? "†" + UTF16.valueOf(codepoint)
+                                ? "†" + Character.toString(codepoint)
                                 : result.toString(data, replace, maxLevel - 1);
     }
 
@@ -239,7 +238,7 @@ public abstract class Ids2 implements Comparable<Ids2> {
 
     static final class Leaf extends Ids2 {
         Leaf(int cp) {
-            String nfcForm = nfc.normalize(UTF16.valueOf(cp));
+            String nfcForm = nfc.normalize(Character.toString(cp));
             if (nfcForm.codePointCount(0, nfcForm.length()) != 1) {
                 throw new IllegalArgumentException(
                         "NFC form is too long:\t" + Utility.hex(nfcForm));
@@ -264,7 +263,7 @@ public abstract class Ids2 implements Comparable<Ids2> {
             // if (codepoint >= 0xE000 && codepoint <= 0xEFFF) {
             // return hacks.getHackString(codepoint);
             // }
-            return UTF16.valueOf(codepoint);
+            return Character.toString(codepoint);
         }
 
         public int compareTo(Ids2 o) {
@@ -313,7 +312,7 @@ public abstract class Ids2 implements Comparable<Ids2> {
         }
 
         public String toString() {
-            return "{" + UTF16.valueOf(codepoint) + first.toString() + second.toString() + "}";
+            return "{" + Character.toString(codepoint) + first.toString() + second.toString() + "}";
         }
 
         public String toString(UnicodeMap<Ids2> data, boolean replace, int maxLevel) {
@@ -405,7 +404,7 @@ public abstract class Ids2 implements Comparable<Ids2> {
 
         public String toString() {
             return "{"
-                    + UTF16.valueOf(codepoint)
+                    + Character.toString(codepoint)
                     + first.toString()
                     + second.toString()
                     + third.toString()
@@ -750,7 +749,7 @@ public abstract class Ids2 implements Comparable<Ids2> {
                     nf.format(++counter)
                             + ")\t"
                             + strokes
-                            + UTF16.valueOf(radical)
+                            + Character.toString(radical)
                             + "\t"
                             + charAndHex(containingChar)
                             + "\t"
@@ -786,7 +785,7 @@ public abstract class Ids2 implements Comparable<Ids2> {
                             nf.format(++counter)
                                     + ")\t"
                                     + oldStrokes
-                                    + UTF16.valueOf(oldRadical)
+                                    + Character.toString(oldRadical)
                                     + "\t"
                                     + pp.format(temp));
                 }
@@ -803,7 +802,7 @@ public abstract class Ids2 implements Comparable<Ids2> {
                 nf.format(++counter)
                         + ")\t"
                         + oldStrokes
-                        + UTF16.valueOf(oldRadical)
+                        + Character.toString(oldRadical)
                         + "\t"
                         + pp.format(temp));
 
@@ -912,7 +911,7 @@ public abstract class Ids2 implements Comparable<Ids2> {
 
     private static String charAndHex(int codepoint) {
         String hack = hacks.getHackString(codepoint);
-        return UTF16.valueOf(codepoint)
+        return Character.toString(codepoint)
                 + "\t("
                 + (hack == null ? Utility.hex(codepoint) : hack)
                 + ")";

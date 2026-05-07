@@ -11,7 +11,6 @@ package org.unicode.text.utility;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.UnicodeMapIterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.ByteArrayInputStream;
@@ -173,7 +172,7 @@ public class TestUtility {
         if (i <= 0xFFFF) {
             return false;
         }
-        return i == UTF16.charAt(value, 0);
+        return i == value.codePointAt(0);
     }
 
     /** */
@@ -325,7 +324,7 @@ public class TestUtility {
     /** */
     private static void testStreamCompressor() throws IOException {
         final Object[] tests = {
-            UTF16.valueOf(0x10FFFF),
+            Character.toString(0x10FFFF),
             "\u1234",
             "abc",
             new Long(-3),

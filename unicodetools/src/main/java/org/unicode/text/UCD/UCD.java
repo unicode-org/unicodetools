@@ -11,7 +11,6 @@ package org.unicode.text.UCD;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedInputStream;
@@ -33,6 +32,7 @@ import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
@@ -172,8 +172,8 @@ public final class UCD implements UCD_Types {
         }
         final StringBuffer result = new StringBuffer();
         int cp;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = s.codePointAt(i);
             if (i > 0) {
                 result.append(separator);
             }
@@ -195,7 +195,7 @@ public final class UCD implements UCD_Types {
         final StringBuffer result = new StringBuffer();
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (i > 0) {
                 result.append(", ");
             }
@@ -213,7 +213,7 @@ public final class UCD implements UCD_Types {
         return getCode(codePoint)
                 + (charTrans == null
                         ? " "
-                        : " ( " + charTrans.transliterate(UTF16.valueOf(codePoint)) + " ) ")
+                        : " ( " + charTrans.transliterate(Character.toString(codePoint)) + " ) ")
                 + getName(codePoint, type);
     }
 
@@ -232,7 +232,7 @@ public final class UCD implements UCD_Types {
         final StringBuffer result = new StringBuffer();
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (i > 0) {
                 result.append(", ");
             }
@@ -652,7 +652,7 @@ public final class UCD implements UCD_Types {
     static final char APOSTROPHE = '\u2019';
 
     public String getCase(String s, byte simpleVsFull, byte caseType, String condition) {
-        if (UTF16.countCodePoint(s) == 1) {
+        if (UTF16Plus.isSingleCodePoint(s)) {
             return getCase(s.codePointAt(0), simpleVsFull, caseType);
         }
         final StringBuffer result = new StringBuffer();
@@ -661,7 +661,7 @@ public final class UCD implements UCD_Types {
         final UCDProperty defaultIgnorable = DerivedProperty.make(UCD_Types.DefaultIgnorable, this);
 
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             final String mappedVersion = getCase(cp, simpleVsFull, currentCaseType, condition);
             result.append(mappedVersion);
             if (caseType == TITLE) { // set the case type for the next character
@@ -826,7 +826,7 @@ public final class UCD implements UCD_Types {
         }
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             final short script = getScript(cp);
             if (script == INHERITED_SCRIPT) {
                 continue;
@@ -1508,7 +1508,7 @@ public final class UCD implements UCD_Types {
         }
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (i == 0) {
                 if (!isIdentifierStart(cp)) {
                     return false;

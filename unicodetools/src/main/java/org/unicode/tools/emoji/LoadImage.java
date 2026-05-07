@@ -8,7 +8,6 @@ import com.ibm.icu.lang.UScript.ScriptUsage;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
@@ -445,7 +444,7 @@ public class LoadImage extends Component {
                 it.next(); ) {
             int i = it.codepoint;
             if (f.canDisplay(i)) {
-                GlyphVector gv = f.createGlyphVector(frc, UTF16.valueOf(i));
+                GlyphVector gv = f.createGlyphVector(frc, Character.toString(i));
                 final int glyphCode = gv.getGlyphCode(0);
                 if (glyphCode >= 0) {
                     result.add(i);

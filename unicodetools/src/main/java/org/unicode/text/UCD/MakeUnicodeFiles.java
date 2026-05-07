@@ -2678,8 +2678,8 @@ public class MakeUnicodeFiles {
      if (DEBUG) System.out.println("\tGetID <" + text.substring(start,limit) + ">");
      int cp = 0;
      int i;
-     for (i = start; i < limit; i += UTF16.getCharCount(cp)) {
-     cp = UTF16.charAt(text, i);
+     for (i = start; i < limit; i += Character.charCount(cp)) {
+     cp = text.codePointAt(i);
      if (!com.ibm.icu.lang.UCharacter.isUnicodeIdentifierPart(cp)) {
      break;
      }

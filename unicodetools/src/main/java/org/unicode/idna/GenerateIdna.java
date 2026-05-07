@@ -6,7 +6,6 @@ import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
@@ -387,7 +386,7 @@ public class GenerateIdna {
         final R2<IdnaType, String> validResult = Row.of(IdnaType.valid, (String) null);
 
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-            final String cpString = UTF16.valueOf(cp);
+            final String cpString = Character.toString(cp);
             Row.R2<IdnaType, String> result;
             String baseMappingValue = baseMapping.get(cp);
             if (baseMappingValue == null) {

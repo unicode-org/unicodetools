@@ -15,7 +15,6 @@ import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.StringPrepParseException;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
@@ -1154,12 +1153,12 @@ public class LinkUtilities {
                             + Utility.hex(value2)
                             + "\t#"
                             + " “"
-                            + quote(UTF16.valueOf(cp))
+                            + quote(Character.toString(cp))
                             + "” "
                             + UCharacter.getExtendedName(cp)
                             + " 🡆 "
                             + " “"
-                            + quote(UTF16.valueOf(value2))
+                            + quote(Character.toString(value2))
                             + "” "
                             + UCharacter.getExtendedName(value2));
         }

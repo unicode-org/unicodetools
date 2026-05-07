@@ -46,13 +46,13 @@ class NormalizationDataStandard implements NormalizationData {
                         }
                         continue;
                     }
-                    final int a = UTF16.charAt(s, 0);
+                    final int a = s.codePointAt(0);
                     if (ucd.getCombiningClass(a) != 0) {
                         continue;
                     }
                     isFirst.set(a);
 
-                    final int b = UTF16.charAt(s, UTF16.getCharCount(a));
+                    final int b = s.codePointAt(Character.charCount(a));
                     isSecond.set(b);
 
                     // have a recomposition, so set the bit
@@ -148,11 +148,11 @@ class NormalizationDataStandard implements NormalizationData {
         // we know we decompose all CANONICAL, plus > CANONICAL if compat is TRUE.
         if (dt == UCD_Types.CANONICAL || dt > UCD_Types.CANONICAL && compat) {
             final String s = ucd.getDecompositionMapping(cp);
-            if (s.equals(UTF16.valueOf(cp))) {
+            if (s.equals(Character.toString(cp))) {
                 System.out.println("fix");
             }
-            for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-                cp = UTF16.charAt(s, i);
+            for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+                cp = s.codePointAt(i);
                 getRecursiveDecomposition(cp, buffer, compat);
             }
         } else {

@@ -6,7 +6,6 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -65,7 +64,7 @@ public class GenerateUcaDecompositions {
                 continue;
             }
 
-            final String s = UTF16.valueOf(i);
+            final String s = Character.toString(i);
             final CEList ceList = uca.getCEList(s, true);
 
             char2Ces.put(i, ceList);
@@ -93,10 +92,10 @@ public class GenerateUcaDecompositions {
                 continue;
             }
             if (ucaDecomp == null) {
-                ucaDecomp = UTF16.valueOf(i);
+                ucaDecomp = Character.toString(i);
             }
             if (nfkdOrNull == null) {
-                nfkdOrNull = UTF16.valueOf(i);
+                nfkdOrNull = Character.toString(i);
             }
             if (nfkdOrNull.equals(ucaDecomp)) {
                 continue;
@@ -118,7 +117,7 @@ public class GenerateUcaDecompositions {
                             + ";\t#\t"
                             + gcName
                             + "\t"
-                            + UTF16.valueOf(i)
+                            + Character.toString(i)
                             + "\t"
                             + UCharacter.getExtendedName(i)
                             + "\t→\t"

@@ -5,7 +5,6 @@ import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
@@ -1071,8 +1070,9 @@ public class TestUnicodeInvariants {
                 return null;
             }
             int start = next.getIndex();
-            if (PATTERN_SYNTAX.contains(text.codePointAt(start))) {
-                final String syntax = Character.toString(text.codePointAt(start));
+            int startCp = text.codePointAt(start);
+            if (PATTERN_SYNTAX.contains(startCp)) {
+                final String syntax = Character.toString(startCp);
                 next.setIndex(start + syntax.length());
                 final String marks = scan(NONSPACING_MARK, text, next, true);
                 return new Lookahead(syntax + marks, pp, next);
@@ -1347,8 +1347,8 @@ public class TestUnicodeInvariants {
                                             + values);
                         }
                         buffer.setLength(0);
-                        for (int j = 0; j < value.length(); j += UTF16.getCharCount(cp)) {
-                            cp = UTF16.charAt(value, j);
+                        for (int j = 0; j < value.length(); j += Character.charCount(cp)) {
+                            cp = value.codePointAt(j);
                             if (!propOrFilter.filter.contains(cp)) {
                                 continue;
                             }
@@ -1365,8 +1365,8 @@ public class TestUnicodeInvariants {
                                             + values);
                         }
                         buffer.setLength(0);
-                        for (int j = 0; j < value.length(); j += UTF16.getCharCount(cp)) {
-                            cp = UTF16.charAt(value, j);
+                        for (int j = 0; j < value.length(); j += Character.charCount(cp)) {
+                            cp = value.codePointAt(j);
                             final String value2 = propOrFilter.prop.getValue(cp);
                             buffer.append(value2);
                         }
@@ -1381,8 +1381,8 @@ public class TestUnicodeInvariants {
                                             + values);
                         }
                         values = new ArrayList<>();
-                        for (int j = 0; j < value.length(); j += UTF16.getCharCount(cp)) {
-                            cp = UTF16.charAt(value, j);
+                        for (int j = 0; j < value.length(); j += Character.charCount(cp)) {
+                            cp = value.codePointAt(j);
                             final String value2 = propOrFilter.prop.getValue(cp);
                             values.add(value2);
                         }
@@ -1976,7 +1976,7 @@ public class TestUnicodeInvariants {
     private static int scan(UnicodeSet allowed, CharSequence line, int start, boolean in) {
         int cp = 0;
         int i;
-        for (i = start; i < line.length(); i += UTF16.getCharCount(cp)) {
+        for (i = start; i < line.length(); i += Character.charCount(cp)) {
             cp = Character.codePointAt(line, i);
             if (allowed.contains(cp) != in) {
                 break;

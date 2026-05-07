@@ -10,7 +10,6 @@
 package org.unicode.text.UCD;
 
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -89,7 +88,7 @@ public final class GenerateNamedSequences implements UCD_Types {
                 if (codes[i].length() == 0) {
                     continue;
                 }
-                UTF16.append(codeBuffer, Integer.parseInt(codes[i], 16));
+                codeBuffer.appendCodePoint(Integer.parseInt(codes[i], 16));
             }
             final String codeWithHyphens = splits[1].replaceAll("\\s+", "-");
             final String codeAlt = "U+" + splits[1].replaceAll("\\s", " U+");

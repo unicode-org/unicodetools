@@ -4,7 +4,6 @@ import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.Normalizer2.Mode;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
@@ -75,7 +74,7 @@ public class FindHanSizes {
         Map<Integer, EnumSet<NamedHanSet>> status = new HashMap();
 
         void add(int cp, NamedHanSet e) {
-            final String s = nfc.normalize(UTF16.valueOf(cp));
+            final String s = nfc.normalize(Character.toString(cp));
             final int newCp = s.codePointAt(0);
             if (cp != newCp) {
                 if (s.length() != Character.charCount(newCp)) {

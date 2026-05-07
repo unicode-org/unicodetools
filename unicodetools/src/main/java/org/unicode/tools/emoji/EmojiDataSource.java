@@ -1,7 +1,6 @@
 package org.unicode.tools.emoji;
 
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import org.unicode.tools.emoji.Emoji.Qualified;
 
@@ -44,7 +43,7 @@ public interface EmojiDataSource {
     public String getName(String s);
 
     public default String getName(int codepoint) {
-        return getName(UTF16.valueOf(codepoint));
+        return getName(Character.toString(codepoint));
     }
 
     public UnicodeMap<String> getRawNames();

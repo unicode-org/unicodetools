@@ -3,7 +3,6 @@ package org.unicode.tools;
 import com.google.common.base.Splitter;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import java.io.IOException;
@@ -636,7 +635,7 @@ public class FixedProps {
                                         + " ;\t"
                                         + value
                                         + "\t # ("
-                                        + UTF16.valueOf(range.codepoint)
+                                        + Character.toString(range.codepoint)
                                         + ") "
                                         + name.get(range.codepoint)));
             } else {
@@ -649,9 +648,9 @@ public class FixedProps {
                                         + " ;\t"
                                         + value
                                         + "\t # ("
-                                        + UTF16.valueOf(range.codepoint)
+                                        + Character.toString(range.codepoint)
                                         + ".."
-                                        + UTF16.valueOf(range.codepointEnd)
+                                        + Character.toString(range.codepointEnd)
                                         + ") "
                                         + name.get(range.codepoint)
                                         + ".."

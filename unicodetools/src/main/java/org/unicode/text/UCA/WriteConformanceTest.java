@@ -27,7 +27,7 @@ public class WriteConformanceTest {
 
     private static final char LOW_ACCENT = '\u0334';
 
-    private static final String SUPPLEMENTARY_ACCENT = UTF16.valueOf(0x1D165);
+    private static final String SUPPLEMENTARY_ACCENT = Character.toString(0x1D165);
     private static final String COMPLETELY_IGNOREABLE = "\u0001";
     private static final String COMPLETELY_IGNOREABLE_ACCENT = "\u0591";
     private static final String[] CONTRACTION_TEST = {
@@ -326,7 +326,7 @@ public class WriteConformanceTest {
         }
         if (UTF16.hasMoreCodePointsThan(s, 1)) {
             for (int i = 1; i < s.length(); ++i) {
-                if (UTF16.isLeadSurrogate(s.charAt(i - 1))) {
+                if (Character.isHighSurrogate(s.charAt(i - 1))) {
                     continue; // skip if in middle of supplementary
                 }
 

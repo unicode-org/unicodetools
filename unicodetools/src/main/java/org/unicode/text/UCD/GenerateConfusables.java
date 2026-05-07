@@ -64,6 +64,7 @@ import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UnicodeTransform;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Confusables;
@@ -627,7 +628,7 @@ public class GenerateConfusables {
                     _skipNFKD.add(cp);
                     continue;
                 }
-                final String source = UTF16.valueOf(cp);
+                final String source = Character.toString(cp);
                 String kmapped = ModifiedNFKD.normalize(source);
                 if (!kmapped.equals(source) && !kmapped.equals(nfc)) {
                     if (kmapped.startsWith(" ") || kmapped.startsWith("\u0640")) {
@@ -668,8 +669,8 @@ public class GenerateConfusables {
         }
         int lastScript = UCD_Types.COMMON_SCRIPT; // temporary value
         int cp;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(source, i);
+        for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
+            cp = source.codePointAt(i);
             final int script = DEFAULT_UCD.getScript(cp);
             if (script == UCD_Types.COMMON_SCRIPT || script == UCD_Types.INHERITED_SCRIPT) {
                 continue;
@@ -879,9 +880,9 @@ public class GenerateConfusables {
             }
             final StringBuffer result = new StringBuffer();
             int cp;
-            for (int i = 0; i < item.length(); i += UTF16.getCharCount(cp)) {
-                cp = UTF16.charAt(item, i);
-                final String cps = UTF16.valueOf(cp);
+            for (int i = 0; i < item.length(); i += Character.charCount(cp)) {
+                cp = item.codePointAt(i);
+                final String cps = Character.toString(cp);
                 final String mapped = getParadigm(cps, onlyLowercase, onlySameScript);
                 if (mapped == null || mapped.indexOf(cps) >= 0) {
                     result.append(cps);
@@ -944,7 +945,7 @@ public class GenerateConfusables {
                 if (codePointArray.length == 1) {
                 } else {
                     for (int codepoint : codePointArray) {
-                        final String codePointString = UTF16.valueOf(codepoint);
+                        final String codePointString = Character.toString(codepoint);
                         String otherParadigm =
                                 getParadigm(codePointString, onlyLowercase, onlySameScript);
                         if (otherParadigm != null && !codePointString.equals(otherParadigm)) {
@@ -998,7 +999,7 @@ public class GenerateConfusables {
         MyEquivalenceClass dataMixedAnycase = new MyEquivalenceClass();
         RawData raw = new RawData();
 
-        private static String testChar = UTF16.valueOf(0x10A3A);
+        private static String testChar = Character.toString(0x10A3A);
 
         public DataSet add(
                 String source, String target, String type, int lineCount, String errorLine) {
@@ -1037,14 +1038,14 @@ public class GenerateConfusables {
 
             // if it is base + combining sequence => base2 + same combining sequence, do just the
             // base
-            final int nsourceFirst = UTF16.charAt(nsource, 0);
-            final String nsourceRest = nsource.substring(UTF16.getCharCount(nsourceFirst));
-            final int ntargetFirst = UTF16.charAt(ntarget, 0);
-            final String ntargetRest = ntarget.substring(UTF16.getCharCount(ntargetFirst));
+            final int nsourceFirst = nsource.codePointAt(0);
+            final String nsourceRest = nsource.substring(Character.charCount(nsourceFirst));
+            final int ntargetFirst = ntarget.codePointAt(0);
+            final String ntargetRest = ntarget.substring(Character.charCount(ntargetFirst));
 
             if (nsourceRest.length() != 0 && nsourceRest.equals(ntargetRest)) {
-                source = UTF16.valueOf(nsourceFirst);
-                target = UTF16.valueOf(ntargetFirst);
+                source = Character.toString(nsourceFirst);
+                target = Character.toString(ntargetFirst);
                 type += "-base";
             }
             // type += ":" + lineCount;
@@ -1118,7 +1119,7 @@ public class GenerateConfusables {
                         final String target = fromHexOld(targetString);
                         final String source = fromHexOld(sourceString);
                         final String nsource = NFKD.normalize(source);
-                        final String first = UTF16.valueOf(UTF16.charAt(nsource, 0));
+                        final String first = UTF16Plus.codePointSubstringAt(nsource, 0);
                         if (!first.equals(target)) {
                             add(source, target, type, count, line);
                         }
@@ -1804,13 +1805,13 @@ public class GenerateConfusables {
                 }
 
                 if (true) {
-                    final int nsourceFirst = UTF16.charAt(nsource, 0);
-                    final String nsourceRest = nsource.substring(UTF16.getCharCount(nsourceFirst));
-                    final int ntargetFirst = UTF16.charAt(ntarget, 0);
-                    final String ntargetRest = ntarget.substring(UTF16.getCharCount(ntargetFirst));
+                    final int nsourceFirst = nsource.codePointAt(0);
+                    final String nsourceRest = nsource.substring(Character.charCount(nsourceFirst));
+                    final int ntargetFirst = ntarget.codePointAt(0);
+                    final String ntargetRest = ntarget.substring(Character.charCount(ntargetFirst));
                     if (nsourceRest.equals(ntargetRest)) {
-                        source = UTF16.valueOf(nsourceFirst);
-                        target = UTF16.valueOf(ntargetFirst);
+                        source = Character.toString(nsourceFirst);
+                        target = Character.toString(ntargetFirst);
                     }
                 }
 
@@ -1977,8 +1978,8 @@ public class GenerateConfusables {
         private int getValue(String a) { // lower is better
             int cp;
             int lastValue = 0;
-            for (int i = 0; i < a.length(); i += UTF16.getCharCount(cp)) {
-                cp = UTF16.charAt(a, i);
+            for (int i = 0; i < a.length(); i += Character.charCount(cp)) {
+                cp = a.codePointAt(i);
                 final Object objValue = info.lowerIsBetter.getValue(cp);
                 final int value = ((Integer) objValue).intValue();
                 if (value > lastValue) {

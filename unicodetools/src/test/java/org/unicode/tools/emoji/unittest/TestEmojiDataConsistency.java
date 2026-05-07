@@ -2,7 +2,6 @@ package org.unicode.tools.emoji.unittest;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ICUException;
@@ -261,7 +260,7 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
                                         + "; \t"
                                         + prop
                                         + "\t# "
-                                        + UTF16.valueOf(it.codepoint)
+                                        + Character.toString(it.codepoint)
                                         + "    "
                                         + getName(it.codepoint)));
             } else {
@@ -275,9 +274,9 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
                                         + "; \t"
                                         + prop
                                         + "\t# "
-                                        + UTF16.valueOf(it.codepoint)
+                                        + Character.toString(it.codepoint)
                                         + ".."
-                                        + UTF16.valueOf(it.codepointEnd)
+                                        + Character.toString(it.codepointEnd)
                                         + " "
                                         + getName(it.codepoint)
                                         + ".."

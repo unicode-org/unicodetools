@@ -6,7 +6,6 @@ import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
@@ -667,9 +666,9 @@ public class TestUts46 extends TestFmwkMinusMinus {
             "\u02E3\u034F\u2115\u200B\uFE63\u00AD\uFF0D\u180C"
                     + "\u212C\uFE00\u017F\u2064"
                     // + "\\U0001D530"
-                    + UTF16.valueOf(0x1D530)
+                    + Character.toString(0x1D530)
                     // + "\\U000E01EF"
-                    + UTF16.valueOf(0xE01EF)
+                    + Character.toString(0xE01EF)
                     + "\uFB04",
             "B",
             "\u5921\u591E\u591C\u5919",

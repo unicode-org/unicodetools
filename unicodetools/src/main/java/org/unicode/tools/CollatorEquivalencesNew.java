@@ -3,7 +3,6 @@ package org.unicode.tools;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.IOException;
@@ -230,7 +229,7 @@ public class CollatorEquivalencesNew {
             if (CN_CS_CO.contains(i)) {
                 continue;
             }
-            String s = UTF16.valueOf(i);
+            String s = Character.toString(i);
             equiv.put(MyCollator.getSortKey(s), s);
             String t = nfkccf.normalize(s);
             equiv.put(MyCollator.getSortKey(t), t);

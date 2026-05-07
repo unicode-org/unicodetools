@@ -4,7 +4,6 @@ import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.IOException;
 import java.util.Locale;
@@ -69,7 +68,7 @@ public class TestIdna extends TestFmwkMinusMinus {
 
         private String getIdnabisMapping(int source) {
             String idnabisMapping;
-            idnabisMapping = UCharacter.toLowerCase(Locale.ROOT, UTF16.valueOf(source));
+            idnabisMapping = UCharacter.toLowerCase(Locale.ROOT, Character.toString(source));
             if (wideNarrow.containsSome(idnabisMapping)) {
                 StringBuilder temp = new StringBuilder();
                 int cp;

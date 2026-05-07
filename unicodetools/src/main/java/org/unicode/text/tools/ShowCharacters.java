@@ -4,7 +4,6 @@ import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.impl.Row.R5;
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.PrintWriter;
@@ -281,13 +280,13 @@ public class ShowCharacters {
         if (it.codepoint == it.codepointEnd) {
             return Row.of(
                     Utility.hex(it.codepoint),
-                    UTF16.valueOf(it.codepoint),
+                    Character.toString(it.codepoint),
                     Default.ucd().getName(it.codepoint));
         } else {
             final String sep = it.codepointEnd == it.codepoint + 1 ? "," : "…";
             return Row.of(
                     Utility.hex(it.codepoint) + sep + Utility.hex(it.codepointEnd),
-                    UTF16.valueOf(it.codepoint) + sep + UTF16.valueOf(it.codepointEnd),
+                    Character.toString(it.codepoint) + sep + Character.toString(it.codepointEnd),
                     Default.ucd().getName(it.codepoint)
                             + sep
                             + Default.ucd().getName(it.codepointEnd));

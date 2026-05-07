@@ -4,7 +4,6 @@ import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
@@ -105,7 +104,7 @@ public class NamesList {
                             + (TO_SUPPRESS.contains(cp)
                                     ? DOTTED_BOX
                                     : (COMBINING.contains(cp) ? DOTTED_CIRCLE : "")
-                                            + UTF16.valueOf(cp));
+                                            + Character.toString(cp));
                 }
             };
 
@@ -165,7 +164,7 @@ public class NamesList {
             if (comment == Comment.xref) {
                 Matcher m = match(trim, XREF1, XREF2, XREF3);
                 int cp = Integer.parseInt(m.group(1), 16);
-                trim = UTF16.valueOf(cp);
+                trim = Character.toString(cp);
                 if (discardXref(trim)) {
                     return;
                 }
@@ -186,7 +185,7 @@ public class NamesList {
             for (byte width = 0; width < 2; ++width) {
                 for (byte caseType = 0; caseType < UCD_Types.LIMIT_CASE; ++caseType) {
                     String changed =
-                            UCharacter.toUpperCase(ULocale.ENGLISH, UTF16.valueOf(codePoint));
+                            UCharacter.toUpperCase(ULocale.ENGLISH, Character.toString(codePoint));
                     // TODO Support case folding with UnicodeProperty directly, instead of
                     // Default.ucd().getCase(codePoint, UCD_Types.FULL, UCD_Types.UPPER);
                     if (changed.equals(trim)) {

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import java.util.Arrays;
@@ -202,12 +201,12 @@ public class TestCodeInvariants {
                 System.out.print("  ≡  " + Utility.hex(nfdOrNull) + " ( ");
 
                 for (int i = 0; i < nfdOrNull.length(); i += Character.charCount(ch)) {
-                    ch = UTF16.charAt(nfdOrNull, i);
+                    ch = nfdOrNull.codePointAt(i);
                     System.out.print(gcbPropShortName + "=" + GCB.get(ch).getShortName() + " ");
                 }
 
                 System.out.print(")");
-                System.out.print("  " + UTF16.valueOf(cp));
+                System.out.print("  " + Character.toString(cp));
                 System.out.print("  \"" + NAME.get(cp) + "\"");
 
                 if (flagged) {
@@ -239,7 +238,7 @@ public class TestCodeInvariants {
                 + "\t"
                 + Utility.hex(codePoint)
                 + " ( "
-                + UTF16.valueOf(codePoint)
+                + Character.toString(codePoint)
                 + " ) "
                 + NAME.get(codePoint);
     }

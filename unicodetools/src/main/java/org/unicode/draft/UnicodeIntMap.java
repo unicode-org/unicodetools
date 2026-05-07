@@ -652,7 +652,7 @@ public final class UnicodeIntMap
             }
             return stringMap.get(value);
         }
-        return getValue(UTF16.charAt(value, 0));
+        return getValue(value.codePointAt(0));
     }
 
     /**
@@ -666,13 +666,13 @@ public final class UnicodeIntMap
     public String transform(String source) {
         StringBuffer result = new StringBuffer();
         int cp;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(source, i);
+        for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
+            cp = source.codePointAt(i);
             int mResult = getValue(cp);
             if (mResult != UNASSIGNED) {
                 result.append(mResult);
             } else {
-                UTF16.append(result, cp);
+                result.appendCodePoint(cp);
             }
         }
         return result.toString();
@@ -891,7 +891,7 @@ public final class UnicodeIntMap
                 break;
             }
             for (int cp = entry.codepoint; cp <= entry.codepointEnd; ++cp) {
-                map.put(UTF16.valueOf(cp), entry.value);
+                map.put(Character.toString(cp), entry.value);
             }
         }
         map.putAll(stringMap);

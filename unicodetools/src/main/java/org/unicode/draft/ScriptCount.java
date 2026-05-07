@@ -9,7 +9,6 @@ import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.UTF16;
 import java.io.PrintWriter;
 import java.util.BitSet;
 import java.util.HashMap;
@@ -87,7 +86,7 @@ public class ScriptCount {
         private final Map<Integer, SecondaryInfo> counter = new HashMap<Integer, SecondaryInfo>();
 
         void add(int sourceString, long count) {
-            final CEList celist = uca.getCEList(UTF16.valueOf(sourceString), true);
+            final CEList celist = uca.getCEList(Character.toString(sourceString), true);
             final int length = celist.length();
             for (int i = 0; i < length; ++i) {
                 final int ce = celist.at(i);
@@ -390,9 +389,9 @@ public class ScriptCount {
             return "U+" + Utility.hex(s);
         }
         if (s == '\'' || s == '"' || s == '=') {
-            return "'" + UTF16.valueOf(s);
+            return "'" + Character.toString(s);
         }
-        return UTF16.valueOf(s);
+        return Character.toString(s);
     }
 
     private static int getScript(String norm) {

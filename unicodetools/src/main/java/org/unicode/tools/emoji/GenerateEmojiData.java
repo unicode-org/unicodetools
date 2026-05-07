@@ -5,7 +5,6 @@ import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.ICUUncheckedIOException;
@@ -836,11 +835,11 @@ public class GenerateEmojiData {
                         s = range.string;
                         rangeCount = 1;
                     } else {
-                        s = UTF16.valueOf(range.codepoint);
+                        s = Character.toString(range.codepoint);
                         rangeCount = range.codepointEnd - range.codepoint + 1;
                     }
 
-                    if (s.contains(UTF16.valueOf(0x1F9D6))) {
+                    if (s.contains(Character.toString(0x1F9D6))) {
                         int debug = 0;
                     }
 
@@ -851,7 +850,7 @@ public class GenerateEmojiData {
                             throw new IllegalArgumentException("internal error");
                         }
                         for (int cp = range.codepoint; cp <= range.codepointEnd; ++cp) {
-                            s = UTF16.valueOf(cp);
+                            s = Character.toString(cp);
                             out.write(
                                     tabber.process(
                                                     Utility.hex(s)
@@ -900,7 +899,7 @@ public class GenerateEmojiData {
                                                         + (showName ? "" : "\t" + getName(s)))
                                         + "\n");
                     } else {
-                        final String e = UTF16.valueOf(range.codepointEnd);
+                        final String e = Character.toString(range.codepointEnd);
                         out.write(
                                 tabber.process(
                                                 Utility.hex(range.codepoint)
@@ -1086,7 +1085,8 @@ public class GenerateEmojiData {
         //        String result = emojiDataSource.getName("🧙‍♀️");
         //
         //        for (int cp : CharSequences.codePoints(EXPLICIT_GENDER_LIST)) {
-        //            System.out.println("U+" + Utility.hex(cp) + " " + getName(UTF16.valueOf(cp)));
+        //            System.out.println("U+" + Utility.hex(cp) + " " +
+        // getName(Character.toString(cp)));
         //        }
         UnicodeMap<ZwjType> types = new UnicodeMap<>();
         for (String s : emojiDataSource.getZwjSequencesNormal()) {

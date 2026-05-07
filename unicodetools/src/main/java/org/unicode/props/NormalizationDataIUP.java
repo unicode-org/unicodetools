@@ -93,14 +93,14 @@ public class NormalizationDataIUP implements NormalizationData {
                     //                        }
                     continue;
                 }
-                final int a = UTF16.charAt(s, 0);
+                final int a = s.codePointAt(0);
                 // if (ucd.getCombiningClass(a) != 0) {
                 if (ccc.get(a) != 0) {
                     continue;
                 }
                 isFirst.set(a);
 
-                final int b = UTF16.charAt(s, UTF16.getCharCount(a));
+                final int b = s.codePointAt(Character.charCount(a));
                 isSecond.set(b);
 
                 // have a recomposition, so set the bit
@@ -221,11 +221,11 @@ public class NormalizationDataIUP implements NormalizationData {
         // if (dt == UCD_Types.CANONICAL || dt > UCD_Types.CANONICAL && compat) {
         if (dt == Decomposition_Type_Values.Canonical || isCompat(dt) && compat) {
             final String s = decompMap.get(cp);
-            if (s.equals("<code point>") || s.equals(UTF16.valueOf(cp))) {
+            if (s.equals("<code point>") || s.equals(Character.toString(cp))) {
                 throw new IllegalArgumentException("decomp, but no map, " + Utility.hex(cp));
             }
-            for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-                cp = UTF16.charAt(s, i);
+            for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+                cp = s.codePointAt(i);
                 getRecursiveDecomposition(cp, buffer, compat);
             }
         } else {

@@ -382,7 +382,7 @@ public class WriteCharts implements UCD_Types {
             output.println("<tr>");
 
             String prefix;
-            final String code = UTF16.valueOf(cp);
+            final String code = Character.toString(cp);
             final String c = Default.nfc().normalize(cp);
             final String d = Default.nfd().normalize(cp);
             final String kc = Default.nfkc().normalize(cp);
@@ -424,7 +424,7 @@ public class WriteCharts implements UCD_Types {
                 continue;
             }
 
-            final String code = UTF16.valueOf(i);
+            final String code = Character.toString(i);
             final String lower = Default.ucd().getCase(i, FULL, LOWER);
             final String title = Default.ucd().getCase(i, FULL, TITLE);
             final String upper = Default.ucd().getCase(i, FULL, UPPER);
@@ -528,14 +528,14 @@ public class WriteCharts implements UCD_Types {
                     output.println("</tr><tr>");
                     columnCount = 0;
                 }
-                showCell(output, UTF16.valueOf(cp), "", "", false);
+                showCell(output, Character.toString(cp), "", "", false);
                 ++columnCount;
                 continue;
             }
 
             output.println("<tr>");
 
-            final String code = UTF16.valueOf(cp);
+            final String code = Character.toString(cp);
             final String lower = Default.ucd().getCase(cp, FULL, LOWER);
             final String title = Default.ucd().getCase(cp, FULL, TITLE);
             final String upper = Default.ucd().getCase(cp, FULL, UPPER);
@@ -653,7 +653,7 @@ public class WriteCharts implements UCD_Types {
                 output.println("</tr><tr>");
                 columnCount = 0;
             }
-            showCell(output, UTF16.valueOf(cp), "", "", false);
+            showCell(output, Character.toString(cp), "", "", false);
             ++columnCount;
         }
         output.println("</tr>");
@@ -719,7 +719,7 @@ public class WriteCharts implements UCD_Types {
             if (s.startsWith("<")) {
                 System.out.println("Weird character at " + Default.ucd().getCodeAndName(i));
             }
-            final String ch = UTF16.valueOf(i);
+            final String ch = Character.toString(i);
             int last = -1;
             int j;
             for (j = 0; j < s.length(); ++j) {
@@ -854,7 +854,7 @@ public class WriteCharts implements UCD_Types {
         }
         final String name = Default.ucd().getName(s);
         String comp = Default.nfc().normalize(s);
-        final int cat = Default.ucd().getCategory(UTF16.charAt(comp, 0));
+        final int cat = Default.ucd().getCategory(comp.codePointAt(0));
         if (cat == Mn || cat == Mc || cat == Me) {
             comp = '\u25CC' + comp;
             if (s.equals("\u0300")) {
@@ -885,7 +885,7 @@ public class WriteCharts implements UCD_Types {
         //        }
 
         String comp = Default.nfc().normalize(s);
-        final int cat = Default.ucd().getCategory(UTF16.charAt(comp, 0));
+        final int cat = Default.ucd().getCategory(comp.codePointAt(0));
         if (cat == Mn || cat == Mc || cat == Me) {
             comp = '\u25CC' + comp;
             if (s.equals("\u0300")) {
@@ -921,8 +921,8 @@ public class WriteCharts implements UCD_Types {
     static short getBestScript(String s) {
         int cp;
         short result = COMMON_SCRIPT;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = s.codePointAt(i);
             result = Default.ucd().getScript(cp);
             if (result != COMMON_SCRIPT && result != INHERITED_SCRIPT) {
                 return result;
@@ -1259,8 +1259,8 @@ public class WriteCharts implements UCD_Types {
 
     static boolean containsCase(String s) {
         int cp;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = s.codePointAt(i);
             // contains Lu, Lo, Lt, or Lowercase or Uppercase
             final byte cat = Default.ucd().getCategory(cp);
             if (cat == Lu || cat == Ll || cat == Lt) {
@@ -1357,14 +1357,14 @@ public class WriteCharts implements UCD_Types {
                         continue;
                     }
 
-                    final String source = UTF16.valueOf(cp);
+                    final String source = Character.toString(cp);
                     final String decomp = Default.nfd().normalize(source);
                     if (decomp.equals(source)) {
                         continue;
                     }
 
                     // pick up all decompositions
-                    int count = UTF16.getCharCount(UTF16.charAt(decomp, 0));
+                    int count = Character.charCount(decomp.codePointAt(0));
 
                     if (count == decomp.length()) {
                         notPrinted.add(source);
@@ -1423,7 +1423,7 @@ public class WriteCharts implements UCD_Types {
                             }
                             // skip unless single char or header
                             /*if (let.length() != 0
-                                && (UTF16.countCodePoint(comp) != 1 || comp.equals(merge))) {
+                                && (!UTF16Plus.isSingleCodePoint(comp) || comp.equals(merge))) {
                                     out.println("<td class='x'>&nbsp;</td>");
                                     continue;
                             }
@@ -1464,7 +1464,7 @@ public class WriteCharts implements UCD_Types {
             it.reset(markSet);
             while (it.next()) {
                 final int cp = it.codepoint;
-                final String source = UTF16.valueOf(cp);
+                final String source = Character.toString(cp);
                 if (totalMarks.contains(source)) {
                     continue; // skip all that we have already
                 }

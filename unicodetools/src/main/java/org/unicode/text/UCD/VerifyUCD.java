@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
@@ -420,7 +421,7 @@ public class VerifyUCD implements UCD_Types {
         final boolean result = !x.isNormalized(cp);
         if (false) {
             final String s = x.normalize(cp);
-            final boolean sResult = !s.equals(UTF16.valueOf(cp));
+            final boolean sResult = !s.equals(Character.toString(cp));
             if (result != sResult) {
                 System.out.println("Failure with " + x + " at " + Default.ucd().getCodeAndName(cp));
             }
@@ -442,7 +443,7 @@ public class VerifyUCD implements UCD_Types {
 
             final String decomp = Default.nfd().normalize(cp);
             final String comp = Default.nfc().normalize(cp);
-            final String source = UTF16.valueOf(cp);
+            final String source = Character.toString(cp);
 
             final String bidiDecomp = getBidi(decomp, true);
             final String bidiComp = getBidi(comp, true);
@@ -470,8 +471,8 @@ public class VerifyUCD implements UCD_Types {
         String result = "";
         byte lastBidi = -1;
         int cp;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = s.codePointAt(i);
             byte bidi = Default.ucd().getBidiClass(cp);
             if (compact) {
                 if (bidi == BIDI_NSM) {
@@ -558,7 +559,7 @@ public class VerifyUCD implements UCD_Types {
             final byte cat = Default.ucd().getCategory(cp);
             // check if canonical equivalents are case-mapped to canonical equivalents
             if (cat != PRIVATE_USE && cat != SURROGATE) {
-                String str = UTF16.valueOf(cp);
+                String str = Character.toString(cp);
                 if (!checkNF_AndCase(str, false)) {
                     badChars.add(cp);
                 }
@@ -1140,16 +1141,16 @@ public class VerifyUCD implements UCD_Types {
     public static String getMarks(String s, boolean doEnd) {
         int cp;
         if (!doEnd) {
-            for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-                cp = UTF16.charAt(s, i);
+            for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+                cp = s.codePointAt(i);
                 final int cc = Default.ucd().getCombiningClass(cp);
                 if (cc == 0) {
                     return s.substring(0, i);
                 }
             }
         } else {
-            for (int i = s.length(); i > 0; i -= UTF16.getCharCount(cp)) {
-                cp = UTF16.charAt(s, i - 1); // will go 2 before if necessary
+            for (int i = s.length(); i > 0; i -= Character.charCount(cp)) {
+                cp = s.codePointBefore(i);
                 final int cc = Default.ucd().getCombiningClass(cp);
                 if (cc == 0) {
                     return s.substring(i);
@@ -1182,7 +1183,7 @@ public class VerifyUCD implements UCD_Types {
             final String full = Default.ucd().getCase(cp, FULL, FOLD);
             final String simple = Default.ucd().getCase(cp, SIMPLE, FOLD);
 
-            final String realTest = "\u0360" + UTF16.valueOf(cp) + "\u0334";
+            final String realTest = "\u0360" + Character.toString(cp) + "\u0334";
 
             final int ccc = Default.ucd().getCombiningClass(cp);
 
@@ -1214,8 +1215,8 @@ public class VerifyUCD implements UCD_Types {
             int ccc = Default.ucd.getCombiningClass(cp);
 
             int cp2;
-            for (int i = 0; i < full.length(); i += UTF16.getCharCount(cp2)) {
-                cp2 = UTF16.charAt(full, i);
+            for (int i = 0; i < full.length(); i += Character.charCount(cp2)) {
+                cp2 = full.codePointAt(i);
                 int ccc2 = Default.ucd.getCombiningClass(cp2);
                 if (ccc2 != ccc) {
                     System.out.println("Case fold CCC fails at " + Default.ucd.getCodeAndName(cp));
@@ -1381,8 +1382,8 @@ public class VerifyUCD implements UCD_Types {
                 }
                 int cp2;
                 boolean excluded = false;
-                for (int j = 0; j < kc.length(); j += UTF16.getCharCount(cp2)) {
-                    cp2 = UTF16.charAt(kc, j);
+                for (int j = 0; j < kc.length(); j += Character.charCount(cp2)) {
+                    cp2 = kc.codePointAt(j);
                     if (prohibited.get(cp2)) {
                         showError("Prohibited with NFKC, but output with NFC", cp, "");
                         excluded = true;
@@ -1715,7 +1716,7 @@ public class VerifyUCD implements UCD_Types {
             // if (Default.ucd.hasComputableName(i)) continue;
             tempInteger = null;
 
-            final String original = UTF16.valueOf(i);
+            final String original = Character.toString(i);
             final String caseFold = Default.ucd().getCase(i, FULL, FOLD);
             if (!original.equals(caseFold)) {
                 tempInteger = new Integer(i);
@@ -2076,10 +2077,10 @@ public class VerifyUCD implements UCD_Types {
                 }
 
                 final String key = Utility.fromHex(parts[0]);
-                if (UTF16.countCodePoint(key) != 1) {
+                if (!UTF16Plus.isSingleCodePoint(key)) {
                     throw new ChainException("First IDN field not single character: " + line, null);
                 }
-                final int cp = UTF16.charAt(key, 0);
+                final int cp = key.codePointAt(0);
                 if (!Default.ucd().isAssigned(cp) || Default.ucd().isPUA(cp)) {
                     throw new ChainException("IDN character unassigned or PUA: " + line, null);
                 }
@@ -2311,13 +2312,13 @@ public class VerifyUCD implements UCD_Types {
     }
 
     static String getCategoryID(String s) {
-        if (UTF16.countCodePoint(s) == 1) {
+        if (UTF16Plus.isSingleCodePoint(s)) {
             return Default.ucd().getCategoryID(s.codePointAt(0));
         }
         final StringBuffer result = new StringBuffer();
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (i != 0) {
                 result.append(' ');
             }
@@ -2567,7 +2568,7 @@ public class VerifyUCD implements UCD_Types {
                     final String decomp = Default.nfd().normalize(i);
                     if (noneHaveCategory(decomp, Cn, older)) {
                         final String recomp = Default.nfc().normalize(decomp);
-                        if (recomp.equals(UTF16.valueOf(i))) {
+                        if (recomp.equals(Character.toString(i))) {
                             Utility.fixDot();
                             System.out.println(
                                     "FAILS COMP STABILITY: " + Default.ucd().getCodeAndName(i));
@@ -2584,8 +2585,8 @@ public class VerifyUCD implements UCD_Types {
 
     public static boolean noneHaveCategory(String s, byte cat, UCD ucd) {
         int cp;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = s.codePointAt(i);
             final byte cat2 = ucd.getCategory(i);
             if (cat == cat2) {
                 return false;
