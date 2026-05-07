@@ -326,7 +326,7 @@ public class WriteConformanceTest {
         }
         if (UTF16.hasMoreCodePointsThan(s, 1)) {
             for (int i = 1; i < s.length(); ++i) {
-                if (UTF16.isLeadSurrogate(s.charAt(i - 1))) {
+                if (Character.isHighSurrogate(s.charAt(i - 1))) {
                     continue; // skip if in middle of supplementary
                 }
 

@@ -14,6 +14,7 @@ import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Replaceable;
 import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
@@ -784,7 +785,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         }
 
         // fix surrogates, since XML can't handle
-        if (UTF32.isSurrogate(c)) {
+        if (UTF16.isSurrogate(c)) {
             return HTML ? '#' + hex(c, 4) : "<codepoint hex=\"" + hex(c, 1) + "\"/>";
         }
 

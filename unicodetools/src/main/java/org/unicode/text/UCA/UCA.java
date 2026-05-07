@@ -9,7 +9,6 @@
  */
 package org.unicode.text.UCA;
 
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
@@ -1519,8 +1518,8 @@ public final class UCA implements Comparator<String> {
                 return (char) cp;
             }
             // DEBUGCHAR = true;
-            charBuffer = UTF16.getTrailSurrogate(cp);
-            return UTF16.getLeadSurrogate(cp);
+            charBuffer = Character.lowSurrogate(cp);
+            return Character.highSurrogate(cp);
         }
 
         return UCA_Types.NOT_A_CHAR;

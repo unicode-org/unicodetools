@@ -14,7 +14,6 @@ import com.google.common.collect.Multimap;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
 import com.ibm.icu.text.UnicodeSetIterator;
@@ -163,8 +162,8 @@ public class Segmenter {
             return true;
         }
         // don't break in middle of surrogate
-        if (UTF16.isLeadSurrogate(text.charAt(position - 1))
-                && UTF16.isTrailSurrogate(text.charAt(position))) {
+        if (Character.isHighSurrogate(text.charAt(position - 1))
+                && Character.isLowSurrogate(text.charAt(position))) {
             breakRule = NOBREAK_SUPPLEMENTARY;
             return false;
         }
@@ -1055,9 +1054,9 @@ public class Segmenter {
                         if (JavaRegex_uxxx.contains(codePoint)) {
                             if (codePoint > 0xFFFF) {
                                 return "\\u"
-                                        + Utility.hex(UTF16.getLeadSurrogate(codePoint))
+                                        + Utility.hex(Character.highSurrogate(codePoint))
                                         + "\\u"
-                                        + Utility.hex(UTF16.getTrailSurrogate(codePoint));
+                                        + Utility.hex(Character.lowSurrogate(codePoint));
                             }
                             return "\\u" + Utility.hex(codePoint);
                         }

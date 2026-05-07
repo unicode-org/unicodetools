@@ -15,18 +15,6 @@ package org.unicode.text.utility;
  */
 public final class UTF32 {
     /**
-     * Determines whether the code point is a surrogate. TODO: Propose again to widen
-     * UTF16.isSurrogate(char) to take an int. Or maybe add UTF16.isSurrogateCodePoint(int) or
-     * isCodePointSurrogate(int).
-     *
-     * @return true iff the input character is a surrogate.
-     * @param ch the input character.
-     */
-    public static boolean isSurrogate(int char32) {
-        return Character.MIN_SURROGATE <= char32 && char32 <= Character.MAX_SURROGATE;
-    }
-
-    /**
      * Convenience method corresponding to String.valueOf(char). It returns a one or two char string
      * containing the UTF-32 value. If the input value can't be converted, it substitutes the
      * replacement character U+FFFD.
