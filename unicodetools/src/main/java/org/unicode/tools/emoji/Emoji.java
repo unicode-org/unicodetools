@@ -157,20 +157,14 @@ public class Emoji {
                     //            .put(VERSION0_6, "2010-06-09")
                     .build();
 
-    public static final Map<Integer, VersionInfo> YEAR_TO_EMOJI_VERSION_ASCENDING;
     public static final Map<VersionInfo, Integer> EMOJI_VERSION_TO_YEAR;
 
     static {
-        Map<Integer, VersionInfo> _map = new TreeMap<>();
         Map<VersionInfo, Integer> _mapEmojiToYear = new TreeMap<>();
         for (Entry<VersionInfo, String> entry : EMOJI_TO_DATE.entrySet()) {
             int year = Integer.parseInt(entry.getValue().substring(0, 4));
             _mapEmojiToYear.put(entry.getKey(), year);
-            if (!_map.containsKey(year)) {
-                _map.put(year, entry.getKey());
-            }
         }
-        YEAR_TO_EMOJI_VERSION_ASCENDING = ImmutableMap.copyOf(_map);
         EMOJI_VERSION_TO_YEAR = ImmutableMap.copyOf(_mapEmojiToYear);
     }
 

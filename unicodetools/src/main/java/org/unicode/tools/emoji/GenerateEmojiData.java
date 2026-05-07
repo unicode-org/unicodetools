@@ -812,7 +812,7 @@ public class GenerateEmojiData {
                         pw = ((DiffingPrintWriter) out).tempPrintWriter;
                     } else {
                         throw new IllegalArgumentException(
-                                "need a PrintWriter or a TempPrintWriter for calling "
+                                "need a PrintWriter or a DiffingPrintWriter for calling "
                                         + "MakeUnicodeFiles.writeBinaryMissingValues()");
                     }
                     MakeUnicodeFiles.writeBinaryMissingValues(
