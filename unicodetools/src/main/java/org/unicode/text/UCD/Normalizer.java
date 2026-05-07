@@ -19,6 +19,7 @@ import org.unicode.cldr.util.Pair;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.NormalizationDataIUP;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 /**
@@ -497,18 +498,18 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
             }
             b.setLength(0);
             data.getRecursiveDecomposition(i, b, true);
-            if (b.length() == 1) { // TODO: isSingleCodePoint(b)?
+            if (UTF16Plus.isSingleCodePoint(b)) {
                 continue;
             }
-            final char firstChar = b.charAt(0);
+            final int firstChar = b.codePointAt(0);
             if (firstChar != 0x20 && firstChar != '\u0640') {
                 continue;
             }
             // if rest are just Mn or Me marks, then add to substitute mapping
             int cp;
-            // TODO: Start after first code point which could be j=2?
-            for (int j = 1; j < b.length(); j += Character.charCount(cp)) {
-                cp = UTF16.charAt(b, j);
+            int j = Character.charCount(firstChar);
+            for (; j < b.length(); j += Character.charCount(cp)) {
+                cp = b.codePointAt(j);
                 if (data.isNonSpacing(cp)) {
                     continue main;
                 }
