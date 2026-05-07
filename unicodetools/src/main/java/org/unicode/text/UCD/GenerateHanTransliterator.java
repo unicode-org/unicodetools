@@ -2279,7 +2279,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
     static void addCheck2(String word, String definition, String line) {
         definition = Default.nfc().normalize(definition);
         word = Default.nfc().normalize(word);
-        if (DO_SIMPLE && UTF16.countCodePoint(word) > 1) {
+        if (DO_SIMPLE && UTF16.hasMoreCodePointsThan(word, 1)) {
             return;
         }
 
@@ -2298,7 +2298,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
                 Utility.addToList(duplicates, word, definition, true);
             }
         }
-        if (UTF16.countCodePoint(word) > 1) {
+        if (UTF16.hasMoreCodePointsThan(word, 1)) {
             unihanNonSingular = true;
         }
     }

@@ -33,6 +33,7 @@ import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
@@ -652,7 +653,7 @@ public final class UCD implements UCD_Types {
     static final char APOSTROPHE = '\u2019';
 
     public String getCase(String s, byte simpleVsFull, byte caseType, String condition) {
-        if (UTF16.countCodePoint(s) == 1) {
+        if (UTF16Plus.isSingleCodePoint(s)) {
             return getCase(s.codePointAt(0), simpleVsFull, caseType);
         }
         final StringBuffer result = new StringBuffer();

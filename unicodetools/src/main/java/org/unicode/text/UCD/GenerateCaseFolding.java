@@ -19,6 +19,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.UnicodeDataFile.FileInfix;
 import org.unicode.text.utility.Utility;
@@ -123,7 +124,7 @@ public class GenerateCaseFolding implements UCD_Types {
                     // do nothing
                     // drawLine(out, ch, "I", "i");
                 } else if (rFull != null && rFull.equals(rSimple)
-                        || (PICK_SHORT && UTF16.countCodePoint(rFull) == 1)) {
+                        || (PICK_SHORT && UTF16Plus.isSingleCodePoint(rFull))) {
                     drawLine(out, ch, "C", rFull, normativeSCF, normativeCF);
                 } else {
                     if (rFull != null) {
@@ -330,7 +331,7 @@ public class GenerateCaseFolding implements UCD_Types {
 
                 log.println(s2 + "\t#" + Default.ucd().getName(s2));
 
-                if (UTF16.countCodePoint(s2) == 1) {
+                if (UTF16Plus.isSingleCodePoint(s2)) {
                     repChar.put(s2, rep);
                     charsUsed.set(s2.codePointAt(0));
                 }
@@ -716,9 +717,9 @@ public class GenerateCaseFolding implements UCD_Types {
             // presumably if there is a single code point, it would already be in the simple
             // mappings
 
-            if (UTF16.countCodePoint(flower) == 1
-                    && UTF16.countCodePoint(fupper) == 1
-                    && UTF16.countCodePoint(title) == 1) {
+            if (UTF16Plus.isSingleCodePoint(flower)
+                    && UTF16Plus.isSingleCodePoint(fupper)
+                    && UTF16Plus.isSingleCodePoint(title)) {
                 if (ch == CHECK_CHAR) {
                     System.out.println(
                             "Skipping single code point: " + Default.ucd().getCodeAndName(ch));
@@ -770,7 +771,7 @@ public class GenerateCaseFolding implements UCD_Types {
                                                     ? 3
                                                     : name.indexOf("GEGRAMMENI") < 0
                                                             ? 5
-                                                            : UTF16.countCodePoint(ftitle) == 1
+                                                            : UTF16Plus.isSingleCodePoint(ftitle)
                                                                     ? 6
                                                                     : UTF16.countCodePoint(fupper)
                                                                                     == 2

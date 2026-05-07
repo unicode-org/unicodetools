@@ -20,6 +20,7 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 public final class DerivedProperty implements UCD_Types {
@@ -124,7 +125,7 @@ public final class DerivedProperty implements UCD_Types {
                 return false;
             }
             final String norm = nfx.normalize(cp);
-            if (UTF16.countCodePoint(norm) != 1) {
+            if (!UTF16Plus.isSingleCodePoint(norm)) {
                 return true;
             }
             return false;
@@ -1126,7 +1127,7 @@ public final class DerivedProperty implements UCD_Types {
             return true;
         }
         final String decomp = ucdData.getDecompositionMapping(cp);
-        if (UTF16.countCodePoint(decomp) == 1) {
+        if (UTF16Plus.isSingleCodePoint(decomp)) {
             return true;
         }
         final int first = decomp.codePointAt(0);

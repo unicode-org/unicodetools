@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
@@ -2076,7 +2077,7 @@ public class VerifyUCD implements UCD_Types {
                 }
 
                 final String key = Utility.fromHex(parts[0]);
-                if (UTF16.countCodePoint(key) != 1) {
+                if (!UTF16Plus.isSingleCodePoint(key)) {
                     throw new ChainException("First IDN field not single character: " + line, null);
                 }
                 final int cp = key.codePointAt(0);
@@ -2311,7 +2312,7 @@ public class VerifyUCD implements UCD_Types {
     }
 
     static String getCategoryID(String s) {
-        if (UTF16.countCodePoint(s) == 1) {
+        if (UTF16Plus.isSingleCodePoint(s)) {
             return Default.ucd().getCategoryID(s.codePointAt(0));
         }
         final StringBuffer result = new StringBuffer();
