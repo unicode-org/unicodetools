@@ -1217,13 +1217,11 @@ AB66..AB67; Uncommon_Use
 16FF0..16FF1; Obsolete
 
 # Unicode 18.0
+208F ; Technical
 05C8..05C9 ; Technical
-11DF0 ; Obsolete
-11DF1 ; Technical
 0B53..0B54 ; Uncommon_Use
 1ADE..1ADF ; Technical
 1AEC..1AF0 ; Technical
-208F ; Technical
 A7DD ; Technical Obsolete
 A7E2 ; Obsolete
 AB6C..AB6D ; Technical
@@ -1232,8 +1230,14 @@ AB6C..AB6D ; Technical
 10EF0..10EF8 ; Technical
 10EF9 ; Obsolete
 11B0A ; Recommended
+11DF0 ; Obsolete
+11DF1 ; Technical
 1B127..1B128 ; Obsolete
 1B168 ; Technical
+1D250..1D252 ; Technical
+1D25B..1D25C ; Technical
+1D25F ; Technical
+1D280..1D281 ; Technical
 1DF1F..1DF24 ; Technical
 1DF2B..1DF59 ; Technical
 1DF5A..1DF66 ; Uncommon_Use
@@ -1242,7 +1246,3 @@ AB6C..AB6D ; Technical
 1DF90..1DF94 ; Technical Obsolete
 1DF96 ; Technical Obsolete
 2B81E ; Uncommon_Use
-1D250..1D252 ; Technical
-1D25B..1D25C ; Technical
-1D25F ; Technical
-1D280..1D281 ; Technical
