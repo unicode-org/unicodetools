@@ -31,6 +31,7 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.Counter;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.MultiComparator;
 import org.unicode.tools.emoji.CountEmoji.Category;
@@ -227,7 +228,7 @@ public class EmojiFrequency {
                 }
                 String subcategory = order.getCategory(dataS);
                 if (subcategory == null) {
-                    subcategory = order.getCategory(Character.toString(s.codePointAt(0)));
+                    subcategory = order.getCategory(UTF16Plus.codePointSubstringAt(s, 0));
                     if (subcategory == null) {
                         continue;
                     }

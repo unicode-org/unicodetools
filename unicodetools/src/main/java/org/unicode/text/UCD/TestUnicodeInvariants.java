@@ -1070,8 +1070,9 @@ public class TestUnicodeInvariants {
                 return null;
             }
             int start = next.getIndex();
-            if (PATTERN_SYNTAX.contains(text.codePointAt(start))) {
-                final String syntax = Character.toString(text.codePointAt(start));
+            int startCp = text.codePointAt(start);
+            if (PATTERN_SYNTAX.contains(startCp)) {
+                final String syntax = Character.toString(startCp);
                 next.setIndex(start + syntax.length());
                 final String marks = scan(NONSPACING_MARK, text, next, true);
                 return new Lookahead(syntax + marks, pp, next);

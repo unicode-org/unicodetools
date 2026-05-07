@@ -64,6 +64,7 @@ import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UnicodeTransform;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Confusables;
@@ -1118,7 +1119,7 @@ public class GenerateConfusables {
                         final String target = fromHexOld(targetString);
                         final String source = fromHexOld(sourceString);
                         final String nsource = NFKD.normalize(source);
-                        final String first = Character.toString(nsource.codePointAt(0));
+                        final String first = UTF16Plus.codePointSubstringAt(nsource, 0);
                         if (!first.equals(target)) {
                             add(source, target, type, count, line);
                         }

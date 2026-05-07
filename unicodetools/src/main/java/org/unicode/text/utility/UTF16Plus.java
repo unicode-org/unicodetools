@@ -33,6 +33,12 @@ public final class UTF16Plus {
         }
     }
 
+    /** Equivalent to Character.toString(s.codePointAt(offset)). */
+    public static String codePointSubstringAt(String s, int offset) {
+        int limit = Character.offsetByCodePoints(s, offset, 1);
+        return s.substring(offset, limit);
+    }
+
     public static StringBuilder insertCodePoint(StringBuilder sb, int offset, int c) {
         if (Character.isBmpCodePoint(c)) {
             sb.insert(offset, (char) c);
