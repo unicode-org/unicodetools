@@ -503,8 +503,8 @@ public final class GenerateHanTransliterator implements UCD_Types {
 
         @Override
         public int compare(Object o1, Object o2) {
-            final int c1 = UTF16.charAt((String) o1, 0);
-            final int c2 = UTF16.charAt((String) o2, 0);
+            final int c1 = ((String) o1).codePointAt(0);
+            final int c2 = ((String) o2).codePointAt(0);
             final Object v1 = map.getValue(c1);
             final Object v2 = map.getValue(c2);
             if (v1 == null) {

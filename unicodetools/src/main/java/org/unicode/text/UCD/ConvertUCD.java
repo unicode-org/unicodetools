@@ -9,7 +9,6 @@
  */
 package org.unicode.text.UCD;
 
-import com.ibm.icu.text.UTF16;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -529,15 +528,12 @@ public final class ConvertUCD implements UCD_Types {
                     int cpStart;
                     final int ddot = parts[0].indexOf(".");
                     if (ddot >= 0) {
-                        cpStart = UTF16.charAt(Utility.fromHex(parts[0].substring(0, ddot)), 0);
-                        cpTop = UTF16.charAt(Utility.fromHex(parts[0].substring(ddot + 2)), 0);
+                        cpStart = Utility.fromHex(parts[0].substring(0, ddot)).codePointAt(0);
+                        cpTop = Utility.fromHex(parts[0].substring(ddot + 2)).codePointAt(0);
                         // System.out.println(Utility.hex(cpStart) + " ... " + Utility.hex(cpTop));
                     } else {
-                        cpStart = UTF16.charAt(Utility.fromHex(parts[0]), 0);
+                        cpStart = Utility.fromHex(parts[0]).codePointAt(0);
                         cpTop = cpStart;
-                        if (labels[1].equals("RANGE")) {
-                            UTF16.charAt(Utility.fromHex(parts[1]), 0);
-                        }
                     }
 
                     // properties first
@@ -553,7 +549,7 @@ public final class ConvertUCD implements UCD_Types {
                         properties.add(prop);
                         if (Utility.find(prop, UCD_Names.DeletedProperties, true)
                                 == -1) { // only undeleted
-                            int end = UTF16.charAt(Utility.fromHex(parts[1]), 0);
+                            int end = Utility.fromHex(parts[1]).codePointAt(0);
                             if (end == 0) {
                                 end = cpStart;
                             }

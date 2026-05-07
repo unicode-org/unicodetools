@@ -52,7 +52,7 @@ class NormalizationDataStandard implements NormalizationData {
                     }
                     isFirst.set(a);
 
-                    final int b = UTF16.charAt(s, Character.charCount(a));
+                    final int b = s.codePointAt(Character.charCount(a));
                     isSecond.set(b);
 
                     // have a recomposition, so set the bit

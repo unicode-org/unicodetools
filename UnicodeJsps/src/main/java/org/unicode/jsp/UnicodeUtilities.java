@@ -1245,7 +1245,7 @@ public class UnicodeUtilities {
         int charCount = 0;
         Status status = Status.NORMAL;
         for (int i = 0; i < a_out.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(a_out, i);
+            cp = a_out.codePointAt(i);
             ++charCount;
             switch (status) {
                 case AFTERSLASH:

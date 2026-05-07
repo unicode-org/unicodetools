@@ -215,7 +215,7 @@ public class GenerateData implements UCD_Types {
                 continue;
             }
             final int c1 = s.codePointAt(0);
-            final int c2 = UTF16.charAt(s, Character.charCount(c1));
+            final int c2 = s.codePointAt(Character.charCount(c1));
             if (Default.ucd().getCombiningClass(c1) != 0) {
                 continue;
             }
