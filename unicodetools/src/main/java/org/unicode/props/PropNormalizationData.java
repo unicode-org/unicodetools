@@ -255,7 +255,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
 
                     int ch2;
                     for (; k > 0; k -= Character.charCount(ch2)) {
-                        ch2 = UTF16.charAt(target, k - 1);
+                        ch2 = target.codePointBefore(k);
                         if (canonical.getValue(ch2) <= chClass) {
                             break;
                         }
