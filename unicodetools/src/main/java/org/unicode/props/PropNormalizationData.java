@@ -7,6 +7,7 @@ import java.util.BitSet;
 import java.util.HashMap;
 import org.unicode.props.UcdPropertyValues.Canonical_Combining_Class_Values;
 import org.unicode.text.UCD.NormalizationData;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 public class PropNormalizationData implements org.unicode.text.UCD.NormalizationData {
@@ -63,7 +64,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
             } else {
                 final int first = dmpStr.codePointAt(0);
                 if (ce.getValue(cp).equals("Yes")
-                        || UTF16.countCodePoint(dmpStr) == 1
+                        || UTF16Plus.isSingleCodePoint(dmpStr)
                         || canonical.getValue(first) != 0) {
                     // skip
                 } else {

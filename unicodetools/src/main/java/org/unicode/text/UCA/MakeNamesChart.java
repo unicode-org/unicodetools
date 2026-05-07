@@ -28,6 +28,7 @@ import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 import org.unicode.text.utility.UtilityBase;
 
@@ -582,7 +583,7 @@ public class MakeNamesChart {
                             + symbol
                             + "</td><td>"
                             + showTextConvertingHex(Utility.hex(transformed, 4, " + "), true)
-                            + (UTF16.countCodePoint(transformed) != 1
+                            + (!UTF16Plus.isSingleCodePoint(transformed)
                                     ? ""
                                     : " "
                                             + Default.ucd()
@@ -778,7 +779,7 @@ public class MakeNamesChart {
         final String lastDecomp = Default.ucd().getDecompositionMapping(lastCodePoint);
         final String hexed = Utility.hex(lastDecomp, 4, " ");
         String hexed2 = hexed;
-        if (UTF16.countCodePoint(lastDecomp) == 1) {
+        if (UTF16Plus.isSingleCodePoint(lastDecomp)) {
             hexed2 += " " + Default.ucd().getName(lastDecomp).toLowerCase();
         }
         if (hexed.equalsIgnoreCase(body)) {
@@ -807,7 +808,7 @@ public class MakeNamesChart {
             hexed = "<" + lastDecompID + "> " + hexed;
         }
         String hexed2 = hexed;
-        if (UTF16.countCodePoint(lastDecomp) == 1) {
+        if (UTF16Plus.isSingleCodePoint(lastDecomp)) {
             hexed2 += " " + Default.ucd().getName(lastDecomp).toLowerCase();
         }
         if (hexed.equalsIgnoreCase(body)) {

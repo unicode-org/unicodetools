@@ -1423,7 +1423,7 @@ public class WriteCharts implements UCD_Types {
                             }
                             // skip unless single char or header
                             /*if (let.length() != 0
-                                && (UTF16.countCodePoint(comp) != 1 || comp.equals(merge))) {
+                                && (!UTF16Plus.isSingleCodePoint(comp) || comp.equals(merge))) {
                                     out.println("<td class='x'>&nbsp;</td>");
                                     continue;
                             }

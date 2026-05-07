@@ -34,6 +34,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import org.unicode.cldr.util.PatternCache;
+import org.unicode.text.utility.UTF16Plus;
 
 @Deprecated
 public class GenerateNormalizeForMatch2 {
@@ -620,7 +621,7 @@ public class GenerateNormalizeForMatch2 {
         UnicodeSet source = new UnicodeSet();
         if (UnicodeSet.resemblesPattern(sourcePiece, 0)) {
             source.applyPattern(sourcePiece);
-        } else if (UTF16.countCodePoint(sourcePiece) == 1) {
+        } else if (UTF16Plus.isSingleCodePoint(sourcePiece)) {
             source.add(sourcePiece.codePointAt(0));
         } else {
             String[] starts = sourcePiece.split("\\s*-\\s*");
@@ -815,7 +816,7 @@ public class GenerateNormalizeForMatch2 {
      */
     private static String jimName(String other) {
         String otherName =
-                UTF16.countCodePoint(other) != 1
+                !UTF16Plus.isSingleCodePoint(other)
                         ? null
                         : (String) JIM_NAMES.getValue(other.codePointAt(0));
         if (otherName == null) {

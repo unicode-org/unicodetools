@@ -31,6 +31,7 @@ import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 final class Validity {
@@ -303,7 +304,7 @@ final class Validity {
             if (!Default.nfd().isNormalized(s)) {
                 continue; // only unnormalized stuff
             }
-            if (UTF16.countCodePoint(s) == 1) {
+            if (UTF16Plus.isSingleCodePoint(s)) {
                 final int cat = Default.ucd().getCategory(s.codePointAt(0));
                 if (cat == UCD_Types.Cn || cat == UCD_Types.Cc || cat == UCD_Types.Cs) {
                     continue;

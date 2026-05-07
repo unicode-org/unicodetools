@@ -52,6 +52,7 @@ import org.unicode.text.UCA.RadicalStroke;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 public class GenerateUnihanCollators {
@@ -1133,7 +1134,7 @@ public class GenerateUnihanCollators {
         for (final String s : unicodeMap) {
             //            S newValue = unicodeMap.get(s);
             //            if (newValue == null) continue;
-            if (UTF16.countCodePoint(s) != 1) {
+            if (!UTF16Plus.isSingleCodePoint(s)) {
                 throw new IllegalArgumentException("Wrong length!!");
             }
             rsSorted.add(s);

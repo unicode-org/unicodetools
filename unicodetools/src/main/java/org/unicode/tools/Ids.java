@@ -42,6 +42,7 @@ import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 
 public class Ids {
 
@@ -1246,7 +1247,7 @@ public class Ids {
                     throw new ICUException(target);
                 }
                 String cp = target.substring(equals + 1, paren).trim();
-                if (UTF16.countCodePoint(cp) != 1) {
+                if (!UTF16Plus.isSingleCodePoint(cp)) {
                     throw new ICUException(target);
                 }
                 cjkRadSupToIdeo.put(cjkRadSup, cp);

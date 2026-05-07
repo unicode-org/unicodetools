@@ -22,6 +22,7 @@ import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.draft.CharacterFrequency;
 import org.unicode.text.tools.ScriptPopulation.Category.Extra;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.tools.emoji.EmojiData;
 
 /** See CharacterFrequency for the base data */
@@ -82,7 +83,7 @@ class ScriptPopulation {
             // quick approximate normalization
             int i = UCharacter.foldCase(cp, true);
             String str = NFC.normalize(UTF16.valueOf(i));
-            if (1 == UTF16.countCodePoint(str)) {
+            if (UTF16Plus.isSingleCodePoint(str)) {
                 i = str.codePointAt(0);
             }
 
@@ -682,7 +683,7 @@ class ScriptPopulation {
             buffer.setLength(0);
             buffer.appendCodePoint(cp);
             String nfkcForm = nfkc.normalize(buffer);
-            if (UTF16.countCodePoint(nfkcForm) == 1) {
+            if (UTF16Plus.isSingleCodePoint(nfkcForm)) {
                 script = getBestScript(nfkcForm.codePointAt(0));
                 if (script != UScript.UNKNOWN
                         && script != UScript.COMMON

@@ -20,6 +20,7 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 import org.unicode.unittest.TestFmwkMinusMinus;
 import org.unicode.unused.CaseBit;
@@ -132,7 +133,7 @@ public class CaseBitTest extends TestFmwkMinusMinus {
             regular++;
         }
         for (String s : uca.getContractions()) {
-            if (UTF16.countCodePoint(s) != 1) { // don't count twice
+            if (!UTF16Plus.isSingleCodePoint(s)) { // don't count twice
                 s = Default.nfd().normalize(s);
                 sorted.put(uca.getCEList(s, true), s);
                 contractions++;

@@ -23,6 +23,7 @@ import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 public class GenOverlap implements UCD_Types {
@@ -634,7 +635,7 @@ public class GenOverlap implements UCD_Types {
                     break;
                 }
 
-                if (UTF16.countCodePoint(s) != 1) {
+                if (!UTF16Plus.isSingleCodePoint(s)) {
                     continue; // skip ligatures
                 }
                 final int cp = s.codePointAt(0);

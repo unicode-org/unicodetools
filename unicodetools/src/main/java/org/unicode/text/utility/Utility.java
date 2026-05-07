@@ -420,7 +420,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
 
     public static int codePointFromHex(String p) {
         final String temp = Utility.fromHex(p);
-        if (UTF16.countCodePoint(temp) != 1) {
+        if (!UTF16Plus.isSingleCodePoint(temp)) {
             throw new ChainException("String is not single (UTF32) character: " + p, null);
         }
         return temp.codePointAt(0);
