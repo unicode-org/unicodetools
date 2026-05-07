@@ -343,7 +343,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
                         }
                     }
                 }
-                target.insert(k, UTF16.valueOf(ch));
+                UTF16Plus.insertCodePoint(target, k, ch);
             }
         }
     }

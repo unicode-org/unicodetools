@@ -225,9 +225,6 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
     /**
      * Decomposes text, either canonical or compatibility, replacing contents of the target buffer.
      *
-     * @param form the normalization form. If NF_COMPATIBILITY_MASK bit is on in this byte, then
-     *     selects the recursive compatibility decomposition, otherwise selects the recursive
-     *     canonical decomposition.
      * @param source the original text, unnormalized
      * @param target the resulting normalized text
      */
@@ -261,7 +258,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
                         }
                     }
                 }
-                target.insert(k, UTF16.valueOf(ch));
+                UTF16Plus.insertCodePoint(target, k, ch);
             }
         }
     }

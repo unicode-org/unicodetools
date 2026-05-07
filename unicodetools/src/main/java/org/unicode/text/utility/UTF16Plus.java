@@ -32,4 +32,14 @@ public final class UTF16Plus {
                     "not a code point boundary:\n" + s.toString() + "\nat offset " + offset);
         }
     }
+
+    public static StringBuilder insertCodePoint(StringBuilder sb, int offset, int c) {
+        if (Character.isBmpCodePoint(c)) {
+            sb.insert(offset, (char) c);
+        } else {
+            sb.insert(offset++, Character.highSurrogate(c));
+            sb.insert(offset, Character.lowSurrogate(c));
+        }
+        return sb;
+    }
 }
