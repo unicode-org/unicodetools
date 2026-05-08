@@ -1159,7 +1159,11 @@ public class MakeUnicodeFiles {
                                             UcdPropertyValues.Script_Values.forName(
                                                             script.getValue(
                                                                     dispreferred.codePointAt(0)))
-                                                    == Script_Values.Khmer))
+                                                    == Script_Values.Khmer),
+                            new DoNotEmitSubsection(
+                                    "Precomposed form of mathematical symbols negated with a vertical bar",
+                                    "[:Do_Not_Emit_Type=Precomposed_Form:]",
+                                    dispreferred -> dispreferred.contains("\u20D2")))
                 };
         for (final var section : sections) {
             pw.println();

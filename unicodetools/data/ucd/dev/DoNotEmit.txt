@@ -1,5 +1,5 @@
 # DoNotEmit-18.0.0.txt
-# Date: 2026-02-03, 23:09:55 GMT
+# Date: 2026-05-08, 00:14:00 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -511,5 +511,10 @@
 17A4; 17A2 17B6; Deprecated # KHMER INDEPENDENT VOWEL QAA; KHMER LETTER QA, KHMER VOWEL SIGN AA
 17D8; 17D4 179B 17D4; Discouraged # KHMER SIGN BEYYAL; KHMER SIGN KHAN, KHMER LETTER LO, KHMER SIGN KHAN
 17E8 17D3; 19E0; Discouraged # KHMER DIGIT EIGHT, KHMER SIGN BATHAMASAT; KHMER SYMBOL PATHAMASAT
+
+# Precomposed form of mathematical symbols negated with a vertical bar
+221E 20D2; 29DE; Precomposed_Form # INFINITY, COMBINING LONG VERTICAL LINE OVERLAY; INFINITY NEGATED WITH VERTICAL BAR
+223E 20D2; 1DB1B; Precomposed_Form # INVERTED LAZY S, COMBINING LONG VERTICAL LINE OVERLAY; LEIBNIZIAN DISSIMILARITY
+1DB11 20D2; 1DB12; Precomposed_Form # LEIBNIZIAN CONGRUENCE, COMBINING LONG VERTICAL LINE OVERLAY; LEIBNIZIAN CONGRUENCE WITH VERTICAL BAR
 
 # EOF
