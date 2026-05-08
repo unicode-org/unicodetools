@@ -27,7 +27,6 @@ import java.util.TreeMap;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
-import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 public class VerifyUCD implements UCD_Types {
@@ -846,7 +845,7 @@ public class VerifyUCD implements UCD_Types {
 
             if (caseCat != oldCaseCat) {
                 log.println(
-                        UTF32.valueOf32(cp)
+                        Character.toString(cp)
                                 + "\t"
                                 + names[caseCat]
                                 + "\t"
@@ -905,7 +904,7 @@ public class VerifyUCD implements UCD_Types {
                 System.out.println("debug");
             }
 
-            final String x = UTF32.valueOf32(cp);
+            final String x = Character.toString(cp);
             final String dx = Default.nfd().normalize(cp);
             final String cx = Default.nfc().normalize(cp);
 
@@ -2106,7 +2105,7 @@ public class VerifyUCD implements UCD_Types {
                     continue;
                 }
 
-                final String key = UTF32.valueOf32(cp);
+                final String key = Character.toString(cp);
                 String value = (String) idnFold.get(key);
                 if (value == null) {
                     value = key;
@@ -2236,7 +2235,7 @@ public class VerifyUCD implements UCD_Types {
     }
 
     public static void IdentifierTest() {
-        final String x = normalize(UTF32.valueOf32(0x10300), 4);
+        final String x = normalize(Character.toString(0x10300), 4);
         getCategoryID(x);
 
         /*
@@ -2271,7 +2270,7 @@ public class VerifyUCD implements UCD_Types {
                 final boolean norm;
                 final boolean plain;
 
-                final String x_cp = 'x' + UTF32.valueOf32(cp);
+                final String x_cp = 'x' + Character.toString(cp);
                 final String nfx_x_cp = normalize(x_cp, j);
                 if (true) {
                     throw new RuntimeException("Fix plain & norm, 4 instances!!");
@@ -2291,7 +2290,7 @@ public class VerifyUCD implements UCD_Types {
                     continue;
                 }
 
-                final String nfx_cp = normalize(UTF32.valueOf32(cp), j);
+                final String nfx_cp = normalize(Character.toString(cp), j);
                 // plain = Default.ucd.isIdentifierStart(cp, true);
                 // norm = Default.ucd.isIdentifier(nfx_cp, true);
                 if (plain & !norm) {
@@ -2358,7 +2357,7 @@ public class VerifyUCD implements UCD_Types {
                     continue;
                 }
                 final String s = nfx.normalize(i);
-                final boolean differs = !s.equals(UTF32.valueOf32(i));
+                final boolean differs = !s.equals(Character.toString(i));
                 final boolean call = !nfx.isNormalized(i);
                 if (differs != call) {
                     Utility.fixDot();
@@ -2750,7 +2749,7 @@ public class VerifyUCD implements UCD_Types {
             System.out.println();
             final String s = Default.ucd().getDecompositionMapping(cp);
             System.out.print(Default.ucd().getCodeAndName(cp));
-            if (showCanonicalDecomposition && !s.equals(UTF32.valueOf32(cp))) {
+            if (showCanonicalDecomposition && !s.equals(Character.toString(cp))) {
                 System.out.print(" => " + Default.ucd().getCodeAndName(s));
             }
             System.out.println();

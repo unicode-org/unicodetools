@@ -187,7 +187,7 @@ public class WriteConformanceTest {
 
         /*
          * for (int i = 0; i <= 0x10FFFF; ++i) { if (!ucd.isAssigned(i))
-         * continue; addStringX(UTF32.valueOf32(i), option); }
+         * continue; addStringX(Character.toString(i), option); }
          *
          * Hashtable multiTable = collator.getContracting(); Enumeration enum =
          * multiTable.keys(); while (enum.hasMoreElements()) {
@@ -196,7 +196,7 @@ public class WriteConformanceTest {
          *
          * for (int i = 0; i < extraConformanceTests.length; ++i) { // put in
          * sample non-characters Utility.dot(counter++); String s =
-         * UTF32.valueOf32(extraConformanceTests[i]); Utility.fixDot();
+         * Character.toString(extraConformanceTests[i]); Utility.fixDot();
          * System.out.println("Adding: " + Utility.hex(s)); addStringX(s,
          * option); }
          *

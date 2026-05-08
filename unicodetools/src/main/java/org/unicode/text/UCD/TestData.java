@@ -45,7 +45,6 @@ import org.unicode.props.BagFormatter;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 public class TestData implements UCD_Types {
@@ -344,7 +343,7 @@ public class TestData implements UCD_Types {
 
     private static void tryConsole() throws UnsupportedEncodingException {
         for (int i = 1; i < 0xFFFF; ++i) {
-            final String s = UTF32.valueOf32(i);
+            final String s = Character.toString(i);
             final byte[] bytes = s.getBytes("UTF-8");
             String utf8bytes = "";
             for (int j = 0; j < bytes.length; ++j) {
@@ -362,7 +361,7 @@ public class TestData implements UCD_Types {
         final UnicodeSet failures = new UnicodeSet();
         check:
         for (int i = 1; i <= 0x10FFFF; ++i) {
-            final String s = UTF32.valueOf32(i);
+            final String s = Character.toString(i);
             final byte[] bytes = s.getBytes("UTF-8");
             for (int j = 0; j < bytes.length; ++j) {
                 switch (bytes[j] & 0xFF) {
@@ -1210,7 +1209,7 @@ public class TestData implements UCD_Types {
                 cc = Utility.repeat(" ", 4 - cc.length()) + cc;
                 System.out.println(Utility.repeat(" ", indent) + ucd.getCode(cp) + cc + " " + ucd.getName(cp));
                 String decomp = nfkc.normalize(cp);
-                if (!decomp.equals(UTF32.valueOf32(cp))) {
+                if (!decomp.equals(Character.toString(cp))) {
                     show(decomp, indent + 4);
                 }
             }
@@ -1464,7 +1463,7 @@ public class TestData implements UCD_Types {
                 Utility.dot(ch);
                 if (!ucd.isAssigned(ch)) continue;
                 if (ucd.isPUA(ch)) continue;
-                String cc = UTF32.valueOf32(ch);
+                String cc = Character.toString(ch);
                 writeLine(cc,log, true);
             }
             Utility.fixDot();
@@ -1478,7 +1477,7 @@ public class TestData implements UCD_Types {
                 if (!ucd.isAssigned(ch)) continue;
                 if (ucd.isPUA(ch)) continue;
                 int cc = ucd.getCombiningClass(ch);
-                if (example[cc] == null) example[cc] = UTF32.valueOf32(ch);
+                if (example[cc] == null) example[cc] = Character.toString(ch);
             }
 
             Utility.fixDot();
@@ -1510,8 +1509,8 @@ public class TestData implements UCD_Types {
                     break;
                 }
 
-                writeLine("a" + sample + UTF32.valueOf32(ch) + "b", log, false);
-                writeLine("a" + UTF32.valueOf32(ch) + sample + "b", log, false);
+                writeLine("a" + sample + Character.toString(ch) + "b", log, false);
+                writeLine("a" + Character.toString(ch) + sample + "b", log, false);
             }
             Utility.fixDot();
             log.println("#");
