@@ -449,7 +449,8 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         final Pair<Source, String> key = Pair.of(Source.old, version);
         NormalizationData result = versionCache.get(key);
         if (result == null) {
-            result = new NormalizationDataStandard(version);
+            var iup = IndexUnicodeProperties.make(version);
+            result = new NormalizationDataIUP(iup);
             versionCache.put(key, result);
         }
         return result;
