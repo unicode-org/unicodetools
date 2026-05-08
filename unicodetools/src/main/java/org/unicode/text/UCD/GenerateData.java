@@ -27,7 +27,6 @@ import java.util.function.Consumer;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
 
@@ -115,7 +114,7 @@ public class GenerateData implements UCD_Types {
             if (Default.ucd().isPUA(ch)) {
                 continue;
             }
-            final String cc = UTF32.valueOf32(ch);
+            final String cc = Character.toString(ch);
             writeLine(cc, log, true);
         }
         Utility.fixDot();
@@ -132,7 +131,7 @@ public class GenerateData implements UCD_Types {
             }
             final int cc = Default.ucd().getCombiningClass(ch);
             if (example[cc] == null) {
-                example[cc] = UTF32.valueOf32(ch);
+                example[cc] = Character.toString(ch);
             }
         }
 
@@ -176,8 +175,8 @@ public class GenerateData implements UCD_Types {
                 break;
             }
 
-            writeLine("a" + sample + UTF32.valueOf32(ch) + "b", log, false);
-            writeLine("a" + UTF32.valueOf32(ch) + sample + "b", log, false);
+            writeLine("a" + sample + Character.toString(ch) + "b", log, false);
+            writeLine("a" + Character.toString(ch) + sample + "b", log, false);
         }
 
         System.out.println("Writing Part 3");

@@ -25,7 +25,6 @@ import org.unicode.props.BagFormatter;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
-import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 public final class TestNormalization {
@@ -51,7 +50,7 @@ public final class TestNormalization {
             System.out.println(test + ": " + Default.ucd().getCodeAndName(s));
         }
 
-        final String x = UTF32.valueOf32(0x10000);
+        final String x = Character.toString(0x10000);
         check("NFC", Default.nfc(), x);
         check("NFD", Default.nfd(), x);
         check("NFKC", Default.nfkc(), x);
@@ -216,7 +215,7 @@ public final class TestNormalization {
             if (charsListed.get(missing)) {
                 continue;
             }
-            final String x = UTF32.valueOf32(missing);
+            final String x = Character.toString(missing);
             errorCount += check("NFC", Default.nfc(), x);
             errorCount += check("NFD", Default.nfd(), x);
             errorCount += check("NFKC", Default.nfkc(), x);

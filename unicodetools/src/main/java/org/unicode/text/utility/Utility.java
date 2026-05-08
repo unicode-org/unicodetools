@@ -790,7 +790,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         }
 
         if (c <= 0x7E) {
-            return UTF32.valueOf32(c);
+            return Character.toString(c);
         }
 
         // fix supplementaries & high characters, because of IE bug

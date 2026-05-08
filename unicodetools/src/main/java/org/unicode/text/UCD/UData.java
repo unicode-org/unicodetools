@@ -13,7 +13,6 @@ package org.unicode.text.UCD;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 class UData implements UCD_Types {
@@ -273,7 +272,7 @@ class UData implements UCD_Types {
 
     public void compact() {
         fleshOut();
-        final String codeValue = UTF32.valueOf32(codePoint);
+        final String codeValue = Character.toString(codePoint);
 
         // first case folding
 
@@ -367,7 +366,7 @@ class UData implements UCD_Types {
     public String toString(UCD ucd, byte style) {
         final boolean full = style == FULL;
         final StringBuffer result = new StringBuffer();
-        final String s = UTF32.valueOf32(codePoint);
+        final String s = Character.toString(codePoint);
 
         result.append("<e cp='").append(Utility.quoteXML(codePoint)).append('\'');
         result.append(" hx='").append(Utility.hex(codePoint)).append('\'');

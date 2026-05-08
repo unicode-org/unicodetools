@@ -33,7 +33,6 @@ import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
-import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 public final class UCD implements UCD_Types {
@@ -1778,19 +1777,17 @@ public final class UCD implements UCD_Types {
                 result.shortName = Utility.replace(result.name, UCD_Names.NAME_ABBREVIATIONS);
             }
             if (isRemapped) {
-                result.decompositionMapping =
-                        result.bidiMirror =
-                                result.simpleLowercase =
-                                        result.simpleUppercase =
-                                                result.simpleTitlecase =
-                                                        result.simpleCaseFolding =
-                                                                result.fullLowercase =
-                                                                        result.fullUppercase =
-                                                                                result.fullTitlecase =
-                                                                                        result.fullCaseFolding =
-                                                                                                UTF32
-                                                                                                        .valueOf32(
-                                                                                                                codePoint);
+                var s = Character.toString(codePoint);
+                result.decompositionMapping = s;
+                result.bidiMirror = s;
+                result.simpleLowercase = s;
+                result.simpleUppercase = s;
+                result.simpleTitlecase = s;
+                result.simpleCaseFolding = s;
+                result.fullLowercase = s;
+                result.fullUppercase = s;
+                result.fullTitlecase = s;
+                result.fullCaseFolding = s;
             }
         }
         if (isHangul) {
