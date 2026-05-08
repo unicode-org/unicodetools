@@ -5,6 +5,8 @@ PRmEastAsian OPmEastAsian ; No ;  ;
 PRmEastAsian OPmEastAsian IS ; No ;  ; 
 AK AK ; No ;  ; 
 SP IS ZWJ ; No ;  ; 
+eot ; Yes ;  ; Mandatory
+CR ; Yes ;  ; Mandatory
 CM ; Yes ;  ; 
 NU ; Yes ;  ; 
 HL ; Yes ;  ; 
@@ -95,14 +97,11 @@ NU CL_EastAsian ZWJ ; Yes ;  ;
 AK VI ; Yes ;  ; 
 B2 SP ; Yes ;  ; 
 RI ZWJ ; Yes ;  ; 
-CM QU_Pf eot ; Yes ;  ; 
 JL CM QU_Pi ; Yes ;  ; 
 JL QU_Pf ZWJ ; Yes ;  ; 
 RI RI ZWJ ; Yes ;  ; 
 OPmEastAsian SP IS ZWJ ; Yes ;  ; 
 RI ZWJ RI ZWJ ; Yes ;  ; 
-LF ; Yes ;  ; Mandatory
-CR ; Yes ;  ; Mandatory
 JL ; Yes ; JL / QU_Pi JL ; 
 PR_EastAsian ; Yes ; JL / QU_Pi JL ; 
 ID_EastAsian ; Yes ; JL / QU_Pi JL ; 
