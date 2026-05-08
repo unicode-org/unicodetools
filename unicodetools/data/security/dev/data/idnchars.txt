@@ -1,6 +1,6 @@
 # idnchars.txt
-# Date: 2025-09-12, 03:25:00 GMT
-# © 2025 Unicode®, Inc.
+# Date: 2026-04-13, 16:55:35 GMT
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -458,12 +458,13 @@ AC00..D7A3    ; output # [11172] (가..힣)  HANGUL SYLLABLE GA..HANGUL SYLLABLE
 11301         ; output #      (𑌁)  GRANTHA SIGN CANDRABINDU
 11303         ; output #      (𑌃)  GRANTHA SIGN VISARGA
 1133C         ; output #      (𑌼)  GRANTHA SIGN NUKTA
+11B0A         ; output #      (𑬊)  DEVANAGARI LETTER ALTERNATE DDDA
 1E7E0..1E7E6  ; output #  [7] (𞟠..𞟦)  ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
 1E7E8..1E7EB  ; output #  [4] (𞟨..𞟫)  ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE
 1E7ED..1E7EE  ; output #  [2] (𞟭..𞟮)  ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
 1E7F0..1E7FE  ; output # [15] (𞟰..𞟾)  ETHIOPIC SYLLABLE GURAGE QWI..ETHIOPIC SYLLABLE GURAGE PWEE
 
-# Total code points: 13495
+# Total code points: 13496
 
 # Not allowed at start of identifier
 
