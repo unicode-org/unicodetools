@@ -15,7 +15,6 @@ public final class Default implements UCD_Types {
     private static Normalizer nfd;
     private static Normalizer nfkc;
     private static Normalizer nfkd;
-    private static Normalizer[] nf = new Normalizer[4];
     private static String year;
 
     public static void setUCD(String version) {
@@ -31,10 +30,10 @@ public final class Default implements UCD_Types {
         }
         inRecursiveCall = true;
         ucd = UCD.make(ucdVersion);
-        nfd = nf[NFD] = new Normalizer(UCD_Types.NFD, ucdVersion());
-        nfc = nf[NFC] = new Normalizer(UCD_Types.NFC, ucdVersion());
-        nfkd = nf[NFKD] = new Normalizer(UCD_Types.NFKD, ucdVersion());
-        nfkc = nf[NFKC] = new Normalizer(UCD_Types.NFKC, ucdVersion());
+        nfd = Normalizer.getOrMakeNfdInstance(ucdVersion());
+        nfc = Normalizer.getOrMakeNfcInstance(ucdVersion());
+        nfkd = Normalizer.getOrMakeNfkdInstance(ucdVersion());
+        nfkc = Normalizer.getOrMakeNfkcInstance(ucdVersion());
         System.out.println("Loaded UCD" + ucd().getVersion() + " " + (new Date(ucd().getDate())));
         inRecursiveCall = false;
     }
@@ -100,13 +99,6 @@ public final class Default implements UCD_Types {
             setUCD();
         }
         return nfkd;
-    }
-
-    public static Normalizer nf(int index) {
-        if (ucd == null) {
-            setUCD();
-        }
-        return nf[index];
     }
 
     /**

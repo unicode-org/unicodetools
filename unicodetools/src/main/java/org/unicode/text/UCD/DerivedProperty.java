@@ -18,20 +18,20 @@ import java.util.Map;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Binary;
+import org.unicode.text.UCD.Normalizer.NormalizationForm;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 public final class DerivedProperty implements UCD_Types {
 
-    UCD ucdData;
-    Normalizer nfc;
-    Normalizer nfd;
-    Normalizer nfkc;
-    Normalizer nfkd;
-    Normalizer[] nf = new Normalizer[4];
-    UnicodeSet XID_Start_Set = new UnicodeSet();
-    UnicodeSet XID_Continue_Set = new UnicodeSet();
+    private final UCD ucdData;
+    private final Normalizer nfc;
+    private final Normalizer nfd;
+    private final Normalizer nfkc;
+    private final Normalizer nfkd;
+    private final UnicodeSet XID_Start_Set = new UnicodeSet();
+    private final UnicodeSet XID_Continue_Set = new UnicodeSet();
 
     // ADD CONSTANT to UCD_TYPES
 
@@ -109,11 +109,11 @@ public final class DerivedProperty implements UCD_Types {
     static final String[] CaseNames = {"Uppercase", "Lowercase", "Mixedcase"};
 
     class ExDProp extends UCDProperty {
-        Normalizer nfx;
+        private final Normalizer nfx;
 
-        ExDProp(int i) {
+        ExDProp(Normalizer nfx) {
             type = DERIVED_NORMALIZATION;
-            nfx = nf[i];
+            this.nfx = nfx;
             name = "Expands_On_" + nfx.getName();
             shortName = "XO_" + nfx.getName();
         }
@@ -133,14 +133,12 @@ public final class DerivedProperty implements UCD_Types {
     ;
 
     class NF_UnsafeStartProp extends UCDProperty {
-        Normalizer nfx;
+        private final Normalizer nfx;
 
-        // int prop;
-
-        NF_UnsafeStartProp(int i) {
+        NF_UnsafeStartProp(Normalizer nfx) {
             isStandard = false;
             type = DERIVED_NORMALIZATION;
-            nfx = nf[i];
+            this.nfx = nfx;
             name = nfx.getName() + "_UnsafeStart";
             shortName = nfx.getName() + "_SS";
         }
@@ -192,7 +190,7 @@ public final class DerivedProperty implements UCD_Types {
      */
 
     class NFC_Prop extends UCDProperty {
-        BitSet bitset;
+        private final BitSet bitset;
         boolean filter = false;
         boolean keepNonZero = true;
 
@@ -211,6 +209,9 @@ public final class DerivedProperty implements UCD_Types {
                     keepNonZero = false; // FALL THRU
                 case NFC_TrailingNonZero:
                     bitsets[1] = bitset = new BitSet();
+                    break;
+                default:
+                    bitset = null;
                     break;
             }
             filter = bitsets[1] != null;
@@ -243,22 +244,25 @@ public final class DerivedProperty implements UCD_Types {
     ;
 
     class GenDProp extends UCDProperty {
-        Normalizer nfx;
-        Normalizer nfComp = null;
+        private final Normalizer nfx;
+        private final Normalizer nfComp;
 
-        GenDProp(int i) {
+        GenDProp(Normalizer nfx) {
             isStandard = false;
             setValueType(STRING_PROP);
             type = DERIVED_NORMALIZATION;
-            nfx = nf[i];
+            this.nfx = nfx;
+            NormalizationForm form = nfx.getForm();
             name = nfx.getName();
 
-            if (i == NFKC || i == NFD) {
+            if (form == NormalizationForm.NFKC || form == NormalizationForm.NFD) {
                 name += "-NFC";
                 nfComp = nfc;
-            } else if (i == NFKD) {
+            } else if (form == NormalizationForm.NFKD) {
                 name += "-NFD";
                 nfComp = nfd;
+            } else {
+                nfComp = null;
             }
         }
 
@@ -300,7 +304,7 @@ public final class DerivedProperty implements UCD_Types {
     ;
 
     class CaseDProp extends UCDProperty {
-        byte val;
+        private final byte val;
 
         CaseDProp(int i) {
             type = DERIVED_CORE;
@@ -325,15 +329,15 @@ public final class DerivedProperty implements UCD_Types {
     ;
 
     class QuickDProp extends UCDProperty {
-        String NO;
-        String MAYBE;
-        Normalizer nfx;
+        private final String NO;
+        private final String MAYBE;
+        private final Normalizer nfx;
 
-        QuickDProp(int i) {
+        QuickDProp(Normalizer nfx) {
             // setValueType((i == NFC || i == NFKC) ? ENUMERATED_PROP : BINARY_PROP);
             setValueType(ENUMERATED_PROP);
             type = DERIVED_NORMALIZATION;
-            nfx = nf[i];
+            this.nfx = nfx;
             NO = nfx.getName() + "_NO";
             MAYBE = nfx.getName() + "_MAYBE";
             name = nfx.getName() + "_QuickCheck";
@@ -367,17 +371,19 @@ public final class DerivedProperty implements UCD_Types {
         ucdData = ucd;
         final IndexUnicodeProperties iupCurrent = IndexUnicodeProperties.make(ucd.getVersion());
 
-        nfd = nf[NFD] = new Normalizer(UCD_Types.NFD, ucdData.getVersion());
-        nfc = nf[NFC] = new Normalizer(UCD_Types.NFC, ucdData.getVersion());
-        nfkd = nf[NFKD] = new Normalizer(UCD_Types.NFKD, ucdData.getVersion());
-        nfkc = nf[NFKC] = new Normalizer(UCD_Types.NFKC, ucdData.getVersion());
+        String ucdDataVersion = ucdData.getVersion();
+        nfd = Normalizer.getOrMakeNfdInstance(ucdDataVersion);
+        nfc = Normalizer.getOrMakeNfcInstance(ucdDataVersion);
+        nfkd = Normalizer.getOrMakeNfkdInstance(ucdDataVersion);
+        nfkc = Normalizer.getOrMakeNfkcInstance(ucdDataVersion);
+        Normalizer[] nf = new Normalizer[] {nfd, nfc, nfkd, nfkc};
 
         for (int i = ExpandsOnNFD; i <= ExpandsOnNFKC; ++i) {
-            dprops[i] = new ExDProp(i - ExpandsOnNFD);
+            dprops[i] = new ExDProp(nf[i - ExpandsOnNFD]);
         }
 
         for (int i = GenNFD; i <= GenNFKC; ++i) {
-            dprops[i] = new GenDProp(i - GenNFD);
+            dprops[i] = new GenDProp(nf[i - GenNFD]);
         }
 
         for (int i = NFC_Leading; i <= NFC_Resulting; ++i) {
@@ -385,7 +391,7 @@ public final class DerivedProperty implements UCD_Types {
         }
 
         for (int i = NFD_UnsafeStart; i <= NFKC_UnsafeStart; ++i) {
-            dprops[i] = new NF_UnsafeStartProp(i - NFD_UnsafeStart);
+            dprops[i] = new NF_UnsafeStartProp(nf[i - NFD_UnsafeStart]);
         }
 
         dprops[ID_Start] =
@@ -727,7 +733,7 @@ public final class DerivedProperty implements UCD_Types {
                 };
 
         for (int i = QuickNFD; i <= QuickNFKC; ++i) {
-            dprops[i] = new QuickDProp(i - QuickNFD);
+            dprops[i] = new QuickDProp(nf[i - QuickNFD]);
         }
 
         dprops[DefaultIgnorable] =
@@ -1083,13 +1089,11 @@ public final class DerivedProperty implements UCD_Types {
             return cat;
         }
 
-        // if (true) throw new IllegalArgumentException("FIX nf[2]");
-
-        if (nf[NFKD].isNormalized(cp)) {
+        if (nfkd.isNormalized(cp)) {
             return Lo;
         }
 
-        final String norm = nf[NFKD].normalize(cp);
+        final String norm = nfkd.normalize(cp);
         int cp2;
         boolean gotUpper = false;
         boolean gotLower = false;

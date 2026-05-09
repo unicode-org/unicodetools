@@ -84,8 +84,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
 
     GenerateBreakTest(UCD ucd, Segmenter seg) {
         this.ucd = ucd;
-        nfd = new Normalizer(UCD_Types.NFD, ucd.getVersion());
-        nfkd = new Normalizer(UCD_Types.NFKD, ucd.getVersion());
+        nfd = Normalizer.getOrMakeNfdInstance(ucd.getVersion());
+        nfkd = Normalizer.getOrMakeNfkdInstance(ucd.getVersion());
         this.seg = seg;
     }
 
@@ -132,7 +132,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
             new GenerateLineBreakTest(ucd, Segmenter.Target.FOR_UCD),
         };
         tests[0].isBreak("\u0300\u0903", 1);
-        final Normalizer nfd = new Normalizer(UCD_Types.NFD, ucd.getVersion());
+        final Normalizer nfd = Normalizer.getOrMakeNfdInstance(ucd.getVersion());
 
         System.out.println("Check Decomps");
 

@@ -63,6 +63,7 @@ import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.UCD.Normalizer.NormalizationForm;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UnicodeTransform;
@@ -2023,13 +2024,14 @@ public class GenerateConfusables {
     }
 
     private static final class ModifiedNFKD {
-        private static Normalizer INSTANCE;
+        private static final Normalizer INSTANCE;
+
+        static {
+            INSTANCE = new Normalizer(NormalizationForm.NFKD, Default.ucdVersion());
+            INSTANCE.setSpacingSubstitute();
+        }
 
         static String normalize(String cf) {
-            if (INSTANCE == null) {
-                INSTANCE = new Normalizer(UCD_Types.NFKD, Default.ucdVersion());
-                INSTANCE.setSpacingSubstitute();
-            }
             return ModifiedNFKD.INSTANCE.normalize(cf);
         }
     }

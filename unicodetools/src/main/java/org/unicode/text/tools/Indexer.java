@@ -51,7 +51,7 @@ public class Indexer {
     private static final int DOOD = 0x10D00D;
 
     private static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
-    private static final Normalizer NFKC = new Normalizer(Normalizer.NormalizationForm.NFKC, IUP);
+    private static final Normalizer NFKC = Normalizer.getNfkcInstance();
     private static final UnicodeSet NEW_CHARACTERS =
             IndexUnicodeProperties.make(Settings.LAST_VERSION_INFO)
                     .getProperty(UcdProperty.General_Category)

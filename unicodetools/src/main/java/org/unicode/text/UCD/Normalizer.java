@@ -12,10 +12,12 @@ package org.unicode.text.UCD;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.Freezable;
 import java.util.BitSet;
 import java.util.HashMap;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.NormalizationDataIUP;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
@@ -29,24 +31,19 @@ import org.unicode.text.utility.Utility;
  *
  * @author Mark Davis
  */
-public final class Normalizer implements Transform<String, String>, UCD_Types {
+public final class Normalizer implements Transform<String, String>, Freezable<Normalizer> {
     public enum NormalizationForm {
         NFD,
         NFC,
         NFKD,
         NFKC;
-        final boolean isCompat;
-        final boolean isCompose;
-        final int index;
+
+        private final boolean isCompat;
+        private final boolean isCompose;
 
         NormalizationForm() {
             isCompat = name().contains("K");
             isCompose = name().contains("C");
-            index = ordinal();
-        }
-
-        static NormalizationForm fromOrdinal(int index) {
-            return values()[index];
         }
     }
 
@@ -54,46 +51,111 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
 
     public static boolean SHOW_PROGRESS = false;
 
-    private NormalizationForm format;
+    private final NormalizationForm form;
+    private boolean frozen = false;
 
-    private final String name;
+    public Normalizer(NormalizationForm form) {
+        this(form, IndexUnicodeProperties.make());
+    }
 
-    /** Create a normalizer for a given form. */
-    public Normalizer(byte form, String unicodeVersion) {
-        this.form = form;
-        this.format = null;
-        this.name = UCD_Names.NF_NAME[form];
-        composition = (form & NF_COMPOSITION_MASK) != 0;
-        compatibility = (form & NF_COMPATIBILITY_MASK) != 0;
-        var iup =
-                unicodeVersion.isEmpty()
+    public Normalizer(NormalizationForm form, String unicodeVersion) {
+        this(
+                form,
+                unicodeVersion.isEmpty() || unicodeVersion.equals(Settings.latestVersion)
                         ? IndexUnicodeProperties.make()
-                        : IndexUnicodeProperties.make(unicodeVersion);
-        data = getData(iup);
+                        : IndexUnicodeProperties.make(unicodeVersion));
     }
 
     public Normalizer(NormalizationForm form, IndexUnicodeProperties factory) {
-        this.form = -1;
-        this.format = form;
-        this.name = form.name();
+        this.form = form;
         composition = form.isCompose;
         compatibility = form.isCompat;
         data = getData(factory);
     }
 
-    /** Create a normalizer for a given form. */
-    // public Normalizer(byte form) {
-    //    this(form,"");
-    // }
+    private static final class NFD {
+        private static final Normalizer INSTANCE = new Normalizer(NormalizationForm.NFD).freeze();
+    }
 
-    /** Return string name */
-    public static String getName(byte form) {
-        return UCD_Names.NF_NAME[form];
+    /** Immutable/frozen NFD Normalizer for the latest version. */
+    public static Normalizer getNfdInstance() {
+        return NFD.INSTANCE;
+    }
+
+    public static Normalizer getOrMakeNfdInstance(String version) {
+        return version.equals(Settings.latestVersion)
+                ? getNfdInstance()
+                : new Normalizer(NormalizationForm.NFD, version);
+    }
+
+    private static final class NFC {
+        private static final Normalizer INSTANCE = new Normalizer(NormalizationForm.NFC).freeze();
+    }
+
+    /** Immutable/frozen NFC Normalizer for the latest version. */
+    public static Normalizer getNfcInstance() {
+        return NFC.INSTANCE;
+    }
+
+    public static Normalizer getOrMakeNfcInstance(String version) {
+        return version.equals(Settings.latestVersion)
+                ? getNfcInstance()
+                : new Normalizer(NormalizationForm.NFC, version);
+    }
+
+    private static final class NFKD {
+        private static final Normalizer INSTANCE = new Normalizer(NormalizationForm.NFKD).freeze();
+    }
+
+    /** Immutable/frozen NFKD Normalizer for the latest version. */
+    public static Normalizer getNfkdInstance() {
+        return NFKD.INSTANCE;
+    }
+
+    public static Normalizer getOrMakeNfkdInstance(String version) {
+        return version.equals(Settings.latestVersion)
+                ? getNfkdInstance()
+                : new Normalizer(NormalizationForm.NFKD, version);
+    }
+
+    private static final class NFKC {
+        private static final Normalizer INSTANCE = new Normalizer(NormalizationForm.NFKC).freeze();
+    }
+
+    /** Immutable/frozen NFKC Normalizer for the latest version. */
+    public static Normalizer getNfkcInstance() {
+        return NFKC.INSTANCE;
+    }
+
+    public static Normalizer getOrMakeNfkcInstance(String version) {
+        return version.equals(Settings.latestVersion)
+                ? getNfkcInstance()
+                : new Normalizer(NormalizationForm.NFKC, version);
+    }
+
+    @Override
+    public boolean isFrozen() {
+        return frozen;
+    }
+
+    @Override
+    public Normalizer freeze() {
+        frozen = true;
+        return this;
+    }
+
+    @Override
+    public Normalizer cloneAsThawed() {
+        throw new UnsupportedOperationException();
+    }
+
+    public NormalizationForm getForm() {
+        return form;
     }
 
     /** Return string name */
     public String getName() {
-        return name;
+        return form.name();
     }
 
     /** Return string name */
@@ -295,9 +357,6 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
     //                  PRIVATES
     // ======================================
 
-    /** The current form. */
-    private final byte form;
-
     private final boolean composition;
     private final boolean compatibility;
     private UnicodeMap substituteMapping;
@@ -448,14 +507,19 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
     }
 
     public Normalizer setSubstituteMapping(UnicodeMap substituteMapping) {
+        if (isFrozen()) {
+            throw new UnsupportedOperationException("frozen Normalizer");
+        }
         this.substituteMapping = substituteMapping;
         return this;
     }
 
     static UnicodeMap spacingMap;
-    ;
 
     public void setSpacingSubstitute() {
+        if (isFrozen()) {
+            throw new UnsupportedOperationException("frozen Normalizer");
+        }
         if (spacingMap == null) {
             makeSpacingMap();
         }

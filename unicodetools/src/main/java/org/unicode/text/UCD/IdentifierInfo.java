@@ -39,6 +39,7 @@ import org.unicode.props.UcdPropertyValues.NFKC_Quick_Check_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.Factory;
 import org.unicode.text.UCD.GenerateConfusables.FakeBreak;
+import org.unicode.text.UCD.Normalizer.NormalizationForm;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -138,13 +139,14 @@ public class IdentifierInfo {
     }
 
     private static final class ModifiedNFKC {
-        private static Normalizer INSTANCE;
+        private static final Normalizer INSTANCE;
+
+        static {
+            INSTANCE = new Normalizer(NormalizationForm.NFKC, Default.ucdVersion());
+            INSTANCE.setSpacingSubstitute();
+        }
 
         static String normalize(String cf) {
-            if (INSTANCE == null) {
-                INSTANCE = new Normalizer(UCD_Types.NFKC, Default.ucdVersion());
-                INSTANCE.setSpacingSubstitute();
-            }
             return ModifiedNFKC.INSTANCE.normalize(cf);
         }
     }

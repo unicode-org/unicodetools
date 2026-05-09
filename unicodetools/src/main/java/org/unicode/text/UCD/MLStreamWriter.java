@@ -260,7 +260,7 @@ public class MLStreamWriter extends Writer {
     boolean isHTML;
     ArrayList stack = new ArrayList();
     boolean inElement = false;
-    Normalizer formC = new Normalizer(Normalizer.NFC, "");
+    Normalizer formC = Normalizer.getNfcInstance();
     int len;
     int maxLineLength = 60;
     // later, add better line end management, indenting

@@ -1391,8 +1391,6 @@ public final class UCD_Names implements UCD_Types {
         "H", // U+11C2; H; HANGUL JONGSEONG HIEUH
     };
 
-    static final String[] NF_NAME = {"NFD", "NFC", "NFKD", "NFKC"};
-
     static final String[][] NAME_ABBREVIATIONS = {
         {"CJK UNIFIED IDEOGRAPH-", "CJK-"},
         {"CJK COMPATIBILITY IDEOGRAPH-", "CJKC-"},

@@ -260,8 +260,9 @@ public class NamesList {
 
     public NamesList(String file, String ucdVersion) {
         ucd = UCD.make(ucdVersion);
-        nfd = new org.unicode.text.UCD.Normalizer(UCD_Types.NFD, ucdVersion);
-        nfkd = new org.unicode.text.UCD.Normalizer(UCD_Types.NFD, ucdVersion);
+        nfd = Normalizer.getOrMakeNfdInstance(ucdVersion);
+        // TODO: bug?? second NFD, or NFKD?
+        nfkd = Normalizer.getOrMakeNfdInstance(ucdVersion);
         // int i = 0;
         String subhead = null;
         String subheadComment = null;
