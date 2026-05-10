@@ -44,6 +44,7 @@ import org.unicode.cldr.util.Pair;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.UCD.Normalizer.NormalizationForm;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -310,7 +311,7 @@ public class TestData implements UCD_Types {
 
     private static void showNonCompatFull(boolean compat) {
         final UCD ucd = UCD.make("4.1.0");
-        final Normalizer nfkc = new Normalizer(UCD_Types.NFKC, ucd.getVersion());
+        final Normalizer nfkc = new Normalizer(NormalizationForm.NFKC, ucd.getVersion());
         System.out.println();
         System.out.println(
                 compat ? "Full Fold = Simple Lower of NFKC" : "Full Fold != Simple Lower of NFKC");
@@ -707,7 +708,7 @@ public class TestData implements UCD_Types {
         final UnicodeSet significant =
                 (exclusion != null ? up.getSet(exclusion) : new UnicodeSet()).complement();
         final UnicodeSetIterator it = new UnicodeSetIterator(significant);
-        final Normalizer n = new Normalizer(UCD_Types.NFD, "4.0.1");
+        final Normalizer n = new Normalizer(NormalizationForm.NFD, "4.0.1");
         int counter = 0;
         while (it.next()) {
             final String baseValue = up.getValue(it.codepoint);

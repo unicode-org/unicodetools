@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
+import org.unicode.text.UCD.Normalizer.NormalizationForm;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
@@ -300,8 +301,8 @@ public class VerifyUCD implements UCD_Types {
                 "<tr><th class='tt' colspan='2'>"
                         + prop.getTitle()
                         + "</th><th class='tn' colspan='2'>Count");
-        for (byte j = 0; j < 4; ++j) {
-            System.out.println("</th><th class='tn' colspan='2'>" + UCD_Names.NF_NAME[j]);
+        for (var form : NormalizationForm.values()) {
+            System.out.println("</th><th class='tn' colspan='2'>" + form.name());
         }
         System.out.println("</th></tr>");
 
@@ -2326,16 +2327,26 @@ public class VerifyUCD implements UCD_Types {
         return result.toString();
     }
 
+    private static final Normalizer getNormalizer(int j) {
+        return switch (j) {
+            case UCD_Types.NFD -> Default.nfd();
+            case UCD_Types.NFC -> Default.nfc();
+            case UCD_Types.NFKD -> Default.nfkd();
+            case UCD_Types.NFKC -> Default.nfkc();
+            default -> throw new IllegalArgumentException("no Normalizer index " + j);
+        };
+    }
+
     static String normalize(String s, int j) {
         if (j < 4) {
-            return Default.nf(j).normalize(s);
+            return getNormalizer(j).normalize(s);
         }
         return Default.ucd().getCase(s, FULL, FOLD);
     }
 
     static boolean isNormalized(int cp, int j) {
         if (j < 4) {
-            return !Default.nf(j).isNormalized(cp);
+            return !getNormalizer(j).isNormalized(cp);
         }
         return false;
     }
@@ -2344,7 +2355,7 @@ public class VerifyUCD implements UCD_Types {
 
     public static void NFTest() {
         for (int j = 0; j < 4; ++j) {
-            final Normalizer nfx = Default.nf(j);
+            final Normalizer nfx = getNormalizer(j);
             System.out.println();
             System.out.println("Testing isNormalized for " + NAMES[j]);
             System.out.println();
@@ -2497,10 +2508,10 @@ public class VerifyUCD implements UCD_Types {
 
         final UCD older = UCD.make(version); // Default.ucd.getPreviousVersion();
 
-        final Normalizer oldNFC = new Normalizer(UCD_Types.NFC, older.getVersion());
-        final Normalizer oldNFD = new Normalizer(UCD_Types.NFD, older.getVersion());
-        final Normalizer oldNFKC = new Normalizer(UCD_Types.NFKC, older.getVersion());
-        final Normalizer oldNFKD = new Normalizer(UCD_Types.NFKD, older.getVersion());
+        final Normalizer oldNFC = new Normalizer(NormalizationForm.NFC, older.getVersion());
+        final Normalizer oldNFD = new Normalizer(NormalizationForm.NFD, older.getVersion());
+        final Normalizer oldNFKC = new Normalizer(NormalizationForm.NFKC, older.getVersion());
+        final Normalizer oldNFKD = new Normalizer(NormalizationForm.NFKD, older.getVersion());
 
         System.out.println(
                 "Testing " + Default.nfd().getUCDVersion() + " against " + oldNFD.getUCDVersion());

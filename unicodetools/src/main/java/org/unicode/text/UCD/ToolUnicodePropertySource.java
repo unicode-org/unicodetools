@@ -92,10 +92,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         UnicodeProperty.contractUNASSIGNED(unassigned);
         final IndexUnicodeProperties iupCurrent = IndexUnicodeProperties.make(ucd.getVersion());
 
-        nfc = new Normalizer(UCD_Types.NFC, ucd.getVersion());
-        nfd = new Normalizer(UCD_Types.NFD, ucd.getVersion());
-        nfkc = new Normalizer(UCD_Types.NFKC, ucd.getVersion());
-        nfkd = new Normalizer(UCD_Types.NFKD, ucd.getVersion());
+        nfc = Normalizer.getOrMakeNfcInstance(ucd.getVersion());
+        nfd = Normalizer.getOrMakeNfdInstance(ucd.getVersion());
+        nfkc = Normalizer.getOrMakeNfkcInstance(ucd.getVersion());
+        nfkd = Normalizer.getOrMakeNfkdInstance(ucd.getVersion());
 
         // emoji support
 

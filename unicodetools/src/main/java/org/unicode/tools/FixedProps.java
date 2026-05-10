@@ -33,6 +33,7 @@ import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.VersionToAge;
 import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.Normalizer.NormalizationForm;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeSetParser;
 import org.unicode.text.utility.Utility;
@@ -63,7 +64,7 @@ public class FixedProps {
     static final ScriptInfo IDENTIFIER_INFO = new ScriptInfo(Settings.latestVersion);
 
     public static final class FixedNfkd {
-        private static final Normalizer nfkd = new Normalizer(Normalizer.NFKD, VERSION);
+        private static final Normalizer nfkd = new Normalizer(NormalizationForm.NFKD, VERSION);
         private static final UnicodeMap<String> fixNfkd = new UnicodeMap<>();
         private static final UnicodeMap<Decomposition_Type_Values> fixDt = new UnicodeMap<>();
         private static final UnicodeSet changes = new UnicodeSet();
@@ -199,7 +200,7 @@ public class FixedProps {
                     new UnicodeSet(scx.getSet(SINGLETON_COMMON))
                             .addAll(scx.getSet(SINGLETON_INHERITED))
                             .freeze();
-            Normalizer nfkd = new Normalizer(Normalizer.NFKD, VERSION);
+            Normalizer nfkd = new Normalizer(NormalizationForm.NFKD, VERSION);
             EnumSet<General_Category_Values> temp = EnumSet.noneOf(General_Category_Values.class);
 
             for (String s : inheritedAndCommon) {
@@ -366,7 +367,7 @@ public class FixedProps {
     public static void main(String[] args) throws IOException {
         System.out.println("\n# Fixed Nfkd.\n");
         {
-            final Normalizer nfkd = new Normalizer(Normalizer.NFKD, VERSION);
+            final Normalizer nfkd = new Normalizer(NormalizationForm.NFKD, VERSION);
             UnicodeMap<String> diff = new UnicodeMap<>();
             UnicodeMap<String> literalDiff = new UnicodeMap<>();
             UnicodeMap<String> temp = new UnicodeMap<String>();

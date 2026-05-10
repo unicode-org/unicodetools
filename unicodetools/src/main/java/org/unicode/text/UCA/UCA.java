@@ -266,7 +266,11 @@ public final class UCA implements Comparator<String> {
 
         // load the normalizer
         if (toD == null) {
-            toD = new Normalizer(UCD_Types.NFD, unicodeVersion);
+            // TODO: We should remove the unicodeVersion argument and
+            // not try to create a collator for an old Unicode version
+            // because we do not track changes to special weight values and algorithm edge cases.
+            // Also, toD is static, so we cannot have multiple versions at the same time.
+            toD = Normalizer.getOrMakeNfdInstance(unicodeVersion);
         }
 
         ucd = UCD.make(unicodeVersion);
@@ -991,7 +995,7 @@ public final class UCA implements Comparator<String> {
         private final UnicodeSetIterator moreSampleIterator = new UnicodeSetIterator(moreSamples);
 
         UCAContents(Normalizer skipDecomps, String unicodeVersion) {
-            nfkd = new Normalizer(UCD_Types.NFKD, unicodeVersion);
+            nfkd = Normalizer.getOrMakeNfkdInstance(unicodeVersion);
             this.skipDecomps = skipDecomps;
             currentRange = 0;
             usi.reset(abbreviateSet(getStatistics().unspecified, true));

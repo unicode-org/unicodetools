@@ -22,6 +22,7 @@ import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
@@ -39,9 +40,10 @@ public class GenOverlap implements UCD_Types {
     public static void validateUCA(UCA collatorIn) throws Exception {
         collator = collatorIn;
         ucd = UCD.makeLatestVersion();
+        assert collatorIn.getUCDVersion().equals(Settings.latestVersion);
 
-        nfd = new Normalizer(UCD_Types.NFD, collatorIn.getUCDVersion());
-        nfkd = new Normalizer(UCD_Types.NFKD, collatorIn.getUCDVersion());
+        nfd = Normalizer.getNfdInstance();
+        nfkd = Normalizer.getNfkdInstance();
 
         for (int cp = 0x0; cp <= 0x10FFFF; ++cp) {
             Utility.dot(cp);
@@ -73,9 +75,10 @@ public class GenOverlap implements UCD_Types {
         System.out.println("# Generated: " + WriteCollationData.getNormalDate());
 
         ucd = UCD.makeLatestVersion();
+        assert collatorIn.getUCDVersion().equals(Settings.latestVersion);
 
-        nfd = new Normalizer(UCD_Types.NFD, collatorIn.getUCDVersion());
-        nfkd = new Normalizer(UCD_Types.NFKD, collatorIn.getUCDVersion());
+        nfd = Normalizer.getNfdInstance();
+        nfkd = Normalizer.getNfkdInstance();
 
         final UCA.UCAContents cc = collator.getContents(nfd);
 
@@ -384,9 +387,10 @@ public class GenOverlap implements UCD_Types {
         System.out.println("# Generated: " + WriteCollationData.getNormalDate());
 
         ucd = UCD.makeLatestVersion();
+        assert collatorIn.getUCDVersion().equals(Settings.latestVersion);
 
-        nfd = new Normalizer(UCD_Types.NFD, collatorIn.getUCDVersion());
-        nfkd = new Normalizer(UCD_Types.NFKD, collatorIn.getUCDVersion());
+        nfd = Normalizer.getNfdInstance();
+        nfkd = Normalizer.getNfkdInstance();
 
         final UCA.UCAContents cc = collator.getContents(nfd);
 
@@ -594,13 +598,12 @@ public class GenOverlap implements UCD_Types {
         System.out.println("# Generated: " + WriteCollationData.getNormalDate());
 
         ucd = UCD.makeLatestVersion();
+        assert collatorIn.getUCDVersion().equals(Settings.latestVersion);
 
-        // nfd = new Normalizer(Normalizer.NFD);
-        // nfkd = new Normalizer(Normalizer.NFKD);
+        nfd = Normalizer.getNfdInstance();
+        nfkd = Normalizer.getNfkdInstance();
 
         final UCA.UCAContents cc = collator.getContents(nfd);
-        nfd = new Normalizer(UCD_Types.NFD, collatorIn.getUCDVersion());
-        nfkd = new Normalizer(UCD_Types.NFKD, collatorIn.getUCDVersion());
 
         final int tableLength = 257;
         /*
@@ -798,8 +801,9 @@ public class GenOverlap implements UCD_Types {
         final Set set = new TreeSet(collatorIn);
         final Set set2 = new TreeSet(collatorIn);
         ucd = UCD.makeLatestVersion();
+        assert collatorIn.getUCDVersion().equals(Settings.latestVersion);
 
-        nfd = new Normalizer(UCD_Types.NFD, collatorIn.getUCDVersion());
+        nfd = Normalizer.getNfdInstance();
 
         for (char i = 0; i < 0xFFFF; ++i) {
             Utility.dot(i);

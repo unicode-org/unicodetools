@@ -15,12 +15,17 @@ public final class Default implements UCD_Types {
     private static Normalizer nfd;
     private static Normalizer nfkc;
     private static Normalizer nfkd;
-    private static Normalizer[] nf = new Normalizer[4];
     private static String year;
 
     public static void setUCD(String version) {
-        ucdVersion = version;
-        setUCD();
+        if (!ucdVersion.equals(version)) {
+            ucdVersion = version;
+            ucd = null;
+            nfd = null;
+            nfc = null;
+            nfkd = null;
+            nfkc = null;
+        }
     }
 
     private static boolean inRecursiveCall = false;
@@ -29,12 +34,11 @@ public final class Default implements UCD_Types {
         if (inRecursiveCall) {
             throw new IllegalArgumentException("Recursive call to setUCD");
         }
+        if (ucd != null) {
+            return;
+        }
         inRecursiveCall = true;
         ucd = UCD.make(ucdVersion);
-        nfd = nf[NFD] = new Normalizer(UCD_Types.NFD, ucdVersion());
-        nfc = nf[NFC] = new Normalizer(UCD_Types.NFC, ucdVersion());
-        nfkd = nf[NFKD] = new Normalizer(UCD_Types.NFKD, ucdVersion());
-        nfkc = nf[NFKC] = new Normalizer(UCD_Types.NFKC, ucdVersion());
         System.out.println("Loaded UCD" + ucd().getVersion() + " " + (new Date(ucd().getDate())));
         inRecursiveCall = false;
     }
@@ -57,9 +61,6 @@ public final class Default implements UCD_Types {
     }
 
     public static String ucdVersion() {
-        if (ucd == null) {
-            setUCD();
-        }
         return ucdVersion;
     }
 
@@ -75,38 +76,31 @@ public final class Default implements UCD_Types {
     }
 
     public static Normalizer nfc() {
-        if (ucd == null) {
-            setUCD();
+        if (nfc == null) {
+            nfc = Normalizer.getOrMakeNfcInstance(ucdVersion());
         }
         return nfc;
     }
 
     public static Normalizer nfd() {
-        if (ucd == null) {
-            setUCD();
+        if (nfd == null) {
+            nfd = Normalizer.getOrMakeNfdInstance(ucdVersion());
         }
         return nfd;
     }
 
     public static Normalizer nfkc() {
-        if (ucd == null) {
-            setUCD();
+        if (nfkc == null) {
+            nfkc = Normalizer.getOrMakeNfkcInstance(ucdVersion());
         }
         return nfkc;
     }
 
     public static Normalizer nfkd() {
-        if (ucd == null) {
-            setUCD();
+        if (nfkd == null) {
+            nfkd = Normalizer.getOrMakeNfkdInstance(ucdVersion());
         }
         return nfkd;
-    }
-
-    public static Normalizer nf(int index) {
-        if (ucd == null) {
-            setUCD();
-        }
-        return nf[index];
     }
 
     /**

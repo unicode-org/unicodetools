@@ -110,17 +110,10 @@ public class NormalizationDataIUP implements NormalizationData {
                 // ONLY if the component characters
                 // don't compatibility decompose
 
-                //                    if (ucd.getDecompositionType(a) <= UCD_Types.CANONICAL
-                //                            && ucd.getDecompositionType(b) <=
-                // UCD_Types.CANONICAL) {
-                Decomposition_Type_Values decompA = decompType.get(a);
-                if (decompA == Decomposition_Type_Values.None
-                        || decompA == Decomposition_Type_Values.Canonical) {
-                    Decomposition_Type_Values decompB = decompType.get(b);
-                    if (decompB == Decomposition_Type_Values.None
-                            || decompB == Decomposition_Type_Values.Canonical) {
-                        compatibilityRecompose.set(i);
-                    }
+                // if (ucd.getDecompositionType(a) <= UCD_Types.CANONICAL
+                //     && ucd.getDecompositionType(b) <= UCD_Types.CANONICAL) {
+                if (!isCompat(decompType.get(a)) && !isCompat(decompType.get(b))) {
+                    compatibilityRecompose.set(i);
                 }
 
                 final long key = (((long) a) << 32) | b;
@@ -201,11 +194,11 @@ public class NormalizationDataIUP implements NormalizationData {
         }
     }
 
-    public static boolean isCanonicalOrCompat(final Decomposition_Type_Values dt) {
+    private static boolean isCanonicalOrCompat(final Decomposition_Type_Values dt) {
         return dt != Decomposition_Type_Values.None;
     }
 
-    public static boolean isCompat(final Decomposition_Type_Values dt) {
+    private static boolean isCompat(final Decomposition_Type_Values dt) {
         return dt != Decomposition_Type_Values.None && dt != Decomposition_Type_Values.Canonical;
     }
 
@@ -254,6 +247,7 @@ public class NormalizationDataIUP implements NormalizationData {
      */
     @Override
     public boolean hasCompatDecomposition(int i) {
+        // TODO: Looks like a misnomer. Should be called hasDecomposition() or else check dt!=None.
         return isCanonicalOrCompat(decompType.get(i));
     }
 
