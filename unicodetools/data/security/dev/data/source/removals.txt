@@ -1247,5 +1247,5 @@ AB6C..AB6D ; Technical
 1DF96 ; Technical Obsolete
 2B81E ; Uncommon_Use
 
-# UTC-187-A144
+# UTC-187-A144: Change Identifier_Type for U+028C LATIN SMALL LETTER TURNED V from Technical to Technical Uncommon_Use.
 028C ; Technical Uncommon_Use
