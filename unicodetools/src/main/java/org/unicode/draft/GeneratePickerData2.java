@@ -131,19 +131,19 @@ class GeneratePickerData2 {
     public static final Comparator<String> CODE_POINT_ORDER =
             new UTF16.StringComparator(true, false, 0);
 
-    static Comparator<String> UCA = new MultilevelComparator(UCA_BASE, CODE_POINT_ORDER);
+    static Comparator<String> UCA =
+            ((Comparator<String>) (Comparator) UCA_BASE).thenComparing(CODE_POINT_ORDER);
 
     static Comparator<String> buttonComparator =
-            new MultilevelComparator(
-                    // new
-                    // UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[:Block=ASCII:]")),
-                    // new
-                    // UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[[:Letter:]&[:^NFKC_QuickCheck=N:]]")),
-                    new UnicodeSetInclusionFirst(
-                            ScriptCategories2.parseUnicodeSet("[[:Letter:]-[:Lm:]]")),
-                    new UnicodeSetInclusionFirst(ScriptCategories2.parseUnicodeSet("[:Lm:]")),
-                    UCA_BASE,
-                    CODE_POINT_ORDER);
+            // new UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[:Block=ASCII:]")),
+            // new
+            // UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[[:Letter:]&[:^NFKC_QuickCheck=N:]]")),
+            new UnicodeSetInclusionFirst(ScriptCategories2.parseUnicodeSet("[[:Letter:]-[:Lm:]]"))
+                    .thenComparing(
+                            new UnicodeSetInclusionFirst(
+                                    ScriptCategories2.parseUnicodeSet("[:Lm:]")))
+                    .thenComparing(UCA_BASE)
+                    .thenComparing(CODE_POINT_ORDER);
 
     static Comparator<String> LinkedHashSetComparator =
             new Comparator<String>() {
@@ -1608,24 +1608,6 @@ class GeneratePickerData2 {
         }
         String prefix = javaStyle ? "\\u" : "U+";
         return prefix + "000".substring(0, gap) + hexString;
-    }
-
-    static class MultilevelComparator<T> implements Comparator<T> {
-        private Comparator<T>[] comparators;
-
-        public MultilevelComparator(Comparator<T>... comparators) {
-            this.comparators = comparators;
-        }
-
-        public int compare(T arg0, T arg1) {
-            for (int i = 0; i < comparators.length; ++i) {
-                int result = comparators[i].compare(arg0, arg1);
-                if (result != 0) {
-                    return result;
-                }
-            }
-            return 0;
-        }
     }
 
     static class UnicodeSetInclusionFirst<T extends Comparable<T>> implements Comparator<T> {
