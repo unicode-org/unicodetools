@@ -1248,4 +1248,4 @@ AB6C..AB6D ; Technical
 2B81E ; Uncommon_Use
 
 # UTC-187-A144
-028C ; Uncommon_Use
+028C ; Technical Uncommon_Use
