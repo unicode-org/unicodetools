@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2026-05-11, 16:38:13 GMT
+# Date: 2026-05-11, 17:11:59 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -172,7 +172,7 @@
 0289          ; Recommended                    # 1.1        LATIN SMALL LETTER U BAR
 028A          ; Technical                      # 1.1        LATIN SMALL LETTER UPSILON
 028B          ; Recommended                    # 1.1        LATIN SMALL LETTER V WITH HOOK
-028C          ; Uncommon_Use                   # 1.1        LATIN SMALL LETTER TURNED V
+028C          ; Uncommon_Use Technical         # 1.1        LATIN SMALL LETTER TURNED V
 028D..0291    ; Technical                      # 1.1    [5] LATIN SMALL LETTER TURNED W..LATIN SMALL LETTER Z WITH CURL
 0292          ; Recommended                    # 1.1        LATIN SMALL LETTER EZH
 0293..029D    ; Technical                      # 1.1   [11] LATIN SMALL LETTER EZH WITH CURL..LATIN SMALL LETTER J WITH CROSSED-TAIL
