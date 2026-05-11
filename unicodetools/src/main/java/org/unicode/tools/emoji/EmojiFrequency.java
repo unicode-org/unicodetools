@@ -33,7 +33,6 @@ import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.MultiComparator;
 import org.unicode.tools.emoji.CountEmoji.Category;
 import org.unicode.tools.emoji.EmojiData.VariantFactory;
 
@@ -187,8 +186,7 @@ public class EmojiFrequency {
 
     static {
         Comparator<String> tweaked =
-                new MultiComparator<String>(
-                        order.codepointCompare, new UTF16.StringComparator(true, false, 0));
+                order.codepointCompare.thenComparing(new UTF16.StringComparator(true, false, 0));
         Set<String> SORTED2 = new TreeSet<>(tweaked);
         System.out.println(order.codepointCompare.compare("😀", "#️⃣"));
         for (String s : EmojiData.EMOJI_DATA.getAllEmojiWithDefectives()) {
