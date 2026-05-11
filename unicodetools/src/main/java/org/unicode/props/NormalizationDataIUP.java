@@ -247,8 +247,8 @@ public class NormalizationDataIUP implements NormalizationData {
      */
     @Override
     public boolean hasCompatDecomposition(int i) {
-        // TODO: Looks like a misnomer. Should be called hasDecomposition() or else check dt!=None.
-        return isCanonicalOrCompat(decompType.get(i));
+        // TODO: Misnomer? Should be called hasDecomposition() or else check isCompat().
+        return isCanonicalOrCompat(decompType.get(i)); // dt != None
     }
 
     /* (non-Javadoc)
