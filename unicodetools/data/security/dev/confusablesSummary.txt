@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2026-04-29, 23:29:00 GMT
+# Date: 2026-05-08, 03:56:51 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -7132,8 +7132,9 @@
 	(‎ ͽ ‎)	037D	 GREEK SMALL REVERSED DOTTED LUNATE SIGMA SYMBOL
 ←	(‎ ꜿ ‎)	A73F	 LATIN SMALL LETTER REVERSED C WITH DOT
 
-#	Γ	Г	Ꮁ	ᒥ	Ⲅ	𖼇	𐔏	ℾ	𝚪	𝛤	𝜞	𝝘	𝞒
+#	Γ	꟢	Г	Ꮁ	ᒥ	Ⲅ	𖼇	𐔏	ℾ	𝚪	𝛤	𝜞	𝝘	𝞒
 	(‎ Γ ‎)	0393	 GREEK CAPITAL LETTER GAMMA
+←	(‎ ꟢ ‎)	A7E2	 LATIN CAPITAL LETTER R WITH LONG LEG
 ←	(‎ Г ‎)	0413	 CYRILLIC CAPITAL LETTER GHE
 ←	(‎ Ꮁ ‎)	13B1	 CHEROKEE LETTER HU
 ←	(‎ ᒥ ‎)	14A5	 CANADIAN SYLLABICS MI
@@ -14760,9 +14761,10 @@
 	(‎ ⼥ ‎)	2F25	 KANGXI RADICAL WOMAN
 ←	(‎ 女 ‎)	5973	 CJK UNIFIED IDEOGRAPH-5973
 
-#	子	⼦
+#	子	𛄧	⼦
 	(‎ ⼦ ‎)	2F26	 KANGXI RADICAL CHILD
 ←	(‎ 子 ‎)	5B50	 CJK UNIFIED IDEOGRAPH-5B50
+←	(‎ 𛄧 ‎)	1B127	 KATAKANA LETTER ALTERNATE NE	# →子→
 
 #	宀	⼧
 	(‎ ⼧ ‎)	2F27	 KANGXI RADICAL ROOF
@@ -14780,9 +14782,10 @@
 	(‎ ⼫ ‎)	2F2B	 KANGXI RADICAL CORPSE
 ←	(‎ 尸 ‎)	5C38	 CJK UNIFIED IDEOGRAPH-5C38
 
-#	屮	⼬
+#	屮	䶹	⼬
 	(‎ ⼬ ‎)	2F2C	 KANGXI RADICAL SPROUT
 ←	(‎ 屮 ‎)	5C6E	 CJK UNIFIED IDEOGRAPH-5C6E
+←	(‎ 䶹 ‎)	4DB9	 CJK UNIFIED IDEOGRAPH-4DB9	# →屮→
 
 #	山	⼭
 	(‎ ⼭ ‎)	2F2D	 KANGXI RADICAL MOUNTAIN
@@ -15770,6 +15773,10 @@
 	(‎ 于 ‎)	4E8E	 CJK UNIFIED IDEOGRAPH-4E8E
 ←	(‎ 𛄢 ‎)	1B122	 KATAKANA LETTER ARCHAIC WU
 
+#	𛄨	井
+	(‎ 井 ‎)	4E95	 CJK UNIFIED IDEOGRAPH-4E95
+←	(‎ 𛄨 ‎)	1B128	 KATAKANA LETTER ALTERNATE WI
+
 #	併	倂
 	(‎ 併 ‎)	4F75	 CJK UNIFIED IDEOGRAPH-4F75
 ←	(‎ 倂 ‎)	5002	 CJK UNIFIED IDEOGRAPH-5002
@@ -15829,6 +15836,10 @@
 #	帡	帲
 	(‎ 帡 ‎)	5E21	 CJK UNIFIED IDEOGRAPH-5E21
 ←	(‎ 帲 ‎)	5E32	 CJK UNIFIED IDEOGRAPH-5E32
+
+#	彖	𧰲
+	(‎ 彖 ‎)	5F56	 CJK UNIFIED IDEOGRAPH-5F56
+←	(‎ 𧰲 ‎)	27C32	 CJK UNIFIED IDEOGRAPH-27C32
 
 #	徚	𢔅
 	(‎ 徚 ‎)	5F9A	 CJK UNIFIED IDEOGRAPH-5F9A
@@ -16329,5 +16340,5 @@
 	(‎ 𮶵 ‎)	2EDB5	 CJK UNIFIED IDEOGRAPH-2EDB5
 ←	(‎ 𲪏 ‎)	32A8F	 CJK UNIFIED IDEOGRAPH-32A8F
 
-# total : 7814
+# total : 7819
 
