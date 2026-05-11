@@ -341,7 +341,7 @@ A78B..A78C ; uncommon-use # ( Ꞌ ) LATIN CAPITAL LETTER SALTILLO .. ( ꞌ ) LAT
 #0138; historic # symbol (phonetic)
 0180 018D 01AA..01AB 01BA..01BB 01BE; technical # symbol (phonetic)
 01C0..01C3; technical # symbol (phonetic)
-0250..0252  0255  0258  025A  025C..25F  0261..0262  0264..0267  026A..026E  0270..0271  0273..274  0276..027F  0281..0282  0284..0287  0289  028C..0291  0293  0295..02A2; technical # symbol (phonetic)
+0250..0252  0255  0258  025A  025C..25F  0261..0262  0264..0267  026A..026E  0270..0271  0273..274  0276..027F  0281..0282  0284..0287  0289  028D..0291  0293  0295..02A2; technical # symbol (phonetic)
 02A3..02AB; technical #  symbol (Latin digraph)
 02AC          ; technical # symbol (phonetic) #      (ʬ)  LATIN LETTER BILABIAL PERCUSSIVE
 02AD          ; technical # symbol (phonetic) #      (ʭ)  LATIN LETTER BIDENTAL PERCUSSIVE
@@ -1246,3 +1246,6 @@ AB6C..AB6D ; Technical
 1DF90..1DF94 ; Technical Obsolete
 1DF96 ; Technical Obsolete
 2B81E ; Uncommon_Use
+
+# UTC-187-A144
+028C ; Uncommon_Use
