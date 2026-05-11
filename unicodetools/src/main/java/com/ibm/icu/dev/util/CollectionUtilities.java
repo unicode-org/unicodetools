@@ -14,10 +14,7 @@ package com.ibm.icu.dev.util;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 
 /**
  * Utilities that ought to be on collections, but aren't
@@ -44,12 +41,11 @@ public final class CollectionUtilities {
     }
 
     /**
-     * Join a collection of items.
+     * Joins a collection of items.
      *
      * @param <T>
-     * @param collection
      * @param <U>
-     * @param array
+     * @param collection
      * @param separator
      * @return string
      */
@@ -62,36 +58,6 @@ public final class CollectionUtilities {
             result.append(it.next());
         }
         return result.toString();
-    }
-
-    /**
-     * Utility like Arrays.asList()
-     *
-     * @param source
-     * @param target
-     * @param reverse
-     * @param <T>
-     * @return
-     */
-    public static <T> Map<T, T> asMap(T[][] source, Map<T, T> target, boolean reverse) {
-        int from = 0, to = 1;
-        if (reverse) {
-            from = 1;
-            to = 0;
-        }
-        for (int i = 0; i < source.length; ++i) {
-            target.put(source[i][from], source[i][to]);
-        }
-        return target;
-    }
-
-    /**
-     * @param <T>
-     * @param source
-     * @return
-     */
-    public static <T> Map<T, T> asMap(T[][] source) {
-        return asMap(source, new HashMap<T, T>(), false);
     }
 
     /**
@@ -195,26 +161,5 @@ public final class CollectionUtilities {
         public int compare(Collection<T> o1, Collection<T> o2) {
             return CollectionUtilities.compare(o1, o2);
         }
-    }
-
-    /**
-     * Compare, allowing nulls and putting them first
-     *
-     * @param a
-     * @param b
-     * @return
-     */
-    public static <K extends Comparable<K>, V extends Comparable<V>, T extends Entry<K, V>>
-            int compare(T a, T b) {
-        if (a == null) {
-            return b == null ? 0 : -1;
-        } else if (b == null) {
-            return 1;
-        }
-        int diff = compare(a.getKey(), b.getKey());
-        if (diff != 0) {
-            return diff;
-        }
-        return compare(a.getValue(), b.getValue());
     }
 }
