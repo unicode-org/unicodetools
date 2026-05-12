@@ -1182,33 +1182,33 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             //            unicodeMap.setErrorOnReset(true);
 
             // Indic_Conjunct_Break. The definition depends on GCB derived just above.
-            final UnicodeProperty script = getProperty("Script");
+            final UnicodeProperty scriptExtensions = iup.getProperty("Script_Extensions");
             final UnicodeProperty gcb = getProperty("Grapheme_Cluster_Break");
             final UnicodeSet viramaScripts =
                     new UnicodeSet()
-                            .addAll(script.getSet("Bali"))
-                            .addAll(script.getSet("Beng"))
-                            .addAll(script.getSet("Deva"))
-                            .addAll(script.getSet("Gujr"))
-                            .addAll(script.getSet("Java"))
-                            .addAll(script.getSet("Mlym"))
-                            .addAll(script.getSet("Orya"))
-                            .addAll(script.getSet("Telu"))
+                            .addAll(scriptExtensions.getSet("Bali"))
+                            .addAll(scriptExtensions.getSet("Beng"))
+                            .addAll(scriptExtensions.getSet("Deva"))
+                            .addAll(scriptExtensions.getSet("Gujr"))
+                            .addAll(scriptExtensions.getSet("Java"))
+                            .addAll(scriptExtensions.getSet("Mlym"))
+                            .addAll(scriptExtensions.getSet("Orya"))
+                            .addAll(scriptExtensions.getSet("Telu"))
                             .freeze();
             final UnicodeSet invisibleStackerScripts =
                     new UnicodeSet()
-                            .addAll(script.getSet("Cakm"))
-                            .addAll(script.getSet("Diak"))
-                            .addAll(script.getSet("Kawi"))
-                            .addAll(script.getSet("Khar"))
-                            .addAll(script.getSet("Khmr"))
-                            .addAll(script.getSet("Lana"))
-                            .addAll(script.getSet("Mtei"))
-                            .addAll(script.getSet("Mymr"))
-                            .addAll(script.getSet("Soyo"))
-                            .addAll(script.getSet("Sund"))
-                            .addAll(script.getSet("Tutg"))
-                            .addAll(script.getSet("Zanb"))
+                            .addAll(scriptExtensions.getSet("Cakm"))
+                            .addAll(scriptExtensions.getSet("Diak"))
+                            .addAll(scriptExtensions.getSet("Kawi"))
+                            .addAll(scriptExtensions.getSet("Khar"))
+                            .addAll(scriptExtensions.getSet("Khmr"))
+                            .addAll(scriptExtensions.getSet("Lana"))
+                            .addAll(scriptExtensions.getSet("Mtei"))
+                            .addAll(scriptExtensions.getSet("Mymr"))
+                            .addAll(scriptExtensions.getSet("Soyo"))
+                            .addAll(scriptExtensions.getSet("Sund"))
+                            .addAll(scriptExtensions.getSet("Tutg"))
+                            .addAll(scriptExtensions.getSet("Zanb"))
                             .freeze();
             final UnicodeSet conjunctLinkingScripts =
                     viramaScripts.cloneAsThawed().addAll(invisibleStackerScripts).freeze();
