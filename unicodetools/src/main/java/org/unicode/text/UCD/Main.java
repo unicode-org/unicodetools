@@ -10,7 +10,6 @@
 package org.unicode.text.UCD;
 
 import org.unicode.text.utility.DirectoryIterator;
-import org.unicode.text.utility.FastBinarySearch;
 import org.unicode.text.utility.SampleEnum;
 import org.unicode.text.utility.Utility;
 
@@ -133,8 +132,6 @@ public final class Main {
                     BuildNames.main(null);
                 } else if (arg.equalsIgnoreCase("TestNormalization")) {
                     TestNormalization.main(null);
-                } else if (arg.equalsIgnoreCase("binary")) {
-                    FastBinarySearch.test();
                 } else if (arg.equalsIgnoreCase("GenerateCaseTest")) {
                     GenerateCaseTest.main(null);
                 } else if (arg.equalsIgnoreCase("checkDecompFolding")) {
