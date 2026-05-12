@@ -1249,3 +1249,12 @@ AB6C..AB6D ; Technical
 
 # UTC-187-A144: Change Identifier_Type for U+028C LATIN SMALL LETTER TURNED V from Technical to Technical Uncommon_Use.
 028C ; Technical Uncommon_Use
+
+# UTC-187-A039: add Obsolete to the Identifier_Type for U+1BAE SUNDANESE LETTER KHA and U+1BAF SUNDANESE LETTER SYA, 
+# as well as for other historic Sundanese characters, for Unicode Version 18.0. [Ref: 5.2 in L2/26-100]
+# Other characters identified by Roozbeh Pournader from L2/09-251R:
+# 1BAB # virama, 1BAC # pasangan/subjoined ma, 1BAD # pasangan/subjoined wa,
+# 1BBA # avagraha/gemination mark, 1BBB # reu, 1BBC # leu, 1BBD # bha/archaic i, 1BBE # final k, 1BBF # final m
+1BAE..1BAF ; Obsolete
+1BAB..1BAD ; Obsolete
+1BBA..1BBF ; Obsolete
