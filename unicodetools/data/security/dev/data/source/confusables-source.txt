@@ -6244,3 +6244,7 @@ A7E2 ; 0393 # 181-A14
 
 # Empty set and O with stroke (PAG ref #548)
 2205; 00D8
+
+# UTC Action Item 187-A33
+06C4; 1EE85
+06C4; 06C5

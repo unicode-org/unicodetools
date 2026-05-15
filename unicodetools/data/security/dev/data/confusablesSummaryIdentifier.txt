@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2026-05-03, 21:54:14 GMT
+# Date: 2026-05-15, 06:55:18 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -756,6 +756,10 @@
 	(‎ چ̆ ‎)	0686 0306	 ARABIC LETTER TCHEH, COMBINING BREVE
 ←	(‎ ࣁ ‎)	08C1	 ARABIC LETTER TCHEH WITH SMALL V	# →‎چٚ‎→
 
+#	ۅ	ۄ
+	(‎ ۄ ‎)	06C4	 ARABIC LETTER WAW WITH RING
+←	(‎ ۅ ‎)	06C5	 ARABIC LETTER KIRGHIZ OE
+
 #	ݧ	ࢩ
 	(‎ ݧ ‎)	0767	 ARABIC LETTER NOON WITH TWO DOTS BELOW
 ←	(‎ ࢩ ‎)	08A9	 ARABIC LETTER YEH WITH TWO DOTS BELOW AND DOT ABOVE	# →‎ݔ‎→
@@ -1471,5 +1475,5 @@
 	(‎ へ ‎)	3078	 HIRAGANA LETTER HE
 ←	(‎ ヘ ‎)	30D8	 KATAKANA LETTER HE
 
-# total : 528
+# total : 529
 

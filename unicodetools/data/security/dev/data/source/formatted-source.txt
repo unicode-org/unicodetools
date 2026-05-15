@@ -1,5 +1,5 @@
 # formatted-source.txt
-# Date: 2026-05-15, 02:47:37 GMT
+# Date: 2026-05-15, 06:55:17 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -5074,6 +5074,9 @@
 06C1 ;	FBA8	# ( ‎ہ‎ ~ ‎ﮨ‎ ) ARABIC LETTER HEH GOAL ~ ARABIC LETTER HEH GOAL INITIAL FORM
 06C1 ;	FBA9	# ( ‎ہ‎ ~ ‎ﮩ‎ ) ARABIC LETTER HEH GOAL ~ ARABIC LETTER HEH GOAL MEDIAL FORM
 
+06C4 ;	1EE85	# ( ‎ۄ‎ ~ ‎𞺅‎ ) ARABIC LETTER WAW WITH RING ~ ARABIC MATHEMATICAL LOOPED WAW
+
+06C5 ;	06C4	# ( ‎ۅ‎ ~ ‎ۄ‎ ) ARABIC LETTER KIRGHIZ OE ~ ARABIC LETTER WAW WITH RING
 06C5 ;	FBE0	# ( ‎ۅ‎ ~ ‎ﯠ‎ ) ARABIC LETTER KIRGHIZ OE ~ ARABIC LETTER KIRGHIZ OE ISOLATED FORM
 06C5 ;	FBE1	# ( ‎ۅ‎ ~ ‎ﯡ‎ ) ARABIC LETTER KIRGHIZ OE ~ ARABIC LETTER KIRGHIZ OE FINAL FORM
 
