@@ -59,5 +59,4 @@ rm $DEST/alpha.zip
 echo "--------------------"
 echo "Copy files from elsewhere:"
 echo "- Unihan.zip to $DEST/ucd"
-echo "- alpha charts to $DEST/charts"
 

@@ -37,15 +37,6 @@ public class Main {
         "WriteRulesCLDR", // "WriteRulesXML", "WriteRulesCLDRXML"
     };
 
-    static final String[] CHART_FILES = {
-        "collationChart",
-        "scriptChart",
-        "normalizationChart",
-        "caseChart",
-        //        "indexChart",
-        "nameslistChart"
-    };
-
     public static void main(String args[]) throws Exception {
         System.setProperty("line.separator", "\n");
 
@@ -70,11 +61,6 @@ public class Main {
                 i = -1;
                 continue;
             }
-            if (arg.equalsIgnoreCase("charts")) {
-                args = Utility.append(CHART_FILES, Utility.subarray(args, i + 1));
-                i = -1;
-                continue;
-            }
             if (arg.equalsIgnoreCase("version")) {
                 Default.setUCD(args[++i]); // get next arg
                 continue;
@@ -85,22 +71,6 @@ public class Main {
                 GenOverlap.validateUCA(UCA.getDucetCollator());
                 // else if (arg.equalsIgnoreCase("writeNonspacingDifference"))
                 // WriteCollationData.writeNonspacingDifference();
-            } else if (arg.equalsIgnoreCase("collationChart")) {
-                WriteCharts.collationChart(UCA.getDucetCollator());
-            } else if (arg.equalsIgnoreCase("scriptChart")) {
-                WriteCharts.scriptChart();
-            } else if (arg.equalsIgnoreCase("normalizationChart")) {
-                WriteCharts.normalizationChart();
-            } else if (arg.equalsIgnoreCase("caseChart")) {
-                WriteCharts.caseChart();
-                //            } else if (arg.equalsIgnoreCase("indexChart")) {
-                //                WriteCharts.indexChart();
-            } else if (arg.equalsIgnoreCase("nameslistChart")) {
-                MakeNamesChart.main(null);
-            } else if (arg.equalsIgnoreCase("special")) {
-                WriteCharts.special();
-            } else if (arg.equalsIgnoreCase("writeCompositionChart")) {
-                WriteCharts.writeCompositionChart();
             } else if (arg.equalsIgnoreCase("CheckHash")) {
                 GenOverlap.checkHash(UCA.getDucetCollator());
             } else if (arg.equalsIgnoreCase("generateRevision")) {
@@ -197,9 +167,6 @@ public class Main {
                 noCE = !noCE;
             } else if (arg.equalsIgnoreCase("checkCanonicalIterator")) {
                 checkCanonicalIterator();
-            } else if (arg.equalsIgnoreCase("writeAllocation")) {
-                WriteCharts.writeAllocation();
-                // else if (arg.equalsIgnoreCase("probe")) Probe.test();
             } else {
                 System.out.println();
                 System.out.println(
