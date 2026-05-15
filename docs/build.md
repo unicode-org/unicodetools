@@ -589,6 +589,7 @@ We no longer post files to FTP folders, nor publish individual files without con
 1.  Note that since 2022-May (Unicode 15) we have a `TestTestUnicodeInvariants` JUnit wrapper
     that runs `TestUnicodeInvariants` with default options,
     and which is one of our CI build bot tests.
+    1.  In 2026-May this got split into multiple classes for better granularity / more parallel testing.
 1.  The header of the result file explains the syntax of the tests.
 1.  Open that file and search for `**** START Test Failure`.
 1.  Each such point provides a dump of comparison information.
