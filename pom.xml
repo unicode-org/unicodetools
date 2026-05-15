@@ -34,22 +34,44 @@
         <cldr.version>0.0.0-SNAPSHOT-701ee9696a</cldr.version>
 
 
-        <!-- these two set the JDK version for source and target -->
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <!-- Set the JDK version -->
+        <maven.compiler.release>21</maven.compiler.release>
 
         <!-- Good hygiene. This is Unicode after all! -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <!-- Fix the JUnit version -->
-        <junit-version>5.14.4</junit-version>
-        <!-- Need to use an updated surefire plugin here. -->
-        <maven-surefire-plugin-version>3.5.5</maven-surefire-plugin-version>
+        <!--
+          To see what updates are available:
+            mvn versions:display-property-updates | grep " -> " | sort -u
+          To update all versions properties:
+            mvn versions:update-properties -DgenerateBackupPoms=false
+          To update a specific version property (in this example exec-maven-plugin.version):
+            mvn versions:update-property -DgenerateBackupPoms=false -Dproperty=exec-maven-plugin.version
+        -->
 
-        <spotless.version>3.1.0</spotless.version>
-        <!-- https://mvnrepository.com/artifact/com.google.googlejavaformat/google-java-format -->
-        <google-java-style.version>1.35.0</google-java-style.version>
+        <!-- Dependencies versions -->
+        <gson.version>2.8.9</gson.version>
+        <guava.version>32.0.0-jre</guava.version>
+        <jakarta.servlet.jsp-api.version>4.0.0</jakarta.servlet.jsp-api.version>
+        <jakarta.servlet.version>6.1.0</jakarta.servlet.version>
+        <!-- Fix the JUnit version to 5.*. Search for <rule> to change major number. -->
+        <junit.version>5.14.4</junit.version>
+        <org.owasp.encoder.version>1.2.3</org.owasp.encoder.version>
+        <!-- Dependencies versions - END -->
+
+        <!-- Plugin versions -->
+        <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
+        <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
+        <exec-maven-plugin.version>3.6.3</exec-maven-plugin.version>
+        <google-java-format.version>1.35.0</google-java-format.version>
+        <jetty-maven-plugin.version>11.0.26</jetty-maven-plugin.version>
+        <maven-surefire-plugin-version>3.5.5</maven-surefire-plugin-version>
+        <org.apache.maven.plugins.version>3.2.3</org.apache.maven.plugins.version>
+        <spotless-maven-plugin.version>3.4.0</spotless-maven-plugin.version>
+        <versions-maven-plugin.version>2.21.0</versions-maven-plugin.version>
+        <xml-maven-plugin.version>1.1.0</xml-maven-plugin.version>
+        <!-- Plugin versions - END -->
     </properties>
 
     <modules>
@@ -83,7 +105,7 @@
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
-                <version>${junit-version}</version>
+                <version>${junit.version}</version>
             </dependency>
 
             <dependency>
@@ -93,6 +115,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -128,7 +151,7 @@
                 <plugin>
                     <groupId>com.diffplug.spotless</groupId>
                     <artifactId>spotless-maven-plugin</artifactId>
-                    <version>${spotless.version}</version>
+                    <version>${spotless-maven-plugin.version}</version>
                     <configuration>
                         <!-- optional: limit format enforcement to just the files changed by this feature branch -->
                         <!-- You can explicitly disable ratchet functionality by providing the value 'NONE': -->
@@ -138,7 +161,7 @@
                             <!-- no need to specify files, inferred automatically, but you can if you want -->
                             <!-- apply a specific flavor of google-java-format and reflow long strings -->
                             <googleJavaFormat>
-                                <version>${google-java-style.version}</version>
+                                <version>${google-java-format.version}</version>
                                 <style>AOSP</style>
                                 <reflowLongStrings>false</reflowLongStrings>
                             </googleJavaFormat>
@@ -162,15 +185,45 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
-                    <version>1.3.2</version>
+                    <version>${exec-maven-plugin.version}</version>
                     <configuration>
                         <skip>true</skip>
                         <executable>java</executable>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${versions-maven-plugin.version}</version>
+                    <configuration>
+                        <!-- https://www.mojohaus.org/versions/versions-maven-plugin/version-rules.html#Using_the_ruleSet_element_in_the_POM -->
+                        <ruleSet>
+                            <ignoreVersions>
+                                <ignoreVersion>
+                                    <type>regex</type>
+                                    <version>.+-(alpha|beta|rc|RC|M\d).*</version>
+                                </ignoreVersion>
+                            </ignoreVersions>
+                            <rule>
+                                <!-- Restricts the groupId for the rule.
+                                  We don't want to inadvertedly update the major version of junit.
+                                  But we still want to see the updates for version 5.
+                                -->
+                                <groupId>org.junit.jupiter</groupId>
+                                <ignoreVersions>
+                                    <ignoreVersion>
+                                        <type>range</type>
+                                        <version>[6.0,)</version>
+                                    </ignoreVersion>
+                                </ignoreVersions>
+                            </rule>
+                        </ruleSet>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
+
     <repositories>
         <repository>
             <id>githubicu</id>
