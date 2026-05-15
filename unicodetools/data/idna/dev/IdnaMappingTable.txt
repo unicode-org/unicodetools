@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-04-29, 20:29:13 GMT
+# Date: 2026-05-15, 17:40:26 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -6320,7 +6320,7 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 10ED0..10ED8  ; valid      ;      ; NV8    # 17.0 ARABIC BIBLICAL END OF VERSE..ARABIC LIGATURE NAWWARA ALLAAHU MARQADAH
 10ED9..10EEE  ; valid                      # 18.0 ARABIC CROWN LETTER BEH..ARABIC CROWN LETTER YEH
 10EEF         ; disallowed                 # NA   <reserved-10EEF>
-10EF0..10EF9  ; valid                      # 18.0 ARABIC SMALL LOW UPRIGHT RECTANGULAR ZERO..ARABIC MARK CROWN
+10EF0..10EF9  ; valid                      # 18.0 ARABIC SMALL LOW UPRIGHT RECTANGULAR ZERO..BAMUM LETTER PHASE-C KEN-FATIGUE
 10EFA..10EFB  ; valid                      # 17.0 ARABIC DOUBLE VERTICAL BAR BELOW..ARABIC SMALL LOW NOON
 10EFC         ; valid                      # 16.0 ARABIC COMBINING ALEF OVERLAY
 10EFD..10EFF  ; valid                      # 15.0 ARABIC SMALL LOW WORD SAKTA..ARABIC SMALL LOW WORD MADDA

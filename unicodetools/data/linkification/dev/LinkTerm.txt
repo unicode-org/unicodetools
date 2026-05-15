@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-04-29, 20:29:22 GMT 
+# Date: 2026-05-15, 17:40:35 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1551,7 +1551,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 10EC9..10ECF  ; Include # 18.0  [7] (𐻉..𐻏)  ARABIC SMALL BASELINE FATHA..ARABIC LARGE CIRCLE ABOVE
 10ED0..10ED8  ; Include # 17.0  [9] (𐻐..𐻘)  ARABIC BIBLICAL END OF VERSE..ARABIC LIGATURE NAWWARA ALLAAHU MARQADAH
 10ED9..10EEE  ; Include # 18.0 [22] (𐻙..𐻮)  ARABIC CROWN LETTER BEH..ARABIC CROWN LETTER YEH
-10EF0..10EF9  ; Include # 18.0 [10] (𐻰..𐻹)  ARABIC SMALL LOW UPRIGHT RECTANGULAR ZERO..ARABIC MARK CROWN
+10EF0..10EF9  ; Include # 18.0 [10] (𐻰..𐻹)  ARABIC SMALL LOW UPRIGHT RECTANGULAR ZERO..BAMUM LETTER PHASE-C KEN-FATIGUE
 10EFA..10EFB  ; Include # 17.0  [2] (𐻺..𐻻)  ARABIC DOUBLE VERTICAL BAR BELOW..ARABIC SMALL LOW NOON
 10EFC         ; Include # 16.0      (𐻼)  ARABIC COMBINING ALEF OVERLAY
 10EFD..10EFF  ; Include # 15.0  [3] (𐻽..𐻿)  ARABIC SMALL LOW WORD SAKTA..ARABIC SMALL LOW WORD MADDA
