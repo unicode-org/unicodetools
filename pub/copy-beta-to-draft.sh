@@ -79,5 +79,4 @@ echo "--------------------"
 echo "Copy files from elsewhere:"
 echo "- Unihan.zip to $DEST/ucd"
 echo "- UCDXML files to $DEST/ucdxml"
-echo "- beta charts to $DEST/charts"
 

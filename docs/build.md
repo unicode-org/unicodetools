@@ -4,11 +4,10 @@ This file provides instructions for building and running the UnicodeTools, which
 can be used to:
 
 *   build the Derived Unicode files in the UCD (Unicode Character Database),
-*   build the transformed UCA (Unicode Collation Algorithm) files needed by
-    Unicode.
-*   run consistency checks on beta releases of the UCD and the UCA.
-*   build 4 chart folders on the unicode site.
-*   build files for ICU (collation, NFSkippable)
+*   build the UCA (Unicode Collation Algorithm) conformance test files needed by Unicode,
+*   run consistency checks on beta releases of the UCD and the UCA,
+*   build files for CLDR+ICU (collation, some transliteration)
+*   etc.
 
 > [!CAUTION]
 > *   This is NOT production level code, and should never be used in programs.
@@ -655,26 +654,3 @@ We no longer post files to FTP folders, nor publish individual files without con
         1.  VM arguments: `-DSHOW_FILES`
 2.  The CI job will retrieve the "UnicodeTestData.html" file that is generated when running this test and attach it to the CI job as an artifact that can be downloaded from the CI run by navigating to the [unicodetools Actions tab](https://github.com/unicode-org/unicodetools/actions/runs/), selecting the relevant run for "build.md", then clicking `unicode-test-results` in the "Artifacts" section.
 
-## UCA
-
-Instructions moved to [the uca tools main page](uca/index.md).
-
-## Charts
-
-To build all the charts, use org.unicode.text.UCA.Main, with the option:
-```
-charts
-```
-
-They will be built into
-
-<http://unicode.org/draft/charts/>
-
-**Once UCA is released, then copy those files up to the right spots in the
-Unicode site:**
-
-*   <http://www.unicode.org/charts/normalization/>
-*   <http://www.unicode.org/charts/collation/>
-*   <http://www.unicode.org/charts/case/>
-*   <http://www.unicode.org/charts/collation/>
-*   ...
