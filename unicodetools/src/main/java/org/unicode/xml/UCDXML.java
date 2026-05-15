@@ -861,12 +861,7 @@ public class UCDXML {
                                 prop,
                                 outputRange);
                 if (isAttributeIncluded) {
-                    attributes.addAttribute(
-                            NAMESPACE,
-                            qName,
-                            qName,
-                            "CDATA",
-                            attrValue);
+                    attributes.addAttribute(NAMESPACE, qName, qName, "CDATA", attrValue);
                 }
             }
         }

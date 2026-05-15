@@ -372,8 +372,7 @@ public class GeneratePropertyValues {
                 "Jurchen.xml", "Jurchen data", SCHEMA.JURCHEN, getFormattedJurchenProperties());
         createPropertyFragment(
                 "Nushu.xml", "Nushu data", SCHEMA.NUSHU, getFormattedNushuProperties());
-        createPropertyFragment(
-                "Seal.xml", "Seal data", SCHEMA.SEAL, getFormattedSealProperties());
+        createPropertyFragment("Seal.xml", "Seal data", SCHEMA.SEAL, getFormattedSealProperties());
         createPropertyFragment(
                 "Tangut.xml", "Tangut data", SCHEMA.TANGUT, getFormattedTangutProperties());
         createPropertyFragment(
