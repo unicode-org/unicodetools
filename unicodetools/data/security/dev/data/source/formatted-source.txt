@@ -1,5 +1,5 @@
 # formatted-source.txt
-# Date: 2026-05-08, 03:56:49 GMT
+# Date: 2026-05-15, 02:47:37 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -7703,6 +7703,8 @@
 2202 ;	1D7C3	#* ( ∂ ~ 𝟃 ) PARTIAL DIFFERENTIAL ~ MATHEMATICAL SANS-SERIF BOLD ITALIC PARTIAL DIFFERENTIAL
 
 2202 0335 ;	00F0	#* ( ∂̵ ~ ð ) PARTIAL DIFFERENTIAL, COMBINING SHORT STROKE OVERLAY ~ LATIN SMALL LETTER ETH
+
+2205 ;	00D8	#* ( ∅ ~ Ø ) EMPTY SET ~ LATIN CAPITAL LETTER O WITH STROKE
 
 2207 ;	118A8	#* ( ∇ ~ 𑢨 ) NABLA ~ WARANG CITI CAPITAL LETTER E
 2207 ;	1D6C1	#* ( ∇ ~ 𝛁 ) NABLA ~ MATHEMATICAL BOLD NABLA

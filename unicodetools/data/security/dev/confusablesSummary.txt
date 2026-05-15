@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2026-05-08, 03:56:51 GMT
+# Date: 2026-05-15, 02:47:39 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2947,10 +2947,12 @@
 	(‎ Ơ ‎)	004F 031B	 LATIN CAPITAL LETTER O, COMBINING HORN
 ←	(‎ Ꭴ ‎)	13A4	 CHEROKEE LETTER U
 
-#	O̸	Ø	ⵁ
+#	O̸	∅	Ø	ⵁ	⌀
 	(‎ O̸ ‎)	004F 0338	 LATIN CAPITAL LETTER O, COMBINING LONG SOLIDUS OVERLAY
+←	(‎ ∅ ‎)	2205	 EMPTY SET	# →Ø→
 ←	(‎ Ø ‎)	00D8	 LATIN CAPITAL LETTER O WITH STROKE
 ←	(‎ ⵁ ‎)	2D41	 TIFINAGH LETTER BERBER ACADEMY YAH	# →Ø→
+←	(‎ ⌀ ‎)	2300	 DIAMETER SIGN	# →∅→→Ø→
 
 #	P	Ρ	Р	Ꮲ	ᑭ	Ⲣ	Ⳏ	ꓑ	𐊕	𜳥	Ｐ	ℙ	𝐏	𝑃	𝑷	𝒫	𝓟	𝔓	𝕻	𝖯	𝗣	𝘗	𝙋	𝙿	𝚸	𝛲	𝜬	𝝦	𝞠
 	(‎ P ‎)	0050	 LATIN CAPITAL LETTER P
@@ -13900,10 +13902,6 @@
 ←	(‎ 𝞉 ‎)	1D789	 MATHEMATICAL SANS-SERIF BOLD PARTIAL DIFFERENTIAL
 ←	(‎ 𝟃 ‎)	1D7C3	 MATHEMATICAL SANS-SERIF BOLD ITALIC PARTIAL DIFFERENTIAL
 
-#	∅	⌀
-	(‎ ∅ ‎)	2205	 EMPTY SET
-←	(‎ ⌀ ‎)	2300	 DIAMETER SIGN
-
 #	∇	𑢨	𝛁	𝛻	𝜵	𝝯	𝞩
 	(‎ ∇ ‎)	2207	 NABLA
 ←	(‎ 𑢨 ‎)	118A8	 WARANG CITI CAPITAL LETTER E
@@ -16340,5 +16338,5 @@
 	(‎ 𮶵 ‎)	2EDB5	 CJK UNIFIED IDEOGRAPH-2EDB5
 ←	(‎ 𲪏 ‎)	32A8F	 CJK UNIFIED IDEOGRAPH-32A8F
 
-# total : 7819
+# total : 7820
 
