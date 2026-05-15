@@ -24,8 +24,6 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
-import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Segmenter;
@@ -388,9 +386,7 @@ public class TestSegment {
         show(makesDifference);
 
         Builder segmenter =
-                Segmenter.make(
-                        ToolUnicodePropertySource.make(Default.ucd().getVersion()),
-                        "GraphemeClusterBreak");
+                Segmenter.make(VersionedSymbolTable.forDevelopment(), "GraphemeClusterBreak");
 
         getExemplarStrings(exemplars, segmenter);
     }
