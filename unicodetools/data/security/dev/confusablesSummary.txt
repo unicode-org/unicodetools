@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2026-05-15, 02:47:39 GMT
+# Date: 2026-05-15, 06:55:18 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -9400,12 +9400,11 @@
 ←	(‎ ﲎ ‎)	FC8E	 ARABIC LIGATURE NOON WITH ALEF MAKSURA FINAL FORM
 ←	(‎ ﲏ ‎)	FC8F	 ARABIC LIGATURE NOON WITH YEH FINAL FORM	# →‎ني‎→
 
-#	و	ࢱ	𐋤	𞸅	𞺅	𞺥	ﻭ	ﻮ
+#	و	ࢱ	𐋤	𞸅	𞺥	ﻭ	ﻮ
 	(‎ و ‎)	0648	 ARABIC LETTER WAW
 ←	(‎ ࢱ ‎)	08B1	 ARABIC LETTER STRAIGHT WAW
 ←	(‎ 𐋤 ‎)	102E4	 COPTIC EPACT DIGIT FOUR
 ←	(‎ 𞸅 ‎)	1EE05	 ARABIC MATHEMATICAL WAW
-←	(‎ 𞺅 ‎)	1EE85	 ARABIC MATHEMATICAL LOOPED WAW
 ←	(‎ 𞺥 ‎)	1EEA5	 ARABIC MATHEMATICAL DOUBLE-STRUCK WAW
 ←	(‎ ﻭ ‎)	FEED	 ARABIC LETTER WAW ISOLATED FORM
 ←	(‎ ﻮ ‎)	FEEE	 ARABIC LETTER WAW FINAL FORM
@@ -9963,10 +9962,12 @@
 ←	(‎ ﮘ ‎)	FB98	 ARABIC LETTER GUEH INITIAL FORM
 ←	(‎ ﮙ ‎)	FB99	 ARABIC LETTER GUEH MEDIAL FORM
 
-#	ۅ	ﯠ	ﯡ
-	(‎ ۅ ‎)	06C5	 ARABIC LETTER KIRGHIZ OE
-←	(‎ ﯠ ‎)	FBE0	 ARABIC LETTER KIRGHIZ OE ISOLATED FORM
-←	(‎ ﯡ ‎)	FBE1	 ARABIC LETTER KIRGHIZ OE FINAL FORM
+#	ۅ	ۄ	𞺅	ﯠ	ﯡ
+	(‎ ۄ ‎)	06C4	 ARABIC LETTER WAW WITH RING
+←	(‎ ۅ ‎)	06C5	 ARABIC LETTER KIRGHIZ OE
+←	(‎ 𞺅 ‎)	1EE85	 ARABIC MATHEMATICAL LOOPED WAW
+←	(‎ ﯠ ‎)	FBE0	 ARABIC LETTER KIRGHIZ OE ISOLATED FORM	# →‎ۅ‎→
+←	(‎ ﯡ ‎)	FBE1	 ARABIC LETTER KIRGHIZ OE FINAL FORM	# →‎ۅ‎→
 
 #	ۛ	⃛	᪴
 	(‎ ۛ ‎)	06DB	 ARABIC SMALL HIGH THREE DOTS
@@ -16338,5 +16339,5 @@
 	(‎ 𮶵 ‎)	2EDB5	 CJK UNIFIED IDEOGRAPH-2EDB5
 ←	(‎ 𲪏 ‎)	32A8F	 CJK UNIFIED IDEOGRAPH-32A8F
 
-# total : 7820
+# total : 7821
 

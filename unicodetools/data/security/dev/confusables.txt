@@ -1,5 +1,5 @@
 # confusables.txt
-# Date: 2026-05-15, 02:47:39 GMT
+# Date: 2026-05-15, 06:55:18 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -6321,7 +6321,6 @@ FC50 ;	0646 0649 ;	MA	# ( ‎ﱐ‎ → ‎نى‎ ) ARABIC LIGATURE NOON WITH Y
 
 102E4 ;	0648 ;	MA	#* ( 𐋤 → ‎و‎ ) COPTIC EPACT DIGIT FOUR → ARABIC LETTER WAW	# 
 1EE05 ;	0648 ;	MA	# ( ‎𞸅‎ → ‎و‎ ) ARABIC MATHEMATICAL WAW → ARABIC LETTER WAW	# 
-1EE85 ;	0648 ;	MA	# ( ‎𞺅‎ → ‎و‎ ) ARABIC MATHEMATICAL LOOPED WAW → ARABIC LETTER WAW	# 
 1EEA5 ;	0648 ;	MA	# ( ‎𞺥‎ → ‎و‎ ) ARABIC MATHEMATICAL DOUBLE-STRUCK WAW → ARABIC LETTER WAW	# 
 FEEE ;	0648 ;	MA	# ( ‎ﻮ‎ → ‎و‎ ) ARABIC LETTER WAW FINAL FORM → ARABIC LETTER WAW	# 
 FEED ;	0648 ;	MA	# ( ‎ﻭ‎ → ‎و‎ ) ARABIC LETTER WAW ISOLATED FORM → ARABIC LETTER WAW	# 
@@ -6356,6 +6355,8 @@ FBDD ;	0648 0313 0674 ;	MA	# ( ‎ﯝ‎ → ‎و̓ٴ‎ ) ARABIC LETTER U WITH
 
 FDF8 ;	0648 0633 0644 0645 ;	MA	# ( ‎ﷸ‎ → ‎وسلم‎ ) ARABIC LIGATURE WASALLAM ISOLATED FORM → ARABIC LETTER WAW, ARABIC LETTER SEEN, ARABIC LETTER LAM, ARABIC LETTER MEEM	# 
 
+1EE85 ;	06C5 ;	MA	# ( ‎𞺅‎ → ‎ۅ‎ ) ARABIC MATHEMATICAL LOOPED WAW → ARABIC LETTER KIRGHIZ OE	# →‎ۄ‎→
+06C4 ;	06C5 ;	MA	# ( ‎ۄ‎ → ‎ۅ‎ ) ARABIC LETTER WAW WITH RING → ARABIC LETTER KIRGHIZ OE	# 
 FBE1 ;	06C5 ;	MA	# ( ‎ﯡ‎ → ‎ۅ‎ ) ARABIC LETTER KIRGHIZ OE FINAL FORM → ARABIC LETTER KIRGHIZ OE	# 
 FBE0 ;	06C5 ;	MA	# ( ‎ﯠ‎ → ‎ۅ‎ ) ARABIC LETTER KIRGHIZ OE ISOLATED FORM → ARABIC LETTER KIRGHIZ OE	# 
 
@@ -9227,5 +9228,5 @@ FF88 ;	793B ;	MA	# ( ﾈ → 礻 ) HALFWIDTH KATAKANA LETTER NE → CJK UNIFIED 
 
 6B25 ;	2B81E ;	MA	# ( 欥 → 𫠞 ) CJK UNIFIED IDEOGRAPH-6B25 → CJK UNIFIED IDEOGRAPH-2B81E	# 
 
-# total: 6383
+# total: 6384
 
