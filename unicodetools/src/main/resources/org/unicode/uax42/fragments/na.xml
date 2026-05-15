@@ -8,6 +8,8 @@
                    "TANGUT IDEOGRAPH-#" |
                    "KHITAN SMALL SCRIPT CHARACTER-#" |
                    "NUSHU CHARACTER-#" |
+                   "SEAL CHARACTER-#" |
+                   "JURCHEN CHARACTER-#" |
                    xsd:string { pattern="[a-zA-Z0-9]+(( -|- |[\-_ ])[a-zA-Z0-9]+)*" }
                  }?
 </ucdxml:block>

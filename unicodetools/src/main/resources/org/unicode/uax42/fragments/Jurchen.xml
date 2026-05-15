@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="Jurchen data" id='schema.jurchen'><edit
+        flag="changed">
+  code-point-attributes &amp;=
+    attribute kJURC_NCReading { xsd:string { pattern='[^\t"]+' } }?
+
+  code-point-attributes &amp;=
+    attribute kJURC_Numeric { xsd:string { pattern="[1-9]\d{0,4}" } }?
+
+  code-point-attributes &amp;=
+    attribute kJURC_RSUnicode { xsd:string { pattern="[1-9]\d{0,1}\.[1-9]\d{0,1}" } }?
+
+  code-point-attributes &amp;=
+    attribute kJURC_Src { xsd:string { pattern="NC:\d{3}\.\d{2}(,\d{3}\.\d{2})?|SJ-B:\d{3}[A-Z]\.\d|JJ:\d{3}|N5131:X-\d{4}" } }?
+</edit></ucdxml:block>

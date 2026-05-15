@@ -9,8 +9,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.props.DerivedPropertyStatus;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyParsingInfo;
+import org.unicode.props.PropertyType;
 import org.unicode.props.UcdLineParser;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -145,9 +147,13 @@ public class AttributeResolver {
         switch (prop.getType()) {
             case Numeric:
                 switch (prop) {
+                    case kAccountingNumeric:
                     case kOtherNumeric:
                     case kPrimaryNumeric:
-                    case kAccountingNumeric:
+                    case kTGT_Numeric:
+                    case kTayNumeric:
+                    case kVietnameseNumeric:
+                    case kZhuangNumeric:
                         if (resolvedValue != null) {
                             resolvedValue = resolvedValue.replaceAll("\\" + SET_SEPARATOR, " ");
                         }
@@ -159,13 +165,17 @@ public class AttributeResolver {
                 switch (prop) {
                     case Equivalent_Unified_Ideograph:
                     case kEH_AltSeq:
+                    case kSEAL_MCJK:
                         String ignoreHash = getMappingValue(codepoint, resolvedValue, false, "");
                         return (ignoreHash.equals("#")) ? null : ignoreHash;
                     case kCompatibilityVariant:
                         String kCompatibilityVariant =
                                 getMappingValue(codepoint, resolvedValue, false, "U+");
                         return (kCompatibilityVariant.equals("#")) ? "" : kCompatibilityVariant;
+                    case kJapaneseNewVariant:
+                    case kJapaneseOldVariant:
                     case kSimplifiedVariant:
+                    case kSpoofingVariant:
                     case kTraditionalVariant:
                         String kVariant =
                                 getMappingValue(

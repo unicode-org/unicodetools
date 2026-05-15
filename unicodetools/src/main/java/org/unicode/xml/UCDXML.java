@@ -696,7 +696,7 @@ public class UCDXML {
                                 outputRange);
                 if (isAttributeIncluded) {
                     String propName = prop.getShortName();
-                    if (propName.startsWith("cjk")) {
+                    if (propName.startsWith("cjk") && prop.getNames().getAllNames().size() > 1) {
                         propName = prop.getNames().getAllNames().get(1);
                     }
                     attributes.addAttribute(NAMESPACE, propName, propName, "CDATA", attrValue);
@@ -842,6 +842,10 @@ public class UCDXML {
         }
         for (UCDPropertyDetail propDetail : UCDPropertyDetail.ucdxmlValues()) {
             UcdProperty prop = propDetail.getUcdProperty();
+            String qName = prop.getShortName();
+            if (qName.startsWith("cjk")) {
+                qName = qName.substring(2);
+            }
             if (version.compareTo(propDetail.getMinVersion()) >= 0
                     && (propDetail.getMaxVersion() == null
                             || version.compareTo(propDetail.getMaxVersion()) <= 0)) {
@@ -859,8 +863,8 @@ public class UCDXML {
                 if (isAttributeIncluded) {
                     attributes.addAttribute(
                             NAMESPACE,
-                            prop.getShortName(),
-                            prop.getShortName(),
+                            qName,
+                            qName,
                             "CDATA",
                             attrValue);
                 }

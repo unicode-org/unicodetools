@@ -18,6 +18,7 @@
                   | "Arabic_PF_A"
                   | "Arabic_PF_B"
                   | "Arabic_Sup"
+                  <edit flag='changed'>| "Archaic_Cuneiform_Numerals"</edit>
                   | "Armenian"
                   | "Arrows"
                   | "ASCII"
@@ -28,6 +29,7 @@
                   | "Bassa_Vah"
                   | "Batak"
                   | "Bengali"
+                  <edit flag='changed'>| "Bengali_Sup"</edit>
                   | "Beria_Erfe"
                   | "Bhaiksuki"
                   | "Block_Elements"
@@ -46,6 +48,7 @@
                   | "Cherokee"
                   | "Cherokee_Sup"
                   | "Chess_Symbols"
+                  <edit flag='changed'>| "Chisoi"</edit>
                   | "Chorasmian"
                   | "CJK"
                   | "CJK_Compat"
@@ -148,6 +151,8 @@
                   | "Jamo_Ext_A"
                   | "Jamo_Ext_B"
                   | "Javanese"
+                  <edit flag='changed'>| "Jurchen"
+                  | "Jurchen_Radicals"</edit>
                   | "Kaithi"
                   | "Kaktovik_Numerals"
                   | "Kana_Ext_A"
@@ -207,6 +212,7 @@
                   | "Meroitic_Hieroglyphs"
                   | "Miao"
                   | "Misc_Arrows"
+                  <edit flag='changed'>| "Misc_Arrows_Ext"</edit>
                   | "Misc_Math_Symbols_A"
                   | "Misc_Math_Symbols_B"
                   | "Misc_Pictographs"
@@ -221,6 +227,7 @@
                   | "Mro"
                   | "Multani"
                   | "Music"
+                  <edit flag='changed'>| "Music_Sup"</edit>
                   | "Myanmar"
                   | "Myanmar_Ext_A"
                   | "Myanmar_Ext_B"
@@ -270,6 +277,7 @@
                   | "Runic"
                   | "Samaritan"
                   | "Saurashtra"
+                  <edit flag='changed'>| "Seal"</edit>
                   | "Sharada"
                   | "Sharada_Sup"
                   | "Shavian"
