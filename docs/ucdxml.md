@@ -25,12 +25,12 @@ There are three separate processes for generating and validating UCDXML files an
 Run these from the unicodetools repo root. Adjust the CLDR_DIR as needed.
 
 ```
-mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range ALL --output FLAT"' -DCLDR_DIR=$(cd ../cldr; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
-mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range UNIHAN --output FLAT"' -DCLDR_DIR=$(cd ../cldr; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
-mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range NOUNIHAN --output FLAT"' -DCLDR_DIR=$(cd ../cldr; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
-mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range ALL --output GROUPED"' -DCLDR_DIR=$(cd ../cldr; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
-mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range UNIHAN --output GROUPED"' -DCLDR_DIR=$(cd ../cldr; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
-mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range NOUNIHAN --output GROUPED"' -DCLDR_DIR=$(cd ../cldr; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
+mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range ALL --output FLAT"' -DCLDR_DIR="$((Get-Item ..\cldr).FullName)" -DUNICODETOOLS_GEN_DIR="$((Get-Item .\Generated).FullName)" -DUNICODETOOLS_REPO_DIR="$((Get-Item .).FullName)"
+mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range UNIHAN --output FLAT"' -DCLDR_DIR="$((Get-Item ..\cldr).FullName)" -DUNICODETOOLS_GEN_DIR="$((Get-Item .\Generated).FullName)" -DUNICODETOOLS_REPO_DIR="$((Get-Item .).FullName)"
+mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range NOUNIHAN --output FLAT"' -DCLDR_DIR="$((Get-Item ..\cldr).FullName)" -DUNICODETOOLS_GEN_DIR="$((Get-Item .\Generated).FullName)" -DUNICODETOOLS_REPO_DIR="$((Get-Item .).FullName)"
+mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range ALL --output GROUPED"' -DCLDR_DIR="$((Get-Item ..\cldr).FullName)" -DUNICODETOOLS_GEN_DIR="$((Get-Item .\Generated).FullName)" -DUNICODETOOLS_REPO_DIR="$((Get-Item .).FullName)"
+mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range UNIHAN --output GROUPED"' -DCLDR_DIR="$((Get-Item ..\cldr).FullName)" -DUNICODETOOLS_GEN_DIR="$((Get-Item .\Generated).FullName)" -DUNICODETOOLS_REPO_DIR="$((Get-Item .).FullName)"
+mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.UCDXML"' '-Dexec.args="--range NOUNIHAN --output GROUPED"' -DCLDR_DIR="$((Get-Item ..\cldr).FullName)" -DUNICODETOOLS_GEN_DIR="$((Get-Item .\Generated).FullName)" -DUNICODETOOLS_REPO_DIR="$((Get-Item .).FullName)"
 ```
 
 ### Linux
@@ -77,7 +77,7 @@ mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.CompareUCDXML"' '-Dexec
 ### Step 1 - Generate property value fragments
 
 ```
-mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.GeneratePropertyValues"' -DCLDR_DIR=$(cd ../cldr ; pwd) -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd)
+mvn compile exec:java '-Dexec.mainClass="org.unicode.xml.GeneratePropertyValues"' -DCLDR_DIR="$((Get-Item ..\cldr).FullName)" -DUNICODETOOLS_GEN_DIR="$((Get-Item .\Generated).FullName)" -DUNICODETOOLS_REPO_DIR="$((Get-Item .).FullName)"
 ```
 
 UAX42 fragments live in unicodetools/src/main/resources/org/unicode/uax42/fragments
@@ -102,6 +102,6 @@ We'll use [jing-trang](https://github.com/relaxng/jing-trang) in this example.
    
    To convert to NFD, use ICU's uconv.exe:
    ```
-   uconv.exe uconv -f utf8 -t utf8 -x nfd -o {outputfile} {originalfile}
+   uconv.exe -f utf8 -t utf8 -x nfd -o {outputfile} {originalfile}
    ```
 

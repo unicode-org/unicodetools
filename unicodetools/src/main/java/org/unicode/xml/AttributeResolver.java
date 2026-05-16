@@ -145,9 +145,13 @@ public class AttributeResolver {
         switch (prop.getType()) {
             case Numeric:
                 switch (prop) {
+                    case kAccountingNumeric:
                     case kOtherNumeric:
                     case kPrimaryNumeric:
-                    case kAccountingNumeric:
+                    case kTGT_Numeric:
+                    case kTayNumeric:
+                    case kVietnameseNumeric:
+                    case kZhuangNumeric:
                         if (resolvedValue != null) {
                             resolvedValue = resolvedValue.replaceAll("\\" + SET_SEPARATOR, " ");
                         }
@@ -159,13 +163,17 @@ public class AttributeResolver {
                 switch (prop) {
                     case Equivalent_Unified_Ideograph:
                     case kEH_AltSeq:
+                    case kSEAL_MCJK:
                         String ignoreHash = getMappingValue(codepoint, resolvedValue, false, "");
                         return (ignoreHash.equals("#")) ? null : ignoreHash;
                     case kCompatibilityVariant:
                         String kCompatibilityVariant =
                                 getMappingValue(codepoint, resolvedValue, false, "U+");
                         return (kCompatibilityVariant.equals("#")) ? "" : kCompatibilityVariant;
+                    case kJapaneseNewVariant:
+                    case kJapaneseOldVariant:
                     case kSimplifiedVariant:
+                    case kSpoofingVariant:
                     case kTraditionalVariant:
                         String kVariant =
                                 getMappingValue(

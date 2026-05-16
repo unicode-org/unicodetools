@@ -18,6 +18,7 @@
                   | "15.0" | "15.1"
                   | "16.0"
                   | "17.0"
+                  <edit flag='changed'>| "18.0"</edit>
                   | "unassigned"
                   }?
 </ucdxml:block>

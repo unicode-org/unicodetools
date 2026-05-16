@@ -30,13 +30,14 @@
          </tbody>
       </table>
       <div class="body">
-         <h2 style="text-align:center">Unicode® Standard Annex #42</h2>
+         <h2 style="text-align:center">
+            <span class="changed">Proposed Update </span>Unicode® Standard Annex #42</h2>
          <h1 style="text-align:center">Unicode Character Database in XML</h1>
          <table class="simple" width="90%">
             <tbody>
                <tr>
                   <td valign="top" width="20%">Version</td>
-                  <td valign="top">Unicode 17.0.0</td>
+                  <td valign="top" class="changed">Unicode 18.0.0 beta</td>
                </tr>
                <tr>
                   <td valign="top">
@@ -48,18 +49,18 @@
                </tr>
                <tr>
                   <td valign="top">Date</td>
-                  <td valign="top">2025-08-13</td>
+                  <td valign="top" class="changed">2026-05-15</td>
                </tr>
                <tr>
                   <td valign="top">This Version</td>
-                  <td valign="top">
-                     <a href="https://www.unicode.org/reports/tr42/tr42-38.html">https://www.unicode.org/reports/tr42/tr42-38.html</a>
+                  <td valign="top" class="changed">
+                     <a href="https://www.unicode.org/reports/tr42/tr42-39.html">https://www.unicode.org/reports/tr42/tr42-39.html</a>
                   </td>
                </tr>
                <tr>
                   <td valign="top">Previous Version</td>
-                  <td valign="top">
-                     <a href="https://www.unicode.org/reports/tr42/tr42-36.html">https://www.unicode.org/reports/tr42/tr42-36.html</a>
+                  <td valign="top" class="changed">
+                     <a href="https://www.unicode.org/reports/tr42/tr42-38.html">https://www.unicode.org/reports/tr42/tr42-38.html</a>
                   </td>
                </tr>
                <tr>
@@ -76,14 +77,14 @@
                </tr>
                <tr>
                   <td valign="top">Schema</td>
-                  <td valign="top">
-                     <a href="https://www.unicode.org/reports/tr42/tr42-38.rnc">https://www.unicode.org/reports/tr42/tr42-38.rnc</a>
+                  <td valign="top" class="changed">
+                     <a href="https://www.unicode.org/reports/tr42/tr42-39.rnc">https://www.unicode.org/reports/tr42/tr42-39.rnc</a>
                   </td>
                </tr>
                <tr>
                   <td valign="top">Revision</td>
-                  <td valign="top">
-                     <a href="#Modifications">38</a>
+                  <td valign="top" class="changed">
+                     <a href="#Modifications">39</a>
                   </td>
                </tr>
             </tbody>
@@ -95,10 +96,13 @@
          <h4>
             <i>Status</i>
          </h4>
-         <p>
-            <i>This document has been reviewed by Unicode members and other interested parties, and has been
-          approved for publication by the Unicode Consortium. This is a stable document and may be used as reference
-          material or cited as a normative reference by other specifications.</i>
+         <p class="changed">
+            <i>This is a <b>
+                  <span style="color:#ff0000">draft</span>
+               </b> document which may be updated, replaced, or
+            superseded by other documents at any time. Publication does not imply endorsement by the Unicode
+            Consortium.  This is not a stable document; it is inappropriate to cite this document as other than a
+            work in progress.</i>
          </p>
          <blockquote>
             <p>
@@ -192,15 +196,23 @@
                         </li>
                         <li>4.4.21    <a href="#miscellaneous_properties_0">Miscellaneous properties</a>
                         </li>
-                        <li>4.4.22    <a href="#unihan_properties_0">Unihan properties</a>
+                        <li>4.4.22    <a href="#jurchen_data_0">
+                              <span class="changed">Jurchen data</span>
+                           </a>
                         </li>
-                        <li>4.4.23    <a href="#tangut_data_0">Tangut data</a>
+                        <li>4.4.23    <a href="#nushu_data_0">Nushu data</a>
                         </li>
-                        <li>4.4.24    <a href="#nushu_data_0">Nushu data</a>
+                        <li>4.4.24    <a href="#seal_data_0">
+                              <span class="changed">Seal data</span>
+                           </a>
                         </li>
-                        <li>4.4.25    <a href="#emoji_properties_0">Emoji properties</a>
+                        <li>4.4.25    <a href="#tangut_data_0">Tangut data</a>
                         </li>
-                        <li>4.4.26    <a href="#unikemet_properties_0">Unikemet properties</a>
+                        <li>4.4.26    <a href="#unihan_properties_0">Unihan properties</a>
+                        </li>
+                        <li>4.4.27    <a href="#unikemet_properties_0">Unikemet properties</a>
+                        </li>
+                        <li>4.4.28    <a href="#emoji_properties_0">Emoji properties</a>
                         </li>
                      </ul>
                   </li>
@@ -630,6 +642,7 @@
                   | "15.0" | "15.1"
                   | "16.0"
                   | "17.0"
+                  <span class="changed">| "18.0"</span>
                   | "unassigned"
                   }?
 </tt>
@@ -656,6 +669,8 @@
                    "TANGUT IDEOGRAPH-#" |
                    "KHITAN SMALL SCRIPT CHARACTER-#" |
                    "NUSHU CHARACTER-#" |
+                   "SEAL CHARACTER-#" |
+                   "JURCHEN CHARACTER-#" |
                    xsd:string { pattern="[a-zA-Z0-9]+(( -|- |[\-_ ])[a-zA-Z0-9]+)*" }
                  }?
 </tt>
@@ -748,6 +763,7 @@
                   | "Arabic_PF_A"
                   | "Arabic_PF_B"
                   | "Arabic_Sup"
+                  <span class="changed">| "Archaic_Cuneiform_Numerals"</span>
                   | "Armenian"
                   | "Arrows"
                   | "ASCII"
@@ -758,6 +774,7 @@
                   | "Bassa_Vah"
                   | "Batak"
                   | "Bengali"
+                  <span class="changed">| "Bengali_Sup"</span>
                   | "Beria_Erfe"
                   | "Bhaiksuki"
                   | "Block_Elements"
@@ -776,6 +793,7 @@
                   | "Cherokee"
                   | "Cherokee_Sup"
                   | "Chess_Symbols"
+                  <span class="changed">| "Chisoi"</span>
                   | "Chorasmian"
                   | "CJK"
                   | "CJK_Compat"
@@ -878,6 +896,8 @@
                   | "Jamo_Ext_A"
                   | "Jamo_Ext_B"
                   | "Javanese"
+                  <span class="changed">| "Jurchen"
+                  | "Jurchen_Radicals"</span>
                   | "Kaithi"
                   | "Kaktovik_Numerals"
                   | "Kana_Ext_A"
@@ -937,6 +957,7 @@
                   | "Meroitic_Hieroglyphs"
                   | "Miao"
                   | "Misc_Arrows"
+                  <span class="changed">| "Misc_Arrows_Ext"</span>
                   | "Misc_Math_Symbols_A"
                   | "Misc_Math_Symbols_B"
                   | "Misc_Pictographs"
@@ -951,6 +972,7 @@
                   | "Mro"
                   | "Multani"
                   | "Music"
+                  <span class="changed">| "Music_Sup"</span>
                   | "Myanmar"
                   | "Myanmar_Ext_A"
                   | "Myanmar_Ext_B"
@@ -1000,6 +1022,7 @@
                   | "Runic"
                   | "Samaritan"
                   | "Saurashtra"
+                  <span class="changed">| "Seal"</span>
                   | "Sharada"
                   | "Sharada_Sup"
                   | "Shavian"
@@ -1334,6 +1357,10 @@
     attribute jg { "African_Feh" | "African_Noon" | "African_Qaf"
                  | "Ain" | "Alaph" | "Alef"
                  | "Beh" | "Beth" | "Burushaski_Yeh_Barree"
+                 <span class="changed">| "Crown_Ain" | "Crown_Beh" | "Crown_Feh"
+                 | "Crown_Hah" | "Crown_Heh" | "Crown_Kaf"
+                 | "Crown_Meem" | "Crown_Sad" | "Crown_Seen"
+                 | "Crown_Tah"</span>
                  | "Dal" | "Dalath_Rish"
                  | "E"
                  | "Farsi_Yeh" | "Fe" | "Feh" | "Final_Semkath"
@@ -1607,8 +1634,8 @@
            | "Avst"
            | "Bali" | "Bamu" | "Bass" | "Batk" | "Beng" | "Berf"
            | "Bhks" | "Bopo" | "Brah" | "Brai" | "Bugi" | "Buhd"
-           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | "Chrs"
-           | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
+           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | <span class="changed">"Chis"</span>
+           | "Chrs" | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
            | "Deva" | "Diak" | "Dogr" | "Dsrt" | "Dupl"
            | "Egyp" | "Elba" | "Elym" | "Ethi"
            | "Gara" | "Geor" | "Glag" | "Gong" | "Gonm" | "Goth"
@@ -1616,7 +1643,7 @@
            | "Hang" | "Hani" | "Hano" | "Hatr" | "Hebr" | "Hira"
            | "Hluw" | "Hmng" | "Hmnp" | "Hrkt" | "Hung"
            | "Ital"
-           | "Java"
+           | "Java" | <span class="changed">"Jurc"</span>
            | "Kali" | "Kana" | "Kawi" | "Khar" | "Khmr" | "Khoj"
            | "Kits" | "Knda" | "Krai" | "Kthi"
            | "Lana" | "Laoo" | "Latn" | "Lepc" | "Limb" | "Lina"
@@ -1628,12 +1655,13 @@
            | "Nshu"
            | "Ogam" | "Olck" | "Onao" | "Orkh" | "Orya" | "Osge"
            | "Osma" | "Ougr"
-           | "Palm" | "Pauc" | "Perm" | "Phag" | "Phli" | "Phlp"
-           | "Phnx" | "Plrd" | "Prti"
+           | "Palm" | "Pauc" | <span class="changed">"Pcun"</span> | "Perm" | "Phag" | "Phli"
+           | "Phlp" | "Phnx" | "Plrd" | "Prti"
            | "Rjng" | "Rohg" | "Runr"
-           | "Samr" | "Sarb" | "Saur" | "Sgnw" | "Shaw" | "Shrd"
-           | "Sidd" | "Sidt" | "Sind" | "Sinh" | "Sogd" | "Sogo"
-           | "Sora" | "Soyo" | "Sund" | "Sunu" | "Sylo" | "Syrc"
+           | "Samr" | "Sarb" | "Saur" | <span class="changed">"Seal"</span> | "Sgnw" | "Shaw"
+           | "Shrd" | "Sidd" | "Sidt" | "Sind" | "Sinh" | "Sogd"
+           | "Sogo" | "Sora" | "Soyo" | "Sund" | "Sunu" | "Sylo"
+           | "Syrc"
            | "Tagb" | "Takr" | "Tale" | "Talu" | "Taml" | "Tang"
            | "Tavt" | "Tayo" | "Telu" | "Tfng" | "Tglg" | "Thaa"
            | "Thai" | "Tibt" | "Tirh" | "Tnsa" | "Todr" | "Tols"
@@ -2056,14 +2084,133 @@
 </tt>
          </p>
          <h4>
-            <a name="unihan_properties_0">4.4.22 Unihan properties</a>
+            <a name="jurchen_data_0">4.4.22 <span class="changed">Jurchen data</span>
+            </a>
+         </h4>
+         <p>
+            <span class="changed">The Jurchen data are represented as attributes. The attribute <tt>kJURC_NCReading</tt>
+                    indicates a reading given in Nǚzhēnwén Cídiǎn (Jīn). The attribute <tt>kJURC_Numeric</tt>
+                    provides the numeric value of the Jurchen character. For the attribute <tt>kJURC_RSUnicode</tt>,
+                    the first number is the radical number, and the second number is the total stroke count of the
+                    Jurchen character. The attribute <tt>kJURC_Src</tt> refers to ideograph collections which
+                    identify encoded characters.</span>
+         </p>
+         <p>
+            <i>
+               <a name="ucdxml:jurchen_data_49">[Jurchen data,
+        49]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+               <span class="changed">
+  code-point-attributes &amp;=
+    attribute kJURC_NCReading { xsd:string { pattern='[^\t"]+' } }?
+
+  code-point-attributes &amp;=
+    attribute kJURC_Numeric { xsd:string { pattern="[1-9]\d{0,4}" } }?
+
+  code-point-attributes &amp;=
+    attribute kJURC_RSUnicode { xsd:string { pattern="[1-9]\d{0,1}\.[1-9]\d{0,1}" } }?
+
+  code-point-attributes &amp;=
+    attribute kJURC_Src { xsd:string { pattern="NC:\d{3}\.\d{2}(,\d{3}\.\d{2})?|SJ-B:\d{3}[A-Z]\.\d|JJ:\d{3}|N5131:X-\d{4}" } }?
+</span>
+            </tt>
+         </p>
+         <h4>
+            <a name="nushu_data_0">4.4.23 Nushu data</a>
+         </h4>
+         <p>The Nushu data are represented as attributes. The attribute <tt>kNSHU_DubenSrc</tt>
+                    indicates the page number and order of the item from the NushuDuben reference source. Nushu common
+                    reading is represented as <tt>kNSHU_Reading</tt>.</p>
+         <p>
+            <i>
+               <a name="ucdxml:nushu_data_50">[Nushu data,
+        50]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute kNSHU_DubenSrc { xsd:string { pattern="[1-9]\d\.\d{2}" } }?
+
+  code-point-attributes &amp;=
+    attribute kNSHU_Reading { xsd:string { pattern="[a-z]+[1-9]\d{0,1}" } }?
+</tt>
+         </p>
+         <h4>
+            <a name="seal_data_0">4.4.24 <span class="changed">Seal data</span>
+            </a>
+         </h4>
+         <p>
+            <span class="changed">The Seal data are represented as attributes. The attributes <tt>kSEAL_CCZSrc</tt>,
+                    <tt>kSEAL_DYCSrc</tt>, <tt>kSEAL_QJZSrc</tt>, and <tt>kSEALTHXSrc</tt> refer to
+                    ideograph collections which identify encoded characters. The attribute <tt>kSEAL_MCJK</tt>
+                    corresponds to a single CJK Unified ideograph which may be used to refer to the Seal character.
+                    The attribute <tt>kSEAL_Rad</tt> provide the radical number associated with each Seal character
+                    (1 to 540) along with the radical code point expressed in hexadecimal notation.</span>
+         </p>
+         <p>
+            <i>
+               <a name="ucdxml:seal_data_51">[Seal data,
+        51]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+               <span class="changed">
+  code-point-attributes &amp;=
+    attribute kSEAL_CCZSrc { xsd:string { pattern="C-\d{5}" } }?
+
+  code-point-attributes &amp;=
+    attribute kSEAL_DYCSrc { xsd:string { pattern="D-\d{5}" } }?
+
+  code-point-attributes &amp;=
+    attribute kSEAL_MCJK { xsd:string { pattern="[0-9A-F]{4,5}" } }?
+
+  code-point-attributes &amp;=
+    attribute kSEAL_QJZSrc { xsd:string { pattern="K-\d{5}" } }?
+
+  code-point-attributes &amp;=
+    attribute kSEAL_Rad { list { xsd:string { pattern="\d{1,3}\.[A-F0-9]{4,5}" }+ } }?
+
+  code-point-attributes &amp;=
+    attribute kSEAL_THXSrc { xsd:string { pattern="TH-(\d{5}|X\d{3}|Y\d{3})" } }?
+</span>
+            </tt>
+         </p>
+         <h4>
+            <a name="tangut_data_0">4.4.25 Tangut data</a>
+         </h4>
+         <p>The Tangut data are represented as attributes. The attribute <tt>kTGT_MergedSrc</tt>
+                    indicates the source reference for the character. <span class="changed">The attribute <tt>kTGT_Numeric</tt>
+                    provides the numeric value of the Tangut character.</span> The attribute <tt>kTGT_RSUnicode</tt>
+                    represents the radical stroke index.
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:tangut_data_52">[Tangut data,
+        52]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute kTGT_MergedSrc { xsd:string { pattern="H2004-[AB]-\d{4}|H2021-\d{6}|L(19(86|97)|20(06|12))-\d{4}|L2008-\d{4}([AB]|-\d{4})?|N1966-\d{3}-\d{2}[0-9A-Z]{1,2}|N5217-\d{2}|N5314-\d{2}|S1968-\d{4}|UTN42-\d{3}" } }?
+
+  <span class="changed">code-point-attributes &amp;=
+    attribute kTGT_Numeric { xsd:string { pattern="NaN|[0-9]+|[0-9]+\.[0-9]+" } }?</span>
+
+  code-point-attributes &amp;=
+    attribute kTGT_RSUnicode { xsd:string { pattern="\d+\.\d+" } }?
+</tt>
+         </p>
+         <h4>
+            <a name="unihan_properties_0">4.4.26 Unihan properties</a>
          </h4>
          <p>The Unihan properties (from the Unihan database) are represented as attributes.
                 </p>
          <p>
             <i>
-               <a name="ucdxml:unihan_properties_49">[Unihan properties,
-        49]
+               <a name="ucdxml:unihan_properties_53">[Unihan properties,
+        53]
       </a>
         =</i>
             <tt style="white-space: pre;">
@@ -2083,10 +2230,10 @@
     { list { xsd:string { pattern="[a-z]{1,6}[1-6]" }+ } }?
 
   code-point-attributes &amp;= attribute kCCCII
-    { list { xsd:string { pattern="[0-9A-F]{6}" }+ } }?
+    { xsd:string { pattern="[0-9A-F]{6}" } }?
 
   code-point-attributes &amp;= attribute kCheungBauer
-    { list { xsd:string { pattern="\d{3}/\d{2};[A-Z]*;[a-z1-6\[\]/,]+" }+ } }?
+    { xsd:string { pattern="\d{3}/\d{2};[A-Z]*;[a-z1-6\[\]/,]+" } }?
 
   code-point-attributes &amp;= attribute kCheungBauerIndex
     { list { xsd:string { pattern="\d{3}\.[01]\d" }+ } }?
@@ -2137,7 +2284,7 @@
     { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &amp;= attribute kGB5
-    { xsd:string { pattern="\d{4}" } }?
+    { list { xsd:string { pattern="\d{4}" }+ } }?
 
   code-point-attributes &amp;= attribute kGB8
     { xsd:string { pattern="\d{4}" } }?
@@ -2164,17 +2311,17 @@
     { xsd:string { pattern="[\x{2F00}-\x{2FD5}]\[U\+2F[0-9A-D][0-9A-F]\]:[1-8]\d{4}\.[0-3]\d0" } }?
 
   code-point-attributes &amp;= attribute kHKGlyph
-    { list { xsd:string { pattern="\d{4}" }+ } }?
+    { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &amp;= attribute kIBMJapan
-    { list { xsd:string { pattern="F[ABC][0-9A-F]{2}" }+ } }?
+    { xsd:string { pattern="F[ABC][0-9A-F]{2}" } }?
 
   code-point-attributes &amp;= attribute kIICore
-    { list { xsd:string { pattern="[ABC][GHJKMPT]{1,7}" }+ } }?
+    { xsd:string { pattern="[ABC][GHJKMPT]{1,7}" } }?
 
   code-point-attributes &amp;= attribute kIRG_GSource
     { "" | xsd:string { pattern="G[013578EKS]-[0-9A-F]{4}" }
-         | xsd:string { pattern="G(DZ|GH|RM|WZ|XC|XH|ZH)-\d{4}\.\d{2}" }
+         | xsd:string { pattern="G(CH|CY|DZ|GH|RM|WZ|XC|XH|ZH)-\d{4}\.\d{2}" }
          | xsd:string { pattern="GKX-\d{4}\.\d{2,3}" }
          | xsd:string { pattern="G(HZ|HZR)-\d{5}\.\d{2}" }
          | xsd:string { pattern="G(CE|FC|IDC23|OCD|XHZ)-\d{3}" }
@@ -2183,8 +2330,8 @@
          | xsd:string { pattern="G(FZ|IDC)-[0-9A-F]{4}" }
          | xsd:string { pattern="GCA-[A-Z]\d{4}" }
          | xsd:string { pattern="GGFZ-\d{6}" }
-         | xsd:string { pattern="G(BK|LK|Z)-\d{7}" }
-         | xsd:string { pattern="G(CH|CY|HC|U)-[023][0-9A-F]{4}" }
+         | xsd:string { pattern="G(BK|HC|LK|Z)-\d{7}" }
+         | xsd:string { pattern="GU-[023][0-9A-F]{4}" }
          | xsd:string { pattern="GZA-[123467]\d{5}" }
     }?
 
@@ -2242,14 +2389,14 @@
          | xsd:string { pattern="VN-[023F][0-9A-F]{4}" }
     }?
 
-  code-point-attributes &amp;= attribute kIRGDaeJaweon
-    { list { xsd:string { pattern="\d{4}\.\d{2}[01]" }+ } }?
+  <span class="removed">code-point-attributes &amp;= attribute kIRGDaeJaweon
+    { list { xsd:string { pattern="\d{4}\.\d{2}[01]" }+ } }?</span>
 
   code-point-attributes &amp;= attribute kIRGHanyuDaZidian
-    { list { xsd:string { pattern="[1-8]\d{4}\.[0-3]\d[01]" }+ } }?
+    { xsd:string { pattern="[1-8]\d{4}\.[0-3]\d[01]" } }?
 
-  code-point-attributes &amp;= attribute kIRGKangXi
-    { list { xsd:string { pattern="[01]\d{3}\.[0-7]\d[01]" }+ } }?
+  <span class="removed">code-point-attributes &amp;= attribute kIRGKangXi
+    { list { xsd:string { pattern="[01]\d{3}\.[0-7]\d[01]" }+ } }?</span>
 
   code-point-attributes &amp;= attribute kJapanese
     { list { xsd:string { pattern="[\x{3041}-\x{3096}\x{3099}\x{309A}\x{30A1}-\x{30FA}\x{30FC}]+" }+ } }?
@@ -2257,50 +2404,56 @@
   code-point-attributes &amp;= attribute kJapaneseKun
     { list { xsd:string { pattern="[A-Z]+" }+ } }?
 
+  <span class="changed">code-point-attributes &amp;= attribute kJapaneseNewVariant
+    { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" } }?
+
+  code-point-attributes &amp;= attribute kJapaneseOldVariant
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?</span>
+
   code-point-attributes &amp;= attribute kJapaneseOn
     { list { xsd:string { pattern="[A-Z]+" }+ } }?
 
   code-point-attributes &amp;= attribute kJinmeiyoKanji
-    { list { xsd:string { pattern="(20\d{2})(:U\+[23]?[0-9A-F]{4})?" }+ } }?
+    { xsd:string { pattern="(20\d{2})(:U\+[23]?[0-9A-F]{4})?" } }?
 
   code-point-attributes &amp;= attribute kJis0
-    { list { xsd:string { pattern="\d{4}" }+ } }?
+    { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &amp;= attribute kJis1
-    { list { xsd:string { pattern="\d{4}" }+ } }?
+    { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &amp;= attribute kJIS0213
-    { list { xsd:string { pattern="[12],\d{2},\d{1,2}" }+ } }?
+    { xsd:string { pattern="[12],\d{2},\d{1,2}" } }?
 
   code-point-attributes &amp;= attribute kJoyoKanji
-    { list { xsd:string { pattern="(20\d{2})|(U\+[23]?[0-9A-F]{4})" }+ } }?
+    { xsd:string { pattern="(20\d{2})|(U\+[23]?[0-9A-F]{4})" } }?
 
   code-point-attributes &amp;= attribute kKangXi
     { list { xsd:string { pattern="\d{4}\.\d{2}[01]" }+ } }?
 
   code-point-attributes &amp;= attribute kKarlgren
-    { list { xsd:string { pattern="[1-9]\d{0,3}[A*]?" }+ } }?
+    { xsd:string { pattern="[1-9]\d{0,3}[A*]?" } }?
 
   code-point-attributes &amp;= attribute kKorean
     { list { xsd:string { pattern="[A-Z]+" }+ } }?
 
   code-point-attributes &amp;= attribute kKoreanEducationHanja
-    { list { xsd:string { pattern="20\d{2}" }+ } }?
+    { xsd:string { pattern="20\d{2}" } }?
 
   code-point-attributes &amp;= attribute kKoreanName
-    { list { xsd:string { pattern="20\d{2}" }+ } }?
+    { xsd:string { pattern="20\d{2}" } }?
 
   code-point-attributes &amp;= attribute kLau
     { list { xsd:string { pattern="[1-9]\d{0,3}" }+ } }?
 
   code-point-attributes &amp;= attribute kMainlandTelegraph
-    { list { xsd:string { pattern="\d{4}" }+ } }?
+    { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &amp;= attribute kMandarin
     { list { xsd:string { pattern="[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
 
   code-point-attributes &amp;= attribute kMatthews
-    { list { xsd:string { pattern="[1-9]\d{0,3}(a|\.5)?" }+ } }?
+    { xsd:string { pattern="[1-9]\d{0,3}(a|\.5)?" } }?
 
   code-point-attributes &amp;= attribute kMeyerWempe
     { list { xsd:string { pattern="[1-9]\d{0,3}[a-t*]?" }+ } }?
@@ -2315,7 +2468,7 @@
     { list { xsd:string { pattern="\d{4}" }+ } }?
 
   code-point-attributes &amp;= attribute kOtherNumeric
-    { list { xsd:string { pattern="\d+" }+ } }?
+    { xsd:string { pattern="\d+" } }?
 
   code-point-attributes &amp;= attribute kPhonetic
     { list { xsd:string { pattern="[1-9]\d{0,3}[A-D]?\*?" }+ } }?
@@ -2370,10 +2523,10 @@
     { list { xsd:string { pattern="\*?[A-Za-z()\x{E6}\x{251}\x{259}\x{25B}\x{300}\x{30C}]+" }+ } }?
 
   code-point-attributes &amp;= attribute kTayNumeric
-    { list { xsd:string { pattern="\d+" }+ } }?
+    { xsd:string { pattern="\d+" } }?
 
   code-point-attributes &amp;= attribute kTGH
-    { list { xsd:string { pattern="20\d{2}:[1-9]\d{0,3}" }+ } }?
+    { xsd:string { pattern="20\d{2}:[1-9]\d{0,3}" } }?
 
   code-point-attributes &amp;= attribute kTGHZ2013
     { list { xsd:string { pattern="\d{3}\.\d{3}(,\d{3}\.\d{3})*:[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
@@ -2391,108 +2544,26 @@
     { list { xsd:string { pattern="[A-Za-z\x{110}\x{111}\x{300}-\x{303}\x{306}\x{309}\x{31B}\x{323}]+" }+ } }?
 
   code-point-attributes &amp;= attribute kVietnameseNumeric
-    { list { xsd:string { pattern="\d+" }+ } }?
+    { xsd:string { pattern="\d+" } }?
 
   code-point-attributes &amp;= attribute kXerox
-    { list { xsd:string { pattern="\d{3}:\d{3}" }+ } }?
+    { xsd:string { pattern="\d{3}:\d{3}" } }?
 
   code-point-attributes &amp;= attribute kXHC1983
     { list { xsd:string { pattern="\d{4}\.\d{3}\*?(,\d{4}\.\d{3}\*?)*:[a-z\x{300}\x{301}\x{304}\x{308}\x{30C}]+" }+ } }?
 
   code-point-attributes &amp;= attribute kZhuang
-    { list { xsd:string { pattern="[a-z]+\*?" }+ } }?
+    { xsd:string { pattern="[a-z]+\*?" } }?
 
   code-point-attributes &amp;= attribute kZhuangNumeric
-    { list { xsd:string { pattern="\d+" }+ } }?
+    { xsd:string { pattern="\d+" } }?
 
   code-point-attributes &amp;= attribute kZVariant
     { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}(&lt;[ks][A-Za-z0-9_]+(:[TBZ]+)?(,[ks][A-Za-z0-9_]+(:[TBZ]+)?)*)?" }+ } }?
 </tt>
          </p>
          <h4>
-            <a name="tangut_data_0">4.4.23 Tangut data</a>
-         </h4>
-         <p>The Tangut data are represented as attributes. The attribute <tt>kTGT_RSUnicode</tt>
-                    represents the radical stroke index. The attribute <tt>kTGT_MergedSrc</tt> indicates the
-                    source reference for the character.
-                </p>
-         <p>
-            <i>
-               <a name="ucdxml:tangut_data_50">[Tangut data,
-        50]
-      </a>
-        =</i>
-            <tt style="white-space: pre;">
-  code-point-attributes &amp;=
-    attribute kTGT_RSUnicode { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
-
-  code-point-attributes &amp;=
-    attribute kTGT_MergedSrc 
-     { xsd:string {pattern="H2004-[AB]-\d{4}"}
-     | xsd:string {pattern="H2021-\d{6}"}
-     | xsd:string {pattern="L(19(86|97)|20(06|12))-\d{4}"}
-     | xsd:string {pattern="L2008-\d{4}([AB]|-\d{4})?"}
-     | xsd:string {pattern="N1966-\d{3}-\d{2}[0-9A-Z]{1,2}"}
-     | xsd:string {pattern="N5217-\d{2}"}
-     | xsd:string {pattern="S1968-\d{4}"}
-     | xsd:string {pattern="UTN42-\d{3}"}
-     }?
-</tt>
-         </p>
-         <h4>
-            <a name="nushu_data_0">4.4.24 Nushu data</a>
-         </h4>
-         <p>The Nushu data are represented as attributes. The attribute <tt>kNSHU_DubenSrc</tt>
-                    indicates the page number and order of the item from the NushuDuben reference source. Nushu common
-                    reading is represented as <tt>kNSHU_Reading</tt>.</p>
-         <p>
-            <i>
-               <a name="ucdxml:nushu_data_51">[Nushu data,
-        51]
-      </a>
-        =</i>
-            <tt style="white-space: pre;">
-  code-point-attributes &amp;=
-    attribute kNSHU_DubenSrc { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
-
-  code-point-attributes &amp;=
-    attribute kNSHU_Reading { xsd:string }?
-</tt>
-         </p>
-         <h4>
-            <a name="emoji_properties_0">4.4.25 Emoji properties</a>
-         </h4>
-         <p>The properties Emoji, EPres, EMod, EBase,
-                    EComp, and ExtPict have corresponding attributes:
-                </p>
-         <p>
-            <i>
-               <a name="ucdxml:emoji_properties_52">[Emoji properties,
-        52]
-      </a>
-        =</i>
-            <tt style="white-space: pre;">
-  code-point-attributes &amp;=
-    attribute Emoji { boolean }?
-
-  code-point-attributes &amp;=
-    attribute EPres { boolean }?
-
-  code-point-attributes &amp;=
-    attribute EMod { boolean }?
-
-  code-point-attributes &amp;=
-    attribute EBase { boolean }?
-
-  code-point-attributes &amp;=
-    attribute EComp { boolean }?
-
-  code-point-attributes &amp;=
-    attribute ExtPict { boolean }?
-</tt>
-         </p>
-         <h4>
-            <a name="unikemet_properties_0">4.4.26 Unikemet properties</a>
+            <a name="unikemet_properties_0">4.4.27 Unikemet properties</a>
          </h4>
          <p>The Unikemet data are represented as attributes. The attribute <tt>kEH_Cat</tt>
                     is a catalog entry corresponding to the IFAO-based taxonomy. The attribute <tt>kEH_Core</tt>
@@ -2512,8 +2583,8 @@
                 </p>
          <p>
             <i>
-               <a name="ucdxml:unikemet_data_53">[Unikemet data,
-        53]
+               <a name="ucdxml:unikemet_data_54">[Unikemet data,
+        54]
       </a>
         =</i>
             <tt style="white-space: pre;">
@@ -2534,7 +2605,6 @@
 
   code-point-attributes &amp;= attribute kEH_UniK
     { xsd:string { pattern="([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}" }
-     | xsd:string { pattern="HJ ([A-IK-Z]|AA)\d{3}[A-Z]{0,2}" }
     }?
 
   code-point-attributes &amp;= attribute kEH_JSesh
@@ -2558,6 +2628,38 @@
     { xsd:string { pattern="[0-9A-F]{5}(\s[0-9A-F]{4,5})*" } }?
 </tt>
          </p>
+         <h4>
+            <a name="emoji_properties_0">4.4.28 Emoji properties</a>
+         </h4>
+         <p>The properties Emoji, EPres, EMod, EBase,
+                    EComp, and ExtPict have corresponding attributes:
+                </p>
+         <p>
+            <i>
+               <a name="ucdxml:emoji_properties_55">[Emoji properties,
+        55]
+      </a>
+        =</i>
+            <tt style="white-space: pre;">
+  code-point-attributes &amp;=
+    attribute Emoji { boolean }?
+
+  code-point-attributes &amp;=
+    attribute EPres { boolean }?
+
+  code-point-attributes &amp;=
+    attribute EMod { boolean }?
+
+  code-point-attributes &amp;=
+    attribute EBase { boolean }?
+
+  code-point-attributes &amp;=
+    attribute EComp { boolean }?
+
+  code-point-attributes &amp;=
+    attribute ExtPict { boolean }?
+</tt>
+         </p>
          <h2>
             <a name="blocks_0">5 Blocks</a>
          </h2>
@@ -2566,8 +2668,8 @@
         </p>
          <p>
             <i>
-               <a name="ucdxml:blocks_54">[blocks,
-        54]
+               <a name="ucdxml:blocks_56">[blocks,
+        56]
       </a>
         =</i>
             <tt style="white-space: pre;">
@@ -2591,8 +2693,8 @@
         </p>
          <p>
             <i>
-               <a name="ucdxml:named_sequences_55">[named sequences,
-        55]
+               <a name="ucdxml:named_sequences_57">[named sequences,
+        57]
       </a>
         =</i>
             <tt style="white-space: pre;">
@@ -2619,8 +2721,8 @@
         </p>
          <p>
             <i>
-               <a name="ucdxml:standardized_variants_56">[standardized variants,
-        56]
+               <a name="ucdxml:standardized_variants_58">[standardized variants,
+        58]
       </a>
         =</i>
             <tt style="white-space: pre;">
@@ -2641,8 +2743,8 @@
         </p>
          <p>
             <i>
-               <a name="ucdxml:cjk_radicals_57">[cjk radicals,
-        57]
+               <a name="ucdxml:cjk_radicals_59">[cjk radicals,
+        59]
       </a>
         =</i>
             <tt style="white-space: pre;">
@@ -2662,8 +2764,8 @@
         </p>
          <p>
             <i>
-               <a name="ucdxml:do-not-emit_58">[do-not-emit,
-        58]
+               <a name="ucdxml:do-not-emit_60">[do-not-emit,
+        60]
       </a>
         =</i>
             <tt style="white-space: pre;">
@@ -2720,34 +2822,40 @@
             <i>[repertoire: <a href="#ucdxml:repertoire_7">7</a>, <a href="#ucdxml:set_of_code_points_8">8</a>, <a href="#ucdxml:code_points_9">9</a>, <a href="#ucdxml:groups_10">10</a>]</i>
             <tt style="white-space: pre;">
       </tt>
-            <i>[attributes: <a href="#ucdxml:age_attribute_11">11</a>, <a href="#ucdxml:na_attribute_12">12</a>, <a href="#ucdxml:na1_attribute_13">13</a>, <a href="#ucdxml:name-alias_element_14">14</a>, <a href="#ucdxml:blk_attribute_15">15</a>, <a href="#ucdxml:gc_attribute_16">16</a>, <a href="#ucdxml:ccc_attribute_17">17</a>, <a href="#ucdxml:bc_attribute_18">18</a>, <a href="#ucdxml:bidi_m_attribute_19">19</a>, <a href="#ucdxml:bmg_attribute_20">20</a>, <a href="#ucdxml:bidi_c_attribute_21">21</a>, <a href="#ucdxml:bpt_attribute_22">22</a>, <a href="#ucdxml:bpb_attribute_23">23</a>, <a href="#ucdxml:decomposition_properties_24">24</a>, <a href="#ucdxml:composition_properties_25">25</a>, <a href="#ucdxml:quick_check_properties_26">26</a>, <a href="#ucdxml:numeric_properties_27">27</a>, <a href="#ucdxml:joining_properties_28">28</a>, <a href="#ucdxml:joining_properties_29">29</a>, <a href="#ucdxml:lb_attribute_30">30</a>, <a href="#ucdxml:ea_attribute_31">31</a>, <a href="#ucdxml:casing_properties_32">32</a>, <a href="#ucdxml:casing_properties_33">33</a>, <a href="#ucdxml:casing_properties_34">34</a>, <a href="#ucdxml:casing_properties_35">35</a>, <a href="#ucdxml:casing_properties_36">36</a>, <a href="#ucdxml:script_properties_37">37</a>, <a href="#ucdxml:hst_attribute_38">38</a>, <a href="#ucdxml:jsn_attribute_39">39</a>, <a href="#ucdxml:insc_attribute_40">40</a>, <a href="#ucdxml:inpc_attribute_41">41</a>, <a href="#ucdxml:incb_attribute_42">42</a>, <a href="#ucdxml:identifier_properties_43">43</a>, <a href="#ucdxml:pattern_properties_44">44</a>, <a href="#ucdxml:properties_related_to_function_and_graphic_characteristics_45">45</a>, <a href="#ucdxml:properties_related_to_boundaries_46">46</a>, <a href="#ucdxml:properties_related_to_ideographs_47">47</a>, <a href="#ucdxml:miscellaneous_properties_48">48</a>, <a href="#ucdxml:unihan_properties_49">49</a>]</i>
+            <i>[attributes: <a href="#ucdxml:age_attribute_11">11</a>, <a href="#ucdxml:na_attribute_12">12</a>, <a href="#ucdxml:na1_attribute_13">13</a>, <a href="#ucdxml:name-alias_element_14">14</a>, <a href="#ucdxml:blk_attribute_15">15</a>, <a href="#ucdxml:gc_attribute_16">16</a>, <a href="#ucdxml:ccc_attribute_17">17</a>, <a href="#ucdxml:bc_attribute_18">18</a>, <a href="#ucdxml:bidi_m_attribute_19">19</a>, <a href="#ucdxml:bmg_attribute_20">20</a>, <a href="#ucdxml:bidi_c_attribute_21">21</a>, <a href="#ucdxml:bpt_attribute_22">22</a>, <a href="#ucdxml:bpb_attribute_23">23</a>, <a href="#ucdxml:decomposition_properties_24">24</a>, <a href="#ucdxml:composition_properties_25">25</a>, <a href="#ucdxml:quick_check_properties_26">26</a>, <a href="#ucdxml:numeric_properties_27">27</a>, <a href="#ucdxml:joining_properties_28">28</a>, <a href="#ucdxml:joining_properties_29">29</a>, <a href="#ucdxml:lb_attribute_30">30</a>, <a href="#ucdxml:ea_attribute_31">31</a>, <a href="#ucdxml:casing_properties_32">32</a>, <a href="#ucdxml:casing_properties_33">33</a>, <a href="#ucdxml:casing_properties_34">34</a>, <a href="#ucdxml:casing_properties_35">35</a>, <a href="#ucdxml:casing_properties_36">36</a>, <a href="#ucdxml:script_properties_37">37</a>, <a href="#ucdxml:hst_attribute_38">38</a>, <a href="#ucdxml:jsn_attribute_39">39</a>, <a href="#ucdxml:insc_attribute_40">40</a>, <a href="#ucdxml:inpc_attribute_41">41</a>, <a href="#ucdxml:incb_attribute_42">42</a>, <a href="#ucdxml:identifier_properties_43">43</a>, <a href="#ucdxml:pattern_properties_44">44</a>, <a href="#ucdxml:properties_related_to_function_and_graphic_characteristics_45">45</a>, <a href="#ucdxml:properties_related_to_boundaries_46">46</a>, <a href="#ucdxml:properties_related_to_ideographs_47">47</a>, <a href="#ucdxml:miscellaneous_properties_48">48</a>, <a href="#ucdxml:unihan_properties_53">53</a>]</i>
             <tt style="white-space: pre;">
       </tt>
-            <i>[Tangut data: <a href="#ucdxml:tangut_data_50">50</a>]</i>
+            <i>[Jurchen data: <a href="#ucdxml:jurchen_data_49">49</a>]</i>
             <tt style="white-space: pre;">
       </tt>
-            <i>[Nushu data: <a href="#ucdxml:nushu_data_51">51</a>]</i>
+            <i>[Nushu data: <a href="#ucdxml:nushu_data_50">50</a>]</i>
             <tt style="white-space: pre;">
       </tt>
-            <i>[Unikemet data: <a href="#ucdxml:unikemet_data_53">53</a>]</i>
+            <i>[Seal data: <a href="#ucdxml:seal_data_51">51</a>]</i>
             <tt style="white-space: pre;">
       </tt>
-            <i>[blocks: <a href="#ucdxml:blocks_54">54</a>]</i>
+            <i>[Tangut data: <a href="#ucdxml:tangut_data_52">52</a>]</i>
             <tt style="white-space: pre;">
       </tt>
-            <i>[named sequences: <a href="#ucdxml:named_sequences_55">55</a>]</i>
+            <i>[Unikemet data: <a href="#ucdxml:unikemet_data_54">54</a>]</i>
             <tt style="white-space: pre;">
       </tt>
-            <i>[standardized variants: <a href="#ucdxml:standardized_variants_56">56</a>]</i>
+            <i>[blocks: <a href="#ucdxml:blocks_56">56</a>]</i>
             <tt style="white-space: pre;">
       </tt>
-            <i>[cjk radicals: <a href="#ucdxml:cjk_radicals_57">57</a>]</i>
+            <i>[named sequences: <a href="#ucdxml:named_sequences_57">57</a>]</i>
             <tt style="white-space: pre;">
       </tt>
-            <i>[Emoji properties: <a href="#ucdxml:emoji_properties_52">52</a>]</i>
+            <i>[standardized variants: <a href="#ucdxml:standardized_variants_58">58</a>]</i>
             <tt style="white-space: pre;">
       </tt>
-            <i>[do-not-emit: <a href="#ucdxml:do-not-emit_58">58</a>]</i>
+            <i>[cjk radicals: <a href="#ucdxml:cjk_radicals_59">59</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[Emoji properties: <a href="#ucdxml:emoji_properties_55">55</a>]</i>
+            <tt style="white-space: pre;">
+      </tt>
+            <i>[do-not-emit: <a href="#ucdxml:do-not-emit_60">60</a>]</i>
             <tt style="white-space: pre;">
 </tt>
          </p>
@@ -2804,6 +2912,40 @@
             <a name="Modifications">Modifications</a>
          </h2>
          <p>This section indicates the changes introduced by each revision.</p>
+         <div class="changed">
+            <p>
+               <b>Revision 39</b>
+            </p>
+            <ul>
+               <li>New value for the <tt>age</tt> attribute: <tt>18.0</tt>.
+                    </li>
+               <li>New values for the <tt>blk</tt> attribute: <tt>Archaic_Cuneiform_Numerals</tt>,
+                        <tt>Bengali_Sup</tt>, <tt>Chisoi</tt>, <tt>Jurchen</tt>, <tt>Jurchen_Radicals</tt>,
+                        <tt>Misc_Arrows_Ext</tt>, <tt>Music_Sup</tt>, <tt>Seal</tt>.
+                    </li>
+               <li>New values for the <tt>jg</tt> attribute: <tt>Crown_Ain</tt>, <tt>Crown_Beh</tt>,
+                        <tt>Crown_Feh</tt>, <tt>Crown_Hah</tt>, <tt>Crown_Heh</tt>, <tt>Crown_Kaf</tt>,
+                        <tt>Crown_Meem</tt>, <tt>Crown_Sad</tt>, <tt>Crown_Seen</tt>, <tt>Crown_Tah</tt>.
+                    </li>
+               <li>New values for the <tt>script</tt> attribute: <tt>Chis</tt>, <tt>Jurc</tt>,
+                        <tt>Pcun</tt>, <tt>Seal</tt>.
+                    </li>
+               <li>New code point attributes for Jurchen: <tt>kJURC_NCReading</tt>, <tt>kJURC_Numeric</tt>,
+                        <tt>kJURC_RSUnicode</tt>, <tt>kJURC_Src</tt>.
+                    </li>
+               <li>New code point attributes for Seal: <tt>kSEAL_CCZSrc</tt>, <tt>kSEAL_DYCSrc</tt>,
+                        <tt>kSEAL_MCJK</tt>, <tt>kSEAL_QJZSrc</tt>, <tt>kSEAL_Rad</tt>, <tt>kSEAL_THXSrc</tt>.
+                    </li>
+               <li>New code point attribute for Tangut: <tt>kTGT_Numeric</tt>.
+                    </li>
+               <li>New code point attributes for Unihan: <tt>kJapaneseNewVariant</tt>,
+                        <tt>kJapaneseOldVariant</tt>.
+                    </li>
+               <li>Removed code point attributes for Unihan: <tt>kIRGDaeJaweon</tt>,
+                        <tt>kIRGKangXi</tt>.
+                    </li>
+            </ul>
+         </div>
          <p>
             <b>Revision 38</b>
          </p>
@@ -2840,6 +2982,15 @@
                     </li>
             <li>New attribute for the <tt>kTayNumeric</tt> property.
                     </li>
+            <li>
+               <span class="changed">Renamed the <tt>kRSTUnicode</tt> property to <tt>kTGT_RSUnicode</tt>.</span>
+            </li>
+            <li>
+               <span class="changed">Renamed the <tt>kSrc_NushuDuben</tt> property to <tt>kNSHU_DubenSrc</tt>.</span>
+            </li>
+            <li>
+               <span class="changed">Renamed the <tt>kReading</tt> property to <tt>kNSHU_Reading</tt>.</span>
+            </li>
             <li>Removed attributes for deprecated properties: <tt>Gr_Link</tt>, <tt>Hyphen</tt>,
                         <tt>isc</tt>, <tt>kGB7</tt>, <tt>kJa</tt>, <tt>XO_NFC</tt>, <tt>XO_NFD</tt>,
                         <tt>XO_NFKC</tt>, <tt>XO_NFKD</tt>, <tt>FC_NFKC</tt>.
@@ -3406,7 +3557,7 @@
             <li>First working draft.</li>
          </ul>
          <hr/>
-         <p class="copyright">© 2008–2025 Unicode, Inc. This
+         <p class="copyright">© 2008–2026 Unicode, Inc. This
       publication is protected by copyright, and permission must be obtained from Unicode, Inc. prior to any
       reproduction, modification, or other use not permitted by the
       <a href="https://www.unicode.org/copyright.html">Terms of Use</a>. Specifically, you may make copies of this

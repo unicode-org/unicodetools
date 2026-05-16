@@ -17,7 +17,6 @@
 
   code-point-attributes &amp;= attribute kEH_UniK
     { xsd:string { pattern="([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}" }
-     | xsd:string { pattern="HJ ([A-IK-Z]|AA)\d{3}[A-Z]{0,2}" }
     }?
 
   code-point-attributes &amp;= attribute kEH_JSesh

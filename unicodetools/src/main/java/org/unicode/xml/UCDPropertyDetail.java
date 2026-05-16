@@ -1818,6 +1818,7 @@ public class UCDPropertyDetail {
             new UCDPropertyDetail(
                     UcdProperty.kIRGKangXi,
                     VersionInfo.getInstance(3, 0, 0),
+                    VersionInfo.getInstance(17, 0, 0),
                     181,
                     false,
                     true,
@@ -1828,6 +1829,7 @@ public class UCDPropertyDetail {
             new UCDPropertyDetail(
                     UcdProperty.kIRGDaeJaweon,
                     VersionInfo.getInstance(3, 0, 0),
+                    VersionInfo.getInstance(17, 0, 0),
                     182,
                     false,
                     true,
@@ -2560,11 +2562,141 @@ public class UCDPropertyDetail {
                     false,
                     false,
                     true);
-    public static UCDPropertyDetail kTayNumeric =
+    public static UCDPropertyDetail kTayNumeric_Detail =
             new UCDPropertyDetail(
                     UcdProperty.kTayNumeric,
                     VersionInfo.getInstance(17, 0, 0),
                     253,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false);
+    public static UCDPropertyDetail kTGT_Numeric_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kTGT_Numeric,
+                    VersionInfo.getInstance(18, 0, 0),
+                    254,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false);
+    public static UCDPropertyDetail kJapaneseNewVariant_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kJapaneseNewVariant,
+                    VersionInfo.getInstance(18, 0, 0),
+                    255,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false);
+    public static UCDPropertyDetail kJapaneseOldVariant_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kJapaneseOldVariant,
+                    VersionInfo.getInstance(18, 0, 0),
+                    256,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false);
+    public static UCDPropertyDetail kSEAL_MCJK_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kSEAL_MCJK,
+                    VersionInfo.getInstance(18, 0, 0),
+                    257,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false);
+    public static UCDPropertyDetail kJURC_NCReading_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kJURC_NCReading,
+                    VersionInfo.getInstance(18, 0, 0),
+                    258,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false);
+    public static UCDPropertyDetail kJURC_Numeric_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kJURC_Numeric,
+                    VersionInfo.getInstance(18, 0, 0),
+                    259,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false);
+    public static UCDPropertyDetail kJURC_RSUnicode_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kJURC_RSUnicode,
+                    VersionInfo.getInstance(18, 0, 0),
+                    260,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false);
+    public static UCDPropertyDetail kJURC_Src_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kJURC_Src,
+                    VersionInfo.getInstance(18, 0, 0),
+                    261,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false);
+    public static UCDPropertyDetail kSEAL_CCZSrc_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kSEAL_CCZSrc,
+                    VersionInfo.getInstance(18, 0, 0),
+                    262,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false);
+    public static UCDPropertyDetail kSEAL_DYCSrc_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kSEAL_DYCSrc,
+                    VersionInfo.getInstance(18, 0, 0),
+                    263,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false);
+    public static UCDPropertyDetail kSEAL_QJZSrc_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kSEAL_QJZSrc,
+                    VersionInfo.getInstance(18, 0, 0),
+                    264,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false);
+    public static UCDPropertyDetail kSEAL_Rad_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kSEAL_Rad,
+                    VersionInfo.getInstance(18, 0, 0),
+                    265,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false);
+    public static UCDPropertyDetail kSEAL_THXSrc_Detail =
+            new UCDPropertyDetail(
+                    UcdProperty.kSEAL_THXSrc,
+                    VersionInfo.getInstance(18, 0, 0),
+                    266,
                     false,
                     true,
                     false,
