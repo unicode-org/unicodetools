@@ -176,6 +176,16 @@ public class WriteConformanceTest {
         addStringX("Sch", alternate, AppendToCe.tieBreaker);
         addStringX("Sch\uFFFF", alternate, AppendToCe.tieBreaker);
 
+        // From Henri Sivonen / https://github.com/unicode-org/unicodetools/issues/1101
+        //
+        // Two characters in the root collation have the special property that they occur
+        // in the middle of a contraction without also occurring at the start of a contraction.
+        // [Relevant to a useful string-comparison optimization. ...]
+        addStringX("\u0CC8\u0CC6\u0CC2\u0CD6", alternate, AppendToCe.tieBreaker);
+        addStringX("\u0CC8\u0CC6\u0CC2\u0CD5", alternate, AppendToCe.tieBreaker);
+        addStringX("\u0DD9\u0DCF\uFFFF", alternate, AppendToCe.tieBreaker);
+        addStringX("\u0DD9\u0DCF\u0DCA", alternate, AppendToCe.tieBreaker);
+
         final UnicodeSet found = collator.getStatistics().found;
         if (!found2.containsAll(found2)) {
             System.out.println(
