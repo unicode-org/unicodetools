@@ -24,13 +24,33 @@ import org.unicode.tools.Segmenter.Builder.NamedSet;
 
 public class GenerateBreakStateTables {
     public static void main(String[] args) throws IOException {
-        Generate("Line", "line", Map.of(100, "Mandatory"));
-        Generate("GraphemeCluster", "char", Map.of());
-        Generate("Word", "word", Map.of(100, "Number", 200, "Letter", 400, "Letter"));
-        Generate("Sentence", "sent", Map.of(100, "EOL"));
+        Generate("Line", "uline", Map.of(100, "Mandatory"));
+        // Generate("GraphemeCluster", "char", Map.of());
+        // Generate("Word", "word", Map.of(100, "Number", 200, "Letter", 400, "Letter"));
+        // Generate("Sentence", "sent", Map.of(100, "EOL"));
     }
 
-    private static void Generate(String name, String icuName, Map<Integer, String> tagNames)
+    private static final Map<Integer, String> LINE_TAILORING_HOOKS =
+            Map.ofEntries(
+                    Map.entry(0x100003, "NON_EAST_ASIAN_UNCLASSIFIED"),
+                    Map.entry(0x100000, "EAST_ASIAN_UNCLASSIFIED"),
+                    Map.entry(0x100001, "NON_EAST_ASIAN_LOOSE_IN"),
+                    Map.entry(0x100002, "EAST_ASIAN_LOOSE_IN"),
+                    Map.entry(0x100004, "NON_EAST_ASIAN_POX"),
+                    Map.entry(0x100005, "EAST_ASIAN_POX"),
+                    Map.entry(0x100006, "NON_EAST_ASIAN_PRX"),
+                    Map.entry(0x100007, "EAST_ASIAN_PRX"),
+                    Map.entry(0x100008, "LOOSE_DASH"),
+                    Map.entry(0x100009, "EAST_ASIAN_PHRASE_ID"),
+                    Map.entry(0x10000A, "EAST_ASIAN_PHRASE_AL"),
+                    Map.entry(0x10000B, "EAST_ASIAN_PHRASE_CM"),
+                    Map.entry(0x10000C, "EAST_ASIAN_PHRASE_NS"),
+                    Map.entry(0x10000D, "EAST_ASIAN_PHRASE_H2"),
+                    Map.entry(0x10000E, "EAST_ASIAN_PHRASE_H3"),
+                    Map.entry(0x10000F, "EAST_ASIAN_ID_AL"));
+
+    private static void Generate(
+            final String name, final String icuName, final Map<Integer, String> tagNames)
             throws IOException {
         RuleBasedBreakIterator rbbi;
         try (var f =
@@ -52,16 +72,67 @@ public class GenerateBreakStateTables {
         List<NamedRefinedSet> namedPartition = segmenter.getPartitionDefinition();
         Map<Integer, UnicodeSet> rbbiPartition = new HashMap<>();
         Map<Integer, List<NamedRefinedSet>> rbbiNames = new HashMap<>();
+        final int privateUseClass = rbbi.fRData.fTrie.get(0xF0000);
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             int partIndex = rbbi.fRData.fTrie.get(cp);
+            if (LINE_TAILORING_HOOKS.containsKey(cp) && partIndex != privateUseClass) {
+                if (!rbbiPartition.containsKey(partIndex)) {
+                    final String hookName = LINE_TAILORING_HOOKS.get(cp);
+                    rbbiPartition.put(partIndex, new UnicodeSet().add(hookName));
+                    namedPartition.add(
+                            new NamedRefinedSet()
+                                    .intersect(
+                                            new NamedSet(
+                                                    hookName,
+                                                    "[{" + hookName + "}]",
+                                                    new UnicodeSet("[{" + hookName + "}]"))));
+                }
+                partIndex = privateUseClass;
+            }
             if (!rbbiPartition.containsKey(partIndex)) {
                 rbbiPartition.put(partIndex, new UnicodeSet());
             }
             rbbiPartition.get(partIndex).add(cp);
         }
+        final var table = rbbi.fRData.fFTable;
+        boolean usesEOT = false;
+        boolean usesSOT = false;
+        for (int state = 1; state < table.fNumStates; ++state) {
+            final int row = rbbi.fRData.getRowIndex(state);
+            for (int col = 0; col < rbbi.fRData.fHeader.fCatCount; ++col) {
+                int next = table.fTable[row + RBBIDataWrapper.NEXTSTATES + col];
+                if (next != 0) {
+                    if (col == 1) {
+                        usesEOT = true;
+                    }
+                    if (col == 2) {
+                        usesSOT = true;
+                    }
+                }
+            }
+        }
+        if (usesEOT) {
+            if (!rbbiPartition.containsKey(1)) {
+                rbbiPartition.put(1, new UnicodeSet());
+            }
+            rbbiPartition.get(1).add("eot");
+            namedPartition.add(
+                    new NamedRefinedSet()
+                            .intersect(new NamedSet("eot", "[{eot}]", new UnicodeSet("[{eot}]"))));
+        }
+        if (usesSOT) {
+            if (!rbbiPartition.containsKey(2)) {
+                rbbiPartition.put(2, new UnicodeSet());
+            }
+            rbbiPartition.get(2).add("sot");
+            namedPartition.add(
+                    new NamedRefinedSet()
+                            .intersect(new NamedSet("sot", "[{sot}]", new UnicodeSet("[{sot}]"))));
+        }
         loopOverRbbiPartition:
         for (var entry : rbbiPartition.entrySet()) {
-            UnicodeSet rbbiPart = entry.getValue();
+            // UnicodeSet strings = new UnicodeSet().addAll(entry.getValue().strings());
+            UnicodeSet rbbiPart = entry.getValue(); // .cloneAsThawed().removeAll(strings);
             UnicodeSet rbbiPartRemaining = rbbiPart.cloneAsThawed();
             List<NamedRefinedSet> refinement = new ArrayList<>();
             for (var part : namedPartition) {
@@ -140,7 +211,6 @@ public class GenerateBreakStateTables {
                                 .findFirst()
                                 .orElse(""));
         }
-        var table = rbbi.fRData.fFTable;
         System.out.println(rbbiPartition.size() + " classes");
         System.out.println(table.fNumStates + " states");
         Map<Integer, String> stateNames = new HashMap<>();
@@ -284,7 +354,7 @@ public class GenerateBreakStateTables {
             }
         }
         try (var file = new PrintStream(new File(name + "BreakTransitions.txt"))) {
-            file.println("# From state ; class name or eot ; to state");
+            file.println("# From state ; class name ; to state");
             for (int state = 1; state < table.fNumStates; ++state) {
                 final int row = rbbi.fRData.getRowIndex(state);
 

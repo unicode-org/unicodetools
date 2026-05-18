@@ -641,6 +641,9 @@ public class Segmenter {
 
             private UnicodeSet getIntersection() {
                 UnicodeSet result = UnicodeSet.ALL_CODE_POINTS.cloneAsThawed();
+                if (!intersectionTerms.isEmpty()) {
+                    result = intersectionTerms.get(0).set;
+                }
                 for (var term : intersectionTerms) {
                     result.retainAll(term.set);
                 }
