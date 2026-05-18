@@ -154,19 +154,23 @@ public class WriteConformanceTest {
             addStringX(s, alternate, AppendToCe.tieBreaker);
         }
 
-        // Examples with U+FFFE for "merge sort key" behavior, using addStringY() not ...X().
-        addStringY("l\uFFFEf", alternate, AppendToCe.tieBreaker);
-        addStringY("l\uFFFEf2", alternate, AppendToCe.tieBreaker);
-        addStringY("l2\uFFFEf", alternate, AppendToCe.tieBreaker);
-        addStringY("l2\uFFFEf2", alternate, AppendToCe.tieBreaker);
-        addStringY("l f", alternate, AppendToCe.tieBreaker);
-        addStringY("l f2", alternate, AppendToCe.tieBreaker);
-        addStringY("l2 f", alternate, AppendToCe.tieBreaker);
-        addStringY("l2 f2", alternate, AppendToCe.tieBreaker);
-        addStringY("lf", alternate, AppendToCe.tieBreaker);
-        addStringY("lf2", alternate, AppendToCe.tieBreaker);
-        addStringY("l2f", alternate, AppendToCe.tieBreaker);
-        addStringY("l2f2", alternate, AppendToCe.tieBreaker);
+        // Examples with U+FFFE for "merge sort key" behavior.
+        // We might not need all of the strings which addStringX() writes,
+        // with additional characters appended,
+        // but if we just called addStringY(),
+        // then the output comments would omit the trailing characters here.
+        addStringX("l\uFFFEf", alternate, AppendToCe.tieBreaker);
+        addStringX("l\uFFFEf2", alternate, AppendToCe.tieBreaker);
+        addStringX("l2\uFFFEf", alternate, AppendToCe.tieBreaker);
+        addStringX("l2\uFFFEf2", alternate, AppendToCe.tieBreaker);
+        addStringX("l f", alternate, AppendToCe.tieBreaker);
+        addStringX("l f2", alternate, AppendToCe.tieBreaker);
+        addStringX("l2 f", alternate, AppendToCe.tieBreaker);
+        addStringX("l2 f2", alternate, AppendToCe.tieBreaker);
+        addStringX("lf", alternate, AppendToCe.tieBreaker);
+        addStringX("lf2", alternate, AppendToCe.tieBreaker);
+        addStringX("l2f", alternate, AppendToCe.tieBreaker);
+        addStringX("l2f2", alternate, AppendToCe.tieBreaker);
 
         // Examples with U+FFFF
         addStringX("Sch", alternate, AppendToCe.tieBreaker);
