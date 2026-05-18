@@ -255,26 +255,18 @@ public class GenerateBreakStateTables {
                 stateNames.put(
                         next,
                         (state == 1 ? "" : stateName + " ")
-                                + (col == 1
-                                        ? "eot"
-                                        : col == 2
-                                                ? "sot"
-                                                : rbbiNames.get(col).stream()
-                                                        .sorted(
-                                                                Comparator
-                                                                        .<NamedRefinedSet>
-                                                                                comparingInt(
-                                                                                        s ->
-                                                                                                -s.getSet()
-                                                                                                        .removeAll(
-                                                                                                                unassigned)
-                                                                                                        .removeAll(
-                                                                                                                pua)
-                                                                                                        .size()))
-                                                        .map(NamedRefinedSet::getName)
-                                                        .map(s -> s.replace("orig", ""))
-                                                        .findFirst()
-                                                        .get()));
+                                + (rbbiNames.get(col).stream()
+                                        .sorted(
+                                                Comparator.<NamedRefinedSet>comparingInt(
+                                                        s ->
+                                                                -s.getSet()
+                                                                        .removeAll(unassigned)
+                                                                        .removeAll(pua)
+                                                                        .size()))
+                                        .map(NamedRefinedSet::getName)
+                                        .map(s -> s.replace("orig", ""))
+                                        .findFirst()
+                                        .get()));
                 neighbourhoodsToName.add(next);
             }
         } while (!neighbourhoodsToName.isEmpty());
@@ -364,14 +356,10 @@ public class GenerateBreakStateTables {
                         continue;
                     }
                     String ahead =
-                            col == 1
-                                    ? "eot"
-                                    : col == 2
-                                            ? "sot"
-                                            : rbbiNames.get(col).stream()
-                                                    .map(NamedRefinedSet::getName)
-                                                    .map(s -> s.replace("orig", ""))
-                                                    .collect(Collectors.joining("|"));
+                            rbbiNames.get(col).stream()
+                                    .map(NamedRefinedSet::getName)
+                                    .map(s -> s.replace("orig", ""))
+                                    .collect(Collectors.joining("|"));
                     if (next != 0 && !ahead.isEmpty()) {
                         file.print(stateNames.get(state) + " ; ");
                         file.println(ahead + " ; " + stateNames.get(next));
