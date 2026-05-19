@@ -647,6 +647,21 @@ public class GenerateCaseFolding implements UCD_Types {
         return false;
     }
 
+    private static final String SHARP_S_COMMENTS =
+            """
+            # The German sharp s (ß, also called es-zed) is special:
+            # The customary uppercase mapping is to SS,
+            # rather than to the newer U+1E9E capital sharp s.
+            #
+            # Note: The Case Pair Stability policy forbids
+            # changing the default Unicode uppercasing of U+00DF to U+1E9E.
+            #
+            # For details see The Unicode Standard, section 5.18.2, under “German sharp s”.
+            #
+            # Note: The titlecase should never occur in practice. \
+            It is equal to titlecase(uppercase('ß')).
+            """;
+
     static void generateSpecialCasing(boolean normalize) throws IOException {
         final Map<Integer, String> sorted = new TreeMap<Integer, String>();
 
@@ -856,9 +871,7 @@ public class GenerateCaseFolding implements UCD_Types {
                 boolean skipLine = false;
                 switch (order) {
                     case 1:
-                        out.println("# The German es-zed is special--the normal mapping is to SS.");
-                        out.println(
-                                "# Note: the titlecase should never occur in practice. It is equal to titlecase(uppercase(<es-zed>))");
+                        out.print(SHARP_S_COMMENTS);
                         break;
                     case 2:
                         out.println(
