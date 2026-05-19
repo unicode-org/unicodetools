@@ -6,4 +6,4 @@
 This directory contains PUB_STATUS data files for version UNI_VER of
 UTS #10: Unicode Collation Algorithm
 
-See https://www.unicode.org/reports/tr10/ .
+See https://www.unicode.org/reports/tr10/.

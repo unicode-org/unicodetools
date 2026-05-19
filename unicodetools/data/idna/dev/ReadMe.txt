@@ -10,4 +10,4 @@ It also contains the data file Idna2008.txt listing the
 IDNA2008_Category Property for the same version.
 The listing matches the "IDNA Derived Property" as defined in RFC 5892.
 
-See https://www.unicode.org/reports/tr46/ .
+See https://www.unicode.org/reports/tr46/.

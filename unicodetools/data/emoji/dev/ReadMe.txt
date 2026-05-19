@@ -6,7 +6,7 @@
 This directory contains PUB_STATUS data files for version EMOJI_VER of
 UTS #51: Unicode Emoji
 
-See https://www.unicode.org/reports/tr51/ .
+See https://www.unicode.org/reports/tr51/.
 
 PUBLIC_EMOJI/
 

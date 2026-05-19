@@ -6,6 +6,6 @@
 This directory contains PUB_STATUS data files and charts for version UNI_VER of the
 Unicode Character Database and for the synchronized Unicode Technical Standards.
 
-For documentation, see https://www.unicode.org/versions/UnicodeUNI_VER/ .
+For documentation, see https://www.unicode.org/versions/UnicodeUNI_VER/.
 
 The subdirectories contain ReadMe files that point to specific documentation.

@@ -6,4 +6,4 @@
 This directory contains PUB_STATUS data files for version UNI_VER of
 UTS #39: Unicode Security Mechanisms
 
-See https://www.unicode.org/reports/tr39/ .
+See https://www.unicode.org/reports/tr39/.

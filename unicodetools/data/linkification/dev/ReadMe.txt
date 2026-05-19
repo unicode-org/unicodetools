@@ -6,4 +6,4 @@
 This directory contains PUB_STATUS data files for version UNI_VER of
 UTS #58: Unicode Link Detection and Formatting: URLs and Email Addresses
 
-See https://www.unicode.org/reports/tr58/ .
+See https://www.unicode.org/reports/tr58/.
