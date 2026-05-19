@@ -389,7 +389,6 @@ A7AE; technical
 3031..3035    ; technical # presentation form #  [5] (〱..〵)  VERTICAL KANA REPEAT MARK..VERTICAL KANA REPEAT MARK LOWER HALF
 303B..303C    ; technical # presentation form #  [2] (〻..〼)  VERTICAL IDEOGRAPHIC ITERATION MARK..MASU MARK
 30A0          ; technical #      (゠)  KATAKANA-HIRAGANA DOUBLE HYPHEN
-FB1E          ; technical # presentation form #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 FE20..FE23    ; technical # presentation form #  [4] (︠..︣)  COMBINING LIGATURE LEFT HALF..COMBINING DOUBLE TILDE RIGHT HALF
 FE73          ; technical # presentation form #      (ﹳ)  ARABIC TAIL FRAGMENT
 
@@ -465,7 +464,8 @@ FE73          ; technical # presentation form #      (ﹳ)  ARABIC TAIL FRAGMENT
 1D400..1D7FF  ; technical # symbol (math)
 1D000..1D1DD  ; technical # symbol (musical)
 1D242..1D244; technical # symbol (musical)
-FB00..FEFC    ; technical # presentation form
+FB00..FB1D    ; technical # presentation form
+FB1F..FEFC    ; technical # presentation form
 2460..24FF          ; technical # presentation form
 3251..33FF          ; technical # presentation form
 4DC0..4DFF    ; technical
@@ -474,11 +474,7 @@ FB00..FEFC    ; technical # presentation form
 03F9; historic
 # technical # symbol (musical)..1DBF; obsolete ; non-IPA phonetics
 
-05A2; historic #HEBREW ACCENT ATNAH HAFUKH
-#05BA; historic # HEBREW POINT HOLAM HASER FOR VAV
-05C5; historic # HEBREW MARK LOWER DOT
 05C6; historic # HEBREW PUNCTUATION NUN HAFUKHA
-# 05C7; historic # HEBREW POINT QAMATS QATAN
 1DC0..1DC3; historic
 A700..A707; historic
 A708..A716; technical # (phonetic)
@@ -543,8 +539,6 @@ A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
 1369..1371 ; obsolete # ( ፩ ) ETHIOPIC DIGIT ONE..U+1371 ( ፱ ) ETHIOPIC DIGIT NINE
 2054 ; uncommon-use # ( ⁔ ) INVERTED UNDERTIE
 
-[[:sc=Hebr:]&[:gc=Mn:]] ; uncommon-use # Hebrew — Cantillation marks
-[[:sc=Arab:]&[:gc=Mn:]-[\u064B-\u0655\U00010EFB]] ; uncommon-use # Arabic nonspacing marks (some exceptions)
 2DE0..2DFF ; historic # Old Church Slavonic combining letters
 [:ccc=Double_Above:] ; technical # specialized use
 [:ccc=Double_Below:] ; technical # specialized use
@@ -554,8 +548,8 @@ A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
 
 #### CLDR - Remove non-spacing marks that do not occur in values of CLDR locales where we have reasonable data (confirmed or contributed; the value or toNFKD(value))
 
-[\u0615-\u061A\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0332\u030D\uA67C\uA67D\u0316\u0336\u0305\u0321\u0322\u0334\u0358\uA66F\u0659-\u065E\u0900 \u0955 \u0A51 \u0A75 \u0B44 \u0B62 \u0B63 \u0C62 \u0C63 \u0D44 \u0D62 \u0D63 \u18A9] ; uncommon-use
-# derived from \p{mn}&\p{idr=recommended}-XXX-\p{Script=Ethiopic}-\p{Script=Lao}-\p{Script=Myanmar}-\p{Script=Tibetan}
+[\u0332\u030D\uA67C\uA67D\u0316\u0336\u0305\u0321\u0322\u0334\u0358\uA66F\u0900 \u0955 \u0A51 \u0A75 \u0B44 \u0B62 \u0B63 \u0C62 \u0C63 \u0D44 \u0D62 \u0D63 \u18A9] ; uncommon-use
+# derived from \p{mn}&\p{idr=recommended}-XXX-\p{Script=Ethiopic}-\p{Script=Lao}-\p{Script=Myanmar}-\p{Script=Tibetan}-\p{Script=Arabic}
 # where XXX is from TestPathsModule/GatherValueCharacters
 
 #specialized use
@@ -690,8 +684,6 @@ AB63; uncommon-use # LATIN SMALL LETTER UO
 16FE3 ; obsolete
 
 1B002..1B11E; obsolete # 157a019
-05C7 ; uncommon-use # HEBREW POINT QAMATS QATAN from "Obsolete" to "Uncommon_Use Technical"
-05C7 ; technical # HEBREW POINT QAMATS QATAN from "Obsolete" to "Uncommon_Use Technical"
 
 # 13.0
 # was Exclusion
@@ -1258,3 +1250,41 @@ AB6C..AB6D ; Technical
 1BAE..1BAF ; Obsolete
 1BAB..1BAD ; Obsolete
 1BBA..1BBF ; Obsolete
+
+# Cleanup of Hebrew and Arabic combining marks (PAG ref #555)
+# Hebrew
+0591..05AF; Technical # cantillation marks
+05B0..05BD; Uncommon_Use # points
+05BF; Technical Uncommon_Use # rafe
+05C1..05C2; Uncommon_Use # shin and sin dots
+05C4..05C5; Technical # puncta extraordinaria
+05C7; Technical # qamats qatan
+05C8..05C9; Technical # sheva na mudgash and dagesh hazaq mudgash
+FB1E; Uncommon_Use # Judeo-Spanish varika
+# Arabic
+0610..0614; Uncommon_Use # combining honorifics
+0615; Technical # quranic mark
+0616; Obsolete # used in early Persian
+0617..061A; Technical # quranic marks
+0656..065B; Uncommon_Use # various marks
+065C; Uncommon_Use Technical # used both in African languages and as quranic mark
+065D..065F; Uncommon_Use # various marks
+06D6..06DC; Technical # quranic marks
+06DF..06E4; Technical # quranic marks
+06E7..06E8; Technical # quranic marks
+06EA..06ED; Technical # quranic marks
+0897; Uncommon_Use # pepet
+0898..089F; Technical # quranic marks
+08CA..08E1; Technical # quranic marks
+08E3..08EF; Uncommon_Use # various marks
+08F0..08F3; Technical # quranic marks
+08F4..08F7; Uncommon_Use # various marks
+08F8; Uncommon_Use Technical # used both in African languages and as quranic mark
+08F9..08FA; Uncommon_Use # various marks
+08FB; Uncommon_Use Technical # used both in African languages and as quranic mark
+08FC..08FF; Uncommon_Use # various marks
+10ECB..10ECF; Technical # quranic marks
+10EF0..10EF8; Technical # quranic marks
+10EF9; Obsolete # combining crown
+10EFA; Obsolete # used in Old Sindhi
+10EFB..10EFF; Technical # quranic marks
