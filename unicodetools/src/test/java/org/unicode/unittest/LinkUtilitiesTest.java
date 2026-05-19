@@ -33,6 +33,7 @@ import org.unicode.utilities.LinkUtilities.LinkTermination;
 import org.unicode.utilities.LinkUtilities.Part;
 import org.unicode.utilities.LinkUtilities.UrlInternals;
 import org.unicode.utilities.LinkUtilities.UrlInternals.EndStatus;
+import org.unicode.utilities.LinkUtilities.WHATWG_PERCENT_ENCODED;
 
 /** The following is very temporary, just during the spec development. */
 public class LinkUtilitiesTest extends TestFmwkMinusMinus {
@@ -640,5 +641,52 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
         UrlInternals ui = LinkUtilities.UrlInternals.from(test);
         String actual = ui.minimalEscape(EndStatus.FINAL, null);
         assertEquals(test, expected, actual);
+
+        UrlInternals roundTrip = LinkUtilities.UrlInternals.from(actual);
+        assertEquals(test, ui, roundTrip);
     }
+
+    @Test
+    public void testEquals() {
+        String test = "https://bo.wikipedia.org/wiki/སའི་གོ་ལ།";
+        // force different string
+        String notSameReference = test.substring(0, 5) + test.substring(5);
+        assertFalse(test, test == notSameReference);
+
+        UrlInternals ui = LinkUtilities.UrlInternals.from(test);
+        UrlInternals ui2 = LinkUtilities.UrlInternals.from(notSameReference);
+        assertEquals(test, ui, ui2);
+        UrlInternals ui3 = LinkUtilities.UrlInternals.from(test + "a");
+        assertNotEquals(test, ui, ui3);
+    }
+
+    static final UnicodeSet OK_TO_UNESCAPE = new UnicodeSet("\\p{ascii}");
+
+    @Test
+    public void testMaximalEscape() {
+        List<String> tests =
+                List.of(
+                        "https://mni.wikipedia.org/wiki/ꯅ꯭ꯌꯨ_ꯌꯣꯔ꯭ꯛ_ꯁꯤꯇꯤꯒꯤ_ꯌꯨ.ꯑꯦꯁ.",
+                        "https://bo.wikipedia.org/α\\/b\\?c?γ\\=β\\&\\##j");
+        for (String test : tests) {
+            UrlInternals ui = LinkUtilities.UrlInternals.from(test);
+            String actual = ui.fullEscape();
+            assertTrue(test, OK_TO_UNESCAPE.containsAll(actual));
+            UrlInternals roundTrip = LinkUtilities.UrlInternals.from(actual);
+            assertEquals(test, ui, roundTrip);
+        }
+    }
+    
+    @Test
+    public void testWhatWGEscapes() {
+        UnicodeSet mustEscape = new UnicodeSet(OK_TO_UNESCAPE).complement();
+        for (WHATWG_PERCENT_ENCODED item : WHATWG_PERCENT_ENCODED.values()) {
+        	if (!item.set.containsAll(mustEscape)) {
+        		UnicodeSet missing = new UnicodeSet(mustEscape).removeAll(item.set);
+        		System.out.println(missing);
+        	}
+            assertTrue(item.name(),  item.set.containsAll(mustEscape));
+        }
+    }
+
 }

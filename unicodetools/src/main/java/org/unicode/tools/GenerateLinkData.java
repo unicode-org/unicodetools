@@ -450,6 +450,7 @@ public class GenerateLinkData {
                                 String fullSourcePath = oldValue.toString();
 
                                 UrlInternals internals = UrlInternals.from(fullSourcePath);
+                                // String maximal = internals.maximalEscape(EndStatus.FINAL, null);
 
                                 String actual = internals.minimalEscape(EndStatus.FINAL, null);
 
@@ -466,14 +467,13 @@ public class GenerateLinkData {
                                                             title,
                                                             line,
                                                             internals,
-                                                            fullSourcePath,
+                                                            internals.fullEscape(),
                                                             "expected:\t" + expected,
                                                             "actual:  \t" + actual));
                                     ++errorCount.value;
-                                    // for debugging
-                                    UrlInternals.from(fullSourcePath);
-                                    internals.minimalEscape(EndStatus.FINAL, null);
+                                    ensureRoundTrip(internals, fullSourcePath);
                                     comments.clear();
+
                                     return;
                                 }
                                 outputTestCase(out.tempPrintWriter, comments, internals, actual);
@@ -515,9 +515,13 @@ public class GenerateLinkData {
                                 // Divide into parts
                                 UrlInternals internals = UrlInternals.from(line);
 
-                                String actual = internals.minimalEscape(EndStatus.FINAL, null);
+                                String minimallyEscaped =
+                                        internals.minimalEscape(EndStatus.FINAL, null);
 
-                                outputTestCase(out.tempPrintWriter, comments, internals, actual);
+                                ensureRoundTrip(internals, minimallyEscaped);
+
+                                outputTestCase(
+                                        out.tempPrintWriter, comments, internals, minimallyEscaped);
                             });
         } catch (IOException e) {
             throw new UncheckedIOException(e);
@@ -525,6 +529,15 @@ public class GenerateLinkData {
         if (errorCount.value != 0) {
             throw new IllegalArgumentException("Failures in writing test file: " + errorCount);
         }
+    }
+
+    private static void ensureRoundTrip(UrlInternals sourceInternals, String resultingPath) {
+        UrlInternals targetInternals = UrlInternals.from(resultingPath);
+        if (!targetInternals.equals(sourceInternals)) {
+            throw new IllegalArgumentException("Fails roundtrip");
+        }
+        // for testing
+        String minimal = sourceInternals.minimalEscape(EndStatus.FINAL, null);
     }
 
     private static void outputTestCase(

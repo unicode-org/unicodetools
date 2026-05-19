@@ -33,6 +33,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NavigableMap;
+import java.util.Objects;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.Stack;
@@ -87,31 +88,42 @@ public class LinkUtilities {
 
     private static final UnicodeSet SOFAR = new UnicodeSet();
 
-    // https://url.spec.whatwg.org/#percent-encoded-bytes
-
+    /**
+     * Based on https://url.spec.whatwg.org/#percent-encoded-bytes. Is the default for maximal
+     * encoding, but can be customized
+     */
     public enum WHATWG_PERCENT_ENCODED {
-        C0(null, "[\\u0000-\\u001F\\u007E-\\u10FFFF]"), // C0 controls and all code points greater
-        // than U+007E (~).
-        FRAGMENT(C0, "[\\ \"<>`]"), // C0 and U+0020 SPACE, U+0022 ("), U+003C (<), U+003E (>), and
-        // U+0060 (`).
-        QUERY(
-                C0,
-                "[\\ \"<>]"), // C0 and U+0020 SPACE, U+0022 ("), U+0023 (#), U+003C (<), and U+003E
-        // (>)
-        SPECIAL_QUERY(QUERY, "[']"), // query percent-encode set and U+0027 ('). Used for http://...
-        PATH(QUERY, "[?\\^`\\{\\}]"), // query percent-encode set and U+003F (?), U+005E (^), U+0060
-        // (`),
-        // U+007B ({), and U+007D (}).
-        USERINFO(
-                PATH,
-                "[/:;=@\\[-\\]|]"), // path and U+002F (/), U+003A (:), U+003B (;), U+003D (=),
-        // U+0040 (@), U+005B ([) to U+005D (]), inclusive, and U+007C
-        // (|).
-        COMPONENT(
-                USERINFO,
-                "[\\$-\\&+,]") // userinfo and U+0024 ($) to U+0026 (&), inclusive, U+002B (+), and
-    // U+002C (,).
-    ;
+        /** C0 controls and all code points greater than U+007E (~). */
+        C0(null, "[\\u0000-\\u001F\\u007E-\\x{10FFFF}]"),
+
+        /** C0 and U+0020 SPACE, U+0022 ("), U+003C (<), U+003E (>), andU+0060 (`). */
+        FRAGMENT(C0, "[\\ \"<>`]"),
+
+        /** C0 and U+0020 SPACE, U+0022 ("), U+0023 (#), U+003C (<), and U+003E (>) */
+        QUERY(C0, "[\\ \"<>]"),
+
+        /** query percent-encode set and U+0027 ('). Used for http://... */
+        SPECIAL_QUERY(QUERY, "[']"),
+
+        /**
+         * query percent-encode set and<br>
+         * U+003F (?), U+005E (^), U+0060 (`), U+007B ({), and U+007D (}).
+         */
+        PATH(QUERY, "[?\\^`\\{\\}]"),
+
+        /**
+         * path and<br>
+         * U+002F (/), U+003A (:), U+003B (;), U+003D (=), U+0040 (@), U+005B ([) to U+005D (]),
+         * inclusive, and U+007C (|).
+         */
+        USERINFO(PATH, "[/:;=@\\[-\\]|]"),
+
+        /**
+         * userinfo and <br>
+         * U+0024 ($) to U+0026 (&), inclusive, U+002B (+), and U+002C (,).
+         */
+        COMPONENT(USERINFO, "[\\$-\\&+,]");
+
         public final UnicodeSet set;
 
         private WHATWG_PERCENT_ENCODED(WHATWG_PERCENT_ENCODED base, String uset) {
@@ -614,6 +626,19 @@ public class LinkUtilities {
         @Override
         public String toString() {
             return toString(Part.ALL); // show all
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof UrlInternals urlInternals) {
+                return data.equals(urlInternals.data);
+            }
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(data);
         }
 
         public String toString(Set<Part> partsToShow) {
