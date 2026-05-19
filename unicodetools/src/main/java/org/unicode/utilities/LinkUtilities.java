@@ -459,13 +459,15 @@ public class LinkUtilities {
             this.data = ImmutableSortedMap.copyOf(data);
         }
 
+        public enum EndStatus {MEDIAL, FINAL}
+        
         /**
          * Minimally escape. Presumes that the parts use \ for interior quoting.<br>
          *
-         * @param atEndOfText TODO
+         * @param endStatus TODO
          * @param escapedCounter TODO
          */
-        public String minimalEscape(boolean atEndOfText, Counter<Integer> escapedCounter) {
+        public String minimalEscape(EndStatus endStatus, Counter<Integer> escapedCounter) {
             StringBuilder output = new StringBuilder();
             // get the last part
             List<Entry<Part, List<List<String>>>> ordered = List.copyOf(data.entrySet());
@@ -580,7 +582,7 @@ public class LinkUtilities {
                     }
                 }
                 // fix
-                if (atEndOfText || part != lastPart) {
+                if (endStatus==EndStatus.MEDIAL || part != lastPart) {
                     appendCodePointsBetween(output, cps, copiedAlready, n);
                 } else if (copiedAlready < n) {
                     appendCodePointsBetween(output, cps, copiedAlready, n - 1);

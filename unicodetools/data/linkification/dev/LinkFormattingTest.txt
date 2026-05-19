@@ -1,5 +1,5 @@
 # LinkFormattingTest.txt
-# Date: 2026-02-03, 23:10:02 GMT 
+# Date: 2026-05-19, 16:47:55 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -186,7 +186,7 @@ https://av.wikipedia.org/wiki/Ракь_(планета)
 
 # {𝑺=https:// 𝑯=bo.wikipedia.org 𝑷=wiki 𝑷=སའི་གོ་ལ།}
 https://bo.wikipedia.org/wiki/%E0%BD%A6%E0%BD%A0%E0%BD%B2%E0%BC%8B%E0%BD%82%E0%BD%BC%E0%BC%8B%E0%BD%A3%E0%BC%8D
-https://bo.wikipedia.org/wiki/སའི་གོ་ལ།
+https://bo.wikipedia.org/wiki/སའི་གོ་ལ%E0%BC%8D
 
 # {𝑺=https:// 𝑯=fiu-vro.wikipedia.org 𝑷=wiki 𝑷=Maa_(hod'otäht)}
 https://fiu-vro.wikipedia.org/wiki/Maa_(hod'ot%C3%A4ht)
@@ -202,15 +202,15 @@ https://ab.wikipedia.org/wiki/Вашингтон,_Џьорџь
 
 # {𝑺=https:// 𝑯=mni.wikipedia.org 𝑷=wiki 𝑷=ꯅ꯭ꯌꯨ_ꯌꯣꯔ꯭ꯛ_ꯁꯤꯇꯤꯒꯤ_ꯌꯨ.ꯑꯦꯁ.}
 https://mni.wikipedia.org/wiki/ꯅ꯭ꯌꯨ_ꯌꯣꯔ꯭ꯛ_ꯁꯤꯇꯤꯒꯤ_ꯌꯨ.ꯑꯦꯁ.
-https://mni.wikipedia.org/wiki/ꯅ꯭ꯌꯨ_ꯌꯣꯔ꯭ꯛ_ꯁꯤꯇꯤꯒꯤ_ꯌꯨ.ꯑꯦꯁ.
+https://mni.wikipedia.org/wiki/ꯅ꯭ꯌꯨ_ꯌꯣꯔ꯭ꯛ_ꯁꯤꯇꯤꯒꯤ_ꯌꯨ.ꯑꯦꯁ%2E
 
 # {𝑺=https:// 𝑯=azb.wikipedia.org 𝑷=wiki 𝑷=واشینقتن،_دی.سی.}
 https://azb.wikipedia.org/wiki/%D9%88%D8%A7%D8%B4%DB%8C%D9%86%D9%82%D8%AA%D9%86%D8%8C_%D8%AF%DB%8C.%D8%B3%DB%8C.
-https://azb.wikipedia.org/wiki/واشینقتن،_دی.سی.
+https://azb.wikipedia.org/wiki/واشینقتن،_دی.سی%2E
 
 # {𝑺=https:// 𝑯=mad.wikipedia.org 𝑷=wiki 𝑷=Tasè’}
 https://mad.wikipedia.org/wiki/Tas%C3%A8’
-https://mad.wikipedia.org/wiki/Tasè’
+https://mad.wikipedia.org/wiki/Tasè%E2%80%99
 
 # {𝑺=https:// 𝑯=wuu.wikipedia.org 𝑷=wiki 𝑷=聖保羅（巴西）}
 https://wuu.wikipedia.org/wiki/聖保羅（巴西）
@@ -218,7 +218,7 @@ https://wuu.wikipedia.org/wiki/聖保羅（巴西）
 
 # {𝑺=https:// 𝑯=vep.wikipedia.org 𝑷=wiki 𝑷=Brüssel'}
 https://vep.wikipedia.org/wiki/Br%C3%BCssel'
-https://vep.wikipedia.org/wiki/Brüssel'
+https://vep.wikipedia.org/wiki/Brüssel%27
 
 # {𝑺=https:// 𝑯=tw.wikipedia.org 𝑷=wiki 𝑷=Wiase_Nyinaa_Wɛbsaet_(_World_Wide_Web;_WWW_)}
 https://tw.wikipedia.org/wiki/Wiase_Nyinaa_W%C9%9Bbsaet_(_World_Wide_Web;_WWW_)
@@ -226,7 +226,7 @@ https://tw.wikipedia.org/wiki/Wiase_Nyinaa_Wɛbsaet_(_World_Wide_Web;_WWW_)
 
 # {𝑺=https:// 𝑯=ja.wikibooks.org 𝑷=wiki 𝑷=植物学 𝑷=植物とはどのような生き物か？}
 https://ja.wikibooks.org/wiki/植物学/植物とはどのような生き物か？
-https://ja.wikibooks.org/wiki/植物学/植物とはどのような生き物か？
+https://ja.wikibooks.org/wiki/植物学/植物とはどのような生き物か%EF%BC%9F
 
 # {𝑺=https:// 𝑯=bn.wikibooks.org 𝑷=wiki 𝑷=উইকিশৈশব:দেশসমূহ_(অ-হ) 𝑷=ইসরায়েল}
 https://bn.wikibooks.org/wiki/%E0%A6%89%E0%A6%87%E0%A6%95%E0%A6%BF%E0%A6%B6%E0%A7%88%E0%A6%B6%E0%A6%AC:%E0%A6%A6%E0%A7%87%E0%A6%B6%E0%A6%B8%E0%A6%AE%E0%A7%82%E0%A6%B9_(%E0%A6%85-%E0%A6%B9)/%E0%A6%87%E0%A6%B8%E0%A6%B0%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%87%E0%A6%B2
@@ -238,7 +238,7 @@ https://haw.wikipedia.org/wiki/Puke_noi‘i_kū‘ikena
 
 # {𝑺=https:// 𝑯=new.wikipedia.org 𝑷=wiki 𝑷=विन्सेन्ट_भ्यान_ग:}
 https://new.wikipedia.org/wiki/%E0%A4%B5%E0%A4%BF%E0%A4%A8%E0%A5%8D%E0%A4%B8%E0%A5%87%E0%A4%A8%E0%A5%8D%E0%A4%9F_%E0%A4%AD%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%A8_%E0%A4%97:
-https://new.wikipedia.org/wiki/विन्सेन्ट_भ्यान_ग:
+https://new.wikipedia.org/wiki/विन्सेन्ट_भ्यान_ग%3A
 
 # {𝑺=https:// 𝑯=he.wikipedia.org 𝑷=wiki 𝑷=נאט"ו}
 https://he.wikipedia.org/wiki/%D7%A0%D7%90%D7%98%22%D7%95
@@ -246,7 +246,7 @@ https://he.wikipedia.org/wiki/נאט"ו
 
 # {𝑺=https:// 𝑯=ks.wikipedia.org 𝑷=wiki 𝑷=شارٕک۔}
 https://ks.wikipedia.org/wiki/%D8%B4%D8%A7%D8%B1%D9%95%DA%A9%DB%94
-https://ks.wikipedia.org/wiki/شارٕک۔
+https://ks.wikipedia.org/wiki/شارٕک%DB%94
 
 # {𝑺=https:// 𝑯=zh.wikipedia.org 𝑷=wiki 𝑷=联合国教育、科学及文化组织}
 https://zh.wikipedia.org/wiki/联合国教育、科学及文化组织
@@ -254,7 +254,7 @@ https://zh.wikipedia.org/wiki/联合国教育、科学及文化组织
 
 # {𝑺=https:// 𝑯=am.wikipedia.org 𝑷=wiki 𝑷=«የሰብዓዊ_መብት_አቀፋዊ_መግለጽ»}
 https://am.wikipedia.org/wiki/%C2%ABየሰብዓዊ_መብት_አቀፋዊ_መግለጽ%C2%BB
-https://am.wikipedia.org/wiki/«የሰብዓዊ_መብት_አቀፋዊ_መግለጽ»
+https://am.wikipedia.org/wiki/«የሰብዓዊ_መብት_አቀፋዊ_መግለጽ%C2%BB
 
 # {𝑺=https:// 𝑯=bo.wikipedia.org 𝑷=wiki 𝑷=༼མ་ཧ་བ་ར་ཏ།༽}
 https://bo.wikipedia.org/wiki/%E0%BC%BC%E0%BD%98%E0%BC%8B%E0%BD%A7%E0%BC%8B%E0%BD%96%E0%BC%8B%E0%BD%A2%E0%BC%8B%E0%BD%8F%E0%BC%8D%E0%BC%BD
@@ -266,7 +266,7 @@ https://am.wikipedia.org/wiki/አፈ፡ታሪክ
 
 # {𝑺=https:// 𝑯=it.wikibooks.org 𝑷=wiki 𝑷=Questo_è_l'ebraismo!}
 https://it.wikibooks.org/wiki/Questo_%C3%A8_l'ebraismo!
-https://it.wikibooks.org/wiki/Questo_è_l'ebraismo!
+https://it.wikibooks.org/wiki/Questo_è_l'ebraismo%21
 
 # {𝑺=https:// 𝑯=my.wikipedia.org 𝑷=wiki 𝑷=ခို၊_ချိုးနှင့်_အလားတူငှက်များ}
 https://my.wikipedia.org/wiki/%E1%80%81%E1%80%AD%E1%80%AF%E1%81%8A_%E1%80%81%E1%80%BB%E1%80%AD%E1%80%AF%E1%80%B8%E1%80%94%E1%80%BE%E1%80%84%E1%80%B7%E1%80%BA_%E1%80%A1%E1%80%9C%E1%80%AC%E1%80%B8%E1%80%90%E1%80%B0%E1%80%84%E1%80%BE%E1%80%80%E1%80%BA%E1%80%99%E1%80%BB%E1%80%AC%E1%80%B8
