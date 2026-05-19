@@ -410,7 +410,8 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
                                     if (wikipos >= 0) {
                                         url = prefix + url.substring(wikipos + 6);
                                         UrlInternals parts = UrlInternals.from(url);
-                                        String actual = parts.minimalEscape(EndStatus.FINAL, escaped);
+                                        String actual =
+                                                parts.minimalEscape(EndStatus.FINAL, escaped);
                                         counter.add(assertEquals(wikiLanguage, url, actual), 1);
                                     }
                                 }
@@ -631,13 +632,13 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
         String expected = "α/β%2Fγ";
         assertEquals(source.toString(), expected, unified);
     }
-    
+
     @Test
     public void testSha() {
-    	String test = "https://bo.wikipedia.org/wiki/སའི་གོ་ལ།";
-    	String expected = "https://bo.wikipedia.org/wiki/སའི་གོ་ལ%E0%BC%8D";
-    	UrlInternals ui = LinkUtilities.UrlInternals.from(test);
-    	String actual = ui.minimalEscape(EndStatus.FINAL, null);
-    	assertEquals(test, expected, actual);
+        String test = "https://bo.wikipedia.org/wiki/སའི་གོ་ལ།";
+        String expected = "https://bo.wikipedia.org/wiki/སའི་གོ་ལ%E0%BC%8D";
+        UrlInternals ui = LinkUtilities.UrlInternals.from(test);
+        String actual = ui.minimalEscape(EndStatus.FINAL, null);
+        assertEquals(test, expected, actual);
     }
 }

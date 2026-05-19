@@ -459,8 +459,11 @@ public class LinkUtilities {
             this.data = ImmutableSortedMap.copyOf(data);
         }
 
-        public enum EndStatus {MEDIAL, FINAL}
-        
+        public enum EndStatus {
+            MEDIAL,
+            FINAL
+        }
+
         /**
          * Minimally escape. Presumes that the parts use \ for interior quoting.<br>
          *
@@ -582,7 +585,7 @@ public class LinkUtilities {
                     }
                 }
                 // fix
-                if (endStatus==EndStatus.MEDIAL || part != lastPart) {
+                if (endStatus == EndStatus.MEDIAL || part != lastPart) {
                     appendCodePointsBetween(output, cps, copiedAlready, n);
                 } else if (copiedAlready < n) {
                     appendCodePointsBetween(output, cps, copiedAlready, n - 1);
