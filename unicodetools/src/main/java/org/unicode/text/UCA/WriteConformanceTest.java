@@ -154,23 +154,37 @@ public class WriteConformanceTest {
             addStringX(s, alternate, AppendToCe.tieBreaker);
         }
 
-        // Examples with U+FFFE for "merge sort key" behavior, using addStringY() not ...X().
-        addStringY("l\uFFFEf", alternate, AppendToCe.tieBreaker);
-        addStringY("l\uFFFEf2", alternate, AppendToCe.tieBreaker);
-        addStringY("l2\uFFFEf", alternate, AppendToCe.tieBreaker);
-        addStringY("l2\uFFFEf2", alternate, AppendToCe.tieBreaker);
-        addStringY("l f", alternate, AppendToCe.tieBreaker);
-        addStringY("l f2", alternate, AppendToCe.tieBreaker);
-        addStringY("l2 f", alternate, AppendToCe.tieBreaker);
-        addStringY("l2 f2", alternate, AppendToCe.tieBreaker);
-        addStringY("lf", alternate, AppendToCe.tieBreaker);
-        addStringY("lf2", alternate, AppendToCe.tieBreaker);
-        addStringY("l2f", alternate, AppendToCe.tieBreaker);
-        addStringY("l2f2", alternate, AppendToCe.tieBreaker);
+        // Examples with U+FFFE for "merge sort key" behavior.
+        // We might not need all of the strings which addStringX() writes,
+        // with additional characters appended,
+        // but if we just called addStringY(),
+        // then the output comments would omit the trailing characters here.
+        addStringX("l\uFFFEf", alternate, AppendToCe.tieBreaker);
+        addStringX("l\uFFFEf2", alternate, AppendToCe.tieBreaker);
+        addStringX("l2\uFFFEf", alternate, AppendToCe.tieBreaker);
+        addStringX("l2\uFFFEf2", alternate, AppendToCe.tieBreaker);
+        addStringX("l f", alternate, AppendToCe.tieBreaker);
+        addStringX("l f2", alternate, AppendToCe.tieBreaker);
+        addStringX("l2 f", alternate, AppendToCe.tieBreaker);
+        addStringX("l2 f2", alternate, AppendToCe.tieBreaker);
+        addStringX("lf", alternate, AppendToCe.tieBreaker);
+        addStringX("lf2", alternate, AppendToCe.tieBreaker);
+        addStringX("l2f", alternate, AppendToCe.tieBreaker);
+        addStringX("l2f2", alternate, AppendToCe.tieBreaker);
 
         // Examples with U+FFFF
         addStringX("Sch", alternate, AppendToCe.tieBreaker);
         addStringX("Sch\uFFFF", alternate, AppendToCe.tieBreaker);
+
+        // From Henri Sivonen / https://github.com/unicode-org/unicodetools/issues/1101
+        //
+        // Two characters in the root collation have the special property that they occur
+        // in the middle of a contraction without also occurring at the start of a contraction.
+        // [Relevant to a useful string-comparison optimization. ...]
+        addStringX("\u0CC8\u0CC6\u0CC2\u0CD6", alternate, AppendToCe.tieBreaker);
+        addStringX("\u0CC8\u0CC6\u0CC2\u0CD5", alternate, AppendToCe.tieBreaker);
+        addStringX("\u0DD9\u0DCF\uFFFF", alternate, AppendToCe.tieBreaker);
+        addStringX("\u0DD9\u0DCF\u0DCA", alternate, AppendToCe.tieBreaker);
 
         final UnicodeSet found = collator.getStatistics().found;
         if (!found2.containsAll(found2)) {
