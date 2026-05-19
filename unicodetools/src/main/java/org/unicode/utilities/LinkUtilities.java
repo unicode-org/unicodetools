@@ -584,7 +584,6 @@ public class LinkUtilities {
                             throw new IllegalArgumentException();
                     }
                 }
-                // fix
                 if (endStatus == EndStatus.MEDIAL || part != lastPart) {
                     appendCodePointsBetween(output, cps, copiedAlready, n);
                 } else if (copiedAlready < n) {
