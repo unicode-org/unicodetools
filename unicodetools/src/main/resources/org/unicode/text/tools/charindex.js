@@ -33,7 +33,8 @@ for (let [property, propertyIndex] of indexEntries) {
   }
   for (let [snippetIndex, entry] of propertyIndex) {
     for (let range of entry.characters) {
-      radicalStrokeRanges.set(range, {property, snippetIndex});
+      let [first, last] = [range[0], range.at(-1)];
+      radicalStrokeRanges.set([first, last], {property, snippetIndex});
     }
   }
 }
@@ -43,7 +44,8 @@ for (let [name, entry] of indexEntries.get("Name")) {
     characterNames.set(entry.characters[0][0], name);
   } else {
     for (let range of entry.characters) {
-      characterNameRanges.set(range, name);
+      let [first, last] = [range[0], range.at(-1)];
+      characterNameRanges.set([first, last], name);
     }
   }
 }
@@ -201,8 +203,8 @@ function search(/**@type {string}*/ query) {
       if (name) {
         rangeCount += 1;
         result.push(
-          getString(indexEntries.get("Name").get(name) ??
-                    indexEntries.get("Name_Alias").get(name).html).replace(
+          getString((indexEntries.get("Name").get(name) ??
+                     indexEntries.get("Name_Alias").get(name)).html).replace(
           "[RESULT TEXT]", toHTML(getString(name))));
       }
     }
