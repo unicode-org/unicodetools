@@ -676,17 +676,16 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
             assertEquals(test, ui, roundTrip);
         }
     }
-    
+
     @Test
     public void testWhatWGEscapes() {
         UnicodeSet mustEscape = new UnicodeSet(OK_TO_UNESCAPE).complement();
         for (WHATWG_PERCENT_ENCODED item : WHATWG_PERCENT_ENCODED.values()) {
-        	if (!item.set.containsAll(mustEscape)) {
-        		UnicodeSet missing = new UnicodeSet(mustEscape).removeAll(item.set);
-        		System.out.println(missing);
-        	}
-            assertTrue(item.name(),  item.set.containsAll(mustEscape));
+            if (!item.set.containsAll(mustEscape)) {
+                UnicodeSet missing = new UnicodeSet(mustEscape).removeAll(item.set);
+                System.out.println(missing);
+            }
+            assertTrue(item.name(), item.set.containsAll(mustEscape));
         }
     }
-
 }
