@@ -814,7 +814,7 @@ public class Indexer {
                     return "https://unicode.org/charts/PDF/U" + Utility.hex(chartStart) + ".pdf";
                 }
             case BETA:
-                return "https://www.unicode.org/Public/draft/charts/blocks/U"
+                return "https://www.unicode.org/Public/draft/charts/PDF/U"
                         + Utility.hex(chartStart)
                         + ".pdf";
             default:
