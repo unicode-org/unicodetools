@@ -18,6 +18,7 @@ import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
+import com.ibm.icu.util.Output;
 import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -608,14 +609,30 @@ public class LinkUtilities {
         }
 
         public String fullEscape() {
-            return data.entrySet().stream()
-                    .map(
-                            x -> {
-                                Part part = x.getKey();
-                                List<List<String>> value = x.getValue();
-                                return part.fullEscape(value);
-                            })
-                    .collect(Collectors.joining());
+            Output<Part> last = new Output<>();
+            String result =
+                    data.entrySet().stream()
+                            .map(
+                                    x -> {
+                                        Part part = x.getKey();
+                                        last.value = part;
+                                        List<List<String>> value = x.getValue();
+                                        return part.fullEscape(value);
+                                    })
+                            .collect(Collectors.joining());
+            // handle the very last character, if soft
+            if (last.value != null && last.value != Part.HOST && last.value != Part.PROTOCOL) {
+                int lastCodePoint = result.codePointBefore(result.length());
+                if (LinkTermination.Soft.base.contains(lastCodePoint)) {
+                    // escape final soft code point
+                    int indexBeforeLast = result.length() - Character.charCount(lastCodePoint);
+                    StringBuilder resultBuilder =
+                            new StringBuilder(result.substring(0, indexBeforeLast));
+                    appendPercentEscaped(resultBuilder, lastCodePoint, null);
+                    result = resultBuilder.toString();
+                }
+            }
+            return result;
         }
 
         public List<List<String>> get(Part part) {

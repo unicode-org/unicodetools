@@ -536,8 +536,6 @@ public class GenerateLinkData {
         if (!targetInternals.equals(sourceInternals)) {
             throw new IllegalArgumentException("Fails roundtrip");
         }
-        // for testing
-        String minimal = sourceInternals.minimalEscape(EndStatus.FINAL, null);
     }
 
     private static void outputTestCase(
