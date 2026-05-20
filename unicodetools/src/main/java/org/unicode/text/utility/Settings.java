@@ -27,7 +27,10 @@ public class Settings {
     public enum ReleasePhase {
         DEV("dev"), // Before α.
         ALPHA("α"), // α review.
-        BETA("β"); // β review.
+        BETA("β"), // β review.
+        // Produce release-final artefacts with no β markings (most relevant for the JSPs and
+        // charindex).
+        GAMMA("");
 
         private final String toString;
 
