@@ -18,6 +18,7 @@ import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
+import com.ibm.icu.util.Output;
 import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -33,6 +34,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NavigableMap;
+import java.util.Objects;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.Stack;
@@ -87,31 +89,42 @@ public class LinkUtilities {
 
     private static final UnicodeSet SOFAR = new UnicodeSet();
 
-    // https://url.spec.whatwg.org/#percent-encoded-bytes
-
+    /**
+     * Based on https://url.spec.whatwg.org/#percent-encoded-bytes. Is the default for maximal
+     * encoding, but can be customized
+     */
     public enum WHATWG_PERCENT_ENCODED {
-        C0(null, "[\\u0000-\\u001F\\u007E-\\u10FFFF]"), // C0 controls and all code points greater
-        // than U+007E (~).
-        FRAGMENT(C0, "[\\ \"<>`]"), // C0 and U+0020 SPACE, U+0022 ("), U+003C (<), U+003E (>), and
-        // U+0060 (`).
-        QUERY(
-                C0,
-                "[\\ \"<>]"), // C0 and U+0020 SPACE, U+0022 ("), U+0023 (#), U+003C (<), and U+003E
-        // (>)
-        SPECIAL_QUERY(QUERY, "[']"), // query percent-encode set and U+0027 ('). Used for http://...
-        PATH(QUERY, "[?\\^`\\{\\}]"), // query percent-encode set and U+003F (?), U+005E (^), U+0060
-        // (`),
-        // U+007B ({), and U+007D (}).
-        USERINFO(
-                PATH,
-                "[/:;=@\\[-\\]|]"), // path and U+002F (/), U+003A (:), U+003B (;), U+003D (=),
-        // U+0040 (@), U+005B ([) to U+005D (]), inclusive, and U+007C
-        // (|).
-        COMPONENT(
-                USERINFO,
-                "[\\$-\\&+,]") // userinfo and U+0024 ($) to U+0026 (&), inclusive, U+002B (+), and
-    // U+002C (,).
-    ;
+        /** C0 controls and all code points greater than U+007E (~). */
+        C0(null, "[\\u0000-\\u001F\\u007E-\\x{10FFFF}]"),
+
+        /** C0 and U+0020 SPACE, U+0022 ("), U+003C (<), U+003E (>), andU+0060 (`). */
+        FRAGMENT(C0, "[\\ \"<>`]"),
+
+        /** C0 and U+0020 SPACE, U+0022 ("), U+0023 (#), U+003C (<), and U+003E (>) */
+        QUERY(C0, "[\\ \"<>]"),
+
+        /** query percent-encode set and U+0027 ('). Used for http://... */
+        SPECIAL_QUERY(QUERY, "[']"),
+
+        /**
+         * query percent-encode set and<br>
+         * U+003F (?), U+005E (^), U+0060 (`), U+007B ({), and U+007D (}).
+         */
+        PATH(QUERY, "[?\\^`\\{\\}]"),
+
+        /**
+         * path and<br>
+         * U+002F (/), U+003A (:), U+003B (;), U+003D (=), U+0040 (@), U+005B ([) to U+005D (]),
+         * inclusive, and U+007C (|).
+         */
+        USERINFO(PATH, "[/:;=@\\[-\\]|]"),
+
+        /**
+         * userinfo and <br>
+         * U+0024 ($) to U+0026 (&), inclusive, U+002B (+), and U+002C (,).
+         */
+        COMPONENT(USERINFO, "[\\$-\\&+,]");
+
         public final UnicodeSet set;
 
         private WHATWG_PERCENT_ENCODED(WHATWG_PERCENT_ENCODED base, String uset) {
@@ -459,13 +472,18 @@ public class LinkUtilities {
             this.data = ImmutableSortedMap.copyOf(data);
         }
 
+        public enum EndStatus {
+            MEDIAL,
+            FINAL
+        }
+
         /**
          * Minimally escape. Presumes that the parts use \ for interior quoting.<br>
          *
-         * @param atEndOfText TODO
+         * @param endStatus TODO
          * @param escapedCounter TODO
          */
-        public String minimalEscape(boolean atEndOfText, Counter<Integer> escapedCounter) {
+        public String minimalEscape(EndStatus endStatus, Counter<Integer> escapedCounter) {
             StringBuilder output = new StringBuilder();
             // get the last part
             List<Entry<Part, List<List<String>>>> ordered = List.copyOf(data.entrySet());
@@ -579,8 +597,7 @@ public class LinkUtilities {
                             throw new IllegalArgumentException();
                     }
                 }
-                // fix
-                if (atEndOfText || part != lastPart) {
+                if (endStatus == EndStatus.MEDIAL || part != lastPart) {
                     appendCodePointsBetween(output, cps, copiedAlready, n);
                 } else if (copiedAlready < n) {
                     appendCodePointsBetween(output, cps, copiedAlready, n - 1);
@@ -592,14 +609,30 @@ public class LinkUtilities {
         }
 
         public String fullEscape() {
-            return data.entrySet().stream()
-                    .map(
-                            x -> {
-                                Part part = x.getKey();
-                                List<List<String>> value = x.getValue();
-                                return part.fullEscape(value);
-                            })
-                    .collect(Collectors.joining());
+            Output<Part> last = new Output<>();
+            String result =
+                    data.entrySet().stream()
+                            .map(
+                                    x -> {
+                                        Part part = x.getKey();
+                                        last.value = part;
+                                        List<List<String>> value = x.getValue();
+                                        return part.fullEscape(value);
+                                    })
+                            .collect(Collectors.joining());
+            // handle the very last character, if soft
+            if (last.value != null && last.value != Part.HOST && last.value != Part.PROTOCOL) {
+                int lastCodePoint = result.codePointBefore(result.length());
+                if (LinkTermination.Soft.base.contains(lastCodePoint)) {
+                    // escape final soft code point
+                    int indexBeforeLast = result.length() - Character.charCount(lastCodePoint);
+                    StringBuilder resultBuilder =
+                            new StringBuilder(result.substring(0, indexBeforeLast));
+                    appendPercentEscaped(resultBuilder, lastCodePoint, null);
+                    result = resultBuilder.toString();
+                }
+            }
+            return result;
         }
 
         public List<List<String>> get(Part part) {
@@ -609,6 +642,19 @@ public class LinkUtilities {
         @Override
         public String toString() {
             return toString(Part.ALL); // show all
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof UrlInternals urlInternals) {
+                return data.equals(urlInternals.data);
+            }
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(data);
         }
 
         public String toString(Set<Part> partsToShow) {

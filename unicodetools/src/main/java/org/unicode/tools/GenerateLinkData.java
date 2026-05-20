@@ -34,6 +34,7 @@ import org.unicode.utilities.LinkUtilities;
 import org.unicode.utilities.LinkUtilities.LinkTermination;
 import org.unicode.utilities.LinkUtilities.Part;
 import org.unicode.utilities.LinkUtilities.UrlInternals;
+import org.unicode.utilities.LinkUtilities.UrlInternals.EndStatus;
 
 /**
  * Generate UTS #58 property and test files
@@ -449,8 +450,9 @@ public class GenerateLinkData {
                                 String fullSourcePath = oldValue.toString();
 
                                 UrlInternals internals = UrlInternals.from(fullSourcePath);
+                                // String maximal = internals.maximalEscape(EndStatus.FINAL, null);
 
-                                String actual = internals.minimalEscape(false, null);
+                                String actual = internals.minimalEscape(EndStatus.FINAL, null);
 
                                 String expected = parts.size() < 6 ? null : parts.get(5);
                                 if (expected != null && !actual.equals(expected)) {
@@ -465,14 +467,13 @@ public class GenerateLinkData {
                                                             title,
                                                             line,
                                                             internals,
-                                                            fullSourcePath,
+                                                            internals.fullEscape(),
                                                             "expected:\t" + expected,
                                                             "actual:  \t" + actual));
                                     ++errorCount.value;
-                                    // for debugging
-                                    UrlInternals.from(fullSourcePath);
-                                    internals.minimalEscape(false, null);
+                                    ensureRoundTrip(internals, fullSourcePath);
                                     comments.clear();
+
                                     return;
                                 }
                                 outputTestCase(out.tempPrintWriter, comments, internals, actual);
@@ -514,15 +515,26 @@ public class GenerateLinkData {
                                 // Divide into parts
                                 UrlInternals internals = UrlInternals.from(line);
 
-                                String actual = internals.minimalEscape(true, null);
+                                String minimallyEscaped =
+                                        internals.minimalEscape(EndStatus.FINAL, null);
 
-                                outputTestCase(out.tempPrintWriter, comments, internals, actual);
+                                ensureRoundTrip(internals, minimallyEscaped);
+
+                                outputTestCase(
+                                        out.tempPrintWriter, comments, internals, minimallyEscaped);
                             });
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
         if (errorCount.value != 0) {
             throw new IllegalArgumentException("Failures in writing test file: " + errorCount);
+        }
+    }
+
+    private static void ensureRoundTrip(UrlInternals sourceInternals, String resultingPath) {
+        UrlInternals targetInternals = UrlInternals.from(resultingPath);
+        if (!targetInternals.equals(sourceInternals)) {
+            throw new IllegalArgumentException("Fails roundtrip");
         }
     }
 
@@ -595,7 +607,7 @@ public class GenerateLinkData {
                                 UrlInternals parts = UrlInternals.from(item);
                                 String host = parts.get(Part.HOST).get(0).get(0);
                                 hostCounter.add(host, 1);
-                                url = parts.minimalEscape(true, escaped);
+                                url = parts.minimalEscape(EndStatus.FINAL, escaped);
                                 break;
                         }
                     }
