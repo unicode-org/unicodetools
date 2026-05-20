@@ -141,7 +141,8 @@ public class UnicodeJsp {
         if (showDevProperties) {
             originalParameters.add("showDevProperties=1");
         }
-        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
+        showDevProperties =
+                Settings.latestVersionPhase.compareTo(ReleasePhase.BETA) >= 0 || showDevProperties;
         UnicodeUtilities.showProperties(cp, history, showDevProperties, originalParameters, out);
     }
 
@@ -213,7 +214,8 @@ public class UnicodeJsp {
             throws IOException {
         List<String> originalParameters =
                 showDevProperties ? List.of("showDevProperties=1") : List.of();
-        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
+        showDevProperties =
+                Settings.latestVersionPhase.compareTo(ReleasePhase.BETA) >= 0 || showDevProperties;
         CodePointShower codePointShower =
                 new CodePointShower(
                         grouping,
@@ -436,7 +438,8 @@ public class UnicodeJsp {
     public static String getIdentifier(String script, boolean showDevProperties) {
         List<String> originalParameters =
                 showDevProperties ? List.of("showDevProperties=1") : List.of();
-        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
+        showDevProperties =
+                Settings.latestVersionPhase.compareTo(ReleasePhase.BETA) >= 0 || showDevProperties;
         return UnicodeUtilities.getIdentifier(script, showDevProperties, originalParameters);
     }
 
@@ -446,12 +449,14 @@ public class UnicodeJsp {
             "ICU version: "
                     + VersionInfo.ICU_VERSION.getVersionString(2, 2)
                     + "; "
-                    + "Unicode/Emoji version: "
+                    + "base Unicode/Emoji version: "
                     + Settings.lastVersion
                     + "; "
                     + (Settings.latestVersionPhase == ReleasePhase.BETA
-                            ? "Unicodeβ version: " + Settings.latestVersion + "; "
-                            : "");
+                            ? "Unicode β version: " + Settings.latestVersion + "; "
+                            : Settings.latestVersionPhase == ReleasePhase.GAMMA
+                                    ? "Unicode latest version: " + Settings.latestVersion + "; "
+                                    : "");
 
     public static String getVersions() {
         return "unicodetools "
@@ -466,12 +471,13 @@ public class UnicodeJsp {
     }
 
     static final String SUBHEAD =
-            Settings.latestVersionPhase == ReleasePhase.BETA
+            Settings.latestVersionPhase.compareTo(ReleasePhase.BETA) >= 0
                     ? "<p style='border: 1pt solid red;'>Unmarked properties are from Unicode V"
                             + Settings.lastVersion
-                            + "; the beta properties are from Unicode V"
+                            + "; changes in Unicode V"
                             + Settings.latestVersion
-                            + "β. "
+                            + Settings.latestVersionPhase
+                            + " are highlighted. "
                             + "For more information, see <a target='help' href='https://unicode-org.github.io/unicodetools/help/changes'>Unicode Utilities Beta</a>.</p>"
                     : "";
 
