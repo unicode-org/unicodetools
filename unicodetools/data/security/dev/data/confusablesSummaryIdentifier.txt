@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2026-05-21, 23:16:00 GMT
+# Date: 2026-05-21, 23:42:58 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -843,6 +843,14 @@
 	(‎ एे ‎)	090F 0947	 DEVANAGARI LETTER E, DEVANAGARI VOWEL SIGN E
 ←	(‎ ऐ ‎)	0910	 DEVANAGARI LETTER AI
 
+#	ग̱	ॻ
+	(‎ ग̱ ‎)	0917 0331	 DEVANAGARI LETTER GA, COMBINING MACRON BELOW
+←	(‎ ॻ ‎)	097B	 DEVANAGARI LETTER GGA	# →ग॒→
+
+#	ज̱	ॼ
+	(‎ ज̱ ‎)	091C 0331	 DEVANAGARI LETTER JA, COMBINING MACRON BELOW
+←	(‎ ॼ ‎)	097C	 DEVANAGARI LETTER JJA	# →ज॒→
+
 #	ट	ਟ
 	(‎ ट ‎)	091F	 DEVANAGARI LETTER TTA
 ←	(‎ ਟ ‎)	0A1F	 GURMUKHI LETTER TTA
@@ -850,6 +858,10 @@
 #	ठ	ਠ
 	(‎ ठ ‎)	0920	 DEVANAGARI LETTER TTHA
 ←	(‎ ਠ ‎)	0A20	 GURMUKHI LETTER TTHA
+
+#	ड̱	ॾ
+	(‎ ड̱ ‎)	0921 0331	 DEVANAGARI LETTER DDA, COMBINING MACRON BELOW
+←	(‎ ॾ ‎)	097E	 DEVANAGARI LETTER DDDA	# →ड॒→
 
 #	ढ	ਫ
 	(‎ ढ ‎)	0922	 DEVANAGARI LETTER DDHA
@@ -874,6 +886,10 @@
 #	प्टੀ	ਈ
 	(‎ प्टੀ ‎)	092A 094D 091F 0A40	 DEVANAGARI LETTER PA, DEVANAGARI SIGN VIRAMA, DEVANAGARI LETTER TTA, GURMUKHI VOWEL SIGN II
 ←	(‎ ਈ ‎)	0A08	 GURMUKHI LETTER II	# →ੲੀ→
+
+#	ब̱	ॿ
+	(‎ ब̱ ‎)	092C 0331	 DEVANAGARI LETTER BA, COMBINING MACRON BELOW
+←	(‎ ॿ ‎)	097F	 DEVANAGARI LETTER BBA	# →ब॒→
 
 #	भ	ਮ
 	(‎ भ ‎)	092D	 DEVANAGARI LETTER BHA
@@ -1480,5 +1496,5 @@
 	(‎ へ ‎)	3078	 HIRAGANA LETTER HE
 ←	(‎ ヘ ‎)	30D8	 KATAKANA LETTER HE
 
-# total : 531
+# total : 535
 
