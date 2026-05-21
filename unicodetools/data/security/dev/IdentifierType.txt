@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2026-05-12, 19:23:09 GMT
+# Date: 2026-05-19, 06:51:13 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -326,22 +326,22 @@
 058B..058C    ; Not_NFKC                       # 18.0   [2] MODIFIER LETTER ARMENIAN SMALL INI..MODIFIER LETTER ARMENIAN SMALL YI
 058D..058E    ; Not_XID                        # 7.0    [2] RIGHT-FACING ARMENIAN ETERNITY SIGN..LEFT-FACING ARMENIAN ETERNITY SIGN
 058F          ; Not_XID                        # 6.1        ARMENIAN DRAM SIGN
-0591..05A1    ; Uncommon_Use                   # 2.0   [17] HEBREW ACCENT ETNAHTA..HEBREW ACCENT PAZER
-05A2          ; Uncommon_Use Obsolete          # 4.1        HEBREW ACCENT ATNAH HAFUKH
-05A3..05AF    ; Uncommon_Use                   # 2.0   [13] HEBREW ACCENT MUNAH..HEBREW MARK MASORA CIRCLE
+0591..05A1    ; Technical                      # 2.0   [17] HEBREW ACCENT ETNAHTA..HEBREW ACCENT PAZER
+05A2          ; Technical                      # 4.1        HEBREW ACCENT ATNAH HAFUKH
+05A3..05AF    ; Technical                      # 2.0   [13] HEBREW ACCENT MUNAH..HEBREW MARK MASORA CIRCLE
 05B0..05B9    ; Uncommon_Use                   # 1.1   [10] HEBREW POINT SHEVA..HEBREW POINT HOLAM
 05BA          ; Uncommon_Use                   # 5.0        HEBREW POINT HOLAM HASER FOR VAV
 05BB..05BD    ; Uncommon_Use                   # 1.1    [3] HEBREW POINT QUBUTS..HEBREW POINT METEG
 05BE          ; Not_XID                        # 1.1        HEBREW PUNCTUATION MAQAF
-05BF          ; Uncommon_Use                   # 1.1        HEBREW POINT RAFE
+05BF          ; Uncommon_Use Technical         # 1.1        HEBREW POINT RAFE
 05C0          ; Not_XID                        # 1.1        HEBREW PUNCTUATION PASEQ
 05C1..05C2    ; Uncommon_Use                   # 1.1    [2] HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
 05C3          ; Not_XID                        # 1.1        HEBREW PUNCTUATION SOF PASUQ
-05C4          ; Uncommon_Use                   # 2.0        HEBREW MARK UPPER DOT
-05C5          ; Uncommon_Use Obsolete          # 4.1        HEBREW MARK LOWER DOT
+05C4          ; Technical                      # 2.0        HEBREW MARK UPPER DOT
+05C5          ; Technical                      # 4.1        HEBREW MARK LOWER DOT
 05C6          ; Obsolete Not_XID               # 4.1        HEBREW PUNCTUATION NUN HAFUKHA
-05C7          ; Uncommon_Use Technical         # 4.1        HEBREW POINT QAMATS QATAN
-05C8..05C9    ; Uncommon_Use Technical         # 18.0   [2] HEBREW POINT SHEVA NA MUDGASH..HEBREW POINT DAGESH HAZAQ MUDGASH
+05C7          ; Technical                      # 4.1        HEBREW POINT QAMATS QATAN
+05C8..05C9    ; Technical                      # 18.0   [2] HEBREW POINT SHEVA NA MUDGASH..HEBREW POINT DAGESH HAZAQ MUDGASH
 05D0..05EA    ; Recommended                    # 1.1   [27] HEBREW LETTER ALEF..HEBREW LETTER TAV
 05EF          ; Uncommon_Use                   # 11.0       HEBREW YOD TRIANGLE
 05F0..05F2    ; Uncommon_Use                   # 1.1    [3] HEBREW LIGATURE YIDDISH DOUBLE VAV..HEBREW LIGATURE YIDDISH DOUBLE YOD
@@ -353,8 +353,10 @@
 060B          ; Not_XID                        # 4.1        AFGHANI SIGN
 060C          ; Not_XID                        # 1.1        ARABIC COMMA
 060D..060F    ; Not_XID                        # 4.0    [3] ARABIC DATE SEPARATOR..ARABIC SIGN MISRA
-0610..0615    ; Uncommon_Use                   # 4.0    [6] ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..ARABIC SMALL HIGH TAH
-0616..061A    ; Uncommon_Use                   # 5.1    [5] ARABIC SMALL HIGH LIGATURE ALEF WITH LAM WITH YEH..ARABIC SMALL KASRA
+0610..0614    ; Uncommon_Use                   # 4.0    [5] ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..ARABIC SIGN TAKHALLUS
+0615          ; Technical                      # 4.0        ARABIC SMALL HIGH TAH
+0616          ; Obsolete                       # 5.1        ARABIC SMALL HIGH LIGATURE ALEF WITH LAM WITH YEH
+0617..061A    ; Technical                      # 5.1    [4] ARABIC SMALL HIGH ZAIN..ARABIC SMALL KASRA
 061B          ; Not_XID                        # 1.1        ARABIC SEMICOLON
 061C          ; Default_Ignorable              # 6.3        ARABIC LETTER MARK
 061D          ; Not_XID                        # 14.0       ARABIC END OF TEXT MARK
@@ -370,7 +372,9 @@
 0653          ; Uncommon_Use Technical         # 3.0        ARABIC MADDAH ABOVE
 0654..0655    ; Recommended                    # 3.0    [2] ARABIC HAMZA ABOVE..ARABIC HAMZA BELOW
 0656..0658    ; Uncommon_Use                   # 4.0    [3] ARABIC SUBSCRIPT ALEF..ARABIC MARK NOON GHUNNA
-0659..065E    ; Uncommon_Use                   # 4.1    [6] ARABIC ZWARAKAY..ARABIC FATHA WITH TWO DOTS
+0659..065B    ; Uncommon_Use                   # 4.1    [3] ARABIC ZWARAKAY..ARABIC VOWEL SIGN INVERTED SMALL V ABOVE
+065C          ; Uncommon_Use Technical         # 4.1        ARABIC VOWEL SIGN DOT BELOW
+065D..065E    ; Uncommon_Use                   # 4.1    [2] ARABIC REVERSED DAMMA..ARABIC FATHA WITH TWO DOTS
 065F          ; Uncommon_Use                   # 6.0        ARABIC WAVY HAMZA BELOW
 0660..0669    ; Recommended                    # 1.1   [10] ARABIC-INDIC DIGIT ZERO..ARABIC-INDIC DIGIT NINE
 066A..066D    ; Not_XID                        # 1.1    [4] ARABIC PERCENT SIGN..ARABIC FIVE POINTED STAR
@@ -404,14 +408,12 @@
 06D0..06D3    ; Recommended                    # 1.1    [4] ARABIC LETTER E..ARABIC LETTER YEH BARREE WITH HAMZA ABOVE
 06D4          ; Not_XID                        # 1.1        ARABIC FULL STOP
 06D5          ; Recommended                    # 1.1        ARABIC LETTER AE
-06D6..06DC    ; Uncommon_Use                   # 1.1    [7] ARABIC SMALL HIGH LIGATURE SAD WITH LAM WITH ALEF MAKSURA..ARABIC SMALL HIGH SEEN
+06D6..06DC    ; Technical                      # 1.1    [7] ARABIC SMALL HIGH LIGATURE SAD WITH LAM WITH ALEF MAKSURA..ARABIC SMALL HIGH SEEN
 06DD          ; Not_XID                        # 1.1        ARABIC END OF AYAH
 06DE          ; Not_XID                        # 1.1        ARABIC START OF RUB EL HIZB
-06DF..06E4    ; Uncommon_Use                   # 1.1    [6] ARABIC SMALL HIGH ROUNDED ZERO..ARABIC SMALL HIGH MADDA
-06E5..06E6    ; Technical                      # 1.1    [2] ARABIC SMALL WAW..ARABIC SMALL YEH
-06E7..06E8    ; Uncommon_Use                   # 1.1    [2] ARABIC SMALL HIGH YEH..ARABIC SMALL HIGH NOON
+06DF..06E8    ; Technical                      # 1.1   [10] ARABIC SMALL HIGH ROUNDED ZERO..ARABIC SMALL HIGH NOON
 06E9          ; Not_XID                        # 1.1        ARABIC PLACE OF SAJDAH
-06EA..06ED    ; Uncommon_Use                   # 1.1    [4] ARABIC EMPTY CENTRE LOW STOP..ARABIC SMALL LOW MEEM
+06EA..06ED    ; Technical                      # 1.1    [4] ARABIC EMPTY CENTRE LOW STOP..ARABIC SMALL LOW MEEM
 06EE..06EF    ; Recommended                    # 4.0    [2] ARABIC LETTER DAL WITH INVERTED V..ARABIC LETTER REH WITH INVERTED V
 06F0..06F9    ; Recommended                    # 1.1   [10] EXTENDED ARABIC-INDIC DIGIT ZERO..EXTENDED ARABIC-INDIC DIGIT NINE
 06FA..06FC    ; Uncommon_Use                   # 3.0    [3] ARABIC LETTER SHEEN WITH DOT BELOW..ARABIC LETTER GHAIN WITH DOT BELOW
@@ -461,7 +463,7 @@
 088F          ; Recommended                    # 17.0       ARABIC LETTER NOON WITH RING ABOVE
 0890..0891    ; Not_XID                        # 14.0   [2] ARABIC POUND MARK ABOVE..ARABIC PIASTRE MARK ABOVE
 0897          ; Uncommon_Use                   # 16.0       ARABIC PEPET
-0898..089F    ; Uncommon_Use                   # 14.0   [8] ARABIC SMALL HIGH WORD AL-JUZ..ARABIC HALF MADDA OVER MADDA
+0898..089F    ; Technical                      # 14.0   [8] ARABIC SMALL HIGH WORD AL-JUZ..ARABIC HALF MADDA OVER MADDA
 08A0          ; Recommended                    # 6.1        ARABIC LETTER BEH WITH SMALL V BELOW
 08A1          ; Uncommon_Use                   # 7.0        ARABIC LETTER BEH WITH HAMZA ABOVE
 08A2..08A9    ; Recommended                    # 6.1    [8] ARABIC LETTER JEEM WITH TWO DOTS ABOVE..ARABIC LETTER YEH WITH TWO DOTS BELOW AND DOT ABOVE
@@ -476,13 +478,18 @@
 08C3..08C6    ; Uncommon_Use                   # 13.0   [4] ARABIC LETTER GHAIN WITH THREE DOTS ABOVE..ARABIC LETTER JEEM WITH THREE DOTS BELOW
 08C7          ; Recommended                    # 13.0       ARABIC LETTER LAM WITH SMALL ARABIC LETTER TAH ABOVE
 08C8          ; Uncommon_Use                   # 14.0       ARABIC LETTER GRAF
-08C9          ; Technical                      # 14.0       ARABIC SMALL FARSI YEH
-08CA..08D2    ; Uncommon_Use                   # 14.0   [9] ARABIC SMALL HIGH FARSI YEH..ARABIC LARGE ROUND DOT INSIDE CIRCLE BELOW
-08D3          ; Uncommon_Use                   # 11.0       ARABIC SMALL LOW WAW
-08D4..08E1    ; Uncommon_Use                   # 9.0   [14] ARABIC SMALL HIGH WORD AR-RUB..ARABIC SMALL HIGH SIGN SAFHA
+08C9..08D2    ; Technical                      # 14.0  [10] ARABIC SMALL FARSI YEH..ARABIC LARGE ROUND DOT INSIDE CIRCLE BELOW
+08D3          ; Technical                      # 11.0       ARABIC SMALL LOW WAW
+08D4..08E1    ; Technical                      # 9.0   [14] ARABIC SMALL HIGH WORD AR-RUB..ARABIC SMALL HIGH SIGN SAFHA
 08E2          ; Not_XID                        # 9.0        ARABIC DISPUTED END OF AYAH
 08E3          ; Uncommon_Use                   # 8.0        ARABIC TURNED DAMMA BELOW
-08E4..08FE    ; Uncommon_Use                   # 6.1   [27] ARABIC CURLY FATHA..ARABIC DAMMA WITH DOT
+08E4..08EF    ; Uncommon_Use                   # 6.1   [12] ARABIC CURLY FATHA..ARABIC TONE LOOP BELOW
+08F0..08F3    ; Technical                      # 6.1    [4] ARABIC OPEN FATHATAN..ARABIC SMALL HIGH WAW
+08F4..08F7    ; Uncommon_Use                   # 6.1    [4] ARABIC FATHA WITH RING..ARABIC LEFT ARROWHEAD ABOVE
+08F8          ; Uncommon_Use Technical         # 6.1        ARABIC RIGHT ARROWHEAD ABOVE
+08F9..08FA    ; Uncommon_Use                   # 6.1    [2] ARABIC LEFT ARROWHEAD BELOW..ARABIC RIGHT ARROWHEAD BELOW
+08FB          ; Uncommon_Use Technical         # 6.1        ARABIC DOUBLE RIGHT ARROWHEAD ABOVE
+08FC..08FE    ; Uncommon_Use                   # 6.1    [3] ARABIC DOUBLE RIGHT ARROWHEAD ABOVE WITH DOT..ARABIC DAMMA WITH DOT
 08FF          ; Uncommon_Use                   # 7.0        ARABIC MARK SIDEWAYS NOON GHUNNA
 0900          ; Uncommon_Use                   # 5.2        DEVANAGARI SIGN INVERTED CANDRABINDU
 0901..0903    ; Recommended                    # 1.1    [3] DEVANAGARI SIGN CANDRABINDU..DEVANAGARI SIGN VISARGA
@@ -4156,7 +4163,7 @@ FA70..FAD9    ; Not_NFKC                       # 4.1  [106] CJK COMPATIBILITY ID
 FB00..FB06    ; Not_NFKC                       # 1.1    [7] LATIN SMALL LIGATURE FF..LATIN SMALL LIGATURE ST
 FB13..FB17    ; Not_NFKC                       # 1.1    [5] ARMENIAN SMALL LIGATURE MEN NOW..ARMENIAN SMALL LIGATURE MEN XEH
 FB1D          ; Not_NFKC                       # 3.0        HEBREW LETTER YOD WITH HIRIQ
-FB1E          ; Uncommon_Use Technical         # 1.1        HEBREW POINT JUDEO-SPANISH VARIKA
+FB1E          ; Uncommon_Use                   # 1.1        HEBREW POINT JUDEO-SPANISH VARIKA
 FB1F..FB36    ; Not_NFKC                       # 1.1   [24] HEBREW LIGATURE YIDDISH YOD YOD PATAH..HEBREW LETTER ZAYIN WITH DAGESH
 FB38..FB3C    ; Not_NFKC                       # 1.1    [5] HEBREW LETTER TET WITH DAGESH..HEBREW LETTER LAMED WITH DAGESH
 FB3E          ; Not_NFKC                       # 1.1        HEBREW LETTER MEM WITH DAGESH
@@ -4346,15 +4353,15 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 10EC5..10EC6  ; Technical                      # 17.0   [2] ARABIC SMALL YEH BARREE WITH TWO DOTS BELOW..ARABIC LETTER THIN NOON
 10EC7         ; Uncommon_Use                   # 17.0       ARABIC LETTER YEH WITH FOUR DOTS BELOW
 10EC9..10ECA  ; Technical Not_XID              # 18.0   [2] ARABIC SMALL BASELINE FATHA..ARABIC SMALL BASELINE DOTLESS HEAD OF KHAH
-10ECB..10ECF  ; Uncommon_Use Technical         # 18.0   [5] ARABIC NORTHEAST POINTING ARROWHEAD ABOVE..ARABIC LARGE CIRCLE ABOVE
+10ECB..10ECF  ; Technical                      # 18.0   [5] ARABIC NORTHEAST POINTING ARROWHEAD ABOVE..ARABIC LARGE CIRCLE ABOVE
 10ED0..10ED8  ; Not_XID                        # 17.0   [9] ARABIC BIBLICAL END OF VERSE..ARABIC LIGATURE NAWWARA ALLAAHU MARQADAH
 10ED9..10EEE  ; Obsolete                       # 18.0  [22] ARABIC CROWN LETTER BEH..ARABIC CROWN LETTER YEH
-10EF0..10EF8  ; Uncommon_Use Technical         # 18.0   [9] ARABIC SMALL LOW UPRIGHT RECTANGULAR ZERO..ARABIC SMALL HIGH WORD KABBIR
-10EF9         ; Uncommon_Use Obsolete          # 18.0       ARABIC MARK CROWN
-10EFA         ; Uncommon_Use                   # 17.0       ARABIC DOUBLE VERTICAL BAR BELOW
+10EF0..10EF8  ; Technical                      # 18.0   [9] ARABIC SMALL LOW UPRIGHT RECTANGULAR ZERO..ARABIC SMALL HIGH WORD KABBIR
+10EF9         ; Obsolete                       # 18.0       ARABIC MARK CROWN
+10EFA         ; Obsolete                       # 17.0       ARABIC DOUBLE VERTICAL BAR BELOW
 10EFB         ; Technical                      # 17.0       ARABIC SMALL LOW NOON
-10EFC         ; Uncommon_Use                   # 16.0       ARABIC COMBINING ALEF OVERLAY
-10EFD..10EFF  ; Uncommon_Use                   # 15.0   [3] ARABIC SMALL LOW WORD SAKTA..ARABIC SMALL LOW WORD MADDA
+10EFC         ; Technical                      # 16.0       ARABIC COMBINING ALEF OVERLAY
+10EFD..10EFF  ; Technical                      # 15.0   [3] ARABIC SMALL LOW WORD SAKTA..ARABIC SMALL LOW WORD MADDA
 10F00..10F1C  ; Exclusion                      # 11.0  [29] OLD SOGDIAN LETTER ALEPH..OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
 10F1D..10F26  ; Exclusion Not_XID              # 11.0  [10] OLD SOGDIAN NUMBER ONE..OLD SOGDIAN FRACTION ONE HALF
 10F27         ; Exclusion                      # 11.0       OLD SOGDIAN LIGATURE AYIN-DALETH
