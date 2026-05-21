@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2026-05-15, 06:55:18 GMT
+# Date: 2026-05-21, 23:16:00 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -182,8 +182,9 @@
 ←	(‎ ʼn ‎)	02BC 006E	 MODIFIER LETTER APOSTROPHE, LATIN SMALL LETTER N
 ←	(‎ ŉ ‎)	0149	 LATIN SMALL LETTER N PRECEDED BY APOSTROPHE	# →ʼn→
 
-#	(	𐅁	❨	❲	〔	﴾	﹙	﹝	（
+#	(	⹢	𐅁	❨	❲	〔	﴾	﹙	﹝	（
 	(‎ ( ‎)	0028	 LEFT PARENTHESIS
+←	(‎ ⹢ ‎)	2E62	 LEFT PARENTHESIS WITH MIDDLE RING	# →﴾→
 ←	(‎ 𐅁 ‎)	10141	 GREEK ACROPHONIC ATTIC ONE HALF
 ←	(‎ ❨ ‎)	2768	 MEDIUM LEFT PARENTHESIS ORNAMENT
 ←	(‎ ❲ ‎)	2772	 LIGHT LEFT TORTOISE SHELL BRACKET ORNAMENT	# →〔→
@@ -824,8 +825,9 @@
 	(‎ (金) ‎)	0028 91D1 0029	 LEFT PARENTHESIS, CJK UNIFIED IDEOGRAPH-91D1, RIGHT PARENTHESIS
 ←	(‎ ㈮ ‎)	322E	 PARENTHESIZED IDEOGRAPH METAL
 
-#	)	𐅀	❩	❳	〕	﴿	﹚	﹞	）
+#	)	⹣	𐅀	❩	❳	〕	﴿	﹚	﹞	）
 	(‎ ) ‎)	0029	 RIGHT PARENTHESIS
+←	(‎ ⹣ ‎)	2E63	 RIGHT PARENTHESIS WITH MIDDLE RING	# →﴿→
 ←	(‎ 𐅀 ‎)	10140	 GREEK ACROPHONIC ATTIC ONE QUARTER
 ←	(‎ ❩ ‎)	2769	 MEDIUM RIGHT PARENTHESIS ORNAMENT
 ←	(‎ ❳ ‎)	2773	 LIGHT RIGHT TORTOISE SHELL BRACKET ORNAMENT	# →〕→
@@ -1839,9 +1841,10 @@
 	(‎ 6点 ‎)	0036 70B9	 DIGIT SIX, CJK UNIFIED IDEOGRAPH-70B9
 ←	(‎ ㍞ ‎)	335E	 IDEOGRAPHIC TELEGRAPH SYMBOL FOR HOUR SIX
 
-#	7	𖺊	ᜪ	𝈒	𑣆	ᲄ	𐓒	🯷	𜳷	７	𝟕	𝟟	𝟩	𝟳	𝟽
+#	7	𖺊	𝇾	ᜪ	𝈒	𑣆	ᲄ	𐓒	🯷	𜳷	７	𝟕	𝟟	𝟩	𝟳	𝟽
 	(‎ 7 ‎)	0037	 DIGIT SEVEN
 ←	(‎ 𖺊 ‎)	16E8A	 MEDEFAIDRIN NUMBER TEN
+←	(‎ 𝇾 ‎)	1D1FE	 MUSICAL SYMBOL DIGIT SEVEN WITH LOW STROKE
 ←	(‎ ᜪ ‎)	172A	 HANUNOO LETTER BA
 ←	(‎ 𝈒 ‎)	1D212	 GREEK VOCAL NOTATION SYMBOL-19
 ←	(‎ 𑣆 ‎)	118C6	 WARANG CITI SMALL LETTER II
@@ -2176,8 +2179,9 @@
 ←	(‎ ﹫ ‎)	FE6B	 SMALL COMMERCIAL AT
 ←	(‎ ＠ ‎)	FF20	 FULLWIDTH COMMERCIAL AT
 
-#	A	Α	А	Ꭺ	ᗅ	ꓮ	𐊠	𖽀	𜳖	Ａ	𝐀	𝐴	𝑨	𝒜	𝓐	𝔄	𝔸	𝕬	𝖠	𝗔	𝘈	𝘼	𝙰	𝚨	𝛢	𝜜	𝝖	𝞐
+#	A	𝽪	Α	А	Ꭺ	ᗅ	ꓮ	𐊠	𖽀	𜳖	Ａ	𝐀	𝐴	𝑨	𝒜	𝓐	𝔄	𝔸	𝕬	𝖠	𝗔	𝘈	𝘼	𝙰	𝚨	𝛢	𝜜	𝝖	𝞐
 	(‎ A ‎)	0041	 LATIN CAPITAL LETTER A
+←	(‎ 𝽪 ‎)	1DF6A	 LATIN CAPITAL LETTER PHONOTYPIC ROUNDTOP A
 ←	(‎ Α ‎)	0391	 GREEK CAPITAL LETTER ALPHA
 ←	(‎ А ‎)	0410	 CYRILLIC CAPITAL LETTER A
 ←	(‎ Ꭺ ‎)	13AA	 CHEROKEE LETTER GO
@@ -2241,6 +2245,10 @@
 #	AY	Ꜽ
 	(‎ AY ‎)	0041 0059	 LATIN CAPITAL LETTER A, LATIN CAPITAL LETTER Y
 ←	(‎ Ꜽ ‎)	A73C	 LATIN CAPITAL LETTER AY
+
+#	A̵	𝽀
+	(‎ A̵ ‎)	0041 0335	 LATIN CAPITAL LETTER A, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽀 ‎)	1DF40	 LATIN CAPITAL LETTER BARRED A
 
 #	B	Β	В	Ᏼ	ᗷ	Ⲃ	ꓐ	ꕗ	𐊂	𐊡	𐌁	Ꞵ	𜳗	Ｂ	ℬ	𝐁	𝐵	𝑩	𝓑	𝔅	𝔹	𝕭	𝖡	𝗕	𝘉	𝘽	𝙱	𝚩	𝛣	𝜝	𝝗	𝞑
 	(‎ B ‎)	0042	 LATIN CAPITAL LETTER B
@@ -2392,8 +2400,9 @@
 ←	(‎ Đ ‎)	0110	 LATIN CAPITAL LETTER D WITH STROKE
 ←	(‎ Ɖ ‎)	0189	 LATIN CAPITAL LETTER AFRICAN D	# →Đ→
 
-#	E	Ε	Е	Ꭼ	ⴹ	ꓰ	ꗋ	𐊆	⋿	𑢦	𑢮	𜳚	Ｅ	ℰ	𝐄	𝐸	𝑬	𝓔	𝔈	𝔼	𝕰	𝖤	𝗘	𝘌	𝙀	𝙴	𝚬	𝛦	𝜠	𝝚	𝞔
+#	E	𝾁	Ε	Е	Ꭼ	ⴹ	ꓰ	ꗋ	𐊆	⋿	𑢦	𑢮	𜳚	Ｅ	ℰ	𝐄	𝐸	𝑬	𝓔	𝔈	𝔼	𝕰	𝖤	𝗘	𝘌	𝙀	𝙴	𝚬	𝛦	𝜠	𝝚	𝞔
 	(‎ E ‎)	0045	 LATIN CAPITAL LETTER E
+←	(‎ 𝾁 ‎)	1DF81	 LATIN CAPITAL LETTER E WITH BENT TOPBAR
 ←	(‎ Ε ‎)	0395	 GREEK CAPITAL LETTER EPSILON
 ←	(‎ Е ‎)	0415	 CYRILLIC CAPITAL LETTER IE
 ←	(‎ Ꭼ ‎)	13AC	 CHEROKEE LETTER GV
@@ -2574,7 +2583,7 @@
 	(‎ H̵ ‎)	0048 0335	 LATIN CAPITAL LETTER H, COMBINING SHORT STROKE OVERLAY
 ←	(‎ Ħ ‎)	0126	 LATIN CAPITAL LETTER H WITH STROKE
 
-#	ll	।।	၊၊	𑙁𑙁	𑑋𑑋	𑱁𑱁	𝍷𝍷	𞴁𞴁	II	||	וו	││	𑏕	ǁ	װ	॥	။	‖	∥	꣏	𑁈	𑃁	𑅂	𑇆	𑙂	𑑌	𑱂	Ⅱ
+#	ll	।।	၊၊	𑙁𑙁	𑑋𑑋	𑱁𑱁	𝍷𝍷	𞴁𞴁	II	||	וו	││	𑏕	𝉢	ǁ	װ	॥	။	‖	∥	꣏	𑁈	𑃁	𑅂	𑇆	𑙂	𑑌	𑱂	Ⅱ
 	(‎ II ‎)	0049 0049	 LATIN CAPITAL LETTER I, LATIN CAPITAL LETTER I
 ←	(‎ ll ‎)	006C 006C	 LATIN SMALL LETTER L, LATIN SMALL LETTER L
 ←	(‎ ।। ‎)	0964 0964	 DEVANAGARI DANDA, DEVANAGARI DANDA	# →॥→→||→→ll→
@@ -2588,6 +2597,7 @@
 ←	(‎ וו ‎)	05D5 05D5	 HEBREW LETTER VAV, HEBREW LETTER VAV	# →ll→
 ←	(‎ ││ ‎)	2502 2502	 BOX DRAWINGS LIGHT VERTICAL, BOX DRAWINGS LIGHT VERTICAL	# →‎וו‎→→ll→
 ←	(‎ 𑏕 ‎)	113D5	 TULU-TIGALARI DOUBLE DANDA	# →||→→ll→
+←	(‎ 𝉢 ‎)	1D262	 MUSICAL SYMBOL HEAVY DOUBLE BARLINE	# →॥→→||→→ll→
 ←	(‎ ǁ ‎)	01C1	 LATIN LETTER LATERAL CLICK	# →‖→→∥→→||→→ll→
 ←	(‎ װ ‎)	05F0	 HEBREW LIGATURE YIDDISH DOUBLE VAV	# →‎וו‎→→ll→
 ←	(‎ ॥ ‎)	0965	 DEVANAGARI DOUBLE DANDA	# →||→→ll→
@@ -2640,9 +2650,10 @@
 ←	(‎ lX ‎)	006C 0058	 LATIN SMALL LETTER L, LATIN CAPITAL LETTER X
 ←	(‎ Ⅸ ‎)	2168	 ROMAN NUMERAL NINE
 
-#	l̵	I̵	Ɨ	ƚ	𖫤
+#	l̵	I̵	𝽮	Ɨ	ƚ	𖫤
 	(‎ I̵ ‎)	0049 0335	 LATIN CAPITAL LETTER I, COMBINING SHORT STROKE OVERLAY
 ←	(‎ l̵ ‎)	006C 0335	 LATIN SMALL LETTER L, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽮 ‎)	1DF6E	 LATIN CAPITAL LETTER PHONOTYPIC DIPHTHONG AI	# →Ɨ→
 ←	(‎ Ɨ ‎)	0197	 LATIN CAPITAL LETTER I WITH STROKE
 ←	(‎ ƚ ‎)	019A	 LATIN SMALL LETTER L WITH BAR	# →Ɨ→
 ←	(‎ 𖫤 ‎)	16AE4	 BASSA VAH LETTER YEIN	# →Ɨ→
@@ -2748,10 +2759,11 @@
 ←	(‎ Ⱪ ‎)	2C69	 LATIN CAPITAL LETTER K WITH DESCENDER	# →Қ→→К̩→
 ←	(‎ Қ ‎)	049A	 CYRILLIC CAPITAL LETTER KA WITH DESCENDER	# →К̩→
 
-#	K̵	K̶	К̵	Ꝁ	Ҟ	₭
+#	K̵	K̶	К̵	𝽈	Ꝁ	Ҟ	₭
 	(‎ K̵ ‎)	004B 0335	 LATIN CAPITAL LETTER K, COMBINING SHORT STROKE OVERLAY
 ←	(‎ K̶ ‎)	004B 0336	 LATIN CAPITAL LETTER K, COMBINING LONG STROKE OVERLAY
 ←	(‎ К̵ ‎)	041A 0335	 CYRILLIC CAPITAL LETTER KA, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽈 ‎)	1DF48	 LATIN CAPITAL LETTER BARRED K
 ←	(‎ Ꝁ ‎)	A740	 LATIN CAPITAL LETTER K WITH STROKE	# →Ҟ→→К̵→
 ←	(‎ Ҟ ‎)	049E	 CYRILLIC CAPITAL LETTER KA WITH STROKE	# →К̵→
 ←	(‎ ₭ ‎)	20AD	 KIP SIGN	# →K̶→
@@ -2875,6 +2887,10 @@
 ←	(‎ М̡ ‎)	041C 0321	 CYRILLIC CAPITAL LETTER EM, COMBINING PALATALIZED HOOK BELOW
 ←	(‎ Ӎ ‎)	04CD	 CYRILLIC CAPITAL LETTER EM WITH TAIL	# →М̡→
 
+#	M̵	𝽊
+	(‎ M̵ ‎)	004D 0335	 LATIN CAPITAL LETTER M, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽊 ‎)	1DF4A	 LATIN CAPITAL LETTER BARRED M
+
 #	MΩ	㏁
 	(‎ MΩ ‎)	004D 03A9	 LATIN CAPITAL LETTER M, GREEK CAPITAL LETTER OMEGA
 ←	(‎ ㏁ ‎)	33C1	 SQUARE M OHM
@@ -2930,6 +2946,10 @@
 ←	(‎ N̦ ‎)	004E 0326	 LATIN CAPITAL LETTER N, COMBINING COMMA BELOW
 ←	(‎ Ɲ ‎)	019D	 LATIN CAPITAL LETTER N WITH LEFT HOOK
 
+#	N̵	𝽍
+	(‎ N̵ ‎)	004E 0335	 LATIN CAPITAL LETTER N, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽍 ‎)	1DF4D	 LATIN CAPITAL LETTER BARRED N
+
 #	OE	Œ
 	(‎ OE ‎)	004F 0045	 LATIN CAPITAL LETTER O, LATIN CAPITAL LETTER E
 ←	(‎ Œ ‎)	0152	 LATIN CAPITAL LIGATURE OE
@@ -2947,6 +2967,14 @@
 	(‎ Ơ ‎)	004F 031B	 LATIN CAPITAL LETTER O, COMBINING HORN
 ←	(‎ Ꭴ ‎)	13A4	 CHEROKEE LETTER U
 
+#	𞅀̵̦	O̵̦	𖺀̦	θ̦	θ̡	𝼼
+	(‎ O̵̦ ‎)	004F 0335 0326	 LATIN CAPITAL LETTER O, COMBINING SHORT STROKE OVERLAY, COMBINING COMMA BELOW
+←	(‎ 𞅀̵̦ ‎)	1E140 0335 0326	 NYIAKENG PUACHUE HMONG DIGIT ZERO, COMBINING SHORT STROKE OVERLAY, COMBINING COMMA BELOW	# →θ̡→
+←	(‎ 𖺀̦ ‎)	16E80 0326	 MEDEFAIDRIN DIGIT ZERO, COMBINING COMMA BELOW	# →θ̡→
+←	(‎ θ̦ ‎)	03B8 0326	 GREEK SMALL LETTER THETA, COMBINING COMMA BELOW	# →θ̡→
+←	(‎ θ̡ ‎)	03B8 0321	 GREEK SMALL LETTER THETA, COMBINING PALATALIZED HOOK BELOW
+←	(‎ 𝼼 ‎)	1DF3C	 LATIN SMALL LETTER THETA WITH PALATAL HOOK	# →θ̡→
+
 #	O̸	∅	Ø	ⵁ	⌀
 	(‎ O̸ ‎)	004F 0338	 LATIN CAPITAL LETTER O, COMBINING LONG SOLIDUS OVERLAY
 ←	(‎ ∅ ‎)	2205	 EMPTY SET	# →Ø→
@@ -2954,8 +2982,9 @@
 ←	(‎ ⵁ ‎)	2D41	 TIFINAGH LETTER BERBER ACADEMY YAH	# →Ø→
 ←	(‎ ⌀ ‎)	2300	 DIAMETER SIGN	# →∅→→Ø→
 
-#	P	Ρ	Р	Ꮲ	ᑭ	Ⲣ	Ⳏ	ꓑ	𐊕	𜳥	Ｐ	ℙ	𝐏	𝑃	𝑷	𝒫	𝓟	𝔓	𝕻	𝖯	𝗣	𝘗	𝙋	𝙿	𝚸	𝛲	𝜬	𝝦	𝞠
+#	P	𖶧	Ρ	Р	Ꮲ	ᑭ	Ⲣ	Ⳏ	ꓑ	𐊕	𜳥	Ｐ	ℙ	𝐏	𝑃	𝑷	𝒫	𝓟	𝔓	𝕻	𝖯	𝗣	𝘗	𝙋	𝙿	𝚸	𝛲	𝜬	𝝦	𝞠
 	(‎ P ‎)	0050	 LATIN CAPITAL LETTER P
+←	(‎ 𖶧 ‎)	16DA7	 CHISOI DIGIT SEVEN
 ←	(‎ Ρ ‎)	03A1	 GREEK CAPITAL LETTER RHO
 ←	(‎ Р ‎)	0420	 CYRILLIC CAPITAL LETTER ER
 ←	(‎ Ꮲ ‎)	13E2	 CHEROKEE LETTER TLV
@@ -2985,10 +3014,10 @@
 ←	(‎ 𝝦 ‎)	1D766	 MATHEMATICAL SANS-SERIF BOLD CAPITAL RHO	# →Ρ→
 ←	(‎ 𝞠 ‎)	1D7A0	 MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL RHO	# →Ρ→
 
-#	P'	ᑭᑊ	Ꮲ'	ᑭ'	ᒆ
+#	P'	𖶧'	ᑭᑊ	ᑭ'	ᒆ
 	(‎ P' ‎)	0050 0027	 LATIN CAPITAL LETTER P, APOSTROPHE
+←	(‎ 𖶧' ‎)	16DA7 0027	 CHISOI DIGIT SEVEN, APOSTROPHE	# →ᑭᑊ→
 ←	(‎ ᑭᑊ ‎)	146D 144A	 CANADIAN SYLLABICS KI, CANADIAN SYLLABICS WEST-CREE P
-←	(‎ Ꮲ' ‎)	13E2 0027	 CHEROKEE LETTER TLV, APOSTROPHE	# →ᑭᑊ→
 ←	(‎ ᑭ' ‎)	146D 0027	 CANADIAN SYLLABICS KI, APOSTROPHE	# →ᑭᑊ→
 ←	(‎ ᒆ ‎)	1486	 CANADIAN SYLLABICS SOUTH-SLAVEY KIH	# →ᑭᑊ→
 
@@ -3012,12 +3041,12 @@
 	(‎ Pa ‎)	0050 0061	 LATIN CAPITAL LETTER P, LATIN SMALL LETTER A
 ←	(‎ ㎩ ‎)	33A9	 SQUARE PA
 
-#	p·	P·	pˑ	pᐧ	Ꮲ·	ᑭ·	ᑭˑ	ᑭᐧ	ᑷ
+#	p·	𖶧·	P·	pˑ	pᐧ	ᑭ·	ᑭˑ	ᑭᐧ	ᑷ
 	(‎ P· ‎)	0050 00B7	 LATIN CAPITAL LETTER P, MIDDLE DOT
 ←	(‎ p· ‎)	0070 00B7	 LATIN SMALL LETTER P, MIDDLE DOT	# →pᐧ→→ᑷ→→ᑭᐧ→
+←	(‎ 𖶧· ‎)	16DA7 00B7	 CHISOI DIGIT SEVEN, MIDDLE DOT	# →ᑭᐧ→
 ←	(‎ pˑ ‎)	0070 02D1	 LATIN SMALL LETTER P, MODIFIER LETTER HALF TRIANGULAR COLON	# →pᐧ→→ᑷ→→ᑭᐧ→
 ←	(‎ pᐧ ‎)	0070 1427	 LATIN SMALL LETTER P, CANADIAN SYLLABICS FINAL MIDDLE DOT	# →ᑷ→→ᑭᐧ→
-←	(‎ Ꮲ· ‎)	13E2 00B7	 CHEROKEE LETTER TLV, MIDDLE DOT	# →ᑭᐧ→
 ←	(‎ ᑭ· ‎)	146D 00B7	 CANADIAN SYLLABICS KI, MIDDLE DOT	# →ᑭˑ→→ᑭᐧ→
 ←	(‎ ᑭˑ ‎)	146D 02D1	 CANADIAN SYLLABICS KI, MODIFIER LETTER HALF TRIANGULAR COLON	# →ᑭᐧ→
 ←	(‎ ᑭᐧ ‎)	146D 1427	 CANADIAN SYLLABICS KI, CANADIAN SYLLABICS FINAL MIDDLE DOT
@@ -3078,9 +3107,10 @@
 	(‎ Rs ‎)	0052 0073	 LATIN CAPITAL LETTER R, LATIN SMALL LETTER S
 ←	(‎ ₨ ‎)	20A8	 RUPEE SIGN
 
-#	S	Ჽ	Ѕ	Տ	Ⴝ	ჽ	Ꮥ	Ꮪ	ꓢ	ꕶ	𐊖	𐐠	𖼺	𖫖	𜳨	Ｓ	𝐒	𝑆	𝑺	𝒮	𝓢	𝔖	𝕊	𝕾	𝖲	𝗦	𝘚	𝙎	𝚂
+#	S	Ჽ	𖶥	Ѕ	Տ	Ⴝ	ჽ	Ꮥ	Ꮪ	ꓢ	ꕶ	𐊖	𐐠	𖼺	𖫖	𜳨	Ｓ	𝐒	𝑆	𝑺	𝒮	𝓢	𝔖	𝕊	𝕾	𝖲	𝗦	𝘚	𝙎	𝚂
 	(‎ S ‎)	0053	 LATIN CAPITAL LETTER S
 ←	(‎ Ჽ ‎)	1CBD	 GEORGIAN MTAVRULI CAPITAL LETTER AEN
+←	(‎ 𖶥 ‎)	16DA5	 CHISOI DIGIT FIVE
 ←	(‎ Ѕ ‎)	0405	 CYRILLIC CAPITAL LETTER DZE
 ←	(‎ Տ ‎)	054F	 ARMENIAN CAPITAL LETTER TIWN
 ←	(‎ Ⴝ ‎)	10BD	 GEORGIAN CAPITAL LETTER CHAR
@@ -3202,8 +3232,9 @@
 ←	(‎ Т⃫ ‎)	0422 20EB	 CYRILLIC CAPITAL LETTER TE, COMBINING LONG DOUBLE SOLIDUS OVERLAY
 ←	(‎ ₮ ‎)	20AE	 TUGRIK SIGN	# →Т⃫→
 
-#	U	𖶨	ሀ	Ս	ᑌ	ꓴ	𖽂	∪	⋃	𑢸	𐓎	𜳪	Ｕ	𝐔	𝑈	𝑼	𝒰	𝓤	𝔘	𝕌	𝖀	𝖴	𝗨	𝘜	𝙐	𝚄
+#	U	𖶍	𖶨	ሀ	Ս	ᑌ	ꓴ	𖽂	∪	⋃	𑢸	𐓎	𜳪	Ｕ	𝐔	𝑈	𝑼	𝒰	𝓤	𝔘	𝕌	𝖀	𝖴	𝗨	𝘜	𝙐	𝚄
 	(‎ U ‎)	0055	 LATIN CAPITAL LETTER U
+←	(‎ 𖶍 ‎)	16D8D	 CHISOI LETTER HA
 ←	(‎ 𖶨 ‎)	16DA8	 CHISOI DIGIT EIGHT
 ←	(‎ ሀ ‎)	1200	 ETHIOPIC SYLLABLE HA	# →Ս→
 ←	(‎ Ս ‎)	054D	 ARMENIAN CAPITAL LETTER SEH
@@ -3230,9 +3261,9 @@
 ←	(‎ 𝙐 ‎)	1D650	 MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL U
 ←	(‎ 𝚄 ‎)	1D684	 MATHEMATICAL MONOSPACE CAPITAL U
 
-#	U'	𖶨'	ᑌᑊ	ᑌ'	ᑧ
+#	U'	𖶍'	ᑌᑊ	ᑌ'	ᑧ
 	(‎ U' ‎)	0055 0027	 LATIN CAPITAL LETTER U, APOSTROPHE
-←	(‎ 𖶨' ‎)	16DA8 0027	 CHISOI DIGIT EIGHT, APOSTROPHE	# →ᑌ'→
+←	(‎ 𖶍' ‎)	16D8D 0027	 CHISOI LETTER HA, APOSTROPHE	# →ᑌ'→
 ←	(‎ ᑌᑊ ‎)	144C 144A	 CANADIAN SYLLABICS TE, CANADIAN SYLLABICS WEST-CREE P	# →ᑌ'→
 ←	(‎ ᑌ' ‎)	144C 0027	 CANADIAN SYLLABICS TE, APOSTROPHE
 ←	(‎ ᑧ ‎)	1467	 CANADIAN SYLLABICS TTE	# →ᑌᑊ→→ᑌ'→
@@ -3241,9 +3272,9 @@
 	(‎ U+= ‎)	0055 002B 003D	 LATIN CAPITAL LETTER U, PLUS SIGN, EQUALS SIGN
 ←	(‎ U+〓 ‎)	0055 002B 3013	 LATIN CAPITAL LETTER U, PLUS SIGN, GETA MARK
 
-#	U·	𖶨·	ᑌ·	ᑌˑ	ᑌᐧ	ᑘ
+#	U·	𖶍·	ᑌ·	ᑌˑ	ᑌᐧ	ᑘ
 	(‎ U· ‎)	0055 00B7	 LATIN CAPITAL LETTER U, MIDDLE DOT
-←	(‎ 𖶨· ‎)	16DA8 00B7	 CHISOI DIGIT EIGHT, MIDDLE DOT	# →ᑌ·→
+←	(‎ 𖶍· ‎)	16D8D 00B7	 CHISOI LETTER HA, MIDDLE DOT	# →ᑌ·→
 ←	(‎ ᑌ· ‎)	144C 00B7	 CANADIAN SYLLABICS TE, MIDDLE DOT
 ←	(‎ ᑌˑ ‎)	144C 02D1	 CANADIAN SYLLABICS TE, MODIFIER LETTER HALF TRIANGULAR COLON	# →ᑌᐧ→→ᑌ·→
 ←	(‎ ᑌᐧ ‎)	144C 1427	 CANADIAN SYLLABICS TE, CANADIAN SYLLABICS FINAL MIDDLE DOT	# →ᑌ·→
@@ -3255,9 +3286,10 @@
 ←	(‎ Ʉ ‎)	0244	 LATIN CAPITAL LETTER U BAR	# →U̶→
 ←	(‎ Ꮜ ‎)	13CC	 CHEROKEE LETTER SA	# →Ʉ→→U̶→
 
-#	V	𞅅	٧	۷	Ѵ	Ꮩ	ᐯ	ⴸ	ꓦ	ꛟ	𐰟	𖼈	𝈍	𐔝	𑢠	𜳫	Ⅴ	Ｖ	𝐕	𝑉	𝑽	𝒱	𝓥	𝔙	𝕍	𝖁	𝖵	𝗩	𝘝	𝙑	𝚅
+#	V	𞅅	𜻼	٧	۷	Ѵ	Ꮩ	ᐯ	ⴸ	ꓦ	ꛟ	𐰟	𖼈	𝈍	𐔝	𑢠	𜳫	Ⅴ	Ｖ	𝐕	𝑉	𝑽	𝒱	𝓥	𝔙	𝕍	𝖁	𝖵	𝗩	𝘝	𝙑	𝚅
 	(‎ V ‎)	0056	 LATIN CAPITAL LETTER V
 ←	(‎ 𞅅 ‎)	1E145	 NYIAKENG PUACHUE HMONG DIGIT FIVE
+←	(‎ 𜻼 ‎)	1CEFC	 ANGLE OPENING UP
 ←	(‎ ٧ ‎)	0667	 ARABIC-INDIC DIGIT SEVEN
 ←	(‎ ۷ ‎)	06F7	 EXTENDED ARABIC-INDIC DIGIT SEVEN	# →‎٧‎→
 ←	(‎ Ѵ ‎)	0474	 CYRILLIC CAPITAL LETTER IZHITSA
@@ -3312,17 +3344,17 @@
 ←	(‎ Vlll ‎)	0056 006C 006C 006C	 LATIN CAPITAL LETTER V, LATIN SMALL LETTER L, LATIN SMALL LETTER L, LATIN SMALL LETTER L
 ←	(‎ Ⅷ ‎)	2167	 ROMAN NUMERAL EIGHT
 
-#	V·	𞅅·	ᐯ·	ᐯˑ	ᐯᐧ	ᐻ
+#	V·	𞅅·	𜻼ˑ	ᐯᐧ	ᐻ
 	(‎ V· ‎)	0056 00B7	 LATIN CAPITAL LETTER V, MIDDLE DOT
 ←	(‎ 𞅅· ‎)	1E145 00B7	 NYIAKENG PUACHUE HMONG DIGIT FIVE, MIDDLE DOT	# →ᐯᐧ→
-←	(‎ ᐯ· ‎)	142F 00B7	 CANADIAN SYLLABICS PE, MIDDLE DOT	# →ᐯˑ→→ᐯᐧ→
-←	(‎ ᐯˑ ‎)	142F 02D1	 CANADIAN SYLLABICS PE, MODIFIER LETTER HALF TRIANGULAR COLON	# →ᐯᐧ→
+←	(‎ 𜻼ˑ ‎)	1CEFC 02D1	 ANGLE OPENING UP, MODIFIER LETTER HALF TRIANGULAR COLON	# →ᐯᐧ→
 ←	(‎ ᐯᐧ ‎)	142F 1427	 CANADIAN SYLLABICS PE, CANADIAN SYLLABICS FINAL MIDDLE DOT
 ←	(‎ ᐻ ‎)	143B	 CANADIAN SYLLABICS WEST-CREE PWE	# →ᐯᐧ→
 
-#	V̵	V̶	𐆗
+#	V̵	V̶	𝽑	𐆗
 	(‎ V̵ ‎)	0056 0335	 LATIN CAPITAL LETTER V, COMBINING SHORT STROKE OVERLAY
 ←	(‎ V̶ ‎)	0056 0336	 LATIN CAPITAL LETTER V, COMBINING LONG STROKE OVERLAY
+←	(‎ 𝽑 ‎)	1DF51	 LATIN CAPITAL LETTER BARRED V
 ←	(‎ 𐆗 ‎)	10197	 ROMAN QUINARIUS SIGN	# →V̶→
 
 #	Vᷤ	🜈
@@ -3605,9 +3637,9 @@
 ←	(‎ ﹷّ ‎)	FE77 0651	 ARABIC FATHA MEDIAL FORM, ARABIC SHADDA	# →‎ﳲ‎→→‎ـَّ‎→
 ←	(‎ ﳲ ‎)	FCF2	 ARABIC LIGATURE SHADDA WITH FATHA MEDIAL FORM	# →‎ـَّ‎→
 
-#	_̊	_ْ	ـْ	ﹿ
+#	_𐻎	_̊	ـْ	ﹿ
 	(‎ _̊ ‎)	005F 030A	 LOW LINE, COMBINING RING ABOVE
-←	(‎ _ْ ‎)	005F 0652	 LOW LINE, ARABIC SUKUN	# →‎ـْ‎→
+←	(‎ _𐻎 ‎)	005F 10ECE	 LOW LINE, ARABIC SMALL CIRCLE ABOVE	# →‎ـْ‎→
 ←	(‎ ـْ ‎)	0640 0652	 ARABIC TATWEEL, ARABIC SUKUN
 ←	(‎ ﹿ ‎)	FE7F	 ARABIC SUKUN MEDIAL FORM	# →‎ـْ‎→
 
@@ -3642,8 +3674,9 @@
 ←	(‎ ـّ ‎)	0640 0651	 ARABIC TATWEEL, ARABIC SHADDA
 ←	(‎ ﹽ ‎)	FE7D	 ARABIC SHADDA MEDIAL FORM	# →‎ـّ‎→
 
-#	a	ɑ	α	а	⍺	ꭤ	ａ	𝐚	𝑎	𝒂	𝒶	𝓪	𝔞	𝕒	𝖆	𝖺	𝗮	𝘢	𝙖	𝚊	𝛂	𝛼	𝜶	𝝰	𝞪
+#	a	𝽚	ɑ	α	а	⍺	ꭤ	ａ	𝐚	𝑎	𝒂	𝒶	𝓪	𝔞	𝕒	𝖆	𝖺	𝗮	𝘢	𝙖	𝚊	𝛂	𝛼	𝜶	𝝰	𝞪
 	(‎ a ‎)	0061	 LATIN SMALL LETTER A
+←	(‎ 𝽚 ‎)	1DF5A	 LATIN SMALL LETTER HALF A
 ←	(‎ ɑ ‎)	0251	 LATIN SMALL LETTER ALPHA
 ←	(‎ α ‎)	03B1	 GREEK SMALL LETTER ALPHA
 ←	(‎ а ‎)	0430	 CYRILLIC SMALL LETTER A
@@ -3725,6 +3758,10 @@
 ←	(‎ ɑ̲ ‎)	0251 0332	 LATIN SMALL LETTER ALPHA, COMBINING LOW LINE
 ←	(‎ α̲ ‎)	03B1 0332	 GREEK SMALL LETTER ALPHA, COMBINING LOW LINE	# →ɑ̲→
 ←	(‎ ⍶ ‎)	2376	 APL FUNCTIONAL SYMBOL ALPHA UNDERBAR	# →α̲→→ɑ̲→
+
+#	a̵	𝽁
+	(‎ a̵ ‎)	0061 0335	 LATIN SMALL LETTER A, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽁 ‎)	1DF41	 LATIN SMALL LETTER BARRED A
 
 #	b	𖺶	Ƅ	Ь	ߕ	Ꮟ	ᑲ	ᖯ	𐌜	𝈇	ｂ	𝐛	𝑏	𝒃	𝒷	𝓫	𝔟	𝕓	𝖇	𝖻	𝗯	𝘣	𝙗	𝚋
 	(‎ b ‎)	0062	 LATIN SMALL LETTER B
@@ -3937,6 +3974,11 @@
 	(‎ dl ‎)	0064 006C	 LATIN SMALL LETTER D, LATIN SMALL LETTER L
 ←	(‎ ㎗ ‎)	3397	 SQUARE DL
 
+#	dlȝ	dɮ	𝼠
+	(‎ dlȝ ‎)	0064 006C 021D	 LATIN SMALL LETTER D, LATIN SMALL LETTER L, LATIN SMALL LETTER YOGH
+←	(‎ dɮ ‎)	0064 026E	 LATIN SMALL LETTER D, LATIN SMALL LETTER LEZH
+←	(‎ 𝼠 ‎)	1DF20	 LATIN SMALL LETTER D-LEZH DIGRAPH	# →dɮ→
+
 #	drn	dm	㍷
 	(‎ dm ‎)	0064 006D	 LATIN SMALL LETTER D, LATIN SMALL LETTER M
 ←	(‎ drn ‎)	0064 0072 006E	 LATIN SMALL LETTER D, LATIN SMALL LETTER R, LATIN SMALL LETTER N
@@ -3952,12 +3994,22 @@
 ←	(‎ dž ‎)	0064 007A 030C	 LATIN SMALL LETTER D, LATIN SMALL LETTER Z, COMBINING CARON
 ←	(‎ ǆ ‎)	01C6	 LATIN SMALL LETTER DZ WITH CARON	# →dž→
 
+#	dz̦	ʣ̡	𝼮
+	(‎ dz̦ ‎)	0064 007A 0326	 LATIN SMALL LETTER D, LATIN SMALL LETTER Z, COMBINING COMMA BELOW
+←	(‎ ʣ̡ ‎)	02A3 0321	 LATIN SMALL LETTER DZ DIGRAPH, COMBINING PALATALIZED HOOK BELOW
+←	(‎ 𝼮 ‎)	1DF2E	 LATIN SMALL LETTER DZ DIGRAPH WITH PALATAL HOOK	# →ʣ̡→
+
 #	d·	ᑯ·	ᑯˑ	ᑯᐧ	ᑻ
 	(‎ d· ‎)	0064 00B7	 LATIN SMALL LETTER D, MIDDLE DOT
 ←	(‎ ᑯ· ‎)	146F 00B7	 CANADIAN SYLLABICS KO, MIDDLE DOT	# →ᑯˑ→→ᑯᐧ→
 ←	(‎ ᑯˑ ‎)	146F 02D1	 CANADIAN SYLLABICS KO, MODIFIER LETTER HALF TRIANGULAR COLON	# →ᑯᐧ→
 ←	(‎ ᑯᐧ ‎)	146F 1427	 CANADIAN SYLLABICS KO, CANADIAN SYLLABICS FINAL MIDDLE DOT
 ←	(‎ ᑻ ‎)	147B	 CANADIAN SYLLABICS WEST-CREE KWO	# →ᑯᐧ→
+
+#	d∂̵	dð	𝼟
+	(‎ dð ‎)	0064 00F0	 LATIN SMALL LETTER D, LATIN SMALL LETTER ETH
+←	(‎ d∂̵ ‎)	0064 2202 0335	 LATIN SMALL LETTER D, PARTIAL DIFFERENTIAL, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝼟 ‎)	1DF1F	 LATIN SMALL LETTER D-ETH DIGRAPH
 
 #	dȝ	dʒ	ʤ
 	(‎ dȝ ‎)	0064 021D	 LATIN SMALL LETTER D, LATIN SMALL LETTER YOGH
@@ -3968,6 +4020,10 @@
 	(‎ dʑ ‎)	0064 0291	 LATIN SMALL LETTER D, LATIN SMALL LETTER Z WITH CURL
 ←	(‎ ʥ ‎)	02A5	 LATIN SMALL LETTER DZ DIGRAPH WITH CURL
 
+#	dʓ	𝼫
+	(‎ dʓ ‎)	0064 0293	 LATIN SMALL LETTER D, LATIN SMALL LETTER EZH WITH CURL
+←	(‎ 𝼫 ‎)	1DF2B	 LATIN SMALL LETTER DEZH DIGRAPH WITH CURL
+
 #	d̄	Ƌ	ƌ
 	(‎ d̄ ‎)	0064 0304	 LATIN SMALL LETTER D, COMBINING MACRON
 ←	(‎ Ƌ ‎)	018B	 LATIN CAPITAL LETTER D WITH TOPBAR	# →ƌ→
@@ -3976,6 +4032,11 @@
 #	d̔	ɗ
 	(‎ d̔ ‎)	0064 0314	 LATIN SMALL LETTER D, COMBINING REVERSED COMMA ABOVE
 ←	(‎ ɗ ‎)	0257	 LATIN SMALL LETTER D WITH HOOK
+
+#	d̦̔	ɗ̡	𝼭
+	(‎ d̦̔ ‎)	0064 0314 0326	 LATIN SMALL LETTER D, COMBINING REVERSED COMMA ABOVE, COMBINING COMMA BELOW
+←	(‎ ɗ̡ ‎)	0257 0321	 LATIN SMALL LETTER D WITH HOOK, COMBINING PALATALIZED HOOK BELOW
+←	(‎ 𝼭 ‎)	1DF2D	 LATIN SMALL LETTER D WITH HOOK AND PALATAL HOOK	# →ɗ̡→
 
 #	d̨	d̢	ɖ
 	(‎ d̢ ‎)	0064 0322	 LATIN SMALL LETTER D, COMBINING RETROFLEX HOOK BELOW
@@ -4126,8 +4187,10 @@
 	(‎ g̔ ‎)	0067 0314	 LATIN SMALL LETTER G, COMBINING REVERSED COMMA ABOVE
 ←	(‎ ɠ ‎)	0260	 LATIN SMALL LETTER G WITH HOOK
 
-#	g̵	ǥ
+#	g̵	ᶃ̵	𝽅	ǥ
 	(‎ g̵ ‎)	0067 0335	 LATIN SMALL LETTER G, COMBINING SHORT STROKE OVERLAY
+←	(‎ ᶃ̵ ‎)	1D83 0335	 LATIN SMALL LETTER G WITH PALATAL HOOK, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽅 ‎)	1DF45	 LATIN SMALL LETTER G WITH STROKE AND PALATAL HOOK	# →ᶃ̵→
 ←	(‎ ǥ ‎)	01E5	 LATIN SMALL LETTER G WITH STROKE
 
 #	h	һ	հ	Һ	Ⴙ	Ꮒ	ｈ	ℎ	𝐡	𝒉	𝒽	𝓱	𝔥	𝕙	𝖍	𝗁	𝗵	𝘩	𝙝	𝚑
@@ -4166,12 +4229,23 @@
 ←	(‎ Ᏺ ‎)	13F2	 CHEROKEE LETTER YO
 ←	(‎ ꚕ ‎)	A695	 CYRILLIC SMALL LETTER HWE	# →ɦ→
 
-#	h̵	һ̵	ħ	ћ	ℏ
+#	h̵̔	ɦ̵	𝽇
+	(‎ h̵̔ ‎)	0068 0314 0335	 LATIN SMALL LETTER H, COMBINING REVERSED COMMA ABOVE, COMBINING SHORT STROKE OVERLAY
+←	(‎ ɦ̵ ‎)	0266 0335	 LATIN SMALL LETTER H WITH HOOK, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽇 ‎)	1DF47	 LATIN SMALL LETTER BARRED H WITH HOOK	# →ɦ̵→
+
+#	h̵	һ̵	𝽆	ħ	ћ	ℏ
 	(‎ h̵ ‎)	0068 0335	 LATIN SMALL LETTER H, COMBINING SHORT STROKE OVERLAY
 ←	(‎ һ̵ ‎)	04BB 0335	 CYRILLIC SMALL LETTER SHHA, COMBINING SHORT STROKE OVERLAY	# →ћ→→ħ→
+←	(‎ 𝽆 ‎)	1DF46	 LATIN SMALL LETTER BARRED H
 ←	(‎ ħ ‎)	0127	 LATIN SMALL LETTER H WITH STROKE
 ←	(‎ ћ ‎)	045B	 CYRILLIC SMALL LETTER TSHE	# →ħ→
 ←	(‎ ℏ ‎)	210F	 PLANCK CONSTANT OVER TWO PI	# →ħ→
+
+#	h̵̦	ħ̡	𝼲
+	(‎ h̵̦ ‎)	0068 0335 0326	 LATIN SMALL LETTER H, COMBINING SHORT STROKE OVERLAY, COMBINING COMMA BELOW
+←	(‎ ħ̡ ‎)	0127 0321	 LATIN SMALL LETTER H WITH STROKE, COMBINING PALATALIZED HOOK BELOW
+←	(‎ 𝼲 ‎)	1DF32	 LATIN SMALL LETTER H WITH STROKE AND PALATAL HOOK	# →ħ̡→
 
 #	i	ı	ɩ	ɪ	ι	і	ւ	Ꭵ	ⲓ	ꙇ	¡	⍳	𑣃	ꭵ	ⅰ	ｉ	ℹ	ⅈ	𝐢	𝑖	𝒊	𝒾	𝓲	𝔦	𝕚	𝖎	𝗂	𝗶	𝘪	𝙞	𝚒	𝚤	𝛊	𝜄	𝜾	𝝸	𝞲
 	(‎ i ‎)	0069	 LATIN SMALL LETTER I
@@ -4211,6 +4285,10 @@
 ←	(‎ 𝜾 ‎)	1D73E	 MATHEMATICAL BOLD ITALIC SMALL IOTA	# →ι→
 ←	(‎ 𝝸 ‎)	1D778	 MATHEMATICAL SANS-SERIF BOLD SMALL IOTA	# →ι→
 ←	(‎ 𝞲 ‎)	1D7B2	 MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL IOTA	# →ι→
+
+#	ie	𝽝
+	(‎ ie ‎)	0069 0065	 LATIN SMALL LETTER I, LATIN SMALL LETTER E
+←	(‎ 𝽝 ‎)	1DF5D	 LATIN SMALL LETTER IE
 
 #	ii	ⅱ
 	(‎ ii ‎)	0069 0069	 LATIN SMALL LETTER I, LATIN SMALL LETTER I
@@ -4339,6 +4417,10 @@
 	(‎ k̔ ‎)	006B 0314	 LATIN SMALL LETTER K, COMBINING REVERSED COMMA ABOVE
 ←	(‎ ƙ ‎)	0199	 LATIN SMALL LETTER K WITH HOOK
 
+#	k̵	𝽉
+	(‎ k̵ ‎)	006B 0335	 LATIN SMALL LETTER K, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽉 ‎)	1DF49	 LATIN SMALL LETTER BARRED K
+
 #	kΩ	㏀
 	(‎ kΩ ‎)	006B 03A9	 LATIN SMALL LETTER K, GREEK CAPITAL LETTER OMEGA
 ←	(‎ ㏀ ‎)	33C0	 SQUARE K OHM
@@ -4391,6 +4473,10 @@
 	(‎ lȝ ‎)	006C 021D	 LATIN SMALL LETTER L, LATIN SMALL LETTER YOGH
 ←	(‎ lʒ ‎)	006C 0292	 LATIN SMALL LETTER L, LATIN SMALL LETTER EZH
 ←	(‎ ɮ ‎)	026E	 LATIN SMALL LETTER LEZH	# →lʒ→
+
+#	lʓ	𝽧
+	(‎ lʓ ‎)	006C 0293	 LATIN SMALL LETTER L, LATIN SMALL LETTER EZH WITH CURL
+←	(‎ 𝽧 ‎)	1DF67	 LATIN SMALL LETTER LEZH WITH CURL
 
 #	ĺ́	𞴁ً	lً	اً	│ً	ﴼ	ﴽ
 	(‎ ĺ́ ‎)	006C 0301 0301	 LATIN SMALL LETTER L, COMBINING ACUTE ACCENT, COMBINING ACUTE ACCENT
@@ -4580,6 +4666,11 @@
 ←	(‎ rn̴ ‎)	0072 006E 0334	 LATIN SMALL LETTER R, LATIN SMALL LETTER N, COMBINING TILDE OVERLAY
 ←	(‎ ᵯ ‎)	1D6F	 LATIN SMALL LETTER M WITH MIDDLE TILDE
 
+#	rn̵	m̵	𝽋
+	(‎ m̵ ‎)	006D 0335	 LATIN SMALL LETTER M, COMBINING SHORT STROKE OVERLAY
+←	(‎ rn̵ ‎)	0072 006E 0335	 LATIN SMALL LETTER R, LATIN SMALL LETTER N, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽋 ‎)	1DF4B	 LATIN SMALL LETTER BARRED M
+
 #	rn̸	m̷	₥
 	(‎ m̷ ‎)	006D 0337	 LATIN SMALL LETTER M, COMBINING SHORT SOLIDUS OVERLAY
 ←	(‎ rn̸ ‎)	0072 006E 0338	 LATIN SMALL LETTER R, LATIN SMALL LETTER N, COMBINING LONG SOLIDUS OVERLAY
@@ -4660,9 +4751,18 @@
 ←	(‎ 𝝶 ‎)	1D776	 MATHEMATICAL SANS-SERIF BOLD SMALL ETA	# →η→→ƞ→
 ←	(‎ 𝞰 ‎)	1D7B0	 MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL ETA	# →η→→ƞ→
 
+#	n̵̩	ŋ̵	𝽏
+	(‎ n̵̩ ‎)	006E 0329 0335	 LATIN SMALL LETTER N, COMBINING VERTICAL LINE BELOW, COMBINING SHORT STROKE OVERLAY
+←	(‎ ŋ̵ ‎)	014B 0335	 LATIN SMALL LETTER ENG, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽏 ‎)	1DF4F	 LATIN SMALL LETTER BARRED ENG	# →ŋ̵→
+
 #	n̴	ᵰ
 	(‎ n̴ ‎)	006E 0334	 LATIN SMALL LETTER N, COMBINING TILDE OVERLAY
 ←	(‎ ᵰ ‎)	1D70	 LATIN SMALL LETTER N WITH MIDDLE TILDE
+
+#	n̵	𝽎
+	(‎ n̵ ‎)	006E 0335	 LATIN SMALL LETTER N, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽎 ‎)	1DF4E	 LATIN SMALL LETTER BARRED N
 
 #	o	ᄋ	ᩅ	𐴇	ᴏ	ᴑ	ο	σ	о	օ	ס	ه	٥	ھ	ہ	ە	۵	०	০	૦	ం	ಂ	ം	ഠ	ං	๐	໐	ဝ	၀	០	ϭ	ߋ	ࡀ	੦	୦	௦	౦	൦	ჿ	ᆼ	᪀	᪐	ᯪ	ⲟ	𐐬	𐤬	𑄤	ꬽ	𑌂	𑓐	𑣈	𑣗	ᲂ	𐓪	ｏ	ℴ	𞸤	𞹤	𞺄	ㅇ	ﮦ	ﮧ	ﮨ	ﮩ	ﮪ	ﮫ	ﮬ	ﮭ	ﻩ	ﻪ	ﻫ	ﻬ	ﾷ	𝐨	𝑜	𝒐	𝓸	𝔬	𝕠	𝖔	𝗈	𝗼	𝘰	𝙤	𝚘	𝛐	𝛔	𝜊	𝜎	𝝄	𝝈	𝝾	𝞂	𝞸	𝞼
 	(‎ o ‎)	006F	 LATIN SMALL LETTER O
@@ -4769,6 +4869,10 @@
 	(‎ oe ‎)	006F 0065	 LATIN SMALL LETTER O, LATIN SMALL LETTER E
 ←	(‎ œ ‎)	0153	 LATIN SMALL LIGATURE OE
 
+#	oi	𝽞
+	(‎ oi ‎)	006F 0069	 LATIN SMALL LETTER O, LATIN SMALL LETTER I
+←	(‎ 𝽞 ‎)	1DF5E	 LATIN SMALL LETTER OI DIGRAPH
+
 #	oo	ᄋᄋ	ᆼᆼ	ꝏ	ᅇ	ᇮ	∞	ꚙ	ㆀ
 	(‎ oo ‎)	006F 006F	 LATIN SMALL LETTER O, LATIN SMALL LETTER O
 ←	(‎ ᄋᄋ ‎)	110B 110B	 HANGUL CHOSEONG IEUNG, HANGUL CHOSEONG IEUNG
@@ -4779,6 +4883,10 @@
 ←	(‎ ∞ ‎)	221E	 INFINITY	# →ꝏ→
 ←	(‎ ꚙ ‎)	A699	 CYRILLIC SMALL LETTER DOUBLE O
 ←	(‎ ㆀ ‎)	3180	 HANGUL LETTER SSANGIEUNG	# →ᅇ→→ᄋᄋ→
+
+#	ou	𝽟
+	(‎ ou ‎)	006F 0075	 LATIN SMALL LETTER O, LATIN SMALL LETTER U
+←	(‎ 𝽟 ‎)	1DF5F	 LATIN SMALL LETTER OU DIGRAPH
 
 #	oy	оу	ѹ
 	(‎ oy ‎)	006F 0079	 LATIN SMALL LETTER O, LATIN SMALL LETTER Y
@@ -4966,9 +5074,8 @@
 	(‎ oᴇ ‎)	006F 1D07	 LATIN SMALL LETTER O, LATIN LETTER SMALL CAPITAL E
 ←	(‎ ɶ ‎)	0276	 LATIN LETTER SMALL CAPITAL OE
 
-#	p	𖶧	þ	ƿ	ρ	р	ϸ	ⲣ	ⳏ	⍴	ｐ	ϱ	𝐩	𝑝	𝒑	𝓅	𝓹	𝔭	𝕡	𝖕	𝗉	𝗽	𝘱	𝙥	𝚙	𝛒	𝛠	𝜌	𝜚	𝝆	𝝔	𝞀	𝞎	𝞺	𝟈
+#	p	þ	ƿ	ρ	р	ϸ	ⲣ	ⳏ	⍴	ｐ	ϱ	𝐩	𝑝	𝒑	𝓅	𝓹	𝔭	𝕡	𝖕	𝗉	𝗽	𝘱	𝙥	𝚙	𝛒	𝛠	𝜌	𝜚	𝝆	𝝔	𝞀	𝞎	𝞺	𝟈
 	(‎ p ‎)	0070	 LATIN SMALL LETTER P
-←	(‎ 𖶧 ‎)	16DA7	 CHISOI DIGIT SEVEN	# →ρ→
 ←	(‎ þ ‎)	00FE	 LATIN SMALL LETTER THORN	# →ƿ→
 ←	(‎ ƿ ‎)	01BF	 LATIN LETTER WYNN
 ←	(‎ ρ ‎)	03C1	 GREEK SMALL LETTER RHO
@@ -5064,6 +5171,11 @@
 	(‎ q̔ ‎)	0071 0314	 LATIN SMALL LETTER Q, COMBINING REVERSED COMMA ABOVE
 ←	(‎ ʠ ‎)	02A0	 LATIN SMALL LETTER Q WITH HOOK
 
+#	q̦	q̡	𝼴
+	(‎ q̡ ‎)	0071 0321	 LATIN SMALL LETTER Q, COMBINING PALATALIZED HOOK BELOW
+←	(‎ q̦ ‎)	0071 0326	 LATIN SMALL LETTER Q, COMBINING COMMA BELOW
+←	(‎ 𝼴 ‎)	1DF34	 LATIN SMALL LETTER Q WITH PALATAL HOOK
+
 #	r	г	ᴦ	ⲅ	𖨙	ꭇ	ꭈ	ꮁ	ｒ	𝐫	𝑟	𝒓	𝓇	𝓻	𝔯	𝕣	𝖗	𝗋	𝗿	𝘳	𝙧	𝚛
 	(‎ r ‎)	0072	 LATIN SMALL LETTER R
 ←	(‎ г ‎)	0433	 CYRILLIC SMALL LETTER GHE
@@ -5103,9 +5215,19 @@
 ←	(‎ rad∕s ‎)	0072 0061 0064 2215 0073	 LATIN SMALL LETTER R, LATIN SMALL LETTER A, LATIN SMALL LETTER D, DIVISION SLASH, LATIN SMALL LETTER S
 ←	(‎ ㎮ ‎)	33AE	 SQUARE RAD OVER S	# →rad∕s→
 
+#	rn̵̦	ɱ̵	𝽌
+	(‎ rn̵̦ ‎)	0072 006E 0326 0335	 LATIN SMALL LETTER R, LATIN SMALL LETTER N, COMBINING COMMA BELOW, COMBINING SHORT STROKE OVERLAY
+←	(‎ ɱ̵ ‎)	0271 0335	 LATIN SMALL LETTER M WITH HOOK, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽌 ‎)	1DF4C	 LATIN SMALL LETTER BARRED M WITH HOOK	# →ɱ̵→
+
 #	r̨	ɽ
 	(‎ r̨ ‎)	0072 0328	 LATIN SMALL LETTER R, COMBINING OGONEK
 ←	(‎ ɽ ‎)	027D	 LATIN SMALL LETTER R WITH TAIL
+
+#	r̨̦	ɽ̡	𝼷
+	(‎ r̨̦ ‎)	0072 0328 0326	 LATIN SMALL LETTER R, COMBINING OGONEK, COMBINING COMMA BELOW
+←	(‎ ɽ̡ ‎)	027D 0321	 LATIN SMALL LETTER R WITH TAIL, COMBINING PALATALIZED HOOK BELOW
+←	(‎ 𝼷 ‎)	1DF37	 LATIN SMALL LETTER R WITH TAIL AND PALATAL HOOK	# →ɽ̡→
 
 #	r̩	ɼ
 	(‎ r̩ ‎)	0072 0329	 LATIN SMALL LETTER R, COMBINING VERTICAL LINE BELOW
@@ -5182,9 +5304,20 @@
 ←	(‎ 𝙩 ‎)	1D669	 MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL T
 ←	(‎ 𝚝 ‎)	1D69D	 MATHEMATICAL MONOSPACE SMALL T
 
+#	t𞅀̵	tO̵	t𖺀	tθ	𝼤
+	(‎ tO̵ ‎)	0074 004F 0335	 LATIN SMALL LETTER T, LATIN CAPITAL LETTER O, COMBINING SHORT STROKE OVERLAY
+←	(‎ t𞅀̵ ‎)	0074 1E140 0335	 LATIN SMALL LETTER T, NYIAKENG PUACHUE HMONG DIGIT ZERO, COMBINING SHORT STROKE OVERLAY	# →tθ→
+←	(‎ t𖺀 ‎)	0074 16E80	 LATIN SMALL LETTER T, MEDEFAIDRIN DIGIT ZERO	# →tθ→
+←	(‎ tθ ‎)	0074 03B8	 LATIN SMALL LETTER T, GREEK SMALL LETTER THETA
+←	(‎ 𝼤 ‎)	1DF24	 LATIN SMALL LETTER T-THETA DIGRAPH	# →tθ→
+
 #	tf	ꝷ
 	(‎ tf ‎)	0074 0066	 LATIN SMALL LETTER T, LATIN SMALL LETTER F
 ←	(‎ ꝷ ‎)	A777	 LATIN SMALL LETTER TUM
+
+#	th	𝽤
+	(‎ th ‎)	0074 0068	 LATIN SMALL LETTER T, LATIN SMALL LETTER H
+←	(‎ 𝽤 ‎)	1DF64	 LATIN SMALL LETTER REVERSED T-H DIGRAPH
 
 #	ts	ʦ
 	(‎ ts ‎)	0074 0073	 LATIN SMALL LETTER T, LATIN SMALL LETTER S
@@ -5198,9 +5331,17 @@
 	(‎ tɕ ‎)	0074 0255	 LATIN SMALL LETTER T, LATIN SMALL LETTER C WITH CURL
 ←	(‎ ʨ ‎)	02A8	 LATIN SMALL LETTER TC DIGRAPH WITH CURL
 
+#	tɬ	𝼢
+	(‎ tɬ ‎)	0074 026C	 LATIN SMALL LETTER T, LATIN SMALL LETTER L WITH BELT
+←	(‎ 𝼢 ‎)	1DF22	 LATIN SMALL LETTER TL DIGRAPH WITH BELT
+
 #	tʃ	ʧ
 	(‎ tʃ ‎)	0074 0283	 LATIN SMALL LETTER T, LATIN SMALL LETTER ESH
 ←	(‎ ʧ ‎)	02A7	 LATIN SMALL LETTER TESH DIGRAPH
+
+#	tʆ	𝼬
+	(‎ tʆ ‎)	0074 0286	 LATIN SMALL LETTER T, LATIN SMALL LETTER ESH WITH CURL
+←	(‎ 𝼬 ‎)	1DF2C	 LATIN SMALL LETTER TESH DIGRAPH WITH CURL
 
 #	t̔	ƭ
 	(‎ t̔ ‎)	0074 0314	 LATIN SMALL LETTER T, COMBINING REVERSED COMMA ABOVE
@@ -5219,6 +5360,14 @@
 #	t̵	ŧ
 	(‎ t̵ ‎)	0074 0335	 LATIN SMALL LETTER T, COMBINING SHORT STROKE OVERLAY
 ←	(‎ ŧ ‎)	0167	 LATIN SMALL LETTER T WITH STROKE
+
+#	tᶊ	𝼸
+	(‎ tᶊ ‎)	0074 1D8A	 LATIN SMALL LETTER T, LATIN SMALL LETTER S WITH PALATAL HOOK
+←	(‎ 𝼸 ‎)	1DF38	 LATIN SMALL LETTER TS DIGRAPH WITH PALATAL HOOK
+
+#	tꞎ	𝼣
+	(‎ tꞎ ‎)	0074 A78E	 LATIN SMALL LETTER T, LATIN SMALL LETTER L WITH RETROFLEX HOOK AND BELT
+←	(‎ 𝼣 ‎)	1DF23	 LATIN SMALL LETTER TL DIGRAPH WITH RETROFLEX HOOK AND BELT
 
 #	u	ʋ	ᴜ	υ	ս	ꞟ	ꭎ	ꭒ	𑣘	𐓶	ｕ	𝐮	𝑢	𝒖	𝓊	𝓾	𝔲	𝕦	𝖚	𝗎	𝘂	𝘶	𝙪	𝚞	𝛖	𝜐	𝝊	𝞄	𝞾
 	(‎ u ‎)	0075	 LATIN SMALL LETTER U
@@ -5258,6 +5407,11 @@
 #	uo	ꭣ
 	(‎ uo ‎)	0075 006F	 LATIN SMALL LETTER U, LATIN SMALL LETTER O
 ←	(‎ ꭣ ‎)	AB63	 LATIN SMALL LETTER UO
+
+#	u̦	ʋ̡	𝼹
+	(‎ u̦ ‎)	0075 0326	 LATIN SMALL LETTER U, COMBINING COMMA BELOW
+←	(‎ ʋ̡ ‎)	028B 0321	 LATIN SMALL LETTER V WITH HOOK, COMBINING PALATALIZED HOOK BELOW
+←	(‎ 𝼹 ‎)	1DF39	 LATIN SMALL LETTER V WITH HOOK AND PALATAL HOOK	# →ʋ̡→
 
 #	u̩	џ
 	(‎ u̩ ‎)	0075 0329	 LATIN SMALL LETTER U, COMBINING VERTICAL LINE BELOW
@@ -5313,8 +5467,13 @@
 	(‎ viii ‎)	0076 0069 0069 0069	 LATIN SMALL LETTER V, LATIN SMALL LETTER I, LATIN SMALL LETTER I, LATIN SMALL LETTER I
 ←	(‎ ⅷ ‎)	2177	 SMALL ROMAN NUMERAL EIGHT
 
-#	w	ɯ	ᴡ	ꟺ	ш	ա	ѡ	ԝ	ⲽ	⧢	ꮃ	ꮤ	𑜊	𑜎	𑜏	ｗ	𝐰	𝑤	𝒘	𝓌	𝔀	𝔴	𝕨	𝖜	𝗐	𝘄	𝘸	𝙬	𝚠
+#	v̵	𝽒
+	(‎ v̵ ‎)	0076 0335	 LATIN SMALL LETTER V, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽒 ‎)	1DF52	 LATIN SMALL LETTER BARRED V
+
+#	w	𝽽	ɯ	ᴡ	ꟺ	ш	ա	ѡ	ԝ	ⲽ	⧢	ꮃ	ꮤ	𑜊	𑜎	𑜏	ｗ	𝐰	𝑤	𝒘	𝓌	𝔀	𝔴	𝕨	𝖜	𝗐	𝘄	𝘸	𝙬	𝚠
 	(‎ w ‎)	0077	 LATIN SMALL LETTER W
+←	(‎ 𝽽 ‎)	1DF7D	 LATIN SMALL LETTER U WITH NOTCH AT BOTTOM	# →ɯ→
 ←	(‎ ɯ ‎)	026F	 LATIN SMALL LETTER TURNED M
 ←	(‎ ᴡ ‎)	1D21	 LATIN LETTER SMALL CAPITAL W
 ←	(‎ ꟺ ‎)	A7FA	 LATIN LETTER SMALL CAPITAL TURNED M	# →ш→
@@ -5344,6 +5503,10 @@
 ←	(‎ 𝙬 ‎)	1D66C	 MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL W
 ←	(‎ 𝚠 ‎)	1D6A0	 MATHEMATICAL MONOSPACE SMALL W
 
+#	wh	𝽥
+	(‎ wh ‎)	0077 0068	 LATIN SMALL LETTER W, LATIN SMALL LETTER H
+←	(‎ 𝽥 ‎)	1DF65	 LATIN SMALL LETTER WH DIGRAPH
+
 #	ẇ	𑓅
 	(‎ ẇ ‎)	0077 0307	 LATIN SMALL LETTER W, COMBINING DOT ABOVE
 ←	(‎ 𑓅 ‎)	114C5	 TIRHUTA GVANG
@@ -5352,6 +5515,10 @@
 	(‎ w̡ ‎)	0077 0321	 LATIN SMALL LETTER W, COMBINING PALATALIZED HOOK BELOW
 ←	(‎ w̦ ‎)	0077 0326	 LATIN SMALL LETTER W, COMBINING COMMA BELOW
 ←	(‎ ꝡ ‎)	A761	 LATIN SMALL LETTER VY
+
+#	w̵	𝼿
+	(‎ w̵ ‎)	0077 0335	 LATIN SMALL LETTER W, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝼿 ‎)	1DF3F	 LATIN SMALL LETTER BARRED W
 
 #	w҆҇	ш҆҇	ѡ҆҇	w҃	ш҃	ѡ҃	ѽ
 	(‎ w҃ ‎)	0077 0483	 LATIN SMALL LETTER W, COMBINING CYRILLIC TITLO
@@ -5443,10 +5610,17 @@
 	(‎ y̔ ‎)	0079 0314	 LATIN SMALL LETTER Y, COMBINING REVERSED COMMA ABOVE
 ←	(‎ ƴ ‎)	01B4	 LATIN SMALL LETTER Y WITH HOOK
 
-#	y̵	у̵	ү̵	ɏ	ұ
+#	y̦	ɣ̡	ɣ̦	𝼱
+	(‎ y̦ ‎)	0079 0326	 LATIN SMALL LETTER Y, COMBINING COMMA BELOW
+←	(‎ ɣ̡ ‎)	0263 0321	 LATIN SMALL LETTER GAMMA, COMBINING PALATALIZED HOOK BELOW
+←	(‎ ɣ̦ ‎)	0263 0326	 LATIN SMALL LETTER GAMMA, COMBINING COMMA BELOW	# →ɣ̡→
+←	(‎ 𝼱 ‎)	1DF31	 LATIN SMALL LETTER GAMMA WITH PALATAL HOOK	# →ɣ̡→
+
+#	y̵	у̵	ү̵	𝽕	ɏ	ұ
 	(‎ y̵ ‎)	0079 0335	 LATIN SMALL LETTER Y, COMBINING SHORT STROKE OVERLAY
 ←	(‎ у̵ ‎)	0443 0335	 CYRILLIC SMALL LETTER U, COMBINING SHORT STROKE OVERLAY	# →ү̵→
 ←	(‎ ү̵ ‎)	04AF 0335	 CYRILLIC SMALL LETTER STRAIGHT U, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽕 ‎)	1DF55	 LATIN SMALL LETTER Y WITH LOW STROKE	# →ɏ→
 ←	(‎ ɏ ‎)	024F	 LATIN SMALL LETTER Y WITH STROKE
 ←	(‎ ұ ‎)	04B1	 CYRILLIC SMALL LETTER STRAIGHT U WITH STROKE	# →ү̵→
 
@@ -5532,8 +5706,9 @@
 ←	(‎ ₤ ‎)	20A4	 LIRA SIGN
 ←	(‎ ￡ ‎)	FFE1	 FULLWIDTH POUND SIGN
 
-#	¦	￤
+#	₏	¦	￤
 	(‎ ¦ ‎)	00A6	 BROKEN BAR
+←	(‎ ₏ ‎)	208F	 MODIFIER LETTER HIGH AND LOW VERTICAL LINE
 ←	(‎ ￤ ‎)	FFE4	 FULLWIDTH BROKEN BAR
 
 #	©	Ⓒ	🄫
@@ -5643,10 +5818,11 @@
 	(‎ ¶ ‎)	00B6	 PILCROW SIGN
 ←	(‎ ⸿ ‎)	2E3F	 CAPITULUM
 
-#	·	੶	𑚹	・	ˑ	ᐧ	‧	࠰	᛫	•	∙	⋅	⸱	𐄁	𐤟	𑇇	𑅴	𑗄	ꞏ	･
+#	·	੶	𑚹	𒕢	・	ˑ	ᐧ	‧	࠰	᛫	•	∙	⋅	⸱	𐄁	𐤟	𑇇	𑅴	𑗄	ꞏ	･
 	(‎ · ‎)	00B7	 MIDDLE DOT
 ←	(‎ ੶ ‎)	0A76	 GURMUKHI ABBREVIATION SIGN
 ←	(‎ 𑚹 ‎)	116B9	 TAKRI ABBREVIATION SIGN	# →੶→
+←	(‎ 𒕢 ‎)	12562	 CUNEIFORM NUMERIC SIGN ONE N14	# →•→
 ←	(‎ ・ ‎)	30FB	 KATAKANA MIDDLE DOT	# →•→
 ←	(‎ ˑ ‎)	02D1	 MODIFIER LETTER HALF TRIANGULAR COLON
 ←	(‎ ᐧ ‎)	1427	 CANADIAN SYLLABICS FINAL MIDDLE DOT
@@ -5703,27 +5879,26 @@
 ←	(‎ ᐧᒪ ‎)	1427 14AA	 CANADIAN SYLLABICS FINAL MIDDLE DOT, CANADIAN SYLLABICS MA	# →ᒶ→→ᐧL→
 ←	(‎ ᒶ ‎)	14B6	 CANADIAN SYLLABICS MWA	# →ᐧL→
 
-#	·P	·Ꮲ	·ᑭ	ˑᑭ	ᐧᑭ	ᑶ
+#	·P	·𖶧	·ᑭ	ˑᑭ	ᐧᑭ	ᑶ
 	(‎ ·P ‎)	00B7 0050	 MIDDLE DOT, LATIN CAPITAL LETTER P
-←	(‎ ·Ꮲ ‎)	00B7 13E2	 MIDDLE DOT, CHEROKEE LETTER TLV	# →ᐧᑭ→
+←	(‎ ·𖶧 ‎)	00B7 16DA7	 MIDDLE DOT, CHISOI DIGIT SEVEN	# →ᐧᑭ→
 ←	(‎ ·ᑭ ‎)	00B7 146D	 MIDDLE DOT, CANADIAN SYLLABICS KI	# →ˑᑭ→→ᐧᑭ→
 ←	(‎ ˑᑭ ‎)	02D1 146D	 MODIFIER LETTER HALF TRIANGULAR COLON, CANADIAN SYLLABICS KI	# →ᐧᑭ→
 ←	(‎ ᐧᑭ ‎)	1427 146D	 CANADIAN SYLLABICS FINAL MIDDLE DOT, CANADIAN SYLLABICS KI
 ←	(‎ ᑶ ‎)	1476	 CANADIAN SYLLABICS KWI	# →ᐧᑭ→
 
-#	·U	·𖶨	·ᑌ	ˑᑌ	ᐧᑌ	ᑗ
+#	·U	·𖶍	·ᑌ	ˑᑌ	ᐧᑌ	ᑗ
 	(‎ ·U ‎)	00B7 0055	 MIDDLE DOT, LATIN CAPITAL LETTER U
-←	(‎ ·𖶨 ‎)	00B7 16DA8	 MIDDLE DOT, CHISOI DIGIT EIGHT	# →·ᑌ→
+←	(‎ ·𖶍 ‎)	00B7 16D8D	 MIDDLE DOT, CHISOI LETTER HA	# →·ᑌ→
 ←	(‎ ·ᑌ ‎)	00B7 144C	 MIDDLE DOT, CANADIAN SYLLABICS TE
 ←	(‎ ˑᑌ ‎)	02D1 144C	 MODIFIER LETTER HALF TRIANGULAR COLON, CANADIAN SYLLABICS TE	# →ᐧᑌ→→·ᑌ→
 ←	(‎ ᐧᑌ ‎)	1427 144C	 CANADIAN SYLLABICS FINAL MIDDLE DOT, CANADIAN SYLLABICS TE	# →·ᑌ→
 ←	(‎ ᑗ ‎)	1457	 CANADIAN SYLLABICS TWE	# →ᐧᑌ→→·ᑌ→
 
-#	·V	·𞅅	·ᐯ	ˑᐯ	ᐧᐯ	ᐺ
+#	·V	·𞅅	ˑ𜻼	ᐧᐯ	ᐺ
 	(‎ ·V ‎)	00B7 0056	 MIDDLE DOT, LATIN CAPITAL LETTER V
 ←	(‎ ·𞅅 ‎)	00B7 1E145	 MIDDLE DOT, NYIAKENG PUACHUE HMONG DIGIT FIVE	# →ᐧᐯ→
-←	(‎ ·ᐯ ‎)	00B7 142F	 MIDDLE DOT, CANADIAN SYLLABICS PE	# →ˑᐯ→→ᐧᐯ→
-←	(‎ ˑᐯ ‎)	02D1 142F	 MODIFIER LETTER HALF TRIANGULAR COLON, CANADIAN SYLLABICS PE	# →ᐧᐯ→
+←	(‎ ˑ𜻼 ‎)	02D1 1CEFC	 MODIFIER LETTER HALF TRIANGULAR COLON, ANGLE OPENING UP	# →ᐧᐯ→
 ←	(‎ ᐧᐯ ‎)	1427 142F	 CANADIAN SYLLABICS FINAL MIDDLE DOT, CANADIAN SYLLABICS PE
 ←	(‎ ᐺ ‎)	143A	 CANADIAN SYLLABICS PWE	# →ᐧᐯ→
 
@@ -6265,10 +6440,22 @@
 ←	(‎ 𝝱 ‎)	1D771	 MATHEMATICAL SANS-SERIF BOLD SMALL BETA	# →β→
 ←	(‎ 𝞫 ‎)	1D7AB	 MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL BETA	# →β→
 
+#	ꟗ̦	ß̦	β̦	β̡	𝼻
+	(‎ ß̦ ‎)	00DF 0326	 LATIN SMALL LETTER SHARP S, COMBINING COMMA BELOW
+←	(‎ ꟗ̦ ‎)	A7D7 0326	 LATIN SMALL LETTER MIDDLE SCOTS S, COMBINING COMMA BELOW	# →β̡→
+←	(‎ β̦ ‎)	03B2 0326	 GREEK SMALL LETTER BETA, COMBINING COMMA BELOW	# →β̡→
+←	(‎ β̡ ‎)	03B2 0321	 GREEK SMALL LETTER BETA, COMBINING PALATALIZED HOOK BELOW
+←	(‎ 𝼻 ‎)	1DF3B	 LATIN SMALL LETTER BETA WITH PALATAL HOOK	# →β̡→
+
 #	∂̵	ð	𞣍
 	(‎ ð ‎)	00F0	 LATIN SMALL LETTER ETH
 ←	(‎ ∂̵ ‎)	2202 0335	 PARTIAL DIFFERENTIAL, COMBINING SHORT STROKE OVERLAY
 ←	(‎ 𞣍 ‎)	1E8CD	 MENDE KIKAKUI DIGIT SEVEN
+
+#	∂̵̦	ð̡	𝼯
+	(‎ ð̡ ‎)	00F0 0321	 LATIN SMALL LETTER ETH, COMBINING PALATALIZED HOOK BELOW
+←	(‎ ∂̵̦ ‎)	2202 0335 0326	 PARTIAL DIFFERENTIAL, COMBINING SHORT STROKE OVERLAY, COMBINING COMMA BELOW
+←	(‎ 𝼯 ‎)	1DF2F	 LATIN SMALL LETTER ETH WITH PALATAL HOOK
 
 #	÷	፥	➗
 	(‎ ÷ ‎)	00F7	 DIVISION SIGN
@@ -6497,13 +6684,18 @@
 	(‎ ɔe ‎)	0254 0065	 LATIN SMALL LETTER OPEN O, LATIN SMALL LETTER E
 ←	(‎ ꭢ ‎)	AB62	 LATIN SMALL LETTER OPEN OE
 
+#	ɔ̵	𝽂
+	(‎ ɔ̵ ‎)	0254 0335	 LATIN SMALL LETTER OPEN O, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽂 ‎)	1DF42	 LATIN SMALL LETTER BARRED OPEN O
+
 #	ɔ̸	ꬿ
 	(‎ ɔ̸ ‎)	0254 0338	 LATIN SMALL LETTER OPEN O, COMBINING LONG SOLIDUS OVERLAY
 ←	(‎ ꬿ ‎)	AB3F	 LATIN SMALL LETTER OPEN O WITH STROKE
 
-#	ꞓ	ɛ	ε	є	ԑ	ⲉ	𐐩	⋴	𑣎	ꮛ	ϵ	𝛆	𝛜	𝜀	𝜖	𝜺	𝝐	𝝴	𝞊	𝞮	𝟄
+#	ꞓ	𝽭	ɛ	ε	є	ԑ	ⲉ	𐐩	⋴	𑣎	ꮛ	ϵ	𝛆	𝛜	𝜀	𝜖	𝜺	𝝐	𝝴	𝞊	𝞮	𝟄
 	(‎ ɛ ‎)	025B	 LATIN SMALL LETTER OPEN E
 ←	(‎ ꞓ ‎)	A793	 LATIN SMALL LETTER C WITH BAR	# →є→
+←	(‎ 𝽭 ‎)	1DF6D	 LATIN SMALL LETTER REVERSED SCRUPLE	# →ϵ→→ε→
 ←	(‎ ε ‎)	03B5	 GREEK SMALL LETTER EPSILON
 ←	(‎ є ‎)	0454	 CYRILLIC SMALL LETTER UKRAINIAN IE
 ←	(‎ ԑ ‎)	0511	 CYRILLIC SMALL LETTER REVERSED ZE
@@ -6523,6 +6715,11 @@
 ←	(‎ 𝞊 ‎)	1D78A	 MATHEMATICAL SANS-SERIF BOLD EPSILON SYMBOL	# →ε→
 ←	(‎ 𝞮 ‎)	1D7AE	 MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL EPSILON	# →ε→
 ←	(‎ 𝟄 ‎)	1D7C4	 MATHEMATICAL SANS-SERIF BOLD ITALIC EPSILON SYMBOL	# →ε→
+
+#	ɛ̵	ꞓ̵	𝽄
+	(‎ ɛ̵ ‎)	025B 0335	 LATIN SMALL LETTER OPEN E, COMBINING SHORT STROKE OVERLAY
+←	(‎ ꞓ̵ ‎)	A793 0335	 LATIN SMALL LETTER C WITH BAR, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽄 ‎)	1DF44	 LATIN SMALL LETTER BARRED OPEN E
 
 #	ɜ	ᴈ	з
 	(‎ ɜ ‎)	025C	 LATIN SMALL LETTER REVERSED OPEN E
@@ -6545,6 +6742,15 @@
 ←	(‎ ᏻ ‎)	13FB	 CHEROKEE SMALL LETTER YU
 ←	(‎ ꮐ ‎)	AB90	 CHEROKEE SMALL LETTER NAH
 
+#	ɢ̡	ɢ̦	𝼰
+	(‎ ɢ̡ ‎)	0262 0321	 LATIN LETTER SMALL CAPITAL G, COMBINING PALATALIZED HOOK BELOW
+←	(‎ ɢ̦ ‎)	0262 0326	 LATIN LETTER SMALL CAPITAL G, COMBINING COMMA BELOW
+←	(‎ 𝼰 ‎)	1DF30	 LATIN LETTER SMALL CAPITAL G WITH PALATAL HOOK
+
+#	ɥ̵	𝼾
+	(‎ ɥ̵ ‎)	0265 0335	 LATIN SMALL LETTER TURNED H, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝼾 ‎)	1DF3E	 LATIN SMALL LETTER BARRED TURNED H
+
 #	ɰ	պ	ሣ
 	(‎ ɰ ‎)	0270	 LATIN SMALL LETTER TURNED M WITH LONG LEG
 ←	(‎ պ ‎)	057A	 ARMENIAN SMALL LETTER PEH
@@ -6557,6 +6763,24 @@
 #	ɷ	𐐿
 	(‎ ɷ ‎)	0277	 LATIN SMALL LETTER CLOSED OMEGA
 ←	(‎ 𐐿 ‎)	1043F	 DESERET SMALL LETTER KAY
+
+#	ɷ̵	𝽓
+	(‎ ɷ̵ ‎)	0277 0335	 LATIN SMALL LETTER CLOSED OMEGA, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽓 ‎)	1DF53	 LATIN SMALL LETTER BARRED CLOSED OMEGA
+
+#	ɸ̡	ɸ̦	𝼳
+	(‎ ɸ̡ ‎)	0278 0321	 LATIN SMALL LETTER PHI, COMBINING PALATALIZED HOOK BELOW
+←	(‎ ɸ̦ ‎)	0278 0326	 LATIN SMALL LETTER PHI, COMBINING COMMA BELOW
+←	(‎ 𝼳 ‎)	1DF33	 LATIN SMALL LETTER PHI WITH PALATAL HOOK
+
+#	𝽰	ɹ
+	(‎ ɹ ‎)	0279	 LATIN SMALL LETTER TURNED R
+←	(‎ 𝽰 ‎)	1DF70	 LATIN SMALL LETTER I WITH PIGTAIL AT BOTTOM
+
+#	𝽰̵	ɹ̵	𝽐
+	(‎ ɹ̵ ‎)	0279 0335	 LATIN SMALL LETTER TURNED R, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽰̵ ‎)	1DF70 0335	 LATIN SMALL LETTER I WITH PIGTAIL AT BOTTOM, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽐 ‎)	1DF50	 LATIN SMALL LETTER TURNED R WITH STROKE
 
 #	ɾ̴	ᵳ
 	(‎ ɾ̴ ‎)	027E 0334	 LATIN SMALL LETTER R WITH FISHHOOK, COMBINING TILDE OVERLAY
@@ -6571,10 +6795,24 @@
 ←	(‎ ꭱ ‎)	AB71	 CHEROKEE SMALL LETTER E
 ←	(‎ ꮢ ‎)	ABA2	 CHEROKEE SMALL LETTER SV
 
+#	ʀ̡	ʀ̦	𝼵
+	(‎ ʀ̡ ‎)	0280 0321	 LATIN LETTER SMALL CAPITAL R, COMBINING PALATALIZED HOOK BELOW
+←	(‎ ʀ̦ ‎)	0280 0326	 LATIN LETTER SMALL CAPITAL R, COMBINING COMMA BELOW
+←	(‎ 𝼵 ‎)	1DF35	 LATIN LETTER SMALL CAPITAL R WITH PALATAL HOOK
+
+#	ʁ̡	ʁ̦	𝼶
+	(‎ ʁ̡ ‎)	0281 0321	 LATIN LETTER SMALL CAPITAL INVERTED R, COMBINING PALATALIZED HOOK BELOW
+←	(‎ ʁ̦ ‎)	0281 0326	 LATIN LETTER SMALL CAPITAL INVERTED R, COMBINING COMMA BELOW
+←	(‎ 𝼶 ‎)	1DF36	 LATIN LETTER SMALL CAPITAL INVERTED R WITH PALATAL HOOK
+
 #	ʃ	∫	ꭍ
 	(‎ ʃ ‎)	0283	 LATIN SMALL LETTER ESH
 ←	(‎ ∫ ‎)	222B	 INTEGRAL
 ←	(‎ ꭍ ‎)	AB4D	 LATIN SMALL LETTER BASELINE ESH
+
+#	ʃh	𝽢
+	(‎ ʃh ‎)	0283 0068	 LATIN SMALL LETTER ESH, LATIN SMALL LETTER H
+←	(‎ 𝽢 ‎)	1DF62	 LATIN SMALL LETTER ESH-H DIGRAPH
 
 #	ʃʃ	∫∫	∬
 	(‎ ʃʃ ‎)	0283 0283	 LATIN SMALL LETTER ESH, LATIN SMALL LETTER ESH
@@ -6590,6 +6828,10 @@
 	(‎ ʃʃʃʃ ‎)	0283 0283 0283 0283	 LATIN SMALL LETTER ESH, LATIN SMALL LETTER ESH, LATIN SMALL LETTER ESH, LATIN SMALL LETTER ESH
 ←	(‎ ∫∫∫∫ ‎)	222B 222B 222B 222B	 INTEGRAL, INTEGRAL, INTEGRAL, INTEGRAL
 ←	(‎ ⨌ ‎)	2A0C	 QUADRUPLE INTEGRAL OPERATOR	# →∫∫∫∫→
+
+#	ʈh	𝽣
+	(‎ ʈh ‎)	0288 0068	 LATIN SMALL LETTER T WITH RETROFLEX HOOK, LATIN SMALL LETTER H
+←	(‎ 𝽣 ‎)	1DF63	 LATIN SMALL LETTER STRETCHED T-H DIGRAPH
 
 #	ʊ̵	ᵿ
 	(‎ ʊ̵ ‎)	028A 0335	 LATIN SMALL LETTER UPSILON, COMBINING SHORT STROKE OVERLAY
@@ -6622,6 +6864,16 @@
 	(‎ ʕ ‎)	0295	 LATIN LETTER PHARYNGEAL VOICED FRICATIVE
 ←	(‎ ꟎ ‎)	A7CE	 LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE
 ←	(‎ ꟏ ‎)	A7CF	 LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIVE
+
+#	꟎̦	꟏̦	ʕ̡	𝼺
+	(‎ ʕ̡ ‎)	0295 0321	 LATIN LETTER PHARYNGEAL VOICED FRICATIVE, COMBINING PALATALIZED HOOK BELOW
+←	(‎ ꟎̦ ‎)	A7CE 0326	 LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE, COMBINING COMMA BELOW
+←	(‎ ꟏̦ ‎)	A7CF 0326	 LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIVE, COMBINING COMMA BELOW
+←	(‎ 𝼺 ‎)	1DF3A	 LATIN LETTER PHARYNGEAL VOICED FRICATIVE WITH PALATAL HOOK
+
+#	ʗh	𝽛
+	(‎ ʗh ‎)	0297 0068	 LATIN LETTER STRETCHED C, LATIN SMALL LETTER H
+←	(‎ 𝽛 ‎)	1DF5B	 LATIN SMALL LETTER STRETCHED C-H DIGRAPH
 
 #	ʘ	ⵙ	Ꙩ	⊙	☉	⨀	𐓃
 	(‎ ʘ ‎)	0298	 LATIN LETTER BILABIAL CLICK
@@ -6828,6 +7080,16 @@
 ←	(‎ ഁ ‎)	0D01	 MALAYALAM SIGN CANDRABINDU	# →ँ→→̐→
 ←	(‎ 𑒿 ‎)	114BF	 TIRHUTA SIGN CANDRABINDU	# →ঁ→→̐→
 
+#	̆̇́	َۨ	𐻳
+	(‎ ̆̇́ ‎)	0306 0307 0301	 COMBINING BREVE, COMBINING DOT ABOVE, COMBINING ACUTE ACCENT
+←	(‎ َۨ ‎)	06E8 064E	 ARABIC SMALL HIGH NOON, ARABIC FATHA
+←	(‎ 𐻳 ‎)	10EF3	 ARABIC SMALL HIGH NOON WITH FATHA	# →َۨ→
+
+#	̆̇̓	ُۨ	𐻵
+	(‎ ̆̇̓ ‎)	0306 0307 0313	 COMBINING BREVE, COMBINING DOT ABOVE, COMBINING COMMA ABOVE
+←	(‎ ُۨ ‎)	06E8 064F	 ARABIC SMALL HIGH NOON, ARABIC DAMMA
+←	(‎ 𐻵 ‎)	10EF5	 ARABIC SMALL HIGH NOON WITH DAMMA	# →ُۨ→
+
 #	̇	𐽈	𑠷	𞋬	୓	ं	ਂ	ં	்	͘	ֹ	ֺ	ׁ	ׂ	ׄ	۬	݀	݁	߭	࣪	፞	𑀁	𑂁	𑄁	𑆁	𑚫	𑋟	𑖽	𑘽
 	(‎ ̇ ‎)	0307	 COMBINING DOT ABOVE
 ←	(‎ 𐽈 ‎)	10F48	 SOGDIAN COMBINING DOT ABOVE
@@ -6880,7 +7142,7 @@
 ←	(‎ ࣸ ‎)	08F8	 ARABIC RIGHT ARROWHEAD ABOVE	# →ࣿ→→͗→
 ←	(‎ ࣿ ‎)	08FF	 ARABIC MARK SIDEWAYS NOON GHUNNA	# →͗→
 
-#	̊	ﾟ	ഀ	𑨸	𑪖	ఄ	𑶕	𞄳	ْ	ް	ํ	ໍ	ཾ	ံ	ំ	ͦ	֯	۟	ࠬ	ஂ	៓	ᩴ	ᮀ	ⷪ	〬	゚	ꠋ	᳸	𑓀	𑌀	𑑄	𑰽	𑲵	゜
+#	̊	ﾟ	ഀ	𑨸	𑪖	ఄ	𑶕	𞄳	𐻎	𑷰	𖶘	ْ	ް	ํ	ໍ	ཾ	ံ	ំ	ͦ	֯	۟	ࠬ	ஂ	៓	ᩴ	ᮀ	ⷪ	〬	゚	ꠋ	᳸	𑓀	𑌀	𑑄	𑰽	𑲵	゜
 	(‎ ̊ ‎)	030A	 COMBINING RING ABOVE
 ←	(‎ ﾟ ‎)	FF9F	 HALFWIDTH KATAKANA SEMI-VOICED SOUND MARK	# →゚→
 ←	(‎ ഀ ‎)	0D00	 MALAYALAM SIGN COMBINING ANUSVARA ABOVE
@@ -6889,6 +7151,9 @@
 ←	(‎ ఄ ‎)	0C04	 TELUGU SIGN COMBINING ANUSVARA ABOVE
 ←	(‎ 𑶕 ‎)	11D95	 GUNJALA GONDI SIGN ANUSVARA
 ←	(‎ 𞄳 ‎)	1E133	 NYIAKENG PUACHUE HMONG TONE-V
+←	(‎ 𐻎 ‎)	10ECE	 ARABIC SMALL CIRCLE ABOVE
+←	(‎ 𑷰 ‎)	11DF0	 BENGALI SIGN COMBINING ANUSVARA ABOVE
+←	(‎ 𖶘 ‎)	16D98	 CHISOI SIGN ANUSVARA
 ←	(‎ ْ ‎)	0652	 ARABIC SUKUN
 ←	(‎ ް ‎)	07B0	 THAANA SUKUN
 ←	(‎ ํ ‎)	0E4D	 THAI CHARACTER NIKHAHIT
@@ -6956,9 +7221,10 @@
 	(‎ ̖ ‎)	0316	 COMBINING GRAVE ACCENT BELOW
 ←	(‎ ᳭ ‎)	1CED	 VEDIC SIGN TIRYAK
 
-#	ِ	ި	̗	ؚ
+#	ِ	𝄧	ި	̗	ؚ
 	(‎ ̗ ‎)	0317	 COMBINING ACUTE ACCENT BELOW
 ←	(‎ ِ ‎)	0650	 ARABIC KASRA
+←	(‎ 𝄧 ‎)	1D127	 MUSICAL SYMBOL COMBINING STRESS
 ←	(‎ ި ‎)	07A8	 THAANA IBIFILI
 ←	(‎ ؚ ‎)	061A	 ARABIC SMALL KASRA	# →ِ→
 
@@ -7042,9 +7308,10 @@
 	(‎ ̭ ‎)	032D	 COMBINING CIRCUMFLEX ACCENT BELOW
 ←	(‎ ᳙ ‎)	1CD9	 VEDIC TONE YAJURVEDIC KATHAKA INDEPENDENT SVARITA SCHROEDER
 
-#	𑭢	̮	ॖ	ੁ	᳘
+#	𑭢	̮	𝄨	ॖ	ੁ	᳘
 	(‎ ̮ ‎)	032E	 COMBINING BREVE BELOW
 ←	(‎ 𑭢 ‎)	11B62	 SHARADA VOWEL SIGN UE	# →ॖ→
+←	(‎ 𝄨 ‎)	1D128	 MUSICAL SYMBOL COMBINING UNSTRESS
 ←	(‎ ॖ ‎)	0956	 DEVANAGARI VOWEL SIGN UE
 ←	(‎ ੁ ‎)	0A41	 GURMUKHI VOWEL SIGN U	# →ॖ→
 ←	(‎ ᳘ ‎)	1CD8	 VEDIC TONE CANDRA BELOW
@@ -7290,6 +7557,13 @@
 ←	(‎ ꞓ̲ ‎)	A793 0332	 LATIN SMALL LETTER C WITH BAR, COMBINING LOW LINE
 ←	(‎ ⍷ ‎)	2377	 APL FUNCTIONAL SYMBOL EPSILON UNDERBAR
 
+#	𝽭𝽭	ꞓꞓ	εε	ϵϵ	𝽜
+	(‎ εε ‎)	03B5 03B5	 GREEK SMALL LETTER EPSILON, GREEK SMALL LETTER EPSILON
+←	(‎ 𝽭𝽭 ‎)	1DF6D 1DF6D	 LATIN SMALL LETTER REVERSED SCRUPLE, LATIN SMALL LETTER REVERSED SCRUPLE	# →ϵϵ→
+←	(‎ ꞓꞓ ‎)	A793 A793	 LATIN SMALL LETTER C WITH BAR, LATIN SMALL LETTER C WITH BAR	# →ϵϵ→
+←	(‎ ϵϵ ‎)	03F5 03F5	 GREEK LUNATE EPSILON SYMBOL, GREEK LUNATE EPSILON SYMBOL
+←	(‎ 𝽜 ‎)	1DF5C	 LATIN SMALL LETTER LUNATE EE	# →ϵϵ→
+
 #	ζ	𝛇	𝜁	𝜻	𝝵	𝞯
 	(‎ ζ ‎)	03B6	 GREEK SMALL LETTER ZETA
 ←	(‎ 𝛇 ‎)	1D6C7	 MATHEMATICAL BOLD SMALL ZETA
@@ -7403,6 +7677,15 @@
 ←	(‎ 𝞆 ‎)	1D786	 MATHEMATICAL SANS-SERIF BOLD SMALL CHI
 ←	(‎ 𝟀 ‎)	1D7C0	 MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL CHI
 
+#	χ̦	χ̡	𝼽
+	(‎ χ̡ ‎)	03C7 0321	 GREEK SMALL LETTER CHI, COMBINING PALATALIZED HOOK BELOW
+←	(‎ χ̦ ‎)	03C7 0326	 GREEK SMALL LETTER CHI, COMBINING COMMA BELOW
+←	(‎ 𝼽 ‎)	1DF3D	 LATIN SMALL LETTER CHI WITH PALATAL HOOK
+
+#	χ̵	𝽔
+	(‎ χ̵ ‎)	03C7 0335	 GREEK SMALL LETTER CHI, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽔 ‎)	1DF54	 LATIN SMALL LETTER BARRED CHI
+
 #	ψ	ѱ	ⲯ	⍦	𐓹	𝛙	𝜓	𝝍	𝞇	𝟁
 	(‎ ψ ‎)	03C8	 GREEK SMALL LETTER PSI
 ←	(‎ ѱ ‎)	0471	 CYRILLIC SMALL LETTER PSI
@@ -7465,9 +7748,10 @@
 	(‎ Ͽ ‎)	03FF	 GREEK CAPITAL REVERSED DOTTED LUNATE SIGMA SYMBOL
 ←	(‎ Ꜿ ‎)	A73E	 LATIN CAPITAL LETTER REVERSED C WITH DOT
 
-#	Ꞓ	Є	Ⲉ	€
+#	Ꞓ	𝽬	Є	Ⲉ	€
 	(‎ Є ‎)	0404	 CYRILLIC CAPITAL LETTER UKRAINIAN IE
 ←	(‎ Ꞓ ‎)	A792	 LATIN CAPITAL LETTER C WITH BAR
+←	(‎ 𝽬 ‎)	1DF6C	 LATIN CAPITAL LETTER REVERSED SCRUPLE
 ←	(‎ Ⲉ ‎)	2C88	 COPTIC CAPITAL LETTER EIE
 ←	(‎ € ‎)	20AC	 EURO SIGN
 
@@ -7677,6 +7961,14 @@
 #	֚	֤
 	(‎ ֚ ‎)	059A	 HEBREW ACCENT YETIV
 ←	(‎ ֤ ‎)	05A4	 HEBREW ACCENT MAHAPAKH
+
+#	׈	ְ
+	(‎ ְ ‎)	05B0	 HEBREW POINT SHEVA
+←	(‎ ׈ ‎)	05C8	 HEBREW POINT SHEVA NA MUDGASH
+
+#	׉	ּ
+	(‎ ּ ‎)	05BC	 HEBREW POINT DAGESH OR MAPIQ
+←	(‎ ׉ ‎)	05C9	 HEBREW POINT DAGESH HAZAQ MUDGASH
 
 #	א	ℵ	ﬡ
 	(‎ א ‎)	05D0	 HEBREW LETTER ALEF
@@ -9778,10 +10070,15 @@
 	(‎ ٍ ‎)	064D	 ARABIC KASRATAN
 ←	(‎ ࣲ ‎)	08F2	 ARABIC OPEN KASRATAN
 
-#	ِِ	ިި	ީ
+#	𝄧𝄧	ِِ	ިި	ީ
 	(‎ ِِ ‎)	0650 0650	 ARABIC KASRA, ARABIC KASRA
+←	(‎ 𝄧𝄧 ‎)	1D127 1D127	 MUSICAL SYMBOL COMBINING STRESS, MUSICAL SYMBOL COMBINING STRESS	# →ިި→
 ←	(‎ ިި ‎)	07A8 07A8	 THAANA IBIFILI, THAANA IBIFILI
 ←	(‎ ީ ‎)	07A9	 THAANA EEBEEFILI	# →ިި→
+
+#	ِ𐻻	𐻴
+	(‎ ِ𐻻 ‎)	0650 10EFB	 ARABIC KASRA, ARABIC SMALL LOW NOON
+←	(‎ 𐻴 ‎)	10EF4	 ARABIC SMALL LOW NOON WITH FATHA
 
 #	𐴧	ّ
 	(‎ ّ ‎)	0651	 ARABIC SHADDA
@@ -9791,8 +10088,10 @@
 	(‎ ٕ ‎)	0655	 ARABIC HAMZA BELOW
 ←	(‎ ٟ ‎)	065F	 ARABIC WAVY HAMZA BELOW
 
-#	٢	۲	ꧏ
+#	٢	𖶅	𜻴	۲	ꧏ
 	(‎ ٢ ‎)	0662	 ARABIC-INDIC DIGIT TWO
+←	(‎ 𖶅 ‎)	16D85	 CHISOI LETTER TA
+←	(‎ 𜻴 ‎)	1CEF4	 LEIBNIZIAN FRACTION REDUCTION SIGN-1
 ←	(‎ ۲ ‎)	06F2	 EXTENDED ARABIC-INDIC DIGIT TWO
 ←	(‎ ꧏ ‎)	A9CF	 JAVANESE PANGRANGKEP
 
@@ -10092,6 +10391,12 @@
 	(‎ त्त ‎)	0924 094D 0924	 DEVANAGARI LETTER TA, DEVANAGARI SIGN VIRAMA, DEVANAGARI LETTER TA
 ←	(‎ ਜ ‎)	0A1C	 GURMUKHI LETTER JA
 
+#	द̱	द̠	द॒	𑬊
+	(‎ द̠ ‎)	0926 0320	 DEVANAGARI LETTER DA, COMBINING MINUS SIGN BELOW
+←	(‎ द̱ ‎)	0926 0331	 DEVANAGARI LETTER DA, COMBINING MACRON BELOW	# →द॒→
+←	(‎ द॒ ‎)	0926 0952	 DEVANAGARI LETTER DA, DEVANAGARI STRESS SIGN ANUDATTA
+←	(‎ 𑬊 ‎)	11B0A	 DEVANAGARI LETTER ALTERNATE DDDA	# →द॒→
+
 #	प	𑧂	ਧ
 	(‎ प ‎)	092A	 DEVANAGARI LETTER PA
 ←	(‎ 𑧂 ‎)	119C2	 NANDINAGARI LETTER PA
@@ -10189,11 +10494,14 @@
 ←	(‎ 𑧛 ‎)	119DB	 NANDINAGARI VOWEL SIGN AI
 ←	(‎ ੈ ‎)	0A48	 GURMUKHI VOWEL SIGN AI
 
-#	्	𑠹	੍	્
+#	्	্	𑠹	𖶝	੍	્	𑓂
 	(‎ ् ‎)	094D	 DEVANAGARI SIGN VIRAMA
+←	(‎ ্ ‎)	09CD	 BENGALI SIGN VIRAMA	# →𖶝→
 ←	(‎ 𑠹 ‎)	11839	 DOGRA SIGN VIRAMA
+←	(‎ 𖶝 ‎)	16D9D	 CHISOI SIGN SISO
 ←	(‎ ੍ ‎)	0A4D	 GURMUKHI SIGN VIRAMA
 ←	(‎ ્ ‎)	0ACD	 GUJARATI SIGN VIRAMA
+←	(‎ 𑓂 ‎)	114C2	 TIRHUTA SIGN VIRAMA	# →্→→𖶝→
 
 #	२	ર	૨
 	(‎ २ ‎)	0968	 DEVANAGARI DIGIT TWO
@@ -10368,11 +10676,6 @@
 	(‎ ে ‎)	09C7	 BENGALI VOWEL SIGN E
 ←	(‎ 𑒹 ‎)	114B9	 TIRHUTA VOWEL SIGN E
 
-#	্	𖶝	𑓂
-	(‎ ্ ‎)	09CD	 BENGALI SIGN VIRAMA
-←	(‎ 𖶝 ‎)	16D9D	 CHISOI SIGN SISO
-←	(‎ 𑓂 ‎)	114C2	 TIRHUTA SIGN VIRAMA
-
 #	ৗ	𑒽
 	(‎ ৗ ‎)	09D7	 BENGALI AU LENGTH MARK
 ←	(‎ 𑒽 ‎)	114BD	 TIRHUTA VOWEL SIGN SHORT O
@@ -10407,9 +10710,10 @@
 	(‎ ਅੌ ‎)	0A05 0A4C	 GURMUKHI LETTER A, GURMUKHI VOWEL SIGN AU
 ←	(‎ ਔ ‎)	0A14	 GURMUKHI LETTER AU
 
-#	ੳ𑭢	ੳੁ	ਉ
+#	ੳ𑭢	ੳ𝄨	ੳੁ	ਉ
 	(‎ ਉ ‎)	0A09	 GURMUKHI LETTER U
 ←	(‎ ੳ𑭢 ‎)	0A73 11B62	 GURMUKHI URA, SHARADA VOWEL SIGN UE	# →ੳੁ→
+←	(‎ ੳ𝄨 ‎)	0A73 1D128	 GURMUKHI URA, MUSICAL SYMBOL COMBINING UNSTRESS	# →ੳੁ→
 ←	(‎ ੳੁ ‎)	0A73 0A41	 GURMUKHI URA, GURMUKHI VOWEL SIGN U
 
 #	ੳ𑭢𑭢	ੳੂ	ਊ
@@ -10696,9 +11000,10 @@
 	(‎ ట ‎)	0C1F	 TELUGU LETTER TTA
 ←	(‎ ಟ ‎)	0C9F	 KANNADA LETTER TTA
 
-#	రּ	ఠ
+#	రּ	ర׉	ఠ
 	(‎ ఠ ‎)	0C20	 TELUGU LETTER TTHA
 ←	(‎ రּ ‎)	0C30 05BC	 TELUGU LETTER RA, HEBREW POINT DAGESH OR MAPIQ
+←	(‎ ర׉ ‎)	0C30 05C9	 TELUGU LETTER RA, HEBREW POINT DAGESH HAZAQ MUDGASH	# →రּ→
 
 #	డ̣	ఢ
 	(‎ డ̣ ‎)	0C21 0323	 TELUGU LETTER DDA, COMBINING DOT BELOW
@@ -10708,9 +11013,10 @@
 	(‎ ణ ‎)	0C23	 TELUGU LETTER NNA
 ←	(‎ ಣ ‎)	0CA3	 KANNADA LETTER NNA
 
-#	ధּ	థ
+#	ధּ	ధ׉	థ
 	(‎ థ ‎)	0C25	 TELUGU LETTER THA
 ←	(‎ ధּ ‎)	0C27 05BC	 TELUGU LETTER DHA, HEBREW POINT DAGESH OR MAPIQ
+←	(‎ ధ׉ ‎)	0C27 05C9	 TELUGU LETTER DHA, HEBREW POINT DAGESH HAZAQ MUDGASH	# →ధּ→
 
 #	ద	ದ
 	(‎ ద ‎)	0C26	 TELUGU LETTER DA
@@ -13003,9 +13309,10 @@
 ←	(‎ ᒫᐧ ‎)	14AB 1427	 CANADIAN SYLLABICS MAA, CANADIAN SYLLABICS FINAL MIDDLE DOT
 ←	(‎ ᒹ ‎)	14B9	 CANADIAN SYLLABICS WEST-CREE MWAA	# →ᒫᐧ→
 
-#	ᒼ	ꟲ
+#	ᒼ	ꟲ	𐞽
 	(‎ ᒼ ‎)	14BC	 CANADIAN SYLLABICS WEST-CREE M
 ←	(‎ ꟲ ‎)	A7F2	 MODIFIER LETTER CAPITAL C
+←	(‎ 𐞽 ‎)	107BD	 MODIFIER LETTER STRETCHED C	# →ꟲ→
 
 #	ᓀ·	ᓀˑ	ᓀᐧ	ᓊ
 	(‎ ᓀ· ‎)	14C0 00B7	 CANADIAN SYLLABICS NE, MIDDLE DOT
@@ -13261,9 +13568,9 @@
 ←	(‎ ᕌᐧ ‎)	154C 1427	 CANADIAN SYLLABICS RAA, CANADIAN SYLLABICS FINAL MIDDLE DOT
 ←	(‎ ᕏ ‎)	154F	 CANADIAN SYLLABICS WEST-CREE RWAA	# →ᕌᐧ→
 
-#	ᕐP	ᕐᏢ	ᕐᑭ	ᕿ
+#	ᕐP	ᕐ𖶧	ᕐᑭ	ᕿ
 	(‎ ᕐP ‎)	1550 0050	 CANADIAN SYLLABICS R, LATIN CAPITAL LETTER P
-←	(‎ ᕐᏢ ‎)	1550 13E2	 CANADIAN SYLLABICS R, CHEROKEE LETTER TLV	# →ᕐᑭ→
+←	(‎ ᕐ𖶧 ‎)	1550 16DA7	 CANADIAN SYLLABICS R, CHISOI DIGIT SEVEN	# →ᕐᑭ→
 ←	(‎ ᕐᑭ ‎)	1550 146D	 CANADIAN SYLLABICS R, CANADIAN SYLLABICS KI
 ←	(‎ ᕿ ‎)	157F	 CANADIAN SYLLABICS QI	# →ᕐᑭ→
 
@@ -13674,6 +13981,10 @@
 	(‎ ᴇ ‎)	1D07	 LATIN LETTER SMALL CAPITAL E
 ←	(‎ ꭼ ‎)	AB7C	 CHEROKEE SMALL LETTER GV
 
+#	ᴇ̵	𝽃
+	(‎ ᴇ̵ ‎)	1D07 0335	 LATIN LETTER SMALL CAPITAL E, COMBINING SHORT STROKE OVERLAY
+←	(‎ 𝽃 ‎)	1DF43	 LATIN LETTER SMALL CAPITAL BARRED E
+
 #	ᴊ	ꭻ
 	(‎ ᴊ ‎)	1D0A	 LATIN LETTER SMALL CAPITAL J
 ←	(‎ ꭻ ‎)	AB7B	 CHEROKEE SMALL LETTER GU
@@ -13736,6 +14047,14 @@
 #	𞁨	ᵢ
 	(‎ ᵢ ‎)	1D62	 LATIN SUBSCRIPT SMALL LETTER I
 ←	(‎ 𞁨 ‎)	1E068	 CYRILLIC SUBSCRIPT SMALL LETTER BYELORUSSIAN-UKRAINIAN I
+
+#	𝽩	ᶏ
+	(‎ ᶏ ‎)	1D8F	 LATIN SMALL LETTER A WITH RETROFLEX HOOK
+←	(‎ 𝽩 ‎)	1DF69	 LATIN SMALL LETTER PHONOTYPIC A WITH SWASH
+
+#	𝽻	ᶙ
+	(‎ ᶙ ‎)	1D99	 LATIN SMALL LETTER U WITH RETROFLEX HOOK
+←	(‎ 𝽻 ‎)	1DF7B	 LATIN SMALL LETTER U WITH HOOK TAIL
 
 #	𞀿	ᶜ
 	(‎ ᶜ ‎)	1D9C	 MODIFIER LETTER SMALL C
@@ -13840,6 +14159,11 @@
 #	⅄	𝈛
 	(‎ ⅄ ‎)	2144	 TURNED SANS-SERIF CAPITAL Y
 ←	(‎ 𝈛 ‎)	1D21B	 GREEK VOCAL NOTATION SYMBOL-53
+
+#	꭬	𖶀	↊
+	(‎ ↊ ‎)	218A	 TURNED DIGIT TWO
+←	(‎ ꭬ ‎)	AB6C	 LATIN CAPITAL LETTER SCRIPT R
+←	(‎ 𖶀 ‎)	16D80	 CHISOI LETTER A
 
 #	←	￩
 	(‎ ← ‎)	2190	 LEFTWARDS ARROW
@@ -13985,8 +14309,9 @@
 	(‎ ⊐ ‎)	2290	 SQUARE ORIGINAL OF
 ←	(‎ 𝈹 ‎)	1D239	 GREEK INSTRUMENTAL NOTATION SYMBOL-45
 
-#	⊓	⨅
+#	⊓	𝬀	⨅
 	(‎ ⊓ ‎)	2293	 SQUARE CAP
+←	(‎ 𝬀 ‎)	1DB00	 LEIBNIZIAN EQUALS SIGN
 ←	(‎ ⨅ ‎)	2A05	 N-ARY SQUARE INTERSECTION OPERATOR
 
 #	⊔	⨆
@@ -14231,6 +14556,10 @@
 ←	(‎ 🌒 ‎)	1F312	 WAXING CRESCENT MOON SYMBOL
 ←	(‎ 🌙 ‎)	1F319	 CRESCENT MOON
 
+#	𝇷	♃
+	(‎ ♃ ‎)	2643	 JUPITER
+←	(‎ 𝇷 ‎)	1D1F7	 MUSICAL SYMBOL DIGIT TWO WITH STROKE
+
 #	🩕	♗
 	(‎ ♗ ‎)	2657	 WHITE CHESS BISHOP
 ←	(‎ 🩕 ‎)	1FA55	 WHITE CHESS ALFIL
@@ -14246,6 +14575,10 @@
 #	𝅘𝅥𝅮	♪
 	(‎ ♪ ‎)	266A	 EIGHTH NOTE
 ←	(‎ 𝅘𝅥𝅮 ‎)	1D158 1D165 1D16E	 MUSICAL SYMBOL NOTEHEAD BLACK, MUSICAL SYMBOL COMBINING STEM, MUSICAL SYMBOL COMBINING FLAG-1
+
+#	♭♭♭	𝉠
+	(‎ ♭♭♭ ‎)	266D 266D 266D	 MUSIC FLAT SIGN, MUSIC FLAT SIGN, MUSIC FLAT SIGN
+←	(‎ 𝉠 ‎)	1D260	 MUSICAL SYMBOL TRIPLE FLAT
 
 #	❬	く	ㄑ	𡿨	⟨	〈	㇛
 	(‎ ❬ ‎)	276C	 MEDIUM LEFT-POINTING ANGLE BRACKET ORNAMENT
@@ -16339,5 +16672,5 @@
 	(‎ 𮶵 ‎)	2EDB5	 CJK UNIFIED IDEOGRAPH-2EDB5
 ←	(‎ 𲪏 ‎)	32A8F	 CJK UNIFIED IDEOGRAPH-32A8F
 
-# total : 7821
+# total : 7962
 
