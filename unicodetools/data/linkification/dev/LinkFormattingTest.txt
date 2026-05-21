@@ -1,5 +1,5 @@
 # LinkFormattingTest.txt
-# Date: 2026-05-20, 15:27:01 GMT 
+# Date: 2026-05-21, 00:29:33 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -15,7 +15,9 @@
 # 
 # Comments are lines that begin with a #.
 # 
-# The fully-escaped field percent-escapes all literal syntax characters and all characters above ASCII.
+# The fully-escaped field percent-escapes code points based on https://url.spec.whatwg.org/#percent-encoded-bytes.
+# These are all the literal syntax characters in each Part and all code points above ASCII.
+# It also percent-escapes the last character, if it is Link_Term:Soft.
 # The minimally-escaped field is the more readable format described in UTS #58.
 # Each pair also has a comment line for the internal structure of the URL.
 # 𝑺 = the schema
