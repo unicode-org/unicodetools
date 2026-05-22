@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2026-05-21, 23:42:58 GMT
+# Date: 2026-05-22, 01:35:20 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -4764,7 +4764,7 @@
 	(‎ n̵ ‎)	006E 0335	 LATIN SMALL LETTER N, COMBINING SHORT STROKE OVERLAY
 ←	(‎ 𝽎 ‎)	1DF4E	 LATIN SMALL LETTER BARRED N
 
-#	o	ᄋ	ᩅ	𐴇	ᴏ	ᴑ	ο	σ	о	օ	ס	ه	٥	ھ	ہ	ە	۵	०	০	૦	ం	ಂ	ം	ഠ	ං	๐	໐	ဝ	၀	០	ϭ	ߋ	ࡀ	੦	୦	௦	౦	൦	ჿ	ᆼ	᪀	᪐	ᯪ	ⲟ	𐐬	𐤬	𑄤	ꬽ	𑌂	𑓐	𑣈	𑣗	ᲂ	𐓪	ｏ	ℴ	𞸤	𞹤	𞺄	ㅇ	ﮦ	ﮧ	ﮨ	ﮩ	ﮪ	ﮫ	ﮬ	ﮭ	ﻩ	ﻪ	ﻫ	ﻬ	ﾷ	𝐨	𝑜	𝒐	𝓸	𝔬	𝕠	𝖔	𝗈	𝗼	𝘰	𝙤	𝚘	𝛐	𝛔	𝜊	𝜎	𝝄	𝝈	𝝾	𝞂	𝞸	𝞼
+#	o	ᄋ	ᩅ	𐴇	ᴏ	ᴑ	ο	σ	о	օ	ס	ه	٥	ھ	ہ	ە	۵	०	০	૦	ం	ಂ	ം	ഠ	ං	๐	໐	ဝ	၀	០	ϭ	ߋ	ࡀ	੦	୦	௦	౦	൦	ჿ	ᆼ	᪀	᪐	ᯪ	ⲟ	𐐬	𐤬	𑄤	ꬽ	𑌂	𑓐	𑣈	𑣗	ᲂ	𐓪	ｏ	ℴ	𞸤	𞺄	ㅇ	ﮦ	ﮧ	ﮨ	ﮩ	ﮪ	ﮫ	ﮬ	ﮭ	ﻩ	ﻪ	ﻫ	ﻬ	ﾷ	𝐨	𝑜	𝒐	𝓸	𝔬	𝕠	𝖔	𝗈	𝗼	𝘰	𝙤	𝚘	𝛐	𝛔	𝜊	𝜎	𝝄	𝝈	𝝾	𝞂	𝞸	𝞼
 	(‎ o ‎)	006F	 LATIN SMALL LETTER O
 ←	(‎ ᄋ ‎)	110B	 HANGUL CHOSEONG IEUNG	# →ㅇ→
 ←	(‎ ᩅ ‎)	1A45	 TAI THAM LETTER WA	# →ဝ→
@@ -4822,7 +4822,6 @@
 ←	(‎ ｏ ‎)	FF4F	 FULLWIDTH LATIN SMALL LETTER O
 ←	(‎ ℴ ‎)	2134	 SCRIPT SMALL O
 ←	(‎ 𞸤 ‎)	1EE24	 ARABIC MATHEMATICAL INITIAL HEH	# →‎ه‎→
-←	(‎ 𞹤 ‎)	1EE64	 ARABIC MATHEMATICAL STRETCHED HEH	# →‎ه‎→
 ←	(‎ 𞺄 ‎)	1EE84	 ARABIC MATHEMATICAL LOOPED HEH	# →‎ه‎→
 ←	(‎ ㅇ ‎)	3147	 HANGUL LETTER IEUNG
 ←	(‎ ﮦ ‎)	FBA6	 ARABIC LETTER HEH GOAL ISOLATED FORM	# →‎ه‎→
@@ -4872,6 +4871,14 @@
 #	oi	𝽞
 	(‎ oi ‎)	006F 0069	 LATIN SMALL LETTER O, LATIN SMALL LETTER I
 ←	(‎ 𝽞 ‎)	1DF5E	 LATIN SMALL LETTER OI DIGRAPH
+
+#	ه𞴁	ol	هl	ها	ه│	𞹤
+	(‎ ol ‎)	006F 006C	 LATIN SMALL LETTER O, LATIN SMALL LETTER L
+←	(‎ ه𞴁 ‎)	0647 1ED01	 ARABIC LETTER HEH, OTTOMAN SIYAQ NUMBER ONE	# →‎ها‎→
+←	(‎ هl ‎)	0647 006C	 ARABIC LETTER HEH, LATIN SMALL LETTER L	# →‎ه𞴁‎→→‎ها‎→
+←	(‎ ها ‎)	0647 0627	 ARABIC LETTER HEH, ARABIC LETTER ALEF
+←	(‎ ه│ ‎)	0647 2502	 ARABIC LETTER HEH, BOX DRAWINGS LIGHT VERTICAL	# →‎ها‎→
+←	(‎ 𞹤 ‎)	1EE64	 ARABIC MATHEMATICAL STRETCHED HEH	# →‎ها‎→
 
 #	oo	ᄋᄋ	ᆼᆼ	ꝏ	ᅇ	ᇮ	∞	ꚙ	ㆀ
 	(‎ oo ‎)	006F 006F	 LATIN SMALL LETTER O, LATIN SMALL LETTER O
@@ -8025,14 +8032,13 @@
 ←	(‎ ٬ ‎)	066C	 ARABIC THOUSANDS SEPARATOR
 ←	(‎ ⸲ ‎)	2E32	 TURNED COMMA
 
-#	ع	ࡘ	؏	𞸏	𞸯	𞹏	𞹯	𞺏	𞺯	ﻉ	ﻊ	ﻋ	ﻌ
+#	ع	ࡘ	؏	𞸏	𞸯	𞹏	𞺏	𞺯	ﻉ	ﻊ	ﻋ	ﻌ
 	(‎ ؏ ‎)	060F	 ARABIC SIGN MISRA
 ←	(‎ ع ‎)	0639	 ARABIC LETTER AIN
 ←	(‎ ࡘ ‎)	0858	 MANDAIC LETTER AIN	# →‎ع‎→
 ←	(‎ 𞸏 ‎)	1EE0F	 ARABIC MATHEMATICAL AIN	# →‎ع‎→
 ←	(‎ 𞸯 ‎)	1EE2F	 ARABIC MATHEMATICAL INITIAL AIN	# →‎ع‎→
 ←	(‎ 𞹏 ‎)	1EE4F	 ARABIC MATHEMATICAL TAILED AIN	# →‎ع‎→
-←	(‎ 𞹯 ‎)	1EE6F	 ARABIC MATHEMATICAL STRETCHED AIN	# →‎ع‎→
 ←	(‎ 𞺏 ‎)	1EE8F	 ARABIC MATHEMATICAL LOOPED AIN
 ←	(‎ 𞺯 ‎)	1EEAF	 ARABIC MATHEMATICAL DOUBLE-STRUCK AIN	# →‎ع‎→
 ←	(‎ ﻉ ‎)	FEC9	 ARABIC LETTER AIN ISOLATED FORM	# →‎ع‎→
@@ -8058,17 +8064,23 @@
 ←	(‎ ء𐻺 ‎)	0621 10EFA	 ARABIC LETTER HAMZA, ARABIC DOUBLE VERTICAL BAR BELOW	# →‎۽‎→
 ←	(‎ ۽ ‎)	06FD	 ARABIC SIGN SINDHI AMPERSAND
 
-#	ب	𞸁	𞸡	𞹡	𞺁	𞺡	ﺏ	ﺐ	ﺑ	ﺒ
+#	ب	𞸁	𞸡	𞺁	𞺡	ﺏ	ﺐ	ﺑ	ﺒ
 	(‎ ب ‎)	0628	 ARABIC LETTER BEH
 ←	(‎ 𞸁 ‎)	1EE01	 ARABIC MATHEMATICAL BEH
 ←	(‎ 𞸡 ‎)	1EE21	 ARABIC MATHEMATICAL INITIAL BEH
-←	(‎ 𞹡 ‎)	1EE61	 ARABIC MATHEMATICAL STRETCHED BEH
 ←	(‎ 𞺁 ‎)	1EE81	 ARABIC MATHEMATICAL LOOPED BEH
 ←	(‎ 𞺡 ‎)	1EEA1	 ARABIC MATHEMATICAL DOUBLE-STRUCK BEH
 ←	(‎ ﺏ ‎)	FE8F	 ARABIC LETTER BEH ISOLATED FORM
 ←	(‎ ﺐ ‎)	FE90	 ARABIC LETTER BEH FINAL FORM
 ←	(‎ ﺑ ‎)	FE91	 ARABIC LETTER BEH INITIAL FORM
 ←	(‎ ﺒ ‎)	FE92	 ARABIC LETTER BEH MEDIAL FORM
+
+#	ب𞴁	بl	با	ب│	𞹡
+	(‎ بl ‎)	0628 006C	 ARABIC LETTER BEH, LATIN SMALL LETTER L
+←	(‎ ب𞴁 ‎)	0628 1ED01	 ARABIC LETTER BEH, OTTOMAN SIYAQ NUMBER ONE	# →‎با‎→
+←	(‎ با ‎)	0628 0627	 ARABIC LETTER BEH, ARABIC LETTER ALEF
+←	(‎ ب│ ‎)	0628 2502	 ARABIC LETTER BEH, BOX DRAWINGS LIGHT VERTICAL	# →‎با‎→
+←	(‎ 𞹡 ‎)	1EE61	 ARABIC MATHEMATICAL STRETCHED BEH	# →‎با‎→
 
 #	بo	به	ﲠ	ﳢ
 	(‎ بo ‎)	0628 006F	 ARABIC LETTER BEH, LATIN SMALL LETTER O
@@ -8143,12 +8155,11 @@
 	(‎ بۢ ‎)	0628 06E2	 ARABIC LETTER BEH, ARABIC SMALL HIGH MEEM ISOLATED FORM
 ←	(‎ ࢶ ‎)	08B6	 ARABIC LETTER BEH WITH SMALL MEEM ABOVE
 
-#	ت	ٺ	𞸕	𞸵	𞹵	𞺕	𞺵	ﭞ	ﭟ	ﭠ	ﭡ	ﺕ	ﺖ	ﺗ	ﺘ
+#	ت	ٺ	𞸕	𞸵	𞺕	𞺵	ﭞ	ﭟ	ﭠ	ﭡ	ﺕ	ﺖ	ﺗ	ﺘ
 	(‎ ت ‎)	062A	 ARABIC LETTER TEH
 ←	(‎ ٺ ‎)	067A	 ARABIC LETTER TTEHEH
 ←	(‎ 𞸕 ‎)	1EE15	 ARABIC MATHEMATICAL TEH
 ←	(‎ 𞸵 ‎)	1EE35	 ARABIC MATHEMATICAL INITIAL TEH
-←	(‎ 𞹵 ‎)	1EE75	 ARABIC MATHEMATICAL STRETCHED TEH
 ←	(‎ 𞺕 ‎)	1EE95	 ARABIC MATHEMATICAL LOOPED TEH
 ←	(‎ 𞺵 ‎)	1EEB5	 ARABIC MATHEMATICAL DOUBLE-STRUCK TEH
 ←	(‎ ﭞ ‎)	FB5E	 ARABIC LETTER TTEHEH ISOLATED FORM	# →‎ٺ‎→
@@ -8159,6 +8170,13 @@
 ←	(‎ ﺖ ‎)	FE96	 ARABIC LETTER TEH FINAL FORM
 ←	(‎ ﺗ ‎)	FE97	 ARABIC LETTER TEH INITIAL FORM
 ←	(‎ ﺘ ‎)	FE98	 ARABIC LETTER TEH MEDIAL FORM
+
+#	ت𞴁	تl	تا	ت│	𞹵
+	(‎ تl ‎)	062A 006C	 ARABIC LETTER TEH, LATIN SMALL LETTER L
+←	(‎ ت𞴁 ‎)	062A 1ED01	 ARABIC LETTER TEH, OTTOMAN SIYAQ NUMBER ONE	# →‎تا‎→
+←	(‎ تا ‎)	062A 0627	 ARABIC LETTER TEH, ARABIC LETTER ALEF
+←	(‎ ت│ ‎)	062A 2502	 ARABIC LETTER TEH, BOX DRAWINGS LIGHT VERTICAL	# →‎تا‎→
+←	(‎ 𞹵 ‎)	1EE75	 ARABIC MATHEMATICAL STRETCHED TEH	# →‎تا‎→
 
 #	تo	ته	ﲥ	ﳤ
 	(‎ تo ‎)	062A 006F	 ARABIC LETTER TEH, LATIN SMALL LETTER O
@@ -8261,7 +8279,7 @@
 ←	(‎ ﱴ ‎)	FC74	 ARABIC LIGATURE TEH WITH ALEF MAKSURA FINAL FORM
 ←	(‎ ﱵ ‎)	FC75	 ARABIC LIGATURE TEH WITH YEH FINAL FORM	# →‎تي‎→
 
-#	ىۛ	ٮۛ	ںۛ	یۛ	ث	پ	ڽ	ۑ	ݒ	ؿ	𞸖	𞸶	𞹶	𞺖	𞺶	ﭖ	ﭗ	ﭘ	ﭙ	ﺙ	ﺚ	ﺛ	ﺜ
+#	ىۛ	ٮۛ	ںۛ	یۛ	ث	پ	ڽ	ۑ	ݒ	ؿ	𞸖	𞸶	𞺖	𞺶	ﭖ	ﭗ	ﭘ	ﭙ	ﺙ	ﺚ	ﺛ	ﺜ
 	(‎ ث ‎)	062B	 ARABIC LETTER THEH
 ←	(‎ ىۛ ‎)	0649 06DB	 ARABIC LETTER ALEF MAKSURA, ARABIC SMALL HIGH THREE DOTS	# →‎ٮۛ‎→
 ←	(‎ ٮۛ ‎)	066E 06DB	 ARABIC LETTER DOTLESS BEH, ARABIC SMALL HIGH THREE DOTS
@@ -8274,7 +8292,6 @@
 ←	(‎ ؿ ‎)	063F	 ARABIC LETTER FARSI YEH WITH THREE DOTS ABOVE	# →‎یۛ‎→→‎ىۛ‎→→‎ٮۛ‎→
 ←	(‎ 𞸖 ‎)	1EE16	 ARABIC MATHEMATICAL THEH
 ←	(‎ 𞸶 ‎)	1EE36	 ARABIC MATHEMATICAL INITIAL THEH
-←	(‎ 𞹶 ‎)	1EE76	 ARABIC MATHEMATICAL STRETCHED THEH
 ←	(‎ 𞺖 ‎)	1EE96	 ARABIC MATHEMATICAL LOOPED THEH
 ←	(‎ 𞺶 ‎)	1EEB6	 ARABIC MATHEMATICAL DOUBLE-STRUCK THEH
 ←	(‎ ﭖ ‎)	FB56	 ARABIC LETTER PEH ISOLATED FORM	# →‎پ‎→→‎ڽ‎→→‎ںۛ‎→→‎ىۛ‎→→‎ٮۛ‎→
@@ -8285,6 +8302,14 @@
 ←	(‎ ﺚ ‎)	FE9A	 ARABIC LETTER THEH FINAL FORM
 ←	(‎ ﺛ ‎)	FE9B	 ARABIC LETTER THEH INITIAL FORM
 ←	(‎ ﺜ ‎)	FE9C	 ARABIC LETTER THEH MEDIAL FORM
+
+#	ىۛ𞴁	ىۛl	ىۛ│	ثl	ثا	𞹶
+	(‎ ثl ‎)	062B 006C	 ARABIC LETTER THEH, LATIN SMALL LETTER L
+←	(‎ ىۛ𞴁 ‎)	0649 06DB 1ED01	 ARABIC LETTER ALEF MAKSURA, ARABIC SMALL HIGH THREE DOTS, OTTOMAN SIYAQ NUMBER ONE	# →‎ثا‎→
+←	(‎ ىۛl ‎)	0649 06DB 006C	 ARABIC LETTER ALEF MAKSURA, ARABIC SMALL HIGH THREE DOTS, LATIN SMALL LETTER L	# →‎ثا‎→
+←	(‎ ىۛ│ ‎)	0649 06DB 2502	 ARABIC LETTER ALEF MAKSURA, ARABIC SMALL HIGH THREE DOTS, BOX DRAWINGS LIGHT VERTICAL	# →‎ثا‎→
+←	(‎ ثا ‎)	062B 0627	 ARABIC LETTER THEH, ARABIC LETTER ALEF
+←	(‎ 𞹶 ‎)	1EE76	 ARABIC MATHEMATICAL STRETCHED THEH	# →‎ثا‎→
 
 #	ىۛo	ىۛه	ثo	ثه	ﳦ
 	(‎ ثo ‎)	062B 006F	 ARABIC LETTER THEH, LATIN SMALL LETTER O
@@ -8330,18 +8355,24 @@
 ←	(‎ ﱺ ‎)	FC7A	 ARABIC LIGATURE THEH WITH ALEF MAKSURA FINAL FORM
 ←	(‎ ﱻ ‎)	FC7B	 ARABIC LIGATURE THEH WITH YEH FINAL FORM	# →‎ثي‎→
 
-#	ج	𞸂	𞸢	𞹂	𞹢	𞺂	𞺢	ﺝ	ﺞ	ﺟ	ﺠ
+#	ج	𞸂	𞸢	𞹂	𞺂	𞺢	ﺝ	ﺞ	ﺟ	ﺠ
 	(‎ ج ‎)	062C	 ARABIC LETTER JEEM
 ←	(‎ 𞸂 ‎)	1EE02	 ARABIC MATHEMATICAL JEEM
 ←	(‎ 𞸢 ‎)	1EE22	 ARABIC MATHEMATICAL INITIAL JEEM
 ←	(‎ 𞹂 ‎)	1EE42	 ARABIC MATHEMATICAL TAILED JEEM
-←	(‎ 𞹢 ‎)	1EE62	 ARABIC MATHEMATICAL STRETCHED JEEM
 ←	(‎ 𞺂 ‎)	1EE82	 ARABIC MATHEMATICAL LOOPED JEEM
 ←	(‎ 𞺢 ‎)	1EEA2	 ARABIC MATHEMATICAL DOUBLE-STRUCK JEEM
 ←	(‎ ﺝ ‎)	FE9D	 ARABIC LETTER JEEM ISOLATED FORM
 ←	(‎ ﺞ ‎)	FE9E	 ARABIC LETTER JEEM FINAL FORM
 ←	(‎ ﺟ ‎)	FE9F	 ARABIC LETTER JEEM INITIAL FORM
 ←	(‎ ﺠ ‎)	FEA0	 ARABIC LETTER JEEM MEDIAL FORM
+
+#	ج𞴁	جl	جا	ج│	𞹢
+	(‎ جl ‎)	062C 006C	 ARABIC LETTER JEEM, LATIN SMALL LETTER L
+←	(‎ ج𞴁 ‎)	062C 1ED01	 ARABIC LETTER JEEM, OTTOMAN SIYAQ NUMBER ONE	# →‎جا‎→
+←	(‎ جا ‎)	062C 0627	 ARABIC LETTER JEEM, ARABIC LETTER ALEF
+←	(‎ ج│ ‎)	062C 2502	 ARABIC LETTER JEEM, BOX DRAWINGS LIGHT VERTICAL	# →‎جا‎→
+←	(‎ 𞹢 ‎)	1EE62	 ARABIC MATHEMATICAL STRETCHED JEEM	# →‎جا‎→
 
 #	جح	ﰕ	ﲧ
 	(‎ جح ‎)	062C 062D	 ARABIC LETTER JEEM, ARABIC LETTER HAH
@@ -8386,12 +8417,11 @@
 ←	(‎ ﴝ ‎)	FD1D	 ARABIC LIGATURE JEEM WITH ALEF MAKSURA FINAL FORM
 ←	(‎ ﴞ ‎)	FD1E	 ARABIC LIGATURE JEEM WITH YEH FINAL FORM	# →‎جي‎→
 
-#	ح	𞸇	𞸧	𞹇	𞹧	𞺇	𞺧	ﺡ	ﺢ	ﺣ	ﺤ
+#	ح	𞸇	𞸧	𞹇	𞺇	𞺧	ﺡ	ﺢ	ﺣ	ﺤ
 	(‎ ح ‎)	062D	 ARABIC LETTER HAH
 ←	(‎ 𞸇 ‎)	1EE07	 ARABIC MATHEMATICAL HAH
 ←	(‎ 𞸧 ‎)	1EE27	 ARABIC MATHEMATICAL INITIAL HAH
 ←	(‎ 𞹇 ‎)	1EE47	 ARABIC MATHEMATICAL TAILED HAH
-←	(‎ 𞹧 ‎)	1EE67	 ARABIC MATHEMATICAL STRETCHED HAH
 ←	(‎ 𞺇 ‎)	1EE87	 ARABIC MATHEMATICAL LOOPED HAH
 ←	(‎ 𞺧 ‎)	1EEA7	 ARABIC MATHEMATICAL DOUBLE-STRUCK HAH
 ←	(‎ ﺡ ‎)	FEA1	 ARABIC LETTER HAH ISOLATED FORM
@@ -8399,12 +8429,13 @@
 ←	(‎ ﺣ ‎)	FEA3	 ARABIC LETTER HAH INITIAL FORM
 ←	(‎ ﺤ ‎)	FEA4	 ARABIC LETTER HAH MEDIAL FORM
 
-#	ح𞴁	حl	حا	ح│	𞴲
+#	ح𞴁	حl	حا	ح│	𞴲	𞹧
 	(‎ حl ‎)	062D 006C	 ARABIC LETTER HAH, LATIN SMALL LETTER L
 ←	(‎ ح𞴁 ‎)	062D 1ED01	 ARABIC LETTER HAH, OTTOMAN SIYAQ NUMBER ONE	# →‎حا‎→
 ←	(‎ حا ‎)	062D 0627	 ARABIC LETTER HAH, ARABIC LETTER ALEF
 ←	(‎ ح│ ‎)	062D 2502	 ARABIC LETTER HAH, BOX DRAWINGS LIGHT VERTICAL	# →‎حا‎→
 ←	(‎ 𞴲 ‎)	1ED32	 OTTOMAN SIYAQ ALTERNATE NUMBER FIVE	# →‎حا‎→
+←	(‎ 𞹧 ‎)	1EE67	 ARABIC MATHEMATICAL STRETCHED HAH	# →‎حا‎→
 
 #	حo	حه	حہ	𞱵
 	(‎ حo ‎)	062D 006F	 ARABIC LETTER HAH, LATIN SMALL LETTER O
@@ -8461,18 +8492,24 @@
 	(‎ حۛ ‎)	062D 06DB	 ARABIC LETTER HAH, ARABIC SMALL HIGH THREE DOTS
 ←	(‎ څ ‎)	0685	 ARABIC LETTER HAH WITH THREE DOTS ABOVE
 
-#	خ	𞸗	𞸷	𞹗	𞹷	𞺗	𞺷	ﺥ	ﺦ	ﺧ	ﺨ
+#	خ	𞸗	𞸷	𞹗	𞺗	𞺷	ﺥ	ﺦ	ﺧ	ﺨ
 	(‎ خ ‎)	062E	 ARABIC LETTER KHAH
 ←	(‎ 𞸗 ‎)	1EE17	 ARABIC MATHEMATICAL KHAH
 ←	(‎ 𞸷 ‎)	1EE37	 ARABIC MATHEMATICAL INITIAL KHAH
 ←	(‎ 𞹗 ‎)	1EE57	 ARABIC MATHEMATICAL TAILED KHAH
-←	(‎ 𞹷 ‎)	1EE77	 ARABIC MATHEMATICAL STRETCHED KHAH
 ←	(‎ 𞺗 ‎)	1EE97	 ARABIC MATHEMATICAL LOOPED KHAH
 ←	(‎ 𞺷 ‎)	1EEB7	 ARABIC MATHEMATICAL DOUBLE-STRUCK KHAH
 ←	(‎ ﺥ ‎)	FEA5	 ARABIC LETTER KHAH ISOLATED FORM
 ←	(‎ ﺦ ‎)	FEA6	 ARABIC LETTER KHAH FINAL FORM
 ←	(‎ ﺧ ‎)	FEA7	 ARABIC LETTER KHAH INITIAL FORM
 ←	(‎ ﺨ ‎)	FEA8	 ARABIC LETTER KHAH MEDIAL FORM
+
+#	خ𞴁	خl	خا	خ│	𞹷
+	(‎ خl ‎)	062E 006C	 ARABIC LETTER KHAH, LATIN SMALL LETTER L
+←	(‎ خ𞴁 ‎)	062E 1ED01	 ARABIC LETTER KHAH, OTTOMAN SIYAQ NUMBER ONE	# →‎خا‎→
+←	(‎ خا ‎)	062E 0627	 ARABIC LETTER KHAH, ARABIC LETTER ALEF
+←	(‎ خ│ ‎)	062E 2502	 ARABIC LETTER KHAH, BOX DRAWINGS LIGHT VERTICAL	# →‎خا‎→
+←	(‎ 𞹷 ‎)	1EE77	 ARABIC MATHEMATICAL STRETCHED KHAH	# →‎خا‎→
 
 #	خج	ﰙ	ﲫ
 	(‎ خج ‎)	062E 062C	 ARABIC LETTER KHAH, ARABIC LETTER JEEM
@@ -8613,18 +8650,24 @@
 ←	(‎ زٛ ‎)	0632 065B	 ARABIC LETTER ZAIN, ARABIC VOWEL SIGN INVERTED SMALL V ABOVE
 ←	(‎ ࢲ ‎)	08B2	 ARABIC LETTER ZAIN WITH INVERTED V ABOVE	# →‎زٛ‎→
 
-#	س	𞸎	𞸮	𞹎	𞹮	𞺎	𞺮	ﺱ	ﺲ	ﺳ	ﺴ
+#	س	𞸎	𞸮	𞹎	𞺎	𞺮	ﺱ	ﺲ	ﺳ	ﺴ
 	(‎ س ‎)	0633	 ARABIC LETTER SEEN
 ←	(‎ 𞸎 ‎)	1EE0E	 ARABIC MATHEMATICAL SEEN
 ←	(‎ 𞸮 ‎)	1EE2E	 ARABIC MATHEMATICAL INITIAL SEEN
 ←	(‎ 𞹎 ‎)	1EE4E	 ARABIC MATHEMATICAL TAILED SEEN
-←	(‎ 𞹮 ‎)	1EE6E	 ARABIC MATHEMATICAL STRETCHED SEEN
 ←	(‎ 𞺎 ‎)	1EE8E	 ARABIC MATHEMATICAL LOOPED SEEN
 ←	(‎ 𞺮 ‎)	1EEAE	 ARABIC MATHEMATICAL DOUBLE-STRUCK SEEN
 ←	(‎ ﺱ ‎)	FEB1	 ARABIC LETTER SEEN ISOLATED FORM
 ←	(‎ ﺲ ‎)	FEB2	 ARABIC LETTER SEEN FINAL FORM
 ←	(‎ ﺳ ‎)	FEB3	 ARABIC LETTER SEEN INITIAL FORM
 ←	(‎ ﺴ ‎)	FEB4	 ARABIC LETTER SEEN MEDIAL FORM
+
+#	س𞴁	سl	سا	س│	𞹮
+	(‎ سl ‎)	0633 006C	 ARABIC LETTER SEEN, LATIN SMALL LETTER L
+←	(‎ س𞴁 ‎)	0633 1ED01	 ARABIC LETTER SEEN, OTTOMAN SIYAQ NUMBER ONE	# →‎سا‎→
+←	(‎ سا ‎)	0633 0627	 ARABIC LETTER SEEN, ARABIC LETTER ALEF
+←	(‎ س│ ‎)	0633 2502	 ARABIC LETTER SEEN, BOX DRAWINGS LIGHT VERTICAL	# →‎سا‎→
+←	(‎ 𞹮 ‎)	1EE6E	 ARABIC MATHEMATICAL STRETCHED SEEN	# →‎سا‎→
 
 #	سo	سه	ﳨ	ﴱ
 	(‎ سo ‎)	0633 006F	 ARABIC LETTER SEEN, LATIN SMALL LETTER O
@@ -8706,19 +8749,25 @@
 ←	(‎ ﴗ ‎)	FD17	 ARABIC LIGATURE SEEN WITH ALEF MAKSURA FINAL FORM
 ←	(‎ ﴘ ‎)	FD18	 ARABIC LIGATURE SEEN WITH YEH FINAL FORM	# →‎سي‎→
 
-#	سۛ	ش	𞸔	𞸴	𞹔	𞹴	𞺔	𞺴	ﺵ	ﺶ	ﺷ	ﺸ
+#	سۛ	ش	𞸔	𞸴	𞹔	𞺔	𞺴	ﺵ	ﺶ	ﺷ	ﺸ
 	(‎ سۛ ‎)	0633 06DB	 ARABIC LETTER SEEN, ARABIC SMALL HIGH THREE DOTS
 ←	(‎ ش ‎)	0634	 ARABIC LETTER SHEEN
 ←	(‎ 𞸔 ‎)	1EE14	 ARABIC MATHEMATICAL SHEEN	# →‎ش‎→
 ←	(‎ 𞸴 ‎)	1EE34	 ARABIC MATHEMATICAL INITIAL SHEEN	# →‎ش‎→
 ←	(‎ 𞹔 ‎)	1EE54	 ARABIC MATHEMATICAL TAILED SHEEN	# →‎ش‎→
-←	(‎ 𞹴 ‎)	1EE74	 ARABIC MATHEMATICAL STRETCHED SHEEN	# →‎ش‎→
 ←	(‎ 𞺔 ‎)	1EE94	 ARABIC MATHEMATICAL LOOPED SHEEN	# →‎ش‎→
 ←	(‎ 𞺴 ‎)	1EEB4	 ARABIC MATHEMATICAL DOUBLE-STRUCK SHEEN	# →‎ش‎→
 ←	(‎ ﺵ ‎)	FEB5	 ARABIC LETTER SHEEN ISOLATED FORM	# →‎ش‎→
 ←	(‎ ﺶ ‎)	FEB6	 ARABIC LETTER SHEEN FINAL FORM	# →‎ش‎→
 ←	(‎ ﺷ ‎)	FEB7	 ARABIC LETTER SHEEN INITIAL FORM	# →‎ش‎→
 ←	(‎ ﺸ ‎)	FEB8	 ARABIC LETTER SHEEN MEDIAL FORM	# →‎ش‎→
+
+#	سۛ𞴁	سۛl	سۛ│	شا	𞹴
+	(‎ سۛl ‎)	0633 06DB 006C	 ARABIC LETTER SEEN, ARABIC SMALL HIGH THREE DOTS, LATIN SMALL LETTER L
+←	(‎ سۛ𞴁 ‎)	0633 06DB 1ED01	 ARABIC LETTER SEEN, ARABIC SMALL HIGH THREE DOTS, OTTOMAN SIYAQ NUMBER ONE	# →‎شا‎→
+←	(‎ سۛ│ ‎)	0633 06DB 2502	 ARABIC LETTER SEEN, ARABIC SMALL HIGH THREE DOTS, BOX DRAWINGS LIGHT VERTICAL	# →‎شا‎→
+←	(‎ شا ‎)	0634 0627	 ARABIC LETTER SHEEN, ARABIC LETTER ALEF
+←	(‎ 𞹴 ‎)	1EE74	 ARABIC MATHEMATICAL STRETCHED SHEEN	# →‎شا‎→
 
 #	سۛo	سۛه	شه	ﳪ	ﴲ
 	(‎ سۛo ‎)	0633 06DB 006F	 ARABIC LETTER SEEN, ARABIC SMALL HIGH THREE DOTS, LATIN SMALL LETTER O
@@ -8802,19 +8851,25 @@
 ←	(‎ ﴙ ‎)	FD19	 ARABIC LIGATURE SHEEN WITH ALEF MAKSURA FINAL FORM	# →‎شى‎→
 ←	(‎ ﴚ ‎)	FD1A	 ARABIC LIGATURE SHEEN WITH YEH FINAL FORM	# →‎شي‎→
 
-#	ص	𐋲	𞸑	𞸱	𞹑	𞹱	𞺑	𞺱	ﺹ	ﺺ	ﺻ	ﺼ
+#	ص	𐋲	𞸑	𞸱	𞹑	𞺑	𞺱	ﺹ	ﺺ	ﺻ	ﺼ
 	(‎ ص ‎)	0635	 ARABIC LETTER SAD
 ←	(‎ 𐋲 ‎)	102F2	 COPTIC EPACT NUMBER NINETY
 ←	(‎ 𞸑 ‎)	1EE11	 ARABIC MATHEMATICAL SAD
 ←	(‎ 𞸱 ‎)	1EE31	 ARABIC MATHEMATICAL INITIAL SAD
 ←	(‎ 𞹑 ‎)	1EE51	 ARABIC MATHEMATICAL TAILED SAD
-←	(‎ 𞹱 ‎)	1EE71	 ARABIC MATHEMATICAL STRETCHED SAD
 ←	(‎ 𞺑 ‎)	1EE91	 ARABIC MATHEMATICAL LOOPED SAD
 ←	(‎ 𞺱 ‎)	1EEB1	 ARABIC MATHEMATICAL DOUBLE-STRUCK SAD
 ←	(‎ ﺹ ‎)	FEB9	 ARABIC LETTER SAD ISOLATED FORM
 ←	(‎ ﺺ ‎)	FEBA	 ARABIC LETTER SAD FINAL FORM
 ←	(‎ ﺻ ‎)	FEBB	 ARABIC LETTER SAD INITIAL FORM
 ←	(‎ ﺼ ‎)	FEBC	 ARABIC LETTER SAD MEDIAL FORM
+
+#	ص𞴁	صl	صا	ص│	𞹱
+	(‎ صl ‎)	0635 006C	 ARABIC LETTER SAD, LATIN SMALL LETTER L
+←	(‎ ص𞴁 ‎)	0635 1ED01	 ARABIC LETTER SAD, OTTOMAN SIYAQ NUMBER ONE	# →‎صا‎→
+←	(‎ صا ‎)	0635 0627	 ARABIC LETTER SAD, ARABIC LETTER ALEF
+←	(‎ ص│ ‎)	0635 2502	 ARABIC LETTER SAD, BOX DRAWINGS LIGHT VERTICAL	# →‎صا‎→
+←	(‎ 𞹱 ‎)	1EE71	 ARABIC MATHEMATICAL STRETCHED SAD	# →‎صا‎→
 
 #	ص̤̣	ص࣮ٜ	ص࣮࣭	ࢯ
 	(‎ ص̤̣ ‎)	0635 0324 0323	 ARABIC LETTER SAD, COMBINING DIAERESIS BELOW, COMBINING DOT BELOW
@@ -8886,18 +8941,24 @@
 	(‎ صۛ ‎)	0635 06DB	 ARABIC LETTER SAD, ARABIC SMALL HIGH THREE DOTS
 ←	(‎ ڞ ‎)	069E	 ARABIC LETTER SAD WITH THREE DOTS ABOVE
 
-#	ض	𞸙	𞸹	𞹙	𞹹	𞺙	𞺹	ﺽ	ﺾ	ﺿ	ﻀ
+#	ض	𞸙	𞸹	𞹙	𞺙	𞺹	ﺽ	ﺾ	ﺿ	ﻀ
 	(‎ ض ‎)	0636	 ARABIC LETTER DAD
 ←	(‎ 𞸙 ‎)	1EE19	 ARABIC MATHEMATICAL DAD
 ←	(‎ 𞸹 ‎)	1EE39	 ARABIC MATHEMATICAL INITIAL DAD
 ←	(‎ 𞹙 ‎)	1EE59	 ARABIC MATHEMATICAL TAILED DAD
-←	(‎ 𞹹 ‎)	1EE79	 ARABIC MATHEMATICAL STRETCHED DAD
 ←	(‎ 𞺙 ‎)	1EE99	 ARABIC MATHEMATICAL LOOPED DAD
 ←	(‎ 𞺹 ‎)	1EEB9	 ARABIC MATHEMATICAL DOUBLE-STRUCK DAD
 ←	(‎ ﺽ ‎)	FEBD	 ARABIC LETTER DAD ISOLATED FORM
 ←	(‎ ﺾ ‎)	FEBE	 ARABIC LETTER DAD FINAL FORM
 ←	(‎ ﺿ ‎)	FEBF	 ARABIC LETTER DAD INITIAL FORM
 ←	(‎ ﻀ ‎)	FEC0	 ARABIC LETTER DAD MEDIAL FORM
+
+#	ض𞴁	ضl	ضا	ض│	𞹹
+	(‎ ضl ‎)	0636 006C	 ARABIC LETTER DAD, LATIN SMALL LETTER L
+←	(‎ ض𞴁 ‎)	0636 1ED01	 ARABIC LETTER DAD, OTTOMAN SIYAQ NUMBER ONE	# →‎ضا‎→
+←	(‎ ضا ‎)	0636 0627	 ARABIC LETTER DAD, ARABIC LETTER ALEF
+←	(‎ ض│ ‎)	0636 2502	 ARABIC LETTER DAD, BOX DRAWINGS LIGHT VERTICAL	# →‎ضا‎→
+←	(‎ 𞹹 ‎)	1EE79	 ARABIC MATHEMATICAL STRETCHED DAD	# →‎ضا‎→
 
 #	ضج	ﰢ	ﲴ
 	(‎ ضج ‎)	0636 062C	 ARABIC LETTER DAD, ARABIC LETTER JEEM
@@ -8943,17 +9004,23 @@
 ←	(‎ ﴣ ‎)	FD23	 ARABIC LIGATURE DAD WITH ALEF MAKSURA FINAL FORM
 ←	(‎ ﴤ ‎)	FD24	 ARABIC LIGATURE DAD WITH YEH FINAL FORM	# →‎ضي‎→
 
-#	ط	𐋨	𞸈	𞹨	𞺈	𞺨	ﻁ	ﻂ	ﻃ	ﻄ
+#	ط	𐋨	𞸈	𞺈	𞺨	ﻁ	ﻂ	ﻃ	ﻄ
 	(‎ ط ‎)	0637	 ARABIC LETTER TAH
 ←	(‎ 𐋨 ‎)	102E8	 COPTIC EPACT DIGIT EIGHT
 ←	(‎ 𞸈 ‎)	1EE08	 ARABIC MATHEMATICAL TAH
-←	(‎ 𞹨 ‎)	1EE68	 ARABIC MATHEMATICAL STRETCHED TAH
 ←	(‎ 𞺈 ‎)	1EE88	 ARABIC MATHEMATICAL LOOPED TAH
 ←	(‎ 𞺨 ‎)	1EEA8	 ARABIC MATHEMATICAL DOUBLE-STRUCK TAH
 ←	(‎ ﻁ ‎)	FEC1	 ARABIC LETTER TAH ISOLATED FORM
 ←	(‎ ﻂ ‎)	FEC2	 ARABIC LETTER TAH FINAL FORM
 ←	(‎ ﻃ ‎)	FEC3	 ARABIC LETTER TAH INITIAL FORM
 ←	(‎ ﻄ ‎)	FEC4	 ARABIC LETTER TAH MEDIAL FORM
+
+#	ط𞴁	طl	طا	ط│	𞹨
+	(‎ طl ‎)	0637 006C	 ARABIC LETTER TAH, LATIN SMALL LETTER L
+←	(‎ ط𞴁 ‎)	0637 1ED01	 ARABIC LETTER TAH, OTTOMAN SIYAQ NUMBER ONE	# →‎طا‎→
+←	(‎ طا ‎)	0637 0627	 ARABIC LETTER TAH, ARABIC LETTER ALEF
+←	(‎ ط│ ‎)	0637 2502	 ARABIC LETTER TAH, BOX DRAWINGS LIGHT VERTICAL	# →‎طا‎→
+←	(‎ 𞹨 ‎)	1EE68	 ARABIC MATHEMATICAL STRETCHED TAH	# →‎طا‎→
 
 #	طح	ﰦ	ﲸ
 	(‎ طح ‎)	0637 062D	 ARABIC LETTER TAH, ARABIC LETTER HAH
@@ -8992,10 +9059,9 @@
 	(‎ طۛ ‎)	0637 06DB	 ARABIC LETTER TAH, ARABIC SMALL HIGH THREE DOTS
 ←	(‎ ڟ ‎)	069F	 ARABIC LETTER TAH WITH THREE DOTS ABOVE
 
-#	ظ	𞸚	𞹺	𞺚	𞺺	ﻅ	ﻆ	ﻇ	ﻈ
+#	ظ	𞸚	𞺚	𞺺	ﻅ	ﻆ	ﻇ	ﻈ
 	(‎ ظ ‎)	0638	 ARABIC LETTER ZAH
 ←	(‎ 𞸚 ‎)	1EE1A	 ARABIC MATHEMATICAL ZAH
-←	(‎ 𞹺 ‎)	1EE7A	 ARABIC MATHEMATICAL STRETCHED ZAH
 ←	(‎ 𞺚 ‎)	1EE9A	 ARABIC MATHEMATICAL LOOPED ZAH
 ←	(‎ 𞺺 ‎)	1EEBA	 ARABIC MATHEMATICAL DOUBLE-STRUCK ZAH
 ←	(‎ ﻅ ‎)	FEC5	 ARABIC LETTER ZAH ISOLATED FORM
@@ -9003,19 +9069,27 @@
 ←	(‎ ﻇ ‎)	FEC7	 ARABIC LETTER ZAH INITIAL FORM
 ←	(‎ ﻈ ‎)	FEC8	 ARABIC LETTER ZAH MEDIAL FORM
 
+#	ظ𞴁	ظl	ظا	ظ│	𞹺
+	(‎ ظl ‎)	0638 006C	 ARABIC LETTER ZAH, LATIN SMALL LETTER L
+←	(‎ ظ𞴁 ‎)	0638 1ED01	 ARABIC LETTER ZAH, OTTOMAN SIYAQ NUMBER ONE	# →‎ظا‎→
+←	(‎ ظا ‎)	0638 0627	 ARABIC LETTER ZAH, ARABIC LETTER ALEF
+←	(‎ ظ│ ‎)	0638 2502	 ARABIC LETTER ZAH, BOX DRAWINGS LIGHT VERTICAL	# →‎ظا‎→
+←	(‎ 𞹺 ‎)	1EE7A	 ARABIC MATHEMATICAL STRETCHED ZAH	# →‎ظا‎→
+
 #	ظم	ﰨ	ﲹ	ﴻ
 	(‎ ظم ‎)	0638 0645	 ARABIC LETTER ZAH, ARABIC LETTER MEEM
 ←	(‎ ﰨ ‎)	FC28	 ARABIC LIGATURE ZAH WITH MEEM ISOLATED FORM
 ←	(‎ ﲹ ‎)	FCB9	 ARABIC LIGATURE ZAH WITH MEEM INITIAL FORM
 ←	(‎ ﴻ ‎)	FD3B	 ARABIC LIGATURE ZAH WITH MEEM MEDIAL FORM
 
-#	ع𞴁	عl	عا	ع│	𞲲	𞴷
+#	ع𞴁	عl	عا	ع│	𞲲	𞴷	𞹯
 	(‎ عl ‎)	0639 006C	 ARABIC LETTER AIN, LATIN SMALL LETTER L
 ←	(‎ ع𞴁 ‎)	0639 1ED01	 ARABIC LETTER AIN, OTTOMAN SIYAQ NUMBER ONE	# →‎عا‎→
 ←	(‎ عا ‎)	0639 0627	 ARABIC LETTER AIN, ARABIC LETTER ALEF
 ←	(‎ ع│ ‎)	0639 2502	 ARABIC LETTER AIN, BOX DRAWINGS LIGHT VERTICAL	# →‎عا‎→
 ←	(‎ 𞲲 ‎)	1ECB2	 INDIC SIYAQ NUMBER ALTERNATE TWO	# →‎عا‎→
 ←	(‎ 𞴷 ‎)	1ED37	 OTTOMAN SIYAQ ALTERNATE NUMBER TEN	# →‎عا‎→
+←	(‎ 𞹯 ‎)	1EE6F	 ARABIC MATHEMATICAL STRETCHED AIN	# →‎عا‎→
 
 #	عo	عه	عہ	𞲱
 	(‎ عo ‎)	0639 006F	 ARABIC LETTER AIN, LATIN SMALL LETTER O
@@ -9063,18 +9137,24 @@
 ←	(‎ ﴓ ‎)	FD13	 ARABIC LIGATURE AIN WITH ALEF MAKSURA FINAL FORM
 ←	(‎ ﴔ ‎)	FD14	 ARABIC LIGATURE AIN WITH YEH FINAL FORM	# →‎عي‎→
 
-#	غ	𞸛	𞸻	𞹛	𞹻	𞺛	𞺻	ﻍ	ﻎ	ﻏ	ﻐ
+#	غ	𞸛	𞸻	𞹛	𞺛	𞺻	ﻍ	ﻎ	ﻏ	ﻐ
 	(‎ غ ‎)	063A	 ARABIC LETTER GHAIN
 ←	(‎ 𞸛 ‎)	1EE1B	 ARABIC MATHEMATICAL GHAIN
 ←	(‎ 𞸻 ‎)	1EE3B	 ARABIC MATHEMATICAL INITIAL GHAIN
 ←	(‎ 𞹛 ‎)	1EE5B	 ARABIC MATHEMATICAL TAILED GHAIN
-←	(‎ 𞹻 ‎)	1EE7B	 ARABIC MATHEMATICAL STRETCHED GHAIN
 ←	(‎ 𞺛 ‎)	1EE9B	 ARABIC MATHEMATICAL LOOPED GHAIN
 ←	(‎ 𞺻 ‎)	1EEBB	 ARABIC MATHEMATICAL DOUBLE-STRUCK GHAIN
 ←	(‎ ﻍ ‎)	FECD	 ARABIC LETTER GHAIN ISOLATED FORM
 ←	(‎ ﻎ ‎)	FECE	 ARABIC LETTER GHAIN FINAL FORM
 ←	(‎ ﻏ ‎)	FECF	 ARABIC LETTER GHAIN INITIAL FORM
 ←	(‎ ﻐ ‎)	FED0	 ARABIC LETTER GHAIN MEDIAL FORM
+
+#	غ𞴁	غl	غا	غ│	𞹻
+	(‎ غl ‎)	063A 006C	 ARABIC LETTER GHAIN, LATIN SMALL LETTER L
+←	(‎ غ𞴁 ‎)	063A 1ED01	 ARABIC LETTER GHAIN, OTTOMAN SIYAQ NUMBER ONE	# →‎غا‎→
+←	(‎ غا ‎)	063A 0627	 ARABIC LETTER GHAIN, ARABIC LETTER ALEF
+←	(‎ غ│ ‎)	063A 2502	 ARABIC LETTER GHAIN, BOX DRAWINGS LIGHT VERTICAL	# →‎غا‎→
+←	(‎ 𞹻 ‎)	1EE7B	 ARABIC MATHEMATICAL STRETCHED GHAIN	# →‎غا‎→
 
 #	غج	ﰫ	ﲼ
 	(‎ غج ‎)	063A 062C	 ARABIC LETTER GHAIN, ARABIC LETTER JEEM
@@ -9110,19 +9190,25 @@
 ←	(‎ ىٛ ‎)	0649 065B	 ARABIC LETTER ALEF MAKSURA, ARABIC VOWEL SIGN INVERTED SMALL V ABOVE	# →‎یٛ‎→
 ←	(‎ یٛ ‎)	06CC 065B	 ARABIC LETTER FARSI YEH, ARABIC VOWEL SIGN INVERTED SMALL V ABOVE
 
-#	ف	𐴉	ڧ	𞸐	𞸰	𞹰	𞺐	𞺰	ﻑ	ﻒ	ﻓ	ﻔ
+#	ف	𐴉	ڧ	𞸐	𞸰	𞺐	𞺰	ﻑ	ﻒ	ﻓ	ﻔ
 	(‎ ف ‎)	0641	 ARABIC LETTER FEH
 ←	(‎ 𐴉 ‎)	10D09	 HANIFI ROHINGYA LETTER FA
 ←	(‎ ڧ ‎)	06A7	 ARABIC LETTER QAF WITH DOT ABOVE
 ←	(‎ 𞸐 ‎)	1EE10	 ARABIC MATHEMATICAL FEH
 ←	(‎ 𞸰 ‎)	1EE30	 ARABIC MATHEMATICAL INITIAL FEH
-←	(‎ 𞹰 ‎)	1EE70	 ARABIC MATHEMATICAL STRETCHED FEH
 ←	(‎ 𞺐 ‎)	1EE90	 ARABIC MATHEMATICAL LOOPED FEH
 ←	(‎ 𞺰 ‎)	1EEB0	 ARABIC MATHEMATICAL DOUBLE-STRUCK FEH
 ←	(‎ ﻑ ‎)	FED1	 ARABIC LETTER FEH ISOLATED FORM
 ←	(‎ ﻒ ‎)	FED2	 ARABIC LETTER FEH FINAL FORM
 ←	(‎ ﻓ ‎)	FED3	 ARABIC LETTER FEH INITIAL FORM
 ←	(‎ ﻔ ‎)	FED4	 ARABIC LETTER FEH MEDIAL FORM
+
+#	ف𞴁	فl	فا	ف│	𞹰
+	(‎ فl ‎)	0641 006C	 ARABIC LETTER FEH, LATIN SMALL LETTER L
+←	(‎ ف𞴁 ‎)	0641 1ED01	 ARABIC LETTER FEH, OTTOMAN SIYAQ NUMBER ONE	# →‎فا‎→
+←	(‎ فا ‎)	0641 0627	 ARABIC LETTER FEH, ARABIC LETTER ALEF
+←	(‎ ف│ ‎)	0641 2502	 ARABIC LETTER FEH, BOX DRAWINGS LIGHT VERTICAL	# →‎فا‎→
+←	(‎ 𞹰 ‎)	1EE70	 ARABIC MATHEMATICAL STRETCHED FEH	# →‎فا‎→
 
 #	فج	ﰭ	ﲾ
 	(‎ فج ‎)	0641 062C	 ARABIC LETTER FEH, ARABIC LETTER JEEM
@@ -9162,18 +9248,24 @@
 ←	(‎ ﱼ ‎)	FC7C	 ARABIC LIGATURE FEH WITH ALEF MAKSURA FINAL FORM
 ←	(‎ ﱽ ‎)	FC7D	 ARABIC LIGATURE FEH WITH YEH FINAL FORM	# →‎في‎→
 
-#	ق	𞸒	𞸲	𞹒	𞹲	𞺒	𞺲	ﻕ	ﻖ	ﻗ	ﻘ
+#	ق	𞸒	𞸲	𞹒	𞺒	𞺲	ﻕ	ﻖ	ﻗ	ﻘ
 	(‎ ق ‎)	0642	 ARABIC LETTER QAF
 ←	(‎ 𞸒 ‎)	1EE12	 ARABIC MATHEMATICAL QAF
 ←	(‎ 𞸲 ‎)	1EE32	 ARABIC MATHEMATICAL INITIAL QAF
 ←	(‎ 𞹒 ‎)	1EE52	 ARABIC MATHEMATICAL TAILED QAF
-←	(‎ 𞹲 ‎)	1EE72	 ARABIC MATHEMATICAL STRETCHED QAF
 ←	(‎ 𞺒 ‎)	1EE92	 ARABIC MATHEMATICAL LOOPED QAF
 ←	(‎ 𞺲 ‎)	1EEB2	 ARABIC MATHEMATICAL DOUBLE-STRUCK QAF
 ←	(‎ ﻕ ‎)	FED5	 ARABIC LETTER QAF ISOLATED FORM
 ←	(‎ ﻖ ‎)	FED6	 ARABIC LETTER QAF FINAL FORM
 ←	(‎ ﻗ ‎)	FED7	 ARABIC LETTER QAF INITIAL FORM
 ←	(‎ ﻘ ‎)	FED8	 ARABIC LETTER QAF MEDIAL FORM
+
+#	ق𞴁	قl	قا	ق│	𞹲
+	(‎ قl ‎)	0642 006C	 ARABIC LETTER QAF, LATIN SMALL LETTER L
+←	(‎ ق𞴁 ‎)	0642 1ED01	 ARABIC LETTER QAF, OTTOMAN SIYAQ NUMBER ONE	# →‎قا‎→
+←	(‎ قا ‎)	0642 0627	 ARABIC LETTER QAF, ARABIC LETTER ALEF
+←	(‎ ق│ ‎)	0642 2502	 ARABIC LETTER QAF, BOX DRAWINGS LIGHT VERTICAL	# →‎قا‎→
+←	(‎ 𞹲 ‎)	1EE72	 ARABIC MATHEMATICAL STRETCHED QAF	# →‎قا‎→
 
 #	قح	ﰳ	ﳂ
 	(‎ قح ‎)	0642 062D	 ARABIC LETTER QAF, ARABIC LETTER HAH
@@ -9212,7 +9304,7 @@
 ←	(‎ ﱾ ‎)	FC7E	 ARABIC LIGATURE QAF WITH ALEF MAKSURA FINAL FORM
 ←	(‎ ﱿ ‎)	FC7F	 ARABIC LIGATURE QAF WITH YEH FINAL FORM	# →‎قي‎→
 
-#	ك	𐴈	ک	ڪ	ࡏ	𞸊	𞸪	𞹪	ﮎ	ﮏ	ﮐ	ﮑ	ﻙ	ﻚ	ﻛ	ﻜ
+#	ك	𐴈	ک	ڪ	ࡏ	𞸊	𞸪	ﮎ	ﮏ	ﮐ	ﮑ	ﻙ	ﻚ	ﻛ	ﻜ
 	(‎ ك ‎)	0643	 ARABIC LETTER KAF
 ←	(‎ 𐴈 ‎)	10D08	 HANIFI ROHINGYA LETTER KHA	# →‎ک‎→
 ←	(‎ ک ‎)	06A9	 ARABIC LETTER KEHEH
@@ -9220,7 +9312,6 @@
 ←	(‎ ࡏ ‎)	084F	 MANDAIC LETTER IN	# →‎ڪ‎→
 ←	(‎ 𞸊 ‎)	1EE0A	 ARABIC MATHEMATICAL KAF
 ←	(‎ 𞸪 ‎)	1EE2A	 ARABIC MATHEMATICAL INITIAL KAF
-←	(‎ 𞹪 ‎)	1EE6A	 ARABIC MATHEMATICAL STRETCHED KAF
 ←	(‎ ﮎ ‎)	FB8E	 ARABIC LETTER KEHEH ISOLATED FORM	# →‎ک‎→
 ←	(‎ ﮏ ‎)	FB8F	 ARABIC LETTER KEHEH FINAL FORM	# →‎ک‎→
 ←	(‎ ﮐ ‎)	FB90	 ARABIC LETTER KEHEH INITIAL FORM	# →‎ک‎→
@@ -9230,11 +9321,12 @@
 ←	(‎ ﻛ ‎)	FEDB	 ARABIC LETTER KAF INITIAL FORM
 ←	(‎ ﻜ ‎)	FEDC	 ARABIC LETTER KAF MEDIAL FORM
 
-#	كl	ك𞴁	كا	ك│	ﰷ	ﲀ
+#	كl	ك𞴁	كا	ك│	𞹪	ﰷ	ﲀ
 	(‎ كl ‎)	0643 006C	 ARABIC LETTER KAF, LATIN SMALL LETTER L
 ←	(‎ ك𞴁 ‎)	0643 1ED01	 ARABIC LETTER KAF, OTTOMAN SIYAQ NUMBER ONE	# →‎كا‎→
 ←	(‎ كا ‎)	0643 0627	 ARABIC LETTER KAF, ARABIC LETTER ALEF
 ←	(‎ ك│ ‎)	0643 2502	 ARABIC LETTER KAF, BOX DRAWINGS LIGHT VERTICAL	# →‎كا‎→
+←	(‎ 𞹪 ‎)	1EE6A	 ARABIC MATHEMATICAL STRETCHED KAF	# →‎كا‎→
 ←	(‎ ﰷ ‎)	FC37	 ARABIC LIGATURE KAF WITH ALEF ISOLATED FORM	# →‎كا‎→
 ←	(‎ ﲀ ‎)	FC80	 ARABIC LIGATURE KAF WITH ALEF FINAL FORM	# →‎كا‎→
 
@@ -9480,11 +9572,10 @@
 	(‎ لۛ ‎)	0644 06DB	 ARABIC LETTER LAM, ARABIC SMALL HIGH THREE DOTS
 ←	(‎ ڷ ‎)	06B7	 ARABIC LETTER LAM WITH THREE DOTS ABOVE
 
-#	م	𞸌	𞸬	𞹬	𞺌	𞺬	ﻡ	ﻢ	ﻣ	ﻤ
+#	م	𞸌	𞸬	𞺌	𞺬	ﻡ	ﻢ	ﻣ	ﻤ
 	(‎ م ‎)	0645	 ARABIC LETTER MEEM
 ←	(‎ 𞸌 ‎)	1EE0C	 ARABIC MATHEMATICAL MEEM
 ←	(‎ 𞸬 ‎)	1EE2C	 ARABIC MATHEMATICAL INITIAL MEEM
-←	(‎ 𞹬 ‎)	1EE6C	 ARABIC MATHEMATICAL STRETCHED MEEM
 ←	(‎ 𞺌 ‎)	1EE8C	 ARABIC MATHEMATICAL LOOPED MEEM
 ←	(‎ 𞺬 ‎)	1EEAC	 ARABIC MATHEMATICAL DOUBLE-STRUCK MEEM
 ←	(‎ ﻡ ‎)	FEE1	 ARABIC LETTER MEEM ISOLATED FORM
@@ -9492,13 +9583,14 @@
 ←	(‎ ﻣ ‎)	FEE3	 ARABIC LETTER MEEM INITIAL FORM
 ←	(‎ ﻤ ‎)	FEE4	 ARABIC LETTER MEEM MEDIAL FORM
 
-#	مl	م𞴁	ما	م│	𞲃	𞴓	ﲈ
+#	مl	م𞴁	ما	م│	𞲃	𞴓	𞹬	ﲈ
 	(‎ مl ‎)	0645 006C	 ARABIC LETTER MEEM, LATIN SMALL LETTER L
 ←	(‎ م𞴁 ‎)	0645 1ED01	 ARABIC LETTER MEEM, OTTOMAN SIYAQ NUMBER ONE	# →‎ما‎→
 ←	(‎ ما ‎)	0645 0627	 ARABIC LETTER MEEM, ARABIC LETTER ALEF
 ←	(‎ م│ ‎)	0645 2502	 ARABIC LETTER MEEM, BOX DRAWINGS LIGHT VERTICAL	# →‎ما‎→
 ←	(‎ 𞲃 ‎)	1EC83	 INDIC SIYAQ NUMBER ONE HUNDRED	# →‎ما‎→
 ←	(‎ 𞴓 ‎)	1ED13	 OTTOMAN SIYAQ NUMBER ONE HUNDRED	# →‎ما‎→
+←	(‎ 𞹬 ‎)	1EE6C	 ARABIC MATHEMATICAL STRETCHED MEEM	# →‎ما‎→
 ←	(‎ ﲈ ‎)	FC88	 ARABIC LIGATURE MEEM WITH ALEF FINAL FORM	# →‎ما‎→
 
 #	م𐻺	م͈	۾
@@ -9593,19 +9685,25 @@
 	(‎ مۛ ‎)	0645 06DB	 ARABIC LETTER MEEM, ARABIC SMALL HIGH THREE DOTS
 ←	(‎ ࢧ ‎)	08A7	 ARABIC LETTER MEEM WITH THREE DOTS ABOVE
 
-#	ن	𐻆	𞸍	𞸭	𞹍	𞹭	𞺍	𞺭	ﻥ	ﻦ	ﻧ	ﻨ
+#	ن	𐻆	𞸍	𞸭	𞹍	𞺍	𞺭	ﻥ	ﻦ	ﻧ	ﻨ
 	(‎ ن ‎)	0646	 ARABIC LETTER NOON
 ←	(‎ 𐻆 ‎)	10EC6	 ARABIC LETTER THIN NOON
 ←	(‎ 𞸍 ‎)	1EE0D	 ARABIC MATHEMATICAL NOON
 ←	(‎ 𞸭 ‎)	1EE2D	 ARABIC MATHEMATICAL INITIAL NOON
 ←	(‎ 𞹍 ‎)	1EE4D	 ARABIC MATHEMATICAL TAILED NOON
-←	(‎ 𞹭 ‎)	1EE6D	 ARABIC MATHEMATICAL STRETCHED NOON
 ←	(‎ 𞺍 ‎)	1EE8D	 ARABIC MATHEMATICAL LOOPED NOON
 ←	(‎ 𞺭 ‎)	1EEAD	 ARABIC MATHEMATICAL DOUBLE-STRUCK NOON
 ←	(‎ ﻥ ‎)	FEE5	 ARABIC LETTER NOON ISOLATED FORM
 ←	(‎ ﻦ ‎)	FEE6	 ARABIC LETTER NOON FINAL FORM
 ←	(‎ ﻧ ‎)	FEE7	 ARABIC LETTER NOON INITIAL FORM
 ←	(‎ ﻨ ‎)	FEE8	 ARABIC LETTER NOON MEDIAL FORM
+
+#	ن𞴁	نl	نا	ن│	𞹭
+	(‎ نl ‎)	0646 006C	 ARABIC LETTER NOON, LATIN SMALL LETTER L
+←	(‎ ن𞴁 ‎)	0646 1ED01	 ARABIC LETTER NOON, OTTOMAN SIYAQ NUMBER ONE	# →‎نا‎→
+←	(‎ نا ‎)	0646 0627	 ARABIC LETTER NOON, ARABIC LETTER ALEF
+←	(‎ ن│ ‎)	0646 2502	 ARABIC LETTER NOON, BOX DRAWINGS LIGHT VERTICAL	# →‎نا‎→
+←	(‎ 𞹭 ‎)	1EE6D	 ARABIC MATHEMATICAL STRETCHED NOON	# →‎نا‎→
 
 #	نo	نه	ﳖ	ﳯ
 	(‎ نo ‎)	0646 006F	 ARABIC LETTER NOON, LATIN SMALL LETTER O
@@ -9758,7 +9856,7 @@
 ←	(‎ ﯞ ‎)	FBDE	 ARABIC LETTER VE ISOLATED FORM	# →‎ۋ‎→
 ←	(‎ ﯟ ‎)	FBDF	 ARABIC LETTER VE FINAL FORM	# →‎ۋ‎→
 
-#	ى	ي	ں	ی	ے	ٮ	ࢽ	𞸉	𞸝	𞸩	𞹉	𞹝	𞹩	𞺉	𞺩	ﮞ	ﮟ	ﮮ	ﮯ	ﯨ	ﯩ	ﯼ	ﯽ	ﯾ	ﯿ	ﻯ	ﻰ	ﻱ	ﻲ	ﻳ	ﻴ	𞸜	𞹼
+#	ى	ي	ں	ی	ے	ٮ	ࢽ	𞸉	𞸝	𞸩	𞹉	𞹝	𞺉	𞺩	ﮞ	ﮟ	ﮮ	ﮯ	ﯨ	ﯩ	ﯼ	ﯽ	ﯾ	ﯿ	ﻯ	ﻰ	ﻱ	ﻲ	ﻳ	ﻴ	𞸜
 	(‎ ى ‎)	0649	 ARABIC LETTER ALEF MAKSURA
 ←	(‎ ي ‎)	064A	 ARABIC LETTER YEH	# →‎ی‎→
 ←	(‎ ں ‎)	06BA	 ARABIC LETTER NOON GHUNNA
@@ -9771,7 +9869,6 @@
 ←	(‎ 𞸩 ‎)	1EE29	 ARABIC MATHEMATICAL INITIAL YEH	# →‎ي‎→→‎ی‎→
 ←	(‎ 𞹉 ‎)	1EE49	 ARABIC MATHEMATICAL TAILED YEH	# →‎ي‎→→‎ی‎→
 ←	(‎ 𞹝 ‎)	1EE5D	 ARABIC MATHEMATICAL TAILED DOTLESS NOON	# →‎ں‎→
-←	(‎ 𞹩 ‎)	1EE69	 ARABIC MATHEMATICAL STRETCHED YEH	# →‎ي‎→→‎ی‎→
 ←	(‎ 𞺉 ‎)	1EE89	 ARABIC MATHEMATICAL LOOPED YEH	# →‎ي‎→→‎ی‎→
 ←	(‎ 𞺩 ‎)	1EEA9	 ARABIC MATHEMATICAL DOUBLE-STRUCK YEH	# →‎ي‎→→‎ی‎→
 ←	(‎ ﮞ ‎)	FB9E	 ARABIC LETTER NOON GHUNNA ISOLATED FORM	# →‎ں‎→
@@ -9791,7 +9888,15 @@
 ←	(‎ ﻳ ‎)	FEF3	 ARABIC LETTER YEH INITIAL FORM	# →‎ي‎→→‎ی‎→
 ←	(‎ ﻴ ‎)	FEF4	 ARABIC LETTER YEH MEDIAL FORM	# →‎ي‎→→‎ی‎→
 ←	(‎ 𞸜 ‎)	1EE1C	 ARABIC MATHEMATICAL DOTLESS BEH	# →‎ٮ‎→
-←	(‎ 𞹼 ‎)	1EE7C	 ARABIC MATHEMATICAL STRETCHED DOTLESS BEH	# →‎ٮ‎→
+
+#	ى𞴁	ىl	يا	ٮا	ى│	𞹩	𞹼
+	(‎ ىl ‎)	0649 006C	 ARABIC LETTER ALEF MAKSURA, LATIN SMALL LETTER L
+←	(‎ ى𞴁 ‎)	0649 1ED01	 ARABIC LETTER ALEF MAKSURA, OTTOMAN SIYAQ NUMBER ONE	# →‎يا‎→
+←	(‎ يا ‎)	064A 0627	 ARABIC LETTER YEH, ARABIC LETTER ALEF
+←	(‎ ٮا ‎)	066E 0627	 ARABIC LETTER DOTLESS BEH, ARABIC LETTER ALEF
+←	(‎ ى│ ‎)	0649 2502	 ARABIC LETTER ALEF MAKSURA, BOX DRAWINGS LIGHT VERTICAL	# →‎يا‎→
+←	(‎ 𞹩 ‎)	1EE69	 ARABIC MATHEMATICAL STRETCHED YEH	# →‎يا‎→
+←	(‎ 𞹼 ‎)	1EE7C	 ARABIC MATHEMATICAL STRETCHED DOTLESS BEH	# →‎ٮا‎→
 
 #	ىo	ىه	يه	ﳞ	ﳱ
 	(‎ ىo ‎)	0649 006F	 ARABIC LETTER ALEF MAKSURA, LATIN SMALL LETTER O
@@ -10115,7 +10220,7 @@
 ←	(‎ १ ‎)	0967	 DEVANAGARI DIGIT ONE
 ←	(‎ 𑣤 ‎)	118E4	 WARANG CITI DIGIT FOUR
 
-#	ڡ	ٯ	ࢻ	ࢼ	𞸞	𞸟	𞹟	𞹾
+#	ڡ	ٯ	ࢻ	ࢼ	𞸞	𞸟	𞹟
 	(‎ ٯ ‎)	066F	 ARABIC LETTER DOTLESS QAF
 ←	(‎ ڡ ‎)	06A1	 ARABIC LETTER DOTLESS FEH
 ←	(‎ ࢻ ‎)	08BB	 ARABIC LETTER AFRICAN FEH	# →‎ڡ‎→
@@ -10123,7 +10228,6 @@
 ←	(‎ 𞸞 ‎)	1EE1E	 ARABIC MATHEMATICAL DOTLESS FEH	# →‎ڡ‎→
 ←	(‎ 𞸟 ‎)	1EE1F	 ARABIC MATHEMATICAL DOTLESS QAF
 ←	(‎ 𞹟 ‎)	1EE5F	 ARABIC MATHEMATICAL TAILED DOTLESS QAF
-←	(‎ 𞹾 ‎)	1EE7E	 ARABIC MATHEMATICAL STRETCHED DOTLESS FEH	# →‎ڡ‎→
 
 #	ڡۛ	ٯۛ	𐴜	ڤ	ڨ	ﭪ	ﭫ	ﭬ	ﭭ
 	(‎ ٯۛ ‎)	066F 06DB	 ARABIC LETTER DOTLESS QAF, ARABIC SMALL HIGH THREE DOTS
@@ -10219,6 +10323,13 @@
 #	ڗؕ	ݱ
 	(‎ ڗؕ ‎)	0697 0615	 ARABIC LETTER REH WITH TWO DOTS ABOVE, ARABIC SMALL HIGH TAH
 ←	(‎ ݱ ‎)	0771	 ARABIC LETTER REH WITH SMALL ARABIC LETTER TAH AND TWO DOTS
+
+#	ڡ𞴁	ڡl	ڡا	ڡ│	𞹾
+	(‎ ڡl ‎)	06A1 006C	 ARABIC LETTER DOTLESS FEH, LATIN SMALL LETTER L
+←	(‎ ڡ𞴁 ‎)	06A1 1ED01	 ARABIC LETTER DOTLESS FEH, OTTOMAN SIYAQ NUMBER ONE	# →‎ڡا‎→
+←	(‎ ڡا ‎)	06A1 0627	 ARABIC LETTER DOTLESS FEH, ARABIC LETTER ALEF
+←	(‎ ڡ│ ‎)	06A1 2502	 ARABIC LETTER DOTLESS FEH, BOX DRAWINGS LIGHT VERTICAL	# →‎ڡا‎→
+←	(‎ 𞹾 ‎)	1EE7E	 ARABIC MATHEMATICAL STRETCHED DOTLESS FEH	# →‎ڡا‎→
 
 #	ڢۛ	ࢤ
 	(‎ ڢۛ ‎)	06A2 06DB	 ARABIC LETTER FEH WITH DOT MOVED BELOW, ARABIC SMALL HIGH THREE DOTS
@@ -16696,5 +16807,5 @@
 	(‎ 𮶵 ‎)	2EDB5	 CJK UNIFIED IDEOGRAPH-2EDB5
 ←	(‎ 𲪏 ‎)	32A8F	 CJK UNIFIED IDEOGRAPH-32A8F
 
-# total : 7974
+# total : 8031
 
