@@ -1,5 +1,5 @@
 # confusablesSummary.txt
-# Date: 2026-05-21, 23:16:00 GMT
+# Date: 2026-05-21, 23:42:58 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -10375,6 +10375,18 @@
 ←	(‎ ए𑭤 ‎)	090F 11B64	 DEVANAGARI LETTER E, SHARADA VOWEL SIGN SHORT E
 ←	(‎ ऐ ‎)	0910	 DEVANAGARI LETTER AI
 
+#	ग̱	ग̠	ग॒	ॻ
+	(‎ ग̠ ‎)	0917 0320	 DEVANAGARI LETTER GA, COMBINING MINUS SIGN BELOW
+←	(‎ ग̱ ‎)	0917 0331	 DEVANAGARI LETTER GA, COMBINING MACRON BELOW	# →ग॒→
+←	(‎ ग॒ ‎)	0917 0952	 DEVANAGARI LETTER GA, DEVANAGARI STRESS SIGN ANUDATTA
+←	(‎ ॻ ‎)	097B	 DEVANAGARI LETTER GGA	# →ग॒→
+
+#	ज̱	ज̠	ज॒	ॼ
+	(‎ ज̠ ‎)	091C 0320	 DEVANAGARI LETTER JA, COMBINING MINUS SIGN BELOW
+←	(‎ ज̱ ‎)	091C 0331	 DEVANAGARI LETTER JA, COMBINING MACRON BELOW	# →ज॒→
+←	(‎ ज॒ ‎)	091C 0952	 DEVANAGARI LETTER JA, DEVANAGARI STRESS SIGN ANUDATTA
+←	(‎ ॼ ‎)	097C	 DEVANAGARI LETTER JJA	# →ज॒→
+
 #	ट	ਟ
 	(‎ ट ‎)	091F	 DEVANAGARI LETTER TTA
 ←	(‎ ਟ ‎)	0A1F	 GURMUKHI LETTER TTA
@@ -10382,6 +10394,12 @@
 #	ठ	ਠ
 	(‎ ठ ‎)	0920	 DEVANAGARI LETTER TTHA
 ←	(‎ ਠ ‎)	0A20	 GURMUKHI LETTER TTHA
+
+#	ड̱	ड̠	ड॒	ॾ
+	(‎ ड̠ ‎)	0921 0320	 DEVANAGARI LETTER DDA, COMBINING MINUS SIGN BELOW
+←	(‎ ड̱ ‎)	0921 0331	 DEVANAGARI LETTER DDA, COMBINING MACRON BELOW	# →ड॒→
+←	(‎ ड॒ ‎)	0921 0952	 DEVANAGARI LETTER DDA, DEVANAGARI STRESS SIGN ANUDATTA
+←	(‎ ॾ ‎)	097E	 DEVANAGARI LETTER DDDA	# →ड॒→
 
 #	ढ	ਫ
 	(‎ ढ ‎)	0922	 DEVANAGARI LETTER DDHA
@@ -10420,6 +10438,12 @@
 	(‎ प्ट𑭤 ‎)	092A 094D 091F 11B64	 DEVANAGARI LETTER PA, DEVANAGARI SIGN VIRAMA, DEVANAGARI LETTER TTA, SHARADA VOWEL SIGN SHORT E
 ←	(‎ ੲੇ ‎)	0A72 0A47	 GURMUKHI IRI, GURMUKHI VOWEL SIGN EE
 ←	(‎ ਏ ‎)	0A0F	 GURMUKHI LETTER EE	# →ੲੇ→
+
+#	ब̱	ब̠	ब॒	ॿ
+	(‎ ब̠ ‎)	092C 0320	 DEVANAGARI LETTER BA, COMBINING MINUS SIGN BELOW
+←	(‎ ब̱ ‎)	092C 0331	 DEVANAGARI LETTER BA, COMBINING MACRON BELOW	# →ब॒→
+←	(‎ ब॒ ‎)	092C 0952	 DEVANAGARI LETTER BA, DEVANAGARI STRESS SIGN ANUDATTA
+←	(‎ ॿ ‎)	097F	 DEVANAGARI LETTER BBA	# →ब॒→
 
 #	भ	ਮ
 	(‎ भ ‎)	092D	 DEVANAGARI LETTER BHA
@@ -16672,5 +16696,5 @@
 	(‎ 𮶵 ‎)	2EDB5	 CJK UNIFIED IDEOGRAPH-2EDB5
 ←	(‎ 𲪏 ‎)	32A8F	 CJK UNIFIED IDEOGRAPH-32A8F
 
-# total : 7962
+# total : 7974
 
