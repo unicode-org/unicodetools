@@ -1,6 +1,5 @@
 package org.unicode.text.UCA;
 
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.util.BitSet;
@@ -815,12 +814,6 @@ public final class PrimariesToFractional {
                 UCA.Primary up = regularPrimaries.next();
                 primary = up.primary;
                 nextPrimary = up.nextPrimary;
-                if (primary >= 0xfffd) {
-                    // Special UCA primary FFFD for U+FFFD, gets a hardcoded fractional CE.
-                    // Other special high primaries might get added.
-                    // CLDR already hardcodes one for U+FFFF.
-                    continue;
-                }
                 representativeCP = Character.codePointAt(up.getRepresentative(), 0);
                 props = getOrCreateProps(primary);
             } else if (siniformRanges.hasNext()) {
@@ -1142,8 +1135,8 @@ public final class PrimariesToFractional {
         if (ucaPrimary < Implicit.UNASSIGNED_BASE) {
             return HAN_INDEX;
         }
-        if (0xfffd <= ucaPrimary && ucaPrimary <= 0xffff) {
-            return FFFD_INDEX + ucaPrimary - 0xfffd;
+        if (UCA.MIN_HIGH_SPECIAL_PRIMARY <= ucaPrimary && ucaPrimary <= 0xffff) {
+            return FFFD_INDEX + ucaPrimary - UCA.MIN_HIGH_SPECIAL_PRIMARY;
         }
         throw new IllegalArgumentException(
                 "no properties for unassigned or trailing UCA primary " + Utility.hex(ucaPrimary));
@@ -1235,11 +1228,6 @@ public final class PrimariesToFractional {
             if (script == UCD_Types.COMMON_SCRIPT
                     || script == UCD_Types.INHERITED_SCRIPT
                     || script == UCD_Types.Unknown_Script) {
-                if (primary == 0xfffd) {
-                    // Special UCA primary FFFD for U+FFFD, gets a hardcoded fractional CE.
-                    // Do not include it in the last regular script.
-                    options = null;
-                }
                 // Otherwise: Not a real script, keep current options.
             } else if (script != options.reorderCode) {
                 ScriptOptions newOptions = getOrCreateOptionsForScript(script);
@@ -1371,7 +1359,7 @@ public final class PrimariesToFractional {
     }
 
     private void setTwoBytePrimaryFor(int minPrimary, int ch) {
-        final CEList ces = uca.getCEList(UTF16.valueOf(ch), true);
+        final CEList ces = uca.getCEList(Character.toString(ch), true);
         if (ces != null && ces.length() != 0) {
             final int firstPrimary = CEList.getPrimary(ces.at(0));
             if (minPrimary <= firstPrimary && firstPrimary < Implicit.CJK_BASE) {

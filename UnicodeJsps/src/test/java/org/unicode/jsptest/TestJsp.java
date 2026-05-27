@@ -9,7 +9,6 @@ import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
@@ -162,7 +161,7 @@ public class TestJsp extends TestFmwkMinusMinus {
     //        assertNotNull("2003ignored", map2003);
     //      }
     //      if (type46 != type2003 || !UnicodeProperty.equals(map46, map2003)) {
-    //        String map2 = map2003 == null ? UTF16.valueOf(i) : map2003;
+    //        String map2 = map2003 == null ? Character.toString(i) : map2003;
     //        String nfcf = nfkc_cfMap.get(i);
     //        if (!map2.equals(nfcf)) continue;
     //        String typeDiff = type46 + "\tvs 2003\t" + type2003;
@@ -176,7 +175,7 @@ public class TestJsp extends TestFmwkMinusMinus {
     //  }
 
     private String codeAndName(int i) {
-        return Utility.hex(i) + " ( " + UTF16.valueOf(i) + " ) " + UCharacter.getName(i);
+        return Utility.hex(i) + " ( " + Character.toString(i) + " ) " + UCharacter.getName(i);
     }
 
     private String codeAndName(String i) {
@@ -219,7 +218,8 @@ public class TestJsp extends TestFmwkMinusMinus {
                                 + (!UnicodeProperty.equals(mapping, typeAndMapIcu.mapping)
                                         ? "\tmap:\t" + mapDiff
                                         : ""));
-                //        errln(Utility.hex(cp) + "\t( " + UTF16.valueOf(cp) + " )\tdifference:"
+                //        errln(Utility.hex(cp) + "\t( " + Character.toString(cp) + "
+                // )\tdifference:"
                 //                + (type != typeAndMapIcu.type ? "\ttype:\t" + typeDiff : "")
                 //                + (!UnicodeProperty.equals(mapping, typeAndMapIcu.mapping) ?
                 // "\tmap:\t" + mapDiff : ""));
@@ -375,8 +375,8 @@ public class TestJsp extends TestFmwkMinusMinus {
             String title, int cp, IdnaType t1, String m1, IdnaType t2, String m2) {
         if (t1 == IdnaType.disallowed || t2 == IdnaType.disallowed) return;
         if (t1 == IdnaType.valid && t2 == IdnaType.valid) return;
-        m1 = m1 == null ? UTF16.valueOf(cp) : m1;
-        m2 = m2 == null ? UTF16.valueOf(cp) : m2;
+        m1 = m1 == null ? Character.toString(cp) : m1;
+        m2 = m2 == null ? Character.toString(cp) : m2;
         if (m1.equals(m2)) return;
         assertEquals(title + "\t" + Utility.hex(cp), Utility.hex(m1), Utility.hex(m2));
     }

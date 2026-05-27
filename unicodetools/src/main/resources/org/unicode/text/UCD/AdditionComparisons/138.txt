@@ -10,6 +10,9 @@ Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping 
 
 Ignoring Block:
 
+# A detailed rationale for some of the comparisons here may be found in
+# L2/26-096 §2.4 = https://github.com/unicode-org/properties/issues/525.
+
 # We test Joining_Type, but not the pseudoproperty Other_Joining_Type, which distinguishes
 # characters explicitly listed in ArabicShaping.txt from those where Joining_Type is derived.
 Ignoring Other_Joining_Type Arabic_Shaping_Schematic_Name:
@@ -35,8 +38,11 @@ Propertywise [
                \N{ARABIC SMALL HIGH NOON WITH FATHA}
                \N{ARABIC SMALL HIGH NOON WITH DAMMA}
                \N{ARABIC SMALL HIGH HEH INITIAL FORM}
-               \N{ARABIC SMALL HIGH WORD KABBIR}
     \x{06E2} ۢ  \N{ARABIC SMALL HIGH MEEM ISOLATED FORM}  # Not like SMALL HIGH NOON, which is MCM.
+] AreAlike
+
+Propertywise [
+               \N{ARABIC SMALL HIGH WORD KABBIR}
               ࣞ \N{ARABIC SMALL HIGH WORD QIF}
 ] AreAlike
 

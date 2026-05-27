@@ -31,6 +31,7 @@ import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 final class Validity {
@@ -54,7 +55,7 @@ final class Validity {
         log =
                 Utility.openPrintWriter(
                         UCA.getOutputDir(), "CheckCollationValidity.html", Utility.UTF8_WINDOWS);
-        uca = WriteCollationData.getCollator(CollatorType.ducet);
+        uca = UCA.getDucetCollator();
 
         log.println(
                 "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n"
@@ -79,7 +80,7 @@ final class Validity {
             if (s == null) {
                 break;
             }
-            addString(s, option, CollatorType.ducet);
+            addString(s, DEFAULT_ALTERNATE, CollatorType.ducet);
             coverage.add(s);
         }
 
@@ -212,8 +213,8 @@ final class Validity {
         final String canDecomp = Default.nfd().normalize(cp);
         String result = "";
         int ch;
-        for (int j = 0; j < canDecomp.length(); j += UTF16.getCharCount(ch)) {
-            ch = UTF16.charAt(canDecomp, j);
+        for (int j = 0; j < canDecomp.length(); j += Character.charCount(ch)) {
+            ch = canDecomp.codePointAt(j);
             System.out.println("* " + Default.ucd().getCodeAndName(ch));
             final String newSortKey = remapCanSortKey(ch, decomposition);
             System.out.println("* " + UCA.toString(newSortKey));
@@ -227,7 +228,10 @@ final class Validity {
         final String compatDecomp = Default.nfkd().normalize(ch);
         final String decompSortKey =
                 uca.getSortKey(
-                        compatDecomp, UCA_Types.NON_IGNORABLE, decomposition, AppendToCe.none);
+                        compatDecomp,
+                        UCA_Types.Alternate.NON_IGNORABLE,
+                        decomposition,
+                        AppendToCe.none);
 
         final byte type = Default.ucd().getDecompositionType(ch);
         int pos = decompSortKey.indexOf(UCA_Types.LEVEL_SEPARATOR) + 1; // after first
@@ -246,7 +250,7 @@ final class Validity {
 
     // keys must be of the same strength
     private static String mergeSortKeys(String key1, String key2) {
-        final StringBuffer result = new StringBuffer();
+        final StringBuilder result = new StringBuilder();
         int end1 = 0, end2 = 0;
         while (true) {
             final int pos1 = key1.indexOf(UCA_Types.LEVEL_SEPARATOR, end1);
@@ -270,7 +274,7 @@ final class Validity {
     }
 
     private static final String remove(String s, char ch) {
-        final StringBuffer buf = new StringBuffer();
+        final StringBuilder buf = new StringBuilder();
         for (int i = 0; i < s.length(); ++i) {
             final char c = s.charAt(i);
             if (c == ch) {
@@ -300,8 +304,8 @@ final class Validity {
             if (!Default.nfd().isNormalized(s)) {
                 continue; // only unnormalized stuff
             }
-            if (UTF16.countCodePoint(s) == 1) {
-                final int cat = Default.ucd().getCategory(UTF16.charAt(s, 0));
+            if (UTF16Plus.isSingleCodePoint(s)) {
+                final int cat = Default.ucd().getCategory(s.codePointAt(0));
                 if (cat == UCD_Types.Cn || cat == UCD_Types.Cc || cat == UCD_Types.Cs) {
                     continue;
                 }
@@ -382,7 +386,7 @@ final class Validity {
     // if m exists, then it is a mapping to strings. Use it.
     // otherwise just print what is in set
     private static <K, V> String getHTML_NameSet(Collection<K> set, Map<K, V> m, boolean useName) {
-        final StringBuffer result = new StringBuffer();
+        final StringBuilder result = new StringBuilder();
         final Iterator<K> it = set.iterator();
         while (it.hasNext()) {
             if (result.length() != 0) {
@@ -469,12 +473,16 @@ final class Validity {
 
             String sortKey =
                     uca.getSortKey(
-                            UTF16.valueOf(ch),
-                            UCA_Types.NON_IGNORABLE,
+                            Character.toString(ch),
+                            UCA_Types.Alternate.NON_IGNORABLE,
                             decomposition,
                             AppendToCe.none);
             String decompSortKey =
-                    uca.getSortKey(decomp, UCA_Types.NON_IGNORABLE, decomposition, AppendToCe.none);
+                    uca.getSortKey(
+                            decomp,
+                            UCA_Types.Alternate.NON_IGNORABLE,
+                            decomposition,
+                            AppendToCe.none);
             if (false && strength == 2) {
                 sortKey = remove(sortKey, '\u0020');
                 decompSortKey = remove(decompSortKey, '\u0020');
@@ -678,9 +686,10 @@ final class Validity {
 
                 // We ONLY add if the sort key would be different
                 // Than what we would get if we didn't decompose!!
-                final String sortKey = uca.getSortKey(s, UCA_Types.NON_IGNORABLE);
+                final String sortKey = uca.getSortKey(s, UCA_Types.Alternate.NON_IGNORABLE);
                 final String nonDecompSortKey =
-                        uca.getSortKey(s, UCA_Types.NON_IGNORABLE, false, AppendToCe.none);
+                        uca.getSortKey(
+                                s, UCA_Types.Alternate.NON_IGNORABLE, false, AppendToCe.none);
                 if (sortKey.equals(nonDecompSortKey)) {
                     continue;
                 }
@@ -822,7 +831,7 @@ final class Validity {
                 // IF we are in the trailing range, something is wrong.
                 // UCA 6.3+ sets aside primary weights FFFD..FFFF as specials, so those are ok.
                 // See http://www.unicode.org/reports/tr10/#Trailing_Weights
-                if (Implicit.LIMIT <= p && p < 0xfffd) {
+                if (Implicit.LIMIT <= p && p < UCA.MIN_HIGH_SPECIAL_PRIMARY) {
                     log.println(
                             "<tr><td>"
                                     + (++errorCount)
@@ -932,18 +941,17 @@ final class Validity {
     private static TreeMap<String, String> MismatchedN = new TreeMap<String, String>();
     private static TreeMap<String, String> MismatchedD = new TreeMap<String, String>();
 
-    private static final byte option = UCA.NON_IGNORABLE; // SHIFTED
+    private static final UCA_Types.Alternate DEFAULT_ALTERNATE = UCA_Types.Alternate.NON_IGNORABLE;
 
-    private static void addString(String ch, byte option, CollatorType collatorType) {
+    private static void addString(
+            String ch, UCA_Types.Alternate alternate, CollatorType collatorType) {
         final String colDbase =
-                WriteCollationData.getCollator(collatorType)
-                        .getSortKey(ch, option, true, AppendToCe.none);
+                UCA.getCollator(collatorType).getSortKey(ch, alternate, true, AppendToCe.none);
         final String colNbase =
-                WriteCollationData.getCollator(collatorType)
-                        .getSortKey(ch, option, false, AppendToCe.none);
+                UCA.getCollator(collatorType).getSortKey(ch, alternate, false, AppendToCe.none);
         final String colCbase =
-                WriteCollationData.getCollator(collatorType)
-                        .getSortKey(Default.nfc().normalize(ch), option, false, AppendToCe.none);
+                UCA.getCollator(collatorType)
+                        .getSortKey(Default.nfc().normalize(ch), alternate, false, AppendToCe.none);
         if (!colNbase.equals(colCbase) || !colNbase.equals(colDbase)) {
             /*
              * System.out.println(Utility.hex(ch));
@@ -1072,10 +1080,6 @@ final class Validity {
         }
         log.println("</td></tr>");
     }
-
-    private static final String[] alternateName = {
-        "SHIFTED", "ZEROED", "NON_IGNORABLE", "SHIFTED_TRIMMED"
-    };
 
     private static final ToolUnicodePropertySource propertySource =
             ToolUnicodePropertySource.make(Default.ucdVersion());
@@ -1235,7 +1239,7 @@ final class Validity {
 
     private static void checkScripts() {
         log.println("<h2>0. Check UCA ‘Bucket’ Assignment</h2>");
-        log.println("<p>Alternate Handling = " + alternateName[option] + "</p>");
+        log.println("<p>Alternate Handling = " + DEFAULT_ALTERNATE + "</p>");
         //        log.println("<table border='1'>");
         // log.println("<tr><th>Status</th><th>Type</th><th>GC</th><th>Script</th><th>Ch</th><th>Code</th><th>CE</th><th>Name</th></tr>");
 
@@ -1521,9 +1525,9 @@ final class Validity {
                                     + typeAndString.getKey()
                                     + "</td>"
                                     + "<td>"
-                                    + UTF16.valueOf(it.codepoint)
+                                    + Character.toString(it.codepoint)
                                     + "…"
-                                    + UTF16.valueOf(it.codepointEnd)
+                                    + Character.toString(it.codepointEnd)
                                     + "</td>"
                                     + "<td>"
                                     + Utility.hex(it.codepoint)
@@ -1543,7 +1547,7 @@ final class Validity {
                                     + typeAndString.getKey()
                                     + "</td>"
                                     + "<td>"
-                                    + UTF16.valueOf(it.codepoint)
+                                    + Character.toString(it.codepoint)
                                     + "</td>"
                                     + "<td>"
                                     + Utility.hex(it.codepoint)
@@ -1582,7 +1586,7 @@ final class Validity {
 
     private static void showMismatches() {
         log.println("<h2>1. Mismatches when NFD is OFF</h2>");
-        log.println("<p>Alternate Handling = " + alternateName[option] + "</p>");
+        log.println("<p>Alternate Handling = " + DEFAULT_ALTERNATE + "</p>");
         log.println(
                 "<p>NOTE: NFD form is used by UCA,"
                         + "so if other forms are different there are <i>ignored</i>. This may indicate a problem, e.g. missing contraction.</p>");

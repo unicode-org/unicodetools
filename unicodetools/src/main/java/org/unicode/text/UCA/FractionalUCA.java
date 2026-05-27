@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.UCA.MappingsForFractionalUCA.MappingWithSortKey;
 import org.unicode.text.UCA.PrimariesToFractional.PrimaryToFractional;
-import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
@@ -1222,7 +1221,7 @@ public class FractionalUCA {
 
         showRange("Last", output.summary, lastChr, lastNp);
         // output.summary.println("Last:  " + Utility.hex(lastNp) + ", " +
-        // WriteCollationData.ucd.getCodeAndName(UTF16.charAt(lastChr, 0)));
+        // WriteCollationData.ucd.getCodeAndName(lastChr.codePointAt(0)));
 
         /*
            String sample = "\u3400\u3401\u4DB4\u4DB5\u4E00\u4E01\u9FA4\u9FA5\uAC00\uAC01\uD7A2\uD7A3";
@@ -1377,7 +1376,7 @@ public class FractionalUCA {
     }
 
     private static UCA getCollator() {
-        return WriteCollationData.getCollator(CollatorType.cldrWithoutFFFx);
+        return UCA.getCldrCollator();
     }
 
     private static String cpToScript(int codePoint) {

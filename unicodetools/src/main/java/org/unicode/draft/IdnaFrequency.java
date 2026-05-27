@@ -5,7 +5,6 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.Normalizer;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -41,7 +40,7 @@ public class IdnaFrequency {
         Counter<Integer> charTotal = getData(true);
         for (int cp : charTotal.getKeysetSortedByCount(false)) {
             String norm = normalize(cp);
-            if (!norm.equals(UTF16.valueOf(cp))) {
+            if (!norm.equals(Character.toString(cp))) {
                 final int dt = UCharacter.getIntPropertyValue(cp, UProperty.DECOMPOSITION_TYPE);
                 final String tdName =
                         UCharacter.getPropertyValueName(
@@ -138,7 +137,7 @@ public class IdnaFrequency {
         return "U+"
                 + Utility.hex(cp, 4)
                 + "\t( "
-                + com.ibm.icu.text.UTF16.valueOf(cp)
+                + Character.toString(cp)
                 + " )\t"
                 + UCharacter.getName(cp);
     }

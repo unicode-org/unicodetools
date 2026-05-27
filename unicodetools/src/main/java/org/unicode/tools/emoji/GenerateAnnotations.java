@@ -3,7 +3,6 @@ package org.unicode.tools.emoji;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import java.util.Collection;
@@ -101,8 +100,8 @@ public class GenerateAnnotations {
         }
     }
 
-    private static String MAN = UTF16.valueOf(0x1F468);
-    private static String ADULT = UTF16.valueOf(0x1F9D1);
+    private static String MAN = Character.toString(0x1F468);
+    private static String ADULT = Character.toString(0x1F9D1);
 
     private static void showGenderVariants(EmojiData betaData) {
         Multimap<CountEmoji.ZwjType, String> data = TreeMultimap.create();
@@ -113,7 +112,7 @@ public class GenerateAnnotations {
             CountEmoji.ZwjType type = CountEmoji.ZwjType.getType(s);
             if (s.contains(Emoji.MALE)) {
                 int first = s.codePointAt(0);
-                data.put(type, UTF16.valueOf(first));
+                data.put(type, Character.toString(first));
             } else {
                 switch (type) {
                     case family:

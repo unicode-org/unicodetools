@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2026-03-17, 22:17:15 GMT
+# Date: 2026-05-21, 23:42:58 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -756,6 +756,10 @@
 	(‎ چ̆ ‎)	0686 0306	 ARABIC LETTER TCHEH, COMBINING BREVE
 ←	(‎ ࣁ ‎)	08C1	 ARABIC LETTER TCHEH WITH SMALL V	# →‎چٚ‎→
 
+#	ۅ	ۄ
+	(‎ ۄ ‎)	06C4	 ARABIC LETTER WAW WITH RING
+←	(‎ ۅ ‎)	06C5	 ARABIC LETTER KIRGHIZ OE
+
 #	ݧ	ࢩ
 	(‎ ݧ ‎)	0767	 ARABIC LETTER NOON WITH TWO DOTS BELOW
 ←	(‎ ࢩ ‎)	08A9	 ARABIC LETTER YEH WITH TWO DOTS BELOW AND DOT ABOVE	# →‎ݔ‎→
@@ -839,6 +843,14 @@
 	(‎ एे ‎)	090F 0947	 DEVANAGARI LETTER E, DEVANAGARI VOWEL SIGN E
 ←	(‎ ऐ ‎)	0910	 DEVANAGARI LETTER AI
 
+#	ग̱	ॻ
+	(‎ ग̱ ‎)	0917 0331	 DEVANAGARI LETTER GA, COMBINING MACRON BELOW
+←	(‎ ॻ ‎)	097B	 DEVANAGARI LETTER GGA	# →ग॒→
+
+#	ज̱	ॼ
+	(‎ ज̱ ‎)	091C 0331	 DEVANAGARI LETTER JA, COMBINING MACRON BELOW
+←	(‎ ॼ ‎)	097C	 DEVANAGARI LETTER JJA	# →ज॒→
+
 #	ट	ਟ
 	(‎ ट ‎)	091F	 DEVANAGARI LETTER TTA
 ←	(‎ ਟ ‎)	0A1F	 GURMUKHI LETTER TTA
@@ -847,6 +859,10 @@
 	(‎ ठ ‎)	0920	 DEVANAGARI LETTER TTHA
 ←	(‎ ਠ ‎)	0A20	 GURMUKHI LETTER TTHA
 
+#	ड̱	ॾ
+	(‎ ड̱ ‎)	0921 0331	 DEVANAGARI LETTER DDA, COMBINING MACRON BELOW
+←	(‎ ॾ ‎)	097E	 DEVANAGARI LETTER DDDA	# →ड॒→
+
 #	ढ	ਫ
 	(‎ ढ ‎)	0922	 DEVANAGARI LETTER DDHA
 ←	(‎ ਫ ‎)	0A2B	 GURMUKHI LETTER PHA
@@ -854,6 +870,10 @@
 #	त्त	ਜ
 	(‎ त्त ‎)	0924 094D 0924	 DEVANAGARI LETTER TA, DEVANAGARI SIGN VIRAMA, DEVANAGARI LETTER TA
 ←	(‎ ਜ ‎)	0A1C	 GURMUKHI LETTER JA
+
+#	द̱	𑬊
+	(‎ द̱ ‎)	0926 0331	 DEVANAGARI LETTER DA, COMBINING MACRON BELOW
+←	(‎ 𑬊 ‎)	11B0A	 DEVANAGARI LETTER ALTERNATE DDDA	# →द॒→
 
 #	प	ਧ
 	(‎ प ‎)	092A	 DEVANAGARI LETTER PA
@@ -866,6 +886,10 @@
 #	प्टੀ	ਈ
 	(‎ प्टੀ ‎)	092A 094D 091F 0A40	 DEVANAGARI LETTER PA, DEVANAGARI SIGN VIRAMA, DEVANAGARI LETTER TTA, GURMUKHI VOWEL SIGN II
 ←	(‎ ਈ ‎)	0A08	 GURMUKHI LETTER II	# →ੲੀ→
+
+#	ब̱	ॿ
+	(‎ ब̱ ‎)	092C 0331	 DEVANAGARI LETTER BA, COMBINING MACRON BELOW
+←	(‎ ॿ ‎)	097F	 DEVANAGARI LETTER BBA	# →ब॒→
 
 #	भ	ਮ
 	(‎ भ ‎)	092D	 DEVANAGARI LETTER BHA
@@ -916,8 +940,9 @@
 	(‎ ै ‎)	0948	 DEVANAGARI VOWEL SIGN AI
 ←	(‎ ੈ ‎)	0A48	 GURMUKHI VOWEL SIGN AI
 
-#	्	੍	્
+#	्	্	੍	્
 	(‎ ् ‎)	094D	 DEVANAGARI SIGN VIRAMA
+←	(‎ ্ ‎)	09CD	 BENGALI SIGN VIRAMA	# →𖶝→
 ←	(‎ ੍ ‎)	0A4D	 GURMUKHI SIGN VIRAMA
 ←	(‎ ્ ‎)	0ACD	 GUJARATI SIGN VIRAMA
 
@@ -1471,5 +1496,5 @@
 	(‎ へ ‎)	3078	 HIRAGANA LETTER HE
 ←	(‎ ヘ ‎)	30D8	 KATAKANA LETTER HE
 
-# total : 528
+# total : 535
 

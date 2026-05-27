@@ -1,6 +1,0 @@
-﻿# Source file for idnchars/confusables
-# $Revision: 1045 $
-# $Date: 2010-01-28 18:07:27 -0800 (Thu, 28 Jan 2010) $
-
-# Updated to UAX31, Table 3. Candidate Characters for Inclusion in Identifiers
-# moved to removals.txt

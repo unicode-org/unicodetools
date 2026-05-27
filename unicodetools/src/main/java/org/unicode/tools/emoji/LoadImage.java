@@ -8,7 +8,6 @@ import com.ibm.icu.lang.UScript.ScriptUsage;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
@@ -74,6 +73,7 @@ import javax.imageio.stream.MemoryCacheImageOutputStream;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
+import org.unicode.cldr.util.ExemplarSets;
 import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.LocaleIDParser;
 import org.unicode.cldr.util.With;
@@ -314,7 +314,8 @@ public class LoadImage extends Component {
                 //            }
                 CLDRFile cldrFileObj = cldrFactory.make(cldrFile, true);
                 UnicodeSet exemplars =
-                        cldrFileObj.getExemplarSet("", CLDRFile.WinningChoice.WINNING);
+                        cldrFileObj.getExemplarSet(
+                                ExemplarSets.ExemplarType.main, CLDRFile.WinningChoice.WINNING);
                 int script = 0;
                 for (String s : exemplars) {
                     script = UScript.getScript(s.codePointAt(0));
@@ -443,7 +444,7 @@ public class LoadImage extends Component {
                 it.next(); ) {
             int i = it.codepoint;
             if (f.canDisplay(i)) {
-                GlyphVector gv = f.createGlyphVector(frc, UTF16.valueOf(i));
+                GlyphVector gv = f.createGlyphVector(frc, Character.toString(i));
                 final int glyphCode = gv.getGlyphCode(0);
                 if (glyphCode >= 0) {
                     result.add(i);

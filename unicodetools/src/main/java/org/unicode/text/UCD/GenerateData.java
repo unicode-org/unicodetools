@@ -27,7 +27,6 @@ import java.util.function.Consumer;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
 
@@ -115,7 +114,7 @@ public class GenerateData implements UCD_Types {
             if (Default.ucd().isPUA(ch)) {
                 continue;
             }
-            final String cc = UTF32.valueOf32(ch);
+            final String cc = Character.toString(ch);
             writeLine(cc, log, true);
         }
         Utility.fixDot();
@@ -132,7 +131,7 @@ public class GenerateData implements UCD_Types {
             }
             final int cc = Default.ucd().getCombiningClass(ch);
             if (example[cc] == null) {
-                example[cc] = UTF32.valueOf32(ch);
+                example[cc] = Character.toString(ch);
             }
         }
 
@@ -176,8 +175,8 @@ public class GenerateData implements UCD_Types {
                 break;
             }
 
-            writeLine("a" + sample + UTF32.valueOf32(ch) + "b", log, false);
-            writeLine("a" + UTF32.valueOf32(ch) + sample + "b", log, false);
+            writeLine("a" + sample + Character.toString(ch) + "b", log, false);
+            writeLine("a" + Character.toString(ch) + sample + "b", log, false);
         }
 
         System.out.println("Writing Part 3");
@@ -214,15 +213,15 @@ public class GenerateData implements UCD_Types {
             if (!UTF16.hasMoreCodePointsThan(s, 1)) {
                 continue;
             }
-            final int c1 = UTF16.charAt(s, 0);
-            final int c2 = UTF16.charAt(s, UTF16.getCharCount(c1));
+            final int c1 = s.codePointAt(0);
+            final int c2 = s.codePointAt(Character.charCount(c1));
             if (Default.ucd().getCombiningClass(c1) != 0) {
                 continue;
             }
             if (Default.ucd().getCombiningClass(c2) != 0) {
                 continue;
             }
-            prilist.add(UTF16.valueOf(c1) + '\u0334' + UTF16.valueOf(c2));
+            prilist.add(Character.toString(c1) + '\u0334' + Character.toString(c2));
         }
         Utility.fixDot();
 
@@ -302,7 +301,7 @@ public class GenerateData implements UCD_Types {
             int second;
             for (int i = Character.charCount(first);
                     i < decomposition.length();
-                    first = second, i += UTF16.getCharCount(first)) {
+                    first = second, i += Character.charCount(first)) {
                 second = decomposition.codePointAt(i);
                 links.add(Character.toString(first) + Character.toString(second));
             }
@@ -543,12 +542,12 @@ public class GenerateData implements UCD_Types {
         // if (true) return s;
         commaResult.setLength(0);
         int cp;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = s.codePointAt(i);
             if (Default.ucd().getCategory(cp) == Mn) {
                 commaResult.append('\u25CC');
             }
-            UTF16.append(commaResult, cp);
+            commaResult.appendCodePoint(cp);
         }
         return commaResult.toString();
     }

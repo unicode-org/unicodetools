@@ -547,16 +547,16 @@ public class Uts46 extends Idna {
                     }
                     buffer.appendCodePoint(cp);
                     break;
-                    // ignored: Remove the code point from the string. This is
-                    // equivalent to mapping the code point to an empty string.
+                // ignored: Remove the code point from the string. This is
+                // equivalent to mapping the code point to an empty string.
                 case ignored:
                     break;
-                    // mapped: Replace the code point in the string by the value for the
-                    // mapping in Section 5, IDNA Mapping Table.
-                    // Except, starting with 15.1:
-                    // If transitional and capital sharp s, then map to ss
-                    // to keep the mapping idempotent, and to
-                    // avoid the small sharp s failing the mode=transitional validity check.
+                // mapped: Replace the code point in the string by the value for the
+                // mapping in Section 5, IDNA Mapping Table.
+                // Except, starting with 15.1:
+                // If transitional and capital sharp s, then map to ss
+                // to keep the mapping idempotent, and to
+                // avoid the small sharp s failing the mode=transitional validity check.
                 case mapped:
                     String mapped;
                     if (idnaChoice == IdnaChoice.transitional && cp == 'ẞ') {
@@ -566,11 +566,11 @@ public class Uts46 extends Idna {
                     }
                     buffer.append(mapped);
                     break;
-                    // deviation:
-                    // For Transitional Processing, replace the code point in the string
-                    // by the value for the mapping in Section 5, IDNA Mapping Table.
-                    // For Nontransitional Processing, leave the code point unchanged in
-                    // the string.
+                // deviation:
+                // For Transitional Processing, replace the code point in the string
+                // by the value for the mapping in Section 5, IDNA Mapping Table.
+                // For Nontransitional Processing, leave the code point unchanged in
+                // the string.
                 case deviation:
                     if (idnaChoice == IdnaChoice.transitional) {
                         mapped = mappings.get(cp);
@@ -579,7 +579,7 @@ public class Uts46 extends Idna {
                         buffer.appendCodePoint(cp);
                     }
                     break;
-                    // valid: Leave the code point unchanged in the string.
+                // valid: Leave the code point unchanged in the string.
                 case valid:
                     buffer.appendCodePoint(cp);
                     break;

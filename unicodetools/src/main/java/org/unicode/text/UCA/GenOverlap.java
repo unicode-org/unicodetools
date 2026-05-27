@@ -9,7 +9,6 @@
  */
 package org.unicode.text.UCA;
 
-import com.ibm.icu.text.UTF16;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.BitSet;
@@ -23,9 +22,11 @@ import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
-public class GenOverlap implements UCD_Types, UCA_Types {
+public class GenOverlap implements UCD_Types {
 
     static Map completes = new TreeMap();
     static Map back = new HashMap();
@@ -39,9 +40,10 @@ public class GenOverlap implements UCD_Types, UCA_Types {
     public static void validateUCA(UCA collatorIn) throws Exception {
         collator = collatorIn;
         ucd = UCD.makeLatestVersion();
+        assert collatorIn.getUCDVersion().equals(Settings.latestVersion);
 
-        nfd = new Normalizer(UCD_Types.NFD, collatorIn.getUCDVersion());
-        nfkd = new Normalizer(UCD_Types.NFKD, collatorIn.getUCDVersion());
+        nfd = Normalizer.getNfdInstance();
+        nfkd = Normalizer.getNfkdInstance();
 
         for (int cp = 0x0; cp <= 0x10FFFF; ++cp) {
             Utility.dot(cp);
@@ -52,7 +54,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
             if (decompType >= UCD_Types.COMPATIBILITY) {
                 final String decomp = nfkd.normalize(cp);
                 final CEList celistDecomp = getCEList(cp, decomp, true, decompType);
-                final CEList celistNormal = getCEList(UTF16.valueOf(cp), false);
+                final CEList celistNormal = getCEList(Character.toString(cp), false);
                 if (!celistNormal.equals(celistDecomp)) {
                     Utility.fixDot();
                     System.out.println();
@@ -73,9 +75,10 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         System.out.println("# Generated: " + WriteCollationData.getNormalDate());
 
         ucd = UCD.makeLatestVersion();
+        assert collatorIn.getUCDVersion().equals(Settings.latestVersion);
 
-        nfd = new Normalizer(UCD_Types.NFD, collatorIn.getUCDVersion());
-        nfkd = new Normalizer(UCD_Types.NFKD, collatorIn.getUCDVersion());
+        nfd = Normalizer.getNfdInstance();
+        nfkd = Normalizer.getNfkdInstance();
 
         final UCA.UCAContents cc = collator.getContents(nfd);
 
@@ -234,9 +237,9 @@ public class GenOverlap implements UCD_Types, UCA_Types {
             for (int i = 0; i < len; ++i) {
                 ces[i] =
                         UCA.makeKey(
-                                UCA.getPrimary(ces[i]),
-                                UCA.getSecondary(ces[i]),
-                                CEList.remap(originalChar, type, UCA.getTertiary(ces[i])));
+                                CEList.getPrimary(ces[i]),
+                                CEList.getSecondary(ces[i]),
+                                CEList.remap(originalChar, type, CEList.getTertiary(ces[i])));
             }
         }
         return new CEList(ces, 0, len);
@@ -384,9 +387,10 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         System.out.println("# Generated: " + WriteCollationData.getNormalDate());
 
         ucd = UCD.makeLatestVersion();
+        assert collatorIn.getUCDVersion().equals(Settings.latestVersion);
 
-        nfd = new Normalizer(UCD_Types.NFD, collatorIn.getUCDVersion());
-        nfkd = new Normalizer(UCD_Types.NFKD, collatorIn.getUCDVersion());
+        nfd = Normalizer.getNfdInstance();
+        nfkd = Normalizer.getNfkdInstance();
 
         final UCA.UCAContents cc = collator.getContents(nfd);
 
@@ -412,8 +416,8 @@ public class GenOverlap implements UCD_Types, UCA_Types {
 
             CEList newList = CEList.EMPTY;
             int cp;
-            for (int i = 0; i < str.length(); i += UTF16.getCharCount(cp)) {
-                cp = UTF16.charAt(str, i);
+            for (int i = 0; i < str.length(); i += Character.charCount(cp)) {
+                cp = str.codePointAt(i);
                 if (0xFF3F == cp) {
                     System.out.println("debug");
                 }
@@ -429,8 +433,8 @@ public class GenOverlap implements UCD_Types, UCA_Types {
                             int p =
                                     (i == 0 && decomp.length() > 1 && decomp.charAt(0) == ' '
                                             ? 0x20A
-                                            : UCA.getPrimary(ces[j]));
-                            final int s = UCA.getSecondary(ces[j]);
+                                            : CEList.getPrimary(ces[j]));
+                            final int s = CEList.getSecondary(ces[j]);
                             final boolean needsFix = (s != 0x20 && p != 0);
                             if (needsFix) {
                                 ++len;
@@ -438,7 +442,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
                             final int t =
                                     (doMax && j > 0
                                             ? 0x1F
-                                            : CEList.remap(cp, type, UCA.getTertiary(ces[j])));
+                                            : CEList.remap(cp, type, CEList.getTertiary(ces[j])));
                             if (needsFix) {
                                 ces[j++] = UCA.makeKey(p, 0x20, t); // Set Extra
                                 System.arraycopy(ces, j, ces, j + 1, len - j); // Insert HOLE!
@@ -448,7 +452,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
                         }
                     }
                 } else {
-                    len = collator.getCEs(UTF16.valueOf(cp), true, ces);
+                    len = collator.getCEs(Character.toString(cp), true, ces);
                 }
                 final CEList inc = new CEList(ces, 0, len);
 
@@ -513,7 +517,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
             Utility.dot(counter++);
             final Pair value = (Pair) it.next();
             final CEList newList = (CEList) value.first;
-            final int cur = UCA.getPrimary(newList.at(0));
+            final int cur = CEList.getPrimary(newList.at(0));
             if (cur != last) {
                 log.println();
                 last = cur;
@@ -576,7 +580,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         while (it.hasNext()) {
             final Pair pair = (Pair) it.next();
             final CEList cel = (CEList) pair.first;
-            final int curr = UCA.getPrimary(cel.at(0));
+            final int curr = CEList.getPrimary(cel.at(0));
             if (curr != last) {
                 last = curr;
                 log.println();
@@ -594,13 +598,12 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         System.out.println("# Generated: " + WriteCollationData.getNormalDate());
 
         ucd = UCD.makeLatestVersion();
+        assert collatorIn.getUCDVersion().equals(Settings.latestVersion);
 
-        // nfd = new Normalizer(Normalizer.NFD);
-        // nfkd = new Normalizer(Normalizer.NFKD);
+        nfd = Normalizer.getNfdInstance();
+        nfkd = Normalizer.getNfkdInstance();
 
         final UCA.UCAContents cc = collator.getContents(nfd);
-        nfd = new Normalizer(UCD_Types.NFD, collatorIn.getUCDVersion());
-        nfkd = new Normalizer(UCD_Types.NFKD, collatorIn.getUCDVersion());
 
         final int tableLength = 257;
         /*
@@ -634,10 +637,10 @@ public class GenOverlap implements UCD_Types, UCA_Types {
                     break;
                 }
 
-                if (UTF16.countCodePoint(s) != 1) {
+                if (!UTF16Plus.isSingleCodePoint(s)) {
                     continue; // skip ligatures
                 }
-                final int cp = UTF16.charAt(s, 0);
+                final int cp = s.codePointAt(0);
                 if (!nfkd.isNormalized(cp)) {
                     continue;
                 }
@@ -680,12 +683,12 @@ public class GenOverlap implements UCD_Types, UCA_Types {
                 continue; // don't count case
             }
 
-            final String scp = UTF16.valueOf(cp);
+            final String scp = Character.toString(cp);
             final int len = collator.getCEs(scp, true, ces);
             final int script = ucd.getScript(cp);
 
             for (int i = 0; i < len; ++i) {
-                final int prim = UCA.getPrimary(ces[i]);
+                final int prim = CEList.getPrimary(ces[i]);
                 final int hash = prim % tableLength;
                 if (!repeats[script].get(prim)) {
                     ++collisions[script][hash];
@@ -734,9 +737,9 @@ public class GenOverlap implements UCD_Types, UCA_Types {
             // if (UTF16.countCodePoint(latin[i]) < 2) continue;
             int cp2;
             log.println("<table>");
-            for (int j = 0; j < element.length(); j += UTF16.getCharCount(cp2)) {
-                cp2 = UTF16.charAt(element, j);
-                final String scp2 = UTF16.valueOf(cp2);
+            for (int j = 0; j < element.length(); j += Character.charCount(cp2)) {
+                cp2 = element.codePointAt(j);
+                final String scp2 = Character.toString(cp2);
                 final CEList clist = collator.getCEList(scp2, true);
                 log.println(
                         "<tr><td>"
@@ -798,8 +801,9 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         final Set set = new TreeSet(collatorIn);
         final Set set2 = new TreeSet(collatorIn);
         ucd = UCD.makeLatestVersion();
+        assert collatorIn.getUCDVersion().equals(Settings.latestVersion);
 
-        nfd = new Normalizer(UCD_Types.NFD, collatorIn.getUCDVersion());
+        nfd = Normalizer.getNfdInstance();
 
         for (char i = 0; i < 0xFFFF; ++i) {
             Utility.dot(i);

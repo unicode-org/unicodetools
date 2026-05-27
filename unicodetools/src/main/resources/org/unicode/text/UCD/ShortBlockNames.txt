@@ -26,6 +26,7 @@ ASCII	;	Basic_Latin
 Bassa_Vah	;	Bassa_Vah
 Batak	;	Batak
 Bengali	;	Bengali
+Bengali_Sup	;	Bengali_Supplement
 Beria_Erfe  ;   Beria_Erfe
 Bhaiksuki	;	Bhaiksuki
 Block_Elements	;	Block_Elements

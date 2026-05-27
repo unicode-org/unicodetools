@@ -8,7 +8,6 @@ package org.unicode.parse;
 
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.SymbolTable;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
 import java.text.ParsePosition;
@@ -213,7 +212,7 @@ public class Tokenizer {
             while (index < source.length()) {
                 cp = nextChar();
                 if (UCharacter.getType(cp) != Character.DECIMAL_DIGIT_NUMBER) {
-                    index -= UTF16.getCharCount(cp); // BACKUP!
+                    index -= Character.charCount(cp); // BACKUP!
                     break;
                 }
                 number *= 10;
@@ -241,7 +240,7 @@ public class Tokenizer {
                         } else if (cp == BSLASH) {
                             result = Result.INCOMPLETE_BACKSLASH;
                         } else {
-                            UTF16.append(buffer, cp);
+                            buffer.appendCodePoint(cp);
                         }
                         break;
                     case INCOMPLETE_BACKSLASH:
@@ -258,7 +257,7 @@ public class Tokenizer {
                             default:
                                 break;
                         }
-                        UTF16.append(buffer, cp);
+                        buffer.appendCodePoint(cp);
                         result = Result.UNTERMINATED_QUOTE;
                         break;
                     default:
@@ -279,7 +278,7 @@ public class Tokenizer {
                 if (UCharacter.isUnicodeIdentifierPart(cp) || cp == '$') {
                     buffer.appendCodePoint(cp);
                 } else if (!UCharacter.isIdentifierIgnorable(cp)) {
-                    index -= UTF16.getCharCount(cp); // BACKUP!
+                    index -= Character.charCount(cp); // BACKUP!
                     break;
                 }
             }
@@ -323,8 +322,8 @@ public class Tokenizer {
     }
 
     private int nextChar() {
-        int cp = UTF16.charAt(source, index);
-        index += UTF16.getCharCount(cp);
+        int cp = source.codePointAt(index);
+        index += Character.charCount(cp);
         return cp;
     }
 
@@ -398,8 +397,8 @@ public class Tokenizer {
             int cp;
             int start = pos.getIndex();
             int i;
-            for (i = start; i < limit; i += UTF16.getCharCount(cp)) {
-                cp = UTF16.charAt(text, i);
+            for (i = start; i < limit; i += Character.charCount(cp)) {
+                cp = text.codePointAt(i);
                 if (!com.ibm.icu.lang.UCharacter.isUnicodeIdentifierPart(cp)) {
                     break;
                 }

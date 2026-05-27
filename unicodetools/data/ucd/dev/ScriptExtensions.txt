@@ -1,5 +1,5 @@
 # ScriptExtensions-18.0.0.txt
-# Date: 2026-02-03, 23:10:23 GMT
+# Date: 2026-04-24, 00:21:00 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -123,7 +123,7 @@
 1CF2          ; Beng Deva Gran Knda Mlym Nand Orya Sinh Telu Tirh Tutg #Lo VEDIC SIGN ARDHAVISARGA
 1CF3          ; Deva Gran                      # Lo      VEDIC SIGN ROTATED ARDHAVISARGA
 1CF4          ; Deva Gran Knda Tutg            # Mn      VEDIC TONE CANDRA ABOVE
-1CF5..1CF6    ; Beng Deva                      # Lo  [2] VEDIC SIGN JIHVAMULIYA..VEDIC SIGN UPADHMANIYA
+1CF5..1CF6    ; Beng                           # Lo  [2] VEDIC SIGN JIHVAMULIYA..VEDIC SIGN UPADHMANIYA
 1CF7          ; Beng                           # Mc      VEDIC SIGN ATIKRAMA
 1CF8..1CF9    ; Deva Gran                      # Mn  [2] VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
 1CFA          ; Nand                           # Lo      VEDIC SIGN DOUBLE ANUSVARA ANTARGOMUKHA

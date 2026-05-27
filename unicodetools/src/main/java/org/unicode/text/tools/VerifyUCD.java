@@ -229,14 +229,14 @@ public class VerifyUCD {
                 final Object value1 = getValue(up, codepoint);
                 int newCodepoint;
                 String nfcStringPropertyValue = "";
-                for (int i = 0; i < normalized.length(); i += UTF16.getCharCount(newCodepoint)) {
-                    newCodepoint = UTF16.charAt(normalized, i);
+                for (int i = 0; i < normalized.length(); i += Character.charCount(newCodepoint)) {
+                    newCodepoint = normalized.codePointAt(i);
                     final int catMask = Default.ucd().getCategoryMask(newCodepoint);
                     // special case strings
                     if (isStringProp) {
                         Object value2 = getValue(up, newCodepoint);
                         if (value2 == null) {
-                            value2 = UTF16.valueOf(newCodepoint);
+                            value2 = Character.toString(newCodepoint);
                         }
                         nfcStringPropertyValue += value2;
                         continue;
@@ -371,7 +371,7 @@ public class VerifyUCD {
         Object value1 = up.getValue(codepoint);
         if (value1 == null) {
             if ((type & UnicodeProperty.STRING_OR_MISC_MASK) != 0) {
-                value1 = UTF16.valueOf(codepoint);
+                value1 = Character.toString(codepoint);
             } else if ((type & UnicodeProperty.BINARY_MASK) != 0) {
                 value1 = UCD_Names.NO;
             }

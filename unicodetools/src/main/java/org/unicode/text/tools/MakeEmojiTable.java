@@ -1,7 +1,6 @@
 package org.unicode.text.tools;
 
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.UTF16;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
@@ -38,7 +37,7 @@ public class MakeEmojiTable {
                     first = false;
                     out.println("</td></tr>");
                 }
-                String chars = UTF16.valueOf(hex);
+                String chars = Character.toString(hex);
                 String hexUpper = Utility.hex(hex);
                 String hexLower = hexUpper.toLowerCase(Locale.ROOT);
                 out.println(

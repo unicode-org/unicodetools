@@ -9,7 +9,6 @@ package org.unicode.draft;
 
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.StringPrepParseException;
-import com.ibm.icu.text.UTF16;
 
 /**
  * Ported code from ICU punycode.c
@@ -141,11 +140,11 @@ public final class Punycode {
                 dest.append(c);
             } else {
                 cpBeingEncoded = 0;
-                if (!UTF16.isSurrogate(c)) {
+                if (!Character.isSurrogate(c)) {
                     cpBeingEncoded |= c;
-                } else if (UTF16.isLeadSurrogate(c)
+                } else if (Character.isHighSurrogate(c)
                         && (j + 1) < srcLength
-                        && UTF16.isTrailSurrogate(c2 = src.charAt(j + 1))) {
+                        && Character.isLowSurrogate(c2 = src.charAt(j + 1))) {
                     ++j;
 
                     cpBeingEncoded |= UCharacter.getCodePoint(c, c2);
@@ -435,7 +434,8 @@ public final class Punycode {
                 }
             } else {
                 codeUnitIndex = firstSupplementaryIndex;
-                codeUnitIndex = UTF16.moveCodePointOffset(dest, codeUnitIndex, i - codeUnitIndex);
+                codeUnitIndex =
+                        Character.offsetByCodePoints(dest, codeUnitIndex, i - codeUnitIndex);
             }
 
             /* use the UChar index codeUnitIndex instead of the code point index i */

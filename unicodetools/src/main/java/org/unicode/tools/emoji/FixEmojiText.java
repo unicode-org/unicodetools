@@ -1,7 +1,6 @@
 package org.unicode.tools.emoji;
 
 import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.File;
 import java.io.IOException;
@@ -41,7 +40,7 @@ public class FixEmojiText {
                 }
             } else {
                 for (int cp : With.codePointArray(arg)) {
-                    process2(UTF16.valueOf(cp), result);
+                    process2(Character.toString(cp), result);
                 }
             }
             out.println(result);

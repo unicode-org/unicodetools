@@ -6,7 +6,6 @@ import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.RuleBasedBreakIterator;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
@@ -17,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.jar.Manifest;
 import java.util.regex.Matcher;
@@ -104,7 +104,8 @@ public class UnicodeJsp {
         while (decimalEscapes.find(start)) {
             int radix = 10;
             int code = Integer.parseInt(decimalEscapes.group(2), radix);
-            result2.append(text.substring(start, decimalEscapes.start()) + UTF16.valueOf(code));
+            result2.append(
+                    text.substring(start, decimalEscapes.start()) + Character.toString(code));
             start = decimalEscapes.end();
         }
         result2.append(text.substring(start));
@@ -140,7 +141,8 @@ public class UnicodeJsp {
         if (showDevProperties) {
             originalParameters.add("showDevProperties=1");
         }
-        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
+        showDevProperties =
+                Settings.latestVersionPhase.compareTo(ReleasePhase.BETA) >= 0 || showDevProperties;
         UnicodeUtilities.showProperties(cp, history, showDevProperties, originalParameters, out);
     }
 
@@ -212,7 +214,8 @@ public class UnicodeJsp {
             throws IOException {
         List<String> originalParameters =
                 showDevProperties ? List.of("showDevProperties=1") : List.of();
-        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
+        showDevProperties =
+                Settings.latestVersionPhase.compareTo(ReleasePhase.BETA) >= 0 || showDevProperties;
         CodePointShower codePointShower =
                 new CodePointShower(
                         grouping,
@@ -261,7 +264,7 @@ public class UnicodeJsp {
         String digits = matcher.matches() ? matcher.group(1).replaceAll("['_]", "") : null;
         if (digits != null && digits.length() > 1) {
             try {
-                text = UTF16.valueOf(Integer.parseInt(digits, 16));
+                text = Character.toString(Integer.parseInt(digits, 16));
             } catch (Exception e) {
             }
         }
@@ -435,7 +438,8 @@ public class UnicodeJsp {
     public static String getIdentifier(String script, boolean showDevProperties) {
         List<String> originalParameters =
                 showDevProperties ? List.of("showDevProperties=1") : List.of();
-        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
+        showDevProperties =
+                Settings.latestVersionPhase.compareTo(ReleasePhase.BETA) >= 0 || showDevProperties;
         return UnicodeUtilities.getIdentifier(script, showDevProperties, originalParameters);
     }
 
@@ -445,16 +449,21 @@ public class UnicodeJsp {
             "ICU version: "
                     + VersionInfo.ICU_VERSION.getVersionString(2, 2)
                     + "; "
-                    + "Unicode/Emoji version: "
+                    + "base Unicode/Emoji version: "
                     + Settings.lastVersion
                     + "; "
                     + (Settings.latestVersionPhase == ReleasePhase.BETA
-                            ? "Unicodeβ version: " + Settings.latestVersion + "; "
-                            : "");
+                            ? "Unicode β version: " + Settings.latestVersion + "; "
+                            : Settings.latestVersionPhase == ReleasePhase.GAMMA
+                                    ? "Unicode latest version: " + Settings.latestVersion + "; "
+                                    : "");
 
     public static String getVersions() {
         return "unicodetools "
-                + MANIFEST.getMainAttributes().getValue("UnicodeTools-Git-Commit").substring(0, 7)
+                + Objects.requireNonNullElse(
+                                MANIFEST.getMainAttributes().getValue("UnicodeTools-Git-Commit"),
+                                "???????")
+                        .substring(0, 7)
                 + " built on "
                 + (MANIFEST.getMainAttributes().getValue("Build-Time"))
                 + "; "
@@ -462,12 +471,13 @@ public class UnicodeJsp {
     }
 
     static final String SUBHEAD =
-            Settings.latestVersionPhase == ReleasePhase.BETA
+            Settings.latestVersionPhase.compareTo(ReleasePhase.BETA) >= 0
                     ? "<p style='border: 1pt solid red;'>Unmarked properties are from Unicode V"
                             + Settings.lastVersion
-                            + "; the beta properties are from Unicode V"
+                            + "; changes in Unicode V"
                             + Settings.latestVersion
-                            + "β. "
+                            + Settings.latestVersionPhase
+                            + " are highlighted. "
                             + "For more information, see <a target='help' href='https://unicode-org.github.io/unicodetools/help/changes'>Unicode Utilities Beta</a>.</p>"
                     : "";
 

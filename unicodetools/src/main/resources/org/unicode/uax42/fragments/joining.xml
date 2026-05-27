@@ -7,6 +7,10 @@
     attribute jg { "African_Feh" | "African_Noon" | "African_Qaf"
                  | "Ain" | "Alaph" | "Alef"
                  | "Beh" | "Beth" | "Burushaski_Yeh_Barree"
+                 <edit flag='changed'>| "Crown_Ain" | "Crown_Beh" | "Crown_Feh"
+                 | "Crown_Hah" | "Crown_Heh" | "Crown_Kaf"
+                 | "Crown_Meem" | "Crown_Sad" | "Crown_Seen"
+                 | "Crown_Tah"</edit>
                  | "Dal" | "Dalath_Rish"
                  | "E"
                  | "Farsi_Yeh" | "Fe" | "Feh" | "Final_Semkath"

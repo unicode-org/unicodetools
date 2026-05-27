@@ -157,7 +157,7 @@ public class UnicodeSetFormatter {
             } else {
                 for (int i = it.codepoint; i <= it.codepointEnd; ++i) {
                     if (!putAtEnd.contains(i)) {
-                        orderedStrings.add(UTF16.valueOf(i));
+                        orderedStrings.add(Character.toString(i));
                     }
                 }
             }
@@ -200,7 +200,7 @@ public class UnicodeSetFormatter {
             appendQuoted(s);
             lastString = s;
         } else {
-            appendUnicodeSetItem(UTF16.charAt(s, 0));
+            appendUnicodeSetItem(s.codePointAt(0));
         }
         return this;
     }
@@ -222,7 +222,7 @@ public class UnicodeSetFormatter {
         } else if (spaceComp != null && spaceComp.compare(s, lastString) != 0) {
             target.append(' ');
         } else {
-            int cp = UTF16.charAt(s, 0);
+            int cp = s.codePointAt(0);
             if (!toQuote.contains(cp) && !QUOTED_SYNTAX.contains(cp)) {
                 int type = UCharacter.getType(cp);
                 if (type == UCharacter.NON_SPACING_MARK || type == UCharacter.ENCLOSING_MARK) {
@@ -235,7 +235,7 @@ public class UnicodeSetFormatter {
     }
 
     private void addSpaceAsNeededBefore(int codepoint) {
-        addSpaceAsNeededBefore(UTF16.valueOf(codepoint));
+        addSpaceAsNeededBefore(Character.toString(codepoint));
     }
 
     private void flushLast() {
@@ -250,7 +250,7 @@ public class UnicodeSetFormatter {
                 }
             }
             appendQuoted(lastCodePoint);
-            lastString = UTF16.valueOf(lastCodePoint);
+            lastString = Character.toString(lastCodePoint);
             firstCodePoint = lastCodePoint = -2;
         }
     }
@@ -261,8 +261,8 @@ public class UnicodeSetFormatter {
             target.append(quoter.transform(s));
         } else {
             int cp;
-            for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-                appendQuoted(cp = UTF16.charAt(s, i));
+            for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+                appendQuoted(cp = s.codePointAt(i));
             }
         }
         target.append("}");
@@ -271,7 +271,7 @@ public class UnicodeSetFormatter {
     UnicodeSetFormatter appendQuoted(int codePoint) {
         if (toQuote.contains(codePoint)) {
             if (quoter != null) {
-                target.append(quoter.transform(UTF16.valueOf(codePoint)));
+                target.append(quoter.transform(Character.toString(codePoint)));
                 return this;
             }
             if (codePoint > 0xFFFF) {
@@ -304,7 +304,7 @@ public class UnicodeSetFormatter {
                 }
                 break;
         }
-        UTF16.append(target, codePoint);
+        target.appendCodePoint(codePoint);
         return this;
     }
 

@@ -12,7 +12,6 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetSpanner;
 import com.ibm.icu.util.ICUException;
@@ -61,7 +60,7 @@ public class EmojiData implements EmojiDataSource {
     static final int BUNNY_DANCERS = 0x1f46f;
     static final int WRESTLERS = 0x1f93c;
     static final int HANDSHAKE = 0x1f91d;
-    static final String HANDSHAKE_STRING = UTF16.valueOf(0x1f91d);
+    static final String HANDSHAKE_STRING = Character.toString(0x1f91d);
     public static final String NEUTRAL_HOLDING = "🧑‍🤝‍🧑";
     public static final String SAMPLE_NEUTRAL_HOLDING_WITH_SKIN = "🧑🏼‍🤝‍🧑🏻";
     public static final String MAN_WITH_RED_HAIR = "👨‍🦰";
@@ -71,8 +70,8 @@ public class EmojiData implements EmojiDataSource {
 
     static final String ZWJ_HANDSHAKE_ZWJ = Emoji.ZWJ_HANDSHAKE_ZWJ;
 
-    static final String RIGHTWARDS_HAND = UTF16.valueOf(0x1faf1);
-    static final String LEFTWARDS_HAND = UTF16.valueOf(0x1faf2);
+    static final String RIGHTWARDS_HAND = Character.toString(0x1faf1);
+    static final String LEFTWARDS_HAND = Character.toString(0x1faf2);
     static final String SHAKING_HANDS = RIGHTWARDS_HAND + Emoji.JOINER_STR + LEFTWARDS_HAND;
 
     public static boolean ALLOW_UNICODE_NAME = System.getProperty("ALLOW_UNICODE_NAME") != null;
@@ -452,7 +451,7 @@ public class EmojiData implements EmojiDataSource {
                                                     + ", modifier "
                                                     + Utility.hex(last)
                                                     + " "
-                                                    + UTF16.valueOf(cp1)
+                                                    + Character.toString(cp1)
                                                     + "not following base ");
                                 }
                                 modifierBasesRgi.add(last);
@@ -470,7 +469,7 @@ public class EmojiData implements EmojiDataSource {
                         boolean isSingleton = codePoint != -1;
                         if (isSingleton) {
                             first = codePoint;
-                            source = UTF16.valueOf(codePoint);
+                            source = Character.toString(codePoint);
                         } else {
                             first = source.codePointAt(0);
                         }
@@ -763,15 +762,15 @@ public class EmojiData implements EmojiDataSource {
         femaleToOther = TreeMultimap.create();
         otherHuman = new UnicodeSet();
         // UnicodeMap<String> fromMan = new UnicodeMap<String>()
-        // .put(0x2642, UTF16.valueOf(0x2640)) // MALE SIGN→FEMALE SIGN
-        // .put(0x1F466, UTF16.valueOf(0x1F467)) // boy→girl
-        // .put(0x1F468, UTF16.valueOf(0x1F469)) // man→woman
+        // .put(0x2642, Character.toString(0x2640)) // MALE SIGN→FEMALE SIGN
+        // .put(0x1F466, Character.toString(0x1F467)) // boy→girl
+        // .put(0x1F468, Character.toString(0x1F469)) // man→woman
         // .freeze();
         //
         // UnicodeMap<String> fromWoman = new UnicodeMap<String>()
-        // .put(0x2640,UTF16.valueOf(0x2642)) // FEMALE SIGN→MALE SIGN
-        // .put(0x1F467, UTF16.valueOf(0x1F466)) // girl→boy
-        // .put(0x1F469, UTF16.valueOf(0x1F468)) // woman→man
+        // .put(0x2640,Character.toString(0x2642)) // FEMALE SIGN→MALE SIGN
+        // .put(0x1F467, Character.toString(0x1F466)) // girl→boy
+        // .put(0x1F469, Character.toString(0x1F468)) // woman→man
         // .freeze();
 
         for (String emoji : allEmojiWithoutDefectives) {
@@ -1315,7 +1314,7 @@ public class EmojiData implements EmojiDataSource {
         return _getName(source, false, CandidateData.getInstance());
     }
 
-    static final String DEBUG_STRING = UTF16.valueOf(0x1F3F4);
+    static final String DEBUG_STRING = Character.toString(0x1F3F4);
 
     private String _getName(
             String source, boolean toLower, Transform<String, String> otherNameSource) {
@@ -1323,9 +1322,9 @@ public class EmojiData implements EmojiDataSource {
             int debug = 0;
         }
         // workaround: preserve skin tones for direction ZWJ sequences
-        String trimmed = source.replace(UTF16.valueOf(Emoji.EMOJI_VARIANT), "");
-        if (trimmed.endsWith(Emoji.JOINER_STR + UTF16.valueOf(0x27A1))) {
-            trimmed = trimmed.replace(Emoji.JOINER_STR + UTF16.valueOf(0x27A1), "");
+        String trimmed = source.replace(Character.toString(Emoji.EMOJI_VARIANT), "");
+        if (trimmed.endsWith(Emoji.JOINER_STR + Character.toString(0x27A1))) {
+            trimmed = trimmed.replace(Emoji.JOINER_STR + Character.toString(0x27A1), "");
             String name = _getName(trimmed, toLower, otherNameSource);
             if (name != null) {
                 String[] components = name.split(":");
@@ -2093,7 +2092,7 @@ public class EmojiData implements EmojiDataSource {
         if (MODIFIERS.contains(second)) {
             return item;
         }
-        return UTF16.valueOf(first) + Emoji.EMOJI_VARIANT_STRING + item.substring(firstLen);
+        return Character.toString(first) + Emoji.EMOJI_VARIANT_STRING + item.substring(firstLen);
     }
 
     private static void showDiff(
@@ -2295,7 +2294,7 @@ public class EmojiData implements EmojiDataSource {
     public boolean isOtherGroup(String s) {
         if (version.compareTo(Emoji.VERSION17) >= 0) {
             String base = getBaseRemovingModsGender(s);
-            if (base == UTF16.valueOf(0x1F430) || base == UTF16.valueOf(0x1FAEF)) {
+            if (base == Character.toString(0x1F430) || base == Character.toString(0x1FAEF)) {
                 return true;
             }
         }

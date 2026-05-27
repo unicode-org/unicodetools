@@ -32,6 +32,8 @@ import org.unicode.utilities.LinkUtilities.LinkScanner;
 import org.unicode.utilities.LinkUtilities.LinkTermination;
 import org.unicode.utilities.LinkUtilities.Part;
 import org.unicode.utilities.LinkUtilities.UrlInternals;
+import org.unicode.utilities.LinkUtilities.UrlInternals.EndStatus;
+import org.unicode.utilities.LinkUtilities.WHATWG_PERCENT_ENCODED;
 
 /** The following is very temporary, just during the spec development. */
 public class LinkUtilitiesTest extends TestFmwkMinusMinus {
@@ -216,7 +218,7 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
 
                 final String expected = test[3].replace("χττψ://", "https://");
 
-                final String actual = source.minimalEscape(false, null);
+                final String actual = source.minimalEscape(EndStatus.FINAL, null);
                 counter.add(
                         assertEquals(
                                 line + ") " + Arrays.asList(test) + "\n" + pqf + "\n" + source,
@@ -261,7 +263,7 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
             String expected = test[1];
             UrlInternals internals = UrlInternals.from(test0);
             assertEquals(test0 + "\n", "\n" + expected, "\n" + internals.toString());
-            String min0 = internals.minimalEscape(false, null);
+            String min0 = internals.minimalEscape(EndStatus.FINAL, null);
         }
     }
 
@@ -311,7 +313,7 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
                     final Counter<Boolean> okCounter = new Counter<>();
                     Counter<Integer> escapedCounter = new Counter<>();
 
-                    String actual = parts.minimalEscape(false, escapedCounter);
+                    String actual = parts.minimalEscape(EndStatus.FINAL, escapedCounter);
                     okCounter.add(assertEquals(wikiLanguage, expected, actual), 1);
                     try {
                         processUrls(source, wikiLanguage, okCounter, escapedCounter);
@@ -409,7 +411,8 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
                                     if (wikipos >= 0) {
                                         url = prefix + url.substring(wikipos + 6);
                                         UrlInternals parts = UrlInternals.from(url);
-                                        String actual = parts.minimalEscape(false, escaped);
+                                        String actual =
+                                                parts.minimalEscape(EndStatus.FINAL, escaped);
                                         counter.add(assertEquals(wikiLanguage, url, actual), 1);
                                     }
                                 }
@@ -610,13 +613,13 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
     public void testEscaping() {
         String source = "https://example.com?α%3Dβ=γ%3Dδ";
         UrlInternals internals = UrlInternals.from(source);
-        String actual = internals.minimalEscape(false, null);
+        String actual = internals.minimalEscape(EndStatus.FINAL, null);
         String expected = "https://example.com?α%3Dβ=γ%3Dδ";
         assertEquals(source, expected, actual.toString());
 
         source = "https://example.com/α/β%2Fγ";
         internals = UrlInternals.from(source);
-        actual = internals.minimalEscape(false, null);
+        actual = internals.minimalEscape(EndStatus.FINAL, null);
         expected = "https://example.com/α/β%2Fγ";
         assertEquals(source, expected, actual.toString());
     }
@@ -629,5 +632,60 @@ public class LinkUtilitiesTest extends TestFmwkMinusMinus {
                 LinkUtilities.joinListListEscaping(part.structure.sub, part.structure.sub2, source);
         String expected = "α/β%2Fγ";
         assertEquals(source.toString(), expected, unified);
+    }
+
+    @Test
+    public void testSha() {
+        String test = "https://bo.wikipedia.org/wiki/སའི་གོ་ལ།";
+        String expected = "https://bo.wikipedia.org/wiki/སའི་གོ་ལ%E0%BC%8D";
+        UrlInternals ui = LinkUtilities.UrlInternals.from(test);
+        String actual = ui.minimalEscape(EndStatus.FINAL, null);
+        assertEquals(test, expected, actual);
+
+        UrlInternals roundTrip = LinkUtilities.UrlInternals.from(actual);
+        assertEquals(test, ui, roundTrip);
+    }
+
+    @Test
+    public void testEquals() {
+        String test = "https://bo.wikipedia.org/wiki/སའི་གོ་ལ།";
+        // force different string
+        String notSameReference = test.substring(0, 5) + test.substring(5);
+        assertFalse(test, test == notSameReference);
+
+        UrlInternals ui = LinkUtilities.UrlInternals.from(test);
+        UrlInternals ui2 = LinkUtilities.UrlInternals.from(notSameReference);
+        assertEquals(test, ui, ui2);
+        UrlInternals ui3 = LinkUtilities.UrlInternals.from(test + "a");
+        assertNotEquals(test, ui, ui3);
+    }
+
+    static final UnicodeSet OK_TO_UNESCAPE = new UnicodeSet("\\p{ascii}");
+
+    @Test
+    public void testMaximalEscape() {
+        List<String> tests =
+                List.of(
+                        "https://mni.wikipedia.org/wiki/ꯅ꯭ꯌꯨ_ꯌꯣꯔ꯭ꯛ_ꯁꯤꯇꯤꯒꯤ_ꯌꯨ.ꯑꯦꯁ.",
+                        "https://bo.wikipedia.org/α\\/b\\?c?γ\\=β\\&\\##j");
+        for (String test : tests) {
+            UrlInternals ui = LinkUtilities.UrlInternals.from(test);
+            String actual = ui.fullEscape();
+            assertTrue(test, OK_TO_UNESCAPE.containsAll(actual));
+            UrlInternals roundTrip = LinkUtilities.UrlInternals.from(actual);
+            assertEquals(test, ui, roundTrip);
+        }
+    }
+
+    @Test
+    public void testWhatWGEscapes() {
+        UnicodeSet mustEscape = new UnicodeSet(OK_TO_UNESCAPE).complement();
+        for (WHATWG_PERCENT_ENCODED item : WHATWG_PERCENT_ENCODED.values()) {
+            if (!item.set.containsAll(mustEscape)) {
+                UnicodeSet missing = new UnicodeSet(mustEscape).removeAll(item.set);
+                System.out.println(missing);
+            }
+            assertTrue(item.name(), item.set.containsAll(mustEscape));
+        }
     }
 }

@@ -1,5 +1,5 @@
 # JurchenSources-18.0.0.txt
-# Date: 2026-02-03 [AW]
+# Date: 2026-03-20 [MS]
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -267,7 +267,7 @@ U+18E47	kJURC_Src	N5131:X-1383
 U+18E48	kJURC_RSUnicode	2.7
 U+18E48	kJURC_Src	NC:023.01
 U+18E48	kJURC_NCReading	çir
-U+18E49	kJURC_RSUnicode	3.1
+U+18E49	kJURC_RSUnicode	3.3
 U+18E49	kJURC_Src	NC:144.02
 U+18E49	kJURC_NCReading	orin
 U+18E49	kJURC_Numeric	20
@@ -2718,3 +2718,4 @@ U+19190	kJURC_Src	NC:300.02
 U+19191	kJURC_RSUnicode	51.10
 U+19191	kJURC_Src	NC:300.04
 U+19191	kJURC_NCReading	kuŋ
+#EOF

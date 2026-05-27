@@ -920,12 +920,12 @@ public final class UCD_Names implements UCD_Types {
                     case 202:
                         s = style < LONG ? "ATB" : "AttachedBelow";
                         break;
-                        /*
-                           case 204: s = style < LONG ? "ATBR" :  "AttachedBelowRight"; break;
-                           case 208: s = style < LONG ? "ATL" :  "AttachedLeft"; break;
-                           case 210: s = style < LONG ? "ATR" :  "AttachedRight"; break;
-                           case 212: s = style < LONG ? "ATAL" :  "AttachedAboveLeft"; break;
-                        */
+                    /*
+                       case 204: s = style < LONG ? "ATBR" :  "AttachedBelowRight"; break;
+                       case 208: s = style < LONG ? "ATL" :  "AttachedLeft"; break;
+                       case 210: s = style < LONG ? "ATR" :  "AttachedRight"; break;
+                       case 212: s = style < LONG ? "ATAL" :  "AttachedAboveLeft"; break;
+                    */
                     case 214:
                         s = style < LONG ? "ATA" : "AttachedAbove";
                         break;
@@ -1390,8 +1390,6 @@ public final class UCD_Names implements UCD_Types {
         "P", // U+11C1; P; HANGUL JONGSEONG PHIEUPH
         "H", // U+11C2; H; HANGUL JONGSEONG HIEUH
     };
-
-    static final String[] NF_NAME = {"NFD", "NFC", "NFKD", "NFKC"};
 
     static final String[][] NAME_ABBREVIATIONS = {
         {"CJK UNIFIED IDEOGRAPH-", "CJK-"},

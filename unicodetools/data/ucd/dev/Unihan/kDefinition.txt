@@ -18483,7 +18483,7 @@
 94EC	chromium (element 24, Cr)
 94ED	inscribe, engrave
 94EE	clanging sound; small gong
-94EF	cesium
+94EF	caesium/cesium (element 55, Cs)
 94F0	hinge; shears, scissors
 94F1	iridium (element 77, Ir)
 94F2	spade, shovel, trowel, scoop
@@ -18514,7 +18514,7 @@
 950B	point of spear, sharp point
 950C	zinc (element 30, Zn)
 950D	matte, a crude mixture of sulfides formed in smelting sulfide ores
-950E	caesium/cesium (element 55, Cs)
+950E	californium (element 98, Cf)
 950F	kind of rapier
 9510	sharp, keen, acute, pointed
 9511	antimony (element 51, Sb)

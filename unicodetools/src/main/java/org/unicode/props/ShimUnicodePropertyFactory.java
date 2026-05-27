@@ -3,7 +3,6 @@ package org.unicode.props;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.locale.XCldrStub.Splitter;
 import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import java.lang.reflect.Method;
@@ -64,7 +63,7 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
                             replaceCpValues(
                                     prop,
                                     (cp, oldValue) ->
-                                            oldValue == null ? UTF16.valueOf(cp) : oldValue);
+                                            oldValue == null ? Character.toString(cp) : oldValue);
                     break;
                 case "Bidi_Paired_Bracket":
                     // The default is <none> in PropertyValueAliases.txt, but TUP incorrectly
@@ -95,16 +94,16 @@ public class ShimUnicodePropertyFactory extends UnicodeProperty.Factory {
                 case "Unicode_1_Name":
                     prop = replaceValues(prop, oldValue -> oldValue == null ? "" : oldValue);
                     break;
-                    // The following are "fake" in ToolUnicodeProperty
-                    // I think they are just present for the types and aliases
+                // The following are "fake" in ToolUnicodeProperty
+                // I think they are just present for the types and aliases
                 case "ISO_Comment":
                     prop =
                             copyPropReplacingMap(
                                     prop,
                                     new UnicodeMap<String>().putAll(0, 0x10ffff, "").freeze());
                     break;
-                    // The following are not really supported in TUP; values are all "". So just
-                    // match that.
+                // The following are not really supported in TUP; values are all "". So just
+                // match that.
                 case "Name_Alias":
                 case "kAccountingNumeric":
                 case "kCompatibilityVariant":

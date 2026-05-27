@@ -4,7 +4,6 @@ import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.SimpleFormatter;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 import java.util.Collections;
@@ -54,13 +53,6 @@ public class EmojiAnnotations extends Birelation<String, String> {
 
     public static final EmojiAnnotations ANNOTATIONS_TO_CHARS =
             new EmojiAnnotations("en", EmojiOrder.STD_ORDER.codepointCompare);
-
-    /**
-     * @deprecated Use {@link #EmojiAnnotations(String,Comparator<String>,String...)} instead
-     */
-    public EmojiAnnotations(Comparator<String> codepointCompare, String... filenames) {
-        this("en", codepointCompare, filenames);
-    }
 
     public EmojiAnnotations(
             String localeString, Comparator<String> codepointCompare, String... filenames) {
@@ -379,7 +371,7 @@ public class EmojiAnnotations extends Birelation<String, String> {
                                 s,
                                 sep,
                                 outShortName.value,
-                                KEYCAP_PATTERN.format(UTF16.valueOf(s.charAt(0))));
+                                KEYCAP_PATTERN.format(Character.toString(s.charAt(0))));
                 if (keycapDatum != null && keycapDatum.getShortName().contains("#")) {
                     keywordsToAppendTo.addAll(keycapDatum.getKeywords());
                 }

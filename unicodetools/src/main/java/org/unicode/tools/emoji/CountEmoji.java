@@ -657,6 +657,7 @@ public class CountEmoji {
     /**
      * @deprecated Replace by the {@link CountEmoji.Category}
      */
+    @Deprecated
     public enum ZwjType {
         roleWithHair,
         roleWithObject,

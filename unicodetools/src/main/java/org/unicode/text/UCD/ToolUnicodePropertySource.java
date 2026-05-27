@@ -7,7 +7,6 @@ import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.StringPrep;
 import com.ibm.icu.text.StringPrepParseException;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
@@ -93,10 +92,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         UnicodeProperty.contractUNASSIGNED(unassigned);
         final IndexUnicodeProperties iupCurrent = IndexUnicodeProperties.make(ucd.getVersion());
 
-        nfc = new Normalizer(UCD_Types.NFC, ucd.getVersion());
-        nfd = new Normalizer(UCD_Types.NFD, ucd.getVersion());
-        nfkc = new Normalizer(UCD_Types.NFKC, ucd.getVersion());
-        nfkd = new Normalizer(UCD_Types.NFKD, ucd.getVersion());
+        nfc = Normalizer.getOrMakeNfcInstance(ucd.getVersion());
+        nfd = Normalizer.getOrMakeNfdInstance(ucd.getVersion());
+        nfkc = Normalizer.getOrMakeNfkcInstance(ucd.getVersion());
+        nfkd = Normalizer.getOrMakeNfkdInstance(ucd.getVersion());
 
         // emoji support
 
@@ -547,7 +546,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 new UnicodeProperty.SimpleProperty() {
                     @Override
                     public String _getValue(int codepoint) {
-                        return UTF16.valueOf(ucd.getBidi_Paired_Bracket(codepoint));
+                        return Character.toString(ucd.getBidi_Paired_Bracket(codepoint));
                     }
                 }.setValues("<string>")
                         .setMain(
@@ -1183,33 +1182,33 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             //            unicodeMap.setErrorOnReset(true);
 
             // Indic_Conjunct_Break. The definition depends on GCB derived just above.
-            final UnicodeProperty script = getProperty("Script");
+            final UnicodeProperty scriptExtensions = iup.getProperty("Script_Extensions");
             final UnicodeProperty gcb = getProperty("Grapheme_Cluster_Break");
             final UnicodeSet viramaScripts =
                     new UnicodeSet()
-                            .addAll(script.getSet("Bali"))
-                            .addAll(script.getSet("Beng"))
-                            .addAll(script.getSet("Deva"))
-                            .addAll(script.getSet("Gujr"))
-                            .addAll(script.getSet("Java"))
-                            .addAll(script.getSet("Mlym"))
-                            .addAll(script.getSet("Orya"))
-                            .addAll(script.getSet("Telu"))
+                            .addAll(scriptExtensions.getSet("Bali"))
+                            .addAll(scriptExtensions.getSet("Beng"))
+                            .addAll(scriptExtensions.getSet("Deva"))
+                            .addAll(scriptExtensions.getSet("Gujr"))
+                            .addAll(scriptExtensions.getSet("Java"))
+                            .addAll(scriptExtensions.getSet("Mlym"))
+                            .addAll(scriptExtensions.getSet("Orya"))
+                            .addAll(scriptExtensions.getSet("Telu"))
                             .freeze();
             final UnicodeSet invisibleStackerScripts =
                     new UnicodeSet()
-                            .addAll(script.getSet("Cakm"))
-                            .addAll(script.getSet("Diak"))
-                            .addAll(script.getSet("Kawi"))
-                            .addAll(script.getSet("Khar"))
-                            .addAll(script.getSet("Khmr"))
-                            .addAll(script.getSet("Lana"))
-                            .addAll(script.getSet("Mtei"))
-                            .addAll(script.getSet("Mymr"))
-                            .addAll(script.getSet("Soyo"))
-                            .addAll(script.getSet("Sund"))
-                            .addAll(script.getSet("Tutg"))
-                            .addAll(script.getSet("Zanb"))
+                            .addAll(scriptExtensions.getSet("Cakm"))
+                            .addAll(scriptExtensions.getSet("Diak"))
+                            .addAll(scriptExtensions.getSet("Kawi"))
+                            .addAll(scriptExtensions.getSet("Khar"))
+                            .addAll(scriptExtensions.getSet("Khmr"))
+                            .addAll(scriptExtensions.getSet("Lana"))
+                            .addAll(scriptExtensions.getSet("Mtei"))
+                            .addAll(scriptExtensions.getSet("Mymr"))
+                            .addAll(scriptExtensions.getSet("Soyo"))
+                            .addAll(scriptExtensions.getSet("Sund"))
+                            .addAll(scriptExtensions.getSet("Tutg"))
+                            .addAll(scriptExtensions.getSet("Zanb"))
                             .freeze();
             final UnicodeSet conjunctLinkingScripts =
                     viramaScripts.cloneAsThawed().addAll(invisibleStackerScripts).freeze();
@@ -1221,7 +1220,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                             .addAll(
                                                     isc.getSet(
                                                             Indic_Syllabic_Category_Values
-                                                                    .Invisible_Stacker)));
+                                                                    .Invisible_Stacker))
+                                            .addAll(
+                                                    isc.getSet(
+                                                            Indic_Syllabic_Category_Values
+                                                                    .Consonant_With_Stacker)));
             final UnicodeSet incbConsonant =
                     conjunctLinkingScripts
                             .cloneAsThawed()
@@ -2339,7 +2342,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     }
 
     public static boolean equals(int codepoint, String string) {
-        return UTF16.valueOf(codepoint).equals(string);
+        return Character.toString(codepoint).equals(string);
     }
 
     static List<String> lookup(
@@ -2414,7 +2417,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             if (cp == '-') {
                 return IdnaType.OK;
             }
-            final String source = UTF16.valueOf(cp);
+            final String source = Character.toString(cp);
             try {
                 String result = namePrep.prepare(source, IDNA.DEFAULT);
                 if (!source.equals(result)) {

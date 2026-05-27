@@ -9,7 +9,6 @@
  */
 package org.unicode.text.UCD;
 
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
@@ -25,7 +24,7 @@ import java.util.TreeMap;
 import org.unicode.props.BagFormatter;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.UTF32;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 public final class TestNormalization {
@@ -51,7 +50,7 @@ public final class TestNormalization {
             System.out.println(test + ": " + Default.ucd().getCodeAndName(s));
         }
 
-        final String x = UTF32.valueOf32(0x10000);
+        final String x = Character.toString(0x10000);
         check("NFC", Default.nfc(), x);
         check("NFD", Default.nfd(), x);
         check("NFKC", Default.nfkc(), x);
@@ -96,7 +95,7 @@ public final class TestNormalization {
                 for (int i = 0; i < splitCount; ++i) {
                     parts[i] = Utility.fromHex(parts[i]);
                 }
-                if (UTF16.countCodePoint(parts[0]) == 1) {
+                if (UTF16Plus.isSingleCodePoint(parts[0])) {
                     final int code = parts[0].codePointAt(0);
                     charsListed.set(code);
                     if ((code & 0x3FF) == 0) {
@@ -216,7 +215,7 @@ public final class TestNormalization {
             if (charsListed.get(missing)) {
                 continue;
             }
-            final String x = UTF32.valueOf32(missing);
+            final String x = Character.toString(missing);
             errorCount += check("NFC", Default.nfc(), x);
             errorCount += check("NFD", Default.nfd(), x);
             errorCount += check("NFKC", Default.nfkc(), x);

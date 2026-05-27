@@ -33,7 +33,8 @@ for (let [property, propertyIndex] of indexEntries) {
   }
   for (let [snippetIndex, entry] of propertyIndex) {
     for (let range of entry.characters) {
-      radicalStrokeRanges.set(range, {property, snippetIndex});
+      let [first, last] = [range[0], range.at(-1)];
+      radicalStrokeRanges.set([first, last], {property, snippetIndex});
     }
   }
 }
@@ -43,7 +44,8 @@ for (let [name, entry] of indexEntries.get("Name")) {
     characterNames.set(entry.characters[0][0], name);
   } else {
     for (let range of entry.characters) {
-      characterNameRanges.set(range, name);
+      let [first, last] = [range[0], range.at(-1)];
+      characterNameRanges.set([first, last], name);
     }
   }
 }
@@ -98,7 +100,7 @@ function search(/**@type {string}*/ query) {
   /**@type {Set<number>}*/
   var resultSnippetIndices = new Set(wordIndex.get(foldedQuery[0])?.keys() ?? []);
   let firstLemmata = [foldedQuery[0]];
-  if (foldedQuery.length == 1) {
+  if (resultSnippetIndices.size === 0 && foldedQuery.length == 1) {
     let prefix = fold(queryWords.at(-1));
     for (let [completion, snippets] of wordIndex) {
       if (completion.startsWith(prefix)) {
@@ -110,7 +112,7 @@ function search(/**@type {string}*/ query) {
   for (var i = 1; i < foldedQuery.length; ++i) {
     var rhs = new Set(wordIndex.get(foldedQuery[i])?.keys() ?? []);
     let intersection = resultSnippetIndices.intersection(rhs);
-    if (i == foldedQuery.length - 1) {
+    if (intersection.size === 0 && i == foldedQuery.length - 1) {
       let prefix = fold(queryWords.at(-1));
       for (let [completion, snippets] of wordIndex) {
         if (completion.startsWith(prefix)) {
@@ -201,8 +203,8 @@ function search(/**@type {string}*/ query) {
       if (name) {
         rangeCount += 1;
         result.push(
-          getString(indexEntries.get("Name").get(name) ??
-                    indexEntries.get("Name_Alias").get(name).html).replace(
+          getString((indexEntries.get("Name").get(name) ??
+                     indexEntries.get("Name_Alias").get(name)).html).replace(
           "[RESULT TEXT]", toHTML(getString(name))));
       }
     }

@@ -171,6 +171,8 @@ kIRG_USource ;                SINGLE_VALUED ;                UTC-\d{5}
 kIRG_VSource ;                SINGLE_VALUED ;                V[0-4]-[0-9A-F]{4}|VN-[023F][0-9A-F]{4}
 kJapanese ;                   MULTI_VALUED ;                 [\x{3041}-\x{3096}\x{3099}\x{309A}\x{30A1}-\x{30FA}\x{30FC}]+
 kJapaneseKun ;                MULTI_VALUED ;                 [A-Z]+
+kJapaneseNewVariant ;         SINGLE_VALUED ;                U\+[23]?[0-9A-F]{4}
+kJapaneseOldVariant ;         MULTI_VALUED ;                 U\+[23]?[0-9A-F]{4}
 kJapaneseOn ;                 MULTI_VALUED ;                 [A-Z]+
 kJinmeiyoKanji ;              SINGLE_VALUED ;                (20\d{2})(:U\+[23]?[0-9A-F]{4})?
 kJis0 ;                       SINGLE_VALUED ;                \d{4}
@@ -262,3 +264,23 @@ kSEAL_MCJK ;                  SINGLE_VALUED ;                [0-9A-F]{4,5}
 kSEAL_QJZSrc ;                SINGLE_VALUED ;                K-\d{5}
 kSEAL_Rad ;                   MULTI_VALUED ;                 \d{1,3}\.[A-F0-9]{4,5}
 kSEAL_THXSrc ;                SINGLE_VALUED ;                TH-(\d{5}|X\d{3}|Y\d{3})
+
+# Regex patterns from UAX #45 (U-Source Ideographs)
+# Ordered because these pseudoproperties are mappings from field 2 to the other fields, so they
+# should all have the same cardinality, and the nth value of any of them corresponds to the nth
+# value of the others.
+cjkUSource_Identifier          ; ORDERED ; (UTC|UCI|UK)-\d{5}
+cjkUSource_Status              ; ORDERED ; Comp|Ext[A-J]|FutureWS|NoAction|Rejected|URO|Variant|WS-2024|(UTC|UCI|UK)-\d{5}
+# Same as kRSUnicode above.
+cjkUSource_RSUnicode           ; ORDERED ; [1-9]\d{0,2}\'{0,3}\.-?\d{1,2}
+# Always empty.
+cjkUSource_KangXi              ; ORDERED ;
+# TODO(egg): Parse the IDSes, some of these are ill-formed.
+cjkUSource_IDS                 ; ORDERED ; .*
+# TODO(egg): Turn https://www.unicode.org/reports/tr45/#Section22 into a regex.
+cjkUSource_Source              ; ORDERED ; .*
+cjkUSource_Comments            ; ORDERED ; .*
+# Same as kTotalStrokes above.
+cjkUSource_TotalStrokes        ; ORDERED ; [1-9]\d{0,2}
+# 53, 7, and q are anomalous.
+cjkUSource_FirstResidualStroke ; ORDERED ; [0-5]|53|7|q

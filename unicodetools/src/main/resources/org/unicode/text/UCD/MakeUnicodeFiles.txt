@@ -1557,6 +1557,11 @@ Property: SPECIAL
 File: linkification/LinkFormattingTest
 Property: SPECIAL
 
+File: idna/IdnaMappingTable
+Property: SPECIAL
+File: idna/IdnaTestV2
+Property: SPECIAL
+
 HackName:	noBreak
 HackName:	Arabic_Presentation_Forms-A
 HackName:	Arabic_Presentation_Forms-B

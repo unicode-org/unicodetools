@@ -55,3 +55,8 @@ td.characters.rs-entry {
 table.search-results {
   border-collapse: collapse;
 }
+#toplinks {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}

@@ -8,6 +8,7 @@ import com.ibm.icu.segmenter.Segmenter;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ULocale;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -50,7 +51,7 @@ public class Indexer {
     private static final int DOOD = 0x10D00D;
 
     private static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
-    private static final Normalizer NFKC = new Normalizer(Normalizer.NormalizationForm.NFKC, IUP);
+    private static final Normalizer NFKC = Normalizer.getNfkcInstance();
     private static final UnicodeSet NEW_CHARACTERS =
             IndexUnicodeProperties.make(Settings.LAST_VERSION_INFO)
                     .getProperty(UcdProperty.General_Category)
@@ -81,11 +82,40 @@ public class Indexer {
             IUP.getProperty(UcdProperty.Noncharacter_Code_Point).getSet("Yes");
 
     private static final Segmenter SENTENCE_BREAK =
-            LocalizedSegmenter.builder().setSegmentationType(SegmentationType.SENTENCE).build();
+            LocalizedSegmenter.builder()
+                    .setLocale(ULocale.ENGLISH)
+                    .setSegmentationType(SegmentationType.SENTENCE)
+                    .build();
+    private static final Segmenter WORD_BREAK =
+            LocalizedSegmenter.builder()
+                    .setLocale(ULocale.ENGLISH)
+                    .setSegmentationType(SegmentationType.WORD)
+                    .build();
 
     private static final Map<String, UnicodeSet> blockSet = new HashMap<>();
 
     private static int maxRSEntryCharacters = 0;
+
+    private static class StringIndexer {
+        public StringIndexer() {}
+
+        public int getStringIndex(String s) {
+            int result = stringIndices.getOrDefault(s, allTheStrings.length());
+            if (result == allTheStrings.length()) {
+                allTheStrings.append(s).append(RECORD_SEPARATOR);
+                stringIndices.put(s, result);
+            }
+            return result;
+        }
+
+        @Override
+        public String toString() {
+            return allTheStrings.toString();
+        }
+
+        private final HashMap<String, Integer> stringIndices = new HashMap<>();
+        private final StringBuilder allTheStrings = new StringBuilder();
+    }
 
     static {
         String baseRules =
@@ -263,8 +293,7 @@ public class Indexer {
                 return left.getName().compareTo(right.getName());
             }
         }
-        final StringBuilder allTheStrings = new StringBuilder();
-        final HashMap<String, Integer> stringIndices = new HashMap<>();
+        final var allTheStrings = new StringIndexer();
         // Property to snippet based on property value (as an index in allTheStrings) to index
         // entry.
         Map<UnicodeProperty, Map<Integer, IndexEntry>> indexEntries =
@@ -284,7 +313,6 @@ public class Indexer {
                         K_TGT_RS_UNICODE,
                         K_JURC_RS_UNICODE,
                         K_SEAL_RAD);
-        final var wordBreak = BreakIterator.getWordInstance();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             for (var prop : properties) {
                 final var propertyIndex = indexEntries.computeIfAbsent(prop, k -> new TreeMap<>());
@@ -300,37 +328,37 @@ public class Indexer {
                     } else if (prop == NAME) {
                         snippet = snippet.replace(Utility.hex(cp), "#");
                     }
-                    final int snippetIndex =
-                            stringIndices.getOrDefault(snippet, allTheStrings.length());
-                    if (snippetIndex == allTheStrings.length()) {
-                        allTheStrings.append(snippet).append(RECORD_SEPARATOR);
-                        stringIndices.put(snippet, snippetIndex);
-                    }
+                    final int snippetIndex = allTheStrings.getStringIndex(snippet);
                     propertyIndex
                             .computeIfAbsent(snippetIndex, k -> new IndexEntry(k, prop))
                             .characters
                             .add(cp);
                     // Override word breaking of ' and - in appropriate contexts so that
                     // radical/stroke indices are atomic.
-
-                    wordBreak.setText(
+                    // With ICU4J we could do that with custom segmentation rules, but we need to
+                    // have the same segmentation in the JavaScript where we do not have that
+                    // luxury, so poor man’s tailoring by segmenting a mangled string it is.
+                    final String mangledForWordBreak =
                             snippet.replaceAll("\\.-", ".0")
-                                    .replaceAll("(?<=[0-9]'*)'(?='*\\.[0-9])", "0"));
-                    int start = 0;
-                    for (int limit = wordBreak.next();
-                            limit != BreakIterator.DONE;
-                            start = limit, limit = wordBreak.next()) {
-                        if (wordBreak.getRuleStatus() >= BreakIterator.WORD_NUMBER) {
-                            String word = snippet.substring(start, limit).toLowerCase(Locale.ROOT);
-                            String lemma = lemmatize(word);
+                                    .replaceAll("(?<=[0-9]'*)'(?='*\\.[0-9])", "0");
+                    final Iterable<Segment> segments =
+                            WORD_BREAK
+                                            .segment(mangledForWordBreak)
+                                            .segments()
+                                            .filter(s -> s.ruleStatus >= BreakIterator.WORD_NUMBER)
+                                    ::iterator;
+                    for (final var segment : segments) {
+                        String word =
+                                snippet.substring(segment.start, segment.limit)
+                                        .toLowerCase(Locale.ROOT);
+                        String lemma = lemmatize(word);
+                        wordIndex
+                                .computeIfAbsent(fold(word), k -> new TreeMap<>())
+                                .putIfAbsent(snippetIndex, segment.start);
+                        if (!lemma.equals(fold(word))) {
                             wordIndex
-                                    .computeIfAbsent(fold(word), k -> new TreeMap<>())
-                                    .putIfAbsent(snippetIndex, start);
-                            if (!lemma.equals(fold(word))) {
-                                wordIndex
-                                        .computeIfAbsent(lemma, k -> new TreeMap<>())
-                                        .putIfAbsent(snippetIndex, start);
-                            }
+                                    .computeIfAbsent(lemma, k -> new TreeMap<>())
+                                    .putIfAbsent(snippetIndex, segment.start);
                         }
                     }
                 }
@@ -339,10 +367,8 @@ public class Indexer {
                 System.out.println("Indexed plane " + cp / 0x10000);
             }
         }
-        final int bettyIndex = allTheStrings.length();
-        allTheStrings.append("Betty").append(RECORD_SEPARATOR);
-        final int theIndex = allTheStrings.length();
-        allTheStrings.append("the").append(RECORD_SEPARATOR);
+        final int bettyIndex = allTheStrings.getStringIndex("Betty");
+        final int theIndex = allTheStrings.getStringIndex("the");
         indexEntries
                 .get(BLOCK)
                 .computeIfAbsent(bettyIndex, k -> new IndexEntry(k, BLOCK))
@@ -438,8 +464,7 @@ public class Indexer {
                         if (++i % 1000 == 0) {
                             System.out.println(i + "/" + propertyIndex.size() + "...");
                         }
-                        final int htmlIndex = allTheStrings.length();
-                        allTheStrings.append(indexEntry.toHTML()).append(RECORD_SEPARATOR);
+                        final int htmlIndex = allTheStrings.getStringIndex(indexEntry.toHTML());
                         file.print("[" + indexEntry.snippetIndex + ",{");
                         file.print("html:" + htmlIndex + ",");
                         file.print("characters:[");
@@ -789,7 +814,7 @@ public class Indexer {
                     return "https://unicode.org/charts/PDF/U" + Utility.hex(chartStart) + ".pdf";
                 }
             case BETA:
-                return "https://www.unicode.org/Public/draft/charts/blocks/U"
+                return "https://www.unicode.org/Public/draft/charts/PDF/U"
                         + Utility.hex(chartStart)
                         + ".pdf";
             default:

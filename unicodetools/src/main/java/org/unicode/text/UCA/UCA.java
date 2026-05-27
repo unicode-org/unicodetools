@@ -9,7 +9,6 @@
  */
 package org.unicode.text.UCA;
 
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
@@ -61,7 +60,7 @@ import org.unicode.text.utility.Utility;
  *     because of shared characters between scripts with different directions, like French with
  *     Arabic or Greek.
  */
-public final class UCA implements Comparator<String>, UCA_Types {
+public final class UCA implements Comparator<String> {
     // Utility function copied from
     // icu4j/main/tests/translit/src/com/ibm/icu/dev/test/translit/RoundTripTest.java
     /**
@@ -99,14 +98,41 @@ public final class UCA implements Comparator<String>, UCA_Types {
 
     // --------------------------------------------------------------------
 
+    public static final int MAX_LOW_SPECIAL_PRIMARY = 0x200; // for U+FFFE
+    public static final int MIN_HIGH_SPECIAL_PRIMARY = 0xfffd; // for U+FFFD; FFFF for U+FFFF
+
     public enum CollatorType {
         ducet,
         cldr,
-        cldrWithoutFFFx
     }
 
-    public static final String copyright =
-            "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
+    private static UCA ducetCollator;
+    private static UCA cldrCollator;
+
+    public static UCA getDucetCollator() {
+        if (ducetCollator == null) {
+            ducetCollator = buildDucetCollator();
+        }
+        return ducetCollator;
+    }
+
+    public static UCA getCldrCollator() {
+        if (cldrCollator == null) {
+            cldrCollator = buildCldrCollator();
+        }
+        return cldrCollator;
+    }
+
+    public static UCA getCollator(CollatorType type) {
+        switch (type) {
+            case cldr:
+                return getCldrCollator();
+            case ducet:
+                return getDucetCollator();
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
 
     @Override
     public int compare(String a, String b) {
@@ -165,7 +191,23 @@ public final class UCA implements Comparator<String>, UCA_Types {
         final RoBitSet primarySet = getStatistics().getPrimarySet();
 
         PrimaryIterator(int start) {
-            p.nextPrimary = primarySet.nextSetBit(start);
+            p.nextPrimary = getNextRegularPrimary(start);
+        }
+
+        private int getNextRegularPrimary(int next) {
+            for (; ; ) {
+                next = primarySet.nextSetBit(next);
+                // skip special primaries:
+                // 0200 special low primary for U+FFFE
+                // FFFD special high primary for U+FFFD
+                // FFFF special high primary for U+FFFF
+                if (next >= 0
+                        && (next <= MAX_LOW_SPECIAL_PRIMARY || MIN_HIGH_SPECIAL_PRIMARY <= next)) {
+                    ++next;
+                } else {
+                    return next;
+                }
+            }
         }
 
         @Override
@@ -177,7 +219,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
         public Primary next() {
             if (p.nextPrimary >= 0) {
                 p.primary = p.nextPrimary;
-                p.nextPrimary = primarySet.nextSetBit(p.primary + 1);
+                p.nextPrimary = getNextRegularPrimary(p.primary + 1);
                 p.representative = getRepresentativePrimary(p.primary);
                 return p;
             } else {
@@ -224,7 +266,11 @@ public final class UCA implements Comparator<String>, UCA_Types {
 
         // load the normalizer
         if (toD == null) {
-            toD = new Normalizer(UCD_Types.NFD, unicodeVersion);
+            // TODO: We should remove the unicodeVersion argument and
+            // not try to create a collator for an old Unicode version
+            // because we do not track changes to special weight values and algorithm edge cases.
+            // Also, toD is static, so we cannot have multiple versions at the same time.
+            toD = Normalizer.getOrMakeNfdInstance(unicodeVersion);
         }
 
         ucd = UCD.make(unicodeVersion);
@@ -252,15 +298,6 @@ public final class UCA implements Comparator<String>, UCA_Types {
             moreSamples.add(r.codepoint).add(r.codepointEnd);
         }
 
-        // either get the full sources, or just a demo set
-        /*        if (fullData) {
-            for (int i = 0; i < KEYS.length; ++i) {
-                BufferedReader in = new BufferedReader(
-                    new FileReader(KEYS[i]), BUFFER_SIZE);
-                addCollationElements(in);
-                in.close();
-            }
-        } else */
         {
             final BufferedReader in = new BufferedReader(new FileReader(sourceFile), BUFFER_SIZE);
             addCollationElements(in);
@@ -269,21 +306,16 @@ public final class UCA implements Comparator<String>, UCA_Types {
         cleanup();
     }
 
-    /** Returns all non-ignorable, below-implicit UCA primary weights. */
+    /** Returns all non-ignorable, below-implicit, non-special UCA primary weights. */
     Iterable<Primary> getRegularPrimaries() {
         // Start after the ignorable primary 0.
         return new PrimaryIterable(1);
     }
 
-    /** Returns all below-Han UCA primary weights, starting with ignorable 0. */
-    PrimaryIterable getIgnorableAndRegularPrimaries() {
-        return new PrimaryIterable(0);
-    }
-
     int getLastRegularPrimary() {
         UCA_Statistics.RoBitSet set = getStatistics().getPrimarySet();
         int last = set.length() - 1;
-        while (last >= 0xfffd) {
+        while (last >= MIN_HIGH_SPECIAL_PRIMARY) {
             last = set.previousSetBit(last - 1);
         }
         return last;
@@ -302,7 +334,8 @@ public final class UCA implements Comparator<String>, UCA_Types {
      * @return Result is a String not really of Unicodes, but of weights. String is just a handy way
      *     of returning them in Java, since there are no unsigned shorts.
      */
-    public String getSortKey(CEList ces, byte alternate, AppendToCe appendIdentical) {
+    public String getSortKey(
+            CEList ces, UCA_Types.Alternate alternate, AppendToCe appendIdentical) {
         return getSortKey(ces, "", alternate, defaultDecomposition, appendIdentical);
     }
 
@@ -328,11 +361,9 @@ public final class UCA implements Comparator<String>, UCA_Types {
      * @return Result is a String not of really of Unicodes, but of weights. String is just a handy
      *     way of returning them in Java, since there are no unsigned shorts.
      */
-    public String getSortKey(String sourceString, byte alternate) {
+    public String getSortKey(String sourceString, UCA_Types.Alternate alternate) {
         return getSortKey(null, sourceString, alternate, defaultDecomposition, AppendToCe.none);
     }
-
-    public static final int CE_FFFE = UCA.makeKey(0x1, 0x20, 2);
 
     public enum AppendToCe {
         none,
@@ -363,7 +394,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
      */
     public String getSortKey(
             String sourceString,
-            byte alternate,
+            UCA_Types.Alternate alternate,
             boolean decomposition,
             AppendToCe appendIdentical) {
         return getSortKey(null, sourceString, alternate, decomposition, appendIdentical);
@@ -385,7 +416,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
     public String getSortKey(
             CEList ces,
             String sourceString,
-            byte alternate,
+            UCA_Types.Alternate alternate,
             boolean decomposition,
             AppendToCe appendIdentical) {
         setSourceString(sourceString, decomposition);
@@ -423,31 +454,31 @@ public final class UCA implements Comparator<String>, UCA_Types {
             }
 
             switch (alternate) {
-                case ZEROED:
-                    if (isVariable(ce)) {
-                        ce = 0;
-                    }
-                    break;
-                case SHIFTED_TRIMMED:
                 case SHIFTED:
                     if (CEList.getTertiary(ce) == 0) {
                         weight4 = 0;
-                    } else if (ce == CE_FFFE) {
-                        weight4 = getPrimary(ce);
+                    } else if (CEList.getPrimary(ce) == MAX_LOW_SPECIAL_PRIMARY) {
+                        // U+FFFE (which has a special UCA primary weight)
+                        // used for "merge sort key" behavior.
+                        weight4 = UCA_Types.MERGE_SEPARATOR;
                         lastWasVariable = false;
                     } else if (isVariable(ce)) { // variables
-                        weight4 = getPrimary(ce);
-                        lastWasVariable = true;
                         ce = 0;
-                    } else if (lastWasVariable && getPrimary(ce) == 0) { // zap trailing ignorables
+                        weight4 = CEList.getPrimary(ce);
+                        lastWasVariable = true;
+                    } else if (lastWasVariable
+                            && CEList.getPrimary(ce) == 0) { // zap trailing ignorables
                         ce = 0;
                         weight4 = 0;
-                    } else { // above variables
-                        lastWasVariable = false;
+                    } else { // not variable, or ignorable not following a variable
                         weight4 = '\uFFFF';
+                        lastWasVariable = false;
                     }
                     break;
-                    // case NON_IGNORABLE: // doesn't ever change!
+                case NON_IGNORABLE:
+                default:
+                    // No quaternary distinctions.
+                    break;
             }
             if (SHOW_CE) {
                 if (debugList.length() != 0) {
@@ -457,7 +488,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
             }
 
             // add weights
-            char w = getPrimary(ce);
+            char w = CEList.getPrimary(ce);
             if (DEBUG) {
                 System.out.println("\tCE: " + Utility.hex(ce));
             }
@@ -465,21 +496,17 @@ public final class UCA implements Comparator<String>, UCA_Types {
                 primaries.append(w);
             }
 
-            w = getSecondary(ce);
+            w = CEList.getSecondary(ce);
             if (w != 0) {
-                if (!useBackwards) {
-                    secondaries.append(w);
-                } else {
-                    secondaries.insert(0, w);
-                }
+                secondaries.append(w);
             }
 
-            w = getTertiary(ce);
+            w = CEList.getTertiary(ce);
             if (w != 0) {
                 tertiaries.append(w);
             }
 
-            if (weight4 != 0) {
+            if (weight4 != 0 && strength >= 4) {
                 quaternaries.append(weight4);
             }
         }
@@ -490,40 +517,27 @@ public final class UCA implements Comparator<String>, UCA_Types {
 
         final StringBuilder result = primaries;
         if (strength >= 2) {
-            result.append(LEVEL_SEPARATOR); // separator
-            result.append(secondaries);
+            result.append(UCA_Types.LEVEL_SEPARATOR).append(secondaries);
             if (strength >= 3) {
-                result.append(LEVEL_SEPARATOR); // separator
-                result.append(tertiaries);
+                result.append(UCA_Types.LEVEL_SEPARATOR).append(tertiaries);
                 if (strength >= 4) {
-                    result.append(LEVEL_SEPARATOR); // separator
-                    if (alternate == SHIFTED_TRIMMED) {
-                        int q;
-                        for (q = quaternaries.length() - 1; q >= 0; --q) {
-                            if (quaternaries.charAt(q) != '\uFFFF') {
-                                break;
-                            }
-                        }
-                        quaternaries.setLength(q + 1);
-                    }
-                    result.append(quaternaries);
-                    // appendInCodePointOrder(decompositionBuffer, result);
+                    result.append(UCA_Types.LEVEL_SEPARATOR).append(quaternaries);
                 }
             }
         }
         if (appendIdentical != AppendToCe.none) {
             String cpo = UCA.codePointOrder(toD.normalize(sourceString));
-            result.append('\u0000').append(cpo);
+            result.append(UCA_Types.LEVEL_SEPARATOR).append(cpo);
             if (appendIdentical == AppendToCe.tieBreaker) {
                 cpo = UCA.codePointOrder(sourceString);
-                result.append('\u0000').append(cpo).append((char) cpo.length());
+                result.append(UCA_Types.LEVEL_SEPARATOR).append(cpo).append((char) cpo.length());
             }
         }
         return result.toString();
     }
 
     // 0 ==
-    // 2, -2 quarternary
+    // 2, -2 quaternary
     // 3, -3 tertiary
     // 4, -4 secondary
     // 5, -5 primary
@@ -542,7 +556,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
             if (c1 > c2) {
                 return strength;
             }
-            if (c1 == LEVEL_SEPARATOR) {
+            if (c1 == UCA_Types.LEVEL_SEPARATOR) {
                 --strength; // Separator!
             }
         }
@@ -553,16 +567,6 @@ public final class UCA implements Comparator<String>, UCA_Types {
             return strength;
         }
         return 0;
-    }
-
-    /** Turns backwards (e.g. for French) on globally for all secondaries */
-    public void setBackwards(boolean backwards) {
-        useBackwards = backwards;
-    }
-
-    /** Retrieves value applied by set. */
-    public boolean isBackwards() {
-        return useBackwards;
     }
 
     /** Causes variables (those with *) to be set to all zero weights (level 1-3). */
@@ -576,12 +580,12 @@ public final class UCA implements Comparator<String>, UCA_Types {
     }
 
     /** Causes variables (those with *) to be set to all zero weights (level 1-3). */
-    public void setAlternate(byte status) {
+    public void setAlternate(UCA_Types.Alternate status) {
         defaultAlternate = status;
     }
 
     /** Retrieves value applied by set. */
-    public byte getAlternate() {
+    public UCA_Types.Alternate getAlternate() {
         return defaultAlternate;
     }
 
@@ -613,34 +617,36 @@ public final class UCA implements Comparator<String>, UCA_Types {
         return ucdVersion;
     }
 
-    public static String codePointOrder(CharSequence s) {
-        return appendInCodePointOrder(s, new StringBuffer()).toString();
-    }
-
     /**
-     * Appends UTF-16 string with the values swapped around so that they compare in code-point
-     * order. Replace 0000 and 0001 by 0001 0001/2
+     * Appends UTF-16 string modified so that strings compare in code-point order, with U+FFFE
+     * having "merge sort key" behavior.
      *
-     * @param source Normal UTF-16 (Java) string
-     * @return sort key (as string)
-     * @author Markus Scherer (cast into Java by MD) NOTE: changed to be longer, but handle isolated
-     *     surrogates
+     * @param source Normal UTF-16 string
+     * @return 16-bit sort key as string
      */
-    public static StringBuffer appendInCodePointOrder(CharSequence source, StringBuffer target) {
+    public static String codePointOrder(CharSequence source) {
+        StringBuilder target = new StringBuilder();
         int cp;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(source, i);
-            target.append((char) ((cp >> 15) | 0x8000));
-            target.append((char) (cp | 0x8000));
-            /*
-            if (ch <= 1) { // hack to avoid nulls
-                target.append('\u0001');
-                target.append((char)(ch+1));
+        for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
+            cp = Character.codePointAt(source, i);
+            if (cp <= 2) {
+                // Avoid collision with level separator 0 and merge separator 1:
+                // 00 -> 02 02
+                // 01 -> 02 03
+                // 02 -> 02 04
+                target.append((char) 2).append((char) (cp + 2));
+            } else if (cp < 0xF000) {
+                // single char for much of the BMP
+                target.append((char) cp);
+            } else if (cp == 0xFFFE) {
+                target.append(UCA_Types.MERGE_SEPARATOR);
+            } else {
+                // high BMP and supplementary
+                target.append((char) (0xF000 + (cp >> 12)));
+                target.append((char) (0x8000 | (cp & 0xFFF)));
             }
-            target.append((char)(ch + utf16CodePointOrder[ch>>11]));
-             */
         }
-        return target;
+        return target.toString();
     }
 
     /**
@@ -725,36 +731,6 @@ public final class UCA implements Comparator<String>, UCA_Types {
         return ucaData.codePointHasExplicitMappings(ch);
     }
 
-    /**
-     * Returns the primary weight from a 32-bit CE. The primary is 16 bits, stored in b31..b16.
-     *
-     * @deprecated use {@link CEList#getPrimary(int)}
-     */
-    @Deprecated
-    public static char getPrimary(int ce) {
-        return CEList.getPrimary(ce);
-    }
-
-    /**
-     * Returns the secondary weight from a 32-bit CE. The secondary is 9 bits, stored in b15..b7.
-     *
-     * @deprecated use {@link CEList#getSecondary(int)}
-     */
-    @Deprecated
-    public static char getSecondary(int ce) {
-        return CEList.getSecondary(ce);
-    }
-
-    /**
-     * Returns the tertiary weight from a 32-bit CE. The tertiary is 7 bits, stored in b6..b0.
-     *
-     * @deprecated use {@link CEList#getTertiary(int)}
-     */
-    @Deprecated
-    public static char getTertiary(int ce) {
-        return CEList.getTertiary(ce);
-    }
-
     /** Utility, used to determine whether a CE is variable or not. */
     public boolean isVariable(int ce) {
         return (variableLowCE <= ce && ce <= variableHighCE);
@@ -788,7 +764,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
 
     /** Produces a human-readable string for a sort key. The 0000 separator is replaced by a '|' */
     public static String toString(String sortKey, int level) {
-        final StringBuffer result = new StringBuffer();
+        final StringBuilder result = new StringBuilder();
         boolean needSep = false;
         result.append("[");
         for (int i = 0; i < sortKey.length(); ++i) {
@@ -818,7 +794,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
      * Start of variable primaries. Primary weight one higher than that for the special U+FFFE.
      * https://www.unicode.org/reports/tr35/tr35-collation.html#tailored_noncharacter_weights
      */
-    private static final int variableBottom = UCA.getPrimary(CE_FFFE) + 1;
+    private static final int variableBottom = MAX_LOW_SPECIAL_PRIMARY + 1;
 
     private boolean isVariablePrimary(char primary) {
         return variableBottom <= primary && primary <= ucaData.variableHigh;
@@ -829,13 +805,13 @@ public final class UCA implements Comparator<String>, UCA_Types {
             return "[.0000.0000.0000]";
         }
         extraComment.setLength(0);
-        final StringBuffer result = new StringBuffer();
+        final StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < ceList.length(); ++i) {
             final int ce = ceList.at(i);
-            final char p = UCA.getPrimary(ce);
-            final char s = UCA.getSecondary(ce);
-            final char t = UCA.getTertiary(ce);
+            final char p = CEList.getPrimary(ce);
+            final char s = CEList.getSecondary(ce);
+            final char t = CEList.getTertiary(ce);
 
             result.append("[")
                     .append(isVariablePrimary(p) ? "*" : ".")
@@ -850,7 +826,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
     }
 
     public static boolean isImplicitLeadCE(int ce) {
-        return Implicit.isImplicitLeadPrimary(getPrimary(ce));
+        return Implicit.isImplicitLeadPrimary(CEList.getPrimary(ce));
     }
 
     /** NFD required */
@@ -864,11 +840,8 @@ public final class UCA implements Comparator<String>, UCA_Types {
     /** Records the dataversion */
     private String ucdVersion = "?";
 
-    /** Turns backwards (e.g. for French) on globally for all secondaries */
-    private boolean useBackwards = false;
-
     /** Choice of how to handle variables (those with *) */
-    private byte defaultAlternate = SHIFTED;
+    private UCA_Types.Alternate defaultAlternate = UCA_Types.Alternate.SHIFTED;
 
     /** For testing */
     private boolean defaultDecomposition = true;
@@ -890,19 +863,18 @@ public final class UCA implements Comparator<String>, UCA_Types {
     // =============================================================
 
     /** Temporary buffer used in getSortKey for the decomposed string */
-    private final StringBuffer decompositionBuffer = new StringBuffer();
+    private final StringBuilder decompositionBuffer = new StringBuilder();
 
-    // was 0xFFC20101;
-
-    /**
+    /*
      * We take advantage of the variables being in a closed range to save a bit per CE. The low and
      * high values are initially set to be at the opposite ends of the range, as the table is built
      * from the UCA data, they are narrowed in. The first three values are used in building; the
      * last two in testing.
      */
-    private static final int variableLowCE = makeKey(1, 0, 0); // used for testing against
 
-    private int variableHighCE; // used for testing against
+    private static final int variableLowCE = makeKey(MAX_LOW_SPECIAL_PRIMARY + 1, 0, 0);
+
+    private int variableHighCE;
 
     /** Marks whether we are using the full data set, or an abbreviated version for an applet. */
     private final boolean fullData;
@@ -924,9 +896,9 @@ public final class UCA implements Comparator<String>, UCA_Types {
     private final StringBuilder quaternaries = new StringBuilder(100);
 
     /** Temporary buffer used to collect progress data for debugging */
-    StringBuffer debugList = new StringBuffer(100);
+    StringBuilder debugList = new StringBuilder(100);
 
-    private final StringBuffer hangulBuffer = new StringBuffer();
+    private final StringBuilder hangulBuffer = new StringBuilder();
 
     /**
      * Returns the collation elements for the character or substring of the decomposition buffer
@@ -956,7 +928,11 @@ public final class UCA implements Comparator<String>, UCA_Types {
 
     CEList getCEListForImplicit(int c) {
         int implicitPair = implicit.primaryPairForCodePoint(c);
-        int p = makeKey((implicitPair >>> 16), NEUTRAL_SECONDARY, NEUTRAL_TERTIARY);
+        int p =
+                makeKey(
+                        (implicitPair >>> 16),
+                        UCA_Types.NEUTRAL_SECONDARY,
+                        UCA_Types.NEUTRAL_TERTIARY);
         int q = makeKey((implicitPair & 0xFFFF), 0, 0);
         return new CEList(p, q);
     }
@@ -975,7 +951,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
             LastInitial = LBase + LCount - 1, // last initial jamo
             LastPrimary = SBase + (LCount - 1) * VCount * TCount; // last corresponding primary
 
-    public static StringBuffer decomposeHangul(int s, StringBuffer result) {
+    public static StringBuilder decomposeHangul(int s, StringBuilder result) {
         final int SIndex = s - SBase;
         if (0 > SIndex || SIndex >= SCount) {
             throw new IllegalArgumentException("Non-Hangul Syllable");
@@ -1019,7 +995,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
         private final UnicodeSetIterator moreSampleIterator = new UnicodeSetIterator(moreSamples);
 
         UCAContents(Normalizer skipDecomps, String unicodeVersion) {
-            nfkd = new Normalizer(UCD_Types.NFKD, unicodeVersion);
+            nfkd = Normalizer.getOrMakeNfkdInstance(unicodeVersion);
             this.skipDecomps = skipDecomps;
             currentRange = 0;
             usi.reset(abbreviateSet(getStatistics().unspecified, true));
@@ -1081,8 +1057,8 @@ public final class UCA implements Comparator<String>, UCA_Types {
                     if (!nfkd.isNormalized(i)) {
                         final String decomp = nfkd.normalize(i);
                         int cp2;
-                        for (int j = 0; j < decomp.length(); j += UTF16.getCharCount(cp2)) {
-                            cp2 = UTF16.charAt(decomp, j);
+                        for (int j = 0; j < decomp.length(); j += Character.charCount(cp2)) {
+                            cp2 = decomp.codePointAt(j);
                             if (!getStatistics().unspecified.contains(cp2)) {
                                 temp.add(cp2);
                             }
@@ -1106,7 +1082,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
                 if (usi.codepoint == UnicodeSetIterator.IS_STRING) {
                     result = usi.string;
                 } else {
-                    result = UTF16.valueOf(usi.codepoint);
+                    result = Character.toString(usi.codepoint);
                 }
                 if (DEBUG) {
                     System.out.println("Unspecified: " + ucd.getCodeAndName(result));
@@ -1127,7 +1103,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
             // extra samples
             if (currentRange < SAMPLE_RANGES.length) {
                 try {
-                    result = UTF16.valueOf(itemInRange);
+                    result = Character.toString(itemInRange);
                 } catch (final RuntimeException e) {
                     System.out.println(Utility.hex(itemInRange));
                     throw e;
@@ -1207,7 +1183,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
      */
     private void addCollationElements(BufferedReader in) throws java.io.IOException {
         final IntStack tempStack = new IntStack(100);
-        final StringBuffer multiChars = new StringBuffer(); // used for contracting chars
+        final StringBuilder multiChars = new StringBuilder(); // used for contracting chars
         String inputLine = "";
         final boolean[] wasImplicitLeadPrimary = new boolean[1];
 
@@ -1266,7 +1242,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
 
                 char value2 = getChar(line, position);
                 // append until we get terminator
-                while (value2 != NOT_A_CHAR) {
+                while (value2 != UCA_Types.NOT_A_CHAR) {
                     multiChars.append(value2);
                     value2 = getChar(line, position);
                 }
@@ -1317,7 +1293,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
                                 record,
                                 wasImplicitLeadPrimary,
                                 false);
-                if (CHECK_UNIQUE && (ce2 == TERMINATOR || CHECK_UNIQUE_EXPANSIONS)) {
+                if (CHECK_UNIQUE && (ce2 == UCA_Types.TERMINATOR || CHECK_UNIQUE_EXPANSIONS)) {
                     if (!CHECK_UNIQUE_VARIABLES) {
                         checkUnique(value, ce, 0, inputLine); // only need to check first value
                     } else {
@@ -1332,7 +1308,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
                 tempStack.clear();
                 tempStack.push(ce);
 
-                while (ce2 != TERMINATOR) {
+                while (ce2 != UCA_Types.TERMINATOR) {
                     tempStack.push(ce2);
                     ce2 =
                             getCEFromLine(
@@ -1342,7 +1318,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
                                     record,
                                     wasImplicitLeadPrimary,
                                     false);
-                    if (ce2 == TERMINATOR) {
+                    if (ce2 == UCA_Types.TERMINATOR) {
                         break;
                     }
                 }
@@ -1357,24 +1333,6 @@ public final class UCA implements Comparator<String>, UCA_Types {
         }
     }
 
-    public void overrideCE(String multiChars, IntStack tempStack) {
-        ucaData.add(multiChars, tempStack);
-    }
-
-    public void overrideCE(String multiChars, int ce) {
-        final IntStack tempStack = new IntStack(1);
-        tempStack.push(ce);
-        ucaData.add(multiChars, tempStack);
-    }
-
-    public void overrideCE(String multiChars, int primary, int secondary, int tertiary) {
-        final IntStack tempStack = new IntStack(1);
-        final int ce = UCA.makeKey(primary, secondary, tertiary);
-        tempStack.push(ce);
-        ucaData.add(multiChars, tempStack);
-    }
-
-    /** */
     private UnicodeSet extractSet(String inputLine) {
         // # Variant secondaries:    0177..017B (5)
         // # Digit secondaries:      017C..0198 (29)
@@ -1386,12 +1344,6 @@ public final class UCA implements Comparator<String>, UCA_Types {
         }
         return new UnicodeSet(Integer.parseInt(m.group(1), 16), Integer.parseInt(m.group(2), 16));
     }
-
-    /*
-    private void concat(int[] ces1, int[] ces2) {
-
-    }
-     */
 
     public Set<String> getContractions() {
         return ucaData.getContractions();
@@ -1549,7 +1501,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
         int start = position[0];
         while (true) { // trim whitespace
             if (start >= line.length()) {
-                return NOT_A_CHAR;
+                return UCA_Types.NOT_A_CHAR;
             }
             ch = line.charAt(start);
             if (ch != ' ' && ch != ',') {
@@ -1570,11 +1522,11 @@ public final class UCA implements Comparator<String>, UCA_Types {
                 return (char) cp;
             }
             // DEBUGCHAR = true;
-            charBuffer = UTF16.getTrailSurrogate(cp);
-            return UTF16.getLeadSurrogate(cp);
+            charBuffer = Character.lowSurrogate(cp);
+            return Character.highSurrogate(cp);
         }
 
-        return NOT_A_CHAR;
+        return UCA_Types.NOT_A_CHAR;
     }
 
     boolean DEBUGCHAR = false;
@@ -1656,7 +1608,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
             boolean first) {
         final int start = line.indexOf('[', position[0]);
         if (start == -1) {
-            return TERMINATOR;
+            return UCA_Types.TERMINATOR;
         }
         boolean variable = line.charAt(start + 1) == '*';
         int key1 = Integer.parseInt(line.substring(start + 2, start + 6), 16);
@@ -1784,7 +1736,7 @@ public final class UCA implements Comparator<String>, UCA_Types {
         return buildCollator(-1, -1);
     }
 
-    static UCA buildCollator(int variableHigh, int firstNonVariable) {
+    private static UCA buildCollator(int variableHigh, int firstNonVariable) {
         try {
             if (VERBOSE) System.out.println("Building UCA");
             final Path dataPath = Settings.UnicodeTools.getDataPathForLatestVersion("uca");
@@ -1802,6 +1754,46 @@ public final class UCA implements Comparator<String>, UCA_Types {
         } catch (final IOException e) {
             throw new IllegalArgumentException(e);
         }
+    }
+
+    private static UCA buildCldrCollator() {
+        final UCA ducet = getDucetCollator();
+
+        final int ducetVariableHigh = CEList.getPrimary(ducet.getVariableHighCE());
+        int cldrVariableHigh = 0;
+        // This will normally come out as ducetVariableHigh + 1.
+        int firstDucetNonVariable = -1;
+
+        // DUCET: variable primary weights include spaces, punctuation, and symbols
+        // CLDR: variable primary weights include only spaces and punctuation
+        for (final UCA.Primary up : ducet.getRegularPrimaries()) {
+            final int ducetPrimary = up.primary;
+            if (firstDucetNonVariable < 0 && ducetPrimary > ducetVariableHigh) {
+                firstDucetNonVariable = ducetPrimary;
+            }
+
+            final String repChar = up.getRepresentative();
+            final int firstChar = Character.codePointAt(repChar, 0);
+            final int cat = Default.ucd().getCategory(firstChar);
+            switch (cat) {
+                case UCD_Types.DASH_PUNCTUATION:
+                case UCD_Types.START_PUNCTUATION:
+                case UCD_Types.END_PUNCTUATION:
+                case UCD_Types.CONNECTOR_PUNCTUATION:
+                case UCD_Types.OTHER_PUNCTUATION:
+                case UCD_Types.INITIAL_PUNCTUATION:
+                case UCD_Types.FINAL_PUNCTUATION:
+                    if (ducetPrimary <= ducetVariableHigh && ducetPrimary > cldrVariableHigh) {
+                        cldrVariableHigh = ducetPrimary;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        final UCA result = buildCollator(cldrVariableHigh, firstDucetNonVariable);
+
+        return result;
     }
 
     UCA_Statistics getStatistics() {

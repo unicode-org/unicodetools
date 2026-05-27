@@ -2,7 +2,6 @@ package org.unicode.tools;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Freezable;
 import com.ibm.icu.util.ICUException;
@@ -379,7 +378,7 @@ public class Confusables {
                                             + "; A; "
                                             + values.toPattern(false)
                                             + "\t# ( "
-                                            + UTF16.valueOf(range.codepoint)
+                                            + Character.toString(range.codepoint)
                                             + " ) "
                                             + CODEPOINT_TO_NAME.get(range.codepoint)
                                             + (single ? "" : "...")

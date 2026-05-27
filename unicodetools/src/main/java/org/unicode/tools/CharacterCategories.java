@@ -24,9 +24,7 @@ public class CharacterCategories {
         Collator COLLATOR1 = Collator.getInstance(ULocale.forLanguageTag("und-u-co-emoji"));
         COLLATOR1.setStrength(Collator.IDENTICAL);
         Comparator<String> stringComparator = new UTF16.StringComparator(true, false, 0);
-        COLLATOR =
-                new MultiComparator<String>(
-                        (Comparator) COLLATOR1, (Comparator<String>) stringComparator);
+        COLLATOR = ((Comparator<String>) (Comparator) COLLATOR1).thenComparing(stringComparator);
     }
 
     private static final int LINE_WIDTH = 50;

@@ -3,7 +3,6 @@ package org.unicode.tools.emoji;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UScript;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import java.awt.Font;
@@ -105,7 +104,7 @@ public class ListFonts {
         for (EntryRange range : NON_C.ranges()) {
             for (int cp = range.codepoint; cp <= range.codepointEnd; ++cp) {
                 if (f.canDisplay(cp)) {
-                    GlyphVector gv = f.createGlyphVector(frc, UTF16.valueOf(cp));
+                    GlyphVector gv = f.createGlyphVector(frc, Character.toString(cp));
                     final int glyphCode = gv.getGlyphCode(0);
                     if (glyphCode >= 0) {
                         result.add(cp);

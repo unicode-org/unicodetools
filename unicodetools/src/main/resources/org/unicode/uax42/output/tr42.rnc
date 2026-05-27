@@ -1,5 +1,5 @@
 
-    # Copyright © 2025 Unicode, Inc.
+    # Copyright © 2026 Unicode, Inc.
 
     
       
@@ -78,6 +78,7 @@
                   | "15.0" | "15.1"
                   | "16.0"
                   | "17.0"
+                  | "18.0"
                   | "unassigned"
                   }?
 
@@ -89,6 +90,8 @@
                    "TANGUT IDEOGRAPH-#" |
                    "KHITAN SMALL SCRIPT CHARACTER-#" |
                    "NUSHU CHARACTER-#" |
+                   "SEAL CHARACTER-#" |
+                   "JURCHEN CHARACTER-#" |
                    xsd:string { pattern="[a-zA-Z0-9]+(( -|- |[\-_ ])[a-zA-Z0-9]+)*" }
                  }?
 
@@ -121,6 +124,7 @@
                   | "Arabic_PF_A"
                   | "Arabic_PF_B"
                   | "Arabic_Sup"
+                  | "Archaic_Cuneiform_Numerals"
                   | "Armenian"
                   | "Arrows"
                   | "ASCII"
@@ -131,6 +135,7 @@
                   | "Bassa_Vah"
                   | "Batak"
                   | "Bengali"
+                  | "Bengali_Sup"
                   | "Beria_Erfe"
                   | "Bhaiksuki"
                   | "Block_Elements"
@@ -149,6 +154,7 @@
                   | "Cherokee"
                   | "Cherokee_Sup"
                   | "Chess_Symbols"
+                  | "Chisoi"
                   | "Chorasmian"
                   | "CJK"
                   | "CJK_Compat"
@@ -251,6 +257,8 @@
                   | "Jamo_Ext_A"
                   | "Jamo_Ext_B"
                   | "Javanese"
+                  | "Jurchen"
+                  | "Jurchen_Radicals"
                   | "Kaithi"
                   | "Kaktovik_Numerals"
                   | "Kana_Ext_A"
@@ -310,6 +318,7 @@
                   | "Meroitic_Hieroglyphs"
                   | "Miao"
                   | "Misc_Arrows"
+                  | "Misc_Arrows_Ext"
                   | "Misc_Math_Symbols_A"
                   | "Misc_Math_Symbols_B"
                   | "Misc_Pictographs"
@@ -324,6 +333,7 @@
                   | "Mro"
                   | "Multani"
                   | "Music"
+                  | "Music_Sup"
                   | "Myanmar"
                   | "Myanmar_Ext_A"
                   | "Myanmar_Ext_B"
@@ -373,6 +383,7 @@
                   | "Runic"
                   | "Samaritan"
                   | "Saurashtra"
+                  | "Seal"
                   | "Sharada"
                   | "Sharada_Sup"
                   | "Shavian"
@@ -536,6 +547,10 @@
     attribute jg { "African_Feh" | "African_Noon" | "African_Qaf"
                  | "Ain" | "Alaph" | "Alef"
                  | "Beh" | "Beth" | "Burushaski_Yeh_Barree"
+                 | "Crown_Ain" | "Crown_Beh" | "Crown_Feh"
+                 | "Crown_Hah" | "Crown_Heh" | "Crown_Kaf"
+                 | "Crown_Meem" | "Crown_Sad" | "Crown_Seen"
+                 | "Crown_Tah"
                  | "Dal" | "Dalath_Rish"
                  | "E"
                  | "Farsi_Yeh" | "Fe" | "Feh" | "Final_Semkath"
@@ -689,8 +704,8 @@
            | "Avst"
            | "Bali" | "Bamu" | "Bass" | "Batk" | "Beng" | "Berf"
            | "Bhks" | "Bopo" | "Brah" | "Brai" | "Bugi" | "Buhd"
-           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | "Chrs"
-           | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
+           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | "Chis"
+           | "Chrs" | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
            | "Deva" | "Diak" | "Dogr" | "Dsrt" | "Dupl"
            | "Egyp" | "Elba" | "Elym" | "Ethi"
            | "Gara" | "Geor" | "Glag" | "Gong" | "Gonm" | "Goth"
@@ -698,7 +713,7 @@
            | "Hang" | "Hani" | "Hano" | "Hatr" | "Hebr" | "Hira"
            | "Hluw" | "Hmng" | "Hmnp" | "Hrkt" | "Hung"
            | "Ital"
-           | "Java"
+           | "Java" | "Jurc"
            | "Kali" | "Kana" | "Kawi" | "Khar" | "Khmr" | "Khoj"
            | "Kits" | "Knda" | "Krai" | "Kthi"
            | "Lana" | "Laoo" | "Latn" | "Lepc" | "Limb" | "Lina"
@@ -710,12 +725,13 @@
            | "Nshu"
            | "Ogam" | "Olck" | "Onao" | "Orkh" | "Orya" | "Osge"
            | "Osma" | "Ougr"
-           | "Palm" | "Pauc" | "Perm" | "Phag" | "Phli" | "Phlp"
-           | "Phnx" | "Plrd" | "Prti"
+           | "Palm" | "Pauc" | "Pcun" | "Perm" | "Phag" | "Phli"
+           | "Phlp" | "Phnx" | "Plrd" | "Prti"
            | "Rjng" | "Rohg" | "Runr"
-           | "Samr" | "Sarb" | "Saur" | "Sgnw" | "Shaw" | "Shrd"
-           | "Sidd" | "Sidt" | "Sind" | "Sinh" | "Sogd" | "Sogo"
-           | "Sora" | "Soyo" | "Sund" | "Sunu" | "Sylo" | "Syrc"
+           | "Samr" | "Sarb" | "Saur" | "Seal" | "Sgnw" | "Shaw"
+           | "Shrd" | "Sidd" | "Sidt" | "Sind" | "Sinh" | "Sogd"
+           | "Sogo" | "Sora" | "Soyo" | "Sund" | "Sunu" | "Sylo"
+           | "Syrc"
            | "Tagb" | "Takr" | "Tale" | "Talu" | "Taml" | "Tang"
            | "Tavt" | "Tayo" | "Telu" | "Tfng" | "Tglg" | "Thaa"
            | "Thai" | "Tibt" | "Tirh" | "Tnsa" | "Todr" | "Tols"
@@ -999,10 +1015,10 @@
     { list { xsd:string { pattern="[a-z]{1,6}[1-6]" }+ } }?
 
   code-point-attributes &= attribute kCCCII
-    { list { xsd:string { pattern="[0-9A-F]{6}" }+ } }?
+    { xsd:string { pattern="[0-9A-F]{6}" } }?
 
   code-point-attributes &= attribute kCheungBauer
-    { list { xsd:string { pattern="\d{3}/\d{2};[A-Z]*;[a-z1-6\[\]/,]+" }+ } }?
+    { xsd:string { pattern="\d{3}/\d{2};[A-Z]*;[a-z1-6\[\]/,]+" } }?
 
   code-point-attributes &= attribute kCheungBauerIndex
     { list { xsd:string { pattern="\d{3}\.[01]\d" }+ } }?
@@ -1053,7 +1069,7 @@
     { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &= attribute kGB5
-    { xsd:string { pattern="\d{4}" } }?
+    { list { xsd:string { pattern="\d{4}" }+ } }?
 
   code-point-attributes &= attribute kGB8
     { xsd:string { pattern="\d{4}" } }?
@@ -1080,17 +1096,17 @@
     { xsd:string { pattern="[\x{2F00}-\x{2FD5}]\[U\+2F[0-9A-D][0-9A-F]\]:[1-8]\d{4}\.[0-3]\d0" } }?
 
   code-point-attributes &= attribute kHKGlyph
-    { list { xsd:string { pattern="\d{4}" }+ } }?
+    { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &= attribute kIBMJapan
-    { list { xsd:string { pattern="F[ABC][0-9A-F]{2}" }+ } }?
+    { xsd:string { pattern="F[ABC][0-9A-F]{2}" } }?
 
   code-point-attributes &= attribute kIICore
-    { list { xsd:string { pattern="[ABC][GHJKMPT]{1,7}" }+ } }?
+    { xsd:string { pattern="[ABC][GHJKMPT]{1,7}" } }?
 
   code-point-attributes &= attribute kIRG_GSource
     { "" | xsd:string { pattern="G[013578EKS]-[0-9A-F]{4}" }
-         | xsd:string { pattern="G(DZ|GH|RM|WZ|XC|XH|ZH)-\d{4}\.\d{2}" }
+         | xsd:string { pattern="G(CH|CY|DZ|GH|RM|WZ|XC|XH|ZH)-\d{4}\.\d{2}" }
          | xsd:string { pattern="GKX-\d{4}\.\d{2,3}" }
          | xsd:string { pattern="G(HZ|HZR)-\d{5}\.\d{2}" }
          | xsd:string { pattern="G(CE|FC|IDC23|OCD|XHZ)-\d{3}" }
@@ -1099,8 +1115,8 @@
          | xsd:string { pattern="G(FZ|IDC)-[0-9A-F]{4}" }
          | xsd:string { pattern="GCA-[A-Z]\d{4}" }
          | xsd:string { pattern="GGFZ-\d{6}" }
-         | xsd:string { pattern="G(BK|LK|Z)-\d{7}" }
-         | xsd:string { pattern="G(CH|CY|HC|U)-[023][0-9A-F]{4}" }
+         | xsd:string { pattern="G(BK|HC|LK|Z)-\d{7}" }
+         | xsd:string { pattern="GU-[023][0-9A-F]{4}" }
          | xsd:string { pattern="GZA-[123467]\d{5}" }
     }?
 
@@ -1158,14 +1174,12 @@
          | xsd:string { pattern="VN-[023F][0-9A-F]{4}" }
     }?
 
-  code-point-attributes &= attribute kIRGDaeJaweon
-    { list { xsd:string { pattern="\d{4}\.\d{2}[01]" }+ } }?
+  
 
   code-point-attributes &= attribute kIRGHanyuDaZidian
-    { list { xsd:string { pattern="[1-8]\d{4}\.[0-3]\d[01]" }+ } }?
+    { xsd:string { pattern="[1-8]\d{4}\.[0-3]\d[01]" } }?
 
-  code-point-attributes &= attribute kIRGKangXi
-    { list { xsd:string { pattern="[01]\d{3}\.[0-7]\d[01]" }+ } }?
+  
 
   code-point-attributes &= attribute kJapanese
     { list { xsd:string { pattern="[\x{3041}-\x{3096}\x{3099}\x{309A}\x{30A1}-\x{30FA}\x{30FC}]+" }+ } }?
@@ -1173,50 +1187,56 @@
   code-point-attributes &= attribute kJapaneseKun
     { list { xsd:string { pattern="[A-Z]+" }+ } }?
 
+  code-point-attributes &= attribute kJapaneseNewVariant
+    { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" } }?
+
+  code-point-attributes &= attribute kJapaneseOldVariant
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?
+
   code-point-attributes &= attribute kJapaneseOn
     { list { xsd:string { pattern="[A-Z]+" }+ } }?
 
   code-point-attributes &= attribute kJinmeiyoKanji
-    { list { xsd:string { pattern="(20\d{2})(:U\+[23]?[0-9A-F]{4})?" }+ } }?
+    { xsd:string { pattern="(20\d{2})(:U\+[23]?[0-9A-F]{4})?" } }?
 
   code-point-attributes &= attribute kJis0
-    { list { xsd:string { pattern="\d{4}" }+ } }?
+    { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &= attribute kJis1
-    { list { xsd:string { pattern="\d{4}" }+ } }?
+    { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &= attribute kJIS0213
-    { list { xsd:string { pattern="[12],\d{2},\d{1,2}" }+ } }?
+    { xsd:string { pattern="[12],\d{2},\d{1,2}" } }?
 
   code-point-attributes &= attribute kJoyoKanji
-    { list { xsd:string { pattern="(20\d{2})|(U\+[23]?[0-9A-F]{4})" }+ } }?
+    { xsd:string { pattern="(20\d{2})|(U\+[23]?[0-9A-F]{4})" } }?
 
   code-point-attributes &= attribute kKangXi
     { list { xsd:string { pattern="\d{4}\.\d{2}[01]" }+ } }?
 
   code-point-attributes &= attribute kKarlgren
-    { list { xsd:string { pattern="[1-9]\d{0,3}[A*]?" }+ } }?
+    { xsd:string { pattern="[1-9]\d{0,3}[A*]?" } }?
 
   code-point-attributes &= attribute kKorean
     { list { xsd:string { pattern="[A-Z]+" }+ } }?
 
   code-point-attributes &= attribute kKoreanEducationHanja
-    { list { xsd:string { pattern="20\d{2}" }+ } }?
+    { xsd:string { pattern="20\d{2}" } }?
 
   code-point-attributes &= attribute kKoreanName
-    { list { xsd:string { pattern="20\d{2}" }+ } }?
+    { xsd:string { pattern="20\d{2}" } }?
 
   code-point-attributes &= attribute kLau
     { list { xsd:string { pattern="[1-9]\d{0,3}" }+ } }?
 
   code-point-attributes &= attribute kMainlandTelegraph
-    { list { xsd:string { pattern="\d{4}" }+ } }?
+    { xsd:string { pattern="\d{4}" } }?
 
   code-point-attributes &= attribute kMandarin
     { list { xsd:string { pattern="[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
 
   code-point-attributes &= attribute kMatthews
-    { list { xsd:string { pattern="[1-9]\d{0,3}(a|\.5)?" }+ } }?
+    { xsd:string { pattern="[1-9]\d{0,3}(a|\.5)?" } }?
 
   code-point-attributes &= attribute kMeyerWempe
     { list { xsd:string { pattern="[1-9]\d{0,3}[a-t*]?" }+ } }?
@@ -1231,7 +1251,7 @@
     { list { xsd:string { pattern="\d{4}" }+ } }?
 
   code-point-attributes &= attribute kOtherNumeric
-    { list { xsd:string { pattern="\d+" }+ } }?
+    { xsd:string { pattern="\d+" } }?
 
   code-point-attributes &= attribute kPhonetic
     { list { xsd:string { pattern="[1-9]\d{0,3}[A-D]?\*?" }+ } }?
@@ -1286,10 +1306,10 @@
     { list { xsd:string { pattern="\*?[A-Za-z()\x{E6}\x{251}\x{259}\x{25B}\x{300}\x{30C}]+" }+ } }?
 
   code-point-attributes &= attribute kTayNumeric
-    { list { xsd:string { pattern="\d+" }+ } }?
+    { xsd:string { pattern="\d+" } }?
 
   code-point-attributes &= attribute kTGH
-    { list { xsd:string { pattern="20\d{2}:[1-9]\d{0,3}" }+ } }?
+    { xsd:string { pattern="20\d{2}:[1-9]\d{0,3}" } }?
 
   code-point-attributes &= attribute kTGHZ2013
     { list { xsd:string { pattern="\d{3}\.\d{3}(,\d{3}\.\d{3})*:[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+" }+ } }?
@@ -1307,45 +1327,71 @@
     { list { xsd:string { pattern="[A-Za-z\x{110}\x{111}\x{300}-\x{303}\x{306}\x{309}\x{31B}\x{323}]+" }+ } }?
 
   code-point-attributes &= attribute kVietnameseNumeric
-    { list { xsd:string { pattern="\d+" }+ } }?
+    { xsd:string { pattern="\d+" } }?
 
   code-point-attributes &= attribute kXerox
-    { list { xsd:string { pattern="\d{3}:\d{3}" }+ } }?
+    { xsd:string { pattern="\d{3}:\d{3}" } }?
 
   code-point-attributes &= attribute kXHC1983
     { list { xsd:string { pattern="\d{4}\.\d{3}\*?(,\d{4}\.\d{3}\*?)*:[a-z\x{300}\x{301}\x{304}\x{308}\x{30C}]+" }+ } }?
 
   code-point-attributes &= attribute kZhuang
-    { list { xsd:string { pattern="[a-z]+\*?" }+ } }?
+    { xsd:string { pattern="[a-z]+\*?" } }?
 
   code-point-attributes &= attribute kZhuangNumeric
-    { list { xsd:string { pattern="\d+" }+ } }?
+    { xsd:string { pattern="\d+" } }?
 
   code-point-attributes &= attribute kZVariant
     { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}(<[ks][A-Za-z0-9_]+(:[TBZ]+)?(,[ks][A-Za-z0-9_]+(:[TBZ]+)?)*)?" }+ } }?
 
       
   code-point-attributes &=
-    attribute kTGT_RSUnicode { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
+    attribute kJURC_NCReading { xsd:string { pattern='[^\t"]+' } }?
 
   code-point-attributes &=
-    attribute kTGT_MergedSrc 
-     { xsd:string {pattern="H2004-[AB]-\d{4}"}
-     | xsd:string {pattern="H2021-\d{6}"}
-     | xsd:string {pattern="L(19(86|97)|20(06|12))-\d{4}"}
-     | xsd:string {pattern="L2008-\d{4}([AB]|-\d{4})?"}
-     | xsd:string {pattern="N1966-\d{3}-\d{2}[0-9A-Z]{1,2}"}
-     | xsd:string {pattern="N5217-\d{2}"}
-     | xsd:string {pattern="S1968-\d{4}"}
-     | xsd:string {pattern="UTN42-\d{3}"}
-     }?
+    attribute kJURC_Numeric { xsd:string { pattern="[1-9]\d{0,4}" } }?
+
+  code-point-attributes &=
+    attribute kJURC_RSUnicode { xsd:string { pattern="[1-9]\d{0,1}\.[1-9]\d{0,1}" } }?
+
+  code-point-attributes &=
+    attribute kJURC_Src { xsd:string { pattern="NC:\d{3}\.\d{2}(,\d{3}\.\d{2})?|SJ-B:\d{3}[A-Z]\.\d|JJ:\d{3}|N5131:X-\d{4}" } }?
 
       
   code-point-attributes &=
-    attribute kNSHU_DubenSrc { xsd:string { pattern="[0-9]+\.[0-9]+" } }?
+    attribute kNSHU_DubenSrc { xsd:string { pattern="[1-9]\d\.\d{2}" } }?
 
   code-point-attributes &=
-    attribute kNSHU_Reading { xsd:string }?
+    attribute kNSHU_Reading { xsd:string { pattern="[a-z]+[1-9]\d{0,1}" } }?
+
+      
+  code-point-attributes &=
+    attribute kSEAL_CCZSrc { xsd:string { pattern="C-\d{5}" } }?
+
+  code-point-attributes &=
+    attribute kSEAL_DYCSrc { xsd:string { pattern="D-\d{5}" } }?
+
+  code-point-attributes &=
+    attribute kSEAL_MCJK { xsd:string { pattern="[0-9A-F]{4,5}" } }?
+
+  code-point-attributes &=
+    attribute kSEAL_QJZSrc { xsd:string { pattern="K-\d{5}" } }?
+
+  code-point-attributes &=
+    attribute kSEAL_Rad { list { xsd:string { pattern="\d{1,3}\.[A-F0-9]{4,5}" }+ } }?
+
+  code-point-attributes &=
+    attribute kSEAL_THXSrc { xsd:string { pattern="TH-(\d{5}|X\d{3}|Y\d{3})" } }?
+
+      
+  code-point-attributes &=
+    attribute kTGT_MergedSrc { xsd:string { pattern="H2004-[AB]-\d{4}|H2021-\d{6}|L(19(86|97)|20(06|12))-\d{4}|L2008-\d{4}([AB]|-\d{4})?|N1966-\d{3}-\d{2}[0-9A-Z]{1,2}|N5217-\d{2}|N5314-\d{2}|S1968-\d{4}|UTN42-\d{3}" } }?
+
+  code-point-attributes &=
+    attribute kTGT_Numeric { xsd:string { pattern="NaN|[0-9]+|[0-9]+\.[0-9]+" } }?
+
+  code-point-attributes &=
+    attribute kTGT_RSUnicode { xsd:string { pattern="\d+\.\d+" } }?
 
       
   code-point-attributes &= attribute kEH_Cat
@@ -1365,7 +1411,6 @@
 
   code-point-attributes &= attribute kEH_UniK
     { xsd:string { pattern="([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}" }
-     | xsd:string { pattern="HJ ([A-IK-Z]|AA)\d{3}[A-Z]{0,2}" }
     }?
 
   code-point-attributes &= attribute kEH_JSesh

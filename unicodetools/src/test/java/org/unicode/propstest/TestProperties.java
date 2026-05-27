@@ -46,6 +46,7 @@ import org.unicode.props.UnicodeProperty;
 import org.unicode.props.ValueCardinality;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
@@ -314,7 +315,7 @@ public class TestProperties extends TestFmwkMinusMinus {
             if (!dt.getValue(codepoint).equals("Canonical")) {
                 continue;
             }
-            String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
+            String decompositionFirst = UTF16Plus.codePointSubstringAt(dm.getValue(codepoint), 0);
             String decompositionFirstNFCQC = nfcqc.getValue(decompositionFirst);
             if (!decompositionFirstNFCQC.equals("Yes")) {
                 errln(
@@ -333,7 +334,7 @@ public class TestProperties extends TestFmwkMinusMinus {
         UnicodeMap<String> nfkcqc = iup.load(UcdProperty.NFKC_Quick_Check);
         UnicodeMap<String> dm = iup.load(UcdProperty.Decomposition_Mapping);
         for (String codepoint : nfkcqc.getSet("Yes")) {
-            String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
+            String decompositionFirst = UTF16Plus.codePointSubstringAt(dm.getValue(codepoint), 0);
             String decompositionFirstNFKCQC = nfkcqc.getValue(decompositionFirst);
             if (!decompositionFirstNFKCQC.equals("Yes")) {
                 errln(

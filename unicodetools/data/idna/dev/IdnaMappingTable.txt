@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-02-03, 23:56:23 GMT
+# Date: 2026-04-29, 20:29:13 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1030,7 +1030,7 @@
 097E..097F    ; valid                      # 5.0  DEVANAGARI LETTER DDDA..DEVANAGARI LETTER BBA
 0980          ; valid                      # 7.0  BENGALI ANJI
 0981..0983    ; valid                      # 1.1  BENGALI SIGN CANDRABINDU..BENGALI SIGN VISARGA
-0984          ; valid                      # 18.0 BENGALI SIGN COMBINING ANUSVARA ABOVE
+0984          ; disallowed                 # NA   <reserved-0984>
 0985..098C    ; valid                      # 1.1  BENGALI LETTER A..BENGALI LETTER VOCALIC L
 098D..098E    ; disallowed                 # NA   <reserved-098D>..<reserved-098E>
 098F..0990    ; valid                      # 1.1  BENGALI LETTER E..BENGALI LETTER AI
@@ -1066,8 +1066,7 @@
 09FC          ; valid                      # 10.0 BENGALI LETTER VEDIC ANUSVARA
 09FD          ; valid      ;      ; NV8    # 10.0 BENGALI ABBREVIATION SIGN
 09FE          ; valid                      # 11.0 BENGALI SANDHI MARK
-09FF          ; valid                      # 18.0 BENGALI LETTER SANSKRIT BA
-0A00          ; disallowed                 # NA   <reserved-0A00>
+09FF..0A00    ; disallowed                 # NA   <reserved-09FF>..<reserved-0A00>
 0A01          ; valid                      # 4.0  GURMUKHI SIGN ADAK BINDI
 0A02          ; valid                      # 1.1  GURMUKHI SIGN BINDI
 0A03          ; valid                      # 4.0  GURMUKHI SIGN VISARGA
@@ -1671,8 +1670,7 @@
 181A..181F    ; disallowed                 # NA   <reserved-181A>..<reserved-181F>
 1820..1877    ; valid                      # 3.0  MONGOLIAN LETTER A..MONGOLIAN LETTER MANCHU ZHA
 1878          ; valid                      # 11.0 MONGOLIAN LETTER CHA WITH TWO DOTS
-1879          ; valid                      # 18.0 MONGOLIAN LETTER ALTERNATE UE
-187A..187F    ; disallowed                 # NA   <reserved-187A>..<reserved-187F>
+1879..187F    ; disallowed                 # NA   <reserved-1879>..<reserved-187F>
 1880..18A9    ; valid                      # 3.0  MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER ALI GALI DAGALGA
 18AA          ; valid                      # 5.1  MONGOLIAN LETTER MANCHU ALI GALI LHA
 18AB..18AF    ; disallowed                 # NA   <reserved-18AB>..<reserved-18AF>
@@ -6645,7 +6643,9 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 11DB0..11DDB  ; valid                      # 17.0 TOLONG SIKI LETTER I..TOLONG SIKI UNGGA
 11DDC..11DDF  ; disallowed                 # NA   <reserved-11DDC>..<reserved-11DDF>
 11DE0..11DE9  ; valid                      # 17.0 TOLONG SIKI DIGIT ZERO..TOLONG SIKI DIGIT NINE
-11DEA..11EDF  ; disallowed                 # NA   <reserved-11DEA>..<reserved-11EDF>
+11DEA..11DEF  ; disallowed                 # NA   <reserved-11DEA>..<reserved-11DEF>
+11DF0..11DF1  ; valid                      # 18.0 BENGALI SIGN COMBINING ANUSVARA ABOVE..BENGALI LETTER ALTERNATE BARGIYA BA
+11DF2..11EDF  ; disallowed                 # NA   <reserved-11DF2>..<reserved-11EDF>
 11EE0..11EF6  ; valid                      # 11.0 MAKASAR LETTER KA..MAKASAR VOWEL SIGN O
 11EF7..11EF8  ; valid      ;      ; NV8    # 11.0 MAKASAR PASSIMBANG..MAKASAR END OF SECTION
 11EF9..11EFF  ; disallowed                 # NA   <reserved-11EF9>..<reserved-11EFF>
@@ -8033,7 +8033,7 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 1DF7E         ; mapped     ; 1DF7F         # 18.0 LATIN CAPITAL LETTER REVERSED U
 1DF7F..1DF81  ; valid                      # 18.0 LATIN SMALL LETTER REVERSED U..LATIN CAPITAL LETTER E WITH BENT TOPBAR
 1DF82..1DF8F  ; disallowed                 # NA   <reserved-1DF82>..<reserved-1DF8F>
-1DF90..1DF94  ; valid                      # 18.0 LATIN SMALL LETTER C WITH SMALL SLASH..LATIN SMALL LETTER R ROTUNDA WITH LOOP
+1DF90..1DF94  ; valid                      # 18.0 LATIN SMALL LETTER C WITH LOW SLASH..LATIN SMALL LETTER R ROTUNDA WITH LOOP
 1DF95         ; mapped     ; 0073 0073     # 18.0 LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1DF96         ; valid                      # 18.0 LATIN SMALL LETTER LONG S WITH TOP LOOP
 1DF97..1DFCC  ; disallowed                 # NA   <reserved-1DF97>..<reserved-1DFCC>

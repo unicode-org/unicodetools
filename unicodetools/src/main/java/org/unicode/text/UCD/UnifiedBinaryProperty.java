@@ -295,13 +295,13 @@ public final class UnifiedBinaryProperty extends UCDProperty {
     @Override
     public boolean skipInDerivedListing() {
         switch ((majorProp << 8) | propValue) {
-                // case CATEGORY | Cn:
-                // case COMBINING_CLASS | 0:
-                // case BIDI_CLASS | BIDI_L:
+            // case CATEGORY | Cn:
+            // case COMBINING_CLASS | 0:
+            // case BIDI_CLASS | BIDI_L:
             case DECOMPOSITION_TYPE | NONE:
             case NUMERIC_TYPE | NUMERIC_NONE:
-                // case EAST_ASIAN_WIDTH | EAN:
-                // case LINE_BREAK | LB_XX:
+            // case EAST_ASIAN_WIDTH | EAN:
+            // case LINE_BREAK | LB_XX:
             case JOINING_TYPE | JT_U:
             case JOINING_GROUP | NO_SHAPING:
             case SCRIPT | COMMON_SCRIPT:

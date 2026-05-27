@@ -254,7 +254,7 @@ public class LocaleExtensions {
                         builder.setExtension('t', tValue.toString());
                         tValue = null;
                     }
-                    // fall through
+                // fall through
                 default:
                     builder.setExtension(key.charAt(0), value);
                     break;

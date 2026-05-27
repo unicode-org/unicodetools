@@ -119,7 +119,7 @@ public class TestSecurity extends TestFmwkMinusMinus {
             checkTransform(transformMap, source, value);
             if (value.codePointCount(0, value.length()) > 1) {
                 for (int cp : CharSequences.codePoints(value)) {
-                    String v = UTF16.valueOf(cp);
+                    String v = Character.toString(cp);
                     checkTransform(transformMap, value, v);
                 }
             }

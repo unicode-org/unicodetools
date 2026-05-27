@@ -207,6 +207,7 @@ public class UcdPropertyValues {
         Bassa_Vah("Bassa_Vah"),
         Batak("Batak"),
         Bengali("Bengali"),
+        Bengali_Supplement("Bengali_Sup"),
         Beria_Erfe("Beria_Erfe"),
         Bhaiksuki("Bhaiksuki"),
         Block_Elements("Block_Elements"),
@@ -746,6 +747,15 @@ public class UcdPropertyValues {
 
     // Case_Folding
     // CJK_Radical
+    // cjkUSource_Comments
+    // cjkUSource_FirstResidualStroke
+    // cjkUSource_Identifier
+    // cjkUSource_IDS
+    // cjkUSource_KangXi
+    // cjkUSource_RSUnicode
+    // cjkUSource_Source
+    // cjkUSource_Status
+    // cjkUSource_TotalStrokes
     // Confusable_MA
     // Confusable_ML
     // Confusable_SA
@@ -1742,6 +1752,8 @@ public class UcdPropertyValues {
     // kJa
     // kJapanese
     // kJapaneseKun
+    // kJapaneseNewVariant
+    // kJapaneseOldVariant
     // kJapaneseOn
     // kJHJ
     // kJinmeiyoKanji
