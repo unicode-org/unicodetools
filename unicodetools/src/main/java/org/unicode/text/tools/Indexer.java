@@ -59,7 +59,6 @@ public class Indexer {
         private final ReleasePhase phase;
         private final String chartsRoot;
         private final String filename;
-        private final VersionedIndexer linkedDraft;
 
         private final IndexUnicodeProperties IUP;
         private final UnicodeSet NEW_CHARACTERS;
@@ -85,13 +84,11 @@ public class Indexer {
                 VersionInfo version,
                 ReleasePhase phase,
                 String chartsRoot,
-                String filename,
-                VersionedIndexer linkedDraft) {
+                String filename) {
             this.version = version;
             this.phase = phase;
             this.chartsRoot = chartsRoot;
             this.filename = filename;
-            this.linkedDraft = linkedDraft;
             IUP = IndexUnicodeProperties.make(version);
             NEW_CHARACTERS =
                     IndexUnicodeProperties.make(Settings.LAST_VERSION_INFO)
@@ -322,7 +319,7 @@ public class Indexer {
             return radicalSets;
         }
 
-        public void generateIndex() throws IOException {
+        public void generateIndex(VersionedIndexer linkedVersion) throws IOException {
             class PropertyComparator implements Comparator<UnicodeProperty> {
                 @Override
                 public int compare(UnicodeProperty left, UnicodeProperty right) {
@@ -589,14 +586,14 @@ public class Indexer {
                                     .replace("CHARTS-ROOT-HERE", chartsRoot)
                                     .replace(
                                             "<!--DRAFT LINK HERE-->",
-                                            linkedDraft == null
+                                            linkedVersion == null
                                                     ? ""
-                                                    : "<p class=body-width id=see-draft>(See also <a href=\""
-                                                            + linkedDraft.filename
+                                                    : "<p class=body-width id=see-version>(See also <a href=\""
+                                                            + linkedVersion.filename
                                                             + "\">Unicode "
-                                                            + linkedDraft.version.getVersionString(
+                                                            + linkedVersion.version.getVersionString(
                                                                     2, 2)
-                                                            + linkedDraft.phase
+                                                            + linkedVersion.phase
                                                             + "</a>)</p>"));
                 }
             }
@@ -899,23 +896,26 @@ public class Indexer {
     }
 
     public static final void main(String[] args) throws IOException {
+        final var main = new VersionedIndexer(
+                        Settings.LAST_VERSION_INFO,
+                        ReleasePhase.GAMMA,
+                        "https://www.unicode.org/charts",
+                        "charindex.html");
         final var draft =
                 new VersionedIndexer(
                         Settings.LATEST_VERSION_INFO,
                         Settings.latestVersionPhase,
                         "https://www.unicode.org/Public/draft/charts",
-                        "charindex-draft.html",
-                        /* linkedDraft= */ null);
-        draft.generateIndex();
-        new VersionedIndexer(
-                        Settings.LAST_VERSION_INFO,
-                        ReleasePhase.GAMMA,
-                        "https://www.unicode.org/charts",
-                        "charindex.html",
-                        /* linkedDraft= */ Settings.latestVersionPhase.compareTo(ReleasePhase.ALPHA)
-                                        >= 0
-                                ? draft
-                                : null)
-                .generateIndex();
+                        "charindex-draft.html");
+        // Link to the draft if it is at least in α (i.e., do not link to a pre-α dev version).
+        main.generateIndex(/* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.ALPHA)
+                                >= 0
+                        ? draft
+                        : null);
+        // Link from the draft to the earlier version unless the draft is release-final (γ).
+        draft.generateIndex(/* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.GAMMA)
+                                < 0
+                        ? main
+                        : null);
     }
 }
