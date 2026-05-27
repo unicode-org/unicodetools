@@ -81,10 +81,7 @@ public class Indexer {
         private final Map<String, UnicodeSet> blockSet = new HashMap<>();
 
         VersionedIndexer(
-                VersionInfo version,
-                ReleasePhase phase,
-                String chartsRoot,
-                String filename) {
+                VersionInfo version, ReleasePhase phase, String chartsRoot, String filename) {
             this.version = version;
             this.phase = phase;
             this.chartsRoot = chartsRoot;
@@ -591,8 +588,8 @@ public class Indexer {
                                                     : "<p class=body-width id=see-version>(See also <a href=\""
                                                             + linkedVersion.filename
                                                             + "\">Unicode "
-                                                            + linkedVersion.version.getVersionString(
-                                                                    2, 2)
+                                                            + linkedVersion.version
+                                                                    .getVersionString(2, 2)
                                                             + linkedVersion.phase
                                                             + "</a>)</p>"));
                 }
@@ -896,7 +893,8 @@ public class Indexer {
     }
 
     public static final void main(String[] args) throws IOException {
-        final var main = new VersionedIndexer(
+        final var main =
+                new VersionedIndexer(
                         Settings.LAST_VERSION_INFO,
                         ReleasePhase.GAMMA,
                         "https://www.unicode.org/charts",
@@ -908,13 +906,13 @@ public class Indexer {
                         "https://www.unicode.org/Public/draft/charts",
                         "charindex-draft.html");
         // Link to the draft if it is at least in α (i.e., do not link to a pre-α dev version).
-        main.generateIndex(/* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.ALPHA)
-                                >= 0
+        main.generateIndex(
+                /* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.ALPHA) >= 0
                         ? draft
                         : null);
         // Link from the draft to the earlier version unless the draft is release-final (γ).
-        draft.generateIndex(/* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.GAMMA)
-                                < 0
+        draft.generateIndex(
+                /* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.GAMMA) < 0
                         ? main
                         : null);
     }
