@@ -157,7 +157,6 @@ async function search(/**@type {string}*/ query) {
           break;
         }
       }
-      console.log(matchStarts, snippet, orderedMatches);
       return [i,
               String.fromCodePoint(0x10FFFE - orderedMatches) + '\uFFFE' +
               snippet.substring(pivot) + ' \uFFFE ' +
