@@ -368,8 +368,7 @@ public class Indexer {
                         // Override word breaking of ' and - in appropriate contexts so that
                         // radical/stroke indices are atomic.
                         // With ICU4J we could do that with custom segmentation rules, but we need
-                        // to
-                        // have the same segmentation in the JavaScript where we do not have that
+                        // to have the same segmentation in the JavaScript where we do not have that
                         // luxury, so poor man’s tailoring by segmenting a mangled string it is.
                         final String mangledForWordBreak =
                                 snippet.replaceAll("\\.-", ".0")
@@ -465,12 +464,9 @@ public class Indexer {
                     css.close();
                 } else if (htmlLine.contains("JS HERE")) {
                     // No pretty-printing in the loops that print these two maps; each space or
-                    // newline
-                    // here enlarges charindex.html by hundreds of kilobytes.  These are not
-                    // suitable
-                    // for human consumption anyway, since anything readable is turned into indices
-                    // in
-                    // allTheStrings.
+                    // newline here enlarges charindex.html by hundreds of kilobytes.  These are not
+                    // suitable  for human consumption anyway, since anything readable is turned
+                    // into indices in allTheStrings.
                     file.print("let wordIndex = new Map([");
                     System.out.println("wordIndex...");
                     {
@@ -484,8 +480,7 @@ public class Indexer {
                                             + wordAndSnippets.getKey().replace("'", "\\'")
                                             + "',new Map([");
                             // Stream and collect for the innermost map to avoid trailing commas,
-                            // for
-                            // size.
+                            // for size.
                             file.print(
                                     wordAndSnippets.getValue().entrySet().stream()
                                             .map(
@@ -516,8 +511,7 @@ public class Indexer {
                             file.print("html:" + htmlIndex + ",");
                             file.print("characters:[");
                             // Stream and collect for the innermost array to avoid trailing commas,
-                            // for
-                            // size.
+                            // for size.
                             file.print(
                                     indexEntry
                                             .coveredCharacters()
