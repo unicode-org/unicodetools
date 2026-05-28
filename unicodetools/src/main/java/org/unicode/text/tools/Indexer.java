@@ -81,14 +81,18 @@ public class Indexer {
         private final Map<String, UnicodeSet> blockSet = new HashMap<>();
 
         VersionedIndexer(
-                VersionInfo version, ReleasePhase phase, String chartsRoot, String filename) {
+                VersionInfo version,
+                ReleasePhase phase,
+                VersionInfo precedingVersion,
+                String chartsRoot,
+                String filename) {
             this.version = version;
             this.phase = phase;
             this.chartsRoot = chartsRoot;
             this.filename = filename;
             IUP = IndexUnicodeProperties.make(version);
             NEW_CHARACTERS =
-                    IndexUnicodeProperties.make(Settings.LAST_VERSION_INFO)
+                    IndexUnicodeProperties.make(precedingVersion)
                             .getProperty(UcdProperty.General_Category)
                             .getSet("Unassigned")
                             .removeAll(
@@ -891,12 +895,14 @@ public class Indexer {
                 new VersionedIndexer(
                         Settings.LAST_VERSION_INFO,
                         ReleasePhase.GAMMA,
+                        Settings.LAST2_VERSION_INFO,
                         "https://www.unicode.org/charts",
                         "charindex.html");
         final var draft =
                 new VersionedIndexer(
                         Settings.LATEST_VERSION_INFO,
                         Settings.latestVersionPhase,
+                        Settings.LAST_VERSION_INFO,
                         "https://www.unicode.org/Public/draft/charts",
                         "charindex-draft.html");
         // Link to the draft if it is at least in α (i.e., do not link to a pre-α dev version).
