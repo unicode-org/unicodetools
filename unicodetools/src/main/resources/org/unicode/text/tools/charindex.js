@@ -140,16 +140,26 @@ async function search(/**@type {string}*/ query) {
   let getPivot = (/**@type {number}*/s) => pivots.map(p => p.get(s)).filter(x => x !== undefined)[0];
   let allMatchStarts = matchedLemmata.map(l => wordIndex.get(l)).filter(x => !!x);
   let getMatchStarts = (/**@type {number}*/s) =>
-      new Set(allMatchStarts.map(p => p.get(s)).filter(x => x !== undefined));
+      allMatchStarts.map(p => p.get(s)).filter(x => x !== undefined);
   let collator = new Intl.Collator("en");
   let sortKeys = new Map(await Promise.all(Array.from(resultSnippetIndices).map(
     async i => {
       let snippet = await getString(i);
       let pivot = getPivot(i);
-      let matchStarts = [...getMatchStarts(i)];
-      matchesInTail = matchStarts.filter(i => i >= pivot).length;
+      let matchStarts = getMatchStarts(i);
+      let previousMatch = -1;
+      let orderedMatches = 1;
+      for (let start of matchStarts) {
+        if (start > previousMatch) {
+          ++orderedMatches;
+          previousMatch = start;
+        } else {
+          break;
+        }
+      }
+      console.log(matchStarts, snippet, orderedMatches);
       return [i,
-              String.fromCodePoint(0x10FFFD - matchesInTail) + '\uFFFE' +
+              String.fromCodePoint(0x10FFFE - orderedMatches) + '\uFFFE' +
               snippet.substring(pivot) + ' \uFFFE ' +
               snippet.substring(0, pivot)];
     })));
@@ -174,7 +184,7 @@ async function search(/**@type {string}*/ query) {
         rangeCount += entrySet.length;
         covered = covered.concat(entrySet);
         let pivot = getPivot(snippetIndex);
-        let matchStarts = getMatchStarts(snippetIndex);
+        let matchStarts = new Set(getMatchStarts(snippetIndex));
         let snippet = await getString(snippetIndex);
         /**@type {string[]|string}*/
         let head = [];
