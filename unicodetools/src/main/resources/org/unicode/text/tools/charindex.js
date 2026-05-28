@@ -135,6 +135,9 @@ async function search(/**@type {string}*/ query) {
   }
   let pivots = firstLemmata.map(l => wordIndex.get(l)).filter(x => !!x);
   let getPivot = (/**@type {number}*/s) => pivots.map(p => p.get(s)).filter(x => x !== undefined)[0];
+  let allMatchStarts = foldedQuery.map(l => wordIndex.get(l)).filter(x => !!x);
+  let getMatchStarts = (/**@type {number}*/s) =>
+      new Set(allMatchStarts.map(p => p.get(s)).filter(x => x !== undefined));
   let collator = new Intl.Collator("en");
   let sortKeys = new Map(await Promise.all(Array.from(resultSnippetIndices).map(
     async i => {
@@ -164,17 +167,34 @@ async function search(/**@type {string}*/ query) {
         rangeCount += entrySet.length;
         covered = covered.concat(entrySet);
         let pivot = getPivot(snippetIndex);
+        let matchStarts = getMatchStarts(snippetIndex);
         let snippet = await getString(snippetIndex);
-        let tail = snippet.substring(pivot);
+        /**@type {string[]|string}*/
+        let head = [];
+        /**@type {string[]|string}*/
+        let tail = [];
+        let tagma = head;
+        for (let segment of wordBreak.segment(snippet)) {
+          if (segment.index >= pivot) {
+            tagma = tail;
+          }
+          if (matchStarts.has(segment.index)) {
+            tagma.push(`<b>${toHTML(segment.segment)}</b>`);
+          } else {
+            tagma.push(toHTML(segment.segment));
+          }
+        }
+        head = head.join("");
+        tail = tail.join("");
         result.push((await getString(entry.html)).replace(
           "[RESULT TEXT]",
           "<span class=tail" +
           (snippet.includes(",") ? " style=width:100%" : "") + ">" +
-          toHTML(tail) +
+          tail +
           (pivot > 0 && !tail.endsWith(".") ? "," : "") +
           "</span> " +
             (pivot > 0 ? "<span class=head>" +
-                        toHTML(snippet.substring(0, pivot)) +
+                        head +
                         "</span>"
                       : "")));
         if (rangeCount >= maxResults) {
