@@ -121,7 +121,7 @@ async function search(/**@type {string}*/ query) {
     var rhs = new Set(wordIndex.get(foldedQuery[i])?.keys() ?? []);
     let intersection = resultSnippetIndices.intersection(rhs);
     if (i == foldedQuery.length - 1) {
-      fullLemmaMatches = new Set(resultSnippetIndices);
+      fullLemmaMatches = new Set(intersection);
       if (fullLemmaMatches.size < maxResults) {
         let prefix = fold(queryWords.at(-1));
         for (let [completion, snippets] of wordIndex) {
