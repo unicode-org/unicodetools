@@ -146,9 +146,13 @@ async function search(/**@type {string}*/ query) {
     async i => {
       let snippet = await getString(i);
       let pivot = getPivot(i);
+      let tail = snippet.substring(pivot);
+      let head = snippet.substring(0, pivot);
       let matchStarts = getMatchStarts(i);
       let previousMatch = -1;
       let orderedMatches = 1;
+      let interveningWords = 0;
+      let tailWord = wordBreak.segment(tail)[Symbol.iterator]();
       for (let start of matchStarts) {
         if (start > previousMatch) {
           ++orderedMatches;
@@ -159,8 +163,8 @@ async function search(/**@type {string}*/ query) {
       }
       return [i,
               String.fromCodePoint(0x10FFFE - orderedMatches) + '\uFFFE' +
-              snippet.substring(pivot) + ' \uFFFE ' +
-              snippet.substring(0, pivot)];
+              tail + ' \uFFFE ' +
+              head];
     })));
   let sortedSnippetIndices = Array.from(resultSnippetIndices).sort(
     (left, right) => collator.compare(
