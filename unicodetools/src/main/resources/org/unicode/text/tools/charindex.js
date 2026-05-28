@@ -185,6 +185,9 @@ async function search(/**@type {string}*/ query) {
         let pivot = getPivot(snippetIndex);
         let matchStarts = new Set(getMatchStarts(snippetIndex));
         let snippet = await getString(snippetIndex);
+        if (!shouldPermute(snippet, pivot)) {
+          pivot = 0;
+        }
         /**@type {string[]|string}*/
         let head = [];
         /**@type {string[]|string}*/
@@ -204,9 +207,7 @@ async function search(/**@type {string}*/ query) {
         tail = tail.join("");
         result.push((await getString(entry.html)).replace(
           "[RESULT TEXT]",
-          "<span class=tail" +
-          (snippet.includes(",") ? " style=width:100%" : "") + ">" +
-          tail +
+          "<span class=tail>" + tail +
           (pivot > 0 && !tail.endsWith(".") ? "," : "") +
           "</span> " +
             (pivot > 0 ? "<span class=head>" +
@@ -327,6 +328,13 @@ function rangeIntersection(/**@type {[number, number]|[number]}*/left,
 function fold(/**@type {string}*/ word) {
   var folding = word.normalize("NFKC").toLowerCase();
   return folding.replace("š", "sh");
+}
+
+function shouldPermute(/**@type {string}*/snippet, /**@type {number}*/pivot) {
+  let head = snippet.substring(0, pivot);
+  // Punctuation in non-final position.
+  return !/[.,;:]./.test(snippet) &&
+      head.split("(").length == head.split(")").length;
 }
 
 window.onload = function () {
