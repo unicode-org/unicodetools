@@ -152,17 +152,25 @@ async function search(/**@type {string}*/ query) {
       let previousMatch = -1;
       let orderedMatches = 1;
       let interveningWords = 0;
-      let tailWord = wordBreak.segment(tail)[Symbol.iterator]();
+      let tailWordIt = wordBreak.segment(tail)[Symbol.iterator]();
+      let tailWord = tailWordIt.next().value;
       for (let start of matchStarts) {
         if (start > previousMatch) {
           ++orderedMatches;
           previousMatch = start;
+          while (tailWord && pivot + tailWord.index <= start) {
+            if (tailWord.isWordLike && tailWord.index != start) {
+              ++interveningWords;
+            }
+            tailWord = tailWordIt.next().value;
+          }
         } else {
           break;
         }
       }
       return [i,
               String.fromCodePoint(0x10FFFE - orderedMatches) + '\uFFFE' +
+              String.fromCodePoint(0x100000 + interveningWords) + '\uFFFE' +
               tail + ' \uFFFE ' +
               head];
     })));
