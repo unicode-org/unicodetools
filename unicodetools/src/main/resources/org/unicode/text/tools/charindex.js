@@ -103,12 +103,14 @@ async function search(/**@type {string}*/ query) {
   /**@type {Set<number>}*/
   let fullLemmaMatches;
   let firstLemmata = [foldedQuery[0]];
+  let matchedLemmata = [...foldedQuery];
   if (foldedQuery.length == 1) {
     fullLemmaMatches = new Set(resultSnippetIndices);
     if (fullLemmaMatches.size < maxResults) {
       let prefix = fold(queryWords.at(-1));
       for (let [completion, snippets] of wordIndex) {
         if (completion.startsWith(prefix)) {
+          matchedLemmata.push(completion);
           firstLemmata.push(completion);
           resultSnippetIndices = resultSnippetIndices.union(snippets);
         }
@@ -124,6 +126,7 @@ async function search(/**@type {string}*/ query) {
         let prefix = fold(queryWords.at(-1));
         for (let [completion, snippets] of wordIndex) {
           if (completion.startsWith(prefix)) {
+            matchedLemmata.push(completion);
             rhs = rhs.union(snippets);
           }
         }
@@ -135,16 +138,20 @@ async function search(/**@type {string}*/ query) {
   }
   let pivots = firstLemmata.map(l => wordIndex.get(l)).filter(x => !!x);
   let getPivot = (/**@type {number}*/s) => pivots.map(p => p.get(s)).filter(x => x !== undefined)[0];
-  let allMatchStarts = foldedQuery.map(l => wordIndex.get(l)).filter(x => !!x);
+  let allMatchStarts = matchedLemmata.map(l => wordIndex.get(l)).filter(x => !!x);
   let getMatchStarts = (/**@type {number}*/s) =>
       new Set(allMatchStarts.map(p => p.get(s)).filter(x => x !== undefined));
   let collator = new Intl.Collator("en");
   let sortKeys = new Map(await Promise.all(Array.from(resultSnippetIndices).map(
     async i => {
       let snippet = await getString(i);
+      let pivot = getPivot(i);
+      let matchStarts = [...getMatchStarts(i)];
+      matchesInTail = matchStarts.filter(i => i >= pivot).length;
       return [i,
-              snippet.substring(getPivot(i)) + ' \uFFFE ' +
-              snippet.substring(0, getPivot(i))];
+              String.fromCodePoint(0x10FFFD - matchesInTail) + '\uFFFE' +
+              snippet.substring(pivot) + ' \uFFFE ' +
+              snippet.substring(0, pivot)];
     })));
   let sortedSnippetIndices = Array.from(resultSnippetIndices).sort(
     (left, right) => collator.compare(
