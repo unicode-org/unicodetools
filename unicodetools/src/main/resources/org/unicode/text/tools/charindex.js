@@ -177,15 +177,15 @@ async function search(/**@type {string}*/ query) {
       //   — increasing number of interspersed non query words;
       // — the stuff after the segment that matches the query (the thagomizer),
       //   in alphabetical order;
+      // — the segment that matches the query, in alphabetical order.
       // — the stuff before the segment that matches the query (the head), in
       //   alphabetical order;
-      // — the segment that matches the query, in alphabetical order.
       return [i,
-              String.fromCodePoint(0x10FFFE - orderedMatches) + '\uFFFE' +
-              String.fromCodePoint(0x100000 + interveningWords) + '\uFFFE' +
-              thagomizer + '\uFFFE' +
-              head + ' \uFFFE ' +
-              tail];
+              String.fromCodePoint(0x10FFFE - orderedMatches)    + '\uFFFE' +
+              String.fromCodePoint(0x100000 + interveningWords)  + '\uFFFE' +
+              thagomizer                                         + '\uFFFE' +
+              tail.substring(0, tail.length - thagomizer.length) + '\uFFFE '+
+              head];
     })));
   let sortedSnippetIndices = Array.from(resultSnippetIndices).sort(
     (left, right) => collator.compare(
