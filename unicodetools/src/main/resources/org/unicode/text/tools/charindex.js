@@ -13,7 +13,7 @@ let allTheStringsCompressed/*= GENERATED LINE*/;
 let decompressor = new DecompressionStream("deflate");
 /**@type {string}*/
 var allTheStrings;
-new Response(
+let allTheStringsReady = new Response(
   new Blob([Uint8Array.fromBase64(allTheStringsCompressed)])
       .stream().pipeThrough(decompressor))
     .text().then(s => allTheStrings = s);
@@ -55,8 +55,9 @@ for (let [name, entry] of indexEntries.get("Name_Alias")) {
   }
 }
 
-function getString(/**@type {number}*/ start) {
+async function getString(/**@type {number}*/ start) {
   let RECORD_SEPARATOR = "\x1E";
+  await allTheStringsReady;
   let limit = allTheStrings.indexOf(RECORD_SEPARATOR, start);
   return allTheStrings.substring(start, limit);
 }
@@ -69,10 +70,10 @@ function updateQuery(event) {
   }
 }
 
-function updateResults(event) {
+async function updateResults(event) {
   /**@type {string}*/
   let query = event.target.value;
-  let {entries, rangeCount} = search(query);
+  let {entries, rangeCount} = await search(query);
   if (rangeCount >= maxResults) {
     document.getElementById("info").innerHTML = `Showing first ${maxResults} results`;
   } else {
@@ -81,7 +82,7 @@ function updateResults(event) {
   document.getElementById("results").innerHTML = entries.join("");
 }
 
-function search(/**@type {string}*/ query) {
+async function search(/**@type {string}*/ query) {
   let wordBreak = new Intl.Segmenter("en", { granularity: "word" });
   // Override word breaking of ., -, and ' so radical/stroke indices are atomic.
   // This is different from what is done in the index, because we don’t expect a
@@ -99,24 +100,32 @@ function search(/**@type {string}*/ query) {
   var result = [];
   /**@type {Set<number>}*/
   var resultSnippetIndices = new Set(wordIndex.get(foldedQuery[0])?.keys() ?? []);
+  /**@type {Set<number>}*/
+  let fullLemmaMatches;
   let firstLemmata = [foldedQuery[0]];
-  if (resultSnippetIndices.size === 0 && foldedQuery.length == 1) {
-    let prefix = fold(queryWords.at(-1));
-    for (let [completion, snippets] of wordIndex) {
-      if (completion.startsWith(prefix)) {
-        firstLemmata.push(completion);
-        resultSnippetIndices = resultSnippetIndices.union(snippets);
+  if (foldedQuery.length == 1) {
+    fullLemmaMatches = new Set(resultSnippetIndices);
+    if (fullLemmaMatches.size < maxResults) {
+      let prefix = fold(queryWords.at(-1));
+      for (let [completion, snippets] of wordIndex) {
+        if (completion.startsWith(prefix)) {
+          firstLemmata.push(completion);
+          resultSnippetIndices = resultSnippetIndices.union(snippets);
+        }
       }
     }
   }
   for (var i = 1; i < foldedQuery.length; ++i) {
     var rhs = new Set(wordIndex.get(foldedQuery[i])?.keys() ?? []);
     let intersection = resultSnippetIndices.intersection(rhs);
-    if (intersection.size === 0 && i == foldedQuery.length - 1) {
-      let prefix = fold(queryWords.at(-1));
-      for (let [completion, snippets] of wordIndex) {
-        if (completion.startsWith(prefix)) {
-          rhs = rhs.union(snippets);
+    if (i == foldedQuery.length - 1) {
+      fullLemmaMatches = new Set(intersection);
+      if (fullLemmaMatches.size < maxResults) {
+        let prefix = fold(queryWords.at(-1));
+        for (let [completion, snippets] of wordIndex) {
+          if (completion.startsWith(prefix)) {
+            rhs = rhs.union(snippets);
+          }
         }
       }
       resultSnippetIndices = resultSnippetIndices.intersection(rhs);
@@ -127,44 +136,50 @@ function search(/**@type {string}*/ query) {
   let pivots = firstLemmata.map(l => wordIndex.get(l)).filter(x => !!x);
   let getPivot = (/**@type {number}*/s) => pivots.map(p => p.get(s)).filter(x => x !== undefined)[0];
   let collator = new Intl.Collator("en");
-  let sortKeys = new Map(Array.from(resultSnippetIndices).map(
-    i => {
-      let snippet = getString(i);
-      return [i, snippet.substring(getPivot(i)) + ' \uFFFE ' +
-                     snippet.substring(0, getPivot(i))];
-    }));
+  let sortKeys = new Map(await Promise.all(Array.from(resultSnippetIndices).map(
+    async i => {
+      let snippet = await getString(i);
+      return [i,
+              snippet.substring(getPivot(i)) + ' \uFFFE ' +
+              snippet.substring(0, getPivot(i))];
+    })));
   let sortedSnippetIndices = Array.from(resultSnippetIndices).sort(
     (left, right) => collator.compare(
       sortKeys.get(left),
       sortKeys.get(right)));
-  for (let propertyIndex of indexEntries.values()) {
-    for (let snippetIndex of sortedSnippetIndices) {
-      let entry = propertyIndex.get(snippetIndex);
-      if (!entry) {
-        continue;
-      }
-      let entrySet = entry.characters;
-      if (superset(covered, entrySet)) {
-        continue;
-      }
-      rangeCount += entrySet.length;
-      covered = covered.concat(entrySet);
-      let pivot = getPivot(snippetIndex);
-      let snippet = getString(snippetIndex);
-      let tail = snippet.substring(pivot);
-      result.push(getString(entry.html).replace(
-        "[RESULT TEXT]",
-        "<span class=tail" +
-        (snippet.includes(",") ? " style=width:100%" : "") + ">" +
-        toHTML(tail) +
-        (pivot > 0 && !tail.endsWith(".") ? "," : "") +
-        "</span> " +
-          (pivot > 0 ? "<span class=head>" +
-                       toHTML(snippet.substring(0, pivot)) +
-                       "</span>"
-                     : "")));
-      if (rangeCount >= maxResults) {
-        return {entries: result, rangeCount};
+  for (let snippetSet of [fullLemmaMatches, resultSnippetIndices]) {
+    for (let propertyIndex of indexEntries.values()) {
+      for (let snippetIndex of sortedSnippetIndices) {
+        if (!snippetSet.has(snippetIndex)) {
+          continue;
+        }
+        let entry = propertyIndex.get(snippetIndex);
+        if (!entry) {
+          continue;
+        }
+        let entrySet = entry.characters;
+        if (superset(covered, entrySet)) {
+          continue;
+        }
+        rangeCount += entrySet.length;
+        covered = covered.concat(entrySet);
+        let pivot = getPivot(snippetIndex);
+        let snippet = await getString(snippetIndex);
+        let tail = snippet.substring(pivot);
+        result.push((await getString(entry.html)).replace(
+          "[RESULT TEXT]",
+          "<span class=tail" +
+          (snippet.includes(",") ? " style=width:100%" : "") + ">" +
+          toHTML(tail) +
+          (pivot > 0 && !tail.endsWith(".") ? "," : "") +
+          "</span> " +
+            (pivot > 0 ? "<span class=head>" +
+                        toHTML(snippet.substring(0, pivot)) +
+                        "</span>"
+                      : "")));
+        if (rangeCount >= maxResults) {
+          return {entries: result, rangeCount};
+        }
       }
     }
   }
@@ -189,8 +204,8 @@ function search(/**@type {string}*/ query) {
         if (rs) {
           rangeCount += indexEntries.get(rs.property).get(rs.snippetIndex).characters.length;
           result.push(
-            getString(indexEntries.get(rs.property).get(rs.snippetIndex).html).replace(
-            "[RESULT TEXT]", toHTML(getString(rs.snippetIndex))));
+            (await getString(indexEntries.get(rs.property).get(rs.snippetIndex).html)).replace(
+            "[RESULT TEXT]", toHTML(await getString(rs.snippetIndex))));
         } else {
           for (let [[first, last], n] of characterNameRanges) {
             if (first <= cp && cp <= last) {
@@ -203,20 +218,21 @@ function search(/**@type {string}*/ query) {
       if (name) {
         rangeCount += 1;
         result.push(
-          getString((indexEntries.get("Name").get(name) ??
-                     indexEntries.get("Name_Alias").get(name)).html).replace(
-          "[RESULT TEXT]", toHTML(getString(name))));
+          (await getString(
+              (indexEntries.get("Name").get(name) ??
+               indexEntries.get("Name_Alias").get(name)).html)).replace(
+          "[RESULT TEXT]", toHTML(await getString(name))));
       }
     }
     if (/^boop$/i.test(query)) {
         rangeCount += 1;
       result.push(
-        getString(indexEntries.get("Block").get(bettyIndex).html).replace(
+        (await getString(indexEntries.get("Block").get(bettyIndex).html)).replace(
         "[RESULT TEXT]", toHTML("Betty")));
     } else if (/^dood$/i.test(query)) {
         rangeCount += 1;
         result.push(
-          getString(indexEntries.get("Block").get(theIndex).html).replace(
+          (await getString(indexEntries.get("Block").get(theIndex).html)).replace(
           "[RESULT TEXT]", toHTML("the")));
     }
   }
