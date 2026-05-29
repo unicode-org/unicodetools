@@ -60,3 +60,7 @@ table.search-results {
   text-transform: uppercase;
   text-align: center;
 }
+p#see-version {
+  font-style: italic;
+  text-align: center;
+}
