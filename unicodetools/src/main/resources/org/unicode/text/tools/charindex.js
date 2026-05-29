@@ -103,12 +103,14 @@ async function search(/**@type {string}*/ query) {
   /**@type {Set<number>}*/
   let fullLemmaMatches;
   let firstLemmata = [foldedQuery[0]];
+  let matchedLemmata = [...foldedQuery];
   if (foldedQuery.length == 1) {
     fullLemmaMatches = new Set(resultSnippetIndices);
     if (fullLemmaMatches.size < maxResults) {
       let prefix = fold(queryWords.at(-1));
       for (let [completion, snippets] of wordIndex) {
         if (completion.startsWith(prefix)) {
+          matchedLemmata.push(completion);
           firstLemmata.push(completion);
           resultSnippetIndices = resultSnippetIndices.union(snippets);
         }
@@ -124,6 +126,7 @@ async function search(/**@type {string}*/ query) {
         let prefix = fold(queryWords.at(-1));
         for (let [completion, snippets] of wordIndex) {
           if (completion.startsWith(prefix)) {
+            matchedLemmata.push(completion);
             rhs = rhs.union(snippets);
           }
         }
@@ -135,13 +138,54 @@ async function search(/**@type {string}*/ query) {
   }
   let pivots = firstLemmata.map(l => wordIndex.get(l)).filter(x => !!x);
   let getPivot = (/**@type {number}*/s) => pivots.map(p => p.get(s)).filter(x => x !== undefined)[0];
+  let allMatchStarts = matchedLemmata.map(l => wordIndex.get(l)).filter(x => !!x);
+  let getMatchStarts = (/**@type {number}*/s) =>
+      allMatchStarts.map(p => p.get(s)).filter(x => x !== undefined);
   let collator = new Intl.Collator("en");
   let sortKeys = new Map(await Promise.all(Array.from(resultSnippetIndices).map(
     async i => {
       let snippet = await getString(i);
+      let pivot = getPivot(i);
+      let tail = snippet.substring(pivot);
+      let head = snippet.substring(0, pivot);
+      let matchStarts = getMatchStarts(i);
+      let previousMatch = -1;
+      let orderedMatches = 1;
+      let interveningWords = 0;
+      let tailWordIt = wordBreak.segment(tail)[Symbol.iterator]();
+      let tailWord = tailWordIt.next().value;
+      for (let start of matchStarts) {
+        if (start > previousMatch) {
+          ++orderedMatches;
+          previousMatch = start;
+          while (tailWord && pivot + tailWord.index <= start) {
+            if (tailWord.isWordLike && pivot + tailWord.index != start) {
+              ++interveningWords;
+              console.log("intervening #", interveningWords, "=", tailWord.segment);
+            }
+            tailWord = tailWordIt.next().value;
+          }
+        } else {
+          break;
+        }
+      }
+      // The tip of the tail, after the bit that matches some of the query in order.
+      let thagomizer = tailWord ? tail.substring(tailWord.index) : "";
+      // Order by:
+      // — how well the query matches:
+      //   — decreasing number of words matched in order,
+      //   — increasing number of interspersed non query words;
+      // — the stuff after the segment that matches the query (the thagomizer),
+      //   in alphabetical order;
+      // — the segment that matches the query, in alphabetical order.
+      // — the stuff before the segment that matches the query (the head), in
+      //   alphabetical order;
       return [i,
-              snippet.substring(getPivot(i)) + ' \uFFFE ' +
-              snippet.substring(0, getPivot(i))];
+              String.fromCodePoint(0x10FFFE - orderedMatches)    + '\uFFFE' +
+              String.fromCodePoint(0x100000 + interveningWords)  + '\uFFFE' +
+              thagomizer                                         + '\uFFFE' +
+              tail.substring(0, tail.length - thagomizer.length) + '\uFFFE '+
+              head];
     })));
   let sortedSnippetIndices = Array.from(resultSnippetIndices).sort(
     (left, right) => collator.compare(
@@ -164,17 +208,35 @@ async function search(/**@type {string}*/ query) {
         rangeCount += entrySet.length;
         covered = covered.concat(entrySet);
         let pivot = getPivot(snippetIndex);
+        let matchStarts = new Set(getMatchStarts(snippetIndex));
         let snippet = await getString(snippetIndex);
-        let tail = snippet.substring(pivot);
+        if (!shouldPermute(snippet, pivot)) {
+          pivot = 0;
+        }
+        /**@type {string[]|string}*/
+        let head = [];
+        /**@type {string[]|string}*/
+        let tail = [];
+        let tagma = head;
+        for (let segment of wordBreak.segment(snippet)) {
+          if (segment.index >= pivot) {
+            tagma = tail;
+          }
+          if (matchStarts.has(segment.index)) {
+            tagma.push(`<b>${toHTML(segment.segment)}</b>`);
+          } else {
+            tagma.push(toHTML(segment.segment));
+          }
+        }
+        head = head.join("");
+        tail = tail.join("");
         result.push((await getString(entry.html)).replace(
           "[RESULT TEXT]",
-          "<span class=tail" +
-          (snippet.includes(",") ? " style=width:100%" : "") + ">" +
-          toHTML(tail) +
+          "<span class=tail>" + tail +
           (pivot > 0 && !tail.endsWith(".") ? "," : "") +
           "</span> " +
             (pivot > 0 ? "<span class=head>" +
-                        toHTML(snippet.substring(0, pivot)) +
+                        head +
                         "</span>"
                       : "")));
         if (rangeCount >= maxResults) {
@@ -291,6 +353,13 @@ function rangeIntersection(/**@type {[number, number]|[number]}*/left,
 function fold(/**@type {string}*/ word) {
   var folding = word.normalize("NFKC").toLowerCase();
   return folding.replace("š", "sh");
+}
+
+function shouldPermute(/**@type {string}*/snippet, /**@type {number}*/pivot) {
+  let head = snippet.substring(0, pivot);
+  // Punctuation in non-final position.
+  return !/[.,;:]./.test(snippet) &&
+      head.split("(").length == head.split(")").length;
 }
 
 window.onload = function () {
