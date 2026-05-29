@@ -159,8 +159,9 @@ async function search(/**@type {string}*/ query) {
           ++orderedMatches;
           previousMatch = start;
           while (tailWord && pivot + tailWord.index <= start) {
-            if (tailWord.isWordLike && tailWord.index != start) {
+            if (tailWord.isWordLike && pivot + tailWord.index != start) {
               ++interveningWords;
+              console.log("intervening #", interveningWords, "=", tailWord.segment);
             }
             tailWord = tailWordIt.next().value;
           }
@@ -168,11 +169,23 @@ async function search(/**@type {string}*/ query) {
           break;
         }
       }
+      // The tip of the tail, after the bit that matches some of the query in order.
+      let thagomizer = tailWord ? tail.substring(tailWord.index) : "";
+      // Order by:
+      // — how well the query matches:
+      //   — decreasing number of words matched in order,
+      //   — increasing number of interspersed non query words;
+      // — the stuff after the segment that matches the query (the thagomizer),
+      //   in alphabetical order;
+      // — the stuff before the segment that matches the query (the head), in
+      //   alphabetical order;
+      // — the segment that matches the query, in alphabetical order.
       return [i,
               String.fromCodePoint(0x10FFFE - orderedMatches) + '\uFFFE' +
               String.fromCodePoint(0x100000 + interveningWords) + '\uFFFE' +
-              tail + ' \uFFFE ' +
-              head];
+              thagomizer + '\uFFFE' +
+              head + ' \uFFFE ' +
+              tail];
     })));
   let sortedSnippetIndices = Array.from(resultSnippetIndices).sort(
     (left, right) => collator.compare(
