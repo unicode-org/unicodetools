@@ -617,6 +617,7 @@ public class GenerateConfusables {
                         || cp == 0xFE58 // Skip SMALL EM DASH since it would merge two classes
                         // Skip FULLWIDTH HYPHEN-MINUS since it would merge two classes
                         || cp == 0xFF0D
+                        || (0x1EE61 <= cp && cp <= 0x1EE7E) // Skip Arabic math stretched symbols
                         || cp == 0x1EE85 // Skip ARABIC MATHEMATICAL LOOPED WAW
                         || (0x1F130 <= cp && cp <= 0x1F14F) // Skip squared Latin letters
                         || (0x1F200 <= cp && cp <= 0x1F23B) // Skip Enclosed Ideographic Supplement

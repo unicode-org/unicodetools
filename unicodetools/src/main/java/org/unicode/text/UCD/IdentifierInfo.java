@@ -692,18 +692,6 @@ public class IdentifierInfo {
         // We temporarily override ID Usage values here.
         // See https://github.com/unicode-org/unicodetools/pull/1185 for an example.
         switch (longScriptName) {
-            case "Gunjala_Gondi":
-                // [184-C33] Consensus: Change the Identifier_Type values for
-                //     Gunjala Gondi characters (sc=Gong) from Limited_Use to Excluded,
-                //     to match the UAX31 classification of the script.
-                //     For Unicode Version 17.0. See L2/25-183 item 6.4.
-                // [184-A76] Action Item for Josh Hadley, PAG:
-                //     Derive the Identifier_Type values for Gunjala Gondi characters from
-                //     the UAX31 classification of the script as specified.
-                //     For Unicode Version 17.0. See L2/25-183 item 6.4.
-                System.out.println(
-                        "TODO: Replace Gunjala_Gondi=Excluded override with CLDR update");
-                return IdUsage.EXCLUSION;
             default:
                 return idUsage;
         }
