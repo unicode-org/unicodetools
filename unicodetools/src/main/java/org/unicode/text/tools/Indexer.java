@@ -59,6 +59,7 @@ public class Indexer {
         private final ReleasePhase phase;
         private final String chartsRoot;
         private final String filename;
+        private final String language;
 
         private final IndexUnicodeProperties IUP;
         private final UnicodeSet NEW_CHARACTERS;
@@ -85,11 +86,14 @@ public class Indexer {
                 ReleasePhase phase,
                 VersionInfo precedingVersion,
                 String chartsRoot,
-                String filename) {
+                String filename,
+                String language) {
+            final String suffix = language == null ? "" :  "_" + language;
             this.version = version;
             this.phase = phase;
             this.chartsRoot = chartsRoot;
             this.filename = filename;
+            this.language = language;
             IUP = IndexUnicodeProperties.make(version);
             NEW_CHARACTERS =
                     IndexUnicodeProperties.make(precedingVersion)
@@ -101,12 +105,12 @@ public class Indexer {
                             .freeze();
             NAME = IUP.getProperty(UcdProperty.Name);
             NAME_ALIAS = IUP.getProperty(UcdProperty.Name_Alias);
-            INFORMAL_ALIAS = IUP.getProperty(UcdProperty.Names_List_Alias);
+            INFORMAL_ALIAS = IUP.getProperty(UcdProperty.forString("Names_List_Alias" + suffix));
             BLOCK = IUP.getProperty(UcdProperty.Block);
             PRETTY_BLOCK = IUP.getProperty(UcdProperty.Pretty_Block);
-            SUBHEADER = IUP.getProperty(UcdProperty.Names_List_Subheader);
-            SUBHEADER_NOTICE = IUP.getProperty(UcdProperty.Names_List_Subheader_Notice);
-            COMMENT = IUP.getProperty(UcdProperty.Names_List_Comment);
+            SUBHEADER = IUP.getProperty(UcdProperty.forString("Names_List_Subheader"+suffix));
+            SUBHEADER_NOTICE = IUP.getProperty(UcdProperty.forString("Names_List_Subheader_Notice"+suffix));
+            COMMENT = IUP.getProperty(UcdProperty.forString("Names_List_Comment"+suffix));
             K_RS_UNICODE = IUP.getProperty(UcdProperty.kRSUnicode);
             K_TGT_RS_UNICODE = IUP.getProperty(UcdProperty.kTGT_RSUnicode);
             K_JURC_RS_UNICODE = IUP.getProperty(UcdProperty.kJURC_RSUnicode);
@@ -449,6 +453,9 @@ public class Indexer {
             System.out.println("Writing " + filename + "...");
             final String resources =
                     Settings.UnicodeTools.UNICODETOOLS_RSRC_DIR + "org/unicode/text/tools/";
+            if (language != null) {
+                new File(Settings.Output.GEN_DIR + "/" + language).mkdir();
+            }
             var file = new PrintStream(new File(Settings.Output.GEN_DIR + filename));
             final var htmlTemplate =
                     new BufferedReader(
@@ -897,14 +904,16 @@ public class Indexer {
                         ReleasePhase.GAMMA,
                         Settings.LAST2_VERSION_INFO,
                         "https://www.unicode.org/charts",
-                        "charindex.html");
+                        "charindex.html",
+                        /* language= */null);
         final var draft =
                 new VersionedIndexer(
                         Settings.LATEST_VERSION_INFO,
                         Settings.latestVersionPhase,
                         Settings.LAST_VERSION_INFO,
                         "https://www.unicode.org/Public/draft/charts",
-                        "charindex-draft.html");
+                        "charindex-draft.html",
+                        /* language= */null);
         // Link to the draft if it is at least in α (i.e., do not link to a pre-α dev version).
         main.generateIndex(
                 /* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.ALPHA) >= 0
@@ -915,5 +924,15 @@ public class Indexer {
                 /* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.GAMMA) < 0
                         ? main
                         : null);
+        final var fr =
+                new VersionedIndexer(
+                        Settings.LAST_VERSION_INFO,
+                        ReleasePhase.GAMMA,
+                        Settings.LAST2_VERSION_INFO,
+                        "https://www.unicode.org/charts/fr",
+                        "fr/charindex.html",
+                        "fr");
+        fr.generateIndex(
+                /* linkedVersion= */ null);
     }
 }

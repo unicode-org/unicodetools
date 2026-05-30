@@ -20,6 +20,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
@@ -919,62 +920,88 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             IndexUnicodeProperties indexUnicodeProperties,
             IndexUnicodeProperties nextProperties,
             Set<PropertyParsingInfo> propInfoSet) {
+        final Function<String, UcdProperty> propertyMatching =
+                (name) -> {
+                    for (final var propInfo : propInfoSet) {
+                        String unqualified = propInfo.property.name();
+                        if (unqualified.endsWith("_fr")) {
+                            unqualified = unqualified.substring(0, unqualified.length() - 3);
+                        }
+                        if (unqualified.equals(name)) {
+                            return propInfo.property;
+                        }
+                    }
+                    throw new IllegalArgumentException(name);
+                };
         final var namesListChar = Pattern.compile("[0-9A-F]{4,6}");
         final var blockHeaderPropInfo =
-                property2PropertyInfo.get(UcdProperty.Names_List_Block_Header);
+                property2PropertyInfo.get(propertyMatching.apply("Names_List_Block_Header"));
         final var nextBlockHeader =
                 nextProperties == null
                         ? null
-                        : nextProperties.getProperty(UcdProperty.Names_List_Block_Header);
+                        : nextProperties.getProperty(
+                                propertyMatching.apply("Names_List_Block_Header"));
         final UnicodeMap<String> blockHeaderData =
-                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Block_Header);
+                indexUnicodeProperties.property2UnicodeMap.get(
+                        propertyMatching.apply("Names_List_Block_Header"));
         final var blockHeaderNoticePropInfo =
-                property2PropertyInfo.get(UcdProperty.Names_List_Block_Header_Notice);
+                property2PropertyInfo.get(propertyMatching.apply("Names_List_Block_Header_Notice"));
         final var nextBlockHeaderNotice =
                 nextProperties == null
                         ? null
-                        : nextProperties.getProperty(UcdProperty.Names_List_Block_Header_Notice);
+                        : nextProperties.getProperty(
+                                propertyMatching.apply("Names_List_Block_Header_Notice"));
         final UnicodeMap<String> blockHeaderNoticeData =
                 indexUnicodeProperties.property2UnicodeMap.get(
-                        UcdProperty.Names_List_Block_Header_Notice);
-        final var subheaderPropInfo = property2PropertyInfo.get(UcdProperty.Names_List_Subheader);
+                        propertyMatching.apply("Names_List_Block_Header_Notice"));
+        final var subheaderPropInfo =
+                property2PropertyInfo.get(propertyMatching.apply("Names_List_Subheader"));
         final var nextSubheader =
                 nextProperties == null
                         ? null
-                        : nextProperties.getProperty(UcdProperty.Names_List_Subheader);
+                        : nextProperties.getProperty(
+                                propertyMatching.apply("Names_List_Subheader"));
         final UnicodeMap<String> subheaderData =
-                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Subheader);
+                indexUnicodeProperties.property2UnicodeMap.get(
+                        propertyMatching.apply("Names_List_Subheader"));
         final var subheaderNoticePropInfo =
-                property2PropertyInfo.get(UcdProperty.Names_List_Subheader_Notice);
+                property2PropertyInfo.get(propertyMatching.apply("Names_List_Subheader_Notice"));
         final var nextSubheaderNotice =
                 nextProperties == null
                         ? null
-                        : nextProperties.getProperty(UcdProperty.Names_List_Subheader_Notice);
+                        : nextProperties.getProperty(
+                                propertyMatching.apply("Names_List_Subheader_Notice"));
         final UnicodeMap<String> subheaderNoticeData =
                 indexUnicodeProperties.property2UnicodeMap.get(
-                        UcdProperty.Names_List_Subheader_Notice);
+                        propertyMatching.apply("Names_List_Subheader_Notice"));
         final var crossReferencePropInfo =
-                property2PropertyInfo.get(UcdProperty.Names_List_Cross_Ref);
+                property2PropertyInfo.get(propertyMatching.apply("Names_List_Cross_Ref"));
         final var nextCrossReference =
                 nextProperties == null
                         ? null
-                        : nextProperties.getProperty(UcdProperty.Names_List_Cross_Ref);
+                        : nextProperties.getProperty(
+                                propertyMatching.apply("Names_List_Cross_Ref"));
         final UnicodeMap<String> crossReferenceData =
-                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Cross_Ref);
-        final var commentPropInfo = property2PropertyInfo.get(UcdProperty.Names_List_Comment);
+                indexUnicodeProperties.property2UnicodeMap.get(
+                        propertyMatching.apply("Names_List_Cross_Ref"));
+        final var commentPropInfo =
+                property2PropertyInfo.get(propertyMatching.apply("Names_List_Comment"));
         final var nextComment =
                 nextProperties == null
                         ? null
-                        : nextProperties.getProperty(UcdProperty.Names_List_Comment);
+                        : nextProperties.getProperty(propertyMatching.apply("Names_List_Comment"));
         final UnicodeMap<String> commentData =
-                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Comment);
-        final var aliasPropInfo = property2PropertyInfo.get(UcdProperty.Names_List_Alias);
+                indexUnicodeProperties.property2UnicodeMap.get(
+                        propertyMatching.apply("Names_List_Comment"));
+        final var aliasPropInfo =
+                property2PropertyInfo.get(propertyMatching.apply("Names_List_Alias"));
         final var nextAlias =
                 nextProperties == null
                         ? null
-                        : nextProperties.getProperty(UcdProperty.Names_List_Alias);
+                        : nextProperties.getProperty(propertyMatching.apply("Names_List_Alias"));
         final UnicodeMap<String> aliasData =
-                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Alias);
+                indexUnicodeProperties.property2UnicodeMap.get(
+                        propertyMatching.apply("Names_List_Alias"));
 
         aliasPropInfo.multivaluedSplit = NO_SPLIT;
         commentPropInfo.multivaluedSplit = NO_SPLIT;
