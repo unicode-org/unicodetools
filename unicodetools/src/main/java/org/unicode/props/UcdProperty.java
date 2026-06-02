@@ -258,6 +258,20 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "Names_List_Comment_fr"),
+    Names_List_Formal_Alias(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "Names_List_Formal_Alias"),
+    Names_List_Formal_Alias_fr(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            "Names_List_Formal_Alias_fr"),
+    Names_List_Name(
+            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "Names_List_Name"),
+    Names_List_Name_fr(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            "Names_List_Name_fr"),
     Names_List_Subheader(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,

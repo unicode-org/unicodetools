@@ -2046,6 +2046,10 @@ public class UcdPropertyValues {
     // Names_List_Comment_fr
     // Names_List_Cross_Ref
     // Names_List_Cross_Ref_fr
+    // Names_List_Formal_Alias
+    // Names_List_Formal_Alias_fr
+    // Names_List_Name
+    // Names_List_Name_fr
     // Names_List_Subheader
     // Names_List_Subheader_fr
     // Names_List_Subheader_Notice

@@ -20,7 +20,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
@@ -31,7 +30,6 @@ import org.unicode.props.PropertyUtilities.Merge;
 import org.unicode.props.UcdLineParser.IntRange;
 import org.unicode.props.UcdLineParser.UcdLine.Contents;
 import org.unicode.props.UcdPropertyValues.Binary;
-import org.unicode.text.UCD.UCDProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -925,6 +923,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             public final PropertyParsingInfo propInfo;
             public final UnicodeProperty next;
             public final UnicodeMap<String> data;
+
             public PropInfoNextAndData(String name) {
                 UcdProperty property = null;
                 for (final var propInfo : propInfoSet) {
@@ -941,24 +940,20 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     throw new IllegalArgumentException(name);
                 }
                 propInfo = property2PropertyInfo.get(property);
-                next = nextProperties == null
-                        ? null
-                        : nextProperties.getProperty(property);
+                next = nextProperties == null ? null : nextProperties.getProperty(property);
                 data = indexUnicodeProperties.property2UnicodeMap.get(property);
             }
         }
         final var namesListChar = Pattern.compile("[0-9A-F]{4,6}");
         final var blockHeader = new PropInfoNextAndData("Names_List_Block_Header");
-        final var blockHeaderNotice =
-                new PropInfoNextAndData("Names_List_Block_Header_Notice");
-        final var subheader =
-                new PropInfoNextAndData("Names_List_Subheader");
-        final var subheaderNotice =
-                new PropInfoNextAndData("Names_List_Subheader_Notice");
-        final var crossReference =
-                new PropInfoNextAndData("Names_List_Cross_Ref");
+        final var blockHeaderNotice = new PropInfoNextAndData("Names_List_Block_Header_Notice");
+        final var subheader = new PropInfoNextAndData("Names_List_Subheader");
+        final var subheaderNotice = new PropInfoNextAndData("Names_List_Subheader_Notice");
+        final var crossReference = new PropInfoNextAndData("Names_List_Cross_Ref");
         final var comment = new PropInfoNextAndData("Names_List_Comment");
         final var alias = new PropInfoNextAndData("Names_List_Alias");
+        final var formalAlias = new PropInfoNextAndData("Names_List_Formal_Alias");
+        final var name = new PropInfoNextAndData("Names_List_Name");
 
         alias.propInfo.multivaluedSplit = NO_SPLIT;
         comment.propInfo.multivaluedSplit = NO_SPLIT;
@@ -973,6 +968,14 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             if (parts.length == 2 && namesListChar.matcher(parts[0]).matches()) {
                 codePoint = new IntRange();
                 codePoint.set(parts[0]);
+                if (!parts[1].startsWith("<")) {
+                    name.propInfo.put(
+                            name.data,
+                            codePoint,
+                            parts[1],
+                            name.next,
+                            indexUnicodeProperties.getUcdVersion());
+                }
                 if (currentSubheader != null) {
                     subheader.propInfo.put(
                             subheader.data,
@@ -1022,6 +1025,14 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                             parts[1].substring(2),
                             IndexUnicodeProperties.MULTIVALUED_JOINER,
                             alias.next,
+                            indexUnicodeProperties.getUcdVersion());
+                } else if (parts[1].startsWith("% ")) {
+                    formalAlias.propInfo.put(
+                            formalAlias.data,
+                            codePoint,
+                            parts[1].substring(2),
+                            IndexUnicodeProperties.MULTIVALUED_JOINER,
+                            formalAlias.next,
                             indexUnicodeProperties.getUcdVersion());
                 }
             }

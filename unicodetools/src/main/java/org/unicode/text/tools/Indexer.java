@@ -64,6 +64,7 @@ public class Indexer {
         private final IndexUnicodeProperties IUP;
         private final UnicodeSet NEW_CHARACTERS;
         private final UnicodeProperty NAME;
+        private final UnicodeProperty LOCALIZED_NAME;
         private final UnicodeProperty NAME_ALIAS;
         private final UnicodeProperty INFORMAL_ALIAS;
         private final UnicodeProperty BLOCK;
@@ -80,6 +81,7 @@ public class Indexer {
         private final UnicodeSet NONCHARACTERS;
 
         private final Map<String, UnicodeSet> blockSet = new HashMap<>();
+        private final Map<String, String> prettifyBlock = new HashMap<>();
 
         VersionedIndexer(
                 VersionInfo version,
@@ -88,7 +90,7 @@ public class Indexer {
                 String chartsRoot,
                 String filename,
                 String language) {
-            final String suffix = language == null ? "" :  "_" + language;
+            final String suffix = language == null ? "" : "_" + language;
             this.version = version;
             this.phase = phase;
             this.chartsRoot = chartsRoot;
@@ -104,13 +106,23 @@ public class Indexer {
                                             .getSet("Unassigned"))
                             .freeze();
             NAME = IUP.getProperty(UcdProperty.Name);
-            NAME_ALIAS = IUP.getProperty(UcdProperty.Name_Alias);
+            LOCALIZED_NAME =
+                    language == null
+                            ? NAME
+                            : IUP.getProperty(UcdProperty.forString("Names_List_Name" + suffix));
+            NAME_ALIAS =
+                    language == null
+                            ? IUP.getProperty(UcdProperty.Name_Alias)
+                            : IUP.getProperty(
+                                    UcdProperty.forString("Names_List_Formal_Alias" + suffix));
             INFORMAL_ALIAS = IUP.getProperty(UcdProperty.forString("Names_List_Alias" + suffix));
             BLOCK = IUP.getProperty(UcdProperty.Block);
-            PRETTY_BLOCK = IUP.getProperty(UcdProperty.Pretty_Block);
-            SUBHEADER = IUP.getProperty(UcdProperty.forString("Names_List_Subheader"+suffix));
-            SUBHEADER_NOTICE = IUP.getProperty(UcdProperty.forString("Names_List_Subheader_Notice"+suffix));
-            COMMENT = IUP.getProperty(UcdProperty.forString("Names_List_Comment"+suffix));
+            PRETTY_BLOCK =
+                    IUP.getProperty(UcdProperty.forString("Names_List_Block_Header" + suffix));
+            SUBHEADER = IUP.getProperty(UcdProperty.forString("Names_List_Subheader" + suffix));
+            SUBHEADER_NOTICE =
+                    IUP.getProperty(UcdProperty.forString("Names_List_Subheader_Notice" + suffix));
+            COMMENT = IUP.getProperty(UcdProperty.forString("Names_List_Comment" + suffix));
             K_RS_UNICODE = IUP.getProperty(UcdProperty.kRSUnicode);
             K_TGT_RS_UNICODE = IUP.getProperty(UcdProperty.kTGT_RSUnicode);
             K_JURC_RS_UNICODE = IUP.getProperty(UcdProperty.kJURC_RSUnicode);
@@ -120,6 +132,18 @@ public class Indexer {
             NONCHARACTERS = IUP.getProperty(UcdProperty.Noncharacter_Code_Point).getSet("Yes");
             for (String block : BLOCK.getAvailableValues()) {
                 blockSet.put(block, BLOCK.getSet(block));
+                if (Block_Values.forName(block) != Block_Values.No_Block
+                        && !BLOCK.getSet(block).isEmpty()) {
+                    System.err.println(block);
+                    prettifyBlock.put(
+                            block,
+                            PRETTY_BLOCK.getValue(
+                                    BLOCK.getSet(block)
+                                            .removeAll(
+                                                    PRETTY_BLOCK.getSet(
+                                                            UnicodeProperty.NULL_MATCHER))
+                                            .charAt(0)));
+                }
             }
         }
 
@@ -343,7 +367,7 @@ public class Indexer {
                     List.of(
                             BLOCK,
                             SUBHEADER,
-                            NAME,
+                            LOCALIZED_NAME,
                             NAME_ALIAS,
                             INFORMAL_ALIAS,
                             SUBHEADER_NOTICE,
@@ -364,7 +388,10 @@ public class Indexer {
                             if (Block_Values.forName(snippet) == Block_Values.No_Block) {
                                 continue;
                             }
-                            snippet = PRETTY_BLOCK.getValue(cp);
+                            snippet = prettifyBlock.get(snippet);
+                            if (snippet == null) {
+                                System.err.println(Utility.hex(cp) + " " + snippet);
+                            }
                         } else if (prop == NAME) {
                             snippet = snippet.replace(Utility.hex(cp), "#");
                         }
@@ -905,7 +932,7 @@ public class Indexer {
                         Settings.LAST2_VERSION_INFO,
                         "https://www.unicode.org/charts",
                         "charindex.html",
-                        /* language= */null);
+                        /* language= */ null);
         final var draft =
                 new VersionedIndexer(
                         Settings.LATEST_VERSION_INFO,
@@ -913,7 +940,7 @@ public class Indexer {
                         Settings.LAST_VERSION_INFO,
                         "https://www.unicode.org/Public/draft/charts",
                         "charindex-draft.html",
-                        /* language= */null);
+                        /* language= */ null);
         // Link to the draft if it is at least in α (i.e., do not link to a pre-α dev version).
         main.generateIndex(
                 /* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.ALPHA) >= 0
@@ -932,7 +959,6 @@ public class Indexer {
                         "https://www.unicode.org/charts/fr",
                         "fr/charindex.html",
                         "fr");
-        fr.generateIndex(
-                /* linkedVersion= */ null);
+        fr.generateIndex(/* linkedVersion= */ null);
     }
 }
