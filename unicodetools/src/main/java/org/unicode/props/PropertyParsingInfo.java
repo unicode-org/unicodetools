@@ -958,6 +958,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         alias.propInfo.multivaluedSplit = NO_SPLIT;
         comment.propInfo.multivaluedSplit = NO_SPLIT;
         blockHeaderNotice.propInfo.multivaluedSplit = NO_SPLIT;
+        blockHeader.propInfo.multivaluedSplit = NO_SPLIT;
 
         String currentSubheader = null;
         String currentSubheaderNotice = null;
@@ -1044,12 +1045,16 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             if (parts.length == 4 && parts[0].equals("@@")) {
                 blockRange = new IntRange();
                 blockRange.set(parts[1] + ".." + parts[3]);
-                blockHeader.propInfo.put(
-                        blockHeader.data,
-                        blockRange,
-                        parts[2],
-                        blockHeader.next,
-                        indexUnicodeProperties.getUcdVersion());
+                final var subparts = parts[2].split(" *[()] *");
+                for (final String subpart : subparts) {
+                    blockHeader.propInfo.put(
+                            blockHeader.data,
+                            blockRange,
+                            subpart,
+                            IndexUnicodeProperties.MULTIVALUED_JOINER,
+                            blockHeader.next,
+                            indexUnicodeProperties.getUcdVersion());
+                }
                 currentSubheader = null;
                 currentSubheaderNotice = null;
                 codePoint = null;

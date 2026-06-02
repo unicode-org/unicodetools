@@ -88,8 +88,8 @@ Name_Alias_Correction ;       SINGLE_VALUED ;               .*
 Name_Alias_Figment ;          SINGLE_VALUED ;               .*
 Named_Sequences ;             SINGLE_VALUED ;               $name
 Named_Sequences_Prov ;        SINGLE_VALUED ;               $name
-Names_List_Block_Header  ;    SINGLE_VALUED ;               .*
-Names_List_Block_Header_fr ;  SINGLE_VALUED ;               .*
+Names_List_Block_Header  ;    ORDERED ;               .*
+Names_List_Block_Header_fr ;  ORDERED ;               .*
 Names_List_Block_Header_Notice ; MULTI_VALUED ;             .*
 Names_List_Block_Header_Notice_fr ; MULTI_VALUED ;          .*
 Names_List_Alias  ;           MULTI_VALUED ;                .*

@@ -229,6 +229,8 @@ public enum UcdProperty {
     Names_List_Block_Header(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Ordered,
             "Names_List_Block_Header"),
     Names_List_Block_Header_Notice(
             PropertyType.Miscellaneous,
@@ -245,6 +247,8 @@ public enum UcdProperty {
     Names_List_Block_Header_fr(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.NonUCDNonProperty,
+            null,
+            ValueCardinality.Ordered,
             "Names_List_Block_Header_fr"),
     Names_List_Comment(
             PropertyType.Miscellaneous,

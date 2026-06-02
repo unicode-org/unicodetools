@@ -134,14 +134,32 @@ public class Indexer {
                 blockSet.put(block, BLOCK.getSet(block));
                 if (Block_Values.forName(block) != Block_Values.No_Block
                         && !BLOCK.getSet(block).isEmpty()) {
+                    // There are two cases where there are multiple names list block header values:
+                    // C0 Controls and Basic Latin (Basic Latin)
+                    // C1 Controls and Latin-1 Supplement (Latin-1 Supplement)
+                    // In both cases, use the alternate name (in parentheses in NamesList.txt, the
+                    // last name in the ordered values here), rather than the full name, as the
+                    // index entry:
+                    // Searching for C[01] controls should return the appropriate subheader, not the
+                    // whole block.
+                    // However, when referring to the block under the index entry (for instance, in
+                    // the mention "In ..."), we use the first name, so a search for C0 finds
+                    // C0 controls                         In C0 Controls and Basic Latin: 0000–001F
                     prettifyBlock.put(
                             block,
-                            PRETTY_BLOCK.getValue(
-                                    BLOCK.getSet(block)
-                                            .removeAll(
-                                                    PRETTY_BLOCK.getSet(
-                                                            UnicodeProperty.NULL_MATCHER))
-                                            .charAt(0)));
+                            StreamSupport.stream(
+                                            PRETTY_BLOCK
+                                                    .getValues(
+                                                            BLOCK.getSet(block)
+                                                                    .removeAll(
+                                                                            PRETTY_BLOCK.getSet(
+                                                                                    UnicodeProperty
+                                                                                            .NULL_MATCHER))
+                                                                    .charAt(0))
+                                                    .spliterator(),
+                                            false)
+                                    .reduce((first, second) -> second)
+                                    .get());
                 }
             }
         }
@@ -771,7 +789,7 @@ public class Indexer {
                     if (showBlocks) {
                         result.add(new IndexSubEntry());
                         result.get(result.size() - 1).block =
-                                PRETTY_BLOCK.getValue(range.codepoint);
+                                PRETTY_BLOCK.getValues(range.codepoint).iterator().next();
                     }
                     final var currentSubEntry = result.get(result.size() - 1);
                     if (showSubheader) {
@@ -808,7 +826,7 @@ public class Indexer {
                         if (showBlocks) {
                             result.add(new IndexSubEntry());
                             result.get(result.size() - 1).block =
-                                    PRETTY_BLOCK.getValue(remainder.charAt(0));
+                                    PRETTY_BLOCK.getValues(remainder.charAt(0)).iterator().next();
                         }
                         final var subrange = remainder.cloneAsThawed().retainAll(currentBlock);
                         remainder.removeAll(currentBlock);
