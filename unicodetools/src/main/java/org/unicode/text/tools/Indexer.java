@@ -134,7 +134,6 @@ public class Indexer {
                 blockSet.put(block, BLOCK.getSet(block));
                 if (Block_Values.forName(block) != Block_Values.No_Block
                         && !BLOCK.getSet(block).isEmpty()) {
-                    System.err.println(block);
                     prettifyBlock.put(
                             block,
                             PRETTY_BLOCK.getValue(
@@ -389,9 +388,6 @@ public class Indexer {
                                 continue;
                             }
                             snippet = prettifyBlock.get(snippet);
-                            if (snippet == null) {
-                                System.err.println(Utility.hex(cp) + " " + snippet);
-                            }
                         } else if (prop == NAME) {
                             snippet = snippet.replace(Utility.hex(cp), "#");
                         }
