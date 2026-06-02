@@ -919,71 +919,49 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             IndexUnicodeProperties indexUnicodeProperties,
             IndexUnicodeProperties nextProperties,
             Set<PropertyParsingInfo> propInfoSet) {
+        class PropInfoNextAndData {
+            public final PropertyParsingInfo propInfo;
+            public final UnicodeProperty next;
+            public final UnicodeMap<String> data;
+
+            public PropInfoNextAndData(String name) {
+                UcdProperty property = null;
+                for (final var propInfo : propInfoSet) {
+                    String unqualified = propInfo.property.name();
+                    if (unqualified.endsWith("_fr")) {
+                        unqualified = unqualified.substring(0, unqualified.length() - 3);
+                    }
+                    if (unqualified.equals(name)) {
+                        property = propInfo.property;
+                        break;
+                    }
+                }
+                if (property == null) {
+                    throw new IllegalArgumentException(name);
+                }
+                propInfo = property2PropertyInfo.get(property);
+                next = nextProperties == null ? null : nextProperties.getProperty(property);
+                data = indexUnicodeProperties.property2UnicodeMap.get(property);
+            }
+        }
         final var namesListChar = Pattern.compile("[0-9A-F]{4,6}");
-        final var blockHeaderPropInfo =
-                property2PropertyInfo.get(UcdProperty.Names_List_Block_Header);
-        final var nextBlockHeader =
-                nextProperties == null
-                        ? null
-                        : nextProperties.getProperty(UcdProperty.Names_List_Block_Header);
-        final UnicodeMap<String> blockHeaderData =
-                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Block_Header);
-        final var blockHeaderNoticePropInfo =
-                property2PropertyInfo.get(UcdProperty.Names_List_Block_Header_Notice);
-        final var nextBlockHeaderNotice =
-                nextProperties == null
-                        ? null
-                        : nextProperties.getProperty(UcdProperty.Names_List_Block_Header_Notice);
-        final UnicodeMap<String> blockHeaderNoticeData =
-                indexUnicodeProperties.property2UnicodeMap.get(
-                        UcdProperty.Names_List_Block_Header_Notice);
-        final var subheaderPropInfo = property2PropertyInfo.get(UcdProperty.Names_List_Subheader);
-        final var nextSubheader =
-                nextProperties == null
-                        ? null
-                        : nextProperties.getProperty(UcdProperty.Names_List_Subheader);
-        final UnicodeMap<String> subheaderData =
-                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Subheader);
-        final var subheaderNoticePropInfo =
-                property2PropertyInfo.get(UcdProperty.Names_List_Subheader_Notice);
-        final var nextSubheaderNotice =
-                nextProperties == null
-                        ? null
-                        : nextProperties.getProperty(UcdProperty.Names_List_Subheader_Notice);
-        final UnicodeMap<String> subheaderNoticeData =
-                indexUnicodeProperties.property2UnicodeMap.get(
-                        UcdProperty.Names_List_Subheader_Notice);
-        final var crossReferencePropInfo =
-                property2PropertyInfo.get(UcdProperty.Names_List_Cross_Ref);
-        final var nextCrossReference =
-                nextProperties == null
-                        ? null
-                        : nextProperties.getProperty(UcdProperty.Names_List_Cross_Ref);
-        final UnicodeMap<String> crossReferenceData =
-                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Cross_Ref);
-        final var commentPropInfo = property2PropertyInfo.get(UcdProperty.Names_List_Comment);
-        final var nextComment =
-                nextProperties == null
-                        ? null
-                        : nextProperties.getProperty(UcdProperty.Names_List_Comment);
-        final UnicodeMap<String> commentData =
-                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Comment);
-        final var aliasPropInfo = property2PropertyInfo.get(UcdProperty.Names_List_Alias);
-        final var nextAlias =
-                nextProperties == null
-                        ? null
-                        : nextProperties.getProperty(UcdProperty.Names_List_Alias);
-        final UnicodeMap<String> aliasData =
-                indexUnicodeProperties.property2UnicodeMap.get(UcdProperty.Names_List_Alias);
+        final var blockHeader = new PropInfoNextAndData("Names_List_Block_Header");
+        final var blockHeaderNotice = new PropInfoNextAndData("Names_List_Block_Header_Notice");
+        final var subheader = new PropInfoNextAndData("Names_List_Subheader");
+        final var subheaderNotice = new PropInfoNextAndData("Names_List_Subheader_Notice");
+        final var crossReference = new PropInfoNextAndData("Names_List_Cross_Ref");
+        final var comment = new PropInfoNextAndData("Names_List_Comment");
+        final var alias = new PropInfoNextAndData("Names_List_Alias");
+        final var formalAlias = new PropInfoNextAndData("Names_List_Formal_Alias");
+        final var name = new PropInfoNextAndData("Names_List_Name");
 
-        aliasPropInfo.multivaluedSplit = NO_SPLIT;
-        commentPropInfo.multivaluedSplit = NO_SPLIT;
-        blockHeaderNoticePropInfo.multivaluedSplit = NO_SPLIT;
+        alias.propInfo.multivaluedSplit = NO_SPLIT;
+        comment.propInfo.multivaluedSplit = NO_SPLIT;
+        blockHeaderNotice.propInfo.multivaluedSplit = NO_SPLIT;
+        blockHeader.propInfo.multivaluedSplit = NO_SPLIT;
 
-        String blockHeader = null;
-        String blockHeaderNotice = null;
-        String subheader = null;
-        String subheaderNotice = null;
+        String currentSubheader = null;
+        String currentSubheaderNotice = null;
         IntRange codePoint = null;
         IntRange blockRange = null;
         for (String line : lines) {
@@ -991,20 +969,28 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             if (parts.length == 2 && namesListChar.matcher(parts[0]).matches()) {
                 codePoint = new IntRange();
                 codePoint.set(parts[0]);
-                if (subheader != null) {
-                    subheaderPropInfo.put(
-                            subheaderData,
+                if (!parts[1].startsWith("<")) {
+                    name.propInfo.put(
+                            name.data,
                             codePoint,
-                            subheader,
-                            nextSubheader,
+                            parts[1],
+                            name.next,
                             indexUnicodeProperties.getUcdVersion());
                 }
-                if (subheaderNotice != null) {
-                    subheaderNoticePropInfo.put(
-                            subheaderNoticeData,
+                if (currentSubheader != null) {
+                    subheader.propInfo.put(
+                            subheader.data,
                             codePoint,
-                            subheaderNotice,
-                            nextSubheaderNotice,
+                            currentSubheader,
+                            subheader.next,
+                            indexUnicodeProperties.getUcdVersion());
+                }
+                if (currentSubheaderNotice != null) {
+                    subheaderNotice.propInfo.put(
+                            subheaderNotice.data,
+                            codePoint,
+                            currentSubheaderNotice,
+                            subheaderNotice.next,
                             indexUnicodeProperties.getUcdVersion());
                 }
             } else if (codePoint != null
@@ -1012,66 +998,77 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     && (parts[0].isEmpty()
                             || (parts[0].equals("@+") && parts[1].startsWith("* ")))) {
                 if (parts[1].startsWith("x ")) {
-                    String crossReference;
+                    String crossReferenceValue;
                     if (parts[1].charAt(2) == '(') {
-                        crossReference = parts[1].split(" \\- |\\)")[1];
+                        crossReferenceValue = parts[1].split(" \\- |\\)")[1];
                     } else {
-                        crossReference = parts[1].split(" ")[1];
+                        crossReferenceValue = parts[1].split(" ")[1];
                     }
-                    crossReferencePropInfo.put(
-                            crossReferenceData,
+                    crossReference.propInfo.put(
+                            crossReference.data,
                             codePoint,
-                            crossReference,
+                            crossReferenceValue,
                             IndexUnicodeProperties.MULTIVALUED_JOINER,
-                            nextCrossReference,
+                            crossReference.next,
                             indexUnicodeProperties.getUcdVersion());
                 } else if (parts[1].startsWith("* ")) {
-                    commentPropInfo.put(
-                            commentData,
+                    comment.propInfo.put(
+                            comment.data,
                             codePoint,
                             parts[1].substring(2),
                             IndexUnicodeProperties.MULTIVALUED_JOINER,
-                            nextComment,
+                            comment.next,
                             indexUnicodeProperties.getUcdVersion());
                 } else if (parts[1].startsWith("= ")) {
-                    aliasPropInfo.put(
-                            aliasData,
+                    alias.propInfo.put(
+                            alias.data,
                             codePoint,
                             parts[1].substring(2),
                             IndexUnicodeProperties.MULTIVALUED_JOINER,
-                            nextAlias,
+                            alias.next,
+                            indexUnicodeProperties.getUcdVersion());
+                } else if (parts[1].startsWith("% ")) {
+                    formalAlias.propInfo.put(
+                            formalAlias.data,
+                            codePoint,
+                            parts[1].substring(2),
+                            IndexUnicodeProperties.MULTIVALUED_JOINER,
+                            formalAlias.next,
                             indexUnicodeProperties.getUcdVersion());
                 }
             }
             if (parts.length == 2 && parts[0].equals("@")) {
-                subheader = parts[1];
-                subheaderNotice = null;
+                currentSubheader = parts[1];
+                currentSubheaderNotice = null;
                 codePoint = null;
             }
             if (parts.length == 4 && parts[0].equals("@@")) {
                 blockRange = new IntRange();
                 blockRange.set(parts[1] + ".." + parts[3]);
-                blockHeaderPropInfo.put(
-                        blockHeaderData,
-                        blockRange,
-                        parts[2],
-                        nextBlockHeader,
-                        indexUnicodeProperties.getUcdVersion());
-                blockHeaderNotice = null;
-                subheader = null;
-                subheaderNotice = null;
+                final var subparts = parts[2].split(" *[()] *");
+                for (final String subpart : subparts) {
+                    blockHeader.propInfo.put(
+                            blockHeader.data,
+                            blockRange,
+                            subpart,
+                            IndexUnicodeProperties.MULTIVALUED_JOINER,
+                            blockHeader.next,
+                            indexUnicodeProperties.getUcdVersion());
+                }
+                currentSubheader = null;
+                currentSubheaderNotice = null;
                 codePoint = null;
             }
             if (parts.length == 2 && parts[0].equals("@+") && codePoint == null) {
                 if (subheader != null) {
-                    subheaderNotice = parts[1];
+                    currentSubheaderNotice = parts[1];
                 } else if (blockRange != null) {
-                    blockHeaderNoticePropInfo.put(
-                            blockHeaderNoticeData,
+                    blockHeaderNotice.propInfo.put(
+                            blockHeaderNotice.data,
                             blockRange,
                             parts[1],
                             IndexUnicodeProperties.MULTIVALUED_JOINER,
-                            nextBlockHeaderNotice,
+                            blockHeaderNotice.next,
                             indexUnicodeProperties.getUcdVersion());
                 }
             }

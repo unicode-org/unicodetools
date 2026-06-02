@@ -100,6 +100,12 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "Names_List_Cross_Ref"),
+    Names_List_Cross_Ref_fr(
+            PropertyType.String,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            null,
+            ValueCardinality.Unordered,
+            "Names_List_Cross_Ref_fr"),
     Simple_Case_Folding(PropertyType.String, DerivedPropertyStatus.Approved, "scf", "sfc"),
     Simple_Lowercase_Mapping(PropertyType.String, DerivedPropertyStatus.Approved, "slc"),
     Simple_Titlecase_Mapping(PropertyType.String, DerivedPropertyStatus.Approved, "stc"),
@@ -214,9 +220,17 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "Names_List_Alias"),
+    Names_List_Alias_fr(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            null,
+            ValueCardinality.Unordered,
+            "Names_List_Alias_fr"),
     Names_List_Block_Header(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
+            null,
+            ValueCardinality.Ordered,
             "Names_List_Block_Header"),
     Names_List_Block_Header_Notice(
             PropertyType.Miscellaneous,
@@ -224,12 +238,44 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "Names_List_Block_Header_Notice"),
+    Names_List_Block_Header_Notice_fr(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            null,
+            ValueCardinality.Unordered,
+            "Names_List_Block_Header_Notice_fr"),
+    Names_List_Block_Header_fr(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            null,
+            ValueCardinality.Ordered,
+            "Names_List_Block_Header_fr"),
     Names_List_Comment(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
             null,
             ValueCardinality.Unordered,
             "Names_List_Comment"),
+    Names_List_Comment_fr(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            null,
+            ValueCardinality.Unordered,
+            "Names_List_Comment_fr"),
+    Names_List_Formal_Alias(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.UCDNonProperty,
+            "Names_List_Formal_Alias"),
+    Names_List_Formal_Alias_fr(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            "Names_List_Formal_Alias_fr"),
+    Names_List_Name(
+            PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "Names_List_Name"),
+    Names_List_Name_fr(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            "Names_List_Name_fr"),
     Names_List_Subheader(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
@@ -239,6 +285,14 @@ public enum UcdProperty {
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.UCDNonProperty,
             "Names_List_Subheader_Notice"),
+    Names_List_Subheader_Notice_fr(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            "Names_List_Subheader_Notice_fr"),
+    Names_List_Subheader_fr(
+            PropertyType.Miscellaneous,
+            DerivedPropertyStatus.NonUCDNonProperty,
+            "Names_List_Subheader_fr"),
     Pretty_Block(PropertyType.Miscellaneous, DerivedPropertyStatus.UCDNonProperty, "Pretty_Block"),
     Standardized_Variant(
             PropertyType.Miscellaneous,

@@ -59,10 +59,12 @@ public class Indexer {
         private final ReleasePhase phase;
         private final String chartsRoot;
         private final String filename;
+        private final String language;
 
         private final IndexUnicodeProperties IUP;
         private final UnicodeSet NEW_CHARACTERS;
         private final UnicodeProperty NAME;
+        private final UnicodeProperty LOCALIZED_NAME;
         private final UnicodeProperty NAME_ALIAS;
         private final UnicodeProperty INFORMAL_ALIAS;
         private final UnicodeProperty BLOCK;
@@ -79,17 +81,21 @@ public class Indexer {
         private final UnicodeSet NONCHARACTERS;
 
         private final Map<String, UnicodeSet> blockSet = new HashMap<>();
+        private final Map<String, String> prettifyBlock = new HashMap<>();
 
         VersionedIndexer(
                 VersionInfo version,
                 ReleasePhase phase,
                 VersionInfo precedingVersion,
                 String chartsRoot,
-                String filename) {
+                String filename,
+                String language) {
+            final String suffix = language == null ? "" : "_" + language;
             this.version = version;
             this.phase = phase;
             this.chartsRoot = chartsRoot;
             this.filename = filename;
+            this.language = language;
             IUP = IndexUnicodeProperties.make(version);
             NEW_CHARACTERS =
                     IndexUnicodeProperties.make(precedingVersion)
@@ -100,13 +106,23 @@ public class Indexer {
                                             .getSet("Unassigned"))
                             .freeze();
             NAME = IUP.getProperty(UcdProperty.Name);
-            NAME_ALIAS = IUP.getProperty(UcdProperty.Name_Alias);
-            INFORMAL_ALIAS = IUP.getProperty(UcdProperty.Names_List_Alias);
+            LOCALIZED_NAME =
+                    language == null
+                            ? NAME
+                            : IUP.getProperty(UcdProperty.forString("Names_List_Name" + suffix));
+            NAME_ALIAS =
+                    language == null
+                            ? IUP.getProperty(UcdProperty.Name_Alias)
+                            : IUP.getProperty(
+                                    UcdProperty.forString("Names_List_Formal_Alias" + suffix));
+            INFORMAL_ALIAS = IUP.getProperty(UcdProperty.forString("Names_List_Alias" + suffix));
             BLOCK = IUP.getProperty(UcdProperty.Block);
-            PRETTY_BLOCK = IUP.getProperty(UcdProperty.Pretty_Block);
-            SUBHEADER = IUP.getProperty(UcdProperty.Names_List_Subheader);
-            SUBHEADER_NOTICE = IUP.getProperty(UcdProperty.Names_List_Subheader_Notice);
-            COMMENT = IUP.getProperty(UcdProperty.Names_List_Comment);
+            PRETTY_BLOCK =
+                    IUP.getProperty(UcdProperty.forString("Names_List_Block_Header" + suffix));
+            SUBHEADER = IUP.getProperty(UcdProperty.forString("Names_List_Subheader" + suffix));
+            SUBHEADER_NOTICE =
+                    IUP.getProperty(UcdProperty.forString("Names_List_Subheader_Notice" + suffix));
+            COMMENT = IUP.getProperty(UcdProperty.forString("Names_List_Comment" + suffix));
             K_RS_UNICODE = IUP.getProperty(UcdProperty.kRSUnicode);
             K_TGT_RS_UNICODE = IUP.getProperty(UcdProperty.kTGT_RSUnicode);
             K_JURC_RS_UNICODE = IUP.getProperty(UcdProperty.kJURC_RSUnicode);
@@ -116,6 +132,35 @@ public class Indexer {
             NONCHARACTERS = IUP.getProperty(UcdProperty.Noncharacter_Code_Point).getSet("Yes");
             for (String block : BLOCK.getAvailableValues()) {
                 blockSet.put(block, BLOCK.getSet(block));
+                if (Block_Values.forName(block) != Block_Values.No_Block
+                        && !BLOCK.getSet(block).isEmpty()) {
+                    // There are two cases where there are multiple names list block header values:
+                    // C0 Controls and Basic Latin (Basic Latin)
+                    // C1 Controls and Latin-1 Supplement (Latin-1 Supplement)
+                    // In both cases, use the alternate name (in parentheses in NamesList.txt, the
+                    // last name in the ordered values here), rather than the full name, as the
+                    // index entry:
+                    // Searching for C[01] controls should return the appropriate subheader, not the
+                    // whole block.
+                    // However, when referring to the block under the index entry (for instance, in
+                    // the mention "In ..."), we use the first name, so a search for C0 finds
+                    // C0 controls                         In C0 Controls and Basic Latin: 0000–001F
+                    prettifyBlock.put(
+                            block,
+                            StreamSupport.stream(
+                                            PRETTY_BLOCK
+                                                    .getValues(
+                                                            BLOCK.getSet(block)
+                                                                    .removeAll(
+                                                                            PRETTY_BLOCK.getSet(
+                                                                                    UnicodeProperty
+                                                                                            .NULL_MATCHER))
+                                                                    .charAt(0))
+                                                    .spliterator(),
+                                            false)
+                                    .reduce((first, second) -> second)
+                                    .get());
+                }
             }
         }
 
@@ -339,7 +384,7 @@ public class Indexer {
                     List.of(
                             BLOCK,
                             SUBHEADER,
-                            NAME,
+                            LOCALIZED_NAME,
                             NAME_ALIAS,
                             INFORMAL_ALIAS,
                             SUBHEADER_NOTICE,
@@ -360,7 +405,7 @@ public class Indexer {
                             if (Block_Values.forName(snippet) == Block_Values.No_Block) {
                                 continue;
                             }
-                            snippet = PRETTY_BLOCK.getValue(cp);
+                            snippet = prettifyBlock.get(snippet);
                         } else if (prop == NAME) {
                             snippet = snippet.replace(Utility.hex(cp), "#");
                         }
@@ -449,6 +494,9 @@ public class Indexer {
             System.out.println("Writing " + filename + "...");
             final String resources =
                     Settings.UnicodeTools.UNICODETOOLS_RSRC_DIR + "org/unicode/text/tools/";
+            if (language != null) {
+                new File(Settings.Output.GEN_DIR + "/" + language).mkdir();
+            }
             var file = new PrintStream(new File(Settings.Output.GEN_DIR + filename));
             final var htmlTemplate =
                     new BufferedReader(
@@ -741,7 +789,7 @@ public class Indexer {
                     if (showBlocks) {
                         result.add(new IndexSubEntry());
                         result.get(result.size() - 1).block =
-                                PRETTY_BLOCK.getValue(range.codepoint);
+                                PRETTY_BLOCK.getValues(range.codepoint).iterator().next();
                     }
                     final var currentSubEntry = result.get(result.size() - 1);
                     if (showSubheader) {
@@ -778,7 +826,7 @@ public class Indexer {
                         if (showBlocks) {
                             result.add(new IndexSubEntry());
                             result.get(result.size() - 1).block =
-                                    PRETTY_BLOCK.getValue(remainder.charAt(0));
+                                    PRETTY_BLOCK.getValues(remainder.charAt(0)).iterator().next();
                         }
                         final var subrange = remainder.cloneAsThawed().retainAll(currentBlock);
                         remainder.removeAll(currentBlock);
@@ -897,14 +945,16 @@ public class Indexer {
                         ReleasePhase.GAMMA,
                         Settings.LAST2_VERSION_INFO,
                         "https://www.unicode.org/charts",
-                        "charindex.html");
+                        "charindex.html",
+                        /* language= */ null);
         final var draft =
                 new VersionedIndexer(
                         Settings.LATEST_VERSION_INFO,
                         Settings.latestVersionPhase,
                         Settings.LAST_VERSION_INFO,
                         "https://www.unicode.org/Public/draft/charts",
-                        "charindex-draft.html");
+                        "charindex-draft.html",
+                        /* language= */ null);
         // Link to the draft if it is at least in α (i.e., do not link to a pre-α dev version).
         main.generateIndex(
                 /* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.ALPHA) >= 0
@@ -915,5 +965,14 @@ public class Indexer {
                 /* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.GAMMA) < 0
                         ? main
                         : null);
+        final var fr =
+                new VersionedIndexer(
+                        Settings.LAST_VERSION_INFO,
+                        ReleasePhase.GAMMA,
+                        Settings.LAST2_VERSION_INFO,
+                        "https://www.unicode.org/charts/fr",
+                        "fr/charindex.html",
+                        "fr");
+        fr.generateIndex(/* linkedVersion= */ null);
     }
 }
