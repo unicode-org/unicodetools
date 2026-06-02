@@ -97,11 +97,11 @@ Names_List_Alias_fr  ;        MULTI_VALUED ;                .*
 Names_List_Comment ;          MULTI_VALUED ;                .*
 Names_List_Comment_fr ;       MULTI_VALUED ;                .*
 Names_List_Cross_Ref ;        MULTI_VALUED ;                .*
+Names_List_Cross_Ref_fr ;     MULTI_VALUED ;                .*
 Names_List_Formal_Alias ;     SINGLE_VALUED ;               .*
 Names_List_Formal_Alias_fr ;  SINGLE_VALUED ;               .*
 Names_List_Name ;             SINGLE_VALUED ;               .*
 Names_List_Name_fr ;          SINGLE_VALUED ;               .*
-Names_List_Cross_Ref_fr ;     MULTI_VALUED ;                .*
 Names_List_Subheader ;        SINGLE_VALUED ;               .*
 Names_List_Subheader_fr ;     SINGLE_VALUED ;               .*
 Names_List_Subheader_Notice ; SINGLE_VALUED ;               .*
