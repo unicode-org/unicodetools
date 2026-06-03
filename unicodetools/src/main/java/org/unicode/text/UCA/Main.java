@@ -65,19 +65,7 @@ public class Main {
                 Default.setUCD(args[++i]); // get next arg
                 continue;
             }
-            if (arg.equalsIgnoreCase("GenOverlap")) {
-                GenOverlap.test(UCA.getDucetCollator());
-            } else if (arg.equalsIgnoreCase("validateUCA")) {
-                GenOverlap.validateUCA(UCA.getDucetCollator());
-                // else if (arg.equalsIgnoreCase("writeNonspacingDifference"))
-                // WriteCollationData.writeNonspacingDifference();
-            } else if (arg.equalsIgnoreCase("CheckHash")) {
-                GenOverlap.checkHash(UCA.getDucetCollator());
-            } else if (arg.equalsIgnoreCase("generateRevision")) {
-                GenOverlap.generateRevision(UCA.getDucetCollator());
-            } else if (arg.equalsIgnoreCase("listCyrillic")) {
-                GenOverlap.listCyrillic(UCA.getDucetCollator());
-            } else if (arg.equalsIgnoreCase("WriteRules")) {
+            if (arg.equalsIgnoreCase("WriteRules")) {
                 WriteCollationData.writeRules(
                         WriteCollationData.WITHOUT_NAMES, shortPrint, noCE, CollatorType.ducet);
             } else if (arg.equalsIgnoreCase("WriteRulesCLDR")) {
