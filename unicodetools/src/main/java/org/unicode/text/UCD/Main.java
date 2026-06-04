@@ -91,25 +91,8 @@ public final class Main {
 
                 // Now handle other options
 
-                if (arg.equalsIgnoreCase("verify")) {
-                    VerifyUCD.verify();
-                    VerifyUCD.checkCanonicalProperties();
-                    VerifyUCD.CheckCaseFold();
-                    VerifyUCD.checkAgainstUInfo();
-                } else if (arg.equalsIgnoreCase("build")) {
+                if (arg.equalsIgnoreCase("build")) {
                     ConvertUCD.main(new String[] {Default.ucdVersion()});
-                } else if (arg.equalsIgnoreCase("statistics")) {
-                    VerifyUCD.statistics();
-                } else if (arg.equalsIgnoreCase("diffIgnorable")) {
-                    VerifyUCD.diffIgnorable();
-                } else if (arg.equalsIgnoreCase("generateXML")) {
-                    VerifyUCD.generateXML();
-                } else if (arg.equalsIgnoreCase("checkSpeed")) {
-                    VerifyUCD.checkSpeed();
-                } else if (arg.equalsIgnoreCase("onetime")) {
-                    VerifyUCD.oneTime();
-                } else if (arg.equalsIgnoreCase("verifyNormalizationStability")) {
-                    VerifyUCD.verifyNormalizationStability();
                 } else if (arg.equalsIgnoreCase("definitionTransliterator")) {
                     GenerateHanTransliterator.main(0);
                 } else if (arg.equalsIgnoreCase("romajiTransliterator")) {
@@ -120,56 +103,26 @@ public final class Main {
                     GenerateHanTransliterator.readUnihan();
                 } else if (arg.equalsIgnoreCase("fixChineseOverrides")) {
                     GenerateHanTransliterator.fixChineseOverrides();
-                } else if (arg.equalsIgnoreCase("compareBlueberry")) {
-                    VerifyUCD.compareBlueberry();
                 } else if (arg.equalsIgnoreCase("testenum")) {
                     SampleEnum.test();
                 } else if (arg.equalsIgnoreCase("TernaryStore")) {
                     TernaryStore.test();
-                } else if (arg.equalsIgnoreCase("checkBIDI")) {
-                    VerifyUCD.checkBIDI();
                 } else if (arg.equalsIgnoreCase("Buildnames")) {
                     BuildNames.main(null);
                 } else if (arg.equalsIgnoreCase("TestNormalization")) {
                     TestNormalization.main(null);
                 } else if (arg.equalsIgnoreCase("GenerateCaseTest")) {
                     GenerateCaseTest.main(null);
-                } else if (arg.equalsIgnoreCase("checkDecompFolding")) {
-                    VerifyUCD.checkDecompFolding();
                 } else if (arg.equalsIgnoreCase("breaktest")) {
                     GenerateBreakTest.main(null);
                 } else if (arg.equalsIgnoreCase("iana")) {
                     IANANames.testSensitivity();
                 } else if (arg.equalsIgnoreCase("testDerivedProperties")) {
                     DerivedProperty.test();
-                } else if (arg.equalsIgnoreCase("checkCase")) {
-                    VerifyUCD.checkCase();
-                } else if (arg.equalsIgnoreCase("checkCase3")) {
-                    VerifyUCD.checkCase3();
-                } else if (arg.equalsIgnoreCase("checkCaseLong")) {
-                    VerifyUCD.checkCase2(true);
-                } else if (arg.equalsIgnoreCase("checkCaseShort")) {
-                    VerifyUCD.checkCase2(false);
-                } else if (arg.equalsIgnoreCase("checkCanonicalProperties")) {
-                    VerifyUCD.checkCanonicalProperties();
-                } else if (arg.equalsIgnoreCase("CheckCaseFold")) {
-                    VerifyUCD.CheckCaseFold();
-                } else if (arg.equalsIgnoreCase("genIDN")) {
-                    VerifyUCD.genIDN();
-                } else if (arg.equalsIgnoreCase("VerifyIDN")) {
-                    VerifyUCD.VerifyIDN();
-                } else if (arg.equalsIgnoreCase("NFTest")) {
-                    VerifyUCD.NFTest();
-                } else if (arg.equalsIgnoreCase("test1")) {
-                    VerifyUCD.test1();
                 } else if (arg.equalsIgnoreCase("TestData")) {
                     TestData.main(new String[] {args[++i]});
                 } else if (arg.equalsIgnoreCase("MakeUnicodeFiles")) {
                     MakeUnicodeFiles.main(new String[] {});
-                } else if (arg.equalsIgnoreCase("checkScripts")) {
-                    VerifyUCD.checkScripts();
-                } else if (arg.equalsIgnoreCase("IdentifierTest")) {
-                    VerifyUCD.IdentifierTest();
                 } else if (arg.equalsIgnoreCase("BuildNames")) {
                     BuildNames.main(null);
                 } else if (arg.equalsIgnoreCase("JavascriptProperties")) {
