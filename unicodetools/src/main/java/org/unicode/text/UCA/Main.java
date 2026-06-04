@@ -9,9 +9,6 @@
  */
 package org.unicode.text.UCA;
 
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UCharacterEnums.ECharacterCategory;
-import com.ibm.icu.text.CanonicalIterator;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
@@ -28,11 +25,7 @@ public class Main {
         "writeConformanceShifted",
         "writeConformanceCldr",
         "writeConformanceShiftedCldr",
-        // "short",
-        // "WriteRules", "WriteRulesCLDR",
-        // "writeconformance", "writeConformanceShifted", "writeConformanceCldr",
-        // "writeConformanceShiftedCldr",
-        "noCE", // "short",
+        "noCE",
         "WriteRules",
         "WriteRulesCLDR",
     };
@@ -46,7 +39,6 @@ public class Main {
         if (args.length == 0) {
             args = new String[] {"?"}; // force the help comment
         }
-        boolean shortPrint = false;
         boolean noCE = false;
 
         for (int i = 0; i < args.length; ++i) {
@@ -66,7 +58,7 @@ public class Main {
                 continue;
             }
             if (arg.equalsIgnoreCase("WriteRules")) {
-                WriteCollationData.writeRules(shortPrint, noCE, CollatorType.ducet);
+                WriteCollationData.writeRules(false /*shortPrint*/, noCE, CollatorType.ducet);
             } else if (arg.equalsIgnoreCase("WriteRulesCLDR")) {
                 WriteCollationData.writeRules(false /*shortPrint*/, noCE, CollatorType.cldr);
                 if (!noCE) {
@@ -123,16 +115,10 @@ public class Main {
                         UCA_Types.Alternate.SHIFTED,
                         true,
                         CollatorType.cldr);
-            } else if (arg.equalsIgnoreCase("testCompatibilityCharacters")) {
-                TestCompatibilityCharacters.testCompatibilityCharacters(UCA.getCldrCollator());
             } else if (arg.equalsIgnoreCase("writeCollationValidityLog")) {
                 Validity.writeCollationValidityLog();
-            } else if (arg.equalsIgnoreCase("short")) {
-                shortPrint = !shortPrint;
             } else if (arg.equalsIgnoreCase("noCE")) {
                 noCE = !noCE;
-            } else if (arg.equalsIgnoreCase("checkCanonicalIterator")) {
-                checkCanonicalIterator();
             } else {
                 System.out.println();
                 System.out.println(
@@ -140,69 +126,13 @@ public class Main {
                                 + arg
                                 + "): must be one of the following (case-insensitive)");
                 System.out.println("\tWriteRulesWithNames, WriteRules, WriteRulesCLDR,");
-                System.out.println("\tcheckDisjointIgnorables, writeContractions,");
                 System.out.println(
-                        "\twriteFractionalUCA, writeConformance, writeConformanceShifted, testCompatibilityCharacters,");
-                System.out.println(
-                        "\twriteCollationValidityLog, writeCaseExceptions, writeJavascriptInfo, writeCaseFolding");
-                System.out.println("\tjavatest, hex (used for conformance)");
+                        "\twriteFractionalUCA, writeConformance, writeConformanceShifted,");
+                System.out.println("\twriteCollationValidityLog,");
+                System.out.println("\thex (used for conformance)");
             }
         }
 
         System.out.println("Done");
-
-        /*
-        String s = WriteCollationData.collator.getSortKey("\u1025\u102E", UCA.NON_IGNORABLE, true);
-        System.out.println(Utility.hex("\u0595\u0325") + ", " + WriteCollationData.collator.toString(s));
-        String t = WriteCollationData.collator.getSortKey("\u0596\u0325", UCA.NON_IGNORABLE, true);
-        System.out.println(Utility.hex("\u0596\u0325") + ", " + WriteCollationData.collator.toString(t));
-
-
-        Normalizer foo = new Normalizer(Normalizer.NFKD);
-        char x = '\u1EE2';
-        System.out.println(Utility.hex(x) + " " + ucd.getName(x));
-        String nx = foo.normalize(x);
-        for (int i = 0; i < nx.length(); ++i) {
-            char c = nx.charAt(i);
-            System.out.println(ucd.getCanonicalClass(c));
-        }
-        System.out.println(Utility.hex(nx, " ") + " " + ucd.getName(nx));
-         */
-    }
-
-    /** */
-    private static void checkCanonicalIterator() {
-        /* We do not compute fractional implicit weights any more.
-        int firstImplicit = FractionalUCA.getImplicitPrimary(UCD_Types.CJK_BASE);
-        System.out.println("UCD_Types.CJK_BASE: " + Utility.hex(UCD_Types.CJK_BASE));
-        System.out.println("first implicit: " + Utility.hex((long)(firstImplicit & 0xFFFFFFFFL)));
-         */
-
-        final CanonicalIterator it = new CanonicalIterator("");
-        final String[] tests = new String[] {"\uF900", "\u00C5d\u0307\u0327"};
-        for (final String test : tests) {
-            System.out.println(Default.ucd().getCodeAndName(test));
-            it.setSource(test);
-            String ss;
-            for (int i = 0; (ss = it.next()) != null; ++i) {
-                System.out.println(i + "\t" + Default.ucd().getCodeAndName(ss));
-            }
-        }
-        // verify that nothing breaks
-        for (int i = 0; i < 0x10FFFF; ++i) {
-            final int cat = UCharacter.getType(i);
-            if (cat == ECharacterCategory.UNASSIGNED
-                    || cat == ECharacterCategory.PRIVATE_USE
-                    || cat == ECharacterCategory.SURROGATE) {
-                continue;
-            }
-            final String s = Character.toString(i);
-            try {
-                it.setSource(s);
-            } catch (final RuntimeException e) {
-                System.out.println("Failure with U+" + Utility.hex(i));
-                e.printStackTrace();
-            }
-        }
     }
 }
