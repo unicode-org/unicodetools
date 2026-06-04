@@ -73,10 +73,6 @@ public class Main {
                     // short omits CEs anyway
                     WriteCollationData.writeRules(true, noCE, CollatorType.cldr);
                 }
-            } else if (arg.equalsIgnoreCase("checkDisjointIgnorables")) {
-                WriteCollationData.checkDisjointIgnorables();
-            } else if (arg.equalsIgnoreCase("writeContractions")) {
-                WriteCollationData.writeContractions();
             } else if (arg.equalsIgnoreCase("writeFractionalUCA")) {
                 FractionalUCA.writeFractionalUCA();
             } else if (arg.equalsIgnoreCase("WriteAllKeys")) {
@@ -131,12 +127,6 @@ public class Main {
                 TestCompatibilityCharacters.testCompatibilityCharacters(UCA.getCldrCollator());
             } else if (arg.equalsIgnoreCase("writeCollationValidityLog")) {
                 Validity.writeCollationValidityLog();
-            } else if (arg.equalsIgnoreCase("writeJavascriptInfo")) {
-                WriteCollationData.writeJavascriptInfo();
-            } else if (arg.equalsIgnoreCase("writeCaseFolding")) {
-                WriteCollationData.writeCaseFolding();
-            } else if (arg.equalsIgnoreCase("javatest")) {
-                WriteCollationData.javatest();
             } else if (arg.equalsIgnoreCase("short")) {
                 shortPrint = !shortPrint;
             } else if (arg.equalsIgnoreCase("noCE")) {
