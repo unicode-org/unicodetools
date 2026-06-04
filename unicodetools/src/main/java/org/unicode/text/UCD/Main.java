@@ -93,16 +93,6 @@ public final class Main {
 
                 if (arg.equalsIgnoreCase("build")) {
                     ConvertUCD.main(new String[] {Default.ucdVersion()});
-                } else if (arg.equalsIgnoreCase("definitionTransliterator")) {
-                    GenerateHanTransliterator.main(0);
-                } else if (arg.equalsIgnoreCase("romajiTransliterator")) {
-                    GenerateHanTransliterator.main(1);
-                } else if (arg.equalsIgnoreCase("pinYinTransliterator")) {
-                    GenerateHanTransliterator.main(2);
-                } else if (arg.equalsIgnoreCase("hanproperties")) {
-                    GenerateHanTransliterator.readUnihan();
-                } else if (arg.equalsIgnoreCase("fixChineseOverrides")) {
-                    GenerateHanTransliterator.fixChineseOverrides();
                 } else if (arg.equalsIgnoreCase("testenum")) {
                     SampleEnum.test();
                 } else if (arg.equalsIgnoreCase("TernaryStore")) {
