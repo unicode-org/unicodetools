@@ -23,18 +23,18 @@ public class Main {
         "writeCollationValidityLog",
         "WriteAllKeysDucet",
         "WriteRules",
-        "WriteRulesCLDR", // "WriteRulesXML", "WriteRulesCLDRXML",
+        "WriteRulesCLDR",
         "writeconformance",
         "writeConformanceShifted",
         "writeConformanceCldr",
         "writeConformanceShiftedCldr",
         // "short",
-        // "WriteRules", "WriteRulesCLDR",  // "WriteRulesXML", "WriteRulesCLDRXML",
+        // "WriteRules", "WriteRulesCLDR",
         // "writeconformance", "writeConformanceShifted", "writeConformanceCldr",
         // "writeConformanceShiftedCldr",
         "noCE", // "short",
         "WriteRules",
-        "WriteRulesCLDR", // "WriteRulesXML", "WriteRulesCLDRXML"
+        "WriteRulesCLDR",
     };
 
     public static void main(String args[]) throws Exception {
@@ -66,25 +66,13 @@ public class Main {
                 continue;
             }
             if (arg.equalsIgnoreCase("WriteRules")) {
-                WriteCollationData.writeRules(
-                        WriteCollationData.WITHOUT_NAMES, shortPrint, noCE, CollatorType.ducet);
+                WriteCollationData.writeRules(shortPrint, noCE, CollatorType.ducet);
             } else if (arg.equalsIgnoreCase("WriteRulesCLDR")) {
-                WriteCollationData.writeRules(
-                        WriteCollationData.WITHOUT_NAMES,
-                        false /*shortPrint*/,
-                        noCE,
-                        CollatorType.cldr);
+                WriteCollationData.writeRules(false /*shortPrint*/, noCE, CollatorType.cldr);
                 if (!noCE) {
                     // short omits CEs anyway
-                    WriteCollationData.writeRules(
-                            WriteCollationData.WITHOUT_NAMES, true, noCE, CollatorType.cldr);
+                    WriteCollationData.writeRules(true, noCE, CollatorType.cldr);
                 }
-            } else if (arg.equalsIgnoreCase("WriteRulesXML")) {
-                WriteCollationData.writeRules(
-                        WriteCollationData.IN_XML, shortPrint, noCE, CollatorType.ducet);
-            } else if (arg.equalsIgnoreCase("WriteRulesCLDRXML")) {
-                WriteCollationData.writeRules(
-                        WriteCollationData.IN_XML, shortPrint, noCE, CollatorType.cldr);
             } else if (arg.equalsIgnoreCase("checkDisjointIgnorables")) {
                 WriteCollationData.checkDisjointIgnorables();
             } else if (arg.equalsIgnoreCase("writeContractions")) {
@@ -161,8 +149,7 @@ public class Main {
                         "UNKNOWN OPTION ("
                                 + arg
                                 + "): must be one of the following (case-insensitive)");
-                System.out.println(
-                        "\tWriteRulesXML, WriteRulesWithNames, WriteRules, WriteRulesCLDR,");
+                System.out.println("\tWriteRulesWithNames, WriteRules, WriteRulesCLDR,");
                 System.out.println("\tcheckDisjointIgnorables, writeContractions,");
                 System.out.println(
                         "\twriteFractionalUCA, writeConformance, writeConformanceShifted, testCompatibilityCharacters,");
