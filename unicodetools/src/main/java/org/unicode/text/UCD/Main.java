@@ -91,10 +91,6 @@ public final class Main {
 
                 if (arg.equalsIgnoreCase("build")) {
                     ConvertUCD.main(new String[] {Default.ucdVersion()});
-                } else if (arg.equalsIgnoreCase("TestNormalization")) {
-                    TestNormalization.main(null);
-                } else if (arg.equalsIgnoreCase("GenerateCaseTest")) {
-                    GenerateCaseTest.main(null);
                 } else if (arg.equalsIgnoreCase("breaktest")) {
                     GenerateBreakTest.main(null);
                 } else if (arg.equalsIgnoreCase("MakeUnicodeFiles")) {
