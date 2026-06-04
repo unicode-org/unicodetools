@@ -10,7 +10,6 @@
 package org.unicode.text.UCD;
 
 import org.unicode.text.utility.DirectoryIterator;
-import org.unicode.text.utility.SampleEnum;
 import org.unicode.text.utility.Utility;
 
 public final class Main {
@@ -93,28 +92,16 @@ public final class Main {
 
                 if (arg.equalsIgnoreCase("build")) {
                     ConvertUCD.main(new String[] {Default.ucdVersion()});
-                } else if (arg.equalsIgnoreCase("testenum")) {
-                    SampleEnum.test();
-                } else if (arg.equalsIgnoreCase("TernaryStore")) {
-                    TernaryStore.test();
-                } else if (arg.equalsIgnoreCase("Buildnames")) {
-                    BuildNames.main(null);
                 } else if (arg.equalsIgnoreCase("TestNormalization")) {
                     TestNormalization.main(null);
                 } else if (arg.equalsIgnoreCase("GenerateCaseTest")) {
                     GenerateCaseTest.main(null);
                 } else if (arg.equalsIgnoreCase("breaktest")) {
                     GenerateBreakTest.main(null);
-                } else if (arg.equalsIgnoreCase("iana")) {
-                    IANANames.testSensitivity();
                 } else if (arg.equalsIgnoreCase("testDerivedProperties")) {
                     DerivedProperty.test();
-                } else if (arg.equalsIgnoreCase("TestData")) {
-                    TestData.main(new String[] {args[++i]});
                 } else if (arg.equalsIgnoreCase("MakeUnicodeFiles")) {
                     MakeUnicodeFiles.main(new String[] {});
-                } else if (arg.equalsIgnoreCase("BuildNames")) {
-                    BuildNames.main(null);
                 } else if (arg.equalsIgnoreCase("JavascriptProperties")) {
                     WriteJavaScriptInfo.assigned();
                 } else if (arg.equalsIgnoreCase("TestDirectoryIterator")) {
