@@ -25,6 +25,7 @@ import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Names;
 import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.tools.Segmenter;
 import org.unicode.tools.Segmenter.Builder;
@@ -436,7 +437,7 @@ public class VerifyUCD {
         for (final String type :
                 new String[] {"GraphemeClusterBreak", "WordBreak", "LineBreak", "SentenceBreak"}) {
             final Builder segBuilder =
-                    Segmenter.make(ToolUnicodePropertySource.make(Default.ucdVersion()), type);
+                    Segmenter.make(VersionedSymbolTable.frozenAt(Default.ucdVersionInfo()), type);
             final Segmenter seg = segBuilder.make();
 
             // quick test

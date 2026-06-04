@@ -12,18 +12,14 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
-import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Segmenter;
 
 public class TestSegmenter extends TestFmwkMinusMinus {
 
     Segmenter gcb =
-            Segmenter.make(
-                            ToolUnicodePropertySource.make(Default.ucdVersion()),
-                            "GraphemeClusterBreak")
-                    .make();
+            Segmenter.make(VersionedSymbolTable.forDevelopment(), "GraphemeClusterBreak").make();
 
     @Test
     public void Test11() {
