@@ -570,9 +570,6 @@ public class WriteCollationData {
                         + Default.ucd().getName(src));
     }
 
-    // Options for writeRules(byte options, ...), used by UCA.Main.
-    static final byte WITHOUT_NAMES = 0, WITH_NAMES = 1, IN_XML = 2;
-
     private static final boolean SKIP_CANONICAL_DECOMPOSIBLES = true;
 
     private static int getFirstCELen(CEList ces) {
@@ -599,7 +596,7 @@ public class WriteCollationData {
     private static PrintWriter log2 = null;
 
     // Called by UCA.Main.
-    static void writeRules(byte option, boolean shortPrint, boolean noCE, CollatorType collatorType)
+    static void writeRules(boolean shortPrint, boolean noCE, CollatorType collatorType)
             throws IOException {
         System.out.println("Sorting");
         final Map<ArrayWrapper, String> backMap = new HashMap<ArrayWrapper, String>();
@@ -790,11 +787,7 @@ public class WriteCollationData {
         if (noCE) {
             filename += "_NoCE";
         }
-        if (option == IN_XML) {
-            filename += ".xml";
-        } else {
-            filename += ".txt";
-        }
+        filename += ".txt";
 
         final String directory =
                 UCA.getOutputDir()
@@ -815,19 +808,8 @@ public class WriteCollationData {
         // http://oss.software.ibm.com/icu/userguide/Collate_Intro.html"
         //        };
 
-        if (option == IN_XML) {
-            log.println("<collation>");
-            log.println("<!--");
-            WriteCollationData.writeVersionAndDate(
-                    log, filename, collatorType == CollatorType.cldr);
-            log.println("-->");
-            log.println("<base uca='" + uca.getDataVersion() + "/" + uca.getUCDVersion() + "'/>");
-            log.println("<rules>");
-        } else {
-            log.write('\uFEFF'); // BOM
-            WriteCollationData.writeVersionAndDate(
-                    log, filename, collatorType == CollatorType.cldr);
-        }
+        log.write('\uFEFF'); // BOM
+        WriteCollationData.writeVersionAndDate(log, filename, collatorType == CollatorType.cldr);
 
         it = ordered.keySet().iterator();
 
@@ -1095,95 +1077,44 @@ public class WriteCollationData {
             if (Character.isHighSurrogate(lastChar)) {
                 System.out.println("Skipping trailing surrogate: " + chr + "\t" + Utility.hex(chr));
             } else {
-                if (option == IN_XML) {
-                    if (insertVariableTop) {
-                        log.println(XML_RELATION_NAMES[0] + "<variableTop/>");
-                    }
-
-                    /*
-                     * log.print("  <!--" + ucd.getCodeAndName(chr)); if (len > 1)
-                     * log.print(" / " + Utility.hex(expansion));
-                     * log.println("-->");
-                     */
-
-                    if (reset.length() != 0) {
-                        log.println(
-                                "<reset/>"
-                                        + (resetToParameter
-                                                ? "<position at=\"" + reset + "\"/>"
-                                                : Utility.quoteXML(reset))
-                                        + (resetComment.length() != 0
-                                                ? "<!-- " + resetComment + "-->"
-                                                : ""));
-                    }
-                    if (expansion.length() > 0) {
-                        log.print("<x>");
-                    }
-                    if (!firstTime) {
-                        log.print("  <" + XML_RELATION_NAMES[relation] + ">");
-                        log.print(Utility.quoteXML(chr));
-                        log.print("</" + XML_RELATION_NAMES[relation] + ">");
-                    }
-
-                    // <x><t>&#x20A8;</t><extend>s</extend></x> <!--U+20A8 RUPEE SIGN / 0073-->
-
-                    if (expansion.length() > 0) {
-                        log.print("<extend>" + Utility.quoteXML(expansion) + "</extend></x>");
-                    }
-                    if (!shortPrint) {
-                        log.print("\t<!--");
-                        if (!noCE) {
-                            log.print(ces.toString() + " ");
-                        }
-                        log.print(Default.ucd().getCodeAndName(chr));
-                        if (expansion.length() > 0) {
-                            log.print(" / " + Utility.hex(expansion));
-                        }
-                        log.print("-->");
-                    }
-                    log.println();
-                } else {
-                    if (insertVariableTop) {
-                        log.println(RELATION_NAMES[0] + " [variable top]");
-                    }
-                    if (reset.length() != 0) {
-                        log.println(
-                                "& "
-                                        + (resetToParameter ? "[" : "")
-                                        + reset
-                                        + (resetToParameter ? "]" : "")
-                                        + (resetComment.length() != 0
-                                                ? "\t\t# " + resetComment
-                                                : ""));
-                    }
-                    if (!firstTime) {
-                        log.print(RELATION_NAMES[relation] + " " + quoteOperand(chr));
-                    }
-                    if (expansion.length() > 0) {
-                        log.print(" / " + quoteOperand(expansion));
-                    }
-                    if (!shortPrint) {
-                        log.print("\t# ");
-                        if (false) {
-                            if (latestAge(chr).startsWith("5.2")) {
-                                log.print("† ");
-                            }
-                        }
-
-                        log.print(latestAge(chr) + " [");
-                        final String typeKD = ReorderingTokens.getTypesCombined(chr);
-                        log.print(typeKD + "] ");
-
-                        if (!noCE) {
-                            log.print(ces.toString() + " ");
-                        }
-                        log.print(Default.ucd().getCodeAndName(chr));
-                        if (expansion.length() > 0) {
-                            log.print(" / " + Utility.hex(expansion));
-                        }
-                    }
-                    log.println();
+                if (insertVariableTop) {
+                    log.println(RELATION_NAMES[0] + " [variable top]");
                 }
+                if (reset.length() != 0) {
+                    log.println(
+                            "& "
+                                    + (resetToParameter ? "[" : "")
+                                    + reset
+                                    + (resetToParameter ? "]" : "")
+                                    + (resetComment.length() != 0 ? "\t\t# " + resetComment : ""));
+                }
+                if (!firstTime) {
+                    log.print(RELATION_NAMES[relation] + " " + quoteOperand(chr));
+                }
+                if (expansion.length() > 0) {
+                    log.print(" / " + quoteOperand(expansion));
+                }
+                if (!shortPrint) {
+                    log.print("\t# ");
+                    if (false) {
+                        if (latestAge(chr).startsWith("5.2")) {
+                            log.print("† ");
+                        }
+                    }
+
+                    log.print(latestAge(chr) + " [");
+                    final String typeKD = ReorderingTokens.getTypesCombined(chr);
+                    log.print(typeKD + "] ");
+
+                    if (!noCE) {
+                        log.print(ces.toString() + " ");
+                    }
+                    log.print(Default.ucd().getCodeAndName(chr));
+                    if (expansion.length() > 0) {
+                        log.print(" / " + Utility.hex(expansion));
+                    }
+                }
+                log.println();
             }
             firstTime = false;
         }
@@ -1192,40 +1123,20 @@ public class WriteCollationData {
             // = X for the item whose value is to be changed
             final String valueToSetTo = sourceReplacement.getValue();
             final String stringToSet = sourceReplacement.getKey();
-            if (option == IN_XML) {
+            log.print("& " + quoteOperand(valueToSetTo) + " = " + quoteOperand(stringToSet));
+            if (!shortPrint) {
+                log.print("\t# ");
+                log.print(latestAge(stringToSet) + " [");
+                final String typeKD = ReorderingTokens.getTypesCombined(stringToSet);
+                log.print(typeKD + "] ");
                 log.print(
-                        "<reset/>"
-                                + Utility.quoteXML(valueToSetTo)
-                                + "<i>"
-                                + Utility.quoteXML(stringToSet)
-                                + "</i>");
-                if (!shortPrint) {
-                    log.print("\t<!--");
-                    log.print(
-                            Default.ucd().getCodeAndName(stringToSet)
-                                    + "\t→\t"
-                                    + Default.ucd().getCodeAndName(valueToSetTo));
-                    log.print("-->");
-                }
-            } else {
-                log.print("& " + quoteOperand(valueToSetTo) + " = " + quoteOperand(stringToSet));
-                if (!shortPrint) {
-                    log.print("\t# ");
-                    log.print(latestAge(stringToSet) + " [");
-                    final String typeKD = ReorderingTokens.getTypesCombined(stringToSet);
-                    log.print(typeKD + "] ");
-                    log.print(
-                            Default.ucd().getCodeAndName(stringToSet)
-                                    + "\t→\t"
-                                    + Default.ucd().getCodeAndName(valueToSetTo));
-                }
+                        Default.ucd().getCodeAndName(stringToSet)
+                                + "\t→\t"
+                                + Default.ucd().getCodeAndName(valueToSetTo));
             }
             log.println();
         }
         // log.println("& [top]"); // RESET
-        if (option == IN_XML) {
-            log.println("</rules></collation>");
-        }
         log2.close();
         log.close();
         Utility.fixDot();
@@ -1435,7 +1346,6 @@ public class WriteCollationData {
     }
 
     private static final String[] RELATION_NAMES = {" <\t", "  <<\t", "   <<<\t", "    =\t"};
-    private static final String[] XML_RELATION_NAMES = {"p", "s", "t", "i"};
 
     private static class ArrayWrapper {
         int[] array;
