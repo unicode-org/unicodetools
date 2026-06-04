@@ -9,7 +9,6 @@
  */
 package org.unicode.text.UCD;
 
-import org.unicode.text.utility.DirectoryIterator;
 import org.unicode.text.utility.Utility;
 
 public final class Main {
@@ -98,16 +97,8 @@ public final class Main {
                     GenerateCaseTest.main(null);
                 } else if (arg.equalsIgnoreCase("breaktest")) {
                     GenerateBreakTest.main(null);
-                } else if (arg.equalsIgnoreCase("testDerivedProperties")) {
-                    DerivedProperty.test();
                 } else if (arg.equalsIgnoreCase("MakeUnicodeFiles")) {
                     MakeUnicodeFiles.main(new String[] {});
-                } else if (arg.equalsIgnoreCase("JavascriptProperties")) {
-                    WriteJavaScriptInfo.assigned();
-                } else if (arg.equalsIgnoreCase("TestDirectoryIterator")) {
-                    DirectoryIterator.test();
-                } else if (arg.equalsIgnoreCase("testnameuniqueness")) {
-                    TestNameUniqueness.checkNameList();
                 } else if (arg.equalsIgnoreCase("StandardizedVariants")) {
                     GenerateStandardizedVariants.generate();
 
