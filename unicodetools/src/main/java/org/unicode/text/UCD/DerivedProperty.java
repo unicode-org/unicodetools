@@ -1147,26 +1147,4 @@ public final class DerivedProperty implements UCD_Types {
     String fold(String s) {
         return ucdData.getCase(s, FULL, FOLD);
     }
-
-    public static void test() {
-        /*
-        DerivedProperty dprop = new DerivedProperty(Default.ucd);
-        for (int j = 0; j < LIMIT; ++j) {
-            System.out.println();
-            System.out.println(j + "\t" + dprop.getName(j));
-            System.out.println(dprop.getHeader(j));
-        }
-         */
-
-        for (int cp = 0xA0; cp < 0xFF; ++cp) {
-            System.out.println();
-            System.out.println(Default.ucd().getCodeAndName(cp));
-            for (int j = 0; j < DERIVED_PROPERTY_LIMIT; ++j) {
-                final String prop = make(j, Default.ucd()).getValue(cp);
-                if (prop.length() != 0) {
-                    System.out.println("\t" + prop);
-                }
-            }
-        }
-    }
 }
