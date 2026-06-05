@@ -10,8 +10,6 @@
 package org.unicode.text.UCD;
 
 public interface UCD_Types {
-    static final int FIX_FOR_NEW_VERSION = 0;
-
     static final byte BINARY_FORMAT = 23; // bumped if binary format of UCD changes. Forces rebuild
 
     public static final char DOTTED_CIRCLE = '\u25CC';
@@ -122,24 +120,6 @@ public interface UCD_Types {
             BINARY_PROP = 5,
             FLATTENED_BINARY_PROP = 6,
             UNKNOWN_PROP = 7;
-
-    /*
-     0    Code value in 4-digit hexadecimal format.
-     1    Unicode 2.1 Character Name. These names match exactly the
-     2    General Category. This is a useful breakdown into various "character
-     3    Canonical Combining Classes. The classes used for the
-     4    Bidirectional Category. See the list below for an explanation of the
-     5    Character Decomposition. In the Unicode Standard, not all of
-     6    Decimal digit value. This is a numeric field. If the character
-     7    Digit value. This is a numeric field. If the character represents a
-     8    Numeric value. This is a numeric field. If the character has the
-     9    If the characters has been identified as a "mirrored" character in
-    10    Unicode 1.0 Name. This is the old name as published in Unicode 1.0.
-    11    10646 Comment field. This field is informative.
-    12    Upper case equivalent mapping. If a character is part of an
-    13    Lower case equivalent mapping. Similar to 12. This field is informative.
-    14    Title case equivalent mapping. Similar to 12. This field is informative.
-        */
 
     // for IDs
     static final byte NUMBER = -2, SHORT = -1, NORMAL = 0, LONG = 1, BOTH = 2, EXTRA_ALIAS = 3;
@@ -288,29 +268,6 @@ public interface UCD_Types {
             ID_Compat_Math_Continue = 41,
             Modifier_Combining_Mark = 42,
             LIMIT_BINARY_PROPERTIES = 43;
-
-    /*
-    static final int
-        BidiMirroredMask = 1<<BidiMirrored,
-        CompositionExclusionMask = 1<<CompositionExclusion,
-        AlphabeticMask = 1<<Other_Alphabetic,
-        Bidi_ControlMask = 1<<Bidi_Control,
-        DashMask = 1<<Dash,
-        DiacriticMask = 1<<Diacritic,
-        ExtenderMask = 1<<Extender,
-        Hex_DigitMask = 1<<Hex_Digit,
-        HyphenMask = 1<<Hyphen,
-        IdeographicMask = 1<<Ideographic,
-        Join_ControlMask = 1<<Join_Control,
-        Math_PropertyMask = 1<<Math_Property,
-        Non_breakMask = 1<<Non_break,
-        Noncharacter_Code_PointMask = 1<<Noncharacter_Code_Point,
-        Other_LowercaseMask = 1<<Other_Lowercase,
-        Other_UppercaseMask = 1<<Other_Uppercase,
-        Quotation_MarkMask = 1<<Quotation_Mark,
-        Terminal_PunctuationMask = 1<<Terminal_Punctuation,
-        White_spaceMask = 1<<White_space;
-     */
 
     // line break
     public static final byte LB_XX = 0,
@@ -695,7 +652,6 @@ public interface UCD_Types {
     public static short NO_SHAPING = 0,
             LIMIT_JOINING_GROUP = (short) UCD_Names.JOINING_GROUP.length;
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;
-    public static final int NF_COMPATIBILITY_MASK = 2, NF_COMPOSITION_MASK = 1;
 
     // DERIVED PROPERTY
 
@@ -740,10 +696,6 @@ public interface UCD_Types {
             NFC_UnsafeStart = 38,
             NFKD_UnsafeStart = 39,
             NFKC_UnsafeStart = 40,
-            NFD_Skippable = 41,
-            NFC_Skippable = 42,
-            NFKD_Skippable = 43,
-            NFKC_Skippable = 44,
             Case_Sensitive = 45,
             DERIVED_PROPERTY_LIMIT = 46;
 }

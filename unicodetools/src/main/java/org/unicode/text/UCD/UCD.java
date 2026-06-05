@@ -37,7 +37,6 @@ import org.unicode.text.utility.Utility;
 
 public final class UCD implements UCD_Types {
 
-    static final boolean DEBUG = false;
     static final boolean SHOW_LOADING = false;
 
     /** Create singleton instance for default (latest) version */
@@ -186,23 +185,6 @@ public final class UCD implements UCD_Types {
         return "U+" + Utility.hex(codePoint);
     }
 
-    /** Get the code in U+ notation */
-    public static String getCode(String s) {
-        if (s.length() == 1) {
-            return getCode(s.charAt(0)); // fast path
-        }
-        final StringBuffer result = new StringBuffer();
-        int cp;
-        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = s.codePointAt(i);
-            if (i > 0) {
-                result.append(", ");
-            }
-            result.append(getCode(cp));
-        }
-        return result.toString();
-    }
-
     /** Get the name and number (U+xxxx NAME) for a code point */
     public String getCodeAndName(int codePoint, byte type) {
         return getCodeAndName(codePoint, type, null);
@@ -253,207 +235,6 @@ public final class UCD implements UCD_Types {
     /** Get the general category */
     public byte getCategory(int codePoint) {
         return get(codePoint, false).generalCategory;
-    }
-
-    private static final byte FAKE_SYMBOL = 57; // fake category for comparison
-    private static final byte FAKE_PUNCTUATION = 58; // fake category for comparison
-    private static final byte FAKE_SEPERATOR = 59; // fake category for comparison
-    private static final byte FAKE_NUMBER = 60; // fake category for comparison
-    private static final byte FAKE_MARK = 61; // fake category for comparison
-    private static final byte FAKE_LETTER = 62; // fake category for comparison
-    private static final byte FAKE_OTHER = 63; // fake category for comparison
-    private static final byte FAKENC = 31; // fake category for comparison
-
-    public byte getModCat(int cp, int collapseBits) {
-        byte cat = getCategory(cp);
-        if (cat == UNASSIGNED && isNoncharacter(cp)) {
-            cat = FAKENC;
-        } else if (((1 << cat) & collapseBits) != 0) {
-            switch (cat) {
-                case UNASSIGNED:
-                    cat = FAKE_OTHER;
-                    break;
-                case FAKENC:
-                    cat = FAKE_OTHER;
-                    break;
-
-                case UPPERCASE_LETTER:
-                    cat = FAKE_LETTER;
-                    break;
-                case LOWERCASE_LETTER:
-                    cat = FAKE_LETTER;
-                    break;
-                case TITLECASE_LETTER:
-                    cat = FAKE_LETTER;
-                    break;
-                case MODIFIER_LETTER:
-                    cat = FAKE_LETTER;
-                    break;
-                case OTHER_LETTER:
-                    cat = FAKE_LETTER;
-                    break;
-
-                case NON_SPACING_MARK:
-                    cat = FAKE_MARK;
-                    break;
-                case ENCLOSING_MARK:
-                    cat = FAKE_MARK;
-                    break;
-                case COMBINING_SPACING_MARK:
-                    cat = FAKE_MARK;
-                    break;
-
-                case DECIMAL_DIGIT_NUMBER:
-                    cat = FAKE_NUMBER;
-                    break;
-                case LETTER_NUMBER:
-                    cat = FAKE_NUMBER;
-                    break;
-                case OTHER_NUMBER:
-                    cat = FAKE_NUMBER;
-                    break;
-
-                case SPACE_SEPARATOR:
-                    cat = FAKE_SEPERATOR;
-                    break;
-                case LINE_SEPARATOR:
-                    cat = FAKE_SEPERATOR;
-                    break;
-                case PARAGRAPH_SEPARATOR:
-                    cat = FAKE_SEPERATOR;
-                    break;
-
-                case CONTROL:
-                    cat = FAKE_OTHER;
-                    break;
-                case FORMAT:
-                    cat = FAKE_OTHER;
-                    break;
-                case UNUSED_CATEGORY:
-                    cat = FAKE_OTHER;
-                    break;
-                case PRIVATE_USE:
-                    cat = FAKE_OTHER;
-                    break;
-                case SURROGATE:
-                    cat = FAKE_OTHER;
-                    break;
-
-                case DASH_PUNCTUATION:
-                    cat = FAKE_PUNCTUATION;
-                    break;
-                case START_PUNCTUATION:
-                    cat = FAKE_PUNCTUATION;
-                    break;
-                case END_PUNCTUATION:
-                    cat = FAKE_PUNCTUATION;
-                    break;
-                case CONNECTOR_PUNCTUATION:
-                    cat = FAKE_PUNCTUATION;
-                    break;
-                case OTHER_PUNCTUATION:
-                    cat = FAKE_PUNCTUATION;
-                    break;
-                case INITIAL_PUNCTUATION:
-                    cat = FAKE_PUNCTUATION;
-                    break;
-                case FINAL_PUNCTUATION:
-                    cat = FAKE_PUNCTUATION;
-                    break;
-
-                case MATH_SYMBOL:
-                    cat = FAKE_SYMBOL;
-                    break;
-                case CURRENCY_SYMBOL:
-                    cat = FAKE_SYMBOL;
-                    break;
-                case MODIFIER_SYMBOL:
-                    cat = FAKE_SYMBOL;
-                    break;
-                case OTHER_SYMBOL:
-                    cat = FAKE_SYMBOL;
-                    break;
-            }
-            if (collapseBits == -1) {
-                switch (cat) {
-                    case FAKE_MARK:
-                    case FAKE_NUMBER:
-                    case FAKE_SEPERATOR:
-                    case FAKE_PUNCTUATION:
-                    case FAKE_SYMBOL:
-                        cat = FAKE_LETTER;
-                        break;
-                }
-            }
-        }
-        return cat;
-    }
-
-    public String getModCatID_fromIndex(byte cat) {
-        switch (cat) {
-            case FAKE_SYMBOL:
-                return "S&";
-            case FAKE_PUNCTUATION:
-                return "P&";
-            case FAKE_SEPERATOR:
-                return "Z&";
-            case FAKE_NUMBER:
-                return "N&";
-            case FAKE_MARK:
-                return "M&";
-            case FAKE_LETTER:
-                return "L&";
-            case FAKE_OTHER:
-                return "C&";
-            case FAKENC:
-                return "NC";
-        }
-        return getCategoryID_fromIndex(cat);
-    }
-
-    /** Get the main category, as a mask */
-    public static int mainCategoryMask(byte cat) {
-        switch (cat) {
-            case Lu:
-            case Ll:
-            case Lt:
-            case Lm:
-            case Lo:
-                return LETTER_MASK;
-            case Mn:
-            case Me:
-            case Mc:
-                return MARK_MASK;
-            case Nd:
-            case Nl:
-            case No:
-                return NUMBER_MASK;
-            case Zs:
-            case Zl:
-            case Zp:
-                return SEPARATOR_MASK;
-            case Cc:
-            case Cf:
-            case Cs:
-            case Co:
-                return CONTROL_MASK;
-            case Pc:
-            case Pd:
-            case Ps:
-            case Pe:
-            case Po:
-            case Pi:
-            case Pf:
-                return PUNCTUATION_MASK;
-            case Sm:
-            case Sc:
-            case Sk:
-            case So:
-                return SYMBOL_MASK;
-            case Cn:
-                return UNASSIGNED_MASK;
-        }
-        throw new IllegalArgumentException("Illegal General Category " + cat);
     }
 
     /**
@@ -798,10 +579,6 @@ public final class UCD implements UCD_Types {
     }
      */
 
-    public String getSpecialCase(int codePoint) {
-        return get(codePoint, true).specialCasing;
-    }
-
     public byte getEastAsianWidth(int codePoint) {
         //      if (0x30000 <= codepoint && codepoint <= 0x3FFFD) return EAW;
         return get(codePoint, false).eastAsianWidth;
@@ -859,10 +636,6 @@ public final class UCD implements UCD_Types {
         return get(codePoint, false).joiningGroup;
     }
 
-    public long getBinaryProperties(int codePoint) {
-        return get(codePoint, false).binaryProperties;
-    }
-
     public boolean getBinaryProperty(int codePoint, int bit) {
         return (get(codePoint, false).binaryProperties & (1L << bit)) != 0;
     }
@@ -871,42 +644,6 @@ public final class UCD implements UCD_Types {
 
     public int getCategoryMask(int codePoint) {
         return 1 << get(codePoint, false).generalCategory;
-    }
-
-    public int getBidiClassMask(int codePoint) {
-        return 1 << get(codePoint, false).bidiClass;
-    }
-
-    public int getNumericTypeMask(int codePoint) {
-        return 1 << getNumericType(codePoint);
-    }
-
-    public int getDecompositionTypeMask(int codePoint) {
-        return 1 << get(codePoint, false).decompositionType;
-    }
-
-    public int getEastAsianWidthMask(int codePoint) {
-        return 1 << get(codePoint, false).eastAsianWidth;
-    }
-
-    public int getLineBreakMask(int codePoint) {
-        return 1 << get(codePoint, false).lineBreak;
-    }
-
-    public int getScriptMask(int codePoint) {
-        return 1 << get(codePoint, false).script;
-    }
-
-    public int getAgeMask(int codePoint) {
-        return 1 << get(codePoint, false).age;
-    }
-
-    public int getJoiningTypeMask(int codePoint) {
-        return 1 << get(codePoint, false).joiningType;
-    }
-
-    public int getJoiningGroupMask(int codePoint) {
-        return 1 << get(codePoint, false).joiningGroup;
     }
 
     // VERSIONS WITH NAMES
@@ -931,18 +668,6 @@ public final class UCD implements UCD_Types {
                         : (style != LONG)
                                 ? UCD_Names.GENERAL_CATEGORY[prop]
                                 : UCD_Names.LONG_GENERAL_CATEGORY[prop];
-    }
-
-    public String getCombiningClassID(int codePoint) {
-        return getCombiningClassID(codePoint, NORMAL);
-    }
-
-    public String getCombiningClassID(int codePoint, byte style) {
-        return getCombiningClassID_fromIndex(getCombiningClass(codePoint), style);
-    }
-
-    public static String getCombiningClassID_fromIndex(short cc) {
-        return getCombiningClassID_fromIndex(cc, NORMAL);
     }
 
     static String getCombiningClassID_fromIndex(short index, byte style) {
@@ -987,26 +712,10 @@ public final class UCD implements UCD_Types {
                          */
     }
 
-    public String getBidiClassID(int codePoint) {
-        return getBidiClassID_fromIndex(getBidiClass(codePoint));
-    }
-
-    public static String getBidiClassID_fromIndex(short prop) {
-        return getBidiClassID_fromIndex(prop, NORMAL);
-    }
-
     public static String getBidiClassID_fromIndex(short prop, byte style) {
         return prop < 0 || prop >= UCD_Names.BIDI_CLASS.length
                 ? null
                 : style == SHORT ? UCD_Names.BIDI_CLASS[prop] : UCD_Names.LONG_BIDI_CLASS[prop];
-    }
-
-    public String getDecompositionTypeID(int codePoint) {
-        return getDecompositionTypeID_fromIndex(getDecompositionType(codePoint));
-    }
-
-    public static String getDecompositionTypeID_fromIndex(short prop) {
-        return getDecompositionTypeID_fromIndex(prop, NORMAL);
     }
 
     public static String getDecompositionTypeID_fromIndex(short prop, byte style) {
@@ -1017,26 +726,10 @@ public final class UCD implements UCD_Types {
                         : UCD_Names.LONG_DECOMPOSITION_TYPE[prop];
     }
 
-    public String getNumericTypeID(int codePoint) {
-        return getNumericTypeID_fromIndex(getNumericType(codePoint));
-    }
-
-    public static String getNumericTypeID_fromIndex(short prop) {
-        return getNumericTypeID_fromIndex(prop, NORMAL);
-    }
-
     public static String getNumericTypeID_fromIndex(short prop, byte style) {
         return prop < 0 || prop >= UCD_Names.LONG_NUMERIC_TYPE.length
                 ? null
                 : style == SHORT ? UCD_Names.NUMERIC_TYPE[prop] : UCD_Names.LONG_NUMERIC_TYPE[prop];
-    }
-
-    public String getEastAsianWidthID(int codePoint) {
-        return getEastAsianWidthID_fromIndex(getEastAsianWidth(codePoint));
-    }
-
-    public static String getEastAsianWidthID_fromIndex(short prop) {
-        return getEastAsianWidthID_fromIndex(prop, NORMAL);
     }
 
     public static String getEastAsianWidthID_fromIndex(short prop, byte style) {
@@ -1047,40 +740,16 @@ public final class UCD implements UCD_Types {
                         : UCD_Names.LONG_EAST_ASIAN_WIDTH[prop];
     }
 
-    public String getLineBreakID(int codePoint) {
-        return getLineBreakID_fromIndex(getLineBreak(codePoint));
-    }
-
-    public static String getLineBreakID_fromIndex(short prop) {
-        return getLineBreakID_fromIndex(prop, NORMAL);
-    }
-
     public static String getLineBreakID_fromIndex(short prop, byte style) {
         return prop < 0 || prop >= UCD_Names.LINE_BREAK.length
                 ? null
                 : style != LONG ? UCD_Names.LINE_BREAK[prop] : UCD_Names.LONG_LINE_BREAK[prop];
     }
 
-    public String getJoiningTypeID(int codePoint) {
-        return getJoiningTypeID_fromIndex(getJoiningType(codePoint));
-    }
-
-    public static String getJoiningTypeID_fromIndex(short prop) {
-        return getJoiningTypeID_fromIndex(prop, NORMAL);
-    }
-
     public static String getJoiningTypeID_fromIndex(short prop, byte style) {
         return prop < 0 || prop >= UCD_Names.JOINING_TYPE.length
                 ? null
                 : style != LONG ? UCD_Names.JOINING_TYPE[prop] : UCD_Names.LONG_JOINING_TYPE[prop];
-    }
-
-    public String getJoiningGroupID(int codePoint) {
-        return getJoiningGroupID_fromIndex(getJoiningGroup(codePoint));
-    }
-
-    public static String getJoiningGroupID_fromIndex(short prop) {
-        return getJoiningGroupID_fromIndex(prop, NORMAL);
     }
 
     public static String getJoiningGroupID_fromIndex(short prop, byte style) {
@@ -1118,11 +787,6 @@ public final class UCD implements UCD_Types {
         return getBidi_Paired_Bracket_TypeID_fromIndex(getBidi_Paired_Bracket_Type(codePoint));
     }
 
-    public String getBidi_Paired_Bracket_TypeID(int codePoint, byte length) {
-        return getBidi_Paired_Bracket_TypeID_fromIndex(
-                getBidi_Paired_Bracket_Type(codePoint), length);
-    }
-
     public static String getBidi_Paired_Bracket_TypeID_fromIndex(short prop) {
         return getBidi_Paired_Bracket_TypeID_fromIndex(prop, NORMAL);
     }
@@ -1139,10 +803,6 @@ public final class UCD implements UCD_Types {
         return getVertical_OrientationID_fromIndex(getVertical_Orientation(codePoint));
     }
 
-    public String getVertical_OrientationID(int codePoint, byte length) {
-        return getVertical_OrientationID_fromIndex(getVertical_Orientation(codePoint), length);
-    }
-
     public static String getVertical_OrientationID_fromIndex(short prop) {
         return getVertical_OrientationID_fromIndex(prop, NORMAL);
     }
@@ -1155,10 +815,6 @@ public final class UCD implements UCD_Types {
                         : UCD_Names.Vertical_Orientation[prop];
     }
 
-    public String getAgeID(int codePoint) {
-        return getAgeID_fromIndex(getAge(codePoint));
-    }
-
     public static String getAgeID_fromIndex(short prop) {
         return getAgeID_fromIndex(prop, NORMAL);
     }
@@ -1168,14 +824,6 @@ public final class UCD implements UCD_Types {
         return prop < 0 || prop >= UCD_Names.SHORT_AGE.length
                 ? null
                 : style == SHORT ? UCD_Names.SHORT_AGE[prop] : UCD_Names.LONG_AGE[prop];
-    }
-
-    public String getBinaryPropertiesID(int codePoint, byte bit) {
-        return getBinaryProperty(codePoint, bit) ? UCD_Names.YN_TABLE[1] : UCD_Names.YN_TABLE[0];
-    }
-
-    public static String getBinaryPropertiesID_fromIndex(byte bit) {
-        return getBinaryPropertiesID_fromIndex(bit, NORMAL);
     }
 
     public static String getBinaryPropertiesID_fromIndex(byte bit, byte style) {
@@ -1647,8 +1295,6 @@ public final class UCD implements UCD_Types {
         }
          */
 
-        UData result = null;
-
         // do range stuff
         String constructedName = null;
         final int rangeStart = mapToRepresentative(codePoint, compositeVersion);
@@ -1753,7 +1399,7 @@ public final class UCD implements UCD_Types {
                 isRemapped = true;
                 break;
         }
-        result = getRaw(rangeStart);
+        UData result = getRaw(rangeStart);
         if (result == null) {
             result = UData.UNASSIGNED;
             isRemapped = true;
@@ -1869,14 +1515,6 @@ public final class UCD implements UCD_Types {
 
     private static final char[] pair = new char[2];
 
-    static boolean isDoubleHangul(int s) {
-        final int SIndex = s - SBase;
-        if (0 > SIndex || SIndex >= SCount) {
-            throw new IllegalArgumentException("Not a Hangul Syllable: " + s);
-        }
-        return (SIndex % TCount) == 0;
-    }
-
     static String getHangulDecompositionPair(int ch) {
         final int SIndex = ch - SBase;
         if (0 > SIndex || SIndex >= SCount) {
@@ -1893,52 +1531,12 @@ public final class UCD implements UCD_Types {
         return String.valueOf(pair);
     }
 
-    public static boolean isModernJamo(int cp) {
-        return LBase <= cp && cp < LLimit
-                || VBase <= cp && cp < VLimit
-                || TBase2 <= cp && cp < TLimit;
-    }
-
-    static int composeHangul(int char1, int char2) {
-        if (LBase <= char1 && char1 < LLimit && VBase <= char2 && char2 < VLimit) {
-            return (SBase + ((char1 - LBase) * VCount + (char2 - VBase)) * TCount);
-        }
-        if (SBase <= char1
-                && char1 < SLimit
-                && TBase2 <= char2
-                && char2 < TLimit
-                && ((char1 - SBase) % TCount) == 0) {
-            return char1 + (char2 - TBase);
-        }
-        return 0xFFFF; // no composition
-    }
-
     public static boolean isHangulSyllable(int char1) {
         return SBase <= char1 && char1 < SLimit;
     }
 
-    static boolean isLeadingJamoComposition(int char1) {
-        return isLeadingJamo(char1) || isLV(char1);
-    }
-
     static boolean isLV(int char1) {
         return (SBase <= char1 && char1 < SLimit && ((char1 - SBase) % TCount) == 0);
-    }
-
-    static boolean isVowelJamo(int cp) {
-        return (VBase <= cp && cp < VLimit);
-    }
-
-    static boolean isTrailingJamo(int cp) {
-        return (TBase2 <= cp && cp < TLimit);
-    }
-
-    static boolean isLeadingJamo(int cp) {
-        return (LBase <= cp && cp < LLimit);
-    }
-
-    static boolean isNonLeadJamo(int cp) {
-        return (VBase <= cp && cp < VLimit) || (TBase2 <= cp && cp < TLimit);
     }
 
     byte getHangulSyllableType(int cp) {
@@ -2022,7 +1620,7 @@ public final class UCD implements UCD_Types {
             if (format != BINARY_FORMAT || !version.equals(foundVersion)) {
                 throw new ChainException(
                         "Illegal data file format for {0}: {1}, {2}",
-                        new Object[] {version, new Byte(format), foundVersion});
+                        new Object[] {version, format, foundVersion});
             }
             date = dataIn.readLong();
             int uDataFileCount = dataIn.readInt();
@@ -2123,15 +1721,6 @@ public final class UCD implements UCD_Types {
             loadBlocks();
         }
         return blockData.getAvailableValues(result);
-    }
-
-    public String[][] getBlockNameList() {
-        final List<String> blockNames = getBlockNames();
-        final String[][] result = new String[blockNames.size()][2];
-        for (int i = 0; i < blockNames.size(); ++i) {
-            result[i][0] = blockNames.get(i);
-        }
-        return result;
     }
 
     public String[][] getBlockNameLists() {
@@ -2329,20 +1918,5 @@ public final class UCD implements UCD_Types {
             result.append(scriptId);
         }
         return result.toString();
-    }
-
-    public boolean isNew(int codepoint, UCD lastUCDVersion) {
-        return isAllocated(codepoint) && !lastUCDVersion.isAllocated(codepoint);
-    }
-
-    public boolean isNew(String s, UCD lastUCDVersion) {
-        int cp;
-        for (int i = 0; i < s.length(); ++i) {
-            cp = s.codePointAt(i);
-            if (isNew(cp, lastUCDVersion)) {
-                return true;
-            }
-        }
-        return false;
     }
 }
