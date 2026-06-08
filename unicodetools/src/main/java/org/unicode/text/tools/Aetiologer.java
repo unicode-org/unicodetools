@@ -80,7 +80,7 @@ public class Aetiologer {
           final var oldProperty = previouIUP.getProperty(property);
           for (int cp : codePointsMentioned.codePoints()) {
             if (Objects.equals(oldProperty.getValue(cp), newProperty.getValue(cp))) {
-              System.out.println("Not " + property + ": value did not change for " + Utility.hex(cp) + " in " + iup.getUcdVersion()):
+              System.out.println("Not " + property + ": value did not change for " + Utility.hex(cp) + " in " + iup.getUcdVersion());
             }
           }
         }
