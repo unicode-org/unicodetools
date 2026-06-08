@@ -14,6 +14,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -22,9 +23,9 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import org.unicode.props.DerivedPropertyStatus;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Settings;
@@ -36,7 +37,8 @@ public class Aetiologer {
                     .setLocale(ULocale.ENGLISH)
                     .setSegmentationType(SegmentationType.WORD)
                     .build();
-    private static final Pattern UTC_DESIGNATION = Pattern.compile("\\[(\\d+-[A-Z]\\d+[a-z]*)\\]");
+    private static final Pattern UTC_DESIGNATION =
+            Pattern.compile("\\[((\\d+)-[A-Z]\\d+[a-z]*)\\]");
     private static final Pattern TARGET_VERSION =
             Pattern.compile("Unicode\\s+(?:[Vv]ersion\\s+)?(\\d+(?:\\.\\d+)*)");
     private static final Pattern CODE_POINTS =
@@ -44,12 +46,72 @@ public class Aetiologer {
                     "(?:U\\+)?([0-9A-F]{4}|(?:[1-9A-F]|10)[0-9A-F]{4})(?:\\.\\.(?:U\\+)?([0-9A-F]{4}|(?:[1-9A-F]|10)[0-9A-F]{4}))?");
 
     public static final void main(String[] args) throws IOException {
+        final var argSet = new HashSet<>(Arrays.asList(args));
         final Set<String> aliases = new HashSet<>();
+        final Map<VersionInfo, UnicodeSet> unassigned = new TreeMap<>();
+        final Map<Integer, Set<VersionInfo>> utcToVersions = new TreeMap<>();
+        for (final var version : Utility.UNICODE_VERSIONS) {
+            if (version.equals(VersionInfo.getInstance(13, 1))) {
+                continue; // https://github.com/unicode-org/unicodetools/issues/100.
+            }
+            unassigned.put(
+                    version,
+                    IndexUnicodeProperties.make(version)
+                            .getProperty(UcdProperty.General_Category)
+                            .getSet("Cn"));
+        }
+        final Map<VersionInfo, Map<UcdProperty, UnicodeMap<List<String>>>> reasons =
+                new TreeMap<>();
         for (final var property : UcdProperty.values()) {
-            if (property.getDerivedStatus() == DerivedPropertyStatus.Approved) {
-                for (final var name : property.getNames().getAllNames()) {
-                    aliases.add(name);
-                }
+            switch (property.getDerivedStatus()) {
+                case Approved:
+                // case Provisional:
+                case NonUCDProperty:
+                    for (final var name : property.getNames().getAllNames()) {
+                        aliases.add(name);
+                    }
+                    if (!argSet.contains("--compute-unexplained")) {
+                        continue;
+                    }
+                    IndexUnicodeProperties newerIUP = null;
+                    VersionInfo newerVersion = null;
+                    System.out.println("Computing changes for " + property + "...");
+                    // UNICODE_VERSION is in reverse chronological order.
+                    for (final var olderVersion : Utility.UNICODE_VERSIONS) {
+                        if (olderVersion.equals(VersionInfo.getInstance(13, 1))) {
+                            continue; // https://github.com/unicode-org/unicodetools/issues/100.
+                        }
+                        final var olderIUP = IndexUnicodeProperties.make(olderVersion);
+                        final var olderProperty = olderIUP.getProperty(property);
+                        if (olderProperty.isTrivial()) {
+                            // If there are property changes, they would be as part of property
+                            // creation.
+                            continue;
+                        }
+                        if (newerIUP != null) {
+                            final var newerProperty = newerIUP.getProperty(property);
+                            final UnicodeSet Δ = new UnicodeSet();
+                            for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+                                if (!Objects.equals(
+                                        olderProperty.getValue(cp), newerProperty.getValue(cp))) {
+                                    if (unassigned.get(olderVersion).contains(cp)
+                                            && !unassigned.get(newerVersion).contains(cp)) {
+                                        // Property change as part of assignment.
+                                        continue;
+                                    }
+                                    Δ.add(cp);
+                                }
+                            }
+                            reasons.computeIfAbsent(newerVersion, (v) -> new TreeMap<>())
+                                    .computeIfAbsent(property, (p) -> new UnicodeMap<>())
+                                    .putAll(Δ, List.of());
+                        }
+                        newerIUP = olderIUP;
+                        newerVersion = olderVersion;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
         final String resources =
@@ -57,8 +119,8 @@ public class Aetiologer {
         final var actionsFile =
                 new BufferedReader(new FileReader(new File(resources + "actions.txt")));
         final Map<String, String> actions = new HashMap<>();
-        final Map<VersionInfo, Map<UcdProperty, UnicodeMap<List<String>>>> reasons =
-                new TreeMap<>();
+        final List<String> actionsWithNoTarget = new ArrayList<>();
+        int lastUTC = 0;
         for (String line = actionsFile.readLine(); line != null; line = actionsFile.readLine()) {
             final var designation = UTC_DESIGNATION.matcher(line);
             if (!designation.find()) {
@@ -66,6 +128,7 @@ public class Aetiologer {
             }
             final var target = TARGET_VERSION.matcher(line);
             if (!target.find()) {
+                actionsWithNoTarget.add(line);
                 continue;
             }
             var version = VersionInfo.getInstance(target.group(1));
@@ -81,115 +144,190 @@ public class Aetiologer {
                 System.out.println(
                         "Interpreting action for " + target.group(1) + " as targeting " + version);
             }
-            final var iup = IndexUnicodeProperties.make(version);
-            // Skip 13.1.0, see https://github.com/unicode-org/unicodetools/issues/100.
-            final var previous =
-                    version.equals(VersionInfo.UNICODE_14_0)
-                            ? Utility.getVersionPreceding(Utility.getVersionPreceding(version))
-                            : Utility.getVersionPreceding(version);
-            final var previousIUP = IndexUnicodeProperties.make(previous);
-            Iterable<Segment> words =
-                    WORD_BREAK.segment(line.split("\\]", 2)[1].replace("-", "_")).segments()
-                            ::iterator;
-            Set<UcdProperty> candidateProperties = new TreeSet<>();
-            final var codePointsMentioned = new UnicodeSet();
-            for (final var segment : words) {
-                if (aliases.contains(segment.getSubSequence())) {
-                    candidateProperties.add(
-                            UcdProperty.forString((String) segment.getSubSequence()));
-                }
-                final var range = CODE_POINTS.matcher(segment.getSubSequence());
-                if (range.matches()) {
-                    if (range.group(2) != null) {
-                        codePointsMentioned.add(
-                                Utility.codePointFromHex(range.group(1)),
-                                Utility.codePointFromHex(range.group(2)));
-                    } else {
-                        codePointsMentioned.add(Utility.codePointFromHex(range.group(1)));
-                    }
-                }
-            }
-            // Find mentions of "general category" for General_Category, "linebreak class" or "line
-            // break class" for Line_Break, etc.
-            for (final var alias : aliases) {
-                if (alias.contains("_")
-                        && line.toLowerCase()
-                                .replace(" ", "")
-                                .contains(alias.toLowerCase().replace("_", ""))) {
-                    candidateProperties.add(UcdProperty.forString(alias));
-                }
-            }
-            if (candidateProperties.isEmpty() || codePointsMentioned.isEmpty()) {
-                continue;
-            }
-            System.out.println(line);
-            properties:
-            for (final var property : candidateProperties) {
-                final var newProperty = iup.getProperty(property);
-                final var oldProperty = previousIUP.getProperty(property);
-                for (int cp : codePointsMentioned.codePoints()) {
-                    if (Objects.equals(oldProperty.getValue(cp), newProperty.getValue(cp))) {
-                        System.out.println(
-                                "    Not "
-                                        + property
-                                        + ": value did not change for "
-                                        + Utility.hex(cp)
-                                        + " in "
-                                        + version);
-                        continue properties;
-                    }
-                }
-                System.out.println("    Could be " + property);
+            final boolean isReason =
+                    AnalyseAction(line, version, aliases, actions, designation, reasons);
+            if (isReason) {
                 actions.put(designation.group(1), line);
-                for (int cp : codePointsMentioned.codePoints()) {
-                    final var unicodeMap =
-                            reasons.computeIfAbsent(version, (v) -> new TreeMap<>())
-                                    .computeIfAbsent(property, (p) -> new UnicodeMap<>());
-                    List<String> reasonList = unicodeMap.get(cp);
-                    if (reasonList == null) {
-                        reasonList = new ArrayList<>();
-                    } else {
-                        reasonList = new ArrayList<>(reasonList);
-                    }
-                    reasonList.add(designation.group(1));
-                    unicodeMap.put(cp, reasonList);
-                }
+                lastUTC = Integer.parseInt(designation.group(2));
+                utcToVersions.computeIfAbsent(lastUTC, (meeting) -> new TreeSet<>()).add(version);
             }
         }
         actionsFile.close();
-        final var reasonsFile = new PrintStream(new File(resources + "reasons.txt"));
+        Set<VersionInfo> lastTargetSet = null;
+        utcToVersions.put(108, Set.of(VersionInfo.UNICODE_5_1));
+        utcToVersions.put(116, Set.of(VersionInfo.UNICODE_5_2));
+        utcToVersions.put(119, Set.of(VersionInfo.UNICODE_5_2, VersionInfo.UNICODE_6_0));
+        utcToVersions.put(136, Set.of(VersionInfo.UNICODE_6_3, VersionInfo.UNICODE_7_0));
+        for (int i = utcToVersions.keySet().iterator().next(); i <= lastUTC; ++i) {
+            final var targetSet = utcToVersions.get(i);
+            if (targetSet != null) {
+                System.out.println(
+                        "UTC #"
+                                + i
+                                + " targets "
+                                + targetSet.stream()
+                                        .map(v -> v.getVersionString(2, 3))
+                                        .collect(Collectors.joining(" ")));
+                if (i == 183) {
+                    System.out.println("Excluding 10.0 for target inference");
+                    // A 10.0 with a correctly deduced reason in a UTC #183 note (183-N5), but we
+                    // should not assign random 10.0 changes to untargeted decisions at UTC #183.
+                    targetSet.remove(VersionInfo.UNICODE_10_0);
+                }
+                lastTargetSet = targetSet;
+            } else {
+                utcToVersions.put(i, new TreeSet<>(lastTargetSet));
+                System.out.println("Inferring that UTC #" + i + " targets the same");
+            }
+        }
+        for (final String line : actionsWithNoTarget) {
+            final var designation = UTC_DESIGNATION.matcher(line);
+            if (!designation.find()) {
+                continue;
+            }
+            final int utcNumber = Integer.parseInt(designation.group(2));
+            for (final var version : utcToVersions.get(utcNumber)) {
+              if (AnalyseAction(line, version, aliases, actions, designation, reasons)) {
+                  actions.put(designation.group(1), line);
+              }              
+            }
+        }
+        PrintStream reasonsFile;
+        if (argSet.contains("--compute-unexplained")) {
+          reasonsFile = new PrintStream(new File(resources + "reasons_unknown.txt"));
+          for (final var versionReasons : reasons.entrySet()) {
+              final var version = versionReasons.getKey();
+              for (final var propertyReasons : versionReasons.getValue().entrySet()) {
+                  final var property = propertyReasons.getKey();
+                  final var unicodeMap = propertyReasons.getValue();
+                  for (final var value : unicodeMap.getAvailableValues()) {
+                      if (value == null) {
+                          continue;
+                      }
+                      if (value.isEmpty()) {
+                          reasonsFile.println(
+                                  version.getVersionString(2, 3)
+                                          + " ; "
+                                          + property
+                                          + " ; "
+                                          + unicodeMap.getSet(value)
+                                          + " ; # Yet unexplained");
+                      }
+                  }
+              }
+          }
+          reasonsFile.close();
+        }
+        reasonsFile = new PrintStream(new File(resources + "reasons_auto.txt"));
         for (final var versionReasons : reasons.entrySet()) {
             final var version = versionReasons.getKey();
             for (final var propertyReasons : versionReasons.getValue().entrySet()) {
                 final var property = propertyReasons.getKey();
                 final var unicodeMap = propertyReasons.getValue();
-                List<String> previousActions = List.of();
-                for (int i = 0; i < unicodeMap.getRangeCount(); ++i) {
-                    if (unicodeMap.getRangeValue(i) == null) {
+                for (final var value : unicodeMap.getAvailableValues()) {
+                    if (value == null) {
                         continue;
                     }
-                    if (!previousActions.equals(unicodeMap.getRangeValue(i))) {
-                        for (var action : unicodeMap.getRangeValue(i)) {
-                            reasonsFile.println("# " + actions.get(action));
-                        }
+                    if (value.isEmpty()) {
+                        continue;
                     }
-                    previousActions = unicodeMap.getRangeValue(i);
+                    for (var action : value) {
+                        reasonsFile.println("# " + actions.get(action));
+                    }
                     reasonsFile.println(
                             version.getVersionString(2, 3)
                                     + " ; "
                                     + property
                                     + " ; "
-                                    + (unicodeMap.getRangeStart(i) == unicodeMap.getRangeEnd(i)
-                                            ? Utility.hex(unicodeMap.getRangeStart(i))
-                                            : (Utility.hex(unicodeMap.getRangeStart(i))
-                                                    + ".."
-                                                    + Utility.hex(unicodeMap.getRangeEnd(i))))
+                                    + unicodeMap.getSet(value)
                                     + " ; "
-                                    + unicodeMap.getRangeValue(i).stream()
-                                            .collect(Collectors.joining(" ")));
+                                    + value.stream().collect(Collectors.joining(" ")));
                 }
             }
         }
         reasonsFile.close();
+    }
+
+    private static boolean AnalyseAction(
+            String line,
+            VersionInfo version,
+            Set<String> aliases,
+            Map<String, String> actions,
+            Matcher designation,
+            Map<VersionInfo, Map<UcdProperty, UnicodeMap<List<String>>>> reasons) {
+        final var iup = IndexUnicodeProperties.make(version);
+        // Skip 13.1.0, see https://github.com/unicode-org/unicodetools/issues/100.
+        final var previous =
+                version.equals(VersionInfo.UNICODE_14_0)
+                        ? Utility.getVersionPreceding(Utility.getVersionPreceding(version))
+                        : Utility.getVersionPreceding(version);
+        final var previousIUP = IndexUnicodeProperties.make(previous);
+        Iterable<Segment> words =
+                WORD_BREAK.segment(line.split("\\]", 2)[1].replace("-", "_")).segments()::iterator;
+        Set<UcdProperty> candidateProperties = new TreeSet<>();
+        final var codePointsMentioned = new UnicodeSet();
+        for (final var segment : words) {
+            if (aliases.contains(segment.getSubSequence())) {
+                candidateProperties.add(UcdProperty.forString((String) segment.getSubSequence()));
+            }
+            final var range = CODE_POINTS.matcher(segment.getSubSequence());
+            if (range.matches()) {
+                if (range.group(2) != null) {
+                    codePointsMentioned.add(
+                            Utility.codePointFromHex(range.group(1)),
+                            Utility.codePointFromHex(range.group(2)));
+                } else {
+                    codePointsMentioned.add(Utility.codePointFromHex(range.group(1)));
+                }
+            }
+        }
+        // Find mentions of "general category" for General_Category, "linebreak class" or "line
+        // break class" for Line_Break, etc.
+        for (final var alias : aliases) {
+            if (alias.contains("_")
+                    && line.toLowerCase()
+                            .replace(" ", "")
+                            .contains(alias.toLowerCase().replace("_", ""))) {
+                candidateProperties.add(UcdProperty.forString(alias));
+            }
+        }
+        if (candidateProperties.isEmpty() || codePointsMentioned.isEmpty()) {
+            return false;
+        }
+        System.out.println(line);
+        boolean isReason = false;
+        properties:
+        for (final var property : candidateProperties) {
+            final var newProperty = iup.getProperty(property);
+            final var oldProperty = previousIUP.getProperty(property);
+            for (int cp : codePointsMentioned.codePoints()) {
+                if (Objects.equals(oldProperty.getValue(cp), newProperty.getValue(cp))) {
+                    System.out.println(
+                            "    Not "
+                                    + property
+                                    + ": value did not change for "
+                                    + Utility.hex(cp)
+                                    + " in "
+                                    + version);
+                    continue properties;
+                }
+            }
+            isReason = true;
+            System.out.println("    Could be " + property);
+            for (int cp : codePointsMentioned.codePoints()) {
+                final var unicodeMap =
+                        reasons.computeIfAbsent(version, (v) -> new TreeMap<>())
+                                .computeIfAbsent(property, (p) -> new UnicodeMap<>());
+                List<String> reasonList = unicodeMap.get(cp);
+                if (reasonList == null) {
+                    reasonList = new ArrayList<>();
+                } else {
+                    reasonList = new ArrayList<>(reasonList);
+                }
+                reasonList.add(designation.group(1));
+                unicodeMap.put(cp, reasonList);
+            }
+        }
+        return isReason;
     }
 }
