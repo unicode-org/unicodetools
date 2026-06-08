@@ -57,6 +57,7 @@ import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.text.tools.Aetiologer;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -1789,6 +1790,16 @@ public class UnicodeUtilities {
             ArrayList<String> values;
             boolean isDefault;
             int span;
+
+            List<String> getReasons() throws IOException {
+                final var versionReasons = Aetiologer.getReasons().get(first);
+                if (versionReasons == null) { return List.of(); }
+                final var propertyReasons = versionReasons.get(indexedProperty);
+                if (propertyReasons == null) {return List.of(); }
+                final var reasons = propertyReasons.get(codePoint);
+                if (reasons == null) {return List.of();}
+                return reasons;
+            }
         }
         final boolean isMultivalued = getFactory().getProperty(propName).isMultivalued();
         final boolean isStringValued =
@@ -1941,6 +1952,8 @@ public class UnicodeUtilities {
                                                         Collectors.joining("<wbr>|&#x2060;"))
                                                 + (isNew ? "</span>" : "")
                                         : "")
+                                + (assignment.getReasons().isEmpty() ? ""
+                                : ("<sup>{" + assignment.getReasons().stream().map(l2ref -> "<a href=https://www.unicode.org/cgi-bin/GetL2Ref.pl?" + l2ref + ">" + l2ref + "</a>").collect(Collectors.joining(" ")) + "}</sup>"))
                                 + "</td>");
             }
             out.append("</tr>");

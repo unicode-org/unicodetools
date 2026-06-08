@@ -44,6 +44,8 @@ public class Aetiologer {
     private static final Pattern CODE_POINTS =
             Pattern.compile(
                     "(?:U\\+)?([0-9A-F]{4}|(?:[1-9A-F]|10)[0-9A-F]{4})(?:\\.\\.(?:U\\+)?([0-9A-F]{4}|(?:[1-9A-F]|10)[0-9A-F]{4}))?");
+    private static final String RESOURCES =
+                Settings.UnicodeTools.UNICODETOOLS_RSRC_DIR + "org/unicode/text/tools/";                    
 
     public static final void main(String[] args) throws IOException {
         final var argSet = new HashSet<>(Arrays.asList(args));
@@ -114,10 +116,8 @@ public class Aetiologer {
                     break;
             }
         }
-        final String resources =
-                Settings.UnicodeTools.UNICODETOOLS_RSRC_DIR + "org/unicode/text/tools/";
         final var actionsFile =
-                new BufferedReader(new FileReader(new File(resources + "actions.txt")));
+                new BufferedReader(new FileReader(new File(RESOURCES + "actions.txt")));
         final Map<String, String> actions = new HashMap<>();
         final List<String> actionsWithNoTarget = new ArrayList<>();
         int lastUTC = 0;
@@ -194,7 +194,7 @@ public class Aetiologer {
         }
         PrintStream reasonsFile;
         if (argSet.contains("--compute-unexplained")) {
-          reasonsFile = new PrintStream(new File(resources + "reasons_unknown.txt"));
+          reasonsFile = new PrintStream(new File(RESOURCES + "reasons_unknown.txt"));
           for (final var versionReasons : reasons.entrySet()) {
               final var version = versionReasons.getKey();
               for (final var propertyReasons : versionReasons.getValue().entrySet()) {
@@ -218,7 +218,7 @@ public class Aetiologer {
           }
           reasonsFile.close();
         }
-        reasonsFile = new PrintStream(new File(resources + "reasons_auto.txt"));
+        reasonsFile = new PrintStream(new File(RESOURCES + "reasons_auto.txt"));
         for (final var versionReasons : reasons.entrySet()) {
             final var version = versionReasons.getKey();
             for (final var propertyReasons : versionReasons.getValue().entrySet()) {
@@ -329,5 +329,27 @@ public class Aetiologer {
             }
         }
         return isReason;
+    }
+
+    private static Map<VersionInfo, Map<UcdProperty, UnicodeMap<List<String>>>> reasons = null;
+    public static Map<VersionInfo, Map<UcdProperty, UnicodeMap<List<String>>>> getReasons() throws IOException {
+      if (reasons == null) {
+        reasons = new TreeMap<>();
+        final var file = new BufferedReader(new FileReader(new File(RESOURCES + "reasons.txt")));
+        for (String line = file.readLine(); line != null; line = file.readLine()) {
+          line = line.split("#", 2)[0].trim();
+          if (line.isEmpty()) {
+            continue;
+          }
+          final var fields = line.split("\\s*;\\s*");
+          final var version = VersionInfo.getInstance(fields[0]);
+          final var property = UcdProperty.forString(fields[1]);
+          final var set = new UnicodeSet(fields[2]);
+          final var actions = Arrays.asList(fields[3].split("\\s+"));
+          reasons.computeIfAbsent(version, v -> new TreeMap<>()).computeIfAbsent(property, p -> new UnicodeMap<>()).putAll(set, actions);
+        }
+        file.close();
+      }
+      return reasons;
     }
 }
