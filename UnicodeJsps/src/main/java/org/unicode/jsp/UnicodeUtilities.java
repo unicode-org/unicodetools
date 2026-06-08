@@ -1792,12 +1792,21 @@ public class UnicodeUtilities {
             int span;
 
             List<String> getReasons() throws IOException {
+                if (indexedProperty == null) {
+                    return List.of();
+                }
                 final var versionReasons = Aetiologer.getReasons().get(first);
-                if (versionReasons == null) { return List.of(); }
+                if (versionReasons == null) {
+                    return List.of();
+                }
                 final var propertyReasons = versionReasons.get(indexedProperty);
-                if (propertyReasons == null) {return List.of(); }
+                if (propertyReasons == null) {
+                    return List.of();
+                }
                 final var reasons = propertyReasons.get(codePoint);
-                if (reasons == null) {return List.of();}
+                if (reasons == null) {
+                    return List.of();
+                }
                 return reasons;
             }
         }
@@ -1952,8 +1961,19 @@ public class UnicodeUtilities {
                                                         Collectors.joining("<wbr>|&#x2060;"))
                                                 + (isNew ? "</span>" : "")
                                         : "")
-                                + (assignment.getReasons().isEmpty() ? ""
-                                : ("<sup>{" + assignment.getReasons().stream().map(l2ref -> "<a href=https://www.unicode.org/cgi-bin/GetL2Ref.pl?" + l2ref + ">" + l2ref + "</a>").collect(Collectors.joining(" ")) + "}</sup>"))
+                                + (assignment.getReasons().isEmpty()
+                                        ? ""
+                                        : ("<sup>{"
+                                                + assignment.getReasons().stream()
+                                                        .map(
+                                                                l2ref ->
+                                                                        "<a href=https://www.unicode.org/cgi-bin/GetL2Ref.pl?"
+                                                                                + l2ref
+                                                                                + ">"
+                                                                                + l2ref
+                                                                                + "</a>")
+                                                        .collect(Collectors.joining(" "))
+                                                + "}</sup>"))
                                 + "</td>");
             }
             out.append("</tr>");
