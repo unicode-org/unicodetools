@@ -211,7 +211,7 @@ public class GenerateBreakStateTables {
                                 .findFirst()
                                 .orElse(""));
         }
-        System.out.println(rbbiPartition.size() + " classes");
+        System.out.println(rbbiPartition.size() + " symbols");
         System.out.println(table.fNumStates + " states");
         Map<Integer, String> stateNames = new HashMap<>();
         Map<Integer, String> lookaheadNames = new HashMap<>();
@@ -294,8 +294,8 @@ public class GenerateBreakStateTables {
             }
             nameToState.put(entry.getValue(), entry.getKey());
         }
-        try (var file = new PrintStream(new File(name + "BreakClasses.txt"))) {
-            file.println("# Class name ; Class definition in UnicodeSet notation");
+        try (var file = new PrintStream(new File(name + "BreakSymbols.txt"))) {
+            file.println("# Symbol name ; Symbol definition in UnicodeSet notation");
             for (final var characterClass : rbbiNames.values()) {
                 file.print(
                         characterClass.stream()
@@ -346,7 +346,7 @@ public class GenerateBreakStateTables {
             }
         }
         try (var file = new PrintStream(new File(name + "BreakTransitions.txt"))) {
-            file.println("# From state ; class name ; to state");
+            file.println("# From state ; symbol ; to state");
             for (int state = 1; state < table.fNumStates; ++state) {
                 final int row = rbbi.fRData.getRowIndex(state);
 
