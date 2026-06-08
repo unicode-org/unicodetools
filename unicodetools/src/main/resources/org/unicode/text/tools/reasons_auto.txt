@@ -1,20 +1,20 @@
 # [90-C1] Consensus: Change the general category of U+17D7 to Lm as part of Unicode 3.2. [L2/02-016]
 # [90-A14] Action Item for Ken Whistler: Update Unidata.txt for changing the general category of U+17D7 to Lm, and U+17DC to Lo, and include in Unicode 3.2. [L2/02-054]
-3.2 ; General_Category ; [\u17D7] ; 90-C1 90-A14
+3.2 ; General_Category ; [\u17D7] ; 90-C1, 90-A14
 # [90-C2] Consensus: Change the general category of U+17DC to Lo as part of Unicode 3.2. [L2/02-017]
 # [90-A14] Action Item for Ken Whistler: Update Unidata.txt for changing the general category of U+17D7 to Lm, and U+17DC to Lo, and include in Unicode 3.2. [L2/02-054]
-3.2 ; General_Category ; [\u17DC] ; 90-C2 90-A14
+3.2 ; General_Category ; [\u17DC] ; 90-C2, 90-A14
 # [91-C27] Consensus: Remove U+06DD ARABIC END-OF-AYAH from default ignorable code point property.
 3.2 ; Default_Ignorable_Code_Point ; [\u06DD] ; 91-C27
 # [91-A80] Action Item UTC/Everyone: Question member experts if U+070F SYRIAC ABBREVIATION MARK should have the default ignorable code point behavior.
 # [91-A81] Action Item for Mark Davis: Raise the question of the U+070F SYRIAC ABBREVIATION MARK (if it should have the default ignorable code point behavior) to the bidi committee.
-3.2 ; Default_Ignorable_Code_Point ; [\u070F] ; 91-A80 91-A81
+3.2 ; Default_Ignorable_Code_Point ; [\u070F] ; 91-A80, 91-A81
 # [92-C27] Consensus: Change the general category of 02B9..02BA, 02C6..02CF from Sk to Lm for Unicode 4.0. See section 1.D.a of L2/02-267R3.
 # [92-A53] Action Item for Ken Whistler, Mark Davis: Change the general category of 02B9..02BA, 02C6..02CF to Sk in the data files for Unicode 4.0. [L2/02-267R3]
-4.0 ; General_Category ; [\u02B9\u02BA\u02C6\u02CF] ; 92-C27 92-A53
+4.0 ; General_Category ; [\u02B9\u02BA\u02C6\u02CF] ; 92-C27, 92-A53
 # [93-C10] Consensus: For Unicode 4.0, change the general category of U+180E MONGOLIAN VOWEL SEPARATOR from "Cf" to "Zs"; add it to the "whitespace" property; remove from list of Default Ignorables; and ensure that the line break property is no-break, in order to align it with narrow no-break space. [L2/02-368]
 # [93-A21] Action Item for Ken Whistler, Asmus Freytag, Mark Davis, Editorial Committee: Fix data files for Unicode 4.0: change the general category of U+180E MONGOLIAN VOWEL SEPARATOR from "Cf" to "Zs"; add it to the "whitespace" property; remove from list of Default Ignorables; and ensure that the line break property is no-break, in order to align it with narrow no-break space. Check consistency of explanatory text in Unicode 4 (add to the table of spaces, etc.). [L2/02-368]
-4.0 ; General_Category ; [\u180E] ; 93-C10 93-A21
+4.0 ; General_Category ; [\u180E] ; 93-C10, 93-A21
 # [94-C5] Consensus: Accept linebreak classification changes as proposed in L2/03-071 sections 1, 3.3, 3.5, 3.7, and 5. Change the class of U+2044 to IS from NS.
 4.0 ; Line_Break ; [\u2044] ; 94-C5
 # [94-M2] Motion: Create a new linebreaking class of NL for U+0085. [L2/03-071]
@@ -25,17 +25,17 @@
 # [93-A21] Action Item for Ken Whistler, Asmus Freytag, Mark Davis, Editorial Committee: Fix data files for Unicode 4.0: change the general category of U+180E MONGOLIAN VOWEL SEPARATOR from "Cf" to "Zs"; add it to the "whitespace" property; remove from list of Default Ignorables; and ensure that the line break property is no-break, in order to align it with narrow no-break space. Check consistency of explanatory text in Unicode 4 (add to the table of spaces, etc.). [L2/02-368]
 # [94-C8] Consensus: Give U+180E Mongolian Vowel Separator the linebreak category of GL (change from CM). [L2/03-065, 073]
 # [94-A30] Action Item for Ken Whistler: Update the data file to change the linebreak category for U+180E from CM to GL. [L2/03-065, 073]
-4.0 ; Line_Break ; [\u180E] ; 93-C10 93-A21 94-C8 94-A30
+4.0 ; Line_Break ; [\u180E] ; 93-C10, 93-A21, 94-C8, 94-A30
 # [92-C29] Consensus: In Unicode 4, introduce a new property ID_Start_Exceptions which contains the characters U+2118, U+212E, U+309B, U+309C. Add associated text explaining that UTC policy is that if characters are removed from ID_Start and ID_Continue they will be put in the exception class. This provides for backwards compatibility of identifiers. See section 1.E of L2/02-267R3.
 4.0 ; ID_Continue ; [\u2118\u212E\u309B\u309C] ; 92-C29
 # [92-C29] Consensus: In Unicode 4, introduce a new property ID_Start_Exceptions which contains the characters U+2118, U+212E, U+309B, U+309C. Add associated text explaining that UTC policy is that if characters are removed from ID_Start and ID_Continue they will be put in the exception class. This provides for backwards compatibility of identifiers. See section 1.E of L2/02-267R3.
 4.0 ; ID_Start ; [\u2118\u212E\u309B\u309C] ; 92-C29
 # [92-C32] Consensus: Add U+2047 DOUBLE QUESTION MARK to terminal punctuation in PropList.txt and add to the "Term" class defined in Draft Unicode Technical Report #29 Text Boundaries. See section 7.A of L2/02-267R3.
 # [92-A62] Action Item for Mark Davis: Add U+2047 DOUBLE QUESTION MARK to terminal punctuation in PropList.txt for version 3.2.1, and add to the "Term" class defined in Draft Unicode Technical Report #29 Text Boundaries. See section 7.A of L2/02-267R3.
-4.0 ; Terminal_Punctuation ; [\u2047] ; 92-C32 92-A62
+4.0 ; Terminal_Punctuation ; [\u2047] ; 92-C32, 92-A62
 # [93-C10] Consensus: For Unicode 4.0, change the general category of U+180E MONGOLIAN VOWEL SEPARATOR from "Cf" to "Zs"; add it to the "whitespace" property; remove from list of Default Ignorables; and ensure that the line break property is no-break, in order to align it with narrow no-break space. [L2/02-368]
 # [93-A21] Action Item for Ken Whistler, Asmus Freytag, Mark Davis, Editorial Committee: Fix data files for Unicode 4.0: change the general category of U+180E MONGOLIAN VOWEL SEPARATOR from "Cf" to "Zs"; add it to the "whitespace" property; remove from list of Default Ignorables; and ensure that the line break property is no-break, in order to align it with narrow no-break space. Check consistency of explanatory text in Unicode 4 (add to the table of spaces, etc.). [L2/02-368]
-4.0 ; White_Space ; [\u180E] ; 93-C10 93-A21
+4.0 ; White_Space ; [\u180E] ; 93-C10, 93-A21
 # [100-A84] Action Item for Asmus Freytag, Editorial Committee: Issue Proposed Update Unicode Standard Annex #24: Script Names by September 30, 2004. [L2/04-289]
 4.0.1 ; Script ; [\u2004] ; 100-A84
 # [98-A89] Action Item for Ken Whistler, Mark Davis: Make the required changes in the data file to change bidi class of fraction slash U+2044 fraction slash from ON to CS and change the following 3 characters: U+002B PLUS SIGN to ES, U+002D HYPHEN-MINUS to ES, U+002F SOLIDUS to CS respectively; for Unicode 4.0.1. [L2/04-049R]
@@ -46,12 +46,12 @@
 # [98-A13] Action Item for Mark Davis, Editorial Committee: Document the change in the general category of U+200B ZERO WIDTH SPACE from Zs to Cf as part of Unicode 4.0.1. [L2/03-389]
 # [97-A22] [Invalid] Action Item for Rick McGowan: Close Public Review Issue #21, general category of U+200B, as per motion 97-M1. [L2/03-389]
 # [97-A23] [Invalid] Action Item for Ken Whistler, Mark Davis: Update the data files for 4.0.1, changing the general category of U+200B ZERO WIDTH SPACE from Zs to Cf. [L2/03-389]
-4.0.1 ; General_Category ; [\u200B] ; 97-M1 97-A24 98-M1 98-A13 97-A22 97-A23
+4.0.1 ; General_Category ; [\u200B] ; 97-M1, 97-A24, 98-M1, 98-A13, 97-A22, 97-A23
 # [102-C18] Consensus: Give U+1034A GOTHIC LETTER NINE HUNDRED the numeric value 900. [L2/05-068]
 4.1 ; Numeric_Value ; [\U0001034A] ; 102-C18
 # [101-A37] Action Item for Ken Whistler: Update the properties of U+30FB KATAKANA MIDDLE DOT and U+FF65 HALFWIDTH KATAKANA MIDDLE DOT for Unicode 4.1 to change the General Category from "Pc" to "Po". [L2/04-391]
 # [101-C16] Consensus: Change the General Category of U+30FB KATAKANA MIDDLE DOT and U+FF65 HALFWIDTH KATAKANA MIDDLE DOT from "Pc" to "Po". [L2/04-391]
-4.1 ; General_Category ; [\u30FB\uFF65] ; 101-A37 101-C16
+4.1 ; General_Category ; [\u30FB\uFF65] ; 101-A37, 101-C16
 # [102-C5] Consensus: Advance Proposed Update Unicode Standard Annex #14: Line Breaking Properties to Unicode Standard Annex #14: Line Breaking Properties, making the changes documented in L2/05-062R with two exceptions: 1. Linebreak category for U+05C6 becomes EX, and 2. General category of U+1360 becomes So.
 4.1 ; General_Category ; [\u05C6\u1360] ; 102-C5
 # [102-C5] Consensus: Advance Proposed Update Unicode Standard Annex #14: Line Breaking Properties to Unicode Standard Annex #14: Line Breaking Properties, making the changes documented in L2/05-062R with two exceptions: 1. Linebreak category for U+05C6 becomes EX, and 2. General category of U+1360 becomes So.
@@ -59,65 +59,69 @@
 # [102-A10] Action Item for Ken Whistler: update the linebreak properties of U+16EB, U+16EC and U+16ED from AL to BA in Unicode 4.1.0. [L2/05-046]
 # [102-C6] Consensus: Change the linebreak category of U+16EB..U+16ED from AL to BA. [L2/05-046]
 # [102-A11] Action Item for Asmus Freytag: Include the change of U+16EB, U+16EC and U+16ED from AL to BA in Unicode Standard Annex #14: Line Breaking Properties. [L2/05-046]
-4.1 ; Line_Break ; [\u16EB\u16ED] ; 102-A10 102-C6 102-A11
+4.1 ; Line_Break ; [\u16EB\u16ED] ; 102-A10, 102-C6, 102-A11
 # [102-A10] Action Item for Ken Whistler: update the linebreak properties of U+16EB, U+16EC and U+16ED from AL to BA in Unicode 4.1.0. [L2/05-046]
 # [102-A11] Action Item for Asmus Freytag: Include the change of U+16EB, U+16EC and U+16ED from AL to BA in Unicode Standard Annex #14: Line Breaking Properties. [L2/05-046]
-4.1 ; Line_Break ; [\u16EC] ; 102-A10 102-A11
+4.1 ; Line_Break ; [\u16EC] ; 102-A10, 102-A11
 # [101-C34] Consensus: Change the definition of "numeric" for both word and sentence break in Proposed Update Unicode Standard Annex #29: Text Boundaries to be all characters of general category "Nd" plu U+066B and U+066C. And issue a new Proposed Update Unicode Standard Annex #29: Text Boundaries. [L2/04-381R, L2/04-405]
 4.1 ; Sentence_Break ; [\u066B\u066C] ; 101-C34
 # [101-M6] Motion: Add circled letters A through Z, upper and lowercase, U+24B6..U+24E9, to the "Other_Alphabetic" property in Proplist.txt. [L2/04-380, L2/04-391]]
 4.1 ; Other_Alphabetic ; [\u24B6\u24E9] ; 101-M6
 # [107-A43] Action Item for Ken Whistler: Update NameAliases.txt and the Nameslist with U+01A2 LATIN CAPITAL LETTER GHA, U+01A3 LATIN SMALL LETTER GHA, U+0CDE KANNADA LETTER LLLA, U+A015 YI SYLLABLE ITERATION MARK for Unicode 5.0. [L2/06-157]
 5.0 ; Name_Alias ; [\u01A2\u01A3\u0CDE\uA015] ; 107-A43
+# [106-A56] Action Item for Ken Whistler: Update UnicodeData.txt with the change of general category from Lo to Nl for U+10341 GOTHIC LETTER NINETY for the 5.0 Beta.
+5.0 ; General_Category ; [\U00010341] ; 106-A56
 # [107-C16] Consensus: Give U+05BE HEBREW PUNCTUATION MAQAF the "Dash" property and add to the table of dashes in the text of Unicode 5.0. Give it the "BA" linebreak class. [L2/06-104]
 # [107-A37] Action Item for Ken Whistler: Update LineBreak.txt giving U+05BE HEBREW PUNCTUATION MAQAF the "BA" class in Unicode 5.0, and put U+05BE HEBREW PUNCTUATION MAQAF in the table of dashes. [L2/06-104]
 # [107-A39] Action Item for Asmus Freytag, Editorial Committee: Update and post the approved Unicode Standard Annex #14: Line Breaking Properties with the change of linebreak class for U+05BE HEBREW PUNCTUATION MAQAF in the visible dividers, and publish for Unicode 5.0. [L2/06-023, L2/06-104]
-5.0 ; Line_Break ; [\u05BE] ; 107-C16 107-A37 107-A39
+5.0 ; Line_Break ; [\u05BE] ; 107-C16, 107-A37, 107-A39
+# [106-C23] Consensus: The UTC will stop taking input to Unicode 5.0 on certain properties beginning March 1, 2006, and will publish the frozen values by March 7, 2006. Properties affected are all those defined in UnicodeData.txt plus: Whitespace, Hex Digit, Diacritic, Ideographic, Numeric Value, Numeric Type, Script, and East Asian Width.
+5.0 ; Numeric_Type ; [\u2006] ; 106-C23
 # [107-C16] Consensus: Give U+05BE HEBREW PUNCTUATION MAQAF the "Dash" property and add to the table of dashes in the text of Unicode 5.0. Give it the "BA" linebreak class. [L2/06-104]
 # [107-A36] Action Item for Mark Davis: Update PropList.txt giving U+05BE HEBREW PUNCTUATION MAQAF the "Dash" property. [L2/06-104]
-5.0 ; Dash ; [\u05BE] ; 107-C16 107-A36
+5.0 ; Dash ; [\u05BE] ; 107-C16, 107-A36
 # [114-A34] Action Item for Mark Davis: Update CaseFolding.txt in Unicode 5.1 to correctly handle U+1E9E LATIN CAPITAL LETTER SHARP S.
 5.1 ; Case_Folding ; [\u1E9E] ; 114-A34
 # [114-A51] Action Item for Ken Whistler: Update UnicodeData.txt with ISO comments for 4 Tibetan characters: [L2/08-091] U+0FCE TIBETAN SIGN RDEL NAG RDEL DKAR U+0FD2 TIBETAN MARK NYIS TSHEG U+0FD3 TIBETAN MARK INITIAL BRDA RNYING YIG MGO MDUN MA U+0FD4 TIBETAN MARK CLOSING BRDA RNYING YIG MGO SGAB MA
 5.1 ; ISO_Comment ; [\u0FCE\u0FD2-\u0FD4] ; 114-A51
 # [108-C3] Consensus: Change the general category of U+02EC MODIFIER LETTER VOICING from "Sk" to "Lm". [L2/06-243]
 # [108-A8] Action Item for Ken Whistler: Change the general category of U+02EC MODIFIER LETTER VOICING from "Sk" to "Lm" in the next version of the standard. [L2/06-243]
-5.1 ; General_Category ; [\u02EC] ; 108-C3 108-A8
+5.1 ; General_Category ; [\u02EC] ; 108-C3, 108-A8
 # [112-C10] Consensus: Give U+077A YEH BARREE WITH DIGIT TWO ABOVE and U+077B YEH BARREE WITH DIGIT THREE ABOVE the joining type "dual". Create a new joining group "Burushaski Yeh Barree" for these two characters. [L2/07-264]
 # [112-A32] Action Item for Ken Whistler: Update ArabicShaping.txt with new joining group "Burushaski Yeh Barree", and give U+077A YEH BARREE WITH DIGIT TWO ABOVE and U+077B YEH BARREE WITH DIGIT THREE ABOVE the joining type "dual". (Reflect consensus 112-C10. [ L2/06-149], [L2/07-264].
-5.1 ; Joining_Group ; [\u077A\u077B] ; 112-C10 112-A32
+5.1 ; Joining_Group ; [\u077A\u077B] ; 112-C10, 112-A32
 # [112-C10] Consensus: Give U+077A YEH BARREE WITH DIGIT TWO ABOVE and U+077B YEH BARREE WITH DIGIT THREE ABOVE the joining type "dual". Create a new joining group "Burushaski Yeh Barree" for these two characters. [L2/07-264]
 # [112-A32] Action Item for Ken Whistler: Update ArabicShaping.txt with new joining group "Burushaski Yeh Barree", and give U+077A YEH BARREE WITH DIGIT TWO ABOVE and U+077B YEH BARREE WITH DIGIT THREE ABOVE the joining type "dual". (Reflect consensus 112-C10. [ L2/06-149], [L2/07-264].
-5.1 ; Joining_Type ; [\u077A\u077B] ; 112-C10 112-A32
+5.1 ; Joining_Type ; [\u077A\u077B] ; 112-C10, 112-A32
 # [108-C12] Consensus: Make the following changes to four line break classes: U+00A1, U+00BF from AI to OP; U+060C from EX to IS; and U+066A from EX to PO. [L2/06-224]
 # [108-A31] Action Item for Ken Whistler: Update the line break classes: U+00A1, U+00BF from AI to OP; U+060C from EX to IS; and U+066A from EX to PO. [L2/06-224]
-5.1 ; Line_Break ; [\u00A1\u00BF\u060C\u066A] ; 108-C12 108-A31
+5.1 ; Line_Break ; [\u00A1\u00BF\u060C\u066A] ; 108-C12, 108-A31
 # [110-C15] Consensus: Change the linebreak property for U+1FFD GREEK OXIA from AL to BB. [L2/07-028]
 # [110-A23] Action Item for Ken Whistler: Change the linebreak property for U+1FFD GREEK OXIA from AL to BB. [L2/07-049]
-5.1 ; Line_Break ; [\u1FFD] ; 110-C15 110-A23
+5.1 ; Line_Break ; [\u1FFD] ; 110-C15, 110-A23
 # [111-C10] Consensus: Change the line break property of U+02DF from AL to BB in Unicode 5.1.0.
 # [111-A21] Action Item for Ken Whistler: Update the Linebreak.txt file to change the line break property of U+02DF MODIFIER LETTER CROSS ACCENT from AL to BB in Unicode 5.1.0.
 # [111-A20] Action Item for Andy Heninger, Editorial Committee: Remove HL4 from the Proposed Update Unicode Standard Annex #14: Line Breaking Properties and add U+02DF MODIFIER LETTER CROSS ACCENT to the discussion of break-before characters. Also update 5.0.1 to 5.1.0 and re-post.
-5.1 ; Line_Break ; [\u02DF] ; 111-C10 111-A21 111-A20
+5.1 ; Line_Break ; [\u02DF] ; 111-C10, 111-A21, 111-A20
 # [108-C4] Consensus: Give U+00A0 NO-BREAK SPACE the "Sp" Sentence_Break property value. Create an erratum for this on the website. [L2/06-255]
 5.1 ; Sentence_Break ; [\u00A0] ; 108-C4
 # [112-C3] Consensus: Change the wordbreak property of U+2018 LEFT SINGLE QUOTATION MARK to "midletter" in Unicode 5.1.0. [L2/07-147, L2/07-250]
 # [112-A11] Action Item for Mark Davis, Editorial Committee: Change the wordbreak property of U+2018 LEFT SINGLE QUOTATION MARK to "midletter" in WordbreakProperty.txt and update table 3 in Unicode Standard Annex #29: Unicode Text Segmentation for Unicode 5.1.0. [L2/07-147, L2/07-250]
-5.1 ; Word_Break ; [\u2018] ; 112-C3 112-A11
+5.1 ; Word_Break ; [\u2018] ; 112-C3, 112-A11
 # [109-C16] Consensus: Give U+FA30..U+FA6A the ideographic property, and fix the wordbreak property. [L2/06-321]
 # [109-A32] Action Item for Mark Davis: Update Proplist.txt to give U+FA30..U+FA6A the ideographic property and fix the wordbreak property. See consensus 109-C16. [L2/06-321]
-5.1 ; Word_Break ; [\uFA30\uFA6A] ; 109-C16 109-A32
+5.1 ; Word_Break ; [\uFA30\uFA6A] ; 109-C16, 109-A32
 # [112-C11] Consensus: Issue a corrigendum changing the characters U+2018..U+201F and U+301D..U+301F to have the bidi mirroring property "false". [L2/07-241], [L2/07-273]
 # [112-A35] Action Item for Rick McGowan, Editorial Committee: Create Corrigendum #6 on changing the characters U+2018..U+201F and U+301D..U+301F to have the bidi mirroring property "false". Include affected data files in the corrigendum. [L2/07-241, L2/07-273]
-5.1 ; Bidi_Mirrored ; [\u2018\u201F\u301D\u301F] ; 112-C11 112-A35
+5.1 ; Bidi_Mirrored ; [\u2018\u201F\u301D\u301F] ; 112-C11, 112-A35
 # [110-C19] Consensus: Add U+00B7 MIDDLE DOT to ID_Continue. [L2/07-033 L2/07-042]
 5.1 ; ID_Continue ; [\u00B7] ; 110-C19
 # [108-C1] Consensus: Add U+FF9E HALFWIDTH KATAKANA VOICED SOUND MARK and U+FF9F HALFWIDTH KATAKANA SEMI-VOICED SOUND MARK to Other_Grapheme_Extend in the next version of the standard. [L2/06-246]
 # [108-A3] Action Item for Mark Davis: Add U+FF9E HALFWIDTH KATAKANA VOICED SOUND MARK and U+FF9F HALFWIDTH KATAKANA SEMI-VOICED SOUND MARK to Other_Grapheme_Extend in PropList.txt for the next version of the standard. [L2/06-246]
-5.1 ; Other_Grapheme_Extend ; [\uFF9E\uFF9F] ; 108-C1 108-A3
+5.1 ; Other_Grapheme_Extend ; [\uFF9E\uFF9F] ; 108-C1, 108-A3
 # [110-A30] Action Item for Mark Davis: Add U+00B7 MIDDLE DOT to Other_ID_Continue in PropList.txt for Unicode 5.0.1. [L2/07-033 L2/07-042]
 # [109-C12] Consensus: Post a public review issue proposing to give U+00B7 MIDDLE DOT the Other_ID_Continue property. [L2/06-378]
-5.1 ; Other_ID_Continue ; [\u00B7] ; 110-A30 109-C12
+5.1 ; Other_ID_Continue ; [\u00B7] ; 110-A30, 109-C12
 # [117-C3] Consensus: Update the numeric values for Bengali Currency Numerators (U+09F4..U+09F8) in accordance with document L2/08-288.
 5.2 ; Numeric_Value ; [\u09F4\u09F8] ; 117-C3
 # [117-C31] Consensus: Change the bidi class of 5 characters to "ON" Other Neutral in the next version of the standard: [L2/08-406] U+1D6DB MATHEMATICAL BOLD PARTIAL DIFFERENTIAL U+1D715 MATHEMATICAL ITALIC PARTIAL DIFFERENTIAL U+1D74F MATHEMATICAL BOLD ITALIC PARTIAL DIFFERENTIAL U+1D789 MATHEMATICAL SANS-SERIF BOLD PARTIAL DIFFERENTIAL U+1D7C3 MATHEMATICAL SANS-SERIF BOLD ITALIC PARTIAL DIFFERENTIAL
@@ -126,17 +130,17 @@
 5.2 ; Bidi_Class ; [\U0001E800\U0001EFFF] ; 119-A34
 # [118-C32] Consensus: Change the general category of U+2071 SUPERSCRIPT LATIN SMALL LETTER I and U+207F SUPERSCRIPT LATIN SMALL LETTER N from "Ll" to "Lm" for Unicode 5.2. [L2/08-431]
 # [118-A84] Action Item for Ken Whistler: In the UCD, change the general category of U+2071 SUPERSCRIPT LATIN SMALL LETTER I and U+207F SUPERSCRIPT LATIN SMALL LETTER N from "Ll" to "Lm" for Unicode 5.2. [L2/08-431]
-5.2 ; General_Category ; [\u2071\u207F] ; 118-C32 118-A84
+5.2 ; General_Category ; [\u2071\u207F] ; 118-C32, 118-A84
 # [116-A54] Action Item for Deborah Anderson: Follow up on the properties of U+A8F9 DEVANAGARI GAP FILLER and U+A8FB DEVANAGARI HEADSTROKE, particularly the general category. [L2/08-273R]
 5.2 ; General_Category ; [\uA8F9\uA8FB] ; 116-A54
 # [120-A54] Action Item for Ken Whistler: Update Linebreak.txt for 5.2 to include the property value "CP" Close_Parenthesis with the contents U+0029 and U+005D.
 5.2 ; Line_Break ; [)\]] ; 120-A54
 # [118-C7] Consensus: Adopt the proposal in Public Review Issue 130 to change the word break property for U+200B ZERO WIDTH SPACE to "Other" for Unicode 5.2. [L2/09-053]
 # [118-A22] Action Item for Mark Davis: Change the word break property of U+200B ZERO WIDTH SPACE to "Other" in Unicode 5.2. [L2/09-053]
-5.2 ; Word_Break ; [\u200B] ; 118-C7 118-A22
+5.2 ; Word_Break ; [\u200B] ; 118-C7, 118-A22
 # [123-C29] Consensus: Change the general category and script property of U+0CF1 KANNADA SIGN JIHVAMULIYA and U+0CF2 KANNADA SIGN UPADHMANIYA from "GC=So" to "Lo" and from "Script=Common" to "Kannada" for Unicode 6.0. L2/10-167
 # [123-A64] Action Item for Mark Davis: Update Scripts.txt to change script property of U+0CF1 KANNADA SIGN JIHVAMULIYA and U+0CF2 KANNADA SIGN UPADHMANIYA from from "Script=Common" to "Kannada" for Unicode 6.0. L2/10-167
-6.0 ; Script ; [\u0CF1\u0CF2] ; 123-C29 123-A64
+6.0 ; Script ; [\u0CF1\u0CF2] ; 123-C29, 123-A64
 # [125-A96] Action Item for Mark Davis: Add Mandaic to the list of scripts for Tatweel (U+0640) to ScriptExtensions.txt. See Roozbeh Pournader's feedback in L2/10-427.
 6.0 ; Script_Extensions ; [\u0640] ; 125-A96
 # [124-C13] Consensus: Change the general category of U+06DE to from "Me" to "So" and bidi class from "NSM" to "ON", and linebreak property from "CN" to "AL" and remove the dotted circle from the glyph, for Unicode 6.0.
@@ -146,38 +150,38 @@
 # [121-C28] Consensus: Change the bidi class of U+070F SYRIAC ABBREVIATION MARK from BN to AL. [L2/09-313]
 # [125-C35] Consensus: Change the bidi class of U+070F from AN (Arabic Number) to AL (Right-to-Left Arabic) as intended in consensus 121-C28, for the next version of the standard.
 # [125-A79] Action Item for Ken Whistler: Change the bidi class of U+070F from AN to AL as intended in consensus 121-C28, for the next version of the standard. See L2/10-439.
-6.0 ; Bidi_Class ; [\u070F] ; 121-A48 125-A80 121-C28 125-C35 125-A79
+6.0 ; Bidi_Class ; [\u070F] ; 121-A48, 125-A80, 121-C28, 125-C35, 125-A79
 # [124-C4] Consensus: For Unicode 6.0, change the general category of U+19DE NEW TAI LUE SIGN LAE and U+19DF NEW TAI LUE SIGN LAEV to "So". L2/10-275R
 # [124-A23] Action Item for Ken Whistler: Update UnicodeData.txt for changing the general category of U+19DE NEW TAI LUE SIGN LAE and U+19DF NEW TAI LUE SIGN LAEV to "So". For Unicode 6.0. L2/10-275R
-6.0 ; General_Category ; [\u19DE\u19DF] ; 124-C4 124-A23
+6.0 ; General_Category ; [\u19DE\u19DF] ; 124-C4, 124-A23
 # [124-C13] Consensus: Change the general category of U+06DE to from "Me" to "So" and bidi class from "NSM" to "ON", and linebreak property from "CN" to "AL" and remove the dotted circle from the glyph, for Unicode 6.0.
 # [124-A64] Action Item for Ken Whistler: Update UnicodeData.txt general category and bidi properties for U+06DE for Unicode 6.0.
-6.0 ; General_Category ; [\u06DE] ; 124-C13 124-A64
+6.0 ; General_Category ; [\u06DE] ; 124-C13, 124-A64
 # [124-A110] Action Item for Ken Whistler: Update the general category for U+2118 to "Sm" for Unicode 6.0. L2/10-264
 6.0 ; General_Category ; [\u2118] ; 124-A110
 # [123-C29] Consensus: Change the general category and script property of U+0CF1 KANNADA SIGN JIHVAMULIYA and U+0CF2 KANNADA SIGN UPADHMANIYA from "GC=So" to "Lo" and from "Script=Common" to "Kannada" for Unicode 6.0. L2/10-167
 # [123-A63] Action Item for Ken Whistler: Update UnicodeData.txt for general category of U+0CF1 KANNADA SIGN JIHVAMULIYA and U+0CF2 KANNADA SIGN UPADHMANIYA from "GC=So" to "Lo". L2/10-167
-6.0 ; General_Category ; [\u0CF1\u0CF2] ; 123-C29 123-A63
+6.0 ; General_Category ; [\u0CF1\u0CF2] ; 123-C29, 123-A63
 # [124-A82] Action Item for Ken Whistler: Update the general category of U+19DA NEW TAI LUE THAM DIGIT ONE from "Nd" to "No" in UnicodeData.txt for Unicode 6.0. L2/10-262
 # [124-C17] Consensus: Change the general category of U+19DA NEW TAI LUE THAM DIGIT ONE from "Nd" to "No". Request that a stability policy for numeric type be established by the officers. L2/10-262
-6.0 ; General_Category ; [\u19DA] ; 124-A82 124-C17
+6.0 ; General_Category ; [\u19DA] ; 124-A82, 124-C17
 # [119-M1] Motion: Accept U+065F ARABIC WAVY HAMZA BELOW and U+0620 ARABIC LETTER KASHMIRI YEH for encoding in a future version of the standard, with properties and joining type as given in L2/09-176.
 6.0 ; Joining_Type ; [\u0620\u065F] ; 119-M1
 # [124-C13] Consensus: Change the general category of U+06DE to from "Me" to "So" and bidi class from "NSM" to "ON", and linebreak property from "CN" to "AL" and remove the dotted circle from the glyph, for Unicode 6.0.
 # [124-A65] Action Item for Ken Whistler: Update the linebreak property for U+06DE for Unicode 6.0.
-6.0 ; Line_Break ; [\u06DE] ; 124-C13 124-A65
+6.0 ; Line_Break ; [\u06DE] ; 124-C13, 124-A65
 # [124-C17] Consensus: Change the general category of U+19DA NEW TAI LUE THAM DIGIT ONE from "Nd" to "No". Request that a stability policy for numeric type be established by the officers. L2/10-262
 6.0 ; Numeric_Type ; [\u19DA] ; 124-C17
 # [120-A78] Action Item for Laurentiu Iancu, Murray Sargent, Editorial Committee: Add the 2 characters U+27CE SQUARED LOGICAL AND and U+27CF SQUARED LOGICAL OR to the Math property table in Unicode Technical Report #25: Unicode Support for Mathematics, when they are approved [L2/09-273]
 6.0 ; Math ; [\u27CE\u27CF] ; 120-A78
 # [121-C22] Consensus: Make Other_Alphabetic = false for U+A9B3 JAVANESE SIGN CECAK TELU in a future version of the Unicode Standard. [L2/09-350]
 # [121-A25] Action Item for Mark Davis: Make Other_Alphabetic = false for U+A9B3 JAVANESE SIGN CECAK TELU in PropList.txt.
-6.0 ; Other_Alphabetic ; [\uA9B3] ; 121-C22 121-A25
+6.0 ; Other_Alphabetic ; [\uA9B3] ; 121-C22, 121-A25
 # [124-A111] Action Item for Mark Davis: Update the Other_Math property to "true" for U+2107 for Unicode 6.0. L2/10-264
 6.0 ; Other_Math ; [\u2107] ; 124-A111
 # [128-C8] Consensus: Change the general category of the 8 characters U+3248..U+324F from "So" to "No". The numeric type goes to "Numeric" and assign a numeric value, in Unicode 6.1. [L2/11-310]
 # [128-A12] Action Item for Ken Whistler: Make the change of general category from "So" to "No" for the 8 characters U+3248..U+324F. The numeric type goes to "Numeric", and assign a numeric value for each. [L2/11-310]
-6.1 ; Numeric_Value ; [\u3248\u324F] ; 128-C8 128-A12
+6.1 ; Numeric_Value ; [\u3248\u324F] ; 128-C8, 128-A12
 # [125-A92] Action Item for Ken Whistler: Update NameAliases.txt and the Nameslist with annotations and info for U+2448 MICR ON US SYMBOL and U+2449 MICR DASH SYMBOL for Unicode 6.1.
 6.1 ; Name_Alias ; [\u2448\u2449] ; 125-A92
 # [129-C17] Consensus: Approve the contents of NameAliasesProv-6.1.0d2.txt (in PRI #202) with (1 addition of the name aliases in L2/11-428R; (2) changing 0099 SCGI to SGC; and (3) deletion of "BELL" entry from the list. For Unicode 6.1.
@@ -190,126 +194,126 @@
 6.1 ; Bidi_Class ; [\U0001F48C\U0001F524] ; 129-A100
 # [125-A32] Action Item for Ken Whistler: Update UnicodeData.txt for Unicode 6.1, to change U+17B4 and U+17B5 from "Cf" to "Mn", and the bidi class to "NSM".
 # [125-C10] Consensus: Change the general category of U+17B4 and U+17B5 from "Cf" to "Mn", and the bidi class to "NSM".
-6.1 ; Bidi_Class ; [\u17B4\u17B5] ; 125-A32 125-C10
+6.1 ; Bidi_Class ; [\u17B4\u17B5] ; 125-A32, 125-C10
 # [125-C35] Consensus: Change the bidi class of U+070F from AN (Arabic Number) to AL (Right-to-Left Arabic) as intended in consensus 121-C28, for the next version of the standard.
 # [125-A79] Action Item for Ken Whistler: Change the bidi class of U+070F from AN to AL as intended in consensus 121-C28, for the next version of the standard. See L2/10-439.
-6.1 ; Bidi_Class ; [\u070F] ; 125-C35 125-A79
+6.1 ; Bidi_Class ; [\u070F] ; 125-C35, 125-A79
 # [128-C2] Consensus: Change the default bidi class from "R" to "AL" for the two new Arabic-related blocks, Arabic Extended-A at U+08A0 - U+08FF and Arabic Mathematical Symbols at U+1EE00 - U+1EEFF. [L2/11-268]
 # [128-A1] Action Item for Mark Davis: Update the derived bidi class to reflect the change of the default for U+08A0..U+08FF and U+1EE00..U+1EEFF to "AL". Update the associated text. [L2/11-268]
 # [128-A2] Action Item for Ken Whistler: Update documentation in Unicode Standard Annex #44, Unicode Character Database to reflect the change of the default bidi class of U+08A0..U+08FF and U+1EE00..U+1EEFF to "AL". [L2/11-268]
-6.1 ; Bidi_Class ; [\u08A0\u08FF\U0001EE00\U0001EEFF] ; 128-C2 128-A1 128-A2
+6.1 ; Bidi_Class ; [\u08A0\u08FF\U0001EE00\U0001EEFF] ; 128-C2, 128-A1, 128-A2
 # [127-C14] Consensus: Change the general category of to U+00AA FEMININE ORDINAL INDICATOR and U+00BA MASCULINE ORDINAL INDICATOR "Lo" for Unicode 6.1. [L2/11-154, L2/11-160]
 # [127-A65] Action item for Ken Whistler: Update UnicodeData.txt to change general category of to U+00AA FEMININE ORDINAL INDICATOR and U+00BA MASCULINE ORDINAL INDICATOR to "Lo" for Unicode 6.1. [L2/11-154, L2/11-160]
-6.1 ; General_Category ; [\u00AA\u00BA] ; 127-C14 127-A65
+6.1 ; General_Category ; [\u00AA\u00BA] ; 127-C14, 127-A65
 # [129-C12] Consensus: Change the General Category of U+302E HANGUL SINGLE DOT TONE MARK and U+302F HANGUL DOUBLE DOT TONE MARK from Mn to Mc, and add both charaters to the OtherGraphemeExtend property, for Unicode 6.1.
 # [129-A45] Action Item for Ken Whistler: Change in UnicodeData.txt the general category of U+302E HANGUL SINGLE DOT TONE MARK and U+302F HANGUL DOUBLE DOT TONE MARK from Mn to Mc, for Unicode 6.1.
-6.1 ; General_Category ; [\u302E\u302F] ; 129-C12 129-A45
+6.1 ; General_Category ; [\u302E\u302F] ; 129-C12, 129-A45
 # [125-C10] Consensus: Change the general category of U+17B4 and U+17B5 from "Cf" to "Mn", and the bidi class to "NSM".
 6.1 ; General_Category ; [\u17B4\u17B5] ; 125-C10
 # [128-C8] Consensus: Change the general category of the 8 characters U+3248..U+324F from "So" to "No". The numeric type goes to "Numeric" and assign a numeric value, in Unicode 6.1. [L2/11-310]
 # [128-A12] Action Item for Ken Whistler: Make the change of general category from "So" to "No" for the 8 characters U+3248..U+324F. The numeric type goes to "Numeric", and assign a numeric value for each. [L2/11-310]
 # [128-A13] Action Item for Ken Whistler, Editorial Committee: Note the change of general category for the 8 characters U+3248..U+324F on the 6.1 landing page. [L2/11-310]
-6.1 ; General_Category ; [\u3248\u324F] ; 128-C8 128-A12 128-A13
+6.1 ; General_Category ; [\u3248\u324F] ; 128-C8, 128-A12, 128-A13
 # [128-C8] Consensus: Change the general category of the 8 characters U+3248..U+324F from "So" to "No". The numeric type goes to "Numeric" and assign a numeric value, in Unicode 6.1. [L2/11-310]
 # [128-A12] Action Item for Ken Whistler: Make the change of general category from "So" to "No" for the 8 characters U+3248..U+324F. The numeric type goes to "Numeric", and assign a numeric value for each. [L2/11-310]
-6.1 ; Numeric_Type ; [\u3248\u324F] ; 128-C8 128-A12
+6.1 ; Numeric_Type ; [\u3248\u324F] ; 128-C8, 128-A12
 # [125-C12] Consensus: For U+17B4 and U+17B5 change Grapheme_Break property from "Control" to "Extend"; Word_Break property from "Format" to "Extend"; Sentence_Break from "Format" to "Extend".
 # [125-A34] Action Item for Mark Davis: Update files for the following properties for U+17B4 and U+17B5: Grapheme_Break property from "Control" to "Extend"; Word_Break property from "Format" to "Extend"; Sentence_Break from "Format" to "Extend". See 125-C12.
-6.1 ; Sentence_Break ; [\u17B4\u17B5] ; 125-C12 125-A34
+6.1 ; Sentence_Break ; [\u17B4\u17B5] ; 125-C12, 125-A34
 # [125-C12] Consensus: For U+17B4 and U+17B5 change Grapheme_Break property from "Control" to "Extend"; Word_Break property from "Format" to "Extend"; Sentence_Break from "Format" to "Extend".
 # [125-A34] Action Item for Mark Davis: Update files for the following properties for U+17B4 and U+17B5: Grapheme_Break property from "Control" to "Extend"; Word_Break property from "Format" to "Extend"; Sentence_Break from "Format" to "Extend". See 125-C12.
-6.1 ; Word_Break ; [\u17B4\u17B5] ; 125-C12 125-A34
+6.1 ; Word_Break ; [\u17B4\u17B5] ; 125-C12, 125-A34
 # [129-C11] Consensus: Add U+180A MONGOLIAN NIRUGU to the Extender property for Unicode 6.1.
 # [129-A41] Action Item for Mark Davis: Add U+180A MONGOLIAN NIRUGU to the Extender property in PropList.txt for Unicode 6.1.
-6.1 ; Extender ; [\u180A] ; 129-C11 129-A41
+6.1 ; Extender ; [\u180A] ; 129-C11, 129-A41
 # [129-C12] Consensus: Change the General Category of U+302E HANGUL SINGLE DOT TONE MARK and U+302F HANGUL DOUBLE DOT TONE MARK from Mn to Mc, and add both charaters to the OtherGraphemeExtend property, for Unicode 6.1.
 # [129-A46] Action Item for Mark Davis: Add U+302E HANGUL SINGLE DOT TONE MARK and U+302F HANGUL DOUBLE DOT TONE MARK to the OtherGraphemeExtend in PropList.txt for Unicode 6.1.
-6.1 ; Other_Grapheme_Extend ; [\u302E\u302F] ; 129-C12 129-A46
+6.1 ; Other_Grapheme_Extend ; [\u302E\u302F] ; 129-C12, 129-A46
 # [128-C17] Consensus: Add U+2071, U+207F, U+2095..U+209C to the contributory property Other_Lowercase for Unicode 6.1. [L2/11-320, L2/11-321]
 # [128-A49] Action Item for Mark Davis: Add U+2071, U+207F, U+2095..U+209C to Other_Lowercase in PropList.txt for Unicode 6.1. [L2/11-320, L2/11-321]
-6.1 ; Other_Lowercase ; [\u2071\u207F\u2095\u209C] ; 128-C17 128-A49
+6.1 ; Other_Lowercase ; [\u2071\u207F\u2095\u209C] ; 128-C17, 128-A49
 # [132-A50] Action Item for Mark Davis: Produce update DerivedNumericValue.txt and check for changes to U+12432, U+12433, U+12456, U+12457, for Unicode 6.2. See L2/12-240.
 # [132-C19] Consensus: Give U+12432 and U+12433 the numeric type "numeric" and the numeric values 216,000, and 432,000 respectively. Make U+12456 and 12457 have the numeric type "numeric" and value "-1". See L2/12-240.
-6.2 ; Numeric_Value ; [\U00012456\U00012457] ; 132-A50 132-C19
+6.2 ; Numeric_Value ; [\U00012456\U00012457] ; 132-A50, 132-C19
 # [132-A50] Action Item for Mark Davis: Produce update DerivedNumericValue.txt and check for changes to U+12432, U+12433, U+12456, U+12457, for Unicode 6.2. See L2/12-240.
 # [132-C19] Consensus: Give U+12432 and U+12433 the numeric type "numeric" and the numeric values 216,000, and 432,000 respectively. Make U+12456 and 12457 have the numeric type "numeric" and value "-1". See L2/12-240.
 # [132-A49] Action Item for Ken Whistler: Update numeric values for U+12432 and U+12433 in UnicodeData.txt for 6.2. See L2/12-240.
-6.2 ; Numeric_Value ; [\U00012432\U00012433] ; 132-A50 132-C19 132-A49
+6.2 ; Numeric_Value ; [\U00012432\U00012433] ; 132-A50, 132-C19, 132-A49
 # [131-C20] Consensus: Approve a formal name alias for U+0709 SYRIAC SUBLINEAR COLON SKEWED RIGHT of "SYRIAC SUBLINEAR COLON SKEWED LEFT", for Unicode 6.2. [L2/12-188]
 # [131-A61] Action Item for Ken Whistler: Update NameAliases.txt to add a formal name alias for U+0709 SYRIAC SUBLINEAR COLON SKEWED RIGHT of: "SYRIAC SUBLINEAR COLON SKEWED LEFT" for Unicode 6.2.
 # [131-A62] Action Item for Ken Whistler: Update NamesList.txt for Unicode 6.2 to include a formal name alias for U+0709 SYRIAC SUBLINEAR COLON SKEWED RIGHT of "SYRIAC SUBLINEAR COLON SKEWED LEFT".
 # [131-A63] Action Item for Deborah Anderson: Add a formal name alias for U+0709 SYRIAC SUBLINEAR COLON SKEWED RIGHT to: "SYRIAC SUBLINEAR COLON SKEWED LEFT", to ballot comments on Amendment 1.
-6.2 ; Name_Alias ; [\u0709] ; 131-C20 131-A61 131-A62 131-A63
+6.2 ; Name_Alias ; [\u0709] ; 131-C20, 131-A61, 131-A62, 131-A63
 # [131-C29] Consensus: Change the East Asian width property of characters 11A3..11A7, 11FA..11FF, D7B0..D7FB from "W" to "N", for Unicode 6.2. [L2/12-160]
 6.2 ; East_Asian_Width ; [\u11A3\u11A7\u11FA\u11FF\uD7B0\uD7FB] ; 131-C29
 # [132-C19] Consensus: Give U+12432 and U+12433 the numeric type "numeric" and the numeric values 216,000, and 432,000 respectively. Make U+12456 and 12457 have the numeric type "numeric" and value "-1". See L2/12-240.
 6.2 ; Numeric_Type ; [\U00012432\U00012433\U00012456\U00012457] ; 132-C19
 # [133-C30] Consensus: Change the numeric value of U+12456 to 2 and U+12457 to 3, for Unicode 6.3. [L2/12-328]
 # [133-A40] Action Item for Ken Whistler: Update UnicodeData.txt to change the numeric value of U+12456 to 2 and U+12457 to 3, for Unicode 6.3. [L2/12-328]
-6.3 ; Numeric_Value ; [\U00012456\U00012457] ; 133-C30 133-A40
+6.3 ; Numeric_Value ; [\U00012456\U00012457] ; 133-C30, 133-A40
 # [132-C7] Consensus: Add two formal name aliases for U+122D4 CUNEIFORM SIGN NU11 TENU and U+122D5 CUNEIFORM SIGN NU11 OVER NU11 BUR OVER BUR.
 6.3 ; Name_Alias ; [\U000122D4\U000122D5] ; 132-C7
 # [134-C20] Consensus: Change the kMandarin value of U+6535 from "suī" to "pū" in Unicode 6.3. [L2/13-041]
 # [134-A77] Action Item for John Jenkins: Update the kMandarin value of U+6535 from "suī" to "pū" in Unihan for Unicode 6.3. [L2/13-041]
-6.3 ; kMandarin ; [\u6535] ; 134-C20 134-A77
+6.3 ; kMandarin ; [\u6535] ; 134-C20, 134-A77
 # [134-A11] Action Item for Mark Davis: Update ScriptExtensions.txt to change U+A9CF JAVANESE PANGRANGKEP to Buginese and Javanese, for Unicode 6.3. [L2/12-341]
 6.3 ; Script_Extensions ; [\uA9CF] ; 134-A11
 # [133-C26] Consensus: Assign the default property values of Bidi_Class = ET and Line_Break = PR for unassigned code points (U+20BB..U+20CF) in the Currency Symbols block in Unicode 6.3. [L2/12-345]
 6.3 ; Bidi_Class ; [\u20BB\u20CF] ; 133-C26
 # [134-C4] Consensus: Change the general category and bidi class of U+1A1B BUGINESE VOWEL SIGN AE to "Mn" and "NSM", for Unicode 6.3. [L2/12-341]
 # [134-A10] Action Item for Ken Whistler: Update the general category and bidi class of U+1A1B BUGINESE VOWEL SIGN AE to "Mn" and "NSM" in UnicodeData.txt for Unicode 6.3. [L2/12-341]
-6.3 ; Bidi_Class ; [\u1A1B] ; 134-C4 134-A10
+6.3 ; Bidi_Class ; [\u1A1B] ; 134-C4, 134-A10
 # [134-C4] Consensus: Change the general category and bidi class of U+1A1B BUGINESE VOWEL SIGN AE to "Mn" and "NSM", for Unicode 6.3. [L2/12-341]
 # [134-A10] Action Item for Ken Whistler: Update the general category and bidi class of U+1A1B BUGINESE VOWEL SIGN AE to "Mn" and "NSM" in UnicodeData.txt for Unicode 6.3. [L2/12-341]
-6.3 ; General_Category ; [\u1A1B] ; 134-C4 134-A10
+6.3 ; General_Category ; [\u1A1B] ; 134-C4, 134-A10
 # [135-A69] Action Item for Ken Whistler: Update UnicodeData.txt to change the general category property of 2308..230B to "Ps" or "Pe" for Unicode 6.3.
 6.3 ; General_Category ; [\u2308\u230B] ; 135-A69
 # [134-C16] Consensus: Change the general category of U+180E MONGOLIAN VOWEL SEPARATOR from Zs to Cf, for Unicode 6.3. [L2/13-004]
 # [134-A66] Action Item for Ken Whistler: Update UnicodeData.txt to change the general category of U+180E MONGOLIAN VOWEL SEPARATOR from Zs to Cf, for Unicode 6.3., for Unicode 6.3. [L2/13-004]
 # [134-A69] Action Item for Andrew Glass: Point out the change in general category of U+180E MONGOLIAN VOWEL SEPARATOR to Mongolian experts and solicit feedback. [L2/13-004]
-6.3 ; General_Category ; [\u180E] ; 134-C16 134-A66 134-A69
+6.3 ; General_Category ; [\u180E] ; 134-C16, 134-A66, 134-A69
 # [132-C29] Consensus: Change the line break property of U+3000 IDEOGRAPHIC SPACE to "BA" for Unicode 6.2.1.
 # [132-A96] Action Item for Ken Whistler: Update LineBreak.txt with change of U+3000 to "BA" for Unicode 6.2.1.
 # [132-A98] Action Item for Mark Davis: Update LineBreakTest.txt consistent with change of U+3000 to "BA" for Unicode 6.2.1. See consensus 132-C29 and L2/12-248.
-6.3 ; Line_Break ; [\u3000] ; 132-C29 132-A96 132-A98
+6.3 ; Line_Break ; [\u3000] ; 132-C29, 132-A96, 132-A98
 # [133-C26] Consensus: Assign the default property values of Bidi_Class = ET and Line_Break = PR for unassigned code points (U+20BB..U+20CF) in the Currency Symbols block in Unicode 6.3. [L2/12-345]
 # [133-A28] Action Item for Ken Whistler, Editorial Committee: Update Unicode Standard Annex #44, Unicode Character Database to document the default assignment ranges for bidi and linebreak properties for U+20BB..U+20CF for Unicode 6.3. See consensus 133-C26. [L2/12-345]
-6.3 ; Line_Break ; [\u20BB\u20CF] ; 133-C26 133-A28
+6.3 ; Line_Break ; [\u20BB\u20CF] ; 133-C26, 133-A28
 # [134-C19] Consensus: Give U+3035 VERTICAL KANA REPEAT MARK LOWER HALF the linebreak property "CM" in Unicode 6.3. [L2/13-013]
 # [134-A76] Action Item for Andy Heninger: Update the documentation of the "CM" class in Unicode Standard Annex #14, Unicode Line Breaking to mention U+3035 VERTICAL KANA REPEAT MARK LOWER HALF in Unicode 6.3. [L2/13-013]
-6.3 ; Line_Break ; [\u3035] ; 134-C19 134-A76
+6.3 ; Line_Break ; [\u3035] ; 134-C19, 134-A76
 # [133-A7] Action Item for Mark Davis: Change U+02D7 MODIFIER LETTER MINUS to MidLetter in WordBreakProperty.txt for Unicode 6.3. [L2/10-451]
 6.3 ; Word_Break ; [\u02D7] ; 133-A7
 # [135-A70] Action Item for Mark Davis: Update Proplist.txt to change add 2308..230B to Other_Math for Unicode 6.3.
 6.3 ; Other_Math ; [\u2308\u230B] ; 135-A70
 # [138-C9] Consensus: Change ALM to Script=Common and Script_Extensions=Common, and U+FDFD script from Common to Arabic, for Unicode 7.0.
 # [138-A25] Action Item for Mark Davis: Update Script.txt and ScriptExtensions.txt to change ALM to Script=Common and Script_Extensions=Common, and FDFD script from Common to Arabic for Unicode 7.0.
-7.0 ; Script ; [\uFDFD] ; 138-C9 138-A25
+7.0 ; Script ; [\uFDFD] ; 138-C9, 138-A25
 # [139-C2] Consensus: Change U+1BCA0..U+1BCA3 to Script=Common, ScriptExtensions=Duployan, for Unicode 7.0.
 # [139-A5] Action Item for Mark Davis: Update Scripts.txt and ScriptExtensions.txt to change U+1BCA0..U+1BCA3 to Script=Common, ScriptExtensions=Duployan, for Unicode 7.0.
-7.0 ; Script ; [\U0001BCA0\U0001BCA3] ; 139-C2 139-A5
+7.0 ; Script ; [\U0001BCA0\U0001BCA3] ; 139-C2, 139-A5
 # [139-C2] Consensus: Change U+1BCA0..U+1BCA3 to Script=Common, ScriptExtensions=Duployan, for Unicode 7.0.
 # [139-A5] Action Item for Mark Davis: Update Scripts.txt and ScriptExtensions.txt to change U+1BCA0..U+1BCA3 to Script=Common, ScriptExtensions=Duployan, for Unicode 7.0.
-7.0 ; Script_Extensions ; [\U0001BCA0\U0001BCA3] ; 139-C2 139-A5
+7.0 ; Script_Extensions ; [\U0001BCA0\U0001BCA3] ; 139-C2, 139-A5
 # [139-A29] Action Item for Mark Davis: Remove U+061C from ScriptExtensions.txt for Unicode 7.0.
 7.0 ; Script_Extensions ; [\u061C] ; 139-A29
 # [138-C20] Consensus: Change ScriptExtensions property of U+A830..U+A839 to add Mahajani, Modi, and Tirhuta, for Unicode 7.0.
 # [139-C4] Consensus: Add Khudawadi to ScriptExtensions.txt for North Indic Numbers at A830..A839 for Unicode 7.0.
 # [139-A33] Action Item for Mark Davis: Add Khudawadi (Script code "Sind") to ScriptExtensions.txt A830..A839 for Unicode 7.0.
-7.0 ; Script_Extensions ; [\uA830\uA839] ; 138-C20 139-C4 139-A33
+7.0 ; Script_Extensions ; [\uA830\uA839] ; 138-C20, 139-C4, 139-A33
 # [139-C6] Consensus: Add Mahajani (Mahj) to ScriptExtensions.txt for 0966..096F, for Unicode 7.0.
 # [139-A38] Action Item for Mark Davis: Add Mahajani (Mahj) to ScriptExtensions.txt for 0966..096F, for Unicode 7.0.
-7.0 ; Script_Extensions ; [\u0966\u096F] ; 139-C6 139-A38
+7.0 ; Script_Extensions ; [\u0966\u096F] ; 139-C6, 139-A38
 # [137-C20] Consensus: Add Gujarati, Telugu, Kannada, Malayalam, and Tamil to ScriptExtensions for U+0964 and U+0965, for Unicode 7.0.
 # [137-A72] Action item for Mark Davis: Add Gujarati, Telugu, Kannada, Malayalam, and Tamil to ScriptExtensions for U+0964 and U+0965, for Unicode 7.0.
 # [137-A42] Action item for Mark Davis: Update ScriptExtensions.txt to include Syloti Nagri for U+0964; and Syloti Nagri and Limbu for U+0965.
-7.0 ; Script_Extensions ; [\u0964] ; 137-C20 137-A72 137-A42
+7.0 ; Script_Extensions ; [\u0964] ; 137-C20, 137-A72, 137-A42
 # [137-C20] Consensus: Add Gujarati, Telugu, Kannada, Malayalam, and Tamil to ScriptExtensions for U+0964 and U+0965, for Unicode 7.0.
 # [137-A72] Action item for Mark Davis: Add Gujarati, Telugu, Kannada, Malayalam, and Tamil to ScriptExtensions for U+0964 and U+0965, for Unicode 7.0.
 # [137-A42] Action item for Mark Davis: Update ScriptExtensions.txt to include Syloti Nagri for U+0964; and Syloti Nagri and Limbu for U+0965.
 # [139-C5] Consensus: Add Grantha, Khudawadi, Tirhuta, Mahajani, and Sinhala to ScriptExtensions.txt for Danda and Double Danda (U+0965, U+0965).
 # [139-A35] Action Item for Mark Davis: Add Grantha, Khudawadi, Tirhuta, Mahajani, and Sinhala to ScriptExtensions.txt for Danda and Double Danda (U+0965, U+0965).
-7.0 ; Script_Extensions ; [\u0965] ; 137-C20 137-A72 137-A42 139-C5 139-A35
+7.0 ; Script_Extensions ; [\u0965] ; 137-C20, 137-A72, 137-A42, 139-C5, 139-A35
 # [138-C4] Consensus: Change the general category of U+1BAC and U+1BAD from Mc to Mn and the bidi property from L to NSM, for Unicode 7.0.
 7.0 ; General_Category ; [\u1BAC\u1BAD] ; 138-C4
 # [138-C21] Consensus: Change the General Category and linebreak properties of U+FD3E LEFT ORNATE PARENTHESIS to gc=Pe and lb=CL; and change General Category and linebreak properties of U+FD3F RIGHT ORNATE PARENTHESIS to gc=Ps and lb=OP, in Unicode 7.0.
@@ -318,10 +322,10 @@
 7.0 ; Line_Break ; [\u2308-\u230B] ; 137-A26
 # [138-C10] Consensus: Change the Linebreak property of U+275F and U+2760 from AL to QU for Unicode 7.0.
 # [138-A27] Action Item for Laurentiu Iancu: Update the linebreak property of U+275F and U+2760 from AL to QU for Unicode 7.0.
-7.0 ; Line_Break ; [\u275F\u2760] ; 138-C10 138-A27
+7.0 ; Line_Break ; [\u275F\u2760] ; 138-C10, 138-A27
 # [138-C21] Consensus: Change the General Category and linebreak properties of U+FD3E LEFT ORNATE PARENTHESIS to gc=Pe and lb=CL; and change General Category and linebreak properties of U+FD3F RIGHT ORNATE PARENTHESIS to gc=Ps and lb=OP, in Unicode 7.0.
 # [138-A65] Action Item for Laurentiu Iancu: Update LineBreak.txt, LB for U+FD3E and U+FD3F for Unicode 7.0.
-7.0 ; Line_Break ; [\uFD3E\uFD3F] ; 138-C21 138-A65
+7.0 ; Line_Break ; [\uFD3E\uFD3F] ; 138-C21, 138-A65
 # [137-C6] Consensus: Change the decorated letters: 1F130..1F149, 1F150..1F169, 1F170..1F189 to be Uppercase and Alphabetic, for Unicode 7.0.
 7.0 ; Alphabetic ; [\U0001F130\U0001F149\U0001F150\U0001F169\U0001F170\U0001F189] ; 137-C6
 # [137-C6] Consensus: Change the decorated letters: 1F130..1F149, 1F150..1F169, 1F170..1F189 to be Uppercase and Alphabetic, for Unicode 7.0.
@@ -330,15 +334,15 @@
 8.0 ; Name_Alias ; [\u2B7A\u2B7C] ; 141-A5
 # [139-C19] Consensus: Change the script properties of U+0487 and U+A66F to "Inherited", and add to ScriptExtensions of Glagolitic and Cyrillic, in Unicode 8.0.
 # [139-A84] Action Item for Mark Davis: Update Scripts.txt and ScriptExtensions.txt for U+0487 and U+A66F for Unicode 8.0.
-8.0 ; Script_Extensions ; [\u0487\uA66F] ; 139-C19 139-A84
+8.0 ; Script_Extensions ; [\u0487\uA66F] ; 139-C19, 139-A84
 # [141-C26] Consensus: Change New Tai Lue to be a visually ordered script: Change the General Category of characters U+19B0..U+19C0, U+19C8..U+19C9 from Mc to Lo. The pre-base vowel characters U+19B5..U+19B7 and U+19BA will be given the property Logical_Order_Exception=Y. For Unicode 8.0.
 8.0 ; General_Category ; [\u19B5\u19B7\u19BA] ; 141-C26
 # [141-C26] Consensus: Change New Tai Lue to be a visually ordered script: Change the General Category of characters U+19B0..U+19C0, U+19C8..U+19C9 from Mc to Lo. The pre-base vowel characters U+19B5..U+19B7 and U+19BA will be given the property Logical_Order_Exception=Y. For Unicode 8.0.
 # [141-A69] Action Item for Ken Whistler: Update UnicodeData.txt for U+19B0..U+19C0, U+19C8..U+19C9, changing from General Category from Mc to Lo.
-8.0 ; General_Category ; [\u19B0\u19C0\u19C8\u19C9] ; 141-C26 141-A69
+8.0 ; General_Category ; [\u19B0\u19C0\u19C8\u19C9] ; 141-C26, 141-A69
 # [142-C15] Consensus: Change the linebreak broperty of U+22EF MIDDLE HORIZONTAL ELLIPSIS from AL to IN for Unicode 8.0.
 # [142-A90] Action Item for Laurențiu Iancu: Update linebreak.txt to change U+22EF MIDDLE HORIZONTAL ELLIPSIS from AL to IN for Unicode 8.0.
-8.0 ; Line_Break ; [\u22EF] ; 142-C15 142-A90
+8.0 ; Line_Break ; [\u22EF] ; 142-C15, 142-A90
 # [143-M1] Motion: Change the "Deprecated" property for U+E0020..U+E007E and add language to UTR #51 describing the mechanism given in 2A of document L2/15-145R, for Unicode 8.0.
 8.0 ; Deprecated ; [\U000E0020\U000E007E] ; 143-M1
 # [141-A69a] Action Item for Mark Davis: Update PropList.txt to give U+19B5..U+19B7 and U+19BA the property Logical_Order_Exception=Y. For Unicode 8.0.
@@ -355,15 +359,15 @@
 9.0 ; Script_Extensions ; [\u0640] ; 141-A55
 # [144-A3] Action Item for Roozbeh Pournader: Update ScriptExtensions.txt to add Bengali for U+A8F1 COMBINING DEVANAGARI SIGN AVAGRAHA for Unicode 9.0.
 # [144-C1] Consensus: Add Bengali to ScriptExtensions.txt for U+A8F1 COMBINING DEVANAGARI SIGN AVAGRAHA.
-9.0 ; Script_Extensions ; [\uA8F1] ; 144-A3 144-C1
+9.0 ; Script_Extensions ; [\uA8F1] ; 144-A3, 144-C1
 # [147-C14] Consensus: Change the Script_Extensions value to Han only for the 196 characters listed in Group 1, 16 characters Group 2, and 6 characters in Group 3, and U+3006 IDEOGRAPHIC CLOSING MARK of L2/16-142.
 9.0 ; Script_Extensions ; [\u3006] ; 147-C14
 # [146-C14] Consensus: Change general category of U+1885 and U+1886 from "Lo" to "Mn", bidi from "L" to "NSM", in Unicode 9.0.
 # [146-A56] Action Item for Ken Whistler: Fix UnicodeData.txt to change general category of U+1885 and U+1886 from "Lo" to "Mn", bidi from "L" to "NSM", in Unicode 9.0. See document L2/16-041.
-9.0 ; General_Category ; [\u1885\u1886] ; 146-C14 146-A56
+9.0 ; General_Category ; [\u1885\u1886] ; 146-C14, 146-A56
 # [147-C31] Consensus: Change the general category of characters U+11C38..U+11C3B from "Mc" to "Mn" and make them Indic Position Category = "top", for Unicode 9.0.
 # [147-A96] Action Item for Ken Whistler: Update UnicodeData.txt to Change the general category of characters U+11C38..U+11C3B from "Mc" to "Mn" for Unicode 9.0.
-9.0 ; General_Category ; [\U00011C38\U00011C3B] ; 147-C31 147-A96
+9.0 ; General_Category ; [\U00011C38\U00011C3B] ; 147-C31, 147-A96
 # [146-C21] Consensus: Change the GCB, WB, and LB properties of the undeprecated Tag characters at U+E00020..U+E007F to be the same as the variation selectors: GCB and WB have the value "Extend"; LB has the value "Combining Mark" for Unicode 9.0.
 9.0 ; Grapheme_Cluster_Break ; [\U000E007F] ; 146-C21
 # [145-C29] Consensus: Accept the linebreak property changes documented in L2/15-259 for all characters through U+FFDC, for Unicode 9.0.
@@ -374,99 +378,104 @@
 9.0 ; Line_Break ; [\u1885\u1886] ; 146-A57
 # [147-C18] Consensus: Change Sentence_Break for tag characters U+E0020..U+E007F to "Extend" for Unicode 9.0.
 # [147-A51] Action Item for Mark Davis: Update SentenceBreakProperty.txt to change the Sentence_Break property for tag characters U+E0020..U+E007F to "Extend".
-9.0 ; Sentence_Break ; [\U000E0020\U000E007F] ; 147-C18 147-A51
+9.0 ; Sentence_Break ; [\U000E0020\U000E007F] ; 147-C18, 147-A51
 # [146-A96] Action Item for Mark Davis: Update GraphemeBreakProperty.txt and WordBreakProperty.txt for changes to the undeprecated Tag characters at U+E0020..U+E007F for Unicode 9.0. See Consensus 146-C21.
 9.0 ; Word_Break ; [\U000E0020] ; 146-A96
 # [146-C21] Consensus: Change the GCB, WB, and LB properties of the undeprecated Tag characters at U+E00020..U+E007F to be the same as the variation selectors: GCB and WB have the value "Extend"; LB has the value "Combining Mark" for Unicode 9.0.
 # [146-A96] Action Item for Mark Davis: Update GraphemeBreakProperty.txt and WordBreakProperty.txt for changes to the undeprecated Tag characters at U+E0020..U+E007F for Unicode 9.0. See Consensus 146-C21.
-9.0 ; Word_Break ; [\U000E007F] ; 146-C21 146-A96
+9.0 ; Word_Break ; [\U000E007F] ; 146-C21, 146-A96
 # [144-A67] Action Item for Mark Davis: Update WordBreakProperty.txt and SentenceBreakProperty.txt for the changes to U+202F for Unicode 9.0.
 # [144-C14] Consensus: Change the word break property of U+202F NNBSP to ExtendNumLet and the sentence break property to Other.
-9.0 ; Word_Break ; [\u202F] ; 144-A67 144-C14
+9.0 ; Word_Break ; [\u202F] ; 144-A67, 144-C14
 # [148-A2] Action Item for Mark Davis, Peter Edberg, Emoji Subcommittee: Give the three characters U+2695 STAFF OF AESCULAPIUS, U+2640 FEMALE SIGN, and U+2642 MALE SIGN, the category "Emoji=YES", in the proposed update of UTR #51 version 4, and add the sequences that are documented in L2/16-182.
 9.0 ; Emoji ; [\u2640\u2642\u2695] ; 148-A2
 # [146-A58] Action Item for Markus Scherer: Fix Other_Alphabetic in Proplist.txt for U+1885 and U+1886. See document L2/16-041.
 9.0 ; Other_Alphabetic ; [\u1885\u1886] ; 146-A58
 # [147-C17] Consensus: Add tag characters U+E0020..U+E007F to Other_Grapheme_Extend for Unicode 9.0.
 # [147-A50] Action Item for Mark Davis: Update PropList.txt to add tag characters U+E0020..U+E007F to Other_Grapheme_Extend for Unicode 9.0.
-9.0 ; Other_Grapheme_Extend ; [\U000E0020\U000E007F] ; 147-C17 147-A50
+9.0 ; Other_Grapheme_Extend ; [\U000E0020\U000E007F] ; 147-C17, 147-A50
 # [147-C33] Consensus: Remove U+200D ZERO WIDTH JOINER from Other_Grapheme_Extend, for Unicode 9.0.
 # [147-A100] Action Item for Mark Davis: Update PropList.txt to remove U+200D ZERO WIDTH JOINER from Other_Grapheme_Extend, for Unicode 9.0.
-9.0 ; Other_Grapheme_Extend ; [\u200D] ; 147-C33 147-A100
+9.0 ; Other_Grapheme_Extend ; [\u200D] ; 147-C33, 147-A100
 # [147-A98] Action Item for Mark Davis: Make change of property ("prepended concatenation mark = yes") to U+08E2 DISPUTED END OF AYAH in PropList.txt for Unicode 9.0.
 # [147-C32] Consensus: Give the property "prepended concatenation mark = yes" U+08E2 DISPUTED END OF AYAH.
-9.0 ; Prepended_Concatenation_Mark ; [\u08E2] ; 147-A98 147-C32
+9.0 ; Prepended_Concatenation_Mark ; [\u08E2] ; 147-A98, 147-C32
 # [149-A57] Action Item for Ken Whistler: Update NameAliases.txt for 11EC through 11EF as documented in L2/16-363, for Unicode 10.0. See above consensus 149-C19.
 10.0 ; Name_Alias ; [\u11EC\u11EF] ; 149-A57
 # [150-A4] Action Item for Ken Whistler, Laurențiu Iancu: Add the formal name alias HENTAIGANA LETTER E-1 for U+1B001 HIRAGANA LETTER ARCHAIC YE to NameAliases.txt for Unicode 10.0.
 # [150-C2] Consensus: Create a formal name alias for U+1B001 HENTAIGANA LETTER E-1 for 10.0.
-10.0 ; Name_Alias ; [\U0001B001] ; 150-A4 150-C2
+10.0 ; Name_Alias ; [\U0001B001] ; 150-A4, 150-C2
 # [183-N5] Note: U+2DED4 is not actually a horizontal extension, but rather a source reference change. Its kIRG_GSource property value, GPGLG-3046, was added in Unicode Version 10.0 as part of the CJK Unified Ideographs Extension F block. Its new kIRG_GSource property value per document IRG N2729R3 is GDM-00769. China confirmed on 2025-04-22 that this source reference change is intentional.
 10.0 ; kIRG_GSource ; [\U0002DED4] ; 183-N5
 # [151-A33] Action Item for John Jenkins: Change the kRSUnicode and kRSKangXi values of U+7353 from 949 to 94.11, for Unicode 10.0.
 # [151-A34] Action Item for Michel Suignard: Change the kRSUnicode and kRSKangXi values of U+7353 from 94.9 to 94.11 in his data set.
-10.0 ; kRSUnicode ; [\u7353] ; 151-A33 151-A34
+10.0 ; kRSUnicode ; [\u7353] ; 151-A33, 151-A34
 # [150-C24] Consensus: Change the Script property of U+061C from Common to Arabic, and change Script_Extensions from Default to Arabic, Syriac, and Thaana, for Unicode 10.0.
 10.0 ; Script ; [\u061C] ; 150-C24
 # [150-C24] Consensus: Change the Script property of U+061C from Common to Arabic, and change Script_Extensions from Default to Arabic, Syriac, and Thaana, for Unicode 10.0.
 # [150-A107] Action Item for Mark Davis, Laurențiu Iancu, Roozbeh Pournader: Update the value of U+061C in Scripts.txt and ScriptExtensions.txt for Unicode 10.0. See above Consensus 150-C24 and document L2/16-306.
-10.0 ; Script_Extensions ; [\u061C] ; 150-C24 150-A107
+10.0 ; Script_Extensions ; [\u061C] ; 150-C24, 150-A107
 # [151-A119] Action Item for Roozbeh Pournader: Give U+11301 GRANTHA SIGN CANDRABINDU the ScriptExtensions property of "Gran Taml", for Unicode version 10.0.
 10.0 ; Script_Extensions ; [\U00011301] ; 151-A119
 # [150-C1] Consensus: Change the Indic Positional Category of U+A9BF JAVANESE CONSONANT SIGN CAKRA from "Right" to "Bottom", for Unicode 10.0.
 # [150-A1] Action Item for Roozbeh Pournader: Change the Indic Positional Category of U+A9BF JAVANESE CONSONANT SIGN CAKRA from "Right" to "Bottom", for Unicode 10.0.
 # [151-A93] Action Item for Roozbeh Pournader: Change the Indic positional category of U+A9BF JAVANESE CONSONANT SIGN CAKRA from Right to Bottom_and_Left in Unicode 10.0. This reflects a change to the Consensus 150-C1 based on feedback.
-10.0 ; Indic_Positional_Category ; [\uA9BF] ; 150-C1 150-A1 151-A93
+10.0 ; Indic_Positional_Category ; [\uA9BF] ; 150-C1, 150-A1, 151-A93
 # [151-C21] Consensus: Change the Indic syllabic category for characters documented in L2/17-169 sections 1, 4, and 5. For U+1A5A change Consonant_Final to Consonant_Succeeding_Repha, for Unicode version 10.0.
 10.0 ; Indic_Syllabic_Category ; [\u1A5A] ; 151-C21
+# L2/16-205@[Thu Jun 2 08:46:28 CDT 2016]
+# [148-A41a] Action Item for Laurentiu Iancu: Propose which gc=Sk characters to include in ALetter (or to add to Alphabetic).
+# L2/16-336
+# [149-A51] Action Item for Laurențiu Iancu, Mark Davis, Editorial Committee: Update UAX #29 text with the property change for L2/16-336.
+10.0 ; Word_Break ; [\u02C2-\u02C5\u02D2-\u02D7\u02DE\u02DF\u02ED\u02EF-\u02FF\uA720\uA721\uA789\uA78A\uAB5B] ; L2/16-205@[Thu Jun 2 08:46:28 CDT 2016], 148-A41a, L2/16-336, 149-A51
 # [150-C6] Consensus: Add to the UCD for Unicode 10.0, a normative binary property "Regional Indicator", short name "RI", containing characters U+1F1E6..U+1F1FF.
 10.0 ; Regional_Indicator ; [\U0001F1E6\U0001F1FF] ; 150-C6
 # [183-N5] Note: U+2DED4 is not actually a horizontal extension, but rather a source reference change. Its kIRG_GSource property value, GPGLG-3046, was added in Unicode Version 10.0 as part of the CJK Unified Ideographs Extension F block. Its new kIRG_GSource property value per document IRG N2729R3 is GDM-00769. China confirmed on 2025-04-22 that this source reference change is intentional.
 10.0 ; Unified_Ideograph ; [\U0002DED4] ; 183-N5
 # [152-C4] Consensus: Remove entries for U+0BAA and U+0BB5 from ScriptExtensions.txt, for Unicode 11.0.
 # [152-A13] Action Item for Roozbeh Pournader: Remove entries for U+0BAA and U+0BB5 from ScriptExtensions.txt, for Unicode 11.0.
-11.0 ; Script_Extensions ; [\u0BAA\u0BB5] ; 152-C4 152-A13
+11.0 ; Script_Extensions ; [\u0BAA\u0BB5] ; 152-C4, 152-A13
 # [153-C27] Consensus: Add Bengali to the set of scripts in the ScriptExtensions property for U+1CF5 and U+1CF6 for Unicode version 11.0.
 # [153-A51] Action Item for Roozbeh Pournader: Update the ScriptExtensions property for U+1CF5 and U+1CF6 for Unicode version 11.0
-11.0 ; Script_Extensions ; [\u1CF6] ; 153-C27 153-A51
+11.0 ; Script_Extensions ; [\u1CF6] ; 153-C27, 153-A51
 # [154-A118] Action Item for Roozbeh Pournader: Update U+A830..U+A832 in ScriptExtensions.txt with script code Mlym for Unicode 11.0.
 11.0 ; Script_Extensions ; [\uA830\uA832] ; 154-A118
 # [153-C27] Consensus: Add Bengali to the set of scripts in the ScriptExtensions property for U+1CF5 and U+1CF6 for Unicode version 11.0.
 # [153-A51] Action Item for Roozbeh Pournader: Update the ScriptExtensions property for U+1CF5 and U+1CF6 for Unicode version 11.0
 # [152-C9] Consensus: Remove Kannada entry from ScriptExtensions.txt U+1CF5 VEDIC SIGN JIHVAMULIYA. See L2/17-095 and L2/17-255.
 # [152-A32] Action Item for Roozbeh Pournader: Remove Kannada entry from ScriptExtensions.txt U+1CF5 VEDIC SIGN JIHVAMULIYA. See L2/17-095 and L2/17-255.
-11.0 ; Script_Extensions ; [\u1CF5] ; 153-C27 153-A51 152-C9 152-A32
+11.0 ; Script_Extensions ; [\u1CF5] ; 153-C27, 153-A51, 152-C9, 152-A32
 # [152-C26] Consensus: Add the Indic Positional category "below" to U+1133C GRANTHA NUKTA in Unicode 11.0.
 # [152-A88] Action Item for Roozbeh Pournader: Update the IndicPositionalCategory.txt for U+1133C GRANTHA NUKTA to "below".
-11.0 ; Indic_Positional_Category ; [\U0001133C] ; 152-C26 152-A88
+11.0 ; Indic_Positional_Category ; [\U0001133C] ; 152-C26, 152-A88
 # [153-C28] Consensus: Assign the Indic_Syllabic_Category for U+1CF5 and U+1CF6 to be Consonant_With_Stacker for Unicode version 11.0.
 # [153-A52] Action Item for Roozbeh Pournader: Assign the Indic_Syllabic_Category for U+1CF5 and U+1CF6 to be Consonant_With_Stacker for Unicode version 11.0.
-11.0 ; Indic_Syllabic_Category ; [\u1CF5\u1CF6] ; 153-C28 153-A52
+11.0 ; Indic_Syllabic_Category ; [\u1CF5\u1CF6] ; 153-C28, 153-A52
 # [154-C29] Consensus: Create a new property value for Indic Syllabic Category, "Consonant_Initial_Postfixed" and populate it with U+1A5A TAI THAM CONSONANT SIGN LOW PA, for Unicode 11.0.
 # [154-A121] Action Item for Roozbeh Pournader: Update Indic Syllabic Category of U+1A5A TAI THAM CONSONANT SIGN LOW PA for Unicode 11.0.
-11.0 ; Indic_Syllabic_Category ; [\u1A5A] ; 154-C29 154-A121
+11.0 ; Indic_Syllabic_Category ; [\u1A5A] ; 154-C29, 154-A121
 # [155-A108] Action Item for Roozbeh Pournader: Review the Indic Syllabic category of U+A8B4 SAURASHTRA CONSONANT SIGN HAARU, for Unicode 11.0. (Update InSC=Consonant_Final → Consonant_Medial).
 11.0 ; Indic_Syllabic_Category ; [\uA8B4] ; 155-A108
 # [152-A15] Action Item for Laurențiu Iancu: Update LineBreak.txt for U+111C9 for Unicode 11.0.
 11.0 ; Line_Break ; [\U000111C9] ; 152-A15
 # [155-C3] Consensus: Change the Word_Break property for U+055B, U+055C, and U+055E to ALetter for Unicode 11.0.
 # [155-A2] Action Item for Mark Davis: Update WordBreak property for U+055B, U+055C, and U+055E to ALetter for Unicode 11.0.
-11.0 ; Word_Break ; [\u055B\u055C\u055E] ; 155-C3 155-A2
+11.0 ; Word_Break ; [\u055B\u055C\u055E] ; 155-C3, 155-A2
 # [153-C35] Consensus: Change U+29A1 SPHERICAL ANGLE OPENING UP to Bidi_Mirrored = No for Unicode version 11.0.
 # [153-A80] Action Item for Ken Whistler: Remove the comment for U+29A1 in BidiMirroring.txt.
-11.0 ; Bidi_Mirrored ; [\u29A1] ; 153-C35 153-A80
+11.0 ; Bidi_Mirrored ; [\u29A1] ; 153-C35, 153-A80
 # [153-A8] Action Item for Mark Davis, Emoji Subcommittee: Add U+1F9A1 BADGER and U+1F9A2 SWAN to the draft candidates list.
 11.0 ; Emoji ; [\U0001F9A1\U0001F9A2] ; 153-A8
 # [153-C39] Consensus: Change the properties of U+267E Permanent Paper Sign to Emoji equals Yes, and add the appropriate two lines to emoji-variation-sequences.txt in Emoji 6.0.
 11.0 ; Emoji ; [\u267E] ; 153-C39
 # [154-C3] Consensus: Add Emoji property value = "yes" and Emoji Presentation = "no" for U+265F BLACK CHESS PAWN; and add the two emoji variation sequences for Emoji 11.0.
 # [154-A4] Action Item for Mark Davis: Update the emoji charts and data for Emoji property value = "yes" and Emoji Presentation = "no" for U+265F BLACK CHESS PAWN; and add the two emoji variation sequences for Emoji 11.0.
-11.0 ; Emoji ; [\u265F] ; 154-C3 154-A4
+11.0 ; Emoji ; [\u265F] ; 154-C3, 154-A4
 # [154-A6] Action Item for Mark Davis: Make U+1F9B8 and U+1F9B9 be emoji modifier base and add emoji sequences for Emoji 11.0.
 11.0 ; Emoji ; [\U0001F9B8\U0001F9B9] ; 154-A6
 # [154-C4] Consensus: Add 20 superhero/villain skin tone ZWJ sequences as RGI for Unicode 11.0, and make the two characters U+1F9B8 and U+1F9B9 be emoji modifier base.
 # [154-A6] Action Item for Mark Davis: Make U+1F9B8 and U+1F9B9 be emoji modifier base and add emoji sequences for Emoji 11.0.
-11.0 ; Emoji_Modifier_Base ; [\U0001F9B8\U0001F9B9] ; 154-C4 154-A6
+11.0 ; Emoji_Modifier_Base ; [\U0001F9B8\U0001F9B9] ; 154-C4, 154-A6
 # [153-C8] Consensus: Accept five urgently needed CJK Unified Ideographs U+9FEB..U+9FEF based on L2/17-156, L2/17-396, and L2/17-397 for encoding in Unicode version 11.0.
 11.0 ; Unified_Ideograph ; [\u9FEB\u9FEF] ; 153-C8
 # [158-A86] Action Item for Roozbeh Pournader: Add Oriya to the ScriptExtensions property of U+1CF2 for Unicode version 12.0.
@@ -479,51 +488,59 @@
 12.0 ; General_Category ; [\U0001E14F] ; 158-A111
 # [157-A46] Action Item for Ken Whistler: Update UnicodeData.txt to change general category of U+166D CANADIAN SYLLABICS CHI SIGN fron "Po" to "So" for Unicode 12.0.
 # [157-C16] Consensus: Change the general category of U+166D CANADIAN SYLLABICS CHI SIGN fron "Po" to "So" and make it Terminal_Punctuation=No.
-12.0 ; General_Category ; [\u166D] ; 157-A46 157-C16
+12.0 ; General_Category ; [\u166D] ; 157-A46, 157-C16
 # [157-C14] Consensus: Change the Grapheme_Cluster_Break property of U+1B35 BALINESE VOWEL SIGN TEDUNG from Spacing_Mark to Extend, for Unicode 12.0.
 12.0 ; Grapheme_Cluster_Break ; [\u1B35] ; 157-C14
 # [157-C17] Consensus: Change the Identifier_Type of U+05C7 HEBREW POINT QAMATS QATAN from "Obsolete" to "Uncommon_Use Technical" for Unicode version 12.0.
 # [157-A67] Action Item for Mark Davis: Change the Identifier_Type of U+05C7 HEBREW POINT QAMATS QATAN from "Obsolete" to "Uncommon_Use Technical" in IdentifierType.txt, for Unicode version 12.0.
-12.0 ; Identifier_Type ; [\u05C7] ; 157-C17 157-A67
+12.0 ; Identifier_Type ; [\u05C7] ; 157-C17, 157-A67
 # [158-A87] Action Item for Roozbeh Pournader: Change the InPC and InSC categories of U+A9BD JAVANESE CONSONANT SIGN KERET to InPC="Bottom", InSC="Consonant_Medial", for Unicode version 12.0. See document L2/19-004.
 12.0 ; Indic_Positional_Category ; [\uA9BD] ; 158-A87
 # [158-A19] Action Item for Roozbeh Pournader: Update the InPC property of U+119D2 NANDINAGARI VOWEL SIGN I from "top" to "left", for Unicode version 12.0.
 # [158-C4a] Consensus: Approve the following properties for U+119D2 NANDINAGARI VOWEL SIGN I: "Mc", InPC = "left".
-12.0 ; Indic_Positional_Category ; [\U000119D2] ; 158-A19 158-C4a
+12.0 ; Indic_Positional_Category ; [\U000119D2] ; 158-A19, 158-C4a
 # [158-C13] Consensus: Change the Indic Syllabic category for U+A806 SYLOTI NAGRI SIGN HASANTA from "Pure_Killer" to "Virama", for Unicode version 12.0.
 # [158-A70] Action Item for Roozbeh Pournader: Change the Indic Syllabic category for U+A806 SYLOTI NAGRI SIGN HASANTA from "Pure_Killer" to "Virama", for Unicode version 12.0.
-12.0 ; Indic_Syllabic_Category ; [\uA806] ; 158-C13 158-A70
+12.0 ; Indic_Syllabic_Category ; [\uA806] ; 158-C13, 158-A70
 # [158-A87] Action Item for Roozbeh Pournader: Change the InPC and InSC categories of U+A9BD JAVANESE CONSONANT SIGN KERET to InPC="Bottom", InSC="Consonant_Medial", for Unicode version 12.0. See document L2/19-004.
 12.0 ; Indic_Syllabic_Category ; [\uA9BD] ; 158-A87
 # [155-C19] Consensus: Change two properties for U+1CF2 VEDIC SIGN ARDHAVISARGA and U+1CF3 VEDIC SIGN ROTATED ARDHAVISARGA, General Category from Mc to Lo, and LineBreak from Cm to AL, for Unicode 12.0.
 # [155-A125] Action Item for Ken Whistler: Update UnicodeData.txt and LineBreak.txt for U+1CF2 VEDIC SIGN ARDHAVISARGA and U+1CF3 VEDIC SIGN ROTATED ARDHAVISARGA, for unicode 12.0. See document L2/18-075.
-12.0 ; Line_Break ; [\u1CF2\u1CF3] ; 155-C19 155-A125
+12.0 ; Line_Break ; [\u1CF2\u1CF3] ; 155-C19, 155-A125
 # [158-C2] Consensus: For the ten characters U+FF10 FULLWIDTH DIGIT ZERO through U+FF19 FULLWIDTH DIGIT NINE, change the Word_Break and Sentence_Break property values from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU). As documented in L2/19-055, for Unicode version 12.0.
 # [158-A7] Action Item for Mark Davis: Update WordBreak.txt and SentenceBreak.txt to change the property values of Word_Break and Sentence_Break for U+FF10..U+FF19 from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU), for Unicode version 12.0.
-12.0 ; Sentence_Break ; [\uFF10\uFF19] ; 158-C2 158-A7
+12.0 ; Sentence_Break ; [\uFF10\uFF19] ; 158-C2, 158-A7
 # [158-C2] Consensus: For the ten characters U+FF10 FULLWIDTH DIGIT ZERO through U+FF19 FULLWIDTH DIGIT NINE, change the Word_Break and Sentence_Break property values from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU). As documented in L2/19-055, for Unicode version 12.0.
 # [158-A7] Action Item for Mark Davis: Update WordBreak.txt and SentenceBreak.txt to change the property values of Word_Break and Sentence_Break for U+FF10..U+FF19 from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU), for Unicode version 12.0.
-12.0 ; Word_Break ; [\uFF10\uFF19] ; 158-C2 158-A7
+12.0 ; Word_Break ; [\uFF10\uFF19] ; 158-C2, 158-A7
 # [157-A47] Action Item for Mark Davis: Remove U+166D CANADIAN SYLLABICS CHI SIGN from Terminal_Punctuation in PropList.txt in Unicode 12.0.
 # [157-C16] Consensus: Change the general category of U+166D CANADIAN SYLLABICS CHI SIGN fron "Po" to "So" and make it Terminal_Punctuation=No.
-12.0 ; Terminal_Punctuation ; [\u166D] ; 157-A47 157-C16
+12.0 ; Terminal_Punctuation ; [\u166D] ; 157-A47, 157-C16
 # [162-C4] Consensus: Update kMandarin for U+8B9D to value "zhán"; and U+30EDD and U+30EDE to value "biáng", for Unicode version 13.0. See document L2/20-036.
 # [162-A9] Action Item for John Jenkins: Update kMandarin for U+8B9D to value "zhán"; and U+30EDD and U+30EDE to value "biáng", for Unicode version 13.0. See document L2/20-036.
-13.0 ; kMandarin ; [\u8B9D\U00030EDD\U00030EDE] ; 162-C4 162-A9
+13.0 ; kMandarin ; [\u8B9D\U00030EDD\U00030EDE] ; 162-C4, 162-A9
 # [162-A61] Action Item for Markus Scherer: Change the Script property of U+0589 ARMENIAN FULL STOP to "Armenian", for Unicode version 13.0.
 13.0 ; Script ; [\u0589] ; 162-A61
 # [162-C15] Consensus: Remove Georgian from the Script_Extensions for U+0589 ARMENIAN FULL STOP, and change the script property of U+0589 to "Armenian", for Unicode version 13.0.
 # [162-A60] Action Item for Roozbeh Pournader: Change the file ScriptExtensions.txt to remove Georgian from U+0589 ARMENIAN FULL STOP, for Unicode version 13.0.
-13.0 ; Script_Extensions ; [\u0589] ; 162-C15 162-A60
+13.0 ; Script_Extensions ; [\u0589] ; 162-C15, 162-A60
 # [160-C13] Consensus: Accept U+2E52 TIRONIAN SIGN CAPITAL ET with general category "Po", for encoding in Unicode version 13.0.
 13.0 ; General_Category ; [\u2E52] ; 160-C13
+# PRI-355@[Mon Feb 12 20:20:51 CST 2018]
+# [155-A4] Action Item for Mark Davis, Editorial Committee: Prepare a PUA UAX #29 for Unicode 12.0 including Armenian Punctuation U+055A, U+055F, U+058A; and characters from the blocks Modifier Tone Letters and Modifier Spacing Letters.
+# L2/19-188
+# [159-C28] Consensus: Authorize a proposed update of UAX #29 for Unicode version 13.0.
+# PRI-396@[Tue Jul 30 12:55:18 CDT 2019]
+# [161-A43] Action Item for Roozbeh Pournader: Investigate characters mentioned by David Corbett in feedback on PRI #396 of [Tue Jul 30 12:55:18 CDT 2019], for script extensions and exemplar characters.
+# [162-A4] Action Item for Mark Davis, Markus Scherer: Sync Wordbreak data file in the UCD to UAX #29 Table 3 update of revision 36. For Unicode 13.0.
+13.0 ; Word_Break ; [\u02E5-\u02EB\uA708-\uA716] ; PRI-355@[Mon Feb 12 20:20:51 CST 2018], 155-A4, L2/19-188, 159-C28, PRI-396@[Tue Jul 30 12:55:18 CDT 2019], 161-A43, 162-A4
 # [162-A18] Action Item for Markus Scherer: Give U+1F977 the property Emoji_Modifier_Base = yes, for Unicode version 13.0.
 13.0 ; Emoji_Modifier_Base ; [\U0001F977] ; 162-A18
 # [162-A63] Action Item for Markus Scherer: Remove the range U+1FB00..U+1FBFF from Extended_Pictographic for Unicode version 13.0.
 13.0 ; Extended_Pictographic ; [\U0001FB00\U0001FBFF] ; 162-A63
 # [160-C10] Consensus: Accept the thirteen CJK Unified Ideograph characters at U+9FF0..U+9FFC for Unicode 13.0. See document L2/19-250.
 # [160-A37] Action Item for Ken Whistler: Update the pipeline to include thirteen CJK Unified Ideograph characters at U+9FF0..U+9FFC for Unicode 13.0. See document L2/19-250.
-13.0 ; Unified_Ideograph ; [\u9FF0\u9FFC] ; 160-C10 160-A37
+13.0 ; Unified_Ideograph ; [\u9FF0\u9FFC] ; 160-C10, 160-A37
 # [165-C19] Consensus: The UTC accepts a formal name alias of type "correction" for U+AA6E MYANMAR LETTER KHAMTI HHA, for Unicode version 14.0. The formal name alias will be: MYANMAR LETTER KHAMTI LLA. See document L2/20-263.
 14.0 ; Name_Alias ; [\uAA6E] ; 165-C19
 # [167-A21] Action Item for Ken Lunde: Attempt to contact the DPRK National Body to inform them of the kIRG_KPSource property value change for U+2F936.
@@ -546,12 +563,12 @@
 14.0 ; kMandarin ; [\U0002B738] ; 167-A14
 # [163-C19] Consensus: Make a change Scripts.txt property values for U+16FE3 OLD CHINESE ITERATION MARK from sc=Zyyy (Common) to sc=Han, and U+16FE2 OLD CHINESE HOOK MARK from sc=Zyyy (Common) to sc=Han in Scripts.txt for Unicode 14.0. Reference: L2/20-104.
 # [163-A65] Action Item for Mark Davis, Markus Scherer: Update Scripts.txt property values for U+16FE3 OLD CHINESE ITERATION MARK from sc=Zyyy (Common) to sc=Han, and U+16FE2 OLD CHINESE HOOK MARK from sc=Zyyy (Common) to sc=Han in Scripts.txt, for Unicode 14.0. Reference: L2/20-104.
-14.0 ; Script ; [\U00016FE2\U00016FE3] ; 163-C19 163-A65
+14.0 ; Script ; [\U00016FE2\U00016FE3] ; 163-C19, 163-A65
 # [166-A75] Action Item for Liang Hai: Update the Kannada block intro in the Core Spec to include U+0CDD KANNADA LETTER NAKAARA POLLU. (Reference: Section 12 of L2/21-016 Script Ad Hoc Recommendations)
 14.0 ; Script ; [\u0CDD] ; 166-A75
 # [166-A90] Action Item for Ken Whistler, Editorial Committee: Add a note to Table 9-8 “Dual-Joining Arabic Characters” of the Core Spec for Unicode 14.0, that U+0886 ARABIC LETTER THIN YEH has no final or isolated forms attested. (Reference: Section X of L2/21-016 Script Ad Hoc Recommendations).
 # [166-A89] Action Item for Ken Whistler, Editorial Committee: Add an annotation U+0886 ARABIC LETTER THIN YEH that no final or isolated forms are attested. (Reference: Section X of L2/21-016 Script Ad Hoc Recommendations).
-14.0 ; Script ; [\u0886] ; 166-A90 166-A89
+14.0 ; Script ; [\u0886] ; 166-A90, 166-A89
 # [166-A91] Action Item for Rick McGowan: Relay the feedback on U+0887 to David Corbett. (Reference: Section X of L2/21-016 Script Ad Hoc Recommendations). Item 2 page 37. // See: Public Feedback question 2: If U+0887 ARABIC BASELINE ROUND DOT has gc=Lo, why does U+0888 ARABIC RAISED ROUND DOT have gc=Sk? Page 37 of doc L2/21-016.
 14.0 ; Script ; [\u0887\u0888] ; 166-A91
 # [167-A68] Action Item for Roozbeh Pournader: For Unicode version 14.0, Script_Extensions, confirm and add if appropriate, Nkoo for U+060C ARABIC COMMA and U+061B ARABIC SEMICOLON. Confirm and add if appropriate, Nkoo and Adlm for U+061F ARABIC QUESTION MARK. Reference: L2/21-069 item PRI428g.
@@ -565,15 +582,15 @@
 # [168-C3] Consensus: Remove the assignment of GCB=SpacingMark for U+11720..U+11721 AHOM VOWEL SIGN A and AA, letting them default to GCB=Other, for Unicode version 14.0.
 # [168-A9] Action Item for Mark Davis, Markus Scherer: Remove the assignment of GCB=SpacingMark for U+11720..11721 AHOM VOWEL SIGN A and AA, letting them default to GCB=Other. For Unicode version 14.0. Reference: L2/21-126 item PRI417a.
 # [167-A63] Action Item for Markus Scherer, Deborah Anderson: Recommend whether to remove the assignment of GCB=SpacingMark for U+11720..11721 AHOM VOWEL SIGN A and AA, in light of feedback and discussions over time. Reference: L2/21-069 item P417b.
-14.0 ; Grapheme_Cluster_Break ; [\U00011720\U00011721] ; 168-C3 168-A9 167-A63
+14.0 ; Grapheme_Cluster_Break ; [\U00011720\U00011721] ; 168-C3, 168-A9, 167-A63
 # [165-A47] Action Item for Mark Davis: In security/.../IdentifierType.txt, for U+1B6B..U+1B73 add Identifier_Type=Technical as proposed in L2/20-240 item F6, unless other UTC action items about Identifier_Type classifications contradict this. For Unicode 14.
 14.0 ; Identifier_Type ; [\u1B6B\u1B73] ; 165-A47
 # [168-C4] Consensus: Change U+17CB, U+17CC, U+17CD, U+17D0 to Identifier_Type=Recommended, for Unicode version 14.0.
 # [168-A11] Action Item for Mark Davis, Markus Scherer: Change U+17CB, U+17CC, U+17CD, U+17D0 to Identifier_Type=Recommended, for Unicode version 14.0.
-14.0 ; Identifier_Type ; [\u17CB-\u17CD\u17D0] ; 168-C4 168-A11
+14.0 ; Identifier_Type ; [\u17CB-\u17CD\u17D0] ; 168-C4, 168-A11
 # [164-A46] Action Item for Mark Davis: Change the Identifier_Type of Ainu Katakana characters 31F0..31FF from Technical to Obsolete, in IdentifierType.txt, for Unicode version 14.0.
 # [164-C18] Consensus: Change the Identifier_Type of Ainu Katakana characters U+31F0..U+31FF from Technical to Obsolete.
-14.0 ; Identifier_Type ; [\u31F0\u31FF] ; 164-A46 164-C18
+14.0 ; Identifier_Type ; [\u31F0\u31FF] ; 164-A46, 164-C18
 # [168-C29] Consensus: Make the following adjustments to the properties for the following two characters for Unicode 14.0. For U+1734 HANUNOO SIGN PAMUDPOD change the gc from Mn to Mc, change the bidi class from NSM to L, change the Indic_Positional_Category from Bottom to Right. For U+1715 TAGALOG SIGN PAMUDPOD, change the Indic_Positional_Category Bottom_and_Right to Right.
 14.0 ; Indic_Positional_Category ; [\u1715\u1734] ; 168-C29
 # [164-C15] Consensus: Change the Indic Syllabic Category for U+1B03 BALINESE SIGN SURANG, U+A982 JAVANESE SIGN LAYAR, and U+1B81 SUNDANESE SIGN PANGLAYAR from Consonant_Succeeding_Repha to Consonant_Final in IndicSyllabicCategory.txt, for Unicode version 14.0. Reference: L2/20-150.
@@ -584,64 +601,64 @@
 14.0 ; Other_Lowercase ; [\U00010780\U00010783\U00010785\U00010787\U000107B0\U000107B2\U000107B5\U000107B6\U000107B9\U000107BA] ; 168-C2
 # [166-C5] Consensus: Accept the disunification proposed in L2/20-291, and encode the disunified ideograph at code point U+2B736 with Unihan database changes, based on Unihan-UTC166-R07 in document L2/21-015, for Unicode Version 14.0.
 # [166-A7] Action Item for Ken Whistler: Update the pipeline to add the disunified ideograph with code point U+2B736. See Unihan-UTC166-R07 in document L2/21-015.
-14.0 ; Unified_Ideograph ; [\U0002B736] ; 166-C5 166-A7
+14.0 ; Unified_Ideograph ; [\U0002B736] ; 166-C5, 166-A7
 # [167-C3] Consensus: Accept the disunification proposed in L2/21-046, and encode the disunified ideograph at code point U+2B738 with Unihan database changes, based on Unihan-UTC167-R09 in document L2/21-072, for Unicode version 14.0.
 # [167-A13] Action Item for Ken Whistler: Update the pipeline to add the disunified ideograph with code point U+2B738. See Unihan-UTC167-R09 in document L2/21-072.
-14.0 ; Unified_Ideograph ; [\U0002B738] ; 167-C3 167-A13
+14.0 ; Unified_Ideograph ; [\U0002B738] ; 167-C3, 167-A13
 # [170-C24] Consensus: For U+0019, add a Name alias “EM” of type abbreviation, for Unicode version 15.0.
 15.0 ; Name_Alias ; [\u0019] ; 170-C24
 # [169-C16] Consensus: Add a formal name alias of type correction for U+1BBD SUNDANESE LETTER BHA. The formal name alias will be SUNDANESE LETTER ARCHAIC I. (Reference: L2/21-221)
 15.0 ; Name_Alias ; [\u1BBD] ; 169-C16
 # [172-C2] Consensus: Create a formal name alias type correction for U+0616 ARABIC SMALL HIGH LIGATURE ALEF WITH LAM WITH YEH, with the value ARABIC SMALL HIGH LIGATURE ALEF WITH YEH BARREE. (Reference: L2/22-104)
 # [172-A4] Action Item for Ken Whistler: Add a formal name alias type correction for U+0616 ARABIC SMALL HIGH LIGATURE ALEF WITH LAM WITH YEH with the value ARABIC SMALL HIGH LIGATURE ALEF WITH YEH BARREE to NameAliases.txt for 15.0. (Reference: L2/22-104)
-15.0 ; Name_Alias ; [\u0616] ; 172-C2 172-A4
+15.0 ; Name_Alias ; [\u0616] ; 172-C2, 172-A4
 # [169-A37] Action Item for Michel Suignard, John Jenkins: Add the following kIRG_HSource property values to the Unihan database, based on document L2/21-159 (aka IRG N2507) and Unihan-UTC169-R13 in document L2/21-173, for Unicode Version 15.0; U+2BB37 kIRG_HSource HD-2BB37, U+2D25D kIRG_HSource HD-2D25D.
 15.0 ; kIRG_HSource ; [\U0002BB37\U0002D25D] ; 169-A37
 # [170-C30] Consensus: Accept the proposal to move the kIRG_UKSource property value UK-02830 from U+238A7 to U+4DBE, based on document L2/21-228 and Section 10 of document L2/22-022, for Unicode Version 15.0.
 # [170-A88] Action Item for Michel Suignard: Move the kIRG_UKSource property value UK-02830 from U+238A7 to U+4DBE, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode Version 15.0.
-15.0 ; kIRG_UKSource ; [\u4DBE\U000238A7] ; 170-C30 170-A88
+15.0 ; kIRG_UKSource ; [\u4DBE\U000238A7] ; 170-C30, 170-A88
 # [171-A22] Action Item for Michel Suignard: Add UTC-00340 as a new kIRG_USource property value for U+585F, based on Section 02 of document L2/22-067, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode version 15.0.
 # [171-A23] Action Item for John Jenkins: Update the Unihan database to reflect the new kIRG_USource property value for U+585F, based on Section 02 of document L2/22-067, for Unicode version 15.0.
-15.0 ; kIRG_USource ; [\u585F] ; 171-A22 171-A23
+15.0 ; kIRG_USource ; [\u585F] ; 171-A22, 171-A23
 # [170-C31] Consensus: Accept the kRSUnicode and kTotalStrokes property value changes for U+29867, based on L2/22-008 and Section 12 of document L2/22-022, for Unicode Version 15.0.
 # [170-A93] Action Item for Michel Suignard: Change the kRSUnicode and kTotalStrokes property values for U+29867, based on L2/22-008 and Section 12 of document L2/22-022, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode Version 15.0.
-15.0 ; kRSUnicode ; [\U00029867] ; 170-C31 170-A93
+15.0 ; kRSUnicode ; [\U00029867] ; 170-C31, 170-A93
 # [170-C32] Consensus: Accept the kRSUnicode property value change for U+266B9, based on L2/22-014 and as amended in Section 13 of document L2/22-022, for Unicode Version 15.0.
 # [170-A95] Action Item for Michel Suignard: Change the kRSUnicode property value for U+266B9, based on L2/22-014 and as amended in Section 13 of document L2/22-022, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode Version 15.0.
-15.0 ; kRSUnicode ; [\U000266B9] ; 170-C32 170-A95
+15.0 ; kRSUnicode ; [\U000266B9] ; 170-C32, 170-A95
 # [171-A20] Action Item for Michel Suignard: Change the kRSUnicode property value of U+31350, based on Section 01 of document L2/22-067, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode version 15.0.
 # [171-A21] Action Item for John Jenkins: Update the Unihan database to reflect the kRSUnicode property value change for U+31350, based on Section 01 of document L2/22-067, for Unicode version 15.0.
-15.0 ; kRSUnicode ; [\U00031350] ; 171-A20 171-A21
+15.0 ; kRSUnicode ; [\U00031350] ; 171-A20, 171-A21
 # [171-A39] Action Item for Michel Suignard: Change the kRSUnicode property values of U+5954 and U+595F, based on Section 09 of document L2/22-067, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode version 15.0.
 # [171-A40] Action Item for John Jenkins: Update the Unihan database to reflect the kRSUnicode property value change for U+5954 and U+595F, based on Section 09 of document L2/22-067, for Unicode version 15.0.
-15.0 ; kRSUnicode ; [\u5954\u595F] ; 171-A39 171-A40
+15.0 ; kRSUnicode ; [\u5954\u595F] ; 171-A39, 171-A40
 # [171-C7] Consensus: Accept the kRSUnicode and kTotalStrokes property value changes for U+32351 (aka GXM-00265) in the Extension H block, based on Section 12 of document L2/22-067, for Unicode version 15.0.
 # [171-A46] Action Item for Michel Suignard: Change the kRSUnicode and kTotalStrokes property values of U+32351 in the Extension H block, based on Section 12 of document L2/22-067, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode version 15.0.
 # [171-A47] Action Item for John Jenkins: Update the Unihan database to reflect the kRSUnicode and kTotalStrokes property value changes for U+32351 in the Extension H block, based on Section 12 of document L2/22-067, for Unicode version 15.0.
-15.0 ; kRSUnicode ; [\U00032351] ; 171-C7 171-A46 171-A47
+15.0 ; kRSUnicode ; [\U00032351] ; 171-C7, 171-A46, 171-A47
 # [172-A22] Action Item for Michel Suignard, CJK: Change the kRSUnicode property value of U+6C77, based on Section 01 of document L2/22-127, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode Version 15.0.
 # [172-A23] Action Item for John Jenkins, CJK: Update the Unihan database to reflect the kRSUnicode and kRSKangXi property value changes for U+6C77, based on Section 01 of document L2/22-127, for Unicode Version 15.0.
-15.0 ; kRSUnicode ; [\u6C77] ; 172-A22 172-A23
+15.0 ; kRSUnicode ; [\u6C77] ; 172-A22, 172-A23
 # [170-A80] Action Item for Michel Suignard: Change the kTotalStrokes property value for U+2AB8F from 12 to 13, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode Version 15.0.
 # [170-A81] Action Item for John Jenkins: Update the Unihan database to reflect the kTotalStrokes property value change for U+2AB8F, for Unicode Version 15.0.
-15.0 ; kTotalStrokes ; [\U0002AB8F] ; 170-A80 170-A81
+15.0 ; kTotalStrokes ; [\U0002AB8F] ; 170-A80, 170-A81
 # [170-C29] Consensus: Accept a new provisional Unihan database property, kAlternateTotalStrokes, based on L2/21-226 and as amended in Section 09 of document L2/22-022, with the understanding that adding this property value to any ideograph requires that the existing kTotalStrokes property value for that ideograph be reviewed—and modified, if necessary—so that these properties can be in sync, and change the kTotalStrokes property values of U+9AA8 and U+2A6B2 to “9 10” and 15, respectively, for Unicode Version 15.0.
 # [170-A83] Action Item for Michel Suignard: Change the kTotalStrokes property values of U+9AA8 and U+2A6B2 to “9 10” and 15, respectively, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode Version 15.0.
 # [170-A86] Action Item for John Jenkins: Update the Unihan database to reflect the kTotalStrokes property value changes for U+9AA8 and U+2A6B2, for Unicode Version 15.0.
-15.0 ; kTotalStrokes ; [\u9AA8\U0002A6B2] ; 170-C29 170-A83 170-A86
+15.0 ; kTotalStrokes ; [\u9AA8\U0002A6B2] ; 170-C29, 170-A83, 170-A86
 # [170-C31] Consensus: Accept the kRSUnicode and kTotalStrokes property value changes for U+29867, based on L2/22-008 and Section 12 of document L2/22-022, for Unicode Version 15.0.
 # [170-A93] Action Item for Michel Suignard: Change the kRSUnicode and kTotalStrokes property values for U+29867, based on L2/22-008 and Section 12 of document L2/22-022, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode Version 15.0.
-15.0 ; kTotalStrokes ; [\U00029867] ; 170-C31 170-A93
+15.0 ; kTotalStrokes ; [\U00029867] ; 170-C31, 170-A93
 # [171-C7] Consensus: Accept the kRSUnicode and kTotalStrokes property value changes for U+32351 (aka GXM-00265) in the Extension H block, based on Section 12 of document L2/22-067, for Unicode version 15.0.
 # [171-A46] Action Item for Michel Suignard: Change the kRSUnicode and kTotalStrokes property values of U+32351 in the Extension H block, based on Section 12 of document L2/22-067, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode version 15.0.
 # [171-A47] Action Item for John Jenkins: Update the Unihan database to reflect the kRSUnicode and kTotalStrokes property value changes for U+32351 in the Extension H block, based on Section 12 of document L2/22-067, for Unicode version 15.0.
-15.0 ; kTotalStrokes ; [\U00032351] ; 171-C7 171-A46 171-A47
+15.0 ; kTotalStrokes ; [\U00032351] ; 171-C7, 171-A46, 171-A47
 # [171-C23] Consensus: Change the Bidi_Class for U+13440 EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY from L to NSM in Unicode version 15.0 (Reference: section 16 of L2/22-068)
 15.0 ; Bidi_Class ; [\U00013440] ; 171-C23
 # [169-A6] Action Item for Mark Davis, Properties & Algorithms Group: In DerivedBidiClass.txt, change the default Bidi_Class value for 10EC0..10EFF from R to AL, for Unicode version 15.0.
 # [169-A8] Action Item for Mark Davis, Properties & Algorithms Group: In DerivedBidiClass.txt, change the default Bidi_Class value for 10EC0..10EFF from R to AL, for Unicode version 15.0.
 # [169-C1] Consensus: Accept new block Arabic Extended-C, with the range U+10EC0..U+10EFF, with a default Bidi_Class value of bc=AL.
-15.0 ; Bidi_Class ; [\U00010EC0\U00010EFF] ; 169-A6 169-A8 169-C1
+15.0 ; Bidi_Class ; [\U00010EC0\U00010EFF] ; 169-A6, 169-A8, 169-C1
 # [171-C21] Consensus: Change the General_Category property for U+13440 EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY from Cf to Mn in Unicode version 15.0 (Reference: section 16 of L2/22-068)
 15.0 ; General_Category ; [\U00013440] ; 171-C21
 # [172-A61] Action Item for Mark Davis, PAG: Change the Identifier_Type of U+A7AE to Technical (and thus its Identifier_Status to Restricted), for Unicode Version 15.0. See L2/22-124 item UCD7.
@@ -660,24 +677,24 @@
 15.0 ; Line_Break ; [\u1DCD\u1DFC] ; 172-A60
 # [172-C15] Consensus: Change the Line_Break value of U+2057 QUADRUPLE PRIME to Postfix_Numeric, for Unicode Version 15.0. See L2/22-124 item UCD14.
 # [172-A70] Action Item for Ken Whistler, PAG: Change the Line_Break value of U+2057 QUADRUPLE PRIME to Postfix_Numeric, for Unicode Version 15.0. See L2/22-124 item UCD14.
-15.0 ; Line_Break ; [\u2057] ; 172-C15 172-A70
+15.0 ; Line_Break ; [\u2057] ; 172-C15, 172-A70
 # [172-C6] Consensus: Change the following five bindu characters to Alphabetic=Yes by adding them to Other_Alphabetic in PropList.txt: U+0C04 TELUGU SIGN COMBINING ANUSVARA ABOVE, U+0F82 TIBETAN SIGN NYI ZLA NAA DA, U+0F83 TIBETAN SIGN SNA LDAN, U+11080 KAITHI SIGN CANDRABINDU, U+11081 KAITHI SIGN ANUSVARA, for Unicode Version 15.0. (Reference: Section 27 of L2/22-128)
 # [172-A17] Action Item for Markus Scherer, PAG: Change the following five bindu characters to Alphabetic=Yes by adding them to Other_Alphabetic in PropList.txt: U+0C04 TELUGU SIGN COMBINING ANUSVARA ABOVE, U+0F82 TIBETAN SIGN NYI ZLA NAA DA, U+0F83 TIBETAN SIGN SNA LDAN, U+11080 KAITHI SIGN CANDRABINDU, U+11081 KAITHI SIGN ANUSVARA. (Reference: Section 27 of L2/22-128)
-15.0 ; Alphabetic ; [\u0C04\u0F82\u0F83\U00011080\U00011081] ; 172-C6 172-A17
+15.0 ; Alphabetic ; [\u0C04\u0F82\u0F83\U00011080\U00011081] ; 172-C6, 172-A17
 # [172-A58] Action Item for Markus Scherer, PAG: Give the Other_Lowercase property (and thus also Cased) to modifier letter U+1E06D, for Unicode Version 15.0. See L2/22-124 item UCD3.
 15.0 ; Cased ; [\U0001E06D] ; 172-A58
 # [172-A59] Action Item for Markus Scherer, PAG: Give the Other_Lowercase property (and thus also Cased) to the modifier letters U+10FC and U+A7F2..A7F4 and U+AB69, for Unicode Version 15.0. See L2/22-124 item UCD4.
 15.0 ; Cased ; [\u10FC\uA7F2\uA7F4\uAB69] ; 172-A59
 # [172-C6] Consensus: Change the following five bindu characters to Alphabetic=Yes by adding them to Other_Alphabetic in PropList.txt: U+0C04 TELUGU SIGN COMBINING ANUSVARA ABOVE, U+0F82 TIBETAN SIGN NYI ZLA NAA DA, U+0F83 TIBETAN SIGN SNA LDAN, U+11080 KAITHI SIGN CANDRABINDU, U+11081 KAITHI SIGN ANUSVARA, for Unicode Version 15.0. (Reference: Section 27 of L2/22-128)
 # [172-A17] Action Item for Markus Scherer, PAG: Change the following five bindu characters to Alphabetic=Yes by adding them to Other_Alphabetic in PropList.txt: U+0C04 TELUGU SIGN COMBINING ANUSVARA ABOVE, U+0F82 TIBETAN SIGN NYI ZLA NAA DA, U+0F83 TIBETAN SIGN SNA LDAN, U+11080 KAITHI SIGN CANDRABINDU, U+11081 KAITHI SIGN ANUSVARA. (Reference: Section 27 of L2/22-128)
-15.0 ; Other_Alphabetic ; [\u0C04\u0F82\u0F83\U00011080\U00011081] ; 172-C6 172-A17
+15.0 ; Other_Alphabetic ; [\u0C04\u0F82\u0F83\U00011080\U00011081] ; 172-C6, 172-A17
 # [172-A58] Action Item for Markus Scherer, PAG: Give the Other_Lowercase property (and thus also Cased) to modifier letter U+1E06D, for Unicode Version 15.0. See L2/22-124 item UCD3.
 15.0 ; Other_Lowercase ; [\U0001E06D] ; 172-A58
 # [172-A59] Action Item for Markus Scherer, PAG: Give the Other_Lowercase property (and thus also Cased) to the modifier letters U+10FC and U+A7F2..A7F4 and U+AB69, for Unicode Version 15.0. See L2/22-124 item UCD4.
 15.0 ; Other_Lowercase ; [\u10FC\uA7F2\uA7F4] ; 172-A59
 # [168-A3] Action Item for Ken Whistler: Review existing modifier letters encoded for phonetic transcriptions and recommend which ones should be assigned Other_Lowercase, such as possibly U+AB69 MODIFIER LETTER SMALL TURNED W, for Unicode version 15.0.
 # [172-A59] Action Item for Markus Scherer, PAG: Give the Other_Lowercase property (and thus also Cased) to the modifier letters U+10FC and U+A7F2..A7F4 and U+AB69, for Unicode Version 15.0. See L2/22-124 item UCD4.
-15.0 ; Other_Lowercase ; [\uAB69] ; 168-A3 172-A59
+15.0 ; Other_Lowercase ; [\uAB69] ; 168-A3, 172-A59
 # [168-C20] Consensus: Accept U+1E06B MODIFIER LETTER CYRILLIC SMALL ES WITH DESCENDER andU+1E06C MODIFIER LETTER CYRILLIC SMALL YERU WITH BACK YER with property value "Other_Lowercase" for encoding in a future version of the standard, with glyphs and properties as documented in L2/21-142 (Reference: Section 1b of L2/21-130).
 15.0 ; Other_Lowercase ; [\U0001E06B\U0001E06C] ; 168-C20
 # [172-A57] Action Item for Markus Scherer, PAG: Give the Soft_Dotted property to U+1E04C and U+1E04D and U+1E068, for consistency with other modifier letters, and for consistency with the regular Cyrillic letters; for Unicode Version 15.0. See L2/22-124 item UCD2.
@@ -690,34 +707,34 @@
 15.1 ; kPrimaryNumeric ; [\u4EAC] ; 173-A45
 # [175-C19] Consensus: Add Simple_Case_Folding mappings for U+1FD3, U+1FE3, and U+FB05, see L2/23-062; for Unicode Version 15.1.
 # [175-A66] Action Item for Markus Scherer, PAG: In CaseFolding.txt, add Simple_Case_Folding mappings for U+1FD3, U+1FE3, and U+FB05, see L2/23-062; for Unicode Version 15.1.
-15.1 ; Simple_Case_Folding ; [\u1FD3\u1FE3\uFB05] ; 175-C19 175-A66
+15.1 ; Simple_Case_Folding ; [\u1FD3\u1FE3\uFB05] ; 175-C19, 175-A66
 # [173-C14] Consensus: Accept the proposal to change the kIRG_GSource property value of U+31F68 from GXM-00175 to GU-31F68, based on document L2/22-257 and Section 23 of document L2/22-247, for Unicode Version 15.1.
 # [173-A61] Action Item for Michel Suignard, CJK: Change the kIRG_GSource property value of U+31F68 from GXM-00175 to GU-31F68, based on document L2/22-257 and Section 23 of document L2/22-247, and provide to John Jenkins an updated Unihan data file, for Unicode Version 15.1.
 # [173-A62] Action Item for John Jenkins, CJK: Update the Unihan database to change the kIRG_GSource property value of U+31F68 from GXM-00175 to GU-31F68, based on document L2/22-257 and Section 23 of document L2/22-247, for Unicode Version 15.1.
-15.1 ; kIRG_GSource ; [\U00031F68] ; 173-C14 173-A61 173-A62
+15.1 ; kIRG_GSource ; [\U00031F68] ; 173-C14, 173-A61, 173-A62
 # [174-C12] Consensus: Accept the proposal to remove the entry for 162' in the UCD’s CJKRadicals.txt data file and to change the kRSUnicode property value of U+8FB6, based on Section 05 of document L2/23-011, for Unicode Version 15.1.
 # [174-A36] Action Item for Michel Suignard, CJK: Change the kRSUnicode property value of U+8FB6 by removing 162'.0, based on Section 05 of document L2/23-011, and provide to John Jenkins an updated Unihan data file, for Unicode Version 15.1.
 # [174-A37] Action Item for John Jenkins, CJK: Update the Unihan database to remove 162'.0 from the kRSUnicode property value of U+8FB6, based on Section 05 of document L2/23-011, for Unicode Version 15.1.
-15.1 ; kRSUnicode ; [\u8FB6] ; 174-C12 174-A36 174-A37
+15.1 ; kRSUnicode ; [\u8FB6] ; 174-C12, 174-A36, 174-A37
 # [173-A115] Action Item for Roozbeh Pournader, PAG: Add the values {Sinh, Mlym} to U+1CF2 in ScriptExtensions.txt for Unicode Version 15.1. (Ref. L2/22-214).
 15.1 ; Script_Extensions ; [\u1CF2] ; 173-A115
 # [173-A118] Action Item for Roozbeh Pournader, PAG: Add the value {Shrd} to U+A830..U+A835, U+A838 in ScriptExtensions.txt for Unicode Version 15.1. (Ref. L2/22-213).
 15.1 ; Script_Extensions ; [\uA830\uA835\uA838] ; 173-A118
 # [173-C2] Consensus: Change the line breaking class of U+1342F EGYPTIAN HIEROGLYPH V011D (𓐯) from AL to OP, for Unicode Version 15.1.
 # [173-A9] Action Item for Ken Whistler, PAG: Change the Line_Break value of U+1342F EGYPTIAN HIEROGLYPH V011D (𓐯) from AL to OP, for Unicode Version 15.1.
-15.1 ; Line_Break ; [\U0001342F] ; 173-C2 173-A9
+15.1 ; Line_Break ; [\U0001342F] ; 173-C2, 173-A9
 # [175-C25] Consensus: Add U+17D4 KHMER SIGN KHAN & U+17D5 KHMER SIGN BARIYOOSAN to Sentence_Terminal and Sentence_Break=STerm, for Unicode 15.1.
 # [175-A75] Action Item for Josh Hadley, PAG: Add U+17D4 KHMER SIGN KHAN & U+17D5 KHMER SIGN BARIYOOSAN to Sentence_Terminal and Sentence_Break=STerm, for Unicode 15.1.
-15.1 ; Sentence_Break ; [\u17D4\u17D5] ; 175-C25 175-A75
+15.1 ; Sentence_Break ; [\u17D4\u17D5] ; 175-C25, 175-A75
 # [175-C24] Consensus: Change the Word_Break property of U+0600–U+0605, U+06DD, U+0890, U+0891, U+08E2, U+110BD, and U+110CD from Format to Numeric, and the Word_Break property of U+070F from Format to ALetter, for Unicode Version 15.1. See L2/23-079 item 5.2.
 # [175-A73] Action Item for Josh Hadley, PAG: Update Table 3 of Unicode Standard Annex #29, Unicode Text Segmentation, to exclude GCB=Prepend from Word_Break=Format, include U+0600–U+0605, U+06DD, U+0890, U+0891, U+08E2, U+110BD, and U+110CD in Word_Break=Numeric, and include U+070F in Word_Break=ALetter. For Unicode Version 15.1.
-15.1 ; Word_Break ; [\u0600\u0605\u06DD\u070F\u0890\u0891\u08E2\U000110BD\U000110CD] ; 175-C24 175-A73
+15.1 ; Word_Break ; [\u0600\u0605\u06DD\u070F\u0890\u0891\u08E2\U000110BD\U000110CD] ; 175-C24, 175-A73
 # [176-C18] Consensus: Add the characters U+30FB KATAKANA MIDDLE DOT and U+FF65 HALFWIDTH KATAKANA MIDDLE DOT to Other_ID_Continue and its derivative properties, as described in L2/23-160 item 2.2, for Unicode Version 15.1.
 # [176-A64] Action Item for Robin Leroy, PAG: Add the characters U+30FB KATAKANA MIDDLE DOT and U+FF65 HALFWIDTH KATAKANA MIDDLE DOT to Other_ID_Continue and its derivative properties, as described in L2/23-160 item 2.2, for Unicode Version 15.1.
-15.1 ; Other_ID_Continue ; [\u30FB\uFF65] ; 176-C18 176-A64
+15.1 ; Other_ID_Continue ; [\u30FB\uFF65] ; 176-C18, 176-A64
 # [175-C25] Consensus: Add U+17D4 KHMER SIGN KHAN & U+17D5 KHMER SIGN BARIYOOSAN to Sentence_Terminal and Sentence_Break=STerm, for Unicode 15.1.
 # [175-A75] Action Item for Josh Hadley, PAG: Add U+17D4 KHMER SIGN KHAN & U+17D5 KHMER SIGN BARIYOOSAN to Sentence_Terminal and Sentence_Break=STerm, for Unicode 15.1.
-15.1 ; Sentence_Terminal ; [\u17D4\u17D5] ; 175-C25 175-A75
+15.1 ; Sentence_Terminal ; [\u17D4\u17D5] ; 175-C25, 175-A75
 # [175-C10] Consensus: Accept 603 CJK Unified Ideographs in a new CJK Unified Ideographs Extension I block with code point range U+2EBF0..U+2EE4A (block: U+2EBF0..U+2EE4F), based on document L2/23-106 (see “The Alternate Proposal—Unicode Version 15.1”), for Unicode Version 15.1.
 15.1 ; Unified_Ideograph ; [\U0002EBF0\U0002EE4A\U0002EE4F] ; 175-C10
 # [177-N7] Note: The PAG has corrected the canonical combining class values for the GARAY DIGITS ONE through NINE U+10D40..U+10D49, from equal to their numeric value as approved by Consensus 171-C18 to 0 (Not_Reordered). For Unicode Version 16.0. See L2/23-234 Section 2.2.
@@ -726,127 +743,127 @@
 16.0 ; Name_Alias ; [\U0001680B] ; 178-A12
 # [179-C50] Consensus: Create a formal name alias CUNEIFORM SIGN KALAM of type “correction” for U+12327 CUNEIFORM SIGN UN GUNU. For Unicode Version 16.0. [Ref. L2/24-074 and Section 5a of document L2/24-068].
 # [179-A146] Action Item for Robin Leroy, PAG: In NameAliases.txt, add a formal alias CUNEIFORM SIGN KALAM of type “correction” for U+12327 CUNEIFORM SIGN UN GUNU. For Unicode Version 16.0. [Ref. L2/24-074 and Section 5a of document L2/24-068]
-16.0 ; Name_Alias ; [\U00012327] ; 179-C50 179-A146
+16.0 ; Name_Alias ; [\U00012327] ; 179-C50, 179-A146
 # [176-A42] Action Item for Michel Suignard, CJK: Change the kIRG_GSource property values of U+7C51, U+9459, U+2180C, U+25D89, and U+28BBA, based on document L2/23-133 and Section 15 of document L2/23-163, and provide to Ken Lunde an updated Unihan data file, for Unicode Version 16.0.
 # [176-A43] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kIRG_GSource property values of U+7C51, U+9459, U+2180C, U+25D89, and U+28BBA, based on document L2/23-133 and Section 15 of document L2/23-163, for Unicode Version 16.0.
-16.0 ; kIRG_GSource ; [\u7C51\u9459\U0002180C\U00025D89\U00028BBA] ; 176-A42 176-A43
+16.0 ; kIRG_GSource ; [\u7C51\u9459\U0002180C\U00025D89\U00028BBA] ; 176-A42, 176-A43
 # [177-C6] Consensus: Accept the proposal to change the normative kIRG_GSource property value of U+320DD, from GZ-4321207 to GZ-4321208, based on document L2/23-225 (Chan & Ho) and Section 06 of document L2/23-237, for Unicode version 16.0.
 # [177-A11] Action Item for Michel Suignard, CJK: Change the kIRG_GSource property value of U+320DD, based on document L2/23-225 and Section 06 of document L2/23-237, and provide to Ken Lunde an updated Unihan data file, for Unicode version 16.0.
 # [177-A12] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kIRG_GSource property value of U+320DD, based on document L2/23-225 and Section 06 of document L2/23-237, for Unicode version 16.0.
-16.0 ; kIRG_GSource ; [\U000320DD] ; 177-C6 177-A11 177-A12
+16.0 ; kIRG_GSource ; [\U000320DD] ; 177-C6, 177-A11, 177-A12
 # [179-C3] Consensus: Accept the normative kIRG_GSource property value changes for U+4E85, U+5570, U+7CA6, and U+8980, based on PRI #497 feedback [ID20240218072351] and Section 13 of document L2/24-067, for Unicode Version 16.0.
 # [179-A32] Action Item for Ken Lunde, CJK: Use the updated Unihan16.txt data file to update the Unihan database to change the kIRG_GSource property values of U+4E85, U+5570, U+7CA6, and U+8980, based on PRI #497 feedback [ID20240218072351] and Section 13 of document L2/24-067, for Unicode Version 16.0.
-16.0 ; kIRG_GSource ; [\u4E85\u5570\u7CA6\u8980] ; 179-C3 179-A32
+16.0 ; kIRG_GSource ; [\u4E85\u5570\u7CA6\u8980] ; 179-C3, 179-A32
 # [177-C7] Consensus: Accept the proposal to change the informative kTotalStrokes property value of U+2C21C, and to add GHZR-31789.03 as a new normative kIRG_GSource property value for 7 U+2C21C, based on document L2/23-243 (Chan) and Section 07 of document L2/23-237, for Unicode version 16.0.
 # [177-A13] Action Item for Michel Suignard, CJK: Change the kTotalStrokes property value of U+2C21C, and add GHZR-31789.03 as a new kIRG_GSource property value for U+2C21C, based on document L2/23-243 and Section 07 of document L2/23-237, and provide to Ken Lunde an updated Unihan data file, for Unicode version 16.0.
 # [177-A14] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kTotalStrokes property value of U+2C21C, and to add GHZR-31789.03 as a new kIRG_GSource property value for U+2C21C, based on document L2/23-243 and Section 07 of document L2/23-237, for Unicode version 16.0.
 # [179-C6] Consensus: Accept the proposal to change the normative kIRG_GSource property value of U+2C21C to GIDC-F15C, based on document L2/24-084 (Chan & Tao) and Section 20 of document L2/24-067, for Unicode Version 16.0.
 # [179-A51] Action Item for Ken Lunde, CJK: Use the updated Unihan16.txt data file to update the Unihan database to change the kIRG_GSource property value for U+2C21C to GIDC-F15C, based on document L2/24-084 and Section 20 of document L2/24-067, for Unicode Version 16.0.
-16.0 ; kIRG_GSource ; [\U0002C21C] ; 177-C7 177-A13 177-A14 179-C6 179-A51
+16.0 ; kIRG_GSource ; [\U0002C21C] ; 177-C7, 177-A13, 177-A14, 179-C6, 179-A51
 # [177-C4] Consensus: Accept the proposal to add a normative kIRG_JSource property value to U+24138, based on document L2/23-144 (Japan NB) and Section 04 of document L2/23-237, for Unicode version 16.0.
 16.0 ; kIRG_JSource ; [\U00024138] ; 177-C4
 # [176-C6] Consensus: Accept the proposal to add a normative kIRG_KSource property value to U+3E02, based on document L2/23-143 and Section 16 of document L2/23-163, for Unicode Version 16.0.
 # [176-A44] Action Item for Michel Suignard, CJK: Add the kIRG_KSource property value “KU-03E02” to U+3E02, based on document L2/23-143 and Section 16 of document L2/23-163, and provide to Ken Lunde an updated Unihan data file, for Unicode Version 16.0.
 # [176-A45] Action Item for Ken Lunde, CJK: Update the Unihan database to add the kIRG_KSource property value “KU-03E02” to U+3E02, based on document L2/23-143 and Section 16 of document L2/23-163, for Unicode Version 16.0.
-16.0 ; kIRG_KSource ; [\u3E02] ; 176-C6 176-A44 176-A45
+16.0 ; kIRG_KSource ; [\u3E02] ; 176-C6, 176-A44, 176-A45
 # [175-C1] Consensus: Accept the proposal to add UTC-00441 as a new kIRG_USource property value for U+9FFD, based on PRI #468 feedback [ID20230203075454] and Section 11 of document L2/23-082, for Unicode Version 16.0.
 # [175-A13] Action Item for Michel Suignard, CJK: Add UTC-00441 as a new kIRG_USource property value for U+9FFD, based on PRI #468 feedback [ID20230203075454] and Section 11 of document L2/23-082, and provide to Ken Lunde an updated Unihan data file, for Unicode Version 16.0.
 # [175-A14] Action Item for Ken Lunde, CJK: Update the Unihan database to add UTC-00441 as a new kIRG_USource property value for U+9FFD, based on PRI #468 feedback [ID20230203075454] and Section 11 of document L2/23-082, for Unicode Version 16.0.
-16.0 ; kIRG_USource ; [\u9FFD] ; 175-C1 175-A13 175-A14
+16.0 ; kIRG_USource ; [\u9FFD] ; 175-C1, 175-A13, 175-A14
 # [175-C2] Consensus: Accept the proposal to add UTC-00087 as a new kIRG_USource property value for U+3136B, based on PRI #468 feedback [ID20230305211021] and Section 13 of document L2/23-082, for Unicode Version 16.0.
 # [175-A19] Action Item for Michel Suignard, CJK: Add UTC-00087 as a new kIRG_USource property value for U+3136B, based on PRI #468 feedback [ID20230305211021] and Section 13 of document L2/23-082, and provide to Ken Lunde an updated Unihan data file, for Unicode Version 16.0.
 # [175-A20] Action Item for Ken Lunde, CJK: Update the Unihan database to add UTC-00087 as a new kIRG_USource property value for U+3136B, based on PRI #468 feedback [ID20230305211021] and Section 13 of document L2/23-082, for Unicode Version 16.0.
-16.0 ; kIRG_USource ; [\U0003136B] ; 175-C2 175-A19 175-A20
+16.0 ; kIRG_USource ; [\U0003136B] ; 175-C2, 175-A19, 175-A20
 # [175-C3] Consensus: Accept the proposal to add UTC-03133 as a new kIRG_USource property value for U+3A9C, based on PRI #468 feedback [ID20230320114925] and Section 14 of document L2/23-082, for Unicode Version 16.0.
 # [175-A23] Action Item for Michel Suignard, CJK: Add UTC-03133 as a new kIRG_USource property value for U+3A9C, based on PRI #468 feedback [ID20230320114925] and Section 14 of document L2/23-082, and provide to Ken Lunde an updated Unihan data file, for Unicode Version 16.0.
 # [175-A24] Action Item for Ken Lunde, CJK: Update the Unihan database to add UTC-03133 as a new kIRG_USource property value for U+3A9C, based on PRI #468 feedback [ID20230320114925] and Section 14 of document L2/23-082, for Unicode Version 16.0.
-16.0 ; kIRG_USource ; [\u3A9C] ; 175-C3 175-A23 175-A24
+16.0 ; kIRG_USource ; [\u3A9C] ; 175-C3, 175-A23, 175-A24
 # [176-C3] Consensus: Accept the proposal to remove “162.8” from the informative kRSUnicode property value of U+44D5 and move the normative kIRG_USource property value “UTC-02994” from U+44D5 to U+2EDE3, based on PRI #480 feedback [ID20230622205550] and as amended in Section 09 of document L2/23-163, for Unicode Version 16.0.
 # [176-A28] Action Item for Michel Suignard, CJK: Remove “162.8” from the kRSUnicode property value of U+44D5 and move the kIRG_USource property value “UTC-02994” from U+44D5 to U+2EDE3, based on PRI #480 feedback [ID20230622205550] and as amended in Section 09 of document L2/23-163, and provide to Ken Lunde an updated Unihan data file, for Unicode Version 16.0.
 # [176-A29] Action Item for Ken Lunde, CJK: Update the Unihan database to remove “162.8” from the kRSUnicode property value of U+44D5 and move the kIRG_USource property value “UTC-02994” from U+44D5 to U+2EDE3, based on PRI #480 feedback [ID20230622205550] and as amended in Section 09 of document L2/23-163, for Unicode Version 16.0.
-16.0 ; kIRG_USource ; [\u44D5\U0002EDE3] ; 176-C3 176-A28 176-A29
+16.0 ; kIRG_USource ; [\u44D5\U0002EDE3] ; 176-C3, 176-A28, 176-A29
 # [178-C18] Consensus: Accept the proposal to add UTC-00420 as a new kIRG_USource property value for U+3150D, based on feedback [ID20231109191406] in document L2/24-008 and as amended in Section 06 of document L2/24-012, for Unicode Version 16.0.
 # [178-A40] Action Item for Michel Suignard, CJK: Add UTC-00420 as a new kIRG_USource property value for U+3150D, based on feedback [ID20231109191406] in document L2/24-008 and as amended in Section 06 of document L2/24-012, and provide to Ken Lunde an updated Unihan data file, for Unicode Version 16.0.
 # [178-A41] Action Item for Ken Lunde, CJK: Update the Unihan database to add UTC-00420 as a new kIRG_USource property value for U+3150D and to add a new kCantonese property value to U+3150D, based on feedback [ID20231109191406] in document L2/24-008 and as amended in Section 06 of document L2/24-012, for Unicode Version 16.0.
-16.0 ; kIRG_USource ; [\U0003150D] ; 178-C18 178-A40 178-A41
+16.0 ; kIRG_USource ; [\U0003150D] ; 178-C18, 178-A40, 178-A41
 # [178-C19] Consensus: Accept the proposal to add UTC-00635 as a new kIRG_USource property value for U+317EA, based on feedback [ID20231110201043] in document L2/24-008 and as amended in Section 07 of document L2/24-012, for Unicode Version 16.0.
 # [178-A44] Action Item for Michel Suignard, CJK: Add UTC-00635 as a new kIRG_USource property value for U+317EA, based on feedback [ID20231110201043] in document L2/24-008 and as amended in Section 07 of document L2/24-012, and provide to Ken Lunde an updated Unihan data file, for Unicode Version 16.0.
 # [178-A45] Action Item for Ken Lunde, CJK: Update the Unihan database to add UTC-00635 as a new kIRG_USource property value for U+317EA, based on feedback [ID20231110201043] in document L2/24-008 and as amended in Section 07 of document L2/24-012, for Unicode Version 16.0.
-16.0 ; kIRG_USource ; [\U000317EA] ; 178-C19 178-A44 178-A45
+16.0 ; kIRG_USource ; [\U000317EA] ; 178-C19, 178-A44, 178-A45
 # [179-C4] Consensus: Accept the proposal to add UTC-03332 as a new normative kIRG_USource property value for U+2ECAC, based on feedback [ID20240316075059] in document L2/24-063 and Section 19 of document L2/24-067, for Unicode Version 16.0.
 # [179-A44] Action Item for Ken Lunde, CJK: Use the updated Unihan16.txt data file to update the Unihan database to add UTC-03332 as a new kIRG_USource property value for U+2ECAC, based on feedback [ID20240316075059] in document L2/24-063 and Section 19 of document L2/24-067, for Unicode Version 16.0.
-16.0 ; kIRG_USource ; [\U0002ECAC] ; 179-C4 179-A44
+16.0 ; kIRG_USource ; [\U0002ECAC] ; 179-C4, 179-A44
 # [175-C4] Consensus: Accept the proposal to change the normative kRSUnicode property value of U+2CC7B, based on PRI #473 feedback [ID20230208102800] and as amended in Section 16 of document L2/23-082, for Unicode Version 16.0.
 # [175-A31] Action Item for Michel Suignard, CJK: Change the normative kRSUnicode property value of U+2CC7B, based on PRI #473 feedback [ID20230208102800] and as amended in Section 16 of document L2/23-082, and provide to Ken Lunde an updated Unihan data file, for Unicode Version 16.0.
 # [175-A32] Action Item for Ken Lunde, CJK: Update the Unihan database to change the normative kRSUnicode property value of U+2CC7B, based on PRI #473 feedback [ID20230208102800] and as amended in Section 16 of document L2/23-082, for Unicode Version 16.0.
-16.0 ; kRSUnicode ; [\U0002CC7B] ; 175-C4 175-A31 175-A32
+16.0 ; kRSUnicode ; [\U0002CC7B] ; 175-C4, 175-A31, 175-A32
 # [176-C2] Consensus: Accept the proposal to update the informative kRSUnicode and kTotalStrokes property values for U+3AB3 and U+3AC8, based on PRI #480 feedback [ID20230616144439] and Section 08 of document L2/23-163, for Unicode Version 16.0.
 # [176-A25] Action Item for Michel Suignard, CJK: Update the kRSUnicode and kTotalStrokes property values for U+3AB3 and U+3AC8, based on PRI #480 feedback [ID20230616144439] and Section 08 of document L2/23-163, and provide to Ken Lunde an updated Unihan data file, for Unicode Version 16.0.
 # [176-A26] Action Item for Ken Lunde, CJK: Update the Unihan database to update the kRSUnicode and kTotalStrokes property values for U+3AB3 and U+3AC8, based on PRI #480 feedback [ID20230616144439] and Section 08 of document L2/23-163, for Unicode Version 16.0.
-16.0 ; kRSUnicode ; [\u3AB3\u3AC8] ; 176-C2 176-A25 176-A26
+16.0 ; kRSUnicode ; [\u3AB3\u3AC8] ; 176-C2, 176-A25, 176-A26
 # [177-C3] Consensus: Accept the proposal to change the informative kRSUnicode property values of U+2398A and U+2EBBD, based on feedback [ID20230810172154] in document L2/23-233 and Section 03 of document L2/23-237, for Unicode version 16.0.
 # [177-A5] Action Item for Michel Suignard, CJK: Change the kRSUnicode property values of U+2398A and U+2EBBD, based on feedback [ID20230810172154] in document L2/23-233 and Section 03 of document L2/23-237, and provide to Ken Lunde an updated Unihan data file, for Unicode version 16.0.
 # [177-A6] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kRSUnicode property values of U+2398A and U+2EBBD, based on feedback [ID20230810172154] in document L2/23-233 and Section 03 of document L2/23-237, for Unicode version 16.0.
-16.0 ; kRSUnicode ; [\U0002398A\U0002EBBD] ; 177-C3 177-A5 177-A6
+16.0 ; kRSUnicode ; [\U0002398A\U0002EBBD] ; 177-C3, 177-A5, 177-A6
 # [177-C5] Consensus: Accept the proposal to change the informative kRSUnicode property values of U+9D2B, U+2ED3F and U+2EDD9, based on document L2/23-209 (Chan) and Section 05 of document L2/23-237, for Unicode version 16.0.
 # [177-A7] Action Item for Michel Suignard, CJK: Change the kRSUnicode property values of U+9D2B, U+2ED3F and U+2EDD9, based on document L2/23-209 and Section 05 of document L2/23-237, and provide to Ken Lunde an updated Unihan data file, for Unicode version 16.0.
 # [177-A8] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kRSUnicode property values of U+9D2B, U+2ED3F and U+2EDD9, based on document L2/23-209 and Section 05 of document L2/23-237, for Unicode version 16.0.
-16.0 ; kRSUnicode ; [\u9D2B\U0002ED3F\U0002EDD9] ; 177-C5 177-A7 177-A8
+16.0 ; kRSUnicode ; [\u9D2B\U0002ED3F\U0002EDD9] ; 177-C5, 177-A7, 177-A8
 # [177-A125] Action Item for Michel Suignard, CJK: Change the kRSUnicode and kTotalStrokes property values of U+2D156, based on document L2/23-245 and Section 22 of document L2/23-237, and provide to Ken Lunde an updated Unihan data file, for Unicode version 16.0.
 # [177-A126] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kRSUnicode and kTotalStrokes property values of U+2D156, based on document L2/23-245 and Section 22 of document L2/23-237, for Unicode version 16.0.
-16.0 ; kRSUnicode ; [\U0002D156] ; 177-A125 177-A126
+16.0 ; kRSUnicode ; [\U0002D156] ; 177-A125, 177-A126
 # [179-C2] Consensus: Accept the change to the syntax of the informative kRSUnicode property to accommodate a second non-Chinese simplified radical, the addition to the UCD’s CJKRadicals.txt data file, and the changes to the informative kRSUnicode property values of U+31DE5 and U+31E22, based on PRI #483 feedback [ID20240328172102] and Section 10 of document L2/24-067, for Unicode Version 16.0.
 # [179-A24] Action Item for Ken Lunde, CJK: Use the updated Unihan16.txt data file to update the Unihan database to change the kRSUnicode property values of U+31DE5 and U+31E22, based on PRI #483 feedback [ID20240328172102] and as amended in Section 10 of document L2/24-067, for Unicode Version 16.0.
-16.0 ; kRSUnicode ; [\U00031DE5\U00031E22] ; 179-C2 179-A24
+16.0 ; kRSUnicode ; [\U00031DE5\U00031E22] ; 179-C2, 179-A24
 # [179-C7] Consensus: Accept the proposal to change the informative kRSUnicode property value of U+2ECAB to 130.6, based on document L2/24-085 (Chan) and Section 21 of document L2/24-067, for Unicode Version 16.0.
 # [179-A53] Action Item for Ken Lunde, CJK: Use the updated Unihan16.txt data file to update the Unihan database to change the kRSUnicode property value of U+2ECAB to 130.6, based on document L2/24-085 and Section 21 of document L2/24-067, for Unicode Version 16.0.
-16.0 ; kRSUnicode ; [\U0002ECAB] ; 179-C7 179-A53
+16.0 ; kRSUnicode ; [\U0002ECAB] ; 179-C7, 179-A53
 # [176-C2] Consensus: Accept the proposal to update the informative kRSUnicode and kTotalStrokes property values for U+3AB3 and U+3AC8, based on PRI #480 feedback [ID20230616144439] and Section 08 of document L2/23-163, for Unicode Version 16.0.
 # [176-A25] Action Item for Michel Suignard, CJK: Update the kRSUnicode and kTotalStrokes property values for U+3AB3 and U+3AC8, based on PRI #480 feedback [ID20230616144439] and Section 08 of document L2/23-163, and provide to Ken Lunde an updated Unihan data file, for Unicode Version 16.0.
 # [176-A26] Action Item for Ken Lunde, CJK: Update the Unihan database to update the kRSUnicode and kTotalStrokes property values for U+3AB3 and U+3AC8, based on PRI #480 feedback [ID20230616144439] and Section 08 of document L2/23-163, for Unicode Version 16.0.
-16.0 ; kTotalStrokes ; [\u3AB3\u3AC8] ; 176-C2 176-A25 176-A26
+16.0 ; kTotalStrokes ; [\u3AB3\u3AC8] ; 176-C2, 176-A25, 176-A26
 # [177-C7] Consensus: Accept the proposal to change the informative kTotalStrokes property value of U+2C21C, and to add GHZR-31789.03 as a new normative kIRG_GSource property value for 7 U+2C21C, based on document L2/23-243 (Chan) and Section 07 of document L2/23-237, for Unicode version 16.0.
 # [177-A13] Action Item for Michel Suignard, CJK: Change the kTotalStrokes property value of U+2C21C, and add GHZR-31789.03 as a new kIRG_GSource property value for U+2C21C, based on document L2/23-243 and Section 07 of document L2/23-237, and provide to Ken Lunde an updated Unihan data file, for Unicode version 16.0.
 # [177-A14] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kTotalStrokes property value of U+2C21C, and to add GHZR-31789.03 as a new kIRG_GSource property value for U+2C21C, based on document L2/23-243 and Section 07 of document L2/23-237, for Unicode version 16.0.
-16.0 ; kTotalStrokes ; [\U0002C21C] ; 177-C7 177-A13 177-A14
+16.0 ; kTotalStrokes ; [\U0002C21C] ; 177-C7, 177-A13, 177-A14
 # [177-A125] Action Item for Michel Suignard, CJK: Change the kRSUnicode and kTotalStrokes property values of U+2D156, based on document L2/23-245 and Section 22 of document L2/23-237, and provide to Ken Lunde an updated Unihan data file, for Unicode version 16.0.
 # [177-A126] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kRSUnicode and kTotalStrokes property values of U+2D156, based on document L2/23-245 and Section 22 of document L2/23-237, for Unicode version 16.0.
-16.0 ; kTotalStrokes ; [\U0002D156] ; 177-A125 177-A126
+16.0 ; kTotalStrokes ; [\U0002D156] ; 177-A125, 177-A126
 # [179-C1] Consensus: Accept the proposal to change the informative kRSUnicode property value of U+2010E and the informative kTotalStrokes property values of U+5EF4 and U+2010E, based on PRI #483 feedback [ID20240208072227] and as amended in Section 02 of document L2/24-067, for Unicode Version 16.0.
 # [179-A11] Action Item for Ken Lunde, CJK: Use the updated Unihan16.txt data file to update the Unihan database to change the kRSUnicode property value of U+2010E and the kTotalStrokes property values of U+5EF4 and U+2010E, based on PRI #483 feedback [ID20240208072227] and as amended in Section 02 of document L2/24-067, for Unicode Version 16.0.
-16.0 ; kTotalStrokes ; [\u5EF4\U0002010E] ; 179-C1 179-A11
+16.0 ; kTotalStrokes ; [\u5EF4\U0002010E] ; 179-C1, 179-A11
 # [178-C28] Consensus: Revise entries in the ScriptExtensions.txt file to add values as documented in L2/23-272, for Unicode Version 16.0: Mong to U+3001, Mong Phag to U+3002, and Mong Tibt to U+3008, U+3009, U+300A, U+300B. [Ref. Section 4 of L2/24-013R]
 # [178-A77] Action Item for Roozbeh Pournader, PAG: Add Mong to scx of U+3001, Mong Phag to U+3002, and Mong Tibt to U+3008, U+3009, U+300A, U+300B, for Unicode Version 16.0. [Ref. Section 4 of L2/24-013R]
-16.0 ; Script_Extensions ; [\u3001\u3002\u3008-\u300B] ; 178-C28 178-A77
+16.0 ; Script_Extensions ; [\u3001\u3002\u3008-\u300B] ; 178-C28, 178-A77
 # [178-C29] Consensus: Add Kannada to the ScriptExtensions.txt entry for U+1CD3 VEDIC SIGN NIHSHVASA for Unicode Version 16.0 as described in L2/24-024. [Ref. Section 7 of document L2/24-013R]
 # [178-A80] Action Item for Roozbeh Pournader, PAG: Add the value Knda (Kannada) in ScriptExtensions.txt for U+1CD3 VEDIC SIGN NIHSHVASA for Unicode Version 16.0, based on document L2/24-024. [Ref. Section 7 of L2/24-013R]
-16.0 ; Script_Extensions ; [\u1CD3] ; 178-C29 178-A80
+16.0 ; Script_Extensions ; [\u1CD3] ; 178-C29, 178-A80
 # [179-C23] Consensus: Add all 53 entries to ScriptExtensions.txt as proposed in document L2/23-280, including U+0300 and U+0308, for Unicode Version 16.0. See document L2/24-064 item 2.3. This decision supersedes consensus 178-C39.
 16.0 ; Script_Extensions ; [\u0300] ; 179-C23
 # [179-C56] Consensus: Add Latn to the Script_Extensions property of U+1DF8 in the ScriptExtensions.txt file as documented in document L2/24-091 for Unicode Version 16.0. [Ref. Section 12 of document L2/24-068]
 # [179-A163] Action Item for Roozbeh Pournader, PAG: Add Latn to scx of U+1DF8, for Unicode Version 16.0. [Ref. Section 12 of document L2/24-068]
-16.0 ; Script_Extensions ; [\u1DF8] ; 179-C56 179-A163
+16.0 ; Script_Extensions ; [\u1DF8] ; 179-C56, 179-A163
 # [180-C11] Consensus: Add Duployan (Dupl) to the Script_Extensions of U+00B7 MIDDLE DOT, U+0307 COMBINING DOT ABOVE, U+0308 COMBINING DIAERESIS, U+030A COMBINING RING ABOVE, U+0323 COMBINING DOT BELOW, U+0324 COMBINING DIAERESIS BELOW, and U+2E3C STENOGRAPHIC FULL STOP. For Unicode 16.0. See L2/24-162 item 1.5 and PRI-502#ID20240522040217.
 # [180-A40] Action Item for Roozbeh Pournader, PAG: Add Duployan (Dupl) to the Script_Extensions of U+00B7 MIDDLE DOT, U+0307 COMBINING DOT ABOVE, U+0308 COMBINING DIAERESIS, U+030A COMBINING RING ABOVE, U+0323 COMBINING DOT BELOW, U+0324 COMBINING DIAERESIS BELOW, and U+2E3C STENOGRAPHIC FULL STOP. For Unicode Version 16.0. See L2/24-162 item 1.5.
-16.0 ; Script_Extensions ; [\u00B7\u0307\u030A\u0323\u0324\u2E3C] ; 180-C11 180-A40
+16.0 ; Script_Extensions ; [\u00B7\u0307\u030A\u0323\u0324\u2E3C] ; 180-C11, 180-A40
 # [179-C23] Consensus: Add all 53 entries to ScriptExtensions.txt as proposed in document L2/23-280, including U+0300 and U+0308, for Unicode Version 16.0. See document L2/24-064 item 2.3. This decision supersedes consensus 178-C39.
 # [180-C11] Consensus: Add Duployan (Dupl) to the Script_Extensions of U+00B7 MIDDLE DOT, U+0307 COMBINING DOT ABOVE, U+0308 COMBINING DIAERESIS, U+030A COMBINING RING ABOVE, U+0323 COMBINING DOT BELOW, U+0324 COMBINING DIAERESIS BELOW, and U+2E3C STENOGRAPHIC FULL STOP. For Unicode 16.0. See L2/24-162 item 1.5 and PRI-502#ID20240522040217.
 # [180-A40] Action Item for Roozbeh Pournader, PAG: Add Duployan (Dupl) to the Script_Extensions of U+00B7 MIDDLE DOT, U+0307 COMBINING DOT ABOVE, U+0308 COMBINING DIAERESIS, U+030A COMBINING RING ABOVE, U+0323 COMBINING DOT BELOW, U+0324 COMBINING DIAERESIS BELOW, and U+2E3C STENOGRAPHIC FULL STOP. For Unicode Version 16.0. See L2/24-162 item 1.5.
-16.0 ; Script_Extensions ; [\u0308] ; 179-C23 180-C11 180-A40
+16.0 ; Script_Extensions ; [\u0308] ; 179-C23, 180-C11, 180-A40
 # [180-C42] Consensus: Add Runr to the Script_Extensions of U+16EB RUNIC SINGLE PUNCTUATION, U+16EC RUNIC MULTIPLE PUNCTUATION, U+16ED RUNIC CROSS PUNCTUATION for Unicode Version 16.0 [Ref. Section 24 of document L2/24-166]
 # [180-A106] Action Item for Roozbeh Pournader, PAG: Add Runr to the Script_Extensions of U+16EB RUNIC SINGLE PUNCTUATION, U+16EC RUNIC MULTIPLE PUNCTUATION, U+16ED RUNIC CROSS PUNCTUATION for Unicode Version 16.0 [Ref. Section 24 of document L2/24-166]
-16.0 ; Script_Extensions ; [\u16EB-\u16ED] ; 180-C42 180-A106
+16.0 ; Script_Extensions ; [\u16EB-\u16ED] ; 180-C42, 180-A106
 # [177-C40] Consensus: Change the gc property value for U+1171E AHOM CONSONANT SIGN MEDIAL RA from Mn to Mc and the Bidi_Class value from NSM to L for Unicode version 16.0. (Ref. L2/23-200)
 # [177-A95] Action Item for Robin Leroy, PAG: For U+1171E AHOM CONSONANT SIGN MEDIAL RA, change the gc property value from Mn to Mc and Bidi_Class value from NSM to L for Unicode version 16.0. (Ref. Section 17 of L2/23-238)
-16.0 ; Bidi_Class ; [\U0001171E] ; 177-C40 177-A95
+16.0 ; Bidi_Class ; [\U0001171E] ; 177-C40, 177-A95
 # [179-C22] Consensus: Change the Bidi_Class of the five ∇ mathematical variants, U+1D6C1 (BOLD), U+1D6FB (ITALIC), U+1D735 (BOLD ITALIC), U+1D76F (SANS-SERIF BOLD), and U+1D7A9 (SANS-SERIF BOLD ITALIC), from Left_To_Right (L) to Other_Neutral (ON). For Unicode Version 16.0. See document L2/24-064 item 2.2.
 # [179-A90] Action Item for Robin Leroy, PAG: In UnicodeData.txt and derived files, change the Bidi_Class of the five ∇ mathematical variants, U+1D6C1 (BOLD), U+1D6FB (ITALIC), U+1D735 (BOLD ITALIC), U+1D76F (SANS-SERIF BOLD), and U+1D7A9 (SANS-SERIF BOLD ITALIC), from Left_To_Right (L) to Other_Neutral (ON). For Unicode Version 16.0. See document L2/24-064 item 2.2.
-16.0 ; Bidi_Class ; [\U0001D6C1\U0001D6FB\U0001D735\U0001D76F\U0001D7A9] ; 179-C22 179-A90
+16.0 ; Bidi_Class ; [\U0001D6C1\U0001D6FB\U0001D735\U0001D76F\U0001D7A9] ; 179-C22, 179-A90
 # [176-C17] Consensus: The UTC approves the change of canonical combining class for U+0897 ARABIC PEPET to ccc=230, from ccc=0 as approved by UTC-172-C3.
 16.0 ; Canonical_Combining_Class ; [\u0897] ; 176-C17
 # [177-C40] Consensus: Change the gc property value for U+1171E AHOM CONSONANT SIGN MEDIAL RA from Mn to Mc and the Bidi_Class value from NSM to L for Unicode version 16.0. (Ref. L2/23-200)
 # [177-A95] Action Item for Robin Leroy, PAG: For U+1171E AHOM CONSONANT SIGN MEDIAL RA, change the gc property value from Mn to Mc and Bidi_Class value from NSM to L for Unicode version 16.0. (Ref. Section 17 of L2/23-238)
-16.0 ; General_Category ; [\U0001171E] ; 177-C40 177-A95
+16.0 ; General_Category ; [\U0001171E] ; 177-C40, 177-A95
 # [177-N9] Note: The PAG has corrected the General_Category for U+10D6F GARAY REDUPLICATION MARK from Other_Symbol (So) as approved by Consensus 171-C18 to Modifier_Letter (Lm). For Unicode Version 16.0. See L2/23-234 Section 2.2.
 16.0 ; General_Category ; [\U00010D6F] ; 177-N9
 # [177-N10] Note: The PAG has corrected the General_Category for U+10D4E GARAY VOWEL LENGTH MARK from Other_Letter (Lo) as approved by Consensus 171-C18 to Modifier_Letter (Lm). For Unicode Version 16.0. See L2/23-234 Section 2.2.
@@ -857,76 +874,76 @@
 16.0 ; Grapheme_Cluster_Break ; [\u1715\u1734\u1B44\u1BAA\u1BF2\u1BF3\uA953\uA9C0\U000111C0\U00011235\U0001134D\U000116B6\U0001193D\U00011F41\U00016FF0\U00016FF1\U0001D166\U0001D16D] ; 178-C12
 # [180-C19] Consensus: Assign the Other_Grapheme_Extend property to U+0CC0, U+0CC7, U+0CC8, and U+0CCA, U+0CCB (Kannada vowel signs II, EE, AI, O, and OO), as well as U+1B3B, U+1B3D, and U+1B43 (Balinese vowel signs ra repa tedung, la lenga tedung, and pepet tedung), thereby changing their Grapheme_Cluster_Break property from SpacingMark to Extend, ensuring consistency of legacy grapheme clusters with canonical equivalence. For Unicode 16.0. See L2/24-162 item 6.2, PRI-494#ID20240422114157, and PRI-494#ID20240422120150.
 # [180-A60] Action Item for Robin Leroy, PAG: Assign the Other_Grapheme_Extend property to U+0CC0, U+0CC7, and U+0CC8, and U+0CCA, U+0CCB (Kannada vowel signs II, EE, AI, O, and OO), as well as U+1B3B, U+1B3D, and U+1B43 (Balinese vowel signs ra repa tedung, la lenga tedung, and pepet tedung), thereby changing their Grapheme_Cluster_Break property from SpacingMark to Extend. For Unicode 16.0. See L2/24-162 item 6.2.
-16.0 ; Grapheme_Cluster_Break ; [\u0CC0\u0CC7\u0CC8\u0CCA\u0CCB\u1B3B\u1B3D\u1B43] ; 180-C19 180-A60
+16.0 ; Grapheme_Cluster_Break ; [\u0CC0\u0CC7\u0CC8\u0CCA\u0CCB\u1B3B\u1B3D\u1B43] ; 180-C19, 180-A60
 # [179-C39] Consensus: Change the Identifier_Type of U+A9CF JAVANESE PANGRANGKEP to Limited_Use Uncommon_Use, removing Exclusion. For Unicode Version 16.0. See document L2/24-064 item 8.1.
 # [179-A124] Action Item for Markus Scherer, PAG: Change the Identifier_Type of U+A9CF JAVANESE PANGRANGKEP to only Limited_Use Uncommon_Use, removing Exclusion. For Unicode Version 16.0. See document L2/24-064 item 8.1.
-16.0 ; Identifier_Type ; [\uA9CF] ; 179-C39 179-A124
+16.0 ; Identifier_Type ; [\uA9CF] ; 179-C39, 179-A124
 # [177-C41] Consensus: Change the InPC property value for U+0D41 MALAYALAM VOWEL SIGN U and U+0D42 MALAYALAM VOWEL SIGN UU from Right to Bottom for Unicode version 16.0. (Ref. L2/23-200)
 16.0 ; Indic_Positional_Category ; [\u0D41\u0D42] ; 177-C41
 # [177-C43] Consensus: Change the InSC property values for the Batak viramas U+1BF2 BATAK PANGOLAT and U+1BF3 BATAK PANONGONAN from Pure_Killer to Reordering_Killer for Unicode version 16.0. (Ref. L2/23-205 and Section 18 of L2/23-238)
 # [177-A96] Action Item for Roozbeh Pournader, SAH: Add a new property value Reordering_Killer to the Indic Syllabic Category (InSC) property; and change the InSC property values for U+1BF2 BATAK PANGOLAT and U+1BF3 BATAK PANONGONAN from Pure_Killer to Reordering_Killer.
-16.0 ; Indic_Syllabic_Category ; [\u1BF2\u1BF3] ; 177-C43 177-A96
+16.0 ; Indic_Syllabic_Category ; [\u1BF2\u1BF3] ; 177-C43, 177-A96
 # [180-C24] Consensus: In ArabicShaping.txt, change the Joining_Group for U+0620 from YEH to a new joining group KASHMIRI YEH, and change its schematic name from DOTLESS YEH WITH SEPARATE RING BELOW to KASHMIRI YEH for Unicode 16.0. [Ref. Section 3b of L2/24-166]
 16.0 ; Joining_Group ; [\u0620] ; 180-C24
 # [177-C46] Consensus: Change the Line_Break property of the Balinese, Javanese, Cham, and Dives Akuru digits, namely U+1B50..U+1B59, U+A9D0..U+A9D9, U+AA50..U+AA59, and U+11950..U+11959, from Ideographic to Aksara_Start. For Unicode version 16.0. See L2/23-234 item 5.1.
 16.0 ; Line_Break ; [\u1B50\u1B59\uA9D0\uA9D9\uAA50\uAA59\U00011950\U00011959] ; 177-C46
 # [177-C47] Consensus: Change the Line_Break property of 🢰 U+1F8B0 ARROW POINTING UPWARDS THEN NORTH WEST and 🢱 U+1F8B1 ARROW POINTING RIGHTWARDS THEN CURVING SOUTH WEST from Ideographic (ID) to Alphabetic (AL), and change that of all unassigned code points in the Supplemental Arrows C block from Ideographic (ID) to Unknown (XX). For Unicode version 16.0. See L2/23-234 item 5.3.
 # [177-A114] Action Item for Robin Leroy, PAG: In LineBreak.txt, change the Line_Break property of 🢰 U+1F8B0 ARROW POINTING UPWARDS THEN NORTH WEST and 🢱 U+1F8B1 ARROW POINTING RIGHTWARDS THEN CURVING SOUTH WEST from Line_Break=Ideographic (ID) to Line_Break=Alphabetic (AL), and change that of all unassigned code points in the Supplemental Arrows C block from Line_Break=Ideographic (ID) to Unknown (XX). For Unicode version 16.0. See L2/23-234 item 5.3.
-16.0 ; Line_Break ; [\U0001F8B0\U0001F8B1] ; 177-C47 177-A114
+16.0 ; Line_Break ; [\U0001F8B0\U0001F8B1] ; 177-C47, 177-A114
 # [179-C29] Consensus: Change the Line_Break property of nine characters from Line_Break=Combining_Mark to Line_Break=Glue: U+FE20, U+FE22, U+FE24, U+FE27, U+FE29, U+FE2B, and U+FE2E (seven combining left half marks), as well as U+FE26 COMBINING CONJOINING MACRON and U+FE2D COMBINING CONJOINING MACRON BELOW. For Unicode Version 16.0. See document L2/24-064 item 5.6.
 # [179-A104] Action Item for Robin Leroy, PAG: In LineBreak.txt and derived files, change the Line_Break property of the following nine characters from Line_Break=Combining_Mark to Line_Break=Glue: U+FE20, U+FE22, U+FE24, U+FE27, U+FE29, U+FE2B, U+FE2E, U+FE26, and U+FE2D. For Unicode Version 16.0. See document L2/24-064 item 5.6.
-16.0 ; Line_Break ; [\uFE20\uFE22\uFE24\uFE26\uFE27\uFE29\uFE2B\uFE2D\uFE2E] ; 179-C29 179-A104
+16.0 ; Line_Break ; [\uFE20\uFE22\uFE24\uFE26\uFE27\uFE29\uFE2B\uFE2D\uFE2E] ; 179-C29, 179-A104
 # [179-A106] Action Item for Robin Leroy, PAG: In LineBreak.txt and derived files, Change the Line_Break assignment of U+FE10 ︐ PRESENTATION FORM FOR VERTICAL COMMA to Close_Punctuation (CL), and that of U+FE13 ︓ PRESENTATION FORM FOR VERTICAL COLON and U+FE14 ︔ PRESENTATION FORM FOR VERTICAL SEMICOLON to Nonstarter (NS). For Unicode Version 16.0. See document L2/24-064 item 5.7.
 # [179-A107] Action Item for Robin Leroy, PAG: In UAX #14, update the descriptions of line breaking classes IS, CL, and NS to reflect the change of Line_Break assignment of U+FE10, U+FE13, and U+FE14. For Unicode Version 16.0. See document L2/24-064 item 5.7.
-16.0 ; Line_Break ; [\uFE10\uFE13\uFE14] ; 179-A106 179-A107
+16.0 ; Line_Break ; [\uFE10\uFE13\uFE14] ; 179-A106, 179-A107
 # [180-C15] Consensus: Approve the change of the Line_Break property of the Creative Commons symbols U+1F10D..U+1F10F, U+1F16D..U+1F16F, and U+1F1AD from Line_Break=Ideographic (ID) to Line_Break=Alphabetic (AL), and of the phonetic closing brackets U+2E56, U+2E58, U+2E5A, and U+2E5C from Line_Break=Close_Punctuation (CL) to Line_Break=Close_Parenthesis (CP). For Unicode 16.0". See L2/24-162 item 5.2.
 16.0 ; Line_Break ; [\u2E56\u2E58\u2E5A\u2E5C\U0001F10D\U0001F10F\U0001F16D\U0001F16F\U0001F1AD] ; 180-C15
 # [180-C16] Consensus: Change the Line_Break assignment of U+19DA NEW TAI LUE THAM DIGIT ONE from Line_Break=Complex Context to Line_Break=Numeric. For Unicode 16.0. See L2/24-162 item 5.4.
 # [180-A54] Action Item for Robin Leroy, PAG: Change the Line_Break assignment of U+19DA NEW TAI LUE THAM DIGIT ONE from Line_Break=Complex Context to Line_Break=Numeric in LineBreak.txt. For Unicode 16.0. See L2/24-162 item 5.4.
-16.0 ; Line_Break ; [\u19DA] ; 180-C16 180-A54
+16.0 ; Line_Break ; [\u19DA] ; 180-C16, 180-A54
 # [180-C17] Consensus: Change the Line_Break property of U+2150..U+2153, U+2156..U+215A, and U+215C..U+215D (VULGAR FRACTION ONE SEVENTH, ONE NINTH, ONE TENTH, ONE THIRD, TWO FIFTHS, THREE FIFTHS, FOUR FIFTHS, ONE SIXTH, FIVE SIXTHS, THREE EIGHTHS, and FIVE EIGHTHS) to lb=AI. For Unicode 16.0. See L2/24-162 item 5.5.
 # [180-A55] Action Item for Robin Leroy, PAG: change the Line_Break property of U+2150..U+2153, U+2156..U+215A, and U+215C..U+215D (VULGAR FRACTION ONE SEVENTH, ONE NINTH, ONE TENTH, ONE THIRD, TWO FIFTHS, THREE FIFTHS, FOUR FIFTHS, ONE SIXTH, FIVE SIXTHS, THREE EIGHTHS, and FIVE EIGHTHS) to lb=AI. For Unicode 16.0. See L2/24-162 item 5.5.
-16.0 ; Line_Break ; [\u2150\u2153\u2156\u215A\u215C\u215D] ; 180-C17 180-A55
+16.0 ; Line_Break ; [\u2150\u2153\u2156\u215A\u215C\u215D] ; 180-C17, 180-A55
 # [177-C52] Consensus: Assign the property Alphabetic to the combining Latin letters U+0363..U+036F and U+1DD3..U+1DE6. For Unicode Version 16.0. See document L2/23-234 item 2.6.
 16.0 ; Alphabetic ; [\u0363\u036F\u1DD3\u1DE6] ; 177-C52
 # [178-C34] Consensus: Change the Bidi_Mirrored property of U+226D NOT EQUIVALENT TO to Yes, for Unicode Version 16.0. [Ref. Section 12 of L2/24-013R]
 # [178-A89] Action Item for Markus Scherer, PAG: Update the Bidi_Mirrored property of U+226D NOT EQUIVALENT TO to Yes, and update BidiMirroring.txt, for Unicode Version 16.0. [Ref. Section 12 of L2/24-013R]
-16.0 ; Bidi_Mirrored ; [\u226D] ; 178-C34 178-A89
+16.0 ; Bidi_Mirrored ; [\u226D] ; 178-C34, 178-A89
 # [178-C4] Consensus: Assign Diacritic=Yes to 5 characters: U+1BE6 BATAK SIGN TOMPI, U+10A38 KHAROSHTHI SIGN BAR ABOVE, U+10A39 KHAROSHTHI SIGN CAUDA, U+10A3A KHAROSHTHI SIGN DOT BELOW, U+1133B COMBINING BINDU BELOW. For Unicode Version 16.0. See L2/24-009 item 2.2.
 # [178-A4] Action Item for Robin Leroy, PAG: Assign Diacritic=Yes to 5 characters: U+1BE6 BATAK SIGN TOMPI, U+10A38 KHAROSHTHI SIGN BAR ABOVE, U+10A39 KHAROSHTHI SIGN CAUDA, U+10A3A KHAROSHTHI SIGN DOT BELOW, U+1133B COMBINING BINDU BELOW. For Unicode Version 16.0. See L2/24-009 item 2.2.
-16.0 ; Diacritic ; [\u1BE6\U00010A38-\U00010A3A\U0001133B] ; 178-C4 178-A4
+16.0 ; Diacritic ; [\u1BE6\U00010A38-\U00010A3A\U0001133B] ; 178-C4, 178-A4
 # [178-C5] Consensus: Assign Diacritic=Yes to 7 characters: U+0E3A THAI CHARACTER PHINTHU, U+1734 HANUNOO SIGN PAMUDPOD, U+1BF2 BATAK PANGOLAT, U+1BF3 BATAK PANONGONAN, U+A806 SYLOTI NAGRI SIGN HASANTA, U+A82C SYLOTI NAGRI SIGN ALTERNATE HASANTA, U+11F41 KAWI SIGN KILLER. For Unicode Version 16.0. See L2/24-009 item 2.2.
 # [178-A5] Action Item for Robin Leroy, PAG: Assign Diacritic=Yes to 7 characters: U+0E3A THAI CHARACTER PHINTHU, U+1734 HANUNOO SIGN PAMUDPOD, U+1BF2 BATAK PANGOLAT, U+1BF3 BATAK PANONGONAN, U+A806 SYLOTI NAGRI SIGN HASANTA, U+A82C SYLOTI NAGRI SIGN ALTERNATE HASANTA, U+11F41 KAWI SIGN KILLER. For Unicode Version 16.0. See L2/24-009 item 2.2.
-16.0 ; Diacritic ; [\u0E3A\u1734\u1BF2\u1BF3\uA806\uA82C\U00011F41] ; 178-C5 178-A5
+16.0 ; Diacritic ; [\u0E3A\u1734\u1BF2\u1BF3\uA806\uA82C\U00011F41] ; 178-C5, 178-A5
 # [178-C6] Consensus: Assign Diacritic=Yes to 3 characters: U+1A60 TAI THAM SIGN SAKOT, U+10A3F KHAROSHTHI VIRAMA, U+11F42 KAWI CONJOINER. For Unicode Version 16.0. See L2/24-009 item 2.2.
 # [178-A6] Action Item for Robin Leroy, PAG: Assign Diacritic=Yes to 3 characters: U+1A60 TAI THAM SIGN SAKOT, U+10A3F KHAROSHTHI VIRAMA, U+11F42 KAWI CONJOINER. For Unicode Version 16.0. See L2/24-009 item 2.2.
-16.0 ; Diacritic ; [\u1A60\U00010A3F\U00011F42] ; 178-C6 178-A6
+16.0 ; Diacritic ; [\u1A60\U00010A3F\U00011F42] ; 178-C6, 178-A6
 # [178-C3] Consensus: Assign Extender=Yes to 3 characters: U+0A71 GURMUKHI ADDAK, U+0AFB GUJARATI SIGN SHADDA, U+11237 KHOJKI SIGN SHADDA. For Unicode Version 16.0. See L2/24-009 item 2.2.
 # [178-A3] Action Item for Robin Leroy, PAG: Assign Extender=Yes to 3 characters: U+0A71 GURMUKHI ADDAK, U+0AFB GUJARATI SIGN SHADDA, U+11237 KHOJKI SIGN SHADDA. For Unicode Version 16.0. See L2/24-009 item 2.2.
-16.0 ; Extender ; [\u0A71\u0AFB\U00011237] ; 178-C3 178-A3
+16.0 ; Extender ; [\u0A71\u0AFB\U00011237] ; 178-C3, 178-A3
 # [177-A127] Action Item for Robin Leroy, PAG: In PropList.txt, assign the property Other_Alphabetic to the combining latin letters U+0363..U+036F and U+1DD3..U+1DE6, and update derived properties accordingly. For Unicode Version 16.0. See L2/23-234 item 2.6.
 16.0 ; Other_Alphabetic ; [\u0363\u036F\u1DD3\u1DE6] ; 177-A127
 # [178-C12] Consensus: Assign the Other_Grapheme_Extend property to eighteen characters (fourteen spacing viramas U+1715, U+1734, U+1B44, U+1BAA, U+1BF2, U+1BF3, U+A953, U+A9C0, U+111C0, U+11235, U+1134D, U+116B6, U+1193D, and U+11F41, two Vietnamese alternate reading marks U+16FF0 and U+16FF1, and two musical symbols U+1D166 and U+1D16D) in order to make all non-starters GCB=Extend. For Unicode Version 16.0. See L2/24-009 item 6.5.
 # [178-A24] Action Item for Robin Leroy, PAG: In PropList.txt, assign the Other_Grapheme_Extend property to eighteen pre-existing characters (U+1715, U+1734, U+1B44, U+1BAA, U+1BF2, U+1BF3, U+A953, U+A9C0, U+111C0, U+11235, U+1134D, U+116B6, U+1193D, U+11F41, U+16FF0, U+16FF1, U+1D166, U+1D16D), as well as to the Tulu-Tigalari vowel signs and looped viramas, and update derived properties. For Unicode Version 16.0. See L2/24-009 item 6.5.
-16.0 ; Other_Grapheme_Extend ; [\u1715\u1734\u1B44\u1BAA\u1BF2\u1BF3\uA953\uA9C0\U000111C0\U00011235\U0001134D\U000116B6\U0001193D\U00011F41\U00016FF0\U00016FF1\U0001D166\U0001D16D] ; 178-C12 178-A24
+16.0 ; Other_Grapheme_Extend ; [\u1715\u1734\u1B44\u1BAA\u1BF2\u1BF3\uA953\uA9C0\U000111C0\U00011235\U0001134D\U000116B6\U0001193D\U00011F41\U00016FF0\U00016FF1\U0001D166\U0001D16D] ; 178-C12, 178-A24
 # [180-C19] Consensus: Assign the Other_Grapheme_Extend property to U+0CC0, U+0CC7, U+0CC8, and U+0CCA, U+0CCB (Kannada vowel signs II, EE, AI, O, and OO), as well as U+1B3B, U+1B3D, and U+1B43 (Balinese vowel signs ra repa tedung, la lenga tedung, and pepet tedung), thereby changing their Grapheme_Cluster_Break property from SpacingMark to Extend, ensuring consistency of legacy grapheme clusters with canonical equivalence. For Unicode 16.0. See L2/24-162 item 6.2, PRI-494#ID20240422114157, and PRI-494#ID20240422120150.
 # [180-A60] Action Item for Robin Leroy, PAG: Assign the Other_Grapheme_Extend property to U+0CC0, U+0CC7, and U+0CC8, and U+0CCA, U+0CCB (Kannada vowel signs II, EE, AI, O, and OO), as well as U+1B3B, U+1B3D, and U+1B43 (Balinese vowel signs ra repa tedung, la lenga tedung, and pepet tedung), thereby changing their Grapheme_Cluster_Break property from SpacingMark to Extend. For Unicode 16.0. See L2/24-162 item 6.2.
-16.0 ; Other_Grapheme_Extend ; [\u0CC0\u0CC7\u0CC8\u0CCA\u0CCB\u1B3B\u1B3D\u1B43] ; 180-C19 180-A60
+16.0 ; Other_Grapheme_Extend ; [\u0CC0\u0CC7\u0CC8\u0CCA\u0CCB\u1B3B\u1B3D\u1B43] ; 180-C19, 180-A60
 # [178-C11] Consensus: Give U+2024 ONE DOT LEADER the Sentence_Terminal property. For Unicode Version 16.0. See L2/24-009 item 6.3.
 # [178-A22] Action Item for Mark Davis, PAG: In PropList.txt, give U+2024 ONE DOT LEADER the Sentence_Terminal property. For Unicode Version 16.0. See L2/24-009 item 6.3.
-16.0 ; Sentence_Terminal ; [\u2024] ; 178-C11 178-A22
+16.0 ; Sentence_Terminal ; [\u2024] ; 178-C11, 178-A22
 # [179-C34] Consensus: Give U+2CF9..U+2CFB the Sentence_Terminal property. For Unicode Version 16.0. See document L2/24-064 item 5.14.
 # [179-A115] Action Item for Josh Hadley, PAG: In PropList.txt, add U+2CF9..U+2CFB to Sentence_Terminal. For Unicode Version 16.0. See document L2/24-064 item 5.14.
-16.0 ; Sentence_Terminal ; [\u2CF9\u2CFB] ; 179-C34 179-A115
+16.0 ; Sentence_Terminal ; [\u2CF9\u2CFB] ; 179-C34, 179-A115
 # [179-C21] Consensus: Remove the Terminal_Punctuation property from U+0836 SAMARITAN ABBREVIATION MARK. For Unicode Version 16.0. See document L2/24-064 item 2.1.
 # [179-A89] Action Item for Robin Leroy, PAG: In PropList.txt, remove the Terminal_Punctuation property from U+0836 SAMARITAN ABBREVIATION MARK. For Unicode Version 16.0. See document L2/24-064 item 2.1.
-16.0 ; Terminal_Punctuation ; [\u0836] ; 179-C21 179-A89
+16.0 ; Terminal_Punctuation ; [\u0836] ; 179-C21, 179-A89
 # [181-C52] Consensus: Assign Numeric_Value=1/2 to U+12226 𒈦 CUNEIFORM SIGN MASH; Numeric_Value=1 to U+12038 𒀸 CUNEIFORM SIGN ASH, U+12039 𒀹 CUNEIFORM SIGN ASH ZIDA TENU, U+12079 𒁹 CUNEIFORM SIGN DISH, U+1230B 𒌋 CUNEIFORM SIGN U; Numeric_Value=2 to U+1222B 𒈫 CUNEIFORM SIGN MIN and U+12399 𒎙 CUNEIFORM SIGN U U; Numeric_Value=3 to U+1230D 𒌍 CUNEIFORM SIGN U U U, and assign Numeric_Type=Numeric to all of these characters, as described in L2/24-239. See L2/24-224 item 2.7.
 # [181-A135] Action Item for Robin Leroy, PAG: In UCD file UnicodeData.txt and derived files, assign Numeric_Value=1/2 to U+12226 𒈦 CUNEIFORM SIGN MASH; Numeric_Value=1 to U+12038 𒀸 CUNEIFORM SIGN ASH, U+12039 𒀹 CUNEIFORM SIGN ASH ZIDA TENU, U+12079 𒁹 CUNEIFORM SIGN DISH, U+1230B 𒌋 CUNEIFORM SIGN U; Numeric_Value=2 to U+1222B 𒈫 CUNEIFORM SIGN MIN and U+12399 𒎙 CUNEIFORM SIGN U U; Numeric_Value=3 to U+1230D 𒌍 CUNEIFORM SIGN U U U, and assign Numeric_Type=Numeric to all of these characters, as described in L2/24-239. See L2/24-224 item 2.7.
-17.0 ; Numeric_Value ; [\U00012038\U00012039\U00012079\U00012226\U0001222B\U0001230B\U0001230D\U00012399] ; 181-C52 181-A135
+17.0 ; Numeric_Value ; [\U00012038\U00012039\U00012079\U00012226\U0001222B\U0001230B\U0001230D\U00012399] ; 181-C52, 181-A135
 # [182-C32] Consensus: Accept the proposal to swap the order of the informative kPrimaryNumeric property values of U+5146, based on document L2/22-223 (Wáng & Chan) and Section 15 of document L2/25-009, for Unicode Version 17.0.
 # [182-A90] Action Item for Ken Lunde, CJK: Update the Unihan database to swap the order of the kPrimaryNumeric property values of U+5146, based on document L2/22-223 and Section 15 of document L2/25-009, for Unicode Version 17.0.
-17.0 ; kPrimaryNumeric ; [\u5146] ; 182-C32 182-A90
+17.0 ; kPrimaryNumeric ; [\u5146] ; 182-C32, 182-A90
 # [183-A41] Action Item for Robin Leroy, PAG: In UCD file NameAliases.txt, add formal aliases to 4 Bamum characters: BAMUM LETTER PHASE-B PUNGGAAM for U+16881 BAMUM LETTER PHASE-B PUNGAAM, BAMUM LETTER PHASE-B NGGOM for U+1688E BAMUM LETTER PHASE-B NGOM, BAMUM LETTER PHASE-C SHETFON for U+168DC BAMUM LETTER PHASE-C SETFON, BAMUM LETTER PHASE-E NGGOP for U+1697D BAMUM LETTER PHASE-E NGOP. [Ref. 3.9 in L2/25-091R]
 17.0 ; Name_Alias ; [\U00016881\U0001688E\U000168DC\U0001697D] ; 183-A41
 # [183-C42] Consensus: Accept the proposal to change the normative kIRG_GSource property values of U+827B and U+8280 to G3-682F and G5-673E, respectively, based on PRI #508 feedback [ID20250121122459] and as amended in Section 01 of document L2/25-090, for Unicode Version 17.0.
@@ -941,20 +958,20 @@
 17.0 ; kIRG_TSource ; [\U0002B7C2] ; 183-C60
 # [183-C46] Consensus: Accept the proposal to add UTC-00369 as a new normative kIRG_USource property value for U+69E9, based on PRI #508 feedback [ID20250228104951] and as amended in Section 09 of document L2/25-090, for Unicode Version 17.0.
 # [183-A113] Action Item for Ken Lunde, CJK: Use the updated Unihan17.txt data file to update the Unihan database to add UTC-00369 as a new kIRG_USource property value for U+69E9, based on PRI #508 feedback [ID20250228104951] and as amended in Section 09 of document L2/25-090, for Unicode Version 17.0.
-17.0 ; kIRG_USource ; [\u69E9] ; 183-C46 183-A113
+17.0 ; kIRG_USource ; [\u69E9] ; 183-C46, 183-A113
 # [184-C36] Consensus: Accept the proposal to add UTC-00335 as a new normative kIRG_USource property value for U+2CE9E, based on PRI #508 feedback [ID20250613180157] and Section 08 of document L2/25-186, for Unicode Version 17.0.
 # [184-A95] Action Item for Ken Lunde, CJK: Use the updated Unihan17.txt data file to update the Unihan database to add UTC-00335 as a new kIRG_USource property value for U+2CE9E, based on PRI #508 feedback [ID20250613180157] and Section 08 of document L2/25-186, for Unicode Version 17.0.
-17.0 ; kIRG_USource ; [\U0002CE9E] ; 184-C36 184-A95
+17.0 ; kIRG_USource ; [\U0002CE9E] ; 184-C36, 184-A95
 # [184-C37] Consensus: Accept the proposal to add UTC-00588 as a new normative kIRG_USource property value for U+32DE8, based on PRI #514 feedback [ID20250205202205] and Section 10 of document L2/25-186, for Unicode Version 17.0.
 # [184-A103] Action Item for Ken Lunde, CJK: Use the updated Unihan17.txt data file to update the Unihan database to add UTC-00588 as a new kIRG_USource property value for U+32DE8, based on PRI #514 feedback [ID20250205202205] and Section 10 of document L2/25-186, for Unicode Version 17.0.
-17.0 ; kIRG_USource ; [\U00032DE8] ; 184-C37 184-A103
+17.0 ; kIRG_USource ; [\U00032DE8] ; 184-C37, 184-A103
 # [183-C64] Consensus: Accept the horizontal extension of U+2CACD, along with the three kIRG_VSource property value changes, based on document IRG N2798 (Vietnam) and Section 31 of document L2/25-090, for Unicode Version 17.0.
 17.0 ; kIRG_VSource ; [\U0002CACD] ; 183-C64
 # [181-C12] Consensus: Accept the proposal to add “61.6” to the informative kRSUnicode property value of U+2BB7B, based on PRI #508 feedback [ID20240923035256] and Section 02 of document L2/24-227R, for Unicode Version 17.0.
 17.0 ; kRSUnicode ; [\U0002BB7B] ; 181-C12
 # [181-C17] Consensus: Accept the proposal to change the informative kRSUnicode and kTotalStrokes property values of U+23D92, based on feedback [ID20240826145902] in document L2/24-223, and as amended in Section 11 of document L2/24-227R, for Unicode Version 17.0.
 # [181-A45] Action Item for Ken Lunde, CJK: Use the updated Unihan17.txt data file to update the Unihan database to change the kRSUnicode and kTotalStrokes property values of U+23D92, based on feedback [ID20240826145902] in document L2/24-223, and as amended in Section 11 of document L2/24-227R, for Unicode Version 17.0.
-17.0 ; kRSUnicode ; [\U00023D92] ; 181-C17 181-A45
+17.0 ; kRSUnicode ; [\U00023D92] ; 181-C17, 181-A45
 # [182-C21] Consensus: Accept the proposal to change the informative kRSUnicode property value of U+24822, based on PRI #508 feedback [ID20241115010810] and Section 01 of document L2/25-009, for Unicode Version 17.0.
 17.0 ; kRSUnicode ; [\U00024822] ; 182-C21
 # [182-C22] Consensus: Accept the proposal to change the informative kRSUnicode property value for U+22035, and to change the informative kTotalStrokes property values for 13 ideographs, based on PRI #508 feedback [ID20241121070501] and as amended in Section 02 of document L2/25-009, for Unicode Version 17.0.
@@ -973,7 +990,7 @@
 17.0 ; kRSUnicode ; [\u4748] ; 184-C35
 # [181-C17] Consensus: Accept the proposal to change the informative kRSUnicode and kTotalStrokes property values of U+23D92, based on feedback [ID20240826145902] in document L2/24-223, and as amended in Section 11 of document L2/24-227R, for Unicode Version 17.0.
 # [181-A45] Action Item for Ken Lunde, CJK: Use the updated Unihan17.txt data file to update the Unihan database to change the kRSUnicode and kTotalStrokes property values of U+23D92, based on feedback [ID20240826145902] in document L2/24-223, and as amended in Section 11 of document L2/24-227R, for Unicode Version 17.0.
-17.0 ; kTotalStrokes ; [\U00023D92] ; 181-C17 181-A45
+17.0 ; kTotalStrokes ; [\U00023D92] ; 181-C17, 181-A45
 # [182-C22] Consensus: Accept the proposal to change the informative kRSUnicode property value for U+22035, and to change the informative kTotalStrokes property values for 13 ideographs, based on PRI #508 feedback [ID20241121070501] and as amended in Section 02 of document L2/25-009, for Unicode Version 17.0.
 17.0 ; kTotalStrokes ; [\U00022035] ; 182-C22
 # [183-C66] Consensus: Accept the kRSUnicode and kTotalStrokes property value changes for U+32EBE, based on document IRG N2801 (Vietnam) and Section 32 of document L2/25-090, for Unicode Version 17.0.
@@ -984,58 +1001,58 @@
 17.0 ; kTotalStrokes ; [\u4748] ; 184-C35
 # [181-C42] Consensus: Revise entries in ScriptExtensions.txt file to add Tfng to U+0306, U+0308, and U+0323, for Unicode Version 17.0. [Ref. Section 4.2 of document L2/24-228]
 # [181-A106] Action Item for Roozbeh Pournader, PAG: Revise entries in ScriptExtensions.txt file to add Tfng to U+0306, U+0308, and U+0323, for Unicode Version 17.0 [Ref. Section 4.2 of document L2/24-228]
-17.0 ; Script_Extensions ; [\u0306\u0308\u0323] ; 181-C42 181-A106
+17.0 ; Script_Extensions ; [\u0306\u0308\u0323] ; 181-C42, 181-A106
 # [184-A57] Action Item for Roozbeh Pournader, SAH: Update ScriptExtensions.txt to reflect the U+0331 COMBINING MACRON BELOW usage in Syriac, for Unicode Version 17.0. [Ref. 4.3 in L2/25-187]
 17.0 ; Script_Extensions ; [\u0331] ; 184-A57
 # [183-C75] Consensus: Accept the proposal to change the East_Asian_Width property value of U+16FF2 through U+16FF6 from N to W, based on feedback [ID20250413185319] in document L2/25-071 and as amended in discussion, for Unicode Version 17.0.
 # [183-A185] Action Item for Robin Leroy, PAG: Update the UCD’s EastAsianWidth.txt data file to change the East_Asian_Width property value of U+16FF2 through U+16FF6 from N to W, based on feedback [ID20250413185319] in document L2/25-071 and as amended in discussion, for Unicode Version 17.0.
-17.0 ; East_Asian_Width ; [\U00016FF2\U00016FF6] ; 183-C75 183-A185
+17.0 ; East_Asian_Width ; [\U00016FF2\U00016FF6] ; 183-C75, 183-A185
 # [180-N3] Note: The provisionally assigned characters U+16FF2 CHINESE SMALL SIMPLIFIED ER and U+16FF3 CHINESE SMALL TRADITIONAL ER will have General_Category Modifier_Letter (Lm).
 17.0 ; General_Category ; [\U00016FF2\U00016FF3] ; 180-N3
 # [180-N4] Note: U+16FF4, U+16FF5, and U+16FF6 will have General_Category Letter_Number (Nl).
 17.0 ; General_Category ; [\U00016FF4-\U00016FF6] ; 180-N4
 # [184-C30] Consensus: Change the Identifier_Type of U+08C9 ARABIC SMALL FARSI YEH from Recommended to Technical, and of U+16FF0 and U+16FF1 VIETNAMESE ALTERNATE READING MARK CA and NHAY from Recommended to Obsolete. For Unicode Version 17.0. See L2/25-183 item 6.1.
 # [184-A72] Action Item for Josh Hadley, PAG: Change the Identifier_Type of U+08C9 ARABIC SMALL FARSI YEH from Recommended to Technical, and of U+16FF0 and U+16FF1 VIETNAMESE ALTERNATE READING MARK CA and NHAY from Recommended to Obsolete. For Unicode Version 17.0. See L2/25-183 item 6.1.
-17.0 ; Identifier_Type ; [\u08C9\U00016FF0\U00016FF1] ; 184-C30 184-A72
+17.0 ; Identifier_Type ; [\u08C9\U00016FF0\U00016FF1] ; 184-C30, 184-A72
 # [183-C15] Consensus: Update the Indic_Syllabic_Category of U+11A3A ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA to Consonant_With_Stacker and its Indic_Positional_Category to NA (not applicable) as described in L2/25-119, for Unicode Version 17.0. [Ref. 3.2 in L2/25-091R]
 17.0 ; Indic_Positional_Category ; [\U00011A3A] ; 183-C15
 # [181-C44] Consensus: Change the Indic_Syllabic_Category of U+11A50 SOYOMBO LETTER A and U+11A00 ZANABAZAR SQUARE LETTER A from Vowel_Independent to Consonant, and that of U+1900 LIMBU VOWEL-CARRIER LETTER from Consonant_Placeholder to Consonant, for Unicode Version 17.0 [Ref. Section 4.6 of document L2/24-228]
 # [181-A110] Action Item for Roozbeh Pournader, PAG: Change the Indic_Syllabic_Category of U+11A50 SOYOMBO LETTER A and U+11A00 ZANABAZAR SQUARE LETTER A from Vowel_Independent to Consonant, and that of U+1900 LIMBU VOWEL-CARRIER LETTER from Consonant_Placeholder to Consonant, for Unicode Version 17.0. [Ref. Section 4.6 of document L2/24-228]
-17.0 ; Indic_Syllabic_Category ; [\u1900\U00011A00\U00011A50] ; 181-C44 181-A110
+17.0 ; Indic_Syllabic_Category ; [\u1900\U00011A00\U00011A50] ; 181-C44, 181-A110
 # [183-C15] Consensus: Update the Indic_Syllabic_Category of U+11A3A ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA to Consonant_With_Stacker and its Indic_Positional_Category to NA (not applicable) as described in L2/25-119, for Unicode Version 17.0. [Ref. 3.2 in L2/25-091R]
 # [183-A33] Action Item for Roozbeh Pournader, PAG: Change the Indic_Syllabic_Category for U+11A3A ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA to Consonant_With_Stacker (and remove it from IndicPositionalCategory.txt) and for U+11A86 SOYOMBO CLUSTER-INITIAL LETTER RA to Consonant_Preceding_Repha, as described in L2/25-119, for Unicode Version 17.0. [Ref. 3.2 in L2/25-091R]
-17.0 ; Indic_Syllabic_Category ; [\U00011A3A] ; 183-C15 183-A33
+17.0 ; Indic_Syllabic_Category ; [\U00011A3A] ; 183-C15, 183-A33
 # [183-C16] Consensus: Update the Indic_Syllabic_Category of U+11A86 SOYOMBO CLUSTER-INITIAL LETTER RA to Consonant_Preceding_Repha as described in L2/25-119, for Unicode Version 17.0. [Ref. 3.2 in L2/25-091R]
 # [183-A33] Action Item for Roozbeh Pournader, PAG: Change the Indic_Syllabic_Category for U+11A3A ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA to Consonant_With_Stacker (and remove it from IndicPositionalCategory.txt) and for U+11A86 SOYOMBO CLUSTER-INITIAL LETTER RA to Consonant_Preceding_Repha, as described in L2/25-119, for Unicode Version 17.0. [Ref. 3.2 in L2/25-091R]
-17.0 ; Indic_Syllabic_Category ; [\U00011A86] ; 183-C16 183-A33
+17.0 ; Indic_Syllabic_Category ; [\U00011A86] ; 183-C16, 183-A33
 # [181-C54] Consensus: Change the Line_Break assignment of U+034F COMBINING GRAPHEME JOINER from Line_Break=GL (Glue) to Line_Break=CM (Combining_Mark). For Unicode Version 17.0. [Ref. Section 6.3 of document L2/24-224]
 # [181-A144] Action Item for Robin Leroy, PAG: In LineBreak.txt and derived files, change the Line_Break assignment of U+034F COMBINING GRAPHEME JOINER from Line_Break=GL (Glue) to Line_Break=CM (Combining_Mark). For Unicode Version 17.0. [Ref. Section 6.3 of document L2/24-224]
-17.0 ; Line_Break ; [\u034F] ; 181-C54 181-A144
+17.0 ; Line_Break ; [\u034F] ; 181-C54, 181-A144
 # [184-C29] Consensus: Change the Line_Break assignment of U+2800 BRAILLE PATTERN BLANK from Alphabetic (AL) to Break_After (BA). For Unicode Version 17.0. See L2/25-183 item 2.3.
 # [184-A69] Action Item for Robin Leroy, PAG: In UCD file LineBreak.txt, change the Line_Break assignment of U+2800 BRAILLE PATTERN BLANK from Alphabetic (AL) to Break_After (BA). For Unicode Version 17.0. See L2/25-183 item 2.3.
-17.0 ; Line_Break ; [\u2800] ; 184-C29 184-A69
+17.0 ; Line_Break ; [\u2800] ; 184-C29, 184-A69
 # [181-C52] Consensus: Assign Numeric_Value=1/2 to U+12226 𒈦 CUNEIFORM SIGN MASH; Numeric_Value=1 to U+12038 𒀸 CUNEIFORM SIGN ASH, U+12039 𒀹 CUNEIFORM SIGN ASH ZIDA TENU, U+12079 𒁹 CUNEIFORM SIGN DISH, U+1230B 𒌋 CUNEIFORM SIGN U; Numeric_Value=2 to U+1222B 𒈫 CUNEIFORM SIGN MIN and U+12399 𒎙 CUNEIFORM SIGN U U; Numeric_Value=3 to U+1230D 𒌍 CUNEIFORM SIGN U U U, and assign Numeric_Type=Numeric to all of these characters, as described in L2/24-239. See L2/24-224 item 2.7.
 # [181-A135] Action Item for Robin Leroy, PAG: In UCD file UnicodeData.txt and derived files, assign Numeric_Value=1/2 to U+12226 𒈦 CUNEIFORM SIGN MASH; Numeric_Value=1 to U+12038 𒀸 CUNEIFORM SIGN ASH, U+12039 𒀹 CUNEIFORM SIGN ASH ZIDA TENU, U+12079 𒁹 CUNEIFORM SIGN DISH, U+1230B 𒌋 CUNEIFORM SIGN U; Numeric_Value=2 to U+1222B 𒈫 CUNEIFORM SIGN MIN and U+12399 𒎙 CUNEIFORM SIGN U U; Numeric_Value=3 to U+1230D 𒌍 CUNEIFORM SIGN U U U, and assign Numeric_Type=Numeric to all of these characters, as described in L2/24-239. See L2/24-224 item 2.7.
-17.0 ; Numeric_Type ; [\U00012038\U00012039\U00012079\U00012226\U0001222B\U0001230B\U0001230D\U00012399] ; 181-C52 181-A135
+17.0 ; Numeric_Type ; [\U00012038\U00012039\U00012079\U00012226\U0001222B\U0001230B\U0001230D\U00012399] ; 181-C52, 181-A135
 # [182-C34] Consensus: Accept the proposal to change the Vertical_Orientation property values of U+2018 LEFT SINGLE QUOTATION MARK, U+2019 RIGHT SINGLE QUOTATION MARK, U+201C LEFT DOUBLE QUOTATION MARK, and U+201D RIGHT DOUBLE QUOTATION MARK from R to Tr, based on document L2/25-028 (Sim) and Section 16 of document L2/25-009, for Unicode Version 17.0.
 # [182-A97] Action Item for Markus Scherer, PAG: Change the Vertical_Orientation property values of U+2018 LEFT SINGLE QUOTATION MARK, U+2019 RIGHT SINGLE QUOTATION MARK, U+201C LEFT DOUBLE QUOTATION MARK, and U+201D RIGHT DOUBLE QUOTATION MARK from R to Tr, based on document L2/25-028 and Section 16 of document L2/25-009, for Unicode Version 17.0.
-17.0 ; Vertical_Orientation ; [\u2018\u2019\u201C\u201D] ; 182-C34 182-A97
+17.0 ; Vertical_Orientation ; [\u2018\u2019\u201C\u201D] ; 182-C34, 182-A97
 # [182-C40] Consensus: Accept the proposal to change the Vertical_Orientation property values of U+31B4 through U+31B7, U+31BB, U+1B132, U+1B150 through U+1B152, U+1B155, and U+1B164 through U+1B167 from U to Tu, based on document L2/25-035 (Sim), for Unicode Version 17.0.
 # [182-A106] Action Item for Markus Scherer, PAG: Change the Vertical_Orientation property values of U+31B4 through U+31B7, U+31BB, U+1B132, U+1B150 through U+1B152, U+1B155, and U+1B164 through U+1B167 from U to Tu, based on document L2/25-035, for Unicode Version 17.0.
-17.0 ; Vertical_Orientation ; [\u31B4\u31B7\u31BB\U0001B132\U0001B150\U0001B152\U0001B155\U0001B164\U0001B167] ; 182-C40 182-A106
+17.0 ; Vertical_Orientation ; [\u31B4\u31B7\u31BB\U0001B132\U0001B150\U0001B152\U0001B155\U0001B164\U0001B167] ; 182-C40, 182-A106
 # [184-C27] Consensus: Update the derivation of the Word_Break property to assign Word_Break=ALetter to U+00B8 ¸ CEDILLA. For Unicode Version 17.0. See L2/25-183 item 2.1.
 # [184-A66] Action Item for Robin Leroy, PAG: In UCD file WordBreakProperty.txt, assign Word_Break=ALetter to U+00B8 ¸ CEDILLA. For Unicode Version 17.0. See L2/25-183 item 2.1.
 # [184-A67] Action Item for Josh Hadley, PAG: In Unicode Standard Annex #‌29, Unicode Text Segmentation, update the derivation to assign Word_Break=ALetter to U+00B8 ¸ CEDILLA. For Unicode Version 17.0. See L2/25-183 item 2.1.
-17.0 ; Word_Break ; [\u00B8] ; 184-C27 184-A66 184-A67
+17.0 ; Word_Break ; [\u00B8] ; 184-C27, 184-A66, 184-A67
 # [181-C50] Consensus: Assign the Diacritic property to the modifier letters from the Phonetic Extensions Supplement block, namely U+1D9B..U+1DBE [ᶛᶜᶝᶞᶟᶠᶡᶢᶣᶤᶥᶦᶧᶨᶩᶪᶫᶬᶭᶮᶯᶰᶱᶲᶳᶴᶵᶶᶷᶸᶹᶺᶻᶼᶽᶾ], for Unicode Version 17.0. See L2/24-224 item 2.3.
 # [181-A130] Action Item for Robin Leroy, PAG: In PropList.txt, assign the Diacritic property to the modifier letters from the Phonetic Extensions Supplement block, namely U+1D9B..U+1DBE [ᶛᶜᶝᶞᶟᶠᶡᶢᶣᶤᶥᶦᶧᶨᶩᶪᶫᶬᶭᶮᶯᶰᶱᶲᶳᶴᶵᶶᶷᶸᶹᶺᶻᶼᶽᶾ], for Unicode Version 17.0. See L2/24-224 item 2.3.
-17.0 ; Diacritic ; [\u1D9B\u1DBE] ; 181-C50 181-A130
+17.0 ; Diacritic ; [\u1D9B\u1DBE] ; 181-C50, 181-A130
 # [183-C27] Consensus: Assign the Diacritic property to U+05A2 HEBREW ACCENT ATNAH HAFUKH, U+05C5 HEBREW MARK LOWER DOT, and U+05C7 HEBREW POINT QAMATS QATAN. For Unicode Version 17.0. See L2/25-087 item 1.2.
 # [183-A56] Action Item for Robin Leroy, PAG: In UCD file PropList.txt, assign the Diacritic property to U+05A2 HEBREW ACCENT ATNAH HAFUKH, U+05C5 HEBREW MARK LOWER DOT, and U+05C7 HEBREW POINT QAMATS QATAN. For Unicode Version 17.0. See L2/25-087 item 1.2.
-17.0 ; Diacritic ; [\u05A2\u05C5\u05C7] ; 183-C27 183-A56
+17.0 ; Diacritic ; [\u05A2\u05C5\u05C7] ; 183-C27, 183-A56
 # [180-A17] Action Item for Ken Lunde, CJK: Prepare a new PRI for a Proposed Update of UAX #38 that adds the CJK Unified Ideographs Extension J block and U+2B73A to Section 4.4 of UAX #38, and documents the new “T9” source prefix for the kIRG_TSource property and the new “SATM” source prefix for the kIRG_SSource property, based on document L2/24-138 and as amended in Section 07 of document L2/24-165, for Unicode Version 17.0.
 # [180-A19] Action Item for Ken Whistler, UTC: Update the pipeline to add the CJK Unified Ideographs Extension J block and the disunified ideograph with code point U+2B73A, based on document L2/24-138 and Section 07 of document L2/24-165, for Unicode Version 17.0.
-17.0 ; Unified_Ideograph ; [\U0002B73A] ; 180-A17 180-A19
+17.0 ; Unified_Ideograph ; [\U0002B73A] ; 180-A17, 180-A19
 # [181-A21] Action Item for Ken Lunde, CJK: Use the updated Unihan17.txt data file to update the Unihan database, to remove U+32E11 and U+33281 from the CJK Unified Ideographs Extension J block, for Unicode Version 17.0.
 17.0 ; Unified_Ideograph ; [\U00032E11\U00033281] ; 181-A21
 # [181-A22] Action Item for Ken Whistler, RMG: Update the pipeline to change the range of the CJK Unified Ideographs Extension J block to 323B0..33479, for Unicode Version 17.0.
@@ -1046,24 +1063,24 @@
 18.0 ; kIRG_GSource ; [\U000204F2] ; 185-C24
 # [186-C9] Consensus: Accept the proposal to change the normative kIRG_GSource property values of U+3A36 and U+6440, based on PRI #534 feedback [ID20251112195042] and Section 03 of document L2/26-009, for Unicode Version 18.0.
 # [186-A18] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kIRG_GSource property values of U+3A36 and U+6440, based on PRI #534 feedback [ID20251112195042] and Section 03 of document L2/26-009, for Unicode Version 18.0.
-18.0 ; kIRG_GSource ; [\u3A36\u6440] ; 186-C9 186-A18
+18.0 ; kIRG_GSource ; [\u3A36\u6440] ; 186-C9, 186-A18
 # [187-C19] Consensus: Accept the normative kIRG_GSource property value changes for U+211AE and U+2B536, based on PRI #534 feedback [ID20260306032016] and Section 11 of document L2/26-099, for Unicode Version 18.0.
 # [187-A67] Action Item for Ken Lunde, CJK: Update the Unihan database change the kIRG_GSource property values of U+211AE and U+2B536, based on PRI #534 feedback [ID20260306032016] and Section 11 of document L2/26-099, for Unicode Version 18.0.
-18.0 ; kIRG_GSource ; [\U000211AE\U0002B536] ; 187-C19 187-A67
+18.0 ; kIRG_GSource ; [\U000211AE\U0002B536] ; 187-C19, 187-A67
 # [187-C40] Consensus: Accept the normative kIRG_GSource property value changes for U+236AC, U+24A1E, and U+24E82, based on Recommendation M66.10 in document IRG N2909 (IRG) and Section 38 of document L2/26-099, for Unicode Version 18.0.
 # [187-A119] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kIRG_GSource property values of U+236AC, U+24A1E, and U+24E82, based on Recommendation M66.10 in document IRG N2909 (IRG) and Section 38 of document L2/26-099, for Unicode Version 18.0.
-18.0 ; kIRG_GSource ; [\U000236AC\U00024A1E\U00024E82] ; 187-C40 187-A119
+18.0 ; kIRG_GSource ; [\U000236AC\U00024A1E\U00024E82] ; 187-C40, 187-A119
 # [185-C16] Consensus: Accept the proposal to move the normative kIRG_KPSource property value of U+9907, KP1-8852, to U+296B1, based on document L2/25-222 (Sim) and Section 21 of document L2/25-231, for Unicode Version 18.0.
 18.0 ; kIRG_KPSource ; [\u9907\U000296B1] ; 185-C16
 # [186-C12] Consensus: Accept the proposal to change the normative kIRG_TSource property value of U+2B089 from TU-2B089 to TD-5278, based on document L2/25-272 (HarJIT) and Section 07 of document L2/26-009, for Unicode Version 18.0.
 # [186-A23] Action Item for Ken Lunde, CJK: Update the Unihan database to change the normative kIRG_TSource property value of U+2B089 from TU-2B089 to TD-5278, based on document L2/25-272 and Section 07 of document L2/26-009, for Unicode Version 18.0.
-18.0 ; kIRG_TSource ; [\U0002B089] ; 186-C12 186-A23
+18.0 ; kIRG_TSource ; [\U0002B089] ; 186-C12, 186-A23
 # [185-C8] Consensus: Accept the proposal to horizontally extend U+20089, U+201A2, U+20B24, U+248E9, U+27FB7, and U+31F00 by adding new normative kIRG_USource property values, based on feedback [ID20250903174924] in document L2/25-220 and Section 04 of document L2/25-231, for Unicode Version 18.0.
 # [185-A27] Action Item for Ken Lunde, CJK: Use the Unihan18.txt data file to update the Unihan database to add new kIRG_USource property values to U+20089, U+201A2, U+20B24, U+248E9, U+27FB7, and U+31F00, based on feedback [ID20250903174924] in document L2/25-220 and Section 04 of document L2/25-231, for Unicode Version 18.0.
-18.0 ; kIRG_USource ; [\U00020089\U000201A2\U00020B24\U000248E9\U00027FB7\U00031F00] ; 185-C8 185-A27
+18.0 ; kIRG_USource ; [\U00020089\U000201A2\U00020B24\U000248E9\U00027FB7\U00031F00] ; 185-C8, 185-A27
 # [186-C8] Consensus: Accept the proposal to horizontally extend U+31F1A by adding UTC-00733 as its new normative kIRG_USource property value, based on PRI #534 feedback [ID20251021010122], and as amended in Section 02 of document L2/26-009, for Unicode Version 18.0.
 # [186-A15] Action Item for Ken Lunde, CJK: Update the Unihan database to add UTC-00733 as a new kIRG_USource property value of U+31F1A, based on PRI #534 feedback [ID20251021010122], and as amended in Section 02 of document L2/26-009, for Unicode Version 18.0.
-18.0 ; kIRG_USource ; [\U00031F1A] ; 186-C8 186-A15
+18.0 ; kIRG_USource ; [\U00031F1A] ; 186-C8, 186-A15
 # [185-C10] Consensus: Accept the proposal to remove “187.17” from the informative kRSUnicode property value of U+995F, based on feedback [ID20250909213548] in document L2/25-220 and Section 07 of document L2/25-231, for Unicode Version 18.0.
 18.0 ; kRSUnicode ; [\u995F] ; 185-C10
 # [185-C12] Consensus: Accept the proposal to add “196.6” as the first informative kRSUnicode property value of U+26253, based on feedback [ID20251014110451] in document L2/25-220 and Section 15 of document L2/25-231, for Unicode Version 18.0.
@@ -1074,43 +1091,43 @@
 18.0 ; kRSUnicode ; [\U000204F2] ; 185-C24
 # [187-C16] Consensus: Accept the informative kRSUnicode property value change for U+2B158 and the informative kRSUnicode and informative kTotalStrokes property value changes for U+2B25D, based on feedback [ID20250929183457] in document L2/25-220 and as amended in Section 01 of document L2/26-099, for Unicode Version 18.0.
 # [187-A48] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kRSUnicode property value of U+2B158 and the kRSUnicode and kTotalStrokes property values of U+2B25D, based on feedback [ID20250929183457] in document L2/25-220 and as amended in Section 01 of document L2/26-099, for Unicode Version 18.0.
-18.0 ; kRSUnicode ; [\U0002B158\U0002B25D] ; 187-C16 187-A48
+18.0 ; kRSUnicode ; [\U0002B158\U0002B25D] ; 187-C16, 187-A48
 # [187-C17] Consensus: Accept the informative kRSUnicode property value change for U+2A7EE, based on PRI #534 feedback [ID20260131173247] and Section 04 of document L2/26-099, for Unicode Version 18.0.
 # [187-A54] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kRSUnicode property value of U+2A7EE, based on PRI #534 feedback [ID20260131173247] and Section 04 of document L2/26-099, for Unicode Version 18.0.
-18.0 ; kRSUnicode ; [\U0002A7EE] ; 187-C17 187-A54
+18.0 ; kRSUnicode ; [\U0002A7EE] ; 187-C17, 187-A54
 # [187-C20] Consensus: Accept the informative kRSUnicode property value change for U+2789F, based on PRI #534 feedback [ID20260317200812] and Section 13 of document L2/26-099, for Unicode Version 18.0.
 # [187-A70] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kRSUnicode property value of U+2789F, based on PRI #534 feedback [ID20260317200812] and Section 13 of document L2/26-099, for Unicode Version 18.0.
-18.0 ; kRSUnicode ; [\U0002789F] ; 187-C20 187-A70
+18.0 ; kRSUnicode ; [\U0002789F] ; 187-C20, 187-A70
 # [187-C22] Consensus: Accept the informative kRSUnicode and kTotalStrokes property value changes for U+2B8A0, based on document L2/26-068 (Vietnam) and Section 20 of document L2/26-099, for Unicode Version 18.0.
 # [187-A84] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kRSUnicode and kTotalStrokes property values of U+2B8A0, based on document L2/26-068 (Vietnam) and Section 20 of document L2/26-099, for Unicode Version 18.0.
-18.0 ; kRSUnicode ; [\U0002B8A0] ; 187-C22 187-A84
+18.0 ; kRSUnicode ; [\U0002B8A0] ; 187-C22, 187-A84
 # [187-C37] Consensus: Accept the informative kRSUnicode property value change for U+2DB7C, based on Recommendation M66.13 in document IRG N2909 (IRG) and Section 36 of document L2/26-099, for Unicode Version 18.0.
 # [187-A116] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kRSUnicode property value of U+2DB7C, based on Recommendation M66.13 in document IRG N2909 (IRG) and Section 36 of document L2/26-099, for Unicode Version 18.0.
-18.0 ; kRSUnicode ; [\U0002DB7C] ; 187-C37 187-A116
+18.0 ; kRSUnicode ; [\U0002DB7C] ; 187-C37, 187-A116
 # [185-C11] Consensus: Accept the proposal to change the informative kTotalStrokes property value of U+4724 from 13 to 8, based on feedback [ID20250925115604] in document L2/25-220 and Section 10 of document L2/25-231, for Unicode Version 18.0.
 18.0 ; kTotalStrokes ; [\u4724] ; 185-C11
 # [186-C10] Consensus: Accept the proposal to change the informative kTotalStrokes property values of U+4E9F and U+268DE, based on PRI #534 feedback [ID20251119093117] and Section 04 of document L2/26-009, for Unicode Version 18.0.
 # [186-A19] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kTotalStrokes property values of U+4E9F and U+268DE, based on PRI #534 feedback [ID20251119093117] and Section 04 of document L2/26-009, for Unicode Version 18.0.
-18.0 ; kTotalStrokes ; [\u4E9F\U000268DE] ; 186-C10 186-A19
+18.0 ; kTotalStrokes ; [\u4E9F\U000268DE] ; 186-C10, 186-A19
 # [187-C22] Consensus: Accept the informative kRSUnicode and kTotalStrokes property value changes for U+2B8A0, based on document L2/26-068 (Vietnam) and Section 20 of document L2/26-099, for Unicode Version 18.0.
 # [187-A84] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kRSUnicode and kTotalStrokes property values of U+2B8A0, based on document L2/26-068 (Vietnam) and Section 20 of document L2/26-099, for Unicode Version 18.0.
-18.0 ; kTotalStrokes ; [\U0002B8A0] ; 187-C22 187-A84
+18.0 ; kTotalStrokes ; [\U0002B8A0] ; 187-C22, 187-A84
 # [187-A35] Action Item for Roozbeh Pournader, PAG: Remove scx=Deva for U+1CF5 and U+1CF6, for Unicode Version 18.0. [Ref: 4.2 in L2/26-100]
 # [186-A48] Action Item for Roozbeh Pournader, PAG: Remove scx=deva from U+1CF5 VEDIC SIGN JIHVAMULIYA and U+1CF6 ​​VEDIC SIGN UPADHMANIYA. [Ref: 2.2 in L2/26-010]
-18.0 ; Script_Extensions ; [\u1CF5\u1CF6] ; 187-A35 186-A48
+18.0 ; Script_Extensions ; [\u1CF5\u1CF6] ; 187-A35, 186-A48
 # [187-A39] Action Item for Josh Hadley, Roozbeh Pournader, PAG: add Obsolete to the Identifier_Type for U+1BAE SUNDANESE LETTER KHA and U+1BAF SUNDANESE LETTER SYA, as well as for other historic Sundanese characters, for Unicode Version 18.0. [Ref: 5.2 in L2/26-100]
 18.0 ; Identifier_Type ; [\u1BAE\u1BAF] ; 187-A39
 # [187-C52] Consensus: Change Identifier_Type for U+028C LATIN SMALL LETTER TURNED V from Technical to Technical Uncommon_Use. For Unicode Version 18.0. See L2/26-096 item 8.3.
 # [187-A144] Action Item for Josh Hadley, PAG: Change Identifier_Type for U+028C LATIN SMALL LETTER TURNED V from Technical to Technical Uncommon_Use. For Unicode Version 18.0. See L2/26-096 item 8.3.
-18.0 ; Identifier_Type ; [\u028C] ; 187-C52 187-A144
+18.0 ; Identifier_Type ; [\u028C] ; 187-C52, 187-A144
 # [187-C44] Consensus: Change the Line_Break assignment of U+FE51 SMALL IDEOGRAPHIC COMMA from Ideographic (ID) to Close_Punctuation (CL). For Unicode Version 18.0. See L2/26-096 item 4.3.
 # [187-A127] Action Item for Robin Leroy, PAG: In UCD file LineBreak.txt and derived files, change the Line_Break assignment of U+FE51 SMALL IDEOGRAPHIC COMMA from Ideographic (ID) to Close_Punctuation (CL). For Unicode Version 18.0. See L2/26-096 item 4.3.
-18.0 ; Line_Break ; [\uFE51] ; 187-C44 187-A127
+18.0 ; Line_Break ; [\uFE51] ; 187-C44, 187-A127
 # [187-C45] Consensus: Change the Line_Break assignments of U+2012 ‒ FIGURE DASH and U+2013 – EN DASH from Line_Break=Unambiguous_Hyphen to Line_Break=Break_After, and U+00AD SOFT HYPHEN from Line_Break=Break_After to Line_Break=Unambiguous_Hyphen, for Unicode Version 18.0. See L2/26-096 item 4.5.
 # [187-A128] Action Item for Robin Leroy, PAG: In UCD file LineBreak.txt and derived files, Change the Line_Break assignments of U+2012 ‒ FIGURE DASH and U+2013 – EN DASH from Line_Break=Unambiguous_Hyphen to Line_Break=Break_After, and U+00AD SOFT HYPHEN from Line_Break=Break_After to Line_Break=Unambiguous_Hyphen. For Unicode Version 18.0. See L2/26-096 item 4.5.
-18.0 ; Line_Break ; [\u00AD\u2012\u2013] ; 187-C45 187-A128
+18.0 ; Line_Break ; [\u00AD\u2012\u2013] ; 187-C45, 187-A128
 # [187-C43] Consensus: Assign the Diacritic property to U+08D3 ARABIC SMALL LOW WAW, U+0656 ARABIC SUBSCRIPT ALEF, and U+06E2 ARABIC SMALL HIGH MEEM ISOLATED FORM. For Unicode Version 18.0. See L2/26-096 item 2.4.
 # [187-A125] Action Item for Robin Leroy, PAG: In UCD file PropList.txt, assign the Diacritic property to U+08D3 ARABIC SMALL LOW WAW, U+0656 ARABIC SUBSCRIPT ALEF, and U+06E2 ARABIC SMALL HIGH MEEM ISOLATED FORM. For Unicode Version 18.0. See L2/26-096 item 2.4.
-18.0 ; Diacritic ; [\u0656\u06E2\u08D3] ; 187-C43 187-A125
+18.0 ; Diacritic ; [\u0656\u06E2\u08D3] ; 187-C43, 187-A125
 # [187-A126] Action Item for Robin Leroy, PAG: In UCD file PropList.txt, assign the Diacritic property to the following characters added in Unicode 18.0: U+10ECC and U+10ECD (arrowheads below), U+10EF3..U+10EF6 (small high and low noon with fatha and damma), U+10EF7 ARABIC SMALL HIGH HEH INITIAL FORM, and U+10EF9 ARABIC MARK CROWN. For Unicode Version 18.0. See L2/26-096 item 2.4.
 18.0 ; Diacritic ; [\U00010ECC\U00010ECD\U00010EF3\U00010EF6\U00010EF7\U00010EF9] ; 187-A126
