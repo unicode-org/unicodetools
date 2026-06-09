@@ -4,6 +4,10 @@
 10.0 ; Word_Break ; [˂-˅ ˒-˗ ˞˟ ˭ ˯-˿ ꜠꜡꞉ ꞊ ꭛] ;  L2/16-205@Thu Jun 2 08:46:28 CDT 2016, 148-A41a, L2/16-336, 149-A51
 13.0 ; Word_Break ; [˥-˫ ꜈-꜖] ; PRI-355@Mon Feb 12 20:20:51 CST 2018, 155-A4, L2/19-188, 159-C28, PRI-396@Tue Jul 30 12:55:18 CDT 2019, 161-A43, 162-A4
 
+# This would almost work for the automated processing, but the unassigned subrange D7C7..D7CA was already ea=N.
+# [131-C29] Consensus: Change the East Asian width property of characters 11A3..11A7, 11FA..11FF, D7B0..D7FB from "W" to "N", for Unicode 6.2. [L2/12-160]
+6.2 ; East_Asian_Width ; [[\u11A3-\u11A7\u11FA-\u11FF\uD7B0-\uD7FB]-[\uD7C7-\uD7CA]] ; L2/12-160@Tue Apr 3 16:52:11 CDT 2012, 131-C29
+
 # [181-C53] Consensus: Add a new Line_Break property value Unambiguous_Hyphen (short alias: HH) and assign this value to the eleven characters that have General_Category=Pd and Line_Break=Break_After in Unicode Version 16.0, listed below. Amend rules LB12a and LB21 of the Unicode Line Breaking Algorithm to treat HH like BA, and amend rules LB20a and LB21a to refer to the set of characters with lb=HH instead of singling out a single character or doing set arithmetic on the set of characters with lb=BA. In addition, amend rule LB20a to treat HL like AL. See L2/24-224 item 6.1. For Unicode Version 17.0.
 17.0 ; Line_Break ; \p{U17:lb=HH} ; L2/24-224, 181-C53
 

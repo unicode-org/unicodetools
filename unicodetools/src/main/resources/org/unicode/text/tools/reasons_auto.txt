@@ -243,6 +243,9 @@
 # [131-A62] Action Item for Ken Whistler: Update NamesList.txt for Unicode 6.2 to include a formal name alias for U+0709 SYRIAC SUBLINEAR COLON SKEWED RIGHT of "SYRIAC SUBLINEAR COLON SKEWED LEFT".
 # [131-A63] Action Item for Deborah Anderson: Add a formal name alias for U+0709 SYRIAC SUBLINEAR COLON SKEWED RIGHT to: "SYRIAC SUBLINEAR COLON SKEWED LEFT", to ballot comments on Amendment 1.
 6.2 ; Name_Alias ; [\u0709] ; 131-C20, 131-A61, 131-A62, 131-A63
+# L2/12-160@Tue Apr 3 16:52:11 CDT 2012
+# [131-C29] Consensus: Change the East Asian width property of characters 11A3..11A7, 11FA..11FF, D7B0..D7FB from "W" to "N", for Unicode 6.2. [L2/12-160]
+6.2 ; East_Asian_Width ; [\u11A3-\u11A7\u11FA-\u11FF\uD7B0-\uD7C6\uD7CB-\uD7FB] ; L2/12-160@Tue Apr 3 16:52:11 CDT 2012, 131-C29
 # [132-C19] Consensus: Give U+12432 and U+12433 the numeric type "numeric" and the numeric values 216,000, and 432,000 respectively. Make U+12456 and 12457 have the numeric type "numeric" and value "-1". See L2/12-240.
 6.2 ; Numeric_Type ; [\U00012432\U00012433\U00012456\U00012457] ; 132-C19
 # [133-C30] Consensus: Change the numeric value of U+12456 to 2 and U+12457 to 3, for Unicode 6.3. [L2/12-328]
