@@ -1915,6 +1915,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         case Script_Extensions:
                             defaultValue = "<script>";
                             break;
+                        case Numeric_Type:
+                            defaultValue = "None";
+                            break;
                         default:
                             break;
                     }

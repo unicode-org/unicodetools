@@ -75,8 +75,6 @@
 # [107-A37] Action Item for Ken Whistler: Update LineBreak.txt giving U+05BE HEBREW PUNCTUATION MAQAF the "BA" class in Unicode 5.0, and put U+05BE HEBREW PUNCTUATION MAQAF in the table of dashes. [L2/06-104]
 # [107-A39] Action Item for Asmus Freytag, Editorial Committee: Update and post the approved Unicode Standard Annex #14: Line Breaking Properties with the change of linebreak class for U+05BE HEBREW PUNCTUATION MAQAF in the visible dividers, and publish for Unicode 5.0. [L2/06-023, L2/06-104]
 5.0 ; Line_Break ; [\u05BE] ; 107-C16, 107-A37, 107-A39
-# [106-C23] Consensus: The UTC will stop taking input to Unicode 5.0 on certain properties beginning March 1, 2006, and will publish the frozen values by March 7, 2006. Properties affected are all those defined in UnicodeData.txt plus: Whitespace, Hex Digit, Diacritic, Ideographic, Numeric Value, Numeric Type, Script, and East Asian Width.
-5.0 ; Numeric_Type ; [\u2006] ; 106-C23
 # [107-C16] Consensus: Give U+05BE HEBREW PUNCTUATION MAQAF the "Dash" property and add to the table of dashes in the text of Unicode 5.0. Give it the "BA" linebreak class. [L2/06-104]
 # [107-A36] Action Item for Mark Davis: Update PropList.txt giving U+05BE HEBREW PUNCTUATION MAQAF the "Dash" property. [L2/06-104]
 5.0 ; Dash ; [\u05BE] ; 107-C16, 107-A36

@@ -168,6 +168,7 @@ public class Aetiologer {
         }
         actionsFile.close();
         Set<VersionInfo> lastTargetSet = null;
+        utcToVersions.put(106, Set.of(VersionInfo.UNICODE_5_0));
         utcToVersions.put(108, Set.of(VersionInfo.UNICODE_5_1));
         utcToVersions.put(116, Set.of(VersionInfo.UNICODE_5_2));
         utcToVersions.put(119, Set.of(VersionInfo.UNICODE_5_2, VersionInfo.UNICODE_6_0));
