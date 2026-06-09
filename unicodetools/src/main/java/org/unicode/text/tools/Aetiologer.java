@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,6 +31,7 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.text.UCD.VersionedSymbolTable;
 
 public class Aetiologer {
     private static final Segmenter WORD_BREAK =
@@ -387,7 +389,7 @@ public class Aetiologer {
             final var fields = line.split("\\s*;\\s*");
             final var version = VersionInfo.getInstance(fields[0]);
             final var property = UcdProperty.forString(fields[1]);
-            final var set = new UnicodeSet(fields[2]);
+            final var set = new UnicodeSet(fields[2], new ParsePosition(0), VersionedSymbolTable.forDevelopment());
             final var actions = Arrays.asList(fields[3].split("\\s*,\\s*"));
             reasons.computeIfAbsent(version, v -> new TreeMap<>())
                     .computeIfAbsent(property, p -> new UnicodeMap<>())
