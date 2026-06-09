@@ -53,6 +53,7 @@ public class Aetiologer {
     private static final Pattern CODE_POINTS =
             Pattern.compile(
                     "(?:U\\+)?([0-9A-F]{4}|(?:[1-9A-F]|10)[0-9A-F]{4})(?:\\.\\.(?:U\\+)?([0-9A-F]{4}|(?:[1-9A-F]|10)[0-9A-F]{4}))?");
+    private static final Pattern FORMAL_ALIAS = Pattern.compile("\\bformal\\s+alias");
     private static final String RESOURCES =
             Settings.UnicodeTools.UNICODETOOLS_RSRC_DIR + "org/unicode/text/tools/";
 
@@ -333,6 +334,9 @@ public class Aetiologer {
                 candidateProperties.add(UcdProperty.forString(alias));
             }
         }
+        if (FORMAL_ALIAS.matcher(line).find()) {
+            candidateProperties.add(UcdProperty.Name_Alias);
+        }
         if (candidateProperties.isEmpty() || codePointsMentioned.isEmpty()) {
             return false;
         }
@@ -340,9 +344,9 @@ public class Aetiologer {
         boolean isReason = false;
         properties:
         for (final var property : candidateProperties) {
-            // TODO(egg): Horribly load-bearing.  We must read the latest files, because we use the
-            // new @missing lines for files that predate @missing lines, but we rely on them having
-            // already been loaded.
+            // TODO(egg): Horribly load-bearing.  We must read the latest files because we use the
+            // new @missing lines for files that predate @missing lines, and we do not do that
+            // automatically.  See https://github.com/unicode-org/unicodetools/issues/1438.
             IndexUnicodeProperties.make().load(property);
             final var newProperty = iup.getProperty(property);
             final var oldProperty = previousIUP.getProperty(property);

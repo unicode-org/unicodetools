@@ -94,8 +94,9 @@ ISO_Comment ; 5.1 ; [\u0FCE\u0FD2-\u0FD4] ; 114-A51
 Name_Alias ; 5.0 ; [\u01A2\u01A3\u0CDE\uA015] ; 107-A43
 
 # Name_Alias assignment changes in Unicode Version 6.1
+# [125-C39] Consensus: Create two formal aliases, U+2448 MICR ON US SYMBOL and U+2449 MICR DASH SYMBOL for Unicode 6.1.
 # [125-A92] Action Item for Ken Whistler: Update NameAliases.txt and the Nameslist with annotations and info for U+2448 MICR ON US SYMBOL and U+2449 MICR DASH SYMBOL for Unicode 6.1.
-Name_Alias ; 6.1 ; [\u2448\u2449] ; 125-A92
+Name_Alias ; 6.1 ; [\u2448\u2449] ; 125-C39, 125-A92
 # [129-C17] Consensus: Approve the contents of NameAliasesProv-6.1.0d2.txt (in PRI #202) with (1 addition of the name aliases in L2/11-428R; (2) changing 0099 SCGI to SGC; and (3) deletion of "BELL" entry from the list. For Unicode 6.1.
 Name_Alias ; 6.1 ; [\u0099] ; 129-C17
 
@@ -111,8 +112,9 @@ Name_Alias ; 6.2 ; [\u0709] ; 131-C20, 131-A61, 131-A62, 131-A63
 Name_Alias ; 6.3 ; [\U000122D4\U000122D5] ; 132-C7
 
 # Name_Alias assignment changes in Unicode Version 8.0
+# [141-C2] Consensus: Create formal aliases of type "correction" for Unicode 8.0 for 2B7A LEFTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE and 2B7C RIGHTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE
 # [141-A5] Action Item for Laurențiu Iancu: Update NameAliases.txt for 2B7A LEFTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE and 2B7C RIGHTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE for Unicode 8.0.
-Name_Alias ; 8.0 ; [\u2B7A\u2B7C] ; 141-A5
+Name_Alias ; 8.0 ; [\u2B7A\u2B7C] ; 141-C2, 141-A5
 
 # Name_Alias assignment changes in Unicode Version 10.0
 # [149-A57] Action Item for Ken Whistler: Update NameAliases.txt for 11EC through 11EF as documented in L2/16-363, for Unicode 10.0. See above consensus 149-C19.
@@ -135,15 +137,20 @@ Name_Alias ; 15.0 ; [\u1BBD] ; 169-C16
 Name_Alias ; 15.0 ; [\u0616] ; 172-C2, 172-A4
 
 # Name_Alias assignment changes in Unicode Version 16.0
+# [178-C7] Consensus: Create a formal alias BAMUM LETTER PHASE-A MAEMGBIEE of type "correction" for U+1680B BAMUM LETTER PHASE-A MAEMBGBIEE. For Unicode Version 16.0.
 # [178-A12] Action Item for Markus Scherer, PAG: In NameAliases.txt, add a formal alias BAMUM LETTER PHASE-A MAEMGBIEE of type "correction" for U+1680B BAMUM LETTER PHASE-A MAEMBGBIEE. For Unicode Version 16.0.
-Name_Alias ; 16.0 ; [\U0001680B] ; 178-A12
+Name_Alias ; 16.0 ; [\U0001680B] ; 178-C7, 178-A12
+# [179-A86] Action Item for Ken Whistler, EDC: Add an annotation for U+1E899 and U+1E89A to the names list explaining the formal aliases, for Unicode Version 16.0. See document L2/24-065 item E2.
+Name_Alias ; 16.0 ; [\U0001E899\U0001E89A] ; 179-A86
 # [179-C50] Consensus: Create a formal name alias CUNEIFORM SIGN KALAM of type “correction” for U+12327 CUNEIFORM SIGN UN GUNU. For Unicode Version 16.0. [Ref. L2/24-074 and Section 5a of document L2/24-068].
 # [179-A146] Action Item for Robin Leroy, PAG: In NameAliases.txt, add a formal alias CUNEIFORM SIGN KALAM of type “correction” for U+12327 CUNEIFORM SIGN UN GUNU. For Unicode Version 16.0. [Ref. L2/24-074 and Section 5a of document L2/24-068]
 Name_Alias ; 16.0 ; [\U00012327] ; 179-C50, 179-A146
 
 # Name_Alias assignment changes in Unicode Version 17.0
+# [183-C23] Consensus: Create the following formal aliases of type "correction" for Unicode Version 17.0: BAMUM LETTER PHASE-B PUNGGAAM for U+16881 BAMUM LETTER PHASE-B PUNGAAM, BAMUM LETTER PHASE-B NGGOM for U+1688E BAMUM LETTER PHASE-B NGOM, BAMUM LETTER PHASE-C SHETFON for U+168DC BAMUM LETTER PHASE-C SETFON, BAMUM LETTER PHASE-E NGGOP for U+1697D BAMUM LETTER PHASE-E NGOP. [Ref. 3.9 in L2/25-091R]
 # [183-A41] Action Item for Robin Leroy, PAG: In UCD file NameAliases.txt, add formal aliases to 4 Bamum characters: BAMUM LETTER PHASE-B PUNGGAAM for U+16881 BAMUM LETTER PHASE-B PUNGAAM, BAMUM LETTER PHASE-B NGGOM for U+1688E BAMUM LETTER PHASE-B NGOM, BAMUM LETTER PHASE-C SHETFON for U+168DC BAMUM LETTER PHASE-C SETFON, BAMUM LETTER PHASE-E NGGOP for U+1697D BAMUM LETTER PHASE-E NGOP. [Ref. 3.9 in L2/25-091R]
-Name_Alias ; 17.0 ; [\U00016881\U0001688E\U000168DC\U0001697D] ; 183-A41
+# [183-A42] Action Item for Ken Whistler, PAG: In UCD file NamesList.txt, add formal aliases to 4 Bamum characters: BAMUM LETTER PHASE-B PUNGGAAM for U+16881 BAMUM LETTER PHASE-B PUNGAAM, BAMUM LETTER PHASE-B NGGOM for U+1688E BAMUM LETTER PHASE-B NGOM, BAMUM LETTER PHASE-C SHETFON for U+168DC BAMUM LETTER PHASE-C SETFON, BAMUM LETTER PHASE-E NGGOP for U+1697D BAMUM LETTER PHASE-E NGOP. [Ref. 3.9 in L2/25-091R]
+Name_Alias ; 17.0 ; [\U00016881\U0001688E\U000168DC\U0001697D] ; 183-C23, 183-A41, 183-A42
 
 # ==========================================================
 # Documentation for changes to kIRG_GSource assignments
