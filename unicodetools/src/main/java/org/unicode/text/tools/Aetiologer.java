@@ -316,7 +316,9 @@ public class Aetiologer {
         boolean isReason = false;
         properties:
         for (final var property : candidateProperties) {
-            // TODO(egg): Horribly load-bearing.  We must read the latest files, because we use the new @missing lines for files that predate @missing lines, but we rely on them having already been loaded.
+            // TODO(egg): Horribly load-bearing.  We must read the latest files, because we use the
+            // new @missing lines for files that predate @missing lines, but we rely on them having
+            // already been loaded.
             IndexUnicodeProperties.make().load(property);
             final var newProperty = iup.getProperty(property);
             final var oldProperty = previousIUP.getProperty(property);

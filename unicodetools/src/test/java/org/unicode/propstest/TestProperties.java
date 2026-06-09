@@ -728,11 +728,18 @@ public class TestProperties extends TestFmwkMinusMinus {
                     IndexUnicodeProperties.make(VersionInfo.UNICODE_4_0_1),
                     IndexUnicodeProperties.make(VersionInfo.UNICODE_4_0)
                 }) {
+            // Unassigned code points were made Unknown by 106-C17 for Unicode Version 5.0.
+            // The default for unlisted code points changed from Common to Unknown in that version.
+            // Assigned Common code points were explicitly listed since 4.0.1, but wele missing in
+            // 4.0.0, so we need a versioned @missing in ExtraPropertyValueAliases to interpret the
+            // older files correctly.
             final var scriptValue2072 =
                     Script_Values.forName(iup.getProperty(UcdProperty.Script).getValue(0x2072));
             assertEquals(
                     "Script of U+2072 in " + iup.getUcdVersion(),
-                    Script_Values.Unknown,
+                    iup.getUcdVersion() == VersionInfo.UNICODE_5_0
+                            ? Script_Values.Unknown
+                            : Script_Values.Common,
                     scriptValue2072);
             final var scriptValueEmDash =
                     Script_Values.forName(iup.getProperty(UcdProperty.Script).getValue('—'));
