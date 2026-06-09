@@ -118,7 +118,7 @@ public class Aetiologer {
                                             || !manualReasons
                                                     .get(property)
                                                     .containsKey(newerVersion)
-                                            || manualReasons
+                                            || !manualReasons
                                                     .get(property)
                                                     .get(newerVersion)
                                                     .containsKey(cp)) {
@@ -241,6 +241,9 @@ public class Aetiologer {
         }
         reasonsFile = new PrintStream(new File(RESOURCES + "reasons_auto.txt"));
         for (final var propertyReasons : reasons.entrySet()) {
+            if (propertyReasons.getValue().values().stream().flatMap(unicodeMap -> unicodeMap.getAvailableValues().stream()).allMatch(List::isEmpty)) {
+                continue;
+            }
             final var property = propertyReasons.getKey();
             reasonsFile.println();
             reasonsFile.println("# ==========================================================");
@@ -248,9 +251,12 @@ public class Aetiologer {
             reasonsFile.println("# ==========================================================");
             for (final var versionReasons : propertyReasons.getValue().entrySet()) {
                 final var version = versionReasons.getKey();
+                final var unicodeMap = versionReasons.getValue();
+                if (unicodeMap.getAvailableValues().stream().allMatch(List::isEmpty)) {
+                    continue;
+                }
                 reasonsFile.println();
                 reasonsFile.println("# " + property + " assignment changes in Unicode Version " + version.getVersionString(2, 3));
-                final var unicodeMap = versionReasons.getValue();
                 for (final var value : unicodeMap.getAvailableValues()) {
                     if (value == null) {
                         continue;
