@@ -692,7 +692,8 @@ public class TestProperties extends TestFmwkMinusMinus {
 
         logln("New chars: " + newChars.size());
         {
-            LinkedHashSet values = new LinkedHashSet(Arrays.asList(Script_Values.values()));
+            LinkedHashSet<Script_Values> values =
+                    new LinkedHashSet(Arrays.asList(Script_Values.values()));
             values.remove(Script_Values.Unknown);
             values.remove(Script_Values.Katakana_Or_Hiragana);
             listValues(
@@ -706,7 +707,7 @@ public class TestProperties extends TestFmwkMinusMinus {
                     });
         }
         {
-            LinkedHashSet values =
+            LinkedHashSet<General_Category_Values> values =
                     new LinkedHashSet(Arrays.asList(General_Category_Values.values()));
             listValues(
                     UcdProperty.General_Category,
@@ -717,6 +718,28 @@ public class TestProperties extends TestFmwkMinusMinus {
                             return source.getShortName();
                         }
                     });
+        }
+        // TODO(egg): Is the stuff above a test, or just another tool that screams into the void?
+
+        for (final var iup :
+                new IndexUnicodeProperties[] {
+                    IndexUnicodeProperties.make(VersionInfo.UNICODE_5_0),
+                    IndexUnicodeProperties.make(VersionInfo.UNICODE_4_1),
+                    IndexUnicodeProperties.make(VersionInfo.UNICODE_4_0_1),
+                    IndexUnicodeProperties.make(VersionInfo.UNICODE_4_0)
+                }) {
+            final var scriptValue2072 =
+                    Script_Values.forName(iup.getProperty(UcdProperty.Script).getValue(0x2072));
+            assertEquals(
+                    "Script of U+2072 in " + iup.getUcdVersion(),
+                    Script_Values.Unknown,
+                    scriptValue2072);
+            final var scriptValueEmDash =
+                    Script_Values.forName(iup.getProperty(UcdProperty.Script).getValue('—'));
+            assertEquals(
+                    "Script of EM DASH in " + iup.getUcdVersion(),
+                    Script_Values.Common,
+                    scriptValueEmDash);
         }
     }
 
