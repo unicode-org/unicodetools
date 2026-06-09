@@ -1076,6 +1076,8 @@ Identifier_Status ; 15.0 ; [\uA7B8\uA7B9] ; 172-A62
 # ==========================================================
 
 # Identifier_Type assignment changes in Unicode Version 12.0
+# [157-A19] Action Item for Mark Davis: Change the hentaigana (U+1B002 to U+1B11E) to have Identifier_Type=Obsolete, based on feedback from David Corbett (August 7, 2018), in L2/18-274, for Unicode version 12.0.
+Identifier_Type ; 12.0 ; [\U0001B002\U0001B11E] ; 157-A19
 # [157-C17] Consensus: Change the Identifier_Type of U+05C7 HEBREW POINT QAMATS QATAN from "Obsolete" to "Uncommon_Use Technical" for Unicode version 12.0.
 # [157-A67] Action Item for Mark Davis: Change the Identifier_Type of U+05C7 HEBREW POINT QAMATS QATAN from "Obsolete" to "Uncommon_Use Technical" in IdentifierType.txt, for Unicode version 12.0.
 Identifier_Type ; 12.0 ; [\u05C7] ; 157-C17, 157-A67
@@ -1793,7 +1795,8 @@ Other_Grapheme_Extend ; 16.0 ; [\u0CC0\u0CC7\u0CC8\u0CCA\u0CCB\u1B3B\u1B3D\u1B43
 # Other_ID_Continue assignment changes in Unicode Version 5.1
 # [110-A30] Action Item for Mark Davis: Add U+00B7 MIDDLE DOT to Other_ID_Continue in PropList.txt for Unicode 5.0.1. [L2/07-033 L2/07-042]
 # [109-C12] Consensus: Post a public review issue proposing to give U+00B7 MIDDLE DOT the Other_ID_Continue property. [L2/06-378]
-Other_ID_Continue ; 5.1 ; [\u00B7] ; 110-A30, 109-C12
+# [109-A15] Action Item for Rick McGowan, Editorial Committee: Draft and post a public review issue on giving U+00B7 MIDDLE DOT the Other_ID_Continue property. The public review issue should reference the discussion in section 5.1 of Unicode Standard Annex #31: Identifier and Pattern Syntax. The publick review issue should close January 30, 2007. [L2/06-378]
+Other_ID_Continue ; 5.1 ; [\u00B7] ; 110-A30, 109-C12, 109-A15
 
 # Other_ID_Continue assignment changes in Unicode Version 15.1
 # [176-C18] Consensus: Add the characters U+30FB KATAKANA MIDDLE DOT and U+FF65 HALFWIDTH KATAKANA MIDDLE DOT to Other_ID_Continue and its derivative properties, as described in L2/23-160 item 2.2, for Unicode Version 15.1.

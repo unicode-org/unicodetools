@@ -21,8 +21,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -1780,7 +1778,8 @@ public class UnicodeUtilities {
             Appendable out)
             throws IOException {
         var indexedProperty = UcdProperty.forString(propName);
-        final var propertyReasons = indexedProperty == null ? null : Aetiologer.getReasons().get(indexedProperty);
+        final var propertyReasons =
+                indexedProperty == null ? null : Aetiologer.getReasons().get(indexedProperty);
         final boolean provisional =
                 indexedProperty != null
                         && indexedProperty.getDerivedStatus() == DerivedPropertyStatus.Provisional;
