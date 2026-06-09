@@ -71,11 +71,11 @@ public class Aetiologer {
                             .getProperty(UcdProperty.General_Category)
                             .getSet("Cn"));
         }
-        final Map<VersionInfo, Map<UcdProperty, UnicodeMap<List<String>>>> manualReasons =
+        final Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> manualReasons =
                 readReasonsFile("reasons_manual.txt");
         checkReasons(manualReasons);
         // Just reread the file instead of writing a deep copy…
-        final Map<VersionInfo, Map<UcdProperty, UnicodeMap<List<String>>>> reasons =
+        final Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> reasons =
                 readReasonsFile("reasons_manual.txt");
         for (final var property : UcdProperty.values()) {
             switch (property.getDerivedStatus()) {
@@ -114,20 +114,20 @@ public class Aetiologer {
                                         // Property change as part of assignment.
                                         continue;
                                     }
-                                    if (!manualReasons.containsKey(newerVersion)
+                                    if (!manualReasons.containsKey(property)
                                             || !manualReasons
-                                                    .get(newerVersion)
-                                                    .containsKey(property)
-                                            || manualReasons
-                                                    .get(newerVersion)
                                                     .get(property)
+                                                    .containsKey(newerVersion)
+                                            || manualReasons
+                                                    .get(property)
+                                                    .get(newerVersion)
                                                     .containsKey(cp)) {
                                         Δ.add(cp);
                                     }
                                 }
                             }
-                            reasons.computeIfAbsent(newerVersion, (v) -> new TreeMap<>())
-                                    .computeIfAbsent(property, (p) -> new UnicodeMap<>())
+                            reasons.computeIfAbsent(property, (p) -> new TreeMap<>())
+                            .computeIfAbsent(newerVersion, (v) -> new UnicodeMap<>())
                                     .putAll(Δ, List.of());
                         }
                         newerIUP = olderIUP;
@@ -216,22 +216,22 @@ public class Aetiologer {
         PrintStream reasonsFile;
         if (argSet.contains("--compute-unexplained")) {
             reasonsFile = new PrintStream(new File(RESOURCES + "reasons_unknown.txt"));
-            for (final var versionReasons : reasons.entrySet()) {
-                final var version = versionReasons.getKey();
-                for (final var propertyReasons : versionReasons.getValue().entrySet()) {
-                    final var property = propertyReasons.getKey();
-                    final var unicodeMap = propertyReasons.getValue();
+            for (final var propertyReasons : reasons.entrySet()) {
+                final var property = propertyReasons.getKey();
+                for (final var versionReasons : propertyReasons.getValue().entrySet()) {
+                    final var version = versionReasons.getKey();
+                    final var unicodeMap = versionReasons.getValue();
                     for (final var value : unicodeMap.getAvailableValues()) {
                         if (value == null) {
                             continue;
                         }
                         if (value.isEmpty()) {
-                            reasonsFile.println(
+                            reasonsFile.println(property
+                                            + " ; "
+                                            +
                                     version.getVersionString(2, 3)
                                             + " ; "
-                                            + property
-                                            + " ; "
-                                            + unicodeMap.getSet(value)
+                                            +  unicodeMap.getSet(value)
                                             + " ; # Yet unexplained");
                         }
                     }
@@ -240,11 +240,17 @@ public class Aetiologer {
             reasonsFile.close();
         }
         reasonsFile = new PrintStream(new File(RESOURCES + "reasons_auto.txt"));
-        for (final var versionReasons : reasons.entrySet()) {
-            final var version = versionReasons.getKey();
-            for (final var propertyReasons : versionReasons.getValue().entrySet()) {
-                final var property = propertyReasons.getKey();
-                final var unicodeMap = propertyReasons.getValue();
+        for (final var propertyReasons : reasons.entrySet()) {
+            final var property = propertyReasons.getKey();
+            reasonsFile.println();
+            reasonsFile.println("# ==========================================================");
+            reasonsFile.println("# Documentation for changes to " + property + " assignments");
+            reasonsFile.println("# ==========================================================");
+            for (final var versionReasons : propertyReasons.getValue().entrySet()) {
+                final var version = versionReasons.getKey();
+                reasonsFile.println();
+                reasonsFile.println("# " + property + " assignment changes in Unicode Version " + version.getVersionString(2, 3));
+                final var unicodeMap = versionReasons.getValue();
                 for (final var value : unicodeMap.getAvailableValues()) {
                     if (value == null) {
                         continue;
@@ -259,10 +265,10 @@ public class Aetiologer {
                                                 ? actions.get(action)
                                                 : action));
                     }
-                    reasonsFile.println(
-                            version.getVersionString(2, 3)
+                    reasonsFile.println( property
                                     + " ; "
-                                    + property
+                                    +
+                            version.getVersionString(2, 3)
                                     + " ; "
                                     + unicodeMap.getSet(value)
                                     + " ; "
@@ -279,8 +285,8 @@ public class Aetiologer {
             Set<String> aliases,
             Map<String, String> actions,
             Matcher l2Ref,
-            Map<VersionInfo, Map<UcdProperty, UnicodeMap<List<String>>>> reasons,
-            Map<VersionInfo, Map<UcdProperty, UnicodeMap<List<String>>>> manualReasons) {
+            Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> reasons,
+            Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> manualReasons) {
         final var iup = IndexUnicodeProperties.make(version);
         // Skip 13.1.0, see https://github.com/unicode-org/unicodetools/issues/100.
         final var previous =
@@ -354,15 +360,14 @@ public class Aetiologer {
                             + " vs. "
                             + newProperty.getValue(codePointsMentioned.charAt(0)));
             for (int cp : codePointsMentioned.codePoints()) {
-                if (manualReasons.containsKey(version)
-                        && manualReasons.get(version).containsKey(property)
-                        && manualReasons.get(version).get(property).containsKey(cp)) {
+                if (manualReasons.containsKey(property)
+                        && manualReasons.get(property).containsKey(version)
+                        && manualReasons.get(property).get(version).containsKey(cp)) {
                     continue;
                 }
                 isReason = true;
                 final var unicodeMap =
-                        reasons.computeIfAbsent(version, (v) -> new TreeMap<>())
-                                .computeIfAbsent(property, (p) -> new UnicodeMap<>());
+                        reasons.computeIfAbsent(property, (p) -> new TreeMap<>()).computeIfAbsent(version, (v) -> new UnicodeMap<>());
                 List<String> reasonList = unicodeMap.get(cp);
                 if (reasonList == null) {
                     reasonList = new ArrayList<>();
@@ -376,9 +381,9 @@ public class Aetiologer {
         return isReason;
     }
 
-    private static Map<VersionInfo, Map<UcdProperty, UnicodeMap<List<String>>>> reasons = null;
+    private static Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> reasons = null;
 
-    public static Map<VersionInfo, Map<UcdProperty, UnicodeMap<List<String>>>> getReasons()
+    public static Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> getReasons()
             throws IOException {
         if (reasons == null) {
             reasons = readReasonsFile("reasons_auto.txt");
@@ -386,9 +391,9 @@ public class Aetiologer {
         return reasons;
     }
 
-    private static Map<VersionInfo, Map<UcdProperty, UnicodeMap<List<String>>>> readReasonsFile(
+    private static Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> readReasonsFile(
             String name) throws IOException {
-        final Map<VersionInfo, Map<UcdProperty, UnicodeMap<List<String>>>> reasons =
+        final Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> reasons =
                 new TreeMap<>();
         final var file = new BufferedReader(new FileReader(new File(RESOURCES + name)));
         for (String line = file.readLine(); line != null; line = file.readLine()) {
@@ -397,14 +402,14 @@ public class Aetiologer {
                 continue;
             }
             final var fields = line.split("\\s*;\\s*");
-            final var version = VersionInfo.getInstance(fields[0]);
-            final var property = UcdProperty.forString(fields[1]);
+            final var property = UcdProperty.forString(fields[0]);
+            final var version = VersionInfo.getInstance(fields[1]);
             final var set =
                     new UnicodeSet(
                             fields[2], new ParsePosition(0), VersionedSymbolTable.forDevelopment());
             final var actions = Arrays.asList(fields[3].split("\\s*,\\s*"));
-            reasons.computeIfAbsent(version, v -> new TreeMap<>())
-                    .computeIfAbsent(property, p -> new UnicodeMap<>())
+            reasons.computeIfAbsent(property, p -> new TreeMap<>()).computeIfAbsent(version, v -> new UnicodeMap<>())
+                    
                     .putAll(set, actions);
         }
         file.close();
@@ -412,22 +417,22 @@ public class Aetiologer {
     }
 
     private static void checkReasons(
-            Map<VersionInfo, Map<UcdProperty, UnicodeMap<List<String>>>> reasons) {
-        for (final var versionReasons : reasons.entrySet()) {
-            final var newVersion = versionReasons.getKey();
-            final var newIUP = IndexUnicodeProperties.make(newVersion);
-            // Skip 13.1.0, see https://github.com/unicode-org/unicodetools/issues/100.
-            final var oldVersion =
-                    newVersion.equals(VersionInfo.UNICODE_14_0)
-                            ? Utility.getVersionPreceding(Utility.getVersionPreceding(newVersion))
-                            : Utility.getVersionPreceding(newVersion);
-            final var oldIUP = IndexUnicodeProperties.make(oldVersion);
-            for (final var propertyReasons : versionReasons.getValue().entrySet()) {
-                final var property = propertyReasons.getKey();
+            Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> reasons) {
+        for (final var propertyReasons : reasons.entrySet()) {
+            final var property = propertyReasons.getKey();
+            for (final var versionReasons : propertyReasons.getValue().entrySet()) {
+                final var newVersion = versionReasons.getKey();
+                final var newIUP = IndexUnicodeProperties.make(newVersion);
+                // Skip 13.1.0, see https://github.com/unicode-org/unicodetools/issues/100.
+                final var oldVersion =
+                        newVersion.equals(VersionInfo.UNICODE_14_0)
+                                ? Utility.getVersionPreceding(Utility.getVersionPreceding(newVersion))
+                                : Utility.getVersionPreceding(newVersion);
+                final var oldIUP = IndexUnicodeProperties.make(oldVersion);
                 final var newProperty = newIUP.getProperty(property);
                 final var oldProperty = oldIUP.getProperty(property);
                 final UnicodeSet explainedSet =
-                        propertyReasons.getValue().getSet(null).complement();
+                        versionReasons.getValue().getSet(null).complement();
                 for (int cp : explainedSet.codePoints()) {
                     if (Objects.equals(oldProperty.getValue(cp), newProperty.getValue(cp))) {
                         throw new IllegalArgumentException(
@@ -441,9 +446,9 @@ public class Aetiologer {
                                         + " and "
                                         + newVersion
                                         + ", so it does not require the explanation "
-                                        + propertyReasons.getValue().getValue(cp));
+                                        + versionReasons.getValue().getValue(cp));
                     }
-                    for (final String reason : propertyReasons.getValue().getValue(cp)) {
+                    for (final String reason : versionReasons.getValue().getValue(cp)) {
                         linkifyReason(reason);
                     }
                 }

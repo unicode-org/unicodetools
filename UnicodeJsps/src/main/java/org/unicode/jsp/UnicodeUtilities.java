@@ -1780,6 +1780,7 @@ public class UnicodeUtilities {
             Appendable out)
             throws IOException {
         var indexedProperty = UcdProperty.forString(propName);
+        final var propertyReasons = indexedProperty == null ? null : Aetiologer.getReasons().get(indexedProperty);
         final boolean provisional =
                 indexedProperty != null
                         && indexedProperty.getDerivedStatus() == DerivedPropertyStatus.Provisional;
@@ -1794,18 +1795,14 @@ public class UnicodeUtilities {
             int span;
 
             List<String> getReasons() throws IOException {
-                if (indexedProperty == null) {
-                    return List.of();
-                }
-                final var versionReasons = Aetiologer.getReasons().get(first);
-                if (versionReasons == null) {
-                    return List.of();
-                }
-                final var propertyReasons = versionReasons.get(indexedProperty);
                 if (propertyReasons == null) {
                     return List.of();
                 }
-                final var reasons = propertyReasons.get(codePoint);
+                final var versionReasons = propertyReasons.get(first);
+                if (versionReasons == null) {
+                    return List.of();
+                }
+                final var reasons = versionReasons.get(codePoint);
                 if (reasons == null) {
                     return List.of();
                 }

@@ -1,15 +1,15 @@
 # [106-C17] Consensus: Give unassigned codepoints the script property value "Zzzz". [L2/05-376]
-5.0 ; Script ; \p{U5.0:Zzzz} ; L2/05-376, 106-C17
+Script ; 5.0 ; \p{U5.0:Zzzz} ; L2/05-376, 106-C17
 # See discussion in L2/25-183, Section 2.1.
-10.0 ; Word_Break ; [˂-˅ ˒-˗ ˞˟ ˭ ˯-˿ ꜠꜡꞉ ꞊ ꭛] ;  L2/16-205@Thu Jun 2 08:46:28 CDT 2016, 148-A41a, L2/16-336, 149-A51
-13.0 ; Word_Break ; [˥-˫ ꜈-꜖] ; PRI-355@Mon Feb 12 20:20:51 CST 2018, 155-A4, L2/19-188, 159-C28, PRI-396@Tue Jul 30 12:55:18 CDT 2019, 161-A43, 162-A4
+Word_Break ; 10.0 ; [˂-˅ ˒-˗ ˞˟ ˭ ˯-˿ ꜠꜡꞉ ꞊ ꭛] ;  L2/16-205@Thu Jun 2 08:46:28 CDT 2016, 148-A41a, L2/16-336, 149-A51
+Word_Break ; 13.0 ; [˥-˫ ꜈-꜖] ; PRI-355@Mon Feb 12 20:20:51 CST 2018, 155-A4, L2/19-188, 159-C28, PRI-396@Tue Jul 30 12:55:18 CDT 2019, 161-A43, 162-A4
 
 # This would almost work for the automated processing, but the unassigned subrange D7C7..D7CA was already ea=N.
 # [131-C29] Consensus: Change the East Asian width property of characters 11A3..11A7, 11FA..11FF, D7B0..D7FB from "W" to "N", for Unicode 6.2. [L2/12-160]
-6.2 ; East_Asian_Width ; [[\u11A3-\u11A7\u11FA-\u11FF\uD7B0-\uD7FB]-[\uD7C7-\uD7CA]] ; L2/12-160@Tue Apr 3 16:52:11 CDT 2012, 131-C29
+East_Asian_Width ; 6.2 ; [[\u11A3-\u11A7\u11FA-\u11FF\uD7B0-\uD7FB]-[\uD7C7-\uD7CA]] ; L2/12-160@Tue Apr 3 16:52:11 CDT 2012, 131-C29
 
 # [181-C53] Consensus: Add a new Line_Break property value Unambiguous_Hyphen (short alias: HH) and assign this value to the eleven characters that have General_Category=Pd and Line_Break=Break_After in Unicode Version 16.0, listed below. Amend rules LB12a and LB21 of the Unicode Line Breaking Algorithm to treat HH like BA, and amend rules LB20a and LB21a to refer to the set of characters with lb=HH instead of singling out a single character or doing set arithmetic on the set of characters with lb=BA. In addition, amend rule LB20a to treat HL like AL. See L2/24-224 item 6.1. For Unicode Version 17.0.
-17.0 ; Line_Break ; \p{U17:lb=HH} ; L2/24-224, 181-C53
+Line_Break ; 17.0 ; \p{U17:lb=HH} ; L2/24-224, 181-C53
 
 # [179-C26] Consensus: Change the derivation of Indic_Conjunct_Break = Extend to exclude only those characters that are Indic_Conjunct_Break=Linker or Indic_Conjunct_Break=Consonant from the set of nonstarters with Grapheme_Cluster_Break=Extend. For Unicode Version 16.0. See document L2/24-064 item 5.3.
 # [179-A99] Action Item for Ken Whistler, PAG: Change the statement of the derivation of Indic_Conjunct_Break = Extend in UAX #44 to exclude only those characters that are Indic_Conjunct_Break=Linker or Indic_Conjunct_Break=Consonant from the set of nonstarters with Grapheme_Cluster_Break=Extend. For Unicode Version 16.0. See document L2/24-064 item 5.3.
@@ -17,10 +17,10 @@
 # From the report: [The incorrect derivation] means that some ccc≠0 characters are excluded from
 # InCB=Extend, namely viramas […] from inapplicable scripts. […] [The proposal] moves twenty-one
 # characters from InCB=None to InCB=Extend […].
-16.0 ; Indic_Conjunct_Break ; [\p{U16:Indic_Conjunct_Break=Extend}&\p{U16:InSC=Virama}] ; L2/24-064, 179-C26
+Indic_Conjunct_Break ; 16.0 ; [\p{U16:Indic_Conjunct_Break=Extend}&\p{U16:InSC=Virama}] ; L2/24-064, 179-C26
 # Section 5.8 On the exclusion of CCC=0 from InCB=Extend
 # [179-C31] Consensus: Change the derivation of InCB=Extend to [\p{gcb=Extend}\p{gcb=ZWJ}-\p{InCB=Linker}-\p{InCB=Consonant}-[\u200c]]. For Unicode Version 16.0. See document L2/24-064 item 5.8.
-16.0 ; Indic_Conjunct_Break ; [\p{U16:Indic_Conjunct_Break=Extend}&\p{U16:ccc=0}-[\u200D]] ; L2/24-064, 179-C31
+Indic_Conjunct_Break ; 16.0 ; [\p{U16:Indic_Conjunct_Break=Extend}&\p{U16:ccc=0}-[\u200D]] ; L2/24-064, 179-C31
 # [179-C27] Consensus: Change the derivation of Indic_Conjunct_Break according to L2/24-058R. For Unicode Version 17.0. See document L2/24-064 item 5.4.
 # [179-A100a]Action Item for Ken Whistler, PAG: In UAX #44, change the derivation of Indic_Conjunct_Break according to L2/24-058R. For Unicode Version 17.0. See document L2/24-064 item 5.4.
 # [179-A101] Action Item for Robin Leroy, PAG: Update DerivedCoreProperties.txt according to the new derivation of Indic_Conjunct_Break from L2/24-058R. For Unicode Version 17.0. See document L2/24-064 item 5.4.
@@ -30,4 +30,4 @@
 #    \p{U17:Cakm}\p{U17:Diak}\p{U17:Kawi}\p{U17:Khar}\p{U17:Khmr}\p{U17:Lana}\p{U17:Mtei}
 #    \p{U17:Mymr}\p{U17:Soyo}\p{U17:Sund}\p{U17:Tutg}\p{U17:Zanb}]
 # ], cf. L2/24-058R.
-17.0 ; Indic_Conjunct_Break ; [\p{U17:Indic_Conjunct_Break≠@U16:Indic_Conjunct_Break@}-\p{U16:Unassigned}] ; L2/24-058R, 179-C27
+Indic_Conjunct_Break ; 17.0 ; [\p{U17:Indic_Conjunct_Break≠@U16:Indic_Conjunct_Break@}-\p{U16:Unassigned}] ; L2/24-058R, 179-C27
