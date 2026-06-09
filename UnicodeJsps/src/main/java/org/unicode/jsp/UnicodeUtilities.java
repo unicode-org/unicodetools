@@ -21,6 +21,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -1965,18 +1967,77 @@ public class UnicodeUtilities {
                                         ? ""
                                         : ("<sup>{"
                                                 + assignment.getReasons().stream()
-                                                        .map(
-                                                                l2ref ->
-                                                                        "<a href=https://www.unicode.org/cgi-bin/GetL2Ref.pl?"
-                                                                                + l2ref
-                                                                                + ">"
-                                                                                + l2ref
-                                                                                + "</a>")
+                                                        .map(UnicodeUtilities::linkifyReason)
                                                         .collect(Collectors.joining(" "))
                                                 + "}</sup>"))
                                 + "</td>");
             }
             out.append("</tr>");
+        }
+    }
+
+    private static String linkifyReason(String reason) {
+        if (Aetiologer.L2_REF.matcher(reason).matches()) {
+            return "<a href=https://www.unicode.org/cgi-bin/GetL2Ref.pl?"
+                    + reason
+                    + ">"
+                    + reason
+                    + "</a>";
+        } else if (Aetiologer.L2_DOC.matcher(reason).matches()) {
+            return "<a href=https://www.unicode.org/cgi-bin/GetMatchingDocs.pl?"
+                    + reason
+                    + ">"
+                    + reason
+                    + "</a>";
+        }
+        var matcher = Aetiologer.PRI.matcher(reason);
+        if (matcher.matches()) {
+            return "<a href=https://www.unicode.org/review/pri"
+                    + matcher.group(1)
+                    + "/feedback.html#"
+                    + feedbackAnchor(matcher.group(2))
+                    + ">PRI-"
+                    + matcher.group(1)
+                    + "#"
+                    + feedbackID(matcher.group(2))
+                    + "</a>";
+        }
+        matcher = Aetiologer.PUBREV_DOC.matcher(reason);
+        if (matcher.matches()) {
+            return "<a href=https://www.unicode.org/L2/L20"
+                    + matcher.group(1)
+                    + "/"
+                    + matcher.group(1)
+                    + matcher.group(2)
+                    + "-pubrev.html#"
+                    + feedbackAnchor(matcher.group(3))
+                    + ">L2/20"
+                    + matcher.group(1)
+                    + "-"
+                    + matcher.group(2)
+                    + "#"
+                    + feedbackID(matcher.group(3))
+                    + "</a>";
+        }
+        return reason;
+    }
+
+    public static String feedbackAnchor(String dateOrId) {
+        if (dateOrId.startsWith("ID")) {
+            return dateOrId;
+        } else {
+            return ":~:text=" + dateOrId.replace(" ", "%20");
+        }
+    }
+
+    public static String feedbackID(String dateOrId) {
+        if (dateOrId.startsWith("ID")) {
+            return dateOrId;
+        } else {
+            return "ID"
+                    + DateTimeFormatter.ofPattern("EEE MMM d HH:mm:ss zzz yyyy", Locale.ENGLISH)
+                            .parse(dateOrId, LocalDateTime::from)
+                            .format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
         }
     }
 

@@ -422,11 +422,11 @@
 10.0 ; Indic_Positional_Category ; [\uA9BF] ; 150-C1, 150-A1, 151-A93
 # [151-C21] Consensus: Change the Indic syllabic category for characters documented in L2/17-169 sections 1, 4, and 5. For U+1A5A change Consonant_Final to Consonant_Succeeding_Repha, for Unicode version 10.0.
 10.0 ; Indic_Syllabic_Category ; [\u1A5A] ; 151-C21
-# L2/16-205@[Thu Jun 2 08:46:28 CDT 2016]
+# L2/16-205@Thu Jun 2 08:46:28 CDT 2016
 # [148-A41a] Action Item for Laurentiu Iancu: Propose which gc=Sk characters to include in ALetter (or to add to Alphabetic).
 # L2/16-336
 # [149-A51] Action Item for Laurențiu Iancu, Mark Davis, Editorial Committee: Update UAX #29 text with the property change for L2/16-336.
-10.0 ; Word_Break ; [\u02C2-\u02C5\u02D2-\u02D7\u02DE\u02DF\u02ED\u02EF-\u02FF\uA720\uA721\uA789\uA78A\uAB5B] ; L2/16-205@[Thu Jun 2 08:46:28 CDT 2016], 148-A41a, L2/16-336, 149-A51
+10.0 ; Word_Break ; [\u02C2-\u02C5\u02D2-\u02D7\u02DE\u02DF\u02ED\u02EF-\u02FF\uA720\uA721\uA789\uA78A\uAB5B] ; L2/16-205@Thu Jun 2 08:46:28 CDT 2016, 148-A41a, L2/16-336, 149-A51
 # [150-C6] Consensus: Add to the UCD for Unicode 10.0, a normative binary property "Regional Indicator", short name "RI", containing characters U+1F1E6..U+1F1FF.
 10.0 ; Regional_Indicator ; [\U0001F1E6\U0001F1FF] ; 150-C6
 # [183-N5] Note: U+2DED4 is not actually a horizontal extension, but rather a source reference change. Its kIRG_GSource property value, GPGLG-3046, was added in Unicode Version 10.0 as part of the CJK Unified Ideographs Extension F block. Its new kIRG_GSource property value per document IRG N2729R3 is GDM-00769. China confirmed on 2025-04-22 that this source reference change is intentional.
@@ -525,14 +525,14 @@
 13.0 ; Script_Extensions ; [\u0589] ; 162-C15, 162-A60
 # [160-C13] Consensus: Accept U+2E52 TIRONIAN SIGN CAPITAL ET with general category "Po", for encoding in Unicode version 13.0.
 13.0 ; General_Category ; [\u2E52] ; 160-C13
-# PRI-355@[Mon Feb 12 20:20:51 CST 2018]
+# PRI-355@Mon Feb 12 20:20:51 CST 2018
 # [155-A4] Action Item for Mark Davis, Editorial Committee: Prepare a PUA UAX #29 for Unicode 12.0 including Armenian Punctuation U+055A, U+055F, U+058A; and characters from the blocks Modifier Tone Letters and Modifier Spacing Letters.
 # L2/19-188
 # [159-C28] Consensus: Authorize a proposed update of UAX #29 for Unicode version 13.0.
-# PRI-396@[Tue Jul 30 12:55:18 CDT 2019]
+# PRI-396@Tue Jul 30 12:55:18 CDT 2019
 # [161-A43] Action Item for Roozbeh Pournader: Investigate characters mentioned by David Corbett in feedback on PRI #396 of [Tue Jul 30 12:55:18 CDT 2019], for script extensions and exemplar characters.
 # [162-A4] Action Item for Mark Davis, Markus Scherer: Sync Wordbreak data file in the UCD to UAX #29 Table 3 update of revision 36. For Unicode 13.0.
-13.0 ; Word_Break ; [\u02E5-\u02EB\uA708-\uA716] ; PRI-355@[Mon Feb 12 20:20:51 CST 2018], 155-A4, L2/19-188, 159-C28, PRI-396@[Tue Jul 30 12:55:18 CDT 2019], 161-A43, 162-A4
+13.0 ; Word_Break ; [\u02E5-\u02EB\uA708-\uA716] ; PRI-355@Mon Feb 12 20:20:51 CST 2018, 155-A4, L2/19-188, 159-C28, PRI-396@Tue Jul 30 12:55:18 CDT 2019, 161-A43, 162-A4
 # [162-A18] Action Item for Markus Scherer: Give U+1F977 the property Emoji_Modifier_Base = yes, for Unicode version 13.0.
 13.0 ; Emoji_Modifier_Base ; [\U0001F977] ; 162-A18
 # [162-A63] Action Item for Markus Scherer: Remove the range U+1FB00..U+1FBFF from Extended_Pictographic for Unicode version 13.0.

@@ -29,9 +29,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-import org.unicode.text.UCD.VersionedSymbolTable;
 
 public class Aetiologer {
     private static final Segmenter WORD_BREAK =
@@ -40,6 +40,9 @@ public class Aetiologer {
                     .setSegmentationType(SegmentationType.WORD)
                     .build();
     public static final Pattern L2_REF = Pattern.compile("((\\d+)-[A-Z]\\d+[a-z]*)");
+    public static final Pattern L2_DOC = Pattern.compile("L2/\\d{2}-\\d{3}(R\\d*)?");
+    public static final Pattern PUBREV_DOC = Pattern.compile("L2/(\\d{2})-(\\d{3})@(.*)");
+    public static final Pattern PRI = Pattern.compile("PRI-(\\d+)@(.*)");
     private static final Pattern BRACKETED_L2_REF =
             Pattern.compile("\\[" + L2_REF.pattern() + "\\]");
     private static final Pattern TARGET_VERSION =
@@ -389,7 +392,9 @@ public class Aetiologer {
             final var fields = line.split("\\s*;\\s*");
             final var version = VersionInfo.getInstance(fields[0]);
             final var property = UcdProperty.forString(fields[1]);
-            final var set = new UnicodeSet(fields[2], new ParsePosition(0), VersionedSymbolTable.forDevelopment());
+            final var set =
+                    new UnicodeSet(
+                            fields[2], new ParsePosition(0), VersionedSymbolTable.forDevelopment());
             final var actions = Arrays.asList(fields[3].split("\\s*,\\s*"));
             reasons.computeIfAbsent(version, v -> new TreeMap<>())
                     .computeIfAbsent(property, p -> new UnicodeMap<>())
