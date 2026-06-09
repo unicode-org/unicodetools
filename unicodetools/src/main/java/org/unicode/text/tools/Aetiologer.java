@@ -14,11 +14,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.text.ParsePosition;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -436,8 +439,76 @@ public class Aetiologer {
                                         + ", so it does not require the explanation "
                                         + propertyReasons.getValue().getValue(cp));
                     }
+                    for (final String reason : propertyReasons.getValue().getValue(cp)) {
+                        linkifyReason(reason);
+                    }
                 }
             }
+        }
+    }
+
+    public static String linkifyReason(String reason) {
+        if (Aetiologer.L2_REF.matcher(reason).matches()) {
+            return "<a href=https://www.unicode.org/cgi-bin/GetL2Ref.pl?"
+                    + reason
+                    + ">"
+                    + reason
+                    + "</a>";
+        } else if (Aetiologer.L2_DOC.matcher(reason).matches()) {
+            return "<a href=https://www.unicode.org/cgi-bin/GetMatchingDocs.pl?"
+                    + reason
+                    + ">"
+                    + reason
+                    + "</a>";
+        }
+        var matcher = Aetiologer.PRI.matcher(reason);
+        if (matcher.matches()) {
+            return "<a href=https://www.unicode.org/review/pri"
+                    + matcher.group(1)
+                    + "/feedback.html#"
+                    + feedbackAnchor(matcher.group(2))
+                    + ">PRI-"
+                    + matcher.group(1)
+                    + "#"
+                    + feedbackID(matcher.group(2))
+                    + "</a>";
+        }
+        matcher = Aetiologer.PUBREV_DOC.matcher(reason);
+        if (matcher.matches()) {
+            return "<a href=https://www.unicode.org/L2/L20"
+                    + matcher.group(1)
+                    + "/"
+                    + matcher.group(1)
+                    + matcher.group(2)
+                    + "-pubrev.html#"
+                    + feedbackAnchor(matcher.group(3))
+                    + ">L2/20"
+                    + matcher.group(1)
+                    + "-"
+                    + matcher.group(2)
+                    + "#"
+                    + feedbackID(matcher.group(3))
+                    + "</a>";
+        }
+        throw new IllegalArgumentException(reason);
+    }
+
+    public static String feedbackAnchor(String dateOrId) {
+        if (dateOrId.startsWith("ID")) {
+            return dateOrId;
+        } else {
+            return ":~:text=" + dateOrId.replace(" ", "%20");
+        }
+    }
+
+    public static String feedbackID(String dateOrId) {
+        if (dateOrId.startsWith("ID")) {
+            return dateOrId;
+        } else {
+            return "ID"
+                    + DateTimeFormatter.ofPattern("EEE MMM d HH:mm:ss zzz yyyy", Locale.ENGLISH)
+                            .parse(dateOrId, LocalDateTime::from)
+                            .format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
         }
     }
 }
