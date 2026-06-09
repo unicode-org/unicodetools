@@ -52,7 +52,7 @@ public class Aetiologer {
             Pattern.compile("Unicode\\s+(?:[Vv]ersion\\s+)?(\\d+(?:\\.\\d+)*)");
     private static final Pattern CODE_POINTS =
             Pattern.compile(
-                    "(?:U\\+)?([0-9A-F]{4}|(?:[1-9A-F]|10)[0-9A-F]{4})(?:\\.\\.(?:U\\+)?([0-9A-F]{4}|(?:[1-9A-F]|10)[0-9A-F]{4}))?");
+                    "(?:U\\+)?([0-9A-F]{4}|(?:[1-9A-F]|10)[0-9A-F]{4})(?:(?: through |\\.\\.)(?:U\\+)?([0-9A-F]{4}|(?:[1-9A-F]|10)[0-9A-F]{4}))?");
     private static final Pattern FORMAL_ALIAS = Pattern.compile("\\bformal\\s+alias");
     private static final String RESOURCES =
             Settings.UnicodeTools.UNICODETOOLS_RSRC_DIR + "org/unicode/text/tools/";
@@ -302,8 +302,8 @@ public class Aetiologer {
                         : Utility.getVersionPreceding(version);
         final var previousIUP = IndexUnicodeProperties.make(previous);
         final String segmentedText = line.split("\\]", 2)[1].replace("-", "_");
-        // Poor man’s tailoring: treat + as A and .. as AA so U+ notation and ranges form words.
-        final String remappedText = segmentedText.replace("..", "AA").replace('+', 'A');
+        // Poor man’s tailoring: treat + as A, .. as AA, " through " as AAAAAAAAA so U+ notation and ranges form words.
+        final String remappedText = segmentedText.replace("..", "AA").replace('+', 'A').replace(" through ", "AAAAAAAAA");
         Iterable<Segment> words =
                 WORD_BREAK.segment(remappedText).segments()::iterator;
         Set<UcdProperty> candidateProperties = new TreeSet<>();

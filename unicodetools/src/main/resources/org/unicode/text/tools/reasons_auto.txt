@@ -118,7 +118,7 @@ Name_Alias ; 8.0 ; [\u2B7A\u2B7C] ; 141-C2, 141-A5
 
 # Name_Alias assignment changes in Unicode Version 10.0
 # [149-A57] Action Item for Ken Whistler: Update NameAliases.txt for 11EC through 11EF as documented in L2/16-363, for Unicode 10.0. See above consensus 149-C19.
-Name_Alias ; 10.0 ; [\u11EC\u11EF] ; 149-A57
+Name_Alias ; 10.0 ; [\u11EC-\u11EF] ; 149-A57
 # [150-A4] Action Item for Ken Whistler, Laurențiu Iancu: Add the formal name alias HENTAIGANA LETTER E-1 for U+1B001 HIRAGANA LETTER ARCHAIC YE to NameAliases.txt for Unicode 10.0.
 # [150-C2] Consensus: Create a formal name alias for U+1B001 HENTAIGANA LETTER E-1 for 10.0.
 Name_Alias ; 10.0 ; [\U0001B001] ; 150-A4, 150-C2
@@ -253,7 +253,7 @@ kIRG_KSource ; 16.0 ; [\u3E02] ; 176-C6, 176-A44, 176-A45
 
 # kIRG_MSource assignment changes in Unicode Version 14.0
 # [165-C9] Consensus: Accept the five urgently needed characters proposed in L2/20-203 and L2/20-204 with code points U+9FFD through U+9FFF, U+2A6DE, and U+2A6DF, along with the representative glyph change for MC-00137 proposed in L2/20-205, and add to a proposed update of UAX #38 for Unicode Version 14.0 to add the new kIRG_GSource and kIRG_MSource source prefixes.
-kIRG_MSource ; 14.0 ; [\u9FFD\u9FFF\U0002A6DE\U0002A6DF] ; 165-C9
+kIRG_MSource ; 14.0 ; [\u9FFD-\u9FFF\U0002A6DE\U0002A6DF] ; 165-C9
 
 # ==========================================================
 # Documentation for changes to kIRG_TSource assignments
@@ -822,7 +822,7 @@ East_Asian_Width ; 6.2 ; [\u11A3-\u11A7\u11FA-\u11FF\uD7B0-\uD7C6\uD7CB-\uD7FB] 
 # East_Asian_Width assignment changes in Unicode Version 17.0
 # [183-C75] Consensus: Accept the proposal to change the East_Asian_Width property value of U+16FF2 through U+16FF6 from N to W, based on feedback [ID20250413185319] in document L2/25-071 and as amended in discussion, for Unicode Version 17.0.
 # [183-A185] Action Item for Robin Leroy, PAG: Update the UCD’s EastAsianWidth.txt data file to change the East_Asian_Width property value of U+16FF2 through U+16FF6 from N to W, based on feedback [ID20250413185319] in document L2/25-071 and as amended in discussion, for Unicode Version 17.0.
-East_Asian_Width ; 17.0 ; [\U00016FF2\U00016FF6] ; 183-C75, 183-A185
+East_Asian_Width ; 17.0 ; [\U00016FF2-\U00016FF6] ; 183-C75, 183-A185
 
 # ==========================================================
 # Documentation for changes to General_Category assignments
@@ -1259,8 +1259,6 @@ Line_Break ; 7.0 ; [\uFD3E\uFD3F] ; 138-C21, 138-A65
 Line_Break ; 8.0 ; [\u22EF] ; 142-C15, 142-A90
 
 # Line_Break assignment changes in Unicode Version 9.0
-# [145-C29] Consensus: Accept the linebreak property changes documented in L2/15-259 for all characters through U+FFDC, for Unicode 9.0.
-Line_Break ; 9.0 ; [\uFFDC] ; 145-C29
 # [146-A124] Action Item for Laurențiu Iancu: Change the LineBreak value for U+2764 HEAVY HEART to ID, for Unicode 9.0.
 Line_Break ; 9.0 ; [\u2764] ; 146-A124
 # [146-A57] Action Item for Laurențiu Iancu: Fix Line_Break property for U+1885 and U+1886. See document L2/16-041.
@@ -1376,9 +1374,9 @@ Sentence_Break ; 9.0 ; [\U000E0020-\U000E007F] ; 147-C18, 147-A51
 # Sentence_Break assignment changes in Unicode Version 12.0
 # [158-C2] Consensus: For the ten characters U+FF10 FULLWIDTH DIGIT ZERO through U+FF19 FULLWIDTH DIGIT NINE, change the Word_Break and Sentence_Break property values from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU). As documented in L2/19-055, for Unicode version 12.0.
 # [158-A7] Action Item for Mark Davis: Update WordBreak.txt and SentenceBreak.txt to change the property values of Word_Break and Sentence_Break for U+FF10..U+FF19 from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU), for Unicode version 12.0.
-Sentence_Break ; 12.0 ; [\uFF10\uFF19] ; 158-C2, 158-A7
+Sentence_Break ; 12.0 ; [\uFF10] ; 158-C2, 158-A7
 # [158-A7] Action Item for Mark Davis: Update WordBreak.txt and SentenceBreak.txt to change the property values of Word_Break and Sentence_Break for U+FF10..U+FF19 from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU), for Unicode version 12.0.
-Sentence_Break ; 12.0 ; [\uFF11-\uFF18] ; 158-A7
+Sentence_Break ; 12.0 ; [\uFF11-\uFF19] ; 158-A7
 
 # Sentence_Break assignment changes in Unicode Version 15.1
 # [175-C25] Consensus: Add U+17D4 KHMER SIGN KHAN & U+17D5 KHMER SIGN BARIYOOSAN to Sentence_Terminal and Sentence_Break=STerm, for Unicode 15.1.
@@ -1399,7 +1397,7 @@ Vertical_Orientation ; 14.0 ; [\U0001AFF0-\U0001AFFE] ; 166-A81
 Vertical_Orientation ; 17.0 ; [\u2018\u2019\u201C\u201D] ; 182-C34, 182-A97
 # [182-C40] Consensus: Accept the proposal to change the Vertical_Orientation property values of U+31B4 through U+31B7, U+31BB, U+1B132, U+1B150 through U+1B152, U+1B155, and U+1B164 through U+1B167 from U to Tu, based on document L2/25-035 (Sim), for Unicode Version 17.0.
 # [182-A106] Action Item for Markus Scherer, PAG: Change the Vertical_Orientation property values of U+31B4 through U+31B7, U+31BB, U+1B132, U+1B150 through U+1B152, U+1B155, and U+1B164 through U+1B167 from U to Tu, based on document L2/25-035, for Unicode Version 17.0.
-Vertical_Orientation ; 17.0 ; [\u31B4\u31B7\u31BB\U0001B132\U0001B150\U0001B152\U0001B155\U0001B164\U0001B167] ; 182-C40, 182-A106
+Vertical_Orientation ; 17.0 ; [\u31B4-\u31B7\u31BB\U0001B132\U0001B150-\U0001B152\U0001B155\U0001B164-\U0001B167] ; 182-C40, 182-A106
 
 # ==========================================================
 # Documentation for changes to Word_Break assignments
@@ -1449,9 +1447,9 @@ Word_Break ; 11.0 ; [\u055B\u055C\u055E] ; 155-C3, 155-A2
 # Word_Break assignment changes in Unicode Version 12.0
 # [158-C2] Consensus: For the ten characters U+FF10 FULLWIDTH DIGIT ZERO through U+FF19 FULLWIDTH DIGIT NINE, change the Word_Break and Sentence_Break property values from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU). As documented in L2/19-055, for Unicode version 12.0.
 # [158-A7] Action Item for Mark Davis: Update WordBreak.txt and SentenceBreak.txt to change the property values of Word_Break and Sentence_Break for U+FF10..U+FF19 from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU), for Unicode version 12.0.
-Word_Break ; 12.0 ; [\uFF10\uFF19] ; 158-C2, 158-A7
+Word_Break ; 12.0 ; [\uFF10] ; 158-C2, 158-A7
 # [158-A7] Action Item for Mark Davis: Update WordBreak.txt and SentenceBreak.txt to change the property values of Word_Break and Sentence_Break for U+FF10..U+FF19 from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU), for Unicode version 12.0.
-Word_Break ; 12.0 ; [\uFF11-\uFF18] ; 158-A7
+Word_Break ; 12.0 ; [\uFF11-\uFF19] ; 158-A7
 
 # Word_Break assignment changes in Unicode Version 13.0
 # PRI-355@Mon Feb 12 20:20:51 CST 2018
