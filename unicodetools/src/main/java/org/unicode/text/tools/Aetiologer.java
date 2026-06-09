@@ -288,15 +288,19 @@ public class Aetiologer {
                         ? Utility.getVersionPreceding(Utility.getVersionPreceding(version))
                         : Utility.getVersionPreceding(version);
         final var previousIUP = IndexUnicodeProperties.make(previous);
+        final String segmentedText = line.split("\\]", 2)[1].replace("-", "_");
+        // Poor man’s tailoring: treat + as A and .. as AA so U+ notation and ranges form words.
+        final String remappedText = segmentedText.replace("..", "AA").replace('+', 'A');
         Iterable<Segment> words =
-                WORD_BREAK.segment(line.split("\\]", 2)[1].replace("-", "_")).segments()::iterator;
+                WORD_BREAK.segment(remappedText).segments()::iterator;
         Set<UcdProperty> candidateProperties = new TreeSet<>();
         final var codePointsMentioned = new UnicodeSet();
         for (final var segment : words) {
-            if (aliases.contains(segment.getSubSequence())) {
-                candidateProperties.add(UcdProperty.forString((String) segment.getSubSequence()));
+            final CharSequence word = segmentedText.subSequence(segment.start, segment.limit);
+            if (aliases.contains(word)) {
+                candidateProperties.add(UcdProperty.forString((String) word));
             }
-            final var range = CODE_POINTS.matcher(segment.getSubSequence());
+            final var range = CODE_POINTS.matcher(word);
             if (range.matches()) {
                 if (range.group(2) != null) {
                     codePointsMentioned.add(
