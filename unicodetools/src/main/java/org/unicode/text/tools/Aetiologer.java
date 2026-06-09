@@ -51,8 +51,23 @@ public class Aetiologer {
     private static final Pattern TARGET_VERSION =
             Pattern.compile("Unicode\\s+(?:[Vv]ersion\\s+)?(\\d+(?:\\.\\d+)*)");
     private static final Pattern CODE_POINTS =
-            Pattern.compile(
-                    "(?:U\\+)?([0-9A-F]{4}|(?:[1-9A-F]|10)[0-9A-F]{4})(?:(?: through |\\.\\.)(?:U\\+)?([0-9A-F]{4}|(?:[1-9A-F]|10)[0-9A-F]{4}))?");
+            Pattern.compile("""
+                    \\b
+                    (?:U\\+)?
+                    # Avoid false positives from source references, e.g., UTC-1234,
+                    # and feedback dates.
+                    (?<!C[DS]T\\s|-)
+                    # Group 1, start.
+                    ([0-9A-F]{4}|(?:[1-9A-F]|10)[0-9A-F]{4})
+                    # Optional name.
+                    (?:\\s+[A-Z][A-Z\\s-]+[A-Z])?
+                    (?:(?:\\sthrough\\s|\\.\\.)
+                    (?:U\\+)?
+                    # Group 2, limit.
+                    ([0-9A-F]{4}|(?:[1-9A-F]|10)[0-9A-F]{4}))?
+                    (?!-)
+                    \\b""",
+                Pattern.COMMENTS);
     private static final Pattern FORMAL_ALIAS = Pattern.compile("\\bformal\\s+alias");
     private static final String RESOURCES =
             Settings.UnicodeTools.UNICODETOOLS_RSRC_DIR + "org/unicode/text/tools/";
@@ -301,27 +316,24 @@ public class Aetiologer {
                         ? Utility.getVersionPreceding(Utility.getVersionPreceding(version))
                         : Utility.getVersionPreceding(version);
         final var previousIUP = IndexUnicodeProperties.make(previous);
-        final String segmentedText = line.split("\\]", 2)[1].replace("-", "_");
-        // Poor man’s tailoring: treat + as A, .. as AA, " through " as AAAAAAAAA so U+ notation and ranges form words.
-        final String remappedText = segmentedText.replace("..", "AA").replace('+', 'A').replace(" through ", "AAAAAAAAA");
+        final String segmentedText = line.split("\\]", 2)[1];
         Iterable<Segment> words =
-                WORD_BREAK.segment(remappedText).segments()::iterator;
+                WORD_BREAK.segment(segmentedText).segments()::iterator;
         Set<UcdProperty> candidateProperties = new TreeSet<>();
         final var codePointsMentioned = new UnicodeSet();
         for (final var segment : words) {
-            final CharSequence word = segmentedText.subSequence(segment.start, segment.limit);
-            if (aliases.contains(word)) {
-                candidateProperties.add(UcdProperty.forString((String) word));
+            if (aliases.contains(segment.getSubSequence())) {
+                candidateProperties.add(UcdProperty.forString((String) segment.getSubSequence()));
             }
-            final var range = CODE_POINTS.matcher(word);
-            if (range.matches()) {
-                if (range.group(2) != null) {
-                    codePointsMentioned.add(
-                            Utility.codePointFromHex(range.group(1)),
-                            Utility.codePointFromHex(range.group(2)));
-                } else {
-                    codePointsMentioned.add(Utility.codePointFromHex(range.group(1)));
-                }
+        }
+        final var range = CODE_POINTS.matcher(segmentedText);
+        while (range.find()) {
+            if (range.group(2) != null) {
+                codePointsMentioned.add(
+                        Utility.codePointFromHex(range.group(1)),
+                        Utility.codePointFromHex(range.group(2)));
+            } else {
+                codePointsMentioned.add(Utility.codePointFromHex(range.group(1)));
             }
         }
         // Find mentions of "general category" for General_Category, "linebreak class" or "line

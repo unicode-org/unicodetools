@@ -30,6 +30,10 @@ Numeric_Value ; 6.2 ; [\U00012432\U00012433] ; 132-A50, 132-C19, 132-A49
 # [133-A40] Action Item for Ken Whistler: Update UnicodeData.txt to change the numeric value of U+12456 to 2 and U+12457 to 3, for Unicode 6.3. [L2/12-328]
 Numeric_Value ; 6.3 ; [\U00012456\U00012457] ; 133-C30, 133-A40
 
+# Numeric_Value assignment changes in Unicode Version 11.0
+# [155-A96] Action Item for Ken Whistler: Update the numeric value of U+1ECA1 INDIC SIYAQ NUMBER KAROR to 10,000,000 (ten million) in the UCD for Unicode 11.0, per feedback from Charlotte Buff (Sun Apr 29 19:37:14 CDT 2018).
+Numeric_Value ; 11.0 ; [\U0001ECA1] ; 155-A96
+
 # Numeric_Value assignment changes in Unicode Version 16.0
 # [177-N7] Note: The PAG has corrected the canonical combining class values for the GARAY DIGITS ONE through NINE U+10D40..U+10D49, from equal to their numeric value as approved by Consensus 171-C18 to 0 (Not_Reordered). For Unicode Version 16.0. See L2/23-234 Section 2.2.
 Numeric_Value ; 16.0 ; [\U00010D40-\U00010D49] ; 177-N7
@@ -292,6 +296,16 @@ kIRG_UKSource ; 15.0 ; [\u4DBE\U000238A7] ; 170-C30, 170-A88
 # [171-A23] Action Item for John Jenkins: Update the Unihan database to reflect the new kIRG_USource property value for U+585F, based on Section 02 of document L2/22-067, for Unicode version 15.0.
 kIRG_USource ; 15.0 ; [\u585F] ; 171-A22, 171-A23
 
+# kIRG_USource assignment changes in Unicode Version 15.1
+# [173-C4] Consensus: Accept the proposal to move the kIRG_USource property value of U+9855, UTC-00355, to U+29530, based on feedback [Mon Aug 8 07:25:17 CDT 2022] in document L2/22-243 and Section 03 of document L2/22-247, for for Unicode Version 15.1.
+# [173-A22] Action Item for Michel Suignard, CJK: Move the kIRG_USource property value of U+9855, UTC-00355, to U+29530, based on feedback [Mon Aug 8 07:25:17 CDT 2022] in document L2/22-243 and Section 03 of document L2/22-247, and provide to John Jenkins an updated Unihan data file, for for Unicode Version 15.1.
+# [173-A23] Action Item for John Jenkins, CJK: Update the Unihan database to move the kIRG_USource property value of U+9855, UTC-00355, to U+29530, based on feedback [Mon Aug 8 07:25:17 CDT 2022] in document L2/22-243 and Section 03 of document L2/22-247, for for Unicode Version 15.1.
+kIRG_USource ; 15.1 ; [\u9855\U00029530] ; 173-C4, 173-A22, 173-A23
+# [174-C13] Consensus: Accept the proposal to change the kRSUnicode property value of U+44D5 and add UTC-02994 as a new kIRG_USource property value for U+44D5, based on feedback [Tue Dec 27 19:01:03 CST 2022] in document L2/23-007 and as amended in Section 07 of document L2/23-011, for Unicode Version 15.1.
+# [174-A40] Action Item for Michel Suignard, CJK: Change the kRSUnicode property value of U+44D5 by adding 162.8 and add UTC-02994 as a new kIRG_USource property value for U+44D5, based on feedback [Tue Dec 27 19:01:03 CST 2022] in document L2/23-007 and as amended in Section 07 of document L2/23-011, and provide to John Jenkins an updated Unihan data file, for Unicode Version 15.1.
+# [174-A41] Action Item for John Jenkins, CJK: Update the Unihan database to add 162.8 to the kRSUnicode property value of U+44D5 and add UTC-02994 as a new kIRG_USource property value for U+44D5, based on feedback [Tue Dec 27 19:01:03 CST 2022] in document L2/23-007 and as amended in Section 07 of document L2/23-011, for Unicode Version 15.1.
+kIRG_USource ; 15.1 ; [\u44D5] ; 174-C13, 174-A40, 174-A41
+
 # kIRG_USource assignment changes in Unicode Version 16.0
 # [175-C1] Consensus: Accept the proposal to add UTC-00441 as a new kIRG_USource property value for U+9FFD, based on PRI #468 feedback [ID20230203075454] and Section 11 of document L2/23-082, for Unicode Version 16.0.
 # [175-A13] Action Item for Michel Suignard, CJK: Add UTC-00441 as a new kIRG_USource property value for U+9FFD, based on PRI #468 feedback [ID20230203075454] and Section 11 of document L2/23-082, and provide to Ken Lunde an updated Unihan data file, for Unicode Version 16.0.
@@ -347,6 +361,8 @@ kIRG_USource ; 18.0 ; [\U00031F1A] ; 186-C8, 186-A15
 # kIRG_VSource assignment changes in Unicode Version 14.0
 # [165-C10] Consensus: Disunify U+722B and encode a new CJK Unified Ideograph at the end of the Extension C block at code point U+2B735 with a kIRG_VSource property value of V0-3D5B, for Unicode Version 14.0.
 kIRG_VSource ; 14.0 ; [\u722B\U0002B735] ; 165-C10
+# [168-C16] Consensus: Accept change to the kIRG_VSource property value for U+20307 in the Unihan database per feedback dated [Sat Jun 26 09:07:52 CDT 2021] in PRI #433 and Unihan-UTC168-R15 in document L2/21-129, for Unicode Version 14.0.
+kIRG_VSource ; 14.0 ; [\U00020307] ; 168-C16
 
 # kIRG_VSource assignment changes in Unicode Version 17.0
 # [183-C64] Consensus: Accept the horizontal extension of U+2CACD, along with the three kIRG_VSource property value changes, based on document IRG N2798 (Vietnam) and Section 31 of document L2/25-090, for Unicode Version 17.0.
@@ -395,32 +411,64 @@ kRSUnicode ; 9.0 ; [\U0002386E] ; 145-A59
 # [151-A34] Action Item for Michel Suignard: Change the kRSUnicode and kRSKangXi values of U+7353 from 94.9 to 94.11 in his data set.
 kRSUnicode ; 10.0 ; [\u7353] ; 151-A33, 151-A34
 
+# kRSUnicode assignment changes in Unicode Version 14.0
+# [163-A11] Action Item for John Jenkins, Michel Suignard: Update the Unihan Database to add 213.0 as a second kRSUnicode property value for U+4E80 亀 per feedback from Eiso Chan [Mon Feb 17 07:38:54 CST 2020], for Unicode Version 14.0.
+kRSUnicode ; 14.0 ; [\u4E80] ; 163-A11
+# [168-C12] Consensus: Accept changes in the kRSUnicode and kTotalStrokes property values in the Unihan database for U+2B8D9 and U+2B8DA per feedback dated [Thu Jun 10 09:18:03 CDT 2021] in PRI #433 as amended by the CJK & Unihan Group, and Unihan-UTC168-R09 in document L2/21-129, for Unicode Version 14.0.
+kRSUnicode ; 14.0 ; [\U0002B8D9\U0002B8DA] ; 168-C12
+# [168-C14] Consensus: Accept the changes to kRSUnicode property value for U+537F 卿 in the Unihan database per feedback dated [Tue Jun 15 06:29:07 CDT 2021] in PRI #433 as amended by the CJK & Unihan Group, and Unihan-UTC168-R12 in document L2/21-129, for Unicode Version 14.0.
+# [168-A59] Action Item for John Jenkins, Michel Suignard: Change the kRSUnicode property value for U+537F 卿 in the Unihan database per feedback dated [Tue Jun 15 06:29:07 CDT 2021] in PRI #433 as amended by the CJK & Unihan Group, and Unihan-UTC168-R12 in document L2/21-129, for Unicode Version 14.0.
+kRSUnicode ; 14.0 ; [\u537F] ; 168-C14, 168-A59
+
 # kRSUnicode assignment changes in Unicode Version 15.0
+# [170-C26] Consensus: Accept the kRSUnicode property value changes for UK-10140 and UK-10989, and corresponding changes to code positions of 557 characters in the Extension H block in the range U+31456..U+31682, based on feedback [Tue Jan 4 07:17:52 CST 2022] in L2/22-018 and as amended in Section 05 of document L2/22-022, for Unicode Version 15.0.
+kRSUnicode ; 15.0 ; [\U00031456-\U00031682] ; 170-C26
 # [170-C31] Consensus: Accept the kRSUnicode and kTotalStrokes property value changes for U+29867, based on L2/22-008 and Section 12 of document L2/22-022, for Unicode Version 15.0.
 # [170-A93] Action Item for Michel Suignard: Change the kRSUnicode and kTotalStrokes property values for U+29867, based on L2/22-008 and Section 12 of document L2/22-022, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode Version 15.0.
 kRSUnicode ; 15.0 ; [\U00029867] ; 170-C31, 170-A93
 # [170-C32] Consensus: Accept the kRSUnicode property value change for U+266B9, based on L2/22-014 and as amended in Section 13 of document L2/22-022, for Unicode Version 15.0.
 # [170-A95] Action Item for Michel Suignard: Change the kRSUnicode property value for U+266B9, based on L2/22-014 and as amended in Section 13 of document L2/22-022, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode Version 15.0.
 kRSUnicode ; 15.0 ; [\U000266B9] ; 170-C32, 170-A95
+# [171-C2] Consensus: Accept the kRSUnicode property value change for U+31350 in the Extension H block, based on feedback [Sat Mar 5 09:23:50 CST 2022] in PRI #442, for Unicode version 15.0.
 # [171-A20] Action Item for Michel Suignard: Change the kRSUnicode property value of U+31350, based on Section 01 of document L2/22-067, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode version 15.0.
 # [171-A21] Action Item for John Jenkins: Update the Unihan database to reflect the kRSUnicode property value change for U+31350, based on Section 01 of document L2/22-067, for Unicode version 15.0.
-kRSUnicode ; 15.0 ; [\U00031350] ; 171-A20, 171-A21
+kRSUnicode ; 15.0 ; [\U00031350] ; 171-C2, 171-A20, 171-A21
+# [171-C6] Consensus: Accept the kRSUnicode property value change for U+5954 and U+595F, based on feedback [Mon Apr 11 09:24:29 CDT 2022] in document L2/22-063, for Unicode version 15.0.
 # [171-A39] Action Item for Michel Suignard: Change the kRSUnicode property values of U+5954 and U+595F, based on Section 09 of document L2/22-067, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode version 15.0.
 # [171-A40] Action Item for John Jenkins: Update the Unihan database to reflect the kRSUnicode property value change for U+5954 and U+595F, based on Section 09 of document L2/22-067, for Unicode version 15.0.
-kRSUnicode ; 15.0 ; [\u5954\u595F] ; 171-A39, 171-A40
+kRSUnicode ; 15.0 ; [\u5954\u595F] ; 171-C6, 171-A39, 171-A40
 # [171-C7] Consensus: Accept the kRSUnicode and kTotalStrokes property value changes for U+32351 (aka GXM-00265) in the Extension H block, based on Section 12 of document L2/22-067, for Unicode version 15.0.
 # [171-A46] Action Item for Michel Suignard: Change the kRSUnicode and kTotalStrokes property values of U+32351 in the Extension H block, based on Section 12 of document L2/22-067, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode version 15.0.
 # [171-A47] Action Item for John Jenkins: Update the Unihan database to reflect the kRSUnicode and kTotalStrokes property value changes for U+32351 in the Extension H block, based on Section 12 of document L2/22-067, for Unicode version 15.0.
 kRSUnicode ; 15.0 ; [\U00032351] ; 171-C7, 171-A46, 171-A47
+# [172-C9] Consensus: Accept the kRSUnicode property value change for U+6C77, based on feedback [Fri May 6 23:32:11 CDT 2022] in PRI #437, for Unicode Version 15.0.
 # [172-A22] Action Item for Michel Suignard, CJK: Change the kRSUnicode property value of U+6C77, based on Section 01 of document L2/22-127, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode Version 15.0.
 # [172-A23] Action Item for John Jenkins, CJK: Update the Unihan database to reflect the kRSUnicode and kRSKangXi property value changes for U+6C77, based on Section 01 of document L2/22-127, for Unicode Version 15.0.
-kRSUnicode ; 15.0 ; [\u6C77] ; 172-A22, 172-A23
+kRSUnicode ; 15.0 ; [\u6C77] ; 172-C9, 172-A22, 172-A23
+# [172-C13] Consensus: Accept the kRSUnicode property value changes for U+246FF, U+2A1FA, and U+2C4F8, based on feedback [Wed May 4 02:13:35 CDT 2022] in document L2/22-123 and as amended in Section 09 of document L2/22-127, for Unicode Version 15.0.
+kRSUnicode ; 15.0 ; [\U000246FF\U0002A1FA\U0002C4F8] ; 172-C13
 
 # kRSUnicode assignment changes in Unicode Version 15.1
+# [173-C5] Consensus: Accept the proposal to change the kRSUnicode property value of U+31D40, based on feedback [Tue Aug 9 05:28:31 CDT 2022] in document L2/22-243 and Section 04 of document L2/22-247, for Unicode Version 15.1.
+# [173-A26] Action Item for Michel Suignard, CJK: Change the kRSUnicode property value of U+31D40 to add 93.16 as a second property value, based on feedback [Tue Aug 9 05:28:31 CDT 2022] in document L2/22-243 and Section 04 of document L2/22-247, and provide to John Jenkins an updated Unihan data file, for Unicode Version 15.1.
+# [173-A27] Action Item for John Jenkins, CJK: Update the Unihan database to add 93.16 as a second kRSUnicode property value for U+31D40, based on feedback [Tue Aug 9 05:28:31 CDT 2022] in document L2/22-243 and Section 04 of document L2/22-247, for Unicode Version 15.1.
+kRSUnicode ; 15.1 ; [\U00031D40] ; 173-C5, 173-A26, 173-A27
+# [173-C6] Consensus: Accept the proposal to change the kRSUnicode property value of U+31DBF, based on feedback [Tue Aug 9 06:18:28 CDT 2022] in document L2/22-243 and Section 05 of document L2/22-247, for Unicode Version 15.1.
+# [173-A29] Action Item for Michel Suignard, CJK: Change the kRSUnicode property value of U+31DBF to add 85.9 as a second property value, based on feedback [Tue Aug 9 06:18:28 CDT 2022] in document L2/22-243 and Section 05 of document L2/22-247, and provide to John Jenkins an updated Unihan data file, for Unicode Version 15.1.
+# [173-A30] Action Item for John Jenkins, CJK: Update the Unihan database to add 85.9 as a second kRSUnicode property value for U+31DBF, based on feedback [Tue Aug 9 06:18:28 CDT 2022] in document L2/22-243 and Section 05 of document L2/22-247, for Unicode Version 15.1.
+kRSUnicode ; 15.1 ; [\U00031DBF] ; 173-C6, 173-A29, 173-A30
+# [174-C8] Consensus: Accept the proposal to change the kRSUnicode property value of U+3032E, based on feedback [Mon Nov 21 07:03:04 CST 2022] in document L2/23-007 and Section 01 of document L2/23-011, for Unicode Version 15.1.
+# [174-A27] Action Item for Michel Suignard, CJK: Change the kRSUnicode property value of U+3032E to add 46.10 as a second property value, based on feedback [Mon Nov 21 07:03:04 CST 2022] in document L2/23-007 and Section 01 of document L2/23-011, and provide to John Jenkins an updated Unihan data file, for Unicode Version 15.1.
+# [174-A28] Action Item for John Jenkins, CJK: Update the Unihan database to add 46.10 as a second kRSUnicode property value for U+3032E, based on feedback [Mon Nov 21 07:03:04 CST 2022] in document L2/23-007 and Section 01 of document L2/23-011, for Unicode Version 15.1.
+kRSUnicode ; 15.1 ; [\U0003032E] ; 174-C8, 174-A27, 174-A28
 # [174-C12] Consensus: Accept the proposal to remove the entry for 162' in the UCD’s CJKRadicals.txt data file and to change the kRSUnicode property value of U+8FB6, based on Section 05 of document L2/23-011, for Unicode Version 15.1.
 # [174-A36] Action Item for Michel Suignard, CJK: Change the kRSUnicode property value of U+8FB6 by removing 162'.0, based on Section 05 of document L2/23-011, and provide to John Jenkins an updated Unihan data file, for Unicode Version 15.1.
 # [174-A37] Action Item for John Jenkins, CJK: Update the Unihan database to remove 162'.0 from the kRSUnicode property value of U+8FB6, based on Section 05 of document L2/23-011, for Unicode Version 15.1.
 kRSUnicode ; 15.1 ; [\u8FB6] ; 174-C12, 174-A36, 174-A37
+# [174-C13] Consensus: Accept the proposal to change the kRSUnicode property value of U+44D5 and add UTC-02994 as a new kIRG_USource property value for U+44D5, based on feedback [Tue Dec 27 19:01:03 CST 2022] in document L2/23-007 and as amended in Section 07 of document L2/23-011, for Unicode Version 15.1.
+# [174-A40] Action Item for Michel Suignard, CJK: Change the kRSUnicode property value of U+44D5 by adding 162.8 and add UTC-02994 as a new kIRG_USource property value for U+44D5, based on feedback [Tue Dec 27 19:01:03 CST 2022] in document L2/23-007 and as amended in Section 07 of document L2/23-011, and provide to John Jenkins an updated Unihan data file, for Unicode Version 15.1.
+# [174-A41] Action Item for John Jenkins, CJK: Update the Unihan database to add 162.8 to the kRSUnicode property value of U+44D5 and add UTC-02994 as a new kIRG_USource property value for U+44D5, based on feedback [Tue Dec 27 19:01:03 CST 2022] in document L2/23-007 and as amended in Section 07 of document L2/23-011, for Unicode Version 15.1.
+kRSUnicode ; 15.1 ; [\u44D5] ; 174-C13, 174-A40, 174-A41
 
 # kRSUnicode assignment changes in Unicode Version 16.0
 # [175-C4] Consensus: Accept the proposal to change the normative kRSUnicode property value of U+2CC7B, based on PRI #473 feedback [ID20230208102800] and as amended in Section 16 of document L2/23-082, for Unicode Version 16.0.
@@ -505,10 +553,15 @@ kRSUnicode ; 18.0 ; [\U0002DB7C] ; 187-C37, 187-A116
 # [145-A59] Action Item for John Jenkins, Michel Suignard: For U+2386E, update kTotalStrokes to 25 and kRSUnicode to 75.21. For Unicode 9.0.
 kTotalStrokes ; 9.0 ; [\U0002386E] ; 145-A59
 
+# kTotalStrokes assignment changes in Unicode Version 14.0
+# [168-C12] Consensus: Accept changes in the kRSUnicode and kTotalStrokes property values in the Unihan database for U+2B8D9 and U+2B8DA per feedback dated [Thu Jun 10 09:18:03 CDT 2021] in PRI #433 as amended by the CJK & Unihan Group, and Unihan-UTC168-R09 in document L2/21-129, for Unicode Version 14.0.
+kTotalStrokes ; 14.0 ; [\U0002B8D9\U0002B8DA] ; 168-C12
+
 # kTotalStrokes assignment changes in Unicode Version 15.0
+# [170-C27] Consensus: Accept the kTotalStrokes property value change for U+2AB8F, based on feedback [Thu Jan 6 20:28:54 CST 2022] in L2/22-018 and Section 07 of document L2/22-022, for Unicode Version 15.0.
 # [170-A80] Action Item for Michel Suignard: Change the kTotalStrokes property value for U+2AB8F from 12 to 13, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode Version 15.0.
 # [170-A81] Action Item for John Jenkins: Update the Unihan database to reflect the kTotalStrokes property value change for U+2AB8F, for Unicode Version 15.0.
-kTotalStrokes ; 15.0 ; [\U0002AB8F] ; 170-A80, 170-A81
+kTotalStrokes ; 15.0 ; [\U0002AB8F] ; 170-C27, 170-A80, 170-A81
 # [170-C29] Consensus: Accept a new provisional Unihan database property, kAlternateTotalStrokes, based on L2/21-226 and as amended in Section 09 of document L2/22-022, with the understanding that adding this property value to any ideograph requires that the existing kTotalStrokes property value for that ideograph be reviewed—and modified, if necessary—so that these properties can be in sync, and change the kTotalStrokes property values of U+9AA8 and U+2A6B2 to “9 10” and 15, respectively, for Unicode Version 15.0.
 # [170-A83] Action Item for Michel Suignard: Change the kTotalStrokes property values of U+9AA8 and U+2A6B2 to “9 10” and 15, respectively, and provide to John Jenkins an updated Unihan15.txt data file, for Unicode Version 15.0.
 # [170-A86] Action Item for John Jenkins: Update the Unihan database to reflect the kTotalStrokes property value changes for U+9AA8 and U+2A6B2, for Unicode Version 15.0.
@@ -629,9 +682,10 @@ Script_Extensions ; 7.0 ; [\U0001BCA0-\U0001BCA3] ; 139-C2, 139-A5
 # [139-A29] Action Item for Mark Davis: Remove U+061C from ScriptExtensions.txt for Unicode 7.0.
 Script_Extensions ; 7.0 ; [\u061C] ; 139-A29
 # [138-C20] Consensus: Change ScriptExtensions property of U+A830..U+A839 to add Mahajani, Modi, and Tirhuta, for Unicode 7.0.
+# [138-A63] Action Item for Mark Davis: Change Script_Extensions property of U+A830..U+A839 to "Deva Gujr Guru Kthi Mahj Modi Takr Tirh". See L2/14-028 feedback from Roozbeh Pournader, Mon Dec 9 21:00:36 CST 2013. For Unicode 7.0.
 # [139-C4] Consensus: Add Khudawadi to ScriptExtensions.txt for North Indic Numbers at A830..A839 for Unicode 7.0.
 # [139-A33] Action Item for Mark Davis: Add Khudawadi (Script code "Sind") to ScriptExtensions.txt A830..A839 for Unicode 7.0.
-Script_Extensions ; 7.0 ; [\uA830-\uA839] ; 138-C20, 139-C4, 139-A33
+Script_Extensions ; 7.0 ; [\uA830-\uA839] ; 138-C20, 138-A63, 139-C4, 139-A33
 # [139-C6] Consensus: Add Mahajani (Mahj) to ScriptExtensions.txt for 0966..096F, for Unicode 7.0.
 # [139-A38] Action Item for Mark Davis: Add Mahajani (Mahj) to ScriptExtensions.txt for 0966..096F, for Unicode 7.0.
 Script_Extensions ; 7.0 ; [\u0966-\u096F] ; 139-C6, 139-A38
@@ -788,7 +842,8 @@ Bidi_Class ; 6.3 ; [\u1A1B] ; 134-C4, 134-A10
 
 # Bidi_Class assignment changes in Unicode Version 15.0
 # [171-C23] Consensus: Change the Bidi_Class for U+13440 EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY from L to NSM in Unicode version 15.0 (Reference: section 16 of L2/22-068)
-Bidi_Class ; 15.0 ; [\U00013440] ; 171-C23
+# [171-A99] Action Item for Ken Whistler: Update UnicodeData.txt to change the General_Category property for U+13440 EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY from Cf to Mn and the Bidi_Class from L to NSM for Unicode version 15.0, based on feedback [Mon Feb 28 11:36:43 CST 2022]. (Reference: section 16 of L2/22-068)
+Bidi_Class ; 15.0 ; [\U00013440] ; 171-C23, 171-A99
 # [169-A6] Action Item for Mark Davis, Properties & Algorithms Group: In DerivedBidiClass.txt, change the default Bidi_Class value for 10EC0..10EFF from R to AL, for Unicode version 15.0.
 # [169-A8] Action Item for Mark Davis, Properties & Algorithms Group: In DerivedBidiClass.txt, change the default Bidi_Class value for 10EC0..10EFF from R to AL, for Unicode version 15.0.
 # [169-C1] Consensus: Accept new block Arabic Extended-C, with the range U+10EC0..U+10EFF, with a default Bidi_Class value of bc=AL.
@@ -961,7 +1016,8 @@ General_Category ; 14.0 ; [\u0887\u0888] ; 166-A91
 
 # General_Category assignment changes in Unicode Version 15.0
 # [171-C21] Consensus: Change the General_Category property for U+13440 EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY from Cf to Mn in Unicode version 15.0 (Reference: section 16 of L2/22-068)
-General_Category ; 15.0 ; [\U00013440] ; 171-C21
+# [171-A99] Action Item for Ken Whistler: Update UnicodeData.txt to change the General_Category property for U+13440 EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY from Cf to Mn and the Bidi_Class from L to NSM for Unicode version 15.0, based on feedback [Mon Feb 28 11:36:43 CST 2022]. (Reference: section 16 of L2/22-068)
+General_Category ; 15.0 ; [\U00013440] ; 171-C21, 171-A99
 
 # General_Category assignment changes in Unicode Version 16.0
 # [177-C40] Consensus: Change the gc property value for U+1171E AHOM CONSONANT SIGN MEDIAL RA from Mn to Mc and the Bidi_Class value from NSM to L for Unicode version 16.0. (Ref. L2/23-200)
@@ -983,6 +1039,10 @@ General_Category ; 17.0 ; [\U00016FF4-\U00016FF6] ; 180-N4
 # ==========================================================
 # Documentation for changes to Grapheme_Cluster_Break assignments
 # ==========================================================
+
+# Grapheme_Cluster_Break assignment changes in Unicode Version 9.0
+# [146-C21] Consensus: Change the GCB, WB, and LB properties of the undeprecated Tag characters at U+E00020..U+E007F to be the same as the variation selectors: GCB and WB have the value "Extend"; LB has the value "Combining Mark" for Unicode 9.0.
+Grapheme_Cluster_Break ; 9.0 ; [\U000E007F] ; 146-C21
 
 # Grapheme_Cluster_Break assignment changes in Unicode Version 12.0
 # [157-C14] Consensus: Change the Grapheme_Cluster_Break property of U+1B35 BALINESE VOWEL SIGN TEDUNG from Spacing_Mark to Extend, for Unicode 12.0.
@@ -1099,6 +1159,8 @@ Indic_Positional_Category ; 14.0 ; [\u1715\u1734] ; 168-C29
 # Indic_Positional_Category assignment changes in Unicode Version 15.0
 # [170-C23] Consensus: Remove the explicit Indic_Positional_Category values for U+0953 DEVANAGARI GRAVE ACCENT and U+0954 DEVANAGARI ACUTE ACCENT, letting them default to NA (not applicable), for Unicode version 15.0.
 Indic_Positional_Category ; 15.0 ; [\u0953\u0954] ; 170-C23
+# [171-A105] Action Item for Roozbeh Pournader: Set the Indic_Positional_Category to Top for the Kayah Li vowel signs U+A926..U+A92A for Unicode version 15.0, based on feedback [Sun Mar 13 16:30:37 CDT 2022] (Reference section 21 of L2/22-068)
+Indic_Positional_Category ; 15.0 ; [\uA926-\uA92A] ; 171-A105
 
 # Indic_Positional_Category assignment changes in Unicode Version 16.0
 # [177-C41] Consensus: Change the InPC property value for U+0D41 MALAYALAM VOWEL SIGN U and U+0D42 MALAYALAM VOWEL SIGN UU from Right to Bottom for Unicode version 16.0. (Ref. L2/23-200)
@@ -1259,6 +1321,8 @@ Line_Break ; 7.0 ; [\uFD3E\uFD3F] ; 138-C21, 138-A65
 Line_Break ; 8.0 ; [\u22EF] ; 142-C15, 142-A90
 
 # Line_Break assignment changes in Unicode Version 9.0
+# [145-C29] Consensus: Accept the linebreak property changes documented in L2/15-259 for all characters through U+FFDC, for Unicode 9.0.
+Line_Break ; 9.0 ; [\uFFDC] ; 145-C29
 # [146-A124] Action Item for Laurențiu Iancu: Change the LineBreak value for U+2764 HEAVY HEART to ID, for Unicode 9.0.
 Line_Break ; 9.0 ; [\u2764] ; 146-A124
 # [146-A57] Action Item for Laurențiu Iancu: Fix Line_Break property for U+1885 and U+1886. See document L2/16-041.
@@ -1275,7 +1339,8 @@ Line_Break ; 12.0 ; [\u1CF2\u1CF3] ; 155-C19, 155-A125
 
 # Line_Break assignment changes in Unicode Version 15.0
 # [171-C22] Consensus: Change the Line_Break property for U+13440 EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY from GL to CM in Unicode version 15.0 (Reference: section 16 of L2/22-068)
-Line_Break ; 15.0 ; [\U00013440] ; 171-C22
+# [171-A100] Action Item for Ken Whistler: Change the Line_Break value of U+13440 EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY from GL to CM in LineBreak.txt for Unicode version 15.0, based on feedback [Mon Feb 28 11:36:43 CST 2022]. (Reference: section 16 of L2/22-068)
+Line_Break ; 15.0 ; [\U00013440] ; 171-C22, 171-A100
 # [172-A60] Action Item for Ken Whistler, PAG: Change the double diacritics U+1DCD and U+1DFC to Line_Break=Glue, for Unicode Version 15.0. See L2/22-124 item UCD6.
 Line_Break ; 15.0 ; [\u1DCD\u1DFC] ; 172-A60
 # [172-C15] Consensus: Change the Line_Break value of U+2057 QUADRUPLE PRIME to Postfix_Numeric, for Unicode Version 15.0. See L2/22-124 item UCD14.
@@ -1374,9 +1439,7 @@ Sentence_Break ; 9.0 ; [\U000E0020-\U000E007F] ; 147-C18, 147-A51
 # Sentence_Break assignment changes in Unicode Version 12.0
 # [158-C2] Consensus: For the ten characters U+FF10 FULLWIDTH DIGIT ZERO through U+FF19 FULLWIDTH DIGIT NINE, change the Word_Break and Sentence_Break property values from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU). As documented in L2/19-055, for Unicode version 12.0.
 # [158-A7] Action Item for Mark Davis: Update WordBreak.txt and SentenceBreak.txt to change the property values of Word_Break and Sentence_Break for U+FF10..U+FF19 from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU), for Unicode version 12.0.
-Sentence_Break ; 12.0 ; [\uFF10] ; 158-C2, 158-A7
-# [158-A7] Action Item for Mark Davis: Update WordBreak.txt and SentenceBreak.txt to change the property values of Word_Break and Sentence_Break for U+FF10..U+FF19 from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU), for Unicode version 12.0.
-Sentence_Break ; 12.0 ; [\uFF11-\uFF19] ; 158-A7
+Sentence_Break ; 12.0 ; [\uFF10-\uFF19] ; 158-C2, 158-A7
 
 # Sentence_Break assignment changes in Unicode Version 15.1
 # [175-C25] Consensus: Add U+17D4 KHMER SIGN KHAN & U+17D5 KHMER SIGN BARIYOOSAN to Sentence_Terminal and Sentence_Break=STerm, for Unicode 15.1.
@@ -1427,7 +1490,10 @@ Word_Break ; 6.3 ; [\u02D7] ; 133-A7
 
 # Word_Break assignment changes in Unicode Version 9.0
 # [146-A96] Action Item for Mark Davis: Update GraphemeBreakProperty.txt and WordBreakProperty.txt for changes to the undeprecated Tag characters at U+E0020..U+E007F for Unicode 9.0. See Consensus 146-C21.
-Word_Break ; 9.0 ; [\U000E0020-\U000E007F] ; 146-A96
+Word_Break ; 9.0 ; [\U000E0020-\U000E007E] ; 146-A96
+# [146-C21] Consensus: Change the GCB, WB, and LB properties of the undeprecated Tag characters at U+E00020..U+E007F to be the same as the variation selectors: GCB and WB have the value "Extend"; LB has the value "Combining Mark" for Unicode 9.0.
+# [146-A96] Action Item for Mark Davis: Update GraphemeBreakProperty.txt and WordBreakProperty.txt for changes to the undeprecated Tag characters at U+E0020..U+E007F for Unicode 9.0. See Consensus 146-C21.
+Word_Break ; 9.0 ; [\U000E007F] ; 146-C21, 146-A96
 # [144-A67] Action Item for Mark Davis: Update WordBreakProperty.txt and SentenceBreakProperty.txt for the changes to U+202F for Unicode 9.0.
 # [144-C14] Consensus: Change the word break property of U+202F NNBSP to ExtendNumLet and the sentence break property to Other.
 Word_Break ; 9.0 ; [\u202F] ; 144-A67, 144-C14
@@ -1447,9 +1513,7 @@ Word_Break ; 11.0 ; [\u055B\u055C\u055E] ; 155-C3, 155-A2
 # Word_Break assignment changes in Unicode Version 12.0
 # [158-C2] Consensus: For the ten characters U+FF10 FULLWIDTH DIGIT ZERO through U+FF19 FULLWIDTH DIGIT NINE, change the Word_Break and Sentence_Break property values from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU). As documented in L2/19-055, for Unicode version 12.0.
 # [158-A7] Action Item for Mark Davis: Update WordBreak.txt and SentenceBreak.txt to change the property values of Word_Break and Sentence_Break for U+FF10..U+FF19 from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU), for Unicode version 12.0.
-Word_Break ; 12.0 ; [\uFF10] ; 158-C2, 158-A7
-# [158-A7] Action Item for Mark Davis: Update WordBreak.txt and SentenceBreak.txt to change the property values of Word_Break and Sentence_Break for U+FF10..U+FF19 from Other to Numeric (from WB=XX, SB=XX to WB=NU, SB=NU), for Unicode version 12.0.
-Word_Break ; 12.0 ; [\uFF11-\uFF19] ; 158-A7
+Word_Break ; 12.0 ; [\uFF10-\uFF19] ; 158-C2, 158-A7
 
 # Word_Break assignment changes in Unicode Version 13.0
 # PRI-355@Mon Feb 12 20:20:51 CST 2018
@@ -1758,7 +1822,7 @@ Other_Lowercase ; 15.0 ; [\u10FC\uA7F2-\uA7F4] ; 172-A59
 # [172-A59] Action Item for Markus Scherer, PAG: Give the Other_Lowercase property (and thus also Cased) to the modifier letters U+10FC and U+A7F2..A7F4 and U+AB69, for Unicode Version 15.0. See L2/22-124 item UCD4.
 Other_Lowercase ; 15.0 ; [\uAB69] ; 168-A3, 172-A59
 # [168-C20] Consensus: Accept U+1E06B MODIFIER LETTER CYRILLIC SMALL ES WITH DESCENDER andU+1E06C MODIFIER LETTER CYRILLIC SMALL YERU WITH BACK YER with property value "Other_Lowercase" for encoding in a future version of the standard, with glyphs and properties as documented in L2/21-142 (Reference: Section 1b of L2/21-130).
-Other_Lowercase ; 15.0 ; [\U0001E06B] ; 168-C20
+Other_Lowercase ; 15.0 ; [\U0001E06B\U0001E06C] ; 168-C20
 
 # ==========================================================
 # Documentation for changes to Other_Math assignments
