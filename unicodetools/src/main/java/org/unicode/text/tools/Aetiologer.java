@@ -505,13 +505,13 @@ public class Aetiologer {
 
     public static String linkifyReason(String reason) {
         if (Aetiologer.L2_REF.matcher(reason).matches()) {
-            return "<a href=https://www.unicode.org/cgi-bin/GetL2Ref.pl?"
+            return "<a style=white-space:nowrap href=https://www.unicode.org/cgi-bin/GetL2Ref.pl?"
                     + reason
                     + ">"
                     + reason
                     + "</a>";
         } else if (Aetiologer.L2_DOC.matcher(reason).matches()) {
-            return "<a href=https://www.unicode.org/cgi-bin/GetMatchingDocs.pl?"
+            return "<a style=white-space:nowrap href=https://www.unicode.org/cgi-bin/GetMatchingDocs.pl?"
                     + reason
                     + ">"
                     + reason
@@ -519,26 +519,26 @@ public class Aetiologer {
         }
         var matcher = Aetiologer.PRI.matcher(reason);
         if (matcher.matches()) {
-            return "<a href=https://www.unicode.org/review/pri"
+            return "<a style=white-space:nowrap href=https://www.unicode.org/review/pri"
                     + matcher.group(1)
                     + "/feedback.html#"
                     + feedbackAnchor(matcher.group(2))
                     + ">PRI-"
                     + matcher.group(1)
-                    + "#"
+                    + "<wbr>#"
                     + feedbackID(matcher.group(2))
                     + "</a>";
         }
         matcher = Aetiologer.PUBREV_DOC.matcher(reason);
         if (matcher.matches()) {
-            return "<a href=https://www.unicode.org/L2/L20"
+            return "<a style=white-space:nowrap href=https://www.unicode.org/L2/L20"
                     + matcher.group(1)
                     + "/"
                     + matcher.group(1)
                     + matcher.group(2)
                     + "-pubrev.html#"
                     + feedbackAnchor(matcher.group(3))
-                    + ">L2/20"
+                    + ">L2/"
                     + matcher.group(1)
                     + "-"
                     + matcher.group(2)
