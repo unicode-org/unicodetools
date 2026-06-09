@@ -68,6 +68,7 @@ FileType ; NamedSequences ; NamedSequences
 FileType ; NamedSequencesProv ; NamedSequences
 
 FileType ; NamesList ; NamesList
+FileType ; fr/*/NamesList ; NamesList
 
 # =======================================
 # FILES FOR PROPERTIES
@@ -627,3 +628,15 @@ NamesList ; Names_List_Cross_Ref
 NamesList ; Names_List_Comment
 NamesList ; Names_List_Subheader
 NamesList ; Names_List_Subheader_Notice
+NamesList ; Names_List_Name
+NamesList ; Names_List_Formal_Alias
+
+fr/*/NamesList ; Names_List_Block_Header_fr
+fr/*/NamesList ; Names_List_Block_Header_Notice_fr
+fr/*/NamesList ; Names_List_Alias_fr
+fr/*/NamesList ; Names_List_Cross_Ref_fr
+fr/*/NamesList ; Names_List_Comment_fr
+fr/*/NamesList ; Names_List_Subheader_fr
+fr/*/NamesList ; Names_List_Subheader_Notice_fr
+fr/*/NamesList ; Names_List_Name_fr
+fr/*/NamesList ; Names_List_Formal_Alias_fr

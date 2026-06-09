@@ -10,271 +10,29 @@
 package org.unicode.text.UCA;
 
 import com.ibm.icu.text.UnicodeSet;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.CollationElementIterator;
-import java.text.Collator;
 import java.text.DateFormat;
-import java.text.RuleBasedCollator;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
-import java.util.Vector;
-import java.util.regex.Pattern;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
-import org.unicode.text.UCD.UCD;
-import org.unicode.text.UCD.UCD_Types;
-import org.unicode.text.utility.CompactByteArray;
-import org.unicode.text.utility.CompactShortArray;
 import org.unicode.text.utility.IntStack;
-import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 public class WriteCollationData {
-    private static final String UNICODE_VERSION = Settings.latestVersion;
-
     private static PrintWriter log;
-
-    // Called by UCA.Main.
-    // TODO: Remove? This code tests the Java Collator. Useful?
-    static void javatest() throws Exception {
-        checkJavaRules("& J , K / B & K , M", new String[] {"JA", "MA", "KA", "KC", "JC", "MC"});
-        checkJavaRules("& J , K / B , M", new String[] {"JA", "MA", "KA", "KC", "JC", "MC"});
-    }
-
-    private static void checkJavaRules(String rules, String[] tests) throws Exception {
-        System.out.println();
-        System.out.println("Rules: " + rules);
-        System.out.println();
-
-        // duplicate the effect of ICU 1.8 by grabbing the default rules and
-        // appending
-
-        final RuleBasedCollator defaultCollator =
-                (RuleBasedCollator) Collator.getInstance(Locale.US);
-        final RuleBasedCollator col = new RuleBasedCollator(defaultCollator.getRules() + rules);
-
-        // check to make sure each pair is in order
-
-        int i = 1;
-        for (; i < tests.length; ++i) {
-            System.out.println(tests[i - 1] + "\t=> " + showJavaCollationKey(col, tests[i - 1]));
-            if (col.compare(tests[i - 1], tests[i]) > 0) {
-                System.out.println("Failure: " + tests[i - 1] + " > " + tests[i]);
-            }
-        }
-        System.out.println(tests[i - 1] + "\t=> " + showJavaCollationKey(col, tests[i - 1]));
-    }
-
-    private static String showJavaCollationKey(RuleBasedCollator col, String test) {
-        final CollationElementIterator it = col.getCollationElementIterator(test);
-        String result = "[";
-        for (int i = 0; ; ++i) {
-            final int ce = it.next();
-            if (ce == CollationElementIterator.NULLORDER) {
-                break;
-            }
-            if (i != 0) {
-                result += ", ";
-            }
-            result += Utility.hex(ce, 8);
-        }
-        return result + "]";
-    }
-
-    // Called by UCA.Main.
-    static void writeCaseFolding() throws IOException {
-        System.err.println("Writing Javascript data");
-        final BufferedReader in =
-                Utility.openUnicodeFile("CaseFolding", UNICODE_VERSION, true, Utility.LATIN1);
-        // new BufferedReader(new FileReader(DIR31 +
-        // "CaseFolding-3.d3.alpha.txt"), 64*1024);
-        // log = new PrintWriter(new FileOutputStream("CaseFolding_data.js"));
-        log =
-                Utility.openPrintWriter(
-                        UCA.getOutputDir(), "CaseFolding_data.js", Utility.UTF8_WINDOWS);
-        log.println("var CF = new Object();");
-        int count = 0;
-        while (true) {
-            String line = in.readLine();
-            if (line == null) {
-                break;
-            }
-            final int comment = line.indexOf('#'); // strip comments
-            if (comment != -1) {
-                line = line.substring(0, comment);
-            }
-            if (line.length() == 0) {
-                continue;
-            }
-            final int semi1 = line.indexOf(';');
-            final int semi2 = line.indexOf(';', semi1 + 1);
-            final int semi3 = line.indexOf(';', semi2 + 1);
-            final char type = line.substring(semi1 + 1, semi2).trim().charAt(0);
-            if (type == 'C' || type == 'F' || type == 'T') {
-                final String code = line.substring(0, semi1).trim();
-                String result = " " + line.substring(semi2 + 1, semi3).trim();
-                result = replace(result, ' ', "\\u");
-                log.println("\t CF[0x" + code + "]='" + result + "';");
-                count++;
-            }
-        }
-        log.println("// " + count + " case foldings total");
-
-        in.close();
-        log.close();
-    }
-
-    private static String replace(String source, char toBeReplaced, String toReplace) {
-        final StringBuilder result = new StringBuilder();
-        for (int i = 0; i < source.length(); ++i) {
-            final char c = source.charAt(i);
-            if (c == toBeReplaced) {
-                result.append(toReplace);
-            } else {
-                result.append(c);
-            }
-        }
-        return result.toString();
-    }
-
-    // Called by UCA.Main.
-    static void writeJavascriptInfo() throws IOException {
-        System.err.println("Writing Javascript data");
-        // Normalizer normKD = new Normalizer(Normalizer.NFKD, UNICODE_VERSION);
-        // Normalizer normD = new Normalizer(Normalizer.NFD, UNICODE_VERSION);
-        // log = new PrintWriter(new FileOutputStream("Normalization_data.js"));
-        log =
-                Utility.openPrintWriter(
-                        UCA.getOutputDir(), "Normalization_data.js", Utility.LATIN1_WINDOWS);
-
-        int count = 0;
-        int datasize = 0;
-        int max = 0;
-        int over7 = 0;
-        log.println("var KD = new Object(); // NFKD compatibility decomposition mappings");
-        log.println("// NOTE: Hangul is done in code!");
-        CompactShortArray csa = new CompactShortArray((short) 0);
-
-        for (char c = 0; c < 0xFFFF; ++c) {
-            if ((c & 0xFFF) == 0) {
-                System.err.println(Utility.hex(c));
-            }
-            if (0xAC00 <= c && c <= 0xD7A3) {
-                continue;
-            }
-            if (!Default.nfkd().isNormalized(c)) {
-                ++count;
-                final String decomp = Default.nfkd().normalize(c);
-                datasize += decomp.length();
-                if (max < decomp.length()) {
-                    max = decomp.length();
-                }
-                if (decomp.length() > 7) {
-                    ++over7;
-                }
-                csa.setElementAt(c, (short) count);
-                log.println(
-                        "\t KD[0x" + Utility.hex(c) + "]='\\u" + Utility.hex(decomp, "\\u") + "';");
-            }
-        }
-        csa.compact();
-        log.println("// " + count + " NFKD mappings total");
-        log.println("// " + datasize + " total characters of results");
-        log.println("// " + max + " string length, maximum");
-        log.println("// " + over7 + " result strings with length > 7");
-        log.println("// " + csa.storage() + " trie length (doesn't count string size)");
-        log.println();
-
-        count = 0;
-        datasize = 0;
-        max = 0;
-        log.println("var D = new Object();  // NFD canonical decomposition mappings");
-        log.println("// NOTE: Hangul is done in code!");
-        csa = new CompactShortArray((short) 0);
-
-        for (char c = 0; c < 0xFFFF; ++c) {
-            if ((c & 0xFFF) == 0) {
-                System.err.println(Utility.hex(c));
-            }
-            if (0xAC00 <= c && c <= 0xD7A3) {
-                continue;
-            }
-            if (!Default.nfd().isNormalized(c)) {
-                ++count;
-                final String decomp = Default.nfd().normalize(c);
-                datasize += decomp.length();
-                if (max < decomp.length()) {
-                    max = decomp.length();
-                }
-                csa.setElementAt(c, (short) count);
-                log.println(
-                        "\t D[0x" + Utility.hex(c) + "]='\\u" + Utility.hex(decomp, "\\u") + "';");
-            }
-        }
-        csa.compact();
-
-        log.println("// " + count + " NFD mappings total");
-        log.println("// " + datasize + " total characters of results");
-        log.println("// " + max + " string length, maximum");
-        log.println("// " + csa.storage() + " trie length (doesn't count string size)");
-        log.println();
-
-        count = 0;
-        datasize = 0;
-        log.println("var CC = new Object(); // canonical class mappings");
-        final CompactByteArray cba = new CompactByteArray();
-
-        for (char c = 0; c < 0xFFFF; ++c) {
-            if ((c & 0xFFF) == 0) {
-                System.err.println(Utility.hex(c));
-            }
-            final int canClass = Default.nfkd().getCanonicalClass(c);
-            if (canClass != 0) {
-                ++count;
-
-                log.println("\t CC[0x" + Utility.hex(c) + "]=" + canClass + ";");
-            }
-        }
-        cba.compact();
-        log.println("// " + count + " canonical class mappings total");
-        log.println("// " + cba.storage() + " trie length");
-        log.println();
-
-        count = 0;
-        datasize = 0;
-        log.println("var C = new Object();  // composition mappings");
-        log.println("// NOTE: Hangul is done in code!");
-
-        System.out.println("WARNING -- COMPOSITIONS UNFINISHED!!");
-
-        /*
-         *
-         * IntHashtable.IntEnumeration enum = Default.nfkd.getComposition();
-         * while (enum.hasNext()) { int key = enum.next(); char val = (char)
-         * enum.value(); if (0xAC00 <= val && val <= 0xD7A3) continue; ++count;
-         * log.println("\tC[0x" + Utility.hex(key) + "]=0x" + Utility.hex(val) +
-         * ";"); } log.println("// " + count + " composition mappings total");
-         * log.println();
-         */
-
-        log.close();
-        System.err.println("Done writing Javascript data");
-    }
 
     static void writeVersionAndDate(PrintWriter log, String filename, boolean auxiliary) {
         log.println(Utility.getDataHeader(filename));
@@ -292,286 +50,6 @@ public class WriteCollationData {
         }
         log.println();
     }
-
-    // Called by UCA.Main.
-    static void writeContractions() throws IOException {
-        final String fullFileName = "UCA_Contractions.txt";
-        final PrintWriter diLog =
-                Utility.openPrintWriter(UCA.getOutputDir(), fullFileName, Utility.UTF8_WINDOWS);
-
-        diLog.write('\uFEFF');
-
-        final UCA.UCAContents cc = UCA.getDucetCollator().getContents(Default.nfd());
-
-        diLog.println("# Contractions");
-        writeVersionAndDate(diLog, fullFileName, true);
-        while (true) {
-            final String s = cc.next();
-            if (s == null) {
-                break;
-            }
-            final CEList ces = cc.getCEs();
-
-            if (s.length() > 1) {
-                diLog.println(
-                        Utility.hex(s, " ")
-                                + ";\t #"
-                                + ces
-                                + " ( "
-                                + s
-                                + " )"
-                                + " "
-                                + Default.ucd().getName(s));
-            }
-        }
-        diLog.close();
-    }
-
-    // Called by UCA.Main.
-    static void checkDisjointIgnorables() throws IOException {
-        final PrintWriter diLog =
-                Utility.openPrintWriter(
-                        UCA.getOutputDir(), "DisjointIgnorables.js", Utility.UTF8_WINDOWS);
-
-        diLog.write('\uFEFF');
-
-        /*
-         * PrintWriter diLog = new PrintWriter( // try new one new
-         * UTF8StreamWriter(new FileOutputStream(UCA_GEN_DIR +
-         * "DisjointIgnorables.txt"), 32*1024)); diLog.write('\uFEFF');
-         */
-
-        // diLog = new PrintWriter(new FileOutputStream(UCA_GEN_DIR +
-        // "DisjointIgnorables.txt"));
-
-        // Normalizer nfd = new Normalizer(Normalizer.NFD, UNICODE_VERSION);
-
-        final int[] secondariesZP = new int[400];
-        final Vector<String>[] secondariesZPsample = new Vector[400];
-        final int[] remapZP = new int[400];
-
-        final int[] secondariesNZP = new int[400];
-        final Vector<String>[] secondariesNZPsample = new Vector[400];
-        final int[] remapNZP = new int[400];
-
-        for (int i = 0; i < secondariesZP.length; ++i) {
-            secondariesZPsample[i] = new Vector<String>();
-            secondariesNZPsample[i] = new Vector<String>();
-        }
-
-        int zpCount = 0;
-        int nzpCount = 0;
-
-        /*
-         * for (char ch = 0; ch < 0xFFFF; ++ch) { byte type =
-         * collator.getCEType(ch); if (type >= UCA.FIXED_CE) continue; if
-         * (SKIP_CANONICAL_DECOMPOSIBLES && nfd.hasDecomposition(ch)) continue;
-         * String s = String.valueOf(ch); int len = collator.getCEs(s, true,
-         * ces);
-         */
-        final UCA.UCAContents cc = UCA.getDucetCollator().getContents(Default.nfd());
-
-        final Set<String> sortedCodes = new TreeSet<String>();
-        final Set<String> mixedCEs = new TreeSet<String>();
-
-        while (true) {
-            final String s = cc.next();
-            if (s == null) {
-                break;
-            }
-
-            // process all CEs. Look for controls, and for mixed
-            // ignorable/non-ignorables
-            final CEList ces = cc.getCEs();
-
-            int ccc;
-            for (int kk = 0; kk < s.length(); kk += Character.charCount(ccc)) {
-                ccc = s.codePointAt(kk);
-                final byte cat = Default.ucd().getCategory(ccc);
-                if (cat == UCD_Types.Cf
-                        || cat == UCD_Types.Cc
-                        || cat == UCD_Types.Zs
-                        || cat == UCD_Types.Zl
-                        || cat == UCD_Types.Zp) {
-                    sortedCodes.add(ces + "\t" + Default.ucd().getCodeAndName(s));
-                    break;
-                }
-            }
-
-            final int len = ces.length();
-
-            int haveMixture = 0;
-            for (int j = 0; j < len; ++j) {
-                final int ce = ces.at(j);
-                final int pri = CEList.getPrimary(ce);
-                final int sec = CEList.getSecondary(ce);
-                if (pri == 0) {
-                    secondariesZPsample[sec].add(secondariesZP[sec], s);
-                    secondariesZP[sec]++;
-                } else {
-                    secondariesNZPsample[sec].add(secondariesNZP[sec], s);
-                    secondariesNZP[sec]++;
-                }
-                if (haveMixture == 3) {
-                    continue;
-                }
-                if (UCA.getDucetCollator().isVariable(ce)) {
-                    haveMixture |= 1;
-                } else {
-                    haveMixture |= 2;
-                }
-                if (haveMixture == 3) {
-                    mixedCEs.add(ces + "\t" + Default.ucd().getCodeAndName(s));
-                }
-            }
-        }
-
-        for (int i = 0; i < secondariesZP.length; ++i) {
-            if (secondariesZP[i] != 0) {
-                remapZP[i] = zpCount;
-                zpCount++;
-            }
-            if (secondariesNZP[i] != 0) {
-                remapNZP[i] = nzpCount;
-                nzpCount++;
-            }
-        }
-
-        diLog.println();
-        diLog.println("# Proposed Remapping (see doc about Japanese characters)");
-        diLog.println();
-
-        int bothCount = 0;
-        for (int i = 0; i < secondariesZP.length; ++i) {
-            if ((secondariesZP[i] != 0) || (secondariesNZP[i] != 0)) {
-                char sign = ' ';
-                if (secondariesZP[i] != 0 && secondariesNZP[i] != 0) {
-                    sign = '*';
-                    bothCount++;
-                }
-                if (secondariesZP[i] != 0) {
-                    showSampleOverlap(diLog, false, sign + "ZP ", secondariesZPsample[i]); // i,
-                    // 0x20
-                    // +
-                    // nzpCount
-                    // +
-                    // remapZP[i],
-                }
-                if (secondariesNZP[i] != 0) {
-                    if (i == 0x20) {
-                        diLog.println(
-                                "(omitting "
-                                        + secondariesNZP[i]
-                                        + " NZP with values 0020 -- values don't change)");
-                    } else {
-                        showSampleOverlap(diLog, true, sign + "NZP", secondariesNZPsample[i]); // i,
-                        // 0x20
-                        // +
-                        // remapNZP[i],
-                    }
-                }
-                diLog.println();
-            }
-        }
-        diLog.println(
-                "ZP Count = "
-                        + zpCount
-                        + ", NZP Count = "
-                        + nzpCount
-                        + ", Collisions = "
-                        + bothCount);
-
-        /*
-         * diLog.println(); diLog.println("OVERLAPS"); diLog.println();
-         *
-         * for (int i = 0; i < secondariesZP.length; ++i) { if (secondariesZP[i]
-         * != 0 && secondariesNZP[i] != 0) { diLog.println("Overlap at " +
-         * Utility.hex(i) + ": " + secondariesZP[i] + " with zero primaries" +
-         * ", " + secondariesNZP[i] + " with non-zero primaries" );
-         *
-         * showSampleOverlap(" ZP:  ", secondariesZPsample[i], ces);
-         * showSampleOverlap(" NZP: ", secondariesNZPsample[i], ces);
-         * diLog.println(); } }
-         */
-
-        diLog.println();
-        diLog.println("# BACKGROUND INFORMATION");
-        diLog.println();
-        diLog.println("# All characters with 'mixed' CEs: variable and non-variable");
-        diLog.println(
-                "# Note: variables are in "
-                        + Utility.hex(CEList.getPrimary(UCA.getDucetCollator().getVariableLowCE()))
-                        + " to "
-                        + Utility.hex(
-                                CEList.getPrimary(UCA.getDucetCollator().getVariableHighCE())));
-        diLog.println();
-
-        Iterator<String> it;
-        it = mixedCEs.iterator();
-        while (it.hasNext()) {
-            final String key = it.next();
-            diLog.println(key);
-        }
-
-        diLog.println();
-        diLog.println("# All 'controls': Cc, Cf, Zs, Zp, Zl");
-        diLog.println();
-
-        it = sortedCodes.iterator();
-        while (it.hasNext()) {
-            final Object key = it.next();
-            diLog.println(key);
-        }
-
-        diLog.close();
-    }
-
-    private static void showSampleOverlap(
-            PrintWriter diLog, boolean doNew, String head, Vector<String> v) {
-        for (int i = 0; i < v.size(); ++i) {
-            showSampleOverlap(diLog, doNew, head, v.get(i));
-        }
-    }
-
-    private static void showSampleOverlap(
-            PrintWriter diLog, boolean doNew, String head, String src) {
-        final int[] ces = new int[30];
-        final int len = UCA.getDucetCollator().getCEs(src, true, ces);
-        int[] newCes = null;
-        int newLen = 0;
-        if (doNew) {
-            newCes = new int[30];
-            for (int i = 0; i < len; ++i) {
-                final int ce = ces[i];
-                final int p = CEList.getPrimary(ce);
-                final int s = CEList.getSecondary(ce);
-                final int t = CEList.getTertiary(ce);
-                if (p != 0 && s != 0x20) {
-                    newCes[newLen++] = UCA.makeKey(p, 0x20, t);
-                    newCes[newLen++] = UCA.makeKey(0, s, 0x1F);
-                } else {
-                    newCes[newLen++] = ce;
-                }
-            }
-        }
-        diLog.println(
-                UCD.getCode(src)
-                        + "\t"
-                        + head
-                        // + "\t" + Utility.hex(oldWeight)
-                        // + " => " + Utility.hex(newWeight)
-                        + "\t"
-                        + CEList.toString(ces, len)
-                        + (doNew ? " => " + CEList.toString(newCes, newLen) : "")
-                        + "\t( "
-                        + src
-                        + " )"
-                        + "\t"
-                        + Default.ucd().getName(src));
-    }
-
-    // Options for writeRules(byte options, ...), used by UCA.Main.
-    static final byte WITHOUT_NAMES = 0, WITH_NAMES = 1, IN_XML = 2;
 
     private static final boolean SKIP_CANONICAL_DECOMPOSIBLES = true;
 
@@ -599,7 +77,7 @@ public class WriteCollationData {
     private static PrintWriter log2 = null;
 
     // Called by UCA.Main.
-    static void writeRules(byte option, boolean shortPrint, boolean noCE, CollatorType collatorType)
+    static void writeRules(boolean shortPrint, boolean noCE, CollatorType collatorType)
             throws IOException {
         System.out.println("Sorting");
         final Map<ArrayWrapper, String> backMap = new HashMap<ArrayWrapper, String>();
@@ -790,11 +268,7 @@ public class WriteCollationData {
         if (noCE) {
             filename += "_NoCE";
         }
-        if (option == IN_XML) {
-            filename += ".xml";
-        } else {
-            filename += ".txt";
-        }
+        filename += ".txt";
 
         final String directory =
                 UCA.getOutputDir()
@@ -815,19 +289,8 @@ public class WriteCollationData {
         // http://oss.software.ibm.com/icu/userguide/Collate_Intro.html"
         //        };
 
-        if (option == IN_XML) {
-            log.println("<collation>");
-            log.println("<!--");
-            WriteCollationData.writeVersionAndDate(
-                    log, filename, collatorType == CollatorType.cldr);
-            log.println("-->");
-            log.println("<base uca='" + uca.getDataVersion() + "/" + uca.getUCDVersion() + "'/>");
-            log.println("<rules>");
-        } else {
-            log.write('\uFEFF'); // BOM
-            WriteCollationData.writeVersionAndDate(
-                    log, filename, collatorType == CollatorType.cldr);
-        }
+        log.write('\uFEFF'); // BOM
+        WriteCollationData.writeVersionAndDate(log, filename, collatorType == CollatorType.cldr);
 
         it = ordered.keySet().iterator();
 
@@ -1095,95 +558,44 @@ public class WriteCollationData {
             if (Character.isHighSurrogate(lastChar)) {
                 System.out.println("Skipping trailing surrogate: " + chr + "\t" + Utility.hex(chr));
             } else {
-                if (option == IN_XML) {
-                    if (insertVariableTop) {
-                        log.println(XML_RELATION_NAMES[0] + "<variableTop/>");
-                    }
-
-                    /*
-                     * log.print("  <!--" + ucd.getCodeAndName(chr)); if (len > 1)
-                     * log.print(" / " + Utility.hex(expansion));
-                     * log.println("-->");
-                     */
-
-                    if (reset.length() != 0) {
-                        log.println(
-                                "<reset/>"
-                                        + (resetToParameter
-                                                ? "<position at=\"" + reset + "\"/>"
-                                                : Utility.quoteXML(reset))
-                                        + (resetComment.length() != 0
-                                                ? "<!-- " + resetComment + "-->"
-                                                : ""));
-                    }
-                    if (expansion.length() > 0) {
-                        log.print("<x>");
-                    }
-                    if (!firstTime) {
-                        log.print("  <" + XML_RELATION_NAMES[relation] + ">");
-                        log.print(Utility.quoteXML(chr));
-                        log.print("</" + XML_RELATION_NAMES[relation] + ">");
-                    }
-
-                    // <x><t>&#x20A8;</t><extend>s</extend></x> <!--U+20A8 RUPEE SIGN / 0073-->
-
-                    if (expansion.length() > 0) {
-                        log.print("<extend>" + Utility.quoteXML(expansion) + "</extend></x>");
-                    }
-                    if (!shortPrint) {
-                        log.print("\t<!--");
-                        if (!noCE) {
-                            log.print(ces.toString() + " ");
-                        }
-                        log.print(Default.ucd().getCodeAndName(chr));
-                        if (expansion.length() > 0) {
-                            log.print(" / " + Utility.hex(expansion));
-                        }
-                        log.print("-->");
-                    }
-                    log.println();
-                } else {
-                    if (insertVariableTop) {
-                        log.println(RELATION_NAMES[0] + " [variable top]");
-                    }
-                    if (reset.length() != 0) {
-                        log.println(
-                                "& "
-                                        + (resetToParameter ? "[" : "")
-                                        + reset
-                                        + (resetToParameter ? "]" : "")
-                                        + (resetComment.length() != 0
-                                                ? "\t\t# " + resetComment
-                                                : ""));
-                    }
-                    if (!firstTime) {
-                        log.print(RELATION_NAMES[relation] + " " + quoteOperand(chr));
-                    }
-                    if (expansion.length() > 0) {
-                        log.print(" / " + quoteOperand(expansion));
-                    }
-                    if (!shortPrint) {
-                        log.print("\t# ");
-                        if (false) {
-                            if (latestAge(chr).startsWith("5.2")) {
-                                log.print("† ");
-                            }
-                        }
-
-                        log.print(latestAge(chr) + " [");
-                        final String typeKD = ReorderingTokens.getTypesCombined(chr);
-                        log.print(typeKD + "] ");
-
-                        if (!noCE) {
-                            log.print(ces.toString() + " ");
-                        }
-                        log.print(Default.ucd().getCodeAndName(chr));
-                        if (expansion.length() > 0) {
-                            log.print(" / " + Utility.hex(expansion));
-                        }
-                    }
-                    log.println();
+                if (insertVariableTop) {
+                    log.println(RELATION_NAMES[0] + " [variable top]");
                 }
+                if (reset.length() != 0) {
+                    log.println(
+                            "& "
+                                    + (resetToParameter ? "[" : "")
+                                    + reset
+                                    + (resetToParameter ? "]" : "")
+                                    + (resetComment.length() != 0 ? "\t\t# " + resetComment : ""));
+                }
+                if (!firstTime) {
+                    log.print(RELATION_NAMES[relation] + " " + quoteOperand(chr));
+                }
+                if (expansion.length() > 0) {
+                    log.print(" / " + quoteOperand(expansion));
+                }
+                if (!shortPrint) {
+                    log.print("\t# ");
+                    if (false) {
+                        if (latestAge(chr).startsWith("5.2")) {
+                            log.print("† ");
+                        }
+                    }
+
+                    log.print(latestAge(chr) + " [");
+                    final String typeKD = ReorderingTokens.getTypesCombined(chr);
+                    log.print(typeKD + "] ");
+
+                    if (!noCE) {
+                        log.print(ces.toString() + " ");
+                    }
+                    log.print(Default.ucd().getCodeAndName(chr));
+                    if (expansion.length() > 0) {
+                        log.print(" / " + Utility.hex(expansion));
+                    }
+                }
+                log.println();
             }
             firstTime = false;
         }
@@ -1192,40 +604,20 @@ public class WriteCollationData {
             // = X for the item whose value is to be changed
             final String valueToSetTo = sourceReplacement.getValue();
             final String stringToSet = sourceReplacement.getKey();
-            if (option == IN_XML) {
+            log.print("& " + quoteOperand(valueToSetTo) + " = " + quoteOperand(stringToSet));
+            if (!shortPrint) {
+                log.print("\t# ");
+                log.print(latestAge(stringToSet) + " [");
+                final String typeKD = ReorderingTokens.getTypesCombined(stringToSet);
+                log.print(typeKD + "] ");
                 log.print(
-                        "<reset/>"
-                                + Utility.quoteXML(valueToSetTo)
-                                + "<i>"
-                                + Utility.quoteXML(stringToSet)
-                                + "</i>");
-                if (!shortPrint) {
-                    log.print("\t<!--");
-                    log.print(
-                            Default.ucd().getCodeAndName(stringToSet)
-                                    + "\t→\t"
-                                    + Default.ucd().getCodeAndName(valueToSetTo));
-                    log.print("-->");
-                }
-            } else {
-                log.print("& " + quoteOperand(valueToSetTo) + " = " + quoteOperand(stringToSet));
-                if (!shortPrint) {
-                    log.print("\t# ");
-                    log.print(latestAge(stringToSet) + " [");
-                    final String typeKD = ReorderingTokens.getTypesCombined(stringToSet);
-                    log.print(typeKD + "] ");
-                    log.print(
-                            Default.ucd().getCodeAndName(stringToSet)
-                                    + "\t→\t"
-                                    + Default.ucd().getCodeAndName(valueToSetTo));
-                }
+                        Default.ucd().getCodeAndName(stringToSet)
+                                + "\t→\t"
+                                + Default.ucd().getCodeAndName(valueToSetTo));
             }
             log.println();
         }
         // log.println("& [top]"); // RESET
-        if (option == IN_XML) {
-            log.println("</rules></collation>");
-        }
         log2.close();
         log.close();
         Utility.fixDot();
@@ -1435,7 +827,6 @@ public class WriteCollationData {
     }
 
     private static final String[] RELATION_NAMES = {" <\t", "  <<\t", "   <<<\t", "    =\t"};
-    private static final String[] XML_RELATION_NAMES = {"p", "s", "t", "i"};
 
     private static class ArrayWrapper {
         int[] array;
@@ -1747,124 +1138,5 @@ public class WriteCollationData {
             author = " [" + author + ']';
         }
         return date + author;
-    }
-
-    private static final boolean needsXMLQuote(String source, boolean quoteApos) {
-        for (int i = 0; i < source.length(); ++i) {
-            final char ch = source.charAt(i);
-            if (ch < ' ' || ch == '<' || ch == '&' || ch == '>') {
-                return true;
-            }
-            if (quoteApos & ch == '\'') {
-                return true;
-            }
-            if (ch == '\"') {
-                return true;
-            }
-            if (ch >= '\uD800' && ch <= '\uDFFF') {
-                return true;
-            }
-            if (ch >= '\uFFFE') {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // TODO: Unused, remove?
-    public static final String XMLString(int[] cps) {
-        return XMLBaseString(cps, cps.length, true);
-    }
-
-    // TODO: Unused, remove?
-    public static final String XMLString(int[] cps, int len) {
-        return XMLBaseString(cps, len, true);
-    }
-
-    // TODO: Unused, remove?
-    public static final String XMLString(String source) {
-        return XMLBaseString(source, true);
-    }
-
-    // TODO: Unused, remove?
-    public static final String HTMLString(int[] cps) {
-        return XMLBaseString(cps, cps.length, false);
-    }
-
-    // TODO: Unused, remove?
-    public static final String HTMLString(int[] cps, int len) {
-        return XMLBaseString(cps, len, false);
-    }
-
-    // TODO: Unused, remove?
-    public static final String HTMLString(String source) {
-        return XMLBaseString(source, false);
-    }
-
-    // TODO: Unused, remove?
-    public static final String XMLBaseString(int[] cps, int len, boolean quoteApos) {
-        final StringBuilder temp = new StringBuilder();
-        for (int i = 0; i < len; ++i) {
-            temp.append((char) cps[i]);
-        }
-        return XMLBaseString(temp.toString(), quoteApos);
-    }
-
-    // TODO: Unused, remove?
-    public static final String XMLBaseString(String source, boolean quoteApos) {
-        if (!needsXMLQuote(source, quoteApos)) {
-            return source;
-        }
-        final StringBuilder result = new StringBuilder();
-        for (int i = 0; i < source.length(); ++i) {
-            final char ch = source.charAt(i);
-            if (ch < ' '
-                    || ch >= '\u007F' && ch <= '\u009F'
-                    || ch >= '\uD800' && ch <= '\uDFFF'
-                    || ch >= '\uFFFE') {
-                result.append('\uFFFD');
-                /*
-                 * result.append("#x"); result.append(cpName(ch));
-                 * result.append(";");
-                 */
-            } else if (quoteApos && ch == '\'') {
-                result.append("&apos;");
-            } else if (ch == '\"') {
-                result.append("&quot;");
-            } else if (ch == '<') {
-                result.append("&lt;");
-            } else if (ch == '&') {
-                result.append("&amp;");
-            } else if (ch == '>') {
-                result.append("&gt;");
-            } else {
-                result.append(ch);
-            }
-        }
-        return result.toString();
-    }
-
-    private static CharSequence filter(CharSequence repChar) {
-        if (Default.nfkd().isNormalized(repChar.toString())) {
-            return repChar;
-        }
-        final StringBuilder result = new StringBuilder();
-        int cp;
-        for (int i = 0; i < repChar.length(); i += Character.charCount(cp)) {
-            cp = Character.codePointAt(repChar, i);
-            if (Default.nfkd().isNormalized(cp)) {
-                result.appendCodePoint(cp);
-            }
-        }
-        if (result.length() == 0) {
-            return null;
-        }
-        return result.toString();
-    }
-
-    private static Pattern EXCEL_QUOTE = Pattern.compile("[\"\\p{Cntrl}\u0085\u2029\u2028]");
-
-    private static String excelQuote(CharSequence input) {
-        return EXCEL_QUOTE.matcher(input).replaceAll("\uFFFD");
     }
 }

@@ -24,7 +24,6 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.regex.Pattern;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Binary;
@@ -2161,7 +2160,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                 throw new IllegalArgumentException("Internal Error: " + prop);
                         }
                     } catch (final ArrayIndexOutOfBoundsException e) {
-                        continue;
+                        // continue;
                     }
                 }
             }
@@ -2397,7 +2396,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             DELETED,
             ILLEGAL,
             REMAPPED
-        };
+        }
 
         private final UCD ucdIdna = UCD.makeLatestVersion();
         private final StringPrep namePrep;
@@ -2431,19 +2430,6 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             }
             return IdnaType.OK;
         }
-    }
-
-    static final Pattern WELL_FORMED_LANGUAGE_TAG = Pattern.compile("..."); // ...
-
-    // is
-    // ugly
-    // mess
-    // that
-    // someone
-    // supplies
-
-    static boolean isWellFormedLanguageTag(String tag) {
-        return WELL_FORMED_LANGUAGE_TAG.matcher(tag).matches();
     }
 
     public static final Relation<String, String> YNTF =

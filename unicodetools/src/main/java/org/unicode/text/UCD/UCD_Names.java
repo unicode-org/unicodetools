@@ -19,29 +19,6 @@ import org.unicode.text.utility.Utility;
 
 public final class UCD_Names implements UCD_Types {
 
-    public static String[][] NON_ENUMERATED_NAMES = {
-        {"na", "Name"},
-        {"dm", "Decomposition_Mapping"},
-        {"nv", "Numeric_Value"},
-        {"bmg", "Bidi_Mirroring_Glyph"},
-        {"lc", "Lowercase_Mapping"},
-        {"uc", "Uppercase_Mapping"},
-        {"tc", "Titlecase_Mapping"},
-        {"cf", "Case_Folding"},
-        {"slc", "Simple_Lowercase_Mapping"},
-        {"suc", "Simple_Uppercase_Mapping"},
-        {"stc", "Simple_Titlecase_Mapping"},
-        {"sfc", "Simple_Case_Folding"},
-        {"scc", "Special_Case_Condition"},
-        {"blk", "Block"},
-        {"na1", "Unicode_1_Name"},
-        {"isc", "ISO_Comment"},
-        {"age", "Age"},
-        {"bpb", "Bidi_Paired_Bracket"},
-        {"bpt", "Bidi_Paired_Bracket_Type"},
-        {"vo", "Vertical_Orientation"},
-    };
-
     static final String[] UNIFIED_PROPERTIES = {
         "GeneralCategory",
         "CanonicalCombiningClass",
@@ -154,9 +131,6 @@ public final class UCD_Names implements UCD_Types {
         "ID_Compat_Math_Continue",
         "MCM",
     };
-
-    public static final int BINARY_UNIFIED_IDEOGRAPH =
-            Utility.lookup("Unified_Ideograph", BP, true);
 
     static final String[] DeletedProperties = {
         "Private_Use",
@@ -1248,12 +1222,6 @@ public final class UCD_Names implements UCD_Types {
         }
     }
 
-    static void titlecase(String[] array) {
-        for (int i = 0; i < array.length; ++i) {
-            array[i] = array[1].substring(0, 1).toUpperCase() + array[i].substring(1);
-        }
-    }
-
     public static String[] OLD_JOINING_GROUP = {
         "<no shaping>",
         "AIN",
@@ -1434,17 +1402,6 @@ public final class UCD_Names implements UCD_Types {
         {"SMALL", "C."},
         {"COMBINING", "Cm."},
         {"HANGUL", "H."},
-    };
-
-    static final String[][] PROP_TYPE_NAMES = {
-        {"Numeric", "AA"},
-        {"String", "AB"},
-        {"Miscellaneous", "AC"},
-        {"Catalog", "AD"},
-        {"Enumerated", "AE"},
-        {"Binary", "ZX"},
-        {"Flattened Binary", "ZY"},
-        {"Unknown", "ZZ"}
     };
 
     public static final String[] Bidi_Paired_Bracket_Type = {"None", "Open", "Close"};

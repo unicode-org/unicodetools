@@ -92,6 +92,7 @@ kEH_AltSeq               ; kEH_AltSeq ; Provisional
 kSEAL_MCJK ; kSEAL_MCJK ; Provisional
 
 Names_List_Cross_Ref ; Names_List_Cross_Ref ; UCDNonProperty
+Names_List_Cross_Ref_fr ; Names_List_Cross_Ref_fr ; NonUCDNonProperty
 
 Link_Bracket ; Link_Bracket ; NonUCDProperty
 
@@ -269,6 +270,17 @@ Names_List_Subheader           ; Names_List_Subheader ; subhead ; UCDNonProperty
 Names_List_Subheader_Notice    ; Names_List_Subheader_Notice    ; UCDNonProperty
 Names_List_Alias               ; Names_List_Alias               ; UCDNonProperty
 Names_List_Comment             ; Names_List_Comment             ; UCDNonProperty
+Names_List_Name                ; Names_List_Name                ; UCDNonProperty
+Names_List_Formal_Alias        ; Names_List_Formal_Alias        ; UCDNonProperty
+
+Names_List_Block_Header_fr        ; Names_List_Block_Header_fr        ; NonUCDNonProperty
+Names_List_Block_Header_Notice_fr ; Names_List_Block_Header_Notice_fr ; NonUCDNonProperty
+Names_List_Subheader_fr           ; Names_List_Subheader_fr           ; NonUCDNonProperty
+Names_List_Subheader_Notice_fr    ; Names_List_Subheader_Notice_fr    ; NonUCDNonProperty
+Names_List_Alias_fr               ; Names_List_Alias_fr               ; NonUCDNonProperty
+Names_List_Comment_fr             ; Names_List_Comment_fr             ; NonUCDNonProperty
+Names_List_Name_fr                ; Names_List_Name_fr                ; NonUCDNonProperty
+Names_List_Formal_Alias_fr        ; Names_List_Formal_Alias_fr        ; NonUCDNonProperty
 
 Math_Entity_Name          ; Math_Entity_Name          ; NonUCDNonProperty
 Math_Entity_Set           ; Math_Entity_Set           ; NonUCDNonProperty
