@@ -159,31 +159,22 @@ for state, t in transitions.items():
     else:
       minimized_transitions[minimizer[state]][ahead] = minimizer[end]
 
+if False:
+  zwjables : list[str] = []
 
-print("Difference between AK and AK AK:")
-for c in classes:
-  if minimized_transitions["AK"].get(c) != minimized_transitions["AK AK"].get(c):
-    print("On", c, minimized_transitions["AK"].get(c), "vs.",
-          minimized_transitions["AK AK"].get(c))
+  for state in minimized_states:
+    if "ZWJ" not in minimized_transitions[state]:
+      continue
+    for symbol in classes:
+      through_zwj = minimized_transitions[minimized_transitions[state]["ZWJ"]].get(symbol)
+      direct = (minimized_transitions[state].get(symbol) or
+                (minimized_transitions["START"][symbol] if accepting[state] else "WTF"))
+      if through_zwj != direct:
+        print(state, "is not ZWJable:")
+        print("- ZWJ", symbol, "->", through_zwj)
+        print("-", symbol, "->", direct)
+        break
+    else:
+      zwjables.append(state)
 
-zwj_states = set(state for state in minimized_states if state.endswith("ZWJ"))
-print(len(zwj_states), "ZWJ states")
-for state in states:
-  for ahead, end in minimized_transitions[state].items():
-    if ahead != "ZWJ" and end in zwj_states:
-      raise ValueError(state, ahead, end)
-states_through_zwj = set(minimized_transitions[start].get("ZWJ") for start in states)
-if zwj_states - states_through_zwj:
-  raise ValueError(zwj_states - states_through_zwj)
-
-easy_zwj_states = set(s for s in zwj_states if s.removesuffix(" ZWJ") not in lookahead)
-
-for state in easy_zwj_states:
-  base = state.removesuffix(" ZWJ")
-  for ahead, end in minimized_transitions[state].items():
-    if (minimized_transitions[base].get(ahead) or minimized_transitions["START"][ahead]) != end:
-      raise ValueError((state, ahead, end), (base, ahead, (minimized_transitions[base].get(ahead) or minimized_transitions["START"][ahead])))
-  for ahead, end in minimized_transitions[base].items():
-    if minimized_transitions[state].get(ahead) != end:
-      raise ValueError((state, ahead, minimized_transitions[state].get(ahead)), (base, ahead, end))
-    
+  print(len(zwjables), "ZWJable states:", zwjables)
