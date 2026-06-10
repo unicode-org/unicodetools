@@ -1,4 +1,5 @@
 from collections import defaultdict
+from typing import Callable
 
 classes : list[str] = []
 with open("LineBreakClasses.txt") as f:
@@ -8,7 +9,6 @@ with open("LineBreakClasses.txt") as f:
       continue
     id, definition = (field.strip() for field in line.split(";"))
     classes.append(id)
-classes.append("eot")
 transitions : dict[str, dict[str, str]] = defaultdict(dict)
 with open("LineBreakTransitions.txt") as f:
   for line in f.readlines():
@@ -27,7 +27,7 @@ with open("LineBreakStates.txt") as f:
     line = line.split("#")[0].strip()
     if not line:
       continue
-    state, a, l = (field.strip() for field in line.split(";"))
+    state, a, l, status = (field.strip() for field in line.split(";"))
     accepting[state] = a
     if l:
       lookahead[state] = l
@@ -39,13 +39,81 @@ if transitions.keys() - set(states):
   raise ValueError()
 
 print(len(states), "states")
+lookaheads = sorted(set(lookahead.values()))
+print(len(lookaheads), "lookaheads")
+
+def is_reachable(source  : str,
+                 is_sink : Callable[[str], bool],
+                 exclude : Callable[[str], bool]) -> bool:
+  # Not [source]; if source sets l and accepts k, we need a source-to-source
+  # path for reachability.
+  boundary = [(state, [source, symbol])
+              for symbol, state
+              in transitions[source].items()
+              if not exclude(state)]
+  visited : set[str] = set()
+  while boundary:
+    s, path = boundary.pop()
+    if is_sink(s):
+      print("By " + " ".join(path) + ",")
+      return True
+    visited.add(s)
+    for symbol, t in transitions[s].items():
+      if t not in visited and not exclude(t):
+        boundary.append((t, path + [symbol]))
+  return False
+
+reachability : set[tuple[str, str]] = set()
+
+for l in lookaheads:
+  for k in lookaheads:
+    if k == l:
+      continue
+    for source in states:
+      if lookahead.get(source) != l:
+        continue
+      if is_reachable(source,
+                   lambda s: accepting[s] == k,
+                   exclude=lambda s: lookahead.get(s) == k):
+        print(k, "reachable from", l)
+        reachability.add((k, l))
+        break
+
+def lookahead_colouring():
+  χ = 0
+  while True:
+    χ += 1
+    colours = [0] * len(lookaheads)
+    while True:
+      lookahead_colours = {lookaheads[i] : colours[i] for i in range(len(lookaheads))}
+      for source, sink in reachability:
+        if lookahead_colours[source] == lookahead_colours[sink]:
+          break
+      else:
+        print(f"lookaheads are {χ}-colourable")
+        print([[l for l in lookaheads if lookahead_colours[l] == c] for c in range(χ)])
+        return lookahead_colours
+      colours[0] += 1
+      i = 0
+      while i < len(colours) - 1 and colours[i] == χ:
+        colours[i] = 0
+        colours[i + 1] += 1
+        i += 1
+      if colours[-1] == χ:
+        break
+    print(f"lookaheads are not {χ}-colourable")
+
+lookahead_colours = lookahead_colouring()
 
 # Dragon book algorithm 3.6 & figure 3.45, starting with a partition by
 # lookahead-aware type rather than just accepting or not.
 
-states_by_type : dict[tuple[str, str|None], set[str]] = defaultdict(set)
+states_by_type : dict[tuple[int|bool, int|None], set[str]] = defaultdict(set)
 for state in states:
-  states_by_type[accepting[state], lookahead.get(state)].add(state)
+  states_by_type[False if accepting[state] == "No" else
+                 True if accepting[state] == "Yes" else
+                 lookahead_colours[accepting[state]],
+                 lookahead_colours.get(lookahead.get(state))].add(state)
 Π = list(states_by_type.values())
 def Π_index(state : str|None):
   if state is None:
@@ -70,7 +138,8 @@ while True:
   else:
     break
 
-print(len(Π), "parts total is", sum(len(g) for g in Π))
+print(len(Π), "parts after minimization")
+print("total", sum(len(g) for g in Π))
 minimizer : dict[str, str] = {}
 for g in Π:
   sorted_group = sorted(g, key=lambda s: (len(s.split()), len(s), s))
