@@ -32,6 +32,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -311,6 +312,70 @@ public class Aetiologer {
             }
         }
         reasonsFile.close();
+        int mostDocumentedCodePoint = -1;
+        int maxExplainedEvents = 0;
+        int mostUniquelyDocumentedCodePoint = -1;
+        int maxUniqueExplanations = 0;
+        int mostUniquelyDocumentedCodePointPostAssignment = -1;
+        int maxUniqueExplanationsPostAssignment = 0;
+        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+            int explainedEvents = 0;
+            Set<List<String>> uniqueExplanations = new HashSet<>();
+            Set<List<String>> uniqueExplanationsPostAssignment = new HashSet<>();
+            for (final var propertyReasons : reasons.entrySet()) {
+                final var age =
+                        Age_Values.forName(
+                                IndexUnicodeProperties.make()
+                                        .getProperty(UcdProperty.Age)
+                                        .getValue(cp));
+                final var ageVersion =
+                        age == Age_Values.Unassigned
+                                ? VersionInfo.getInstance(255)
+                                : VersionInfo.getInstance(age.getShortName());
+                for (final var versionReasons : propertyReasons.getValue().entrySet()) {
+                    final var version = versionReasons.getKey();
+                    final var unicodeMap = versionReasons.getValue();
+                    final var reason = unicodeMap.get(cp);
+                    if (reason != null && !reason.isEmpty()) {
+                        ++explainedEvents;
+                        uniqueExplanations.add(reason);
+                        if (version.compareTo(ageVersion) > 0) {
+                            uniqueExplanationsPostAssignment.add(reason);
+                        }
+                    }
+                }
+            }
+            if (explainedEvents > maxExplainedEvents) {
+                mostDocumentedCodePoint = cp;
+                maxExplainedEvents = explainedEvents;
+            }
+            if (uniqueExplanations.size() > maxUniqueExplanations) {
+                mostUniquelyDocumentedCodePoint = cp;
+                maxUniqueExplanations = uniqueExplanations.size();
+            }
+            if (uniqueExplanationsPostAssignment.size() > maxUniqueExplanationsPostAssignment) {
+                mostUniquelyDocumentedCodePointPostAssignment = cp;
+                maxUniqueExplanationsPostAssignment = uniqueExplanationsPostAssignment.size();
+            }
+        }
+        System.out.println(
+                "Most documented: U+"
+                        + Utility.hex(mostDocumentedCodePoint)
+                        + " with "
+                        + maxExplainedEvents
+                        + " explained events");
+        System.out.println(
+                "Most uniquely documented: U+"
+                        + Utility.hex(mostUniquelyDocumentedCodePoint)
+                        + " with "
+                        + maxUniqueExplanations
+                        + " unique explanations");
+        System.out.println(
+                "Most uniquely documented post assignment: U+"
+                        + Utility.hex(mostUniquelyDocumentedCodePointPostAssignment)
+                        + " with "
+                        + maxUniqueExplanationsPostAssignment
+                        + " unique explanations");
     }
 
     private static boolean AnalyseAction(
