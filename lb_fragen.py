@@ -1,14 +1,14 @@
 from collections import defaultdict
 from typing import Callable
 
-classes : list[str] = []
-with open("LineBreakClasses.txt") as f:
+symbols : list[str] = []
+with open("LineBreakSymbols.txt") as f:
   for line in f.readlines():
     line = line.split("#")[0].strip()
     if not line:
       continue
     id, definition = (field.strip() for field in line.split(";"))
-    classes.append(id)
+    symbols.append(id)
 transitions : dict[str, dict[str, str]] = defaultdict(dict)
 with open("LineBreakTransitions.txt") as f:
   for line in f.readlines():
@@ -17,9 +17,9 @@ with open("LineBreakTransitions.txt") as f:
       continue
     start, ahead, end = (field.strip() for field in line.split(";"))
     transitions[start][ahead] = end
-if set(ahead for t in transitions.values() for ahead in t) != set(classes):
-  raise ValueError(set(ahead for t in transitions.values() for ahead in t) - set(classes),
-                   set(classes) - set(ahead for t in transitions.values() for ahead in t))
+if set(ahead for t in transitions.values() for ahead in t) != set(symbols):
+  raise ValueError(set(ahead for t in transitions.values() for ahead in t) - set(symbols),
+                   set(symbols) - set(ahead for t in transitions.values() for ahead in t))
 accepting : dict[str, str] = {}
 lookahead : dict[str, str] = {}
 with open("LineBreakStates.txt") as f:
@@ -122,7 +122,7 @@ def Π_index(state : str|None):
     if state in g:
       return i
 def Π_signature(state : str):
-  return tuple(Π_index(transitions[state].get(c)) for c in classes)
+  return tuple(Π_index(transitions[state].get(c)) for c in symbols)
 while True:
   for g in Π:
     subgroups : dict[str, set[str]] = defaultdict(set)
@@ -192,7 +192,7 @@ if False:
   for state in minimized_states:
     if "ZWJ" not in minimized_transitions[state]:
       continue
-    for symbol in classes:
+    for symbol in symbols:
       through_zwj = minimized_transitions[minimized_transitions[state]["ZWJ"]].get(symbol)
       direct = (minimized_transitions[state].get(symbol) or
                 (minimized_transitions["START"][symbol] if accepting[state] else "WTF"))

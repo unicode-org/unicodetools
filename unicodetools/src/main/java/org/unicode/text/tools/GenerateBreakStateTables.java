@@ -96,7 +96,6 @@ public class GenerateBreakStateTables {
         }
         final var table = rbbi.fRData.fFTable;
         boolean usesEOT = false;
-        boolean usesSOT = false;
         for (int state = 1; state < table.fNumStates; ++state) {
             final int row = rbbi.fRData.getRowIndex(state);
             for (int col = 0; col < rbbi.fRData.fHeader.fCatCount; ++col) {
@@ -104,9 +103,6 @@ public class GenerateBreakStateTables {
                 if (next != 0) {
                     if (col == 1) {
                         usesEOT = true;
-                    }
-                    if (col == 2) {
-                        usesSOT = true;
                     }
                 }
             }
@@ -119,15 +115,6 @@ public class GenerateBreakStateTables {
             namedPartition.add(
                     new NamedRefinedSet()
                             .intersect(new NamedSet("eot", "[{eot}]", new UnicodeSet("[{eot}]"))));
-        }
-        if (usesSOT) {
-            if (!rbbiPartition.containsKey(2)) {
-                rbbiPartition.put(2, new UnicodeSet());
-            }
-            rbbiPartition.get(2).add("sot");
-            namedPartition.add(
-                    new NamedRefinedSet()
-                            .intersect(new NamedSet("sot", "[{sot}]", new UnicodeSet("[{sot}]"))));
         }
         loopOverRbbiPartition:
         for (var entry : rbbiPartition.entrySet()) {
