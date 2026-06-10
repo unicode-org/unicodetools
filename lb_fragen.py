@@ -159,6 +159,33 @@ for state, t in transitions.items():
     else:
       minimized_transitions[minimizer[state]][ahead] = minimizer[end]
 
+zwj_only = set(minimized_states)
+boundary : list[tuple[str, list[str]]] = [("START", [])]
+visited : set[str] = set()
+while boundary:
+  s, path = boundary.pop()
+  if s in zwj_only:
+    zwj_only.remove(s)
+  visited.add(s)
+  for symbol, t in minimized_transitions[s].items():
+    if t not in visited and symbol != "ZWJ":
+      boundary.append((t, path + [symbol]))
+
+print(len(zwj_only), "ZWJ only:", zwj_only)
+zwj_named = set(state for state in minimized_states if "ZWJ" in state.split())
+if zwj_only == zwj_named:
+  print("Equals set of states with ZWJ in name")
+
+zwjables = set(state for state in minimized_states if not any(
+    symbol in ("BK", "CR", "LF", "NL", "SP", "ZW")
+    for t in minimized_transitions.values() for symbol, to in t.items()
+    if to == state))
+
+if all(s in zwjables for s in zwj_only):
+  print("All ZWJ only are ZWJable")
+print(len(zwjables - zwj_only), "non-ZWJ-only ZWJables", zwjables - zwj_only)
+print(len(minimized_states - zwjables), "non-ZWJables", minimized_states - zwjables)
+
 if False:
   zwjables : list[str] = []
 
