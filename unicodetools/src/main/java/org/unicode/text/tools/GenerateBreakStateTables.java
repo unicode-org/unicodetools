@@ -11,10 +11,12 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.VersionedSymbolTable;
@@ -201,7 +203,7 @@ public class GenerateBreakStateTables {
         System.out.println(rbbiPartition.size() + " symbols");
         System.out.println(table.fNumStates + " states");
         Map<Integer, String> stateNames = new HashMap<>();
-        Map<Integer, String> lookaheadNames = new HashMap<>();
+        Map<Integer, List<Integer>> lookaheadPrefixes = new HashMap<>();
         stateNames.put(0, "STOP");
         stateNames.put(1, "START");
         Queue<Integer> neighbourhoodsToName = new LinkedList<>();
@@ -212,26 +214,8 @@ public class GenerateBreakStateTables {
             final String stateName = stateNames.get(state);
             {
                 final int lookahead = table.fTable[row + RBBIDataWrapper.LOOKAHEAD];
-                if (lookahead != 0 && !lookaheadNames.containsKey(lookahead)) {
-                    lookaheadNames.put(lookahead, stateName);
-                }
-            }
-            {
-                final int accepting = table.fTable[row + RBBIDataWrapper.ACCEPTING];
-                if (accepting > RBBIDataWrapper.ACCEPTING_UNCONDITIONAL) {
-                    final String prefix = lookaheadNames.get(accepting);
-                    if (!prefix.contains("/")) {
-                        if (!stateName.startsWith(prefix)) {
-                            throw new IllegalArgumentException(
-                                    stateName + " does not start with " + prefix);
-                        }
-                        lookaheadNames.put(
-                                accepting,
-                                prefix
-                                        + " /"
-                                        + stateName.subSequence(
-                                                prefix.length(), stateName.length()));
-                    }
+                if (lookahead != 0) {
+                    lookaheadPrefixes.computeIfAbsent(lookahead, l -> new ArrayList<>()).add(state);
                 }
             }
             for (int col = 0; col < rbbi.fRData.fHeader.fCatCount; ++col) {
@@ -270,16 +254,115 @@ public class GenerateBreakStateTables {
             }
             nameToState.put(entry.getValue(), entry.getKey());
         }
-        for (var entry : lookaheadNames.entrySet()) {
-            if (!entry.getValue().contains("/")) {
-                throw new IllegalArgumentException(
-                        "lookahead name "
-                                + entry.getValue()
-                                + " for "
-                                + entry.getKey()
-                                + " has no / (accepting state was not found by the BFS)");
+        final Map<Integer, List<String>> lookaheadNameParts = new HashMap<>();
+        for (final var prefixEntry : lookaheadPrefixes.entrySet()) {
+            final int lookahead = prefixEntry.getKey();
+            System.out.println(
+                    "Lookahead "
+                            + lookahead
+                            + " is set by "
+                            + prefixEntry.getValue().size()
+                            + " states");
+            for (int startingState : prefixEntry.getValue()) {
+                Set<Integer> visited = new HashSet<>();
+                // We do not start with a 1-element boundary of set to startingState, because if
+                // startingState accepts the lookahead it sets, it should do so when we come back to
+                // it, not as it sets it.
+                class StateAndPath {
+                    public StateAndPath(int state, List<Integer> path) {
+                        this.state = state;
+                        this.path = path;
+                    }
+
+                    final int state;
+                    final List<Integer> path;
+                }
+                Queue<StateAndPath> boundary = new LinkedList<>();
+                final int startingRow = rbbi.fRData.getRowIndex(startingState);
+                for (int col = 0; col < rbbi.fRData.fHeader.fCatCount; ++col) {
+                    final int next = table.fTable[startingRow + RBBIDataWrapper.NEXTSTATES + col];
+                    boundary.add(new StateAndPath(next, List.of(col)));
+                }
+                for (; ; ) {
+                    final var stateAndPath = boundary.poll();
+                    final var state = stateAndPath.state;
+                    final int row = rbbi.fRData.getRowIndex(state);
+                    final int accepting = table.fTable[row + RBBIDataWrapper.ACCEPTING];
+                    if (accepting == lookahead) {
+                        lookaheadNameParts
+                                .computeIfAbsent(lookahead, l -> new ArrayList<>())
+                                .add(
+                                        stateNames.get(startingState)
+                                                + " / "
+                                                + stateAndPath.path.stream()
+                                                        .map(
+                                                                symbol ->
+                                                                        rbbiNames
+                                                                                .get(symbol)
+                                                                                .stream()
+                                                                                .sorted(
+                                                                                        Comparator
+                                                                                                .<NamedRefinedSet>
+                                                                                                        comparingInt(
+                                                                                                                s ->
+                                                                                                                        -s.getSet()
+                                                                                                                                .removeAll(
+                                                                                                                                        unassigned)
+                                                                                                                                .removeAll(
+                                                                                                                                        pua)
+                                                                                                                                .size()))
+                                                                                .map(
+                                                                                        NamedRefinedSet
+                                                                                                ::getName)
+                                                                                .map(
+                                                                                        s ->
+                                                                                                s
+                                                                                                        .replace(
+                                                                                                                "orig",
+                                                                                                                ""))
+                                                                                .findFirst()
+                                                                                .get())
+                                                        .collect(Collectors.joining(" ")));
+                        break;
+                    }
+                    visited.add(state);
+                    for (int col = 0; col < rbbi.fRData.fHeader.fCatCount; ++col) {
+                        final int next = table.fTable[row + RBBIDataWrapper.NEXTSTATES + col];
+                        if (visited.contains(next)) {
+                            continue;
+                        }
+                        final var path = new ArrayList<>(stateAndPath.path);
+                        path.add(col);
+                        boundary.add(new StateAndPath(next, path));
+                    }
+                }
             }
-            nameToState.put(entry.getValue(), entry.getKey());
+        }
+        final var lookaheadNames =
+                lookaheadNameParts.entrySet().stream()
+                        .collect(
+                                Collectors.toMap(
+                                        kv -> kv.getKey(),
+                                        kv ->
+                                                kv.getValue().stream()
+                                                        .sorted(
+                                                                Comparator.<String>comparingInt(
+                                                                                s -> s.length())
+                                                                        .thenComparing(s -> s))
+                                                        .findFirst()
+                                                        .get()));
+        Map<String, Integer> nameToLookahead = new HashMap<>();
+        for (var entry : lookaheadNames.entrySet()) {
+            if (nameToLookahead.containsKey(entry.getValue())) {
+                throw new IllegalArgumentException(
+                        "Duplicate lookahead name "
+                                + entry.getValue()
+                                + " for lookaheads "
+                                + nameToLookahead.get(entry.getValue())
+                                + " and "
+                                + entry.getKey());
+            }
+            nameToLookahead.put(entry.getValue(), entry.getKey());
         }
         try (var file = new PrintStream(new File(name + "BreakSymbols.txt"))) {
             file.println("# Symbol name ; Symbol definition in UnicodeSet notation");
