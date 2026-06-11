@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2026-04-29, 19:43:59 GMT
+# Date: 2026-05-15, 17:40:15 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2856,7 +2856,7 @@ FE2E..FE2F    ; 230 # Mn   [2] COMBINING CYRILLIC TITLO LEFT HALF..COMBINING CYR
 10ECE..10ECF  ; 230 # Mn   [2] ARABIC SMALL CIRCLE ABOVE..ARABIC LARGE CIRCLE ABOVE
 10EF3         ; 230 # Mn       ARABIC SMALL HIGH NOON WITH FATHA
 10EF5         ; 230 # Mn       ARABIC SMALL HIGH NOON WITH DAMMA
-10EF7..10EF9  ; 230 # Mn   [3] ARABIC SMALL HIGH HEH INITIAL FORM..ARABIC MARK CROWN
+10EF7..10EF9  ; 230 # Mn   [3] ARABIC SMALL HIGH HEH INITIAL FORM..BAMUM LETTER PHASE-C KEN-FATIGUE
 10F48..10F4A  ; 230 # Mn   [3] SOGDIAN COMBINING DOT ABOVE..SOGDIAN COMBINING CURVE ABOVE
 10F4C         ; 230 # Mn       SOGDIAN COMBINING HOOK ABOVE
 10F82         ; 230 # Mn       OLD UYGHUR COMBINING DOT ABOVE
