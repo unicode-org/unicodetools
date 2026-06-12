@@ -730,7 +730,7 @@ public class TestProperties extends TestFmwkMinusMinus {
                 }) {
             // Unassigned code points were made Unknown by 106-C17 for Unicode Version 5.0.
             // The default for unlisted code points changed from Common to Unknown in that version.
-            // Assigned Common code points were explicitly listed since 4.0.1, but wele missing in
+            // Assigned Common code points were explicitly listed since 4.0.1, but were missing in
             // 4.0.0, so we need a versioned @missing in ExtraPropertyValueAliases to interpret the
             // older files correctly.
             final var scriptValue2072 =
