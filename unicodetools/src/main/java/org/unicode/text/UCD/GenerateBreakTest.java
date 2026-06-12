@@ -377,6 +377,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
             if (variable.equals("sot")
                     || variable.equals("eot")
                     || variable.equals("Any")
+                    || variable.equals("ALL")
                     || mainProperty
                             .getSet(variable)
                             .equals(
@@ -624,11 +625,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
     private Set<Double> getMissing(String fileName, Map<Double, String> rulesFound) {
         Set<Double> numbers = getRuleNumbers();
         numbers.removeAll(rulesFound.keySet());
-        if (fileName.equals("Grapheme")) {
-            numbers.remove(9.2d); // Prepend is optional, and by default empty
-        } else if (fileName.equals("Line")) {
-            numbers.remove(0.2d); // sot is an artifact
-        }
         return numbers;
     }
 

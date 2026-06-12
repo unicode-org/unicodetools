@@ -25,10 +25,15 @@ $ConjunctExtender=[\p{Indic_Conjunct_Break=Extend}]
 ##	$EBG=\p{Grapheme_Cluster_Break=E_Base_GAZ}
 ##	$Glue_After_Zwj=\p{Grapheme_Cluster_Break=Glue_After_Zwj}
 $XX = \p{Grapheme_Cluster_Break=Other}
+$Any=.
+$sot=^
+$eot=(?!.)
 
 # RULES
 
 # Break at the start and end of text, unless the text is empty.
+1) $sot ÷
+2)      ÷ $eot
 # Do not break between a CR and LF. Otherwise, break before and after controls.
 3) $CR  	×  	$LF
 4) ( $Control | $CR | $LF ) 	÷
@@ -51,6 +56,7 @@ $XX = \p{Grapheme_Cluster_Break=Other}
 12) ^ ($RI $RI)* $RI × $RI
 13) [^$RI] ($RI $RI)* $RI × $RI
 # Otherwise, break everywhere.
+999) $Any ÷ $Any
 
 @LineBreak
 
@@ -126,6 +132,8 @@ $OPmEastAsian=[$OP-$EastAsian]
 
 $ExtPictUnassigned=[\p{Extended_Pictographic=True}&\p{gc=Cn}]
 
+$ALL=.
+
 # Some rules refer to the start and end of text.  We could just use a literal ^ for sot, but naming
 # it as in the spec makes it easier to compare.  The parser will eat (and choke on) $, so we play a
 # stupid trick instead.
@@ -143,7 +151,10 @@ $CM=[$CMorig $SA_Mn $SA_Mc]
 $NS=[$NSorig $CJ]
 
 # RULES
-
+# LB 2 Never break at the start of text.
+2) $sot ×
+# LB 3 Always break at the end of text.
+3) ÷ $eot
 # LB 4  Always break after hard line breaks (but never between CR and LF).
 4) $BK ÷
 # LB 5  Treat CR followed by LF, as well as CR, LF and NL as hard line breaks.
@@ -274,6 +285,9 @@ $NS=[$NSorig $CJ]
 # LB 30b Do not break between an emoji base (or potential emoji) and an emoji modifier.
 30.21) $EB × $EM
 30.22) $ExtPictUnassigned × $EM
+# LB31 Break everywhere else.
+31.1) $ALL ÷
+31.2) ÷ $ALL
 
 @SentenceBreak
 
@@ -295,6 +309,8 @@ $Close=\p{Sentence_Break=Close}
 $SContinue=\p{Sentence_Break=SContinue}
 $XX=\p{Sentence_Break=Other}
 $Any=.
+$sot=^
+$eot=(?!.)
 
 # SPECIAL EXTENSIONS
 
@@ -311,6 +327,8 @@ $SATerm = [$STerm $ATerm]
 # RULES
 
 # Break at the start and end of text, unless the text is empty.
+1) $sot ÷
+2)      ÷ $eot
 # Do not break within CRLF.
 3) $CR  	×  	$LF
 # Break after paragraph separators.
@@ -334,7 +352,7 @@ $SATerm = [$STerm $ATerm]
 10) $SATerm $Close* $Sp* 	× 	( $Sp | $ParaSep )
 11) $SATerm $Close* $Sp* $ParaSep? ÷
 #Otherwise, do not break
-998) × 	$Any
+998) $Any × $Any
 
 @WordBreak
 
@@ -369,6 +387,9 @@ $ExtPict=\p{Extended_Pictographic=True}
 ##	$Glue_After_Zwj=\p{Word_Break=Glue_After_Zwj}
 $WSegSpace=\p{Word_Break=WSegSpace}
 $XX=\p{Word_Break=Other}
+$Any=.
+$sot=^
+$eot=(?!.)
 
 # MACROS
 
@@ -381,6 +402,8 @@ $MidNumLetQ=[$MidNumLet $Single_Quote]
 # RULES
 
 # Break at the start and end of text, unless the text is empty.
+1) $sot ÷
+2)      ÷ $eot
 # Do not break within CRLF.
 3) $CR  	×  	$LF
 # Otherwise break before and after Newlines (including CR and LF)
@@ -425,3 +448,4 @@ $MidNumLetQ=[$MidNumLet $Single_Quote]
 15) ^ ($RI $RI)* $RI × $RI
 16) [^$RI] ($RI $RI)* $RI × $RI
 # Otherwise, break everywhere (including around ideographs).
+999) $Any ÷ $Any

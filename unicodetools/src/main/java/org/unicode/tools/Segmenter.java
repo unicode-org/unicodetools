@@ -47,7 +47,7 @@ public class Segmenter {
         FOR_CLDR
     }
 
-    public static final int REGEX_FLAGS = Pattern.COMMENTS | Pattern.MULTILINE | Pattern.DOTALL;
+    public static final int REGEX_FLAGS = Pattern.COMMENTS | Pattern.DOTALL;
     private static final UnicodeSet PATTERN_SYNTAX = new UnicodeSet("\\p{pattern syntax}").freeze();
     private static final UnicodeSet PATTERN_SYNTAX_OR_WHITE_SPACE =
             new UnicodeSet("[\\p{pattern white space}\\p{pattern syntax}]").freeze();
@@ -130,10 +130,7 @@ public class Segmenter {
     static final Map<String, Multimap<String, String>> FILE_CACHE = new ConcurrentHashMap<>();
 
     /** Certain rules are generated, and have artificial numbers */
-    public static final double NOBREAK_SUPPLEMENTARY = 0.1,
-            BREAK_SOT = 0.2,
-            BREAK_EOT = 0.3,
-            BREAK_ANY = 999;
+    public static final double NOBREAK_SUPPLEMENTARY = 0.1;
 
     /** Convenience for formatting doubles */
     public static NumberFormat nf = NumberFormat.getInstance(ULocale.ENGLISH);
@@ -153,14 +150,6 @@ public class Segmenter {
     public boolean breaksAt(CharSequence text, int position) {
         if (DEBUG_AT_STRING != null && DEBUG_AT_STRING.equals(text)) {
             System.out.println("!#$@541 Debug");
-        }
-        if (position == 0) {
-            breakRule = BREAK_SOT;
-            return true;
-        }
-        if (position == text.length()) {
-            breakRule = BREAK_EOT;
-            return true;
         }
         // don't break in middle of surrogate
         if (!UTF16Plus.isCodePointBoundary(text, position)) {
@@ -189,8 +178,12 @@ public class Segmenter {
                 return result == SegmentationRule.Breaks.BREAK;
             }
         }
-        breakRule = BREAK_ANY;
-        return true; // default
+        throw new IllegalArgumentException(
+                "The rules do not determine the break at \""
+                        + text.subSequence(0, position)
+                        + "\"😭\""
+                        + text.subSequence(position, text.length())
+                        + "\"");
     }
 
     public int getRuleStatusVec(int[] ruleStatus) {
@@ -644,9 +637,6 @@ public class Segmenter {
         public Builder(UnicodeProperty.Factory factory, Target target) {
             propFactory = factory;
             this.target = target;
-            htmlRules.put(new Double(BREAK_SOT), "sot \u00F7");
-            htmlRules.put(new Double(BREAK_EOT), "\u00F7 eot");
-            htmlRules.put(new Double(BREAK_ANY), "\u00F7 Any");
         }
 
         public String toString(String testName, String indent) {
