@@ -286,8 +286,8 @@ $NS=[$NSorig $CJ]
 30.21) $EB × $EM
 30.22) $ExtPictUnassigned × $EM
 # LB31 Break everywhere else.
-31.1) $ALL ÷
-31.2) ÷ $ALL
+31.01) $ALL ÷
+31.02) ÷ $ALL
 
 @SentenceBreak
 
