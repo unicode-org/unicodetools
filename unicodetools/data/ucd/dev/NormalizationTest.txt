@@ -1,5 +1,5 @@
 # NormalizationTest-18.0.0.txt
-# Date: 2026-02-03, 23:10:04 GMT
+# Date: 2026-06-11, 21:32:57 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -66,6 +66,7 @@
 0592 05B7 05BC 05A5 05B0 05C0 05C4 05AD;05B0 05B7 05BC 05A5 0592 05C0 05AD 05C4;05B0 05B7 05BC 05A5 0592 05C0 05AD 05C4;05B0 05B7 05BC 05A5 0592 05C0 05AD 05C4;05B0 05B7 05BC 05A5 0592 05C0 05AD 05C4; # (◌֒◌ַ◌ּ◌֥◌ְ׀◌ׄ◌֭; ◌ְ◌ַ◌ּ◌֥◌֒׀◌֭◌ׄ; ◌ְ◌ַ◌ּ◌֥◌֒׀◌֭◌ׄ; ◌ְ◌ַ◌ּ◌֥◌֒׀◌֭◌ׄ; ◌ְ◌ַ◌ּ◌֥◌֒׀◌֭◌ׄ; ) HEBREW ACCENT SEGOL, HEBREW POINT PATAH, HEBREW POINT DAGESH OR MAPIQ, HEBREW ACCENT MERKHA, HEBREW POINT SHEVA, HEBREW PUNCTUATION PASEQ, HEBREW MARK UPPER DOT, HEBREW ACCENT DEHI
 1100 AC00 11A8;1100 AC01;1100 1100 1161 11A8;1100 AC01;1100 1100 1161 11A8; # (ᄀ각; ᄀ각; ᄀ각; ᄀ각; ᄀ각; ) HANGUL CHOSEONG KIYEOK, HANGUL SYLLABLE GA, HANGUL JONGSEONG KIYEOK
 1100 AC00 11A8 11A8;1100 AC01 11A8;1100 1100 1161 11A8 11A8;1100 AC01 11A8;1100 1100 1161 11A8 11A8; # (ᄀ각ᆨ; ᄀ각ᆨ; ᄀ각ᆨ; ᄀ각ᆨ; ᄀ각ᆨ; ) HANGUL CHOSEONG KIYEOK, HANGUL SYLLABLE GA, HANGUL JONGSEONG KIYEOK, HANGUL JONGSEONG KIYEOK
+AC00 11A7;AC00 11A7;1100 1161 11A7;AC00 11A7;1100 1161 11A7; # (가ᆧ; 가ᆧ; 가ᆧ; 가ᆧ; 가ᆧ; ) HANGUL SYLLABLE GA, HANGUL JUNGSEONG O-YAE
 01C4 0323;01C4 0323;01C4 0323;0044 1E92 030C;0044 005A 0323 030C; # (Ǆ◌̣; Ǆ◌̣; Ǆ◌̣; DẒ◌̌; DZ◌̣◌̌; ) LATIN CAPITAL LETTER DZ WITH CARON, COMBINING DOT BELOW
 01C5 0323;01C5 0323;01C5 0323;0044 1E93 030C;0044 007A 0323 030C; # (ǅ◌̣; ǅ◌̣; ǅ◌̣; Dẓ◌̌; Dz◌̣◌̌; ) LATIN CAPITAL LETTER D WITH SMALL LETTER Z WITH CARON, COMBINING DOT BELOW
 01C6 0323;01C6 0323;01C6 0323;0064 1E93 030C;0064 007A 0323 030C; # (ǆ◌̣; ǆ◌̣; ǆ◌̣; dẓ◌̌; dz◌̣◌̌; ) LATIN SMALL LETTER DZ WITH CARON, COMBINING DOT BELOW

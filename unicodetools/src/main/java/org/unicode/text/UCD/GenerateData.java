@@ -578,5 +578,6 @@ public class GenerateData implements UCD_Types {
         "\u0592\u05B7\u05BC\u05A5\u05B0\u05C0\u05C4\u05AD",
         "\u1100\uAC00\u11A8",
         "\u1100\uAC00\u11A8\u11A8",
+        "\uAC00\u11A7", // See https://github.com/unicode-org/properties/issues/570.
     };
 }
