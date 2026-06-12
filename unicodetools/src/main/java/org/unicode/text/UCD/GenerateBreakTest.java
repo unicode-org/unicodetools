@@ -830,9 +830,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         + "In particular:</p>"
                         + "<ol>"
                         + "<li>The rules are cast into a form that is more like regular expressions.</li>"
-                        + "<li>The rules “sot "
-                        + (fileName.equals("Line") ? "×" : "÷")
-                        + "”, “÷ eot”, and “÷ Any” are added mechanically, and have artificial numbers.</li>"
                         + "<li>The rules are given decimal numbers using tenths, and are written without prefix. For example, ");
         switch (fileName) {
             case "Line":
@@ -848,9 +845,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
                 out.print("rule SB8a is given the number 8.1");
                 break;
         }
-        out.print(
-                ".</li>"
-                        + "<li>Final rules like “Any ÷ Any” may be recast as the equivalent expression “÷ Any”.</li><li>");
+        out.print(".</li><li>");
         if (fileName.equals("Line")) {
             out.print(
                     "Where a rule has multiple parts (lines), each one is numbered using hundredths, "
@@ -869,9 +864,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         out.println("<table>");
         for (int ii = 0; ii < ruleListCount; ++ii) {
             String cleanRule = ruleList[ii].replaceAll("[$]", "");
-            if (!isBreak("a", 0)) {
-                cleanRule = cleanRule.replace("sot ÷", "sot ×");
-            }
             final int parenPos = cleanRule.indexOf(')');
             final String ruleNumber = cleanRule.substring(0, parenPos);
             final String ruleBody = cleanRule.substring(parenPos + 1).trim();
@@ -1679,11 +1671,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
             String firstExtPictAssigned = Character.toString(extPictAssigned.charAt(0));
             // [\p{Extended_Pictographic}-\p{Cn}-\p{lb=EB}] ÷ EM
             extraSingleSamples.add(firstExtPictAssigned + sampleEMod);
-        }
-
-        @Override
-        public boolean isBreak(String source, int offset) {
-            return offset == 0 ? false : super.isBreak(source, offset);
         }
 
         @Override
