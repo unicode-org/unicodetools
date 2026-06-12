@@ -94,6 +94,9 @@
 
 # End of binary properties.
 
+# Common, until decision 106-C17 made it Unknown (Zzzz).
+# @missing: 0000..10FFFF; Script; Zyyy; v4.1.0
+
 # @missing: 0000..10FFFF; Canonical_Combining_Class; Not_Reordered
 # Fixed position classes no longer in use; see
 # https://www.unicode.org/versions/Unicode2.0.0/ch04.pdf.
