@@ -57,7 +57,7 @@ import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
-import org.unicode.text.tools.Aetiologer;
+import org.unicode.text.tools.Ætiologer;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -1779,7 +1779,7 @@ public class UnicodeUtilities {
             throws IOException {
         var indexedProperty = UcdProperty.forString(propName);
         final var propertyReasons =
-                indexedProperty == null ? null : Aetiologer.getReasons().get(indexedProperty);
+                indexedProperty == null ? null : Ætiologer.getReasons().get(indexedProperty);
         final boolean provisional =
                 indexedProperty != null
                         && indexedProperty.getDerivedStatus() == DerivedPropertyStatus.Provisional;
@@ -1963,7 +1963,7 @@ public class UnicodeUtilities {
                                         ? ""
                                         : ("<sup>{"
                                                 + assignment.getReasons().stream()
-                                                        .map(Aetiologer::linkifyReason)
+                                                        .map(Ætiologer::linkifyReason)
                                                         .collect(Collectors.joining(" "))
                                                 + "}</sup>"))
                                 + "</td>");

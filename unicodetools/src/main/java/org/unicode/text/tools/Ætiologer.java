@@ -37,7 +37,48 @@ import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-public class Aetiologer {
+/**
+ * A tool that determines the reason for property assignments based on UTC minutes and on all
+ * versions of data files.
+ *
+ * <h4>Nomenclature</h4>
+ *
+ * <p>This tool is so named because it engages in ætiology:
+ *
+ * <blockquote>
+ *
+ * The assignment of a cause, the rendering of a reason; […].<br>
+ * — OED, second edition (1989).
+ *
+ * </blockquote>
+ *
+ * <p>NOTE(egg): Ætiolog<i>er</i> is, as far as I know, a neologism; the OED has ætiological and
+ * ætiologically. One could have gone with -logian or -logist (indeed the OED has all three for
+ * archæo- and theo-), but -er felt more appropriate for a tool.
+ *
+ * <h4>Outline</h4>
+ *
+ * <p>The tool takes as input:
+ *
+ * <ol>
+ *   <li>the data files under unicodetools/data/;
+ *   <li>actions.txt, a plain-text version of all decisions, action items, and notes from UTC
+ *       minutes, provided by Peter Constable;
+ *   <li>reasons_manual.txt, a data file with manually-determined reasons for some property
+ *       assignments, which supplement and override the tool’s ætiology.
+ * </ol>
+ *
+ * <p>Whenever a UTC action appears to mention a property, code points, and a version of Unicode,
+ * the ætiologer checks whether the relevant property changed for those code points in that version
+ * of Unicode; if it did, it assigns that UTC action as the reason.
+ *
+ * <p>The reasons are output to reasons_auto.txt, and can be accessed using {@code
+ * Ætiologer#getReasons()}. A flag --compute-unexplained creates a file reasons_unknown.txt listing
+ * all changes to property assignments after character assignments for which a reason could not be
+ * determined. This can serve as a way to analyze deficiencies of the ætiologer, or as a template to
+ * add entries to reasons_manual.txt.
+ */
+public class Ætiologer {
     private static final Segmenter WORD_BREAK =
             LocalizedSegmenter.builder()
                     .setLocale(ULocale.ENGLISH)
@@ -569,20 +610,20 @@ public class Aetiologer {
     }
 
     public static String linkifyReason(String reason) {
-        if (Aetiologer.L2_REF.matcher(reason).matches()) {
+        if (Ætiologer.L2_REF.matcher(reason).matches()) {
             return "<a style=white-space:nowrap href=https://www.unicode.org/cgi-bin/GetL2Ref.pl?"
                     + reason
                     + ">"
                     + reason
                     + "</a>";
-        } else if (Aetiologer.L2_DOC.matcher(reason).matches()) {
+        } else if (Ætiologer.L2_DOC.matcher(reason).matches()) {
             return "<a style=white-space:nowrap href=https://www.unicode.org/cgi-bin/GetMatchingDocs.pl?"
                     + reason
                     + ">"
                     + reason
                     + "</a>";
         }
-        var matcher = Aetiologer.PRI.matcher(reason);
+        var matcher = Ætiologer.PRI.matcher(reason);
         if (matcher.matches()) {
             return "<a style=white-space:nowrap href=https://www.unicode.org/review/pri"
                     + matcher.group(1)
@@ -594,7 +635,7 @@ public class Aetiologer {
                     + feedbackID(matcher.group(2))
                     + "</a>";
         }
-        matcher = Aetiologer.PUBREV_DOC.matcher(reason);
+        matcher = Ætiologer.PUBREV_DOC.matcher(reason);
         if (matcher.matches()) {
             return "<a style=white-space:nowrap href=https://www.unicode.org/L2/L20"
                     + matcher.group(1)
