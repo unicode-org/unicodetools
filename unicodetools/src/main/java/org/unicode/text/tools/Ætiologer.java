@@ -557,7 +557,8 @@ public class Ætiologer {
     public static Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> getReasons()
             throws IOException {
         class Loaded {
-            private static Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> reasons = null;
+            private static Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> reasons =
+                    null;
         }
         if (Loaded.reasons == null) {
             Loaded.reasons = readReasonsFile("reasons_auto.txt");
