@@ -631,20 +631,20 @@ public class Ætiologer {
     }
 
     public static String linkifyReason(String reason) {
-        if (Ætiologer.L2_REF.matcher(reason).matches()) {
+        if (L2_REF.matcher(reason).matches()) {
             return "<a style=white-space:nowrap href=https://www.unicode.org/cgi-bin/GetL2Ref.pl?"
                     + reason
                     + ">"
                     + reason
                     + "</a>";
-        } else if (Ætiologer.L2_DOC.matcher(reason).matches()) {
+        } else if (L2_DOC.matcher(reason).matches()) {
             return "<a style=white-space:nowrap href=https://www.unicode.org/cgi-bin/GetMatchingDocs.pl?"
                     + reason
                     + ">"
                     + reason
                     + "</a>";
         }
-        var matcher = Ætiologer.PRI.matcher(reason);
+        var matcher = PRI.matcher(reason);
         if (matcher.matches()) {
             return "<a style=white-space:nowrap href=https://www.unicode.org/review/pri"
                     + matcher.group(1)
@@ -656,7 +656,7 @@ public class Ætiologer {
                     + feedbackID(matcher.group(2))
                     + "</a>";
         }
-        matcher = Ætiologer.PUBREV_DOC.matcher(reason);
+        matcher = PUBREV_DOC.matcher(reason);
         if (matcher.matches()) {
             return "<a style=white-space:nowrap href=https://www.unicode.org/L2/L20"
                     + matcher.group(1)
