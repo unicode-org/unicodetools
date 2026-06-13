@@ -57,6 +57,7 @@ import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.text.tools.Ætiologer;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -1777,6 +1778,8 @@ public class UnicodeUtilities {
             Appendable out)
             throws IOException {
         var indexedProperty = UcdProperty.forString(propName);
+        final var propertyReasons =
+                indexedProperty == null ? null : Ætiologer.getReasons().get(indexedProperty);
         final boolean provisional =
                 indexedProperty != null
                         && indexedProperty.getDerivedStatus() == DerivedPropertyStatus.Provisional;
@@ -1789,6 +1792,21 @@ public class UnicodeUtilities {
             ArrayList<String> values;
             boolean isDefault;
             int span;
+
+            List<String> getReasons() throws IOException {
+                if (propertyReasons == null) {
+                    return List.of();
+                }
+                final var versionReasons = propertyReasons.get(first);
+                if (versionReasons == null) {
+                    return List.of();
+                }
+                final var reasons = versionReasons.get(codePoint);
+                if (reasons == null) {
+                    return List.of();
+                }
+                return reasons;
+            }
         }
         final boolean isMultivalued = getFactory().getProperty(propName).isMultivalued();
         final boolean isStringValued =
@@ -1941,6 +1959,13 @@ public class UnicodeUtilities {
                                                         Collectors.joining("<wbr>|&#x2060;"))
                                                 + (isNew ? "</span>" : "")
                                         : "")
+                                + (assignment.getReasons().isEmpty()
+                                        ? ""
+                                        : ("<sup>{"
+                                                + assignment.getReasons().stream()
+                                                        .map(Ætiologer::linkifyReason)
+                                                        .collect(Collectors.joining(" "))
+                                                + "}</sup>"))
                                 + "</td>");
             }
             out.append("</tr>");
