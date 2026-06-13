@@ -70,7 +70,8 @@ import org.unicode.text.utility.Utility;
  *
  * <p>Whenever a UTC action appears to mention a property, code points, and a version of Unicode,
  * the ætiologer checks whether the relevant property changed for those code points in that version
- * of Unicode; if it did, it assigns that UTC action as the reason.
+ * of Unicode; if it did, it assigns that UTC action as the reason. When no target version can be
+ * found, it is deduced from the UTC meeting number.
  *
  * <p>The reasons are output to reasons_auto.txt, and can be accessed using {@code
  * Ætiologer#getReasons()}. A flag --compute-unexplained creates a file reasons_unknown.txt listing
@@ -116,6 +117,9 @@ public class Ætiologer {
     private static final Pattern FORMAL_ALIAS = Pattern.compile("\\bformal\\s+alias");
     private static final String RESOURCES =
             Settings.UnicodeTools.UNICODETOOLS_RSRC_DIR + "org/unicode/text/tools/";
+    // A set of code points that could turn out to be misinterpreted years.  We first assume that
+    // every 4-digit number is a code point, but if nothing happened to some of those, we remove
+    // the code points that are POSSIBLY_YEARS and see if the action can explain the remainder.
     // TODO(egg): Eventually this should be restricted to years near the current UTC meeting.
     private static final UnicodeSet POSSIBLY_YEARS =
             new UnicodeSet("[\u2000-\u2009\u2010-\u2019\u2020-\u2029]").freeze();
@@ -277,33 +281,46 @@ public class Ætiologer {
                 AnalyseAction(line, version, aliases, actions, l2Ref, reasons, manualReasons);
             }
         }
-        PrintStream reasonsFile;
+        writeReasonsAuto(reasons, actions);
         if (argSet.contains("--compute-unexplained")) {
-            reasonsFile = new PrintStream(new File(RESOURCES + "reasons_unknown.txt"));
-            for (final var propertyReasons : reasons.entrySet()) {
-                final var property = propertyReasons.getKey();
-                for (final var versionReasons : propertyReasons.getValue().entrySet()) {
-                    final var version = versionReasons.getKey();
-                    final var unicodeMap = versionReasons.getValue();
-                    for (final var value : unicodeMap.getAvailableValues()) {
-                        if (value == null) {
-                            continue;
-                        }
-                        if (value.isEmpty()) {
-                            reasonsFile.println(
-                                    property
-                                            + " ; "
-                                            + version.getVersionString(2, 3)
-                                            + " ; "
-                                            + unicodeMap.getSet(value)
-                                            + " ; # Yet unexplained");
-                        }
+            writeReasonsUnknown(reasons);
+        }
+        printInterestingCodePoints();
+    }
+
+    private static void writeReasonsUnknown(
+            Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> reasons)
+            throws IOException {
+        final var reasonsFile = new PrintStream(new File(RESOURCES + "reasons_unknown.txt"));
+        for (final var propertyReasons : reasons.entrySet()) {
+            final var property = propertyReasons.getKey();
+            for (final var versionReasons : propertyReasons.getValue().entrySet()) {
+                final var version = versionReasons.getKey();
+                final var unicodeMap = versionReasons.getValue();
+                for (final var value : unicodeMap.getAvailableValues()) {
+                    if (value == null) {
+                        continue;
+                    }
+                    if (value.isEmpty()) {
+                        reasonsFile.println(
+                                property
+                                        + " ; "
+                                        + version.getVersionString(2, 3)
+                                        + " ; "
+                                        + unicodeMap.getSet(value)
+                                        + " ; # Yet unexplained");
                     }
                 }
             }
-            reasonsFile.close();
         }
-        reasonsFile = new PrintStream(new File(RESOURCES + "reasons_auto.txt"));
+        reasonsFile.close();
+    }
+
+    private static void writeReasonsAuto(
+            Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> reasons,
+            Map<String, String> actions)
+            throws IOException {
+        final var reasonsFile = new PrintStream(new File(RESOURCES + "reasons_auto.txt"));
         for (final var propertyReasons : reasons.entrySet()) {
             if (propertyReasons.getValue().values().stream()
                     .flatMap(unicodeMap -> unicodeMap.getAvailableValues().stream())
@@ -353,6 +370,9 @@ public class Ætiologer {
             }
         }
         reasonsFile.close();
+    }
+
+    private static void printInterestingCodePoints() throws IOException {
         int mostDocumentedCodePoint = -1;
         int maxExplainedEvents = 0;
         int mostUniquelyDocumentedCodePoint = -1;
@@ -363,7 +383,7 @@ public class Ætiologer {
             int explainedEvents = 0;
             Set<List<String>> uniqueExplanations = new HashSet<>();
             Set<List<String>> uniqueExplanationsPostAssignment = new HashSet<>();
-            for (final var propertyReasons : reasons.entrySet()) {
+            for (final var propertyReasons : getReasons().entrySet()) {
                 final var age =
                         Age_Values.forName(
                                 IndexUnicodeProperties.make()
@@ -534,14 +554,15 @@ public class Ætiologer {
         return isReason;
     }
 
-    private static Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> reasons = null;
-
     public static Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> getReasons()
             throws IOException {
-        if (reasons == null) {
-            reasons = readReasonsFile("reasons_auto.txt");
+        class Loaded {
+            private static Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> reasons = null;
         }
-        return reasons;
+        if (Loaded.reasons == null) {
+            Loaded.reasons = readReasonsFile("reasons_auto.txt");
+        }
+        return Loaded.reasons;
     }
 
     private static Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> readReasonsFile(
