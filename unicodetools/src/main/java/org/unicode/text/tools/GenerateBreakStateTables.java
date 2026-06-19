@@ -29,7 +29,7 @@ public class GenerateBreakStateTables {
         Generate("Line", "uline", Map.of(100, "Mandatory"));
         Generate("GraphemeCluster", "char", Map.of());
         Generate("Word", "word", Map.of(100, "Number", 200, "Letter", 400, "Letter"));
-        Generate("Sentence", "sent", Map.of(100, "EOL"));
+        Generate("Sentence", "sent", Map.of(100, "Nonterminated"));
     }
 
     private static final Map<Integer, String> LINE_TAILORING_HOOKS =
