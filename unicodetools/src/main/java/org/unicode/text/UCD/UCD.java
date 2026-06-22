@@ -1359,7 +1359,7 @@ public final class UCD implements UCD_Types {
                 break;
             case SEAL_BASE:
                 if (fixStrings) {
-                    constructedName = "SEAL CHARACTER-" + Utility.hex(codePoint, 4);
+                    constructedName = "SMALL SEAL CHARACTER-" + Utility.hex(codePoint, 4);
                 }
                 isRemapped = true;
                 break;
