@@ -430,7 +430,6 @@ public final class UCA implements Comparator<String> {
             debugList.setLength(0); // clear out
         }
 
-        char weight4 = '\u0000'; // DEFAULT FOR NON_IGNORABLE
         boolean lastWasVariable = false;
 
         // process CEs, building weight strings
@@ -453,24 +452,28 @@ public final class UCA implements Comparator<String> {
                 continue;
             }
 
+            char weight4 = 0; // DEFAULT FOR NON_IGNORABLE
             switch (alternate) {
                 case SHIFTED:
                     if (CEList.getTertiary(ce) == 0) {
+                        // Tertiary ignorable = completely ignorable.
                         weight4 = 0;
                     } else if (CEList.getPrimary(ce) == MAX_LOW_SPECIAL_PRIMARY) {
                         // U+FFFE (which has a special UCA primary weight)
                         // used for "merge sort key" behavior.
                         weight4 = UCA_Types.MERGE_SEPARATOR;
                         lastWasVariable = false;
-                    } else if (isVariable(ce)) { // variables
-                        ce = 0;
+                    } else if (isVariable(ce)) {
+                        // Variable, shift primary to quaternary.
                         weight4 = CEList.getPrimary(ce);
-                        lastWasVariable = true;
-                    } else if (lastWasVariable
-                            && CEList.getPrimary(ce) == 0) { // zap trailing ignorables
                         ce = 0;
+                        lastWasVariable = true;
+                    } else if (lastWasVariable && CEList.getPrimary(ce) == 0) {
+                        // Blank out ignorable after variable.
                         weight4 = 0;
-                    } else { // not variable, or ignorable not following a variable
+                        ce = 0;
+                    } else {
+                        // Not variable, or primary/secondary ignorable not following a variable.
                         weight4 = '\uFFFF';
                         lastWasVariable = false;
                     }
