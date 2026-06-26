@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-04-29, 20:29:13 GMT
+# Date: 2026-06-22, 12:07:54 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -9394,7 +9394,7 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 31350..323AF  ; valid                      # 15.0 CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 323B0..33479  ; valid                      # 17.0 CJK UNIFIED IDEOGRAPH-323B0..CJK UNIFIED IDEOGRAPH-33479
 3347A..3CFFF  ; disallowed                 # NA   <reserved-3347A>..<reserved-3CFFF>
-3D000..3FC3F  ; valid                      # 18.0 SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
+3D000..3FC3F  ; valid                      # 18.0 SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 3FC40..3FFFD  ; disallowed                 # NA   <reserved-3FC40>..<reserved-3FFFD>
 3FFFE..3FFFF  ; disallowed                 # 2.0  <noncharacter-3FFFE>..<noncharacter-3FFFF>
 40000..4FFFD  ; disallowed                 # NA   <reserved-40000>..<reserved-4FFFD>
