@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2026-05-19, 06:51:13 GMT
+# Date: 2026-06-29, 15:12:01 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -4599,8 +4599,6 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 16D40..16D6C  ; Exclusion                      # 16.0  [45] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN SAAT
 16D6D..16D6F  ; Exclusion Not_XID              # 16.0   [3] KIRAT RAI SIGN YUPI..KIRAT RAI DOUBLE DANDA
 16D70..16D79  ; Exclusion                      # 16.0  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
-16D80..16D9D  ; Exclusion                      # 18.0  [30] CHISOI LETTER A..CHISOI SIGN SISO
-16DA0..16DA9  ; Exclusion                      # 18.0  [10] CHISOI DIGIT ZERO..CHISOI DIGIT NINE
 16E40..16E7F  ; Exclusion                      # 11.0  [64] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN SMALL LETTER Y
 16E80..16E9A  ; Exclusion Not_XID              # 11.0  [27] MEDEFAIDRIN DIGIT ZERO..MEDEFAIDRIN EXCLAMATION OH
 16EA0..16EB8  ; Exclusion                      # 17.0  [25] BERIA ERFE CAPITAL LETTER ARKAB..BERIA ERFE CAPITAL LETTER AY
@@ -5215,4 +5213,4 @@ E0001         ; Deprecated                     # 3.1        LANGUAGE TAG
 E0020..E007F  ; Default_Ignorable              # 3.1   [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Default_Ignorable              # 4.0  [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172854
+# Total code points: 172814

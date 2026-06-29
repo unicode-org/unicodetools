@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-06-22, 12:08:03 GMT 
+# Date: 2026-06-29, 15:25:13 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1747,8 +1747,6 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 16B7D..16B8F  ; Include # 7.0  [19] (𖭽..𖮏)  PAHAWH HMONG CLAN SIGN TSHEEJ..PAHAWH HMONG CLAN SIGN VWJ
 16D40..16D6D  ; Include # 16.0 [46] (𖵀..𖵭)  KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN YUPI
 16D70..16D79  ; Include # 16.0 [10] (𖵰..𖵹)  KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
-16D80..16D9D  ; Include # 18.0 [30] (𖶀..𖶝)  CHISOI LETTER A..CHISOI SIGN SISO
-16DA0..16DA9  ; Include # 18.0 [10] (𖶠..𖶩)  CHISOI DIGIT ZERO..CHISOI DIGIT NINE
 16E40..16E96  ; Include # 11.0 [87] (𖹀..𖺖)  MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN DIGIT THREE ALTERNATE FORM
 16E99..16E9A  ; Include # 11.0  [2] (𖺙..𖺚)  MEDEFAIDRIN SYMBOL AIVA..MEDEFAIDRIN EXCLAMATION OH
 16EA0..16EB8  ; Include # 17.0 [25] (𖺠..𖺸)  BERIA ERFE CAPITAL LETTER ARKAB..BERIA ERFE CAPITAL LETTER AY
@@ -2207,5 +2205,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172352
+# Total code points: 172312
 
