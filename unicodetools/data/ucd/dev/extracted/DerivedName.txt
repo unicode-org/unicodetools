@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2026-06-24, 13:39:16 GMT
+# Date: 2026-06-29, 15:25:03 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -46243,7 +46243,7 @@ FFFD          ; REPLACEMENT CHARACTER
 2F800..2FA1D  ; CJK COMPATIBILITY IDEOGRAPH-*
 30000..3134A  ; CJK UNIFIED IDEOGRAPH-*
 31350..33479  ; CJK UNIFIED IDEOGRAPH-*
-3D000..3FC3F  ; SEAL CHARACTER-*
+3D000..3FC3F  ; SMALL SEAL CHARACTER-*
 E0001         ; LANGUAGE TAG
 E0020         ; TAG SPACE
 E0021         ; TAG EXCLAMATION MARK

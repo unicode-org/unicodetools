@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-06-24, 13:39:25 GMT 
+# Date: 2026-06-29, 15:25:13 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2201,7 +2201,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 30000..3134A  ; Include # 13.0 [4939] (𰀀..𱍊)  CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Include # 15.0 [4192] (𱍐..𲎯)  CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 323B0..33479  ; Include # 17.0 [4298] (𲎰..𳑹)  CJK UNIFIED IDEOGRAPH-323B0..CJK UNIFIED IDEOGRAPH-33479
-3D000..3FC3F  ; Include # 18.0 [11328] (𽀀..𿰿)  SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
+3D000..3FC3F  ; Include # 18.0 [11328] (𽀀..𿰿)  SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
