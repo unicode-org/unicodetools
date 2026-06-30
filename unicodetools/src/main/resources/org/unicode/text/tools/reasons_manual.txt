@@ -32,7 +32,20 @@ Indic_Conjunct_Break ; 16.0 ; [\p{U16:Indic_Conjunct_Break=Extend}&\p{U16:ccc=0}
 # ], cf. L2/24-058R.
 Indic_Conjunct_Break ; 17.0 ; [\p{U17:Indic_Conjunct_Break≠@U16:Indic_Conjunct_Break@}-\p{U16:Unassigned}] ; L2/24-058R, 179-C27
 
-kMandarin ; 16.0 ; [𱍐𱍕𱍛𱏤𱰤𲄗𱎠𱎶𱎼𱏅𱏋𱏱𱤺𱐏𱐙𱐛𱐿𱑖𱓰𱔯𱕰𱖀𱖅𱖇𱖑𱖎𱖒𱖕𱖖𱖙𱖝𱖞𱖟𱖧𱖫𱖭𱖰𱖲𱖷𱖼𱖽𱗂𱗃𱗅𱗉𱗋𱗌𱗎𱗕𱗖𱗚𱗞𱗟𱗢𱗤𱘆𱘉𱘭𱘮𱘲𱙧𱚝𱚦𱚯𱚱𱛆𱛍𱛒𱛓𱛔𱛧𱛨𱛬𱛹𱛽𱜀𱜒𱜬𱝃𱝄𱝉𱤑𱝴𱞌𱞝𱟫𱠏𱠸𱢡𱣂𱣄𱣑𱣕𱣹𱣻𱤗𱤦𱤭𱥟𱥣𱥰𱥷𱦈𱧚𱧴𱨙𱨸𱩂𱩉𱩽𱪿𱬏𱭰𱮒𱮜𱮴𱮷𱮿𱯧𱰎𱰗𱰥𱰭𱰮𱱚𱱭𱱱𱲆𱲎𱳋𱳞𱳢𱳩𱳪𱳳𱴂𱴇𱴐𱴘𱴞𱴨𱴾𱵁𱶡𱶻𱸂𱸃𱸇𱸖𱸛𱸜𱸡𱸥𱸧𱹁𱹼𱺨𱺮𱻴𱼞𱼷𱽎𱽖𱽕𱾝𱾃𱾆𱾎𱾾𱿅𱽿𱿗𱿣𱿫𱿯𲀃𲀄𲀟𲀯𲁉𲁓𲂆𲂓𲂔𲂻𲄀𲄚𲄨𲅂𲆦𲆩𲆫𲆰𲆳𲆵𲇊𲇙𲇰𲈍𲈖𲈼𲉅𲉉𲉨𲊹𲊽𲋁𲋏𲋶𲌉𲌞𲌡𲌰𲍇𲍉𲍏𲍐𲍗𲍭𲍮𲍯𲍰𲍳𲍹𲍾𲍿𲎅𲎆𲎈𲎉] ; L2/24-017, 178-C23
+# [178-C22] Consensus: Accept the informative kMandarin property value additions and changes as reviewed and amended by the CLDR-TC, based on document L2/23-269 (Chen) and Section 15 of document L2/24-012, for Unicode Version 16.0.
+kMandarin ; 16.0; [𦛨] ; L2/22-018@Sat Nov 20 04:41:17 CST 2021, 170-A76, L2/23-269, 178-C22
+# Of the 249 proposed in L2/22-008, the 22 subtracted here have verdict Disagree with a recommendation to retain the existing value.
+kMandarin ; 16.0; [[㬊㴔㼆䏲䥑䶷䶹亹伣伲佴倥傀刬剌劄卓厖吖呇呒呷咇咺哒哮唛唝啥啵喔嗄嗦嗯嗲嗳嘬噱圌圫坋坻垵垺埤埫堨堲墕妧婤婼嬛嬷孅子孖孱尢峛峿崾嵴嶦帧廆彷徼忒怔憙扞拗拽掞掺摒摽擘暿杠柁柷框桔梣棓椎楪楯槭橑欸欹欻氿沤洓涴淜湑溚溹滧漴潦澎炔烻焘牚犸玚珩珲瑱甚甯甸町畬癿眄瞓砉砝硊硍硔硙硿碈碡磏穜窨綮繇纥绨绩缊罗聒肋脊脿艴芎芘苧茋茸菟菹萎萳萹著葰蓂蓇蓻蔈蕃薁藦虺螣訾诘诤谝谩豉跄跶踉蹒辗迕迹遛遢酂酢酦酾钭铍铤镦闶阆阏阘阚陂隗隺颇饧驯鲌黾龈龪龬龰龵龻鿄鿇鿌鿰鿱鿲鿳鿴鿵鿶鿷鿸鿹鿺鿻鿼鿾鿿𠃓𠬤𢵮𧰎𨞪𩷕𩹎𫇦𫰡𬉧𬎆𬵨𮧵𰀡𰀢𰁜𰃮𰥛𰯲𱆥]-[咺喔埤墕嬛孖嵴忒怔涴湑滧烻甯硔硿磏繇绨艴蓂𩹎]] ; L2/22-008, 170-A92, L2/23-269, 178-C22
+kMandarin ; 16.0; [似] ; L2/22-063@Sun Feb 13 18:30:55 CST 2022, 171-A31, L2/23-269, 178-C22
+kMandarin ; 16.0; [婥輅釓鈈鉚鉻鋨錒鍺䦟] ; L2/22-112, 172-A44, L2/23-269, 178-C22
+kMandarin ; 16.0; [㵥] ; L2/22-243@Sun Jul 31 20:08:08 CDT 2022, 173-A21, L2/23-269, 178-C22
+kMandarin ; 16.0; [𢝻] ; L2/22-243@Mon Sep 5 08:44:48 CDT 2022, 173-A32, L2/23-269, 178-C22
+# Of the 22 changes proposed in L2/22-186, 17 are rejected with a recommendation for no change.
+kMandarin ; 16.0; [[圦颪垳叺椚粂込笹杣凧鵆弖峠迚屶袰桝榁杢萢簗枠]-[凧叺圦垳屶峠弖桝椚榁粂萢袰込迚颪鵆]] ; L2/22-186, 173-A52, L2/23-269, 178-C22
+
+# [178-C23] Consensus: Accept the informative kMandarin property value additions as reviewed and amended by the CLDR-TC, based on document L2/24-017 (Chen) and Section 16 of document L2/24-012, for Unicode Version 16.0.
+# That document lists these 230 code points (that number appears in L2/22-084).
+kMandarin ; 16.0 ; [𱍐𱍕𱍛𱏤𱰤𲄗𱎠𱎶𱎼𱏅𱏋𱏱𱤺𱐏𱐙𱐛𱐿𱑖𱓰𱔯𱕰𱖀𱖅𱖇𱖑𱖎𱖒𱖕𱖖𱖙𱖝𱖞𱖟𱖧𱖫𱖭𱖰𱖲𱖷𱖼𱖽𱗂𱗃𱗅𱗉𱗋𱗌𱗎𱗕𱗖𱗚𱗞𱗟𱗢𱗤𱘆𱘉𱘭𱘮𱘲𱙧𱚝𱚦𱚯𱚱𱛆𱛍𱛒𱛓𱛔𱛧𱛨𱛬𱛹𱛽𱜀𱜒𱜬𱝃𱝄𱝉𱤑𱝴𱞌𱞝𱟫𱠏𱠸𱢡𱣂𱣄𱣑𱣕𱣹𱣻𱤗𱤦𱤭𱥟𱥣𱥰𱥷𱦈𱧚𱧴𱨙𱨸𱩂𱩉𱩽𱪿𱬏𱭰𱮒𱮜𱮴𱮷𱮿𱯧𱰎𱰗𱰥𱰭𱰮𱱚𱱭𱱱𱲆𱲎𱳋𱳞𱳢𱳩𱳪𱳳𱴂𱴇𱴐𱴘𱴞𱴨𱴾𱵁𱶡𱶻𱸂𱸃𱸇𱸖𱸛𱸜𱸡𱸥𱸧𱹁𱹼𱺨𱺮𱻴𱼞𱼷𱽎𱽖𱽕𱾝𱾃𱾆𱾎𱾾𱿅𱽿𱿗𱿣𱿫𱿯𲀃𲀄𲀟𲀯𲁉𲁓𲂆𲂓𲂔𲂻𲄀𲄚𲄨𲅂𲆦𲆩𲆫𲆰𲆳𲆵𲇊𲇙𲇰𲈍𲈖𲈼𲉅𲉉𲉨𲊹𲊽𲋁𲋏𲋶𲌉𲌞𲌡𲌰𲍇𲍉𲍏𲍐𲍗𲍭𲍮𲍯𲍰𲍳𲍹𲍾𲍿𲎅𲎆𲎈𲎉] ; L2/22-084, 171-A44, L2/24-017, 178-C23
 
 # [181-C19] Consensus: Accept the informative kMandarin property value additions as reviewed and amended by the CLDR-TC, based on document L2/24-209 (Chen) and Section 15 of document L2/24-227R, for Unicode Version 17.0.
 # L2/24-209 has 2556 entries, the giant set below.  All 2556 change kMandarin
