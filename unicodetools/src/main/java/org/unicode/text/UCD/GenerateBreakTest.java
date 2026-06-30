@@ -1652,6 +1652,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         // inside.
                         "Une nuit, —\u00A0c’est toujours la nuit dans le tombeau,\u00A0— Il s’éveilla.",
                         "Une nuit, –\u00A0c’est toujours la nuit dans le tombeau,\u00A0– Il s’éveilla.",
+                        // Regional indicator pairs with ZWJs inside the first pair and joining the
+                        // first pair to the second.  This was incorrectly segmented by ICU for many
+                        // years.
+                        "🇿\u200D🇿\u200D🇿🇿",
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
