@@ -307,7 +307,7 @@ public class Ætiologer {
                                         + " ; "
                                         + version.getVersionString(2, 3)
                                         + " ; "
-                                        + unicodeMap.getSet(value)
+                                        + unicodeMap.getSet(value).toPattern(false)
                                         + " ; # Yet unexplained");
                     }
                 }
@@ -363,7 +363,7 @@ public class Ætiologer {
                                     + " ; "
                                     + version.getVersionString(2, 3)
                                     + " ; "
-                                    + unicodeMap.getSet(value)
+                                    + unicodeMap.getSet(value).toPattern(false)
                                     + " ; "
                                     + value.stream().collect(Collectors.joining(", ")));
                 }
