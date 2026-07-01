@@ -65,9 +65,18 @@ kMandarin ; 18.0 ; [\x{2EC3D} \x{2EC3E} \x{2EC3F} \x{2EC41} \x{2EC52}] ; PRI-534
 # [187-C26] Consensus: Accept the informative kMandarin property value additions and changes as reviewed and amended by the CLDR-TC, based on document L2/26-084 (Chen) and Section 22 of document L2/26-099, for Unicode Version 18.0.
 # Action items listed in L2/26-099 Section 22.
 # L2/26-084 discusses 169 characters, provides a feedback of No Change for 33,
+# [㗑㟷了亪们侤兯吗吧呀呗呢咗唄嗎嘞壭汢爳瘩的着繨裳鞡麼𠮿𠵨𡄡𣬷𤷟𦕰𩋷], all from 179-A17,
 # and a feedback of Disagree with a proposal to keep the current value for
-# one [鐟].  An additional 5 [嗦 子 杢 枠 𦛨] already had their kMandarin value
-# changed to the proposed one in 16.0, and one [著] in 17.0.
-# The set below has 169-33-1-5-1=129 code points.
-kMandarin ; 18.0 ; [䋳 䎲 䚀 䡶 䨆 䵄 么 乛 乼 亇 伬 佦 們 匙 呚 咜 哇 哘 唥 啊 啦 嘛 噷 嚜 嚡 囎 囖 垊 垯 堏 墶 嫲 尡 嶿 巬 巭 徔 忄 怽 恷 慐 懳 扌 抣 掵 掹 揼 桲 椦 榋 橵 橺 橻 櫵 欟 氇 氞 氵 潈 澚 濹 瀮 炞 煀 煷 燝 爠 瓲 癦 硘 穃 穝 窧 笹 篒 簗 簯 籂 籖 粌 粏 紦 緕 繌 繧 缼 罀 羪 耴 脌 脦 艹 萡 蒏 蓿 螁 螩 蟐 裄 迲 酜 鉄 錻 鎆 鏱 鏲 鑦 閖 餎 饹 駍 鮘 鵤 麶 麿 𠲎 𡿪 𢣵 𣌭 𣐤 𣬶 𥝌 𥫽 𦝠 𧗈 𩾇 𮅆 𲍛 𲍭] ; L2/26-084, 187-C26
-# TODO(egg): Partition among 178-A54, 179-A8, 179-A15, 179-A17, 179-A27, 179-A38, 180-A5, 180-A6, 180-A7, 180-A13.
+# one [鐟] from 180-A13.  An additional 5 [嗦 子 杢 枠 𦛨] from 179-A17 already had
+# their kMandarin value changed to the proposed one in 16.0, and one [著] from
+# 179-A17 in 17.0.
+# The sets below total 169-33-1-5-1=129 code points.
+kMandarin ; 18.0 ; [𮅆] ; PRI-483@ID20240528204850, 180-A6, L2/26-084, 187-C26
+kMandarin ; 18.0 ; [䚀] ; PRI-483@ID20240608195107, 180-A7, L2/26-084, 187-C26
+kMandarin ; 18.0 ; [𲍛𲍭] ; PRI-483@ID20240419201558, 180-A5, L2/26-084, 187-C26
+kMandarin ; 18.0 ; [𢣵𥝌] ; PRI-483@ID20240118004124, 179-A8, L2/26-084, 187-C26
+kMandarin ; 18.0 ; [䋳䡶䨆䵄駍] ; PRI-483@ID20240219000809, 179-A15, L2/26-084, 187-C26
+kMandarin ; 18.0 ; [ [㗑㟷么乛乼了亇亪们伬佦侤們兯匙吗吧呀呗呚呢咗咜哇哘唄唥啊啦嗎嗦嘛嘞噷嚜嚡囎囖垊垯堏墶壭嫲子尡嶿巬巭徔忄怽恷慐懳扌抣掵掹揼杢枠桲椦榋橵橺橻櫵欟氇氞氵汢潈澚濹瀮炞煀煷燝爠爳瓲瘩癦的着硘穃穝窧笹篒簗簯籂籖粌粏紦緕繌繧繨缼罀羪脌脦艹萡著蒏蓿螁螩蟐裄裳迲酜錻鎆鏱鏲鑦閖鞡餎饹鮘鵤麶麼麿𠮿𠲎𠵨𡄡𣌭𣐤𣬶𣬷𤷟𥫽𦕰𦛨𧗈𩋷𩾇] - [㗑㟷了亪们侤兯吗吧呀呗呢咗唄嗎嘞壭汢爳瘩的着繨裳鞡麼𠮿𠵨𡄡𣬷𤷟𦕰𩋷] - [嗦子杢枠𦛨] - [著] ] ; PRI-483@ID20240222004423, 179-A17, L2/26-084, 187-C26
+kMandarin ; 18.0 ; [耴䎲] ; PRI-483@ID20240402063204, 179-A27, L2/26-084, 187-C26
+kMandarin ; 18.0 ; [𦝠𡿪] ; L2/24-063@ID20240112185925, 179-A38, L2/26-084, 187-C26
+kMandarin ; 18.0 ; [鉄] ; L2/24-008@ID20240107183744, 178-A54, L2/26-084, 187-C26

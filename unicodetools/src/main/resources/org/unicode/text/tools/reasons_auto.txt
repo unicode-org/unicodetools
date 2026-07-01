@@ -462,9 +462,51 @@ kMandarin ; 17.0 ; [著] ; 170-A92, L2/23-269, L2/25-029, 182-C25
 # PRI-534@ID20251209085946
 # [186-C11] Consensus: Accept the proposal to correct five informative kMandarin property values, based on PRI #534 feedback [ID20251209085946] and Section 05 of document L2/26-009, for Unicode Version 18.0.
 kMandarin ; 18.0 ; [𮰽-𮰿𮱁𮱒] ; PRI-534@ID20251209085946, 186-C11
+# PRI-483@ID20240528204850
+# [180-A6] Action Item for Sharon Chen, CJK: Ask the CLDR-TC to check the proposed kMandarin property value addition, then report back to the UTC. See PRI #483 feedback [ID20240528204850] and Section 02 of document L2/24-165.
 # L2/26-084
 # [187-C26] Consensus: Accept the informative kMandarin property value additions and changes as reviewed and amended by the CLDR-TC, based on document L2/26-084 (Chen) and Section 22 of document L2/26-099, for Unicode Version 18.0.
-kMandarin ; 18.0 ; [䋳䎲䚀䡶䨆䵄么乛乼亇伬佦們匙呚咜哇哘唥啊啦嘛噷嚜嚡囎囖垊垯堏墶嫲尡嶿巬巭徔忄怽恷慐懳扌抣掵掹揼桲椦榋橵橺橻櫵欟氇氞氵潈澚濹瀮炞煀煷燝爠瓲癦硘穃穝窧笹篒簗簯籂籖粌粏紦緕繌繧缼罀羪耴脌脦艹萡蒏蓿螁螩蟐裄迲酜鉄錻鎆鏱鏲鑦閖餎饹駍鮘鵤麶麿𠲎𡿪𢣵𣌭𣐤𣬶𥝌𥫽𦝠𧗈𩾇𮅆𲍛𲍭] ; L2/26-084, 187-C26
+kMandarin ; 18.0 ; [𮅆] ; PRI-483@ID20240528204850, 180-A6, L2/26-084, 187-C26
+# PRI-483@ID20240608195107
+# [180-A7] Action Item for Sharon Chen, CJK: Ask the CLDR-TC to check the proposed kMandarin property value addition, then report back to the UTC. See PRI #483 feedback [ID20240608195107] and Section 03 of document L2/24-165.
+# L2/26-084
+# [187-C26] Consensus: Accept the informative kMandarin property value additions and changes as reviewed and amended by the CLDR-TC, based on document L2/26-084 (Chen) and Section 22 of document L2/26-099, for Unicode Version 18.0.
+kMandarin ; 18.0 ; [䚀] ; PRI-483@ID20240608195107, 180-A7, L2/26-084, 187-C26
+# PRI-483@ID20240419201558
+# [180-A5] Action Item for Sharon Chen, CJK: Ask the CLDR-TC to check the proposed kMandarin property value addition and proposed kMandarin property value change, then report back to the UTC. See PRI #483 feedback [ID20240419201558] and Section 01 of document L2/24-165.
+# L2/26-084
+# [187-C26] Consensus: Accept the informative kMandarin property value additions and changes as reviewed and amended by the CLDR-TC, based on document L2/26-084 (Chen) and Section 22 of document L2/26-099, for Unicode Version 18.0.
+kMandarin ; 18.0 ; [𲍛𲍭] ; PRI-483@ID20240419201558, 180-A5, L2/26-084, 187-C26
+# PRI-483@ID20240118004124
+# [179-A8] Action Item for Sharon Chen, CJK: Ask the CLDR-TC to check the proposed kMandarin property value additions, then report back to the UTC. See PRI #483 feedback [ID20240118004124] and Section 01 of document L2/24-067.
+# L2/26-084
+# [187-C26] Consensus: Accept the informative kMandarin property value additions and changes as reviewed and amended by the CLDR-TC, based on document L2/26-084 (Chen) and Section 22 of document L2/26-099, for Unicode Version 18.0.
+kMandarin ; 18.0 ; [𢣵𥝌] ; PRI-483@ID20240118004124, 179-A8, L2/26-084, 187-C26
+# PRI-483@ID20240219000809
+# [179-A15] Action Item for Sharon Chen, CJK: Ask the CLDR-TC to check the proposed kMandarin property value changes, then report back to the UTC. See PRI #483 feedback [ID20240219000809] and Section 04 of document L2/24-067.
+# L2/26-084
+# [187-C26] Consensus: Accept the informative kMandarin property value additions and changes as reviewed and amended by the CLDR-TC, based on document L2/26-084 (Chen) and Section 22 of document L2/26-099, for Unicode Version 18.0.
+kMandarin ; 18.0 ; [䋳䡶䨆䵄駍] ; PRI-483@ID20240219000809, 179-A15, L2/26-084, 187-C26
+# PRI-483@ID20240222004423
+# [179-A17] Action Item for Sharon Chen, CJK: Ask the CLDR-TC to check the 152 kMandarin property values, then report back to the UTC. See PRI #483 feedback [ID20240222004423] and Section 05 of document L2/24-067.
+# L2/26-084
+# [187-C26] Consensus: Accept the informative kMandarin property value additions and changes as reviewed and amended by the CLDR-TC, based on document L2/26-084 (Chen) and Section 22 of document L2/26-099, for Unicode Version 18.0.
+kMandarin ; 18.0 ; [么乛乼亇伬佦們匙呚咜哇哘唥啊啦嘛噷嚜嚡囎囖垊垯堏墶嫲尡嶿巬巭徔忄怽恷慐懳扌抣掵掹揼桲椦榋橵橺橻櫵欟氇氞氵潈澚濹瀮炞煀煷燝爠瓲癦硘穃穝窧笹篒簗簯籂籖粌粏紦緕繌繧缼罀羪脌脦艹萡蒏蓿螁螩蟐裄迲酜錻鎆鏱鏲鑦閖餎饹鮘鵤麶麿𠲎𣌭𣐤𣬶𥫽𧗈𩾇] ; PRI-483@ID20240222004423, 179-A17, L2/26-084, 187-C26
+# PRI-483@ID20240402063204
+# [179-A27] Action Item for Sharon Chen, CJK: Ask the CLDR-TC to check the proposed kMandarin property value changes, then report back to the UTC. See PRI #483 feedback [ID20240402063204] and Section 11 of document L2/24-067.
+# L2/26-084
+# [187-C26] Consensus: Accept the informative kMandarin property value additions and changes as reviewed and amended by the CLDR-TC, based on document L2/26-084 (Chen) and Section 22 of document L2/26-099, for Unicode Version 18.0.
+kMandarin ; 18.0 ; [䎲耴] ; PRI-483@ID20240402063204, 179-A27, L2/26-084, 187-C26
+# L2/24-063@ID20240112185925
+# [179-A38] Action Item for Sharon Chen, CJK: Ask the CLDR-TC to check the proposed kMandarin property value additions, then report back to the UTC. See feedback [ID20240112185925] in document L2/24-063 and as amended in Section 16 of document L2/24-067.
+# L2/26-084
+# [187-C26] Consensus: Accept the informative kMandarin property value additions and changes as reviewed and amended by the CLDR-TC, based on document L2/26-084 (Chen) and Section 22 of document L2/26-099, for Unicode Version 18.0.
+kMandarin ; 18.0 ; [𡿪𦝠] ; L2/24-063@ID20240112185925, 179-A38, L2/26-084, 187-C26
+# L2/24-008@ID20240107183744
+# [178-A54] Action Item for Sharon Chen, CJK: Ask the CLDR-TC to check the proposed kMandarin property value change, then report back to the UTC. See feedback [ID20240107183744] in document L2/24-008 and Section 12 of document L2/24-012.
+# L2/26-084
+# [187-C26] Consensus: Accept the informative kMandarin property value additions and changes as reviewed and amended by the CLDR-TC, based on document L2/26-084 (Chen) and Section 22 of document L2/26-099, for Unicode Version 18.0.
+kMandarin ; 18.0 ; [鉄] ; L2/24-008@ID20240107183744, 178-A54, L2/26-084, 187-C26
 
 # ==========================================================
 # Documentation for changes to kRSUnicode assignments
