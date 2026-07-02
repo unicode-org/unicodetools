@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2026-07-02, 16:01:38 GMT
+# Date: 2026-07-02, 17:47:46 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -11357,6 +11357,7 @@ FF9E..FF9F    ; Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK.
 11839..1183A  ; Grapheme_Extend # Mn   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
 11878         ; Grapheme_Extend # Mn       SIRMAURI VOWEL SIGN U
 1187A..1187B  ; Grapheme_Extend # Mn   [2] SIRMAURI VOWEL SIGN E..SIRMAURI VOWEL SIGN AI
+1187C..1187D  ; Grapheme_Extend # Mc   [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
 1187E         ; Grapheme_Extend # Mn       SIRMAURI SIGN ANUSVARA
 11880..11882  ; Grapheme_Extend # Mn   [3] SIRMAURI SIGN HALANTA..SIRMAURI CONSONANT SIGN MEDIAL RA
 11930         ; Grapheme_Extend # Mc       DIVES AKURU VOWEL SIGN AA
@@ -11452,7 +11453,7 @@ FF9E..FF9F    ; Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK.
 E0020..E007F  ; Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2276
+# Total code points: 2278
 
 # ================================================
 
@@ -12917,7 +12918,6 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 11873..11874  ; Grapheme_Base # Lo   [2] SIRMAURI LETTER SA..SIRMAURI LETTER HA
 11875         ; Grapheme_Base # Mc       SIRMAURI VOWEL SIGN AA
 11877         ; Grapheme_Base # Mc       SIRMAURI VOWEL SIGN II
-1187C..1187D  ; Grapheme_Base # Mc   [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
 1187F         ; Grapheme_Base # Mc       SIRMAURI SIGN VISARGA
 11883         ; Grapheme_Base # So       SIRMAURI EKAM
 11886..1188F  ; Grapheme_Base # Nd  [10] SIRMAURI DIGIT ZERO..SIRMAURI DIGIT NINE
@@ -13291,7 +13291,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 31350..33479  ; Grapheme_Base # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Grapheme_Base # Lo [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 
-# Total code points: 170512
+# Total code points: 170510
 
 # ================================================
 
@@ -13824,6 +13824,7 @@ FF9E..FF9F    ; InCB; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HA
 11839..1183A  ; InCB; Extend # Mn   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
 11878         ; InCB; Extend # Mn       SIRMAURI VOWEL SIGN U
 1187A..1187B  ; InCB; Extend # Mn   [2] SIRMAURI VOWEL SIGN E..SIRMAURI VOWEL SIGN AI
+1187C..1187D  ; InCB; Extend # Mc   [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
 1187E         ; InCB; Extend # Mn       SIRMAURI SIGN ANUSVARA
 11880..11882  ; InCB; Extend # Mn   [3] SIRMAURI SIGN HALANTA..SIRMAURI CONSONANT SIGN MEDIAL RA
 11930         ; InCB; Extend # Mc       DIVES AKURU VOWEL SIGN AA
@@ -13917,6 +13918,6 @@ FF9E..FF9F    ; InCB; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HA
 E0020..E007F  ; InCB; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; InCB; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2261
+# Total code points: 2263
 
 # EOF

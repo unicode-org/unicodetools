@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-18.0.0.txt
-# Date: 2026-07-02, 12:04:33 GMT
+# Date: 2026-07-02, 17:47:50 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -416,6 +416,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 11839..1183A  ; Extend # Mn   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
 11878         ; Extend # Mn       SIRMAURI VOWEL SIGN U
 1187A..1187B  ; Extend # Mn   [2] SIRMAURI VOWEL SIGN E..SIRMAURI VOWEL SIGN AI
+1187C..1187D  ; Extend # Mc   [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
 1187E         ; Extend # Mn       SIRMAURI SIGN ANUSVARA
 11880..11882  ; Extend # Mn   [3] SIRMAURI SIGN HALANTA..SIRMAURI CONSONANT SIGN MEDIAL RA
 11930         ; Extend # Mc       DIVES AKURU VOWEL SIGN AA
@@ -512,7 +513,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2281
+# Total code points: 2283
 
 # ================================================
 
@@ -655,7 +656,6 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 11838         ; SpacingMark # Mc       DOGRA SIGN VISARGA
 11875         ; SpacingMark # Mc       SIRMAURI VOWEL SIGN AA
 11877         ; SpacingMark # Mc       SIRMAURI VOWEL SIGN II
-1187C..1187D  ; SpacingMark # Mc   [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
 1187F         ; SpacingMark # Mc       SIRMAURI SIGN VISARGA
 11931..11935  ; SpacingMark # Mc   [5] DIVES AKURU VOWEL SIGN I..DIVES AKURU VOWEL SIGN E
 11937..11938  ; SpacingMark # Mc   [2] DIVES AKURU VOWEL SIGN AI..DIVES AKURU VOWEL SIGN O
@@ -685,7 +685,7 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 1612A..1612C  ; SpacingMark # Mc   [3] GURUNG KHEMA CONSONANT SIGN MEDIAL YA..GURUNG KHEMA CONSONANT SIGN MEDIAL HA
 16F51..16F87  ; SpacingMark # Mc  [55] MIAO SIGN ASPIRATION..MIAO VOWEL SIGN UI
 
-# Total code points: 386
+# Total code points: 384
 
 # ================================================
 
