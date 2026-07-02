@@ -1,3 +1,17 @@
+# Indic_Positional_Category=Top
+1187E ; Top # Mn SIRMAURI SIGN ANUSVARA
+1187A..1187B ; Top # Mn [2] SIRMAURI VOWEL SIGN E..SIRMAURI VOWEL SIGN AI
+# Indic_Positional_Category=Bottom
+11878 ; Bottom # Mn SIRMAURI VOWEL SIGN U ..
+11880..11881 ; Bottom # Mn [2] SIRMAURI SIGN HALANTA..SIRMAURI SIGN NUKTA
+11882 ; Bottom # Mn SIRMAURI CONSONANT SIGN MEDIAL RA
+# Indic_Positional_Category=Right
+11875 ; Right # Mc SIRMAURI VOWEL SIGN AA
+11877 ; Right # Mc SIRMAURI VOWEL SIGN II
+1187F ; Right # Mc SIRMAURI SIGN VISARGA
+# Indic_Positional_Category=Top_And_Right
+1187C..1187D ; Top_And_Right # Mc [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
+
 # IndicPositionalCategory-18.0.0.txt
 # Date: 2026-06-24, 13:39:21 GMT
 # © 2026 Unicode®, Inc.

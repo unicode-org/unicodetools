@@ -1,3 +1,27 @@
+# Indic_Syllabic_Category=Bindu
+1187E ; Bindu # Mc SIRMAURI SIGN ANUSVARA
+# Indic_Syllabic_Category=Visarga
+1187F ; Visarga # Mc SIRMAURI SIGN VISARGA
+# Indic_Syllabic_Category=Pure_Killer
+11880 ; Pure_Killer # Mn SIRMAURI SIGN HALANTA
+# Indic_Syllabic_Category=Vowel_Independent
+11850..11853 ; Vowel_Independent # Lo [4] SIRMAURI LETTER A..SIRMAURI LETTER E
+# Indic_Syllabic_Category=Vowel_Dependent
+11875 ; Vowel_Dependent # Mc SIRMAURI VOWEL SIGN AA
+11877 ; Vowel_Dependent # Mc SIRMAURI VOWEL SIGN II
+11878 ; Vowel_Dependent # Mn SIRMAURI VOWEL SIGN U
+1187A..1187B ; Vowel_Dependent # Mn [2] SIRMAURI VOWEL SIGN E..SIRMAURI VOWEL SIGN AI
+1187C..1187D ; Vowel_Dependent # Mc [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
+# Indic_Syllabic_Category=Consonant
+11854..11857 ; Consonant # Lo [4] SIRMAURI LETTER KA..SIRMAURI LETTER GHA
+11859..1185C ; Consonant # Lo [4] SIRMAURI LETTER CA..SIRMAURI LETTER JHA
+1185E..1186F ; Consonant # Lo [18] SIRMAURI LETTER TTA..SIRMAURI LETTER LA
+11873..11874 ; Consonant # Lo [2] SIRMAURI LETTER SA..SIRMAURI LETTER HA
+# Indic_Syllabic_Category=Consonant_Medial
+11882 ; Consonant_Medial # Mn SIRMAURI CONSONANT SIGN MEDIAL RA
+# Indic_Syllabic_Category=Number
+11886..1188F ; Number # Nd [10] SIRMAURI DIGIT ZERO..SIRMAURI DIGIT NINE
+
 # IndicSyllabicCategory-18.0.0.txt
 # Date: 2026-06-24, 13:39:21 GMT
 # © 2026 Unicode®, Inc.
