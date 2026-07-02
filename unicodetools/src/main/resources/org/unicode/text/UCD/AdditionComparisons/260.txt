@@ -22,6 +22,30 @@ CorrespondTo [\N{KANNADA VOWEL SIGN O}]
           Script            (Sirmauri vs Kannada),
           Script_Extensions (Sirmauri vs Kannada)
 
+Propertywise [\N{SIRMAURI VOWEL SIGN AU}]
+           : [\N{SIRMAURI VOWEL SIGN AI}]
+           : [\N{SIRMAURI VOWEL SIGN AA}]
+           ⧴ [{\N{SIRMAURI VOWEL SIGN AI}\N{SIRMAURI VOWEL SIGN AA}}]
+CorrespondTo [\N{KANNADA VOWEL SIGN O}]
+           : [\N{KANNADA VOWEL SIGN E}]
+           : [\N{KANNADA VOWEL SIGN UU}]
+           ⧴ [{\N{KANNADA VOWEL SIGN E}\N{KANNADA VOWEL SIGN UU}}]
+    UpTo: Block             (Sirmauri vs Kannada),
+          Script            (Sirmauri vs Kannada),
+          Script_Extensions (Sirmauri vs Kannada)
+
+Propertywise [\N{SIRMAURI VOWEL SIGN II}]
+CorrespondTo [\N{DOGRA VOWEL SIGN II}]
+    UpTo: Block             (Sirmauri vs Dogra),
+          Script            (Sirmauri vs Dogra),
+          Script_Extensions (Sirmauri vs Dogra)
+
+Propertywise [\N{SIRMAURI VOWEL SIGN U}]
+CorrespondTo [\N{DOGRA VOWEL SIGN U}]
+    UpTo: Block             (Sirmauri vs Dogra),
+          Script            (Sirmauri vs Dogra),
+          Script_Extensions (Sirmauri vs Dogra)
+
 end Ignoring;
 
 end Ignoring;
