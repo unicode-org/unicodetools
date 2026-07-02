@@ -332,6 +332,7 @@ In \P{U-1:gc=Cn}, R-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
 # Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
 # This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
 In \p{dt=canonical}, (delete-adjacent-duplicates) * bc * \P{bc=NSM} * dm = bc * \P{bc=NSM}
+In \p{dt=canonical}, bc * (take 1) * dm  = bc
 
 # Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
 # This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
