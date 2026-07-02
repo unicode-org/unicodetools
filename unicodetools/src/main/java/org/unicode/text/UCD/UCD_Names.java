@@ -620,7 +620,7 @@ public final class UCD_Names implements UCD_Types {
         "Seal",
         // A future version of Unicode
         "Qaba", // "Sirmauri",
-        "Qabb", // "Leke",
+        "Leke", // "Leke",
         "Qabc", // "Mwangwego",
         "Qabd", // "Shaaldaa",
     };
