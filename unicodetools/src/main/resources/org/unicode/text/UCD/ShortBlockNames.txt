@@ -286,6 +286,7 @@ Small_Kana_Ext	;	Small_Kana_Extension
 Sogdian	;	Sogdian
 Sora_Sompeng	;	Sora_Sompeng
 Modifier_Letters	;	Spacing_Modifier_Letters
+Sirmauri	;	Sirmauri
 Soyombo	;	Soyombo
 Specials	;	Specials
 Sundanese	;	Sundanese

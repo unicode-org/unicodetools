@@ -272,6 +272,7 @@ FFF0..FFFF; Specials
 116D0..116FF; Myanmar Extended-C
 11700..1174F; Ahom
 11800..1184F; Dogra
+11850..1188F; Sirmauri
 118A0..118FF; Warang Citi
 11900..1195F; Dives Akuru
 119A0..119FF; Nandinagari
