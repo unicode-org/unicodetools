@@ -95,15 +95,17 @@ CorrespondTo [\N{KANNADA SIGN NUKTA}]
 
 Propertywise [\x{11882}\N{SIRMAURI CONSONANT SIGN MEDIAL RA}]
 CorrespondTo [\N{GURUNG KHEMA CONSONANT SIGN MEDIAL RA}]
-    UpTo: Block                     (Sirmauri vs Gurung_Khema),
-          Script                    (Sirmauri vs Gurung_Khema),
-          Script_Extensions         (Sirmauri vs Gurung_Khema)
+    UpTo: Block             (Sirmauri vs Gurung_Khema),
+          Script            (Sirmauri vs Gurung_Khema),
+          Script_Extensions (Sirmauri vs Gurung_Khema)
 
+# Not like the Bengali one, which can take a candrabindu and is thus
+# Consonant_Placeholder, see L2/12-121.
 Propertywise [\x{11883}\N{SIRMAURI EKAM}]
-CorrespondTo [\x{0980} ঀ \N{BENGALI ANJI}]
-    UpTo: Block                     (Sirmauri vs Bengali),
-          Script                    (Sirmauri vs Bengali),
-          Script_Extensions         (Sirmauri vs Bengali)
+CorrespondTo [\x{11480} 𑒀 \N{TIRHUTA ANJI}]
+    UpTo: Block             (Sirmauri vs Tirhuta),
+          Script            (Sirmauri vs Tirhuta),
+          Script_Extensions (Sirmauri vs Tirhuta)
 
 end Ignoring;
 
