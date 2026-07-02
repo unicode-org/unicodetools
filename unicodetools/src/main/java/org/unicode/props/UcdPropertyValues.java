@@ -464,6 +464,7 @@ public class UcdPropertyValues {
         Sidetic("Sidetic"),
         Sinhala("Sinhala"),
         Sinhala_Archaic_Numbers("Sinhala_Archaic_Numbers"),
+        Sirmauri("Sirmauri"),
         Small_Form_Variants("Small_Forms"),
         Small_Kana_Extension("Small_Kana_Ext"),
         Sogdian("Sogdian"),
@@ -2278,7 +2279,6 @@ public class UcdPropertyValues {
     }
 
     public enum Script_Values implements Named {
-        Sirmauri("Qaba"),
         Adlam("Adlm"),
         Caucasian_Albanian("Aghb"),
         Ahom("Ahom"),
@@ -2403,6 +2403,7 @@ public class UcdPropertyValues {
         Phoenician("Phnx"),
         Miao("Plrd"),
         Inscriptional_Parthian("Prti"),
+        Sirmauri("Qaba"),
         Rejang("Rjng"),
         Hanifi_Rohingya("Rohg"),
         Runic("Runr"),
