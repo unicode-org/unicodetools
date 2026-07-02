@@ -1,19 +1,5 @@
-# Indic_Positional_Category=Top
-1187E ; Top # Mn SIRMAURI SIGN ANUSVARA
-1187A..1187B ; Top # Mn [2] SIRMAURI VOWEL SIGN E..SIRMAURI VOWEL SIGN AI
-# Indic_Positional_Category=Bottom
-11878 ; Bottom # Mn SIRMAURI VOWEL SIGN U ..
-11880..11881 ; Bottom # Mn [2] SIRMAURI SIGN HALANTA..SIRMAURI SIGN NUKTA
-11882 ; Bottom # Mn SIRMAURI CONSONANT SIGN MEDIAL RA
-# Indic_Positional_Category=Right
-11875 ; Right # Mc SIRMAURI VOWEL SIGN AA
-11877 ; Right # Mc SIRMAURI VOWEL SIGN II
-1187F ; Right # Mc SIRMAURI SIGN VISARGA
-# Indic_Positional_Category=Top_And_Right
-1187C..1187D ; Top_And_Right # Mc [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
-
 # IndicPositionalCategory-18.0.0.txt
-# Date: 2026-06-24, 13:39:21 GMT
+# Date: 2026-07-02, 12:04:36 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -302,6 +288,9 @@ ABEC          ; Right # Mc       MEETEI MAYEK LUM IYEK
 1182C         ; Right # Mc       DOGRA VOWEL SIGN AA
 1182E         ; Right # Mc       DOGRA VOWEL SIGN II
 11838         ; Right # Mc       DOGRA SIGN VISARGA
+11875         ; Right # Mc       SIRMAURI VOWEL SIGN AA
+11877         ; Right # Mc       SIRMAURI VOWEL SIGN II
+1187F         ; Right # Mc       SIRMAURI SIGN VISARGA
 11930..11934  ; Right # Mc   [5] DIVES AKURU VOWEL SIGN AA..DIVES AKURU VOWEL SIGN UU
 1193D         ; Right # Mc       DIVES AKURU SIGN HALANTA
 11940         ; Right # Mc       DIVES AKURU MEDIAL YA
@@ -598,6 +587,8 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11727         ; Top # Mn       AHOM VOWEL SIGN AW
 11729..1172B  ; Top # Mn   [3] AHOM VOWEL SIGN AI..AHOM SIGN KILLER
 11833..11837  ; Top # Mn   [5] DOGRA VOWEL SIGN E..DOGRA SIGN ANUSVARA
+1187A..1187B  ; Top # Mn   [2] SIRMAURI VOWEL SIGN E..SIRMAURI VOWEL SIGN AI
+1187E         ; Top # Mn       SIRMAURI SIGN ANUSVARA
 1193B..1193C  ; Top # Mn   [2] DIVES AKURU SIGN ANUSVARA..DIVES AKURU SIGN CANDRABINDU
 1193F         ; Top # Lo       DIVES AKURU PREFIXED NASAL SIGN
 11941         ; Top # Lo       DIVES AKURU INITIAL RA
@@ -765,6 +756,8 @@ ABED          ; Bottom # Mn       MEETEI MAYEK APUN IYEK
 11728         ; Bottom # Mn       AHOM VOWEL SIGN O
 1182F..11832  ; Bottom # Mn   [4] DOGRA VOWEL SIGN U..DOGRA VOWEL SIGN VOCALIC RR
 11839..1183A  ; Bottom # Mn   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
+11878         ; Bottom # Mn       SIRMAURI VOWEL SIGN U
+11880..11882  ; Bottom # Mn   [3] SIRMAURI SIGN HALANTA..SIRMAURI CONSONANT SIGN MEDIAL RA
 11943         ; Bottom # Mn       DIVES AKURU SIGN NUKTA
 119D4..119D7  ; Bottom # Mn   [4] NANDINAGARI VOWEL SIGN U..NANDINAGARI VOWEL SIGN VOCALIC RR
 119E0         ; Bottom # Mn       NANDINAGARI SIGN VIRAMA
@@ -810,6 +803,7 @@ ABED          ; Bottom # Mn       MEETEI MAYEK APUN IYEK
 111BF         ; Top_And_Right # Mc       SHARADA VOWEL SIGN AU
 11232..11233  ; Top_And_Right # Mc   [2] KHOJKI VOWEL SIGN O..KHOJKI VOWEL SIGN AU
 113B9..113BA  ; Top_And_Right # Mc   [2] TULU-TIGALARI VOWEL SIGN I..TULU-TIGALARI VOWEL SIGN II
+1187C..1187D  ; Top_And_Right # Mc   [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
 
 # Indic_Positional_Category=Top_And_Left
 
