@@ -1,5 +1,5 @@
-# Spacing Candrabindu in Telugu
-# https://github.com/unicode-org/sew/issues/696
+# Telugu: SPACING CANDRABINDU (0C70)
+# https://github.com/unicode-org/utc-release-management/issues/258
 
 # Names always differ.
 # Age always differs since these tests are comparing additions to pre-existing characters.
