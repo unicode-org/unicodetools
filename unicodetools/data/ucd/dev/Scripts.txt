@@ -1,3 +1,17 @@
+11850..11857 ; Sirmauri
+11859..1185C ; Sirmauri
+1185E..1186F ; Sirmauri
+11873..11874 ; Sirmauri
+11875 ; Sirmauri
+11877 ; Sirmauri
+11878 ; Sirmauri
+1187A..1187B ; Sirmauri
+1187C..1187D ; Sirmauri
+1187E ; Sirmauri
+1187F ; Sirmauri
+11880..11882 ; Sirmauri
+11883 ; Sirmauri
+11886..1188F ; Sirmauri
 # Scripts-18.0.0.txt
 # Date: 2026-06-29, 15:25:26 GMT
 # © 2026 Unicode®, Inc.
