@@ -1,10 +1,5 @@
-1187E; Other_Alphabetic
-11875 ; Other_Alphabetic
-11877..11878 ; Other_Alphabetic
-1187A..1187D ; Other_Alphabetic
-11880 ; Diacritic
 # PropList-18.0.0.txt
-# Date: 2026-06-29, 15:25:16 GMT
+# Date: 2026-07-02, 16:01:57 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -800,6 +795,12 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1182C..1182E  ; Other_Alphabetic # Mc   [3] DOGRA VOWEL SIGN AA..DOGRA VOWEL SIGN II
 1182F..11837  ; Other_Alphabetic # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
 11838         ; Other_Alphabetic # Mc       DOGRA SIGN VISARGA
+11875         ; Other_Alphabetic # Mc       SIRMAURI VOWEL SIGN AA
+11877         ; Other_Alphabetic # Mc       SIRMAURI VOWEL SIGN II
+11878         ; Other_Alphabetic # Mn       SIRMAURI VOWEL SIGN U
+1187A..1187B  ; Other_Alphabetic # Mn   [2] SIRMAURI VOWEL SIGN E..SIRMAURI VOWEL SIGN AI
+1187C..1187D  ; Other_Alphabetic # Mc   [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
+1187E         ; Other_Alphabetic # Mn       SIRMAURI SIGN ANUSVARA
 11930..11935  ; Other_Alphabetic # Mc   [6] DIVES AKURU VOWEL SIGN AA..DIVES AKURU VOWEL SIGN E
 11937..11938  ; Other_Alphabetic # Mc   [2] DIVES AKURU VOWEL SIGN AI..DIVES AKURU VOWEL SIGN O
 1193B..1193C  ; Other_Alphabetic # Mn   [2] DIVES AKURU SIGN ANUSVARA..DIVES AKURU SIGN CANDRABINDU
@@ -879,7 +880,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1520
+# Total code points: 1528
 
 # ================================================
 
@@ -1143,6 +1144,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 116B7         ; Diacritic # Mn       TAKRI SIGN NUKTA
 1172B         ; Diacritic # Mn       AHOM SIGN KILLER
 11839..1183A  ; Diacritic # Mn   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
+11880         ; Diacritic # Mn       SIRMAURI SIGN HALANTA
 1193D         ; Diacritic # Mc       DIVES AKURU SIGN HALANTA
 1193E         ; Diacritic # Mn       DIVES AKURU VIRAMA
 11943         ; Diacritic # Mn       DIVES AKURU SIGN NUKTA
@@ -1189,7 +1191,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1334
+# Total code points: 1335
 
 # ================================================
 
