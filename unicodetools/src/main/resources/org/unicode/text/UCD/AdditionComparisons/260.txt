@@ -107,6 +107,8 @@ CorrespondTo [\x{11480} 𑒀 \N{TIRHUTA ANJI}]
           Script            (Sirmauri vs Tirhuta),
           Script_Extensions (Sirmauri vs Tirhuta)
 
+TODO(egg): Something about the numbers.
+
 end Ignoring;
 
 end Ignoring;
