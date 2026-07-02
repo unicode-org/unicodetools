@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2026-07-02, 17:57:12 GMT
+# Date: 2026-07-02, 22:09:52 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -981,7 +981,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 1187A..1187B  ; L # Mn   [2] SIRMAURI VOWEL SIGN E..SIRMAURI VOWEL SIGN AI
 1187C..1187D  ; L # Mc   [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
 1187F         ; L # Mc       SIRMAURI SIGN VISARGA
-11883         ; L # So       SIRMAURI EKAM
+11883         ; L # Lo       SIRMAURI EKAM
 11886..1188F  ; L # Nd  [10] SIRMAURI DIGIT ZERO..SIRMAURI DIGIT NINE
 118A0..118DF  ; L # L&  [64] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 118E0..118E9  ; L # Nd  [10] WARANG CITI DIGIT ZERO..WARANG CITI DIGIT NINE

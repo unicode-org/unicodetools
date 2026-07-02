@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2026-07-02, 12:04:28 GMT
+# Date: 2026-07-02, 22:09:54 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1694,7 +1694,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1187E         ; 0 # Mn       SIRMAURI SIGN ANUSVARA
 1187F         ; 0 # Mc       SIRMAURI SIGN VISARGA
 11881..11882  ; 0 # Mn   [2] SIRMAURI SIGN NUKTA..SIRMAURI CONSONANT SIGN MEDIAL RA
-11883         ; 0 # So       SIRMAURI EKAM
+11883         ; 0 # Lo       SIRMAURI EKAM
 11886..1188F  ; 0 # Nd  [10] SIRMAURI DIGIT ZERO..SIRMAURI DIGIT NINE
 118A0..118DF  ; 0 # L&  [64] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 118E0..118E9  ; 0 # Nd  [10] WARANG CITI DIGIT ZERO..WARANG CITI DIGIT NINE

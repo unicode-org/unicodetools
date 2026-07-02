@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2026-07-02, 12:04:31 GMT
+# Date: 2026-07-02, 22:10:01 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1392,7 +1392,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 11859..1185C  ; AL # Lo   [4] SIRMAURI LETTER CA..SIRMAURI LETTER JHA
 1185E..1186F  ; AL # Lo  [18] SIRMAURI LETTER TTA..SIRMAURI LETTER LA
 11873..11874  ; AL # Lo   [2] SIRMAURI LETTER SA..SIRMAURI LETTER HA
-11883         ; AL # So       SIRMAURI EKAM
+11883         ; AL # Lo       SIRMAURI EKAM
 118A0..118DF  ; AL # L&  [64] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 118EA..118F2  ; AL # No   [9] WARANG CITI NUMBER TEN..WARANG CITI NUMBER NINETY
 118FF         ; AL # Lo       WARANG CITI OM

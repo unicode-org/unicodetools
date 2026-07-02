@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2026-07-02, 12:04:55 GMT
+# Date: 2026-07-02, 22:11:04 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2035,7 +2035,7 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1187E          ; R  # Mn         SIRMAURI SIGN ANUSVARA
 1187F          ; R  # Mc         SIRMAURI SIGN VISARGA
 11880..11882   ; R  # Mn     [3] SIRMAURI SIGN HALANTA..SIRMAURI CONSONANT SIGN MEDIAL RA
-11883          ; R  # So         SIRMAURI EKAM
+11883          ; R  # Lo         SIRMAURI EKAM
 11886..1188F   ; R  # Nd    [10] SIRMAURI DIGIT ZERO..SIRMAURI DIGIT NINE
 118A0..118DF   ; R  # L&    [64] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 118E0..118E9   ; R  # Nd    [10] WARANG CITI DIGIT ZERO..WARANG CITI DIGIT NINE

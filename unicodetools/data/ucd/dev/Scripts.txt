@@ -1,5 +1,5 @@
 # Scripts-18.0.0.txt
-# Date: 2026-07-02, 12:04:53 GMT
+# Date: 2026-07-02, 22:10:59 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3242,7 +3242,7 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 1187E         ; Sirmauri # Mn       SIRMAURI SIGN ANUSVARA
 1187F         ; Sirmauri # Mc       SIRMAURI SIGN VISARGA
 11880..11882  ; Sirmauri # Mn   [3] SIRMAURI SIGN HALANTA..SIRMAURI CONSONANT SIGN MEDIAL RA
-11883         ; Sirmauri # So       SIRMAURI EKAM
+11883         ; Sirmauri # Lo       SIRMAURI EKAM
 11886..1188F  ; Sirmauri # Nd  [10] SIRMAURI DIGIT ZERO..SIRMAURI DIGIT NINE
 
 # Total code points: 55

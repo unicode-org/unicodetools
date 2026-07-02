@@ -1,5 +1,5 @@
 # LineBreak-18.0.0.txt
-# Date: 2026-07-02, 12:04:36 GMT
+# Date: 2026-07-02, 22:10:14 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3080,7 +3080,7 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 1187E          ; CM # Mn         SIRMAURI SIGN ANUSVARA
 1187F          ; CM # Mc         SIRMAURI SIGN VISARGA
 11880..11882   ; CM # Mn     [3] SIRMAURI SIGN HALANTA..SIRMAURI CONSONANT SIGN MEDIAL RA
-11883          ; AL # So         SIRMAURI EKAM
+11883          ; AL # Lo         SIRMAURI EKAM
 11886..1188F   ; NU # Nd    [10] SIRMAURI DIGIT ZERO..SIRMAURI DIGIT NINE
 118A0..118DF   ; AL # L&    [64] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 118E0..118E9   ; NU # Nd    [10] WARANG CITI DIGIT ZERO..WARANG CITI DIGIT NINE

@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-07-02, 12:04:35 GMT
+# Date: 2026-07-02, 22:10:11 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -6522,8 +6522,7 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 11876         ; disallowed                 # NA   <reserved-11876>
 11877..11878  ; valid                      # 18.0 SIRMAURI VOWEL SIGN II..SIRMAURI VOWEL SIGN U
 11879         ; disallowed                 # NA   <reserved-11879>
-1187A..11882  ; valid                      # 18.0 SIRMAURI VOWEL SIGN E..SIRMAURI CONSONANT SIGN MEDIAL RA
-11883         ; valid      ;      ; NV8    # 18.0 SIRMAURI EKAM
+1187A..11883  ; valid                      # 18.0 SIRMAURI VOWEL SIGN E..SIRMAURI EKAM
 11884..11885  ; disallowed                 # NA   <reserved-11884>..<reserved-11885>
 11886..1188F  ; valid                      # 18.0 SIRMAURI DIGIT ZERO..SIRMAURI DIGIT NINE
 11890..1189F  ; disallowed                 # NA   <reserved-11890>..<reserved-1189F>

@@ -1,5 +1,5 @@
 # WordBreakProperty-18.0.0.txt
-# Date: 2026-07-02, 12:04:56 GMT
+# Date: 2026-07-02, 22:11:04 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1235,6 +1235,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 11859..1185C  ; ALetter # Lo   [4] SIRMAURI LETTER CA..SIRMAURI LETTER JHA
 1185E..1186F  ; ALetter # Lo  [18] SIRMAURI LETTER TTA..SIRMAURI LETTER LA
 11873..11874  ; ALetter # Lo   [2] SIRMAURI LETTER SA..SIRMAURI LETTER HA
+11883         ; ALetter # Lo       SIRMAURI EKAM
 118A0..118DF  ; ALetter # L&  [64] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 118FF..11906  ; ALetter # Lo   [8] WARANG CITI OM..DIVES AKURU LETTER E
 11909         ; ALetter # Lo       DIVES AKURU LETTER O
@@ -1408,7 +1409,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 34520
+# Total code points: 34521
 
 # ================================================
 
