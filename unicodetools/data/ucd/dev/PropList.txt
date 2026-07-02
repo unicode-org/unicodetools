@@ -1,3 +1,8 @@
+1187E; Other_Alphabetic
+11875 ; Other_Alphabetic
+11877..11878 ; Other_Alphabetic
+1187A..1187D ; Other_Alphabetic
+11880 ; Diacritic
 # PropList-18.0.0.txt
 # Date: 2026-06-29, 15:25:16 GMT
 # © 2026 Unicode®, Inc.
