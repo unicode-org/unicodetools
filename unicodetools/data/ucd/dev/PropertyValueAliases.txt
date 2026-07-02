@@ -1336,6 +1336,7 @@ RI ; Y                                ; Yes                              ; T    
 
 # Script (sc)
 
+sc ; Qaba ; Sirmauri
 sc ; Adlm                             ; Adlam
 sc ; Aghb                             ; Caucasian_Albanian
 sc ; Ahom                             ; Ahom
