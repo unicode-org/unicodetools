@@ -93,6 +93,18 @@ CorrespondTo [\N{KANNADA SIGN NUKTA}]
           Script_Extensions         (Sirmauri vs Kannada),
           Canonical_Combining_Class (Not_Reordered vs Nukta)
 
+Propertywise [\x{11882}\N{SIRMAURI CONSONANT SIGN MEDIAL RA}]
+CorrespondTo [\N{GURUNG KHEMA CONSONANT SIGN MEDIAL RA}]
+    UpTo: Block                     (Sirmauri vs Gurung_Khema),
+          Script                    (Sirmauri vs Gurung_Khema),
+          Script_Extensions         (Sirmauri vs Gurung_Khema)
+
+Propertywise [\x{11883}\N{SIRMAURI EKAM}]
+CorrespondTo [\x{0980} ঀ \N{BENGALI ANJI}]
+    UpTo: Block                     (Sirmauri vs Bengali),
+          Script                    (Sirmauri vs Bengali),
+          Script_Extensions         (Sirmauri vs Bengali)
+
 end Ignoring;
 
 end Ignoring;
