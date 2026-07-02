@@ -46,6 +46,53 @@ CorrespondTo [\N{DOGRA VOWEL SIGN U}]
           Script            (Sirmauri vs Dogra),
           Script_Extensions (Sirmauri vs Dogra)
 
+Propertywise [\x{11850}-\x{11853} \N{SIRMAURI LETTER A}-\N{SIRMAURI LETTER E}]
+CorrespondTo [\N{KHUDAWADI LETTER A}]
+    UpTo: Block             (Sirmauri vs Khudawadi),
+          Script            (Sirmauri vs Khudawadi),
+          Script_Extensions (Sirmauri vs Khudawadi)
+
+Propertywise [\x{11854}-\x{11857} \N{SIRMAURI LETTER KA}-\N{SIRMAURI LETTER GHA}
+              \x{11859}-\x{1185C} \N{SIRMAURI LETTER CA}-\N{SIRMAURI LETTER JHA}
+              \x{1185E}-\x{1186F} \N{SIRMAURI LETTER TTA}-\N{SIRMAURI LETTER LA}
+              \x{11873}-\x{11874} \N{SIRMAURI LETTER SA}-\N{SIRMAURI LETTER HA}]
+CorrespondTo [\N{KHUDAWADI LETTER KA}]
+    UpTo: Block             (Sirmauri vs Khudawadi),
+          Script            (Sirmauri vs Khudawadi),
+          Script_Extensions (Sirmauri vs Khudawadi)
+
+Propertywise [\x{1187E}\N{SIRMAURI SIGN ANUSVARA}]
+CorrespondTo [\N{KHUDAWADI SIGN ANUSVARA}]
+    UpTo: Block             (Sirmauri vs Khudawadi),
+          Script            (Sirmauri vs Khudawadi),
+          Script_Extensions (Sirmauri vs Khudawadi)
+
+Propertywise [\x{1187F}\N{SIRMAURI SIGN VISARGA}]
+CorrespondTo [\N{DEVANAGARI SIGN VISARGA}]
+    UpTo: Block             (Sirmauri vs Devanagari),
+          Script            (Sirmauri vs Devanagari),
+          Script_Extensions (Sirmauri vs Devanagari)
+
+Propertywise [\x{11880}\N{SIRMAURI SIGN HALANTA}]
+CorrespondTo [\N{KHUDAWADI SIGN VIRAMA}]
+    UpTo: Block             (Sirmauri vs Khudawadi),
+          Script            (Sirmauri vs Khudawadi),
+          Script_Extensions (Sirmauri vs Khudawadi)
+
+Propertywise [\x{11881}\N{SIRMAURI SIGN NUKTA}]
+CorrespondTo [\N{KAWI SIGN NUKTA}]
+    UpTo: Block                     (Sirmauri vs Kawi),
+          Script                    (Sirmauri vs Kawi),
+          Script_Extensions         (Sirmauri vs Kawi),
+          Indic_Positional_Category (Bottom vs Top)
+
+Propertywise [\x{11881}\N{SIRMAURI SIGN NUKTA}]
+CorrespondTo [\N{KANNADA SIGN NUKTA}]
+    UpTo: Block                     (Sirmauri vs Kannada),
+          Script                    (Sirmauri vs Kannada),
+          Script_Extensions         (Sirmauri vs Kannada),
+          Canonical_Combining_Class (Not_Reordered vs Nukta)
+
 end Ignoring;
 
 end Ignoring;

@@ -1,3 +1,4 @@
+11881; Nukta
 # IndicSyllabicCategory-18.0.0.txt
 # Date: 2026-07-02, 12:04:36 GMT
 # © 2026 Unicode®, Inc.

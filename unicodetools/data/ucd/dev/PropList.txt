@@ -1,3 +1,5 @@
+1187F; Other_Alphabetic
+11881; Diacritic
 # PropList-18.0.0.txt
 # Date: 2026-07-02, 17:54:45 GMT
 # © 2026 Unicode®, Inc.
