@@ -1,5 +1,5 @@
 # EastAsianWidth-18.0.0.txt
-# Date: 2026-06-29, 15:25:05 GMT
+# Date: 2026-07-02, 10:47:39 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -507,6 +507,7 @@
 0C60..0C61     ; N  # Lo     [2] TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C62..0C63     ; N  # Mn     [2] TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
 0C66..0C6F     ; N  # Nd    [10] TELUGU DIGIT ZERO..TELUGU DIGIT NINE
+0C70           ; N  # Lo         TELUGU SIGN SPACING CANDRABINDU
 0C77           ; N  # Po         TELUGU SIGN SIDDHAM
 0C78..0C7E     ; N  # No     [7] TELUGU FRACTION DIGIT ZERO FOR ODD POWERS OF FOUR..TELUGU FRACTION DIGIT THREE FOR EVEN POWERS OF FOUR
 0C7F           ; N  # So         TELUGU SIGN TUUMU

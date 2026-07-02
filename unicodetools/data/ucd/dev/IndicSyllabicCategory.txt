@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-18.0.0.txt
-# Date: 2026-06-24, 13:39:21 GMT
+# Date: 2026-07-02, 10:47:42 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -82,6 +82,7 @@
 0C00          ; Bindu # Mn       TELUGU SIGN COMBINING CANDRABINDU ABOVE
 0C01..0C02    ; Bindu # Mc   [2] TELUGU SIGN CANDRABINDU..TELUGU SIGN ANUSVARA
 0C04          ; Bindu # Mn       TELUGU SIGN COMBINING ANUSVARA ABOVE
+0C70          ; Bindu # Lo       TELUGU SIGN SPACING CANDRABINDU
 0C80          ; Bindu # Lo       KANNADA SIGN SPACING CANDRABINDU
 0C81          ; Bindu # Mn       KANNADA SIGN CANDRABINDU
 0C82          ; Bindu # Mc       KANNADA SIGN ANUSVARA

@@ -1,5 +1,5 @@
 # LinkEmail.txt
-# Date: 2026-06-29, 15:42:39 GMT 
+# Date: 2026-07-02, 10:49:11 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -340,6 +340,7 @@
 0C60..0C61     # 1.1   [2] (ౠ..ౡ)  TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C62..0C63     # 5.1   [2] (ౢ..ౣ)  TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
 0C66..0C6F     # 1.1  [10] (౦..౯)  TELUGU DIGIT ZERO..TELUGU DIGIT NINE
+0C70           # 18.0      (౰)  TELUGU SIGN SPACING CANDRABINDU
 0C80           # 9.0       (ಀ)  KANNADA SIGN SPACING CANDRABINDU
 0C81           # 7.0       (ಁ)  KANNADA SIGN CANDRABINDU
 0C82..0C83     # 1.1   [2] (ಂ..ಃ)  KANNADA SIGN ANUSVARA..KANNADA SIGN VISARGA
@@ -1331,4 +1332,4 @@ FFDA..FFDC     # 1.1   [3] (ￚ..ￜ)  HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 3D000..3FC3F   # 18.0 [11328] (𽀀..𿰿)  SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 E0100..E01EF   # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 162100
+# Total code points: 162101

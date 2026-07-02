@@ -1,5 +1,5 @@
 # WordBreakProperty-18.0.0.txt
-# Date: 2026-06-29, 15:25:28 GMT
+# Date: 2026-07-02, 10:48:01 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -835,6 +835,7 @@ FF71..FF9D    ; Katakana # Lo  [45] HALFWIDTH KATAKANA LETTER A..HALFWIDTH KATAK
 0C58..0C5A    ; ALetter # Lo   [3] TELUGU LETTER TSA..TELUGU LETTER RRRA
 0C5C..0C5D    ; ALetter # Lo   [2] TELUGU ARCHAIC SHRII..TELUGU LETTER NAKAARA POLLU
 0C60..0C61    ; ALetter # Lo   [2] TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
+0C70          ; ALetter # Lo       TELUGU SIGN SPACING CANDRABINDU
 0C80          ; ALetter # Lo       KANNADA SIGN SPACING CANDRABINDU
 0C85..0C8C    ; ALetter # Lo   [8] KANNADA LETTER A..KANNADA LETTER VOCALIC L
 0C8E..0C90    ; ALetter # Lo   [3] KANNADA LETTER E..KANNADA LETTER AI
@@ -1396,7 +1397,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 34488
+# Total code points: 34489
 
 # ================================================
 
