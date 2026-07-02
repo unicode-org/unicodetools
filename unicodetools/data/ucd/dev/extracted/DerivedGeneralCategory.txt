@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2026-06-29, 15:25:02 GMT
+# Date: 2026-07-02, 10:47:36 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -121,7 +121,7 @@
 0C5B          ; Cn #       <reserved-0C5B>
 0C5E..0C5F    ; Cn #   [2] <reserved-0C5E>..<reserved-0C5F>
 0C64..0C65    ; Cn #   [2] <reserved-0C64>..<reserved-0C65>
-0C70..0C76    ; Cn #   [7] <reserved-0C70>..<reserved-0C76>
+0C71..0C76    ; Cn #   [6] <reserved-0C71>..<reserved-0C76>
 0C8D          ; Cn #       <reserved-0C8D>
 0C91          ; Cn #       <reserved-0C91>
 0CA9          ; Cn #       <reserved-0CA9>
@@ -751,7 +751,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801723
+# Total code points: 801722
 
 # ================================================
 
@@ -2321,6 +2321,7 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 0C58..0C5A    ; Lo #   [3] TELUGU LETTER TSA..TELUGU LETTER RRRA
 0C5C..0C5D    ; Lo #   [2] TELUGU ARCHAIC SHRII..TELUGU LETTER NAKAARA POLLU
 0C60..0C61    ; Lo #   [2] TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
+0C70          ; Lo #       TELUGU SIGN SPACING CANDRABINDU
 0C80          ; Lo #       KANNADA SIGN SPACING CANDRABINDU
 0C85..0C8C    ; Lo #   [8] KANNADA LETTER A..KANNADA LETTER VOCALIC L
 0C8E..0C90    ; Lo #   [3] KANNADA LETTER E..KANNADA LETTER AI
@@ -2774,7 +2775,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 31350..33479  ; Lo # [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Lo # [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 
-# Total code points: 153396
+# Total code points: 153397
 
 # ================================================
 

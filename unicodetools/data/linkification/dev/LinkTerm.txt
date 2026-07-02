@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-06-29, 15:25:13 GMT 
+# Date: 2026-07-02, 10:49:11 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -644,6 +644,7 @@ FF62          ; Open    # 1.1       (｢)  HALFWIDTH LEFT CORNER BRACKET
 0C60..0C61    ; Include # 1.1   [2] (ౠ..ౡ)  TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C62..0C63    ; Include # 5.1   [2] (ౢ..ౣ)  TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
 0C66..0C6F    ; Include # 1.1  [10] (౦..౯)  TELUGU DIGIT ZERO..TELUGU DIGIT NINE
+0C70          ; Include # 18.0      (౰)  TELUGU SIGN SPACING CANDRABINDU
 0C77          ; Include # 12.0      (౷)  TELUGU SIGN SIDDHAM
 0C78..0C7F    ; Include # 5.1   [8] (౸..౿)  TELUGU FRACTION DIGIT ZERO FOR ODD POWERS OF FOUR..TELUGU SIGN TUUMU
 0C80          ; Include # 9.0       (ಀ)  KANNADA SIGN SPACING CANDRABINDU
@@ -2205,5 +2206,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172312
+# Total code points: 172313
 

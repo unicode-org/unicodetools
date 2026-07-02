@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-06-29, 15:25:07 GMT
+# Date: 2026-07-02, 10:47:41 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1249,7 +1249,8 @@
 0C62..0C63    ; valid                      # 5.1  TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
 0C64..0C65    ; disallowed                 # NA   <reserved-0C64>..<reserved-0C65>
 0C66..0C6F    ; valid                      # 1.1  TELUGU DIGIT ZERO..TELUGU DIGIT NINE
-0C70..0C76    ; disallowed                 # NA   <reserved-0C70>..<reserved-0C76>
+0C70          ; valid                      # 18.0 TELUGU SIGN SPACING CANDRABINDU
+0C71..0C76    ; disallowed                 # NA   <reserved-0C71>..<reserved-0C76>
 0C77          ; valid      ;      ; NV8    # 12.0 TELUGU SIGN SIDDHAM
 0C78..0C7F    ; valid      ;      ; NV8    # 5.1  TELUGU FRACTION DIGIT ZERO FOR ODD POWERS OF FOUR..TELUGU SIGN TUUMU
 0C80          ; valid                      # 9.0  KANNADA SIGN SPACING CANDRABINDU
