@@ -1034,6 +1034,10 @@ public class TestProperties extends TestFmwkMinusMinus {
 
     @Test
     public void TestVowelCarrierInSc() {
+        // If a script has a single independent vowel character which is the inherent vowel, with
+        // all other independent vowels formed by sticking dependent vowels on it, that independent
+        // vowel is treated as a (null) consonant.
+        // See L2/24-203 and 181-C44.
         final var inSC = iup.getProperty(UcdProperty.Indic_Syllabic_Category);
         final var inSCVowelIndependent =
                 inSC.getSet(UcdPropertyValues.Indic_Syllabic_Category_Values.Vowel_Independent);
@@ -1045,7 +1049,7 @@ public class TestProperties extends TestFmwkMinusMinus {
                             + independentVowels
                             + " of independent vowels in "
                             + script
-                            + " must not have size 1",
+                            + " must not have size 1, see L2/24-203",
                     independentVowels.size(),
                     1);
         }
