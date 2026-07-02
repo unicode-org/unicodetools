@@ -910,6 +910,11 @@ Script_Extensions ; 18.0 ; [ᳵᳶ] ; 187-A35, 186-A48
 # Documentation for changes to Bidi_Class assignments
 # ==========================================================
 
+# Bidi_Class assignment changes in Unicode Version 4.0
+# [93-A70] Action Item for Ken Whistler: Change the bidi property of code points U+0CBF and U+0CC6 from NSM to L in Unicode data for Unicode 4.0. [L2/02-194]
+# [93-C25] Consensus: Change the bidi property of code points U+0CBF and U+0CC6 from NSM to L. [L2/02-194]
+Bidi_Class ; 4.0 ; [ಿೆ] ; 93-A70, 93-C25
+
 # Bidi_Class assignment changes in Unicode Version 4.0.1
 # [98-A89] Action Item for Ken Whistler, Mark Davis: Make the required changes in the data file to change bidi class of fraction slash U+2044 fraction slash from ON to CS and change the following 3 characters: U+002B PLUS SIGN to ES, U+002D HYPHEN-MINUS to ES, U+002F SOLIDUS to CS respectively; for Unicode 4.0.1. [L2/04-049R]
 Bidi_Class ; 4.0.1 ; [+\-/⁄] ; 98-A89
@@ -953,6 +958,10 @@ Bidi_Class ; 6.3 ; [₻-⃏] ; 133-C26
 # [134-C4] Consensus: Change the general category and bidi class of U+1A1B BUGINESE VOWEL SIGN AE to "Mn" and "NSM", for Unicode 6.3. [L2/12-341]
 # [134-A10] Action Item for Ken Whistler: Update the general category and bidi class of U+1A1B BUGINESE VOWEL SIGN AE to "Mn" and "NSM" in UnicodeData.txt for Unicode 6.3. [L2/12-341]
 Bidi_Class ; 6.3 ; [ᨛ] ; 134-C4, 134-A10
+
+# Bidi_Class assignment changes in Unicode Version 7.0
+# [138-C4] Consensus: Change the general category of U+1BAC and U+1BAD from Mc to Mn and the bidi property from L to NSM, for Unicode 7.0.
+Bidi_Class ; 7.0 ; [ᮬᮭ] ; 138-C4
 
 # Bidi_Class assignment changes in Unicode Version 15.0
 # [171-C23] Consensus: Change the Bidi_Class for U+13440 EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY from L to NSM in Unicode version 15.0 (Reference: section 16 of L2/22-068)
