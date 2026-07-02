@@ -1031,4 +1031,23 @@ public class TestProperties extends TestFmwkMinusMinus {
             logln(age + ", gc:N-nt" + diff);
         }
     }
+
+    @Test
+    public void TestVowelCarrierInSc() {
+        final var inSC = iup.getProperty(UcdProperty.Indic_Syllabic_Category);
+        final var inSCVowelIndependent =
+                inSC.getSet(UcdPropertyValues.Indic_Syllabic_Category_Values.Vowel_Independent);
+        final var sc = iup.getProperty(UcdProperty.Script);
+        for (final var script : UcdPropertyValues.Script_Values.values()) {
+            final var independentVowels = sc.getSet(script).retainAll(inSCVowelIndependent);
+            assertNotEquals(
+                    "The set "
+                            + independentVowels
+                            + " of independent vowels in "
+                            + script
+                            + " must not have size 1",
+                    independentVowels.size(),
+                    1);
+        }
+    }
 }
