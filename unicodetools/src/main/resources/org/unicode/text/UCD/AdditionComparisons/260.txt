@@ -107,7 +107,13 @@ CorrespondTo [\x{11480} 𑒀 \N{TIRHUTA ANJI}]
           Script            (Sirmauri vs Tirhuta),
           Script_Extensions (Sirmauri vs Tirhuta)
 
-TODO(egg): Something about the numbers.
+Propertywise [\x{11886}-\x{1188F} \N{SIRMAURI DIGIT ZERO}-\N{SIRMAURI DIGIT NINE}]
+           ⧴ [0-9]
+CorrespondTo [\x{116C0} \N{TAKRI DIGIT ZERO}]
+           ⧴ [0]
+    UpTo: Block             (Sirmauri vs Takri),
+          Script            (Sirmauri vs Takri),
+          Script_Extensions (Sirmauri vs Takri)
 
 end Ignoring;
 
