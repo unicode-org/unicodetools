@@ -398,7 +398,7 @@ Let $BN_Exceptions := [\u001C-\u001F\u17B4\u17B5]
 ]
 
 # Nonspacing and enclosing combining marks are bc=NSM, with a few exceptions (all of which are nonspacing)
-Let $gcMn_bcL := [\u0CBF\u0CC6\U00011A07\U00011A08\U00011C3F\u1B42\u1B3C\u1B3A]
+Let $gcMn_bcL := [\u0CBF\u0CC6\U00011A07\U00011A08\U00011C3F\u1B42\u1B3C\u1B3A\U0001187A\U0001187B]
 \p{bc=NSM} = [\p{gc=Mn} \p{gc=Me} - $gcMn_bcL]
 
 ##########################

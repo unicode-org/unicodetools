@@ -87,10 +87,10 @@ CorrespondTo [\N{KAWI SIGN NUKTA}]
           Indic_Positional_Category (Bottom vs Top)
 
 Propertywise [\x{11881}\N{SIRMAURI SIGN NUKTA}]
-CorrespondTo [\N{KANNADA SIGN NUKTA}]
-    UpTo: Block                     (Sirmauri vs Kannada),
-          Script                    (Sirmauri vs Kannada),
-          Script_Extensions         (Sirmauri vs Kannada),
+CorrespondTo [\N{KHUDAWADI SIGN NUKTA}]
+    UpTo: Block                     (Sirmauri vs Khudawadi),
+          Script                    (Sirmauri vs Khudawadi),
+          Script_Extensions         (Sirmauri vs Khudawadi),
           Canonical_Combining_Class (Not_Reordered vs Nukta)
 
 Propertywise [\x{11882}\N{SIRMAURI CONSONANT SIGN MEDIAL RA}]
