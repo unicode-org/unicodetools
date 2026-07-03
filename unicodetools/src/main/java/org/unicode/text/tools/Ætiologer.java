@@ -475,10 +475,12 @@ public class Ætiologer {
         }
         // Find mentions of "general category" for General_Category, "linebreak class" or "line
         // break class" for Line_Break, etc.
+        // Also allow "bidi property" for "bidi class".
         for (final var alias : aliases) {
             if (alias.contains("_")
                     && line.toLowerCase()
                             .replace(" ", "")
+                            .replace("bidiproperty", "bidiclass")
                             .contains(alias.toLowerCase().replace("_", ""))) {
                 candidateProperties.add(UcdProperty.forString(alias));
             }
