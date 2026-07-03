@@ -1,5 +1,5 @@
 # NormalizationTest-18.0.0.txt
-# Date: 2026-07-03, 09:55:57 GMT
+# Date: 2026-07-03, 10:14:14 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -15240,6 +15240,8 @@ FFEE;FFEE;FFEE;25CB;25CB; # (￮; ￮; ￮; ○; ○; ) HALFWIDTH WHITE CIRCLE
 114BE;114BE;114B9 114BD;114BE;114B9 114BD; # (𑒾; 𑒾; 𑒾; 𑒾; 𑒾; ) TIRHUTA VOWEL SIGN AU
 115BA;115BA;115B8 115AF;115BA;115B8 115AF; # (𑖺; 𑖺; 𑖺; 𑖺; 𑖺; ) SIDDHAM VOWEL SIGN O
 115BB;115BB;115B9 115AF;115BB;115B9 115AF; # (𑖻; 𑖻; 𑖻; 𑖻; 𑖻; ) SIDDHAM VOWEL SIGN AU
+1187C;1187C;1187A 11875;1187C;1187A 11875; # (𑡼; 𑡼; ◌𑡺𑡵; 𑡼; ◌𑡺𑡵; ) SIRMAURI VOWEL SIGN O
+1187D;1187D;1187B 11875;1187D;1187B 11875; # (𑡽; 𑡽; ◌𑡻𑡵; 𑡽; ◌𑡻𑡵; ) SIRMAURI VOWEL SIGN AU
 11938;11938;11935 11930;11938;11935 11930; # (𑤸; 𑤸; 𑤸; 𑤸; 𑤸; ) DIVES AKURU VOWEL SIGN O
 16121;16121;1611E 1611E;16121;1611E 1611E; # (◌𖄡; ◌𖄡; ◌𖄞◌𖄞; ◌𖄡; ◌𖄞◌𖄞; ) GURUNG KHEMA VOWEL SIGN U
 16122;16122;1611E 16129;16122;1611E 16129; # (◌𖄢; ◌𖄢; ◌𖄞◌𖄩; ◌𖄢; ◌𖄞◌𖄩; ) GURUNG KHEMA VOWEL SIGN UU
