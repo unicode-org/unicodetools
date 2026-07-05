@@ -416,6 +416,7 @@ Bidi_Class ; 10.0 ; [࡫-࡯] ; # Yet unexplained
 Bidi_Class ; 11.0 ; [𐴨-𐴯𐴺-𐴿𐽚-𐽯𑇉𞱰𞲵-𞲿] ; # Yet unexplained
 Bidi_Class ; 12.0 ; [ꦽ𞴀𞴾-𞵏] ; # Yet unexplained
 Bidi_Class ; 14.0 ; [࢏࢒-᜴ࢗ] ; # Yet unexplained
+Bidi_Class ; 18.0 ; [ᬺᬼᭂ] ; # Yet unexplained
 Canonical_Combining_Class ; 1.1 ; [Ͱ-Ͳ΄΅׵ဦ-ဪီူံ့ျွှ။၌] ; # Yet unexplained
 Canonical_Combining_Class ; 2.0 ; [ۖ-ۜ۟-۪ۤۧۨ-ۭୖ๎] ; # Yet unexplained
 Canonical_Combining_Class ; 2.1.2 ; [ཱ] ; # Yet unexplained
@@ -449,7 +450,6 @@ General_Category ; 5.1 ; [ʹ־ꠂ] ; # Yet unexplained
 General_Category ; 6.1 ; [§¶༔፠ᵢ-ᵪⱼ𐄂] ; # Yet unexplained
 General_Category ; 8.0 ; [Ꭰ-Ᏼ] ; # Yet unexplained
 General_Category ; 11.0 ; [ა-ჺჽ-ჿ𑇉𑨇𑨈] ; # Yet unexplained
-General_Category ; 17.0 ; [ʕ] ; # Yet unexplained
 Grapheme_Cluster_Break ; 5.1 ; [ःा-ीॉ-ौংঃিীেৈোৌਃਾ-ੀઃા-ીૉોૌଂଃୀେୈୋୌிுூெ-ைொ-ௌఁ-ఃు-ౄಂಃಾೀುೃೄೇೈೊೋംഃിീെ-ൈൊ-ൌංඃැෑෘ-ෞෲෳะาำเ-ๅະາຳເ-ໄ༾༿ཿာေးၖၗាើ-ៅះៈᤣ-ᤦᤩ-ᤫᤰᤱᤳ-ᤸᦰ-ᧀᧈᧉᨙ-ᨛᬄᬵᬻᬽ-ᭁᭃ᭄ꠂꠣꠤꠧﾞﾟ𝅦𝅭] ; # Yet unexplained
 Grapheme_Cluster_Break ; 6.0 ; [۞ะาำๅະາຳ] ; # Yet unexplained
 Grapheme_Cluster_Break ; 6.1 ; [ะาเ-ๅະາເ-ໄါားၢ-ၤၧ-ၭႃႇ-ႌႏႚ-ႜ឴឵ᦰ-ᦴᦸᦹᦻ-ᧀᧈᧉᩡᩣᩤ⁥-⁩ꩻꪵꪶꪹꪻꪼ\uD800-\uDFFF￰-￸󠀀󠀂-󠀟󠂀-󠃿󠇰-󠿿] ; # Yet unexplained
@@ -495,6 +495,7 @@ Indic_Syllabic_Category ; 10.0 ; [ᩗᩛ-ᩞᩴ᩺ꣲꣳ𑍞𑍟] ; # Yet unexpl
 Indic_Syllabic_Category ; 11.0 ; [ঀੑ။𑇉] ; # Yet unexplained
 Indic_Syllabic_Category ; 12.0 ; [ಀ᧚ᳲᳳ⃰ꠂ] ; # Yet unexplained
 Indic_Syllabic_Category ; 15.0 ; [ૻ] ; # Yet unexplained
+Indic_Syllabic_Category ; 18.0 ; [𖄀] ; # Yet unexplained
 Joining_Group ; 3.0 ; [ئب-خرزفكهىيٸ-ڇڑ-ڙڡ-ڦڪڬ-ڮھۀ-ۃی-ێې-ۓ] ; # Yet unexplained
 Joining_Group ; 3.0.1 ; [ٱ] ; # Yet unexplained
 Joining_Group ; 3.1.1 ; [ە] ; # Yet unexplained
@@ -563,7 +564,6 @@ Sentence_Break ; 12.0 ; [ა-ჺჽ-ჿᲐ-ᲺᲽ-Ჿᳲᳳ] ; # Yet unexplained
 Sentence_Break ; 15.0 ; [ჼꟲ-ꟴꭩ] ; # Yet unexplained
 Sentence_Break ; 15.1 ; [؀-؅۝࢐࢑࣢𑂽𑃍] ; # Yet unexplained
 Sentence_Break ; 16.0 ; [;;᧚⳹-⳻︒︔-︖﹔；] ; # Yet unexplained
-Sentence_Break ; 17.0 ; [ʕ] ; # Yet unexplained
 Vertical_Orientation ; 10.0 ; [𑩈-𑩏𑪄𑪅𑪝𑪣-𑪯𛄟-𛄯𛋼-𛋿] ; # Yet unexplained
 Vertical_Orientation ; 11.0 ; [𝋴-𝋿🨀-🩟🩮🩯] ; # Yet unexplained
 Vertical_Orientation ; 12.0 ; [𓐹-𓐿𛄰-𛅏𛅓-𛅣𛅨-𛅯🩴-🩷🩻-🩿🪃-🪏🪖-🪟] ; # Yet unexplained
@@ -616,7 +616,6 @@ Cased ; 6.1 ; [ⁱⁿₕ-ₜ] ; # Yet unexplained
 Cased ; 7.0 ; [🄰-🅉🅐-🅩🅰-🆉] ; # Yet unexplained
 Cased ; 8.0 ; [Ꭰ-Ᏼ] ; # Yet unexplained
 Cased ; 11.0 ; [ა-ჺჽ-ჿ] ; # Yet unexplained
-Cased ; 17.0 ; [ʕ] ; # Yet unexplained
 Changes_When_Casemapped ; 6.0 ; [ɥ] ; # Yet unexplained
 Changes_When_Casemapped ; 6.1 ; [ɦ] ; # Yet unexplained
 Changes_When_Casemapped ; 7.0 ; [ɜɡɬʇʞϳ] ; # Yet unexplained
@@ -726,7 +725,6 @@ Lowercase ; 5.2 ; [ⁱⁿ] ; # Yet unexplained
 Lowercase ; 6.1 ; [ⁱⁿₕ-ₜ] ; # Yet unexplained
 Lowercase ; 11.0 ; [ა-ჺჽ-ჿ] ; # Yet unexplained
 Lowercase ; 15.0 ; [ჼꟲ-ꟴꭩ] ; # Yet unexplained
-Lowercase ; 17.0 ; [ʕ] ; # Yet unexplained
 Math ; 3.0 ; [↚↛↠↣↦↮⇎⇏▷◁♯《》〚〛] ; # Yet unexplained
 Math ; 3.1 ; [ℂℊ-ℓℕℙ-ℝℤℨℬℭℯ-ℱℳ-ℸ] ; # Yet unexplained
 Math ; 3.2 ; [〈〉《》〚〛] ; # Yet unexplained
