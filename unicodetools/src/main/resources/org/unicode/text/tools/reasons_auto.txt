@@ -1154,6 +1154,9 @@ General_Category ; 16.0 ; [𐵎] ; 177-N10
 General_Category ; 16.0 ; [🣀🣁] ; 176-C36
 
 # General_Category assignment changes in Unicode Version 17.0
+# L2/23-219
+# [177-C20] Consensus: Provisionally assign 2 codepoints U+A7CE LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE and U+A7CF LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIVE and change the general category of U+0295 LATIN LETTER PHARYNGEAL VOICED FRICATIVE from Ll to Lo, for a future version of the standard. (Ref. L2/23-219 and Section 2b of L2/23-238)
+General_Category ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
 # [180-N3] Note: The provisionally assigned characters U+16FF2 CHINESE SMALL SIMPLIFIED ER and U+16FF3 CHINESE SMALL TRADITIONAL ER will have General_Category Modifier_Letter (Lm).
 General_Category ; 17.0 ; [𖿲𖿳] ; 180-N3
 # [180-N4] Note: U+16FF4, U+16FF5, and U+16FF6 will have General_Category Letter_Number (Nl).
@@ -1571,6 +1574,11 @@ Sentence_Break ; 12.0 ; [０-９] ; 158-C2, 158-A7
 # [175-A75] Action Item for Josh Hadley, PAG: Add U+17D4 KHMER SIGN KHAN & U+17D5 KHMER SIGN BARIYOOSAN to Sentence_Terminal and Sentence_Break=STerm, for Unicode 15.1.
 Sentence_Break ; 15.1 ; [។៕] ; 175-C25, 175-A75
 
+# Sentence_Break assignment changes in Unicode Version 17.0
+# L2/23-219
+# [177-C20] Consensus: Provisionally assign 2 codepoints U+A7CE LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE and U+A7CF LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIVE and change the general category of U+0295 LATIN LETTER PHARYNGEAL VOICED FRICATIVE from Ll to Lo, for a future version of the standard. (Ref. L2/23-219 and Section 2b of L2/23-238)
+Sentence_Break ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
+
 # ==========================================================
 # Documentation for changes to Vertical_Orientation assignments
 # ==========================================================
@@ -1706,6 +1714,11 @@ Bidi_Mirrored ; 16.0 ; [≭] ; 178-C34, 178-A89
 Cased ; 15.0 ; [𞁭] ; 172-A58
 # [172-A59] Action Item for Markus Scherer, PAG: Give the Other_Lowercase property (and thus also Cased) to the modifier letters U+10FC and U+A7F2..A7F4 and U+AB69, for Unicode Version 15.0. See L2/22-124 item UCD4.
 Cased ; 15.0 ; [ჼꟲ-ꟴꭩ] ; 172-A59
+
+# Cased assignment changes in Unicode Version 17.0
+# L2/23-219
+# [177-C20] Consensus: Provisionally assign 2 codepoints U+A7CE LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE and U+A7CF LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIVE and change the general category of U+0295 LATIN LETTER PHARYNGEAL VOICED FRICATIVE from Ll to Lo, for a future version of the standard. (Ref. L2/23-219 and Section 2b of L2/23-238)
+Cased ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
 
 # ==========================================================
 # Documentation for changes to Dash assignments
@@ -1846,6 +1859,15 @@ ID_Start ; 4.0 ; [℘℮゛゜] ; 92-C29
 # Logical_Order_Exception assignment changes in Unicode Version 8.0
 # [141-A69a] Action Item for Mark Davis: Update PropList.txt to give U+19B5..U+19B7 and U+19BA the property Logical_Order_Exception=Y. For Unicode 8.0.
 Logical_Order_Exception ; 8.0 ; [ᦵ-ᦷᦺ] ; 141-A69a
+
+# ==========================================================
+# Documentation for changes to Lowercase assignments
+# ==========================================================
+
+# Lowercase assignment changes in Unicode Version 17.0
+# L2/23-219
+# [177-C20] Consensus: Provisionally assign 2 codepoints U+A7CE LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE and U+A7CF LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIVE and change the general category of U+0295 LATIN LETTER PHARYNGEAL VOICED FRICATIVE from Ll to Lo, for a future version of the standard. (Ref. L2/23-219 and Section 2b of L2/23-238)
+Lowercase ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
 
 # ==========================================================
 # Documentation for changes to Math assignments

@@ -11,6 +11,12 @@ East_Asian_Width ; 6.2 ; [[\u11A3-\u11A7\u11FA-\u11FF\uD7B0-\uD7FB]-[\uD7C7-\uD7
 # [181-C53] Consensus: Add a new Line_Break property value Unambiguous_Hyphen (short alias: HH) and assign this value to the eleven characters that have General_Category=Pd and Line_Break=Break_After in Unicode Version 16.0, listed below. Amend rules LB12a and LB21 of the Unicode Line Breaking Algorithm to treat HH like BA, and amend rules LB20a and LB21a to refer to the set of characters with lb=HH instead of singling out a single character or doing set arithmetic on the set of characters with lb=BA. In addition, amend rule LB20a to treat HL like AL. See L2/24-224 item 6.1. For Unicode Version 17.0.
 Line_Break ; 17.0 ; \p{U17:lb=HH} ; L2/24-224, 181-C53
 
+# [177-C20] Consensus: Provisionally assign 2 codepoints U+A7CE LATIN CAPITAL LETTER PHARYNGEAL VOICED FRICATIVE and U+A7CF LATIN SMALL LETTER PHARYNGEAL VOICED FRICATIVE and change the general category of U+0295 LATIN LETTER PHARYNGEAL VOICED FRICATIVE from Ll to Lo, for a future version of the standard. (Ref. L2/23-219 and Section 2b of L2/23-238)
+General_Category ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
+Cased            ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
+Lowercase        ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
+Sentence_Break   ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
+
 # [179-C26] Consensus: Change the derivation of Indic_Conjunct_Break = Extend to exclude only those characters that are Indic_Conjunct_Break=Linker or Indic_Conjunct_Break=Consonant from the set of nonstarters with Grapheme_Cluster_Break=Extend. For Unicode Version 16.0. See document L2/24-064 item 5.3.
 # [179-A99] Action Item for Ken Whistler, PAG: Change the statement of the derivation of Indic_Conjunct_Break = Extend in UAX #44 to exclude only those characters that are Indic_Conjunct_Break=Linker or Indic_Conjunct_Break=Consonant from the set of nonstarters with Grapheme_Cluster_Break=Extend. For Unicode Version 16.0. See document L2/24-064 item 5.3.
 # [179-A100] Action Item for Robin Leroy, PAG: In DerivedCoreProperties.txt, update the Indic_Conjunct_Break assignments according to the corrected derivation. For Unicode Version 16.0. See document L2/24-064 item 5.3.
