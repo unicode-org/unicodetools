@@ -1,3 +1,4 @@
+1DC00..1DC35 ; Common
 # Scripts-18.0.0.txt
 # Date: 2026-06-29, 15:25:26 GMT
 # © 2026 Unicode®, Inc.
