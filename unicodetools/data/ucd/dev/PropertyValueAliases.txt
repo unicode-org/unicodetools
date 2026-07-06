@@ -1,5 +1,5 @@
 # PropertyValueAliases-18.0.0.txt
-# Date: 2026-06-24, 13:39:29 GMT
+# Date: 2026-07-06, 11:19:34 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -334,6 +334,7 @@ blk; Latin_Ext_D                      ; Latin_Extended_D
 blk; Latin_Ext_E                      ; Latin_Extended_E
 blk; Latin_Ext_F                      ; Latin_Extended_F
 blk; Latin_Ext_G                      ; Latin_Extended_G
+blk; Leibnizian_Ambiguous_Signs       ; Leibnizian_Ambiguous_Signs
 blk; Lepcha                           ; Lepcha
 blk; Letterlike_Symbols               ; Letterlike_Symbols
 blk; Limbu                            ; Limbu
