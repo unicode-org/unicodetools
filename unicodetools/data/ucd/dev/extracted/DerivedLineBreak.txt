@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2026-06-29, 15:25:03 GMT
+# Date: 2026-07-06, 11:56:16 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,8 +71,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 755534 code points not listed here.
-# Total code points: 893002
+# The above property value applies to 755480 code points not listed here.
+# Total code points: 892948
 
 # ================================================
 
@@ -448,10 +448,11 @@ FE69          ; PR # Sc       SMALL DOLLAR SIGN
 FF04          ; PR # Sc       FULLWIDTH DOLLAR SIGN
 FFE1          ; PR # Sc       FULLWIDTH POUND SIGN
 FFE5..FFE6    ; PR # Sc   [2] FULLWIDTH YEN SIGN..FULLWIDTH WON SIGN
+1DC00..1DC35  ; PR # Sm  [54] LEIBNIZIAN SYSTEM ONE AND TWO PLUS-MINUS AMBIGUOUS SIGN..LEIBNIZIAN SYSTEM FIVE-FOUR MINUS OR MINUS-PLUS AMBIGUOUS SIGN
 1E2FF         ; PR # Sc       WANCHO NGUN SIGN
 
 # The above property value applies to 11 code points not listed here.
-# Total code points: 67
+# Total code points: 121
 
 # ================================================
 
