@@ -13,6 +13,16 @@ Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping 
 Ignoring Math_Entity_Name Math_Entity_Set Math_Class Math_Class_Ex:
 Ignoring Block Pattern_Syntax:
 
+Ignoring Unicode_1_Name:
+Propertywise [
+    \x{1DC00}-\x{1DC35}
+    \N{LEIBNIZIAN SYSTEM ONE AND TWO PLUS-MINUS AMBIGUOUS SIGN}-\N{LEIBNIZIAN SYSTEM FIVE-FOUR MINUS OR MINUS-PLUS AMBIGUOUS SIGN}]
+CorrespondTo [\x{00B1} ± \N{PLUS-MINUS SIGN}]
+    UpTo: Bidi_Class           (European_Separator vs European_Terminator),
+          East_Asian_Width     (Neutral            vs Ambiguous),
+          Vertical_Orientation (Rotated            vs Upright)
+end Ignoring;
+
 Propertywise [
     \x{1DC00}-\x{1DC35}
     \N{LEIBNIZIAN SYSTEM ONE AND TWO PLUS-MINUS AMBIGUOUS SIGN}-\N{LEIBNIZIAN SYSTEM FIVE-FOUR MINUS OR MINUS-PLUS AMBIGUOUS SIGN}]
