@@ -1,3 +1,5 @@
+1183C ; CM # Mn DOGRA SIGN CANDRABINDU
+1183D ; AL # Lo DOGRA SIGN AVAGRAHA
 # LineBreak-18.0.0.txt
 # Date: 2026-06-29, 15:25:08 GMT
 # © 2026 Unicode®, Inc.
