@@ -1,0 +1,54 @@
+# Devanagari: DEVANAGARI SIGN JIHVAMULIYA / UPADHMANIYA (11B0B / 11B0C)
+# https://github.com/unicode-org/utc-release-management/issues/287
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block Script Script_Extensions:
+Propertywise [
+    \x{11B0B} \N{DEVANAGARI SIGN JIHVAMULIYA}
+    \x{11B0C} \N{DEVANAGARI SIGN UPADHMANIYA}
+    \x{1CF5} ᳵ \N{VEDIC SIGN JIHVAMULIYA}
+    \x{1CF6} ᳶ \N{VEDIC SIGN UPADHMANIYA}
+] AreAlike
+end Ignoring;
+
+Propertywise [
+    \x{11B0B} \N{DEVANAGARI SIGN JIHVAMULIYA}
+    \x{11B0C} \N{DEVANAGARI SIGN UPADHMANIYA}
+] CorrespondTo [
+    \x{1CF5} ᳵ \N{VEDIC SIGN JIHVAMULIYA}
+] UpTo: Block             (Devanagari_Extended_A vs Vedic_Extensions),
+        Script            (Devanagari vs Common),
+        Script_Extensions (Devanagari vs Bengali)
+
+Propertywise [
+    \x{11B0B} \N{DEVANAGARI SIGN JIHVAMULIYA}
+    \x{11B0C} \N{DEVANAGARI SIGN UPADHMANIYA}
+] CorrespondTo [
+    \x{0CF1} \N{KANNADA SIGN JIHVAMULIYA}
+] UpTo: Block                (Devanagari_Extended_A vs Kannada),
+        Script               (Devanagari vs Kannada),
+        Script_Extensions    (Devanagari vs Kannada),
+        Indic_Conjunct_Break (Linker     vs None)
+
+Propertywise [
+    \x{11B0B} \N{DEVANAGARI SIGN JIHVAMULIYA}
+    \x{11B0C} \N{DEVANAGARI SIGN UPADHMANIYA}
+] CorrespondTo [
+    \x{11003} \N{BRAHMI SIGN JIHVAMULIYA}
+] UpTo: Block                (Devanagari_Extended_A vs Brahmi),
+        Script               (Devanagari vs Brahmi),
+        Script_Extensions    (Devanagari vs Brahmi),
+        Indic_Conjunct_Break (Linker     vs None),
+        Line_Break           (Alphabetic vs Aksara_Prebase)
+
+end Ignoring;
+
+end Ignoring;
