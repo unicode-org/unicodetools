@@ -1,3 +1,4 @@
+11B0B..11B0C; Consonant_With_Stacker # Lo [2] DEVANAGARI SIGN JIHVAMULIYA .. DEVANAGARI SIGN UPADHMANIYA
 # IndicSyllabicCategory-18.0.0.txt
 # Date: 2026-07-02, 18:58:37 GMT
 # © 2026 Unicode®, Inc.
