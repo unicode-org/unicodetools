@@ -1,6 +1,5 @@
-11B0B..11B0C; Consonant_With_Stacker # Lo [2] DEVANAGARI SIGN JIHVAMULIYA .. DEVANAGARI SIGN UPADHMANIYA
 # IndicSyllabicCategory-18.0.0.txt
-# Date: 2026-07-02, 18:58:37 GMT
+# Date: 2026-07-07, 16:25:50 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1012,6 +1011,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 11003..11004  ; Consonant_With_Stacker # Lo   [2] BRAHMI SIGN JIHVAMULIYA..BRAHMI SIGN UPADHMANIYA
 11460..11461  ; Consonant_With_Stacker # Lo   [2] NEWA SIGN JIHVAMULIYA..NEWA SIGN UPADHMANIYA
 11A3A         ; Consonant_With_Stacker # Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
+11B0B..11B0C  ; Consonant_With_Stacker # Lo   [2] DEVANAGARI SIGN JIHVAMULIYA..DEVANAGARI SIGN UPADHMANIYA
 
 # ================================================
 
