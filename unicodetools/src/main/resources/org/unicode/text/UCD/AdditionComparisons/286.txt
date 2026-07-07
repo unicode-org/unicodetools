@@ -13,8 +13,8 @@ Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping 
 Ignoring Block:
 
 Propertywise [
-  \x{1CED1} \N{ALCHEMICAL SYMBOL FOR CALX-2}
-  \x{1F74C} \N{ALCHEMICAL SYMBOL FOR CALX}
+  \x{1CED1}   \N{ALCHEMICAL SYMBOL FOR CALX-2}
+  \x{1F74C} 🝌 \N{ALCHEMICAL SYMBOL FOR CALX}
 ] AreAlike
 
 end Ignoring;
