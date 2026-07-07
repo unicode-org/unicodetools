@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2026-06-29, 15:25:03 GMT
+# Date: 2026-07-07, 23:00:47 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,8 +71,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 755534 code points not listed here.
-# Total code points: 893002
+# The above property value applies to 755532 code points not listed here.
+# Total code points: 893000
 
 # ================================================
 
@@ -1387,6 +1387,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 116B9         ; AL # Po       TAKRI ABBREVIATION SIGN
 11800..1182B  ; AL # Lo  [44] DOGRA LETTER A..DOGRA LETTER RRA
 1183B         ; AL # Po       DOGRA ABBREVIATION SIGN
+1183D         ; AL # Lo       DOGRA SIGN AVAGRAHA
 118A0..118DF  ; AL # L&  [64] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 118EA..118F2  ; AL # No   [9] WARANG CITI NUMBER TEN..WARANG CITI NUMBER NINETY
 118FF         ; AL # Lo       WARANG CITI OM
@@ -1657,7 +1658,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB94..1FBEF  ; AL # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; AL # So       ALARM BELL SYMBOL
 
-# Total code points: 27586
+# Total code points: 27587
 
 # ================================================
 
@@ -2333,6 +2334,7 @@ FFF9..FFFB    ; CM # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTAT
 1182F..11837  ; CM # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
 11838         ; CM # Mc       DOGRA SIGN VISARGA
 11839..1183A  ; CM # Mn   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
+1183C         ; CM # Mn       DOGRA SIGN CANDRABINDU
 11930..11935  ; CM # Mc   [6] DIVES AKURU VOWEL SIGN AA..DIVES AKURU VOWEL SIGN E
 11937..11938  ; CM # Mc   [2] DIVES AKURU VOWEL SIGN AI..DIVES AKURU VOWEL SIGN O
 1193B..1193C  ; CM # Mn   [2] DIVES AKURU SIGN ANUSVARA..DIVES AKURU SIGN CANDRABINDU
@@ -2452,7 +2454,7 @@ E0001         ; CM # Cf       LANGUAGE TAG
 E0020..E007F  ; CM # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; CM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2549
+# Total code points: 2550
 
 # ================================================
 

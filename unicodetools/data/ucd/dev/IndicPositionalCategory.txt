@@ -1,6 +1,5 @@
-1183C; Top
 # IndicPositionalCategory-18.0.0.txt
-# Date: 2026-06-24, 13:39:21 GMT
+# Date: 2026-07-07, 23:00:52 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -585,6 +584,7 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11727         ; Top # Mn       AHOM VOWEL SIGN AW
 11729..1172B  ; Top # Mn   [3] AHOM VOWEL SIGN AI..AHOM SIGN KILLER
 11833..11837  ; Top # Mn   [5] DOGRA VOWEL SIGN E..DOGRA SIGN ANUSVARA
+1183C         ; Top # Mn       DOGRA SIGN CANDRABINDU
 1193B..1193C  ; Top # Mn   [2] DIVES AKURU SIGN ANUSVARA..DIVES AKURU SIGN CANDRABINDU
 1193F         ; Top # Lo       DIVES AKURU PREFIXED NASAL SIGN
 11941         ; Top # Lo       DIVES AKURU INITIAL RA

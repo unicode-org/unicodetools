@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-06-29, 15:25:07 GMT
+# Date: 2026-07-07, 23:00:51 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -6511,7 +6511,8 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 11747..117FF  ; disallowed                 # NA   <reserved-11747>..<reserved-117FF>
 11800..1183A  ; valid                      # 11.0 DOGRA LETTER A..DOGRA SIGN NUKTA
 1183B         ; valid      ;      ; NV8    # 11.0 DOGRA ABBREVIATION SIGN
-1183C..1189F  ; disallowed                 # NA   <reserved-1183C>..<reserved-1189F>
+1183C..1183D  ; valid                      # 18.0 DOGRA SIGN CANDRABINDU..DOGRA SIGN AVAGRAHA
+1183E..1189F  ; disallowed                 # NA   <reserved-1183E>..<reserved-1189F>
 118A0         ; mapped     ; 118C0         # 7.0  WARANG CITI CAPITAL LETTER NGAA
 118A1         ; mapped     ; 118C1         # 7.0  WARANG CITI CAPITAL LETTER A
 118A2         ; mapped     ; 118C2         # 7.0  WARANG CITI CAPITAL LETTER WI

@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2026-07-02, 16:50:27 GMT
+# Date: 2026-07-07, 23:00:43 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -975,6 +975,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 1182C..1182E  ; L # Mc   [3] DOGRA VOWEL SIGN AA..DOGRA VOWEL SIGN II
 11838         ; L # Mc       DOGRA SIGN VISARGA
 1183B         ; L # Po       DOGRA ABBREVIATION SIGN
+1183D         ; L # Lo       DOGRA SIGN AVAGRAHA
 118A0..118DF  ; L # L&  [64] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 118E0..118E9  ; L # Nd  [10] WARANG CITI DIGIT ZERO..WARANG CITI DIGIT NINE
 118EA..118F2  ; L # No   [9] WARANG CITI NUMBER TEN..WARANG CITI NUMBER NINETY
@@ -1253,8 +1254,8 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 797652 code points not listed here.
-# Total code points: 1095318
+# The above property value applies to 797650 code points not listed here.
+# Total code points: 1095317
 
 # ================================================
 
@@ -2389,6 +2390,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 11727..1172B  ; NSM # Mn   [5] AHOM VOWEL SIGN AW..AHOM SIGN KILLER
 1182F..11837  ; NSM # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
 11839..1183A  ; NSM # Mn   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
+1183C         ; NSM # Mn       DOGRA SIGN CANDRABINDU
 1193B..1193C  ; NSM # Mn   [2] DIVES AKURU SIGN ANUSVARA..DIVES AKURU SIGN CANDRABINDU
 1193E         ; NSM # Mn       DIVES AKURU VIRAMA
 11943         ; NSM # Mn       DIVES AKURU SIGN NUKTA
@@ -2472,7 +2474,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 1E944..1E94A  ; NSM # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; NSM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2095
+# Total code points: 2096
 
 # ================================================
 

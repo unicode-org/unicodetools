@@ -1,7 +1,5 @@
-1183C ; Dogra
-1183D ; Dogra
 # Scripts-18.0.0.txt
-# Date: 2026-06-29, 15:25:26 GMT
+# Date: 2026-07-07, 23:01:10 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2870,8 +2868,10 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 11838         ; Dogra # Mc       DOGRA SIGN VISARGA
 11839..1183A  ; Dogra # Mn   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
 1183B         ; Dogra # Po       DOGRA ABBREVIATION SIGN
+1183C         ; Dogra # Mn       DOGRA SIGN CANDRABINDU
+1183D         ; Dogra # Lo       DOGRA SIGN AVAGRAHA
 
-# Total code points: 60
+# Total code points: 62
 
 # ================================================
 

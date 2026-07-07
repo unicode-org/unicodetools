@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-06-29, 15:25:13 GMT 
+# Date: 2026-07-07, 23:01:38 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1651,6 +1651,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 1173F         ; Include # 8.0       (𑜿)  AHOM SYMBOL VI
 11740..11746  ; Include # 14.0  [7] (𑝀..𑝆)  AHOM LETTER CA..AHOM LETTER LLA
 11800..1183B  ; Include # 11.0 [60] (𑠀..𑠻)  DOGRA LETTER A..DOGRA ABBREVIATION SIGN
+1183C..1183D  ; Include # 18.0  [2] (𑠼..𑠽)  DOGRA SIGN CANDRABINDU..DOGRA SIGN AVAGRAHA
 118A0..118F2  ; Include # 7.0  [83] (𑢠..𑣲)  WARANG CITI CAPITAL LETTER NGAA..WARANG CITI NUMBER NINETY
 118FF         ; Include # 7.0       (𑣿)  WARANG CITI OM
 11900..11906  ; Include # 13.0  [7] (𑤀..𑤆)  DIVES AKURU LETTER A..DIVES AKURU LETTER E
@@ -2205,5 +2206,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172312
+# Total code points: 172314
 
