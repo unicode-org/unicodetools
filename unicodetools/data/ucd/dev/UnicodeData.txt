@@ -1,3 +1,5 @@
+11B0B; DEVANAGARI SIGN JIHVAMULIYA;Lo;0;L;;;;;N;;;;;
+11B0C; DEVANAGARI SIGN UPADHMANIYA;Lo;0;L;;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
