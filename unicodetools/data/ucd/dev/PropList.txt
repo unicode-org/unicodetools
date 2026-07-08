@@ -1,3 +1,5 @@
+20F1;Other_Math
+20F2;Other_Math
 # PropList-18.0.0.txt
 # Date: 2026-06-29, 15:25:16 GMT
 # © 2026 Unicode®, Inc.
