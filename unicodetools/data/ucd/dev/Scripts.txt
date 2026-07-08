@@ -1,6 +1,5 @@
-113CB ; Tulu_Tigalari
 # Scripts-18.0.0.txt
-# Date: 2026-06-29, 15:25:26 GMT
+# Date: 2026-07-08, 00:09:14 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3159,6 +3158,7 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 113C2         ; Tulu_Tigalari # Mc       TULU-TIGALARI VOWEL SIGN EE
 113C5         ; Tulu_Tigalari # Mc       TULU-TIGALARI VOWEL SIGN AI
 113C7..113CA  ; Tulu_Tigalari # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CB         ; Tulu_Tigalari # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CC..113CD  ; Tulu_Tigalari # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
 113CE         ; Tulu_Tigalari # Mn       TULU-TIGALARI SIGN VIRAMA
 113CF         ; Tulu_Tigalari # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
@@ -3170,7 +3170,7 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 113D7..113D8  ; Tulu_Tigalari # Po   [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
 113E1..113E2  ; Tulu_Tigalari # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 
-# Total code points: 80
+# Total code points: 81
 
 # ================================================
 

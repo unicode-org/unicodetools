@@ -1,6 +1,5 @@
-113CB ; Bindu
 # IndicSyllabicCategory-18.0.0.txt
-# Date: 2026-07-02, 18:58:37 GMT
+# Date: 2026-07-08, 00:08:57 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -122,6 +121,7 @@ A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 11302         ; Bindu # Mc       GRANTHA SIGN ANUSVARA
 1135E..1135F  ; Bindu # Lo   [2] GRANTHA LETTER VEDIC ANUSVARA..GRANTHA LETTER VEDIC DOUBLE ANUSVARA
 113CA         ; Bindu # Mc       TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CB         ; Bindu # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CC         ; Bindu # Mc       TULU-TIGALARI SIGN ANUSVARA
 11443..11444  ; Bindu # Mn   [2] NEWA SIGN CANDRABINDU..NEWA SIGN ANUSVARA
 1145F         ; Bindu # Lo       NEWA LETTER VEDIC ANUSVARA
