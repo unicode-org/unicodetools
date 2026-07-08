@@ -1,5 +1,5 @@
 # EastAsianWidth-18.0.0.txt
-# Date: 2026-06-29, 15:25:05 GMT
+# Date: 2026-07-08, 15:33:40 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -977,7 +977,7 @@
 20A9           ; H  # Sc         WON SIGN
 20AA..20AB     ; N  # Sc     [2] NEW SHEQEL SIGN..DONG SIGN
 20AC           ; A  # Sc         EURO SIGN
-20AD..20C4     ; N  # Sc    [24] KIP SIGN..OMANI RIAL SIGN
+20AD..20C5     ; N  # Sc    [25] KIP SIGN..BELARUSIAN RUBLE SIGN
 20D0..20DC     ; N  # Mn    [13] COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
 20DD..20E0     ; N  # Me     [4] COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
 20E1           ; N  # Mn         COMBINING LEFT RIGHT ARROW ABOVE
