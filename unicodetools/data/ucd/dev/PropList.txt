@@ -1,6 +1,5 @@
-113CB ; Other_Alphabetic
 # PropList-18.0.0.txt
-# Date: 2026-06-29, 15:25:16 GMT
+# Date: 2026-07-08, 00:21:44 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -756,6 +755,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 113C2         ; Other_Alphabetic # Mc       TULU-TIGALARI VOWEL SIGN EE
 113C5         ; Other_Alphabetic # Mc       TULU-TIGALARI VOWEL SIGN AI
 113C7..113CA  ; Other_Alphabetic # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CB         ; Other_Alphabetic # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CC..113CD  ; Other_Alphabetic # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
 11435..11437  ; Other_Alphabetic # Mc   [3] NEWA VOWEL SIGN AA..NEWA VOWEL SIGN II
 11438..1143F  ; Other_Alphabetic # Mn   [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
@@ -875,7 +875,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1520
+# Total code points: 1521
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2026-07-08, 00:08:50 GMT
+# Date: 2026-07-08, 00:21:30 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1156,6 +1156,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 113C2         ; Alphabetic # Mc       TULU-TIGALARI VOWEL SIGN EE
 113C5         ; Alphabetic # Mc       TULU-TIGALARI VOWEL SIGN AI
 113C7..113CA  ; Alphabetic # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CB         ; Alphabetic # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CC..113CD  ; Alphabetic # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
 113D1         ; Alphabetic # Lo       TULU-TIGALARI REPHA
 113D3         ; Alphabetic # Lo       TULU-TIGALARI SIGN PLUTA
@@ -1486,7 +1487,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 31350..33479  ; Alphabetic # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Alphabetic # Lo [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 
-# Total code points: 160254
+# Total code points: 160255
 
 # ================================================
 
