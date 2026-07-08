@@ -1,5 +1,5 @@
 # SentenceBreakProperty-18.0.0.txt
-# Date: 2026-06-29, 15:25:27 GMT
+# Date: 2026-07-08, 15:10:42 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -293,7 +293,7 @@
 20DD..20E0    ; Extend # Me   [4] COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
 20E1          ; Extend # Mn       COMBINING LEFT RIGHT ARROW ABOVE
 20E2..20E4    ; Extend # Me   [3] COMBINING ENCLOSING SCREEN..COMBINING ENCLOSING UPWARD POINTING TRIANGLE
-20E5..20F0    ; Extend # Mn  [12] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING ASTERISK ABOVE
+20E5..20F2    ; Extend # Mn  [14] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING SALTIRE OVERLAY
 2CEF..2CF1    ; Extend # Mn   [3] COPTIC COMBINING NI ABOVE..COPTIC COMBINING SPIRITUS LENIS
 2D7F          ; Extend # Mn       TIFINAGH CONSONANT JOINER
 2DE0..2DFF    ; Extend # Mn  [32] COMBINING CYRILLIC LETTER BE..COMBINING CYRILLIC LETTER IOTIFIED BIG YUS
@@ -603,7 +603,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2680
+# Total code points: 2682
 
 # ================================================
 

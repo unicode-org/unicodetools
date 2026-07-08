@@ -1,5 +1,5 @@
 # LineBreak-18.0.0.txt
-# Date: 2026-07-08, 15:01:48 GMT
+# Date: 2026-07-08, 15:10:24 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -978,8 +978,7 @@
 20DD..20E0     ; CM # Me     [4] COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
 20E1           ; CM # Mn         COMBINING LEFT RIGHT ARROW ABOVE
 20E2..20E4     ; CM # Me     [3] COMBINING ENCLOSING SCREEN..COMBINING ENCLOSING UPWARD POINTING TRIANGLE
-20E5..20F0     ; CM # Mn    [12] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING ASTERISK ABOVE
-20F1..20F2     ; CM # Mn     [2] COMBINING LONG TRIPLE SOLIDUS OVERLAY..COMBINING SALTIRE OVERLAY
+20E5..20F2     ; CM # Mn    [14] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING SALTIRE OVERLAY
 2100..2101     ; AL # So     [2] ACCOUNT OF..ADDRESSED TO THE SUBJECT
 2102           ; AL # Lu         DOUBLE-STRUCK CAPITAL C
 2103           ; PO # So         DEGREE CELSIUS
