@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2026-07-08, 15:10:17 GMT
+# Date: 2026-07-08, 15:17:29 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -43,6 +43,7 @@
 20E1          ; Math # Mn       COMBINING LEFT RIGHT ARROW ABOVE
 20E5..20E6    ; Math # Mn   [2] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING DOUBLE VERTICAL STROKE OVERLAY
 20EB..20EF    ; Math # Mn   [5] COMBINING LONG DOUBLE SOLIDUS OVERLAY..COMBINING RIGHT ARROW BELOW
+20F1..20F2    ; Math # Mn   [2] COMBINING LONG TRIPLE SOLIDUS OVERLAY..COMBINING SALTIRE OVERLAY
 2102          ; Math # L&       DOUBLE-STRUCK CAPITAL C
 2107          ; Math # L&       EULER CONSTANT
 210A..2113    ; Math # L&  [10] SCRIPT SMALL G..SCRIPT SMALL L
@@ -258,7 +259,7 @@ FFE9..FFEC    ; Math # Sm   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS A
 1EEF0..1EEF1  ; Math # Sm   [2] ARABIC MATHEMATICAL OPERATOR MEEM WITH HAH WITH TATWEEL..ARABIC MATHEMATICAL OPERATOR HAH WITH DAL
 1F8D0..1F8D8  ; Math # Sm   [9] LONG RIGHTWARDS ARROW OVER LONG LEFTWARDS ARROW..LONG LEFT RIGHT ARROW WITH DEPENDENT LOBE
 
-# Total code points: 2368
+# Total code points: 2370
 
 # ================================================
 
