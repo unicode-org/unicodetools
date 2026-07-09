@@ -1,19 +1,13 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-05-04, 11:55:12 GMT
+@+	Generation Date: 2026-07-09, 10:33:35 GMT
 	Unicode 18.0.0 names list.
-	Adjusted for repertoire changes post UTC187.
-	Repertoire synched with UnicodeData-18.0.0d9.txt.
-	Alpha review fixes.
-	Add SVS for CJK strokes.
-	Corrected spelling of subhead at 13864.
-	Updated notice for Tai Le script to include Dehong Dai name.
-	Added xrefs between 06C4 and 1EE85.
-	Added notice at 1BAE.
-	Added alias and xref to A77A.
-	Added xref between A76D and 1DF92.
-	Added xref between A7D7 and 1DF95.
+	Adjusted for repertoire changes post UTC188.
+	Repertoire synched with UnicodeData-18.0.0d10.txt.
+	Beta review fixes.
+	Remove Jain from annotations for 11300 and 11302.
+	Remove Chisoi from repertoire.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -35018,10 +35012,10 @@ FFFF	<not a character>
 @+		The Grantha script uses digits from the Tamil block.
 @		Various signs
 11300	GRANTHA SIGN COMBINING ANUSVARA ABOVE
-	* used in Prakrit language Jain texts for the linguistic anusvara
+	* used in Prakrit language texts for the linguistic anusvara
 11301	GRANTHA SIGN CANDRABINDU
 11302	GRANTHA SIGN ANUSVARA
-	* used in Prakrit language Jain texts to indicate gemination of the following consonant
+	* used in Prakrit language texts to indicate gemination of the following consonant
 11303	GRANTHA SIGN VISARGA
 @		Independent vowels
 11305	GRANTHA LETTER A
