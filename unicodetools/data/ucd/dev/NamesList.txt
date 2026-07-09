@@ -1,19 +1,13 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-05-04, 11:55:12 GMT
+@+	Generation Date: 2026-07-09, 10:33:35 GMT
 	Unicode 18.0.0 names list.
-	Adjusted for repertoire changes post UTC187.
-	Repertoire synched with UnicodeData-18.0.0d9.txt.
-	Alpha review fixes.
-	Add SVS for CJK strokes.
-	Corrected spelling of subhead at 13864.
-	Updated notice for Tai Le script to include Dehong Dai name.
-	Added xrefs between 06C4 and 1EE85.
-	Added notice at 1BAE.
-	Added alias and xref to A77A.
-	Added xref between A76D and 1DF92.
-	Added xref between A7D7 and 1DF95.
+	Adjusted for repertoire changes post UTC188.
+	Repertoire synched with UnicodeData-18.0.0d10.txt.
+	Beta review fixes.
+	Remove Jain from annotations for 11300 and 11302.
+	Remove Chisoi from repertoire.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -35018,10 +35012,10 @@ FFFF	<not a character>
 @+		The Grantha script uses digits from the Tamil block.
 @		Various signs
 11300	GRANTHA SIGN COMBINING ANUSVARA ABOVE
-	* used in Prakrit language Jain texts for the linguistic anusvara
+	* used in Prakrit language texts for the linguistic anusvara
 11301	GRANTHA SIGN CANDRABINDU
 11302	GRANTHA SIGN ANUSVARA
-	* used in Prakrit language Jain texts to indicate gemination of the following consonant
+	* used in Prakrit language texts to indicate gemination of the following consonant
 11303	GRANTHA SIGN VISARGA
 @		Independent vowels
 11305	GRANTHA LETTER A
@@ -51704,53 +51698,6 @@ FFFF	<not a character>
 16D77	KIRAT RAI DIGIT SEVEN
 16D78	KIRAT RAI DIGIT EIGHT
 16D79	KIRAT RAI DIGIT NINE
-@@	16D80	Chisoi	16DAF
-@		Letters
-16D80	CHISOI LETTER A
-16D81	CHISOI LETTER BA
-16D82	CHISOI LETTER AAI
-16D83	CHISOI LETTER AA
-16D84	CHISOI LETTER GA
-16D85	CHISOI LETTER TA
-16D86	CHISOI LETTER E
-16D87	CHISOI LETTER SA
-16D88	CHISOI LETTER NA
-16D89	CHISOI LETTER I
-16D8A	CHISOI LETTER KA
-16D8B	CHISOI LETTER RA
-16D8C	CHISOI LETTER MA
-16D8D	CHISOI LETTER HA
-16D8E	CHISOI LETTER RRA
-16D8F	CHISOI LETTER U
-16D90	CHISOI LETTER DA
-16D91	CHISOI LETTER LA
-16D92	CHISOI LETTER O
-16D93	CHISOI LETTER NYA
-16D94	CHISOI LETTER NGA
-16D95	CHISOI LETTER CA
-16D96	CHISOI LETTER JA
-16D97	CHISOI LETTER PA
-@		Sign
-16D98	CHISOI SIGN ANUSVARA
-@		Letters
-16D99	CHISOI LETTER YA
-16D9A	CHISOI LETTER DDA
-16D9B	CHISOI LETTER TTA
-16D9C	CHISOI LETTER JARAHA
-@		Sign
-16D9D	CHISOI SIGN SISO
-	* vowel killer
-@		Digits
-16DA0	CHISOI DIGIT ZERO
-16DA1	CHISOI DIGIT ONE
-16DA2	CHISOI DIGIT TWO
-16DA3	CHISOI DIGIT THREE
-16DA4	CHISOI DIGIT FOUR
-16DA5	CHISOI DIGIT FIVE
-16DA6	CHISOI DIGIT SIX
-16DA7	CHISOI DIGIT SEVEN
-16DA8	CHISOI DIGIT EIGHT
-16DA9	CHISOI DIGIT NINE
 @@	16E40	Medefaidrin	16E9F
 @		Uppercase letters
 16E40	MEDEFAIDRIN CAPITAL LETTER M
