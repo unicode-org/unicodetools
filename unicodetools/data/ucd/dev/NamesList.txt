@@ -1,13 +1,15 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-07-09, 10:33:35 GMT
+@+	Generation Date: 2026-07-09, 11:14:41 GMT
 	Unicode 18.0.0 names list.
 	Adjusted for repertoire changes post UTC188.
 	Repertoire synched with UnicodeData-18.0.0d10.txt.
 	Beta review fixes.
 	Remove Jain from annotations for 11300 and 11302.
 	Remove Chisoi from repertoire.
+	Added annotation to 05C8.
+	Updated citations for several ISO standards.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -4044,10 +4046,11 @@
 	x (hebrew point qamats - 05B8)
 05C8	HEBREW POINT SHEVA NA MUDGASH
 	x (hebrew point sheva - 05B0)
+	* used in texts that distinguish sheva na from sheva naḥ
 05C9	HEBREW POINT DAGESH HAZAQ MUDGASH
 	x (hebrew point dagesh or mapiq - 05BC)
 	* used in texts that distinguish dagesh hazaq from dagesh qal
-@		Based on ISO 8859-8
+@		Based on ISO/IEC 8859-8
 05D0	HEBREW LETTER ALEF
 	= aleph
 	x (alef symbol - 2135)
@@ -4180,8 +4183,8 @@
 @		Addition for Kashmiri
 0620	ARABIC LETTER KASHMIRI YEH
 	* used in Kashmiri to represent half ye / taler ye
-@		Based on ISO 8859-6
-@+		Arabic letter names follow romanization conventions derived from ISO 8859-6. These differ from the Literary Arabic pronunciation of the letter names. For example, 0628 ARABIC LETTER BEH has a Literary Arabic pronunciation of ba'.
+@		Based on ISO/IEC 8859-6
+@+		Arabic letter names follow romanization conventions derived from ISO/IEC 8859-6. These differ from the Literary Arabic pronunciation of the letter names. For example, 0628 ARABIC LETTER BEH has a Literary Arabic pronunciation of ba'.
 0621	ARABIC LETTER HAMZA
 	x (modifier letter right half ring - 02BE)
 0622	ARABIC LETTER ALEF WITH MADDA ABOVE
@@ -4224,7 +4227,7 @@
 	* Azerbaijani
 063E	ARABIC LETTER FARSI YEH WITH TWO DOTS ABOVE
 063F	ARABIC LETTER FARSI YEH WITH THREE DOTS ABOVE
-@		Based on ISO 8859-6
+@		Based on ISO/IEC 8859-6
 0640	ARABIC TATWEEL
 	= kashida
 	* inserted to stretch characters or to carry tashkil with no base letter
@@ -4246,7 +4249,7 @@
 	* loses its dots when used in combination with 0654
 	* retains its dots when used in combination with other combining marks
 	x (arabic letter yeh with two dots below and hamza above - 08A8)
-@		Tashkil from ISO 8859-6
+@		Tashkil from ISO/IEC 8859-6
 064B	ARABIC FATHATAN
 064C	ARABIC DAMMATAN
 	* a common alternative form is written as two intertwined dammas, one of which is turned 180 degrees
@@ -14401,9 +14404,9 @@
 	x (north east white arrow - 2B00)
 21E7	UPWARDS WHITE ARROW
 	= shift
-	= level 2 select (ISO 9995-7)
+	= level 2 select (ISO/IEC 9995-7)
 21E8	RIGHTWARDS WHITE ARROW
-	= group select (ISO 9995-7)
+	= group select (ISO/IEC 9995-7)
 21E9	DOWNWARDS WHITE ARROW
 21EA	UPWARDS WHITE ARROW FROM BAR
 	= caps lock
@@ -15089,7 +15092,7 @@
 	x (equal and parallel to - 22D5)
 2318	PLACE OF INTEREST SIGN
 	= command key (1.0)
-	= operating system key (ISO 9995-7)
+	= operating system key (ISO/IEC 9995-7)
 2319	TURNED NOT SIGN
 	= line marker
 @		User interface symbols
@@ -15192,7 +15195,7 @@
 	x (reversed empty set - 29B0)
 234A	APL FUNCTIONAL SYMBOL DOWN TACK UNDERBAR
 	= up tack underbar
-	* preferred naming for APL tack symbols now follows the London Convention in ISO/IEC 13751:2000 (APL Extended)
+	* preferred naming for APL tack symbols now follows the London Convention in ISO/IEC 13751:2001 (APL Extended)
 	x (up tack - 22A5)
 234B	APL FUNCTIONAL SYMBOL DELTA STILE
 234C	APL FUNCTIONAL SYMBOL QUAD DOWN CARET
@@ -15267,7 +15270,7 @@
 	= azimuth
 @		Graphics for control codes
 237D	SHOULDERED OPEN BOX
-	* from ISO 9995-7
+	* from ISO/IEC 9995-7
 	* keyboard symbol for No Break Space
 	x (open box - 2423)
 237E	BELL SYMBOL
@@ -15276,7 +15279,7 @@
 237F	VERTICAL LINE WITH MIDDLE DOT
 	* from ISO 2047
 	* symbol for End of Medium
-@		Keyboard symbols from ISO 9995-7
+@		Keyboard symbols from ISO/IEC 9995-7
 2380	INSERTION SYMBOL
 2381	CONTINUOUS UNDERLINE SYMBOL
 2382	DISCONTINUOUS UNDERLINE SYMBOL
@@ -15310,7 +15313,7 @@
 2395	APL FUNCTIONAL SYMBOL QUAD
 	x (apl functional symbol squish quad - 2337)
 	x (white vertical rectangle - 25AF)
-@		Keyboard symbols from ISO 9995-7
+@		Keyboard symbols from ISO/IEC 9995-7
 2396	DECIMAL SEPARATOR KEY SYMBOL
 2397	PREVIOUS PAGE
 	x (back with leftwards arrow above - 1F519)
@@ -15564,7 +15567,7 @@
 2424	SYMBOL FOR NEWLINE
 @		Keyboard symbol
 2425	SYMBOL FOR DELETE FORM TWO
-	* from ISO 9995-7
+	* from ISO/IEC 9995-7
 	* keyboard symbol for undoable delete
 @		Specific symbol for control code
 2426	SYMBOL FOR SUBSTITUTE FORM TWO
@@ -19035,7 +19038,7 @@
 2BEA	STAR WITH LEFT HALF BLACK
 2BEB	STAR WITH RIGHT HALF BLACK
 @		Two-headed arrow symbols
-@+		The following four arrow symbols are the preferred representation for fast cursor direction for ISO 9995-7.
+@+		The following four arrow symbols are the preferred representation for fast cursor direction for ISO/IEC 9995-7.
 2BEC	LEFTWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
 	= fast cursor left
 	x (leftwards two headed arrow - 219E)
@@ -63785,7 +63788,7 @@ FFFF	<not a character>
 1F4D5	CLOSED BOOK
 1F4D6	OPEN BOOK
 	= read operator's manual
-	* similar to ISO/IEC 7000-0790 "Read operator's manual"
+	* similar to ISO 7000-0790 "Read operator's manual"
 	x (book - 1F56E)
 1F4D7	GREEN BOOK
 1F4D8	BLUE BOOK
