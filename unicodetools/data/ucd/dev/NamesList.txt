@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-07-10, 09:19:12 GMT
+@+	Generation Date: 2026-07-10, 11:32:43 GMT
 	Unicode 18.0.0 names list.
 	Adjusted for repertoire changes post UTC188.
 	Repertoire synched with UnicodeData-18.0.0d10.txt.
@@ -11,6 +11,7 @@
 	Added annotation to 05C8.
 	Updated citations for several ISO standards.
 	Add a number of new xrefs for math symbols.
+	Add notice and adjust one annotation for Cossic symbols.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -60379,6 +60380,7 @@ FFFF	<not a character>
 1DF80	LATIN CAPITAL LETTER A WITH TOPBAR
 1DF81	LATIN CAPITAL LETTER E WITH BENT TOPBAR
 @		Cossic letters
+@+		These characters are used in historic mathematical works on algebra.
 1DF90	LATIN SMALL LETTER C WITH LOW SLASH
 	= cubus
 	* denotes cube of the unknown
@@ -60404,7 +60406,7 @@ FFFF	<not a character>
 	x (latin letter small capital rum - A776)
 1DF95	LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 	= sursolidum
-	* denotes fifth power of the unknown in historical mathematics
+	* denotes fifth power of the unknown
 	x (latin small letter sharp s - 00DF)
 	x (latin small letter long s - 017F)
 	x (latin small letter middle scots s - A7D7)
