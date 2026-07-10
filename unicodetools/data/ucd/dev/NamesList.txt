@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-07-09, 11:14:41 GMT
+@+	Generation Date: 2026-07-10, 09:19:12 GMT
 	Unicode 18.0.0 names list.
 	Adjusted for repertoire changes post UTC188.
 	Repertoire synched with UnicodeData-18.0.0d10.txt.
@@ -10,6 +10,7 @@
 	Remove Chisoi from repertoire.
 	Added annotation to 05C8.
 	Updated citations for several ISO standards.
+	Add a number of new xrefs for math symbols.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -14649,8 +14650,10 @@
 @		Miscellaneous mathematical symbol
 223F	SINE WAVE
 	= alternating current
+	x (ac current - 23E6)
 @		Operator
 2240	WREATH PRODUCT
+	x (vertical tilde - 2E2F)
 @		Relations
 2241	NOT TILDE
 	: 223C 0338
@@ -14708,8 +14711,10 @@
 2263	STRICTLY EQUIVALENT TO
 2264	LESS-THAN OR EQUAL TO
 	x (less-than sign - 003C)
+	x (angle with underbar - 29A4)
 2265	GREATER-THAN OR EQUAL TO
 	x (greater-than sign - 003E)
+	x (reversed angle with underbar - 29A5)
 2266	LESS-THAN OVER EQUAL TO
 2267	GREATER-THAN OVER EQUAL TO
 2268	LESS-THAN BUT NOT EQUAL TO
@@ -14755,9 +14760,15 @@
 	= higher rank than
 	x (succeeds under relation - 22B1)
 227C	PRECEDES OR EQUAL TO
+	x (precedes above single-line equals sign - 2AAF)
+	x (precedes above equals sign - 2AB3)
 227D	SUCCEEDS OR EQUAL TO
+	x (succeeds above single-line equals sign - 2AB0)
+	x (succeeds above equals sign - 2AB4)
 227E	PRECEDES OR EQUIVALENT TO
+	x (precedes above almost equal to - 2AB7)
 227F	SUCCEEDS OR EQUIVALENT TO
+	x (succeeds above almost equal to - 2AB8)
 2280	DOES NOT PRECEDE
 	: 227A 0338
 2281	DOES NOT SUCCEED
@@ -14972,8 +14983,10 @@
 22DB	GREATER-THAN EQUAL TO OR LESS-THAN
 	~ 22DB FE00 with slanted equal
 22DC	EQUAL TO OR LESS-THAN
+	x (slanted equal to or less-than - 2A95)
 	~ 22DC FE00 with horizontal equal
 22DD	EQUAL TO OR GREATER-THAN
+	x (slanted equal to or greater-than - 2A96)
 	~ 22DD FE00 with horizontal equal
 22DE	EQUAL TO OR PRECEDES
 22DF	EQUAL TO OR SUCCEEDS
@@ -15307,6 +15320,7 @@
 2391	PASSIVE-PULL-DOWN-OUTPUT SYMBOL
 2392	PASSIVE-PULL-UP-OUTPUT SYMBOL
 2393	DIRECT CURRENT SYMBOL FORM TWO
+	x (straightness - 23E4)
 2394	SOFTWARE-FUNCTION SYMBOL
 	x (white hexagon - 2B21)
 @		APL
@@ -15449,8 +15463,11 @@
 23E3	BENZENE RING WITH CIRCLE
 @		Miscellaneous technical
 23E4	STRAIGHTNESS
+	= direct current symbol form one
+	x (direct current symbol form two - 2393)
 23E5	FLATNESS
 23E6	AC CURRENT
+	x (sine wave - 223F)
 23E7	ELECTRICAL INTERSECTION
 23E8	DECIMAL EXPONENT SYMBOL
 	* Algol-60 token for scientific notation literals
@@ -17996,7 +18013,9 @@
 	x (angle - 2220)
 29A3	REVERSED ANGLE
 29A4	ANGLE WITH UNDERBAR
+	x (less-than or equal to - 2264)
 29A5	REVERSED ANGLE WITH UNDERBAR
+	x (greater-than or equal to - 2265)
 29A6	OBLIQUE ANGLE OPENING UP
 29A7	OBLIQUE ANGLE OPENING DOWN
 29A8	MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING UP AND RIGHT
@@ -18451,7 +18470,9 @@
 2AB5	PRECEDES ABOVE NOT EQUAL TO
 2AB6	SUCCEEDS ABOVE NOT EQUAL TO
 2AB7	PRECEDES ABOVE ALMOST EQUAL TO
+	x (precedes or equivalent to - 227E)
 2AB8	SUCCEEDS ABOVE ALMOST EQUAL TO
+	x (succeeds or equivalent to - 227F)
 2AB9	PRECEDES ABOVE NOT ALMOST EQUAL TO
 2ABA	SUCCEEDS ABOVE NOT ALMOST EQUAL TO
 2ABB	DOUBLE PRECEDES
@@ -19764,6 +19785,7 @@
 2E2F	VERTICAL TILDE
 	* used for Cyrillic yerik
 	x (combining vertical tilde - 033E)
+	x (wreath product - 2240)
 	x (cyrillic payerok - A67F)
 2E30	RING POINT
 	* used in Avestan
