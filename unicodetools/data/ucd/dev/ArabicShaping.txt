@@ -1,3 +1,5 @@
+10EC0; DOTLESS HALF YEH; U; No_Joining_Group
+10EC1; HALF YEH; U; No_Joining_Group
 # ArabicShaping-18.0.0.txt
 # Date: 2026-02-03, 23:09:37 GMT
 # © 2026 Unicode®, Inc.
