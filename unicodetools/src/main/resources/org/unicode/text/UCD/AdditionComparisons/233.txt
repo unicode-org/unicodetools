@@ -1,0 +1,57 @@
+# IPA: 4 Modifier Letter stacked arrowheads (1DFC9..1DFCC)
+# https://github.com/unicode-org/utc-release-management/issues/233
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block East_Asian_Width:
+Propertywise [
+  \x{1DFC9}   \N{MODIFIER LETTER LEFT ARROWHEAD OVER UP ARROWHEAD}
+  \x{1DFCA}   \N{MODIFIER LETTER RIGHT ARROWHEAD OVER UP ARROWHEAD}
+  \x{1DFCB}   \N{MODIFIER LETTER LEFT ARROWHEAD OVER DOWN ARROWHEAD}
+  \x{1DFCC}   \N{MODIFIER LETTER RIGHT ARROWHEAD OVER DOWN ARROWHEAD}
+   \x{02C2} ˂ \N{MODIFIER LETTER LEFT ARROWHEAD}
+   \x{02C3} ˃ \N{MODIFIER LETTER RIGHT ARROWHEAD}
+   \x{02C4} ˄ \N{MODIFIER LETTER UP ARROWHEAD}
+   \x{02C5} ˅ \N{MODIFIER LETTER DOWN ARROWHEAD}
+   \x{02EF} ˯ \N{MODIFIER LETTER LOW DOWN ARROWHEAD}
+   \x{02F0} ˰ \N{MODIFIER LETTER LOW UP ARROWHEAD}
+   \x{02F1} ˱ \N{MODIFIER LETTER LOW LEFT ARROWHEAD}
+   \x{02F2} ˲ \N{MODIFIER LETTER LOW RIGHT ARROWHEAD}
+] AreAlike
+end Ignoring;
+
+Ignoring Block:
+Propertywise [
+  \x{1DFC9}   \N{MODIFIER LETTER LEFT ARROWHEAD OVER UP ARROWHEAD}
+  \x{1DFCA}   \N{MODIFIER LETTER RIGHT ARROWHEAD OVER UP ARROWHEAD}
+  \x{1DFCB}   \N{MODIFIER LETTER LEFT ARROWHEAD OVER DOWN ARROWHEAD}
+  \x{1DFCC}   \N{MODIFIER LETTER RIGHT ARROWHEAD OVER DOWN ARROWHEAD}
+   \x{02C2} ˂ \N{MODIFIER LETTER LEFT ARROWHEAD}
+   \x{02C3} ˃ \N{MODIFIER LETTER RIGHT ARROWHEAD}
+   \x{02C5} ˅ \N{MODIFIER LETTER DOWN ARROWHEAD}
+   \x{02EF} ˯ \N{MODIFIER LETTER LOW DOWN ARROWHEAD}
+   \x{02F0} ˰ \N{MODIFIER LETTER LOW UP ARROWHEAD}
+   \x{02F1} ˱ \N{MODIFIER LETTER LOW LEFT ARROWHEAD}
+   \x{02F2} ˲ \N{MODIFIER LETTER LOW RIGHT ARROWHEAD}
+] AreAlike
+end Ignoring;
+
+Propertywise [
+  \x{1DFC9}   \N{MODIFIER LETTER LEFT ARROWHEAD OVER UP ARROWHEAD}
+  \x{1DFCA}   \N{MODIFIER LETTER RIGHT ARROWHEAD OVER UP ARROWHEAD}
+  \x{1DFCB}   \N{MODIFIER LETTER LEFT ARROWHEAD OVER DOWN ARROWHEAD}
+  \x{1DFCC}   \N{MODIFIER LETTER RIGHT ARROWHEAD OVER DOWN ARROWHEAD}
+] CorrespondTo [
+   \x{02C4} ˄ \N{MODIFIER LETTER UP ARROWHEAD}
+] UpTo: East_Asian_Width (Neutral vs Ambiguous)
+
+end Ignoring;
+
+end Ignoring;
