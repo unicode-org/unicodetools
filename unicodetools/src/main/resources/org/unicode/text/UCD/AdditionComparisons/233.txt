@@ -50,7 +50,8 @@ Propertywise [
   \x{1DFCC}   \N{MODIFIER LETTER RIGHT ARROWHEAD OVER DOWN ARROWHEAD}
 ] CorrespondTo [
    \x{02C4} ˄ \N{MODIFIER LETTER UP ARROWHEAD}
-] UpTo: East_Asian_Width (Neutral vs Ambiguous)
+] UpTo: Block            (Latin_Extended_G vs Spacing_Modifier_Letters),
+        East_Asian_Width (Neutral          vs Ambiguous)
 
 end Ignoring;
 
