@@ -1,7 +1,5 @@
-10EC0; DOTLESS HALF YEH; U; No_Joining_Group
-10EC1; HALF YEH; U; No_Joining_Group
 # ArabicShaping-18.0.0.txt
-# Date: 2026-02-03, 23:09:37 GMT
+# Date: 2026-07-13, 13:35:27 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -853,6 +851,8 @@ A873; PHAGS-PA CANDRABINDU; U; No_Joining_Group
 
 # Arabic Extended-C Characters
 
+10EC0; DOTLESS HALF YEH; U; No_Joining_Group
+10EC1; HALF YEH; U; No_Joining_Group
 10EC2; DAL WITH VERTICAL 2 DOTS BELOW; R; DAL
 10EC3; TAH WITH VERTICAL 2 DOTS BELOW; D; TAH
 10EC4; KAF WITH VERTICAL 2 DOTS BELOW; D; KAF
