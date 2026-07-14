@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2026-07-14, 17:07:28 GMT
+# Date: 2026-06-29, 15:25:00 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -362,7 +362,6 @@
 0CCC          ; 0 # Mn       KANNADA VOWEL SIGN AU
 0CD5..0CD6    ; 0 # Mc   [2] KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
 0CDC..0CDE    ; 0 # Lo   [3] KANNADA ARCHAIC SHRII..KANNADA LETTER FA
-0CDF          ; 0 # Mn       KANNADA SIGN COMBINING ANUSVARA ABOVE
 0CE0..0CE1    ; 0 # Lo   [2] KANNADA LETTER VOCALIC RR..KANNADA LETTER VOCALIC LL
 0CE2..0CE3    ; 0 # Mn   [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
 0CE6..0CEF    ; 0 # Nd  [10] KANNADA DIGIT ZERO..KANNADA DIGIT NINE
@@ -2111,7 +2110,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 803770 code points not listed here.
+# The above property value applies to 803771 code points not listed here.
 # Total code points: 1113110
 
 # ================================================

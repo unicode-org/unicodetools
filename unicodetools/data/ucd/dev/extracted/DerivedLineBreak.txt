@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2026-07-14, 17:07:30 GMT
+# Date: 2026-06-29, 15:25:03 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -71,8 +71,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 755533 code points not listed here.
-# Total code points: 893001
+# The above property value applies to 755534 code points not listed here.
+# Total code points: 893002
 
 # ================================================
 
@@ -2045,7 +2045,6 @@ FE19          ; IN # Po       PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS
 0CCA..0CCB    ; CM # Mc   [2] KANNADA VOWEL SIGN O..KANNADA VOWEL SIGN OO
 0CCC..0CCD    ; CM # Mn   [2] KANNADA VOWEL SIGN AU..KANNADA SIGN VIRAMA
 0CD5..0CD6    ; CM # Mc   [2] KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
-0CDF          ; CM # Mn       KANNADA SIGN COMBINING ANUSVARA ABOVE
 0CE2..0CE3    ; CM # Mn   [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
 0CF3          ; CM # Mc       KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
 0D00..0D01    ; CM # Mn   [2] MALAYALAM SIGN COMBINING ANUSVARA ABOVE..MALAYALAM SIGN CANDRABINDU
@@ -2453,7 +2452,7 @@ E0001         ; CM # Cf       LANGUAGE TAG
 E0020..E007F  ; CM # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; CM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2550
+# Total code points: 2549
 
 # ================================================
 

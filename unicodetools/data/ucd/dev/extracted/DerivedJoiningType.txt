@@ -1,5 +1,5 @@
 # DerivedJoiningType-18.0.0.txt
-# Date: 2026-07-14, 17:07:30 GMT
+# Date: 2026-06-29, 15:25:03 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -286,7 +286,6 @@ A872          ; L # Lo       PHAGS-PA SUPERFIXED LETTER RA
 0CBF          ; T # Mn       KANNADA VOWEL SIGN I
 0CC6          ; T # Mn       KANNADA VOWEL SIGN E
 0CCC..0CCD    ; T # Mn   [2] KANNADA VOWEL SIGN AU..KANNADA SIGN VIRAMA
-0CDF          ; T # Mn       KANNADA SIGN COMBINING ANUSVARA ABOVE
 0CE2..0CE3    ; T # Mn   [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
 0D00..0D01    ; T # Mn   [2] MALAYALAM SIGN COMBINING ANUSVARA ABOVE..MALAYALAM SIGN CANDRABINDU
 0D3B..0D3C    ; T # Mn   [2] MALAYALAM SIGN VERTICAL BAR VIRAMA..MALAYALAM SIGN CIRCULAR VIRAMA
@@ -596,6 +595,6 @@ E0001         ; T # Cf       LANGUAGE TAG
 E0020..E007F  ; T # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; T # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2256
+# Total code points: 2255
 
 # EOF
