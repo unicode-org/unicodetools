@@ -1,4 +1,4 @@
-0CDF ; Bindu
+0CF4 ; Bindu
 # IndicSyllabicCategory-18.0.0.txt
 # Date: 2026-07-02, 18:58:37 GMT
 # © 2026 Unicode®, Inc.
