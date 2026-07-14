@@ -953,7 +953,7 @@ Let $WBRemovalsOld := [\u0387\u0604\u2018\u2024\u202F\u2E2F\uFE13\uFE52\uFE55\uF
 Let $WBRemovals13 := [\u02E5-\u02EB\u055A\u058A\uA708-\uA716\u055F]
 Let $WBRemoval17 := [\u00B8]
 Let $WBRemovals19 := [\U0001DFC9-\U0001DFCC]
-Let $WBRemovals := [$WBRemovals $WBRemovals13 $WBRemoval17 $WBRemovals19]
+Let $WBRemovals := [$WBRemovalsOld $WBRemovals13 $WBRemoval17 $WBRemovals19]
 
 # 9.0 corrected \p{gc=Cf} and added 202F
 # 10.0 added 34 characters which were absorbed into WB=LE (see http://www.unicode.org/reports/tr29/tr29-30d2.html#ALetter)
