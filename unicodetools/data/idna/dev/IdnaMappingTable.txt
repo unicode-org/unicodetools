@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-06-29, 15:25:07 GMT
+# Date: 2026-07-14, 16:47:22 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -6457,7 +6457,8 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 113D4..113D5  ; valid      ;      ; NV8    # 16.0 TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
 113D6         ; disallowed                 # NA   <reserved-113D6>
 113D7..113D8  ; valid      ;      ; NV8    # 16.0 TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
-113D9..113E0  ; disallowed                 # NA   <reserved-113D9>..<reserved-113E0>
+113D9..113DA  ; valid      ;      ; NV8    # 18.0 TULU-TIGALARI SIGN OM PUSHPIKA WITH TAIL..TULU-TIGALARI SIGN SHRII PUSHPIKA WITH TAIL
+113DB..113E0  ; disallowed                 # NA   <reserved-113DB>..<reserved-113E0>
 113E1..113E2  ; valid                      # 16.0 TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 113E3..113FF  ; disallowed                 # NA   <reserved-113E3>..<reserved-113FF>
 11400..1144A  ; valid                      # 9.0  NEWA LETTER A..NEWA SIDDHI

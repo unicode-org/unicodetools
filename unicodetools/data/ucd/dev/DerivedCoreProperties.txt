@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2026-06-29, 15:25:01 GMT
+# Date: 2026-07-14, 16:47:16 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -12804,7 +12804,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 113D1         ; Grapheme_Base # Lo       TULU-TIGALARI REPHA
 113D3         ; Grapheme_Base # Lo       TULU-TIGALARI SIGN PLUTA
 113D4..113D5  ; Grapheme_Base # Po   [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
-113D7..113D8  ; Grapheme_Base # Po   [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
+113D7..113DA  ; Grapheme_Base # Po   [4] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA WITH TAIL
 11400..11434  ; Grapheme_Base # Lo  [53] NEWA LETTER A..NEWA LETTER HA
 11435..11437  ; Grapheme_Base # Mc   [3] NEWA VOWEL SIGN AA..NEWA VOWEL SIGN II
 11440..11441  ; Grapheme_Base # Mc   [2] NEWA VOWEL SIGN O..NEWA VOWEL SIGN AU
@@ -13229,7 +13229,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 31350..33479  ; Grapheme_Base # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Grapheme_Base # Lo [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 
-# Total code points: 170464
+# Total code points: 170466
 
 # ================================================
 
