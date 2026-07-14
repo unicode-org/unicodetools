@@ -1,3 +1,4 @@
+0CDF ; Top
 # IndicPositionalCategory-18.0.0.txt
 # Date: 2026-06-24, 13:39:21 GMT
 # © 2026 Unicode®, Inc.
