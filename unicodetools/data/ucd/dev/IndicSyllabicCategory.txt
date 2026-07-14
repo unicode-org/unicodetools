@@ -1,6 +1,5 @@
-0CF4 ; Bindu
 # IndicSyllabicCategory-18.0.0.txt
-# Date: 2026-07-02, 18:58:37 GMT
+# Date: 2026-07-14, 17:14:54 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -87,6 +86,7 @@
 0C81          ; Bindu # Mn       KANNADA SIGN CANDRABINDU
 0C82          ; Bindu # Mc       KANNADA SIGN ANUSVARA
 0CF3          ; Bindu # Mc       KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
+0CF4          ; Bindu # Mn       KANNADA SIGN COMBINING ANUSVARA ABOVE
 0D00..0D01    ; Bindu # Mn   [2] MALAYALAM SIGN COMBINING ANUSVARA ABOVE..MALAYALAM SIGN CANDRABINDU
 0D02          ; Bindu # Mc       MALAYALAM SIGN ANUSVARA
 0D04          ; Bindu # Lo       MALAYALAM LETTER VEDIC ANUSVARA

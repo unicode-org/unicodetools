@@ -1,6 +1,5 @@
-0CF4 ; Top
 # IndicPositionalCategory-18.0.0.txt
-# Date: 2026-06-24, 13:39:21 GMT
+# Date: 2026-07-14, 17:14:54 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -441,6 +440,7 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 0CBF          ; Top # Mn       KANNADA VOWEL SIGN I
 0CC6          ; Top # Mn       KANNADA VOWEL SIGN E
 0CCC..0CCD    ; Top # Mn   [2] KANNADA VOWEL SIGN AU..KANNADA SIGN VIRAMA
+0CF4          ; Top # Mn       KANNADA SIGN COMBINING ANUSVARA ABOVE
 0D00..0D01    ; Top # Mn   [2] MALAYALAM SIGN COMBINING ANUSVARA ABOVE..MALAYALAM SIGN CANDRABINDU
 0D3B..0D3C    ; Top # Mn   [2] MALAYALAM SIGN VERTICAL BAR VIRAMA..MALAYALAM SIGN CIRCULAR VIRAMA
 0D4D          ; Top # Mn       MALAYALAM SIGN VIRAMA
