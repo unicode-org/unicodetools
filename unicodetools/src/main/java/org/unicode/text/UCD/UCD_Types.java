@@ -584,8 +584,9 @@ public interface UCD_Types {
             Sunuwar = 170,
             Todhri = 171,
             Tulu_Tigalari = 172,
-            // Unicode 17
+            // Unicode > 18
             Chisoi = 173,
+            // Unicode 17
             Sidetic = 174,
             Tai_Yo = 175,
             Tolong_Siki = 176,
@@ -594,7 +595,12 @@ public interface UCD_Types {
             Jurchen = 178,
             Proto_Cuneiform = 179,
             Seal = 180,
-            LIMIT_SCRIPT = Seal + 1;
+            // A future version of Unicode
+            Sirmauri = 181,
+            Leke = 182,
+            Mwangwego = 183,
+            Shaaldaa = 184,
+            LIMIT_SCRIPT = Shaaldaa + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte BPT_N = 0, BPT_O = 1, BPT_C = 2, LIMIT_BPT = 3;

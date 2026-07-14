@@ -15,10 +15,10 @@ Ignoring kSEAL_CCZSrc kSEAL_DYCSrc kSEAL_QJZSrc kSEAL_THXSrc kSEAL_MCJK kSEAL_Ra
 Ignoring Block Script Script_Extensions kTGT_MergedSrc kTGT_RSUnicode:
 Propertywise [
   \N{TANGUT IDEOGRAPH-17000}
-  \N{SEAL CHARACTER-3D000}] AreAlike
+  \N{SMALL SEAL CHARACTER-3D000}] AreAlike
 end Ignoring;
 
-Propertywise [\N{SEAL CHARACTER-3D000}-\N{SEAL CHARACTER-3FC3F}] AreAlike
+Propertywise [\N{SMALL SEAL CHARACTER-3D000}-\N{SMALL SEAL CHARACTER-3FC3F}] AreAlike
 
 end Ignoring;
 

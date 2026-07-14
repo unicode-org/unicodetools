@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2026-05-21, 23:42:58 GMT
+# Date: 2026-06-29, 15:12:06 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -940,9 +940,8 @@
 	(‎ ै ‎)	0948	 DEVANAGARI VOWEL SIGN AI
 ←	(‎ ੈ ‎)	0A48	 GURMUKHI VOWEL SIGN AI
 
-#	्	্	੍	્
+#	्	੍	્
 	(‎ ् ‎)	094D	 DEVANAGARI SIGN VIRAMA
-←	(‎ ্ ‎)	09CD	 BENGALI SIGN VIRAMA	# →𖶝→
 ←	(‎ ੍ ‎)	0A4D	 GURMUKHI SIGN VIRAMA
 ←	(‎ ્ ‎)	0ACD	 GUJARATI SIGN VIRAMA
 
@@ -1496,5 +1495,5 @@
 	(‎ へ ‎)	3078	 HIRAGANA LETTER HE
 ←	(‎ ヘ ‎)	30D8	 KATAKANA LETTER HE
 
-# total : 535
+# total : 534
 
