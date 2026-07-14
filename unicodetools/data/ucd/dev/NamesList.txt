@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-07-14, 08:59:02 GMT
+@+	Generation Date: 2026-07-14, 09:25:22 GMT
 	Unicode 18.0.0 names list.
 	Adjusted for repertoire changes post UTC188.
 	Repertoire synched with UnicodeData-18.0.0d10.txt.
@@ -13,6 +13,7 @@
 	Add a number of new xrefs for math symbols.
 	Add notice and adjust one annotation for Cossic symbols.
 	Updates to xrefs for CJK strokes.
+	Add notice pointing to Appendix F for CJK stroke examples.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -21792,6 +21793,7 @@
 31BF	BOPOMOFO LETTER AH
 @@	31C0	CJK Strokes	31EF
 @		CJK strokes
+@+		These characters are intended for the representation of CJK strokes in isolation, as for discussions of the structure of CJK ideographs or in indexes. See Appendix F of the core specification for many more examples of the CJK strokes, with the strokes shown highlighted in context.
 31C0	CJK STROKE T
 	* 2nd stroke of 5201
 	* 2nd stroke of 51B0
