@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-06-29, 15:25:13 GMT 
+# Date: 2026-07-14, 17:08:18 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -663,6 +663,7 @@ FF62          ; Open    # 1.1       (｢)  HALFWIDTH LEFT CORNER BRACKET
 0CDC          ; Include # 17.0      (೜)  KANNADA ARCHAIC SHRII
 0CDD          ; Include # 14.0      (ೝ)  KANNADA LETTER NAKAARA POLLU
 0CDE          ; Include # 1.1       (ೞ)  KANNADA LETTER FA
+0CDF          ; Include # 18.0      (೟)  KANNADA SIGN COMBINING ANUSVARA ABOVE
 0CE0..0CE1    ; Include # 1.1   [2] (ೠ..ೡ)  KANNADA LETTER VOCALIC RR..KANNADA LETTER VOCALIC LL
 0CE2..0CE3    ; Include # 5.0   [2] (ೢ..ೣ)  KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
 0CE6..0CEF    ; Include # 1.1  [10] (೦..೯)  KANNADA DIGIT ZERO..KANNADA DIGIT NINE
@@ -2205,5 +2206,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172312
+# Total code points: 172313
 

@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2026-06-29, 15:25:28 GMT
+# Date: 2026-07-14, 17:07:54 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -467,6 +467,7 @@
 0CCC..0CCD     ; R  # Mn     [2] KANNADA VOWEL SIGN AU..KANNADA SIGN VIRAMA
 0CD5..0CD6     ; R  # Mc     [2] KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
 0CDC..0CDE     ; R  # Lo     [3] KANNADA ARCHAIC SHRII..KANNADA LETTER FA
+0CDF           ; R  # Mn         KANNADA SIGN COMBINING ANUSVARA ABOVE
 0CE0..0CE1     ; R  # Lo     [2] KANNADA LETTER VOCALIC RR..KANNADA LETTER VOCALIC LL
 0CE2..0CE3     ; R  # Mn     [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
 0CE6..0CEF     ; R  # Nd    [10] KANNADA DIGIT ZERO..KANNADA DIGIT NINE

@@ -1,5 +1,5 @@
 # SentenceBreakProperty-18.0.0.txt
-# Date: 2026-06-29, 15:25:27 GMT
+# Date: 2026-07-14, 17:07:52 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -143,6 +143,7 @@
 0CCA..0CCB    ; Extend # Mc   [2] KANNADA VOWEL SIGN O..KANNADA VOWEL SIGN OO
 0CCC..0CCD    ; Extend # Mn   [2] KANNADA VOWEL SIGN AU..KANNADA SIGN VIRAMA
 0CD5..0CD6    ; Extend # Mc   [2] KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
+0CDF          ; Extend # Mn       KANNADA SIGN COMBINING ANUSVARA ABOVE
 0CE2..0CE3    ; Extend # Mn   [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
 0CF3          ; Extend # Mc       KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
 0D00..0D01    ; Extend # Mn   [2] MALAYALAM SIGN COMBINING ANUSVARA ABOVE..MALAYALAM SIGN CANDRABINDU
@@ -603,7 +604,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2680
+# Total code points: 2681
 
 # ================================================
 

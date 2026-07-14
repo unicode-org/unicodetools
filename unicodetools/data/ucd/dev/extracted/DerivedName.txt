@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2026-06-29, 15:25:03 GMT
+# Date: 2026-07-14, 17:07:30 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2945,6 +2945,7 @@
 0CDC          ; KANNADA ARCHAIC SHRII
 0CDD          ; KANNADA LETTER NAKAARA POLLU
 0CDE          ; KANNADA LETTER FA
+0CDF          ; KANNADA SIGN COMBINING ANUSVARA ABOVE
 0CE0          ; KANNADA LETTER VOCALIC RR
 0CE1          ; KANNADA LETTER VOCALIC LL
 0CE2          ; KANNADA VOWEL SIGN VOCALIC L
@@ -46582,6 +46583,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172808
+# Total code points: 172809
 
 # EOF
