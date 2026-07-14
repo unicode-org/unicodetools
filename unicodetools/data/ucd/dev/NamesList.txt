@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-07-10, 11:32:43 GMT
+@+	Generation Date: 2026-07-14, 08:59:02 GMT
 	Unicode 18.0.0 names list.
 	Adjusted for repertoire changes post UTC188.
 	Repertoire synched with UnicodeData-18.0.0d10.txt.
@@ -12,6 +12,7 @@
 	Updated citations for several ISO standards.
 	Add a number of new xrefs for math symbols.
 	Add notice and adjust one annotation for Cossic symbols.
+	Updates to xrefs for CJK strokes.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -21792,6 +21793,7 @@
 @@	31C0	CJK Strokes	31EF
 @		CJK strokes
 31C0	CJK STROKE T
+	* 2nd stroke of 5201
 	* 2nd stroke of 51B0
 	~ 31C0 FE00 dotted T form
 31C1	CJK STROKE WG
@@ -21809,6 +21811,7 @@
 	* 1st stroke of 534D
 31C6	CJK STROKE HZG
 	* 1st stroke of 7FBD
+	* 1st stroke of 5201
 	* 1st stroke of 4E5F
 	~ 31C6 FE00 curved Z form
 	~ 31C6 FE01 rising H form
@@ -21835,6 +21838,8 @@
 	* 1st stroke of 51F8
 31CF	CJK STROKE N
 	* 3rd stroke of 5927
+	* 1st stroke of 5165 G source
+	* 2nd stroke of 5EF4
 	~ 31CF FE00 curved starting N form
 	~ 31CF FE01 flat N form
 31D0	CJK STROKE H
@@ -21843,17 +21848,21 @@
 	~ 31D0 FE00 rising H form
 31D1	CJK STROKE S
 	* 4th stroke of 4E2D
+	* 2nd stroke of 4E11
 	~ 31D1 FE00 slanted S form
 31D2	CJK STROKE P
+	* 1st stroke of 4E42
 	* 1st stroke of 4E4F
 	~ 31D2 FE00 flat P form
 31D3	CJK STROKE SP
 	* 1st stroke of 6708
 31D4	CJK STROKE D
 	* 3rd stroke of 4E38
+	* 2nd stroke of 5FC4
 	~ 31D4 FE00 to bottom left form
 31D5	CJK STROKE HZ
 	* 2nd stroke of 56DB
+	* 4th stroke of 4ECA
 	~ 31D5 FE00 slanted Z form
 31D6	CJK STROKE HG
 	* 1st stroke of 758B
@@ -21873,11 +21882,14 @@
 	* 1st stroke of 5973
 	~ 31DB FE00 slanted SD form
 31DC	CJK STROKE PZ
+	* 4th stroke of 248E5
 	* 3rd stroke of 516C
 	* 4th stroke of 5F18
 	~ 31DC FE00 upwards T form
 31DD	CJK STROKE TN
-	* 8th stroke of 5EFB
+	* stylistic alternative of N stroke in some fonts
+	* 1st stroke of 5165 non-G source
+	* last stroke of 8FB6
 	~ 31DD FE00 horizontal H curved N form
 	~ 31DD FE01 upwards T flat N form
 31DE	CJK STROKE SZZ
@@ -21898,6 +21910,7 @@
 	* 1st stroke of 98DE
 31E5	CJK STROKE SZP
 	* 8th stroke of 594A
+	* 3rd stroke of 4E13
 	~ 31E5 FE00 slanted S form
 @		Ideographic description character
 @+		This is a visibly displayed graphic character, not an invisible composition control. It is used with other characters from the Ideographic Description Characters block.
