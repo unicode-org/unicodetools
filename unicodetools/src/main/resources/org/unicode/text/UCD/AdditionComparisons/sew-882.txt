@@ -12,6 +12,9 @@ Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping 
 
 Propertywise [\x{0CF4}   \N{KANNADA SIGN COMBINING ANUSVARA ABOVE}]
 CorrespondTo [\x{0C04} ఄ \N{TELUGU SIGN COMBINING ANUSVARA ABOVE}]
+    UpTo: Block             (Kannada vs Telugu),
+          Script            (Kannada vs Telugu),
+          Script_Extensions (Kannada vs Telugu)
 
 end Ignoring;
 
