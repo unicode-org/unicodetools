@@ -10,37 +10,48 @@ Ignoring Name Age:
 # normally anywhere between proposal submission and the start of α).
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
-Ignoring Math_Entity_Name Math_Entity_Set Math_Class Math_Class_Ex:
+Ignoring Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set Math_Class Math_Class_Ex:
 Ignoring Block Pattern_Syntax:
+
+Propertywise [
+    \x{1DC00}-\x{1DC35}
+    \N{LEIBNIZIAN SYSTEM ONE AND TWO PLUS-MINUS AMBIGUOUS SIGN}-\N{LEIBNIZIAN SYSTEM FIVE-FOUR MINUS OR MINUS-PLUS AMBIGUOUS SIGN}
+    ⊕ \N{CIRCLED PLUS}
+    ∔ \N{DOT PLUS}
+    ⨩ \N{MINUS SIGN WITH COMMA ABOVE}
+    ⋇ \N{DIVISION TIMES}
+    \x{1CEF3} \N{LEIBNIZIAN MULTIPLICATION-DIVISION SIGN}] AreAlike
 
 Ignoring Unicode_1_Name:
 Propertywise [
     \x{1DC00}-\x{1DC35}
     \N{LEIBNIZIAN SYSTEM ONE AND TWO PLUS-MINUS AMBIGUOUS SIGN}-\N{LEIBNIZIAN SYSTEM FIVE-FOUR MINUS OR MINUS-PLUS AMBIGUOUS SIGN}]
 CorrespondTo [\x{00B1} ± \N{PLUS-MINUS SIGN}]
-    UpTo: Bidi_Class           (European_Separator vs European_Terminator),
-          East_Asian_Width     (Neutral            vs Ambiguous),
-          Vertical_Orientation (Rotated            vs Upright)
+    UpTo: Bidi_Class           (Other_Neutral vs European_Terminator),
+          East_Asian_Width     (Neutral       vs Ambiguous),
+          Vertical_Orientation (Rotated       vs Upright)
 end Ignoring;
 
 Propertywise [
     \x{1DC00}-\x{1DC35}
     \N{LEIBNIZIAN SYSTEM ONE AND TWO PLUS-MINUS AMBIGUOUS SIGN}-\N{LEIBNIZIAN SYSTEM FIVE-FOUR MINUS OR MINUS-PLUS AMBIGUOUS SIGN}]
 CorrespondTo [\x{2213} ∓ \N{MINUS-OR-PLUS SIGN}]
-    UpTo: Bidi_Class (European_Separator vs European_Terminator)
+    UpTo: Bidi_Class (Other_Neutral vs European_Terminator)
 
 Propertywise [
     \x{1DC00}-\x{1DC35}
     \N{LEIBNIZIAN SYSTEM ONE AND TWO PLUS-MINUS AMBIGUOUS SIGN}-\N{LEIBNIZIAN SYSTEM FIVE-FOUR MINUS OR MINUS-PLUS AMBIGUOUS SIGN}]
 CorrespondTo [\x{2212} − \N{MINUS SIGN}]
-    UpTo: Dash (No vs Yes)
+    UpTo: Bidi_Class (Other_Neutral vs European_Separator),
+          Dash       (No            vs Yes)
 
 Propertywise [
     \x{1DC00}-\x{1DC35}
     \N{LEIBNIZIAN SYSTEM ONE AND TWO PLUS-MINUS AMBIGUOUS SIGN}-\N{LEIBNIZIAN SYSTEM FIVE-FOUR MINUS OR MINUS-PLUS AMBIGUOUS SIGN}]
 CorrespondTo [\x{002B} + \N{PLUS SIGN}]
-    UpTo: East_Asian_Width (Neutral vs Narrow),
-          Link_Email       (No      vs Yes)
+    UpTo:  Bidi_Class      (Other_Neutral vs European_Separator),
+          East_Asian_Width (Neutral       vs Narrow),
+          Link_Email       (No            vs Yes)
 
 end Ignoring;
 end Ignoring;
