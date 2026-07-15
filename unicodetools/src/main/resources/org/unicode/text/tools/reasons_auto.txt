@@ -992,6 +992,11 @@ Canonical_Combining_Class ; 16.0 ; [ࢗ] ; 176-C17
 # Documentation for changes to East_Asian_Width assignments
 # ==========================================================
 
+# East_Asian_Width assignment changes in Unicode Version 3.1.1
+# L2/01-189
+# null
+East_Asian_Width ; 3.1.1 ; [®ŋ˄˟•․‾№⅓⅜⅝↸↹⇧✽] ; L2/01-189, 87-M20
+
 # East_Asian_Width assignment changes in Unicode Version 6.2
 # L2/12-160@Tue Apr 3 16:52:11 CDT 2012
 # [131-C29] Consensus: Change the East Asian width property of characters 11A3..11A7, 11FA..11FF, D7B0..D7FB from "W" to "N", for Unicode 6.2. [L2/12-160]
