@@ -426,7 +426,6 @@ Canonical_Combining_Class ; 2.1.9 ; [ཱ༵༷֮⃡] ; # Yet unexplained
 Canonical_Combining_Class ; 3.0 ; [ెํໍ] ; # Yet unexplained
 Decomposition_Type ; 4.0 ; [⁇⁗ ⁱℽ-⅀ⅅ-ⅉ⨌⩴-⩶⫝̸ゟヿ㉑-㉟㊱-㊿侮-頻﷼｟｠] ; # Yet unexplained
 East_Asian_Width ; 3.1 ; [〈〉〈〉〔〕〘〙㐁-䶴丁-龤각-힢-󰀀-󿿽􀀀-􏿽] ; # Yet unexplained
-East_Asian_Width ; 3.1.1 ; [®ŋ˄˟•․‾№⅓⅜⅝↸↹⇧✽] ; # Yet unexplained
 East_Asian_Width ; 3.2 ; [⅕〈〉Ⓚ-Ⓩ╴❶-❿　〈-》〔〕〘-〛] ; # Yet unexplained
 East_Asian_Width ; 4.0 ; [𪛗-𯟿𯨞-𯿽𰀀-𿿽] ; # Yet unexplained
 East_Asian_Width ; 5.2 ; [䶶-䶿鿌-鿿郞隷﩮﩯﫚-﫿] ; # Yet unexplained
