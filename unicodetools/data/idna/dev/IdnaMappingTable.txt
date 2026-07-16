@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-06-29, 15:25:07 GMT
+# Date: 2026-07-07, 16:25:49 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -6588,8 +6588,8 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 11AC0..11AF8  ; valid                      # 7.0  PAU CIN HAU LETTER PA..PAU CIN HAU GLOTTAL STOP FINAL
 11AF9..11AFF  ; disallowed                 # NA   <reserved-11AF9>..<reserved-11AFF>
 11B00..11B09  ; valid      ;      ; NV8    # 15.0 DEVANAGARI HEAD MARK..DEVANAGARI SIGN MINDU
-11B0A         ; valid                      # 18.0 DEVANAGARI LETTER ALTERNATE DDDA
-11B0B..11B5F  ; disallowed                 # NA   <reserved-11B0B>..<reserved-11B5F>
+11B0A..11B0C  ; valid                      # 18.0 DEVANAGARI LETTER ALTERNATE DDDA..DEVANAGARI SIGN UPADHMANIYA
+11B0D..11B5F  ; disallowed                 # NA   <reserved-11B0D>..<reserved-11B5F>
 11B60..11B67  ; valid                      # 17.0 SHARADA VOWEL SIGN OE..SHARADA VOWEL SIGN CANDRA O
 11B68..11BBF  ; disallowed                 # NA   <reserved-11B68>..<reserved-11BBF>
 11BC0..11BE0  ; valid                      # 16.0 SUNUWAR LETTER DEVI..SUNUWAR LETTER KLOKO
