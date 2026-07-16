@@ -1,5 +1,5 @@
 # WordBreakProperty-18.0.0.txt
-# Date: 2026-06-29, 15:25:28 GMT
+# Date: 2026-07-14, 17:15:13 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -181,6 +181,7 @@ FB46..FB4F    ; Hebrew_Letter # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW
 0CD5..0CD6    ; Extend # Mc   [2] KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
 0CE2..0CE3    ; Extend # Mn   [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
 0CF3          ; Extend # Mc       KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
+0CF4          ; Extend # Mn       KANNADA SIGN COMBINING ANUSVARA ABOVE
 0D00..0D01    ; Extend # Mn   [2] MALAYALAM SIGN COMBINING ANUSVARA ABOVE..MALAYALAM SIGN CANDRABINDU
 0D02..0D03    ; Extend # Mc   [2] MALAYALAM SIGN ANUSVARA..MALAYALAM SIGN VISARGA
 0D3B..0D3C    ; Extend # Mn   [2] MALAYALAM SIGN VERTICAL BAR VIRAMA..MALAYALAM SIGN CIRCULAR VIRAMA
@@ -640,7 +641,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2684
+# Total code points: 2685
 
 # ================================================
 
