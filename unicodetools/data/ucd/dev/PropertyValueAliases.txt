@@ -1,5 +1,5 @@
 # PropertyValueAliases-18.0.0.txt
-# Date: 2026-06-24, 13:39:29 GMT
+# Date: 2026-07-02, 12:00:23 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -438,6 +438,7 @@ blk; Siddham                          ; Siddham
 blk; Sidetic                          ; Sidetic
 blk; Sinhala                          ; Sinhala
 blk; Sinhala_Archaic_Numbers          ; Sinhala_Archaic_Numbers
+blk; Sirmauri                         ; Sirmauri
 blk; Small_Forms                      ; Small_Form_Variants
 blk; Small_Kana_Ext                   ; Small_Kana_Extension
 blk; Sogdian                          ; Sogdian
@@ -1460,6 +1461,7 @@ sc ; Phlp                             ; Psalter_Pahlavi
 sc ; Phnx                             ; Phoenician
 sc ; Plrd                             ; Miao
 sc ; Prti                             ; Inscriptional_Parthian
+sc ; Qaba                             ; Sirmauri
 sc ; Rjng                             ; Rejang
 sc ; Rohg                             ; Hanifi_Rohingya
 sc ; Runr                             ; Runic

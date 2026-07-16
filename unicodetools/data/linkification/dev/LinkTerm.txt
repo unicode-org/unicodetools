@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-06-29, 15:25:13 GMT 
+# Date: 2026-07-03, 10:14:13 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1651,6 +1651,13 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 1173F         ; Include # 8.0       (𑜿)  AHOM SYMBOL VI
 11740..11746  ; Include # 14.0  [7] (𑝀..𑝆)  AHOM LETTER CA..AHOM LETTER LLA
 11800..1183B  ; Include # 11.0 [60] (𑠀..𑠻)  DOGRA LETTER A..DOGRA ABBREVIATION SIGN
+11850..11857  ; Include # 18.0  [8] (𑡐..𑡗)  SIRMAURI LETTER A..SIRMAURI LETTER GHA
+11859..1185C  ; Include # 18.0  [4] (𑡙..𑡜)  SIRMAURI LETTER CA..SIRMAURI LETTER JHA
+1185E..1186F  ; Include # 18.0 [18] (𑡞..𑡯)  SIRMAURI LETTER TTA..SIRMAURI LETTER LA
+11873..11875  ; Include # 18.0  [3] (𑡳..𑡵)  SIRMAURI LETTER SA..SIRMAURI VOWEL SIGN AA
+11877..11878  ; Include # 18.0  [2] (𑡷..𑡸)  SIRMAURI VOWEL SIGN II..SIRMAURI VOWEL SIGN U
+1187A..11883  ; Include # 18.0 [10] (𑡺..𑢃)  SIRMAURI VOWEL SIGN E..SIRMAURI EKAM
+11886..1188F  ; Include # 18.0 [10] (𑢆..𑢏)  SIRMAURI DIGIT ZERO..SIRMAURI DIGIT NINE
 118A0..118F2  ; Include # 7.0  [83] (𑢠..𑣲)  WARANG CITI CAPITAL LETTER NGAA..WARANG CITI NUMBER NINETY
 118FF         ; Include # 7.0       (𑣿)  WARANG CITI OM
 11900..11906  ; Include # 13.0  [7] (𑤀..𑤆)  DIVES AKURU LETTER A..DIVES AKURU LETTER E
@@ -2205,5 +2212,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172312
+# Total code points: 172367
 

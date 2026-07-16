@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2026-06-29, 15:25:00 GMT
+# Date: 2026-07-03, 09:55:41 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1682,6 +1682,20 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1182F..11837  ; 0 # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
 11838         ; 0 # Mc       DOGRA SIGN VISARGA
 1183B         ; 0 # Po       DOGRA ABBREVIATION SIGN
+11850..11857  ; 0 # Lo   [8] SIRMAURI LETTER A..SIRMAURI LETTER GHA
+11859..1185C  ; 0 # Lo   [4] SIRMAURI LETTER CA..SIRMAURI LETTER JHA
+1185E..1186F  ; 0 # Lo  [18] SIRMAURI LETTER TTA..SIRMAURI LETTER LA
+11873..11874  ; 0 # Lo   [2] SIRMAURI LETTER SA..SIRMAURI LETTER HA
+11875         ; 0 # Mc       SIRMAURI VOWEL SIGN AA
+11877         ; 0 # Mc       SIRMAURI VOWEL SIGN II
+11878         ; 0 # Mn       SIRMAURI VOWEL SIGN U
+1187A..1187B  ; 0 # Mn   [2] SIRMAURI VOWEL SIGN E..SIRMAURI VOWEL SIGN AI
+1187C..1187D  ; 0 # Mc   [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
+1187E         ; 0 # Mn       SIRMAURI SIGN ANUSVARA
+1187F         ; 0 # Mc       SIRMAURI SIGN VISARGA
+11881..11882  ; 0 # Mn   [2] SIRMAURI SIGN NUKTA..SIRMAURI CONSONANT SIGN MEDIAL RA
+11883         ; 0 # Lo       SIRMAURI EKAM
+11886..1188F  ; 0 # Nd  [10] SIRMAURI DIGIT ZERO..SIRMAURI DIGIT NINE
 118A0..118DF  ; 0 # L&  [64] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 118E0..118E9  ; 0 # Nd  [10] WARANG CITI DIGIT ZERO..WARANG CITI DIGIT NINE
 118EA..118F2  ; 0 # No   [9] WARANG CITI NUMBER TEN..WARANG CITI NUMBER NINETY
@@ -2110,8 +2124,8 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 803771 code points not listed here.
-# Total code points: 1113110
+# The above property value applies to 803716 code points not listed here.
+# Total code points: 1113109
 
 # ================================================
 
@@ -2237,6 +2251,7 @@ ABED          ; 9 # Mn       MEETEI MAYEK APUN IYEK
 116B6         ; 9 # Mc       TAKRI SIGN VIRAMA
 1172B         ; 9 # Mn       AHOM SIGN KILLER
 11839         ; 9 # Mn       DOGRA SIGN VIRAMA
+11880         ; 9 # Mn       SIRMAURI SIGN HALANTA
 1193D         ; 9 # Mc       DIVES AKURU SIGN HALANTA
 1193E         ; 9 # Mn       DIVES AKURU VIRAMA
 119E0         ; 9 # Mn       NANDINAGARI SIGN VIRAMA
@@ -2250,7 +2265,7 @@ ABED          ; 9 # Mn       MEETEI MAYEK APUN IYEK
 11F42         ; 9 # Mn       KAWI CONJOINER
 1612F         ; 9 # Mn       GURUNG KHEMA SIGN THOLHOMA
 
-# Total code points: 69
+# Total code points: 70
 
 # ================================================
 

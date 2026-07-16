@@ -1,5 +1,5 @@
 # DerivedJoiningType-18.0.0.txt
-# Date: 2026-06-29, 15:25:03 GMT
+# Date: 2026-07-03, 09:55:44 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -506,6 +506,10 @@ FFF9..FFFB    ; T # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTATI
 11727..1172B  ; T # Mn   [5] AHOM VOWEL SIGN AW..AHOM SIGN KILLER
 1182F..11837  ; T # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
 11839..1183A  ; T # Mn   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
+11878         ; T # Mn       SIRMAURI VOWEL SIGN U
+1187A..1187B  ; T # Mn   [2] SIRMAURI VOWEL SIGN E..SIRMAURI VOWEL SIGN AI
+1187E         ; T # Mn       SIRMAURI SIGN ANUSVARA
+11880..11882  ; T # Mn   [3] SIRMAURI SIGN HALANTA..SIRMAURI CONSONANT SIGN MEDIAL RA
 1193B..1193C  ; T # Mn   [2] DIVES AKURU SIGN ANUSVARA..DIVES AKURU SIGN CANDRABINDU
 1193E         ; T # Mn       DIVES AKURU VIRAMA
 11943         ; T # Mn       DIVES AKURU SIGN NUKTA
@@ -595,6 +599,6 @@ E0001         ; T # Cf       LANGUAGE TAG
 E0020..E007F  ; T # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; T # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2255
+# Total code points: 2262
 
 # EOF

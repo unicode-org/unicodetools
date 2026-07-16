@@ -1,5 +1,5 @@
 # DerivedDecompositionType-18.0.0.txt
-# Date: 2026-02-03, 23:09:52 GMT
+# Date: 2026-07-03, 09:55:43 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -265,6 +265,7 @@ FB46..FB4E    ; Canonical # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBREW LET
 114BB..114BC  ; Canonical # Mc   [2] TIRHUTA VOWEL SIGN AI..TIRHUTA VOWEL SIGN O
 114BE         ; Canonical # Mc       TIRHUTA VOWEL SIGN AU
 115BA..115BB  ; Canonical # Mc   [2] SIDDHAM VOWEL SIGN O..SIDDHAM VOWEL SIGN AU
+1187C..1187D  ; Canonical # Mc   [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
 11938         ; Canonical # Mc       DIVES AKURU VOWEL SIGN O
 16121..16128  ; Canonical # Mn   [8] GURUNG KHEMA VOWEL SIGN U..GURUNG KHEMA VOWEL SIGN AU
 16D68..16D6A  ; Canonical # Lo   [3] KIRAT RAI VOWEL SIGN AI..KIRAT RAI VOWEL SIGN AU
@@ -272,7 +273,7 @@ FB46..FB4E    ; Canonical # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBREW LET
 1D1BB..1D1C0  ; Canonical # So   [6] MUSICAL SYMBOL MINIMA..MUSICAL SYMBOL FUSA BLACK
 2F800..2FA1D  ; Canonical # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 13253
+# Total code points: 13255
 
 # ================================================
 
