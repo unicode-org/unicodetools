@@ -1,0 +1,74 @@
+# Symbols: misc scientific symbols (1DB22..1DB2B)
+# https://github.com/unicode-org/sew/issues/692
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block Pattern_Syntax:
+
+Ignoring Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set Math_Class Math_Class_Ex:
+
+Propertywise [
+    \x{1DB22} \N{CASTING OUT NINES}
+    \x{1DB23} \N{LUNATE ENCIRCLED DIGIT ONE}
+    \x{1DB24} \N{PROPORTION WITH ONE STROKE}
+    \x{1DB25} \N{PROPORTION WITH TWO STROKES}
+    \x{1DB26} \N{INFINITY WITH TWO DOTS}
+    \x{1DB27} \N{INVOLVED}
+    \x{1DB28} \N{LEIBNIZIAN ENCIRCLED V}
+    \x{1DB29} \N{LEIBNIZIAN ENCIRCLED V IN BOX}
+    \x{1DB2A} \N{HORIZONTAL WAVY LINE}
+    \x{1DB2B} \N{HORIZONTAL WAVY LINE WITH BAR ABOVE}
+] CorrespondTo [
+    \x{221E} ∞ \N{INFINITY}
+] UpTo: ID_Compat_Math_Start (No vs Yes),
+        ID_Compat_Math_Continue (No vs Yes),
+        East_Asian_Width (Neutral vs Ambiguous),
+        Line_Break (Alphabetic vs Ambiguous),
+        Vertical_Orientation (Rotated vs Upright)
+
+Propertywise [
+    \x{1DB22} \N{CASTING OUT NINES}
+    \x{1DB23} \N{LUNATE ENCIRCLED DIGIT ONE}
+    \x{1DB24} \N{PROPORTION WITH ONE STROKE}
+    \x{1DB25} \N{PROPORTION WITH TWO STROKES}
+    \x{1DB26} \N{INFINITY WITH TWO DOTS}
+    \x{1DB27} \N{INVOLVED}
+    \x{1DB28} \N{LEIBNIZIAN ENCIRCLED V}
+    \x{1DB29} \N{LEIBNIZIAN ENCIRCLED V IN BOX}
+    \x{1DB2A} \N{HORIZONTAL WAVY LINE}
+    \x{1DB2B} \N{HORIZONTAL WAVY LINE WITH BAR ABOVE}
+] CorrespondTo [
+    \x{2237} ∷ \N{PROPORTION}
+] UpTo: East_Asian_Width (Neutral vs Ambiguous),
+        Line_Break (Alphabetic vs Ambiguous)
+
+
+Propertywise [
+    \x{1DB22} \N{CASTING OUT NINES}
+    \x{1DB23} \N{LUNATE ENCIRCLED DIGIT ONE}
+    \x{1DB24} \N{PROPORTION WITH ONE STROKE}
+    \x{1DB25} \N{PROPORTION WITH TWO STROKES}
+    \x{1DB26} \N{INFINITY WITH TWO DOTS}
+    \x{1DB27} \N{INVOLVED}
+    \x{1DB28} \N{LEIBNIZIAN ENCIRCLED V}
+    \x{1DB29} \N{LEIBNIZIAN ENCIRCLED V IN BOX}
+    \x{1DB2A} \N{HORIZONTAL WAVY LINE}
+    \x{1DB2B} \N{HORIZONTAL WAVY LINE WITH BAR ABOVE}
+    \x{223A} ∺ \N{GEOMETRIC PROPORTION}
+    \x{2251} ≑ \N{GEOMETRICALLY EQUAL TO}
+] AreAlike
+
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
