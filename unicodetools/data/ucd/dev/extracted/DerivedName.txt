@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2026-06-29, 15:25:03 GMT
+# Date: 2026-07-14, 14:16:28 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -42518,6 +42518,10 @@ FFFD          ; REPLACEMENT CHARACTER
 1DF94         ; LATIN SMALL LETTER R ROTUNDA WITH LOOP
 1DF95         ; LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1DF96         ; LATIN SMALL LETTER LONG S WITH TOP LOOP
+1DFC5         ; DOUBLE GRAVE ACCENT
+1DFC6         ; MODIFIER LETTER MIDDLE ACUTE ACCENT
+1DFC7         ; MODIFIER LETTER SOUTH EAST ARROW
+1DFC8         ; MODIFIER LETTER LOW NORTH EAST ARROW
 1DFCD         ; MODIFIER LETTER SMALL TURNED R WITH MID-HEIGHT LEFT HOOK
 1DFCE         ; MODIFIER LETTER SMALL SPLIT O
 1DFCF         ; MODIFIER LETTER SMALL SPLIT U
@@ -46582,6 +46586,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172808
+# Total code points: 172812
 
 # EOF
