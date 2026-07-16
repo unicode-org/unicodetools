@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2026-06-29, 15:25:03 GMT
+# Date: 2026-07-07, 23:00:47 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -31902,6 +31902,8 @@ FFFD          ; REPLACEMENT CHARACTER
 11839         ; DOGRA SIGN VIRAMA
 1183A         ; DOGRA SIGN NUKTA
 1183B         ; DOGRA ABBREVIATION SIGN
+1183C         ; DOGRA SIGN CANDRABINDU
+1183D         ; DOGRA SIGN AVAGRAHA
 118A0         ; WARANG CITI CAPITAL LETTER NGAA
 118A1         ; WARANG CITI CAPITAL LETTER A
 118A2         ; WARANG CITI CAPITAL LETTER WI
@@ -46582,6 +46584,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172808
+# Total code points: 172810
 
 # EOF

@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-18.0.0.txt
-# Date: 2026-06-29, 15:25:02 GMT
+# Date: 2026-07-07, 23:00:46 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1715,6 +1715,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 11838         ; N # Mc       DOGRA SIGN VISARGA
 11839..1183A  ; N # Mn   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
 1183B         ; N # Po       DOGRA ABBREVIATION SIGN
+1183C         ; N # Mn       DOGRA SIGN CANDRABINDU
+1183D         ; N # Lo       DOGRA SIGN AVAGRAHA
 118A0..118DF  ; N # L&  [64] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 118E0..118E9  ; N # Nd  [10] WARANG CITI DIGIT ZERO..WARANG CITI DIGIT NINE
 118EA..118F2  ; N # No   [9] WARANG CITI NUMBER TEN..WARANG CITI NUMBER NINETY
@@ -2163,7 +2165,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 758934 code points not listed here.
+# The above property value applies to 758932 code points not listed here.
 # Total code points: 791273
 
 # ================================================

@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-18.0.0.txt
-# Date: 2026-06-29, 15:25:05 GMT
+# Date: 2026-07-07, 23:00:49 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -414,6 +414,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 11727..1172B  ; Extend # Mn   [5] AHOM VOWEL SIGN AW..AHOM SIGN KILLER
 1182F..11837  ; Extend # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
 11839..1183A  ; Extend # Mn   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
+1183C         ; Extend # Mn       DOGRA SIGN CANDRABINDU
 11930         ; Extend # Mc       DIVES AKURU VOWEL SIGN AA
 1193B..1193C  ; Extend # Mn   [2] DIVES AKURU SIGN ANUSVARA..DIVES AKURU SIGN CANDRABINDU
 1193D         ; Extend # Mc       DIVES AKURU SIGN HALANTA
@@ -508,7 +509,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2274
+# Total code points: 2275
 
 # ================================================
 
