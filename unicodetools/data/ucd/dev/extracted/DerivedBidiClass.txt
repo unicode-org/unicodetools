@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2026-07-02, 16:50:27 GMT
+# Date: 2026-07-08, 00:08:49 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1253,8 +1253,8 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 797652 code points not listed here.
-# Total code points: 1095318
+# The above property value applies to 797651 code points not listed here.
+# Total code points: 1095317
 
 # ================================================
 
@@ -2360,6 +2360,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 11366..1136C  ; NSM # Mn   [7] COMBINING GRANTHA DIGIT ZERO..COMBINING GRANTHA DIGIT SIX
 11370..11374  ; NSM # Mn   [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
 113BB..113C0  ; NSM # Mn   [6] TULU-TIGALARI VOWEL SIGN U..TULU-TIGALARI VOWEL SIGN VOCALIC LL
+113CB         ; NSM # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CE         ; NSM # Mn       TULU-TIGALARI SIGN VIRAMA
 113D0         ; NSM # Mn       TULU-TIGALARI CONJOINER
 113D2         ; NSM # Mn       TULU-TIGALARI GEMINATION MARK
@@ -2472,7 +2473,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 1E944..1E94A  ; NSM # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; NSM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2095
+# Total code points: 2096
 
 # ================================================
 

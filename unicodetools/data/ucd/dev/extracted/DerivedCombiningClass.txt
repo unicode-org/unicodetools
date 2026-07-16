@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2026-06-29, 15:25:00 GMT
+# Date: 2026-07-08, 00:08:50 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1603,6 +1603,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 113C2         ; 0 # Mc       TULU-TIGALARI VOWEL SIGN EE
 113C5         ; 0 # Mc       TULU-TIGALARI VOWEL SIGN AI
 113C7..113CA  ; 0 # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CB         ; 0 # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CC..113CD  ; 0 # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
 113D1         ; 0 # Lo       TULU-TIGALARI REPHA
 113D2         ; 0 # Mn       TULU-TIGALARI GEMINATION MARK
@@ -2110,7 +2111,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 803771 code points not listed here.
+# The above property value applies to 803770 code points not listed here.
 # Total code points: 1113110
 
 # ================================================

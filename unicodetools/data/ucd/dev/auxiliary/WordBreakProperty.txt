@@ -1,5 +1,5 @@
 # WordBreakProperty-18.0.0.txt
-# Date: 2026-06-29, 15:25:28 GMT
+# Date: 2026-07-08, 00:09:16 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -468,6 +468,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 113C2         ; Extend # Mc       TULU-TIGALARI VOWEL SIGN EE
 113C5         ; Extend # Mc       TULU-TIGALARI VOWEL SIGN AI
 113C7..113CA  ; Extend # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CB         ; Extend # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CC..113CD  ; Extend # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
 113CE         ; Extend # Mn       TULU-TIGALARI SIGN VIRAMA
 113CF         ; Extend # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
@@ -640,7 +641,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2684
+# Total code points: 2685
 
 # ================================================
 

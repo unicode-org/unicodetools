@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-06-29, 15:25:07 GMT
+# Date: 2026-07-08, 00:08:56 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -6452,7 +6452,7 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 113C5         ; valid                      # 16.0 TULU-TIGALARI VOWEL SIGN AI
 113C6         ; disallowed                 # NA   <reserved-113C6>
 113C7..113CA  ; valid                      # 16.0 TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
-113CB         ; disallowed                 # NA   <reserved-113CB>
+113CB         ; valid                      # 18.0 TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CC..113D3  ; valid                      # 16.0 TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN PLUTA
 113D4..113D5  ; valid      ;      ; NV8    # 16.0 TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
 113D6         ; disallowed                 # NA   <reserved-113D6>
