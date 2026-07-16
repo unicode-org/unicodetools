@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-06-29, 15:25:07 GMT
+# Date: 2026-07-08, 15:10:23 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2487,7 +2487,8 @@
 20EB          ; valid      ;      ; NV8    # 4.1  COMBINING LONG DOUBLE SOLIDUS OVERLAY
 20EC..20EF    ; valid      ;      ; NV8    # 5.0  COMBINING RIGHTWARDS HARPOON WITH BARB DOWNWARDS..COMBINING RIGHT ARROW BELOW
 20F0          ; valid      ;      ; NV8    # 5.1  COMBINING ASTERISK ABOVE
-20F1..20FF    ; disallowed                 # NA   <reserved-20F1>..<reserved-20FF>
+20F1..20F2    ; valid      ;      ; NV8    # 18.0 COMBINING LONG TRIPLE SOLIDUS OVERLAY..COMBINING SALTIRE OVERLAY
+20F3..20FF    ; disallowed                 # NA   <reserved-20F3>..<reserved-20FF>
 2100          ; mapped     ; 0061 002F 0063 #1.1  ACCOUNT OF
 2101          ; mapped     ; 0061 002F 0073 #1.1  ADDRESSED TO THE SUBJECT
 2102          ; mapped     ; 0063          # 1.1  DOUBLE-STRUCK CAPITAL C

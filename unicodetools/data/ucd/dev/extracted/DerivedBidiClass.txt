@@ -1,5 +1,5 @@
 # DerivedBidiClass-18.0.0.txt
-# Date: 2026-07-02, 16:50:27 GMT
+# Date: 2026-07-08, 15:10:16 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1253,8 +1253,8 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 797652 code points not listed here.
-# Total code points: 1095318
+# The above property value applies to 797650 code points not listed here.
+# Total code points: 1095316
 
 # ================================================
 
@@ -2270,7 +2270,7 @@ FFFFE..FFFFF  ; BN # Cn   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 20DD..20E0    ; NSM # Me   [4] COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
 20E1          ; NSM # Mn       COMBINING LEFT RIGHT ARROW ABOVE
 20E2..20E4    ; NSM # Me   [3] COMBINING ENCLOSING SCREEN..COMBINING ENCLOSING UPWARD POINTING TRIANGLE
-20E5..20F0    ; NSM # Mn  [12] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING ASTERISK ABOVE
+20E5..20F2    ; NSM # Mn  [14] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING SALTIRE OVERLAY
 2CEF..2CF1    ; NSM # Mn   [3] COPTIC COMBINING NI ABOVE..COPTIC COMBINING SPIRITUS LENIS
 2D7F          ; NSM # Mn       TIFINAGH CONSONANT JOINER
 2DE0..2DFF    ; NSM # Mn  [32] COMBINING CYRILLIC LETTER BE..COMBINING CYRILLIC LETTER IOTIFIED BIG YUS
@@ -2472,7 +2472,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 1E944..1E94A  ; NSM # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; NSM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2095
+# Total code points: 2097
 
 # ================================================
 

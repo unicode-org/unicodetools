@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2026-06-29, 15:25:00 GMT
+# Date: 2026-07-08, 15:10:16 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2110,8 +2110,8 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 803771 code points not listed here.
-# Total code points: 1113110
+# The above property value applies to 803769 code points not listed here.
+# Total code points: 1113108
 
 # ================================================
 
@@ -2124,13 +2124,14 @@ F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 20D8..20DA    ; 1 # Mn   [3] COMBINING RING OVERLAY..COMBINING ANTICLOCKWISE RING OVERLAY
 20E5..20E6    ; 1 # Mn   [2] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING DOUBLE VERTICAL STROKE OVERLAY
 20EA..20EB    ; 1 # Mn   [2] COMBINING LEFTWARDS ARROW OVERLAY..COMBINING LONG DOUBLE SOLIDUS OVERLAY
+20F1..20F2    ; 1 # Mn   [2] COMBINING LONG TRIPLE SOLIDUS OVERLAY..COMBINING SALTIRE OVERLAY
 10A39         ; 1 # Mn       KHAROSHTHI SIGN CAUDA
 16AF0..16AF4  ; 1 # Mn   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
 1BC9E         ; 1 # Mn       DUPLOYAN DOUBLE MARK
 1D167..1D169  ; 1 # Mn   [3] MUSICAL SYMBOL COMBINING TREMOLO-1..MUSICAL SYMBOL COMBINING TREMOLO-3
 1D25B..1D25C  ; 1 # Mn   [2] MUSICAL SYMBOL COMBINING TREMOLO-4..MUSICAL SYMBOL COMBINING TREMOLO-5
 
-# Total code points: 34
+# Total code points: 36
 
 # ================================================
 
