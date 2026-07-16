@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-06-29, 15:25:07 GMT
+# Date: 2026-07-13, 13:35:55 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -6311,7 +6311,8 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 10EAD         ; valid      ;      ; NV8    # 13.0 YEZIDI HYPHENATION MARK
 10EAE..10EAF  ; disallowed                 # NA   <reserved-10EAE>..<reserved-10EAF>
 10EB0..10EB1  ; valid                      # 13.0 YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
-10EB2..10EC1  ; disallowed                 # NA   <reserved-10EB2>..<reserved-10EC1>
+10EB2..10EBF  ; disallowed                 # NA   <reserved-10EB2>..<reserved-10EBF>
+10EC0..10EC1  ; valid                      # 18.0 ARABIC LETTER DOTLESS HALF YEH..ARABIC LETTER HALF YEH
 10EC2..10EC4  ; valid                      # 16.0 ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
 10EC5..10EC7  ; valid                      # 17.0 ARABIC SMALL YEH BARREE WITH TWO DOTS BELOW..ARABIC LETTER YEH WITH FOUR DOTS BELOW
 10EC8         ; disallowed                 # NA   <reserved-10EC8>
