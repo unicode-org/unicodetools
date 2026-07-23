@@ -4,6 +4,7 @@ import com.google.common.base.Splitter;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.UnicodeMap.Composer;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -25,7 +26,6 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Segmenter;
@@ -389,7 +389,7 @@ public class TestSegment {
 
         Builder segmenter =
                 Segmenter.make(
-                        ToolUnicodePropertySource.make(Default.ucd().getVersion()),
+                        VersionInfo.getInstance(Default.ucd().getVersion()),
                         "GraphemeClusterBreak");
 
         getExemplarStrings(exemplars, segmenter);
